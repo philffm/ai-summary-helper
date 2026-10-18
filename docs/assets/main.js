@@ -910,7 +910,7 @@ function setBilling(period) {
   document.querySelectorAll('[data-demo]').forEach(function (box) {
     var btn = box.querySelector('.demo-start');
     if (!btn) return;
-    function poster() { box.style.backgroundImage = 'url(' + box.getAttribute('data-src').replace('demo/index.html', 'assets/demo-poster/' + (/^(en|de|fr|es|pt|zh|zh-tw|ja|ko|hi|vi)$/.test(siteLang()) ? siteLang() : 'en') + '-' + siteTheme() + '.webp') + ')'; }
+    function poster() { box.style.backgroundImage = 'url(' + box.getAttribute('data-src').replace('demo/index.html', 'assets/demo-poster/' + (/^(en|de|fr|es|pt|zh|zh-tw|ja|ko|hi|vi|nl|it|ru|uk|tr|id|pl|th|ar|sv|da|no|fi)$/.test(siteLang()) ? siteLang() : 'en') + '-' + siteTheme() + '.webp') + ')'; }
     poster();
     new MutationObserver(function () { if (!box.classList.contains('is-live')) poster(); }).observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme'] });
     btn.addEventListener('click', function () {

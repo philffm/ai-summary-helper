@@ -955,3 +955,8 @@ footer .copyright a:hover, .foot-links a:hover{ text-decoration-color:currentCol
 [dir="rtl"] .hscene-canvas p, [dir="rtl"] .hscene-canvas h4, [dir="rtl"] .hs-panel{ text-align:left; }
 [dir="rtl"] .demo-frame{ margin:0 calc(50% - var(--dw) / 2) 0 0; }
 [dir="rtl"] .hscene-mcap{ text-align:center; }
+
+/* RTL: full-bleed blocks anchor from the right */
+[dir="rtl"] .cx{ margin-left:0; margin-right:calc(50% - 50vw); }
+/* Hero scene: four language pills are enough; long native names would run into the "Runs locally" badge */
+.hs-langs b:nth-child(n+5){ display:none; }

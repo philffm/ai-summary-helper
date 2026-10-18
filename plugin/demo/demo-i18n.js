@@ -491,6 +491,643 @@ window.AISH_DEMO_I18N = {
     ]
    }
   ]
+ },
+ "nl": {
+  "ui": "nl",
+  "sel": "nl",
+  "side": "zijpaneel",
+  "article": {
+   "title": "De stille comeback van de longread",
+   "byline": "Door Jo Marlowe · 7 min leestijd",
+   "paragraphs": [
+    "Tien jaar lang optimaliseerde het web voor de vluchtige blik: een kop, een miniatuur, een aantal shares. De langste stukken verdwenen stilletjes van het menu, en iedereen vond dat de aandachtsspanne gewoon korter was geworden.",
+    "De cijfers vertellen nu iets anders. Uitgevers melden dat hun langste artikelen de meeste leestijd opleveren, en nieuwsbrieven rond één lang essay blijven sneller groeien dan de feeds die ze zouden vervangen. Redacties zeggen dat lezers het scannen beu zijn. Ze willen het volledige betoog terug, met de context die een kop wegsnijdt.",
+    "Het obstakel is niet langer interesse maar tijd. Niemand kan alles lezen wat het lezen waard is, dus verspreidt zich een nieuwe gewoonte: eerst een korte samenvatting lezen, dan beslissen. Samenvattingen bepalen wat een volledige lezing verdient, en de stukken die die selectie overleven worden zorgvuldiger gelezen dan voorheen.",
+    "Dat verandert hoe goed schrijven eruitziet. Een lang stuk moet zijn lengte nu twee keer rechtvaardigen: één keer tegenover de samenvatting en één keer tegenover de lezer die besluit te blijven."
+   ]
+  },
+  "summary": {
+   "stream": "Lang lezen maakt een stille comeback. Na tien jaar koppen en feeds willen lezers context in plaats van meer volume. De langste artikelen leveren inmiddels de meeste leestijd op. De adder onder het gras is tijd: niemand kan alles lezen, dus korte samenvattingen bepalen wat een volledige lezing verdient.",
+   "html": "<h3>Kernpunten</h3><ul><li><strong>Longreads groeien weer.</strong> De langste artikelen leveren inmiddels de meeste leestijd op.</li><li><strong>Lezers willen context</strong>, niet nog meer koppen.</li><li><strong>Tijd is de bottleneck.</strong> Samenvattingen bepalen wat een volledige lezing verdient.</li></ul><p>Aandacht is schaars, dus selecteren is onderdeel van het lezen geworden.</p>",
+   "tags": [
+    "lezen",
+    "media"
+   ],
+   "questions": [
+    "Waarom groeit de longread weer?",
+    "Wat verandert er voor schrijvers?"
+   ]
+  },
+  "asks": [
+   {
+    "q": "schrijvers",
+    "text": "Schrijvers moeten hun lengte nu twee keer rechtvaardigen: tegenover de samenvatting die bepaalt of het stuk gelezen wordt, en tegenover de lezer die besluit te blijven.",
+    "sources": [
+     "zijn lengte nu twee keer rechtvaardigen"
+    ],
+    "questions": [
+     "Waarom groeit de longread weer?"
+    ]
+   },
+   {
+    "q": "",
+    "text": "Omdat lezers het scannen beu zijn. Na jaren vol koppen willen ze het volledige betoog terug, en de langste artikelen leveren inmiddels de meeste leestijd op.",
+    "sources": [
+     "het scannen beu zijn"
+    ],
+    "questions": [
+     "Wat verandert er voor schrijvers?"
+    ]
+   }
+  ]
+ },
+ "it": {
+  "ui": "it",
+  "sel": "it",
+  "side": "pannello laterale",
+  "article": {
+   "title": "Il silenzioso ritorno degli articoli lunghi",
+   "byline": "Di Jo Marlowe · 7 min di lettura",
+   "paragraphs": [
+    "Per un decennio il web ha ottimizzato per il colpo d'occhio: un titolo, una miniatura, un numero di condivisioni. I pezzi più lunghi sono stati tolti in silenzio dal menu, e tutti concordavano che la soglia di attenzione si fosse semplicemente ridotta.",
+    "I dati ora dicono altro. Gli editori riferiscono che i loro articoli più lunghi conquistano più tempo di lettura, e le newsletter costruite su un unico lungo saggio continuano a crescere più dei feed che avrebbero dovuto sostituirle. I direttori dicono che i lettori sono stanchi di scorrere in fretta. Rivogliono l'argomentazione intera, con il contesto che un titolo taglia via.",
+    "L'ostacolo non è più l'interesse ma il tempo. Nessuno può leggere tutto ciò che meriterebbe, così si diffonde un'abitudine nuova: leggere prima un breve riassunto, poi decidere. I riassunti stabiliscono cosa merita una lettura completa, e i pezzi che superano questa selezione vengono letti con più attenzione di prima.",
+    "Questo cambia l'aspetto della buona scrittura. Un testo lungo deve ora giustificare la propria lunghezza due volte: una davanti al riassunto e una davanti al lettore che decide di restare."
+   ]
+  },
+  "summary": {
+   "stream": "La lettura lunga sta tornando, in silenzio. Dopo un decennio di titoli e feed, i lettori vogliono contesto, non più volume. Gli articoli più lunghi conquistano ormai più tempo di lettura. Il problema è il tempo: nessuno può leggere tutto, quindi sono i brevi riassunti a stabilire cosa merita una lettura completa.",
+   "html": "<h3>Punti chiave</h3><ul><li><strong>Gli articoli lunghi crescono di nuovo.</strong> I pezzi più lunghi conquistano ormai più tempo di lettura.</li><li><strong>I lettori vogliono contesto</strong>, non altri titoli.</li><li><strong>Il tempo è il collo di bottiglia.</strong> I riassunti stabiliscono cosa merita una lettura completa.</li></ul><p>L'attenzione è scarsa, quindi scegliere è diventato parte del leggere.</p>",
+   "tags": [
+    "lettura",
+    "media"
+   ],
+   "questions": [
+    "Perché gli articoli lunghi crescono di nuovo?",
+    "Cosa cambia per chi scrive?"
+   ]
+  },
+  "asks": [
+   {
+    "q": "scrive",
+    "text": "Chi scrive deve ora giustificare la lunghezza due volte: davanti al riassunto, che decide se il pezzo verrà letto, e davanti al lettore che decide di restare.",
+    "sources": [
+     "giustificare la propria lunghezza due volte"
+    ],
+    "questions": [
+     "Perché gli articoli lunghi crescono di nuovo?"
+    ]
+   },
+   {
+    "q": "",
+    "text": "Perché i lettori sono stanchi di scorrere in fretta. Dopo anni di titoli rivogliono l'argomentazione intera, e gli articoli più lunghi conquistano ormai più tempo di lettura.",
+    "sources": [
+     "stanchi di scorrere in fretta"
+    ],
+    "questions": [
+     "Cosa cambia per chi scrive?"
+    ]
+   }
+  ]
+ },
+ "ru": {
+  "ui": "ru",
+  "sel": "ru",
+  "side": "боковая панель",
+  "article": {
+   "title": "Тихое возвращение лонгрида",
+   "byline": "Автор: Джо Марлоу · 7 мин чтения",
+   "paragraphs": [
+    "Целое десятилетие интернет оптимизировали под беглый взгляд: заголовок, превью, число репостов. Самые длинные тексты тихо убрали из меню, и все сошлись на том, что внимание у людей просто сократилось.",
+    "Теперь данные говорят другое. Издатели сообщают, что именно самые длинные статьи удерживают читателей дольше всего, а рассылки, построенные вокруг одного большого эссе, продолжают расти быстрее лент, которые должны были их заменить. Редакторы говорят, что читателям надоело пролистывать. Им нужна вся аргументация целиком, с контекстом, который заголовок отсекает.",
+    "Препятствие теперь не интерес, а время. Невозможно прочитать всё, что стоит прочесть, поэтому распространяется новая привычка: сначала краткое резюме, потом решение. Резюме определяют, что заслуживает полного прочтения, а тексты, прошедшие такой отбор, читают внимательнее, чем раньше.",
+    "Это меняет представление о хорошем письме. Длинному тексту теперь приходится оправдывать свой объём дважды: сначала перед резюме, потом перед читателем, решившим остаться."
+   ]
+  },
+  "summary": {
+   "stream": "Долгое чтение тихо возвращается. После десятилетия заголовков и лент читателям нужен контекст, а не больше объёма. Самые длинные статьи сегодня удерживают читателей дольше всего. Загвоздка во времени: прочитать всё невозможно, поэтому краткие резюме решают, что заслуживает полного прочтения.",
+   "html": "<h3>Главное</h3><ul><li><strong>Лонгриды снова растут.</strong> Самые длинные статьи сегодня удерживают читателей дольше всего.</li><li><strong>Читателям нужен контекст</strong>, а не новые заголовки.</li><li><strong>Узкое место — время.</strong> Резюме решают, что заслуживает полного прочтения.</li></ul><p>Внимание ограничено, поэтому отбор стал частью чтения.</p>",
+   "tags": [
+    "чтение",
+    "медиа"
+   ],
+   "questions": [
+    "Почему лонгриды снова растут?",
+    "Что меняется для авторов?"
+   ]
+  },
+  "asks": [
+   {
+    "q": "авторов",
+    "text": "Авторам теперь приходится оправдывать объём дважды: перед резюме, которое решает, будут ли текст читать, и перед читателем, решившим остаться.",
+    "sources": [
+     "оправдывать свой объём дважды"
+    ],
+    "questions": [
+     "Почему лонгриды снова растут?"
+    ]
+   },
+   {
+    "q": "",
+    "text": "Потому что читателям надоело пролистывать. После лет заголовков им нужна вся аргументация целиком, а самые длинные статьи сегодня удерживают читателей дольше всего.",
+    "sources": [
+     "читателям надоело пролистывать"
+    ],
+    "questions": [
+     "Что меняется для авторов?"
+    ]
+   }
+  ]
+ },
+ "uk": {
+  "ui": "uk",
+  "sel": "ua",
+  "side": "бічна панель",
+  "article": {
+   "title": "Тихе повернення лонгрідів",
+   "byline": "Автор: Джо Марлоу · 7 хв читання",
+   "paragraphs": [
+    "Десять років інтернет затято підлаштовувався під швидкий погляд: заголовок, мініатюра, лічильник поширень. Найдовші матеріали тихо зникали з видачі, а всі погоджувалися, що увага просто скоротилася.",
+    "Тепер дані кажуть інше. Видавці повідомляють, що саме найдовші статті отримують найбільше часу читання, а розсилки навколо одного довгого есе й далі ростуть швидше за стрічки, які мали їх замінити. У редакціях кажуть, що читачам набридло гортати по діагоналі. Вони хочуть повернути цілісний аргумент разом із контекстом, який заголовок відтинає.",
+    "Перешкода тепер не інтерес, а час. Ніхто не встигає прочитати все варте уваги, тож поширюється нова звичка: спершу прочитати короткий підсумок, а потім вирішити. Підсумки визначають, що заслуговує на повне читання, а тексти, які пройшли цей відбір, читають уважніше, ніж раніше.",
+    "Це змінює уявлення про гарне письмо. Довгий текст тепер мусить виправдати свою довжину двічі: перед підсумком і перед читачем, який вирішує залишитися."
+   ]
+  },
+  "summary": {
+   "stream": "Довге читання тихо повертається. Після десятиліття заголовків і стрічок читачі хочуть контексту, а не просто більше матеріалу. Найдовші статті тепер отримують найбільше часу читання. Проблема в часі: ніхто не встигає прочитати все, тож короткі підсумки вирішують, що заслуговує на повне читання.",
+   "html": "<h3>Головне</h3><ul><li><strong>Лонгріди знову ростуть.</strong> Найдовші статті тепер отримують найбільше часу читання.</li><li><strong>Читачі хочуть контексту</strong>, а не більше заголовків.</li><li><strong>Бракує часу.</strong> Підсумки вирішують, що заслуговує на повне читання.</li></ul><p>Уваги бракує, тож відбір тепер став частиною читання.</p>",
+   "tags": [
+    "читання",
+    "медіа"
+   ],
+   "questions": [
+    "Чому лонгріди знову ростуть?",
+    "Що змінюється для авторів?"
+   ]
+  },
+  "asks": [
+   {
+    "q": "авторів",
+    "text": "Автори тепер мусять виправдати свою довжину двічі: перед підсумком, який вирішує, чи читатимуть текст, і перед читачем, який вирішує залишитися.",
+    "sources": [
+     "виправдати свою довжину двічі"
+    ],
+    "questions": [
+     "Чому лонгріди знову ростуть?"
+    ]
+   },
+   {
+    "q": "",
+    "text": "Бо читачам набридло гортати по діагоналі. Після років заголовків вони хочуть повернути цілісний аргумент, а найдовші статті тепер отримують найбільше часу читання.",
+    "sources": [
+     "набридло гортати по діагоналі"
+    ],
+    "questions": [
+     "Що змінюється для авторів?"
+    ]
+   }
+  ]
+ },
+ "tr": {
+  "ui": "tr",
+  "sel": "tr",
+  "side": "Kenar paneli",
+  "article": {
+   "title": "Uzun yazının sessiz dönüşü",
+   "byline": "Yazan: Jo Marlowe · 7 dk okuma",
+   "paragraphs": [
+    "On yıl boyunca web, hızlı bir bakışa göre optimize edildi: bir başlık, bir küçük resim, bir paylaşım sayısı. En uzun yazılar sessizce vitrinden kayboldu ve herkes dikkat süresinin kısaldığı konusunda hemfikirdi.",
+    "Veriler şimdi başka bir şey söylüyor. Yayıncılar, en uzun makalelerinin en çok okunma süresini topladığını bildiriyor; tek bir uzun denemenin etrafında kurulan bültenler ise yerlerini alması beklenen akışlardan daha hızlı büyümeyi sürdürüyor. Editörler okurların göz gezdirmekten bıktığını söylüyor. Bir başlığın kırptığı bağlamla birlikte, argümanın tamamını geri istiyorlar.",
+    "Engel artık ilgi değil, zaman. Okumaya değer her şeyi kimse okuyamıyor; bu yüzden yeni bir alışkanlık yayılıyor: önce kısa bir özet okuyup sonra karar vermek. Özetler hangi metnin baştan sona okunmayı hak ettiğine karar veriyor ve bu elemeyi geçen metinler eskisinden daha dikkatle okunuyor.",
+    "Bu, iyi yazının nasıl göründüğünü değiştiriyor. Uzun bir metin artık uzunluğunu iki kez haklı çıkarmak zorunda: bir kez özetin karşısında, bir kez de kalmaya karar veren okurun karşısında."
+   ]
+  },
+  "summary": {
+   "stream": "Uzun okuma sessizce geri dönüyor. On yıllık başlık ve akış düzeninin ardından okurlar daha fazla içerik değil, bağlam istiyor. En uzun makaleler artık en çok okunma süresini topluyor. Asıl sorun zaman: kimse her şeyi okuyamıyor, bu yüzden kısa özetler hangi metnin baştan sona okunmayı hak ettiğine karar veriyor.",
+   "html": "<h3>Ana noktalar</h3><ul><li><strong>Uzun yazı yeniden büyüyor.</strong> En uzun makaleler artık en çok okunma süresini topluyor.</li><li><strong>Okurlar bağlam istiyor</strong>, daha fazla başlık değil.</li><li><strong>Darboğaz zaman.</strong> Özetler hangi metnin baştan sona okunmayı hak ettiğine karar veriyor.</li></ul><p>Dikkat kıt olduğu için seçim artık okumanın bir parçası.</p>",
+   "tags": [
+    "okuma",
+    "medya"
+   ],
+   "questions": [
+    "Uzun yazı neden yeniden büyüyor?",
+    "Yazarlar için ne değişiyor?"
+   ]
+  },
+  "asks": [
+   {
+    "q": "yazar",
+    "text": "Yazarlar artık uzunluklarını iki kez haklı çıkarmak zorunda: metnin okunup okunmayacağına karar veren özetin karşısında ve kalmaya karar veren okurun karşısında.",
+    "sources": [
+     "uzunluğunu iki kez haklı çıkarmak"
+    ],
+    "questions": [
+     "Uzun yazı neden yeniden büyüyor?"
+    ]
+   },
+   {
+    "q": "",
+    "text": "Çünkü okurlar göz gezdirmekten bıktı. Yıllarca başlık okuduktan sonra argümanın tamamını geri istiyorlar ve en uzun makaleler artık en çok okunma süresini topluyor.",
+    "sources": [
+     "göz gezdirmekten bıktığını"
+    ],
+    "questions": [
+     "Yazarlar için ne değişiyor?"
+    ]
+   }
+  ]
+ },
+ "id": {
+  "ui": "id",
+  "sel": "ind-bahasa",
+  "side": "panel samping",
+  "article": {
+   "title": "Kembalinya tulisan panjang secara diam-diam",
+   "byline": "Oleh Jo Marlowe · 7 menit baca",
+   "paragraphs": [
+    "Selama satu dekade, web dioptimalkan untuk sekali lirik: satu judul, satu gambar mini, satu angka bagikan. Tulisan terpanjang pelan-pelan lenyap dari etalase, dan semua sepakat bahwa rentang perhatian memang menyusut.",
+    "Kini data berkata lain. Penerbit melaporkan bahwa artikel terpanjang mereka meraup waktu baca terbanyak, dan buletin yang berpusat pada satu esai panjang terus tumbuh lebih cepat daripada feed yang seharusnya menggantikannya. Para editor mengatakan pembaca sudah bosan membaca sekilas. Mereka ingin seluruh argumen kembali, lengkap dengan konteks yang dipangkas oleh sebuah judul.",
+    "Hambatannya kini bukan minat, melainkan waktu. Tak ada yang sanggup membaca semua yang layak dibaca, sehingga kebiasaan baru menyebar: baca ringkasan singkat dulu, baru memutuskan. Ringkasan menentukan tulisan mana yang layak dibaca utuh, dan tulisan yang lolos seleksi itu dibaca lebih saksama daripada sebelumnya.",
+    "Ini mengubah wajah tulisan yang baik. Tulisan panjang kini harus membenarkan panjangnya dua kali: sekali di hadapan ringkasan, dan sekali di hadapan pembaca yang memutuskan untuk bertahan."
+   ]
+  },
+  "summary": {
+   "stream": "Membaca panjang diam-diam kembali. Setelah satu dekade judul dan feed, pembaca menginginkan konteks, bukan sekadar lebih banyak konten. Artikel terpanjang kini meraup waktu baca terbanyak. Kendalanya adalah waktu: tak ada yang bisa membaca semuanya, sehingga ringkasan singkat menentukan tulisan mana yang layak dibaca utuh.",
+   "html": "<h3>Poin utama</h3><ul><li><strong>Tulisan panjang tumbuh lagi.</strong> Artikel terpanjang kini meraup waktu baca terbanyak.</li><li><strong>Pembaca menginginkan konteks</strong>, bukan lebih banyak judul.</li><li><strong>Waktu adalah hambatannya.</strong> Ringkasan menentukan tulisan mana yang layak dibaca utuh.</li></ul><p>Perhatian itu langka, jadi memilih kini menjadi bagian dari membaca.</p>",
+   "tags": [
+    "membaca",
+    "media"
+   ],
+   "questions": [
+    "Mengapa tulisan panjang tumbuh lagi?",
+    "Apa yang berubah bagi penulis?"
+   ]
+  },
+  "asks": [
+   {
+    "q": "penulis",
+    "text": "Penulis kini harus membenarkan panjangnya dua kali: di hadapan ringkasan yang menentukan apakah tulisan dibaca, dan di hadapan pembaca yang memutuskan bertahan.",
+    "sources": [
+     "membenarkan panjangnya dua kali"
+    ],
+    "questions": [
+     "Mengapa tulisan panjang tumbuh lagi?"
+    ]
+   },
+   {
+    "q": "",
+    "text": "Karena pembaca sudah bosan membaca sekilas. Setelah bertahun-tahun disuguhi judul, mereka ingin seluruh argumen kembali, dan artikel terpanjang kini meraup waktu baca terbanyak.",
+    "sources": [
+     "bosan membaca sekilas"
+    ],
+    "questions": [
+     "Apa yang berubah bagi penulis?"
+    ]
+   }
+  ]
+ },
+ "pl": {
+  "ui": "pl",
+  "sel": "pl",
+  "side": "panel boczny",
+  "article": {
+   "title": "Ciche wejście długiej formy",
+   "byline": "Autor: Jo Marlowe · 7 min czytania",
+   "paragraphs": [
+    "Przez dziesięć lat sieć optymalizowała się pod rzut oka: nagłówek, miniaturka, liczba udostępnień. Najdłuższe teksty po cichu zniknęły z oferty, a wszyscy zgodnie twierdzili, że zdolność koncentracji po prostu się skurczyła.",
+    "Dane mówią teraz coś innego. Wydawcy zgłaszają, że ich najdłuższe artykuły zyskują najwięcej czasu czytania, a newslettery oparte na jednym długim eseju wciąż rosną szybciej niż kanały, które miały je zastąpić. Redaktorzy mówią, że czytelnicy mają dość przeglądania po łebkach. Chcą odzyskać pełny wywód razem z kontekstem, który nagłówek odcina.",
+    "Przeszkodą nie jest już zainteresowanie, lecz czas. Nikt nie jest w stanie przeczytać wszystkiego, co warto, więc upowszechnia się nowy nawyk: najpierw krótkie podsumowanie, potem decyzja. Podsumowania rozstrzygają, co zasługuje na pełną lekturę, a teksty, które przejdą tę selekcję, czyta się uważniej niż dawniej.",
+    "To zmienia wygląd dobrego pisania. Długi tekst musi teraz uzasadnić swoją długość dwukrotnie: raz przed podsumowaniem i raz przed czytelnikiem, który postanawia zostać."
+   ]
+  },
+  "summary": {
+   "stream": "Długa forma po cichu wraca. Po dekadzie nagłówków i kanałów czytelnicy chcą kontekstu, a nie większej ilości. Najdłuższe artykuły zyskują dziś najwięcej czasu czytania. Problemem jest czas: nikt nie przeczyta wszystkiego, więc o pełnej lekturze decydują krótkie podsumowania.",
+   "html": "<h3>Najważniejsze punkty</h3><ul><li><strong>Długa forma znów rośnie.</strong> Najdłuższe artykuły zyskują dziś najwięcej czasu czytania.</li><li><strong>Czytelnicy chcą kontekstu</strong>, a nie kolejnych nagłówków.</li><li><strong>Czas jest wąskim gardłem.</strong> Podsumowania rozstrzygają, co zasługuje na pełną lekturę.</li></ul><p>Uwaga to towar deficytowy, więc selekcja stała się częścią czytania.</p>",
+   "tags": [
+    "czytanie",
+    "media"
+   ],
+   "questions": [
+    "Dlaczego długa forma znów rośnie?",
+    "Co zmienia się dla autorów?"
+   ]
+  },
+  "asks": [
+   {
+    "q": "autorów",
+    "text": "Autorzy muszą teraz dwukrotnie uzasadniać długość tekstu: raz przed podsumowaniem, które decyduje, czy tekst zostanie przeczytany, i raz przed czytelnikiem, który postanawia zostać.",
+    "sources": [
+     "uzasadnić swoją długość dwukrotnie"
+    ],
+    "questions": [
+     "Dlaczego długa forma znów rośnie?"
+    ]
+   },
+   {
+    "q": "",
+    "text": "Bo czytelnicy mają dość przeglądania po łebkach. Po latach nagłówków chcą odzyskać pełny wywód, a najdłuższe artykuły zyskują dziś najwięcej czasu czytania.",
+    "sources": [
+     "mają dość przeglądania po łebkach"
+    ],
+    "questions": [
+     "Co zmienia się dla autorów?"
+    ]
+   }
+  ]
+ },
+ "th": {
+  "ui": "th",
+  "sel": "th",
+  "side": "แถบข้าง",
+  "article": {
+   "title": "การกลับมาอย่างเงียบ ๆ ของงานเขียนยาว",
+   "byline": "โดย Jo Marlowe · อ่าน 7 นาที",
+   "paragraphs": [
+    "เป็นเวลาสิบปีที่เว็บปรับตัวเพื่อการกวาดตามองเพียงแวบเดียว คือพาดหัว ภาพขนาดย่อ และตัวเลขการแชร์ งานชิ้นยาวที่สุดถูกถอดออกจากเมนูไปอย่างเงียบ ๆ และทุกคนเห็นตรงกันว่าช่วงความสนใจของผู้คนสั้นลงไปแล้ว",
+    "ตอนนี้ข้อมูลบอกอีกอย่าง สำนักพิมพ์รายงานว่าบทความที่ยาวที่สุดได้เวลาอ่านมากที่สุด และจดหมายข่าวที่สร้างจากเรียงความยาวเรื่องเดียวยังโตเร็วกว่าฟีดที่ถูกคาดว่าจะมาแทนที่ บรรณาธิการบอกว่าผู้อ่านเบื่อการอ่านผ่าน ๆ แล้ว พวกเขาอยากได้ข้อโต้แย้งฉบับเต็มกลับมา พร้อมบริบทที่พาดหัวตัดทิ้งไป",
+    "อุปสรรคไม่ใช่ความสนใจอีกต่อไป แต่เป็นเวลา ไม่มีใครอ่านได้ครบทุกอย่างที่ควรอ่าน นิสัยใหม่จึงแพร่หลายขึ้น คืออ่านสรุปสั้น ๆ ก่อนแล้วค่อยตัดสินใจ สรุปเป็นตัวชี้ว่าอะไรคุ้มค่าที่จะอ่านจนจบ และงานที่ผ่านการคัดกรองนี้ไปได้จะถูกอ่านอย่างตั้งใจกว่าแต่ก่อน",
+    "สิ่งนี้เปลี่ยนหน้าตาของงานเขียนที่ดี ตอนนี้งานชิ้นยาวต้องพิสูจน์ความยาวของตัวเองถึงสองครั้ง ครั้งแรกกับตัวสรุป และอีกครั้งกับผู้อ่านที่ตัดสินใจจะอยู่ต่อ"
+   ]
+  },
+  "summary": {
+   "stream": "งานเขียนยาวกำลังกลับมาอย่างเงียบ ๆ หลังผ่านทศวรรษของพาดหัวและฟีด ผู้อ่านต้องการบริบท ไม่ใช่ปริมาณที่มากขึ้น บทความที่ยาวที่สุดได้เวลาอ่านมากที่สุดในตอนนี้ ปัญหาคือเวลา ไม่มีใครอ่านได้ทุกอย่าง สรุปสั้น ๆ จึงเป็นตัวตัดสินว่าอะไรคุ้มค่าที่จะอ่านจนจบ",
+   "html": "<h3>ประเด็นสำคัญ</h3><ul><li><strong>งานเขียนยาวกลับมาโตอีกครั้ง</strong> บทความที่ยาวที่สุดได้เวลาอ่านมากที่สุดในตอนนี้</li><li><strong>ผู้อ่านต้องการบริบท</strong> ไม่ใช่พาดหัวที่มากขึ้น</li><li><strong>เวลาคือคอขวด</strong> สรุปเป็นตัวตัดสินว่าอะไรคุ้มค่าที่จะอ่านจนจบ</li></ul><p>ความสนใจเป็นของหายาก การคัดเลือกจึงกลายเป็นส่วนหนึ่งของการอ่าน</p>",
+   "tags": [
+    "การอ่าน",
+    "สื่อ"
+   ],
+   "questions": [
+    "ทำไมงานเขียนยาวถึงกลับมาโตอีกครั้ง?",
+    "นักเขียนต้องเปลี่ยนอะไรบ้าง?"
+   ]
+  },
+  "asks": [
+   {
+    "q": "นักเขียน",
+    "text": "ตอนนี้นักเขียนต้องพิสูจน์ความยาวของงานถึงสองครั้ง ครั้งแรกกับตัวสรุปที่ตัดสินว่างานจะถูกอ่านหรือไม่ และอีกครั้งกับผู้อ่านที่ตัดสินใจจะอยู่ต่อ",
+    "sources": [
+     "ต้องพิสูจน์ความยาวของตัวเองถึงสองครั้ง"
+    ],
+    "questions": [
+     "ทำไมงานเขียนยาวถึงกลับมาโตอีกครั้ง?"
+    ]
+   },
+   {
+    "q": "",
+    "text": "เพราะผู้อ่านเบื่อการอ่านผ่าน ๆ แล้ว หลังจากผ่านพาดหัวมาหลายปี พวกเขาอยากได้ข้อโต้แย้งฉบับเต็มกลับมา และบทความที่ยาวที่สุดก็ได้เวลาอ่านมากที่สุดในตอนนี้",
+    "sources": [
+     "ผู้อ่านเบื่อการอ่านผ่าน ๆ แล้ว"
+    ],
+    "questions": [
+     "นักเขียนต้องเปลี่ยนอะไรบ้าง?"
+    ]
+   }
+  ]
+ },
+ "ar": {
+  "ui": "ar",
+  "sel": "ar",
+  "side": "اللوحة الجانبية",
+  "article": {
+   "title": "العودة الهادئة للمقالات الطويلة",
+   "byline": "بقلم Jo Marlowe · 7 دقائق قراءة",
+   "paragraphs": [
+    "طوال عقد من الزمن، كيّف الويب نفسه للنظرة العابرة: عنوان وصورة مصغّرة وعدد من المشاركات. وأُسقطت أطول المواد بهدوء من القائمة، واتفق الجميع على أن مدى الانتباه قد تقلّص ببساطة.",
+    "لكن البيانات تقول الآن شيئًا مختلفًا. يفيد الناشرون بأن أطول مقالاتهم تكسب أكبر وقت قراءة، وبأن النشرات البريدية المبنية على مقال طويل واحد ما زالت تنمو أسرع من الخلاصات التي كان يُفترض أن تحلّ محلها. ويقول المحررون إن القرّاء سئموا التصفّح السريع. إنهم يريدون استعادة الحجة كاملةً مع السياق الذي يحذفه العنوان.",
+    "لم يعد العائق هو الاهتمام بل الوقت. لا أحد يستطيع قراءة كل ما يستحق القراءة، لذلك تنتشر عادة جديدة: قراءة ملخص قصير أولًا ثم اتخاذ القرار. فالملخصات هي التي تقرر ما يستحق قراءة كاملة، والنصوص التي تنجو من هذا الفرز تُقرأ بعناية أكبر من ذي قبل.",
+    "وهذا يغيّر شكل الكتابة الجيدة. فالنص الطويل عليه الآن أن يبرّر طوله مرتين: مرة أمام الملخص، ومرة أمام القارئ الذي يقرر البقاء."
+   ]
+  },
+  "summary": {
+   "stream": "المقالات الطويلة تعود بهدوء. فبعد عقد من العناوين والخلاصات، يريد القرّاء السياق لا مزيدًا من الكمّ. وأطول المقالات تكسب الآن أكبر وقت قراءة. العقبة هي الوقت: لا أحد يستطيع قراءة كل شيء، لذلك تقرر الملخصات القصيرة ما يستحق قراءة كاملة.",
+   "html": "<h3>أبرز النقاط</h3><ul><li><strong>المحتوى الطويل ينمو من جديد.</strong> أطول المقالات تكسب الآن أكبر وقت قراءة.</li><li><strong>القرّاء يريدون السياق</strong> لا مزيدًا من العناوين.</li><li><strong>الوقت هو عنق الزجاجة.</strong> الملخصات تقرر ما يستحق قراءة كاملة.</li></ul><p>الانتباه شحيح، لذا أصبح الفرز جزءًا من القراءة.</p>",
+   "tags": [
+    "القراءة",
+    "الإعلام"
+   ],
+   "questions": [
+    "لماذا ينمو المحتوى الطويل من جديد؟",
+    "ماذا يتغير بالنسبة للكتّاب؟"
+   ]
+  },
+  "asks": [
+   {
+    "q": "كتّاب",
+    "text": "على الكتّاب الآن أن يبرّروا طول نصوصهم مرتين: مرة أمام الملخص الذي يقرر هل ستُقرأ المادة، ومرة أمام القارئ الذي يقرر البقاء.",
+    "sources": [
+     "أن يبرّر طوله مرتين"
+    ],
+    "questions": [
+     "لماذا ينمو المحتوى الطويل من جديد؟"
+    ]
+   },
+   {
+    "q": "",
+    "text": "لأن القرّاء سئموا التصفّح السريع. فبعد سنوات من العناوين يريدون استعادة الحجة كاملةً، وأطول المقالات تكسب الآن أكبر وقت قراءة.",
+    "sources": [
+     "القرّاء سئموا التصفّح السريع"
+    ],
+    "questions": [
+     "ماذا يتغير بالنسبة للكتّاب؟"
+    ]
+   }
+  ]
+ },
+ "sv": {
+  "ui": "sv",
+  "sel": "sv",
+  "side": "sidopanel",
+  "article": {
+   "title": "Långläsningens tysta comeback",
+   "byline": "Av Jo Marlowe · 7 min läsning",
+   "paragraphs": [
+    "I ett decennium optimerade nätet för det snabba ögonkastet: en rubrik, en miniatyrbild, ett antal delningar. De längsta texterna föll tyst bort från utbudet, och alla var överens om att uppmärksamhetsspannet helt enkelt hade krympt.",
+    "Datan säger nu något annat. Förlagen rapporterar att deras längsta artiklar får mest lästid, och nyhetsbrev byggda kring en enda lång essä fortsätter att växa snabbare än de flöden som skulle ersätta dem. Redaktörer säger att läsarna är trötta på att skumma. De vill ha hela resonemanget tillbaka, med det sammanhang som en rubrik skär bort.",
+    "Hindret är inte längre intresse utan tid. Ingen hinner läsa allt som vore värt att läsa, så en ny vana sprider sig: läs en kort sammanfattning först och bestäm sedan. Sammanfattningarna avgör vad som förtjänar en hel läsning, och de texter som klarar den sållningen läses mer noggrant än förut.",
+    "Det förändrar hur bra skrivande ser ut. En lång text måste nu motivera sin längd två gånger: en gång inför sammanfattningen och en gång inför läsaren som bestämmer sig för att stanna."
+   ]
+  },
+  "summary": {
+   "stream": "Långläsning gör en tyst comeback. Efter ett decennium av rubriker och flöden vill läsarna ha sammanhang, inte mer volym. De längsta artiklarna får nu mest lästid. Haken är tiden: ingen hinner läsa allt, så korta sammanfattningar avgör vad som förtjänar en hel läsning.",
+   "html": "<h3>Viktigast</h3><ul><li><strong>Långa texter växer igen.</strong> De längsta artiklarna får nu mest lästid.</li><li><strong>Läsare vill ha sammanhang</strong>, inte fler rubriker.</li><li><strong>Tid är flaskhalsen.</strong> Sammanfattningar avgör vad som förtjänar en hel läsning.</li></ul><p>Uppmärksamhet är en bristvara, så sållning har blivit en del av läsningen.</p>",
+   "tags": [
+    "läsning",
+    "medier"
+   ],
+   "questions": [
+    "Varför växer långa texter igen?",
+    "Vad förändras för skribenter?"
+   ]
+  },
+  "asks": [
+   {
+    "q": "skribent",
+    "text": "Skribenter måste nu motivera textens längd två gånger: inför sammanfattningen, som avgör om texten läses, och inför läsaren som bestämmer sig för att stanna.",
+    "sources": [
+     "motivera sin längd två gånger"
+    ],
+    "questions": [
+     "Varför växer långa texter igen?"
+    ]
+   },
+   {
+    "q": "",
+    "text": "Eftersom läsarna är trötta på att skumma. Efter år av rubriker vill de ha hela resonemanget tillbaka, och de längsta artiklarna får nu mest lästid.",
+    "sources": [
+     "trötta på att skumma"
+    ],
+    "questions": [
+     "Vad förändras för skribenter?"
+    ]
+   }
+  ]
+ },
+ "da": {
+  "ui": "da",
+  "sel": "da",
+  "side": "sidepanel",
+  "article": {
+   "title": "Langlæsningens stille comeback",
+   "byline": "Af Jo Marlowe · 7 min. læsning",
+   "paragraphs": [
+    "I et årti optimerede nettet til det hurtige blik: en overskrift, et miniaturebillede, et antal delinger. De længste tekster røg stille ud af udbuddet, og alle var enige om, at opmærksomhedsspændet simpelthen var skrumpet.",
+    "Data siger nu noget andet. Forlagene melder, at deres længste artikler får mest læsetid, og nyhedsbreve bygget om ét langt essay vokser fortsat hurtigere end de feeds, der skulle erstatte dem. Redaktører siger, at læserne er trætte af at skimme. De vil have hele argumentationen tilbage, med den sammenhæng, som en overskrift skærer væk.",
+    "Forhindringen er ikke længere interesse, men tid. Ingen kan nå at læse alt, hvad der er værd at læse, så en ny vane breder sig: læs først et kort resumé, og beslut dig bagefter. Resuméer afgør, hvad der fortjener en hel læsning, og de tekster, der består den sortering, bliver læst mere omhyggeligt end før.",
+    "Det ændrer, hvordan god skrivning ser ud. En lang tekst skal nu retfærdiggøre sin længde to gange: én gang over for resuméet og én gang over for læseren, der beslutter sig for at blive."
+   ]
+  },
+  "summary": {
+   "stream": "Langlæsning gør et stille comeback. Efter et årti med overskrifter og feeds vil læserne have sammenhæng, ikke mere volumen. De længste artikler får nu mest læsetid. Hagen er tiden: ingen kan læse alt, så korte resuméer afgør, hvad der fortjener en hel læsning.",
+   "html": "<h3>Hovedpunkter</h3><ul><li><strong>Lange tekster vokser igen.</strong> De længste artikler får nu mest læsetid.</li><li><strong>Læserne vil have sammenhæng</strong>, ikke flere overskrifter.</li><li><strong>Tid er flaskehalsen.</strong> Resuméer afgør, hvad der fortjener en hel læsning.</li></ul><p>Opmærksomhed er en knap ressource, så sortering er blevet en del af læsningen.</p>",
+   "tags": [
+    "læsning",
+    "medier"
+   ],
+   "questions": [
+    "Hvorfor vokser lange tekster igen?",
+    "Hvad ændrer sig for skribenter?"
+   ]
+  },
+  "asks": [
+   {
+    "q": "skribent",
+    "text": "Skribenter skal nu retfærdiggøre længden to gange: over for resuméet, der afgør, om teksten bliver læst, og over for læseren, der beslutter sig for at blive.",
+    "sources": [
+     "retfærdiggøre sin længde to gange"
+    ],
+    "questions": [
+     "Hvorfor vokser lange tekster igen?"
+    ]
+   },
+   {
+    "q": "",
+    "text": "Fordi læserne er trætte af at skimme. Efter år med overskrifter vil de have hele argumentationen tilbage, og de længste artikler får nu mest læsetid.",
+    "sources": [
+     "trætte af at skimme"
+    ],
+    "questions": [
+     "Hvad ændrer sig for skribenter?"
+    ]
+   }
+  ]
+ },
+ "no": {
+  "ui": "no",
+  "sel": "no",
+  "side": "sidepanel",
+  "article": {
+   "title": "Langlesingens stille comeback",
+   "byline": "Av Jo Marlowe · 7 min lesetid",
+   "paragraphs": [
+    "I et tiår optimaliserte nettet for det raske blikket: en overskrift, et miniatyrbilde, et antall delinger. De lengste tekstene forsvant stille fra tilbudet, og alle var enige om at oppmerksomhetsspennet rett og slett hadde krympet.",
+    "Dataene sier nå noe annet. Forlagene melder at deres lengste artikler får mest lesetid, og nyhetsbrev bygget rundt ett langt essay vokser fortsatt raskere enn feedene som skulle erstatte dem. Redaktører sier at leserne er lei av å skumlese. De vil ha hele argumentasjonen tilbake, med den sammenhengen en overskrift skjærer bort.",
+    "Hindringen er ikke lenger interesse, men tid. Ingen rekker å lese alt som er verdt å lese, så en ny vane brer seg: les et kort sammendrag først, og bestem deg etterpå. Sammendrag avgjør hva som fortjener en full lesning, og tekstene som består den silingen, leses mer nøye enn før.",
+    "Det endrer hvordan god skriving ser ut. En lang tekst må nå forsvare lengden sin to ganger: én gang overfor sammendraget og én gang overfor leseren som bestemmer seg for å bli."
+   ]
+  },
+  "summary": {
+   "stream": "Langlesing gjør et stille comeback. Etter et tiår med overskrifter og feeder vil leserne ha sammenheng, ikke mer volum. De lengste artiklene får nå mest lesetid. Haken er tiden: ingen rekker å lese alt, så korte sammendrag avgjør hva som fortjener en full lesning.",
+   "html": "<h3>Hovedpunkter</h3><ul><li><strong>Lange tekster vokser igjen.</strong> De lengste artiklene får nå mest lesetid.</li><li><strong>Lesere vil ha sammenheng</strong>, ikke flere overskrifter.</li><li><strong>Tid er flaskehalsen.</strong> Sammendrag avgjør hva som fortjener en full lesning.</li></ul><p>Oppmerksomhet er en knapp ressurs, så sorteringen har blitt en del av lesingen.</p>",
+   "tags": [
+    "lesing",
+    "medier"
+   ],
+   "questions": [
+    "Hvorfor vokser lange tekster igjen?",
+    "Hva endrer seg for skribenter?"
+   ]
+  },
+  "asks": [
+   {
+    "q": "skribent",
+    "text": "Skribenter må nå forsvare lengden på teksten to ganger: overfor sammendraget, som avgjør om teksten blir lest, og overfor leseren som bestemmer seg for å bli.",
+    "sources": [
+     "forsvare lengden sin to ganger"
+    ],
+    "questions": [
+     "Hvorfor vokser lange tekster igjen?"
+    ]
+   },
+   {
+    "q": "",
+    "text": "Fordi leserne er lei av å skumlese. Etter år med overskrifter vil de ha hele argumentasjonen tilbake, og de lengste artiklene får nå mest lesetid.",
+    "sources": [
+     "lei av å skumlese"
+    ],
+    "questions": [
+     "Hva endrer seg for skribenter?"
+    ]
+   }
+  ]
+ },
+ "fi": {
+  "ui": "fi",
+  "sel": "fi",
+  "side": "sivupaneeli",
+  "article": {
+   "title": "Pitkän lukemisen hiljainen paluu",
+   "byline": "Kirjoittanut Jo Marlowe · 7 min lukuaika",
+   "paragraphs": [
+    "Vuosikymmenen ajan verkko optimoitiin pikaiselle vilkaisulle: otsikko, pikkukuva, jaettujen kertojen määrä. Pisimmät jutut putosivat hiljaa pois tarjonnasta, ja kaikki olivat yhtä mieltä siitä, että keskittymiskyky oli yksinkertaisesti lyhentynyt.",
+    "Data kertoo nyt muuta. Kustantajat kertovat, että niiden pisimmät artikkelit keräävät eniten lukuaikaa, ja yhden pitkän esseen ympärille rakennetut uutiskirjeet kasvavat edelleen nopeammin kuin syötteet, joiden piti korvata ne. Toimittajien mukaan lukijat ovat kyllästyneet silmäilemään. He haluavat koko päättelyn takaisin sekä sen asiayhteyden, jonka otsikko leikkaa pois.",
+    "Este ei ole enää kiinnostus vaan aika. Kukaan ei ehdi lukea kaikkea lukemisen arvoista, joten leviää uusi tapa: luetaan ensin lyhyt tiivistelmä ja päätetään sitten. Tiivistelmät ratkaisevat, mikä ansaitsee tulla luetuksi kokonaan, ja tämän seulan läpäisevät tekstit luetaan tarkemmin kuin ennen.",
+    "Se muuttaa sitä, miltä hyvä kirjoittaminen näyttää. Pitkän tekstin on nyt perusteltava pituutensa kahdesti: kerran tiivistelmälle ja kerran lukijalle, joka päättää jäädä."
+   ]
+  },
+  "summary": {
+   "stream": "Pitkä lukeminen tekee hiljaisen paluun. Vuosikymmenen otsikoiden ja syötteiden jälkeen lukijat haluavat asiayhteyden, eivät lisää määrää. Pisimmät artikkelit keräävät nyt eniten lukuaikaa. Koukku on aika: kukaan ei ehdi lukea kaikkea, joten lyhyet tiivistelmät ratkaisevat, mikä ansaitsee tulla luetuksi kokonaan.",
+   "html": "<h3>Pääkohdat</h3><ul><li><strong>Pitkät jutut kasvavat taas.</strong> Pisimmät artikkelit keräävät nyt eniten lukuaikaa.</li><li><strong>Lukijat haluavat asiayhteyden</strong>, eivät lisää otsikoita.</li><li><strong>Aika on pullonkaula.</strong> Tiivistelmät ratkaisevat, mikä ansaitsee tulla luetuksi kokonaan.</li></ul><p>Huomiota on niukasti, joten seulonnasta on tullut osa lukemista.</p>",
+   "tags": [
+    "lukeminen",
+    "media"
+   ],
+   "questions": [
+    "Miksi pitkät jutut kasvavat taas?",
+    "Mitä kirjoittajille muuttuu?"
+   ]
+  },
+  "asks": [
+   {
+    "q": "kirjoittaj",
+    "text": "Kirjoittajien on nyt perusteltava tekstin pituus kahdesti: tiivistelmälle, joka ratkaisee, tuleeko teksti luetuksi, ja lukijalle, joka päättää jäädä.",
+    "sources": [
+     "perusteltava pituutensa kahdesti"
+    ],
+    "questions": [
+     "Miksi pitkät jutut kasvavat taas?"
+    ]
+   },
+   {
+    "q": "",
+    "text": "Koska lukijat ovat kyllästyneet silmäilemään. Otsikoiden vuosien jälkeen he haluavat koko päättelyn takaisin, ja pisimmät artikkelit keräävät nyt eniten lukuaikaa.",
+    "sources": [
+     "kyllästyneet silmäilemään"
+    ],
+    "questions": [
+     "Mitä kirjoittajille muuttuu?"
+    ]
+   }
+  ]
  }
 };
 (function () {

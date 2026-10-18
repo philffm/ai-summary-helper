@@ -660,5 +660,863 @@ window.AISH_HERO_I18N = {
    "Français",
    "Español"
   ]
+ },
+ "nl": {
+  "tabs": [
+   "Feeds",
+   "Samenvatten",
+   "Geschiedenis"
+  ],
+  "badge": "Draait lokaal · gemma3:4b",
+  "sumLabel": "✨ AI-samenvatting",
+  "inart": "📌 In artikel",
+  "ph2": "Tik op ‘Samenvatten’ om deze pagina in seconden te lezen.",
+  "graphT": "🕸 Jouw kennisgrafiek",
+  "graphL": "<b>2 u 48 min</b> bespaard · <b>11</b> dagen op rij 🔥",
+  "url": "ochtendpost.example/werk/henk",
+  "mast": "De Ochtendpost",
+  "kick": "WERK",
+  "h": "Kantoorcactus Henk overleeft vier reorganisaties, maakt kans op teamleider",
+  "dek": "Collega’s prijzen zijn ‘opmerkelijke veerkracht’ bij elke koffieronde.",
+  "p1": "Utrecht. Toen Logistiek in 2019 een verdieping hoger ging zitten, verwachtte niemand dat Henk de verhuizing zou overleven.",
+  "hl": "Zeven jaar en vier reorganisaties later is de cactus het langstzittende lid van de afdeling.",
+  "p3": "Een overleg dat ook een mailtje had kunnen zijn, heeft hij nog nooit ingepland.",
+  "tags": [
+   "Werk",
+   "Humor"
+  ],
+  "A": {
+   "t": "Cactus maakt carrière",
+   "b": "Henk, een kantoorcactus in Utrecht, heeft <strong>vier reorganisaties in zeven jaar</strong> overleefd en maakt nu kans op de functie van teamleider.",
+   "p": "87% van het personeel noemt hem de betrouwbaarste aanwezigheid op kantoor.",
+   "q": "Waarom maakt Henk kans op promotie?",
+   "a": "Het personeel ziet hem als de betrouwbaarste aanwezigheid op kantoor."
+  },
+  "B": {
+   "t": "A cactus climbs the career ladder",
+   "b": "Henk, an office cactus in Utrecht, has outlasted <strong>four reorganisations in seven years</strong> and is now up for team lead.",
+   "p": "87% of staff call him the most reliable presence in the office.",
+   "q": "Why is Henk up for promotion?",
+   "a": "Staff see him as the most reliable presence in the office."
+  },
+  "steps": [
+   [
+    "Lees elke pagina.",
+    "Open een artikel zoals altijd. AISH houdt zich rustig op de achtergrond in je browser."
+   ],
+   [
+    "Samenvatting naast het artikel.",
+    "Eén klik en er verschijnt een korte samenvatting in het zijpaneel terwijl je verderleest."
+   ],
+   [
+    "Stel de pagina je vraag.",
+    "Vervolgantwoorden wijzen naar de exacte passage waar ze vandaan komen."
+   ],
+   [
+    "In jouw taal.",
+    "Samenvattingen in de taal van je keuze, plus een grafiek van alles wat je hebt gelezen."
+   ]
+  ],
+  "codeA": "nl",
+  "codeB": "en",
+  "pills": [
+   "Nederlands",
+   "English",
+   "Deutsch",
+   "Français",
+   "Español"
+  ]
+ },
+ "it": {
+  "tabs": [
+   "Feed",
+   "Riassumi",
+   "Cronologia"
+  ],
+  "badge": "Funziona in locale · gemma3:4b",
+  "sumLabel": "✨ Riassunto IA",
+  "inart": "📌 Nell'articolo",
+  "ph2": "Premi «Riassumi» per leggere questa pagina in pochi secondi.",
+  "graphT": "🕸 Il tuo grafo della conoscenza",
+  "graphL": "<b>2 h 48 min</b> risparmiati · <b>11</b> giorni di fila 🔥",
+  "url": "gazzettadelportico.example/lavoro/ficus-gianni",
+  "mast": "La Gazzetta del Portico",
+  "kick": "LAVORO",
+  "h": "Il ficus d'ufficio sopravvive a quattro riorganizzazioni e ora punta a caporeparto",
+  "dek": "I colleghi lodano la sua «straordinaria resistenza», anche all'ora della pausa caffè.",
+  "p1": "Bologna. Quando nel 2019 la logistica cambiò piano, nessuno scommetteva che Gianni sarebbe sopravvissuto al trasloco.",
+  "hl": "Sette anni e quattro riorganizzazioni dopo, il ficus è il membro più anziano del reparto.",
+  "p3": "Non ha mai convocato una riunione che poteva essere una mail.",
+  "tags": [
+   "Lavoro",
+   "Umorismo"
+  ],
+  "A": {
+   "t": "Un ficus fa carriera",
+   "b": "Gianni, un ficus d'ufficio a Bologna, ha superato <strong>quattro riorganizzazioni in sette anni</strong> e ora è in corsa per diventare capoteam.",
+   "p": "L'87% del personale lo considera la presenza più affidabile dell'ufficio.",
+   "q": "Perché Gianni è in lizza per la promozione?",
+   "a": "Il personale lo vede come la presenza più affidabile dell'ufficio."
+  },
+  "B": {
+   "t": "A ficus climbs the career ladder",
+   "b": "Gianni, an office ficus in Bologna, has outlasted <strong>four reorganisations in seven years</strong> and is now up for team lead.",
+   "p": "87% of staff call him the most reliable presence in the office.",
+   "q": "Why is Gianni up for promotion?",
+   "a": "Staff see him as the most reliable presence in the office."
+  },
+  "steps": [
+   [
+    "Leggi qualsiasi pagina.",
+    "Apri un articolo come sempre. AISH resta discreto nel tuo browser."
+   ],
+   [
+    "Riassunto accanto all'articolo.",
+    "Un clic e nel pannello laterale compare un breve riassunto, mentre continui a leggere."
+   ],
+   [
+    "Fai domande alla pagina.",
+    "Le risposte successive rimandano al passaggio esatto da cui provengono."
+   ],
+   [
+    "Nella tua lingua.",
+    "Riassunti nella lingua che preferisci, più un grafo di tutto ciò che hai letto."
+   ]
+  ],
+  "codeA": "it",
+  "codeB": "en",
+  "pills": [
+   "Italiano",
+   "English",
+   "Deutsch",
+   "Français",
+   "Español"
+  ]
+ },
+ "ru": {
+  "tabs": [
+   "Ленты",
+   "Резюме",
+   "История"
+  ],
+  "badge": "Работает локально · gemma3:4b",
+  "sumLabel": "✨ Резюме ИИ",
+  "inart": "📌 В статье",
+  "ph2": "Нажмите «Резюме», чтобы прочитать эту страницу за секунды.",
+  "graphT": "🕸 Ваш граф знаний",
+  "graphL": "Сэкономлено <b>2 ч 48 мин</b> · <b>11</b> дней подряд 🔥",
+  "url": "kazanskiy-rassvet.example/rabota/mihalych",
+  "mast": "Казанский рассвет",
+  "kick": "РАБОТА",
+  "h": "Офисный кактус пережил четыре реорганизации и метит в руководители группы",
+  "dek": "Коллеги хвалят «поразительную стойкость» растения, особенно за чаем.",
+  "p1": "Казань. Когда в 2019 году отдел логистики переехал на другой этаж, никто не ждал, что Михалыч переживёт переезд.",
+  "hl": "Спустя семь лет и четыре реорганизации кактус стал старожилом отдела.",
+  "p3": "Совещание, которое могло бы быть письмом, он не назначал ни разу.",
+  "tags": [
+   "Работа",
+   "Юмор"
+  ],
+  "A": {
+   "t": "Кактус делает карьеру",
+   "b": "Михалыч, офисный кактус из Казани, пережил <strong>четыре реорганизации за семь лет</strong> и теперь претендует на пост руководителя группы.",
+   "p": "87% сотрудников называют его самым надёжным присутствием в офисе.",
+   "q": "Почему Михалыча хотят повысить?",
+   "a": "Сотрудники считают его самым надёжным присутствием в офисе."
+  },
+  "B": {
+   "t": "A cactus climbs the career ladder",
+   "b": "Mikhalych, an office cactus in Kazan, has outlasted <strong>four reorganisations in seven years</strong> and is now up for team lead.",
+   "p": "87% of staff call him the most reliable presence in the office.",
+   "q": "Why is Mikhalych up for promotion?",
+   "a": "Staff see him as the most reliable presence in the office."
+  },
+  "steps": [
+   [
+    "Читайте любую страницу.",
+    "Открывайте статью как обычно. AISH тихо ждёт в вашем браузере."
+   ],
+   [
+    "Резюме рядом со статьёй.",
+    "Один клик, и в боковой панели появляется краткое резюме, пока вы читаете дальше."
+   ],
+   [
+    "Спросите страницу.",
+    "Ответы на уточняющие вопросы указывают на точный фрагмент текста."
+   ],
+   [
+    "На вашем языке.",
+    "Резюме на выбранном языке и граф всего, что вы прочитали."
+   ]
+  ],
+  "codeA": "ru",
+  "codeB": "en",
+  "pills": [
+   "Русский",
+   "English",
+   "Deutsch",
+   "Français",
+   "Español"
+  ]
+ },
+ "uk": {
+  "tabs": [
+   "Стрічки",
+   "Підсумок",
+   "Історія"
+  ],
+  "badge": "Працює локально · gemma3:4b",
+  "sumLabel": "✨ ШІ-підсумок",
+  "inart": "📌 У статті",
+  "ph2": "Натисніть «Підсумок», щоб прочитати цю сторінку за секунди.",
+  "graphT": "🕸 Ваш граф знань",
+  "graphL": "<b>2 год 48 хв</b> зекономлено · <b>11</b> днів поспіль 🔥",
+  "url": "rankovyi-visnyk.example/robota/paporot-bohdan",
+  "mast": "Ранковий вісник",
+  "kick": "РОБОТА І ЖИТТЯ",
+  "h": "Офісна папороть Богдан пережила чотири реорганізації й претендує на посаду тімліда",
+  "dek": "Колеги відзначають «разючу стійкість» рослини.",
+  "p1": "Львів. Коли 2019 року відділ логістики переїхав на інший поверх, ніхто не вірив, що папороть Богдан, яка стоїть біля кавоварки, переживе переїзд.",
+  "hl": "Сім років і чотири реорганізації потому папороть — найстаріший за стажем працівник відділу.",
+  "p3": "Жодної наради, яку можна було б замінити листом, вона ще не призначила.",
+  "tags": [
+   "Робота",
+   "Гумор"
+  ],
+  "A": {
+   "t": "Папороть робить кар’єру",
+   "b": "Папороть Богдан з одного львівського офісу пережила <strong>чотири реорганізації за сім років</strong> і тепер претендує на посаду керівника команди.",
+   "p": "87 % працівників вважають її найнадійнішою присутністю в офісі.",
+   "q": "Чому папороть Богдана хочуть підвищити?",
+   "a": "Колектив вважає її найнадійнішою присутністю в офісі."
+  },
+  "B": {
+   "t": "A fern climbs the career ladder",
+   "b": "Bohdan the fern, from an office in Lviv, has outlasted <strong>four reorganisations in seven years</strong> and is now up for team lead.",
+   "p": "87% of staff call it the most reliable presence in the office.",
+   "q": "Why is Bohdan up for promotion?",
+   "a": "Staff see it as the most reliable presence in the office."
+  },
+  "steps": [
+   [
+    "Читайте будь-яку сторінку.",
+    "Відкрийте статтю, як завжди. AISH непомітно працює в браузері."
+   ],
+   [
+    "Підсумок поруч зі статтею.",
+    "Один клік — і короткий підсумок з’являється в бічній панелі, поки ви читаєте."
+   ],
+   [
+    "Запитайте сторінку.",
+    "Відповіді вказують на точне місце в тексті, звідки їх узято."
+   ],
+   [
+    "Вашою мовою.",
+    "Підсумки обраною мовою — і граф усього, що ви прочитали."
+   ]
+  ],
+  "codeA": "uk",
+  "codeB": "en",
+  "pills": [
+   "Українська",
+   "English",
+   "Deutsch",
+   "Français",
+   "Español"
+  ]
+ },
+ "tr": {
+  "tabs": [
+   "Akışlar",
+   "Özetle",
+   "Geçmiş"
+  ],
+  "badge": "Yerel çalışıyor · gemma3:4b",
+  "sumLabel": "✨ AI Özeti",
+  "inart": "📌 Makalede",
+  "ph2": "Bu sayfayı saniyeler içinde okumak için Özetle’ye basın.",
+  "graphT": "🕸 Bilgi grafiğiniz",
+  "graphL": "<b>2 sa 48 dk</b> kazanıldı · <b>11</b> gün üst üste 🔥",
+  "url": "sabahpostasi.example/is/mehmet-abi",
+  "mast": "Sabah Postası",
+  "kick": "İŞ DÜNYASI",
+  "h": "Ofisin kauçuk bitkisi dört yeniden yapılanmayı atlattı, şimdi takım lideri adayı",
+  "dek": "İş arkadaşları bitkinin “dikkat çekici dayanıklılığını” övüyor.",
+  "p1": "İzmir. 2019’da lojistik ekibi kat değiştirdiğinde, çay ocağının yanındaki kauçuk bitkisi Mehmet Abi’nin taşınmayı atlatacağını kimse düşünmemişti.",
+  "hl": "Yedi yıl ve dört yeniden yapılanmanın ardından kauçuk bitkisi, departmanın en kıdemli üyesi oldu.",
+  "p3": "E-postayla halledilebilecek tek bir toplantı bile ayarlamadı.",
+  "tags": [
+   "İş",
+   "Mizah"
+  ],
+  "A": {
+   "t": "Bir bitkinin kariyer yükselişi",
+   "b": "İzmir’deki bir ofisin kauçuk bitkisi Mehmet Abi, <strong>yedi yılda dört yeniden yapılanmayı</strong> atlattı ve şimdi takım lideri adayı.",
+   "p": "Çalışanların %87’si onu ofisteki en güvenilir varlık olarak görüyor.",
+   "q": "Mehmet Abi neden terfi ettirilmek isteniyor?",
+   "a": "Çalışanlar onu ofisteki en güvenilir varlık olarak görüyor."
+  },
+  "B": {
+   "t": "A rubber plant climbs the career ladder",
+   "b": "Mehmet Abi, an office rubber plant in Izmir, has outlasted <strong>four reorganisations in seven years</strong> and is now up for team lead.",
+   "p": "87% of staff call him the most reliable presence in the office.",
+   "q": "Why is Mehmet Abi up for promotion?",
+   "a": "Staff see him as the most reliable presence in the office."
+  },
+  "steps": [
+   [
+    "Her sayfayı okuyun.",
+    "Bir makaleyi her zamanki gibi açın. AISH tarayıcıda sessizce arka planda kalır."
+   ],
+   [
+    "Özet makalenin yanında.",
+    "Tek tıkla kısa bir özet, siz okurken kenar panelinde belirir."
+   ],
+   [
+    "Sayfaya sorun.",
+    "Yanıtlar, geldikleri metindeki tam yeri gösterir."
+   ],
+   [
+    "Kendi dilinizde.",
+    "Seçtiğiniz dilde özetler ve okuduğunuz her şeyin bir grafiği."
+   ]
+  ],
+  "codeA": "tr",
+  "codeB": "en",
+  "pills": [
+   "Türkçe",
+   "English",
+   "Deutsch",
+   "Français",
+   "Español"
+  ]
+ },
+ "id": {
+  "tabs": [
+   "Feed",
+   "Ringkas",
+   "Riwayat"
+  ],
+  "badge": "Berjalan lokal · gemma3:4b",
+  "sumLabel": "✨ Ringkasan AI",
+  "inart": "📌 Di artikel",
+  "ph2": "Tekan Ringkas untuk membaca halaman ini dalam hitungan detik.",
+  "graphT": "🕸 Grafik pengetahuan Anda",
+  "graphL": "<b>2 jam 48 mnt</b> dihemat · <b>11</b> hari berturut-turut 🔥",
+  "url": "wartapagi.example/kerja/pak-joko",
+  "mast": "Warta Pagi",
+  "kick": "DUNIA KERJA",
+  "h": "Lidah mertua kantor selamat dari empat restrukturisasi, kini dicalonkan jadi ketua tim",
+  "dek": "Rekan kerja memuji “ketangguhan luar biasa” tanaman itu.",
+  "p1": "Bandung. Saat tim logistik pindah lantai pada 2019, tak ada yang mengira Pak Joko, si lidah mertua di dekat dispenser, bakal selamat dari kepindahan itu.",
+  "hl": "Tujuh tahun dan empat restrukturisasi kemudian, lidah mertua itu menjadi anggota paling senior di divisi tersebut.",
+  "p3": "Ia belum pernah menjadwalkan rapat yang sebenarnya cukup lewat email.",
+  "tags": [
+   "Kerja",
+   "Humor"
+  ],
+  "A": {
+   "t": "Tanaman meniti karier",
+   "b": "Pak Joko, lidah mertua di sebuah kantor di Bandung, selamat dari <strong>empat restrukturisasi dalam tujuh tahun</strong> dan kini dicalonkan jadi ketua tim.",
+   "p": "87% karyawan menyebutnya sosok paling bisa diandalkan di kantor.",
+   "q": "Mengapa Pak Joko dicalonkan naik jabatan?",
+   "a": "Karyawan menganggapnya sosok paling bisa diandalkan di kantor."
+  },
+  "B": {
+   "t": "A snake plant climbs the career ladder",
+   "b": "Pak Joko, a snake plant in a Bandung office, has outlasted <strong>four reorganisations in seven years</strong> and is now up for team lead.",
+   "p": "87% of staff call him the most reliable presence in the office.",
+   "q": "Why is Pak Joko up for promotion?",
+   "a": "Staff see him as the most reliable presence in the office."
+  },
+  "steps": [
+   [
+    "Baca halaman apa pun.",
+    "Buka artikel seperti biasa. AISH tetap tenang di balik layar browser."
+   ],
+   [
+    "Ringkasan di samping artikel.",
+    "Satu klik, ringkasan singkat muncul di panel samping saat Anda membaca."
+   ],
+   [
+    "Tanyakan pada halaman.",
+    "Jawaban menunjuk tepat ke bagian teks asalnya."
+   ],
+   [
+    "Dalam bahasa Anda.",
+    "Ringkasan dalam bahasa pilihan Anda, plus grafik dari semua yang Anda baca."
+   ]
+  ],
+  "codeA": "id",
+  "codeB": "en",
+  "pills": [
+   "Bahasa Indonesia",
+   "English",
+   "Deutsch",
+   "Français",
+   "Español"
+  ]
+ },
+ "pl": {
+  "tabs": [
+   "Kanały",
+   "Podsumuj",
+   "Historia"
+  ],
+  "badge": "Działa lokalnie · gemma3:4b",
+  "sumLabel": "✨ Podsumowanie AI",
+  "inart": "📌 W artykule",
+  "ph2": "Naciśnij „Podsumuj”, by przeczytać tę stronę w kilka sekund.",
+  "graphT": "🕸 Twój graf wiedzy",
+  "graphL": "<b>2 godz. 48 min</b> zaoszczędzone · <b>11</b> dni z rzędu 🔥",
+  "url": "poranny-krasnal.example/praca/ficus",
+  "mast": "Poranny Krasnal",
+  "kick": "PRACA I ŻYCIE",
+  "h": "Biurowy ficus przetrwał cztery reorganizacje i ubiega się o stanowisko lidera zespołu",
+  "dek": "Współpracownicy chwalą „niezwykłą odporność” rośliny.",
+  "p1": "Wrocław. Gdy w 2019 roku dział logistyki przenosił się na inne piętro, nikt nie sądził, że Zbyszek przetrwa przeprowadzkę.",
+  "hl": "Siedem lat i cztery reorganizacje później ficus jest najdłużej pracującym członkiem działu.",
+  "p3": "Nigdy nie zwołał spotkania, które mogłoby być mailem.",
+  "tags": [
+   "Praca",
+   "Humor"
+  ],
+  "A": {
+   "t": "Ficus robi karierę",
+   "b": "Zbyszek, biurowy ficus z Wrocławia, przetrwał <strong>cztery reorganizacje w siedem lat</strong> i ubiega się teraz o stanowisko lidera zespołu.",
+   "p": "87% pracowników uważa go za najbardziej niezawodną obecność w biurze.",
+   "q": "Dlaczego Zbyszek ma awansować?",
+   "a": "Pracownicy widzą w nim najbardziej niezawodną obecność w biurze."
+  },
+  "B": {
+   "t": "A ficus climbs the career ladder",
+   "b": "Zbyszek, an office ficus in Wrocław, has outlasted <strong>four reorganisations in seven years</strong> and is now up for team lead.",
+   "p": "87% of staff call him the most reliable presence in the office.",
+   "q": "Why is Zbyszek up for promotion?",
+   "a": "Staff see him as the most reliable presence in the office."
+  },
+  "steps": [
+   [
+    "Czytaj każdą stronę.",
+    "Otwórz artykuł jak zawsze. AISH czeka dyskretnie w przeglądarce."
+   ],
+   [
+    "Podsumowanie obok artykułu.",
+    "Jedno kliknięcie. Krótkie podsumowanie pojawia się w panelu bocznym, gdy czytasz dalej."
+   ],
+   [
+    "Zadaj pytanie stronie.",
+    "Kolejne odpowiedzi wskazują dokładny fragment tekstu, z którego pochodzą."
+   ],
+   [
+    "W twoim języku.",
+    "Podsumowania w wybranym języku oraz graf wszystkiego, co przeczytałeś."
+   ]
+  ],
+  "codeA": "pl",
+  "codeB": "en",
+  "pills": [
+   "Polski",
+   "English",
+   "Deutsch",
+   "Français",
+   "Español"
+  ]
+ },
+ "th": {
+  "tabs": [
+   "ฟีด",
+   "สรุป",
+   "ประวัติ"
+  ],
+  "badge": "ทำงานในเครื่อง · gemma3:4b",
+  "sumLabel": "✨ สรุปโดย AI",
+  "inart": "📌 ในบทความ",
+  "ph2": "กด “สรุป” เพื่ออ่านหน้านี้ได้ในไม่กี่วินาที",
+  "graphT": "🕸 กราฟความรู้ของคุณ",
+  "graphL": "ประหยัดเวลา <b>2 ชม. 48 นาที</b> · ต่อเนื่อง <b>11</b> วัน 🔥",
+  "url": "khaochao-lanna.example/work/rubber-plant",
+  "mast": "ข่าวเช้าล้านนา",
+  "kick": "ที่ทำงาน",
+  "h": "ต้นยางอินเดียประจำออฟฟิศรอดการปรับโครงสร้างสี่ครั้ง ลงชิงตำแหน่งหัวหน้าทีม",
+  "dek": "เพื่อนร่วมงานชื่นชม “ความทนทานที่น่าทึ่ง” ของต้นไม้",
+  "p1": "เชียงใหม่ เมื่อทีมโลจิสติกส์ย้ายชั้นในปี 2019 ไม่มีใครคิดว่าลุงสมจะรอดจากการย้ายครั้งนั้น",
+  "hl": "เจ็ดปีและสี่การปรับโครงสร้างผ่านไป ต้นยางอินเดียต้นนี้ก็กลายเป็นสมาชิกที่อยู่มานานที่สุดของแผนก",
+  "p3": "ลุงสมไม่เคยนัดประชุมที่ส่งอีเมลแทนได้เลยสักครั้ง",
+  "tags": [
+   "งาน",
+   "ขำขัน"
+  ],
+  "A": {
+   "t": "ต้นไม้ไต่เต้าตามสายอาชีพ",
+   "b": "ลุงสม ต้นยางอินเดียประจำออฟฟิศในเชียงใหม่ ผ่านการ<strong>ปรับโครงสร้างสี่ครั้งในเจ็ดปี</strong>มาได้ และตอนนี้กำลังลงชิงตำแหน่งหัวหน้าทีม",
+   "p": "พนักงาน 87% มองว่าลุงสมเป็นที่พึ่งพาได้มากที่สุดในออฟฟิศ",
+   "q": "ทำไมลุงสมถึงได้เลื่อนตำแหน่ง?",
+   "a": "พนักงานมองว่าเป็นที่พึ่งพาได้มากที่สุดในออฟฟิศ"
+  },
+  "B": {
+   "t": "A rubber plant climbs the career ladder",
+   "b": "Uncle Som, an office rubber plant in Chiang Mai, has outlasted <strong>four reorganisations in seven years</strong> and is now up for team lead.",
+   "p": "87% of staff call him the most reliable presence in the office.",
+   "q": "Why is Uncle Som up for promotion?",
+   "a": "Staff see him as the most reliable presence in the office."
+  },
+  "steps": [
+   [
+    "อ่านได้ทุกหน้า",
+    "เปิดบทความตามปกติ AISH รออยู่เงียบ ๆ ในเบราว์เซอร์"
+   ],
+   [
+    "สรุปอยู่ข้างบทความ",
+    "คลิกเดียว สรุปสั้น ๆ ก็ปรากฏในแถบข้างขณะที่คุณอ่านต่อ"
+   ],
+   [
+    "ถามหน้าเว็บได้เลย",
+    "คำตอบต่อ ๆ ไปจะชี้ไปยังข้อความที่ใช้อ้างอิงอย่างตรงจุด"
+   ],
+   [
+    "ในภาษาของคุณ",
+    "สรุปเป็นภาษาที่คุณเลือก พร้อมกราฟของทุกสิ่งที่คุณเคยอ่าน"
+   ]
+  ],
+  "codeA": "th",
+  "codeB": "en",
+  "pills": [
+   "ไทย",
+   "English",
+   "Deutsch",
+   "Français",
+   "Español"
+  ]
+ },
+ "ar": {
+  "tabs": [
+   "الخلاصات",
+   "لخّص",
+   "السجل"
+  ],
+  "badge": "يعمل محليًا · gemma3:4b",
+  "sumLabel": "✨ ملخص الذكاء الاصطناعي",
+  "inart": "📌 في المقال",
+  "ph2": "اضغط «لخّص» لقراءة هذه الصفحة في ثوانٍ.",
+  "graphT": "🕸 خريطة معرفتك",
+  "graphL": "وفّرت <b>2 س 48 د</b> · <b>11</b> يومًا متتاليًا 🔥",
+  "url": "sada-jabal.example/work/ficus",
+  "mast": "صدى جبل عمّان",
+  "kick": "العمل والحياة",
+  "h": "نبتة فيكس مكتبية تنجو من أربع إعادات هيكلة وتترشح لقيادة الفريق",
+  "dek": "يشيد الزملاء بـ«صلابتها اللافتة».",
+  "p1": "عمّان. حين انتقل فريق اللوجستيات إلى طابق آخر عام 2019، لم يتوقع أحد أن ينجو «أبو علي» من الانتقال.",
+  "hl": "بعد سبع سنوات وأربع إعادات هيكلة، أصبح الفيكس أقدم أعضاء القسم.",
+  "p3": "لم يدعُ يومًا إلى اجتماع كان يمكن أن يكون رسالة إلكترونية.",
+  "tags": [
+   "العمل",
+   "طرائف"
+  ],
+  "A": {
+   "t": "نبتة تصعد سلّم الوظيفة",
+   "b": "«أبو علي»، نبتة فيكس مكتبية في عمّان، نجا من <strong>أربع إعادات هيكلة في سبع سنوات</strong> ويترشح الآن لقيادة الفريق.",
+   "p": "يرى 87% من الموظفين أنه أكثر الحاضرين اعتمادًا في المكتب.",
+   "q": "لماذا يُرشَّح أبو علي للترقية؟",
+   "a": "يراه الموظفون أكثر الحاضرين اعتمادًا في المكتب."
+  },
+  "B": {
+   "t": "A ficus climbs the career ladder",
+   "b": "Abu Ali, an office ficus in Amman, has outlasted <strong>four reorganisations in seven years</strong> and is now up for team lead.",
+   "p": "87% of staff call him the most reliable presence in the office.",
+   "q": "Why is Abu Ali up for promotion?",
+   "a": "Staff see him as the most reliable presence in the office."
+  },
+  "steps": [
+   [
+    "اقرأ أي صفحة.",
+    "افتح المقال كما تفعل دائمًا. يبقى AISH هادئًا في متصفحك."
+   ],
+   [
+    "ملخص بجانب المقال.",
+    "نقرة واحدة، فيظهر ملخص قصير في اللوحة الجانبية بينما تواصل القراءة."
+   ],
+   [
+    "اسأل الصفحة.",
+    "تشير الإجابات اللاحقة إلى الموضع الدقيق في النص الذي استُمدّت منه."
+   ],
+   [
+    "بلغتك.",
+    "ملخصات باللغة التي تختارها، ورسم بياني لكل ما قرأته."
+   ]
+  ],
+  "codeA": "ar",
+  "codeB": "en",
+  "pills": [
+   "العربية",
+   "English",
+   "Deutsch",
+   "Français",
+   "Español"
+  ]
+ },
+ "sv": {
+  "tabs": [
+   "Flöden",
+   "Sammanfatta",
+   "Historik"
+  ],
+  "badge": "Körs lokalt · gemma3:4b",
+  "sumLabel": "✨ AI-sammanfattning",
+  "inart": "📌 I artikeln",
+  "ph2": "Tryck på ”Sammanfatta” för att läsa sidan på några sekunder.",
+  "graphT": "🕸 Din kunskapsgraf",
+  "graphL": "<b>2 h 48 min</b> sparade · <b>11</b> dagar i rad 🔥",
+  "url": "vastkustbladet.example/jobb/svarmorstunga",
+  "mast": "Västkustbladet",
+  "kick": "ARBETSLIV",
+  "h": "Kontorets svärmorstunga överlevde fyra omorganisationer – nu är den aktuell som gruppchef",
+  "dek": "Kollegorna hyllar växtens ”anmärkningsvärda uthållighet”, även i höstrusket.",
+  "p1": "Göteborg. När logistikavdelningen bytte våning 2019 trodde ingen att Sten skulle överleva flytten.",
+  "hl": "Sju år och fyra omorganisationer senare är svärmorstungan avdelningens mest långvariga medarbetare.",
+  "p3": "Den har aldrig kallat till ett möte som lika gärna hade kunnat vara ett mejl.",
+  "tags": [
+   "Arbetsliv",
+   "Humor"
+  ],
+  "A": {
+   "t": "En svärmorstunga gör karriär",
+   "b": "Sten, en svärmorstunga på ett kontor i Göteborg, har överlevt <strong>fyra omorganisationer på sju år</strong> och är nu aktuell som gruppchef.",
+   "p": "87 % av personalen anser att Sten är kontorets mest pålitliga närvaro.",
+   "q": "Varför ska Sten befordras?",
+   "a": "Personalen ser Sten som kontorets mest pålitliga närvaro."
+  },
+  "B": {
+   "t": "A snake plant climbs the career ladder",
+   "b": "Sten, an office snake plant in Gothenburg, has outlasted <strong>four reorganisations in seven years</strong> and is now up for team lead.",
+   "p": "87% of staff call him the most reliable presence in the office.",
+   "q": "Why is Sten up for promotion?",
+   "a": "Staff see him as the most reliable presence in the office."
+  },
+  "steps": [
+   [
+    "Läs vilken sida som helst.",
+    "Öppna en artikel som vanligt. AISH håller sig diskret i bakgrunden i webbläsaren."
+   ],
+   [
+    "Sammanfattning bredvid artikeln.",
+    "Ett klick. En kort sammanfattning visas i sidopanelen medan du läser vidare."
+   ],
+   [
+    "Fråga sidan.",
+    "Följdsvar pekar på det exakta stället i texten som de kommer från."
+   ],
+   [
+    "På ditt språk.",
+    "Sammanfattningar på det språk du väljer – och en graf över allt du har läst."
+   ]
+  ],
+  "codeA": "sv",
+  "codeB": "en",
+  "pills": [
+   "Svenska",
+   "English",
+   "Deutsch",
+   "Français",
+   "Español"
+  ]
+ },
+ "da": {
+  "tabs": [
+   "Feeds",
+   "Resumér",
+   "Historik"
+  ],
+  "badge": "Kører lokalt · gemma3:4b",
+  "sumLabel": "✨ AI-resumé",
+  "inart": "📌 I artiklen",
+  "ph2": "Tryk på ”Resumér” for at læse siden på få sekunder.",
+  "graphT": "🕸 Din vidensgraf",
+  "graphL": "<b>2 t. 48 min.</b> sparet · <b>11</b> dage i træk 🔥",
+  "url": "kattegatbladet.example/job/gummitrae",
+  "mast": "Kattegatbladet",
+  "kick": "ARBEJDSLIV",
+  "h": "Kontorets gummitræ overlevede fire omstruktureringer og stiller nu op som teamleder",
+  "dek": "Kollegerne roser plantens ”bemærkelsesværdige sejlivethed” – selv efter fredagsbaren.",
+  "p1": "Aarhus. Da logistikafdelingen skiftede etage i 2019, regnede ingen med, at Børge ville overleve flytningen.",
+  "hl": "Syv år og fire omstruktureringer senere er gummitræet afdelingens længst siddende medarbejder.",
+  "p3": "Det har aldrig indkaldt til et møde, der lige så godt kunne have været en mail.",
+  "tags": [
+   "Arbejde",
+   "Humor"
+  ],
+  "A": {
+   "t": "Et gummitræ gør karriere",
+   "b": "Børge, et gummitræ på et kontor i Aarhus, har overlevet <strong>fire omstruktureringer på syv år</strong> og er nu i spil som teamleder.",
+   "p": "87 % af medarbejderne mener, at Børge er kontorets mest pålidelige tilstedeværelse.",
+   "q": "Hvorfor skal Børge forfremmes?",
+   "a": "Medarbejderne ser ham som kontorets mest pålidelige tilstedeværelse."
+  },
+  "B": {
+   "t": "A rubber plant climbs the career ladder",
+   "b": "Børge, an office rubber plant in Aarhus, has outlasted <strong>four reorganisations in seven years</strong> and is now up for team lead.",
+   "p": "87% of staff call him the most reliable presence in the office.",
+   "q": "Why is Børge up for promotion?",
+   "a": "Staff see him as the most reliable presence in the office."
+  },
+  "steps": [
+   [
+    "Læs en hvilken som helst side.",
+    "Åbn en artikel som sædvanligt. AISH holder sig diskret i baggrunden i browseren."
+   ],
+   [
+    "Resumé ved siden af artiklen.",
+    "Ét klik. Et kort resumé dukker op i sidepanelet, mens du læser videre."
+   ],
+   [
+    "Spørg siden.",
+    "Opfølgende svar peger på det præcise sted i teksten, de stammer fra."
+   ],
+   [
+    "På dit sprog.",
+    "Resuméer på det sprog, du vælger – og en graf over alt, hvad du har læst."
+   ]
+  ],
+  "codeA": "da",
+  "codeB": "en",
+  "pills": [
+   "Dansk",
+   "English",
+   "Deutsch",
+   "Français",
+   "Español"
+  ]
+ },
+ "no": {
+  "tabs": [
+   "Feeder",
+   "Oppsummer",
+   "Historikk"
+  ],
+  "badge": "Kjører lokalt · gemma3:4b",
+  "sumLabel": "✨ AI-sammendrag",
+  "inart": "📌 I artikkel",
+  "ph2": "Trykk på «Oppsummer» for å lese denne siden på sekunder.",
+  "graphT": "🕸 Din kunnskapsgraf",
+  "graphL": "<b>2 t 48 min</b> spart · <b>11</b> dager på rad 🔥",
+  "url": "floyenbladet.example/jobb/yucca",
+  "mast": "Fløyenbladet",
+  "kick": "ARBEIDSLIV",
+  "h": "Kontorets yuccapalme overlevde fire omorganiseringer og er nå aktuell som teamleder",
+  "dek": "Kollegene roser plantens «bemerkelsesverdige motstandskraft» – selv i Bergens regnvær.",
+  "p1": "Bergen. Da logistikkavdelingen byttet etasje i 2019, trodde ingen at Kåre ville overleve flyttingen.",
+  "hl": "Syv år og fire omorganiseringer senere er yuccapalmen avdelingens lengst tjenestegjørende medlem.",
+  "p3": "Den har aldri innkalt til et møte som like gjerne kunne vært en e-post.",
+  "tags": [
+   "Arbeid",
+   "Humor"
+  ],
+  "A": {
+   "t": "En yuccapalme gjør karriere",
+   "b": "Kåre, en yuccapalme på et kontor i Bergen, har overlevd <strong>fire omorganiseringer på syv år</strong> og er nå aktuell som teamleder.",
+   "p": "87 % av de ansatte mener at Kåre er kontorets mest pålitelige tilstedeværelse.",
+   "q": "Hvorfor skal Kåre forfremmes?",
+   "a": "De ansatte ser på ham som kontorets mest pålitelige tilstedeværelse."
+  },
+  "B": {
+   "t": "A yucca palm climbs the career ladder",
+   "b": "Kåre, an office yucca palm in Bergen, has outlasted <strong>four reorganisations in seven years</strong> and is now up for team lead.",
+   "p": "87% of staff call him the most reliable presence in the office.",
+   "q": "Why is Kåre up for promotion?",
+   "a": "Staff see him as the most reliable presence in the office."
+  },
+  "steps": [
+   [
+    "Les hvilken som helst side.",
+    "Åpne en artikkel som vanlig. AISH holder seg diskret i bakgrunnen i nettleseren."
+   ],
+   [
+    "Sammendrag ved siden av artikkelen.",
+    "Ett klikk. Et kort sammendrag dukker opp i sidepanelet mens du leser videre."
+   ],
+   [
+    "Spør siden.",
+    "Oppfølgingssvar peker på det nøyaktige stedet i teksten de kommer fra."
+   ],
+   [
+    "På ditt språk.",
+    "Sammendrag på språket du velger – og en graf over alt du har lest."
+   ]
+  ],
+  "codeA": "nb",
+  "codeB": "en",
+  "pills": [
+   "Norsk",
+   "English",
+   "Deutsch",
+   "Français",
+   "Español"
+  ]
+ },
+ "fi": {
+  "tabs": [
+   "Syötteet",
+   "Tiivistä",
+   "Historia"
+  ],
+  "badge": "Toimii paikallisesti · gemma3:4b",
+  "sumLabel": "✨ Tekoälytiivistelmä",
+  "inart": "📌 Artikkelissa",
+  "ph2": "Paina ”Tiivistä”, niin luet tämän sivun sekunneissa.",
+  "graphT": "🕸 Tietograafisi",
+  "graphL": "<b>2 t 48 min</b> säästetty · <b>11</b> päivän putki 🔥",
+  "url": "pyynikinsanomat.example/tyoelama/rahapuu",
+  "mast": "Pyynikin Sanomat",
+  "kick": "TYÖELÄMÄ",
+  "h": "Toimiston rahapuu selvisi neljästä uudelleenjärjestelystä ja on nyt ehdolla tiiminvetäjäksi",
+  "dek": "Työkaverit kehuvat kasvin ”merkillistä sitkeyttä” – sauna-iltoihin asti.",
+  "p1": "Tampere. Kun logistiikkatiimi vaihtoi kerrosta vuonna 2019, kukaan ei uskonut Reijon selviävän muutosta.",
+  "hl": "Seitsemän vuotta ja neljä uudelleenjärjestelyä myöhemmin rahapuu on osaston pitkäaikaisin jäsen.",
+  "p3": "Se ei ole koskaan kutsunut koolle palaveria, jonka olisi voinut hoitaa sähköpostilla.",
+  "tags": [
+   "Työelämä",
+   "Huumori"
+  ],
+  "A": {
+   "t": "Rahapuu etenee uralla",
+   "b": "Reijo, toimiston rahapuu Tampereella, on selvinnyt <strong>neljästä uudelleenjärjestelystä seitsemässä vuodessa</strong> ja on nyt ehdolla tiiminvetäjäksi.",
+   "p": "87 % henkilöstöstä pitää Reijoa toimiston luotettavimpana läsnäolona.",
+   "q": "Miksi Reijo ylennetään?",
+   "a": "Henkilöstö pitää häntä toimiston luotettavimpana läsnäolona."
+  },
+  "B": {
+   "t": "A money tree climbs the career ladder",
+   "b": "Reijo, an office money tree in Tampere, has outlasted <strong>four reorganisations in seven years</strong> and is now up for team lead.",
+   "p": "87% of staff call him the most reliable presence in the office.",
+   "q": "Why is Reijo up for promotion?",
+   "a": "Staff see him as the most reliable presence in the office."
+  },
+  "steps": [
+   [
+    "Lue mikä tahansa sivu.",
+    "Avaa artikkeli kuten ennenkin. AISH pysyy selaimessa huomaamattomana taustalla."
+   ],
+   [
+    "Tiivistelmä artikkelin vieressä.",
+    "Yksi napsautus. Lyhyt tiivistelmä ilmestyy sivupaneeliin lukiessasi eteenpäin."
+   ],
+   [
+    "Kysy sivulta.",
+    "Jatkovastaukset osoittavat tarkan kohdan tekstissä, mistä ne ovat peräisin."
+   ],
+   [
+    "Omalla kielelläsi.",
+    "Tiivistelmät valitsemallasi kielellä – ja graafi kaikesta, mitä olet lukenut."
+   ]
+  ],
+  "codeA": "fi",
+  "codeB": "en",
+  "pills": [
+   "Suomi",
+   "English",
+   "Deutsch",
+   "Français",
+   "Español"
+  ]
  }
 };
