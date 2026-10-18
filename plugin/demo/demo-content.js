@@ -46,6 +46,36 @@ window.AISH_DEMO = {
     { title: 'Local models on a laptop: a field report', host: 'blog.localfirst.dev', tags: ["ai", "llm", "local-first"], mood: 0.5, words: 1950, daysAgo: 29, hour: 18 },
     { title: 'Mapping your reading: ideas that connect', host: 'knowledgework.io', tags: ["knowledge", "notes", "reading"], mood: 0.6, words: 1500, daysAgo: 31, hour: 7 },
   ],
+  feeds: {
+    subs: [
+      { title: "Hacker Noon Weekly", host: "hn-weekly.example", tags: ["tech"] },
+      { title: "The Local-First Letter", host: "localfirst.example", tags: ["tech", "privacy"] },
+      { title: "Climate Desk", host: "climatedesk.example", tags: ["science"] },
+      { title: "Design Notes", host: "designnotes.example", tags: ["design"] },
+      { title: "Policy Review", host: "policyreview.example", tags: ["policy"] },
+      { title: "Brain Journal", host: "brainjournal.example", tags: ["science", "health"] }
+    ],
+    items: [
+      { feed: 0, title: "A browser that summarises on your own machine", snippet: "Why on-device models are good enough for most reading, and where they still fall short.", hoursAgo: 1 },
+      { feed: 1, title: "Sync without a server: CRDTs in plain words", snippet: "A tour of the ideas behind apps that keep working offline and merge later.", hoursAgo: 3 },
+      { feed: 2, title: "Heat pumps outsold gas boilers again", snippet: "New figures show the shift is faster than forecast in nine countries.", hoursAgo: 2 },
+      { feed: 3, title: "Typography for people who read fast", snippet: "What changes in a layout when most readers skim first and read second.", hoursAgo: 5 },
+      { feed: 4, title: "The data-portability rule, one year on", snippet: "Who actually used it, and what companies did to make it harder.", hoursAgo: 8 },
+      { feed: 5, title: "Why a nap helps you learn", snippet: "A small trial adds to the evidence that short rests lock in new material.", hoursAgo: 6 },
+      { feed: 0, title: "Open weights, closed data", snippet: "The licensing gap between model releases and the datasets behind them.", hoursAgo: 10 },
+      { feed: 1, title: "Local-first apps need better onboarding", snippet: "Six patterns that explain why people abandon them in the first week.", hoursAgo: 14 },
+      { feed: 2, title: "Cooling cities with trees: what the numbers say", snippet: "Street-level temperatures drop by several degrees where canopy is dense.", hoursAgo: 12 },
+      { feed: 3, title: "Dark mode is not just inverted colours", snippet: "Contrast, elevation and the colours that stop working at night.", hoursAgo: 20 },
+      { feed: 4, title: "What the new browser tracking rules change", snippet: "A plain summary of the consent requirements taking effect next month.", hoursAgo: 18 },
+      { feed: 5, title: "Reading speed and comprehension, revisited", snippet: "Faster is not always worse, but the trade-off depends on the text.", hoursAgo: 26 },
+      { feed: 0, title: "A field guide to small language models", snippet: "Which ones run on a laptop, and which tasks they handle well.", hoursAgo: 30 },
+      { feed: 2, title: "Batteries are getting cheaper, again", snippet: "Grid-scale storage costs fell another double-digit percent this year.", hoursAgo: 28 },
+      { feed: 3, title: "The case for fewer settings", snippet: "Every option is a decision you hand to the user: when that is worth it.", hoursAgo: 36 },
+      { feed: 1, title: "Encrypted notes you can actually search", snippet: "Techniques for searching private text without sending it anywhere.", hoursAgo: 40 },
+      { feed: 4, title: "Public money, public code", snippet: "A short case for open-source requirements in government contracts.", hoursAgo: 44 },
+      { feed: 5, title: "The attention economy of the morning commute", snippet: "What people read on the way to work, and how long they stay.", hoursAgo: 50 }
+    ]
+  },
   asks: [
     { match: /writer|writing|change/i, text: 'Writers now have to justify length twice: once to the summary that decides whether the piece gets read, and once to the reader who decides to stay.', sources: ['justify its length twice'], questions: ['Why is long-form growing again?'] },
     { match: /./, text: 'Because readers are tired of skimming. After years of headlines they want the full argument back, and the longest articles now gain the most time on page.', sources: ['readers are tired of skimming'], questions: ['What changes for writers?'] }

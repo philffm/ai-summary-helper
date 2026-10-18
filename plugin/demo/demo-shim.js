@@ -26,6 +26,15 @@
     idx.sort((x, y) => x.timestamp < y.timestamp ? -1 : 1);
     local.set({ 'articles:index': idx, ...recs });
   })();
+  // A few subscriptions with recent items, so Feeds has something to read.
+  (() => {
+    const F = D.feeds; if (!F) return;
+    const hash = (str) => { let h = 5381; for (let i = 0; i < str.length; i++) h = ((h << 5) + h + str.charCodeAt(i)) | 0; return 'f' + (h >>> 0).toString(36); };
+    const now = Date.now();
+    const subs = F.subs.map(s => ({ id: hash('https://' + s.host + '/feed.xml'), url: 'https://' + s.host + '/feed.xml', title: s.title, siteUrl: 'https://' + s.host + '/', tags: s.tags, addedAt: now - 30 * 864e5, lastFetched: now, error: '' }));
+    const items = F.items.map((it, i) => { const sub = subs[it.feed]; return { id: hash(sub.id + it.title), feedId: sub.id, title: it.title, link: 'https://' + F.subs[it.feed].host + '/p/' + i, published: now - it.hoursAgo * 36e5, snippet: it.snippet, audio: '', dur: 0, img: '', ai: false, read: i > 12 }; }).sort((a, b) => b.published - a.published);
+    local.set({ 'feeds:subs': subs, 'feeds:items': items });
+  })();
   const storageL = new Set();
   [local, sync, session].forEach((a, i) => a._ls.add(ch => storageL.forEach(f => f(ch, ['local', 'sync', 'session'][i]))));
   const msgL = new Set();
