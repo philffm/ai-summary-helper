@@ -1,0 +1,5644 @@
+{
+  "extensionName": {
+    "message": "AI Summary Helper – Tiivistä verkkosivut ja PDF:t (BYOK, Ollama)"
+  },
+  "extensionNameFirefox": {
+    "message": "AI Summary Helper – Tiivistä, kysy, kuuntele, lainaa"
+  },
+  "extensionShortName": {
+    "message": "AI Summary Helper"
+  },
+  "extensionDescription": {
+    "message": "Tiivistä sivut, PDF:t ja YouTube-videot 41 kielellä omalla tekoälyavaimella tai Ollamalla. Yksityinen, avoin lähdekoodi, ei tiliä."
+  },
+  "fetchSummary": {
+    "message": "Hae tiivistelmä"
+  },
+  "settings": {
+    "message": "Asetukset"
+  },
+  "saved": {
+    "message": "Tallennettu! 🎉"
+  },
+  "donate": {
+    "message": "Lahjoita"
+  },
+  "noRecentSummaries": {
+    "message": "Ei viimeaikaisia tiivistelmiä"
+  },
+  "summarizePageToSee": {
+    "message": "Tiivistä sivu, niin se näkyy tässä"
+  },
+  "whatShouldAiFocus": {
+    "message": "Mihin tekoälyn pitäisi keskittyä?"
+  },
+  "askSpecificQuestions": {
+    "message": "Esitä tarkkoja kysymyksiä tästä sivusta…"
+  },
+  "summaryLanguage": {
+    "message": "Tiivistelmän kieli"
+  },
+  "searchLanguages": {
+    "message": "Hae kieliä…"
+  },
+  "summaryLength": {
+    "message": "Tiivistelmän pituus"
+  },
+  "summaryMode": {
+    "message": "Tiivistelmän tila"
+  },
+  "extension": {
+    "message": "Laajennus"
+  },
+  "viewAndCopy": {
+    "message": "Näytä ja kopioi"
+  },
+  "inline": {
+    "message": "Sivulle"
+  },
+  "insertIntoPage": {
+    "message": "Lisää sivulle"
+  },
+  "inlineModeTip": {
+    "message": "Sivulle-tila sopii erinomaisesti toimintoon \"Lähetä Kindleen\"."
+  },
+  "aiModel": {
+    "message": "Tekoälymalli"
+  },
+  "addCustomModelId": {
+    "message": "Lisää oma mallin tunnus…"
+  },
+  "searchArticles": {
+    "message": "Hae artikkeleita... (⌘ + F)"
+  },
+  "back": {
+    "message": "← Takaisin"
+  },
+  "save": {
+    "message": "Tallenna 💾"
+  },
+  "feedbackText": {
+    "message": "Kysyttävää, vikoja vai tyytyväinen? 💡 Anna palautetta, ota yhteyttä tai harkitse lahjoitusta :)"
+  },
+  "openSourceBy": {
+    "message": "Avoimen lähdekoodin ohjelmisto, tekijä"
+  },
+  "contributeOnGithub": {
+    "message": "Osallistu mielellään GitHubissa 💙"
+  },
+  "compatibleTools": {
+    "message": "Yhteensopivat työkalut"
+  },
+  "compatibleToolsDesc": {
+    "message": "Laajennuksia, jotka toimivat saumattomasti AI Summary Helperin kanssa ja tehostavat työnkulkuasi."
+  },
+  "loadingTools": {
+    "message": "Ladataan työkaluja…"
+  },
+  "navSummarize": {
+    "message": "Tiivistä"
+  },
+  "navHistory": {
+    "message": "Historia"
+  },
+  "navFeeds": {
+    "message": "Syötteet"
+  },
+  "feedAddPlaceholder": {
+    "message": "Sivuston tai syötteen osoite…"
+  },
+  "feedCurrentSite": {
+    "message": "Nykyinen sivusto"
+  },
+  "feedImportOpml": {
+    "message": "Tuo OPML"
+  },
+  "feedMarkAllRead": {
+    "message": "Merkitse kaikki luetuiksi"
+  },
+  "feedSubscriptions": {
+    "message": "Tilaukset"
+  },
+  "searchSettings": {
+    "message": "Hae asetuksia…"
+  },
+  "settingsBack": {
+    "message": "‹ Asetukset"
+  },
+  "settingsAccount": {
+    "message": "Tili ja paketti"
+  },
+  "settingsModels": {
+    "message": "Mallit ja API"
+  },
+  "settingsPrompts": {
+    "message": "Kehotteet"
+  },
+  "settingsReading": {
+    "message": "Lukeminen ja korostus"
+  },
+  "settingsSend": {
+    "message": "Lähetys ja jako"
+  },
+  "settingsAppearance": {
+    "message": "Ulkoasu ja kieli"
+  },
+  "settingsLibrary": {
+    "message": "Kirjasto ja data"
+  },
+  "settingsAbout": {
+    "message": "Tietoja ja työkalut"
+  },
+  "settingsCapAccount": {
+    "message": "TILI"
+  },
+  "settingsCapSummarizing": {
+    "message": "TIIVISTÄMINEN"
+  },
+  "settingsCapReading": {
+    "message": "LUKEMINEN"
+  },
+  "settingsCapApp": {
+    "message": "SOVELLUS"
+  },
+  "navApps": {
+    "message": "Appit"
+  },
+  "navSettings": {
+    "message": "Asetukset"
+  },
+  "starting": {
+    "message": "Käynnistetään…"
+  },
+  "contactingContentScript": {
+    "message": "Yhdistetään sisältöskriptiin…"
+  },
+  "workingOnIt": {
+    "message": "Työstetään…"
+  },
+  "summary": {
+    "message": "Tiivistelmä"
+  },
+  "noTitleAvailable": {
+    "message": "Otsikkoa ei saatavilla"
+  },
+  "noSummaryAvailable": {
+    "message": "Tiivistelmää ei saatavilla"
+  },
+  "noContentAvailable": {
+    "message": "Sisältöä ei saatavilla"
+  },
+  "noDescriptionAvailable": {
+    "message": "Kuvausta ei saatavilla"
+  },
+  "share": {
+    "message": "Jaa 🔗"
+  },
+  "saveMd": {
+    "message": ".MD 💾"
+  },
+  "reader": {
+    "message": "Lukutila 👓"
+  },
+  "delete": {
+    "message": "🗑️ Poista"
+  },
+  "aiSummary": {
+    "message": "🧙 Tekoälytiivistelmä"
+  },
+  "originalContent": {
+    "message": "📄 Alkuperäinen sisältö"
+  },
+  "emptyArchive": {
+    "message": "🗂️ Arkistosi on tyhjä kuin autiomaa! Tallenna artikkeleita, niin se täyttyy. 🌵"
+  },
+  "noToolsAvailable": {
+    "message": "Työkaluja ei ole vielä saatavilla."
+  },
+  "failedToLoadTools": {
+    "message": "Työkalujen lataus epäonnistui."
+  },
+  "clickToInsert": {
+    "message": "Napsauta elementtiä, johon haluat lisätä tiivistelmän."
+  },
+  "fetchingSummary": {
+    "message": "Haetaan tiivistelmää..."
+  },
+  "openInSidebar": {
+    "message": "Avaa sivupaneelissa"
+  },
+  "theme": {
+    "message": "Teema"
+  },
+  "systemDefault": {
+    "message": "Järjestelmän oletus"
+  },
+  "lightMode": {
+    "message": "Vaalea tila"
+  },
+  "darkMode": {
+    "message": "Tumma tila"
+  },
+  "uiLanguage": {
+    "message": "Sovelluksen kieli"
+  },
+  "browserDefault": {
+    "message": "Selaimen oletus"
+  },
+  "useNativeSidePanel": {
+    "message": "Käytä Chromen sivupaneelia"
+  },
+  "dangerZone": {
+    "message": "⚠️ Vaaravyöhyke"
+  },
+  "deleteSettings": {
+    "message": "Poista asetukset"
+  },
+  "deleteHistory": {
+    "message": "Poista historia"
+  },
+  "model": {
+    "message": "Malli"
+  },
+  "apiKey": {
+    "message": "API-avain"
+  },
+  "apiKeyStoredLocally": {
+    "message": "🔒 API-avain tallennetaan paikallisesti selaimeesi."
+  },
+  "endpointUrl": {
+    "message": "Päätepisteen URL"
+  },
+  "prompt": {
+    "message": "Kehote"
+  },
+  "enterCustomPrompt": {
+    "message": "Kirjoita oma kehotteesi tähän"
+  },
+  "modelConfiguration": {
+    "message": "🤖 Mallin asetukset"
+  },
+  "modelDesc": {
+    "message": "Valitse tiivistelmien luomiseen käytettävä kielimalli."
+  },
+  "promptCustomization": {
+    "message": "💬 Kehotteen mukautus"
+  },
+  "promptDesc": {
+    "message": "Mukauta, miten tekoäly analysoi tekstin."
+  },
+  "generalSettings": {
+    "message": "🔄 Yleisasetukset"
+  },
+  "enablePodcastBeta": {
+    "message": "Ota käyttöön Podcast (beta)"
+  },
+  "modelIdentifiers": {
+    "message": "Mallien tunnukset"
+  },
+  "default": {
+    "message": "oletus"
+  },
+  "notConfigured": {
+    "message": "Ei määritetty"
+  },
+  "configured": {
+    "message": "Määritetty"
+  },
+  "historyGraph": {
+    "message": "Kaavio"
+  },
+  "historyReport": {
+    "message": "Analytiikka"
+  },
+  "viewGraph": {
+    "message": "Näytä kaavio"
+  },
+  "viewAnalytics": {
+    "message": "Näytä analytiikkaraportti"
+  },
+  "settingsCapFeeds": {
+    "message": "SYÖTTEET"
+  },
+  "settingsFeeds": {
+    "message": "Syötteet"
+  },
+  "f_already_done_9f26": {
+    "message": "({n} jo tehty)",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_add_tag_e74d": {
+    "message": "+ Lisää tunniste"
+  },
+  "f_tag_2f9e": {
+    "message": "+ tunniste"
+  },
+  "f_more_95cf": {
+    "message": "+ {n} lisää",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_1_hour_fb4a": {
+    "message": "1 tunti"
+  },
+  "f_1_year_98a5": {
+    "message": "1 vuosi"
+  },
+  "f_15_minutes_276a": {
+    "message": "15 minuuttia"
+  },
+  "f_3_hours_8dd5": {
+    "message": "3 tuntia"
+  },
+  "f_30_days_2af9": {
+    "message": "30 päivää"
+  },
+  "f_30_minutes_b47f": {
+    "message": "30 minuuttia"
+  },
+  "f_7_days_8279": {
+    "message": "7 päivää"
+  },
+  "f_90_days_9817": {
+    "message": "90 päivää"
+  },
+  "f_ai_category_acf9": {
+    "message": "Tekoälyluokka"
+  },
+  "f_ai_recap_of_this_day_d199": {
+    "message": "Tekoälyn yhteenveto tästä päivästä"
+  },
+  "f_ai_request_failed_fc5f": {
+    "message": "Tekoälypyyntö epäonnistui"
+  },
+  "f_ai_scoring_failed_e1b3": {
+    "message": "Tekoälyn pisteytys epäonnistui"
+  },
+  "f_ai_generated_from_headlines__133f": {
+    "message": "Tekoälyn luoma {n} otsikon ja katkelman pohjalta. Luotu {time}. Ei korvaa lukemista.",
+    "description": "Placeholders: {n} {time} (keep as is)"
+  },
+  "f_ai_rated_heavy_news_8b78": {
+    "message": "Tekoälyn arvio: raskas uutinen"
+  },
+  "f_ai_rated_positive_news_7f30": {
+    "message": "Tekoälyn arvio: myönteinen uutinen"
+  },
+  "f_add_aa14": {
+    "message": "Lisää"
+  },
+  "f_add_a_feed_5d45": {
+    "message": "Lisää syöte"
+  },
+  "f_add_a_site_or_feed_address_2a11": {
+    "message": "Lisää sivuston tai syötteen osoite…"
+  },
+  "f_add_feed_1688": {
+    "message": "Lisää syöte"
+  },
+  "f_add_tag_1074": {
+    "message": "Lisää tunniste"
+  },
+  "f_all_e364": {
+    "message": "Kaikki"
+  },
+  "f_all_sources_0e1e": {
+    "message": "Kaikki lähteet"
+  },
+  "f_already_scoring_one_moment_f8d6": {
+    "message": "Pisteytys on jo käynnissä – hetki"
+  },
+  "f_already_subscribed_0935": {
+    "message": "Jo tilattu"
+  },
+  "f_any_mood_9630": {
+    "message": "Mikä vain"
+  },
+  "f_any_time_95a6": {
+    "message": "Milloin tahansa"
+  },
+  "f_audio_playback_is_not_availa_5fa6": {
+    "message": "Äänentoisto ei ole käytettävissä täällä"
+  },
+  "f_back_15_seconds_22dd": {
+    "message": "Taakse 15 sekuntia"
+  },
+  "f_background_script_is_outdate_6a24": {
+    "message": "Taustaskripti on vanhentunut – lataa laajennus uudelleen osoitteessa chrome://extensions"
+  },
+  "f_batch_summarizing_runs_in_ex_386f": {
+    "message": "Eräkoonti toimii laajennustilassa. Vaihda Tiivistä-näkymässä."
+  },
+  "f_behavior_a447": {
+    "message": "Toiminta"
+  },
+  "f_choose_a_source_99d4": {
+    "message": "Valitse lähde"
+  },
+  "f_clear_date_filter_8630": {
+    "message": "Tyhjennä päivämääräsuodatin"
+  },
+  "f_clear_filters_53c9": {
+    "message": "Tyhjennä suodattimet"
+  },
+  "f_close_player_c464": {
+    "message": "Sulje soitin"
+  },
+  "f_copy_3664": {
+    "message": "Kopioi"
+  },
+  "f_copy_failed_c2a1": {
+    "message": "Kopio epäonnistui"
+  },
+  "f_could_not_add_feed_3d08": {
+    "message": "Syötteen lisääminen epäonnistui"
+  },
+  "f_could_not_read_the_current_t_16ec": {
+    "message": "Nykyisen välilehden lukeminen epäonnistui"
+  },
+  "f_could_not_start_playback_6a64": {
+    "message": "Toiston aloitus epäonnistui"
+  },
+  "f_date_7379": {
+    "message": "Päivämäärä"
+  },
+  "f_date_mood_799e": {
+    "message": "Päivä ja tunnelma"
+  },
+  "f_deutsche_welle_international_d7bb": {
+    "message": "Deutsche Welle · kansainväliset uutiset"
+  },
+  "f_done_1791": {
+    "message": "Valmis"
+  },
+  "f_enter_a_valid_web_address_e752": {
+    "message": "Anna kelvollinen verkko-osoite"
+  },
+  "f_episode_f972": {
+    "message": "Jakso"
+  },
+  "f_everything_unread_is_already_a054": {
+    "message": "Kaikki lukemattomat on jo tiivistetty"
+  },
+  "f_failed_c3d4": {
+    "message": "Epäonnistui"
+  },
+  "f_favorite_19ed": {
+    "message": "Suosikki"
+  },
+  "f_favorites_53ba": {
+    "message": "Suosikit"
+  },
+  "f_feed_name_68fc": {
+    "message": "Syötteen nimi"
+  },
+  "f_feeds_8b02": {
+    "message": "Syötteet"
+  },
+  "f_follow_the_sites_you_read_94c4": {
+    "message": "Seuraa lukemiasi sivustoja"
+  },
+  "f_forward_30_seconds_3cec": {
+    "message": "Eteen 30 sekuntia"
+  },
+  "f_hide_negative_6410": {
+    "message": "Piilota negatiiviset"
+  },
+  "f_import_failed_aa11": {
+    "message": "Tuonti epäonnistui"
+  },
+  "f_imported_feed_349f": {
+    "message": "Tuotiin {n} syöte",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_imported_feeds_4f84": {
+    "message": "Tuotiin {n} syötettä",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_independent_investigative_jo_b597": {
+    "message": "Riippumaton tutkiva journalismi"
+  },
+  "f_independent_tech_accountabil_bf42": {
+    "message": "Riippumaton teknologian vastuunvalvonta"
+  },
+  "f_independent_tech_journalism_3d9f": {
+    "message": "Riippumaton teknologiajournalismi"
+  },
+  "f_items_you_open_or_summarize__a71f": {
+    "message": "Avaamasi tai tiivistämäsi kohteet poistuvat lukemattomista"
+  },
+  "f_last_7_days_d98f": {
+    "message": "Viimeiset 7 päivää"
+  },
+  "f_loading_4ae3": {
+    "message": "Ladataan…"
+  },
+  "f_mark_read_94d4": {
+    "message": "Merkitse luetuksi"
+  },
+  "f_mark_unread_7147": {
+    "message": "Lukematon"
+  },
+  "f_mark_read_c994": {
+    "message": "Merkitse luetuiksi: {n}",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_marked_read_2e9b": {
+    "message": "Merkitty luetuiksi: {n}",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_marked_unread_a1ec": {
+    "message": "Merkitty lukemattomiksi: {n}",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_mood_551e": {
+    "message": "Tunnelma"
+  },
+  "f_mood_ai_rated_0031": {
+    "message": "Tunnelma (tekoälyn arvio {r}/{n}): 😊 {p} · 😐 {m} · 😟 {g}",
+    "description": "Placeholders: {r} {n} {p} {m} {g} (keep as is)"
+  },
+  "f_mood_comes_from_ai_scoring_o_411c": {
+    "message": "Tunnelma perustuu vain tekoälypisteytykseen – pisteyttämättömillä kohteilla ei ole tunnelmaa, eikä tunnelmasuodatin koskaan piilota niitä. Pisteytys lähettää otsikot ja lyhyet katkelmat tekoälyyhteydellesi, kun napsautat sitä."
+  },
+  "f_mood_d12b": {
+    "message": "Tunnelma ↓"
+  },
+  "f_more_d900": {
+    "message": "Lisää"
+  },
+  "f_most_positive_first_9e03": {
+    "message": "Myönteisin ensin"
+  },
+  "f_most_positive_first_items_5e5a": {
+    "message": "Myönteisin ensin · {n} kohdetta",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_mute_leave_out_of_all_source_7e40": {
+    "message": "Mykistä (jätä pois kohdasta Kaikki lähteet)"
+  },
+  "f_new_items_arrived_since_this_bb0f": {
+    "message": "Uusia kohteita on tullut tämän yhteenvedon jälkeen – päivitä, niin ne tulevat mukaan."
+  },
+  "f_new_posts_land_here_skim_sum_cf70": {
+    "message": "Uudet julkaisut tulevat tänne. Selaa, tiivistä tärkeät ja tyhjennä loput."
+  },
+  "f_newer_f04a": {
+    "message": "Uudemmat"
+  },
+  "f_newest_first_b9c5": {
+    "message": "Uusin ensin"
+  },
+  "f_next_day_with_items_f0e2": {
+    "message": "Seuraava päivä, jolla on kohteita"
+  },
+  "f_no_feed_found_at_that_addres_4c2c": {
+    "message": "Osoitteesta ei löytynyt syötettä"
+  },
+  "f_no_feeds_yet_add_one_below_o_49ba": {
+    "message": "Ei vielä syötteitä. Lisää alla tai tuo OPML-tiedosto."
+  },
+  "f_no_items_to_recap_here_a024": {
+    "message": "Ei yhteenvedettäviä kohteita."
+  },
+  "f_no_new_feeds_in_that_file_d161": {
+    "message": "Tiedostossa ei ole uusia syötteitä"
+  },
+  "f_no_sources_match_aaed": {
+    "message": "Ei vastaavia lähteitä."
+  },
+  "f_no_b8a2": {
+    "message": "Ei 😟"
+  },
+  "f_not_a_valid_opml_file_9043": {
+    "message": "Ei kelvollinen OPML-tiedosto"
+  },
+  "f_not_a_valid_feed_fa49": {
+    "message": "Ei kelvollinen syöte"
+  },
+  "f_nothing_matches_these_filter_c177": {
+    "message": "Mikään ei vastaa suodattimia."
+  },
+  "f_nothing_new_today_yet_try_re_4fd1": {
+    "message": "Tänään ei vielä uutta. Kokeile Päivitä."
+  },
+  "f_nothing_to_export_yet_900d": {
+    "message": "Ei vielä viemistä"
+  },
+  "f_nothing_to_score_cb41": {
+    "message": "Ei pisteytettävää"
+  },
+  "f_older_d101": {
+    "message": "Vanhemmat"
+  },
+  "f_open_a_website_in_the_curren_6a05": {
+    "message": "Avaa ensin verkkosivu nykyiseen välilehteen"
+  },
+  "f_open_c3b4": {
+    "message": "Avaa ↗"
+  },
+  "f_paste_any_site_address_we_fi_6186": {
+    "message": "Liitä mikä tahansa sivuston osoite. Etsimme sen syötteen puolestasi."
+  },
+  "f_pause_bf2d": {
+    "message": "Tauko"
+  },
+  "f_pick_a_day_d249": {
+    "message": "Valitse päivä"
+  },
+  "f_play_6f83": {
+    "message": "Toista"
+  },
+  "f_play_episode_in_aish_59b2": {
+    "message": "Toista jakso AISH:ssa"
+  },
+  "f_playback_speed_f8ef": {
+    "message": "Toistonopeus"
+  },
+  "f_plays_only_while_this_window_85db": {
+    "message": "Toistuu vain, kun tämä ikkuna on auki"
+  },
+  "f_podcast_by_the_author_design_0fc5": {
+    "message": "Tekijän podcast · design, elämä ja teknologia"
+  },
+  "f_podcast_player_4be4": {
+    "message": "Podcast-soitin"
+  },
+  "f_previous_day_with_items_4da2": {
+    "message": "Edellinen päivä, jolla on kohteita"
+  },
+  "f_range_starts_tap_the_last_da_0eed": {
+    "message": "Jakso alkaa {day} – napauta viimeistä päivää.",
+    "description": "Placeholders: {day} (keep as is)"
+  },
+  "f_recap_copied_dc3c": {
+    "message": "Yhteenveto kopioitu"
+  },
+  "f_recap_failed_6cfd": {
+    "message": "Yhteenveto epäonnistui"
+  },
+  "f_refresh_aad4": {
+    "message": "Päivitä"
+  },
+  "f_remove_tag_b0a3": {
+    "message": "Poista tunniste {tag}",
+    "description": "Placeholders: {tag} (keep as is)"
+  },
+  "f_request_failed_3b37": {
+    "message": "Pyyntö epäonnistui"
+  },
+  "f_reset_a560": {
+    "message": "Nollaa"
+  },
+  "f_scored_item_with_ai_4890": {
+    "message": "Tekoäly pisteytti {n} kohteen",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_scored_items_with_ai_f0f5": {
+    "message": "Tekoäly pisteytti {n} kohdetta",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_scoring_with_ai_1216": {
+    "message": "Tekoäly pisteyttää… {a}/{b}",
+    "description": "Placeholders: {a} {b} (keep as is)"
+  },
+  "f_search_sources_e053": {
+    "message": "Hae lähteitä…"
+  },
+  "f_seek_13d1": {
+    "message": "Siirry"
+  },
+  "f_sending_titles_and_short_sni_c7dd": {
+    "message": "Lähetetään {n} otsikkoa ja lyhyttä katkelmaa tekoälyyhteydellesi.",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_show_all_items_7eb7": {
+    "message": "Näytä kaikki kohteet"
+  },
+  "f_show_more_older_6f85": {
+    "message": "Näytä {n} lisää · {m} vanhempaa",
+    "description": "Placeholders: {n} {m} (keep as is)"
+  },
+  "f_shows_a_badge_on_the_toolbar_07da": {
+    "message": "Näyttää merkin työkalupalkin kuvakkeessa, kun uusia kohteita saapuu"
+  },
+  "f_site_or_feed_address_f911": {
+    "message": "Sivuston tai syötteen osoite…"
+  },
+  "f_sort_a7f1": {
+    "message": "Järjestä"
+  },
+  "f_source_a3f8": {
+    "message": "Lähde"
+  },
+  "f_sources_73d1": {
+    "message": "Lähteet"
+  },
+  "f_starring_an_item_summarizes__7621": {
+    "message": "Kohteen tähdellä merkitseminen tiivistää sen taustavälilehdellä"
+  },
+  "f_subscribed_to_c4c3": {
+    "message": "Tilattu: {name}",
+    "description": "Placeholders: {name} (keep as is)"
+  },
+  "f_subscriptions_opml_behavior_f617": {
+    "message": "Tilaukset · OPML · toiminta"
+  },
+  "f_subscriptions_9ae8": {
+    "message": "Tilaukset · {n}",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_suggested_fdec": {
+    "message": "Ehdotetut"
+  },
+  "f_summarize_on_a_feed_item_fol_de8a": {
+    "message": "Syötekohteen Tiivistä noudattaa Tiivistä-näkymässä valittua tilaa (oletuksena laajennus). Suosikit säilyvät aina."
+  },
+  "f_summarized_415a": {
+    "message": "Tiivistetty"
+  },
+  "f_summarizing_in_the_backgroun_cfaa": {
+    "message": "Tiivistetään taustalla – näkyy kohdissa Tiivistä ja Historia"
+  },
+  "f_summarizing_the_open_tab_it__826e": {
+    "message": "Tiivistetään avointa välilehteä – näkyy kohdissa Tiivistä ja Historia"
+  },
+  "f_summarizing_in_the_backgroun_6f16": {
+    "message": "Tiivistetään taustalla: {n} – katso Historia",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_tags_a0c0": {
+    "message": "Tunnisteet"
+  },
+  "f_the_ai_reply_could_not_be_re_6851": {
+    "message": "Tekoälyn vastausta ei voitu lukea"
+  },
+  "f_the_ai_returned_an_empty_rec_894a": {
+    "message": "Tekoäly palautti tyhjän yhteenvedon"
+  },
+  "f_these_items_are_already_scor_391c": {
+    "message": "Nämä kohteet on jo pisteytetty"
+  },
+  "f_today_775e": {
+    "message": "Tänään"
+  },
+  "f_today_s_briefing_ec2a": {
+    "message": "Päivän katsaus"
+  },
+  "f_try_again_90fa": {
+    "message": "Yritä uudelleen"
+  },
+  "f_undo_4acf": {
+    "message": "Kumoa"
+  },
+  "f_unmute_include_in_all_source_af1c": {
+    "message": "Poista mykistys (sisällytä kohtaan Kaikki lähteet)"
+  },
+  "f_unread_c982": {
+    "message": "Lukematta"
+  },
+  "f_unread_4dff": {
+    "message": "Lukematta · {n}",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_unsubscribe_5e36": {
+    "message": "Lopeta tilaus"
+  },
+  "f_world_news_0f72": {
+    "message": "Maailmanuutiset"
+  },
+  "f_yesterday_68c7": {
+    "message": "Eilen"
+  },
+  "f_you_have_a_saved_summary_of__14f8": {
+    "message": "Sinulla on tallennettu tiivistelmä tästä sivusta"
+  },
+  "f_your_feeds_stay_on_this_devi_3c13": {
+    "message": "Syötteesi pysyvät tällä laitteella."
+  },
+  "f_you_re_all_caught_up_8551": {
+    "message": "Olet ajan tasalla. 🎉"
+  },
+  "f_last_days_1e48": {
+    "message": "viimeiset {n} päivää",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_no_items_4d34": {
+    "message": "{day}, ei kohteita",
+    "description": "Placeholders: {day} (keep as is)"
+  },
+  "f_item_9b88": {
+    "message": "{day}, {n} kohde",
+    "description": "Placeholders: {day} {n} (keep as is)"
+  },
+  "f_items_8c21": {
+    "message": "{day}, {n} kohdetta",
+    "description": "Placeholders: {day} {n} (keep as is)"
+  },
+  "f_recap_8d18": {
+    "message": "Yhteenveto: {label}",
+    "description": "Placeholders: {label} (keep as is)"
+  },
+  "f_feed_d469": {
+    "message": "{n} syöte",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_feed_could_not_be_loaded_8f67": {
+    "message": "{n} syötettä ei voitu ladata",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_feeds_e4ee": {
+    "message": "{n} syötettä",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_feeds_could_not_be_loaded_b700": {
+    "message": "{n} syötettä ei voitu ladata",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_item_9ea2": {
+    "message": "{n} kohde",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_items_0303": {
+    "message": "{n} kohdetta",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_new_today_across_source_unre_baba": {
+    "message": "{n} uutta tänään {s} lähteestä · {u} lukematonta",
+    "description": "Placeholders: {n} {s} {u} (keep as is)"
+  },
+  "f_new_today_across_sources_unr_367f": {
+    "message": "{n} uutta tänään {s} lähteestä · {u} lukematonta",
+    "description": "Placeholders: {n} {s} {u} (keep as is)"
+  },
+  "f_tag_63cf": {
+    "message": "{n} tunniste",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_tags_00f4": {
+    "message": "{n} tunnistetta",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_unread_e786": {
+    "message": "{n} lukematta",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_d_7af5": {
+    "message": "{n} pv",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_h_8141": {
+    "message": "{n} t",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_m_85fa": {
+    "message": "{n} min",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_date_mood_e1f9": {
+    "message": "‹ Päivä ja tunnelma"
+  },
+  "f_refresh_f095": {
+    "message": "↻ Päivitä"
+  },
+  "f_pause_7c0d": {
+    "message": "⏸ Tauko"
+  },
+  "f_play_ffa1": {
+    "message": "▶ Toista"
+  },
+  "f_today_s_briefing_c58b": {
+    "message": "☀️  Päivän katsaus"
+  },
+  "f_manage_feeds_tags_in_setting_7de0": {
+    "message": "⚙️  Hallitse syötteitä ja tunnisteita asetuksissa  ›"
+  },
+  "f_all_items_here_are_scored_3187": {
+    "message": "✓  Kaikki kohteet on pisteytetty"
+  },
+  "f_mark_everything_in_this_view_2f26": {
+    "message": "✓  Merkitse kaikki tämän näkymän kohteet luetuiksi"
+  },
+  "f_mark_read_when_opened_202c": {
+    "message": "✓ Merkitse luetuksi avattaessa"
+  },
+  "f_summarized_68b9": {
+    "message": "✓ Tiivistetty"
+  },
+  "f_ai_recap_of_today_72f6": {
+    "message": "✨  Päivän tekoälyyhteenveto"
+  },
+  "f_auto_summarize_favorites_32af": {
+    "message": "✨ Tiivistä suosikit automaattisesti"
+  },
+  "f_recap_b8e8": {
+    "message": "✨ Yhteenveto"
+  },
+  "f_summarize_570a": {
+    "message": "✨ Tiivistä"
+  },
+  "f_summarize_top_5_unread_d39d": {
+    "message": "✨ Tiivistä 5 ylintä lukematonta"
+  },
+  "f_writing_recap_fe02": {
+    "message": "✨ Kirjoitetaan yhteenvetoa…"
+  },
+  "f_view_summary_3c09": {
+    "message": "📄 Näytä tiivistelmä"
+  },
+  "f_pick_a_day_or_range_dd71": {
+    "message": "📅  Valitse päivä tai jakso…"
+  },
+  "f_export_opml_7dd0": {
+    "message": "📤 Vie OPML"
+  },
+  "f_import_opml_file_911a": {
+    "message": "📥  Tuo OPML-tiedosto"
+  },
+  "f_import_opml_file_0174": {
+    "message": "📥  Tuo OPML-tiedosto…"
+  },
+  "f_import_opml_b3fa": {
+    "message": "📥 Tuo OPML"
+  },
+  "f_all_sources_0a6d": {
+    "message": "📰  Kaikki lähteet"
+  },
+  "f_refresh_feeds_every_22e5": {
+    "message": "🔄 Päivitä syötteet aina"
+  },
+  "f_check_in_the_background_cf8c": {
+    "message": "🔔 Tarkista taustalla"
+  },
+  "f_keep_items_for_3287": {
+    "message": "🗂️ Säilytä kohteita"
+  },
+  "f_positive_only_1469": {
+    "message": "😊  Vain myönteiset"
+  },
+  "f_mostly_positive_c075": {
+    "message": "😊 Enimmäkseen myönteinen"
+  },
+  "f_mixed_aadf": {
+    "message": "😐 Sekalainen"
+  },
+  "f_mostly_heavy_3f1c": {
+    "message": "😟 Enimmäkseen raskas"
+  },
+  "f_score_unscored_visible_items_201a": {
+    "message": "🤖  Pisteytä näkyvät pisteyttämättömät kohteet tekoälyllä"
+  },
+  "f_score_unscored_item_with_ai_a853": {
+    "message": "🤖  Pisteytä {n} pisteyttämätön kohde tekoälyllä",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_score_unscored_items_with_ai_8600": {
+    "message": "🤖  Pisteytä {n} pisteyttämätöntä kohdetta tekoälyllä",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_use_current_site_c913": {
+    "message": "＋  Käytä nykyistä sivustoa"
+  },
+  "f_add_8e3d": {
+    "message": "＋ Lisää"
+  },
+  "f_darker_more_items_recap_done_8cca": {
+    "message": "Tummempi = enemmän kohteita · ✨ = yhteenveto tehty · pitkä painallus päivään ja sitten toiseen valitsee jakson"
+  },
+  "f_recap_done_b098": {
+    "message": "yhteenveto tehty"
+  },
+  "f_podcasts_7c90": {
+    "message": "Podcastit"
+  },
+  "f_ai_rated_6770": {
+    "message": "Tekoälyarvio"
+  },
+  "f_best_match_items_0f3b": {
+    "message": "Paras osuma · {n} kohdetta",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_day_229d": {
+    "message": "Päivä"
+  },
+  "f_episodes_fc93": {
+    "message": "Jaksot"
+  },
+  "f_graph_77e7": {
+    "message": "Kaavio"
+  },
+  "f_insights_f1e8": {
+    "message": "Oivallukset"
+  },
+  "f_items_382f": {
+    "message": "Kohteet"
+  },
+  "f_no_items_in_this_source_yet_30b8": {
+    "message": "Tässä lähteessä ei ole vielä kohteita."
+  },
+  "f_not_enough_text_data_yet_427d": {
+    "message": "Tekstidataa ei vielä riittävästi."
+  },
+  "f_nothing_rated_yet_use_score__710a": {
+    "message": "Ei vielä arvioituja – käytä Pisteytä tekoälyllä -toimintoa Päivämäärä ja tunnelma -näkymässä."
+  },
+  "f_search_feeds_2a1e": {
+    "message": "Hae syötteitä…"
+  },
+  "f_search_368e": {
+    "message": "Hae “{term}”",
+    "description": "Placeholders: {term} (keep as is)"
+  },
+  "f_show_only_9eef": {
+    "message": "Näytä vain {name}",
+    "description": "Placeholders: {name} (keep as is)"
+  },
+  "f_to_listen_78b7": {
+    "message": "Kuunneltavat"
+  },
+  "f_unplayed_7435": {
+    "message": "Kuulemattomat"
+  },
+  "f_week_e27d": {
+    "message": "Viikko"
+  },
+  "f_top_terms_eda5": {
+    "message": "☁️ Yleisimmät termit"
+  },
+  "f_podcasts_4399": {
+    "message": "🎧 Podcastit"
+  },
+  "f_volume_74ff": {
+    "message": "📅 Määrä"
+  },
+  "f_top_sources_b705": {
+    "message": "📰 Yleisimmät lähteet"
+  },
+  "f_mood_categories_c0c1": {
+    "message": "🙂 Tunnelma ja luokat"
+  },
+  "f_adds_mood_and_category_to_ea_acfd": {
+    "message": "Lisää tunnelman ja luokan jokaiseen kohteeseen samassa tekoälypyynnössä"
+  },
+  "f_rate_items_with_the_recap_6027": {
+    "message": "🤖 Arvioi kohteet yhteenvedolla"
+  },
+  "f_nothing_new_since_this_recap_45c5": {
+    "message": "Ei uutta tämän yhteenvedon jälkeen"
+  },
+  "f_sending_new_or_edited_titles_ba69": {
+    "message": "Lähetetään {n} uutta tai muokattua otsikkoa ja lyhyttä katkelmaa tekoälyyhteydellesi.",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_updating_recap_902a": {
+    "message": "✨ Päivitetään yhteenvetoa…"
+  },
+  "f_a_source_recap_changed_since_e89f": {
+    "message": "Lähteen yhteenveto on muuttunut tämän kirjoittamisen jälkeen – päivitä, niin se tulee mukaan."
+  },
+  "f_ai_recap_of_this_month_built_f4e6": {
+    "message": "Tämän kuun tekoälyyhteenveto, koottu viikko- ja päiväyhteenvedoista"
+  },
+  "f_ai_recap_of_this_week_built__86af": {
+    "message": "Tämän viikon tekoälyyhteenveto, koottu päiväyhteenvedoista"
+  },
+  "f_built_from_your_day_recaps_i_2520": {
+    "message": "Koottu päiväyhteenvedoistasi. Kohteita, joilla on jo päiväyhteenveto, ei lähetetä uudelleen."
+  },
+  "f_built_from_recap_5b76": {
+    "message": "Koottu {n} yhteenvedosta",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_built_from_recaps_48df": {
+    "message": "Koottu {n} yhteenvedosta",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_cancel_ca3b": {
+    "message": "Peruuta"
+  },
+  "f_create_missing_day_recap_fir_2bd6": {
+    "message": "Luo ensin {n} puuttuva päiväyhteenveto",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_create_missing_day_recaps_fi_1cf7": {
+    "message": "Luo ensin {n} puuttuvaa päiväyhteenvetoa",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_creating_day_recaps_141a": {
+    "message": "Luodaan päiväyhteenvetoja… {a}/{b}",
+    "description": "Placeholders: {a} {b} (keep as is)"
+  },
+  "f_generated_at_b0a6": {
+    "message": "Luotu {time}",
+    "description": "Placeholders: {time} (keep as is)"
+  },
+  "f_month_1ba5": {
+    "message": "Kuukausi"
+  },
+  "f_no_items_43fa": {
+    "message": "Ei kohteita"
+  },
+  "f_nothing_to_combine_yet_cf62": {
+    "message": "Ei vielä yhdistettävää."
+  },
+  "f_recap_scope_40ec": {
+    "message": "Yhteenvedon laajuus"
+  },
+  "f_sends_short_recaps_not_headl_27f5": {
+    "message": "Lähettää {n} lyhyttä yhteenvetoa, ei {m} otsikkoa",
+    "description": "Placeholders: {n} {m} (keep as is)"
+  },
+  "f_skip_the_days_without_a_reca_9f80": {
+    "message": "Ohita päivät, joilta puuttuu yhteenveto"
+  },
+  "f_week_recap_2446": {
+    "message": "Viikkoyhteenveto"
+  },
+  "f_week_c909": {
+    "message": "Viikko {n}",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_missing_0207": {
+    "message": "puuttuu"
+  },
+  "f_no_recap_yet_d2d7": {
+    "message": "ei vielä yhteenvetoa"
+  },
+  "f_reused_af15": {
+    "message": "uudelleen"
+  },
+  "f_of_days_have_a_recap_6aaa": {
+    "message": "{a}/{b} päivällä on yhteenveto",
+    "description": "Placeholders: {a} {b} (keep as is)"
+  },
+  "f_day_recap_cb92": {
+    "message": "{n} päiväyhteenveto",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_day_recaps_f333": {
+    "message": "{n} päiväyhteenvetoa",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_without_recap_7d68": {
+    "message": "{n} ilman yhteenvetoa",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_create_recap_88d6": {
+    "message": "✨ Luo yhteenveto"
+  },
+  "f_feed_b245": {
+    "message": "Syöte"
+  },
+  "f_6_months_1bc4": {
+    "message": "6 kuukautta"
+  },
+  "f_categories_e98d": {
+    "message": "Luokat"
+  },
+  "f_mood_history_is_kept_for_13__0fc8": {
+    "message": "Tunnelmahistoria säilyy 13 kuukautta, vaikka kohteet poistettaisiin."
+  },
+  "f_mood_index_518e": {
+    "message": "Tunnelmaindeksi"
+  },
+  "f_only_of_items_are_rated_3794": {
+    "message": "Vain {r}/{n} kohteesta on arvioitu",
+    "description": "Placeholders: {r} {n} (keep as is)"
+  },
+  "f_open_day_791d": {
+    "message": "Avaa päivä ›"
+  },
+  "f_open_month_dc55": {
+    "message": "Avaa kuukausi ›"
+  },
+  "f_open_week_a281": {
+    "message": "Avaa viikko ›"
+  },
+  "f_these_items_are_no_longer_st_45c7": {
+    "message": "Näitä kohteita ei enää ole tallessa, joten niitä ei voi pisteyttää."
+  },
+  "f_what_moved_98f8": {
+    "message": "Mikä muuttui"
+  },
+  "f_n_a_e041": {
+    "message": "–"
+  },
+  "f_vs_5622": {
+    "message": "vs. {label}",
+    "description": "Placeholders: {label} (keep as is)"
+  },
+  "f_pts_d40a": {
+    "message": "{n} p.",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_of_items_rated_mood_comes_fr_688e": {
+    "message": "{r}/{n} kohdetta arvioitu · tunnelma perustuu vain tekoälypisteytykseen",
+    "description": "Placeholders: {r} {n} (keep as is)"
+  },
+  "f_categories_06df": {
+    "message": "🏷️ Luokat"
+  },
+  "f_mood_over_time_2258": {
+    "message": "📈 Tunnelma ajan yli"
+  },
+  "f_score_unscored_items_79e0": {
+    "message": "🤖 Pisteytä {n} pisteyttämätöntä kohdetta",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_jump_to_today_94c7": {
+    "message": "Siirry tähän päivään"
+  },
+  "f_nothing_rated_yet_write_a_re_c4ee": {
+    "message": "Ei vielä arvioituja – kirjoita ✨ Yhteenveto arvioidaksesi kohteet."
+  },
+  "f_filter_e5fe": {
+    "message": "‹ Suodatin"
+  },
+  "f_filter_6421": {
+    "message": "🎛️ Suodatin"
+  },
+  "f__c725": {
+    "message": "⏳ {n} %",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_edit_6cb1": {
+    "message": "Muokkaa"
+  },
+  "f_edit_feeds_tags_in_settings_48ab": {
+    "message": "Muokkaa syötteitä ja tunnisteita asetuksissa"
+  },
+  "f_only_rated_items_at_least_5__f9fb": {
+    "message": "Vain {r} arvioitua kohdetta – vähintään 5 tarvitaan",
+    "description": "Placeholders: {r} (keep as is)"
+  },
+  "f_w_66b2": {
+    "message": "vk {n}",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_vs_16ff": {
+    "message": "{a} vs. {b}",
+    "description": "Placeholders: {a} {b} (keep as is)"
+  },
+  "f_activity_view_00dd": {
+    "message": "Aktiivisuusnäkymä"
+  },
+  "f_articles_b83e": {
+    "message": "Artikkelit"
+  },
+  "f_best_streak_8513": {
+    "message": "Paras putki"
+  },
+  "f_day_streak_6d31": {
+    "message": "Päiväputki"
+  },
+  "f_full_reading_37c0": {
+    "message": "Täysi lukeminen"
+  },
+  "f_no_article_has_a_mood_yet_le_373a": {
+    "message": "Millään artikkelilla ei ole vielä tunnelmaa – anna tekoälyn pisteyttää ne."
+  },
+  "f_no_articles_yet_start_summar_b35e": {
+    "message": "Ei vielä artikkeleita – aloita sivujen tiivistäminen nähdäksesi analytiikkasi! 📖"
+  },
+  "f_no_tags_found_add_tags_to_yo_6914": {
+    "message": "Tunnisteita ei löytynyt. Lisää tunnisteita tiivistelmiisi!"
+  },
+  "f_saved_79e4": {
+    "message": "Tallessa"
+  },
+  "f_with_summaries_5619": {
+    "message": "Tiivistelmillä"
+  },
+  "f_words_read_f576": {
+    "message": "Luetut sanat"
+  },
+  "f_article_09dd": {
+    "message": "{n} artikkeli",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_articles_3cea": {
+    "message": "{n} artikkelia",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_compression_across_e24c": {
+    "message": "{p} % tiivistys: {a}",
+    "description": "Placeholders: {p} {a} (keep as is)"
+  },
+  "f_time_saved_with_aish_00e4": {
+    "message": "⏱️ AISH:lla säästetty aika"
+  },
+  "f_word_cloud_aebe": {
+    "message": "☁️ Sanapilvi"
+  },
+  "f_top_categories_10ae": {
+    "message": "🏷️ Yleisimmät luokat"
+  },
+  "f_activity_b9dc": {
+    "message": "📅 Aktiivisuus"
+  },
+  "f_back_4bc2": {
+    "message": "Takaisin"
+  },
+  "f_cancelled_09bc": {
+    "message": "Peruutettu"
+  },
+  "f_close_acc3": {
+    "message": "Sulje"
+  },
+  "f_device_b413": {
+    "message": "Laite"
+  },
+  "f_digest_of_summaries_5cea": {
+    "message": "Koonti: {n} tiivistelmää",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_free_tier_3_kindle_sends_inc_00a8": {
+    "message": "Ilmainen taso: 3 Kindle-lähetystä mukana."
+  },
+  "f_it_will_show_up_on_your_kind_1390": {
+    "message": "Näkyy Kindlessäsi muutaman minuutin kuluttua."
+  },
+  "f_localsend_9286": {
+    "message": "LocalSend"
+  },
+  "f_make_sure_kindle_byphil_eu_i_2869": {
+    "message": "Varmista, että kindle@byphil.eu on Amazonin “Hyväksytyt lähettäjät” -luettelossa."
+  },
+  "f_not_everything_was_sent_4aac": {
+    "message": "Kaikkea ei lähetetty"
+  },
+  "f_not_set_up_yet_add_a_receive_845a": {
+    "message": "Ei vielä määritetty – lisää vastaanottaja asetuksissa"
+  },
+  "f_not_set_up_yet_add_your_kind_f9fe": {
+    "message": "Ei vielä määritetty – lisää Kindle asetuksissa"
+  },
+  "f_one_digest_a1c5": {
+    "message": "Yksi koonti"
+  },
+  "f_only_summarized_articles_can_ce5a": {
+    "message": "Vain tiivistettyjä artikkeleita voi lähettää"
+  },
+  "f_open_settings_88b6": {
+    "message": "Avaa asetukset"
+  },
+  "f_pick_the_receiver_its_app_ha_0e36": {
+    "message": "Valitse vastaanottaja. Sen sovelluksen on oltava auki samassa Wi‑Fi-verkossa."
+  },
+  "f_please_keep_this_window_open_2384": {
+    "message": "Pidä tämä ikkuna auki"
+  },
+  "f_please_set_your_localsend_ip_a1ac": {
+    "message": "Aseta ensin LocalSend-IP asetuksissa."
+  },
+  "f_select_2b4d": {
+    "message": "Valitse"
+  },
+  "f_select_all_1072": {
+    "message": "Valitse kaikki"
+  },
+  "f_select_summaries_2cad": {
+    "message": "Valitse tiivistelmät"
+  },
+  "f_select_summaries_to_send_741c": {
+    "message": "Valitse lähetettävät tiivistelmät"
+  },
+  "f_send_to_kindle_c8f1": {
+    "message": "Lähetä Kindleen"
+  },
+  "f_send_summaries_c9c7": {
+    "message": "Lähetä {n} tiivistelmää",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_send_summary_164f": {
+    "message": "Lähetä {n} tiivistelmä",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_sending_to_kindle_8853": {
+    "message": "Lähetetään Kindleen…"
+  },
+  "f_sending_to_2cc3": {
+    "message": "Lähetetään: {name}…",
+    "description": "Placeholders: {name} (keep as is)"
+  },
+  "f_sent_to_kindle_05e1": {
+    "message": "Lähetetty Kindleen"
+  },
+  "f_sent_to_0f59": {
+    "message": "Lähetetty: {name}",
+    "description": "Placeholders: {name} (keep as is)"
+  },
+  "f_separate_files_fc17": {
+    "message": "Erilliset tiedostot"
+  },
+  "f_set_your_kindle_email_in_set_7b8d": {
+    "message": "Aseta ensin Kindle-sähköpostisi asetuksissa."
+  },
+  "f_untitled_a678": {
+    "message": "Nimetön"
+  },
+  "f_waiting_for_the_other_device_d6a3": {
+    "message": "Odotetaan toista laitetta hyväksymään"
+  },
+  "f_and_more_871b": {
+    "message": "ja {n} muuta",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_of_sent_941e": {
+    "message": "{done}/{total} lähetetty. {error}",
+    "description": "Placeholders: {done} {total} {error} (keep as is)"
+  },
+  "f_file_sent_41c7": {
+    "message": "{n} tiedosto lähetetty",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_files_sent_a952": {
+    "message": "{n} tiedostoa lähetetty",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_receiver_2b94": {
+    "message": "{n} vastaanottaja",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_receivers_1ca5": {
+    "message": "{n} vastaanottajaa",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_selected_8468": {
+    "message": "{n} valittu",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_summaries_7bdf": {
+    "message": "{n} tiivistelmää",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_summary_0c47": {
+    "message": "{n} tiivistelmä",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_send_to_kindle_dc46": {
+    "message": "📚 Lähetä Kindleen"
+  },
+  "f_send_to_kindle_7446": {
+    "message": "📚 Lähetä {n} Kindleen",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_localsend_d4ba": {
+    "message": "📡 LocalSend"
+  },
+  "f_send_ca72": {
+    "message": "📤 Lähetä"
+  },
+  "f_send_aff2": {
+    "message": "📤 Lähetä {n}",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_full_article_765e": {
+    "message": "Koko artikkeli"
+  },
+  "f_summary_full_article_3f15": {
+    "message": "Tiivistelmä + koko artikkeli"
+  },
+  "f_summary_only_bd43": {
+    "message": "Vain tiivistelmä"
+  },
+  "f_also_automatic_opening_marks_1cdb": {
+    "message": "Myös automaattisesti: avaaminen merkitsee Luetuksi, lähetys Lähetetyksi"
+  },
+  "f_archive_0b65": {
+    "message": "Arkistoi"
+  },
+  "f_archived_5293": {
+    "message": "Arkistoitu"
+  },
+  "f_inbox_46db": {
+    "message": "Saapuneet"
+  },
+  "f_keep_them_in_your_inbox_as_s_f585": {
+    "message": "Pidä ne Saapuneissa tilassa “Lähetetty”"
+  },
+  "f_mark_as_8ab2": {
+    "message": "Merkitse…"
+  },
+  "f_mark_summaries_as_8da6": {
+    "message": "Merkitse {n} tiivistelmää…",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_mark_summary_as_4a0a": {
+    "message": "Merkitse {n} tiivistelmä…",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_moves_them_to_archive_find_t_1076": {
+    "message": "Siirtää ne arkistoon – löydät ne sieltä milloin tahansa"
+  },
+  "f_nothing_here_yet_a1ba": {
+    "message": "Täällä ei ole vielä mitään"
+  },
+  "f_read_efe5": {
+    "message": "Luettu"
+  },
+  "f_restore_to_inbox_1382": {
+    "message": "Palauta Saapuneisiin"
+  },
+  "f_sent_fb9f": {
+    "message": "Lähetetty"
+  },
+  "f_status_updated_automatically_8d51": {
+    "message": "Tila päivittyy automaattisesti:"
+  },
+  "f_restore_to_inbox_5eeb": {
+    "message": "↩ Palauta Saapuneisiin"
+  },
+  "f_sent_03c9": {
+    "message": "✅ Lähetetty · {date}",
+    "description": "Placeholders: {date} (keep as is)"
+  },
+  "f_new_b748": {
+    "message": "🆕 Uusi"
+  },
+  "f_read_bb5c": {
+    "message": "👀 Luettu"
+  },
+  "f_sent_to_kindle_6bf6": {
+    "message": "📚 Lähetetty Kindleen"
+  },
+  "f_sent_to_kindle_eef1": {
+    "message": "📚 Lähetetty Kindleen · {date}",
+    "description": "Placeholders: {date} (keep as is)"
+  },
+  "f_sent_via_localsend_9396": {
+    "message": "📡 Lähetetty LocalSendillä"
+  },
+  "f_sent_via_localsend_de11": {
+    "message": "📡 Lähetetty LocalSendillä · {date}",
+    "description": "Placeholders: {date} (keep as is)"
+  },
+  "f_archive_them_too_4a41": {
+    "message": "🗄️ Arkistoi myös ne"
+  },
+  "f_archived_7a20": {
+    "message": "🗄️ Arkistoitu · {date}",
+    "description": "Placeholders: {date} (keep as is)"
+  },
+  "f_archived_84d9": {
+    "message": "🗄️ {n} arkistoitu",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_2_3_sentences_6d11": {
+    "message": "2–3 virkettä"
+  },
+  "f_a_friendly_note_to_yourself_85df": {
+    "message": "Ystävällinen muistutus itsellesi"
+  },
+  "f_ai_adds_2_3_sentences_on_top_f7ed": {
+    "message": "Tekoäly lisää koonnin alkuun 2–3 virkettä"
+  },
+  "f_briefing_d739": {
+    "message": "Katsaus"
+  },
+  "f_one_sentence_b9cc": {
+    "message": "Yksi virke"
+  },
+  "f_personal_8cad": {
+    "message": "Yksityinen"
+  },
+  "f_short_dd75": {
+    "message": "Lyhyt"
+  },
+  "f_uses_your_ai_model_one_extra_7d0e": {
+    "message": "Käyttää tekoälymalliasi · yksi lisäkutsu · sovelluksen kielellä"
+  },
+  "f_intro_skipped_the_digest_goe_a3a8": {
+    "message": "⚠️ Johdanto ohitettiin – koonti lähtee ilman sitä"
+  },
+  "f_intro_written_181e": {
+    "message": "✨ Johdanto kirjoitettu"
+  },
+  "f_write_a_short_intro_d123": {
+    "message": "✨ Kirjoita lyhyt johdanto"
+  },
+  "f_writing_intro_9acd": {
+    "message": "✨ Kirjoitetaan johdantoa…"
+  },
+  "f_good_mood_only_5aab": {
+    "message": "Vain hyvä tunnelma"
+  },
+  "f_view_all_contribute_cffd": {
+    "message": "(Näytä kaikki ja osallistu)"
+  },
+  "f_action_items_c1a7": {
+    "message": "Toimenpiteet"
+  },
+  "f_back_to_builder_09d4": {
+    "message": "Takaisin rakentimeen"
+  },
+  "f_book_media_tips_a5e8": {
+    "message": "Kirja- ja mediavinkit"
+  },
+  "f_briefings_and_recaps_keep_th_4156": {
+    "message": "Katsaukset ja yhteenvedot säilyttävät kiinteän rakenteensa (yleiskatsaus, teemat, tunnelma) – nämä asetukset muuttavat vain sävyä ja sanamuotoa."
+  },
+  "f_casual_faa4": {
+    "message": "Rento"
+  },
+  "f_creative_title_c49e": {
+    "message": "Luova otsikko"
+  },
+  "f_custom_b78e": {
+    "message": "Oma"
+  },
+  "f_customize_how_the_ai_writes_0bf7": {
+    "message": "Mukauta, miten tekoäly kirjoittaa."
+  },
+  "f_daily_briefing_4f0e": {
+    "message": "Päivän katsaus"
+  },
+  "f_edit_style_for_2773": {
+    "message": "Muokkaa tyyliä:"
+  },
+  "f_emojis_hashtags_6b71": {
+    "message": "Emojit ja hashtagit"
+  },
+  "f_enter_your_custom_prompt_her_1393": {
+    "message": "Kirjoita oma kehotteesi tähän..."
+  },
+  "f_extra_instructions_0dc6": {
+    "message": "Lisäohjeet"
+  },
+  "f_extras_1d8e": {
+    "message": "Lisät"
+  },
+  "f_focus_on_f114": {
+    "message": "Painopiste"
+  },
+  "f_formal_253a": {
+    "message": "Muodollinen"
+  },
+  "f_full_prompt_8aa2": {
+    "message": "Koko kehote"
+  },
+  "f_full_style_text_c1ec": {
+    "message": "Koko tyylikuvaus"
+  },
+  "f_hard_facts_f743": {
+    "message": "Kovat faktat"
+  },
+  "f_hide_8e7c": {
+    "message": "Piilota ⌃"
+  },
+  "f_include_5607": {
+    "message": "Sisällytä"
+  },
+  "f_key_facts_41d3": {
+    "message": "Avainfaktat"
+  },
+  "f_key_quotes_81c9": {
+    "message": "Avainsitaatit"
+  },
+  "f_length_1935": {
+    "message": "Pituus"
+  },
+  "f_light_humor_8590": {
+    "message": "Kevyt huumori"
+  },
+  "f_long_9473": {
+    "message": "Pitkä"
+  },
+  "f_medium_5f96": {
+    "message": "Keskipitkä"
+  },
+  "f_neutral_0778": {
+    "message": "Neutraali"
+  },
+  "f_numbers_77c9": {
+    "message": "Luvut"
+  },
+  "f_opinions_1d4a": {
+    "message": "Mielipiteet"
+  },
+  "f_preset_b13e": {
+    "message": "Esiasetus"
+  },
+  "f_same_style_as_the_daily_brie_47f4": {
+    "message": "Sama tyyli kuin päivän katsauksessa"
+  },
+  "f_standup_humor_7d49": {
+    "message": "Stand up -huumori"
+  },
+  "f_style_for_ai_briefings_and_w_071d": {
+    "message": "Tyyli tekoälykatsauksille sekä viikko- ja kuukausiyhteenvedoille."
+  },
+  "f_test_on_sample_853c": {
+    "message": "Testaa esimerkillä"
+  },
+  "f_testing_28a7": {
+    "message": "Testataan…"
+  },
+  "f_tone_2da1": {
+    "message": "Sävy"
+  },
+  "f_ux_designer_reference_8dd0": {
+    "message": "UX-suunnittelijan referenssi"
+  },
+  "f_used_whenever_you_summarize__f213": {
+    "message": "Käytetään aina, kun tiivistät sivun tai artikkelin."
+  },
+  "f_view_edit_bf74": {
+    "message": "Näytä ja muokkaa ›"
+  },
+  "f_week_month_recaps_9013": {
+    "message": "Viikko- ja kuukausiyhteenvedot"
+  },
+  "f_why_it_matters_3f98": {
+    "message": "Miksi se on tärkeää"
+  },
+  "f_e_g_always_name_the_author_a_2746": {
+    "message": "esim. Mainitse aina kirjoittaja ja julkaisu."
+  },
+  "f_e_g_prefer_european_news_and_b541": {
+    "message": "esim. Suosi eurooppalaisia uutisia ja pidä sävy positiivisena."
+  },
+  "f_edited_by_hand_the_chips_won_2a11": {
+    "message": "✏️ Muokattu käsin – valinnat eivät muuta sitä, ennen kuin palaat rakentimeen."
+  },
+  "f_build_my_own_3ce7": {
+    "message": "✨ Rakenna oma"
+  },
+  "f_phil_s_mix_3e16": {
+    "message": "✨ Philin sekoitus"
+  },
+  "f_full_articles_a7c0": {
+    "message": "📄 Kokonaiset artikkelit"
+  },
+  "f_feeds_briefings_0552": {
+    "message": "📰 Syötteet ja katsaukset"
+  },
+  "f_tags_key_highlights_and_the__f798": {
+    "message": "🔒 Tunnisteet, avainkohdat ja tunnelmapisteet lisätään aina automaattisesti – hallitset vain tyyliä."
+  },
+  "f_a_quick_review_on_the_chrome_c9eb": {
+    "message": "Lyhyt arvostelu Chrome Web Storessa auttaa muita löytämään tämän."
+  },
+  "f_enjoying_ai_summary_helper_75e7": {
+    "message": "Pidätkö AI Summary Helperista?"
+  },
+  "f_later_2b49": {
+    "message": "Myöhemmin"
+  },
+  "f_no_thanks_66fb": {
+    "message": "Ei kiitos"
+  },
+  "f_leave_a_review_042d": {
+    "message": "⭐ Jätä arvostelu"
+  },
+  "f_ai_analysis_986b": {
+    "message": "Tekoälyanalyysi"
+  },
+  "f_dismiss_15f3": {
+    "message": "Sulje"
+  },
+  "f_errors_60a6": {
+    "message": "Virheet"
+  },
+  "f_feed_preferences_cbd3": {
+    "message": "Syöteasetukset"
+  },
+  "f_lines_00dc": {
+    "message": "Rivit"
+  },
+  "f_mood_over_time_per_category_b78e": {
+    "message": "Tunnelma ajan yli luokittain"
+  },
+  "f_mute_9f74": {
+    "message": "Mykistä"
+  },
+  "f_muted_6630": {
+    "message": "Mykistetty"
+  },
+  "f_name_7306": {
+    "message": "Nimi"
+  },
+  "f_no_items_yet_b28c": {
+    "message": "Ei vielä kohteita"
+  },
+  "f_noisy_e255": {
+    "message": "Meluisa"
+  },
+  "f_not_enough_rated_items_yet_bc02": {
+    "message": "Arvioituja kohteita ei vielä riittävästi"
+  },
+  "f_nothing_here_6e9a": {
+    "message": "Ei mitään."
+  },
+  "f_other_ff95": {
+    "message": "Muu"
+  },
+  "f_rates_the_tone_of_summaries__01bb": {
+    "message": "Arvioi tiivistelmien ja syötekohteiden sävyn. Mahdollistaa tunnelmasuodattimet, kaaviot ja Lähdedieetin. Poista käytöstä piilottaaksesi kaikki tunnelmatoiminnot."
+  },
+  "f_reading_339b": {
+    "message": "Lukeminen"
+  },
+  "f_reading_ai_updates_2053": {
+    "message": "Lukeminen · tekoäly · päivitykset"
+  },
+  "f_review_5601": {
+    "message": "Tarkistus"
+  },
+  "f_sort_mood_fbdc": {
+    "message": "Järj.: Tunnelma"
+  },
+  "f_sort_name_18c8": {
+    "message": "Järj.: Nimi"
+  },
+  "f_sort_read_share_6e08": {
+    "message": "Järj.: Lukuosuus"
+  },
+  "f_sort_unread_7db8": {
+    "message": "Järj.: Lukematta"
+  },
+  "f_stacked_785e": {
+    "message": "Pinottu"
+  },
+  "f_subscriptions_tags_opml_8892": {
+    "message": "Tilaukset · tunnisteet · OPML"
+  },
+  "f_table_view_c850": {
+    "message": "Taulukkonäkymä"
+  },
+  "f_top_73dc": {
+    "message": "Ylin"
+  },
+  "f_topics_over_time_f15e": {
+    "message": "Aiheet ajan yli"
+  },
+  "f_unmute_72bb": {
+    "message": "Mykistys pois"
+  },
+  "f_updates_storage_9d6a": {
+    "message": "Päivitykset ja tallennus"
+  },
+  "f_volume_76af": {
+    "message": "Määrä"
+  },
+  "f_not_scored_ddb8": {
+    "message": "ei pisteytetty"
+  },
+  "f_source_causes_of_your_negati_a48c": {
+    "message": "{n} lähde aiheuttaa {p} % negatiivisista kohteistasi",
+    "description": "Placeholders: {n} {p} (keep as is)"
+  },
+  "f_source_is_mostly_negative_a413": {
+    "message": "{n} lähde on enimmäkseen negatiivinen",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_sources_are_mostly_negative_3b24": {
+    "message": "{n} lähdettä on enimmäkseen negatiivisia",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_sources_cause_of_your_negati_1f62": {
+    "message": "{n} lähdettä aiheuttaa {p} % negatiivisista kohteistasi",
+    "description": "Placeholders: {n} {p} (keep as is)"
+  },
+  "f_mo_read_2188": {
+    "message": "{n}/kk · {r} % luettu",
+    "description": "Placeholders: {n} {r} (keep as is)"
+  },
+  "f_topics_over_time_ee3b": {
+    "message": "📈 Aiheet ajan yli"
+  },
+  "f_mood_483d": {
+    "message": "😊 Tunnelma"
+  },
+  "f_aish_cloud_65e5": {
+    "message": "AISH-pilvi"
+  },
+  "f_ask_a_follow_up_32ca": {
+    "message": "Esitä jatkokysymys…"
+  },
+  "f_back_to_this_page_1a94": {
+    "message": "Takaisin tälle sivulle"
+  },
+  "f_collected_the_items_6b03": {
+    "message": "Kohteet kerätty"
+  },
+  "f_continuing_ffb7": {
+    "message": "Jatketaan"
+  },
+  "f_could_not_reach_ollama_make__7fce": {
+    "message": "Ollamaan ei saatu yhteyttä. Varmista, että se on käynnissä ja päätepiste on oikein."
+  },
+  "f_deutsche_welle_top_stories_8be6": {
+    "message": "Deutsche Welle · pääuutiset"
+  },
+  "f_discard_rewrite_96b8": {
+    "message": "Hylkää ja kirjoita uudelleen?"
+  },
+  "f_feed_item_from_6d3a": {
+    "message": "Syötekohde: {host}",
+    "description": "Placeholders: {host} (keep as is)"
+  },
+  "f_focus_on_something_optional_d5b9": {
+    "message": "Keskity johonkin… (valinnainen)"
+  },
+  "f_focus_c600": {
+    "message": "Painopiste: {text}",
+    "description": "Placeholders: {text} (keep as is)"
+  },
+  "f_found_your_highlights_using__b80a": {
+    "message": "Löytyi {n} korostustasi · käytetään painopisteenä",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_from_your_question_4088": {
+    "message": "Kysymyksestäsi"
+  },
+  "f_from_your_questions_4b21": {
+    "message": "Kysymyksistäsi"
+  },
+  "f_include_all_questions_in_exp_94d7": {
+    "message": "Sisällytä kaikki kysymykset vienteihin"
+  },
+  "f_last_summary_3355": {
+    "message": "Viimeisin tiivistelmä"
+  },
+  "f_model_is_thinking_3a56": {
+    "message": "Malli ajattelee"
+  },
+  "f_model_is_writing_cab2": {
+    "message": "Malli kirjoittaa"
+  },
+  "f_no_answer_cd22": {
+    "message": "Ei vastausta."
+  },
+  "f_no_recent_summaries_03a5": {
+    "message": "Ei viimeaikaisia tiivistelmiä"
+  },
+  "f_nothing_new_since_this_recap_f9bc": {
+    "message": "Ei uutta tämän yhteenvedon jälkeen – Nollaa kirjoittaa sen alusta."
+  },
+  "f_nothing_received_for_s_there_17e7": {
+    "message": "Ei vastausta {s} s aikaan. Aikarajaa ei ole – peruuta, jos näyttää jumittavan.",
+    "description": "Placeholders: {s} (keep as is)"
+  },
+  "f_ollama_refused_the_request_a_0007": {
+    "message": "Ollama hylkäsi pyynnön. 403 tarkoittaa yleensä, että sen on sallittava pyynnöt tältä laajennukselta (OLLAMA_ORIGINS)."
+  },
+  "f_only_in_the_conversation_log_ea3e": {
+    "message": "Vain keskustelulokissa"
+  },
+  "f_open_the_page_to_jump_to_thi_837d": {
+    "message": "Avaa sivu hypätäksesi tähän kohtaan"
+  },
+  "f_page_text_words_5755": {
+    "message": "Sivun teksti · sanoja {n}",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_queue_a_question_9a0d": {
+    "message": "Jonota kysymys…"
+  },
+  "f_raise_limit_to_and_refresh_95fb": {
+    "message": "Nosta rajaksi {n} ja päivitä",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_read_the_page_words_8c21": {
+    "message": "Sivun luku · sanoja {n}",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_reading_the_answer_d90a": {
+    "message": "Luetaan vastausta"
+  },
+  "f_resume_1d8a": {
+    "message": "Jatka"
+  },
+  "f_send_14cf": {
+    "message": "Lähetä"
+  },
+  "f_send_summaries_96ab": {
+    "message": "Lähetä tiivistelmät"
+  },
+  "f_sent_to_your_ai_connection_b919": {
+    "message": "Lähetetty tekoälyyhteydellesi"
+  },
+  "f_set_up_ollama_a0c2": {
+    "message": "Ota Ollama käyttöön"
+  },
+  "f_show_them_open_one_by_one_33f7": {
+    "message": "Näytä ne – avaa yksi kerrallaan"
+  },
+  "f_shown_in_the_article_and_inc_586d": {
+    "message": "Näkyy artikkelissa ja sisältyy vienteihin"
+  },
+  "f_starting_788d": {
+    "message": "Käynnistetään…"
+  },
+  "f_summarize_a_page_to_see_it_h_ceef": {
+    "message": "Tiivistä sivu, niin se näkyy tässä"
+  },
+  "f_summarize_this_page_b1c9": {
+    "message": "Tiivistä tämä sivu"
+  },
+  "f_summary_b5b3": {
+    "message": "Tiivistelmä"
+  },
+  "f_that_is_the_maximum_per_reca_170d": {
+    "message": "Se on yhteenvedon enimmäismäärä. Käytä viikko- tai kuukausiyhteenvetoa laajempaan kuvaan tai suodata syötteen mukaan."
+  },
+  "f_thinking_d121": {
+    "message": "Ajatellaan…"
+  },
+  "f_waiting_for_the_model_75a1": {
+    "message": "Odotetaan mallia"
+  },
+  "f_waiting_for_the_model_a385": {
+    "message": "Odotetaan mallia…"
+  },
+  "f_what_i_used_fda1": {
+    "message": "Mitä käytin"
+  },
+  "f_working_on_it_d098": {
+    "message": "Työstetään…"
+  },
+  "f_writing_a_word_summary_dd5f": {
+    "message": "Kirjoitetaan {n} sanan tiivistelmää…",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_writing_the_summary_0fa6": {
+    "message": "Kirjoitetaan tiivistelmää…"
+  },
+  "f_your_focus_question_4df6": {
+    "message": "Painopistekysymyksesi"
+  },
+  "f_your_highlights_da3a": {
+    "message": "Korostuksesi · {n}",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_your_questions_6d97": {
+    "message": "Kysymyksesi"
+  },
+  "f_different_page_9b4d": {
+    "message": "toinen sivu"
+  },
+  "f_shortened_to_fit_083f": {
+    "message": "lyhennetty sopimaan"
+  },
+  "f_thinking_characters_8d93": {
+    "message": "ajattelu: merkkejä {n}",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_words_aa8a": {
+    "message": "sanaa"
+  },
+  "f_characters_d8fd": {
+    "message": "Merkkejä: {n}",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_follow_up_d34e": {
+    "message": "{n} jatkokysymys",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_follow_ups_8907": {
+    "message": "{n} jatkokysymystä",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_more_question_4688": {
+    "message": "{n} lisäkysymys",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_more_questions_bd21": {
+    "message": "{n} lisäkysymystä",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_older_item_is_not_in_this_re_1d7b": {
+    "message": "{n} vanhempi kohde ei ole tässä yhteenvedossa (raja: {max} / yhteenveto).",
+    "description": "Placeholders: {n} {max} (keep as is)"
+  },
+  "f_older_item_is_not_in_this_re_321f": {
+    "message": "{n} vanhempi kohde ei ole tässä yhteenvedossa.",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_older_items_are_not_in_this__7458": {
+    "message": "{n} vanhempaa kohdetta ei ole tässä yhteenvedossa (raja: {max} / yhteenveto).",
+    "description": "Placeholders: {n} {max} (keep as is)"
+  },
+  "f_older_items_are_not_in_this__8bca": {
+    "message": "{n} vanhempaa kohdetta ei ole tässä yhteenvedossa.",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_word_c9d9": {
+    "message": "{n} sana",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_words_769e": {
+    "message": "{n} sanaa",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_stop_f89d": {
+    "message": "■ Pysäytä"
+  },
+  "f_in_article_c185": {
+    "message": "📌 Artikkelissa"
+  },
+  "f_add_to_article_8257": {
+    "message": "📍 Lisää artikkeliin"
+  },
+  "f_items_per_recap_fac3": {
+    "message": "📝 Kohteita per yhteenveto"
+  },
+  "f_on_ios_hold_to_drag_for_2_se_7fba": {
+    "message": "(iOS:llä pidä pohjassa 2 sekuntia vetääksesi)"
+  },
+  "f_add_59dd": {
+    "message": "+ Lisää"
+  },
+  "f_md_a3cb": {
+    "message": ".MD 💾"
+  },
+  "f_a_bundle_of_881d": {
+    "message": "{count} kohteen nippu: {titles}",
+    "description": "Placeholders: {count} {titles} (keep as is)"
+  },
+  "f_a_few_18aa": {
+    "message": "Muutama"
+  },
+  "f_a_lot_9f13": {
+    "message": "Paljon"
+  },
+  "f_ai_model_1862": {
+    "message": "Tekoälymalli"
+  },
+  "f_ai_ghost_highlighting_41b0": {
+    "message": "Tekoälyn haamukorostus"
+  },
+  "f_api_error_e311": {
+    "message": "API-virhe:"
+  },
+  "f_api_key_6382": {
+    "message": "API-avain:"
+  },
+  "f_api_key_c6ec": {
+    "message": "API-avain"
+  },
+  "f_about_tools_9c0f": {
+    "message": "Tietoja ja työkalut"
+  },
+  "f_account_a2fc": {
+    "message": "Tili"
+  },
+  "f_account_plan_bd49": {
+    "message": "Tili ja paketti"
+  },
+  "f_account_sync_cdb7": {
+    "message": "Tilin synkronointi"
+  },
+  "f_account_sync_sign_in_log_out_8eb5": {
+    "message": "Tilin synkronointi · kirjaudu sisään / ulos"
+  },
+  "f_activate_0190": {
+    "message": "Aktivoi"
+  },
+  "f_active_send_target_69d8": {
+    "message": "Aktiivinen lähetyskohde"
+  },
+  "f_add_kindle_device_dc01": {
+    "message": "Lisää Kindle-laite"
+  },
+  "f_add_localsend_device_6e29": {
+    "message": "Lisää LocalSend-laite"
+  },
+  "f_add_custom_model_336a": {
+    "message": "Lisää oma malli"
+  },
+  "f_add_model_id_e_g_gemma3_4b_960e": {
+    "message": "Lisää mallin tunnus, esim. gemma3:4b"
+  },
+  "f_allow_all_origins_f696": {
+    "message": "Salli kaikki lähteet"
+  },
+  "f_allow_all_origins_app_71d4": {
+    "message": "Salli kaikki lähteet (sovellus)"
+  },
+  "f_amazon_s_guide_135b": {
+    "message": "Amazonin ohje"
+  },
+  "f_analytics_e02b": {
+    "message": "Analytiikka"
+  },
+  "f_analyzing_tags_5f59": {
+    "message": "Analysoidaan tunnisteita…"
+  },
+  "f_appearance_language_6075": {
+    "message": "Ulkoasu ja kieli"
+  },
+  "f_are_you_sure_you_want_to_del_15c9": {
+    "message": "Haluatko varmasti poistaa tämän artikkelin?"
+  },
+  "f_article_05f9": {
+    "message": "Artikkeli"
+  },
+  "f_articles_ae4c": {
+    "message": "Artikkelit:"
+  },
+  "f_audio_generation_failed_003d": {
+    "message": "Äänen luonti epäonnistui: {msg}",
+    "description": "Placeholders: {msg} (keep as is)"
+  },
+  "f_auto_detect_0006": {
+    "message": "Automaattinen"
+  },
+  "f_auto_summarize_favorites_0e1f": {
+    "message": "Tiivistä suosikit automaattisesti"
+  },
+  "f_automatic_light_blue_quote_h_419c": {
+    "message": "Automaattiset vaaleansiniset sitaattikorostukset tiivistelmistä"
+  },
+  "f_backup_restored_successfully_8819": {
+    "message": "Varmuuskopio palautettu!\n{n} artikkelia tuotu.\n\nLaajennus latautuu nyt uudelleen.",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_backup_tags_delete_5af9": {
+    "message": "Varmuuskopio · tunnisteet · poisto"
+  },
+  "f_bookmarklet_generator_e407": {
+    "message": "Kirjanmerkkiohjelman luonti"
+  },
+  "f_browser_default_9336": {
+    "message": "Selaimen oletus"
+  },
+  "f_check_feeds_in_the_backgroun_08ca": {
+    "message": "Tarkista syötteet taustalla"
+  },
+  "f_check_if_receiver_is_online_1a5a": {
+    "message": "Tarkista, onko vastaanottaja online-tilassa."
+  },
+  "f_check_if_the_receiver_is_onl_df6d": {
+    "message": "Tarkista, onko vastaanottaja online-tilassa."
+  },
+  "f_checking_f2f5": {
+    "message": "Tarkistetaan..."
+  },
+  "f_choose_one_delivery_method_f_1ac4": {
+    "message": "Valitse yksi toimitustapa artikkelin toiminnoille."
+  },
+  "f_clean_up_merge_tags_096e": {
+    "message": "Siivoa ja yhdistä tunnisteet"
+  },
+  "f_clear_search_e946": {
+    "message": "Tyhjennä haku"
+  },
+  "f_click_the_ollama_icon_in_the_2c7c": {
+    "message": "Napsauta Ollama-kuvaketta valikkorivillä (oikealla ylhäällä) ja valitse <b>Quit Ollama</b>."
+  },
+  "f_click_generate_to_create_you_aa04": {
+    "message": "Luo jakso napsauttamalla “Luo 🎙️”."
+  },
+  "f_close_pane_d66b": {
+    "message": "Sulje ruutu {n}",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_code_expired_please_request__64c9": {
+    "message": "Koodi vanheni. Pyydä uusi."
+  },
+  "f_comedy_0972": {
+    "message": "Komedia"
+  },
+  "f_compatible_tools_7cb8": {
+    "message": "Yhteensopivat työkalut"
+  },
+  "f_configure_your_localsend_ip__3993": {
+    "message": "Määritä ensin LocalSend-IP-osoitteesi asetuksissa."
+  },
+  "f_connection_path_790c": {
+    "message": "Yhteyspolku"
+  },
+  "f_connection_path_e1ec": {
+    "message": "Yhteyspolku"
+  },
+  "f_context_k_1bbb": {
+    "message": "Konteksti: {n}k",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_copied_as_plain_text_c9d4": {
+    "message": "Kopioitu pelkkänä tekstinä."
+  },
+  "f_copied_to_clipboard_244d": {
+    "message": "Kopioitu leikepöydälle! 📋"
+  },
+  "f_copied_f355": {
+    "message": "Kopioitu! ✓"
+  },
+  "f_copy_0d38": {
+    "message": "Kopioi 📋"
+  },
+  "f_created_podcasts_1914": {
+    "message": "Luodut podcastit"
+  },
+  "f_custom_prompt_text_10af": {
+    "message": "Oman kehotteen teksti"
+  },
+  "f_custom_style_optional_0950": {
+    "message": "Oma tyyli (valinnainen):"
+  },
+  "f_custom_style_ba7f": {
+    "message": "Oma tyyli:"
+  },
+  "f_d3_library_failed_to_load_301f": {
+    "message": "D3-kirjaston lataus epäonnistui."
+  },
+  "f_dark_mode_05f8": {
+    "message": "Tumma tila"
+  },
+  "f_delete_ea6a": {
+    "message": "Poista"
+  },
+  "f_delete_article_14d4": {
+    "message": "Poista artikkeli"
+  },
+  "f_delete_all_history_f022": {
+    "message": "Poistetaanko koko historia?"
+  },
+  "f_delete_all_settings_9c4f": {
+    "message": "Poistetaanko kaikki asetukset?"
+  },
+  "f_delete_history_09b6": {
+    "message": "Poista historia"
+  },
+  "f_delete_history_6db0": {
+    "message": "Poista historia…"
+  },
+  "f_delete_settings_448b": {
+    "message": "Poista asetukset"
+  },
+  "f_delete_settings_7c57": {
+    "message": "Poista asetukset…"
+  },
+  "f_delivery_method_6dc6": {
+    "message": "Toimitustapa"
+  },
+  "f_delivery_method_60a6": {
+    "message": "Toimitustapa"
+  },
+  "f_delivery_83d6": {
+    "message": "Toimitus: {name}",
+    "description": "Placeholders: {name} (keep as is)"
+  },
+  "f_describe_your_podcast_style_2c26": {
+    "message": "Kuvaile podcastisi tyyli"
+  },
+  "f_dismiss_graph_stats_0600": {
+    "message": "Sulje kaavion tilastot"
+  },
+  "f_don_t_have_a_key_a26a": {
+    "message": "Eikö avainta ole?"
+  },
+  "f_done_645e": {
+    "message": "Valmis 🎧"
+  },
+  "f_drag_this_link_to_your_bookm_d09a": {
+    "message": "Vedä tämä linkki kirjanmerkkipalkkiisi 🔖"
+  },
+  "f_educational_6bf0": {
+    "message": "Opetus"
+  },
+  "f_endpoint_url_ddad": {
+    "message": "Päätepisteen URL"
+  },
+  "f_endpoint_url_d4b5": {
+    "message": "Päätepisteen URL:"
+  },
+  "f_enter_6_digit_code_9824": {
+    "message": "Anna 6-numeroinen koodi"
+  },
+  "f_enter_code_6556": {
+    "message": "Anna koodi"
+  },
+  "f_enter_the_code_sent_to_your__e9ff": {
+    "message": "Anna sähköpostiisi lähetetty koodi."
+  },
+  "f_enter_the_code_sent_to_44a6": {
+    "message": "Anna osoitteeseen lähetetty koodi:"
+  },
+  "f_enter_your_email_b13a": {
+    "message": "Anna sähköpostiosoitteesi..."
+  },
+  "f_error_generating_podcast_472a": {
+    "message": "Virhe podcastin luonnissa: {msg}",
+    "description": "Placeholders: {msg} (keep as is)"
+  },
+  "f_error_d391": {
+    "message": "Virhe:"
+  },
+  "f_error_2626": {
+    "message": "Virhe: {message}",
+    "description": "Placeholders: {message} (keep as is)"
+  },
+  "f_export_49d3": {
+    "message": "Vie"
+  },
+  "f_export_backup_first_cdb5": {
+    "message": "Vie ensin varmuuskopio"
+  },
+  "f_export_or_restore_all_settin_1745": {
+    "message": "Vie tai palauta kaikki asetukset JSON-tiedostona."
+  },
+  "f_export_settings_1454": {
+    "message": "Vie asetukset"
+  },
+  "f_exported_1988": {
+    "message": "Viety! ✓"
+  },
+  "f_exported_articles_e1a6": {
+    "message": "Viety! ✓ ({n} artikkelia)",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_ext_8e14": {
+    "message": "Lis."
+  },
+  "f_extension_723a": {
+    "message": "Laajennus"
+  },
+  "f_failed_to_export_backup_f689": {
+    "message": "Varmuuskopion vienti epäonnistui."
+  },
+  "f_failed_to_load_models_416b": {
+    "message": "Mallien lataus epäonnistui"
+  },
+  "f_failed_to_send_code_a012": {
+    "message": "Koodin lähetys epäonnistui"
+  },
+  "f_fallback_79db": {
+    "message": "Varavaihtoehto"
+  },
+  "f_feed_briefing_recap_style_9883": {
+    "message": "Syötekatsauksen ja yhteenvedon tyyli"
+  },
+  "f_feed_refresh_interval_c173": {
+    "message": "Syötteiden päivitysväli"
+  },
+  "f_feedback_contact_donate_fd59": {
+    "message": "Palaute · yhteystiedot · lahjoitus"
+  },
+  "f_feeds_and_inboxes_linkedin_f_aa24": {
+    "message": "Syötteet ja postilaatikot (LinkedIn-syöte, X-etusivu, …) ohitetaan jo automaattisesti."
+  },
+  "f_file_shared_successfully_8e89": {
+    "message": "Tiedosto jaettu."
+  },
+  "f_filtering_graph_to_matches_o_2268": {
+    "message": "Suodatetaan kaavio vain osumiin – napsauta korostaaksesi osumat koko arkistossa"
+  },
+  "f_flesch_reading_ease_100_8bd2": {
+    "message": "Flesch-luettavuus: {ease}/100",
+    "description": "Placeholders: {ease} (keep as is)"
+  },
+  "f_for_koreader_prefer_60bb": {
+    "message": "KOReaderille suosi"
+  },
+  "f_for_a_permanent_config_via_s_390e": {
+    "message": "Pysyvää määritystä varten systemd:n kautta lisää <code>Environment=\"OLLAMA_ORIGINS=*\"</code> palveluyksikköön (esim. <code>/etc/systemd/system/ollama.service</code>), suorita sitten <code>systemctl daemon-reload</code> ja käynnistä uudelleen."
+  },
+  "f_for_a_permanent_fix_set_code_2b22": {
+    "message": "Pysyvää korjausta varten aseta <code>OLLAMA_ORIGINS=*</code> järjestelmän ympäristömuuttujaksi kohdassa <i>System Properties → Environment Variables</i> ja käynnistä Ollama uudelleen."
+  },
+  "f_found_device_at_click_add_to_884e": {
+    "message": "Laite löytyi osoitteesta {ip} – tallenna napsauttamalla Lisää ✓",
+    "description": "Placeholders: {ip} (keep as is)"
+  },
+  "f_free_tier_a065": {
+    "message": "Ilmainen taso"
+  },
+  "f_free_trial_mode_ce92": {
+    "message": "Ilmainen kokeilutila"
+  },
+  "f_generate_a_bookmarklet_that__081e": {
+    "message": "Luo kirjanmerkkiohjelma, joka tiivistää minkä tahansa sivun missä tahansa selaimessa – myös iOS:llä ja Androidilla, missä laajennus ei toimi. Käyttää byphil Cloud -kirjautumistasi."
+  },
+  "f_generate_237e": {
+    "message": "Luo 🎙️"
+  },
+  "f_generating_audio_bbb6": {
+    "message": "Luodaan ääntä… 🔊"
+  },
+  "f_generating_22a9": {
+    "message": "Luodaan…"
+  },
+  "f_get_key_4f7c": {
+    "message": "Hanki avain"
+  },
+  "f_ghost_highlight_amount_cdbc": {
+    "message": "Haamukorostuksen määrä"
+  },
+  "f_ghost_highlight_amount_91fc": {
+    "message": "Haamukorostuksen määrä"
+  },
+  "f_hide_the_highlights_panel_on_21d1": {
+    "message": "Piilota korostuspaneeli näillä sivustoilla"
+  },
+  "f_highlighting_matches_in_the__372a": {
+    "message": "Korostetaan osumat koko arkistossa – napsauta suodattaaksesi vain osumiin"
+  },
+  "f_highlighting_ghost_46b8": {
+    "message": "Korostetaan {a} · haamu {b}",
+    "description": "Placeholders: {a} {b} (keep as is)"
+  },
+  "f_history_deleted_89bf": {
+    "message": "Historia poistettu ✓"
+  },
+  "f_i_want_to_use_my_own_custom__1b02": {
+    "message": "Haluan käyttää omaa mukautettua API:a / paikallista mallia"
+  },
+  "f_if_running_as_a_systemd_serv_630d": {
+    "message": "Jos Ollama toimii systemd-palveluna, pysäytä se komennolla <code>sudo systemctl stop ollama</code>."
+  },
+  "f_import_export_opml_c6cd": {
+    "message": "Tuo / vie OPML"
+  },
+  "f_import_settings_8d81": {
+    "message": "Tuo asetukset"
+  },
+  "f_included_with_your_byphil_ac_42c6": {
+    "message": "Sisältyy byPhil-tiliisi – API-avainta ei tarvita."
+  },
+  "f_infrastructural_link_executi_8f72": {
+    "message": "Infrastruktuurilinkin suoritus epäonnistui. Varmista verkkoyhteys yhdyskäytävään."
+  },
+  "f_inl_2296": {
+    "message": "Sivulle"
+  },
+  "f_inline_1554": {
+    "message": "Sivulle"
+  },
+  "f_inline_mode_is_great_for_sen_8641": {
+    "message": "Sivulle-tila sopii erinomaisesti toimintoon \"Lähetä Kindleen\"."
+  },
+  "f_insert_into_page_5e4d": {
+    "message": "Lisää sivulle"
+  },
+  "f_interview_0334": {
+    "message": "Haastattelu"
+  },
+  "f_invalid_key_620f": {
+    "message": "Virheellinen avain"
+  },
+  "f_invalid_backup_file_please_s_54f7": {
+    "message": "Virheellinen varmuuskopiotiedosto. Valitse kelvollinen AI Summary Helper -vienti."
+  },
+  "f_invalid_code_4325": {
+    "message": "Virheellinen koodi"
+  },
+  "f_invalid_code_or_expired_sess_009f": {
+    "message": "Virheellinen koodi tai istunto vanhentunut."
+  },
+  "f_invalid_or_deactivated_licen_cb45": {
+    "message": "Virheellinen tai deaktivoitu lisenssiavain. Tarkista tilauksesi tiedot."
+  },
+  "f_koreader_localsend_devices_dfd7": {
+    "message": "KOReader- / LocalSend-laitteet"
+  },
+  "f_koreader_plugin_566b": {
+    "message": "KOReader-lisäosa:"
+  },
+  "f_keep_feed_items_for_6d0f": {
+    "message": "Säilytä syötekohteita"
+  },
+  "f_kindle_delivery_failed_4d91": {
+    "message": "Kindle-toimitus epäonnistui."
+  },
+  "f_kindle_devices_5273": {
+    "message": "Kindle-laitteet"
+  },
+  "f_kindle_localsend_bookmarklet_b368": {
+    "message": "Kindle · LocalSend · kirjanmerkkiohjelma"
+  },
+  "f_kindle_563f": {
+    "message": "Kindle 📚"
+  },
+  "f_label_f29d": {
+    "message": "Nimike"
+  },
+  "f_launch_ollama_again_from_you_0537": {
+    "message": "Käynnistä Ollama uudelleen Ohjelmat-kansiosta tai Spotlightilla."
+  },
+  "f_layout_421f": {
+    "message": "Asettelu"
+  },
+  "f_length_729d": {
+    "message": "Pituus:"
+  },
+  "f_library_data_0b46": {
+    "message": "Kirjasto ja data"
+  },
+  "f_light_mode_608a": {
+    "message": "Vaalea tila"
+  },
+  "f_list_37a1": {
+    "message": "Lista"
+  },
+  "f_loading_1033": {
+    "message": "Ladataan..."
+  },
+  "f_localsend_d8a4": {
+    "message": "LocalSend 📱"
+  },
+  "f_log_out_0355": {
+    "message": "Kirjaudu ulos"
+  },
+  "f_logged_in_as_30ea": {
+    "message": "Kirjautunut: {email}",
+    "description": "Placeholders: {email} (keep as is)"
+  },
+  "f_logged_out_5877": {
+    "message": "Kirjauduttu ulos."
+  },
+  "f_magic_code_sent_check_your_i_292f": {
+    "message": "Taikakoodi lähetetty! ✨ Tarkista postilaatikkosi."
+  },
+  "f_manual_yellow_highlights_48aa": {
+    "message": "Käsin tehdyt keltaiset korostukset"
+  },
+  "f_mark_read_when_opened_7f85": {
+    "message": "Merkitse luetuksi avattaessa"
+  },
+  "f_merges_near_duplicate_tags_s_343f": {
+    "message": "Yhdistää lähes päällekkäiset tunnisteet, kuten “ML” ja “Machine Learning”, koko arkistossasi."
+  },
+  "f_model_e8fa": {
+    "message": "Malli"
+  },
+  "f_model_identifier_527d": {
+    "message": "Mallin tunnus"
+  },
+  "f_model_source_5863": {
+    "message": "Mallin lähde"
+  },
+  "f_models_api_7e45": {
+    "message": "Mallit ja API"
+  },
+  "f_mood_on_off_tone_analysis_60b8": {
+    "message": "Tunnelma päälle/pois (sävyanalyysi)"
+  },
+  "f_name_6774": {
+    "message": "Nimi:"
+  },
+  "f_native_chrome_side_panel_510d": {
+    "message": "Chromen sivupaneeli"
+  },
+  "f_negative_tone_8ca6": {
+    "message": "Negatiivinen sävy"
+  },
+  "f_network_error_608f": {
+    "message": "Verkkovirhe"
+  },
+  "f_network_error_sending_to_kin_a413": {
+    "message": "Verkkovirhe lähetettäessä Kindleen."
+  },
+  "f_neutral_tone_a9c8": {
+    "message": "Neutraali sävy"
+  },
+  "f_news_0866": {
+    "message": "Uutiset"
+  },
+  "f_next_da08": {
+    "message": "Seuraava"
+  },
+  "f_no_kindle_email_set_9f2b": {
+    "message": "Kindle-sähköpostia ei ole asetettu."
+  },
+  "f_no_active_receiver_found_081d": {
+    "message": "Aktiivista vastaanottajaa ei löytynyt."
+  },
+  "f_no_articles_saved_yet_6cc6": {
+    "message": "Artikkeleita ei ole vielä tallennettu."
+  },
+  "f_no_articles_to_graph_yet_3fc2": {
+    "message": "Ei vielä kaavioitavia artikkeleita."
+  },
+  "f_no_audio_8798": {
+    "message": "Ei ääntä"
+  },
+  "f_no_content_available_0c7a": {
+    "message": "Sisältöä ei saatavilla."
+  },
+  "f_no_devices_added_yet_1e99": {
+    "message": "Laitteita ei ole vielä lisätty."
+  },
+  "f_no_matches_found_1b67": {
+    "message": "Ei osumia"
+  },
+  "f_no_models_configured_2bd8": {
+    "message": "Malleja ei ole määritetty"
+  },
+  "f_no_receiver_address_set_d83f": {
+    "message": "Vastaanottajan osoitetta ei ole asetettu."
+  },
+  "f_no_settings_match_918b": {
+    "message": "Mikään asetus ei vastaa hakua “{query}”.",
+    "description": "Placeholders: {query} (keep as is)"
+  },
+  "f_no_summary_available_1155": {
+    "message": "Tiivistelmää ei saatavilla"
+  },
+  "f_no_summary_returned_5f75": {
+    "message": "Tiivistelmää ei palautettu."
+  },
+  "f_no_title_available_2723": {
+    "message": "Otsikkoa ei saatavilla"
+  },
+  "f_not_logged_in_4bbf": {
+    "message": "Ei kirjautunut"
+  },
+  "f_not_signed_in_7281": {
+    "message": "Ei kirjautunut sisään"
+  },
+  "f_once_ollama_restarts_the_403_7678": {
+    "message": "Kun Ollama käynnistyy uudelleen, tämän laajennuksen 403 Forbidden -virhe poistuu."
+  },
+  "f_once_ollama_restarts_the_403_5245": {
+    "message": "Kun Ollama käynnistyy uudelleen, laajennuksesi 403 Forbidden -virhe korjaantuu."
+  },
+  "f_one_pane_9d53": {
+    "message": "Yksi ruutu"
+  },
+  "f_open_command_prompt_c92e": {
+    "message": "Avaa komentokehote"
+  },
+  "f_open_source_software_by_0ec8": {
+    "message": "Avoimen lähdekoodin ohjelmisto, tekijä"
+  },
+  "f_open_terminal_8167": {
+    "message": "Avaa Terminal"
+  },
+  "f_open_in_history_0990": {
+    "message": "Avaa Historiassa"
+  },
+  "f_open_in_sidebar_648c": {
+    "message": "Avaa sivupaneelissa"
+  },
+  "f_open_the_b_terminal_b_app_on_e9bf": {
+    "message": "Avaa Macissa <b>Terminal</b>-sovellus."
+  },
+  "f_own_key_7e24": {
+    "message": "Oma avain"
+  },
+  "f_own_model_api_key_4098": {
+    "message": "Oma malli / API-avain"
+  },
+  "f_page_highlighting_86f2": {
+    "message": "Sivun korostus"
+  },
+  "f_pane_view_fde8": {
+    "message": "Ruudun {n} näkymä",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_panel_37e5": {
+    "message": "Paneeli"
+  },
+  "f_permanently_removes_all_summ_228d": {
+    "message": "Poistaa pysyvästi kaikki tiivistelmät ja arkiston. Vie ensin varmuuskopio."
+  },
+  "f_persist_optional_29ce": {
+    "message": "Säilytä (valinnainen)"
+  },
+  "f_pick_a_name_for_your_show_46b5": {
+    "message": "Valitse ohjelmallesi nimi:"
+  },
+  "f_please_configure_your_kindle_186c": {
+    "message": "Määritä ensin Kindle-toimitussähköpostisi asetuksissa."
+  },
+  "f_please_enter_a_license_key_49e8": {
+    "message": "Anna lisenssiavain."
+  },
+  "f_please_enter_a_valid_email_0a86": {
+    "message": "Anna kelvollinen sähköpostiosoite."
+  },
+  "f_please_enter_the_verificatio_ac88": {
+    "message": "Anna vahvistuskoodi."
+  },
+  "f_podcast_name_1b92": {
+    "message": "Podcastin nimi"
+  },
+  "f_podcast_length_minutes_c389": {
+    "message": "Podcastin pituus (minuuttia):"
+  },
+  "f_podcast_style_61d0": {
+    "message": "Podcastin tyyli:"
+  },
+  "f_positive_tone_6466": {
+    "message": "Myönteinen sävy"
+  },
+  "f_prefer_the_terminal_run_olla_806f": {
+    "message": "Haluatko käyttää terminaalia? Suorita Ollama suoraan etualan ikkunassa:"
+  },
+  "f_preferred_cloud_model_5f82": {
+    "message": "Ensisijainen pilvimalli"
+  },
+  "f_preferred_cloud_model_d302": {
+    "message": "Ensisijainen pilvimalli"
+  },
+  "f_preparing_kindle_delivery_491b": {
+    "message": "Valmistellaan Kindle-toimitusta... ⏳"
+  },
+  "f_preset_and_custom_prompt_3b14": {
+    "message": "Esiasetus ja oma kehote"
+  },
+  "f_preset_prompt_aba8": {
+    "message": "Esiasetettu kehote"
+  },
+  "f_preset_4569": {
+    "message": "Esiasetus: {name}",
+    "description": "Placeholders: {name} (keep as is)"
+  },
+  "f_press_b_win_r_b_type_code_cm_0167": {
+    "message": "Paina <b>Win + R</b>, kirjoita <code>cmd</code> ja paina Enter."
+  },
+  "f_pro_active_e0af": {
+    "message": "Pro aktiivinen ✓"
+  },
+  "f_pro_license_key_d198": {
+    "message": "Pro-lisenssiavain"
+  },
+  "f_pro_license_key_d718": {
+    "message": "Pro-lisenssiavain"
+  },
+  "f_prompts_7bf8": {
+    "message": "Kehotteet"
+  },
+  "f_provider_88dc": {
+    "message": "Palvelu"
+  },
+  "f_questions_bugs_or_happy_feel_0fb2": {
+    "message": "Kysyttävää, vikoja vai tyytyväinen? 💡 Voit"
+  },
+  "f_quick_test_terminal_ba7b": {
+    "message": "Pikatesti (terminaali)"
+  },
+  "f_quit_ollama_1194": {
+    "message": "Sulje Ollama"
+  },
+  "f_rate_items_with_the_recap_131d": {
+    "message": "Arvioi kohteet yhteenvedolla"
+  },
+  "f_reader_4efa": {
+    "message": "Lukutila 👓"
+  },
+  "f_reading_highlighting_67a3": {
+    "message": "Lukeminen ja korostus"
+  },
+  "f_reading_bundle_c191": {
+    "message": "Lukupaketti – {date} ({count})",
+    "description": "Placeholders: {date} {count} (keep as is)"
+  },
+  "f_reading_page_0cb0": {
+    "message": "Luetaan sivua..."
+  },
+  "f_recent_models_20ec": {
+    "message": "Viimeisimmät mallit"
+  },
+  "f_regular_f2b7": {
+    "message": "Tavallinen"
+  },
+  "f_remove_device_c1ed": {
+    "message": "Poista laite"
+  },
+  "f_resets_all_preferences_promp_a294": {
+    "message": "Nollaa kaikki asetukset, kehotteet ja avaimet tällä laitteella. Historiasi säilyy."
+  },
+  "f_restart_ollama_a4f2": {
+    "message": "Käynnistä Ollama uudelleen"
+  },
+  "f_right_click_the_ollama_tray__e7eb": {
+    "message": "Napsauta Ollama-kuvaketta hiiren kakkospainikkeella (oikealla alhaalla) ja valitse <b>Quit</b>."
+  },
+  "f_run_ollama_as_a_foreground_s_b2e2": {
+    "message": "Suorita Ollama etualan palvelimena samasta ikkunasta:"
+  },
+  "f_run_this_command_so_ollama_s_22ad": {
+    "message": "Suorita tämä komento, jotta Ollama pysyy määritettynä Mac-sovelluksen uudelleenkäynnistyksen jälkeen:"
+  },
+  "f_run_this_so_the_running_serv_741a": {
+    "message": "Suorita tämä, jotta käynnissä oleva palvelin hyväksyy pyynnöt miltä tahansa lähteeltä:"
+  },
+  "f_runs_entirely_in_your_browse_6c55": {
+    "message": "Toimii kokonaan selaimessasi – mitään tietoja ei lähde sieltä."
+  },
+  "f_saved_for_later_516d": {
+    "message": "Tallennettu myöhemmäksi"
+  },
+  "f_saved_549a": {
+    "message": "Tallennettu! ✓"
+  },
+  "f_scan_failed_enter_ip_manuall_ec5d": {
+    "message": "Skannaus epäonnistui. Anna IP käsin."
+  },
+  "f_scanning_96ac": {
+    "message": "Skannataan..."
+  },
+  "f_search_cloud_models_4424": {
+    "message": "Hae pilvimalleja…"
+  },
+  "f_search_languages_1344": {
+    "message": "Hae kieliä…"
+  },
+  "f_searching_cloud_f50c": {
+    "message": "Haetaan pilvestä..."
+  },
+  "f_searching_lan_for_localsend__08f3": {
+    "message": "Etsitään LocalSend-vastaanottajaa lähiverkosta..."
+  },
+  "f_select_up_to_5_articles_dcb7": {
+    "message": "Valitse enintään 5 artikkelia:"
+  },
+  "f_send_share_bb4a": {
+    "message": "Lähetys ja jako"
+  },
+  "f_send_magic_code_de19": {
+    "message": "Lähetä taikakoodi"
+  },
+  "f_sending_to_localsend_over_wi_1626": {
+    "message": "Lähetetään LocalSendillä Wi-Fi-verkossa... 🚀"
+  },
+  "f_sending_6e8d": {
+    "message": "Lähetetään..."
+  },
+  "f_sent_successfully_56fa": {
+    "message": "Lähetys onnistui! 📖"
+  },
+  "f_sent_to_kindle_edc7": {
+    "message": "Lähetetty Kindleen! 📚"
+  },
+  "f_session_expired_generate_a_n_e957": {
+    "message": "Istunto vanheni. Luo uusi kirjanmerkkiohjelma."
+  },
+  "f_session_lost_please_request__23c2": {
+    "message": "Istunto katkesi. Pyydä uusi koodi."
+  },
+  "f_set_as_active_send_target_dc86": {
+    "message": "Aseta aktiiviseksi lähetyskohteeksi"
+  },
+  "f_set_up_ollama_on_linux_1b55": {
+    "message": "Ota Ollama käyttöön Linuxilla"
+  },
+  "f_set_up_ollama_on_windows_a032": {
+    "message": "Ota Ollama käyttöön Windowsissa"
+  },
+  "f_set_up_ollama_on_macos_48fa": {
+    "message": "Ota Ollama käyttöön macOS:llä"
+  },
+  "f_settings_article_history_ce53": {
+    "message": "Asetukset + artikkelihistoria"
+  },
+  "f_settings_imported_successful_29eb": {
+    "message": "Asetukset tuotu! Laajennus latautuu nyt uudelleen."
+  },
+  "f_settings_only_750a": {
+    "message": "Vain asetukset"
+  },
+  "f_share_failed_4922": {
+    "message": "Jako epäonnistui: {message}",
+    "description": "Placeholders: {message} (keep as is)"
+  },
+  "f_share_cf08": {
+    "message": "Jaa 🔗"
+  },
+  "f_sharing_is_not_supported_in__4599": {
+    "message": "Jakaminen ei ole tuettu tässä selaimessa/ympäristössä."
+  },
+  "f_showing_top_tags_archive_is__900c": {
+    "message": "Näytetään yleisimmät tunnisteet (arkisto on suuri)"
+  },
+  "f_sign_in_sign_up_via_email_0cc4": {
+    "message": "Kirjaudu / rekisteröidy sähköpostilla"
+  },
+  "f_sign_in_to_unlock_free_cloud_f976": {
+    "message": "Kirjaudu avataksesi ilmaiset pilvimallit ja synkronoidaksesi tiivistelmäsi, tai käytä omia API-avaimiasi."
+  },
+  "f_signed_in_byphil_cloud_f9ba": {
+    "message": "Kirjautunut · byPhil Cloud"
+  },
+  "f_solo_976a": {
+    "message": "Yksin"
+  },
+  "f_something_went_wrong_please__7745": {
+    "message": "Jokin meni pieleen – yritä uudelleen."
+  },
+  "f_sources_rename_tags_mute_0bbe": {
+    "message": "Lähteet · nimeä uudelleen · tunnisteet · mykistys"
+  },
+  "f_start_ollama_136b": {
+    "message": "Käynnistä Ollama"
+  },
+  "f_start_ollama_with_the_global_26bb": {
+    "message": "Käynnistä Ollama yleisellä jokerimerkillä, jotta mikä tahansa lähde voi yhdistää:"
+  },
+  "f_stop_ollama_b489": {
+    "message": "Pysäytä Ollama"
+  },
+  "f_storytelling_6d0b": {
+    "message": "Tarinankerronta"
+  },
+  "f_style_fba4": {
+    "message": "Tyyli:"
+  },
+  "f_successfully_connected_ec77": {
+    "message": "Yhteys muodostettu! 🧙"
+  },
+  "f_summarizing_4c71": {
+    "message": "Tiivistetään..."
+  },
+  "f_summary_language_a8df": {
+    "message": "Tiivistelmän kieli"
+  },
+  "f_summary_length_2b31": {
+    "message": "Tiivistelmän pituus"
+  },
+  "f_summary_mode_5ce6": {
+    "message": "Tiivistelmän tila"
+  },
+  "f_switch_graph_search_to_filte_7f9d": {
+    "message": "Vaihda kaavion haku suodatustilaan"
+  },
+  "f_switch_graph_search_to_highl_0b23": {
+    "message": "Vaihda kaavion haku korostustilaan"
+  },
+  "f_system_default_c329": {
+    "message": "Järjestelmän oletus"
+  },
+  "f_tts_returned_no_audio_5fb4": {
+    "message": "Puhesynteesi ei palauttanut ääntä."
+  },
+  "f_theme_7c92": {
+    "message": "Teema"
+  },
+  "f_theme_language_side_panel_2503": {
+    "message": "Teema · kieli · sivupaneeli"
+  },
+  "f_this_permanently_removes_and_fdfc": {
+    "message": "Tämä poistaa pysyvästi tältä laitteelta: {what} ja arkiston. Toimintoa ei voi kumota.",
+    "description": "Placeholders: {what} (keep as is)"
+  },
+  "f_this_resets_every_preference_d3b3": {
+    "message": "Tämä nollaa kaikki asetukset, kehotteet ja API-avaimet tällä laitteella. Tiivistelmäsi säilyvät. Laajennus latautuu uudelleen."
+  },
+  "f_this_will_invalidate_the_cur_4995": {
+    "message": "Tämä mitätöi nykyisen koodin. Jatketaanko?"
+  },
+  "f_transfer_failed_6750": {
+    "message": "Siirto epäonnistui: {message}",
+    "description": "Placeholders: {message} (keep as is)"
+  },
+  "f_type_to_confirm_b0b8": {
+    "message": "Vahvista kirjoittamalla {word}",
+    "description": "Placeholders: {word} (keep as is)"
+  },
+  "f_ui_language_08b7": {
+    "message": "Sovelluksen kieli"
+  },
+  "f_ui_language_b097": {
+    "message": "Sovelluksen kieli"
+  },
+  "f_unavailable_aaa9": {
+    "message": "Ei saatavilla"
+  },
+  "f_unknown_error_2b43": {
+    "message": "Tuntematon virhe"
+  },
+  "f_upgrade_to_pro_pass_b708": {
+    "message": "Päivitä Pro Pass -pakettiin"
+  },
+  "f_use_as_custom_language_code_ed4f": {
+    "message": "Käytä “{name}” omana kielikoodina",
+    "description": "Placeholders: {name} (keep as is)"
+  },
+  "f_use_native_chrome_side_panel_1544": {
+    "message": "Käytä Chromen sivupaneelia"
+  },
+  "f_used_for_send_to_kindle_deli_25f4": {
+    "message": "Käytetään Lähetä Kindleen -toimitukseen. Lisää"
+  },
+  "f_verify_log_in_6f6f": {
+    "message": "Vahvista ja kirjaudu"
+  },
+  "f_verify_login_274f": {
+    "message": "Vahvista ja kirjaudu"
+  },
+  "f_verifying_174a": {
+    "message": "Vahvistetaan..."
+  },
+  "f_version_github_fae0": {
+    "message": "Versio ja GitHub"
+  },
+  "f_view_copy_1953": {
+    "message": "Näytä ja kopioi"
+  },
+  "f_view_filtered_f87d": {
+    "message": "Näkymä: Suodatettu"
+  },
+  "f_view_highlighted_ab8f": {
+    "message": "Näkymä: Korostettu"
+  },
+  "f_welcome_to_ai_summary_helper_892e": {
+    "message": "Tervetuloa: AI Summary Helper"
+  },
+  "f_well_connected_1033": {
+    "message": "Hyvin verkostoitunut"
+  },
+  "f_what_to_export_3317": {
+    "message": "Mitä viedään?"
+  },
+  "f_wrong_email_go_back_ba6a": {
+    "message": "Väärä sähköposti? Takaisin"
+  },
+  "f_you_re_ready_to_generate_you_ff41": {
+    "message": "Olet valmis luomaan podcastisi!"
+  },
+  "f_a_donation_8832": {
+    "message": "lahjoitusta"
+  },
+  "f_all_summaries_c680": {
+    "message": "kaikki tiivistelmät"
+  },
+  "f_byphil_cloud_17f0": {
+    "message": "byPhil Cloud"
+  },
+  "f_contact_me_639b": {
+    "message": "ota yhteyttä"
+  },
+  "f_contribute_on_github_5ab8": {
+    "message": "osallistua GitHubissa 💙"
+  },
+  "f_e_g_192_168_1_142_a9e2": {
+    "message": "esim. 192.168.1.142"
+  },
+  "f_e_g_gpt_5_mini_llama3_2_f390": {
+    "message": "esim. gpt-5-mini, llama3.2"
+  },
+  "f_for_unlimited_zero_config_su_82c0": {
+    "message": "rajattomiin, asetuksista vapaisiin tiivistelmiin."
+  },
+  "f_from_8075": {
+    "message": "lähde:"
+  },
+  "f_give_feedback_9abb": {
+    "message": "anna palautetta"
+  },
+  "f_instead_of_https_which_can_b_69d5": {
+    "message": "HTTPS:n sijaan, joka voi olla ongelmallinen."
+  },
+  "f_no_longer_updated_c5c8": {
+    "message": "ei enää päivitetä"
+  },
+  "f_off_8a0a": {
+    "message": "pois"
+  },
+  "f_on_2fd0": {
+    "message": "päällä"
+  },
+  "f_one_site_per_line_e_g_linked_ac34": {
+    "message": "yksi sivusto riviä kohti, esim. linkedin.com"
+  },
+  "f_or_consider_a223": {
+    "message": "tai harkitse"
+  },
+  "f_shared_tag_3ab4": {
+    "message": "yhteinen tunniste"
+  },
+  "f_similar_content_784b": {
+    "message": "samankaltainen sisältö"
+  },
+  "f_to_your_kindle_s_approved_se_5305": {
+    "message": "ensin Kindlesi hyväksyttyjen lähettäjien luetteloon –"
+  },
+  "f_curated_from_your_ai_summary_4f55": {
+    "message": "{count}, koottu AI Summary Helper -arkistostasi.",
+    "description": "Placeholders: {count} (keep as is)"
+  },
+  "f_tone_f081": {
+    "message": "Sävy: {label}",
+    "description": "Placeholders: {label} (keep as is)"
+  },
+  "f_grade_6dba": {
+    "message": "{label} · taso {grade}",
+    "description": "Placeholders: {label} {grade} (keep as is)"
+  },
+  "f_api_key_missing_add_it_in_se_f64a": {
+    "message": "{name} · API-avain puuttuu – lisää se asetuksissa",
+    "description": "Placeholders: {name} (keep as is)"
+  },
+  "f_api_key_set_5c36": {
+    "message": "{name} · API-avain asetettu",
+    "description": "Placeholders: {name} (keep as is)"
+  },
+  "f_local_no_api_key_8d7e": {
+    "message": "{name} · paikallinen, ei API-avainta",
+    "description": "Placeholders: {name} (keep as is)"
+  },
+  "f_article_not_shown_bbad": {
+    "message": "{n} artikkeli ei ole näkyvissä",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_articles_not_shown_c1f2": {
+    "message": "{n} artikkelia ei ole näkyvissä",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_duplicate_tag_1abe": {
+    "message": "{n} kaksoistunniste",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_duplicate_tags_30b7": {
+    "message": "{n} kaksoistunnistetta",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_min_4e03": {
+    "message": "{n} min",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_panes_2444": {
+    "message": "{n} ruutua",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_rarely_used_tag_hidden_a4dc": {
+    "message": "{n} harvoin käytetty tunniste piilotettu",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_rarely_used_tags_hidden_3423": {
+    "message": "{n} harvoin käytettyä tunnistetta piilotettu",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_unopened_30d_61af": {
+    "message": "{n} avaamatta 30+ pv",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_similar_e273": {
+    "message": "{n} % samankaltainen",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_min_read_b555": {
+    "message": "~{n} min lukuaika",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_feel_free_to_c446": {
+    "message": "– Voit mielellään"
+  },
+  "f_summarizing_2ba2": {
+    "message": "⏳ Tiivistetään…"
+  },
+  "f_settings_eb9e": {
+    "message": "⚙️ Asetukset"
+  },
+  "f_danger_zone_01e3": {
+    "message": "⚠️ Vaaravyöhyke"
+  },
+  "f_you_must_be_logged_into_byph_022c": {
+    "message": "⚠️ Sinun on ensin kirjauduttava byphil Cloudiin luodaksesi kirjanmerkkiohjelman."
+  },
+  "f_page_highlighting_6dce": {
+    "message": "✏️ Sivun korostus"
+  },
+  "f_tags_already_look_consistent_6bfe": {
+    "message": "✓ Tunnisteet näyttävät jo yhtenäisiltä – ei yhdistettävää."
+  },
+  "f_updated_merged_c21c": {
+    "message": "✓ Päivitetty {a}, yhdistetty {b}.",
+    "description": "Placeholders: {a} {b} (keep as is)"
+  },
+  "f_ai_ghost_highlighting_6c00": {
+    "message": "✨ Tekoälyn haamukorostus"
+  },
+  "f_back_to_history_9fd8": {
+    "message": "⬅ Takaisin historiaan"
+  },
+  "f_bring_your_own_key_9713": {
+    "message": "💻 Käytä omaa avainta"
+  },
+  "f_backup_restore_4d14": {
+    "message": "💾 Varmuuskopio ja palautus"
+  },
+  "f_original_content_d1c6": {
+    "message": "📄 Alkuperäinen sisältö"
+  },
+  "f_free_tier_limit_reached_3_se_43a3": {
+    "message": "📚 Ilmaisen tason raja saavutettu (3 lähetystä).\n\nPäivitä Pro-versioon rajattomaan Kindle-toimitukseen.\n\nhttps://philwornath.com/links"
+  },
+  "f_send_to_kindle_free_tier_3_k_821d": {
+    "message": "📚 Lähetä Kindleen\n\nIlmainen taso: 3 Kindle-lähetystä mukana.\nPäivitä Pro-versioon rajattomaan käyttöön.\n\nVarmista, että kindle@byphil.eu on Kindlesi hyväksyttyjen lähettäjien luettelossa (katso Amazonin ohje).\n\nLähetetäänkö tämä artikkeli Kindleen?"
+  },
+  "f_your_highlights_694b": {
+    "message": "📝 Korostuksesi"
+  },
+  "f_export_6eba": {
+    "message": "📤 Vie"
+  },
+  "f_import_d884": {
+    "message": "📥 Tuo"
+  },
+  "f_koreader_localsend_a1c0": {
+    "message": "📱 KOReader / LocalSend"
+  },
+  "f_connecting_to_proxy_metrics_32c8": {
+    "message": "🔄 Yhdistetään välityspalvelimen mittareihin..."
+  },
+  "f_keep_this_private_this_bookm_3463": {
+    "message": "🔒 Pidä tämä yksityisenä: tämä kirjanmerkkiohjelma sisältää henkilökohtaisen pilvitunnisteesi. Älä jaa sitä muille. Jos tunnisteesi vanhenee, palaa tänne luomaan uusi."
+  },
+  "f_stored_locally_in_your_brows_3133": {
+    "message": "🔒 Tallennettu paikallisesti selaimeesi."
+  },
+  "f_bookmarklet_generator_23fa": {
+    "message": "🔖 Kirjanmerkkiohjelman luonti"
+  },
+  "f_similar_in_your_archive_f3e8": {
+    "message": "🔗 Samankaltaiset arkistossasi"
+  },
+  "f_your_archive_is_as_empty_as__15fc": {
+    "message": "🗂️ Arkistosi on tyhjä kuin autiomaa! Tallenna artikkeleita, niin se täyttyy. 🌵"
+  },
+  "f_ai_suggested_highlights_ebbc": {
+    "message": "🤖 Tekoälyn ehdottamat korostukset"
+  },
+  "f_ai_summary_c72e": {
+    "message": "🧙 Tekoälytiivistelmä"
+  },
+  "f_on_device_tools_d85a": {
+    "message": "🧠 Laitteen omat työkalut"
+  },
+  "f_clean_up_4346": {
+    "message": "🧹 Siivoa"
+  },
+  "f_generate_bookmarklet_280f": {
+    "message": "🪄 Luo kirjanmerkkiohjelma"
+  },
+  "f_intro_skipped_the_digest_goe_15e9": {
+    "message": "Johdanto ohitettiin – koonti lähtee ilman sitä"
+  },
+  "f_ask_dafd": {
+    "message": "💬 Kysy"
+  },
+  "f_replies_1cd4": {
+    "message": "💬 {n} vastausta",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_reply_2ae0": {
+    "message": "💬 {n} vastaus",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_not_a_paper_5823": {
+    "message": "Ei tutkimus"
+  },
+  "f_not_peer_reviewed_e184": {
+    "message": "⚠ Ei vertaisarvioitu"
+  },
+  "f_likely_paper_c67e": {
+    "message": "🎓 Todennäköinen tutkimus"
+  },
+  "f_mark_as_paper_1769": {
+    "message": "🎓 Merkitse tutkimukseksi"
+  },
+  "f_paper_b2da": {
+    "message": "🎓 Tutkimus"
+  },
+  "f_paper_doi_c956": {
+    "message": "🎓 Tutkimus · DOI ✓"
+  },
+  "f_preprint_aa9c": {
+    "message": "🎓 Esipainos"
+  },
+  "f_design_02ef": {
+    "message": "Asetelma"
+  },
+  "f_limitations_7ff6": {
+    "message": "Rajoitteet"
+  },
+  "f_preprints_9516": {
+    "message": "Esipainokset"
+  },
+  "f_research_b9ec": {
+    "message": "Tutkimus"
+  },
+  "f_reviews_1576": {
+    "message": "Katsaukset"
+  },
+  "f_sample_8fc7": {
+    "message": "Otos"
+  },
+  "f_trial_6b73": {
+    "message": "Koe"
+  },
+  "f_trials_7100": {
+    "message": "Kokeet"
+  },
+  "f_no_key_facts_found_b926": {
+    "message": "Avainfaktoja ei löytynyt"
+  },
+  "f_nothing_to_analyse_cee2": {
+    "message": "Ei analysoitavaa"
+  },
+  "f_key_facts_4b46": {
+    "message": "🔎 Avainfaktat"
+  },
+  "f_adds_each_summary_under_its__b17f": {
+    "message": "Lisää kunkin tiivistelmän sen viitteen alle"
+  },
+  "f_citation_lookup_failed_try_a_bb2e": {
+    "message": "Lähdeviitteen haku epäonnistui – yritä uudelleen"
+  },
+  "f_citation_unavailable_no_doi__fd25": {
+    "message": "Lähdeviite ei saatavilla – DOI:ta ei löytynyt"
+  },
+  "f_copy_list_d774": {
+    "message": "Kopioi lista"
+  },
+  "f_download_bib_ef28": {
+    "message": "Lataa .bib"
+  },
+  "f_download_ris_a55b": {
+    "message": "Lataa .ris"
+  },
+  "f_download_txt_fdbd": {
+    "message": "Lataa .txt"
+  },
+  "f_get_citation_9c44": {
+    "message": "Hae lähdeviite"
+  },
+  "f_include_my_summaries_aadf": {
+    "message": "Sisällytä tiivistelmäni"
+  },
+  "f_looking_up_citations_at_doi__563a": {
+    "message": "Haetaan lähdeviitteitä doi.org-palvelusta – vain DOI-tunnukset lähetetään…"
+  },
+  "f_looking_up_abff": {
+    "message": "Haetaan…"
+  },
+  "f_looks_the_citation_up_at_doi_346c": {
+    "message": "Hakee lähdeviitteen doi.org-palvelusta. Vain DOI lähetetään."
+  },
+  "f_no_citations_available_the_s_3944": {
+    "message": "Lähdeviitteitä ei saatavilla – valituilla tutkimuksilla ei ole DOI:ta tai haku epäonnistui."
+  },
+  "f_open_doi_0f60": {
+    "message": "Avaa DOI ↗"
+  },
+  "f_reference_list_fdba": {
+    "message": "Lähdeluettelo"
+  },
+  "f_source_doi_org_4492": {
+    "message": "Lähde: doi.org"
+  },
+  "f_paper_cb4d": {
+    "message": "{n} tutkimus",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_paper_skipped_no_doi_or_look_2c1b": {
+    "message": "{n} tutkimus ohitettu (ei DOI:ta tai haku epäonnistui)",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_papers_f29a": {
+    "message": "{n} tutkimusta",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_papers_skipped_no_doi_or_loo_a334": {
+    "message": "{n} tutkimusta ohitettu (ei DOI:ta tai haku epäonnistui)",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_cite_aef3": {
+    "message": "❝ Lainaa"
+  },
+  "f_attach_a_pdf_to_summarize_b6ff": {
+    "message": "Liitä tiivistettävä PDF"
+  },
+  "f_could_not_read_this_pdf_f579": {
+    "message": "Tämän PDF:n lukeminen epäonnistui."
+  },
+  "f_pdf_words_3a21": {
+    "message": "PDF · {n} sanaa",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_reading_pdf_926d": {
+    "message": "Luetaan PDF:ää…"
+  },
+  "f_remove_attachment_3512": {
+    "message": "Poista liite"
+  },
+  "f_this_pdf_has_no_selectable_t_24aa": {
+    "message": "Tässä PDF:ssä ei ole valittavaa tekstiä (todennäköisesti skannaus). Tekstintunnistusta ei vielä tueta."
+  },
+  "f_this_pdf_is_password_protect_2a96": {
+    "message": "Tämä PDF on salasanasuojattu."
+  },
+  "f_this_pdf_is_too_large_limit__7b27": {
+    "message": "Tämä PDF on liian suuri (raja 80 Mt)."
+  },
+  "f_this_file_is_not_a_readable__9ad5": {
+    "message": "Tämä tiedosto ei ole luettava PDF."
+  },
+  "f_this_tab_still_runs_an_older_4693": {
+    "message": "Tällä välilehdellä toimii vielä laajennuksen vanhempi versio. Lataa välilehti uudelleen (F5) ja yritä uudelleen."
+  },
+  "f_tag_97fe": {
+    "message": "+ Tunniste"
+  },
+  "f_add_tag_1116": {
+    "message": "Lisää tunniste…"
+  },
+  "f_remove_tag_e50d": {
+    "message": "Poista tunniste"
+  },
+  "f_doi_bad6": {
+    "message": "DOI ↗"
+  },
+  "f_opinion_63bd": {
+    "message": "Mielipide"
+  },
+  "f_reference_c33a": {
+    "message": "Hakuteos"
+  },
+  "f_tutorial_694f": {
+    "message": "Opas"
+  },
+  "f_research_paper_a6a3": {
+    "message": "🎓 Tutkimusartikkeli"
+  },
+  "f_read_1d4f": {
+    "message": "Lue 👓"
+  },
+  "f_atkinson_hyperlegible_design_954e": {
+    "message": "Atkinson Hyperlegible, suunniteltu heikkonäköisille. Vain latinalaiset kirjaimet."
+  },
+  "f_compact_ad86": {
+    "message": "Tiivis"
+  },
+  "f_currently_following_your_sys_635d": {
+    "message": "Seuraa nyt järjestelmää: pois"
+  },
+  "f_currently_following_your_sys_8e59": {
+    "message": "Seuraa nyt järjestelmää: {theme}",
+    "description": "Placeholders: {theme} (keep as is)"
+  },
+  "f_display_d9b5": {
+    "message": "Näyttö"
+  },
+  "f_easy_read_font_b69f": {
+    "message": "Helppolukuinen fontti"
+  },
+  "f_high_contrast_9fd1": {
+    "message": "Korkea kontrasti"
+  },
+  "f_line_spacing_d3de": {
+    "message": "Riviväli"
+  },
+  "f_motion_layout_e4f1": {
+    "message": "Liike ja asettelu"
+  },
+  "f_normal_2772": {
+    "message": "Normaali"
+  },
+  "f_reduce_motion_ecc7": {
+    "message": "Vähennä liikettä"
+  },
+  "f_relaxed_38bc": {
+    "message": "Väljä"
+  },
+  "f_text_2d5e": {
+    "message": "Teksti"
+  },
+  "f_text_size_1143": {
+    "message": "Tekstin koko"
+  },
+  "f_the_quick_brown_fox_jumps_ov_fd42": {
+    "message": "Nopea ruskea kettu hyppää laiskan koiran yli. Tiivistelmät käyttävät tätä kokoa ja riviväliä."
+  },
+  "f_your_system_already_asks_for_8b6f": {
+    "message": "Järjestelmäsi pyytää jo vähennettyä liikettä – sitä noudatetaan aina."
+  },
+  "f_paper_details_facts_cite_doi_245b": {
+    "message": "🎓 Tutkimuksen tiedot · Faktat · Lainaa · DOI"
+  },
+  "f_dark_0065": {
+    "message": "Tumma"
+  },
+  "f_light_f8cf": {
+    "message": "Vaalea"
+  },
+  "f_system_84bc": {
+    "message": "Järjestelmä"
+  },
+  "f_125_text_relaxed_spacing_683b": {
+    "message": "125 % teksti, väljä riviväli"
+  },
+  "f_accessibility_profile_c8b6": {
+    "message": "Saavutettavuusprofiili"
+  },
+  "f_calm_cf36": {
+    "message": "Rauha"
+  },
+  "f_customize_text_size_spacing__1b1e": {
+    "message": "Mukauta tekstin kokoa, riviväliä, fonttia ja liikettä"
+  },
+  "f_dark_text_on_white_thick_out_25a0": {
+    "message": "Tumma teksti valkoisella, paksut reunat"
+  },
+  "f_default_307e": {
+    "message": "Oletus"
+  },
+  "f_following_your_system_49c8": {
+    "message": "Seuraa järjestelmää: {summary}",
+    "description": "Placeholders: {summary} (keep as is)"
+  },
+  "f_follows_system_62e2": {
+    "message": "Seuraa järjestelmää"
+  },
+  "f_large_text_b73b": {
+    "message": "Suuri teksti"
+  },
+  "f_motion_on_b930": {
+    "message": "Liike päällä"
+  },
+  "f_motion_reduced_d819": {
+    "message": "Liike vähennetty"
+  },
+  "f_no_animation_everything_stay_6e0d": {
+    "message": "Ei animaatioita, kaikki pysyy paikallaan"
+  },
+  "f_your_settings_8f2d": {
+    "message": "Asetuksesi: {summary}",
+    "description": "Placeholders: {summary} (keep as is)"
+  },
+  "f_sent_to_f63d": {
+    "message": "Lähetetty: {model}",
+    "description": "Placeholders: {model} (keep as is)"
+  },
+  "f_the_model_d5c1": {
+    "message": "malli"
+  },
+  "f_waiting_s_f51e": {
+    "message": "odotetaan {s} s",
+    "description": "Placeholders: {s} (keep as is)"
+  },
+  "f_tag_doi_0e8f": {
+    "message": "+ Tunniste / DOI"
+  },
+  "f_code_launchctl_setenv_code_i_40cc": {
+    "message": "<code>launchctl setenv</code> unohtuu Macin uudelleenkäynnistyksen jälkeen. Tämä kirjautumiskohde asettaa sen uudelleen joka kerta:"
+  },
+  "f_add_tag_or_doi_adf9": {
+    "message": "Lisää tunniste tai DOI…"
+  },
+  "f_allow_browser_extensions_eb1c": {
+    "message": "Salli selainlaajennukset"
+  },
+  "f_allow_browser_extensions_per_01b9": {
+    "message": "Salli selainlaajennukset (pysyvä)"
+  },
+  "f_apply_it_e25a": {
+    "message": "Ota käyttöön:"
+  },
+  "f_check_it_9a90": {
+    "message": "Tarkista"
+  },
+  "f_filter_on_articles_shown_d49a": {
+    "message": "Suodatin: {tag}. Näytetään {n} artikkelia.",
+    "description": "Placeholders: {tag} {n} (keep as is)"
+  },
+  "f_filter_shortcuts_2922": {
+    "message": "Suodata pikanäppäimiä…"
+  },
+  "f_focus_search_53f5": {
+    "message": "Kohdista hakuun"
+  },
+  "f_graph_of_your_archive_tags_a_5bb5": {
+    "message": "Arkistosi kaavio. {tags} tunnistetta, {articles} artikkelia. Paina L nähdäksesi listanäkymän.",
+    "description": "Placeholders: {tags} {articles} (keep as is)"
+  },
+  "f_graph_view_6d78": {
+    "message": "Kaavionäkymä"
+  },
+  "f_keyboard_shortcuts_ddb7": {
+    "message": "Pikanäppäimet"
+  },
+  "f_list_view_tags_press_tab_to__0df8": {
+    "message": "Listanäkymä: {tags} tunnistetta. Selaa Tab-näppäimellä, suodata Enterillä.",
+    "description": "Placeholders: {tags} (keep as is)"
+  },
+  "f_lists_df96": {
+    "message": "Listat"
+  },
+  "f_make_it_permanent_79f6": {
+    "message": "Tee pysyväksi"
+  },
+  "f_new_summary_da1d": {
+    "message": "Uusi tiivistelmä"
+  },
+  "f_next_previous_card_c144": {
+    "message": "Seuraava / edellinen kortti"
+  },
+  "f_no_shortcuts_match_7564": {
+    "message": "Ei vastaavia pikanäppäimiä"
+  },
+  "f_only_if_the_ollama_app_is_qu_1244": {
+    "message": "Vain jos Ollama-sovellus on suljettu (muuten saat virheen “address already in use”; tarkista komennolla <code>lsof -i :11434</code> ja pysäytä komennolla <code>pkill -x ollama</code>). Suorittaa Ollaman etualan ikkunassa:"
+  },
+  "f_open_10e9": {
+    "message": "Avaa"
+  },
+  "f_open_the_service_override_wi_8200": {
+    "message": "Avaa palvelun ohitus komennolla <code>sudo systemctl edit ollama.service</code> ja lisää:"
+  },
+  "f_press_anywhere_outside_a_tex_59fd": {
+    "message": "Paina ? missä tahansa tekstikentän ulkopuolella"
+  },
+  "f_restart_the_service_f7d4": {
+    "message": "Käynnistä palvelu uudelleen"
+  },
+  "f_run_this_command_it_lets_ext_4270": {
+    "message": "Suorita tämä komento. Se sallii vain laajennusten puhua Ollamalle:"
+  },
+  "f_run_this_so_ollama_accepts_r_bda8": {
+    "message": "Suorita tämä, jotta Ollama hyväksyy selainlaajennusten pyynnöt (pysyvä käyttäjätilillesi):"
+  },
+  "f_search_a2c9": {
+    "message": "Haku"
+  },
+  "f_start_ollama_again_from_the__d4f1": {
+    "message": "Käynnistä Ollama uudelleen Käynnistä-valikosta tai suorita se etualan palvelimena uudessa komentokehoteikkunassa:"
+  },
+  "f_summarize_791a": {
+    "message": "Tiivistä"
+  },
+  "f_summarize_send_e76b": {
+    "message": "Tiivistä / lähetä"
+  },
+  "f_switch_tab_793a": {
+    "message": "Vaihda välilehteä"
+  },
+  "f_tags_in_your_archive_23a4": {
+    "message": "Arkistosi tunnisteet"
+  },
+  "f_without_systemd_run_ollama_i_914e": {
+    "message": "Ilman systemd:tä suorita Ollama etualan ikkunassa:"
+  },
+  "f_you_should_see_code_200_code_00c7": {
+    "message": "Pitäisi näkyä <code>200</code>. <code>403</code> tarkoittaa, ettei Ollama ole vielä ottanut asetusta käyttöön: sulje se ja käynnistä uudelleen."
+  },
+  "f_help_a3fa": {
+    "message": "ohje"
+  },
+  "f_linked_to_886c": {
+    "message": "linkitetty: {tags}",
+    "description": "Placeholders: {tags} (keep as is)"
+  },
+  "f_move_0014": {
+    "message": "siirrä"
+  },
+  "f_open_c4c9": {
+    "message": "avaa"
+  },
+  "f_search_28a9": {
+    "message": "haku"
+  },
+  "f_assign_doi_e263": {
+    "message": "🎓 Liitä DOI {doi}",
+    "description": "Placeholders: {doi} (keep as is)"
+  },
+  "f_raise_the_context_length_in__0533": {
+    "message": "Kasvata Ollaman kontekstin pituutta (OLLAMA_CONTEXT_LENGTH) tai käytä mallia, jolla on pidempi konteksti."
+  },
+  "f_the_model_only_read_about_of_17a6": {
+    "message": "Malli luki vain noin {a}/{b} tokenia. Ollama katkaisi lopun, koska kontekstikoko on liian pieni.",
+    "description": "Placeholders: {a} {b} (keep as is)"
+  },
+  "f_read_in_parts_because_the_mo_a936": {
+    "message": "Luettu {n} osassa, koska mallin kontekstikoko ({w} tokenia) on liian pieni koko sivulle.",
+    "description": "Placeholders: {n} {w} (keep as is)"
+  },
+  "f_long_page_a_local_model_read_5e0e": {
+    "message": "Pitkä sivu: paikallinen malli lukee sen ensin kokonaan, mikä voi kestää minuutin tai kaksi."
+  },
+  "f_sent_to_tokens_4c94": {
+    "message": "Lähetetty: {model} · ~{n} tokenia",
+    "description": "Placeholders: {model} {n} (keep as is)"
+  },
+  "f_sent_tokens_to_the_model_23c8": {
+    "message": "Malliin lähetetty ~{n} tokenia.",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_the_model_read_of_tokens_d199": {
+    "message": "Malli luki {a}/{b} tokenia.",
+    "description": "Placeholders: {a} {b} (keep as is)"
+  },
+  "f_open_contents_long_texts_181e": {
+    "message": "Avaa sisällysluettelo (pitkät tekstit)"
+  },
+  "f_contents_67c3": {
+    "message": "Sisällys"
+  },
+  "f_finished_reading_d4e7": {
+    "message": "Luku päättyi"
+  },
+  "f_from_6140": {
+    "message": "Lähde: {site}.",
+    "description": "Placeholders: {site} (keep as is)"
+  },
+  "f_instant_read_374e": {
+    "message": "Pikalukeminen"
+  },
+  "f_listen_cec6": {
+    "message": "Kuuntele"
+  },
+  "f_mute_unmute_reading_7315": {
+    "message": "Mykistä / palauta ääni"
+  },
+  "f_next_sentence_2545": {
+    "message": "Seuraava lause"
+  },
+  "f_no_voice_for_is_installed_on_5d22": {
+    "message": "Laitteeseen ei ole asennettu ääntä kielelle {lang}.",
+    "description": "Placeholders: {lang} (keep as is)"
+  },
+  "f_off_b4aa": {
+    "message": "Pois"
+  },
+  "f_on_7df0": {
+    "message": "Päällä"
+  },
+  "f_original_7692": {
+    "message": "Alkuperäinen"
+  },
+  "f_previous_sentence_2c05": {
+    "message": "Edellinen lause"
+  },
+  "f_read_again_cc5d": {
+    "message": "Lue uudelleen"
+  },
+  "f_read_aloud_a106": {
+    "message": "Lue ääneen"
+  },
+  "f_reading_speed_33dc": {
+    "message": "Lukunopeus"
+  },
+  "f_reading_sentence_2a5f": {
+    "message": "Luetaan · lause {n}",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_scroll_to_top_19d6": {
+    "message": "Vieritä ylös"
+  },
+  "f_speaks_the_title_and_site_fi_196b": {
+    "message": "Lukee ensin otsikon ja sivuston, sitten tiivistelmän lause kerrallaan mallin kirjoittaessa."
+  },
+  "f_start_097f": {
+    "message": "Aloita"
+  },
+  "f_stop_reading_9af5": {
+    "message": "Lopeta lukeminen"
+  },
+  "f_the_voice_follows_the_langua_55b1": {
+    "message": "Ääni seuraa tekstin kieltä: saksalaisen artikkelin englanninkielinen tiivistelmä luetaan englanniksi, alkuperäinen saksaksi."
+  },
+  "f_voice_auto_8e1b": {
+    "message": "Ääni · auto"
+  },
+  "f_voice_it_follows_the_summary_2f51": {
+    "message": "Ääni: {voice} · {lang}. Seuraa tiivistelmän kieltä; otsikko ja sivusto ilmoitetaan sovelluksen kielellä.",
+    "description": "Placeholders: {voice} {lang} (keep as is)"
+  },
+  "f_add_model_id_e_g_gemma4_e2b_127a": {
+    "message": "Lisää mallin tunnus, esim. gemma4:e2b"
+  },
+  "f_4_digits_sent_to_e76c": {
+    "message": "4 numeroa, lähetetty: {email}",
+    "description": "Placeholders: {email} (keep as is)"
+  },
+  "f_no_password_we_email_you_a_s_c006": {
+    "message": "Ei salasanaa. Lähetämme sinulle lyhyen koodin sähköpostitse."
+  },
+  "f_paste_works_it_signs_you_in__1f47": {
+    "message": "Liittäminen toimii. Kirjaudut viimeisen numeron jälkeen."
+  },
+  "f_resend_code_4dd7": {
+    "message": "Lähetä uudelleen"
+  },
+  "f_send_me_a_code_a679": {
+    "message": "Lähetä minulle koodi"
+  },
+  "f_enter_your_code_93a9": {
+    "message": "Anna koodisi"
+  },
+  "f_free_cloud_models_and_your_s_71ce": {
+    "message": "Ilmaiset pilvimallit ja tiivistelmäsi kaikilla laitteilla. Tai ohita tämä ja käytä omaa API-avainta."
+  },
+  "f_sign_in_to_ai_summary_helper_d8be": {
+    "message": "Kirjaudu: AI Summary Helper"
+  },
+  "f_thinking_more_de1c": {
+    "message": "Mietitään lisää…"
+  },
+  "f_dig_deeper_ab60": {
+    "message": "Syvemmälle"
+  },
+  "f_that_is_enough_6ac8": {
+    "message": "Riittää"
+  },
+  "f_attach_to_side_panel_ef8a": {
+    "message": "Kiinnitä sivupaneeliin"
+  },
+  "f_detach_to_popup_c2f1": {
+    "message": "Irrota ponnahdusikkunaan"
+  },
+  "f_opens_the_extension_next_to__d369": {
+    "message": "Avaa laajennuksen sivun viereen. Sama kuin 📌 Kiinnitä ja ↙️ Irrota yläpalkissa."
+  },
+  "f_added_to_favorites_0693": {
+    "message": "Lisätty suosikkeihin"
+  },
+  "f_article_deleted_c6e4": {
+    "message": "Artikkeli poistettu"
+  },
+  "f_check_again_fccf": {
+    "message": "Tarkista uudelleen"
+  },
+  "f_checking_ollama_5cf1": {
+    "message": "Tarkistetaan Ollamaa…"
+  },
+  "f_could_not_save_this_page_try_07f3": {
+    "message": "Tämän sivun tallennus epäonnistui – kokeile päivittää välilehti."
+  },
+  "f_installed_models_a979": {
+    "message": "Asennetut mallit"
+  },
+  "f_keep_it_in_history_no_ai_not_1052": {
+    "message": "Säilytä Historiassa, ei tekoälyä, mitään ei lähetetä"
+  },
+  "f_ollama_is_not_reachable_set__a39d": {
+    "message": "Ollamaan ei saada yhteyttä – määritä se asetuksissa"
+  },
+  "f_ollama_is_running_but_no_mod_5b49": {
+    "message": "Ollama on käynnissä, mutta mallia ei ole vielä asennettu. Lataa malli terminaalissa:"
+  },
+  "f_ollama_is_running_but_no_mod_43b7": {
+    "message": "Ollama on käynnissä, mutta mallia ei ole asennettu – suorita: ollama pull llama3.2"
+  },
+  "f_ollama_is_running_installed__4a57": {
+    "message": "Ollama on käynnissä. Asennetut mallit – valitse käytettävä napsauttamalla:"
+  },
+  "f_ollama_refused_the_request_o_90e2": {
+    "message": "Ollama hylkäsi pyynnön (OLLAMA_ORIGINS) – katso asetukset"
+  },
+  "f_ollama_installed_63bc": {
+    "message": "Ollama · {n} asennettu",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_open_account_settings_781f": {
+    "message": "Avaa tilin asetukset"
+  },
+  "f_open_model_settings_7865": {
+    "message": "Avaa mallin asetukset"
+  },
+  "f_queued_it_will_start_when_th_cd8f": {
+    "message": "Jonossa – alkaa, kun nykyinen tiivistelmä on valmis"
+  },
+  "f_queued_4ebe": {
+    "message": "Jonossa: {title}",
+    "description": "Placeholders: {title} (keep as is)"
+  },
+  "f_read_it_with_ai_b784": {
+    "message": "Lue tekoälyllä"
+  },
+  "f_remove_901d": {
+    "message": "Poista"
+  },
+  "f_removed_from_favorites_e270": {
+    "message": "Poistettu suosikeista"
+  },
+  "f_save_only_82ca": {
+    "message": "Vain tallenna"
+  },
+  "f_save_options_f4e6": {
+    "message": "Tallennusvaihtoehdot"
+  },
+  "f_saved_without_an_ai_summary__ff94": {
+    "message": "Tallennettu ilman tekoälytiivistelmää. Avaa sivu ja napauta ✨ Tiivistä lisätäksesi sellaisen."
+  },
+  "f_search_installed_models_959b": {
+    "message": "Hae asennettuja malleja…"
+  },
+  "f_this_needs_your_account_log__3d3b": {
+    "message": "Tämä vaatii tilisi. Kirjaudu sisään tai tarkista pakettisi asetuksissa."
+  },
+  "f_this_page_can_t_be_saved_1029": {
+    "message": "Tätä sivua ei voi tallentaa."
+  },
+  "f_waiting_for_the_running_summ_1f1c": {
+    "message": "Odotetaan käynnissä olevaa tiivistelmää – napsauta poistaaksesi jonosta"
+  },
+  "f_your_api_key_is_missing_or_w_264b": {
+    "message": "API-avaimesi puuttuu tai se hylättiin. Tarkista se asetuksista."
+  },
+  "f_starts_when_the_current_summ_b50e": {
+    "message": "alkaa, kun nykyinen tiivistelmä on valmis"
+  },
+  "f_this_page_a108": {
+    "message": "tämä sivu"
+  },
+  "f_queued_7a3f": {
+    "message": "⏳ Jonossa"
+  },
+  "f_saved_without_ai_6f86": {
+    "message": "📥 Tallennettu ilman tekoälyä"
+  },
+  "f_saved_no_ai_f236": {
+    "message": "📥 Tallennettu · ei tekoälyä"
+  },
+  "f_remove_limit_and_refresh_afec": {
+    "message": "Poista raja ja päivitä"
+  },
+  "f_no_limit_f47d": {
+    "message": "Ei rajaa"
+  },
+  "f_auto_efb6": {
+    "message": "Auto"
+  },
+  "f_auto_length_bias_09d7": {
+    "message": "Automaattinen painotus"
+  },
+  "f_batch_failed_f281": {
+    "message": "Erä {a}/{b} epäonnistui: {m}",
+    "description": "Placeholders: {a} {b} {m} (keep as is)"
+  },
+  "f_length_mode_0c88": {
+    "message": "Pituustila"
+  },
+  "f_longer_8170": {
+    "message": "Pidempi"
+  },
+  "f_scored_of_53f5": {
+    "message": "Pisteytetty {a}/{b}…",
+    "description": "Placeholders: {a} {b} (keep as is)"
+  },
+  "f_scoring_with_ai_4d82": {
+    "message": "Pisteytetään tekoälyllä…"
+  },
+  "f_scoring_items_with_ai_in_the_17e2": {
+    "message": "Pisteytetään taustalla tekoälyllä, kohteita {n}…",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_short_pages_get_a_few_senten_49e8": {
+    "message": "Lyhyille sivuille muutama virke, pitkille lukemisille enemmän. Ei koskaan yli puolta artikkelista."
+  },
+  "f_shorter_67e6": {
+    "message": "Lyhyempi"
+  },
+  "f_standard_ab68": {
+    "message": "Vakio"
+  },
+  "f_summary_length_in_words_ab69": {
+    "message": "Tiivistelmän pituus sanoina"
+  },
+  "f_items_could_not_be_scored_31d6": {
+    "message": "Pisteytys epäonnistui kohteille: {n}",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_available_when_ollama_is_you_c49d": {
+    "message": "Käytettävissä, kun Ollama on aktiivinen malli. Arvioi, luokittelee ja tiivistää koko Syöte-kirjastosi pieninä erinä omalla koneellasi. Voi kestää tunteja, mutta ei kuluta tokeneita."
+  },
+  "f_done_61ad": {
+    "message": "Valmis."
+  },
+  "f_everything_in_your_library_i_47fb": {
+    "message": "Kaikki kirjastosi kohteet on arvioitu, luokiteltu ja tiivistetty."
+  },
+  "f_process_the_whole_library_e3a9": {
+    "message": "Käsittele koko kirjasto"
+  },
+  "f_rating_and_categorizing_528d": {
+    "message": "Arvioidaan ja luokitellaan…"
+  },
+  "f_runs_on_your_own_machine_wit_7a25": {
+    "message": "Toimii omalla koneellasi Ollamalla eikä kuluta tokeneita. Pidä tämä paneeli auki: sen sulkeminen keskeyttää ajon, ja uudelleen aloitus jatkaa siitä, mihin jäätiin. Vain yhä tallessa olevat kohteet käsitellään (katso “Säilytä kohteita”). Päivän yhteenveto kirjoitetaan, kun avaat sen."
+  },
+  "f_stop_7705": {
+    "message": "Pysäytä"
+  },
+  "f_stopped_starting_again_conti_40fc": {
+    "message": "Pysäytetty. Uudelleen aloitus jatkaa siitä, mihin jäätiin."
+  },
+  "f_whole_library_ollama_cc54": {
+    "message": "Koko kirjasto · Ollama"
+  },
+  "f_writing_day_recaps_9c43": {
+    "message": "Kirjoitetaan päiväyhteenvetoja…"
+  },
+  "f_about_h_min_64c7": {
+    "message": "noin {h} t {m} min",
+    "description": "Placeholders: {h} {m} (keep as is)"
+  },
+  "f_about_min_7cd9": {
+    "message": "noin {m} min",
+    "description": "Placeholders: {m} (keep as is)"
+  },
+  "f_items_rated_days_recapped_fc36": {
+    "message": "Arvioituja kohteita: {a} · koottuja päiviä: {b}",
+    "description": "Placeholders: {a} {b} (keep as is)"
+  },
+  "f_items_to_rate_days_to_recap__44f6": {
+    "message": "Arvioitavia kohteita: {a} · koottavia päiviä: {b} · tekoälypyyntöjä: {n}",
+    "description": "Placeholders: {a} {b} {n} (keep as is)"
+  },
+  "f_recommended_44c5": {
+    "message": "{n} (suositus)",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_failed_50a8": {
+    "message": "epäonnistui: {n}",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_items_per_batch_dd39": {
+    "message": "📦 Kohteita per erä"
+  },
+  "f_6_hours_b222": {
+    "message": "6 tuntia"
+  },
+  "f_fetches_your_feeds_and_proce_43c2": {
+    "message": "Hakee syötteesi ja käsittelee uudet alla olevalla välillä, kun Syötteet-näkymä tai sivupaneeli on auki"
+  },
+  "f_run_every_5657": {
+    "message": "⏱️ Suorita aina"
+  },
+  "f_process_new_items_automatica_f889": {
+    "message": "🔁 Käsittele uudet kohteet automaattisesti"
+  },
+  "f_recap_is_ready_6da7": {
+    "message": "✨ {label}-yhteenveto on valmis",
+    "description": "Placeholders: {label} (keep as is)"
+  },
+  "f_fetches_and_processes_new_it_f38a": {
+    "message": "Hakee ja käsittelee uudet kohteet taustalla Ollamalla, kun selaimesi on käynnissä. Pilvi- ja BYOK-mallit pysyvät manuaalisina."
+  },
+  "f_last_background_run_6ae5": {
+    "message": "Viimeisin taustaajo: {time} · {result}",
+    "description": "Placeholders: {time} {result} (keep as is)"
+  },
+  "f_no_background_run_yet_fe7d": {
+    "message": "Ei vielä taustaajoa."
+  },
+  "f_items_rated_day_recaps_writt_ce24": {
+    "message": "Arvioituja kohteita: {a} · kirjoitettuja päiväyhteenvetoja: {b}",
+    "description": "Placeholders: {a} {b} (keep as is)"
+  },
+  "f_available_when_ollama_is_set_53ce": {
+    "message": "Käytettävissä, kun Ollama on määritetty. Arvioi, luokittelee ja tiivistää koko Syöte-kirjastosi pieninä erinä omalla koneellasi. Voi kestää tunteja, mutta ei kuluta tokeneita."
+  },
+  "f_day_recap_of_batch_of_items_67b5": {
+    "message": "Päiväyhteenveto {d}/{t} ({date}): erä {a}/{b} · kohteita {n}",
+    "description": "Placeholders: {d} {t} {date} {a} {b} {n} (keep as is)"
+  },
+  "f_model_is_writing_46fc": {
+    "message": "Malli kirjoittaa…"
+  },
+  "f_model_a2bb": {
+    "message": "Malli: {m}",
+    "description": "Placeholders: {m} (keep as is)"
+  },
+  "f_process_the_feed_library_wit_fe42": {
+    "message": "Käsittele Syöte-kirjasto Ollamalla"
+  },
+  "f_process_the_whole_feed_libra_70c6": {
+    "message": "Käsittele koko Syöte-kirjasto (Ollama)"
+  },
+  "f_rates_categorizes_and_recaps_889d": {
+    "message": "Arvioi, luokittelee ja tiivistää kaikki syötekohteesi pieninä erinä omalla koneellasi. Ei kuluta tokeneita."
+  },
+  "f_rating_and_categorizing_batc_7a31": {
+    "message": "Arvioidaan ja luokitellaan: erä {a}/{b} · kohteet {from}–{to}/{n}",
+    "description": "Placeholders: {a} {b} {from} {to} {n} (keep as is)"
+  },
+  "f_reading_the_answer_4044": {
+    "message": "Luetaan vastausta…"
+  },
+  "f_request_of_866e": {
+    "message": "Pyyntö {a}/{b}",
+    "description": "Placeholders: {a} {b} (keep as is)"
+  },
+  "f_runs_on_your_own_machine_wit_1728": {
+    "message": "Toimii omalla koneellasi Ollamalla eikä kuluta tokeneita, vaikka tiivistelmiin olisi aktiivisena toinen malli. Pidä tämä paneeli auki: sen sulkeminen keskeyttää ajon, ja uudelleen aloitus jatkaa siitä, mihin jäätiin. Vain yhä tallessa olevat kohteet käsitellään (katso “Säilytä kohteita”). Päivän yhteenveto kirjoitetaan, kun avaat sen."
+  },
+  "f_sending_the_batch_to_ollama_ac2f": {
+    "message": "Lähetetään erä Ollamalle…"
+  },
+  "f_not_your_active_summary_mode_78a8": {
+    "message": "ei aktiivinen tiivistelmämalli"
+  },
+  "f_left_db92": {
+    "message": "{eta} jäljellä",
+    "description": "Placeholders: {eta} (keep as is)"
+  },
+  "f_elapsed_a2f5": {
+    "message": "{t} kulunut",
+    "description": "Placeholders: {t} (keep as is)"
+  },
+  "f_changelog_8779": {
+    "message": "Muutosloki"
+  },
+  "f_how_should_ai_summary_helper_b4d7": {
+    "message": "Miten AI Summary Helperin tulisi ajatella?"
+  },
+  "f_local_models_no_account_no_k_a783": {
+    "message": "Paikalliset mallit. Ei tiliä, ei avainta, mikään ei poistu koneeltasi."
+  },
+  "f_my_own_api_key_6d80": {
+    "message": "Oma API-avain"
+  },
+  "f_ollama_on_this_computer_3d59": {
+    "message": "Ollama tällä tietokoneella"
+  },
+  "f_openai_gemini_mistral_deepse_813b": {
+    "message": "OpenAI, Gemini, Mistral, DeepSeek ja muut. Ei tiliä, avain pysyy tällä laitteella."
+  },
+  "f_pick_one_you_can_change_it_a_a7d6": {
+    "message": "Valitse yksi. Voit vaihtaa sen milloin tahansa mallin asetuksissa, eikä mitään lähetetä minnekään ennen kuin tiivistät sivun."
+  },
+  "f_privacy_policy_16ff": {
+    "message": "Tietosuojakäytäntö"
+  },
+  "f_security_policy_699b": {
+    "message": "Tietoturvakäytäntö"
+  },
+  "f_sign_in_with_your_email_no_a_5518": {
+    "message": "Kirjaudu sähköpostilla, API-avainta ei tarvita. Tiivistelmäsi seuraavat sinua kaikille laitteille."
+  },
+  "f_tip_press_on_any_page_to_sum_8aff": {
+    "message": "Vinkki: tiivistä mikä tahansa sivu painamalla {key}.",
+    "description": "Placeholders: {key} (keep as is)"
+  },
+  "f_free_cloud_models_3602": {
+    "message": "☁️ Ilmaiset pilvimallit"
+  },
+  "f_api_keys_sign_in_license_e3f5": {
+    "message": "API-avaimet, kirjautuminen ja lisenssi"
+  },
+  "f_delete_all_data_2d9f": {
+    "message": "Poista kaikki data"
+  },
+  "f_delete_all_data_d2e0": {
+    "message": "Poistetaanko kaikki data?"
+  },
+  "f_delete_all_data_9a3b": {
+    "message": "Poista kaikki data…"
+  },
+  "f_delete_history_02ab": {
+    "message": "Poistetaanko historia?"
+  },
+  "f_delete_settings_275c": {
+    "message": "Poistetaanko asetukset?"
+  },
+  "f_deleted_0f77": {
+    "message": "Poistettu ✓"
+  },
+  "f_highlights_fa5c": {
+    "message": "Korostukset"
+  },
+  "f_kindle_localsend_targets_45b9": {
+    "message": "Kindle- ja LocalSend-kohteet"
+  },
+  "f_permanently_removes_your_sum_782d": {
+    "message": "Poistaa pysyvästi tiivistelmäsi, arkiston ja korostuksesi tältä laitteelta. Asetukset ja syötteet säilyvät, ellet valitse niitä. Toimintoa ei voi kumota."
+  },
+  "f_permanently_removes_your_sum_2de7": {
+    "message": "Poistaa pysyvästi tiivistelmäsi, arkiston ja korostuksesi. Asetukset ja syötteet säilyvät. Vie ensin varmuuskopio."
+  },
+  "f_preferences_prompts_d7ac": {
+    "message": "Asetukset ja kehotteet"
+  },
+  "f_removes_everything_this_exte_cca4": {
+    "message": "Poistaa kaiken, mitä tämä laajennus tallentaa tälle laitteelle, ja aloittaa alusta. Toimintoa ei voi kumota. Palvelimellamme oleva tilisi ei muutu: pyydä sen poistoa ottamalla yhteyttä (katso tietosuojakäytäntö)."
+  },
+  "f_removes_everything_this_exte_b9a8": {
+    "message": "Poistaa kaiken, mitä tämä laajennus tallentaa tälle laitteelle: tiivistelmät, korostukset, syötteet, avaimet ja asetukset. Vie ensin varmuuskopio."
+  },
+  "f_resets_preferences_prompts_a_02e0": {
+    "message": "Nollaa asetukset, kehotteet, API-avaimet, kirjautumisen ja lähetyskohteet tällä laitteella. Tiivistelmät, korostukset ja syötteet säilyvät, ellet valitse niitä. Laajennus latautuu uudelleen."
+  },
+  "f_resets_preferences_prompts_a_aab7": {
+    "message": "Nollaa asetukset, kehotteet, API-avaimet, kirjautumisen ja lähetyskohteet tällä laitteella. Tiivistelmät, korostukset ja syötteet säilyvät."
+  },
+  "f_summaries_archive_b387": {
+    "message": "Tiivistelmät ja arkisto"
+  },
+  "f_website_access_is_off_allow__f6c7": {
+    "message": "Verkkosivustojen käyttö on pois päältä. Salli se kohdassa about:addons → tämä laajennus → Oikeudet (“Access your data for all websites”) ja päivitä sivu."
+  },
+  "f_by_default_backups_omit_api__4415": {
+    "message": "Oletuksena varmuuskopioihin ei sisällytetä API-avaimia, kirjautumistietoja, lisenssiavaimia eikä asennustunnisteita. Pidä viedyt tiedostot yksityisinä."
+  },
+  "f_include_api_keys_and_sign_in_8870": {
+    "message": "Sisällytä API-avaimet ja kirjautumistiedot (tiedoston haltija voi käyttää niitä)"
+  },
+  "f_this_backup_contains_api_key_afb1": {
+    "message": "Tämä varmuuskopio sisältää API-avaimia, kirjautumistietoja tai lisenssiavaimia. Tuonti korvaa vastaavat tallennetut salaisuudet. Jatketaanko?"
+  },
+  "f_this_backup_will_contain_api_f234": {
+    "message": "Tämä varmuuskopio sisältää API-avaimet, kirjautumistiedot ja lisenssiavaimet. Tiedoston haltija voi käyttää niitä. Jatketaanko?"
+  },
+  "f_this_backup_contains_api_key_fe04": {
+    "message": "Tämä varmuuskopio sisältää API-avaimia, kirjautumistietoja, lisenssiavaimia tai asennustunnisteen. Tuonti korvaa vastaavat tallennetut salaisuudet. Jatketaanko?"
+  },
+  "f_this_backup_will_contain_api_a9f6": {
+    "message": "Tämä varmuuskopio sisältää API-avaimet, kirjautumistiedot, lisenssiavaimet ja asennustunnisteen. Tiedoston haltija voisi käyttää avaimia tai tunnistaa tämän asennuksen. Jatketaanko?"
+  },
+  "f_ai_suggested_highlights_53c5": {
+    "message": "Tekoälyn ehdottamat korostukset"
+  },
+  "f_export_history_as_markdown_z_dcd2": {
+    "message": "Vie historia Markdownina (.zip)"
+  },
+  "f_highlights_notes_45e7": {
+    "message": "Korostukset ja muistiinpanot"
+  },
+  "f_related_66d8": {
+    "message": "Liittyvät"
+  },
+  "f_tagging_feed_of_8714": {
+    "message": "Tunnisteita syötteelle {a}/{b}",
+    "description": "Placeholders: {a} {b} (keep as is)"
+  },
+  "f_feeds_to_tag_607b": {
+    "message": "Tunnisteittavia syötteitä: {n}",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_naming_tags_batch_of_49a0": {
+    "message": "Nimetään tunnisteita: erä {a}/{b}",
+    "description": "Placeholders: {a} {b} (keep as is)"
+  },
+  "f_tag_lists_to_name_846e": {
+    "message": "Nimettäviä tunnisteluetteloita: {n}",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_asks_your_ai_connection_once_0d32": {
+    "message": "Kysyy tekoälyyhteydeltäsi kerran jokaisen vielä tuntemattoman, vähintään kahdesti käytetyn tunnisteen englanninkielisen nimen ja käyttöliittymän kielisen sanan, eniten käytetyistä alkaen. Artikkeleidesi tunnisteet säilyvät."
+  },
+  "f_balanced_603d": {
+    "message": "Tasapainoinen"
+  },
+  "f_cpu_only_or_older_machine_0541": {
+    "message": "Vain suoritin tai vanhempi kone"
+  },
+  "f_gpu_or_apple_silicon_7_8b_mo_e08e": {
+    "message": "GPU tai Apple Silicon, 7–8B-malli"
+  },
+  "f_gentle_9fd8": {
+    "message": "Kevyt"
+  },
+  "f_measure_again_7f07": {
+    "message": "Mittaa uudelleen"
+  },
+  "f_measure_this_computer_fba2": {
+    "message": "Mittaa tämä tietokone"
+  },
+  "f_measurement_failed_cfb5": {
+    "message": "Mittaus epäonnistui: {e}",
+    "description": "Placeholders: {e} (keep as is)"
+  },
+  "f_measuring_second_request_bc87": {
+    "message": "Mitataan… toinen pyyntö."
+  },
+  "f_measuring_the_first_request__72e8": {
+    "message": "Mitataan… ensimmäinen pyyntö lataa myös mallin."
+  },
+  "f_name_tags_4a5b": {
+    "message": "Nimeä tunnisteet"
+  },
+  "f_name_tags_in_your_language_ab05": {
+    "message": "Nimeä tunnisteet omalla kielelläsi"
+  },
+  "f_naming_tags_of_0ccd": {
+    "message": "Nimetään tunnisteita… {done}/{total}",
+    "description": "Placeholders: {done} {total} (keep as is)"
+  },
+  "f_not_measured_yet_the_test_se_87bc": {
+    "message": "Ei vielä mitattu. Testi lähettää Ollamalle kaksi pientä arviointierää (noin minuutti hitaalla koneella) eikä mitään poistu tietokoneeltasi."
+  },
+  "f_powerful_0df9": {
+    "message": "Tehokas"
+  },
+  "f_recent_laptop_small_3_4b_mod_e071": {
+    "message": "Uusi kannettava, pieni (3–4B) malli"
+  },
+  "f_refresh_feeds_that_post_ofte_46e9": {
+    "message": "Päivitä usein julkaisevat ja ensin lukemasi syötteet"
+  },
+  "f_typical_setups_for_one_batch_34b5": {
+    "message": "Tyypilliset kokoonpanot yhdelle erälle (suuntaa antavat alueet):"
+  },
+  "f_use_b076": {
+    "message": "Käytä: {p}",
+    "description": "Placeholders: {p} (keep as is)"
+  },
+  "f_very_slow_use_a_smaller_mode_d291": {
+    "message": "Erittäin hidas: käytä pienempää mallia"
+  },
+  "f_what_each_profile_would_do_o_2a5f": {
+    "message": "Mitä kukin profiili tekisi tällä koneella:"
+  },
+  "f_your_own_mix_of_batch_size_r_ab92": {
+    "message": "Oma yhdistelmä erän kokoa, pyyntöjä per ajo ja väliä."
+  },
+  "f_a_run_takes_about_e3ae": {
+    "message": "ajo kestää noin {t}",
+    "description": "Placeholders: {t} (keep as is)"
+  },
+  "f_first_request_loads_the_mode_ac23": {
+    "message": "ensimmäinen pyyntö {s} (lataa mallin)",
+    "description": "Placeholders: {s} (keep as is)"
+  },
+  "f_over_352a": {
+    "message": "yli {s}",
+    "description": "Placeholders: {s} (keep as is)"
+  },
+  "f_recommended_a2ac": {
+    "message": "suositus"
+  },
+  "f_up_to_items_per_hour_ba84": {
+    "message": "enintään {n} kohd./t",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_up_to_196c": {
+    "message": "enintään {s}",
+    "description": "Placeholders: {s} (keep as is)"
+  },
+  "f_you_d09c": {
+    "message": "oma"
+  },
+  "f_items_per_request_requests_p_6fa9": {
+    "message": "Kohteita/pyyntö {n} · pyyntöjä/ajo {r} · {m} min välein",
+    "description": "Placeholders: {n} {r} {m} (keep as is)"
+  },
+  "f_for_headlines_10c8": {
+    "message": "{s}, otsikoita {n}",
+    "description": "Placeholders: {s} {n} (keep as is)"
+  },
+  "f_performance_profile_4c9b": {
+    "message": "⚡ Suoritusprofiili"
+  },
+  "f_every_frequently_used_tag_al_f86e": {
+    "message": "✓ Jokaisella usein käytetyllä tunnisteella on jo nimi – ei tehtävää."
+  },
+  "f_named_of_tags_7fb1": {
+    "message": "✓ Nimetty {n}/{total} tunnistetta.",
+    "description": "Placeholders: {n} {total} (keep as is)"
+  },
+  "f_smart_refresh_order_fae9": {
+    "message": "✨ Älykäs päivitysjärjestys"
+  },
+  "f_requests_per_automatic_run_5475": {
+    "message": "🔢 Pyyntöjä per automaattinen ajo"
+  },
+  "f_similar_item_612e": {
+    "message": "+{n} samankaltainen kohde",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_similar_items_4567": {
+    "message": "+{n} samankaltaista kohdetta",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_not_the_same_story_5110": {
+    "message": "Ei sama uutinen"
+  },
+  "f_stack_similar_items_ada6": {
+    "message": "Pinoa samankaltaiset kohteet"
+  },
+  "f_stacking_f819": {
+    "message": "Pinoaminen"
+  },
+  "f_emoji_bcdd": {
+    "message": "Emoji"
+  },
+  "f_emoji_look_different_on_ever_95e1": {
+    "message": "Emojit näyttävät erilaisilta joka laitteella. Kuvakkeet näyttävät samalta kaikkialla."
+  },
+  "f_icons_2cd9": {
+    "message": "Kuvakkeet"
+  },
+  "f_symbol_style_e034": {
+    "message": "Symbolityyli"
+  },
+  "f_accessibility_d09f": {
+    "message": "Saavutettavuus"
+  },
+  "f_profile_text_size_motion_83ac": {
+    "message": "Profiili · tekstin koko · liike"
+  },
+  "f_sign_in_to_use_byphil_cloud__e62e": {
+    "message": "Kirjaudu käyttääksesi byPhil Cloud -malleja"
+  },
+  "f_skip_for_now_3101": {
+    "message": "Ohita toistaiseksi"
+  },
+  "f_continue_d664": {
+    "message": "Jatka"
+  },
+  "f_set_up_6abc": {
+    "message": "Määritä"
+  },
+  "f_local_models_no_account_no_k_b352": {
+    "message": "Paikalliset mallit. Ei tiliä, ei avainta."
+  },
+  "f_no_account_your_key_stays_on_665e": {
+    "message": "Ei tiliä. Avaimesi pysyy tällä laitteella."
+  },
+  "f_pick_one_nothing_is_sent_unt_722b": {
+    "message": "Valitse yksi. Mitään ei lähetetä ennen kuin tiivistät sivun."
+  },
+  "f_sign_in_with_your_email_no_a_b96b": {
+    "message": "Kirjaudu sähköpostilla. API-avainta ei tarvita."
+  },
+  "f_convenient_just_your_email_n_3b83": {
+    "message": "Kätevä: vain sähköpostisi, ei API-avainta. Tukee myös minua, itsenäistä kehittäjää."
+  },
+  "f_pick_a_way_to_run_your_summa_5c59": {
+    "message": "Valitse tapa ajaa tiivistelmäsi. Voit vaihtaa sen milloin tahansa asetuksissa."
+  },
+  "f_back_to_top_bd70": {
+    "message": "Takaisin ylös"
+  },
+  "f_all_time_702d": {
+    "message": "Koko aika"
+  },
+  "f_ask_61b2": {
+    "message": "Kysy"
+  },
+  "f_ask_about_these_articles_30e7": {
+    "message": "Kysy näistä artikkeleista…"
+  },
+  "f_export_these_articles_as_a_z_6092": {
+    "message": "Vie nämä artikkelit Markdown-tiedostojen .zip-pakettina"
+  },
+  "f_from_3595": {
+    "message": "Alkaen"
+  },
+  "f_from_summaries_nothing_else__e04a": {
+    "message": "Perustuu tiivistelmiin: {n} – muuta ei lähetetty",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_gaps_6714": {
+    "message": "Aukot"
+  },
+  "f_reading_summaries_782f": {
+    "message": "Luetaan tiivistelmiä: {n}…",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_show_list_245c": {
+    "message": "Näytä lista"
+  },
+  "f_started_never_followed_up_d61d": {
+    "message": "Aloitettu, ei jatkettu"
+  },
+  "f_these_articles_have_no_summa_2f34": {
+    "message": "Näillä artikkeleilla ei ole vielä tiivistelmiä"
+  },
+  "f_to_9644": {
+    "message": "Asti"
+  },
+  "f_topics_with_one_or_two_saved_285d": {
+    "message": "Aiheet, joissa on yksi tai kaksi tallennettua artikkelia, joita et ole avannut 30 päivään. Lukulista aloittamillesi asioille."
+  },
+  "f_last_opened_99c0": {
+    "message": "viimeksi avattu {d}",
+    "description": "Placeholders: {d} (keep as is)"
+  },
+  "f_never_opened_c436": {
+    "message": "ei koskaan avattu"
+  },
+  "f_never_opened_bf12": {
+    "message": "{n} avaamatta",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_topics_started_and_never_fol_d3de": {
+    "message": "Aloitettuja aiheita ilman jatkoa: {n}",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_brief_me_on_the_unopened_6cfb": {
+    "message": "✨ Katsaus avaamattomiin ({n})",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_brief_me_on_this_topic_2eeb": {
+    "message": "✨ Katsaus tähän aiheeseen"
+  },
+  "f_markdown_00c7": {
+    "message": "⬇ Markdown"
+  },
+  "f_time_ee91": {
+    "message": "🕐 Aika"
+  },
+  "f_of_articles_in_window_a381": {
+    "message": "{a}/{b} artikkelia ajanjaksossa",
+    "description": "Placeholders: {a} {b} (keep as is)"
+  },
+  "f_never_opened_5256": {
+    "message": "Ei koskaan avattu"
+  },
+  "f_opened_0e03": {
+    "message": "Avattu ({n})",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_sources_used_0e42": {
+    "message": "Käytetyt lähteet"
+  },
+  "f_include_in_briefing_9c8e": {
+    "message": "Sisällytä katsaukseen"
+  },
+  "f_brief_me_on_all_f0c7": {
+    "message": "✨ Katsaus kaikkiin ({n})",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_reading_summaries_step_of_46aa": {
+    "message": "Luetaan tiivistelmiä: {n} · vaihe {a}/{b}…",
+    "description": "Placeholders: {n} {a} {b} (keep as is)"
+  },
+  "f_more_were_left_out_limit_per_f12d": {
+    "message": "Pois jätettyjä lisää: {n} (katsauskohtainen raja)",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_all_topics_e150": {
+    "message": "Kaikki aiheet"
+  },
+  "f_ask_about_this_briefing_3eaf": {
+    "message": "Kysy tästä katsauksesta…"
+  },
+  "f_briefing_layout_6471": {
+    "message": "Katsauksen asettelu"
+  },
+  "f_by_time_ff3d": {
+    "message": "Ajan mukaan"
+  },
+  "f_by_topic_4c93": {
+    "message": "Aiheen mukaan"
+  },
+  "f_clear_selection_b1e0": {
+    "message": "Tyhjennä valinta"
+  },
+  "f_opened_too_faf2": {
+    "message": "Myös avatut"
+  },
+  "f_over_articles_only_the_newes_e458": {
+    "message": "Yli {n} artikkelista käytetään vain {n} uusinta; rajaa aiheita tai ajanjaksoa kattavuuden saamiseksi.",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_unopened_7213": {
+    "message": "Avaamattomat"
+  },
+  "f_which_articles_c8ed": {
+    "message": "Mitkä artikkelit"
+  },
+  "f_duplicates_skipped_872b": {
+    "message": "Ohitettuja kaksoiskappaleita: {n}",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_shown_8b3a": {
+    "message": "{n} näytetty",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_steps_then_merged_dd35": {
+    "message": "Vaiheita {n}, sitten yhdistetty",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_topic_7b60": {
+    "message": "{n} aihe",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_topics_bee9": {
+    "message": "{n} aihetta",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_brief_a94f": {
+    "message": "✨ Katsaus"
+  },
+  "f_briefing_scope_9991": {
+    "message": "Katsauksen laajuus"
+  },
+  "f_export_these_articles_and_th_ba34": {
+    "message": "Vie nämä artikkelit (ja katsaus, jos teit sellaisen) Markdown-tiedostojen .zip-pakettina"
+  },
+  "f_show_only_research_papers_448e": {
+    "message": "Näytä vain tutkimukset"
+  },
+  "f_research_fd8d": {
+    "message": "🎓 Tutkimus"
+  },
+  "f_can_t_reach_byphil_cloud_rig_4386": {
+    "message": "byPhil Cloudiin ei saada yhteyttä juuri nyt."
+  },
+  "f_check_now_0677": {
+    "message": "Tarkista nyt"
+  },
+  "f_checking_dad5": {
+    "message": "Tarkistetaan…"
+  },
+  "f_click_again_to_unpair_884f": {
+    "message": "Napsauta: pura pariliitos"
+  },
+  "f_from_phone_850d": {
+    "message": "Puhelimesta"
+  },
+  "f_hide_code_5876": {
+    "message": "Piilota koodi"
+  },
+  "f_install_the_aish_companion_o_059e": {
+    "message": "Asenna AISH-kumppani puhelimeesi, skannaa koodi kerran ja jaa sitten mikä tahansa linkki siihen. Linkit saapuvat päästä päähän salattuina ja odottavat täällä napautustasi."
+  },
+  "f_links_shared_from_your_phone_74f8": {
+    "message": "Puhelimestasi jaetut linkit"
+  },
+  "f_links_still_waiting_here_are_3afc": {
+    "message": "Tänne vielä odottavat linkit poistetaan, eikä puhelin voi enää lähettää."
+  },
+  "f_pair_a_phone_2792": {
+    "message": "Liitä puhelin pariksi"
+  },
+  "f_paired_b228": {
+    "message": "Liitetty"
+  },
+  "f_paired_last_checked_4bae": {
+    "message": "Pariliitetty · tarkistettu {when}",
+    "description": "Placeholders: {when} (keep as is)"
+  },
+  "f_paired_not_checked_yet_2e0f": {
+    "message": "Pariliitetty · ei vielä tarkistettu"
+  },
+  "f_paired_waiting_e88e": {
+    "message": "Pariliitetty · odottaa {n}",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_pairing_code_057c": {
+    "message": "Pariliitoskoodi"
+  },
+  "f_pairing_9d4b": {
+    "message": "Liitetään…"
+  },
+  "f_phone_inbox_69e3": {
+    "message": "Puhelimen saapuneet"
+  },
+  "f_scan_this_code_with_the_aish_a9a1": {
+    "message": "Skannaa tämä koodi AISH-kumppanisovelluksella. Kuka tahansa sen skannaava voi lähettää sinulle linkkejä, joten pidä se yksityisenä."
+  },
+  "f_show_code_0cc1": {
+    "message": "Näytä koodi"
+  },
+  "f_something_went_wrong_e250": {
+    "message": "Jokin meni pieleen."
+  },
+  "f_this_pairing_is_no_longer_va_497f": {
+    "message": "Tämä pariliitos ei ole enää voimassa. Pura pariliitos ja liitä uudelleen."
+  },
+  "f_too_many_requests_try_again__a977": {
+    "message": "Liikaa pyyntöjä. Yritä myöhemmin uudelleen."
+  },
+  "f_unpair_and_delete_inbox_84be": {
+    "message": "Pura pariliitos ja tyhjennä saapuneet"
+  },
+  "f_couldn_t_save_this_page_open_91af": {
+    "message": "Tämän sivun tallennus epäonnistui. Avaa se kerran ja yritä uudelleen."
+  },
+  "f_saving_9e7f": {
+    "message": "Tallennetaan…"
+  },
+  "f_shows_which_articles_share_t_c901": {
+    "message": "Näyttää, mitkä artikkelit jakavat aiheita – kuvana ja listana"
+  },
+  "f_this_page_has_no_text_to_sav_e652": {
+    "message": "Tällä sivulla ei ole tallennettavaa tekstiä."
+  },
+  "f_add_a_connection_map_a941": {
+    "message": "🕸️ Lisää yhteyskartta"
+  },
+  "f_almost_used_up_summaries_now_b160": {
+    "message": "Melkein käytetty – tiivistelmät käyttävät siihen asti kevyempää mallia."
+  },
+  "f_monthly_ai_allowance_33e2": {
+    "message": "Kuukauden tekoälykiintiö"
+  },
+  "f_remove_this_link_from_your_i_2758": {
+    "message": "Poistetaanko tämä linkki saapuneista? Se poistetaan eikä sitä voi palauttaa."
+  },
+  "f_resets_055b": {
+    "message": "Nollautuu {date}",
+    "description": "Placeholders: {date} (keep as is)"
+  },
+  "f_saving_took_too_long_a_very__22eb": {
+    "message": "Tallennus kesti liian kauan (erittäin raskas sivu). Yritä uudelleen tai avaa se ja tiivistä."
+  },
+  "f_the_page_didn_t_respond_bloc_372d": {
+    "message": "Sivu ei vastannut (estetty tai vaatii kirjautumisen). Avaa se ja yritä uudelleen."
+  },
+  "f_used_up_local_models_still_w_847f": {
+    "message": "Käytetty loppuun – paikalliset mallit toimivat edelleen."
+  },
+  "f_used_8faf": {
+    "message": "{n} % käytetty",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_could_not_send_to_your_phone_33a4": {
+    "message": "Lähetys puhelimeen epäonnistui: {message}",
+    "description": "Placeholders: {message} (keep as is)"
+  },
+  "f_could_not_switch_on_send_to__1d56": {
+    "message": "Puhelimeen lähetyksen käyttöönotto epäonnistui: {message}",
+    "description": "Placeholders: {message} (keep as is)"
+  },
+  "f_export_as_markdown_5d3e": {
+    "message": "Vie Markdownina"
+  },
+  "f_more_actions_e04b": {
+    "message": "Lisää toimintoja"
+  },
+  "f_open_original_5070": {
+    "message": "Avaa alkuperäinen"
+  },
+  "f_pair_your_phone_first_settin_686f": {
+    "message": "Liitä ensin puhelimesi pariksi: Asetukset → Puhelimen saapuneet."
+  },
+  "f_scan_this_code_with_the_aish_e4cf": {
+    "message": "Skannaa tämä koodi AISH-kumppanisovelluksella. Kuka tahansa sen skannaava voi lähettää sinulle linkkejä ja lukea puhelimeesi lähettämäsi artikkelit, joten pidä se yksityisenä."
+  },
+  "f_send_to_phone_4940": {
+    "message": "Lähetä puhelimeen"
+  },
+  "f_send_to_phone_is_on_scan_the_c392": {
+    "message": "Lähetä puhelimeen on käytössä. Skannaa uusi koodi puhelinsovelluksessa kerran."
+  },
+  "f_send_to_phone_is_on_use_send_2fcd": {
+    "message": "Lähetä puhelimeen on käytössä: lue artikkeli liikkeellä valitsemalla ⋯ → Lähetä puhelimeen."
+  },
+  "f_send_via_localsend_07ba": {
+    "message": "Lähetä LocalSendillä"
+  },
+  "f_sending_to_your_phone_5db9": {
+    "message": "Lähetetään puhelimeen…"
+  },
+  "f_sent_to_your_phone_long_arti_45c6": {
+    "message": "Lähetetty puhelimeen (pitkä artikkeli lyhennettiin). Saapuu noin 15 minuutissa."
+  },
+  "f_sent_to_your_phone_it_arrive_b571": {
+    "message": "Lähetetty puhelimeen. Saapuu noin 15 minuutissa."
+  },
+  "f_sent_to_receive_it_scan_the__a60f": {
+    "message": "Lähetetty. Vastaanottaaksesi sen skannaa uusi koodi puhelinsovelluksessa kerran (Asetukset → Puhelimen saapuneet)."
+  },
+  "f_share_6dd8": {
+    "message": "Jaa"
+  },
+  "f_switch_on_send_to_phone_5161": {
+    "message": "Ota Lähetä puhelimeen käyttöön"
+  },
+  "f_switching_on_e78a": {
+    "message": "Otetaan käyttöön…"
+  },
+  "f_the_article_could_not_be_pre_5d18": {
+    "message": "artikkelia ei voitu valmistella"
+  },
+  "f_the_pairing_is_no_longer_val_468a": {
+    "message": "pariliitos ei ole enää voimassa, liitä uudelleen"
+  },
+  "f_the_phone_has_not_collected__2706": {
+    "message": "puhelin ei ole vielä noutanut aiempia artikkeleita"
+  },
+  "f_the_server_is_not_reachable_2e07": {
+    "message": "palvelimeen ei saada yhteyttä"
+  },
+  "f_this_article_is_too_large_0750": {
+    "message": "tämä artikkeli on liian suuri"
+  },
+  "f_too_many_sends_try_again_lat_eb5e": {
+    "message": "liikaa lähetyksiä, yritä myöhemmin uudelleen"
+  },
+  "f_unknown_error_5123": {
+    "message": "tuntematon virhe"
+  },
+  "f_another_device_changed_the_l_db9b": {
+    "message": "Toinen laite muutti listaa samaan aikaan. Yritä uudelleen."
+  },
+  "f_feed_list_is_up_to_date_29c5": {
+    "message": "Syötelista on ajan tasalla"
+  },
+  "f_feed_list_synced_added_chang_0206": {
+    "message": "Syötelista synkronoitu: lisätty {added}, muutettu {updated}, poistettu {removed}",
+    "description": "Placeholders: {added} {updated} {removed} (keep as is)"
+  },
+  "f_feed_sync_is_on_scan_the_new_b31a": {
+    "message": "Syötteiden synkronointi on käytössä. Skannaa uusi koodi puhelinsovelluksessa kerran."
+  },
+  "f_feed_sync_is_on_your_feed_li_701d": {
+    "message": "Syötteiden synkronointi on käytössä: syötelistasi (ei artikkeleita) synkronoituu päästä päähän salattuna puhelimesi kanssa."
+  },
+  "f_last_synced_fc2b": {
+    "message": "Synkronoitu viimeksi {when}",
+    "description": "Placeholders: {when} (keep as is)"
+  },
+  "f_switch_on_feed_sync_8c25": {
+    "message": "Käynnistä synkronointi"
+  },
+  "f_sync_feed_list_5d4e": {
+    "message": "Synkronoi syötelista"
+  },
+  "f_syncing_9560": {
+    "message": "Synkronoidaan…"
+  },
+  "f_the_feed_list_is_too_large_t_972d": {
+    "message": "Syötelista on liian suuri synkronoitavaksi."
+  },
+  "f_the_synced_feed_list_could_n_be9b": {
+    "message": "Synkronoitua syötelistaa ei voitu lukea. Pura pariliitos ja liitä uudelleen."
+  },
+  "f_titles_descriptions_87ca": {
+    "message": "Otsikot + kuvaukset"
+  },
+  "f_titles_only_faster_95f4": {
+    "message": "Vain otsikot (nopeampi)"
+  },
+  "f_what_the_ai_reads_2fda": {
+    "message": "🔎 Mitä tekoäly lukee"
+  },
+  "f_ratings_categories_1449": {
+    "message": "Arvioita {a} · luokkia {b}",
+    "description": "Placeholders: {a} {b} (keep as is)"
+  },
+  "f_the_first_reply_was_unreadab_6510": {
+    "message": "ensimmäinen vastaus oli lukukelvoton, joten kysyttiin uudelleen"
+  },
+  "f_by_model_f8c9": {
+    "message": "Mallin mukaan"
+  },
+  "f_usage_details_5d1e": {
+    "message": "Käytön tiedot"
+  },
+  "f_tokens_in_tokens_out_dd7e": {
+    "message": "{input} tokenia sisään · {output} ulos",
+    "description": "Placeholders: {input} {output} (keep as is)"
+  },
+  "f_request_this_month_2b08": {
+    "message": "{n} pyyntö tässä kuussa",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_requests_this_month_9977": {
+    "message": "{n} pyyntöä tässä kuussa",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_of_used_1e41": {
+    "message": "Käytetty {used}/{limit}",
+    "description": "Placeholders: {used} {limit} (keep as is)"
+  },
+  "f_default_086b": {
+    "message": "(oletus)"
+  },
+  "f_free_36fb": {
+    "message": "Ilmainen"
+  },
+  "f_model_identifiers_bb6a": {
+    "message": "Mallien tunnukset"
+  },
+  "f_e_g_gpt_5_mini_57f4": {
+    "message": "esim. gpt-5-mini"
+  },
+  "f_in_out_per_1m_tokens_5847": {
+    "message": "{input} sisään / {output} ulos per 1 M tokenia",
+    "description": "Placeholders: {input} {output} (keep as is)"
+  },
+  "f_left_4083": {
+    "message": "{n} % jäljellä",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_popular_and_cheapest_4ff4": {
+    "message": "Suosituin ja halvin"
+  },
+  "f_best_value_f0ca": {
+    "message": "Paras hinta-laatu"
+  },
+  "f_use_1947": {
+    "message": "Käytä: {id}",
+    "description": "Placeholders: {id} (keep as is)"
+  },
+  "f_recaps_are_written_by_your_o_fd04": {
+    "message": "Yhteenvedot kirjoittaa Ollama-mallisi, vaikka tiivistelmät käyttäisivät pilveä"
+  },
+  "f_always_use_my_local_model_fo_39bd": {
+    "message": "🏠 Käytä katsauksiin aina paikallista mallia"
+  },
+  "f_a_collection_bundles_saved_a_8449": {
+    "message": "Kokoelma kokoaa tallennetut artikkelit yhden kysymyksen alle."
+  },
+  "f_add_to_collection_512f": {
+    "message": "Lisää kokoelmaan"
+  },
+  "f_added_to_bd62": {
+    "message": "Lisätty kokoelmaan “{name}”",
+    "description": "Placeholders: {name} (keep as is)"
+  },
+  "f_already_in_43ae": {
+    "message": "Jo kokoelmassa “{name}”",
+    "description": "Placeholders: {name} (keep as is)"
+  },
+  "f_author_c776": {
+    "message": "Tekijä"
+  },
+  "f_authority_agency_6682": {
+    "message": "Viranomainen / virasto"
+  },
+  "f_check_8de7": {
+    "message": "Tarkista"
+  },
+  "f_collection_a8b1": {
+    "message": "Kokoelma"
+  },
+  "f_collections_a966": {
+    "message": "Kokoelmat"
+  },
+  "f_could_not_open_collections_0d10": {
+    "message": "Kokoelmia ei voitu avata"
+  },
+  "f_create_e47d": {
+    "message": "Luo"
+  },
+  "f_delete_collection_71b6": {
+    "message": "Poista kokoelma"
+  },
+  "f_delete_the_collection_the_ar_f797": {
+    "message": "Poistetaanko kokoelma “{name}”? Artikkelit säilyvät historiassasi.",
+    "description": "Placeholders: {name} (keep as is)"
+  },
+  "f_export_markdown_8a28": {
+    "message": "Vie Markdown"
+  },
+  "f_export_as_pdf_f6e3": {
+    "message": "Vie PDF-tiedostona"
+  },
+  "f_export_as_word_docx_9060": {
+    "message": "Vie Wordina (DOCX)"
+  },
+  "f_export_as_document_odt_a99e": {
+    "message": "Vie asiakirjana (ODT)"
+  },
+  "f_find_other_sources_about_thi_21b5": {
+    "message": "Etsi muita lähteitä tästä"
+  },
+  "f_hints_not_ratings_you_decide_cd48": {
+    "message": "Vihjeitä, ei arvosanoja: päätät itse, kuinka paljon luotat tähän lähteeseen."
+  },
+  "f_in_c8be": {
+    "message": "Osana"
+  },
+  "f_name_of_the_collection_83f4": {
+    "message": "Kokoelman nimi"
+  },
+  "f_new_collection_ab5b": {
+    "message": "Uusi kokoelma"
+  },
+  "f_no_author_found_d6ed": {
+    "message": "Kirjoittajaa ei löytynyt"
+  },
+  "f_no_date_found_370a": {
+    "message": "Päivämäärää ei löytynyt"
+  },
+  "f_no_source_details_yet_8e2f": {
+    "message": "Ei vielä lähteen tietoja"
+  },
+  "f_no_sources_yet_use_add_to_co_dd26": {
+    "message": "Ei vielä lähteitä. Käytä artikkelin ⋯-valikon kohtaa “Lisää kokoelmaan”."
+  },
+  "f_not_in_a_collection_yet_8554": {
+    "message": "Ei vielä kokoelmassa"
+  },
+  "f_older_than_5_years_e219": {
+    "message": "Yli 5 vuotta vanha"
+  },
+  "f_open_an_article_s_menu_and_c_0caa": {
+    "message": "Avaa artikkelin ⋯-valikko ja valitse “Lisää kokoelmaan” tai aloita kokoelma tästä."
+  },
+  "f_open_in_new_tab_d191": {
+    "message": "Avaa uudessa välilehdessä"
+  },
+  "f_opinion_blog_1ad4": {
+    "message": "Mielipide / blogi"
+  },
+  "f_peer_reviewed_46f1": {
+    "message": "Vertaisarvioitu"
+  },
+  "f_pre_selected_the_collection__f2bf": {
+    "message": "Esivalittu: viimeksi käyttämäsi kokoelma. Voit vaihtaa sen."
+  },
+  "f_preprint_1c21": {
+    "message": "Esipainos"
+  },
+  "f_preprint_not_peer_reviewed_2153": {
+    "message": "Esipainos, ei vertaisarvioitu"
+  },
+  "f_primary_source_50de": {
+    "message": "Ensisijainen lähde"
+  },
+  "f_publisher_ed1f": {
+    "message": "Julkaisija"
+  },
+  "f_remove_from_collection_ed35": {
+    "message": "Poista kokoelmasta"
+  },
+  "f_secondary_source_87f6": {
+    "message": "Toissijainen lähde"
+  },
+  "f_send_to_obsidian_a6e9": {
+    "message": "Lähetä Obsidianiin"
+  },
+  "f_source_check_4cb0": {
+    "message": "Lähdetarkistus"
+  },
+  "f_that_collection_no_longer_ex_264a": {
+    "message": "Kokoelmaa ei ole enää olemassa."
+  },
+  "f_this_collection_is_full_sour_a6b7": {
+    "message": "Tämä kokoelma on täynnä ({n} lähdettä).",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_type_d06d": {
+    "message": "Tyyppi"
+  },
+  "f_what_do_other_sources_say_ab_34c8": {
+    "message": "Mitä muut lähteet sanovat siitä?"
+  },
+  "f_what_is_missing_186e": {
+    "message": "Mitä puuttuu?"
+  },
+  "f_where_does_the_claim_come_fr_de33": {
+    "message": "Mistä väite tulee?"
+  },
+  "f_who_is_behind_this_f59e": {
+    "message": "Kuka on takana?"
+  },
+  "f_your_question_761e": {
+    "message": "Kysymyksesi"
+  },
+  "f_your_question_optional_cc1d": {
+    "message": "Kysymyksesi (valinnainen)"
+  },
+  "f_last_used_743a": {
+    "message": "viimeksi"
+  },
+  "f_sources_9831": {
+    "message": "lähdettä"
+  },
+  "f_updated_4716": {
+    "message": "päivitetty {d}",
+    "description": "Placeholders: {d} (keep as is)"
+  },
+  "f_added_to_2a85": {
+    "message": "Lisätty kokoelmaan “{name}”: {a}",
+    "description": "Placeholders: {a} {name} (keep as is)"
+  },
+  "f_added_to_the_collection_is_f_3393": {
+    "message": "Lisätty kokoelmaan “{name}”: {a}; kokoelma on täynnä ({n} lähdettä).",
+    "description": "Placeholders: {a} {name} {n} (keep as is)"
+  },
+  "f_of_answered_a944": {
+    "message": "Vastattu {a}/{n}",
+    "description": "Placeholders: {a} {n} (keep as is)"
+  },
+  "f_of_checked_9b44": {
+    "message": "Tarkistettu {a}/{n}",
+    "description": "Placeholders: {a} {n} (keep as is)"
+  },
+  "f_checked_6b66": {
+    "message": "{a}/{n} tarkistettu",
+    "description": "Placeholders: {a} {n} (keep as is)"
+  },
+  "f_of_sources_570e": {
+    "message": "{n}/{max} lähdettä",
+    "description": "Placeholders: {n} {max} (keep as is)"
+  },
+  "f_sources_1825": {
+    "message": "{n} lähdettä",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_add_sources_ca4e": {
+    "message": "Lisää lähteitä"
+  },
+  "f_all_sources_checked_export_t_a6d2": {
+    "message": "Kaikki lähteet tarkistettu. Vie kokoelma Markdownina kirjoittaaksesi sen auki tai jakaaksesi sen."
+  },
+  "f_next_check_your_sources_stil_a5d2": {
+    "message": "Seuraavaksi: tarkista lähteesi (avoinna {n}), vie sitten kokoelma.",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_agree_2be3": {
+    "message": "Yhtenevät"
+  },
+  "f_compare_what_your_sources_sa_ce64": {
+    "message": "Vertaile, mitä lähteesi sanovat: missä ne ovat samaa mieltä, eri mieltä ja mitä puuttuu."
+  },
+  "f_create_overview_8cc0": {
+    "message": "Luo yleiskatsaus"
+  },
+  "f_created_sources_56b9": {
+    "message": "Luotu {d}, lähteitä {n}.",
+    "description": "Placeholders: {d} {n} (keep as is)"
+  },
+  "f_disagree_94b9": {
+    "message": "Eriävät"
+  },
+  "f_from_summaries_1ec5": {
+    "message": "Tiivistelmistä"
+  },
+  "f_from_summaries_not_checked_a_3af2": {
+    "message": "Tiivistelmistä, ei tarkistettu kokotekstejä vasten."
+  },
+  "f_missing_d6a7": {
+    "message": "Puuttuu"
+  },
+  "f_needs_at_least_2_sources_wit_8f99": {
+    "message": "Vaatii vähintään 2 lähdettä, joilla on tiivistelmä."
+  },
+  "f_not_checked_against_the_full_abd6": {
+    "message": "Ei tarkistettu kokotekstejä vasten."
+  },
+  "f_overview_4fba": {
+    "message": "Yleiskatsaus"
+  },
+  "f_sends_your_question_and_summ_e6d1": {
+    "message": "Lähettää kysymyksesi ja tiivistelmät ({n}) tekoälymallillesi. Kokotekstit pysyvät laitteellasi.",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_the_sources_changed_since_re_a027": {
+    "message": "Lähteet ovat muuttuneet – päivitä."
+  },
+  "f_other_saved_articles_e035": {
+    "message": "Muut tallennetut artikkelit"
+  },
+  "f_suggested_fits_your_sources_efa7": {
+    "message": "Ehdotus: sopii lähteisiisi"
+  },
+  "f_check_each_source_before_you_2659": {
+    "message": "Tarkista jokainen lähde ennen kuin luotat siihen. Älä jää sivulle: selvitä, kuka on takana ja mitä muut sanovat."
+  },
+  "f_copy_references_6116": {
+    "message": "Kopioi viitteet"
+  },
+  "f_save_as_collection_36e4": {
+    "message": "Tallenna kokoelmaksi"
+  },
+  "f_saved_as_collection_sources_8421": {
+    "message": "Tallennettu kokoelmaksi (lähteitä: {n})",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_start_a_collection_from_the__5c47": {
+    "message": "Aloita kokoelma tämän aiheen uusimmista artikkeleista (enintään 15). Mitään ei lähetetä minnekään."
+  },
+  "f_task_3d8c": {
+    "message": "Tehtävä"
+  },
+  "f_worksheet_4fe3": {
+    "message": "Työarkki"
+  },
+  "f_references_copied_a61d": {
+    "message": "Viitteitä kopioitu: {n}",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_references_copied_without_do_7bc4": {
+    "message": "Viitteitä kopioitu: {n}, ilman DOI:ta ohitettu: {m}",
+    "description": "Placeholders: {n} {m} (keep as is)"
+  },
+  "f_doi_e927": {
+    "message": "DOI"
+  },
+  "f_enter_a_valid_doi_first_93c8": {
+    "message": "Anna ensin kelvollinen DOI."
+  },
+  "f_fill_from_doi_7cb8": {
+    "message": "Täytä DOI:sta"
+  },
+  "f_filled_from_doi_org_check_an_a9ae": {
+    "message": "Täytetty doi.org-palvelusta. Tarkista ja muuta tarvittaessa."
+  },
+  "f_original_title_8400": {
+    "message": "Alkuperäinen otsikko"
+  },
+  "f_rename_31f3": {
+    "message": "Uusi nimi"
+  },
+  "f_renamed_10b5": {
+    "message": "Nimetty"
+  },
+  "f_title_71a9": {
+    "message": "Otsikko"
+  },
+  "f_delete_about_d83d": {
+    "message": "Poista {n} (noin {size})",
+    "description": "Placeholders: {n} {size} (keep as is)"
+  },
+  "f_delete_articles_this_cannot__5f89": {
+    "message": "Poistetaanko artikkelit ({n})? Toimintoa ei voi kumota.",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_deleting_removes_the_summary_b7d4": {
+    "message": "Poisto poistaa tiivistelmän ja tallennetun sivutekstin. Vie ensin varmuuskopio, jos olet epävarma."
+  },
+  "f_free_up_space_e9f2": {
+    "message": "Vapauta tilaa"
+  },
+  "f_not_now_6fce": {
+    "message": "Ei nyt"
+  },
+  "f_nothing_large_and_unopened_t_7635": {
+    "message": "Ei poistettavaa suurta avaamatonta."
+  },
+  "f_saved_data_is_getting_large__3b00": {
+    "message": "Tallennettu data on kasvamassa ({size}). Suuria artikkeleita, joita ei ole avattu kuukausiin: {n}.",
+    "description": "Placeholders: {size} {n} (keep as is)"
+  },
+  "f_saved_data_these_articles_ar_c4fc": {
+    "message": "Tallennettu data: {size}. Nämä artikkelit ovat suuria, eikä niitä ole avattu yli {d} päivään.",
+    "description": "Placeholders: {size} {d} (keep as is)"
+  },
+  "f_select_what_can_go_7927": {
+    "message": "Valitse poistettavat"
+  },
+  "f_showing_the_largest_of_bd2f": {
+    "message": "Näytetään suurimmat {n}/{m}.",
+    "description": "Placeholders: {n} {m} (keep as is)"
+  },
+  "f_not_opened_for_days_05c1": {
+    "message": "ei avattu {d} päivään",
+    "description": "Placeholders: {d} (keep as is)"
+  },
+  "f_articles_deleted_7937": {
+    "message": "Poistettuja artikkeleita: {n}",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_more_are_starred_or_in_a_col_6c6e": {
+    "message": "Lisäksi tähdellä tai kokoelmassa olevia ({n}) ei listata.",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_add_to_favorites_3814": {
+    "message": "Lisää suosikkeihin"
+  },
+  "f_delete_selected_articles_thi_fc7a": {
+    "message": "Poistetaanko valitut artikkelit ({n})? Toimintoa ei voi kumota.",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_remove_from_favorites_bb86": {
+    "message": "Poista suosikeista"
+  },
+  "f_summaries_in_one_file_ed78": {
+    "message": "{n} tiivistelmää yhdessä tiedostossa",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_summary_in_one_file_2d00": {
+    "message": "{n} tiivistelmä yhdessä tiedostossa",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_images_removed_from_articles_8da9": {
+    "message": "Kuvat poistettu artikkeleista: {n} · vapautui noin {size}",
+    "description": "Placeholders: {n} {size} (keep as is)"
+  },
+  "f_keeps_title_summary_tags_hig_a492": {
+    "message": "Säilyttää otsikon, tiivistelmän, tunnisteet, korostukset ja tilastosi. Artikkelia koskevat kysymykset käyttävät sen jälkeen vain tiivistelmää. Tähdellä merkityt ja kokoelmassa olevat artikkelit ohitetaan."
+  },
+  "f_no_saved_images_7ea9": {
+    "message": "Ei tallennettuja kuvia."
+  },
+  "f_not_opened_for_at_least_days_3606": {
+    "message": "Avaamatta vähintään (päivää)"
+  },
+  "f_nothing_old_enough_5ba9": {
+    "message": "Ei tarpeeksi vanhaa."
+  },
+  "f_off_new_articles_keep_only_t_f4c4": {
+    "message": "Pois: uudet artikkelit säilyttävät vain tekstin. Kuvat tekevät tallennetuista sivuista suuria."
+  },
+  "f_page_text_of_articles_remove_9099": {
+    "message": "Sivutekstit poistettu artikkeleista: {n}",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_page_text_removed_from_artic_59a7": {
+    "message": "Sivutekstit poistettu artikkeleista: {n} · vapautui noin {size}",
+    "description": "Placeholders: {n} {size} (keep as is)"
+  },
+  "f_pick_single_articles_to_trim_a05e": {
+    "message": "Valitse yksittäisiä artikkeleita karsittavaksi tai poistettavaksi."
+  },
+  "f_remove_images_ac3d": {
+    "message": "Poista kuvat"
+  },
+  "f_remove_images_from_saved_art_71cb": {
+    "message": "Poista kuvat tallennetuista artikkeleista"
+  },
+  "f_remove_page_text_3553": {
+    "message": "Poista sivuteksti"
+  },
+  "f_remove_page_text_of_old_arti_3fc8": {
+    "message": "Poista vanhojen artikkeleiden sivuteksti"
+  },
+  "f_remove_page_text_of_about_b647": {
+    "message": "Poista sivutekstit: {n} (noin {size})",
+    "description": "Placeholders: {n} {size} (keep as is)"
+  },
+  "f_remove_the_images_from_all_s_b3c1": {
+    "message": "Poistetaanko kuvat kaikista tallennetuista artikkeleista? Teksti säilyy. Toimintoa ei voi kumota."
+  },
+  "f_remove_the_saved_page_text_o_8d34": {
+    "message": "Poistetaanko tallennetut sivutekstit artikkeleista: {n}? Tiivistelmät ja tilastot säilyvät. Toimintoa ei voi kumota.",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_removing_the_page_text_keeps_f4ca": {
+    "message": "Sivutekstin poisto säilyttää otsikon, tiivistelmän, tunnisteet ja korostukset, ja tilastot pysyvät samoina. Poisto poistaa koko artikkelin. Vie ensin varmuuskopio, jos olet epävarma."
+  },
+  "f_review_large_unopened_articl_df0f": {
+    "message": "Tarkista suuret avaamattomat artikkelit"
+  },
+  "f_save_images_with_articles_7dcd": {
+    "message": "Tallenna kuvat artikkelien mukana"
+  },
+  "f_saved_data_articles_2ab7": {
+    "message": "Tallennettu data: {size} · artikkeleita {n}",
+    "description": "Placeholders: {size} {n} (keep as is)"
+  },
+  "f_storage_cleanup_e0d8": {
+    "message": "Tallennustila ja siivous"
+  },
+  "f_articles_with_images_about_8d5b": {
+    "message": "Artikkeleita kuvineen: {n} · noin {size}",
+    "description": "Placeholders: {n} {size} (keep as is)"
+  },
+  "f_articles_about_f741": {
+    "message": "Artikkeleita: {n} · noin {size}",
+    "description": "Placeholders: {n} {size} (keep as is)"
+  },
+  "f_copy_of_5f2c": {
+    "message": "Kopio: “{t}”",
+    "description": "Placeholders: {t} (keep as is)"
+  },
+  "f_duplicates_259f": {
+    "message": "Kaksoiskappaleet"
+  },
+  "f_duplicates_and_large_unopene_2310": {
+    "message": "Kaksoiskappaleet sekä suuret avaamattomat artikkelit. Valitse karsittavat tai poistettavat."
+  },
+  "f_images_53cb": {
+    "message": "Kuvat"
+  },
+  "f_large_and_not_opened_31c1": {
+    "message": "Suuret ja avaamattomat"
+  },
+  "f_nothing_large_unopened_or_du_4ba6": {
+    "message": "Ei poistettavaa suurta, avaamatonta tai kaksoiskappaletta."
+  },
+  "f_page_text_fa29": {
+    "message": "Sivuteksti"
+  },
+  "f_saved_data_tick_what_can_go_4926": {
+    "message": "Tallennettu data: {size}. Rastita poistettavat.",
+    "description": "Placeholders: {size} (keep as is)"
+  },
+  "f_show_more_bc06": {
+    "message": "Näytä lisää ({n})",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_stays_statistics_are_based_o_7b82": {
+    "message": "Säilyy – tilastot perustuvat tähän"
+  },
+  "f_summaries_tags_highlights_467b": {
+    "message": "Tiivistelmät, tunnisteet, korostukset"
+  },
+  "f_the_same_page_saved_more_tha_5a32": {
+    "message": "Sama sivu tallennettu useammin kuin kerran. Uusin kopio, jolla on tiivistelmä, säilyy."
+  },
+  "f_view_analytics_report_0aaa": {
+    "message": "Näytä analytiikkaraportti"
+  },
+  "f_view_graph_dfcc": {
+    "message": "Näytä kaavio"
+  },
+  "f_doi_7aee": {
+    "message": "+ DOI"
+  },
+  "f_10_xxxx_or_doi_org_link_63ec": {
+    "message": "10.xxxx/… tai doi.org-linkki"
+  },
+  "f_add_doi_d4a4": {
+    "message": "Lisää DOI"
+  },
+  "f_cite_237e": {
+    "message": "Lainaa"
+  },
+  "f_doi_0b23": {
+    "message": "DOI ✓ ↗"
+  },
+  "f_article_actions_2b7e": {
+    "message": "Artikkelin toiminnot"
+  },
+  "f_article_toolbar_008a": {
+    "message": "Artikkelin työkalupalkki"
+  },
+  "f_markdown_116c": {
+    "message": "Markdown"
+  },
+  "f_move_down_faa8": {
+    "message": "Siirrä alas"
+  },
+  "f_move_up_9e41": {
+    "message": "Siirrä ylös"
+  },
+  "f_obsidian_8150": {
+    "message": "Obsidian"
+  },
+  "f_pdf_7875": {
+    "message": "PDF"
+  },
+  "f_phone_944f": {
+    "message": "Puhelin"
+  },
+  "f_pick_the_actions_for_the_bar_c800": {
+    "message": "Valitse artikkelin yläpuolisen palkin toiminnot ja järjestä ne. Kolme ensimmäistä näkyvät aina; lisää ilmestyy, kun ikkuna on leveämpi. Kaikki muu pysyy ⋯-valikossa."
+  },
+  "f_reset_toolbar_ee9b": {
+    "message": "Nollaa työkalupalkki"
+  },
+  "f_send_to_e_reader_kindle_or_l_48d7": {
+    "message": "Lähetä lukulaitteelle (Kindle tai LocalSend)"
+  },
+  "f_customize_toolbar_b65f": {
+    "message": "Mukauta työkalupalkkia…"
+  },
+  "f_everything_is_in_the_bar_d67d": {
+    "message": "Kaikki on palkissa."
+  },
+  "f_other_actions_drag_into_the__ae3e": {
+    "message": "Muut toiminnot: vedä palkkiin"
+  },
+  "f_copy_link_90dc": {
+    "message": "Kopioi linkki"
+  },
+  "f_kindle_a768": {
+    "message": "Kindle"
+  },
+  "f_last_used_5cda": {
+    "message": "Viimeksi"
+  },
+  "f_link_copied_d7d3": {
+    "message": "Linkki kopioitu"
+  },
+  "f_manage_targets_5162": {
+    "message": "Hallitse kohteita…"
+  },
+  "f_not_paired_pair_now_fffe": {
+    "message": "Ei pariliitetty · liitä nyt"
+  },
+  "f_send_to_eb5e": {
+    "message": "Lähetä…"
+  },
+  "f_share_c6da": {
+    "message": "Jaa…"
+  },
+  "f_system_share_apps_airdrop_ma_a10d": {
+    "message": "Järjestelmän jako: sovellukset, AirDrop, posti"
+  },
+  "f_always_available_45ef": {
+    "message": "Aina käytettävissä"
+  },
+  "f_not_paired_e80f": {
+    "message": "Ei pariliitetty"
+  },
+  "f_not_set_up_eacf": {
+    "message": "Ei määritetty"
+  },
+  "f_opens_your_system_share_shee_38bd": {
+    "message": "Avaa järjestelmän jakovalikon (Posti, Viestit, AirDrop, muistiinpanosovellukset …) artikkelin linkillä ja tiivistelmällä. Ei vaadi asetuksia."
+  },
+  "f_use_as_default_target_9cee": {
+    "message": "Käytä oletuskohteena"
+  },
+  "f_devices_961c": {
+    "message": "{n} laitetta",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_send_targets_3e2c": {
+    "message": "‹ Lähetyskohteet"
+  },
+  "f_more_b42e": {
+    "message": "{n} lisää…",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_cancelled_not_sent_e7ab": {
+    "message": "Peruutettu: ei lähetetty"
+  },
+  "f_sending_to_in_s_808b": {
+    "message": "Lähetetään: {name} {n} s kuluttua",
+    "description": "Placeholders: {name} {n} (keep as is)"
+  },
+  "ctxHighlightSelection": {
+    "message": "✏️ Korosta valinta",
+    "description": "Right-click menu entry"
+  },
+  "ctxRemoveHighlights": {
+    "message": "🧹 Poista kaikki korostukset",
+    "description": "Right-click menu entry"
+  },
+  "ctxSummarizePage": {
+    "message": "✨ Tiivistä tämä sivu",
+    "description": "Right-click menu entry"
+  },
+  "ctxSummarizeClose": {
+    "message": "✨ Tiivistä ja sulje välilehti",
+    "description": "Right-click menu entry"
+  }
+}
