@@ -12,23 +12,32 @@ article{padding:28px 36px;overflow:auto}article h1{font-size:28px;line-height:1.
 article mark{background:rgba(76,141,255,.28);color:inherit;border-radius:3px;padding:1px 0;box-shadow:0 0 0 3px rgba(76,141,255,.28)}
 iframe{flex:1;border:0;width:100%;min-height:0;background:transparent}
 .hint{position:fixed;left:50%;bottom:14px;transform:translateX(-50%);font-size:13px;background:var(--card);border:1px solid var(--line);border-radius:99px;padding:6px 14px;color:var(--dim)}
+/* The embedding page chooses the theme (?theme=…); it wins over the OS preference. */
+:root[data-theme=dark]{color-scheme:dark;--bg:#0e1017;--card:#171a23;--ink:#eef0f6;--dim:#9aa1b4;--line:#262a37}
+:root[data-theme=light]{color-scheme:light;--bg:#f6f7fb;--card:#fff;--ink:#14161f;--dim:#5b6070;--line:#e3e6ef}
 @media(max-width:820px){.stage{grid-template-columns:1fr;grid-template-rows:200px minmax(0,1fr)}article{padding:16px 18px}}
 </style></head><body>
 <div class="stage">
 <section class="page"><div class="bar"><i></i><i></i><i></i><span>example.com/the-quiet-comeback-of-the-long-read</span></div>
 <article id="art"></article></section>
-<section class="panel"><div class="bar"><i></i><i></i><i></i><span>AI Summary Helper · side panel</span></div>
-<iframe id="app" src="app/popup.html?surface=sidepanel" title="AI Summary Helper"></iframe></section>
+<section class="panel"><div class="bar"><i></i><i></i><i></i><span id="panelLabel">AI Summary Helper · side panel</span></div>
+<iframe id="app" title="AI Summary Helper"></iframe></section>
 </div>
-<script src="app/demo-content.js"></script>
+<script src="app/demo-content.js"></script><script src="app/demo-i18n.js"></script>
 <script>
+const P = new URLSearchParams(location.search), LOC = window.AISH_DEMO.locale, appFrame = document.getElementById('app');
+if (LOC) { document.documentElement.lang = LOC.ui.replace('_', '-'); document.getElementById('panelLabel').textContent = 'AI Summary Helper · ' + LOC.side; document.title = LOC.article.title + ' – AI Summary Helper'; }
+if (P.get('theme') === 'light' || P.get('theme') === 'dark') document.documentElement.setAttribute('data-theme', P.get('theme'));
+appFrame.src = 'app/popup.html?surface=sidepanel' + (P.get('lang') ? '&lang=' + encodeURIComponent(P.get('lang')) : '') + (P.get('theme') ? '&theme=' + P.get('theme') : '');
 const A = window.AISH_DEMO.article, art0 = document.getElementById('art');
 art0.innerHTML = '<h1></h1><div class="meta"></div>' + A.paragraphs.map(() => '<p></p>').join('');
 art0.querySelector('h1').textContent = A.title; art0.querySelector('.meta').textContent = A.byline;
 art0.querySelectorAll('p').forEach((el, i) => { el.textContent = A.paragraphs[i]; });
 // The popup (an iframe running the real extension UI) tells us which passage an answer came from.
 addEventListener('message', (e) => {
-  const m = e.data; if (!m || !m.aishDemo || m.type !== 'highlight') return;
+  const m = e.data;
+  if (m && m.aishDemo && m.type === 'theme' && (m.theme === 'light' || m.theme === 'dark')) { document.documentElement.setAttribute('data-theme', m.theme); try { appFrame.contentWindow.postMessage(m, '*'); } catch (_) { /* not ready */ } return; }
+  if (!m || !m.aishDemo || m.type !== 'highlight') return;
   const art = document.getElementById('art'); art.querySelectorAll('mark').forEach(x => x.replaceWith(...x.childNodes)); art.normalize();
   if (!m.quote) return;
   const w = document.createTreeWalker(art, NodeFilter.SHOW_TEXT); let n;

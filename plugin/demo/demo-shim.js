@@ -11,7 +11,12 @@
     getBytesInUse: (a, cb) => { if (cb) cb(0); return Promise.resolve(0); } };
     area._ls = ls; return area; };
   const local = mk(), sync = mk(), session = mk();
-  sync.set({ onboardingDismissed: true, demo: true });
+  // Language and theme come from the page that embeds the demo (?lang=de&theme=dark): UI language, summary language, light/dark.
+  const Q = new URLSearchParams(location.search), LOC = D.locale, THEME = Q.get('theme');
+  sync.set({ onboardingDismissed: true, demo: true, ...(LOC ? { uiLanguage: LOC.ui, selectedLanguage: LOC.sel } : {}) });
+  const setTheme = (th) => { if (th !== 'light' && th !== 'dark') return; document.documentElement.setAttribute('data-theme', th); local.set({ theme: th }); sync.set({ theme: th }); };
+  setTheme(THEME);
+  addEventListener('message', (e) => { const m = e.data; if (m && m.aishDemo && m.type === 'theme') setTheme(m.theme); });
   // A believable reading history, so History, Graph and Analytics have something to show. Dates are relative to "now".
   (() => {
     const idx = [], recs = {}, slug = (t) => t.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');

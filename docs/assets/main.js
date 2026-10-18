@@ -897,14 +897,22 @@ function setBilling(period) {
 })();
 
 // Live demo: the iframe is created on click, so the page stays light until someone wants it.
+// It follows the page: language folder (/de/ -> de) and light/dark theme travel as query parameters.
 (function () {
+  function siteTheme() { return document.documentElement.getAttribute('data-theme') === 'light' ? 'light' : 'dark'; }
+  function siteLang() { var seg = location.pathname.split('/').filter(Boolean)[0] || ''; return /^[a-z]{2}(-[a-z]{2})?$/.test(seg) ? seg : 'en'; }
+  function demoUrl(u) { return u.split('?')[0] + '?lang=' + siteLang() + '&theme=' + siteTheme(); }
+  document.querySelectorAll('.demo-open').forEach(function (a) { a.addEventListener('click', function () { a.href = demoUrl(a.getAttribute('href')); }); });
   document.querySelectorAll('[data-demo]').forEach(function (box) {
     var btn = box.querySelector('.demo-start');
     if (!btn) return;
     btn.addEventListener('click', function () {
       var f = document.createElement('iframe');
-      f.src = box.getAttribute('data-src'); f.title = 'AI Summary Helper live demo'; f.loading = 'lazy';
+      f.src = demoUrl(box.getAttribute('data-src')); f.title = 'AI Summary Helper live demo'; f.loading = 'lazy';
       box.appendChild(f); box.classList.add('is-live');
+      // Follow the site's light/dark switch while the demo is open.
+      new MutationObserver(function () { try { f.contentWindow.postMessage({ aishDemo: true, type: 'theme', theme: siteTheme() }, '*'); } catch (e) { /* not ready */ } })
+        .observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme'] });
     });
   });
 })();

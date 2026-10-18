@@ -207,13 +207,14 @@ function localizeShots($, locale) {
 
 function rewriteAssetPaths($, locale) {
     const extraUps = '../'.repeat(locale.dir.split('/').length);
-    $('[href], [src]').each((_, el) => {
+    $('[href], [src], [data-src]').each((_, el) => {
         const $el = $(el);
-        for (const attr of ['href', 'src']) {
+        for (const attr of ['href', 'src', 'data-src']) {
             const val = $el.attr(attr);
             if (!val) continue;
             if (/^(https?:)?\/\//.test(val) || val.startsWith('#') || val.startsWith('mailto:')) continue;
-            if (val.includes('assets/')) {
+            // shared, un-duplicated folders at the web root: assets/ and the live demo (demo/)
+            if (val.includes('assets/') || val.startsWith('demo/')) {
                 $el.attr(attr, extraUps + val);
             }
         }
