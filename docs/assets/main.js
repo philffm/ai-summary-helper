@@ -1057,3 +1057,15 @@ function setBilling(period) {
   root.hsSeek = function (x) { playing = false; t = x; render(x); };
   loop();
 })();
+
+// Browser-aware store links: Firefox visitors get the add-on page (and "Chrome" in the label becomes "Firefox"); the other store stays as a secondary link.
+(function () {
+  if (!/Firefox\//.test(navigator.userAgent) || /Seamonkey/.test(navigator.userAgent)) return;
+  var CH = 'chromewebstore.google.com', FF = 'https://addons.mozilla.org/en-US/firefox/addon/ai-summary-helper/', CHURL = 'https://chromewebstore.google.com/detail/ai-summary-helper-openai/hldbejcjaedipeegjcinmhejdndchkmb';
+  document.querySelectorAll('a[href*="' + CH + '"]').forEach(function (a) {
+    a.href = FF;
+    a.childNodes.forEach(function (n) { if (n.nodeType === 3) n.nodeValue = n.nodeValue.replace(/Chrome/g, 'Firefox'); });
+    if (!a.children.length) a.textContent = a.textContent.replace(/Chrome/g, 'Firefox');
+  });
+  document.querySelectorAll('a[data-store="alt"]').forEach(function (a) { a.href = CHURL; a.textContent = 'Chrome'; });
+})();
