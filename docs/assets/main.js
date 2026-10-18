@@ -906,6 +906,9 @@ function setBilling(period) {
   document.querySelectorAll('[data-demo]').forEach(function (box) {
     var btn = box.querySelector('.demo-start');
     if (!btn) return;
+    function poster() { box.style.backgroundImage = 'url(' + box.getAttribute('data-src').replace('demo/index.html', 'assets/demo-poster/' + siteLang() + '-' + siteTheme() + '.webp') + ')'; }
+    poster();
+    new MutationObserver(function () { if (!box.classList.contains('is-live')) poster(); }).observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme'] });
     btn.addEventListener('click', function () {
       var f = document.createElement('iframe');
       f.src = demoUrl(box.getAttribute('data-src')); f.title = 'AI Summary Helper live demo'; f.loading = 'lazy';

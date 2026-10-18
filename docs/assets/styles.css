@@ -877,3 +877,12 @@ footer .copyright a:hover, .foot-links a:hover{ text-decoration-color:currentCol
 #pricing .tier-name{ font-size:15px; }
 #pricing .tier-price{ font-size:34px; }
 @media (max-width:900px){ #pricing .tiers{ grid-template-columns:1fr; max-width:520px; } }
+
+/* Demo poster: a real screenshot of the demo behind the play button */
+.demo-frame{ background-size:cover; background-position:center top; }
+.demo-frame:not(.is-live)::before{ content:""; position:absolute; inset:0; background:linear-gradient(180deg, rgba(10,14,24,.10), rgba(10,14,24,.45)); pointer-events:none; }
+.demo-frame:not(.is-live) .demo-start{ position:relative; z-index:1; padding:18px 30px; font-size:18px; box-shadow:0 12px 40px rgba(0,0,0,.35); }
+.demo-frame:not(.is-live) .demo-play{ width:36px; height:36px; font-size:13px; }
+.demo-frame:not(.is-live) .demo-open{ z-index:1; color:#fff; }
+.demo-frame:not(.is-live) .demo-start{ background:var(--paper-bg, #fff); color:#14161f; border-color:transparent; }
+:root[data-theme="dark"] .demo-frame:not(.is-live) .demo-start{ background:#1b1f2c; color:#f2f4fa; }
