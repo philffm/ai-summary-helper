@@ -1,0 +1,5644 @@
+{
+  "extensionName": {
+    "message": "AI Summary Helper – Web Sayfalarını ve PDF'leri Özetle (BYOK, Ollama)"
+  },
+  "extensionNameFirefox": {
+    "message": "AI Summary Helper – Özetle, Sor, Dinle, Alıntıla"
+  },
+  "extensionShortName": {
+    "message": "AI Summary Helper"
+  },
+  "extensionDescription": {
+    "message": "Herhangi bir web sayfasını, PDF'yi veya YouTube videosunu kendi AI anahtarınızla ya da yerel Ollama ile 41 dilde özetleyin. Gizli, açık kaynak, hesap gerekmez."
+  },
+  "fetchSummary": {
+    "message": "Özeti Al"
+  },
+  "settings": {
+    "message": "Ayarlar"
+  },
+  "saved": {
+    "message": "Kaydedildi! 🎉"
+  },
+  "donate": {
+    "message": "Bağış Yap"
+  },
+  "noRecentSummaries": {
+    "message": "Son özet yok"
+  },
+  "summarizePageToSee": {
+    "message": "Burada görmek için bir sayfayı özetleyin"
+  },
+  "whatShouldAiFocus": {
+    "message": "AI neye odaklansın?"
+  },
+  "askSpecificQuestions": {
+    "message": "Bu sayfa hakkında belirli sorular sorun…"
+  },
+  "summaryLanguage": {
+    "message": "Özet Dili"
+  },
+  "searchLanguages": {
+    "message": "Dil ara…"
+  },
+  "summaryLength": {
+    "message": "Özet Uzunluğu"
+  },
+  "summaryMode": {
+    "message": "Özet Modu"
+  },
+  "extension": {
+    "message": "Eklenti"
+  },
+  "viewAndCopy": {
+    "message": "Gör &amp; Kopyala"
+  },
+  "inline": {
+    "message": "Satır İçi"
+  },
+  "insertIntoPage": {
+    "message": "Sayfaya Ekle"
+  },
+  "inlineModeTip": {
+    "message": "Satır içi mod, \"Kindle'a Gönder\" için idealdir."
+  },
+  "aiModel": {
+    "message": "AI Modeli"
+  },
+  "addCustomModelId": {
+    "message": "Özel model kimliği ekle…"
+  },
+  "searchArticles": {
+    "message": "Makale ara... (⌘ + F)"
+  },
+  "back": {
+    "message": "← Geri"
+  },
+  "save": {
+    "message": "Kaydet 💾"
+  },
+  "feedbackText": {
+    "message": "Sorular, hatalar ya da memnuniyet mi? 💡 Geri bildirim vermekten, benimle iletişime geçmekten veya bağış yapmayı düşünmekten çekinmeyin :)"
+  },
+  "openSourceBy": {
+    "message": "Açık kaynak yazılım, geliştiren:"
+  },
+  "contributeOnGithub": {
+    "message": "GitHub'da katkıda bulunmaktan çekinmeyin 💙"
+  },
+  "compatibleTools": {
+    "message": "Uyumlu Araçlar"
+  },
+  "compatibleToolsDesc": {
+    "message": "AI Summary Helper ile sorunsuz çalışan, iş akışınızı güçlendiren eklentiler."
+  },
+  "loadingTools": {
+    "message": "Araçlar yükleniyor…"
+  },
+  "navSummarize": {
+    "message": "Özetle"
+  },
+  "navHistory": {
+    "message": "Geçmiş"
+  },
+  "navFeeds": {
+    "message": "Akışlar"
+  },
+  "feedAddPlaceholder": {
+    "message": "Site veya akış adresi…"
+  },
+  "feedCurrentSite": {
+    "message": "Geçerli site"
+  },
+  "feedImportOpml": {
+    "message": "OPML İçe Aktar"
+  },
+  "feedMarkAllRead": {
+    "message": "Tümünü okundu yap"
+  },
+  "feedSubscriptions": {
+    "message": "Abonelikler"
+  },
+  "searchSettings": {
+    "message": "Ayarlarda ara…"
+  },
+  "settingsBack": {
+    "message": "‹ Ayarlar"
+  },
+  "settingsAccount": {
+    "message": "Hesap & Plan"
+  },
+  "settingsModels": {
+    "message": "Modeller & API"
+  },
+  "settingsPrompts": {
+    "message": "İstemler"
+  },
+  "settingsReading": {
+    "message": "Okuma & Vurgulama"
+  },
+  "settingsSend": {
+    "message": "Gönder & Paylaş"
+  },
+  "settingsAppearance": {
+    "message": "Görünüm & Dil"
+  },
+  "settingsLibrary": {
+    "message": "Kitaplık & Veri"
+  },
+  "settingsAbout": {
+    "message": "Hakkında & Araçlar"
+  },
+  "settingsCapAccount": {
+    "message": "HESAP"
+  },
+  "settingsCapSummarizing": {
+    "message": "ÖZETLEME"
+  },
+  "settingsCapReading": {
+    "message": "OKUMA"
+  },
+  "settingsCapApp": {
+    "message": "UYGULAMA"
+  },
+  "navApps": {
+    "message": "Uygulamalar"
+  },
+  "navSettings": {
+    "message": "Ayarlar"
+  },
+  "starting": {
+    "message": "Başlatılıyor…"
+  },
+  "contactingContentScript": {
+    "message": "İçerik betiğine bağlanılıyor…"
+  },
+  "workingOnIt": {
+    "message": "Çalışıyor…"
+  },
+  "summary": {
+    "message": "Özet"
+  },
+  "noTitleAvailable": {
+    "message": "Başlık yok"
+  },
+  "noSummaryAvailable": {
+    "message": "Özet yok"
+  },
+  "noContentAvailable": {
+    "message": "İçerik yok"
+  },
+  "noDescriptionAvailable": {
+    "message": "Açıklama yok"
+  },
+  "share": {
+    "message": "Paylaş 🔗"
+  },
+  "saveMd": {
+    "message": ".MD 💾"
+  },
+  "reader": {
+    "message": "Okuyucu 👓"
+  },
+  "delete": {
+    "message": "🗑️ Sil"
+  },
+  "aiSummary": {
+    "message": "🧙 AI Özeti"
+  },
+  "originalContent": {
+    "message": "📄 Orijinal İçerik"
+  },
+  "emptyArchive": {
+    "message": "🗂️ Arşiviniz çöl kadar boş! Doldurmak için birkaç makale kaydetmeye başlayın. 🌵"
+  },
+  "noToolsAvailable": {
+    "message": "Henüz araç yok."
+  },
+  "failedToLoadTools": {
+    "message": "Araçlar yüklenemedi."
+  },
+  "clickToInsert": {
+    "message": "Özetin ekleneceği öğeye tıklayın."
+  },
+  "fetchingSummary": {
+    "message": "Özet alınıyor..."
+  },
+  "openInSidebar": {
+    "message": "Kenar çubuğunda aç"
+  },
+  "theme": {
+    "message": "Tema"
+  },
+  "systemDefault": {
+    "message": "Sistem Varsayılanı"
+  },
+  "lightMode": {
+    "message": "Açık Mod"
+  },
+  "darkMode": {
+    "message": "Koyu Mod"
+  },
+  "uiLanguage": {
+    "message": "Arayüz Dili"
+  },
+  "browserDefault": {
+    "message": "Tarayıcı Varsayılanı"
+  },
+  "useNativeSidePanel": {
+    "message": "Chrome Yerel Kenar Panelini Kullan"
+  },
+  "dangerZone": {
+    "message": "⚠️ Tehlikeli Bölge"
+  },
+  "deleteSettings": {
+    "message": "Ayarları Sil"
+  },
+  "deleteHistory": {
+    "message": "Geçmişi Sil"
+  },
+  "model": {
+    "message": "Model"
+  },
+  "apiKey": {
+    "message": "API Key"
+  },
+  "apiKeyStoredLocally": {
+    "message": "🔒 API anahtarı tarayıcınızda yerel olarak saklanır."
+  },
+  "endpointUrl": {
+    "message": "Uç Nokta URL'si"
+  },
+  "prompt": {
+    "message": "İstem"
+  },
+  "enterCustomPrompt": {
+    "message": "Özel isteminizi buraya girin"
+  },
+  "modelConfiguration": {
+    "message": "🤖 Model Yapılandırması"
+  },
+  "modelDesc": {
+    "message": "Özetlerinizi oluşturacak LLM modelini seçin."
+  },
+  "promptCustomization": {
+    "message": "💬 İstem Özelleştirme"
+  },
+  "promptDesc": {
+    "message": "AI'ın metni nasıl analiz edeceğini özelleştirin."
+  },
+  "generalSettings": {
+    "message": "🔄 Genel Ayarlar"
+  },
+  "enablePodcastBeta": {
+    "message": "Podcast Beta'yı Etkinleştir"
+  },
+  "modelIdentifiers": {
+    "message": "Model Kimlikleri"
+  },
+  "default": {
+    "message": "varsayılan"
+  },
+  "notConfigured": {
+    "message": "Yapılandırılmadı"
+  },
+  "configured": {
+    "message": "Yapılandırıldı"
+  },
+  "historyGraph": {
+    "message": "Grafik"
+  },
+  "historyReport": {
+    "message": "Analiz"
+  },
+  "viewGraph": {
+    "message": "Grafiği gör"
+  },
+  "viewAnalytics": {
+    "message": "Analiz raporunu gör"
+  },
+  "settingsCapFeeds": {
+    "message": "AKIŞLAR"
+  },
+  "settingsFeeds": {
+    "message": "Akışlar"
+  },
+  "f_already_done_9f26": {
+    "message": "({n} zaten tamam)",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_add_tag_e74d": {
+    "message": "+ Etiket ekle"
+  },
+  "f_tag_2f9e": {
+    "message": "+ etiket"
+  },
+  "f_more_95cf": {
+    "message": "+ {n} daha",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_1_hour_fb4a": {
+    "message": "1 saat"
+  },
+  "f_1_year_98a5": {
+    "message": "1 yıl"
+  },
+  "f_15_minutes_276a": {
+    "message": "15 dakika"
+  },
+  "f_3_hours_8dd5": {
+    "message": "3 saat"
+  },
+  "f_30_days_2af9": {
+    "message": "30 gün"
+  },
+  "f_30_minutes_b47f": {
+    "message": "30 dakika"
+  },
+  "f_7_days_8279": {
+    "message": "7 gün"
+  },
+  "f_90_days_9817": {
+    "message": "90 gün"
+  },
+  "f_ai_category_acf9": {
+    "message": "AI kategorisi"
+  },
+  "f_ai_recap_of_this_day_d199": {
+    "message": "Bu günün AI derlemesi"
+  },
+  "f_ai_request_failed_fc5f": {
+    "message": "AI isteği başarısız"
+  },
+  "f_ai_scoring_failed_e1b3": {
+    "message": "AI puanlaması başarısız"
+  },
+  "f_ai_generated_from_headlines__133f": {
+    "message": "{n} başlık ve özetten AI ile oluşturuldu. Oluşturulma: {time}. Okumanın yerini tutmaz.",
+    "description": "Placeholders: {n} {time} (keep as is)"
+  },
+  "f_ai_rated_heavy_news_8b78": {
+    "message": "AI değerlendirmesi: ağır haber"
+  },
+  "f_ai_rated_positive_news_7f30": {
+    "message": "AI değerlendirmesi: olumlu haber"
+  },
+  "f_add_aa14": {
+    "message": "Ekle"
+  },
+  "f_add_a_feed_5d45": {
+    "message": "Akış ekle"
+  },
+  "f_add_a_site_or_feed_address_2a11": {
+    "message": "Site veya akış adresi ekle…"
+  },
+  "f_add_feed_1688": {
+    "message": "Akış ekle"
+  },
+  "f_add_tag_1074": {
+    "message": "Etiket ekle"
+  },
+  "f_all_e364": {
+    "message": "Tümü"
+  },
+  "f_all_sources_0e1e": {
+    "message": "Tüm kaynaklar"
+  },
+  "f_already_scoring_one_moment_f8d6": {
+    "message": "Zaten puanlanıyor — bir saniye"
+  },
+  "f_already_subscribed_0935": {
+    "message": "Already subscribed"
+  },
+  "f_any_mood_9630": {
+    "message": "Tüm ruh halleri"
+  },
+  "f_any_time_95a6": {
+    "message": "Her zaman"
+  },
+  "f_audio_playback_is_not_availa_5fa6": {
+    "message": "Ses oynatma burada kullanılamıyor"
+  },
+  "f_back_15_seconds_22dd": {
+    "message": "15 saniye geri"
+  },
+  "f_background_script_is_outdate_6a24": {
+    "message": "Arka plan betiği güncel değil — eklentiyi chrome://extensions adresinden yeniden yükleyin"
+  },
+  "f_batch_summarizing_runs_in_ex_386f": {
+    "message": "Toplu özetleme eklenti modunda çalışır. Özetle ekranında geçin."
+  },
+  "f_behavior_a447": {
+    "message": "Davranış"
+  },
+  "f_choose_a_source_99d4": {
+    "message": "Kaynak seç"
+  },
+  "f_clear_date_filter_8630": {
+    "message": "Tarih filtresini temizle"
+  },
+  "f_clear_filters_53c9": {
+    "message": "Filtreleri temizle"
+  },
+  "f_close_player_c464": {
+    "message": "Oynatıcıyı kapat"
+  },
+  "f_copy_3664": {
+    "message": "Kopyala"
+  },
+  "f_copy_failed_c2a1": {
+    "message": "Kopyalanamadı"
+  },
+  "f_could_not_add_feed_3d08": {
+    "message": "Akış eklenemedi"
+  },
+  "f_could_not_read_the_current_t_16ec": {
+    "message": "Geçerli sekme okunamadı"
+  },
+  "f_could_not_start_playback_6a64": {
+    "message": "Oynatma başlatılamadı"
+  },
+  "f_date_7379": {
+    "message": "Tarih"
+  },
+  "f_date_mood_799e": {
+    "message": "Tarih & ruh hali"
+  },
+  "f_deutsche_welle_international_d7bb": {
+    "message": "Deutsche Welle · uluslararası haberler"
+  },
+  "f_done_1791": {
+    "message": "Tamam"
+  },
+  "f_enter_a_valid_web_address_e752": {
+    "message": "Geçerli bir web adresi girin"
+  },
+  "f_episode_f972": {
+    "message": "Bölüm"
+  },
+  "f_everything_unread_is_already_a054": {
+    "message": "Okunmamış her şey zaten özetlendi"
+  },
+  "f_failed_c3d4": {
+    "message": "Başarısız"
+  },
+  "f_favorite_19ed": {
+    "message": "Favori"
+  },
+  "f_favorites_53ba": {
+    "message": "Favoriler"
+  },
+  "f_feed_name_68fc": {
+    "message": "Akış adı"
+  },
+  "f_feeds_8b02": {
+    "message": "Akışlar"
+  },
+  "f_follow_the_sites_you_read_94c4": {
+    "message": "Okuduğunuz siteleri takip edin"
+  },
+  "f_forward_30_seconds_3cec": {
+    "message": "30 saniye ileri"
+  },
+  "f_hide_negative_6410": {
+    "message": "Olumsuzları gizle"
+  },
+  "f_import_failed_aa11": {
+    "message": "İçe aktarma başarısız"
+  },
+  "f_imported_feed_349f": {
+    "message": "{n} akış içe aktarıldı",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_imported_feeds_4f84": {
+    "message": "{n} akış içe aktarıldı",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_independent_investigative_jo_b597": {
+    "message": "Bağımsız araştırmacı gazetecilik"
+  },
+  "f_independent_tech_accountabil_bf42": {
+    "message": "Bağımsız teknoloji denetimi"
+  },
+  "f_independent_tech_journalism_3d9f": {
+    "message": "Bağımsız teknoloji gazeteciliği"
+  },
+  "f_items_you_open_or_summarize__a71f": {
+    "message": "Açtığınız veya özetlediğiniz öğeler okunmamışlar listenizden çıkar"
+  },
+  "f_last_7_days_d98f": {
+    "message": "Son 7 gün"
+  },
+  "f_loading_4ae3": {
+    "message": "Yükleniyor…"
+  },
+  "f_mark_read_94d4": {
+    "message": "Okundu yap"
+  },
+  "f_mark_unread_7147": {
+    "message": "Okunmadı yap"
+  },
+  "f_mark_read_c994": {
+    "message": "{n} öğeyi okundu yap",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_marked_read_2e9b": {
+    "message": "{n} öğe okundu yapıldı",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_marked_unread_a1ec": {
+    "message": "{n} öğe okunmadı yapıldı",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_mood_551e": {
+    "message": "Ruh hali"
+  },
+  "f_mood_ai_rated_0031": {
+    "message": "Ruh hali (AI değerlendirmesi {r}/{n}): 😊 {p} · 😐 {m} · 😟 {g}",
+    "description": "Placeholders: {r} {n} {p} {m} {g} (keep as is)"
+  },
+  "f_mood_comes_from_ai_scoring_o_411c": {
+    "message": "Ruh hali yalnızca AI puanlamasından gelir — puanlamadığınız öğelerin ruh hali yoktur ve ruh hali filtresiyle asla gizlenmez. Puanlama, tıkladığınızda başlıkları ve kısa özetleri AI bağlantınıza gönderir."
+  },
+  "f_mood_d12b": {
+    "message": "Ruh hali ↓"
+  },
+  "f_more_d900": {
+    "message": "Daha fazla"
+  },
+  "f_most_positive_first_9e03": {
+    "message": "Önce en olumlu"
+  },
+  "f_most_positive_first_items_5e5a": {
+    "message": "Önce en olumlu · {n} öğe",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_mute_leave_out_of_all_source_7e40": {
+    "message": "Sessize al (Tüm kaynaklar dışında bırak)"
+  },
+  "f_new_items_arrived_since_this_bb0f": {
+    "message": "Bu derlemeden sonra yeni öğeler geldi — dahil etmek için Yenile'ye basın."
+  },
+  "f_new_posts_land_here_skim_sum_cf70": {
+    "message": "Yeni yazılar burada toplanır. Göz atın, önemlileri özetleyin, gerisini temizleyin."
+  },
+  "f_newer_f04a": {
+    "message": "Daha yeni"
+  },
+  "f_newest_first_b9c5": {
+    "message": "Önce en yeni"
+  },
+  "f_next_day_with_items_f0e2": {
+    "message": "Öğeli sonraki gün"
+  },
+  "f_no_feed_found_at_that_addres_4c2c": {
+    "message": "Bu adreste akış bulunamadı"
+  },
+  "f_no_feeds_yet_add_one_below_o_49ba": {
+    "message": "Henüz akış yok. Aşağıdan ekleyin veya bir OPML dosyası içe aktarın."
+  },
+  "f_no_items_to_recap_here_a024": {
+    "message": "Burada derlenecek öğe yok."
+  },
+  "f_no_new_feeds_in_that_file_d161": {
+    "message": "Bu dosyada yeni akış yok"
+  },
+  "f_no_sources_match_aaed": {
+    "message": "Eşleşen kaynak yok."
+  },
+  "f_no_b8a2": {
+    "message": "Hayır 😟"
+  },
+  "f_not_a_valid_opml_file_9043": {
+    "message": "Geçerli bir OPML dosyası değil"
+  },
+  "f_not_a_valid_feed_fa49": {
+    "message": "Geçerli bir akış değil"
+  },
+  "f_nothing_matches_these_filter_c177": {
+    "message": "Bu filtrelerle eşleşen yok."
+  },
+  "f_nothing_new_today_yet_try_re_4fd1": {
+    "message": "Bugün henüz yeni bir şey yok. Yenile'yi deneyin."
+  },
+  "f_nothing_to_export_yet_900d": {
+    "message": "Henüz dışa aktarılacak bir şey yok"
+  },
+  "f_nothing_to_score_cb41": {
+    "message": "Puanlanacak bir şey yok"
+  },
+  "f_older_d101": {
+    "message": "Daha eski"
+  },
+  "f_open_a_website_in_the_curren_6a05": {
+    "message": "Önce geçerli sekmede bir web sitesi açın"
+  },
+  "f_open_c3b4": {
+    "message": "Aç ↗"
+  },
+  "f_paste_any_site_address_we_fi_6186": {
+    "message": "Herhangi bir site adresini yapıştırın. Akışını sizin için buluruz."
+  },
+  "f_pause_bf2d": {
+    "message": "Duraklat"
+  },
+  "f_pick_a_day_d249": {
+    "message": "Gün seç"
+  },
+  "f_play_6f83": {
+    "message": "Oynat"
+  },
+  "f_play_episode_in_aish_59b2": {
+    "message": "Bölümü AISH'te oynat"
+  },
+  "f_playback_speed_f8ef": {
+    "message": "Oynatma hızı"
+  },
+  "f_plays_only_while_this_window_85db": {
+    "message": "Yalnızca bu pencere açıkken oynatılır"
+  },
+  "f_podcast_by_the_author_design_0fc5": {
+    "message": "Yazarın podcast'i · tasarım, yaşam ve teknoloji"
+  },
+  "f_podcast_player_4be4": {
+    "message": "Podcast oynatıcı"
+  },
+  "f_previous_day_with_items_4da2": {
+    "message": "Öğeli önceki gün"
+  },
+  "f_range_starts_tap_the_last_da_0eed": {
+    "message": "Aralık {day} gününde başlıyor — son güne dokunun.",
+    "description": "Placeholders: {day} (keep as is)"
+  },
+  "f_recap_copied_dc3c": {
+    "message": "Derleme kopyalandı"
+  },
+  "f_recap_failed_6cfd": {
+    "message": "Derleme oluşturulamadı"
+  },
+  "f_refresh_aad4": {
+    "message": "Yenile"
+  },
+  "f_remove_tag_b0a3": {
+    "message": "{tag} etiketini kaldır",
+    "description": "Placeholders: {tag} (keep as is)"
+  },
+  "f_request_failed_3b37": {
+    "message": "İstek başarısız"
+  },
+  "f_reset_a560": {
+    "message": "Sıfırla"
+  },
+  "f_scored_item_with_ai_4890": {
+    "message": "{n} öğe AI ile puanlandı",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_scored_items_with_ai_f0f5": {
+    "message": "{n} öğe AI ile puanlandı",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_scoring_with_ai_1216": {
+    "message": "AI ile puanlanıyor… {a}/{b}",
+    "description": "Placeholders: {a} {b} (keep as is)"
+  },
+  "f_search_sources_e053": {
+    "message": "Kaynak ara…"
+  },
+  "f_seek_13d1": {
+    "message": "Sar"
+  },
+  "f_sending_titles_and_short_sni_c7dd": {
+    "message": "{n} başlık ve kısa özet AI bağlantınıza gönderiliyor.",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_show_all_items_7eb7": {
+    "message": "Tüm öğeleri göster"
+  },
+  "f_show_more_older_6f85": {
+    "message": "{n} öğe daha göster · {m} eski",
+    "description": "Placeholders: {n} {m} (keep as is)"
+  },
+  "f_shows_a_badge_on_the_toolbar_07da": {
+    "message": "Yeni öğeler geldiğinde araç çubuğu simgesinde rozet gösterir"
+  },
+  "f_site_or_feed_address_f911": {
+    "message": "Site veya akış adresi…"
+  },
+  "f_sort_a7f1": {
+    "message": "Sırala"
+  },
+  "f_source_a3f8": {
+    "message": "Kaynak"
+  },
+  "f_sources_73d1": {
+    "message": "Kaynaklar"
+  },
+  "f_starring_an_item_summarizes__7621": {
+    "message": "Bir öğeyi yıldızlamak onu arka plan sekmesinde özetler"
+  },
+  "f_subscribed_to_c4c3": {
+    "message": "{name} akışına abone olundu",
+    "description": "Placeholders: {name} (keep as is)"
+  },
+  "f_subscriptions_opml_behavior_f617": {
+    "message": "Abonelikler · OPML · davranış"
+  },
+  "f_subscriptions_9ae8": {
+    "message": "Abonelikler · {n}",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_suggested_fdec": {
+    "message": "Önerilen"
+  },
+  "f_summarize_on_a_feed_item_fol_de8a": {
+    "message": "Bir akış öğesinde Özetle, Özetle ekranında seçilen modu izler (varsayılan: eklenti). Favoriler her zaman saklanır."
+  },
+  "f_summarized_415a": {
+    "message": "Özetlendi"
+  },
+  "f_summarizing_in_the_backgroun_cfaa": {
+    "message": "Arka planda özetleniyor — Özetle ve Geçmiş'te görünecek"
+  },
+  "f_summarizing_the_open_tab_it__826e": {
+    "message": "Açık sekme özetleniyor — Özetle ve Geçmiş'te görünecek"
+  },
+  "f_summarizing_in_the_backgroun_6f16": {
+    "message": "{n} öğe arka planda özetleniyor — Geçmiş'e bakın",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_tags_a0c0": {
+    "message": "Etiketler"
+  },
+  "f_the_ai_reply_could_not_be_re_6851": {
+    "message": "AI yanıtı okunamadı"
+  },
+  "f_the_ai_returned_an_empty_rec_894a": {
+    "message": "AI boş bir derleme döndürdü"
+  },
+  "f_these_items_are_already_scor_391c": {
+    "message": "Bu öğeler zaten puanlandı"
+  },
+  "f_today_775e": {
+    "message": "Bugün"
+  },
+  "f_today_s_briefing_ec2a": {
+    "message": "Bugünün brifingi"
+  },
+  "f_try_again_90fa": {
+    "message": "Tekrar dene"
+  },
+  "f_undo_4acf": {
+    "message": "Geri al"
+  },
+  "f_unmute_include_in_all_source_af1c": {
+    "message": "Sesi aç (Tüm kaynaklara dahil et)"
+  },
+  "f_unread_c982": {
+    "message": "Okunmamış"
+  },
+  "f_unread_4dff": {
+    "message": "Okunmamış · {n}",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_unsubscribe_5e36": {
+    "message": "Abonelikten çık"
+  },
+  "f_world_news_0f72": {
+    "message": "Dünya haberleri"
+  },
+  "f_yesterday_68c7": {
+    "message": "Dün"
+  },
+  "f_you_have_a_saved_summary_of__14f8": {
+    "message": "Bu sayfanın kayıtlı bir özeti var"
+  },
+  "f_your_feeds_stay_on_this_devi_3c13": {
+    "message": "Akışlarınız bu cihazda kalır."
+  },
+  "f_you_re_all_caught_up_8551": {
+    "message": "Hepsi bu kadar. 🎉"
+  },
+  "f_last_days_1e48": {
+    "message": "son {n} gün",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_no_items_4d34": {
+    "message": "{day}, öğe yok",
+    "description": "Placeholders: {day} (keep as is)"
+  },
+  "f_item_9b88": {
+    "message": "{day}, {n} öğe",
+    "description": "Placeholders: {day} {n} (keep as is)"
+  },
+  "f_items_8c21": {
+    "message": "{day}, {n} öğe",
+    "description": "Placeholders: {day} {n} (keep as is)"
+  },
+  "f_recap_8d18": {
+    "message": "{label} derlemesi",
+    "description": "Placeholders: {label} (keep as is)"
+  },
+  "f_feed_d469": {
+    "message": "{n} akış",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_feed_could_not_be_loaded_8f67": {
+    "message": "{n} akış yüklenemedi",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_feeds_e4ee": {
+    "message": "{n} akış",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_feeds_could_not_be_loaded_b700": {
+    "message": "{n} akış yüklenemedi",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_item_9ea2": {
+    "message": "{n} öğe",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_items_0303": {
+    "message": "{n} öğe",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_new_today_across_source_unre_baba": {
+    "message": "{s} kaynakta bugün {n} yeni · {u} okunmamış",
+    "description": "Placeholders: {n} {s} {u} (keep as is)"
+  },
+  "f_new_today_across_sources_unr_367f": {
+    "message": "{s} kaynakta bugün {n} yeni · {u} okunmamış",
+    "description": "Placeholders: {n} {s} {u} (keep as is)"
+  },
+  "f_tag_63cf": {
+    "message": "{n} etiket",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_tags_00f4": {
+    "message": "{n} etiket",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_unread_e786": {
+    "message": "{n} okunmamış",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_d_7af5": {
+    "message": "{n}g",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_h_8141": {
+    "message": "{n}sa",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_m_85fa": {
+    "message": "{n}dk",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_date_mood_e1f9": {
+    "message": "‹ Tarih & ruh hali"
+  },
+  "f_refresh_f095": {
+    "message": "↻ Yenile"
+  },
+  "f_pause_7c0d": {
+    "message": "⏸ Duraklat"
+  },
+  "f_play_ffa1": {
+    "message": "▶ Oynat"
+  },
+  "f_today_s_briefing_c58b": {
+    "message": "☀️  Bugünün brifingi"
+  },
+  "f_manage_feeds_tags_in_setting_7de0": {
+    "message": "⚙️  Akışları ve etiketleri Ayarlar'da yönet  ›"
+  },
+  "f_all_items_here_are_scored_3187": {
+    "message": "✓  Buradaki tüm öğeler puanlandı"
+  },
+  "f_mark_everything_in_this_view_2f26": {
+    "message": "✓  Bu görünümdeki her şeyi okundu yap"
+  },
+  "f_mark_read_when_opened_202c": {
+    "message": "✓ Açılınca okundu yap"
+  },
+  "f_summarized_68b9": {
+    "message": "✓ Özetlendi"
+  },
+  "f_ai_recap_of_today_72f6": {
+    "message": "✨  Bugünün AI derlemesi"
+  },
+  "f_auto_summarize_favorites_32af": {
+    "message": "✨ Favorileri otomatik özetle"
+  },
+  "f_recap_b8e8": {
+    "message": "✨ Derleme"
+  },
+  "f_summarize_570a": {
+    "message": "✨ Özetle"
+  },
+  "f_summarize_top_5_unread_d39d": {
+    "message": "✨ İlk 5 okunmamışı özetle"
+  },
+  "f_writing_recap_fe02": {
+    "message": "✨ Derleme yazılıyor…"
+  },
+  "f_view_summary_3c09": {
+    "message": "📄 Özeti gör"
+  },
+  "f_pick_a_day_or_range_dd71": {
+    "message": "📅  Gün veya aralık seç…"
+  },
+  "f_export_opml_7dd0": {
+    "message": "📤 OPML Dışa Aktar"
+  },
+  "f_import_opml_file_911a": {
+    "message": "📥  OPML dosyası içe aktar"
+  },
+  "f_import_opml_file_0174": {
+    "message": "📥  OPML dosyası içe aktar…"
+  },
+  "f_import_opml_b3fa": {
+    "message": "📥 OPML İçe Aktar"
+  },
+  "f_all_sources_0a6d": {
+    "message": "📰  Tüm kaynaklar"
+  },
+  "f_refresh_feeds_every_22e5": {
+    "message": "🔄 Akışları yenileme sıklığı"
+  },
+  "f_check_in_the_background_cf8c": {
+    "message": "🔔 Arka planda kontrol et"
+  },
+  "f_keep_items_for_3287": {
+    "message": "🗂️ Öğeleri sakla:"
+  },
+  "f_positive_only_1469": {
+    "message": "😊  Yalnızca olumlu"
+  },
+  "f_mostly_positive_c075": {
+    "message": "😊 Çoğunlukla olumlu"
+  },
+  "f_mixed_aadf": {
+    "message": "😐 Karışık"
+  },
+  "f_mostly_heavy_3f1c": {
+    "message": "😟 Çoğunlukla ağır"
+  },
+  "f_score_unscored_visible_items_201a": {
+    "message": "🤖  Görünen puanlanmamış öğeleri AI ile puanla"
+  },
+  "f_score_unscored_item_with_ai_a853": {
+    "message": "🤖  {n} puanlanmamış öğeyi AI ile puanla",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_score_unscored_items_with_ai_8600": {
+    "message": "🤖  {n} puanlanmamış öğeyi AI ile puanla",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_use_current_site_c913": {
+    "message": "＋  Geçerli siteyi kullan"
+  },
+  "f_add_8e3d": {
+    "message": "＋ Ekle"
+  },
+  "f_darker_more_items_recap_done_8cca": {
+    "message": "Koyu = daha çok öğe · ✨ = derleme hazır · aralık için bir güne, sonra başka bir güne uzun basın"
+  },
+  "f_recap_done_b098": {
+    "message": "derleme hazır"
+  },
+  "f_podcasts_7c90": {
+    "message": "Podcast'ler"
+  },
+  "f_ai_rated_6770": {
+    "message": "AI puanlı"
+  },
+  "f_best_match_items_0f3b": {
+    "message": "En iyi eşleşme · {n} öğe",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_day_229d": {
+    "message": "Gün"
+  },
+  "f_episodes_fc93": {
+    "message": "Bölümler"
+  },
+  "f_graph_77e7": {
+    "message": "Grafik"
+  },
+  "f_insights_f1e8": {
+    "message": "İçgörüler"
+  },
+  "f_items_382f": {
+    "message": "Öğeler"
+  },
+  "f_no_items_in_this_source_yet_30b8": {
+    "message": "Bu kaynakta henüz öğe yok."
+  },
+  "f_not_enough_text_data_yet_427d": {
+    "message": "Henüz yeterli metin verisi yok."
+  },
+  "f_nothing_rated_yet_use_score__710a": {
+    "message": "Henüz puanlanan yok — Tarih & ruh hali sayfasında “AI ile puanla”yı kullanın."
+  },
+  "f_search_feeds_2a1e": {
+    "message": "Akışlarda ara…"
+  },
+  "f_search_368e": {
+    "message": "“{term}” ara",
+    "description": "Placeholders: {term} (keep as is)"
+  },
+  "f_show_only_9eef": {
+    "message": "Yalnızca {name} göster",
+    "description": "Placeholders: {name} (keep as is)"
+  },
+  "f_to_listen_78b7": {
+    "message": "Dinlenecek"
+  },
+  "f_unplayed_7435": {
+    "message": "Oynatılmadı"
+  },
+  "f_week_e27d": {
+    "message": "Hafta"
+  },
+  "f_top_terms_eda5": {
+    "message": "☁️ Öne çıkan terimler"
+  },
+  "f_podcasts_4399": {
+    "message": "🎧 Podcast'ler"
+  },
+  "f_volume_74ff": {
+    "message": "📅 Hacim"
+  },
+  "f_top_sources_b705": {
+    "message": "📰 En çok kaynaklar"
+  },
+  "f_mood_categories_c0c1": {
+    "message": "🙂 Ruh hali & kategoriler"
+  },
+  "f_adds_mood_and_category_to_ea_acfd": {
+    "message": "Aynı AI isteğiyle her öğeye ruh hali ve kategori ekler"
+  },
+  "f_rate_items_with_the_recap_6027": {
+    "message": "🤖 Öğeleri derlemeyle puanla"
+  },
+  "f_nothing_new_since_this_recap_45c5": {
+    "message": "Bu derlemeden sonra yeni bir şey yok"
+  },
+  "f_sending_new_or_edited_titles_ba69": {
+    "message": "{n} yeni veya düzenlenmiş başlık ve kısa özet AI bağlantınıza gönderiliyor.",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_updating_recap_902a": {
+    "message": "✨ Derleme güncelleniyor…"
+  },
+  "f_a_source_recap_changed_since_e89f": {
+    "message": "Bu derleme yazıldığından beri bir kaynak derlemesi değişti — dahil etmek için Yenile'ye basın."
+  },
+  "f_ai_recap_of_this_month_built_f4e6": {
+    "message": "Haftalık ve günlük derlemelerden oluşturulan bu ayın AI derlemesi"
+  },
+  "f_ai_recap_of_this_week_built__86af": {
+    "message": "Günlük derlemelerden oluşturulan bu haftanın AI derlemesi"
+  },
+  "f_built_from_your_day_recaps_i_2520": {
+    "message": "Günlük derlemelerinizden oluşturuldu. Günlük derlemesi olan öğeler yeniden gönderilmez."
+  },
+  "f_built_from_recap_5b76": {
+    "message": "{n} derlemeden oluşturuldu",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_built_from_recaps_48df": {
+    "message": "{n} derlemeden oluşturuldu",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_cancel_ca3b": {
+    "message": "İptal"
+  },
+  "f_create_missing_day_recap_fir_2bd6": {
+    "message": "Önce eksik {n} günlük derlemeyi oluştur",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_create_missing_day_recaps_fi_1cf7": {
+    "message": "Önce eksik {n} günlük derlemeyi oluştur",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_creating_day_recaps_141a": {
+    "message": "Günlük derlemeler oluşturuluyor… {a}/{b}",
+    "description": "Placeholders: {a} {b} (keep as is)"
+  },
+  "f_generated_at_b0a6": {
+    "message": "Oluşturulma: {time}",
+    "description": "Placeholders: {time} (keep as is)"
+  },
+  "f_month_1ba5": {
+    "message": "Ay"
+  },
+  "f_no_items_43fa": {
+    "message": "Öğe yok"
+  },
+  "f_nothing_to_combine_yet_cf62": {
+    "message": "Birleştirilecek bir şey yok."
+  },
+  "f_recap_scope_40ec": {
+    "message": "Derleme kapsamı"
+  },
+  "f_sends_short_recaps_not_headl_27f5": {
+    "message": "{m} başlık yerine {n} kısa derleme gönderir",
+    "description": "Placeholders: {n} {m} (keep as is)"
+  },
+  "f_skip_the_days_without_a_reca_9f80": {
+    "message": "Derlemesi olmayan günleri atla"
+  },
+  "f_week_recap_2446": {
+    "message": "Haftalık derleme"
+  },
+  "f_week_c909": {
+    "message": "Hafta {n}",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_missing_0207": {
+    "message": "eksik"
+  },
+  "f_no_recap_yet_d2d7": {
+    "message": "derleme yok"
+  },
+  "f_reused_af15": {
+    "message": "yeniden kullanıldı"
+  },
+  "f_of_days_have_a_recap_6aaa": {
+    "message": "{b} günün {a} tanesinde derleme var",
+    "description": "Placeholders: {a} {b} (keep as is)"
+  },
+  "f_day_recap_cb92": {
+    "message": "{n} günlük derleme",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_day_recaps_f333": {
+    "message": "{n} günlük derleme",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_without_recap_7d68": {
+    "message": "{n} derlemesiz",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_create_recap_88d6": {
+    "message": "✨ Derleme oluştur"
+  },
+  "f_feed_b245": {
+    "message": "Akış"
+  },
+  "f_6_months_1bc4": {
+    "message": "6 ay"
+  },
+  "f_categories_e98d": {
+    "message": "Kategoriler"
+  },
+  "f_mood_history_is_kept_for_13__0fc8": {
+    "message": "Ruh hali geçmişi, öğeler kaldırılsa bile 13 ay saklanır."
+  },
+  "f_mood_index_518e": {
+    "message": "Ruh hali endeksi"
+  },
+  "f_only_of_items_are_rated_3794": {
+    "message": "{n} öğeden yalnızca {r} tanesi puanlı",
+    "description": "Placeholders: {r} {n} (keep as is)"
+  },
+  "f_open_day_791d": {
+    "message": "Günü aç ›"
+  },
+  "f_open_month_dc55": {
+    "message": "Ayı aç ›"
+  },
+  "f_open_week_a281": {
+    "message": "Haftayı aç ›"
+  },
+  "f_these_items_are_no_longer_st_45c7": {
+    "message": "Bu öğeler artık saklanmadığından puanlanamaz."
+  },
+  "f_what_moved_98f8": {
+    "message": "Neler değişti"
+  },
+  "f_n_a_e041": {
+    "message": "yok"
+  },
+  "f_vs_5622": {
+    "message": "{label} ile karş.",
+    "description": "Placeholders: {label} (keep as is)"
+  },
+  "f_pts_d40a": {
+    "message": "{n} puan",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_of_items_rated_mood_comes_fr_688e": {
+    "message": "{n} öğeden {r} tanesi puanlı · ruh hali yalnızca AI puanlamasından gelir",
+    "description": "Placeholders: {r} {n} (keep as is)"
+  },
+  "f_categories_06df": {
+    "message": "🏷️ Kategoriler"
+  },
+  "f_mood_over_time_2258": {
+    "message": "📈 Zamana göre ruh hali"
+  },
+  "f_score_unscored_items_79e0": {
+    "message": "🤖 {n} puanlanmamış öğeyi puanla",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_jump_to_today_94c7": {
+    "message": "Bugüne git"
+  },
+  "f_nothing_rated_yet_write_a_re_c4ee": {
+    "message": "Henüz puanlanan yok — öğeleri puanlamak için ✨ Derleme yazın."
+  },
+  "f_filter_e5fe": {
+    "message": "‹ Filtre"
+  },
+  "f_filter_6421": {
+    "message": "🎛️ Filtre"
+  },
+  "f__c725": {
+    "message": "⏳ %{n}",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_edit_6cb1": {
+    "message": "Düzenle"
+  },
+  "f_edit_feeds_tags_in_settings_48ab": {
+    "message": "Akışları ve etiketleri Ayarlar'da düzenle"
+  },
+  "f_only_rated_items_at_least_5__f9fb": {
+    "message": "Yalnızca {r} puanlı öğe var — en az 5 gerekli",
+    "description": "Placeholders: {r} (keep as is)"
+  },
+  "f_w_66b2": {
+    "message": "H{n}",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_vs_16ff": {
+    "message": "{a} / {b}",
+    "description": "Placeholders: {a} {b} (keep as is)"
+  },
+  "f_activity_view_00dd": {
+    "message": "Etkinlik görünümü"
+  },
+  "f_articles_b83e": {
+    "message": "Makaleler"
+  },
+  "f_best_streak_8513": {
+    "message": "En İyi Seri"
+  },
+  "f_day_streak_6d31": {
+    "message": "Gün Serisi"
+  },
+  "f_full_reading_37c0": {
+    "message": "Tam okuma"
+  },
+  "f_no_article_has_a_mood_yet_le_373a": {
+    "message": "Henüz ruh hali olan makale yok — AI'ın puanlamasına izin verin."
+  },
+  "f_no_articles_yet_start_summar_b35e": {
+    "message": "Henüz makale yok — analizlerinizi görmek için sayfaları özetlemeye başlayın! 📖"
+  },
+  "f_no_tags_found_add_tags_to_yo_6914": {
+    "message": "Etiket bulunamadı. Özetlerinize etiket ekleyin!"
+  },
+  "f_saved_79e4": {
+    "message": "Kaydedilen"
+  },
+  "f_with_summaries_5619": {
+    "message": "Özetli"
+  },
+  "f_words_read_f576": {
+    "message": "Okunan Kelime"
+  },
+  "f_article_09dd": {
+    "message": "{n} makale",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_articles_3cea": {
+    "message": "{n} makale",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_compression_across_e24c": {
+    "message": "{a} genelinde %{p} sıkıştırma",
+    "description": "Placeholders: {p} {a} (keep as is)"
+  },
+  "f_time_saved_with_aish_00e4": {
+    "message": "⏱️ AISH ile Kazanılan Zaman"
+  },
+  "f_word_cloud_aebe": {
+    "message": "☁️ Kelime Bulutu"
+  },
+  "f_top_categories_10ae": {
+    "message": "🏷️ En Çok Kategoriler"
+  },
+  "f_activity_b9dc": {
+    "message": "📅 Etkinlik"
+  },
+  "f_back_4bc2": {
+    "message": "Geri"
+  },
+  "f_cancelled_09bc": {
+    "message": "İptal edildi"
+  },
+  "f_close_acc3": {
+    "message": "Kapat"
+  },
+  "f_device_b413": {
+    "message": "Cihaz"
+  },
+  "f_digest_of_summaries_5cea": {
+    "message": "{n} özetin Digest'i",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_free_tier_3_kindle_sends_inc_00a8": {
+    "message": "Ücretsiz katman: 3 Kindle gönderimi dahil."
+  },
+  "f_it_will_show_up_on_your_kind_1390": {
+    "message": "Birkaç dakika içinde Kindle'ınızda görünecek."
+  },
+  "f_localsend_9286": {
+    "message": "LocalSend"
+  },
+  "f_make_sure_kindle_byphil_eu_i_2869": {
+    "message": "kindle@byphil.eu adresinin Amazon “Onaylı gönderenler” listenizde olduğundan emin olun."
+  },
+  "f_not_everything_was_sent_4aac": {
+    "message": "Her şey gönderilemedi"
+  },
+  "f_not_set_up_yet_add_a_receive_845a": {
+    "message": "Henüz kurulmadı — Ayarlar'dan alıcı ekleyin"
+  },
+  "f_not_set_up_yet_add_your_kind_f9fe": {
+    "message": "Henüz kurulmadı — Ayarlar'dan Kindle'ınızı ekleyin"
+  },
+  "f_one_digest_a1c5": {
+    "message": "Tek Digest"
+  },
+  "f_only_summarized_articles_can_ce5a": {
+    "message": "Yalnızca özetlenmiş makaleler gönderilebilir"
+  },
+  "f_open_settings_88b6": {
+    "message": "Ayarları aç"
+  },
+  "f_pick_the_receiver_its_app_ha_0e36": {
+    "message": "Alıcıyı seçin. Uygulaması açık ve aynı Wi‑Fi'de olmalı."
+  },
+  "f_please_keep_this_window_open_2384": {
+    "message": "Lütfen bu pencereyi açık tutun"
+  },
+  "f_please_set_your_localsend_ip_a1ac": {
+    "message": "Lütfen önce Ayarlar'da LocalSend IP'nizi belirleyin."
+  },
+  "f_select_2b4d": {
+    "message": "Seç"
+  },
+  "f_select_all_1072": {
+    "message": "Tümünü seç"
+  },
+  "f_select_summaries_2cad": {
+    "message": "Özet seç"
+  },
+  "f_select_summaries_to_send_741c": {
+    "message": "Gönderilecek özetleri seç"
+  },
+  "f_send_to_kindle_c8f1": {
+    "message": "Kindle'a Gönder"
+  },
+  "f_send_summaries_c9c7": {
+    "message": "{n} özeti gönder",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_send_summary_164f": {
+    "message": "{n} özeti gönder",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_sending_to_kindle_8853": {
+    "message": "Kindle'a gönderiliyor…"
+  },
+  "f_sending_to_2cc3": {
+    "message": "{name} cihazına gönderiliyor…",
+    "description": "Placeholders: {name} (keep as is)"
+  },
+  "f_sent_to_kindle_05e1": {
+    "message": "Kindle'a gönderildi"
+  },
+  "f_sent_to_0f59": {
+    "message": "{name} cihazına gönderildi",
+    "description": "Placeholders: {name} (keep as is)"
+  },
+  "f_separate_files_fc17": {
+    "message": "Ayrı dosyalar"
+  },
+  "f_set_your_kindle_email_in_set_7b8d": {
+    "message": "Önce Ayarlar'da Kindle e-postanızı belirleyin."
+  },
+  "f_untitled_a678": {
+    "message": "Başlıksız"
+  },
+  "f_waiting_for_the_other_device_d6a3": {
+    "message": "Diğer cihazın kabul etmesi bekleniyor"
+  },
+  "f_and_more_871b": {
+    "message": "ve {n} tane daha",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_of_sent_941e": {
+    "message": "{total} içinden {done} gönderildi. {error}",
+    "description": "Placeholders: {done} {total} {error} (keep as is)"
+  },
+  "f_file_sent_41c7": {
+    "message": "{n} dosya gönderildi",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_files_sent_a952": {
+    "message": "{n} dosya gönderildi",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_receiver_2b94": {
+    "message": "{n} alıcı",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_receivers_1ca5": {
+    "message": "{n} alıcı",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_selected_8468": {
+    "message": "{n} seçili",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_summaries_7bdf": {
+    "message": "{n} özet",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_summary_0c47": {
+    "message": "{n} özet",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_send_to_kindle_dc46": {
+    "message": "📚 Kindle'a Gönder"
+  },
+  "f_send_to_kindle_7446": {
+    "message": "📚 {n} öğeyi Kindle'a gönder",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_localsend_d4ba": {
+    "message": "📡 LocalSend"
+  },
+  "f_send_ca72": {
+    "message": "📤 Gönder"
+  },
+  "f_send_aff2": {
+    "message": "📤 {n} öğeyi gönder",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_full_article_765e": {
+    "message": "Tam makale"
+  },
+  "f_summary_full_article_3f15": {
+    "message": "Özet + tam makale"
+  },
+  "f_summary_only_bd43": {
+    "message": "Yalnızca özet"
+  },
+  "f_also_automatic_opening_marks_1cdb": {
+    "message": "Ayrıca otomatik: açmak Okundu, göndermek Gönderildi olarak işaretler"
+  },
+  "f_archive_0b65": {
+    "message": "Arşiv"
+  },
+  "f_archived_5293": {
+    "message": "Arşivlendi"
+  },
+  "f_inbox_46db": {
+    "message": "Gelen Kutusu"
+  },
+  "f_keep_them_in_your_inbox_as_s_f585": {
+    "message": "Gelen kutusunda “Gönderildi” olarak tut"
+  },
+  "f_mark_as_8ab2": {
+    "message": "Şöyle işaretle…"
+  },
+  "f_mark_summaries_as_8da6": {
+    "message": "{n} özeti şöyle işaretle…",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_mark_summary_as_4a0a": {
+    "message": "{n} özeti şöyle işaretle…",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_moves_them_to_archive_find_t_1076": {
+    "message": "Arşive taşır — istediğiniz zaman orada bulursunuz"
+  },
+  "f_nothing_here_yet_a1ba": {
+    "message": "Henüz burada bir şey yok"
+  },
+  "f_read_efe5": {
+    "message": "Okundu"
+  },
+  "f_restore_to_inbox_1382": {
+    "message": "Gelen Kutusuna Geri Al"
+  },
+  "f_sent_fb9f": {
+    "message": "Gönderildi"
+  },
+  "f_status_updated_automatically_8d51": {
+    "message": "Durum otomatik güncellenir:"
+  },
+  "f_restore_to_inbox_5eeb": {
+    "message": "↩ Gelen Kutusuna Geri Al"
+  },
+  "f_sent_03c9": {
+    "message": "✅ Gönderildi · {date}",
+    "description": "Placeholders: {date} (keep as is)"
+  },
+  "f_new_b748": {
+    "message": "🆕 Yeni"
+  },
+  "f_read_bb5c": {
+    "message": "👀 Okundu"
+  },
+  "f_sent_to_kindle_6bf6": {
+    "message": "📚 Kindle'a gönderildi"
+  },
+  "f_sent_to_kindle_eef1": {
+    "message": "📚 Kindle'a gönderildi · {date}",
+    "description": "Placeholders: {date} (keep as is)"
+  },
+  "f_sent_via_localsend_9396": {
+    "message": "📡 LocalSend ile gönderildi"
+  },
+  "f_sent_via_localsend_de11": {
+    "message": "📡 LocalSend ile gönderildi · {date}",
+    "description": "Placeholders: {date} (keep as is)"
+  },
+  "f_archive_them_too_4a41": {
+    "message": "🗄️ Bunları da arşivle"
+  },
+  "f_archived_7a20": {
+    "message": "🗄️ Arşivlendi · {date}",
+    "description": "Placeholders: {date} (keep as is)"
+  },
+  "f_archived_84d9": {
+    "message": "🗄️ {n} arşivlendi",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_2_3_sentences_6d11": {
+    "message": "2–3 cümle"
+  },
+  "f_a_friendly_note_to_yourself_85df": {
+    "message": "Kendinize dostça bir not"
+  },
+  "f_ai_adds_2_3_sentences_on_top_f7ed": {
+    "message": "AI, Digest'in başına 2–3 cümle ekler"
+  },
+  "f_briefing_d739": {
+    "message": "Brifing"
+  },
+  "f_one_sentence_b9cc": {
+    "message": "Tek cümle"
+  },
+  "f_personal_8cad": {
+    "message": "Kişisel"
+  },
+  "f_short_dd75": {
+    "message": "Kısa"
+  },
+  "f_uses_your_ai_model_one_extra_7d0e": {
+    "message": "AI modelinizi kullanır · 1 ek çağrı · uygulama dilinizde"
+  },
+  "f_intro_skipped_the_digest_goe_a3a8": {
+    "message": "⚠️ Giriş atlandı — Digest onsuz gönderilir"
+  },
+  "f_intro_written_181e": {
+    "message": "✨ Giriş yazıldı"
+  },
+  "f_write_a_short_intro_d123": {
+    "message": "✨ Kısa giriş yaz"
+  },
+  "f_writing_intro_9acd": {
+    "message": "✨ Giriş yazılıyor…"
+  },
+  "f_good_mood_only_5aab": {
+    "message": "Yalnızca olumlu"
+  },
+  "f_view_all_contribute_cffd": {
+    "message": "(Tümünü gör ve katkıda bulun)"
+  },
+  "f_action_items_c1a7": {
+    "message": "Yapılacaklar"
+  },
+  "f_back_to_builder_09d4": {
+    "message": "Oluşturucuya dön"
+  },
+  "f_book_media_tips_a5e8": {
+    "message": "Kitap & medya önerileri"
+  },
+  "f_briefings_and_recaps_keep_th_4156": {
+    "message": "Brifingler ve derlemeler sabit düzenini korur (genel bakış, temalar, ruh hali) — bu ayarlar yalnızca ton ve ifadeyi değiştirir."
+  },
+  "f_casual_faa4": {
+    "message": "Samimi"
+  },
+  "f_creative_title_c49e": {
+    "message": "Yaratıcı başlık"
+  },
+  "f_custom_b78e": {
+    "message": "Özel"
+  },
+  "f_customize_how_the_ai_writes_0bf7": {
+    "message": "AI'ın nasıl yazacağını özelleştirin."
+  },
+  "f_daily_briefing_4f0e": {
+    "message": "Günlük brifing"
+  },
+  "f_edit_style_for_2773": {
+    "message": "Stili düzenle:"
+  },
+  "f_emojis_hashtags_6b71": {
+    "message": "Emoji & hashtag"
+  },
+  "f_enter_your_custom_prompt_her_1393": {
+    "message": "Özel isteminizi buraya girin..."
+  },
+  "f_extra_instructions_0dc6": {
+    "message": "Ek talimatlar"
+  },
+  "f_extras_1d8e": {
+    "message": "Ekstralar"
+  },
+  "f_focus_on_f114": {
+    "message": "Odak"
+  },
+  "f_formal_253a": {
+    "message": "Resmi"
+  },
+  "f_full_prompt_8aa2": {
+    "message": "Tam istem"
+  },
+  "f_full_style_text_c1ec": {
+    "message": "Tam stil metni"
+  },
+  "f_hard_facts_f743": {
+    "message": "Somut gerçekler"
+  },
+  "f_hide_8e7c": {
+    "message": "Gizle ⌃"
+  },
+  "f_include_5607": {
+    "message": "Dahil et"
+  },
+  "f_key_facts_41d3": {
+    "message": "Önemli gerçekler"
+  },
+  "f_key_quotes_81c9": {
+    "message": "Önemli alıntılar"
+  },
+  "f_length_1935": {
+    "message": "Uzunluk"
+  },
+  "f_light_humor_8590": {
+    "message": "Hafif mizah"
+  },
+  "f_long_9473": {
+    "message": "Uzun"
+  },
+  "f_medium_5f96": {
+    "message": "Orta"
+  },
+  "f_neutral_0778": {
+    "message": "Nötr"
+  },
+  "f_numbers_77c9": {
+    "message": "Sayılar"
+  },
+  "f_opinions_1d4a": {
+    "message": "Görüşler"
+  },
+  "f_preset_b13e": {
+    "message": "Hazır ayar"
+  },
+  "f_same_style_as_the_daily_brie_47f4": {
+    "message": "Günlük brifingle aynı stil"
+  },
+  "f_standup_humor_7d49": {
+    "message": "Stand-up mizahı"
+  },
+  "f_style_for_ai_briefings_and_w_071d": {
+    "message": "AI brifingleri ile haftalık ve aylık derlemeler için stil."
+  },
+  "f_test_on_sample_853c": {
+    "message": "Örnekle dene"
+  },
+  "f_testing_28a7": {
+    "message": "Deneniyor…"
+  },
+  "f_tone_2da1": {
+    "message": "Ton"
+  },
+  "f_ux_designer_reference_8dd0": {
+    "message": "UX tasarımcısı referansı"
+  },
+  "f_used_whenever_you_summarize__f213": {
+    "message": "Bir sayfayı veya makaleyi özetlediğinizde kullanılır."
+  },
+  "f_view_edit_bf74": {
+    "message": "Gör ve düzenle ›"
+  },
+  "f_week_month_recaps_9013": {
+    "message": "Haftalık & aylık derlemeler"
+  },
+  "f_why_it_matters_3f98": {
+    "message": "Neden önemli"
+  },
+  "f_e_g_always_name_the_author_a_2746": {
+    "message": "ör. Yazarı ve yayını her zaman belirt."
+  },
+  "f_e_g_prefer_european_news_and_b541": {
+    "message": "ör. Avrupa haberlerini tercih et ve tonu olumlu tut."
+  },
+  "f_edited_by_hand_the_chips_won_2a11": {
+    "message": "✏️ Elle düzenlendi — oluşturucuya dönmeden çipler bunu değiştirmez."
+  },
+  "f_build_my_own_3ce7": {
+    "message": "✨ Kendiminkini oluştur"
+  },
+  "f_phil_s_mix_3e16": {
+    "message": "✨ Phil'in karışımı"
+  },
+  "f_full_articles_a7c0": {
+    "message": "📄 Tam makaleler"
+  },
+  "f_feeds_briefings_0552": {
+    "message": "📰 Akışlar & brifingler"
+  },
+  "f_tags_key_highlights_and_the__f798": {
+    "message": "🔒 Etiketler, önemli vurgular ve ruh hali puanı her zaman otomatik eklenir — yalnızca stili siz belirlersiniz."
+  },
+  "f_a_quick_review_on_the_chrome_c9eb": {
+    "message": "Chrome Web Mağazası'ndaki kısa bir yorum, başkalarının onu bulmasına yardımcı olur."
+  },
+  "f_enjoying_ai_summary_helper_75e7": {
+    "message": "AI Summary Helper'ı beğeniyor musunuz?"
+  },
+  "f_later_2b49": {
+    "message": "Sonra"
+  },
+  "f_no_thanks_66fb": {
+    "message": "Hayır, teşekkürler"
+  },
+  "f_leave_a_review_042d": {
+    "message": "⭐ Yorum bırak"
+  },
+  "f_ai_analysis_986b": {
+    "message": "AI analizi"
+  },
+  "f_dismiss_15f3": {
+    "message": "Kapat"
+  },
+  "f_errors_60a6": {
+    "message": "Hatalar"
+  },
+  "f_feed_preferences_cbd3": {
+    "message": "Akış tercihleri"
+  },
+  "f_lines_00dc": {
+    "message": "Çizgiler"
+  },
+  "f_mood_over_time_per_category_b78e": {
+    "message": "Kategoriye göre zamana bağlı ruh hali"
+  },
+  "f_mute_9f74": {
+    "message": "Sessize al"
+  },
+  "f_muted_6630": {
+    "message": "Sessizde"
+  },
+  "f_name_7306": {
+    "message": "Ad"
+  },
+  "f_no_items_yet_b28c": {
+    "message": "Henüz öğe yok"
+  },
+  "f_noisy_e255": {
+    "message": "Gürültülü"
+  },
+  "f_not_enough_rated_items_yet_bc02": {
+    "message": "Henüz yeterli puanlı öğe yok"
+  },
+  "f_nothing_here_6e9a": {
+    "message": "Burada bir şey yok."
+  },
+  "f_other_ff95": {
+    "message": "Diğer"
+  },
+  "f_rates_the_tone_of_summaries__01bb": {
+    "message": "Özetlerin ve akış öğelerinin tonunu puanlar. Ruh hali filtrelerini, grafikleri ve Kaynak diyetini besler. Tüm ruh hali özelliklerini gizlemek için kapatın."
+  },
+  "f_reading_339b": {
+    "message": "Okuma"
+  },
+  "f_reading_ai_updates_2053": {
+    "message": "Okuma · AI · güncellemeler"
+  },
+  "f_review_5601": {
+    "message": "İncele"
+  },
+  "f_sort_mood_fbdc": {
+    "message": "Sırala: Ruh hali"
+  },
+  "f_sort_name_18c8": {
+    "message": "Sırala: Ad"
+  },
+  "f_sort_read_share_6e08": {
+    "message": "Sırala: Okunma payı"
+  },
+  "f_sort_unread_7db8": {
+    "message": "Sırala: Okunmamış"
+  },
+  "f_stacked_785e": {
+    "message": "Yığılmış"
+  },
+  "f_subscriptions_tags_opml_8892": {
+    "message": "Abonelikler · etiketler · OPML"
+  },
+  "f_table_view_c850": {
+    "message": "Tablo görünümü"
+  },
+  "f_top_73dc": {
+    "message": "En çok"
+  },
+  "f_topics_over_time_f15e": {
+    "message": "Zamana göre konular"
+  },
+  "f_unmute_72bb": {
+    "message": "Sesi aç"
+  },
+  "f_updates_storage_9d6a": {
+    "message": "Güncellemeler & depolama"
+  },
+  "f_volume_76af": {
+    "message": "Hacim"
+  },
+  "f_not_scored_ddb8": {
+    "message": "puanlanmadı"
+  },
+  "f_source_causes_of_your_negati_a48c": {
+    "message": "{n} kaynak, olumsuz öğelerinizin %{p}'ine neden oluyor",
+    "description": "Placeholders: {n} {p} (keep as is)"
+  },
+  "f_source_is_mostly_negative_a413": {
+    "message": "{n} kaynak çoğunlukla olumsuz",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_sources_are_mostly_negative_3b24": {
+    "message": "{n} kaynak çoğunlukla olumsuz",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_sources_cause_of_your_negati_1f62": {
+    "message": "{n} kaynak, olumsuz öğelerinizin %{p}'ine neden oluyor",
+    "description": "Placeholders: {n} {p} (keep as is)"
+  },
+  "f_mo_read_2188": {
+    "message": "{n}/ay · %{r} okundu",
+    "description": "Placeholders: {n} {r} (keep as is)"
+  },
+  "f_topics_over_time_ee3b": {
+    "message": "📈 Zamana göre konular"
+  },
+  "f_mood_483d": {
+    "message": "😊 Ruh hali"
+  },
+  "f_aish_cloud_65e5": {
+    "message": "AISH bulutu"
+  },
+  "f_ask_a_follow_up_32ca": {
+    "message": "Devam sorusu sorun…"
+  },
+  "f_back_to_this_page_1a94": {
+    "message": "Bu sayfaya dön"
+  },
+  "f_collected_the_items_6b03": {
+    "message": "Öğeler toplandı"
+  },
+  "f_continuing_ffb7": {
+    "message": "Devam ediliyor"
+  },
+  "f_could_not_reach_ollama_make__7fce": {
+    "message": "Ollama'ya ulaşılamadı. Çalıştığından ve uç noktanın doğru olduğundan emin olun."
+  },
+  "f_deutsche_welle_top_stories_8be6": {
+    "message": "Deutsche Welle · öne çıkan haberler"
+  },
+  "f_discard_rewrite_96b8": {
+    "message": "Atıp yeniden yazılsın mı?"
+  },
+  "f_feed_item_from_6d3a": {
+    "message": "{host} akış öğesi",
+    "description": "Placeholders: {host} (keep as is)"
+  },
+  "f_focus_on_something_optional_d5b9": {
+    "message": "Bir konuya odaklan… (isteğe bağlı)"
+  },
+  "f_focus_c600": {
+    "message": "Odak: {text}",
+    "description": "Placeholders: {text} (keep as is)"
+  },
+  "f_found_your_highlights_using__b80a": {
+    "message": "{n} vurgunuz bulundu · odak olarak kullanılıyor",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_from_your_question_4088": {
+    "message": "Sorunuzdan"
+  },
+  "f_from_your_questions_4b21": {
+    "message": "Sorularınızdan"
+  },
+  "f_include_all_questions_in_exp_94d7": {
+    "message": "Dışa aktarmalara tüm soruları ekle"
+  },
+  "f_last_summary_3355": {
+    "message": "Son özet"
+  },
+  "f_model_is_thinking_3a56": {
+    "message": "Model düşünüyor"
+  },
+  "f_model_is_writing_cab2": {
+    "message": "Model yazıyor"
+  },
+  "f_no_answer_cd22": {
+    "message": "Yanıt yok."
+  },
+  "f_no_recent_summaries_03a5": {
+    "message": "Son özet yok"
+  },
+  "f_nothing_new_since_this_recap_f9bc": {
+    "message": "Bu derlemeden sonra yeni bir şey yok — Sıfırla, baştan yeniden yazar."
+  },
+  "f_nothing_received_for_s_there_17e7": {
+    "message": "{s} sn'dir bir şey alınmadı. Zaman sınırı yok — takılmış görünüyorsa İptal'e basın.",
+    "description": "Placeholders: {s} (keep as is)"
+  },
+  "f_ollama_refused_the_request_a_0007": {
+    "message": "Ollama isteği reddetti. 403 genellikle bu eklentiden gelen isteklerin kabul edilmesi gerektiği anlamına gelir (OLLAMA_ORIGINS)."
+  },
+  "f_only_in_the_conversation_log_ea3e": {
+    "message": "Yalnızca konuşma kaydında"
+  },
+  "f_open_the_page_to_jump_to_thi_837d": {
+    "message": "Bu bölüme gitmek için sayfayı açın"
+  },
+  "f_page_text_words_5755": {
+    "message": "Sayfa metni · {n} kelime",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_queue_a_question_9a0d": {
+    "message": "Soruyu sıraya ekle…"
+  },
+  "f_raise_limit_to_and_refresh_95fb": {
+    "message": "Sınırı {n} yap ve yenile",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_read_the_page_words_8c21": {
+    "message": "Sayfayı oku · {n} kelime",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_reading_the_answer_d90a": {
+    "message": "Yanıt okunuyor"
+  },
+  "f_resume_1d8a": {
+    "message": "Devam"
+  },
+  "f_send_14cf": {
+    "message": "Gönder"
+  },
+  "f_send_summaries_96ab": {
+    "message": "Özetleri gönder"
+  },
+  "f_sent_to_your_ai_connection_b919": {
+    "message": "AI bağlantınıza gönderildi"
+  },
+  "f_set_up_ollama_a0c2": {
+    "message": "Ollama'yı kur"
+  },
+  "f_show_them_open_one_by_one_33f7": {
+    "message": "Göster — tek tek aç"
+  },
+  "f_shown_in_the_article_and_inc_586d": {
+    "message": "Makalede gösterilir ve dışa aktarmalara dahil edilir"
+  },
+  "f_starting_788d": {
+    "message": "Başlatılıyor…"
+  },
+  "f_summarize_a_page_to_see_it_h_ceef": {
+    "message": "Burada görmek için bir sayfayı özetleyin"
+  },
+  "f_summarize_this_page_b1c9": {
+    "message": "Bu sayfayı özetle"
+  },
+  "f_summary_b5b3": {
+    "message": "Özet"
+  },
+  "f_that_is_the_maximum_per_reca_170d": {
+    "message": "Bu, derleme başına üst sınırdır. Daha geniş bir bakış için Haftalık veya Aylık derlemeyi kullanın ya da akışa göre filtreleyin."
+  },
+  "f_thinking_d121": {
+    "message": "Düşünüyor…"
+  },
+  "f_waiting_for_the_model_75a1": {
+    "message": "Model bekleniyor"
+  },
+  "f_waiting_for_the_model_a385": {
+    "message": "Model bekleniyor…"
+  },
+  "f_what_i_used_fda1": {
+    "message": "Kullandıklarım"
+  },
+  "f_working_on_it_d098": {
+    "message": "Çalışıyor…"
+  },
+  "f_writing_a_word_summary_dd5f": {
+    "message": "{n} kelimelik özet yazılıyor…",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_writing_the_summary_0fa6": {
+    "message": "Özet yazılıyor…"
+  },
+  "f_your_focus_question_4df6": {
+    "message": "Odak sorunuz"
+  },
+  "f_your_highlights_da3a": {
+    "message": "Vurgularınız · {n}",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_your_questions_6d97": {
+    "message": "Sorularınız"
+  },
+  "f_different_page_9b4d": {
+    "message": "farklı sayfa"
+  },
+  "f_shortened_to_fit_083f": {
+    "message": "sığması için kısaltıldı"
+  },
+  "f_thinking_characters_8d93": {
+    "message": "düşünme: {n} karakter",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_words_aa8a": {
+    "message": "kelime"
+  },
+  "f_characters_d8fd": {
+    "message": "{n} karakter",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_follow_up_d34e": {
+    "message": "{n} devam sorusu",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_follow_ups_8907": {
+    "message": "{n} devam sorusu",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_more_question_4688": {
+    "message": "{n} soru daha",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_more_questions_bd21": {
+    "message": "{n} soru daha",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_older_item_is_not_in_this_re_1d7b": {
+    "message": "{n} eski öğe bu derlemede yok (sınır: derleme başına {max}).",
+    "description": "Placeholders: {n} {max} (keep as is)"
+  },
+  "f_older_item_is_not_in_this_re_321f": {
+    "message": "{n} eski öğe bu derlemede yok.",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_older_items_are_not_in_this__7458": {
+    "message": "{n} eski öğe bu derlemede yok (sınır: derleme başına {max}).",
+    "description": "Placeholders: {n} {max} (keep as is)"
+  },
+  "f_older_items_are_not_in_this__8bca": {
+    "message": "{n} eski öğe bu derlemede yok.",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_word_c9d9": {
+    "message": "{n} kelime",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_words_769e": {
+    "message": "{n} kelime",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_stop_f89d": {
+    "message": "■ Durdur"
+  },
+  "f_in_article_c185": {
+    "message": "📌 Makalede"
+  },
+  "f_add_to_article_8257": {
+    "message": "📍 Makaleye ekle"
+  },
+  "f_items_per_recap_fac3": {
+    "message": "📝 Derleme başına öğe"
+  },
+  "f_on_ios_hold_to_drag_for_2_se_7fba": {
+    "message": "(iOS'ta sürüklemek için 2 saniye basılı tutun)"
+  },
+  "f_add_59dd": {
+    "message": "+ Ekle"
+  },
+  "f_md_a3cb": {
+    "message": ".MD 💾"
+  },
+  "f_a_bundle_of_881d": {
+    "message": "{count} öğelik paket: {titles}",
+    "description": "Placeholders: {count} {titles} (keep as is)"
+  },
+  "f_a_few_18aa": {
+    "message": "Birkaç"
+  },
+  "f_a_lot_9f13": {
+    "message": "Çok"
+  },
+  "f_ai_model_1862": {
+    "message": "AI Modeli"
+  },
+  "f_ai_ghost_highlighting_41b0": {
+    "message": "AI hayalet vurgulama"
+  },
+  "f_api_error_e311": {
+    "message": "API Hatası:"
+  },
+  "f_api_key_6382": {
+    "message": "API Key:"
+  },
+  "f_api_key_c6ec": {
+    "message": "API key"
+  },
+  "f_about_tools_9c0f": {
+    "message": "Hakkında & Araçlar"
+  },
+  "f_account_a2fc": {
+    "message": "Hesap"
+  },
+  "f_account_plan_bd49": {
+    "message": "Hesap & Plan"
+  },
+  "f_account_sync_cdb7": {
+    "message": "Hesap Eşitleme"
+  },
+  "f_account_sync_sign_in_log_out_8eb5": {
+    "message": "Hesap eşitleme · giriş / çıkış"
+  },
+  "f_activate_0190": {
+    "message": "Etkinleştir"
+  },
+  "f_active_send_target_69d8": {
+    "message": "Etkin gönderim hedefi"
+  },
+  "f_add_kindle_device_dc01": {
+    "message": "Kindle cihazı ekle"
+  },
+  "f_add_localsend_device_6e29": {
+    "message": "LocalSend cihazı ekle"
+  },
+  "f_add_custom_model_336a": {
+    "message": "Özel model ekle"
+  },
+  "f_add_model_id_e_g_gemma3_4b_960e": {
+    "message": "Model kimliği ekle, ör. gemma3:4b"
+  },
+  "f_allow_all_origins_f696": {
+    "message": "Tüm kaynaklara izin ver"
+  },
+  "f_allow_all_origins_app_71d4": {
+    "message": "Tüm kaynaklara izin ver (uygulama)"
+  },
+  "f_amazon_s_guide_135b": {
+    "message": "Amazon rehberi"
+  },
+  "f_analytics_e02b": {
+    "message": "Analiz"
+  },
+  "f_analyzing_tags_5f59": {
+    "message": "Etiketler analiz ediliyor…"
+  },
+  "f_appearance_language_6075": {
+    "message": "Görünüm & Dil"
+  },
+  "f_are_you_sure_you_want_to_del_15c9": {
+    "message": "Bu makaleyi silmek istediğinizden emin misiniz?"
+  },
+  "f_article_05f9": {
+    "message": "Makale"
+  },
+  "f_articles_ae4c": {
+    "message": "Makaleler:"
+  },
+  "f_audio_generation_failed_003d": {
+    "message": "Ses oluşturulamadı: {msg}",
+    "description": "Placeholders: {msg} (keep as is)"
+  },
+  "f_auto_detect_0006": {
+    "message": "Otomatik Algıla"
+  },
+  "f_auto_summarize_favorites_0e1f": {
+    "message": "Favorileri otomatik özetle"
+  },
+  "f_automatic_light_blue_quote_h_419c": {
+    "message": "Özetlerden otomatik açık mavi alıntı vurguları"
+  },
+  "f_backup_restored_successfully_8819": {
+    "message": "Yedek başarıyla geri yüklendi!\n{n} makale içe aktarıldı.\n\nEklenti şimdi yeniden yüklenecek.",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_backup_tags_delete_5af9": {
+    "message": "Yedek · etiketler · silme"
+  },
+  "f_bookmarklet_generator_e407": {
+    "message": "Bookmarklet oluşturucu"
+  },
+  "f_browser_default_9336": {
+    "message": "Tarayıcı Varsayılanı"
+  },
+  "f_check_feeds_in_the_backgroun_08ca": {
+    "message": "Akışları arka planda kontrol et"
+  },
+  "f_check_if_receiver_is_online_1a5a": {
+    "message": "Alıcının çevrimiçi olup olmadığını kontrol edin."
+  },
+  "f_check_if_the_receiver_is_onl_df6d": {
+    "message": "Alıcının çevrimiçi olup olmadığını kontrol edin."
+  },
+  "f_checking_f2f5": {
+    "message": "Kontrol ediliyor..."
+  },
+  "f_choose_one_delivery_method_f_1ac4": {
+    "message": "Makale ayrıntısı eylemleri için bir gönderim yöntemi seçin."
+  },
+  "f_clean_up_merge_tags_096e": {
+    "message": "Etiketleri temizle & birleştir"
+  },
+  "f_clear_search_e946": {
+    "message": "Aramayı temizle"
+  },
+  "f_click_the_ollama_icon_in_the_2c7c": {
+    "message": "Menü çubuğundaki (sağ üst) Ollama simgesine tıklayın ve <b>Quit Ollama</b> seçeneğini seçin."
+  },
+  "f_click_generate_to_create_you_aa04": {
+    "message": "Bölümünüzü oluşturmak için “Oluştur 🎙️”a tıklayın."
+  },
+  "f_close_pane_d66b": {
+    "message": "{n}. bölmeyi kapat",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_code_expired_please_request__64c9": {
+    "message": "Kodun süresi doldu. Lütfen yeni bir kod isteyin."
+  },
+  "f_comedy_0972": {
+    "message": "Komedi"
+  },
+  "f_compatible_tools_7cb8": {
+    "message": "Uyumlu araçlar"
+  },
+  "f_configure_your_localsend_ip__3993": {
+    "message": "Önce ayarlardan LocalSend IP adresinizi yapılandırın."
+  },
+  "f_connection_path_790c": {
+    "message": "Bağlantı Yolu"
+  },
+  "f_connection_path_e1ec": {
+    "message": "Bağlantı yolu"
+  },
+  "f_context_k_1bbb": {
+    "message": "Bağlam: {n}k",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_copied_as_plain_text_c9d4": {
+    "message": "Düz metin olarak kopyalandı."
+  },
+  "f_copied_to_clipboard_244d": {
+    "message": "Panoya kopyalandı! 📋"
+  },
+  "f_copied_f355": {
+    "message": "Kopyalandı! ✓"
+  },
+  "f_copy_0d38": {
+    "message": "Kopyala 📋"
+  },
+  "f_created_podcasts_1914": {
+    "message": "Oluşturulan Podcast'ler"
+  },
+  "f_custom_prompt_text_10af": {
+    "message": "Özel istem metni"
+  },
+  "f_custom_style_optional_0950": {
+    "message": "Özel stil (isteğe bağlı):"
+  },
+  "f_custom_style_ba7f": {
+    "message": "Özel stil:"
+  },
+  "f_d3_library_failed_to_load_301f": {
+    "message": "D3 kitaplığı yüklenemedi."
+  },
+  "f_dark_mode_05f8": {
+    "message": "Koyu Mod"
+  },
+  "f_delete_ea6a": {
+    "message": "Sil"
+  },
+  "f_delete_article_14d4": {
+    "message": "Makaleyi Sil"
+  },
+  "f_delete_all_history_f022": {
+    "message": "Tüm geçmiş silinsin mi?"
+  },
+  "f_delete_all_settings_9c4f": {
+    "message": "Tüm ayarlar silinsin mi?"
+  },
+  "f_delete_history_09b6": {
+    "message": "Geçmişi sil"
+  },
+  "f_delete_history_6db0": {
+    "message": "Geçmişi sil…"
+  },
+  "f_delete_settings_448b": {
+    "message": "Ayarları sil"
+  },
+  "f_delete_settings_7c57": {
+    "message": "Ayarları sil…"
+  },
+  "f_delivery_method_6dc6": {
+    "message": "Gönderim Yöntemi"
+  },
+  "f_delivery_method_60a6": {
+    "message": "Gönderim yöntemi"
+  },
+  "f_delivery_83d6": {
+    "message": "Gönderim: {name}",
+    "description": "Placeholders: {name} (keep as is)"
+  },
+  "f_describe_your_podcast_style_2c26": {
+    "message": "Podcast stilinizi tarif edin"
+  },
+  "f_dismiss_graph_stats_0600": {
+    "message": "Grafik istatistiklerini kapat"
+  },
+  "f_don_t_have_a_key_a26a": {
+    "message": "Anahtarınız yok mu?"
+  },
+  "f_done_645e": {
+    "message": "Tamam 🎧"
+  },
+  "f_drag_this_link_to_your_bookm_d09a": {
+    "message": "Bu bağlantıyı yer imleri çubuğuna sürükleyin 🔖"
+  },
+  "f_educational_6bf0": {
+    "message": "Eğitici"
+  },
+  "f_endpoint_url_ddad": {
+    "message": "Uç Nokta URL'si"
+  },
+  "f_endpoint_url_d4b5": {
+    "message": "Uç Nokta URL'si:"
+  },
+  "f_enter_6_digit_code_9824": {
+    "message": "6 haneli kodu girin"
+  },
+  "f_enter_code_6556": {
+    "message": "Kodu girin"
+  },
+  "f_enter_the_code_sent_to_your__e9ff": {
+    "message": "E-postanıza gönderilen kodu girin."
+  },
+  "f_enter_the_code_sent_to_44a6": {
+    "message": "Şu adrese gönderilen kodu girin:"
+  },
+  "f_enter_your_email_b13a": {
+    "message": "E-postanızı girin..."
+  },
+  "f_error_generating_podcast_472a": {
+    "message": "Podcast oluşturulurken hata: {msg}",
+    "description": "Placeholders: {msg} (keep as is)"
+  },
+  "f_error_d391": {
+    "message": "Hata:"
+  },
+  "f_error_2626": {
+    "message": "Hata: {message}",
+    "description": "Placeholders: {message} (keep as is)"
+  },
+  "f_export_49d3": {
+    "message": "Dışa aktar"
+  },
+  "f_export_backup_first_cdb5": {
+    "message": "Önce yedeği dışa aktar"
+  },
+  "f_export_or_restore_all_settin_1745": {
+    "message": "Tüm ayarları JSON dosyası olarak dışa aktarın veya geri yükleyin."
+  },
+  "f_export_settings_1454": {
+    "message": "Ayarları dışa aktar"
+  },
+  "f_exported_1988": {
+    "message": "Dışa aktarıldı! ✓"
+  },
+  "f_exported_articles_e1a6": {
+    "message": "Dışa aktarıldı! ✓ ({n} makale)",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_ext_8e14": {
+    "message": "Ekl."
+  },
+  "f_extension_723a": {
+    "message": "Eklenti"
+  },
+  "f_failed_to_export_backup_f689": {
+    "message": "Yedek dışa aktarılamadı."
+  },
+  "f_failed_to_load_models_416b": {
+    "message": "Modeller yüklenemedi"
+  },
+  "f_failed_to_send_code_a012": {
+    "message": "Kod gönderilemedi"
+  },
+  "f_fallback_79db": {
+    "message": "Yedek"
+  },
+  "f_feed_briefing_recap_style_9883": {
+    "message": "Akış brifingi & derleme stili"
+  },
+  "f_feed_refresh_interval_c173": {
+    "message": "Akış yenileme aralığı"
+  },
+  "f_feedback_contact_donate_fd59": {
+    "message": "Geri bildirim · iletişim · bağış"
+  },
+  "f_feeds_and_inboxes_linkedin_f_aa24": {
+    "message": "Akışlar ve gelen kutuları (LinkedIn akışı, X ana sayfası, …) zaten otomatik olarak atlanır."
+  },
+  "f_file_shared_successfully_8e89": {
+    "message": "Dosya başarıyla paylaşıldı."
+  },
+  "f_filtering_graph_to_matches_o_2268": {
+    "message": "Grafik yalnızca eşleşmelere göre filtreleniyor — tüm arşivdeki eşleşmeleri vurgulamak için tıklayın"
+  },
+  "f_flesch_reading_ease_100_8bd2": {
+    "message": "Flesch okunabilirliği: {ease}/100",
+    "description": "Placeholders: {ease} (keep as is)"
+  },
+  "f_for_koreader_prefer_60bb": {
+    "message": "KOReader için şunu tercih edin:"
+  },
+  "f_for_a_permanent_config_via_s_390e": {
+    "message": "systemd ile kalıcı yapılandırma için servis biriminin (ör. <code>/etc/systemd/system/ollama.service</code>) altına <code>Environment=\"OLLAMA_ORIGINS=*\"</code> ekleyin, ardından <code>systemctl daemon-reload</code> çalıştırıp yeniden başlatın."
+  },
+  "f_for_a_permanent_fix_set_code_2b22": {
+    "message": "Kalıcı çözüm için <code>OLLAMA_ORIGINS=*</code> değerini <i>System Properties → Environment Variables</i> altında sistem ortam değişkeni olarak ayarlayın ve Ollama'yı yeniden başlatın."
+  },
+  "f_found_device_at_click_add_to_884e": {
+    "message": "{ip} adresinde cihaz bulundu — kaydetmek için Ekle'ye tıklayın ✓",
+    "description": "Placeholders: {ip} (keep as is)"
+  },
+  "f_free_tier_a065": {
+    "message": "Ücretsiz Katman"
+  },
+  "f_free_trial_mode_ce92": {
+    "message": "Ücretsiz Deneme Modu"
+  },
+  "f_generate_a_bookmarklet_that__081e": {
+    "message": "Extension çalışmayan iOS/Android dahil, her tarayıcıda herhangi bir sayfayı özetleyen bir bookmarklet oluşturun. byphil Cloud girişinizi kullanır."
+  },
+  "f_generate_237e": {
+    "message": "Oluştur 🎙️"
+  },
+  "f_generating_audio_bbb6": {
+    "message": "Ses oluşturuluyor… 🔊"
+  },
+  "f_generating_22a9": {
+    "message": "Oluşturuluyor…"
+  },
+  "f_get_key_4f7c": {
+    "message": "Anahtar Al"
+  },
+  "f_ghost_highlight_amount_cdbc": {
+    "message": "Hayalet Vurgu Miktarı"
+  },
+  "f_ghost_highlight_amount_91fc": {
+    "message": "Hayalet vurgu miktarı"
+  },
+  "f_hide_the_highlights_panel_on_21d1": {
+    "message": "Bu sitelerde vurgular panelini gizle"
+  },
+  "f_highlighting_matches_in_the__372a": {
+    "message": "Tüm arşivdeki eşleşmeler vurgulanıyor — yalnızca eşleşmelere göre filtrelemek için tıklayın"
+  },
+  "f_highlighting_ghost_46b8": {
+    "message": "Vurgulanan {a} · hayalet {b}",
+    "description": "Placeholders: {a} {b} (keep as is)"
+  },
+  "f_history_deleted_89bf": {
+    "message": "Geçmiş silindi ✓"
+  },
+  "f_i_want_to_use_my_own_custom__1b02": {
+    "message": "Kendi Özel API'mi / Yerel Modelimi kullanmak istiyorum"
+  },
+  "f_if_running_as_a_systemd_serv_630d": {
+    "message": "systemd servisi olarak çalışıyorsa <code>sudo systemctl stop ollama</code> ile durdurun."
+  },
+  "f_import_export_opml_c6cd": {
+    "message": "OPML içe / dışa aktar"
+  },
+  "f_import_settings_8d81": {
+    "message": "Ayarları içe aktar"
+  },
+  "f_included_with_your_byphil_ac_42c6": {
+    "message": "byPhil hesabınıza dahildir — API anahtarı gerekmez."
+  },
+  "f_infrastructural_link_executi_8f72": {
+    "message": "Altyapı bağlantısı yürütülemedi. Ağ geçidine ağ bağlantısı olduğundan emin olun."
+  },
+  "f_inl_2296": {
+    "message": "Sat."
+  },
+  "f_inline_1554": {
+    "message": "Satır İçi"
+  },
+  "f_inline_mode_is_great_for_sen_8641": {
+    "message": "Satır içi mod, \"Kindle'a Gönder\" için idealdir."
+  },
+  "f_insert_into_page_5e4d": {
+    "message": "Sayfaya Ekle"
+  },
+  "f_interview_0334": {
+    "message": "Röportaj"
+  },
+  "f_invalid_key_620f": {
+    "message": "Geçersiz Anahtar"
+  },
+  "f_invalid_backup_file_please_s_54f7": {
+    "message": "Geçersiz yedek dosyası. Lütfen geçerli bir AI Summary Helper dışa aktarımı seçin."
+  },
+  "f_invalid_code_4325": {
+    "message": "Geçersiz kod"
+  },
+  "f_invalid_code_or_expired_sess_009f": {
+    "message": "Geçersiz kod veya oturum süresi doldu."
+  },
+  "f_invalid_or_deactivated_licen_cb45": {
+    "message": "Geçersiz veya devre dışı lisans anahtarı. Abonelik bilgilerinizi kontrol edin."
+  },
+  "f_koreader_localsend_devices_dfd7": {
+    "message": "KOReader / LocalSend cihazları"
+  },
+  "f_koreader_plugin_566b": {
+    "message": "KOReader eklentisi:"
+  },
+  "f_keep_feed_items_for_6d0f": {
+    "message": "Akış öğelerini sakla:"
+  },
+  "f_kindle_delivery_failed_4d91": {
+    "message": "Kindle'a gönderilemedi."
+  },
+  "f_kindle_devices_5273": {
+    "message": "Kindle cihazları"
+  },
+  "f_kindle_localsend_bookmarklet_b368": {
+    "message": "Kindle · LocalSend · bookmarklet"
+  },
+  "f_kindle_563f": {
+    "message": "Kindle 📚"
+  },
+  "f_label_f29d": {
+    "message": "Etiket"
+  },
+  "f_launch_ollama_again_from_you_0537": {
+    "message": "Ollama'yı Uygulamalar klasöründen veya Spotlight'tan yeniden başlatın."
+  },
+  "f_layout_421f": {
+    "message": "Düzen"
+  },
+  "f_length_729d": {
+    "message": "Uzunluk:"
+  },
+  "f_library_data_0b46": {
+    "message": "Kitaplık & Veri"
+  },
+  "f_light_mode_608a": {
+    "message": "Açık Mod"
+  },
+  "f_list_37a1": {
+    "message": "Liste"
+  },
+  "f_loading_1033": {
+    "message": "Yükleniyor..."
+  },
+  "f_localsend_d8a4": {
+    "message": "LocalSend 📱"
+  },
+  "f_log_out_0355": {
+    "message": "Çıkış Yap"
+  },
+  "f_logged_in_as_30ea": {
+    "message": "Giriş yapıldı: {email}",
+    "description": "Placeholders: {email} (keep as is)"
+  },
+  "f_logged_out_5877": {
+    "message": "Çıkış yapıldı."
+  },
+  "f_magic_code_sent_check_your_i_292f": {
+    "message": "Sihirli kod gönderildi! ✨ Gelen kutunuza bakın."
+  },
+  "f_manual_yellow_highlights_48aa": {
+    "message": "Elle sarı vurgular"
+  },
+  "f_mark_read_when_opened_7f85": {
+    "message": "Açılınca okundu yap"
+  },
+  "f_merges_near_duplicate_tags_s_343f": {
+    "message": "Arşivinizdeki “ML” ve “Machine Learning” gibi benzer etiketleri birleştirir."
+  },
+  "f_model_e8fa": {
+    "message": "Model"
+  },
+  "f_model_identifier_527d": {
+    "message": "Model kimliği"
+  },
+  "f_model_source_5863": {
+    "message": "Model kaynağı"
+  },
+  "f_models_api_7e45": {
+    "message": "Modeller & API"
+  },
+  "f_mood_on_off_tone_analysis_60b8": {
+    "message": "Ruh hali açık/kapalı (ton analizi)"
+  },
+  "f_name_6774": {
+    "message": "Ad:"
+  },
+  "f_native_chrome_side_panel_510d": {
+    "message": "Yerel Chrome kenar paneli"
+  },
+  "f_negative_tone_8ca6": {
+    "message": "Olumsuz ton"
+  },
+  "f_network_error_608f": {
+    "message": "Ağ hatası"
+  },
+  "f_network_error_sending_to_kin_a413": {
+    "message": "Kindle'a gönderirken ağ hatası."
+  },
+  "f_neutral_tone_a9c8": {
+    "message": "Nötr ton"
+  },
+  "f_news_0866": {
+    "message": "Haber"
+  },
+  "f_next_da08": {
+    "message": "Sonraki"
+  },
+  "f_no_kindle_email_set_9f2b": {
+    "message": "Kindle e-postası belirlenmedi."
+  },
+  "f_no_active_receiver_found_081d": {
+    "message": "Etkin alıcı bulunamadı."
+  },
+  "f_no_articles_saved_yet_6cc6": {
+    "message": "Henüz kayıtlı makale yok."
+  },
+  "f_no_articles_to_graph_yet_3fc2": {
+    "message": "Henüz grafiğe dökülecek makale yok."
+  },
+  "f_no_audio_8798": {
+    "message": "Ses yok"
+  },
+  "f_no_content_available_0c7a": {
+    "message": "İçerik yok."
+  },
+  "f_no_devices_added_yet_1e99": {
+    "message": "Henüz cihaz eklenmedi."
+  },
+  "f_no_matches_found_1b67": {
+    "message": "Eşleşme bulunamadı"
+  },
+  "f_no_models_configured_2bd8": {
+    "message": "Yapılandırılmış model yok"
+  },
+  "f_no_receiver_address_set_d83f": {
+    "message": "Alıcı adresi belirlenmedi."
+  },
+  "f_no_settings_match_918b": {
+    "message": "“{query}” ile eşleşen ayar yok.",
+    "description": "Placeholders: {query} (keep as is)"
+  },
+  "f_no_summary_available_1155": {
+    "message": "Özet yok"
+  },
+  "f_no_summary_returned_5f75": {
+    "message": "Özet döndürülmedi."
+  },
+  "f_no_title_available_2723": {
+    "message": "Başlık yok"
+  },
+  "f_not_logged_in_4bbf": {
+    "message": "Giriş yapılmadı"
+  },
+  "f_not_signed_in_7281": {
+    "message": "Oturum açılmadı"
+  },
+  "f_once_ollama_restarts_the_403_7678": {
+    "message": "Ollama yeniden başladığında bu eklentiden gelen 403 Forbidden hatası çözülür."
+  },
+  "f_once_ollama_restarts_the_403_5245": {
+    "message": "Ollama yeniden başladığında eklentinizden gelen 403 Forbidden hatası düzelir."
+  },
+  "f_one_pane_9d53": {
+    "message": "Tek bölme"
+  },
+  "f_open_command_prompt_c92e": {
+    "message": "Komut İstemi'ni aç"
+  },
+  "f_open_source_software_by_0ec8": {
+    "message": "Açık kaynak yazılım, geliştiren:"
+  },
+  "f_open_terminal_8167": {
+    "message": "Terminal'i aç"
+  },
+  "f_open_in_history_0990": {
+    "message": "Geçmiş'te aç"
+  },
+  "f_open_in_sidebar_648c": {
+    "message": "Kenar çubuğunda aç"
+  },
+  "f_open_the_b_terminal_b_app_on_e9bf": {
+    "message": "Mac'inizde <b>Terminal</b> uygulamasını açın."
+  },
+  "f_own_key_7e24": {
+    "message": "Kendi anahtarım"
+  },
+  "f_own_model_api_key_4098": {
+    "message": "Kendi modelim / API anahtarım"
+  },
+  "f_page_highlighting_86f2": {
+    "message": "Sayfa vurgulama"
+  },
+  "f_pane_view_fde8": {
+    "message": "{n}. bölme görünümü",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_panel_37e5": {
+    "message": "Panel"
+  },
+  "f_permanently_removes_all_summ_228d": {
+    "message": "Tüm özetleri ve arşivi kalıcı olarak siler. Önce yedeği dışa aktarın."
+  },
+  "f_persist_optional_29ce": {
+    "message": "Kalıcı yap (isteğe bağlı)"
+  },
+  "f_pick_a_name_for_your_show_46b5": {
+    "message": "Programınıza bir ad seçin:"
+  },
+  "f_please_configure_your_kindle_186c": {
+    "message": "Lütfen önce ayarlardan Kindle gönderim e-posta adresinizi yapılandırın."
+  },
+  "f_please_enter_a_license_key_49e8": {
+    "message": "Lütfen bir lisans anahtarı girin."
+  },
+  "f_please_enter_a_valid_email_0a86": {
+    "message": "Lütfen geçerli bir e-posta girin."
+  },
+  "f_please_enter_the_verificatio_ac88": {
+    "message": "Lütfen doğrulama kodunu girin."
+  },
+  "f_podcast_name_1b92": {
+    "message": "Podcast Adı"
+  },
+  "f_podcast_length_minutes_c389": {
+    "message": "Podcast uzunluğu (dakika):"
+  },
+  "f_podcast_style_61d0": {
+    "message": "Podcast stili:"
+  },
+  "f_positive_tone_6466": {
+    "message": "Olumlu ton"
+  },
+  "f_prefer_the_terminal_run_olla_806f": {
+    "message": "Terminal mi tercih edersiniz? Ollama'yı ön plan penceresinde doğrudan çalıştırın:"
+  },
+  "f_preferred_cloud_model_5f82": {
+    "message": "Tercih Edilen Bulut Modeli"
+  },
+  "f_preferred_cloud_model_d302": {
+    "message": "Tercih edilen bulut modeli"
+  },
+  "f_preparing_kindle_delivery_491b": {
+    "message": "Kindle gönderimi hazırlanıyor... ⏳"
+  },
+  "f_preset_and_custom_prompt_3b14": {
+    "message": "Hazır ve özel istem"
+  },
+  "f_preset_prompt_aba8": {
+    "message": "Hazır istem"
+  },
+  "f_preset_4569": {
+    "message": "Hazır ayar: {name}",
+    "description": "Placeholders: {name} (keep as is)"
+  },
+  "f_press_b_win_r_b_type_code_cm_0167": {
+    "message": "<b>Win + R</b> tuşlarına basın, <code>cmd</code> yazıp Enter'a basın."
+  },
+  "f_pro_active_e0af": {
+    "message": "Pro Etkin ✓"
+  },
+  "f_pro_license_key_d198": {
+    "message": "Pro Lisans Anahtarı"
+  },
+  "f_pro_license_key_d718": {
+    "message": "Pro lisans anahtarı"
+  },
+  "f_prompts_7bf8": {
+    "message": "İstemler"
+  },
+  "f_provider_88dc": {
+    "message": "Sağlayıcı"
+  },
+  "f_questions_bugs_or_happy_feel_0fb2": {
+    "message": "Sorular, hatalar ya da memnuniyet mi? 💡 Çekinmeyin:"
+  },
+  "f_quick_test_terminal_ba7b": {
+    "message": "Hızlı test (terminal)"
+  },
+  "f_quit_ollama_1194": {
+    "message": "Ollama'dan Çık"
+  },
+  "f_rate_items_with_the_recap_131d": {
+    "message": "Öğeleri derlemeyle puanla"
+  },
+  "f_reader_4efa": {
+    "message": "Okuyucu 👓"
+  },
+  "f_reading_highlighting_67a3": {
+    "message": "Okuma & Vurgulama"
+  },
+  "f_reading_bundle_c191": {
+    "message": "Okuma paketi — {date} ({count})",
+    "description": "Placeholders: {date} {count} (keep as is)"
+  },
+  "f_reading_page_0cb0": {
+    "message": "Sayfa okunuyor..."
+  },
+  "f_recent_models_20ec": {
+    "message": "Son modeller"
+  },
+  "f_regular_f2b7": {
+    "message": "Normal"
+  },
+  "f_remove_device_c1ed": {
+    "message": "Cihazı kaldır"
+  },
+  "f_resets_all_preferences_promp_a294": {
+    "message": "Bu cihazdaki tüm tercihleri, istemleri ve anahtarları sıfırlar. Geçmişiniz kalır."
+  },
+  "f_restart_ollama_a4f2": {
+    "message": "Ollama'yı yeniden başlat"
+  },
+  "f_right_click_the_ollama_tray__e7eb": {
+    "message": "Ollama tepsi simgesine (sağ altta) sağ tıklayın ve <b>Quit</b> seçeneğini seçin."
+  },
+  "f_run_ollama_as_a_foreground_s_b2e2": {
+    "message": "Ollama'yı aynı pencerede ön plan sunucusu olarak çalıştırın:"
+  },
+  "f_run_this_command_so_ollama_s_22ad": {
+    "message": "Mac uygulaması yeniden başladıktan sonra da Ollama'nın yapılandırılmış kalması için bu komutu çalıştırın:"
+  },
+  "f_run_this_so_the_running_serv_741a": {
+    "message": "Çalışan sunucunun her kaynaktan gelen isteği kabul etmesi için bunu çalıştırın:"
+  },
+  "f_runs_entirely_in_your_browse_6c55": {
+    "message": "Tamamen tarayıcınızda çalışır — hiçbir veri dışarı çıkmaz."
+  },
+  "f_saved_for_later_516d": {
+    "message": "Sonra İçin Kaydedildi"
+  },
+  "f_saved_549a": {
+    "message": "Kaydedildi! ✓"
+  },
+  "f_scan_failed_enter_ip_manuall_ec5d": {
+    "message": "Tarama başarısız. IP'yi elle girin."
+  },
+  "f_scanning_96ac": {
+    "message": "Taranıyor..."
+  },
+  "f_search_cloud_models_4424": {
+    "message": "Bulut modellerinde ara…"
+  },
+  "f_search_languages_1344": {
+    "message": "Dil ara…"
+  },
+  "f_searching_cloud_f50c": {
+    "message": "Bulut aranıyor..."
+  },
+  "f_searching_lan_for_localsend__08f3": {
+    "message": "Yerel ağda LocalSend alıcısı aranıyor..."
+  },
+  "f_select_up_to_5_articles_dcb7": {
+    "message": "En fazla 5 makale seçin:"
+  },
+  "f_send_share_bb4a": {
+    "message": "Gönder & Paylaş"
+  },
+  "f_send_magic_code_de19": {
+    "message": "Sihirli Kod Gönder"
+  },
+  "f_sending_to_localsend_over_wi_1626": {
+    "message": "Wi-Fi üzerinden LocalSend'e gönderiliyor... 🚀"
+  },
+  "f_sending_6e8d": {
+    "message": "Gönderiliyor..."
+  },
+  "f_sent_successfully_56fa": {
+    "message": "Başarıyla gönderildi! 📖"
+  },
+  "f_sent_to_kindle_edc7": {
+    "message": "Kindle'a gönderildi! 📚"
+  },
+  "f_session_expired_generate_a_n_e957": {
+    "message": "Oturum süresi doldu. Yeni bir bookmarklet oluşturun."
+  },
+  "f_session_lost_please_request__23c2": {
+    "message": "Oturum kayboldu. Lütfen yeni bir kod isteyin."
+  },
+  "f_set_as_active_send_target_dc86": {
+    "message": "Etkin gönderim hedefi yap"
+  },
+  "f_set_up_ollama_on_linux_1b55": {
+    "message": "Linux'ta Ollama kurulumu"
+  },
+  "f_set_up_ollama_on_windows_a032": {
+    "message": "Windows'ta Ollama kurulumu"
+  },
+  "f_set_up_ollama_on_macos_48fa": {
+    "message": "macOS'ta Ollama kurulumu"
+  },
+  "f_settings_article_history_ce53": {
+    "message": "Ayarlar + Makale Geçmişi"
+  },
+  "f_settings_imported_successful_29eb": {
+    "message": "Ayarlar başarıyla içe aktarıldı! Eklenti şimdi yeniden yüklenecek."
+  },
+  "f_settings_only_750a": {
+    "message": "Yalnızca ayarlar"
+  },
+  "f_share_failed_4922": {
+    "message": "Paylaşılamadı: {message}",
+    "description": "Placeholders: {message} (keep as is)"
+  },
+  "f_share_cf08": {
+    "message": "Paylaş 🔗"
+  },
+  "f_sharing_is_not_supported_in__4599": {
+    "message": "Paylaşım bu tarayıcıda/ortamda desteklenmiyor."
+  },
+  "f_showing_top_tags_archive_is__900c": {
+    "message": "En çok kullanılan etiketler gösteriliyor (arşiv büyük)"
+  },
+  "f_sign_in_sign_up_via_email_0cc4": {
+    "message": "E-postayla Giriş Yap / Kaydol"
+  },
+  "f_sign_in_to_unlock_free_cloud_f976": {
+    "message": "Ücretsiz bulut modellerini açmak ve özetlerinizi eşitlemek için giriş yapın ya da kendi API anahtarlarınızı kullanın."
+  },
+  "f_signed_in_byphil_cloud_f9ba": {
+    "message": "Giriş yapıldı · byPhil Cloud"
+  },
+  "f_solo_976a": {
+    "message": "Tekli"
+  },
+  "f_something_went_wrong_please__7745": {
+    "message": "Bir şeyler ters gitti — lütfen tekrar deneyin."
+  },
+  "f_sources_rename_tags_mute_0bbe": {
+    "message": "Kaynaklar · yeniden adlandır · etiketler · sessize al"
+  },
+  "f_start_ollama_136b": {
+    "message": "Ollama'yı başlat"
+  },
+  "f_start_ollama_with_the_global_26bb": {
+    "message": "Herhangi bir kaynağın bağlanabilmesi için Ollama'yı genel joker karakterle başlatın:"
+  },
+  "f_stop_ollama_b489": {
+    "message": "Ollama'yı durdur"
+  },
+  "f_storytelling_6d0b": {
+    "message": "Hikâye anlatımı"
+  },
+  "f_style_fba4": {
+    "message": "Stil:"
+  },
+  "f_successfully_connected_ec77": {
+    "message": "Başarıyla bağlandı! 🧙"
+  },
+  "f_summarizing_4c71": {
+    "message": "Özetleniyor..."
+  },
+  "f_summary_language_a8df": {
+    "message": "Özet Dili"
+  },
+  "f_summary_length_2b31": {
+    "message": "Özet Uzunluğu"
+  },
+  "f_summary_mode_5ce6": {
+    "message": "Özet Modu"
+  },
+  "f_switch_graph_search_to_filte_7f9d": {
+    "message": "Grafik aramasını filtre moduna geçir"
+  },
+  "f_switch_graph_search_to_highl_0b23": {
+    "message": "Grafik aramasını vurgulama moduna geçir"
+  },
+  "f_system_default_c329": {
+    "message": "Sistem Varsayılanı"
+  },
+  "f_tts_returned_no_audio_5fb4": {
+    "message": "TTS ses döndürmedi."
+  },
+  "f_theme_7c92": {
+    "message": "Tema"
+  },
+  "f_theme_language_side_panel_2503": {
+    "message": "Tema · dil · kenar paneli"
+  },
+  "f_this_permanently_removes_and_fdfc": {
+    "message": "Bu işlem {what} ve arşivi bu cihazdan kalıcı olarak siler. Geri alınamaz.",
+    "description": "Placeholders: {what} (keep as is)"
+  },
+  "f_this_resets_every_preference_d3b3": {
+    "message": "Bu işlem bu cihazdaki tüm tercihleri, istemleri ve API anahtarlarını sıfırlar. Özetleriniz kalır. Eklenti yeniden yüklenecek."
+  },
+  "f_this_will_invalidate_the_cur_4995": {
+    "message": "Bu işlem mevcut kodu geçersiz kılar. Devam edilsin mi?"
+  },
+  "f_transfer_failed_6750": {
+    "message": "Aktarım başarısız: {message}",
+    "description": "Placeholders: {message} (keep as is)"
+  },
+  "f_type_to_confirm_b0b8": {
+    "message": "Onaylamak için {word} yazın",
+    "description": "Placeholders: {word} (keep as is)"
+  },
+  "f_ui_language_08b7": {
+    "message": "Arayüz Dili"
+  },
+  "f_ui_language_b097": {
+    "message": "Arayüz dili"
+  },
+  "f_unavailable_aaa9": {
+    "message": "Kullanılamıyor"
+  },
+  "f_unknown_error_2b43": {
+    "message": "Bilinmeyen hata"
+  },
+  "f_upgrade_to_pro_pass_b708": {
+    "message": "Pro Pass'e Yükselt"
+  },
+  "f_use_as_custom_language_code_ed4f": {
+    "message": "\"{name}\" değerini özel dil kodu olarak kullan",
+    "description": "Placeholders: {name} (keep as is)"
+  },
+  "f_use_native_chrome_side_panel_1544": {
+    "message": "Chrome Yerel Kenar Panelini Kullan"
+  },
+  "f_used_for_send_to_kindle_deli_25f4": {
+    "message": "Kindle'a Gönder teslimatı için kullanılır. Ekleyin:"
+  },
+  "f_verify_log_in_6f6f": {
+    "message": "Doğrula & Giriş Yap"
+  },
+  "f_verify_login_274f": {
+    "message": "Doğrula & Giriş Yap"
+  },
+  "f_verifying_174a": {
+    "message": "Doğrulanıyor..."
+  },
+  "f_version_github_fae0": {
+    "message": "Sürüm & GitHub"
+  },
+  "f_view_copy_1953": {
+    "message": "Gör & Kopyala"
+  },
+  "f_view_filtered_f87d": {
+    "message": "Görünüm: Filtrelenmiş"
+  },
+  "f_view_highlighted_ab8f": {
+    "message": "Görünüm: Vurgulanmış"
+  },
+  "f_welcome_to_ai_summary_helper_892e": {
+    "message": "AI Summary Helper'a hoş geldiniz"
+  },
+  "f_well_connected_1033": {
+    "message": "Bağlantılı"
+  },
+  "f_what_to_export_3317": {
+    "message": "Neler dışa aktarılsın?"
+  },
+  "f_wrong_email_go_back_ba6a": {
+    "message": "E-posta yanlış mı? Geri dön"
+  },
+  "f_you_re_ready_to_generate_you_ff41": {
+    "message": "Podcast'inizi oluşturmaya hazırsınız!"
+  },
+  "f_a_donation_8832": {
+    "message": "bağış yapın"
+  },
+  "f_all_summaries_c680": {
+    "message": "tüm özetler"
+  },
+  "f_byphil_cloud_17f0": {
+    "message": "byPhil Cloud"
+  },
+  "f_contact_me_639b": {
+    "message": "benimle iletişime geçin"
+  },
+  "f_contribute_on_github_5ab8": {
+    "message": "GitHub'da katkıda bulunun 💙"
+  },
+  "f_e_g_192_168_1_142_a9e2": {
+    "message": "ör. 192.168.1.142"
+  },
+  "f_e_g_gpt_5_mini_llama3_2_f390": {
+    "message": "ör. gpt-5-mini, llama3.2"
+  },
+  "f_for_unlimited_zero_config_su_82c0": {
+    "message": "sınırsız, sıfır yapılandırmalı özetler için."
+  },
+  "f_from_8075": {
+    "message": "kaynağı:"
+  },
+  "f_give_feedback_9abb": {
+    "message": "geri bildirim verin"
+  },
+  "f_instead_of_https_which_can_b_69d5": {
+    "message": "hatalı olabilen HTTPS yerine."
+  },
+  "f_no_longer_updated_c5c8": {
+    "message": "artık güncellenmiyor"
+  },
+  "f_off_8a0a": {
+    "message": "kapalı"
+  },
+  "f_on_2fd0": {
+    "message": "açık"
+  },
+  "f_one_site_per_line_e_g_linked_ac34": {
+    "message": "satır başına bir site, ör. linkedin.com"
+  },
+  "f_or_consider_a223": {
+    "message": "ya da şunu düşünün:"
+  },
+  "f_shared_tag_3ab4": {
+    "message": "ortak etiket"
+  },
+  "f_similar_content_784b": {
+    "message": "benzer içerik"
+  },
+  "f_to_your_kindle_s_approved_se_5305": {
+    "message": "önce Kindle'ınızın onaylı gönderenler listesine —"
+  },
+  "f_curated_from_your_ai_summary_4f55": {
+    "message": "{count}, AI Summary Helper arşivinizden derlendi.",
+    "description": "Placeholders: {count} (keep as is)"
+  },
+  "f_tone_f081": {
+    "message": "{label} ton",
+    "description": "Placeholders: {label} (keep as is)"
+  },
+  "f_grade_6dba": {
+    "message": "{label} · seviye {grade}",
+    "description": "Placeholders: {label} {grade} (keep as is)"
+  },
+  "f_api_key_missing_add_it_in_se_f64a": {
+    "message": "{name} · API anahtarı eksik — Ayarlar'dan ekleyin",
+    "description": "Placeholders: {name} (keep as is)"
+  },
+  "f_api_key_set_5c36": {
+    "message": "{name} · API anahtarı ayarlandı",
+    "description": "Placeholders: {name} (keep as is)"
+  },
+  "f_local_no_api_key_8d7e": {
+    "message": "{name} · yerel, API anahtarı yok",
+    "description": "Placeholders: {name} (keep as is)"
+  },
+  "f_article_not_shown_bbad": {
+    "message": "{n} makale gösterilmiyor",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_articles_not_shown_c1f2": {
+    "message": "{n} makale gösterilmiyor",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_duplicate_tag_1abe": {
+    "message": "{n} yinelenen etiket",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_duplicate_tags_30b7": {
+    "message": "{n} yinelenen etiket",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_min_4e03": {
+    "message": "{n} dk",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_panes_2444": {
+    "message": "{n} bölme",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_rarely_used_tag_hidden_a4dc": {
+    "message": "{n} az kullanılan etiket gizli",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_rarely_used_tags_hidden_3423": {
+    "message": "{n} az kullanılan etiket gizli",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_unopened_30d_61af": {
+    "message": "{n} açılmamış 30g+",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_similar_e273": {
+    "message": "%{n} benzer",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_min_read_b555": {
+    "message": "~{n} dk okuma",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_feel_free_to_c446": {
+    "message": "— Çekinmeyin:"
+  },
+  "f_summarizing_2ba2": {
+    "message": "⏳ Özetleniyor…"
+  },
+  "f_settings_eb9e": {
+    "message": "⚙️ Ayarlar"
+  },
+  "f_danger_zone_01e3": {
+    "message": "⚠️ Tehlikeli bölge"
+  },
+  "f_you_must_be_logged_into_byph_022c": {
+    "message": "⚠️ Bookmarklet oluşturmak için önce byphil Cloud'a giriş yapmalısınız."
+  },
+  "f_page_highlighting_6dce": {
+    "message": "✏️ Sayfa Vurgulama"
+  },
+  "f_tags_already_look_consistent_6bfe": {
+    "message": "✓ Etiketler zaten tutarlı görünüyor — birleştirilecek bir şey yok."
+  },
+  "f_updated_merged_c21c": {
+    "message": "✓ {a} güncellendi, {b} birleştirildi.",
+    "description": "Placeholders: {a} {b} (keep as is)"
+  },
+  "f_ai_ghost_highlighting_6c00": {
+    "message": "✨ AI Hayalet Vurgulama"
+  },
+  "f_back_to_history_9fd8": {
+    "message": "⬅ Geçmiş'e dön"
+  },
+  "f_bring_your_own_key_9713": {
+    "message": "💻 Kendi anahtarını getir"
+  },
+  "f_backup_restore_4d14": {
+    "message": "💾 Yedekle & geri yükle"
+  },
+  "f_original_content_d1c6": {
+    "message": "📄 Orijinal İçerik"
+  },
+  "f_free_tier_limit_reached_3_se_43a3": {
+    "message": "📚 Ücretsiz katman sınırına ulaşıldı (3 gönderim).\n\nSınırsız Kindle gönderimi için Pro'ya yükseltin.\n\nhttps://philwornath.com/links"
+  },
+  "f_send_to_kindle_free_tier_3_k_821d": {
+    "message": "📚 Kindle'a Gönder\n\nÜcretsiz katman: 3 Kindle gönderimi dahil.\nSınırsız için Pro'ya yükseltin.\n\nkindle@byphil.eu adresinin Kindle onaylı gönderenler listenizde olduğundan emin olun (Amazon yardımına bakın).\n\nBu makale Kindle'a gönderilsin mi?"
+  },
+  "f_your_highlights_694b": {
+    "message": "📝 Vurgularınız"
+  },
+  "f_export_6eba": {
+    "message": "📤 Dışa Aktar"
+  },
+  "f_import_d884": {
+    "message": "📥 İçe Aktar"
+  },
+  "f_koreader_localsend_a1c0": {
+    "message": "📱 KOReader / LocalSend"
+  },
+  "f_connecting_to_proxy_metrics_32c8": {
+    "message": "🔄 Proxy metriklerine bağlanılıyor..."
+  },
+  "f_keep_this_private_this_bookm_3463": {
+    "message": "🔒 Gizli tutun: Bu bookmarklet kişisel bulut jetonunuzu içerir. Başkalarıyla paylaşmayın. Jetonunuzun süresi dolarsa buraya dönüp yenisini oluşturun."
+  },
+  "f_stored_locally_in_your_brows_3133": {
+    "message": "🔒 Tarayıcınızda yerel olarak saklanır."
+  },
+  "f_bookmarklet_generator_23fa": {
+    "message": "🔖 Bookmarklet Oluşturucu"
+  },
+  "f_similar_in_your_archive_f3e8": {
+    "message": "🔗 Arşivinizdeki benzerler"
+  },
+  "f_your_archive_is_as_empty_as__15fc": {
+    "message": "🗂️ Arşiviniz çöl kadar boş! Doldurmak için birkaç makale kaydetmeye başlayın. 🌵"
+  },
+  "f_ai_suggested_highlights_ebbc": {
+    "message": "🤖 AI'ın önerdiği vurgular"
+  },
+  "f_ai_summary_c72e": {
+    "message": "🧙 AI Özeti"
+  },
+  "f_on_device_tools_d85a": {
+    "message": "🧠 Cihaz içi araçlar"
+  },
+  "f_clean_up_4346": {
+    "message": "🧹 Temizle"
+  },
+  "f_generate_bookmarklet_280f": {
+    "message": "🪄 Bookmarklet Oluştur"
+  },
+  "f_intro_skipped_the_digest_goe_15e9": {
+    "message": "Giriş atlandı — Digest onsuz gönderilir"
+  },
+  "f_ask_dafd": {
+    "message": "💬 Sor"
+  },
+  "f_replies_1cd4": {
+    "message": "💬 {n} yanıt",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_reply_2ae0": {
+    "message": "💬 {n} yanıt",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_not_a_paper_5823": {
+    "message": "Makale değil"
+  },
+  "f_not_peer_reviewed_e184": {
+    "message": "⚠ Hakemli değil"
+  },
+  "f_likely_paper_c67e": {
+    "message": "🎓 Muhtemelen bilimsel makale"
+  },
+  "f_mark_as_paper_1769": {
+    "message": "🎓 Bilimsel makale olarak işaretle"
+  },
+  "f_paper_b2da": {
+    "message": "🎓 Bilimsel makale"
+  },
+  "f_paper_doi_c956": {
+    "message": "🎓 Bilimsel makale · DOI ✓"
+  },
+  "f_preprint_aa9c": {
+    "message": "🎓 Ön baskı"
+  },
+  "f_design_02ef": {
+    "message": "Tasarım"
+  },
+  "f_limitations_7ff6": {
+    "message": "Sınırlamalar"
+  },
+  "f_preprints_9516": {
+    "message": "Ön baskılar"
+  },
+  "f_research_b9ec": {
+    "message": "Araştırma"
+  },
+  "f_reviews_1576": {
+    "message": "Derlemeler"
+  },
+  "f_sample_8fc7": {
+    "message": "Örneklem"
+  },
+  "f_trial_6b73": {
+    "message": "Deney"
+  },
+  "f_trials_7100": {
+    "message": "Deneyler"
+  },
+  "f_no_key_facts_found_b926": {
+    "message": "Önemli gerçek bulunamadı"
+  },
+  "f_nothing_to_analyse_cee2": {
+    "message": "Analiz edilecek bir şey yok"
+  },
+  "f_key_facts_4b46": {
+    "message": "🔎 Önemli gerçekler"
+  },
+  "f_adds_each_summary_under_its__b17f": {
+    "message": "Her özeti kendi kaynağının altına ekler"
+  },
+  "f_citation_lookup_failed_try_a_bb2e": {
+    "message": "Atıf sorgulanamadı — tekrar deneyin"
+  },
+  "f_citation_unavailable_no_doi__fd25": {
+    "message": "Atıf yok — DOI bulunamadı"
+  },
+  "f_copy_list_d774": {
+    "message": "Listeyi kopyala"
+  },
+  "f_download_bib_ef28": {
+    "message": ".bib indir"
+  },
+  "f_download_ris_a55b": {
+    "message": ".ris indir"
+  },
+  "f_download_txt_fdbd": {
+    "message": ".txt indir"
+  },
+  "f_get_citation_9c44": {
+    "message": "Atıf al"
+  },
+  "f_include_my_summaries_aadf": {
+    "message": "Özetlerimi ekle"
+  },
+  "f_looking_up_citations_at_doi__563a": {
+    "message": "Atıflar doi.org'da aranıyor — yalnızca DOI'ler gönderilir…"
+  },
+  "f_looking_up_abff": {
+    "message": "Aranıyor…"
+  },
+  "f_looks_the_citation_up_at_doi_346c": {
+    "message": "Atıfı doi.org'da arar. Yalnızca DOI gönderilir."
+  },
+  "f_no_citations_available_the_s_3944": {
+    "message": "Atıf yok — seçilen makalelerin DOI'si yok veya sorgu başarısız oldu."
+  },
+  "f_open_doi_0f60": {
+    "message": "DOI'yi aç ↗"
+  },
+  "f_reference_list_fdba": {
+    "message": "Kaynakça"
+  },
+  "f_source_doi_org_4492": {
+    "message": "Kaynak: doi.org"
+  },
+  "f_paper_cb4d": {
+    "message": "{n} bilimsel makale",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_paper_skipped_no_doi_or_look_2c1b": {
+    "message": "{n} bilimsel makale atlandı (DOI yok veya sorgu başarısız)",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_papers_f29a": {
+    "message": "{n} bilimsel makale",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_papers_skipped_no_doi_or_loo_a334": {
+    "message": "{n} bilimsel makale atlandı (DOI yok veya sorgu başarısız)",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_cite_aef3": {
+    "message": "❝ Atıf"
+  },
+  "f_attach_a_pdf_to_summarize_b6ff": {
+    "message": "Özetlemek için PDF ekle"
+  },
+  "f_could_not_read_this_pdf_f579": {
+    "message": "Bu PDF okunamadı."
+  },
+  "f_pdf_words_3a21": {
+    "message": "PDF · {n} kelime",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_reading_pdf_926d": {
+    "message": "PDF okunuyor…"
+  },
+  "f_remove_attachment_3512": {
+    "message": "Eki kaldır"
+  },
+  "f_this_pdf_has_no_selectable_t_24aa": {
+    "message": "Bu PDF'de seçilebilir metin yok (muhtemelen tarama). Metin tanıma henüz desteklenmiyor."
+  },
+  "f_this_pdf_is_password_protect_2a96": {
+    "message": "Bu PDF parola korumalı."
+  },
+  "f_this_pdf_is_too_large_limit__7b27": {
+    "message": "Bu PDF çok büyük (sınır 80 MB)."
+  },
+  "f_this_file_is_not_a_readable__9ad5": {
+    "message": "Bu dosya okunabilir bir PDF değil."
+  },
+  "f_this_tab_still_runs_an_older_4693": {
+    "message": "Bu sekme hâlâ eklentinin eski bir sürümünü çalıştırıyor. Sekmeyi yenileyin (F5) ve tekrar deneyin."
+  },
+  "f_tag_97fe": {
+    "message": "+ Etiket"
+  },
+  "f_add_tag_1116": {
+    "message": "Etiket ekle…"
+  },
+  "f_remove_tag_e50d": {
+    "message": "Etiketi kaldır"
+  },
+  "f_doi_bad6": {
+    "message": "DOI ↗"
+  },
+  "f_opinion_63bd": {
+    "message": "Görüş"
+  },
+  "f_reference_c33a": {
+    "message": "Başvuru"
+  },
+  "f_tutorial_694f": {
+    "message": "Eğitim"
+  },
+  "f_research_paper_a6a3": {
+    "message": "🎓 Araştırma makalesi"
+  },
+  "f_read_1d4f": {
+    "message": "Oku 👓"
+  },
+  "f_atkinson_hyperlegible_design_954e": {
+    "message": "Atkinson Hyperlegible, az gören kullanıcılar için tasarlandı. Yalnızca Latin alfabeleri."
+  },
+  "f_compact_ad86": {
+    "message": "Sıkışık"
+  },
+  "f_currently_following_your_sys_635d": {
+    "message": "Şu anda sisteminizi izliyor: kapalı"
+  },
+  "f_currently_following_your_sys_8e59": {
+    "message": "Şu anda sisteminizi izliyor: {theme}",
+    "description": "Placeholders: {theme} (keep as is)"
+  },
+  "f_display_d9b5": {
+    "message": "Görüntü"
+  },
+  "f_easy_read_font_b69f": {
+    "message": "Kolay okunur yazı tipi"
+  },
+  "f_high_contrast_9fd1": {
+    "message": "Yüksek karşıtlık"
+  },
+  "f_line_spacing_d3de": {
+    "message": "Satır aralığı"
+  },
+  "f_motion_layout_e4f1": {
+    "message": "Hareket & düzen"
+  },
+  "f_normal_2772": {
+    "message": "Normal"
+  },
+  "f_reduce_motion_ecc7": {
+    "message": "Hareketi azalt"
+  },
+  "f_relaxed_38bc": {
+    "message": "Geniş"
+  },
+  "f_text_2d5e": {
+    "message": "Metin"
+  },
+  "f_text_size_1143": {
+    "message": "Metin boyutu"
+  },
+  "f_the_quick_brown_fox_jumps_ov_fd42": {
+    "message": "The quick brown fox jumps over the lazy dog. Özetler bu boyutu ve aralığı kullanır."
+  },
+  "f_your_system_already_asks_for_8b6f": {
+    "message": "Sisteminiz zaten azaltılmış hareket istiyor — bu her zaman dikkate alınır."
+  },
+  "f_paper_details_facts_cite_doi_245b": {
+    "message": "🎓 Makale ayrıntıları · Gerçekler · Atıf · DOI"
+  },
+  "f_dark_0065": {
+    "message": "Koyu"
+  },
+  "f_light_f8cf": {
+    "message": "Açık"
+  },
+  "f_system_84bc": {
+    "message": "Sistem"
+  },
+  "f_125_text_relaxed_spacing_683b": {
+    "message": "%125 metin, geniş aralık"
+  },
+  "f_accessibility_profile_c8b6": {
+    "message": "Erişilebilirlik profili"
+  },
+  "f_calm_cf36": {
+    "message": "Sakin"
+  },
+  "f_customize_text_size_spacing__1b1e": {
+    "message": "Metin boyutunu, aralığı, yazı tipini ve hareketi özelleştir"
+  },
+  "f_dark_text_on_white_thick_out_25a0": {
+    "message": "Beyaz üzerinde koyu metin, kalın çerçeveler"
+  },
+  "f_default_307e": {
+    "message": "Varsayılan"
+  },
+  "f_following_your_system_49c8": {
+    "message": "Sistemi izliyor: {summary}",
+    "description": "Placeholders: {summary} (keep as is)"
+  },
+  "f_follows_system_62e2": {
+    "message": "Sistemi izler"
+  },
+  "f_large_text_b73b": {
+    "message": "Büyük metin"
+  },
+  "f_motion_on_b930": {
+    "message": "Hareket açık"
+  },
+  "f_motion_reduced_d819": {
+    "message": "Hareket azaltıldı"
+  },
+  "f_no_animation_everything_stay_6e0d": {
+    "message": "Animasyon yok, her şey sabit kalır"
+  },
+  "f_your_settings_8f2d": {
+    "message": "Ayarlarınız: {summary}",
+    "description": "Placeholders: {summary} (keep as is)"
+  },
+  "f_sent_to_f63d": {
+    "message": "{model} modeline gönderildi",
+    "description": "Placeholders: {model} (keep as is)"
+  },
+  "f_the_model_d5c1": {
+    "message": "model"
+  },
+  "f_waiting_s_f51e": {
+    "message": "{s} sn bekleniyor",
+    "description": "Placeholders: {s} (keep as is)"
+  },
+  "f_tag_doi_0e8f": {
+    "message": "+ Etiket / DOI"
+  },
+  "f_code_launchctl_setenv_code_i_40cc": {
+    "message": "<code>launchctl setenv</code> Mac'iniz yeniden başlatılınca unutulur. Bu oturum açma öğesi, her seferinde yeniden ayarlar:"
+  },
+  "f_add_tag_or_doi_adf9": {
+    "message": "Etiket veya DOI ekle…"
+  },
+  "f_allow_browser_extensions_eb1c": {
+    "message": "Tarayıcı eklentilerine izin ver"
+  },
+  "f_allow_browser_extensions_per_01b9": {
+    "message": "Tarayıcı eklentilerine izin ver (kalıcı)"
+  },
+  "f_apply_it_e25a": {
+    "message": "Uygulayın:"
+  },
+  "f_check_it_9a90": {
+    "message": "Kontrol edin"
+  },
+  "f_filter_on_articles_shown_d49a": {
+    "message": "Filtre: {tag}. {n} makale gösteriliyor.",
+    "description": "Placeholders: {tag} {n} (keep as is)"
+  },
+  "f_filter_shortcuts_2922": {
+    "message": "Kısayolları filtrele…"
+  },
+  "f_focus_search_53f5": {
+    "message": "Aramaya odaklan"
+  },
+  "f_graph_of_your_archive_tags_a_5bb5": {
+    "message": "Arşivinizin grafiği. {tags} etiket, {articles} makale. Liste görünümü için L tuşuna basın.",
+    "description": "Placeholders: {tags} {articles} (keep as is)"
+  },
+  "f_graph_view_6d78": {
+    "message": "Grafik görünümü"
+  },
+  "f_keyboard_shortcuts_ddb7": {
+    "message": "Klavye kısayolları"
+  },
+  "f_list_view_tags_press_tab_to__0df8": {
+    "message": "Liste görünümü: {tags} etiket. Gezinmek için Tab, filtrelemek için Enter'a basın.",
+    "description": "Placeholders: {tags} (keep as is)"
+  },
+  "f_lists_df96": {
+    "message": "Listeler"
+  },
+  "f_make_it_permanent_79f6": {
+    "message": "Kalıcı yap"
+  },
+  "f_new_summary_da1d": {
+    "message": "Yeni özet"
+  },
+  "f_next_previous_card_c144": {
+    "message": "Sonraki / önceki kart"
+  },
+  "f_no_shortcuts_match_7564": {
+    "message": "Eşleşen kısayol yok"
+  },
+  "f_only_if_the_ollama_app_is_qu_1244": {
+    "message": "Yalnızca Ollama uygulaması kapalıysa (aksi halde “address already in use” hatası alırsınız; <code>lsof -i :11434</code> ile kontrol edin ve <code>pkill -x ollama</code> ile durdurun). Ollama'yı ön plan penceresinde çalıştırır:"
+  },
+  "f_open_10e9": {
+    "message": "Aç"
+  },
+  "f_open_the_service_override_wi_8200": {
+    "message": "Servis geçersiz kılmasını <code>sudo systemctl edit ollama.service</code> ile açın ve şunu ekleyin:"
+  },
+  "f_press_anywhere_outside_a_tex_59fd": {
+    "message": "Metin alanı dışında herhangi bir yerde ? tuşuna basın"
+  },
+  "f_restart_the_service_f7d4": {
+    "message": "Servisi yeniden başlatın"
+  },
+  "f_run_this_command_it_lets_ext_4270": {
+    "message": "Bu komutu çalıştırın. Yalnızca eklentilerin Ollama ile konuşmasına izin verir:"
+  },
+  "f_run_this_so_ollama_accepts_r_bda8": {
+    "message": "Ollama'nın tarayıcı eklentilerinden gelen istekleri kabul etmesi için bunu çalıştırın (kullanıcı hesabınız için kalıcı):"
+  },
+  "f_search_a2c9": {
+    "message": "Ara"
+  },
+  "f_start_ollama_again_from_the__d4f1": {
+    "message": "Ollama'yı Başlat menüsünden yeniden başlatın ya da yeni bir Komut İstemi penceresinden ön plan sunucusu olarak çalıştırın:"
+  },
+  "f_summarize_791a": {
+    "message": "Özetle"
+  },
+  "f_summarize_send_e76b": {
+    "message": "Özetle / gönder"
+  },
+  "f_switch_tab_793a": {
+    "message": "Sekme değiştir"
+  },
+  "f_tags_in_your_archive_23a4": {
+    "message": "Arşivinizdeki etiketler"
+  },
+  "f_without_systemd_run_ollama_i_914e": {
+    "message": "systemd olmadan Ollama'yı ön plan penceresinde çalıştırın:"
+  },
+  "f_you_should_see_code_200_code_00c7": {
+    "message": "<code>200</code> görmelisiniz. <code>403</code>, Ollama'nın ayarı henüz almadığı anlamına gelir: kapatıp yeniden başlatın."
+  },
+  "f_help_a3fa": {
+    "message": "yardım"
+  },
+  "f_linked_to_886c": {
+    "message": "{tags} ile bağlantılı",
+    "description": "Placeholders: {tags} (keep as is)"
+  },
+  "f_move_0014": {
+    "message": "taşı"
+  },
+  "f_open_c4c9": {
+    "message": "aç"
+  },
+  "f_search_28a9": {
+    "message": "ara"
+  },
+  "f_assign_doi_e263": {
+    "message": "🎓 DOI ata: {doi}",
+    "description": "Placeholders: {doi} (keep as is)"
+  },
+  "f_raise_the_context_length_in__0533": {
+    "message": "Ollama'da bağlam uzunluğunu artırın (OLLAMA_CONTEXT_LENGTH) veya daha uzun bağlamlı bir model kullanın."
+  },
+  "f_the_model_only_read_about_of_17a6": {
+    "message": "Model {b} token'ın yalnızca yaklaşık {a} kadarını okudu. Bağlam penceresi çok küçük olduğundan Ollama gerisini kesti.",
+    "description": "Placeholders: {a} {b} (keep as is)"
+  },
+  "f_read_in_parts_because_the_mo_a936": {
+    "message": "Modelin bağlam penceresi ({w} token) sayfanın tamamı için çok küçük olduğundan {n} parça halinde okundu.",
+    "description": "Placeholders: {n} {w} (keep as is)"
+  },
+  "f_long_page_a_local_model_read_5e0e": {
+    "message": "Uzun sayfa: yerel model önce hepsini okur, bu bir iki dakika sürebilir."
+  },
+  "f_sent_to_tokens_4c94": {
+    "message": "{model} modeline gönderildi · ~{n} token",
+    "description": "Placeholders: {model} {n} (keep as is)"
+  },
+  "f_sent_tokens_to_the_model_23c8": {
+    "message": "Modele ~{n} token gönderildi.",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_the_model_read_of_tokens_d199": {
+    "message": "Model {b} token'ın {a} kadarını okudu.",
+    "description": "Placeholders: {a} {b} (keep as is)"
+  },
+  "f_open_contents_long_texts_181e": {
+    "message": "İçindekileri aç (uzun metinler)"
+  },
+  "f_contents_67c3": {
+    "message": "İçindekiler"
+  },
+  "f_finished_reading_d4e7": {
+    "message": "Okuma bitti"
+  },
+  "f_from_6140": {
+    "message": "Kaynak: {site}.",
+    "description": "Placeholders: {site} (keep as is)"
+  },
+  "f_instant_read_374e": {
+    "message": "Anında okuma"
+  },
+  "f_listen_cec6": {
+    "message": "Dinle"
+  },
+  "f_mute_unmute_reading_7315": {
+    "message": "Okumayı sessize al / aç"
+  },
+  "f_next_sentence_2545": {
+    "message": "Sonraki cümle"
+  },
+  "f_no_voice_for_is_installed_on_5d22": {
+    "message": "Bu cihazda {lang} için yüklü ses yok.",
+    "description": "Placeholders: {lang} (keep as is)"
+  },
+  "f_off_b4aa": {
+    "message": "Kapalı"
+  },
+  "f_on_7df0": {
+    "message": "Açık"
+  },
+  "f_original_7692": {
+    "message": "Orijinal"
+  },
+  "f_previous_sentence_2c05": {
+    "message": "Önceki cümle"
+  },
+  "f_read_again_cc5d": {
+    "message": "Tekrar oku"
+  },
+  "f_read_aloud_a106": {
+    "message": "Sesli oku"
+  },
+  "f_reading_speed_33dc": {
+    "message": "Okuma hızı"
+  },
+  "f_reading_sentence_2a5f": {
+    "message": "Okunuyor · cümle {n}",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_scroll_to_top_19d6": {
+    "message": "Başa dön"
+  },
+  "f_speaks_the_title_and_site_fi_196b": {
+    "message": "Önce başlığı ve siteyi, ardından model yazarken özeti cümle cümle seslendirir."
+  },
+  "f_start_097f": {
+    "message": "Başlat"
+  },
+  "f_stop_reading_9af5": {
+    "message": "Okumayı durdur"
+  },
+  "f_the_voice_follows_the_langua_55b1": {
+    "message": "Ses, metnin dilini izler: Almanca bir makalenin İngilizce özeti İngilizce, orijinali Almanca okunur."
+  },
+  "f_voice_auto_8e1b": {
+    "message": "Ses · otomatik"
+  },
+  "f_voice_it_follows_the_summary_2f51": {
+    "message": "Ses: {voice} · {lang}. Özet dilini izler; başlık ve site uygulama dilinde okunur.",
+    "description": "Placeholders: {voice} {lang} (keep as is)"
+  },
+  "f_add_model_id_e_g_gemma4_e2b_127a": {
+    "message": "Model kimliği ekle, ör. gemma4:e2b"
+  },
+  "f_4_digits_sent_to_e76c": {
+    "message": "4 hane, {email} adresine gönderildi",
+    "description": "Placeholders: {email} (keep as is)"
+  },
+  "f_no_password_we_email_you_a_s_c006": {
+    "message": "Parola yok. Size kısa bir kod e-postalıyoruz."
+  },
+  "f_paste_works_it_signs_you_in__1f47": {
+    "message": "Yapıştırma çalışır. Son rakamdan sonra giriş yapar."
+  },
+  "f_resend_code_4dd7": {
+    "message": "Kodu yeniden gönder"
+  },
+  "f_send_me_a_code_a679": {
+    "message": "Bana kod gönder"
+  },
+  "f_enter_your_code_93a9": {
+    "message": "Kodunuzu girin"
+  },
+  "f_free_cloud_models_and_your_s_71ce": {
+    "message": "Ücretsiz bulut modelleri ve özetleriniz her cihazda. Ya da atlayıp kendi API anahtarınızı kullanın."
+  },
+  "f_sign_in_to_ai_summary_helper_d8be": {
+    "message": "AI Summary Helper'a giriş yapın"
+  },
+  "f_thinking_more_de1c": {
+    "message": "Daha çok düşünüyor…"
+  },
+  "f_dig_deeper_ab60": {
+    "message": "Derinleş"
+  },
+  "f_that_is_enough_6ac8": {
+    "message": "Yeter"
+  },
+  "f_attach_to_side_panel_ef8a": {
+    "message": "Kenar paneline ekle"
+  },
+  "f_detach_to_popup_c2f1": {
+    "message": "Açılır pencereye ayır"
+  },
+  "f_opens_the_extension_next_to__d369": {
+    "message": "Eklentiyi sayfanın yanında açar. Üstbilgideki 📌 Ekle ve ↙️ Ayır ile aynıdır."
+  },
+  "f_added_to_favorites_0693": {
+    "message": "Favorilere eklendi"
+  },
+  "f_article_deleted_c6e4": {
+    "message": "Makale silindi"
+  },
+  "f_check_again_fccf": {
+    "message": "Tekrar kontrol et"
+  },
+  "f_checking_ollama_5cf1": {
+    "message": "Ollama kontrol ediliyor…"
+  },
+  "f_could_not_save_this_page_try_07f3": {
+    "message": "Bu sayfa kaydedilemedi — sekmeyi yenilemeyi deneyin."
+  },
+  "f_installed_models_a979": {
+    "message": "Yüklü modeller"
+  },
+  "f_keep_it_in_history_no_ai_not_1052": {
+    "message": "Geçmiş'te sakla, AI yok, hiçbir şey gönderilmez"
+  },
+  "f_ollama_is_not_reachable_set__a39d": {
+    "message": "Ollama'ya ulaşılamıyor — Ayarlar'dan kurun"
+  },
+  "f_ollama_is_running_but_no_mod_5b49": {
+    "message": "Ollama çalışıyor ama henüz model yüklü değil. Bir terminalde indirin:"
+  },
+  "f_ollama_is_running_but_no_mod_43b7": {
+    "message": "Ollama çalışıyor ama model yüklü değil — şunu çalıştırın: ollama pull llama3.2"
+  },
+  "f_ollama_is_running_installed__4a57": {
+    "message": "Ollama çalışıyor. Yüklü modeller — kullanmak için birine tıklayın:"
+  },
+  "f_ollama_refused_the_request_o_90e2": {
+    "message": "Ollama isteği reddetti (OLLAMA_ORIGINS) — Ayarlar'a bakın"
+  },
+  "f_ollama_installed_63bc": {
+    "message": "Ollama · {n} yüklü",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_open_account_settings_781f": {
+    "message": "Hesap ayarlarını aç"
+  },
+  "f_open_model_settings_7865": {
+    "message": "Model ayarlarını aç"
+  },
+  "f_queued_it_will_start_when_th_cd8f": {
+    "message": "Sırada — mevcut özet bitince başlayacak"
+  },
+  "f_queued_4ebe": {
+    "message": "Sıraya alındı: {title}",
+    "description": "Placeholders: {title} (keep as is)"
+  },
+  "f_read_it_with_ai_b784": {
+    "message": "AI ile oku"
+  },
+  "f_remove_901d": {
+    "message": "Kaldır"
+  },
+  "f_removed_from_favorites_e270": {
+    "message": "Favorilerden çıkarıldı"
+  },
+  "f_save_only_82ca": {
+    "message": "Yalnızca kaydet"
+  },
+  "f_save_options_f4e6": {
+    "message": "Kaydetme seçenekleri"
+  },
+  "f_saved_without_an_ai_summary__ff94": {
+    "message": "AI özeti olmadan kaydedildi. Eklemek için sayfayı açıp ✨ Özetle'ye dokunun."
+  },
+  "f_search_installed_models_959b": {
+    "message": "Yüklü modellerde ara…"
+  },
+  "f_this_needs_your_account_log__3d3b": {
+    "message": "Bunun için hesabınız gerekir. Ayarlar'dan giriş yapın veya planınızı kontrol edin."
+  },
+  "f_this_page_can_t_be_saved_1029": {
+    "message": "Bu sayfa kaydedilemiyor."
+  },
+  "f_waiting_for_the_running_summ_1f1c": {
+    "message": "Çalışan özet bekleniyor — sıradan çıkarmak için tıklayın"
+  },
+  "f_your_api_key_is_missing_or_w_264b": {
+    "message": "API anahtarınız eksik veya reddedildi. Ayarlar'dan kontrol edin."
+  },
+  "f_starts_when_the_current_summ_b50e": {
+    "message": "mevcut özet bitince başlar"
+  },
+  "f_this_page_a108": {
+    "message": "bu sayfa"
+  },
+  "f_queued_7a3f": {
+    "message": "⏳ Sırada"
+  },
+  "f_saved_without_ai_6f86": {
+    "message": "📥 AI olmadan kaydedildi"
+  },
+  "f_saved_no_ai_f236": {
+    "message": "📥 Kaydedildi · AI yok"
+  },
+  "f_remove_limit_and_refresh_afec": {
+    "message": "Sınırı kaldır ve yenile"
+  },
+  "f_no_limit_f47d": {
+    "message": "Sınırsız"
+  },
+  "f_auto_efb6": {
+    "message": "Otomatik"
+  },
+  "f_auto_length_bias_09d7": {
+    "message": "Otomatik uzunluk eğilimi"
+  },
+  "f_batch_failed_f281": {
+    "message": "Parti {a}/{b} başarısız: {m}",
+    "description": "Placeholders: {a} {b} {m} (keep as is)"
+  },
+  "f_length_mode_0c88": {
+    "message": "Uzunluk modu"
+  },
+  "f_longer_8170": {
+    "message": "Daha uzun"
+  },
+  "f_scored_of_53f5": {
+    "message": "{b} içinden {a} puanlandı…",
+    "description": "Placeholders: {a} {b} (keep as is)"
+  },
+  "f_scoring_with_ai_4d82": {
+    "message": "AI ile puanlanıyor…"
+  },
+  "f_scoring_items_with_ai_in_the_17e2": {
+    "message": "{n} öğe arka planda AI ile puanlanıyor…",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_short_pages_get_a_few_senten_49e8": {
+    "message": "Kısa sayfalar birkaç cümle, uzun yazılar daha fazlasını alır. Makalenin yarısından uzun olmaz."
+  },
+  "f_shorter_67e6": {
+    "message": "Daha kısa"
+  },
+  "f_standard_ab68": {
+    "message": "Standart"
+  },
+  "f_summary_length_in_words_ab69": {
+    "message": "Özet uzunluğu (kelime)"
+  },
+  "f_items_could_not_be_scored_31d6": {
+    "message": "{n} öğe puanlanamadı",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_available_when_ollama_is_you_c49d": {
+    "message": "Ollama etkin modelinizse kullanılabilir. Tüm Akış kitaplığınızı kendi makinenizde küçük partiler halinde puanlar, kategorilere ayırır ve derler. Saatler sürebilir ama token harcamaz."
+  },
+  "f_done_61ad": {
+    "message": "Tamam."
+  },
+  "f_everything_in_your_library_i_47fb": {
+    "message": "Kitaplığınızdaki her şey puanlandı, kategorilere ayrıldı ve derlendi."
+  },
+  "f_process_the_whole_library_e3a9": {
+    "message": "Tüm kitaplığı işle"
+  },
+  "f_rating_and_categorizing_528d": {
+    "message": "Puanlanıyor ve kategorilere ayrılıyor…"
+  },
+  "f_runs_on_your_own_machine_wit_7a25": {
+    "message": "Ollama ile kendi makinenizde çalışır ve token harcamaz. Bu paneli açık tutun: kapatmak çalışmayı duraklatır, yeniden başlatınca kaldığı yerden devam eder. Yalnızca hâlâ saklanan öğeler işlenir (\"Öğeleri sakla\" bölümüne bakın). Bugünün derlemesi, açtığınızda yazılır."
+  },
+  "f_stop_7705": {
+    "message": "Durdur"
+  },
+  "f_stopped_starting_again_conti_40fc": {
+    "message": "Durduruldu. Yeniden başlatmak kaldığı yerden devam eder."
+  },
+  "f_whole_library_ollama_cc54": {
+    "message": "Tüm kitaplık · Ollama"
+  },
+  "f_writing_day_recaps_9c43": {
+    "message": "Günlük derlemeler yazılıyor…"
+  },
+  "f_about_h_min_64c7": {
+    "message": "yaklaşık {h} sa {m} dk",
+    "description": "Placeholders: {h} {m} (keep as is)"
+  },
+  "f_about_min_7cd9": {
+    "message": "yaklaşık {m} dk",
+    "description": "Placeholders: {m} (keep as is)"
+  },
+  "f_items_rated_days_recapped_fc36": {
+    "message": "{a} öğe puanlandı · {b} gün derlendi",
+    "description": "Placeholders: {a} {b} (keep as is)"
+  },
+  "f_items_to_rate_days_to_recap__44f6": {
+    "message": "{a} öğe puanlanacak · {b} gün derlenecek · {n} AI isteği",
+    "description": "Placeholders: {a} {b} {n} (keep as is)"
+  },
+  "f_recommended_44c5": {
+    "message": "{n} (önerilen)",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_failed_50a8": {
+    "message": "{n} başarısız",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_items_per_batch_dd39": {
+    "message": "📦 Parti başına öğe"
+  },
+  "f_6_hours_b222": {
+    "message": "6 saat"
+  },
+  "f_fetches_your_feeds_and_proce_43c2": {
+    "message": "Akışlar ekranı veya kenar paneli açıkken, aşağıdaki aralıkta akışlarınızı çeker ve yenileri işler"
+  },
+  "f_run_every_5657": {
+    "message": "⏱️ Çalışma sıklığı"
+  },
+  "f_process_new_items_automatica_f889": {
+    "message": "🔁 Yeni öğeleri otomatik işle"
+  },
+  "f_recap_is_ready_6da7": {
+    "message": "✨ {label} derlemesi hazır",
+    "description": "Placeholders: {label} (keep as is)"
+  },
+  "f_fetches_and_processes_new_it_f38a": {
+    "message": "Tarayıcınız çalışırken yeni öğeleri arka planda Ollama ile çeker ve işler. Bulut ve BYOK modelleri elle kalır."
+  },
+  "f_last_background_run_6ae5": {
+    "message": "Son arka plan çalışması: {time} · {result}",
+    "description": "Placeholders: {time} {result} (keep as is)"
+  },
+  "f_no_background_run_yet_fe7d": {
+    "message": "Henüz arka plan çalışması yok."
+  },
+  "f_items_rated_day_recaps_writt_ce24": {
+    "message": "{a} öğe puanlandı · {b} günlük derleme yazıldı",
+    "description": "Placeholders: {a} {b} (keep as is)"
+  },
+  "f_available_when_ollama_is_set_53ce": {
+    "message": "Ollama kurulduğunda kullanılabilir. Tüm Akış kitaplığınızı kendi makinenizde küçük partiler halinde puanlar, kategorilere ayırır ve derler. Saatler sürebilir ama token harcamaz."
+  },
+  "f_day_recap_of_batch_of_items_67b5": {
+    "message": "Günlük derleme {d}/{t} ({date}): parti {a}/{b} · {n} öğe",
+    "description": "Placeholders: {d} {t} {date} {a} {b} {n} (keep as is)"
+  },
+  "f_model_is_writing_46fc": {
+    "message": "Model yazıyor…"
+  },
+  "f_model_a2bb": {
+    "message": "Model: {m}",
+    "description": "Placeholders: {m} (keep as is)"
+  },
+  "f_process_the_feed_library_wit_fe42": {
+    "message": "Akış kitaplığını Ollama ile işle"
+  },
+  "f_process_the_whole_feed_libra_70c6": {
+    "message": "Tüm Akış kitaplığını işle (Ollama)"
+  },
+  "f_rates_categorizes_and_recaps_889d": {
+    "message": "Tüm akış öğelerinizi kendi makinenizde küçük partiler halinde puanlar, kategorilere ayırır ve derler. Token harcanmaz."
+  },
+  "f_rating_and_categorizing_batc_7a31": {
+    "message": "Puanlama ve kategorilere ayırma: parti {a}/{b} · {from}–{to} / {n} öğe",
+    "description": "Placeholders: {a} {b} {from} {to} {n} (keep as is)"
+  },
+  "f_reading_the_answer_4044": {
+    "message": "Yanıt okunuyor…"
+  },
+  "f_request_of_866e": {
+    "message": "İstek {a}/{b}",
+    "description": "Placeholders: {a} {b} (keep as is)"
+  },
+  "f_runs_on_your_own_machine_wit_1728": {
+    "message": "Özetler için başka bir model etkin olsa bile Ollama ile kendi makinenizde çalışır ve token harcamaz. Bu paneli açık tutun: kapatmak çalışmayı duraklatır, yeniden başlatınca kaldığı yerden devam eder. Yalnızca hâlâ saklanan öğeler işlenir (\"Öğeleri sakla\" bölümüne bakın). Bugünün derlemesi, açtığınızda yazılır."
+  },
+  "f_sending_the_batch_to_ollama_ac2f": {
+    "message": "Parti Ollama'ya gönderiliyor…"
+  },
+  "f_not_your_active_summary_mode_78a8": {
+    "message": "etkin özet modeliniz değil"
+  },
+  "f_left_db92": {
+    "message": "{eta} kaldı",
+    "description": "Placeholders: {eta} (keep as is)"
+  },
+  "f_elapsed_a2f5": {
+    "message": "{t} geçti",
+    "description": "Placeholders: {t} (keep as is)"
+  },
+  "f_changelog_8779": {
+    "message": "Değişiklik günlüğü"
+  },
+  "f_how_should_ai_summary_helper_b4d7": {
+    "message": "AI Summary Helper nasıl düşünsün?"
+  },
+  "f_local_models_no_account_no_k_a783": {
+    "message": "Yerel modeller. Hesap yok, anahtar yok, hiçbir şey makinenizden çıkmaz."
+  },
+  "f_my_own_api_key_6d80": {
+    "message": "Kendi API anahtarım"
+  },
+  "f_ollama_on_this_computer_3d59": {
+    "message": "Bu bilgisayarda Ollama"
+  },
+  "f_openai_gemini_mistral_deepse_813b": {
+    "message": "OpenAI, Gemini, Mistral, DeepSeek ve daha fazlası. Hesap yok, anahtar bu cihazda kalır."
+  },
+  "f_pick_one_you_can_change_it_a_a7d6": {
+    "message": "Birini seçin. Model ayarlarından istediğiniz zaman değiştirebilirsiniz; bir sayfayı özetleyene kadar hiçbir yere bir şey gönderilmez."
+  },
+  "f_privacy_policy_16ff": {
+    "message": "Gizlilik politikası"
+  },
+  "f_security_policy_699b": {
+    "message": "Güvenlik politikası"
+  },
+  "f_sign_in_with_your_email_no_a_5518": {
+    "message": "E-postanızla giriş yapın, API anahtarı gerekmez. Özetleriniz her cihazda yanınızda."
+  },
+  "f_tip_press_on_any_page_to_sum_8aff": {
+    "message": "İpucu: herhangi bir sayfada {key} tuşuna basarak özetleyin.",
+    "description": "Placeholders: {key} (keep as is)"
+  },
+  "f_free_cloud_models_3602": {
+    "message": "☁️ Ücretsiz bulut modelleri"
+  },
+  "f_api_keys_sign_in_license_e3f5": {
+    "message": "API anahtarları, giriş ve lisans"
+  },
+  "f_delete_all_data_2d9f": {
+    "message": "Tüm verileri sil"
+  },
+  "f_delete_all_data_d2e0": {
+    "message": "Tüm veriler silinsin mi?"
+  },
+  "f_delete_all_data_9a3b": {
+    "message": "Tüm verileri sil…"
+  },
+  "f_delete_history_02ab": {
+    "message": "Geçmiş silinsin mi?"
+  },
+  "f_delete_settings_275c": {
+    "message": "Ayarlar silinsin mi?"
+  },
+  "f_deleted_0f77": {
+    "message": "Silindi ✓"
+  },
+  "f_highlights_fa5c": {
+    "message": "Vurgular"
+  },
+  "f_kindle_localsend_targets_45b9": {
+    "message": "Kindle & LocalSend hedefleri"
+  },
+  "f_permanently_removes_your_sum_782d": {
+    "message": "Özetlerinizi, arşivi ve vurgularınızı bu cihazdan kalıcı olarak siler. İşaretlemediğiniz sürece ayarlar ve akışlar kalır. Geri alınamaz."
+  },
+  "f_permanently_removes_your_sum_2de7": {
+    "message": "Özetlerinizi, arşivi ve vurgularınızı kalıcı olarak siler. Ayarlar ve akışlar kalır. Önce yedeği dışa aktarın."
+  },
+  "f_preferences_prompts_d7ac": {
+    "message": "Tercihler & istemler"
+  },
+  "f_removes_everything_this_exte_cca4": {
+    "message": "Bu eklentinin bu cihazda sakladığı her şeyi siler ve sıfırdan başlatır. Geri alınamaz. Sunucumuzdaki hesabınız etkilenmez: silinmesi için bizimle iletişime geçin (gizlilik politikasına bakın)."
+  },
+  "f_removes_everything_this_exte_b9a8": {
+    "message": "Bu eklentinin bu cihazda sakladığı her şeyi siler: özetler, vurgular, akışlar, anahtarlar ve ayarlar. Önce yedeği dışa aktarın."
+  },
+  "f_resets_preferences_prompts_a_02e0": {
+    "message": "Bu cihazdaki tercihleri, istemleri, API anahtarlarını, girişi ve gönderim hedeflerini sıfırlar. İşaretlemediğiniz sürece özetler, vurgular ve akışlar kalır. Eklenti yeniden yüklenecek."
+  },
+  "f_resets_preferences_prompts_a_aab7": {
+    "message": "Bu cihazdaki tercihleri, istemleri, API anahtarlarını, girişi ve gönderim hedeflerini sıfırlar. Özetler, vurgular ve akışlar kalır."
+  },
+  "f_summaries_archive_b387": {
+    "message": "Özetler & arşiv"
+  },
+  "f_website_access_is_off_allow__f6c7": {
+    "message": "Web sitesi erişimi kapalı. about:addons → bu eklenti → İzinler (\"Tüm web sitelerindeki verilerinize erişin\") bölümünden izin verin, sonra sayfayı yenileyin."
+  },
+  "f_by_default_backups_omit_api__4415": {
+    "message": "Varsayılan olarak yedekler API anahtarlarını, giriş bilgilerini, lisans anahtarlarını ve kurulum kimliklerini içermez. Dışa aktarılan dosyaları gizli tutun."
+  },
+  "f_include_api_keys_and_sign_in_8870": {
+    "message": "API anahtarlarını ve giriş bilgilerini dahil et (dosyaya sahip olan herkes kullanabilir)"
+  },
+  "f_this_backup_contains_api_key_afb1": {
+    "message": "Bu yedek API anahtarları, giriş bilgileri veya lisans anahtarları içeriyor. İçe aktarma, eşleşen saklı gizli bilgilerin üzerine yazar. Devam edilsin mi?"
+  },
+  "f_this_backup_will_contain_api_f234": {
+    "message": "Bu yedek API anahtarlarını, giriş bilgilerini ve lisans anahtarlarını içerecek. Dosyaya sahip olan herkes bunları kullanabilir. Devam edilsin mi?"
+  },
+  "f_this_backup_contains_api_key_fe04": {
+    "message": "Bu yedek API anahtarları, giriş bilgileri, lisans anahtarları veya bir kurulum kimliği içeriyor. İçe aktarma, eşleşen saklı gizli bilgilerin üzerine yazar. Devam edilsin mi?"
+  },
+  "f_this_backup_will_contain_api_a9f6": {
+    "message": "Bu yedek API anahtarlarını, giriş bilgilerini, lisans anahtarlarını ve bir kurulum kimliğini içerecek. Dosyaya sahip olan herkes anahtarları kullanabilir veya bu kurulumu tanımlayabilir. Devam edilsin mi?"
+  },
+  "f_ai_suggested_highlights_53c5": {
+    "message": "AI Önerilen Vurgular"
+  },
+  "f_export_history_as_markdown_z_dcd2": {
+    "message": "Geçmişi Markdown olarak dışa aktar (.zip)"
+  },
+  "f_highlights_notes_45e7": {
+    "message": "Vurgular & Notlar"
+  },
+  "f_related_66d8": {
+    "message": "İlgili"
+  },
+  "f_tagging_feed_of_8714": {
+    "message": "Akış etiketleniyor: {a}/{b}",
+    "description": "Placeholders: {a} {b} (keep as is)"
+  },
+  "f_feeds_to_tag_607b": {
+    "message": "{n} akış etiketlenecek",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_naming_tags_batch_of_49a0": {
+    "message": "Etiketler adlandırılıyor: parti {a}/{b}",
+    "description": "Placeholders: {a} {b} (keep as is)"
+  },
+  "f_tag_lists_to_name_846e": {
+    "message": "{n} etiket listesi adlandırılacak",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_asks_your_ai_connection_once_0d32": {
+    "message": "AI bağlantınıza, henüz bilinmeyen ve en az iki kez kullanılan her etiketin İngilizce adını ve arayüz dilindeki karşılığını bir kez sorar; en çok kullanılandan başlar. Makaleleriniz etiketlerini korur."
+  },
+  "f_balanced_603d": {
+    "message": "Dengeli"
+  },
+  "f_cpu_only_or_older_machine_0541": {
+    "message": "Yalnızca CPU veya eski makine"
+  },
+  "f_gpu_or_apple_silicon_7_8b_mo_e08e": {
+    "message": "GPU veya Apple Silicon, 7–8B model"
+  },
+  "f_gentle_9fd8": {
+    "message": "Hafif"
+  },
+  "f_measure_again_7f07": {
+    "message": "Yeniden ölç"
+  },
+  "f_measure_this_computer_fba2": {
+    "message": "Bu bilgisayarı ölç"
+  },
+  "f_measurement_failed_cfb5": {
+    "message": "Ölçüm başarısız: {e}",
+    "description": "Placeholders: {e} (keep as is)"
+  },
+  "f_measuring_second_request_bc87": {
+    "message": "Ölçülüyor… ikinci istek."
+  },
+  "f_measuring_the_first_request__72e8": {
+    "message": "Ölçülüyor… ilk istek modeli de yükler."
+  },
+  "f_name_tags_4a5b": {
+    "message": "Etiketleri adlandır"
+  },
+  "f_name_tags_in_your_language_ab05": {
+    "message": "Etiketleri kendi dilinizde adlandırın"
+  },
+  "f_naming_tags_of_0ccd": {
+    "message": "Etiketler adlandırılıyor… {done}/{total}",
+    "description": "Placeholders: {done} {total} (keep as is)"
+  },
+  "f_not_measured_yet_the_test_se_87bc": {
+    "message": "Henüz ölçülmedi. Test, Ollama'ya iki küçük puanlama partisi gönderir (yavaş makinede yaklaşık bir dakika) ve hiçbir şey bilgisayarınızdan çıkmaz."
+  },
+  "f_powerful_0df9": {
+    "message": "Güçlü"
+  },
+  "f_recent_laptop_small_3_4b_mod_e071": {
+    "message": "Yeni dizüstü, küçük (3–4B) model"
+  },
+  "f_refresh_feeds_that_post_ofte_46e9": {
+    "message": "Sık paylaşım yapan ve önce okuduğunuz akışları yenile"
+  },
+  "f_typical_setups_for_one_batch_34b5": {
+    "message": "Bir parti için tipik kurulumlar (yaklaşık aralıklar):"
+  },
+  "f_use_b076": {
+    "message": "{p} kullan",
+    "description": "Placeholders: {p} (keep as is)"
+  },
+  "f_very_slow_use_a_smaller_mode_d291": {
+    "message": "Çok yavaş: daha küçük bir model kullanın"
+  },
+  "f_what_each_profile_would_do_o_2a5f": {
+    "message": "Her profilin bu makinede yapacakları:"
+  },
+  "f_your_own_mix_of_batch_size_r_ab92": {
+    "message": "Parti boyutu, çalışma başına istek ve aralıktan oluşan kendi karışımınız."
+  },
+  "f_a_run_takes_about_e3ae": {
+    "message": "bir çalışma yaklaşık {t} sürer",
+    "description": "Placeholders: {t} (keep as is)"
+  },
+  "f_first_request_loads_the_mode_ac23": {
+    "message": "ilk istek {s} (modeli yükler)",
+    "description": "Placeholders: {s} (keep as is)"
+  },
+  "f_over_352a": {
+    "message": "{s} üzeri",
+    "description": "Placeholders: {s} (keep as is)"
+  },
+  "f_recommended_a2ac": {
+    "message": "önerilen"
+  },
+  "f_up_to_items_per_hour_ba84": {
+    "message": "saatte en fazla {n} öğe",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_up_to_196c": {
+    "message": "en fazla {s}",
+    "description": "Placeholders: {s} (keep as is)"
+  },
+  "f_you_d09c": {
+    "message": "siz"
+  },
+  "f_items_per_request_requests_p_6fa9": {
+    "message": "istek başına {n} öğe · çalışma başına {r} istek · her {m} dk",
+    "description": "Placeholders: {n} {r} {m} (keep as is)"
+  },
+  "f_for_headlines_10c8": {
+    "message": "{n} başlık için {s}",
+    "description": "Placeholders: {s} {n} (keep as is)"
+  },
+  "f_performance_profile_4c9b": {
+    "message": "⚡ Performans profili"
+  },
+  "f_every_frequently_used_tag_al_f86e": {
+    "message": "✓ Sık kullanılan her etiketin zaten bir adı var — yapılacak bir şey yok."
+  },
+  "f_named_of_tags_7fb1": {
+    "message": "✓ {total} etiketten {n} tanesi adlandırıldı.",
+    "description": "Placeholders: {n} {total} (keep as is)"
+  },
+  "f_smart_refresh_order_fae9": {
+    "message": "✨ Akıllı yenileme sırası"
+  },
+  "f_requests_per_automatic_run_5475": {
+    "message": "🔢 Otomatik çalışma başına istek"
+  },
+  "f_similar_item_612e": {
+    "message": "+{n} benzer öğe",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_similar_items_4567": {
+    "message": "+{n} benzer öğe",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_not_the_same_story_5110": {
+    "message": "Aynı haber değil"
+  },
+  "f_stack_similar_items_ada6": {
+    "message": "Benzer öğeleri grupla"
+  },
+  "f_stacking_f819": {
+    "message": "Gruplama"
+  },
+  "f_emoji_bcdd": {
+    "message": "Emoji"
+  },
+  "f_emoji_look_different_on_ever_95e1": {
+    "message": "Emojiler her cihazda farklı görünür. Simgeler her yerde aynı görünür."
+  },
+  "f_icons_2cd9": {
+    "message": "Simgeler"
+  },
+  "f_symbol_style_e034": {
+    "message": "Sembol stili"
+  },
+  "f_accessibility_d09f": {
+    "message": "Erişilebilirlik"
+  },
+  "f_profile_text_size_motion_83ac": {
+    "message": "Profil · metin boyutu · hareket"
+  },
+  "f_sign_in_to_use_byphil_cloud__e62e": {
+    "message": "byPhil Cloud modellerini kullanmak için giriş yapın"
+  },
+  "f_skip_for_now_3101": {
+    "message": "Şimdilik atla"
+  },
+  "f_continue_d664": {
+    "message": "Devam"
+  },
+  "f_set_up_6abc": {
+    "message": "Kur"
+  },
+  "f_local_models_no_account_no_k_b352": {
+    "message": "Yerel modeller. Hesap yok, anahtar yok."
+  },
+  "f_no_account_your_key_stays_on_665e": {
+    "message": "Hesap yok. Anahtarınız bu cihazda kalır."
+  },
+  "f_pick_one_nothing_is_sent_unt_722b": {
+    "message": "Birini seçin. Bir sayfayı özetleyene kadar hiçbir şey gönderilmez."
+  },
+  "f_sign_in_with_your_email_no_a_b96b": {
+    "message": "E-postanızla giriş yapın. API anahtarı gerekmez."
+  },
+  "f_convenient_just_your_email_n_3b83": {
+    "message": "Kolay: yalnızca e-postanız, API anahtarı yok. Bağımsız bir geliştirici olan beni de desteklersiniz."
+  },
+  "f_pick_a_way_to_run_your_summa_5c59": {
+    "message": "Özetlerinizi çalıştırmanın bir yolunu seçin. Ayarlardan istediğiniz zaman değiştirin."
+  },
+  "f_back_to_top_bd70": {
+    "message": "Başa dön"
+  },
+  "f_all_time_702d": {
+    "message": "Tüm zamanlar"
+  },
+  "f_ask_61b2": {
+    "message": "Sor"
+  },
+  "f_ask_about_these_articles_30e7": {
+    "message": "Bu makaleler hakkında sorun…"
+  },
+  "f_export_these_articles_as_a_z_6092": {
+    "message": "Bu makaleleri Markdown dosyalarından oluşan .zip olarak dışa aktar"
+  },
+  "f_from_3595": {
+    "message": "Başlangıç"
+  },
+  "f_from_summaries_nothing_else__e04a": {
+    "message": "{n} özetten — başka bir şey gönderilmedi",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_gaps_6714": {
+    "message": "Boşluklar"
+  },
+  "f_reading_summaries_782f": {
+    "message": "{n} özet okunuyor…",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_show_list_245c": {
+    "message": "Listeyi göster"
+  },
+  "f_started_never_followed_up_d61d": {
+    "message": "Başlandı, hiç sürdürülmedi"
+  },
+  "f_these_articles_have_no_summa_2f34": {
+    "message": "Bu makalelerin henüz özeti yok"
+  },
+  "f_to_9644": {
+    "message": "Bitiş"
+  },
+  "f_topics_with_one_or_two_saved_285d": {
+    "message": "30 gündür açmadığınız, bir veya iki kayıtlı makalesi olan konular. Başladıklarınız için bir okuma listesi."
+  },
+  "f_last_opened_99c0": {
+    "message": "son açılış {d}",
+    "description": "Placeholders: {d} (keep as is)"
+  },
+  "f_never_opened_c436": {
+    "message": "hiç açılmadı"
+  },
+  "f_never_opened_bf12": {
+    "message": "{n} hiç açılmadı",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_topics_started_and_never_fol_d3de": {
+    "message": "{n} konu başlandı, hiç sürdürülmedi",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_brief_me_on_the_unopened_6cfb": {
+    "message": "✨ Açılmayan {n} makaleyi özetle",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_brief_me_on_this_topic_2eeb": {
+    "message": "✨ Bu konuyu özetle"
+  },
+  "f_markdown_00c7": {
+    "message": "⬇ Markdown"
+  },
+  "f_time_ee91": {
+    "message": "🕐 Zaman"
+  },
+  "f_of_articles_in_window_a381": {
+    "message": "Aralıktaki {b} makaleden {a}",
+    "description": "Placeholders: {a} {b} (keep as is)"
+  },
+  "f_never_opened_5256": {
+    "message": "Hiç açılmadı"
+  },
+  "f_opened_0e03": {
+    "message": "Açıldı ({n})",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_sources_used_0e42": {
+    "message": "Kullanılan kaynaklar"
+  },
+  "f_include_in_briefing_9c8e": {
+    "message": "Brifinge dahil et"
+  },
+  "f_brief_me_on_all_f0c7": {
+    "message": "✨ Tüm {n} makaleyi özetle",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_reading_summaries_step_of_46aa": {
+    "message": "{n} özet okunuyor · adım {a}/{b}…",
+    "description": "Placeholders: {n} {a} {b} (keep as is)"
+  },
+  "f_more_were_left_out_limit_per_f12d": {
+    "message": "{n} tane daha dışarıda bırakıldı (brifing başına sınır)",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_all_topics_e150": {
+    "message": "Tüm konular"
+  },
+  "f_ask_about_this_briefing_3eaf": {
+    "message": "Bu brifing hakkında sorun…"
+  },
+  "f_briefing_layout_6471": {
+    "message": "Brifing düzeni"
+  },
+  "f_by_time_ff3d": {
+    "message": "Zamana göre"
+  },
+  "f_by_topic_4c93": {
+    "message": "Konuya göre"
+  },
+  "f_clear_selection_b1e0": {
+    "message": "Seçimi temizle"
+  },
+  "f_opened_too_faf2": {
+    "message": "Açılanlar da"
+  },
+  "f_over_articles_only_the_newes_e458": {
+    "message": "{n} makaleyi aşınca yalnızca en yeni {n} makale kullanılır; tam kapsam için konuları veya dönemi daraltın.",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_unopened_7213": {
+    "message": "Açılmamış"
+  },
+  "f_which_articles_c8ed": {
+    "message": "Hangi makaleler"
+  },
+  "f_duplicates_skipped_872b": {
+    "message": "{n} yinelenen atlandı",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_shown_8b3a": {
+    "message": "{n} gösterildi",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_steps_then_merged_dd35": {
+    "message": "{n} adım, sonra birleştirilir",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_topic_7b60": {
+    "message": "{n} konu",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_topics_bee9": {
+    "message": "{n} konu",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_brief_a94f": {
+    "message": "✨ Özetle"
+  },
+  "f_briefing_scope_9991": {
+    "message": "Brifing kapsamı"
+  },
+  "f_export_these_articles_and_th_ba34": {
+    "message": "Bu makaleleri (ve varsa brifingi) Markdown dosyalarından oluşan .zip olarak dışa aktar"
+  },
+  "f_show_only_research_papers_448e": {
+    "message": "Yalnızca araştırma makalelerini göster"
+  },
+  "f_research_fd8d": {
+    "message": "🎓 Araştırma"
+  },
+  "f_can_t_reach_byphil_cloud_rig_4386": {
+    "message": "byPhil Cloud'a şu anda ulaşılamıyor."
+  },
+  "f_check_now_0677": {
+    "message": "Şimdi kontrol et"
+  },
+  "f_checking_dad5": {
+    "message": "Kontrol ediliyor…"
+  },
+  "f_click_again_to_unpair_884f": {
+    "message": "Eşleşmeyi kaldırmak için tekrar tıklayın"
+  },
+  "f_from_phone_850d": {
+    "message": "Telefondan"
+  },
+  "f_hide_code_5876": {
+    "message": "Kodu gizle"
+  },
+  "f_install_the_aish_companion_o_059e": {
+    "message": "AISH eşlik uygulamasını telefonunuza kurun, kodu bir kez tarayın, sonra herhangi bir bağlantıyı paylaşın. Bağlantılar uçtan uca şifreli gelir ve dokunmanızı burada bekler."
+  },
+  "f_links_shared_from_your_phone_74f8": {
+    "message": "Telefonunuzdan paylaşılan bağlantılar"
+  },
+  "f_links_still_waiting_here_are_3afc": {
+    "message": "Burada bekleyen bağlantılar silinir ve telefon artık gönderemez."
+  },
+  "f_pair_a_phone_2792": {
+    "message": "Telefon eşle"
+  },
+  "f_paired_b228": {
+    "message": "Eşleşti"
+  },
+  "f_paired_last_checked_4bae": {
+    "message": "Eşleşti · son kontrol {when}",
+    "description": "Placeholders: {when} (keep as is)"
+  },
+  "f_paired_not_checked_yet_2e0f": {
+    "message": "Eşleşti · henüz kontrol edilmedi"
+  },
+  "f_paired_waiting_e88e": {
+    "message": "Eşleşti · {n} bekliyor",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_pairing_code_057c": {
+    "message": "Eşleştirme kodu"
+  },
+  "f_pairing_9d4b": {
+    "message": "Eşleştiriliyor…"
+  },
+  "f_phone_inbox_69e3": {
+    "message": "Telefon gelen kutusu"
+  },
+  "f_scan_this_code_with_the_aish_a9a1": {
+    "message": "Bu kodu AISH eşlik uygulamasıyla tarayın. Kodu tarayan herkes size bağlantı gönderebilir, bu yüzden gizli tutun."
+  },
+  "f_show_code_0cc1": {
+    "message": "Kodu göster"
+  },
+  "f_something_went_wrong_e250": {
+    "message": "Bir şeyler ters gitti."
+  },
+  "f_this_pairing_is_no_longer_va_497f": {
+    "message": "Bu eşleşme artık geçerli değil. Eşleşmeyi kaldırıp yeniden eşleştirin."
+  },
+  "f_too_many_requests_try_again__a977": {
+    "message": "Çok fazla istek. Daha sonra tekrar deneyin."
+  },
+  "f_unpair_and_delete_inbox_84be": {
+    "message": "Eşleşmeyi kaldır ve gelen kutusunu sil"
+  },
+  "f_couldn_t_save_this_page_open_91af": {
+    "message": "Bu sayfa kaydedilemedi. Bir kez açıp tekrar deneyin."
+  },
+  "f_saving_9e7f": {
+    "message": "Kaydediliyor…"
+  },
+  "f_shows_which_articles_share_t_c901": {
+    "message": "Hangi makalelerin konu paylaştığını gösterir — görsel ve liste olarak"
+  },
+  "f_this_page_has_no_text_to_sav_e652": {
+    "message": "Bu sayfada kaydedilecek metin yok."
+  },
+  "f_add_a_connection_map_a941": {
+    "message": "🕸️ Bağlantı haritası ekle"
+  },
+  "f_almost_used_up_summaries_now_b160": {
+    "message": "Neredeyse bitti — o zamana kadar özetler daha hafif bir model kullanır."
+  },
+  "f_monthly_ai_allowance_33e2": {
+    "message": "Aylık AI hakkı"
+  },
+  "f_remove_this_link_from_your_i_2758": {
+    "message": "Bu bağlantı gelen kutunuzdan kaldırılsın mı? Silinir ve geri alınamaz."
+  },
+  "f_resets_055b": {
+    "message": "Sıfırlanma: {date}",
+    "description": "Placeholders: {date} (keep as is)"
+  },
+  "f_saving_took_too_long_a_very__22eb": {
+    "message": "Kaydetme çok uzun sürdü (çok ağır bir sayfa). Tekrar deneyin ya da açıp özetleyin."
+  },
+  "f_the_page_didn_t_respond_bloc_372d": {
+    "message": "Sayfa yanıt vermedi (engellendi veya giriş gerekiyor). Açıp tekrar deneyin."
+  },
+  "f_used_up_local_models_still_w_847f": {
+    "message": "Bitti — yerel modeller yine çalışır."
+  },
+  "f_used_8faf": {
+    "message": "%{n} kullanıldı",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_could_not_send_to_your_phone_33a4": {
+    "message": "Telefonunuza gönderilemedi: {message}",
+    "description": "Placeholders: {message} (keep as is)"
+  },
+  "f_could_not_switch_on_send_to__1d56": {
+    "message": "Telefona gönderme açılamadı: {message}",
+    "description": "Placeholders: {message} (keep as is)"
+  },
+  "f_export_as_markdown_5d3e": {
+    "message": "Markdown olarak dışa aktar"
+  },
+  "f_more_actions_e04b": {
+    "message": "Diğer eylemler"
+  },
+  "f_open_original_5070": {
+    "message": "Orijinali aç"
+  },
+  "f_pair_your_phone_first_settin_686f": {
+    "message": "Önce telefonunuzu eşleştirin: Ayarlar → Telefon gelen kutusu."
+  },
+  "f_scan_this_code_with_the_aish_e4cf": {
+    "message": "Bu kodu AISH eşlik uygulamasıyla tarayın. Kodu tarayan herkes size bağlantı gönderebilir ve telefonunuza gönderdiğiniz makaleleri okuyabilir, bu yüzden gizli tutun."
+  },
+  "f_send_to_phone_4940": {
+    "message": "Telefona gönder"
+  },
+  "f_send_to_phone_is_on_scan_the_c392": {
+    "message": "Telefona gönderme açık. Telefon uygulamasında yeni kodu bir kez tarayın."
+  },
+  "f_send_to_phone_is_on_use_send_2fcd": {
+    "message": "Telefona gönderme açık: yolda okumak için herhangi bir makalede ⋯ → Telefona gönder'i kullanın."
+  },
+  "f_send_via_localsend_07ba": {
+    "message": "LocalSend ile gönder"
+  },
+  "f_sending_to_your_phone_5db9": {
+    "message": "Telefonunuza gönderiliyor…"
+  },
+  "f_sent_to_your_phone_long_arti_45c6": {
+    "message": "Telefonunuza gönderildi (uzun makale kısaltıldı). Yaklaşık 15 dakika içinde ulaşır."
+  },
+  "f_sent_to_your_phone_it_arrive_b571": {
+    "message": "Telefonunuza gönderildi. Yaklaşık 15 dakika içinde ulaşır."
+  },
+  "f_sent_to_receive_it_scan_the__a60f": {
+    "message": "Gönderildi. Almak için telefon uygulamasında yeni kodu bir kez tarayın (Ayarlar → Telefon gelen kutusu)."
+  },
+  "f_share_6dd8": {
+    "message": "Paylaş"
+  },
+  "f_switch_on_send_to_phone_5161": {
+    "message": "Telefona göndermeyi aç"
+  },
+  "f_switching_on_e78a": {
+    "message": "Açılıyor…"
+  },
+  "f_the_article_could_not_be_pre_5d18": {
+    "message": "makale hazırlanamadı"
+  },
+  "f_the_pairing_is_no_longer_val_468a": {
+    "message": "eşleşme artık geçerli değil, yeniden eşleştirin"
+  },
+  "f_the_phone_has_not_collected__2706": {
+    "message": "telefon önceki makaleleri henüz almadı"
+  },
+  "f_the_server_is_not_reachable_2e07": {
+    "message": "sunucuya ulaşılamıyor"
+  },
+  "f_this_article_is_too_large_0750": {
+    "message": "bu makale çok büyük"
+  },
+  "f_too_many_sends_try_again_lat_eb5e": {
+    "message": "çok fazla gönderim, daha sonra tekrar deneyin"
+  },
+  "f_unknown_error_5123": {
+    "message": "bilinmeyen hata"
+  },
+  "f_another_device_changed_the_l_db9b": {
+    "message": "Başka bir cihaz listeyi aynı anda değiştirdi. Tekrar deneyin."
+  },
+  "f_feed_list_is_up_to_date_29c5": {
+    "message": "Akış listesi güncel"
+  },
+  "f_feed_list_synced_added_chang_0206": {
+    "message": "Akış listesi eşitlendi: {added} eklendi, {updated} değişti, {removed} kaldırıldı",
+    "description": "Placeholders: {added} {updated} {removed} (keep as is)"
+  },
+  "f_feed_sync_is_on_scan_the_new_b31a": {
+    "message": "Akış eşitleme açık. Telefon uygulamasında yeni kodu bir kez tarayın."
+  },
+  "f_feed_sync_is_on_your_feed_li_701d": {
+    "message": "Akış eşitleme açık: akış listeniz (makaleler hariç) telefonunuzla uçtan uca şifreli eşitlenir."
+  },
+  "f_last_synced_fc2b": {
+    "message": "Son eşitleme {when}",
+    "description": "Placeholders: {when} (keep as is)"
+  },
+  "f_switch_on_feed_sync_8c25": {
+    "message": "Akış eşitlemeyi aç"
+  },
+  "f_sync_feed_list_5d4e": {
+    "message": "Akış listesini eşitle"
+  },
+  "f_syncing_9560": {
+    "message": "Eşitleniyor…"
+  },
+  "f_the_feed_list_is_too_large_t_972d": {
+    "message": "Akış listesi eşitlenemeyecek kadar büyük."
+  },
+  "f_the_synced_feed_list_could_n_be9b": {
+    "message": "Eşitlenen akış listesi okunamadı. Eşleşmeyi kaldırıp yeniden eşleştirin."
+  },
+  "f_titles_descriptions_87ca": {
+    "message": "Başlıklar + açıklamalar"
+  },
+  "f_titles_only_faster_95f4": {
+    "message": "Yalnızca başlıklar (daha hızlı)"
+  },
+  "f_what_the_ai_reads_2fda": {
+    "message": "🔎 AI'ın okuduğu"
+  },
+  "f_ratings_categories_1449": {
+    "message": "Puanlar {a} · kategoriler {b}",
+    "description": "Placeholders: {a} {b} (keep as is)"
+  },
+  "f_the_first_reply_was_unreadab_6510": {
+    "message": "ilk yanıt okunamadığından yeniden istendi"
+  },
+  "f_by_model_f8c9": {
+    "message": "Modele göre"
+  },
+  "f_usage_details_5d1e": {
+    "message": "Kullanım ayrıntıları"
+  },
+  "f_tokens_in_tokens_out_dd7e": {
+    "message": "{input} token giriş · {output} token çıkış",
+    "description": "Placeholders: {input} {output} (keep as is)"
+  },
+  "f_request_this_month_2b08": {
+    "message": "bu ay {n} istek",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_requests_this_month_9977": {
+    "message": "bu ay {n} istek",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_of_used_1e41": {
+    "message": "{limit} içinden {used} kullanıldı",
+    "description": "Placeholders: {used} {limit} (keep as is)"
+  },
+  "f_default_086b": {
+    "message": "(varsayılan)"
+  },
+  "f_free_36fb": {
+    "message": "Ücretsiz"
+  },
+  "f_model_identifiers_bb6a": {
+    "message": "Model Kimlikleri"
+  },
+  "f_e_g_gpt_5_mini_57f4": {
+    "message": "ör. gpt-5-mini"
+  },
+  "f_in_out_per_1m_tokens_5847": {
+    "message": "1M token başına {input} giriş / {output} çıkış",
+    "description": "Placeholders: {input} {output} (keep as is)"
+  },
+  "f_left_4083": {
+    "message": "%{n} kaldı",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_popular_and_cheapest_4ff4": {
+    "message": "Popüler ve en ucuz"
+  },
+  "f_best_value_f0ca": {
+    "message": "En iyi değer"
+  },
+  "f_use_1947": {
+    "message": "{id} kullan",
+    "description": "Placeholders: {id} (keep as is)"
+  },
+  "f_recaps_are_written_by_your_o_fd04": {
+    "message": "Özetler bulut kullansa bile derlemeler Ollama modelinizce yazılır"
+  },
+  "f_always_use_my_local_model_fo_39bd": {
+    "message": "🏠 Brifinglerde her zaman yerel modelimi kullan"
+  },
+  "f_a_collection_bundles_saved_a_8449": {
+    "message": "Koleksiyon, kayıtlı makaleleri tek bir soru altında toplar."
+  },
+  "f_add_to_collection_512f": {
+    "message": "Koleksiyona ekle"
+  },
+  "f_added_to_bd62": {
+    "message": "“{name}” koleksiyonuna eklendi",
+    "description": "Placeholders: {name} (keep as is)"
+  },
+  "f_already_in_43ae": {
+    "message": "Zaten “{name}” içinde",
+    "description": "Placeholders: {name} (keep as is)"
+  },
+  "f_author_c776": {
+    "message": "Yazar"
+  },
+  "f_authority_agency_6682": {
+    "message": "Kurum / ajans"
+  },
+  "f_check_8de7": {
+    "message": "Kontrol"
+  },
+  "f_collection_a8b1": {
+    "message": "Koleksiyon"
+  },
+  "f_collections_a966": {
+    "message": "Koleksiyonlar"
+  },
+  "f_could_not_open_collections_0d10": {
+    "message": "Koleksiyonlar açılamadı"
+  },
+  "f_create_e47d": {
+    "message": "Oluştur"
+  },
+  "f_delete_collection_71b6": {
+    "message": "Koleksiyonu sil"
+  },
+  "f_delete_the_collection_the_ar_f797": {
+    "message": "“{name}” koleksiyonu silinsin mi? Makaleler geçmişinizde kalır.",
+    "description": "Placeholders: {name} (keep as is)"
+  },
+  "f_export_markdown_8a28": {
+    "message": "Markdown dışa aktar"
+  },
+  "f_export_as_pdf_f6e3": {
+    "message": "PDF olarak dışa aktar"
+  },
+  "f_export_as_word_docx_9060": {
+    "message": "Word olarak dışa aktar (DOCX)"
+  },
+  "f_export_as_document_odt_a99e": {
+    "message": "Belge olarak dışa aktar (ODT)"
+  },
+  "f_find_other_sources_about_thi_21b5": {
+    "message": "Bununla ilgili başka kaynaklar bul"
+  },
+  "f_hints_not_ratings_you_decide_cd48": {
+    "message": "İpuçları, puan değil: bu kaynağa ne kadar güveneceğinize siz karar verirsiniz."
+  },
+  "f_in_c8be": {
+    "message": "Dahil"
+  },
+  "f_name_of_the_collection_83f4": {
+    "message": "Koleksiyon adı"
+  },
+  "f_new_collection_ab5b": {
+    "message": "Yeni koleksiyon"
+  },
+  "f_no_author_found_d6ed": {
+    "message": "Yazar bulunamadı"
+  },
+  "f_no_date_found_370a": {
+    "message": "Tarih bulunamadı"
+  },
+  "f_no_source_details_yet_8e2f": {
+    "message": "Henüz kaynak ayrıntısı yok"
+  },
+  "f_no_sources_yet_use_add_to_co_dd26": {
+    "message": "Henüz kaynak yok. Makalenin ⋯ menüsünden “Koleksiyona ekle”yi kullanın."
+  },
+  "f_not_in_a_collection_yet_8554": {
+    "message": "Henüz bir koleksiyonda değil"
+  },
+  "f_older_than_5_years_e219": {
+    "message": "5 yıldan eski"
+  },
+  "f_open_an_article_s_menu_and_c_0caa": {
+    "message": "Bir makalenin ⋯ menüsünü açıp “Koleksiyona ekle”yi seçin veya burada yeni bir tane başlatın."
+  },
+  "f_open_in_new_tab_d191": {
+    "message": "Yeni sekmede aç"
+  },
+  "f_opinion_blog_1ad4": {
+    "message": "Görüş / blog"
+  },
+  "f_peer_reviewed_46f1": {
+    "message": "Hakemli"
+  },
+  "f_pre_selected_the_collection__f2bf": {
+    "message": "Önceden seçildi: en son kullandığınız koleksiyon. Değiştirebilirsiniz."
+  },
+  "f_preprint_1c21": {
+    "message": "Ön baskı"
+  },
+  "f_preprint_not_peer_reviewed_2153": {
+    "message": "Ön baskı, hakemli değil"
+  },
+  "f_primary_source_50de": {
+    "message": "Birincil kaynak"
+  },
+  "f_publisher_ed1f": {
+    "message": "Yayıncı"
+  },
+  "f_remove_from_collection_ed35": {
+    "message": "Koleksiyondan çıkar"
+  },
+  "f_secondary_source_87f6": {
+    "message": "İkincil kaynak"
+  },
+  "f_send_to_obsidian_a6e9": {
+    "message": "Obsidian'a gönder"
+  },
+  "f_source_check_4cb0": {
+    "message": "Kaynak kontrolü"
+  },
+  "f_that_collection_no_longer_ex_264a": {
+    "message": "Bu koleksiyon artık yok."
+  },
+  "f_this_collection_is_full_sour_a6b7": {
+    "message": "Bu koleksiyon dolu ({n} kaynak).",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_type_d06d": {
+    "message": "Tür"
+  },
+  "f_what_do_other_sources_say_ab_34c8": {
+    "message": "Diğer kaynaklar bu konuda ne diyor?"
+  },
+  "f_what_is_missing_186e": {
+    "message": "Neler eksik?"
+  },
+  "f_where_does_the_claim_come_fr_de33": {
+    "message": "İddia nereden geliyor?"
+  },
+  "f_who_is_behind_this_f59e": {
+    "message": "Bunun arkasında kim var?"
+  },
+  "f_your_question_761e": {
+    "message": "Sorunuz"
+  },
+  "f_your_question_optional_cc1d": {
+    "message": "Sorunuz (isteğe bağlı)"
+  },
+  "f_last_used_743a": {
+    "message": "son kullanılan"
+  },
+  "f_sources_9831": {
+    "message": "kaynak"
+  },
+  "f_updated_4716": {
+    "message": "güncellendi {d}",
+    "description": "Placeholders: {d} (keep as is)"
+  },
+  "f_added_to_2a85": {
+    "message": "{a} öğe “{name}” koleksiyonuna eklendi",
+    "description": "Placeholders: {a} {name} (keep as is)"
+  },
+  "f_added_to_the_collection_is_f_3393": {
+    "message": "{a} öğe “{name}” koleksiyonuna eklendi; koleksiyon dolu ({n} kaynak).",
+    "description": "Placeholders: {a} {name} {n} (keep as is)"
+  },
+  "f_of_answered_a944": {
+    "message": "{n} içinden {a} yanıtlandı",
+    "description": "Placeholders: {a} {n} (keep as is)"
+  },
+  "f_of_checked_9b44": {
+    "message": "{n} içinden {a} kontrol edildi",
+    "description": "Placeholders: {a} {n} (keep as is)"
+  },
+  "f_checked_6b66": {
+    "message": "{a}/{n} kontrol edildi",
+    "description": "Placeholders: {a} {n} (keep as is)"
+  },
+  "f_of_sources_570e": {
+    "message": "{n}/{max} kaynak",
+    "description": "Placeholders: {n} {max} (keep as is)"
+  },
+  "f_sources_1825": {
+    "message": "{n} kaynak",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_add_sources_ca4e": {
+    "message": "Kaynak ekle"
+  },
+  "f_all_sources_checked_export_t_a6d2": {
+    "message": "Tüm kaynaklar kontrol edildi. Yazıya dökmek veya paylaşmak için koleksiyonu Markdown olarak dışa aktarın."
+  },
+  "f_next_check_your_sources_stil_a5d2": {
+    "message": "Sırada: kaynaklarınızı kontrol edin ({n} açık kaldı), sonra koleksiyonu dışa aktarın.",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_agree_2be3": {
+    "message": "Uyuşuyor"
+  },
+  "f_compare_what_your_sources_sa_ce64": {
+    "message": "Kaynaklarınızın söylediklerini karşılaştırın: nerede uyuşuyor, nerede ayrışıyor, neler eksik."
+  },
+  "f_create_overview_8cc0": {
+    "message": "Genel bakış oluştur"
+  },
+  "f_created_sources_56b9": {
+    "message": "Oluşturulma {d}, {n} kaynak.",
+    "description": "Placeholders: {d} {n} (keep as is)"
+  },
+  "f_disagree_94b9": {
+    "message": "Ayrışıyor"
+  },
+  "f_from_summaries_1ec5": {
+    "message": "Özetlerden"
+  },
+  "f_from_summaries_not_checked_a_3af2": {
+    "message": "Özetlerden; tam metinlerle karşılaştırılmadı."
+  },
+  "f_missing_d6a7": {
+    "message": "Eksik"
+  },
+  "f_needs_at_least_2_sources_wit_8f99": {
+    "message": "Özeti olan en az 2 kaynak gerekir."
+  },
+  "f_not_checked_against_the_full_abd6": {
+    "message": "Tam metinlerle karşılaştırılmadı."
+  },
+  "f_overview_4fba": {
+    "message": "Genel bakış"
+  },
+  "f_sends_your_question_and_summ_e6d1": {
+    "message": "Sorunuzu ve {n} özeti AI modelinize gönderir. Tam metinler cihazınızda kalır.",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_the_sources_changed_since_re_a027": {
+    "message": "Kaynaklar o zamandan beri değişti — yenileyin."
+  },
+  "f_other_saved_articles_e035": {
+    "message": "Diğer kayıtlı makaleler"
+  },
+  "f_suggested_fits_your_sources_efa7": {
+    "message": "Önerilen: kaynaklarınıza uyuyor"
+  },
+  "f_check_each_source_before_you_2659": {
+    "message": "Her kaynağa güvenmeden önce kontrol edin. Sayfada kalmayın: arkasında kimin olduğunu ve başkalarının ne dediğini arayın."
+  },
+  "f_copy_references_6116": {
+    "message": "Kaynakçayı kopyala"
+  },
+  "f_save_as_collection_36e4": {
+    "message": "Koleksiyon olarak kaydet"
+  },
+  "f_saved_as_collection_sources_8421": {
+    "message": "Koleksiyon olarak kaydedildi ({n} kaynak)",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_start_a_collection_from_the__5c47": {
+    "message": "Bu konunun en yeni makalelerinden (en fazla 15) bir koleksiyon başlatın. Hiçbir yere bir şey gönderilmez."
+  },
+  "f_task_3d8c": {
+    "message": "Görev"
+  },
+  "f_worksheet_4fe3": {
+    "message": "Çalışma kâğıdı"
+  },
+  "f_references_copied_a61d": {
+    "message": "{n} kaynak kopyalandı",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_references_copied_without_do_7bc4": {
+    "message": "{n} kaynak kopyalandı, DOI'siz {m} atlandı",
+    "description": "Placeholders: {n} {m} (keep as is)"
+  },
+  "f_doi_e927": {
+    "message": "DOI"
+  },
+  "f_enter_a_valid_doi_first_93c8": {
+    "message": "Önce geçerli bir DOI girin."
+  },
+  "f_fill_from_doi_7cb8": {
+    "message": "DOI'den doldur"
+  },
+  "f_filled_from_doi_org_check_an_a9ae": {
+    "message": "doi.org'dan dolduruldu. Kontrol edin, gerekirse değiştirin."
+  },
+  "f_original_title_8400": {
+    "message": "Orijinal başlık"
+  },
+  "f_rename_31f3": {
+    "message": "Yeniden adlandır"
+  },
+  "f_renamed_10b5": {
+    "message": "Yeniden adlandırıldı"
+  },
+  "f_title_71a9": {
+    "message": "Başlık"
+  },
+  "f_delete_about_d83d": {
+    "message": "{n} öğeyi sil (yaklaşık {size})",
+    "description": "Placeholders: {n} {size} (keep as is)"
+  },
+  "f_delete_articles_this_cannot__5f89": {
+    "message": "{n} makale silinsin mi? Bu işlem geri alınamaz.",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_deleting_removes_the_summary_b7d4": {
+    "message": "Silme, özeti ve kayıtlı sayfa metnini kaldırır. Emin değilseniz önce yedeği dışa aktarın."
+  },
+  "f_free_up_space_e9f2": {
+    "message": "Yer aç"
+  },
+  "f_not_now_6fce": {
+    "message": "Şimdi değil"
+  },
+  "f_nothing_large_and_unopened_t_7635": {
+    "message": "Kaldırılacak büyük ve açılmamış bir şey yok."
+  },
+  "f_saved_data_is_getting_large__3b00": {
+    "message": "Kayıtlı veriler büyüyor ({size}). {n} büyük makale aylardır açılmadı.",
+    "description": "Placeholders: {size} {n} (keep as is)"
+  },
+  "f_saved_data_these_articles_ar_c4fc": {
+    "message": "Kayıtlı veriler: {size}. Bu makaleler büyük ve {d}+ gündür açılmadı.",
+    "description": "Placeholders: {size} {d} (keep as is)"
+  },
+  "f_select_what_can_go_7927": {
+    "message": "Gidebilecekleri seçin"
+  },
+  "f_showing_the_largest_of_bd2f": {
+    "message": "{m} içinden en büyük {n} gösteriliyor.",
+    "description": "Placeholders: {n} {m} (keep as is)"
+  },
+  "f_not_opened_for_days_05c1": {
+    "message": "{d} gündür açılmadı",
+    "description": "Placeholders: {d} (keep as is)"
+  },
+  "f_articles_deleted_7937": {
+    "message": "{n} makale silindi",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_more_are_starred_or_in_a_col_6c6e": {
+    "message": "{n} tanesi daha yıldızlı veya bir koleksiyonda ve hiç listelenmez.",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_add_to_favorites_3814": {
+    "message": "Favorilere ekle"
+  },
+  "f_delete_selected_articles_thi_fc7a": {
+    "message": "Seçili {n} makale silinsin mi? Bu işlem geri alınamaz.",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_remove_from_favorites_bb86": {
+    "message": "Favorilerden çıkar"
+  },
+  "f_summaries_in_one_file_ed78": {
+    "message": "{n} özet tek dosyada",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_summary_in_one_file_2d00": {
+    "message": "{n} özet tek dosyada",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_images_removed_from_articles_8da9": {
+    "message": "{n} makaleden görseller kaldırıldı · yaklaşık {size} boşaldı",
+    "description": "Placeholders: {n} {size} (keep as is)"
+  },
+  "f_keeps_title_summary_tags_hig_a492": {
+    "message": "Başlığı, özeti, etiketleri, vurguları ve istatistiklerinizi korur. Makale hakkındaki sorular o zaman yalnızca özeti kullanır. Yıldızlı ve koleksiyondaki makaleler atlanır."
+  },
+  "f_no_saved_images_7ea9": {
+    "message": "Kayıtlı görsel yok."
+  },
+  "f_not_opened_for_at_least_days_3606": {
+    "message": "En az şu kadar gündür açılmadı (gün)"
+  },
+  "f_nothing_old_enough_5ba9": {
+    "message": "Yeterince eski bir şey yok."
+  },
+  "f_off_new_articles_keep_only_t_f4c4": {
+    "message": "Kapalı: yeni makaleler yalnızca metni saklar. Kayıtlı sayfaları büyüten görsellerdir."
+  },
+  "f_page_text_of_articles_remove_9099": {
+    "message": "{n} makalenin sayfa metni kaldırıldı",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_page_text_removed_from_artic_59a7": {
+    "message": "{n} makaleden sayfa metni kaldırıldı · yaklaşık {size} boşaldı",
+    "description": "Placeholders: {n} {size} (keep as is)"
+  },
+  "f_pick_single_articles_to_trim_a05e": {
+    "message": "Küçültmek veya silmek için tek tek makale seçin."
+  },
+  "f_remove_images_ac3d": {
+    "message": "Görselleri kaldır"
+  },
+  "f_remove_images_from_saved_art_71cb": {
+    "message": "Kayıtlı makalelerden görselleri kaldır"
+  },
+  "f_remove_page_text_3553": {
+    "message": "Sayfa metnini kaldır"
+  },
+  "f_remove_page_text_of_old_arti_3fc8": {
+    "message": "Eski makalelerin sayfa metnini kaldır"
+  },
+  "f_remove_page_text_of_about_b647": {
+    "message": "{n} öğenin sayfa metnini kaldır (yaklaşık {size})",
+    "description": "Placeholders: {n} {size} (keep as is)"
+  },
+  "f_remove_the_images_from_all_s_b3c1": {
+    "message": "Tüm kayıtlı makalelerden görseller kaldırılsın mı? Metin kalır. Bu işlem geri alınamaz."
+  },
+  "f_remove_the_saved_page_text_o_8d34": {
+    "message": "{n} makalenin kayıtlı sayfa metni kaldırılsın mı? Özetler ve istatistikler kalır. Bu işlem geri alınamaz.",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_removing_the_page_text_keeps_f4ca": {
+    "message": "Sayfa metnini kaldırmak başlığı, özeti, etiketleri ve vurguları korur; istatistikler aynı kalır. Silmek makalenin tamamını kaldırır. Emin değilseniz önce yedeği dışa aktarın."
+  },
+  "f_review_large_unopened_articl_df0f": {
+    "message": "Büyük, açılmamış makaleleri gözden geçir"
+  },
+  "f_save_images_with_articles_7dcd": {
+    "message": "Görselleri makalelerle birlikte kaydet"
+  },
+  "f_saved_data_articles_2ab7": {
+    "message": "Kayıtlı veriler: {size} · {n} makale",
+    "description": "Placeholders: {size} {n} (keep as is)"
+  },
+  "f_storage_cleanup_e0d8": {
+    "message": "Depolama & temizlik"
+  },
+  "f_articles_with_images_about_8d5b": {
+    "message": "Görselli {n} makale · yaklaşık {size}",
+    "description": "Placeholders: {n} {size} (keep as is)"
+  },
+  "f_articles_about_f741": {
+    "message": "{n} makale · yaklaşık {size}",
+    "description": "Placeholders: {n} {size} (keep as is)"
+  },
+  "f_copy_of_5f2c": {
+    "message": "“{t}” kopyası",
+    "description": "Placeholders: {t} (keep as is)"
+  },
+  "f_duplicates_259f": {
+    "message": "Yinelenenler"
+  },
+  "f_duplicates_and_large_unopene_2310": {
+    "message": "Yinelenen ve büyük, açılmamış makaleler. Küçültmek veya silmek için seçin."
+  },
+  "f_images_53cb": {
+    "message": "Görseller"
+  },
+  "f_large_and_not_opened_31c1": {
+    "message": "Büyük ve açılmamış"
+  },
+  "f_nothing_large_unopened_or_du_4ba6": {
+    "message": "Kaldırılacak büyük, açılmamış veya yinelenen bir şey yok."
+  },
+  "f_page_text_fa29": {
+    "message": "Sayfa metni"
+  },
+  "f_saved_data_tick_what_can_go_4926": {
+    "message": "Kayıtlı veriler: {size}. Gidebilecekleri işaretleyin.",
+    "description": "Placeholders: {size} (keep as is)"
+  },
+  "f_show_more_bc06": {
+    "message": "Daha fazla göster ({n})",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_stays_statistics_are_based_o_7b82": {
+    "message": "Kalır — istatistikler buna dayanır"
+  },
+  "f_summaries_tags_highlights_467b": {
+    "message": "Özetler, etiketler, vurgular"
+  },
+  "f_the_same_page_saved_more_tha_5a32": {
+    "message": "Aynı sayfa birden çok kez kaydedilmiş. Özetli en yeni kopya kalır."
+  },
+  "f_view_analytics_report_0aaa": {
+    "message": "Analiz raporunu gör"
+  },
+  "f_view_graph_dfcc": {
+    "message": "Grafiği gör"
+  },
+  "f_doi_7aee": {
+    "message": "+ DOI"
+  },
+  "f_10_xxxx_or_doi_org_link_63ec": {
+    "message": "10.xxxx/… veya doi.org bağlantısı"
+  },
+  "f_add_doi_d4a4": {
+    "message": "DOI ekle"
+  },
+  "f_cite_237e": {
+    "message": "Atıf"
+  },
+  "f_doi_0b23": {
+    "message": "DOI ✓ ↗"
+  },
+  "f_article_actions_2b7e": {
+    "message": "Makale eylemleri"
+  },
+  "f_article_toolbar_008a": {
+    "message": "Makale araç çubuğu"
+  },
+  "f_markdown_116c": {
+    "message": "Markdown"
+  },
+  "f_move_down_faa8": {
+    "message": "Aşağı taşı"
+  },
+  "f_move_up_9e41": {
+    "message": "Yukarı taşı"
+  },
+  "f_obsidian_8150": {
+    "message": "Obsidian"
+  },
+  "f_pdf_7875": {
+    "message": "PDF"
+  },
+  "f_phone_944f": {
+    "message": "Telefon"
+  },
+  "f_pick_the_actions_for_the_bar_c800": {
+    "message": "Makalenin üstündeki çubuk için eylemleri seçin ve sıralayın. İlk üçü her zaman görünür; pencere genişledikçe daha fazlası belirir. Geri kalan her şey ⋯ menüsünde kalır."
+  },
+  "f_reset_toolbar_ee9b": {
+    "message": "Araç çubuğunu sıfırla"
+  },
+  "f_send_to_e_reader_kindle_or_l_48d7": {
+    "message": "E-okuyucuya gönder (Kindle veya LocalSend)"
+  },
+  "f_customize_toolbar_b65f": {
+    "message": "Araç çubuğunu özelleştir…"
+  },
+  "f_everything_is_in_the_bar_d67d": {
+    "message": "Her şey çubukta."
+  },
+  "f_other_actions_drag_into_the__ae3e": {
+    "message": "Diğer eylemler: çubuğa sürükleyin"
+  },
+  "f_copy_link_90dc": {
+    "message": "Bağlantıyı kopyala"
+  },
+  "f_kindle_a768": {
+    "message": "Kindle"
+  },
+  "f_last_used_5cda": {
+    "message": "Son kullanılan"
+  },
+  "f_link_copied_d7d3": {
+    "message": "Bağlantı kopyalandı"
+  },
+  "f_manage_targets_5162": {
+    "message": "Hedefleri yönet…"
+  },
+  "f_not_paired_pair_now_fffe": {
+    "message": "Eşleşmedi · şimdi eşleştir"
+  },
+  "f_send_to_eb5e": {
+    "message": "Gönder…"
+  },
+  "f_share_c6da": {
+    "message": "Paylaş…"
+  },
+  "f_system_share_apps_airdrop_ma_a10d": {
+    "message": "Sistem paylaşımı: uygulamalar, AirDrop, e-posta"
+  },
+  "f_always_available_45ef": {
+    "message": "Her zaman kullanılabilir"
+  },
+  "f_not_paired_e80f": {
+    "message": "Eşleşmedi"
+  },
+  "f_not_set_up_eacf": {
+    "message": "Kurulmadı"
+  },
+  "f_opens_your_system_share_shee_38bd": {
+    "message": "Makale bağlantısı ve özetle sistem paylaşım sayfasını (Mail, Mesajlar, AirDrop, not uygulamaları …) açar. Kurulum gerekmez."
+  },
+  "f_use_as_default_target_9cee": {
+    "message": "Varsayılan hedef yap"
+  },
+  "f_devices_961c": {
+    "message": "{n} cihaz",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_send_targets_3e2c": {
+    "message": "‹ Gönderim hedefleri"
+  },
+  "f_more_b42e": {
+    "message": "{n} tane daha…",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_cancelled_not_sent_e7ab": {
+    "message": "İptal edildi: gönderilmedi"
+  },
+  "f_sending_to_in_s_808b": {
+    "message": "{name} cihazına {n} sn içinde gönderiliyor",
+    "description": "Placeholders: {name} {n} (keep as is)"
+  },
+  "ctxHighlightSelection": {
+    "message": "✏️ Seçimi vurgula",
+    "description": "Right-click menu entry"
+  },
+  "ctxRemoveHighlights": {
+    "message": "🧹 Tüm vurguları kaldır",
+    "description": "Right-click menu entry"
+  },
+  "ctxSummarizePage": {
+    "message": "✨ Bu sayfayı özetle",
+    "description": "Right-click menu entry"
+  },
+  "ctxSummarizeClose": {
+    "message": "✨ Özetle ve sekmeyi kapat",
+    "description": "Right-click menu entry"
+  }
+}
