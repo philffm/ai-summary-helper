@@ -110,67 +110,62 @@ function setBilling(period) {
   }
 }
 
-/* ── Locale suggestion banner (English pages only) ───────────────── */
+/* ── Locale suggestion banner ────────────────────────────────────── */
 (function () {
-  // Only offer a locale switch on English pages. Anyone already on a
-  // /xx/ page is left alone — no redirect, so every locale URL
-  // stays independently reachable and indexable.
-  var htmlLang = (document.documentElement.getAttribute('lang') || '').toLowerCase();
-  if (htmlLang && htmlLang !== 'en' && htmlLang.indexOf('en-') !== 0) return;
-
+  // Suggests the page in the browser's preferred language (written in that language). Never redirects on its own,
+  // so every locale URL stays independently reachable and indexable. Works from English and from any /xx/ page.
   var LOCALES = {
-    de: 'Deutsch', es: 'Español', fr: 'Français', hi: 'हिन्दी',
-    ja: '日本語', ko: '한국어', pt: 'Português', zh: '中文'
+    en: ['English', 'This page is also available in {l}.'], de: ['Deutsch', 'Diese Seite gibt es auch auf {l}.'],
+    fr: ['Français', 'Cette page existe aussi en {l}.'], es: ['Español', 'Esta página también está disponible en {l}.'],
+    pt: ['Português', 'Esta página também está disponível em {l}.'], zh: ['简体中文', '本页面也提供{l}版本。'],
+    'zh-tw': ['繁體中文', '本頁面也提供{l}版本。'], ja: ['日本語', 'このページは{l}でもご覧いただけます。'],
+    ko: ['한국어', '이 페이지는 {l}로도 제공됩니다.'], hi: ['हिन्दी', 'यह पेज {l} में भी उपलब्ध है।'],
+    vi: ['Tiếng Việt', 'Trang này cũng có bản {l}.']
   };
   var DISMISS_KEY = 'aish_lang_banner_dismissed';
-
-  // Best match: walk navigator.languages (falling back to navigator.language)
-  // and pick the first that maps to a shipped locale.
-  function preferredLocale() {
-    var langs = [];
-    try { langs = navigator.languages || []; } catch (e) {}
-    if (!langs.length && navigator.language) langs = [navigator.language];
-    for (var i = 0; i < langs.length; i++) {
-      var code = (langs[i] || '').toLowerCase();
-      var base = code.split('-')[0];
-      if (LOCALES[base]) return base;
-    }
-    return null;
+  function map(code) {
+    code = (code || '').toLowerCase();
+    if (code.indexOf('zh') === 0) return /hant|-tw|-hk|-mo/.test(code) ? 'zh-tw' : 'zh';
+    var base = code.split('-')[0];
+    return LOCALES[base] ? base : null;
   }
+  // Current locale = first path segment when it is a shipped locale folder, otherwise English.
+  var seg = window.location.pathname.replace(/^\/+/, '').split('/')[0].toLowerCase();
+  var current = LOCALES[seg] && seg !== 'en' ? seg : 'en';
+  var rest = window.location.pathname.replace(/^\/+/, '');
+  if (current !== 'en') rest = rest.split('/').slice(1).join('/');
+  if (!rest) rest = 'index.html';
 
-  var target = preferredLocale();
-  if (!target) return;
+  var langs = [];
+  try { langs = navigator.languages || []; } catch (e) {}
+  if (!langs.length && navigator.language) langs = [navigator.language];
+  var target = null;
+  for (var i = 0; i < langs.length; i++) { var m = map(langs[i]); if (m) { target = m; break; } }
+  if (!target || target === current) return;
 
   var dismissed = false;
   try { dismissed = localStorage.getItem(DISMISS_KEY) === '1'; } catch (e) {}
+  if (dismissed) return;
 
-  // Same-page mapping: /index.html -> /xx/index.html, and
-  // /blog/foo.html -> /xx/blog/foo.html. Never just the homepage.
-  var rel = window.location.pathname.replace(/^\/+/, '');
-  if (!rel) rel = 'index.html';
-  var href = '/' + target + '/' + rel;
-
+  var href = '/' + (target === 'en' ? '' : target + '/') + rest;
+  var info = LOCALES[target];
   var banner = document.createElement('div');
   banner.className = 'lang-banner';
   banner.setAttribute('role', 'region');
   banner.setAttribute('aria-label', 'Language suggestion');
+  banner.setAttribute('lang', target === 'zh-tw' ? 'zh-TW' : target);
   banner.innerHTML =
     '<div class="lang-banner-inner">' +
-      '<span class="lang-banner-text">This page is also available in ' +
-        '<a class="lang-banner-link" href="' + href + '">' + (LOCALES[target] || target) + '</a>.' +
-      '</span>' +
+      '<span class="lang-banner-text">' + info[1].replace('{l}', '<a class="lang-banner-link" href="' + href + '">' + info[0] + '</a>') + '</span>' +
       '<button type="button" class="lang-banner-close" aria-label="Dismiss language suggestion">' +
-        '<svg viewBox="0 0 24 24" fill="none" width="14" height="14"><path d="M6 6l12 12M18 6l6 12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>' +
+        '<svg viewBox="0 0 24 24" fill="none" width="14" height="14"><path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>' +
       '</button>' +
     '</div>';
-
-  function dismiss() {
+  banner.querySelector('.lang-banner-close').addEventListener('click', function () {
     banner.remove();
     try { localStorage.setItem(DISMISS_KEY, '1'); } catch (e) {}
-  }
-  banner.querySelector('.lang-banner-close').addEventListener('click', dismiss);
-
-  if (!dismissed) document.body.prepend(banner);
+  });
+  document.body.prepend(banner);
 })();
 
 /* ── Bookmarklet generator (BYOK + byPhil Cloud) ────────────────── */
