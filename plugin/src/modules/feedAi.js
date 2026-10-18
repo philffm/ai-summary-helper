@@ -94,7 +94,8 @@ async function languageName() {
 const UI_LANGUAGE_NAMES = {
     en: 'English', de: 'German', es: 'Spanish', fr: 'French', it: 'Italian', pt_PT: 'European Portuguese', pt_BR: 'Brazilian Portuguese', ru: 'Russian', hi: 'Hindi',
     ko: 'Korean', ja: 'Japanese', zh_CN: 'Simplified Chinese (简体中文)', zh_TW: 'Traditional Chinese (繁體中文, Taiwan)',
-    zh_HK: 'Traditional Chinese (繁體中文, Hong Kong)', ar: 'Arabic'
+    zh_HK: 'Traditional Chinese (繁體中文, Hong Kong)', ar: 'Arabic',
+    nl: 'Dutch', pl: 'Polish', tr: 'Turkish', id: 'Indonesian', th: 'Thai', uk: 'Ukrainian', sv: 'Swedish', da: 'Danish', no: 'Norwegian (Bokmål)', fi: 'Finnish'
 };
 
 /** The UI language as { code, name }: code = locale folder (stored with the tags), name = what the model is told. */

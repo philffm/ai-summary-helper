@@ -15,7 +15,7 @@ let fallbackDictionary = {};
 })();
 
 // Locale folders shipped in _locales (all fully translated; tests/test60.mjs enforces coverage).
-export const SUPPORTED_LOCALES = ['en', 'de', 'es', 'fr', 'it', 'pt_PT', 'pt_BR', 'ru', 'hi', 'ko', 'ja', 'zh_CN', 'zh_TW', 'zh_HK', 'ar'];
+export const SUPPORTED_LOCALES = ['en', 'de', 'es', 'fr', 'it', 'pt_PT', 'pt_BR', 'ru', 'hi', 'ko', 'ja', 'zh_CN', 'zh_TW', 'zh_HK', 'ar', 'nl', 'pl', 'tr', 'id', 'th', 'uk', 'sv', 'da', 'no', 'fi'];
 const RTL = new Set(['ar', 'he', 'fa', 'ur']);
 
 /**
@@ -35,6 +35,7 @@ export function resolveLocale(code, browserLang) {
     const base = c.split('_')[0].toLowerCase();
     if (base === 'zh') return /^zh_(tw|mo|hant)/i.test(c) ? 'zh_TW' : /^zh_hk/i.test(c) ? 'zh_HK' : 'zh_CN';
     if (base === 'pt') return 'pt_PT';
+    if (base === 'nb' || base === 'nn') return 'no';
     return SUPPORTED_LOCALES.find(l => l.toLowerCase() === base) || 'en';
 }
 
