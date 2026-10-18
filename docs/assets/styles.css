@@ -241,6 +241,7 @@ nav.links a:hover{ color:var(--paper); }
 /* ── Ecosystem section (other byphil tools) ─────────────────────── */
 .ecosystem-card{ display:block; transition:border-color 0.2s ease, transform 0.15s ease; }
 a.ecosystem-card:hover{ border-color:var(--border-strong); transform:translateY(-2px); }
+.ecosystem-card .f-icon{ margin-left:auto; margin-right:auto; }
 .ecosystem-card.self{ border-color:var(--border-strong); background:linear-gradient(180deg, var(--surface-1-strong), var(--surface-2)); }
 .ecosystem-card .f-badge{
   display:inline-block; font-family:var(--font-mono); font-size:9.5px; letter-spacing:0.06em; text-transform:uppercase;
