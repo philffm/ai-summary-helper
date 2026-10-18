@@ -29,7 +29,7 @@ function copy(from, to) {
 
 fs.rmSync(OUT, { recursive: true, force: true });
 copy(SRC, APP);
-for (const f of ['demo-content.js', 'demo-i18n.js', 'demo-shim.js']) fs.copyFileSync(path.join(DEMO, f), path.join(APP, f));
+for (const f of ['demo-content.js', 'demo-i18n.js', 'demo-shim.js', 'demo-tour-i18n.js', 'demo-tour.js']) fs.copyFileSync(path.join(DEMO, f), path.join(APP, f));
 
 // The same popup.html, with the fake chrome loaded first.
 const html = fs.readFileSync(path.join(SRC, 'popup.html'), 'utf8');

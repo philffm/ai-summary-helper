@@ -23,7 +23,7 @@ iframe{flex:1;border:0;width:100%;min-height:0;background:transparent}
 <section class="panel"><div class="bar"><i></i><i></i><i></i><span id="panelLabel">AI Summary Helper · side panel</span></div>
 <iframe id="app" title="AI Summary Helper"></iframe></section>
 </div>
-<script src="app/demo-content.js"></script><script src="app/demo-i18n.js"></script>
+<script src="app/demo-content.js"></script><script src="app/demo-i18n.js"></script><script src="app/demo-tour-i18n.js"></script>
 <script>
 const P = new URLSearchParams(location.search), LOC = window.AISH_DEMO.locale, appFrame = document.getElementById('app');
 if (LOC) { document.documentElement.lang = LOC.ui.replace('_', '-'); document.getElementById('panelLabel').textContent = 'AI Summary Helper · ' + LOC.side; document.title = LOC.article.title + ' – AI Summary Helper'; }
@@ -44,4 +44,5 @@ addEventListener('message', (e) => {
   while ((n = w.nextNode())) { const i = n.nodeValue.toLowerCase().indexOf(m.quote.toLowerCase()); if (i < 0) continue;
     const r = document.createRange(); r.setStart(n, i); r.setEnd(n, i + m.quote.length); const k = document.createElement('mark'); r.surroundContents(k); k.scrollIntoView({ behavior: 'smooth', block: 'center' }); break; }
 });
-</script></body></html>
+</script>
+<script src="app/demo-tour.js"></script></body></html>
