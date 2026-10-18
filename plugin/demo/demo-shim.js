@@ -103,3 +103,7 @@
   window.fetch = (u, ...a) => /^https?:/.test(String(u)) && !String(u).startsWith(location.origin) ? Promise.reject(new TypeError('offline demo')) : realFetch(u, ...a);
   window.AISH_DEMO_ACTIONS = { handle, quiet };
 })();
+
+// The popup reads the stored summary language synchronously here, before popup.js has attached its listener, so the chip
+// would stay on "EN". Nudge it once everything is wired.
+addEventListener('load', () => { setTimeout(() => { const s = document.getElementById('languageSelect'); if (s) s.dispatchEvent(new Event('change')); }, 600); });

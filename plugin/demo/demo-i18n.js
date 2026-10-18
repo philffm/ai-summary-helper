@@ -4,7 +4,7 @@
 window.AISH_DEMO_I18N = {
  "de": {
   "ui": "de",
-  "sel": "de-DE",
+  "sel": "de",
   "side": "Seitenpanel",
   "article": {
    "title": "Das stille Comeback des Longreads",
@@ -53,7 +53,7 @@ window.AISH_DEMO_I18N = {
  },
  "fr": {
   "ui": "fr",
-  "sel": "fr-FR",
+  "sel": "fr",
   "side": "panneau latéral",
   "article": {
    "title": "Le retour discret de la lecture longue",
@@ -102,7 +102,7 @@ window.AISH_DEMO_I18N = {
  },
  "es": {
   "ui": "es",
-  "sel": "es-ES",
+  "sel": "es",
   "side": "panel lateral",
   "article": {
    "title": "El regreso silencioso de la lectura larga",
@@ -151,7 +151,7 @@ window.AISH_DEMO_I18N = {
  },
  "pt": {
   "ui": "pt-BR",
-  "sel": "pt-BR",
+  "sel": "pt",
   "side": "painel lateral",
   "article": {
    "title": "A volta silenciosa da leitura longa",
@@ -200,7 +200,7 @@ window.AISH_DEMO_I18N = {
  },
  "zh": {
   "ui": "zh_CN",
-  "sel": "zh-CN",
+  "sel": "cn",
   "side": "侧边栏",
   "article": {
    "title": "长文的悄然回归",
@@ -249,7 +249,7 @@ window.AISH_DEMO_I18N = {
  },
  "zh-tw": {
   "ui": "zh_TW",
-  "sel": "zh-TW",
+  "sel": "tw",
   "side": "側邊欄",
   "article": {
    "title": "長文的悄然回歸",
@@ -298,7 +298,7 @@ window.AISH_DEMO_I18N = {
  },
  "ja": {
   "ui": "ja",
-  "sel": "ja-JP",
+  "sel": "jp",
   "side": "サイドパネル",
   "article": {
    "title": "ロングリードの静かな復活",
@@ -347,7 +347,7 @@ window.AISH_DEMO_I18N = {
  },
  "ko": {
   "ui": "ko",
-  "sel": "ko-KR",
+  "sel": "kr",
   "side": "사이드 패널",
   "article": {
    "title": "긴 글의 조용한 귀환",
@@ -396,7 +396,7 @@ window.AISH_DEMO_I18N = {
  },
  "hi": {
   "ui": "hi",
-  "sel": "hi-IN",
+  "sel": "hi",
   "side": "साइड पैनल",
   "article": {
    "title": "लंबे लेखों की खामोश वापसी",
@@ -445,7 +445,7 @@ window.AISH_DEMO_I18N = {
  },
  "vi": {
   "ui": "vi",
-  "sel": "vi-VN",
+  "sel": "vi",
   "side": "bảng bên",
   "article": {
    "title": "Sự trở lại âm thầm của bài đọc dài",
