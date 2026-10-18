@@ -1080,3 +1080,68 @@ function setBilling(period) {
   });
   document.querySelectorAll('a[data-store="alt"]').forEach(function (a) { a.href = CHURL; a.textContent = 'Chrome'; });
 })();
+
+/* ── Floating pill nav: compact on scroll, mega menu, more menu, language picker, active section, scroll lock ── */
+(function () {
+  var nav = document.getElementById('siteNav');
+  if (!nav || !nav.classList.contains('nav--pill')) return;
+  var mm = document.getElementById('mobileMenu'), tg = document.getElementById('navToggle');
+
+  function onScroll() { nav.classList.toggle('is-compact', window.scrollY > 80); }
+  onScroll(); window.addEventListener('scroll', onScroll, { passive: true });
+
+  // Popovers: [trigger, panel]
+  var pops = [];
+  function pop(btn, panel, hover) {
+    if (!btn || !panel) return;
+    var t;
+    function open() { clearTimeout(t); pops.forEach(function (p) { if (p.panel !== panel) p.close(); }); panel.hidden = false; btn.setAttribute('aria-expanded', 'true'); }
+    function close() { panel.hidden = true; btn.setAttribute('aria-expanded', 'false'); }
+    pops.push({ panel: panel, close: close });
+    btn.addEventListener('click', function (e) {
+      if (btn.tagName === 'A' && hover && window.matchMedia('(hover:hover)').matches && panel.hidden === false) return; // second click follows link
+      if (btn.tagName === 'A') { if (panel.hidden) { e.preventDefault(); open(); } return; }
+      panel.hidden ? open() : close();
+    });
+    if (hover) {
+      var wrap = btn.parentNode;
+      wrap.addEventListener('mouseenter', function () { if (window.matchMedia('(hover:hover)').matches) open(); });
+      wrap.addEventListener('mouseleave', function () { t = setTimeout(close, 180); });
+      wrap.addEventListener('focusout', function (e) { if (!wrap.contains(e.relatedTarget)) close(); });
+    }
+  }
+  pop(document.getElementById('megaBtn'), document.getElementById('megaPanel'), true);
+  pop(document.getElementById('pillMoreBtn'), document.getElementById('pillMoreMenu'), false);
+  pop(document.getElementById('langBtn'), document.getElementById('langMenu'), false);
+  document.addEventListener('click', function (e) { if (!nav.contains(e.target)) pops.forEach(function (p) { p.close(); }); });
+  document.addEventListener('keydown', function (e) { if (e.key === 'Escape') pops.forEach(function (p) { p.close(); }); });
+  window.addEventListener('scroll', function () { pops.forEach(function (p) { if (p.panel.id === 'megaPanel') p.close(); }); }, { passive: true });
+
+  // Current-locale highlight in language lists
+  var m = location.pathname.match(/^\/([a-z]{2}(?:-[a-z]{2})?)\//i), cur = m ? m[1].toLowerCase() : 'en';
+  var known = [].map.call(nav.querySelectorAll('[data-loc]'), function (a) { return a.getAttribute('data-loc'); });
+  if (known.indexOf(cur) < 0) cur = 'en';
+  var rest = location.pathname.replace(/^\/(?:[a-z]{2}(?:-[a-z]{2})?)\//i, '/');
+  if (known.indexOf(m && m[1].toLowerCase()) < 0) rest = location.pathname;
+  [].forEach.call(nav.querySelectorAll('[data-loc]'), function (a) {
+    var l = a.getAttribute('data-loc');
+    a.href = (l === 'en' ? '' : '/' + l) + (rest.indexOf('/') === 0 ? rest : '/' + rest);
+    if (l === cur) a.setAttribute('aria-current', 'true');
+  });
+
+  // Active section highlight
+  if ('IntersectionObserver' in window) {
+    var links = {};
+    [].forEach.call(nav.querySelectorAll('.pill a[data-sec]'), function (a) { links[a.getAttribute('data-sec')] = a; });
+    var io = new IntersectionObserver(function (es) {
+      es.forEach(function (en) {
+        if (!en.isIntersecting) return;
+        Object.keys(links).forEach(function (k) { links[k].classList.toggle('is-active', k === en.target.id); });
+      });
+    }, { rootMargin: '-40% 0px -55% 0px' });
+    Object.keys(links).forEach(function (k) { var s = document.getElementById(k); if (s) io.observe(s); });
+  }
+
+  // Scroll lock while full-screen menu is open
+  if (mm && tg) new MutationObserver(function () { document.body.classList.toggle('nav-locked', !mm.hidden); }).observe(mm, { attributes: true, attributeFilter: ['hidden'] });
+})();
