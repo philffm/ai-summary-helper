@@ -29,4 +29,4 @@
 - [Search and Tags Without the Cloud](https://ai-summary-helper.byphil.eu/blog/on-device-architecture.html): The TF-IDF index behind AI Summary Helper's search, duplicate detection, and digest features — and why most of it never needed a server.
 
 ## Translations
-Home page and main guides are available in: de, fr, es, zh-Hans, zh-Hant, ja, ko, pt-BR, hi, vi under /<code>/ (for example /de/).
+Home page and main guides are available in 23 languages under /<code>/ (for example /de/): de, fr, es, zh, zh-tw, ja, ko, pt, hi, vi, nl, it, ru, uk, tr, id, pl, th, ar, sv, da, no, fi. Arabic (/ar/) is right-to-left. Every page declares its alternates with hreflang and lists them in the sitemap.

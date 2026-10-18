@@ -168,7 +168,7 @@ const llms = [
   ...en.filter((e) => /blog\//.test(e.rel)).map(line),
   '',
   '## Translations',
-  'Home page and main guides are available in: de, fr, es, zh-Hans, zh-Hant, ja, ko, pt-BR, hi, vi under /<code>/ (for example /de/).',
+  `Home page and main guides are available in ${LOCALE_DIRS.length} languages under /<code>/ (for example /de/): ${LOCALE_DIRS.join(', ')}. Arabic (/ar/) is right-to-left. Every page declares its alternates with hreflang and lists them in the sitemap.`,
   '',
 ].join('\n');
 fs.writeFileSync(path.join(DOCS, 'llms.txt'), llms);
