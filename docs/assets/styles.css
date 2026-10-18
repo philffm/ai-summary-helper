@@ -935,3 +935,9 @@ footer .copyright a:hover, .foot-links a:hover{ text-decoration-color:currentCol
 :root[data-theme="dark"] .bm-card{ background:#1b2030; border-color:#2e3548; color:#e8ebf5; }
 :root[data-theme="dark"] .bm-card small{ color:#98a1b8; }
 :root[data-theme="dark"] .bm-cursor path{ fill:#fff; stroke:#14161f; }
+
+/* Graph card: never cut off at the bottom of the scene */
+.hs-graph{ top:566px; width:270px; padding:12px 16px; }
+.hs-graph svg{ height:60px; }
+.hs-graph > div{ white-space:nowrap; font-size:12.5px; }
+@media (max-width:900px){ .hs-graph{ display:none; } }
