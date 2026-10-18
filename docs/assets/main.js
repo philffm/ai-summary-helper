@@ -927,9 +927,31 @@ function setBilling(period) {
   var steps = [].slice.call(root.querySelectorAll('.hs-steps li')), dots = [].slice.call(root.querySelectorAll('.hs-dot')), pp = root.querySelector('.hs-pp');
   var mt = root.querySelector('[data-mcap-t]'), ms = root.querySelector('[data-mcap-s]');
   var sum = root.querySelector('.hs-sum'), st = root.querySelector('.hs-st'), sb = root.querySelector('.hs-sb'), sp = root.querySelector('.hs-sp');
-  var pills = [].slice.call(root.querySelectorAll('.hs-langs b[data-lang]')), code = root.querySelector('[data-lang-code]');
+  var D0 = null, pills = [].slice.call(root.querySelectorAll('.hs-langs b[data-lang]')), code = root.querySelector('[data-lang-code]');
   var extbtn = root.querySelector('.hs-extbtn'), tabs = root.querySelector('.hs-tabs i.on'), sugg = root.querySelector('.hs-sugg'), inart = root.querySelector('.hs-a em'), tagLang = root.querySelector('.hs-tags i:last-child');
-  var D = {}; ['en', 'de'].forEach(function (l) { D[l] = { t: st.getAttribute('data-t-' + l), b: sb.getAttribute('data-b-' + l), p: sp.getAttribute('data-p-' + l) }; });
+  // Localized mock content (translated pages only): a local story, local UI strings, and the language the summary switches to.
+  var pg = location.pathname.split('/').filter(Boolean)[0] || '', L = /^[a-z]{2}(-[a-z]{2})?$/.test(pg) && window.AISH_HERO_I18N && window.AISH_HERO_I18N[pg];
+  var codeA = 'en', codeB = 'de';
+  function q1(sel, el) { return (el || root).querySelector(sel); }
+  function setT(sel, v, html) { var e = q1(sel); if (e && v != null) e[html ? 'innerHTML' : 'textContent'] = v; }
+  if (L) {
+    codeA = L.codeA; codeB = L.codeB; root.querySelector('[data-lang-code]').textContent = codeA;
+    q1('.hs-langs').innerHTML = L.pills.map(function (n, i) { return '<b' + (i === 0 ? ' data-lang="a" class="is-on"' : i === 1 ? ' data-lang="b"' : '') + '>' + n + '</b>'; }).join('');
+    pills = [].slice.call(root.querySelectorAll('.hs-langs b[data-lang]'));
+    setT('.hs-badge', ' ' + L.badge); var bi = document.createElement('i'); q1('.hs-badge').insertBefore(bi, q1('.hs-badge').firstChild);
+    setT('.hs-bar > span', '🔒 ' + L.url); setT('.hs-mast', L.mast); setT('.hs-kick', L.kick); setT('.hs-art h4', L.h); setT('.hs-dek', L.dek);
+    var ap = [].slice.call(root.querySelectorAll('.hs-art > p:not(.hs-dek)')); ap[0].textContent = L.p1; ap[1].textContent = L.hl; ap[2].textContent = L.p3;
+    var tg = [].slice.call(root.querySelectorAll('.hs-tags i')); tg[0].textContent = L.tags[0]; tg[1].textContent = L.tags[1];
+    setT('.hs-sum small', L.sumLabel); setT('.hs-ph2', L.ph2); setT('.hs-sugg', '💬 ' + L.A.q); setT('.hs-q span', L.A.q);
+    var a = q1('.hs-a'); a.firstChild.nodeValue = L.A.a; setT('.hs-a em', L.inart);
+    [].slice.call(root.querySelectorAll('.hs-tabs i')).forEach(function (e, i) { e.textContent = L.tabs[i]; });
+    setT('.hs-graph small', L.graphT); setT('.hs-graph > div', L.graphL, true);
+    var bp = [].slice.call(root.querySelectorAll('.bm-page p')); if (bp.length > 2) { bp[0].textContent = L.p1; bp[1].textContent = L.hl; bp[2].textContent = L.p3; }
+    setT('.bm-tb span', '🔒 ' + L.url); setT('.bm-mast', L.mast); setT('.bm-page h4', L.h); setT('.bm-card small', L.sumLabel); setT('.bm-card b', L.A.t); setT('.bm-card > span', L.A.b, true);
+    steps.forEach(function (c, i) { if (L.steps[i]) { c.querySelector('b').textContent = L.steps[i][0]; c.querySelector('span').textContent = L.steps[i][1]; } });
+    D0 = { a: { t: L.A.t, b: L.A.b, p: L.A.p }, b: { t: L.B.t, b: L.B.b, p: L.B.p } };
+  }
+  var D = D0 || { a: { t: st.getAttribute('data-t-en'), b: sb.getAttribute('data-b-en'), p: sp.getAttribute('data-p-en') }, b: { t: st.getAttribute('data-t-de'), b: sb.getAttribute('data-b-de'), p: sp.getAttribute('data-p-de') } };
   var cur = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
   cur.setAttribute('viewBox', '0 0 24 24'); cur.setAttribute('class', 'hs-cursor');
   cur.innerHTML = '<path d="M4 2l15 9-6.5 1.5L9 19z" fill="#14161f" stroke="#fff" stroke-width="1.4" stroke-linejoin="round"/>';
@@ -969,8 +991,8 @@ function setBilling(period) {
       lang && { t: 15.6, x: lang.x, y: lang.y }, lang && { t: 16.2, x: lang.x, y: lang.y },
       { t: 17.6, x: rest.x + 40, y: rest.y + 40 }, { t: T, x: rest.x + 40, y: rest.y + 40 } ].filter(Boolean);
   }
-  var lang = 'en', stage = -1;
-  function setLang(l) { if (l === lang) return; lang = l; code.textContent = l; pills.forEach(function (b) { b.classList.toggle('is-on', b.getAttribute('data-lang') === l); }); }
+  var lang = 'a', stage = -1;
+  function setLang(l) { if (l === lang) return; lang = l; code.textContent = l === 'a' ? codeA : codeB; pills.forEach(function (b) { b.classList.toggle('is-on', b.getAttribute('data-lang') === l); }); }
   function css(n, v) { root.style.setProperty(n, v); }
   function render(t) {
     var s = t < STAGES[1] ? 0 : t < STAGES[2] ? 1 : t < STAGES[3] ? 2 : 3;
@@ -980,8 +1002,8 @@ function setBilling(period) {
       dots.forEach(function (c, i) { c.classList.toggle('is-on', i === s); });
       if (mt && steps[s]) { mt.textContent = steps[s].querySelector('b').textContent; ms.textContent = steps[s].querySelector('span').textContent; }
     }
-    setLang(t >= 15.8 ? 'de' : 'en');
-    var d = D[lang], ty = lang === 'de' ? 1 : seg(t, 4.4, 8.4);
+    setLang(t >= 15.8 ? 'b' : 'a');
+    var d = D[lang], ty = lang === 'b' ? 1 : seg(t, 4.4, 8.4);
     css('--p-panel', seg(t, 2.3, 2.9).toFixed(3));
     css('--p-sugg', (seg(t, 8.2, 8.8) * (1 - seg(t, 10, 10.25))).toFixed(3));
     css('--p-qa', seg(t, 10.1, 10.5).toFixed(3));
