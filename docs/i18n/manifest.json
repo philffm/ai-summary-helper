@@ -39984,6 +39984,1106 @@
           "model": "google/gemini-3.7-flash"
         }
       }
+    },
+    "d3f2772260a6059d492d4c60c728a194d2b2bd4f635c3811851beeb9cdee2e60": {
+      "en": "Read any page.",
+      "translations": {
+        "de": {
+          "text": "Jede beliebige Seite lesen.",
+          "translatedAt": "2026-10-18T12:20:10.516Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fr": {
+          "text": "Lisez n'importe quelle page.",
+          "translatedAt": "2026-10-18T12:20:19.703Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "es": {
+          "text": "Lee cualquier página.",
+          "translatedAt": "2026-10-18T12:20:29.318Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh": {
+          "text": "畅读任意网页。",
+          "translatedAt": "2026-10-18T12:20:41.026Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh-TW": {
+          "text": "閱讀任何網頁。",
+          "translatedAt": "2026-10-18T12:20:48.180Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ja": {
+          "text": "あらゆるページを閲覧",
+          "translatedAt": "2026-10-18T12:20:59.011Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ko": {
+          "text": "어떤 웹페이지든 편하게 읽으세요.",
+          "translatedAt": "2026-10-18T12:21:07.031Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pt": {
+          "text": "Leia qualquer página.",
+          "translatedAt": "2026-10-18T12:21:16.234Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "hi": {
+          "text": "कोई भी page पढ़ें।",
+          "translatedAt": "2026-10-18T12:21:24.713Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "vi": {
+          "text": "Đọc mọi trang web.",
+          "translatedAt": "2026-10-18T12:21:32.370Z",
+          "model": "google/gemini-3.7-flash"
+        }
+      }
+    },
+    "2bb6aa92e3449ee49d77c59decc8e1107e5f00ca6f45377a284f34c00af326c1": {
+      "en": "Open an article as usual. AISH sits quietly in the browser.",
+      "translations": {
+        "de": {
+          "text": "Öffnen Sie einen Artikel wie gewohnt. AISH bleibt unaufdringlich im Hintergrund des Browsers.",
+          "translatedAt": "2026-10-18T12:20:10.516Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fr": {
+          "text": "Ouvrez un article comme d'habitude. AISH reste discrètement dans votre navigateur.",
+          "translatedAt": "2026-10-18T12:20:19.703Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "es": {
+          "text": "Abre un artículo como de costumbre. AISH permanece discretamente en el navegador.",
+          "translatedAt": "2026-10-18T12:20:29.318Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh": {
+          "text": "照常打开文章。AISH 会在浏览器中安静就绪。",
+          "translatedAt": "2026-10-18T12:20:41.026Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh-TW": {
+          "text": "照常打開文章閱讀，AISH 在瀏覽器中安靜待命。",
+          "translatedAt": "2026-10-18T12:20:48.180Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ja": {
+          "text": "いつも通り記事を開くだけ。AISH はブラウザ内で静かに待機します。",
+          "translatedAt": "2026-10-18T12:20:59.011Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ko": {
+          "text": "평소처럼 아티클을 열기만 하면 됩니다. AISH가 브라우저에 조용히 대기하고 있어요.",
+          "translatedAt": "2026-10-18T12:21:07.031Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pt": {
+          "text": "Abra um artigo normalmente. O AISH fica discretamente no navegador.",
+          "translatedAt": "2026-10-18T12:21:16.234Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "hi": {
+          "text": "हमेशा की तरह कोई भी article खोलें। AISH browser में चुपचाप तैयार रहता है।",
+          "translatedAt": "2026-10-18T12:21:24.713Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "vi": {
+          "text": "Mở bài viết như bình thường. AISH luôn sẵn sàng chạy mượt mà trên trình duyệt.",
+          "translatedAt": "2026-10-18T12:21:32.370Z",
+          "model": "google/gemini-3.7-flash"
+        }
+      }
+    },
+    "31a4945f105a0e2360f724f7d53353fb24afdf23e119d9725c71a500d34a574c": {
+      "en": "Summary beside the article.",
+      "translations": {
+        "de": {
+          "text": "Zusammenfassung direkt neben dem Artikel.",
+          "translatedAt": "2026-10-18T12:20:10.516Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fr": {
+          "text": "Le résumé à côté de l'article.",
+          "translatedAt": "2026-10-18T12:20:19.703Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "es": {
+          "text": "Resumen junto al artículo.",
+          "translatedAt": "2026-10-18T12:20:29.318Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh": {
+          "text": "文章侧边即览摘要。",
+          "translatedAt": "2026-10-18T12:20:41.026Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh-TW": {
+          "text": "文章旁即時呈現摘要。",
+          "translatedAt": "2026-10-18T12:20:48.180Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ja": {
+          "text": "記事のすぐ隣に要約を表示",
+          "translatedAt": "2026-10-18T12:20:59.011Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ko": {
+          "text": "아티클 옆에서 바로 확인하는 요약.",
+          "translatedAt": "2026-10-18T12:21:07.031Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pt": {
+          "text": "Resumo ao lado do artigo.",
+          "translatedAt": "2026-10-18T12:21:16.234Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "hi": {
+          "text": "Article के ठीक बगल में summary।",
+          "translatedAt": "2026-10-18T12:21:24.713Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "vi": {
+          "text": "Tóm tắt ngay cạnh bài viết.",
+          "translatedAt": "2026-10-18T12:21:32.370Z",
+          "model": "google/gemini-3.7-flash"
+        }
+      }
+    },
+    "6600240ab8fba6b3b7f169953991887ab510d5eaa3b67d5544a547fd0731cbd9": {
+      "en": "One click. A short summary types out in the side panel while you keep reading.",
+      "translations": {
+        "de": {
+          "text": "Ein Klick. Eine prägnante Zusammenfassung wird im Seitenpanel generiert, während Sie ungestört weiterlesen.",
+          "translatedAt": "2026-10-18T12:20:10.516Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fr": {
+          "text": "Un seul clic. Un court résumé s'affiche dans le panneau latéral pendant que vous poursuivez votre lecture.",
+          "translatedAt": "2026-10-18T12:20:19.703Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "es": {
+          "text": "Un solo clic. Un breve resumen se escribe en el panel lateral mientras sigues leyendo.",
+          "translatedAt": "2026-10-18T12:20:29.318Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh": {
+          "text": "一键点击。侧边栏实时输出精简摘要，完全不打断阅读体验。",
+          "translatedAt": "2026-10-18T12:20:41.026Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh-TW": {
+          "text": "只需一鍵點擊，側邊欄即會逐字生成精簡摘要，完全不干擾閱讀節奏。",
+          "translatedAt": "2026-10-18T12:20:48.180Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ja": {
+          "text": "ワンクリックするだけ。記事を読み進めている間に、サイドパネルに簡潔な要約が表示されます。",
+          "translatedAt": "2026-10-18T12:20:59.011Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ko": {
+          "text": "클릭 한 번이면 끝납니다. 본문을 읽는 동안 사이드 패널에 핵심 요약이 실시간으로 작성돼요.",
+          "translatedAt": "2026-10-18T12:21:07.031Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pt": {
+          "text": "Um clique. Um resumo direto é gerado no painel lateral enquanto você continua lendo.",
+          "translatedAt": "2026-10-18T12:21:16.234Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "hi": {
+          "text": "बस एक click। आप पढ़ते रहें और side panel में एक quick summary type हो जाएगी।",
+          "translatedAt": "2026-10-18T12:21:24.713Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "vi": {
+          "text": "Chỉ một cú nhấp. Bản tóm tắt ngắn gọn tự động hiển thị ở thanh bên trong khi bạn tiếp tục đọc.",
+          "translatedAt": "2026-10-18T12:21:32.370Z",
+          "model": "google/gemini-3.7-flash"
+        }
+      }
+    },
+    "73da0c03d81fea16f6a5c3fc1796563567a69341e9c3ff47b91f18b3da949d5c": {
+      "en": "Ask the page.",
+      "translations": {
+        "de": {
+          "text": "Fragen an die Seite stellen.",
+          "translatedAt": "2026-10-18T12:20:10.516Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fr": {
+          "text": "Interrogez la page.",
+          "translatedAt": "2026-10-18T12:20:19.703Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "es": {
+          "text": "Pregúntale a la página.",
+          "translatedAt": "2026-10-18T12:20:29.318Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh": {
+          "text": "就网页内容随时提问。",
+          "translatedAt": "2026-10-18T12:20:41.026Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh-TW": {
+          "text": "向網頁提問。",
+          "translatedAt": "2026-10-18T12:20:48.180Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ja": {
+          "text": "ページの内容について質問",
+          "translatedAt": "2026-10-18T12:20:59.011Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ko": {
+          "text": "페이지에 바로 질문하기.",
+          "translatedAt": "2026-10-18T12:21:07.031Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pt": {
+          "text": "Faça perguntas à página.",
+          "translatedAt": "2026-10-18T12:21:16.234Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "hi": {
+          "text": "Page से सवाल पूछें।",
+          "translatedAt": "2026-10-18T12:21:24.713Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "vi": {
+          "text": "Hỏi đáp trực tiếp với trang web.",
+          "translatedAt": "2026-10-18T12:21:32.370Z",
+          "model": "google/gemini-3.7-flash"
+        }
+      }
+    },
+    "6f10540947d21dd3dbe531cf5b5950a35460c5bfa0046ec485a24b2cf06379e8": {
+      "en": "Follow-up answers point back to the exact passage they came from.",
+      "translations": {
+        "de": {
+          "text": "Antworten auf weiterführende Fragen verweisen direkt auf die exakte Originalquelle.",
+          "translatedAt": "2026-10-18T12:20:10.516Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fr": {
+          "text": "Les réponses renvoient directement au passage exact dont elles sont issues.",
+          "translatedAt": "2026-10-18T12:20:19.703Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "es": {
+          "text": "Las respuestas de seguimiento te remiten al fragmento exacto de donde provienen.",
+          "translatedAt": "2026-10-18T12:20:29.318Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh": {
+          "text": "追问答复均可精准溯源至原文对应段落。",
+          "translatedAt": "2026-10-18T12:20:41.026Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh-TW": {
+          "text": "深入追問的回答均會精準標註原文出處段落。",
+          "translatedAt": "2026-10-18T12:20:48.180Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ja": {
+          "text": "追加の質問への回答は、参照元の該当箇所を直接ハイライトして示します。",
+          "translatedAt": "2026-10-18T12:20:59.011Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ko": {
+          "text": "추가 질문에 대한 답변은 본문의 정확한 출처 문맥을 바로 짚어줍니다.",
+          "translatedAt": "2026-10-18T12:21:07.031Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pt": {
+          "text": "As respostas apontam diretamente para o trecho exato de onde foram tiradas.",
+          "translatedAt": "2026-10-18T12:21:16.234Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "hi": {
+          "text": "Follow-up answers सीधे उस exact passage को point करते हैं जहाँ से वे आए हैं।",
+          "translatedAt": "2026-10-18T12:21:24.713Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "vi": {
+          "text": "Câu trả lời cho các câu hỏi chi tiết sẽ dẫn liên kết trực tiếp về đúng đoạn trích dẫn nguồn.",
+          "translatedAt": "2026-10-18T12:21:32.370Z",
+          "model": "google/gemini-3.7-flash"
+        }
+      }
+    },
+    "2eff867dbcda71e77d467dd47e85be96e3790f3a8ea902d40b72e70fdb4cb312": {
+      "en": "In your language.",
+      "translations": {
+        "de": {
+          "text": "In Ihrer Sprache.",
+          "translatedAt": "2026-10-18T12:20:10.516Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fr": {
+          "text": "Dans votre langue.",
+          "translatedAt": "2026-10-18T12:20:19.703Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "es": {
+          "text": "En tu idioma.",
+          "translatedAt": "2026-10-18T12:20:29.318Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh": {
+          "text": "支持你偏好的语言。",
+          "translatedAt": "2026-10-18T12:20:41.026Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh-TW": {
+          "text": "切換你的偏好語言。",
+          "translatedAt": "2026-10-18T12:20:48.180Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ja": {
+          "text": "お好みの言語で",
+          "translatedAt": "2026-10-18T12:20:59.011Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ko": {
+          "text": "원하는 언어로 자유롭게.",
+          "translatedAt": "2026-10-18T12:21:07.031Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pt": {
+          "text": "No seu idioma.",
+          "translatedAt": "2026-10-18T12:21:16.234Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "hi": {
+          "text": "अपनी भाषा में।",
+          "translatedAt": "2026-10-18T12:21:24.713Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "vi": {
+          "text": "Bằng ngôn ngữ của bạn.",
+          "translatedAt": "2026-10-18T12:21:32.370Z",
+          "model": "google/gemini-3.7-flash"
+        }
+      }
+    },
+    "7d613b2cdccd6aa77383e27c374b6f676714bce835cd0b85357bdc84507ae178": {
+      "en": "Summaries in the language you choose, and a graph of everything you've read.",
+      "translations": {
+        "de": {
+          "text": "Zusammenfassungen in der Sprache Ihrer Wahl und ein visueller Graph über alles, was Sie gelesen haben.",
+          "translatedAt": "2026-10-18T12:20:10.516Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fr": {
+          "text": "Des résumés dans la langue de votre choix, et une vue graphique de tout ce que vous avez lu.",
+          "translatedAt": "2026-10-18T12:20:19.703Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "es": {
+          "text": "Resúmenes en el idioma que elijas y un gráfico de todo lo que has leído.",
+          "translatedAt": "2026-10-18T12:20:29.318Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh": {
+          "text": "支持自选语言生成摘要，并为你已读的内容构建知识图谱。",
+          "translatedAt": "2026-10-18T12:20:41.026Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh-TW": {
+          "text": "以你選擇的語言生成摘要，並建立已讀內容的知識圖譜。",
+          "translatedAt": "2026-10-18T12:20:48.180Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ja": {
+          "text": "選択した言語で要約を生成し、これまで読んだ内容をグラフで可視化します。",
+          "translatedAt": "2026-10-18T12:20:59.011Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ko": {
+          "text": "선택한 언어로 요약받고, 지금까지 읽은 모든 내용을 그래프로 한눈에 확인하세요.",
+          "translatedAt": "2026-10-18T12:21:07.031Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pt": {
+          "text": "Resumos no idioma que você escolher e um gráfico de tudo o que você leu.",
+          "translatedAt": "2026-10-18T12:21:16.234Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "hi": {
+          "text": "अपनी पसंद की भाषा में summaries, और जो कुछ भी आपने पढ़ा है उसका पूरा graph।",
+          "translatedAt": "2026-10-18T12:21:24.713Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "vi": {
+          "text": "Tóm tắt bằng ngôn ngữ bạn chọn, kèm sơ đồ trực quan về mọi nội dung đã đọc.",
+          "translatedAt": "2026-10-18T12:21:32.370Z",
+          "model": "google/gemini-3.7-flash"
+        }
+      }
+    },
+    "d98f35df86e48b78723e538a35efd27758077b454c73ed9f075bb9fcf72a8d03": {
+      "en": "Open an article as usual.",
+      "translations": {
+        "de": {
+          "text": "Öffnen Sie einen Artikel wie gewohnt.",
+          "translatedAt": "2026-10-18T12:20:10.516Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fr": {
+          "text": "Ouvrez un article comme d'habitude.",
+          "translatedAt": "2026-10-18T12:20:19.703Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "es": {
+          "text": "Abre un artículo como de costumbre.",
+          "translatedAt": "2026-10-18T12:20:29.318Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh": {
+          "text": "照常打开文章。",
+          "translatedAt": "2026-10-18T12:20:41.026Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh-TW": {
+          "text": "像平常一樣打開文章。",
+          "translatedAt": "2026-10-18T12:20:48.180Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ja": {
+          "text": "いつも通り記事を開くだけ",
+          "translatedAt": "2026-10-18T12:20:59.011Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ko": {
+          "text": "평소처럼 아티클을 열어보세요.",
+          "translatedAt": "2026-10-18T12:21:07.031Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pt": {
+          "text": "Abra um artigo normalmente.",
+          "translatedAt": "2026-10-18T12:21:16.234Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "hi": {
+          "text": "हमेशा की तरह article खोलें।",
+          "translatedAt": "2026-10-18T12:21:24.713Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "vi": {
+          "text": "Mở bài viết như bình thường.",
+          "translatedAt": "2026-10-18T12:21:32.370Z",
+          "model": "google/gemini-3.7-flash"
+        }
+      }
+    },
+    "7749d24f623402d8f08974d7a17b37782a4d923ba5cfa15346e05b088fdcb425": {
+      "en": "AI Summary Helper opens a short summary of an article in a side panel, lets you ask follow-up questions that link back to the source passage, and switches summaries to the language you choose.",
+      "translations": {
+        "de": {
+          "text": "AI Summary Helper erstellt eine kompakte Zusammenfassung in der Seitenleiste, beantwortet Rückfragen mit präzisem Quellennachweis und übersetzt alles in Ihre bevorzugte Sprache.",
+          "translatedAt": "2026-10-18T12:20:10.516Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fr": {
+          "text": "AI Summary Helper ouvre un court résumé d'article dans un panneau latéral, vous permet de poser des questions complémentaires renvoyant au passage source, et adapte les résumés dans la langue de votre choix.",
+          "translatedAt": "2026-10-18T12:20:19.703Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "es": {
+          "text": "AI Summary Helper abre un breve resumen del artículo en un panel lateral, te permite hacer preguntas de seguimiento vinculadas al fragmento de origen y genera resúmenes en el idioma que elijas.",
+          "translatedAt": "2026-10-18T12:20:29.318Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh": {
+          "text": "AI Summary Helper 会在侧边栏呈现精炼摘要，支持就内容发起追问并溯源至原文出处，还可将摘要无缝切换为你选择的语言。",
+          "translatedAt": "2026-10-18T12:20:41.026Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh-TW": {
+          "text": "AI Summary Helper 在側邊欄呈現精簡文章摘要，支援連結回原文段落的追問功能，並可自由切換為你偏好的語言。",
+          "translatedAt": "2026-10-18T12:20:48.180Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ja": {
+          "text": "AI Summary Helper は、サイドパネルに記事の簡潔な要約を表示します。参照元にリンクした追加質問ができるほか、お好みの言語で要約を表示できます。",
+          "translatedAt": "2026-10-18T12:20:59.011Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ko": {
+          "text": "AI Summary Helper는 사이드 패널에 아티클 핵심 요약을 띄워주고, 원문 출처와 연결되는 추가 질문 기능은 물론 원하는 언어로의 요약 전환까지 지원합니다.",
+          "translatedAt": "2026-10-18T12:21:07.031Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pt": {
+          "text": "O AI Summary Helper abre um resumo rápido do artigo em um painel lateral, permite fazer perguntas complementares vinculadas ao trecho original e gera resumos no idioma da sua preferência.",
+          "translatedAt": "2026-10-18T12:21:16.234Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "hi": {
+          "text": "AI Summary Helper side panel में article की quick summary दिखाता है, source passage से linked follow-up सवाल पूछने देता है, और summaries को आपकी चुनी हुई भाषा में switch करता है।",
+          "translatedAt": "2026-10-18T12:21:24.713Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "vi": {
+          "text": "AI Summary Helper hiển thị bản tóm tắt bài viết ngắn gọn ở thanh bên, cho phép đặt câu hỏi nối tiếp liên kết trực tiếp đến nguồn và dịch tóm tắt sang ngôn ngữ bạn muốn.",
+          "translatedAt": "2026-10-18T12:21:32.370Z",
+          "model": "google/gemini-3.7-flash"
+        }
+      }
+    },
+    "6b86b273ff34fce19d6b804eff5a3f5747ada4eaa22f1d49c01e52ddb7875b4b": {
+      "en": "1",
+      "translations": {
+        "de": {
+          "text": "1",
+          "translatedAt": "2026-10-18T12:20:10.516Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fr": {
+          "text": "1",
+          "translatedAt": "2026-10-18T12:20:19.703Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "es": {
+          "text": "1",
+          "translatedAt": "2026-10-18T12:20:29.318Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh": {
+          "text": "1",
+          "translatedAt": "2026-10-18T12:20:41.026Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh-TW": {
+          "text": "1",
+          "translatedAt": "2026-10-18T12:20:48.180Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ja": {
+          "text": "1",
+          "translatedAt": "2026-10-18T12:20:59.011Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ko": {
+          "text": "1",
+          "translatedAt": "2026-10-18T12:21:07.031Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pt": {
+          "text": "1",
+          "translatedAt": "2026-10-18T12:21:16.234Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "hi": {
+          "text": "1",
+          "translatedAt": "2026-10-18T12:21:24.713Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "vi": {
+          "text": "1",
+          "translatedAt": "2026-10-18T12:21:32.370Z",
+          "model": "google/gemini-3.7-flash"
+        }
+      }
+    },
+    "53f84cab9639d6cd6207dcc9664fcaa9362b3c8eb5ef71521d7d6dae8eb37e11": {
+      "en": "Create it once",
+      "translations": {
+        "de": {
+          "text": "Einmalig konfigurieren",
+          "translatedAt": "2026-10-18T12:20:10.516Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fr": {
+          "text": "Configurez-le une seule fois",
+          "translatedAt": "2026-10-18T12:20:19.703Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "es": {
+          "text": "Créalo una sola vez",
+          "translatedAt": "2026-10-18T12:20:29.318Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh": {
+          "text": "一次性配置",
+          "translatedAt": "2026-10-18T12:20:41.026Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh-TW": {
+          "text": "一次設定",
+          "translatedAt": "2026-10-18T12:20:48.180Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ja": {
+          "text": "一度作成するだけ",
+          "translatedAt": "2026-10-18T12:20:59.011Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ko": {
+          "text": "한 번만 설정하세요",
+          "translatedAt": "2026-10-18T12:21:07.031Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pt": {
+          "text": "Configure uma única vez",
+          "translatedAt": "2026-10-18T12:21:16.234Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "hi": {
+          "text": "एक बार create करें",
+          "translatedAt": "2026-10-18T12:21:24.713Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "vi": {
+          "text": "Thiết lập một lần duy nhất",
+          "translatedAt": "2026-10-18T12:21:32.370Z",
+          "model": "google/gemini-3.7-flash"
+        }
+      }
+    },
+    "d24f7a92b63135037b253eb5607200a7cba919e77f9b8fa50ac4429ed83fde0e": {
+      "en": "Pick the byPhil API (no key) or your own OpenAI, Gemini, Mistral, DeepSeek or Ollama.",
+      "translations": {
+        "de": {
+          "text": "Wählen Sie die byPhil API (ohne API-Schlüssel) oder Ihre eigene Integration über OpenAI, Gemini, Mistral, DeepSeek oder Ollama.",
+          "translatedAt": "2026-10-18T12:20:10.516Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fr": {
+          "text": "Choisissez l'API byPhil (sans clé requise) ou votre propre solution OpenAI, Gemini, Mistral, DeepSeek ou Ollama en local.",
+          "translatedAt": "2026-10-18T12:20:19.703Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "es": {
+          "text": "Elige la byPhil API (sin clave) o tu propio OpenAI, Gemini, Mistral, DeepSeek u Ollama.",
+          "translatedAt": "2026-10-18T12:20:29.318Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh": {
+          "text": "可选择免 API key 的 byPhil API，或接入你自有的 OpenAI、Gemini、Mistral、DeepSeek 及本地部署的 Ollama。",
+          "translatedAt": "2026-10-18T12:20:41.026Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh-TW": {
+          "text": "選擇 byPhil API（無需 API Key）或串接你自己的 OpenAI、Gemini、Mistral、DeepSeek 或 Ollama。",
+          "translatedAt": "2026-10-18T12:20:48.180Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ja": {
+          "text": "byPhil API（キー不要）、またはご自身の OpenAI、Gemini、Mistral、DeepSeek、Ollama を選択します。",
+          "translatedAt": "2026-10-18T12:20:59.011Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ko": {
+          "text": "별도 키가 필요 없는 byPhil API를 선택하거나 본인의 OpenAI, Gemini, Mistral, DeepSeek, Ollama를 자유롭게 연결하세요.",
+          "translatedAt": "2026-10-18T12:21:07.031Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pt": {
+          "text": "Escolha a byPhil API (sem chave) ou conecte sua própria OpenAI, Gemini, Mistral, DeepSeek ou Ollama (local e gratuito).",
+          "translatedAt": "2026-10-18T12:21:16.234Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "hi": {
+          "text": "byPhil API (no key) चुनें या अपना खुद का OpenAI, Gemini, Mistral, DeepSeek या Ollama use करें।",
+          "translatedAt": "2026-10-18T12:21:24.713Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "vi": {
+          "text": "Chọn byPhil API (không cần key) hoặc sử dụng API riêng từ OpenAI, Gemini, Mistral, DeepSeek hay Ollama.",
+          "translatedAt": "2026-10-18T12:21:32.370Z",
+          "model": "google/gemini-3.7-flash"
+        }
+      }
+    },
+    "d4735e3a265e16eee03f59718b9b5d03019c07d8b6c51f90da3a666eec13ab35": {
+      "en": "2",
+      "translations": {
+        "de": {
+          "text": "2",
+          "translatedAt": "2026-10-18T12:20:10.516Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fr": {
+          "text": "2",
+          "translatedAt": "2026-10-18T12:20:19.703Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "es": {
+          "text": "2",
+          "translatedAt": "2026-10-18T12:20:29.318Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh": {
+          "text": "2",
+          "translatedAt": "2026-10-18T12:20:41.026Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh-TW": {
+          "text": "2",
+          "translatedAt": "2026-10-18T12:20:48.180Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ja": {
+          "text": "2",
+          "translatedAt": "2026-10-18T12:20:59.011Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ko": {
+          "text": "2",
+          "translatedAt": "2026-10-18T12:21:07.031Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pt": {
+          "text": "2",
+          "translatedAt": "2026-10-18T12:21:16.234Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "hi": {
+          "text": "2",
+          "translatedAt": "2026-10-18T12:21:24.713Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "vi": {
+          "text": "2",
+          "translatedAt": "2026-10-18T12:21:32.370Z",
+          "model": "google/gemini-3.7-flash"
+        }
+      }
+    },
+    "e8ede89fab796db1fb9dca0fd575fa3b85530ce8622de5b5f5ede3c0c01b717a": {
+      "en": "Drag it to your bookmarks bar",
+      "translations": {
+        "de": {
+          "text": "In die Lesezeichenleiste ziehen",
+          "translatedAt": "2026-10-18T12:20:10.516Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fr": {
+          "text": "Glissez-le dans votre barre de favoris",
+          "translatedAt": "2026-10-18T12:20:19.703Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "es": {
+          "text": "Arrástralo a tu barra de marcadores",
+          "translatedAt": "2026-10-18T12:20:29.318Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh": {
+          "text": "拖拽至书签栏",
+          "translatedAt": "2026-10-18T12:20:41.026Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh-TW": {
+          "text": "拖曳至書籤列",
+          "translatedAt": "2026-10-18T12:20:48.180Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ja": {
+          "text": "ブックマークバーにドラッグ＆ドロップ",
+          "translatedAt": "2026-10-18T12:20:59.011Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ko": {
+          "text": "북마크바에 드래그하여 추가하세요",
+          "translatedAt": "2026-10-18T12:21:07.031Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pt": {
+          "text": "Arraste para a barra de favoritos",
+          "translatedAt": "2026-10-18T12:21:16.234Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "hi": {
+          "text": "इसे अपने bookmarks bar में drag करें",
+          "translatedAt": "2026-10-18T12:21:24.713Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "vi": {
+          "text": "Kéo vào thanh dấu trang của bạn",
+          "translatedAt": "2026-10-18T12:21:32.370Z",
+          "model": "google/gemini-3.7-flash"
+        }
+      }
+    },
+    "59ed6e3639bd754767596cd96e7fa3b533c54db6a8b0974c7cfeefb4f3570001": {
+      "en": "Any browser, any OS, including iOS. Nothing to install.",
+      "translations": {
+        "de": {
+          "text": "Funktioniert in jedem Browser und auf jedem Betriebssystem (einschließlich iOS). Keine lokale Installation nötig.",
+          "translatedAt": "2026-10-18T12:20:10.516Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fr": {
+          "text": "Compatible avec tous les navigateurs et OS, y compris iOS. Aucune installation requise.",
+          "translatedAt": "2026-10-18T12:20:19.703Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "es": {
+          "text": "Cualquier navegador, cualquier sistema operativo, incluido iOS. Sin instalar nada.",
+          "translatedAt": "2026-10-18T12:20:29.318Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh": {
+          "text": "支持各种浏览器与操作系统（包括 iOS），无需额外安装插件。",
+          "translatedAt": "2026-10-18T12:20:41.026Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh-TW": {
+          "text": "支援任何瀏覽器與作業系統（包含 iOS），無需安裝任何外掛。",
+          "translatedAt": "2026-10-18T12:20:48.180Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ja": {
+          "text": "iOS を含むあらゆるブラウザや OS で動作。インストールの手間はありません。",
+          "translatedAt": "2026-10-18T12:20:59.011Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ko": {
+          "text": "iOS를 포함한 모든 브라우저와 OS 지원. 별도 프로그램 설치가 전혀 필요 없습니다.",
+          "translatedAt": "2026-10-18T12:21:07.031Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pt": {
+          "text": "Qualquer navegador, qualquer sistema, incluindo iOS. Sem nada para instalar.",
+          "translatedAt": "2026-10-18T12:21:16.234Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "hi": {
+          "text": "कोई भी browser, कोई भी OS, iOS समेत। कुछ भी install करने की ज़रूरत नहीं।",
+          "translatedAt": "2026-10-18T12:21:24.713Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "vi": {
+          "text": "Mọi trình duyệt, mọi hệ điều hành, bao gồm cả iOS. Hoàn toàn không cần cài đặt phần mềm.",
+          "translatedAt": "2026-10-18T12:21:32.370Z",
+          "model": "google/gemini-3.7-flash"
+        }
+      }
+    },
+    "4e07408562bedb8b60ce05c1decfe3ad16b72230967de01f640b7e4729b49fce": {
+      "en": "3",
+      "translations": {
+        "de": {
+          "text": "3",
+          "translatedAt": "2026-10-18T12:20:10.516Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fr": {
+          "text": "3",
+          "translatedAt": "2026-10-18T12:20:19.703Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "es": {
+          "text": "3",
+          "translatedAt": "2026-10-18T12:20:29.318Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh": {
+          "text": "3",
+          "translatedAt": "2026-10-18T12:20:41.026Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh-TW": {
+          "text": "3",
+          "translatedAt": "2026-10-18T12:20:48.180Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ja": {
+          "text": "3",
+          "translatedAt": "2026-10-18T12:20:59.011Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ko": {
+          "text": "3",
+          "translatedAt": "2026-10-18T12:21:07.031Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pt": {
+          "text": "3",
+          "translatedAt": "2026-10-18T12:21:16.234Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "hi": {
+          "text": "3",
+          "translatedAt": "2026-10-18T12:21:24.713Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "vi": {
+          "text": "3",
+          "translatedAt": "2026-10-18T12:21:32.370Z",
+          "model": "google/gemini-3.7-flash"
+        }
+      }
+    },
+    "a7b6e73d6952d54cd37f0c3d6c52315fc7a3321230b429081523b79e22544afd": {
+      "en": "Click it on any page",
+      "translations": {
+        "de": {
+          "text": "Auf jeder Seite per Klick starten",
+          "translatedAt": "2026-10-18T12:20:10.516Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fr": {
+          "text": "Cliquez dessus sur n'importe quelle page",
+          "translatedAt": "2026-10-18T12:20:19.703Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "es": {
+          "text": "Haz clic en cualquier página",
+          "translatedAt": "2026-10-18T12:20:29.318Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh": {
+          "text": "在任意网页点击运行",
+          "translatedAt": "2026-10-18T12:20:41.026Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh-TW": {
+          "text": "在任何網頁上一鍵點擊",
+          "translatedAt": "2026-10-18T12:20:48.180Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ja": {
+          "text": "好きなページでクリック",
+          "translatedAt": "2026-10-18T12:20:59.011Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ko": {
+          "text": "어떤 페이지에서든 클릭하세요",
+          "translatedAt": "2026-10-18T12:21:07.031Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pt": {
+          "text": "Clique em qualquer página",
+          "translatedAt": "2026-10-18T12:21:16.234Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "hi": {
+          "text": "किसी भी page पर click करें",
+          "translatedAt": "2026-10-18T12:21:24.713Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "vi": {
+          "text": "Nhấp chọn trên bất kỳ trang web nào",
+          "translatedAt": "2026-10-18T12:21:32.370Z",
+          "model": "google/gemini-3.7-flash"
+        }
+      }
+    },
+    "1e9494f9e007de7f43c194764fb09a0718f9547e2b256aa21f28023fad9d3a02": {
+      "en": "The summary appears right on the page, with follow-ups and your language.",
+      "translations": {
+        "de": {
+          "text": "Die Zusammenfassung erscheint direkt auf der Seite – inklusive Rückfragen und in Ihrer bevorzugten Sprache.",
+          "translatedAt": "2026-10-18T12:20:10.516Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fr": {
+          "text": "Le résumé s'affiche directement sur la page, avec suivi de vos questions et dans votre langue.",
+          "translatedAt": "2026-10-18T12:20:19.703Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "es": {
+          "text": "El resumen aparece directamente en la página, con preguntas de seguimiento y en tu idioma.",
+          "translatedAt": "2026-10-18T12:20:29.318Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh": {
+          "text": "摘要即刻在当前页面显示，支持深度追问并以你的偏好语言呈现。",
+          "translatedAt": "2026-10-18T12:20:41.026Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh-TW": {
+          "text": "摘要直接在頁面上即時顯示，並支援深入追問與多語言切換。",
+          "translatedAt": "2026-10-18T12:20:48.180Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ja": {
+          "text": "ページ上に直接要約が表示され、質問への回答や言語切り替えもスムーズに行えます。",
+          "translatedAt": "2026-10-18T12:20:59.011Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ko": {
+          "text": "페이지 위에 요약이 바로 표시되며, 후속 질문과 맞춤 언어 설정도 함께 지원합니다.",
+          "translatedAt": "2026-10-18T12:21:07.031Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pt": {
+          "text": "O resumo aparece direto na página, com perguntas complementares e no seu idioma.",
+          "translatedAt": "2026-10-18T12:21:16.234Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "hi": {
+          "text": "Summary सीधे page पर दिखेगी — follow-ups और आपकी पसंदीदा भाषा के साथ।",
+          "translatedAt": "2026-10-18T12:21:24.713Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "vi": {
+          "text": "Bản tóm tắt xuất hiện ngay trên trang, hỗ trợ hỏi đáp đào sâu và hiển thị bằng ngôn ngữ của bạn.",
+          "translatedAt": "2026-10-18T12:21:32.370Z",
+          "model": "google/gemini-3.7-flash"
+        }
+      }
+    },
+    "2f26233595d165e6868c5bb9e5e835506039e72c61a36a1bafb0827abfe746a5": {
+      "en": "Firefox",
+      "translations": {
+        "de": {
+          "text": "Firefox",
+          "translatedAt": "2026-10-18T12:20:10.516Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fr": {
+          "text": "Firefox",
+          "translatedAt": "2026-10-18T12:20:19.703Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "es": {
+          "text": "Firefox",
+          "translatedAt": "2026-10-18T12:20:29.318Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh": {
+          "text": "Firefox",
+          "translatedAt": "2026-10-18T12:20:41.026Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh-TW": {
+          "text": "Firefox",
+          "translatedAt": "2026-10-18T12:20:48.180Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ja": {
+          "text": "Firefox",
+          "translatedAt": "2026-10-18T12:20:59.011Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ko": {
+          "text": "Firefox",
+          "translatedAt": "2026-10-18T12:21:07.031Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pt": {
+          "text": "Firefox",
+          "translatedAt": "2026-10-18T12:21:16.234Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "hi": {
+          "text": "Firefox",
+          "translatedAt": "2026-10-18T12:21:24.713Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "vi": {
+          "text": "Firefox",
+          "translatedAt": "2026-10-18T12:21:32.370Z",
+          "model": "google/gemini-3.7-flash"
+        }
+      }
     }
   }
 }
