@@ -890,3 +890,4 @@ footer .copyright a:hover, .foot-links a:hover{ text-decoration-color:currentCol
 .demo-frame:not(.is-live)::before{ display:none; }
 .demo-frame:not(.is-live) .demo-start{ box-shadow:0 0 0 8px rgba(255,255,255,.55), 0 16px 44px rgba(0,0,0,.28); backdrop-filter:blur(6px); }
 :root[data-theme="dark"] .demo-frame:not(.is-live) .demo-start{ box-shadow:0 0 0 8px rgba(20,24,36,.6), 0 16px 44px rgba(0,0,0,.5); }
+.demo-cta{ display:flex; justify-content:center; margin-top:22px; }
