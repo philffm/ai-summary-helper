@@ -1,11 +1,14 @@
 # AI Summary Helper
 
-> AI Summary Helper is a browser extension (Chrome and Chromium-based browsers) that summarizes web pages with the AI provider you choose (your own API key or a local Ollama model), follows sites with a built-in RSS reader, saves pages into a searchable on-device archive, and sends reading digests to Kindle or LocalSend. Search, de-duplication and recommendations run on the device.
+> AI Summary Helper is a browser extension (Chrome, Chromium-based browsers and Firefox, plus an Android companion app in beta) that summarizes web pages with the AI provider you choose (your own API key or a local Ollama model), follows sites with a built-in RSS reader, saves pages into a searchable on-device archive, and sends reading digests to Kindle or LocalSend. Search, de-duplication and recommendations run on the device.
 
 ## Key facts
 - Free to start. Optional Support Pass unlocks premium features across the byphil tools.
 - Bring your own key or run fully local with Ollama: only the summarization request leaves the browser.
-- Install: https://chromewebstore.google.com/detail/ai-summary-helper-openai/hldbejcjaedipeegjcinmhejdndchkmb
+- Install (Chrome): https://chromewebstore.google.com/detail/ai-summary-helper-openai/hldbejcjaedipeegjcinmhejdndchkmb
+- Install (Firefox): https://addons.mozilla.org/en-US/firefox/addon/ai-summary-helper/
+- Live demo (runs in the browser, nothing is sent anywhere): https://ai-summary-helper.byphil.eu/demo/
+- Android companion app (beta): https://github.com/philffm/ai-summary-helper/releases/latest/download/aish-companion.apk
 - Source code: https://github.com/philffm/ai-summary-helper
 - Maker: byphil (https://byphil.eu/)
 

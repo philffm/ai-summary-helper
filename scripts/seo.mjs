@@ -56,7 +56,7 @@ function jsonLd($, rel, self, lang, title, desc, image) {
   const isPost = /(^|\/)blog\/(?!index\.html)[^/]+\.html$/.test(rel);
   if (isHome) {
     graph.push({ '@type': 'WebSite', '@id': BASE + '/#website', url: BASE + '/', name: 'AI Summary Helper', inLanguage: lang, publisher: { '@id': publisher['@id'] } });
-    graph.push({ '@type': 'SoftwareApplication', '@id': BASE + '/#app', name: 'AI Summary Helper', url: self, description: desc, applicationCategory: 'BrowserApplication', operatingSystem: 'Chrome, Chromium-based browsers', downloadUrl: STORE, image, inLanguage: lang,
+    graph.push({ '@type': 'SoftwareApplication', '@id': BASE + '/#app', name: 'AI Summary Helper', url: self, description: desc, applicationCategory: 'BrowserApplication', operatingSystem: 'Chrome, Chromium browsers, Firefox, Android (beta companion app)', installUrl: 'https://chromewebstore.google.com/detail/ai-summary-helper-openai/hldbejcjaedipeegjcinmhejdndchkmb', downloadUrl: 'https://addons.mozilla.org/en-US/firefox/addon/ai-summary-helper/', downloadUrl: STORE, image, inLanguage: lang,
       offers: { '@type': 'Offer', price: '0', priceCurrency: 'EUR', description: 'Free to start; optional Support Pass for premium features' }, author: { '@id': publisher['@id'] }, publisher });
     const qa = [];
     $('.faq details').each((_, el) => { const q = $(el).find('summary').first().text().trim(), a = $(el).find('p').text().trim().replace(/\s+/g, ' '); if (q && a) qa.push({ '@type': 'Question', name: q, acceptedAnswer: { '@type': 'Answer', text: a } }); });
@@ -149,12 +149,15 @@ const line = (e) => `- [${e.title.replace(/\s+[—-]\s+AI Summary Helper.*$/, ''
 const llms = [
   '# AI Summary Helper',
   '',
-  '> AI Summary Helper is a browser extension (Chrome and Chromium-based browsers) that summarizes web pages with the AI provider you choose (your own API key or a local Ollama model), follows sites with a built-in RSS reader, saves pages into a searchable on-device archive, and sends reading digests to Kindle or LocalSend. Search, de-duplication and recommendations run on the device.',
+  '> AI Summary Helper is a browser extension (Chrome, Chromium-based browsers and Firefox, plus an Android companion app in beta) that summarizes web pages with the AI provider you choose (your own API key or a local Ollama model), follows sites with a built-in RSS reader, saves pages into a searchable on-device archive, and sends reading digests to Kindle or LocalSend. Search, de-duplication and recommendations run on the device.',
   '',
   '## Key facts',
   '- Free to start. Optional Support Pass unlocks premium features across the byphil tools.',
   '- Bring your own key or run fully local with Ollama: only the summarization request leaves the browser.',
-  `- Install: ${STORE}`,
+  `- Install (Chrome): ${STORE}`,
+  `- Install (Firefox): https://addons.mozilla.org/en-US/firefox/addon/ai-summary-helper/`,
+  `- Live demo (runs in the browser, nothing is sent anywhere): ${BASE}/demo/`,
+  `- Android companion app (beta): https://github.com/philffm/ai-summary-helper/releases/latest/download/aish-companion.apk`,
   '- Source code: https://github.com/philffm/ai-summary-helper',
   '- Maker: byphil (https://byphil.eu/)',
   '',
