@@ -1,0 +1,149 @@
+<!DOCTYPE html><html lang="ar" dir="rtl"><head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#08090C">
+<title>من أداة Bookmarklet إلى الإصدار 2.0 — AI Summary Helper</title>
+<meta name="description" content="بدأ المشروع كأداة Bookmarklet مصممة لعادات قراءة شخصية على جهاز Kindle. إليك ما تغيّر بين الإصدار الأول وإعادة البناء مفتوحة المصدر للإصدار 2.0 — ولماذا.">
+
+<script>
+  (function(){
+    try {
+      var saved = localStorage.getItem('aish_theme');
+      var theme = saved === 'light' || saved === 'dark'
+        ? saved
+        : (window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
+      document.documentElement.setAttribute('data-theme', theme);
+    } catch (e) {
+      document.documentElement.setAttribute('data-theme', 'dark');
+    }
+  })();
+</script>
+
+<link rel="icon" type="image/svg+xml" href="../../assets/icon.svg">
+<link rel="stylesheet" href="../../assets/styles.css">
+<script src="../../assets/analytics.js"></script>
+<link rel="alternate" hreflang="x-default" href="https://ai-summary-helper.byphil.eu/blog/from-bookmarklet-to-2.html"><link rel="alternate" hreflang="en" href="https://ai-summary-helper.byphil.eu/blog/from-bookmarklet-to-2.html"><link rel="alternate" hreflang="de" href="https://ai-summary-helper.byphil.eu/de/blog/from-bookmarklet-to-2.html"><link rel="alternate" hreflang="fr" href="https://ai-summary-helper.byphil.eu/fr/blog/from-bookmarklet-to-2.html"><link rel="alternate" hreflang="es" href="https://ai-summary-helper.byphil.eu/es/blog/from-bookmarklet-to-2.html"><link rel="alternate" hreflang="zh-Hans" href="https://ai-summary-helper.byphil.eu/zh/blog/from-bookmarklet-to-2.html"><link rel="alternate" hreflang="zh-Hant" href="https://ai-summary-helper.byphil.eu/zh-tw/blog/from-bookmarklet-to-2.html"><link rel="alternate" hreflang="ja" href="https://ai-summary-helper.byphil.eu/ja/blog/from-bookmarklet-to-2.html"><link rel="alternate" hreflang="ko" href="https://ai-summary-helper.byphil.eu/ko/blog/from-bookmarklet-to-2.html"><link rel="alternate" hreflang="pt-BR" href="https://ai-summary-helper.byphil.eu/pt/blog/from-bookmarklet-to-2.html"><link rel="alternate" hreflang="hi" href="https://ai-summary-helper.byphil.eu/hi/blog/from-bookmarklet-to-2.html"><link rel="alternate" hreflang="vi" href="https://ai-summary-helper.byphil.eu/vi/blog/from-bookmarklet-to-2.html"><link rel="alternate" hreflang="nl" href="https://ai-summary-helper.byphil.eu/nl/blog/from-bookmarklet-to-2.html"><link rel="alternate" hreflang="it" href="https://ai-summary-helper.byphil.eu/it/blog/from-bookmarklet-to-2.html"><link rel="alternate" hreflang="ru" href="https://ai-summary-helper.byphil.eu/ru/blog/from-bookmarklet-to-2.html"><link rel="alternate" hreflang="uk" href="https://ai-summary-helper.byphil.eu/uk/blog/from-bookmarklet-to-2.html"><link rel="alternate" hreflang="tr" href="https://ai-summary-helper.byphil.eu/tr/blog/from-bookmarklet-to-2.html"><link rel="alternate" hreflang="id" href="https://ai-summary-helper.byphil.eu/id/blog/from-bookmarklet-to-2.html"><link rel="alternate" hreflang="pl" href="https://ai-summary-helper.byphil.eu/pl/blog/from-bookmarklet-to-2.html"><link rel="alternate" hreflang="th" href="https://ai-summary-helper.byphil.eu/th/blog/from-bookmarklet-to-2.html"><link rel="alternate" hreflang="ar" href="https://ai-summary-helper.byphil.eu/ar/blog/from-bookmarklet-to-2.html"><link rel="alternate" hreflang="sv" href="https://ai-summary-helper.byphil.eu/sv/blog/from-bookmarklet-to-2.html"><link rel="alternate" hreflang="da" href="https://ai-summary-helper.byphil.eu/da/blog/from-bookmarklet-to-2.html"><link rel="alternate" hreflang="nb" href="https://ai-summary-helper.byphil.eu/no/blog/from-bookmarklet-to-2.html"><link rel="alternate" hreflang="fi" href="https://ai-summary-helper.byphil.eu/fi/blog/from-bookmarklet-to-2.html"></head>
+<body>
+
+<a href="#main" class="skip-link">الانتقال إلى المحتوى</a>
+
+<header class="nav">
+  <div class="wrap nav-inner">
+    <div class="brand-cluster">
+      <div class="wordmark">
+        <img src="../../assets/icon.svg" alt="">
+        AI Summary Helper
+      </div>
+      <a href="https://byphil.eu/" target="_blank" rel="noopener" class="ecosystem-badge">
+        <span class="pulse-dot"></span> جزء من byphil.
+      </a>
+    </div>
+    <div class="nav-desktop-group nav-desktop-links">
+      <nav class="links" aria-label="Primary">
+        <a href="../index.html#features">المميزات</a>
+        <a href="../index.html#pricing">الأسعار</a>
+        <a href="./" aria-current="page">المدونة</a>
+        <a href="https://github.com/philffm/ai-summary-helper/" target="_blank" rel="noopener">GitHub</a>
+      </nav>
+      <button type="button" class="theme-toggle" id="themeToggle" aria-label="Switch to light mode">
+        <svg class="icon-moon" viewBox="0 0 24 24" fill="none"><path d="M20 14.5A8.5 8.5 0 1 1 9.5 4a6.8 6.8 0 0 0 10.5 10.5Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"></path></svg>
+        <svg class="icon-sun" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="4.2" stroke="currentColor" stroke-width="1.6"></circle><path d="M12 2.5v2.4M12 19.1v2.4M4.4 4.4l1.7 1.7M17.9 17.9l1.7 1.7M2.5 12h2.4M19.1 12h2.4M4.4 19.6l1.7-1.7M17.9 6.1l1.7-1.7" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"></path></svg>
+      </button>
+      <a href="../index.html" class="btn-sign-in">← العودة إلى التطبيق</a>
+    </div>
+    <button type="button" class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="mobileMenu" aria-label="Open menu">
+      <svg viewBox="0 0 24 24" fill="none"><path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"></path></svg>
+    </button>
+  </div>
+  <div class="mobile-menu" id="mobileMenu" hidden="">
+    <div class="wrap mobile-menu-inner">
+      <a href="../index.html#features">المميزات</a>
+      <a href="../index.html#pricing">الأسعار</a>
+      <a href="./">المدونة</a>
+      <a href="https://github.com/philffm/ai-summary-helper/" target="_blank" rel="noopener">GitHub</a>
+      <a href="https://byphil.eu/" target="_blank" rel="noopener">جزء من byphil. ↗</a>
+      <button type="button" class="theme-toggle-mobile" id="themeToggleMobile">
+        <span id="themeToggleMobileLabel">التبديل إلى الوضع الفاتح</span>
+        <svg class="icon-moon" viewBox="0 0 24 24" fill="none"><path d="M20 14.5A8.5 8.5 0 1 1 9.5 4a6.8 6.8 0 0 0 10.5 10.5Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"></path></svg>
+        <svg class="icon-sun" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="4.2" stroke="currentColor" stroke-width="1.6"></circle><path d="M12 2.5v2.4M12 19.1v2.4M4.4 4.4l1.7 1.7M17.9 17.9l1.7 1.7M2.5 12h2.4M19.1 12h2.4M4.4 19.6l1.7-1.7M17.9 6.1l1.7-1.7" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"></path></svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+<main id="main">
+  <div class="wrap">
+    <div class="post-hero">
+      <span class="blog-date">المنتج · يونيو 2026</span>
+      <h1>من أداة مصغّرة إلى الإصدار 2.0: حقيقة ما أصبح عليه AI Summary Helper اليوم</h1>
+      <p class="post-sub">بدأ الأمر كأداة Bookmarklet بنقرة واحدة للقراءة على جهاز Kindle. وبعد عامين وإعادة بناء شاملة، أصبحت معظم ميزاته الحالية أشياء لم تكن موجودة أصلًا عندما اشترك أول مئة مستخدم.</p>
+    </div>
+  </div>
+
+  <section>
+    <div class="wrap">
+      <div class="prose">
+
+        <p><strong>تطبيق AI Summary Helper هو إضافة مجانية ومفتوحة المصدر لمتصفح Chrome تلخص أي صفحة ويب باستخدام مزود الذكاء الاصطناعي الخاص بك أو عبر نموذج محلي بالكامل، وتحفظ المقالات لوقت لاحق مع تذكيرات محددة بوقت، وتحول سجل قراءتك إلى أرشيف مترابط وقابل للبحث.</strong> لم يكن أي من ذلك متوفرًا في الإصدار الأول. إليك ما كان موجودًا بالفعل، وكيف تطور المشروع ليصل إلى ما هو عليه اليوم.</p>
+
+        <h2>كيف بدأت القصة في الواقع</h2>
+        <p>في يوليو 2024، كان المشروع مجرد Bookmarklet — ولم يكن حتى إضافة للمتصفح. كنت تبحث عن مقالات مثيرة للاهتمام، وتفتح عشرات التبويبات، ثم، كحال أغلب الناس، لا تجد وقتًا لقراءة معظمها. كانت الفكرة الأصلية بسيطة وشخصية للغاية: أداة تلخيص بأوامر مخصصة تُدرج مخرجاتها مباشرة داخل الصفحة، بحيث ينتقل الملخص مع المقال عند إرساله إلى جهاز Kindle باستخدام <a href="https://send.reabble.com/" target="_blank" rel="noopener">أداة Send-to-Kindle من Reabble</a>. كان هذا هو المنتج بأكمله: مزود ذكاء اصطناعي واحد، وحقل أوامر واحد، وإصدار Bookmarklet يعمل في أي مكان حتى على متصفح Safari لنظام iOS، وإصدار إضافة Chrome لمن يريد تعديل الأوامر أثناء التصفح.</p>
+        <p>تجاوزت الأداة 100 مستخدم نشط بعد بضعة أسابيع — وهو أمر كان مفاجئًا حقًا، لأنها بُنيت لحل مشكلة قراءة خاصة بشخص واحد، ولم تكن تهدف إلى أن تصبح منتجًا تجاريًا.</p>
+
+        <figure class="post-figure"><img src="../../assets/blog/summary-end-to-end.webp" alt="مخطط توضيحي: مسار التلخيص من البداية إلى النهاية، من الطلب، والبث المباشر، والإنهاء والحفظ، وصولًا إلى المتابعة" width="1760" height="620" loading="lazy"><figcaption>ما يحدث عندما تضغط على "تلخيص" اليوم، في خمس خطوات.</figcaption></figure>
+        <h2>ما الذي تغير فعليًا بين تلك البداية والإصدار 2.0</h2>
+        <p>الفكرة الجوهرية — التلخيص وفق شروطك الخاصة، والقراءة في بيئة أفضل من مجرد تبويب متصفح — لم تتغير أبدًا. لكن كل شيء تقريبًا حولها قد تطور:</p>
+
+        <h3>المزود الواحد أصبح اختيارًا من بين خمسة مزودين</h3>
+        <p>كان الإصدار الأول يدعم OpenAI فقط، باستخدام مفتاحك الخاص، ونقطة نهاية واحدة. أما الإصدار 2.0 فيدعم OpenAI وGoogle Gemini وMistral وDeepSeek عبر مفتاح API key الخاص بك، بالإضافة إلى خيار محلي بالكامل عبر Ollama — مما يعني أن محتوى الصفحة لن يغادر جهازك إطلاقًا إذا لم ترغب في ذلك، حفاظًا على خصوصيتك الكاملة. يتوفر أيضًا خيار استضافة اختياري (byphil Cloud) لمن يفضل تجنب إدارة المفاتيح بالكامل، لكنه لم يُفرض إجباريًا أبدًا. لم يكن هذا مجرد ميزة إضافية بسيطة؛ بل غيّر هوية المنتج ككل. الإصدار الأول كان يطلب منك افتراضيًا الوثوق بشركة واحدة لمشاركة محتواك، بينما الإصدار 2.0 لا يطلب منك الوثوق بأي طرف لم تختره بنفسك.</p>
+
+        <h3>تحول "الإدراج داخل الصفحة" إلى سير عمل متكامل</h3>
+        <p>الفكرة الأصلية — القراءة لاحقًا في بيئة أكثر هدوءًا من المتصفح — ما زالت قائمة، لكنها لم تعد مجرد ملخص يُلصق في الـ DOM. بالنقر بزر الفأرة الأيمن على أي صفحة، يظهر لك خيار <strong>Summarize &amp; Close Tab</strong>: حدد إطارًا زمنيًا (غدًا، عطلة نهاية الأسبوع، هذا الأسبوع، جلسة بحث)، وأضف ملاحظة، وسيُغلق التبويب تلقائيًا بمجرد الاطلاع السريع على الملخص عبر واجهة RSVP. وسيصلك إشعار من Chrome يعيدك للمقال في الوقت الذي حددته بدقة — ليس "لاحقًا في وقت غير محدد"، ولا "متى تذكرت ذلك".</p>
+
+        <h3>تراكم المقالات المحفوظة أصبح أرشيفًا منظمًا وسهل الاستكشاف</h3>
+        <p>لم يكن الإصدار الأول يحتوي على أي سجل للمقالات — كان الملخص يظهر على الصفحة ثم يختفي للأبد. أما الآن، يُحفظ كل مقال في أرشيف محلي وقابل للبحث، مع إمكانية تمييز النصوص (بالإضافة إلى ميزة التظليل المقترح بالذكاء الاصطناعي للفقرات الرئيسية)، وخريطة حرارية لتحليلات القراءة، ورسم بياني معرفي تفاعلي باستخدام D3 يصنف ما قرأته حسب الموضوع بدلًا من تركه في قائمة عشوائية.</p>
+
+        <h3>جهاز Kindle كان الهدف الأساسي.. والآن أصبح أحد خيارات متعددة</h3>
+        <p>كانت ميزة الإرسال إلى Kindle عبر أداة Reabble هي السبب الأساسي لوجود المشروع. ما زالت مدعومة بشكل أصيل، لكن القراءة بعيدًا عن المتصفح أصبحت تشمل أيضًا الإرسال عبر AirDrop إلى iPhone أو iPad (ليُفتح مباشرة في Apple Books)، أو عبر LocalSend إلى أجهزة مثل KOReader عبر شبكة Wi-Fi المحلية الخاصة بك. الفكرة الأساسية — نقل المحتوى خارج المتصفح إلى جهاز مخصص للقراءة — أصبحت تمتلك مسارات وخيارات أكثر اليوم.</p>
+
+        <h2>ما لم يتغير</h2>
+        <p>المشروع لا يزال مجانيًا ومفتوح المصدر (بترخيص MIT، مع الكود البرمجي الكامل على GitHub)، ولا يتطلب إنشاء حساب لأي من ميزاته الأساسية. لم تكن هذه النقطة قابلة للتفاوض أبدًا — وهي نفس السبب الذي جعل الإصدار الأول يبدأ كـ Bookmarklet: أداة بناها شخص أراد امتلاك أداة قراءته بالكامل، لا استئجارها.</p>
+
+        <h2>الأسئلة الشائعة</h2>
+        <p><strong>هل هذا هو نفس مشروع الـ Bookmarklet الأصلي؟</strong><br>
+        نعم — هو نفس المشروع مفتوح المصدر ونفس مستودع GitHub، ويخضع للتطوير المستمر منذ يوليو 2024. لا يزال إصدار الـ Bookmarklet متاحًا لمن يريد خيارًا يعمل عبر مختلف المتصفحات دون الحاجة لأي تثبيت.</p>
+        <p><strong>هل أحتاج إلى حساب OpenAI لاستخدام الأداة؟</strong><br>
+        لا. كان ذلك شرطًا في الإصدار الأول فقط، وتغير منذ وقت طويل. يمكنك استخدام أي مزود مدعوم، أو تشغيل نموذج محلي بالكامل على جهازك عبر Ollama دون الحاجة لأي حساب خارجي على الإطلاق.</p>
+        <p><strong>ما الذي حدث لإصدار Gumroad؟</strong><br>
+        بدأ المشروع هناك كوسيلة لتلقي الدعم من المستخدمين الأوائل. كانت الإضافة نفسها مجانية ومفتوحة المصدر دائمًا — ولم تكن منصة Gumroad حاجزًا مدفوعًا لاستخدام الأداة إطلاقًا.</p>
+
+        <div class="post-cta">
+          <p>إن AI Summary Helper هو امتداد مجاني لمتصفح Chrome.</p>
+          <a href="https://chromewebstore.google.com/detail/ai-summary-helper-openai/hldbejcjaedipeegjcinmhejdndchkmb" target="_blank" rel="noopener" class="btn-primary">أضف إلى Chrome</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="footer-inner">
+      <div class="wordmark"><img src="../../assets/icon.svg" alt="">AI Summary Helper</div>
+      <div class="foot-links">
+        <a href="https://github.com/philffm/ai-summary-helper/" target="_blank" rel="noopener">المصدر على GitHub</a>
+        <a href="../privacy.html">الخصوصية</a>
+        <a href="#" data-analytics-settings="">إعدادات التحليلات</a>
+        <a href="https://byphil.eu/terms.html#impressum" target="_blank" rel="noopener">بيانات الموقع والناشر (Impressum)</a>
+      </div>
+    </div>
+    <div class="copyright">© 2026 Phil Wornath. جزء من <a href="https://byphil.eu/" class="credit-link">byphil.eu ↗</a> — برمجيات مستقلة مطوّرة في ألمانيا.<br>
+      تصميم وتطوير <a href="https://philwornath.com/" target="_blank" rel="noopener" class="credit-link">philwornath.com ↗</a>
+    </div>
+  </div>
+</footer>
+
+<script src="../../assets/main.js"></script>
+
+
+</body></html>

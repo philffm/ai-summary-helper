@@ -1,0 +1,132 @@
+<!DOCTYPE html><html lang="id"><head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#08090C">
+<title>Pencarian dan Tag Tanpa Cloud — AI Summary Helper</title>
+<meta name="description" content="Indeks TF-IDF di balik fitur pencarian, deteksi duplikat, dan rangkuman AI Summary Helper — serta alasan sebagian besarnya tak pernah butuh server.">
+
+<script>
+  (function(){
+    try {
+      var saved = localStorage.getItem('aish_theme');
+      var theme = saved === 'light' || saved === 'dark'
+        ? saved
+        : (window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
+      document.documentElement.setAttribute('data-theme', theme);
+    } catch (e) {
+      document.documentElement.setAttribute('data-theme', 'dark');
+    }
+  })();
+</script>
+
+<link rel="icon" type="image/svg+xml" href="../../assets/icon.svg">
+<link rel="stylesheet" href="../../assets/styles.css">
+<script src="../../assets/analytics.js"></script>
+<link rel="alternate" hreflang="x-default" href="https://ai-summary-helper.byphil.eu/blog/on-device-architecture.html"><link rel="alternate" hreflang="en" href="https://ai-summary-helper.byphil.eu/blog/on-device-architecture.html"><link rel="alternate" hreflang="de" href="https://ai-summary-helper.byphil.eu/de/blog/on-device-architecture.html"><link rel="alternate" hreflang="fr" href="https://ai-summary-helper.byphil.eu/fr/blog/on-device-architecture.html"><link rel="alternate" hreflang="es" href="https://ai-summary-helper.byphil.eu/es/blog/on-device-architecture.html"><link rel="alternate" hreflang="zh-Hans" href="https://ai-summary-helper.byphil.eu/zh/blog/on-device-architecture.html"><link rel="alternate" hreflang="zh-Hant" href="https://ai-summary-helper.byphil.eu/zh-tw/blog/on-device-architecture.html"><link rel="alternate" hreflang="ja" href="https://ai-summary-helper.byphil.eu/ja/blog/on-device-architecture.html"><link rel="alternate" hreflang="ko" href="https://ai-summary-helper.byphil.eu/ko/blog/on-device-architecture.html"><link rel="alternate" hreflang="pt-BR" href="https://ai-summary-helper.byphil.eu/pt/blog/on-device-architecture.html"><link rel="alternate" hreflang="hi" href="https://ai-summary-helper.byphil.eu/hi/blog/on-device-architecture.html"><link rel="alternate" hreflang="vi" href="https://ai-summary-helper.byphil.eu/vi/blog/on-device-architecture.html"><link rel="alternate" hreflang="nl" href="https://ai-summary-helper.byphil.eu/nl/blog/on-device-architecture.html"><link rel="alternate" hreflang="it" href="https://ai-summary-helper.byphil.eu/it/blog/on-device-architecture.html"><link rel="alternate" hreflang="ru" href="https://ai-summary-helper.byphil.eu/ru/blog/on-device-architecture.html"><link rel="alternate" hreflang="uk" href="https://ai-summary-helper.byphil.eu/uk/blog/on-device-architecture.html"><link rel="alternate" hreflang="tr" href="https://ai-summary-helper.byphil.eu/tr/blog/on-device-architecture.html"><link rel="alternate" hreflang="id" href="https://ai-summary-helper.byphil.eu/id/blog/on-device-architecture.html"><link rel="alternate" hreflang="pl" href="https://ai-summary-helper.byphil.eu/pl/blog/on-device-architecture.html"><link rel="alternate" hreflang="th" href="https://ai-summary-helper.byphil.eu/th/blog/on-device-architecture.html"><link rel="alternate" hreflang="ar" href="https://ai-summary-helper.byphil.eu/ar/blog/on-device-architecture.html"><link rel="alternate" hreflang="sv" href="https://ai-summary-helper.byphil.eu/sv/blog/on-device-architecture.html"><link rel="alternate" hreflang="da" href="https://ai-summary-helper.byphil.eu/da/blog/on-device-architecture.html"><link rel="alternate" hreflang="nb" href="https://ai-summary-helper.byphil.eu/no/blog/on-device-architecture.html"><link rel="alternate" hreflang="fi" href="https://ai-summary-helper.byphil.eu/fi/blog/on-device-architecture.html"></head>
+<body>
+
+<a href="#main" class="skip-link">Lewati ke konten</a>
+
+<header class="nav">
+  <div class="wrap nav-inner">
+    <div class="brand-cluster">
+      <div class="wordmark">
+        <img src="../../assets/icon.svg" alt="">
+        AI Summary Helper
+      </div>
+      <a href="https://byphil.eu/" target="_blank" rel="noopener" class="ecosystem-badge">
+        <span class="pulse-dot"></span> Bagian dari byphil.
+      </a>
+    </div>
+    <div class="nav-desktop-group nav-desktop-links">
+      <nav class="links" aria-label="Primary">
+        <a href="../index.html#features">Fitur</a>
+        <a href="../index.html#pricing">Harga</a>
+        <a href="./" aria-current="page">Blog</a>
+        <a href="https://github.com/philffm/ai-summary-helper/" target="_blank" rel="noopener">GitHub</a>
+      </nav>
+      <button type="button" class="theme-toggle" id="themeToggle" aria-label="Switch to light mode">
+        <svg class="icon-moon" viewBox="0 0 24 24" fill="none"><path d="M20 14.5A8.5 8.5 0 1 1 9.5 4a6.8 6.8 0 0 0 10.5 10.5Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"></path></svg>
+        <svg class="icon-sun" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="4.2" stroke="currentColor" stroke-width="1.6"></circle><path d="M12 2.5v2.4M12 19.1v2.4M4.4 4.4l1.7 1.7M17.9 17.9l1.7 1.7M2.5 12h2.4M19.1 12h2.4M4.4 19.6l1.7-1.7M17.9 6.1l1.7-1.7" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"></path></svg>
+      </button>
+      <a href="../index.html" class="btn-sign-in">← Kembali ke aplikasi</a>
+    </div>
+    <button type="button" class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="mobileMenu" aria-label="Open menu">
+      <svg viewBox="0 0 24 24" fill="none"><path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"></path></svg>
+    </button>
+  </div>
+  <div class="mobile-menu" id="mobileMenu" hidden="">
+    <div class="wrap mobile-menu-inner">
+      <a href="../index.html#features">Fitur</a>
+      <a href="../index.html#pricing">Harga</a>
+      <a href="./">Blog</a>
+      <a href="https://github.com/philffm/ai-summary-helper/" target="_blank" rel="noopener">GitHub</a>
+      <a href="https://byphil.eu/" target="_blank" rel="noopener">Bagian dari byphil. ↗</a>
+      <button type="button" class="theme-toggle-mobile" id="themeToggleMobile">
+        <span id="themeToggleMobileLabel">Beralih ke mode terang</span>
+        <svg class="icon-moon" viewBox="0 0 24 24" fill="none"><path d="M20 14.5A8.5 8.5 0 1 1 9.5 4a6.8 6.8 0 0 0 10.5 10.5Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"></path></svg>
+        <svg class="icon-sun" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="4.2" stroke="currentColor" stroke-width="1.6"></circle><path d="M12 2.5v2.4M12 19.1v2.4M4.4 4.4l1.7 1.7M17.9 17.9l1.7 1.7M2.5 12h2.4M19.1 12h2.4M4.4 19.6l1.7-1.7M17.9 6.1l1.7-1.7" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"></path></svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+<main id="main">
+  <div class="wrap">
+    <div class="post-hero">
+      <span class="blog-date">Engineering · Agustus 2026</span>
+      <h1>Alasan Kami Memindahkan Pencarian, Penandaan Tag, dan Rekomendasi Keluar dari Cloud</h1>
+      <p class="post-sub">Pencarian, dedup, pembersihan tag, dan rekomendasi berbagi satu indeks on-device yang ringan. Begini cara kerjanya, dan mengapa ini bukan sekadar gimik privasi.</p>
+    </div>
+  </div>
+
+  <section>
+    <div class="wrap">
+      <div class="prose">
+<p>Sebagian besar ekstensi browser "bertenaga AI" mengirimkan semuanya ke server — termasuk bagian yang sama sekali tidak berhubungan dengan AI. Pencarian, pembersihan tag, "temukan item serupa": ini adalah teknik berusia puluhan tahun yang sudah teruji. Teknik ini tidak memerlukan language model, dan jelas tidak butuh latensi bolak-balik jaringan. Kami meninjau fitur AI Summary Helper satu per satu dan bertanya: apakah ini benar-benar membutuhkan cloud, atau kita hanya menjadikannya default karena arsitekturnya yang paling gampang?</p>
+        <p>Sebagian besar ternyata tidak membutuhkannya.</p>
+
+        <figure class="post-figure post-figure--portrait"><img src="../../assets/blog/knowledge-graph.webp" alt="Slide: peta topik yang saling terhubung dengan tulisan “Informasi yang terikat pada makna dan keterhubungan bertahan lebih lama daripada informasi yang hanya Anda lihat sekilas”" width="800" height="1000" loading="lazy"><figcaption>Pencarian, penandaan tag, dan artikel serupa semuanya bekerja pada indeks on-device yang sama, sehingga keterhubungan antar-simpanan tidak memakan biaya apa pun.</figcaption></figure>
+        <h2>Apa saja yang benar-benar dipindahkan ke on-device</h2>
+        <p><strong>Pencarian.</strong> Awalnya, ekstensi ini hanya mencocokkan judul artikel dan tag — cepat, tetapi mengabaikan isi artikel. Daripada memindai teks lengkap secara brute-force di setiap ketukan tombol atau mengirim setiap kueri ke server, kami membangun indeks TF-IDF kecil dari arsip simpanan milik pengguna sendiri. Kolom ringan — judul, tag — diperiksa terlebih dahulu secara instan seperti sebelumnya. Kueri yang lebih panjang diperluas terhadap indeks, yang dibuat sekali per sesi dan diperbarui secara inkremental, bukan dipindai ulang di setiap ketukan.</p>
+        <p><strong>Deteksi duplikat.</strong> Sebelum penyimpanan selesai, pemeriksaan bertingkat dijalankan: pencocokan URL ternormalisasi yang persis terlebih dahulu (ringan, O(1)), lalu kemiripan judul pada beberapa kandidat yang lolos filter tersebut, dan baru kemudian — untuk sedikit kandidat yang tersisa — perbandingan cosine similarity TF-IDF lengkap. Sebagian besar simpanan tidak pernah mencapai tahap yang berat sama sekali, karena tahap yang ringan sudah menyelesaikannya.</p>
+        <p><strong>Normalisasi tag.</strong> Tag kerap mengalami variasi penulisan seiring waktu — "ML", "Machine Learning", "machine-learning" semuanya bermakna sama bagi manusia, namun dianggap berbeda oleh filter. Tabel alias kecil menangani kasus-kasus yang jelas; penggabungan fuzzy edit-distance di seluruh kosakata tag menangani sisanya, memilih ejaan mana pun yang paling sering digunakan pengguna sebagai bentuk kanonikal daripada memaksakan bentuk "yang benar" kepada Anda.</p>
+        <p><strong>Keterbacaan dan nada bicara.</strong> Tingkat keterbacaan Flesch–Kincaid murni aritmatika pada jumlah kalimat dan suku kata — tidak memerlukan model AI. Sentimen menggunakan daftar kata AFINN bawaan dengan pemeriksaan negasi sederhana pada dua token sebelumnya. Keduanya sama sekali tidak perlu keluar dari browser.</p>
+        <p><strong>"Artikel serupa" dan Digest.</strong> Keduanya menggunakan kembali vektor TF-IDF yang sama persis yang telah dibangun oleh fitur pencarian. Sebenarnya mudah saja membangun tiga sistem kemiripan terpisah untuk tiga fitur berbeda. Namun, membangun satu indeks dan membiarkan pencarian, rekomendasi, serta kurasi ringkasan membaca dari indeks tersebut membuat sistem secara keseluruhan lebih ramping, dan mengoptimalkan indeks satu kali berarti meningkatkan ketiga fitur sekaligus.</p>
+
+        <figure class="post-figure"><img src="../../assets/blog/runtime-parts.webp" alt="Diagram: halaman web, background worker dan popup ekstensi, local storage, serta penyedia model" width="1760" height="620" loading="lazy"><figcaption>Hanya satu panah yang keluar dari browser: panggilan ke penyedia model yang Anda pilih.</figcaption></figure>
+        <h2>Apa yang sengaja kami biarkan tetap di cloud</h2>
+        <p>Langkah perangkuman yang sebenarnya — bagian yang benar-benar membutuhkan language model — masih memerlukan panggilan jaringan. Belum ada cara lain dengan ukuran model on-device saat ini jika Anda menginginkan kualitas output setara model cloud. Pengguna dapat membawa API key sendiri untuk langkah tersebut (OpenAI, Gemini, Mistral, DeepSeek), atau mengarahkan ekstensi ke instance lokal Ollama dan melewati jaringan sepenuhnya untuk langkah itu juga. Itulah satu-satunya bagian di mana "on-device" bukan menjadi default — melainkan opt-in, karena adanya trade-off nyata: model lokal lebih lambat dan kualitasnya lebih rendah daripada model hosted, dan kami tidak ingin berpura-pura sebaliknya.</p>
+
+        <h2>Mengapa ini lebih dari sekadar topik pembicaraan privasi</h2>
+        <p>Aspek privasi memang nyata — ekstensi dengan izin host yang luas mengirimkan konten halaman ke server untuk hal-hal yang tidak memerlukannya adalah masalah kepercayaan yang sah, bukan sekadar pencitraan. Namun alasan yang lebih mendasar adalah karena ini memang keputusan engineering yang tepat. Pencarian TF-IDF tidak butuh latensi jaringan 200ms. Deduplikasi tag tidak perlu dibebani tagihan API. Menyesuaikan alat dengan kebutuhan sebenarnya, alih-alih mengarahkan semuanya lewat "panggilan ke cloud" secara default, cenderung menghasilkan sesuatu yang lebih cepat, lebih hemat biaya operasional, dan lebih andal saat offline — manfaat privasi didapatkan secara cuma-cuma, bukan sebaliknya.</p>
+        <div class="post-cta">
+          <p>AI Summary Helper adalah ekstensi Chrome gratis.</p>
+          <a href="https://chromewebstore.google.com/detail/ai-summary-helper-openai/hldbejcjaedipeegjcinmhejdndchkmb" target="_blank" rel="noopener" class="btn-primary">Tambahkan ke Chrome</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="footer-inner">
+      <div class="wordmark"><img src="../../assets/icon.svg" alt="">AI Summary Helper</div>
+      <div class="foot-links">
+        <a href="https://github.com/philffm/ai-summary-helper/" target="_blank" rel="noopener">Kode sumber di GitHub</a>
+        <a href="../privacy.html">Privasi</a>
+        <a href="#" data-analytics-settings="">Pengaturan analitik</a>
+        <a href="https://byphil.eu/terms.html#impressum" target="_blank" rel="noopener">Impressum</a>
+      </div>
+    </div>
+    <div class="copyright">© 2026 Phil Wornath. Bagian dari <a href="https://byphil.eu/" class="credit-link">byphil.eu ↗</a> — software independen yang dikembangkan di Jerman.<br>
+      Dirancang &amp; dibangun oleh <a href="https://philwornath.com/" target="_blank" rel="noopener" class="credit-link">philwornath.com ↗</a>
+    </div>
+  </div>
+</footer>
+
+<script src="../../assets/main.js"></script>
+
+
+</body></html>

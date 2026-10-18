@@ -1,0 +1,618 @@
+<!DOCTYPE html><html lang="th"><head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#08090C">
+<title>AI Summary Helper: สรุป บันทึก และค้นหาเนื้อหาบนเว็บ</title>
+<meta name="description" content="ส่วนขยาย Chrome ที่สรุปหน้าเว็บด้วย AI อ่านฟีด RSS และเก็บคลังข้อมูลที่ค้นหาได้ การค้นหาและระบบแนะนำทำงานบนอุปกรณ์ของคุณโดยตรง">
+
+<script>
+  (function(){
+    try {
+      var saved = localStorage.getItem('aish_theme');
+      var theme = saved === 'light' || saved === 'dark'
+        ? saved
+        : (window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
+      document.documentElement.setAttribute('data-theme', theme);
+    } catch (e) {
+      document.documentElement.setAttribute('data-theme', 'dark');
+    }
+  })();
+</script>
+
+<link rel="icon" type="image/svg+xml" href="../assets/icon.svg">
+<link rel="stylesheet" href="../assets/styles.css">
+
+<meta property="og:title" content="AI Summary Helper">
+<meta property="og:description" content="สรุป บันทึก และค้นหาเนื้อหาบนเว็บได้โดยตรงบนอุปกรณ์ ส่วนขยาย Chrome สำหรับผู้ที่ไม่อยากทำรายการบทความที่อยากอ่านสูญหายอีกต่อไป">
+<meta property="og:url" content="https://ai-summary-helper.byphil.eu/">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://ai-summary-helper.byphil.eu/assets/shots/aish-hero-en.webp">
+<meta property="og:image:width" content="1280">
+<meta property="og:image:height" content="800">
+<meta name="twitter:card" content="summary_large_image">
+
+<script src="../assets/analytics.js"></script>
+<link rel="alternate" hreflang="x-default" href="https://ai-summary-helper.byphil.eu/index.html"><link rel="alternate" hreflang="en" href="https://ai-summary-helper.byphil.eu/index.html"><link rel="alternate" hreflang="de" href="https://ai-summary-helper.byphil.eu/de/index.html"><link rel="alternate" hreflang="fr" href="https://ai-summary-helper.byphil.eu/fr/index.html"><link rel="alternate" hreflang="es" href="https://ai-summary-helper.byphil.eu/es/index.html"><link rel="alternate" hreflang="zh-Hans" href="https://ai-summary-helper.byphil.eu/zh/index.html"><link rel="alternate" hreflang="zh-Hant" href="https://ai-summary-helper.byphil.eu/zh-tw/index.html"><link rel="alternate" hreflang="ja" href="https://ai-summary-helper.byphil.eu/ja/index.html"><link rel="alternate" hreflang="ko" href="https://ai-summary-helper.byphil.eu/ko/index.html"><link rel="alternate" hreflang="pt-BR" href="https://ai-summary-helper.byphil.eu/pt/index.html"><link rel="alternate" hreflang="hi" href="https://ai-summary-helper.byphil.eu/hi/index.html"><link rel="alternate" hreflang="vi" href="https://ai-summary-helper.byphil.eu/vi/index.html"><link rel="alternate" hreflang="nl" href="https://ai-summary-helper.byphil.eu/nl/index.html"><link rel="alternate" hreflang="it" href="https://ai-summary-helper.byphil.eu/it/index.html"><link rel="alternate" hreflang="ru" href="https://ai-summary-helper.byphil.eu/ru/index.html"><link rel="alternate" hreflang="uk" href="https://ai-summary-helper.byphil.eu/uk/index.html"><link rel="alternate" hreflang="tr" href="https://ai-summary-helper.byphil.eu/tr/index.html"><link rel="alternate" hreflang="id" href="https://ai-summary-helper.byphil.eu/id/index.html"><link rel="alternate" hreflang="pl" href="https://ai-summary-helper.byphil.eu/pl/index.html"><link rel="alternate" hreflang="th" href="https://ai-summary-helper.byphil.eu/th/index.html"><link rel="alternate" hreflang="ar" href="https://ai-summary-helper.byphil.eu/ar/index.html"><link rel="alternate" hreflang="sv" href="https://ai-summary-helper.byphil.eu/sv/index.html"><link rel="alternate" hreflang="da" href="https://ai-summary-helper.byphil.eu/da/index.html"><link rel="alternate" hreflang="nb" href="https://ai-summary-helper.byphil.eu/no/index.html"><link rel="alternate" hreflang="fi" href="https://ai-summary-helper.byphil.eu/fi/index.html"></head>
+<body>
+
+<a href="#main" class="skip-link">ข้ามไปยังเนื้อหา</a>
+
+<header class="nav">
+  <div class="wrap nav-inner">
+    <div class="brand-cluster">
+      <div class="wordmark">
+        <img src="../assets/icon.svg" alt="">
+        AI Summary Helper
+      </div>
+      <a href="https://byphil.eu/" target="_blank" rel="noopener" class="ecosystem-badge">
+        <span class="pulse-dot"></span> ส่วนหนึ่งของ byphil.
+      </a>
+    </div>
+    <div class="nav-desktop-group nav-desktop-links">
+      <nav class="links" aria-label="Primary">
+        <a href="index.html#features">ฟีเจอร์</a>
+        <a href="index.html#digest">Digest</a>
+        <a href="index.html#pricing">ราคา</a>
+        <a href="blog/">บล็อก</a>
+        <a href="https://github.com/philffm/ai-summary-helper/" target="_blank" rel="noopener">GitHub</a>
+      </nav>
+      <button type="button" class="theme-toggle" id="themeToggle" aria-label="Switch to light mode">
+        <svg class="icon-moon" viewBox="0 0 24 24" fill="none"><path d="M20 14.5A8.5 8.5 0 1 1 9.5 4a6.8 6.8 0 0 0 10.5 10.5Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"></path></svg>
+        <svg class="icon-sun" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="4.2" stroke="currentColor" stroke-width="1.6"></circle><path d="M12 2.5v2.4M12 19.1v2.4M4.4 4.4l1.7 1.7M17.9 17.9l1.7 1.7M2.5 12h2.4M19.1 12h2.4M4.4 19.6l1.7-1.7M17.9 6.1l1.7-1.7" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"></path></svg>
+      </button>
+      <a href="https://byphil.eu/#account" class="btn-sign-in">บัญชีของฉัน</a>
+    </div>
+    <button type="button" class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="mobileMenu" aria-label="Open menu">
+      <svg viewBox="0 0 24 24" fill="none"><path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"></path></svg>
+    </button>
+  </div>
+  <div class="mobile-menu" id="mobileMenu" hidden="">
+    <div class="wrap mobile-menu-inner">
+      <a href="index.html#features">ฟีเจอร์</a>
+      <a href="index.html#digest">Digest</a>
+      <a href="index.html#pricing">ราคา</a>
+      <a href="blog/">บล็อก</a>
+      <a href="https://github.com/philffm/ai-summary-helper/" target="_blank" rel="noopener">GitHub</a>
+      <a href="https://byphil.eu/#account">บัญชีของฉัน</a>
+      <a href="https://byphil.eu/" target="_blank" rel="noopener">ส่วนหนึ่งของ byphil. ↗</a>
+      <button type="button" class="theme-toggle-mobile" id="themeToggleMobile">
+        <span id="themeToggleMobileLabel">สลับเป็นโหมดสว่าง</span>
+        <svg class="icon-moon" viewBox="0 0 24 24" fill="none"><path d="M20 14.5A8.5 8.5 0 1 1 9.5 4a6.8 6.8 0 0 0 10.5 10.5Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"></path></svg>
+        <svg class="icon-sun" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="4.2" stroke="currentColor" stroke-width="1.6"></circle><path d="M12 2.5v2.4M12 19.1v2.4M4.4 4.4l1.7 1.7M17.9 17.9l1.7 1.7M2.5 12h2.4M19.1 12h2.4M4.4 19.6l1.7-1.7M17.9 6.1l1.7-1.7" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"></path></svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+<main id="main">
+
+  <!-- ── Hero ────────────────────────────────────────────────────── -->
+  <section class="hero hero-scene hscene" data-hscene="">
+  <div class="hs-grid">
+    <div class="hs-text"><div class="hs-text-in">
+      <div class="eyebrow"><span class="dash"></span> ส่วนขยาย Chrome · ส่วนหนึ่งของ byphil. <span class="dash"></span></div>
+      <h1>สรุปเนื้อหาบนเว็บ<br><em>เก็บบันทึกเฉพาะสิ่งที่สำคัญ</em></h1>
+      <p class="sub">AI Summary Helper ติดตามเว็บไซต์โปรดด้วยตัวอ่าน RSS ในตัว บันทึกทุกหน้าเว็บเป็นบทความสรุปที่ค้นหาได้ง่าย — พร้อมช่วยให้กลับมาอ่านได้จริงด้วยระบบ Digest บนอุปกรณ์ที่ส่งบทความสำหรับอ่านแบบออฟไลน์ไปยัง Kindle หรืออุปกรณ์อื่นได้ทันที</p>
+      <div class="hero-switch" role="tablist" aria-label="How do you want to use it?">
+        <button type="button" class="hero-switch-btn active" role="tab" id="heroTabBrowser" aria-selected="true" aria-controls="heroPaneBrowser" data-hero="browser">
+          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="3" stroke="currentColor" stroke-width="1.6"></rect><path d="M3 9h18" stroke="currentColor" stroke-width="1.6"></path></svg>
+          ส่วนขยายเบราว์เซอร์
+        </button>
+        <button type="button" class="hero-switch-btn" role="tab" id="heroTabBookmarklet" aria-selected="false" aria-controls="heroPaneBookmarklet" tabindex="-1" data-hero="bookmarklet">
+          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 3h12v18l-6-4-6 4V3Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"></path></svg>
+          Bookmarklet
+        </button>
+      </div>
+      <div class="hero-pane" id="heroPaneBrowser" role="tabpanel" aria-labelledby="heroTabBrowser">
+        <div class="hero-cta">
+          <a href="https://chromewebstore.google.com/detail/ai-summary-helper-openai/hldbejcjaedipeegjcinmhejdndchkmb" target="_blank" rel="noopener" class="btn-primary">เพิ่มลงใน Chrome — ใช้งานฟรี</a>
+        </div>
+        <p class="hero-meta">เริ่มต้นได้โดยไม่ต้องสร้างบัญชี · รองรับโมเดล LLM ส่วนใหญ่ผ่าน byPhil API, ใช้ API key ส่วนตัว หรือทำงานแบบออฟไลน์เต็มรูปแบบด้วย Ollama</p>
+      </div>
+      <div class="hero-pane" id="heroPaneBookmarklet" role="tabpanel" aria-labelledby="heroTabBookmarklet" hidden="">
+        <p class="hero-pane-blurb">เพียงลิงก์เดียวบนแถบบุ๊กมาร์ก ใช้งานได้ทุกเบราว์เซอร์ ทุกระบบปฏิบัติการ รวมถึง iOS ไม่ต้องติดตั้ง ส่วนสรุปจะแสดงขึ้นบนหน้าเว็บทันที</p>
+        <div class="hero-cta">
+          <a href="bookmarklet.html" class="btn-primary" data-track="bookmarklet-open">สร้าง Bookmarklet →</a>
+        </div>
+        <p class="hero-meta">เปิดเครื่องมือสร้าง · รองรับโมเดล LLM ส่วนใหญ่ผ่าน byPhil API (ไม่ต้องใช้คีย์) หรือใช้ OpenAI, Gemini, Mistral, DeepSeek หรือ Ollama ของคุณเอง</p>
+      </div>
+      <ol class="hs-steps" data-stage-pane="browser">
+  <li class="is-on" data-step="0" role="button" tabindex="0"><b>อ่านได้ทุกหน้าเว็บ</b><span>เปิดบทความตามปกติ AISH จะทำงานอย่างเงียบๆ บนเบราว์เซอร์</span></li>
+  <li data-step="1" role="button" tabindex="0"><b>แสดงบทสรุปข้างบทความ</b><span>คลิกเดียว บทสรุปกระชับจะทยอยพิมพ์ขึ้นมาในแผงด้านข้างขณะที่คุณอ่านเนื้อหาต่อ</span></li>
+  <li data-step="2" role="button" tabindex="0"><b>ถามคำถามจากหน้าเว็บ</b><span>คำตอบจากการถามต่อจะระบุย้อนกลับไปยังข้อความต้นฉบับอย่างแม่นยำ</span></li>
+  <li data-step="3" role="button" tabindex="0"><b>สรุปเป็นภาษาของคุณ</b><span>รับบทสรุปในภาษาที่เลือก พร้อมกราฟความรู้ที่เชื่อมโยงทุกเรื่องที่เคยอ่าน</span></li>
+</ol>
+    </div></div>
+    <div class="hs-vwrap" data-stage-pane="browser">
+      <div class="hs-vis">
+        <p class="hscene-mcap" aria-hidden="true"><strong data-mcap-t="">อ่านได้ทุกหน้าเว็บ</strong> <span data-mcap-s="">เปิดบทความได้ตามปกติ</span></p>
+        <div class="hscene-view">
+          <div class="hscene-canvas" aria-hidden="true">
+            <div class="hs-langs" data-no-translate=""><b data-lang="a" class="is-on">English</b><b data-lang="b">Deutsch</b><b>Français</b><b>Español</b><b>日本語</b></div>
+            <div class="hs-badge" data-no-translate=""><i></i> Runs locally · gemma3:4b</div>
+            <div class="hs-win" data-no-translate="">
+              <div class="hs-bar"><i></i><i></i><i></i><span>🔒 dailyledger.example/work-life/office-fern</span><div class="hs-ext"><em class="hs-puz">🧩</em><em class="hs-extbtn"><span class="hs-logo"></span></em></div></div>
+              <div class="hs-art">
+                <div class="hs-mast">The Daily Ledger</div>
+                <div class="hs-kick">WORK &amp; LIFE</div>
+                <h4>Office fern outlives four reorganisations, now up for team lead</h4>
+                <p class="hs-dek">Colleagues praise the plant’s “remarkable resilience”.</p>
+                <p>Leeds. When the logistics team moved floors in 2019, nobody expected Gerald to survive.</p>
+                <p class="hs-hl">Seven years and four reorganisations later, the office fern is the longest-serving member of the department.</p>
+                <p>He has never once scheduled a meeting that could have been an email.</p>
+              </div>
+              <div class="hs-panel">
+                <div class="hs-ph"><span class="hs-logo"></span> AI Summary Helper</div>
+                <div class="hs-tags"><i>workplace</i><i>humour</i><i>🌐 <span data-lang-code="">en</span></i></div>
+                <div class="hs-sum has-text">
+                  <small>✨ AI Summary</small>
+                  <i class="hs-ph2">Press Summarize to read this page in seconds.</i>
+                  <b class="hs-st" data-t-en="A fern climbs the career ladder" data-t-de="Ein Farn macht Karriere">A fern climbs the career ladder</b>
+                  <span class="hs-sb" data-b-en="Gerald, an office fern in Leeds, has outlasted <strong>four reorganisations in seven years</strong> and is now up for team lead." data-b-de="Gerald, ein Büro-Farn in Leeds, hat <strong>vier Umstrukturierungen in sieben Jahren</strong> überstanden und soll nun Teamleiter werden.">Gerald, an office fern in Leeds, has outlasted <strong>four reorganisations in seven years</strong> and is now up for team lead.</span>
+                  <span class="hs-sp" data-p-en="87% of staff call him the most reliable presence in the office." data-p-de="87 % der Belegschaft halten ihn für die verlässlichste Präsenz im Büro.">• 87% of staff call him the most reliable presence in the office.</span>
+                </div>
+                <div class="hs-qwrap"><button type="button" class="hs-sugg" tabindex="-1">💬 Why is Gerald up for promotion?</button><div class="hs-q"><span>Why is Gerald up for promotion?</span></div></div>
+                <div class="hs-a">Staff see him as the most reliable presence in the office.<em>📌 In article</em></div>
+                <div class="hs-tabs"><i>Feeds</i><i class="on">Summarize</i><i>History</i></div>
+              </div>
+            </div>
+            <div class="hs-graph" data-no-translate="">
+              <small>🕸 Your knowledge graph</small>
+              <svg viewBox="0 0 160 70" width="160" height="70"><g stroke="#9db4ea" stroke-width="1.4"><line x1="20" y1="40" x2="70" y2="18"></line><line x1="70" y1="18" x2="120" y2="42"></line><line x1="70" y1="18" x2="140" y2="14"></line><line x1="120" y1="42" x2="96" y2="58"></line></g><g><circle cx="20" cy="40" r="5" fill="#2563eb"></circle><circle cx="70" cy="18" r="7" fill="#16a37f"></circle><circle cx="120" cy="42" r="5" fill="#2563eb"></circle><circle cx="140" cy="14" r="5" fill="#e5484d"></circle><circle cx="96" cy="58" r="5" fill="#2563eb"></circle></g></svg>
+              <div><b>2h 48m</b> saved · <b>11</b> day streak 🔥</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="hs-ctrl" role="group" aria-label="Walkthrough"><button type="button" class="hs-pp" aria-label="Pause walkthrough"><svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><path class="pp-pause" d="M7 5h3v14H7zM14 5h3v14h-3z" fill="currentColor"></path><path class="pp-play" d="M8 5l11 7-11 7z" fill="currentColor"></path></svg></button><button type="button" class="hs-dot is-on" aria-label="Step 1"></button><button type="button" class="hs-dot" aria-label="Step 2"></button><button type="button" class="hs-dot" aria-label="Step 3"></button><button type="button" class="hs-dot" aria-label="Step 4"></button></div>
+      <p class="sr-only">AI Summary Helper แสดงบทสรุปสั้นๆ ของบทความในแผงด้านข้าง ให้คุณถามคำถามเจาะลึกพร้อมลิงก์ย้อนไปยังข้อความต้นทาง และสลับภาษาของบทสรุปได้ตามต้องการ</p>
+    </div>
+    <div class="hs-bm" data-stage-pane="bookmarklet" hidden="">
+      <div class="bm-mock" aria-hidden="true" data-no-translate="">
+            <div class="bm-win">
+              <div class="bm-tb"><i></i><i></i><i></i><span>🔒 dailyledger.example/work-life/office-fern</span></div>
+              <div class="bm-bar"><span>Mail</span><span>Docs</span><span>Maps</span><span class="bm-mark">✨ Summarize</span></div>
+              <div class="bm-page">
+                <div class="bm-mast">The Daily Ledger</div>
+                <h4>Office fern outlives four reorganisations, now up for team lead</h4>
+                <p>Leeds. When the logistics team moved floors in 2019, nobody expected Gerald to survive.</p>
+                <p>Seven years and four reorganisations later, the office fern is the longest-serving member of the department.</p>
+                <p>He has never once scheduled a meeting that could have been an email.</p>
+                <div class="bm-card"><small>✨ AI Summary</small><b>A fern climbs the career ladder</b><span>Gerald, an office fern in Leeds, has outlasted <strong>four reorganisations in seven years</strong> and is now up for team lead.</span></div>
+              </div>
+              <svg class="bm-cursor" viewBox="0 0 24 24" width="26" height="26"><path d="M4 2l15 9-6.5 1.5L9 19z" fill="#14161f" stroke="#fff" stroke-width="1.4" stroke-linejoin="round"></path></svg>
+            </div>
+          </div>
+      <ol class="bm-steps">
+  <li><span class="bm-n">1</span><div><h3>สร้างเพียงครั้งเดียว</h3><p>เลือกใช้ byPhil API (ไม่ต้องใช้คีย์) หรือเชื่อมต่อ OpenAI, Gemini, Mistral, DeepSeek หรือ Ollama ของคุณเอง</p></div></li>
+  <li><span class="bm-n">2</span><div><h3>ลากไปวางที่แถบบุ๊กมาร์ก</h3><p>ใช้ได้กับทุกเบราว์เซอร์ ทุกระบบปฏิบัติการ รวมถึง iOS ไม่ต้องติดตั้งโปรแกรมใดๆ</p></div></li>
+  <li><span class="bm-n">3</span><div><h3>คลิกใช้งานบนหน้าเว็บใดก็ได้</h3><p>บทสรุปจะปรากฏขึ้นบนหน้าเว็บทันที พร้อมฟังก์ชันถามต่อและเลือกภาษาได้</p></div></li>
+</ol>
+    </div>
+  </div>
+</section>
+
+  <!-- ── See it ──────────────────────────────────────────────────── -->
+  <!-- Screenshots are localized by scripts/translate.mjs: "-en.webp" is swapped for
+       "-<locale>.webp" when docs/assets/shots/ has that file, else it stays English. -->
+  <section id="see-it">
+    <div class="wrap">
+      <div class="section-head center reveal">
+        <div class="eyebrow">ดูการทำงาน</div>
+        <h2>บทสรุปแสดงอยู่ข้างบทความ</h2>
+        <p>อ่านภาพรวม ถามคำถามเจาะลึก และดูว่าคำตอบอ้างอิงมาจากข้อความส่วนไหน อินเทอร์เฟซจริง เวอร์ชัน 2.2</p>
+      </div>
+      <div class="cx reveal" data-carousel="" role="region" aria-roledescription="carousel" aria-label="Product screenshots">
+        <div class="cx-stage">
+          <ul class="cx-track" tabindex="0">
+          <li class="cx-slide is-active" role="group" aria-roledescription="slide" aria-label="1 / 4">
+            <figure>
+              <img src="../assets/shots/aish-inpage-detail-en.webp" width="1440" height="900" loading="lazy" alt="บทสรุปในแผงด้านข้างถัดจากบทความ">
+              <figcaption><strong>บทสรุปข้างบทความ</strong><span>อ่านภาพรวมได้ทันทีโดยไม่ต้องออกจากหน้าเว็บ</span></figcaption>
+            </figure>
+          </li>
+          <li class="cx-slide" role="group" aria-roledescription="slide" aria-label="2 / 4">
+            <figure>
+              <img src="../assets/shots/aish-inpage-ask-en.webp" width="1440" height="900" loading="lazy" alt="คำตอบจากการถามต่อพร้อมเครื่องหมายอ้างอิงและประโยคที่ไฮไลต์ในบทความ">
+              <figcaption><strong>ถามคำถามจากหน้าเว็บ</strong><span>คำตอบจะชี้กลับไปยังข้อความต้นทางที่นำมาอ้างอิง</span></figcaption>
+            </figure>
+          </li>
+          <li class="cx-slide" role="group" aria-roledescription="slide" aria-label="3 / 4">
+            <figure>
+              <img src="../assets/shots/aish-split-wide-en.webp" width="1280" height="800" loading="lazy" alt="มุมมองแบ่งหน้าจอแสดงรายการ กราฟความรู้ และการวิเคราะห์เคียงข้างกัน">
+              <figcaption><strong>ฟีเจอร์ใหม่ใน 2.2: มุมมองแบ่งหน้าจอ (Split view)</strong><span>แสดงรายการ กราฟความรู้ และการวิเคราะห์เคียงข้างกันบนหน้าจอขนาดใหญ่</span></figcaption>
+            </figure>
+          </li>
+          <li class="cx-slide" role="group" aria-roledescription="slide" aria-label="4 / 4">
+            <figure>
+              <img src="../assets/shots/aish-research-dark-en.webp" width="1280" height="800" loading="lazy" alt="โหมดการวิจัยพร้อมคอลเลกชันเอกสารวิชาการ ในโหมดมืด">
+              <figcaption><strong>ฟีเจอร์ใหม่ใน 2.2: โหมดการวิจัย (Research mode)</strong><span>ดูรายละเอียดงานวิจัย การอ้างอิง DOI และคอลเลกชันสำหรับเอกสารทางวิชาการ</span></figcaption>
+            </figure>
+          </li>
+          </ul>
+          <button type="button" class="cx-nav cx-prev" aria-label="Previous slide"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m15 18-6-6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg></button>
+          <button type="button" class="cx-nav cx-next" aria-label="Next slide"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m9 18 6-6-6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg></button>
+        </div>
+        <div class="cx-dots"><button type="button" class="cx-dot is-active" aria-label="Slide 1"></button><button type="button" class="cx-dot" aria-label="Slide 2"></button><button type="button" class="cx-dot" aria-label="Slide 3"></button><button type="button" class="cx-dot" aria-label="Slide 4"></button></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="try-it">
+    <div class="wrap">
+      <div class="section-head center reveal">
+        <div class="eyebrow">ทดลองใช้งาน</div>
+        <h2>กดปุ่ม Summarize บนหน้าเว็บจริง</h2>
+        <p>นี่คืออินเทอร์เฟซส่วนขยายจริงที่ทำงานบนเบราว์เซอร์ของคุณกับบทความตัวอย่าง ไม่มีการส่งข้อมูลใดๆ ออกไปภายนอก</p>
+      </div>
+      <div class="demo-frame reveal" data-demo="" data-src="../demo/index.html">
+        <button class="demo-start" type="button"><span class="demo-play" aria-hidden="true">▶</span><span>เริ่มการทดลองใช้งานจริง</span></button>
+        <a class="demo-open" href="../demo/index.html" target="_blank" rel="noopener">เปิดแบบเต็มหน้าจอ ↗</a>
+      </div>
+      <div class="demo-cta reveal"><a href="https://chromewebstore.google.com/detail/ai-summary-helper-openai/hldbejcjaedipeegjcinmhejdndchkmb" target="_blank" rel="noopener" class="btn-primary" data-track="demo-add-chrome">เพิ่มลงใน Chrome — ใช้งานฟรี</a><a href="https://addons.mozilla.org/en-US/firefox/addon/ai-summary-helper/" target="_blank" rel="noopener" class="btn-secondary" data-store="alt" data-track="demo-add-firefox">Firefox</a></div>
+    </div>
+  </section>
+
+  <!-- ── Features ────────────────────────────────────────────────── -->
+  <section id="features">
+    <div class="wrap">
+      <div class="section-head center reveal">
+        <div class="eyebrow">การทำงาน</div>
+        <h2>ทุกสิ่งที่รายการอ่านควรทำได้ตั้งแต่วันแรก</h2>
+        <p>บันทึก ทำความเข้าใจ ค้นหาได้ง่าย และกลับมาอ่านได้จริง — โดยไม่ต้องจ่ายค่าสมาชิกรายเดือนเพื่อล็อกคลังข้อมูลของคุณไว้</p>
+      </div>
+
+      <!-- Persona switch: same 6 features throughout, no feature ever
+           hidden — this only re-orders emphasis (border highlight vs.
+           dim) and swaps one line of framing copy. Nothing here changes
+           what's actually rendered for a crawler beyond that, so it
+           costs nothing on the GEO/SEO side. -->
+      <div class="persona-switch reveal" role="group" aria-label="Who are you? Highlights the matching features below">
+        <button type="button" class="persona-btn active" data-persona="privacy" aria-pressed="true">
+          <svg viewBox="0 0 24 24" fill="none"><path d="M12 3l7 3v6c0 4.5-3 7.5-7 9-4-1.5-7-4.5-7-9V6l7-3Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"></path></svg>
+          เน้นความเป็นส่วนตัว
+        </button>
+        <button type="button" class="persona-btn" data-persona="hoarder" aria-pressed="false">
+          <svg viewBox="0 0 24 24" fill="none"><rect x="4" y="4" width="16" height="16" rx="3" stroke="currentColor" stroke-width="1.6"></rect><path d="M8 9h8M8 13h5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"></path></svg>
+          ผู้ที่ชอบเปิดแท็บค้างไว้
+        </button>
+        <button type="button" class="persona-btn" data-persona="researcher" aria-pressed="false">
+          <svg viewBox="0 0 24 24" fill="none"><circle cx="5" cy="6" r="1.8" fill="currentColor"></circle><circle cx="19" cy="6" r="1.8" fill="currentColor" opacity="0.85"></circle><circle cx="12" cy="12" r="2.1" fill="currentColor"></circle><circle cx="6" cy="18" r="1.8" fill="currentColor" opacity="0.85"></circle><circle cx="18" cy="18" r="1.8" fill="currentColor" opacity="0.85"></circle><path d="M5 6 12 12M19 6 12 12M12 12 6 18M12 12 18 18" stroke="currentColor" stroke-width="1.1" opacity="0.55"></path></svg>
+          นักวิจัย
+        </button>
+      </div>
+      <p class="persona-blurb reveal" id="personaBlurb" aria-live="polite">เลือกโมเดล เลือกเซิร์ฟเวอร์ และควบคุมได้เองว่าจะให้ข้อมูลออกจากเครื่องหรือไม่</p>
+
+      <div class="feature-grid reveal" id="featureGrid">
+        <div class="feature-card" data-personas="privacy researcher">
+          <div class="f-icon icon-cyan"><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="6" r="2.6" fill="#fff"></circle><circle cx="6" cy="17" r="2.2" fill="#fff" opacity="0.85"></circle><circle cx="18" cy="17" r="2.2" fill="#fff" opacity="0.85"></circle><path d="M12 8.6 L6.8 14.8 M12 8.6 L17.2 14.8" stroke="#fff" stroke-width="1.4" stroke-linecap="round" opacity="0.7"></path></svg></div>
+          <h3>สรุปด้วย AI ตามโมเดลที่คุณเลือก</h3>
+          <p>เลือกใช้ OpenAI, Gemini, Mistral, DeepSeek หรือ endpoint ที่กำหนดเอง — หรือเชื่อมต่อกับโมเดล Ollama บนเครื่องเพื่อทำงานแบบออฟไลน์โดยไม่ต้องต่อเน็ตเลย</p>
+        </div>
+        <div class="feature-card" data-personas="privacy researcher">
+          <div class="f-icon icon-gold"><svg viewBox="0 0 24 24" fill="none"><path d="M5 5h14M5 9h14M5 13h14M5 17h14" stroke="#fff" stroke-width="2.2" stroke-linecap="round"></path><path d="M5 5l14 0M5 9l14 0M5 13l14 0M5 17l14 0" stroke="#fff" stroke-width="2.2" stroke-linecap="round" opacity="0.35"></path></svg></div>
+          <h3>ไฮไลต์ข้อความสำคัญบนหน้าเว็บโดยตรง</h3>
+          <p>AI จะไฮไลต์เบาๆ บน <mark class="ai-ghost-highlight">ข้อความสำคัญจากต้นฉบับโดยตรง</mark> ในบทความ — ช่วยให้คุณ <mark class="ai-ghost-highlight">กวาดสายตาดูประเด็นหลักได้ในพริบตา</mark>และไฮไลต์เหล่านี้จะถูกส่งต่อพร้อมบทสรุปไปยัง Kindle, LocalSend หรือ Markdown ได้ทันที</p>
+        </div>
+        <div class="feature-card" data-personas="privacy researcher">
+          <div class="f-icon icon-violet"><svg viewBox="0 0 24 24" fill="none"><path d="M11 4a7 7 0 1 0 4.9 12.1l4.6 4.6" stroke="#fff" stroke-width="1.7" stroke-linecap="round"></path></svg></div>
+          <h3>ระบบค้นหาจริง ทำงานบนอุปกรณ์</h3>
+          <p>ค้นหาข้อความเต็มรูปแบบครอบคลุมทั้งชื่อเรื่อง แท็ก และเนื้อหาบทความ — ขับเคลื่อนด้วยดัชนี TF-IDF ที่สร้างขึ้นในเบราว์เซอร์ รวดเร็ว ไม่มีความหน่วง และไม่มีการส่งข้อมูลออกไปภายนอก</p>
+        </div>
+        <div class="feature-card" data-personas="hoarder">
+          <div class="f-icon icon-indigo"><svg viewBox="0 0 24 24" fill="none"><path d="M6 3h12v18l-6-4-6 4V3Z" stroke="#fff" stroke-width="1.6" stroke-linejoin="round"></path></svg></div>
+          <h3>บันทึกไว้อ่านภายหลังอย่างมีเป้าหมาย</h3>
+          <p>กำหนด "การตัดสินใจ" พร้อมระบุเหตุผลและกรอบเวลาเพื่อรับการแจ้งเตือนเตือนความจำ — แทนที่จะปล่อยให้บทความจมหายไปในกองที่ไม่มีวันเปิดอ่านอีก</p>
+        </div>
+        <div class="feature-card" data-personas="hoarder">
+          <div class="f-icon icon-gold"><svg viewBox="0 0 24 24" fill="none"><rect x="4" y="4" width="16" height="16" rx="3" stroke="#fff" stroke-width="1.6"></rect><path d="M8 9h8M8 13h5" stroke="#fff" stroke-width="1.6" stroke-linecap="round"></path></svg></div>
+          <h3>Digest ที่คัดสรรให้อัตโนมัติ</h3>
+          <p>แตะเพียงครั้งเดียวเพื่อคัดเลือกบทความที่บันทึกไว้ในปริมาณพอดีและหลากหลาย — ไม่ใช่ข่าวเดียวกันซ้ำๆ 5 บทความ — รวมเป็นไฟล์เดียวพร้อมส่งไปยัง Kindle หรือ LocalSend</p>
+        </div>
+        <div class="feature-card" data-personas="researcher">
+          <div class="f-icon icon-cyan"><svg viewBox="0 0 24 24" fill="none"><circle cx="5" cy="6" r="1.8" fill="#fff"></circle><circle cx="19" cy="6" r="1.8" fill="#fff" opacity="0.85"></circle><circle cx="12" cy="12" r="2.1" fill="#fff"></circle><circle cx="6" cy="18" r="1.8" fill="#fff" opacity="0.85"></circle><circle cx="18" cy="18" r="1.8" fill="#fff" opacity="0.85"></circle><path d="M5 6 12 12M19 6 12 12M12 12 6 18M12 12 18 18" stroke="#fff" stroke-width="1.1" opacity="0.55"></path></svg></div>
+          <h3>กราฟความรู้ที่ไม่ได้เป็นแค่รายการเรียงลำดับ</h3>
+          <p>ดูความเชื่อมโยงของบทความที่บันทึกไว้ — ผ่านแท็กที่ใช้ร่วมกัน และความคล้ายคลึงของหัวข้อแม้จะไม่ได้ใส่แท็กเดียวกันก็ตาม</p>
+        </div>
+        <div class="feature-card" data-personas="hoarder researcher">
+          <div class="f-icon icon-indigo"><svg viewBox="0 0 24 24" fill="none"><circle cx="6" cy="18" r="1.8" fill="#fff"></circle><path d="M5 11a8 8 0 0 1 8 8M5 5a14 14 0 0 1 14 14" stroke="#fff" stroke-width="1.8" stroke-linecap="round"></path></svg></div>
+          <h3>ตัวอ่าน RSS ในตัว</h3>
+          <p>ติดตามบล็อกและเว็บไซต์ข่าว กรองตามแหล่งที่มา แท็ก วันที่ หรืออารมณ์ นำเข้าไฟล์ OPML และเปิดหรือสรุปรายการต่างๆ ได้ในคลิกเดียว เล่นพอดแคสต์ได้โดยตรงจากส่วนขยาย และเลือกรับสรุปข่าวประจำวันจากพาดหัวข่าวด้วย AI ได้ บทความโปรดจะถูกเก็บลงคลังข้อมูล และฟีดทั้งหมดจะถูกบันทึกไว้บนอุปกรณ์ของคุณ</p>
+        </div>
+        <div class="feature-card" data-personas="privacy hoarder researcher">
+          <div class="f-icon icon-violet"><svg viewBox="0 0 24 24" fill="none"><path d="M4 12h16M12 4c2.8 2.6 4.2 5.2 4.2 8s-1.4 5.4-4.2 8c-2.8-2.6-4.2-5.2-4.2-8s1.4-5.4 4.2-8Z" stroke="#fff" stroke-width="1.5"></path></svg></div>
+          <h3>รองรับมากกว่า 20 ภาษา ใช้งานได้ข้ามแพลตฟอร์ม</h3>
+          <p>อ่านและสรุปเป็นภาษาที่คุณต้องการ ใช้งานผ่านส่วนขยาย แผงควบคุมด้านข้าง หรือ <a href="bookmarklet.html">Bookmarklet</a> — สำหรับทุกที่ที่ส่วนขยายเบราว์เซอร์เข้าไม่ถึง</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    (function(){
+      var PERSONAS = {
+        privacy:    "You choose the model, the server, and whether anything leaves your machine at all.",
+        hoarder:    "The problem was never saving. It's getting back to what you saved — this is built around that part.",
+        researcher: "Every save becomes searchable, connected, and exportable — a real archive, not a growing pile."
+      };
+      var buttons = document.querySelectorAll('.persona-btn');
+      var cards = document.querySelectorAll('#featureGrid .feature-card');
+      var blurb = document.getElementById('personaBlurb');
+
+      function setPersona(name) {
+        buttons.forEach(function(b){
+          var active = b.getAttribute('data-persona') === name;
+          b.classList.toggle('active', active);
+          b.setAttribute('aria-pressed', active ? 'true' : 'false');
+        });
+        cards.forEach(function(c){
+          var match = (c.getAttribute('data-personas') || '').split(' ').indexOf(name) !== -1;
+          c.classList.toggle('persona-match', match);
+          c.classList.toggle('persona-dim', !match);
+        });
+        if (PERSONAS[name]) blurb.textContent = PERSONAS[name];
+      }
+
+      buttons.forEach(function(b){
+        b.addEventListener('click', function(){
+          setPersona(b.getAttribute('data-persona'));
+          window.aishTrack && window.aishTrack('Persona', 'select', b.getAttribute('data-persona'));
+        });
+      });
+    })();
+  </script>
+
+  <!-- ── Digest spotlight ────────────────────────────────────────── -->
+  <section id="digest">
+    <div class="wrap">
+      <div class="section-head center reveal">
+        <div class="eyebrow">ปัญหา 84%</div>
+        <h2>สิ่งที่บันทึกไว้ส่วนใหญ่ มักไม่ได้กลับมาอ่านอีกเลย</h2>
+        <p>งานวิจัยเกี่ยวกับพฤติกรรมการบุ๊กมาร์กพบอย่างสม่ำเสมอว่า บทความที่บันทึกไว้ส่วนใหญ่ไม่เคยถูกเปิดอ่านซ้ำ นั่นไม่ใช่ปัญหาเรื่องวินัย — แต่เกิดขึ้นเมื่อเครื่องมือทำให้การบันทึกเป็นเรื่องง่ายเกินไป แต่ไม่มีตัวช่วยในการเลือกอ่านสิ่งที่บันทึกไว้เลย</p>
+      </div>
+      <div class="feature-grid digest-steps reveal">
+        <div class="feature-card">
+          <h3 style="margin-top:0;">1. แตะ Digest</h3>
+          <p>ระบบจะเลือก 5 บทความที่คุณบันทึกไว้ — โดยคำนึงถึงความสดใหม่และความหลากหลาย เพื่อไม่ให้คุณต้องอ่านข่าวประเด็นเดียวกันซ้ำๆ</p>
+        </div>
+        <div class="feature-card">
+          <h3 style="margin-top:0;">2. กำหนดอารมณ์ในการอ่านได้ตามต้องการ</h3>
+          <p>ไม่ว่าจะเป็นแนวเบาสมอง กลางๆ หรือเนื้อหาเจาะลึกจริงจัง — ระบบ Digest จะปรับการคัดเลือกบทความให้ตรงกับโทนอารมณ์ที่คุณต้องการอ่าน</p>
+        </div>
+        <div class="feature-card">
+          <h3 style="margin-top:0;">3. ส่งไปอ่านแบบออฟไลน์</h3>
+          <p>รวมเป็นชุดเดียว ส่งตรงไปยัง Kindle หรืออุปกรณ์บนเครือข่ายของคุณ โหลดเก็บไว้ก่อนขึ้นเครื่องบิน เดินทาง หรือช่วงวันหยุดที่ไม่มีสัญญาณอินเทอร์เน็ต</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Phone companion ────────────────────────────────────────── -->
+  <section id="phone">
+    <div class="wrap">
+      <div class="section-head center reveal">
+        <div class="eyebrow">ใหม่ · Android <span class="beta-badge">Beta</span></div>
+        <h2>แชร์ลิงก์จากโทรศัพท์ อ่านบทสรุปบนคอมพิวเตอร์</h2>
+        <p>AISH Companion จะเพิ่มเมนู “AISH” ลงในหน้าต่างแชร์ของโทรศัพท์ ลิงก์จะถูกส่งไปยังเบราว์เซอร์อย่างปลอดภัยด้วยการเข้ารหัสแบบ End-to-End และรออยู่ในประวัติการใช้งาน พร้อมให้กดสรุปได้ในแตะเดียว</p>
+      </div>
+      <div class="feature-grid digest-steps reveal">
+        <div class="feature-card">
+          <h3 style="margin-top:0;">1. จับคู่เพียงครั้งเดียว</h3>
+          <p>ในส่วนขยาย ให้ไปที่ การตั้งค่า → กล่องข้อความจากโทรศัพท์ แล้วสแกนรหัส QR ด้วยแอป Companion โดยไม่ต้องสมัครบัญชี</p>
+        </div>
+        <div class="feature-card">
+          <h3 style="margin-top:0;">2. แชร์จากแอปใดก็ได้</h3>
+          <p>แตะ แชร์ → AISH จากเบราว์เซอร์ จดหมายข่าว หรือแอปแช็ต ทำงานแบบออฟไลน์ได้และจะส่งข้อมูลทันทีที่เชื่อมต่ออินเทอร์เน็ต</p>
+        </div>
+        <div class="feature-card">
+          <h3 style="margin-top:0;">3. แตะ Summarize</h3>
+          <p>ลิงก์ที่แชร์จะปรากฏใน ประวัติ → จากโทรศัพท์ แตะ Summarize แล้วส่วนขยายจะจัดการส่วนที่เหลือด้วยผู้ให้บริการ AI ที่คุณเลือก</p>
+        </div>
+      </div>
+      <div class="hero-cta reveal" style="margin-top:28px;justify-content:center;">
+        <a href="https://github.com/philffm/ai-summary-helper/releases/latest/download/aish-companion.apk" class="btn-primary" data-track="companion-apk">ดาวน์โหลดสำหรับ Android (APK) <span class="beta-badge">Beta</span></a>
+      </div>
+      <p class="hero-meta reveal" style="text-align:center;">Android 8 ขึ้นไป · ฟรีและเป็นโอเพนซอร์ส · ต้องใช้งานร่วมกับส่วนขยายเบราว์เซอร์ · เซิร์ฟเวอร์จะมองเห็นเฉพาะข้อมูลที่เข้ารหัสเท่านั้น · ยังไม่รองรับ iOS</p>
+    </div>
+  </section>
+
+  <!-- ── Why on-device ──────────────────────────────────────────── -->
+  <section>
+    <div class="wrap wrap-narrow">
+      <div class="section-head center reveal">
+        <div class="eyebrow">สร้างขึ้นตามมาตรฐานของ byphil</div>
+        <h2>คลังข้อมูลของคุณยังคงเป็นของคุณเสมอ</h2>
+        <p>การค้นหา การตรวจจับเนื้อหาซ้ำ การจัดระเบียบแท็ก การประเมินระดับการอ่านและโทนเสียง รวมถึง "บทความที่คล้ายกัน" ทั้งหมดทำงานบนเบราว์เซอร์ของคุณโดยตรง — ไม่ต้องพึ่งพาเซิร์ฟเวอร์ ไม่ต้องสมัครบัญชี ข้อมูลเดียวที่ออกจากเครื่องคือคำขอสรุปเนื้อหาไปยังผู้ให้บริการ AI ที่คุณเลือกเท่านั้น และหากเชื่อมต่อกับ Ollama บนเครื่อง ข้อมูลทั้งหมดก็จะอยู่ภายในอุปกรณ์ของคุณอย่างสมบูรณ์</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Pricing ─────────────────────────────────────────────────── -->
+  <section id="pricing">
+    <div class="wrap wrap-narrow">
+      <div class="section-head center reveal">
+        <div class="eyebrow">คีย์เดียว ปลดล็อกทุกเครื่องมือของ byphil</div>
+        <h2>เริ่มต้นใช้งานฟรี อัปเกรดเป็น Pro เมื่อต้องการ</h2>
+        <p>Support Pass ไม่ได้มีไว้สำหรับส่วนขยายนี้เท่านั้น — แต่เป็นคีย์เดียวที่ปลดล็อกการเข้าถึงระดับพรีเมียมสำหรับทุกเครื่องมือที่ byphil พัฒนาขึ้น จัดการได้ง่ายจากบัญชี byphil ของคุณ</p>
+      </div>
+
+      <div style="text-align:center;">
+        <div class="tier-toggle reveal" role="group" aria-label="Billing period">
+          <button type="button" class="active" id="btnMonthly" aria-pressed="true" onclick="setBilling('monthly')">รายเดือน</button>
+          <button type="button" id="btnYearly" aria-pressed="false" onclick="setBilling('yearly')">รายปี · ประหยัด 50%</button>
+        </div>
+      </div>
+
+      <div class="tiers reveal" id="tiersGrid">
+        <div class="tier-card">
+          <div class="tier-name">ฟรี</div>
+          <div class="tier-price">€0</div>
+          <div class="tier-note">ทุกอย่างทำงานบนอุปกรณ์ตลอดเวลา</div>
+          <ul>
+            <li>สรุปเนื้อหาได้ไม่จำกัดด้วย API key ส่วนตัวหรือ Ollama</li>
+            <li>ระบบค้นหา, Digest, กราฟความรู้ — ทำงานบนอุปกรณ์ทั้งหมด</li>
+            <li>ส่งเข้า Kindle ได้ฟรี 3 ครั้ง</li>
+          </ul>
+          <a href="https://chromewebstore.google.com/detail/ai-summary-helper-openai/hldbejcjaedipeegjcinmhejdndchkmb" target="_blank" rel="noopener" class="tier-cta">เพิ่มลงใน Chrome</a>
+        </div>
+
+        <div class="tier-card best">
+          <div class="best-badge">คุ้มค่าที่สุด</div>
+          <div class="tier-name">Support Pass</div>
+          <div class="tier-price">
+            <span class="price-monthly">€4.99<span>/เดือน</span></span>
+            <span class="price-yearly">€29.94<span>/ปี</span></span>
+          </div>
+          <div class="tier-note">รอบการเรียกเก็บเงิน <span class="price-monthly">รายเดือน</span><span class="price-yearly">รายปี</span></div>
+          <ul>
+            <li>ส่งไปยัง Kindle &amp; LocalSend ได้ไม่จำกัด รวมถึงชุด Digest</li>
+            <li>เข้าถึง byphil Cloud AI — โดยไม่ต้องใช้ API key</li>
+            <li>ปลดล็อกฟีเจอร์ Pro ในทุกเครื่องมือของ byphil</li>
+          </ul>
+          <a href="https://byphil.eu/#pass" class="tier-cta">สมัคร Support Pass</a>
+        </div>
+
+        <div class="tier-card">
+          <div class="tier-name">Donator Pass</div>
+          <div class="tier-price">€50<span>/ครั้งเดียว</span></div>
+          <div class="tier-note">เข้าถึงการใช้งานเต็มรูปแบบ 12 เดือน</div>
+          <ul>
+            <li>รวมทุกอย่างใน Support Pass</li>
+            <li>สนับสนุนการพัฒนาเครื่องมือใหม่ๆ โดยตรง</li>
+          </ul>
+          <a href="https://byphil.eu/#pass" class="tier-cta">ร่วมสนับสนุนและปลดล็อก</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── FAQ ─────────────────────────────────────────────────────── -->
+  <section>
+    <div class="wrap">
+      <div class="section-head center reveal">
+        <div class="eyebrow">คำถามที่พบบ่อย</div>
+        <h2>สิ่งที่ควรรู้ก่อนติดตั้ง</h2>
+      </div>
+      <div class="faq reveal">
+        <details>
+          <summary>จำเป็นต้องมีบัญชีเพื่อใช้งานหรือไม่?</summary>
+          <p>ไม่จำเป็น เพียงติดตั้ง นำ API key ของผู้ให้บริการ AI มาใส่ (หรือใช้โมเดล Ollama บนเครื่อง) แล้วเริ่มบันทึกได้ทันที บัญชีจำเป็นเฉพาะเมื่อต้องการใช้งาน byphil Cloud หรือการส่งไปยัง Kindle/LocalSend แบบไม่จำกัดผ่าน Support Pass เท่านั้น</p>
+        </details>
+        <details>
+          <summary>มีข้อมูลอะไรบ้างที่ส่งออกจากเบราว์เซอร์?</summary>
+          <p>มีเฉพาะคำขอสรุปเนื้อหาที่ส่งไปยังผู้ให้บริการ AI ที่คุณกำหนดค่าไว้เท่านั้น รวมถึงการดึงข้อมูลจากฟีด RSS ที่คุณติดตาม และเมื่อคลิกขอสรุป AI รายวัน จะมีการส่งเฉพาะพาดหัวข่าวและข้อความสั้นๆ ของวันนั้น ส่วนการค้นหา การตรวจจับรายการซ้ำ การจัดระเบียบแท็ก การประเมินระดับการอ่านและอารมณ์ และการแนะนำ "บทความที่คล้ายกัน" ทั้งหมดทำงานบนเครื่องกับคลังข้อมูลของคุณเอง</p>
+        </details>
+        <details>
+          <summary>สามารถใช้งานแบบไม่พึ่งพาคลาวด์เลยได้หรือไม่?</summary>
+          <p>ได้ — เพียงกำหนดค่าให้เชื่อมต่อไปยังโมเดล Ollama บนเครื่อง ขั้นตอนการสรุปข้อมูลก็จะทำงานบนเครื่องของคุณเช่นกัน ส่วนฟีเจอร์อื่นๆ ทำงานบนเครื่องอยู่แล้ว</p>
+        </details>
+        <details>
+          <summary>จะเกิดอะไรขึ้นกับบทความที่บันทึกไว้หากยกเลิก Support Pass?</summary>
+          <p>คลังข้อมูลของคุณจะยังคงอยู่ที่เดิมอย่างปลอดภัยในที่จัดเก็บข้อมูลในเครื่อง (local storage) ของเบราว์เซอร์บนอุปกรณ์ Support Pass มีผลเฉพาะฟีเจอร์เสริมที่ต้องพึ่งพาคลาวด์ (การเข้าถึง byphil Cloud AI, การส่งไปยัง Kindle/LocalSend ไม่จำกัด) โดยไม่มีผลกระทบต่อสิ่งที่คุณเคยบันทึกไว้แล้วเลย</p>
+        </details>
+        <details>
+          <summary>ติดตั้งแอปคู่หู Android อย่างไร?</summary>
+          <p>ดาวน์โหลดไฟล์ APK จากลิงก์ด้านบน (หรือจาก <a href="https://github.com/philffm/ai-summary-helper/releases/latest" target="_blank" rel="noopener">เวอร์ชันล่าสุด</a>) เปิดไฟล์ และอนุญาตการติดตั้งจากเบราว์เซอร์เมื่อระบบ Android แจ้งเตือน จากนั้นจับคู่โดยการสแกนรหัส QR ในส่วนขยายที่ การตั้งค่า → กล่องข้อความจากโทรศัพท์ ขณะนี้ยังไม่มีให้บริการบน Google Play</p>
+        </details>
+        <details>
+          <summary>โปรเจกต์นี้เป็นโอเพนซอร์สหรือไม่?</summary>
+          <p>ใช่ — ซอร์สโค้ดของส่วนขยายเปิดเผยต่อสาธารณะบน <a href="https://github.com/philffm/ai-summary-helper/" target="_blank" rel="noopener">GitHub</a>.</p>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Blog teaser ─────────────────────────────────────────────── -->
+  <section>
+    <div class="wrap">
+      <div class="section-head reveal">
+        <div class="eyebrow">จากบล็อก</div>
+        <h2>บันทึกเกี่ยวกับการอ่าน การค้นหา และการพัฒนาระบบบนอุปกรณ์</h2>
+        <p>สิ่งที่เราได้เรียนรู้จากการพัฒนาระบบค้นหา Digest และการตรวจจับบทความซ้ำ — และบทบาทของฟีเจอร์เหล่านี้หากคุณกำลังมองหาเครื่องมือเก็บบทความไว้อ่านภายหลัง</p>
+      </div>
+      <div class="blog-grid reveal">
+        <a class="blog-card" href="blog/from-bookmarklet-to-2.html">
+          <span class="blog-date">ผลิตภัณฑ์</span>
+          <h3>จาก Bookmarklet สู่ 2.0: AI Summary Helper ในปัจจุบันเป็นอย่างไร</h3>
+          <p>เริ่มต้นจากการเป็น Bookmarklet สำหรับส่งเข้า Kindle ในคลิกเดียวในปี 2024 และนี่คือทุกสิ่งที่เปลี่ยนแปลงไปในการยกเครื่องใหม่สู่เวอร์ชันโอเพนซอร์ส 2.0</p>
+          <span class="blog-read">อ่านบทความ →</span>
+        </a>
+        <a class="blog-card" href="blog/pocket-alternative.html">
+          <span class="blog-date">คู่มือ</span>
+          <h3>กำลังมองหาทางเลือกอื่นแทน Pocket? นี่คือสิ่งที่สำคัญจริงๆ</h3>
+          <p>การปิดตัวของ Pocket ทิ้งช่องว่างไว้ คู่มือการตัดสินใจนี้อิงตามการใช้งานจริงของคุณ — ไม่ใช่แค่การเลือกแอปที่หน้าตาคุ้นเคยที่สุด</p>
+          <span class="blog-read">อ่านบทความ →</span>
+        </a>
+        <a class="blog-card" href="blog/unread-saves.html">
+          <span class="blog-date">ผลิตภัณฑ์</span>
+          <h3>บทความส่วนใหญ่ที่บันทึกไว้มักไม่ได้อ่าน และนี่คือวิธีแก้ปัญหาที่แท้จริง</h3>
+          <p>บทความที่บันทึกไว้ส่วนใหญ่ไม่เคยถูกเปิดอ่านซ้ำ เหตุผลที่ฟีเจอร์ Digest ถูกสร้างขึ้น และทำไมมันจึงตั้งใจไม่เพิ่มขนาดกองบทความให้ใหญ่ขึ้นไปอีก</p>
+          <span class="blog-read">อ่านบทความ →</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Ecosystem: part of byphil ───────────────────────────────── -->
+  <section id="ecosystem">
+    <div class="wrap wrap-narrow">
+      <div class="section-head center reveal">
+        <div class="eyebrow">ไม่ใช่โปรเจกต์เดี่ยว</div>
+        <h2>ส่วนหนึ่งของระบบนิเวศ byphil</h2>
+        <p>AI Summary Helper เป็นหนึ่งในเครื่องมืออิสระที่พัฒนาโดย byphil บัญชีเดียวและ Support Pass เดียวสามารถปลดล็อกการเข้าถึงระดับพรีเมียมในทุกเครื่องมือ — ทั้งในปัจจุบันและเครื่องมือใหม่ๆ ในอนาคต</p>
+      </div>
+
+      <div class="feature-grid digest-steps reveal">
+        <div class="feature-card ecosystem-card self">
+          <span class="f-badge">คุณอยู่ที่นี่</span>
+          <div class="f-icon icon-cyan"><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="6" r="2.6" fill="#fff"></circle><circle cx="6" cy="17" r="2.2" fill="#fff" opacity="0.85"></circle><circle cx="18" cy="17" r="2.2" fill="#fff" opacity="0.85"></circle><path d="M12 8.6 L6.8 14.8 M12 8.6 L17.2 14.8" stroke="#fff" stroke-width="1.4" stroke-linecap="round" opacity="0.7"></path></svg></div>
+          <h3>AI Summary Helper</h3>
+          <p>สรุป บันทึก และค้นหาเนื้อหาบนเว็บ — บนอุปกรณ์ของคุณโดยตรง</p>
+        </div>
+        <a class="feature-card ecosystem-card" href="https://petsetlife.byphil.eu/" target="_blank" rel="noopener">
+          <span class="f-badge">ชุมชนการเดินทางพร้อมสัตว์เลี้ยง</span>
+          <div class="f-icon icon-gold"><svg viewBox="0 0 24 24" fill="none"><path d="M12 21c-3.5-2.5-7-5.2-7-9.2A4.4 4.4 0 0 1 9.2 7.4c1.1 0 2.1.4 2.8 1.2.7-.8 1.7-1.2 2.8-1.2A4.4 4.4 0 0 1 19 11.8c0 4-3.5 6.7-7 9.2Z" stroke="#fff" stroke-width="1.5" stroke-linejoin="round"></path><path d="M12 3.2c.9 1 1.3 2.1 1.1 3.2-1.1.2-2.1-.1-3-.9-.7-.7-1-1.7-.9-2.7 1 0 2 .3 2.8 1.4Z" fill="#fff" opacity="0.85"></path></svg></div>
+          <h3>PetSetLife</h3>
+          <p>ชุมชนสำหรับผู้ดูแลสัตว์เลี้ยงและเจ้าของบ้านที่ใช้ชีวิตแบบไม่ยึดติดกับสถานที่</p>
+        </a>
+        <a class="feature-card ecosystem-card" href="https://matrix.byphil.eu/" target="_blank" rel="noopener">
+          <span class="f-badge">กราฟความรู้</span>
+          <div class="f-icon icon-violet"><svg viewBox="0 0 24 24" fill="none"><circle cx="5" cy="6" r="1.8" fill="#fff"></circle><circle cx="19" cy="6" r="1.8" fill="#fff" opacity="0.85"></circle><circle cx="12" cy="12" r="2.1" fill="#fff"></circle><circle cx="6" cy="18" r="1.8" fill="#fff" opacity="0.85"></circle><circle cx="18" cy="18" r="1.8" fill="#fff" opacity="0.85"></circle><path d="M5 6 12 12M19 6 12 12M12 12 6 18M12 12 18 18" stroke="#fff" stroke-width="1.1" opacity="0.55"></path></svg></div>
+          <h3>Matrix</h3>
+          <p>สำรวจความคิดที่เชื่อมโยงกันและพฤติกรรมการอ่าน ออกแบบมาสำหรับการสร้างแผนผังความรู้ระยะยาว</p>
+        </a>
+      </div>
+
+      <p style="text-align:center; margin-top:28px;">
+        <a href="https://byphil.eu/" target="_blank" rel="noopener" class="btn-secondary">ดูเครื่องมือทั้งหมดที่สร้างโดย byphil →</a>
+      </p>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="footer-inner">
+      <div class="wordmark"><img src="../assets/icon.svg" alt="">AI Summary Helper</div>
+      <div class="foot-links">
+        <a href="https://github.com/philffm/ai-summary-helper/" target="_blank" rel="noopener">ซอร์สโค้ดบน GitHub</a>
+        <a href="bookmarklet.html">Bookmarklet (ไม่ต้องติดตั้ง)</a>
+        <a href="privacy.html">ความเป็นส่วนตัว</a>
+        <a href="#" data-analytics-settings="">การตั้งค่าการวิเคราะห์</a>
+        <a href="https://byphil.eu/terms.html#terms-of-service" target="_blank" rel="noopener">ข้อกำหนดการให้บริการ</a>
+        <a href="https://byphil.eu/terms.html#refunds" target="_blank" rel="noopener">การคืนเงินและการส่งคืน</a>
+        <a href="https://byphil.eu/terms.html#impressum" target="_blank" rel="noopener">ข้อมูลทางกฎหมาย (Impressum)</a>
+      </div>
+    </div>
+    <div class="copyright">© 2026 Phil Wornath. ส่วนหนึ่งของ <a href="https://byphil.eu/" class="credit-link">byphil.<span style="color:inherit;">eu</span> ↗</a> — ซอฟต์แวร์อิสระที่พัฒนาในเยอรมนี ดำเนินการชำระเงินโดย Stripe ในฐานะ Merchant of Record<br>
+      <a href="https://ec.europa.eu/consumers/odr" target="_blank" rel="noopener">การระงับข้อพิพาทของผู้บริโภคในสหภาพยุโรป (EU)</a> · ออกแบบและพัฒนาโดย <a href="https://philwornath.com/" target="_blank" rel="noopener" class="credit-link">philwornath.com ↗</a>
+    </div>
+  </div>
+</footer>
+
+<script src="../assets/hero-i18n.js"></script>
+<script src="../assets/main.js"></script>
+
+
+</body></html>

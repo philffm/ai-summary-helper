@@ -1,0 +1,266 @@
+<!DOCTYPE html><html lang="ar" dir="rtl"><head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#08090C">
+<title>سياسة الخصوصية — AI Summary Helper</title>
+<meta name="description" content="كيف يتعامل AI Summary Helper مع البيانات: تبقى مفاتيح API وسجل المقالات على جهازك، ويُرسل نص الصفحة فقط إلى مزود الذكاء الاصطناعي الذي تختاره.">
+
+<script>
+  (function(){
+    try {
+      var saved = localStorage.getItem('aish_theme');
+      var theme = saved === 'light' || saved === 'dark'
+        ? saved
+        : (window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
+      document.documentElement.setAttribute('data-theme', theme);
+    } catch (e) {
+      document.documentElement.setAttribute('data-theme', 'dark');
+    }
+  })();
+</script>
+
+<link rel="icon" type="image/svg+xml" href="../assets/icon.svg">
+<link rel="stylesheet" href="../assets/styles.css">
+
+<meta property="og:title" content="سياسة الخصوصية — AI Summary Helper">
+<meta property="og:description" content="كيف يتعامل AI Summary Helper مع بياناتك: تبقى مفاتيح API وسجل المقالات الخاص بك على جهازك.">
+<meta property="og:url" content="https://ai-summary-helper.byphil.eu/privacy.html">
+<meta property="og:type" content="website">
+<script src="../assets/analytics.js"></script>
+<link rel="alternate" hreflang="x-default" href="https://ai-summary-helper.byphil.eu/privacy.html"><link rel="alternate" hreflang="en" href="https://ai-summary-helper.byphil.eu/privacy.html"><link rel="alternate" hreflang="de" href="https://ai-summary-helper.byphil.eu/de/privacy.html"><link rel="alternate" hreflang="fr" href="https://ai-summary-helper.byphil.eu/fr/privacy.html"><link rel="alternate" hreflang="es" href="https://ai-summary-helper.byphil.eu/es/privacy.html"><link rel="alternate" hreflang="zh-Hans" href="https://ai-summary-helper.byphil.eu/zh/privacy.html"><link rel="alternate" hreflang="zh-Hant" href="https://ai-summary-helper.byphil.eu/zh-tw/privacy.html"><link rel="alternate" hreflang="ja" href="https://ai-summary-helper.byphil.eu/ja/privacy.html"><link rel="alternate" hreflang="ko" href="https://ai-summary-helper.byphil.eu/ko/privacy.html"><link rel="alternate" hreflang="pt-BR" href="https://ai-summary-helper.byphil.eu/pt/privacy.html"><link rel="alternate" hreflang="hi" href="https://ai-summary-helper.byphil.eu/hi/privacy.html"><link rel="alternate" hreflang="vi" href="https://ai-summary-helper.byphil.eu/vi/privacy.html"><link rel="alternate" hreflang="nl" href="https://ai-summary-helper.byphil.eu/nl/privacy.html"><link rel="alternate" hreflang="it" href="https://ai-summary-helper.byphil.eu/it/privacy.html"><link rel="alternate" hreflang="ru" href="https://ai-summary-helper.byphil.eu/ru/privacy.html"><link rel="alternate" hreflang="uk" href="https://ai-summary-helper.byphil.eu/uk/privacy.html"><link rel="alternate" hreflang="tr" href="https://ai-summary-helper.byphil.eu/tr/privacy.html"><link rel="alternate" hreflang="id" href="https://ai-summary-helper.byphil.eu/id/privacy.html"><link rel="alternate" hreflang="pl" href="https://ai-summary-helper.byphil.eu/pl/privacy.html"><link rel="alternate" hreflang="th" href="https://ai-summary-helper.byphil.eu/th/privacy.html"><link rel="alternate" hreflang="ar" href="https://ai-summary-helper.byphil.eu/ar/privacy.html"><link rel="alternate" hreflang="sv" href="https://ai-summary-helper.byphil.eu/sv/privacy.html"><link rel="alternate" hreflang="da" href="https://ai-summary-helper.byphil.eu/da/privacy.html"><link rel="alternate" hreflang="nb" href="https://ai-summary-helper.byphil.eu/no/privacy.html"><link rel="alternate" hreflang="fi" href="https://ai-summary-helper.byphil.eu/fi/privacy.html"></head>
+<body>
+
+<a href="#main" class="skip-link">الانتقال إلى المحتوى</a>
+
+<header class="nav">
+  <div class="wrap nav-inner">
+    <div class="brand-cluster">
+      <div class="wordmark">
+        <img src="../assets/icon.svg" alt="">
+        AI Summary Helper
+      </div>
+      <a href="https://byphil.eu/" target="_blank" rel="noopener" class="ecosystem-badge">
+        <span class="pulse-dot"></span> جزء من byphil.
+      </a>
+    </div>
+    <div class="nav-desktop-group nav-desktop-links">
+      <nav class="links" aria-label="Primary">
+        <a href="index.html#features">المميزات</a>
+        <a href="index.html#digest">الموجز</a>
+        <a href="index.html#pricing">الأسعار</a>
+        <a href="blog/">المدونة</a>
+        <a href="https://github.com/philffm/ai-summary-helper/" target="_blank" rel="noopener">GitHub</a>
+      </nav>
+      <button type="button" class="theme-toggle" id="themeToggle" aria-label="Switch to light mode">
+        <svg class="icon-moon" viewBox="0 0 24 24" fill="none"><path d="M20 14.5A8.5 8.5 0 1 1 9.5 4a6.8 6.8 0 0 0 10.5 10.5Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"></path></svg>
+        <svg class="icon-sun" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="4.2" stroke="currentColor" stroke-width="1.6"></circle><path d="M12 2.5v2.4M12 19.1v2.4M4.4 4.4l1.7 1.7M17.9 17.9l1.7 1.7M2.5 12h2.4M19.1 12h2.4M4.4 19.6l1.7-1.7M17.9 6.1l1.7-1.7" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"></path></svg>
+      </button>
+      <a href="https://byphil.eu/#account" class="btn-sign-in">حسابي</a>
+    </div>
+    <button type="button" class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="mobileMenu" aria-label="Open menu">
+      <svg viewBox="0 0 24 24" fill="none"><path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"></path></svg>
+    </button>
+  </div>
+  <div class="mobile-menu" id="mobileMenu" hidden="">
+    <div class="wrap mobile-menu-inner">
+      <a href="index.html#features">المميزات</a>
+      <a href="index.html#digest">الموجز</a>
+      <a href="index.html#pricing">الأسعار</a>
+      <a href="blog/">المدونة</a>
+      <a href="https://github.com/philffm/ai-summary-helper/" target="_blank" rel="noopener">GitHub</a>
+      <a href="https://byphil.eu/#account">حسابي</a>
+      <a href="https://byphil.eu/" target="_blank" rel="noopener">جزء من byphil. ↗</a>
+      <button type="button" class="theme-toggle-mobile" id="themeToggleMobile">
+        <span id="themeToggleMobileLabel">التبديل إلى الوضع الفاتح</span>
+        <svg class="icon-moon" viewBox="0 0 24 24" fill="none"><path d="M20 14.5A8.5 8.5 0 1 1 9.5 4a6.8 6.8 0 0 0 10.5 10.5Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"></path></svg>
+        <svg class="icon-sun" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="4.2" stroke="currentColor" stroke-width="1.6"></circle><path d="M12 2.5v2.4M12 19.1v2.4M4.4 4.4l1.7 1.7M17.9 17.9l1.7 1.7M2.5 12h2.4M19.1 12h2.4M4.4 19.6l1.7-1.7M17.9 6.1l1.7-1.7" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"></path></svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+<main id="main">
+  <div class="wrap">
+    <div class="post-hero">
+      <span class="blog-date">سياسة الخصوصية</span>
+      <h1>سياسة الخصوصية</h1>
+      <p class="post-sub">تبقى مفاتيح API الخاصة بك وسجل مقالاتك والنصوص المميزة على جهازك. لا يُرسل محتوى الصفحة أبداً إلا إلى مزود الذكاء الاصطناعي الذي تختاره — بما في ذلك نموذج محلي بالكامل إذا كان هذا هو اختيارك.</p>
+    </div>
+  </div>
+
+  <section>
+    <div class="wrap">
+      <div class="prose">
+        <p><em>آخر تحديث: أكتوبر 2026</em></p>
+
+        <p>توضح سياسة الخصوصية هذه ما هي البيانات التي يتعامل معها AI Summary Helper، وإلى أين تذهب، ولماذا. باختصار: تبقى مفاتيح API وسجل مقالاتك والنصوص المميزة على جهازك. ولا يُرسل محتوى الصفحة أبداً إلا إلى مزود الذكاء الاصطناعي الذي تختار الاتصال به — بما في ذلك، إذا اخترت ذلك، نموذج محلي بالكامل حيث لا يغادر أي شيء جهازك على الإطلاق. نحن لا نعرض إعلانات، ولا نبيع البيانات، ولا نطلب حساباً لأي ميزة أساسية.</p>
+
+        <p>إذا كنت لا توافق على أي جزء من هذه السياسة، يُرجى عدم تثبيت الإضافة أو استخدامها.</p>
+
+        <h2>الجهة المسؤولة</h2>
+        <p>المتحكم في البيانات بالمعنى المقصود في المادة 4(7) من اللائحة العامة لحماية البيانات (GDPR) هو Phil Wornath. الاسم الكامل وعنوان المراسلة متاحان في <a href="https://philwornath.com/de/legal" target="_blank" rel="noopener">الإشعار القانوني</a>؛ يمكنك التواصل معنا عبر تفاصيل الاتصال الموجودة في نهاية هذه السياسة.</p>
+
+        <h2>لا يلزم وجود حساب للميزات الأساسية</h2>
+        <p>لا يتطلب AI Summary Helper منك إنشاء حساب أو تسجيل الدخول أو تقديم أي معلومات شخصية لتلخيص الصفحات أو التمييز أو متابعة الخلاصات أو الاحتفاظ بأرشيفك. يُحفظ مفتاح API الخاص بك (إذا كنت تستخدم مفتاحك الخاص) وسجل مقالاتك بالكامل في التخزين المحلي لمتصفحك.</p>
+        <p>يلزم الحساب فقط للخدمات المستضافة: byphil Cloud (التلخيص دون الحاجة لمفتاحك الخاص) و Send to Kindle. يعمل تسجيل الدخول باستخدام عنوان بريدك الإلكتروني ورمز يُستخدم لمرة واحدة. نقوم بتخزين عنوان البريد الإلكتروني هذا، وحالة خطتك أو ترخيصك، وعدادات الاستخدام الأساسية (على سبيل المثال، عدد الطلبات والإرسال إلى Kindle) حتى نتمكن من تطبيق حدود الخطة.</p>
+
+        <h2>البيانات التي نتعامل معها وإلى أين تذهب</h2>
+
+        <h3>الاتصال بمزود الذكاء الاصطناعي</h3>
+        <p>أنت تختار طريقة إنشاء الملخصات:</p>
+        <ul>
+          <li><strong>استخدام مفتاحك الخاص (BYOK)</strong> — OpenAI أو Google Gemini أو Mistral AI أو DeepSeek أو نقطة نهاية مخصصة (custom endpoint). يُخزن مفتاح API الخاص بك محلياً على جهازك فقط (لا تتم مزامنته أبداً ولا يُرسل إلينا إطلاقاً). يُرسل محتوى الصفحة الذي تختار تلخيصه مباشرة من متصفحك إلى المزود الذي حددته، باستخدام مفتاحك الخاص ووفقاً لسياسة الخصوصية الخاصة بذلك المزود. نحن لا نرى هذا المحتوى ولا نسجله ولا نخزنه.</li>
+          <li><strong>نموذج محلي عبر Ollama</strong> — إذا كنت تشغل نموذجاً محلياً، يُرسل محتوى الصفحة فقط إلى جهازك الخاص. لا شيء يغادر جهازك.</li>
+          <li><strong>byphil Cloud (اختياري، مدفوع)</strong> — خيار مستضاف لمن يفضلون عدم إدارة مفتاح API بأنفسهم. إذا اخترت هذه الفئة، فإن النص الذي تطلب تلخيصه يمر عبر خوادمنا الخلفية، والتي تنقل الطلب عبر OpenRouter إلى مزود النموذج الأساسي نيابة عنك وتعيد الملخص. يتم نقله فقط: نحن لا نخزن محتوى الصفحات أو عناوين URL أو الملخصات. ما نسجله لكل حساب هو بيانات الاستخدام الوصفية: عدد الطلبات المكتملة، واستخدام الرموز (token usage)، ووقت آخر طلب، والنموذج المستخدم. الحساب نفسه اختياري؛ وتعمل جميع الميزات الأخرى بدونه.</li>
+        </ul>
+
+        <h3>حالة الترخيص والاشتراك</h3>
+        <p>إذا قمت بتفعيل ترخيص Pro أو اشتراك byphil Cloud، فسيتم تخزين مفتاح الترخيص الخاص بك محلياً على جهازك (لا تتم مزامنته أبداً) ويُستخدم للتحقق من حالة الاشتراك مع خوادمنا. تتم معالجة البيانات الوصفية الأساسية للحساب/الفواتير بواسطة معالج الدفع وخوادمنا؛ نحن لا نخزن محتوى صفحاتك أو سجل قراءتك على خوادمنا.</p>
+
+        <h3>استبيان إلغاء التثبيت</h3>
+        <p>عند إلغاء تثبيت الإضافة، يفتح Chrome صفحة ملاحظات قصيرة على هذا الموقع. يحتوي العنوان فقط على إصدار الإضافة وعدد أيام تثبيتها — دون أي معرفات، أو محتوى صفحات، أو سجل تصفح. ما تختاره أو تكتبه في النموذج (سبب، تعليق اختياري) يُسجل كحدث في نظام التحليلات المستضاف ذاتياً والخالي من ملفات تعريف الارتباط لدينا، إلى جانب إصدار الإضافة وعدد أيام التثبيت، ويُستخدم فقط لتحسين الإضافة. إذا كان متصفحك يرسل إشارة Do Not Track أو قمت بإلغاء الاشتراك في التحليلات، فلن يُرسل أي شيء. لا يوجد حقل للبريد الإلكتروني؛ للحصول على رد، يمكنك فتح مشكلة على GitHub. يمكنك إغلاق الصفحة دون الإجابة.</p>
+
+        <h3>سجل المقالات، التمييزات، والإعدادات</h3>
+        <p>يتم تخزين كل ما تحفظه محلياً في متصفحك باستخدام واجهات تخزين Chrome المدمجة — ولا يُحفظ على خوادمنا مطلقاً:</p>
+        <table>
+          <thead>
+            <tr><th>البيانات</th><th>مكان التخزين</th><th>هل تتم المزامنة عبر Chrome؟</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>المقالات والملخصات المحفوظة</td><td>محلي</td><td>لا</td></tr>
+            <tr><td>اشتراكات وعناصر خلاصات RSS</td><td>محلي</td><td>لا</td></tr>
+            <tr><td>مفاتيح API / إعدادات المزود</td><td>محلي</td><td>لا — بيانات حساسة على الجهاز فقط</td></tr>
+            <tr><td>مفتاح الترخيص</td><td>محلي</td><td>لا — بيانات حساسة على الجهاز فقط</td></tr>
+            <tr><td>عنوان IP لشبكة LocalSend</td><td>محلي</td><td>لا</td></tr>
+            <tr><td>تمييزات النصوص والتمييزات التلقائية بالذكاء الاصطناعي (AI ghost highlights)</td><td>محلي (لكل صفحة)</td><td>لا</td></tr>
+            <tr><td>المطالبة الافتراضية، اللغة، طول الملخص</td><td>مزامنة</td><td>نعم، عبر حساب Chrome الخاص بك</td></tr>
+            <tr><td>تفضيل تفعيل/تعطيل التمييز</td><td>مزامنة</td><td>نعم، عبر حساب Chrome الخاص بك</td></tr>
+          </tbody>
+        </table>
+        <p>العناصر المميزة بـ "مزامنة" تستخدم ميزة المزامنة المدمجة في Chrome والمرتبطة بحساب Google الخاص بك — تمر هذه البيانات عبر البنية التحتية لـ Google وليس خوادمنا، تماماً مثل إشاراتك المرجعية. ليس لدينا أي وصول منفصل إليها.</p>
+        <p>يمكنك تصدير بياناتك في أي وقت عبر الإعدادات ← المكتبة والبيانات ← النسخ الاحتياطي والاستعادة. تستثني النسخ الاحتياطية مفاتيح API وتفاصيل تسجيل الدخول ومفاتيح الترخيص ومعرفات التثبيت افتراضياً؛ وتضمينها هو خيار صريح يتطلب الموافقة مع تحذير لأن أي شخص يمتلك هذا الملف يمكنه استخدامها. احتفظ بالملفات المصدرة في مكان آمن وخاص، وتذكر أن النسخ الاحتياطية الأقدم قد تحتوي على بيانات سرية. في نفس المكان، تتيح لك منطقة الخطر (Danger zone) الحذف حسب الفئة مع عرض عدد العناصر التي ستُحذف: الملخصات والأرشيف، التمييزات، الخلاصات، البودكاست، مفاتيح API / تسجيل الدخول / الترخيص، وجهات الإرسال (Kindle، LocalSend)، والتفضيلات. <em>حذف جميع البيانات</em> يحذف كل ما تخزنه الإضافة على الجهاز ويعيد ضبطها من البداية. كما أن إزالة الإضافة تؤدي أيضاً إلى حذف بياناتها. تحذف هذه الإجراءات البيانات المحلية فقط. أما حسابك والسجلات التي نحتفظ بها على خادمنا (انظر أدناه) فيمكنك إدارتها عبر <a href="https://byphil.eu/#account" target="_blank" rel="noopener">byphil.eu/#account</a>: حيث يمكنك تصدير بياناتك وحذف حسابك. وترتبط الإضافة وتطبيق Android بذلك عبر إعدادات الحساب.</p>
+
+        <h3>خلاصات RSS</h3>
+        <p>يقوم قارئ الخلاصات المدمج بتخزين اشتراكاتك وعناصر الخلاصات المحملة محلياً في متصفحك — لا تتم مزامنتها أبداً ولا تُرسل إلينا إطلاقاً. عند إضافة خلاصة أو تحديثها، تطلب الإضافة عنوان تلك الخلاصة مباشرة من خادم الناشر، تماماً كما يفعل متصفحك عند زيارة الموقع، وبالتالي يمكن للناشر رؤية الطلب. نحن لا نقوم بالوساطة (proxy) ولا نسجل أو نرى اشتراكاتك أو قائمة قراءتك. تتم معالجة استيراد OPML بالكامل على جهازك. إذا قمت بتشغيل الفحص في الخلفية (معطل افتراضياً)، فإن الإضافة تعيد طلب خلاصاتك في الفترات التي تختارها فقط لعرض عداد على أيقونة شريط الأدوات. يعمل تلخيص عنصر الخلاصة مثل تلخيص أي صفحة أخرى: يُرسل محتواه فقط إلى مزود الذكاء الاصطناعي الذي اخترته، وفقط عندما تطلب التلخيص بنفسك. يعمل الملخص اليومي الاختياري بالذكاء الاصطناعي وتقييم النبرة بالطريقة نفسها: فقط عند النقر عليها، ترسل الإضافة عناوين العناصر وأسماء المصادر ومقتطفات قصيرة (وليس المقالات كاملة) إلى مزود الذكاء الاصطناعي الذي اخترته، ويتم حفظ الملخص الناتج مؤقتاً على جهازك. يتم تشغيل حلقات البودكاست في الخلاصة مباشرة من خادم الناشر عند الضغط على زر التشغيل.</p>
+
+        <h3>إرسال المقالات: Kindle و LocalSend وقائمة المشاركة</h3>
+        <p>هناك مساران مختلفان، ومسار واحد فقط منهما يتصل بخادمنا:</p>
+        <ul>
+          <li><strong>يمر الإرسال إلى Kindle عبر خادمنا.</strong> تقبل Amazon المستندات عبر البريد الإلكتروني من المرسلين المعتمدين فقط، لذا ترسل الإضافة المقال (العنوان، الملخص، النص، التمييزات، وعنوان المصدر) إلى خوادم byphil الخلفية، والتي ترسله بدورها عبر البريد الإلكتروني إلى عنوان Kindle الذي أدخلته. يتعين عليك إضافة عنوان الإرسال الخاص بنا (kindle@byphil.eu) إلى قائمة المرسلين المعتمدين في حساب Amazon الخاص بك. يُستخدم المحتوى فقط لإنشاء تلك الرسالة وإرسالها. يتطلب التسليم إلى Kindle تسجيل الدخول أو امتلاك ترخيص؛ تتضمن الخطة المجانية 3 عمليات إرسال.</li>
+          <li><strong>يتم النقل عبر LocalSend وقائمة مشاركة النظام (مثل AirDrop) بشكل مباشر.</strong> ينتقل الملف مباشرة من متصفحك إلى الجهاز الذي حددته على شبكتك المحلية، أو إلى التطبيق الذي اخترته في قائمة المشاركة. نحن لسنا طرفاً في ذلك ولا نرى هذا المحتوى أو نخزنه. يعمل LocalSend مع الهواتف والأجهزة اللوحية وأجهزة الكمبيوتر وقارئات الكتب الإلكترونية التي تشغل تطبيقاً متوافقاً.</li>
+        </ul>
+
+        <h2 id="analytics">التحليلات وملفات تعريف الارتباط (Cookies)</h2>
+        <p><strong>باختصار:</strong> هذا الموقع يضع <strong>لا ملفات تعريف ارتباط (no cookies)</strong> ولا يستخدم أي أدوات تتبع إعلانية أو عبر المواقع. نقوم بإحصاء الزيارات المجهولة باستخدام خادم Matomo مستضاف ذاتياً، ويمكنك إيقاف ذلك في أي وقت.</p>
+        <p><strong>لا تحتوي إضافة المتصفح نفسها على أي كود للتحليلات أو القياس عن بُعد أو التتبع.</strong> تقتصر طلبات الشبكة الخاصة بها على مزود الذكاء الاصطناعي الذي قمت بإعداده، والخلاصات التي اشتركت فيها، والصفحات التي تطلب جلبها، و(إذا كنت تستخدمها) خوادم byphil الخلفية لخدمات byphil Cloud وتسجيل الدخول والتحقق من التراخيص و Send to Kindle.</p>
+        <h3>ما نقوم بقياسه</h3>
+        <p>مرات مشاهدة الصفحة، لغة الصفحة، المُحيل (referrer)، البلد التقريبي/المتصفح/نوع الجهاز، والأجزاء التي تتفاعل معها في الموقع (على سبيل المثال، النقرات على "Add to Chrome"، ومفتاح تبديل الأسعار، وعناصر الأسئلة الشائعة، والأقسام التي تنتقل إليها، وخطوات منشئ الـ bookmarklet). لا تحتوي الأحداث أبداً على عناوين بريد إلكتروني، أو مفاتيح API، أو رموز تُستخدم لمرة واحدة، أو محتوى صفحات، أو بيانات مقالات.</p>
+        <h3>كيف تم إعدادها</h3>
+        <p>يعمل Matomo على خادمنا الخاص (analytics.philwornath.de، ألمانيا)، وليس لدى طرف ثالث. يتم تحميله مع تعطيل ملفات تعريف الارتباط ودون استخدام بصمة ميزات المتصفح (fingerprinting)؛ ويتم إخفاء هوية عناوين IP قبل التخزين؛ ولا يتم تعيين أي معرف مستخدم أو معرف عبر المواقع، بحيث لا يمكن ربط الزيارات عبر الأيام أو الأجهزة المختلفة. لا يتم بيع البيانات أو مشاركتها مع أطراف ثالثة.</p>
+        <p>نظراً لعدم تخزين أي شيء على جهازك أو قراءته منه لأغراض التتبع، فإن هذا القياس يستند إلى مصلحتنا المشروعة في فهم كيفية استخدام الموقع (المادة 6(1)(f) من GDPR) ولا يتطلب لافتة موافقة على ملفات تعريف الارتباط بموجب الفقرة 25 من TDDDG / توجيه الخصوصية الإلكترونية (ePrivacy). يحق لك الاعتراض (المادة 21 من GDPR) في أي وقت.</p>
+        <h3>خياراتك</h3>
+        <p>يتم إيقاف التحليلات تلقائياً إذا أرسل متصفحك إشارة <em>Do Not Track</em> أو <em>Global Privacy Control</em>. يمكنك أيضاً إلغاء الاشتراك يدوياً عبر <a href="#" data-analytics-settings="">إعدادات التحليلات</a> (متاح أيضاً في تذييل كل صفحة). <span id="analyticsStatusInline"></span></p>
+        <h3>ما يتم تخزينه في متصفحك</h3>
+        <p>تفضيلات وظيفية فقط، وليست للتتبع أبداً: <code>aish_analytics</code> (خيار إلغاء الاشتراك الخاص بك)، <code>aish_analytics_notice</code> (إغلاق إشعار المعلومات)، وعند الاستخدام: اختيار المظهر (theme)، وتجاهل اقتراح اللغة، وإعدادات منشئ الـ bookmarklet. تظل هذه البيانات على جهازك ولا تُرسل إلينا.</p>
+        <h3>الخطوط والموارد الخارجية</h3>
+        <p>يتم تقديم الخطوط (Inter، Space Grotesk، JetBrains Mono؛ بموجب ترخيص SIL Open Font) من هذا الموقع نفسه، لذا لا يتم تمرير عنوان IP الخاص بك إلى Google أو أي مزود خطوط بمجرد الزيارة. الطلبات الخارجية الوحيدة هي الروابط التي تنقر عليها، وصفحات حساب byPhil / الدفع عبر Stripe الاختيارية التي تختار فتحها.</p>
+
+
+        <h2>الأسس القانونية وفترات الاحتفاظ بالبيانات</h2>
+        <p>تتم معالجة كل شيء تقريباً على جهازك ولا يصل إلينا أبداً. وفي الحالات التي نعالج فيها البيانات، فهذا هو الأساس القانوني ومدة الاحتفاظ بها:</p>
+        <ul>
+          <li><strong>الحساب وتسجيل الدخول</strong> (عنوان البريد الإلكتروني، الرمز لمرة واحدة، مفتاح الترخيص، حالة الخطة) — لتقديم الحساب الذي طلبته، المادة 6(1)(b) من GDPR. يُحتفظ بها طالما أن الحساب موجود؛ وعند حذف الحساب يتم حذفها.</li>
+          <li><strong>byphil Cloud</strong> (نقل النص الذي تلخصه، عدادات الاستخدام، استخدام الرموز، آخر طلب، آخر نموذج) — لتنفيذ الخدمة، المادة 6(1)(b). يتم نقل النص فقط ولا يُخزن. يُحتفظ ببيانات الاستخدام الوصفية طالما أن الحساب موجود وتُحذف معه.</li>
+          <li><strong>Send to Kindle</strong> (المقال الذي ترسله، عنوان Kindle الخاص بك) — لتنفيذ الإرسال الذي تطلبه، المادة 6(1)(b). تُستخدم فقط لإنشاء تلك الرسالة وإرسالها.</li>
+          <li><strong>المدفوعات والتحقق من التراخيص</strong> — لتنفيذ العقد واستيفاء الالتزامات المحاسبية، المادة 6(1)(b) و (c). يُحتفظ بسجلات الفواتير طالما يتطلب القانون ذلك.</li>
+          <li><strong>تحليلات الموقع وملاحظات إلغاء التثبيت</strong> — مصلحتنا المشروعة في تحسين الموقع والإضافة، المادة 6(1)(f). البيانات مجهولة المصدر (انظر التحليلات وملفات تعريف الارتباط).</li>
+        </ul>
+        <p>يمكنك تصدير بيانات حسابك وحذف حسابك في أي وقت عبر <a href="https://byphil.eu/#account" target="_blank" rel="noopener">byphil.eu/#account</a>. يؤدي حذف الحساب إلى حذف البيانات المخزنة له.</p>
+
+        <h2>الأذونات التي نطلبها ولماذا</h2>
+        <table>
+          <thead>
+            <tr><th>الإذن</th><th>سبب الحاجة إليه</th></tr>
+          </thead>
+          <tbody>
+            <tr><td><code>activeTab</code></td><td>قراءة محتوى الصفحة التي تختار تلخيصها فعلياً</td></tr>
+            <tr><td><code>storage</code></td><td>حفظ إعداداتك وسجل المقالات والتمييزات محلياً</td></tr>
+            <tr><td><code>contextMenus</code></td><td>توفير إجراءات النقر بزر الماوس الأيمن (تلخيص، تمييز، إلخ)</td></tr>
+            <tr><td><code>notifications</code></td><td>عرض تذكيرات موقوتة للمقالات التي حفظتها لقراءتها لاحقاً</td></tr>
+            <tr><td><code>alarms</code></td><td>جدولة إشعارات التذكير تلك</td></tr>
+            <tr><td><code>tabs</code></td><td>إغلاق علامة التبويب تلقائياً بعد "Summarize &amp; Close"</td></tr>
+            <tr><td><code>sidePanel</code></td><td>دعم اللوحة الجانبية الأصلية في Chrome كخيار للعرض</td></tr>
+            <tr><td><code>scripting</code></td><td>حقن البرنامج النصي للمحتوى (content script) اللازم لقراءة الصفحة وتلخيصها</td></tr>
+            <tr><td><code>offscreen</code>، <code>tts</code></td><td>تشغيل صوت البودكاست وقراءة الملخصات بصوت عالٍ في الخلفية أثناء إغلاق النافذة المنبثقة</td></tr>
+            <tr><td><code>unlimitedStorage</code></td><td>الاحتفاظ بأرشيف محلي ضخم من المقالات والتمييزات دون تجاوز حصة التخزين الافتراضية</td></tr>
+            <tr><td><code>host_permissions (&lt;all_urls&gt;)</code></td><td>إتاحة تلخيص أي صفحة تزورها — يُقرأ المحتوى ويُنقل فقط عندما تطلب التلخيص بنفسك، وليس بشكل سلبي أو تلقائي أبداً</td></tr>
+          </tbody>
+        </table>
+        <p>نحن لا نستخدم هذه الأذونات لتتبع تصفحك، أو إنشاء ملف تعريف إعلاني، أو جمع بيانات تتجاوز تقديم الميزات الموضحة أعلاه.</p>
+
+        <h2>ما لا نفعله</h2>
+        <ul>
+          <li>نحن لا نعرض إعلانات ولا نقدمها، ولا نبيع بياناتك أو نؤجرها أو نتداولها مع المعلنين أو سماسرة البيانات.</li>
+          <li>نحن لا نطلب حساباً أو تسجيل دخول لأي ميزة أساسية.</li>
+          <li>نحن لا نسجل أو نحتفظ بمحتوى الصفحات التي تلخصها عبر مفتاح API الخاص بك أو عبر نموذج محلي، ولا نرى أبداً ما ترسله عبر LocalSend أو قائمة المشاركة.</li>
+          <li>ليس لدينا وصول إلى سجل المقالات أو التمييزات أو مفاتيح API المخزنة محلياً لديك — فهي لا تغادر جهازك أبداً ما لم تقم بتصديرها بنفسك.</li>
+        </ul>
+
+        <h2>خدمات الطرف الثالث</h2>
+        <p>بناءً على كيفية إعداد الإضافة، قد يُرسل محتوى صفحتك إلى:</p>
+        <ul>
+          <li>OpenAI أو Google (Gemini) أو Mistral AI أو DeepSeek — فقط إذا أدخلت مفتاح API الخاص بك لهذا المزود، وفقط للصفحة التي تختار تلخيصها فعلياً.</li>
+          <li>خوادم byphil الخلفية الخاصة بنا، والمستضافة لدى IONOS SE في ألمانيا — فقط إذا قمت بتسجيل الدخول، أو استخدمت byphil Cloud أو Send to Kindle.</li>
+          <li>OpenRouter، الذي يتصل من خلاله byphil Cloud بالنماذج، ومزود النموذج الذي يتم التوجيه إليه — يُنقل النص الذي تلخصه إلى النموذج الذي تستخدمه، لهذا الطلب فقط.</li>
+          <li>Stripe — لمعالجة المدفوعات وإدارة الاشتراكات، بصفتها تاجر التسجيل (Merchant of Record).</li>
+          <li>Amazon — إذا أرسلت مقالاً إلى Kindle الخاص بك، تقوم Amazon بتسليمه بموجب شروط الخصوصية الخاصة بها.</li>
+          <li>نسخة Ollama المحلية الخاصة بك — ليست طرفاً ثالثاً؛ تظل بالكامل على جهازك.</li>
+        </ul>
+        <p>نحن لسنا مسؤولين عن ممارسات الخصوصية لمزودي الذكاء الاصطناعي من الأطراف الثالثة الذين تختار الاتصال بهم. ونشجعك على مراجعة سياساتهم قبل ربط أي حساب.</p>
+        <p><strong>أنت من يقرر النموذج الذي يعالج نصوصك.</strong> سواء كنت تستخدم مفتاحك الخاص أو byphil Cloud، فأنت تختار المزود والنموذج في الإعدادات، وتتحمل مسؤولية التحقق من شروط ذلك المزود ومكان معالجته للبيانات. قد تقوم OpenRouter ومزودو النماذج وراءها و Amazon بمعالجة البيانات خارج الاتحاد الأوروبي/المنطقة الاقتصادية الأوروبية بموجب الضمانات الخاصة بهم (على سبيل المثال، البنود التعاقدية القياسية)؛ نحن لا ننقل بياناتك إلى دول ثالثة بأنفسنا.</p>
+
+        <h2>أمان البيانات</h2>
+        <p>نحن نستخدم تدابير تقنية معقولة ومناسبة لطبيعة البيانات المعنية — والتي لا يصل معظمها إلى خوادمنا في المقام الأول نظراً لتخزينها محلياً في متصفحك. وتكون الاتصالات مع خوادمنا الخلفية (لخدمة byphil Cloud والتحقق من التراخيص) مشفرة أثناء النقل. لا توجد وسيلة نقل أو تخزين آمنة بنسبة 100%، ولا يمكننا ضمان الأمان المطلق، لكننا لا نجمع أكثر مما هو مطلوب لتقديم الميزات الموضحة.</p>
+
+        <h2>خصوصية الأطفال</h2>
+        <p>لا يستهدف AI Summary Helper الأطفال دون سن 13 عاماً (أو الحد الأدنى للسن المعمول به في ولايتك القضائية)، ونحن لا نجمع معلومات شخصية من الأطفال عن علم.</p>
+
+        <h2>حقوقك (بموجب GDPR / CCPA والقوانين المماثلة)</h2>
+        <p>نظراً لأن جميع بياناتك تقريباً مخزنة محلياً على جهازك الخاص، فإنك تتمتع بالفعل بالتحكم المباشر فيها — حيث يمكنك عرضها أو تصديرها أو حذفها في أي وقت عبر إعدادات الإضافة، أو عن طريق إلغاء تثبيتها. أما بالنسبة لأي بيانات نحتفظ بها على خوادمنا (البيانات الوصفية لاشتراك byphil Cloud / الفواتير)، فيمكنك إدارتها وتصديرها، وحذف حسابك، عبر <a href="https://byphil.eu/#account" target="_blank" rel="noopener">byphil.eu/#account</a>، أو التواصل معنا أدناه.</p>
+        <p>يحق لك الوصول (المادة 15)، والتصحيح (المادة 16)، والمسح (المادة 17)، والتقييد (المادة 18)، ونقل البيانات (المادة 20)، والاعتراض (المادة 21)، وسحب الموافقة في أي وقت. يحق لك أيضاً تقديم شكوى إلى هيئة رقابية (المادة 77)، ولا سيما في الدولة العضو التي تقيم فيها. نحن لا نستخدم بياناتك لاتخاذ قرارات مؤتمتة ذات أثر قانوني أو لإنشاء ملفات تعريف شخصية (profiling).</p>
+
+        <h2>التغييرات على هذه السياسة</h2>
+        <p>قد نقوم بتحديث سياسة الخصوصية هذه مع تغير ميزات الإضافة. سيتم توضيح التغييرات الجوهرية هنا مع تحديث تاريخ "آخر تحديث". ويعتبر استمرارك في استخدام الإضافة بعد أي تغيير بمثابة قبول للسياسة المحدثة.</p>
+
+        <h2>اتصل بنا</h2>
+        <p>هل لديك أسئلة حول سياسة الخصوصية هذه؟ تواصل معنا عبر <a href="mailto:info@byphil.eu">info@byphil.eu</a>، أو عبر <a href="https://github.com/philffm/ai-summary-helper/issues">GitHub Issues</a>.</p>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="footer-inner">
+      <div class="wordmark"><img src="../assets/icon.svg" alt="">AI Summary Helper</div>
+      <div class="foot-links">
+        <a href="https://github.com/philffm/ai-summary-helper/" target="_blank" rel="noopener">المصدر على GitHub</a>
+        <a href="bookmarklet.html">الرمز المرجعي (دون تثبيت)</a>
+        <a href="privacy.html">الخصوصية</a>
+        <a href="#" data-analytics-settings="">إعدادات التحليلات</a>
+        <a href="https://byphil.eu/terms.html#terms-of-service" target="_blank" rel="noopener">شروط الخدمة</a>
+        <a href="https://byphil.eu/terms.html#refunds" target="_blank" rel="noopener">سياسة الاسترجاع والاسترداد</a>
+        <a href="https://byphil.eu/terms.html#impressum" target="_blank" rel="noopener">بيانات الموقع والناشر (Impressum)</a>
+      </div>
+    </div>
+    <div class="copyright">© 2026 Phil Wornath. جزء من <a href="https://byphil.eu/" class="credit-link">byphil.<span style="color:inherit;">الاتحاد الأوروبي</span> ↗</a> — برمجيات مستقلة طُوّرت في ألمانيا. معالجة المدفوعات تتم بواسطة Stripe كتاجر رسمي معتمد.<br>
+      <a href="https://ec.europa.eu/consumers/odr" target="_blank" rel="noopener">تسوية منازعات المستهلكين في الاتحاد الأوروبي</a> · تم التصميم والتطوير بواسطة <a href="https://philwornath.com/" target="_blank" rel="noopener" class="credit-link">philwornath.com ↗</a>
+    </div>
+  </div>
+</footer>
+
+<script src="../assets/hero-i18n.js"></script>
+<script src="../assets/main.js"></script>
+
+
+</body></html>

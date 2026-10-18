@@ -1,0 +1,132 @@
+<!DOCTYPE html><html lang="pl"><head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#08090C">
+<title>Jedno podsumowanie zamiast 40 kanałów RSS — AI Summary Helper</title>
+<meta name="description" content="Śledzenie wielu kanałów oznacza ciągłe przełączanie kontekstu. Zobacz, jak codzienne lub cotygodniowe podsumowanie pozwala odzyskać skupienie.">
+
+<script>
+  (function(){
+    try {
+      var saved = localStorage.getItem('aish_theme');
+      var theme = saved === 'light' || saved === 'dark'
+        ? saved
+        : (window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
+      document.documentElement.setAttribute('data-theme', theme);
+    } catch (e) {
+      document.documentElement.setAttribute('data-theme', 'dark');
+    }
+  })();
+</script>
+
+<link rel="icon" type="image/svg+xml" href="../../assets/icon.svg">
+<link rel="stylesheet" href="../../assets/styles.css">
+<script src="../../assets/analytics.js"></script>
+<link rel="alternate" hreflang="x-default" href="https://ai-summary-helper.byphil.eu/blog/feeds-recap.html"><link rel="alternate" hreflang="en" href="https://ai-summary-helper.byphil.eu/blog/feeds-recap.html"><link rel="alternate" hreflang="de" href="https://ai-summary-helper.byphil.eu/de/blog/feeds-recap.html"><link rel="alternate" hreflang="fr" href="https://ai-summary-helper.byphil.eu/fr/blog/feeds-recap.html"><link rel="alternate" hreflang="es" href="https://ai-summary-helper.byphil.eu/es/blog/feeds-recap.html"><link rel="alternate" hreflang="zh-Hans" href="https://ai-summary-helper.byphil.eu/zh/blog/feeds-recap.html"><link rel="alternate" hreflang="zh-Hant" href="https://ai-summary-helper.byphil.eu/zh-tw/blog/feeds-recap.html"><link rel="alternate" hreflang="ja" href="https://ai-summary-helper.byphil.eu/ja/blog/feeds-recap.html"><link rel="alternate" hreflang="ko" href="https://ai-summary-helper.byphil.eu/ko/blog/feeds-recap.html"><link rel="alternate" hreflang="pt-BR" href="https://ai-summary-helper.byphil.eu/pt/blog/feeds-recap.html"><link rel="alternate" hreflang="hi" href="https://ai-summary-helper.byphil.eu/hi/blog/feeds-recap.html"><link rel="alternate" hreflang="vi" href="https://ai-summary-helper.byphil.eu/vi/blog/feeds-recap.html"><link rel="alternate" hreflang="nl" href="https://ai-summary-helper.byphil.eu/nl/blog/feeds-recap.html"><link rel="alternate" hreflang="it" href="https://ai-summary-helper.byphil.eu/it/blog/feeds-recap.html"><link rel="alternate" hreflang="ru" href="https://ai-summary-helper.byphil.eu/ru/blog/feeds-recap.html"><link rel="alternate" hreflang="uk" href="https://ai-summary-helper.byphil.eu/uk/blog/feeds-recap.html"><link rel="alternate" hreflang="tr" href="https://ai-summary-helper.byphil.eu/tr/blog/feeds-recap.html"><link rel="alternate" hreflang="id" href="https://ai-summary-helper.byphil.eu/id/blog/feeds-recap.html"><link rel="alternate" hreflang="pl" href="https://ai-summary-helper.byphil.eu/pl/blog/feeds-recap.html"><link rel="alternate" hreflang="th" href="https://ai-summary-helper.byphil.eu/th/blog/feeds-recap.html"><link rel="alternate" hreflang="ar" href="https://ai-summary-helper.byphil.eu/ar/blog/feeds-recap.html"><link rel="alternate" hreflang="sv" href="https://ai-summary-helper.byphil.eu/sv/blog/feeds-recap.html"><link rel="alternate" hreflang="da" href="https://ai-summary-helper.byphil.eu/da/blog/feeds-recap.html"><link rel="alternate" hreflang="nb" href="https://ai-summary-helper.byphil.eu/no/blog/feeds-recap.html"><link rel="alternate" hreflang="fi" href="https://ai-summary-helper.byphil.eu/fi/blog/feeds-recap.html"></head>
+<body>
+
+<a href="#main" class="skip-link">Przejdź do treści</a>
+
+<header class="nav">
+  <div class="wrap nav-inner">
+    <div class="brand-cluster">
+      <div class="wordmark">
+        <img src="../../assets/icon.svg" alt="">
+        AI Summary Helper
+      </div>
+      <a href="https://byphil.eu/" target="_blank" rel="noopener" class="ecosystem-badge">
+        <span class="pulse-dot"></span> Część byphil.
+      </a>
+    </div>
+    <div class="nav-desktop-group nav-desktop-links">
+      <nav class="links" aria-label="Primary">
+        <a href="../index.html#features">Funkcje</a>
+        <a href="../index.html#pricing">Cennik</a>
+        <a href="./" aria-current="page">Blog</a>
+        <a href="https://github.com/philffm/ai-summary-helper/" target="_blank" rel="noopener">GitHub</a>
+      </nav>
+      <button type="button" class="theme-toggle" id="themeToggle" aria-label="Switch to light mode">
+        <svg class="icon-moon" viewBox="0 0 24 24" fill="none"><path d="M20 14.5A8.5 8.5 0 1 1 9.5 4a6.8 6.8 0 0 0 10.5 10.5Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"></path></svg>
+        <svg class="icon-sun" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="4.2" stroke="currentColor" stroke-width="1.6"></circle><path d="M12 2.5v2.4M12 19.1v2.4M4.4 4.4l1.7 1.7M17.9 17.9l1.7 1.7M2.5 12h2.4M19.1 12h2.4M4.4 19.6l1.7-1.7M17.9 6.1l1.7-1.7" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"></path></svg>
+      </button>
+      <a href="../index.html" class="btn-sign-in">← Wróć do aplikacji</a>
+    </div>
+    <button type="button" class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="mobileMenu" aria-label="Open menu">
+      <svg viewBox="0 0 24 24" fill="none"><path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"></path></svg>
+    </button>
+  </div>
+  <div class="mobile-menu" id="mobileMenu" hidden="">
+    <div class="wrap mobile-menu-inner">
+      <a href="../index.html#features">Funkcje</a>
+      <a href="../index.html#pricing">Cennik</a>
+      <a href="./">Blog</a>
+      <a href="https://github.com/philffm/ai-summary-helper/" target="_blank" rel="noopener">GitHub</a>
+      <a href="https://byphil.eu/" target="_blank" rel="noopener">Część byphil. ↗</a>
+      <button type="button" class="theme-toggle-mobile" id="themeToggleMobile">
+        <span id="themeToggleMobileLabel">Przełącz na tryb jasny</span>
+        <svg class="icon-moon" viewBox="0 0 24 24" fill="none"><path d="M20 14.5A8.5 8.5 0 1 1 9.5 4a6.8 6.8 0 0 0 10.5 10.5Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"></path></svg>
+        <svg class="icon-sun" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="4.2" stroke="currentColor" stroke-width="1.6"></circle><path d="M12 2.5v2.4M12 19.1v2.4M4.4 4.4l1.7 1.7M17.9 17.9l1.7 1.7M2.5 12h2.4M19.1 12h2.4M4.4 19.6l1.7-1.7M17.9 6.1l1.7-1.7" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"></path></svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+<main id="main">
+  <div class="wrap">
+    <div class="post-hero">
+      <span class="blog-date">Poradnik · Październik 2026</span>
+      <h1>Jedno podsumowanie zamiast 40 kanałów RSS</h1>
+      <p class="post-sub">Czterdzieści kanałów RSS to czterdzieści drobnych rozproszeń przed lunchem. Podsumowanie łączy je w jeden zwięzły materiał, który czytasz raz.</p>
+    </div>
+  </div>
+
+  <section>
+    <div class="wrap">
+      <div class="prose">
+        <p>W 2009 roku Sophie Leroy opisała zjawisko „pozostałości uwagi” (attention residue): gdy przełączasz się z jednego zadania na drugie, część Twojej uwagi wciąż pozostaje przy poprzednim. W jej badaniach osoby, którym przerwano pracę, radziły sobie gorzej z kolejnym zadaniem — a efekt ten nasilał się pod presją czasu.</p>
+        <p>Czytnik RSS to machina do ciągłego przełączania kontekstu. Każdy wpis to inny temat, inny ton i kolejna otwarta karta. Nawet jeśli przeglądasz je błyskawicznie, rozproszenie uwagi narasta. Zanim wrócisz do właściwej pracy, wciąż mimowolnie myślisz o zmianie cennika u dostawcy hostingu.</p>
+
+        <h2>Dlaczego „inbox zero” w czytnikach RSS nigdy nie działa</h2>
+        <p>Liczniki nieprzeczytanych wiadomości zamieniają czytanie w przykry obowiązek. Dobre źródła są wartościowe właśnie dlatego, że publikują często — a to oznacza, że liczba ta stale rośnie. W efekcie użytkownicy w końcu kapitulują, oznaczają wszystko jako przeczytane i po chwili znów wracają do rosnącego stosu.</p>
+
+        <h2>Co zmienia zwięzłe podsumowanie</h2>
+        <p>Zakładka Feeds w AI Summary Helper pozwala subskrybować wybrane kanały RSS. Zamiast chaotycznej listy wpisów otrzymujesz przejrzyste podsumowanie: jedno opracowanie — codzienne lub cotygodniowe — zbierające najważniejsze informacje wraz z linkami do źródeł. Czytasz je raz, za jednym zamachem, a reszta dnia nie zależy już od tego, co opublikowano w sieci o 10:42.</p>
+        <p>Możesz go także odsłuchać w formie podcastu — idealne rozwiązanie, gdy brakuje czasu na czytanie. Generowanie podsumowania działa w oparciu o wybranego dostawcę z własnym kluczem API (BYOK) lub lokalnie przez Ollama, z pełnym poszanowaniem prywatności i RODO, dokładnie tak samo jak standardowe podsumowania.</p>
+        <figure class="post-figure post-figure--portrait"><img src="../../assets/blog/feeds-recap.webp" alt="Slajd: Twoje kanały RSS w jednym podsumowaniu, z widokiem czatu prezentującym cotygodniowy przegląd i linki do powiązanych artykułów" width="800" height="1000" loading="lazy"><figcaption>Podsumowanie zamiast licznika nieprzeczytanych: jeden materiał do przeczytania, z odnośnikami do każdego źródła.</figcaption></figure>
+        <h2>Jak skonfigurować podsumowania z głową</h2>
+        <ol>
+          <li><strong>Najpierw skróć listę źródeł.</strong> Zostaw tylko te kanały, których naprawdę by Ci brakowało. Jakość podsumowania zależy od jakości źródeł.</li>
+          <li><strong>Wybierz jedną stałą porę dnia.</strong> Podsumowanie czytane o stałej porze zastępuje nawyk ciągłego sprawdzania. Przeglądane co godzinę staje się po prostu kolejnym, wolniejszym strumieniem wiadomości.</li>
+          <li><strong>Otwieraj tylko te linki, które naprawdę Cię interesują.</strong> Każdy punkt w podsumowaniu odsyła do materiału źródłowego — streszczenie ma być punktem wyjścia, a nie całkowitym zastępstwem lektury.</li>
+        </ol>
+        <p>Celem nie jest czytanie mniej z lenistwa. Chodzi o to, aby raz, świadomie zdecydować, na co poświęcasz uwagę, zamiast robić to przypadkowo czterdzieści razy w ciągu dnia.</p>
+        <div class="post-cta">
+          <p>AI Summary Helper to bezpłatne rozszerzenie do przeglądarki Chrome.</p>
+          <a href="https://chromewebstore.google.com/detail/ai-summary-helper-openai/hldbejcjaedipeegjcinmhejdndchkmb" target="_blank" rel="noopener" class="btn-primary">Dodaj do Chrome</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="footer-inner">
+      <div class="wordmark"><img src="../../assets/icon.svg" alt="">AI Summary Helper</div>
+      <div class="foot-links">
+        <a href="https://github.com/philffm/ai-summary-helper/" target="_blank" rel="noopener">Kod źródłowy na GitHub</a>
+        <a href="../privacy.html">Prywatność (RODO)</a>
+        <a href="#" data-analytics-settings="">Ustawienia analityki</a>
+        <a href="https://byphil.eu/terms.html#impressum" target="_blank" rel="noopener">Nota prawna (Impressum)</a>
+      </div>
+    </div>
+    <div class="copyright">© 2026 Phil Wornath. Część <a href="https://byphil.eu/" class="credit-link">byphil.eu ↗</a> — niezależne oprogramowanie tworzone w Niemczech.<br>
+      Projekt i realizacja: <a href="https://philwornath.com/" target="_blank" rel="noopener" class="credit-link">philwornath.com ↗</a>
+    </div>
+  </div>
+</footer>
+
+<script src="../../assets/main.js"></script>
+
+
+</body></html>

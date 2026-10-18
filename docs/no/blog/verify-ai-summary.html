@@ -1,0 +1,138 @@
+<!DOCTYPE html><html lang="nb"><head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#08090C">
+<title>Sjekk et AI-sammendrag mot kilden — AI Summary Helper</title>
+<meta name="description" content="Et AI-sammendrag er bare nyttig hvis du kan stole på det. Her er en rask måte å sjekke ethvert svar mot kildesiden på, og hva et sitat faktisk kan og ikke kan bevise.">
+
+<script>
+  (function(){
+    try {
+      var saved = localStorage.getItem('aish_theme');
+      var theme = saved === 'light' || saved === 'dark'
+        ? saved
+        : (window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
+      document.documentElement.setAttribute('data-theme', theme);
+    } catch (e) {
+      document.documentElement.setAttribute('data-theme', 'dark');
+    }
+  })();
+</script>
+
+<link rel="icon" type="image/svg+xml" href="../../assets/icon.svg">
+<link rel="stylesheet" href="../../assets/styles.css">
+<script src="../../assets/analytics.js"></script>
+<link rel="alternate" hreflang="x-default" href="https://ai-summary-helper.byphil.eu/blog/verify-ai-summary.html"><link rel="alternate" hreflang="en" href="https://ai-summary-helper.byphil.eu/blog/verify-ai-summary.html"><link rel="alternate" hreflang="de" href="https://ai-summary-helper.byphil.eu/de/blog/verify-ai-summary.html"><link rel="alternate" hreflang="fr" href="https://ai-summary-helper.byphil.eu/fr/blog/verify-ai-summary.html"><link rel="alternate" hreflang="es" href="https://ai-summary-helper.byphil.eu/es/blog/verify-ai-summary.html"><link rel="alternate" hreflang="zh-Hans" href="https://ai-summary-helper.byphil.eu/zh/blog/verify-ai-summary.html"><link rel="alternate" hreflang="zh-Hant" href="https://ai-summary-helper.byphil.eu/zh-tw/blog/verify-ai-summary.html"><link rel="alternate" hreflang="ja" href="https://ai-summary-helper.byphil.eu/ja/blog/verify-ai-summary.html"><link rel="alternate" hreflang="ko" href="https://ai-summary-helper.byphil.eu/ko/blog/verify-ai-summary.html"><link rel="alternate" hreflang="pt-BR" href="https://ai-summary-helper.byphil.eu/pt/blog/verify-ai-summary.html"><link rel="alternate" hreflang="hi" href="https://ai-summary-helper.byphil.eu/hi/blog/verify-ai-summary.html"><link rel="alternate" hreflang="vi" href="https://ai-summary-helper.byphil.eu/vi/blog/verify-ai-summary.html"><link rel="alternate" hreflang="nl" href="https://ai-summary-helper.byphil.eu/nl/blog/verify-ai-summary.html"><link rel="alternate" hreflang="it" href="https://ai-summary-helper.byphil.eu/it/blog/verify-ai-summary.html"><link rel="alternate" hreflang="ru" href="https://ai-summary-helper.byphil.eu/ru/blog/verify-ai-summary.html"><link rel="alternate" hreflang="uk" href="https://ai-summary-helper.byphil.eu/uk/blog/verify-ai-summary.html"><link rel="alternate" hreflang="tr" href="https://ai-summary-helper.byphil.eu/tr/blog/verify-ai-summary.html"><link rel="alternate" hreflang="id" href="https://ai-summary-helper.byphil.eu/id/blog/verify-ai-summary.html"><link rel="alternate" hreflang="pl" href="https://ai-summary-helper.byphil.eu/pl/blog/verify-ai-summary.html"><link rel="alternate" hreflang="th" href="https://ai-summary-helper.byphil.eu/th/blog/verify-ai-summary.html"><link rel="alternate" hreflang="ar" href="https://ai-summary-helper.byphil.eu/ar/blog/verify-ai-summary.html"><link rel="alternate" hreflang="sv" href="https://ai-summary-helper.byphil.eu/sv/blog/verify-ai-summary.html"><link rel="alternate" hreflang="da" href="https://ai-summary-helper.byphil.eu/da/blog/verify-ai-summary.html"><link rel="alternate" hreflang="nb" href="https://ai-summary-helper.byphil.eu/no/blog/verify-ai-summary.html"><link rel="alternate" hreflang="fi" href="https://ai-summary-helper.byphil.eu/fi/blog/verify-ai-summary.html"></head>
+<body>
+
+<a href="#main" class="skip-link">Hopp til innholdet</a>
+
+<header class="nav">
+  <div class="wrap nav-inner">
+    <div class="brand-cluster">
+      <div class="wordmark">
+        <img src="../../assets/icon.svg" alt="">
+        AI Summary Helper
+      </div>
+      <a href="https://byphil.eu/" target="_blank" rel="noopener" class="ecosystem-badge">
+        <span class="pulse-dot"></span> En del av byphil.
+      </a>
+    </div>
+    <div class="nav-desktop-group nav-desktop-links">
+      <nav class="links" aria-label="Primary">
+        <a href="../index.html#features">Funksjoner</a>
+        <a href="../index.html#pricing">Priser</a>
+        <a href="./" aria-current="page">Blogg</a>
+        <a href="https://github.com/philffm/ai-summary-helper/" target="_blank" rel="noopener">GitHub</a>
+      </nav>
+      <button type="button" class="theme-toggle" id="themeToggle" aria-label="Switch to light mode">
+        <svg class="icon-moon" viewBox="0 0 24 24" fill="none"><path d="M20 14.5A8.5 8.5 0 1 1 9.5 4a6.8 6.8 0 0 0 10.5 10.5Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"></path></svg>
+        <svg class="icon-sun" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="4.2" stroke="currentColor" stroke-width="1.6"></circle><path d="M12 2.5v2.4M12 19.1v2.4M4.4 4.4l1.7 1.7M17.9 17.9l1.7 1.7M2.5 12h2.4M19.1 12h2.4M4.4 19.6l1.7-1.7M17.9 6.1l1.7-1.7" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"></path></svg>
+      </button>
+      <a href="../index.html" class="btn-sign-in">← Tilbake til appen</a>
+    </div>
+    <button type="button" class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="mobileMenu" aria-label="Open menu">
+      <svg viewBox="0 0 24 24" fill="none"><path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"></path></svg>
+    </button>
+  </div>
+  <div class="mobile-menu" id="mobileMenu" hidden="">
+    <div class="wrap mobile-menu-inner">
+      <a href="../index.html#features">Funksjoner</a>
+      <a href="../index.html#pricing">Priser</a>
+      <a href="./">Blogg</a>
+      <a href="https://github.com/philffm/ai-summary-helper/" target="_blank" rel="noopener">GitHub</a>
+      <a href="https://byphil.eu/" target="_blank" rel="noopener">En del av byphil. ↗</a>
+      <button type="button" class="theme-toggle-mobile" id="themeToggleMobile">
+        <span id="themeToggleMobileLabel">Bytt til lys modus</span>
+        <svg class="icon-moon" viewBox="0 0 24 24" fill="none"><path d="M20 14.5A8.5 8.5 0 1 1 9.5 4a6.8 6.8 0 0 0 10.5 10.5Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"></path></svg>
+        <svg class="icon-sun" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="4.2" stroke="currentColor" stroke-width="1.6"></circle><path d="M12 2.5v2.4M12 19.1v2.4M4.4 4.4l1.7 1.7M17.9 17.9l1.7 1.7M2.5 12h2.4M19.1 12h2.4M4.4 19.6l1.7-1.7M17.9 6.1l1.7-1.7" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"></path></svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+<main id="main">
+  <div class="wrap">
+    <div class="post-hero">
+      <span class="blog-date">Veiledning · Oktober 2026</span>
+      <h1>Slik sjekker du et AI-sammendrag mot kilden på 10 sekunder</h1>
+      <p class="post-sub">Et sammendrag du ikke kan verifisere er bare en gjetning med god grammatikk. Her er vanen som løser det, og hva AI Summary Helper gjør for å spare deg tid.</p>
+    </div>
+  </div>
+
+  <section>
+    <div class="wrap">
+      <div class="prose">
+        <p>I 2011 rapporterte Sparrow, Liu og Wegner i <em>Science</em> at når folk forventer å kunne slå opp noe senere, husker de selve faktaene dårligere og husker heller hvor de kan finne dem. Søkemotorer viste seg å fungere som et slags eksternt minne, og vi tilpasser oss det.</p>
+        <p>AI-sammendrag forsterker denne vanen ytterligere. Du får et ryddig avsnitt, husker avsnittet, og kildesiden forsvinner ut av bildet. Det er helt fint når sammendraget stemmer. Men det er et problem når det ikke gjør det, fordi ingenting i teksten avslører hvilken setning som er tvilsom.</p>
+
+        <h2>10-sekunderssjekken</h2>
+        <p>Du trenger ikke å lese hele artikkelen på nytt. Du trenger bare å sjekke ett avsnitt. Vanen er enkel:</p>
+        <ol>
+          <li><strong>Velg påstanden du ville gjenfortalt til noen andre.</strong> Et tall, en dato, et navn, en årsakssammenheng.</li>
+          <li><strong>Finn setningen i kilden som bekrefter det.</strong> Ikke en lignende setning. Den faktiske setningen som sier det.</li>
+          <li><strong>Les setningen rett før og rett etter.</strong> Det er i konteksten sammendrag oftest bommer: et «kan» som ble til et «vil», eller en prognose som ble fremstilt som fakta.</li>
+        </ol>
+        <p>Steg to er det tidkrevende når du gjør det manuelt. Det er det steget som lønner seg å automatisere.</p>
+
+        <h2>Hva AI Summary Helper gjør med dette</h2>
+        <p>Når du stiller et oppfølgingsspørsmål, kommer svaret med de nøyaktige tekstutdragene fra siden som underbygger det. Utvidelsen sammenligner hvert sitat med sidens tekst og utelater sitater den ikke finner ordrett – slik at oppdiktede sitater aldri fremstår som bevis. Klikker du på et sitat, ruller siden automatisk ned til utdraget og markerer det, så lenge siden er åpen.</p>
+        <p>De foreslåtte oppfølgingsspørsmålene fungerer på samme måte. Hvert spørsmål gir deg et kort første svar mens modellen genererer det lengre, slik at du kan lese, sjekke og stoppe med en gang du har fått svaret du trenger.</p>
+
+        <figure class="post-figure post-figure--portrait"><img src="../../assets/blog/answer-with-receipt.webp" alt="Lysbilde: hvert svar kommer med kildehenvisning, som viser et chat-svar med sitert kilde og en knapp for å hoppe rett til tekstavsnittet" width="800" height="1000" loading="lazy"><figcaption>Et svar, kildeutdraget det bygger på, og ett klikk rett til kilden.</figcaption></figure>
+        <h2>Hva et sitat beviser – og hva det ikke gjør</h2>
+        <p>Vær obs på dette: Et matchende sitat beviser bare at teksten faktisk finnes på siden. Det beviser ikke at modellen har tolket den riktig. Svaret rundt sitatet er fortsatt modellens egne ord, så sjekken i steg tre gjelder fortsatt: Les nabosetningene.</p>
+        <p>Brukt på denne måten er sitatet en snarvei til det relevante avsnittet, ikke et godkjentstempel. Og det er hele poenget: Du bruker ti sekunder på delen av artikkelen som avgjør om svaret holder mål, i stedet for ti minutter på hele teksten.</p>
+
+        <h2>En vane det er verdt å beholde</h2>
+        <p>Velg ett svar per artikkel og sjekk det. Etter noen uker lærer du hvordan modellen din oppfører seg: hvilke temaer den mestrer, hvor den runder av tall, og om den overser forbehold. Den innsikten er verdt mer enn noen enkeltsjekk.</p>
+        <div class="post-cta">
+          <p>AI Summary Helper er en gratis Chrome-utvidelse.</p>
+          <a href="https://chromewebstore.google.com/detail/ai-summary-helper-openai/hldbejcjaedipeegjcinmhejdndchkmb" target="_blank" rel="noopener" class="btn-primary">Legg til i Chrome</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="footer-inner">
+      <div class="wordmark"><img src="../../assets/icon.svg" alt="">AI Summary Helper</div>
+      <div class="foot-links">
+        <a href="https://github.com/philffm/ai-summary-helper/" target="_blank" rel="noopener">Kildekode på GitHub</a>
+        <a href="../privacy.html">Personvern</a>
+        <a href="#" data-analytics-settings="">Analyseinnstillinger</a>
+        <a href="https://byphil.eu/terms.html#impressum" target="_blank" rel="noopener">Impressum</a>
+      </div>
+    </div>
+    <div class="copyright">© 2026 Phil Wornath. En del av <a href="https://byphil.eu/" class="credit-link">byphil.eu ↗</a> — uavhengig programvare utviklet i Tyskland.<br>
+      Designet og utviklet av <a href="https://philwornath.com/" target="_blank" rel="noopener" class="credit-link">philwornath.com ↗</a>
+    </div>
+  </div>
+</footer>
+
+<script src="../../assets/main.js"></script>
+
+
+</body></html>

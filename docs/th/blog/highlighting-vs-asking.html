@@ -1,0 +1,135 @@
+<!DOCTYPE html><html lang="th"><head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#08090C">
+<title>ถามสิ่งที่คุณไฮไลต์ไว้ — AI Summary Helper</title>
+<meta name="description" content="การไฮไลต์จัดเป็นหนึ่งในเทคนิคการเรียนรู้ที่ได้ผลน้อยที่สุด มาดูกันว่าทำไมเราถึงยังรู้สึกว่าได้ผล พร้อมวิธีปรับเปลี่ยนเล็กๆ น้อยๆ ที่ช่วยให้จำสิ่งที่ไฮไลต์ได้แม่นยำยิ่งขึ้น">
+
+<script>
+  (function(){
+    try {
+      var saved = localStorage.getItem('aish_theme');
+      var theme = saved === 'light' || saved === 'dark'
+        ? saved
+        : (window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
+      document.documentElement.setAttribute('data-theme', theme);
+    } catch (e) {
+      document.documentElement.setAttribute('data-theme', 'dark');
+    }
+  })();
+</script>
+
+<link rel="icon" type="image/svg+xml" href="../../assets/icon.svg">
+<link rel="stylesheet" href="../../assets/styles.css">
+<script src="../../assets/analytics.js"></script>
+<link rel="alternate" hreflang="x-default" href="https://ai-summary-helper.byphil.eu/blog/highlighting-vs-asking.html"><link rel="alternate" hreflang="en" href="https://ai-summary-helper.byphil.eu/blog/highlighting-vs-asking.html"><link rel="alternate" hreflang="de" href="https://ai-summary-helper.byphil.eu/de/blog/highlighting-vs-asking.html"><link rel="alternate" hreflang="fr" href="https://ai-summary-helper.byphil.eu/fr/blog/highlighting-vs-asking.html"><link rel="alternate" hreflang="es" href="https://ai-summary-helper.byphil.eu/es/blog/highlighting-vs-asking.html"><link rel="alternate" hreflang="zh-Hans" href="https://ai-summary-helper.byphil.eu/zh/blog/highlighting-vs-asking.html"><link rel="alternate" hreflang="zh-Hant" href="https://ai-summary-helper.byphil.eu/zh-tw/blog/highlighting-vs-asking.html"><link rel="alternate" hreflang="ja" href="https://ai-summary-helper.byphil.eu/ja/blog/highlighting-vs-asking.html"><link rel="alternate" hreflang="ko" href="https://ai-summary-helper.byphil.eu/ko/blog/highlighting-vs-asking.html"><link rel="alternate" hreflang="pt-BR" href="https://ai-summary-helper.byphil.eu/pt/blog/highlighting-vs-asking.html"><link rel="alternate" hreflang="hi" href="https://ai-summary-helper.byphil.eu/hi/blog/highlighting-vs-asking.html"><link rel="alternate" hreflang="vi" href="https://ai-summary-helper.byphil.eu/vi/blog/highlighting-vs-asking.html"><link rel="alternate" hreflang="nl" href="https://ai-summary-helper.byphil.eu/nl/blog/highlighting-vs-asking.html"><link rel="alternate" hreflang="it" href="https://ai-summary-helper.byphil.eu/it/blog/highlighting-vs-asking.html"><link rel="alternate" hreflang="ru" href="https://ai-summary-helper.byphil.eu/ru/blog/highlighting-vs-asking.html"><link rel="alternate" hreflang="uk" href="https://ai-summary-helper.byphil.eu/uk/blog/highlighting-vs-asking.html"><link rel="alternate" hreflang="tr" href="https://ai-summary-helper.byphil.eu/tr/blog/highlighting-vs-asking.html"><link rel="alternate" hreflang="id" href="https://ai-summary-helper.byphil.eu/id/blog/highlighting-vs-asking.html"><link rel="alternate" hreflang="pl" href="https://ai-summary-helper.byphil.eu/pl/blog/highlighting-vs-asking.html"><link rel="alternate" hreflang="th" href="https://ai-summary-helper.byphil.eu/th/blog/highlighting-vs-asking.html"><link rel="alternate" hreflang="ar" href="https://ai-summary-helper.byphil.eu/ar/blog/highlighting-vs-asking.html"><link rel="alternate" hreflang="sv" href="https://ai-summary-helper.byphil.eu/sv/blog/highlighting-vs-asking.html"><link rel="alternate" hreflang="da" href="https://ai-summary-helper.byphil.eu/da/blog/highlighting-vs-asking.html"><link rel="alternate" hreflang="nb" href="https://ai-summary-helper.byphil.eu/no/blog/highlighting-vs-asking.html"><link rel="alternate" hreflang="fi" href="https://ai-summary-helper.byphil.eu/fi/blog/highlighting-vs-asking.html"></head>
+<body>
+
+<a href="#main" class="skip-link">ข้ามไปยังเนื้อหา</a>
+
+<header class="nav">
+  <div class="wrap nav-inner">
+    <div class="brand-cluster">
+      <div class="wordmark">
+        <img src="../../assets/icon.svg" alt="">
+        AI Summary Helper
+      </div>
+      <a href="https://byphil.eu/" target="_blank" rel="noopener" class="ecosystem-badge">
+        <span class="pulse-dot"></span> ส่วนหนึ่งของ byphil.
+      </a>
+    </div>
+    <div class="nav-desktop-group nav-desktop-links">
+      <nav class="links" aria-label="Primary">
+        <a href="../index.html#features">ฟีเจอร์</a>
+        <a href="../index.html#pricing">ราคา</a>
+        <a href="./" aria-current="page">บล็อก</a>
+        <a href="https://github.com/philffm/ai-summary-helper/" target="_blank" rel="noopener">GitHub</a>
+      </nav>
+      <button type="button" class="theme-toggle" id="themeToggle" aria-label="Switch to light mode">
+        <svg class="icon-moon" viewBox="0 0 24 24" fill="none"><path d="M20 14.5A8.5 8.5 0 1 1 9.5 4a6.8 6.8 0 0 0 10.5 10.5Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"></path></svg>
+        <svg class="icon-sun" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="4.2" stroke="currentColor" stroke-width="1.6"></circle><path d="M12 2.5v2.4M12 19.1v2.4M4.4 4.4l1.7 1.7M17.9 17.9l1.7 1.7M2.5 12h2.4M19.1 12h2.4M4.4 19.6l1.7-1.7M17.9 6.1l1.7-1.7" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"></path></svg>
+      </button>
+      <a href="../index.html" class="btn-sign-in">← กลับไปยังแอป</a>
+    </div>
+    <button type="button" class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="mobileMenu" aria-label="Open menu">
+      <svg viewBox="0 0 24 24" fill="none"><path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"></path></svg>
+    </button>
+  </div>
+  <div class="mobile-menu" id="mobileMenu" hidden="">
+    <div class="wrap mobile-menu-inner">
+      <a href="../index.html#features">ฟีเจอร์</a>
+      <a href="../index.html#pricing">ราคา</a>
+      <a href="./">บล็อก</a>
+      <a href="https://github.com/philffm/ai-summary-helper/" target="_blank" rel="noopener">GitHub</a>
+      <a href="https://byphil.eu/" target="_blank" rel="noopener">ส่วนหนึ่งของ byphil. ↗</a>
+      <button type="button" class="theme-toggle-mobile" id="themeToggleMobile">
+        <span id="themeToggleMobileLabel">สลับเป็นโหมดสว่าง</span>
+        <svg class="icon-moon" viewBox="0 0 24 24" fill="none"><path d="M20 14.5A8.5 8.5 0 1 1 9.5 4a6.8 6.8 0 0 0 10.5 10.5Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"></path></svg>
+        <svg class="icon-sun" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="4.2" stroke="currentColor" stroke-width="1.6"></circle><path d="M12 2.5v2.4M12 19.1v2.4M4.4 4.4l1.7 1.7M17.9 17.9l1.7 1.7M2.5 12h2.4M19.1 12h2.4M4.4 19.6l1.7-1.7M17.9 6.1l1.7-1.7" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"></path></svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+<main id="main">
+  <div class="wrap">
+    <div class="post-hero">
+      <span class="blog-date">คู่มือ · กันยายน 2026</span>
+      <h1>แค่ไฮไลต์อย่างเดียวแทบไม่ได้ผล ลองเปลี่ยนมาตั้งคำถามกับมันดู</h1>
+      <p class="post-sub">การไฮไลต์ให้ความรู้สึกเหมือนกำลังอ่านหนังสืออย่างจริงจัง แต่งานวิจัยชี้ว่าผลลัพธ์แทบไม่ต่างจากการไม่อ่านเลย วิธีแก้นั้นง่ายมาก: อย่าหยุดแค่อยู่ที่การไฮไลต์ แต่จงตั้งคำถามกับมัน</p>
+    </div>
+  </div>
+
+  <section>
+    <div class="wrap">
+      <div class="prose">
+        <p>ในปี 2013 Dunlosky และคณะ ได้ตีพิมพ์บทความทบทวนงานวิจัยใน <em>Psychological Science in the Public Interest</em> ซึ่งประเมินเทคนิคการเรียนรู้ยอดนิยม 10 วิธีจากหลักฐานเชิงประจักษ์ว่ามีประสิทธิผลมากน้อยเพียงใด ผลปรากฏว่าการไฮไลต์และการขีดเส้นใต้จัดอยู่ในกลุ่มที่มีประโยชน์ต่ำที่สุด ใกล้เคียงกับการอ่านซ้ำ ในขณะที่การทำแบบทดสอบฝึกหัดและการเว้นระยะเวลาการทบทวน (spacing) ให้ผลลัพธ์ดีที่สุด</p>
+        <p>สิ่งที่น่ากังวลไม่ใช่แค่ว่าการไฮไลต์ไม่ได้ผล แต่เป็นความรู้สึกที่ทำให้เราคิดว่าได้ลงมือทำอะไรบางอย่างไปแล้ว เราอ่าน เจอบทความหรือประโยคสำคัญ จึงป้ายแถบสีเหลืองลงไป เมื่อหน้ากระดาษเต็มไปด้วยสีสัน เราจึงรู้สึกไปเองว่ามันต้องมีประโยชน์แน่นอน</p>
+
+        <h2>ทำไมการไฮไลต์จึงสร้างความจำที่เปราะบาง</h2>
+        <p>การไฮไลต์เป็นการบันทึกเพียง <em>ว่า</em> ว่าเราพบประโยคสำคัญ แต่มันไม่ได้กระตุ้นให้เรานำข้อมูลนั้นไปประมวลผลต่อ คุณสามารถไฮไลต์ข้อความได้โดยไม่จำเป็นต้องเข้าใจมันจริงๆ และสามารถไฮไลต์ซ้ำรอบสองได้โดยแทบไม่ได้คิดอะไรเลยในรอบแรก ข้อสรุปสำคัญจากงานวิจัยคือ เทคนิคที่เพียงแค่พาเรากลับไปสัมผัสเนื้อหาเดิมซ้ำๆ มักให้ผลลัพธ์ด้อยกว่าเทคนิคที่บังคับให้เราสร้างผลผลิตทางความคิดจากเนื้อหานั้น</p>
+
+        <h2>การตั้งคำถามคือวิธีที่ง่ายและคุ้มค่าที่สุดในการสร้างผลผลิตทางความคิด</h2>
+        <p>งานวิจัยฉบับเดียวกันระบุว่า เทคนิคการตั้งคำถามแบบ Elaborative Interrogation มีประโยชน์ในระดับปานกลาง ซึ่งก็คือการถามตัวเอง <em>ว่าทำไม</em> ว่าทำไมข้อเท็จจริงนั้นถึงเป็นจริง ไม่จำเป็นต้องทำแบบทดสอบยาวๆ เพียงแค่มีตัวกระตุ้น (prompt) ที่บีบให้อธิบายสั้นๆ ด้วยภาษาของตนเอง</p>
+        <p>นั่นคือบทบาทของคำถามต่อเนื่องเมื่อนำไปใช้ถูกจุด การถามว่า “มีความเสี่ยงอะไรบ้าง?” กับข้อความเจาะจงส่วนใดส่วนหนึ่ง จะกระตุ้นให้เราตกผลึกว่าต้องการรู้อะไร และคำตอบที่ได้จะช่วยให้เราเปรียบเทียบกับสิ่งที่คาดหวังไว้ได้อย่างชัดเจน</p>
+
+        <h2>ไฮไลต์ แล้วตามด้วยตั้งคำถาม</h2>
+        <p>ใน AI Summary Helper การไฮไลต์เป็นเพียงขั้นตอนแรก เมื่อเลือกข้อความ ไฮไลต์จะคงอยู่บนหน้าเว็บ ทำให้เปิดกลับมาดูเมื่อไหร่ก็ยังอยู่ จากนั้นสามารถถามคำถามต่อเนื่องเกี่ยวกับข้อความนั้นได้ทันที คำตอบจะมีการอ้างอิงเนื้อหาจากหน้าเว็บ และเมื่อคลิกที่ข้อความอ้างอิง ระบบจะพาคุณข้ามไปยังย่อหน้านั้นโดยตรง เพื่อตรวจสอบว่า AI เข้าใจตรงกับที่คุณอ่านหรือไม่ ทั้งไฮไลต์และประวัติการสนทนาจะถูกบันทึกแยกตามบทความ ช่วยให้กลับมาอ่านต่อจากจุดเดิมได้อย่างราบรื่น</p>
+        <figure class="post-figure post-figure--portrait"><img src="../../assets/blog/highlight-then-ask.webp" alt="ภาพสไลด์: ไฮไลต์ข้อความ แล้วตั้งคำถามต่อ พร้อมหน้าต่างแชตที่แสดงคำถาม “What were the risks?” และคำตอบที่อ้างอิงข้อความจากหน้าเว็บ" width="800" height="1000" loading="lazy"><figcaption>ไฮไลต์ข้อความ ตั้งคำถามต่อ และคลิกเพื่อข้ามไปยังจุดอ้างอิงที่ยืนยันคำตอบได้ทันที</figcaption></figure>
+        <h2>กิจวัตร 2 นาทีเพื่อการจำที่มีประสิทธิภาพ</h2>
+        <ol>
+          <li><strong>ไฮไลต์ข้อความไม่เกิน 3 จุด</strong> หากไฮไลต์ทุกอย่าง ก็เท่ากับไม่ได้ไฮไลต์อะไรเลย</li>
+          <li><strong>ตั้งคำถาม 1 ข้อต่อ 1 ไฮไลต์</strong> เพียงคำถามอย่าง “ทำไมเรื่องนี้ถึงสำคัญ?” หรือ “ถ้าเรื่องนี้ไม่จริง จะเกิดผลกระทบอย่างไร?” ก็เพียงพอแล้ว</li>
+          <li><strong>ก่อนอ่านคำตอบ ลองตอบด้วยตัวเองออกมาเป็นคำพูดหรือสรุปสั้นๆ ในหนึ่งประโยค</strong> การเปรียบเทียบคำตอบคือจุดเริ่มต้นของการเรียนรู้ที่แท้จริง</li>
+        </ol>
+        <p>ทั้งหมดนี้ไม่ได้หมายความว่าการไฮไลต์เป็นเรื่องผิด เพียงแต่ต้องมองว่าเป็นแค่จุดเริ่มต้น ปากกาไฮไลต์ช่วยค้นหาจุดสำคัญ แต่คำถามต่างหากที่ทำให้จดจำได้จริง</p>
+        <div class="post-cta">
+          <p>AI Summary Helper เป็นส่วนขยาย Chrome ที่ใช้งานได้ฟรี</p>
+          <a href="https://chromewebstore.google.com/detail/ai-summary-helper-openai/hldbejcjaedipeegjcinmhejdndchkmb" target="_blank" rel="noopener" class="btn-primary">เพิ่มลงใน Chrome</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="footer-inner">
+      <div class="wordmark"><img src="../../assets/icon.svg" alt="">AI Summary Helper</div>
+      <div class="foot-links">
+        <a href="https://github.com/philffm/ai-summary-helper/" target="_blank" rel="noopener">ซอร์สโค้ดบน GitHub</a>
+        <a href="../privacy.html">ความเป็นส่วนตัว</a>
+        <a href="#" data-analytics-settings="">การตั้งค่าการวิเคราะห์</a>
+        <a href="https://byphil.eu/terms.html#impressum" target="_blank" rel="noopener">ข้อมูลทางกฎหมาย (Impressum)</a>
+      </div>
+    </div>
+    <div class="copyright">© 2026 Phil Wornath. ส่วนหนึ่งของ <a href="https://byphil.eu/" class="credit-link">byphil.eu ↗</a> — ซอฟต์แวร์อิสระ พัฒนาขึ้นในประเทศเยอรมนี<br>
+      ออกแบบและพัฒนาโดย <a href="https://philwornath.com/" target="_blank" rel="noopener" class="credit-link">philwornath.com ↗</a>
+    </div>
+  </div>
+</footer>
+
+<script src="../../assets/main.js"></script>
+
+
+</body></html>

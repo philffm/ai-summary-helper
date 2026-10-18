@@ -1,0 +1,618 @@
+<!DOCTYPE html><html lang="uk"><head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#08090C">
+<title>AI Summary Helper: підсумовуйте, зберігайте та шукайте в інтернеті</title>
+<meta name="description" content="Розширення для Chrome, що підсумовує сторінки за допомогою ШІ, читає ваші RSS-стрічки та зберігає архів із можливістю пошуку. Пошук і рекомендації працюють локально на вашому пристрої.">
+
+<script>
+  (function(){
+    try {
+      var saved = localStorage.getItem('aish_theme');
+      var theme = saved === 'light' || saved === 'dark'
+        ? saved
+        : (window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
+      document.documentElement.setAttribute('data-theme', theme);
+    } catch (e) {
+      document.documentElement.setAttribute('data-theme', 'dark');
+    }
+  })();
+</script>
+
+<link rel="icon" type="image/svg+xml" href="../assets/icon.svg">
+<link rel="stylesheet" href="../assets/styles.css">
+
+<meta property="og:title" content="AI Summary Helper">
+<meta property="og:description" content="Підсумовуйте, зберігайте та шукайте в інтернеті локально на пристрої. Розширення для Chrome для тих, хто більше не хоче губити збережені статті.">
+<meta property="og:url" content="https://ai-summary-helper.byphil.eu/">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://ai-summary-helper.byphil.eu/assets/shots/aish-hero-en.webp">
+<meta property="og:image:width" content="1280">
+<meta property="og:image:height" content="800">
+<meta name="twitter:card" content="summary_large_image">
+
+<script src="../assets/analytics.js"></script>
+<link rel="alternate" hreflang="x-default" href="https://ai-summary-helper.byphil.eu/index.html"><link rel="alternate" hreflang="en" href="https://ai-summary-helper.byphil.eu/index.html"><link rel="alternate" hreflang="de" href="https://ai-summary-helper.byphil.eu/de/index.html"><link rel="alternate" hreflang="fr" href="https://ai-summary-helper.byphil.eu/fr/index.html"><link rel="alternate" hreflang="es" href="https://ai-summary-helper.byphil.eu/es/index.html"><link rel="alternate" hreflang="zh-Hans" href="https://ai-summary-helper.byphil.eu/zh/index.html"><link rel="alternate" hreflang="zh-Hant" href="https://ai-summary-helper.byphil.eu/zh-tw/index.html"><link rel="alternate" hreflang="ja" href="https://ai-summary-helper.byphil.eu/ja/index.html"><link rel="alternate" hreflang="ko" href="https://ai-summary-helper.byphil.eu/ko/index.html"><link rel="alternate" hreflang="pt-BR" href="https://ai-summary-helper.byphil.eu/pt/index.html"><link rel="alternate" hreflang="hi" href="https://ai-summary-helper.byphil.eu/hi/index.html"><link rel="alternate" hreflang="vi" href="https://ai-summary-helper.byphil.eu/vi/index.html"><link rel="alternate" hreflang="nl" href="https://ai-summary-helper.byphil.eu/nl/index.html"><link rel="alternate" hreflang="it" href="https://ai-summary-helper.byphil.eu/it/index.html"><link rel="alternate" hreflang="ru" href="https://ai-summary-helper.byphil.eu/ru/index.html"><link rel="alternate" hreflang="uk" href="https://ai-summary-helper.byphil.eu/uk/index.html"><link rel="alternate" hreflang="tr" href="https://ai-summary-helper.byphil.eu/tr/index.html"><link rel="alternate" hreflang="id" href="https://ai-summary-helper.byphil.eu/id/index.html"><link rel="alternate" hreflang="pl" href="https://ai-summary-helper.byphil.eu/pl/index.html"><link rel="alternate" hreflang="th" href="https://ai-summary-helper.byphil.eu/th/index.html"><link rel="alternate" hreflang="ar" href="https://ai-summary-helper.byphil.eu/ar/index.html"><link rel="alternate" hreflang="sv" href="https://ai-summary-helper.byphil.eu/sv/index.html"><link rel="alternate" hreflang="da" href="https://ai-summary-helper.byphil.eu/da/index.html"><link rel="alternate" hreflang="nb" href="https://ai-summary-helper.byphil.eu/no/index.html"><link rel="alternate" hreflang="fi" href="https://ai-summary-helper.byphil.eu/fi/index.html"></head>
+<body>
+
+<a href="#main" class="skip-link">Перейти до вмісту</a>
+
+<header class="nav">
+  <div class="wrap nav-inner">
+    <div class="brand-cluster">
+      <div class="wordmark">
+        <img src="../assets/icon.svg" alt="">
+        AI Summary Helper
+      </div>
+      <a href="https://byphil.eu/" target="_blank" rel="noopener" class="ecosystem-badge">
+        <span class="pulse-dot"></span> Частина byphil.
+      </a>
+    </div>
+    <div class="nav-desktop-group nav-desktop-links">
+      <nav class="links" aria-label="Primary">
+        <a href="index.html#features">Можливості</a>
+        <a href="index.html#digest">Дайджест</a>
+        <a href="index.html#pricing">Тарифи</a>
+        <a href="blog/">Блог</a>
+        <a href="https://github.com/philffm/ai-summary-helper/" target="_blank" rel="noopener">GitHub</a>
+      </nav>
+      <button type="button" class="theme-toggle" id="themeToggle" aria-label="Switch to light mode">
+        <svg class="icon-moon" viewBox="0 0 24 24" fill="none"><path d="M20 14.5A8.5 8.5 0 1 1 9.5 4a6.8 6.8 0 0 0 10.5 10.5Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"></path></svg>
+        <svg class="icon-sun" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="4.2" stroke="currentColor" stroke-width="1.6"></circle><path d="M12 2.5v2.4M12 19.1v2.4M4.4 4.4l1.7 1.7M17.9 17.9l1.7 1.7M2.5 12h2.4M19.1 12h2.4M4.4 19.6l1.7-1.7M17.9 6.1l1.7-1.7" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"></path></svg>
+      </button>
+      <a href="https://byphil.eu/#account" class="btn-sign-in">Мій акаунт</a>
+    </div>
+    <button type="button" class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="mobileMenu" aria-label="Open menu">
+      <svg viewBox="0 0 24 24" fill="none"><path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"></path></svg>
+    </button>
+  </div>
+  <div class="mobile-menu" id="mobileMenu" hidden="">
+    <div class="wrap mobile-menu-inner">
+      <a href="index.html#features">Можливості</a>
+      <a href="index.html#digest">Дайджест</a>
+      <a href="index.html#pricing">Тарифи</a>
+      <a href="blog/">Блог</a>
+      <a href="https://github.com/philffm/ai-summary-helper/" target="_blank" rel="noopener">GitHub</a>
+      <a href="https://byphil.eu/#account">Мій акаунт</a>
+      <a href="https://byphil.eu/" target="_blank" rel="noopener">Частина byphil. ↗</a>
+      <button type="button" class="theme-toggle-mobile" id="themeToggleMobile">
+        <span id="themeToggleMobileLabel">Увімкнути світлу тему</span>
+        <svg class="icon-moon" viewBox="0 0 24 24" fill="none"><path d="M20 14.5A8.5 8.5 0 1 1 9.5 4a6.8 6.8 0 0 0 10.5 10.5Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"></path></svg>
+        <svg class="icon-sun" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="4.2" stroke="currentColor" stroke-width="1.6"></circle><path d="M12 2.5v2.4M12 19.1v2.4M4.4 4.4l1.7 1.7M17.9 17.9l1.7 1.7M2.5 12h2.4M19.1 12h2.4M4.4 19.6l1.7-1.7M17.9 6.1l1.7-1.7" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"></path></svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+<main id="main">
+
+  <!-- ── Hero ────────────────────────────────────────────────────── -->
+  <section class="hero hero-scene hscene" data-hscene="">
+  <div class="hs-grid">
+    <div class="hs-text"><div class="hs-text-in">
+      <div class="eyebrow"><span class="dash"></span> Розширення для Chrome · Частина byphil. <span class="dash"></span></div>
+      <h1>Підсумовуйте веб.<br><em>Зберігайте важливе.</em></h1>
+      <p class="sub">AI Summary Helper стежить за вашими улюбленими сайтами через вбудований RSS-рідер, зберігає будь-які сторінки у вигляді стислих статей зі зручним пошуком — і допомагає нарешті їх прочитати завдяки локальному дайджесту, який надсилає матеріали для офлайн-читання просто на ваш Kindle або інший пристрій.</p>
+      <div class="hero-switch" role="tablist" aria-label="How do you want to use it?">
+        <button type="button" class="hero-switch-btn active" role="tab" id="heroTabBrowser" aria-selected="true" aria-controls="heroPaneBrowser" data-hero="browser">
+          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="3" stroke="currentColor" stroke-width="1.6"></rect><path d="M3 9h18" stroke="currentColor" stroke-width="1.6"></path></svg>
+          Розширення для браузера
+        </button>
+        <button type="button" class="hero-switch-btn" role="tab" id="heroTabBookmarklet" aria-selected="false" aria-controls="heroPaneBookmarklet" tabindex="-1" data-hero="bookmarklet">
+          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 3h12v18l-6-4-6 4V3Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"></path></svg>
+          Букмарклет
+        </button>
+      </div>
+      <div class="hero-pane" id="heroPaneBrowser" role="tabpanel" aria-labelledby="heroTabBrowser">
+        <div class="hero-cta">
+          <a href="https://chromewebstore.google.com/detail/ai-summary-helper-openai/hldbejcjaedipeegjcinmhejdndchkmb" target="_blank" rel="noopener" class="btn-primary">Додати в Chrome — це безкоштовно</a>
+        </div>
+        <p class="hero-meta">Без обов'язкової реєстрації · Більшість моделей LLM через byPhil API, власний API key або повністю офлайн з Ollama</p>
+      </div>
+      <div class="hero-pane" id="heroPaneBookmarklet" role="tabpanel" aria-labelledby="heroTabBookmarklet" hidden="">
+        <p class="hero-pane-blurb">Одне посилання на панелі закладок у будь-якому браузері та ОС — включно з iOS. Жодного встановлення: стислий зміст з'являється просто на сторінці.</p>
+        <div class="hero-cta">
+          <a href="bookmarklet.html" class="btn-primary" data-track="bookmarklet-open">Створити букмарклет →</a>
+        </div>
+        <p class="hero-meta">Відкриває генератор · більшість моделей LLM через byPhil API (без ключа) або власні OpenAI, Gemini, Mistral, DeepSeek чи Ollama</p>
+      </div>
+      <ol class="hs-steps" data-stage-pane="browser">
+  <li class="is-on" data-step="0" role="button" tabindex="0"><b>Читайте будь-яку сторінку.</b><span>Відкривайте статтю як зазвичай. AISH непомітно працює у браузері.</span></li>
+  <li data-step="1" role="button" tabindex="0"><b>Стислий зміст поруч зі статтею.</b><span>В один клік. Короткий зміст з'являється на бічній панелі, поки ви продовжуєте читати.</span></li>
+  <li data-step="2" role="button" tabindex="0"><b>Запитуйте про зміст сторінки.</b><span>Відповіді на уточнювальні запитання вказують на конкретні фрагменти тексту, звідки взято інформацію.</span></li>
+  <li data-step="3" role="button" tabindex="0"><b>Вашою мовою.</b><span>Підсумки обраною вами мовою та граф усього, що ви прочитали.</span></li>
+</ol>
+    </div></div>
+    <div class="hs-vwrap" data-stage-pane="browser">
+      <div class="hs-vis">
+        <p class="hscene-mcap" aria-hidden="true"><strong data-mcap-t="">Читайте будь-яку сторінку.</strong> <span data-mcap-s="">Відкривайте статтю як зазвичай.</span></p>
+        <div class="hscene-view">
+          <div class="hscene-canvas" aria-hidden="true">
+            <div class="hs-langs" data-no-translate=""><b data-lang="a" class="is-on">English</b><b data-lang="b">Deutsch</b><b>Français</b><b>Español</b><b>日本語</b></div>
+            <div class="hs-badge" data-no-translate=""><i></i> Runs locally · gemma3:4b</div>
+            <div class="hs-win" data-no-translate="">
+              <div class="hs-bar"><i></i><i></i><i></i><span>🔒 dailyledger.example/work-life/office-fern</span><div class="hs-ext"><em class="hs-puz">🧩</em><em class="hs-extbtn"><span class="hs-logo"></span></em></div></div>
+              <div class="hs-art">
+                <div class="hs-mast">The Daily Ledger</div>
+                <div class="hs-kick">WORK &amp; LIFE</div>
+                <h4>Office fern outlives four reorganisations, now up for team lead</h4>
+                <p class="hs-dek">Colleagues praise the plant’s “remarkable resilience”.</p>
+                <p>Leeds. When the logistics team moved floors in 2019, nobody expected Gerald to survive.</p>
+                <p class="hs-hl">Seven years and four reorganisations later, the office fern is the longest-serving member of the department.</p>
+                <p>He has never once scheduled a meeting that could have been an email.</p>
+              </div>
+              <div class="hs-panel">
+                <div class="hs-ph"><span class="hs-logo"></span> AI Summary Helper</div>
+                <div class="hs-tags"><i>workplace</i><i>humour</i><i>🌐 <span data-lang-code="">en</span></i></div>
+                <div class="hs-sum has-text">
+                  <small>✨ AI Summary</small>
+                  <i class="hs-ph2">Press Summarize to read this page in seconds.</i>
+                  <b class="hs-st" data-t-en="A fern climbs the career ladder" data-t-de="Ein Farn macht Karriere">A fern climbs the career ladder</b>
+                  <span class="hs-sb" data-b-en="Gerald, an office fern in Leeds, has outlasted <strong>four reorganisations in seven years</strong> and is now up for team lead." data-b-de="Gerald, ein Büro-Farn in Leeds, hat <strong>vier Umstrukturierungen in sieben Jahren</strong> überstanden und soll nun Teamleiter werden.">Gerald, an office fern in Leeds, has outlasted <strong>four reorganisations in seven years</strong> and is now up for team lead.</span>
+                  <span class="hs-sp" data-p-en="87% of staff call him the most reliable presence in the office." data-p-de="87 % der Belegschaft halten ihn für die verlässlichste Präsenz im Büro.">• 87% of staff call him the most reliable presence in the office.</span>
+                </div>
+                <div class="hs-qwrap"><button type="button" class="hs-sugg" tabindex="-1">💬 Why is Gerald up for promotion?</button><div class="hs-q"><span>Why is Gerald up for promotion?</span></div></div>
+                <div class="hs-a">Staff see him as the most reliable presence in the office.<em>📌 In article</em></div>
+                <div class="hs-tabs"><i>Feeds</i><i class="on">Summarize</i><i>History</i></div>
+              </div>
+            </div>
+            <div class="hs-graph" data-no-translate="">
+              <small>🕸 Your knowledge graph</small>
+              <svg viewBox="0 0 160 70" width="160" height="70"><g stroke="#9db4ea" stroke-width="1.4"><line x1="20" y1="40" x2="70" y2="18"></line><line x1="70" y1="18" x2="120" y2="42"></line><line x1="70" y1="18" x2="140" y2="14"></line><line x1="120" y1="42" x2="96" y2="58"></line></g><g><circle cx="20" cy="40" r="5" fill="#2563eb"></circle><circle cx="70" cy="18" r="7" fill="#16a37f"></circle><circle cx="120" cy="42" r="5" fill="#2563eb"></circle><circle cx="140" cy="14" r="5" fill="#e5484d"></circle><circle cx="96" cy="58" r="5" fill="#2563eb"></circle></g></svg>
+              <div><b>2h 48m</b> saved · <b>11</b> day streak 🔥</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="hs-ctrl" role="group" aria-label="Walkthrough"><button type="button" class="hs-pp" aria-label="Pause walkthrough"><svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><path class="pp-pause" d="M7 5h3v14H7zM14 5h3v14h-3z" fill="currentColor"></path><path class="pp-play" d="M8 5l11 7-11 7z" fill="currentColor"></path></svg></button><button type="button" class="hs-dot is-on" aria-label="Step 1"></button><button type="button" class="hs-dot" aria-label="Step 2"></button><button type="button" class="hs-dot" aria-label="Step 3"></button><button type="button" class="hs-dot" aria-label="Step 4"></button></div>
+      <p class="sr-only">AI Summary Helper відкриває короткий зміст статті на бічній панелі, дає змогу ставити уточнювальні запитання з посиланням на першоджерело та перекладає підсумки потрібною мовою.</p>
+    </div>
+    <div class="hs-bm" data-stage-pane="bookmarklet" hidden="">
+      <div class="bm-mock" aria-hidden="true" data-no-translate="">
+            <div class="bm-win">
+              <div class="bm-tb"><i></i><i></i><i></i><span>🔒 dailyledger.example/work-life/office-fern</span></div>
+              <div class="bm-bar"><span>Mail</span><span>Docs</span><span>Maps</span><span class="bm-mark">✨ Summarize</span></div>
+              <div class="bm-page">
+                <div class="bm-mast">The Daily Ledger</div>
+                <h4>Office fern outlives four reorganisations, now up for team lead</h4>
+                <p>Leeds. When the logistics team moved floors in 2019, nobody expected Gerald to survive.</p>
+                <p>Seven years and four reorganisations later, the office fern is the longest-serving member of the department.</p>
+                <p>He has never once scheduled a meeting that could have been an email.</p>
+                <div class="bm-card"><small>✨ AI Summary</small><b>A fern climbs the career ladder</b><span>Gerald, an office fern in Leeds, has outlasted <strong>four reorganisations in seven years</strong> and is now up for team lead.</span></div>
+              </div>
+              <svg class="bm-cursor" viewBox="0 0 24 24" width="26" height="26"><path d="M4 2l15 9-6.5 1.5L9 19z" fill="#14161f" stroke="#fff" stroke-width="1.4" stroke-linejoin="round"></path></svg>
+            </div>
+          </div>
+      <ol class="bm-steps">
+  <li><span class="bm-n">1</span><div><h3>Налаштуйте один раз</h3><p>Оберіть byPhil API (без ключа) або власний ключ OpenAI, Gemini, Mistral, DeepSeek чи Ollama.</p></div></li>
+  <li><span class="bm-n">2</span><div><h3>Перетягніть на панель закладок</h3><p>Будь-який браузер, будь-яка ОС, включно з iOS. Нічого не потрібно встановлювати.</p></div></li>
+  <li><span class="bm-n">3</span><div><h3>Натисніть на будь-якій сторінці</h3><p>Стислий зміст з'явиться просто на сторінці — з можливістю запитань та вашою мовою.</p></div></li>
+</ol>
+    </div>
+  </div>
+</section>
+
+  <!-- ── See it ──────────────────────────────────────────────────── -->
+  <!-- Screenshots are localized by scripts/translate.mjs: "-en.webp" is swapped for
+       "-<locale>.webp" when docs/assets/shots/ has that file, else it stays English. -->
+  <section id="see-it">
+    <div class="wrap">
+      <div class="section-head center reveal">
+        <div class="eyebrow">Подивіться</div>
+        <h2>Стислий зміст розташований поруч зі статтею</h2>
+        <p>Ознайомтеся з головним, поставте запитання та дізнайтеся, з якого фрагмента взято відповідь. Реальний інтерфейс версії 2.2.</p>
+      </div>
+      <div class="cx reveal" data-carousel="" role="region" aria-roledescription="carousel" aria-label="Product screenshots">
+        <div class="cx-stage">
+          <ul class="cx-track" tabindex="0">
+          <li class="cx-slide is-active" role="group" aria-roledescription="slide" aria-label="1 / 4">
+            <figure>
+              <img src="../assets/shots/aish-inpage-detail-en.webp" width="1440" height="900" loading="lazy" alt="Стислий зміст на бічній панелі поруч зі статтею">
+              <figcaption><strong>Стислий зміст поруч зі статтею</strong><span>Читайте головне, не залишаючи сторінки.</span></figcaption>
+            </figure>
+          </li>
+          <li class="cx-slide" role="group" aria-roledescription="slide" aria-label="2 / 4">
+            <figure>
+              <img src="../assets/shots/aish-inpage-ask-en.webp" width="1440" height="900" loading="lazy" alt="Відповідь на уточнювальне запитання з позначкою джерела та підсвіченими реченнями в статті">
+              <figcaption><strong>Запитуйте про вміст сторінки</strong><span>Відповіді вказують на першоджерело в тексті.</span></figcaption>
+            </figure>
+          </li>
+          <li class="cx-slide" role="group" aria-roledescription="slide" aria-label="3 / 4">
+            <figure>
+              <img src="../assets/shots/aish-split-wide-en.webp" width="1280" height="800" loading="lazy" alt="Розділений вигляд зі списком, графом знань та аналітикою поруч">
+              <figcaption><strong>Новинка у 2.2: розділений вигляд</strong><span>Список, граф знань та аналітика поруч на великих екранах.</span></figcaption>
+            </figure>
+          </li>
+          <li class="cx-slide" role="group" aria-roledescription="slide" aria-label="4 / 4">
+            <figure>
+              <img src="../assets/shots/aish-research-dark-en.webp" width="1280" height="800" loading="lazy" alt="Режим дослідження з колекцією наукових статей у темній темі">
+              <figcaption><strong>Новинка у 2.2: режим дослідження</strong><span>Деталі досліджень, цитування DOI та колекції для наукових статей.</span></figcaption>
+            </figure>
+          </li>
+          </ul>
+          <button type="button" class="cx-nav cx-prev" aria-label="Previous slide"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m15 18-6-6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg></button>
+          <button type="button" class="cx-nav cx-next" aria-label="Next slide"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m9 18 6-6-6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg></button>
+        </div>
+        <div class="cx-dots"><button type="button" class="cx-dot is-active" aria-label="Slide 1"></button><button type="button" class="cx-dot" aria-label="Slide 2"></button><button type="button" class="cx-dot" aria-label="Slide 3"></button><button type="button" class="cx-dot" aria-label="Slide 4"></button></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="try-it">
+    <div class="wrap">
+      <div class="section-head center reveal">
+        <div class="eyebrow">Спробуйте</div>
+        <h2>Натисніть «Підсумувати» на реальній сторінці</h2>
+        <p>Це справжній інтерфейс розширення, що працює у вашому браузері на прикладі статті. Жодні дані нікуди не надсилаються.</p>
+      </div>
+      <div class="demo-frame reveal" data-demo="" data-src="../demo/index.html">
+        <button class="demo-start" type="button"><span class="demo-play" aria-hidden="true">▶</span><span>Запустити інтерактивне демо</span></button>
+        <a class="demo-open" href="../demo/index.html" target="_blank" rel="noopener">Відкрити на весь екран ↗</a>
+      </div>
+      <div class="demo-cta reveal"><a href="https://chromewebstore.google.com/detail/ai-summary-helper-openai/hldbejcjaedipeegjcinmhejdndchkmb" target="_blank" rel="noopener" class="btn-primary" data-track="demo-add-chrome">Додати в Chrome — це безкоштовно</a><a href="https://addons.mozilla.org/en-US/firefox/addon/ai-summary-helper/" target="_blank" rel="noopener" class="btn-secondary" data-store="alt" data-track="demo-add-firefox">Firefox</a></div>
+    </div>
+  </section>
+
+  <!-- ── Features ────────────────────────────────────────────────── -->
+  <section id="features">
+    <div class="wrap">
+      <div class="section-head center reveal">
+        <div class="eyebrow">Як це працює</div>
+        <h2>Усе, чим мав бути список для читання із самого початку</h2>
+        <p>Зберігайте, розумійте суть, легко знаходьте знову та повертайтеся до читання — без чергової підписки, що тримає ваш архів у заручниках.</p>
+      </div>
+
+      <!-- Persona switch: same 6 features throughout, no feature ever
+           hidden — this only re-orders emphasis (border highlight vs.
+           dim) and swaps one line of framing copy. Nothing here changes
+           what's actually rendered for a crawler beyond that, so it
+           costs nothing on the GEO/SEO side. -->
+      <div class="persona-switch reveal" role="group" aria-label="Who are you? Highlights the matching features below">
+        <button type="button" class="persona-btn active" data-persona="privacy" aria-pressed="true">
+          <svg viewBox="0 0 24 24" fill="none"><path d="M12 3l7 3v6c0 4.5-3 7.5-7 9-4-1.5-7-4.5-7-9V6l7-3Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"></path></svg>
+          Конфіденційність понад усе
+        </button>
+        <button type="button" class="persona-btn" data-persona="hoarder" aria-pressed="false">
+          <svg viewBox="0 0 24 24" fill="none"><rect x="4" y="4" width="16" height="16" rx="3" stroke="currentColor" stroke-width="1.6"></rect><path d="M8 9h8M8 13h5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"></path></svg>
+          Колекціонер вкладок
+        </button>
+        <button type="button" class="persona-btn" data-persona="researcher" aria-pressed="false">
+          <svg viewBox="0 0 24 24" fill="none"><circle cx="5" cy="6" r="1.8" fill="currentColor"></circle><circle cx="19" cy="6" r="1.8" fill="currentColor" opacity="0.85"></circle><circle cx="12" cy="12" r="2.1" fill="currentColor"></circle><circle cx="6" cy="18" r="1.8" fill="currentColor" opacity="0.85"></circle><circle cx="18" cy="18" r="1.8" fill="currentColor" opacity="0.85"></circle><path d="M5 6 12 12M19 6 12 12M12 12 6 18M12 12 18 18" stroke="currentColor" stroke-width="1.1" opacity="0.55"></path></svg>
+          Дослідник
+        </button>
+      </div>
+      <p class="persona-blurb reveal" id="personaBlurb" aria-live="polite">Ви самі обираєте модель, сервер і те, чи залишають дані ваш комп'ютер взагалі.</p>
+
+      <div class="feature-grid reveal" id="featureGrid">
+        <div class="feature-card" data-personas="privacy researcher">
+          <div class="f-icon icon-cyan"><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="6" r="2.6" fill="#fff"></circle><circle cx="6" cy="17" r="2.2" fill="#fff" opacity="0.85"></circle><circle cx="18" cy="17" r="2.2" fill="#fff" opacity="0.85"></circle><path d="M12 8.6 L6.8 14.8 M12 8.6 L17.2 14.8" stroke="#fff" stroke-width="1.4" stroke-linecap="round" opacity="0.7"></path></svg></div>
+          <h3>ШІ-підсумки з моделлю на ваш вибір</h3>
+          <p>OpenAI, Gemini, Mistral, DeepSeek або власний сервер — або підключіть локальну модель Ollama, і жоден запит на цьому етапі взагалі не вийде в мережу.</p>
+        </div>
+        <div class="feature-card" data-personas="privacy researcher">
+          <div class="f-icon icon-gold"><svg viewBox="0 0 24 24" fill="none"><path d="M5 5h14M5 9h14M5 13h14M5 17h14" stroke="#fff" stroke-width="2.2" stroke-linecap="round"></path><path d="M5 5l14 0M5 9l14 0M5 13l14 0M5 17l14 0" stroke="#fff" stroke-width="2.2" stroke-linecap="round" opacity="0.35"></path></svg></div>
+          <h3>Автоматичні виділення просто на сторінці</h3>
+          <p>ШІ м'яко підсвічує <mark class="ai-ghost-highlight">найважливіші цитати</mark> у статті — щоб ви могли <mark class="ai-ghost-highlight">миттєво вловити ключові думки</mark>, і вони експортуються разом із підсумком на Kindle, у LocalSend або Markdown.</p>
+        </div>
+        <div class="feature-card" data-personas="privacy researcher">
+          <div class="f-icon icon-violet"><svg viewBox="0 0 24 24" fill="none"><path d="M11 4a7 7 0 1 0 4.9 12.1l4.6 4.6" stroke="#fff" stroke-width="1.7" stroke-linecap="round"></path></svg></div>
+          <h3>Справжній пошук просто на пристрої</h3>
+          <p>Повнотекстовий пошук за заголовками, тегами та вмістом статей на основі індексу TF-IDF, створеного у вашому браузері. Без затримок, без звернень до серверів — усе залишається у вас.</p>
+        </div>
+        <div class="feature-card" data-personas="hoarder">
+          <div class="f-icon icon-indigo"><svg viewBox="0 0 24 24" fill="none"><path d="M6 3h12v18l-6-4-6 4V3Z" stroke="#fff" stroke-width="1.6" stroke-linejoin="round"></path></svg></div>
+          <h3>Зберегти на потім — свідомо</h3>
+          <p>Позначте статтю як «рішення» із причиною та терміном, щоб отримати нагадування, замість того щоб дивитися, як вона губиться в купі непрочитаного.</p>
+        </div>
+        <div class="feature-card" data-personas="hoarder">
+          <div class="f-icon icon-gold"><svg viewBox="0 0 24 24" fill="none"><rect x="4" y="4" width="16" height="16" rx="3" stroke="#fff" stroke-width="1.6"></rect><path d="M8 9h8M8 13h5" stroke="#fff" stroke-width="1.6" stroke-linecap="round"></path></svg></div>
+          <h3>Дайджест, який формується сам</h3>
+          <p>В один дотик створює невелику різноманітну добірку збереженого — без п'яти версій однієї новини — й об'єднує в один файл для Kindle або LocalSend.</p>
+        </div>
+        <div class="feature-card" data-personas="researcher">
+          <div class="f-icon icon-cyan"><svg viewBox="0 0 24 24" fill="none"><circle cx="5" cy="6" r="1.8" fill="#fff"></circle><circle cx="19" cy="6" r="1.8" fill="#fff" opacity="0.85"></circle><circle cx="12" cy="12" r="2.1" fill="#fff"></circle><circle cx="6" cy="18" r="1.8" fill="#fff" opacity="0.85"></circle><circle cx="18" cy="18" r="1.8" fill="#fff" opacity="0.85"></circle><path d="M5 6 12 12M19 6 12 12M12 12 6 18M12 12 18 18" stroke="#fff" stroke-width="1.1" opacity="0.55"></path></svg></div>
+          <h3>Граф знань замість звичайного списку</h3>
+          <p>Дивіться, як пов'язані збережені статті — через спільні теги або за схожістю тем, навіть якщо тегів немає.</p>
+        </div>
+        <div class="feature-card" data-personas="hoarder researcher">
+          <div class="f-icon icon-indigo"><svg viewBox="0 0 24 24" fill="none"><circle cx="6" cy="18" r="1.8" fill="#fff"></circle><path d="M5 11a8 8 0 0 1 8 8M5 5a14 14 0 0 1 14 14" stroke="#fff" stroke-width="1.8" stroke-linecap="round"></path></svg></div>
+          <h3>Вбудований RSS-рідер</h3>
+          <p>Стежте за блогами й новинами, фільтруйте за джерелом, тегом, датою чи настроєм, імпортуйте OPML і відкривайте чи підсумовуйте будь-яку публікацію в один клік. Слухайте подкасти просто в розширенні та отримуйте щоденні ШІ-підсумки за заголовками. Обране потрапляє в архів, а стрічки зберігаються локально на вашому пристрої.</p>
+        </div>
+        <div class="feature-card" data-personas="privacy hoarder researcher">
+          <div class="f-icon icon-violet"><svg viewBox="0 0 24 24" fill="none"><path d="M4 12h16M12 4c2.8 2.6 4.2 5.2 4.2 8s-1.4 5.4-4.2 8c-2.8-2.6-4.2-5.2-4.2-8s1.4-5.4 4.2-8Z" stroke="#fff" stroke-width="1.5"></path></svg></div>
+          <h3>20+ мов, кросплатформеність</h3>
+          <p>Читайте та підсумовуйте зручною мовою. Розширення, нативна бічна панель або <a href="bookmarklet.html">букмарклет</a> — для випадків, коли розширення недоступне.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    (function(){
+      var PERSONAS = {
+        privacy:    "You choose the model, the server, and whether anything leaves your machine at all.",
+        hoarder:    "The problem was never saving. It's getting back to what you saved — this is built around that part.",
+        researcher: "Every save becomes searchable, connected, and exportable — a real archive, not a growing pile."
+      };
+      var buttons = document.querySelectorAll('.persona-btn');
+      var cards = document.querySelectorAll('#featureGrid .feature-card');
+      var blurb = document.getElementById('personaBlurb');
+
+      function setPersona(name) {
+        buttons.forEach(function(b){
+          var active = b.getAttribute('data-persona') === name;
+          b.classList.toggle('active', active);
+          b.setAttribute('aria-pressed', active ? 'true' : 'false');
+        });
+        cards.forEach(function(c){
+          var match = (c.getAttribute('data-personas') || '').split(' ').indexOf(name) !== -1;
+          c.classList.toggle('persona-match', match);
+          c.classList.toggle('persona-dim', !match);
+        });
+        if (PERSONAS[name]) blurb.textContent = PERSONAS[name];
+      }
+
+      buttons.forEach(function(b){
+        b.addEventListener('click', function(){
+          setPersona(b.getAttribute('data-persona'));
+          window.aishTrack && window.aishTrack('Persona', 'select', b.getAttribute('data-persona'));
+        });
+      });
+    })();
+  </script>
+
+  <!-- ── Digest spotlight ────────────────────────────────────────── -->
+  <section id="digest">
+    <div class="wrap">
+      <div class="section-head center reveal">
+        <div class="eyebrow">Проблема 84%</div>
+        <h2>Більшість збереженого ви ніколи не відкриєте знову</h2>
+        <p>Дослідження звичок збереження закладок стабільно показують: переважна більшість збережених статей ніколи не перечитується. Справа не в самодисципліні — це природний наслідок інструментів, які спрощують збереження, але не допомагають вибрати, що справді варто прочитати.</p>
+      </div>
+      <div class="feature-grid digest-steps reveal">
+        <div class="feature-card">
+          <h3 style="margin-top:0;">1. Натисніть «Дайджест»</h3>
+          <p>Він вибере 5 ваших збережень, надаючи пріоритет свіжості та різноманітності, щоб ви не читали п'ять однакових новин.</p>
+        </div>
+        <div class="feature-card">
+          <h3 style="margin-top:0;">2. Налаштуйте настрій за бажанням</h3>
+          <p>Позитивний, нейтральний чи глибокий і серйозний — дайджест підлаштує добірку під той тон, який вам зараз підходить.</p>
+        </div>
+        <div class="feature-card">
+          <h3 style="margin-top:0;">3. Надішліть для офлайн-читання</h3>
+          <p>Єдиний файл, надісланий просто на ваш Kindle або пристрій у локальній мережі. Завантажте перед перельотом, дорогою на роботу чи вихідними без зв'язку.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Phone companion ────────────────────────────────────────── -->
+  <section id="phone">
+    <div class="wrap">
+      <div class="section-head center reveal">
+        <div class="eyebrow">Новинка · Android <span class="beta-badge">Бета</span></div>
+        <h2>Діліться посиланням із телефона, читайте підсумок на комп'ютері</h2>
+        <p>Додаток AISH Companion додає пункт «AISH» у меню «Поділитися» на телефоні. Посилання з наскрізним шифруванням передаються у браузер і чекають в Історії, де їх можна підсумувати в один дотик.</p>
+      </div>
+      <div class="feature-grid digest-steps reveal">
+        <div class="feature-card">
+          <h3 style="margin-top:0;">1. Підключіть один раз</h3>
+          <p>У розширенні відкрийте Налаштування → Вхідні з телефона та відскануйте QR-код через мобільний додаток. Акаунт не потрібен.</p>
+        </div>
+        <div class="feature-card">
+          <h3 style="margin-top:0;">2. Діліться з будь-якого додатка</h3>
+          <p>Натисніть Поділитися → AISH у браузері, розсилці чи чаті. Працює і в офлайні — посилання надішлеться, щойно з'явиться зв'язок.</p>
+        </div>
+        <div class="feature-card">
+          <h3 style="margin-top:0;">3. Натисніть «Підсумувати»</h3>
+          <p>Надіслані посилання з'являться в Історія → З телефона. Натисніть «Підсумувати», і розширення зробить решту за допомогою вашого ШІ-провайдера.</p>
+        </div>
+      </div>
+      <div class="hero-cta reveal" style="margin-top:28px;justify-content:center;">
+        <a href="https://github.com/philffm/ai-summary-helper/releases/latest/download/aish-companion.apk" class="btn-primary" data-track="companion-apk">Завантажити для Android (APK) <span class="beta-badge">Бета</span></a>
+      </div>
+      <p class="hero-meta reveal" style="text-align:center;">Android 8 або новіша версія · безкоштовно та з відкритим кодом · потрібне розширення для браузера · сервер бачить лише зашифровані дані · версія для iOS поки в розробці</p>
+    </div>
+  </section>
+
+  <!-- ── Why on-device ──────────────────────────────────────────── -->
+  <section>
+    <div class="wrap wrap-narrow">
+      <div class="section-head center reveal">
+        <div class="eyebrow">Створено за принципами byphil</div>
+        <h2>Ваш архів належить тільки вам</h2>
+        <p>Пошук, виявлення дублікатів, очищення тегів, оцінка складності й тональності тексту та рекомендації схожих статей працюють виключно у вашому браузері: жодного сервера й жодної обов'язкової реєстрації. Єдине, що виходить за межі вашого пристрою, — це сам запит на створення підсумку, і лише до того ШІ-провайдера, якого ви обрали. Якщо підключити локальну модель Ollama, навіть цей запит залишиться у вас.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Pricing ─────────────────────────────────────────────────── -->
+  <section id="pricing">
+    <div class="wrap wrap-narrow">
+      <div class="section-head center reveal">
+        <div class="eyebrow">Один ключ до всіх інструментів byphil</div>
+        <h2>Безкоштовно на старті. Pro — коли знадобиться.</h2>
+        <p>Support Pass — це не просто підписка на одне розширення. Це єдиний ключ, який відкриває преміум-доступ до всіх розробок byphil і керується у вашому акаунті byphil.</p>
+      </div>
+
+      <div style="text-align:center;">
+        <div class="tier-toggle reveal" role="group" aria-label="Billing period">
+          <button type="button" class="active" id="btnMonthly" aria-pressed="true" onclick="setBilling('monthly')">Щомісяця</button>
+          <button type="button" id="btnYearly" aria-pressed="false" onclick="setBilling('yearly')">Щороку · знижка 50%</button>
+        </div>
+      </div>
+
+      <div class="tiers reveal" id="tiersGrid">
+        <div class="tier-card">
+          <div class="tier-name">Безкоштовно</div>
+          <div class="tier-price">€0</div>
+          <div class="tier-note">Усе на пристрої, завжди</div>
+          <ul>
+            <li>Необмежена кількість підсумків із власним API key або Ollama</li>
+            <li>Пошук, дайджест, граф знань — усе локально на пристрої</li>
+            <li>3 відправки на Kindle у комплекті</li>
+          </ul>
+          <a href="https://chromewebstore.google.com/detail/ai-summary-helper-openai/hldbejcjaedipeegjcinmhejdndchkmb" target="_blank" rel="noopener" class="tier-cta">Додати в Chrome</a>
+        </div>
+
+        <div class="tier-card best">
+          <div class="best-badge">Найвигідніше</div>
+          <div class="tier-name">Support Pass</div>
+          <div class="tier-price">
+            <span class="price-monthly">€4.99<span>/міс</span></span>
+            <span class="price-yearly">€29.94<span>/рік</span></span>
+          </div>
+          <div class="tier-note">Оплата <span class="price-monthly">щомісяця</span><span class="price-yearly">щороку</span></div>
+          <ul>
+            <li>Необмежена відправка на Kindle та через LocalSend, включно з дайджестами</li>
+            <li>Доступ до хмарного ШІ byphil Cloud — без потреби у власному API key</li>
+            <li>Відкриває Pro-можливості в усіх інструментах byphil</li>
+          </ul>
+          <a href="https://byphil.eu/#pass" class="tier-cta">Оформити Support Pass</a>
+        </div>
+
+        <div class="tier-card">
+          <div class="tier-name">Donator Pass</div>
+          <div class="tier-price">€50<span>/одноразово</span></div>
+          <div class="tier-note">12 місяців повного доступу</div>
+          <ul>
+            <li>Усе, що входить у Support Pass</li>
+            <li>Пряма підтримка розробки майбутніх інструментів</li>
+          </ul>
+          <a href="https://byphil.eu/#pass" class="tier-cta">Підтримати та розблокувати</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── FAQ ─────────────────────────────────────────────────────── -->
+  <section>
+    <div class="wrap">
+      <div class="section-head center reveal">
+        <div class="eyebrow">Запитання</div>
+        <h2>Перед встановленням</h2>
+      </div>
+      <div class="faq reveal">
+        <details>
+          <summary>Чи потрібен акаунт для використання?</summary>
+          <p>Ні. Встановлюйте, підключайте власний API key для ШІ (або використовуйте локальну модель Ollama) та зберігайте статті. Акаунт знадобиться лише для доступу до byphil Cloud або необмежених відправок на Kindle чи через LocalSend у межах Support Pass.</p>
+        </details>
+        <details>
+          <summary>Які дані насправді виходять із браузера?</summary>
+          <p>Лише сам запит на створення підсумку (надсилається обраному вами ШІ-провайдеру), а якщо ви користуєтеся RSS-рідером — запити до стрічок, на які ви підписалися, та заголовки й короткі описи за день, коли ви натискаєте кнопку щоденного ШІ-підсумку. Пошук, виявлення дублікатів, очищення тегів, оцінка складності й тональності та рекомендації схожих статей працюють локально у вашому збереженому архіві.</p>
+        </details>
+        <details>
+          <summary>Чи можна користуватися взагалі без хмарних сервісів?</summary>
+          <p>Так — оберіть локальну модель Ollama, і створення підсумків також відбуватиметься суто на вашому комп'ютері. Усе інше вже працює локально.</p>
+        </details>
+        <details>
+          <summary>Що станеться зі збереженими статтями, якщо я скасую Support Pass?</summary>
+          <p>Ваш архів залишиться там, де й був — у локальному сховищі браузера на вашому пристрої. Support Pass відкриває доступ лише до додаткових хмарних функцій (ШІ byphil Cloud, необмежена відправка на Kindle / LocalSend), але ніколи не блокує доступ до збереженого.</p>
+        </details>
+        <details>
+          <summary>Як встановити додаток для Android?</summary>
+          <p>Завантажте APK за посиланням вище (або зі сторінки <a href="https://github.com/philffm/ai-summary-helper/releases/latest" target="_blank" rel="noopener">останнього релізу</a>), відкрийте файл і дозвольте встановлення з браузера на запит Android. Потім підключіть додаток, відсканувавши QR-код у розширенні: Налаштування → Вхідні з телефона. У Google Play додатка поки немає.</p>
+        </details>
+        <details>
+          <summary>Чи відкритий вихідний код проєкту?</summary>
+          <p>Так — вихідний код розширення доступний на <a href="https://github.com/philffm/ai-summary-helper/" target="_blank" rel="noopener">GitHub</a>.</p>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Blog teaser ─────────────────────────────────────────────── -->
+  <section>
+    <div class="wrap">
+      <div class="section-head reveal">
+        <div class="eyebrow">Із блогу</div>
+        <h2>Думки про читання, пошук та локальну розробку</h2>
+        <p>Чого ми навчилися, створюючи пошук, дайджести та розпізнавання дублікатів — і як вони допомагають обрати інструмент для відкладеного читання.</p>
+      </div>
+      <div class="blog-grid reveal">
+        <a class="blog-card" href="blog/from-bookmarklet-to-2.html">
+          <span class="blog-date">Продукт</span>
+          <h3>Від букмарклета до версії 2.0: чим став AI Summary Helper сьогодні</h3>
+          <p>Усе починалося у 2024 році як простий букмарклет для Kindle. Ось історія всіх змін на шляху до відкритої версії 2.0.</p>
+          <span class="blog-read">Читати допис →</span>
+        </a>
+        <a class="blog-card" href="blog/pocket-alternative.html">
+          <span class="blog-date">Гайд</span>
+          <h3>Шукаєте альтернативу Pocket? Ось що насправді має значення</h3>
+          <p>Закриття Pocket створило помітну порожнечу. Посібник із вибору на основі ваших реальних потреб, а не схожості інтерфейсу.</p>
+          <span class="blog-read">Читати допис →</span>
+        </a>
+        <a class="blog-card" href="blog/unread-saves.html">
+          <span class="blog-date">Продукт</span>
+          <h3>Ви не прочитаєте більшість збереженого. Ось як це виправити.</h3>
+          <p>Більшість збережених статей ніколи не відкривають знову. Чому з'явився Дайджест і чому він свідомо не намагається збільшити цю гору.</p>
+          <span class="blog-read">Читати допис →</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Ecosystem: part of byphil ───────────────────────────────── -->
+  <section id="ecosystem">
+    <div class="wrap wrap-narrow">
+      <div class="section-head center reveal">
+        <div class="eyebrow">Не сольний проєкт</div>
+        <h2>Частина екосистеми byphil</h2>
+        <p>AI Summary Helper — один із кількох незалежних інструментів від byphil. Один акаунт і один Support Pass відкривають преміум-доступ до всіх продуктів — зараз і в майбутньому.</p>
+      </div>
+
+      <div class="feature-grid digest-steps reveal">
+        <div class="feature-card ecosystem-card self">
+          <span class="f-badge">Ви тут</span>
+          <div class="f-icon icon-cyan"><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="6" r="2.6" fill="#fff"></circle><circle cx="6" cy="17" r="2.2" fill="#fff" opacity="0.85"></circle><circle cx="18" cy="17" r="2.2" fill="#fff" opacity="0.85"></circle><path d="M12 8.6 L6.8 14.8 M12 8.6 L17.2 14.8" stroke="#fff" stroke-width="1.4" stroke-linecap="round" opacity="0.7"></path></svg></div>
+          <h3>AI Summary Helper</h3>
+          <p>Підсумовуйте, зберігайте та шукайте в інтернеті — локально на пристрої.</p>
+        </div>
+        <a class="feature-card ecosystem-card" href="https://petsetlife.byphil.eu/" target="_blank" rel="noopener">
+          <span class="f-badge">Спільнота мандрівників із тваринами</span>
+          <div class="f-icon icon-gold"><svg viewBox="0 0 24 24" fill="none"><path d="M12 21c-3.5-2.5-7-5.2-7-9.2A4.4 4.4 0 0 1 9.2 7.4c1.1 0 2.1.4 2.8 1.2.7-.8 1.7-1.2 2.8-1.2A4.4 4.4 0 0 1 19 11.8c0 4-3.5 6.7-7 9.2Z" stroke="#fff" stroke-width="1.5" stroke-linejoin="round"></path><path d="M12 3.2c.9 1 1.3 2.1 1.1 3.2-1.1.2-2.1-.1-3-.9-.7-.7-1-1.7-.9-2.7 1 0 2 .3 2.8 1.4Z" fill="#fff" opacity="0.85"></path></svg></div>
+          <h3>PetSetLife</h3>
+          <p>Спільнота для петсітерів і власників житла, які ведуть незалежний від локації спосіб життя.</p>
+        </a>
+        <a class="feature-card ecosystem-card" href="https://matrix.byphil.eu/" target="_blank" rel="noopener">
+          <span class="f-badge">Граф знань</span>
+          <div class="f-icon icon-violet"><svg viewBox="0 0 24 24" fill="none"><circle cx="5" cy="6" r="1.8" fill="#fff"></circle><circle cx="19" cy="6" r="1.8" fill="#fff" opacity="0.85"></circle><circle cx="12" cy="12" r="2.1" fill="#fff"></circle><circle cx="6" cy="18" r="1.8" fill="#fff" opacity="0.85"></circle><circle cx="18" cy="18" r="1.8" fill="#fff" opacity="0.85"></circle><path d="M5 6 12 12M19 6 12 12M12 12 6 18M12 12 18 18" stroke="#fff" stroke-width="1.1" opacity="0.55"></path></svg></div>
+          <h3>Matrix</h3>
+          <p>Досліджуйте взаємозв'язки ідей та звички читання, створено для довгострокового структурування знань.</p>
+        </a>
+      </div>
+
+      <p style="text-align:center; margin-top:28px;">
+        <a href="https://byphil.eu/" target="_blank" rel="noopener" class="btn-secondary">Переглянути всі проєкти byphil →</a>
+      </p>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="footer-inner">
+      <div class="wordmark"><img src="../assets/icon.svg" alt="">AI Summary Helper</div>
+      <div class="foot-links">
+        <a href="https://github.com/philffm/ai-summary-helper/" target="_blank" rel="noopener">Вихідний код на GitHub</a>
+        <a href="bookmarklet.html">Букмарклет (без встановлення)</a>
+        <a href="privacy.html">Конфіденційність</a>
+        <a href="#" data-analytics-settings="">Налаштування аналітики</a>
+        <a href="https://byphil.eu/terms.html#terms-of-service" target="_blank" rel="noopener">Умови використання</a>
+        <a href="https://byphil.eu/terms.html#refunds" target="_blank" rel="noopener">Повернення та відшкодування</a>
+        <a href="https://byphil.eu/terms.html#impressum" target="_blank" rel="noopener">Правова інформація (Impressum)</a>
+      </div>
+    </div>
+    <div class="copyright">© 2026 Phil Wornath. Частина <a href="https://byphil.eu/" class="credit-link">byphil.<span style="color:inherit;">eu</span> ↗</a> — незалежне програмне забезпечення, створене в Німеччині. Платежі обробляються через Stripe (Merchant of Record).<br>
+      <a href="https://ec.europa.eu/consumers/odr" target="_blank" rel="noopener">Врегулювання споживчих спорів у ЄС</a> · Створено та розроблено <a href="https://philwornath.com/" target="_blank" rel="noopener" class="credit-link">philwornath.com ↗</a>
+    </div>
+  </div>
+</footer>
+
+<script src="../assets/hero-i18n.js"></script>
+<script src="../assets/main.js"></script>
+
+
+</body></html>

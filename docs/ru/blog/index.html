@@ -1,0 +1,159 @@
+<!DOCTYPE html><html lang="ru"><head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#08090C">
+<title>Блог — AI Summary Helper</title>
+<meta name="description" content="Заметки о чтении, поиске и локальной обработке данных — от команды AI Summary Helper.">
+
+<script>
+  (function(){
+    try {
+      var saved = localStorage.getItem('aish_theme');
+      var theme = saved === 'light' || saved === 'dark'
+        ? saved
+        : (window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
+      document.documentElement.setAttribute('data-theme', theme);
+    } catch (e) {
+      document.documentElement.setAttribute('data-theme', 'dark');
+    }
+  })();
+</script>
+
+<link rel="icon" type="image/svg+xml" href="../../assets/icon.svg">
+<link rel="stylesheet" href="../../assets/styles.css">
+<script src="../../assets/analytics.js"></script>
+<link rel="alternate" hreflang="x-default" href="https://ai-summary-helper.byphil.eu/blog/index.html"><link rel="alternate" hreflang="en" href="https://ai-summary-helper.byphil.eu/blog/index.html"><link rel="alternate" hreflang="de" href="https://ai-summary-helper.byphil.eu/de/blog/index.html"><link rel="alternate" hreflang="fr" href="https://ai-summary-helper.byphil.eu/fr/blog/index.html"><link rel="alternate" hreflang="es" href="https://ai-summary-helper.byphil.eu/es/blog/index.html"><link rel="alternate" hreflang="zh-Hans" href="https://ai-summary-helper.byphil.eu/zh/blog/index.html"><link rel="alternate" hreflang="zh-Hant" href="https://ai-summary-helper.byphil.eu/zh-tw/blog/index.html"><link rel="alternate" hreflang="ja" href="https://ai-summary-helper.byphil.eu/ja/blog/index.html"><link rel="alternate" hreflang="ko" href="https://ai-summary-helper.byphil.eu/ko/blog/index.html"><link rel="alternate" hreflang="pt-BR" href="https://ai-summary-helper.byphil.eu/pt/blog/index.html"><link rel="alternate" hreflang="hi" href="https://ai-summary-helper.byphil.eu/hi/blog/index.html"><link rel="alternate" hreflang="vi" href="https://ai-summary-helper.byphil.eu/vi/blog/index.html"><link rel="alternate" hreflang="nl" href="https://ai-summary-helper.byphil.eu/nl/blog/index.html"><link rel="alternate" hreflang="it" href="https://ai-summary-helper.byphil.eu/it/blog/index.html"><link rel="alternate" hreflang="ru" href="https://ai-summary-helper.byphil.eu/ru/blog/index.html"><link rel="alternate" hreflang="uk" href="https://ai-summary-helper.byphil.eu/uk/blog/index.html"><link rel="alternate" hreflang="tr" href="https://ai-summary-helper.byphil.eu/tr/blog/index.html"><link rel="alternate" hreflang="id" href="https://ai-summary-helper.byphil.eu/id/blog/index.html"><link rel="alternate" hreflang="pl" href="https://ai-summary-helper.byphil.eu/pl/blog/index.html"><link rel="alternate" hreflang="th" href="https://ai-summary-helper.byphil.eu/th/blog/index.html"><link rel="alternate" hreflang="ar" href="https://ai-summary-helper.byphil.eu/ar/blog/index.html"><link rel="alternate" hreflang="sv" href="https://ai-summary-helper.byphil.eu/sv/blog/index.html"><link rel="alternate" hreflang="da" href="https://ai-summary-helper.byphil.eu/da/blog/index.html"><link rel="alternate" hreflang="nb" href="https://ai-summary-helper.byphil.eu/no/blog/index.html"><link rel="alternate" hreflang="fi" href="https://ai-summary-helper.byphil.eu/fi/blog/index.html"></head>
+<body>
+
+<a href="#main" class="skip-link">Перейти к содержимому</a>
+
+<header class="nav">
+  <div class="wrap nav-inner">
+    <div class="brand-cluster">
+      <div class="wordmark">
+        <img src="../../assets/icon.svg" alt="">
+        AI Summary Helper
+      </div>
+      <a href="https://byphil.eu/" target="_blank" rel="noopener" class="ecosystem-badge">
+        <span class="pulse-dot"></span> Проект byphil.
+      </a>
+    </div>
+    <div class="nav-desktop-group nav-desktop-links">
+      <nav class="links" aria-label="Primary">
+        <a href="../index.html#features">Возможности</a>
+        <a href="../index.html#pricing">Тарифы</a>
+        <a href="./" aria-current="page">Блог</a>
+        <a href="https://github.com/philffm/ai-summary-helper/" target="_blank" rel="noopener">GitHub</a>
+      </nav>
+      <button type="button" class="theme-toggle" id="themeToggle" aria-label="Switch to light mode">
+        <svg class="icon-moon" viewBox="0 0 24 24" fill="none"><path d="M20 14.5A8.5 8.5 0 1 1 9.5 4a6.8 6.8 0 0 0 10.5 10.5Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"></path></svg>
+        <svg class="icon-sun" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="4.2" stroke="currentColor" stroke-width="1.6"></circle><path d="M12 2.5v2.4M12 19.1v2.4M4.4 4.4l1.7 1.7M17.9 17.9l1.7 1.7M2.5 12h2.4M19.1 12h2.4M4.4 19.6l1.7-1.7M17.9 6.1l1.7-1.7" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"></path></svg>
+      </button>
+      <a href="../index.html" class="btn-sign-in">← Назад в приложение</a>
+    </div>
+    <button type="button" class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="mobileMenu" aria-label="Open menu">
+      <svg viewBox="0 0 24 24" fill="none"><path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"></path></svg>
+    </button>
+  </div>
+  <div class="mobile-menu" id="mobileMenu" hidden="">
+    <div class="wrap mobile-menu-inner">
+      <a href="../index.html#features">Возможности</a>
+      <a href="../index.html#pricing">Тарифы</a>
+      <a href="./">Блог</a>
+      <a href="https://github.com/philffm/ai-summary-helper/" target="_blank" rel="noopener">GitHub</a>
+      <a href="https://byphil.eu/" target="_blank" rel="noopener">Проект byphil. ↗</a>
+      <button type="button" class="theme-toggle-mobile" id="themeToggleMobile">
+        <span id="themeToggleMobileLabel">Светлая тема</span>
+        <svg class="icon-moon" viewBox="0 0 24 24" fill="none"><path d="M20 14.5A8.5 8.5 0 1 1 9.5 4a6.8 6.8 0 0 0 10.5 10.5Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"></path></svg>
+        <svg class="icon-sun" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="4.2" stroke="currentColor" stroke-width="1.6"></circle><path d="M12 2.5v2.4M12 19.1v2.4M4.4 4.4l1.7 1.7M17.9 17.9l1.7 1.7M2.5 12h2.4M19.1 12h2.4M4.4 19.6l1.7-1.7M17.9 6.1l1.7-1.7" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"></path></svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+<main id="main">
+  <section class="hero" style="padding-bottom:24px;">
+    <div class="wrap">
+      <div class="eyebrow"><span class="dash"></span> Блог <span class="dash"></span></div>
+      <h1 style="font-size:clamp(30px, 4.6vw, 46px);">Заметки о чтении, поиске<br><em>и локальной обработке данных</em></h1>
+      <p class="sub">Наш опыт разработки — и почему это решение может подойти именно вам.</p>
+    </div>
+  </section>
+
+  <section style="padding-top:24px;">
+    <div class="wrap">
+      <div class="blog-grid reveal">
+        <a class="blog-card" href="bring-your-own-key.html">
+          <span class="blog-date">Продукт · Октябрь 2026</span>
+          <h3>Ваш ключ. Ваша модель. Ваши данные.</h3>
+          <p>Что даёт собственный API key: где хранится ключ, куда отправляется текст страницы и в чём преимущество локальных моделей.</p>
+          <span class="blog-read">Читать статью →</span>
+        </a>
+        <a class="blog-card" href="feeds-recap.html">
+          <span class="blog-date">Руководство · Октябрь 2026</span>
+          <h3>Один дайджест вместо 40 лент новостей</h3>
+          <p>Множество лент перегружают постоянным переключением контекста. Рассказываем, как ежедневная или еженедельная сводка заменяет большинство из них.</p>
+          <span class="blog-read">Читать статью →</span>
+        </a>
+        <a class="blog-card" href="verify-ai-summary.html">
+          <span class="blog-date">Руководство · Октябрь 2026</span>
+          <h3>Как сверить AI-саммари с источником за 10 секунд</h3>
+          <p>Цитата подтверждает наличие фрагмента, но не то, что модель поняла его верно. Простой навык проверки саммари без полного перечитывания статьи.</p>
+          <span class="blog-read">Читать статью →</span>
+        </a>
+        <a class="blog-card" href="highlighting-vs-asking.html">
+          <span class="blog-date">Руководство · Сентябрь 2026</span>
+          <h3>Выделение текста почти не работает. Задавайте к нему вопросы.</h3>
+          <p>Масштабный анализ методов обучения показал низкую эффективность простого хайлайтинга. Объясняем почему и как сделать выделения по-настоящему полезными.</p>
+          <span class="blog-read">Читать статью →</span>
+        </a>
+        <a class="blog-card" href="unread-saves.html">
+          <span class="blog-date">Продукт · Сентябрь 2026</span>
+          <h3>Вы не прочитаете большую часть закладок. Вот настоящее решение.</h3>
+          <p>Большинство сохраненных статей никогда не открываются снова. Почему появился Дайджест и почему он осознанно не пытается копить горы текста.</p>
+          <span class="blog-read">Читать статью →</span>
+        </a>
+        <a class="blog-card" href="on-device-architecture.html">
+          <span class="blog-date">Инженерия · Август 2026</span>
+          <h3>Почему мы перенесли поиск, теги и рекомендации из облака на устройство</h3>
+          <p>Индекс TF-IDF для поиска, дедупликации и дайджестов — и почему сервер для этого изначально был не нужен.</p>
+          <span class="blog-read">Читать статью →</span>
+        </a>
+        <a class="blog-card" href="pocket-alternative.html">
+          <span class="blog-date">Руководство · Июль 2026</span>
+          <h3>Ищете альтернативу Pocket? Вот что действительно важно</h3>
+          <p>Закрытие Pocket оставило пустоту. Руководство по выбору инструмента на основе ваших реальных сценариев использования, а не внешнего сходства.</p>
+          <span class="blog-read">Читать статью →</span>
+        </a>
+        <a class="blog-card" href="from-bookmarklet-to-2.html">
+          <span class="blog-date">Продукт · Июнь 2026</span>
+          <h3>От букмарклета до версии 2.0: чем стал AI Summary Helper</h3>
+          <p>Всё начиналось с простого букмарклета в один клик для чтения на Kindle. Рассказываем, что изменилось между v1 и открытой версией 2.0.</p>
+          <span class="blog-read">Читать статью →</span>
+        </a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="footer-inner">
+      <div class="wordmark"><img src="../../assets/icon.svg" alt="">AI Summary Helper</div>
+      <div class="foot-links">
+        <a href="https://github.com/philffm/ai-summary-helper/" target="_blank" rel="noopener">Исходный код на GitHub</a>
+        <a href="../privacy.html">Конфиденциальность</a>
+        <a href="#" data-analytics-settings="">Настройки аналитики</a>
+        <a href="https://byphil.eu/terms.html#impressum" target="_blank" rel="noopener">Правовая информация</a>
+      </div>
+    </div>
+    <div class="copyright">© 2026 Phil Wornath. Проект <a href="https://byphil.eu/" class="credit-link">byphil.eu ↗</a> — независимый продукт, разработанный в Германии.<br>
+      Дизайн и разработка: <a href="https://philwornath.com/" target="_blank" rel="noopener" class="credit-link">philwornath.com ↗</a>
+    </div>
+  </div>
+</footer>
+
+<script src="../../assets/main.js"></script>
+
+
+</body></html>

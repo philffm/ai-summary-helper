@@ -1,0 +1,266 @@
+<!DOCTYPE html><html lang="fi"><head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#08090C">
+<title>Tietosuojakäytäntö — AI Summary Helper</title>
+<meta name="description" content="Miten AI Summary Helper käsittelee tietoja: API-avaimet ja historia pysyvät laitteellasi, ja sivun teksti lähetetään vain valitsemallesi tekoälypalvelulle.">
+
+<script>
+  (function(){
+    try {
+      var saved = localStorage.getItem('aish_theme');
+      var theme = saved === 'light' || saved === 'dark'
+        ? saved
+        : (window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
+      document.documentElement.setAttribute('data-theme', theme);
+    } catch (e) {
+      document.documentElement.setAttribute('data-theme', 'dark');
+    }
+  })();
+</script>
+
+<link rel="icon" type="image/svg+xml" href="../assets/icon.svg">
+<link rel="stylesheet" href="../assets/styles.css">
+
+<meta property="og:title" content="Tietosuojakäytäntö — AI Summary Helper">
+<meta property="og:description" content="Miten AI Summary Helper käsittelee tietojasi: API-avaimesi ja artikkelihistoriasi pysyvät laitteellasi.">
+<meta property="og:url" content="https://ai-summary-helper.byphil.eu/privacy.html">
+<meta property="og:type" content="website">
+<script src="../assets/analytics.js"></script>
+<link rel="alternate" hreflang="x-default" href="https://ai-summary-helper.byphil.eu/privacy.html"><link rel="alternate" hreflang="en" href="https://ai-summary-helper.byphil.eu/privacy.html"><link rel="alternate" hreflang="de" href="https://ai-summary-helper.byphil.eu/de/privacy.html"><link rel="alternate" hreflang="fr" href="https://ai-summary-helper.byphil.eu/fr/privacy.html"><link rel="alternate" hreflang="es" href="https://ai-summary-helper.byphil.eu/es/privacy.html"><link rel="alternate" hreflang="zh-Hans" href="https://ai-summary-helper.byphil.eu/zh/privacy.html"><link rel="alternate" hreflang="zh-Hant" href="https://ai-summary-helper.byphil.eu/zh-tw/privacy.html"><link rel="alternate" hreflang="ja" href="https://ai-summary-helper.byphil.eu/ja/privacy.html"><link rel="alternate" hreflang="ko" href="https://ai-summary-helper.byphil.eu/ko/privacy.html"><link rel="alternate" hreflang="pt-BR" href="https://ai-summary-helper.byphil.eu/pt/privacy.html"><link rel="alternate" hreflang="hi" href="https://ai-summary-helper.byphil.eu/hi/privacy.html"><link rel="alternate" hreflang="vi" href="https://ai-summary-helper.byphil.eu/vi/privacy.html"><link rel="alternate" hreflang="nl" href="https://ai-summary-helper.byphil.eu/nl/privacy.html"><link rel="alternate" hreflang="it" href="https://ai-summary-helper.byphil.eu/it/privacy.html"><link rel="alternate" hreflang="ru" href="https://ai-summary-helper.byphil.eu/ru/privacy.html"><link rel="alternate" hreflang="uk" href="https://ai-summary-helper.byphil.eu/uk/privacy.html"><link rel="alternate" hreflang="tr" href="https://ai-summary-helper.byphil.eu/tr/privacy.html"><link rel="alternate" hreflang="id" href="https://ai-summary-helper.byphil.eu/id/privacy.html"><link rel="alternate" hreflang="pl" href="https://ai-summary-helper.byphil.eu/pl/privacy.html"><link rel="alternate" hreflang="th" href="https://ai-summary-helper.byphil.eu/th/privacy.html"><link rel="alternate" hreflang="ar" href="https://ai-summary-helper.byphil.eu/ar/privacy.html"><link rel="alternate" hreflang="sv" href="https://ai-summary-helper.byphil.eu/sv/privacy.html"><link rel="alternate" hreflang="da" href="https://ai-summary-helper.byphil.eu/da/privacy.html"><link rel="alternate" hreflang="nb" href="https://ai-summary-helper.byphil.eu/no/privacy.html"><link rel="alternate" hreflang="fi" href="https://ai-summary-helper.byphil.eu/fi/privacy.html"></head>
+<body>
+
+<a href="#main" class="skip-link">Siirry sisältöön</a>
+
+<header class="nav">
+  <div class="wrap nav-inner">
+    <div class="brand-cluster">
+      <div class="wordmark">
+        <img src="../assets/icon.svg" alt="">
+        AI Summary Helper
+      </div>
+      <a href="https://byphil.eu/" target="_blank" rel="noopener" class="ecosystem-badge">
+        <span class="pulse-dot"></span> Osa byphil-kokonaisuutta.
+      </a>
+    </div>
+    <div class="nav-desktop-group nav-desktop-links">
+      <nav class="links" aria-label="Primary">
+        <a href="index.html#features">Ominaisuudet</a>
+        <a href="index.html#digest">Kooste</a>
+        <a href="index.html#pricing">Hinnasto</a>
+        <a href="blog/">Blogi</a>
+        <a href="https://github.com/philffm/ai-summary-helper/" target="_blank" rel="noopener">GitHub</a>
+      </nav>
+      <button type="button" class="theme-toggle" id="themeToggle" aria-label="Switch to light mode">
+        <svg class="icon-moon" viewBox="0 0 24 24" fill="none"><path d="M20 14.5A8.5 8.5 0 1 1 9.5 4a6.8 6.8 0 0 0 10.5 10.5Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"></path></svg>
+        <svg class="icon-sun" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="4.2" stroke="currentColor" stroke-width="1.6"></circle><path d="M12 2.5v2.4M12 19.1v2.4M4.4 4.4l1.7 1.7M17.9 17.9l1.7 1.7M2.5 12h2.4M19.1 12h2.4M4.4 19.6l1.7-1.7M17.9 6.1l1.7-1.7" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"></path></svg>
+      </button>
+      <a href="https://byphil.eu/#account" class="btn-sign-in">Oma tili</a>
+    </div>
+    <button type="button" class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="mobileMenu" aria-label="Open menu">
+      <svg viewBox="0 0 24 24" fill="none"><path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"></path></svg>
+    </button>
+  </div>
+  <div class="mobile-menu" id="mobileMenu" hidden="">
+    <div class="wrap mobile-menu-inner">
+      <a href="index.html#features">Ominaisuudet</a>
+      <a href="index.html#digest">Kooste</a>
+      <a href="index.html#pricing">Hinnasto</a>
+      <a href="blog/">Blogi</a>
+      <a href="https://github.com/philffm/ai-summary-helper/" target="_blank" rel="noopener">GitHub</a>
+      <a href="https://byphil.eu/#account">Oma tili</a>
+      <a href="https://byphil.eu/" target="_blank" rel="noopener">Osa byphil-kokonaisuutta ↗</a>
+      <button type="button" class="theme-toggle-mobile" id="themeToggleMobile">
+        <span id="themeToggleMobileLabel">Vaihda vaaleaan tilaan</span>
+        <svg class="icon-moon" viewBox="0 0 24 24" fill="none"><path d="M20 14.5A8.5 8.5 0 1 1 9.5 4a6.8 6.8 0 0 0 10.5 10.5Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"></path></svg>
+        <svg class="icon-sun" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="4.2" stroke="currentColor" stroke-width="1.6"></circle><path d="M12 2.5v2.4M12 19.1v2.4M4.4 4.4l1.7 1.7M17.9 17.9l1.7 1.7M2.5 12h2.4M19.1 12h2.4M4.4 19.6l1.7-1.7M17.9 6.1l1.7-1.7" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"></path></svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+<main id="main">
+  <div class="wrap">
+    <div class="post-hero">
+      <span class="blog-date">Tietosuojakäytäntö</span>
+      <h1>Tietosuojakäytäntö</h1>
+      <p class="post-sub">API-avaimesi, artikkelihistoriasi ja korostuksesi pysyvät laitteellasi. Sivun sisältö lähetetään vain valitsemallesi tekoälypalvelulle — myös täysin paikalliselle mallille, jos valitset niin.</p>
+    </div>
+  </div>
+
+  <section>
+    <div class="wrap">
+      <div class="prose">
+        <p><em>Päivitetty viimeksi: lokakuu 2026</em></p>
+
+        <p>Tämä tietosuojakäytäntö selittää, mitä tietoja AI Summary Helper käsittelee, minne ne siirtyvät ja miksi. Lyhyesti: API-avaimesi, artikkelihistoriasi ja korostuksesi pysyvät laitteellasi. Sivun sisältö lähetetään vain valitsemallesi tekoälypalvelulle — mukaan lukien täysin paikalliselle mallille, jolloin mitään ei koskaan poistu laitteeltasi. Emme näytä mainoksia, emme myy tietoja emmekä vaadi käyttäjätiliä perustoimintojen käyttöön.</p>
+
+        <p>Jos et hyväksy jotain tämän käytännön osaa, älä asenna tai käytä laajennusta.</p>
+
+        <h2>Kuka vastaa tiedoista</h2>
+        <p>GDPR:n 4 artiklan 7 kohdan mukainen rekisterinpitäjä on Phil Wornath. Täydellinen nimi ja virallinen osoite löytyvät <a href="https://philwornath.com/de/legal" target="_blank" rel="noopener">julkaisutiedoista</a>; tavoitat meidät tämän käytännön lopussa olevilla yhteystiedoilla.</p>
+
+        <h2>Perusominaisuudet eivät vaadi käyttäjätiliä</h2>
+        <p>AI Summary Helper ei vaadi tilin luomista, kirjautumista tai henkilötietojen antamista sivujen tiivistämiseen, korostamiseen, syötteiden seuraamiseen tai arkiston pitämiseen. API-avaimesi (jos käytät omaasi) ja koko artikkelihistoriasi tallennetaan selaimesi paikalliseen muistiin.</p>
+        <p>Tiliä tarvitaan vain ylläpidettyihin pilvipalveluihin: byphil Cloud (tiivistelmät ilman omaa avainta) ja Send to Kindle. Kirjautuminen toimii sähköpostiosoitteellasi ja kertakäyttökoodilla. Tallennamme sähköpostiosoitteen, tilaus- tai lisenssitilanteen sekä peruskäyttömäärät (esimerkiksi pyyntöjen määrän ja Kindle-lähetykset) tilausrajojen valvomiseksi.</p>
+
+        <h2>Mitä tietoja käsittelemme ja minne ne menevät</h2>
+
+        <h3>Yhteys tekoälypalveluun</h3>
+        <p>Valitset itse, miten tiivistelmät luodaan:</p>
+        <ul>
+          <li><strong>Oma API key (BYOK)</strong> — OpenAI, Google Gemini, Mistral AI, DeepSeek tai mukautettu päätepiste. API-avaimesi tallennetaan vain paikallisesti laitteellesi (ei koskaan synkronoida, ei koskaan lähetetä meille). Sivun sisältö, jonka valitset tiivistettäväksi, lähetetään suoraan selaimestasi valitsemallesi palvelulle käyttäen omaa avaintasi ja palveluntarjoajan omien tietosuojaehtojen mukaisesti. Emme näe, kirjaa lokiin tai tallenna tätä sisältöä.</li>
+          <li><strong>Paikallinen malli Ollaman kautta</strong> — jos käytät paikallista mallia, sivun sisältö lähetetään vain omalle koneellesi. Mitään ei poistu laitteeltasi.</li>
+          <li><strong>byphil Cloud (valinnainen, maksullinen)</strong> — ylläpidetty vaihtoehto niille, jotka eivät halua hallinnoida omaa API-avainta. Jos valitset tämän tason, tiivistettäväksi pyytämäsi teksti kulkee taustajärjestelmämme kautta, joka välittää pyynnön OpenRouterin kautta mallintarjoajalle puolestasi ja palauttaa tiivistelmän. Teksti vain välitetään: emme tallenna sivujen sisältöä, verkko-osoitteita tai tiivistelmiä. Tiliä kohden tallennamme vain käytön metatiedot: suoritettujen pyyntöjen määrän, tokenien käytön, viimeisimmän pyynnön ajankohdan ja käytetyn mallin. Käyttäjätili on vapaaehtoinen; kaikki muut ominaisuudet toimivat ilman sitä.</li>
+        </ul>
+
+        <h3>Lisenssi ja tilauksen tila</h3>
+        <p>Jos aktivoit Pro-lisenssin tai byphil Cloud -tilauksen, lisenssiavaimesi tallennetaan vain paikallisesti laitteellesi (ei koskaan synkronoida) ja sitä käytetään tilauksen tilan tarkistamiseen taustajärjestelmästämme. Maksupalveluntarjoajamme ja taustajärjestelmämme käsittelevät tilin ja laskutuksen perusmetatiedot; emme tallenna sivujen sisältöä tai lukuhistoriaasi palvelimillemme.</p>
+
+        <h3>Palautekysely laajennuksen poistamisen yhteydessä</h3>
+        <p>Kun poistat laajennuksen, Chrome avaa lyhyen palautesivun tällä verkkosivustolla. Osoite sisältää vain laajennuksen version ja asennuspäivien määrän — ei tunnisteita, ei sivun sisältöä, ei historiaa. Se, mitä valitset tai kirjoitat lomakkeeseen (syy, vapaaehtoinen kommentti), tallennetaan tapahtumana itse ylläpitämäämme, evästeettömään analytiikkaan yhdessä laajennuksen version ja asennuspäivien määrän kanssa, ja sitä käytetään vain laajennuksen parantamiseen. Jos selaimesi lähettää Do Not Track -pyynnön tai olet estänyt analytiikan, mitään ei lähetetä. Lomakkeessa ei ole sähköpostikenttää; jos haluat vastauksen, avaa GitHub Issue. Voit sulkea sivun vastaamatta.</p>
+
+        <h3>Artikkelihistoria, korostukset ja asetukset</h3>
+        <p>Kaikki tallentamasi tiedot säilytetään paikallisesti selaimessasi Chromen sisäänrakennetuilla tallennusrajapinnoilla — ei koskaan palvelimillamme:</p>
+        <table>
+          <thead>
+            <tr><th>Tieto</th><th>Tallennuspaikka</th><th>Synkronoitu Chromen kautta?</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Tallennetut artikkelit ja tiivistelmät</td><td>Paikallinen</td><td>Ei</td></tr>
+            <tr><td>RSS-syötteiden tilaukset ja kohteet</td><td>Paikallinen</td><td>Ei</td></tr>
+            <tr><td>API keys / palvelinasetukset</td><td>Paikallinen</td><td>Ei — arkaluonteinen, vain laitteella</td></tr>
+            <tr><td>Lisenssiavain</td><td>Paikallinen</td><td>Ei — arkaluonteinen, vain laitteella</td></tr>
+            <tr><td>LocalSend-verkon IP</td><td>Paikallinen</td><td>Ei</td></tr>
+            <tr><td>Tekstin korostukset ja tekoälykorostukset</td><td>Paikallinen (sivukohtainen)</td><td>Ei</td></tr>
+            <tr><td>Oletuskehote, kieli, tiivistelmän pituus</td><td>Synkronoitu</td><td>Kyllä, oman Chrome-tilisi kautta</td></tr>
+            <tr><td>Korostus päällä/pois -valinta</td><td>Synkronoitu</td><td>Kyllä, oman Chrome-tilisi kautta</td></tr>
+          </tbody>
+        </table>
+        <p>Merkinnällä "Synkronoitu" varustetut kohteet käyttävät Chromen omaa, Google-tiliisi sidottua synkronointia — nämä tiedot kulkevat Googlen infrastruktuurin kautta, eivät meidän, aivan kuten kirjanmerkkisi. Meillä ei ole pääsyä niihin.</p>
+        <p>Voit viedä tietosi milloin tahansa valitsemalla Asetukset → Kirjasto &amp; tiedot → Varmuuskopioi ja palauta. Varmuuskopiot jättävät oletuksena pois API-avaimet, kirjautumistiedot, lisenssiavaimet ja asennustunnisteet; niiden sisällyttäminen vaatii erillisen valinnan varoituksen kera, sillä kuka tahansa tiedoston saava voi käyttää niitä. Pidä viedyt tiedostot suojassa ja muista, että vanhat varmuuskopiot saattavat sisältää salaisuuksia. Samassa paikassa oleva Vaara-alue mahdollistaa tietojen poistamisen kategorioittain ja näyttää poistuvien kohteiden määrän: tiivistelmät ja arkisto, korostukset, syötteet, podcastit, API key / kirjautuminen / lisenssi, lähetyskohteet (Kindle, LocalSend) ja asetukset. <em>Poista kaikki tiedot</em> poistaa kaiken, mitä laajennus on tallentanut laitteelle, ja aloittaa puhtaalta pöydältä. Laajennuksen poistaminen poistaa myös sen tiedot. Nämä toiminnot poistavat vain paikalliset tiedot. Tiliäsi ja palvelimellamme olevia tietoja (ks. alla) voit hallita osoitteessa <a href="https://byphil.eu/#account" target="_blank" rel="noopener">byphil.eu/#account</a>: sieltä voit viedä tietosi ja poistaa tilisi. Laajennus ja Android-sovellus linkittävät sinne tilin asetuksista.</p>
+
+        <h3>RSS-syötteet</h3>
+        <p>Sisäänrakennettu Syötteet-lukija tallentaa tilauksesi ja haetut syöteartikkelit paikallisesti selaimeesi — niitä ei koskaan synkronoida eikä lähetetä meille. Kun lisäät tai päivität syötteen, laajennus pyytää kyseisen syötteen osoitteen suoraan julkaisijan palvelimelta aivan kuten selaimesi tekisi sivustolla vieraillessa, joten julkaisija näkee pyynnön. Emme välitä välityspalvelimen kautta, kirjaa lokiin tai näe tilauksiasi tai lukulistaasi. OPML-tuonti käsitellään täysin laitteellasi. Jos otat taustatarkistukset käyttöön (oletuksena pois päältä), laajennus päivittää syötteet valitsemallasi aikavälillä vain näyttääkseen lukumäärän työkalupalkin kuvakkeessa. Syöteartikkelin tiivistäminen toimii kuten minkä tahansa muunkin sivun tiivistäminen: sen sisältö lähetetään valitsemallesi tekoälypalvelulle vain silloin, kun käynnistät tiivistämisen. Valinnainen tekoälyn päiväkooste ja äänensävyn pisteytys toimivat samalla tavalla: vasta kun napsautat niitä, laajennus lähettää kohteiden otsikot, lähteiden nimet ja lyhyet katkelmat (ei koko artikkeleita) valitsemallesi tekoälypalvelulle, ja luotu kooste tallennetaan välimuistiin laitteellesi. Syötteen podcast-jaksot suoratoistetaan suoraan julkaisijan palvelimelta, kun painat Toista.</p>
+
+        <h3>Artikkelien lähettäminen: Kindle, LocalSend ja jakovalikko</h3>
+        <p>Lähetykseen on kaksi eri reittiä, ja vain toinen niistä kulkee palvelimemme kautta:</p>
+        <ul>
+          <li><strong>Send to Kindle kulkee palvelimemme kautta.</strong> Amazon hyväksyy asiakirjoja sähköpostitse vain hyväksytyiltä lähettäjiltä, joten laajennus lähettää artikkelin (otsikko, tiivistelmä, teksti, korostukset ja lähdeosoite) byphil-taustajärjestelmään, joka lähettää sen sähköpostilla antamaasi Kindle-osoitteeseen. Lisäät lähettäjäosoitteemme (kindle@byphil.eu) hyväksyttyjen lähettäjien luetteloon Amazon-tililläsi. Sisältöä käytetään vain kyseisen sähköpostin luomiseen ja lähettämiseen. Kindle-toimitus edellyttää kirjautumista tai lisenssiä; ilmaisversio sisältää 3 lähetystä.</li>
+          <li><strong>LocalSend ja järjestelmän jakovalikko (esim. AirDrop) toimivat suoraan.</strong> Tiedosto siirtyy selaimestasi suoraan paikallisen verkkosi laitteeseen tai jakovalikosta valitsemaasi sovellukseen. Emme ole mukana siirrossa emmekä näe tai tallenna tätä sisältöä. LocalSend toimii puhelimissa, tableteissa, tietokoneissa ja lukulaitteissa, joissa on yhteensopiva sovellus.</li>
+        </ul>
+
+        <h2 id="analytics">Analytiikka ja evästeet</h2>
+        <p><strong>Lyhyesti:</strong> tämä verkkosivusto <strong>ei aseta evästeitä</strong> eikä käytä mainontaa tai sivustojen välistä seurantaa. Tilastoimme anonyymejä käyntejä itse ylläpidetyllä Matomo-asennuksella, ja voit poistaa sen käytöstä milloin tahansa.</p>
+        <p><strong>Itse selainlaajennus ei sisällä mitään analytiikka-, telemetria- tai seurantakoodia.</strong> Sen ainoat verkkopyynnöt suuntautuvat määrittämällesi tekoälypalvelulle, tilaamillesi syötteille, sivuille, joita pyydät sitä hakemaan, sekä (jos käytät niitä) byphil-taustajärjestelmälle byphil Cloudia, kirjautumista, lisenssitarkistuksia ja Send to Kindle -toimintoa varten.</p>
+        <h3>Mitä mittaamme</h3>
+        <p>Sivulataukset, sivun kieli, viittaaja (referrer), arvioitu maa/selain/laiteluokka sekä osat, joiden kanssa olet vuorovaikutuksessa sivustolla (esimerkiksi "Lisää Chromeen" -painikkeen klikkaukset, hinnoitteluvalitsin, UKK-kohdat, osiot, joihin vierität, ja kirjanmerkkisovelluksen luontivaiheet). Tapahtumat eivät koskaan sisällä sähköpostiosoitteita, API-avaimia, kertakäyttökoodeja, sivun sisältöä tai artikkelitietoja.</p>
+        <h3>Miten se on määritetty</h3>
+        <p>Matomo toimii omalla palvelimellamme (analytics.philwornath.de, Saksa), ei kolmannella osapuolella. Se ladataan ilman evästeitä ja ilman selaimen sormenjälkitunnistusta; IP-osoitteet anonymisoidaan ennen tallennusta; käyttäjätunnisteita tai sivustojen välisiä tunnisteita ei määritetä, joten käyntejä ei voida yhdistää eri päivien tai laitteiden välillä. Tietoja ei myydä tai jaeta kolmansille osapuolille.</p>
+        <p>Koska laitteellesi ei tallenneta eikä siltä lueta mitään seurantatarkoituksiin, tämä mittaus perustuu oikeutettuun etuumme ymmärtää sivuston käyttöä (GDPR 6 art. 1 kohdan f alakohta), eikä se vaadi evästesuostumuspalkkia TDDDG:n 25 §:n / ePrivacy-direktiivin nojalla. Sinulla on oikeus vastustaa käsittelyä (GDPR 21 art.) milloin tahansa.</p>
+        <h3>Valintasi</h3>
+        <p>Analytiikka kytkeytyy automaattisesti pois päältä, jos selaimesi lähettää <em>Do Not Track</em> - tai <em>Global Privacy Control</em>-signaalin. Voit myös kieltäytyä manuaalisesti <a href="#" data-analytics-settings="">Analytiikka-asetukset</a> kautta (löytyy myös jokaisen sivun alatunnisteesta). <span id="analyticsStatusInline"></span></p>
+        <h3>Mitä selaimeesi tallennetaan</h3>
+        <p>Vain toiminnallisia asetuksia, ei koskaan seurantaa varten: <code>aish_analytics</code> (kieltäytymisvalintasi), <code>aish_analytics_notice</code> (että olet sulkenut ilmoituksen), sekä käytettäessä teemavalinta, kieliehdotuksen ohitus ja kirjanmerkkisovelluksen luontiasetukset. Nämä pysyvät laitteellasi eikä niitä lähetetä meille.</p>
+        <h3>Fontit ja ulkoiset resurssit</h3>
+        <p>Fontit (Inter, Space Grotesk, JetBrains Mono; SIL Open Font License) toimitetaan tältä sivustolta itseltään, joten IP-osoitteesi ei välity Googlelle tai millekään fonttipalvelulle pelkästään sivulla käymisen vuoksi. Ainoat ulkoiset pyynnöt ovat klikkaamiasi linkkejä sekä valinnaisia byPhil-tilin / Stripen kassasivuja, jotka päätät avata.</p>
+
+
+        <h2>Oikeusperusteet ja tietojen säilytys</h2>
+        <p>Lähes kaikki käsitellään laitteellasi eikä koskaan päädy meille. Silloin kun käsittelemme tietoja, perusteet ja säilytysajat ovat seuraavat:</p>
+        <ul>
+          <li><strong>Tili ja kirjautuminen</strong> (sähköpostiosoite, kertakäyttökoodi, lisenssiavain, tilauksen tila) — pyytämäsi tilin tarjoamiseksi, GDPR 6 art. 1 kohdan b alakohta. Säilytetään niin kauan kuin tili on olemassa; poistetaan, kun poistat tilin.</li>
+          <li><strong>byphil Cloud</strong> (tiivistettävän tekstin välitys, käyttölaskurit, tokenien käyttö, viimeisin pyyntö, viimeisin malli) — palvelun suorittamiseksi, GDPR 6 art. 1 kohdan b alakohta. Teksti vain välitetään eikä sitä tallenneta. Käytön metatiedot säilytetään niin kauan kuin tili on olemassa ja poistetaan sen mukana.</li>
+          <li><strong>Send to Kindle</strong> (lähettämäsi artikkeli, Kindle-osoitteesi) — käynnistämäsi lähetyksen suorittamiseksi, GDPR 6 art. 1 kohdan b alakohta. Käytetään vain kyseisen sähköpostin luomiseen ja lähettämiseen.</li>
+          <li><strong>Maksut ja lisenssin vahvistus</strong> — sopimuksen täyttämiseksi ja kirjanpitovelvoitteiden noudattamiseksi, GDPR 6 art. 1 kohdan b ja c alakohta. Laskutustietoja säilytetään lain edellyttämän ajan.</li>
+          <li><strong>Verkkosivuston analytiikka ja poistopalaute</strong> — oikeutettu etumme sivuston ja laajennuksen kehittämisessä, GDPR 6 art. 1 kohdan f alakohta. Tiedot ovat anonyymejä (katso Analytiikka ja evästeet).</li>
+        </ul>
+        <p>Voit viedä tilitietosi ja poistaa tilisi milloin tahansa osoitteessa <a href="https://byphil.eu/#account" target="_blank" rel="noopener">byphil.eu/#account</a>. Tilin poistaminen poistaa sitä varten tallennetut tiedot.</p>
+
+        <h2>Pyytämämme käyttöoikeudet ja miksi</h2>
+        <table>
+          <thead>
+            <tr><th>Käyttöoikeus</th><th>Miksi tarvitsemme sen</th></tr>
+          </thead>
+          <tbody>
+            <tr><td><code>activeTab</code></td><td>Lukee sen sivun sisällön, jonka aktiivisesti valitset tiivistettäväksi</td></tr>
+            <tr><td><code>storage</code></td><td>Tallentaa asetuksesi, artikkelihistoriasi ja korostuksesi paikallisesti</td></tr>
+            <tr><td><code>contextMenus</code></td><td>Tarjoaa hiiren kakkospainikkeen toiminnot (Tiivistä, Korosta jne.)</td></tr>
+            <tr><td><code>notifications</code></td><td>Näyttää ajastettuja muistutuksia myöhempää lukemista varten tallennetuista artikkeleista</td></tr>
+            <tr><td><code>alarms</code></td><td>Ajastaa nämä muistutusilmoitukset</td></tr>
+            <tr><td><code>tabs</code></td><td>Sulkee välilehden automaattisesti "Tiivistä ja sulje" -toiminnon jälkeen</td></tr>
+            <tr><td><code>sidePanel</code></td><td>Tukee Chromen natiivia sivupaneelia katseluvaihtoehtona</td></tr>
+            <tr><td><code>scripting</code></td><td>Lisää sivun lukemiseen ja tiivistämiseen tarvittavan sisältöskriptin</td></tr>
+            <tr><td><code>offscreen</code>, <code>tts</code></td><td>Toistaa podcast-äänet ja lukee tiivistelmät ääneen taustalla, kun ponnahdusikkuna on suljettu</td></tr>
+            <tr><td><code>unlimitedStorage</code></td><td>Mahdollistaa laajan paikallisen artikkelien ja korostusten arkiston ilman oletustallennuskiintiön täyttymistä</td></tr>
+            <tr><td><code>host_permissions (&lt;all_urls&gt;)</code></td><td>Mahdollistaa minkä tahansa vierailemasi sivun tiivistämisen — sisältö luetaan ja välitetään vain silloin, kun käynnistät tiivistämisen aktiivisesti, ei koskaan passiivisesti</td></tr>
+          </tbody>
+        </table>
+        <p>Emme käytä näitä käyttöoikeuksia selaamisesi seuraamiseen, mainosprofiilin luomiseen tai tietojen keräämiseen muihin kuin edellä kuvattujen ominaisuuksien tarjoamiseen.</p>
+
+        <h2>Mitä emme tee</h2>
+        <ul>
+          <li>Emme näytä tai välitä mainoksia, emmekä myy, vuokraa tai luovuta tietojasi mainostajille tai tiedonvälittäjille.</li>
+          <li>Emme vaadi tiliä tai kirjautumista mihinkään perusominaisuuteen.</li>
+          <li>Emme kirjaa lokiin tai säilytä niiden sivujen sisältöä, joita tiivistät omalla API-avaimellasi tai paikallisella mallilla, emmekä koskaan näe, mitä lähetät LocalSendin tai jakovalikon kautta.</li>
+          <li>Meillä ei ole pääsyä paikallisesti tallennettuun artikkelihistoriaasi, korostuksiisi tai API-avaimiisi — ne eivät koskaan poistu laitteeltasi, ellet nimenomaisesti vie niitä tiedostoon.</li>
+        </ul>
+
+        <h2>Kolmannen osapuolen palvelut</h2>
+        <p>Riippuen siitä, miten määrität laajennuksen, sivusi sisältö voidaan lähettää seuraaville:</p>
+        <ul>
+          <li>OpenAI, Google (Gemini), Mistral AI tai DeepSeek — vain jos olet syöttänyt oman API-avaimesi kyseiselle palveluntarjoajalle, ja vain siltä sivulta, jonka aktiivisesti tiivistät.</li>
+          <li>Meidän byphil-taustajärjestelmämme, jota ylläpitää IONOS SE Saksassa — vain jos kirjaudut sisään, käytät byphil Cloudia tai Send to Kindleä.</li>
+          <li>OpenRouter, jonka kautta byphil Cloud ottaa yhteyden malleihin, sekä sen käyttämä mallintarjoaja — tiivistettävä teksti välitetään käyttämällesi mallille vain kyseisen pyynnön ajaksi.</li>
+          <li>Stripe — maksut ja tilausten hallinta kauppiaana (Merchant of Record).</li>
+          <li>Amazon — jos lähetät artikkelin Kindleesi, Amazon toimittaa sen omien tietosuojaehtojensa mukaisesti.</li>
+          <li>Oma paikallinen Ollama-instanssisi — ei kolmas osapuoli; pysyy koneellasi.</li>
+        </ul>
+        <p>Emme vastaa niiden kolmannen osapuolen tekoälypalveluiden tietosuojakäytännöistä, joihin päätät yhdistää. Kehotamme tutustumaan heidän käytäntöihinsä ennen tilin yhdistämistä.</p>
+        <p><strong>Päätät itse, mikä malli käsittelee tekstisi.</strong> Käytitpä sitten omaa avaintasi tai byphil Cloudia, valitset palveluntarjoajan ja mallin asetuksista, ja vastaat itse kyseisen palveluntarjoajan ehtojen ja tietojenkäsittelypaikan tarkistamisesta. OpenRouter, sen taustalla olevat mallintarjoajat ja Amazon saattavat käsitellä tietoja EU/ETA-alueen ulkopuolella omien suojatoimiensa (kuten vakiolausekkeiden) mukaisesti; me emme itse siirrä tietojasi kolmansiin maihin.</p>
+
+        <h2>Tietoturva</h2>
+        <p>Käytämme kohtuullisia teknisiä toimenpiteitä käsiteltävien tietojen luonteeseen nähden — suurin osa tiedoista ei koskaan saavu palvelimillemme, koska ne tallennetaan paikallisesti selaimeesi. Viestintä taustajärjestelmämme kanssa (byphil Cloud ja lisenssin vahvistus) on suojattu siirron aikana salauksella. Mikään siirto- tai tallennustapa ei ole 100 % turvallinen, emmekä voi taata ehdotonta turvallisuutta, mutta emme kerää enempää tietoja kuin mitä kuvattujen ominaisuuksien tarjoamiseen tarvitaan.</p>
+
+        <h2>Lasten tietosuoja</h2>
+        <p>AI Summary Helper ei ole suunnattu alle 13-vuotiaille lapsille (tai asuinalueesi sovellettavan vähimmäisiän mukaisesti), emmekä tietoisesti kerää henkilötietoja lapsilta.</p>
+
+        <h2>Oikeutesi (GDPR / CCPA ja vastaavat)</h2>
+        <p>Koska lähes kaikki tietosi tallennetaan paikallisesti omalle laitteellesi, sinulla on jo täysi hallinta niihin — voit tarkastella, viedä tai poistaa niitä milloin tahansa laajennuksen asetuksista tai poistamalla laajennuksen asennuksen. Palvelimillamme mahdollisesti olevia tietoja (byphil Cloud -tilauksen/laskutuksen metatiedot) voit hallita, viedä tai poistaa tilisi osoitteessa <a href="https://byphil.eu/#account" target="_blank" rel="noopener">byphil.eu/#account</a>, tai ottamalla meihin yhteyttä alla olevien tietojen kautta.</p>
+        <p>Sinulla on oikeus saada pääsy tietoihin (15 art.), oikaista tietoja (16 art.), poistaa tiedot (17 art.), rajoittaa käsittelyä (18 art.), siirtää tiedot järjestelmästä toiseen (20 art.) ja vastustaa käsittelyä (21 art.) sekä peruuttaa suostumus milloin tahansa. Sinulla on myös oikeus tehdä valitus valvontaviranomaiselle (77 art.), erityisesti siinä jäsenvaltiossa, jossa asut. Emme käytä tietojasi automatisoituun päätöksentekoon, jolla on oikeudellisia vaikutuksia, emmekä profilointiin.</p>
+
+        <h2>Muutokset tähän käytäntöön</h2>
+        <p>Saatamme päivittää tätä tietosuojakäytäntöä laajennuksen ominaisuuksien muuttuessa. Olennaiset muutokset näkyvät täällä päivitettynä "Päivitetty viimeksi" -päivämääränä. Laajennuksen käytön jatkaminen muutoksen jälkeen katsotaan päivitetyn käytännön hyväksymiseksi.</p>
+
+        <h2>Ota yhteyttä</h2>
+        <p>Kysyttävää tästä tietosuojakäytännöstä? Ota yhteyttä osoitteeseen <a href="mailto:info@byphil.eu">info@byphil.eu</a>, tai <a href="https://github.com/philffm/ai-summary-helper/issues">GitHub Issues</a>.</p>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="footer-inner">
+      <div class="wordmark"><img src="../assets/icon.svg" alt="">AI Summary Helper</div>
+      <div class="foot-links">
+        <a href="https://github.com/philffm/ai-summary-helper/" target="_blank" rel="noopener">Lähdekoodi GitHubissa</a>
+        <a href="bookmarklet.html">Kirjanmerkkisovellus (ei asennusta)</a>
+        <a href="privacy.html">Tietosuoja</a>
+        <a href="#" data-analytics-settings="">Analytiikka-asetukset</a>
+        <a href="https://byphil.eu/terms.html#terms-of-service" target="_blank" rel="noopener">Käyttöehdot</a>
+        <a href="https://byphil.eu/terms.html#refunds" target="_blank" rel="noopener">Palautukset ja hyvitykset</a>
+        <a href="https://byphil.eu/terms.html#impressum" target="_blank" rel="noopener">Impressum</a>
+      </div>
+    </div>
+    <div class="copyright">© 2026 Phil Wornath. Osa <a href="https://byphil.eu/" class="credit-link">byphil.<span style="color:inherit;">eu</span> ↗</a> -kokonaisuutta — itsenäistä ohjelmistokehitystä Saksasta. Maksut välittää Stripe (Merchant of Record).<br>
+      <a href="https://ec.europa.eu/consumers/odr" target="_blank" rel="noopener">EU:n kuluttajariitojen ratkaisu</a> · Suunnittelu ja toteutus: <a href="https://philwornath.com/" target="_blank" rel="noopener" class="credit-link">philwornath.com ↗</a>
+    </div>
+  </div>
+</footer>
+
+<script src="../assets/hero-i18n.js"></script>
+<script src="../assets/main.js"></script>
+
+
+</body></html>

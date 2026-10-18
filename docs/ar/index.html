@@ -1,0 +1,618 @@
+<!DOCTYPE html><html lang="ar" dir="rtl"><head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#08090C">
+<title>AI Summary Helper: تلخيص وحفظ وبحث في الويب</title>
+<meta name="description" content="إضافة Chrome تلخص الصفحات بالذكاء الاصطناعي، وتقرأ خلاصات RSS الخاصة بك، وتحتفظ بأرشيف قابل للبحث. البحث والتوصيات تعمل محلياً بالكامل على جهازك.">
+
+<script>
+  (function(){
+    try {
+      var saved = localStorage.getItem('aish_theme');
+      var theme = saved === 'light' || saved === 'dark'
+        ? saved
+        : (window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
+      document.documentElement.setAttribute('data-theme', theme);
+    } catch (e) {
+      document.documentElement.setAttribute('data-theme', 'dark');
+    }
+  })();
+</script>
+
+<link rel="icon" type="image/svg+xml" href="../assets/icon.svg">
+<link rel="stylesheet" href="../assets/styles.css">
+
+<meta property="og:title" content="AI Summary Helper">
+<meta property="og:description" content="لخّص واحفظ وابحث في الويب محلياً على جهازك. إضافة Chrome مصممة لمن لا يريد فقدان قائمة قراءته بعد اليوم.">
+<meta property="og:url" content="https://ai-summary-helper.byphil.eu/">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://ai-summary-helper.byphil.eu/assets/shots/aish-hero-en.webp">
+<meta property="og:image:width" content="1280">
+<meta property="og:image:height" content="800">
+<meta name="twitter:card" content="summary_large_image">
+
+<script src="../assets/analytics.js"></script>
+<link rel="alternate" hreflang="x-default" href="https://ai-summary-helper.byphil.eu/index.html"><link rel="alternate" hreflang="en" href="https://ai-summary-helper.byphil.eu/index.html"><link rel="alternate" hreflang="de" href="https://ai-summary-helper.byphil.eu/de/index.html"><link rel="alternate" hreflang="fr" href="https://ai-summary-helper.byphil.eu/fr/index.html"><link rel="alternate" hreflang="es" href="https://ai-summary-helper.byphil.eu/es/index.html"><link rel="alternate" hreflang="zh-Hans" href="https://ai-summary-helper.byphil.eu/zh/index.html"><link rel="alternate" hreflang="zh-Hant" href="https://ai-summary-helper.byphil.eu/zh-tw/index.html"><link rel="alternate" hreflang="ja" href="https://ai-summary-helper.byphil.eu/ja/index.html"><link rel="alternate" hreflang="ko" href="https://ai-summary-helper.byphil.eu/ko/index.html"><link rel="alternate" hreflang="pt-BR" href="https://ai-summary-helper.byphil.eu/pt/index.html"><link rel="alternate" hreflang="hi" href="https://ai-summary-helper.byphil.eu/hi/index.html"><link rel="alternate" hreflang="vi" href="https://ai-summary-helper.byphil.eu/vi/index.html"><link rel="alternate" hreflang="nl" href="https://ai-summary-helper.byphil.eu/nl/index.html"><link rel="alternate" hreflang="it" href="https://ai-summary-helper.byphil.eu/it/index.html"><link rel="alternate" hreflang="ru" href="https://ai-summary-helper.byphil.eu/ru/index.html"><link rel="alternate" hreflang="uk" href="https://ai-summary-helper.byphil.eu/uk/index.html"><link rel="alternate" hreflang="tr" href="https://ai-summary-helper.byphil.eu/tr/index.html"><link rel="alternate" hreflang="id" href="https://ai-summary-helper.byphil.eu/id/index.html"><link rel="alternate" hreflang="pl" href="https://ai-summary-helper.byphil.eu/pl/index.html"><link rel="alternate" hreflang="th" href="https://ai-summary-helper.byphil.eu/th/index.html"><link rel="alternate" hreflang="ar" href="https://ai-summary-helper.byphil.eu/ar/index.html"><link rel="alternate" hreflang="sv" href="https://ai-summary-helper.byphil.eu/sv/index.html"><link rel="alternate" hreflang="da" href="https://ai-summary-helper.byphil.eu/da/index.html"><link rel="alternate" hreflang="nb" href="https://ai-summary-helper.byphil.eu/no/index.html"><link rel="alternate" hreflang="fi" href="https://ai-summary-helper.byphil.eu/fi/index.html"></head>
+<body>
+
+<a href="#main" class="skip-link">الانتقال إلى المحتوى</a>
+
+<header class="nav">
+  <div class="wrap nav-inner">
+    <div class="brand-cluster">
+      <div class="wordmark">
+        <img src="../assets/icon.svg" alt="">
+        AI Summary Helper
+      </div>
+      <a href="https://byphil.eu/" target="_blank" rel="noopener" class="ecosystem-badge">
+        <span class="pulse-dot"></span> جزء من byphil.
+      </a>
+    </div>
+    <div class="nav-desktop-group nav-desktop-links">
+      <nav class="links" aria-label="Primary">
+        <a href="index.html#features">المميزات</a>
+        <a href="index.html#digest">الموجز</a>
+        <a href="index.html#pricing">الأسعار</a>
+        <a href="blog/">المدونة</a>
+        <a href="https://github.com/philffm/ai-summary-helper/" target="_blank" rel="noopener">GitHub</a>
+      </nav>
+      <button type="button" class="theme-toggle" id="themeToggle" aria-label="Switch to light mode">
+        <svg class="icon-moon" viewBox="0 0 24 24" fill="none"><path d="M20 14.5A8.5 8.5 0 1 1 9.5 4a6.8 6.8 0 0 0 10.5 10.5Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"></path></svg>
+        <svg class="icon-sun" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="4.2" stroke="currentColor" stroke-width="1.6"></circle><path d="M12 2.5v2.4M12 19.1v2.4M4.4 4.4l1.7 1.7M17.9 17.9l1.7 1.7M2.5 12h2.4M19.1 12h2.4M4.4 19.6l1.7-1.7M17.9 6.1l1.7-1.7" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"></path></svg>
+      </button>
+      <a href="https://byphil.eu/#account" class="btn-sign-in">حسابي</a>
+    </div>
+    <button type="button" class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="mobileMenu" aria-label="Open menu">
+      <svg viewBox="0 0 24 24" fill="none"><path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"></path></svg>
+    </button>
+  </div>
+  <div class="mobile-menu" id="mobileMenu" hidden="">
+    <div class="wrap mobile-menu-inner">
+      <a href="index.html#features">المميزات</a>
+      <a href="index.html#digest">الموجز</a>
+      <a href="index.html#pricing">الأسعار</a>
+      <a href="blog/">المدونة</a>
+      <a href="https://github.com/philffm/ai-summary-helper/" target="_blank" rel="noopener">GitHub</a>
+      <a href="https://byphil.eu/#account">حسابي</a>
+      <a href="https://byphil.eu/" target="_blank" rel="noopener">جزء من byphil. ↗</a>
+      <button type="button" class="theme-toggle-mobile" id="themeToggleMobile">
+        <span id="themeToggleMobileLabel">التبديل إلى الوضع الفاتح</span>
+        <svg class="icon-moon" viewBox="0 0 24 24" fill="none"><path d="M20 14.5A8.5 8.5 0 1 1 9.5 4a6.8 6.8 0 0 0 10.5 10.5Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"></path></svg>
+        <svg class="icon-sun" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="4.2" stroke="currentColor" stroke-width="1.6"></circle><path d="M12 2.5v2.4M12 19.1v2.4M4.4 4.4l1.7 1.7M17.9 17.9l1.7 1.7M2.5 12h2.4M19.1 12h2.4M4.4 19.6l1.7-1.7M17.9 6.1l1.7-1.7" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"></path></svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+<main id="main">
+
+  <!-- ── Hero ────────────────────────────────────────────────────── -->
+  <section class="hero hero-scene hscene" data-hscene="">
+  <div class="hs-grid">
+    <div class="hs-text"><div class="hs-text-in">
+      <div class="eyebrow"><span class="dash"></span> إضافة متصفح Chrome · جزء من byphil. <span class="dash"></span></div>
+      <h1>لخّص محتوى الويب.<br><em>احتفظ بما يهمك فقط.</em></h1>
+      <p class="sub">تتابع أداة AI Summary Helper مواقعك المفضلة عبر قارئ RSS مدمج، وتحفظ أي صفحة كمقال ملخص وقابل للبحث — ثم تساعدك على العودة إليها فعلياً، عبر موجز محلي يرسل قراءاتك بلا إنترنت مباشرة إلى Kindle أو أي جهاز آخر.</p>
+      <div class="hero-switch" role="tablist" aria-label="How do you want to use it?">
+        <button type="button" class="hero-switch-btn active" role="tab" id="heroTabBrowser" aria-selected="true" aria-controls="heroPaneBrowser" data-hero="browser">
+          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="3" stroke="currentColor" stroke-width="1.6"></rect><path d="M3 9h18" stroke="currentColor" stroke-width="1.6"></path></svg>
+          إضافة المتصفح
+        </button>
+        <button type="button" class="hero-switch-btn" role="tab" id="heroTabBookmarklet" aria-selected="false" aria-controls="heroPaneBookmarklet" tabindex="-1" data-hero="bookmarklet">
+          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 3h12v18l-6-4-6 4V3Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"></path></svg>
+          الرمز المرجعي (Bookmarklet)
+        </button>
+      </div>
+      <div class="hero-pane" id="heroPaneBrowser" role="tabpanel" aria-labelledby="heroTabBrowser">
+        <div class="hero-cta">
+          <a href="https://chromewebstore.google.com/detail/ai-summary-helper-openai/hldbejcjaedipeegjcinmhejdndchkmb" target="_blank" rel="noopener" class="btn-primary">أضف إلى Chrome — مجاناً</a>
+        </div>
+        <p class="hero-meta">لا يلزم إنشاء حساب للبدء · يدعم معظم نماذج LLM عبر واجهة byPhil API، أو مفتاح الذكاء الاصطناعي الخاص بك، أو بدون إنترنت تماماً عبر Ollama</p>
+      </div>
+      <div class="hero-pane" id="heroPaneBookmarklet" role="tabpanel" aria-labelledby="heroTabBookmarklet" hidden="">
+        <p class="hero-pane-blurb">رابط واحد في شريط الإشارات المرجعية، على أي متصفح ونظام تشغيل — بما في ذلك iOS. دون تثبيت؛ يظهر الملخص مباشرة على الصفحة.</p>
+        <div class="hero-cta">
+          <a href="bookmarklet.html" class="btn-primary" data-track="bookmarklet-open">أنشئ الرمز المرجعي الخاص بك →</a>
+        </div>
+        <p class="hero-meta">يفتح أداة الإنشاء · يدعم معظم نماذج LLM عبر byPhil API (دون مفتاح)، أو مفتاحك الخاص من OpenAI أو Gemini أو Mistral أو DeepSeek أو Ollama</p>
+      </div>
+      <ol class="hs-steps" data-stage-pane="browser">
+  <li class="is-on" data-step="0" role="button" tabindex="0"><b>اقرأ أي صفحة.</b><span>افتح المقال كالمعتاد. تعمل الأداة بهدوء تام داخل المتصفح.</span></li>
+  <li data-step="1" role="button" tabindex="0"><b>الملخص بجانب المقال.</b><span>بنقرة واحدة، يُعرض ملخص موجز في اللوحة الجانبية بينما تتابع القراءة.</span></li>
+  <li data-step="2" role="button" tabindex="0"><b>اسأل عن محتوى الصفحة.</b><span>إجابات الأسئلة التتبعية ترشدك مباشرة إلى الفقرة الأصلية التي استندت إليها.</span></li>
+  <li data-step="3" role="button" tabindex="0"><b>بلغتك المفضلة.</b><span>ملخصات باللغة التي تختارها، ومخطط بياني شامل لكل ما قرأته.</span></li>
+</ol>
+    </div></div>
+    <div class="hs-vwrap" data-stage-pane="browser">
+      <div class="hs-vis">
+        <p class="hscene-mcap" aria-hidden="true"><strong data-mcap-t="">اقرأ أي صفحة.</strong> <span data-mcap-s="">افتح المقال كالمعتاد.</span></p>
+        <div class="hscene-view">
+          <div class="hscene-canvas" aria-hidden="true">
+            <div class="hs-langs" data-no-translate=""><b data-lang="a" class="is-on">English</b><b data-lang="b">Deutsch</b><b>Français</b><b>Español</b><b>日本語</b></div>
+            <div class="hs-badge" data-no-translate=""><i></i> Runs locally · gemma3:4b</div>
+            <div class="hs-win" data-no-translate="">
+              <div class="hs-bar"><i></i><i></i><i></i><span>🔒 dailyledger.example/work-life/office-fern</span><div class="hs-ext"><em class="hs-puz">🧩</em><em class="hs-extbtn"><span class="hs-logo"></span></em></div></div>
+              <div class="hs-art">
+                <div class="hs-mast">The Daily Ledger</div>
+                <div class="hs-kick">WORK &amp; LIFE</div>
+                <h4>Office fern outlives four reorganisations, now up for team lead</h4>
+                <p class="hs-dek">Colleagues praise the plant’s “remarkable resilience”.</p>
+                <p>Leeds. When the logistics team moved floors in 2019, nobody expected Gerald to survive.</p>
+                <p class="hs-hl">Seven years and four reorganisations later, the office fern is the longest-serving member of the department.</p>
+                <p>He has never once scheduled a meeting that could have been an email.</p>
+              </div>
+              <div class="hs-panel">
+                <div class="hs-ph"><span class="hs-logo"></span> AI Summary Helper</div>
+                <div class="hs-tags"><i>workplace</i><i>humour</i><i>🌐 <span data-lang-code="">en</span></i></div>
+                <div class="hs-sum has-text">
+                  <small>✨ AI Summary</small>
+                  <i class="hs-ph2">Press Summarize to read this page in seconds.</i>
+                  <b class="hs-st" data-t-en="A fern climbs the career ladder" data-t-de="Ein Farn macht Karriere">A fern climbs the career ladder</b>
+                  <span class="hs-sb" data-b-en="Gerald, an office fern in Leeds, has outlasted <strong>four reorganisations in seven years</strong> and is now up for team lead." data-b-de="Gerald, ein Büro-Farn in Leeds, hat <strong>vier Umstrukturierungen in sieben Jahren</strong> überstanden und soll nun Teamleiter werden.">Gerald, an office fern in Leeds, has outlasted <strong>four reorganisations in seven years</strong> and is now up for team lead.</span>
+                  <span class="hs-sp" data-p-en="87% of staff call him the most reliable presence in the office." data-p-de="87 % der Belegschaft halten ihn für die verlässlichste Präsenz im Büro.">• 87% of staff call him the most reliable presence in the office.</span>
+                </div>
+                <div class="hs-qwrap"><button type="button" class="hs-sugg" tabindex="-1">💬 Why is Gerald up for promotion?</button><div class="hs-q"><span>Why is Gerald up for promotion?</span></div></div>
+                <div class="hs-a">Staff see him as the most reliable presence in the office.<em>📌 In article</em></div>
+                <div class="hs-tabs"><i>Feeds</i><i class="on">Summarize</i><i>History</i></div>
+              </div>
+            </div>
+            <div class="hs-graph" data-no-translate="">
+              <small>🕸 Your knowledge graph</small>
+              <svg viewBox="0 0 160 70" width="160" height="70"><g stroke="#9db4ea" stroke-width="1.4"><line x1="20" y1="40" x2="70" y2="18"></line><line x1="70" y1="18" x2="120" y2="42"></line><line x1="70" y1="18" x2="140" y2="14"></line><line x1="120" y1="42" x2="96" y2="58"></line></g><g><circle cx="20" cy="40" r="5" fill="#2563eb"></circle><circle cx="70" cy="18" r="7" fill="#16a37f"></circle><circle cx="120" cy="42" r="5" fill="#2563eb"></circle><circle cx="140" cy="14" r="5" fill="#e5484d"></circle><circle cx="96" cy="58" r="5" fill="#2563eb"></circle></g></svg>
+              <div><b>2h 48m</b> saved · <b>11</b> day streak 🔥</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="hs-ctrl" role="group" aria-label="Walkthrough"><button type="button" class="hs-pp" aria-label="Pause walkthrough"><svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><path class="pp-pause" d="M7 5h3v14H7zM14 5h3v14h-3z" fill="currentColor"></path><path class="pp-play" d="M8 5l11 7-11 7z" fill="currentColor"></path></svg></button><button type="button" class="hs-dot is-on" aria-label="Step 1"></button><button type="button" class="hs-dot" aria-label="Step 2"></button><button type="button" class="hs-dot" aria-label="Step 3"></button><button type="button" class="hs-dot" aria-label="Step 4"></button></div>
+      <p class="sr-only">تفتح أداة AI Summary Helper ملخصاً موجزاً للمقال في لوحة جانبية، وتتيح لك طرح أسئلة استيضاحية ترتبط مباشرة بالنص المصدر، مع إمكانية تحويل الملخصات إلى لغتك المختارة.</p>
+    </div>
+    <div class="hs-bm" data-stage-pane="bookmarklet" hidden="">
+      <div class="bm-mock" aria-hidden="true" data-no-translate="">
+            <div class="bm-win">
+              <div class="bm-tb"><i></i><i></i><i></i><span>🔒 dailyledger.example/work-life/office-fern</span></div>
+              <div class="bm-bar"><span>Mail</span><span>Docs</span><span>Maps</span><span class="bm-mark">✨ Summarize</span></div>
+              <div class="bm-page">
+                <div class="bm-mast">The Daily Ledger</div>
+                <h4>Office fern outlives four reorganisations, now up for team lead</h4>
+                <p>Leeds. When the logistics team moved floors in 2019, nobody expected Gerald to survive.</p>
+                <p>Seven years and four reorganisations later, the office fern is the longest-serving member of the department.</p>
+                <p>He has never once scheduled a meeting that could have been an email.</p>
+                <div class="bm-card"><small>✨ AI Summary</small><b>A fern climbs the career ladder</b><span>Gerald, an office fern in Leeds, has outlasted <strong>four reorganisations in seven years</strong> and is now up for team lead.</span></div>
+              </div>
+              <svg class="bm-cursor" viewBox="0 0 24 24" width="26" height="26"><path d="M4 2l15 9-6.5 1.5L9 19z" fill="#14161f" stroke="#fff" stroke-width="1.4" stroke-linejoin="round"></path></svg>
+            </div>
+          </div>
+      <ol class="bm-steps">
+  <li><span class="bm-n">1</span><div><h3>أنشئه لمرة واحدة</h3><p>اختر واجهة byPhil API (دون مفتاح) أو استخدم مفتاحك الخاص من OpenAI أو Gemini أو Mistral أو DeepSeek أو Ollama.</p></div></li>
+  <li><span class="bm-n">2</span><div><h3>اسحبه إلى شريط الإشارات المرجعية</h3><p>يعمل على أي متصفح ونظام تشغيل، بما فيها iOS. لا يتطلب أي تثبيت.</p></div></li>
+  <li><span class="bm-n">3</span><div><h3>انقر عليه في أي صفحة</h3><p>يظهر الملخص مباشرة فوق الصفحة، مع ميزة متابعة الأسئلة ودعم لغتك المفضلة.</p></div></li>
+</ol>
+    </div>
+  </div>
+</section>
+
+  <!-- ── See it ──────────────────────────────────────────────────── -->
+  <!-- Screenshots are localized by scripts/translate.mjs: "-en.webp" is swapped for
+       "-<locale>.webp" when docs/assets/shots/ has that file, else it stays English. -->
+  <section id="see-it">
+    <div class="wrap">
+      <div class="section-head center reveal">
+        <div class="eyebrow">شاهد عملياً</div>
+        <h2>الملخص يظهر بجانب المقال</h2>
+        <p>اطلع على النظرة العامة، واطرح أسئلة استيضاحية، واعرف الفقرة الدقيقة لمصدر الإجابة. واجهة حقيقية من الإصدار 2.2.</p>
+      </div>
+      <div class="cx reveal" data-carousel="" role="region" aria-roledescription="carousel" aria-label="Product screenshots">
+        <div class="cx-stage">
+          <ul class="cx-track" tabindex="0">
+          <li class="cx-slide is-active" role="group" aria-roledescription="slide" aria-label="1 / 4">
+            <figure>
+              <img src="../assets/shots/aish-inpage-detail-en.webp" width="1440" height="900" loading="lazy" alt="ملخص في اللوحة الجانبية بجانب المقال">
+              <figcaption><strong>الملخص بجانب المقال</strong><span>اقرأ النظرة العامة دون مغادرة الصفحة.</span></figcaption>
+            </figure>
+          </li>
+          <li class="cx-slide" role="group" aria-roledescription="slide" aria-label="2 / 4">
+            <figure>
+              <img src="../assets/shots/aish-inpage-ask-en.webp" width="1440" height="900" loading="lazy" alt="إجابة تتبعية تتضمن علامة المصدر مع تمييز وتظليل الجمل في المقال">
+              <figcaption><strong>اسأل عن الصفحة</strong><span>تشير الإجابات بدقة إلى الفقرة التي استُخرجت منها.</span></figcaption>
+            </figure>
+          </li>
+          <li class="cx-slide" role="group" aria-roledescription="slide" aria-label="3 / 4">
+            <figure>
+              <img src="../assets/shots/aish-split-wide-en.webp" width="1280" height="800" loading="lazy" alt="عرض مقسم يظهر القائمة ومخطط المعرفة والتحليلات جنباً إلى جنب">
+              <figcaption><strong>جديد الإصدار 2.2: العرض المقسم</strong><span>القائمة، ومخطط المعرفة، والتحليلات جنباً إلى جنب على الشاشات الكبيرة.</span></figcaption>
+            </figure>
+          </li>
+          <li class="cx-slide" role="group" aria-roledescription="slide" aria-label="4 / 4">
+            <figure>
+              <img src="../assets/shots/aish-research-dark-en.webp" width="1280" height="800" loading="lazy" alt="وضع البحث العلمي مع مجموعة من الأوراق البحثية، بالوضع الداكن">
+              <figcaption><strong>جديد الإصدار 2.2: وضع البحث العلمي</strong><span>تفاصيل الدراسات، واقتباسات معرّفات DOI، وتجميع المقالات للأوراق العلمية.</span></figcaption>
+            </figure>
+          </li>
+          </ul>
+          <button type="button" class="cx-nav cx-prev" aria-label="Previous slide"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m15 18-6-6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg></button>
+          <button type="button" class="cx-nav cx-next" aria-label="Next slide"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m9 18 6-6-6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg></button>
+        </div>
+        <div class="cx-dots"><button type="button" class="cx-dot is-active" aria-label="Slide 1"></button><button type="button" class="cx-dot" aria-label="Slide 2"></button><button type="button" class="cx-dot" aria-label="Slide 3"></button><button type="button" class="cx-dot" aria-label="Slide 4"></button></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="try-it">
+    <div class="wrap">
+      <div class="section-head center reveal">
+        <div class="eyebrow">جرّبها الآن</div>
+        <h2>اضغط على تلخيص داخل صفحة حقيقية</h2>
+        <p>هذه هي واجهة الإضافة الفعلية تعمل مباشرة في متصفحك على مقال تجريبي. لا يتم إرسال أي بيانات لأي جهة.</p>
+      </div>
+      <div class="demo-frame reveal" data-demo="" data-src="../demo/index.html">
+        <button class="demo-start" type="button"><span class="demo-play" aria-hidden="true">▶</span><span>بدء العرض التفاعلي الحي</span></button>
+        <a class="demo-open" href="../demo/index.html" target="_blank" rel="noopener">فتح في وضع الشاشة الكاملة ↗</a>
+      </div>
+      <div class="demo-cta reveal"><a href="https://chromewebstore.google.com/detail/ai-summary-helper-openai/hldbejcjaedipeegjcinmhejdndchkmb" target="_blank" rel="noopener" class="btn-primary" data-track="demo-add-chrome">أضف إلى Chrome — مجاناً</a><a href="https://addons.mozilla.org/en-US/firefox/addon/ai-summary-helper/" target="_blank" rel="noopener" class="btn-secondary" data-store="alt" data-track="demo-add-firefox">Firefox</a></div>
+    </div>
+  </section>
+
+  <!-- ── Features ────────────────────────────────────────────────── -->
+  <section id="features">
+    <div class="wrap">
+      <div class="section-head center reveal">
+        <div class="eyebrow">ما تقدمه الأداة</div>
+        <h2>كل ما كان ينبغي لقوائم القراءة تقديمه منذ البداية</h2>
+        <p>احفظ المقال، وافهمه، وجده مجدداً، وعُد إليه فعلياً — دون اشتراك إضافي يحتجز أرشيفك رهينة لديه.</p>
+      </div>
+
+      <!-- Persona switch: same 6 features throughout, no feature ever
+           hidden — this only re-orders emphasis (border highlight vs.
+           dim) and swaps one line of framing copy. Nothing here changes
+           what's actually rendered for a crawler beyond that, so it
+           costs nothing on the GEO/SEO side. -->
+      <div class="persona-switch reveal" role="group" aria-label="Who are you? Highlights the matching features below">
+        <button type="button" class="persona-btn active" data-persona="privacy" aria-pressed="true">
+          <svg viewBox="0 0 24 24" fill="none"><path d="M12 3l7 3v6c0 4.5-3 7.5-7 9-4-1.5-7-4.5-7-9V6l7-3Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"></path></svg>
+          أولوية الخصوصية
+        </button>
+        <button type="button" class="persona-btn" data-persona="hoarder" aria-pressed="false">
+          <svg viewBox="0 0 24 24" fill="none"><rect x="4" y="4" width="16" height="16" rx="3" stroke="currentColor" stroke-width="1.6"></rect><path d="M8 9h8M8 13h5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"></path></svg>
+          لمحبي تكديس علامات التبويب
+        </button>
+        <button type="button" class="persona-btn" data-persona="researcher" aria-pressed="false">
+          <svg viewBox="0 0 24 24" fill="none"><circle cx="5" cy="6" r="1.8" fill="currentColor"></circle><circle cx="19" cy="6" r="1.8" fill="currentColor" opacity="0.85"></circle><circle cx="12" cy="12" r="2.1" fill="currentColor"></circle><circle cx="6" cy="18" r="1.8" fill="currentColor" opacity="0.85"></circle><circle cx="18" cy="18" r="1.8" fill="currentColor" opacity="0.85"></circle><path d="M5 6 12 12M19 6 12 12M12 12 6 18M12 12 18 18" stroke="currentColor" stroke-width="1.1" opacity="0.55"></path></svg>
+          للباحثين
+        </button>
+      </div>
+      <p class="persona-blurb reveal" id="personaBlurb" aria-live="polite">أنت من يحدد النموذج والخادم وما إذا كانت أي بيانات ستغادر جهازك أصلاً.</p>
+
+      <div class="feature-grid reveal" id="featureGrid">
+        <div class="feature-card" data-personas="privacy researcher">
+          <div class="f-icon icon-cyan"><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="6" r="2.6" fill="#fff"></circle><circle cx="6" cy="17" r="2.2" fill="#fff" opacity="0.85"></circle><circle cx="18" cy="17" r="2.2" fill="#fff" opacity="0.85"></circle><path d="M12 8.6 L6.8 14.8 M12 8.6 L17.2 14.8" stroke="#fff" stroke-width="1.4" stroke-linecap="round" opacity="0.7"></path></svg></div>
+          <h3>ملخصات ذكاء اصطناعي بنموذجك المفضل</h3>
+          <p>OpenAI أو Gemini أو Mistral أو DeepSeek أو نقطة نهاية مخصصة — أو وجّهها إلى نموذج Ollama محلي بالكامل دون لمس شبكة الإنترنت في هذه الخطوة.</p>
+        </div>
+        <div class="feature-card" data-personas="privacy researcher">
+          <div class="f-icon icon-gold"><svg viewBox="0 0 24 24" fill="none"><path d="M5 5h14M5 9h14M5 13h14M5 17h14" stroke="#fff" stroke-width="2.2" stroke-linecap="round"></path><path d="M5 5l14 0M5 9l14 0M5 13l14 0M5 17l14 0" stroke="#fff" stroke-width="2.2" stroke-linecap="round" opacity="0.35"></path></svg></div>
+          <h3>تظليلات ذكية ومباشرة على الصفحة</h3>
+          <p>يبرز الذكاء الاصطناعي بخفة <mark class="ai-ghost-highlight">أهم الاقتباسات النصية الحرفية</mark> في المقال — حتى تتمكن من <mark class="ai-ghost-highlight">استيعاب النقاط الجوهرية بلمحة سريعة</mark>، وتنتقل هذه التظليلات مع الملخص مباشرة إلى Kindle أو LocalSend أو ملف Markdown.</p>
+        </div>
+        <div class="feature-card" data-personas="privacy researcher">
+          <div class="f-icon icon-violet"><svg viewBox="0 0 24 24" fill="none"><path d="M11 4a7 7 0 1 0 4.9 12.1l4.6 4.6" stroke="#fff" stroke-width="1.7" stroke-linecap="round"></path></svg></div>
+          <h3>بحث حقيقي بالكامل على جهازك</h3>
+          <p>بحث بالنص الكامل عبر العناوين، والوسوم، ومحتوى المقالات — مدعوماً بفهرس TF-IDF يُبنى محلياً داخل متصفحك. استجابة فورية دون تأخير، وبلا إرسال أي بيانات خارج جهازك.</p>
+        </div>
+        <div class="feature-card" data-personas="hoarder">
+          <div class="f-icon icon-indigo"><svg viewBox="0 0 24 24" fill="none"><path d="M6 3h12v18l-6-4-6 4V3Z" stroke="#fff" stroke-width="1.6" stroke-linejoin="round"></path></svg></div>
+          <h3>حفظ هادف للرجوع إليه لاحقاً</h3>
+          <p>عيّن "قراراً" مع ذكر السبب والإطار الزمني، وتلقَّ تذكيراً به — بدلاً من أن يضيع في كومة مقالات لن تفتحها أبداً.</p>
+        </div>
+        <div class="feature-card" data-personas="hoarder">
+          <div class="f-icon icon-gold"><svg viewBox="0 0 24 24" fill="none"><rect x="4" y="4" width="16" height="16" rx="3" stroke="#fff" stroke-width="1.6"></rect><path d="M8 9h8M8 13h5" stroke="#fff" stroke-width="1.6" stroke-linecap="round"></path></svg></div>
+          <h3>موجز يختار محتواه بذكاء</h3>
+          <p>بنقرة واحدة تنتقي الأداة مجموعة صغيرة ومتنوعة من محفوظاتك — بعيداً عن تكرار زوايا نفس الخبر — وتجمعها في ملف موحد لـ Kindle أو LocalSend.</p>
+        </div>
+        <div class="feature-card" data-personas="researcher">
+          <div class="f-icon icon-cyan"><svg viewBox="0 0 24 24" fill="none"><circle cx="5" cy="6" r="1.8" fill="#fff"></circle><circle cx="19" cy="6" r="1.8" fill="#fff" opacity="0.85"></circle><circle cx="12" cy="12" r="2.1" fill="#fff"></circle><circle cx="6" cy="18" r="1.8" fill="#fff" opacity="0.85"></circle><circle cx="18" cy="18" r="1.8" fill="#fff" opacity="0.85"></circle><path d="M5 6 12 12M19 6 12 12M12 12 6 18M12 12 18 18" stroke="#fff" stroke-width="1.1" opacity="0.55"></path></svg></div>
+          <h3>مخطط معرفي مترابط، وليس مجرد قائمة</h3>
+          <p>شاهد كيف ترتبط مقالاتك المحفوظة معاً — عبر الوسوم المشتركة، وعبر تقارب الموضوعات حتى إن لم تشترك في أي وسوم.</p>
+        </div>
+        <div class="feature-card" data-personas="hoarder researcher">
+          <div class="f-icon icon-indigo"><svg viewBox="0 0 24 24" fill="none"><circle cx="6" cy="18" r="1.8" fill="#fff"></circle><path d="M5 11a8 8 0 0 1 8 8M5 5a14 14 0 0 1 14 14" stroke="#fff" stroke-width="1.8" stroke-linecap="round"></path></svg></div>
+          <h3>قارئ RSS مدمج بالكامل</h3>
+          <p>تابع المدونات والمواقع الإخبارية، ورتّبها حسب المصدر أو الوسم أو التاريخ أو الطابع، واستورد ملفات OPML، وافتح أي مادة أو لخصها بنقرة واحدة. شغّل خلاصات البودكاست مباشرة داخل الإضافة، واحصل على ملخص ذكاء اصطناعي اختياري لأبرز عناوين اليوم. تُحفظ مفضلاتك داخل الأرشيف، وتُخزن الخلاصات محلياً على جهازك.</p>
+        </div>
+        <div class="feature-card" data-personas="privacy hoarder researcher">
+          <div class="f-icon icon-violet"><svg viewBox="0 0 24 24" fill="none"><path d="M4 12h16M12 4c2.8 2.6 4.2 5.2 4.2 8s-1.4 5.4-4.2 8c-2.8-2.6-4.2-5.2-4.2-8s1.4-5.4 4.2-8Z" stroke="#fff" stroke-width="1.5"></path></svg></div>
+          <h3>أكثر من 20 لغة عبر منصات متعددة</h3>
+          <p>اقرأ ولخص باللغة التي تفضلها. استخدم الإضافة، أو اللوحة الجانبية، أو <a href="bookmarklet.html">الرمز المرجعي (Bookmarklet)</a> — للوصول إلى أي مكان لا تبلغه إضافة المتصفح.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    (function(){
+      var PERSONAS = {
+        privacy:    "You choose the model, the server, and whether anything leaves your machine at all.",
+        hoarder:    "The problem was never saving. It's getting back to what you saved — this is built around that part.",
+        researcher: "Every save becomes searchable, connected, and exportable — a real archive, not a growing pile."
+      };
+      var buttons = document.querySelectorAll('.persona-btn');
+      var cards = document.querySelectorAll('#featureGrid .feature-card');
+      var blurb = document.getElementById('personaBlurb');
+
+      function setPersona(name) {
+        buttons.forEach(function(b){
+          var active = b.getAttribute('data-persona') === name;
+          b.classList.toggle('active', active);
+          b.setAttribute('aria-pressed', active ? 'true' : 'false');
+        });
+        cards.forEach(function(c){
+          var match = (c.getAttribute('data-personas') || '').split(' ').indexOf(name) !== -1;
+          c.classList.toggle('persona-match', match);
+          c.classList.toggle('persona-dim', !match);
+        });
+        if (PERSONAS[name]) blurb.textContent = PERSONAS[name];
+      }
+
+      buttons.forEach(function(b){
+        b.addEventListener('click', function(){
+          setPersona(b.getAttribute('data-persona'));
+          window.aishTrack && window.aishTrack('Persona', 'select', b.getAttribute('data-persona'));
+        });
+      });
+    })();
+  </script>
+
+  <!-- ── Digest spotlight ────────────────────────────────────────── -->
+  <section id="digest">
+    <div class="wrap">
+      <div class="section-head center reveal">
+        <div class="eyebrow">مشكلة الـ 84%</div>
+        <h2>معظم ما تحفظه، لا تعود لقراءته مجدداً</h2>
+        <p>تُظهر أبحاث سلوك حفظ الإشارات المرجعية باستمرار أن الغالبية العظمى من المقالات المحفوظة لا تُفتح ثانية. هذه ليست مشكلة انضباط شخصي — بل هي النتيجة الطبيعية لأدوات تسهّل الحفظ وتقدم صفراً من المساعدة في اختيار ما يستحق القراءة فعلاً.</p>
+      </div>
+      <div class="feature-grid digest-steps reveal">
+        <div class="feature-card">
+          <h3 style="margin-top:0;">1. اضغط على الموجز</h3>
+          <p>يختار 5 عناصر من محفوظاتك — مع إعطاء الأولوية للحداثة والتنوع، حتى لا تتكرر أمامك خمس زوايا للحدث الإخباري نفسه.</p>
+        </div>
+        <div class="feature-card">
+          <h3 style="margin-top:0;">2. اختر الطابع العام، إن رغبت</h3>
+          <p>إيجابي، أو محايد، أو متعمق وجاد — يوجّه الموجز اختياراته لتلائم مزاجك القرائي الحالي.</p>
+        </div>
+        <div class="feature-card">
+          <h3 style="margin-top:0;">3. أرسله للقراءة دون إنترنت</h3>
+          <p>حزمة واحدة تُرسل مباشرة إلى جهاز Kindle أو أي جهاز على شبكتك المحلية. حمّلها قبل رحلتك الجوية، أو تنقلك اليومي، أو عطلتك بعيداً عن التغطية.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Phone companion ────────────────────────────────────────── -->
+  <section id="phone">
+    <div class="wrap">
+      <div class="section-head center reveal">
+        <div class="eyebrow">جديد · Android <span class="beta-badge">إصدار تجريبي (Beta)</span></div>
+        <h2>شارك الرابط من هاتفك، واقرأ الملخص على حاسوبك</h2>
+        <p>يضيف تطبيق AISH Companion خيار “AISH” إلى قائمة المشاركة في هاتفك. تنتقل الروابط مشفرة بالكامل بين الطرفين (End-to-End) لتنتظرك في السجل داخل متصفحك، حيث يلخصها نقرة زر واحدة.</p>
+      </div>
+      <div class="feature-grid digest-steps reveal">
+        <div class="feature-card">
+          <h3 style="margin-top:0;">1. اقتران لمرة واحدة</h3>
+          <p>في الإضافة، افتح الإعدادات (Settings) ← صندوق وارد الهاتف (Phone inbox) وامسح رمز QR عبر التطبيق المرافق. لا حاجة لإنشاء حساب.</p>
+        </div>
+        <div class="feature-card">
+          <h3 style="margin-top:0;">2. شارك من أي تطبيق</h3>
+          <p>اضغط مشاركة ← AISH من المتصفح أو النشرات البريدية أو المحادثات. يعمل حتى بلا إنترنت ويرسل الروابط فور عودة الاتصال.</p>
+        </div>
+        <div class="feature-card">
+          <h3 style="margin-top:0;">3. اضغط على تلخيص</h3>
+          <p>تظهر روابطك المشتركة ضمن السجل ← من الهاتف. اضغط على تلخيص وستتولى الإضافة الباقي عبر مزود الذكاء الاصطناعي الخاص بك.</p>
+        </div>
+      </div>
+      <div class="hero-cta reveal" style="margin-top:28px;justify-content:center;">
+        <a href="https://github.com/philffm/ai-summary-helper/releases/latest/download/aish-companion.apk" class="btn-primary" data-track="companion-apk">تنزيل لنظام Android بصيغة (APK) <span class="beta-badge">Beta</span></a>
+      </div>
+      <p class="hero-meta reveal" style="text-align:center;">Android 8 أو أحدث · مجاني ومفتوح المصدر · يتطلب إضافة المتصفح · لا يرى الخادم سوى البيانات المشفرة تماماً · غير متوفر لنظام iOS حالياً</p>
+    </div>
+  </section>
+
+  <!-- ── Why on-device ──────────────────────────────────────────── -->
+  <section>
+    <div class="wrap wrap-narrow">
+      <div class="section-head center reveal">
+        <div class="eyebrow">مصمم وفق فلسفة byphil</div>
+        <h2>أرشيفك ملكك وحدك دائماً</h2>
+        <p>البحث، واكتشاف التكرار، وتنظيم الوسوم، وتصنيف مستوى القراءة والأسلوب، واقتراح "المقالات المشابهة" — كلها تعمل كلياً داخل متصفحك، دون خوادم وسيطة ودون اشتراط حساب للاستفادة الكاملة. الشيء الوحيد الذي يغادر جهازك هو طلب التلخيص نفسه إلى مزود الذكاء الاصطناعي الذي حددته أنت. وعند ربطه بنموذج Ollama محلي، تظل حتى هذه العملية داخل جهازك.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Pricing ─────────────────────────────────────────────────── -->
+  <section id="pricing">
+    <div class="wrap wrap-narrow">
+      <div class="section-head center reveal">
+        <div class="eyebrow">مفتاح واحد، لكافة أدوات byphil</div>
+        <h2>ابدأ مجاناً. والترقية متاحة عندما تحتاجها.</h2>
+        <p>تصريح الدعم (Support Pass) ليس مخصصاً لهذه الإضافة وحدها — بل هو مفتاح شامل يفتح الوصول المتميز عبر كافة أدوات byphil، ويدار مباشرة من حساب byphil الخاص بك.</p>
+      </div>
+
+      <div style="text-align:center;">
+        <div class="tier-toggle reveal" role="group" aria-label="Billing period">
+          <button type="button" class="active" id="btnMonthly" aria-pressed="true" onclick="setBilling('monthly')">شهرياً</button>
+          <button type="button" id="btnYearly" aria-pressed="false" onclick="setBilling('yearly')">سنوياً · وفر 50%</button>
+        </div>
+      </div>
+
+      <div class="tiers reveal" id="tiersGrid">
+        <div class="tier-card">
+          <div class="tier-name">مجاني</div>
+          <div class="tier-price">€0</div>
+          <div class="tier-note">كل شيء محلياً على جهازك، دائماً</div>
+          <ul>
+            <li>ملخصات غير محدودة باستخدام API key الخاص بك أو Ollama</li>
+            <li>البحث، والموجز، والمخطط المعرفي — بالكامل على جهازك</li>
+            <li>يشمل 3 عمليات إرسال إلى Kindle</li>
+          </ul>
+          <a href="https://chromewebstore.google.com/detail/ai-summary-helper-openai/hldbejcjaedipeegjcinmhejdndchkmb" target="_blank" rel="noopener" class="tier-cta">أضف إلى Chrome</a>
+        </div>
+
+        <div class="tier-card best">
+          <div class="best-badge">أفضل قيمة</div>
+          <div class="tier-name">Support Pass</div>
+          <div class="tier-price">
+            <span class="price-monthly">€4.99<span>/شهرياً</span></span>
+            <span class="price-yearly">€29.94<span>/سنوياً</span></span>
+          </div>
+          <div class="tier-note">تتم الفوترة <span class="price-monthly">شهرياً</span><span class="price-yearly">سنوياً</span></div>
+          <ul>
+            <li>إرسال غير محدود إلى Kindle و LocalSend، بما يشمل الموجزات</li>
+            <li>وصول مباشر إلى سحابة byphil Cloud AI — دون الحاجة إلى API key</li>
+            <li>يفتح مزايا Pro عبر جميع أدوات byphil</li>
+          </ul>
+          <a href="https://byphil.eu/#pass" class="tier-cta">اشترك في Support Pass</a>
+        </div>
+
+        <div class="tier-card">
+          <div class="tier-name">Donator Pass</div>
+          <div class="tier-price">€50<span>/لمرة واحدة</span></div>
+          <div class="tier-note">وصول كامل وشامل لمدة 12 شهراً</div>
+          <ul>
+            <li>كافة مزايا Support Pass</li>
+            <li>دعم مباشر لتطوير الأدوات المستقبلية</li>
+          </ul>
+          <a href="https://byphil.eu/#pass" class="tier-cta">ادعم وافتح الوصول</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── FAQ ─────────────────────────────────────────────────────── -->
+  <section>
+    <div class="wrap">
+      <div class="section-head center reveal">
+        <div class="eyebrow">الأسئلة الشائعة</div>
+        <h2>قبل البدء بالتثبيت</h2>
+      </div>
+      <div class="faq reveal">
+        <details>
+          <summary>هل أحتاج إلى إنشاء حساب لاستخدام الأداة؟</summary>
+          <p>لا. ثبّت الإضافة، واستخدم API key الخاص بك (أو نموذج Ollama محلياً)، وابدأ بالحفظ فوراً. الحساب مطلوب فقط إذا أردت استخدام سحابة byphil Cloud أو الإرسال غير المحدود إلى Kindle/LocalSend عبر Support Pass.</p>
+        </details>
+        <details>
+          <summary>ما هي البيانات التي تغادر متصفحي فعلياً؟</summary>
+          <p>فقط طلب التلخيص — ويُرسل حصراً إلى مزود الذكاء الاصطناعي الذي اخترته — بالإضافة إلى طلبات جلب الخلاصات لمواقعك المشتركة إن استخدمت قارئ RSS، وعند النقر على الملخص اليومي فقط، تُرسل عناوين ذلك اليوم ومقتطفاته القصيرة. أما البحث، وتحديد التكرار، وإدارة الوسوم، وتقييم مستوى القراءة والنبرة، واقتراحات المقالات المشابهة، فكلها تعمل محلياً بنسبة 100% على أرشيفك المحفوظ.</p>
+        </details>
+        <details>
+          <summary>هل يمكنني تشغيل الأداة دون أي اعتماد على السحابة؟</summary>
+          <p>نعم — ما عليك سوى توجيهها إلى نموذج Ollama محلي لتبقى عملية التلخيص على جهازك أيضاً. كافة الميزات الأخرى تعمل محلياً بالفعل.</p>
+        </details>
+        <details>
+          <summary>ماذا يحدث لمقالاتي المحفوظة إذا أوقفت اشتراك Support Pass؟</summary>
+          <p>يبقى أرشيفك في مكانه تماماً — داخل مساحة التخزين المحلية لمتصفحك على جهازك. يتحكم Support Pass فقط في الإضافات السحابية (مثل الوصول إلى سحابة byphil Cloud، والإرسال غير المحدود إلى Kindle/LocalSend)، ولا يقيد أبداً وصولك إلى ما حفظته مسبقاً.</p>
+        </details>
+        <details>
+          <summary>كيف أثبّت تطبيق Android المرافق؟</summary>
+          <p>حمّل ملف APK من الرابط أعلاه (أو من <a href="https://github.com/philffm/ai-summary-helper/releases/latest" target="_blank" rel="noopener">أحدث إصدار</a>)، وافتحه، ثم اسمح بالتثبيت من المتصفح عندما يطلب Android ذلك. بعد ذلك، قم بإقرانه عبر مسح رمز QR من الإعدادات ← صندوق وارد الهاتف في الإضافة. التطبيق غير متوفر على Google Play حالياً.</p>
+        </details>
+        <details>
+          <summary>هل المشروع مفتوح المصدر؟</summary>
+          <p>نعم — الشيفرة المصدرية للإضافة متاحة بالكامل للعامة على <a href="https://github.com/philffm/ai-summary-helper/" target="_blank" rel="noopener">GitHub</a>.</p>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Blog teaser ─────────────────────────────────────────────── -->
+  <section>
+    <div class="wrap">
+      <div class="section-head reveal">
+        <div class="eyebrow">من المدونة</div>
+        <h2>خواطر ورؤى حول القراءة، والبحث، والمعالجة المحلية</h2>
+        <p>ما تعلمناه أثناء بناء ميزات البحث، والموجز، واكتشاف التكرار — ومكانها المناسب عند مقارنة أدوات القراءة لاحقاً.</p>
+      </div>
+      <div class="blog-grid reveal">
+        <a class="blog-card" href="blog/from-bookmarklet-to-2.html">
+          <span class="blog-date">المنتج</span>
+          <h3>من رمز مرجعي بسيط إلى الإصدار 2.0: حقيقة ما أصبحت عليه أداة AI Summary Helper اليوم</h3>
+          <p>بدأت الفكرة كرمز مرجعي بنقرة واحدة لـ Kindle في عام 2024. إليك كل ما تغير في رحلة إعادة البناء الشاملة مفتوحة المصدر للإصدار 2.0.</p>
+          <span class="blog-read">اقرأ المقال →</span>
+        </a>
+        <a class="blog-card" href="blog/pocket-alternative.html">
+          <span class="blog-date">دليل</span>
+          <h3>تبحث عن بديل لـ Pocket؟ إليك المعايير التي تهمك فعلاً</h3>
+          <p>ترك إغلاق Pocket فراغاً كبيراً. دليل لاتخاذ القرار بناءً على استخدامك الفعلي للأداة — لا بناءً على التطبيق الأكثر شبهاً في المظهر.</p>
+          <span class="blog-read">اقرأ المقال →</span>
+        </a>
+        <a class="blog-card" href="blog/unread-saves.html">
+          <span class="blog-date">المنتج</span>
+          <h3>لن تقرأ معظم ما تحفظه. إليك الحل العملي الحقيقي.</h3>
+          <p>الغالبية العظمى من المقالات المحفوظة لا يُعاد فتحها أبداً. لماذا ابتكرنا ميزة الموجز (Digest)، ولماذا صُممت عمداً لتتجنب مراكمة المزيد من الروابط.</p>
+          <span class="blog-read">اقرأ المقال →</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Ecosystem: part of byphil ───────────────────────────────── -->
+  <section id="ecosystem">
+    <div class="wrap wrap-narrow">
+      <div class="section-head center reveal">
+        <div class="eyebrow">ليس مشروعاً فردياً منعزلاً</div>
+        <h2>جزء من منظومة byphil</h2>
+        <p>تُعد أداة AI Summary Helper واحدة من عدة أدوات مستقلة طورتها byphil. حساب واحد وتصريح Support Pass واحد يتيحان لك الوصول المتميز لكافة هذه الأدوات — الحالية وتلك القادمة مستقبلاً.</p>
+      </div>
+
+      <div class="feature-grid digest-steps reveal">
+        <div class="feature-card ecosystem-card self">
+          <span class="f-badge">أنت هنا</span>
+          <div class="f-icon icon-cyan"><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="6" r="2.6" fill="#fff"></circle><circle cx="6" cy="17" r="2.2" fill="#fff" opacity="0.85"></circle><circle cx="18" cy="17" r="2.2" fill="#fff" opacity="0.85"></circle><path d="M12 8.6 L6.8 14.8 M12 8.6 L17.2 14.8" stroke="#fff" stroke-width="1.4" stroke-linecap="round" opacity="0.7"></path></svg></div>
+          <h3>AI Summary Helper</h3>
+          <p>لخّص، واحفظ، وابحث في الويب — محلياً على جهازك.</p>
+        </div>
+        <a class="feature-card ecosystem-card" href="https://petsetlife.byphil.eu/" target="_blank" rel="noopener">
+          <span class="f-badge">مجتمع سفر الحيوانات الأليفة</span>
+          <div class="f-icon icon-gold"><svg viewBox="0 0 24 24" fill="none"><path d="M12 21c-3.5-2.5-7-5.2-7-9.2A4.4 4.4 0 0 1 9.2 7.4c1.1 0 2.1.4 2.8 1.2.7-.8 1.7-1.2 2.8-1.2A4.4 4.4 0 0 1 19 11.8c0 4-3.5 6.7-7 9.2Z" stroke="#fff" stroke-width="1.5" stroke-linejoin="round"></path><path d="M12 3.2c.9 1 1.3 2.1 1.1 3.2-1.1.2-2.1-.1-3-.9-.7-.7-1-1.7-.9-2.7 1 0 2 .3 2.8 1.4Z" fill="#fff" opacity="0.85"></path></svg></div>
+          <h3>PetSetLife</h3>
+          <p>مجتمع لمربيي ومستضيفي الحيوانات الأليفة الذين يعيشون بنمط الحياة المتنقل والمستقل جغرافياً.</p>
+        </a>
+        <a class="feature-card ecosystem-card" href="https://matrix.byphil.eu/" target="_blank" rel="noopener">
+          <span class="f-badge">مخطط المعرفة</span>
+          <div class="f-icon icon-violet"><svg viewBox="0 0 24 24" fill="none"><circle cx="5" cy="6" r="1.8" fill="#fff"></circle><circle cx="19" cy="6" r="1.8" fill="#fff" opacity="0.85"></circle><circle cx="12" cy="12" r="2.1" fill="#fff"></circle><circle cx="6" cy="18" r="1.8" fill="#fff" opacity="0.85"></circle><circle cx="18" cy="18" r="1.8" fill="#fff" opacity="0.85"></circle><path d="M5 6 12 12M19 6 12 12M12 12 6 18M12 12 18 18" stroke="#fff" stroke-width="1.1" opacity="0.55"></path></svg></div>
+          <h3>Matrix</h3>
+          <p>استكشف الأفكار المترابطة وسلوكيات القراءة، صُمم لرسم الخرائط المعرفية طويلة المدى.</p>
+        </a>
+      </div>
+
+      <p style="text-align:center; margin-top:28px;">
+        <a href="https://byphil.eu/" target="_blank" rel="noopener" class="btn-secondary">استكشف كل ما تطوره byphil →</a>
+      </p>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="footer-inner">
+      <div class="wordmark"><img src="../assets/icon.svg" alt="">AI Summary Helper</div>
+      <div class="foot-links">
+        <a href="https://github.com/philffm/ai-summary-helper/" target="_blank" rel="noopener">المصدر على GitHub</a>
+        <a href="bookmarklet.html">الرمز المرجعي (دون تثبيت)</a>
+        <a href="privacy.html">الخصوصية</a>
+        <a href="#" data-analytics-settings="">إعدادات التحليلات</a>
+        <a href="https://byphil.eu/terms.html#terms-of-service" target="_blank" rel="noopener">شروط الخدمة</a>
+        <a href="https://byphil.eu/terms.html#refunds" target="_blank" rel="noopener">سياسة الاسترجاع والاسترداد</a>
+        <a href="https://byphil.eu/terms.html#impressum" target="_blank" rel="noopener">بيانات الموقع والناشر (Impressum)</a>
+      </div>
+    </div>
+    <div class="copyright">© 2026 Phil Wornath. جزء من <a href="https://byphil.eu/" class="credit-link">byphil.<span style="color:inherit;">الاتحاد الأوروبي</span> ↗</a> — برمجيات مستقلة طُوّرت في ألمانيا. معالجة المدفوعات تتم بواسطة Stripe كتاجر رسمي معتمد.<br>
+      <a href="https://ec.europa.eu/consumers/odr" target="_blank" rel="noopener">تسوية منازعات المستهلكين في الاتحاد الأوروبي</a> · تم التصميم والتطوير بواسطة <a href="https://philwornath.com/" target="_blank" rel="noopener" class="credit-link">philwornath.com ↗</a>
+    </div>
+  </div>
+</footer>
+
+<script src="../assets/hero-i18n.js"></script>
+<script src="../assets/main.js"></script>
+
+
+</body></html>

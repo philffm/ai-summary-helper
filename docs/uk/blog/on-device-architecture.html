@@ -1,0 +1,132 @@
+<!DOCTYPE html><html lang="uk"><head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#08090C">
+<title>Search and Tags Without the Cloud — AI Summary Helper</title>
+<meta name="description" content="Індекс TF-IDF усередині AI Summary Helper для пошуку, виявлення дублікатів та дайджестів — і чому більшості з цього сервер взагалі не потрібен.">
+
+<script>
+  (function(){
+    try {
+      var saved = localStorage.getItem('aish_theme');
+      var theme = saved === 'light' || saved === 'dark'
+        ? saved
+        : (window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
+      document.documentElement.setAttribute('data-theme', theme);
+    } catch (e) {
+      document.documentElement.setAttribute('data-theme', 'dark');
+    }
+  })();
+</script>
+
+<link rel="icon" type="image/svg+xml" href="../../assets/icon.svg">
+<link rel="stylesheet" href="../../assets/styles.css">
+<script src="../../assets/analytics.js"></script>
+<link rel="alternate" hreflang="x-default" href="https://ai-summary-helper.byphil.eu/blog/on-device-architecture.html"><link rel="alternate" hreflang="en" href="https://ai-summary-helper.byphil.eu/blog/on-device-architecture.html"><link rel="alternate" hreflang="de" href="https://ai-summary-helper.byphil.eu/de/blog/on-device-architecture.html"><link rel="alternate" hreflang="fr" href="https://ai-summary-helper.byphil.eu/fr/blog/on-device-architecture.html"><link rel="alternate" hreflang="es" href="https://ai-summary-helper.byphil.eu/es/blog/on-device-architecture.html"><link rel="alternate" hreflang="zh-Hans" href="https://ai-summary-helper.byphil.eu/zh/blog/on-device-architecture.html"><link rel="alternate" hreflang="zh-Hant" href="https://ai-summary-helper.byphil.eu/zh-tw/blog/on-device-architecture.html"><link rel="alternate" hreflang="ja" href="https://ai-summary-helper.byphil.eu/ja/blog/on-device-architecture.html"><link rel="alternate" hreflang="ko" href="https://ai-summary-helper.byphil.eu/ko/blog/on-device-architecture.html"><link rel="alternate" hreflang="pt-BR" href="https://ai-summary-helper.byphil.eu/pt/blog/on-device-architecture.html"><link rel="alternate" hreflang="hi" href="https://ai-summary-helper.byphil.eu/hi/blog/on-device-architecture.html"><link rel="alternate" hreflang="vi" href="https://ai-summary-helper.byphil.eu/vi/blog/on-device-architecture.html"><link rel="alternate" hreflang="nl" href="https://ai-summary-helper.byphil.eu/nl/blog/on-device-architecture.html"><link rel="alternate" hreflang="it" href="https://ai-summary-helper.byphil.eu/it/blog/on-device-architecture.html"><link rel="alternate" hreflang="ru" href="https://ai-summary-helper.byphil.eu/ru/blog/on-device-architecture.html"><link rel="alternate" hreflang="uk" href="https://ai-summary-helper.byphil.eu/uk/blog/on-device-architecture.html"><link rel="alternate" hreflang="tr" href="https://ai-summary-helper.byphil.eu/tr/blog/on-device-architecture.html"><link rel="alternate" hreflang="id" href="https://ai-summary-helper.byphil.eu/id/blog/on-device-architecture.html"><link rel="alternate" hreflang="pl" href="https://ai-summary-helper.byphil.eu/pl/blog/on-device-architecture.html"><link rel="alternate" hreflang="th" href="https://ai-summary-helper.byphil.eu/th/blog/on-device-architecture.html"><link rel="alternate" hreflang="ar" href="https://ai-summary-helper.byphil.eu/ar/blog/on-device-architecture.html"><link rel="alternate" hreflang="sv" href="https://ai-summary-helper.byphil.eu/sv/blog/on-device-architecture.html"><link rel="alternate" hreflang="da" href="https://ai-summary-helper.byphil.eu/da/blog/on-device-architecture.html"><link rel="alternate" hreflang="nb" href="https://ai-summary-helper.byphil.eu/no/blog/on-device-architecture.html"><link rel="alternate" hreflang="fi" href="https://ai-summary-helper.byphil.eu/fi/blog/on-device-architecture.html"></head>
+<body>
+
+<a href="#main" class="skip-link">Перейти до вмісту</a>
+
+<header class="nav">
+  <div class="wrap nav-inner">
+    <div class="brand-cluster">
+      <div class="wordmark">
+        <img src="../../assets/icon.svg" alt="">
+        AI Summary Helper
+      </div>
+      <a href="https://byphil.eu/" target="_blank" rel="noopener" class="ecosystem-badge">
+        <span class="pulse-dot"></span> Частина byphil.
+      </a>
+    </div>
+    <div class="nav-desktop-group nav-desktop-links">
+      <nav class="links" aria-label="Primary">
+        <a href="../index.html#features">Можливості</a>
+        <a href="../index.html#pricing">Тарифи</a>
+        <a href="./" aria-current="page">Блог</a>
+        <a href="https://github.com/philffm/ai-summary-helper/" target="_blank" rel="noopener">GitHub</a>
+      </nav>
+      <button type="button" class="theme-toggle" id="themeToggle" aria-label="Switch to light mode">
+        <svg class="icon-moon" viewBox="0 0 24 24" fill="none"><path d="M20 14.5A8.5 8.5 0 1 1 9.5 4a6.8 6.8 0 0 0 10.5 10.5Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"></path></svg>
+        <svg class="icon-sun" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="4.2" stroke="currentColor" stroke-width="1.6"></circle><path d="M12 2.5v2.4M12 19.1v2.4M4.4 4.4l1.7 1.7M17.9 17.9l1.7 1.7M2.5 12h2.4M19.1 12h2.4M4.4 19.6l1.7-1.7M17.9 6.1l1.7-1.7" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"></path></svg>
+      </button>
+      <a href="../index.html" class="btn-sign-in">← Назад до застосунку</a>
+    </div>
+    <button type="button" class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="mobileMenu" aria-label="Open menu">
+      <svg viewBox="0 0 24 24" fill="none"><path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"></path></svg>
+    </button>
+  </div>
+  <div class="mobile-menu" id="mobileMenu" hidden="">
+    <div class="wrap mobile-menu-inner">
+      <a href="../index.html#features">Можливості</a>
+      <a href="../index.html#pricing">Тарифи</a>
+      <a href="./">Блог</a>
+      <a href="https://github.com/philffm/ai-summary-helper/" target="_blank" rel="noopener">GitHub</a>
+      <a href="https://byphil.eu/" target="_blank" rel="noopener">Частина byphil. ↗</a>
+      <button type="button" class="theme-toggle-mobile" id="themeToggleMobile">
+        <span id="themeToggleMobileLabel">Увімкнути світлу тему</span>
+        <svg class="icon-moon" viewBox="0 0 24 24" fill="none"><path d="M20 14.5A8.5 8.5 0 1 1 9.5 4a6.8 6.8 0 0 0 10.5 10.5Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"></path></svg>
+        <svg class="icon-sun" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="4.2" stroke="currentColor" stroke-width="1.6"></circle><path d="M12 2.5v2.4M12 19.1v2.4M4.4 4.4l1.7 1.7M17.9 17.9l1.7 1.7M2.5 12h2.4M19.1 12h2.4M4.4 19.6l1.7-1.7M17.9 6.1l1.7-1.7" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"></path></svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+<main id="main">
+  <div class="wrap">
+    <div class="post-hero">
+      <span class="blog-date">Інженерія · Серпень 2026</span>
+      <h1>Чому ми перенесли пошук, тегування та рекомендації з хмари на пристрій</h1>
+      <p class="post-sub">Пошук, дедуплікація, очищення тегів і рекомендації використовують один невеликий локальний індекс. Розповідаємо, як це працює і чому це не просто маркетингові розмови про приватність.</p>
+    </div>
+  </div>
+
+  <section>
+    <div class="wrap">
+      <div class="prose">
+<p>Більшість розширень для браузера «на базі ШІ» відправляють на сервер геть усе — навіть те, що не має до ШІ жодного стосунку. Пошук, очищення тегів, «знайти схоже»: усім цим надійним методам уже десятки років. Їм не потрібна мовна модель і тим паче не потрібні зайві мережеві запити. Ми переглянули кожну функцію AI Summary Helper і запитали себе: чи справді тут потрібна хмара, чи ми використовуємо її лише за звичкою, бо так простіше розробляти?</p>
+        <p>Виявилося, що для більшості функцій хмара не потрібна.</p>
+
+        <figure class="post-figure post-figure--portrait"><img src="../../assets/blog/knowledge-graph.webp" alt="Слайд: мапа пов'язаних тем із підписом «Інформація, поєднана зі змістом і контекстом, живе довше, ніж та, на яку ви лише мигцем поглянули»" width="800" height="1000" loading="lazy"><figcaption>Пошук, тегування та схожі статті працюють на одному локальному індексі, тому зв'язки між збереженими матеріалами не потребують жодних серверних ресурсів.</figcaption></figure>
+        <h2>Що ми насправді перенесли на пристрій</h2>
+        <p><strong>Пошук.</strong> Спочатку розширення шукало збіги лише в назвах статей і тегах — це швидко, але не враховує вміст самої статті. Замість сканування всього тексту «в лоб» при кожному натисканні клавіші чи відправки кожного запиту на сервер, ми створили невеликий індекс TF-IDF на основі вашого збереженого архіву. «Дешеві» поля (назва, теги) перевіряються першими й миттєво, як і раніше. Довші запити звіряються з індексом, який формується раз на сесію та оновлюється інкрементно, без повторного пересканування тексту з кожною літерою.</p>
+        <p><strong>Виявлення дублікатів.</strong> Перед збереженням виконується багаторівнева перевірка: спершу точний збіг нормалізованого URL (швидко, O(1)), потім схожість назв серед небагатьох кандидатів після першого фільтра, і лише тоді — для решти варіантів — повне порівняння косинусної схожості через TF-IDF. Більшість збережень навіть не доходять до ресурсомісткого етапу, оскільки швидкі перевірки відсіюють усе зайве раніше.</p>
+        <p><strong>Нормалізація тегів.</strong> З часом теги розмиваються: «ML», «Machine Learning», «machine-learning» означають одне й те саме для людини, але є абсолютно різними для фільтра. Невелика таблиця аліасів розпізнає очевидні випадки, а нечітке об'єднання за відстанню редагування по всьому словнику тегів підхоплює решту. Система обирає як канонічний той варіант написання, який ви насправді використовували найчастіше, а не нав'язує свій «правильний».</p>
+        <p><strong>Читабельність і тональність.</strong> Індекс читабельності Флеша–Кінкейда — це чиста арифметика на основі кількості речень і складів, модель для цього не потрібна. Аналіз тональності спирається на вбудований словник слів AFINN із невеликою перевіркою заперечень у двох попередніх токенах. Жодному з цих процесів не потрібно виходити за межі браузера.</p>
+        <p><strong>«Схожі статті» та Дайджест.</strong> Обидва інструменти повторно використовують ті самі вектори TF-IDF, які вже створив пошук. Можна було б легко створити три окремі системи подібності для трьох окремих функцій. Проте створення єдиного індексу, до якого звертаються пошук, рекомендації та формування дайджесту, зробило систему компактнішою: поліпшення індексу один раз автоматично вдосконалює всі три функції.</p>
+
+        <figure class="post-figure"><img src="../../assets/blog/runtime-parts.webp" alt="Діаграма: вебсторінка, фоновий процес і спливне вікно розширення, локальне сховище та провайдер моделі" width="1760" height="620" loading="lazy"><figcaption>Лише одна стрілка виходить за межі браузера: запит до обраного вами провайдера моделі.</figcaption></figure>
+        <h2>Що ми свідомо залишили в хмарі</h2>
+        <p>Сам крок підсумовування — єдина частина, яка дійсно потребує великої мовної моделі — усе ще виконується через мережу. З поточними розмірами локальних моделей цього не уникнути, якщо вам потрібна якість відповідей рівня провідних хмарних систем. Ви можете використовувати власний API key (OpenAI, Gemini, Mistral, DeepSeek) або підключити розширення до локального інстансу Ollama й повністю відмовитися від мережі навіть для цього кроку. Це єдине місце, де робота «на пристрої» не встановлена за замовчуванням: це опція на вибір, адже тут є реальний компроміс. Локальна модель працює повільніше та поступається якістю хмарній, і ми не хочемо цього приховувати.</p>
+
+        <h2>Чому це більше, ніж просто розмови про приватність</h2>
+        <p>Питання приватності дійсно важливе: коли розширення із широкими дозволами надсилає вміст сторінок на сервер для речей, які цього не потребують, виникають обґрунтовані сумніви щодо довіри. Але простіша причина такого рішення — це звичайна інженерна доцільність. Пошуку через TF-IDF не потрібні 200 мс мережевої затримки. Дедуплікація тегів не повинна додавати витрат на API. Коли інструмент підбирається під конкретне завдання, а не все поспіль скеровується в хмару за замовчуванням, продукт працює швидше, коштує дешевше і залишається стійким до роботи офлайн. А приватність стає приємним і безкоштовним бонусом, а не самоціллю.</p>
+        <div class="post-cta">
+          <p>AI Summary Helper — це безкоштовне розширення для Chrome.</p>
+          <a href="https://chromewebstore.google.com/detail/ai-summary-helper-openai/hldbejcjaedipeegjcinmhejdndchkmb" target="_blank" rel="noopener" class="btn-primary">Додати в Chrome</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="footer-inner">
+      <div class="wordmark"><img src="../../assets/icon.svg" alt="">AI Summary Helper</div>
+      <div class="foot-links">
+        <a href="https://github.com/philffm/ai-summary-helper/" target="_blank" rel="noopener">Вихідний код на GitHub</a>
+        <a href="../privacy.html">Конфіденційність</a>
+        <a href="#" data-analytics-settings="">Налаштування аналітики</a>
+        <a href="https://byphil.eu/terms.html#impressum" target="_blank" rel="noopener">Правова інформація (Impressum)</a>
+      </div>
+    </div>
+    <div class="copyright">© 2026 Phil Wornath. Частина <a href="https://byphil.eu/" class="credit-link">byphil.eu ↗</a> — незалежне програмне забезпечення, створене в Німеччині.<br>
+      Дизайн та розробка: <a href="https://philwornath.com/" target="_blank" rel="noopener" class="credit-link">philwornath.com ↗</a>
+    </div>
+  </div>
+</footer>
+
+<script src="../../assets/main.js"></script>
+
+
+</body></html>

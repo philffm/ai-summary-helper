@@ -1,0 +1,138 @@
+<!DOCTYPE html><html lang="uk"><head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#08090C">
+<title>Перевірка ШІ-підсумків за першоджерелом — AI Summary Helper</title>
+<meta name="description" content="Підсумок від ШІ корисний лише тоді, коли ви можете йому довіряти. Ось швидкий спосіб перевірити будь-яку відповідь за сторінкою-джерелом, а також пояснення, що цитата доводить, а що — ні.">
+
+<script>
+  (function(){
+    try {
+      var saved = localStorage.getItem('aish_theme');
+      var theme = saved === 'light' || saved === 'dark'
+        ? saved
+        : (window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
+      document.documentElement.setAttribute('data-theme', theme);
+    } catch (e) {
+      document.documentElement.setAttribute('data-theme', 'dark');
+    }
+  })();
+</script>
+
+<link rel="icon" type="image/svg+xml" href="../../assets/icon.svg">
+<link rel="stylesheet" href="../../assets/styles.css">
+<script src="../../assets/analytics.js"></script>
+<link rel="alternate" hreflang="x-default" href="https://ai-summary-helper.byphil.eu/blog/verify-ai-summary.html"><link rel="alternate" hreflang="en" href="https://ai-summary-helper.byphil.eu/blog/verify-ai-summary.html"><link rel="alternate" hreflang="de" href="https://ai-summary-helper.byphil.eu/de/blog/verify-ai-summary.html"><link rel="alternate" hreflang="fr" href="https://ai-summary-helper.byphil.eu/fr/blog/verify-ai-summary.html"><link rel="alternate" hreflang="es" href="https://ai-summary-helper.byphil.eu/es/blog/verify-ai-summary.html"><link rel="alternate" hreflang="zh-Hans" href="https://ai-summary-helper.byphil.eu/zh/blog/verify-ai-summary.html"><link rel="alternate" hreflang="zh-Hant" href="https://ai-summary-helper.byphil.eu/zh-tw/blog/verify-ai-summary.html"><link rel="alternate" hreflang="ja" href="https://ai-summary-helper.byphil.eu/ja/blog/verify-ai-summary.html"><link rel="alternate" hreflang="ko" href="https://ai-summary-helper.byphil.eu/ko/blog/verify-ai-summary.html"><link rel="alternate" hreflang="pt-BR" href="https://ai-summary-helper.byphil.eu/pt/blog/verify-ai-summary.html"><link rel="alternate" hreflang="hi" href="https://ai-summary-helper.byphil.eu/hi/blog/verify-ai-summary.html"><link rel="alternate" hreflang="vi" href="https://ai-summary-helper.byphil.eu/vi/blog/verify-ai-summary.html"><link rel="alternate" hreflang="nl" href="https://ai-summary-helper.byphil.eu/nl/blog/verify-ai-summary.html"><link rel="alternate" hreflang="it" href="https://ai-summary-helper.byphil.eu/it/blog/verify-ai-summary.html"><link rel="alternate" hreflang="ru" href="https://ai-summary-helper.byphil.eu/ru/blog/verify-ai-summary.html"><link rel="alternate" hreflang="uk" href="https://ai-summary-helper.byphil.eu/uk/blog/verify-ai-summary.html"><link rel="alternate" hreflang="tr" href="https://ai-summary-helper.byphil.eu/tr/blog/verify-ai-summary.html"><link rel="alternate" hreflang="id" href="https://ai-summary-helper.byphil.eu/id/blog/verify-ai-summary.html"><link rel="alternate" hreflang="pl" href="https://ai-summary-helper.byphil.eu/pl/blog/verify-ai-summary.html"><link rel="alternate" hreflang="th" href="https://ai-summary-helper.byphil.eu/th/blog/verify-ai-summary.html"><link rel="alternate" hreflang="ar" href="https://ai-summary-helper.byphil.eu/ar/blog/verify-ai-summary.html"><link rel="alternate" hreflang="sv" href="https://ai-summary-helper.byphil.eu/sv/blog/verify-ai-summary.html"><link rel="alternate" hreflang="da" href="https://ai-summary-helper.byphil.eu/da/blog/verify-ai-summary.html"><link rel="alternate" hreflang="nb" href="https://ai-summary-helper.byphil.eu/no/blog/verify-ai-summary.html"><link rel="alternate" hreflang="fi" href="https://ai-summary-helper.byphil.eu/fi/blog/verify-ai-summary.html"></head>
+<body>
+
+<a href="#main" class="skip-link">Перейти до вмісту</a>
+
+<header class="nav">
+  <div class="wrap nav-inner">
+    <div class="brand-cluster">
+      <div class="wordmark">
+        <img src="../../assets/icon.svg" alt="">
+        AI Summary Helper
+      </div>
+      <a href="https://byphil.eu/" target="_blank" rel="noopener" class="ecosystem-badge">
+        <span class="pulse-dot"></span> Частина byphil.
+      </a>
+    </div>
+    <div class="nav-desktop-group nav-desktop-links">
+      <nav class="links" aria-label="Primary">
+        <a href="../index.html#features">Можливості</a>
+        <a href="../index.html#pricing">Тарифи</a>
+        <a href="./" aria-current="page">Блог</a>
+        <a href="https://github.com/philffm/ai-summary-helper/" target="_blank" rel="noopener">GitHub</a>
+      </nav>
+      <button type="button" class="theme-toggle" id="themeToggle" aria-label="Switch to light mode">
+        <svg class="icon-moon" viewBox="0 0 24 24" fill="none"><path d="M20 14.5A8.5 8.5 0 1 1 9.5 4a6.8 6.8 0 0 0 10.5 10.5Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"></path></svg>
+        <svg class="icon-sun" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="4.2" stroke="currentColor" stroke-width="1.6"></circle><path d="M12 2.5v2.4M12 19.1v2.4M4.4 4.4l1.7 1.7M17.9 17.9l1.7 1.7M2.5 12h2.4M19.1 12h2.4M4.4 19.6l1.7-1.7M17.9 6.1l1.7-1.7" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"></path></svg>
+      </button>
+      <a href="../index.html" class="btn-sign-in">← Назад до застосунку</a>
+    </div>
+    <button type="button" class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="mobileMenu" aria-label="Open menu">
+      <svg viewBox="0 0 24 24" fill="none"><path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"></path></svg>
+    </button>
+  </div>
+  <div class="mobile-menu" id="mobileMenu" hidden="">
+    <div class="wrap mobile-menu-inner">
+      <a href="../index.html#features">Можливості</a>
+      <a href="../index.html#pricing">Тарифи</a>
+      <a href="./">Блог</a>
+      <a href="https://github.com/philffm/ai-summary-helper/" target="_blank" rel="noopener">GitHub</a>
+      <a href="https://byphil.eu/" target="_blank" rel="noopener">Частина byphil. ↗</a>
+      <button type="button" class="theme-toggle-mobile" id="themeToggleMobile">
+        <span id="themeToggleMobileLabel">Увімкнути світлу тему</span>
+        <svg class="icon-moon" viewBox="0 0 24 24" fill="none"><path d="M20 14.5A8.5 8.5 0 1 1 9.5 4a6.8 6.8 0 0 0 10.5 10.5Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"></path></svg>
+        <svg class="icon-sun" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="4.2" stroke="currentColor" stroke-width="1.6"></circle><path d="M12 2.5v2.4M12 19.1v2.4M4.4 4.4l1.7 1.7M17.9 17.9l1.7 1.7M2.5 12h2.4M19.1 12h2.4M4.4 19.6l1.7-1.7M17.9 6.1l1.7-1.7" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"></path></svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+<main id="main">
+  <div class="wrap">
+    <div class="post-hero">
+      <span class="blog-date">Гайд · Жовтень 2026</span>
+      <h1>Як перевірити ШІ-підсумок за першоджерелом за 10 секунд</h1>
+      <p class="post-sub">Підсумок, який неможливо перевірити, — це просто грамотно сформульована здогадка. Ось звичка, яка це виправляє, та як AI Summary Helper допомагає робити це миттєво.</p>
+    </div>
+  </div>
+
+  <section>
+    <div class="wrap">
+      <div class="prose">
+        <p>У 2011 році Сперроу, Лю та Веґнер повідомили у журналі <em>Science</em> , що коли люди знають, що зможуть підглянути інформацію пізніше, вони гірше запам'ятовують сам факт і краще — де саме його знайти. Пошуковики стали різновидом зовнішньої пам'яті, і ми до цього адаптувалися.</p>
+        <p>ШІ-підсумки поглиблюють цю адаптацію. Ви отримуєте акуратний абзац, запам'ятовуєте його, а первинна сторінка випадає з поля зору. Це нормально, якщо підсумок точний. Але якщо ні — виникає проблема, адже в тексті абзацу немає жодної підказки, яке саме речення є сумнівним.</p>
+
+        <h2>10-секундна перевірка</h2>
+        <p>Вам не потрібно перечитувати всю статтю. Достатньо поглянути на один уривок. Звичка проста:</p>
+        <ol>
+          <li><strong>Виберіть твердження, яке ви переказали б комусь іншому.</strong> Число, дата, ім'я чи причинно-наслідковий зв'язок.</li>
+          <li><strong>Знайдіть це речення у першоджерелі.</strong> Не просто схоже речення, а саме те, де про це йдеться.</li>
+          <li><strong>Прочитайте речення до та після нього.</strong> Саме в контексті підсумки хиблять найчастіше: коли «можливо» перетворюється на «буде», а прогноз — на доконаний факт.</li>
+        </ol>
+        <p>Другий крок забирає найбільше часу, якщо робити це вручну. Саме його й варто автоматизувати.</p>
+
+        <h2>Як це вирішує AI Summary Helper</h2>
+        <p>Коли ви ставите уточнювальне запитання, відповідь містить точні уривки зі сторінки, що її підтверджують. Розширення зіставляє кожну цитату з текстом сторінки та відкидає все, чого немає слово в слово — тож вигадана цитата ніколи не з'явиться як доказ. Якщо сторінка відкрита, клікніть на цитату — і сторінка прокрутиться до цього фрагмента та підсвітить його.</p>
+        <p>Запропоновані уточнювальні запитання працюють так само. До кожного з них одразу з'являється коротка перша відповідь, поки модель генерує розгорнуту — тож ви можете прочитати, перевірити й зупинитися, щойно знайдете потрібне.</p>
+
+        <figure class="post-figure post-figure--portrait"><img src="../../assets/blog/answer-with-receipt.webp" alt="Слайд: кожна відповідь має підтвердження; показано відповідь у чаті з цитатою першоджерела та кнопкою переходу до уривка" width="800" height="1000" loading="lazy"><figcaption>Відповідь, уривок, на який вона спирається, та один клік до першоджерела.</figcaption></figure>
+        <h2>Що цитата доводить, а що — ні</h2>
+        <p>З цим варто бути уважними. Збіг цитати доводить лише те, що такий уривок є на сторінці. Це не доводить, що модель зрозуміла його правильно. Текст довкола цитати — це все одно власні формулювання моделі, тож перевірка з третього кроку залишається актуальною: прочитайте сусідні речення.</p>
+        <p>У такому разі цитата — це швидкий шлях до потрібного абзацу, а не знак беззастережної якості. У цьому й сенс: ви витрачаєте десять секунд на фрагмент статті, який визначає правдивість відповіді, а не десять хвилин на весь текст.</p>
+
+        <h2>Звичка, яку варто закріпити</h2>
+        <p>Виберіть одну відповідь на статтю та перевірте її. За кілька тижнів ви зрозумієте поведінку своєї моделі: які теми їй вдаються добре, де вона округлює цифри, чи згладжує вона припущення автора. Таке розуміння цінніше за будь-яку разову перевірку.</p>
+        <div class="post-cta">
+          <p>AI Summary Helper — це безкоштовне розширення для Chrome.</p>
+          <a href="https://chromewebstore.google.com/detail/ai-summary-helper-openai/hldbejcjaedipeegjcinmhejdndchkmb" target="_blank" rel="noopener" class="btn-primary">Додати в Chrome</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="footer-inner">
+      <div class="wordmark"><img src="../../assets/icon.svg" alt="">AI Summary Helper</div>
+      <div class="foot-links">
+        <a href="https://github.com/philffm/ai-summary-helper/" target="_blank" rel="noopener">Вихідний код на GitHub</a>
+        <a href="../privacy.html">Конфіденційність</a>
+        <a href="#" data-analytics-settings="">Налаштування аналітики</a>
+        <a href="https://byphil.eu/terms.html#impressum" target="_blank" rel="noopener">Правова інформація (Impressum)</a>
+      </div>
+    </div>
+    <div class="copyright">© 2026 Phil Wornath. Частина <a href="https://byphil.eu/" class="credit-link">byphil.eu ↗</a> — незалежне програмне забезпечення, створене в Німеччині.<br>
+      Дизайн та розробка: <a href="https://philwornath.com/" target="_blank" rel="noopener" class="credit-link">philwornath.com ↗</a>
+    </div>
+  </div>
+</footer>
+
+<script src="../../assets/main.js"></script>
+
+
+</body></html>

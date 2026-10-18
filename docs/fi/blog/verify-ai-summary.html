@@ -1,0 +1,138 @@
+<!DOCTYPE html><html lang="fi"><head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#08090C">
+<title>Tarkista tekoälytiivistelmä lähteestä — AI Summary Helper</title>
+<meta name="description" content="Tekoälytiivistelmästä on hyötyä vain, jos siihen voi luottaa. Näin tarkistat vastauksen nopeasti alkuperäiseltä sivulta, ja mitä lainaus todistaa (ja mitä ei).">
+
+<script>
+  (function(){
+    try {
+      var saved = localStorage.getItem('aish_theme');
+      var theme = saved === 'light' || saved === 'dark'
+        ? saved
+        : (window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
+      document.documentElement.setAttribute('data-theme', theme);
+    } catch (e) {
+      document.documentElement.setAttribute('data-theme', 'dark');
+    }
+  })();
+</script>
+
+<link rel="icon" type="image/svg+xml" href="../../assets/icon.svg">
+<link rel="stylesheet" href="../../assets/styles.css">
+<script src="../../assets/analytics.js"></script>
+<link rel="alternate" hreflang="x-default" href="https://ai-summary-helper.byphil.eu/blog/verify-ai-summary.html"><link rel="alternate" hreflang="en" href="https://ai-summary-helper.byphil.eu/blog/verify-ai-summary.html"><link rel="alternate" hreflang="de" href="https://ai-summary-helper.byphil.eu/de/blog/verify-ai-summary.html"><link rel="alternate" hreflang="fr" href="https://ai-summary-helper.byphil.eu/fr/blog/verify-ai-summary.html"><link rel="alternate" hreflang="es" href="https://ai-summary-helper.byphil.eu/es/blog/verify-ai-summary.html"><link rel="alternate" hreflang="zh-Hans" href="https://ai-summary-helper.byphil.eu/zh/blog/verify-ai-summary.html"><link rel="alternate" hreflang="zh-Hant" href="https://ai-summary-helper.byphil.eu/zh-tw/blog/verify-ai-summary.html"><link rel="alternate" hreflang="ja" href="https://ai-summary-helper.byphil.eu/ja/blog/verify-ai-summary.html"><link rel="alternate" hreflang="ko" href="https://ai-summary-helper.byphil.eu/ko/blog/verify-ai-summary.html"><link rel="alternate" hreflang="pt-BR" href="https://ai-summary-helper.byphil.eu/pt/blog/verify-ai-summary.html"><link rel="alternate" hreflang="hi" href="https://ai-summary-helper.byphil.eu/hi/blog/verify-ai-summary.html"><link rel="alternate" hreflang="vi" href="https://ai-summary-helper.byphil.eu/vi/blog/verify-ai-summary.html"><link rel="alternate" hreflang="nl" href="https://ai-summary-helper.byphil.eu/nl/blog/verify-ai-summary.html"><link rel="alternate" hreflang="it" href="https://ai-summary-helper.byphil.eu/it/blog/verify-ai-summary.html"><link rel="alternate" hreflang="ru" href="https://ai-summary-helper.byphil.eu/ru/blog/verify-ai-summary.html"><link rel="alternate" hreflang="uk" href="https://ai-summary-helper.byphil.eu/uk/blog/verify-ai-summary.html"><link rel="alternate" hreflang="tr" href="https://ai-summary-helper.byphil.eu/tr/blog/verify-ai-summary.html"><link rel="alternate" hreflang="id" href="https://ai-summary-helper.byphil.eu/id/blog/verify-ai-summary.html"><link rel="alternate" hreflang="pl" href="https://ai-summary-helper.byphil.eu/pl/blog/verify-ai-summary.html"><link rel="alternate" hreflang="th" href="https://ai-summary-helper.byphil.eu/th/blog/verify-ai-summary.html"><link rel="alternate" hreflang="ar" href="https://ai-summary-helper.byphil.eu/ar/blog/verify-ai-summary.html"><link rel="alternate" hreflang="sv" href="https://ai-summary-helper.byphil.eu/sv/blog/verify-ai-summary.html"><link rel="alternate" hreflang="da" href="https://ai-summary-helper.byphil.eu/da/blog/verify-ai-summary.html"><link rel="alternate" hreflang="nb" href="https://ai-summary-helper.byphil.eu/no/blog/verify-ai-summary.html"><link rel="alternate" hreflang="fi" href="https://ai-summary-helper.byphil.eu/fi/blog/verify-ai-summary.html"></head>
+<body>
+
+<a href="#main" class="skip-link">Siirry sisältöön</a>
+
+<header class="nav">
+  <div class="wrap nav-inner">
+    <div class="brand-cluster">
+      <div class="wordmark">
+        <img src="../../assets/icon.svg" alt="">
+        AI Summary Helper
+      </div>
+      <a href="https://byphil.eu/" target="_blank" rel="noopener" class="ecosystem-badge">
+        <span class="pulse-dot"></span> Osa byphil-kokonaisuutta.
+      </a>
+    </div>
+    <div class="nav-desktop-group nav-desktop-links">
+      <nav class="links" aria-label="Primary">
+        <a href="../index.html#features">Ominaisuudet</a>
+        <a href="../index.html#pricing">Hinnasto</a>
+        <a href="./" aria-current="page">Blogi</a>
+        <a href="https://github.com/philffm/ai-summary-helper/" target="_blank" rel="noopener">GitHub</a>
+      </nav>
+      <button type="button" class="theme-toggle" id="themeToggle" aria-label="Switch to light mode">
+        <svg class="icon-moon" viewBox="0 0 24 24" fill="none"><path d="M20 14.5A8.5 8.5 0 1 1 9.5 4a6.8 6.8 0 0 0 10.5 10.5Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"></path></svg>
+        <svg class="icon-sun" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="4.2" stroke="currentColor" stroke-width="1.6"></circle><path d="M12 2.5v2.4M12 19.1v2.4M4.4 4.4l1.7 1.7M17.9 17.9l1.7 1.7M2.5 12h2.4M19.1 12h2.4M4.4 19.6l1.7-1.7M17.9 6.1l1.7-1.7" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"></path></svg>
+      </button>
+      <a href="../index.html" class="btn-sign-in">← Takaisin sovellukseen</a>
+    </div>
+    <button type="button" class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="mobileMenu" aria-label="Open menu">
+      <svg viewBox="0 0 24 24" fill="none"><path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"></path></svg>
+    </button>
+  </div>
+  <div class="mobile-menu" id="mobileMenu" hidden="">
+    <div class="wrap mobile-menu-inner">
+      <a href="../index.html#features">Ominaisuudet</a>
+      <a href="../index.html#pricing">Hinnasto</a>
+      <a href="./">Blogi</a>
+      <a href="https://github.com/philffm/ai-summary-helper/" target="_blank" rel="noopener">GitHub</a>
+      <a href="https://byphil.eu/" target="_blank" rel="noopener">Osa byphil-kokonaisuutta ↗</a>
+      <button type="button" class="theme-toggle-mobile" id="themeToggleMobile">
+        <span id="themeToggleMobileLabel">Vaihda vaaleaan tilaan</span>
+        <svg class="icon-moon" viewBox="0 0 24 24" fill="none"><path d="M20 14.5A8.5 8.5 0 1 1 9.5 4a6.8 6.8 0 0 0 10.5 10.5Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"></path></svg>
+        <svg class="icon-sun" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="4.2" stroke="currentColor" stroke-width="1.6"></circle><path d="M12 2.5v2.4M12 19.1v2.4M4.4 4.4l1.7 1.7M17.9 17.9l1.7 1.7M2.5 12h2.4M19.1 12h2.4M4.4 19.6l1.7-1.7M17.9 6.1l1.7-1.7" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"></path></svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+<main id="main">
+  <div class="wrap">
+    <div class="post-hero">
+      <span class="blog-date">Opas · Lokakuu 2026</span>
+      <h1>Miten tekoälytiivistelmä tarkistetaan lähteestä 10 sekunnissa</h1>
+      <p class="post-sub">Tiivistelmä, jota ei voi tarkistaa, on vain hyvää suomea oleva arvaus. Tässä on tapa asian korjaamiseen ja siihen, miten AI Summary Helper tekee siitä nopeaa.</p>
+    </div>
+  </div>
+
+  <section>
+    <div class="wrap">
+      <div class="prose">
+        <p>Vuonna 2011 Sparrow, Liu ja Wegner raportoivat <em>Science</em> -lehdessä, että kun ihmiset olettavat voivansa hakea tiedon myöhemmin, he muistavat itse asian huonommin ja sen löytöpaikan paremmin. Hakukoneista tuli eräänlainen ulkoinen muisti, johon sopeudumme.</p>
+        <p>Tekoälytiivistelmät vievät tätä sopeutumista vielä pidemmälle. Saat selkeän kappaleen, muistat kappaleen, ja alkuperäinen sivu unohtuu taustalle. Se on hienoa silloin, kun tiivistelmä on oikeassa. Ongelma syntyy, kun se ei ole – mikään kappaleessa kun ei paljasta, mikä lauseista on epävarma.</p>
+
+        <h2>10 sekunnin tarkistus</h2>
+        <p>Koko artikkelia ei tarvitse lukea uudelleen. Riittää, että katsot yhtä kohtaa. Rutiini on yksinkertainen:</p>
+        <ol>
+          <li><strong>Valitse väite, jonka toistaisit jollekin toiselle.</strong> Luku, päivämäärä, nimi, syy-seuraussuhde.</li>
+          <li><strong>Etsi lähteestä lause, jossa asia todetaan.</strong> Ei vain samankaltaista lausetta, vaan juuri se, jossa asia sanotaan.</li>
+          <li><strong>Lue lause kummaltakin puolelta.</strong> Kontekstissa tiivistelmät useimmiten liukastuvat: ”saattaa” muuttuu muotoon ”tekee”, ennuste muuttuu faktaksi.</li>
+        </ol>
+        <p>Toinen vaihe on käsin tehtynä hidas. Juuri se vaihe kannattaa automatisoida.</p>
+
+        <h2>Miten AI Summary Helper ratkaisee asian</h2>
+        <p>Kun esität jatkokysymyksen, vastaus sisältää suorat lainaukset sivulta perusteluineen. Lisäosa vertaa jokaista lainausta sivun tekstiin ja karsii pois kaikki, joita ei löydy sanasta sanaan – keksitty lainaus ei siis koskaan näy todisteena. Klikkaa lainausta, niin sivu vierittää kyseiseen kohtaan ja korostaa sen, jos sivu on auki.</p>
+        <p>Ehdotetut jatkokysymykset toimivat samalla tavalla. Jokaisesta saapuu ensin lyhyt alustava vastaus sillä aikaa kun malli kirjoittaa pidempää, joten voit lukea, tarkistaa ja lopettaa heti, kun olet saanut haluamasi tiedon.</p>
+
+        <figure class="post-figure post-figure--portrait"><img src="../../assets/blog/answer-with-receipt.webp" alt="Dia: jokaisessa vastauksessa on mukana sen lähde; näyttää chat-vastauksen lainatulla lähteellä ja siirry kohtaan -painikkeella" width="800" height="1000" loading="lazy"><figcaption>Vastaus, sen taustalla oleva tekstikohta ja siirtyminen lähteeseen yhdellä klikkauksella.</figcaption></figure>
+        <h2>Mitä lainaus todistaa ja mitä ei</h2>
+        <p>Tämän kanssa kannattaa olla tarkkana. Täsmäävä lainaus todistaa vain sen, että tekstikohta löytyy sivulta. Se ei todista, että malli tulkitsi sen oikein. Lainauksen ympärillä oleva vastaus on edelleen mallin omaa sanailua, joten vaiheen kolme tarkistus pätee yhä: lue viereiset lauseet.</p>
+        <p>Tällä tavalla käytettynä lainaus on oikopolku oikeaan kappaleeseen eikä mikään virallinen hyväksymisleima. Se on koko asian ydin: käytät kymmenen sekuntia artikkelin siihen kohtaan, joka ratkaisee vastauksen paikkansapitävyyden, etkä kymmentä minuuttia koko tekstiin.</p>
+
+        <h2>Tapa, josta kannattaa pitää kiinni</h2>
+        <p>Valitse yksi vastaus artikkelia kohden ja tarkista se. Muutamassa viikossa opit tuntemaan mallisi toiminnan: mitkä aiheet se hallitsee hyvin, missä se pyöristää lukuja ja pehmentääkö se varauksia. Tämä tuntuma on arvokkaampi kuin mikään yksittäinen tarkistus.</p>
+        <div class="post-cta">
+          <p>AI Summary Helper on ilmainen Chrome-laajennus.</p>
+          <a href="https://chromewebstore.google.com/detail/ai-summary-helper-openai/hldbejcjaedipeegjcinmhejdndchkmb" target="_blank" rel="noopener" class="btn-primary">Lisää Chromeen</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="footer-inner">
+      <div class="wordmark"><img src="../../assets/icon.svg" alt="">AI Summary Helper</div>
+      <div class="foot-links">
+        <a href="https://github.com/philffm/ai-summary-helper/" target="_blank" rel="noopener">Lähdekoodi GitHubissa</a>
+        <a href="../privacy.html">Tietosuoja</a>
+        <a href="#" data-analytics-settings="">Analytiikka-asetukset</a>
+        <a href="https://byphil.eu/terms.html#impressum" target="_blank" rel="noopener">Impressum</a>
+      </div>
+    </div>
+    <div class="copyright">© 2026 Phil Wornath. Osa <a href="https://byphil.eu/" class="credit-link">byphil.eu ↗</a> — riippumatonta ohjelmistoa, kehitetty Saksassa.<br>
+      Suunnitellut ja kehittänyt <a href="https://philwornath.com/" target="_blank" rel="noopener" class="credit-link">philwornath.com ↗</a>
+    </div>
+  </div>
+</footer>
+
+<script src="../../assets/main.js"></script>
+
+
+</body></html>

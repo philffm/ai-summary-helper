@@ -1,0 +1,135 @@
+<!DOCTYPE html><html lang="nl"><head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#08090C">
+<title>Jouw sleutel. Jouw model. Jouw data. — AI Summary Helper</title>
+<meta name="description" content="Wat 'bring your own API key' écht betekent voor een browserextensie: waar je sleutel blijft, waar paginatekst naartoe gaat en wat er verandert als je een lokaal model gebruikt.">
+
+<script>
+  (function(){
+    try {
+      var saved = localStorage.getItem('aish_theme');
+      var theme = saved === 'light' || saved === 'dark'
+        ? saved
+        : (window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
+      document.documentElement.setAttribute('data-theme', theme);
+    } catch (e) {
+      document.documentElement.setAttribute('data-theme', 'dark');
+    }
+  })();
+</script>
+
+<link rel="icon" type="image/svg+xml" href="../../assets/icon.svg">
+<link rel="stylesheet" href="../../assets/styles.css">
+<script src="../../assets/analytics.js"></script>
+<link rel="alternate" hreflang="x-default" href="https://ai-summary-helper.byphil.eu/blog/bring-your-own-key.html"><link rel="alternate" hreflang="en" href="https://ai-summary-helper.byphil.eu/blog/bring-your-own-key.html"><link rel="alternate" hreflang="de" href="https://ai-summary-helper.byphil.eu/de/blog/bring-your-own-key.html"><link rel="alternate" hreflang="fr" href="https://ai-summary-helper.byphil.eu/fr/blog/bring-your-own-key.html"><link rel="alternate" hreflang="es" href="https://ai-summary-helper.byphil.eu/es/blog/bring-your-own-key.html"><link rel="alternate" hreflang="zh-Hans" href="https://ai-summary-helper.byphil.eu/zh/blog/bring-your-own-key.html"><link rel="alternate" hreflang="zh-Hant" href="https://ai-summary-helper.byphil.eu/zh-tw/blog/bring-your-own-key.html"><link rel="alternate" hreflang="ja" href="https://ai-summary-helper.byphil.eu/ja/blog/bring-your-own-key.html"><link rel="alternate" hreflang="ko" href="https://ai-summary-helper.byphil.eu/ko/blog/bring-your-own-key.html"><link rel="alternate" hreflang="pt-BR" href="https://ai-summary-helper.byphil.eu/pt/blog/bring-your-own-key.html"><link rel="alternate" hreflang="hi" href="https://ai-summary-helper.byphil.eu/hi/blog/bring-your-own-key.html"><link rel="alternate" hreflang="vi" href="https://ai-summary-helper.byphil.eu/vi/blog/bring-your-own-key.html"><link rel="alternate" hreflang="nl" href="https://ai-summary-helper.byphil.eu/nl/blog/bring-your-own-key.html"><link rel="alternate" hreflang="it" href="https://ai-summary-helper.byphil.eu/it/blog/bring-your-own-key.html"><link rel="alternate" hreflang="ru" href="https://ai-summary-helper.byphil.eu/ru/blog/bring-your-own-key.html"><link rel="alternate" hreflang="uk" href="https://ai-summary-helper.byphil.eu/uk/blog/bring-your-own-key.html"><link rel="alternate" hreflang="tr" href="https://ai-summary-helper.byphil.eu/tr/blog/bring-your-own-key.html"><link rel="alternate" hreflang="id" href="https://ai-summary-helper.byphil.eu/id/blog/bring-your-own-key.html"><link rel="alternate" hreflang="pl" href="https://ai-summary-helper.byphil.eu/pl/blog/bring-your-own-key.html"><link rel="alternate" hreflang="th" href="https://ai-summary-helper.byphil.eu/th/blog/bring-your-own-key.html"><link rel="alternate" hreflang="ar" href="https://ai-summary-helper.byphil.eu/ar/blog/bring-your-own-key.html"><link rel="alternate" hreflang="sv" href="https://ai-summary-helper.byphil.eu/sv/blog/bring-your-own-key.html"><link rel="alternate" hreflang="da" href="https://ai-summary-helper.byphil.eu/da/blog/bring-your-own-key.html"><link rel="alternate" hreflang="nb" href="https://ai-summary-helper.byphil.eu/no/blog/bring-your-own-key.html"><link rel="alternate" hreflang="fi" href="https://ai-summary-helper.byphil.eu/fi/blog/bring-your-own-key.html"></head>
+<body>
+
+<a href="#main" class="skip-link">Naar inhoud springen</a>
+
+<header class="nav">
+  <div class="wrap nav-inner">
+    <div class="brand-cluster">
+      <div class="wordmark">
+        <img src="../../assets/icon.svg" alt="">
+        AI Summary Helper
+      </div>
+      <a href="https://byphil.eu/" target="_blank" rel="noopener" class="ecosystem-badge">
+        <span class="pulse-dot"></span> Onderdeel van byphil.
+      </a>
+    </div>
+    <div class="nav-desktop-group nav-desktop-links">
+      <nav class="links" aria-label="Primary">
+        <a href="../index.html#features">Functies</a>
+        <a href="../index.html#pricing">Prijzen</a>
+        <a href="./" aria-current="page">Blog</a>
+        <a href="https://github.com/philffm/ai-summary-helper/" target="_blank" rel="noopener">GitHub</a>
+      </nav>
+      <button type="button" class="theme-toggle" id="themeToggle" aria-label="Switch to light mode">
+        <svg class="icon-moon" viewBox="0 0 24 24" fill="none"><path d="M20 14.5A8.5 8.5 0 1 1 9.5 4a6.8 6.8 0 0 0 10.5 10.5Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"></path></svg>
+        <svg class="icon-sun" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="4.2" stroke="currentColor" stroke-width="1.6"></circle><path d="M12 2.5v2.4M12 19.1v2.4M4.4 4.4l1.7 1.7M17.9 17.9l1.7 1.7M2.5 12h2.4M19.1 12h2.4M4.4 19.6l1.7-1.7M17.9 6.1l1.7-1.7" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"></path></svg>
+      </button>
+      <a href="../index.html" class="btn-sign-in">← Terug naar app</a>
+    </div>
+    <button type="button" class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="mobileMenu" aria-label="Open menu">
+      <svg viewBox="0 0 24 24" fill="none"><path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"></path></svg>
+    </button>
+  </div>
+  <div class="mobile-menu" id="mobileMenu" hidden="">
+    <div class="wrap mobile-menu-inner">
+      <a href="../index.html#features">Functies</a>
+      <a href="../index.html#pricing">Prijzen</a>
+      <a href="./">Blog</a>
+      <a href="https://github.com/philffm/ai-summary-helper/" target="_blank" rel="noopener">GitHub</a>
+      <a href="https://byphil.eu/" target="_blank" rel="noopener">Onderdeel van byphil. ↗</a>
+      <button type="button" class="theme-toggle-mobile" id="themeToggleMobile">
+        <span id="themeToggleMobileLabel">Overschakelen naar lichte modus</span>
+        <svg class="icon-moon" viewBox="0 0 24 24" fill="none"><path d="M20 14.5A8.5 8.5 0 1 1 9.5 4a6.8 6.8 0 0 0 10.5 10.5Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"></path></svg>
+        <svg class="icon-sun" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="4.2" stroke="currentColor" stroke-width="1.6"></circle><path d="M12 2.5v2.4M12 19.1v2.4M4.4 4.4l1.7 1.7M17.9 17.9l1.7 1.7M2.5 12h2.4M19.1 12h2.4M4.4 19.6l1.7-1.7M17.9 6.1l1.7-1.7" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"></path></svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+<main id="main">
+  <div class="wrap">
+    <div class="post-hero">
+      <span class="blog-date">Product · Oktober 2026</span>
+      <h1>Jouw sleutel. Jouw model. Jouw data.</h1>
+      <p class="post-sub">De meeste AI-tools plaatsen een server tussen jou en het model. Dit is wat er verandert als die ontbreekt, en wat nog steeds afhangt van jouw keuzes.</p>
+    </div>
+  </div>
+
+  <section>
+    <div class="wrap">
+      <div class="prose">
+        <p>Elke AI-samenvatting werkt volgens hetzelfde principe: er gaat tekst uit, er komt tekst terug. De cruciale vraag voor je privacy is: wie zit er tussenin? Bij veel producten staat daar een server van het bedrijf, waardoor alles wat je leest eerst via hen passeert op weg naar een model dat je zelf niet hebt gekozen.</p>
+
+        <h2>Wat 'bring your own key' hier betekent</h2>
+        <p>Je maakt een API-sleutel aan bij een provider die je vertrouwt, plakt deze in AI Summary Helper en kiest een model. Zodra je een pagina samenvat, stuurt de background worker van de extensie de tekst rechtstreeks naar die provider en streamt het resultaat direct terug. Er komt voor jouw eigen sleutel geen server van AI Summary Helper aan te pas.</p>
+        <p>Je kunt de extensie ook verbinden met een model dat lokaal op je eigen apparaat draait, bijvoorbeeld via Ollama. In dat geval verlaat de paginatekst je computer nooit.</p>
+        <figure class="post-figure post-figure--portrait"><img src="../../assets/blog/bring-your-own-key.webp" alt="Slide: Neem je eigen sleutel mee, met badges voor lokale modellen, open source en lokaal in je browser opgeslagen sleutels" width="800" height="1000" loading="lazy"><figcaption>Jij kiest de provider of een lokaal model. De sleutel blijft altijd in je browser.</figcaption></figure>
+        <h2>Waar je sleutel wordt bewaard</h2>
+        <p>De sleutel wordt veilig opgeslagen in de lokale opslag van je browser voor extensies, niet in gesynchroniseerde cloudopslag. Hij wordt dus nooit via je browseraccount naar andere apparaten gekopieerd. Het enige gevolg is dat je hem per browser eenmalig moet invoeren. Sleutels worden uitsluitend gebruikt om te communiceren met de provider die jij hebt ingesteld.</p>
+
+        <h2>Wat dit wel en niet beschermt</h2>
+        <p>Laten we hier helder over zijn: je eigen sleutel meenemen schakelt de tussenpartij uit. Het omzeilt echter niet de modelprovider zelf: alles wat je naar een gehost model verstuurt, valt onder de privacyvoorwaarden en bewaartermijnen van die specifieke provider. Alleen een lokaal model houdt de tekst gegarandeerd 100% op je eigen computer — al zijn lokale modellen doorgaans compacter en wat trager dan gehoste alternatieven.</p>
+        <p>Het project is volledig open source, dus je hoeft niemand op zijn woord te geloven. Alle code voor sleutelbeheer en dataverzoeken staat openbaar in de repository en kun je zelf controleren.</p>
+
+        <h2>Een configuratie kiezen</h2>
+        <ol>
+          <li><strong>Dagelijks leeswerk:</strong> een gehost model van een provider met voorwaarden waar je achter staat. Snel, krachtig en jij behoudt de controle over de sleutel.</li>
+          <li><strong>Gevoelig materiaal:</strong> een lokaal model. Wat trager en compacter, maar er verlaat geen byte je computer.</li>
+          <li><strong>Experimenteren:</strong> voeg meerdere providers toe en vergelijk de samenvattingen van hetzelfde artikel. Zo ontdek je snel welk model het beste aansluit op welk type tekst.</li>
+        </ol>
+        <p>Het punt is niet dat er één perfecte keuze is. Het punt is dat de regie altijd bij jou blijft.</p>
+        <div class="post-cta">
+          <p>AI Summary Helper is een gratis Chrome-extensie.</p>
+          <a href="https://chromewebstore.google.com/detail/ai-summary-helper-openai/hldbejcjaedipeegjcinmhejdndchkmb" target="_blank" rel="noopener" class="btn-primary">Toevoegen aan Chrome</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="footer-inner">
+      <div class="wordmark"><img src="../../assets/icon.svg" alt="">AI Summary Helper</div>
+      <div class="foot-links">
+        <a href="https://github.com/philffm/ai-summary-helper/" target="_blank" rel="noopener">Broncode op GitHub</a>
+        <a href="../privacy.html">Privacy</a>
+        <a href="#" data-analytics-settings="">Analytics-instellingen</a>
+        <a href="https://byphil.eu/terms.html#impressum" target="_blank" rel="noopener">Impressum</a>
+      </div>
+    </div>
+    <div class="copyright">© 2026 Phil Wornath. Onderdeel van <a href="https://byphil.eu/" class="credit-link">byphil.eu ↗</a> — onafhankelijke software gemaakt in Duitsland.<br>
+      Ontworpen &amp; gebouwd door <a href="https://philwornath.com/" target="_blank" rel="noopener" class="credit-link">philwornath.com ↗</a>
+    </div>
+  </div>
+</footer>
+
+<script src="../../assets/main.js"></script>
+
+
+</body></html>

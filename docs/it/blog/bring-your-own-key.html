@@ -1,0 +1,135 @@
+<!DOCTYPE html><html lang="it"><head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#08090C">
+<title>La tua chiave. Il tuo modello. I tuoi dati. — AI Summary Helper</title>
+<meta name="description" content="Cosa significa davvero usare la propria chiave API in un'estensione per browser: dove viene salvata la chiave, dove finiscono i testi delle pagine e cosa cambia se usi un modello locale.">
+
+<script>
+  (function(){
+    try {
+      var saved = localStorage.getItem('aish_theme');
+      var theme = saved === 'light' || saved === 'dark'
+        ? saved
+        : (window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
+      document.documentElement.setAttribute('data-theme', theme);
+    } catch (e) {
+      document.documentElement.setAttribute('data-theme', 'dark');
+    }
+  })();
+</script>
+
+<link rel="icon" type="image/svg+xml" href="../../assets/icon.svg">
+<link rel="stylesheet" href="../../assets/styles.css">
+<script src="../../assets/analytics.js"></script>
+<link rel="alternate" hreflang="x-default" href="https://ai-summary-helper.byphil.eu/blog/bring-your-own-key.html"><link rel="alternate" hreflang="en" href="https://ai-summary-helper.byphil.eu/blog/bring-your-own-key.html"><link rel="alternate" hreflang="de" href="https://ai-summary-helper.byphil.eu/de/blog/bring-your-own-key.html"><link rel="alternate" hreflang="fr" href="https://ai-summary-helper.byphil.eu/fr/blog/bring-your-own-key.html"><link rel="alternate" hreflang="es" href="https://ai-summary-helper.byphil.eu/es/blog/bring-your-own-key.html"><link rel="alternate" hreflang="zh-Hans" href="https://ai-summary-helper.byphil.eu/zh/blog/bring-your-own-key.html"><link rel="alternate" hreflang="zh-Hant" href="https://ai-summary-helper.byphil.eu/zh-tw/blog/bring-your-own-key.html"><link rel="alternate" hreflang="ja" href="https://ai-summary-helper.byphil.eu/ja/blog/bring-your-own-key.html"><link rel="alternate" hreflang="ko" href="https://ai-summary-helper.byphil.eu/ko/blog/bring-your-own-key.html"><link rel="alternate" hreflang="pt-BR" href="https://ai-summary-helper.byphil.eu/pt/blog/bring-your-own-key.html"><link rel="alternate" hreflang="hi" href="https://ai-summary-helper.byphil.eu/hi/blog/bring-your-own-key.html"><link rel="alternate" hreflang="vi" href="https://ai-summary-helper.byphil.eu/vi/blog/bring-your-own-key.html"><link rel="alternate" hreflang="nl" href="https://ai-summary-helper.byphil.eu/nl/blog/bring-your-own-key.html"><link rel="alternate" hreflang="it" href="https://ai-summary-helper.byphil.eu/it/blog/bring-your-own-key.html"><link rel="alternate" hreflang="ru" href="https://ai-summary-helper.byphil.eu/ru/blog/bring-your-own-key.html"><link rel="alternate" hreflang="uk" href="https://ai-summary-helper.byphil.eu/uk/blog/bring-your-own-key.html"><link rel="alternate" hreflang="tr" href="https://ai-summary-helper.byphil.eu/tr/blog/bring-your-own-key.html"><link rel="alternate" hreflang="id" href="https://ai-summary-helper.byphil.eu/id/blog/bring-your-own-key.html"><link rel="alternate" hreflang="pl" href="https://ai-summary-helper.byphil.eu/pl/blog/bring-your-own-key.html"><link rel="alternate" hreflang="th" href="https://ai-summary-helper.byphil.eu/th/blog/bring-your-own-key.html"><link rel="alternate" hreflang="ar" href="https://ai-summary-helper.byphil.eu/ar/blog/bring-your-own-key.html"><link rel="alternate" hreflang="sv" href="https://ai-summary-helper.byphil.eu/sv/blog/bring-your-own-key.html"><link rel="alternate" hreflang="da" href="https://ai-summary-helper.byphil.eu/da/blog/bring-your-own-key.html"><link rel="alternate" hreflang="nb" href="https://ai-summary-helper.byphil.eu/no/blog/bring-your-own-key.html"><link rel="alternate" hreflang="fi" href="https://ai-summary-helper.byphil.eu/fi/blog/bring-your-own-key.html"></head>
+<body>
+
+<a href="#main" class="skip-link">Salta al contenuto</a>
+
+<header class="nav">
+  <div class="wrap nav-inner">
+    <div class="brand-cluster">
+      <div class="wordmark">
+        <img src="../../assets/icon.svg" alt="">
+        AI Summary Helper
+      </div>
+      <a href="https://byphil.eu/" target="_blank" rel="noopener" class="ecosystem-badge">
+        <span class="pulse-dot"></span> Parte di byphil.
+      </a>
+    </div>
+    <div class="nav-desktop-group nav-desktop-links">
+      <nav class="links" aria-label="Primary">
+        <a href="../index.html#features">Funzionalità</a>
+        <a href="../index.html#pricing">Prezzi</a>
+        <a href="./" aria-current="page">Blog</a>
+        <a href="https://github.com/philffm/ai-summary-helper/" target="_blank" rel="noopener">GitHub</a>
+      </nav>
+      <button type="button" class="theme-toggle" id="themeToggle" aria-label="Switch to light mode">
+        <svg class="icon-moon" viewBox="0 0 24 24" fill="none"><path d="M20 14.5A8.5 8.5 0 1 1 9.5 4a6.8 6.8 0 0 0 10.5 10.5Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"></path></svg>
+        <svg class="icon-sun" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="4.2" stroke="currentColor" stroke-width="1.6"></circle><path d="M12 2.5v2.4M12 19.1v2.4M4.4 4.4l1.7 1.7M17.9 17.9l1.7 1.7M2.5 12h2.4M19.1 12h2.4M4.4 19.6l1.7-1.7M17.9 6.1l1.7-1.7" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"></path></svg>
+      </button>
+      <a href="../index.html" class="btn-sign-in">← Torna all'app</a>
+    </div>
+    <button type="button" class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="mobileMenu" aria-label="Open menu">
+      <svg viewBox="0 0 24 24" fill="none"><path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"></path></svg>
+    </button>
+  </div>
+  <div class="mobile-menu" id="mobileMenu" hidden="">
+    <div class="wrap mobile-menu-inner">
+      <a href="../index.html#features">Funzionalità</a>
+      <a href="../index.html#pricing">Prezzi</a>
+      <a href="./">Blog</a>
+      <a href="https://github.com/philffm/ai-summary-helper/" target="_blank" rel="noopener">GitHub</a>
+      <a href="https://byphil.eu/" target="_blank" rel="noopener">Parte di byphil. ↗</a>
+      <button type="button" class="theme-toggle-mobile" id="themeToggleMobile">
+        <span id="themeToggleMobileLabel">Passa alla modalità chiara</span>
+        <svg class="icon-moon" viewBox="0 0 24 24" fill="none"><path d="M20 14.5A8.5 8.5 0 1 1 9.5 4a6.8 6.8 0 0 0 10.5 10.5Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"></path></svg>
+        <svg class="icon-sun" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="4.2" stroke="currentColor" stroke-width="1.6"></circle><path d="M12 2.5v2.4M12 19.1v2.4M4.4 4.4l1.7 1.7M17.9 17.9l1.7 1.7M2.5 12h2.4M19.1 12h2.4M4.4 19.6l1.7-1.7M17.9 6.1l1.7-1.7" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"></path></svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+<main id="main">
+  <div class="wrap">
+    <div class="post-hero">
+      <span class="blog-date">Prodotto · Ottobre 2026</span>
+      <h1>La tua chiave. Il tuo modello. I tuoi dati.</h1>
+      <p class="post-sub">La maggior parte degli strumenti di IA interpone un server tra te e il modello. Ecco cosa cambia quando questo intermediario non c'è, e cosa rimane sotto la tua responsabilità.</p>
+    </div>
+  </div>
+
+  <section>
+    <div class="wrap">
+      <div class="prose">
+        <p>Ogni riassunto generato dall'IA funziona allo stesso modo: viene inviato del testo e ne viene restituito dell'altro. La domanda fondamentale per decidere quanto fidarsi dello strumento è: chi c'è nel mezzo? In molti prodotti c'è un server aziendale intermedio, e ciò che leggi vi transita prima di raggiungere un modello che non hai scelto tu.</p>
+
+        <h2>Cosa significa qui “bring your own key”</h2>
+        <p>Generi una chiave API con un provider di cui ti fidi già, la incolli in AI Summary Helper e scegli un modello. Quando riassumi una pagina, il background worker dell'estensione invia il testo direttamente a quel provider e riceve la risposta in streaming. In questo percorso non c'è alcun server di AI Summary Helper a fare da tramite.</p>
+        <p>Puoi anche collegarlo a un modello in esecuzione direttamente sul tuo dispositivo, ad esempio tramite Ollama. In questo caso, il testo della pagina non lascia mai il tuo computer.</p>
+        <figure class="post-figure post-figure--portrait"><img src="../../assets/blog/bring-your-own-key.webp" alt="Slide: Porta la tua chiave (BYOK), con tag per modelli locali, open source e chiavi memorizzate nel browser" width="800" height="1000" loading="lazy"><figcaption>Scegli tu il provider o un modello locale. La chiave rimane nel tuo browser.</figcaption></figure>
+        <h2>Dove viene salvata la tua chiave</h2>
+        <p>La chiave viene memorizzata nello storage locale dell'estensione nel tuo browser, non nello storage sincronizzato. Ciò significa che non viene copiata su altri dispositivi tramite l'account del browser. Di contro, dovrai inserirla una volta per ciascun browser. Le chiavi vengono utilizzate esclusivamente per comunicare con il provider che hai configurato.</p>
+
+        <h2>Cosa protegge (e cosa no)</h2>
+        <p>È bene fare chiarezza. Usare la propria chiave elimina l'intermediario, ma non il provider del modello: qualsiasi dato inviato a un modello in cloud è soggetto ai termini e alle policy di conservazione di quel provider, quindi ti invitiamo a verificarli. Solo un modello locale mantiene il testo interamente sul tuo dispositivo, anche se i modelli locali sono in genere più compatti e lenti rispetto a quelli in cloud.</p>
+        <p>Il progetto è open source, quindi non devi fidarti sulla parola. Il codice che gestisce chiavi e richieste è pubblicamente consultabile nel repository.</p>
+
+        <h2>Scegliere la configurazione giusta</h2>
+        <ol>
+          <li><strong>Lettura quotidiana:</strong> un modello in cloud offerto da un provider di cui condividi i termini. Veloce, di ottima qualità e con la chiave sotto il tuo pieno controllo.</li>
+          <li><strong>Contenuti sensibili:</strong> un modello locale. Meno potente e più lento, ma nessun dato lascia la tua macchina.</li>
+          <li><strong>Per sperimentare:</strong> aggiungi più di un provider e confronta le risposte sullo stesso articolo. È il modo più rapido per capire quale modello si adatta meglio a ogni tipo di testo.</li>
+        </ol>
+        <p>Il punto non è trovare un'unica configurazione valida per tutti, ma avere sempre la libertà di scegliere.</p>
+        <div class="post-cta">
+          <p>AI Summary Helper è un'estensione gratuita per Chrome.</p>
+          <a href="https://chromewebstore.google.com/detail/ai-summary-helper-openai/hldbejcjaedipeegjcinmhejdndchkmb" target="_blank" rel="noopener" class="btn-primary">Aggiungi a Chrome</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="footer-inner">
+      <div class="wordmark"><img src="../../assets/icon.svg" alt="">AI Summary Helper</div>
+      <div class="foot-links">
+        <a href="https://github.com/philffm/ai-summary-helper/" target="_blank" rel="noopener">Codice sorgente su GitHub</a>
+        <a href="../privacy.html">Informativa sulla privacy</a>
+        <a href="#" data-analytics-settings="">Impostazioni statistiche</a>
+        <a href="https://byphil.eu/terms.html#impressum" target="_blank" rel="noopener">Note legali (Impressum)</a>
+      </div>
+    </div>
+    <div class="copyright">© 2026 Phil Wornath. Parte di <a href="https://byphil.eu/" class="credit-link">byphil.eu ↗</a> — software indipendente sviluppato in Germania.<br>
+      Progettato e sviluppato da <a href="https://philwornath.com/" target="_blank" rel="noopener" class="credit-link">philwornath.com ↗</a>
+    </div>
+  </div>
+</footer>
+
+<script src="../../assets/main.js"></script>
+
+
+</body></html>

@@ -1,0 +1,132 @@
+<!DOCTYPE html><html lang="th"><head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#08090C">
+<title>ค้นหาและจัดการแท็กได้โดยไม่ต้องพึ่งระบบคลาวด์ — AI Summary Helper</title>
+<meta name="description" content="เบื้องหลังดัชนี TF-IDF ของระบบค้นหา ตรวจจับเนื้อหาซ้ำ และสรุป Digest ใน AI Summary Helper — พร้อมเหตุผลว่าทำไมฟีเจอร์ส่วนใหญ่ถึงไม่จำเป็นต้องพึ่งพาเซิร์ฟเวอร์เลย">
+
+<script>
+  (function(){
+    try {
+      var saved = localStorage.getItem('aish_theme');
+      var theme = saved === 'light' || saved === 'dark'
+        ? saved
+        : (window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
+      document.documentElement.setAttribute('data-theme', theme);
+    } catch (e) {
+      document.documentElement.setAttribute('data-theme', 'dark');
+    }
+  })();
+</script>
+
+<link rel="icon" type="image/svg+xml" href="../../assets/icon.svg">
+<link rel="stylesheet" href="../../assets/styles.css">
+<script src="../../assets/analytics.js"></script>
+<link rel="alternate" hreflang="x-default" href="https://ai-summary-helper.byphil.eu/blog/on-device-architecture.html"><link rel="alternate" hreflang="en" href="https://ai-summary-helper.byphil.eu/blog/on-device-architecture.html"><link rel="alternate" hreflang="de" href="https://ai-summary-helper.byphil.eu/de/blog/on-device-architecture.html"><link rel="alternate" hreflang="fr" href="https://ai-summary-helper.byphil.eu/fr/blog/on-device-architecture.html"><link rel="alternate" hreflang="es" href="https://ai-summary-helper.byphil.eu/es/blog/on-device-architecture.html"><link rel="alternate" hreflang="zh-Hans" href="https://ai-summary-helper.byphil.eu/zh/blog/on-device-architecture.html"><link rel="alternate" hreflang="zh-Hant" href="https://ai-summary-helper.byphil.eu/zh-tw/blog/on-device-architecture.html"><link rel="alternate" hreflang="ja" href="https://ai-summary-helper.byphil.eu/ja/blog/on-device-architecture.html"><link rel="alternate" hreflang="ko" href="https://ai-summary-helper.byphil.eu/ko/blog/on-device-architecture.html"><link rel="alternate" hreflang="pt-BR" href="https://ai-summary-helper.byphil.eu/pt/blog/on-device-architecture.html"><link rel="alternate" hreflang="hi" href="https://ai-summary-helper.byphil.eu/hi/blog/on-device-architecture.html"><link rel="alternate" hreflang="vi" href="https://ai-summary-helper.byphil.eu/vi/blog/on-device-architecture.html"><link rel="alternate" hreflang="nl" href="https://ai-summary-helper.byphil.eu/nl/blog/on-device-architecture.html"><link rel="alternate" hreflang="it" href="https://ai-summary-helper.byphil.eu/it/blog/on-device-architecture.html"><link rel="alternate" hreflang="ru" href="https://ai-summary-helper.byphil.eu/ru/blog/on-device-architecture.html"><link rel="alternate" hreflang="uk" href="https://ai-summary-helper.byphil.eu/uk/blog/on-device-architecture.html"><link rel="alternate" hreflang="tr" href="https://ai-summary-helper.byphil.eu/tr/blog/on-device-architecture.html"><link rel="alternate" hreflang="id" href="https://ai-summary-helper.byphil.eu/id/blog/on-device-architecture.html"><link rel="alternate" hreflang="pl" href="https://ai-summary-helper.byphil.eu/pl/blog/on-device-architecture.html"><link rel="alternate" hreflang="th" href="https://ai-summary-helper.byphil.eu/th/blog/on-device-architecture.html"><link rel="alternate" hreflang="ar" href="https://ai-summary-helper.byphil.eu/ar/blog/on-device-architecture.html"><link rel="alternate" hreflang="sv" href="https://ai-summary-helper.byphil.eu/sv/blog/on-device-architecture.html"><link rel="alternate" hreflang="da" href="https://ai-summary-helper.byphil.eu/da/blog/on-device-architecture.html"><link rel="alternate" hreflang="nb" href="https://ai-summary-helper.byphil.eu/no/blog/on-device-architecture.html"><link rel="alternate" hreflang="fi" href="https://ai-summary-helper.byphil.eu/fi/blog/on-device-architecture.html"></head>
+<body>
+
+<a href="#main" class="skip-link">ข้ามไปยังเนื้อหา</a>
+
+<header class="nav">
+  <div class="wrap nav-inner">
+    <div class="brand-cluster">
+      <div class="wordmark">
+        <img src="../../assets/icon.svg" alt="">
+        AI Summary Helper
+      </div>
+      <a href="https://byphil.eu/" target="_blank" rel="noopener" class="ecosystem-badge">
+        <span class="pulse-dot"></span> ส่วนหนึ่งของ byphil.
+      </a>
+    </div>
+    <div class="nav-desktop-group nav-desktop-links">
+      <nav class="links" aria-label="Primary">
+        <a href="../index.html#features">ฟีเจอร์</a>
+        <a href="../index.html#pricing">ราคา</a>
+        <a href="./" aria-current="page">บล็อก</a>
+        <a href="https://github.com/philffm/ai-summary-helper/" target="_blank" rel="noopener">GitHub</a>
+      </nav>
+      <button type="button" class="theme-toggle" id="themeToggle" aria-label="Switch to light mode">
+        <svg class="icon-moon" viewBox="0 0 24 24" fill="none"><path d="M20 14.5A8.5 8.5 0 1 1 9.5 4a6.8 6.8 0 0 0 10.5 10.5Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"></path></svg>
+        <svg class="icon-sun" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="4.2" stroke="currentColor" stroke-width="1.6"></circle><path d="M12 2.5v2.4M12 19.1v2.4M4.4 4.4l1.7 1.7M17.9 17.9l1.7 1.7M2.5 12h2.4M19.1 12h2.4M4.4 19.6l1.7-1.7M17.9 6.1l1.7-1.7" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"></path></svg>
+      </button>
+      <a href="../index.html" class="btn-sign-in">← กลับไปยังแอป</a>
+    </div>
+    <button type="button" class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="mobileMenu" aria-label="Open menu">
+      <svg viewBox="0 0 24 24" fill="none"><path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"></path></svg>
+    </button>
+  </div>
+  <div class="mobile-menu" id="mobileMenu" hidden="">
+    <div class="wrap mobile-menu-inner">
+      <a href="../index.html#features">ฟีเจอร์</a>
+      <a href="../index.html#pricing">ราคา</a>
+      <a href="./">บล็อก</a>
+      <a href="https://github.com/philffm/ai-summary-helper/" target="_blank" rel="noopener">GitHub</a>
+      <a href="https://byphil.eu/" target="_blank" rel="noopener">ส่วนหนึ่งของ byphil. ↗</a>
+      <button type="button" class="theme-toggle-mobile" id="themeToggleMobile">
+        <span id="themeToggleMobileLabel">สลับเป็นโหมดสว่าง</span>
+        <svg class="icon-moon" viewBox="0 0 24 24" fill="none"><path d="M20 14.5A8.5 8.5 0 1 1 9.5 4a6.8 6.8 0 0 0 10.5 10.5Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"></path></svg>
+        <svg class="icon-sun" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="4.2" stroke="currentColor" stroke-width="1.6"></circle><path d="M12 2.5v2.4M12 19.1v2.4M4.4 4.4l1.7 1.7M17.9 17.9l1.7 1.7M2.5 12h2.4M19.1 12h2.4M4.4 19.6l1.7-1.7M17.9 6.1l1.7-1.7" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"></path></svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+<main id="main">
+  <div class="wrap">
+    <div class="post-hero">
+      <span class="blog-date">Engineering · สิงหาคม 2026</span>
+      <h1>ทำไมเราถึงย้ายระบบค้นหา แท็ก และการแนะนำเนื้อหาออกจากคลาวด์</h1>
+      <p class="post-sub">ระบบค้นหา ตรวจจับเนื้อหาซ้ำ จัดการแท็ก และแนะนำเนื้อหา ทั้งหมดทำงานร่วมกันบนดัชนีขนาดเล็กภายในอุปกรณ์ มาดูกลไกการทำงานและเหตุผลที่สิ่งนี้ไม่ใช่แค่เรื่องความเป็นส่วนตัวเท่านั้น</p>
+    </div>
+  </div>
+
+  <section>
+    <div class="wrap">
+      <div class="prose">
+<p>ส่วนขยายเบราว์เซอร์ที่เคลมว่า "ขับเคลื่อนด้วย AI" ส่วนใหญ่มักส่งข้อมูลทุกอย่างไปยังเซิร์ฟเวอร์ แม้แต่ส่วนที่ไม่ได้เกี่ยวข้องกับ AI เลยก็ตาม ไม่ว่าจะเป็นการค้นหา การจัดระเบียบแท็ก หรือ "การค้นหาเนื้อหาที่คล้ายกัน" เทคนิคเหล่านี้มีมานานหลายทศวรรษและเข้าใจได้ง่าย จึงไม่จำเป็นต้องใช้โมเดลภาษาขนาดใหญ่ และไม่จำเป็นต้องส่งข้อมูลข้ามเครือข่ายไปมา เราได้ทบทวนฟีเจอร์ต่างๆ ของ AI Summary Helper ทีละรายการพร้อมตั้งคำถามว่า ฟีเจอร์นี้จำเป็นต้องพึ่งคลาวด์จริงหรือไม่ หรือเราแค่เลือกใช้เพราะเป็นสถาปัตยกรรมที่ง่ายที่สุด?</p>
+        <p>และคำตอบคือ ฟีเจอร์ส่วนใหญ่ไม่จำเป็นต้องใช้คลาวด์เลย</p>
+
+        <figure class="post-figure post-figure--portrait"><img src="../../assets/blog/knowledge-graph.webp" alt="สไลด์: แผนผังหัวข้อที่เชื่อมโยงกันพร้อมข้อความ “ข้อมูลที่ผูกโยงกับความหมายและความเชื่อมโยงจะคงอยู่ยาวนานกว่าข้อมูลที่เพียงแค่มองผ่าน”" width="800" height="1000" loading="lazy"><figcaption>ระบบค้นหา แท็ก และบทความที่คล้ายกัน ทำงานบนดัชนีเดียวกันภายในอุปกรณ์ ทำให้การเชื่อมโยงข้อมูลที่บันทึกไว้ประมวลผลได้ทันทีโดยไม่มีต้นทุนเพิ่ม</figcaption></figure>
+        <h2>สิ่งที่เราย้ายมาประมวลผลบนอุปกรณ์</h2>
+        <p><strong>ระบบค้นหา</strong> เดิมที ส่วนขยายนี้ค้นหาและจับคู่เฉพาะชื่อบทความและแท็ก ซึ่งทำงานได้รวดเร็วแต่ไม่สามารถตรวจหาเนื้อหาในบทความได้ แทนที่จะใช้วิธีสแกนข้อความทั้งหมดแบบ Brute-force ทุกครั้งที่พิมพ์ หรือส่งคำค้นหาไปยังเซิร์ฟเวอร์ เราได้สร้างดัชนี TF-IDF ขนาดเล็กจากคลังข้อมูลที่บันทึกไว้ในเครื่อง ฟิลด์ที่ประมวลผลได้เร็วอย่างชื่อบทความและแท็กจะถูกตรวจสอบก่อนแบบทันทีเช่นเดิม ส่วนคำค้นหาที่ยาวขึ้นจะค้นหาเทียบกับดัชนีที่สร้างขึ้นเพียงครั้งเดียวต่อเซสชันและอัปเดตแบบเพิ่มหน่วยย่อย (incremental) โดยไม่ต้องสแกนใหม่ทุกครั้งที่กดแป้นพิมพ์</p>
+        <p><strong>การตรวจจับเนื้อหาซ้ำ</strong> ก่อนการบันทึกจะเสร็จสมบูรณ์ ระบบจะตรวจสอบแบบเป็นลำดับขั้น: เริ่มจากจับคู่ URL ที่แปลงเป็นรูปแบบมาตรฐานแล้ว (ประมวลผลเร็ว, O(1)) จากนั้นตรวจสอบความคล้ายคลึงของชื่อบทความเฉพาะรายการที่ผ่านการกรองขั้นแรก และเฉพาะรายการที่เหลือไม่กี่รายการเท่านั้นที่จะถูกนำมาเปรียบเทียบความคล้ายคลึงแบบ TF-IDF Cosine Similarity เต็มรูปแบบ การบันทึกส่วนใหญ่จึงแทบไม่ต้องประมวลผลขั้นสูงเลย เพราะจัดการเสร็จสิ้นได้ตั้งแต่ขั้นแรกแล้ว</p>
+        <p><strong>การจัดรูปแบบแท็กให้เป็นมาตรฐาน</strong> แท็กมักมีความคลาดเคลื่อนสะสมตามกาลเวลา เช่น "ML", "Machine Learning", "machine-learning" ซึ่งสื่อถึงสิ่งเดียวกันสำหรับมนุษย์ แต่ระบบตัวกรองมองว่าแตกต่างกัน ตารางนามแฝง (alias table) ขนาดเล็กจะช่วยตรวจจับกรณีที่เห็นได้ชัด ส่วนการผสานคำด้วย Fuzzy Edit-distance ทั่วทั้งคลังแท็กจะช่วยจัดการส่วนที่เหลือ โดยเลือกการสะกดที่ใช้งานบ่อยที่สุดเป็นรูปแบบหลัก แทนที่จะบังคับเปลี่ยนเป็นรูปแบบที่กำหนดไว้</p>
+        <p><strong>ระดับความง่ายในการอ่านและโทนเสียง</strong> ระดับความยากง่ายในการอ่านแบบ Flesch–Kincaid เป็นเพียงการคำนวณทางคณิตศาสตร์จากจำนวนประโยคและพยางค์ จึงไม่จำเป็นต้องใช้โมเดลใดๆ ส่วนการวิเคราะห์ความรู้สึก (Sentiment) ใช้รายการคำศัพท์ AFINN ภายในเครื่อง พร้อมการตรวจสอบคำปฏิเสธจาก 2 โทเค็นก่อนหน้า ทั้งหมดนี้จึงทำงานได้ภายในเบราว์เซอร์โดยไม่ต้องส่งข้อมูลออกไปภายนอก</p>
+        <p><strong>"บทความที่คล้ายกัน" และ Digest</strong> ทั้งสองฟีเจอร์นี้ใช้เวกเตอร์ TF-IDF เดียวกันกับที่ระบบค้นหาสร้างไว้ แม้การสร้างระบบเปรียบเทียบความคล้ายคลึงแยกกัน 3 ระบบสำหรับ 3 ฟีเจอร์จะเป็นเรื่องง่าย แต่การสร้างดัชนีเดียวแล้วให้ระบบค้นหา ระบบแนะนำเนื้อหา และการคัดสรร Digest ใช้งานร่วมกัน ช่วยให้ระบบโดยรวมมีขนาดกะทัดรัด และเมื่อปรับปรุงดัชนีเพียงครั้งเดียว ก็ช่วยเพิ่มประสิทธิภาพของทั้ง 3 ฟีเจอร์ได้พร้อมกัน</p>
+
+        <figure class="post-figure"><img src="../../assets/blog/runtime-parts.webp" alt="แผนภาพ: หน้าเว็บ, background worker และ popup ของส่วนขยาย, ที่จัดเก็บข้อมูลในเครื่อง (local storage) และผู้ให้บริการโมเดล" width="1760" height="620" loading="lazy"><figcaption>มีการส่งข้อมูลออกจากเบราว์เซอร์เพียงจุดเดียวเท่านั้น คือการเรียกใช้ไปยังผู้ให้บริการโมเดลที่คุณเลือก</figcaption></figure>
+        <h2>สิ่งที่เราตั้งใจคงไว้บนคลาวด์</h2>
+        <p>ขั้นตอนการสรุปเนื้อหาจริง ซึ่งเป็นส่วนที่ต้องพึ่งพาโมเดลภาษาขนาดใหญ่อย่างแท้จริง ยังคงต้องเชื่อมต่อผ่านเครือข่าย เนื่องจากขนาดของโมเดลบนอุปกรณ์ในปัจจุบันยังไม่สามารถเทียบเท่าคุณภาพระดับโมเดลบนคลาวด์ได้ ผู้ใช้สามารถนำ API key ของตนเองมาใช้ในขั้นตอนนี้ (เช่น OpenAI, Gemini, Mistral, DeepSeek) หรือจะเลือกเชื่อมต่อส่วนขยายกับ Ollama ภายในเครื่องเพื่อทำงานแบบออฟไลน์โดยไม่ต้องเชื่อมต่อเครือข่ายก็ได้เช่นกัน นี่จึงเป็นจุดเดียวที่ไม่ได้ตั้งค่าการทำงานบนอุปกรณ์ไว้เป็นค่าเริ่มต้น แต่เปิดให้เลือกใช้งานตามความต้องการ เพราะมีข้อจำกัดที่ต้องแลกเปลี่ยน: โมเดลในเครื่องอาจประมวลผลช้ากว่าและให้คุณภาพต่ำกว่าโมเดลบนคลาวด์</p>
+
+        <h2>ทำไมเรื่องนี้จึงมีคุณค่ามากกว่าแค่ประเด็นความเป็นส่วนตัว</h2>
+        <p>มิติด้านความเป็นส่วนตัวนั้นสำคัญอย่างยิ่ง การที่ส่วนขยายซึ่งมีสิทธิ์การเข้าถึงระดับกว้างส่งเนื้อหาของหน้าเว็บไปยังเซิร์ฟเวอร์โดยไม่จำเป็น ถือเป็นคำถามเรื่องความไว้วางใจอย่างแท้จริง ไม่ใช่แค่เรื่องภาพลักษณ์ แต่เหตุผลพื้นฐานที่สำคัญยิ่งกว่าคือ นี่คือการตัดสินใจทางวิศวกรรมที่ถูกต้อง การค้นหาด้วย TF-IDF ไม่จำเป็นต้องเสียเวลา Latency บนเครือข่าย 200ms การตัดแท็กซ้ำไม่ควรมีค่าใช้จ่าย API พ่วงมา การเลือกเครื่องมือให้ตรงกับลักษณะงาน แทนที่จะส่งทุกอย่างไปประมวลผลบนคลาวด์ ช่วยให้ระบบทำงานได้รวดเร็วกว่า ประหยัดต้นทุนกว่า และรองรับการทำงานแบบออฟไลน์ได้อย่างเสถียร โดยมีข้อดีด้านความเป็นส่วนตัวเป็นผลพลอยได้ที่ตามมาทันที</p>
+        <div class="post-cta">
+          <p>AI Summary Helper เป็นส่วนขยาย Chrome ที่ใช้งานได้ฟรี</p>
+          <a href="https://chromewebstore.google.com/detail/ai-summary-helper-openai/hldbejcjaedipeegjcinmhejdndchkmb" target="_blank" rel="noopener" class="btn-primary">เพิ่มลงใน Chrome</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="footer-inner">
+      <div class="wordmark"><img src="../../assets/icon.svg" alt="">AI Summary Helper</div>
+      <div class="foot-links">
+        <a href="https://github.com/philffm/ai-summary-helper/" target="_blank" rel="noopener">ซอร์สโค้ดบน GitHub</a>
+        <a href="../privacy.html">ความเป็นส่วนตัว</a>
+        <a href="#" data-analytics-settings="">การตั้งค่าการวิเคราะห์</a>
+        <a href="https://byphil.eu/terms.html#impressum" target="_blank" rel="noopener">ข้อมูลทางกฎหมาย (Impressum)</a>
+      </div>
+    </div>
+    <div class="copyright">© 2026 Phil Wornath. ส่วนหนึ่งของ <a href="https://byphil.eu/" class="credit-link">byphil.eu ↗</a> — ซอฟต์แวร์อิสระ พัฒนาขึ้นในประเทศเยอรมนี<br>
+      ออกแบบและพัฒนาโดย <a href="https://philwornath.com/" target="_blank" rel="noopener" class="credit-link">philwornath.com ↗</a>
+    </div>
+  </div>
+</footer>
+
+<script src="../../assets/main.js"></script>
+
+
+</body></html>

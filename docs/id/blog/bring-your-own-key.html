@@ -1,0 +1,135 @@
+<!DOCTYPE html><html lang="id"><head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#08090C">
+<title>API Key Anda. Model Anda. Data Anda. — AI Summary Helper</title>
+<meta name="description" content="Arti sebenarnya dari menggunakan API key milik sendiri untuk ekstensi browser: tempat penyimpanan key, tujuan pengiriman teks halaman, dan apa yang berubah jika Anda menggunakan local model.">
+
+<script>
+  (function(){
+    try {
+      var saved = localStorage.getItem('aish_theme');
+      var theme = saved === 'light' || saved === 'dark'
+        ? saved
+        : (window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
+      document.documentElement.setAttribute('data-theme', theme);
+    } catch (e) {
+      document.documentElement.setAttribute('data-theme', 'dark');
+    }
+  })();
+</script>
+
+<link rel="icon" type="image/svg+xml" href="../../assets/icon.svg">
+<link rel="stylesheet" href="../../assets/styles.css">
+<script src="../../assets/analytics.js"></script>
+<link rel="alternate" hreflang="x-default" href="https://ai-summary-helper.byphil.eu/blog/bring-your-own-key.html"><link rel="alternate" hreflang="en" href="https://ai-summary-helper.byphil.eu/blog/bring-your-own-key.html"><link rel="alternate" hreflang="de" href="https://ai-summary-helper.byphil.eu/de/blog/bring-your-own-key.html"><link rel="alternate" hreflang="fr" href="https://ai-summary-helper.byphil.eu/fr/blog/bring-your-own-key.html"><link rel="alternate" hreflang="es" href="https://ai-summary-helper.byphil.eu/es/blog/bring-your-own-key.html"><link rel="alternate" hreflang="zh-Hans" href="https://ai-summary-helper.byphil.eu/zh/blog/bring-your-own-key.html"><link rel="alternate" hreflang="zh-Hant" href="https://ai-summary-helper.byphil.eu/zh-tw/blog/bring-your-own-key.html"><link rel="alternate" hreflang="ja" href="https://ai-summary-helper.byphil.eu/ja/blog/bring-your-own-key.html"><link rel="alternate" hreflang="ko" href="https://ai-summary-helper.byphil.eu/ko/blog/bring-your-own-key.html"><link rel="alternate" hreflang="pt-BR" href="https://ai-summary-helper.byphil.eu/pt/blog/bring-your-own-key.html"><link rel="alternate" hreflang="hi" href="https://ai-summary-helper.byphil.eu/hi/blog/bring-your-own-key.html"><link rel="alternate" hreflang="vi" href="https://ai-summary-helper.byphil.eu/vi/blog/bring-your-own-key.html"><link rel="alternate" hreflang="nl" href="https://ai-summary-helper.byphil.eu/nl/blog/bring-your-own-key.html"><link rel="alternate" hreflang="it" href="https://ai-summary-helper.byphil.eu/it/blog/bring-your-own-key.html"><link rel="alternate" hreflang="ru" href="https://ai-summary-helper.byphil.eu/ru/blog/bring-your-own-key.html"><link rel="alternate" hreflang="uk" href="https://ai-summary-helper.byphil.eu/uk/blog/bring-your-own-key.html"><link rel="alternate" hreflang="tr" href="https://ai-summary-helper.byphil.eu/tr/blog/bring-your-own-key.html"><link rel="alternate" hreflang="id" href="https://ai-summary-helper.byphil.eu/id/blog/bring-your-own-key.html"><link rel="alternate" hreflang="pl" href="https://ai-summary-helper.byphil.eu/pl/blog/bring-your-own-key.html"><link rel="alternate" hreflang="th" href="https://ai-summary-helper.byphil.eu/th/blog/bring-your-own-key.html"><link rel="alternate" hreflang="ar" href="https://ai-summary-helper.byphil.eu/ar/blog/bring-your-own-key.html"><link rel="alternate" hreflang="sv" href="https://ai-summary-helper.byphil.eu/sv/blog/bring-your-own-key.html"><link rel="alternate" hreflang="da" href="https://ai-summary-helper.byphil.eu/da/blog/bring-your-own-key.html"><link rel="alternate" hreflang="nb" href="https://ai-summary-helper.byphil.eu/no/blog/bring-your-own-key.html"><link rel="alternate" hreflang="fi" href="https://ai-summary-helper.byphil.eu/fi/blog/bring-your-own-key.html"></head>
+<body>
+
+<a href="#main" class="skip-link">Lewati ke konten</a>
+
+<header class="nav">
+  <div class="wrap nav-inner">
+    <div class="brand-cluster">
+      <div class="wordmark">
+        <img src="../../assets/icon.svg" alt="">
+        AI Summary Helper
+      </div>
+      <a href="https://byphil.eu/" target="_blank" rel="noopener" class="ecosystem-badge">
+        <span class="pulse-dot"></span> Bagian dari byphil.
+      </a>
+    </div>
+    <div class="nav-desktop-group nav-desktop-links">
+      <nav class="links" aria-label="Primary">
+        <a href="../index.html#features">Fitur</a>
+        <a href="../index.html#pricing">Harga</a>
+        <a href="./" aria-current="page">Blog</a>
+        <a href="https://github.com/philffm/ai-summary-helper/" target="_blank" rel="noopener">GitHub</a>
+      </nav>
+      <button type="button" class="theme-toggle" id="themeToggle" aria-label="Switch to light mode">
+        <svg class="icon-moon" viewBox="0 0 24 24" fill="none"><path d="M20 14.5A8.5 8.5 0 1 1 9.5 4a6.8 6.8 0 0 0 10.5 10.5Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"></path></svg>
+        <svg class="icon-sun" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="4.2" stroke="currentColor" stroke-width="1.6"></circle><path d="M12 2.5v2.4M12 19.1v2.4M4.4 4.4l1.7 1.7M17.9 17.9l1.7 1.7M2.5 12h2.4M19.1 12h2.4M4.4 19.6l1.7-1.7M17.9 6.1l1.7-1.7" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"></path></svg>
+      </button>
+      <a href="../index.html" class="btn-sign-in">← Kembali ke aplikasi</a>
+    </div>
+    <button type="button" class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="mobileMenu" aria-label="Open menu">
+      <svg viewBox="0 0 24 24" fill="none"><path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"></path></svg>
+    </button>
+  </div>
+  <div class="mobile-menu" id="mobileMenu" hidden="">
+    <div class="wrap mobile-menu-inner">
+      <a href="../index.html#features">Fitur</a>
+      <a href="../index.html#pricing">Harga</a>
+      <a href="./">Blog</a>
+      <a href="https://github.com/philffm/ai-summary-helper/" target="_blank" rel="noopener">GitHub</a>
+      <a href="https://byphil.eu/" target="_blank" rel="noopener">Bagian dari byphil. ↗</a>
+      <button type="button" class="theme-toggle-mobile" id="themeToggleMobile">
+        <span id="themeToggleMobileLabel">Beralih ke mode terang</span>
+        <svg class="icon-moon" viewBox="0 0 24 24" fill="none"><path d="M20 14.5A8.5 8.5 0 1 1 9.5 4a6.8 6.8 0 0 0 10.5 10.5Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"></path></svg>
+        <svg class="icon-sun" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="4.2" stroke="currentColor" stroke-width="1.6"></circle><path d="M12 2.5v2.4M12 19.1v2.4M4.4 4.4l1.7 1.7M17.9 17.9l1.7 1.7M2.5 12h2.4M19.1 12h2.4M4.4 19.6l1.7-1.7M17.9 6.1l1.7-1.7" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"></path></svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+<main id="main">
+  <div class="wrap">
+    <div class="post-hero">
+      <span class="blog-date">Produk · Oktober 2026</span>
+      <h1>API Key Anda. Model Anda. Data Anda.</h1>
+      <p class="post-sub">Sebagian besar alat AI menempatkan server perantara antara Anda dan model. Inilah yang terjadi jika tidak ada server perantara, dan apa yang tetap berada di bawah kendali Anda.</p>
+    </div>
+  </div>
+
+  <section>
+    <div class="wrap">
+      <div class="prose">
+        <p>Setiap ringkasan AI memiliki pola yang sama: teks dikirim, ringkasan diterima. Pertanyaan kunci untuk menentukan seberapa aman alat tersebut adalah siapa pihak perantara di baliknya. Pada banyak produk, ada server perusahaan yang menjadi perantara, dan apa yang Anda baca melewatinya sebelum sampai ke model yang bahkan tidak Anda pilih sendiri.</p>
+
+        <h2>Arti “bring your own key” di sini</h2>
+        <p>Anda membuat API key dari provider pilihan Anda, menempelkannya ke AI Summary Helper, lalu memilih model. Saat Anda meringkas halaman, background worker ekstensi langsung mengirimkan teks ke provider tersebut dan menerima balasannya secara streaming. Tidak ada server AI Summary Helper sebagai perantara saat menggunakan API key Anda sendiri.</p>
+        <p>Anda juga dapat menghubungkannya ke model yang berjalan secara lokal di perangkat Anda, misalnya melalui Ollama. Dengan begitu, teks halaman tidak akan pernah keluar dari komputer Anda sama sekali.</p>
+        <figure class="post-figure post-figure--portrait"><img src="../../assets/blog/bring-your-own-key.webp" alt="Slide: Gunakan API key Anda sendiri, dilengkapi badge untuk local model, open source, dan penyimpanan key di browser Anda" width="800" height="1000" loading="lazy"><figcaption>Anda bebas memilih provider atau local model. API key tetap tersimpan aman di browser Anda.</figcaption></figure>
+        <h2>Di mana API key Anda disimpan</h2>
+        <p>API key disimpan di local extension storage pada browser Anda, bukan di synced storage. Artinya, key tidak akan disinkronkan ke perangkat lain melalui akun browser Anda. Konsekuensinya, Anda cukup memasukkannya sekali di setiap browser. API key hanya digunakan untuk berkomunikasi langsung dengan provider yang Anda atur.</p>
+
+        <h2>Hal yang terlindungi dan tidak terlindungi</h2>
+        <p>Penting untuk dipahami dengan jelas. Menggunakan API key sendiri menghilangkan pihak perantara. Namun, ini tidak menghilangkan provider model: apa pun yang Anda kirim ke hosted model tetap tunduk pada ketentuan dan kebijakan retensi provider tersebut, jadi pastikan Anda membacanya. Hanya local model yang benar-benar menjaga data tetap sepenuhnya di perangkat Anda secara offline, meskipun local model biasanya lebih kecil dan lebih lambat dibanding hosted model.</p>
+        <p>Proyek ini bersifat open source, sehingga Anda tidak perlu percaya begitu saja. Kode yang mengelola API key dan request tersedia di repository dan bebas untuk Anda periksa.</p>
+
+        <h2>Memilih setup</h2>
+        <ol>
+          <li><strong>Bacaan sehari-hari:</strong> hosted model dari provider dengan ketentuan yang Anda setujui. Cepat, berkualitas tinggi, dan API key tetap dalam kendali penuh Anda.</li>
+          <li><strong>Materi sensitif:</strong> local model. Lebih lambat dan kemampuannya terbatas, tetapi data sama sekali tidak meninggalkan komputer Anda.</li>
+          <li><strong>Eksperimen:</strong> tambahkan lebih dari satu provider dan bandingkan hasilnya pada artikel yang sama. Ini cara tercepat untuk menemukan model yang paling cocok untuk berbagai jenis teks.</li>
+        </ol>
+        <p>Intinya bukan setup mana yang paling tepat, melainkan kendali penuh tetap berada di tangan Anda.</p>
+        <div class="post-cta">
+          <p>AI Summary Helper adalah ekstensi Chrome gratis.</p>
+          <a href="https://chromewebstore.google.com/detail/ai-summary-helper-openai/hldbejcjaedipeegjcinmhejdndchkmb" target="_blank" rel="noopener" class="btn-primary">Tambahkan ke Chrome</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="footer-inner">
+      <div class="wordmark"><img src="../../assets/icon.svg" alt="">AI Summary Helper</div>
+      <div class="foot-links">
+        <a href="https://github.com/philffm/ai-summary-helper/" target="_blank" rel="noopener">Kode sumber di GitHub</a>
+        <a href="../privacy.html">Privasi</a>
+        <a href="#" data-analytics-settings="">Pengaturan analitik</a>
+        <a href="https://byphil.eu/terms.html#impressum" target="_blank" rel="noopener">Impressum</a>
+      </div>
+    </div>
+    <div class="copyright">© 2026 Phil Wornath. Bagian dari <a href="https://byphil.eu/" class="credit-link">byphil.eu ↗</a> — software independen yang dikembangkan di Jerman.<br>
+      Dirancang &amp; dibangun oleh <a href="https://philwornath.com/" target="_blank" rel="noopener" class="credit-link">philwornath.com ↗</a>
+    </div>
+  </div>
+</footer>
+
+<script src="../../assets/main.js"></script>
+
+
+</body></html>

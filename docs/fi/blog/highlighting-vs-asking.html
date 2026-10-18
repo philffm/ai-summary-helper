@@ -1,0 +1,135 @@
+<!DOCTYPE html><html lang="fi"><head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#08090C">
+<title>Kysy korostuksistasi — AI Summary Helper</title>
+<meta name="description" content="Tekstin korostaminen on tutkitusti yksi heikoimmista opiskelutekniikoista. Miksi se tuntuu silti tehokkaalta ja mikä pieni muutos tekee opitusta pysyvää?">
+
+<script>
+  (function(){
+    try {
+      var saved = localStorage.getItem('aish_theme');
+      var theme = saved === 'light' || saved === 'dark'
+        ? saved
+        : (window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
+      document.documentElement.setAttribute('data-theme', theme);
+    } catch (e) {
+      document.documentElement.setAttribute('data-theme', 'dark');
+    }
+  })();
+</script>
+
+<link rel="icon" type="image/svg+xml" href="../../assets/icon.svg">
+<link rel="stylesheet" href="../../assets/styles.css">
+<script src="../../assets/analytics.js"></script>
+<link rel="alternate" hreflang="x-default" href="https://ai-summary-helper.byphil.eu/blog/highlighting-vs-asking.html"><link rel="alternate" hreflang="en" href="https://ai-summary-helper.byphil.eu/blog/highlighting-vs-asking.html"><link rel="alternate" hreflang="de" href="https://ai-summary-helper.byphil.eu/de/blog/highlighting-vs-asking.html"><link rel="alternate" hreflang="fr" href="https://ai-summary-helper.byphil.eu/fr/blog/highlighting-vs-asking.html"><link rel="alternate" hreflang="es" href="https://ai-summary-helper.byphil.eu/es/blog/highlighting-vs-asking.html"><link rel="alternate" hreflang="zh-Hans" href="https://ai-summary-helper.byphil.eu/zh/blog/highlighting-vs-asking.html"><link rel="alternate" hreflang="zh-Hant" href="https://ai-summary-helper.byphil.eu/zh-tw/blog/highlighting-vs-asking.html"><link rel="alternate" hreflang="ja" href="https://ai-summary-helper.byphil.eu/ja/blog/highlighting-vs-asking.html"><link rel="alternate" hreflang="ko" href="https://ai-summary-helper.byphil.eu/ko/blog/highlighting-vs-asking.html"><link rel="alternate" hreflang="pt-BR" href="https://ai-summary-helper.byphil.eu/pt/blog/highlighting-vs-asking.html"><link rel="alternate" hreflang="hi" href="https://ai-summary-helper.byphil.eu/hi/blog/highlighting-vs-asking.html"><link rel="alternate" hreflang="vi" href="https://ai-summary-helper.byphil.eu/vi/blog/highlighting-vs-asking.html"><link rel="alternate" hreflang="nl" href="https://ai-summary-helper.byphil.eu/nl/blog/highlighting-vs-asking.html"><link rel="alternate" hreflang="it" href="https://ai-summary-helper.byphil.eu/it/blog/highlighting-vs-asking.html"><link rel="alternate" hreflang="ru" href="https://ai-summary-helper.byphil.eu/ru/blog/highlighting-vs-asking.html"><link rel="alternate" hreflang="uk" href="https://ai-summary-helper.byphil.eu/uk/blog/highlighting-vs-asking.html"><link rel="alternate" hreflang="tr" href="https://ai-summary-helper.byphil.eu/tr/blog/highlighting-vs-asking.html"><link rel="alternate" hreflang="id" href="https://ai-summary-helper.byphil.eu/id/blog/highlighting-vs-asking.html"><link rel="alternate" hreflang="pl" href="https://ai-summary-helper.byphil.eu/pl/blog/highlighting-vs-asking.html"><link rel="alternate" hreflang="th" href="https://ai-summary-helper.byphil.eu/th/blog/highlighting-vs-asking.html"><link rel="alternate" hreflang="ar" href="https://ai-summary-helper.byphil.eu/ar/blog/highlighting-vs-asking.html"><link rel="alternate" hreflang="sv" href="https://ai-summary-helper.byphil.eu/sv/blog/highlighting-vs-asking.html"><link rel="alternate" hreflang="da" href="https://ai-summary-helper.byphil.eu/da/blog/highlighting-vs-asking.html"><link rel="alternate" hreflang="nb" href="https://ai-summary-helper.byphil.eu/no/blog/highlighting-vs-asking.html"><link rel="alternate" hreflang="fi" href="https://ai-summary-helper.byphil.eu/fi/blog/highlighting-vs-asking.html"></head>
+<body>
+
+<a href="#main" class="skip-link">Siirry sisältöön</a>
+
+<header class="nav">
+  <div class="wrap nav-inner">
+    <div class="brand-cluster">
+      <div class="wordmark">
+        <img src="../../assets/icon.svg" alt="">
+        AI Summary Helper
+      </div>
+      <a href="https://byphil.eu/" target="_blank" rel="noopener" class="ecosystem-badge">
+        <span class="pulse-dot"></span> Osa byphil-kokonaisuutta.
+      </a>
+    </div>
+    <div class="nav-desktop-group nav-desktop-links">
+      <nav class="links" aria-label="Primary">
+        <a href="../index.html#features">Ominaisuudet</a>
+        <a href="../index.html#pricing">Hinnasto</a>
+        <a href="./" aria-current="page">Blogi</a>
+        <a href="https://github.com/philffm/ai-summary-helper/" target="_blank" rel="noopener">GitHub</a>
+      </nav>
+      <button type="button" class="theme-toggle" id="themeToggle" aria-label="Switch to light mode">
+        <svg class="icon-moon" viewBox="0 0 24 24" fill="none"><path d="M20 14.5A8.5 8.5 0 1 1 9.5 4a6.8 6.8 0 0 0 10.5 10.5Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"></path></svg>
+        <svg class="icon-sun" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="4.2" stroke="currentColor" stroke-width="1.6"></circle><path d="M12 2.5v2.4M12 19.1v2.4M4.4 4.4l1.7 1.7M17.9 17.9l1.7 1.7M2.5 12h2.4M19.1 12h2.4M4.4 19.6l1.7-1.7M17.9 6.1l1.7-1.7" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"></path></svg>
+      </button>
+      <a href="../index.html" class="btn-sign-in">← Takaisin sovellukseen</a>
+    </div>
+    <button type="button" class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="mobileMenu" aria-label="Open menu">
+      <svg viewBox="0 0 24 24" fill="none"><path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"></path></svg>
+    </button>
+  </div>
+  <div class="mobile-menu" id="mobileMenu" hidden="">
+    <div class="wrap mobile-menu-inner">
+      <a href="../index.html#features">Ominaisuudet</a>
+      <a href="../index.html#pricing">Hinnasto</a>
+      <a href="./">Blogi</a>
+      <a href="https://github.com/philffm/ai-summary-helper/" target="_blank" rel="noopener">GitHub</a>
+      <a href="https://byphil.eu/" target="_blank" rel="noopener">Osa byphil-kokonaisuutta ↗</a>
+      <button type="button" class="theme-toggle-mobile" id="themeToggleMobile">
+        <span id="themeToggleMobileLabel">Vaihda vaaleaan tilaan</span>
+        <svg class="icon-moon" viewBox="0 0 24 24" fill="none"><path d="M20 14.5A8.5 8.5 0 1 1 9.5 4a6.8 6.8 0 0 0 10.5 10.5Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"></path></svg>
+        <svg class="icon-sun" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="4.2" stroke="currentColor" stroke-width="1.6"></circle><path d="M12 2.5v2.4M12 19.1v2.4M4.4 4.4l1.7 1.7M17.9 17.9l1.7 1.7M2.5 12h2.4M19.1 12h2.4M4.4 19.6l1.7-1.7M17.9 6.1l1.7-1.7" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"></path></svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+<main id="main">
+  <div class="wrap">
+    <div class="post-hero">
+      <span class="blog-date">Opas · Syyskuu 2026</span>
+      <h1>Pelkkä korostaminen ei juuri auta. Kysy siitä sen sijaan.</h1>
+      <p class="post-sub">Tekstin korostaminen tuntuu opiskelulta, mutta tutkimusten mukaan se ei juuri opeta. Korjaus on pieni: älä tyydy korostukseen, vaan kysy siitä.</p>
+    </div>
+  </div>
+
+  <section>
+    <div class="wrap">
+      <div class="prose">
+        <p>Vuonna 2013 Dunlosky kollegoineen julkaisi katsauksen julkaisussa <em>Psychological Science in the Public Interest</em> , jossa arvioitiin kymmentä suosittua oppimistekniikkaa niiden tutkitun hyödyn perusteella. Korostaminen ja alleviivaaminen päätyivät heikoimpaan ryhmään yhdessä uudelleenlukemisen kanssa. Tehokkaimmiksi osoittautuivat itsensä testaaminen ja opiskelun jaksottaminen ajan mittaan.</p>
+        <p>Hämmentävintä ei ole se, että korostaminen on tehotonta, vaan se, että se tuntuu työltä. Luet tekstin, löydät tärkeän lauseen, korostat sen ja sivu täyttyy keltaisesta. Jotain tuli tehtyä, joten senhän täytyi auttaa.</p>
+
+        <h2>Miksi korostus jättää heikon muistijäljen</h2>
+        <p>Korostus tallentaa vain <em>sen, että</em> pidit lausetta tärkeänä. Se ei kuitenkaan pakota tekemään asialle mitään. Voit merkitä kohdan ymmärtämättä sitä ja voit merkitä sen toisella lukukerralla ajattelematta sitä lainkaan ensimmäisellä. Katsauksen ydinsanoma on, että tekniikat, jotka vain altistavat uudelleen materiaalille, häviävät tekniikoille, jotka pakottavat tuottamaan siitä jotain.</p>
+
+        <h2>Kysymykset ovat vaivaton tapa tuottaa jotain</h2>
+        <p>Samassa katsauksessa arvioitiin kyselytekniikka (elaborative interrogation) kohtalaisen hyödylliseksi: siinä kysytään itseltä, <em>miksi</em> esitetty väite pitää paikkansa. Siihen ei tarvita valmista tenttiä, vaan kehote, joka pakottaa lyhyeen selitykseen omin sanoin.</p>
+        <p>Juuri tästä jatkokysymyksessä on kyse, kun se kohdistetaan oikein. Kysymys ”Mitä riskejä tähän liittyi?” tietystä kohdasta pakottaa päättämään, mitä haluat tietää, ja vastaus tarjoaa jotain, mihin verrata omia oletuksiasi.</p>
+
+        <h2>Korosta ja kysy</h2>
+        <p>AI Summary Helper -työkalussa korostus on vasta puoli ruokaa. Valitse tekstikohta, niin se pysyy sivulla ja odottaa sinua palatessasi artikkeliin. Kysy sitten siitä jatkokysymys. Vastaus lainaa suoraan sivua, ja lainauksen klikkaaminen vie suoraan kyseiseen kappaleeseen, jotta voit tarkistaa, ymmärsikö malli tekstin samoin kuin sinä. Korostukset ja keskustelut tallennetaan artikkelikohtaisesti, joten seuraavalla kerralla jatkat suoraan siitä, mihin jäit.</p>
+        <figure class="post-figure post-figure--portrait"><img src="../../assets/blog/highlight-then-ask.webp" alt="Dia: Korosta ja kysy. Chatissa näkyy kysymys ”Mitä riskejä tähän liittyi?” ja vastaus, joka lainaa sivun tekstiä" width="800" height="1000" loading="lazy"><figcaption>Korosta kohta, kysy siitä ja hyppää suoraan vastauksen pohjana olevaan lainaukseen.</figcaption></figure>
+        <h2>Kahden minuutin rutiini</h2>
+        <ol>
+          <li><strong>Korosta korkeintaan kolme kohtaa.</strong> Jos kaikki on keltaista, mikään ei erotu.</li>
+          <li><strong>Esitä yksi kysymys kutakin korostusta kohti.</strong> ”Miksi tämä on tärkeää?” tai ”Mikä muuttuisi, jos tämä ei pitäisi paikkaansa?” riittävät mainiosti.</li>
+          <li><strong>Ennen kuin luet vastauksen, sano oma arviosi ääneen tai kirjoita se yhdellä rivillä.</strong> Oppiminen tapahtuu vertailussa.</li>
+        </ol>
+        <p>Tämä ei tee korostamisesta huonoa tapaa, vaan lähtöpisteen. Korostuskynä löytää kohdan, kysymys painaa sen muistiin.</p>
+        <div class="post-cta">
+          <p>AI Summary Helper on ilmainen Chrome-laajennus.</p>
+          <a href="https://chromewebstore.google.com/detail/ai-summary-helper-openai/hldbejcjaedipeegjcinmhejdndchkmb" target="_blank" rel="noopener" class="btn-primary">Lisää Chromeen</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="footer-inner">
+      <div class="wordmark"><img src="../../assets/icon.svg" alt="">AI Summary Helper</div>
+      <div class="foot-links">
+        <a href="https://github.com/philffm/ai-summary-helper/" target="_blank" rel="noopener">Lähdekoodi GitHubissa</a>
+        <a href="../privacy.html">Tietosuoja</a>
+        <a href="#" data-analytics-settings="">Analytiikka-asetukset</a>
+        <a href="https://byphil.eu/terms.html#impressum" target="_blank" rel="noopener">Impressum</a>
+      </div>
+    </div>
+    <div class="copyright">© 2026 Phil Wornath. Osa <a href="https://byphil.eu/" class="credit-link">byphil.eu ↗</a> — riippumatonta ohjelmistoa, kehitetty Saksassa.<br>
+      Suunnitellut ja kehittänyt <a href="https://philwornath.com/" target="_blank" rel="noopener" class="credit-link">philwornath.com ↗</a>
+    </div>
+  </div>
+</footer>
+
+<script src="../../assets/main.js"></script>
+
+
+</body></html>

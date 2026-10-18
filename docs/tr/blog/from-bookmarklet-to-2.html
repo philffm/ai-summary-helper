@@ -1,0 +1,149 @@
+<!DOCTYPE html><html lang="tr"><head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#08090C">
+<title>Bookmarklet'ten 2.0 Sürümüne — AI Summary Helper</title>
+<meta name="description" content="Tek bir kişinin Kindle okuma alışkanlığı için basit bir bookmarklet olarak başladı. İşte v1 ile açık kaynaklı 2.0 yeniden yapımı arasında nelerin, neden değiştiği.">
+
+<script>
+  (function(){
+    try {
+      var saved = localStorage.getItem('aish_theme');
+      var theme = saved === 'light' || saved === 'dark'
+        ? saved
+        : (window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
+      document.documentElement.setAttribute('data-theme', theme);
+    } catch (e) {
+      document.documentElement.setAttribute('data-theme', 'dark');
+    }
+  })();
+</script>
+
+<link rel="icon" type="image/svg+xml" href="../../assets/icon.svg">
+<link rel="stylesheet" href="../../assets/styles.css">
+<script src="../../assets/analytics.js"></script>
+<link rel="alternate" hreflang="x-default" href="https://ai-summary-helper.byphil.eu/blog/from-bookmarklet-to-2.html"><link rel="alternate" hreflang="en" href="https://ai-summary-helper.byphil.eu/blog/from-bookmarklet-to-2.html"><link rel="alternate" hreflang="de" href="https://ai-summary-helper.byphil.eu/de/blog/from-bookmarklet-to-2.html"><link rel="alternate" hreflang="fr" href="https://ai-summary-helper.byphil.eu/fr/blog/from-bookmarklet-to-2.html"><link rel="alternate" hreflang="es" href="https://ai-summary-helper.byphil.eu/es/blog/from-bookmarklet-to-2.html"><link rel="alternate" hreflang="zh-Hans" href="https://ai-summary-helper.byphil.eu/zh/blog/from-bookmarklet-to-2.html"><link rel="alternate" hreflang="zh-Hant" href="https://ai-summary-helper.byphil.eu/zh-tw/blog/from-bookmarklet-to-2.html"><link rel="alternate" hreflang="ja" href="https://ai-summary-helper.byphil.eu/ja/blog/from-bookmarklet-to-2.html"><link rel="alternate" hreflang="ko" href="https://ai-summary-helper.byphil.eu/ko/blog/from-bookmarklet-to-2.html"><link rel="alternate" hreflang="pt-BR" href="https://ai-summary-helper.byphil.eu/pt/blog/from-bookmarklet-to-2.html"><link rel="alternate" hreflang="hi" href="https://ai-summary-helper.byphil.eu/hi/blog/from-bookmarklet-to-2.html"><link rel="alternate" hreflang="vi" href="https://ai-summary-helper.byphil.eu/vi/blog/from-bookmarklet-to-2.html"><link rel="alternate" hreflang="nl" href="https://ai-summary-helper.byphil.eu/nl/blog/from-bookmarklet-to-2.html"><link rel="alternate" hreflang="it" href="https://ai-summary-helper.byphil.eu/it/blog/from-bookmarklet-to-2.html"><link rel="alternate" hreflang="ru" href="https://ai-summary-helper.byphil.eu/ru/blog/from-bookmarklet-to-2.html"><link rel="alternate" hreflang="uk" href="https://ai-summary-helper.byphil.eu/uk/blog/from-bookmarklet-to-2.html"><link rel="alternate" hreflang="tr" href="https://ai-summary-helper.byphil.eu/tr/blog/from-bookmarklet-to-2.html"><link rel="alternate" hreflang="id" href="https://ai-summary-helper.byphil.eu/id/blog/from-bookmarklet-to-2.html"><link rel="alternate" hreflang="pl" href="https://ai-summary-helper.byphil.eu/pl/blog/from-bookmarklet-to-2.html"><link rel="alternate" hreflang="th" href="https://ai-summary-helper.byphil.eu/th/blog/from-bookmarklet-to-2.html"><link rel="alternate" hreflang="ar" href="https://ai-summary-helper.byphil.eu/ar/blog/from-bookmarklet-to-2.html"><link rel="alternate" hreflang="sv" href="https://ai-summary-helper.byphil.eu/sv/blog/from-bookmarklet-to-2.html"><link rel="alternate" hreflang="da" href="https://ai-summary-helper.byphil.eu/da/blog/from-bookmarklet-to-2.html"><link rel="alternate" hreflang="nb" href="https://ai-summary-helper.byphil.eu/no/blog/from-bookmarklet-to-2.html"><link rel="alternate" hreflang="fi" href="https://ai-summary-helper.byphil.eu/fi/blog/from-bookmarklet-to-2.html"></head>
+<body>
+
+<a href="#main" class="skip-link">İçeriğe atla</a>
+
+<header class="nav">
+  <div class="wrap nav-inner">
+    <div class="brand-cluster">
+      <div class="wordmark">
+        <img src="../../assets/icon.svg" alt="">
+        AI Summary Helper
+      </div>
+      <a href="https://byphil.eu/" target="_blank" rel="noopener" class="ecosystem-badge">
+        <span class="pulse-dot"></span> byphil. parçasıdır
+      </a>
+    </div>
+    <div class="nav-desktop-group nav-desktop-links">
+      <nav class="links" aria-label="Primary">
+        <a href="../index.html#features">Özellikler</a>
+        <a href="../index.html#pricing">Fiyatlandırma</a>
+        <a href="./" aria-current="page">Blog</a>
+        <a href="https://github.com/philffm/ai-summary-helper/" target="_blank" rel="noopener">GitHub</a>
+      </nav>
+      <button type="button" class="theme-toggle" id="themeToggle" aria-label="Switch to light mode">
+        <svg class="icon-moon" viewBox="0 0 24 24" fill="none"><path d="M20 14.5A8.5 8.5 0 1 1 9.5 4a6.8 6.8 0 0 0 10.5 10.5Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"></path></svg>
+        <svg class="icon-sun" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="4.2" stroke="currentColor" stroke-width="1.6"></circle><path d="M12 2.5v2.4M12 19.1v2.4M4.4 4.4l1.7 1.7M17.9 17.9l1.7 1.7M2.5 12h2.4M19.1 12h2.4M4.4 19.6l1.7-1.7M17.9 6.1l1.7-1.7" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"></path></svg>
+      </button>
+      <a href="../index.html" class="btn-sign-in">← Uygulamaya dön</a>
+    </div>
+    <button type="button" class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="mobileMenu" aria-label="Open menu">
+      <svg viewBox="0 0 24 24" fill="none"><path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"></path></svg>
+    </button>
+  </div>
+  <div class="mobile-menu" id="mobileMenu" hidden="">
+    <div class="wrap mobile-menu-inner">
+      <a href="../index.html#features">Özellikler</a>
+      <a href="../index.html#pricing">Fiyatlandırma</a>
+      <a href="./">Blog</a>
+      <a href="https://github.com/philffm/ai-summary-helper/" target="_blank" rel="noopener">GitHub</a>
+      <a href="https://byphil.eu/" target="_blank" rel="noopener">byphil. parçasıdır ↗</a>
+      <button type="button" class="theme-toggle-mobile" id="themeToggleMobile">
+        <span id="themeToggleMobileLabel">Açık temaya geç</span>
+        <svg class="icon-moon" viewBox="0 0 24 24" fill="none"><path d="M20 14.5A8.5 8.5 0 1 1 9.5 4a6.8 6.8 0 0 0 10.5 10.5Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"></path></svg>
+        <svg class="icon-sun" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="4.2" stroke="currentColor" stroke-width="1.6"></circle><path d="M12 2.5v2.4M12 19.1v2.4M4.4 4.4l1.7 1.7M17.9 17.9l1.7 1.7M2.5 12h2.4M19.1 12h2.4M4.4 19.6l1.7-1.7M17.9 6.1l1.7-1.7" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"></path></svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+<main id="main">
+  <div class="wrap">
+    <div class="post-hero">
+      <span class="blog-date">Ürün · Haziran 2026</span>
+      <h1>Bir Bookmarklet'ten 2.0'a: AI Summary Helper Artık Gerçekte Ne?</h1>
+      <p class="post-sub">Kindle'da okumak için tek tıkla çalışan bir bookmarklet olarak başladı. İki yıl ve baştan sona yeniden geliştirmenin ardından, bugün sunduğu özelliklerin çoğu ilk yüz kullanıcı kaydolduğunda henüz ortada bile yoktu.</p>
+    </div>
+  </div>
+
+  <section>
+    <div class="wrap">
+      <div class="prose">
+
+        <p><strong>AI Summary Helper; kendi yapay zeka sağlayıcınızı veya tamamen yerel bir modeli kullanarak herhangi bir web sayfasını özetleyen, makaleleri zamanlanmış hatırlatıcılarla daha sonra okumak üzere kaydeden ve okuma geçmişinizi aranabilir, bağlantılı bir arşive dönüştüren ücretsiz ve açık kaynaklı bir Chrome eklentisidir.</strong> İlk sürümde bunların hiçbiri yoktu. İşte ilk sürümde olanlar ve uygulamanın bugüne nasıl geldiği.</p>
+
+        <h2>Her şey nasıl başladı?</h2>
+        <p>Temmuz 2024'te bu sadece bir bookmarklet'ti; henüz bir tarayıcı eklentisi bile değildi. İlgi çekici makaleler bulur, onlarca sekme açar ve neredeyse herkes gibi çoğunu okumaya asla vakit bulamazdınız. Orijinal fikir son derece sade ve kişiseldi: çıktısını doğrudan sayfaya ekleyen özel prompt'lu bir özetleyici; böylece makaleyi Kindle'a gönderdiğinizde özet de beraberinde gidecekti. Bunun için kullanılan araç: <a href="https://send.reabble.com/" target="_blank" rel="noopener">Reabble'ın Send-to-Kindle aracı</a>. Bütün ürün bundan ibaretti. Tek bir yapay zeka sağlayıcısı. Tek bir prompt alanı. iOS Safari dahil her yerde çalışan bir bookmarklet varyantı ve prompt'u anında düzenlemek isteyenler için bir Chrome eklentisi varyantı.</p>
+        <p>Birkaç hafta sonra 100 aktif kullanıcıyı aştı — bu gerçekten şaşırtıcıydı, çünkü ticari bir ürün olmak için değil, tek bir kişinin kendi okuma alışkanlığını çözmek için geliştirilmişti.</p>
+
+        <figure class="post-figure"><img src="../../assets/blog/summary-end-to-end.webp" alt="Diyagram: Ask, Stream, Finalize ve Save aşamalarından Follow up aşamasına uçtan uca özetleme süreci" width="1760" height="620" loading="lazy"><figcaption>Bugün Özetle butonuna bastığınızda gerçekleşenler: 5 adımda.</figcaption></figure>
+        <h2>O günden 2.0 sürümüne kadar neler değişti?</h2>
+        <p>Temel fikir — kendi kurallarınızla özetleyin, bir tarayıcı sekmesinden çok daha rahat bir yerde okuyun — hiç değişmedi. Fakat etrafındaki neredeyse her şey dönüştü:</p>
+
+        <h3>Tek sağlayıcıdan 5 farklı seçenek özgürlüğüne</h3>
+        <p>v1 yalnızca OpenAI destekliyordu: kendi anahtarınız, tek bir endpoint. 2.0 ise kendi API anahtarınızla OpenAI, Google Gemini, Mistral ve DeepSeek'i; ayrıca Ollama üzerinden tamamen yerel bir seçeneği destekliyor — yani siz istemediğiniz sürece sayfa içeriği asla cihazınızdan dışarı çıkmaz. API anahtarı yönetmek istemeyenler için isteğe bağlı bir bulut katmanı (byphil Cloud) da bulunuyor, ancak bu hiçbir zaman zorunlu tutulmadı. Bu yalnızca küçük bir özellik eklemesi değildi; ürünün niteliğini kökten değiştirdi. v1 varsayılan olarak içeriğinizi tek bir şirkete emanet etmenizi bekliyordu. 2.0 ise seçmediğiniz hiçbir tarafa güvenmenizi istemez.</p>
+
+        <h3>"Sayfaya ekle" özelliği gerçek bir iş akışına dönüştü</h3>
+        <p>Orijinal vizyon — daha sonra, tarayıcıdan daha sakin bir ortamda okuyun — geçerliliğini koruyor; ancak artık yalnızca DOM içine yapıştırılan bir özetle sınırlı değil. Artık bir sayfaya sağ tıkladığınızda şu seçenek sunuluyor: <strong>Summarize &amp; Close Tab</strong>: Bir zaman aralığı seçin (Yarın, Hafta Sonu, Bu Hafta, Araştırma Oturumu), bir not ekleyin ve RSVP katmanında özete hızlıca göz attıktan sonra sekme kendiliğinden kapansın. Bir Chrome bildirimi, "bir ara" veya "aklına gelince" değil, tam olarak belirlediğiniz zamanda sizi içeriğe geri getirir.</p>
+
+        <h3>Kaydedilen makale yığını, kolayca gezinebileceğiniz bir yapıya dönüştü</h3>
+        <p>v1 sürümünde hiçbir geçmiş kaydı yoktu — özet sayfada görünür, sonra kaybolup giderdi. Artık kaydedilen her makale; metin vurgulama (ve önemli pasajlarda yapay zeka önerili "hayalet" vurgulamalar), okuma analitiği sunan bir heatmap ve okuduklarınızı düzensiz bir liste yerine konularına göre kümeleyen bir D3 knowledge graph ile yerel ve aranabilir bir arşivde saklanır.</p>
+
+        <h3>Başta tek amaç Kindle'dı. Artık birçok seçenekten sadece biri</h3>
+        <p>Reabble aracı üzerinden Send-to-Kindle desteği, bu projenin var olma sebebiydi. Bu özellik hâlâ yerel olarak destekleniyor; ancak tarayıcıdan uzakta okumak artık iPhone veya iPad'e AirDrop ile göndermeyi (doğrudan Apple Books'ta açılır) veya kendi Wi-Fi ağınız üzerinden KOReader gibi uygulamalara LocalSend ile iletmeyi de kapsıyor. Temel amaç — tarayıcıdan uzaklaştırıp okuma için tasarlanmış bir cihaza aktarmak — artık çok daha fazla yola sahip.</p>
+
+        <h2>Değişmeyenler</h2>
+        <p>Hâlâ ücretsiz, hâlâ açık kaynaklı (MIT lisanslı, tüm kaynak kodlar GitHub'da) ve temel özelliklerin hiçbiri için hesap oluşturmayı gerektirmiyor. Bu ilkeden asla taviz verilmedi — v1'in ilk etapta bir bookmarklet olarak doğmasının sebebi de buydu: Okuma aracını kiralamak yerine ona gerçekten sahip olmak isteyen biri tarafından geliştirildi.</p>
+
+        <h2>SSS</h2>
+        <p><strong>Bu proje, orijinal bookmarklet ile aynı proje mi?</strong><br>
+        Evet — aynı açık kaynaklı proje, aynı GitHub deposu, Temmuz 2024'ten beri kesintisiz geliştiriliyor. Kurulum gerektirmeyen ve her tarayıcıda çalışan bir çözüm isteyenler için bookmarklet varyantı hâlâ mevcut.</p>
+        <p><strong>Kullanmak için bir OpenAI hesabına ihtiyacım var mı?</strong><br>
+        Hayır. Bu durum v1 için geçerliydi; uzun süredir böyle bir zorunluluk yok. Desteklenen tüm sağlayıcıları kullanabilir veya harici hiçbir hesaba ihtiyaç duymadan Ollama üzerinden tamamen yerel bir model çalıştırabilirsiniz.</p>
+        <p><strong>Gumroad sürümüne ne oldu?</strong><br>
+        Proje, ilk kullanıcılardan destek alabilmek amacıyla orada başladı. Eklentinin kendisi her zaman ücretsiz ve açık kaynaklıydı — Gumroad hiçbir zaman bu araç için bir ödeme duvarı (paywall) olmadı.</p>
+
+        <div class="post-cta">
+          <p>AI Summary Helper, ücretsiz bir Chrome uzantısıdır.</p>
+          <a href="https://chromewebstore.google.com/detail/ai-summary-helper-openai/hldbejcjaedipeegjcinmhejdndchkmb" target="_blank" rel="noopener" class="btn-primary">Chrome'a ekle</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="footer-inner">
+      <div class="wordmark"><img src="../../assets/icon.svg" alt="">AI Summary Helper</div>
+      <div class="foot-links">
+        <a href="https://github.com/philffm/ai-summary-helper/" target="_blank" rel="noopener">GitHub'da Kaynak Kodlar</a>
+        <a href="../privacy.html">Gizlilik</a>
+        <a href="#" data-analytics-settings="">Analitik ayarları</a>
+        <a href="https://byphil.eu/terms.html#impressum" target="_blank" rel="noopener">Künye</a>
+      </div>
+    </div>
+    <div class="copyright">© 2026 Phil Wornath. Parçasıdır: <a href="https://byphil.eu/" class="credit-link">byphil.eu ↗</a> — Almanya'da geliştirilen bağımsız yazılım.<br>
+      Tasarım &amp; geliştirme: <a href="https://philwornath.com/" target="_blank" rel="noopener" class="credit-link">philwornath.com ↗</a>
+    </div>
+  </div>
+</footer>
+
+<script src="../../assets/main.js"></script>
+
+
+</body></html>

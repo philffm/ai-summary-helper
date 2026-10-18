@@ -1,0 +1,149 @@
+<!DOCTYPE html><html lang="uk"><head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#08090C">
+<title>Шлях від букмарклету до 2.0 — AI Summary Helper</title>
+<meta name="description" content="Усе почалося з букмарклету під особисту звичку читати з Kindle. Розповідаємо, що змінилося між v1 та повністю відкритим релізом 2.0 — і чому.">
+
+<script>
+  (function(){
+    try {
+      var saved = localStorage.getItem('aish_theme');
+      var theme = saved === 'light' || saved === 'dark'
+        ? saved
+        : (window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
+      document.documentElement.setAttribute('data-theme', theme);
+    } catch (e) {
+      document.documentElement.setAttribute('data-theme', 'dark');
+    }
+  })();
+</script>
+
+<link rel="icon" type="image/svg+xml" href="../../assets/icon.svg">
+<link rel="stylesheet" href="../../assets/styles.css">
+<script src="../../assets/analytics.js"></script>
+<link rel="alternate" hreflang="x-default" href="https://ai-summary-helper.byphil.eu/blog/from-bookmarklet-to-2.html"><link rel="alternate" hreflang="en" href="https://ai-summary-helper.byphil.eu/blog/from-bookmarklet-to-2.html"><link rel="alternate" hreflang="de" href="https://ai-summary-helper.byphil.eu/de/blog/from-bookmarklet-to-2.html"><link rel="alternate" hreflang="fr" href="https://ai-summary-helper.byphil.eu/fr/blog/from-bookmarklet-to-2.html"><link rel="alternate" hreflang="es" href="https://ai-summary-helper.byphil.eu/es/blog/from-bookmarklet-to-2.html"><link rel="alternate" hreflang="zh-Hans" href="https://ai-summary-helper.byphil.eu/zh/blog/from-bookmarklet-to-2.html"><link rel="alternate" hreflang="zh-Hant" href="https://ai-summary-helper.byphil.eu/zh-tw/blog/from-bookmarklet-to-2.html"><link rel="alternate" hreflang="ja" href="https://ai-summary-helper.byphil.eu/ja/blog/from-bookmarklet-to-2.html"><link rel="alternate" hreflang="ko" href="https://ai-summary-helper.byphil.eu/ko/blog/from-bookmarklet-to-2.html"><link rel="alternate" hreflang="pt-BR" href="https://ai-summary-helper.byphil.eu/pt/blog/from-bookmarklet-to-2.html"><link rel="alternate" hreflang="hi" href="https://ai-summary-helper.byphil.eu/hi/blog/from-bookmarklet-to-2.html"><link rel="alternate" hreflang="vi" href="https://ai-summary-helper.byphil.eu/vi/blog/from-bookmarklet-to-2.html"><link rel="alternate" hreflang="nl" href="https://ai-summary-helper.byphil.eu/nl/blog/from-bookmarklet-to-2.html"><link rel="alternate" hreflang="it" href="https://ai-summary-helper.byphil.eu/it/blog/from-bookmarklet-to-2.html"><link rel="alternate" hreflang="ru" href="https://ai-summary-helper.byphil.eu/ru/blog/from-bookmarklet-to-2.html"><link rel="alternate" hreflang="uk" href="https://ai-summary-helper.byphil.eu/uk/blog/from-bookmarklet-to-2.html"><link rel="alternate" hreflang="tr" href="https://ai-summary-helper.byphil.eu/tr/blog/from-bookmarklet-to-2.html"><link rel="alternate" hreflang="id" href="https://ai-summary-helper.byphil.eu/id/blog/from-bookmarklet-to-2.html"><link rel="alternate" hreflang="pl" href="https://ai-summary-helper.byphil.eu/pl/blog/from-bookmarklet-to-2.html"><link rel="alternate" hreflang="th" href="https://ai-summary-helper.byphil.eu/th/blog/from-bookmarklet-to-2.html"><link rel="alternate" hreflang="ar" href="https://ai-summary-helper.byphil.eu/ar/blog/from-bookmarklet-to-2.html"><link rel="alternate" hreflang="sv" href="https://ai-summary-helper.byphil.eu/sv/blog/from-bookmarklet-to-2.html"><link rel="alternate" hreflang="da" href="https://ai-summary-helper.byphil.eu/da/blog/from-bookmarklet-to-2.html"><link rel="alternate" hreflang="nb" href="https://ai-summary-helper.byphil.eu/no/blog/from-bookmarklet-to-2.html"><link rel="alternate" hreflang="fi" href="https://ai-summary-helper.byphil.eu/fi/blog/from-bookmarklet-to-2.html"></head>
+<body>
+
+<a href="#main" class="skip-link">Перейти до вмісту</a>
+
+<header class="nav">
+  <div class="wrap nav-inner">
+    <div class="brand-cluster">
+      <div class="wordmark">
+        <img src="../../assets/icon.svg" alt="">
+        AI Summary Helper
+      </div>
+      <a href="https://byphil.eu/" target="_blank" rel="noopener" class="ecosystem-badge">
+        <span class="pulse-dot"></span> Частина byphil.
+      </a>
+    </div>
+    <div class="nav-desktop-group nav-desktop-links">
+      <nav class="links" aria-label="Primary">
+        <a href="../index.html#features">Можливості</a>
+        <a href="../index.html#pricing">Тарифи</a>
+        <a href="./" aria-current="page">Блог</a>
+        <a href="https://github.com/philffm/ai-summary-helper/" target="_blank" rel="noopener">GitHub</a>
+      </nav>
+      <button type="button" class="theme-toggle" id="themeToggle" aria-label="Switch to light mode">
+        <svg class="icon-moon" viewBox="0 0 24 24" fill="none"><path d="M20 14.5A8.5 8.5 0 1 1 9.5 4a6.8 6.8 0 0 0 10.5 10.5Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"></path></svg>
+        <svg class="icon-sun" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="4.2" stroke="currentColor" stroke-width="1.6"></circle><path d="M12 2.5v2.4M12 19.1v2.4M4.4 4.4l1.7 1.7M17.9 17.9l1.7 1.7M2.5 12h2.4M19.1 12h2.4M4.4 19.6l1.7-1.7M17.9 6.1l1.7-1.7" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"></path></svg>
+      </button>
+      <a href="../index.html" class="btn-sign-in">← Назад до застосунку</a>
+    </div>
+    <button type="button" class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="mobileMenu" aria-label="Open menu">
+      <svg viewBox="0 0 24 24" fill="none"><path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"></path></svg>
+    </button>
+  </div>
+  <div class="mobile-menu" id="mobileMenu" hidden="">
+    <div class="wrap mobile-menu-inner">
+      <a href="../index.html#features">Можливості</a>
+      <a href="../index.html#pricing">Тарифи</a>
+      <a href="./">Блог</a>
+      <a href="https://github.com/philffm/ai-summary-helper/" target="_blank" rel="noopener">GitHub</a>
+      <a href="https://byphil.eu/" target="_blank" rel="noopener">Частина byphil. ↗</a>
+      <button type="button" class="theme-toggle-mobile" id="themeToggleMobile">
+        <span id="themeToggleMobileLabel">Увімкнути світлу тему</span>
+        <svg class="icon-moon" viewBox="0 0 24 24" fill="none"><path d="M20 14.5A8.5 8.5 0 1 1 9.5 4a6.8 6.8 0 0 0 10.5 10.5Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"></path></svg>
+        <svg class="icon-sun" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="4.2" stroke="currentColor" stroke-width="1.6"></circle><path d="M12 2.5v2.4M12 19.1v2.4M4.4 4.4l1.7 1.7M17.9 17.9l1.7 1.7M2.5 12h2.4M19.1 12h2.4M4.4 19.6l1.7-1.7M17.9 6.1l1.7-1.7" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"></path></svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+<main id="main">
+  <div class="wrap">
+    <div class="post-hero">
+      <span class="blog-date">Продукт · Червень 2026</span>
+      <h1>Від букмарклету до версії 2.0: чим насправді став AI Summary Helper</h1>
+      <p class="post-sub">Усе почалося зі звичайного букмарклету в один клік для читання на Kindle. Минуло два роки, проєкт пережив повне переосмислення — і більшості сьогоднішніх функцій просто не існувало, коли з'явилася перша сотня користувачів.</p>
+    </div>
+  </div>
+
+  <section>
+    <div class="wrap">
+      <div class="prose">
+
+        <p><strong>AI Summary Helper — це безкоштовне розширення для Chrome з відкритим кодом. Воно створює стислий зміст будь-якої вебсторінки за допомогою вашого AI-провайдера або повністю локальної моделі, зберігає статті на потім із нагадуваннями за розкладом та перетворює вашу історію читання на зручний архів зі спільним пошуком і зв'язками.</strong> Усього цього не було в першій версії. Розповідаємо, з чого все починалося та як проєкт прийшов до свого нинішнього вигляду.</p>
+
+        <h2>Як усе починалося насправді</h2>
+        <p>У липні 2024 року це був лише букмарклет — навіть не розширення. Ви шукали цікаві статті, відкривали десятки вкладок і, як і більшість людей, так і не знаходили часу їх прочитати. Початковий задум був суто прикладним і особистим: кастомний промпт для резюмування, який вставляв результат прямо на сторінку, щоб короткий зміст автоматично додавався під час відправки статті на Kindle через <a href="https://send.reabble.com/" target="_blank" rel="noopener">інструмент Send-to-Kindle від Reabble</a>. Ось і весь продукт. Один AI-провайдер. Одне поле для промпту. Версія букмарклету, яка працювала скрізь, навіть в iOS Safari, і версія розширення для Chrome — для тих, хто хотів змінювати промпт на льоту.</p>
+        <p>За кілька тижнів кількість активних користувачів перевищила 100 — це було справді несподівано, адже розробка створювалася для вирішення власної проблеми читання, а не як повноцінний продукт.</p>
+
+        <figure class="post-figure"><img src="../../assets/blog/summary-end-to-end.webp" alt="Діаграма: повний процес створення стислого змісту — від запиту (Ask), потокової генерації (Stream), завершення (Finalize) і збереження (Save) до подальшої роботи (Follow up)" width="1760" height="620" loading="lazy"><figcaption>Що відбувається, коли ви натискаєте Summarize сьогодні: 5 простих кроків.</figcaption></figure>
+        <h2>Що насправді змінилося на шляху до 2.0</h2>
+        <p>Головна ідея — стислий зміст на ваших умовах і читання там, де зручніше, ніж у вкладці браузера — залишилася незмінною. А от майже все інше зазнало змін:</p>
+
+        <h3>Замість одного провайдера — вибір із п'яти</h3>
+        <p>Версія v1 працювала тільки з OpenAI: ваш власний ключ і один ендпоінт. Версія 2.0 підтримує OpenAI, Google Gemini, Mistral та DeepSeek із вашим власним API key, а також повністю локальний запуск через Ollama — тобто вміст сторінки взагалі не залишає ваш пристрій, якщо ви цього не хочете. Також є опціональний хмарний тариф (byphil Cloud) для тих, хто взагалі не хоче розбиратися з ключами, але він ніколи не був обов'язковим. Це не просто дрібне оновлення, це зміна самої філософії продукту. Якщо версія v1 за замовчуванням вимагала довіряти одній конкретній компанії, то 2.0 не змушує ділитися даними ні з ким, кого ви не обрали самі.</p>
+
+        <h3>«Вставка на сторінку» стала повноцінним робочим процесом</h3>
+        <p>Початковий задум — читати пізніше в спокійнішому середовищі, ніж браузер — зберігся, але тепер це більше ніж просто згенерований текст у DOM. Клік правою кнопкою миші на сторінці тепер пропонує <strong>Summarize &amp; Close Tab</strong>: виберіть часовий проміжок (Завтра, Вихідні, Цього тижня, Дослідницька сесія), додайте нотатку, і вкладка закриється сама після того, як ви швидко переглянете стислий зміст через оверлей швидкого читання (RSVP). Сповіщення в Chrome поверне вас до матеріалу саме тоді, коли ви планували, а не «колись потім» чи «коли згадаєте».</p>
+
+        <h3>Хаотична купа збережених статей перетворилася на зручну бібліотеку</h3>
+        <p>У версії v1 не було жодної історії: стислий зміст з'являвся на сторінці й зникав після її закриття. Тепер кожна збережена стаття потрапляє до локального архіву з можливістю пошуку, виділенням тексту (разом із підказками від AI щодо ключових фрагментів), тепловою картою активності читання та графом знань на D3, який групує прочитане за темами замість суцільного одноманітного списку.</p>
+
+        <h3>Kindle був головною метою. Тепер це лише один із варіантів</h3>
+        <p>Надсилання на Kindle через інструмент Reabble було єдиною причиною створення проєкту. Ця функція досі підтримується нативно, але тепер читати поза браузером можна й іншими шляхами: AirDrop на iPhone чи iPad (відкривається відразу в Apple Books) або LocalSend на пристрої на кшталт KOReader через локальний Wi-Fi. Базовий принцип — забрати текст із браузера на пристрій, створений для читання — просто отримав більше зручних маршрутів.</p>
+
+        <h2>Що залишилося незмінним</h2>
+        <p>Розширення залишається безкоштовним, повністю відкритим (ліцензія MIT, увесь код є на GitHub) і не вимагає створення облікового запису для жодної базової функції. Цей пункт ніколи не підлягав перегляду — саме тому v1 від самого початку з'явилася як букмарклет: створений тим, хто хоче володіти власним інструментом для читання, а не орендувати його.</p>
+
+        <h2>Часті запитання</h2>
+        <p><strong>Чи це той самий проєкт, що й оригінальний букмарклет?</strong><br>
+        Так — це той самий проєкт із відкритим кодом і тим самим репозиторієм на GitHub, який безперервно розвивається з липня 2024 року. Варіант букмарклету також доступний для всіх, кому потрібне універсальне рішення для будь-якого браузера без необхідності щось встановлювати.</p>
+        <p><strong>Чи потрібен мені акаунт OpenAI для користування?</strong><br>
+        Ні. Так було у версії v1, але це давно змінилося. Ви можете використовувати будь-якого з підтримуваних провайдерів або повністю локальну модель через Ollama взагалі без сторонніх акаунтів.</p>
+        <p><strong>Що сталося з версією на Gumroad?</strong><br>
+        Проєкт з'явився там лише для того, щоб перші користувачі могли підтримати розробку. Саме розширення завжди було безкоштовним і з відкритим кодом — Gumroad ніколи не був пейволом для доступу до інструмента.</p>
+
+        <div class="post-cta">
+          <p>AI Summary Helper — це безкоштовне розширення для Chrome.</p>
+          <a href="https://chromewebstore.google.com/detail/ai-summary-helper-openai/hldbejcjaedipeegjcinmhejdndchkmb" target="_blank" rel="noopener" class="btn-primary">Додати в Chrome</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="footer-inner">
+      <div class="wordmark"><img src="../../assets/icon.svg" alt="">AI Summary Helper</div>
+      <div class="foot-links">
+        <a href="https://github.com/philffm/ai-summary-helper/" target="_blank" rel="noopener">Вихідний код на GitHub</a>
+        <a href="../privacy.html">Конфіденційність</a>
+        <a href="#" data-analytics-settings="">Налаштування аналітики</a>
+        <a href="https://byphil.eu/terms.html#impressum" target="_blank" rel="noopener">Правова інформація (Impressum)</a>
+      </div>
+    </div>
+    <div class="copyright">© 2026 Phil Wornath. Частина <a href="https://byphil.eu/" class="credit-link">byphil.eu ↗</a> — незалежне програмне забезпечення, створене в Німеччині.<br>
+      Дизайн та розробка: <a href="https://philwornath.com/" target="_blank" rel="noopener" class="credit-link">philwornath.com ↗</a>
+    </div>
+  </div>
+</footer>
+
+<script src="../../assets/main.js"></script>
+
+
+</body></html>

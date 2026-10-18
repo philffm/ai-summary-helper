@@ -1,0 +1,135 @@
+<!DOCTYPE html><html lang="nl"><head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#08090C">
+<title>Stel vragen over je markeringen — AI Summary Helper</title>
+<meta name="description" content="Tekst markeren behoort tot de minst effectieve studietechnieken. Waarom het toch productief voelt, en een kleine verandering waarmee gemarkeerde tekst wél blijft hangen.">
+
+<script>
+  (function(){
+    try {
+      var saved = localStorage.getItem('aish_theme');
+      var theme = saved === 'light' || saved === 'dark'
+        ? saved
+        : (window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
+      document.documentElement.setAttribute('data-theme', theme);
+    } catch (e) {
+      document.documentElement.setAttribute('data-theme', 'dark');
+    }
+  })();
+</script>
+
+<link rel="icon" type="image/svg+xml" href="../../assets/icon.svg">
+<link rel="stylesheet" href="../../assets/styles.css">
+<script src="../../assets/analytics.js"></script>
+<link rel="alternate" hreflang="x-default" href="https://ai-summary-helper.byphil.eu/blog/highlighting-vs-asking.html"><link rel="alternate" hreflang="en" href="https://ai-summary-helper.byphil.eu/blog/highlighting-vs-asking.html"><link rel="alternate" hreflang="de" href="https://ai-summary-helper.byphil.eu/de/blog/highlighting-vs-asking.html"><link rel="alternate" hreflang="fr" href="https://ai-summary-helper.byphil.eu/fr/blog/highlighting-vs-asking.html"><link rel="alternate" hreflang="es" href="https://ai-summary-helper.byphil.eu/es/blog/highlighting-vs-asking.html"><link rel="alternate" hreflang="zh-Hans" href="https://ai-summary-helper.byphil.eu/zh/blog/highlighting-vs-asking.html"><link rel="alternate" hreflang="zh-Hant" href="https://ai-summary-helper.byphil.eu/zh-tw/blog/highlighting-vs-asking.html"><link rel="alternate" hreflang="ja" href="https://ai-summary-helper.byphil.eu/ja/blog/highlighting-vs-asking.html"><link rel="alternate" hreflang="ko" href="https://ai-summary-helper.byphil.eu/ko/blog/highlighting-vs-asking.html"><link rel="alternate" hreflang="pt-BR" href="https://ai-summary-helper.byphil.eu/pt/blog/highlighting-vs-asking.html"><link rel="alternate" hreflang="hi" href="https://ai-summary-helper.byphil.eu/hi/blog/highlighting-vs-asking.html"><link rel="alternate" hreflang="vi" href="https://ai-summary-helper.byphil.eu/vi/blog/highlighting-vs-asking.html"><link rel="alternate" hreflang="nl" href="https://ai-summary-helper.byphil.eu/nl/blog/highlighting-vs-asking.html"><link rel="alternate" hreflang="it" href="https://ai-summary-helper.byphil.eu/it/blog/highlighting-vs-asking.html"><link rel="alternate" hreflang="ru" href="https://ai-summary-helper.byphil.eu/ru/blog/highlighting-vs-asking.html"><link rel="alternate" hreflang="uk" href="https://ai-summary-helper.byphil.eu/uk/blog/highlighting-vs-asking.html"><link rel="alternate" hreflang="tr" href="https://ai-summary-helper.byphil.eu/tr/blog/highlighting-vs-asking.html"><link rel="alternate" hreflang="id" href="https://ai-summary-helper.byphil.eu/id/blog/highlighting-vs-asking.html"><link rel="alternate" hreflang="pl" href="https://ai-summary-helper.byphil.eu/pl/blog/highlighting-vs-asking.html"><link rel="alternate" hreflang="th" href="https://ai-summary-helper.byphil.eu/th/blog/highlighting-vs-asking.html"><link rel="alternate" hreflang="ar" href="https://ai-summary-helper.byphil.eu/ar/blog/highlighting-vs-asking.html"><link rel="alternate" hreflang="sv" href="https://ai-summary-helper.byphil.eu/sv/blog/highlighting-vs-asking.html"><link rel="alternate" hreflang="da" href="https://ai-summary-helper.byphil.eu/da/blog/highlighting-vs-asking.html"><link rel="alternate" hreflang="nb" href="https://ai-summary-helper.byphil.eu/no/blog/highlighting-vs-asking.html"><link rel="alternate" hreflang="fi" href="https://ai-summary-helper.byphil.eu/fi/blog/highlighting-vs-asking.html"></head>
+<body>
+
+<a href="#main" class="skip-link">Naar inhoud springen</a>
+
+<header class="nav">
+  <div class="wrap nav-inner">
+    <div class="brand-cluster">
+      <div class="wordmark">
+        <img src="../../assets/icon.svg" alt="">
+        AI Summary Helper
+      </div>
+      <a href="https://byphil.eu/" target="_blank" rel="noopener" class="ecosystem-badge">
+        <span class="pulse-dot"></span> Onderdeel van byphil.
+      </a>
+    </div>
+    <div class="nav-desktop-group nav-desktop-links">
+      <nav class="links" aria-label="Primary">
+        <a href="../index.html#features">Functies</a>
+        <a href="../index.html#pricing">Prijzen</a>
+        <a href="./" aria-current="page">Blog</a>
+        <a href="https://github.com/philffm/ai-summary-helper/" target="_blank" rel="noopener">GitHub</a>
+      </nav>
+      <button type="button" class="theme-toggle" id="themeToggle" aria-label="Switch to light mode">
+        <svg class="icon-moon" viewBox="0 0 24 24" fill="none"><path d="M20 14.5A8.5 8.5 0 1 1 9.5 4a6.8 6.8 0 0 0 10.5 10.5Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"></path></svg>
+        <svg class="icon-sun" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="4.2" stroke="currentColor" stroke-width="1.6"></circle><path d="M12 2.5v2.4M12 19.1v2.4M4.4 4.4l1.7 1.7M17.9 17.9l1.7 1.7M2.5 12h2.4M19.1 12h2.4M4.4 19.6l1.7-1.7M17.9 6.1l1.7-1.7" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"></path></svg>
+      </button>
+      <a href="../index.html" class="btn-sign-in">← Terug naar app</a>
+    </div>
+    <button type="button" class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="mobileMenu" aria-label="Open menu">
+      <svg viewBox="0 0 24 24" fill="none"><path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"></path></svg>
+    </button>
+  </div>
+  <div class="mobile-menu" id="mobileMenu" hidden="">
+    <div class="wrap mobile-menu-inner">
+      <a href="../index.html#features">Functies</a>
+      <a href="../index.html#pricing">Prijzen</a>
+      <a href="./">Blog</a>
+      <a href="https://github.com/philffm/ai-summary-helper/" target="_blank" rel="noopener">GitHub</a>
+      <a href="https://byphil.eu/" target="_blank" rel="noopener">Onderdeel van byphil. ↗</a>
+      <button type="button" class="theme-toggle-mobile" id="themeToggleMobile">
+        <span id="themeToggleMobileLabel">Overschakelen naar lichte modus</span>
+        <svg class="icon-moon" viewBox="0 0 24 24" fill="none"><path d="M20 14.5A8.5 8.5 0 1 1 9.5 4a6.8 6.8 0 0 0 10.5 10.5Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"></path></svg>
+        <svg class="icon-sun" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="4.2" stroke="currentColor" stroke-width="1.6"></circle><path d="M12 2.5v2.4M12 19.1v2.4M4.4 4.4l1.7 1.7M17.9 17.9l1.7 1.7M2.5 12h2.4M19.1 12h2.4M4.4 19.6l1.7-1.7M17.9 6.1l1.7-1.7" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"></path></svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+<main id="main">
+  <div class="wrap">
+    <div class="post-hero">
+      <span class="blog-date">Gids · September 2026</span>
+      <h1>Alleen markeren werkt amper. Stel er liever vragen over.</h1>
+      <p class="post-sub">Markeren voelt als studeren. Onderzoek wijst uit dat dit meestal niet zo is. De oplossing is simpel: stop niet bij het markeren, maar stel er een vraag over.</p>
+    </div>
+  </div>
+
+  <section>
+    <div class="wrap">
+      <div class="prose">
+        <p>In 2013 publiceerden Dunlosky en collega's een overzichtsstudie in <em>Psychological Science in the Public Interest</em> waarin tien populaire leertechnieken werden beoordeeld op basis van wetenschappelijk bewijs. Markeren en onderstrepen belandden in de categorie met het laagste nut, samen met herlezen. Oefentoetsen en gespreid leren kwamen als beste uit de bus.</p>
+        <p>Het verontrustende is niet dat markeren nutteloos is, maar dat het als hard werken voelt. Je leest, vindt een belangrijke zin, markeert deze en de pagina kleurt geel. Er is actie ondernomen, dus het zal wel geholpen hebben.</p>
+
+        <h2>Waarom een markering een zwakke herinnering is</h2>
+        <p>Een markering legt vast <em>dát</em> je een zin belangrijk vond. Het dwingt je niet om er iets mee te doen. Je kunt een passage markeren zonder deze te begrijpen, en je kunt hem bij een tweede leessessie markeren zonder er bij de eerste over te hebben nagedacht. De kern van de studie is dat technieken die je enkel opnieuw aan stof blootstellen, het afleggen tegen technieken waarmee je zelf actief iets produceert.</p>
+
+        <h2>Vragen stellen is de eenvoudigste manier om iets te produceren</h2>
+        <p>Ditzelfde onderzoek beoordeelde een vraagtechniek, 'elaborative interrogation' (verdiepend doorvragen), als matig nuttig: jezelf afvragen <em>waarom</em> een bepaald feit waar zou zijn. Je hebt er geen quiz voor nodig. Je hebt alleen een aanzet nodig die je dwingt tot een korte uitleg in je eigen woorden.</p>
+        <p>Dat is precies wat een vervolgvraag doet, mits je deze op het juiste punt richt. “Wat waren de risico's?” gevraagd over één specifieke passage dwingt je te bepalen wat je wilt weten, en het antwoord geeft je iets om te vergelijken met je eigen verwachting.</p>
+
+        <h2>Eerst markeren, dan vragen</h2>
+        <p>In AI Summary Helper is een markering pas de eerste stap. Selecteer een passage en deze blijft op de pagina bewaard, zodat deze er nog staat wanneer je terugkeert naar het artikel. Stel er vervolgens een gerichte vraag over. Het antwoord citeert de pagina, en een klik op het citaat brengt je direct terug naar de exacte alinea. Zo controleer je eenvoudig of het model de tekst hetzelfde heeft geïnterpreteerd als jij. Markeringen en gesprekken worden per artikel opgeslagen, waardoor je bij een volgend bezoek meteen verdergaat waar je was gebleven.</p>
+        <figure class="post-figure post-figure--portrait"><img src="../../assets/blog/highlight-then-ask.webp" alt="Dia: Markeer de tekst en stel er vervolgens vragen over, met een chat die de vraag “Wat waren de risico's?” toont en een antwoord met een citaat uit de pagina" width="800" height="1000" loading="lazy"><figcaption>Markeer een passage, stel er een vraag over en spring direct terug naar het ondersteunende citaat.</figcaption></figure>
+        <h2>Een routine van twee minuten</h2>
+        <ol>
+          <li><strong>Markeer maximaal drie passages.</strong> Als alles geel is, valt niets meer op.</li>
+          <li><strong>Stel één vraag per markering.</strong> “Waarom doet dit ertoe?” of “Wat zou er veranderen als dit niet klopt?” is al voldoende.</li>
+          <li><strong>Spreek je eigen antwoord hardop uit of formuleer het in één regel voordat je het antwoord leest.</strong> In de vergelijking zit het leereffect.</li>
+        </ol>
+        <p>Dit betekent niet dat markeren verkeerd is; het is simpelweg het startpunt. De markeerstift vindt de passage, de vraag zorgt dat je het onthoudt.</p>
+        <div class="post-cta">
+          <p>AI Summary Helper is een gratis Chrome-extensie.</p>
+          <a href="https://chromewebstore.google.com/detail/ai-summary-helper-openai/hldbejcjaedipeegjcinmhejdndchkmb" target="_blank" rel="noopener" class="btn-primary">Toevoegen aan Chrome</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="footer-inner">
+      <div class="wordmark"><img src="../../assets/icon.svg" alt="">AI Summary Helper</div>
+      <div class="foot-links">
+        <a href="https://github.com/philffm/ai-summary-helper/" target="_blank" rel="noopener">Broncode op GitHub</a>
+        <a href="../privacy.html">Privacy</a>
+        <a href="#" data-analytics-settings="">Analytics-instellingen</a>
+        <a href="https://byphil.eu/terms.html#impressum" target="_blank" rel="noopener">Impressum</a>
+      </div>
+    </div>
+    <div class="copyright">© 2026 Phil Wornath. Onderdeel van <a href="https://byphil.eu/" class="credit-link">byphil.eu ↗</a> — onafhankelijke software gemaakt in Duitsland.<br>
+      Ontworpen &amp; gebouwd door <a href="https://philwornath.com/" target="_blank" rel="noopener" class="credit-link">philwornath.com ↗</a>
+    </div>
+  </div>
+</footer>
+
+<script src="../../assets/main.js"></script>
+
+
+</body></html>

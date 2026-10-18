@@ -1,0 +1,132 @@
+<!DOCTYPE html><html lang="it"><head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#08090C">
+<title>Ricerca e tag senza cloud — AI Summary Helper</title>
+<meta name="description" content="L'indice TF-IDF dietro le funzioni di ricerca, rilevamento duplicati e digest di AI Summary Helper — e perché per la maggior parte non è mai servito un server.">
+
+<script>
+  (function(){
+    try {
+      var saved = localStorage.getItem('aish_theme');
+      var theme = saved === 'light' || saved === 'dark'
+        ? saved
+        : (window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
+      document.documentElement.setAttribute('data-theme', theme);
+    } catch (e) {
+      document.documentElement.setAttribute('data-theme', 'dark');
+    }
+  })();
+</script>
+
+<link rel="icon" type="image/svg+xml" href="../../assets/icon.svg">
+<link rel="stylesheet" href="../../assets/styles.css">
+<script src="../../assets/analytics.js"></script>
+<link rel="alternate" hreflang="x-default" href="https://ai-summary-helper.byphil.eu/blog/on-device-architecture.html"><link rel="alternate" hreflang="en" href="https://ai-summary-helper.byphil.eu/blog/on-device-architecture.html"><link rel="alternate" hreflang="de" href="https://ai-summary-helper.byphil.eu/de/blog/on-device-architecture.html"><link rel="alternate" hreflang="fr" href="https://ai-summary-helper.byphil.eu/fr/blog/on-device-architecture.html"><link rel="alternate" hreflang="es" href="https://ai-summary-helper.byphil.eu/es/blog/on-device-architecture.html"><link rel="alternate" hreflang="zh-Hans" href="https://ai-summary-helper.byphil.eu/zh/blog/on-device-architecture.html"><link rel="alternate" hreflang="zh-Hant" href="https://ai-summary-helper.byphil.eu/zh-tw/blog/on-device-architecture.html"><link rel="alternate" hreflang="ja" href="https://ai-summary-helper.byphil.eu/ja/blog/on-device-architecture.html"><link rel="alternate" hreflang="ko" href="https://ai-summary-helper.byphil.eu/ko/blog/on-device-architecture.html"><link rel="alternate" hreflang="pt-BR" href="https://ai-summary-helper.byphil.eu/pt/blog/on-device-architecture.html"><link rel="alternate" hreflang="hi" href="https://ai-summary-helper.byphil.eu/hi/blog/on-device-architecture.html"><link rel="alternate" hreflang="vi" href="https://ai-summary-helper.byphil.eu/vi/blog/on-device-architecture.html"><link rel="alternate" hreflang="nl" href="https://ai-summary-helper.byphil.eu/nl/blog/on-device-architecture.html"><link rel="alternate" hreflang="it" href="https://ai-summary-helper.byphil.eu/it/blog/on-device-architecture.html"><link rel="alternate" hreflang="ru" href="https://ai-summary-helper.byphil.eu/ru/blog/on-device-architecture.html"><link rel="alternate" hreflang="uk" href="https://ai-summary-helper.byphil.eu/uk/blog/on-device-architecture.html"><link rel="alternate" hreflang="tr" href="https://ai-summary-helper.byphil.eu/tr/blog/on-device-architecture.html"><link rel="alternate" hreflang="id" href="https://ai-summary-helper.byphil.eu/id/blog/on-device-architecture.html"><link rel="alternate" hreflang="pl" href="https://ai-summary-helper.byphil.eu/pl/blog/on-device-architecture.html"><link rel="alternate" hreflang="th" href="https://ai-summary-helper.byphil.eu/th/blog/on-device-architecture.html"><link rel="alternate" hreflang="ar" href="https://ai-summary-helper.byphil.eu/ar/blog/on-device-architecture.html"><link rel="alternate" hreflang="sv" href="https://ai-summary-helper.byphil.eu/sv/blog/on-device-architecture.html"><link rel="alternate" hreflang="da" href="https://ai-summary-helper.byphil.eu/da/blog/on-device-architecture.html"><link rel="alternate" hreflang="nb" href="https://ai-summary-helper.byphil.eu/no/blog/on-device-architecture.html"><link rel="alternate" hreflang="fi" href="https://ai-summary-helper.byphil.eu/fi/blog/on-device-architecture.html"></head>
+<body>
+
+<a href="#main" class="skip-link">Salta al contenuto</a>
+
+<header class="nav">
+  <div class="wrap nav-inner">
+    <div class="brand-cluster">
+      <div class="wordmark">
+        <img src="../../assets/icon.svg" alt="">
+        AI Summary Helper
+      </div>
+      <a href="https://byphil.eu/" target="_blank" rel="noopener" class="ecosystem-badge">
+        <span class="pulse-dot"></span> Parte di byphil.
+      </a>
+    </div>
+    <div class="nav-desktop-group nav-desktop-links">
+      <nav class="links" aria-label="Primary">
+        <a href="../index.html#features">Funzionalità</a>
+        <a href="../index.html#pricing">Prezzi</a>
+        <a href="./" aria-current="page">Blog</a>
+        <a href="https://github.com/philffm/ai-summary-helper/" target="_blank" rel="noopener">GitHub</a>
+      </nav>
+      <button type="button" class="theme-toggle" id="themeToggle" aria-label="Switch to light mode">
+        <svg class="icon-moon" viewBox="0 0 24 24" fill="none"><path d="M20 14.5A8.5 8.5 0 1 1 9.5 4a6.8 6.8 0 0 0 10.5 10.5Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"></path></svg>
+        <svg class="icon-sun" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="4.2" stroke="currentColor" stroke-width="1.6"></circle><path d="M12 2.5v2.4M12 19.1v2.4M4.4 4.4l1.7 1.7M17.9 17.9l1.7 1.7M2.5 12h2.4M19.1 12h2.4M4.4 19.6l1.7-1.7M17.9 6.1l1.7-1.7" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"></path></svg>
+      </button>
+      <a href="../index.html" class="btn-sign-in">← Torna all'app</a>
+    </div>
+    <button type="button" class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="mobileMenu" aria-label="Open menu">
+      <svg viewBox="0 0 24 24" fill="none"><path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"></path></svg>
+    </button>
+  </div>
+  <div class="mobile-menu" id="mobileMenu" hidden="">
+    <div class="wrap mobile-menu-inner">
+      <a href="../index.html#features">Funzionalità</a>
+      <a href="../index.html#pricing">Prezzi</a>
+      <a href="./">Blog</a>
+      <a href="https://github.com/philffm/ai-summary-helper/" target="_blank" rel="noopener">GitHub</a>
+      <a href="https://byphil.eu/" target="_blank" rel="noopener">Parte di byphil. ↗</a>
+      <button type="button" class="theme-toggle-mobile" id="themeToggleMobile">
+        <span id="themeToggleMobileLabel">Passa alla modalità chiara</span>
+        <svg class="icon-moon" viewBox="0 0 24 24" fill="none"><path d="M20 14.5A8.5 8.5 0 1 1 9.5 4a6.8 6.8 0 0 0 10.5 10.5Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"></path></svg>
+        <svg class="icon-sun" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="4.2" stroke="currentColor" stroke-width="1.6"></circle><path d="M12 2.5v2.4M12 19.1v2.4M4.4 4.4l1.7 1.7M17.9 17.9l1.7 1.7M2.5 12h2.4M19.1 12h2.4M4.4 19.6l1.7-1.7M17.9 6.1l1.7-1.7" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"></path></svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+<main id="main">
+  <div class="wrap">
+    <div class="post-hero">
+      <span class="blog-date">Engineering · Agosto 2026</span>
+      <h1>Perché abbiamo portato ricerca, tag e suggerimenti fuori dal cloud</h1>
+      <p class="post-sub">Ricerca, deduplicazione, pulizia dei tag e suggerimenti condividono un unico piccolo indice sul tuo dispositivo. Ecco come funziona e perché non è solo un argomento di facciata sulla privacy.</p>
+    </div>
+  </div>
+
+  <section>
+    <div class="wrap">
+      <div class="prose">
+<p>La maggior parte delle estensioni per browser «basate sull'IA» invia ogni cosa a un server — comprese le parti che non hanno nulla a che fare con l'IA. Ricerca, pulizia dei tag, «trova elementi simili»: sono tecniche consolidate da decenni. Non richiedono un modello linguistico e sicuramente non hanno bisogno di chiamate di rete. Abbiamo esaminato AI Summary Helper funzione per funzione e ci siamo chiesti: serve davvero il cloud, o lo stiamo usando per inerzia solo perché è l'architettura più semplice?</p>
+        <p>Per la maggior parte, non serviva affatto.</p>
+
+        <figure class="post-figure post-figure--portrait"><img src="../../assets/blog/knowledge-graph.webp" alt="Slide: una mappa di argomenti collegati con la frase «Le informazioni legate a un significato e a una connessione durano più a lungo di quelle appena intraviste»" width="800" height="1000" loading="lazy"><figcaption>Ricerca, tag e articoli simili funzionano tutti sullo stesso indice locale sul dispositivo, quindi le relazioni tra i contenuti salvati sono a costo zero.</figcaption></figure>
+        <h2>Cosa è stato effettivamente spostato sul dispositivo</h2>
+        <p><strong>Ricerca.</strong> In origine l'estensione effettuava la corrispondenza solo su titolo e tag dell'articolo — veloce, ma cieca rispetto al corpo del testo. Invece di scansionare a forza bruta il testo completo a ogni pressione dei tasti o inviare ogni query a un server, abbiamo creato un piccolo indice TF-IDF a partire dal tuo archivio salvato. I campi più leggeri — titolo, tag — vengono verificati prima e all'istante, come in precedenza. Le query più lunghe vengono estese sull'indice, che viene creato una volta per sessione e aggiornato in modo incrementale, senza ripetere la scansione a ogni tasto premuto.</p>
+        <p><strong>Rilevamento duplicati.</strong> Prima di completare un salvataggio, viene eseguito un controllo a livelli: prima la corrispondenza esatta dell'URL normalizzato (leggera, O(1)), poi la similarità del titolo sui pochi candidati che superano il filtro, e solo infine — per i pochissimi rimanenti — un confronto completo di similarità del coseno via TF-IDF. La maggior parte dei salvataggi non raggiunge mai il livello più pesante, perché i livelli più veloci hanno già risolto la richiesta.</p>
+        <p><strong>Normalizzazione dei tag.</strong> Nel tempo i tag tendono a disallinearsi: «ML», «Machine Learning», «machine-learning» hanno lo stesso significato per un essere umano, ma sono completamente diversi per un filtro. Una piccola tabella di alias gestisce i casi ovvi; un'unione fuzzy basata sulla distanza di modifica sull'intero vocabolario dei tag gestisce il resto, scegliendo la grafia che usi più spesso come forma canonica invece di importene una «corretta».</p>
+        <p><strong>Leggibilità e tono.</strong> Il punteggio Flesch–Kincaid è pura aritmetica sul conteggio di frasi e sillabe — nessun modello richiesto. La sentiment analysis usa un elenco di parole AFINN integrato con un piccolo controllo delle negazioni sui due token precedenti. Nessuno di questi elementi ha mai avuto bisogno di uscire dal browser.</p>
+        <p><strong>«Articoli simili» e Digest.</strong> Entrambi riutilizzano gli stessi identici vettori TF-IDF già creati per la ricerca. Sarebbe stato facile realizzare tre sistemi di similarità separati per tre funzioni diverse. Creare un unico indice e consentire a ricerca, suggerimenti e selezione del digest di leggerlo ha mantenuto il sistema più leggero e ha permesso di migliorare tutte e tre le funzionalità con un unico aggiornamento dell'indice.</p>
+
+        <figure class="post-figure"><img src="../../assets/blog/runtime-parts.webp" alt="Diagramma: la pagina web, il background worker e il popup dell'estensione, lo storage locale e il provider del modello" width="1760" height="620" loading="lazy"><figcaption>C'è una sola freccia che esce dal browser: la chiamata al provider del modello che hai scelto.</figcaption></figure>
+        <h2>Cosa abbiamo volutamente lasciato nel cloud</h2>
+        <p>Il passaggio vero e proprio di riassunto — la parte che richiede autenticamente un modello linguistico — necessita ancora di una chiamata di rete. Con le attuali dimensioni dei modelli on-device non ci sono alternative se desideri la qualità di output dei modelli cloud. Per questa fase puoi usare la tua chiave API (OpenAI, Gemini, Mistral, DeepSeek) o puntare l'estensione a un'istanza locale di Ollama ed evitare la rete anche qui. Questo è l'unico punto in cui il funzionamento on-device non è predefinito ma opzionale, perché il compromesso è reale: un modello locale è più lento e offre una qualità inferiore rispetto a uno hosted, e non volevamo fingere il contrario.</p>
+
+        <h2>Perché non è solo un argomento di facciata sulla privacy</h2>
+        <p>L'aspetto legato alla privacy (e alla conformità GDPR) è reale: un'estensione con ampi permessi di host che invia i contenuti delle pagine a un server per operazioni non necessarie solleva legittimi dubbi di fiducia, non è solo una questione di immagine. Ma il motivo più pragmatico per farlo è che si tratta semplicemente della scelta ingegneristica corretta. La ricerca TF-IDF non ha bisogno di 200 ms di latenza di rete. La deduplicazione dei tag non richiede costi API. Scegliere lo strumento giusto per il lavoro effettivo, invece di instradare tutto verso il cloud per impostazione predefinita, permette di ottenere una soluzione più veloce, economica da gestire e resiliente anche offline — e la tutela della privacy ne è una naturale conseguenza, non il contrario.</p>
+        <div class="post-cta">
+          <p>AI Summary Helper è un'estensione gratuita per Chrome.</p>
+          <a href="https://chromewebstore.google.com/detail/ai-summary-helper-openai/hldbejcjaedipeegjcinmhejdndchkmb" target="_blank" rel="noopener" class="btn-primary">Aggiungi a Chrome</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="footer-inner">
+      <div class="wordmark"><img src="../../assets/icon.svg" alt="">AI Summary Helper</div>
+      <div class="foot-links">
+        <a href="https://github.com/philffm/ai-summary-helper/" target="_blank" rel="noopener">Codice sorgente su GitHub</a>
+        <a href="../privacy.html">Informativa sulla privacy</a>
+        <a href="#" data-analytics-settings="">Impostazioni statistiche</a>
+        <a href="https://byphil.eu/terms.html#impressum" target="_blank" rel="noopener">Note legali (Impressum)</a>
+      </div>
+    </div>
+    <div class="copyright">© 2026 Phil Wornath. Parte di <a href="https://byphil.eu/" class="credit-link">byphil.eu ↗</a> — software indipendente sviluppato in Germania.<br>
+      Progettato e sviluppato da <a href="https://philwornath.com/" target="_blank" rel="noopener" class="credit-link">philwornath.com ↗</a>
+    </div>
+  </div>
+</footer>
+
+<script src="../../assets/main.js"></script>
+
+
+</body></html>

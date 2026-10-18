@@ -1,0 +1,149 @@
+<!DOCTYPE html><html lang="id"><head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#08090C">
+<title>Dari Bookmarklet ke 2.0 — AI Summary Helper</title>
+<meta name="description" content="Berawal dari bookmarklet untuk kebiasaan membaca Kindle satu orang. Inilah yang berubah antara v1 dan perombakan total open-source 2.0 — dan alasannya.">
+
+<script>
+  (function(){
+    try {
+      var saved = localStorage.getItem('aish_theme');
+      var theme = saved === 'light' || saved === 'dark'
+        ? saved
+        : (window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
+      document.documentElement.setAttribute('data-theme', theme);
+    } catch (e) {
+      document.documentElement.setAttribute('data-theme', 'dark');
+    }
+  })();
+</script>
+
+<link rel="icon" type="image/svg+xml" href="../../assets/icon.svg">
+<link rel="stylesheet" href="../../assets/styles.css">
+<script src="../../assets/analytics.js"></script>
+<link rel="alternate" hreflang="x-default" href="https://ai-summary-helper.byphil.eu/blog/from-bookmarklet-to-2.html"><link rel="alternate" hreflang="en" href="https://ai-summary-helper.byphil.eu/blog/from-bookmarklet-to-2.html"><link rel="alternate" hreflang="de" href="https://ai-summary-helper.byphil.eu/de/blog/from-bookmarklet-to-2.html"><link rel="alternate" hreflang="fr" href="https://ai-summary-helper.byphil.eu/fr/blog/from-bookmarklet-to-2.html"><link rel="alternate" hreflang="es" href="https://ai-summary-helper.byphil.eu/es/blog/from-bookmarklet-to-2.html"><link rel="alternate" hreflang="zh-Hans" href="https://ai-summary-helper.byphil.eu/zh/blog/from-bookmarklet-to-2.html"><link rel="alternate" hreflang="zh-Hant" href="https://ai-summary-helper.byphil.eu/zh-tw/blog/from-bookmarklet-to-2.html"><link rel="alternate" hreflang="ja" href="https://ai-summary-helper.byphil.eu/ja/blog/from-bookmarklet-to-2.html"><link rel="alternate" hreflang="ko" href="https://ai-summary-helper.byphil.eu/ko/blog/from-bookmarklet-to-2.html"><link rel="alternate" hreflang="pt-BR" href="https://ai-summary-helper.byphil.eu/pt/blog/from-bookmarklet-to-2.html"><link rel="alternate" hreflang="hi" href="https://ai-summary-helper.byphil.eu/hi/blog/from-bookmarklet-to-2.html"><link rel="alternate" hreflang="vi" href="https://ai-summary-helper.byphil.eu/vi/blog/from-bookmarklet-to-2.html"><link rel="alternate" hreflang="nl" href="https://ai-summary-helper.byphil.eu/nl/blog/from-bookmarklet-to-2.html"><link rel="alternate" hreflang="it" href="https://ai-summary-helper.byphil.eu/it/blog/from-bookmarklet-to-2.html"><link rel="alternate" hreflang="ru" href="https://ai-summary-helper.byphil.eu/ru/blog/from-bookmarklet-to-2.html"><link rel="alternate" hreflang="uk" href="https://ai-summary-helper.byphil.eu/uk/blog/from-bookmarklet-to-2.html"><link rel="alternate" hreflang="tr" href="https://ai-summary-helper.byphil.eu/tr/blog/from-bookmarklet-to-2.html"><link rel="alternate" hreflang="id" href="https://ai-summary-helper.byphil.eu/id/blog/from-bookmarklet-to-2.html"><link rel="alternate" hreflang="pl" href="https://ai-summary-helper.byphil.eu/pl/blog/from-bookmarklet-to-2.html"><link rel="alternate" hreflang="th" href="https://ai-summary-helper.byphil.eu/th/blog/from-bookmarklet-to-2.html"><link rel="alternate" hreflang="ar" href="https://ai-summary-helper.byphil.eu/ar/blog/from-bookmarklet-to-2.html"><link rel="alternate" hreflang="sv" href="https://ai-summary-helper.byphil.eu/sv/blog/from-bookmarklet-to-2.html"><link rel="alternate" hreflang="da" href="https://ai-summary-helper.byphil.eu/da/blog/from-bookmarklet-to-2.html"><link rel="alternate" hreflang="nb" href="https://ai-summary-helper.byphil.eu/no/blog/from-bookmarklet-to-2.html"><link rel="alternate" hreflang="fi" href="https://ai-summary-helper.byphil.eu/fi/blog/from-bookmarklet-to-2.html"></head>
+<body>
+
+<a href="#main" class="skip-link">Lewati ke konten</a>
+
+<header class="nav">
+  <div class="wrap nav-inner">
+    <div class="brand-cluster">
+      <div class="wordmark">
+        <img src="../../assets/icon.svg" alt="">
+        AI Summary Helper
+      </div>
+      <a href="https://byphil.eu/" target="_blank" rel="noopener" class="ecosystem-badge">
+        <span class="pulse-dot"></span> Bagian dari byphil.
+      </a>
+    </div>
+    <div class="nav-desktop-group nav-desktop-links">
+      <nav class="links" aria-label="Primary">
+        <a href="../index.html#features">Fitur</a>
+        <a href="../index.html#pricing">Harga</a>
+        <a href="./" aria-current="page">Blog</a>
+        <a href="https://github.com/philffm/ai-summary-helper/" target="_blank" rel="noopener">GitHub</a>
+      </nav>
+      <button type="button" class="theme-toggle" id="themeToggle" aria-label="Switch to light mode">
+        <svg class="icon-moon" viewBox="0 0 24 24" fill="none"><path d="M20 14.5A8.5 8.5 0 1 1 9.5 4a6.8 6.8 0 0 0 10.5 10.5Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"></path></svg>
+        <svg class="icon-sun" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="4.2" stroke="currentColor" stroke-width="1.6"></circle><path d="M12 2.5v2.4M12 19.1v2.4M4.4 4.4l1.7 1.7M17.9 17.9l1.7 1.7M2.5 12h2.4M19.1 12h2.4M4.4 19.6l1.7-1.7M17.9 6.1l1.7-1.7" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"></path></svg>
+      </button>
+      <a href="../index.html" class="btn-sign-in">← Kembali ke aplikasi</a>
+    </div>
+    <button type="button" class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="mobileMenu" aria-label="Open menu">
+      <svg viewBox="0 0 24 24" fill="none"><path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"></path></svg>
+    </button>
+  </div>
+  <div class="mobile-menu" id="mobileMenu" hidden="">
+    <div class="wrap mobile-menu-inner">
+      <a href="../index.html#features">Fitur</a>
+      <a href="../index.html#pricing">Harga</a>
+      <a href="./">Blog</a>
+      <a href="https://github.com/philffm/ai-summary-helper/" target="_blank" rel="noopener">GitHub</a>
+      <a href="https://byphil.eu/" target="_blank" rel="noopener">Bagian dari byphil. ↗</a>
+      <button type="button" class="theme-toggle-mobile" id="themeToggleMobile">
+        <span id="themeToggleMobileLabel">Beralih ke mode terang</span>
+        <svg class="icon-moon" viewBox="0 0 24 24" fill="none"><path d="M20 14.5A8.5 8.5 0 1 1 9.5 4a6.8 6.8 0 0 0 10.5 10.5Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"></path></svg>
+        <svg class="icon-sun" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="4.2" stroke="currentColor" stroke-width="1.6"></circle><path d="M12 2.5v2.4M12 19.1v2.4M4.4 4.4l1.7 1.7M17.9 17.9l1.7 1.7M2.5 12h2.4M19.1 12h2.4M4.4 19.6l1.7-1.7M17.9 6.1l1.7-1.7" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"></path></svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+<main id="main">
+  <div class="wrap">
+    <div class="post-hero">
+      <span class="blog-date">Produk · Juni 2026</span>
+      <h1>Dari Bookmarklet ke 2.0: Wujud Sebenarnya dari AI Summary Helper Saat Ini</h1>
+      <p class="post-sub">Semua berawal dari bookmarklet sekali klik untuk membaca di Kindle. Dua tahun dan perombakan total kemudian, sebagian besar kemampuannya hari ini bahkan belum ada saat seratus pengguna pertama mendaftar.</p>
+    </div>
+  </div>
+
+  <section>
+    <div class="wrap">
+      <div class="prose">
+
+        <p><strong>AI Summary Helper adalah ekstensi Chrome gratis dan open-source yang meringkas halaman web apa pun menggunakan penyedia AI pilihan Anda atau model lokal sepenuhnya, menyimpan artikel untuk dibaca nanti dengan pengingat terjadwal, dan mengubah riwayat membaca Anda menjadi arsip terhubung yang mudah dicari.</strong> Semua fitur tersebut belum ada di versi pertama. Inilah kemampuan awalnya, dan bagaimana perjalanannya hingga sampai di titik ini.</p>
+
+        <h2>Bagaimana awal mulanya</h2>
+        <p>Pada Juli 2024, alat ini hanyalah sebuah bookmarklet — bahkan bukan sebuah ekstensi. Anda mencari artikel menarik, membuka belasan tab, dan seperti kebanyakan orang, tidak pernah sempat membaca sebagian besarnya. Ide awalnya sederhana dan personal: peringkas dengan custom prompt yang memasukkan hasilnya langsung ke dalam halaman, sehingga ringkasan ikut terbawa saat Anda mengirim artikel ke Kindle menggunakan <a href="https://send.reabble.com/" target="_blank" rel="noopener">alat Send-to-Kindle dari Reabble</a>. Hanya itu seluruh produknya. Satu penyedia AI. Satu kolom prompt. Varian bookmarklet yang berfungsi di mana saja, bahkan di Safari iOS, dan varian ekstensi Chrome bagi mereka yang ingin menyesuaikan prompt secara instan.</p>
+        <p>Pengguna aktifnya melampaui 100 orang beberapa minggu kemudian — sungguh tak terduga, karena awalnya alat ini hanya dibuat untuk mengatasi kebiasaan membaca pribadi, bukan untuk dijadikan produk.</p>
+
+        <figure class="post-figure"><img src="../../assets/blog/summary-end-to-end.webp" alt="Diagram: proses ringkasan menyeluruh, dari Ask, Stream, Finalize dan Save hingga Follow up" width="1760" height="620" loading="lazy"><figcaption>Apa yang terjadi saat Anda menekan Ringkas hari ini, dalam lima langkah.</figcaption></figure>
+        <h2>Apa saja yang benar-benar berubah sejak saat itu hingga 2.0</h2>
+        <p>Ide intinya — merangkum sesuai preferensi Anda, membacanya di tempat yang lebih nyaman daripada tab browser — tidak pernah berubah. Namun hampir semua hal di sekitarnya telah berkembang:</p>
+
+        <h3>Dari satu penyedia menjadi lima pilihan</h3>
+        <p>v1 hanya mendukung OpenAI, API key Anda sendiri, satu endpoint. 2.0 mendukung OpenAI, Google Gemini, Mistral, dan DeepSeek dengan API key Anda sendiri, ditambah opsi model lokal sepenuhnya melalui Ollama — artinya konten halaman tidak perlu keluar dari perangkat Anda demi privasi penuh. Tersedia juga opsi hosted (byphil Cloud) bagi Anda yang ingin langsung pakai tanpa repot mengelola API key, namun ini tidak pernah diwajibkan. Ini bukan sekadar penambahan fitur kecil; ini mengubah esensi produk. v1 meminta Anda mempercayai satu perusahaan secara default. 2.0 tidak meminta Anda mempercayai siapa pun selain pihak yang Anda pilih sendiri.</p>
+
+        <h3>"Masukkan ke dalam halaman" menjadi alur kerja yang sesungguhnya</h3>
+        <p>Prinsip dasarnya — baca nanti di tempat yang lebih tenang daripada browser — tetap dipertahankan, namun kini bukan sekadar ringkasan yang ditempel ke DOM. Klik kanan pada halaman kini menyediakan fitur <strong>Summarize &amp; Close Tab</strong>: pilih jangka waktu (Besok, Akhir Pekan, Minggu Ini, Sesi Riset), tambahkan catatan, dan tab akan tertutup otomatis setelah Anda membaca cepat ringkasan di overlay RSVP. Notifikasi Chrome akan membawa Anda kembali ke artikel tepat pada waktu yang Anda tentukan — bukan "kapan-kapan", bukan "kalau ingat saja."</p>
+
+        <h3>Tumpukan artikel tersimpan kini menjadi arsip yang tertata rapi</h3>
+        <p>v1 sama sekali tidak memiliki riwayat — ringkasan hanya tampil di halaman lalu hilang. Kini, setiap artikel yang disimpan tersimpan di arsip lokal yang dapat dicari, lengkap dengan penyorotan teks (plus saran "ghost highlights" berbasis AI pada bagian penting), heatmap analitik membaca, serta knowledge graph D3 yang mengelompokkan bacaan berdasarkan topik, alih-alih membiarkannya menumpuk tanpa struktur.</p>
+
+        <h3>Kindle awalnya adalah tujuan utama. Sekarang, itu hanyalah salah satu opsi</h3>
+        <p>Send-to-Kindle melalui alat Reabble adalah alasan utama alat ini diciptakan. Fitur ini masih didukung secara native, namun membaca di luar browser kini juga mencakup AirDrop ke iPhone atau iPad (langsung terbuka di Apple Books) atau LocalSend ke aplikasi seperti KOReader melalui Wi-Fi lokal Anda. Tujuan intinya — memindahkan bacaan dari browser ke perangkat yang nyaman untuk membaca — kini memiliki lebih banyak opsi.</p>
+
+        <h2>Hal yang tidak berubah</h2>
+        <p>Alat ini tetap gratis, tetap open source (lisensi MIT, kode sumber lengkap di GitHub), dan tidak memerlukan akun untuk fitur utama apa pun. Prinsip tersebut tidak pernah dikompromikan — alasan yang sama mengapa v1 hadir sebagai bookmarklet: dibuat oleh seseorang yang ingin memiliki kendali penuh atas alat bacanya sendiri, bukan menyewanya.</p>
+
+        <h2>FAQ</h2>
+        <p><strong>Apakah ini proyek yang sama dengan bookmarklet awal?</strong><br>
+        Ya — proyek open source yang sama, repositori GitHub yang sama, dan terus dikembangkan secara aktif sejak Juli 2024. Varian bookmarklet masih tersedia bagi siapa saja yang menginginkan opsi fleksibel di browser apa pun tanpa instalasi.</p>
+        <p><strong>Apakah saya memerlukan akun OpenAI untuk menggunakannya?</strong><br>
+        Tidak. Itu hanya berlaku di v1; kini Anda bebas memilih. Penyedia mana pun yang didukung dapat digunakan, atau gunakan model lokal sepenuhnya lewat Ollama tanpa akun eksternal sama sekali.</p>
+        <p><strong>Apa yang terjadi dengan versi Gumroad?</strong><br>
+        Proyek ini awalnya dirilis di Gumroad sebagai sarana menerima dukungan dari pengguna awal. Ekstensinya sendiri selalu gratis dan open source — Gumroad tidak pernah menjadi paywall untuk alat ini.</p>
+
+        <div class="post-cta">
+          <p>AI Summary Helper adalah ekstensi Chrome gratis.</p>
+          <a href="https://chromewebstore.google.com/detail/ai-summary-helper-openai/hldbejcjaedipeegjcinmhejdndchkmb" target="_blank" rel="noopener" class="btn-primary">Tambahkan ke Chrome</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="footer-inner">
+      <div class="wordmark"><img src="../../assets/icon.svg" alt="">AI Summary Helper</div>
+      <div class="foot-links">
+        <a href="https://github.com/philffm/ai-summary-helper/" target="_blank" rel="noopener">Kode sumber di GitHub</a>
+        <a href="../privacy.html">Privasi</a>
+        <a href="#" data-analytics-settings="">Pengaturan analitik</a>
+        <a href="https://byphil.eu/terms.html#impressum" target="_blank" rel="noopener">Impressum</a>
+      </div>
+    </div>
+    <div class="copyright">© 2026 Phil Wornath. Bagian dari <a href="https://byphil.eu/" class="credit-link">byphil.eu ↗</a> — software independen yang dikembangkan di Jerman.<br>
+      Dirancang &amp; dibangun oleh <a href="https://philwornath.com/" target="_blank" rel="noopener" class="credit-link">philwornath.com ↗</a>
+    </div>
+  </div>
+</footer>
+
+<script src="../../assets/main.js"></script>
+
+
+</body></html>
