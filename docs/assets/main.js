@@ -120,7 +120,12 @@ function setBilling(period) {
     pt: ['Português', 'Esta página também está disponível em {l}.'], zh: ['简体中文', '本页面也提供{l}版本。'],
     'zh-tw': ['繁體中文', '本頁面也提供{l}版本。'], ja: ['日本語', 'このページは{l}でもご覧いただけます。'],
     ko: ['한국어', '이 페이지는 {l}로도 제공됩니다.'], hi: ['हिन्दी', 'यह पेज {l} में भी उपलब्ध है।'],
-    vi: ['Tiếng Việt', 'Trang này cũng có bản {l}.']
+    vi: ['Tiếng Việt', 'Trang này cũng có bản {l}.'],
+    nl: ['Nederlands', 'Deze pagina is ook beschikbaar in het {l}.'], it: ['Italiano', 'Questa pagina è disponibile anche in {l}.'],
+    ru: ['Русский', 'Эта страница доступна и на языке: {l}.'], uk: ['Українська', 'Ця сторінка доступна також українською: {l}.'],
+    tr: ['Türkçe', 'Bu sayfa {l} dilinde de mevcut.'], id: ['Bahasa Indonesia', 'Halaman ini juga tersedia dalam {l}.'],
+    pl: ['Polski', 'Ta strona jest dostępna także po polsku: {l}.'], th: ['ไทย', 'หน้านี้มีให้บริการเป็นภาษา{l}ด้วย'],
+    ar: ['العربية', 'هذه الصفحة متاحة أيضًا بـ{l}.']
   };
   var DISMISS_KEY = 'aish_lang_banner_dismissed';
   function map(code) {
@@ -154,6 +159,7 @@ function setBilling(period) {
   banner.setAttribute('role', 'region');
   banner.setAttribute('aria-label', 'Language suggestion');
   banner.setAttribute('lang', target === 'zh-tw' ? 'zh-TW' : target);
+  if (target === 'ar') banner.setAttribute('dir', 'rtl');
   banner.innerHTML =
     '<div class="lang-banner-inner">' +
       '<span class="lang-banner-text">' + info[1].replace('{l}', '<a class="lang-banner-link" href="' + href + '">' + info[0] + '</a>') + '</span>' +
@@ -901,7 +907,7 @@ function setBilling(period) {
   document.querySelectorAll('[data-demo]').forEach(function (box) {
     var btn = box.querySelector('.demo-start');
     if (!btn) return;
-    function poster() { box.style.backgroundImage = 'url(' + box.getAttribute('data-src').replace('demo/index.html', 'assets/demo-poster/' + siteLang() + '-' + siteTheme() + '.webp') + ')'; }
+    function poster() { box.style.backgroundImage = 'url(' + box.getAttribute('data-src').replace('demo/index.html', 'assets/demo-poster/' + (/^(en|de|fr|es|pt|zh|zh-tw|ja|ko|hi|vi)$/.test(siteLang()) ? siteLang() : 'en') + '-' + siteTheme() + '.webp') + ')'; }
     poster();
     new MutationObserver(function () { if (!box.classList.contains('is-live')) poster(); }).observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme'] });
     btn.addEventListener('click', function () {

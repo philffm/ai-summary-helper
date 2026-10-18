@@ -245,7 +245,7 @@ function addHreflangTags($, config, currentLocaleCode, relPath) {
  */
 function setHtmlLang($, locale) {
     const html = $('html');
-    if (html.length) html.attr('lang', locale.hreflang);
+    if (html.length) { html.attr('lang', locale.hreflang); if (locale.rtl) html.attr('dir', 'rtl'); }
 }
 
 // ── OpenRouter call ──────────────────────────────────────────────────

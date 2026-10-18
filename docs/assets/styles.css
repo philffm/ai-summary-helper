@@ -949,3 +949,9 @@ footer .copyright a:hover, .foot-links a:hover{ text-decoration-color:currentCol
 /* Real extension icon instead of the placeholder gradient */
 .hs-logo, .hs-bar .hs-ext span.hs-logo, .hs-bar .hs-logo{ background:url(icon.svg) center/cover no-repeat !important; }
 .beta-badge{ display:inline-block; vertical-align:middle; margin-left:6px; padding:2px 8px; border-radius:99px; font:600 11px/1.5 var(--font-mono, "JetBrains Mono", monospace); letter-spacing:.08em; text-transform:uppercase; background:#f5c451; color:#3b2a00; }
+
+/* Right-to-left locales (Arabic): mirror the page, keep product mockups left-to-right */
+[dir="rtl"] .hscene-canvas, [dir="rtl"] .bm-mock, [dir="rtl"] .hs-ctrl, [dir="rtl"] .demo-frame iframe{ direction:ltr; }
+[dir="rtl"] .hscene-canvas p, [dir="rtl"] .hscene-canvas h4, [dir="rtl"] .hs-panel{ text-align:left; }
+[dir="rtl"] .demo-frame{ margin:0 calc(50% - var(--dw) / 2) 0 0; }
+[dir="rtl"] .hscene-mcap{ text-align:center; }

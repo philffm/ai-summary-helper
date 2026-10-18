@@ -74,6 +74,61 @@
       "dir": "vi",
       "hreflang": "vi",
       "marketNotes": "Professional, modern tech tone. Use standard neutral tech vocabulary for UI actions. Emphasize speed, local offline AI processing, Kindle export, and privacy."
+    },
+    "nl": {
+      "name": "Dutch",
+      "dir": "nl",
+      "hreflang": "nl",
+      "marketNotes": "Netherlands and Belgium (Flanders). Informal-but-professional \"je/jij\" for web copy, clear imperatives in UI. Emphasize privacy, GDPR, local processing with Ollama, no tracking."
+    },
+    "it": {
+      "name": "Italian",
+      "dir": "it",
+      "hreflang": "it",
+      "marketNotes": "Italy and Italian-speaking Switzerland. Polite but modern \"tu\" for web copy (as common in SaaS), clear imperatives in UI. Emphasize GDPR privacy, on-device processing and Ollama."
+    },
+    "ru": {
+      "name": "Russian",
+      "dir": "ru",
+      "hreflang": "ru",
+      "marketNotes": "Russian-speaking users worldwide. Neutral professional tone, \"вы\" register. Emphasize privacy, local models (Ollama) and bring-your-own-key. Keep tech terms (Ollama, Kindle, LocalSend, Markdown, API key) in Latin script."
+    },
+    "uk": {
+      "name": "Ukrainian",
+      "dir": "uk",
+      "hreflang": "uk",
+      "marketNotes": "Ukraine. Natural modern Ukrainian (not translated through Russian), \"ви\" register. Emphasize privacy, local on-device models (Ollama) and bring-your-own-key. Keep tech terms (Ollama, Kindle, LocalSend, Markdown, API key) in Latin script."
+    },
+    "tr": {
+      "name": "Turkish",
+      "dir": "tr",
+      "hreflang": "tr",
+      "marketNotes": "Turkey. Polite modern \"siz\" register for web copy, concise UI verbs. Emphasize privacy, local processing with Ollama, bring-your-own-key. Keep tech terms in English."
+    },
+    "id": {
+      "name": "Indonesian",
+      "dir": "id",
+      "hreflang": "id",
+      "marketNotes": "Indonesia. Standard modern Indonesian, neutral-friendly \"Anda\" register, concise UI verbs. Emphasize free to start, local/offline AI with Ollama and privacy. Keep tech terms in English."
+    },
+    "pl": {
+      "name": "Polish",
+      "dir": "pl",
+      "hreflang": "pl",
+      "marketNotes": "Poland. Professional modern register (\"Ty\" capitalised is not needed; use \"możesz\" style or impersonal forms). Emphasize GDPR privacy, local processing with Ollama, bring-your-own-key."
+    },
+    "th": {
+      "name": "Thai",
+      "dir": "th",
+      "hreflang": "th",
+      "marketNotes": "Thailand. Polite modern tech tone using neutral particles (ครับ/ค่ะ avoided; use impersonal phrasing). Keep tech terms (Ollama, Kindle, LocalSend, Markdown, API key) in English. Emphasize local/offline AI, privacy and speed."
+    },
+    "ar": {
+      "name": "Arabic",
+      "dir": "ar",
+      "hreflang": "ar",
+      "marketNotes": "Modern Standard Arabic (neutral, readable across regions), right-to-left. Professional modern tech tone. Keep tech terms (Ollama, Kindle, LocalSend, Markdown, API key) in Latin script and keep numerals and URLs unchanged. Emphasize privacy, local on-device AI and bring-your-own-key.",
+      "rtl": true
     }
   }
 }
