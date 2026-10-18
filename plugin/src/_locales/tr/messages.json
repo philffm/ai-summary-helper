@@ -408,10 +408,10 @@
     "message": "Zaten puanlanıyor — bir saniye"
   },
   "f_already_subscribed_0935": {
-    "message": "Already subscribed"
+    "message": "Zaten abone"
   },
   "f_any_mood_9630": {
-    "message": "Tüm ruh halleri"
+    "message": "Her ruh hali"
   },
   "f_any_time_95a6": {
     "message": "Her zaman"
@@ -674,7 +674,7 @@
     "message": "Derleme kopyalandı"
   },
   "f_recap_failed_6cfd": {
-    "message": "Derleme oluşturulamadı"
+    "message": "Derleme başarısız"
   },
   "f_refresh_aad4": {
     "message": "Yenile"
@@ -1164,7 +1164,7 @@
     "message": "derleme yok"
   },
   "f_reused_af15": {
-    "message": "yeniden kullanıldı"
+    "message": "tekrar"
   },
   "f_of_days_have_a_recap_6aaa": {
     "message": "{b} günün {a} tanesinde derleme var",
@@ -1223,7 +1223,7 @@
     "message": "yok"
   },
   "f_vs_5622": {
-    "message": "{label} ile karş.",
+    "message": "{label} karş.",
     "description": "Placeholders: {label} (keep as is)"
   },
   "f_pts_d40a": {
@@ -1517,7 +1517,7 @@
     "message": "Gelen kutusunda “Gönderildi” olarak tut"
   },
   "f_mark_as_8ab2": {
-    "message": "Şöyle işaretle…"
+    "message": "İşaretle…"
   },
   "f_mark_summaries_as_8da6": {
     "message": "{n} özeti şöyle işaretle…",
@@ -1785,7 +1785,7 @@
     "message": "Sonra"
   },
   "f_no_thanks_66fb": {
-    "message": "Hayır, teşekkürler"
+    "message": "Hayır"
   },
   "f_leave_a_review_042d": {
     "message": "⭐ Yorum bırak"
@@ -2273,7 +2273,7 @@
     "message": "Alıcının çevrimiçi olup olmadığını kontrol edin."
   },
   "f_checking_f2f5": {
-    "message": "Kontrol ediliyor..."
+    "message": "Kontrol..."
   },
   "f_choose_one_delivery_method_f_1ac4": {
     "message": "Makale ayrıntısı eylemleri için bir gönderim yöntemi seçin."
@@ -2776,7 +2776,7 @@
     "message": "Mac'inizde <b>Terminal</b> uygulamasını açın."
   },
   "f_own_key_7e24": {
-    "message": "Kendi anahtarım"
+    "message": "Anahtarım"
   },
   "f_own_model_api_key_4098": {
     "message": "Kendi modelim / API anahtarım"
@@ -3159,7 +3159,7 @@
     "message": "byPhil Cloud"
   },
   "f_contact_me_639b": {
-    "message": "benimle iletişime geçin"
+    "message": "iletişime geçin"
   },
   "f_contribute_on_github_5ab8": {
     "message": "GitHub'da katkıda bulunun 💙"
@@ -3386,13 +3386,13 @@
     "message": "⚠ Hakemli değil"
   },
   "f_likely_paper_c67e": {
-    "message": "🎓 Muhtemelen bilimsel makale"
+    "message": "🎓 Olası bilimsel"
   },
   "f_mark_as_paper_1769": {
-    "message": "🎓 Bilimsel makale olarak işaretle"
+    "message": "🎓 Bilimsel yap"
   },
   "f_paper_b2da": {
-    "message": "🎓 Bilimsel makale"
+    "message": "🎓 Bilimsel"
   },
   "f_paper_doi_c956": {
     "message": "🎓 Bilimsel makale · DOI ✓"
@@ -4233,7 +4233,7 @@
     "description": "Placeholders: {t} (keep as is)"
   },
   "f_changelog_8779": {
-    "message": "Değişiklik günlüğü"
+    "message": "Sürüm notları"
   },
   "f_how_should_ai_summary_helper_b4d7": {
     "message": "AI Summary Helper nasıl düşünsün?"
@@ -4724,10 +4724,10 @@
     "message": "byPhil Cloud'a şu anda ulaşılamıyor."
   },
   "f_check_now_0677": {
-    "message": "Şimdi kontrol et"
+    "message": "Şimdi denetle"
   },
   "f_checking_dad5": {
-    "message": "Kontrol ediliyor…"
+    "message": "Kontrol…"
   },
   "f_click_again_to_unpair_884f": {
     "message": "Eşleşmeyi kaldırmak için tekrar tıklayın"
@@ -4768,7 +4768,7 @@
     "message": "Eşleştirme kodu"
   },
   "f_pairing_9d4b": {
-    "message": "Eşleştiriliyor…"
+    "message": "Eşleniyor…"
   },
   "f_phone_inbox_69e3": {
     "message": "Telefon gelen kutusu"
@@ -5313,10 +5313,10 @@
     "message": "Orijinal başlık"
   },
   "f_rename_31f3": {
-    "message": "Yeniden adlandır"
+    "message": "Adlandır"
   },
   "f_renamed_10b5": {
-    "message": "Yeniden adlandırıldı"
+    "message": "Adlandırıldı"
   },
   "f_title_71a9": {
     "message": "Başlık"
@@ -5566,7 +5566,7 @@
     "message": "Diğer eylemler: çubuğa sürükleyin"
   },
   "f_copy_link_90dc": {
-    "message": "Bağlantıyı kopyala"
+    "message": "Linki kopyala"
   },
   "f_kindle_a768": {
     "message": "Kindle"

@@ -114,7 +114,7 @@
     "message": "Importuj OPML"
   },
   "feedMarkAllRead": {
-    "message": "Oznacz jako przeczytane"
+    "message": "Wszystko przeczytane"
   },
   "feedSubscriptions": {
     "message": "Subskrypcje"
@@ -138,7 +138,7 @@
     "message": "Czytanie i zaznaczanie"
   },
   "settingsSend": {
-    "message": "Wysyłanie i udostępnianie"
+    "message": "Wyślij i udostępnij"
   },
   "settingsAppearance": {
     "message": "Wygląd i język"
@@ -159,7 +159,7 @@
     "message": "CZYTANIE"
   },
   "settingsCapApp": {
-    "message": "APLIKACJA"
+    "message": "APP"
   },
   "navApps": {
     "message": "Aplikacje"
@@ -225,7 +225,7 @@
     "message": "Pobieranie podsumowania..."
   },
   "openInSidebar": {
-    "message": "Otwórz w panelu bocznym"
+    "message": "Otwórz w panelu"
   },
   "theme": {
     "message": "Motyw"
@@ -267,7 +267,7 @@
     "message": "🔒 Klucz API jest przechowywany lokalnie w przeglądarce."
   },
   "endpointUrl": {
-    "message": "URL punktu końcowego"
+    "message": "URL endpointu"
   },
   "prompt": {
     "message": "Prompt"
@@ -368,10 +368,10 @@
     "message": "Przegląd dnia przez AI"
   },
   "f_ai_request_failed_fc5f": {
-    "message": "Zapytanie do AI nie powiodło się"
+    "message": "Błąd zapytania AI"
   },
   "f_ai_scoring_failed_e1b3": {
-    "message": "Ocena przez AI nie powiodła się"
+    "message": "Błąd oceny AI"
   },
   "f_ai_generated_from_headlines__133f": {
     "message": "Wygenerowane przez AI na podstawie {n} nagłówków i fragmentów. Czas generowania: {time}. Nie zastępuje czytania.",
@@ -399,7 +399,7 @@
     "message": "Dodaj tag"
   },
   "f_all_e364": {
-    "message": "Wszystko"
+    "message": "Wszystkie"
   },
   "f_all_sources_0e1e": {
     "message": "Wszystkie źródła"
@@ -447,7 +447,7 @@
     "message": "Kopiuj"
   },
   "f_copy_failed_c2a1": {
-    "message": "Kopiowanie nie powiodło się"
+    "message": "Błąd kopiowania"
   },
   "f_could_not_add_feed_3d08": {
     "message": "Nie udało się dodać kanału"
@@ -480,7 +480,7 @@
     "message": "Wszystkie nieprzeczytane są już podsumowane"
   },
   "f_failed_c3d4": {
-    "message": "Niepowodzenie"
+    "message": "Błąd"
   },
   "f_favorite_19ed": {
     "message": "Ulubiony"
@@ -504,7 +504,7 @@
     "message": "Ukryj negatywne"
   },
   "f_import_failed_aa11": {
-    "message": "Import nie powiódł się"
+    "message": "Błąd importu"
   },
   "f_imported_feed_349f": {
     "message": "Zaimportowano {n} kanał",
@@ -533,21 +533,21 @@
     "message": "Wczytywanie…"
   },
   "f_mark_read_94d4": {
-    "message": "Oznacz jako przeczytane"
+    "message": "Przeczytane"
   },
   "f_mark_unread_7147": {
-    "message": "Oznacz jako nieprzeczytane"
+    "message": "Nieprzeczytane"
   },
   "f_mark_read_c994": {
-    "message": "Oznacz jako przeczytane: {n}",
+    "message": "Przeczytane: {n}",
     "description": "Placeholders: {n} (keep as is)"
   },
   "f_marked_read_2e9b": {
-    "message": "Oznaczono jako przeczytane: {n}",
+    "message": "Przeczytane: {n}",
     "description": "Placeholders: {n} (keep as is)"
   },
   "f_marked_unread_a1ec": {
-    "message": "Oznaczono jako nieprzeczytane: {n}",
+    "message": "Nieprzeczytane: {n}",
     "description": "Placeholders: {n} (keep as is)"
   },
   "f_mood_551e": {
@@ -567,7 +567,7 @@
     "message": "Więcej"
   },
   "f_most_positive_first_9e03": {
-    "message": "Najpierw najbardziej pozytywne"
+    "message": "Najpierw pozytywne"
   },
   "f_most_positive_first_items_5e5a": {
     "message": "Najpierw najbardziej pozytywne · wpisy: {n}",
@@ -610,10 +610,10 @@
     "message": "Nie 😟"
   },
   "f_not_a_valid_opml_file_9043": {
-    "message": "To nie jest prawidłowy plik OPML"
+    "message": "Nieprawidłowy plik OPML"
   },
   "f_not_a_valid_feed_fa49": {
-    "message": "To nie jest prawidłowy kanał"
+    "message": "Nieprawidłowy kanał"
   },
   "f_nothing_matches_these_filter_c177": {
     "message": "Nic nie pasuje do filtrów."
@@ -674,7 +674,7 @@
     "message": "Skopiowano przegląd"
   },
   "f_recap_failed_6cfd": {
-    "message": "Przegląd nie powiódł się"
+    "message": "Błąd przeglądu"
   },
   "f_refresh_aad4": {
     "message": "Odśwież"
@@ -684,7 +684,7 @@
     "description": "Placeholders: {tag} (keep as is)"
   },
   "f_request_failed_3b37": {
-    "message": "Zapytanie nie powiodło się"
+    "message": "Błąd zapytania"
   },
   "f_reset_a560": {
     "message": "Resetuj"
@@ -785,13 +785,13 @@
     "message": "Dzisiejszy briefing"
   },
   "f_try_again_90fa": {
-    "message": "Spróbuj ponownie"
+    "message": "Ponów"
   },
   "f_undo_4acf": {
     "message": "Cofnij"
   },
   "f_unmute_include_in_all_source_af1c": {
-    "message": "Wyłącz wyciszenie (uwzględnij we Wszystkich źródłach)"
+    "message": "Cofnij wyciszenie (uwzględnij we Wszystkich źródłach)"
   },
   "f_unread_c982": {
     "message": "Nieprzeczytane"
@@ -801,7 +801,7 @@
     "description": "Placeholders: {n} (keep as is)"
   },
   "f_unsubscribe_5e36": {
-    "message": "Anuluj subskrypcję"
+    "message": "Odsubskrybuj"
   },
   "f_world_news_0f72": {
     "message": "Wiadomości ze świata"
@@ -887,7 +887,7 @@
     "description": "Placeholders: {n} (keep as is)"
   },
   "f_h_8141": {
-    "message": "{n} godz.",
+    "message": "{n} h",
     "description": "Placeholders: {n} (keep as is)"
   },
   "f_m_85fa": {
@@ -937,7 +937,7 @@
     "message": "✨ Podsumuj"
   },
   "f_summarize_top_5_unread_d39d": {
-    "message": "✨ Podsumuj 5 najnowszych nieprzeczytanych"
+    "message": "✨ Podsumuj 5 nieprzeczytanych"
   },
   "f_writing_recap_fe02": {
     "message": "✨ Pisanie przeglądu…"
@@ -1164,7 +1164,7 @@
     "message": "brak przeglądu"
   },
   "f_reused_af15": {
-    "message": "użyty ponownie"
+    "message": "użyte ponownie"
   },
   "f_of_days_have_a_recap_6aaa": {
     "message": "Przegląd ma {a} z {b} dni",
@@ -1821,7 +1821,7 @@
     "message": "Brak wpisów"
   },
   "f_noisy_e255": {
-    "message": "Hałaśliwe"
+    "message": "Głośne"
   },
   "f_not_enough_rated_items_yet_bc02": {
     "message": "Za mało ocenionych wpisów"
@@ -1851,7 +1851,7 @@
     "message": "Sortuj: nazwa"
   },
   "f_sort_read_share_6e08": {
-    "message": "Sortuj: udział przeczytanych"
+    "message": "Sortuj: przeczytane"
   },
   "f_sort_unread_7db8": {
     "message": "Sortuj: nieprzeczytane"
@@ -1872,7 +1872,7 @@
     "message": "Tematy w czasie"
   },
   "f_unmute_72bb": {
-    "message": "Włącz dźwięk"
+    "message": "Cofnij wyciszenie"
   },
   "f_updates_storage_9d6a": {
     "message": "Aktualizacje i pamięć"
@@ -2211,10 +2211,10 @@
     "message": "Dodaj ID modelu, np. gemma3:4b"
   },
   "f_allow_all_origins_f696": {
-    "message": "Zezwól na wszystkie źródła"
+    "message": "Zezwól na wszystkie"
   },
   "f_allow_all_origins_app_71d4": {
-    "message": "Zezwól na wszystkie źródła (aplikacja)"
+    "message": "Zezwól na wszystkie (aplikacja)"
   },
   "f_amazon_s_guide_135b": {
     "message": "Poradnik Amazon"
@@ -2399,10 +2399,10 @@
     "message": "Edukacyjny"
   },
   "f_endpoint_url_ddad": {
-    "message": "URL punktu końcowego"
+    "message": "URL endpointu"
   },
   "f_endpoint_url_d4b5": {
-    "message": "URL punktu końcowego:"
+    "message": "URL endpointu:"
   },
   "f_enter_6_digit_code_9824": {
     "message": "Wpisz 6-cyfrowy kod"
@@ -2561,7 +2561,7 @@
     "message": "Błąd infrastruktury łącza. Sprawdź połączenie sieciowe z bramą."
   },
   "f_inl_2296": {
-    "message": "W tekście"
+    "message": "Tekst"
   },
   "f_inline_1554": {
     "message": "W tekście"
@@ -2655,7 +2655,7 @@
     "message": "Ręczne żółte wyróżnienia"
   },
   "f_mark_read_when_opened_7f85": {
-    "message": "Oznacz jako przeczytane po otwarciu"
+    "message": "Oznacz po otwarciu"
   },
   "f_merges_near_duplicate_tags_s_343f": {
     "message": "Scala niemal identyczne tagi, np. „ML” i „Machine Learning”, w całym archiwum."
@@ -2770,7 +2770,7 @@
     "message": "Otwórz w Historii"
   },
   "f_open_in_sidebar_648c": {
-    "message": "Otwórz w panelu bocznym"
+    "message": "Otwórz w panelu"
   },
   "f_open_the_b_terminal_b_app_on_e9bf": {
     "message": "Otwórz aplikację <b>Terminal</b> na Macu."
@@ -2947,7 +2947,7 @@
     "message": "Wybierz do 5 artykułów:"
   },
   "f_send_share_bb4a": {
-    "message": "Wysyłanie i udostępnianie"
+    "message": "Wyślij i udostępnij"
   },
   "f_send_magic_code_de19": {
     "message": "Wyślij magiczny kod"
@@ -3380,7 +3380,7 @@
     "description": "Placeholders: {n} (keep as is)"
   },
   "f_not_a_paper_5823": {
-    "message": "To nie publikacja"
+    "message": "Nie publikacja"
   },
   "f_not_peer_reviewed_e184": {
     "message": "⚠ Bez recenzji naukowej"
@@ -3389,7 +3389,7 @@
     "message": "🎓 Prawdop. publikacja"
   },
   "f_mark_as_paper_1769": {
-    "message": "🎓 Oznacz jako publikację"
+    "message": "🎓 To publikacja"
   },
   "f_paper_b2da": {
     "message": "🎓 Publikacja"
@@ -3401,7 +3401,7 @@
     "message": "🎓 Preprint"
   },
   "f_design_02ef": {
-    "message": "Projekt badania"
+    "message": "Schemat"
   },
   "f_limitations_7ff6": {
     "message": "Ograniczenia"
@@ -3419,10 +3419,10 @@
     "message": "Próba"
   },
   "f_trial_6b73": {
-    "message": "Badanie kliniczne"
+    "message": "Badanie"
   },
   "f_trials_7100": {
-    "message": "Badania kliniczne"
+    "message": "Badania"
   },
   "f_no_key_facts_found_b926": {
     "message": "Nie znaleziono kluczowych faktów"
@@ -3575,7 +3575,7 @@
     "message": "Wyświetlanie"
   },
   "f_easy_read_font_b69f": {
-    "message": "Czcionka ułatwiająca czytanie"
+    "message": "Czytelna czcionka"
   },
   "f_high_contrast_9fd1": {
     "message": "Wysoki kontrast"
@@ -3648,7 +3648,7 @@
     "message": "Duży tekst"
   },
   "f_motion_on_b930": {
-    "message": "Animacje włączone"
+    "message": "Animacje wł."
   },
   "f_motion_reduced_d819": {
     "message": "Animacje ograniczone"
@@ -3912,7 +3912,7 @@
     "message": "Wklejanie działa. Zalogujemy Cię po ostatniej cyfrze."
   },
   "f_resend_code_4dd7": {
-    "message": "Wyślij kod ponownie"
+    "message": "Wyślij ponownie"
   },
   "f_send_me_a_code_a679": {
     "message": "Wyślij mi kod"
@@ -4055,7 +4055,7 @@
     "message": "Auto"
   },
   "f_auto_length_bias_09d7": {
-    "message": "Automatyczna korekta długości"
+    "message": "Korekta długości"
   },
   "f_batch_failed_f281": {
     "message": "Partia {a}/{b} nie powiodła się: {m}",
@@ -4145,7 +4145,7 @@
     "description": "Placeholders: {n} (keep as is)"
   },
   "f_failed_50a8": {
-    "message": "Niepowodzenia: {n}",
+    "message": "Błędy: {n}",
     "description": "Placeholders: {n} (keep as is)"
   },
   "f_items_per_batch_dd39": {
@@ -4483,7 +4483,7 @@
     "description": "Placeholders: {n} {total} (keep as is)"
   },
   "f_smart_refresh_order_fae9": {
-    "message": "✨ Inteligentna kolejność odświeżania"
+    "message": "✨ Inteligentna kolejność"
   },
   "f_requests_per_automatic_run_5475": {
     "message": "🔢 Zapytania na automatyczne uruchomienie"
@@ -5006,7 +5006,7 @@
     "message": "Popularne i najtańsze"
   },
   "f_best_value_f0ca": {
-    "message": "Najlepszy stosunek ceny do jakości"
+    "message": "Opłacalne"
   },
   "f_use_1947": {
     "message": "Użyj: {id}",
