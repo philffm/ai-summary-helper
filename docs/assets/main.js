@@ -165,16 +165,19 @@ function setBilling(period) {
   if (target === 'ar') banner.setAttribute('dir', 'rtl');
   banner.innerHTML =
     '<div class="lang-banner-inner">' +
+      '<svg class="lang-banner-globe" viewBox="0 0 24 24" fill="none" width="18" height="18" aria-hidden="true"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.6"/><path d="M3 12h18M12 3c2.6 2.7 3.9 5.7 3.9 9s-1.3 6.3-3.9 9c-2.6-2.7-3.9-5.7-3.9-9S9.4 5.7 12 3Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg>' +
       '<span class="lang-banner-text">' + info[1].replace('{l}', '<a class="lang-banner-link" href="' + href + '">' + info[0] + '</a>') + '</span>' +
       '<button type="button" class="lang-banner-close" aria-label="Dismiss language suggestion">' +
         '<svg viewBox="0 0 24 24" fill="none" width="14" height="14"><path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>' +
       '</button>' +
     '</div>';
   banner.querySelector('.lang-banner-close').addEventListener('click', function () {
-    banner.remove();
+    banner.classList.remove('is-in');
+    setTimeout(function () { banner.remove(); }, 250);
     try { localStorage.setItem(DISMISS_KEY, '1'); } catch (e) {}
   });
   document.body.prepend(banner);
+  requestAnimationFrame(function () { setTimeout(function () { banner.classList.add('is-in'); }, 400); });
 })();
 
 /* ── Bookmarklet generator (BYOK + byPhil Cloud) ────────────────── */

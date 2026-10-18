@@ -1130,3 +1130,16 @@ body:has(.nav--pill){padding-top:88px}
   .nav--pill .mobile-menu[data-mode="menu"] .mm-post strong{font-size:16px;font-weight:600}
   .nav--pill .mobile-menu[data-mode="menu"] .mm-post:hover{border-color:var(--signal);background:var(--surface-1)}
 }
+
+/* ===== Language suggestion: floating glass chip under the pill nav ===== */
+.lang-banner{position:fixed;top:92px;left:50%;z-index:90;max-width:calc(100vw - 24px);padding:6px 6px 6px 16px;border-radius:999px;border:1px solid var(--border-medium);background:var(--nav-bg-solid);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);box-shadow:0 2px 12px rgba(0,0,0,.1);opacity:0;transform:translate(-50%,-10px);transition:opacity .3s,transform .3s;pointer-events:none;flex-wrap:nowrap;gap:10px;font-size:14px}
+.lang-banner.is-in{opacity:1;transform:translate(-50%,0);pointer-events:auto}
+.lang-banner-inner{display:flex;align-items:center;gap:10px}
+.lang-banner-globe{color:var(--signal);flex:none}
+.lang-banner-text{color:var(--paper-dim)}
+.lang-banner-link{display:inline-block;margin-inline-start:4px;padding:6px 14px;border-radius:999px;background:var(--signal);color:#08090C;font-weight:600;text-decoration:none;white-space:nowrap}
+:root[data-theme="light"] .lang-banner-link{color:#fff}
+.lang-banner-close{position:static;transform:none;flex:none;width:30px;height:30px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center}
+@media (max-width:860px){.lang-banner{top:66px;padding-left:12px;font-size:13px}.lang-banner-text{line-height:1.3}}
+@media (prefers-reduced-motion:reduce){.lang-banner{transition:none}}
+@media (max-width:860px){.lang-banner{width:calc(100vw - 24px);border-radius:20px;padding:8px 8px 8px 14px}.lang-banner-inner{width:100%}.lang-banner-text{flex:1;text-align:start}.lang-banner-close{margin-inline-start:auto}}
