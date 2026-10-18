@@ -1155,16 +1155,19 @@ function setBilling(period) {
       if (e.key === 'Enter') { var f = pills.filter(function (a) { return !a.hidden; })[0]; if (f) location.href = f.href; }
     });
     if (mm) new MutationObserver(function () {
-      if (!mm.hidden && window.matchMedia('(min-width:861px)').matches) setTimeout(function () { ls.focus(); }, 60);
+      if (!mm.hidden && window.matchMedia('(min-width:861px)').matches) setTimeout(function () { if (mm.getAttribute('data-mode') === 'lang') ls.focus(); }, 60);
       if (mm.hidden) { ls.value = ''; filter(); }
     }).observe(mm, { attributes: true, attributeFilter: ['hidden'] });
   }
+
+  if (mm && tg) tg.addEventListener('click', function () { mm.setAttribute('data-mode', 'menu'); });
 
   // Globe button: open the full-screen menu and jump to the language search
   var gb = document.getElementById('langBtn');
   if (gb && mm && tg) gb.addEventListener('click', function (ev) {
     ev.stopPropagation();
     if (mm.hidden) tg.click();
+    mm.setAttribute('data-mode', 'lang');
     var box = mm.querySelector('.mm-lang');
     setTimeout(function () { if (box) box.scrollIntoView({ block: 'center' }); var s = document.getElementById('langSearch'); if (s) s.focus({ preventScroll: true }); }, 80);
   });

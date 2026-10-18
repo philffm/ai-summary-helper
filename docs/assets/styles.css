@@ -1104,3 +1104,13 @@ body:has(.nav--pill){padding-top:88px}
   .nav--pill .mm-post:hover{background:var(--surface-1);transform:none}
   .nav--pill .mm-posts{margin-top:12px}
 }
+
+/* Menu modes: hamburger → blog first, languages collapsed to the search field; globe → languages first, all expanded */
+.nav--pill .mobile-menu[data-mode="menu"] .lang-groups{display:none}
+.nav--pill .mobile-menu[data-mode="menu"] .mm-lang:focus-within .lang-groups{display:block}
+.nav--pill .mobile-menu[data-mode="menu"] .lang-search{margin-bottom:0}
+@media (min-width:861px){
+  .nav--pill .mobile-menu[data-mode="menu"] .mm-inner{grid-template-areas:"links posts" "links lang" "bottom lang"}
+  .nav--pill .mobile-menu[data-mode="menu"] .mm-posts{margin-top:0;margin-bottom:28px}
+  .nav--pill .mobile-menu[data-mode="menu"] .mm-lang{margin-top:0}
+}
