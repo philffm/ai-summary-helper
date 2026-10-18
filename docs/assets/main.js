@@ -1137,6 +1137,29 @@ function setBilling(period) {
     Object.keys(links).forEach(function (k) { var s = document.getElementById(k); if (s) io.observe(s); });
   }
 
+
+  // Language search (full-screen menu)
+  var ls = document.getElementById('langSearch'), lg = document.getElementById('langGroups');
+  if (ls && lg) {
+    var pills = [].slice.call(lg.querySelectorAll('.lang-pill')), empty = lg.querySelector('.lang-empty');
+    var curPill = lg.querySelector('[aria-current]');
+    if (curPill) ls.placeholder = curPill.textContent;
+    function filter() {
+      var q = ls.value.trim().toLowerCase(), n = 0;
+      pills.forEach(function (a) { var ok = !q || a.getAttribute('data-q').indexOf(q) > -1; a.hidden = !ok; if (ok) n++; });
+      [].forEach.call(lg.querySelectorAll('.lang-group'), function (g) { g.hidden = !g.querySelector('.lang-pill:not([hidden])'); });
+      if (empty) empty.hidden = n > 0;
+    }
+    ls.addEventListener('input', filter);
+    ls.addEventListener('keydown', function (e) {
+      if (e.key === 'Enter') { var f = pills.filter(function (a) { return !a.hidden; })[0]; if (f) location.href = f.href; }
+    });
+    if (mm) new MutationObserver(function () {
+      if (!mm.hidden && window.matchMedia('(min-width:861px)').matches) setTimeout(function () { ls.focus(); }, 60);
+      if (mm.hidden) { ls.value = ''; filter(); }
+    }).observe(mm, { attributes: true, attributeFilter: ['hidden'] });
+  }
+
   // Scroll lock while full-screen menu is open
   if (mm && tg) new MutationObserver(function () { document.body.classList.toggle('nav-locked', !mm.hidden); }).observe(mm, { attributes: true, attributeFilter: ['hidden'] });
 })();

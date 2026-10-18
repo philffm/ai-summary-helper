@@ -1078,3 +1078,29 @@ body:has(.nav--pill){padding-top:88px}
 .nav--pill .pill{box-shadow:0 2px 10px rgba(0,0,0,.08)}
 .nav--pill .mega-tag{font:600 10px/1 var(--mono,'JetBrains Mono',monospace);letter-spacing:.08em;text-transform:uppercase;color:var(--signal)}
 .nav--pill .pill,.nav--pill .tool-btn,.nav--pill .theme-toggle,.nav--pill .nav-toggle{background:var(--nav-bg-solid)}
+
+/* ===== Language block inside the full-screen menu (search + grouped pills) ===== */
+.nav--pill .mm-lang{margin-top:28px}
+.nav--pill .mm-lang-h,.nav--pill .lang-group-h{font:600 11px var(--mono,'JetBrains Mono',monospace);letter-spacing:.1em;text-transform:uppercase;color:var(--paper-dim);margin:0 0 8px}
+.nav--pill .lang-search{display:flex;align-items:center;gap:10px;padding:0 16px;height:52px;border-radius:16px;border:1px solid var(--border-medium);background:var(--surface-1);color:var(--paper-dim);margin-bottom:18px}
+.nav--pill .lang-search:focus-within{border-color:var(--signal)}
+.nav--pill .lang-search svg{width:18px;height:18px;flex:none}
+.nav--pill .lang-search input{flex:1;min-width:0;background:none;border:0;outline:0;font:500 16px var(--font-body,inherit);color:var(--paper)}
+.nav--pill .lang-group{margin-bottom:16px}
+.nav--pill .lang-pills{display:flex;flex-wrap:wrap;gap:8px}
+.nav--pill .lang-pill{display:inline-flex;align-items:center;padding:8px 14px;border-radius:999px;border:1px solid var(--border-medium);background:var(--surface-1);color:var(--paper);font-size:14px;font-weight:500;text-decoration:none;transition:border-color .15s,background .15s}
+.nav--pill .lang-pill:hover{border-color:var(--signal)}
+.nav--pill .lang-pill[aria-current]{border-color:var(--signal);background:var(--signal);color:#08090C}
+:root[data-theme="light"] .nav--pill .lang-pill[aria-current]{color:#fff}
+.nav--pill .lang-pill[hidden],.nav--pill .lang-group[hidden]{display:none}
+.nav--pill .lang-empty{color:var(--paper-dim);font-size:14px}
+@media (min-width:861px){
+  .nav--pill .mm-inner{grid-template-areas:"links lang" "links posts" "bottom posts";grid-template-rows:auto auto 1fr}
+  .nav--pill .mm-lang{grid-area:lang;margin-top:0}
+  .nav--pill .mm-posts{gap:2px}
+  .nav--pill .mm-post{padding:10px 14px;border-radius:12px;border-color:transparent;background:none;flex-direction:row;align-items:baseline;gap:12px}
+  .nav--pill .mm-post>span:last-child{display:none}
+  .nav--pill .mm-post strong{font-size:15px;font-weight:500}
+  .nav--pill .mm-post:hover{background:var(--surface-1);transform:none}
+  .nav--pill .mm-posts{margin-top:12px}
+}
