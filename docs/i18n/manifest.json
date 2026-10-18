@@ -85629,6 +85629,4086 @@
           "model": "google/gemini-3.7-flash"
         }
       }
+    },
+    "ba118bf7fc9c1aedc1edb28a0aa86e0b43b681f222af6616e13c43be87815b06": {
+      "en": "English",
+      "translations": {
+        "de": {
+          "text": "Englisch",
+          "translatedAt": "2026-10-18T19:16:29.458Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fr": {
+          "text": "Anglais",
+          "translatedAt": "2026-10-18T19:16:38.132Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "es": {
+          "text": "Inglés",
+          "translatedAt": "2026-10-18T19:16:48.234Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh": {
+          "text": "英语",
+          "translatedAt": "2026-10-18T19:16:54.731Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh-TW": {
+          "text": "英文",
+          "translatedAt": "2026-10-18T19:17:02.436Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ja": {
+          "text": "英語",
+          "translatedAt": "2026-10-18T19:17:05.907Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ko": {
+          "text": "영어",
+          "translatedAt": "2026-10-18T19:17:12.591Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pt": {
+          "text": "Inglês",
+          "translatedAt": "2026-10-18T19:17:20.676Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "hi": {
+          "text": "English",
+          "translatedAt": "2026-10-18T19:17:34.409Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "vi": {
+          "text": "Tiếng Anh",
+          "translatedAt": "2026-10-18T19:17:40.243Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "nl": {
+          "text": "Engels",
+          "translatedAt": "2026-10-18T19:17:51.273Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "it": {
+          "text": "Inglese",
+          "translatedAt": "2026-10-18T19:17:59.651Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ru": {
+          "text": "English",
+          "translatedAt": "2026-10-18T19:18:11.888Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "uk": {
+          "text": "Англійська",
+          "translatedAt": "2026-10-18T19:18:21.755Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "tr": {
+          "text": "İngilizce",
+          "translatedAt": "2026-10-18T19:18:29.743Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "id": {
+          "text": "Bahasa Inggris",
+          "translatedAt": "2026-10-18T19:18:36.109Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pl": {
+          "text": "Angielski",
+          "translatedAt": "2026-10-18T19:18:45.899Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "th": {
+          "text": "ภาษาอังกฤษ",
+          "translatedAt": "2026-10-18T19:18:55.607Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ar": {
+          "text": "الإنجليزية",
+          "translatedAt": "2026-10-18T19:19:03.664Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "sv": {
+          "text": "Engelska",
+          "translatedAt": "2026-10-18T19:19:11.879Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "da": {
+          "text": "Engelsk",
+          "translatedAt": "2026-10-18T19:19:19.654Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "no": {
+          "text": "Engelsk",
+          "translatedAt": "2026-10-18T19:19:28.727Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fi": {
+          "text": "Englanti",
+          "translatedAt": "2026-10-18T19:19:38.443Z",
+          "model": "google/gemini-3.7-flash"
+        }
+      }
+    },
+    "8aa22e8387721f10718dd56856266d93c08d71876552a34680b0d83163cd72e4": {
+      "en": "24 languages",
+      "translations": {
+        "de": {
+          "text": "24 Sprachen",
+          "translatedAt": "2026-10-18T19:16:29.458Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fr": {
+          "text": "24 langues",
+          "translatedAt": "2026-10-18T19:16:38.132Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "es": {
+          "text": "24 idiomas",
+          "translatedAt": "2026-10-18T19:16:48.234Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh": {
+          "text": "24 种语言",
+          "translatedAt": "2026-10-18T19:16:54.731Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh-TW": {
+          "text": "24 種語言",
+          "translatedAt": "2026-10-18T19:17:02.436Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ja": {
+          "text": "24言語",
+          "translatedAt": "2026-10-18T19:17:05.907Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ko": {
+          "text": "24개 언어",
+          "translatedAt": "2026-10-18T19:17:12.591Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pt": {
+          "text": "24 idiomas",
+          "translatedAt": "2026-10-18T19:17:20.676Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "hi": {
+          "text": "24 भाषाएं",
+          "translatedAt": "2026-10-18T19:17:34.409Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "vi": {
+          "text": "24 ngôn ngữ",
+          "translatedAt": "2026-10-18T19:17:40.243Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "nl": {
+          "text": "24 talen",
+          "translatedAt": "2026-10-18T19:17:51.273Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "it": {
+          "text": "24 lingue",
+          "translatedAt": "2026-10-18T19:17:59.651Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ru": {
+          "text": "24 языка",
+          "translatedAt": "2026-10-18T19:18:11.888Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "uk": {
+          "text": "24 мови",
+          "translatedAt": "2026-10-18T19:18:21.755Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "tr": {
+          "text": "24 dil",
+          "translatedAt": "2026-10-18T19:18:29.743Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "id": {
+          "text": "24 bahasa",
+          "translatedAt": "2026-10-18T19:18:36.109Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pl": {
+          "text": "24 języki",
+          "translatedAt": "2026-10-18T19:18:45.899Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "th": {
+          "text": "24 ภาษา",
+          "translatedAt": "2026-10-18T19:18:55.607Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ar": {
+          "text": "24 لغة",
+          "translatedAt": "2026-10-18T19:19:03.664Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "sv": {
+          "text": "24 språk",
+          "translatedAt": "2026-10-18T19:19:11.879Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "da": {
+          "text": "24 sprog",
+          "translatedAt": "2026-10-18T19:19:19.654Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "no": {
+          "text": "24 språk",
+          "translatedAt": "2026-10-18T19:19:28.727Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fi": {
+          "text": "24 kieltä",
+          "translatedAt": "2026-10-18T19:19:38.443Z",
+          "model": "google/gemini-3.7-flash"
+        }
+      }
+    },
+    "161660030aa6c9e32470cc1c023dab32dc748d80b0e61882b368cb775d12638e": {
+      "en": "→",
+      "translations": {
+        "de": {
+          "text": "→",
+          "translatedAt": "2026-10-18T19:16:29.458Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fr": {
+          "text": "→",
+          "translatedAt": "2026-10-18T19:16:38.132Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "es": {
+          "text": "→",
+          "translatedAt": "2026-10-18T19:16:48.234Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh": {
+          "text": "→",
+          "translatedAt": "2026-10-18T19:16:54.731Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh-TW": {
+          "text": "→",
+          "translatedAt": "2026-10-18T19:17:02.436Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ja": {
+          "text": "→",
+          "translatedAt": "2026-10-18T19:17:05.907Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ko": {
+          "text": "→",
+          "translatedAt": "2026-10-18T19:17:12.591Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pt": {
+          "text": "→",
+          "translatedAt": "2026-10-18T19:17:20.676Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "hi": {
+          "text": "→",
+          "translatedAt": "2026-10-18T19:17:34.409Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "vi": {
+          "text": "→",
+          "translatedAt": "2026-10-18T19:17:40.243Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "nl": {
+          "text": "→",
+          "translatedAt": "2026-10-18T19:17:51.273Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "it": {
+          "text": "→",
+          "translatedAt": "2026-10-18T19:17:59.651Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ru": {
+          "text": "→",
+          "translatedAt": "2026-10-18T19:18:11.888Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "uk": {
+          "text": "→",
+          "translatedAt": "2026-10-18T19:18:21.755Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "tr": {
+          "text": "→",
+          "translatedAt": "2026-10-18T19:18:29.743Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "id": {
+          "text": "→",
+          "translatedAt": "2026-10-18T19:18:36.109Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pl": {
+          "text": "→",
+          "translatedAt": "2026-10-18T19:18:45.899Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "th": {
+          "text": "→",
+          "translatedAt": "2026-10-18T19:18:55.607Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ar": {
+          "text": "→",
+          "translatedAt": "2026-10-18T19:19:03.664Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "sv": {
+          "text": "→",
+          "translatedAt": "2026-10-18T19:19:11.879Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "da": {
+          "text": "→",
+          "translatedAt": "2026-10-18T19:19:19.654Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "no": {
+          "text": "→",
+          "translatedAt": "2026-10-18T19:19:28.727Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fi": {
+          "text": "→",
+          "translatedAt": "2026-10-18T19:19:38.443Z",
+          "model": "google/gemini-3.7-flash"
+        }
+      }
+    },
+    "7d1bbfa86b100743599a856119044c0c21b756d00c734af6773c31f191d0f54b": {
+      "en": "Language · 24",
+      "translations": {
+        "de": {
+          "text": "Sprache · 24",
+          "translatedAt": "2026-10-18T19:16:29.458Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fr": {
+          "text": "Langue · 24",
+          "translatedAt": "2026-10-18T19:16:38.132Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "es": {
+          "text": "Idioma · 24",
+          "translatedAt": "2026-10-18T19:16:48.234Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh": {
+          "text": "语言 · 24",
+          "translatedAt": "2026-10-18T19:16:54.731Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh-TW": {
+          "text": "語言 · 24",
+          "translatedAt": "2026-10-18T19:17:02.436Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ja": {
+          "text": "言語 · 24",
+          "translatedAt": "2026-10-18T19:17:05.907Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ko": {
+          "text": "언어 · 24",
+          "translatedAt": "2026-10-18T19:17:12.591Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pt": {
+          "text": "Idioma · 24",
+          "translatedAt": "2026-10-18T19:17:20.676Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "hi": {
+          "text": "Language · 24",
+          "translatedAt": "2026-10-18T19:17:34.409Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "vi": {
+          "text": "Ngôn ngữ · 24",
+          "translatedAt": "2026-10-18T19:17:40.243Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "nl": {
+          "text": "Taal · 24",
+          "translatedAt": "2026-10-18T19:17:51.273Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "it": {
+          "text": "Lingua · 24",
+          "translatedAt": "2026-10-18T19:17:59.651Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ru": {
+          "text": "Язык · 24",
+          "translatedAt": "2026-10-18T19:18:11.888Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "uk": {
+          "text": "Мова · 24",
+          "translatedAt": "2026-10-18T19:18:21.755Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "tr": {
+          "text": "Dil · 24",
+          "translatedAt": "2026-10-18T19:18:29.743Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "id": {
+          "text": "Bahasa · 24",
+          "translatedAt": "2026-10-18T19:18:36.109Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pl": {
+          "text": "Język · 24",
+          "translatedAt": "2026-10-18T19:18:45.899Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "th": {
+          "text": "ภาษา · 24",
+          "translatedAt": "2026-10-18T19:18:55.607Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ar": {
+          "text": "اللغة · 24",
+          "translatedAt": "2026-10-18T19:19:03.664Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "sv": {
+          "text": "Språk · 24",
+          "translatedAt": "2026-10-18T19:19:11.879Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "da": {
+          "text": "Sprog · 24",
+          "translatedAt": "2026-10-18T19:19:19.654Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "no": {
+          "text": "Språk · 24",
+          "translatedAt": "2026-10-18T19:19:28.727Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fi": {
+          "text": "Kieli · 24",
+          "translatedAt": "2026-10-18T19:19:38.443Z",
+          "model": "google/gemini-3.7-flash"
+        }
+      }
+    },
+    "76327dec9ae3a06a8c3c283e6a81d3710ae736021b583875c13e4e8fb2ad83c0": {
+      "en": "Popular",
+      "translations": {
+        "de": {
+          "text": "Beliebt",
+          "translatedAt": "2026-10-18T19:16:29.458Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fr": {
+          "text": "Populaires",
+          "translatedAt": "2026-10-18T19:16:38.132Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "es": {
+          "text": "Populares",
+          "translatedAt": "2026-10-18T19:16:48.234Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh": {
+          "text": "热门",
+          "translatedAt": "2026-10-18T19:16:54.731Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh-TW": {
+          "text": "熱門",
+          "translatedAt": "2026-10-18T19:17:02.436Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ja": {
+          "text": "人気",
+          "translatedAt": "2026-10-18T19:17:05.907Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ko": {
+          "text": "인기",
+          "translatedAt": "2026-10-18T19:17:12.591Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pt": {
+          "text": "Populares",
+          "translatedAt": "2026-10-18T19:17:20.676Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "hi": {
+          "text": "पॉपुलर",
+          "translatedAt": "2026-10-18T19:17:34.409Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "vi": {
+          "text": "Phổ biến",
+          "translatedAt": "2026-10-18T19:17:40.243Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "nl": {
+          "text": "Populair",
+          "translatedAt": "2026-10-18T19:17:51.273Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "it": {
+          "text": "Popolari",
+          "translatedAt": "2026-10-18T19:17:59.651Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ru": {
+          "text": "Популярные",
+          "translatedAt": "2026-10-18T19:18:11.888Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "uk": {
+          "text": "Популярні",
+          "translatedAt": "2026-10-18T19:18:21.755Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "tr": {
+          "text": "Popüler",
+          "translatedAt": "2026-10-18T19:18:29.743Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "id": {
+          "text": "Populer",
+          "translatedAt": "2026-10-18T19:18:36.109Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pl": {
+          "text": "Popularne",
+          "translatedAt": "2026-10-18T19:18:45.899Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "th": {
+          "text": "ยอดนิยม",
+          "translatedAt": "2026-10-18T19:18:55.607Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ar": {
+          "text": "الشائعة",
+          "translatedAt": "2026-10-18T19:19:03.664Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "sv": {
+          "text": "Populära",
+          "translatedAt": "2026-10-18T19:19:11.879Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "da": {
+          "text": "Populære",
+          "translatedAt": "2026-10-18T19:19:19.654Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "no": {
+          "text": "Populære",
+          "translatedAt": "2026-10-18T19:19:28.727Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fi": {
+          "text": "Suositut",
+          "translatedAt": "2026-10-18T19:19:38.443Z",
+          "model": "google/gemini-3.7-flash"
+        }
+      }
+    },
+    "e595f45dc6c9e7665d108e8ea7940885a42e492918a522d44a1fc35494a4aa48": {
+      "en": "Europe",
+      "translations": {
+        "de": {
+          "text": "Europa",
+          "translatedAt": "2026-10-18T19:16:29.458Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fr": {
+          "text": "Europe",
+          "translatedAt": "2026-10-18T19:16:38.132Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "es": {
+          "text": "Europa",
+          "translatedAt": "2026-10-18T19:16:48.234Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh": {
+          "text": "欧洲",
+          "translatedAt": "2026-10-18T19:16:54.731Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh-TW": {
+          "text": "歐洲",
+          "translatedAt": "2026-10-18T19:17:02.436Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ja": {
+          "text": "ヨーロッパ",
+          "translatedAt": "2026-10-18T19:17:05.907Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ko": {
+          "text": "유럽",
+          "translatedAt": "2026-10-18T19:17:12.591Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pt": {
+          "text": "Europa",
+          "translatedAt": "2026-10-18T19:17:20.676Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "hi": {
+          "text": "यूरोप",
+          "translatedAt": "2026-10-18T19:17:34.409Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "vi": {
+          "text": "Châu Âu",
+          "translatedAt": "2026-10-18T19:17:40.243Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "nl": {
+          "text": "Europa",
+          "translatedAt": "2026-10-18T19:17:51.273Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "it": {
+          "text": "Europa",
+          "translatedAt": "2026-10-18T19:17:59.651Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ru": {
+          "text": "Европа",
+          "translatedAt": "2026-10-18T19:18:11.888Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "uk": {
+          "text": "Європа",
+          "translatedAt": "2026-10-18T19:18:21.755Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "tr": {
+          "text": "Avrupa",
+          "translatedAt": "2026-10-18T19:18:29.743Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "id": {
+          "text": "Eropa",
+          "translatedAt": "2026-10-18T19:18:36.109Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pl": {
+          "text": "Europa",
+          "translatedAt": "2026-10-18T19:18:45.899Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "th": {
+          "text": "ยุโรป",
+          "translatedAt": "2026-10-18T19:18:55.607Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ar": {
+          "text": "أوروبا",
+          "translatedAt": "2026-10-18T19:19:03.664Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "sv": {
+          "text": "Europa",
+          "translatedAt": "2026-10-18T19:19:11.879Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "da": {
+          "text": "Europa",
+          "translatedAt": "2026-10-18T19:19:19.654Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "no": {
+          "text": "Europa",
+          "translatedAt": "2026-10-18T19:19:28.727Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fi": {
+          "text": "Eurooppa",
+          "translatedAt": "2026-10-18T19:19:38.443Z",
+          "model": "google/gemini-3.7-flash"
+        }
+      }
+    },
+    "e05d888406b411b7728cbeb0c3cc7ec174fa1df247fe18bd3af4c74ba164f973": {
+      "en": "Asia & more",
+      "translations": {
+        "de": {
+          "text": "Asien & weitere",
+          "translatedAt": "2026-10-18T19:16:29.458Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fr": {
+          "text": "Asie et autres",
+          "translatedAt": "2026-10-18T19:16:38.132Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "es": {
+          "text": "Asia y más",
+          "translatedAt": "2026-10-18T19:16:48.234Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh": {
+          "text": "亚洲及更多",
+          "translatedAt": "2026-10-18T19:16:54.731Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh-TW": {
+          "text": "亞洲及其他",
+          "translatedAt": "2026-10-18T19:17:02.436Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ja": {
+          "text": "アジア他",
+          "translatedAt": "2026-10-18T19:17:05.907Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ko": {
+          "text": "아시아 및 기타",
+          "translatedAt": "2026-10-18T19:17:12.591Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pt": {
+          "text": "Ásia e outros",
+          "translatedAt": "2026-10-18T19:17:20.676Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "hi": {
+          "text": "एशिया और अन्य",
+          "translatedAt": "2026-10-18T19:17:34.409Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "vi": {
+          "text": "Châu Á & khu vực khác",
+          "translatedAt": "2026-10-18T19:17:40.243Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "nl": {
+          "text": "Azië & meer",
+          "translatedAt": "2026-10-18T19:17:51.273Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "it": {
+          "text": "Asia e altro",
+          "translatedAt": "2026-10-18T19:17:59.651Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ru": {
+          "text": "Азия и другие",
+          "translatedAt": "2026-10-18T19:18:11.888Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "uk": {
+          "text": "Азія та інші",
+          "translatedAt": "2026-10-18T19:18:21.755Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "tr": {
+          "text": "Asya ve diğerleri",
+          "translatedAt": "2026-10-18T19:18:29.743Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "id": {
+          "text": "Asia & lainnya",
+          "translatedAt": "2026-10-18T19:18:36.109Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pl": {
+          "text": "Azja i pozostałe",
+          "translatedAt": "2026-10-18T19:18:45.899Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "th": {
+          "text": "เอเชียและอื่นๆ",
+          "translatedAt": "2026-10-18T19:18:55.607Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ar": {
+          "text": "آسيا والمزيد",
+          "translatedAt": "2026-10-18T19:19:03.664Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "sv": {
+          "text": "Asien och fler",
+          "translatedAt": "2026-10-18T19:19:11.879Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "da": {
+          "text": "Asien og mere",
+          "translatedAt": "2026-10-18T19:19:19.654Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "no": {
+          "text": "Asia og mer",
+          "translatedAt": "2026-10-18T19:19:28.727Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fi": {
+          "text": "Aasia ja muut",
+          "translatedAt": "2026-10-18T19:19:38.443Z",
+          "model": "google/gemini-3.7-flash"
+        }
+      }
+    },
+    "cd8d844d2c3dedc1f6d5c56924a9f743bba1fc43278772da035935446c2db0f5": {
+      "en": "No match",
+      "translations": {
+        "de": {
+          "text": "Keine Treffer",
+          "translatedAt": "2026-10-18T19:16:29.458Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fr": {
+          "text": "Aucun résultat",
+          "translatedAt": "2026-10-18T19:16:38.132Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "es": {
+          "text": "Sin coincidencias",
+          "translatedAt": "2026-10-18T19:16:48.234Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh": {
+          "text": "无匹配结果",
+          "translatedAt": "2026-10-18T19:16:54.731Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh-TW": {
+          "text": "無相符結果",
+          "translatedAt": "2026-10-18T19:17:02.436Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ja": {
+          "text": "該当なし",
+          "translatedAt": "2026-10-18T19:17:05.907Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ko": {
+          "text": "검색 결과 없음",
+          "translatedAt": "2026-10-18T19:17:12.591Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pt": {
+          "text": "Nenhum resultado",
+          "translatedAt": "2026-10-18T19:17:20.676Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "hi": {
+          "text": "कोई मैच नहीं मिला",
+          "translatedAt": "2026-10-18T19:17:34.409Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "vi": {
+          "text": "Không có kết quả phù hợp",
+          "translatedAt": "2026-10-18T19:17:40.243Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "nl": {
+          "text": "Geen resultaten",
+          "translatedAt": "2026-10-18T19:17:51.273Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "it": {
+          "text": "Nessun risultato",
+          "translatedAt": "2026-10-18T19:17:59.651Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ru": {
+          "text": "Ничего не найдено",
+          "translatedAt": "2026-10-18T19:18:11.888Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "uk": {
+          "text": "Немає збігів",
+          "translatedAt": "2026-10-18T19:18:21.755Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "tr": {
+          "text": "Sonuç bulunamadı",
+          "translatedAt": "2026-10-18T19:18:29.743Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "id": {
+          "text": "Tidak ditemukan",
+          "translatedAt": "2026-10-18T19:18:36.109Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pl": {
+          "text": "Brak wyników",
+          "translatedAt": "2026-10-18T19:18:45.899Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "th": {
+          "text": "ไม่พบผลลัพธ์",
+          "translatedAt": "2026-10-18T19:18:55.607Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ar": {
+          "text": "لا توجد نتائج مطابقة",
+          "translatedAt": "2026-10-18T19:19:03.664Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "sv": {
+          "text": "Inga träffar",
+          "translatedAt": "2026-10-18T19:19:11.879Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "da": {
+          "text": "Ingen resultater",
+          "translatedAt": "2026-10-18T19:19:19.654Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "no": {
+          "text": "Ingen treff",
+          "translatedAt": "2026-10-18T19:19:28.727Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fi": {
+          "text": "Ei tuloksia",
+          "translatedAt": "2026-10-18T19:19:38.443Z",
+          "model": "google/gemini-3.7-flash"
+        }
+      }
+    },
+    "efe10c80ec8a9f38624cbb47103010a8cf32488a503e4b4bfe4f92307a9cefa7": {
+      "en": "Primary",
+      "translations": {
+        "de": {
+          "text": "Primär",
+          "translatedAt": "2026-10-18T19:16:29.458Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fr": {
+          "text": "Principal",
+          "translatedAt": "2026-10-18T19:16:38.132Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "es": {
+          "text": "Principal",
+          "translatedAt": "2026-10-18T19:16:48.234Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh": {
+          "text": "主要",
+          "translatedAt": "2026-10-18T19:16:54.731Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh-TW": {
+          "text": "主要",
+          "translatedAt": "2026-10-18T19:17:02.436Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ja": {
+          "text": "プライマリ",
+          "translatedAt": "2026-10-18T19:17:05.907Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ko": {
+          "text": "기본",
+          "translatedAt": "2026-10-18T19:17:12.591Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pt": {
+          "text": "Principal",
+          "translatedAt": "2026-10-18T19:17:20.676Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "hi": {
+          "text": "Primary",
+          "translatedAt": "2026-10-18T19:17:34.409Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "vi": {
+          "text": "Chính",
+          "translatedAt": "2026-10-18T19:17:40.243Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "nl": {
+          "text": "Primair",
+          "translatedAt": "2026-10-18T19:17:51.273Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "it": {
+          "text": "Principale",
+          "translatedAt": "2026-10-18T19:17:59.651Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ru": {
+          "text": "Основное",
+          "translatedAt": "2026-10-18T19:18:11.888Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "uk": {
+          "text": "Основне",
+          "translatedAt": "2026-10-18T19:18:21.755Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "tr": {
+          "text": "Birincil",
+          "translatedAt": "2026-10-18T19:18:29.743Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "id": {
+          "text": "Utama",
+          "translatedAt": "2026-10-18T19:18:36.109Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pl": {
+          "text": "Główny",
+          "translatedAt": "2026-10-18T19:18:45.899Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "th": {
+          "text": "หลัก",
+          "translatedAt": "2026-10-18T19:18:55.607Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ar": {
+          "text": "الرئيسي",
+          "translatedAt": "2026-10-18T19:19:03.664Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "sv": {
+          "text": "Primär",
+          "translatedAt": "2026-10-18T19:19:11.879Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "da": {
+          "text": "Primær",
+          "translatedAt": "2026-10-18T19:19:19.654Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "no": {
+          "text": "Primær",
+          "translatedAt": "2026-10-18T19:19:28.727Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fi": {
+          "text": "Ensisijainen",
+          "translatedAt": "2026-10-18T19:19:38.443Z",
+          "model": "google/gemini-3.7-flash"
+        }
+      }
+    },
+    "a4fe65264ef7dbb38d104b1e81eb3350f3142f3d16f32bdec39b1d9b42c1b8d1": {
+      "en": "Language",
+      "translations": {
+        "de": {
+          "text": "Sprache",
+          "translatedAt": "2026-10-18T19:16:29.458Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fr": {
+          "text": "Langue",
+          "translatedAt": "2026-10-18T19:16:38.132Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "es": {
+          "text": "Idioma",
+          "translatedAt": "2026-10-18T19:16:48.234Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh": {
+          "text": "语言",
+          "translatedAt": "2026-10-18T19:16:54.731Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh-TW": {
+          "text": "語言",
+          "translatedAt": "2026-10-18T19:17:02.436Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ja": {
+          "text": "言語",
+          "translatedAt": "2026-10-18T19:17:05.907Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ko": {
+          "text": "언어",
+          "translatedAt": "2026-10-18T19:17:12.591Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pt": {
+          "text": "Idioma",
+          "translatedAt": "2026-10-18T19:17:20.676Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "hi": {
+          "text": "भाषा",
+          "translatedAt": "2026-10-18T19:17:34.409Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "vi": {
+          "text": "Ngôn ngữ",
+          "translatedAt": "2026-10-18T19:17:40.243Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "nl": {
+          "text": "Taal",
+          "translatedAt": "2026-10-18T19:17:51.273Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "it": {
+          "text": "Lingua",
+          "translatedAt": "2026-10-18T19:17:59.651Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ru": {
+          "text": "Язык",
+          "translatedAt": "2026-10-18T19:18:11.888Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "uk": {
+          "text": "Мова",
+          "translatedAt": "2026-10-18T19:18:21.755Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "tr": {
+          "text": "Dil",
+          "translatedAt": "2026-10-18T19:18:29.743Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "id": {
+          "text": "Bahasa",
+          "translatedAt": "2026-10-18T19:18:36.109Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pl": {
+          "text": "Język",
+          "translatedAt": "2026-10-18T19:18:45.899Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "th": {
+          "text": "ภาษา",
+          "translatedAt": "2026-10-18T19:18:55.607Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ar": {
+          "text": "اللغة",
+          "translatedAt": "2026-10-18T19:19:03.664Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "sv": {
+          "text": "Språk",
+          "translatedAt": "2026-10-18T19:19:11.879Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "da": {
+          "text": "Sprog",
+          "translatedAt": "2026-10-18T19:19:19.654Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "no": {
+          "text": "Språk",
+          "translatedAt": "2026-10-18T19:19:28.727Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fi": {
+          "text": "Kieli",
+          "translatedAt": "2026-10-18T19:19:38.443Z",
+          "model": "google/gemini-3.7-flash"
+        }
+      }
+    },
+    "b40b3713b43dc702682dc967ea5c2dbe20ae414c30baf100d162a8250a928065": {
+      "en": "Open menu",
+      "translations": {
+        "de": {
+          "text": "Menü öffnen",
+          "translatedAt": "2026-10-18T19:16:29.458Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fr": {
+          "text": "Ouvrir le menu",
+          "translatedAt": "2026-10-18T19:16:38.132Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "es": {
+          "text": "Abrir menú",
+          "translatedAt": "2026-10-18T19:16:48.234Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh": {
+          "text": "打开菜单",
+          "translatedAt": "2026-10-18T19:16:54.731Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh-TW": {
+          "text": "開啟選單",
+          "translatedAt": "2026-10-18T19:17:02.436Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ja": {
+          "text": "メニューを開く",
+          "translatedAt": "2026-10-18T19:17:05.907Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ko": {
+          "text": "메뉴 열기",
+          "translatedAt": "2026-10-18T19:17:12.591Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pt": {
+          "text": "Abrir menu",
+          "translatedAt": "2026-10-18T19:17:20.676Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "hi": {
+          "text": "मेनू खोलें",
+          "translatedAt": "2026-10-18T19:17:34.409Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "vi": {
+          "text": "Mở menu",
+          "translatedAt": "2026-10-18T19:17:40.243Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "nl": {
+          "text": "Menu openen",
+          "translatedAt": "2026-10-18T19:17:51.273Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "it": {
+          "text": "Apri menu",
+          "translatedAt": "2026-10-18T19:17:59.651Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ru": {
+          "text": "Открыть меню",
+          "translatedAt": "2026-10-18T19:18:11.888Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "uk": {
+          "text": "Відкрити меню",
+          "translatedAt": "2026-10-18T19:18:21.755Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "tr": {
+          "text": "Menüyü aç",
+          "translatedAt": "2026-10-18T19:18:29.743Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "id": {
+          "text": "Buka menu",
+          "translatedAt": "2026-10-18T19:18:36.109Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pl": {
+          "text": "Otwórz menu",
+          "translatedAt": "2026-10-18T19:18:45.899Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "th": {
+          "text": "เปิดเมนู",
+          "translatedAt": "2026-10-18T19:18:55.607Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ar": {
+          "text": "فتح القائمة",
+          "translatedAt": "2026-10-18T19:19:03.664Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "sv": {
+          "text": "Öppna meny",
+          "translatedAt": "2026-10-18T19:19:11.879Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "da": {
+          "text": "Åbn menu",
+          "translatedAt": "2026-10-18T19:19:19.654Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "no": {
+          "text": "Åpne meny",
+          "translatedAt": "2026-10-18T19:19:28.727Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fi": {
+          "text": "Avaa valikko",
+          "translatedAt": "2026-10-18T19:19:38.443Z",
+          "model": "google/gemini-3.7-flash"
+        }
+      }
+    },
+    "cbaad3cf4a6507e5d6f98157fa255ca964588c8c30ecf198fb9c98ed97413f59": {
+      "en": "Mobile",
+      "translations": {
+        "de": {
+          "text": "Mobil",
+          "translatedAt": "2026-10-18T19:16:29.458Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fr": {
+          "text": "Mobile",
+          "translatedAt": "2026-10-18T19:16:38.132Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "es": {
+          "text": "Móvil",
+          "translatedAt": "2026-10-18T19:16:48.234Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh": {
+          "text": "移动端",
+          "translatedAt": "2026-10-18T19:16:54.731Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh-TW": {
+          "text": "行動版",
+          "translatedAt": "2026-10-18T19:17:02.436Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ja": {
+          "text": "モバイル",
+          "translatedAt": "2026-10-18T19:17:05.907Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ko": {
+          "text": "모바일",
+          "translatedAt": "2026-10-18T19:17:12.591Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pt": {
+          "text": "Mobile",
+          "translatedAt": "2026-10-18T19:17:20.676Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "hi": {
+          "text": "Mobile",
+          "translatedAt": "2026-10-18T19:17:34.409Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "vi": {
+          "text": "Di động",
+          "translatedAt": "2026-10-18T19:17:40.243Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "nl": {
+          "text": "Mobiel",
+          "translatedAt": "2026-10-18T19:17:51.273Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "it": {
+          "text": "Mobile",
+          "translatedAt": "2026-10-18T19:17:59.651Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ru": {
+          "text": "Мобильное",
+          "translatedAt": "2026-10-18T19:18:11.888Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "uk": {
+          "text": "Мобільний",
+          "translatedAt": "2026-10-18T19:18:21.755Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "tr": {
+          "text": "Mobil",
+          "translatedAt": "2026-10-18T19:18:29.743Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "id": {
+          "text": "Mobile",
+          "translatedAt": "2026-10-18T19:18:36.109Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pl": {
+          "text": "Mobilne",
+          "translatedAt": "2026-10-18T19:18:45.899Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "th": {
+          "text": "มือถือ",
+          "translatedAt": "2026-10-18T19:18:55.607Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ar": {
+          "text": "الجوال",
+          "translatedAt": "2026-10-18T19:19:03.664Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "sv": {
+          "text": "Mobil",
+          "translatedAt": "2026-10-18T19:19:11.879Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "da": {
+          "text": "Mobil",
+          "translatedAt": "2026-10-18T19:19:19.654Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "no": {
+          "text": "Mobil",
+          "translatedAt": "2026-10-18T19:19:28.727Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fi": {
+          "text": "Mobiili",
+          "translatedAt": "2026-10-18T19:19:38.443Z",
+          "model": "google/gemini-3.7-flash"
+        }
+      }
+    },
+    "bd16bde755d654d68d6c5723d0e70903b9ab058933179e6ba3acb427e8b7baeb": {
+      "en": "Search language",
+      "translations": {
+        "de": {
+          "text": "Sprache suchen",
+          "translatedAt": "2026-10-18T19:16:29.458Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fr": {
+          "text": "Rechercher une langue",
+          "translatedAt": "2026-10-18T19:16:38.132Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "es": {
+          "text": "Buscar idioma",
+          "translatedAt": "2026-10-18T19:16:48.234Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh": {
+          "text": "搜索语言",
+          "translatedAt": "2026-10-18T19:16:54.731Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh-TW": {
+          "text": "搜尋語言",
+          "translatedAt": "2026-10-18T19:17:02.436Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ja": {
+          "text": "言語を検索",
+          "translatedAt": "2026-10-18T19:17:05.907Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ko": {
+          "text": "언어 검색",
+          "translatedAt": "2026-10-18T19:17:12.591Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pt": {
+          "text": "Buscar idioma",
+          "translatedAt": "2026-10-18T19:17:20.676Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "hi": {
+          "text": "भाषा सर्च करें",
+          "translatedAt": "2026-10-18T19:17:34.409Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "vi": {
+          "text": "Tìm kiếm ngôn ngữ",
+          "translatedAt": "2026-10-18T19:17:40.243Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "nl": {
+          "text": "Taal zoeken",
+          "translatedAt": "2026-10-18T19:17:51.273Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "it": {
+          "text": "Cerca lingua",
+          "translatedAt": "2026-10-18T19:17:59.651Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ru": {
+          "text": "Поиск языка",
+          "translatedAt": "2026-10-18T19:18:11.888Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "uk": {
+          "text": "Пошук мови",
+          "translatedAt": "2026-10-18T19:18:21.755Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "tr": {
+          "text": "Dil ara",
+          "translatedAt": "2026-10-18T19:18:29.743Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "id": {
+          "text": "Cari bahasa",
+          "translatedAt": "2026-10-18T19:18:36.109Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pl": {
+          "text": "Szukaj języka",
+          "translatedAt": "2026-10-18T19:18:45.899Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "th": {
+          "text": "ค้นหาภาษา",
+          "translatedAt": "2026-10-18T19:18:55.607Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ar": {
+          "text": "البحث عن لغة",
+          "translatedAt": "2026-10-18T19:19:03.664Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "sv": {
+          "text": "Sök språk",
+          "translatedAt": "2026-10-18T19:19:11.879Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "da": {
+          "text": "Søg efter sprog",
+          "translatedAt": "2026-10-18T19:19:19.654Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "no": {
+          "text": "Søk etter språk",
+          "translatedAt": "2026-10-18T19:19:28.727Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fi": {
+          "text": "Hae kieltä",
+          "translatedAt": "2026-10-18T19:19:38.443Z",
+          "model": "google/gemini-3.7-flash"
+        }
+      }
+    },
+    "bd82c2438c06eca4705731e96647cc58b5282cfa311e47452e8d55c0b1a22a42": {
+      "en": "Search language…",
+      "translations": {
+        "de": {
+          "text": "Sprache suchen…",
+          "translatedAt": "2026-10-18T19:16:29.458Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fr": {
+          "text": "Rechercher une langue…",
+          "translatedAt": "2026-10-18T19:16:38.132Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "es": {
+          "text": "Buscar idioma…",
+          "translatedAt": "2026-10-18T19:16:48.234Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh": {
+          "text": "搜索语言…",
+          "translatedAt": "2026-10-18T19:16:54.731Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh-TW": {
+          "text": "搜尋語言…",
+          "translatedAt": "2026-10-18T19:17:02.436Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ja": {
+          "text": "言語を検索…",
+          "translatedAt": "2026-10-18T19:17:05.907Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ko": {
+          "text": "언어 검색…",
+          "translatedAt": "2026-10-18T19:17:12.591Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pt": {
+          "text": "Buscar idioma…",
+          "translatedAt": "2026-10-18T19:17:20.676Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "hi": {
+          "text": "भाषा सर्च करें…",
+          "translatedAt": "2026-10-18T19:17:34.409Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "vi": {
+          "text": "Tìm kiếm ngôn ngữ…",
+          "translatedAt": "2026-10-18T19:17:40.243Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "nl": {
+          "text": "Zoek een taal…",
+          "translatedAt": "2026-10-18T19:17:51.273Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "it": {
+          "text": "Cerca lingua…",
+          "translatedAt": "2026-10-18T19:17:59.651Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ru": {
+          "text": "Поиск языка…",
+          "translatedAt": "2026-10-18T19:18:11.888Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "uk": {
+          "text": "Пошук мови…",
+          "translatedAt": "2026-10-18T19:18:21.755Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "tr": {
+          "text": "Dil ara…",
+          "translatedAt": "2026-10-18T19:18:29.743Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "id": {
+          "text": "Cari bahasa…",
+          "translatedAt": "2026-10-18T19:18:36.109Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pl": {
+          "text": "Szukaj języka…",
+          "translatedAt": "2026-10-18T19:18:45.899Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "th": {
+          "text": "ค้นหาภาษา…",
+          "translatedAt": "2026-10-18T19:18:55.607Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ar": {
+          "text": "البحث عن لغة…",
+          "translatedAt": "2026-10-18T19:19:03.664Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "sv": {
+          "text": "Sök språk…",
+          "translatedAt": "2026-10-18T19:19:11.879Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "da": {
+          "text": "Søg efter sprog…",
+          "translatedAt": "2026-10-18T19:19:19.654Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "no": {
+          "text": "Søk etter språk…",
+          "translatedAt": "2026-10-18T19:19:28.727Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fi": {
+          "text": "Hae kieltä…",
+          "translatedAt": "2026-10-18T19:19:38.443Z",
+          "model": "google/gemini-3.7-flash"
+        }
+      }
+    },
+    "0ddd928803358d72822988d91c51397756ac6c861cf073c98a51286b459ff5ab": {
+      "en": "How do you want to use it?",
+      "translations": {
+        "de": {
+          "text": "Wie möchten Sie es nutzen?",
+          "translatedAt": "2026-10-18T19:16:29.458Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fr": {
+          "text": "Comment souhaitez-vous l'utiliser ?",
+          "translatedAt": "2026-10-18T19:16:38.132Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "es": {
+          "text": "¿Cómo quieres usarlo?",
+          "translatedAt": "2026-10-18T19:16:48.234Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh": {
+          "text": "你想如何使用？",
+          "translatedAt": "2026-10-18T19:16:54.731Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh-TW": {
+          "text": "你想如何使用？",
+          "translatedAt": "2026-10-18T19:17:02.436Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ja": {
+          "text": "どのような用途でお使いですか？",
+          "translatedAt": "2026-10-18T19:17:05.907Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ko": {
+          "text": "어떤 용도로 사용하시나요?",
+          "translatedAt": "2026-10-18T19:17:12.591Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pt": {
+          "text": "Como você quer usar?",
+          "translatedAt": "2026-10-18T19:17:20.676Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "hi": {
+          "text": "आप इसे कैसे यूज़ करना चाहते हैं?",
+          "translatedAt": "2026-10-18T19:17:34.409Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "vi": {
+          "text": "Bạn muốn sử dụng như thế nào?",
+          "translatedAt": "2026-10-18T19:17:40.243Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "nl": {
+          "text": "Hoe wil je het gebruiken?",
+          "translatedAt": "2026-10-18T19:17:51.273Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "it": {
+          "text": "Come vuoi usarlo?",
+          "translatedAt": "2026-10-18T19:17:59.651Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ru": {
+          "text": "Как вы хотите использовать сервис?",
+          "translatedAt": "2026-10-18T19:18:11.888Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "uk": {
+          "text": "Як ви хочете це використовувати?",
+          "translatedAt": "2026-10-18T19:18:21.755Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "tr": {
+          "text": "Nasıl kullanmak istersiniz?",
+          "translatedAt": "2026-10-18T19:18:29.743Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "id": {
+          "text": "Bagaimana Anda ingin menggunakannya?",
+          "translatedAt": "2026-10-18T19:18:36.109Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pl": {
+          "text": "Jak chcesz z tego korzystać?",
+          "translatedAt": "2026-10-18T19:18:45.899Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "th": {
+          "text": "ต้องการใช้งานในรูปแบบใด?",
+          "translatedAt": "2026-10-18T19:18:55.607Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ar": {
+          "text": "كيف ترغب في استخدامه؟",
+          "translatedAt": "2026-10-18T19:19:03.664Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "sv": {
+          "text": "Hur vill du använda det?",
+          "translatedAt": "2026-10-18T19:19:11.879Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "da": {
+          "text": "Hvordan vil du bruge det?",
+          "translatedAt": "2026-10-18T19:19:19.654Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "no": {
+          "text": "Hvordan vil du bruke det?",
+          "translatedAt": "2026-10-18T19:19:28.727Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fi": {
+          "text": "Miten haluat käyttää sitä?",
+          "translatedAt": "2026-10-18T19:19:38.443Z",
+          "model": "google/gemini-3.7-flash"
+        }
+      }
+    },
+    "b463b316cebfc24441413d705d65e7707fae189ff880ff9e704aad73c5353be6": {
+      "en": "Walkthrough",
+      "translations": {
+        "de": {
+          "text": "Produkttour",
+          "translatedAt": "2026-10-18T19:16:29.458Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fr": {
+          "text": "Visite guidée",
+          "translatedAt": "2026-10-18T19:16:38.132Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "es": {
+          "text": "Recorrido guiado",
+          "translatedAt": "2026-10-18T19:16:48.234Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh": {
+          "text": "功能导览",
+          "translatedAt": "2026-10-18T19:16:54.731Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh-TW": {
+          "text": "功能導覽",
+          "translatedAt": "2026-10-18T19:17:02.436Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ja": {
+          "text": "ウォークスルー",
+          "translatedAt": "2026-10-18T19:17:05.907Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ko": {
+          "text": "둘러보기",
+          "translatedAt": "2026-10-18T19:17:12.591Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pt": {
+          "text": "Tour guiado",
+          "translatedAt": "2026-10-18T19:17:20.676Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "hi": {
+          "text": "Walkthrough",
+          "translatedAt": "2026-10-18T19:17:34.409Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "vi": {
+          "text": "Hướng dẫn sử dụng",
+          "translatedAt": "2026-10-18T19:17:40.243Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "nl": {
+          "text": "Rondleiding",
+          "translatedAt": "2026-10-18T19:17:51.273Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "it": {
+          "text": "Tour guidato",
+          "translatedAt": "2026-10-18T19:17:59.651Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ru": {
+          "text": "Обзор возможностей",
+          "translatedAt": "2026-10-18T19:18:11.888Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "uk": {
+          "text": "Огляд",
+          "translatedAt": "2026-10-18T19:18:21.755Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "tr": {
+          "text": "Tanıtım turu",
+          "translatedAt": "2026-10-18T19:18:29.743Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "id": {
+          "text": "Panduan",
+          "translatedAt": "2026-10-18T19:18:36.109Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pl": {
+          "text": "Przewodnik",
+          "translatedAt": "2026-10-18T19:18:45.899Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "th": {
+          "text": "ทัวร์แนะนำการใช้งาน",
+          "translatedAt": "2026-10-18T19:18:55.607Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ar": {
+          "text": "جولة توضيحية",
+          "translatedAt": "2026-10-18T19:19:03.664Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "sv": {
+          "text": "Genomgång",
+          "translatedAt": "2026-10-18T19:19:11.879Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "da": {
+          "text": "Gennemgang",
+          "translatedAt": "2026-10-18T19:19:19.654Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "no": {
+          "text": "Gjennomgang",
+          "translatedAt": "2026-10-18T19:19:28.727Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fi": {
+          "text": "Esittely",
+          "translatedAt": "2026-10-18T19:19:38.443Z",
+          "model": "google/gemini-3.7-flash"
+        }
+      }
+    },
+    "4ace6a681c207f5db924fd783b17d083d5a5ade8a9fd35e588f821044405a2df": {
+      "en": "Pause walkthrough",
+      "translations": {
+        "de": {
+          "text": "Produkttour anhalten",
+          "translatedAt": "2026-10-18T19:16:29.458Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fr": {
+          "text": "Mettre en pause la visite guidée",
+          "translatedAt": "2026-10-18T19:16:38.132Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "es": {
+          "text": "Pausar recorrido guiado",
+          "translatedAt": "2026-10-18T19:16:48.234Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh": {
+          "text": "暂停导览",
+          "translatedAt": "2026-10-18T19:16:54.731Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh-TW": {
+          "text": "暫停導覽",
+          "translatedAt": "2026-10-18T19:17:02.436Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ja": {
+          "text": "ウォークスルーを一時停止",
+          "translatedAt": "2026-10-18T19:17:05.907Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ko": {
+          "text": "둘러보기 일시중지",
+          "translatedAt": "2026-10-18T19:17:12.591Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pt": {
+          "text": "Pausar tour",
+          "translatedAt": "2026-10-18T19:17:20.676Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "hi": {
+          "text": "Walkthrough पॉज़ करें",
+          "translatedAt": "2026-10-18T19:17:34.409Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "vi": {
+          "text": "Tạm dừng hướng dẫn",
+          "translatedAt": "2026-10-18T19:17:40.243Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "nl": {
+          "text": "Rondleiding pauzeren",
+          "translatedAt": "2026-10-18T19:17:51.273Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "it": {
+          "text": "Sospendi tour",
+          "translatedAt": "2026-10-18T19:17:59.651Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ru": {
+          "text": "Приостановить обзор",
+          "translatedAt": "2026-10-18T19:18:11.888Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "uk": {
+          "text": "Призупинити огляд",
+          "translatedAt": "2026-10-18T19:18:21.755Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "tr": {
+          "text": "Tanıtımı duraklat",
+          "translatedAt": "2026-10-18T19:18:29.743Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "id": {
+          "text": "Jeda panduan",
+          "translatedAt": "2026-10-18T19:18:36.109Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pl": {
+          "text": "Wstrzymaj przewodnik",
+          "translatedAt": "2026-10-18T19:18:45.899Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "th": {
+          "text": "หยุดทัวร์แนะนำชั่วคราว",
+          "translatedAt": "2026-10-18T19:18:55.607Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ar": {
+          "text": "إيقاف الجولة التوضيحية مؤقتاً",
+          "translatedAt": "2026-10-18T19:19:03.664Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "sv": {
+          "text": "Pausa genomgång",
+          "translatedAt": "2026-10-18T19:19:11.879Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "da": {
+          "text": "Pausér gennemgang",
+          "translatedAt": "2026-10-18T19:19:19.654Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "no": {
+          "text": "Sett gjennomgang på pause",
+          "translatedAt": "2026-10-18T19:19:28.727Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fi": {
+          "text": "Pysäytä esittely",
+          "translatedAt": "2026-10-18T19:19:38.443Z",
+          "model": "google/gemini-3.7-flash"
+        }
+      }
+    },
+    "25a8d45469d1048cbe3a77607bf15ac12b02c4575823590df089ad8e7dcdd36d": {
+      "en": "Step 1",
+      "translations": {
+        "de": {
+          "text": "Schritt 1",
+          "translatedAt": "2026-10-18T19:16:29.458Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fr": {
+          "text": "Étape 1",
+          "translatedAt": "2026-10-18T19:16:38.132Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "es": {
+          "text": "Paso 1",
+          "translatedAt": "2026-10-18T19:16:48.234Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh": {
+          "text": "第 1 步",
+          "translatedAt": "2026-10-18T19:16:54.731Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh-TW": {
+          "text": "步驟 1",
+          "translatedAt": "2026-10-18T19:17:02.436Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ja": {
+          "text": "ステップ 1",
+          "translatedAt": "2026-10-18T19:17:05.907Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ko": {
+          "text": "1단계",
+          "translatedAt": "2026-10-18T19:17:12.591Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pt": {
+          "text": "Etapa 1",
+          "translatedAt": "2026-10-18T19:17:20.676Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "hi": {
+          "text": "Step 1",
+          "translatedAt": "2026-10-18T19:17:34.409Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "vi": {
+          "text": "Bước 1",
+          "translatedAt": "2026-10-18T19:17:40.243Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "nl": {
+          "text": "Stap 1",
+          "translatedAt": "2026-10-18T19:17:51.273Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "it": {
+          "text": "Passaggio 1",
+          "translatedAt": "2026-10-18T19:17:59.651Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ru": {
+          "text": "Шаг 1",
+          "translatedAt": "2026-10-18T19:18:11.888Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "uk": {
+          "text": "Крок 1",
+          "translatedAt": "2026-10-18T19:18:21.755Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "tr": {
+          "text": "1. Adım",
+          "translatedAt": "2026-10-18T19:18:29.743Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "id": {
+          "text": "Langkah 1",
+          "translatedAt": "2026-10-18T19:18:36.109Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pl": {
+          "text": "Krok 1",
+          "translatedAt": "2026-10-18T19:18:45.899Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "th": {
+          "text": "ขั้นตอนที่ 1",
+          "translatedAt": "2026-10-18T19:18:55.607Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ar": {
+          "text": "الخطوة 1",
+          "translatedAt": "2026-10-18T19:19:03.664Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "sv": {
+          "text": "Steg 1",
+          "translatedAt": "2026-10-18T19:19:11.879Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "da": {
+          "text": "Trin 1",
+          "translatedAt": "2026-10-18T19:19:19.654Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "no": {
+          "text": "Trinn 1",
+          "translatedAt": "2026-10-18T19:19:28.727Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fi": {
+          "text": "Vaihe 1",
+          "translatedAt": "2026-10-18T19:19:38.443Z",
+          "model": "google/gemini-3.7-flash"
+        }
+      }
+    },
+    "649474af418cac5d8a42bd349856090ecd177c6cf970fbc0ca59b91ee20ff1d0": {
+      "en": "Step 2",
+      "translations": {
+        "de": {
+          "text": "Schritt 2",
+          "translatedAt": "2026-10-18T19:16:29.458Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fr": {
+          "text": "Étape 2",
+          "translatedAt": "2026-10-18T19:16:38.132Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "es": {
+          "text": "Paso 2",
+          "translatedAt": "2026-10-18T19:16:48.234Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh": {
+          "text": "第 2 步",
+          "translatedAt": "2026-10-18T19:16:54.731Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh-TW": {
+          "text": "步驟 2",
+          "translatedAt": "2026-10-18T19:17:02.436Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ja": {
+          "text": "ステップ 2",
+          "translatedAt": "2026-10-18T19:17:05.907Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ko": {
+          "text": "2단계",
+          "translatedAt": "2026-10-18T19:17:12.591Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pt": {
+          "text": "Etapa 2",
+          "translatedAt": "2026-10-18T19:17:20.676Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "hi": {
+          "text": "Step 2",
+          "translatedAt": "2026-10-18T19:17:34.409Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "vi": {
+          "text": "Bước 2",
+          "translatedAt": "2026-10-18T19:17:40.243Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "nl": {
+          "text": "Stap 2",
+          "translatedAt": "2026-10-18T19:17:51.273Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "it": {
+          "text": "Passaggio 2",
+          "translatedAt": "2026-10-18T19:17:59.651Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ru": {
+          "text": "Шаг 2",
+          "translatedAt": "2026-10-18T19:18:11.888Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "uk": {
+          "text": "Крок 2",
+          "translatedAt": "2026-10-18T19:18:21.755Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "tr": {
+          "text": "2. Adım",
+          "translatedAt": "2026-10-18T19:18:29.743Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "id": {
+          "text": "Langkah 2",
+          "translatedAt": "2026-10-18T19:18:36.109Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pl": {
+          "text": "Krok 2",
+          "translatedAt": "2026-10-18T19:18:45.899Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "th": {
+          "text": "ขั้นตอนที่ 2",
+          "translatedAt": "2026-10-18T19:18:55.607Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ar": {
+          "text": "الخطوة 2",
+          "translatedAt": "2026-10-18T19:19:03.664Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "sv": {
+          "text": "Steg 2",
+          "translatedAt": "2026-10-18T19:19:11.879Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "da": {
+          "text": "Trin 2",
+          "translatedAt": "2026-10-18T19:19:19.654Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "no": {
+          "text": "Trinn 2",
+          "translatedAt": "2026-10-18T19:19:28.727Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fi": {
+          "text": "Vaihe 2",
+          "translatedAt": "2026-10-18T19:19:38.443Z",
+          "model": "google/gemini-3.7-flash"
+        }
+      }
+    },
+    "394c36ddc82c482814ed987c2f85f4b610829cd7f5821bce3e7691a18710321f": {
+      "en": "Step 3",
+      "translations": {
+        "de": {
+          "text": "Schritt 3",
+          "translatedAt": "2026-10-18T19:16:29.458Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fr": {
+          "text": "Étape 3",
+          "translatedAt": "2026-10-18T19:16:38.132Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "es": {
+          "text": "Paso 3",
+          "translatedAt": "2026-10-18T19:16:48.234Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh": {
+          "text": "第 3 步",
+          "translatedAt": "2026-10-18T19:16:54.731Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh-TW": {
+          "text": "步驟 3",
+          "translatedAt": "2026-10-18T19:17:02.436Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ja": {
+          "text": "ステップ 3",
+          "translatedAt": "2026-10-18T19:17:05.907Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ko": {
+          "text": "3단계",
+          "translatedAt": "2026-10-18T19:17:12.591Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pt": {
+          "text": "Etapa 3",
+          "translatedAt": "2026-10-18T19:17:20.676Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "hi": {
+          "text": "Step 3",
+          "translatedAt": "2026-10-18T19:17:34.409Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "vi": {
+          "text": "Bước 3",
+          "translatedAt": "2026-10-18T19:17:40.243Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "nl": {
+          "text": "Stap 3",
+          "translatedAt": "2026-10-18T19:17:51.273Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "it": {
+          "text": "Passaggio 3",
+          "translatedAt": "2026-10-18T19:17:59.651Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ru": {
+          "text": "Шаг 3",
+          "translatedAt": "2026-10-18T19:18:11.888Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "uk": {
+          "text": "Крок 3",
+          "translatedAt": "2026-10-18T19:18:21.755Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "tr": {
+          "text": "3. Adım",
+          "translatedAt": "2026-10-18T19:18:29.743Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "id": {
+          "text": "Langkah 3",
+          "translatedAt": "2026-10-18T19:18:36.109Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pl": {
+          "text": "Krok 3",
+          "translatedAt": "2026-10-18T19:18:45.899Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "th": {
+          "text": "ขั้นตอนที่ 3",
+          "translatedAt": "2026-10-18T19:18:55.607Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ar": {
+          "text": "الخطوة 3",
+          "translatedAt": "2026-10-18T19:19:03.664Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "sv": {
+          "text": "Steg 3",
+          "translatedAt": "2026-10-18T19:19:11.879Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "da": {
+          "text": "Trin 3",
+          "translatedAt": "2026-10-18T19:19:19.654Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "no": {
+          "text": "Trinn 3",
+          "translatedAt": "2026-10-18T19:19:28.727Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fi": {
+          "text": "Vaihe 3",
+          "translatedAt": "2026-10-18T19:19:38.443Z",
+          "model": "google/gemini-3.7-flash"
+        }
+      }
+    },
+    "339ade8c4bfedec5afd32051caac293d8333c0fd8ccbf11412c2e70345e322b8": {
+      "en": "Step 4",
+      "translations": {
+        "de": {
+          "text": "Schritt 4",
+          "translatedAt": "2026-10-18T19:16:29.458Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fr": {
+          "text": "Étape 4",
+          "translatedAt": "2026-10-18T19:16:38.132Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "es": {
+          "text": "Paso 4",
+          "translatedAt": "2026-10-18T19:16:48.234Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh": {
+          "text": "第 4 步",
+          "translatedAt": "2026-10-18T19:16:54.731Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh-TW": {
+          "text": "步驟 4",
+          "translatedAt": "2026-10-18T19:17:02.436Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ja": {
+          "text": "ステップ 4",
+          "translatedAt": "2026-10-18T19:17:05.907Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ko": {
+          "text": "4단계",
+          "translatedAt": "2026-10-18T19:17:12.591Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pt": {
+          "text": "Etapa 4",
+          "translatedAt": "2026-10-18T19:17:20.676Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "hi": {
+          "text": "Step 4",
+          "translatedAt": "2026-10-18T19:17:34.409Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "vi": {
+          "text": "Bước 4",
+          "translatedAt": "2026-10-18T19:17:40.243Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "nl": {
+          "text": "Stap 4",
+          "translatedAt": "2026-10-18T19:17:51.273Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "it": {
+          "text": "Passaggio 4",
+          "translatedAt": "2026-10-18T19:17:59.651Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ru": {
+          "text": "Шаг 4",
+          "translatedAt": "2026-10-18T19:18:11.888Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "uk": {
+          "text": "Крок 4",
+          "translatedAt": "2026-10-18T19:18:21.755Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "tr": {
+          "text": "4. Adım",
+          "translatedAt": "2026-10-18T19:18:29.743Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "id": {
+          "text": "Langkah 4",
+          "translatedAt": "2026-10-18T19:18:36.109Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pl": {
+          "text": "Krok 4",
+          "translatedAt": "2026-10-18T19:18:45.899Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "th": {
+          "text": "ขั้นตอนที่ 4",
+          "translatedAt": "2026-10-18T19:18:55.607Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ar": {
+          "text": "الخطوة 4",
+          "translatedAt": "2026-10-18T19:19:03.664Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "sv": {
+          "text": "Steg 4",
+          "translatedAt": "2026-10-18T19:19:11.879Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "da": {
+          "text": "Trin 4",
+          "translatedAt": "2026-10-18T19:19:19.654Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "no": {
+          "text": "Trinn 4",
+          "translatedAt": "2026-10-18T19:19:28.727Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fi": {
+          "text": "Vaihe 4",
+          "translatedAt": "2026-10-18T19:19:38.443Z",
+          "model": "google/gemini-3.7-flash"
+        }
+      }
+    },
+    "ff8df40a63cb65c966a9ce5e1cd901b6e5b7db40597ca5143f4310e7ba221553": {
+      "en": "Product screenshots",
+      "translations": {
+        "de": {
+          "text": "Produkt-Screenshots",
+          "translatedAt": "2026-10-18T19:16:29.458Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fr": {
+          "text": "Captures d'écran du produit",
+          "translatedAt": "2026-10-18T19:16:38.132Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "es": {
+          "text": "Capturas de pantalla del producto",
+          "translatedAt": "2026-10-18T19:16:48.234Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh": {
+          "text": "产品截图",
+          "translatedAt": "2026-10-18T19:16:54.731Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh-TW": {
+          "text": "產品截圖",
+          "translatedAt": "2026-10-18T19:17:02.436Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ja": {
+          "text": "製品のスクリーンショット",
+          "translatedAt": "2026-10-18T19:17:05.907Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ko": {
+          "text": "제품 스크린샷",
+          "translatedAt": "2026-10-18T19:17:12.591Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pt": {
+          "text": "Capturas de tela do produto",
+          "translatedAt": "2026-10-18T19:17:20.676Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "hi": {
+          "text": "Product स्क्रीनशॉट्स",
+          "translatedAt": "2026-10-18T19:17:34.409Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "vi": {
+          "text": "Ảnh chụp màn hình sản phẩm",
+          "translatedAt": "2026-10-18T19:17:40.243Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "nl": {
+          "text": "Screenshots van het product",
+          "translatedAt": "2026-10-18T19:17:51.273Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "it": {
+          "text": "Schermate del prodotto",
+          "translatedAt": "2026-10-18T19:17:59.651Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ru": {
+          "text": "Скриншоты продукта",
+          "translatedAt": "2026-10-18T19:18:11.888Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "uk": {
+          "text": "Скриншоти продукту",
+          "translatedAt": "2026-10-18T19:18:21.755Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "tr": {
+          "text": "Ürün ekran görüntüleri",
+          "translatedAt": "2026-10-18T19:18:29.743Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "id": {
+          "text": "Tangkapan layar produk",
+          "translatedAt": "2026-10-18T19:18:36.109Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pl": {
+          "text": "Zrzuty ekranu produktu",
+          "translatedAt": "2026-10-18T19:18:45.899Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "th": {
+          "text": "ภาพหน้าจอผลิตภัณฑ์",
+          "translatedAt": "2026-10-18T19:18:55.607Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ar": {
+          "text": "لقطات شاشة للمنتج",
+          "translatedAt": "2026-10-18T19:19:03.664Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "sv": {
+          "text": "Skärmdumpar av produkten",
+          "translatedAt": "2026-10-18T19:19:11.879Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "da": {
+          "text": "Skærmbilleder af produktet",
+          "translatedAt": "2026-10-18T19:19:19.654Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "no": {
+          "text": "Skjermbilder av produktet",
+          "translatedAt": "2026-10-18T19:19:28.727Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fi": {
+          "text": "Tuotteen kuvakaappaukset",
+          "translatedAt": "2026-10-18T19:19:38.443Z",
+          "model": "google/gemini-3.7-flash"
+        }
+      }
+    },
+    "fe4eb457548bc5c37e53f5c868872aae605bda7438359ad6fd1fe1dd4403c8db": {
+      "en": "1 / 4",
+      "translations": {
+        "de": {
+          "text": "1 / 4",
+          "translatedAt": "2026-10-18T19:16:29.458Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fr": {
+          "text": "1 / 4",
+          "translatedAt": "2026-10-18T19:16:38.132Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "es": {
+          "text": "1 / 4",
+          "translatedAt": "2026-10-18T19:16:48.234Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh": {
+          "text": "1 / 4",
+          "translatedAt": "2026-10-18T19:16:54.731Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh-TW": {
+          "text": "1 / 4",
+          "translatedAt": "2026-10-18T19:17:02.436Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ja": {
+          "text": "1 / 4",
+          "translatedAt": "2026-10-18T19:17:05.907Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ko": {
+          "text": "1 / 4",
+          "translatedAt": "2026-10-18T19:17:12.591Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pt": {
+          "text": "1 / 4",
+          "translatedAt": "2026-10-18T19:17:20.676Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "hi": {
+          "text": "1 / 4",
+          "translatedAt": "2026-10-18T19:17:34.409Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "vi": {
+          "text": "1 / 4",
+          "translatedAt": "2026-10-18T19:17:40.243Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "nl": {
+          "text": "1 / 4",
+          "translatedAt": "2026-10-18T19:17:51.273Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "it": {
+          "text": "1 / 4",
+          "translatedAt": "2026-10-18T19:17:59.651Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ru": {
+          "text": "1 / 4",
+          "translatedAt": "2026-10-18T19:18:11.888Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "uk": {
+          "text": "1 / 4",
+          "translatedAt": "2026-10-18T19:18:21.755Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "tr": {
+          "text": "1 / 4",
+          "translatedAt": "2026-10-18T19:18:29.743Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "id": {
+          "text": "1 / 4",
+          "translatedAt": "2026-10-18T19:18:36.109Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pl": {
+          "text": "1 / 4",
+          "translatedAt": "2026-10-18T19:18:45.899Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "th": {
+          "text": "1 / 4",
+          "translatedAt": "2026-10-18T19:18:55.607Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ar": {
+          "text": "1 / 4",
+          "translatedAt": "2026-10-18T19:19:03.664Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "sv": {
+          "text": "1 / 4",
+          "translatedAt": "2026-10-18T19:19:11.879Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "da": {
+          "text": "1 / 4",
+          "translatedAt": "2026-10-18T19:19:19.654Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "no": {
+          "text": "1 / 4",
+          "translatedAt": "2026-10-18T19:19:28.727Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fi": {
+          "text": "1 / 4",
+          "translatedAt": "2026-10-18T19:19:38.443Z",
+          "model": "google/gemini-3.7-flash"
+        }
+      }
+    },
+    "b6ef821f6e8788b308b27747aac0ef5299b3d6c0deebeadc3abcc26f9ffc0c4d": {
+      "en": "2 / 4",
+      "translations": {
+        "de": {
+          "text": "2 / 4",
+          "translatedAt": "2026-10-18T19:16:29.458Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fr": {
+          "text": "2 / 4",
+          "translatedAt": "2026-10-18T19:16:38.132Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "es": {
+          "text": "2 / 4",
+          "translatedAt": "2026-10-18T19:16:48.234Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh": {
+          "text": "2 / 4",
+          "translatedAt": "2026-10-18T19:16:54.731Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh-TW": {
+          "text": "2 / 4",
+          "translatedAt": "2026-10-18T19:17:02.436Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ja": {
+          "text": "2 / 4",
+          "translatedAt": "2026-10-18T19:17:05.907Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ko": {
+          "text": "2 / 4",
+          "translatedAt": "2026-10-18T19:17:12.591Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pt": {
+          "text": "2 / 4",
+          "translatedAt": "2026-10-18T19:17:20.676Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "hi": {
+          "text": "2 / 4",
+          "translatedAt": "2026-10-18T19:17:34.409Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "vi": {
+          "text": "2 / 4",
+          "translatedAt": "2026-10-18T19:17:40.243Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "nl": {
+          "text": "2 / 4",
+          "translatedAt": "2026-10-18T19:17:51.273Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "it": {
+          "text": "2 / 4",
+          "translatedAt": "2026-10-18T19:17:59.651Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ru": {
+          "text": "2 / 4",
+          "translatedAt": "2026-10-18T19:18:11.888Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "uk": {
+          "text": "2 / 4",
+          "translatedAt": "2026-10-18T19:18:21.755Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "tr": {
+          "text": "2 / 4",
+          "translatedAt": "2026-10-18T19:18:29.743Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "id": {
+          "text": "2 / 4",
+          "translatedAt": "2026-10-18T19:18:36.109Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pl": {
+          "text": "2 / 4",
+          "translatedAt": "2026-10-18T19:18:45.899Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "th": {
+          "text": "2 / 4",
+          "translatedAt": "2026-10-18T19:18:55.607Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ar": {
+          "text": "2 / 4",
+          "translatedAt": "2026-10-18T19:19:03.664Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "sv": {
+          "text": "2 / 4",
+          "translatedAt": "2026-10-18T19:19:11.879Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "da": {
+          "text": "2 / 4",
+          "translatedAt": "2026-10-18T19:19:19.654Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "no": {
+          "text": "2 / 4",
+          "translatedAt": "2026-10-18T19:19:28.727Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fi": {
+          "text": "2 / 4",
+          "translatedAt": "2026-10-18T19:19:38.443Z",
+          "model": "google/gemini-3.7-flash"
+        }
+      }
+    },
+    "279fbf9c823ffe4df993001eab01b09357df719c97f1d9122a4056bada9f83d1": {
+      "en": "3 / 4",
+      "translations": {
+        "de": {
+          "text": "3 / 4",
+          "translatedAt": "2026-10-18T19:16:29.458Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fr": {
+          "text": "3 / 4",
+          "translatedAt": "2026-10-18T19:16:38.132Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "es": {
+          "text": "3 / 4",
+          "translatedAt": "2026-10-18T19:16:48.234Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh": {
+          "text": "3 / 4",
+          "translatedAt": "2026-10-18T19:16:54.731Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh-TW": {
+          "text": "3 / 4",
+          "translatedAt": "2026-10-18T19:17:02.436Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ja": {
+          "text": "3 / 4",
+          "translatedAt": "2026-10-18T19:17:05.907Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ko": {
+          "text": "3 / 4",
+          "translatedAt": "2026-10-18T19:17:12.591Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pt": {
+          "text": "3 / 4",
+          "translatedAt": "2026-10-18T19:17:20.676Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "hi": {
+          "text": "3 / 4",
+          "translatedAt": "2026-10-18T19:17:34.409Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "vi": {
+          "text": "3 / 4",
+          "translatedAt": "2026-10-18T19:17:40.243Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "nl": {
+          "text": "3 / 4",
+          "translatedAt": "2026-10-18T19:17:51.273Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "it": {
+          "text": "3 / 4",
+          "translatedAt": "2026-10-18T19:17:59.651Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ru": {
+          "text": "3 / 4",
+          "translatedAt": "2026-10-18T19:18:11.888Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "uk": {
+          "text": "3 / 4",
+          "translatedAt": "2026-10-18T19:18:21.755Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "tr": {
+          "text": "3 / 4",
+          "translatedAt": "2026-10-18T19:18:29.743Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "id": {
+          "text": "3 / 4",
+          "translatedAt": "2026-10-18T19:18:36.109Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pl": {
+          "text": "3 / 4",
+          "translatedAt": "2026-10-18T19:18:45.899Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "th": {
+          "text": "3 / 4",
+          "translatedAt": "2026-10-18T19:18:55.607Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ar": {
+          "text": "3 / 4",
+          "translatedAt": "2026-10-18T19:19:03.664Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "sv": {
+          "text": "3 / 4",
+          "translatedAt": "2026-10-18T19:19:11.879Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "da": {
+          "text": "3 / 4",
+          "translatedAt": "2026-10-18T19:19:19.654Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "no": {
+          "text": "3 / 4",
+          "translatedAt": "2026-10-18T19:19:28.727Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fi": {
+          "text": "3 / 4",
+          "translatedAt": "2026-10-18T19:19:38.443Z",
+          "model": "google/gemini-3.7-flash"
+        }
+      }
+    },
+    "a183b5b49284c930ac1cd4b572b395f1f8983d1d174238750ef4300c41c1fb52": {
+      "en": "4 / 4",
+      "translations": {
+        "de": {
+          "text": "4 / 4",
+          "translatedAt": "2026-10-18T19:16:29.458Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fr": {
+          "text": "4 / 4",
+          "translatedAt": "2026-10-18T19:16:38.132Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "es": {
+          "text": "4 / 4",
+          "translatedAt": "2026-10-18T19:16:48.234Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh": {
+          "text": "4 / 4",
+          "translatedAt": "2026-10-18T19:16:54.731Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh-TW": {
+          "text": "4 / 4",
+          "translatedAt": "2026-10-18T19:17:02.436Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ja": {
+          "text": "4 / 4",
+          "translatedAt": "2026-10-18T19:17:05.907Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ko": {
+          "text": "4 / 4",
+          "translatedAt": "2026-10-18T19:17:12.591Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pt": {
+          "text": "4 / 4",
+          "translatedAt": "2026-10-18T19:17:20.676Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "hi": {
+          "text": "4 / 4",
+          "translatedAt": "2026-10-18T19:17:34.409Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "vi": {
+          "text": "4 / 4",
+          "translatedAt": "2026-10-18T19:17:40.243Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "nl": {
+          "text": "4 / 4",
+          "translatedAt": "2026-10-18T19:17:51.273Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "it": {
+          "text": "4 / 4",
+          "translatedAt": "2026-10-18T19:17:59.651Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ru": {
+          "text": "4 / 4",
+          "translatedAt": "2026-10-18T19:18:11.888Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "uk": {
+          "text": "4 / 4",
+          "translatedAt": "2026-10-18T19:18:21.755Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "tr": {
+          "text": "4 / 4",
+          "translatedAt": "2026-10-18T19:18:29.743Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "id": {
+          "text": "4 / 4",
+          "translatedAt": "2026-10-18T19:18:36.109Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pl": {
+          "text": "4 / 4",
+          "translatedAt": "2026-10-18T19:18:45.899Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "th": {
+          "text": "4 / 4",
+          "translatedAt": "2026-10-18T19:18:55.607Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ar": {
+          "text": "4 / 4",
+          "translatedAt": "2026-10-18T19:19:03.664Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "sv": {
+          "text": "4 / 4",
+          "translatedAt": "2026-10-18T19:19:11.879Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "da": {
+          "text": "4 / 4",
+          "translatedAt": "2026-10-18T19:19:19.654Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "no": {
+          "text": "4 / 4",
+          "translatedAt": "2026-10-18T19:19:28.727Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fi": {
+          "text": "4 / 4",
+          "translatedAt": "2026-10-18T19:19:38.443Z",
+          "model": "google/gemini-3.7-flash"
+        }
+      }
+    },
+    "bfb549220c60fc914ee07504fb05a09a509aa9311c718224b68fae34252a97e8": {
+      "en": "Previous slide",
+      "translations": {
+        "de": {
+          "text": "Vorherige Folie",
+          "translatedAt": "2026-10-18T19:16:29.458Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fr": {
+          "text": "Diapositive précédente",
+          "translatedAt": "2026-10-18T19:16:38.132Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "es": {
+          "text": "Diapositiva anterior",
+          "translatedAt": "2026-10-18T19:16:48.234Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh": {
+          "text": "上一张",
+          "translatedAt": "2026-10-18T19:16:54.731Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh-TW": {
+          "text": "上一張",
+          "translatedAt": "2026-10-18T19:17:02.436Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ja": {
+          "text": "前のスライド",
+          "translatedAt": "2026-10-18T19:17:05.907Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ko": {
+          "text": "이전 슬라이드",
+          "translatedAt": "2026-10-18T19:17:12.591Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pt": {
+          "text": "Slide anterior",
+          "translatedAt": "2026-10-18T19:17:20.676Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "hi": {
+          "text": "पिछली स्लाइड",
+          "translatedAt": "2026-10-18T19:17:34.409Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "vi": {
+          "text": "Slide trước",
+          "translatedAt": "2026-10-18T19:17:40.243Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "nl": {
+          "text": "Vorige slide",
+          "translatedAt": "2026-10-18T19:17:51.273Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "it": {
+          "text": "Slide precedente",
+          "translatedAt": "2026-10-18T19:17:59.651Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ru": {
+          "text": "Предыдущий слайд",
+          "translatedAt": "2026-10-18T19:18:11.888Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "uk": {
+          "text": "Попередній слайд",
+          "translatedAt": "2026-10-18T19:18:21.755Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "tr": {
+          "text": "Önceki slayt",
+          "translatedAt": "2026-10-18T19:18:29.743Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "id": {
+          "text": "Slide sebelumnya",
+          "translatedAt": "2026-10-18T19:18:36.109Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pl": {
+          "text": "Poprzedni slajd",
+          "translatedAt": "2026-10-18T19:18:45.899Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "th": {
+          "text": "สไลด์ก่อนหน้า",
+          "translatedAt": "2026-10-18T19:18:55.607Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ar": {
+          "text": "الشريحة السابقة",
+          "translatedAt": "2026-10-18T19:19:03.664Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "sv": {
+          "text": "Föregående bild",
+          "translatedAt": "2026-10-18T19:19:11.879Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "da": {
+          "text": "Forrige slide",
+          "translatedAt": "2026-10-18T19:19:19.654Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "no": {
+          "text": "Forrige lysbilde",
+          "translatedAt": "2026-10-18T19:19:28.727Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fi": {
+          "text": "Edellinen dia",
+          "translatedAt": "2026-10-18T19:19:38.443Z",
+          "model": "google/gemini-3.7-flash"
+        }
+      }
+    },
+    "cdc93d1c8fe9a2af342a761d7407ebb397693534dadaa4cdca8b3788ef64805a": {
+      "en": "Next slide",
+      "translations": {
+        "de": {
+          "text": "Nächste Folie",
+          "translatedAt": "2026-10-18T19:16:29.458Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fr": {
+          "text": "Diapositive suivante",
+          "translatedAt": "2026-10-18T19:16:38.132Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "es": {
+          "text": "Diapositiva siguiente",
+          "translatedAt": "2026-10-18T19:16:48.234Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh": {
+          "text": "下一张",
+          "translatedAt": "2026-10-18T19:16:54.731Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh-TW": {
+          "text": "下一張",
+          "translatedAt": "2026-10-18T19:17:02.436Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ja": {
+          "text": "次のスライド",
+          "translatedAt": "2026-10-18T19:17:05.907Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ko": {
+          "text": "다음 슬라이드",
+          "translatedAt": "2026-10-18T19:17:12.591Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pt": {
+          "text": "Próximo slide",
+          "translatedAt": "2026-10-18T19:17:20.676Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "hi": {
+          "text": "अगली स्लाइड",
+          "translatedAt": "2026-10-18T19:17:34.409Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "vi": {
+          "text": "Slide tiếp theo",
+          "translatedAt": "2026-10-18T19:17:40.243Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "nl": {
+          "text": "Volgende slide",
+          "translatedAt": "2026-10-18T19:17:51.273Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "it": {
+          "text": "Slide successiva",
+          "translatedAt": "2026-10-18T19:17:59.651Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ru": {
+          "text": "Следующий слайд",
+          "translatedAt": "2026-10-18T19:18:11.888Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "uk": {
+          "text": "Наступний слайд",
+          "translatedAt": "2026-10-18T19:18:21.755Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "tr": {
+          "text": "Sonraki slayt",
+          "translatedAt": "2026-10-18T19:18:29.743Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "id": {
+          "text": "Slide berikutnya",
+          "translatedAt": "2026-10-18T19:18:36.109Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pl": {
+          "text": "Następny slajd",
+          "translatedAt": "2026-10-18T19:18:45.899Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "th": {
+          "text": "สไลด์ถัดไป",
+          "translatedAt": "2026-10-18T19:18:55.607Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ar": {
+          "text": "الشريحة التالية",
+          "translatedAt": "2026-10-18T19:19:03.664Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "sv": {
+          "text": "Nästa bild",
+          "translatedAt": "2026-10-18T19:19:11.879Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "da": {
+          "text": "Næste slide",
+          "translatedAt": "2026-10-18T19:19:19.654Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "no": {
+          "text": "Neste lysbilde",
+          "translatedAt": "2026-10-18T19:19:28.727Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fi": {
+          "text": "Seuraava dia",
+          "translatedAt": "2026-10-18T19:19:38.443Z",
+          "model": "google/gemini-3.7-flash"
+        }
+      }
+    },
+    "0c7cc9b591c3af9bca07ba32aae7364e4661d51e36aa843a5f04291f4c9d2782": {
+      "en": "Slide 1",
+      "translations": {
+        "de": {
+          "text": "Folie 1",
+          "translatedAt": "2026-10-18T19:16:29.458Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fr": {
+          "text": "Diapositive 1",
+          "translatedAt": "2026-10-18T19:16:38.132Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "es": {
+          "text": "Diapositiva 1",
+          "translatedAt": "2026-10-18T19:16:48.234Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh": {
+          "text": "幻灯片 1",
+          "translatedAt": "2026-10-18T19:16:54.731Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh-TW": {
+          "text": "投影片 1",
+          "translatedAt": "2026-10-18T19:17:02.436Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ja": {
+          "text": "スライド 1",
+          "translatedAt": "2026-10-18T19:17:05.907Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ko": {
+          "text": "슬라이드 1",
+          "translatedAt": "2026-10-18T19:17:12.591Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pt": {
+          "text": "Slide 1",
+          "translatedAt": "2026-10-18T19:17:20.676Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "hi": {
+          "text": "Slide 1",
+          "translatedAt": "2026-10-18T19:17:34.409Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "vi": {
+          "text": "Slide 1",
+          "translatedAt": "2026-10-18T19:17:40.243Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "nl": {
+          "text": "Slide 1",
+          "translatedAt": "2026-10-18T19:17:51.273Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "it": {
+          "text": "Slide 1",
+          "translatedAt": "2026-10-18T19:17:59.651Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ru": {
+          "text": "Слайд 1",
+          "translatedAt": "2026-10-18T19:18:11.888Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "uk": {
+          "text": "Слайд 1",
+          "translatedAt": "2026-10-18T19:18:21.755Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "tr": {
+          "text": "1. Slayt",
+          "translatedAt": "2026-10-18T19:18:29.743Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "id": {
+          "text": "Slide 1",
+          "translatedAt": "2026-10-18T19:18:36.109Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pl": {
+          "text": "Slajd 1",
+          "translatedAt": "2026-10-18T19:18:45.899Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "th": {
+          "text": "สไลด์ 1",
+          "translatedAt": "2026-10-18T19:18:55.607Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ar": {
+          "text": "الشريحة 1",
+          "translatedAt": "2026-10-18T19:19:03.664Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "sv": {
+          "text": "Bild 1",
+          "translatedAt": "2026-10-18T19:19:11.879Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "da": {
+          "text": "Slide 1",
+          "translatedAt": "2026-10-18T19:19:19.654Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "no": {
+          "text": "Lysbilde 1",
+          "translatedAt": "2026-10-18T19:19:28.727Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fi": {
+          "text": "Dia 1",
+          "translatedAt": "2026-10-18T19:19:38.443Z",
+          "model": "google/gemini-3.7-flash"
+        }
+      }
+    },
+    "786e4db66265d6598ca8383cb8c5a3268e33c5dc92b44e77fbb5b96ffb061a78": {
+      "en": "Slide 2",
+      "translations": {
+        "de": {
+          "text": "Folie 2",
+          "translatedAt": "2026-10-18T19:16:29.458Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fr": {
+          "text": "Diapositive 2",
+          "translatedAt": "2026-10-18T19:16:38.132Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "es": {
+          "text": "Diapositiva 2",
+          "translatedAt": "2026-10-18T19:16:48.234Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh": {
+          "text": "幻灯片 2",
+          "translatedAt": "2026-10-18T19:16:54.731Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh-TW": {
+          "text": "投影片 2",
+          "translatedAt": "2026-10-18T19:17:02.436Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ja": {
+          "text": "スライド 2",
+          "translatedAt": "2026-10-18T19:17:05.907Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ko": {
+          "text": "슬라이드 2",
+          "translatedAt": "2026-10-18T19:17:12.591Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pt": {
+          "text": "Slide 2",
+          "translatedAt": "2026-10-18T19:17:20.676Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "hi": {
+          "text": "Slide 2",
+          "translatedAt": "2026-10-18T19:17:34.409Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "vi": {
+          "text": "Slide 2",
+          "translatedAt": "2026-10-18T19:17:40.243Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "nl": {
+          "text": "Slide 2",
+          "translatedAt": "2026-10-18T19:17:51.273Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "it": {
+          "text": "Slide 2",
+          "translatedAt": "2026-10-18T19:17:59.651Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ru": {
+          "text": "Слайд 2",
+          "translatedAt": "2026-10-18T19:18:11.888Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "uk": {
+          "text": "Слайд 2",
+          "translatedAt": "2026-10-18T19:18:21.755Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "tr": {
+          "text": "2. Slayt",
+          "translatedAt": "2026-10-18T19:18:29.743Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "id": {
+          "text": "Slide 2",
+          "translatedAt": "2026-10-18T19:18:36.109Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pl": {
+          "text": "Slajd 2",
+          "translatedAt": "2026-10-18T19:18:45.899Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "th": {
+          "text": "สไลด์ 2",
+          "translatedAt": "2026-10-18T19:18:55.607Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ar": {
+          "text": "الشريحة 2",
+          "translatedAt": "2026-10-18T19:19:03.664Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "sv": {
+          "text": "Bild 2",
+          "translatedAt": "2026-10-18T19:19:11.879Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "da": {
+          "text": "Slide 2",
+          "translatedAt": "2026-10-18T19:19:19.654Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "no": {
+          "text": "Lysbilde 2",
+          "translatedAt": "2026-10-18T19:19:28.727Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fi": {
+          "text": "Dia 2",
+          "translatedAt": "2026-10-18T19:19:38.443Z",
+          "model": "google/gemini-3.7-flash"
+        }
+      }
+    },
+    "17a9660d720ffb1b2424425fbcf2113fd5c824730820dfcd8e0e5730676dfc0c": {
+      "en": "Slide 3",
+      "translations": {
+        "de": {
+          "text": "Folie 3",
+          "translatedAt": "2026-10-18T19:16:29.458Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fr": {
+          "text": "Diapositive 3",
+          "translatedAt": "2026-10-18T19:16:38.132Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "es": {
+          "text": "Diapositiva 3",
+          "translatedAt": "2026-10-18T19:16:48.234Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh": {
+          "text": "幻灯片 3",
+          "translatedAt": "2026-10-18T19:16:54.731Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh-TW": {
+          "text": "投影片 3",
+          "translatedAt": "2026-10-18T19:17:02.436Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ja": {
+          "text": "スライド 3",
+          "translatedAt": "2026-10-18T19:17:05.907Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ko": {
+          "text": "슬라이드 3",
+          "translatedAt": "2026-10-18T19:17:12.591Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pt": {
+          "text": "Slide 3",
+          "translatedAt": "2026-10-18T19:17:20.676Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "hi": {
+          "text": "Slide 3",
+          "translatedAt": "2026-10-18T19:17:34.409Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "vi": {
+          "text": "Slide 3",
+          "translatedAt": "2026-10-18T19:17:40.243Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "nl": {
+          "text": "Slide 3",
+          "translatedAt": "2026-10-18T19:17:51.273Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "it": {
+          "text": "Slide 3",
+          "translatedAt": "2026-10-18T19:17:59.651Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ru": {
+          "text": "Слайд 3",
+          "translatedAt": "2026-10-18T19:18:11.888Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "uk": {
+          "text": "Слайд 3",
+          "translatedAt": "2026-10-18T19:18:21.755Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "tr": {
+          "text": "3. Slayt",
+          "translatedAt": "2026-10-18T19:18:29.743Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "id": {
+          "text": "Slide 3",
+          "translatedAt": "2026-10-18T19:18:36.109Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pl": {
+          "text": "Slajd 3",
+          "translatedAt": "2026-10-18T19:18:45.899Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "th": {
+          "text": "สไลด์ 3",
+          "translatedAt": "2026-10-18T19:18:55.607Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ar": {
+          "text": "الشريحة 3",
+          "translatedAt": "2026-10-18T19:19:03.664Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "sv": {
+          "text": "Bild 3",
+          "translatedAt": "2026-10-18T19:19:11.879Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "da": {
+          "text": "Slide 3",
+          "translatedAt": "2026-10-18T19:19:19.654Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "no": {
+          "text": "Lysbilde 3",
+          "translatedAt": "2026-10-18T19:19:28.727Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fi": {
+          "text": "Dia 3",
+          "translatedAt": "2026-10-18T19:19:38.443Z",
+          "model": "google/gemini-3.7-flash"
+        }
+      }
+    },
+    "a23fc624f35c7a9102e751ff5785eee62fd359595c965c500a2321c3f0906ea6": {
+      "en": "Slide 4",
+      "translations": {
+        "de": {
+          "text": "Folie 4",
+          "translatedAt": "2026-10-18T19:16:29.458Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fr": {
+          "text": "Diapositive 4",
+          "translatedAt": "2026-10-18T19:16:38.132Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "es": {
+          "text": "Diapositiva 4",
+          "translatedAt": "2026-10-18T19:16:48.234Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh": {
+          "text": "幻灯片 4",
+          "translatedAt": "2026-10-18T19:16:54.731Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh-TW": {
+          "text": "投影片 4",
+          "translatedAt": "2026-10-18T19:17:02.436Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ja": {
+          "text": "スライド 4",
+          "translatedAt": "2026-10-18T19:17:05.907Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ko": {
+          "text": "슬라이드 4",
+          "translatedAt": "2026-10-18T19:17:12.591Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pt": {
+          "text": "Slide 4",
+          "translatedAt": "2026-10-18T19:17:20.676Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "hi": {
+          "text": "Slide 4",
+          "translatedAt": "2026-10-18T19:17:34.409Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "vi": {
+          "text": "Slide 4",
+          "translatedAt": "2026-10-18T19:17:40.243Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "nl": {
+          "text": "Slide 4",
+          "translatedAt": "2026-10-18T19:17:51.273Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "it": {
+          "text": "Slide 4",
+          "translatedAt": "2026-10-18T19:17:59.651Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ru": {
+          "text": "Слайд 4",
+          "translatedAt": "2026-10-18T19:18:11.888Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "uk": {
+          "text": "Слайд 4",
+          "translatedAt": "2026-10-18T19:18:21.755Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "tr": {
+          "text": "4. Slayt",
+          "translatedAt": "2026-10-18T19:18:29.743Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "id": {
+          "text": "Slide 4",
+          "translatedAt": "2026-10-18T19:18:36.109Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pl": {
+          "text": "Slajd 4",
+          "translatedAt": "2026-10-18T19:18:45.899Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "th": {
+          "text": "สไลด์ 4",
+          "translatedAt": "2026-10-18T19:18:55.607Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ar": {
+          "text": "الشريحة 4",
+          "translatedAt": "2026-10-18T19:19:03.664Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "sv": {
+          "text": "Bild 4",
+          "translatedAt": "2026-10-18T19:19:11.879Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "da": {
+          "text": "Slide 4",
+          "translatedAt": "2026-10-18T19:19:19.654Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "no": {
+          "text": "Lysbilde 4",
+          "translatedAt": "2026-10-18T19:19:28.727Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fi": {
+          "text": "Dia 4",
+          "translatedAt": "2026-10-18T19:19:38.443Z",
+          "model": "google/gemini-3.7-flash"
+        }
+      }
+    },
+    "593efca5be4f25779bbebb1ff6e1e570a87f990967f04f5e0b9a7ab5914729ca": {
+      "en": "Who are you? Highlights the matching features below",
+      "translations": {
+        "de": {
+          "text": "Wer sind Sie? Hebt die passenden Funktionen unten hervor",
+          "translatedAt": "2026-10-18T19:16:29.458Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fr": {
+          "text": "Qui êtes-vous ? Met en avant les fonctionnalités correspondantes ci-dessous",
+          "translatedAt": "2026-10-18T19:16:38.132Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "es": {
+          "text": "¿Quién eres? Destaca las funciones correspondientes a continuación",
+          "translatedAt": "2026-10-18T19:16:48.234Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh": {
+          "text": "你的角色是？高亮显示下方匹配的功能",
+          "translatedAt": "2026-10-18T19:16:54.731Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh-TW": {
+          "text": "你的身分是？為你醒目標示下方對應功能",
+          "translatedAt": "2026-10-18T19:17:02.436Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ja": {
+          "text": "あなたの役割は？選択すると適した機能がハイライトされます",
+          "translatedAt": "2026-10-18T19:17:05.907Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ko": {
+          "text": "어떤 사용자이신가요? 선택 시 맞춤 기능을 강조해 드립니다",
+          "translatedAt": "2026-10-18T19:17:12.591Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pt": {
+          "text": "Quem é você? Destaca os recursos correspondentes abaixo",
+          "translatedAt": "2026-10-18T19:17:20.676Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "hi": {
+          "text": "आप कौन हैं? नीचे आपके अनुसार फीचर्स हाइलाइट किए गए हैं",
+          "translatedAt": "2026-10-18T19:17:34.409Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "vi": {
+          "text": "Bạn là ai? Làm nổi bật các tính năng phù hợp bên dưới",
+          "translatedAt": "2026-10-18T19:17:40.243Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "nl": {
+          "text": "Wie ben je? Markeert de bijbehorende functies hieronder",
+          "translatedAt": "2026-10-18T19:17:51.273Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "it": {
+          "text": "Chi sei? Evidenzia le funzionalità dedicate qui sotto",
+          "translatedAt": "2026-10-18T19:17:59.651Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ru": {
+          "text": "Кто вы? Подсвечивает подходящие функции ниже",
+          "translatedAt": "2026-10-18T19:18:11.888Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "uk": {
+          "text": "Хто ви? Підсвічує відповідні функції нижче",
+          "translatedAt": "2026-10-18T19:18:21.755Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "tr": {
+          "text": "Profilinizi seçin; aşağıdaki eşleşen özellikleri öne çıkarır",
+          "translatedAt": "2026-10-18T19:18:29.743Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "id": {
+          "text": "Siapa Anda? Menyorot fitur yang cocok di bawah ini",
+          "translatedAt": "2026-10-18T19:18:36.109Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pl": {
+          "text": "Kim jesteś? Wyróżnia pasujące funkcje poniżej",
+          "translatedAt": "2026-10-18T19:18:45.899Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "th": {
+          "text": "คุณเป็นใคร? ไฮไลต์ฟีเจอร์ที่ตรงกับคุณด้านล่าง",
+          "translatedAt": "2026-10-18T19:18:55.607Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ar": {
+          "text": "من أنت؟ لتسليط الضوء على الميزات المناسبة لك أدناه",
+          "translatedAt": "2026-10-18T19:19:03.664Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "sv": {
+          "text": "Vem är du? Markerar matchande funktioner nedan",
+          "translatedAt": "2026-10-18T19:19:11.879Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "da": {
+          "text": "Hvem er du? Fremhæver de relevante funktioner nedenfor",
+          "translatedAt": "2026-10-18T19:19:19.654Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "no": {
+          "text": "Hvem er du? Fremhever matchende funksjoner nedenfor",
+          "translatedAt": "2026-10-18T19:19:28.727Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fi": {
+          "text": "Kuka olet? Korostaa sopivat ominaisuudet alla",
+          "translatedAt": "2026-10-18T19:19:38.443Z",
+          "model": "google/gemini-3.7-flash"
+        }
+      }
+    },
+    "a4a987fb16d9bd9340b420a325f0d8884558aae8d78368ebd8bba48b8c61586e": {
+      "en": "Billing period",
+      "translations": {
+        "de": {
+          "text": "Abrechnungszeitraum",
+          "translatedAt": "2026-10-18T19:16:29.458Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fr": {
+          "text": "Période de facturation",
+          "translatedAt": "2026-10-18T19:16:38.132Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "es": {
+          "text": "Periodo de facturación",
+          "translatedAt": "2026-10-18T19:16:48.234Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh": {
+          "text": "计费周期",
+          "translatedAt": "2026-10-18T19:16:54.731Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh-TW": {
+          "text": "計費週期",
+          "translatedAt": "2026-10-18T19:17:02.436Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ja": {
+          "text": "請求期間",
+          "translatedAt": "2026-10-18T19:17:05.907Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ko": {
+          "text": "결제 주기",
+          "translatedAt": "2026-10-18T19:17:12.591Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pt": {
+          "text": "Período de cobrança",
+          "translatedAt": "2026-10-18T19:17:20.676Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "hi": {
+          "text": "Billing पीरियड",
+          "translatedAt": "2026-10-18T19:17:34.409Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "vi": {
+          "text": "Chu kỳ thanh toán",
+          "translatedAt": "2026-10-18T19:17:40.243Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "nl": {
+          "text": "Facturatieperiode",
+          "translatedAt": "2026-10-18T19:17:51.273Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "it": {
+          "text": "Periodo di fatturazione",
+          "translatedAt": "2026-10-18T19:17:59.651Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ru": {
+          "text": "Период оплаты",
+          "translatedAt": "2026-10-18T19:18:11.888Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "uk": {
+          "text": "Період оплати",
+          "translatedAt": "2026-10-18T19:18:21.755Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "tr": {
+          "text": "Faturalandırma dönemi",
+          "translatedAt": "2026-10-18T19:18:29.743Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "id": {
+          "text": "Periode tagihan",
+          "translatedAt": "2026-10-18T19:18:36.109Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pl": {
+          "text": "Okres rozliczeniowy",
+          "translatedAt": "2026-10-18T19:18:45.899Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "th": {
+          "text": "รอบการเรียกเก็บเงิน",
+          "translatedAt": "2026-10-18T19:18:55.607Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ar": {
+          "text": "فترة الفوترة",
+          "translatedAt": "2026-10-18T19:19:03.664Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "sv": {
+          "text": "Faktureringsperiod",
+          "translatedAt": "2026-10-18T19:19:11.879Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "da": {
+          "text": "Faktureringsperiode",
+          "translatedAt": "2026-10-18T19:19:19.654Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "no": {
+          "text": "Faktureringsperiode",
+          "translatedAt": "2026-10-18T19:19:28.727Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fi": {
+          "text": "Laskutusjakso",
+          "translatedAt": "2026-10-18T19:19:38.443Z",
+          "model": "google/gemini-3.7-flash"
+        }
+      }
     }
   }
 }
