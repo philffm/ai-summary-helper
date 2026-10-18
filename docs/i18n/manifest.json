@@ -41084,6 +41084,61 @@
           "model": "google/gemini-3.7-flash"
         }
       }
+    },
+    "703390318bd55aef50b7823d2b90a846debff99e6e3d401a24a921b733912a6d": {
+      "en": "Beta",
+      "translations": {
+        "de": {
+          "text": "Beta",
+          "translatedAt": "2026-10-18T12:29:05.510Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fr": {
+          "text": "Bêta",
+          "translatedAt": "2026-10-18T12:29:08.805Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "es": {
+          "text": "Beta",
+          "translatedAt": "2026-10-18T12:29:11.400Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh": {
+          "text": "Beta",
+          "translatedAt": "2026-10-18T12:29:16.295Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh-TW": {
+          "text": "Beta",
+          "translatedAt": "2026-10-18T12:29:26.928Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ja": {
+          "text": "ベータ",
+          "translatedAt": "2026-10-18T12:29:29.731Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ko": {
+          "text": "베타",
+          "translatedAt": "2026-10-18T12:29:32.679Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pt": {
+          "text": "Beta",
+          "translatedAt": "2026-10-18T12:29:35.572Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "hi": {
+          "text": "Beta",
+          "translatedAt": "2026-10-18T12:29:39.627Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "vi": {
+          "text": "Beta",
+          "translatedAt": "2026-10-18T12:29:42.582Z",
+          "model": "google/gemini-3.7-flash"
+        }
+      }
     }
   }
 }
