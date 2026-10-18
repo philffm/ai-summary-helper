@@ -1048,3 +1048,44 @@ body.nav-locked{overflow:hidden}
 .nav--pill .mm-links a{font-size:28px;padding:11px 0}
 .nav--pill .mm-links a.mm-sub{font-size:15px;padding:6px 0 6px 34px}
 .nav--pill .nav-pill-row{padding-top:0}
+
+/* ===== Pill v2: chunkier, more air on top, hamburger + full-screen menu on every viewport ===== */
+.nav--pill{top:26px}
+.nav--pill .pill{padding:7px;gap:4px;box-shadow:0 10px 36px rgba(0,0,0,.28)}
+.nav--pill .pill a,.nav--pill .pill-more-btn{padding:11px 20px;font-size:15px;font-weight:600}
+.nav--pill .pill .pill-cta{padding:11px 22px;margin-left:6px}
+.nav--pill .pill-x,.nav--pill .pill-more,.nav--pill .pill-logo{display:none!important}
+.nav--pill .tool-btn,.nav--pill .theme-toggle,.nav--pill .nav-toggle{width:46px;height:46px}
+.nav--pill .nav-toggle{display:inline-flex;align-items:center;justify-content:center;border-radius:50%;border:1px solid var(--border-medium);background:var(--nav-bg);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);color:var(--paper);cursor:pointer;position:relative;z-index:2;margin-inline-start:6px}
+.nav--pill .nav-toggle svg{width:22px;height:22px}
+.nav--pill.is-compact .wordmark{opacity:1;transform:none;pointer-events:auto}
+.nav--pill .wordmark{font-size:17px}
+.nav--pill .mobile-menu{padding-top:104px}
+.nav--pill .mm-posts{display:none}
+.nav--pill .mm-links a.mm-sub{display:none}
+.nav--pill .mm-inner{display:grid;gap:0}
+@media (min-width:861px){
+  .nav--pill .mm-inner{grid-template-columns:1.1fr 1fr;grid-template-areas:"links posts" "bottom posts";column-gap:80px;align-items:start;padding-top:24px}
+  .nav--pill .mm-links{grid-area:links}
+  .nav--pill .mm-links a{font-size:clamp(40px,5.5vw,68px);padding:14px 0}
+  .nav--pill .mm-bottom{grid-area:bottom}
+  .nav--pill .mm-posts{grid-area:posts;display:grid;gap:10px;align-content:start}
+  .nav--pill .mm-posts-h{font:600 11px var(--mono,'JetBrains Mono',monospace);letter-spacing:.1em;text-transform:uppercase;color:var(--paper-dim);margin:0 0 6px}
+  .nav--pill .mm-post{display:flex;flex-direction:column;gap:4px;padding:16px 18px;border-radius:18px;border:1px solid var(--border-medium);background:var(--surface-1);text-decoration:none;color:var(--paper-dim);font-size:14px;transition:transform .2s,border-color .2s}
+  .nav--pill .mm-post:hover{transform:translateX(4px);border-color:var(--signal)}
+  .nav--pill .mm-post strong{color:var(--paper);font-size:17px;font-weight:600}
+  .nav--pill .mm-all{color:var(--signal);text-decoration:none;font-weight:600;margin-top:6px}
+}
+@media (max-width:860px){
+  .nav--pill{top:14px}
+  .nav--pill .mm-links a.mm-sub{display:flex}
+  .nav--pill .tool-btn,.nav--pill .theme-toggle,.nav--pill .nav-toggle{width:40px;height:40px}
+}
+.nav--pill .pill{top:50%;transform:translate(-50%,-50%)}
+@media (min-width:861px){.nav--pill .mm-links a{font-size:clamp(34px,4.2vw,54px);padding:10px 0}}
+header.nav.nav--pill{position:fixed;top:26px;background:none;border:0;backdrop-filter:none;-webkit-backdrop-filter:none}
+header.nav.nav--pill .wordmark{font-size:0;gap:0}
+header.nav.nav--pill .wordmark img{width:44px;height:44px;border-radius:12px}
+@media (max-width:860px){header.nav.nav--pill{top:14px}header.nav.nav--pill .wordmark img{width:38px;height:38px}}
+body:has(.nav--pill){padding-top:88px}
+@media (max-width:860px){body:has(.nav--pill){padding-top:68px}}
