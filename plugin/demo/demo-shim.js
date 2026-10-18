@@ -19,7 +19,23 @@
   (() => { const b64 = (n) => { const a = new Uint8Array(n); crypto.getRandomValues(a); return btoa(String.fromCharCode(...a)).replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/, ''); };
     local.set({ 'inbox:config': { inboxId: b64(16), encKey: b64(32), writeToken: b64(32), readToken: b64(32), createdAt: Date.now() - 6 * 864e5, v: 1, toPhone: { inboxId: b64(16), writeToken: b64(32) } } }); })();
   // Docking the panel makes no sense inside a page: only Settings stays in the header.
-  document.addEventListener('DOMContentLoaded', () => { const st = document.createElement('style'); st.textContent = '#popoutButton,#openTabButton{display:none !important}'; document.head.appendChild(st); });
+  // Everything that would break or confuse inside a page is hidden: dangerous resets, settings import/export, licence, model and
+  // phone-pairing setup, storage tools and the export formats that need a real browser download.
+  document.addEventListener('DOMContentLoaded', () => {
+    const ids = ['popoutButton', 'openTabButton', 'deleteSettingsButton', 'deleteHistoryButton', 'deleteAllButton', 'exportSettingsButton', 'importSettingsButton', 'verifyLicenseButton',
+      'storageImagesButton', 'storageTextButton', 'storageReviewButton', 'cleanupTagsButton', 'nameTagsButton', 'libraryToolButton', 'exportMarkdownButton'];
+    const st = document.createElement('style');
+    st.textContent = ids.map(i => '#' + i).join(',') + ',.settings-row[data-panel=account],.settings-row[data-panel=models],.settings-row[data-panel=phoneinbox]{display:none !important}';
+    document.head.appendChild(st);
+    const drop = new Set(['folders', 'file-text', 'newspaper']);   // Obsidian, ODT/DOCX, PDF
+    new MutationObserver(() => document.querySelectorAll('.card-menu-item').forEach((b) => {
+      const u = b.querySelector('use'); const n = u && (u.getAttribute('href') || '').replace('#i-', '');
+      if (drop.has(n)) b.remove();
+    })).observe(document.body, { childList: true, subtree: true });
+  });
+  // A Kindle and a LocalSend receiver are "already set up", so Send to Kindle / LocalSend run end to end against the mock.
+  local.set({ 'send:devices': [{ id: 'demo-kindle', type: 'kindle', label: 'Kindle', addresses: ['you@kindle.com'] }, { id: 'demo-ls', type: 'localsend', label: 'E-reader', addresses: ['192.168.1.42'] }] });
+  window.confirm = () => true;
   addEventListener('message', (e) => { const m = e.data; if (m && m.aishDemo && m.type === 'theme') setTheme(m.theme); });
   // A believable reading history, so History, Graph and Analytics have something to show. Dates are relative to "now".
   (() => {
@@ -81,6 +97,7 @@
         later(500, tick); return;
       }
       case 'revealQuote': return respond({ ok: true });
+      case 'sendLocalSendP2P': return later(700, () => respond({ success: true, ok: true, status: 200, data: /prepare-upload/.test(m.targetUrl || '') ? { sessionId: 'demo', files: {} } : {} }));
       case 'stopSummary': case 'cancelQueuedSummary': timers.forEach(clearTimeout); return respond({ ok: true });
       default: return respond({ ok: true });
     }
@@ -108,6 +125,7 @@
   window.fetch = (u, o, ...a) => {
     const url = String(u);
     if (/api\.byphil\.eu\/.*\/aish_inboxes\/[^/]+\/items/.test(url) && o && o.method === 'POST') return new Promise(r => setTimeout(() => r(new Response('{}', { status: 202, headers: { 'Content-Type': 'application/json' } })), 700));
+    if (/\/kindle$/.test(url) && o && o.method === 'POST') return new Promise(r => setTimeout(() => r(new Response('{"success":true}', { status: 200, headers: { 'Content-Type': 'application/json' } })), 900));
     if (/^https?:/.test(url) && !url.startsWith(location.origin)) return Promise.reject(new TypeError('offline demo'));
     return realFetch(u, o, ...a);
   };
