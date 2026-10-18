@@ -12,6 +12,20 @@
     area._ls = ls; return area; };
   const local = mk(), sync = mk(), session = mk();
   sync.set({ onboardingDismissed: true, demo: true });
+  // A believable reading history, so History, Graph and Analytics have something to show. Dates are relative to "now".
+  (() => {
+    const idx = [], recs = {}, slug = (t) => t.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
+    (D.library || []).forEach((a, i) => {
+      const d = new Date(); d.setDate(d.getDate() - a.daysAgo); d.setHours(a.hour, (i * 7) % 60, 0, 0);
+      const ts = d.toISOString(), id = 'article_demo_' + i;
+      const summary = '<h3>Key points</h3><ul><li>' + a.title + '.</li><li>Context, evidence and what to read next.</li></ul>';
+      idx.push({ id, title: a.title, url: 'https://' + a.host + '/' + slug(a.title), timestamp: ts, tags: a.tags, modelId: 'demo', summaryLength: 200, summary,
+        contentWordCount: a.words, summaryWordCount: 60, archived: false, lastOpened: ts, moodScore: a.mood });
+      recs['articles:rec:' + id] = { content: '<p>' + a.title + '</p>', summary, description: '' };
+    });
+    idx.sort((x, y) => x.timestamp < y.timestamp ? -1 : 1);
+    local.set({ 'articles:index': idx, ...recs });
+  })();
   const storageL = new Set();
   [local, sync, session].forEach((a, i) => a._ls.add(ch => storageL.forEach(f => f(ch, ['local', 'sync', 'session'][i]))));
   const msgL = new Set();
