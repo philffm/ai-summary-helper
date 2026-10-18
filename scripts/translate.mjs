@@ -250,6 +250,34 @@ function setHtmlLang($, locale) {
 
 // ── OpenRouter call ──────────────────────────────────────────────────
 
+/**
+ * Models occasionally return several concatenated JSON objects, an array of {id,text}, or a stray wrapper object.
+ * Accept all of those and normalise to { id: translatedString }; null if nothing usable.
+ */
+function parseModelJson(raw, units) {
+    const ids = new Set(units.map(u => u.id));
+    const out = {};
+    const take = (v) => {
+        if (Array.isArray(v)) v.forEach(take);
+        else if (v && typeof v === 'object') {
+            if (typeof v.id === 'string' && typeof v.text === 'string' && ids.has(v.id)) { out[v.id] = v.text; return; }
+            for (const [k, val] of Object.entries(v)) { if (ids.has(k) && typeof val === 'string') out[k] = val; else if (val && typeof val === 'object') take(val); }
+        }
+    };
+    try { take(JSON.parse(raw)); } catch (e) {
+        // concatenated top-level objects: split on balanced braces
+        let depth = 0, start = -1, inStr = false, esc = false;
+        for (let i = 0; i < raw.length; i++) {
+            const c = raw[i];
+            if (inStr) { if (esc) esc = false; else if (c === '\\') esc = true; else if (c === '"') inStr = false; continue; }
+            if (c === '"') inStr = true;
+            else if (c === '{') { if (depth++ === 0) start = i; }
+            else if (c === '}') { if (--depth === 0 && start >= 0) { try { take(JSON.parse(raw.slice(start, i + 1))); } catch (e2) { /* skip */ } start = -1; } }
+        }
+    }
+    return Object.keys(out).length ? out : null;
+}
+
 async function translateUnits(units, locale, apiKey) {
     if (DRY_RUN) {
         // Mock: wrap each string so a dry run is visibly distinguishable
@@ -269,40 +297,53 @@ ${locale.marketNotes}`;
         null, 2
     );
 
-    const res = await fetch(OPENROUTER_URL, {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-            'Authorization': `Bearer ${apiKey}`,
-            'HTTP-Referer': 'https://ai-summary-helper.byphil.eu',
-            'X-Title': 'AI Summary Helper i18n pipeline'
-        },
-        body: JSON.stringify({
-            model: OPENROUTER_MODEL,
-            messages: [
-                { role: 'system', content: system },
-                { role: 'user', content: user }
-            ],
-            temperature: 0.3,
-            response_format: { type: 'json_object' }
-        })
-    });
-
-    if (!res.ok) {
-        throw new Error(`OpenRouter request failed: ${res.status} ${await res.text()}`);
+    let lastErr;
+    for (let attempt = 1; attempt <= 3; attempt++) {
+        try {
+            return await requestAndParse();
+        } catch (e) {
+            lastErr = e;
+            console.warn(`  retry ${attempt}/3 for ${locale.hreflang}: ${String(e.message).slice(0, 160)}`);
+            await new Promise(r => setTimeout(r, 2000 * attempt));
+        }
     }
+    throw lastErr;
 
-    const data = await res.json();
-    const raw = data.choices?.[0]?.message?.content;
-    if (!raw) throw new Error('OpenRouter response had no content');
+    async function requestAndParse() {
+        const res = await fetch(OPENROUTER_URL, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${apiKey}`,
+                'HTTP-Referer': 'https://ai-summary-helper.byphil.eu',
+                'X-Title': 'AI Summary Helper i18n pipeline'
+            },
+            body: JSON.stringify({
+                model: OPENROUTER_MODEL,
+                messages: [
+                    { role: 'system', content: system },
+                    { role: 'user', content: user }
+                ],
+                temperature: 0.3,
+                response_format: { type: 'json_object' }
+            })
+        });
 
-    let parsed;
-    try {
-        parsed = JSON.parse(raw);
-    } catch (e) {
-        throw new Error(`OpenRouter response was not valid JSON: ${raw.slice(0, 300)}`);
+        if (!res.ok) {
+            throw new Error(`OpenRouter request failed: ${res.status} ${await res.text()}`);
+        }
+
+        const data = await res.json();
+        const raw = data.choices?.[0]?.message?.content;
+        if (!raw) throw new Error('OpenRouter response had no content');
+
+        let parsed = parseModelJson(raw, units);
+        if (!parsed) throw new Error(`OpenRouter response was not valid JSON: ${raw.slice(0, 300)}`);
+        const missing = units.filter(u => typeof parsed[u.id] !== 'string');
+        if (missing.length) throw new Error(`OpenRouter response is missing ${missing.length} of ${units.length} ids`);
+
+        return parsed;
     }
-    return parsed;
 }
 
 // ── Main ─────────────────────────────────────────────────────────────
