@@ -1,0 +1,132 @@
+<!DOCTYPE html><html lang="zh-Hant"><head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#08090C">
+<title>一份重點摘要取代 40 個訂閱源 — AI Summary Helper</title>
+<meta name="description" content="追蹤大量資訊源意味著頻繁的任務切換。本文將探討每日或每週摘要如何取代零散閱讀，以及為何這對保持專注至關重要。">
+
+<script>
+  (function(){
+    try {
+      var saved = localStorage.getItem('aish_theme');
+      var theme = saved === 'light' || saved === 'dark'
+        ? saved
+        : (window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
+      document.documentElement.setAttribute('data-theme', theme);
+    } catch (e) {
+      document.documentElement.setAttribute('data-theme', 'dark');
+    }
+  })();
+</script>
+
+<link rel="icon" type="image/svg+xml" href="../../assets/icon.svg">
+<link rel="stylesheet" href="../../assets/styles.css">
+<script src="../../assets/analytics.js"></script>
+<link rel="alternate" hreflang="x-default" href="https://ai-summary-helper.byphil.eu/blog/feeds-recap.html"><link rel="alternate" hreflang="en" href="https://ai-summary-helper.byphil.eu/blog/feeds-recap.html"><link rel="alternate" hreflang="de" href="https://ai-summary-helper.byphil.eu/de/blog/feeds-recap.html"><link rel="alternate" hreflang="fr" href="https://ai-summary-helper.byphil.eu/fr/blog/feeds-recap.html"><link rel="alternate" hreflang="es" href="https://ai-summary-helper.byphil.eu/es/blog/feeds-recap.html"><link rel="alternate" hreflang="zh-Hans" href="https://ai-summary-helper.byphil.eu/zh/blog/feeds-recap.html"><link rel="alternate" hreflang="zh-Hant" href="https://ai-summary-helper.byphil.eu/zh-tw/blog/feeds-recap.html"><link rel="alternate" hreflang="ja" href="https://ai-summary-helper.byphil.eu/ja/blog/feeds-recap.html"><link rel="alternate" hreflang="ko" href="https://ai-summary-helper.byphil.eu/ko/blog/feeds-recap.html"><link rel="alternate" hreflang="pt-BR" href="https://ai-summary-helper.byphil.eu/pt/blog/feeds-recap.html"><link rel="alternate" hreflang="hi" href="https://ai-summary-helper.byphil.eu/hi/blog/feeds-recap.html"><link rel="alternate" hreflang="vi" href="https://ai-summary-helper.byphil.eu/vi/blog/feeds-recap.html"></head>
+<body>
+
+<a href="#main" class="skip-link">跳至主要內容</a>
+
+<header class="nav">
+  <div class="wrap nav-inner">
+    <div class="brand-cluster">
+      <div class="wordmark">
+        <img src="../../assets/icon.svg" alt="">
+        AI Summary Helper
+      </div>
+      <a href="https://byphil.eu/" target="_blank" rel="noopener" class="ecosystem-badge">
+        <span class="pulse-dot"></span> byphil. 旗下產品
+      </a>
+    </div>
+    <div class="nav-desktop-group nav-desktop-links">
+      <nav class="links" aria-label="Primary">
+        <a href="../index.html#features">功能特色</a>
+        <a href="../index.html#pricing">方案定價</a>
+        <a href="./" aria-current="page">部落格</a>
+        <a href="https://github.com/philffm/ai-summary-helper/" target="_blank" rel="noopener">GitHub</a>
+      </nav>
+      <button type="button" class="theme-toggle" id="themeToggle" aria-label="Switch to light mode">
+        <svg class="icon-moon" viewBox="0 0 24 24" fill="none"><path d="M20 14.5A8.5 8.5 0 1 1 9.5 4a6.8 6.8 0 0 0 10.5 10.5Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"></path></svg>
+        <svg class="icon-sun" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="4.2" stroke="currentColor" stroke-width="1.6"></circle><path d="M12 2.5v2.4M12 19.1v2.4M4.4 4.4l1.7 1.7M17.9 17.9l1.7 1.7M2.5 12h2.4M19.1 12h2.4M4.4 19.6l1.7-1.7M17.9 6.1l1.7-1.7" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"></path></svg>
+      </button>
+      <a href="../index.html" class="btn-sign-in">← 返回應用程式</a>
+    </div>
+    <button type="button" class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="mobileMenu" aria-label="Open menu">
+      <svg viewBox="0 0 24 24" fill="none"><path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"></path></svg>
+    </button>
+  </div>
+  <div class="mobile-menu" id="mobileMenu" hidden="">
+    <div class="wrap mobile-menu-inner">
+      <a href="../index.html#features">功能特色</a>
+      <a href="../index.html#pricing">方案定價</a>
+      <a href="./">部落格</a>
+      <a href="https://github.com/philffm/ai-summary-helper/" target="_blank" rel="noopener">GitHub</a>
+      <a href="https://byphil.eu/" target="_blank" rel="noopener">byphil. 旗下產品 ↗</a>
+      <button type="button" class="theme-toggle-mobile" id="themeToggleMobile">
+        <span id="themeToggleMobileLabel">切換為淺色模式</span>
+        <svg class="icon-moon" viewBox="0 0 24 24" fill="none"><path d="M20 14.5A8.5 8.5 0 1 1 9.5 4a6.8 6.8 0 0 0 10.5 10.5Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"></path></svg>
+        <svg class="icon-sun" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="4.2" stroke="currentColor" stroke-width="1.6"></circle><path d="M12 2.5v2.4M12 19.1v2.4M4.4 4.4l1.7 1.7M17.9 17.9l1.7 1.7M2.5 12h2.4M19.1 12h2.4M4.4 19.6l1.7-1.7M17.9 6.1l1.7-1.7" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"></path></svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+<main id="main">
+  <div class="wrap">
+    <div class="post-hero">
+      <span class="blog-date">指南 · 2026 年 10 月</span>
+      <h1>一份重點摘要取代 40 個訂閱源</h1>
+      <p class="post-sub">40 個訂閱源代表午餐前要經歷 40 次微小干擾。一份摘要將它們整合為一次讀完的精華內容。</p>
+    </div>
+  </div>
+
+  <section>
+    <div class="wrap">
+      <div class="prose">
+        <p>2009 年，Sophie Leroy 提出了「注意力殘留」（attention residue）的概念：當你從一項任務切換到另一項任務時，部分注意力仍會停留在先前的任務上。她的實驗顯示，在任務中受到干擾的人在下一項任務中的表現明顯較差，且在時間緊迫時這種效應更為顯著。</p>
+        <p>RSS 閱讀器就像一台「任務切換產生器」。每條內容都代表不同的主題、語氣與新分頁。即使每則訊息掃一眼只要幾秒，累積的注意力殘留依然可觀。當你回到真正的工作時，腦中可能還在想著某個主機商的方案調價公告。</p>
+
+        <h2>為什麼資訊訂閱的「收件匣歸零」（Inbox Zero）永遠行不通</h2>
+        <p>未讀計數讓閱讀變成了沉重的負擔。優質的資訊源往往發布頻繁，這意味著數字只會不斷攀升。人們最後的應對方式往往是「宣布資訊破產」、將所有項目標記為已讀，然後又慢慢重蹈覆轍。</p>
+
+        <h2>重點摘要帶來了什麼改變</h2>
+        <p>AI Summary Helper 的 Feeds 分頁讓你能夠訂閱真正關心的 RSS 資訊源。它不會展示落落長的項目清單，而是為你產出一份摘要：每天或每週一次，彙整最新內容並附上原文連結。你只需一口氣讀完它，剩下的時間就不會再被網路上早上 10:42 發布的零碎文章牽著走。</p>
+        <p>你也可以將它當作 Podcast 聆聽，非常適合在沒空閱讀時掌握資訊。摘要功能會透過你自行設定的 API Key 與服務供應商運作，就像產生單篇摘要一樣保有隱私與自主權。</p>
+        <figure class="post-figure post-figure--portrait"><img src="../../assets/blog/feeds-recap.webp" alt="投影片：將所有資訊源彙整為一份摘要，對話介面顯示每週重點回顧與相關文章連結" width="800" height="1000" loading="lazy"><figcaption>重點摘要徹底取代未讀計數：一次讀完精華，並附帶所有來源文章連結。</figcaption></figure>
+        <h2>如何設定以發揮最大效益</h2>
+        <ol>
+          <li><strong>先精簡你的訂閱清單。</strong> 只保留你真的不想錯過的資訊源。輸入的品質越好，產出的摘要就越實用。</li>
+          <li><strong>每天固定一個閱讀時間。</strong> 在固定時間閱讀摘要，才能取代不斷刷新的習慣。如果每小時都去檢查摘要，那它只不過是個變慢的資訊流而已。</li>
+          <li><strong>只點擊你真正感興趣的連結深入閱讀。</strong> 摘要中的每個項目都會指向原文，因此重點整理是深入閱讀的入口，而不是替代閱讀的藉口。</li>
+        </ol>
+        <p>我們的目的不是偷懶少讀，而是有意識地一次決定把注意力放在哪裡，而不是在無意間被干擾 40 次。</p>
+        <div class="post-cta">
+          <p>AI Summary Helper 是一款免費的 Chrome 擴充功能。</p>
+          <a href="https://chromewebstore.google.com/detail/ai-summary-helper-openai/hldbejcjaedipeegjcinmhejdndchkmb" target="_blank" rel="noopener" class="btn-primary">新增至 Chrome</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="footer-inner">
+      <div class="wordmark"><img src="../../assets/icon.svg" alt="">AI Summary Helper</div>
+      <div class="foot-links">
+        <a href="https://github.com/philffm/ai-summary-helper/" target="_blank" rel="noopener">GitHub 原始碼</a>
+        <a href="../privacy.html">隱私權政策</a>
+        <a href="#" data-analytics-settings="">數據分析設定</a>
+        <a href="https://byphil.eu/terms.html#impressum" target="_blank" rel="noopener">法律資訊 (Impressum)</a>
+      </div>
+    </div>
+    <div class="copyright">© 2026 Phil Wornath. 屬於 <a href="https://byphil.eu/" class="credit-link">byphil.eu ↗</a> — 來自德國的獨立開發軟體。<br>
+      設計與開發： <a href="https://philwornath.com/" target="_blank" rel="noopener" class="credit-link">philwornath.com ↗</a>
+    </div>
+  </div>
+</footer>
+
+<script src="../../assets/main.js"></script>
+
+
+</body></html>

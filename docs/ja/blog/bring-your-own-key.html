@@ -1,0 +1,135 @@
+<!DOCTYPE html><html lang="ja"><head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#08090C">
+<title>自分自身のキー、モデル、データで使う — AI Summary Helper</title>
+<meta name="description" content="ブラウザ拡張機能で「独自のAPIキー（BYOK）」を使う意義とは：キーの保存場所、Webページテキストの送信先、ローカルモデル使用時の違いについて解説します。">
+
+<script>
+  (function(){
+    try {
+      var saved = localStorage.getItem('aish_theme');
+      var theme = saved === 'light' || saved === 'dark'
+        ? saved
+        : (window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
+      document.documentElement.setAttribute('data-theme', theme);
+    } catch (e) {
+      document.documentElement.setAttribute('data-theme', 'dark');
+    }
+  })();
+</script>
+
+<link rel="icon" type="image/svg+xml" href="../../assets/icon.svg">
+<link rel="stylesheet" href="../../assets/styles.css">
+<script src="../../assets/analytics.js"></script>
+<link rel="alternate" hreflang="x-default" href="https://ai-summary-helper.byphil.eu/blog/bring-your-own-key.html"><link rel="alternate" hreflang="en" href="https://ai-summary-helper.byphil.eu/blog/bring-your-own-key.html"><link rel="alternate" hreflang="de" href="https://ai-summary-helper.byphil.eu/de/blog/bring-your-own-key.html"><link rel="alternate" hreflang="fr" href="https://ai-summary-helper.byphil.eu/fr/blog/bring-your-own-key.html"><link rel="alternate" hreflang="es" href="https://ai-summary-helper.byphil.eu/es/blog/bring-your-own-key.html"><link rel="alternate" hreflang="zh-Hans" href="https://ai-summary-helper.byphil.eu/zh/blog/bring-your-own-key.html"><link rel="alternate" hreflang="zh-Hant" href="https://ai-summary-helper.byphil.eu/zh-tw/blog/bring-your-own-key.html"><link rel="alternate" hreflang="ja" href="https://ai-summary-helper.byphil.eu/ja/blog/bring-your-own-key.html"><link rel="alternate" hreflang="ko" href="https://ai-summary-helper.byphil.eu/ko/blog/bring-your-own-key.html"><link rel="alternate" hreflang="pt-BR" href="https://ai-summary-helper.byphil.eu/pt/blog/bring-your-own-key.html"><link rel="alternate" hreflang="hi" href="https://ai-summary-helper.byphil.eu/hi/blog/bring-your-own-key.html"><link rel="alternate" hreflang="vi" href="https://ai-summary-helper.byphil.eu/vi/blog/bring-your-own-key.html"></head>
+<body>
+
+<a href="#main" class="skip-link">コンテンツへスキップ</a>
+
+<header class="nav">
+  <div class="wrap nav-inner">
+    <div class="brand-cluster">
+      <div class="wordmark">
+        <img src="../../assets/icon.svg" alt="">
+        AI Summary Helper
+      </div>
+      <a href="https://byphil.eu/" target="_blank" rel="noopener" class="ecosystem-badge">
+        <span class="pulse-dot"></span> byphil. プロジェクトの一部
+      </a>
+    </div>
+    <div class="nav-desktop-group nav-desktop-links">
+      <nav class="links" aria-label="Primary">
+        <a href="../index.html#features">機能</a>
+        <a href="../index.html#pricing">料金プラン</a>
+        <a href="./" aria-current="page">ブログ</a>
+        <a href="https://github.com/philffm/ai-summary-helper/" target="_blank" rel="noopener">GitHub</a>
+      </nav>
+      <button type="button" class="theme-toggle" id="themeToggle" aria-label="Switch to light mode">
+        <svg class="icon-moon" viewBox="0 0 24 24" fill="none"><path d="M20 14.5A8.5 8.5 0 1 1 9.5 4a6.8 6.8 0 0 0 10.5 10.5Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"></path></svg>
+        <svg class="icon-sun" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="4.2" stroke="currentColor" stroke-width="1.6"></circle><path d="M12 2.5v2.4M12 19.1v2.4M4.4 4.4l1.7 1.7M17.9 17.9l1.7 1.7M2.5 12h2.4M19.1 12h2.4M4.4 19.6l1.7-1.7M17.9 6.1l1.7-1.7" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"></path></svg>
+      </button>
+      <a href="../index.html" class="btn-sign-in">← アプリに戻る</a>
+    </div>
+    <button type="button" class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="mobileMenu" aria-label="Open menu">
+      <svg viewBox="0 0 24 24" fill="none"><path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"></path></svg>
+    </button>
+  </div>
+  <div class="mobile-menu" id="mobileMenu" hidden="">
+    <div class="wrap mobile-menu-inner">
+      <a href="../index.html#features">機能</a>
+      <a href="../index.html#pricing">料金プラン</a>
+      <a href="./">ブログ</a>
+      <a href="https://github.com/philffm/ai-summary-helper/" target="_blank" rel="noopener">GitHub</a>
+      <a href="https://byphil.eu/" target="_blank" rel="noopener">byphil. ↗ のプロダクト</a>
+      <button type="button" class="theme-toggle-mobile" id="themeToggleMobile">
+        <span id="themeToggleMobileLabel">ライトモードに切り替え</span>
+        <svg class="icon-moon" viewBox="0 0 24 24" fill="none"><path d="M20 14.5A8.5 8.5 0 1 1 9.5 4a6.8 6.8 0 0 0 10.5 10.5Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"></path></svg>
+        <svg class="icon-sun" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="4.2" stroke="currentColor" stroke-width="1.6"></circle><path d="M12 2.5v2.4M12 19.1v2.4M4.4 4.4l1.7 1.7M17.9 17.9l1.7 1.7M2.5 12h2.4M19.1 12h2.4M4.4 19.6l1.7-1.7M17.9 6.1l1.7-1.7" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"></path></svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+<main id="main">
+  <div class="wrap">
+    <div class="post-hero">
+      <span class="blog-date">プロダクト · 2026年10月</span>
+      <h1>自分自身のキー。モデル。データ。</h1>
+      <p class="post-sub">一般的なAIツールの多くは、ユーザーとモデルの間にサーバーを挟みます。仲介サーバーが存在しない場合、何が変わり、何が自己管理になるのかを解説します。</p>
+    </div>
+  </div>
+
+  <section>
+    <div class="wrap">
+      <div class="prose">
+        <p>どのAI要約も仕組みは同じです。テキストを送信し、結果を受け取ります。そのツールをどれだけ信頼できるかを決めるポイントは、「その間に誰が存在するか」です。多くの製品では企業のサーバーを経由し、閲覧中のコンテンツがユーザーの選んでいないモデルへと送られています。</p>
+
+        <h2>ここで言う「独自のキーの持ち込み（BYOK）」とは</h2>
+        <p>信頼できるプロバイダーで作成したAPIキーを AI Summary Helper に貼り付け、モデルを選択するだけです。ページを要約する際、拡張機能のバックグラウンドワーカーがプロバイダーへ直接テキストを送信し、回答をストリーミング受信します。独自のキーを使用する場合、その経路に AI Summary Helper のサーバーが介在することはありません。</p>
+        <p>また、Ollama などを介して自身のマシン上で動作するモデルを指定することも可能です。その場合、ページのテキストがPCの外に出ることは一切ありません。</p>
+        <figure class="post-figure post-figure--portrait"><img src="../../assets/blog/bring-your-own-key.webp" alt="スライド：独自のキーを持ち込む（BYOK）。ローカルモデル対応、オープンソース、ブラウザ内キー保存のチップ表示" width="800" height="1000" loading="lazy"><figcaption>プロバイダーもローカルモデルも自由に選択可能。キーはブラウザ内だけに保持されます。</figcaption></figure>
+        <h2>APIキーの保存場所</h2>
+        <p>APIキーはブラウザのローカル拡張機能ストレージに保存され、同期ストレージには保存されません。つまり、ブラウザアカウント経由で他のデバイスにコピーされることはありません。そのためブラウザごとに一度入力する必要があります。キーは、設定したプロバイダーとの通信にのみ使用されます。</p>
+
+        <h2>保護されるものと保護されないもの</h2>
+        <p>この点については正確に理解しておく必要があります。独自のキーを持ち込むことで中間サーバーは排除されますが、モデルプロバイダー自体がなくなるわけではありません。ホスト型モデルに送信したデータには、各プロバイダーの利用規約やデータ保持ポリシーが適用されるため、事前にご確認ください。テキストを完全にPC内にとどめられるのはローカルモデルのみですが、ローカルモデルは通常、ホスト型モデルよりも軽量で動作が遅くなります。</p>
+        <p>本プロジェクトはオープンソースであるため、言葉をそのまま鵜呑みにする必要はありません。キーやリクエストを処理するコードはリポジトリで公開されており、いつでも確認できます。</p>
+
+        <h2>構成の選び方</h2>
+        <ol>
+          <li><strong>普段の情報収集・閲覧：</strong> 利用規約に納得できるプロバイダーのホスト型モデル。高速かつ高品質で、キーは自身で管理できます。</li>
+          <li><strong>機密性の高い情報：</strong> ローカルモデル。処理速度や性能は劣りますが、データが端末の外に出ることは一切ありません。</li>
+          <li><strong>試行・検証：</strong> 複数のプロバイダーを登録し、同じ記事で回答を比較してみてください。どのテキストにどのモデルが適しているかを素早く把握できます。</li>
+        </ol>
+        <p>重要なのは、ひとつの構成だけが正しいということではありません。常に自分自身で選択できるということです。</p>
+        <div class="post-cta">
+          <p>AI Summary Helper は無料のChrome拡張機能です。</p>
+          <a href="https://chromewebstore.google.com/detail/ai-summary-helper-openai/hldbejcjaedipeegjcinmhejdndchkmb" target="_blank" rel="noopener" class="btn-primary">Chromeに追加</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="footer-inner">
+      <div class="wordmark"><img src="../../assets/icon.svg" alt="">AI Summary Helper</div>
+      <div class="foot-links">
+        <a href="https://github.com/philffm/ai-summary-helper/" target="_blank" rel="noopener">GitHubでソースコードを見る</a>
+        <a href="../privacy.html">プライバシー</a>
+        <a href="#" data-analytics-settings="">アナリティクス設定</a>
+        <a href="https://byphil.eu/terms.html#impressum" target="_blank" rel="noopener">法的表記（Impressum）</a>
+      </div>
+    </div>
+    <div class="copyright">© 2026 Phil Wornath. Part of <a href="https://byphil.eu/" class="credit-link">byphil.eu ↗</a> — ドイツで開発された独立系ソフトウェア。<br>
+      Designed &amp; built by <a href="https://philwornath.com/" target="_blank" rel="noopener" class="credit-link">philwornath.com ↗</a>
+    </div>
+  </div>
+</footer>
+
+<script src="../../assets/main.js"></script>
+
+
+</body></html>

@@ -1,0 +1,135 @@
+<!DOCTYPE html><html lang="zh-Hans"><head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#08090C">
+<title>你的 Key。你的模型。你的数据。— AI Summary Helper</title>
+<meta name="description" content="自带 API key 对浏览器插件到底意味着什么：你的 key 保存在哪里、网页文本传输到何处，以及使用本地模型时会带来哪些改变。">
+
+<script>
+  (function(){
+    try {
+      var saved = localStorage.getItem('aish_theme');
+      var theme = saved === 'light' || saved === 'dark'
+        ? saved
+        : (window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
+      document.documentElement.setAttribute('data-theme', theme);
+    } catch (e) {
+      document.documentElement.setAttribute('data-theme', 'dark');
+    }
+  })();
+</script>
+
+<link rel="icon" type="image/svg+xml" href="../../assets/icon.svg">
+<link rel="stylesheet" href="../../assets/styles.css">
+<script src="../../assets/analytics.js"></script>
+<link rel="alternate" hreflang="x-default" href="https://ai-summary-helper.byphil.eu/blog/bring-your-own-key.html"><link rel="alternate" hreflang="en" href="https://ai-summary-helper.byphil.eu/blog/bring-your-own-key.html"><link rel="alternate" hreflang="de" href="https://ai-summary-helper.byphil.eu/de/blog/bring-your-own-key.html"><link rel="alternate" hreflang="fr" href="https://ai-summary-helper.byphil.eu/fr/blog/bring-your-own-key.html"><link rel="alternate" hreflang="es" href="https://ai-summary-helper.byphil.eu/es/blog/bring-your-own-key.html"><link rel="alternate" hreflang="zh-Hans" href="https://ai-summary-helper.byphil.eu/zh/blog/bring-your-own-key.html"><link rel="alternate" hreflang="zh-Hant" href="https://ai-summary-helper.byphil.eu/zh-tw/blog/bring-your-own-key.html"><link rel="alternate" hreflang="ja" href="https://ai-summary-helper.byphil.eu/ja/blog/bring-your-own-key.html"><link rel="alternate" hreflang="ko" href="https://ai-summary-helper.byphil.eu/ko/blog/bring-your-own-key.html"><link rel="alternate" hreflang="pt-BR" href="https://ai-summary-helper.byphil.eu/pt/blog/bring-your-own-key.html"><link rel="alternate" hreflang="hi" href="https://ai-summary-helper.byphil.eu/hi/blog/bring-your-own-key.html"><link rel="alternate" hreflang="vi" href="https://ai-summary-helper.byphil.eu/vi/blog/bring-your-own-key.html"></head>
+<body>
+
+<a href="#main" class="skip-link">跳转至主要内容</a>
+
+<header class="nav">
+  <div class="wrap nav-inner">
+    <div class="brand-cluster">
+      <div class="wordmark">
+        <img src="../../assets/icon.svg" alt="">
+        AI Summary Helper
+      </div>
+      <a href="https://byphil.eu/" target="_blank" rel="noopener" class="ecosystem-badge">
+        <span class="pulse-dot"></span> byphil. 旗下项目
+      </a>
+    </div>
+    <div class="nav-desktop-group nav-desktop-links">
+      <nav class="links" aria-label="Primary">
+        <a href="../index.html#features">功能特性</a>
+        <a href="../index.html#pricing">价格方案</a>
+        <a href="./" aria-current="page">博客</a>
+        <a href="https://github.com/philffm/ai-summary-helper/" target="_blank" rel="noopener">GitHub</a>
+      </nav>
+      <button type="button" class="theme-toggle" id="themeToggle" aria-label="Switch to light mode">
+        <svg class="icon-moon" viewBox="0 0 24 24" fill="none"><path d="M20 14.5A8.5 8.5 0 1 1 9.5 4a6.8 6.8 0 0 0 10.5 10.5Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"></path></svg>
+        <svg class="icon-sun" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="4.2" stroke="currentColor" stroke-width="1.6"></circle><path d="M12 2.5v2.4M12 19.1v2.4M4.4 4.4l1.7 1.7M17.9 17.9l1.7 1.7M2.5 12h2.4M19.1 12h2.4M4.4 19.6l1.7-1.7M17.9 6.1l1.7-1.7" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"></path></svg>
+      </button>
+      <a href="../index.html" class="btn-sign-in">← 返回应用</a>
+    </div>
+    <button type="button" class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="mobileMenu" aria-label="Open menu">
+      <svg viewBox="0 0 24 24" fill="none"><path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"></path></svg>
+    </button>
+  </div>
+  <div class="mobile-menu" id="mobileMenu" hidden="">
+    <div class="wrap mobile-menu-inner">
+      <a href="../index.html#features">功能特性</a>
+      <a href="../index.html#pricing">价格方案</a>
+      <a href="./">博客</a>
+      <a href="https://github.com/philffm/ai-summary-helper/" target="_blank" rel="noopener">GitHub</a>
+      <a href="https://byphil.eu/" target="_blank" rel="noopener">byphil. 旗下项目 ↗</a>
+      <button type="button" class="theme-toggle-mobile" id="themeToggleMobile">
+        <span id="themeToggleMobileLabel">切换至浅色模式</span>
+        <svg class="icon-moon" viewBox="0 0 24 24" fill="none"><path d="M20 14.5A8.5 8.5 0 1 1 9.5 4a6.8 6.8 0 0 0 10.5 10.5Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"></path></svg>
+        <svg class="icon-sun" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="4.2" stroke="currentColor" stroke-width="1.6"></circle><path d="M12 2.5v2.4M12 19.1v2.4M4.4 4.4l1.7 1.7M17.9 17.9l1.7 1.7M2.5 12h2.4M19.1 12h2.4M4.4 19.6l1.7-1.7M17.9 6.1l1.7-1.7" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"></path></svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+<main id="main">
+  <div class="wrap">
+    <div class="post-hero">
+      <span class="blog-date">产品动态 · 2026 年 10 月</span>
+      <h1>你的 Key。你的模型。你的数据。</h1>
+      <p class="post-sub">大多数 AI 工具都会在你与模型之间架设一层专属服务器。本文将探讨去掉这个中间层后会发生什么变化，以及哪些环节依然取决于你自己的选择。</p>
+    </div>
+  </div>
+
+  <section>
+    <div class="wrap">
+      <div class="prose">
+        <p>所有 AI 摘要的基本逻辑都一样：发送文本，接收结果。决定你是否能信任该工具的核心，在于谁处于数据传输的中间环节。在许多产品中，中间往往存在一个第三方服务器，你阅读的内容必须经过它，才能传递给你并未亲自选择的模型。</p>
+
+        <h2>在此处，“自带 API key”究竟意味着什么</h2>
+        <p>你在自己信任的供应商处生成 API key，粘贴进 AI Summary Helper 并选择模型。当你对网页生成摘要时，插件的后台 Worker 会将文本直接发送给该供应商，并以流式传输返回结果。在使用你自己的 API key 时，整个链路中没有任何 AI Summary Helper 的服务器介入。</p>
+        <p>你也可以将它指向本地运行的模型（例如通过 Ollama）。在这种情况下，网页文本完全不会离开你的电脑。</p>
+        <figure class="post-figure post-figure--portrait"><img src="../../assets/blog/bring-your-own-key.webp" alt="幻灯片：自带 API key，带有本地模型、开源和浏览器本地存储 key 等标签" width="800" height="1000" loading="lazy"><figcaption>你可以自主选择服务商或本地模型，API key 始终保留在你的浏览器中。</figcaption></figure>
+        <h2>你的 API key 保存在哪里</h2>
+        <p>你的 key 保存在浏览器的插件本地存储中，而非同步存储。这意味着它不会通过浏览器账号同步到其他设备。相应地，你需要在每个浏览器上单独配置一次。这些 key 仅用于与你所配置的服务商进行通信。</p>
+
+        <h2>这种机制能保护什么，不能保护什么</h2>
+        <p>我们需要客观明确这一点：自带 API key 只是移除了中间商服务器，但并没有省去模型提供商——你发送给云端托管模型的任何内容，依然受该提供商的服务条款与数据保留策略约束，因此请务必查阅相关条款。只有本地模型才能将文本完全留在你的设备上，不过本地模型通常比云端模型体量更小、响应更慢。</p>
+        <p>该项目完全开源，你无需盲目信任任何承诺。所有处理 API key 与请求的代码都在代码仓库中，随时可供查阅与审计。</p>
+
+        <h2>选择适合你的配置方案</h2>
+        <ol>
+          <li><strong>日常阅读：</strong> 选择一家条款符合你预期的云端托管模型服务商。速度快、质量高，且 API key 由你全权掌控。</li>
+          <li><strong>敏感内容：</strong> 选择本地模型。虽然速度较慢、能力稍弱，但任何数据都不会离开你的设备。</li>
+          <li><strong>对比探索：</strong> 配置多个服务商，并在同一篇文章上对比它们的输出。这是了解哪种模型最适合处理哪类文本的最快方式。</li>
+        </ol>
+        <p>重点不在于哪种配置方案绝对正确，而在于选择权始终在你手中。</p>
+        <div class="post-cta">
+          <p>AI Summary Helper 是一款免费的 Chrome 扩展程序。</p>
+          <a href="https://chromewebstore.google.com/detail/ai-summary-helper-openai/hldbejcjaedipeegjcinmhejdndchkmb" target="_blank" rel="noopener" class="btn-primary">添加至 Chrome</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="footer-inner">
+      <div class="wordmark"><img src="../../assets/icon.svg" alt="">AI Summary Helper</div>
+      <div class="foot-links">
+        <a href="https://github.com/philffm/ai-summary-helper/" target="_blank" rel="noopener">查看 GitHub 源代码</a>
+        <a href="../privacy.html">隐私</a>
+        <a href="#" data-analytics-settings="">数据分析设置</a>
+        <a href="https://byphil.eu/terms.html#impressum" target="_blank" rel="noopener">法律声明 (Impressum)</a>
+      </div>
+    </div>
+    <div class="copyright">© 2026 Phil Wornath. 隶属于 <a href="https://byphil.eu/" class="credit-link">byphil.eu ↗</a> —— 德国制造的独立软件。<br>
+      设计与开发： <a href="https://philwornath.com/" target="_blank" rel="noopener" class="credit-link">philwornath.com ↗</a>
+    </div>
+  </div>
+</footer>
+
+<script src="../../assets/main.js"></script>
+
+
+</body></html>

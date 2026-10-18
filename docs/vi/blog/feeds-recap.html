@@ -1,0 +1,132 @@
+<!DOCTYPE html><html lang="vi"><head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#08090C">
+<title>Một bản tóm tắt thay vì 40 nguồn tin — AI Summary Helper</title>
+<meta name="description" content="Theo dõi quá nhiều nguồn tin đồng nghĩa với việc liên tục chuyển đổi tác vụ. Dưới đây là cách bản tóm tắt hàng ngày hoặc hàng tuần thay thế phần lớn các thao tác đó, và lý do điều này tối quan trọng cho sự tập trung.">
+
+<script>
+  (function(){
+    try {
+      var saved = localStorage.getItem('aish_theme');
+      var theme = saved === 'light' || saved === 'dark'
+        ? saved
+        : (window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
+      document.documentElement.setAttribute('data-theme', theme);
+    } catch (e) {
+      document.documentElement.setAttribute('data-theme', 'dark');
+    }
+  })();
+</script>
+
+<link rel="icon" type="image/svg+xml" href="../../assets/icon.svg">
+<link rel="stylesheet" href="../../assets/styles.css">
+<script src="../../assets/analytics.js"></script>
+<link rel="alternate" hreflang="x-default" href="https://ai-summary-helper.byphil.eu/blog/feeds-recap.html"><link rel="alternate" hreflang="en" href="https://ai-summary-helper.byphil.eu/blog/feeds-recap.html"><link rel="alternate" hreflang="de" href="https://ai-summary-helper.byphil.eu/de/blog/feeds-recap.html"><link rel="alternate" hreflang="fr" href="https://ai-summary-helper.byphil.eu/fr/blog/feeds-recap.html"><link rel="alternate" hreflang="es" href="https://ai-summary-helper.byphil.eu/es/blog/feeds-recap.html"><link rel="alternate" hreflang="zh-Hans" href="https://ai-summary-helper.byphil.eu/zh/blog/feeds-recap.html"><link rel="alternate" hreflang="zh-Hant" href="https://ai-summary-helper.byphil.eu/zh-tw/blog/feeds-recap.html"><link rel="alternate" hreflang="ja" href="https://ai-summary-helper.byphil.eu/ja/blog/feeds-recap.html"><link rel="alternate" hreflang="ko" href="https://ai-summary-helper.byphil.eu/ko/blog/feeds-recap.html"><link rel="alternate" hreflang="pt-BR" href="https://ai-summary-helper.byphil.eu/pt/blog/feeds-recap.html"><link rel="alternate" hreflang="hi" href="https://ai-summary-helper.byphil.eu/hi/blog/feeds-recap.html"><link rel="alternate" hreflang="vi" href="https://ai-summary-helper.byphil.eu/vi/blog/feeds-recap.html"></head>
+<body>
+
+<a href="#main" class="skip-link">Chuyển đến nội dung</a>
+
+<header class="nav">
+  <div class="wrap nav-inner">
+    <div class="brand-cluster">
+      <div class="wordmark">
+        <img src="../../assets/icon.svg" alt="">
+        AI Summary Helper
+      </div>
+      <a href="https://byphil.eu/" target="_blank" rel="noopener" class="ecosystem-badge">
+        <span class="pulse-dot"></span> Một sản phẩm của byphil.
+      </a>
+    </div>
+    <div class="nav-desktop-group nav-desktop-links">
+      <nav class="links" aria-label="Primary">
+        <a href="../index.html#features">Tính năng</a>
+        <a href="../index.html#pricing">Bảng giá</a>
+        <a href="./" aria-current="page">Blog</a>
+        <a href="https://github.com/philffm/ai-summary-helper/" target="_blank" rel="noopener">GitHub</a>
+      </nav>
+      <button type="button" class="theme-toggle" id="themeToggle" aria-label="Switch to light mode">
+        <svg class="icon-moon" viewBox="0 0 24 24" fill="none"><path d="M20 14.5A8.5 8.5 0 1 1 9.5 4a6.8 6.8 0 0 0 10.5 10.5Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"></path></svg>
+        <svg class="icon-sun" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="4.2" stroke="currentColor" stroke-width="1.6"></circle><path d="M12 2.5v2.4M12 19.1v2.4M4.4 4.4l1.7 1.7M17.9 17.9l1.7 1.7M2.5 12h2.4M19.1 12h2.4M4.4 19.6l1.7-1.7M17.9 6.1l1.7-1.7" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"></path></svg>
+      </button>
+      <a href="../index.html" class="btn-sign-in">← Quay lại ứng dụng</a>
+    </div>
+    <button type="button" class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="mobileMenu" aria-label="Open menu">
+      <svg viewBox="0 0 24 24" fill="none"><path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"></path></svg>
+    </button>
+  </div>
+  <div class="mobile-menu" id="mobileMenu" hidden="">
+    <div class="wrap mobile-menu-inner">
+      <a href="../index.html#features">Tính năng</a>
+      <a href="../index.html#pricing">Bảng giá</a>
+      <a href="./">Blog</a>
+      <a href="https://github.com/philffm/ai-summary-helper/" target="_blank" rel="noopener">GitHub</a>
+      <a href="https://byphil.eu/" target="_blank" rel="noopener">Một sản phẩm của byphil. ↗</a>
+      <button type="button" class="theme-toggle-mobile" id="themeToggleMobile">
+        <span id="themeToggleMobileLabel">Chuyển sang chế độ sáng</span>
+        <svg class="icon-moon" viewBox="0 0 24 24" fill="none"><path d="M20 14.5A8.5 8.5 0 1 1 9.5 4a6.8 6.8 0 0 0 10.5 10.5Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"></path></svg>
+        <svg class="icon-sun" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="4.2" stroke="currentColor" stroke-width="1.6"></circle><path d="M12 2.5v2.4M12 19.1v2.4M4.4 4.4l1.7 1.7M17.9 17.9l1.7 1.7M2.5 12h2.4M19.1 12h2.4M4.4 19.6l1.7-1.7M17.9 6.1l1.7-1.7" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"></path></svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+<main id="main">
+  <div class="wrap">
+    <div class="post-hero">
+      <span class="blog-date">Hướng dẫn · Tháng 10 năm 2026</span>
+      <h1>Một bản tóm tắt thay vì 40 nguồn tin</h1>
+      <p class="post-sub">Bốn mươi nguồn tin đồng nghĩa với bốn mươi lần gián đoạn nhỏ trước giờ ăn trưa. Bản tóm tắt sẽ gộp tất cả thành một nội dung duy nhất để bạn đọc trọn vẹn chỉ một lần.</p>
+    </div>
+  </div>
+
+  <section>
+    <div class="wrap">
+      <div class="prose">
+        <p>Năm 2009, Sophie Leroy đã mô tả khái niệm 'sự phân tán chú ý còn sót lại' (attention residue): khi bạn chuyển từ tác vụ này sang tác vụ khác, một phần sự chú ý của bạn vẫn còn kẹt lại ở tác vụ trước. Trong các thí nghiệm của bà, những người bị gián đoạn ở một tác vụ đã thực hiện kém hơn ở tác vụ tiếp theo, và ảnh hưởng này càng rõ rệt hơn khi họ phải vội vã.</p>
+        <p>Trình đọc tin (feed reader) thực chất là cỗ máy tạo ra sự phân tán tác vụ. Mỗi mục tin là một chủ đề khác nhau, một giọng văn khác nhau, một tab trình duyệt khác nhau. Dù mỗi tin đọc rất nhanh, sự phân tán tích tụ dần. Đến lúc quay lại với công việc thực tế, tâm trí bạn vẫn còn vương vấn về việc đổi bảng giá của một nhà cung cấp hosting.</p>
+
+        <h2>Tại sao mục tiêu “inbox zero” với nguồn cấp tin không bao giờ hiệu quả</h2>
+        <p>Số lượng tin chưa đọc biến việc đọc thành một gánh nặng. Những nguồn tin chất lượng thường xuất bản liên tục, đồng nghĩa với việc con số này chỉ có tăng lên. Mọi người thường chọn cách 'đầu hàng', đánh dấu đã đọc tất cả, rồi dần dần lại rơi vào tình trạng ứ đọng như cũ.</p>
+
+        <h2>Bản tóm tắt thay đổi điều gì</h2>
+        <p>Tab Feeds trong AI Summary Helper cho phép bạn đăng ký các nguồn RSS thực sự quan tâm. Thay vì một danh sách dài dằng dặc các bài viết, bạn có thể yêu cầu một bản tóm tắt: một bài viết duy nhất, theo ngày hoặc theo tuần, tổng hợp toàn bộ thông tin mới kèm liên kết đến bài gốc. Bạn chỉ cần đọc một lần trọn vẹn, và phần còn lại trong ngày sẽ không bị chi phối bởi những gì Internet vừa đăng tải lúc 10:42.</p>
+        <p>Bạn cũng có thể nghe bản tóm tắt dưới dạng podcast—giải pháp tuyệt vời khi không có thời gian đọc. Quá trình tóm tắt chạy trực tiếp trên nhà cung cấp bạn đã thiết lập bằng khóa API cá nhân, tương tự như tính năng tóm tắt thông thường.</p>
+        <figure class="post-figure post-figure--portrait"><img src="../../assets/blog/feeds-recap.webp" alt="Slide: Các nguồn tin của bạn trong một bản tóm tắt, với giao diện hội thoại hiển thị tóm tắt hàng tuần kèm liên kết đến các bài viết gốc" width="800" height="1000" loading="lazy"><figcaption>Bản tóm tắt thay thế hoàn toàn áp lực số tin chưa đọc: chỉ một nội dung duy nhất cần đọc, kèm liên kết tới từng nguồn gốc.</figcaption></figure>
+        <h2>Thiết lập để đạt hiệu quả tối đa</h2>
+        <ol>
+          <li><strong>Cắt giảm danh sách trước tiên.</strong> Chỉ giữ lại những nguồn tin bạn thực sự không muốn bỏ lỡ. Bản tóm tắt sẽ chất lượng hơn khi đầu vào được chọn lọc kỹ càng.</li>
+          <li><strong>Chọn một thời điểm cố định trong ngày.</strong> Đọc bản tóm tắt vào một khung giờ cố định sẽ thay thế thói quen kiểm tra liên tục. Nếu bạn kiểm tra tóm tắt hàng giờ, nó cũng chẳng khác gì một nguồn cấp tin chậm hơn.</li>
+          <li><strong>Mở các liên kết bạn quan tâm.</strong> Mỗi mục trong bản tóm tắt đều dẫn trực tiếp đến nguồn gốc, vì vậy bản tóm tắt đóng vai trò như một cánh cửa mở ra nội dung chứ không thay thế hoàn toàn trải nghiệm đọc sâu.</li>
+        </ol>
+        <p>Mục tiêu không phải là đọc ít đi vì lười biếng, mà là chủ động quyết định một lần xem điều gì xứng đáng với sự chú ý của bạn, thay vì bị phân tâm ngẫu nhiên bốn mươi lần.</p>
+        <div class="post-cta">
+          <p>AI Summary Helper là tiện ích mở rộng miễn phí dành cho Chrome.</p>
+          <a href="https://chromewebstore.google.com/detail/ai-summary-helper-openai/hldbejcjaedipeegjcinmhejdndchkmb" target="_blank" rel="noopener" class="btn-primary">Thêm vào Chrome</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="footer-inner">
+      <div class="wordmark"><img src="../../assets/icon.svg" alt="">AI Summary Helper</div>
+      <div class="foot-links">
+        <a href="https://github.com/philffm/ai-summary-helper/" target="_blank" rel="noopener">Mã nguồn trên GitHub</a>
+        <a href="../privacy.html">Quyền riêng tư</a>
+        <a href="#" data-analytics-settings="">Cài đặt phân tích</a>
+        <a href="https://byphil.eu/terms.html#impressum" target="_blank" rel="noopener">Thông tin pháp lý (Impressum)</a>
+      </div>
+    </div>
+    <div class="copyright">© 2026 Phil Wornath. Một phần của <a href="https://byphil.eu/" class="credit-link">byphil.eu ↗</a> — phần mềm độc lập được phát triển tại Đức.<br>
+      Thiết kế &amp; phát triển bởi <a href="https://philwornath.com/" target="_blank" rel="noopener" class="credit-link">philwornath.com ↗</a>
+    </div>
+  </div>
+</footer>
+
+<script src="../../assets/main.js"></script>
+
+
+</body></html>

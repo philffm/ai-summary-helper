@@ -1,0 +1,135 @@
+<!DOCTYPE html><html lang="hi"><head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#08090C">
+<title>आपकी Key. आपका Model. आपका Data. — AI Summary Helper</title>
+<meta name="description" content="किसी browser extension के लिए अपना खुद का API key यूज़ करने का असल में क्या मतलब है: आपकी key कहाँ स्टोर होती है, पेज का text कहाँ जाता है, और local model इस्तेमाल करने पर क्या बदलता है।">
+
+<script>
+  (function(){
+    try {
+      var saved = localStorage.getItem('aish_theme');
+      var theme = saved === 'light' || saved === 'dark'
+        ? saved
+        : (window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
+      document.documentElement.setAttribute('data-theme', theme);
+    } catch (e) {
+      document.documentElement.setAttribute('data-theme', 'dark');
+    }
+  })();
+</script>
+
+<link rel="icon" type="image/svg+xml" href="../../assets/icon.svg">
+<link rel="stylesheet" href="../../assets/styles.css">
+<script src="../../assets/analytics.js"></script>
+<link rel="alternate" hreflang="x-default" href="https://ai-summary-helper.byphil.eu/blog/bring-your-own-key.html"><link rel="alternate" hreflang="en" href="https://ai-summary-helper.byphil.eu/blog/bring-your-own-key.html"><link rel="alternate" hreflang="de" href="https://ai-summary-helper.byphil.eu/de/blog/bring-your-own-key.html"><link rel="alternate" hreflang="fr" href="https://ai-summary-helper.byphil.eu/fr/blog/bring-your-own-key.html"><link rel="alternate" hreflang="es" href="https://ai-summary-helper.byphil.eu/es/blog/bring-your-own-key.html"><link rel="alternate" hreflang="zh-Hans" href="https://ai-summary-helper.byphil.eu/zh/blog/bring-your-own-key.html"><link rel="alternate" hreflang="zh-Hant" href="https://ai-summary-helper.byphil.eu/zh-tw/blog/bring-your-own-key.html"><link rel="alternate" hreflang="ja" href="https://ai-summary-helper.byphil.eu/ja/blog/bring-your-own-key.html"><link rel="alternate" hreflang="ko" href="https://ai-summary-helper.byphil.eu/ko/blog/bring-your-own-key.html"><link rel="alternate" hreflang="pt-BR" href="https://ai-summary-helper.byphil.eu/pt/blog/bring-your-own-key.html"><link rel="alternate" hreflang="hi" href="https://ai-summary-helper.byphil.eu/hi/blog/bring-your-own-key.html"><link rel="alternate" hreflang="vi" href="https://ai-summary-helper.byphil.eu/vi/blog/bring-your-own-key.html"></head>
+<body>
+
+<a href="#main" class="skip-link">सीधे content पर जाएं</a>
+
+<header class="nav">
+  <div class="wrap nav-inner">
+    <div class="brand-cluster">
+      <div class="wordmark">
+        <img src="../../assets/icon.svg" alt="">
+        AI Summary Helper
+      </div>
+      <a href="https://byphil.eu/" target="_blank" rel="noopener" class="ecosystem-badge">
+        <span class="pulse-dot"></span> byphil. का हिस्सा।
+      </a>
+    </div>
+    <div class="nav-desktop-group nav-desktop-links">
+      <nav class="links" aria-label="Primary">
+        <a href="../index.html#features">Features</a>
+        <a href="../index.html#pricing">Pricing</a>
+        <a href="./" aria-current="page">Blog</a>
+        <a href="https://github.com/philffm/ai-summary-helper/" target="_blank" rel="noopener">GitHub</a>
+      </nav>
+      <button type="button" class="theme-toggle" id="themeToggle" aria-label="Switch to light mode">
+        <svg class="icon-moon" viewBox="0 0 24 24" fill="none"><path d="M20 14.5A8.5 8.5 0 1 1 9.5 4a6.8 6.8 0 0 0 10.5 10.5Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"></path></svg>
+        <svg class="icon-sun" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="4.2" stroke="currentColor" stroke-width="1.6"></circle><path d="M12 2.5v2.4M12 19.1v2.4M4.4 4.4l1.7 1.7M17.9 17.9l1.7 1.7M2.5 12h2.4M19.1 12h2.4M4.4 19.6l1.7-1.7M17.9 6.1l1.7-1.7" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"></path></svg>
+      </button>
+      <a href="../index.html" class="btn-sign-in">← App पर वापस जाएं</a>
+    </div>
+    <button type="button" class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="mobileMenu" aria-label="Open menu">
+      <svg viewBox="0 0 24 24" fill="none"><path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"></path></svg>
+    </button>
+  </div>
+  <div class="mobile-menu" id="mobileMenu" hidden="">
+    <div class="wrap mobile-menu-inner">
+      <a href="../index.html#features">Features</a>
+      <a href="../index.html#pricing">Pricing</a>
+      <a href="./">Blog</a>
+      <a href="https://github.com/philffm/ai-summary-helper/" target="_blank" rel="noopener">GitHub</a>
+      <a href="https://byphil.eu/" target="_blank" rel="noopener">byphil. का हिस्सा ↗</a>
+      <button type="button" class="theme-toggle-mobile" id="themeToggleMobile">
+        <span id="themeToggleMobileLabel">Light mode में बदलें</span>
+        <svg class="icon-moon" viewBox="0 0 24 24" fill="none"><path d="M20 14.5A8.5 8.5 0 1 1 9.5 4a6.8 6.8 0 0 0 10.5 10.5Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"></path></svg>
+        <svg class="icon-sun" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="4.2" stroke="currentColor" stroke-width="1.6"></circle><path d="M12 2.5v2.4M12 19.1v2.4M4.4 4.4l1.7 1.7M17.9 17.9l1.7 1.7M2.5 12h2.4M19.1 12h2.4M4.4 19.6l1.7-1.7M17.9 6.1l1.7-1.7" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"></path></svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+<main id="main">
+  <div class="wrap">
+    <div class="post-hero">
+      <span class="blog-date">Product · October 2026</span>
+      <h1>आपकी Key. आपका Model. आपका Data.</h1>
+      <p class="post-sub">ज़्यादातर AI tools आपके और model के बीच में एक server लगा देते हैं। जानिए जब बीच में कोई server नहीं होता तो क्या बदलता है, और क्या चीज़ें अभी भी आपके कंट्रोल में रहती हैं।</p>
+    </div>
+  </div>
+
+  <section>
+    <div class="wrap">
+      <div class="prose">
+        <p>हर AI summary का एक ही बेसिक प्रोसेस होता है: कुछ text भेजा जाता है, और response में summary वापस आती है। लेकिन आप टूल पर कितना भरोसा कर सकते हैं, यह इस बात पर निर्भर करता है कि बीच में कौन बैठा है। कई प्रोडक्ट्स में बीच में कंपनी का server होता है, और जो कुछ भी आप पढ़ रहे होते हैं वह आपके चुने बिना किसी थर्ड-पार्टी model तक पहुँचने से पहले उस server से होकर गुज़रता है।</p>
+
+        <h2>यहाँ “bring your own key” का क्या मतलब है</h2>
+        <p>आप अपने भरोसेमंद provider से एक API key बनाते हैं, उसे AI Summary Helper में पेस्ट करते हैं, और अपना मनपसंद model चुनते हैं। जब आप कोई पेज summarize करते हैं, तो extension का background worker सीधे उस provider को text भेजता है और response stream करता है। आपकी खुद की key के लिए AI Summary Helper का कोई भी server बीच में नहीं आता।</p>
+        <p>आप इसे अपनी मशीन पर Ollama जैसे टूल्स के ज़रिए लोकल चल रहे model से भी कनेक्ट कर सकते हैं। उस केस में, zero recurring cost के साथ offline on-device execution होता है और पेज का text आपके कंप्यूटर से कभी बाहर नहीं जाता।</p>
+        <figure class="post-figure post-figure--portrait"><img src="../../assets/blog/bring-your-own-key.webp" alt="Slide: Bring your own key, जिसमें local models, open source और browser में स्टोर होने वाली keys के चिप्स दिखाए गए हैं" width="800" height="1000" loading="lazy"><figcaption>आप provider चुनें या local model — आपकी key हमेशा आपके browser में ही सुरक्षित रहती है।</figcaption></figure>
+        <h2>आपकी key कहाँ स्टोर होती है</h2>
+        <p>आपकी key आपके browser के local extension storage में स्टोर होती है, synced storage में नहीं। इसका मतलब है कि यह आपके browser account के ज़रिए दूसरे डिवाइसेज़ पर कॉपी नहीं होती। बस आपको इसे हर browser में एक बार एंटर करना होता है। Keys का इस्तेमाल केवल उसी provider से कनेक्ट करने के लिए होता है जिसके लिए आपने उन्हें कॉन्फ़िगर किया है।</p>
+
+        <h2>यह किस चीज़ को सुरक्षित रखता है और किसे नहीं</h2>
+        <p>इस बात को साफ़ तौर पर समझें: अपनी API key इस्तेमाल करने से बीच का बिचौलिया हट जाता है। लेकिन यह model provider को नहीं हटाता—आप hosted model को जो भी भेजते हैं, वह उस provider की terms और retention नियमों के तहत आता है, इसलिए उन्हें ज़रूर पढ़ें। केवल local model ही text को पूरी तरह आपकी मशीन पर रखता है, हालांकि local models आम तौर पर hosted models की तुलना में छोटे और धीमे होते हैं।</p>
+        <p>यह प्रोजेक्ट पूरी तरह open source है, इसलिए आपको किसी भी बात पर बिना देखे भरोसा करने की ज़रूरत नहीं है। keys और requests हैंडल करने वाला सारा कोड repository में मौजूद है, और आप इसे खुद पढ़ सकते हैं।</p>
+
+        <h2>सही setup चुनना</h2>
+        <ol>
+          <li><strong>रोज़मर्रा की रीडिंग के लिए:</strong> ऐसे provider का hosted model जिसकी terms से आप सहज हों। तेज़, बेहतरीन quality, और key आपके कंट्रोल में।</li>
+          <li><strong>सेंसिटिव डेटा के लिए:</strong> एक local model। भले ही यह थोड़ा धीमा हो, पर zero cost और पूरी प्राइवेसी के साथ कोई भी डेटा आपकी मशीन से बाहर नहीं जाता।</li>
+          <li><strong>एक्सपेरिमेंट करने के लिए:</strong> एक से ज़्यादा providers जोड़ें और एक ही आर्टिकल पर उनके जवाब compare करें। यह जानने का यह सबसे तेज़ तरीका है कि किस तरह के टेक्स्ट के लिए कौन-सा model बेस्ट है।</li>
+        </ol>
+        <p>ज़रूरी यह नहीं कि कौन-सा setup सही है, बल्कि यह है कि इसका फ़ैसला हमेशा आपके हाथ में रहता है।</p>
+        <div class="post-cta">
+          <p>AI Summary Helper एक फ़्री Chrome extension है।</p>
+          <a href="https://chromewebstore.google.com/detail/ai-summary-helper-openai/hldbejcjaedipeegjcinmhejdndchkmb" target="_blank" rel="noopener" class="btn-primary">Chrome में जोड़ें</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="footer-inner">
+      <div class="wordmark"><img src="../../assets/icon.svg" alt="">AI Summary Helper</div>
+      <div class="foot-links">
+        <a href="https://github.com/philffm/ai-summary-helper/" target="_blank" rel="noopener">GitHub पर Source</a>
+        <a href="../privacy.html">Privacy</a>
+        <a href="#" data-analytics-settings="">Analytics settings</a>
+        <a href="https://byphil.eu/terms.html#impressum" target="_blank" rel="noopener">Impressum</a>
+      </div>
+    </div>
+    <div class="copyright">© 2026 Phil Wornath. Part of <a href="https://byphil.eu/" class="credit-link">byphil.eu ↗</a> — independent software built in Germany.<br>
+      Designed &amp; built by <a href="https://philwornath.com/" target="_blank" rel="noopener" class="credit-link">philwornath.com ↗</a>
+    </div>
+  </div>
+</footer>
+
+<script src="../../assets/main.js"></script>
+
+
+</body></html>

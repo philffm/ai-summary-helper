@@ -1,0 +1,132 @@
+<!DOCTYPE html><html lang="ko"><head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#08090C">
+<title>40개의 피드 대신 단 하나의 리캡으로 — AI Summary Helper</title>
+<meta name="description" content="수많은 피드를 확인하다 보면 집중력이 쉽게 분산됩니다. 일간 또는 주간 리캡이 이를 어떻게 대체하고 업무 집중도를 높여주는지 확인해 보세요.">
+
+<script>
+  (function(){
+    try {
+      var saved = localStorage.getItem('aish_theme');
+      var theme = saved === 'light' || saved === 'dark'
+        ? saved
+        : (window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
+      document.documentElement.setAttribute('data-theme', theme);
+    } catch (e) {
+      document.documentElement.setAttribute('data-theme', 'dark');
+    }
+  })();
+</script>
+
+<link rel="icon" type="image/svg+xml" href="../../assets/icon.svg">
+<link rel="stylesheet" href="../../assets/styles.css">
+<script src="../../assets/analytics.js"></script>
+<link rel="alternate" hreflang="x-default" href="https://ai-summary-helper.byphil.eu/blog/feeds-recap.html"><link rel="alternate" hreflang="en" href="https://ai-summary-helper.byphil.eu/blog/feeds-recap.html"><link rel="alternate" hreflang="de" href="https://ai-summary-helper.byphil.eu/de/blog/feeds-recap.html"><link rel="alternate" hreflang="fr" href="https://ai-summary-helper.byphil.eu/fr/blog/feeds-recap.html"><link rel="alternate" hreflang="es" href="https://ai-summary-helper.byphil.eu/es/blog/feeds-recap.html"><link rel="alternate" hreflang="zh-Hans" href="https://ai-summary-helper.byphil.eu/zh/blog/feeds-recap.html"><link rel="alternate" hreflang="zh-Hant" href="https://ai-summary-helper.byphil.eu/zh-tw/blog/feeds-recap.html"><link rel="alternate" hreflang="ja" href="https://ai-summary-helper.byphil.eu/ja/blog/feeds-recap.html"><link rel="alternate" hreflang="ko" href="https://ai-summary-helper.byphil.eu/ko/blog/feeds-recap.html"><link rel="alternate" hreflang="pt-BR" href="https://ai-summary-helper.byphil.eu/pt/blog/feeds-recap.html"><link rel="alternate" hreflang="hi" href="https://ai-summary-helper.byphil.eu/hi/blog/feeds-recap.html"><link rel="alternate" hreflang="vi" href="https://ai-summary-helper.byphil.eu/vi/blog/feeds-recap.html"></head>
+<body>
+
+<a href="#main" class="skip-link">본문으로 건너뛰기</a>
+
+<header class="nav">
+  <div class="wrap nav-inner">
+    <div class="brand-cluster">
+      <div class="wordmark">
+        <img src="../../assets/icon.svg" alt="">
+        AI Summary Helper
+      </div>
+      <a href="https://byphil.eu/" target="_blank" rel="noopener" class="ecosystem-badge">
+        <span class="pulse-dot"></span> byphil. 프로젝트의 일부입니다.
+      </a>
+    </div>
+    <div class="nav-desktop-group nav-desktop-links">
+      <nav class="links" aria-label="Primary">
+        <a href="../index.html#features">기능</a>
+        <a href="../index.html#pricing">요금제</a>
+        <a href="./" aria-current="page">블로그</a>
+        <a href="https://github.com/philffm/ai-summary-helper/" target="_blank" rel="noopener">GitHub</a>
+      </nav>
+      <button type="button" class="theme-toggle" id="themeToggle" aria-label="Switch to light mode">
+        <svg class="icon-moon" viewBox="0 0 24 24" fill="none"><path d="M20 14.5A8.5 8.5 0 1 1 9.5 4a6.8 6.8 0 0 0 10.5 10.5Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"></path></svg>
+        <svg class="icon-sun" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="4.2" stroke="currentColor" stroke-width="1.6"></circle><path d="M12 2.5v2.4M12 19.1v2.4M4.4 4.4l1.7 1.7M17.9 17.9l1.7 1.7M2.5 12h2.4M19.1 12h2.4M4.4 19.6l1.7-1.7M17.9 6.1l1.7-1.7" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"></path></svg>
+      </button>
+      <a href="../index.html" class="btn-sign-in">← 앱으로 돌아가기</a>
+    </div>
+    <button type="button" class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="mobileMenu" aria-label="Open menu">
+      <svg viewBox="0 0 24 24" fill="none"><path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"></path></svg>
+    </button>
+  </div>
+  <div class="mobile-menu" id="mobileMenu" hidden="">
+    <div class="wrap mobile-menu-inner">
+      <a href="../index.html#features">기능</a>
+      <a href="../index.html#pricing">요금제</a>
+      <a href="./">블로그</a>
+      <a href="https://github.com/philffm/ai-summary-helper/" target="_blank" rel="noopener">GitHub</a>
+      <a href="https://byphil.eu/" target="_blank" rel="noopener">byphil. 프로젝트 ↗</a>
+      <button type="button" class="theme-toggle-mobile" id="themeToggleMobile">
+        <span id="themeToggleMobileLabel">라이트 모드로 전환</span>
+        <svg class="icon-moon" viewBox="0 0 24 24" fill="none"><path d="M20 14.5A8.5 8.5 0 1 1 9.5 4a6.8 6.8 0 0 0 10.5 10.5Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"></path></svg>
+        <svg class="icon-sun" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="4.2" stroke="currentColor" stroke-width="1.6"></circle><path d="M12 2.5v2.4M12 19.1v2.4M4.4 4.4l1.7 1.7M17.9 17.9l1.7 1.7M2.5 12h2.4M19.1 12h2.4M4.4 19.6l1.7-1.7M17.9 6.1l1.7-1.7" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"></path></svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+<main id="main">
+  <div class="wrap">
+    <div class="post-hero">
+      <span class="blog-date">가이드 · 2026년 10월</span>
+      <h1>40개의 피드 대신 단 하나의 리캡으로</h1>
+      <p class="post-sub">40개의 피드를 본다는 것은 점심시간 전까지 40번의 방해를 받는 것과 같습니다. 리캡은 이 모든 것을 한 번에 읽을 수 있는 하나의 글로 정리해 줍니다.</p>
+    </div>
+  </div>
+
+  <section>
+    <div class="wrap">
+      <div class="prose">
+        <p>2009년 소피 르루아(Sophie Leroy) 교수는 '주의 잔여(Attention Residue)'라는 개념을 발표했습니다. 하나의 작업에서 다른 작업으로 전환할 때 주의력의 일부는 이전 작업에 머물러 있다는 이론입니다. 그녀의 실험에 따르면 작업 중 방해를 받은 사람들은 다음 작업의 성과가 떨어졌으며, 서둘러야 할 때 이 영향은 더욱 컸습니다.</p>
+        <p>피드 리더는 주의력을 분산시키는 대표적인 도구입니다. 글마다 주제와 어조가 다르고 열리는 탭도 제각각입니다. 아무리 가볍게 읽더라도 주의력 잔여는 누적됩니다. 결국 본업으로 돌아왔을 때도 머릿속 한편에서는 어느 호스팅 업체의 요금제 변경 소식을 생각하게 됩니다.</p>
+
+        <h2>피드에서 ‘인박스 제로(Inbox Zero)’가 불가능한 이유</h2>
+        <p>읽지 않은 글 수는 읽기 자체를 부담스러운 일거리로 만듭니다. 유익한 피드일수록 글이 자주 올라오기 때문에 쌓이는 숫자는 늘어날 뿐입니다. 결국 사람들은 '모두 읽음'으로 처리하며 정보 파산을 선언하지만, 얼마 지나지 않아 다시 쌓여가는 글 더미에 묻히게 됩니다.</p>
+
+        <h2>리캡을 사용하면 달라지는 점</h2>
+        <p>AI Summary Helper의 피드 탭에서는 자주 챙겨보는 RSS 피드를 구독할 수 있습니다. 수많은 글 목록 대신 일간 또는 주간 리캡을 받아보세요. 새로운 내용을 한 편으로 정리해 주고 원문 링크도 함께 제공합니다. 한 자리에서 한 번에 훑어볼 수 있어, 오전 10시 42분에 올라온 인터넷 글 때문에 하루의 흐름이 깨지지 않습니다.</p>
+        <p>팟캐스트처럼 음성으로 들을 수도 있어 글을 읽을 시간이 없을 때 유용합니다. 일반 요약과 마찬가지로 직접 설정한 API 키를 통해 선호하는 공급자 모델로 안전하게 리캡을 생성합니다.</p>
+        <figure class="post-figure post-figure--portrait"><img src="../../assets/blog/feeds-recap.webp" alt="슬라이드: 주간 리캡과 관련 원문 링크가 포함된 대화창 형태로 여러 피드를 한눈에 보여주는 화면" width="800" height="1000" loading="lazy"><figcaption>리캡은 끝없는 '읽지 않음' 숫자를 지워줍니다. 원문 링크가 포함된 단 한 편의 글만 읽으면 됩니다.</figcaption></figure>
+        <h2>효과적인 리캡 활용 가이드</h2>
+        <ol>
+          <li><strong>먼저 피드 목록을 정리하세요.</strong> 꼭 챙겨보고 싶은 피드만 남기세요. 입력 소스가 정제될수록 리캡의 완성도도 높아집니다.</li>
+          <li><strong>하루 중 읽는 시간을 한 번만 정하세요.</strong> 정해진 시간에 리캡을 읽으면 수시로 피드를 확인하는 습관을 줄일 수 있습니다. 리캡을 매시간 확인한다면 그저 느린 피드 리더에 불과합니다.</li>
+          <li><strong>관심 있는 링크만 선별해 읽으세요.</strong> 리캡의 모든 항목에는 원문 링크가 연결되어 있습니다. 요약은 읽기를 건너뛰는 것이 아니라 깊이 있는 읽기로 안내하는 문 역할을 합니다.</li>
+        </ol>
+        <p>단순히 게으름을 피우려고 덜 읽자는 것이 아닙니다. 무심코 40번씩 주의를 빼앗기는 대신, 어떤 정보에 집중할지 단 한 번 주도적으로 선택하기 위함입니다.</p>
+        <div class="post-cta">
+          <p>AI Summary Helper는 무료 Chrome 확장 프로그램입니다.</p>
+          <a href="https://chromewebstore.google.com/detail/ai-summary-helper-openai/hldbejcjaedipeegjcinmhejdndchkmb" target="_blank" rel="noopener" class="btn-primary">Chrome에 추가</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="footer-inner">
+      <div class="wordmark"><img src="../../assets/icon.svg" alt="">AI Summary Helper</div>
+      <div class="foot-links">
+        <a href="https://github.com/philffm/ai-summary-helper/" target="_blank" rel="noopener">GitHub에서 소스 보기</a>
+        <a href="../privacy.html">개인정보 보호</a>
+        <a href="#" data-analytics-settings="">분석 설정</a>
+        <a href="https://byphil.eu/terms.html#impressum" target="_blank" rel="noopener">Impressum (발행인 정보)</a>
+      </div>
+    </div>
+    <div class="copyright">© 2026 Phil Wornath. Part of <a href="https://byphil.eu/" class="credit-link">byphil.eu ↗</a> — 독일에서 개발된 독립 소프트웨어입니다.<br>
+      Designed &amp; built by <a href="https://philwornath.com/" target="_blank" rel="noopener" class="credit-link">philwornath.com ↗</a>
+    </div>
+  </div>
+</footer>
+
+<script src="../../assets/main.js"></script>
+
+
+</body></html>

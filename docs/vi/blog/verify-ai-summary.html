@@ -1,0 +1,138 @@
+<!DOCTYPE html><html lang="vi"><head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#08090C">
+<title>Đối chiếu tóm tắt AI với nguồn gốc — AI Summary Helper</title>
+<meta name="description" content="Bản tóm tắt bằng AI chỉ thực sự hữu ích khi bạn có thể tin tưởng nó. Dưới đây là cách nhanh chóng để đối chiếu mọi câu trả lời với trang nguồn, cùng những điều trích dẫn có thể và không thể chứng minh.">
+
+<script>
+  (function(){
+    try {
+      var saved = localStorage.getItem('aish_theme');
+      var theme = saved === 'light' || saved === 'dark'
+        ? saved
+        : (window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
+      document.documentElement.setAttribute('data-theme', theme);
+    } catch (e) {
+      document.documentElement.setAttribute('data-theme', 'dark');
+    }
+  })();
+</script>
+
+<link rel="icon" type="image/svg+xml" href="../../assets/icon.svg">
+<link rel="stylesheet" href="../../assets/styles.css">
+<script src="../../assets/analytics.js"></script>
+<link rel="alternate" hreflang="x-default" href="https://ai-summary-helper.byphil.eu/blog/verify-ai-summary.html"><link rel="alternate" hreflang="en" href="https://ai-summary-helper.byphil.eu/blog/verify-ai-summary.html"><link rel="alternate" hreflang="de" href="https://ai-summary-helper.byphil.eu/de/blog/verify-ai-summary.html"><link rel="alternate" hreflang="fr" href="https://ai-summary-helper.byphil.eu/fr/blog/verify-ai-summary.html"><link rel="alternate" hreflang="es" href="https://ai-summary-helper.byphil.eu/es/blog/verify-ai-summary.html"><link rel="alternate" hreflang="zh-Hans" href="https://ai-summary-helper.byphil.eu/zh/blog/verify-ai-summary.html"><link rel="alternate" hreflang="zh-Hant" href="https://ai-summary-helper.byphil.eu/zh-tw/blog/verify-ai-summary.html"><link rel="alternate" hreflang="ja" href="https://ai-summary-helper.byphil.eu/ja/blog/verify-ai-summary.html"><link rel="alternate" hreflang="ko" href="https://ai-summary-helper.byphil.eu/ko/blog/verify-ai-summary.html"><link rel="alternate" hreflang="pt-BR" href="https://ai-summary-helper.byphil.eu/pt/blog/verify-ai-summary.html"><link rel="alternate" hreflang="hi" href="https://ai-summary-helper.byphil.eu/hi/blog/verify-ai-summary.html"><link rel="alternate" hreflang="vi" href="https://ai-summary-helper.byphil.eu/vi/blog/verify-ai-summary.html"></head>
+<body>
+
+<a href="#main" class="skip-link">Chuyển đến nội dung</a>
+
+<header class="nav">
+  <div class="wrap nav-inner">
+    <div class="brand-cluster">
+      <div class="wordmark">
+        <img src="../../assets/icon.svg" alt="">
+        AI Summary Helper
+      </div>
+      <a href="https://byphil.eu/" target="_blank" rel="noopener" class="ecosystem-badge">
+        <span class="pulse-dot"></span> Một sản phẩm của byphil.
+      </a>
+    </div>
+    <div class="nav-desktop-group nav-desktop-links">
+      <nav class="links" aria-label="Primary">
+        <a href="../index.html#features">Tính năng</a>
+        <a href="../index.html#pricing">Bảng giá</a>
+        <a href="./" aria-current="page">Blog</a>
+        <a href="https://github.com/philffm/ai-summary-helper/" target="_blank" rel="noopener">GitHub</a>
+      </nav>
+      <button type="button" class="theme-toggle" id="themeToggle" aria-label="Switch to light mode">
+        <svg class="icon-moon" viewBox="0 0 24 24" fill="none"><path d="M20 14.5A8.5 8.5 0 1 1 9.5 4a6.8 6.8 0 0 0 10.5 10.5Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"></path></svg>
+        <svg class="icon-sun" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="4.2" stroke="currentColor" stroke-width="1.6"></circle><path d="M12 2.5v2.4M12 19.1v2.4M4.4 4.4l1.7 1.7M17.9 17.9l1.7 1.7M2.5 12h2.4M19.1 12h2.4M4.4 19.6l1.7-1.7M17.9 6.1l1.7-1.7" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"></path></svg>
+      </button>
+      <a href="../index.html" class="btn-sign-in">← Quay lại ứng dụng</a>
+    </div>
+    <button type="button" class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="mobileMenu" aria-label="Open menu">
+      <svg viewBox="0 0 24 24" fill="none"><path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"></path></svg>
+    </button>
+  </div>
+  <div class="mobile-menu" id="mobileMenu" hidden="">
+    <div class="wrap mobile-menu-inner">
+      <a href="../index.html#features">Tính năng</a>
+      <a href="../index.html#pricing">Bảng giá</a>
+      <a href="./">Blog</a>
+      <a href="https://github.com/philffm/ai-summary-helper/" target="_blank" rel="noopener">GitHub</a>
+      <a href="https://byphil.eu/" target="_blank" rel="noopener">Một sản phẩm của byphil. ↗</a>
+      <button type="button" class="theme-toggle-mobile" id="themeToggleMobile">
+        <span id="themeToggleMobileLabel">Chuyển sang chế độ sáng</span>
+        <svg class="icon-moon" viewBox="0 0 24 24" fill="none"><path d="M20 14.5A8.5 8.5 0 1 1 9.5 4a6.8 6.8 0 0 0 10.5 10.5Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"></path></svg>
+        <svg class="icon-sun" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="4.2" stroke="currentColor" stroke-width="1.6"></circle><path d="M12 2.5v2.4M12 19.1v2.4M4.4 4.4l1.7 1.7M17.9 17.9l1.7 1.7M2.5 12h2.4M19.1 12h2.4M4.4 19.6l1.7-1.7M17.9 6.1l1.7-1.7" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"></path></svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+<main id="main">
+  <div class="wrap">
+    <div class="post-hero">
+      <span class="blog-date">Hướng dẫn · Tháng 10 năm 2026</span>
+      <h1>Cách đối chiếu tóm tắt AI với nguồn gốc chỉ trong 10 giây</h1>
+      <p class="post-sub">Một bản tóm tắt không thể kiểm chứng chẳng khác nào phỏng đoán được viết đúng ngữ pháp. Đây là thói quen giúp bạn khắc phục điều đó, và cách AI Summary Helper giúp quy trình này trở nên tức thì.</p>
+    </div>
+  </div>
+
+  <section>
+    <div class="wrap">
+      <div class="prose">
+        <p>Năm 2011, Sparrow, Liu và Wegner đã báo cáo trên <em>Science</em> rằng khi mọi người kỳ vọng có thể tra cứu điều gì đó sau này, họ ít ghi nhớ thông tin thực tế hơn mà nhớ nhiều hơn về nơi tìm thấy nó. Các công cụ tìm kiếm dần trở thành một dạng bộ nhớ ngoài và chúng ta thích nghi với điều đó.</p>
+        <p>Tóm tắt bằng AI còn thúc đẩy sự thích nghi đó xa hơn nữa. Bạn nhận được một đoạn văn chỉn chu, bạn ghi nhớ đoạn văn đó và trang nguồn hoàn toàn bị lãng quên. Điều đó ổn khi bản tóm tắt chính xác. Nhưng sẽ là vấn đề lớn khi nó sai lệch, bởi vì không có gì trong đoạn văn cho bạn biết câu nào thiếu căn cứ.</p>
+
+        <h2>Kiểm tra nhanh trong 10 giây</h2>
+        <p>Bạn không cần đọc lại toàn bộ bài viết. Bạn chỉ cần xem một đoạn trích. Thói quen rất đơn giản:</p>
+        <ol>
+          <li><strong>Chọn luận điểm mà bạn định thuật lại cho người khác.</strong> Một con số, một ngày tháng, một cái tên, một nguyên nhân.</li>
+          <li><strong>Tìm câu trong văn bản gốc khẳng định điều đó.</strong> Không phải một câu tương tự, mà chính xác là câu thể hiện nội dung đó.</li>
+          <li><strong>Đọc câu văn liền trước và liền sau câu đó.</strong> Ngữ cảnh là nơi các bản tóm tắt dễ sai sót nhất: từ "có thể" bị biến thành "chắc chắn sẽ", một dự báo biến thành một sự thật.</li>
+        </ol>
+        <p>Bước hai là bước tốn nhiều thời gian nhất khi thực hiện thủ công. Đây chính là bước rất đáng để tự động hóa.</p>
+
+        <h2>Cách AI Summary Helper xử lý vấn đề này</h2>
+        <p>Khi bạn đặt câu hỏi tiếp nối, câu trả lời sẽ đi kèm các đoạn trích dẫn chính xác từ trang để minh chứng. Tiện ích mở rộng sẽ so khớp từng trích dẫn với văn bản trên trang và loại bỏ mọi trích dẫn không khớp từng từ, đảm bảo không có trích dẫn bịa đặt nào hiển thị làm bằng chứng. Nhấp vào trích dẫn, trang sẽ tự động cuộn đến đoạn đó và làm nổi bật nếu trang đang mở.</p>
+        <p>Các câu hỏi gợi ý tiếp theo cũng hoạt động tương tự. Mỗi câu hỏi đi kèm một câu trả lời ngắn xuất hiện ngay tức thì trong khi mô hình đang tạo câu trả lời chi tiết hơn, giúp bạn có thể đọc, kiểm tra và dừng lại ngay khi đã nắm đủ thông tin.</p>
+
+        <figure class="post-figure post-figure--portrait"><img src="../../assets/blog/answer-with-receipt.webp" alt="Trang trình bày: mỗi câu trả lời đều đi kèm dẫn chứng xác thực, hiển thị câu trả lời trò chuyện cùng nguồn trích dẫn và nút chuyển nhanh đến đoạn văn" width="800" height="1000" loading="lazy"><figcaption>Một câu trả lời, đoạn trích làm căn cứ và chỉ một cú nhấp chuột để đến nguồn gốc.</figcaption></figure>
+        <h2>Trích dẫn chứng minh được gì, và không chứng minh được gì</h2>
+        <p>Hãy lưu ý điểm này: Một trích dẫn trùng khớp chứng minh rằng đoạn văn đó có tồn tại trên trang. Nó không chứng minh rằng mô hình đã hiểu đúng đoạn đó. Câu trả lời xoay quanh trích dẫn vẫn là diễn đạt riêng của mô hình, do đó bước kiểm tra thứ ba vẫn rất cần thiết: đọc các câu xung quanh.</p>
+        <p>Khi sử dụng theo cách này, trích dẫn là một lối tắt đưa bạn đến đúng đoạn văn thay vì một sự bảo đảm tuyệt đối. Đó chính là mấu chốt. Bạn chỉ mất mười giây cho phần bài viết quyết định tính chính xác của câu trả lời, thay vì mười phút đọc toàn bộ nội dung.</p>
+
+        <h2>Một thói quen đáng duy trì</h2>
+        <p>Hãy chọn một câu trả lời trong mỗi bài viết và đối chiếu. Sau vài tuần, bạn sẽ hiểu rõ cách mô hình hoạt động: chủ đề nào mô hình xử lý tốt, vị trí mô hình hay làm tròn số liệu, hoặc liệu mô hình có bỏ qua các từ giảm nhẹ mức độ khẳng định hay không. Khả năng đánh giá đó giá trị hơn bất kỳ lần kiểm tra đơn lẻ nào.</p>
+        <div class="post-cta">
+          <p>AI Summary Helper là tiện ích mở rộng miễn phí dành cho Chrome.</p>
+          <a href="https://chromewebstore.google.com/detail/ai-summary-helper-openai/hldbejcjaedipeegjcinmhejdndchkmb" target="_blank" rel="noopener" class="btn-primary">Thêm vào Chrome</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="footer-inner">
+      <div class="wordmark"><img src="../../assets/icon.svg" alt="">AI Summary Helper</div>
+      <div class="foot-links">
+        <a href="https://github.com/philffm/ai-summary-helper/" target="_blank" rel="noopener">Mã nguồn trên GitHub</a>
+        <a href="../privacy.html">Quyền riêng tư</a>
+        <a href="#" data-analytics-settings="">Cài đặt phân tích</a>
+        <a href="https://byphil.eu/terms.html#impressum" target="_blank" rel="noopener">Thông tin pháp lý (Impressum)</a>
+      </div>
+    </div>
+    <div class="copyright">© 2026 Phil Wornath. Một phần của <a href="https://byphil.eu/" class="credit-link">byphil.eu ↗</a> — phần mềm độc lập được phát triển tại Đức.<br>
+      Thiết kế &amp; phát triển bởi <a href="https://philwornath.com/" target="_blank" rel="noopener" class="credit-link">philwornath.com ↗</a>
+    </div>
+  </div>
+</footer>
+
+<script src="../../assets/main.js"></script>
+
+
+</body></html>
