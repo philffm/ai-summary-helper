@@ -959,4 +959,10 @@ footer .copyright a:hover, .foot-links a:hover{ text-decoration-color:currentCol
 /* RTL: full-bleed blocks anchor from the right */
 [dir="rtl"] .cx{ margin-left:0; margin-right:calc(50% - 50vw); }
 /* Hero scene: four language pills are enough; long native names would run into the "Runs locally" badge */
-.hs-langs b:nth-child(n+5){ display:none; }
+/* Language pills: not clickable, so they fade out one by one and a "+N" shows how many more summary languages exist. */
+.hs-langs b:nth-child(n+4){ display:none; }
+.hs-langs b:nth-child(2){ opacity:.8; }
+.hs-langs b:nth-child(3){ opacity:.55; }
+.hs-langs b.is-on{ opacity:1 !important; }
+.hs-langs::after{ content:"+38"; margin-left:4px; font:600 14px Inter,sans-serif; color:#8a93a8; letter-spacing:.01em; white-space:nowrap; }
+:root[data-theme="dark"] .hs-langs::after{ color:#7d869c; }
