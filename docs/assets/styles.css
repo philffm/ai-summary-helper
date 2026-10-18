@@ -945,4 +945,6 @@ footer .copyright a:hover, .foot-links a:hover{ text-decoration-color:currentCol
 /* The left step list is gone; the caption above the indicator and the cursor label carry the steps */
 .hs-steps{ display:none !important; }
 .hs-tip{ display:none !important; }
-.hs-ph .hs-logo{ display:none; }
+
+/* Real extension icon instead of the placeholder gradient */
+.hs-logo, .hs-bar .hs-ext span.hs-logo, .hs-bar .hs-logo{ background:url(icon.svg) center/cover no-repeat !important; }
