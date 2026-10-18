@@ -1,0 +1,5644 @@
+{
+  "extensionName": {
+    "message": "AI Summary Helper – สรุปเว็บเพจและ PDF (BYOK, Ollama)"
+  },
+  "extensionNameFirefox": {
+    "message": "AI Summary Helper – สรุป ถาม ฟัง อ้างอิง"
+  },
+  "extensionShortName": {
+    "message": "AI Summary Helper"
+  },
+  "extensionDescription": {
+    "message": "สรุปเว็บเพจ PDF หรือวิดีโอ YouTube ได้ 41 ภาษา ด้วยคีย์ AI ของคุณเองหรือ Ollama ในเครื่อง เป็นส่วนตัว โอเพนซอร์ส ไม่ต้องมีบัญชี"
+  },
+  "fetchSummary": {
+    "message": "สรุปเลย"
+  },
+  "settings": {
+    "message": "ตั้งค่า"
+  },
+  "saved": {
+    "message": "บันทึกแล้ว! 🎉"
+  },
+  "donate": {
+    "message": "สนับสนุน"
+  },
+  "noRecentSummaries": {
+    "message": "ไม่มีสรุปล่าสุด"
+  },
+  "summarizePageToSee": {
+    "message": "สรุปเพจเพื่อดูที่นี่"
+  },
+  "whatShouldAiFocus": {
+    "message": "ให้ AI เน้นอะไร"
+  },
+  "askSpecificQuestions": {
+    "message": "ถามเฉพาะเรื่องเกี่ยวกับเพจนี้…"
+  },
+  "summaryLanguage": {
+    "message": "ภาษาของสรุป"
+  },
+  "searchLanguages": {
+    "message": "ค้นหาภาษา…"
+  },
+  "summaryLength": {
+    "message": "ความยาวสรุป"
+  },
+  "summaryMode": {
+    "message": "โหมดสรุป"
+  },
+  "extension": {
+    "message": "ส่วนขยาย"
+  },
+  "viewAndCopy": {
+    "message": "ดูและคัดลอก"
+  },
+  "inline": {
+    "message": "ในเพจ"
+  },
+  "insertIntoPage": {
+    "message": "แทรกลงเพจ"
+  },
+  "inlineModeTip": {
+    "message": "โหมดในเพจเหมาะกับ \"Send to Kindle\""
+  },
+  "aiModel": {
+    "message": "โมเดล AI"
+  },
+  "addCustomModelId": {
+    "message": "เพิ่มรหัสโมเดลเอง…"
+  },
+  "searchArticles": {
+    "message": "ค้นหาบทความ... (⌘ + F)"
+  },
+  "back": {
+    "message": "← กลับ"
+  },
+  "save": {
+    "message": "บันทึก 💾"
+  },
+  "feedbackText": {
+    "message": "มีคำถาม บั๊ก หรือถูกใจ? 💡 ส่งความคิดเห็น ติดต่อผู้พัฒนา หรือร่วมสนับสนุนได้เลย :)"
+  },
+  "openSourceBy": {
+    "message": "ซอฟต์แวร์โอเพนซอร์สโดย"
+  },
+  "contributeOnGithub": {
+    "message": "ร่วมพัฒนาได้บน GitHub 💙"
+  },
+  "compatibleTools": {
+    "message": "เครื่องมือที่เข้ากันได้"
+  },
+  "compatibleToolsDesc": {
+    "message": "ส่วนขยายที่ทำงานร่วมกับ AI Summary Helper ได้อย่างลงตัว เพื่อเวิร์กโฟลว์ที่ทรงพลังขึ้น"
+  },
+  "loadingTools": {
+    "message": "กำลังโหลดเครื่องมือ…"
+  },
+  "navSummarize": {
+    "message": "สรุป"
+  },
+  "navHistory": {
+    "message": "ประวัติ"
+  },
+  "navFeeds": {
+    "message": "ฟีด"
+  },
+  "feedAddPlaceholder": {
+    "message": "ที่อยู่เว็บไซต์หรือฟีด…"
+  },
+  "feedCurrentSite": {
+    "message": "ไซต์ปัจจุบัน"
+  },
+  "feedImportOpml": {
+    "message": "นำเข้า OPML"
+  },
+  "feedMarkAllRead": {
+    "message": "อ่านทั้งหมดแล้ว"
+  },
+  "feedSubscriptions": {
+    "message": "การติดตาม"
+  },
+  "searchSettings": {
+    "message": "ค้นหาการตั้งค่า…"
+  },
+  "settingsBack": {
+    "message": "‹ ตั้งค่า"
+  },
+  "settingsAccount": {
+    "message": "บัญชีและแพ็กเกจ"
+  },
+  "settingsModels": {
+    "message": "โมเดลและ API"
+  },
+  "settingsPrompts": {
+    "message": "พรอมต์"
+  },
+  "settingsReading": {
+    "message": "การอ่านและไฮไลต์"
+  },
+  "settingsSend": {
+    "message": "ส่งและแชร์"
+  },
+  "settingsAppearance": {
+    "message": "รูปลักษณ์และภาษา"
+  },
+  "settingsLibrary": {
+    "message": "ไลบรารีและข้อมูล"
+  },
+  "settingsAbout": {
+    "message": "เกี่ยวกับและเครื่องมือ"
+  },
+  "settingsCapAccount": {
+    "message": "บัญชี"
+  },
+  "settingsCapSummarizing": {
+    "message": "การสรุป"
+  },
+  "settingsCapReading": {
+    "message": "การอ่าน"
+  },
+  "settingsCapApp": {
+    "message": "แอป"
+  },
+  "navApps": {
+    "message": "แอป"
+  },
+  "navSettings": {
+    "message": "ตั้งค่า"
+  },
+  "starting": {
+    "message": "กำลังเริ่ม…"
+  },
+  "contactingContentScript": {
+    "message": "กำลังเชื่อมต่อ content script…"
+  },
+  "workingOnIt": {
+    "message": "กำลังดำเนินการ…"
+  },
+  "summary": {
+    "message": "สรุป"
+  },
+  "noTitleAvailable": {
+    "message": "ไม่มีชื่อเรื่อง"
+  },
+  "noSummaryAvailable": {
+    "message": "ไม่มีสรุป"
+  },
+  "noContentAvailable": {
+    "message": "ไม่มีเนื้อหา"
+  },
+  "noDescriptionAvailable": {
+    "message": "ไม่มีคำอธิบาย"
+  },
+  "share": {
+    "message": "แชร์ 🔗"
+  },
+  "saveMd": {
+    "message": ".MD 💾"
+  },
+  "reader": {
+    "message": "โหมดอ่าน 👓"
+  },
+  "delete": {
+    "message": "🗑️ ลบ"
+  },
+  "aiSummary": {
+    "message": "🧙 สรุปโดย AI"
+  },
+  "originalContent": {
+    "message": "📄 เนื้อหาต้นฉบับ"
+  },
+  "emptyArchive": {
+    "message": "🗂️ คลังของคุณว่างเปล่าเหมือนทะเลทราย! เริ่มบันทึกบทความเพื่อเติมให้เต็ม 🌵"
+  },
+  "noToolsAvailable": {
+    "message": "ยังไม่มีเครื่องมือ"
+  },
+  "failedToLoadTools": {
+    "message": "โหลดเครื่องมือไม่สำเร็จ"
+  },
+  "clickToInsert": {
+    "message": "คลิกองค์ประกอบที่ต้องการแทรกสรุป"
+  },
+  "fetchingSummary": {
+    "message": "กำลังดึงสรุป..."
+  },
+  "openInSidebar": {
+    "message": "เปิดในแถบข้าง"
+  },
+  "theme": {
+    "message": "ธีม"
+  },
+  "systemDefault": {
+    "message": "ตามระบบ"
+  },
+  "lightMode": {
+    "message": "โหมดสว่าง"
+  },
+  "darkMode": {
+    "message": "โหมดมืด"
+  },
+  "uiLanguage": {
+    "message": "ภาษา UI"
+  },
+  "browserDefault": {
+    "message": "ตามเบราว์เซอร์"
+  },
+  "useNativeSidePanel": {
+    "message": "ใช้แถบข้างเนทีฟของ Chrome"
+  },
+  "dangerZone": {
+    "message": "⚠️ โซนอันตราย"
+  },
+  "deleteSettings": {
+    "message": "ลบการตั้งค่า"
+  },
+  "deleteHistory": {
+    "message": "ลบประวัติ"
+  },
+  "model": {
+    "message": "โมเดล"
+  },
+  "apiKey": {
+    "message": "API Key"
+  },
+  "apiKeyStoredLocally": {
+    "message": "🔒 API key เก็บไว้ในเบราว์เซอร์ของคุณเท่านั้น"
+  },
+  "endpointUrl": {
+    "message": "URL เอนด์พอยต์"
+  },
+  "prompt": {
+    "message": "พรอมต์"
+  },
+  "enterCustomPrompt": {
+    "message": "ใส่พรอมต์ของคุณที่นี่"
+  },
+  "modelConfiguration": {
+    "message": "🤖 ตั้งค่าโมเดล"
+  },
+  "modelDesc": {
+    "message": "เลือกโมเดล LLM ที่ใช้สร้างสรุป"
+  },
+  "promptCustomization": {
+    "message": "💬 ปรับแต่งพรอมต์"
+  },
+  "promptDesc": {
+    "message": "ปรับวิธีที่ AI วิเคราะห์ข้อความ"
+  },
+  "generalSettings": {
+    "message": "🔄 ตั้งค่าทั่วไป"
+  },
+  "enablePodcastBeta": {
+    "message": "เปิดใช้พอดแคสต์ (เบตา)"
+  },
+  "modelIdentifiers": {
+    "message": "ตัวระบุโมเดล"
+  },
+  "default": {
+    "message": "ค่าเริ่มต้น"
+  },
+  "notConfigured": {
+    "message": "ยังไม่ได้ตั้งค่า"
+  },
+  "configured": {
+    "message": "ตั้งค่าแล้ว"
+  },
+  "historyGraph": {
+    "message": "กราฟ"
+  },
+  "historyReport": {
+    "message": "วิเคราะห์"
+  },
+  "viewGraph": {
+    "message": "ดูกราฟ"
+  },
+  "viewAnalytics": {
+    "message": "ดูรายงานวิเคราะห์"
+  },
+  "settingsCapFeeds": {
+    "message": "ฟีด"
+  },
+  "settingsFeeds": {
+    "message": "ฟีด"
+  },
+  "f_already_done_9f26": {
+    "message": "(เสร็จแล้ว {n})",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_add_tag_e74d": {
+    "message": "+ เพิ่มแท็ก"
+  },
+  "f_tag_2f9e": {
+    "message": "+ แท็ก"
+  },
+  "f_more_95cf": {
+    "message": "+ อีก {n}",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_1_hour_fb4a": {
+    "message": "1 ชั่วโมง"
+  },
+  "f_1_year_98a5": {
+    "message": "1 ปี"
+  },
+  "f_15_minutes_276a": {
+    "message": "15 นาที"
+  },
+  "f_3_hours_8dd5": {
+    "message": "3 ชั่วโมง"
+  },
+  "f_30_days_2af9": {
+    "message": "30 วัน"
+  },
+  "f_30_minutes_b47f": {
+    "message": "30 นาที"
+  },
+  "f_7_days_8279": {
+    "message": "7 วัน"
+  },
+  "f_90_days_9817": {
+    "message": "90 วัน"
+  },
+  "f_ai_category_acf9": {
+    "message": "หมวดหมู่ AI"
+  },
+  "f_ai_recap_of_this_day_d199": {
+    "message": "AI รีแคปของวันนี้"
+  },
+  "f_ai_request_failed_fc5f": {
+    "message": "คำขอ AI ล้มเหลว"
+  },
+  "f_ai_scoring_failed_e1b3": {
+    "message": "AI ให้คะแนนไม่สำเร็จ"
+  },
+  "f_ai_generated_from_headlines__133f": {
+    "message": "AI สร้างจาก {n} หัวข้อและตัวอย่างข้อความ สร้างเมื่อ {time} ใช้แทนการอ่านไม่ได้",
+    "description": "Placeholders: {n} {time} (keep as is)"
+  },
+  "f_ai_rated_heavy_news_8b78": {
+    "message": "AI ประเมิน: ข่าวหนัก"
+  },
+  "f_ai_rated_positive_news_7f30": {
+    "message": "AI ประเมิน: ข่าวเชิงบวก"
+  },
+  "f_add_aa14": {
+    "message": "เพิ่ม"
+  },
+  "f_add_a_feed_5d45": {
+    "message": "เพิ่มฟีด"
+  },
+  "f_add_a_site_or_feed_address_2a11": {
+    "message": "เพิ่มที่อยู่เว็บไซต์หรือฟีด…"
+  },
+  "f_add_feed_1688": {
+    "message": "เพิ่มฟีด"
+  },
+  "f_add_tag_1074": {
+    "message": "เพิ่มแท็ก"
+  },
+  "f_all_e364": {
+    "message": "ทั้งหมด"
+  },
+  "f_all_sources_0e1e": {
+    "message": "ทุกแหล่งที่มา"
+  },
+  "f_already_scoring_one_moment_f8d6": {
+    "message": "กำลังให้คะแนนอยู่ รอสักครู่"
+  },
+  "f_already_subscribed_0935": {
+    "message": "ติดตามแล้ว"
+  },
+  "f_any_mood_9630": {
+    "message": "ทุกอารมณ์"
+  },
+  "f_any_time_95a6": {
+    "message": "ทุกช่วงเวลา"
+  },
+  "f_audio_playback_is_not_availa_5fa6": {
+    "message": "เล่นเสียงไม่ได้ที่นี่"
+  },
+  "f_back_15_seconds_22dd": {
+    "message": "ย้อน 15 วินาที"
+  },
+  "f_background_script_is_outdate_6a24": {
+    "message": "สคริปต์เบื้องหลังล้าสมัย — โหลดส่วนขยายใหม่ที่ chrome://extensions"
+  },
+  "f_batch_summarizing_runs_in_ex_386f": {
+    "message": "การสรุปเป็นชุดทำงานในโหมดส่วนขยาย สลับได้ที่หน้าสรุป"
+  },
+  "f_behavior_a447": {
+    "message": "พฤติกรรม"
+  },
+  "f_choose_a_source_99d4": {
+    "message": "เลือกแหล่งที่มา"
+  },
+  "f_clear_date_filter_8630": {
+    "message": "ล้างตัวกรองวันที่"
+  },
+  "f_clear_filters_53c9": {
+    "message": "ล้างตัวกรอง"
+  },
+  "f_close_player_c464": {
+    "message": "ปิดเครื่องเล่น"
+  },
+  "f_copy_3664": {
+    "message": "คัดลอก"
+  },
+  "f_copy_failed_c2a1": {
+    "message": "คัดลอกไม่สำเร็จ"
+  },
+  "f_could_not_add_feed_3d08": {
+    "message": "เพิ่มฟีดไม่ได้"
+  },
+  "f_could_not_read_the_current_t_16ec": {
+    "message": "อ่านแท็บปัจจุบันไม่ได้"
+  },
+  "f_could_not_start_playback_6a64": {
+    "message": "เริ่มเล่นไม่ได้"
+  },
+  "f_date_7379": {
+    "message": "วันที่"
+  },
+  "f_date_mood_799e": {
+    "message": "วันที่และอารมณ์"
+  },
+  "f_deutsche_welle_international_d7bb": {
+    "message": "Deutsche Welle · ข่าวนานาชาติ"
+  },
+  "f_done_1791": {
+    "message": "เสร็จสิ้น"
+  },
+  "f_enter_a_valid_web_address_e752": {
+    "message": "ใส่ที่อยู่เว็บที่ถูกต้อง"
+  },
+  "f_episode_f972": {
+    "message": "ตอน"
+  },
+  "f_everything_unread_is_already_a054": {
+    "message": "สรุปรายการที่ยังไม่อ่านครบแล้ว"
+  },
+  "f_failed_c3d4": {
+    "message": "ล้มเหลว"
+  },
+  "f_favorite_19ed": {
+    "message": "รายการโปรด"
+  },
+  "f_favorites_53ba": {
+    "message": "รายการโปรด"
+  },
+  "f_feed_name_68fc": {
+    "message": "ชื่อฟีด"
+  },
+  "f_feeds_8b02": {
+    "message": "ฟีด"
+  },
+  "f_follow_the_sites_you_read_94c4": {
+    "message": "ติดตามไซต์ที่คุณอ่าน"
+  },
+  "f_forward_30_seconds_3cec": {
+    "message": "ข้าม 30 วินาที"
+  },
+  "f_hide_negative_6410": {
+    "message": "ซ่อนเชิงลบ"
+  },
+  "f_import_failed_aa11": {
+    "message": "นำเข้าไม่สำเร็จ"
+  },
+  "f_imported_feed_349f": {
+    "message": "นำเข้า {n} ฟีดแล้ว",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_imported_feeds_4f84": {
+    "message": "นำเข้า {n} ฟีดแล้ว",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_independent_investigative_jo_b597": {
+    "message": "งานข่าวเชิงสืบสวนอิสระ"
+  },
+  "f_independent_tech_accountabil_bf42": {
+    "message": "ตรวจสอบวงการเทคโนโลยีอย่างเป็นอิสระ"
+  },
+  "f_independent_tech_journalism_3d9f": {
+    "message": "สื่อเทคโนโลยีอิสระ"
+  },
+  "f_items_you_open_or_summarize__a71f": {
+    "message": "รายการที่เปิดหรือสรุปจะออกจากรายการที่ยังไม่อ่าน"
+  },
+  "f_last_7_days_d98f": {
+    "message": "7 วันที่ผ่านมา"
+  },
+  "f_loading_4ae3": {
+    "message": "กำลังโหลด…"
+  },
+  "f_mark_read_94d4": {
+    "message": "อ่านแล้ว"
+  },
+  "f_mark_unread_7147": {
+    "message": "ยังไม่อ่าน"
+  },
+  "f_mark_read_c994": {
+    "message": "อ่านแล้ว {n}",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_marked_read_2e9b": {
+    "message": "ทำเครื่องหมายอ่านแล้ว {n}",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_marked_unread_a1ec": {
+    "message": "ทำเครื่องหมายยังไม่อ่าน {n}",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_mood_551e": {
+    "message": "อารมณ์"
+  },
+  "f_mood_ai_rated_0031": {
+    "message": "อารมณ์ (AI ประเมิน {r}/{n}): 😊 {p} · 😐 {m} · 😟 {g}",
+    "description": "Placeholders: {r} {n} {p} {m} {g} (keep as is)"
+  },
+  "f_mood_comes_from_ai_scoring_o_411c": {
+    "message": "อารมณ์มาจากการให้คะแนนด้วย AI เท่านั้น รายการที่ยังไม่ได้ให้คะแนนจะไม่มีอารมณ์และไม่ถูกซ่อนโดยตัวกรองอารมณ์ การให้คะแนนจะส่งชื่อเรื่องและตัวอย่างข้อความสั้นๆ ไปยังการเชื่อมต่อ AI ของคุณเมื่อคุณคลิก"
+  },
+  "f_mood_d12b": {
+    "message": "อารมณ์ ↓"
+  },
+  "f_more_d900": {
+    "message": "เพิ่มเติม"
+  },
+  "f_most_positive_first_9e03": {
+    "message": "เชิงบวกที่สุดก่อน"
+  },
+  "f_most_positive_first_items_5e5a": {
+    "message": "เชิงบวกที่สุดก่อน · {n} รายการ",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_mute_leave_out_of_all_source_7e40": {
+    "message": "ปิดเสียง (ไม่รวมใน ทุกแหล่งที่มา)"
+  },
+  "f_new_items_arrived_since_this_bb0f": {
+    "message": "มีรายการใหม่เข้ามาหลังรีแคปนี้ — รีเฟรชเพื่อรวมไว้"
+  },
+  "f_new_posts_land_here_skim_sum_cf70": {
+    "message": "โพสต์ใหม่จะมาอยู่ที่นี่ ไล่ดู สรุปที่สำคัญ แล้วเคลียร์ที่เหลือ"
+  },
+  "f_newer_f04a": {
+    "message": "ใหม่กว่า"
+  },
+  "f_newest_first_b9c5": {
+    "message": "ใหม่สุดก่อน"
+  },
+  "f_next_day_with_items_f0e2": {
+    "message": "วันถัดไปที่มีรายการ"
+  },
+  "f_no_feed_found_at_that_addres_4c2c": {
+    "message": "ไม่พบฟีดที่ที่อยู่นี้"
+  },
+  "f_no_feeds_yet_add_one_below_o_49ba": {
+    "message": "ยังไม่มีฟีด เพิ่มด้านล่างหรือนำเข้าไฟล์ OPML"
+  },
+  "f_no_items_to_recap_here_a024": {
+    "message": "ไม่มีรายการให้รีแคปที่นี่"
+  },
+  "f_no_new_feeds_in_that_file_d161": {
+    "message": "ไม่มีฟีดใหม่ในไฟล์นี้"
+  },
+  "f_no_sources_match_aaed": {
+    "message": "ไม่มีแหล่งที่ตรงกัน"
+  },
+  "f_no_b8a2": {
+    "message": "ไม่ 😟"
+  },
+  "f_not_a_valid_opml_file_9043": {
+    "message": "ไฟล์ OPML ไม่ถูกต้อง"
+  },
+  "f_not_a_valid_feed_fa49": {
+    "message": "ฟีดไม่ถูกต้อง"
+  },
+  "f_nothing_matches_these_filter_c177": {
+    "message": "ไม่มีรายการที่ตรงกับตัวกรองนี้"
+  },
+  "f_nothing_new_today_yet_try_re_4fd1": {
+    "message": "วันนี้ยังไม่มีอะไรใหม่ ลองรีเฟรช"
+  },
+  "f_nothing_to_export_yet_900d": {
+    "message": "ยังไม่มีข้อมูลให้ส่งออก"
+  },
+  "f_nothing_to_score_cb41": {
+    "message": "ไม่มีอะไรให้ให้คะแนน"
+  },
+  "f_older_d101": {
+    "message": "เก่ากว่า"
+  },
+  "f_open_a_website_in_the_curren_6a05": {
+    "message": "เปิดเว็บไซต์ในแท็บปัจจุบันก่อน"
+  },
+  "f_open_c3b4": {
+    "message": "เปิด ↗"
+  },
+  "f_paste_any_site_address_we_fi_6186": {
+    "message": "วางที่อยู่เว็บไซต์ใดก็ได้ เราจะหาฟีดให้"
+  },
+  "f_pause_bf2d": {
+    "message": "หยุดชั่วคราว"
+  },
+  "f_pick_a_day_d249": {
+    "message": "เลือกวัน"
+  },
+  "f_play_6f83": {
+    "message": "เล่น"
+  },
+  "f_play_episode_in_aish_59b2": {
+    "message": "เล่นตอนนี้ใน AISH"
+  },
+  "f_playback_speed_f8ef": {
+    "message": "ความเร็วเล่น"
+  },
+  "f_plays_only_while_this_window_85db": {
+    "message": "เล่นได้เฉพาะตอนที่หน้าต่างนี้เปิดอยู่"
+  },
+  "f_podcast_by_the_author_design_0fc5": {
+    "message": "พอดแคสต์โดยผู้พัฒนา · ดีไซน์ ชีวิต และเทค"
+  },
+  "f_podcast_player_4be4": {
+    "message": "เครื่องเล่นพอดแคสต์"
+  },
+  "f_previous_day_with_items_4da2": {
+    "message": "วันก่อนหน้าที่มีรายการ"
+  },
+  "f_range_starts_tap_the_last_da_0eed": {
+    "message": "ช่วงเริ่ม {day} — แตะวันสุดท้าย",
+    "description": "Placeholders: {day} (keep as is)"
+  },
+  "f_recap_copied_dc3c": {
+    "message": "คัดลอกรีแคปแล้ว"
+  },
+  "f_recap_failed_6cfd": {
+    "message": "สร้างรีแคปไม่สำเร็จ"
+  },
+  "f_refresh_aad4": {
+    "message": "รีเฟรช"
+  },
+  "f_remove_tag_b0a3": {
+    "message": "ลบแท็ก {tag}",
+    "description": "Placeholders: {tag} (keep as is)"
+  },
+  "f_request_failed_3b37": {
+    "message": "คำขอล้มเหลว"
+  },
+  "f_reset_a560": {
+    "message": "รีเซ็ต"
+  },
+  "f_scored_item_with_ai_4890": {
+    "message": "AI ให้คะแนน {n} รายการแล้ว",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_scored_items_with_ai_f0f5": {
+    "message": "AI ให้คะแนน {n} รายการแล้ว",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_scoring_with_ai_1216": {
+    "message": "AI กำลังให้คะแนน… {a}/{b}",
+    "description": "Placeholders: {a} {b} (keep as is)"
+  },
+  "f_search_sources_e053": {
+    "message": "ค้นหาแหล่งที่มา…"
+  },
+  "f_seek_13d1": {
+    "message": "ข้าม"
+  },
+  "f_sending_titles_and_short_sni_c7dd": {
+    "message": "กำลังส่งชื่อเรื่องและตัวอย่างข้อความ {n} รายการไปยังการเชื่อมต่อ AI ของคุณ",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_show_all_items_7eb7": {
+    "message": "แสดงทุกรายการ"
+  },
+  "f_show_more_older_6f85": {
+    "message": "แสดงเพิ่ม {n} · เก่ากว่า {m}",
+    "description": "Placeholders: {n} {m} (keep as is)"
+  },
+  "f_shows_a_badge_on_the_toolbar_07da": {
+    "message": "แสดงป้ายบนไอคอนแถบเครื่องมือเมื่อมีรายการใหม่"
+  },
+  "f_site_or_feed_address_f911": {
+    "message": "ที่อยู่เว็บไซต์หรือฟีด…"
+  },
+  "f_sort_a7f1": {
+    "message": "เรียง"
+  },
+  "f_source_a3f8": {
+    "message": "แหล่งที่มา"
+  },
+  "f_sources_73d1": {
+    "message": "แหล่งที่มา"
+  },
+  "f_starring_an_item_summarizes__7621": {
+    "message": "การติดดาวรายการจะสรุปรายการนั้นในแท็บเบื้องหลัง"
+  },
+  "f_subscribed_to_c4c3": {
+    "message": "ติดตาม {name} แล้ว",
+    "description": "Placeholders: {name} (keep as is)"
+  },
+  "f_subscriptions_opml_behavior_f617": {
+    "message": "การติดตาม · OPML · พฤติกรรม"
+  },
+  "f_subscriptions_9ae8": {
+    "message": "การติดตาม · {n}",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_suggested_fdec": {
+    "message": "แนะนำ"
+  },
+  "f_summarize_on_a_feed_item_fol_de8a": {
+    "message": "การสรุปบนรายการฟีดใช้โหมดที่เลือกในหน้าสรุป (ค่าเริ่มต้นคือส่วนขยาย) รายการโปรดจะถูกเก็บไว้เสมอ"
+  },
+  "f_summarized_415a": {
+    "message": "สรุปแล้ว"
+  },
+  "f_summarizing_in_the_backgroun_cfaa": {
+    "message": "กำลังสรุปในเบื้องหลัง — จะแสดงใน สรุป และ ประวัติ"
+  },
+  "f_summarizing_the_open_tab_it__826e": {
+    "message": "กำลังสรุปแท็บที่เปิดอยู่ — จะแสดงใน สรุป และ ประวัติ"
+  },
+  "f_summarizing_in_the_backgroun_6f16": {
+    "message": "กำลังสรุป {n} รายการในเบื้องหลัง — ดูที่ ประวัติ",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_tags_a0c0": {
+    "message": "แท็ก"
+  },
+  "f_the_ai_reply_could_not_be_re_6851": {
+    "message": "อ่านคำตอบของ AI ไม่ได้"
+  },
+  "f_the_ai_returned_an_empty_rec_894a": {
+    "message": "AI ส่งรีแคปว่างเปล่ากลับมา"
+  },
+  "f_these_items_are_already_scor_391c": {
+    "message": "รายการเหล่านี้ให้คะแนนแล้ว"
+  },
+  "f_today_775e": {
+    "message": "วันนี้"
+  },
+  "f_today_s_briefing_ec2a": {
+    "message": "สรุปวันนี้"
+  },
+  "f_try_again_90fa": {
+    "message": "ลองอีกครั้ง"
+  },
+  "f_undo_4acf": {
+    "message": "เลิกทำ"
+  },
+  "f_unmute_include_in_all_source_af1c": {
+    "message": "เลิกปิดเสียง (รวมใน ทุกแหล่งที่มา)"
+  },
+  "f_unread_c982": {
+    "message": "ยังไม่อ่าน"
+  },
+  "f_unread_4dff": {
+    "message": "ยังไม่อ่าน · {n}",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_unsubscribe_5e36": {
+    "message": "เลิกติดตาม"
+  },
+  "f_world_news_0f72": {
+    "message": "ข่าวโลก"
+  },
+  "f_yesterday_68c7": {
+    "message": "เมื่อวาน"
+  },
+  "f_you_have_a_saved_summary_of__14f8": {
+    "message": "คุณมีสรุปของเพจนี้ที่บันทึกไว้"
+  },
+  "f_your_feeds_stay_on_this_devi_3c13": {
+    "message": "ฟีดของคุณอยู่ในอุปกรณ์เครื่องนี้เท่านั้น"
+  },
+  "f_you_re_all_caught_up_8551": {
+    "message": "อ่านครบแล้ว 🎉"
+  },
+  "f_last_days_1e48": {
+    "message": "{n} วันที่ผ่านมา",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_no_items_4d34": {
+    "message": "{day} ไม่มีรายการ",
+    "description": "Placeholders: {day} (keep as is)"
+  },
+  "f_item_9b88": {
+    "message": "{day} {n} รายการ",
+    "description": "Placeholders: {day} {n} (keep as is)"
+  },
+  "f_items_8c21": {
+    "message": "{day} {n} รายการ",
+    "description": "Placeholders: {day} {n} (keep as is)"
+  },
+  "f_recap_8d18": {
+    "message": "รีแคป{label}",
+    "description": "Placeholders: {label} (keep as is)"
+  },
+  "f_feed_d469": {
+    "message": "{n} ฟีด",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_feed_could_not_be_loaded_8f67": {
+    "message": "โหลด {n} ฟีดไม่สำเร็จ",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_feeds_e4ee": {
+    "message": "{n} ฟีด",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_feeds_could_not_be_loaded_b700": {
+    "message": "โหลด {n} ฟีดไม่สำเร็จ",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_item_9ea2": {
+    "message": "{n} รายการ",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_items_0303": {
+    "message": "{n} รายการ",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_new_today_across_source_unre_baba": {
+    "message": "วันนี้มีใหม่ {n} รายการจาก {s} แหล่ง · ยังไม่อ่าน {u}",
+    "description": "Placeholders: {n} {s} {u} (keep as is)"
+  },
+  "f_new_today_across_sources_unr_367f": {
+    "message": "วันนี้มีใหม่ {n} รายการจาก {s} แหล่ง · ยังไม่อ่าน {u}",
+    "description": "Placeholders: {n} {s} {u} (keep as is)"
+  },
+  "f_tag_63cf": {
+    "message": "{n} แท็ก",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_tags_00f4": {
+    "message": "{n} แท็ก",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_unread_e786": {
+    "message": "ยังไม่อ่าน {n}",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_d_7af5": {
+    "message": "{n} วัน",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_h_8141": {
+    "message": "{n} ชม.",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_m_85fa": {
+    "message": "{n} น.",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_date_mood_e1f9": {
+    "message": "‹ วันที่และอารมณ์"
+  },
+  "f_refresh_f095": {
+    "message": "↻ รีเฟรช"
+  },
+  "f_pause_7c0d": {
+    "message": "⏸ หยุด"
+  },
+  "f_play_ffa1": {
+    "message": "▶ เล่น"
+  },
+  "f_today_s_briefing_c58b": {
+    "message": "☀️  สรุปวันนี้"
+  },
+  "f_manage_feeds_tags_in_setting_7de0": {
+    "message": "⚙️  จัดการฟีดและแท็กในตั้งค่า  ›"
+  },
+  "f_all_items_here_are_scored_3187": {
+    "message": "✓  รายการที่นี่ให้คะแนนครบแล้ว"
+  },
+  "f_mark_everything_in_this_view_2f26": {
+    "message": "✓  ทำเครื่องหมายอ่านทั้งหมดในมุมมองนี้"
+  },
+  "f_mark_read_when_opened_202c": {
+    "message": "✓ ทำเครื่องหมายอ่านเมื่อเปิด"
+  },
+  "f_summarized_68b9": {
+    "message": "✓ สรุปแล้ว"
+  },
+  "f_ai_recap_of_today_72f6": {
+    "message": "✨  AI รีแคปของวันนี้"
+  },
+  "f_auto_summarize_favorites_32af": {
+    "message": "✨ สรุปรายการโปรดอัตโนมัติ"
+  },
+  "f_recap_b8e8": {
+    "message": "✨ รีแคป"
+  },
+  "f_summarize_570a": {
+    "message": "✨ สรุป"
+  },
+  "f_summarize_top_5_unread_d39d": {
+    "message": "✨ สรุป 5 อันดับที่ยังไม่อ่าน"
+  },
+  "f_writing_recap_fe02": {
+    "message": "✨ กำลังเขียนรีแคป…"
+  },
+  "f_view_summary_3c09": {
+    "message": "📄 ดูสรุป"
+  },
+  "f_pick_a_day_or_range_dd71": {
+    "message": "📅  เลือกวันหรือช่วง…"
+  },
+  "f_export_opml_7dd0": {
+    "message": "📤 ส่งออก OPML"
+  },
+  "f_import_opml_file_911a": {
+    "message": "📥  นำเข้าไฟล์ OPML"
+  },
+  "f_import_opml_file_0174": {
+    "message": "📥  นำเข้าไฟล์ OPML…"
+  },
+  "f_import_opml_b3fa": {
+    "message": "📥 นำเข้า OPML"
+  },
+  "f_all_sources_0a6d": {
+    "message": "📰  ทุกแหล่งที่มา"
+  },
+  "f_refresh_feeds_every_22e5": {
+    "message": "🔄 รีเฟรชฟีดทุก"
+  },
+  "f_check_in_the_background_cf8c": {
+    "message": "🔔 ตรวจสอบในเบื้องหลัง"
+  },
+  "f_keep_items_for_3287": {
+    "message": "🗂️ เก็บรายการไว้"
+  },
+  "f_positive_only_1469": {
+    "message": "😊  เชิงบวกเท่านั้น"
+  },
+  "f_mostly_positive_c075": {
+    "message": "😊 ส่วนใหญ่เชิงบวก"
+  },
+  "f_mixed_aadf": {
+    "message": "😐 ปนกัน"
+  },
+  "f_mostly_heavy_3f1c": {
+    "message": "😟 ส่วนใหญ่หนัก"
+  },
+  "f_score_unscored_visible_items_201a": {
+    "message": "🤖  ให้ AI ให้คะแนนรายการที่เห็นและยังไม่ให้คะแนน"
+  },
+  "f_score_unscored_item_with_ai_a853": {
+    "message": "🤖  ให้ AI ให้คะแนน {n} รายการ",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_score_unscored_items_with_ai_8600": {
+    "message": "🤖  ให้ AI ให้คะแนน {n} รายการ",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_use_current_site_c913": {
+    "message": "＋  ใช้ไซต์ปัจจุบัน"
+  },
+  "f_add_8e3d": {
+    "message": "＋ เพิ่ม"
+  },
+  "f_darker_more_items_recap_done_8cca": {
+    "message": "สีเข้ม = รายการมาก · ✨ = มีรีแคปแล้ว · กดค้างที่วันหนึ่ง แล้วอีกวัน เพื่อเลือกช่วง"
+  },
+  "f_recap_done_b098": {
+    "message": "มีรีแคปแล้ว"
+  },
+  "f_podcasts_7c90": {
+    "message": "พอดแคสต์"
+  },
+  "f_ai_rated_6770": {
+    "message": "AI ประเมิน"
+  },
+  "f_best_match_items_0f3b": {
+    "message": "ตรงที่สุด · {n} รายการ",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_day_229d": {
+    "message": "วัน"
+  },
+  "f_episodes_fc93": {
+    "message": "ตอน"
+  },
+  "f_graph_77e7": {
+    "message": "กราฟ"
+  },
+  "f_insights_f1e8": {
+    "message": "อินไซต์"
+  },
+  "f_items_382f": {
+    "message": "รายการ"
+  },
+  "f_no_items_in_this_source_yet_30b8": {
+    "message": "แหล่งนี้ยังไม่มีรายการ"
+  },
+  "f_not_enough_text_data_yet_427d": {
+    "message": "ข้อมูลข้อความยังไม่พอ"
+  },
+  "f_nothing_rated_yet_use_score__710a": {
+    "message": "ยังไม่มีการให้คะแนน — ใช้ “ให้คะแนนด้วย AI” ในหน้าวันที่และอารมณ์"
+  },
+  "f_search_feeds_2a1e": {
+    "message": "ค้นหาฟีด…"
+  },
+  "f_search_368e": {
+    "message": "ค้นหา “{term}”",
+    "description": "Placeholders: {term} (keep as is)"
+  },
+  "f_show_only_9eef": {
+    "message": "แสดงเฉพาะ {name}",
+    "description": "Placeholders: {name} (keep as is)"
+  },
+  "f_to_listen_78b7": {
+    "message": "รอฟัง"
+  },
+  "f_unplayed_7435": {
+    "message": "ยังไม่เล่น"
+  },
+  "f_week_e27d": {
+    "message": "สัปดาห์"
+  },
+  "f_top_terms_eda5": {
+    "message": "☁️ คำยอดนิยม"
+  },
+  "f_podcasts_4399": {
+    "message": "🎧 พอดแคสต์"
+  },
+  "f_volume_74ff": {
+    "message": "📅 ปริมาณ"
+  },
+  "f_top_sources_b705": {
+    "message": "📰 แหล่งยอดนิยม"
+  },
+  "f_mood_categories_c0c1": {
+    "message": "🙂 อารมณ์และหมวดหมู่"
+  },
+  "f_adds_mood_and_category_to_ea_acfd": {
+    "message": "เพิ่มอารมณ์และหมวดหมู่ให้ทุกรายการในคำขอ AI เดียวกัน"
+  },
+  "f_rate_items_with_the_recap_6027": {
+    "message": "🤖 ให้คะแนนรายการพร้อมรีแคป"
+  },
+  "f_nothing_new_since_this_recap_45c5": {
+    "message": "ไม่มีอะไรใหม่นับจากรีแคปนี้"
+  },
+  "f_sending_new_or_edited_titles_ba69": {
+    "message": "กำลังส่งชื่อเรื่องและตัวอย่างข้อความสั้นๆ ของรายการใหม่หรือที่แก้ไข {n} รายการไปยังการเชื่อมต่อ AI ของคุณ",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_updating_recap_902a": {
+    "message": "✨ กำลังอัปเดตรีแคป…"
+  },
+  "f_a_source_recap_changed_since_e89f": {
+    "message": "รีแคปของแหล่งหนึ่งเปลี่ยนไปนับจากที่เขียนอันนี้ — รีเฟรชเพื่อรวมไว้"
+  },
+  "f_ai_recap_of_this_month_built_f4e6": {
+    "message": "AI รีแคปของเดือนนี้ สร้างจากรีแคปรายสัปดาห์และรายวัน"
+  },
+  "f_ai_recap_of_this_week_built__86af": {
+    "message": "AI รีแคปของสัปดาห์นี้ สร้างจากรีแคปรายวัน"
+  },
+  "f_built_from_your_day_recaps_i_2520": {
+    "message": "สร้างจากรีแคปรายวันของคุณ รายการที่มีรีแคปรายวันแล้วจะไม่ถูกส่งซ้ำ"
+  },
+  "f_built_from_recap_5b76": {
+    "message": "สร้างจาก {n} รีแคป",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_built_from_recaps_48df": {
+    "message": "สร้างจาก {n} รีแคป",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_cancel_ca3b": {
+    "message": "ยกเลิก"
+  },
+  "f_create_missing_day_recap_fir_2bd6": {
+    "message": "สร้างรีแคปรายวันที่ขาด {n} วันก่อน",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_create_missing_day_recaps_fi_1cf7": {
+    "message": "สร้างรีแคปรายวันที่ขาด {n} วันก่อน",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_creating_day_recaps_141a": {
+    "message": "กำลังสร้างรีแคปรายวัน… {a}/{b}",
+    "description": "Placeholders: {a} {b} (keep as is)"
+  },
+  "f_generated_at_b0a6": {
+    "message": "สร้างเมื่อ {time}",
+    "description": "Placeholders: {time} (keep as is)"
+  },
+  "f_month_1ba5": {
+    "message": "เดือน"
+  },
+  "f_no_items_43fa": {
+    "message": "ไม่มีรายการ"
+  },
+  "f_nothing_to_combine_yet_cf62": {
+    "message": "ยังไม่มีอะไรให้รวม"
+  },
+  "f_recap_scope_40ec": {
+    "message": "ขอบเขตรีแคป"
+  },
+  "f_sends_short_recaps_not_headl_27f5": {
+    "message": "ส่งรีแคปสั้น {n} รายการ แทน {m} หัวข้อ",
+    "description": "Placeholders: {n} {m} (keep as is)"
+  },
+  "f_skip_the_days_without_a_reca_9f80": {
+    "message": "ข้ามวันที่ไม่มีรีแคป"
+  },
+  "f_week_recap_2446": {
+    "message": "รีแคปรายสัปดาห์"
+  },
+  "f_week_c909": {
+    "message": "สัปดาห์ {n}",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_missing_0207": {
+    "message": "ขาด"
+  },
+  "f_no_recap_yet_d2d7": {
+    "message": "ยังไม่มีรีแคป"
+  },
+  "f_reused_af15": {
+    "message": "ใช้ซ้ำ"
+  },
+  "f_of_days_have_a_recap_6aaa": {
+    "message": "{a} จาก {b} วันมีรีแคป",
+    "description": "Placeholders: {a} {b} (keep as is)"
+  },
+  "f_day_recap_cb92": {
+    "message": "รีแคปรายวัน {n}",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_day_recaps_f333": {
+    "message": "รีแคปรายวัน {n}",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_without_recap_7d68": {
+    "message": "ไม่มีรีแคป {n}",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_create_recap_88d6": {
+    "message": "✨ สร้างรีแคป"
+  },
+  "f_feed_b245": {
+    "message": "ฟีด"
+  },
+  "f_6_months_1bc4": {
+    "message": "6 เดือน"
+  },
+  "f_categories_e98d": {
+    "message": "หมวดหมู่"
+  },
+  "f_mood_history_is_kept_for_13__0fc8": {
+    "message": "ประวัติอารมณ์เก็บไว้ 13 เดือน แม้ลบรายการไปแล้ว"
+  },
+  "f_mood_index_518e": {
+    "message": "ดัชนีอารมณ์"
+  },
+  "f_only_of_items_are_rated_3794": {
+    "message": "ให้คะแนนแล้วเพียง {r} จาก {n} รายการ",
+    "description": "Placeholders: {r} {n} (keep as is)"
+  },
+  "f_open_day_791d": {
+    "message": "เปิดวัน ›"
+  },
+  "f_open_month_dc55": {
+    "message": "เปิดเดือน ›"
+  },
+  "f_open_week_a281": {
+    "message": "เปิดสัปดาห์ ›"
+  },
+  "f_these_items_are_no_longer_st_45c7": {
+    "message": "รายการเหล่านี้ไม่ได้เก็บไว้แล้ว จึงให้คะแนนไม่ได้"
+  },
+  "f_what_moved_98f8": {
+    "message": "อะไรเปลี่ยนไป"
+  },
+  "f_n_a_e041": {
+    "message": "ไม่มี"
+  },
+  "f_vs_5622": {
+    "message": "เทียบ {label}",
+    "description": "Placeholders: {label} (keep as is)"
+  },
+  "f_pts_d40a": {
+    "message": "{n} แต้ม",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_of_items_rated_mood_comes_fr_688e": {
+    "message": "ให้คะแนนแล้ว {r} จาก {n} รายการ · อารมณ์มาจากการให้คะแนนด้วย AI เท่านั้น",
+    "description": "Placeholders: {r} {n} (keep as is)"
+  },
+  "f_categories_06df": {
+    "message": "🏷️ หมวดหมู่"
+  },
+  "f_mood_over_time_2258": {
+    "message": "📈 อารมณ์ตามช่วงเวลา"
+  },
+  "f_score_unscored_items_79e0": {
+    "message": "🤖 ให้คะแนน {n} รายการที่ยังไม่ให้",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_jump_to_today_94c7": {
+    "message": "ไปที่วันนี้"
+  },
+  "f_nothing_rated_yet_write_a_re_c4ee": {
+    "message": "ยังไม่มีการให้คะแนน — เขียน ✨ รีแคปเพื่อให้คะแนนรายการ"
+  },
+  "f_filter_e5fe": {
+    "message": "‹ ตัวกรอง"
+  },
+  "f_filter_6421": {
+    "message": "🎛️ ตัวกรอง"
+  },
+  "f__c725": {
+    "message": "⏳ {n}%",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_edit_6cb1": {
+    "message": "แก้ไข"
+  },
+  "f_edit_feeds_tags_in_settings_48ab": {
+    "message": "แก้ไขฟีดและแท็กในตั้งค่า"
+  },
+  "f_only_rated_items_at_least_5__f9fb": {
+    "message": "ให้คะแนนเพียง {r} รายการ — ต้องมีอย่างน้อย 5",
+    "description": "Placeholders: {r} (keep as is)"
+  },
+  "f_w_66b2": {
+    "message": "ส.{n}",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_vs_16ff": {
+    "message": "{a} เทียบ {b}",
+    "description": "Placeholders: {a} {b} (keep as is)"
+  },
+  "f_activity_view_00dd": {
+    "message": "มุมมองกิจกรรม"
+  },
+  "f_articles_b83e": {
+    "message": "บทความ"
+  },
+  "f_best_streak_8513": {
+    "message": "สตรีคสูงสุด"
+  },
+  "f_day_streak_6d31": {
+    "message": "สตรีครายวัน"
+  },
+  "f_full_reading_37c0": {
+    "message": "อ่านเต็ม"
+  },
+  "f_no_article_has_a_mood_yet_le_373a": {
+    "message": "ยังไม่มีบทความที่มีอารมณ์ — ให้ AI ให้คะแนนก่อน"
+  },
+  "f_no_articles_yet_start_summar_b35e": {
+    "message": "ยังไม่มีบทความ — เริ่มสรุปเพจเพื่อดูสถิติ! 📖"
+  },
+  "f_no_tags_found_add_tags_to_yo_6914": {
+    "message": "ไม่พบแท็ก เพิ่มแท็กให้สรุปของคุณ!"
+  },
+  "f_saved_79e4": {
+    "message": "บันทึกแล้ว"
+  },
+  "f_with_summaries_5619": {
+    "message": "มีสรุป"
+  },
+  "f_words_read_f576": {
+    "message": "คำที่อ่าน"
+  },
+  "f_article_09dd": {
+    "message": "{n} บทความ",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_articles_3cea": {
+    "message": "{n} บทความ",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_compression_across_e24c": {
+    "message": "บีบอัด {p}% จาก {a}",
+    "description": "Placeholders: {p} {a} (keep as is)"
+  },
+  "f_time_saved_with_aish_00e4": {
+    "message": "⏱️ เวลาที่ประหยัดได้ด้วย AISH"
+  },
+  "f_word_cloud_aebe": {
+    "message": "☁️ Word Cloud"
+  },
+  "f_top_categories_10ae": {
+    "message": "🏷️ หมวดหมู่ยอดนิยม"
+  },
+  "f_activity_b9dc": {
+    "message": "📅 กิจกรรม"
+  },
+  "f_back_4bc2": {
+    "message": "กลับ"
+  },
+  "f_cancelled_09bc": {
+    "message": "ยกเลิกแล้ว"
+  },
+  "f_close_acc3": {
+    "message": "ปิด"
+  },
+  "f_device_b413": {
+    "message": "อุปกรณ์"
+  },
+  "f_digest_of_summaries_5cea": {
+    "message": "ไดเจสต์ของ {n} สรุป",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_free_tier_3_kindle_sends_inc_00a8": {
+    "message": "แพ็กฟรี: ส่งไป Kindle ได้ 3 ครั้ง"
+  },
+  "f_it_will_show_up_on_your_kind_1390": {
+    "message": "จะปรากฏบน Kindle ของคุณในอีกไม่กี่นาที"
+  },
+  "f_localsend_9286": {
+    "message": "LocalSend"
+  },
+  "f_make_sure_kindle_byphil_eu_i_2869": {
+    "message": "ตรวจสอบว่า kindle@byphil.eu อยู่ในรายการ “Approved senders” ของ Amazon"
+  },
+  "f_not_everything_was_sent_4aac": {
+    "message": "ส่งไม่ครบทุกรายการ"
+  },
+  "f_not_set_up_yet_add_a_receive_845a": {
+    "message": "ยังไม่ได้ตั้งค่า — เพิ่มผู้รับในตั้งค่า"
+  },
+  "f_not_set_up_yet_add_your_kind_f9fe": {
+    "message": "ยังไม่ได้ตั้งค่า — เพิ่ม Kindle ของคุณในตั้งค่า"
+  },
+  "f_one_digest_a1c5": {
+    "message": "ไดเจสต์เดียว"
+  },
+  "f_only_summarized_articles_can_ce5a": {
+    "message": "ส่งได้เฉพาะบทความที่สรุปแล้ว"
+  },
+  "f_open_settings_88b6": {
+    "message": "เปิดตั้งค่า"
+  },
+  "f_pick_the_receiver_its_app_ha_0e36": {
+    "message": "เลือกผู้รับ แอปของผู้รับต้องเปิดอยู่และใช้ Wi‑Fi เดียวกัน"
+  },
+  "f_please_keep_this_window_open_2384": {
+    "message": "โปรดเปิดหน้าต่างนี้ไว้"
+  },
+  "f_please_set_your_localsend_ip_a1ac": {
+    "message": "โปรดตั้งค่า IP ของ LocalSend ในตั้งค่าก่อน"
+  },
+  "f_select_2b4d": {
+    "message": "เลือก"
+  },
+  "f_select_all_1072": {
+    "message": "เลือกทั้งหมด"
+  },
+  "f_select_summaries_2cad": {
+    "message": "เลือกสรุป"
+  },
+  "f_select_summaries_to_send_741c": {
+    "message": "เลือกสรุปที่จะส่ง"
+  },
+  "f_send_to_kindle_c8f1": {
+    "message": "Send to Kindle"
+  },
+  "f_send_summaries_c9c7": {
+    "message": "ส่ง {n} สรุป",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_send_summary_164f": {
+    "message": "ส่ง {n} สรุป",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_sending_to_kindle_8853": {
+    "message": "กำลังส่งไป Kindle…"
+  },
+  "f_sending_to_2cc3": {
+    "message": "กำลังส่งไป {name}…",
+    "description": "Placeholders: {name} (keep as is)"
+  },
+  "f_sent_to_kindle_05e1": {
+    "message": "ส่งไป Kindle แล้ว"
+  },
+  "f_sent_to_0f59": {
+    "message": "ส่งไป {name} แล้ว",
+    "description": "Placeholders: {name} (keep as is)"
+  },
+  "f_separate_files_fc17": {
+    "message": "แยกไฟล์"
+  },
+  "f_set_your_kindle_email_in_set_7b8d": {
+    "message": "ตั้งค่าอีเมล Kindle ของคุณในตั้งค่าก่อน"
+  },
+  "f_untitled_a678": {
+    "message": "ไม่มีชื่อ"
+  },
+  "f_waiting_for_the_other_device_d6a3": {
+    "message": "รออุปกรณ์อีกเครื่องยอมรับ"
+  },
+  "f_and_more_871b": {
+    "message": "และอีก {n}",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_of_sent_941e": {
+    "message": "ส่งแล้ว {done} จาก {total} {error}",
+    "description": "Placeholders: {done} {total} {error} (keep as is)"
+  },
+  "f_file_sent_41c7": {
+    "message": "ส่ง {n} ไฟล์แล้ว",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_files_sent_a952": {
+    "message": "ส่ง {n} ไฟล์แล้ว",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_receiver_2b94": {
+    "message": "{n} ผู้รับ",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_receivers_1ca5": {
+    "message": "{n} ผู้รับ",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_selected_8468": {
+    "message": "เลือกแล้ว {n}",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_summaries_7bdf": {
+    "message": "{n} สรุป",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_summary_0c47": {
+    "message": "{n} สรุป",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_send_to_kindle_dc46": {
+    "message": "📚 Send to Kindle"
+  },
+  "f_send_to_kindle_7446": {
+    "message": "📚 ส่ง {n} ไป Kindle",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_localsend_d4ba": {
+    "message": "📡 LocalSend"
+  },
+  "f_send_ca72": {
+    "message": "📤 ส่ง"
+  },
+  "f_send_aff2": {
+    "message": "📤 ส่ง {n}",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_full_article_765e": {
+    "message": "บทความเต็ม"
+  },
+  "f_summary_full_article_3f15": {
+    "message": "สรุป + บทความเต็ม"
+  },
+  "f_summary_only_bd43": {
+    "message": "เฉพาะสรุป"
+  },
+  "f_also_automatic_opening_marks_1cdb": {
+    "message": "อัตโนมัติด้วย: เปิดแล้วเป็นอ่านแล้ว ส่งแล้วเป็นส่งแล้ว"
+  },
+  "f_archive_0b65": {
+    "message": "เก็บถาวร"
+  },
+  "f_archived_5293": {
+    "message": "เก็บถาวรแล้ว"
+  },
+  "f_inbox_46db": {
+    "message": "กล่องขาเข้า"
+  },
+  "f_keep_them_in_your_inbox_as_s_f585": {
+    "message": "เก็บไว้ในกล่องขาเข้าเป็น “ส่งแล้ว”"
+  },
+  "f_mark_as_8ab2": {
+    "message": "ตั้งเป็น…"
+  },
+  "f_mark_summaries_as_8da6": {
+    "message": "ทำเครื่องหมาย {n} สรุปเป็น…",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_mark_summary_as_4a0a": {
+    "message": "ทำเครื่องหมาย {n} สรุปเป็น…",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_moves_them_to_archive_find_t_1076": {
+    "message": "ย้ายไปเก็บถาวร — กลับมาดูได้ตลอด"
+  },
+  "f_nothing_here_yet_a1ba": {
+    "message": "ยังไม่มีอะไรที่นี่"
+  },
+  "f_read_efe5": {
+    "message": "อ่านแล้ว"
+  },
+  "f_restore_to_inbox_1382": {
+    "message": "คืนกลับกล่องขาเข้า"
+  },
+  "f_sent_fb9f": {
+    "message": "ส่งแล้ว"
+  },
+  "f_status_updated_automatically_8d51": {
+    "message": "อัปเดตสถานะอัตโนมัติ:"
+  },
+  "f_restore_to_inbox_5eeb": {
+    "message": "↩ คืนกลับกล่องขาเข้า"
+  },
+  "f_sent_03c9": {
+    "message": "✅ ส่งแล้ว · {date}",
+    "description": "Placeholders: {date} (keep as is)"
+  },
+  "f_new_b748": {
+    "message": "🆕 ใหม่"
+  },
+  "f_read_bb5c": {
+    "message": "👀 อ่านแล้ว"
+  },
+  "f_sent_to_kindle_6bf6": {
+    "message": "📚 ส่งไป Kindle แล้ว"
+  },
+  "f_sent_to_kindle_eef1": {
+    "message": "📚 ส่งไป Kindle แล้ว · {date}",
+    "description": "Placeholders: {date} (keep as is)"
+  },
+  "f_sent_via_localsend_9396": {
+    "message": "📡 ส่งผ่าน LocalSend แล้ว"
+  },
+  "f_sent_via_localsend_de11": {
+    "message": "📡 ส่งผ่าน LocalSend แล้ว · {date}",
+    "description": "Placeholders: {date} (keep as is)"
+  },
+  "f_archive_them_too_4a41": {
+    "message": "🗄️ เก็บถาวรด้วย"
+  },
+  "f_archived_7a20": {
+    "message": "🗄️ เก็บถาวรแล้ว · {date}",
+    "description": "Placeholders: {date} (keep as is)"
+  },
+  "f_archived_84d9": {
+    "message": "🗄️ เก็บถาวร {n}",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_2_3_sentences_6d11": {
+    "message": "2–3 ประโยค"
+  },
+  "f_a_friendly_note_to_yourself_85df": {
+    "message": "โน้ตเป็นกันเองถึงตัวคุณ"
+  },
+  "f_ai_adds_2_3_sentences_on_top_f7ed": {
+    "message": "AI เพิ่ม 2–3 ประโยคไว้ต้นไดเจสต์"
+  },
+  "f_briefing_d739": {
+    "message": "บรีฟ"
+  },
+  "f_one_sentence_b9cc": {
+    "message": "หนึ่งประโยค"
+  },
+  "f_personal_8cad": {
+    "message": "ส่วนตัว"
+  },
+  "f_short_dd75": {
+    "message": "สั้น"
+  },
+  "f_uses_your_ai_model_one_extra_7d0e": {
+    "message": "ใช้โมเดล AI ของคุณ · เรียกเพิ่ม 1 ครั้ง · ตามภาษาแอป"
+  },
+  "f_intro_skipped_the_digest_goe_a3a8": {
+    "message": "⚠️ ข้ามบทนำ — ไดเจสต์จะถูกส่งโดยไม่มีบทนำ"
+  },
+  "f_intro_written_181e": {
+    "message": "✨ เขียนบทนำแล้ว"
+  },
+  "f_write_a_short_intro_d123": {
+    "message": "✨ เขียนบทนำสั้นๆ"
+  },
+  "f_writing_intro_9acd": {
+    "message": "✨ กำลังเขียนบทนำ…"
+  },
+  "f_good_mood_only_5aab": {
+    "message": "เฉพาะอารมณ์ดี"
+  },
+  "f_view_all_contribute_cffd": {
+    "message": "(ดูทั้งหมดและร่วมพัฒนา)"
+  },
+  "f_action_items_c1a7": {
+    "message": "สิ่งที่ต้องทำ"
+  },
+  "f_back_to_builder_09d4": {
+    "message": "กลับไปตัวสร้าง"
+  },
+  "f_book_media_tips_a5e8": {
+    "message": "แนะนำหนังสือและสื่อ"
+  },
+  "f_briefings_and_recaps_keep_th_4156": {
+    "message": "บรีฟและรีแคปคงรูปแบบตายตัว (ภาพรวม ธีม อารมณ์) การตั้งค่านี้เปลี่ยนเฉพาะน้ำเสียงและถ้อยคำ"
+  },
+  "f_casual_faa4": {
+    "message": "สบายๆ"
+  },
+  "f_creative_title_c49e": {
+    "message": "ชื่อเรื่องสร้างสรรค์"
+  },
+  "f_custom_b78e": {
+    "message": "กำหนดเอง"
+  },
+  "f_customize_how_the_ai_writes_0bf7": {
+    "message": "ปรับวิธีเขียนของ AI"
+  },
+  "f_daily_briefing_4f0e": {
+    "message": "บรีฟรายวัน"
+  },
+  "f_edit_style_for_2773": {
+    "message": "แก้ไขสไตล์สำหรับ"
+  },
+  "f_emojis_hashtags_6b71": {
+    "message": "อีโมจิและแฮชแท็ก"
+  },
+  "f_enter_your_custom_prompt_her_1393": {
+    "message": "ใส่พรอมต์ของคุณที่นี่..."
+  },
+  "f_extra_instructions_0dc6": {
+    "message": "คำสั่งเพิ่มเติม"
+  },
+  "f_extras_1d8e": {
+    "message": "ส่วนเสริม"
+  },
+  "f_focus_on_f114": {
+    "message": "เน้น"
+  },
+  "f_formal_253a": {
+    "message": "ทางการ"
+  },
+  "f_full_prompt_8aa2": {
+    "message": "พรอมต์เต็ม"
+  },
+  "f_full_style_text_c1ec": {
+    "message": "ข้อความสไตล์เต็ม"
+  },
+  "f_hard_facts_f743": {
+    "message": "ข้อเท็จจริง"
+  },
+  "f_hide_8e7c": {
+    "message": "ซ่อน ⌃"
+  },
+  "f_include_5607": {
+    "message": "รวม"
+  },
+  "f_key_facts_41d3": {
+    "message": "ประเด็นสำคัญ"
+  },
+  "f_key_quotes_81c9": {
+    "message": "คำพูดสำคัญ"
+  },
+  "f_length_1935": {
+    "message": "ความยาว"
+  },
+  "f_light_humor_8590": {
+    "message": "ตลกเบาๆ"
+  },
+  "f_long_9473": {
+    "message": "ยาว"
+  },
+  "f_medium_5f96": {
+    "message": "กลาง"
+  },
+  "f_neutral_0778": {
+    "message": "เป็นกลาง"
+  },
+  "f_numbers_77c9": {
+    "message": "ตัวเลข"
+  },
+  "f_opinions_1d4a": {
+    "message": "ความเห็น"
+  },
+  "f_preset_b13e": {
+    "message": "พรีเซ็ต"
+  },
+  "f_same_style_as_the_daily_brie_47f4": {
+    "message": "สไตล์เดียวกับบรีฟรายวัน"
+  },
+  "f_standup_humor_7d49": {
+    "message": "ตลกสแตนด์อัป"
+  },
+  "f_style_for_ai_briefings_and_w_071d": {
+    "message": "สไตล์สำหรับบรีฟ AI และรีแคปรายสัปดาห์และเดือน"
+  },
+  "f_test_on_sample_853c": {
+    "message": "ทดสอบกับตัวอย่าง"
+  },
+  "f_testing_28a7": {
+    "message": "กำลังทดสอบ…"
+  },
+  "f_tone_2da1": {
+    "message": "น้ำเสียง"
+  },
+  "f_ux_designer_reference_8dd0": {
+    "message": "อ้างอิงนักออกแบบ UX"
+  },
+  "f_used_whenever_you_summarize__f213": {
+    "message": "ใช้ทุกครั้งที่สรุปเพจหรือบทความ"
+  },
+  "f_view_edit_bf74": {
+    "message": "ดูและแก้ไข ›"
+  },
+  "f_week_month_recaps_9013": {
+    "message": "รีแคปรายสัปดาห์และเดือน"
+  },
+  "f_why_it_matters_3f98": {
+    "message": "ทำไมจึงสำคัญ"
+  },
+  "f_e_g_always_name_the_author_a_2746": {
+    "message": "เช่น ระบุชื่อผู้เขียนและสำนักพิมพ์เสมอ"
+  },
+  "f_e_g_prefer_european_news_and_b541": {
+    "message": "เช่น เน้นข่าวยุโรปและโทนสดใส"
+  },
+  "f_edited_by_hand_the_chips_won_2a11": {
+    "message": "✏️ แก้ไขด้วยมือแล้ว — ชิปจะไม่เปลี่ยนจนกว่าจะกลับไปตัวสร้าง"
+  },
+  "f_build_my_own_3ce7": {
+    "message": "✨ สร้างเอง"
+  },
+  "f_phil_s_mix_3e16": {
+    "message": "✨ มิกซ์ของ Phil"
+  },
+  "f_full_articles_a7c0": {
+    "message": "📄 บทความเต็ม"
+  },
+  "f_feeds_briefings_0552": {
+    "message": "📰 ฟีดและบรีฟ"
+  },
+  "f_tags_key_highlights_and_the__f798": {
+    "message": "🔒 แท็ก ไฮไลต์สำคัญ และคะแนนอารมณ์จะถูกเพิ่มอัตโนมัติเสมอ คุณควบคุมได้เฉพาะสไตล์"
+  },
+  "f_a_quick_review_on_the_chrome_c9eb": {
+    "message": "รีวิวสั้นๆ บน Chrome Web Store ช่วยให้คนอื่นค้นพบได้"
+  },
+  "f_enjoying_ai_summary_helper_75e7": {
+    "message": "ชอบ AI Summary Helper ไหม?"
+  },
+  "f_later_2b49": {
+    "message": "ไว้ทีหลัง"
+  },
+  "f_no_thanks_66fb": {
+    "message": "ไม่ขอบคุณ"
+  },
+  "f_leave_a_review_042d": {
+    "message": "⭐ เขียนรีวิว"
+  },
+  "f_ai_analysis_986b": {
+    "message": "วิเคราะห์ด้วย AI"
+  },
+  "f_dismiss_15f3": {
+    "message": "ปิด"
+  },
+  "f_errors_60a6": {
+    "message": "ข้อผิดพลาด"
+  },
+  "f_feed_preferences_cbd3": {
+    "message": "การตั้งค่าฟีด"
+  },
+  "f_lines_00dc": {
+    "message": "เส้น"
+  },
+  "f_mood_over_time_per_category_b78e": {
+    "message": "อารมณ์ตามช่วงเวลาแยกตามหมวดหมู่"
+  },
+  "f_mute_9f74": {
+    "message": "ปิดเสียง"
+  },
+  "f_muted_6630": {
+    "message": "ปิดเสียงแล้ว"
+  },
+  "f_name_7306": {
+    "message": "ชื่อ"
+  },
+  "f_no_items_yet_b28c": {
+    "message": "ยังไม่มีรายการ"
+  },
+  "f_noisy_e255": {
+    "message": "เสียงรบกวน"
+  },
+  "f_not_enough_rated_items_yet_bc02": {
+    "message": "ยังมีรายการที่ให้คะแนนไม่พอ"
+  },
+  "f_nothing_here_6e9a": {
+    "message": "ไม่มีอะไรที่นี่"
+  },
+  "f_other_ff95": {
+    "message": "อื่นๆ"
+  },
+  "f_rates_the_tone_of_summaries__01bb": {
+    "message": "ประเมินโทนของสรุปและรายการฟีด ใช้กับตัวกรองอารมณ์ แผนภูมิ และ Source diet ปิดเพื่อซ่อนฟีเจอร์อารมณ์ทั้งหมด"
+  },
+  "f_reading_339b": {
+    "message": "การอ่าน"
+  },
+  "f_reading_ai_updates_2053": {
+    "message": "การอ่าน · AI · อัปเดต"
+  },
+  "f_review_5601": {
+    "message": "ตรวจทาน"
+  },
+  "f_sort_mood_fbdc": {
+    "message": "เรียง: อารมณ์"
+  },
+  "f_sort_name_18c8": {
+    "message": "เรียง: ชื่อ"
+  },
+  "f_sort_read_share_6e08": {
+    "message": "เรียง: สัดส่วนที่อ่าน"
+  },
+  "f_sort_unread_7db8": {
+    "message": "เรียง: ยังไม่อ่าน"
+  },
+  "f_stacked_785e": {
+    "message": "ซ้อน"
+  },
+  "f_subscriptions_tags_opml_8892": {
+    "message": "การติดตาม · แท็ก · OPML"
+  },
+  "f_table_view_c850": {
+    "message": "มุมมองตาราง"
+  },
+  "f_top_73dc": {
+    "message": "บนสุด"
+  },
+  "f_topics_over_time_f15e": {
+    "message": "หัวข้อตามช่วงเวลา"
+  },
+  "f_unmute_72bb": {
+    "message": "เลิกปิดเสียง"
+  },
+  "f_updates_storage_9d6a": {
+    "message": "อัปเดตและพื้นที่เก็บ"
+  },
+  "f_volume_76af": {
+    "message": "ปริมาณ"
+  },
+  "f_not_scored_ddb8": {
+    "message": "ยังไม่ให้คะแนน"
+  },
+  "f_source_causes_of_your_negati_a48c": {
+    "message": "{n} แหล่งทำให้เกิดรายการเชิงลบ {p}%",
+    "description": "Placeholders: {n} {p} (keep as is)"
+  },
+  "f_source_is_mostly_negative_a413": {
+    "message": "{n} แหล่งส่วนใหญ่เป็นเชิงลบ",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_sources_are_mostly_negative_3b24": {
+    "message": "{n} แหล่งส่วนใหญ่เป็นเชิงลบ",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_sources_cause_of_your_negati_1f62": {
+    "message": "{n} แหล่งทำให้เกิดรายการเชิงลบ {p}%",
+    "description": "Placeholders: {n} {p} (keep as is)"
+  },
+  "f_mo_read_2188": {
+    "message": "{n}/เดือน · อ่าน {r}%",
+    "description": "Placeholders: {n} {r} (keep as is)"
+  },
+  "f_topics_over_time_ee3b": {
+    "message": "📈 หัวข้อตามช่วงเวลา"
+  },
+  "f_mood_483d": {
+    "message": "😊 อารมณ์"
+  },
+  "f_aish_cloud_65e5": {
+    "message": "AISH cloud"
+  },
+  "f_ask_a_follow_up_32ca": {
+    "message": "ถามต่อ…"
+  },
+  "f_back_to_this_page_1a94": {
+    "message": "กลับไปที่เพจนี้"
+  },
+  "f_collected_the_items_6b03": {
+    "message": "รวบรวมรายการแล้ว"
+  },
+  "f_continuing_ffb7": {
+    "message": "กำลังทำต่อ"
+  },
+  "f_could_not_reach_ollama_make__7fce": {
+    "message": "เชื่อมต่อ Ollama ไม่ได้ ตรวจสอบว่าทำงานอยู่และเอนด์พอยต์ถูกต้อง"
+  },
+  "f_deutsche_welle_top_stories_8be6": {
+    "message": "Deutsche Welle · ข่าวเด่น"
+  },
+  "f_discard_rewrite_96b8": {
+    "message": "ทิ้งและเขียนใหม่?"
+  },
+  "f_feed_item_from_6d3a": {
+    "message": "รายการฟีดจาก {host}",
+    "description": "Placeholders: {host} (keep as is)"
+  },
+  "f_focus_on_something_optional_d5b9": {
+    "message": "เน้นเรื่องอะไรสักอย่าง… (ไม่บังคับ)"
+  },
+  "f_focus_c600": {
+    "message": "เน้น: {text}",
+    "description": "Placeholders: {text} (keep as is)"
+  },
+  "f_found_your_highlights_using__b80a": {
+    "message": "พบไฮไลต์ของคุณ {n} รายการ · ใช้เป็นจุดเน้น",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_from_your_question_4088": {
+    "message": "จากคำถามของคุณ"
+  },
+  "f_from_your_questions_4b21": {
+    "message": "จากคำถามของคุณ"
+  },
+  "f_include_all_questions_in_exp_94d7": {
+    "message": "รวมทุกคำถามเมื่อส่งออก"
+  },
+  "f_last_summary_3355": {
+    "message": "สรุปล่าสุด"
+  },
+  "f_model_is_thinking_3a56": {
+    "message": "โมเดลกำลังคิด"
+  },
+  "f_model_is_writing_cab2": {
+    "message": "โมเดลกำลังเขียน"
+  },
+  "f_no_answer_cd22": {
+    "message": "ไม่มีคำตอบ"
+  },
+  "f_no_recent_summaries_03a5": {
+    "message": "ไม่มีสรุปล่าสุด"
+  },
+  "f_nothing_new_since_this_recap_f9bc": {
+    "message": "ไม่มีอะไรใหม่นับจากรีแคปนี้ — รีเซ็ตจะเขียนใหม่ตั้งแต่ต้น"
+  },
+  "f_nothing_received_for_s_there_17e7": {
+    "message": "ไม่ได้รับข้อมูลมา {s} วินาที ไม่มีขีดจำกัดเวลา — กดยกเลิกหากดูเหมือนค้าง",
+    "description": "Placeholders: {s} (keep as is)"
+  },
+  "f_ollama_refused_the_request_a_0007": {
+    "message": "Ollama ปฏิเสธคำขอ 403 มักแปลว่าต้องตั้งให้ยอมรับคำขอจากส่วนขยายนี้ (OLLAMA_ORIGINS)"
+  },
+  "f_only_in_the_conversation_log_ea3e": {
+    "message": "เฉพาะในบันทึกการสนทนา"
+  },
+  "f_open_the_page_to_jump_to_thi_837d": {
+    "message": "เปิดเพจเพื่อข้ามไปยังข้อความนี้"
+  },
+  "f_page_text_words_5755": {
+    "message": "ข้อความในเพจ · {n} คำ",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_queue_a_question_9a0d": {
+    "message": "เข้าคิวคำถาม…"
+  },
+  "f_raise_limit_to_and_refresh_95fb": {
+    "message": "เพิ่มขีดจำกัดเป็น {n} แล้วรีเฟรช",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_read_the_page_words_8c21": {
+    "message": "อ่านเพจ · {n} คำ",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_reading_the_answer_d90a": {
+    "message": "กำลังอ่านคำตอบ"
+  },
+  "f_resume_1d8a": {
+    "message": "ทำต่อ"
+  },
+  "f_send_14cf": {
+    "message": "ส่ง"
+  },
+  "f_send_summaries_96ab": {
+    "message": "ส่งสรุป"
+  },
+  "f_sent_to_your_ai_connection_b919": {
+    "message": "ส่งไปยังการเชื่อมต่อ AI ของคุณแล้ว"
+  },
+  "f_set_up_ollama_a0c2": {
+    "message": "ตั้งค่า Ollama"
+  },
+  "f_show_them_open_one_by_one_33f7": {
+    "message": "แสดง — เปิดทีละรายการ"
+  },
+  "f_shown_in_the_article_and_inc_586d": {
+    "message": "แสดงในบทความและรวมในไฟล์ส่งออก"
+  },
+  "f_starting_788d": {
+    "message": "กำลังเริ่ม…"
+  },
+  "f_summarize_a_page_to_see_it_h_ceef": {
+    "message": "สรุปเพจเพื่อดูที่นี่"
+  },
+  "f_summarize_this_page_b1c9": {
+    "message": "สรุปเพจนี้"
+  },
+  "f_summary_b5b3": {
+    "message": "สรุป"
+  },
+  "f_that_is_the_maximum_per_reca_170d": {
+    "message": "นี่คือจำนวนสูงสุดต่อรีแคป ใช้รีแคปรายสัปดาห์หรือเดือนเพื่อดูภาพรวม หรือกรองตามฟีด"
+  },
+  "f_thinking_d121": {
+    "message": "กำลังคิด…"
+  },
+  "f_waiting_for_the_model_75a1": {
+    "message": "รอโมเดล"
+  },
+  "f_waiting_for_the_model_a385": {
+    "message": "รอโมเดล…"
+  },
+  "f_what_i_used_fda1": {
+    "message": "สิ่งที่ใช้"
+  },
+  "f_working_on_it_d098": {
+    "message": "กำลังดำเนินการ…"
+  },
+  "f_writing_a_word_summary_dd5f": {
+    "message": "กำลังเขียนสรุป {n} คำ…",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_writing_the_summary_0fa6": {
+    "message": "กำลังเขียนสรุป…"
+  },
+  "f_your_focus_question_4df6": {
+    "message": "คำถามจุดเน้นของคุณ"
+  },
+  "f_your_highlights_da3a": {
+    "message": "ไฮไลต์ของคุณ · {n}",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_your_questions_6d97": {
+    "message": "คำถามของคุณ"
+  },
+  "f_different_page_9b4d": {
+    "message": "คนละเพจ"
+  },
+  "f_shortened_to_fit_083f": {
+    "message": "ย่อให้พอดี"
+  },
+  "f_thinking_characters_8d93": {
+    "message": "กำลังคิด: {n} ตัวอักษร",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_words_aa8a": {
+    "message": "คำ"
+  },
+  "f_characters_d8fd": {
+    "message": "{n} ตัวอักษร",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_follow_up_d34e": {
+    "message": "ถามต่อ {n} ข้อ",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_follow_ups_8907": {
+    "message": "ถามต่อ {n} ข้อ",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_more_question_4688": {
+    "message": "อีก {n} คำถาม",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_more_questions_bd21": {
+    "message": "อีก {n} คำถาม",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_older_item_is_not_in_this_re_1d7b": {
+    "message": "รายการเก่ากว่า {n} รายการไม่อยู่ในรีแคปนี้ (ขีดจำกัด: {max} ต่อรีแคป)",
+    "description": "Placeholders: {n} {max} (keep as is)"
+  },
+  "f_older_item_is_not_in_this_re_321f": {
+    "message": "รายการเก่ากว่า {n} รายการไม่อยู่ในรีแคปนี้",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_older_items_are_not_in_this__7458": {
+    "message": "รายการเก่ากว่า {n} รายการไม่อยู่ในรีแคปนี้ (ขีดจำกัด: {max} ต่อรีแคป)",
+    "description": "Placeholders: {n} {max} (keep as is)"
+  },
+  "f_older_items_are_not_in_this__8bca": {
+    "message": "รายการเก่ากว่า {n} รายการไม่อยู่ในรีแคปนี้",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_word_c9d9": {
+    "message": "{n} คำ",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_words_769e": {
+    "message": "{n} คำ",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_stop_f89d": {
+    "message": "■ หยุด"
+  },
+  "f_in_article_c185": {
+    "message": "📌 ในบทความ"
+  },
+  "f_add_to_article_8257": {
+    "message": "📍 เพิ่มในบทความ"
+  },
+  "f_items_per_recap_fac3": {
+    "message": "📝 รายการต่อรีแคป"
+  },
+  "f_on_ios_hold_to_drag_for_2_se_7fba": {
+    "message": "(บน iOS ให้กดค้างแล้วลาก 2 วินาที)"
+  },
+  "f_add_59dd": {
+    "message": "+ เพิ่ม"
+  },
+  "f_md_a3cb": {
+    "message": ".MD 💾"
+  },
+  "f_a_bundle_of_881d": {
+    "message": "ชุด {count} รายการ: {titles}",
+    "description": "Placeholders: {count} {titles} (keep as is)"
+  },
+  "f_a_few_18aa": {
+    "message": "ไม่กี่อัน"
+  },
+  "f_a_lot_9f13": {
+    "message": "มากมาย"
+  },
+  "f_ai_model_1862": {
+    "message": "โมเดล AI"
+  },
+  "f_ai_ghost_highlighting_41b0": {
+    "message": "ไฮไลต์จางด้วย AI"
+  },
+  "f_api_error_e311": {
+    "message": "ข้อผิดพลาด API:"
+  },
+  "f_api_key_6382": {
+    "message": "API Key:"
+  },
+  "f_api_key_c6ec": {
+    "message": "API key"
+  },
+  "f_about_tools_9c0f": {
+    "message": "เกี่ยวกับและเครื่องมือ"
+  },
+  "f_account_a2fc": {
+    "message": "บัญชี"
+  },
+  "f_account_plan_bd49": {
+    "message": "บัญชีและแพ็กเกจ"
+  },
+  "f_account_sync_cdb7": {
+    "message": "ซิงก์บัญชี"
+  },
+  "f_account_sync_sign_in_log_out_8eb5": {
+    "message": "ซิงก์บัญชี · เข้าสู่ระบบ / ออกจากระบบ"
+  },
+  "f_activate_0190": {
+    "message": "เปิดใช้งาน"
+  },
+  "f_active_send_target_69d8": {
+    "message": "ปลายทางส่งที่ใช้อยู่"
+  },
+  "f_add_kindle_device_dc01": {
+    "message": "เพิ่มอุปกรณ์ Kindle"
+  },
+  "f_add_localsend_device_6e29": {
+    "message": "เพิ่มอุปกรณ์ LocalSend"
+  },
+  "f_add_custom_model_336a": {
+    "message": "เพิ่มโมเดลเอง"
+  },
+  "f_add_model_id_e_g_gemma3_4b_960e": {
+    "message": "เพิ่มรหัสโมเดล เช่น gemma3:4b"
+  },
+  "f_allow_all_origins_f696": {
+    "message": "อนุญาตทุก origin"
+  },
+  "f_allow_all_origins_app_71d4": {
+    "message": "อนุญาตทุก origin (แอป)"
+  },
+  "f_amazon_s_guide_135b": {
+    "message": "คู่มือของ Amazon"
+  },
+  "f_analytics_e02b": {
+    "message": "วิเคราะห์"
+  },
+  "f_analyzing_tags_5f59": {
+    "message": "กำลังวิเคราะห์แท็ก…"
+  },
+  "f_appearance_language_6075": {
+    "message": "รูปลักษณ์และภาษา"
+  },
+  "f_are_you_sure_you_want_to_del_15c9": {
+    "message": "แน่ใจหรือไม่ว่าจะลบบทความนี้?"
+  },
+  "f_article_05f9": {
+    "message": "บทความ"
+  },
+  "f_articles_ae4c": {
+    "message": "บทความ:"
+  },
+  "f_audio_generation_failed_003d": {
+    "message": "สร้างเสียงไม่สำเร็จ: {msg}",
+    "description": "Placeholders: {msg} (keep as is)"
+  },
+  "f_auto_detect_0006": {
+    "message": "ตรวจจับอัตโนมัติ"
+  },
+  "f_auto_summarize_favorites_0e1f": {
+    "message": "สรุปรายการโปรดอัตโนมัติ"
+  },
+  "f_automatic_light_blue_quote_h_419c": {
+    "message": "ไฮไลต์คำพูดสีฟ้าอ่อนอัตโนมัติจากสรุป"
+  },
+  "f_backup_restored_successfully_8819": {
+    "message": "กู้คืนข้อมูลสำรองสำเร็จ!\nนำเข้า {n} บทความ\n\nส่วนขยายจะโหลดใหม่ตอนนี้",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_backup_tags_delete_5af9": {
+    "message": "สำรองข้อมูล · แท็ก · ลบ"
+  },
+  "f_bookmarklet_generator_e407": {
+    "message": "ตัวสร้าง Bookmarklet"
+  },
+  "f_browser_default_9336": {
+    "message": "ตามเบราว์เซอร์"
+  },
+  "f_check_feeds_in_the_backgroun_08ca": {
+    "message": "ตรวจสอบฟีดในเบื้องหลัง"
+  },
+  "f_check_if_receiver_is_online_1a5a": {
+    "message": "ตรวจสอบว่าผู้รับออนไลน์อยู่"
+  },
+  "f_check_if_the_receiver_is_onl_df6d": {
+    "message": "ตรวจสอบว่าผู้รับออนไลน์อยู่"
+  },
+  "f_checking_f2f5": {
+    "message": "กำลังตรวจสอบ..."
+  },
+  "f_choose_one_delivery_method_f_1ac4": {
+    "message": "เลือกวิธีส่งหนึ่งวิธีสำหรับการทำงานในหน้ารายละเอียดบทความ"
+  },
+  "f_clean_up_merge_tags_096e": {
+    "message": "จัดระเบียบและรวมแท็ก"
+  },
+  "f_clear_search_e946": {
+    "message": "ล้างการค้นหา"
+  },
+  "f_click_the_ollama_icon_in_the_2c7c": {
+    "message": "คลิกไอคอน Ollama ในแถบเมนู (ขวาบน) แล้วเลือก <b>Quit Ollama</b>"
+  },
+  "f_click_generate_to_create_you_aa04": {
+    "message": "คลิก “สร้าง 🎙️” เพื่อสร้างตอนของคุณ"
+  },
+  "f_close_pane_d66b": {
+    "message": "ปิดบานหน้าต่าง {n}",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_code_expired_please_request__64c9": {
+    "message": "รหัสหมดอายุ โปรดขอรหัสใหม่"
+  },
+  "f_comedy_0972": {
+    "message": "คอมเมดี้"
+  },
+  "f_compatible_tools_7cb8": {
+    "message": "เครื่องมือที่เข้ากันได้"
+  },
+  "f_configure_your_localsend_ip__3993": {
+    "message": "ตั้งค่าที่อยู่ IP ของ LocalSend ในตั้งค่าก่อน"
+  },
+  "f_connection_path_790c": {
+    "message": "เส้นทางเชื่อมต่อ"
+  },
+  "f_connection_path_e1ec": {
+    "message": "เส้นทางเชื่อมต่อ"
+  },
+  "f_context_k_1bbb": {
+    "message": "บริบท: {n}k",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_copied_as_plain_text_c9d4": {
+    "message": "คัดลอกเป็นข้อความธรรมดาแล้ว"
+  },
+  "f_copied_to_clipboard_244d": {
+    "message": "คัดลอกไปยังคลิปบอร์ดแล้ว! 📋"
+  },
+  "f_copied_f355": {
+    "message": "คัดลอกแล้ว! ✓"
+  },
+  "f_copy_0d38": {
+    "message": "คัดลอก 📋"
+  },
+  "f_created_podcasts_1914": {
+    "message": "พอดแคสต์ที่สร้างแล้ว"
+  },
+  "f_custom_prompt_text_10af": {
+    "message": "ข้อความพรอมต์กำหนดเอง"
+  },
+  "f_custom_style_optional_0950": {
+    "message": "สไตล์กำหนดเอง (ไม่บังคับ):"
+  },
+  "f_custom_style_ba7f": {
+    "message": "สไตล์กำหนดเอง:"
+  },
+  "f_d3_library_failed_to_load_301f": {
+    "message": "โหลดไลบรารี D3 ไม่สำเร็จ"
+  },
+  "f_dark_mode_05f8": {
+    "message": "โหมดมืด"
+  },
+  "f_delete_ea6a": {
+    "message": "ลบ"
+  },
+  "f_delete_article_14d4": {
+    "message": "ลบบทความ"
+  },
+  "f_delete_all_history_f022": {
+    "message": "ลบประวัติทั้งหมด?"
+  },
+  "f_delete_all_settings_9c4f": {
+    "message": "ลบการตั้งค่าทั้งหมด?"
+  },
+  "f_delete_history_09b6": {
+    "message": "ลบประวัติ"
+  },
+  "f_delete_history_6db0": {
+    "message": "ลบประวัติ…"
+  },
+  "f_delete_settings_448b": {
+    "message": "ลบการตั้งค่า"
+  },
+  "f_delete_settings_7c57": {
+    "message": "ลบการตั้งค่า…"
+  },
+  "f_delivery_method_6dc6": {
+    "message": "วิธีส่ง"
+  },
+  "f_delivery_method_60a6": {
+    "message": "วิธีส่ง"
+  },
+  "f_delivery_83d6": {
+    "message": "ส่งผ่าน: {name}",
+    "description": "Placeholders: {name} (keep as is)"
+  },
+  "f_describe_your_podcast_style_2c26": {
+    "message": "อธิบายสไตล์พอดแคสต์ของคุณ"
+  },
+  "f_dismiss_graph_stats_0600": {
+    "message": "ปิดสถิติกราฟ"
+  },
+  "f_don_t_have_a_key_a26a": {
+    "message": "ยังไม่มีคีย์?"
+  },
+  "f_done_645e": {
+    "message": "เสร็จแล้ว 🎧"
+  },
+  "f_drag_this_link_to_your_bookm_d09a": {
+    "message": "ลากลิงก์นี้ไปที่แถบบุ๊กมาร์ก 🔖"
+  },
+  "f_educational_6bf0": {
+    "message": "ให้ความรู้"
+  },
+  "f_endpoint_url_ddad": {
+    "message": "URL เอนด์พอยต์"
+  },
+  "f_endpoint_url_d4b5": {
+    "message": "URL เอนด์พอยต์:"
+  },
+  "f_enter_6_digit_code_9824": {
+    "message": "ใส่รหัส 6 หลัก"
+  },
+  "f_enter_code_6556": {
+    "message": "ใส่รหัส"
+  },
+  "f_enter_the_code_sent_to_your__e9ff": {
+    "message": "ใส่รหัสที่ส่งไปยังอีเมลของคุณ"
+  },
+  "f_enter_the_code_sent_to_44a6": {
+    "message": "ใส่รหัสที่ส่งไปที่:"
+  },
+  "f_enter_your_email_b13a": {
+    "message": "ใส่อีเมลของคุณ..."
+  },
+  "f_error_generating_podcast_472a": {
+    "message": "สร้างพอดแคสต์ผิดพลาด: {msg}",
+    "description": "Placeholders: {msg} (keep as is)"
+  },
+  "f_error_d391": {
+    "message": "ข้อผิดพลาด:"
+  },
+  "f_error_2626": {
+    "message": "ข้อผิดพลาด: {message}",
+    "description": "Placeholders: {message} (keep as is)"
+  },
+  "f_export_49d3": {
+    "message": "ส่งออก"
+  },
+  "f_export_backup_first_cdb5": {
+    "message": "ส่งออกข้อมูลสำรองก่อน"
+  },
+  "f_export_or_restore_all_settin_1745": {
+    "message": "ส่งออกหรือกู้คืนการตั้งค่าทั้งหมดเป็นไฟล์ JSON"
+  },
+  "f_export_settings_1454": {
+    "message": "ส่งออกการตั้งค่า"
+  },
+  "f_exported_1988": {
+    "message": "ส่งออกแล้ว! ✓"
+  },
+  "f_exported_articles_e1a6": {
+    "message": "ส่งออกแล้ว! ✓ ({n} บทความ)",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_ext_8e14": {
+    "message": "ส่วนขยาย"
+  },
+  "f_extension_723a": {
+    "message": "ส่วนขยาย"
+  },
+  "f_failed_to_export_backup_f689": {
+    "message": "ส่งออกข้อมูลสำรองไม่สำเร็จ"
+  },
+  "f_failed_to_load_models_416b": {
+    "message": "โหลดโมเดลไม่สำเร็จ"
+  },
+  "f_failed_to_send_code_a012": {
+    "message": "ส่งรหัสไม่สำเร็จ"
+  },
+  "f_fallback_79db": {
+    "message": "สำรอง"
+  },
+  "f_feed_briefing_recap_style_9883": {
+    "message": "สไตล์บรีฟและรีแคปของฟีด"
+  },
+  "f_feed_refresh_interval_c173": {
+    "message": "ความถี่รีเฟรชฟีด"
+  },
+  "f_feedback_contact_donate_fd59": {
+    "message": "ความคิดเห็น · ติดต่อ · สนับสนุน"
+  },
+  "f_feeds_and_inboxes_linkedin_f_aa24": {
+    "message": "ฟีดและกล่องข้อความ (ฟีด LinkedIn, หน้าแรก X ฯลฯ) ถูกข้ามอัตโนมัติอยู่แล้ว"
+  },
+  "f_file_shared_successfully_8e89": {
+    "message": "แชร์ไฟล์สำเร็จ"
+  },
+  "f_filtering_graph_to_matches_o_2268": {
+    "message": "กำลังกรองกราฟเฉพาะที่ตรงกัน — คลิกเพื่อไฮไลต์ที่ตรงกันในคลังทั้งหมดแทน"
+  },
+  "f_flesch_reading_ease_100_8bd2": {
+    "message": "ความง่ายในการอ่าน Flesch: {ease}/100",
+    "description": "Placeholders: {ease} (keep as is)"
+  },
+  "f_for_koreader_prefer_60bb": {
+    "message": "สำหรับ KOReader แนะนำ"
+  },
+  "f_for_a_permanent_config_via_s_390e": {
+    "message": "สำหรับการตั้งค่าถาวรผ่าน systemd ให้เพิ่ม <code>Environment=\"OLLAMA_ORIGINS=*\"</code> ใต้ service unit (เช่น <code>/etc/systemd/system/ollama.service</code>) แล้วรัน <code>systemctl daemon-reload</code> และรีสตาร์ท"
+  },
+  "f_for_a_permanent_fix_set_code_2b22": {
+    "message": "สำหรับการแก้ถาวร ให้ตั้ง <code>OLLAMA_ORIGINS=*</code> เป็นตัวแปรสภาพแวดล้อมของระบบที่ <i>System Properties → Environment Variables</i> แล้วรีสตาร์ท Ollama"
+  },
+  "f_found_device_at_click_add_to_884e": {
+    "message": "พบอุปกรณ์ที่ {ip} — คลิก เพิ่ม เพื่อบันทึก ✓",
+    "description": "Placeholders: {ip} (keep as is)"
+  },
+  "f_free_tier_a065": {
+    "message": "แพ็กฟรี"
+  },
+  "f_free_trial_mode_ce92": {
+    "message": "โหมดทดลองใช้ฟรี"
+  },
+  "f_generate_a_bookmarklet_that__081e": {
+    "message": "สร้าง bookmarklet ที่สรุปเพจใดก็ได้ในเบราว์เซอร์ใดก็ได้ — รวมถึง iOS/Android ที่ส่วนขยายใช้ไม่ได้ ใช้การเข้าสู่ระบบ byphil Cloud ของคุณ"
+  },
+  "f_generate_237e": {
+    "message": "สร้าง 🎙️"
+  },
+  "f_generating_audio_bbb6": {
+    "message": "กำลังสร้างเสียง… 🔊"
+  },
+  "f_generating_22a9": {
+    "message": "กำลังสร้าง…"
+  },
+  "f_get_key_4f7c": {
+    "message": "รับคีย์"
+  },
+  "f_ghost_highlight_amount_cdbc": {
+    "message": "ปริมาณไฮไลต์จาง"
+  },
+  "f_ghost_highlight_amount_91fc": {
+    "message": "ปริมาณไฮไลต์จาง"
+  },
+  "f_hide_the_highlights_panel_on_21d1": {
+    "message": "ซ่อนแผงไฮไลต์บนไซต์เหล่านี้"
+  },
+  "f_highlighting_matches_in_the__372a": {
+    "message": "กำลังไฮไลต์ที่ตรงกันในคลังทั้งหมด — คลิกเพื่อกรองเฉพาะที่ตรงกัน"
+  },
+  "f_highlighting_ghost_46b8": {
+    "message": "ไฮไลต์ {a} · จาง {b}",
+    "description": "Placeholders: {a} {b} (keep as is)"
+  },
+  "f_history_deleted_89bf": {
+    "message": "ลบประวัติแล้ว ✓"
+  },
+  "f_i_want_to_use_my_own_custom__1b02": {
+    "message": "ฉันต้องการใช้ Custom API / โมเดลในเครื่องของฉันเอง"
+  },
+  "f_if_running_as_a_systemd_serv_630d": {
+    "message": "หากรันเป็นบริการ systemd ให้หยุดด้วย <code>sudo systemctl stop ollama</code>"
+  },
+  "f_import_export_opml_c6cd": {
+    "message": "นำเข้า / ส่งออก OPML"
+  },
+  "f_import_settings_8d81": {
+    "message": "นำเข้าการตั้งค่า"
+  },
+  "f_included_with_your_byphil_ac_42c6": {
+    "message": "รวมอยู่ในบัญชี byPhil ของคุณ — ไม่ต้องใช้ API key"
+  },
+  "f_infrastructural_link_executi_8f72": {
+    "message": "การเชื่อมต่อไปยังเกตเวย์ล้มเหลว ตรวจสอบการเชื่อมต่อเครือข่าย"
+  },
+  "f_inl_2296": {
+    "message": "ในเพจ"
+  },
+  "f_inline_1554": {
+    "message": "ในเพจ"
+  },
+  "f_inline_mode_is_great_for_sen_8641": {
+    "message": "โหมดในเพจเหมาะกับ \"Send to Kindle\""
+  },
+  "f_insert_into_page_5e4d": {
+    "message": "แทรกลงเพจ"
+  },
+  "f_interview_0334": {
+    "message": "สัมภาษณ์"
+  },
+  "f_invalid_key_620f": {
+    "message": "คีย์ไม่ถูกต้อง"
+  },
+  "f_invalid_backup_file_please_s_54f7": {
+    "message": "ไฟล์สำรองไม่ถูกต้อง โปรดเลือกไฟล์ส่งออกของ AI Summary Helper ที่ถูกต้อง"
+  },
+  "f_invalid_code_4325": {
+    "message": "รหัสไม่ถูกต้อง"
+  },
+  "f_invalid_code_or_expired_sess_009f": {
+    "message": "รหัสไม่ถูกต้องหรือเซสชันหมดอายุ"
+  },
+  "f_invalid_or_deactivated_licen_cb45": {
+    "message": "license key ไม่ถูกต้องหรือถูกปิดใช้งาน ตรวจสอบการสมัครของคุณ"
+  },
+  "f_koreader_localsend_devices_dfd7": {
+    "message": "อุปกรณ์ KOReader / LocalSend"
+  },
+  "f_koreader_plugin_566b": {
+    "message": "ปลั๊กอิน KOReader:"
+  },
+  "f_keep_feed_items_for_6d0f": {
+    "message": "เก็บรายการฟีดไว้"
+  },
+  "f_kindle_delivery_failed_4d91": {
+    "message": "ส่งไป Kindle ไม่สำเร็จ"
+  },
+  "f_kindle_devices_5273": {
+    "message": "อุปกรณ์ Kindle"
+  },
+  "f_kindle_localsend_bookmarklet_b368": {
+    "message": "Kindle · LocalSend · bookmarklet"
+  },
+  "f_kindle_563f": {
+    "message": "Kindle 📚"
+  },
+  "f_label_f29d": {
+    "message": "ป้ายชื่อ"
+  },
+  "f_launch_ollama_again_from_you_0537": {
+    "message": "เปิด Ollama อีกครั้งจากโฟลเดอร์ Applications หรือ Spotlight"
+  },
+  "f_layout_421f": {
+    "message": "เลย์เอาต์"
+  },
+  "f_length_729d": {
+    "message": "ความยาว:"
+  },
+  "f_library_data_0b46": {
+    "message": "ไลบรารีและข้อมูล"
+  },
+  "f_light_mode_608a": {
+    "message": "โหมดสว่าง"
+  },
+  "f_list_37a1": {
+    "message": "รายการ"
+  },
+  "f_loading_1033": {
+    "message": "กำลังโหลด..."
+  },
+  "f_localsend_d8a4": {
+    "message": "LocalSend 📱"
+  },
+  "f_log_out_0355": {
+    "message": "ออกจากระบบ"
+  },
+  "f_logged_in_as_30ea": {
+    "message": "เข้าสู่ระบบเป็น: {email}",
+    "description": "Placeholders: {email} (keep as is)"
+  },
+  "f_logged_out_5877": {
+    "message": "ออกจากระบบแล้ว"
+  },
+  "f_magic_code_sent_check_your_i_292f": {
+    "message": "ส่งรหัสวิเศษแล้ว! ✨ ตรวจสอบกล่องอีเมล"
+  },
+  "f_manual_yellow_highlights_48aa": {
+    "message": "ไฮไลต์สีเหลืองด้วยตนเอง"
+  },
+  "f_mark_read_when_opened_7f85": {
+    "message": "ทำเครื่องหมายอ่านเมื่อเปิด"
+  },
+  "f_merges_near_duplicate_tags_s_343f": {
+    "message": "รวมแท็กที่เกือบซ้ำกัน เช่น “ML” และ “Machine Learning” ทั่วทั้งคลัง"
+  },
+  "f_model_e8fa": {
+    "message": "โมเดล"
+  },
+  "f_model_identifier_527d": {
+    "message": "ตัวระบุโมเดล"
+  },
+  "f_model_source_5863": {
+    "message": "แหล่งโมเดล"
+  },
+  "f_models_api_7e45": {
+    "message": "โมเดลและ API"
+  },
+  "f_mood_on_off_tone_analysis_60b8": {
+    "message": "เปิด/ปิดอารมณ์ (วิเคราะห์โทน)"
+  },
+  "f_name_6774": {
+    "message": "ชื่อ:"
+  },
+  "f_native_chrome_side_panel_510d": {
+    "message": "แถบข้างเนทีฟของ Chrome"
+  },
+  "f_negative_tone_8ca6": {
+    "message": "โทนเชิงลบ"
+  },
+  "f_network_error_608f": {
+    "message": "ข้อผิดพลาดเครือข่าย"
+  },
+  "f_network_error_sending_to_kin_a413": {
+    "message": "ข้อผิดพลาดเครือข่ายขณะส่งไป Kindle"
+  },
+  "f_neutral_tone_a9c8": {
+    "message": "โทนเป็นกลาง"
+  },
+  "f_news_0866": {
+    "message": "ข่าว"
+  },
+  "f_next_da08": {
+    "message": "ถัดไป"
+  },
+  "f_no_kindle_email_set_9f2b": {
+    "message": "ยังไม่ได้ตั้งอีเมล Kindle"
+  },
+  "f_no_active_receiver_found_081d": {
+    "message": "ไม่พบผู้รับที่ใช้งานอยู่"
+  },
+  "f_no_articles_saved_yet_6cc6": {
+    "message": "ยังไม่มีบทความที่บันทึก"
+  },
+  "f_no_articles_to_graph_yet_3fc2": {
+    "message": "ยังไม่มีบทความให้ทำกราฟ"
+  },
+  "f_no_audio_8798": {
+    "message": "ไม่มีเสียง"
+  },
+  "f_no_content_available_0c7a": {
+    "message": "ไม่มีเนื้อหา"
+  },
+  "f_no_devices_added_yet_1e99": {
+    "message": "ยังไม่ได้เพิ่มอุปกรณ์"
+  },
+  "f_no_matches_found_1b67": {
+    "message": "ไม่พบที่ตรงกัน"
+  },
+  "f_no_models_configured_2bd8": {
+    "message": "ยังไม่ได้ตั้งค่าโมเดล"
+  },
+  "f_no_receiver_address_set_d83f": {
+    "message": "ยังไม่ได้ตั้งที่อยู่ผู้รับ"
+  },
+  "f_no_settings_match_918b": {
+    "message": "ไม่มีการตั้งค่าที่ตรงกับ “{query}”",
+    "description": "Placeholders: {query} (keep as is)"
+  },
+  "f_no_summary_available_1155": {
+    "message": "ไม่มีสรุป"
+  },
+  "f_no_summary_returned_5f75": {
+    "message": "ไม่มีสรุปส่งกลับมา"
+  },
+  "f_no_title_available_2723": {
+    "message": "ไม่มีชื่อเรื่อง"
+  },
+  "f_not_logged_in_4bbf": {
+    "message": "ยังไม่ได้เข้าสู่ระบบ"
+  },
+  "f_not_signed_in_7281": {
+    "message": "ยังไม่ได้เข้าสู่ระบบ"
+  },
+  "f_once_ollama_restarts_the_403_7678": {
+    "message": "เมื่อ Ollama รีสตาร์ท ข้อผิดพลาด 403 Forbidden จากส่วนขยายนี้จะหายไป"
+  },
+  "f_once_ollama_restarts_the_403_5245": {
+    "message": "เมื่อ Ollama รีสตาร์ท ข้อผิดพลาด 403 Forbidden จากส่วนขยายของคุณจะแก้ไขแล้ว"
+  },
+  "f_one_pane_9d53": {
+    "message": "หนึ่งบานหน้าต่าง"
+  },
+  "f_open_command_prompt_c92e": {
+    "message": "เปิด Command Prompt"
+  },
+  "f_open_source_software_by_0ec8": {
+    "message": "ซอฟต์แวร์โอเพนซอร์สโดย"
+  },
+  "f_open_terminal_8167": {
+    "message": "เปิด Terminal"
+  },
+  "f_open_in_history_0990": {
+    "message": "เปิดในประวัติ"
+  },
+  "f_open_in_sidebar_648c": {
+    "message": "เปิดในแถบข้าง"
+  },
+  "f_open_the_b_terminal_b_app_on_e9bf": {
+    "message": "เปิดแอป <b>Terminal</b> บน Mac ของคุณ"
+  },
+  "f_own_key_7e24": {
+    "message": "คีย์ของฉัน"
+  },
+  "f_own_model_api_key_4098": {
+    "message": "โมเดล / API key ของฉัน"
+  },
+  "f_page_highlighting_86f2": {
+    "message": "ไฮไลต์ในเพจ"
+  },
+  "f_pane_view_fde8": {
+    "message": "มุมมองบานหน้าต่าง {n}",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_panel_37e5": {
+    "message": "แผง"
+  },
+  "f_permanently_removes_all_summ_228d": {
+    "message": "ลบสรุปและคลังทั้งหมดถาวร ส่งออกข้อมูลสำรองก่อน"
+  },
+  "f_persist_optional_29ce": {
+    "message": "คงไว้ (ไม่บังคับ)"
+  },
+  "f_pick_a_name_for_your_show_46b5": {
+    "message": "ตั้งชื่อรายการของคุณ:"
+  },
+  "f_please_configure_your_kindle_186c": {
+    "message": "โปรดตั้งอีเมลรับของ Kindle ในตั้งค่าก่อน"
+  },
+  "f_please_enter_a_license_key_49e8": {
+    "message": "โปรดใส่ license key"
+  },
+  "f_please_enter_a_valid_email_0a86": {
+    "message": "โปรดใส่อีเมลที่ถูกต้อง"
+  },
+  "f_please_enter_the_verificatio_ac88": {
+    "message": "โปรดใส่รหัสยืนยัน"
+  },
+  "f_podcast_name_1b92": {
+    "message": "ชื่อพอดแคสต์"
+  },
+  "f_podcast_length_minutes_c389": {
+    "message": "ความยาวพอดแคสต์ (นาที):"
+  },
+  "f_podcast_style_61d0": {
+    "message": "สไตล์พอดแคสต์:"
+  },
+  "f_positive_tone_6466": {
+    "message": "โทนเชิงบวก"
+  },
+  "f_prefer_the_terminal_run_olla_806f": {
+    "message": "ชอบใช้เทอร์มินัล? รัน Ollama โดยตรงในหน้าต่างเบื้องหน้า:"
+  },
+  "f_preferred_cloud_model_5f82": {
+    "message": "โมเดลคลาวด์ที่ต้องการ"
+  },
+  "f_preferred_cloud_model_d302": {
+    "message": "โมเดลคลาวด์ที่ต้องการ"
+  },
+  "f_preparing_kindle_delivery_491b": {
+    "message": "กำลังเตรียมส่งไป Kindle... ⏳"
+  },
+  "f_preset_and_custom_prompt_3b14": {
+    "message": "พรีเซ็ตและพรอมต์กำหนดเอง"
+  },
+  "f_preset_prompt_aba8": {
+    "message": "พรอมต์พรีเซ็ต"
+  },
+  "f_preset_4569": {
+    "message": "พรีเซ็ต: {name}",
+    "description": "Placeholders: {name} (keep as is)"
+  },
+  "f_press_b_win_r_b_type_code_cm_0167": {
+    "message": "กด <b>Win + R</b> พิมพ์ <code>cmd</code> แล้วกด Enter"
+  },
+  "f_pro_active_e0af": {
+    "message": "Pro ใช้งานอยู่ ✓"
+  },
+  "f_pro_license_key_d198": {
+    "message": "Pro License Key"
+  },
+  "f_pro_license_key_d718": {
+    "message": "Pro license key"
+  },
+  "f_prompts_7bf8": {
+    "message": "พรอมต์"
+  },
+  "f_provider_88dc": {
+    "message": "ผู้ให้บริการ"
+  },
+  "f_questions_bugs_or_happy_feel_0fb2": {
+    "message": "มีคำถาม บั๊ก หรือถูกใจ? 💡 ได้เลย"
+  },
+  "f_quick_test_terminal_ba7b": {
+    "message": "ทดสอบด่วน (เทอร์มินัล)"
+  },
+  "f_quit_ollama_1194": {
+    "message": "ออกจาก Ollama"
+  },
+  "f_rate_items_with_the_recap_131d": {
+    "message": "ให้คะแนนรายการพร้อมรีแคป"
+  },
+  "f_reader_4efa": {
+    "message": "โหมดอ่าน 👓"
+  },
+  "f_reading_highlighting_67a3": {
+    "message": "การอ่านและไฮไลต์"
+  },
+  "f_reading_bundle_c191": {
+    "message": "ชุดอ่าน — {date} ({count})",
+    "description": "Placeholders: {date} {count} (keep as is)"
+  },
+  "f_reading_page_0cb0": {
+    "message": "กำลังอ่านเพจ..."
+  },
+  "f_recent_models_20ec": {
+    "message": "โมเดลล่าสุด"
+  },
+  "f_regular_f2b7": {
+    "message": "ปกติ"
+  },
+  "f_remove_device_c1ed": {
+    "message": "ลบอุปกรณ์"
+  },
+  "f_resets_all_preferences_promp_a294": {
+    "message": "รีเซ็ตค่ากำหนด พรอมต์ และคีย์ทั้งหมดบนอุปกรณ์นี้ ประวัติยังอยู่"
+  },
+  "f_restart_ollama_a4f2": {
+    "message": "รีสตาร์ท Ollama"
+  },
+  "f_right_click_the_ollama_tray__e7eb": {
+    "message": "คลิกขวาที่ไอคอน Ollama ในถาดระบบ (ขวาล่าง) แล้วเลือก <b>Quit</b>"
+  },
+  "f_run_ollama_as_a_foreground_s_b2e2": {
+    "message": "รัน Ollama เป็นเซิร์ฟเวอร์เบื้องหน้าจากหน้าต่างเดียวกัน:"
+  },
+  "f_run_this_command_so_ollama_s_22ad": {
+    "message": "รันคำสั่งนี้เพื่อให้ Ollama คงการตั้งค่าหลังรีสตาร์ทแอป Mac:"
+  },
+  "f_run_this_so_the_running_serv_741a": {
+    "message": "รันคำสั่งนี้เพื่อให้เซิร์ฟเวอร์ที่รันอยู่รับคำขอจากทุก origin:"
+  },
+  "f_runs_entirely_in_your_browse_6c55": {
+    "message": "ทำงานในเบราว์เซอร์ของคุณทั้งหมด — ไม่มีข้อมูลออกไปข้างนอก"
+  },
+  "f_saved_for_later_516d": {
+    "message": "บันทึกไว้อ่านทีหลัง"
+  },
+  "f_saved_549a": {
+    "message": "บันทึกแล้ว! ✓"
+  },
+  "f_scan_failed_enter_ip_manuall_ec5d": {
+    "message": "สแกนไม่สำเร็จ ใส่ IP ด้วยตนเอง"
+  },
+  "f_scanning_96ac": {
+    "message": "กำลังสแกน..."
+  },
+  "f_search_cloud_models_4424": {
+    "message": "ค้นหาโมเดลคลาวด์…"
+  },
+  "f_search_languages_1344": {
+    "message": "ค้นหาภาษา…"
+  },
+  "f_searching_cloud_f50c": {
+    "message": "กำลังค้นหาคลาวด์..."
+  },
+  "f_searching_lan_for_localsend__08f3": {
+    "message": "กำลังค้นหาผู้รับ LocalSend ใน LAN..."
+  },
+  "f_select_up_to_5_articles_dcb7": {
+    "message": "เลือกได้สูงสุด 5 บทความ:"
+  },
+  "f_send_share_bb4a": {
+    "message": "ส่งและแชร์"
+  },
+  "f_send_magic_code_de19": {
+    "message": "ส่งรหัสวิเศษ"
+  },
+  "f_sending_to_localsend_over_wi_1626": {
+    "message": "กำลังส่งไป LocalSend ผ่าน Wi-Fi... 🚀"
+  },
+  "f_sending_6e8d": {
+    "message": "กำลังส่ง..."
+  },
+  "f_sent_successfully_56fa": {
+    "message": "ส่งสำเร็จ! 📖"
+  },
+  "f_sent_to_kindle_edc7": {
+    "message": "ส่งไป Kindle แล้ว! 📚"
+  },
+  "f_session_expired_generate_a_n_e957": {
+    "message": "เซสชันหมดอายุ สร้าง bookmarklet ใหม่"
+  },
+  "f_session_lost_please_request__23c2": {
+    "message": "เซสชันหลุด โปรดขอรหัสใหม่"
+  },
+  "f_set_as_active_send_target_dc86": {
+    "message": "ตั้งเป็นปลายทางส่งที่ใช้"
+  },
+  "f_set_up_ollama_on_linux_1b55": {
+    "message": "ตั้งค่า Ollama บน Linux"
+  },
+  "f_set_up_ollama_on_windows_a032": {
+    "message": "ตั้งค่า Ollama บน Windows"
+  },
+  "f_set_up_ollama_on_macos_48fa": {
+    "message": "ตั้งค่า Ollama บน macOS"
+  },
+  "f_settings_article_history_ce53": {
+    "message": "การตั้งค่า + ประวัติบทความ"
+  },
+  "f_settings_imported_successful_29eb": {
+    "message": "นำเข้าการตั้งค่าสำเร็จ! ส่วนขยายจะโหลดใหม่ตอนนี้"
+  },
+  "f_settings_only_750a": {
+    "message": "เฉพาะการตั้งค่า"
+  },
+  "f_share_failed_4922": {
+    "message": "แชร์ไม่สำเร็จ: {message}",
+    "description": "Placeholders: {message} (keep as is)"
+  },
+  "f_share_cf08": {
+    "message": "แชร์ 🔗"
+  },
+  "f_sharing_is_not_supported_in__4599": {
+    "message": "เบราว์เซอร์/สภาพแวดล้อมนี้ไม่รองรับการแชร์"
+  },
+  "f_showing_top_tags_archive_is__900c": {
+    "message": "แสดงแท็กยอดนิยม (คลังมีขนาดใหญ่)"
+  },
+  "f_sign_in_sign_up_via_email_0cc4": {
+    "message": "เข้าสู่ระบบ / สมัครด้วยอีเมล"
+  },
+  "f_sign_in_to_unlock_free_cloud_f976": {
+    "message": "เข้าสู่ระบบเพื่อปลดล็อกโมเดลคลาวด์ฟรีและซิงก์สรุปของคุณ หรือใช้ API key ของคุณเอง"
+  },
+  "f_signed_in_byphil_cloud_f9ba": {
+    "message": "เข้าสู่ระบบแล้ว · byPhil Cloud"
+  },
+  "f_solo_976a": {
+    "message": "เดี่ยว"
+  },
+  "f_something_went_wrong_please__7745": {
+    "message": "เกิดข้อผิดพลาด — โปรดลองอีกครั้ง"
+  },
+  "f_sources_rename_tags_mute_0bbe": {
+    "message": "แหล่งที่มา · เปลี่ยนชื่อ · แท็ก · ปิดเสียง"
+  },
+  "f_start_ollama_136b": {
+    "message": "เริ่ม Ollama"
+  },
+  "f_start_ollama_with_the_global_26bb": {
+    "message": "เริ่ม Ollama ด้วยไวลด์การ์ดส่วนกลางเพื่อให้ทุก origin เชื่อมต่อได้:"
+  },
+  "f_stop_ollama_b489": {
+    "message": "หยุด Ollama"
+  },
+  "f_storytelling_6d0b": {
+    "message": "เล่าเรื่อง"
+  },
+  "f_style_fba4": {
+    "message": "สไตล์:"
+  },
+  "f_successfully_connected_ec77": {
+    "message": "เชื่อมต่อสำเร็จ! 🧙"
+  },
+  "f_summarizing_4c71": {
+    "message": "กำลังสรุป..."
+  },
+  "f_summary_language_a8df": {
+    "message": "ภาษาของสรุป"
+  },
+  "f_summary_length_2b31": {
+    "message": "ความยาวสรุป"
+  },
+  "f_summary_mode_5ce6": {
+    "message": "โหมดสรุป"
+  },
+  "f_switch_graph_search_to_filte_7f9d": {
+    "message": "สลับการค้นหากราฟเป็นโหมดกรอง"
+  },
+  "f_switch_graph_search_to_highl_0b23": {
+    "message": "สลับการค้นหากราฟเป็นโหมดไฮไลต์"
+  },
+  "f_system_default_c329": {
+    "message": "ตามระบบ"
+  },
+  "f_tts_returned_no_audio_5fb4": {
+    "message": "TTS ไม่ส่งเสียงกลับมา"
+  },
+  "f_theme_7c92": {
+    "message": "ธีม"
+  },
+  "f_theme_language_side_panel_2503": {
+    "message": "ธีม · ภาษา · แถบข้าง"
+  },
+  "f_this_permanently_removes_and_fdfc": {
+    "message": "การนี้จะลบ{what}และคลังออกจากอุปกรณ์นี้ถาวร ไม่สามารถย้อนกลับได้",
+    "description": "Placeholders: {what} (keep as is)"
+  },
+  "f_this_resets_every_preference_d3b3": {
+    "message": "การนี้จะรีเซ็ตค่ากำหนด พรอมต์ และ API key ทั้งหมดบนอุปกรณ์นี้ สรุปของคุณยังอยู่ ส่วนขยายจะโหลดใหม่"
+  },
+  "f_this_will_invalidate_the_cur_4995": {
+    "message": "การนี้จะทำให้รหัสปัจจุบันใช้ไม่ได้ ดำเนินการต่อ?"
+  },
+  "f_transfer_failed_6750": {
+    "message": "ถ่ายโอนไม่สำเร็จ: {message}",
+    "description": "Placeholders: {message} (keep as is)"
+  },
+  "f_type_to_confirm_b0b8": {
+    "message": "พิมพ์ {word} เพื่อยืนยัน",
+    "description": "Placeholders: {word} (keep as is)"
+  },
+  "f_ui_language_08b7": {
+    "message": "ภาษา UI"
+  },
+  "f_ui_language_b097": {
+    "message": "ภาษา UI"
+  },
+  "f_unavailable_aaa9": {
+    "message": "ใช้งานไม่ได้"
+  },
+  "f_unknown_error_2b43": {
+    "message": "ข้อผิดพลาดที่ไม่ทราบสาเหตุ"
+  },
+  "f_upgrade_to_pro_pass_b708": {
+    "message": "อัปเกรดเป็น Pro Pass"
+  },
+  "f_use_as_custom_language_code_ed4f": {
+    "message": "ใช้ \"{name}\" เป็นรหัสภาษากำหนดเอง",
+    "description": "Placeholders: {name} (keep as is)"
+  },
+  "f_use_native_chrome_side_panel_1544": {
+    "message": "ใช้แถบข้างเนทีฟของ Chrome"
+  },
+  "f_used_for_send_to_kindle_deli_25f4": {
+    "message": "ใช้สำหรับส่งไป Kindle เพิ่ม"
+  },
+  "f_verify_log_in_6f6f": {
+    "message": "ยืนยันและเข้าสู่ระบบ"
+  },
+  "f_verify_login_274f": {
+    "message": "ยืนยันและเข้าสู่ระบบ"
+  },
+  "f_verifying_174a": {
+    "message": "กำลังยืนยัน..."
+  },
+  "f_version_github_fae0": {
+    "message": "เวอร์ชันและ GitHub"
+  },
+  "f_view_copy_1953": {
+    "message": "ดูและคัดลอก"
+  },
+  "f_view_filtered_f87d": {
+    "message": "มุมมอง: กรอง"
+  },
+  "f_view_highlighted_ab8f": {
+    "message": "มุมมอง: ไฮไลต์"
+  },
+  "f_welcome_to_ai_summary_helper_892e": {
+    "message": "ยินดีต้อนรับสู่ AI Summary Helper"
+  },
+  "f_well_connected_1033": {
+    "message": "เชื่อมโยงดี"
+  },
+  "f_what_to_export_3317": {
+    "message": "ส่งออกอะไร?"
+  },
+  "f_wrong_email_go_back_ba6a": {
+    "message": "อีเมลผิด? ย้อนกลับ"
+  },
+  "f_you_re_ready_to_generate_you_ff41": {
+    "message": "พร้อมสร้างพอดแคสต์ของคุณแล้ว!"
+  },
+  "f_a_donation_8832": {
+    "message": "ร่วมสนับสนุน"
+  },
+  "f_all_summaries_c680": {
+    "message": "สรุปทั้งหมด"
+  },
+  "f_byphil_cloud_17f0": {
+    "message": "byPhil Cloud"
+  },
+  "f_contact_me_639b": {
+    "message": "ติดต่อผู้พัฒนา"
+  },
+  "f_contribute_on_github_5ab8": {
+    "message": "ร่วมพัฒนาบน GitHub 💙"
+  },
+  "f_e_g_192_168_1_142_a9e2": {
+    "message": "เช่น 192.168.1.142"
+  },
+  "f_e_g_gpt_5_mini_llama3_2_f390": {
+    "message": "เช่น gpt-5-mini, llama3.2"
+  },
+  "f_for_unlimited_zero_config_su_82c0": {
+    "message": "เพื่อสรุปไม่จำกัดโดยไม่ต้องตั้งค่า"
+  },
+  "f_from_8075": {
+    "message": "จาก"
+  },
+  "f_give_feedback_9abb": {
+    "message": "ส่งความคิดเห็น"
+  },
+  "f_instead_of_https_which_can_b_69d5": {
+    "message": "แทน HTTPS ซึ่งอาจมีบั๊ก"
+  },
+  "f_no_longer_updated_c5c8": {
+    "message": "ไม่อัปเดตแล้ว"
+  },
+  "f_off_8a0a": {
+    "message": "ปิด"
+  },
+  "f_on_2fd0": {
+    "message": "เปิด"
+  },
+  "f_one_site_per_line_e_g_linked_ac34": {
+    "message": "หนึ่งไซต์ต่อบรรทัด เช่น linkedin.com"
+  },
+  "f_or_consider_a223": {
+    "message": "หรือพิจารณา"
+  },
+  "f_shared_tag_3ab4": {
+    "message": "แท็กร่วม"
+  },
+  "f_similar_content_784b": {
+    "message": "เนื้อหาคล้ายกัน"
+  },
+  "f_to_your_kindle_s_approved_se_5305": {
+    "message": "ไปที่ผู้ส่งที่อนุมัติของ Kindle ก่อน —"
+  },
+  "f_curated_from_your_ai_summary_4f55": {
+    "message": "{count} คัดสรรจากคลัง AI Summary Helper ของคุณ",
+    "description": "Placeholders: {count} (keep as is)"
+  },
+  "f_tone_f081": {
+    "message": "โทน{label}",
+    "description": "Placeholders: {label} (keep as is)"
+  },
+  "f_grade_6dba": {
+    "message": "{label} · ระดับ {grade}",
+    "description": "Placeholders: {label} {grade} (keep as is)"
+  },
+  "f_api_key_missing_add_it_in_se_f64a": {
+    "message": "{name} · ไม่มี API key — เพิ่มในตั้งค่า",
+    "description": "Placeholders: {name} (keep as is)"
+  },
+  "f_api_key_set_5c36": {
+    "message": "{name} · ตั้ง API key แล้ว",
+    "description": "Placeholders: {name} (keep as is)"
+  },
+  "f_local_no_api_key_8d7e": {
+    "message": "{name} · ในเครื่อง ไม่ต้องใช้ API key",
+    "description": "Placeholders: {name} (keep as is)"
+  },
+  "f_article_not_shown_bbad": {
+    "message": "ไม่แสดง {n} บทความ",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_articles_not_shown_c1f2": {
+    "message": "ไม่แสดง {n} บทความ",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_duplicate_tag_1abe": {
+    "message": "แท็กซ้ำ {n}",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_duplicate_tags_30b7": {
+    "message": "แท็กซ้ำ {n}",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_min_4e03": {
+    "message": "{n} นาที",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_panes_2444": {
+    "message": "{n} บานหน้าต่าง",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_rarely_used_tag_hidden_a4dc": {
+    "message": "ซ่อนแท็กที่ใช้น้อย {n}",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_rarely_used_tags_hidden_3423": {
+    "message": "ซ่อนแท็กที่ใช้น้อย {n}",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_unopened_30d_61af": {
+    "message": "{n} ยังไม่เปิด 30 วัน+",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_similar_e273": {
+    "message": "คล้ายกัน {n}%",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_min_read_b555": {
+    "message": "~{n} นาทีในการอ่าน",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_feel_free_to_c446": {
+    "message": "— ได้เลย"
+  },
+  "f_summarizing_2ba2": {
+    "message": "⏳ กำลังสรุป…"
+  },
+  "f_settings_eb9e": {
+    "message": "⚙️ ตั้งค่า"
+  },
+  "f_danger_zone_01e3": {
+    "message": "⚠️ โซนอันตราย"
+  },
+  "f_you_must_be_logged_into_byph_022c": {
+    "message": "⚠️ ต้องเข้าสู่ระบบ byphil Cloud ก่อนจึงจะสร้าง bookmarklet ได้"
+  },
+  "f_page_highlighting_6dce": {
+    "message": "✏️ ไฮไลต์ในเพจ"
+  },
+  "f_tags_already_look_consistent_6bfe": {
+    "message": "✓ แท็กดูสอดคล้องกันแล้ว — ไม่มีอะไรให้รวม"
+  },
+  "f_updated_merged_c21c": {
+    "message": "✓ อัปเดต {a} รวม {b}",
+    "description": "Placeholders: {a} {b} (keep as is)"
+  },
+  "f_ai_ghost_highlighting_6c00": {
+    "message": "✨ AI ไฮไลต์จาง"
+  },
+  "f_back_to_history_9fd8": {
+    "message": "⬅ กลับไปประวัติ"
+  },
+  "f_bring_your_own_key_9713": {
+    "message": "💻 ใช้คีย์ของคุณเอง"
+  },
+  "f_backup_restore_4d14": {
+    "message": "💾 สำรองและกู้คืน"
+  },
+  "f_original_content_d1c6": {
+    "message": "📄 เนื้อหาต้นฉบับ"
+  },
+  "f_free_tier_limit_reached_3_se_43a3": {
+    "message": "📚 ถึงขีดจำกัดแพ็กฟรีแล้ว (ส่ง 3 ครั้ง)\n\nอัปเกรดเป็น Pro เพื่อส่งไป Kindle ได้ไม่จำกัด\n\nhttps://philwornath.com/links"
+  },
+  "f_send_to_kindle_free_tier_3_k_821d": {
+    "message": "📚 Send to Kindle\n\nแพ็กฟรี: ส่งไป Kindle ได้ 3 ครั้ง\nอัปเกรดเป็น Pro เพื่อไม่จำกัด\n\nตรวจสอบว่า kindle@byphil.eu อยู่ในรายการผู้ส่งที่อนุมัติของ Kindle (ดูวิธีใช้ของ Amazon)\n\nส่งบทความนี้ไป Kindle?"
+  },
+  "f_your_highlights_694b": {
+    "message": "📝 ไฮไลต์ของคุณ"
+  },
+  "f_export_6eba": {
+    "message": "📤 ส่งออก"
+  },
+  "f_import_d884": {
+    "message": "📥 นำเข้า"
+  },
+  "f_koreader_localsend_a1c0": {
+    "message": "📱 KOReader / LocalSend"
+  },
+  "f_connecting_to_proxy_metrics_32c8": {
+    "message": "🔄 กำลังเชื่อมต่อเมตริกพร็อกซี..."
+  },
+  "f_keep_this_private_this_bookm_3463": {
+    "message": "🔒 เก็บเป็นความลับ: bookmarklet นี้มีโทเค็นคลาวด์ส่วนตัวของคุณ อย่าแชร์ให้ผู้อื่น หากโทเค็นหมดอายุ ให้กลับมาสร้างใหม่ที่นี่"
+  },
+  "f_stored_locally_in_your_brows_3133": {
+    "message": "🔒 เก็บไว้ในเบราว์เซอร์ของคุณเท่านั้น"
+  },
+  "f_bookmarklet_generator_23fa": {
+    "message": "🔖 ตัวสร้าง Bookmarklet"
+  },
+  "f_similar_in_your_archive_f3e8": {
+    "message": "🔗 คล้ายกันในคลังของคุณ"
+  },
+  "f_your_archive_is_as_empty_as__15fc": {
+    "message": "🗂️ คลังของคุณว่างเปล่าเหมือนทะเลทราย! เริ่มบันทึกบทความเพื่อเติมให้เต็ม 🌵"
+  },
+  "f_ai_suggested_highlights_ebbc": {
+    "message": "🤖 ไฮไลต์ที่ AI แนะนำ"
+  },
+  "f_ai_summary_c72e": {
+    "message": "🧙 สรุปโดย AI"
+  },
+  "f_on_device_tools_d85a": {
+    "message": "🧠 เครื่องมือบนอุปกรณ์"
+  },
+  "f_clean_up_4346": {
+    "message": "🧹 จัดระเบียบ"
+  },
+  "f_generate_bookmarklet_280f": {
+    "message": "🪄 สร้าง Bookmarklet"
+  },
+  "f_intro_skipped_the_digest_goe_15e9": {
+    "message": "ข้ามบทนำ — ไดเจสต์จะถูกส่งโดยไม่มีบทนำ"
+  },
+  "f_ask_dafd": {
+    "message": "💬 ถาม"
+  },
+  "f_replies_1cd4": {
+    "message": "💬 {n} คำตอบ",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_reply_2ae0": {
+    "message": "💬 {n} คำตอบ",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_not_a_paper_5823": {
+    "message": "ไม่ใช่งานวิจัย"
+  },
+  "f_not_peer_reviewed_e184": {
+    "message": "⚠ ยังไม่ผ่าน peer review"
+  },
+  "f_likely_paper_c67e": {
+    "message": "🎓 น่าจะเป็นงานวิจัย"
+  },
+  "f_mark_as_paper_1769": {
+    "message": "🎓 ทำเครื่องหมายเป็นงานวิจัย"
+  },
+  "f_paper_b2da": {
+    "message": "🎓 งานวิจัย"
+  },
+  "f_paper_doi_c956": {
+    "message": "🎓 งานวิจัย · DOI ✓"
+  },
+  "f_preprint_aa9c": {
+    "message": "🎓 พรีปรินต์"
+  },
+  "f_design_02ef": {
+    "message": "การออกแบบ"
+  },
+  "f_limitations_7ff6": {
+    "message": "ข้อจำกัด"
+  },
+  "f_preprints_9516": {
+    "message": "พรีปรินต์"
+  },
+  "f_research_b9ec": {
+    "message": "งานวิจัย"
+  },
+  "f_reviews_1576": {
+    "message": "รีวิว"
+  },
+  "f_sample_8fc7": {
+    "message": "กลุ่มตัวอย่าง"
+  },
+  "f_trial_6b73": {
+    "message": "การทดลอง"
+  },
+  "f_trials_7100": {
+    "message": "การทดลอง"
+  },
+  "f_no_key_facts_found_b926": {
+    "message": "ไม่พบข้อเท็จจริงสำคัญ"
+  },
+  "f_nothing_to_analyse_cee2": {
+    "message": "ไม่มีอะไรให้วิเคราะห์"
+  },
+  "f_key_facts_4b46": {
+    "message": "🔎 ข้อเท็จจริงสำคัญ"
+  },
+  "f_adds_each_summary_under_its__b17f": {
+    "message": "เพิ่มสรุปแต่ละรายการใต้เอกสารอ้างอิง"
+  },
+  "f_citation_lookup_failed_try_a_bb2e": {
+    "message": "ค้นหาการอ้างอิงไม่สำเร็จ — ลองอีกครั้ง"
+  },
+  "f_citation_unavailable_no_doi__fd25": {
+    "message": "ไม่มีการอ้างอิง — ไม่พบ DOI"
+  },
+  "f_copy_list_d774": {
+    "message": "คัดลอกรายการ"
+  },
+  "f_download_bib_ef28": {
+    "message": "ดาวน์โหลด .bib"
+  },
+  "f_download_ris_a55b": {
+    "message": "ดาวน์โหลด .ris"
+  },
+  "f_download_txt_fdbd": {
+    "message": "ดาวน์โหลด .txt"
+  },
+  "f_get_citation_9c44": {
+    "message": "รับการอ้างอิง"
+  },
+  "f_include_my_summaries_aadf": {
+    "message": "รวมสรุปของฉัน"
+  },
+  "f_looking_up_citations_at_doi__563a": {
+    "message": "กำลังค้นหาการอ้างอิงที่ doi.org — ส่งเฉพาะ DOI…"
+  },
+  "f_looking_up_abff": {
+    "message": "กำลังค้นหา…"
+  },
+  "f_looks_the_citation_up_at_doi_346c": {
+    "message": "ค้นหาการอ้างอิงที่ doi.org โดยส่งเฉพาะ DOI"
+  },
+  "f_no_citations_available_the_s_3944": {
+    "message": "ไม่มีการอ้างอิง — งานวิจัยที่เลือกไม่มี DOI หรือการค้นหาไม่สำเร็จ"
+  },
+  "f_open_doi_0f60": {
+    "message": "เปิด DOI ↗"
+  },
+  "f_reference_list_fdba": {
+    "message": "รายการอ้างอิง"
+  },
+  "f_source_doi_org_4492": {
+    "message": "แหล่งที่มา: doi.org"
+  },
+  "f_paper_cb4d": {
+    "message": "{n} งานวิจัย",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_paper_skipped_no_doi_or_look_2c1b": {
+    "message": "ข้าม {n} งานวิจัย (ไม่มี DOI หรือค้นหาไม่สำเร็จ)",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_papers_f29a": {
+    "message": "{n} งานวิจัย",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_papers_skipped_no_doi_or_loo_a334": {
+    "message": "ข้าม {n} งานวิจัย (ไม่มี DOI หรือค้นหาไม่สำเร็จ)",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_cite_aef3": {
+    "message": "❝ อ้างอิง"
+  },
+  "f_attach_a_pdf_to_summarize_b6ff": {
+    "message": "แนบ PDF เพื่อสรุป"
+  },
+  "f_could_not_read_this_pdf_f579": {
+    "message": "อ่าน PDF นี้ไม่ได้"
+  },
+  "f_pdf_words_3a21": {
+    "message": "PDF · {n} คำ",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_reading_pdf_926d": {
+    "message": "กำลังอ่าน PDF…"
+  },
+  "f_remove_attachment_3512": {
+    "message": "ลบไฟล์แนบ"
+  },
+  "f_this_pdf_has_no_selectable_t_24aa": {
+    "message": "PDF นี้ไม่มีข้อความที่เลือกได้ (น่าจะเป็นไฟล์สแกน) ยังไม่รองรับการรู้จำข้อความ"
+  },
+  "f_this_pdf_is_password_protect_2a96": {
+    "message": "PDF นี้มีรหัสผ่านป้องกัน"
+  },
+  "f_this_pdf_is_too_large_limit__7b27": {
+    "message": "PDF นี้ใหญ่เกินไป (จำกัด 80 MB)"
+  },
+  "f_this_file_is_not_a_readable__9ad5": {
+    "message": "ไฟล์นี้ไม่ใช่ PDF ที่อ่านได้"
+  },
+  "f_this_tab_still_runs_an_older_4693": {
+    "message": "แท็บนี้ยังใช้ส่วนขยายเวอร์ชันเก่า โหลดแท็บใหม่ (F5) แล้วลองอีกครั้ง"
+  },
+  "f_tag_97fe": {
+    "message": "+ แท็ก"
+  },
+  "f_add_tag_1116": {
+    "message": "เพิ่มแท็ก…"
+  },
+  "f_remove_tag_e50d": {
+    "message": "ลบแท็ก"
+  },
+  "f_doi_bad6": {
+    "message": "DOI ↗"
+  },
+  "f_opinion_63bd": {
+    "message": "ความเห็น"
+  },
+  "f_reference_c33a": {
+    "message": "อ้างอิง"
+  },
+  "f_tutorial_694f": {
+    "message": "บทเรียน"
+  },
+  "f_research_paper_a6a3": {
+    "message": "🎓 งานวิจัย"
+  },
+  "f_read_1d4f": {
+    "message": "โหมดอ่าน 👓"
+  },
+  "f_atkinson_hyperlegible_design_954e": {
+    "message": "Atkinson Hyperlegible ออกแบบสำหรับผู้สายตาเลือนราง รองรับอักษรละตินเท่านั้น"
+  },
+  "f_compact_ad86": {
+    "message": "กะทัดรัด"
+  },
+  "f_currently_following_your_sys_635d": {
+    "message": "ตามระบบอยู่ตอนนี้: ปิด"
+  },
+  "f_currently_following_your_sys_8e59": {
+    "message": "ตามระบบอยู่ตอนนี้: {theme}",
+    "description": "Placeholders: {theme} (keep as is)"
+  },
+  "f_display_d9b5": {
+    "message": "การแสดงผล"
+  },
+  "f_easy_read_font_b69f": {
+    "message": "ฟอนต์อ่านง่าย"
+  },
+  "f_high_contrast_9fd1": {
+    "message": "คอนทราสต์สูง"
+  },
+  "f_line_spacing_d3de": {
+    "message": "ระยะบรรทัด"
+  },
+  "f_motion_layout_e4f1": {
+    "message": "การเคลื่อนไหวและเลย์เอาต์"
+  },
+  "f_normal_2772": {
+    "message": "ปกติ"
+  },
+  "f_reduce_motion_ecc7": {
+    "message": "ลดการเคลื่อนไหว"
+  },
+  "f_relaxed_38bc": {
+    "message": "ผ่อนคลาย"
+  },
+  "f_text_2d5e": {
+    "message": "ข้อความ"
+  },
+  "f_text_size_1143": {
+    "message": "ขนาดข้อความ"
+  },
+  "f_the_quick_brown_fox_jumps_ov_fd42": {
+    "message": "ทดสอบข้อความตัวอย่าง สรุปจะใช้ขนาดและระยะห่างนี้"
+  },
+  "f_your_system_already_asks_for_8b6f": {
+    "message": "ระบบของคุณขอให้ลดการเคลื่อนไหวอยู่แล้ว — จะถือตามเสมอ"
+  },
+  "f_paper_details_facts_cite_doi_245b": {
+    "message": "🎓 รายละเอียดงานวิจัย · ข้อเท็จจริง · อ้างอิง · DOI"
+  },
+  "f_dark_0065": {
+    "message": "มืด"
+  },
+  "f_light_f8cf": {
+    "message": "สว่าง"
+  },
+  "f_system_84bc": {
+    "message": "ระบบ"
+  },
+  "f_125_text_relaxed_spacing_683b": {
+    "message": "ข้อความ 125% ระยะห่างผ่อนคลาย"
+  },
+  "f_accessibility_profile_c8b6": {
+    "message": "โปรไฟล์การเข้าถึง"
+  },
+  "f_calm_cf36": {
+    "message": "สงบ"
+  },
+  "f_customize_text_size_spacing__1b1e": {
+    "message": "ปรับขนาดข้อความ ระยะห่าง ฟอนต์ การเคลื่อนไหว"
+  },
+  "f_dark_text_on_white_thick_out_25a0": {
+    "message": "ตัวอักษรเข้มบนพื้นขาว เส้นขอบหนา"
+  },
+  "f_default_307e": {
+    "message": "ค่าเริ่มต้น"
+  },
+  "f_following_your_system_49c8": {
+    "message": "ตามระบบ: {summary}",
+    "description": "Placeholders: {summary} (keep as is)"
+  },
+  "f_follows_system_62e2": {
+    "message": "ตามระบบ"
+  },
+  "f_large_text_b73b": {
+    "message": "ข้อความใหญ่"
+  },
+  "f_motion_on_b930": {
+    "message": "เปิดการเคลื่อนไหว"
+  },
+  "f_motion_reduced_d819": {
+    "message": "ลดการเคลื่อนไหวแล้ว"
+  },
+  "f_no_animation_everything_stay_6e0d": {
+    "message": "ไม่มีแอนิเมชัน ทุกอย่างนิ่ง"
+  },
+  "f_your_settings_8f2d": {
+    "message": "การตั้งค่าของคุณ: {summary}",
+    "description": "Placeholders: {summary} (keep as is)"
+  },
+  "f_sent_to_f63d": {
+    "message": "ส่งไป {model} แล้ว",
+    "description": "Placeholders: {model} (keep as is)"
+  },
+  "f_the_model_d5c1": {
+    "message": "โมเดล"
+  },
+  "f_waiting_s_f51e": {
+    "message": "รอ {s} วิ",
+    "description": "Placeholders: {s} (keep as is)"
+  },
+  "f_tag_doi_0e8f": {
+    "message": "+ แท็ก / DOI"
+  },
+  "f_code_launchctl_setenv_code_i_40cc": {
+    "message": "<code>launchctl setenv</code> จะถูกลืมหลังรีสตาร์ท Mac รายการเข้าสู่ระบบนี้จะตั้งค่าใหม่ทุกครั้ง:"
+  },
+  "f_add_tag_or_doi_adf9": {
+    "message": "เพิ่มแท็กหรือ DOI…"
+  },
+  "f_allow_browser_extensions_eb1c": {
+    "message": "อนุญาตส่วนขยายเบราว์เซอร์"
+  },
+  "f_allow_browser_extensions_per_01b9": {
+    "message": "อนุญาตส่วนขยายเบราว์เซอร์ (ถาวร)"
+  },
+  "f_apply_it_e25a": {
+    "message": "นำไปใช้:"
+  },
+  "f_check_it_9a90": {
+    "message": "ตรวจสอบ"
+  },
+  "f_filter_on_articles_shown_d49a": {
+    "message": "กรองตาม: {tag} แสดง {n} บทความ",
+    "description": "Placeholders: {tag} {n} (keep as is)"
+  },
+  "f_filter_shortcuts_2922": {
+    "message": "ทางลัดตัวกรอง…"
+  },
+  "f_focus_search_53f5": {
+    "message": "โฟกัสการค้นหา"
+  },
+  "f_graph_of_your_archive_tags_a_5bb5": {
+    "message": "กราฟของคลังคุณ {tags} แท็ก {articles} บทความ กด L เพื่อดูแบบรายการ",
+    "description": "Placeholders: {tags} {articles} (keep as is)"
+  },
+  "f_graph_view_6d78": {
+    "message": "มุมมองกราฟ"
+  },
+  "f_keyboard_shortcuts_ddb7": {
+    "message": "คีย์ลัด"
+  },
+  "f_list_view_tags_press_tab_to__0df8": {
+    "message": "มุมมองรายการ: {tags} แท็ก กด Tab เพื่อเรียกดู Enter เพื่อกรอง",
+    "description": "Placeholders: {tags} (keep as is)"
+  },
+  "f_lists_df96": {
+    "message": "รายการ"
+  },
+  "f_make_it_permanent_79f6": {
+    "message": "ทำให้ถาวร"
+  },
+  "f_new_summary_da1d": {
+    "message": "สรุปใหม่"
+  },
+  "f_next_previous_card_c144": {
+    "message": "การ์ดถัดไป / ก่อนหน้า"
+  },
+  "f_no_shortcuts_match_7564": {
+    "message": "ไม่มีคีย์ลัดที่ตรงกัน"
+  },
+  "f_only_if_the_ollama_app_is_qu_1244": {
+    "message": "ใช้เฉพาะเมื่อออกจากแอป Ollama แล้ว (ไม่เช่นนั้นจะได้ “address already in use” ตรวจสอบด้วย <code>lsof -i :11434</code> และหยุดด้วย <code>pkill -x ollama</code>) รัน Ollama ในหน้าต่างเบื้องหน้า:"
+  },
+  "f_open_10e9": {
+    "message": "เปิด"
+  },
+  "f_open_the_service_override_wi_8200": {
+    "message": "เปิดการ override ของบริการด้วย <code>sudo systemctl edit ollama.service</code> แล้วเพิ่ม:"
+  },
+  "f_press_anywhere_outside_a_tex_59fd": {
+    "message": "กด ? ที่ใดก็ได้นอกช่องข้อความ"
+  },
+  "f_restart_the_service_f7d4": {
+    "message": "รีสตาร์ทบริการ"
+  },
+  "f_run_this_command_it_lets_ext_4270": {
+    "message": "รันคำสั่งนี้ จะให้เฉพาะส่วนขยายคุยกับ Ollama ได้:"
+  },
+  "f_run_this_so_ollama_accepts_r_bda8": {
+    "message": "รันคำสั่งนี้เพื่อให้ Ollama รับคำขอจากส่วนขยายเบราว์เซอร์ (ถาวรสำหรับบัญชีผู้ใช้ของคุณ):"
+  },
+  "f_search_a2c9": {
+    "message": "ค้นหา"
+  },
+  "f_start_ollama_again_from_the__d4f1": {
+    "message": "เริ่ม Ollama อีกครั้งจากเมนู Start หรือรันเป็นเซิร์ฟเวอร์เบื้องหน้าในหน้าต่าง Command Prompt ใหม่:"
+  },
+  "f_summarize_791a": {
+    "message": "สรุป"
+  },
+  "f_summarize_send_e76b": {
+    "message": "สรุป / ส่ง"
+  },
+  "f_switch_tab_793a": {
+    "message": "สลับแท็บ"
+  },
+  "f_tags_in_your_archive_23a4": {
+    "message": "แท็กในคลังของคุณ"
+  },
+  "f_without_systemd_run_ollama_i_914e": {
+    "message": "หากไม่มี systemd ให้รัน Ollama ในหน้าต่างเบื้องหน้า:"
+  },
+  "f_you_should_see_code_200_code_00c7": {
+    "message": "คุณควรเห็น <code>200</code> หากเป็น <code>403</code> แปลว่า Ollama ยังไม่รับการตั้งค่า ให้ออกแล้วเริ่มใหม่"
+  },
+  "f_help_a3fa": {
+    "message": "ช่วยเหลือ"
+  },
+  "f_linked_to_886c": {
+    "message": "เชื่อมกับ {tags}",
+    "description": "Placeholders: {tags} (keep as is)"
+  },
+  "f_move_0014": {
+    "message": "ย้าย"
+  },
+  "f_open_c4c9": {
+    "message": "เปิด"
+  },
+  "f_search_28a9": {
+    "message": "ค้นหา"
+  },
+  "f_assign_doi_e263": {
+    "message": "🎓 กำหนด DOI {doi}",
+    "description": "Placeholders: {doi} (keep as is)"
+  },
+  "f_raise_the_context_length_in__0533": {
+    "message": "เพิ่มความยาวบริบทใน Ollama (OLLAMA_CONTEXT_LENGTH) หรือใช้โมเดลที่บริบทยาวกว่า"
+  },
+  "f_the_model_only_read_about_of_17a6": {
+    "message": "โมเดลอ่านได้ประมาณ {a} จาก {b} โทเค็น Ollama ตัดส่วนที่เหลือเพราะหน้าต่างบริบทเล็กเกินไป",
+    "description": "Placeholders: {a} {b} (keep as is)"
+  },
+  "f_read_in_parts_because_the_mo_a936": {
+    "message": "อ่านเป็น {n} ส่วน เพราะหน้าต่างบริบทของโมเดล ({w} โทเค็น) เล็กเกินกว่าจะอ่านทั้งเพจ",
+    "description": "Placeholders: {n} {w} (keep as is)"
+  },
+  "f_long_page_a_local_model_read_5e0e": {
+    "message": "เพจยาว: โมเดลในเครื่องจะอ่านทั้งหมดก่อน อาจใช้เวลาหนึ่งถึงสองนาที"
+  },
+  "f_sent_to_tokens_4c94": {
+    "message": "ส่งไป {model} · ~{n} โทเค็น",
+    "description": "Placeholders: {model} {n} (keep as is)"
+  },
+  "f_sent_tokens_to_the_model_23c8": {
+    "message": "ส่งประมาณ {n} โทเค็นให้โมเดล",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_the_model_read_of_tokens_d199": {
+    "message": "โมเดลอ่าน {a} จาก {b} โทเค็น",
+    "description": "Placeholders: {a} {b} (keep as is)"
+  },
+  "f_open_contents_long_texts_181e": {
+    "message": "เปิดสารบัญ (ข้อความยาว)"
+  },
+  "f_contents_67c3": {
+    "message": "สารบัญ"
+  },
+  "f_finished_reading_d4e7": {
+    "message": "อ่านจบแล้ว"
+  },
+  "f_from_6140": {
+    "message": "จาก {site}",
+    "description": "Placeholders: {site} (keep as is)"
+  },
+  "f_instant_read_374e": {
+    "message": "อ่านทันที"
+  },
+  "f_listen_cec6": {
+    "message": "ฟัง"
+  },
+  "f_mute_unmute_reading_7315": {
+    "message": "ปิด/เปิดเสียงอ่าน"
+  },
+  "f_next_sentence_2545": {
+    "message": "ประโยคถัดไป"
+  },
+  "f_no_voice_for_is_installed_on_5d22": {
+    "message": "ไม่ได้ติดตั้งเสียงสำหรับ {lang} ในอุปกรณ์นี้",
+    "description": "Placeholders: {lang} (keep as is)"
+  },
+  "f_off_b4aa": {
+    "message": "ปิด"
+  },
+  "f_on_7df0": {
+    "message": "เปิด"
+  },
+  "f_original_7692": {
+    "message": "ต้นฉบับ"
+  },
+  "f_previous_sentence_2c05": {
+    "message": "ประโยคก่อนหน้า"
+  },
+  "f_read_again_cc5d": {
+    "message": "อ่านอีกครั้ง"
+  },
+  "f_read_aloud_a106": {
+    "message": "อ่านออกเสียง"
+  },
+  "f_reading_speed_33dc": {
+    "message": "ความเร็วอ่าน"
+  },
+  "f_reading_sentence_2a5f": {
+    "message": "กำลังอ่าน · ประโยคที่ {n}",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_scroll_to_top_19d6": {
+    "message": "เลื่อนขึ้นบนสุด"
+  },
+  "f_speaks_the_title_and_site_fi_196b": {
+    "message": "อ่านชื่อเรื่องและไซต์ก่อน แล้วอ่านสรุปทีละประโยคขณะโมเดลเขียน"
+  },
+  "f_start_097f": {
+    "message": "เริ่ม"
+  },
+  "f_stop_reading_9af5": {
+    "message": "หยุดอ่าน"
+  },
+  "f_the_voice_follows_the_langua_55b1": {
+    "message": "เสียงจะตามภาษาของข้อความ: สรุปภาษาอังกฤษของบทความภาษาเยอรมันจะอ่านเป็นอังกฤษ ต้นฉบับอ่านเป็นเยอรมัน"
+  },
+  "f_voice_auto_8e1b": {
+    "message": "เสียง · อัตโนมัติ"
+  },
+  "f_voice_it_follows_the_summary_2f51": {
+    "message": "เสียง: {voice} · {lang} ตามภาษาของสรุป ส่วนชื่อเรื่องและไซต์อ่านตามภาษาของแอป",
+    "description": "Placeholders: {voice} {lang} (keep as is)"
+  },
+  "f_add_model_id_e_g_gemma4_e2b_127a": {
+    "message": "เพิ่มรหัสโมเดล เช่น gemma4:e2b"
+  },
+  "f_4_digits_sent_to_e76c": {
+    "message": "4 หลัก ส่งไปที่ {email}",
+    "description": "Placeholders: {email} (keep as is)"
+  },
+  "f_no_password_we_email_you_a_s_c006": {
+    "message": "ไม่ต้องมีรหัสผ่าน เราส่งรหัสสั้นๆ ให้ทางอีเมล"
+  },
+  "f_paste_works_it_signs_you_in__1f47": {
+    "message": "วางได้ เข้าสู่ระบบอัตโนมัติหลังหลักสุดท้าย"
+  },
+  "f_resend_code_4dd7": {
+    "message": "ส่งรหัสอีกครั้ง"
+  },
+  "f_send_me_a_code_a679": {
+    "message": "ส่งรหัสให้ฉัน"
+  },
+  "f_enter_your_code_93a9": {
+    "message": "ใส่รหัสของคุณ"
+  },
+  "f_free_cloud_models_and_your_s_71ce": {
+    "message": "โมเดลคลาวด์ฟรีและสรุปของคุณในทุกอุปกรณ์ หรือข้ามแล้วใช้ API key ของคุณเอง"
+  },
+  "f_sign_in_to_ai_summary_helper_d8be": {
+    "message": "เข้าสู่ระบบ AI Summary Helper"
+  },
+  "f_thinking_more_de1c": {
+    "message": "กำลังคิดต่อ…"
+  },
+  "f_dig_deeper_ab60": {
+    "message": "เจาะลึก"
+  },
+  "f_that_is_enough_6ac8": {
+    "message": "พอแล้ว"
+  },
+  "f_attach_to_side_panel_ef8a": {
+    "message": "ปักไว้ที่แถบข้าง"
+  },
+  "f_detach_to_popup_c2f1": {
+    "message": "แยกเป็นป๊อปอัป"
+  },
+  "f_opens_the_extension_next_to__d369": {
+    "message": "เปิดส่วนขยายข้างเพจ เหมือน 📌 ปักไว้ และ ↙️ แยก ที่ส่วนหัว"
+  },
+  "f_added_to_favorites_0693": {
+    "message": "เพิ่มในรายการโปรดแล้ว"
+  },
+  "f_article_deleted_c6e4": {
+    "message": "ลบบทความแล้ว"
+  },
+  "f_check_again_fccf": {
+    "message": "ตรวจสอบอีกครั้ง"
+  },
+  "f_checking_ollama_5cf1": {
+    "message": "กำลังตรวจสอบ Ollama…"
+  },
+  "f_could_not_save_this_page_try_07f3": {
+    "message": "บันทึกเพจนี้ไม่ได้ — ลองรีเฟรชแท็บ"
+  },
+  "f_installed_models_a979": {
+    "message": "โมเดลที่ติดตั้ง"
+  },
+  "f_keep_it_in_history_no_ai_not_1052": {
+    "message": "เก็บไว้ในประวัติ ไม่ใช้ AI ไม่ส่งข้อมูลออก"
+  },
+  "f_ollama_is_not_reachable_set__a39d": {
+    "message": "เข้าถึง Ollama ไม่ได้ — ตั้งค่าในตั้งค่า"
+  },
+  "f_ollama_is_running_but_no_mod_5b49": {
+    "message": "Ollama ทำงานอยู่ แต่ยังไม่ได้ติดตั้งโมเดล ดาวน์โหลดในเทอร์มินัล:"
+  },
+  "f_ollama_is_running_but_no_mod_43b7": {
+    "message": "Ollama ทำงานอยู่ แต่ยังไม่ได้ติดตั้งโมเดล — รัน: ollama pull llama3.2"
+  },
+  "f_ollama_is_running_installed__4a57": {
+    "message": "Ollama ทำงานอยู่ โมเดลที่ติดตั้ง — คลิกเพื่อใช้:"
+  },
+  "f_ollama_refused_the_request_o_90e2": {
+    "message": "Ollama ปฏิเสธคำขอ (OLLAMA_ORIGINS) — ดูในตั้งค่า"
+  },
+  "f_ollama_installed_63bc": {
+    "message": "Ollama · ติดตั้ง {n}",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_open_account_settings_781f": {
+    "message": "เปิดการตั้งค่าบัญชี"
+  },
+  "f_open_model_settings_7865": {
+    "message": "เปิดการตั้งค่าโมเดล"
+  },
+  "f_queued_it_will_start_when_th_cd8f": {
+    "message": "เข้าคิวแล้ว — จะเริ่มเมื่อสรุปปัจจุบันเสร็จ"
+  },
+  "f_queued_4ebe": {
+    "message": "เข้าคิว: {title}",
+    "description": "Placeholders: {title} (keep as is)"
+  },
+  "f_read_it_with_ai_b784": {
+    "message": "ให้ AI อ่าน"
+  },
+  "f_remove_901d": {
+    "message": "ลบออก"
+  },
+  "f_removed_from_favorites_e270": {
+    "message": "นำออกจากรายการโปรดแล้ว"
+  },
+  "f_save_only_82ca": {
+    "message": "บันทึกอย่างเดียว"
+  },
+  "f_save_options_f4e6": {
+    "message": "ตัวเลือกบันทึก"
+  },
+  "f_saved_without_an_ai_summary__ff94": {
+    "message": "บันทึกโดยไม่มีสรุป AI เปิดเพจแล้วแตะ ✨ สรุป เพื่อเพิ่ม"
+  },
+  "f_search_installed_models_959b": {
+    "message": "ค้นหาโมเดลที่ติดตั้ง…"
+  },
+  "f_this_needs_your_account_log__3d3b": {
+    "message": "ต้องใช้บัญชีของคุณ เข้าสู่ระบบหรือตรวจสอบแพ็กเกจในตั้งค่า"
+  },
+  "f_this_page_can_t_be_saved_1029": {
+    "message": "บันทึกเพจนี้ไม่ได้"
+  },
+  "f_waiting_for_the_running_summ_1f1c": {
+    "message": "รอสรุปที่กำลังทำ — คลิกเพื่อนำออกจากคิว"
+  },
+  "f_your_api_key_is_missing_or_w_264b": {
+    "message": "API key ของคุณหายไปหรือถูกปฏิเสธ ตรวจสอบในตั้งค่า"
+  },
+  "f_starts_when_the_current_summ_b50e": {
+    "message": "จะเริ่มเมื่อสรุปปัจจุบันเสร็จ"
+  },
+  "f_this_page_a108": {
+    "message": "เพจนี้"
+  },
+  "f_queued_7a3f": {
+    "message": "⏳ ในคิว"
+  },
+  "f_saved_without_ai_6f86": {
+    "message": "📥 บันทึกโดยไม่ใช้ AI"
+  },
+  "f_saved_no_ai_f236": {
+    "message": "📥 บันทึกแล้ว · ไม่มี AI"
+  },
+  "f_remove_limit_and_refresh_afec": {
+    "message": "ยกเลิกขีดจำกัดและรีเฟรช"
+  },
+  "f_no_limit_f47d": {
+    "message": "ไม่จำกัด"
+  },
+  "f_auto_efb6": {
+    "message": "อัตโนมัติ"
+  },
+  "f_auto_length_bias_09d7": {
+    "message": "ความโน้มเอียงความยาวอัตโนมัติ"
+  },
+  "f_batch_failed_f281": {
+    "message": "ชุด {a}/{b} ล้มเหลว: {m}",
+    "description": "Placeholders: {a} {b} {m} (keep as is)"
+  },
+  "f_length_mode_0c88": {
+    "message": "โหมดความยาว"
+  },
+  "f_longer_8170": {
+    "message": "ยาวขึ้น"
+  },
+  "f_scored_of_53f5": {
+    "message": "ให้คะแนนแล้ว {a} จาก {b}…",
+    "description": "Placeholders: {a} {b} (keep as is)"
+  },
+  "f_scoring_with_ai_4d82": {
+    "message": "AI กำลังให้คะแนน…"
+  },
+  "f_scoring_items_with_ai_in_the_17e2": {
+    "message": "AI กำลังให้คะแนน {n} รายการในเบื้องหลัง…",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_short_pages_get_a_few_senten_49e8": {
+    "message": "เพจสั้นได้สรุปไม่กี่ประโยค เพจยาวได้มากขึ้น แต่ไม่ยาวเกินครึ่งหนึ่งของบทความ"
+  },
+  "f_shorter_67e6": {
+    "message": "สั้นลง"
+  },
+  "f_standard_ab68": {
+    "message": "มาตรฐาน"
+  },
+  "f_summary_length_in_words_ab69": {
+    "message": "ความยาวสรุปเป็นจำนวนคำ"
+  },
+  "f_items_could_not_be_scored_31d6": {
+    "message": "ให้คะแนน {n} รายการไม่ได้",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_available_when_ollama_is_you_c49d": {
+    "message": "ใช้ได้เมื่อ Ollama เป็นโมเดลที่ใช้งาน จะให้คะแนน จัดหมวด และรีแคปทั้งคลังฟีดเป็นชุดเล็กๆ บนเครื่องของคุณ อาจใช้เวลาหลายชั่วโมงแต่ไม่เสียโทเค็น"
+  },
+  "f_done_61ad": {
+    "message": "เสร็จแล้ว"
+  },
+  "f_everything_in_your_library_i_47fb": {
+    "message": "ทุกรายการในคลังให้คะแนน จัดหมวด และรีแคปแล้ว"
+  },
+  "f_process_the_whole_library_e3a9": {
+    "message": "ประมวลผลทั้งคลัง"
+  },
+  "f_rating_and_categorizing_528d": {
+    "message": "กำลังให้คะแนนและจัดหมวด…"
+  },
+  "f_runs_on_your_own_machine_wit_7a25": {
+    "message": "ทำงานบนเครื่องของคุณด้วย Ollama และไม่เสียโทเค็น เปิดแผงนี้ไว้: การปิดจะหยุดชั่วคราว และเริ่มใหม่จะทำต่อจากเดิม ประมวลผลเฉพาะรายการที่ยังเก็บอยู่ (ดู \"เก็บรายการไว้\") รีแคปของวันนี้จะเขียนเมื่อคุณเปิดดู"
+  },
+  "f_stop_7705": {
+    "message": "หยุด"
+  },
+  "f_stopped_starting_again_conti_40fc": {
+    "message": "หยุดแล้ว เริ่มใหม่จะทำต่อจากเดิม"
+  },
+  "f_whole_library_ollama_cc54": {
+    "message": "ทั้งคลัง · Ollama"
+  },
+  "f_writing_day_recaps_9c43": {
+    "message": "กำลังเขียนรีแคปรายวัน…"
+  },
+  "f_about_h_min_64c7": {
+    "message": "ประมาณ {h} ชม. {m} นาที",
+    "description": "Placeholders: {h} {m} (keep as is)"
+  },
+  "f_about_min_7cd9": {
+    "message": "ประมาณ {m} นาที",
+    "description": "Placeholders: {m} (keep as is)"
+  },
+  "f_items_rated_days_recapped_fc36": {
+    "message": "ให้คะแนน {a} รายการ · รีแคป {b} วัน",
+    "description": "Placeholders: {a} {b} (keep as is)"
+  },
+  "f_items_to_rate_days_to_recap__44f6": {
+    "message": "รอให้คะแนน {a} รายการ · รอรีแคป {b} วัน · คำขอ AI {n} ครั้ง",
+    "description": "Placeholders: {a} {b} {n} (keep as is)"
+  },
+  "f_recommended_44c5": {
+    "message": "{n} (แนะนำ)",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_failed_50a8": {
+    "message": "ล้มเหลว {n}",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_items_per_batch_dd39": {
+    "message": "📦 รายการต่อชุด"
+  },
+  "f_6_hours_b222": {
+    "message": "6 ชั่วโมง"
+  },
+  "f_fetches_your_feeds_and_proce_43c2": {
+    "message": "ดึงฟีดและประมวลผลรายการใหม่ตามช่วงเวลาด้านล่าง ขณะหน้าฟีดหรือแถบข้างเปิดอยู่"
+  },
+  "f_run_every_5657": {
+    "message": "⏱️ ทำงานทุก"
+  },
+  "f_process_new_items_automatica_f889": {
+    "message": "🔁 ประมวลผลรายการใหม่อัตโนมัติ"
+  },
+  "f_recap_is_ready_6da7": {
+    "message": "✨ รีแคป{label}พร้อมแล้ว",
+    "description": "Placeholders: {label} (keep as is)"
+  },
+  "f_fetches_and_processes_new_it_f38a": {
+    "message": "ดึงและประมวลผลรายการใหม่ในเบื้องหลังด้วย Ollama ขณะเบราว์เซอร์ทำงานอยู่ โมเดลคลาวด์และ BYOK ยังเป็นแบบกดเอง"
+  },
+  "f_last_background_run_6ae5": {
+    "message": "รันเบื้องหลังล่าสุด: {time} · {result}",
+    "description": "Placeholders: {time} {result} (keep as is)"
+  },
+  "f_no_background_run_yet_fe7d": {
+    "message": "ยังไม่มีการรันเบื้องหลัง"
+  },
+  "f_items_rated_day_recaps_writt_ce24": {
+    "message": "ให้คะแนน {a} รายการ · เขียนรีแคปรายวัน {b}",
+    "description": "Placeholders: {a} {b} (keep as is)"
+  },
+  "f_available_when_ollama_is_set_53ce": {
+    "message": "ใช้ได้เมื่อตั้งค่า Ollama แล้ว จะให้คะแนน จัดหมวด และรีแคปทั้งคลังฟีดเป็นชุดเล็กๆ บนเครื่องของคุณ อาจใช้เวลาหลายชั่วโมงแต่ไม่เสียโทเค็น"
+  },
+  "f_day_recap_of_batch_of_items_67b5": {
+    "message": "รีแคปรายวัน {d} จาก {t} ({date}): ชุด {a} จาก {b} · {n} รายการ",
+    "description": "Placeholders: {d} {t} {date} {a} {b} {n} (keep as is)"
+  },
+  "f_model_is_writing_46fc": {
+    "message": "โมเดลกำลังเขียน…"
+  },
+  "f_model_a2bb": {
+    "message": "โมเดล: {m}",
+    "description": "Placeholders: {m} (keep as is)"
+  },
+  "f_process_the_feed_library_wit_fe42": {
+    "message": "ประมวลผลคลังฟีดด้วย Ollama"
+  },
+  "f_process_the_whole_feed_libra_70c6": {
+    "message": "ประมวลผลทั้งคลังฟีด (Ollama)"
+  },
+  "f_rates_categorizes_and_recaps_889d": {
+    "message": "ให้คะแนน จัดหมวด และรีแคปรายการฟีดทั้งหมดเป็นชุดเล็กๆ บนเครื่องของคุณ ไม่เสียโทเค็น"
+  },
+  "f_rating_and_categorizing_batc_7a31": {
+    "message": "กำลังให้คะแนนและจัดหมวด: ชุด {a} จาก {b} · รายการ {from}–{to} จาก {n}",
+    "description": "Placeholders: {a} {b} {from} {to} {n} (keep as is)"
+  },
+  "f_reading_the_answer_4044": {
+    "message": "กำลังอ่านคำตอบ…"
+  },
+  "f_request_of_866e": {
+    "message": "คำขอ {a} จาก {b}",
+    "description": "Placeholders: {a} {b} (keep as is)"
+  },
+  "f_runs_on_your_own_machine_wit_1728": {
+    "message": "ทำงานบนเครื่องของคุณด้วย Ollama และไม่เสียโทเค็น แม้จะใช้โมเดลอื่นสรุปอยู่ เปิดแผงนี้ไว้: การปิดจะหยุดชั่วคราว และเริ่มใหม่จะทำต่อจากเดิม ประมวลผลเฉพาะรายการที่ยังเก็บอยู่ (ดู \"เก็บรายการไว้\") รีแคปของวันนี้จะเขียนเมื่อคุณเปิดดู"
+  },
+  "f_sending_the_batch_to_ollama_ac2f": {
+    "message": "กำลังส่งชุดไปยัง Ollama…"
+  },
+  "f_not_your_active_summary_mode_78a8": {
+    "message": "ไม่ใช่โมเดลสรุปที่ใช้งานอยู่"
+  },
+  "f_left_db92": {
+    "message": "เหลือ {eta}",
+    "description": "Placeholders: {eta} (keep as is)"
+  },
+  "f_elapsed_a2f5": {
+    "message": "ผ่านไป {t}",
+    "description": "Placeholders: {t} (keep as is)"
+  },
+  "f_changelog_8779": {
+    "message": "Changelog"
+  },
+  "f_how_should_ai_summary_helper_b4d7": {
+    "message": "จะให้ AI Summary Helper คิดแบบไหน?"
+  },
+  "f_local_models_no_account_no_k_a783": {
+    "message": "โมเดลในเครื่อง ไม่ต้องมีบัญชีหรือคีย์ ไม่มีข้อมูลออกจากเครื่อง"
+  },
+  "f_my_own_api_key_6d80": {
+    "message": "API key ของฉันเอง"
+  },
+  "f_ollama_on_this_computer_3d59": {
+    "message": "Ollama บนคอมพิวเตอร์เครื่องนี้"
+  },
+  "f_openai_gemini_mistral_deepse_813b": {
+    "message": "OpenAI, Gemini, Mistral, DeepSeek และอื่นๆ ไม่ต้องมีบัญชี คีย์อยู่ในอุปกรณ์นี้"
+  },
+  "f_pick_one_you_can_change_it_a_a7d6": {
+    "message": "เลือกหนึ่งแบบ เปลี่ยนได้ทุกเมื่อในตั้งค่าโมเดล และจะไม่ส่งอะไรออกไปจนกว่าคุณจะสรุปเพจ"
+  },
+  "f_privacy_policy_16ff": {
+    "message": "นโยบายความเป็นส่วนตัว"
+  },
+  "f_security_policy_699b": {
+    "message": "นโยบายความปลอดภัย"
+  },
+  "f_sign_in_with_your_email_no_a_5518": {
+    "message": "เข้าสู่ระบบด้วยอีเมล ไม่ต้องใช้ API key สรุปของคุณตามไปทุกอุปกรณ์"
+  },
+  "f_tip_press_on_any_page_to_sum_8aff": {
+    "message": "เคล็ดลับ: กด {key} บนเพจใดก็ได้เพื่อสรุป",
+    "description": "Placeholders: {key} (keep as is)"
+  },
+  "f_free_cloud_models_3602": {
+    "message": "☁️ โมเดลคลาวด์ฟรี"
+  },
+  "f_api_keys_sign_in_license_e3f5": {
+    "message": "API key เข้าสู่ระบบ และไลเซนส์"
+  },
+  "f_delete_all_data_2d9f": {
+    "message": "ลบข้อมูลทั้งหมด"
+  },
+  "f_delete_all_data_d2e0": {
+    "message": "ลบข้อมูลทั้งหมด?"
+  },
+  "f_delete_all_data_9a3b": {
+    "message": "ลบข้อมูลทั้งหมด…"
+  },
+  "f_delete_history_02ab": {
+    "message": "ลบประวัติ?"
+  },
+  "f_delete_settings_275c": {
+    "message": "ลบการตั้งค่า?"
+  },
+  "f_deleted_0f77": {
+    "message": "ลบแล้ว ✓"
+  },
+  "f_highlights_fa5c": {
+    "message": "ไฮไลต์"
+  },
+  "f_kindle_localsend_targets_45b9": {
+    "message": "ปลายทาง Kindle และ LocalSend"
+  },
+  "f_permanently_removes_your_sum_782d": {
+    "message": "ลบสรุป คลัง และไฮไลต์ของคุณออกจากอุปกรณ์นี้ถาวร การตั้งค่าและฟีดจะยังอยู่ เว้นแต่คุณติ๊กเลือก ไม่สามารถย้อนกลับได้"
+  },
+  "f_permanently_removes_your_sum_2de7": {
+    "message": "ลบสรุป คลัง และไฮไลต์ของคุณถาวร การตั้งค่าและฟีดยังอยู่ ส่งออกข้อมูลสำรองก่อน"
+  },
+  "f_preferences_prompts_d7ac": {
+    "message": "ค่ากำหนดและพรอมต์"
+  },
+  "f_removes_everything_this_exte_cca4": {
+    "message": "ลบทุกอย่างที่ส่วนขยายนี้เก็บไว้บนอุปกรณ์นี้และเริ่มใหม่ ไม่สามารถย้อนกลับได้ บัญชีของคุณบนเซิร์ฟเวอร์ไม่ได้รับผลกระทบ หากต้องการลบ โปรดติดต่อเรา (ดูนโยบายความเป็นส่วนตัว)"
+  },
+  "f_removes_everything_this_exte_b9a8": {
+    "message": "ลบทุกอย่างที่ส่วนขยายนี้เก็บไว้บนอุปกรณ์นี้: สรุป ไฮไลต์ ฟีด คีย์ และการตั้งค่า ส่งออกข้อมูลสำรองก่อน"
+  },
+  "f_resets_preferences_prompts_a_02e0": {
+    "message": "รีเซ็ตค่ากำหนด พรอมต์ API key การเข้าสู่ระบบ และปลายทางส่งบนอุปกรณ์นี้ สรุป ไฮไลต์ และฟีดจะยังอยู่ เว้นแต่คุณติ๊กเลือก ส่วนขยายจะโหลดใหม่"
+  },
+  "f_resets_preferences_prompts_a_aab7": {
+    "message": "รีเซ็ตค่ากำหนด พรอมต์ API key การเข้าสู่ระบบ และปลายทางส่งบนอุปกรณ์นี้ สรุป ไฮไลต์ และฟีดยังอยู่"
+  },
+  "f_summaries_archive_b387": {
+    "message": "สรุปและคลัง"
+  },
+  "f_website_access_is_off_allow__f6c7": {
+    "message": "การเข้าถึงเว็บไซต์ปิดอยู่ อนุญาตที่ about:addons → ส่วนขยายนี้ → สิทธิ์ (\"เข้าถึงข้อมูลของคุณสำหรับทุกเว็บไซต์\") แล้วรีเฟรช"
+  },
+  "f_by_default_backups_omit_api__4415": {
+    "message": "โดยค่าเริ่มต้น ข้อมูลสำรองไม่รวม API key รายละเอียดการเข้าสู่ระบบ license key และตัวระบุการติดตั้ง เก็บไฟล์ที่ส่งออกเป็นความลับ"
+  },
+  "f_include_api_keys_and_sign_in_8870": {
+    "message": "รวม API key และรายละเอียดการเข้าสู่ระบบ (ผู้ที่มีไฟล์ใช้งานได้)"
+  },
+  "f_this_backup_contains_api_key_afb1": {
+    "message": "ข้อมูลสำรองนี้มี API key รายละเอียดการเข้าสู่ระบบ หรือ license key การนำเข้าจะแทนที่ข้อมูลลับที่ตรงกัน ดำเนินการต่อ?"
+  },
+  "f_this_backup_will_contain_api_f234": {
+    "message": "ข้อมูลสำรองนี้จะมี API key รายละเอียดการเข้าสู่ระบบ และ license key ผู้ที่มีไฟล์ใช้งานได้ ดำเนินการต่อ?"
+  },
+  "f_this_backup_contains_api_key_fe04": {
+    "message": "ข้อมูลสำรองนี้มี API key รายละเอียดการเข้าสู่ระบบ license key หรือตัวระบุการติดตั้ง การนำเข้าจะแทนที่ข้อมูลลับที่ตรงกัน ดำเนินการต่อ?"
+  },
+  "f_this_backup_will_contain_api_a9f6": {
+    "message": "ข้อมูลสำรองนี้จะมี API key รายละเอียดการเข้าสู่ระบบ license key และตัวระบุการติดตั้ง ผู้ที่มีไฟล์อาจใช้คีย์หรือระบุการติดตั้งนี้ได้ ดำเนินการต่อ?"
+  },
+  "f_ai_suggested_highlights_53c5": {
+    "message": "ไฮไลต์ที่ AI แนะนำ"
+  },
+  "f_export_history_as_markdown_z_dcd2": {
+    "message": "ส่งออกประวัติเป็น Markdown (.zip)"
+  },
+  "f_highlights_notes_45e7": {
+    "message": "ไฮไลต์และโน้ต"
+  },
+  "f_related_66d8": {
+    "message": "ที่เกี่ยวข้อง"
+  },
+  "f_tagging_feed_of_8714": {
+    "message": "กำลังติดแท็กฟีด {a} จาก {b}",
+    "description": "Placeholders: {a} {b} (keep as is)"
+  },
+  "f_feeds_to_tag_607b": {
+    "message": "{n} ฟีดที่ต้องติดแท็ก",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_naming_tags_batch_of_49a0": {
+    "message": "กำลังตั้งชื่อแท็ก: ชุด {a} จาก {b}",
+    "description": "Placeholders: {a} {b} (keep as is)"
+  },
+  "f_tag_lists_to_name_846e": {
+    "message": "{n} รายการแท็กที่ต้องตั้งชื่อ",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_asks_your_ai_connection_once_0d32": {
+    "message": "ขอให้การเชื่อมต่อ AI ของคุณตั้งชื่อภาษาอังกฤษและคำในภาษา UI ของทุกแท็กที่ยังไม่รู้จักและใช้อย่างน้อยสองครั้ง เรียงตามที่ใช้มากสุด บทความของคุณยังคงแท็กเดิม"
+  },
+  "f_balanced_603d": {
+    "message": "สมดุล"
+  },
+  "f_cpu_only_or_older_machine_0541": {
+    "message": "CPU อย่างเดียวหรือเครื่องเก่า"
+  },
+  "f_gpu_or_apple_silicon_7_8b_mo_e08e": {
+    "message": "GPU หรือ Apple Silicon โมเดล 7–8B"
+  },
+  "f_gentle_9fd8": {
+    "message": "เบา"
+  },
+  "f_measure_again_7f07": {
+    "message": "วัดอีกครั้ง"
+  },
+  "f_measure_this_computer_fba2": {
+    "message": "วัดคอมพิวเตอร์เครื่องนี้"
+  },
+  "f_measurement_failed_cfb5": {
+    "message": "วัดไม่สำเร็จ: {e}",
+    "description": "Placeholders: {e} (keep as is)"
+  },
+  "f_measuring_second_request_bc87": {
+    "message": "กำลังวัด… คำขอที่สอง"
+  },
+  "f_measuring_the_first_request__72e8": {
+    "message": "กำลังวัด… คำขอแรกจะโหลดโมเดลด้วย"
+  },
+  "f_name_tags_4a5b": {
+    "message": "ตั้งชื่อแท็ก"
+  },
+  "f_name_tags_in_your_language_ab05": {
+    "message": "ตั้งชื่อแท็กในภาษาของคุณ"
+  },
+  "f_naming_tags_of_0ccd": {
+    "message": "กำลังตั้งชื่อแท็ก… {done} จาก {total}",
+    "description": "Placeholders: {done} {total} (keep as is)"
+  },
+  "f_not_measured_yet_the_test_se_87bc": {
+    "message": "ยังไม่ได้วัด การทดสอบส่งชุดให้คะแนนเล็กๆ สองชุดไปยัง Ollama (ราวหนึ่งนาทีบนเครื่องช้า) และไม่มีข้อมูลออกจากคอมพิวเตอร์ของคุณ"
+  },
+  "f_powerful_0df9": {
+    "message": "แรง"
+  },
+  "f_recent_laptop_small_3_4b_mod_e071": {
+    "message": "แล็ปท็อปรุ่นใหม่ โมเดลเล็ก (3–4B)"
+  },
+  "f_refresh_feeds_that_post_ofte_46e9": {
+    "message": "รีเฟรชฟีดที่โพสต์บ่อยและคุณอ่านก่อน"
+  },
+  "f_typical_setups_for_one_batch_34b5": {
+    "message": "การตั้งค่าทั่วไปสำหรับหนึ่งชุด (ช่วงอ้างอิงคร่าวๆ):"
+  },
+  "f_use_b076": {
+    "message": "ใช้ {p}",
+    "description": "Placeholders: {p} (keep as is)"
+  },
+  "f_very_slow_use_a_smaller_mode_d291": {
+    "message": "ช้ามาก: ใช้โมเดลเล็กลง"
+  },
+  "f_what_each_profile_would_do_o_2a5f": {
+    "message": "แต่ละโปรไฟล์จะทำอะไรบนเครื่องนี้:"
+  },
+  "f_your_own_mix_of_batch_size_r_ab92": {
+    "message": "การผสมขนาดชุด คำขอต่อรอบ และช่วงเวลาตามแบบของคุณเอง"
+  },
+  "f_a_run_takes_about_e3ae": {
+    "message": "หนึ่งรอบใช้ประมาณ {t}",
+    "description": "Placeholders: {t} (keep as is)"
+  },
+  "f_first_request_loads_the_mode_ac23": {
+    "message": "คำขอแรก {s} (โหลดโมเดล)",
+    "description": "Placeholders: {s} (keep as is)"
+  },
+  "f_over_352a": {
+    "message": "เกิน {s}",
+    "description": "Placeholders: {s} (keep as is)"
+  },
+  "f_recommended_a2ac": {
+    "message": "แนะนำ"
+  },
+  "f_up_to_items_per_hour_ba84": {
+    "message": "สูงสุด {n} รายการต่อชั่วโมง",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_up_to_196c": {
+    "message": "สูงสุด {s}",
+    "description": "Placeholders: {s} (keep as is)"
+  },
+  "f_you_d09c": {
+    "message": "คุณ"
+  },
+  "f_items_per_request_requests_p_6fa9": {
+    "message": "{n} รายการต่อคำขอ · {r} คำขอต่อรอบ · ทุก {m} นาที",
+    "description": "Placeholders: {n} {r} {m} (keep as is)"
+  },
+  "f_for_headlines_10c8": {
+    "message": "{s} สำหรับ {n} หัวข้อ",
+    "description": "Placeholders: {s} {n} (keep as is)"
+  },
+  "f_performance_profile_4c9b": {
+    "message": "⚡ โปรไฟล์ประสิทธิภาพ"
+  },
+  "f_every_frequently_used_tag_al_f86e": {
+    "message": "✓ ทุกแท็กที่ใช้บ่อยมีชื่อแล้ว — ไม่มีอะไรต้องทำ"
+  },
+  "f_named_of_tags_7fb1": {
+    "message": "✓ ตั้งชื่อ {n} จาก {total} แท็ก",
+    "description": "Placeholders: {n} {total} (keep as is)"
+  },
+  "f_smart_refresh_order_fae9": {
+    "message": "✨ ลำดับรีเฟรชอัจฉริยะ"
+  },
+  "f_requests_per_automatic_run_5475": {
+    "message": "🔢 คำขอต่อรอบอัตโนมัติ"
+  },
+  "f_similar_item_612e": {
+    "message": "+{n} รายการคล้ายกัน",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_similar_items_4567": {
+    "message": "+{n} รายการคล้ายกัน",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_not_the_same_story_5110": {
+    "message": "ไม่ใช่เรื่องเดียวกัน"
+  },
+  "f_stack_similar_items_ada6": {
+    "message": "ซ้อนรายการคล้ายกัน"
+  },
+  "f_stacking_f819": {
+    "message": "การซ้อน"
+  },
+  "f_emoji_bcdd": {
+    "message": "อีโมจิ"
+  },
+  "f_emoji_look_different_on_ever_95e1": {
+    "message": "อีโมจิหน้าตาต่างกันในแต่ละอุปกรณ์ ไอคอนเหมือนกันทุกที่"
+  },
+  "f_icons_2cd9": {
+    "message": "ไอคอน"
+  },
+  "f_symbol_style_e034": {
+    "message": "สไตล์สัญลักษณ์"
+  },
+  "f_accessibility_d09f": {
+    "message": "การเข้าถึง"
+  },
+  "f_profile_text_size_motion_83ac": {
+    "message": "โปรไฟล์ · ขนาดข้อความ · การเคลื่อนไหว"
+  },
+  "f_sign_in_to_use_byphil_cloud__e62e": {
+    "message": "เข้าสู่ระบบเพื่อใช้โมเดล byPhil Cloud"
+  },
+  "f_skip_for_now_3101": {
+    "message": "ข้ามไปก่อน"
+  },
+  "f_continue_d664": {
+    "message": "ดำเนินการต่อ"
+  },
+  "f_set_up_6abc": {
+    "message": "ตั้งค่า"
+  },
+  "f_local_models_no_account_no_k_b352": {
+    "message": "โมเดลในเครื่อง ไม่ต้องมีบัญชีหรือคีย์"
+  },
+  "f_no_account_your_key_stays_on_665e": {
+    "message": "ไม่ต้องมีบัญชี คีย์อยู่ในอุปกรณ์นี้"
+  },
+  "f_pick_one_nothing_is_sent_unt_722b": {
+    "message": "เลือกหนึ่งแบบ ไม่ส่งอะไรจนกว่าคุณจะสรุปเพจ"
+  },
+  "f_sign_in_with_your_email_no_a_b96b": {
+    "message": "เข้าสู่ระบบด้วยอีเมล ไม่ต้องใช้ API key"
+  },
+  "f_convenient_just_your_email_n_3b83": {
+    "message": "สะดวก: ใช้แค่อีเมล ไม่ต้องมี API key และช่วยสนับสนุนนักพัฒนาอิสระอย่างผมด้วย"
+  },
+  "f_pick_a_way_to_run_your_summa_5c59": {
+    "message": "เลือกวิธีสรุปของคุณ เปลี่ยนได้ทุกเมื่อในตั้งค่า"
+  },
+  "f_back_to_top_bd70": {
+    "message": "กลับขึ้นบน"
+  },
+  "f_all_time_702d": {
+    "message": "ทั้งหมด"
+  },
+  "f_ask_61b2": {
+    "message": "ถาม"
+  },
+  "f_ask_about_these_articles_30e7": {
+    "message": "ถามเกี่ยวกับบทความเหล่านี้…"
+  },
+  "f_export_these_articles_as_a_z_6092": {
+    "message": "ส่งออกบทความเหล่านี้เป็นไฟล์ Markdown .zip"
+  },
+  "f_from_3595": {
+    "message": "จาก"
+  },
+  "f_from_summaries_nothing_else__e04a": {
+    "message": "จาก {n} สรุป — ไม่ได้ส่งอย่างอื่น",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_gaps_6714": {
+    "message": "ช่องว่าง"
+  },
+  "f_reading_summaries_782f": {
+    "message": "กำลังอ่าน {n} สรุป…",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_show_list_245c": {
+    "message": "แสดงรายการ"
+  },
+  "f_started_never_followed_up_d61d": {
+    "message": "เริ่มแล้ว ไม่ได้ตามต่อ"
+  },
+  "f_these_articles_have_no_summa_2f34": {
+    "message": "บทความเหล่านี้ยังไม่มีสรุป"
+  },
+  "f_to_9644": {
+    "message": "ถึง"
+  },
+  "f_topics_with_one_or_two_saved_285d": {
+    "message": "หัวข้อที่มีบทความบันทึกหนึ่งหรือสองเรื่องซึ่งคุณไม่ได้เปิดมา 30 วัน เป็นรายการอ่านสำหรับสิ่งที่คุณเริ่มไว้"
+  },
+  "f_last_opened_99c0": {
+    "message": "เปิดล่าสุด {d}",
+    "description": "Placeholders: {d} (keep as is)"
+  },
+  "f_never_opened_c436": {
+    "message": "ไม่เคยเปิด"
+  },
+  "f_never_opened_bf12": {
+    "message": "ไม่เคยเปิด {n}",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_topics_started_and_never_fol_d3de": {
+    "message": "{n} หัวข้อที่เริ่มแล้วไม่ได้ตามต่อ",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_brief_me_on_the_unopened_6cfb": {
+    "message": "✨ สรุปให้ {n} ที่ยังไม่เปิด",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_brief_me_on_this_topic_2eeb": {
+    "message": "✨ สรุปหัวข้อนี้ให้"
+  },
+  "f_markdown_00c7": {
+    "message": "⬇ Markdown"
+  },
+  "f_time_ee91": {
+    "message": "🕐 เวลา"
+  },
+  "f_of_articles_in_window_a381": {
+    "message": "{a} จาก {b} บทความในช่วง",
+    "description": "Placeholders: {a} {b} (keep as is)"
+  },
+  "f_never_opened_5256": {
+    "message": "ไม่เคยเปิด"
+  },
+  "f_opened_0e03": {
+    "message": "เปิดแล้ว ({n})",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_sources_used_0e42": {
+    "message": "แหล่งที่ใช้"
+  },
+  "f_include_in_briefing_9c8e": {
+    "message": "รวมในบรีฟ"
+  },
+  "f_brief_me_on_all_f0c7": {
+    "message": "✨ สรุปให้ทั้ง {n}",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_reading_summaries_step_of_46aa": {
+    "message": "กำลังอ่าน {n} สรุป · ขั้น {a} จาก {b}…",
+    "description": "Placeholders: {n} {a} {b} (keep as is)"
+  },
+  "f_more_were_left_out_limit_per_f12d": {
+    "message": "ตัดออกอีก {n} (ขีดจำกัดต่อบรีฟ)",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_all_topics_e150": {
+    "message": "ทุกหัวข้อ"
+  },
+  "f_ask_about_this_briefing_3eaf": {
+    "message": "ถามเกี่ยวกับบรีฟนี้…"
+  },
+  "f_briefing_layout_6471": {
+    "message": "เลย์เอาต์บรีฟ"
+  },
+  "f_by_time_ff3d": {
+    "message": "ตามเวลา"
+  },
+  "f_by_topic_4c93": {
+    "message": "ตามหัวข้อ"
+  },
+  "f_clear_selection_b1e0": {
+    "message": "ล้างที่เลือก"
+  },
+  "f_opened_too_faf2": {
+    "message": "เปิดแล้วด้วย"
+  },
+  "f_over_articles_only_the_newes_e458": {
+    "message": "เกิน {n} บทความ จะใช้เฉพาะ {n} ใหม่สุด จำกัดหัวข้อหรือช่วงเวลาเพื่อครอบคลุมทั้งหมด",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_unopened_7213": {
+    "message": "ยังไม่เปิด"
+  },
+  "f_which_articles_c8ed": {
+    "message": "บทความไหน"
+  },
+  "f_duplicates_skipped_872b": {
+    "message": "ข้ามรายการซ้ำ {n}",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_shown_8b3a": {
+    "message": "แสดง {n}",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_steps_then_merged_dd35": {
+    "message": "{n} ขั้น แล้วรวมกัน",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_topic_7b60": {
+    "message": "{n} หัวข้อ",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_topics_bee9": {
+    "message": "{n} หัวข้อ",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_brief_a94f": {
+    "message": "✨ บรีฟ"
+  },
+  "f_briefing_scope_9991": {
+    "message": "ขอบเขตบรีฟ"
+  },
+  "f_export_these_articles_and_th_ba34": {
+    "message": "ส่งออกบทความเหล่านี้ (และบรีฟถ้าสร้างไว้) เป็นไฟล์ Markdown .zip"
+  },
+  "f_show_only_research_papers_448e": {
+    "message": "แสดงเฉพาะงานวิจัย"
+  },
+  "f_research_fd8d": {
+    "message": "🎓 งานวิจัย"
+  },
+  "f_can_t_reach_byphil_cloud_rig_4386": {
+    "message": "เข้าถึง byPhil Cloud ไม่ได้ในตอนนี้"
+  },
+  "f_check_now_0677": {
+    "message": "ตรวจสอบตอนนี้"
+  },
+  "f_checking_dad5": {
+    "message": "กำลังตรวจสอบ…"
+  },
+  "f_click_again_to_unpair_884f": {
+    "message": "คลิกอีกครั้งเพื่อยกเลิกการจับคู่"
+  },
+  "f_from_phone_850d": {
+    "message": "จากโทรศัพท์"
+  },
+  "f_hide_code_5876": {
+    "message": "ซ่อนโค้ด"
+  },
+  "f_install_the_aish_companion_o_059e": {
+    "message": "ติดตั้งแอป AISH companion บนโทรศัพท์ สแกนโค้ดครั้งเดียว แล้วแชร์ลิงก์ใดก็ได้ไปที่แอป ลิงก์มาถึงแบบเข้ารหัสต้นทางถึงปลายทางและรอให้คุณแตะที่นี่"
+  },
+  "f_links_shared_from_your_phone_74f8": {
+    "message": "ลิงก์ที่แชร์จากโทรศัพท์ของคุณ"
+  },
+  "f_links_still_waiting_here_are_3afc": {
+    "message": "ลิงก์ที่ยังรออยู่ที่นี่จะถูกลบ และโทรศัพท์จะส่งอีกไม่ได้"
+  },
+  "f_pair_a_phone_2792": {
+    "message": "จับคู่โทรศัพท์"
+  },
+  "f_paired_b228": {
+    "message": "จับคู่แล้ว"
+  },
+  "f_paired_last_checked_4bae": {
+    "message": "จับคู่แล้ว · ตรวจสอบล่าสุด {when}",
+    "description": "Placeholders: {when} (keep as is)"
+  },
+  "f_paired_not_checked_yet_2e0f": {
+    "message": "จับคู่แล้ว · ยังไม่ได้ตรวจสอบ"
+  },
+  "f_paired_waiting_e88e": {
+    "message": "จับคู่แล้ว · รอ {n}",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_pairing_code_057c": {
+    "message": "รหัสจับคู่"
+  },
+  "f_pairing_9d4b": {
+    "message": "กำลังจับคู่…"
+  },
+  "f_phone_inbox_69e3": {
+    "message": "กล่องข้อความโทรศัพท์"
+  },
+  "f_scan_this_code_with_the_aish_a9a1": {
+    "message": "สแกนโค้ดนี้ด้วยแอป AISH companion ใครที่สแกนก็ส่งลิงก์ถึงคุณได้ จึงควรเก็บเป็นความลับ"
+  },
+  "f_show_code_0cc1": {
+    "message": "แสดงโค้ด"
+  },
+  "f_something_went_wrong_e250": {
+    "message": "เกิดข้อผิดพลาด"
+  },
+  "f_this_pairing_is_no_longer_va_497f": {
+    "message": "การจับคู่นี้ใช้ไม่ได้แล้ว ยกเลิกการจับคู่แล้วจับคู่ใหม่"
+  },
+  "f_too_many_requests_try_again__a977": {
+    "message": "คำขอมากเกินไป ลองใหม่ภายหลัง"
+  },
+  "f_unpair_and_delete_inbox_84be": {
+    "message": "ยกเลิกจับคู่และลบกล่องข้อความ"
+  },
+  "f_couldn_t_save_this_page_open_91af": {
+    "message": "บันทึกเพจนี้ไม่ได้ เปิดเพจหนึ่งครั้งแล้วลองอีกครั้ง"
+  },
+  "f_saving_9e7f": {
+    "message": "กำลังบันทึก…"
+  },
+  "f_shows_which_articles_share_t_c901": {
+    "message": "แสดงว่าบทความใดมีหัวข้อร่วมกัน ทั้งแบบภาพและแบบรายการ"
+  },
+  "f_this_page_has_no_text_to_sav_e652": {
+    "message": "เพจนี้ไม่มีข้อความให้บันทึก"
+  },
+  "f_add_a_connection_map_a941": {
+    "message": "🕸️ เพิ่มแผนผังความเชื่อมโยง"
+  },
+  "f_almost_used_up_summaries_now_b160": {
+    "message": "ใกล้หมดแล้ว — ตอนนี้สรุปจะใช้โมเดลที่เบากว่าจนกว่าจะรีเซ็ต"
+  },
+  "f_monthly_ai_allowance_33e2": {
+    "message": "โควตา AI รายเดือน"
+  },
+  "f_remove_this_link_from_your_i_2758": {
+    "message": "นำลิงก์นี้ออกจากกล่องข้อความ? ลิงก์จะถูกลบและกู้คืนไม่ได้"
+  },
+  "f_resets_055b": {
+    "message": "รีเซ็ต {date}",
+    "description": "Placeholders: {date} (keep as is)"
+  },
+  "f_saving_took_too_long_a_very__22eb": {
+    "message": "บันทึกนานเกินไป (เพจหนักมาก) ลองอีกครั้ง หรือเปิดเพจแล้วสรุปแทน"
+  },
+  "f_the_page_didn_t_respond_bloc_372d": {
+    "message": "เพจไม่ตอบสนอง (ถูกบล็อกหรือต้องเข้าสู่ระบบ) เปิดเพจแล้วลองอีกครั้ง"
+  },
+  "f_used_up_local_models_still_w_847f": {
+    "message": "หมดแล้ว — โมเดลในเครื่องยังใช้ได้"
+  },
+  "f_used_8faf": {
+    "message": "ใช้แล้ว {n}%",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_could_not_send_to_your_phone_33a4": {
+    "message": "ส่งไปโทรศัพท์ไม่ได้: {message}",
+    "description": "Placeholders: {message} (keep as is)"
+  },
+  "f_could_not_switch_on_send_to__1d56": {
+    "message": "เปิดการส่งไปโทรศัพท์ไม่ได้: {message}",
+    "description": "Placeholders: {message} (keep as is)"
+  },
+  "f_export_as_markdown_5d3e": {
+    "message": "ส่งออกเป็น Markdown"
+  },
+  "f_more_actions_e04b": {
+    "message": "การทำงานเพิ่มเติม"
+  },
+  "f_open_original_5070": {
+    "message": "เปิดต้นฉบับ"
+  },
+  "f_pair_your_phone_first_settin_686f": {
+    "message": "จับคู่โทรศัพท์ก่อน: ตั้งค่า → กล่องข้อความโทรศัพท์"
+  },
+  "f_scan_this_code_with_the_aish_e4cf": {
+    "message": "สแกนโค้ดนี้ด้วยแอป AISH companion ใครที่สแกนก็ส่งลิงก์ถึงคุณและอ่านบทความที่คุณส่งไปโทรศัพท์ได้ จึงควรเก็บเป็นความลับ"
+  },
+  "f_send_to_phone_4940": {
+    "message": "ส่งไปโทรศัพท์"
+  },
+  "f_send_to_phone_is_on_scan_the_c392": {
+    "message": "เปิดการส่งไปโทรศัพท์แล้ว สแกนโค้ดใหม่ในแอปบนโทรศัพท์หนึ่งครั้ง"
+  },
+  "f_send_to_phone_is_on_use_send_2fcd": {
+    "message": "เปิดการส่งไปโทรศัพท์แล้ว: ใช้ ⋯ → ส่งไปโทรศัพท์ ที่บทความใดก็ได้เพื่ออ่านระหว่างเดินทาง"
+  },
+  "f_send_via_localsend_07ba": {
+    "message": "ส่งผ่าน LocalSend"
+  },
+  "f_sending_to_your_phone_5db9": {
+    "message": "กำลังส่งไปโทรศัพท์…"
+  },
+  "f_sent_to_your_phone_long_arti_45c6": {
+    "message": "ส่งไปโทรศัพท์แล้ว (บทความยาวถูกย่อ) จะถึงภายในประมาณ 15 นาที"
+  },
+  "f_sent_to_your_phone_it_arrive_b571": {
+    "message": "ส่งไปโทรศัพท์แล้ว จะถึงภายในประมาณ 15 นาที"
+  },
+  "f_sent_to_receive_it_scan_the__a60f": {
+    "message": "ส่งแล้ว หากต้องการรับ ให้สแกนโค้ดใหม่ในแอปบนโทรศัพท์หนึ่งครั้ง (ตั้งค่า → กล่องข้อความโทรศัพท์)"
+  },
+  "f_share_6dd8": {
+    "message": "แชร์"
+  },
+  "f_switch_on_send_to_phone_5161": {
+    "message": "เปิดการส่งไปโทรศัพท์"
+  },
+  "f_switching_on_e78a": {
+    "message": "กำลังเปิด…"
+  },
+  "f_the_article_could_not_be_pre_5d18": {
+    "message": "เตรียมบทความไม่ได้"
+  },
+  "f_the_pairing_is_no_longer_val_468a": {
+    "message": "การจับคู่ใช้ไม่ได้แล้ว จับคู่ใหม่"
+  },
+  "f_the_phone_has_not_collected__2706": {
+    "message": "โทรศัพท์ยังไม่ได้รับบทความก่อนหน้า"
+  },
+  "f_the_server_is_not_reachable_2e07": {
+    "message": "เข้าถึงเซิร์ฟเวอร์ไม่ได้"
+  },
+  "f_this_article_is_too_large_0750": {
+    "message": "บทความใหญ่เกินไป"
+  },
+  "f_too_many_sends_try_again_lat_eb5e": {
+    "message": "ส่งบ่อยเกินไป ลองใหม่ภายหลัง"
+  },
+  "f_unknown_error_5123": {
+    "message": "ข้อผิดพลาดที่ไม่ทราบสาเหตุ"
+  },
+  "f_another_device_changed_the_l_db9b": {
+    "message": "อุปกรณ์อื่นแก้ไขรายการพร้อมกัน ลองอีกครั้ง"
+  },
+  "f_feed_list_is_up_to_date_29c5": {
+    "message": "รายการฟีดเป็นปัจจุบันแล้ว"
+  },
+  "f_feed_list_synced_added_chang_0206": {
+    "message": "ซิงก์รายการฟีดแล้ว: เพิ่ม {added} เปลี่ยน {updated} ลบ {removed}",
+    "description": "Placeholders: {added} {updated} {removed} (keep as is)"
+  },
+  "f_feed_sync_is_on_scan_the_new_b31a": {
+    "message": "เปิดซิงก์ฟีดแล้ว สแกนโค้ดใหม่ในแอปบนโทรศัพท์หนึ่งครั้ง"
+  },
+  "f_feed_sync_is_on_your_feed_li_701d": {
+    "message": "เปิดซิงก์ฟีดแล้ว: รายการฟีดของคุณ (ไม่รวมบทความ) ซิงก์กับโทรศัพท์แบบเข้ารหัสต้นทางถึงปลายทาง"
+  },
+  "f_last_synced_fc2b": {
+    "message": "ซิงก์ล่าสุด {when}",
+    "description": "Placeholders: {when} (keep as is)"
+  },
+  "f_switch_on_feed_sync_8c25": {
+    "message": "เปิดซิงก์ฟีด"
+  },
+  "f_sync_feed_list_5d4e": {
+    "message": "ซิงก์รายการฟีด"
+  },
+  "f_syncing_9560": {
+    "message": "กำลังซิงก์…"
+  },
+  "f_the_feed_list_is_too_large_t_972d": {
+    "message": "รายการฟีดใหญ่เกินกว่าจะซิงก์"
+  },
+  "f_the_synced_feed_list_could_n_be9b": {
+    "message": "อ่านรายการฟีดที่ซิงก์ไม่ได้ ยกเลิกการจับคู่แล้วจับคู่ใหม่"
+  },
+  "f_titles_descriptions_87ca": {
+    "message": "ชื่อเรื่อง + คำอธิบาย"
+  },
+  "f_titles_only_faster_95f4": {
+    "message": "ชื่อเรื่องอย่างเดียว (เร็วกว่า)"
+  },
+  "f_what_the_ai_reads_2fda": {
+    "message": "🔎 สิ่งที่ AI อ่าน"
+  },
+  "f_ratings_categories_1449": {
+    "message": "คะแนน {a} · หมวดหมู่ {b}",
+    "description": "Placeholders: {a} {b} (keep as is)"
+  },
+  "f_the_first_reply_was_unreadab_6510": {
+    "message": "คำตอบแรกอ่านไม่ได้ จึงถามซ้ำ"
+  },
+  "f_by_model_f8c9": {
+    "message": "ตามโมเดล"
+  },
+  "f_usage_details_5d1e": {
+    "message": "รายละเอียดการใช้งาน"
+  },
+  "f_tokens_in_tokens_out_dd7e": {
+    "message": "เข้า {input} โทเค็น · ออก {output} โทเค็น",
+    "description": "Placeholders: {input} {output} (keep as is)"
+  },
+  "f_request_this_month_2b08": {
+    "message": "{n} คำขอเดือนนี้",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_requests_this_month_9977": {
+    "message": "{n} คำขอเดือนนี้",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_of_used_1e41": {
+    "message": "ใช้แล้ว {used} จาก {limit}",
+    "description": "Placeholders: {used} {limit} (keep as is)"
+  },
+  "f_default_086b": {
+    "message": "(ค่าเริ่มต้น)"
+  },
+  "f_free_36fb": {
+    "message": "ฟรี"
+  },
+  "f_model_identifiers_bb6a": {
+    "message": "ตัวระบุโมเดล"
+  },
+  "f_e_g_gpt_5_mini_57f4": {
+    "message": "เช่น gpt-5-mini"
+  },
+  "f_in_out_per_1m_tokens_5847": {
+    "message": "เข้า {input} / ออก {output} ต่อ 1M โทเค็น",
+    "description": "Placeholders: {input} {output} (keep as is)"
+  },
+  "f_left_4083": {
+    "message": "เหลือ {n}%",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_popular_and_cheapest_4ff4": {
+    "message": "ยอดนิยมและถูกที่สุด"
+  },
+  "f_best_value_f0ca": {
+    "message": "คุ้มที่สุด"
+  },
+  "f_use_1947": {
+    "message": "ใช้ {id}",
+    "description": "Placeholders: {id} (keep as is)"
+  },
+  "f_recaps_are_written_by_your_o_fd04": {
+    "message": "รีแคปเขียนโดยโมเดล Ollama ของคุณ แม้สรุปจะใช้คลาวด์"
+  },
+  "f_always_use_my_local_model_fo_39bd": {
+    "message": "🏠 ใช้โมเดลในเครื่องสำหรับบรีฟเสมอ"
+  },
+  "f_a_collection_bundles_saved_a_8449": {
+    "message": "คอลเลกชันรวบรวมบทความที่บันทึกไว้ภายใต้คำถามเดียว"
+  },
+  "f_add_to_collection_512f": {
+    "message": "เพิ่มในคอลเลกชัน"
+  },
+  "f_added_to_bd62": {
+    "message": "เพิ่มใน “{name}” แล้ว",
+    "description": "Placeholders: {name} (keep as is)"
+  },
+  "f_already_in_43ae": {
+    "message": "อยู่ใน “{name}” แล้ว",
+    "description": "Placeholders: {name} (keep as is)"
+  },
+  "f_author_c776": {
+    "message": "ผู้เขียน"
+  },
+  "f_authority_agency_6682": {
+    "message": "หน่วยงาน"
+  },
+  "f_check_8de7": {
+    "message": "ตรวจสอบ"
+  },
+  "f_collection_a8b1": {
+    "message": "คอลเลกชัน"
+  },
+  "f_collections_a966": {
+    "message": "คอลเลกชัน"
+  },
+  "f_could_not_open_collections_0d10": {
+    "message": "เปิดคอลเลกชันไม่ได้"
+  },
+  "f_create_e47d": {
+    "message": "สร้าง"
+  },
+  "f_delete_collection_71b6": {
+    "message": "ลบคอลเลกชัน"
+  },
+  "f_delete_the_collection_the_ar_f797": {
+    "message": "ลบคอลเลกชัน “{name}”? บทความยังอยู่ในประวัติของคุณ",
+    "description": "Placeholders: {name} (keep as is)"
+  },
+  "f_export_markdown_8a28": {
+    "message": "ส่งออก Markdown"
+  },
+  "f_export_as_pdf_f6e3": {
+    "message": "ส่งออกเป็น PDF"
+  },
+  "f_export_as_word_docx_9060": {
+    "message": "ส่งออกเป็น Word (DOCX)"
+  },
+  "f_export_as_document_odt_a99e": {
+    "message": "ส่งออกเป็นเอกสาร (ODT)"
+  },
+  "f_find_other_sources_about_thi_21b5": {
+    "message": "หาแหล่งอื่นเกี่ยวกับเรื่องนี้"
+  },
+  "f_hints_not_ratings_you_decide_cd48": {
+    "message": "เป็นเพียงข้อสังเกต ไม่ใช่การให้คะแนน คุณตัดสินเองว่าจะเชื่อแหล่งนี้แค่ไหน"
+  },
+  "f_in_c8be": {
+    "message": "ใน"
+  },
+  "f_name_of_the_collection_83f4": {
+    "message": "ชื่อคอลเลกชัน"
+  },
+  "f_new_collection_ab5b": {
+    "message": "คอลเลกชันใหม่"
+  },
+  "f_no_author_found_d6ed": {
+    "message": "ไม่พบผู้เขียน"
+  },
+  "f_no_date_found_370a": {
+    "message": "ไม่พบวันที่"
+  },
+  "f_no_source_details_yet_8e2f": {
+    "message": "ยังไม่มีรายละเอียดแหล่งที่มา"
+  },
+  "f_no_sources_yet_use_add_to_co_dd26": {
+    "message": "ยังไม่มีแหล่งที่มา ใช้ “เพิ่มในคอลเลกชัน” ในเมนู ⋯ ของบทความ"
+  },
+  "f_not_in_a_collection_yet_8554": {
+    "message": "ยังไม่อยู่ในคอลเลกชัน"
+  },
+  "f_older_than_5_years_e219": {
+    "message": "เก่ากว่า 5 ปี"
+  },
+  "f_open_an_article_s_menu_and_c_0caa": {
+    "message": "เปิดเมนู ⋯ ของบทความแล้วเลือก “เพิ่มในคอลเลกชัน” หรือเริ่มที่นี่"
+  },
+  "f_open_in_new_tab_d191": {
+    "message": "เปิดในแท็บใหม่"
+  },
+  "f_opinion_blog_1ad4": {
+    "message": "ความเห็น / บล็อก"
+  },
+  "f_peer_reviewed_46f1": {
+    "message": "ผ่าน peer review"
+  },
+  "f_pre_selected_the_collection__f2bf": {
+    "message": "เลือกไว้ให้: คอลเลกชันที่ใช้ล่าสุด เปลี่ยนได้"
+  },
+  "f_preprint_1c21": {
+    "message": "พรีปรินต์"
+  },
+  "f_preprint_not_peer_reviewed_2153": {
+    "message": "พรีปรินต์ ยังไม่ผ่าน peer review"
+  },
+  "f_primary_source_50de": {
+    "message": "แหล่งปฐมภูมิ"
+  },
+  "f_publisher_ed1f": {
+    "message": "ผู้จัดพิมพ์"
+  },
+  "f_remove_from_collection_ed35": {
+    "message": "นำออกจากคอลเลกชัน"
+  },
+  "f_secondary_source_87f6": {
+    "message": "แหล่งทุติยภูมิ"
+  },
+  "f_send_to_obsidian_a6e9": {
+    "message": "ส่งไป Obsidian"
+  },
+  "f_source_check_4cb0": {
+    "message": "ตรวจสอบแหล่งที่มา"
+  },
+  "f_that_collection_no_longer_ex_264a": {
+    "message": "ไม่มีคอลเลกชันนี้แล้ว"
+  },
+  "f_this_collection_is_full_sour_a6b7": {
+    "message": "คอลเลกชันนี้เต็มแล้ว ({n} แหล่ง)",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_type_d06d": {
+    "message": "ประเภท"
+  },
+  "f_what_do_other_sources_say_ab_34c8": {
+    "message": "แหล่งอื่นว่าอย่างไร?"
+  },
+  "f_what_is_missing_186e": {
+    "message": "ขาดอะไรไป?"
+  },
+  "f_where_does_the_claim_come_fr_de33": {
+    "message": "ข้ออ้างนี้มาจากไหน?"
+  },
+  "f_who_is_behind_this_f59e": {
+    "message": "ใครอยู่เบื้องหลัง?"
+  },
+  "f_your_question_761e": {
+    "message": "คำถามของคุณ"
+  },
+  "f_your_question_optional_cc1d": {
+    "message": "คำถามของคุณ (ไม่บังคับ)"
+  },
+  "f_last_used_743a": {
+    "message": "ใช้ล่าสุด"
+  },
+  "f_sources_9831": {
+    "message": "แหล่งที่มา"
+  },
+  "f_updated_4716": {
+    "message": "อัปเดต {d}",
+    "description": "Placeholders: {d} (keep as is)"
+  },
+  "f_added_to_2a85": {
+    "message": "เพิ่ม {a} ใน “{name}” แล้ว",
+    "description": "Placeholders: {a} {name} (keep as is)"
+  },
+  "f_added_to_the_collection_is_f_3393": {
+    "message": "เพิ่ม {a} ใน “{name}” แล้ว คอลเลกชันเต็ม ({n} แหล่ง)",
+    "description": "Placeholders: {a} {name} {n} (keep as is)"
+  },
+  "f_of_answered_a944": {
+    "message": "ตอบแล้ว {a} จาก {n}",
+    "description": "Placeholders: {a} {n} (keep as is)"
+  },
+  "f_of_checked_9b44": {
+    "message": "ตรวจแล้ว {a} จาก {n}",
+    "description": "Placeholders: {a} {n} (keep as is)"
+  },
+  "f_checked_6b66": {
+    "message": "ตรวจแล้ว {a}/{n}",
+    "description": "Placeholders: {a} {n} (keep as is)"
+  },
+  "f_of_sources_570e": {
+    "message": "{n} จาก {max} แหล่ง",
+    "description": "Placeholders: {n} {max} (keep as is)"
+  },
+  "f_sources_1825": {
+    "message": "{n} แหล่ง",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_add_sources_ca4e": {
+    "message": "เพิ่มแหล่งที่มา"
+  },
+  "f_all_sources_checked_export_t_a6d2": {
+    "message": "ตรวจสอบทุกแหล่งแล้ว ส่งออกคอลเลกชันเป็น Markdown เพื่อเขียนต่อหรือแชร์"
+  },
+  "f_next_check_your_sources_stil_a5d2": {
+    "message": "ถัดไป: ตรวจสอบแหล่งของคุณ (ยังเหลือ {n}) แล้วส่งออกคอลเลกชัน",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_agree_2be3": {
+    "message": "เห็นด้วย"
+  },
+  "f_compare_what_your_sources_sa_ce64": {
+    "message": "เปรียบเทียบสิ่งที่แหล่งของคุณบอก: จุดที่ตรงกัน ขัดแย้ง และสิ่งที่ขาด"
+  },
+  "f_create_overview_8cc0": {
+    "message": "สร้างภาพรวม"
+  },
+  "f_created_sources_56b9": {
+    "message": "สร้าง {d} · {n} แหล่ง",
+    "description": "Placeholders: {d} {n} (keep as is)"
+  },
+  "f_disagree_94b9": {
+    "message": "ไม่เห็นด้วย"
+  },
+  "f_from_summaries_1ec5": {
+    "message": "จากสรุป"
+  },
+  "f_from_summaries_not_checked_a_3af2": {
+    "message": "จากสรุป ไม่ได้ตรวจกับข้อความเต็ม"
+  },
+  "f_missing_d6a7": {
+    "message": "ขาด"
+  },
+  "f_needs_at_least_2_sources_wit_8f99": {
+    "message": "ต้องมีอย่างน้อย 2 แหล่งที่มีสรุป"
+  },
+  "f_not_checked_against_the_full_abd6": {
+    "message": "ไม่ได้ตรวจกับข้อความเต็ม"
+  },
+  "f_overview_4fba": {
+    "message": "ภาพรวม"
+  },
+  "f_sends_your_question_and_summ_e6d1": {
+    "message": "ส่งคำถามของคุณและ {n} สรุปไปยังโมเดล AI ข้อความเต็มอยู่ในอุปกรณ์ของคุณ",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_the_sources_changed_since_re_a027": {
+    "message": "แหล่งที่มาเปลี่ยนไปแล้ว — รีเฟรช"
+  },
+  "f_other_saved_articles_e035": {
+    "message": "บทความอื่นที่บันทึกไว้"
+  },
+  "f_suggested_fits_your_sources_efa7": {
+    "message": "แนะนำ: เข้ากับแหล่งของคุณ"
+  },
+  "f_check_each_source_before_you_2659": {
+    "message": "ตรวจสอบแต่ละแหล่งก่อนเชื่อ อย่าอยู่แค่ในเพจนั้น ค้นหาว่าใครอยู่เบื้องหลังและคนอื่นว่าอย่างไร"
+  },
+  "f_copy_references_6116": {
+    "message": "คัดลอกอ้างอิง"
+  },
+  "f_save_as_collection_36e4": {
+    "message": "บันทึกเป็นคอลเลกชัน"
+  },
+  "f_saved_as_collection_sources_8421": {
+    "message": "บันทึกเป็นคอลเลกชันแล้ว ({n} แหล่ง)",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_start_a_collection_from_the__5c47": {
+    "message": "เริ่มคอลเลกชันจากบทความล่าสุดของหัวข้อนี้ (สูงสุด 15) ไม่มีการส่งข้อมูลออกไป"
+  },
+  "f_task_3d8c": {
+    "message": "งาน"
+  },
+  "f_worksheet_4fe3": {
+    "message": "ใบงาน"
+  },
+  "f_references_copied_a61d": {
+    "message": "คัดลอกอ้างอิง {n} รายการแล้ว",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_references_copied_without_do_7bc4": {
+    "message": "คัดลอกอ้างอิง {n} รายการ ข้าม {m} รายการที่ไม่มี DOI",
+    "description": "Placeholders: {n} {m} (keep as is)"
+  },
+  "f_doi_e927": {
+    "message": "DOI"
+  },
+  "f_enter_a_valid_doi_first_93c8": {
+    "message": "ใส่ DOI ที่ถูกต้องก่อน"
+  },
+  "f_fill_from_doi_7cb8": {
+    "message": "เติมจาก DOI"
+  },
+  "f_filled_from_doi_org_check_an_a9ae": {
+    "message": "เติมจาก doi.org แล้ว ตรวจสอบและแก้ไขได้"
+  },
+  "f_original_title_8400": {
+    "message": "ชื่อเรื่องต้นฉบับ"
+  },
+  "f_rename_31f3": {
+    "message": "เปลี่ยนชื่อ"
+  },
+  "f_renamed_10b5": {
+    "message": "เปลี่ยนชื่อแล้ว"
+  },
+  "f_title_71a9": {
+    "message": "ชื่อเรื่อง"
+  },
+  "f_delete_about_d83d": {
+    "message": "ลบ {n} (ประมาณ {size})",
+    "description": "Placeholders: {n} {size} (keep as is)"
+  },
+  "f_delete_articles_this_cannot__5f89": {
+    "message": "ลบ {n} บทความ? ไม่สามารถย้อนกลับได้",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_deleting_removes_the_summary_b7d4": {
+    "message": "การลบจะเอาสรุปและข้อความเพจที่บันทึกออก ส่งออกข้อมูลสำรองก่อนหากไม่แน่ใจ"
+  },
+  "f_free_up_space_e9f2": {
+    "message": "เพิ่มพื้นที่ว่าง"
+  },
+  "f_not_now_6fce": {
+    "message": "ไม่ใช่ตอนนี้"
+  },
+  "f_nothing_large_and_unopened_t_7635": {
+    "message": "ไม่มีรายการใหญ่ที่ยังไม่เปิดให้ลบ"
+  },
+  "f_saved_data_is_getting_large__3b00": {
+    "message": "ข้อมูลที่บันทึกใหญ่ขึ้น ({size}) มี {n} บทความใหญ่ที่ไม่ได้เปิดมาหลายเดือน",
+    "description": "Placeholders: {size} {n} (keep as is)"
+  },
+  "f_saved_data_these_articles_ar_c4fc": {
+    "message": "ข้อมูลที่บันทึก: {size} บทความเหล่านี้ใหญ่และไม่ได้เปิดมา {d}+ วัน",
+    "description": "Placeholders: {size} {d} (keep as is)"
+  },
+  "f_select_what_can_go_7927": {
+    "message": "เลือกสิ่งที่ลบได้"
+  },
+  "f_showing_the_largest_of_bd2f": {
+    "message": "แสดง {n} รายการที่ใหญ่ที่สุดจาก {m}",
+    "description": "Placeholders: {n} {m} (keep as is)"
+  },
+  "f_not_opened_for_days_05c1": {
+    "message": "ไม่ได้เปิดมา {d} วัน",
+    "description": "Placeholders: {d} (keep as is)"
+  },
+  "f_articles_deleted_7937": {
+    "message": "ลบ {n} บทความแล้ว",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_more_are_starred_or_in_a_col_6c6e": {
+    "message": "อีก {n} รายการติดดาวหรืออยู่ในคอลเลกชัน จึงไม่แสดงในรายการ",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_add_to_favorites_3814": {
+    "message": "เพิ่มในรายการโปรด"
+  },
+  "f_delete_selected_articles_thi_fc7a": {
+    "message": "ลบ {n} บทความที่เลือก? ไม่สามารถย้อนกลับได้",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_remove_from_favorites_bb86": {
+    "message": "นำออกจากรายการโปรด"
+  },
+  "f_summaries_in_one_file_ed78": {
+    "message": "{n} สรุปในไฟล์เดียว",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_summary_in_one_file_2d00": {
+    "message": "{n} สรุปในไฟล์เดียว",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_images_removed_from_articles_8da9": {
+    "message": "ลบรูปจาก {n} บทความแล้ว · เพิ่มพื้นที่ประมาณ {size}",
+    "description": "Placeholders: {n} {size} (keep as is)"
+  },
+  "f_keeps_title_summary_tags_hig_a492": {
+    "message": "เก็บชื่อเรื่อง สรุป แท็ก ไฮไลต์ และสถิติของคุณ คำถามเกี่ยวกับบทความจะใช้สรุปเท่านั้น บทความที่ติดดาวและอยู่ในคอลเลกชันจะถูกข้าม"
+  },
+  "f_no_saved_images_7ea9": {
+    "message": "ไม่มีรูปที่บันทึก"
+  },
+  "f_not_opened_for_at_least_days_3606": {
+    "message": "ไม่ได้เปิดมาอย่างน้อย (วัน)"
+  },
+  "f_nothing_old_enough_5ba9": {
+    "message": "ไม่มีรายการที่เก่าพอ"
+  },
+  "f_off_new_articles_keep_only_t_f4c4": {
+    "message": "ปิด: บทความใหม่เก็บเฉพาะข้อความ รูปภาพทำให้เพจที่บันทึกใหญ่"
+  },
+  "f_page_text_of_articles_remove_9099": {
+    "message": "ลบข้อความเพจของ {n} บทความแล้ว",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_page_text_removed_from_artic_59a7": {
+    "message": "ลบข้อความเพจจาก {n} บทความแล้ว · เพิ่มพื้นที่ประมาณ {size}",
+    "description": "Placeholders: {n} {size} (keep as is)"
+  },
+  "f_pick_single_articles_to_trim_a05e": {
+    "message": "เลือกบทความทีละรายการเพื่อลดขนาดหรือลบ"
+  },
+  "f_remove_images_ac3d": {
+    "message": "ลบรูป"
+  },
+  "f_remove_images_from_saved_art_71cb": {
+    "message": "ลบรูปจากบทความที่บันทึก"
+  },
+  "f_remove_page_text_3553": {
+    "message": "ลบข้อความเพจ"
+  },
+  "f_remove_page_text_of_old_arti_3fc8": {
+    "message": "ลบข้อความเพจของบทความเก่า"
+  },
+  "f_remove_page_text_of_about_b647": {
+    "message": "ลบข้อความเพจของ {n} (ประมาณ {size})",
+    "description": "Placeholders: {n} {size} (keep as is)"
+  },
+  "f_remove_the_images_from_all_s_b3c1": {
+    "message": "ลบรูปจากบทความที่บันทึกทั้งหมด? ข้อความยังอยู่ ไม่สามารถย้อนกลับได้"
+  },
+  "f_remove_the_saved_page_text_o_8d34": {
+    "message": "ลบข้อความเพจที่บันทึกของ {n} บทความ? สรุปและสถิติยังอยู่ ไม่สามารถย้อนกลับได้",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_removing_the_page_text_keeps_f4ca": {
+    "message": "การลบข้อความเพจเก็บชื่อเรื่อง สรุป แท็ก และไฮไลต์ไว้ และสถิติเหมือนเดิม ส่วนการลบจะเอาทั้งบทความออก ส่งออกข้อมูลสำรองก่อนหากไม่แน่ใจ"
+  },
+  "f_review_large_unopened_articl_df0f": {
+    "message": "ตรวจบทความใหญ่ที่ยังไม่เปิด"
+  },
+  "f_save_images_with_articles_7dcd": {
+    "message": "บันทึกรูปพร้อมบทความ"
+  },
+  "f_saved_data_articles_2ab7": {
+    "message": "ข้อมูลที่บันทึก: {size} · {n} บทความ",
+    "description": "Placeholders: {size} {n} (keep as is)"
+  },
+  "f_storage_cleanup_e0d8": {
+    "message": "พื้นที่เก็บและการล้าง"
+  },
+  "f_articles_with_images_about_8d5b": {
+    "message": "{n} บทความที่มีรูป · ประมาณ {size}",
+    "description": "Placeholders: {n} {size} (keep as is)"
+  },
+  "f_articles_about_f741": {
+    "message": "{n} บทความ · ประมาณ {size}",
+    "description": "Placeholders: {n} {size} (keep as is)"
+  },
+  "f_copy_of_5f2c": {
+    "message": "สำเนาของ “{t}”",
+    "description": "Placeholders: {t} (keep as is)"
+  },
+  "f_duplicates_259f": {
+    "message": "รายการซ้ำ"
+  },
+  "f_duplicates_and_large_unopene_2310": {
+    "message": "รายการซ้ำและบทความใหญ่ที่ยังไม่เปิด เลือกสิ่งที่จะลดขนาดหรือลบ"
+  },
+  "f_images_53cb": {
+    "message": "รูปภาพ"
+  },
+  "f_large_and_not_opened_31c1": {
+    "message": "ใหญ่และไม่ได้เปิด"
+  },
+  "f_nothing_large_unopened_or_du_4ba6": {
+    "message": "ไม่มีรายการใหญ่ ที่ยังไม่เปิด หรือซ้ำให้ลบ"
+  },
+  "f_page_text_fa29": {
+    "message": "ข้อความเพจ"
+  },
+  "f_saved_data_tick_what_can_go_4926": {
+    "message": "ข้อมูลที่บันทึก: {size} ติ๊กสิ่งที่ลบได้",
+    "description": "Placeholders: {size} (keep as is)"
+  },
+  "f_show_more_bc06": {
+    "message": "แสดงเพิ่ม ({n})",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_stays_statistics_are_based_o_7b82": {
+    "message": "คงไว้ — สถิติอิงจากส่วนนี้"
+  },
+  "f_summaries_tags_highlights_467b": {
+    "message": "สรุป แท็ก ไฮไลต์"
+  },
+  "f_the_same_page_saved_more_tha_5a32": {
+    "message": "เพจเดียวกันที่บันทึกมากกว่าหนึ่งครั้ง สำเนาใหม่สุดที่มีสรุปจะคงไว้"
+  },
+  "f_view_analytics_report_0aaa": {
+    "message": "ดูรายงานวิเคราะห์"
+  },
+  "f_view_graph_dfcc": {
+    "message": "ดูกราฟ"
+  },
+  "f_doi_7aee": {
+    "message": "+ DOI"
+  },
+  "f_10_xxxx_or_doi_org_link_63ec": {
+    "message": "10.xxxx/… หรือลิงก์ doi.org"
+  },
+  "f_add_doi_d4a4": {
+    "message": "เพิ่ม DOI"
+  },
+  "f_cite_237e": {
+    "message": "อ้างอิง"
+  },
+  "f_doi_0b23": {
+    "message": "DOI ✓ ↗"
+  },
+  "f_article_actions_2b7e": {
+    "message": "การทำงานของบทความ"
+  },
+  "f_article_toolbar_008a": {
+    "message": "แถบเครื่องมือบทความ"
+  },
+  "f_markdown_116c": {
+    "message": "Markdown"
+  },
+  "f_move_down_faa8": {
+    "message": "เลื่อนลง"
+  },
+  "f_move_up_9e41": {
+    "message": "เลื่อนขึ้น"
+  },
+  "f_obsidian_8150": {
+    "message": "Obsidian"
+  },
+  "f_pdf_7875": {
+    "message": "PDF"
+  },
+  "f_phone_944f": {
+    "message": "โทรศัพท์"
+  },
+  "f_pick_the_actions_for_the_bar_c800": {
+    "message": "เลือกการทำงานสำหรับแถบเหนือบทความและจัดลำดับ สามรายการแรกแสดงเสมอ รายการอื่นจะปรากฏเมื่อหน้าต่างกว้างขึ้น ที่เหลืออยู่ในเมนู ⋯"
+  },
+  "f_reset_toolbar_ee9b": {
+    "message": "รีเซ็ตแถบเครื่องมือ"
+  },
+  "f_send_to_e_reader_kindle_or_l_48d7": {
+    "message": "ส่งไปอีรีดเดอร์ (Kindle หรือ LocalSend)"
+  },
+  "f_customize_toolbar_b65f": {
+    "message": "ปรับแถบเครื่องมือ…"
+  },
+  "f_everything_is_in_the_bar_d67d": {
+    "message": "ทุกอย่างอยู่ในแถบแล้ว"
+  },
+  "f_other_actions_drag_into_the__ae3e": {
+    "message": "การทำงานอื่น: ลากเข้าแถบ"
+  },
+  "f_copy_link_90dc": {
+    "message": "คัดลอกลิงก์"
+  },
+  "f_kindle_a768": {
+    "message": "Kindle"
+  },
+  "f_last_used_5cda": {
+    "message": "ใช้ล่าสุด"
+  },
+  "f_link_copied_d7d3": {
+    "message": "คัดลอกลิงก์แล้ว"
+  },
+  "f_manage_targets_5162": {
+    "message": "จัดการปลายทาง…"
+  },
+  "f_not_paired_pair_now_fffe": {
+    "message": "ยังไม่จับคู่ · จับคู่เลย"
+  },
+  "f_send_to_eb5e": {
+    "message": "ส่งไปที่…"
+  },
+  "f_share_c6da": {
+    "message": "แชร์…"
+  },
+  "f_system_share_apps_airdrop_ma_a10d": {
+    "message": "แชร์ของระบบ: แอป AirDrop อีเมล"
+  },
+  "f_always_available_45ef": {
+    "message": "พร้อมใช้เสมอ"
+  },
+  "f_not_paired_e80f": {
+    "message": "ยังไม่จับคู่"
+  },
+  "f_not_set_up_eacf": {
+    "message": "ยังไม่ได้ตั้งค่า"
+  },
+  "f_opens_your_system_share_shee_38bd": {
+    "message": "เปิดหน้าแชร์ของระบบ (Mail, Messages, AirDrop, แอปโน้ต ฯลฯ) พร้อมลิงก์และสรุปของบทความ ไม่ต้องตั้งค่า"
+  },
+  "f_use_as_default_target_9cee": {
+    "message": "ใช้เป็นปลายทางเริ่มต้น"
+  },
+  "f_devices_961c": {
+    "message": "{n} อุปกรณ์",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_send_targets_3e2c": {
+    "message": "‹ ปลายทางส่ง"
+  },
+  "f_more_b42e": {
+    "message": "อีก {n}…",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_cancelled_not_sent_e7ab": {
+    "message": "ยกเลิกแล้ว: ไม่ได้ส่ง"
+  },
+  "f_sending_to_in_s_808b": {
+    "message": "ส่งไป {name} ใน {n} วิ",
+    "description": "Placeholders: {name} {n} (keep as is)"
+  },
+  "ctxHighlightSelection": {
+    "message": "✏️ ไฮไลต์ข้อความที่เลือก",
+    "description": "Right-click menu entry"
+  },
+  "ctxRemoveHighlights": {
+    "message": "🧹 ลบไฮไลต์ทั้งหมด",
+    "description": "Right-click menu entry"
+  },
+  "ctxSummarizePage": {
+    "message": "✨ สรุปเพจนี้",
+    "description": "Right-click menu entry"
+  },
+  "ctxSummarizeClose": {
+    "message": "✨ สรุปและปิดแท็บ",
+    "description": "Right-click menu entry"
+  }
+}
