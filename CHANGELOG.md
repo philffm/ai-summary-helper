@@ -5,6 +5,105 @@ Commit history has the details: <https://github.com/philffm/ai-summary-helper/co
 
 ## Unreleased
 
+## 2.2.20 (2026-10-18)
+
+### Commit log
+
+#### Added
+
+- Add locales sv, da, no, fi
+- Add locales nl, it, ru, uk, tr, id, pl, th, ar (RTL support for Arabic, banner entries, poster fallback)
+- Try it: Add to Chrome button under the demo
+
+#### Changed
+
+- i18n: update translations for changed content
+- translate: retry up to 3x and tolerate concatenated/array JSON responses from the model
+- test59: sv is a supported UI locale now; use he-IL as the unsupported example, assert new locales and nb/nn -> no
+- Update feed i18n report
+- Extension: Finnish UI translation (fi)
+- Extension: final Ukrainian revisions
+- Extension: Ukrainian UI translation (uk); final pl and tr revisions
+- Extension: Polish and Turkish UI translations (pl, tr)
+- Extension: Swedish UI translation (sv)
+- Extension: Dutch UI translation (nl)
+- Extension: Thai UI translation (th)
+- Extension: Danish and Norwegian UI translations (da, no)
+- Extension: Indonesian UI translation (id)
+- Extension: register UI locales nl, pl, tr, id, th, uk, sv, da, no, fi (language list, picker, AI tag language names)
+- SEO/GEO: run seo pass (canonical, JSON-LD, sitemap, llms.txt on all pages), Firefox + Android beta + demo in structured data and llms.txt, demo noindex
+- Language banner: works on every locale page, text in the suggested language, adds zh-tw and vi, links to the same page
+- i18n: update translations for changed content
+- Android companion: Beta badge on eyebrow and download button
+- Hero scene: real extension icon instead of the placeholder logo
+- Hero scene: remove logo from the panel header
+- Hero: drop cursor label (caption under the slide is enough)
+- Hero: remove left step list (captions carry the steps)
+- Hero: knowledge-graph card no longer cut off (wider, single-line stats, shorter chart)
+- Hero scene and bookmarklet mock: dark theme
+- i18n: update translations for changed content
+- Hero: cursor carries a label with the current step title
+- Hero: step title + sentence shown above the slide indicator; step list more readable
+- Store links follow the browser (Firefox -> AMO), second store as secondary button under the demo
+- Demo poster: no dimming, button gets its own backdrop
+- Demo: real screenshot poster (per language and theme) behind the play button
+- Pricing: wider tier cards (up to 1100px), roomier padding, single column under 900px
+- Hero walkthrough: wrap long localized strings inside article and tab bar
+- Hero walkthrough: localized per language (local satire story, UI strings, step captions, language pills)
+- See it: bigger, more readable slide captions
+- Demo: larger and responsive (breaks out of the column up to 1640px, height follows the viewport; panel and type scale with width)
+- Hero: autoplaying presenter-style walkthrough with cursor + extension toolbar instead of scrollytelling
+- Hero is now one block: real hero text + switch + Add to Chrome on the left, scroll-reactive scene on the right (full bleed)
+- Hero: Variant A scroll scene back, now full bleed; live demo back in its own 'Try it' section; Bookmarklet tab keeps the explainer
+- Hero: full-bleed live demo replaces the hero image/scene; Bookmarklet tab explains the flow
+- Restore the 'See it' peek carousel (revert scrollytelling); keep the new scroll hero
+- Hero: native scroll-reactive scene replaces the hero screenshot
+- feat(site): 'See it' becomes native scrollytelling (sticky screenshot, steps scroll past and swap the image)
+- i18n: update translations for changed content
+- site: locale folders move from /lang/<code>/ to /<code>/, old URLs redirect via deploy-time stubs
+  - docs/lang/* -> docs/*; locales.json dirs, hreflang, canonical, sitemap and the language banner follow
+  - scripts/legacy-lang-stubs.mjs writes meta-refresh + canonical stubs for every old /lang/... URL into the Pages artifact (not committed)
+  - seo.mjs reads the locale folders from locales.json; links from translated pages to untranslated ones point to the English page instead of a 404
+- seo: titles under 60 characters, descriptions under 160, four more blog posts queued for translation
+- feat(seo): drop dead hreflang alternates, add og/twitter fallbacks, JSON-LD (WebSite, SoftwareApplication, FAQPage, BlogPosting) and llms.txt
+- feat(demo): seed six feed subscriptions with recent items
+- feat(demo): seed 27 dated articles so History, Graph and Analytics show real data
+- translate
+- feat(site): 'Try it' section that starts the live demo on click
+- feat(demo): live in-site demo of the real popup (fake chrome + recorded content), built to plugin/dist/demo and deployed by a Pages workflow
+- style(site): centre the icons in the ecosystem cards
+- spike(demo): fake chrome shim boots the real popup and renders a mock summary
+- feat(site): larger full-bleed gallery, selectable captions, native touch panning
+- Landing: "See it" becomes a peek carousel (scroll-snap, dots, arrows, keyboard)
+- Streaming: resync after a missed delta instead of freezing the preview
+- Prompt: "make it yours" in onboarding, mindset and about-me tags in the builder
+  - promptBuilder: optional lens (Stoic, Skeptic, Optimist, Pragmatic) and up to 8 free tags ("UX designer", "parent of two"); both only present when set, so stored builders keep their shape. Added to the generated prompt.
+  - Onboarding style step: after picking a style, chips for mindset, interests, length and own tags; the example updates live and the prompt is viewable. It stores the same promptBuilder keys as Settings, so everything stays editable there.
+  - Settings > Prompts: Mindset and About you groups; the generated prompt sits behind "Show prompt" for the builder, always visible for presets/custom. Shows what onboarding stored after the screen was already open.
+  - Tests 175/176 (renamed from test_*.mjs, which the runner never picked up).
+- Android: read full screen on wide screens (fold): the list and navigation rail step aside, toggle in the top bar, back returns
+- Silent login renewal: swap a token close to expiry instead of signing out
+- Android: morning briefing is fetched when the alarm rings if the night job was held back, and an empty briefing says why
+  - AlarmService refreshes the feeds (foreground service, has network) when the prepared briefing is missing, stale or empty; the ring screen picks the result up
+  - empty briefing shows and speaks a reason: feeds last refreshed, failing feeds, newest story, unread count, and the battery-setting hint when the phone has not refreshed for 12 h
+
+#### Fixed
+
+- Demo: works on every language page (404 fixed) and follows the site's language and light/dark theme
+  - translate.mjs rewrites demo/ links and data-src for locale folders; built pages fixed (../demo/index.html)
+  - demo gets ?lang=…&theme=…: extension UI language, summary language, localized article/summary/answers for 10 locales (demo-i18n.js), theme applied live when the site toggles
+- fix(site): the hero image no longer appears twice (first carousel slide removed, 4 slides left)
+
+#### Developer experience
+
+- Docs: hero visual replaces the banner in the README; version badge follows the latest release
+- Docs: drop the "How it works" walkthrough image from the README
+- Docs: use press kit assets in README and landing page
+  - README: 2.2 badge and pitch, hero visual, At a glance, screenshot gallery, research mode, split view, 41/14 languages (assets/press/)
+  - Landing page: hero visual, "See it" screenshot section, og:image and Twitter card (docs/assets/shots/, WebP)
+  - translate.mjs: swap "-en.webp" screenshots for "-<locale>.webp" when the file exists, else keep English
+- chore: refresh feed i18n report (1568 strings)
+
 ## 2.2.19 (2026-10-15)
 
 - **Your own OpenAI-compatible server.** Settings › Models: a new provider "OpenAI-compatible server" for LM Studio, llama.cpp, vLLM, LiteLLM, Open WebUI, LocalAI, Jan or Ollama via `/v1`. Enter `https://host/v1` (or the full `…/chat/completions`), an optional key and a model name; the model list is read from `/models` when the server offers it. Background jobs (Feed rating, recaps) stay on Ollama.
