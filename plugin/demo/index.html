@@ -5,7 +5,7 @@
 :root{color-scheme:light dark;--bg:#f6f7fb;--card:#fff;--ink:#14161f;--dim:#5b6070;--line:#e3e6ef;--sig:#4c8dff}
 @media(prefers-color-scheme:dark){:root{--bg:#0e1017;--card:#171a23;--ink:#eef0f6;--dim:#9aa1b4;--line:#262a37}}
 *{box-sizing:border-box}html,body{margin:0;height:100%}body{font:16px/1.65 system-ui,-apple-system,Segoe UI,sans-serif;background:var(--bg);color:var(--ink)}
-.stage{max-width:1680px;margin:0 auto;display:grid;grid-template-columns:minmax(0,1fr) 400px;gap:20px;height:100%;padding:16px}
+.stage{display:grid;grid-template-columns:minmax(0,1fr) 400px;gap:20px;height:100%;padding:16px}
 .page,.panel{background:var(--card);border:1px solid var(--line);border-radius:14px;overflow:hidden;display:flex;flex-direction:column;min-height:0}
 .bar{padding:9px 14px;border-bottom:1px solid var(--line);font-size:12.5px;color:var(--dim);display:flex;gap:8px;align-items:center}.bar i{width:9px;height:9px;border-radius:50%;background:var(--line)}
 article{padding:28px 36px;overflow:auto}article h1{font-size:28px;line-height:1.2;margin:0 0 6px}.meta{color:var(--dim);font-size:13.5px;margin-bottom:18px}
