@@ -1,0 +1,132 @@
+<!DOCTYPE html><html lang="pt-BR"><head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#08090C">
+<title>Um único resumo em vez de 40 feeds — AI Summary Helper</title>
+<meta name="description" content="Acompanhar muitos feeds gera constantes quebras de foco. Veja como um resumo diário ou semanal substitui a maioria delas e por que isso faz toda a diferença na sua concentração.">
+
+<script>
+  (function(){
+    try {
+      var saved = localStorage.getItem('aish_theme');
+      var theme = saved === 'light' || saved === 'dark'
+        ? saved
+        : (window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
+      document.documentElement.setAttribute('data-theme', theme);
+    } catch (e) {
+      document.documentElement.setAttribute('data-theme', 'dark');
+    }
+  })();
+</script>
+
+<link rel="icon" type="image/svg+xml" href="../../assets/icon.svg">
+<link rel="stylesheet" href="../../assets/styles.css">
+<script src="../../assets/analytics.js"></script>
+<link rel="alternate" hreflang="x-default" href="https://ai-summary-helper.byphil.eu/blog/feeds-recap.html"><link rel="alternate" hreflang="en" href="https://ai-summary-helper.byphil.eu/blog/feeds-recap.html"><link rel="alternate" hreflang="de" href="https://ai-summary-helper.byphil.eu/de/blog/feeds-recap.html"><link rel="alternate" hreflang="fr" href="https://ai-summary-helper.byphil.eu/fr/blog/feeds-recap.html"><link rel="alternate" hreflang="es" href="https://ai-summary-helper.byphil.eu/es/blog/feeds-recap.html"><link rel="alternate" hreflang="zh-Hans" href="https://ai-summary-helper.byphil.eu/zh/blog/feeds-recap.html"><link rel="alternate" hreflang="zh-Hant" href="https://ai-summary-helper.byphil.eu/zh-tw/blog/feeds-recap.html"><link rel="alternate" hreflang="ja" href="https://ai-summary-helper.byphil.eu/ja/blog/feeds-recap.html"><link rel="alternate" hreflang="ko" href="https://ai-summary-helper.byphil.eu/ko/blog/feeds-recap.html"><link rel="alternate" hreflang="pt-BR" href="https://ai-summary-helper.byphil.eu/pt/blog/feeds-recap.html"><link rel="alternate" hreflang="hi" href="https://ai-summary-helper.byphil.eu/hi/blog/feeds-recap.html"><link rel="alternate" hreflang="vi" href="https://ai-summary-helper.byphil.eu/vi/blog/feeds-recap.html"></head>
+<body>
+
+<a href="#main" class="skip-link">Ir para o conteúdo</a>
+
+<header class="nav">
+  <div class="wrap nav-inner">
+    <div class="brand-cluster">
+      <div class="wordmark">
+        <img src="../../assets/icon.svg" alt="">
+        AI Summary Helper
+      </div>
+      <a href="https://byphil.eu/" target="_blank" rel="noopener" class="ecosystem-badge">
+        <span class="pulse-dot"></span> Parte de byphil.
+      </a>
+    </div>
+    <div class="nav-desktop-group nav-desktop-links">
+      <nav class="links" aria-label="Primary">
+        <a href="../index.html#features">Recursos</a>
+        <a href="../index.html#pricing">Preços</a>
+        <a href="./" aria-current="page">Blog</a>
+        <a href="https://github.com/philffm/ai-summary-helper/" target="_blank" rel="noopener">GitHub</a>
+      </nav>
+      <button type="button" class="theme-toggle" id="themeToggle" aria-label="Switch to light mode">
+        <svg class="icon-moon" viewBox="0 0 24 24" fill="none"><path d="M20 14.5A8.5 8.5 0 1 1 9.5 4a6.8 6.8 0 0 0 10.5 10.5Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"></path></svg>
+        <svg class="icon-sun" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="4.2" stroke="currentColor" stroke-width="1.6"></circle><path d="M12 2.5v2.4M12 19.1v2.4M4.4 4.4l1.7 1.7M17.9 17.9l1.7 1.7M2.5 12h2.4M19.1 12h2.4M4.4 19.6l1.7-1.7M17.9 6.1l1.7-1.7" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"></path></svg>
+      </button>
+      <a href="../index.html" class="btn-sign-in">← Voltar ao app</a>
+    </div>
+    <button type="button" class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="mobileMenu" aria-label="Open menu">
+      <svg viewBox="0 0 24 24" fill="none"><path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"></path></svg>
+    </button>
+  </div>
+  <div class="mobile-menu" id="mobileMenu" hidden="">
+    <div class="wrap mobile-menu-inner">
+      <a href="../index.html#features">Recursos</a>
+      <a href="../index.html#pricing">Preços</a>
+      <a href="./">Blog</a>
+      <a href="https://github.com/philffm/ai-summary-helper/" target="_blank" rel="noopener">GitHub</a>
+      <a href="https://byphil.eu/" target="_blank" rel="noopener">Parte de byphil. ↗</a>
+      <button type="button" class="theme-toggle-mobile" id="themeToggleMobile">
+        <span id="themeToggleMobileLabel">Alternar para modo claro</span>
+        <svg class="icon-moon" viewBox="0 0 24 24" fill="none"><path d="M20 14.5A8.5 8.5 0 1 1 9.5 4a6.8 6.8 0 0 0 10.5 10.5Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"></path></svg>
+        <svg class="icon-sun" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="4.2" stroke="currentColor" stroke-width="1.6"></circle><path d="M12 2.5v2.4M12 19.1v2.4M4.4 4.4l1.7 1.7M17.9 17.9l1.7 1.7M2.5 12h2.4M19.1 12h2.4M4.4 19.6l1.7-1.7M17.9 6.1l1.7-1.7" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"></path></svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+<main id="main">
+  <div class="wrap">
+    <div class="post-hero">
+      <span class="blog-date">Guia · Outubro de 2026</span>
+      <h1>Um único resumo em vez de 40 feeds</h1>
+      <p class="post-sub">Quarenta feeds significam quarenta pequenas interrupções antes do almoço. Um resumo transforma tudo isso em uma leitura única.</p>
+    </div>
+  </div>
+
+  <section>
+    <div class="wrap">
+      <div class="prose">
+        <p>Em 2009, Sophie Leroy descreveu o que chamou de resíduo de atenção: quando você muda de uma tarefa para outra, parte da sua atenção permanece presa na tarefa anterior. Nos experimentos dela, pessoas interrompidas em uma tarefa tiveram um desempenho pior na seguinte, e o efeito foi ainda mais forte quando precisavam correr.</p>
+        <p>Um leitor de feeds é uma máquina de alternar tarefas. Cada item é um assunto diferente, um tom diferente, uma aba diferente. Mesmo que cada leitura seja rápida, o resíduo se acumula. Quando você volta ao trabalho de verdade, parte da sua mente ainda está pensando na mudança de preços de algum provedor de hospedagem.</p>
+
+        <h2>Por que o conceito de “inbox zero” nunca funciona para feeds</h2>
+        <p>Contadores de itens não lidos transformam a leitura em obrigação. Os melhores feeds são bons justamente por publicarem com frequência — ou seja, o número só aumenta. A reação comum é declarar falência informativa, marcar tudo como lido e, aos poucos, ver a pilha crescer de novo.</p>
+
+        <h2>O que um resumo muda</h2>
+        <p>A aba `Feeds` no AI Summary Helper permite assinar os feeds RSS que você realmente acompanha. Em vez de uma lista interminável de itens, você recebe um resumo: um único compilado, diário ou semanal, cobrindo o que chegou e com links para os artigos originais. Você lê de uma vez só, com calma, sem deixar o restante do dia ser moldado pelo que a internet publicou às 10h42.</p>
+        <p>Você também pode ouvir o conteúdo como um podcast — perfeito quando a alternativa seria não ler nada. O resumo é processado no provedor configurado com sua própria chave de API ou rodando localmente no seu dispositivo (como via Ollama, sem mensalidades ou assinaturas), da mesma forma que os resumos padrão.</p>
+        <figure class="post-figure post-figure--portrait"><img src="../../assets/blog/feeds-recap.webp" alt="Slide: Seus feeds em um único resumo, com um chat exibindo o resumo semanal e links para os artigos correspondentes" width="800" height="1000" loading="lazy"><figcaption>Um resumo substitui a contagem de não lidos: um único texto para ler, com links para todas as fontes.</figcaption></figure>
+        <h2>Como configurar para ter resultados reais</h2>
+        <ol>
+          <li><strong>Primeiro, reduza a lista.</strong> Mantenha apenas os feeds dos quais você realmente sentiria falta. Os resumos ficam muito melhores quando a entrada é selecionada.</li>
+          <li><strong>Escolha um momento específico do dia.</strong> Ler o resumo em um horário fixo elimina o hábito de ficar checando novidades. Um resumo que você confere de hora em hora vira apenas um feed mais lento.</li>
+          <li><strong>Abra os links que realmente interessam.</strong> Cada item do resumo aponta para a fonte original, funcionando como uma porta de entrada em vez de um substituto para a leitura aprofundada.</li>
+        </ol>
+        <p>O objetivo não é ler menos por preguiça, mas decidir conscientemente, de uma só vez, o que merece sua atenção — em vez de fazer isso quarenta vezes sem perceber.</p>
+        <div class="post-cta">
+          <p>AI Summary Helper é uma extensão gratuita para o Chrome.</p>
+          <a href="https://chromewebstore.google.com/detail/ai-summary-helper-openai/hldbejcjaedipeegjcinmhejdndchkmb" target="_blank" rel="noopener" class="btn-primary">Adicionar ao Chrome</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="footer-inner">
+      <div class="wordmark"><img src="../../assets/icon.svg" alt="">AI Summary Helper</div>
+      <div class="foot-links">
+        <a href="https://github.com/philffm/ai-summary-helper/" target="_blank" rel="noopener">Código-fonte no GitHub</a>
+        <a href="../privacy.html">Privacidade</a>
+        <a href="#" data-analytics-settings="">Configurações de analytics</a>
+        <a href="https://byphil.eu/terms.html#impressum" target="_blank" rel="noopener">Impressum</a>
+      </div>
+    </div>
+    <div class="copyright">© 2026 Phil Wornath. Parte de <a href="https://byphil.eu/" class="credit-link">byphil.eu ↗</a> — software independente desenvolvido na Alemanha.<br>
+      Projetado e desenvolvido por <a href="https://philwornath.com/" target="_blank" rel="noopener" class="credit-link">philwornath.com ↗</a>
+    </div>
+  </div>
+</footer>
+
+<script src="../../assets/main.js"></script>
+
+
+</body></html>

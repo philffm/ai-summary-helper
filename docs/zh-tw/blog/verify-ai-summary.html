@@ -1,0 +1,138 @@
+<!DOCTYPE html><html lang="zh-Hant"><head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#08090C">
+<title>比對 AI 摘要與原文來源 — AI Summary Helper</title>
+<meta name="description" content="AI 摘要唯有在值得信賴時才有價值。本文將介紹如何快速比對回答與原始網頁內容，以及引文究竟能證明什麼、不能證明什麼。">
+
+<script>
+  (function(){
+    try {
+      var saved = localStorage.getItem('aish_theme');
+      var theme = saved === 'light' || saved === 'dark'
+        ? saved
+        : (window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
+      document.documentElement.setAttribute('data-theme', theme);
+    } catch (e) {
+      document.documentElement.setAttribute('data-theme', 'dark');
+    }
+  })();
+</script>
+
+<link rel="icon" type="image/svg+xml" href="../../assets/icon.svg">
+<link rel="stylesheet" href="../../assets/styles.css">
+<script src="../../assets/analytics.js"></script>
+<link rel="alternate" hreflang="x-default" href="https://ai-summary-helper.byphil.eu/blog/verify-ai-summary.html"><link rel="alternate" hreflang="en" href="https://ai-summary-helper.byphil.eu/blog/verify-ai-summary.html"><link rel="alternate" hreflang="de" href="https://ai-summary-helper.byphil.eu/de/blog/verify-ai-summary.html"><link rel="alternate" hreflang="fr" href="https://ai-summary-helper.byphil.eu/fr/blog/verify-ai-summary.html"><link rel="alternate" hreflang="es" href="https://ai-summary-helper.byphil.eu/es/blog/verify-ai-summary.html"><link rel="alternate" hreflang="zh-Hans" href="https://ai-summary-helper.byphil.eu/zh/blog/verify-ai-summary.html"><link rel="alternate" hreflang="zh-Hant" href="https://ai-summary-helper.byphil.eu/zh-tw/blog/verify-ai-summary.html"><link rel="alternate" hreflang="ja" href="https://ai-summary-helper.byphil.eu/ja/blog/verify-ai-summary.html"><link rel="alternate" hreflang="ko" href="https://ai-summary-helper.byphil.eu/ko/blog/verify-ai-summary.html"><link rel="alternate" hreflang="pt-BR" href="https://ai-summary-helper.byphil.eu/pt/blog/verify-ai-summary.html"><link rel="alternate" hreflang="hi" href="https://ai-summary-helper.byphil.eu/hi/blog/verify-ai-summary.html"><link rel="alternate" hreflang="vi" href="https://ai-summary-helper.byphil.eu/vi/blog/verify-ai-summary.html"></head>
+<body>
+
+<a href="#main" class="skip-link">跳至主要內容</a>
+
+<header class="nav">
+  <div class="wrap nav-inner">
+    <div class="brand-cluster">
+      <div class="wordmark">
+        <img src="../../assets/icon.svg" alt="">
+        AI Summary Helper
+      </div>
+      <a href="https://byphil.eu/" target="_blank" rel="noopener" class="ecosystem-badge">
+        <span class="pulse-dot"></span> byphil. 旗下產品
+      </a>
+    </div>
+    <div class="nav-desktop-group nav-desktop-links">
+      <nav class="links" aria-label="Primary">
+        <a href="../index.html#features">功能特色</a>
+        <a href="../index.html#pricing">方案定價</a>
+        <a href="./" aria-current="page">部落格</a>
+        <a href="https://github.com/philffm/ai-summary-helper/" target="_blank" rel="noopener">GitHub</a>
+      </nav>
+      <button type="button" class="theme-toggle" id="themeToggle" aria-label="Switch to light mode">
+        <svg class="icon-moon" viewBox="0 0 24 24" fill="none"><path d="M20 14.5A8.5 8.5 0 1 1 9.5 4a6.8 6.8 0 0 0 10.5 10.5Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"></path></svg>
+        <svg class="icon-sun" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="4.2" stroke="currentColor" stroke-width="1.6"></circle><path d="M12 2.5v2.4M12 19.1v2.4M4.4 4.4l1.7 1.7M17.9 17.9l1.7 1.7M2.5 12h2.4M19.1 12h2.4M4.4 19.6l1.7-1.7M17.9 6.1l1.7-1.7" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"></path></svg>
+      </button>
+      <a href="../index.html" class="btn-sign-in">← 返回應用程式</a>
+    </div>
+    <button type="button" class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="mobileMenu" aria-label="Open menu">
+      <svg viewBox="0 0 24 24" fill="none"><path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"></path></svg>
+    </button>
+  </div>
+  <div class="mobile-menu" id="mobileMenu" hidden="">
+    <div class="wrap mobile-menu-inner">
+      <a href="../index.html#features">功能特色</a>
+      <a href="../index.html#pricing">方案定價</a>
+      <a href="./">部落格</a>
+      <a href="https://github.com/philffm/ai-summary-helper/" target="_blank" rel="noopener">GitHub</a>
+      <a href="https://byphil.eu/" target="_blank" rel="noopener">byphil. 旗下產品 ↗</a>
+      <button type="button" class="theme-toggle-mobile" id="themeToggleMobile">
+        <span id="themeToggleMobileLabel">切換為淺色模式</span>
+        <svg class="icon-moon" viewBox="0 0 24 24" fill="none"><path d="M20 14.5A8.5 8.5 0 1 1 9.5 4a6.8 6.8 0 0 0 10.5 10.5Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"></path></svg>
+        <svg class="icon-sun" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="4.2" stroke="currentColor" stroke-width="1.6"></circle><path d="M12 2.5v2.4M12 19.1v2.4M4.4 4.4l1.7 1.7M17.9 17.9l1.7 1.7M2.5 12h2.4M19.1 12h2.4M4.4 19.6l1.7-1.7M17.9 6.1l1.7-1.7" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"></path></svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+<main id="main">
+  <div class="wrap">
+    <div class="post-hero">
+      <span class="blog-date">指南 · 2026 年 10 月</span>
+      <h1>如何在 10 秒內比對 AI 摘要與原文出處</h1>
+      <p class="post-sub">無法查證的摘要，只不過是文法通順的猜測。培養這個好習慣即可解決此問題，同時了解 AI Summary Helper 如何幫你快速核對。</p>
+    </div>
+  </div>
+
+  <section>
+    <div class="wrap">
+      <div class="prose">
+        <p>2011 年，Sparrow、Liu 與 Wegner 在 <em>《Science》期刊</em> 發表研究指出：當人們預期日後可以隨時查閱某些資訊時，對事實本身的記憶會變少，反而更清楚「要去哪裡找」。搜尋引擎儼然成為某種外部記憶體，而我們也隨之調整了習慣。</p>
+        <p>AI 摘要進一步加深了這種轉變。你讀到一段條理分明的文字，記住了它，卻完全忘了原始網頁。當摘要正確時固然沒問題；但若有謬誤，麻煩就大了——因為文字本身不會告訴你哪句話有問題。</p>
+
+        <h2>10 秒查證法</h2>
+        <p>你不需要重讀整篇文章，只需鎖定其中一個段落。習慣非常簡單：</p>
+        <ol>
+          <li><strong>挑選一個你會轉述給別人聽的關鍵論點。</strong> 一個數字、日期、人名或原因。</li>
+          <li><strong>在原文中找出這句話。</strong> 不是意思相近的句子，而是確實提及該內容的原句。</li>
+          <li><strong>讀一讀這句話前後的上下文。</strong> 語境通常是摘要最容易出錯的地方：例如「可能」被寫成「將會」，或把預測當成了既定事實。</li>
+        </ol>
+        <p>手動操作時，步驟二往往最耗時，這正是最值得自動化的環節。</p>
+
+        <h2>AI Summary Helper 如何為你解套</h2>
+        <p>當你提出追問時，回答會附上頁面中佐證該結論的原始段落。擴充功能會逐字比對引文與網頁文字，自動捨棄無法一字不差對應的引用，確保虛構的引述絕不會被當作證據。只要網頁處於開啟狀態，點擊引文即可自動滾動至該段落並標註重點。</p>
+        <p>建議的延伸追問也是相同原理。每個問題都會先呈現即時產生的簡短回答，同時模型會在背景撰寫完整版本，讓你可以隨時閱讀、查證，並在獲得所需資訊時立即停下。</p>
+
+        <figure class="post-figure post-figure--portrait"><img src="../../assets/blog/answer-with-receipt.webp" alt="投影片：每個回答都附有依據來源，展示含有引述出處的對話回答與跳轉至段落按鈕" width="800" height="1000" loading="lazy"><figcaption>獲得解答、看見依據段落，還能一鍵跳轉至原文來源。</figcaption></figure>
+        <h2>引文能證明什麼，又不能證明什麼</h2>
+        <p>這一點需要特別留意：完全吻合的引文只能證明該段文字確實存在於網頁上，並不代表模型理解正確。引文周圍的回答依然是模型自己組織的語言，因此步驟三的檢查依然不可少：請務必閱讀前後相鄰的句子。</p>
+        <p>這樣一來，引文的作用是通往正確段落的捷徑，而非為真實性背書的認可印章。這正是關鍵所在：你只需花 10 秒檢驗決定答案真偽的核心段落，而不必花 10 分鐘通讀全篇。</p>
+
+        <h2>值得持續保持的習慣</h2>
+        <p>每篇文章挑選一個回答進行查證。幾週下來，你就能掌握 AI 模型的行為模式：它擅長哪些主題、在何處會把數字概括化、是否會淡化語氣中的保留態度。這種對模型特性的校準與認知，遠比單次查證更具價值。</p>
+        <div class="post-cta">
+          <p>AI Summary Helper 是一款免費的 Chrome 擴充功能。</p>
+          <a href="https://chromewebstore.google.com/detail/ai-summary-helper-openai/hldbejcjaedipeegjcinmhejdndchkmb" target="_blank" rel="noopener" class="btn-primary">新增至 Chrome</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="footer-inner">
+      <div class="wordmark"><img src="../../assets/icon.svg" alt="">AI Summary Helper</div>
+      <div class="foot-links">
+        <a href="https://github.com/philffm/ai-summary-helper/" target="_blank" rel="noopener">GitHub 原始碼</a>
+        <a href="../privacy.html">隱私權政策</a>
+        <a href="#" data-analytics-settings="">數據分析設定</a>
+        <a href="https://byphil.eu/terms.html#impressum" target="_blank" rel="noopener">法律資訊 (Impressum)</a>
+      </div>
+    </div>
+    <div class="copyright">© 2026 Phil Wornath. 屬於 <a href="https://byphil.eu/" class="credit-link">byphil.eu ↗</a> — 來自德國的獨立開發軟體。<br>
+      設計與開發： <a href="https://philwornath.com/" target="_blank" rel="noopener" class="credit-link">philwornath.com ↗</a>
+    </div>
+  </div>
+</footer>
+
+<script src="../../assets/main.js"></script>
+
+
+</body></html>

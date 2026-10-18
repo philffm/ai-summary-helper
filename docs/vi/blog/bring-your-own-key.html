@@ -1,0 +1,135 @@
+<!DOCTYPE html><html lang="vi"><head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#08090C">
+<title>API Key của bạn. Mô hình của bạn. Dữ liệu của bạn. — AI Summary Helper</title>
+<meta name="description" content="Ý nghĩa thực sự của việc tự dùng API key trên tiện ích mở rộng: vị trí lưu trữ key, luồng truyền dữ liệu trang web và sự khác biệt khi chạy mô hình cục bộ (local model).">
+
+<script>
+  (function(){
+    try {
+      var saved = localStorage.getItem('aish_theme');
+      var theme = saved === 'light' || saved === 'dark'
+        ? saved
+        : (window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
+      document.documentElement.setAttribute('data-theme', theme);
+    } catch (e) {
+      document.documentElement.setAttribute('data-theme', 'dark');
+    }
+  })();
+</script>
+
+<link rel="icon" type="image/svg+xml" href="../../assets/icon.svg">
+<link rel="stylesheet" href="../../assets/styles.css">
+<script src="../../assets/analytics.js"></script>
+<link rel="alternate" hreflang="x-default" href="https://ai-summary-helper.byphil.eu/blog/bring-your-own-key.html"><link rel="alternate" hreflang="en" href="https://ai-summary-helper.byphil.eu/blog/bring-your-own-key.html"><link rel="alternate" hreflang="de" href="https://ai-summary-helper.byphil.eu/de/blog/bring-your-own-key.html"><link rel="alternate" hreflang="fr" href="https://ai-summary-helper.byphil.eu/fr/blog/bring-your-own-key.html"><link rel="alternate" hreflang="es" href="https://ai-summary-helper.byphil.eu/es/blog/bring-your-own-key.html"><link rel="alternate" hreflang="zh-Hans" href="https://ai-summary-helper.byphil.eu/zh/blog/bring-your-own-key.html"><link rel="alternate" hreflang="zh-Hant" href="https://ai-summary-helper.byphil.eu/zh-tw/blog/bring-your-own-key.html"><link rel="alternate" hreflang="ja" href="https://ai-summary-helper.byphil.eu/ja/blog/bring-your-own-key.html"><link rel="alternate" hreflang="ko" href="https://ai-summary-helper.byphil.eu/ko/blog/bring-your-own-key.html"><link rel="alternate" hreflang="pt-BR" href="https://ai-summary-helper.byphil.eu/pt/blog/bring-your-own-key.html"><link rel="alternate" hreflang="hi" href="https://ai-summary-helper.byphil.eu/hi/blog/bring-your-own-key.html"><link rel="alternate" hreflang="vi" href="https://ai-summary-helper.byphil.eu/vi/blog/bring-your-own-key.html"></head>
+<body>
+
+<a href="#main" class="skip-link">Chuyển đến nội dung</a>
+
+<header class="nav">
+  <div class="wrap nav-inner">
+    <div class="brand-cluster">
+      <div class="wordmark">
+        <img src="../../assets/icon.svg" alt="">
+        AI Summary Helper
+      </div>
+      <a href="https://byphil.eu/" target="_blank" rel="noopener" class="ecosystem-badge">
+        <span class="pulse-dot"></span> Một sản phẩm của byphil.
+      </a>
+    </div>
+    <div class="nav-desktop-group nav-desktop-links">
+      <nav class="links" aria-label="Primary">
+        <a href="../index.html#features">Tính năng</a>
+        <a href="../index.html#pricing">Bảng giá</a>
+        <a href="./" aria-current="page">Blog</a>
+        <a href="https://github.com/philffm/ai-summary-helper/" target="_blank" rel="noopener">GitHub</a>
+      </nav>
+      <button type="button" class="theme-toggle" id="themeToggle" aria-label="Switch to light mode">
+        <svg class="icon-moon" viewBox="0 0 24 24" fill="none"><path d="M20 14.5A8.5 8.5 0 1 1 9.5 4a6.8 6.8 0 0 0 10.5 10.5Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"></path></svg>
+        <svg class="icon-sun" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="4.2" stroke="currentColor" stroke-width="1.6"></circle><path d="M12 2.5v2.4M12 19.1v2.4M4.4 4.4l1.7 1.7M17.9 17.9l1.7 1.7M2.5 12h2.4M19.1 12h2.4M4.4 19.6l1.7-1.7M17.9 6.1l1.7-1.7" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"></path></svg>
+      </button>
+      <a href="../index.html" class="btn-sign-in">← Quay lại ứng dụng</a>
+    </div>
+    <button type="button" class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="mobileMenu" aria-label="Open menu">
+      <svg viewBox="0 0 24 24" fill="none"><path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"></path></svg>
+    </button>
+  </div>
+  <div class="mobile-menu" id="mobileMenu" hidden="">
+    <div class="wrap mobile-menu-inner">
+      <a href="../index.html#features">Tính năng</a>
+      <a href="../index.html#pricing">Bảng giá</a>
+      <a href="./">Blog</a>
+      <a href="https://github.com/philffm/ai-summary-helper/" target="_blank" rel="noopener">GitHub</a>
+      <a href="https://byphil.eu/" target="_blank" rel="noopener">Một sản phẩm của byphil. ↗</a>
+      <button type="button" class="theme-toggle-mobile" id="themeToggleMobile">
+        <span id="themeToggleMobileLabel">Chuyển sang chế độ sáng</span>
+        <svg class="icon-moon" viewBox="0 0 24 24" fill="none"><path d="M20 14.5A8.5 8.5 0 1 1 9.5 4a6.8 6.8 0 0 0 10.5 10.5Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"></path></svg>
+        <svg class="icon-sun" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="4.2" stroke="currentColor" stroke-width="1.6"></circle><path d="M12 2.5v2.4M12 19.1v2.4M4.4 4.4l1.7 1.7M17.9 17.9l1.7 1.7M2.5 12h2.4M19.1 12h2.4M4.4 19.6l1.7-1.7M17.9 6.1l1.7-1.7" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"></path></svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+<main id="main">
+  <div class="wrap">
+    <div class="post-hero">
+      <span class="blog-date">Sản phẩm · Tháng 10 năm 2026</span>
+      <h1>API Key của bạn. Mô hình của bạn. Dữ liệu của bạn.</h1>
+      <p class="post-sub">Hầu hết các công cụ AI đều đặt một máy chủ trung gian giữa bạn và mô hình. Dưới đây là những gì sẽ thay đổi khi không còn máy chủ trung gian, và những gì vẫn do bạn quyết định.</p>
+    </div>
+  </div>
+
+  <section>
+    <div class="wrap">
+      <div class="prose">
+        <p>Mọi bản tóm tắt AI đều hoạt động theo cùng một cơ chế: gửi dữ liệu văn bản đi và nhận kết quả trả về. Yếu tố quyết định mức độ tin cậy của công cụ chính là ai đứng ở giữa. Với nhiều sản phẩm, máy chủ của công ty trung gian sẽ nằm ở đó, và nội dung bạn đọc buộc phải đi qua máy chủ này trước khi đến một mô hình mà bạn thậm chí không được tự chọn.</p>
+
+        <h2>Khái niệm “Tự mang API key” (BYOK) tại đây nghĩa là gì</h2>
+        <p>Bạn tạo API key từ nhà cung cấp mình tin tưởng, dán vào AI Summary Helper và chọn mô hình. Khi bạn tóm tắt một trang, background worker của tiện ích sẽ gửi văn bản trực tiếp đến nhà cung cấp đó và truyền dữ liệu phản hồi (stream) về. Hoàn toàn không có máy chủ trung gian nào của AI Summary Helper can thiệp vào luồng này khi bạn dùng key riêng.</p>
+        <p>Bạn cũng có thể kết nối tiện ích với mô hình AI chạy cục bộ ngay trên máy tính của mình, ví dụ như qua Ollama. Khi đó, nội dung trang web sẽ hoàn toàn không rời khỏi thiết bị của bạn.</p>
+        <figure class="post-figure post-figure--portrait"><img src="../../assets/blog/bring-your-own-key.webp" alt="Slide: Tự mang API key, đi kèm các thẻ thông tin về mô hình cục bộ, mã nguồn mở và lưu trữ key trực tiếp trên trình duyệt" width="800" height="1000" loading="lazy"><figcaption>Bạn tự chọn nhà cung cấp hoặc mô hình cục bộ. API key được lưu an toàn ngay trên trình duyệt.</figcaption></figure>
+        <h2>API key của bạn được lưu trữ ở đâu</h2>
+        <p>API key được lưu trong bộ nhớ cục bộ của tiện ích trên trình duyệt (local extension storage), không phải bộ nhớ đồng bộ (synced storage). Điều này đồng nghĩa với việc key không bị sao chép sang các thiết bị khác qua tài khoản trình duyệt. Đổi lại, bạn chỉ cần nhập key một lần trên mỗi trình duyệt. Key chỉ được dùng duy nhất để giao tiếp với nhà cung cấp bạn đã cấu hình.</p>
+
+        <h2>Phạm vi bảo vệ và những giới hạn cần lưu ý</h2>
+        <p>Cần hiểu rõ điều này: Tự dùng API key giúp loại bỏ bên trung gian, nhưng không loại bỏ nhà cung cấp mô hình. Bất kỳ dữ liệu nào bạn gửi đến mô hình đám mây (hosted model) đều chịu sự chi phối bởi điều khoản và chính sách lưu trữ của nhà cung cấp đó, vì vậy hãy đọc kỹ. Chỉ có mô hình cục bộ (local model) mới giữ toàn bộ văn bản trên máy tính của bạn, dù các mô hình local thường nhẹ hơn và xử lý chậm hơn so với mô hình trên cloud.</p>
+        <p>Dự án là mã nguồn mở, do đó bạn không cần phải tin tưởng một cách mù quáng. Toàn bộ mã nguồn xử lý API key và các yêu cầu gửi đi đều nằm công khai trong kho lưu trữ (repository) để bạn tự kiểm chứng.</p>
+
+        <h2>Lựa chọn cấu hình phù hợp</h2>
+        <ol>
+          <li><strong>Đọc tài liệu hàng ngày:</strong> sử dụng mô hình đám mây từ nhà cung cấp có điều khoản bạn thấy an tâm. Tốc độ nhanh, chất lượng cao và bạn toàn quyền kiểm soát key.</li>
+          <li><strong>Tài liệu nhạy cảm / bảo mật:</strong> sử dụng mô hình cục bộ (local model). Xử lý chậm hơn và năng lực hạn chế hơn, nhưng tuyệt đối không có dữ liệu nào rời khỏi thiết bị.</li>
+          <li><strong>Thử nghiệm &amp; khám phá:</strong> thêm nhiều nhà cung cấp và so sánh kết quả tóm tắt trên cùng một bài viết. Đây là cách nhanh nhất để biết mô hình nào phù hợp với loại văn bản nào.</li>
+        </ol>
+        <p>Mục tiêu không phải là tìm ra một cấu hình duy nhất đúng, mà là trao trọn quyền quyết định vào tay bạn.</p>
+        <div class="post-cta">
+          <p>AI Summary Helper là tiện ích mở rộng miễn phí dành cho Chrome.</p>
+          <a href="https://chromewebstore.google.com/detail/ai-summary-helper-openai/hldbejcjaedipeegjcinmhejdndchkmb" target="_blank" rel="noopener" class="btn-primary">Thêm vào Chrome</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="footer-inner">
+      <div class="wordmark"><img src="../../assets/icon.svg" alt="">AI Summary Helper</div>
+      <div class="foot-links">
+        <a href="https://github.com/philffm/ai-summary-helper/" target="_blank" rel="noopener">Mã nguồn trên GitHub</a>
+        <a href="../privacy.html">Quyền riêng tư</a>
+        <a href="#" data-analytics-settings="">Cài đặt phân tích</a>
+        <a href="https://byphil.eu/terms.html#impressum" target="_blank" rel="noopener">Thông tin pháp lý (Impressum)</a>
+      </div>
+    </div>
+    <div class="copyright">© 2026 Phil Wornath. Một phần của <a href="https://byphil.eu/" class="credit-link">byphil.eu ↗</a> — phần mềm độc lập được phát triển tại Đức.<br>
+      Thiết kế &amp; phát triển bởi <a href="https://philwornath.com/" target="_blank" rel="noopener" class="credit-link">philwornath.com ↗</a>
+    </div>
+  </div>
+</footer>
+
+<script src="../../assets/main.js"></script>
+
+
+</body></html>

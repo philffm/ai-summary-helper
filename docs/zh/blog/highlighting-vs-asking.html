@@ -1,0 +1,135 @@
+<!DOCTYPE html><html lang="zh-Hans"><head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#08090C">
+<title>针对高亮内容提问 — AI Summary Helper</title>
+<meta name="description" content="划重点往往是效率最低的学习方式之一。为什么划线总让人产生充实感？只需做一点微调，就能让高亮内容真正入脑。">
+
+<script>
+  (function(){
+    try {
+      var saved = localStorage.getItem('aish_theme');
+      var theme = saved === 'light' || saved === 'dark'
+        ? saved
+        : (window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
+      document.documentElement.setAttribute('data-theme', theme);
+    } catch (e) {
+      document.documentElement.setAttribute('data-theme', 'dark');
+    }
+  })();
+</script>
+
+<link rel="icon" type="image/svg+xml" href="../../assets/icon.svg">
+<link rel="stylesheet" href="../../assets/styles.css">
+<script src="../../assets/analytics.js"></script>
+<link rel="alternate" hreflang="x-default" href="https://ai-summary-helper.byphil.eu/blog/highlighting-vs-asking.html"><link rel="alternate" hreflang="en" href="https://ai-summary-helper.byphil.eu/blog/highlighting-vs-asking.html"><link rel="alternate" hreflang="de" href="https://ai-summary-helper.byphil.eu/de/blog/highlighting-vs-asking.html"><link rel="alternate" hreflang="fr" href="https://ai-summary-helper.byphil.eu/fr/blog/highlighting-vs-asking.html"><link rel="alternate" hreflang="es" href="https://ai-summary-helper.byphil.eu/es/blog/highlighting-vs-asking.html"><link rel="alternate" hreflang="zh-Hans" href="https://ai-summary-helper.byphil.eu/zh/blog/highlighting-vs-asking.html"><link rel="alternate" hreflang="zh-Hant" href="https://ai-summary-helper.byphil.eu/zh-tw/blog/highlighting-vs-asking.html"><link rel="alternate" hreflang="ja" href="https://ai-summary-helper.byphil.eu/ja/blog/highlighting-vs-asking.html"><link rel="alternate" hreflang="ko" href="https://ai-summary-helper.byphil.eu/ko/blog/highlighting-vs-asking.html"><link rel="alternate" hreflang="pt-BR" href="https://ai-summary-helper.byphil.eu/pt/blog/highlighting-vs-asking.html"><link rel="alternate" hreflang="hi" href="https://ai-summary-helper.byphil.eu/hi/blog/highlighting-vs-asking.html"><link rel="alternate" hreflang="vi" href="https://ai-summary-helper.byphil.eu/vi/blog/highlighting-vs-asking.html"></head>
+<body>
+
+<a href="#main" class="skip-link">跳转至主要内容</a>
+
+<header class="nav">
+  <div class="wrap nav-inner">
+    <div class="brand-cluster">
+      <div class="wordmark">
+        <img src="../../assets/icon.svg" alt="">
+        AI Summary Helper
+      </div>
+      <a href="https://byphil.eu/" target="_blank" rel="noopener" class="ecosystem-badge">
+        <span class="pulse-dot"></span> byphil. 旗下项目
+      </a>
+    </div>
+    <div class="nav-desktop-group nav-desktop-links">
+      <nav class="links" aria-label="Primary">
+        <a href="../index.html#features">功能特性</a>
+        <a href="../index.html#pricing">价格方案</a>
+        <a href="./" aria-current="page">博客</a>
+        <a href="https://github.com/philffm/ai-summary-helper/" target="_blank" rel="noopener">GitHub</a>
+      </nav>
+      <button type="button" class="theme-toggle" id="themeToggle" aria-label="Switch to light mode">
+        <svg class="icon-moon" viewBox="0 0 24 24" fill="none"><path d="M20 14.5A8.5 8.5 0 1 1 9.5 4a6.8 6.8 0 0 0 10.5 10.5Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"></path></svg>
+        <svg class="icon-sun" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="4.2" stroke="currentColor" stroke-width="1.6"></circle><path d="M12 2.5v2.4M12 19.1v2.4M4.4 4.4l1.7 1.7M17.9 17.9l1.7 1.7M2.5 12h2.4M19.1 12h2.4M4.4 19.6l1.7-1.7M17.9 6.1l1.7-1.7" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"></path></svg>
+      </button>
+      <a href="../index.html" class="btn-sign-in">← 返回应用</a>
+    </div>
+    <button type="button" class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="mobileMenu" aria-label="Open menu">
+      <svg viewBox="0 0 24 24" fill="none"><path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"></path></svg>
+    </button>
+  </div>
+  <div class="mobile-menu" id="mobileMenu" hidden="">
+    <div class="wrap mobile-menu-inner">
+      <a href="../index.html#features">功能特性</a>
+      <a href="../index.html#pricing">价格方案</a>
+      <a href="./">博客</a>
+      <a href="https://github.com/philffm/ai-summary-helper/" target="_blank" rel="noopener">GitHub</a>
+      <a href="https://byphil.eu/" target="_blank" rel="noopener">byphil. 旗下项目 ↗</a>
+      <button type="button" class="theme-toggle-mobile" id="themeToggleMobile">
+        <span id="themeToggleMobileLabel">切换至浅色模式</span>
+        <svg class="icon-moon" viewBox="0 0 24 24" fill="none"><path d="M20 14.5A8.5 8.5 0 1 1 9.5 4a6.8 6.8 0 0 0 10.5 10.5Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"></path></svg>
+        <svg class="icon-sun" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="4.2" stroke="currentColor" stroke-width="1.6"></circle><path d="M12 2.5v2.4M12 19.1v2.4M4.4 4.4l1.7 1.7M17.9 17.9l1.7 1.7M2.5 12h2.4M19.1 12h2.4M4.4 19.6l1.7-1.7M17.9 6.1l1.7-1.7" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"></path></svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+<main id="main">
+  <div class="wrap">
+    <div class="post-hero">
+      <span class="blog-date">指南 · 2026年9月</span>
+      <h1>光划重点几乎没用，不如针对它直接提问</h1>
+      <p class="post-sub">划高亮让人感觉自己在学习，但研究表明事实并非如此。改进方法很简单：别停在划线这一步，试着向它提问。</p>
+    </div>
+  </div>
+
+  <section>
+    <div class="wrap">
+      <div class="prose">
+        <p>2013 年，Dunlosky 及其团队在 <em>《Psychological Science in the Public Interest》</em> 上发表了一篇综述，评估了十种常见学习方法的实际效果证据。划高亮和下划线与反复重读一样，被归入实用性最低的一类。而主动测试与间隔重复则高居榜首。</p>
+        <p>真正让人警惕的不是划高亮毫无用处，而是它让人误以为自己付出了努力。你读完文章、找到重点句子、标上高亮，页面被黄色填满。你觉得既然有了动作，就一定有所收获。</p>
+
+        <h2>为什么高亮带来的记忆如此脆弱</h2>
+        <p>划高亮仅仅记录了 <em>你曾觉得某句话重要</em> 这一事实。但它并不会促使你对它做任何进一步加工。你可以完全不理解就划下一段文字，也可以在读第二遍时标出它，而读第一遍时根本没有思考。该综述的核心观点是：仅让人被动重温材料的方法，效果远逊于促使你主动输出的方法。</p>
+
+        <h2>提问是成本极低的主动输出方式</h2>
+        <p>同一篇综述认为一种名为“精细化提问”（elaborative interrogation）的追问方法具有中等实用性：即自问 <em>“为什么”</em> 某个陈述的事实会成立。你不需要专门做一套测验，只需要一个提示，迫使你用自己的语言做出简短解释。</p>
+        <p>只要切中要点，追问就能起到这样的作用。针对某段具体内容问一句“存在哪些风险？”，不仅能明确你想要了解的信息，AI 给出的答案还能与你的预期进行比对。</p>
+
+        <h2>先划高亮，再提问</h2>
+        <p>在 AI Summary Helper 中，划高亮只是第一步。选中一段文字后它会保留在页面上，即使重新打开文章依然可见。随后针对高亮内容展开追问，AI 的回答会直接引用原文，点击引用即可跳转回对应段落，方便你核对模型的理解是否与你一致。高亮与对话均按文章独立保存，下次访问时随时无缝继续。</p>
+        <figure class="post-figure post-figure--portrait"><img src="../../assets/blog/highlight-then-ask.webp" alt="演示幻灯片：先高亮再提问，对话界面显示问题“存在哪些风险？”，并在回答中引用了原文" width="800" height="1000" loading="lazy"><figcaption>高亮选中段落，直接提问，并一键跳转回支撑回答的原文引用。</figcaption></figure>
+        <h2>只需两分钟的阅读工作流</h2>
+        <ol>
+          <li><strong>每篇文章最多高亮三处。</strong> 全篇都是黄色高亮，等于没有高亮。</li>
+          <li><strong>针对每处高亮提一个问题。</strong> 问一句“为什么这很重要？”或“如果这个前提不成立会怎样？”就足够了。</li>
+          <li><strong>在阅读答案前，先在心中或用一句话讲出你的理解。</strong> 认知在对比与印证中建立。</li>
+        </ol>
+        <p>这并不是说划高亮毫无意义，而是应将其作为起点。马克笔负责定位内容，而提问才能真正形成记忆。</p>
+        <div class="post-cta">
+          <p>AI Summary Helper 是一款免费的 Chrome 扩展程序。</p>
+          <a href="https://chromewebstore.google.com/detail/ai-summary-helper-openai/hldbejcjaedipeegjcinmhejdndchkmb" target="_blank" rel="noopener" class="btn-primary">添加至 Chrome</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="footer-inner">
+      <div class="wordmark"><img src="../../assets/icon.svg" alt="">AI Summary Helper</div>
+      <div class="foot-links">
+        <a href="https://github.com/philffm/ai-summary-helper/" target="_blank" rel="noopener">查看 GitHub 源代码</a>
+        <a href="../privacy.html">隐私</a>
+        <a href="#" data-analytics-settings="">数据分析设置</a>
+        <a href="https://byphil.eu/terms.html#impressum" target="_blank" rel="noopener">法律声明 (Impressum)</a>
+      </div>
+    </div>
+    <div class="copyright">© 2026 Phil Wornath. 隶属于 <a href="https://byphil.eu/" class="credit-link">byphil.eu ↗</a> —— 德国制造的独立软件。<br>
+      设计与开发： <a href="https://philwornath.com/" target="_blank" rel="noopener" class="credit-link">philwornath.com ↗</a>
+    </div>
+  </div>
+</footer>
+
+<script src="../../assets/main.js"></script>
+
+
+</body></html>

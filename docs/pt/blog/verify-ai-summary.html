@@ -1,0 +1,138 @@
+<!DOCTYPE html><html lang="pt-BR"><head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#08090C">
+<title>Verifique um resumo de IA com a fonte original — AI Summary Helper</title>
+<meta name="description" content="Um resumo de IA só é útil se você puder confiar nele. Veja como checar qualquer resposta com a página de origem em segundos, e o que uma citação pode ou não provar.">
+
+<script>
+  (function(){
+    try {
+      var saved = localStorage.getItem('aish_theme');
+      var theme = saved === 'light' || saved === 'dark'
+        ? saved
+        : (window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
+      document.documentElement.setAttribute('data-theme', theme);
+    } catch (e) {
+      document.documentElement.setAttribute('data-theme', 'dark');
+    }
+  })();
+</script>
+
+<link rel="icon" type="image/svg+xml" href="../../assets/icon.svg">
+<link rel="stylesheet" href="../../assets/styles.css">
+<script src="../../assets/analytics.js"></script>
+<link rel="alternate" hreflang="x-default" href="https://ai-summary-helper.byphil.eu/blog/verify-ai-summary.html"><link rel="alternate" hreflang="en" href="https://ai-summary-helper.byphil.eu/blog/verify-ai-summary.html"><link rel="alternate" hreflang="de" href="https://ai-summary-helper.byphil.eu/de/blog/verify-ai-summary.html"><link rel="alternate" hreflang="fr" href="https://ai-summary-helper.byphil.eu/fr/blog/verify-ai-summary.html"><link rel="alternate" hreflang="es" href="https://ai-summary-helper.byphil.eu/es/blog/verify-ai-summary.html"><link rel="alternate" hreflang="zh-Hans" href="https://ai-summary-helper.byphil.eu/zh/blog/verify-ai-summary.html"><link rel="alternate" hreflang="zh-Hant" href="https://ai-summary-helper.byphil.eu/zh-tw/blog/verify-ai-summary.html"><link rel="alternate" hreflang="ja" href="https://ai-summary-helper.byphil.eu/ja/blog/verify-ai-summary.html"><link rel="alternate" hreflang="ko" href="https://ai-summary-helper.byphil.eu/ko/blog/verify-ai-summary.html"><link rel="alternate" hreflang="pt-BR" href="https://ai-summary-helper.byphil.eu/pt/blog/verify-ai-summary.html"><link rel="alternate" hreflang="hi" href="https://ai-summary-helper.byphil.eu/hi/blog/verify-ai-summary.html"><link rel="alternate" hreflang="vi" href="https://ai-summary-helper.byphil.eu/vi/blog/verify-ai-summary.html"></head>
+<body>
+
+<a href="#main" class="skip-link">Ir para o conteúdo</a>
+
+<header class="nav">
+  <div class="wrap nav-inner">
+    <div class="brand-cluster">
+      <div class="wordmark">
+        <img src="../../assets/icon.svg" alt="">
+        AI Summary Helper
+      </div>
+      <a href="https://byphil.eu/" target="_blank" rel="noopener" class="ecosystem-badge">
+        <span class="pulse-dot"></span> Parte de byphil.
+      </a>
+    </div>
+    <div class="nav-desktop-group nav-desktop-links">
+      <nav class="links" aria-label="Primary">
+        <a href="../index.html#features">Recursos</a>
+        <a href="../index.html#pricing">Preços</a>
+        <a href="./" aria-current="page">Blog</a>
+        <a href="https://github.com/philffm/ai-summary-helper/" target="_blank" rel="noopener">GitHub</a>
+      </nav>
+      <button type="button" class="theme-toggle" id="themeToggle" aria-label="Switch to light mode">
+        <svg class="icon-moon" viewBox="0 0 24 24" fill="none"><path d="M20 14.5A8.5 8.5 0 1 1 9.5 4a6.8 6.8 0 0 0 10.5 10.5Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"></path></svg>
+        <svg class="icon-sun" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="4.2" stroke="currentColor" stroke-width="1.6"></circle><path d="M12 2.5v2.4M12 19.1v2.4M4.4 4.4l1.7 1.7M17.9 17.9l1.7 1.7M2.5 12h2.4M19.1 12h2.4M4.4 19.6l1.7-1.7M17.9 6.1l1.7-1.7" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"></path></svg>
+      </button>
+      <a href="../index.html" class="btn-sign-in">← Voltar ao app</a>
+    </div>
+    <button type="button" class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="mobileMenu" aria-label="Open menu">
+      <svg viewBox="0 0 24 24" fill="none"><path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"></path></svg>
+    </button>
+  </div>
+  <div class="mobile-menu" id="mobileMenu" hidden="">
+    <div class="wrap mobile-menu-inner">
+      <a href="../index.html#features">Recursos</a>
+      <a href="../index.html#pricing">Preços</a>
+      <a href="./">Blog</a>
+      <a href="https://github.com/philffm/ai-summary-helper/" target="_blank" rel="noopener">GitHub</a>
+      <a href="https://byphil.eu/" target="_blank" rel="noopener">Parte de byphil. ↗</a>
+      <button type="button" class="theme-toggle-mobile" id="themeToggleMobile">
+        <span id="themeToggleMobileLabel">Alternar para modo claro</span>
+        <svg class="icon-moon" viewBox="0 0 24 24" fill="none"><path d="M20 14.5A8.5 8.5 0 1 1 9.5 4a6.8 6.8 0 0 0 10.5 10.5Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"></path></svg>
+        <svg class="icon-sun" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="4.2" stroke="currentColor" stroke-width="1.6"></circle><path d="M12 2.5v2.4M12 19.1v2.4M4.4 4.4l1.7 1.7M17.9 17.9l1.7 1.7M2.5 12h2.4M19.1 12h2.4M4.4 19.6l1.7-1.7M17.9 6.1l1.7-1.7" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"></path></svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+<main id="main">
+  <div class="wrap">
+    <div class="post-hero">
+      <span class="blog-date">Guia · Outubro de 2026</span>
+      <h1>Como checar um resumo de IA com a fonte original em 10 segundos</h1>
+      <p class="post-sub">Um resumo que você não pode verificar é só um palpite bem escrito. Conheça o hábito que resolve isso e como o AI Summary Helper torna essa checagem instantânea.</p>
+    </div>
+  </div>
+
+  <section>
+    <div class="wrap">
+      <div class="prose">
+        <p>Em 2011, Sparrow, Liu e Wegner relataram na <em>Science</em> que, quando as pessoas esperam poder consultar algo mais tarde, elas tendem a esquecer o fato em si e a lembrar apenas de onde encontrá-lo. Os mecanismos de busca se tornaram uma espécie de memória externa, e nós nos adaptamos a isso.</p>
+        <p>Os resumos gerados por IA aceleram ainda mais essa mudança. Você recebe um parágrafo bem formulado, memoriza o conteúdo e a página original simplesmente desaparece da sua mente. Isso não é um problema quando o resumo está correto. O risco surge quando ele erra, já que nada no texto indica quais frases são confiáveis ou duvidosas.</p>
+
+        <h2>A checagem de 10 segundos</h2>
+        <p>Você não precisa reler o artigo inteiro. Basta olhar um único trecho. O hábito é simples:</p>
+        <ol>
+          <li><strong>Escolha a afirmação que você repetiria para outra pessoa.</strong> Um número, uma data, um nome, uma causa.</li>
+          <li><strong>Encontre no texto original a frase que confirma a afirmação.</strong> Não uma frase parecida. A frase exata que afirma isso.</li>
+          <li><strong>Leia a frase anterior e a seguinte para conferir o contexto.</strong> É no contexto que os resumos mais costumam falhar: um "pode ser" que vira "será", uma previsão que vira um fato consumado.</li>
+        </ol>
+        <p>A segunda etapa é a mais demorada quando feita manualmente. É exatamente ela que vale a pena automatizar.</p>
+
+        <h2>Como o AI Summary Helper resolve isso</h2>
+        <p>Quando você faz uma pergunta de acompanhamento, a resposta vem acompanhada dos trechos exatos da página que a comprovam. A extensão compara cada citação com o texto da página e descarta qualquer trecho que não seja idêntico palavra por palavra — citações inventadas nunca passam como prova. Se a página estiver aberta, basta clicar na citação para rolar até o trecho e destacá-lo.</p>
+        <p>As perguntas sugeridas funcionam da mesma forma. Cada uma traz uma resposta curta imediata enquanto o modelo gera o texto completo, permitindo que você leia, confira e pare assim que encontrar o que precisa.</p>
+
+        <figure class="post-figure post-figure--portrait"><img src="../../assets/blog/answer-with-receipt.webp" alt="Slide: cada resposta vem acompanhada de sua comprovação, mostrando uma resposta no chat com fonte citada e botão para ir direto ao trecho" width="800" height="1000" loading="lazy"><figcaption>A resposta direta, o trecho que a sustenta e acesso à fonte com um clique.</figcaption></figure>
+        <h2>O que uma citação prova — e o que ela não prova</h2>
+        <p>Tenha cuidado neste ponto: uma citação correspondente prova apenas que o trecho existe na página. Ela não garante que o modelo interpretou o contexto corretamente. Como a explicação ao redor da citação é gerada pelo próprio modelo, a regra do passo 3 continua valendo: leia sempre as frases ao redor.</p>
+        <p>Usada dessa forma, a citação funciona como um atalho direto para o parágrafo certo, e não como um selo cego de aprovação. O objetivo é esse: gastar dez segundos no trecho que realmente valida a resposta, em vez de dez minutos relendo a página inteira.</p>
+
+        <h2>Um hábito que vale a pena manter</h2>
+        <p>Escolha uma resposta por artigo para verificar. Em poucas semanas, você vai entender o comportamento do seu modelo: quais assuntos ele domina, onde costuma arredondar números ou quando atenua ressalvas importantes. Desenvolver essa percepção crítica vale muito mais do que qualquer checagem isolada.</p>
+        <div class="post-cta">
+          <p>AI Summary Helper é uma extensão gratuita para o Chrome.</p>
+          <a href="https://chromewebstore.google.com/detail/ai-summary-helper-openai/hldbejcjaedipeegjcinmhejdndchkmb" target="_blank" rel="noopener" class="btn-primary">Adicionar ao Chrome</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="footer-inner">
+      <div class="wordmark"><img src="../../assets/icon.svg" alt="">AI Summary Helper</div>
+      <div class="foot-links">
+        <a href="https://github.com/philffm/ai-summary-helper/" target="_blank" rel="noopener">Código-fonte no GitHub</a>
+        <a href="../privacy.html">Privacidade</a>
+        <a href="#" data-analytics-settings="">Configurações de analytics</a>
+        <a href="https://byphil.eu/terms.html#impressum" target="_blank" rel="noopener">Impressum</a>
+      </div>
+    </div>
+    <div class="copyright">© 2026 Phil Wornath. Parte de <a href="https://byphil.eu/" class="credit-link">byphil.eu ↗</a> — software independente desenvolvido na Alemanha.<br>
+      Projetado e desenvolvido por <a href="https://philwornath.com/" target="_blank" rel="noopener" class="credit-link">philwornath.com ↗</a>
+    </div>
+  </div>
+</footer>
+
+<script src="../../assets/main.js"></script>
+
+
+</body></html>

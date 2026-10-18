@@ -1,0 +1,135 @@
+<!DOCTYPE html><html lang="vi"><head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#08090C">
+<title>Đặt câu hỏi về các đoạn Highlight — AI Summary Helper</title>
+<meta name="description" content="Highlight là một trong những phương pháp học kém hiệu quả nhất. Tìm hiểu vì sao bạn vẫn thấy nó hiệu quả và thay đổi nhỏ giúp ghi nhớ sâu hơn.">
+
+<script>
+  (function(){
+    try {
+      var saved = localStorage.getItem('aish_theme');
+      var theme = saved === 'light' || saved === 'dark'
+        ? saved
+        : (window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
+      document.documentElement.setAttribute('data-theme', theme);
+    } catch (e) {
+      document.documentElement.setAttribute('data-theme', 'dark');
+    }
+  })();
+</script>
+
+<link rel="icon" type="image/svg+xml" href="../../assets/icon.svg">
+<link rel="stylesheet" href="../../assets/styles.css">
+<script src="../../assets/analytics.js"></script>
+<link rel="alternate" hreflang="x-default" href="https://ai-summary-helper.byphil.eu/blog/highlighting-vs-asking.html"><link rel="alternate" hreflang="en" href="https://ai-summary-helper.byphil.eu/blog/highlighting-vs-asking.html"><link rel="alternate" hreflang="de" href="https://ai-summary-helper.byphil.eu/de/blog/highlighting-vs-asking.html"><link rel="alternate" hreflang="fr" href="https://ai-summary-helper.byphil.eu/fr/blog/highlighting-vs-asking.html"><link rel="alternate" hreflang="es" href="https://ai-summary-helper.byphil.eu/es/blog/highlighting-vs-asking.html"><link rel="alternate" hreflang="zh-Hans" href="https://ai-summary-helper.byphil.eu/zh/blog/highlighting-vs-asking.html"><link rel="alternate" hreflang="zh-Hant" href="https://ai-summary-helper.byphil.eu/zh-tw/blog/highlighting-vs-asking.html"><link rel="alternate" hreflang="ja" href="https://ai-summary-helper.byphil.eu/ja/blog/highlighting-vs-asking.html"><link rel="alternate" hreflang="ko" href="https://ai-summary-helper.byphil.eu/ko/blog/highlighting-vs-asking.html"><link rel="alternate" hreflang="pt-BR" href="https://ai-summary-helper.byphil.eu/pt/blog/highlighting-vs-asking.html"><link rel="alternate" hreflang="hi" href="https://ai-summary-helper.byphil.eu/hi/blog/highlighting-vs-asking.html"><link rel="alternate" hreflang="vi" href="https://ai-summary-helper.byphil.eu/vi/blog/highlighting-vs-asking.html"></head>
+<body>
+
+<a href="#main" class="skip-link">Chuyển đến nội dung</a>
+
+<header class="nav">
+  <div class="wrap nav-inner">
+    <div class="brand-cluster">
+      <div class="wordmark">
+        <img src="../../assets/icon.svg" alt="">
+        AI Summary Helper
+      </div>
+      <a href="https://byphil.eu/" target="_blank" rel="noopener" class="ecosystem-badge">
+        <span class="pulse-dot"></span> Một sản phẩm của byphil.
+      </a>
+    </div>
+    <div class="nav-desktop-group nav-desktop-links">
+      <nav class="links" aria-label="Primary">
+        <a href="../index.html#features">Tính năng</a>
+        <a href="../index.html#pricing">Bảng giá</a>
+        <a href="./" aria-current="page">Blog</a>
+        <a href="https://github.com/philffm/ai-summary-helper/" target="_blank" rel="noopener">GitHub</a>
+      </nav>
+      <button type="button" class="theme-toggle" id="themeToggle" aria-label="Switch to light mode">
+        <svg class="icon-moon" viewBox="0 0 24 24" fill="none"><path d="M20 14.5A8.5 8.5 0 1 1 9.5 4a6.8 6.8 0 0 0 10.5 10.5Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"></path></svg>
+        <svg class="icon-sun" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="4.2" stroke="currentColor" stroke-width="1.6"></circle><path d="M12 2.5v2.4M12 19.1v2.4M4.4 4.4l1.7 1.7M17.9 17.9l1.7 1.7M2.5 12h2.4M19.1 12h2.4M4.4 19.6l1.7-1.7M17.9 6.1l1.7-1.7" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"></path></svg>
+      </button>
+      <a href="../index.html" class="btn-sign-in">← Quay lại ứng dụng</a>
+    </div>
+    <button type="button" class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="mobileMenu" aria-label="Open menu">
+      <svg viewBox="0 0 24 24" fill="none"><path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"></path></svg>
+    </button>
+  </div>
+  <div class="mobile-menu" id="mobileMenu" hidden="">
+    <div class="wrap mobile-menu-inner">
+      <a href="../index.html#features">Tính năng</a>
+      <a href="../index.html#pricing">Bảng giá</a>
+      <a href="./">Blog</a>
+      <a href="https://github.com/philffm/ai-summary-helper/" target="_blank" rel="noopener">GitHub</a>
+      <a href="https://byphil.eu/" target="_blank" rel="noopener">Một sản phẩm của byphil. ↗</a>
+      <button type="button" class="theme-toggle-mobile" id="themeToggleMobile">
+        <span id="themeToggleMobileLabel">Chuyển sang chế độ sáng</span>
+        <svg class="icon-moon" viewBox="0 0 24 24" fill="none"><path d="M20 14.5A8.5 8.5 0 1 1 9.5 4a6.8 6.8 0 0 0 10.5 10.5Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"></path></svg>
+        <svg class="icon-sun" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="4.2" stroke="currentColor" stroke-width="1.6"></circle><path d="M12 2.5v2.4M12 19.1v2.4M4.4 4.4l1.7 1.7M17.9 17.9l1.7 1.7M2.5 12h2.4M19.1 12h2.4M4.4 19.6l1.7-1.7M17.9 6.1l1.7-1.7" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"></path></svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+<main id="main">
+  <div class="wrap">
+    <div class="post-hero">
+      <span class="blog-date">Hướng dẫn · Tháng 9, 2026</span>
+      <h1>Chỉ Highlight Thôi Là Chưa Đủ. Hãy Đặt Câu Hỏi Về Nó.</h1>
+      <p class="post-sub">Highlight tạo cảm giác như đang học thực sự, nhưng nghiên cứu cho thấy phần lớn không phải vậy. Giải pháp rất đơn giản: đừng chỉ dừng lại ở highlight, hãy đặt câu hỏi về nội dung đó.</p>
+    </div>
+  </div>
+
+  <section>
+    <div class="wrap">
+      <div class="prose">
+        <p>Năm 2013, Dunlosky và các cộng sự đã công bố một bài tổng quan trên tạp chí <em>Psychological Science in the Public Interest</em> đánh giá mười phương pháp học tập phổ biến dựa trên bằng chứng khoa học về hiệu quả thực tế. Highlight (tô sáng) và gạch chân bị xếp vào nhóm có hiệu quả thấp nhất, tương tự việc đọc lại. Trong khi đó, việc tự kiểm tra và giãn cách thời gian học đứng đầu bảng.</p>
+        <p>Điều đáng lo ngại không phải là highlight vô dụng, mà là nó mang lại cảm giác bạn đang làm việc hiệu quả. Bạn đọc, tìm thấy câu quan trọng, đánh dấu lại và trang sách tràn ngập màu vàng. Có hành động xảy ra, nên bạn nghĩ rằng nó chắc chắn có ích.</p>
+
+        <h2>Tại sao highlight chỉ tạo nên ký ức mờ nhạt</h2>
+        <p>Việc highlight chỉ ghi nhận <em>rằng</em> rằng bạn thấy câu văn đó quan trọng. Nó không buộc bạn phải xử lý thông tin. Bạn có thể đánh dấu một đoạn mà không hiểu gì, và có thể đánh dấu lại ở lần đọc thứ hai mà không hề suy ngẫm từ lần đầu. Nghiên cứu chỉ ra rằng các phương pháp chỉ đơn thuần tiếp xúc lại với tài liệu luôn kém hiệu quả hơn những phương pháp buộc bạn phải tự tạo ra kiến thức từ tài liệu đó.</p>
+
+        <h2>Đặt câu hỏi là cách đơn giản nhất để chủ động xử lý kiến thức</h2>
+        <p>Cùng nghiên cứu đó đánh giá phương pháp truy vấn chi tiết (elaborative interrogation) đạt hiệu quả tương đối tốt: tự hỏi chính mình <em>tại sao</em> tại sao một sự kiện được nêu lại đúng. Bạn không cần làm bài kiểm tra phức tạp; bạn chỉ cần một câu hỏi gợi mở buộc bản thân giải thích ngắn gọn bằng chính ngôn từ của mình.</p>
+        <p>Đó chính là tác dụng của một câu hỏi tiếp nối nếu bạn đặt đúng trọng tâm. Câu hỏi “Những rủi ro ở đây là gì?” nhắm vào một đoạn cụ thể buộc bạn phải xác định điều mình muốn biết, và câu trả lời sẽ là cơ sở để đối chiếu với phán đoán của bạn.</p>
+
+        <h2>Highlight, rồi đặt câu hỏi</h2>
+        <p>Với AI Summary Helper, highlight chỉ là bước khởi đầu. Khi bạn chọn một đoạn văn, đánh dấu sẽ được lưu trực tiếp trên trang để bạn xem lại bất cứ lúc nào. Sau đó, hãy đặt câu hỏi đào sâu về nội dung đó. Câu trả lời sẽ trích dẫn nguồn trên trang, và chỉ cần nhấp vào trích dẫn, bạn sẽ được đưa thẳng tới đoạn văn gốc để đối chiếu xem mô hình AI có hiểu đúng ý bạn không. Toàn bộ highlight và hội thoại được lưu riêng theo từng bài viết, giúp bạn dễ dàng tiếp tục phiên làm việc bất cứ khi nào.</p>
+        <figure class="post-figure post-figure--portrait"><img src="../../assets/blog/highlight-then-ask.webp" alt="Slide: Highlight đoạn văn rồi đặt câu hỏi, với khung trò chuyện hiển thị câu hỏi “Những rủi ro là gì?” và câu trả lời có trích dẫn từ trang" width="800" height="1000" loading="lazy"><figcaption>Highlight một đoạn văn, đặt câu hỏi về nó và nhảy trực tiếp về đoạn trích dẫn chứng minh câu trả lời.</figcaption></figure>
+        <h2>Quy trình học nhanh trong 2 phút</h2>
+        <ol>
+          <li><strong>Chỉ highlight tối đa 3 đoạn văn.</strong> Nếu cái gì cũng tô vàng, sẽ chẳng còn gì nổi bật.</li>
+          <li><strong>Đặt một câu hỏi cho mỗi đoạn highlight.</strong> Chỉ cần các câu hỏi như: “Tại sao điều này lại quan trọng?” hoặc “Nếu điều này sai thì điều gì sẽ thay đổi?”</li>
+          <li><strong>Trước khi đọc câu trả lời, hãy tự nói to đáp án của bạn hoặc tóm tắt lại trong một dòng.</strong> Quá trình đối chiếu chính là lúc việc học thực sự diễn ra.</li>
+        </ol>
+        <p>Điều này không có nghĩa highlight là sai lầm, mà nó chính là điểm bắt đầu. Bút highlight giúp định vị nội dung; chính câu hỏi mới giúp bạn ghi nhớ sâu sắc.</p>
+        <div class="post-cta">
+          <p>AI Summary Helper là tiện ích mở rộng miễn phí dành cho Chrome.</p>
+          <a href="https://chromewebstore.google.com/detail/ai-summary-helper-openai/hldbejcjaedipeegjcinmhejdndchkmb" target="_blank" rel="noopener" class="btn-primary">Thêm vào Chrome</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="footer-inner">
+      <div class="wordmark"><img src="../../assets/icon.svg" alt="">AI Summary Helper</div>
+      <div class="foot-links">
+        <a href="https://github.com/philffm/ai-summary-helper/" target="_blank" rel="noopener">Mã nguồn trên GitHub</a>
+        <a href="../privacy.html">Quyền riêng tư</a>
+        <a href="#" data-analytics-settings="">Cài đặt phân tích</a>
+        <a href="https://byphil.eu/terms.html#impressum" target="_blank" rel="noopener">Thông tin pháp lý (Impressum)</a>
+      </div>
+    </div>
+    <div class="copyright">© 2026 Phil Wornath. Một phần của <a href="https://byphil.eu/" class="credit-link">byphil.eu ↗</a> — phần mềm độc lập được phát triển tại Đức.<br>
+      Thiết kế &amp; phát triển bởi <a href="https://philwornath.com/" target="_blank" rel="noopener" class="credit-link">philwornath.com ↗</a>
+    </div>
+  </div>
+</footer>
+
+<script src="../../assets/main.js"></script>
+
+
+</body></html>

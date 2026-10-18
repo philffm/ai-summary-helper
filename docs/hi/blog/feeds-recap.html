@@ -1,0 +1,132 @@
+<!DOCTYPE html><html lang="hi"><head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#08090C">
+<title>40 Feeds के बदले सिर्फ एक Recap — AI Summary Helper</title>
+<meta name="description" content="बहुत सारे feeds फॉलो करने का मतलब है बार-बार task switching। जानिए कैसे एक daily या weekly recap इनसे छुटकारा दिलाता है और आपके focus को बेहतर बनाता है।">
+
+<script>
+  (function(){
+    try {
+      var saved = localStorage.getItem('aish_theme');
+      var theme = saved === 'light' || saved === 'dark'
+        ? saved
+        : (window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
+      document.documentElement.setAttribute('data-theme', theme);
+    } catch (e) {
+      document.documentElement.setAttribute('data-theme', 'dark');
+    }
+  })();
+</script>
+
+<link rel="icon" type="image/svg+xml" href="../../assets/icon.svg">
+<link rel="stylesheet" href="../../assets/styles.css">
+<script src="../../assets/analytics.js"></script>
+<link rel="alternate" hreflang="x-default" href="https://ai-summary-helper.byphil.eu/blog/feeds-recap.html"><link rel="alternate" hreflang="en" href="https://ai-summary-helper.byphil.eu/blog/feeds-recap.html"><link rel="alternate" hreflang="de" href="https://ai-summary-helper.byphil.eu/de/blog/feeds-recap.html"><link rel="alternate" hreflang="fr" href="https://ai-summary-helper.byphil.eu/fr/blog/feeds-recap.html"><link rel="alternate" hreflang="es" href="https://ai-summary-helper.byphil.eu/es/blog/feeds-recap.html"><link rel="alternate" hreflang="zh-Hans" href="https://ai-summary-helper.byphil.eu/zh/blog/feeds-recap.html"><link rel="alternate" hreflang="zh-Hant" href="https://ai-summary-helper.byphil.eu/zh-tw/blog/feeds-recap.html"><link rel="alternate" hreflang="ja" href="https://ai-summary-helper.byphil.eu/ja/blog/feeds-recap.html"><link rel="alternate" hreflang="ko" href="https://ai-summary-helper.byphil.eu/ko/blog/feeds-recap.html"><link rel="alternate" hreflang="pt-BR" href="https://ai-summary-helper.byphil.eu/pt/blog/feeds-recap.html"><link rel="alternate" hreflang="hi" href="https://ai-summary-helper.byphil.eu/hi/blog/feeds-recap.html"><link rel="alternate" hreflang="vi" href="https://ai-summary-helper.byphil.eu/vi/blog/feeds-recap.html"></head>
+<body>
+
+<a href="#main" class="skip-link">सीधे content पर जाएं</a>
+
+<header class="nav">
+  <div class="wrap nav-inner">
+    <div class="brand-cluster">
+      <div class="wordmark">
+        <img src="../../assets/icon.svg" alt="">
+        AI Summary Helper
+      </div>
+      <a href="https://byphil.eu/" target="_blank" rel="noopener" class="ecosystem-badge">
+        <span class="pulse-dot"></span> byphil. का हिस्सा।
+      </a>
+    </div>
+    <div class="nav-desktop-group nav-desktop-links">
+      <nav class="links" aria-label="Primary">
+        <a href="../index.html#features">Features</a>
+        <a href="../index.html#pricing">Pricing</a>
+        <a href="./" aria-current="page">Blog</a>
+        <a href="https://github.com/philffm/ai-summary-helper/" target="_blank" rel="noopener">GitHub</a>
+      </nav>
+      <button type="button" class="theme-toggle" id="themeToggle" aria-label="Switch to light mode">
+        <svg class="icon-moon" viewBox="0 0 24 24" fill="none"><path d="M20 14.5A8.5 8.5 0 1 1 9.5 4a6.8 6.8 0 0 0 10.5 10.5Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"></path></svg>
+        <svg class="icon-sun" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="4.2" stroke="currentColor" stroke-width="1.6"></circle><path d="M12 2.5v2.4M12 19.1v2.4M4.4 4.4l1.7 1.7M17.9 17.9l1.7 1.7M2.5 12h2.4M19.1 12h2.4M4.4 19.6l1.7-1.7M17.9 6.1l1.7-1.7" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"></path></svg>
+      </button>
+      <a href="../index.html" class="btn-sign-in">← App पर वापस जाएं</a>
+    </div>
+    <button type="button" class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="mobileMenu" aria-label="Open menu">
+      <svg viewBox="0 0 24 24" fill="none"><path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"></path></svg>
+    </button>
+  </div>
+  <div class="mobile-menu" id="mobileMenu" hidden="">
+    <div class="wrap mobile-menu-inner">
+      <a href="../index.html#features">Features</a>
+      <a href="../index.html#pricing">Pricing</a>
+      <a href="./">Blog</a>
+      <a href="https://github.com/philffm/ai-summary-helper/" target="_blank" rel="noopener">GitHub</a>
+      <a href="https://byphil.eu/" target="_blank" rel="noopener">byphil. का हिस्सा ↗</a>
+      <button type="button" class="theme-toggle-mobile" id="themeToggleMobile">
+        <span id="themeToggleMobileLabel">Light mode में बदलें</span>
+        <svg class="icon-moon" viewBox="0 0 24 24" fill="none"><path d="M20 14.5A8.5 8.5 0 1 1 9.5 4a6.8 6.8 0 0 0 10.5 10.5Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"></path></svg>
+        <svg class="icon-sun" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="4.2" stroke="currentColor" stroke-width="1.6"></circle><path d="M12 2.5v2.4M12 19.1v2.4M4.4 4.4l1.7 1.7M17.9 17.9l1.7 1.7M2.5 12h2.4M19.1 12h2.4M4.4 19.6l1.7-1.7M17.9 6.1l1.7-1.7" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"></path></svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+<main id="main">
+  <div class="wrap">
+    <div class="post-hero">
+      <span class="blog-date">Guide · अक्टूबर 2026</span>
+      <h1>40 Feeds के बदले सिर्फ एक Recap</h1>
+      <p class="post-sub">चालीस feeds का मतलब है लंच से पहले चालीस छोटे-छोटे interruptions। एक recap उन सबको समेटकर एक सिंगल रीड में बदल देता है।</p>
+    </div>
+  </div>
+
+  <section>
+    <div class="wrap">
+      <div class="prose">
+        <p>2009 में, Sophie Leroy ने 'attention residue' का कॉन्सेप्ट समझाया था: जब आप एक task से दूसरे पर switch करते हैं, तो आपका कुछ ध्यान पिछले task पर ही अटका रह जाता है। उनके एक्सपेरिमेंट्स में, जिन लोगों को काम के बीच टोका गया था, उनका परफॉरमेंस अगले task में खराब रहा — खासकर तब जब वे जल्दी में थे।</p>
+        <p>एक feed reader असल में task switching की मशीन है। हर item एक नया टॉपिक, अलग टोन और एक नया tab होता है। भले ही हर item को पढ़ने में कम समय लगे, यह attention residue जुड़ता जाता है। जब तक आप अपने असली काम पर लौटते हैं, आपका दिमाग अभी भी किसी hosting provider के pricing change के बारे में सोच रहा होता है।</p>
+
+        <h2>Feeds के लिए “inbox zero” कभी काम क्यों नहीं करता</h2>
+        <p>Unread counts पढ़ने को एक बोझ बना देते हैं। अच्छे feeds इसलिए बढ़िया होते हैं क्योंकि वे अक्सर पब्लिश करते हैं, जिसका मतलब है कि यह नंबर बस बढ़ता ही जाता है। लोग तंग आकर 'feed bankruptcy' घोषित करते हैं, सबको read मार्क करते हैं, और फिर धीरे-धीरे उसी ढेर में वापस पहुंच जाते हैं।</p>
+
+        <h2>एक recap से क्या बदलता है</h2>
+        <p>AI Summary Helper का Feeds tab आपको अपने पसंदीदा RSS feeds सब्सक्राइब करने देता है। ढेरों items की लंबी लिस्ट के बजाय, आपको मिलता है एक recap: एक सिंगल daily या weekly ड्राफ्ट, जिसमें सब कुछ कवर होता है और साथ में ऑरिजिनल articles के लिंक्स भी होते हैं। इसे एक बार में आराम से पढ़ें, और आपका पूरा दिन इस बात से तय नहीं होगा कि इंटरनेट पर सुबह 10:42 पर क्या पब्लिश हुआ था।</p>
+        <p>आप इसे एक podcast की तरह सुन भी सकते हैं, जो तब काफी काम आता है जब आपके पास पढ़ने का बिल्कुल समय न हो। यह recap आपके कॉन्फिगर किए गए provider और आपकी अपनी API key पर ही रन होता है, बिल्कुल summaries की तरह।</p>
+        <figure class="post-figure post-figure--portrait"><img src="../../assets/blog/feeds-recap.webp" alt="Slide: आपके सारे feeds एक ही recap में, साथ में weekly recap और ओरिजिनल articles के लिंक्स दिखाता हुआ एक chat" width="800" height="1000" loading="lazy"><figcaption>एक recap आपके unread count का झंझट खत्म करता है: पढ़ने के लिए बस एक सिंगल पीस, हर source के लिंक के साथ।</figcaption></figure>
+        <h2>इसे सही तरीके से सेट अप करें ताकि सच में फायदा हो</h2>
+        <ol>
+          <li><strong>पहले लिस्ट को छोटा करें।</strong> सिर्फ वही feeds रखें जो वाकई ज़रूरी हैं। Input जितना बेहतर होगा, recaps उतने ही शानदार होंगे।</li>
+          <li><strong>दिन का एक फिक्स्ड टाइम चुनें।</strong> एक फिक्स्ड टाइम पर recap पढ़ने से बार-बार चेक करने की आदत छूट जाती है। अगर आप इसे हर घंटे चेक करेंगे, तो यह बस एक धीमा feed बनकर रह जाएगा।</li>
+          <li><strong>जो लिंक्स ज़रूरी लगें, बस उन्हीं पर जाएं।</strong> Recap का हर item अपने ओरिजिनल सोर्स से लिंक होता है, इसलिए summary पढ़ने का विकल्प नहीं, बल्कि डीप-डाइव करने का एक ज़रिया है।</li>
+        </ol>
+        <p>मकसद आलस की वजह से कम पढ़ना नहीं है। मकसद यह तय करना है कि आपका attention किसे मिलना चाहिए — सोच-समझकर एक बार, न कि दिन में चालीस बार अनजाने में।</p>
+        <div class="post-cta">
+          <p>AI Summary Helper एक फ़्री Chrome extension है।</p>
+          <a href="https://chromewebstore.google.com/detail/ai-summary-helper-openai/hldbejcjaedipeegjcinmhejdndchkmb" target="_blank" rel="noopener" class="btn-primary">Chrome में जोड़ें</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="footer-inner">
+      <div class="wordmark"><img src="../../assets/icon.svg" alt="">AI Summary Helper</div>
+      <div class="foot-links">
+        <a href="https://github.com/philffm/ai-summary-helper/" target="_blank" rel="noopener">GitHub पर Source</a>
+        <a href="../privacy.html">Privacy</a>
+        <a href="#" data-analytics-settings="">Analytics settings</a>
+        <a href="https://byphil.eu/terms.html#impressum" target="_blank" rel="noopener">Impressum</a>
+      </div>
+    </div>
+    <div class="copyright">© 2026 Phil Wornath. Part of <a href="https://byphil.eu/" class="credit-link">byphil.eu ↗</a> — independent software built in Germany.<br>
+      Designed &amp; built by <a href="https://philwornath.com/" target="_blank" rel="noopener" class="credit-link">philwornath.com ↗</a>
+    </div>
+  </div>
+</footer>
+
+<script src="../../assets/main.js"></script>
+
+
+</body></html>

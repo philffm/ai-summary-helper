@@ -1,0 +1,138 @@
+<!DOCTYPE html><html lang="ja"><head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#08090C">
+<title>AIの要約を情報元と照合する方法 — AI Summary Helper</title>
+<meta name="description" content="AIの要約は信頼できてこそ役に立ちます。参照元ページと回答をすばやく照合する方法と、引用文で証明できること・できないことについて解説します。">
+
+<script>
+  (function(){
+    try {
+      var saved = localStorage.getItem('aish_theme');
+      var theme = saved === 'light' || saved === 'dark'
+        ? saved
+        : (window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
+      document.documentElement.setAttribute('data-theme', theme);
+    } catch (e) {
+      document.documentElement.setAttribute('data-theme', 'dark');
+    }
+  })();
+</script>
+
+<link rel="icon" type="image/svg+xml" href="../../assets/icon.svg">
+<link rel="stylesheet" href="../../assets/styles.css">
+<script src="../../assets/analytics.js"></script>
+<link rel="alternate" hreflang="x-default" href="https://ai-summary-helper.byphil.eu/blog/verify-ai-summary.html"><link rel="alternate" hreflang="en" href="https://ai-summary-helper.byphil.eu/blog/verify-ai-summary.html"><link rel="alternate" hreflang="de" href="https://ai-summary-helper.byphil.eu/de/blog/verify-ai-summary.html"><link rel="alternate" hreflang="fr" href="https://ai-summary-helper.byphil.eu/fr/blog/verify-ai-summary.html"><link rel="alternate" hreflang="es" href="https://ai-summary-helper.byphil.eu/es/blog/verify-ai-summary.html"><link rel="alternate" hreflang="zh-Hans" href="https://ai-summary-helper.byphil.eu/zh/blog/verify-ai-summary.html"><link rel="alternate" hreflang="zh-Hant" href="https://ai-summary-helper.byphil.eu/zh-tw/blog/verify-ai-summary.html"><link rel="alternate" hreflang="ja" href="https://ai-summary-helper.byphil.eu/ja/blog/verify-ai-summary.html"><link rel="alternate" hreflang="ko" href="https://ai-summary-helper.byphil.eu/ko/blog/verify-ai-summary.html"><link rel="alternate" hreflang="pt-BR" href="https://ai-summary-helper.byphil.eu/pt/blog/verify-ai-summary.html"><link rel="alternate" hreflang="hi" href="https://ai-summary-helper.byphil.eu/hi/blog/verify-ai-summary.html"><link rel="alternate" hreflang="vi" href="https://ai-summary-helper.byphil.eu/vi/blog/verify-ai-summary.html"></head>
+<body>
+
+<a href="#main" class="skip-link">コンテンツへスキップ</a>
+
+<header class="nav">
+  <div class="wrap nav-inner">
+    <div class="brand-cluster">
+      <div class="wordmark">
+        <img src="../../assets/icon.svg" alt="">
+        AI Summary Helper
+      </div>
+      <a href="https://byphil.eu/" target="_blank" rel="noopener" class="ecosystem-badge">
+        <span class="pulse-dot"></span> byphil. プロジェクトの一部
+      </a>
+    </div>
+    <div class="nav-desktop-group nav-desktop-links">
+      <nav class="links" aria-label="Primary">
+        <a href="../index.html#features">機能</a>
+        <a href="../index.html#pricing">料金プラン</a>
+        <a href="./" aria-current="page">ブログ</a>
+        <a href="https://github.com/philffm/ai-summary-helper/" target="_blank" rel="noopener">GitHub</a>
+      </nav>
+      <button type="button" class="theme-toggle" id="themeToggle" aria-label="Switch to light mode">
+        <svg class="icon-moon" viewBox="0 0 24 24" fill="none"><path d="M20 14.5A8.5 8.5 0 1 1 9.5 4a6.8 6.8 0 0 0 10.5 10.5Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"></path></svg>
+        <svg class="icon-sun" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="4.2" stroke="currentColor" stroke-width="1.6"></circle><path d="M12 2.5v2.4M12 19.1v2.4M4.4 4.4l1.7 1.7M17.9 17.9l1.7 1.7M2.5 12h2.4M19.1 12h2.4M4.4 19.6l1.7-1.7M17.9 6.1l1.7-1.7" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"></path></svg>
+      </button>
+      <a href="../index.html" class="btn-sign-in">← アプリに戻る</a>
+    </div>
+    <button type="button" class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="mobileMenu" aria-label="Open menu">
+      <svg viewBox="0 0 24 24" fill="none"><path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"></path></svg>
+    </button>
+  </div>
+  <div class="mobile-menu" id="mobileMenu" hidden="">
+    <div class="wrap mobile-menu-inner">
+      <a href="../index.html#features">機能</a>
+      <a href="../index.html#pricing">料金プラン</a>
+      <a href="./">ブログ</a>
+      <a href="https://github.com/philffm/ai-summary-helper/" target="_blank" rel="noopener">GitHub</a>
+      <a href="https://byphil.eu/" target="_blank" rel="noopener">byphil. ↗ のプロダクト</a>
+      <button type="button" class="theme-toggle-mobile" id="themeToggleMobile">
+        <span id="themeToggleMobileLabel">ライトモードに切り替え</span>
+        <svg class="icon-moon" viewBox="0 0 24 24" fill="none"><path d="M20 14.5A8.5 8.5 0 1 1 9.5 4a6.8 6.8 0 0 0 10.5 10.5Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"></path></svg>
+        <svg class="icon-sun" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="4.2" stroke="currentColor" stroke-width="1.6"></circle><path d="M12 2.5v2.4M12 19.1v2.4M4.4 4.4l1.7 1.7M17.9 17.9l1.7 1.7M2.5 12h2.4M19.1 12h2.4M4.4 19.6l1.7-1.7M17.9 6.1l1.7-1.7" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"></path></svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+<main id="main">
+  <div class="wrap">
+    <div class="post-hero">
+      <span class="blog-date">ガイド · 2026年10月</span>
+      <h1>AIの要約を10秒で情報元と照合する方法</h1>
+      <p class="post-sub">検証できない要約は、文法が整った単なる推測にすぎません。それを防ぐための習慣と、照合をすばやく行うための AI Summary Helper の仕組みをご紹介します。</p>
+    </div>
+  </div>
+
+  <section>
+    <div class="wrap">
+      <div class="prose">
+        <p>2011年、Sparrow氏、Liu氏、Wegner氏は <em>『Science』誌</em> において、人は後で調べられると分かっている場合、事実そのものよりも「どこを探せば見つかるか」を記憶しやすいと報告しました。検索エンジンは一種の外部記憶となり、私たちはそれに適応してきたのです。</p>
+        <p>AIの要約はこの適応をさらに加速させます。整った文章を読むと、その文章自体は記憶に残っても、元のページは意識から消えてしまいます。要約が正確であれば問題ありませんが、不正確な場合には困ったことになります。文章のどこが怪しいのかは、要約を読むだけでは分からないからです。</p>
+
+        <h2>10秒でできる確認法</h2>
+        <p>記事全体を読み直す必要はありません。確認すべきなのは1か所の記述だけです。シンプルな習慣を身につけましょう。</p>
+        <ol>
+          <li><strong>人に伝えたくなる主張を1つ選びます。</strong> 数値、日付、人名、原因など。</li>
+          <li><strong>情報元の中で、その内容を記述している文を探します。</strong> 似たような文ではなく、まさにその内容を述べている箇所です。</li>
+          <li><strong>その前後の文を読みます。</strong> 文脈こそ、要約で最も誤りが生じやすい部分です。「〜の可能性がある」が「〜になる」に変わっていたり、単なる予測が確定した事実になっていたりします。</li>
+        </ol>
+        <p>手動で行うと時間がかかるのが2つ目のステップです。まさにこの部分こそ自動化する価値があります。</p>
+
+        <h2>AI Summary Helper のアプローチ</h2>
+        <p>追加の質問をすると、その回答の根拠となるページ内の正確な記述が一緒に提示されます。拡張機能が各引用文をページ本文と照合し、一言一句一致しない引用は除外するため、架空の引用が根拠として表示されることはありません。引用をクリックすると、該当ページが開いていればその場所までスクロールし、ハイライト表示されます。</p>
+        <p>提案される追加質問も同様に機能します。モデルが詳細な回答を作成している間に、まず短い要点が表示されるため、内容を確認して納得した時点で読むのを止めることができます。</p>
+
+        <figure class="post-figure post-figure--portrait"><img src="../../assets/blog/answer-with-receipt.webp" alt="スライド：すべての回答に根拠を提示。引用元と該当箇所へのジャンプボタンが表示されたチャット回答画面" width="800" height="1000" loading="lazy"><figcaption>回答、その根拠となる記述、そして情報元へのワンクリックアクセス。</figcaption></figure>
+        <h2>引用が証明できること、できないこと</h2>
+        <p>ここで注意すべき点があります。一致する引用文があるからといって、証明されるのは「その記述がページ内に存在する」ことだけであり、モデルが正しく文脈を理解したことまでは証明されません。引用の周囲にある回答文はあくまでモデル自身の言葉であるため、ステップ3の「前後の文を読む」という確認が依然として重要になります。</p>
+        <p>このように使えば、引用は「お墨付き」ではなく、該当する段落へすばやく移動するためのショートカットになります。記事全体に10分費やすのではなく、回答の真偽を分ける決定的な箇所に10秒だけ使う——これこそが狙いです。</p>
+
+        <h2>身につけておきたい習慣</h2>
+        <p>1つの記事につき、1つの回答だけでも確認してみてください。数週間続けるうちに、利用しているモデルの傾向（得意なトピック、数値を大雑把に丸めてしまう傾向、限定表現を強めてしまう癖など）が分かってきます。この感覚を掴むことには、1回ごとの事実確認以上の価値があります。</p>
+        <div class="post-cta">
+          <p>AI Summary Helper は無料のChrome拡張機能です。</p>
+          <a href="https://chromewebstore.google.com/detail/ai-summary-helper-openai/hldbejcjaedipeegjcinmhejdndchkmb" target="_blank" rel="noopener" class="btn-primary">Chromeに追加</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="footer-inner">
+      <div class="wordmark"><img src="../../assets/icon.svg" alt="">AI Summary Helper</div>
+      <div class="foot-links">
+        <a href="https://github.com/philffm/ai-summary-helper/" target="_blank" rel="noopener">GitHubでソースコードを見る</a>
+        <a href="../privacy.html">プライバシー</a>
+        <a href="#" data-analytics-settings="">アナリティクス設定</a>
+        <a href="https://byphil.eu/terms.html#impressum" target="_blank" rel="noopener">法的表記（Impressum）</a>
+      </div>
+    </div>
+    <div class="copyright">© 2026 Phil Wornath. Part of <a href="https://byphil.eu/" class="credit-link">byphil.eu ↗</a> — ドイツで開発された独立系ソフトウェア。<br>
+      Designed &amp; built by <a href="https://philwornath.com/" target="_blank" rel="noopener" class="credit-link">philwornath.com ↗</a>
+    </div>
+  </div>
+</footer>
+
+<script src="../../assets/main.js"></script>
+
+
+</body></html>

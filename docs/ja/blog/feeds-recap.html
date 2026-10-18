@@ -1,0 +1,132 @@
+<!DOCTYPE html><html lang="ja"><head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#08090C">
+<title>40件のフィードを追う代わりに、1つのダイジェストを — AI Summary Helper</title>
+<meta name="description" content="多くのフィードを追うことは、頻繁なタスク切り替えを意味します。日次や週次のまとめ（リキャップ）がそれらをどう代替し、なぜ集中力にとって重要なのかを解説します。">
+
+<script>
+  (function(){
+    try {
+      var saved = localStorage.getItem('aish_theme');
+      var theme = saved === 'light' || saved === 'dark'
+        ? saved
+        : (window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
+      document.documentElement.setAttribute('data-theme', theme);
+    } catch (e) {
+      document.documentElement.setAttribute('data-theme', 'dark');
+    }
+  })();
+</script>
+
+<link rel="icon" type="image/svg+xml" href="../../assets/icon.svg">
+<link rel="stylesheet" href="../../assets/styles.css">
+<script src="../../assets/analytics.js"></script>
+<link rel="alternate" hreflang="x-default" href="https://ai-summary-helper.byphil.eu/blog/feeds-recap.html"><link rel="alternate" hreflang="en" href="https://ai-summary-helper.byphil.eu/blog/feeds-recap.html"><link rel="alternate" hreflang="de" href="https://ai-summary-helper.byphil.eu/de/blog/feeds-recap.html"><link rel="alternate" hreflang="fr" href="https://ai-summary-helper.byphil.eu/fr/blog/feeds-recap.html"><link rel="alternate" hreflang="es" href="https://ai-summary-helper.byphil.eu/es/blog/feeds-recap.html"><link rel="alternate" hreflang="zh-Hans" href="https://ai-summary-helper.byphil.eu/zh/blog/feeds-recap.html"><link rel="alternate" hreflang="zh-Hant" href="https://ai-summary-helper.byphil.eu/zh-tw/blog/feeds-recap.html"><link rel="alternate" hreflang="ja" href="https://ai-summary-helper.byphil.eu/ja/blog/feeds-recap.html"><link rel="alternate" hreflang="ko" href="https://ai-summary-helper.byphil.eu/ko/blog/feeds-recap.html"><link rel="alternate" hreflang="pt-BR" href="https://ai-summary-helper.byphil.eu/pt/blog/feeds-recap.html"><link rel="alternate" hreflang="hi" href="https://ai-summary-helper.byphil.eu/hi/blog/feeds-recap.html"><link rel="alternate" hreflang="vi" href="https://ai-summary-helper.byphil.eu/vi/blog/feeds-recap.html"></head>
+<body>
+
+<a href="#main" class="skip-link">コンテンツへスキップ</a>
+
+<header class="nav">
+  <div class="wrap nav-inner">
+    <div class="brand-cluster">
+      <div class="wordmark">
+        <img src="../../assets/icon.svg" alt="">
+        AI Summary Helper
+      </div>
+      <a href="https://byphil.eu/" target="_blank" rel="noopener" class="ecosystem-badge">
+        <span class="pulse-dot"></span> byphil. プロジェクトの一部
+      </a>
+    </div>
+    <div class="nav-desktop-group nav-desktop-links">
+      <nav class="links" aria-label="Primary">
+        <a href="../index.html#features">機能</a>
+        <a href="../index.html#pricing">料金プラン</a>
+        <a href="./" aria-current="page">ブログ</a>
+        <a href="https://github.com/philffm/ai-summary-helper/" target="_blank" rel="noopener">GitHub</a>
+      </nav>
+      <button type="button" class="theme-toggle" id="themeToggle" aria-label="Switch to light mode">
+        <svg class="icon-moon" viewBox="0 0 24 24" fill="none"><path d="M20 14.5A8.5 8.5 0 1 1 9.5 4a6.8 6.8 0 0 0 10.5 10.5Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"></path></svg>
+        <svg class="icon-sun" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="4.2" stroke="currentColor" stroke-width="1.6"></circle><path d="M12 2.5v2.4M12 19.1v2.4M4.4 4.4l1.7 1.7M17.9 17.9l1.7 1.7M2.5 12h2.4M19.1 12h2.4M4.4 19.6l1.7-1.7M17.9 6.1l1.7-1.7" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"></path></svg>
+      </button>
+      <a href="../index.html" class="btn-sign-in">← アプリに戻る</a>
+    </div>
+    <button type="button" class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="mobileMenu" aria-label="Open menu">
+      <svg viewBox="0 0 24 24" fill="none"><path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"></path></svg>
+    </button>
+  </div>
+  <div class="mobile-menu" id="mobileMenu" hidden="">
+    <div class="wrap mobile-menu-inner">
+      <a href="../index.html#features">機能</a>
+      <a href="../index.html#pricing">料金プラン</a>
+      <a href="./">ブログ</a>
+      <a href="https://github.com/philffm/ai-summary-helper/" target="_blank" rel="noopener">GitHub</a>
+      <a href="https://byphil.eu/" target="_blank" rel="noopener">byphil. ↗ のプロダクト</a>
+      <button type="button" class="theme-toggle-mobile" id="themeToggleMobile">
+        <span id="themeToggleMobileLabel">ライトモードに切り替え</span>
+        <svg class="icon-moon" viewBox="0 0 24 24" fill="none"><path d="M20 14.5A8.5 8.5 0 1 1 9.5 4a6.8 6.8 0 0 0 10.5 10.5Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"></path></svg>
+        <svg class="icon-sun" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="4.2" stroke="currentColor" stroke-width="1.6"></circle><path d="M12 2.5v2.4M12 19.1v2.4M4.4 4.4l1.7 1.7M17.9 17.9l1.7 1.7M2.5 12h2.4M19.1 12h2.4M4.4 19.6l1.7-1.7M17.9 6.1l1.7-1.7" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"></path></svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+<main id="main">
+  <div class="wrap">
+    <div class="post-hero">
+      <span class="blog-date">ガイド · 2026年10月</span>
+      <h1>40件のフィードを追う代わりに、1つのダイジェストを</h1>
+      <p class="post-sub">40件のフィードは、昼休みまでに40回もの集中の中断を生み出します。ダイジェストにまとめれば、1回読むだけで完結します。</p>
+    </div>
+  </div>
+
+  <section>
+    <div class="wrap">
+      <div class="prose">
+        <p>2009年、ソフィー・ルロワ（Sophie Leroy）氏は「注意の残留（attention residue）」と呼ぶ現象を提唱しました。あるタスクから別のタスクへと切り替える際、注意力の一部は直前のタスクに残ったままになります。彼女の実験では、途中で中断されたタスクを抱えた人は次のタスクでのパフォーマンスが低下し、急かされている状況ではその傾向がさらに強まることが示されました。</p>
+        <p>フィードリーダーは、いわば「タスク切り替えの発生装置」です。記事ごとに異なるトピック、トーン、タブが展開されます。たとえ1つひとつを素早くチェックしても、注意の残留は蓄積していきます。いざ本来の作業に戻ったときにも、意識の一部はまだホスティング業者の料金改定のニュースに囚われていたりします。</p>
+
+        <h2>フィードの「インボックス・ゼロ」が機能しない理由</h2>
+        <p>未読カウントは、情報収集をただの「作業」に変えてしまいます。優れたフィードほど頻繁に更新されるため、未読数は増え続ける一方です。結果として、多くの人は「情報破産」を宣言してすべて既読にし、しばらくするとまた未読の山に逆戻りしてしまいます。</p>
+
+        <h2>ダイジェスト（リキャップ）が変えるもの</h2>
+        <p>AI Summary Helperの「Feeds」タブでは、本当に追いたいRSSフィードを登録できます。膨大な記事リストを順にチェックする代わりに、届いた内容をまとめ、元記事へのリンクを添えた日次または週次のダイジェスト（リキャップ）を生成できます。一度にまとめて読むだけで済むため、インターネットが午前10時42分に何を配信したかに一日が振り回されることはもうありません。</p>
+        <p>ポッドキャスト形式で聴くこともできるため、読む時間が取れない場合にも最適です。ダイジェストの生成は、通常の要約機能と同様に、ご自身のAPIキーで設定したお好みのプロバイダー上で安全に行われます。</p>
+        <figure class="post-figure post-figure--portrait"><img src="../../assets/blog/feeds-recap.webp" alt="スライド：フィードを1つのダイジェストにまとめ、週次リキャップと元記事へのリンクを表示しているチャット画面" width="800" height="1000" loading="lazy"><figcaption>ダイジェストが未読カウントを代替：各ソースへのリンク付きで、読むべき内容は1つにまとまります。</figcaption></figure>
+        <h2>効果的に活用するためのセットアップ</h2>
+        <ol>
+          <li><strong>まずは登録リストを厳選する</strong> 見逃したら困るフィードだけを残しましょう。インプットの質を高めれば、ダイジェストの精度も向上します。</li>
+          <li><strong>1日のうち確認する時間を1回だけ決める</strong> 決まった時間にダイジェストを読むことで、「常にチェックする癖」をなくせます。毎時間チェックしていては、単に更新の遅いフィードを見ているのと変わりません。</li>
+          <li><strong>気になるリンクだけを深掘りする</strong> ダイジェスト内の各項目には元の記事リンクが付いています。要約は読書を省略するためではなく、興味のある記事へ進むための入口です。</li>
+        </ol>
+        <p>目的は怠けてインプットを減らすことではありません。無意識に40回も注意を奪われるのをやめ、何に集中すべきかを自分自身で1回だけ、主体的に選ぶことです。</p>
+        <div class="post-cta">
+          <p>AI Summary Helper は無料のChrome拡張機能です。</p>
+          <a href="https://chromewebstore.google.com/detail/ai-summary-helper-openai/hldbejcjaedipeegjcinmhejdndchkmb" target="_blank" rel="noopener" class="btn-primary">Chromeに追加</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="footer-inner">
+      <div class="wordmark"><img src="../../assets/icon.svg" alt="">AI Summary Helper</div>
+      <div class="foot-links">
+        <a href="https://github.com/philffm/ai-summary-helper/" target="_blank" rel="noopener">GitHubでソースコードを見る</a>
+        <a href="../privacy.html">プライバシー</a>
+        <a href="#" data-analytics-settings="">アナリティクス設定</a>
+        <a href="https://byphil.eu/terms.html#impressum" target="_blank" rel="noopener">法的表記（Impressum）</a>
+      </div>
+    </div>
+    <div class="copyright">© 2026 Phil Wornath. Part of <a href="https://byphil.eu/" class="credit-link">byphil.eu ↗</a> — ドイツで開発された独立系ソフトウェア。<br>
+      Designed &amp; built by <a href="https://philwornath.com/" target="_blank" rel="noopener" class="credit-link">philwornath.com ↗</a>
+    </div>
+  </div>
+</footer>
+
+<script src="../../assets/main.js"></script>
+
+
+</body></html>
