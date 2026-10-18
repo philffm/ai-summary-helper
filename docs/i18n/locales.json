@@ -8,7 +8,11 @@
     "blog/pocket-alternative.html",
     "blog/unread-saves.html",
     "blog/on-device-architecture.html",
-    "blog/from-bookmarklet-to-2.html"
+    "blog/from-bookmarklet-to-2.html",
+    "blog/bring-your-own-key.html",
+    "blog/feeds-recap.html",
+    "blog/highlighting-vs-asking.html",
+    "blog/verify-ai-summary.html"
   ],
   "locales": {
     "de": {
