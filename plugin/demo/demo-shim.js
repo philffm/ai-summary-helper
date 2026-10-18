@@ -16,6 +16,10 @@
   sync.set({ onboardingDismissed: true, demo: true, ...(LOC ? { uiLanguage: LOC.ui, selectedLanguage: LOC.sel } : {}) });
   const setTheme = (th) => { if (th !== 'light' && th !== 'dark') return; document.documentElement.setAttribute('data-theme', th); local.set({ theme: th }); sync.set({ theme: th }); };
   setTheme(THEME);
+  (() => { const b64 = (n) => { const a = new Uint8Array(n); crypto.getRandomValues(a); return btoa(String.fromCharCode(...a)).replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/, ''); };
+    local.set({ 'inbox:config': { inboxId: b64(16), encKey: b64(32), writeToken: b64(32), readToken: b64(32), createdAt: Date.now() - 6 * 864e5, v: 1, toPhone: { inboxId: b64(16), writeToken: b64(32) } } }); })();
+  // Docking the panel makes no sense inside a page: only Settings stays in the header.
+  document.addEventListener('DOMContentLoaded', () => { const st = document.createElement('style'); st.textContent = '#popoutButton,#openTabButton{display:none !important}'; document.head.appendChild(st); });
   addEventListener('message', (e) => { const m = e.data; if (m && m.aishDemo && m.type === 'theme') setTheme(m.theme); });
   // A believable reading history, so History, Graph and Analytics have something to show. Dates are relative to "now".
   (() => {
@@ -100,7 +104,13 @@
   };
   // The popup asks for the model roster over the network; the demo has no network.
   const realFetch = window.fetch.bind(window);
-  window.fetch = (u, ...a) => /^https?:/.test(String(u)) && !String(u).startsWith(location.origin) ? Promise.reject(new TypeError('offline demo')) : realFetch(u, ...a);
+  // A phone that is "already paired": sending an article works end to end (really encrypted), the server answers 202.
+  window.fetch = (u, o, ...a) => {
+    const url = String(u);
+    if (/api\.byphil\.eu\/.*\/aish_inboxes\/[^/]+\/items/.test(url) && o && o.method === 'POST') return new Promise(r => setTimeout(() => r(new Response('{}', { status: 202, headers: { 'Content-Type': 'application/json' } })), 700));
+    if (/^https?:/.test(url) && !url.startsWith(location.origin)) return Promise.reject(new TypeError('offline demo'));
+    return realFetch(u, o, ...a);
+  };
   window.AISH_DEMO_ACTIONS = { handle, quiet };
 })();
 
