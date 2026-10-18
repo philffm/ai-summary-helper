@@ -117,10 +117,10 @@
         <p class="hero-meta">Opens the generator · most LLM models through the byPhil API (no key), or your own OpenAI, Gemini, Mistral, DeepSeek or Ollama</p>
       </div>
       <ol class="hs-steps" data-stage-pane="browser">
-  <li class="is-on"><b>Read any page.</b><span>Open an article as usual. AISH sits quietly in the browser.</span></li>
-  <li><b>Summary beside the article.</b><span>One click. A short summary types out in the side panel while you keep reading.</span></li>
-  <li><b>Ask the page.</b><span>Follow-up answers point back to the exact passage they came from.</span></li>
-  <li><b>In your language.</b><span>Summaries in the language you choose, and a graph of everything you've read.</span></li>
+  <li class="is-on" data-step="0" role="button" tabindex="0"><b>Read any page.</b><span>Open an article as usual. AISH sits quietly in the browser.</span></li>
+  <li data-step="1" role="button" tabindex="0"><b>Summary beside the article.</b><span>One click. A short summary types out in the side panel while you keep reading.</span></li>
+  <li data-step="2" role="button" tabindex="0"><b>Ask the page.</b><span>Follow-up answers point back to the exact passage they came from.</span></li>
+  <li data-step="3" role="button" tabindex="0"><b>In your language.</b><span>Summaries in the language you choose, and a graph of everything you've read.</span></li>
 </ol>
     </div></div>
     <div class="hs-vwrap" data-stage-pane="browser">
@@ -131,7 +131,7 @@
             <div class="hs-langs" data-no-translate><b data-lang="en" class="is-on">English</b><b data-lang="de">Deutsch</b><b>Français</b><b>Español</b><b>日本語</b></div>
             <div class="hs-badge" data-no-translate><i></i> Runs locally · gemma3:4b</div>
             <div class="hs-win" data-no-translate>
-              <div class="hs-bar"><i></i><i></i><i></i><span>🔒 dailyledger.example/work-life/office-fern</span></div>
+              <div class="hs-bar"><i></i><i></i><i></i><span>🔒 dailyledger.example/work-life/office-fern</span><div class="hs-ext"><em class="hs-puz">🧩</em><em class="hs-extbtn"><span class="hs-logo"></span></em></div></div>
               <div class="hs-art">
                 <div class="hs-mast">The Daily Ledger</div>
                 <div class="hs-kick">WORK &amp; LIFE</div>
@@ -144,13 +144,14 @@
               <div class="hs-panel">
                 <div class="hs-ph"><span class="hs-logo"></span> AI Summary Helper</div>
                 <div class="hs-tags"><i>workplace</i><i>humour</i><i>🌐 <span data-lang-code>en</span></i></div>
-                <div class="hs-sum">
+                <div class="hs-sum has-text">
                   <small>✨ AI Summary</small>
+                  <i class="hs-ph2">Press Summarize to read this page in seconds.</i>
                   <b class="hs-st" data-t-en="A fern climbs the career ladder" data-t-de="Ein Farn macht Karriere">A fern climbs the career ladder</b>
                   <span class="hs-sb" data-b-en="Gerald, an office fern in Leeds, has outlasted <strong>four reorganisations in seven years</strong> and is now up for team lead." data-b-de="Gerald, ein Büro-Farn in Leeds, hat <strong>vier Umstrukturierungen in sieben Jahren</strong> überstanden und soll nun Teamleiter werden.">Gerald, an office fern in Leeds, has outlasted <strong>four reorganisations in seven years</strong> and is now up for team lead.</span>
                   <span class="hs-sp" data-p-en="87% of staff call him the most reliable presence in the office." data-p-de="87 % der Belegschaft halten ihn für die verlässlichste Präsenz im Büro.">• 87% of staff call him the most reliable presence in the office.</span>
                 </div>
-                <div class="hs-q"><span>Why is Gerald up for promotion?</span></div>
+                <div class="hs-qwrap"><button type="button" class="hs-sugg" tabindex="-1">💬 Why is Gerald up for promotion?</button><div class="hs-q"><span>Why is Gerald up for promotion?</span></div></div>
                 <div class="hs-a">Staff see him as the most reliable presence in the office.<em>📌 In article</em></div>
                 <div class="hs-tabs"><i>Feeds</i><i class="on">Summarize</i><i>History</i></div>
               </div>
@@ -163,6 +164,7 @@
           </div>
         </div>
       </div>
+      <div class="hs-ctrl" role="group" aria-label="Walkthrough"><button type="button" class="hs-pp" aria-label="Pause walkthrough"><svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><path class="pp-pause" d="M7 5h3v14H7zM14 5h3v14h-3z" fill="currentColor"/><path class="pp-play" d="M8 5l11 7-11 7z" fill="currentColor"/></svg></button><button type="button" class="hs-dot is-on" aria-label="Step 1"></button><button type="button" class="hs-dot" aria-label="Step 2"></button><button type="button" class="hs-dot" aria-label="Step 3"></button><button type="button" class="hs-dot" aria-label="Step 4"></button></div>
       <p class="sr-only">AI Summary Helper opens a short summary of an article in a side panel, lets you ask follow-up questions that link back to the source passage, and switches summaries to the language you choose.</p>
     </div>
     <div class="hs-bm" data-stage-pane="bookmarklet" hidden>
