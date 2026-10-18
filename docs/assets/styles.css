@@ -977,9 +977,6 @@ footer .copyright a:hover, .foot-links a:hover{ text-decoration-color:currentCol
 .nav--pill .pill{position:absolute;left:50%;transform:translateX(-50%);display:flex;align-items:center;gap:2px;padding:5px;border-radius:999px;background:var(--nav-bg,rgba(16,17,22,.72));border:1px solid var(--border-medium);backdrop-filter:blur(18px) saturate(1.4);-webkit-backdrop-filter:blur(18px) saturate(1.4);box-shadow:0 8px 30px rgba(0,0,0,.25);pointer-events:auto;white-space:nowrap}
 .nav--pill .pill a,.nav--pill .pill-more-btn{display:inline-flex;align-items:center;gap:5px;padding:8px 14px;border-radius:999px;color:var(--paper-dim);font-size:14px;font-weight:500;text-decoration:none;background:none;border:0;cursor:pointer;transition:background .2s,color .2s}
 .nav--pill .pill a:hover,.nav--pill .pill-more-btn:hover,.nav--pill .pill a.is-active,.nav--pill .pill a[aria-current]{background:var(--surface-1);color:var(--paper)}
-.nav--pill .pill-logo{display:none!important;padding:6px 8px!important}
-.nav--pill .pill-logo img{width:20px;height:20px}
-.nav--pill.is-compact .pill-logo{display:inline-flex!important}
 .nav--pill .pill .pill-cta{background:var(--signal);color:#08090C;font-weight:600;margin-left:4px}
 :root[data-theme="light"] .nav--pill .pill .pill-cta{color:#fff}
 .nav--pill .pill .pill-cta:hover{background:var(--signal);color:#08090C;filter:brightness(1.08)}
@@ -1054,7 +1051,6 @@ body.nav-locked{overflow:hidden}
 .nav--pill .pill{padding:7px;gap:4px;box-shadow:0 10px 36px rgba(0,0,0,.28)}
 .nav--pill .pill a,.nav--pill .pill-more-btn{padding:11px 20px;font-size:15px;font-weight:600}
 .nav--pill .pill .pill-cta{padding:11px 22px;margin-left:6px}
-.nav--pill .pill-x,.nav--pill .pill-more,.nav--pill .pill-logo{display:none!important}
 .nav--pill .tool-btn,.nav--pill .theme-toggle,.nav--pill .nav-toggle{width:46px;height:46px}
 .nav--pill .nav-toggle{display:inline-flex;align-items:center;justify-content:center;border-radius:50%;border:1px solid var(--border-medium);background:var(--nav-bg);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);color:var(--paper);cursor:pointer;position:relative;z-index:2;margin-inline-start:6px}
 .nav--pill .nav-toggle svg{width:22px;height:22px}
