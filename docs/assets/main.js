@@ -1160,6 +1160,15 @@ function setBilling(period) {
     }).observe(mm, { attributes: true, attributeFilter: ['hidden'] });
   }
 
+  // Globe button: open the full-screen menu and jump to the language search
+  var gb = document.getElementById('langBtn');
+  if (gb && mm && tg) gb.addEventListener('click', function (ev) {
+    ev.stopPropagation();
+    if (mm.hidden) tg.click();
+    var box = mm.querySelector('.mm-lang');
+    setTimeout(function () { if (box) box.scrollIntoView({ block: 'center' }); var s = document.getElementById('langSearch'); if (s) s.focus({ preventScroll: true }); }, 80);
+  });
+
   // Scroll lock while full-screen menu is open
   if (mm && tg) new MutationObserver(function () { document.body.classList.toggle('nav-locked', !mm.hidden); }).observe(mm, { attributes: true, attributeFilter: ['hidden'] });
 })();
