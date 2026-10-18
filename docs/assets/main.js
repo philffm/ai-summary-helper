@@ -885,7 +885,7 @@ function setBilling(period) {
   if (prev) prev.addEventListener('click', function () { go(active - 1); });
   if (next) next.addEventListener('click', function () { go(active + 1); });
   dots.forEach(function (d, i) { d.addEventListener('click', function () { go(i); }); });
-  slides.forEach(function (el, i) { el.addEventListener('click', function () { if (i !== active) go(i); }); });
+  slides.forEach(function (el, i) { el.addEventListener('click', function () { if (String(window.getSelection && window.getSelection()).length) return; if (i !== active) go(i); }); });
   track.addEventListener('keydown', function (e) {
     if (e.key === 'ArrowRight') { e.preventDefault(); go(active + 1); }
     else if (e.key === 'ArrowLeft') { e.preventDefault(); go(active - 1); }
