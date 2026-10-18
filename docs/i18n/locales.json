@@ -129,6 +129,30 @@
       "hreflang": "ar",
       "marketNotes": "Modern Standard Arabic (neutral, readable across regions), right-to-left. Professional modern tech tone. Keep tech terms (Ollama, Kindle, LocalSend, Markdown, API key) in Latin script and keep numerals and URLs unchanged. Emphasize privacy, local on-device AI and bring-your-own-key.",
       "rtl": true
+    },
+    "sv": {
+      "name": "Swedish",
+      "dir": "sv",
+      "hreflang": "sv",
+      "marketNotes": "Sweden (and Swedish-speaking Finland). Informal modern \"du\" register, plain and concise like Swedish SaaS copy. Emphasize privacy, GDPR, local processing with Ollama and bring-your-own-key. Keep tech terms (Ollama, Kindle, LocalSend, Markdown, API key) in English."
+    },
+    "da": {
+      "name": "Danish",
+      "dir": "da",
+      "hreflang": "da",
+      "marketNotes": "Denmark. Informal modern \"du\" register, plain and concise. Emphasize privacy, GDPR, local processing with Ollama and bring-your-own-key. Keep tech terms (Ollama, Kindle, LocalSend, Markdown, API key) in English."
+    },
+    "no": {
+      "name": "Norwegian (Bokmål)",
+      "dir": "no",
+      "hreflang": "nb",
+      "marketNotes": "Norway. Norwegian Bokmål, informal modern \"du\" register, plain and concise. Emphasize privacy, local processing with Ollama and bring-your-own-key. Keep tech terms (Ollama, Kindle, LocalSend, Markdown, API key) in English."
+    },
+    "fi": {
+      "name": "Finnish",
+      "dir": "fi",
+      "hreflang": "fi",
+      "marketNotes": "Finland. Natural modern Finnish, informal \"sinä\" implied, concise UI verbs (avoid stiff literal translations of English). Emphasize privacy, GDPR, local processing with Ollama and bring-your-own-key. Keep tech terms (Ollama, Kindle, LocalSend, Markdown, API key) in English."
     }
   }
 }

@@ -125,6 +125,8 @@ function setBilling(period) {
     ru: ['Русский', 'Эта страница доступна и на языке: {l}.'], uk: ['Українська', 'Ця сторінка доступна також українською: {l}.'],
     tr: ['Türkçe', 'Bu sayfa {l} dilinde de mevcut.'], id: ['Bahasa Indonesia', 'Halaman ini juga tersedia dalam {l}.'],
     pl: ['Polski', 'Ta strona jest dostępna także po polsku: {l}.'], th: ['ไทย', 'หน้านี้มีให้บริการเป็นภาษา{l}ด้วย'],
+    sv: ['Svenska', 'Den här sidan finns även på {l}.'], da: ['Dansk', 'Denne side findes også på {l}.'],
+    no: ['Norsk', 'Denne siden er også tilgjengelig på {l}.'], fi: ['Suomi', 'Tämä sivu on saatavilla myös kielellä {l}.'],
     ar: ['العربية', 'هذه الصفحة متاحة أيضًا بـ{l}.']
   };
   var DISMISS_KEY = 'aish_lang_banner_dismissed';
@@ -132,6 +134,7 @@ function setBilling(period) {
     code = (code || '').toLowerCase();
     if (code.indexOf('zh') === 0) return /hant|-tw|-hk|-mo/.test(code) ? 'zh-tw' : 'zh';
     var base = code.split('-')[0];
+    if (base === 'nb' || base === 'nn') base = 'no';
     return LOCALES[base] ? base : null;
   }
   // Current locale = first path segment when it is a shipped locale folder, otherwise English.
