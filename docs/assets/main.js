@@ -881,3 +881,74 @@ function setBilling(period) {
     });
   });
 })();
+
+/* ── Hero scene (landing page): scroll progress drives a native 1280×800 composition ── */
+(function () {
+  var root = document.querySelector('[data-hscene]');
+  if (!root) return;
+  var reduce = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var track = root.querySelector('.hscene-track'), sticky = root.querySelector('.hscene-sticky'), view = root.querySelector('.hscene-view');
+  var canvas = root.querySelector('.hscene-canvas');
+  var caps = [].slice.call(root.querySelectorAll('.hs-cap')), mt = root.querySelector('[data-mcap-t]'), ms = root.querySelector('[data-mcap-s]');
+  var st = root.querySelector('.hs-st'), sb = root.querySelector('.hs-sb'), sp = root.querySelector('.hs-sp');
+  var pills = [].slice.call(root.querySelectorAll('.hs-langs b[data-lang]')), code = root.querySelector('[data-lang-code]');
+  var D = {}; [['en'], ['de']].forEach(function (a) { var l = a[0]; D[l] = { t: st.getAttribute('data-t-' + l), b: sb.getAttribute('data-b-' + l), p: sp.getAttribute('data-p-' + l) }; });
+  function cl(x) { return x < 0 ? 0 : x > 1 ? 1 : x; }
+  function seg(p, a, b) { return cl((p - a) / (b - a)); }
+  // Slice HTML to n visible characters, closing tags stay balanced.
+  function slice(html, n) {
+    var out = '', i = 0, vis = 0, open = [];
+    while (i < html.length && vis < n) {
+      if (html[i] === '<') { var j = html.indexOf('>', i), tag = html.slice(i, j + 1); out += tag; if (tag[1] === '/') open.pop(); else open.push(tag.replace(/[<>\/]/g, '').split(' ')[0]); i = j + 1; }
+      else if (html[i] === '&') { var k = html.indexOf(';', i); out += html.slice(i, k + 1); i = k + 1; vis++; }
+      else { out += html[i++]; vis++; }
+    }
+    while (open.length) out += '</' + open.pop() + '>';
+    return out;
+  }
+  function len(html) { return html.replace(/<[^>]+>/g, '').length; }
+  var lang = 'en', stage = -1;
+  function setLang(l) {
+    if (l === lang) return; lang = l; code.textContent = l;
+    pills.forEach(function (b) { b.classList.toggle('is-on', b.getAttribute('data-lang') === l); });
+  }
+  function render(p) {
+    var s = p < .12 ? 0 : p < .45 ? 1 : p < .75 ? 2 : 3;
+    if (s !== stage) {
+      stage = s; caps.forEach(function (c, i) { c.classList.toggle('is-on', i === s); });
+      if (mt) { var c = caps[s]; mt.textContent = c.querySelector('h3').textContent; ms.textContent = c.querySelector('p').textContent; }
+    }
+    var l = p >= .8 ? 'de' : 'en'; setLang(l);
+    var d = D[lang];
+    root.style.setProperty('--p-panel', seg(p, .07, .16).toFixed(3));
+    root.style.setProperty('--p-hl', seg(p, .46, .56).toFixed(3));
+    root.style.setProperty('--p-qa', seg(p, .56, .64).toFixed(3));
+    root.style.setProperty('--p-graph', seg(p, .86, .95).toFixed(3));
+    var ty = lang === 'de' ? 1 : seg(p, .16, .42);                    // typewriter progress (full again after language switch)
+    var all = len(d.t) + len(d.b) + len(d.p), n = Math.round(all * ty);
+    st.textContent = d.t; sb.innerHTML = slice(d.b, Math.max(0, n)); sp.textContent = n > len(d.b) ? '• ' + d.p.slice(0, Math.max(0, n - len(d.b))) : '';
+    if (ty >= 1) { sb.innerHTML = d.b; sp.textContent = '• ' + d.p; }
+    if (stage < 1) { sb.innerHTML = ''; sp.textContent = ''; }
+  }
+  function fit() {
+    var cs = getComputedStyle(root), mobile = innerWidth <= 760;
+    var cw = mobile ? 460 : 1280, ch = mobile ? 600 : 800;
+    var w = view.parentNode.clientWidth;
+    var s = Math.min(w / cw, root.classList.contains('is-live') ? (innerHeight - 120) / ch : Infinity);
+    if (mobile) s = w / cw;
+    root.style.setProperty('--cw', cw); root.style.setProperty('--ch', ch); root.style.setProperty('--s', s.toFixed(4));
+    view.style.width = (cw * s) + 'px'; view.style.margin = '0 auto';
+  }
+  function onScroll() {
+    var r = track.getBoundingClientRect(), range = r.height - sticky.getBoundingClientRect().height;
+    render(range > 0 ? cl((72 - r.top) / range) : 1);
+  }
+  fit();
+  if (reduce) { render(.72); root.style.setProperty('--p-graph', 1); window.addEventListener('resize', fit); return; }
+  root.classList.add('is-live'); fit(); onScroll();
+  var tick = false;
+  function req() { if (tick) return; tick = true; requestAnimationFrame(function () { tick = false; onScroll(); }); }
+  window.addEventListener('scroll', req, { passive: true });
+  window.addEventListener('resize', function () { fit(); req(); });
+  if (window.ResizeObserver) new ResizeObserver(function () { fit(); req(); }).observe(root);
+})();
