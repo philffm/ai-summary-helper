@@ -891,3 +891,9 @@ footer .copyright a:hover, .foot-links a:hover{ text-decoration-color:currentCol
 .demo-frame:not(.is-live) .demo-start{ box-shadow:0 0 0 8px rgba(255,255,255,.55), 0 16px 44px rgba(0,0,0,.28); backdrop-filter:blur(6px); }
 :root[data-theme="dark"] .demo-frame:not(.is-live) .demo-start{ box-shadow:0 0 0 8px rgba(20,24,36,.6), 0 16px 44px rgba(0,0,0,.5); }
 .demo-cta{ display:flex; justify-content:center; margin-top:22px; }
+
+/* Step caption sits right above the slide indicator, on every screen size */
+.hscene-mcap{ display:block !important; margin:14px auto 10px; max-width:640px; text-align:center; font-size:15px; line-height:1.45; color:var(--paper-dim); min-height:66px; }
+.hscene-mcap strong{ display:block; font:600 19px var(--font-display); color:var(--paper); margin-bottom:3px; }
+.hs-steps li{ opacity:.7; }
+.hs-steps li.is-on{ opacity:1; }

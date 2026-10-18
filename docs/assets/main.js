@@ -928,6 +928,7 @@ function setBilling(period) {
   var reduce = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
   var vis = root.querySelector('.hs-vis'), view = root.querySelector('.hscene-view'), canvas = root.querySelector('.hscene-canvas');
   var steps = [].slice.call(root.querySelectorAll('.hs-steps li')), dots = [].slice.call(root.querySelectorAll('.hs-dot')), pp = root.querySelector('.hs-pp');
+  var mcap = root.querySelector('.hscene-mcap'), ctrlEl = root.querySelector('.hs-ctrl'); if (mcap && ctrlEl) ctrlEl.parentNode.insertBefore(mcap, ctrlEl);
   var mt = root.querySelector('[data-mcap-t]'), ms = root.querySelector('[data-mcap-s]');
   var sum = root.querySelector('.hs-sum'), st = root.querySelector('.hs-st'), sb = root.querySelector('.hs-sb'), sp = root.querySelector('.hs-sp');
   var D0 = null, pills = [].slice.call(root.querySelectorAll('.hs-langs b[data-lang]')), code = root.querySelector('[data-lang-code]');
@@ -1034,7 +1035,7 @@ function setBilling(period) {
   function fit() {
     var mobile = innerWidth <= 900, cw = mobile ? 460 : 760, ch = mobile ? 600 : 720;
     var w = view.parentNode.clientWidth || cw;
-    var s = mobile ? w / cw : Math.min(w / cw, (innerHeight - 72 - 90) / ch);
+    var s = mobile ? w / cw : Math.min(w / cw, (innerHeight - 72 - 150) / ch);
     css('--cw', cw); css('--ch', ch); css('--s', s.toFixed(4));
     buildPath();
   }
