@@ -897,3 +897,7 @@ footer .copyright a:hover, .foot-links a:hover{ text-decoration-color:currentCol
 .hscene-mcap strong{ display:block; font:600 19px var(--font-display); color:var(--paper); margin-bottom:3px; }
 .hs-steps li{ opacity:.7; }
 .hs-steps li.is-on{ opacity:1; }
+
+/* Label that travels with the cursor and names the current step */
+.hs-tip{ position:absolute; left:0; top:0; z-index:9; pointer-events:none; white-space:nowrap; padding:7px 14px; border-radius:999px; background:#14161f; color:#fff; font:600 15px/1.2 var(--font-display); box-shadow:0 8px 22px rgba(0,0,0,.28); transition:opacity .25s; }
+.hs-tip:empty{ opacity:0; }

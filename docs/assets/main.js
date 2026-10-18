@@ -960,7 +960,8 @@ function setBilling(period) {
   cur.setAttribute('viewBox', '0 0 24 24'); cur.setAttribute('class', 'hs-cursor');
   cur.innerHTML = '<path d="M4 2l15 9-6.5 1.5L9 19z" fill="#14161f" stroke="#fff" stroke-width="1.4" stroke-linejoin="round"/>';
   var rip = document.createElement('div'); rip.className = 'hs-ripple';
-  canvas.appendChild(rip); canvas.appendChild(cur);
+  var tip = document.createElement('div'); tip.className = 'hs-tip';
+  canvas.appendChild(rip); canvas.appendChild(cur); canvas.appendChild(tip);
   function cl(x) { return x < 0 ? 0 : x > 1 ? 1 : x; }
   function seg(t, a, b) { return cl((t - a) / (b - a)); }
   function ease(x) { return x < .5 ? 2 * x * x : 1 - Math.pow(-2 * x + 2, 2) / 2; }
@@ -995,7 +996,7 @@ function setBilling(period) {
       lang && { t: 15.6, x: lang.x, y: lang.y }, lang && { t: 16.2, x: lang.x, y: lang.y },
       { t: 17.6, x: rest.x + 40, y: rest.y + 40 }, { t: T, x: rest.x + 40, y: rest.y + 40 } ].filter(Boolean);
   }
-  var lang = 'a', stage = -1;
+  var lang = 'a', stage = -1, stepTitle = '';
   function setLang(l) { if (l === lang) return; lang = l; code.textContent = l === 'a' ? codeA : codeB; pills.forEach(function (b) { b.classList.toggle('is-on', b.getAttribute('data-lang') === l); }); }
   function css(n, v) { root.style.setProperty(n, v); }
   function render(t) {
@@ -1004,6 +1005,7 @@ function setBilling(period) {
       stage = s;
       steps.forEach(function (c, i) { c.classList.toggle('is-on', i === s); });
       dots.forEach(function (c, i) { c.classList.toggle('is-on', i === s); });
+      stepTitle = steps[s] ? steps[s].querySelector('b').textContent : '';
       if (mt && steps[s]) { mt.textContent = steps[s].querySelector('b').textContent; ms.textContent = steps[s].querySelector('span').textContent; }
     }
     setLang(t >= 15.8 ? 'b' : 'a');
@@ -1027,6 +1029,10 @@ function setBilling(period) {
       var k = b.t === a.t ? 1 : ease(cl((t - a.t) / (b.t - a.t)));
       var x = a.x + (b.x - a.x) * k, y = a.y + (b.y - a.y) * k;
       cur.style.transform = 'translate(' + (x - 4) + 'px,' + (y - 2) + 'px)';
+      var cwid = parseFloat(getComputedStyle(root).getPropertyValue('--cw')) || 760, flip = x > cwid - 260;
+      if (tip.textContent !== stepTitle) tip.textContent = stepTitle;
+      tip.classList.toggle('flip', flip);
+      tip.style.transform = 'translate(' + (flip ? x - 14 : x + 24) + 'px,' + (y + 14) + 'px)' + (flip ? ' translateX(-100%)' : '');
       var rc = null; CLICKS.forEach(function (c) { if (t >= c && t < c + .5) rc = c; });
       if (rc !== null) { var q = (t - rc) / .5; rip.style.opacity = (1 - q).toFixed(2); rip.style.transform = 'translate(' + x + 'px,' + y + 'px) scale(' + (.4 + q * 1.1).toFixed(2) + ')'; } else rip.style.opacity = 0;
     }
