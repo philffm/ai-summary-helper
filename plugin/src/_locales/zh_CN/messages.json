@@ -1,6 +1,6 @@
 {
   "extensionName": {
-    "message": "AI Summary Helper — Summarize, Ask, Listen & Cite (BYOK, Ollama)"
+    "message": "AI Summary Helper – 用 AI 摘要网页和 PDF（BYOK、Ollama）"
   },
   "extensionNameFirefox": {
     "message": "AI Summary Helper – Summarize, Ask, Listen, Cite"
@@ -9,7 +9,7 @@
     "message": "AI Summary Helper"
   },
   "extensionDescription": {
-    "message": "用自己的 AI 密钥或 Ollama 做摘要。内置 RSS 阅读器、稍后阅读、高亮、发送到 Kindle。开源，无需登录。"
+    "message": "用自己的 AI 密钥或本地 Ollama，将任何网页、PDF 或 YouTube 视频摘要为 41 种语言。私密、开源、无需账号。"
   },
   "fetchSummary": {
     "message": "获取摘要"

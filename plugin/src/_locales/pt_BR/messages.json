@@ -9,7 +9,7 @@
     "message": "AI Summary Helper"
   },
   "extensionDescription": {
-    "message": "Resuma sites, PDFs e vídeos do YouTube com sua chave de IA ou IA local (Ollama). Leitor RSS, ler depois, destaques. Sem cadastro."
+    "message": "Resuma páginas web, PDFs e vídeos do YouTube em 41 idiomas com sua chave de IA ou Ollama local. Privado, código aberto, sem conta."
   },
   "fetchSummary": {
     "message": "Obter Resumo"

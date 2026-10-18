@@ -1,6 +1,6 @@
 {
   "extensionName": {
-    "message": "AI Summary Helper — Summarize, Ask, Listen & Cite (BYOK, Ollama)"
+    "message": "AI Summary Helper – वेब पेज और PDF का AI सारांश (BYOK, Ollama)"
   },
   "extensionNameFirefox": {
     "message": "AI Summary Helper – Summarize, Ask, Listen, Cite"
@@ -9,7 +9,7 @@
     "message": "AI Summary Helper"
   },
   "extensionDescription": {
-    "message": "अपनी AI key या Ollama से सारांश। RSS रीडर, बाद में पढ़ें, हाइलाइट, Kindle एक्सपोर्ट। ओपन सोर्स, बिना लॉगिन।"
+    "message": "किसी भी वेब पेज, PDF या YouTube वीडियो का 41 भाषाओं में सारांश, अपनी AI key या स्थानीय Ollama से। निजी, ओपन सोर्स, बिना अकाउंट।"
   },
   "fetchSummary": {
     "message": "सारांश प्राप्त करें"

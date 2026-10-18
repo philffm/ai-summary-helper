@@ -1,6 +1,6 @@
 {
   "extensionName": {
-    "message": "AI Summary Helper — Summarize, Ask, Listen & Cite (BYOK, Ollama)"
+    "message": "AI Summary Helper – ИИ-пересказ веб-страниц и PDF (BYOK, Ollama)"
   },
   "extensionNameFirefox": {
     "message": "AI Summary Helper – Summarize, Ask, Listen, Cite"
@@ -9,7 +9,7 @@
     "message": "AI Summary Helper"
   },
   "extensionDescription": {
-    "message": "Summarize with your own AI key or local Ollama. Save for later w/ reminders, highlight text, Kindle export. Open source, no login."
+    "message": "Пересказ веб-страниц, PDF и видео YouTube на 41 языке с вашим ключом ИИ или локальной Ollama. Приватно, открытый код, без аккаунта."
   },
   "fetchSummary": {
     "message": "Получить резюме"

@@ -1,6 +1,6 @@
 {
   "extensionName": {
-    "message": "AI Summary Helper — Summarize, Ask, Listen & Cite (BYOK, Ollama)"
+    "message": "AI Summary Helper – تلخيص صفحات الويب وملفات PDF (BYOK، Ollama)"
   },
   "extensionNameFirefox": {
     "message": "AI Summary Helper – Summarize, Ask, Listen, Cite"
@@ -9,7 +9,7 @@
     "message": "AI Summary Helper"
   },
   "extensionDescription": {
-    "message": "Summarize with your own AI key or local Ollama. Save for later w/ reminders, highlight text, Kindle export. Open source, no login."
+    "message": "لخّص أي صفحة ويب أو PDF أو فيديو YouTube بـ 41 لغة بمفتاح الذكاء الاصطناعي الخاص بك أو Ollama محليًا. خاص، مفتوح المصدر، بلا حساب."
   },
   "fetchSummary": {
     "message": "الحصول على الملخص"
