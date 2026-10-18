@@ -893,3 +893,16 @@ function setBilling(period) {
   window.addEventListener('resize', function () { go(active); });
   go(0); sync(0);
 })();
+
+// Live demo: the iframe is created on click, so the page stays light until someone wants it.
+(function () {
+  document.querySelectorAll('[data-demo]').forEach(function (box) {
+    var btn = box.querySelector('.demo-start');
+    if (!btn) return;
+    btn.addEventListener('click', function () {
+      var f = document.createElement('iframe');
+      f.src = box.getAttribute('data-src'); f.title = 'AI Summary Helper live demo'; f.loading = 'lazy';
+      box.appendChild(f); box.classList.add('is-live');
+    });
+  });
+})();
