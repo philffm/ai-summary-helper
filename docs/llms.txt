@@ -1,0 +1,29 @@
+# AI Summary Helper
+
+> AI Summary Helper is a browser extension (Chrome and Chromium-based browsers) that summarizes web pages with the AI provider you choose (your own API key or a local Ollama model), follows sites with a built-in RSS reader, saves pages into a searchable on-device archive, and sends reading digests to Kindle or LocalSend. Search, de-duplication and recommendations run on the device.
+
+## Key facts
+- Free to start. Optional Support Pass unlocks premium features across the byphil tools.
+- Bring your own key or run fully local with Ollama: only the summarization request leaves the browser.
+- Install: https://chromewebstore.google.com/detail/ai-summary-helper-openai/hldbejcjaedipeegjcinmhejdndchkmb
+- Source code: https://github.com/philffm/ai-summary-helper
+- Maker: byphil (https://byphil.eu/)
+
+## Pages
+- [AI Summary Helper — Summarize, save, and search the web on-device](https://ai-summary-helper.byphil.eu/): A Chrome extension that summarizes web pages with AI, follows your favorite sites with a built-in RSS reader, saves pages into a searchable archive, and sends curated reading digests to Kindle or LocalSend. Search, dedup, and recommendations run on-device.
+- [Privacy Policy](https://ai-summary-helper.byphil.eu/privacy.html): How AI Summary Helper handles your data: your API keys and article history stay on your device, and page content is only ever sent to the AI provider you choose.
+- [Create your bookmarklet](https://ai-summary-helper.byphil.eu/bookmarklet.html): Generate a one-click AI summary bookmarklet for any browser or OS, including iOS. Use byPhil Cloud with no API key, or bring your own OpenAI, Gemini, Mistral, DeepSeek or Ollama.
+
+## Blog
+- [Blog](https://ai-summary-helper.byphil.eu/blog/): Notes on reading, search, and building on-device — from the team behind AI Summary Helper.
+- [One Recap Instead of 40 Feeds](https://ai-summary-helper.byphil.eu/blog/feeds-recap.html): Following many feeds means many small task switches. Here is how a daily or weekly recap replaces most of them, and why that matters for focus.
+- [You Won't Read Most of What You Save. Here's the Actual Fix.](https://ai-summary-helper.byphil.eu/blog/unread-saves.html): Most bookmarked articles are never reopened. Here's why Digest exists, and why it deliberately doesn't try to make the pile bigger.
+- [How to Check an AI Summary Against Its Source in 10 Seconds](https://ai-summary-helper.byphil.eu/blog/verify-ai-summary.html): An AI summary is only useful if you can trust it. Here is a quick way to check any answer against the page it came from, and what a quote can and cannot prove.
+- [Your Key. Your Model. Your Data.](https://ai-summary-helper.byphil.eu/blog/bring-your-own-key.html): What bringing your own API key actually means for a browser extension: where your key lives, where page text goes, and what changes if you use a local model.
+- [Looking for a Pocket Alternative? Here's What Actually Matters](https://ai-summary-helper.byphil.eu/blog/pocket-alternative.html): Pocket shut down in 2025. A decision guide to picking a replacement based on what you actually used it for, not which app looks the most familiar.
+- [From a Bookmarklet to 2.0: What AI Summary Helper Actually Is Now](https://ai-summary-helper.byphil.eu/blog/from-bookmarklet-to-2.html): It started as a bookmarklet for one person's Kindle habit. Here's what changed between v1 and the open-source 2.0 rebuild — and why.
+- [Highlighting Alone Barely Works. Ask About It Instead.](https://ai-summary-helper.byphil.eu/blog/highlighting-vs-asking.html): A large review of study techniques ranked highlighting among the least useful. Here is why it feels productive anyway, and a small change that turns a highlight into something you remember.
+- [Why We Moved Search, Tagging, and Recommendations Out of the Cloud](https://ai-summary-helper.byphil.eu/blog/on-device-architecture.html): The TF-IDF index behind AI Summary Helper's search, duplicate detection, and digest features — and why most of it never needed a server.
+
+## Translations
+Home page and main guides are available in: de, fr, es, zh-Hans, zh-Hant, ja, ko, pt-BR, hi, vi under /lang/<code>/.

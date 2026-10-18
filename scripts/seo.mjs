@@ -2,9 +2,12 @@
 // scripts/seo.mjs — idempotent SEO pass over docs/*.html (incl. docs/lang/**):
 //  * adds <link rel="canonical"> + og:url (self-referencing, clean URLs: index.html -> /)
 //  * normalises hreflang hrefs to the same clean form
-//  * regenerates docs/sitemap.xml (with hreflang alternates) and docs/robots.txt
+//  * drops hreflang alternates whose target page does not exist (not every post is translated)
+//  * fills og:/twitter: tags (locale, site name, image) and adds JSON-LD (WebSite, SoftwareApplication, FAQPage, BlogPosting)
+//  * regenerates docs/sitemap.xml (with hreflang alternates), docs/robots.txt and docs/llms.txt
 // Runs at the end of `site:build` and `translate`.
 import fs from 'node:fs';
+import { execFileSync } from 'node:child_process';
 import path from 'node:path';
 import * as cheerio from 'cheerio';
 
@@ -25,6 +28,47 @@ const toUrl = (href) => {
   return clean(href.slice(BASE.length + 1));
 };
 
+
+const STORE = 'https://chromewebstore.google.com/detail/ai-summary-helper-openai/hldbejcjaedipeegjcinmhejdndchkmb';
+const OG_LOCALE = { en: 'en_US', de: 'de_DE', fr: 'fr_FR', es: 'es_ES', 'zh-Hans': 'zh_CN', 'zh-Hant': 'zh_TW', ja: 'ja_JP', ko: 'ko_KR', 'pt-BR': 'pt_BR', hi: 'hi_IN', vi: 'vi_VN' };
+const DEFAULT_OG_IMAGE = BASE + '/assets/shots/aish-hero-en.webp';
+const targetExists = (href) => {
+  if (!href.startsWith(BASE + '/')) return true;
+  let r = href.slice(BASE.length + 1);
+  if (!r || r.endsWith('/')) r += 'index.html';
+  return fs.existsSync(path.join(DOCS, r));
+};
+// Last change from git (stable across checkouts); file mtime is the deploy time on CI, which makes every page look new daily.
+const lastmod = (file) => {
+  try { const d = execFileSync('git', ['log', '-1', '--format=%cs', '--', file], { cwd: path.dirname(DOCS), encoding: 'utf8' }).trim(); if (d) return d; } catch (_) { /* no git */ }
+  return null;
+};
+const setMeta = ($, attr, key, content) => { if (content && !$(`meta[${attr}="${key}"]`).length) $('head').append(`<meta ${attr}="${key}" content="${String(content).replace(/"/g, '&quot;')}">`); };
+const monthIso = (txt) => { const m = String(txt || '').match(/(January|February|March|April|May|June|July|August|September|October|November|December)\s+(\d{4})/i); if (!m) return null; return m[2] + '-' + String(['january','february','march','april','may','june','july','august','september','october','november','december'].indexOf(m[1].toLowerCase()) + 1).padStart(2, '0'); };
+function jsonLd($, rel, self, lang, title, desc, image) {
+  $('script[data-seo="ld"]').remove();
+  const graph = [];
+  const publisher = { '@type': 'Organization', '@id': 'https://byphil.eu/#org', name: 'byphil', url: 'https://byphil.eu/' };
+  const isHome = rel === 'index.html' || /^lang\/[^/]+\/index\.html$/.test(rel);
+  const isPost = /(^|\/)blog\/(?!index\.html)[^/]+\.html$/.test(rel);
+  if (isHome) {
+    graph.push({ '@type': 'WebSite', '@id': BASE + '/#website', url: BASE + '/', name: 'AI Summary Helper', inLanguage: lang, publisher: { '@id': publisher['@id'] } });
+    graph.push({ '@type': 'SoftwareApplication', '@id': BASE + '/#app', name: 'AI Summary Helper', url: self, description: desc, applicationCategory: 'BrowserApplication', operatingSystem: 'Chrome, Chromium-based browsers', downloadUrl: STORE, image, inLanguage: lang,
+      offers: { '@type': 'Offer', price: '0', priceCurrency: 'EUR', description: 'Free to start; optional Support Pass for premium features' }, author: { '@id': publisher['@id'] }, publisher });
+    const qa = [];
+    $('.faq details').each((_, el) => { const q = $(el).find('summary').first().text().trim(), a = $(el).find('p').text().trim().replace(/\s+/g, ' '); if (q && a) qa.push({ '@type': 'Question', name: q, acceptedAnswer: { '@type': 'Answer', text: a } }); });
+    if (qa.length) graph.push({ '@type': 'FAQPage', '@id': self + '#faq', inLanguage: lang, mainEntity: qa });
+  } else if (isPost) {
+    const h1 = $('h1').first().text().trim();
+    const dt = monthIso($('.blog-date').first().text());
+    const idx = self.replace(/[^/]*$/, '');
+    graph.push({ '@type': 'BlogPosting', '@id': self + '#post', headline: h1 || title, description: desc, ...(dt ? { datePublished: dt } : {}), inLanguage: lang, image, mainEntityOfPage: self, author: { '@id': publisher['@id'] }, publisher });
+    graph.push({ '@type': 'BreadcrumbList', itemListElement: [{ '@type': 'ListItem', position: 1, name: 'AI Summary Helper', item: BASE + '/' }, { '@type': 'ListItem', position: 2, name: 'Blog', item: idx }, { '@type': 'ListItem', position: 3, name: h1 || title, item: self }] });
+  }
+  if (!graph.length) return;
+  $('head').append(`<script type="application/ld+json" data-seo="ld">${JSON.stringify({ '@context': 'https://schema.org', '@graph': graph }).replace(/</g, '\\u003c')}</script>`);
+}
+
 const entries = [];
 for (const file of walk(DOCS)) {
   const rel = path.relative(DOCS, file).split(path.sep).join('/');
@@ -38,13 +82,28 @@ for (const file of walk(DOCS)) {
   const alts = [];
   $('link[rel="alternate"][hreflang]').each((_, el) => {
     const h = toUrl($(el).attr('href') || '');
+    if (!targetExists(h)) { $(el).remove(); return; }   // untranslated page: an alternate that 404s invalidates the whole hreflang set
     $(el).attr('href', h);
     alts.push([$(el).attr('hreflang'), h]);
   });
+  const lang = $('html').attr('lang') || 'en';
+  const title = $('title').text().trim(), desc = $('meta[name="description"]').attr('content') || '';
+  const ogImg = $('meta[property="og:image"]').attr('content') || DEFAULT_OG_IMAGE;
+  setMeta($, 'property', 'og:site_name', 'AI Summary Helper');
+  setMeta($, 'property', 'og:locale', OG_LOCALE[lang] || lang.replace('-', '_'));
+  setMeta($, 'property', 'og:type', rel.includes('blog/') && !/blog\/index\.html$/.test(rel) ? 'article' : 'website');
+  setMeta($, 'property', 'og:title', $('meta[property="og:title"]').attr('content') || title);
+  setMeta($, 'property', 'og:description', desc);
+  setMeta($, 'property', 'og:image', ogImg);
+  setMeta($, 'name', 'twitter:card', 'summary_large_image');
+  setMeta($, 'name', 'twitter:title', $('meta[property="og:title"]').attr('content') || title);
+  setMeta($, 'name', 'twitter:description', $('meta[property="og:description"]').attr('content') || desc);
+  setMeta($, 'name', 'twitter:image', ogImg);
+  if (!noindex) jsonLd($, rel, self, lang, title, desc, ogImg);
   fs.writeFileSync(file, $.html());
   if (!noindex && rel !== 'goodbye.html' && !/^lang\//.test(rel) === true || (!noindex && /^lang\//.test(rel))) {
     if (rel === 'goodbye.html' || rel.endsWith('/goodbye.html')) continue;
-    entries.push({ rel, self, alts, mtime: fs.statSync(file).mtime });
+    entries.push({ rel, self, alts, mtime: fs.statSync(file).mtime, git: lastmod(path.join('docs', rel)), title, desc });
   }
 }
 entries.sort((a, b) => a.self.length - b.self.length || a.self.localeCompare(b.self));
@@ -52,11 +111,38 @@ const day = (d) => d.toISOString().slice(0, 10);
 const prio = (e) => (e.self === BASE + '/' ? '1.0' : /lang\//.test(e.rel) ? '0.5' : /blog\//.test(e.rel) ? '0.7' : '0.8');
 let xml = `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">\n`;
 for (const e of entries) {
-  xml += `  <url>\n    <loc>${esc(e.self)}</loc>\n    <lastmod>${day(e.mtime)}</lastmod>\n    <priority>${prio(e)}</priority>\n`;
+  xml += `  <url>\n    <loc>${esc(e.self)}</loc>\n    <lastmod>${e.git || day(e.mtime)}</lastmod>\n    <priority>${prio(e)}</priority>\n`;
   for (const [l, h] of e.alts) xml += `    <xhtml:link rel="alternate" hreflang="${l}" href="${esc(h)}"/>\n`;
   xml += `  </url>\n`;
 }
 xml += `</urlset>\n`;
 fs.writeFileSync(path.join(DOCS, 'sitemap.xml'), xml);
 fs.writeFileSync(path.join(DOCS, 'robots.txt'), `User-agent: *\nAllow: /\n\nSitemap: ${BASE}/sitemap.xml\n`);
+
+// llms.txt: a plain-text map for AI assistants and answer engines (English pages only; each links to its translations via hreflang).
+const en = entries.filter((e) => !/^lang\//.test(e.rel));
+const line = (e) => `- [${e.title.replace(/\s+[—-]\s+AI Summary Helper.*$/, '')}](${e.self}): ${e.desc}`;
+const llms = [
+  '# AI Summary Helper',
+  '',
+  '> AI Summary Helper is a browser extension (Chrome and Chromium-based browsers) that summarizes web pages with the AI provider you choose (your own API key or a local Ollama model), follows sites with a built-in RSS reader, saves pages into a searchable on-device archive, and sends reading digests to Kindle or LocalSend. Search, de-duplication and recommendations run on the device.',
+  '',
+  '## Key facts',
+  '- Free to start. Optional Support Pass unlocks premium features across the byphil tools.',
+  '- Bring your own key or run fully local with Ollama: only the summarization request leaves the browser.',
+  `- Install: ${STORE}`,
+  '- Source code: https://github.com/philffm/ai-summary-helper',
+  '- Maker: byphil (https://byphil.eu/)',
+  '',
+  '## Pages',
+  ...en.filter((e) => !/blog\//.test(e.rel)).map(line),
+  '',
+  '## Blog',
+  ...en.filter((e) => /blog\//.test(e.rel)).map(line),
+  '',
+  '## Translations',
+  'Home page and main guides are available in: de, fr, es, zh-Hans, zh-Hant, ja, ko, pt-BR, hi, vi under /lang/<code>/.',
+  '',
+].join('\n');
+fs.writeFileSync(path.join(DOCS, 'llms.txt'), llms);
 console.log(`seo: ${entries.length} URLs in sitemap, canonical set on all pages`);
