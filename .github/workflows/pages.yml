@@ -37,6 +37,11 @@ jobs:
           node-version: '22'
       - name: Build the live demo (fails if the mock lacks a popup action)
         run: node plugin/scripts/build-demo.mjs --check
+      # docs/ is committed, so the sitemap is only regenerated when someone runs
+      # `npm run site:build` locally. Validate it here so a malformed sitemap
+      # (Google: "Couldn't fetch") can never reach Pages.
+      - name: Validate sitemap.xml
+        run: node scripts/check-sitemap.mjs
       - name: Assemble the site
         run: |
           mkdir -p _site

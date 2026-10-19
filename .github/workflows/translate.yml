@@ -47,6 +47,11 @@ jobs:
             node scripts/translate.mjs
           fi
 
+      # Translation adds/removes locale pages, so the sitemap, hreflang alternates,
+      # canonical tags and llms.txt must be rebuilt before the PR is opened.
+      - name: Regenerate SEO artefacts (sitemap, hreflang, llms.txt)
+        run: node scripts/seo.mjs && node scripts/check-sitemap.mjs
+
       # docs/ is generated (by build-site.mjs) and committed (GitHub Pages
       # serves it directly), so both the English pages AND the translated
       # locale output can change in one PR here. git-add stays scoped
