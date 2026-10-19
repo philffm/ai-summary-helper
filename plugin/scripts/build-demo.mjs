@@ -38,6 +38,8 @@ if (!html.includes(tag)) throw new Error('popup.html no longer has the audioEngi
 fs.writeFileSync(path.join(APP, 'popup.html'), html.replace(tag, '<script src="demo-content.js"></script><script src="demo-i18n.js"></script><script src="demo-shim.js"></script>' + tag));
 
 fs.copyFileSync(path.join(DEMO, 'index.html'), path.join(OUT, 'index.html'));
+// The URL-parameter contract for automation (video tools, screenshot pipelines, embedding).
+fs.copyFileSync(path.join(DEMO, 'README.md'), path.join(OUT, 'README.md'));
 const version = JSON.parse(fs.readFileSync(path.join(ROOT, 'platforms', 'chrome', 'manifest.json'), 'utf8')).version || '';
 fs.writeFileSync(path.join(OUT, 'version.json'), JSON.stringify({ version }));
 

@@ -3,7 +3,10 @@
 (() => {
   const I = window.AISH_TOUR_I18N || {}, P = new URLSearchParams(location.search);
   const key = P.get('lang') || 'en', S = I[key] || I.en; if (!S) return;
-  if (P.get('tour') === '0') return;
+  // ?tour=0 hides the tour. ?chrome=0 / ?article=0 strip the outer page the tour points at,
+  // so the tour is off there too unless it is explicitly requested with ?tour=1.
+  const bare = P.get('chrome') === '0' || P.get('article') === '0';
+  if (P.get('tour') === '0' || (bare && P.get('tour') !== '1')) return;
   const app = document.getElementById('app'), esc = (s) => String(s).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
   const SEEN = 'aish_demo_tour_seen';
   const seen = () => { try { return localStorage.getItem(SEEN) === '1'; } catch (_) { return false; } };

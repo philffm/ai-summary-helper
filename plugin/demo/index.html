@@ -16,6 +16,17 @@ iframe{flex:1;border:0;width:100%;min-height:0;background:transparent}
 :root[data-theme=dark]{color-scheme:dark;--bg:#0e1017;--card:#171a23;--ink:#eef0f6;--dim:#9aa1b4;--line:#262a37}
 :root[data-theme=light]{color-scheme:light;--bg:#f6f7fb;--card:#fff;--ink:#14161f;--dim:#5b6070;--line:#e3e6ef}
 @media(max-width:820px){.stage{grid-template-columns:1fr;grid-template-rows:200px minmax(0,1fr)}article{padding:16px 18px}}
+/* ?chrome=0 — the product alone: no sample page, no title bars, no borders, no padding, no page background.
+   Meant for embedding the extension UI in a screenshot, a landing-page hero, or an <iframe> of your own. */
+:root[data-chrome="0"] body{background:transparent}
+:root[data-chrome="0"] .stage{grid-template-columns:1fr;grid-template-rows:minmax(0,1fr);padding:0;gap:0}
+:root[data-chrome="0"] .page{display:none}
+:root[data-chrome="0"] .panel{border:0;border-radius:0;background:transparent}
+:root[data-chrome="0"] .panel>.bar{display:none}
+/* ?article=0 — keep the framed panel, drop only the sample article (centred, popup-width). */
+:root[data-article="0"] .stage{grid-template-columns:minmax(0,1fr);grid-template-rows:minmax(0,1fr);justify-items:center}
+:root[data-article="0"] .page{display:none}
+:root[data-article="0"] .panel{width:min(100%,clamp(400px,32vw,620px))}
 </style></head><body>
 <div class="stage">
 <section class="page"><div class="bar"><i></i><i></i><i></i><span>example.com/the-quiet-comeback-of-the-long-read</span></div>
@@ -26,9 +37,47 @@ iframe{flex:1;border:0;width:100%;min-height:0;background:transparent}
 <script src="app/demo-content.js"></script><script src="app/demo-i18n.js"></script><script src="app/demo-tour-i18n.js"></script>
 <script>
 const P = new URLSearchParams(location.search), LOC = window.AISH_DEMO.locale, appFrame = document.getElementById('app');
+// URL parameters (all optional):
+//   lang=de          UI language of the popup
+//   theme=light|dark  force a theme (otherwise the OS preference)
+//   tour=0|1         hide the guided tour / force it on (default: show once, then remember)
+//   chrome=0         product only — no sample page, title bars, borders, padding or background
+//   article=0        keep the framed panel but hide the sample article
+//   surface=popup    render the popup surface instead of the side panel
+//   screen=main|history|feeds|settings   open that screen on load
+//   panel=language|length|mode|model|account|models|prompts|feeds|feedprefs|reading|send|phoneinbox|appearance|accessibility|library|about
+//                    open a settings panel (implies screen=settings)
+const flag = (k) => P.get(k) === '0' ? '0' : P.get(k) === '1' ? '1' : null;
+if (flag('chrome') === '0') document.documentElement.setAttribute('data-chrome', '0');
+if (flag('article') === '0') document.documentElement.setAttribute('data-article', '0');
 if (LOC) { document.documentElement.lang = LOC.ui.replace('_', '-'); document.getElementById('panelLabel').textContent = 'AI Summary Helper · ' + LOC.side; document.title = LOC.article.title + ' – AI Summary Helper'; }
 if (P.get('theme') === 'light' || P.get('theme') === 'dark') document.documentElement.setAttribute('data-theme', P.get('theme'));
-appFrame.src = 'app/popup.html?surface=sidepanel' + (P.get('lang') ? '&lang=' + encodeURIComponent(P.get('lang')) : '') + (P.get('theme') ? '&theme=' + P.get('theme') : '');
+appFrame.src = 'app/popup.html?surface=' + (P.get('surface') === 'popup' ? 'popup' : 'sidepanel') + (P.get('lang') ? '&lang=' + encodeURIComponent(P.get('lang')) : '') + (P.get('theme') ? '&theme=' + P.get('theme') : '');
+
+// ?screen= / ?panel= — drive the popup into a feature mode once it has rendered.
+// The popup is same-origin, so we click its real nav items and settings rows rather than
+// reaching into module internals: the demo then behaves exactly like a user's click.
+const SCREENS = ['main', 'history', 'feeds', 'settings'];
+const PANELS = ['account', 'models', 'prompts', 'feeds', 'feedprefs', 'reading', 'send', 'phoneinbox', 'appearance', 'accessibility', 'library', 'about'];
+const wantScreen = SCREENS.includes(P.get('screen')) ? P.get('screen') : null;
+const wantPanel = PANELS.includes(P.get('panel')) ? P.get('panel') : null;
+if (wantScreen || wantPanel) {
+  const click = (d, sel) => { const el = d.querySelector(sel); if (el) { el.click(); return true; } return false; };
+  const apply = () => {
+    let d; try { d = appFrame.contentDocument; } catch (_) { return false; }
+    if (!d || d.readyState !== 'complete' || !d.querySelector('.nav-item[data-screen=main]')) return false;
+    if (wantPanel) {
+      // Settings is a header button; the panel is a row inside the settings home.
+      click(d, '#settingsButton');
+      setTimeout(() => click(d, '.settings-row[data-panel="' + wantPanel + '"]'), 120);
+    } else if (wantScreen) {
+      click(d, '.nav-item[data-screen="' + wantScreen + '"]');
+    }
+    return true;
+  };
+  const boot = setInterval(() => { if (apply()) clearInterval(boot); }, 250);
+  setTimeout(() => clearInterval(boot), 15000);
+}
 const A = window.AISH_DEMO.article, art0 = document.getElementById('art');
 art0.innerHTML = '<h1></h1><div class="meta"></div>' + A.paragraphs.map(() => '<p></p>').join('');
 art0.querySelector('h1').textContent = A.title; art0.querySelector('.meta').textContent = A.byline;
