@@ -447,43 +447,108 @@
       </div>
       <p class="persona-blurb reveal" id="personaBlurb" aria-live="polite">Scegli tu il modello, il server e se far uscire anche un solo dato dal tuo computer.</p>
 
-      <div class="feature-grid reveal" id="featureGrid">
+      <!-- each card has its clip (top right): hover plays it silently, a tap opens the swipeable player (main.js) -->
+      <div class="feature-grid reveal" id="featureGrid" data-vgroup="">
         <div class="feature-card" data-personas="privacy researcher">
+          <figure class="fvideo" data-blog-video="privat">
+            <button class="fvideo-open" type="button"><span class="sr-only">Riproduci il video</span>
+              <video muted="" playsinline="" loop="" preload="none" width="360" height="520" poster="../assets/blog/video/privat-en.jpg">
+                <source src="../assets/blog/video/privat-en.mp4" type="video/mp4">
+              </video>
+              <span class="fvideo-play" aria-hidden="true">▶</span>
+            </button>
+          </figure>
           <div class="f-icon icon-cyan"><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="6" r="2.6" fill="#fff"></circle><circle cx="6" cy="17" r="2.2" fill="#fff" opacity="0.85"></circle><circle cx="18" cy="17" r="2.2" fill="#fff" opacity="0.85"></circle><path d="M12 8.6 L6.8 14.8 M12 8.6 L17.2 14.8" stroke="#fff" stroke-width="1.4" stroke-linecap="round" opacity="0.7"></path></svg></div>
           <h3>Riassunti IA con il modello che preferisci</h3>
           <p>OpenAI, Gemini, Mistral, DeepSeek o un endpoint personalizzato — oppure collegalo a un modello locale con Ollama per elaborare tutto completamente offline.</p>
         </div>
         <div class="feature-card" data-personas="privacy researcher">
+          <figure class="fvideo" data-blog-video="highlights">
+            <button class="fvideo-open" type="button"><span class="sr-only">Riproduci il video</span>
+              <video muted="" playsinline="" loop="" preload="none" width="360" height="520" poster="../assets/blog/video/highlights-en.jpg">
+                <source src="../assets/blog/video/highlights-en.mp4" type="video/mp4">
+              </video>
+              <span class="fvideo-play" aria-hidden="true">▶</span>
+            </button>
+          </figure>
           <div class="f-icon icon-gold"><svg viewBox="0 0 24 24" fill="none"><path d="M5 5h14M5 9h14M5 13h14M5 17h14" stroke="#fff" stroke-width="2.2" stroke-linecap="round"></path><path d="M5 5l14 0M5 9l14 0M5 13l14 0M5 17l14 0" stroke="#fff" stroke-width="2.2" stroke-linecap="round" opacity="0.35"></path></svg></div>
           <h3>Evidenziazioni contestuali, direttamente sulla pagina</h3>
           <p>L'IA evidenzia con delicatezza i <mark class="ai-ghost-highlight">passaggi testuali più importanti</mark> nell'articolo — così puoi <mark class="ai-ghost-highlight">cogliere i concetti chiave a colpo d'occhio</mark>, e li esporta insieme al riassunto su Kindle, LocalSend o Markdown.</p>
         </div>
         <div class="feature-card" data-personas="privacy researcher">
+          <figure class="fvideo" data-blog-video="bibliothek">
+            <button class="fvideo-open" type="button"><span class="sr-only">Riproduci il video</span>
+              <video muted="" playsinline="" loop="" preload="none" width="360" height="520" poster="../assets/blog/video/bibliothek-en.jpg">
+                <source src="../assets/blog/video/bibliothek-en.mp4" type="video/mp4">
+              </video>
+              <span class="fvideo-play" aria-hidden="true">▶</span>
+            </button>
+          </figure>
           <div class="f-icon icon-violet"><svg viewBox="0 0 24 24" fill="none"><path d="M11 4a7 7 0 1 0 4.9 12.1l4.6 4.6" stroke="#fff" stroke-width="1.7" stroke-linecap="round"></path></svg></div>
           <h3>Vera ricerca, sul tuo dispositivo</h3>
           <p>Ricerca full-text tra titoli, tag e contenuti degli articoli — basata su un indice TF-IDF generato nel tuo browser. Zero attese, zero latenza e nessun dato condiviso all'esterno.</p>
         </div>
         <div class="feature-card" data-personas="hoarder">
+          <figure class="fvideo" data-blog-video="pocket">
+            <button class="fvideo-open" type="button"><span class="sr-only">Riproduci il video</span>
+              <video muted="" playsinline="" loop="" preload="none" width="360" height="520" poster="../assets/blog/video/pocket-en.jpg">
+                <source src="../assets/blog/video/pocket-en.mp4" type="video/mp4">
+              </video>
+              <span class="fvideo-play" aria-hidden="true">▶</span>
+            </button>
+          </figure>
           <div class="f-icon icon-indigo"><svg viewBox="0 0 24 24" fill="none"><path d="M6 3h12v18l-6-4-6 4V3Z" stroke="#fff" stroke-width="1.6" stroke-linejoin="round"></path></svg></div>
           <h3>Salva per dopo, con uno scopo</h3>
           <p>Segna una "decisione" con una motivazione e una scadenza, e ricevi un promemoria — invece di vederla sparire in una pila che non aprirai mai più.</p>
         </div>
         <div class="feature-card" data-personas="hoarder">
+          <figure class="fvideo" data-blog-video="digest">
+            <button class="fvideo-open" type="button"><span class="sr-only">Riproduci il video</span>
+              <video muted="" playsinline="" loop="" preload="none" width="360" height="520" poster="../assets/blog/video/digest-en.jpg">
+                <source src="../assets/blog/video/digest-en.mp4" type="video/mp4">
+              </video>
+              <span class="fvideo-play" aria-hidden="true">▶</span>
+            </button>
+          </figure>
           <div class="f-icon icon-gold"><svg viewBox="0 0 24 24" fill="none"><rect x="4" y="4" width="16" height="16" rx="3" stroke="#fff" stroke-width="1.6"></rect><path d="M8 9h8M8 13h5" stroke="#fff" stroke-width="1.6" stroke-linecap="round"></path></svg></div>
           <h3>Un digest che si compone da solo</h3>
           <p>Con un tocco selezioni un insieme curato e vario dei tuoi articoli salvati — non cinque versioni della stessa notizia — uniti in un unico file per Kindle o LocalSend.</p>
         </div>
         <div class="feature-card" data-personas="researcher">
+          <figure class="fvideo" data-blog-video="graph">
+            <button class="fvideo-open" type="button"><span class="sr-only">Riproduci il video</span>
+              <video muted="" playsinline="" loop="" preload="none" width="360" height="520" poster="../assets/blog/video/graph-en.jpg">
+                <source src="../assets/blog/video/graph-en.mp4" type="video/mp4">
+              </video>
+              <span class="fvideo-play" aria-hidden="true">▶</span>
+            </button>
+          </figure>
           <div class="f-icon icon-cyan"><svg viewBox="0 0 24 24" fill="none"><circle cx="5" cy="6" r="1.8" fill="#fff"></circle><circle cx="19" cy="6" r="1.8" fill="#fff" opacity="0.85"></circle><circle cx="12" cy="12" r="2.1" fill="#fff"></circle><circle cx="6" cy="18" r="1.8" fill="#fff" opacity="0.85"></circle><circle cx="18" cy="18" r="1.8" fill="#fff" opacity="0.85"></circle><path d="M5 6 12 12M19 6 12 12M12 12 6 18M12 12 18 18" stroke="#fff" stroke-width="1.1" opacity="0.55"></path></svg></div>
           <h3>Un grafo della conoscenza, non solo un elenco</h3>
           <p>Scopri come si collegano i tuoi articoli salvati — tramite tag condivisi o per affinità tematica, anche quando non hanno alcun tag in comune.</p>
         </div>
         <div class="feature-card" data-personas="hoarder researcher">
+          <figure class="fvideo" data-blog-video="feeds">
+            <button class="fvideo-open" type="button"><span class="sr-only">Riproduci il video</span>
+              <video muted="" playsinline="" loop="" preload="none" width="360" height="520" poster="../assets/blog/video/feeds-en.jpg">
+                <source src="../assets/blog/video/feeds-en.mp4" type="video/mp4">
+              </video>
+              <span class="fvideo-play" aria-hidden="true">▶</span>
+            </button>
+          </figure>
           <div class="f-icon icon-indigo"><svg viewBox="0 0 24 24" fill="none"><circle cx="6" cy="18" r="1.8" fill="#fff"></circle><path d="M5 11a8 8 0 0 1 8 8M5 5a14 14 0 0 1 14 14" stroke="#fff" stroke-width="1.8" stroke-linecap="round"></path></svg></div>
           <h3>Un lettore RSS integrato</h3>
           <p>Segui blog e siti di notizie, filtra per fonte, tag, data o stato d'animo, importa i tuoi file OPML e apri o riassumi qualsiasi contenuto con un clic. Ascolta i feed podcast direttamente nell'estensione e ottieni un riepilogo giornaliero opzionale generato dall'IA a partire dai titoli. I preferiti finiscono nel tuo archivio e i feed restano salvati sul tuo dispositivo.</p>
         </div>
         <div class="feature-card" data-personas="privacy hoarder researcher">
+          <figure class="fvideo" data-blog-video="sprache">
+            <button class="fvideo-open" type="button"><span class="sr-only">Riproduci il video</span>
+              <video muted="" playsinline="" loop="" preload="none" width="360" height="520" poster="../assets/blog/video/sprache-en.jpg">
+                <source src="../assets/blog/video/sprache-en.mp4" type="video/mp4">
+              </video>
+              <span class="fvideo-play" aria-hidden="true">▶</span>
+            </button>
+          </figure>
           <div class="f-icon icon-violet"><svg viewBox="0 0 24 24" fill="none"><path d="M4 12h16M12 4c2.8 2.6 4.2 5.2 4.2 8s-1.4 5.4-4.2 8c-2.8-2.6-4.2-5.2-4.2-8s1.4-5.4 4.2-8Z" stroke="#fff" stroke-width="1.5"></path></svg></div>
           <h3>Oltre 20 lingue, multipiattaforma</h3>
           <p>Leggi e riassumi nella lingua che preferisci. Estensione, pannello laterale nativo o <a href="../bookmarklet.html">bookmarklet</a> — per ovunque l'estensione del browser non possa arrivare.</p>

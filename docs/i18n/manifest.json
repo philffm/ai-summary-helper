@@ -96549,6 +96549,126 @@
           "model": "google/gemini-3.7-flash"
         }
       }
+    },
+    "ceb2d466bdd1029ae59a89a0217ca6428d1a340f8faa46e1d3c70a3292392f5e": {
+      "en": "Play the video",
+      "translations": {
+        "de": {
+          "text": "Video abspielen",
+          "translatedAt": "2026-10-20T15:12:06.522Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fr": {
+          "text": "Lire la vidéo",
+          "translatedAt": "2026-10-20T15:12:10.540Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "es": {
+          "text": "Reproducir el video",
+          "translatedAt": "2026-10-20T15:12:17.446Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh": {
+          "text": "播放视频",
+          "translatedAt": "2026-10-20T15:12:19.930Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh-TW": {
+          "text": "播放影片",
+          "translatedAt": "2026-10-20T15:12:22.209Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ja": {
+          "text": "動画を再生",
+          "translatedAt": "2026-10-20T15:12:26.541Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ko": {
+          "text": "동영상 재생",
+          "translatedAt": "2026-10-20T15:12:29.634Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pt": {
+          "text": "Reproduzir o vídeo",
+          "translatedAt": "2026-10-20T15:12:33.079Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "hi": {
+          "text": "वीडियो चलाएं",
+          "translatedAt": "2026-10-20T15:12:39.616Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "vi": {
+          "text": "Phát video",
+          "translatedAt": "2026-10-20T15:12:42.662Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "nl": {
+          "text": "Video afspelen",
+          "translatedAt": "2026-10-20T15:12:47.521Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "it": {
+          "text": "Riproduci il video",
+          "translatedAt": "2026-10-20T15:12:54.513Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ru": {
+          "text": "Воспроизвести видео",
+          "translatedAt": "2026-10-20T15:12:58.336Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "uk": {
+          "text": "Відтворити відео",
+          "translatedAt": "2026-10-20T15:13:03.488Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "tr": {
+          "text": "Videoyu oynat",
+          "translatedAt": "2026-10-20T15:13:06.660Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "id": {
+          "text": "Putar video",
+          "translatedAt": "2026-10-20T15:13:10.699Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pl": {
+          "text": "Odtwórz wideo",
+          "translatedAt": "2026-10-20T15:13:13.359Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "th": {
+          "text": "เล่นวิดีโอ",
+          "translatedAt": "2026-10-20T15:13:16.520Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ar": {
+          "text": "تشغيل الفيديو",
+          "translatedAt": "2026-10-20T15:13:30.074Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "sv": {
+          "text": "Spela upp videon",
+          "translatedAt": "2026-10-20T15:13:34.281Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "da": {
+          "text": "Afspil videoen",
+          "translatedAt": "2026-10-20T15:13:41.474Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "no": {
+          "text": "Spill av videoen",
+          "translatedAt": "2026-10-20T15:13:46.450Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fi": {
+          "text": "Toista video",
+          "translatedAt": "2026-10-20T15:13:49.373Z",
+          "model": "google/gemini-3.7-flash"
+        }
+      }
     }
   }
 }
