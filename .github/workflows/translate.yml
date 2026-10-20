@@ -21,15 +21,33 @@ permissions:
   pull-requests: write
   actions: write   # a run that finds main moved on starts a fresh run of this workflow (see "Skip a result built on an outdated main")
 
-# Two pushes in a row (e.g. content + videos) started two runs side by side. Each checked out main WITHOUT the other's
-# result, so each translated every string again with the model and the two PRs conflicted in ~180 files. The newest
-# run covers all changes, so an older one is cancelled.
-concurrency:
-  group: translate-site
-  cancel-in-progress: true
+# Every run that has to translate costs model tokens (OpenRouter). Two things keep that low when pushes follow each other:
+# 1. DEBOUNCE: a run first waits a few minutes. A newer push cancels that wait (cheap, nothing translated yet), so a
+#    quick second commit does not start a second translation: only the newest run goes on.
+# 2. QUEUE, never cancel: while a translation is running, the next one waits for it. Cancelling would throw away the
+#    strings already paid for. The waiting run then starts from the cache of the first one's PR (step "Reuse the
+#    translations of the open translation PR") and only pays for what is really new.
+# Only one run can wait at a time; a newer waiting run replaces an older one.
 
 jobs:
+  debounce:
+    # pushes only; a manual run ("Run workflow") starts straight away
+    if: ${{ github.event_name == 'push' }}
+    runs-on: ubuntu-latest
+    concurrency:
+      group: translate-debounce
+      cancel-in-progress: true
+    steps:
+      - name: Wait for a possible next push
+        run: sleep 180
+
   translate:
+    needs: debounce
+    # the debounce job is skipped for manual runs and cancelled by a newer push: then this run has nothing to do
+    if: ${{ !cancelled() && (needs.debounce.result == 'success' || needs.debounce.result == 'skipped') }}
+    concurrency:
+      group: translate-site
+      cancel-in-progress: false
     runs-on: ubuntu-latest
     steps:
       - name: Check out repository
