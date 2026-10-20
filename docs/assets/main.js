@@ -1180,3 +1180,110 @@ function setBilling(period) {
   // Scroll lock while full-screen menu is open
   if (mm && tg) new MutationObserver(function () { document.body.classList.toggle('nav-locked', !mm.hidden); }).observe(mm, { attributes: true, attributeFilter: ['hidden'] });
 })();
+
+/* ── Landing videos (#videos): a stack of clips; tapping one opens a full-screen player you swipe through ──
+   The clips come from the stack's own <figure data-blog-video> elements, so a translated page plays the videos the
+   translation pipeline localized for it. Labels come from the hidden .vfeed-labels (translated with the page). */
+(function () {
+  var stack = document.querySelector('[data-vstack]');
+  if (!stack) return;
+  var items = Array.prototype.slice.call(stack.querySelectorAll('.vstack-item'));
+  var labels = {};
+  Array.prototype.forEach.call(document.querySelectorAll('.vfeed-labels [data-l]'), function (el) { labels[el.getAttribute('data-l')] = el.textContent; });
+  var canHover = window.matchMedia && window.matchMedia('(hover: hover)').matches;
+  var feed, track, slides, dots, muteBtn, io, muted = false, lastFocus = null, hinted = false;
+
+  items.forEach(function (it, i) {
+    var v = it.querySelector('video');
+    if (canHover) {   // a silent preview while the pointer rests on a card
+      it.addEventListener('mouseenter', function () { v.muted = true; v.play().catch(function () {}); });
+      it.addEventListener('mouseleave', function () { v.pause(); });
+    }
+    it.querySelector('.vstack-open').addEventListener('click', function () { open(i); });
+  });
+
+  function btn(cls, text, label, onClick) {
+    var b = document.createElement('button');
+    b.type = 'button'; b.className = 'vfeed-btn ' + cls; b.textContent = text; b.setAttribute('aria-label', label);
+    b.addEventListener('click', onClick);
+    return b;
+  }
+  function paintMute() {
+    muteBtn.textContent = muted ? '🔇' : '🔊';
+    muteBtn.setAttribute('aria-label', muted ? (labels.sound || 'Sound on') : (labels.mute || 'Sound off'));
+    Array.prototype.forEach.call(slides, function (s) { s.querySelector('video').muted = muted; });
+  }
+  function current() {
+    var h = track.clientHeight || 1;
+    return Math.max(0, Math.min(slides.length - 1, Math.round(track.scrollTop / h)));
+  }
+  function go(i) { if (slides[i]) slides[i].scrollIntoView({ behavior: 'smooth', block: 'start' }); }
+
+  function build() {
+    feed = document.createElement('div');
+    feed.className = 'vfeed'; feed.hidden = true;
+    feed.setAttribute('role', 'dialog'); feed.setAttribute('aria-modal', 'true');
+    var h2 = document.querySelector('#videos h2'); if (h2) feed.setAttribute('aria-label', h2.textContent);
+    track = document.createElement('div'); track.className = 'vfeed-track';
+    dots = document.createElement('div'); dots.className = 'vfeed-dots'; dots.setAttribute('aria-hidden', 'true');
+    items.forEach(function (it) {
+      var slide = document.createElement('section'); slide.className = 'vfeed-slide';
+      var v = document.createElement('video');
+      v.setAttribute('playsinline', ''); v.preload = 'none'; v.loop = true;
+      v.poster = it.querySelector('video').getAttribute('poster');
+      v.src = it.querySelector('source').getAttribute('src');
+      v.addEventListener('click', function () { if (v.paused) v.play().catch(function () {}); else v.pause(); });
+      var cap = document.createElement('div'); cap.className = 'vfeed-cap';
+      cap.innerHTML = it.querySelector('figcaption').innerHTML;
+      slide.appendChild(v); slide.appendChild(cap); track.appendChild(slide);
+      dots.appendChild(document.createElement('i'));
+    });
+    slides = track.children;
+    muteBtn = btn('vfeed-mute', '🔊', labels.mute || 'Sound off', function () { muted = !muted; paintMute(); });
+    feed.appendChild(track);
+    feed.appendChild(btn('vfeed-close', '×', labels.close || 'Close', close));
+    feed.appendChild(muteBtn);
+    feed.appendChild(dots);
+    document.body.appendChild(feed);
+    // the slide that fills the screen plays (from the start), every other one is paused
+    io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        var v = e.target.querySelector('video');
+        if (e.isIntersecting && e.intersectionRatio >= 0.6) {
+          v.muted = muted; v.currentTime = 0;
+          v.play().catch(function () { muted = true; paintMute(); v.play().catch(function () {}); });   // autoplay with sound refused
+          var k = Array.prototype.indexOf.call(slides, e.target);
+          Array.prototype.forEach.call(dots.children, function (d, j) { d.classList.toggle('on', j === k); });
+        } else if (!v.paused) v.pause();
+      });
+    }, { root: track, threshold: [0, 0.6] });
+    Array.prototype.forEach.call(slides, function (s) { io.observe(s); });
+    feed.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape') { e.preventDefault(); close(); }
+      else if (e.key === 'ArrowDown' || e.key === 'PageDown' || e.key === 'j') { e.preventDefault(); go(current() + 1); }
+      else if (e.key === 'ArrowUp' || e.key === 'PageUp' || e.key === 'k') { e.preventDefault(); go(current() - 1); }
+      else if (e.key === ' ') { e.preventDefault(); var v = slides[current()].querySelector('video'); if (v.paused) v.play().catch(function () {}); else v.pause(); }
+    });
+  }
+
+  function open(i) {
+    if (!feed) build();
+    lastFocus = document.activeElement;
+    items.forEach(function (it) { it.querySelector('video').pause(); });
+    feed.hidden = false;
+    document.documentElement.classList.add('vfeed-open');
+    track.scrollTop = i * track.clientHeight;   // straight to the tapped clip, no scroll animation
+    feed.querySelector('.vfeed-close').focus();
+    if (!hinted && labels.hint) {   // once per visit: how to get to the next clip
+      hinted = true;
+      var h = document.createElement('div'); h.className = 'vfeed-hint'; h.textContent = labels.hint;
+      feed.appendChild(h); setTimeout(function () { h.remove(); }, 2800);
+    }
+  }
+  function close() {
+    Array.prototype.forEach.call(slides, function (s) { s.querySelector('video').pause(); });
+    feed.hidden = true;
+    document.documentElement.classList.remove('vfeed-open');
+    if (lastFocus) lastFocus.focus();
+  }
+})();
