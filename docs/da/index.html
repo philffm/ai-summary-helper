@@ -266,6 +266,142 @@
     </div>
   </section>
 
+  <!-- ── Videos: a stack of short clips; tapping one opens a swipeable full-screen player (assets/main.js) ──
+       Videos are localized by scripts/translate.mjs like the blog ones: "<clip>-en.mp4" becomes "<clip>-<locale>.mp4"
+       when docs/assets/blog/video/ has it, else it stays English. -->
+  <section id="videos">
+    <div class="wrap">
+      <div class="section-head center reveal">
+        <div class="eyebrow">Se med</div>
+        <h2>Alle funktioner på under 20 sekunder</h2>
+        <p>Korte klip optaget direkte fra udvidelsen. Tryk på et, og swipe gennem resten.</p>
+      </div>
+      <!-- labels for the full-screen player (text here, so the translation pipeline translates them) -->
+      <div class="vfeed-labels" hidden="">
+        <span data-l="close">Luk</span><span data-l="sound">Lyd til</span><span data-l="mute">Lyd fra</span><span data-l="hint">Swipe op for næste video</span>
+      </div>
+      <div class="vstack reveal" data-vstack="">
+        <figure class="vstack-item" data-blog-video="montage" style="--i:0">
+          <button class="vstack-open" type="button" aria-label="Afspil: AI Summary Helper på 15 sekunder">
+            <video muted="" playsinline="" preload="none" width="360" height="520" poster="../assets/blog/video/montage-en.jpg">
+              <source src="../assets/blog/video/montage-en.mp4" type="video/mp4">
+            </video>
+            <span class="vstack-play" aria-hidden="true">▶</span>
+          </button>
+          <figcaption>
+            <strong>AI Summary Helper på 15 sekunder</strong>
+            <span>Resuméer, kilder, 41 sprog, bibliotek, vidensgraf og research-tilstand.</span>
+            <a href="blog/videos.html">Alle videoer →</a>
+          </figcaption>
+        </figure>
+        <figure class="vstack-item" data-blog-video="quellen" style="--i:1">
+          <button class="vstack-open" type="button" aria-label="Afspil: Tjek et svar mod kilden">
+            <video muted="" playsinline="" preload="none" width="360" height="520" poster="../assets/blog/video/quellen-en.jpg">
+              <source src="../assets/blog/video/quellen-en.mp4" type="video/mp4">
+            </video>
+            <span class="vstack-play" aria-hidden="true">▶</span>
+          </button>
+          <figcaption>
+            <strong>Tjek et svar mod kilden</strong>
+            <span>Stil et opfølgende spørgsmål, og hop direkte til afsnittet, svaret stammer fra.</span>
+            <a href="blog/verify-ai-summary.html">Læs indlægget →</a>
+          </figcaption>
+        </figure>
+        <figure class="vstack-item" data-blog-video="highlights" style="--i:2">
+          <button class="vstack-open" type="button" aria-label="Afspil: Spørg ind til dine markeringer">
+            <video muted="" playsinline="" preload="none" width="360" height="520" poster="../assets/blog/video/highlights-en.jpg">
+              <source src="../assets/blog/video/highlights-en.mp4" type="video/mp4">
+            </video>
+            <span class="vstack-play" aria-hidden="true">▶</span>
+          </button>
+          <figcaption>
+            <strong>Stil spørgsmål til dine markeringer</strong>
+            <span>Markér et tekststykke, spørg ind til det, og få et svar med kildehenvisning.</span>
+            <a href="blog/highlighting-vs-asking.html">Læs indlægget →</a>
+          </figcaption>
+        </figure>
+        <figure class="vstack-item" data-blog-video="feeds" style="--i:3">
+          <button class="vstack-open" type="button" aria-label="Afspil: Én opsummering i stedet for 40 feeds">
+            <video muted="" playsinline="" preload="none" width="360" height="520" poster="../assets/blog/video/feeds-en.jpg">
+              <source src="../assets/blog/video/feeds-en.mp4" type="video/mp4">
+            </video>
+            <span class="vstack-play" aria-hidden="true">▶</span>
+          </button>
+          <figcaption>
+            <strong>Ét overblik i stedet for 40 feeds</strong>
+            <span>En hel dags feeds samlet i én briefing.</span>
+            <a href="blog/feeds-recap.html">Læs indlægget →</a>
+          </figcaption>
+        </figure>
+        <figure class="vstack-item" data-blog-video="graph" style="--i:4">
+          <button class="vstack-open" type="button" aria-label="Afspil: Din læsning som vidensgraf">
+            <video muted="" playsinline="" preload="none" width="360" height="520" poster="../assets/blog/video/graph-en.jpg">
+              <source src="../assets/blog/video/graph-en.mp4" type="video/mp4">
+            </video>
+            <span class="vstack-play" aria-hidden="true">▶</span>
+          </button>
+          <figcaption>
+            <strong>Din læsning som en vidensgraf</strong>
+            <span>Artikler forbundet via emner – med en briefing om ethvert emne.</span>
+            <a href="blog/on-device-architecture.html">Læs indlægget →</a>
+          </figcaption>
+        </figure>
+        <figure class="vstack-item" data-blog-video="digest" style="--i:5">
+          <button class="vstack-open" type="button" aria-label="Afspil: Ét overblik i stedet for bunken">
+            <video muted="" playsinline="" preload="none" width="360" height="520" poster="../assets/blog/video/digest-en.jpg">
+              <source src="../assets/blog/video/digest-en.mp4" type="video/mp4">
+            </video>
+            <span class="vstack-play" aria-hidden="true">▶</span>
+          </button>
+          <figcaption>
+            <strong>Ét samlet overblik i stedet for læsebunken</strong>
+            <span>Tre gemte artikler bliver til ét magasin på din Kindle.</span>
+            <a href="blog/unread-saves.html">Læs indlægget →</a>
+          </figcaption>
+        </figure>
+        <figure class="vstack-item" data-blog-video="privat" style="--i:6">
+          <button class="vstack-open" type="button" aria-label="Afspil: Din nøgle. Din model. Dine data.">
+            <video muted="" playsinline="" preload="none" width="360" height="520" poster="../assets/blog/video/privat-en.jpg">
+              <source src="../assets/blog/video/privat-en.mp4" type="video/mp4">
+            </video>
+            <span class="vstack-play" aria-hidden="true">▶</span>
+          </button>
+          <figcaption>
+            <strong>Din nøgle. Din model. Dine data.</strong>
+            <span>Din egen API key, en lokal model med Ollama eller byPhil Cloud.</span>
+            <a href="blog/bring-your-own-key.html">Læs indlægget →</a>
+          </figcaption>
+        </figure>
+        <figure class="vstack-item" data-blog-video="pocket" style="--i:7">
+          <button class="vstack-open" type="button" aria-label="Afspil: Et alternativ til Pocket">
+            <video muted="" playsinline="" preload="none" width="360" height="520" poster="../assets/blog/video/pocket-en.jpg">
+              <source src="../assets/blog/video/pocket-en.mp4" type="video/mp4">
+            </video>
+            <span class="vstack-play" aria-hidden="true">▶</span>
+          </button>
+          <figcaption>
+            <strong>Et alternativ til Pocket</strong>
+            <span>Gem, opsummer og send til din Kindle.</span>
+            <a href="blog/pocket-alternative.html">Læs indlægget →</a>
+          </figcaption>
+        </figure>
+        <figure class="vstack-item" data-blog-video="senden" style="--i:8">
+          <button class="vstack-open" type="button" aria-label="Afspil: Fra opsummering til Kindle">
+            <video muted="" playsinline="" preload="none" width="360" height="520" poster="../assets/blog/video/senden-en.jpg">
+              <source src="../assets/blog/video/senden-en.mp4" type="video/mp4">
+            </video>
+            <span class="vstack-play" aria-hidden="true">▶</span>
+          </button>
+          <figcaption>
+            <strong>Fra resumé til Kindle</strong>
+            <span>Vanen, som hele dette projekt startede med.</span>
+            <a href="blog/from-bookmarklet-to-2.html">Læs indlægget →</a>
+          </figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
   <section id="try-it">
     <div class="wrap">
       <div class="section-head center reveal">

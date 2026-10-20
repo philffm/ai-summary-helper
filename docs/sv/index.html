@@ -266,6 +266,142 @@
     </div>
   </section>
 
+  <!-- ── Videos: a stack of short clips; tapping one opens a swipeable full-screen player (assets/main.js) ──
+       Videos are localized by scripts/translate.mjs like the blog ones: "<clip>-en.mp4" becomes "<clip>-<locale>.mp4"
+       when docs/assets/blog/video/ has it, else it stays English. -->
+  <section id="videos">
+    <div class="wrap">
+      <div class="section-head center reveal">
+        <div class="eyebrow">Titta</div>
+        <h2>Varje funktion på under 20 sekunder</h2>
+        <p>Korta klipp inspelade direkt i tillägget. Tryck på ett och svep genom resten.</p>
+      </div>
+      <!-- labels for the full-screen player (text here, so the translation pipeline translates them) -->
+      <div class="vfeed-labels" hidden="">
+        <span data-l="close">Stäng</span><span data-l="sound">Ljud på</span><span data-l="mute">Ljud av</span><span data-l="hint">Svep uppåt för nästa video</span>
+      </div>
+      <div class="vstack reveal" data-vstack="">
+        <figure class="vstack-item" data-blog-video="montage" style="--i:0">
+          <button class="vstack-open" type="button" aria-label="Spela upp: AI Summary Helper på 15 sekunder">
+            <video muted="" playsinline="" preload="none" width="360" height="520" poster="../assets/blog/video/montage-en.jpg">
+              <source src="../assets/blog/video/montage-en.mp4" type="video/mp4">
+            </video>
+            <span class="vstack-play" aria-hidden="true">▶</span>
+          </button>
+          <figcaption>
+            <strong>AI Summary Helper på 15 sekunder</strong>
+            <span>Sammanfattningar, källor, 41 språk, bibliotek, kunskapsgraf och research-läge.</span>
+            <a href="blog/videos.html">Alla videor →</a>
+          </figcaption>
+        </figure>
+        <figure class="vstack-item" data-blog-video="quellen" style="--i:1">
+          <button class="vstack-open" type="button" aria-label="Spela upp: Granska ett svar mot källan">
+            <video muted="" playsinline="" preload="none" width="360" height="520" poster="../assets/blog/video/quellen-en.jpg">
+              <source src="../assets/blog/video/quellen-en.mp4" type="video/mp4">
+            </video>
+            <span class="vstack-play" aria-hidden="true">▶</span>
+          </button>
+          <figcaption>
+            <strong>Verifiera svaret mot källan</strong>
+            <span>Ställ en följdfråga och hoppa direkt till textavsnittet svaret baserades på.</span>
+            <a href="blog/verify-ai-summary.html">Läs inlägget →</a>
+          </figcaption>
+        </figure>
+        <figure class="vstack-item" data-blog-video="highlights" style="--i:2">
+          <button class="vstack-open" type="button" aria-label="Spela upp: Ställ frågor om dina markeringar">
+            <video muted="" playsinline="" preload="none" width="360" height="520" poster="../assets/blog/video/highlights-en.jpg">
+              <source src="../assets/blog/video/highlights-en.mp4" type="video/mp4">
+            </video>
+            <span class="vstack-play" aria-hidden="true">▶</span>
+          </button>
+          <figcaption>
+            <strong>Ställ frågor om dina markeringar</strong>
+            <span>Markera ett stycke, ställ en fråga och få ett svar med källhänvisning.</span>
+            <a href="blog/highlighting-vs-asking.html">Läs inlägget →</a>
+          </figcaption>
+        </figure>
+        <figure class="vstack-item" data-blog-video="feeds" style="--i:3">
+          <button class="vstack-open" type="button" aria-label="Spela upp: En sammanfattning istället för 40 flöden">
+            <video muted="" playsinline="" preload="none" width="360" height="520" poster="../assets/blog/video/feeds-en.jpg">
+              <source src="../assets/blog/video/feeds-en.mp4" type="video/mp4">
+            </video>
+            <span class="vstack-play" aria-hidden="true">▶</span>
+          </button>
+          <figcaption>
+            <strong>En sammanfattning istället för 40 flöden</strong>
+            <span>Hela dagens flöden i en enda sammanfattning.</span>
+            <a href="blog/feeds-recap.html">Läs inlägget →</a>
+          </figcaption>
+        </figure>
+        <figure class="vstack-item" data-blog-video="graph" style="--i:4">
+          <button class="vstack-open" type="button" aria-label="Spela upp: Din läsning som en kunskapsgraf">
+            <video muted="" playsinline="" preload="none" width="360" height="520" poster="../assets/blog/video/graph-en.jpg">
+              <source src="../assets/blog/video/graph-en.mp4" type="video/mp4">
+            </video>
+            <span class="vstack-play" aria-hidden="true">▶</span>
+          </button>
+          <figcaption>
+            <strong>Din läsning som en kunskapsgraf</strong>
+            <span>Artiklar länkade via ämnen, med en sammanfattning för varje ämne.</span>
+            <a href="blog/on-device-architecture.html">Läs inlägget →</a>
+          </figcaption>
+        </figure>
+        <figure class="vstack-item" data-blog-video="digest" style="--i:5">
+          <button class="vstack-open" type="button" aria-label="Spela upp: Ett sammandrag istället för läshögen">
+            <video muted="" playsinline="" preload="none" width="360" height="520" poster="../assets/blog/video/digest-en.jpg">
+              <source src="../assets/blog/video/digest-en.mp4" type="video/mp4">
+            </video>
+            <span class="vstack-play" aria-hidden="true">▶</span>
+          </button>
+          <figcaption>
+            <strong>Ett sammandrag istället för en hög av flikar</strong>
+            <span>Tre sparade artiklar blir till ett magasin på din Kindle.</span>
+            <a href="blog/unread-saves.html">Läs inlägget →</a>
+          </figcaption>
+        </figure>
+        <figure class="vstack-item" data-blog-video="privat" style="--i:6">
+          <button class="vstack-open" type="button" aria-label="Spela upp: Din nyckel. Din modell. Din data.">
+            <video muted="" playsinline="" preload="none" width="360" height="520" poster="../assets/blog/video/privat-en.jpg">
+              <source src="../assets/blog/video/privat-en.mp4" type="video/mp4">
+            </video>
+            <span class="vstack-play" aria-hidden="true">▶</span>
+          </button>
+          <figcaption>
+            <strong>Din nyckel. Din modell. Din data.</strong>
+            <span>Din egen API key, en lokal modell med Ollama, eller byPhil Cloud.</span>
+            <a href="blog/bring-your-own-key.html">Läs inlägget →</a>
+          </figcaption>
+        </figure>
+        <figure class="vstack-item" data-blog-video="pocket" style="--i:7">
+          <button class="vstack-open" type="button" aria-label="Spela upp: Ett alternativ till Pocket">
+            <video muted="" playsinline="" preload="none" width="360" height="520" poster="../assets/blog/video/pocket-en.jpg">
+              <source src="../assets/blog/video/pocket-en.mp4" type="video/mp4">
+            </video>
+            <span class="vstack-play" aria-hidden="true">▶</span>
+          </button>
+          <figcaption>
+            <strong>Ett alternativ till Pocket</strong>
+            <span>Spara, sammanfatta och skicka till din Kindle.</span>
+            <a href="blog/pocket-alternative.html">Läs inlägget →</a>
+          </figcaption>
+        </figure>
+        <figure class="vstack-item" data-blog-video="senden" style="--i:8">
+          <button class="vstack-open" type="button" aria-label="Spela upp: Från sammanfattning till Kindle">
+            <video muted="" playsinline="" preload="none" width="360" height="520" poster="../assets/blog/video/senden-en.jpg">
+              <source src="../assets/blog/video/senden-en.mp4" type="video/mp4">
+            </video>
+            <span class="vstack-play" aria-hidden="true">▶</span>
+          </button>
+          <figcaption>
+            <strong>Från sammanfattning till Kindle</strong>
+            <span>Vanemönstret som startade hela projektet.</span>
+            <a href="blog/from-bookmarklet-to-2.html">Läs inlägget →</a>
+          </figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
   <section id="try-it">
     <div class="wrap">
       <div class="section-head center reveal">

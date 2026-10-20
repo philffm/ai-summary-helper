@@ -114,13 +114,13 @@
   <section>
     <div class="wrap">
       <div class="prose">
-        <p>Mọi bản tóm tắt AI đều hoạt động theo cùng một cơ chế: gửi dữ liệu văn bản đi và nhận kết quả trả về. Yếu tố quyết định mức độ tin cậy của công cụ chính là ai đứng ở giữa. Với nhiều sản phẩm, máy chủ của công ty trung gian sẽ nằm ở đó, và nội dung bạn đọc buộc phải đi qua máy chủ này trước khi đến một mô hình mà bạn thậm chí không được tự chọn.</p>
         <figure class="post-figure post-figure--video" data-blog-video="privat">
           <video controls="" playsinline="" preload="none" width="360" height="520" poster="../../assets/blog/video/privat-en.jpg">
             <source src="../../assets/blog/video/privat-en.mp4" type="video/mp4">
           </video>
           <figcaption>Video: chuyển đổi giữa API key riêng của bạn, mô hình cục bộ với Ollama và byPhil Cloud.</figcaption>
         </figure>
+        <p>Mọi bản tóm tắt AI đều hoạt động theo cùng một cơ chế: gửi dữ liệu văn bản đi và nhận kết quả trả về. Yếu tố quyết định mức độ tin cậy của công cụ chính là ai đứng ở giữa. Với nhiều sản phẩm, máy chủ của công ty trung gian sẽ nằm ở đó, và nội dung bạn đọc buộc phải đi qua máy chủ này trước khi đến một mô hình mà bạn thậm chí không được tự chọn.</p>
 
         <h2>Khái niệm “Tự mang API key” (BYOK) tại đây nghĩa là gì</h2>
         <p>Bạn tạo API key từ nhà cung cấp mình tin tưởng, dán vào AI Summary Helper và chọn mô hình. Khi bạn tóm tắt một trang, background worker của tiện ích sẽ gửi văn bản trực tiếp đến nhà cung cấp đó và truyền dữ liệu phản hồi (stream) về. Hoàn toàn không có máy chủ trung gian nào của AI Summary Helper can thiệp vào luồng này khi bạn dùng key riêng.</p>

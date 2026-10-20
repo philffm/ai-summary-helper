@@ -266,6 +266,142 @@
     </div>
   </section>
 
+  <!-- ── Videos: a stack of short clips; tapping one opens a swipeable full-screen player (assets/main.js) ──
+       Videos are localized by scripts/translate.mjs like the blog ones: "<clip>-en.mp4" becomes "<clip>-<locale>.mp4"
+       when docs/assets/blog/video/ has it, else it stays English. -->
+  <section id="videos">
+    <div class="wrap">
+      <div class="section-head center reveal">
+        <div class="eyebrow">動画を見る</div>
+        <h2>すべての機能を20秒以内でご紹介</h2>
+        <p>実際の拡張機能で録画したショート動画です。タップして、スワイプで続けてご覧いただけます。</p>
+      </div>
+      <!-- labels for the full-screen player (text here, so the translation pipeline translates them) -->
+      <div class="vfeed-labels" hidden="">
+        <span data-l="close">閉じる</span><span data-l="sound">音声オン</span><span data-l="mute">音声オフ</span><span data-l="hint">上にスワイプして次の動画へ</span>
+      </div>
+      <div class="vstack reveal" data-vstack="">
+        <figure class="vstack-item" data-blog-video="montage" style="--i:0">
+          <button class="vstack-open" type="button" aria-label="再生: 15秒でわかるAI Summary Helper">
+            <video muted="" playsinline="" preload="none" width="360" height="520" poster="../assets/blog/video/montage-ja.jpg">
+              <source src="../assets/blog/video/montage-ja.mp4" type="video/mp4">
+            </video>
+            <span class="vstack-play" aria-hidden="true">▶</span>
+          </button>
+          <figcaption>
+            <strong>15秒でわかる AI Summary Helper</strong>
+            <span>要約、出典、41言語対応、ライブラリ、ナレッジグラフ、リサーチモード。</span>
+            <a href="blog/videos.html">すべての動画 →</a>
+          </figcaption>
+        </figure>
+        <figure class="vstack-item" data-blog-video="quellen" style="--i:1">
+          <button class="vstack-open" type="button" aria-label="再生: 回答を元のソースと照合">
+            <video muted="" playsinline="" preload="none" width="360" height="520" poster="../assets/blog/video/quellen-ja.jpg">
+              <source src="../assets/blog/video/quellen-ja.mp4" type="video/mp4">
+            </video>
+            <span class="vstack-play" aria-hidden="true">▶</span>
+          </button>
+          <figcaption>
+            <strong>回答を出典と照らし合わせて確認</strong>
+            <span>追加の質問をして、回答の根拠となった該当箇所へ直接ジャンプ。</span>
+            <a href="blog/verify-ai-summary.html">記事を読む →</a>
+          </figcaption>
+        </figure>
+        <figure class="vstack-item" data-blog-video="highlights" style="--i:2">
+          <button class="vstack-open" type="button" aria-label="再生: ハイライトについて質問">
+            <video muted="" playsinline="" preload="none" width="360" height="520" poster="../assets/blog/video/highlights-ja.jpg">
+              <source src="../assets/blog/video/highlights-ja.mp4" type="video/mp4">
+            </video>
+            <span class="vstack-play" aria-hidden="true">▶</span>
+          </button>
+          <figcaption>
+            <strong>ハイライトした内容について質問する</strong>
+            <span>文章をハイライトして質問すると、引用元を明記した回答が得られます。</span>
+            <a href="blog/highlighting-vs-asking.html">記事を読む →</a>
+          </figcaption>
+        </figure>
+        <figure class="vstack-item" data-blog-video="feeds" style="--i:3">
+          <button class="vstack-open" type="button" aria-label="再生: 40件のフィードを1つのまとめに">
+            <video muted="" playsinline="" preload="none" width="360" height="520" poster="../assets/blog/video/feeds-ja.jpg">
+              <source src="../assets/blog/video/feeds-ja.mp4" type="video/mp4">
+            </video>
+            <span class="vstack-play" aria-hidden="true">▶</span>
+          </button>
+          <figcaption>
+            <strong>40本のフィードを追う代わりに、1つのダイジェストを</strong>
+            <span>1日分のフィードをひとつのブリーフィングに。</span>
+            <a href="blog/feeds-recap.html">記事を読む →</a>
+          </figcaption>
+        </figure>
+        <figure class="vstack-item" data-blog-video="graph" style="--i:4">
+          <button class="vstack-open" type="button" aria-label="再生: 読んだ記事をナレッジグラフに">
+            <video muted="" playsinline="" preload="none" width="360" height="520" poster="../assets/blog/video/graph-ja.jpg">
+              <source src="../assets/blog/video/graph-ja.mp4" type="video/mp4">
+            </video>
+            <span class="vstack-play" aria-hidden="true">▶</span>
+          </button>
+          <figcaption>
+            <strong>読んだ記事をナレッジグラフに</strong>
+            <span>トピックごとに関連記事を紐付け、あらゆるトピックの要点をすぐに確認できます。</span>
+            <a href="blog/on-device-architecture.html">記事を読む →</a>
+          </figcaption>
+        </figure>
+        <figure class="vstack-item" data-blog-video="digest" style="--i:5">
+          <button class="vstack-open" type="button" aria-label="再生: たまった記事を1つのダイジェストに">
+            <video muted="" playsinline="" preload="none" width="360" height="520" poster="../assets/blog/video/digest-ja.jpg">
+              <source src="../assets/blog/video/digest-ja.mp4" type="video/mp4">
+            </video>
+            <span class="vstack-play" aria-hidden="true">▶</span>
+          </button>
+          <figcaption>
+            <strong>溜まった記事をひとつのダイジェストに</strong>
+            <span>保存した3本の記事が、Kindleで読める1冊のマガジンに。</span>
+            <a href="blog/unread-saves.html">記事を読む →</a>
+          </figcaption>
+        </figure>
+        <figure class="vstack-item" data-blog-video="privat" style="--i:6">
+          <button class="vstack-open" type="button" aria-label="再生: 自分のキー、自分のモデル、自分のデータ">
+            <video muted="" playsinline="" preload="none" width="360" height="520" poster="../assets/blog/video/privat-ja.jpg">
+              <source src="../assets/blog/video/privat-ja.mp4" type="video/mp4">
+            </video>
+            <span class="vstack-play" aria-hidden="true">▶</span>
+          </button>
+          <figcaption>
+            <strong>あなたのAPIキー。あなたのモデル。あなたのデータ。</strong>
+            <span>ご自身のAPIキー、Ollamaを使ったローカルモデル、またはbyPhil Cloudを利用できます。</span>
+            <a href="blog/bring-your-own-key.html">記事を読む →</a>
+          </figcaption>
+        </figure>
+        <figure class="vstack-item" data-blog-video="pocket" style="--i:7">
+          <button class="vstack-open" type="button" aria-label="再生: Pocketに代わる選択肢">
+            <video muted="" playsinline="" preload="none" width="360" height="520" poster="../assets/blog/video/pocket-ja.jpg">
+              <source src="../assets/blog/video/pocket-ja.mp4" type="video/mp4">
+            </video>
+            <span class="vstack-play" aria-hidden="true">▶</span>
+          </button>
+          <figcaption>
+            <strong>Pocketの代替として</strong>
+            <span>保存、要約、そしてKindleへ送信。</span>
+            <a href="blog/pocket-alternative.html">記事を読む →</a>
+          </figcaption>
+        </figure>
+        <figure class="vstack-item" data-blog-video="senden" style="--i:8">
+          <button class="vstack-open" type="button" aria-label="再生: 要約からKindleへ">
+            <video muted="" playsinline="" preload="none" width="360" height="520" poster="../assets/blog/video/senden-ja.jpg">
+              <source src="../assets/blog/video/senden-ja.mp4" type="video/mp4">
+            </video>
+            <span class="vstack-play" aria-hidden="true">▶</span>
+          </button>
+          <figcaption>
+            <strong>要約からKindleへ</strong>
+            <span>このプロジェクトの原点となった読書習慣。</span>
+            <a href="blog/from-bookmarklet-to-2.html">記事を読む →</a>
+          </figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
   <section id="try-it">
     <div class="wrap">
       <div class="section-head center reveal">

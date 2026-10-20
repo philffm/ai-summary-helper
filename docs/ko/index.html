@@ -266,6 +266,142 @@
     </div>
   </section>
 
+  <!-- ── Videos: a stack of short clips; tapping one opens a swipeable full-screen player (assets/main.js) ──
+       Videos are localized by scripts/translate.mjs like the blog ones: "<clip>-en.mp4" becomes "<clip>-<locale>.mp4"
+       when docs/assets/blog/video/ has it, else it stays English. -->
+  <section id="videos">
+    <div class="wrap">
+      <div class="section-head center reveal">
+        <div class="eyebrow">영상 보기</div>
+        <h2>모든 기능을 20초 안에</h2>
+        <p>실제 확장 프로그램에서 직접 녹화한 숏폼 영상입니다. 하나를 탭해 밀어 넘겨보세요.</p>
+      </div>
+      <!-- labels for the full-screen player (text here, so the translation pipeline translates them) -->
+      <div class="vfeed-labels" hidden="">
+        <span data-l="close">닫기</span><span data-l="sound">소리 켜기</span><span data-l="mute">소리 끄기</span><span data-l="hint">다음 영상을 보려면 위로 쓸어올리세요</span>
+      </div>
+      <div class="vstack reveal" data-vstack="">
+        <figure class="vstack-item" data-blog-video="montage" style="--i:0">
+          <button class="vstack-open" type="button" aria-label="재생: 15초 만에 살펴보는 AI 요약 도우미">
+            <video muted="" playsinline="" preload="none" width="360" height="520" poster="../assets/blog/video/montage-ko.jpg">
+              <source src="../assets/blog/video/montage-ko.mp4" type="video/mp4">
+            </video>
+            <span class="vstack-play" aria-hidden="true">▶</span>
+          </button>
+          <figcaption>
+            <strong>15초 만에 살펴보는 AI Summary Helper</strong>
+            <span>핵심 요약, 원문 출처, 41개 언어 지원, 라이브러리, 지식 그래프 및 리서치 모드.</span>
+            <a href="blog/videos.html">전체 영상 보기 →</a>
+          </figcaption>
+        </figure>
+        <figure class="vstack-item" data-blog-video="quellen" style="--i:1">
+          <button class="vstack-open" type="button" aria-label="재생: 원문 출처와 답변 대조하기">
+            <video muted="" playsinline="" preload="none" width="360" height="520" poster="../assets/blog/video/quellen-ko.jpg">
+              <source src="../assets/blog/video/quellen-ko.mp4" type="video/mp4">
+            </video>
+            <span class="vstack-play" aria-hidden="true">▶</span>
+          </button>
+          <figcaption>
+            <strong>답변의 원문 출처 바로 확인하기</strong>
+            <span>추가 질문을 하고 답변의 근거가 된 본문 위치로 바로 이동하세요.</span>
+            <a href="blog/verify-ai-summary.html">글 읽기 →</a>
+          </figcaption>
+        </figure>
+        <figure class="vstack-item" data-blog-video="highlights" style="--i:2">
+          <button class="vstack-open" type="button" aria-label="재생: 저장한 하이라이트에 대해 질문하기">
+            <video muted="" playsinline="" preload="none" width="360" height="520" poster="../assets/blog/video/highlights-ko.jpg">
+              <source src="../assets/blog/video/highlights-ko.mp4" type="video/mp4">
+            </video>
+            <span class="vstack-play" aria-hidden="true">▶</span>
+          </button>
+          <figcaption>
+            <strong>하이라이트에 대해 질문하기</strong>
+            <span>원하는 문장을 하이라이트하고 질문하면, 해당 부분을 인용한 답변을 받아볼 수 있습니다.</span>
+            <a href="blog/highlighting-vs-asking.html">글 읽기 →</a>
+          </figcaption>
+        </figure>
+        <figure class="vstack-item" data-blog-video="feeds" style="--i:3">
+          <button class="vstack-open" type="button" aria-label="재생: 40개 피드 대신 핵심 요약 하나로 확인하기">
+            <video muted="" playsinline="" preload="none" width="360" height="520" poster="../assets/blog/video/feeds-ko.jpg">
+              <source src="../assets/blog/video/feeds-ko.mp4" type="video/mp4">
+            </video>
+            <span class="vstack-play" aria-hidden="true">▶</span>
+          </button>
+          <figcaption>
+            <strong>40개의 피드 대신 단 하나의 요약으로</strong>
+            <span>하루 동안 쌓인 피드를 단 하나의 브리핑으로.</span>
+            <a href="blog/feeds-recap.html">글 읽기 →</a>
+          </figcaption>
+        </figure>
+        <figure class="vstack-item" data-blog-video="graph" style="--i:4">
+          <button class="vstack-open" type="button" aria-label="재생: 읽은 내용을 지식 그래프로 시각화하기">
+            <video muted="" playsinline="" preload="none" width="360" height="520" poster="../assets/blog/video/graph-ko.jpg">
+              <source src="../assets/blog/video/graph-ko.mp4" type="video/mp4">
+            </video>
+            <span class="vstack-play" aria-hidden="true">▶</span>
+          </button>
+          <figcaption>
+            <strong>읽은 콘텐츠를 시각화하는 지식 그래프</strong>
+            <span>주제별로 연결된 아티클과 함께 어떤 주제든 맞춤 브리핑을 제공합니다.</span>
+            <a href="blog/on-device-architecture.html">글 읽기 →</a>
+          </figcaption>
+        </figure>
+        <figure class="vstack-item" data-blog-video="digest" style="--i:5">
+          <button class="vstack-open" type="button" aria-label="재생: 쌓여 있는 글 대신 깔끔한 다이제스트 하나로">
+            <video muted="" playsinline="" preload="none" width="360" height="520" poster="../assets/blog/video/digest-ko.jpg">
+              <source src="../assets/blog/video/digest-ko.mp4" type="video/mp4">
+            </video>
+            <span class="vstack-play" aria-hidden="true">▶</span>
+          </button>
+          <figcaption>
+            <strong>쌓아두는 대신 하나의 다이제스트로</strong>
+            <span>저장한 아티클 3개가 모여 Kindle에서 읽을 수 있는 한 권의 매거진이 됩니다.</span>
+            <a href="blog/unread-saves.html">글 읽기 →</a>
+          </figcaption>
+        </figure>
+        <figure class="vstack-item" data-blog-video="privat" style="--i:6">
+          <button class="vstack-open" type="button" aria-label="재생: 내 API 키, 내 로컬 모델, 완벽한 내 데이터 보호">
+            <video muted="" playsinline="" preload="none" width="360" height="520" poster="../assets/blog/video/privat-ko.jpg">
+              <source src="../assets/blog/video/privat-ko.mp4" type="video/mp4">
+            </video>
+            <span class="vstack-play" aria-hidden="true">▶</span>
+          </button>
+          <figcaption>
+            <strong>내 키. 내 모델. 내 데이터.</strong>
+            <span>보유한 API 키, Ollama 기반 로컬 모델, 또는 byPhil Cloud까지 자유롭게 선택하세요.</span>
+            <a href="blog/bring-your-own-key.html">글 읽기 →</a>
+          </figcaption>
+        </figure>
+        <figure class="vstack-item" data-blog-video="pocket" style="--i:7">
+          <button class="vstack-open" type="button" aria-label="재생: 완벽한 Pocket 대체재">
+            <video muted="" playsinline="" preload="none" width="360" height="520" poster="../assets/blog/video/pocket-ko.jpg">
+              <source src="../assets/blog/video/pocket-ko.mp4" type="video/mp4">
+            </video>
+            <span class="vstack-play" aria-hidden="true">▶</span>
+          </button>
+          <figcaption>
+            <strong>Pocket을 대체할 스마트한 솔루션</strong>
+            <span>저장하고, 요약하고, Kindle로 간편하게 전송하세요.</span>
+            <a href="blog/pocket-alternative.html">글 읽기 →</a>
+          </figcaption>
+        </figure>
+        <figure class="vstack-item" data-blog-video="senden" style="--i:8">
+          <button class="vstack-open" type="button" aria-label="재생: 요약본에서 Kindle 전송까지">
+            <video muted="" playsinline="" preload="none" width="360" height="520" poster="../assets/blog/video/senden-ko.jpg">
+              <source src="../assets/blog/video/senden-ko.mp4" type="video/mp4">
+            </video>
+            <span class="vstack-play" aria-hidden="true">▶</span>
+          </button>
+          <figcaption>
+            <strong>요약본을 Kindle로 전송하기</strong>
+            <span>이 프로젝트의 시작점이 된 읽기 습관.</span>
+            <a href="blog/from-bookmarklet-to-2.html">글 읽기 →</a>
+          </figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
   <section id="try-it">
     <div class="wrap">
       <div class="section-head center reveal">

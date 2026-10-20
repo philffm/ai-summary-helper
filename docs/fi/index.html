@@ -266,6 +266,142 @@
     </div>
   </section>
 
+  <!-- ── Videos: a stack of short clips; tapping one opens a swipeable full-screen player (assets/main.js) ──
+       Videos are localized by scripts/translate.mjs like the blog ones: "<clip>-en.mp4" becomes "<clip>-<locale>.mp4"
+       when docs/assets/blog/video/ has it, else it stays English. -->
+  <section id="videos">
+    <div class="wrap">
+      <div class="section-head center reveal">
+        <div class="eyebrow">Katso</div>
+        <h2>Kaikki ominaisuudet alle 20 sekunnissa</h2>
+        <p>Lyhyitä pätkiä oikeasta laajennuksesta. Napauta yhtä ja selaa muita pyyhkäisemällä.</p>
+      </div>
+      <!-- labels for the full-screen player (text here, so the translation pipeline translates them) -->
+      <div class="vfeed-labels" hidden="">
+        <span data-l="close">Sulje</span><span data-l="sound">Äänet päälle</span><span data-l="mute">Äänet pois</span><span data-l="hint">Pyyhkäise ylös seuraavaan videoon</span>
+      </div>
+      <div class="vstack reveal" data-vstack="">
+        <figure class="vstack-item" data-blog-video="montage" style="--i:0">
+          <button class="vstack-open" type="button" aria-label="Toista: AI Summary Helper 15 sekunnissa">
+            <video muted="" playsinline="" preload="none" width="360" height="520" poster="../assets/blog/video/montage-en.jpg">
+              <source src="../assets/blog/video/montage-en.mp4" type="video/mp4">
+            </video>
+            <span class="vstack-play" aria-hidden="true">▶</span>
+          </button>
+          <figcaption>
+            <strong>AI Summary Helper 15 sekunnissa</strong>
+            <span>Tiivistelmät, lähteet, 41 kieltä, kirjasto, tietograafi ja tutkimustila.</span>
+            <a href="blog/videos.html">Kaikki videot →</a>
+          </figcaption>
+        </figure>
+        <figure class="vstack-item" data-blog-video="quellen" style="--i:1">
+          <button class="vstack-open" type="button" aria-label="Toista: Tarkista vastaus suoraan lähteestä">
+            <video muted="" playsinline="" preload="none" width="360" height="520" poster="../assets/blog/video/quellen-en.jpg">
+              <source src="../assets/blog/video/quellen-en.mp4" type="video/mp4">
+            </video>
+            <span class="vstack-play" aria-hidden="true">▶</span>
+          </button>
+          <figcaption>
+            <strong>Tarkista vastaus suoraan lähteestä</strong>
+            <span>Esitä jatkokysymys ja siirry suoraan kohtaan, johon vastaus perustuu.</span>
+            <a href="blog/verify-ai-summary.html">Lue artikkeli →</a>
+          </figcaption>
+        </figure>
+        <figure class="vstack-item" data-blog-video="highlights" style="--i:2">
+          <button class="vstack-open" type="button" aria-label="Toista: Kysy korostuksistasi">
+            <video muted="" playsinline="" preload="none" width="360" height="520" poster="../assets/blog/video/highlights-en.jpg">
+              <source src="../assets/blog/video/highlights-en.mp4" type="video/mp4">
+            </video>
+            <span class="vstack-play" aria-hidden="true">▶</span>
+          </button>
+          <figcaption>
+            <strong>Kysy korostuksistasi</strong>
+            <span>Valitse tekstikohta, kysy siitä ja saat vastauksen lähdeviittauksineen.</span>
+            <a href="blog/highlighting-vs-asking.html">Lue artikkeli →</a>
+          </figcaption>
+        </figure>
+        <figure class="vstack-item" data-blog-video="feeds" style="--i:3">
+          <button class="vstack-open" type="button" aria-label="Toista: Yksi kooste 40 syötteen sijaan">
+            <video muted="" playsinline="" preload="none" width="360" height="520" poster="../assets/blog/video/feeds-en.jpg">
+              <source src="../assets/blog/video/feeds-en.mp4" type="video/mp4">
+            </video>
+            <span class="vstack-play" aria-hidden="true">▶</span>
+          </button>
+          <figcaption>
+            <strong>Yksi kooste 40 syötteen sijaan</strong>
+            <span>Koko päivän uutisvirrat yhdessä katsauksessa.</span>
+            <a href="blog/feeds-recap.html">Lue artikkeli →</a>
+          </figcaption>
+        </figure>
+        <figure class="vstack-item" data-blog-video="graph" style="--i:4">
+          <button class="vstack-open" type="button" aria-label="Toista: Lukemisesi tietograafina">
+            <video muted="" playsinline="" preload="none" width="360" height="520" poster="../assets/blog/video/graph-en.jpg">
+              <source src="../assets/blog/video/graph-en.mp4" type="video/mp4">
+            </video>
+            <span class="vstack-play" aria-hidden="true">▶</span>
+          </button>
+          <figcaption>
+            <strong>Lukemasi artikkelit tietograafina</strong>
+            <span>Aiheiden mukaan linkitetyt artikkelit ja kooste mistä tahansa aiheesta.</span>
+            <a href="blog/on-device-architecture.html">Lue artikkeli →</a>
+          </figcaption>
+        </figure>
+        <figure class="vstack-item" data-blog-video="digest" style="--i:5">
+          <button class="vstack-open" type="button" aria-label="Toista: Yksi kooste lukemattomien pinon sijaan">
+            <video muted="" playsinline="" preload="none" width="360" height="520" poster="../assets/blog/video/digest-en.jpg">
+              <source src="../assets/blog/video/digest-en.mp4" type="video/mp4">
+            </video>
+            <span class="vstack-play" aria-hidden="true">▶</span>
+          </button>
+          <figcaption>
+            <strong>Yksi kooste lukupinon tilalle</strong>
+            <span>Kolme tallennettua artikkelia muuttuu yhdeksi lukupaketiksi Kindleesi.</span>
+            <a href="blog/unread-saves.html">Lue artikkeli →</a>
+          </figcaption>
+        </figure>
+        <figure class="vstack-item" data-blog-video="privat" style="--i:6">
+          <button class="vstack-open" type="button" aria-label="Toista: Oma avain. Oma malli. Omat tiedot.">
+            <video muted="" playsinline="" preload="none" width="360" height="520" poster="../assets/blog/video/privat-en.jpg">
+              <source src="../assets/blog/video/privat-en.mp4" type="video/mp4">
+            </video>
+            <span class="vstack-play" aria-hidden="true">▶</span>
+          </button>
+          <figcaption>
+            <strong>Oma avain. Oma malli. Omat tiedot.</strong>
+            <span>Oma API key, paikallinen malli Ollamalla tai byPhil Cloud.</span>
+            <a href="blog/bring-your-own-key.html">Lue artikkeli →</a>
+          </figcaption>
+        </figure>
+        <figure class="vstack-item" data-blog-video="pocket" style="--i:7">
+          <button class="vstack-open" type="button" aria-label="Toista: Vaihtoehto Pocketille">
+            <video muted="" playsinline="" preload="none" width="360" height="520" poster="../assets/blog/video/pocket-en.jpg">
+              <source src="../assets/blog/video/pocket-en.mp4" type="video/mp4">
+            </video>
+            <span class="vstack-play" aria-hidden="true">▶</span>
+          </button>
+          <figcaption>
+            <strong>Vaihtoehto Pocketille</strong>
+            <span>Tallenna, tiivistä ja lähetä Kindleesi.</span>
+            <a href="blog/pocket-alternative.html">Lue artikkeli →</a>
+          </figcaption>
+        </figure>
+        <figure class="vstack-item" data-blog-video="senden" style="--i:8">
+          <button class="vstack-open" type="button" aria-label="Toista: Tiivistelmästä Kindleen">
+            <video muted="" playsinline="" preload="none" width="360" height="520" poster="../assets/blog/video/senden-en.jpg">
+              <source src="../assets/blog/video/senden-en.mp4" type="video/mp4">
+            </video>
+            <span class="vstack-play" aria-hidden="true">▶</span>
+          </button>
+          <figcaption>
+            <strong>Tiivistelmästä Kindlelle</strong>
+            <span>Tapa, josta koko projekti sai alkunsa.</span>
+            <a href="blog/from-bookmarklet-to-2.html">Lue artikkeli →</a>
+          </figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
   <section id="try-it">
     <div class="wrap">
       <div class="section-head center reveal">

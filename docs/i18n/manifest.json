@@ -94269,6 +94269,2286 @@
           "model": "google/gemini-3.7-flash"
         }
       }
+    },
+    "a71e757324467ccfe2ae90f483fd759eff5378e6afcfcce4c620de929b3f2dd8": {
+      "en": "Watch",
+      "translations": {
+        "de": {
+          "text": "Ansehen",
+          "translatedAt": "2026-10-20T13:42:02.614Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fr": {
+          "text": "Regarder",
+          "translatedAt": "2026-10-20T13:42:16.561Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "es": {
+          "text": "Ver",
+          "translatedAt": "2026-10-20T13:42:26.606Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh": {
+          "text": "观看",
+          "translatedAt": "2026-10-20T13:42:34.491Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh-TW": {
+          "text": "觀看",
+          "translatedAt": "2026-10-20T13:42:47.236Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ja": {
+          "text": "動画を見る",
+          "translatedAt": "2026-10-20T13:42:58.832Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ko": {
+          "text": "영상 보기",
+          "translatedAt": "2026-10-20T13:43:05.794Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pt": {
+          "text": "Assistir",
+          "translatedAt": "2026-10-20T13:43:13.252Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "hi": {
+          "text": "देखें",
+          "translatedAt": "2026-10-20T13:43:23.582Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "vi": {
+          "text": "Xem",
+          "translatedAt": "2026-10-20T13:43:32.459Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "nl": {
+          "text": "Bekijken",
+          "translatedAt": "2026-10-20T13:43:42.737Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "it": {
+          "text": "Guarda",
+          "translatedAt": "2026-10-20T13:43:52.055Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ru": {
+          "text": "Смотреть",
+          "translatedAt": "2026-10-20T13:43:58.627Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "uk": {
+          "text": "Дивитися",
+          "translatedAt": "2026-10-20T13:44:06.605Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "tr": {
+          "text": "İzle",
+          "translatedAt": "2026-10-20T13:44:15.758Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "id": {
+          "text": "Tonton",
+          "translatedAt": "2026-10-20T13:44:27.579Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pl": {
+          "text": "Zobacz",
+          "translatedAt": "2026-10-20T13:44:36.678Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "th": {
+          "text": "รับชม",
+          "translatedAt": "2026-10-20T13:44:45.816Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ar": {
+          "text": "شاهد",
+          "translatedAt": "2026-10-20T13:44:55.816Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "sv": {
+          "text": "Titta",
+          "translatedAt": "2026-10-20T13:45:05.677Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "da": {
+          "text": "Se med",
+          "translatedAt": "2026-10-20T13:45:15.885Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "no": {
+          "text": "Se",
+          "translatedAt": "2026-10-20T13:45:26.451Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fi": {
+          "text": "Katso",
+          "translatedAt": "2026-10-20T13:45:37.041Z",
+          "model": "google/gemini-3.7-flash"
+        }
+      }
+    },
+    "b9c6f447c44cc4824af274097c09ee938797d150956e7dad1b86a3822286f6b7": {
+      "en": "Every feature in under 20 seconds",
+      "translations": {
+        "de": {
+          "text": "Jede Funktion in unter 20 Sekunden",
+          "translatedAt": "2026-10-20T13:42:02.614Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fr": {
+          "text": "Chaque fonctionnalité en moins de 20 secondes",
+          "translatedAt": "2026-10-20T13:42:16.561Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "es": {
+          "text": "Cada función en menos de 20 segundos",
+          "translatedAt": "2026-10-20T13:42:26.606Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh": {
+          "text": "20 秒内快速了解各项功能",
+          "translatedAt": "2026-10-20T13:42:34.491Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh-TW": {
+          "text": "20 秒快速掌握每項功能",
+          "translatedAt": "2026-10-20T13:42:47.236Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ja": {
+          "text": "すべての機能を20秒以内でご紹介",
+          "translatedAt": "2026-10-20T13:42:58.832Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ko": {
+          "text": "모든 기능을 20초 안에",
+          "translatedAt": "2026-10-20T13:43:05.794Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pt": {
+          "text": "Todos os recursos em menos de 20 segundos",
+          "translatedAt": "2026-10-20T13:43:13.252Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "hi": {
+          "text": "हर feature 20 seconds से भी कम में",
+          "translatedAt": "2026-10-20T13:43:23.582Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "vi": {
+          "text": "Mọi tính năng trong chưa đầy 20 giây",
+          "translatedAt": "2026-10-20T13:43:32.459Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "nl": {
+          "text": "Elke functie in minder dan 20 seconden",
+          "translatedAt": "2026-10-20T13:43:42.737Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "it": {
+          "text": "Ogni funzionalità in meno di 20 secondi",
+          "translatedAt": "2026-10-20T13:43:52.055Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ru": {
+          "text": "Каждая функция менее чем за 20 секунд",
+          "translatedAt": "2026-10-20T13:43:58.627Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "uk": {
+          "text": "Кожна функція менш ніж за 20 секунд",
+          "translatedAt": "2026-10-20T13:44:06.605Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "tr": {
+          "text": "Her özellik 20 saniyeden kısa sürede",
+          "translatedAt": "2026-10-20T13:44:15.758Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "id": {
+          "text": "Semua fitur dalam kurang dari 20 detik",
+          "translatedAt": "2026-10-20T13:44:27.579Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pl": {
+          "text": "Każda funkcja w mniej niż 20 sekund",
+          "translatedAt": "2026-10-20T13:44:36.678Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "th": {
+          "text": "ครบทุกฟีเจอร์ในเวลาไม่ถึง 20 วินาที",
+          "translatedAt": "2026-10-20T13:44:45.816Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ar": {
+          "text": "كل ميزة في أقل من 20 ثانية",
+          "translatedAt": "2026-10-20T13:44:55.816Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "sv": {
+          "text": "Varje funktion på under 20 sekunder",
+          "translatedAt": "2026-10-20T13:45:05.677Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "da": {
+          "text": "Alle funktioner på under 20 sekunder",
+          "translatedAt": "2026-10-20T13:45:15.885Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "no": {
+          "text": "Alle funksjoner på under 20 sekunder",
+          "translatedAt": "2026-10-20T13:45:26.451Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fi": {
+          "text": "Kaikki ominaisuudet alle 20 sekunnissa",
+          "translatedAt": "2026-10-20T13:45:37.041Z",
+          "model": "google/gemini-3.7-flash"
+        }
+      }
+    },
+    "f6d0778a3617314f4f8f4204bdaace0a46b8259aa8392ca02beda16d9a1d061b": {
+      "en": "Short clips recorded from the real extension. Tap one and swipe through the rest.",
+      "translations": {
+        "de": {
+          "text": "Kurze Clips, direkt aus der echten Erweiterung aufgenommen. Tippen Sie auf einen Clip und wischen Sie durch den Rest.",
+          "translatedAt": "2026-10-20T13:42:02.614Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fr": {
+          "text": "De courts extraits enregistrés directement depuis l'extension. Cliquez sur l'un d'eux et faites défiler le reste.",
+          "translatedAt": "2026-10-20T13:42:16.561Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "es": {
+          "text": "Clips cortos grabados desde la extensión real. Toca uno y desliza para ver los demás.",
+          "translatedAt": "2026-10-20T13:42:26.606Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh": {
+          "text": "来自插件实录的精炼演示。点击任意视频即可连续播放。",
+          "translatedAt": "2026-10-20T13:42:34.491Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh-TW": {
+          "text": "擴充功能實機操作短片。點選一部即可連續滑動觀看。",
+          "translatedAt": "2026-10-20T13:42:47.236Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ja": {
+          "text": "実際の拡張機能で録画したショート動画です。タップして、スワイプで続けてご覧いただけます。",
+          "translatedAt": "2026-10-20T13:42:58.832Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ko": {
+          "text": "실제 확장 프로그램에서 직접 녹화한 숏폼 영상입니다. 하나를 탭해 밀어 넘겨보세요.",
+          "translatedAt": "2026-10-20T13:43:05.794Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pt": {
+          "text": "Vídeos curtos gravados diretamente da extensão. Toque em um e deslize para ver o restante.",
+          "translatedAt": "2026-10-20T13:43:13.252Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "hi": {
+          "text": "रियल extension से रिकॉर्ड किए गए शॉर्ट क्लिप्स। एक पर tap करें और बाकी देखने के लिए swipe करें।",
+          "translatedAt": "2026-10-20T13:43:23.582Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "vi": {
+          "text": "Các video ngắn ghi lại trực tiếp từ tiện ích mở rộng thực tế. Chạm để xem và vuốt để xem tiếp.",
+          "translatedAt": "2026-10-20T13:43:32.459Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "nl": {
+          "text": "Korte clips opgenomen vanuit de echte extensie. Tik op eentje en swipe door de rest.",
+          "translatedAt": "2026-10-20T13:43:42.737Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "it": {
+          "text": "Brevi clip registrate dall'estensione reale. Tocca una clip e scorri per vedere le altre.",
+          "translatedAt": "2026-10-20T13:43:52.055Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ru": {
+          "text": "Короткие ролики из реального расширения. Нажмите на видео и листайте остальные свайпом.",
+          "translatedAt": "2026-10-20T13:43:58.627Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "uk": {
+          "text": "Короткі кліпи, записані в реальному розширенні. Торкніться одного та гортайте інші.",
+          "translatedAt": "2026-10-20T13:44:06.605Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "tr": {
+          "text": "Gerçek uzantıdan kaydedilmiş kısa klipler. Birine dokunun ve diğerlerini kaydırarak izleyin.",
+          "translatedAt": "2026-10-20T13:44:15.758Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "id": {
+          "text": "Klip singkat yang direkam langsung dari ekstensi. Ketuk salah satu dan geser untuk melihat sisanya.",
+          "translatedAt": "2026-10-20T13:44:27.579Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pl": {
+          "text": "Krótkie klipy nagrane bezpośrednio w rozszerzeniu. Kliknij jeden i przeglądaj pozostałe.",
+          "translatedAt": "2026-10-20T13:44:36.678Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "th": {
+          "text": "คลิปสั้นจากการใช้งานส่วนขยายจริง แตะเพื่อเริ่มดูแล้วปัดเพื่อดูต่อได้ทันที",
+          "translatedAt": "2026-10-20T13:44:45.816Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ar": {
+          "text": "مقاطع قصيرة مسجلة من الإضافة الفعلية. اضغط على أحدها واسحب لمشاهدة الباقي.",
+          "translatedAt": "2026-10-20T13:44:55.816Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "sv": {
+          "text": "Korta klipp inspelade direkt i tillägget. Tryck på ett och svep genom resten.",
+          "translatedAt": "2026-10-20T13:45:05.677Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "da": {
+          "text": "Korte klip optaget direkte fra udvidelsen. Tryk på et, og swipe gennem resten.",
+          "translatedAt": "2026-10-20T13:45:15.885Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "no": {
+          "text": "Korte klipp tatt opp fra den faktiske utvidelsen. Trykk på ett og sveip gjennom resten.",
+          "translatedAt": "2026-10-20T13:45:26.451Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fi": {
+          "text": "Lyhyitä pätkiä oikeasta laajennuksesta. Napauta yhtä ja selaa muita pyyhkäisemällä.",
+          "translatedAt": "2026-10-20T13:45:37.041Z",
+          "model": "google/gemini-3.7-flash"
+        }
+      }
+    },
+    "7d9eb7acb13e24625c404401d8e88b2350e32162455885f18276cf802f7701ed": {
+      "en": "Close",
+      "translations": {
+        "de": {
+          "text": "Schließen",
+          "translatedAt": "2026-10-20T13:42:02.614Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fr": {
+          "text": "Fermer",
+          "translatedAt": "2026-10-20T13:42:16.561Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "es": {
+          "text": "Cerrar",
+          "translatedAt": "2026-10-20T13:42:26.606Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh": {
+          "text": "关闭",
+          "translatedAt": "2026-10-20T13:42:34.491Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh-TW": {
+          "text": "關閉",
+          "translatedAt": "2026-10-20T13:42:47.236Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ja": {
+          "text": "閉じる",
+          "translatedAt": "2026-10-20T13:42:58.832Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ko": {
+          "text": "닫기",
+          "translatedAt": "2026-10-20T13:43:05.794Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pt": {
+          "text": "Fechar",
+          "translatedAt": "2026-10-20T13:43:13.252Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "hi": {
+          "text": "बंद करें",
+          "translatedAt": "2026-10-20T13:43:23.582Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "vi": {
+          "text": "Đóng",
+          "translatedAt": "2026-10-20T13:43:32.459Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "nl": {
+          "text": "Sluiten",
+          "translatedAt": "2026-10-20T13:43:42.737Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "it": {
+          "text": "Chiudi",
+          "translatedAt": "2026-10-20T13:43:52.055Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ru": {
+          "text": "Закрыть",
+          "translatedAt": "2026-10-20T13:43:58.627Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "uk": {
+          "text": "Закрити",
+          "translatedAt": "2026-10-20T13:44:06.605Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "tr": {
+          "text": "Kapat",
+          "translatedAt": "2026-10-20T13:44:15.758Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "id": {
+          "text": "Tutup",
+          "translatedAt": "2026-10-20T13:44:27.579Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pl": {
+          "text": "Zamknij",
+          "translatedAt": "2026-10-20T13:44:36.678Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "th": {
+          "text": "ปิด",
+          "translatedAt": "2026-10-20T13:44:45.816Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ar": {
+          "text": "إغلاق",
+          "translatedAt": "2026-10-20T13:44:55.816Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "sv": {
+          "text": "Stäng",
+          "translatedAt": "2026-10-20T13:45:05.677Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "da": {
+          "text": "Luk",
+          "translatedAt": "2026-10-20T13:45:15.885Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "no": {
+          "text": "Lukk",
+          "translatedAt": "2026-10-20T13:45:26.451Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fi": {
+          "text": "Sulje",
+          "translatedAt": "2026-10-20T13:45:37.041Z",
+          "model": "google/gemini-3.7-flash"
+        }
+      }
+    },
+    "8c477e13ad004984e8610a03af64e170c8fbd26af481f4fc3c2337e0cfee052a": {
+      "en": "Sound on",
+      "translations": {
+        "de": {
+          "text": "Ton ein",
+          "translatedAt": "2026-10-20T13:42:02.614Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fr": {
+          "text": "Activer le son",
+          "translatedAt": "2026-10-20T13:42:16.561Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "es": {
+          "text": "Sonido activado",
+          "translatedAt": "2026-10-20T13:42:26.606Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh": {
+          "text": "开启声音",
+          "translatedAt": "2026-10-20T13:42:34.491Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh-TW": {
+          "text": "開啟聲音",
+          "translatedAt": "2026-10-20T13:42:47.236Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ja": {
+          "text": "音声オン",
+          "translatedAt": "2026-10-20T13:42:58.832Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ko": {
+          "text": "소리 켜기",
+          "translatedAt": "2026-10-20T13:43:05.794Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pt": {
+          "text": "Ativar som",
+          "translatedAt": "2026-10-20T13:43:13.252Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "hi": {
+          "text": "Sound on",
+          "translatedAt": "2026-10-20T13:43:23.582Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "vi": {
+          "text": "Bật âm thanh",
+          "translatedAt": "2026-10-20T13:43:32.459Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "nl": {
+          "text": "Geluid aan",
+          "translatedAt": "2026-10-20T13:43:42.737Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "it": {
+          "text": "Attiva audio",
+          "translatedAt": "2026-10-20T13:43:52.055Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ru": {
+          "text": "Включить звук",
+          "translatedAt": "2026-10-20T13:43:58.627Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "uk": {
+          "text": "Увімкнути звук",
+          "translatedAt": "2026-10-20T13:44:06.605Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "tr": {
+          "text": "Sesi aç",
+          "translatedAt": "2026-10-20T13:44:15.758Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "id": {
+          "text": "Suara aktif",
+          "translatedAt": "2026-10-20T13:44:27.579Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pl": {
+          "text": "Włącz dźwięk",
+          "translatedAt": "2026-10-20T13:44:36.678Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "th": {
+          "text": "เปิดเสียง",
+          "translatedAt": "2026-10-20T13:44:45.816Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ar": {
+          "text": "تشغيل الصوت",
+          "translatedAt": "2026-10-20T13:44:55.816Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "sv": {
+          "text": "Ljud på",
+          "translatedAt": "2026-10-20T13:45:05.677Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "da": {
+          "text": "Lyd til",
+          "translatedAt": "2026-10-20T13:45:15.885Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "no": {
+          "text": "Lyd på",
+          "translatedAt": "2026-10-20T13:45:26.451Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fi": {
+          "text": "Äänet päälle",
+          "translatedAt": "2026-10-20T13:45:37.041Z",
+          "model": "google/gemini-3.7-flash"
+        }
+      }
+    },
+    "3f5d70944c3f9e2d3dc1b6f66da0bf0c4e059199e051b32d5f0d93f7e3fb1e77": {
+      "en": "Sound off",
+      "translations": {
+        "de": {
+          "text": "Ton aus",
+          "translatedAt": "2026-10-20T13:42:02.614Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fr": {
+          "text": "Couper le son",
+          "translatedAt": "2026-10-20T13:42:16.561Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "es": {
+          "text": "Sonido desactivado",
+          "translatedAt": "2026-10-20T13:42:26.606Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh": {
+          "text": "静音",
+          "translatedAt": "2026-10-20T13:42:34.491Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh-TW": {
+          "text": "靜音",
+          "translatedAt": "2026-10-20T13:42:47.236Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ja": {
+          "text": "音声オフ",
+          "translatedAt": "2026-10-20T13:42:58.832Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ko": {
+          "text": "소리 끄기",
+          "translatedAt": "2026-10-20T13:43:05.794Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pt": {
+          "text": "Desativar som",
+          "translatedAt": "2026-10-20T13:43:13.252Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "hi": {
+          "text": "Sound off",
+          "translatedAt": "2026-10-20T13:43:23.582Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "vi": {
+          "text": "Tắt âm thanh",
+          "translatedAt": "2026-10-20T13:43:32.459Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "nl": {
+          "text": "Geluid uit",
+          "translatedAt": "2026-10-20T13:43:42.737Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "it": {
+          "text": "Disattiva audio",
+          "translatedAt": "2026-10-20T13:43:52.055Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ru": {
+          "text": "Выключить звук",
+          "translatedAt": "2026-10-20T13:43:58.627Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "uk": {
+          "text": "Вимкнути звук",
+          "translatedAt": "2026-10-20T13:44:06.605Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "tr": {
+          "text": "Sesi kapat",
+          "translatedAt": "2026-10-20T13:44:15.758Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "id": {
+          "text": "Suara mati",
+          "translatedAt": "2026-10-20T13:44:27.579Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pl": {
+          "text": "Wyłącz dźwięk",
+          "translatedAt": "2026-10-20T13:44:36.678Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "th": {
+          "text": "ปิดเสียง",
+          "translatedAt": "2026-10-20T13:44:45.816Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ar": {
+          "text": "كتم الصوت",
+          "translatedAt": "2026-10-20T13:44:55.816Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "sv": {
+          "text": "Ljud av",
+          "translatedAt": "2026-10-20T13:45:05.677Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "da": {
+          "text": "Lyd fra",
+          "translatedAt": "2026-10-20T13:45:15.885Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "no": {
+          "text": "Lyd av",
+          "translatedAt": "2026-10-20T13:45:26.451Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fi": {
+          "text": "Äänet pois",
+          "translatedAt": "2026-10-20T13:45:37.041Z",
+          "model": "google/gemini-3.7-flash"
+        }
+      }
+    },
+    "547b7cbc3bf89222ea400f4a01a254e2f48a151644e51a4633360c2ac33e1afe": {
+      "en": "Swipe up for the next video",
+      "translations": {
+        "de": {
+          "text": "Nach oben wischen für das nächste Video",
+          "translatedAt": "2026-10-20T13:42:02.614Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fr": {
+          "text": "Balayez vers le haut pour la vidéo suivante",
+          "translatedAt": "2026-10-20T13:42:16.561Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "es": {
+          "text": "Desliza hacia arriba para ver el siguiente video",
+          "translatedAt": "2026-10-20T13:42:26.606Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh": {
+          "text": "上滑观看下一个视频",
+          "translatedAt": "2026-10-20T13:42:34.491Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh-TW": {
+          "text": "向上滑動觀看下一部影片",
+          "translatedAt": "2026-10-20T13:42:47.236Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ja": {
+          "text": "上にスワイプして次の動画へ",
+          "translatedAt": "2026-10-20T13:42:58.832Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ko": {
+          "text": "다음 영상을 보려면 위로 쓸어올리세요",
+          "translatedAt": "2026-10-20T13:43:05.794Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pt": {
+          "text": "Deslize para cima para o próximo vídeo",
+          "translatedAt": "2026-10-20T13:43:13.252Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "hi": {
+          "text": "अगले video के लिए swipe up करें",
+          "translatedAt": "2026-10-20T13:43:23.582Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "vi": {
+          "text": "Vuốt lên để xem video tiếp theo",
+          "translatedAt": "2026-10-20T13:43:32.459Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "nl": {
+          "text": "Swipe omhoog voor de volgende video",
+          "translatedAt": "2026-10-20T13:43:42.737Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "it": {
+          "text": "Scorri verso l'alto per il video successivo",
+          "translatedAt": "2026-10-20T13:43:52.055Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ru": {
+          "text": "Смахните вверх для следующего видео",
+          "translatedAt": "2026-10-20T13:43:58.627Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "uk": {
+          "text": "Свайпайте вгору для наступного відео",
+          "translatedAt": "2026-10-20T13:44:06.605Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "tr": {
+          "text": "Sonraki video için yukarı kaydırın",
+          "translatedAt": "2026-10-20T13:44:15.758Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "id": {
+          "text": "Geser ke atas untuk video berikutnya",
+          "translatedAt": "2026-10-20T13:44:27.579Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pl": {
+          "text": "Przesuń w górę, aby przejść do kolejnego filmu",
+          "translatedAt": "2026-10-20T13:44:36.678Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "th": {
+          "text": "ปัดขึ้นเพื่อดูวิดีโอถัดไป",
+          "translatedAt": "2026-10-20T13:44:45.816Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ar": {
+          "text": "اسحب للأعلى للانتقال إلى الفيديو التالي",
+          "translatedAt": "2026-10-20T13:44:55.816Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "sv": {
+          "text": "Svep uppåt för nästa video",
+          "translatedAt": "2026-10-20T13:45:05.677Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "da": {
+          "text": "Swipe op for næste video",
+          "translatedAt": "2026-10-20T13:45:15.885Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "no": {
+          "text": "Sveip opp for neste video",
+          "translatedAt": "2026-10-20T13:45:26.451Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fi": {
+          "text": "Pyyhkäise ylös seuraavaan videoon",
+          "translatedAt": "2026-10-20T13:45:37.041Z",
+          "model": "google/gemini-3.7-flash"
+        }
+      }
+    },
+    "7d0421a821215860d6f95f4c2e8b5e9cf4dee06a37fb7258aa68a1e534d22600": {
+      "en": "All videos →",
+      "translations": {
+        "de": {
+          "text": "Alle Videos →",
+          "translatedAt": "2026-10-20T13:42:02.614Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fr": {
+          "text": "Toutes les vidéos →",
+          "translatedAt": "2026-10-20T13:42:16.561Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "es": {
+          "text": "Todos los videos →",
+          "translatedAt": "2026-10-20T13:42:26.606Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh": {
+          "text": "所有视频 →",
+          "translatedAt": "2026-10-20T13:42:34.491Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh-TW": {
+          "text": "所有影片 →",
+          "translatedAt": "2026-10-20T13:42:47.236Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ja": {
+          "text": "すべての動画 →",
+          "translatedAt": "2026-10-20T13:42:58.832Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ko": {
+          "text": "전체 영상 보기 →",
+          "translatedAt": "2026-10-20T13:43:05.794Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pt": {
+          "text": "Todos os vídeos →",
+          "translatedAt": "2026-10-20T13:43:13.252Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "hi": {
+          "text": "सारे videos →",
+          "translatedAt": "2026-10-20T13:43:23.582Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "vi": {
+          "text": "Tất cả video →",
+          "translatedAt": "2026-10-20T13:43:32.459Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "nl": {
+          "text": "Alle video's →",
+          "translatedAt": "2026-10-20T13:43:42.737Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "it": {
+          "text": "Tutti i video →",
+          "translatedAt": "2026-10-20T13:43:52.055Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ru": {
+          "text": "Все видео →",
+          "translatedAt": "2026-10-20T13:43:58.627Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "uk": {
+          "text": "Усі відео →",
+          "translatedAt": "2026-10-20T13:44:06.605Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "tr": {
+          "text": "Tüm videolar →",
+          "translatedAt": "2026-10-20T13:44:15.758Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "id": {
+          "text": "Semua video →",
+          "translatedAt": "2026-10-20T13:44:27.579Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pl": {
+          "text": "Wszystkie filmy →",
+          "translatedAt": "2026-10-20T13:44:36.678Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "th": {
+          "text": "วิดีโอทั้งหมด →",
+          "translatedAt": "2026-10-20T13:44:45.816Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ar": {
+          "text": "جميع مقاطع الفيديو ←",
+          "translatedAt": "2026-10-20T13:44:55.816Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "sv": {
+          "text": "Alla videor →",
+          "translatedAt": "2026-10-20T13:45:05.677Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "da": {
+          "text": "Alle videoer →",
+          "translatedAt": "2026-10-20T13:45:15.885Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "no": {
+          "text": "Alle videoer →",
+          "translatedAt": "2026-10-20T13:45:26.451Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fi": {
+          "text": "Kaikki videot →",
+          "translatedAt": "2026-10-20T13:45:37.041Z",
+          "model": "google/gemini-3.7-flash"
+        }
+      }
+    },
+    "9bb259f10e7680be0aa0573e01bebdeee39f2cc779478c2751b166ed479cdca7": {
+      "en": "Articles linked through their topics, with a briefing on any topic.",
+      "translations": {
+        "de": {
+          "text": "Artikel über Themen miteinander verknüpft – inklusive Briefing zu jedem Thema.",
+          "translatedAt": "2026-10-20T13:42:02.614Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fr": {
+          "text": "Des articles reliés par leurs thématiques, avec une synthèse sur n'importe quel sujet.",
+          "translatedAt": "2026-10-20T13:42:16.561Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "es": {
+          "text": "Artículos conectados por sus temas, con un resumen ejecutivo sobre cualquiera de ellos.",
+          "translatedAt": "2026-10-20T13:42:26.606Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh": {
+          "text": "按主题关联所有文章，并可随时生成任意主题的速读简报。",
+          "translatedAt": "2026-10-20T13:42:34.491Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh-TW": {
+          "text": "依主題串聯相關文章，隨時掌握任一主題的重點摘要。",
+          "translatedAt": "2026-10-20T13:42:47.236Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ja": {
+          "text": "トピックごとに関連記事を紐付け、あらゆるトピックの要点をすぐに確認できます。",
+          "translatedAt": "2026-10-20T13:42:58.832Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ko": {
+          "text": "주제별로 연결된 아티클과 함께 어떤 주제든 맞춤 브리핑을 제공합니다.",
+          "translatedAt": "2026-10-20T13:43:05.794Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pt": {
+          "text": "Artigos conectados pelos seus tópicos, com um resumo sobre qualquer assunto.",
+          "translatedAt": "2026-10-20T13:43:13.252Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "hi": {
+          "text": "Topics से आपस में जुड़े articles, किसी भी टॉपिक पर तुरंत briefing के साथ।",
+          "translatedAt": "2026-10-20T13:43:23.582Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "vi": {
+          "text": "Các bài viết được liên kết theo chủ đề, kèm bản tóm tắt nhanh cho từng chủ đề.",
+          "translatedAt": "2026-10-20T13:43:32.459Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "nl": {
+          "text": "Artikelen gekoppeld via hun onderwerpen, met een briefing over elk thema.",
+          "translatedAt": "2026-10-20T13:43:42.737Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "it": {
+          "text": "Articoli collegati per argomento, con un briefing su qualsiasi tema.",
+          "translatedAt": "2026-10-20T13:43:52.055Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ru": {
+          "text": "Статьи, связанные по темам, с кратким обзором по любой из них.",
+          "translatedAt": "2026-10-20T13:43:58.627Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "uk": {
+          "text": "Статті, повʼязані за темами, зі стислим оглядом будь-якої теми.",
+          "translatedAt": "2026-10-20T13:44:06.605Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "tr": {
+          "text": "Konularına göre birbirine bağlanan makaleler ve her konu hakkında kısa bir özet.",
+          "translatedAt": "2026-10-20T13:44:15.758Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "id": {
+          "text": "Artikel saling terhubung berdasarkan topik, lengkap dengan ringkasan untuk setiap topik.",
+          "translatedAt": "2026-10-20T13:44:27.579Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pl": {
+          "text": "Artykuły powiązane tematycznie, z podsumowaniem każdego zagadnienia.",
+          "translatedAt": "2026-10-20T13:44:36.678Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "th": {
+          "text": "เชื่อมโยงบทความตามหัวข้อ พร้อมสรุปย่อประเด็นสำคัญสำหรับทุกหัวข้อ",
+          "translatedAt": "2026-10-20T13:44:45.816Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ar": {
+          "text": "مقالات مترابطة حسب مواضيعها، مع تقرير موجز حول أي موضوع.",
+          "translatedAt": "2026-10-20T13:44:55.816Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "sv": {
+          "text": "Artiklar länkade via ämnen, med en sammanfattning för varje ämne.",
+          "translatedAt": "2026-10-20T13:45:05.677Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "da": {
+          "text": "Artikler forbundet via emner – med en briefing om ethvert emne.",
+          "translatedAt": "2026-10-20T13:45:15.885Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "no": {
+          "text": "Artikler koblet sammen etter tema, med en rask brief for hvert emne.",
+          "translatedAt": "2026-10-20T13:45:26.451Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fi": {
+          "text": "Aiheiden mukaan linkitetyt artikkelit ja kooste mistä tahansa aiheesta.",
+          "translatedAt": "2026-10-20T13:45:37.041Z",
+          "model": "google/gemini-3.7-flash"
+        }
+      }
+    },
+    "54f63390ca393034f3c1461829efecce390c784d08232662139253c86a0dd7b7": {
+      "en": "Your own API key, a local model with Ollama, or byPhil Cloud.",
+      "translations": {
+        "de": {
+          "text": "Ihr eigener API-Schlüssel, ein lokales Modell via Ollama oder die byPhil Cloud.",
+          "translatedAt": "2026-10-20T13:42:02.614Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fr": {
+          "text": "Votre propre clé d'API, un modèle local avec Ollama ou byPhil Cloud.",
+          "translatedAt": "2026-10-20T13:42:16.561Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "es": {
+          "text": "Tu propia clave de API, un modelo local con Ollama o byPhil Cloud.",
+          "translatedAt": "2026-10-20T13:42:26.606Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh": {
+          "text": "支持自带 API key、通过 Ollama 运行本地模型，或使用 byPhil Cloud。",
+          "translatedAt": "2026-10-20T13:42:34.491Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh-TW": {
+          "text": "使用你自己的 API Key、透過 Ollama 運行本機模型，或選用 byPhil Cloud。",
+          "translatedAt": "2026-10-20T13:42:47.236Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ja": {
+          "text": "ご自身のAPIキー、Ollamaを使ったローカルモデル、またはbyPhil Cloudを利用できます。",
+          "translatedAt": "2026-10-20T13:42:58.832Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ko": {
+          "text": "보유한 API 키, Ollama 기반 로컬 모델, 또는 byPhil Cloud까지 자유롭게 선택하세요.",
+          "translatedAt": "2026-10-20T13:43:05.794Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pt": {
+          "text": "Sua própria chave de API, um modelo local com Ollama ou byPhil Cloud.",
+          "translatedAt": "2026-10-20T13:43:13.252Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "hi": {
+          "text": "आपकी अपनी API key, Ollama के साथ 100% offline local model, या byPhil Cloud।",
+          "translatedAt": "2026-10-20T13:43:23.582Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "vi": {
+          "text": "Dùng khóa API riêng của bạn, mô hình AI cục bộ với Ollama, hoặc byPhil Cloud.",
+          "translatedAt": "2026-10-20T13:43:32.459Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "nl": {
+          "text": "Je eigen API-sleutel, een lokaal model met Ollama of byPhil Cloud.",
+          "translatedAt": "2026-10-20T13:43:42.737Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "it": {
+          "text": "La tua chiave API, un modello locale con Ollama o byPhil Cloud.",
+          "translatedAt": "2026-10-20T13:43:52.055Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ru": {
+          "text": "Собственный API key, локальная модель с Ollama или byPhil Cloud.",
+          "translatedAt": "2026-10-20T13:43:58.627Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "uk": {
+          "text": "Власний API key, локальна модель з Ollama або byPhil Cloud.",
+          "translatedAt": "2026-10-20T13:44:06.605Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "tr": {
+          "text": "Kendi API key'iniz, Ollama ile yerel bir model veya byPhil Cloud.",
+          "translatedAt": "2026-10-20T13:44:15.758Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "id": {
+          "text": "API key Anda sendiri, model lokal dengan Ollama, atau byPhil Cloud.",
+          "translatedAt": "2026-10-20T13:44:27.579Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pl": {
+          "text": "Własny klucz API, lokalny model z Ollama lub byPhil Cloud.",
+          "translatedAt": "2026-10-20T13:44:36.678Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "th": {
+          "text": "ใช้ API key ของคุณเอง, รันโมเดล Local ออฟไลน์ด้วย Ollama หรือใช้งานผ่าน byPhil Cloud",
+          "translatedAt": "2026-10-20T13:44:45.816Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ar": {
+          "text": "مفتاح API key خاص بك، أو نموذج محلي عبر Ollama، أو byPhil Cloud.",
+          "translatedAt": "2026-10-20T13:44:55.816Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "sv": {
+          "text": "Din egen API key, en lokal modell med Ollama, eller byPhil Cloud.",
+          "translatedAt": "2026-10-20T13:45:05.677Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "da": {
+          "text": "Din egen API key, en lokal model med Ollama eller byPhil Cloud.",
+          "translatedAt": "2026-10-20T13:45:15.885Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "no": {
+          "text": "Din egen API key, en lokal modell med Ollama, eller byPhil Cloud.",
+          "translatedAt": "2026-10-20T13:45:26.451Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fi": {
+          "text": "Oma API key, paikallinen malli Ollamalla tai byPhil Cloud.",
+          "translatedAt": "2026-10-20T13:45:37.041Z",
+          "model": "google/gemini-3.7-flash"
+        }
+      }
+    },
+    "c734484b83c17ffb62a694811fc5b81fa32280b3539f27cd82e9f3934d5d40c6": {
+      "en": "Play: AI Summary Helper in 15 seconds",
+      "translations": {
+        "de": {
+          "text": "Abspielen: KI-Zusammenfassungs-Assistent in 15 Sekunden",
+          "translatedAt": "2026-10-20T13:42:02.614Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fr": {
+          "text": "Lire : Assistant de résumé IA en 15 secondes",
+          "translatedAt": "2026-10-20T13:42:16.561Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "es": {
+          "text": "Reproducir: AI Summary Helper en 15 segundos",
+          "translatedAt": "2026-10-20T13:42:26.606Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh": {
+          "text": "播放：15 秒了解 AI Summary Helper",
+          "translatedAt": "2026-10-20T13:42:34.491Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh-TW": {
+          "text": "播放：15 秒了解 AI Summary Helper",
+          "translatedAt": "2026-10-20T13:42:47.236Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ja": {
+          "text": "再生: 15秒でわかるAI Summary Helper",
+          "translatedAt": "2026-10-20T13:42:58.832Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ko": {
+          "text": "재생: 15초 만에 살펴보는 AI 요약 도우미",
+          "translatedAt": "2026-10-20T13:43:05.794Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pt": {
+          "text": "Reproduzir: AI Summary Helper em 15 segundos",
+          "translatedAt": "2026-10-20T13:43:13.252Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "hi": {
+          "text": "Play: 15 seconds में AI Summary Helper",
+          "translatedAt": "2026-10-20T13:43:23.582Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "vi": {
+          "text": "Phát: AI Summary Helper trong 15 giây",
+          "translatedAt": "2026-10-20T13:43:32.459Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "nl": {
+          "text": "Afspelen: AI Summary Helper in 15 seconden",
+          "translatedAt": "2026-10-20T13:43:42.737Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "it": {
+          "text": "Riproduci: AI Summary Helper in 15 secondi",
+          "translatedAt": "2026-10-20T13:43:52.055Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ru": {
+          "text": "Смотреть: AI Summary Helper за 15 секунд",
+          "translatedAt": "2026-10-20T13:43:58.627Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "uk": {
+          "text": "Відтворити: AI Summary Helper за 15 секунд",
+          "translatedAt": "2026-10-20T13:44:06.605Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "tr": {
+          "text": "Oynat: 15 saniyede AI Summary Helper",
+          "translatedAt": "2026-10-20T13:44:15.758Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "id": {
+          "text": "Putar: AI Summary Helper dalam 15 detik",
+          "translatedAt": "2026-10-20T13:44:27.579Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pl": {
+          "text": "Odtwórz: AI Summary Helper w 15 sekund",
+          "translatedAt": "2026-10-20T13:44:36.678Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "th": {
+          "text": "เล่น: ผู้ช่วยสรุปเนื้อหาด้วย AI ใน 15 วินาที",
+          "translatedAt": "2026-10-20T13:44:45.816Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ar": {
+          "text": "تشغيل: المساعد الذكي للتلخيص في 15 ثانية",
+          "translatedAt": "2026-10-20T13:44:55.816Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "sv": {
+          "text": "Spela upp: AI Summary Helper på 15 sekunder",
+          "translatedAt": "2026-10-20T13:45:05.677Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "da": {
+          "text": "Afspil: AI Summary Helper på 15 sekunder",
+          "translatedAt": "2026-10-20T13:45:15.885Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "no": {
+          "text": "Spill av: AI Summary Helper på 15 sekunder",
+          "translatedAt": "2026-10-20T13:45:26.451Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fi": {
+          "text": "Toista: AI Summary Helper 15 sekunnissa",
+          "translatedAt": "2026-10-20T13:45:37.041Z",
+          "model": "google/gemini-3.7-flash"
+        }
+      }
+    },
+    "559acac33c74f3205c7d61c49adcc8d79edc36b84895ee04b6d05092da738def": {
+      "en": "Play: Check an answer against its source",
+      "translations": {
+        "de": {
+          "text": "Abspielen: Antwort anhand der Quelle überprüfen",
+          "translatedAt": "2026-10-20T13:42:02.614Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fr": {
+          "text": "Lire : Vérifier une réponse à partir de sa source",
+          "translatedAt": "2026-10-20T13:42:16.561Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "es": {
+          "text": "Reproducir: Verifica una respuesta con su fuente original",
+          "translatedAt": "2026-10-20T13:42:26.606Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh": {
+          "text": "播放：对照原文核验回答",
+          "translatedAt": "2026-10-20T13:42:34.491Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh-TW": {
+          "text": "播放：對照答案與原文出處",
+          "translatedAt": "2026-10-20T13:42:47.236Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ja": {
+          "text": "再生: 回答を元のソースと照合",
+          "translatedAt": "2026-10-20T13:42:58.832Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ko": {
+          "text": "재생: 원문 출처와 답변 대조하기",
+          "translatedAt": "2026-10-20T13:43:05.794Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pt": {
+          "text": "Reproduzir: Verifique uma resposta diretamente na fonte",
+          "translatedAt": "2026-10-20T13:43:13.252Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "hi": {
+          "text": "Play: किसी भी जवाब को उसके source से verify करें",
+          "translatedAt": "2026-10-20T13:43:23.582Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "vi": {
+          "text": "Phát: Đối chiếu câu trả lời với nguồn gốc",
+          "translatedAt": "2026-10-20T13:43:32.459Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "nl": {
+          "text": "Afspelen: Controleer een antwoord direct bij de bron",
+          "translatedAt": "2026-10-20T13:43:42.737Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "it": {
+          "text": "Riproduci: Verifica una risposta con la fonte originale",
+          "translatedAt": "2026-10-20T13:43:52.055Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ru": {
+          "text": "Смотреть: Проверка ответа по первоисточнику",
+          "translatedAt": "2026-10-20T13:43:58.627Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "uk": {
+          "text": "Відтворити: Перевірка відповіді за першоджерелом",
+          "translatedAt": "2026-10-20T13:44:06.605Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "tr": {
+          "text": "Oynat: Yanıtı kaynağıyla doğrulayın",
+          "translatedAt": "2026-10-20T13:44:15.758Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "id": {
+          "text": "Putar: Periksa jawaban langsung dari sumbernya",
+          "translatedAt": "2026-10-20T13:44:27.579Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pl": {
+          "text": "Odtwórz: Sprawdź odpowiedź u źródła",
+          "translatedAt": "2026-10-20T13:44:36.678Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "th": {
+          "text": "เล่น: ตรวจสอบคำตอบเทียบกับแหล่งที่มา",
+          "translatedAt": "2026-10-20T13:44:45.816Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ar": {
+          "text": "تشغيل: مطابقة الإجابة والتحقق منها عبر مصدرها",
+          "translatedAt": "2026-10-20T13:44:55.816Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "sv": {
+          "text": "Spela upp: Granska ett svar mot källan",
+          "translatedAt": "2026-10-20T13:45:05.677Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "da": {
+          "text": "Afspil: Tjek et svar mod kilden",
+          "translatedAt": "2026-10-20T13:45:15.885Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "no": {
+          "text": "Spill av: Sjekk et svar mot kilden",
+          "translatedAt": "2026-10-20T13:45:26.451Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fi": {
+          "text": "Toista: Tarkista vastaus suoraan lähteestä",
+          "translatedAt": "2026-10-20T13:45:37.041Z",
+          "model": "google/gemini-3.7-flash"
+        }
+      }
+    },
+    "942b9cc002cd272bc58682538b7f90ff09d173e14735ea7013bc9b25c1906b58": {
+      "en": "Play: Ask about your highlights",
+      "translations": {
+        "de": {
+          "text": "Abspielen: Fragen zu Ihren Markierungen stellen",
+          "translatedAt": "2026-10-20T13:42:02.614Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fr": {
+          "text": "Lire : Interrogez vos passages surlignés",
+          "translatedAt": "2026-10-20T13:42:16.561Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "es": {
+          "text": "Reproducir: Pregunta sobre tus fragmentos destacados",
+          "translatedAt": "2026-10-20T13:42:26.606Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh": {
+          "text": "播放：针对划线高亮内容提问",
+          "translatedAt": "2026-10-20T13:42:34.491Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh-TW": {
+          "text": "播放：針對劃線重點提問",
+          "translatedAt": "2026-10-20T13:42:47.236Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ja": {
+          "text": "再生: ハイライトについて質問",
+          "translatedAt": "2026-10-20T13:42:58.832Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ko": {
+          "text": "재생: 저장한 하이라이트에 대해 질문하기",
+          "translatedAt": "2026-10-20T13:43:05.794Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pt": {
+          "text": "Reproduzir: Faça perguntas sobre os seus destaques",
+          "translatedAt": "2026-10-20T13:43:13.252Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "hi": {
+          "text": "Play: अपने highlights के बारे में सवाल पूछें",
+          "translatedAt": "2026-10-20T13:43:23.582Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "vi": {
+          "text": "Phát: Đặt câu hỏi về các đoạn bạn đã đánh dấu",
+          "translatedAt": "2026-10-20T13:43:32.459Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "nl": {
+          "text": "Afspelen: Stel vragen over je markeringen",
+          "translatedAt": "2026-10-20T13:43:42.737Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "it": {
+          "text": "Riproduci: Fai domande sui tuoi passaggi evidenziati",
+          "translatedAt": "2026-10-20T13:43:52.055Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ru": {
+          "text": "Смотреть: Вопросы по вашим выделенным фрагментам",
+          "translatedAt": "2026-10-20T13:43:58.627Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "uk": {
+          "text": "Відтворити: Запитання до ваших виділень",
+          "translatedAt": "2026-10-20T13:44:06.605Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "tr": {
+          "text": "Oynat: Vurguladığınız kısımlar hakkında soru sorun",
+          "translatedAt": "2026-10-20T13:44:15.758Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "id": {
+          "text": "Putar: Tanyakan tentang highlight Anda",
+          "translatedAt": "2026-10-20T13:44:27.579Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pl": {
+          "text": "Odtwórz: Zadawaj pytania o zaznaczone fragmenty",
+          "translatedAt": "2026-10-20T13:44:36.678Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "th": {
+          "text": "เล่น: ถามตอบจากข้อความไฮไลต์ของคุณ",
+          "translatedAt": "2026-10-20T13:44:45.816Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ar": {
+          "text": "تشغيل: اسأل عن النصوص المميزة في قراءاتك",
+          "translatedAt": "2026-10-20T13:44:55.816Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "sv": {
+          "text": "Spela upp: Ställ frågor om dina markeringar",
+          "translatedAt": "2026-10-20T13:45:05.677Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "da": {
+          "text": "Afspil: Spørg ind til dine markeringer",
+          "translatedAt": "2026-10-20T13:45:15.885Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "no": {
+          "text": "Spill av: Still spørsmål til markeringene dine",
+          "translatedAt": "2026-10-20T13:45:26.451Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fi": {
+          "text": "Toista: Kysy korostuksistasi",
+          "translatedAt": "2026-10-20T13:45:37.041Z",
+          "model": "google/gemini-3.7-flash"
+        }
+      }
+    },
+    "0ae4abf9d57f85bf91a1430812d7ce2f2be877ce47c5361de984cf993d1d09a3": {
+      "en": "Play: One recap instead of 40 feeds",
+      "translations": {
+        "de": {
+          "text": "Abspielen: Ein Überblick statt 40 Feeds",
+          "translatedAt": "2026-10-20T13:42:02.614Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fr": {
+          "text": "Lire : Un récapitulatif unique plutôt que 40 flux",
+          "translatedAt": "2026-10-20T13:42:16.561Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "es": {
+          "text": "Reproducir: Un solo resumen en lugar de 40 feeds",
+          "translatedAt": "2026-10-20T13:42:26.606Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh": {
+          "text": "播放：一份精要回顾，替代 40 个订阅源",
+          "translatedAt": "2026-10-20T13:42:34.491Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh-TW": {
+          "text": "播放：一份重點彙整，取代 40 條訂閱動態",
+          "translatedAt": "2026-10-20T13:42:47.236Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ja": {
+          "text": "再生: 40件のフィードを1つのまとめに",
+          "translatedAt": "2026-10-20T13:42:58.832Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ko": {
+          "text": "재생: 40개 피드 대신 핵심 요약 하나로 확인하기",
+          "translatedAt": "2026-10-20T13:43:05.794Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pt": {
+          "text": "Reproduzir: Um único resumo em vez de 40 feeds",
+          "translatedAt": "2026-10-20T13:43:13.252Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "hi": {
+          "text": "Play: 40 अलग-अलग feeds के बजाय सिर्फ एक recap",
+          "translatedAt": "2026-10-20T13:43:23.582Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "vi": {
+          "text": "Phát: Một bản tóm lược thay vì 40 nguồn cấp tin",
+          "translatedAt": "2026-10-20T13:43:32.459Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "nl": {
+          "text": "Afspelen: Eén overzicht in plaats van 40 feeds",
+          "translatedAt": "2026-10-20T13:43:42.737Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "it": {
+          "text": "Riproduci: Un solo riepilogo invece di 40 feed",
+          "translatedAt": "2026-10-20T13:43:52.055Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ru": {
+          "text": "Смотреть: Одно резюме вместо 40 лент",
+          "translatedAt": "2026-10-20T13:43:58.627Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "uk": {
+          "text": "Відтворити: Один підсумок замість 40 стрічок",
+          "translatedAt": "2026-10-20T13:44:06.605Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "tr": {
+          "text": "Oynat: 40 feed yerine tek bir özet",
+          "translatedAt": "2026-10-20T13:44:15.758Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "id": {
+          "text": "Putar: Satu rekap alih-alih 40 feed",
+          "translatedAt": "2026-10-20T13:44:27.579Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pl": {
+          "text": "Odtwórz: Jedno podsumowanie zamiast 40 kanałów RSS",
+          "translatedAt": "2026-10-20T13:44:36.678Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "th": {
+          "text": "เล่น: สรุปจบครบในที่เดียว ไม่ต้องตามอ่านถึง 40 ฟีด",
+          "translatedAt": "2026-10-20T13:44:45.816Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ar": {
+          "text": "تشغيل: ملخص شامل واحد بدلاً من 40 موجزاً",
+          "translatedAt": "2026-10-20T13:44:55.816Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "sv": {
+          "text": "Spela upp: En sammanfattning istället för 40 flöden",
+          "translatedAt": "2026-10-20T13:45:05.677Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "da": {
+          "text": "Afspil: Én opsummering i stedet for 40 feeds",
+          "translatedAt": "2026-10-20T13:45:15.885Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "no": {
+          "text": "Spill av: Én oppsummering i stedet for 40 feeder",
+          "translatedAt": "2026-10-20T13:45:26.451Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fi": {
+          "text": "Toista: Yksi kooste 40 syötteen sijaan",
+          "translatedAt": "2026-10-20T13:45:37.041Z",
+          "model": "google/gemini-3.7-flash"
+        }
+      }
+    },
+    "bea1e76a67ddbdad66d4d9d4f509ecd2c822ac12eece5e76944e6b6c43f810f1": {
+      "en": "Play: Your reading as a knowledge graph",
+      "translations": {
+        "de": {
+          "text": "Abspielen: Ihre Lektüre als Wissensgraph",
+          "translatedAt": "2026-10-20T13:42:02.614Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fr": {
+          "text": "Lire : Vos lectures sous forme de graphe de connaissances",
+          "translatedAt": "2026-10-20T13:42:16.561Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "es": {
+          "text": "Reproducir: Tus lecturas como un grafo de conocimiento",
+          "translatedAt": "2026-10-20T13:42:26.606Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh": {
+          "text": "播放：将阅读沉淀为知识图谱",
+          "translatedAt": "2026-10-20T13:42:34.491Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh-TW": {
+          "text": "播放：將閱讀內容化為知識圖譜",
+          "translatedAt": "2026-10-20T13:42:47.236Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ja": {
+          "text": "再生: 読んだ記事をナレッジグラフに",
+          "translatedAt": "2026-10-20T13:42:58.832Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ko": {
+          "text": "재생: 읽은 내용을 지식 그래프로 시각화하기",
+          "translatedAt": "2026-10-20T13:43:05.794Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pt": {
+          "text": "Reproduzir: Suas leituras em um grafo de conhecimento",
+          "translatedAt": "2026-10-20T13:43:13.252Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "hi": {
+          "text": "Play: आपकी reading, एक knowledge graph के रूप में",
+          "translatedAt": "2026-10-20T13:43:23.582Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "vi": {
+          "text": "Phát: Biến nội dung bạn đọc thành sơ đồ tri thức",
+          "translatedAt": "2026-10-20T13:43:32.459Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "nl": {
+          "text": "Afspelen: Je leeslijst als kennisgraaf",
+          "translatedAt": "2026-10-20T13:43:42.737Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "it": {
+          "text": "Riproduci: Le tue letture come grafo di conoscenza",
+          "translatedAt": "2026-10-20T13:43:52.055Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ru": {
+          "text": "Смотреть: Прочитанное в виде графа знаний",
+          "translatedAt": "2026-10-20T13:43:58.627Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "uk": {
+          "text": "Відтворити: Прочитане як граф знань",
+          "translatedAt": "2026-10-20T13:44:06.605Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "tr": {
+          "text": "Oynat: Okuma geçmişiniz bir knowledge graph olarak",
+          "translatedAt": "2026-10-20T13:44:15.758Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "id": {
+          "text": "Putar: Bacaan Anda sebagai knowledge graph",
+          "translatedAt": "2026-10-20T13:44:27.579Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pl": {
+          "text": "Odtwórz: Twoje lektury w formie grafu wiedzy",
+          "translatedAt": "2026-10-20T13:44:36.678Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "th": {
+          "text": "เล่น: เปลี่ยนประวัติการอ่านให้เป็น Knowledge Graph",
+          "translatedAt": "2026-10-20T13:44:45.816Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ar": {
+          "text": "تشغيل: قراءاتك في صورة رسم بياني معرفي",
+          "translatedAt": "2026-10-20T13:44:55.816Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "sv": {
+          "text": "Spela upp: Din läsning som en kunskapsgraf",
+          "translatedAt": "2026-10-20T13:45:05.677Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "da": {
+          "text": "Afspil: Din læsning som vidensgraf",
+          "translatedAt": "2026-10-20T13:45:15.885Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "no": {
+          "text": "Spill av: Det du leser, som en kunnskapsgraf",
+          "translatedAt": "2026-10-20T13:45:26.451Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fi": {
+          "text": "Toista: Lukemisesi tietograafina",
+          "translatedAt": "2026-10-20T13:45:37.041Z",
+          "model": "google/gemini-3.7-flash"
+        }
+      }
+    },
+    "cd3a7bae1ee3fd2c51feb168d687faefe088a13b155d08fba1c57f5deba81cd0": {
+      "en": "Play: One digest instead of the pile",
+      "translations": {
+        "de": {
+          "text": "Abspielen: Ein Digest statt eines riesigen Lesestapels",
+          "translatedAt": "2026-10-20T13:42:02.614Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fr": {
+          "text": "Lire : Une synthèse claire au lieu d'accumuler les lectures",
+          "translatedAt": "2026-10-20T13:42:16.561Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "es": {
+          "text": "Reproducir: Una recopilación en lugar de acumular lecturas",
+          "translatedAt": "2026-10-20T13:42:26.606Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh": {
+          "text": "播放：告别内容堆积，一份精选速览",
+          "translatedAt": "2026-10-20T13:42:34.491Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh-TW": {
+          "text": "播放：一份精選摘要，告別堆積如山的待讀清單",
+          "translatedAt": "2026-10-20T13:42:47.236Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ja": {
+          "text": "再生: たまった記事を1つのダイジェストに",
+          "translatedAt": "2026-10-20T13:42:58.832Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ko": {
+          "text": "재생: 쌓여 있는 글 대신 깔끔한 다이제스트 하나로",
+          "translatedAt": "2026-10-20T13:43:05.794Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pt": {
+          "text": "Reproduzir: Um único compilado em vez daquela pilha acumulada",
+          "translatedAt": "2026-10-20T13:43:13.252Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "hi": {
+          "text": "Play: ढेरों आर्टिकल्स के बजाय सिर्फ एक Digest",
+          "translatedAt": "2026-10-20T13:43:23.582Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "vi": {
+          "text": "Phát: Một bản tổng hợp thay cho hàng đống bài viết",
+          "translatedAt": "2026-10-20T13:43:32.459Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "nl": {
+          "text": "Afspelen: Eén samenvatting in plaats van de hele stapel",
+          "translatedAt": "2026-10-20T13:43:42.737Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "it": {
+          "text": "Riproduci: Un solo sommario invece della solita pila",
+          "translatedAt": "2026-10-20T13:43:52.055Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ru": {
+          "text": "Смотреть: Один дайджест вместо стопки материалов",
+          "translatedAt": "2026-10-20T13:43:58.627Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "uk": {
+          "text": "Відтворити: Один дайджест замість купи непрочитаного",
+          "translatedAt": "2026-10-20T13:44:06.605Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "tr": {
+          "text": "Oynat: Yığınlar yerine tek bir derleme",
+          "translatedAt": "2026-10-20T13:44:15.758Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "id": {
+          "text": "Putar: Satu digest alih-alih tumpukan bacaan",
+          "translatedAt": "2026-10-20T13:44:27.579Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pl": {
+          "text": "Odtwórz: Jeden przegląd zamiast stosu zaległości",
+          "translatedAt": "2026-10-20T13:44:36.678Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "th": {
+          "text": "เล่น: สรุปภาพรวมกระชับ แทนที่จะต้องอ่านกองบทความทั้งหมด",
+          "translatedAt": "2026-10-20T13:44:45.816Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ar": {
+          "text": "تشغيل: موجز واحد بدلاً من تراكم المقالات",
+          "translatedAt": "2026-10-20T13:44:55.816Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "sv": {
+          "text": "Spela upp: Ett sammandrag istället för läshögen",
+          "translatedAt": "2026-10-20T13:45:05.677Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "da": {
+          "text": "Afspil: Ét overblik i stedet for bunken",
+          "translatedAt": "2026-10-20T13:45:15.885Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "no": {
+          "text": "Spill av: Én oversikt i stedet for hele bunken",
+          "translatedAt": "2026-10-20T13:45:26.451Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fi": {
+          "text": "Toista: Yksi kooste lukemattomien pinon sijaan",
+          "translatedAt": "2026-10-20T13:45:37.041Z",
+          "model": "google/gemini-3.7-flash"
+        }
+      }
+    },
+    "d94fa8325b84f3e302857d3f537ca5c793a5d66eee23a9fc722e08fd1e571a45": {
+      "en": "Play: Your key. Your model. Your data.",
+      "translations": {
+        "de": {
+          "text": "Abspielen: Ihr Schlüssel. Ihr Modell. Ihre Daten.",
+          "translatedAt": "2026-10-20T13:42:02.614Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fr": {
+          "text": "Lire : Votre clé. Votre modèle. Vos données.",
+          "translatedAt": "2026-10-20T13:42:16.561Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "es": {
+          "text": "Reproducir: Tu clave. Tu modelo. Tus datos.",
+          "translatedAt": "2026-10-20T13:42:26.606Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh": {
+          "text": "播放：你的 key，你的模型，你的数据。",
+          "translatedAt": "2026-10-20T13:42:34.491Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh-TW": {
+          "text": "播放：你的 API Key、你的模型、你的資料。",
+          "translatedAt": "2026-10-20T13:42:47.236Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ja": {
+          "text": "再生: 自分のキー、自分のモデル、自分のデータ",
+          "translatedAt": "2026-10-20T13:42:58.832Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ko": {
+          "text": "재생: 내 API 키, 내 로컬 모델, 완벽한 내 데이터 보호",
+          "translatedAt": "2026-10-20T13:43:05.794Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pt": {
+          "text": "Reproduzir: Sua chave. Seu modelo. Seus dados.",
+          "translatedAt": "2026-10-20T13:43:13.252Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "hi": {
+          "text": "Play: आपकी key। आपका model। आपका data।",
+          "translatedAt": "2026-10-20T13:43:23.582Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "vi": {
+          "text": "Phát: Khóa của bạn. Mô hình của bạn. Dữ liệu của bạn.",
+          "translatedAt": "2026-10-20T13:43:32.459Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "nl": {
+          "text": "Afspelen: Jouw sleutel. Jouw model. Jouw data.",
+          "translatedAt": "2026-10-20T13:43:42.737Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "it": {
+          "text": "Riproduci: La tua chiave. Il tuo modello. I tuoi dati.",
+          "translatedAt": "2026-10-20T13:43:52.055Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ru": {
+          "text": "Смотреть: Ваш ключ. Ваша модель. Ваши данные.",
+          "translatedAt": "2026-10-20T13:43:58.627Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "uk": {
+          "text": "Відтворити: Ваш ключ. Ваша модель. Ваші дані.",
+          "translatedAt": "2026-10-20T13:44:06.605Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "tr": {
+          "text": "Oynat: Sizin key'iniz. Sizin modeliniz. Sizin verileriniz.",
+          "translatedAt": "2026-10-20T13:44:15.758Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "id": {
+          "text": "Putar: Key Anda. Model Anda. Data Anda.",
+          "translatedAt": "2026-10-20T13:44:27.579Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pl": {
+          "text": "Odtwórz: Twój klucz. Twój model. Twoje dane.",
+          "translatedAt": "2026-10-20T13:44:36.678Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "th": {
+          "text": "เล่น: Key ของคุณ โมเดลของคุณ ข้อมูลของคุณ เป็นส่วนตัวเต็มขั้น",
+          "translatedAt": "2026-10-20T13:44:45.816Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ar": {
+          "text": "تشغيل: مفتاحك. نموذجك. بياناتك.",
+          "translatedAt": "2026-10-20T13:44:55.816Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "sv": {
+          "text": "Spela upp: Din nyckel. Din modell. Din data.",
+          "translatedAt": "2026-10-20T13:45:05.677Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "da": {
+          "text": "Afspil: Din nøgle. Din model. Dine data.",
+          "translatedAt": "2026-10-20T13:45:15.885Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "no": {
+          "text": "Spill av: Din nøkkel. Din modell. Dine data.",
+          "translatedAt": "2026-10-20T13:45:26.451Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fi": {
+          "text": "Toista: Oma avain. Oma malli. Omat tiedot.",
+          "translatedAt": "2026-10-20T13:45:37.041Z",
+          "model": "google/gemini-3.7-flash"
+        }
+      }
+    },
+    "e457252fab687a6eb33cbe9bdf174b88e78bc2a457d70c1a675f9713a12dd278": {
+      "en": "Play: A Pocket alternative",
+      "translations": {
+        "de": {
+          "text": "Abspielen: Eine Alternative zu Pocket",
+          "translatedAt": "2026-10-20T13:42:02.614Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fr": {
+          "text": "Lire : Une alternative à Pocket",
+          "translatedAt": "2026-10-20T13:42:16.561Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "es": {
+          "text": "Reproducir: Una alternativa a Pocket",
+          "translatedAt": "2026-10-20T13:42:26.606Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh": {
+          "text": "播放：Pocket 的替代之选",
+          "translatedAt": "2026-10-20T13:42:34.491Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh-TW": {
+          "text": "播放：Pocket 的替代方案",
+          "translatedAt": "2026-10-20T13:42:47.236Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ja": {
+          "text": "再生: Pocketに代わる選択肢",
+          "translatedAt": "2026-10-20T13:42:58.832Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ko": {
+          "text": "재생: 완벽한 Pocket 대체재",
+          "translatedAt": "2026-10-20T13:43:05.794Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pt": {
+          "text": "Reproduzir: Uma alternativa ao Pocket",
+          "translatedAt": "2026-10-20T13:43:13.252Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "hi": {
+          "text": "Play: Pocket का एक बेहतरीन alternative",
+          "translatedAt": "2026-10-20T13:43:23.582Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "vi": {
+          "text": "Phát: Giải pháp thay thế Pocket",
+          "translatedAt": "2026-10-20T13:43:32.459Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "nl": {
+          "text": "Afspelen: Een alternatief voor Pocket",
+          "translatedAt": "2026-10-20T13:43:42.737Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "it": {
+          "text": "Riproduci: Un'alternativa a Pocket",
+          "translatedAt": "2026-10-20T13:43:52.055Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ru": {
+          "text": "Смотреть: Альтернатива Pocket",
+          "translatedAt": "2026-10-20T13:43:58.627Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "uk": {
+          "text": "Відтворити: Альтернатива Pocket",
+          "translatedAt": "2026-10-20T13:44:06.605Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "tr": {
+          "text": "Oynat: Pocket alternatifi",
+          "translatedAt": "2026-10-20T13:44:15.758Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "id": {
+          "text": "Putar: Alternatif Pocket",
+          "translatedAt": "2026-10-20T13:44:27.579Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pl": {
+          "text": "Odtwórz: Alternatywa dla Pocket",
+          "translatedAt": "2026-10-20T13:44:36.678Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "th": {
+          "text": "เล่น: ทางเลือกใหม่ที่ดีกว่า Pocket",
+          "translatedAt": "2026-10-20T13:44:45.816Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ar": {
+          "text": "تشغيل: بديل لتطبيق Pocket",
+          "translatedAt": "2026-10-20T13:44:55.816Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "sv": {
+          "text": "Spela upp: Ett alternativ till Pocket",
+          "translatedAt": "2026-10-20T13:45:05.677Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "da": {
+          "text": "Afspil: Et alternativ til Pocket",
+          "translatedAt": "2026-10-20T13:45:15.885Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "no": {
+          "text": "Spill av: Et alternativ til Pocket",
+          "translatedAt": "2026-10-20T13:45:26.451Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fi": {
+          "text": "Toista: Vaihtoehto Pocketille",
+          "translatedAt": "2026-10-20T13:45:37.041Z",
+          "model": "google/gemini-3.7-flash"
+        }
+      }
+    },
+    "034a2b9c478acc89d18649f7c7fdecf83562f16f36c8a883ac609a5bb78b92b1": {
+      "en": "Play: From summary to Kindle",
+      "translations": {
+        "de": {
+          "text": "Abspielen: Von der Zusammenfassung auf den Kindle",
+          "translatedAt": "2026-10-20T13:42:02.614Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fr": {
+          "text": "Lire : Du résumé vers Kindle",
+          "translatedAt": "2026-10-20T13:42:16.561Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "es": {
+          "text": "Reproducir: Del resumen a Kindle",
+          "translatedAt": "2026-10-20T13:42:26.606Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh": {
+          "text": "播放：从内容摘要一键发送至 Kindle",
+          "translatedAt": "2026-10-20T13:42:34.491Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh-TW": {
+          "text": "播放：從摘要直接傳送至 Kindle",
+          "translatedAt": "2026-10-20T13:42:47.236Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ja": {
+          "text": "再生: 要約からKindleへ",
+          "translatedAt": "2026-10-20T13:42:58.832Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ko": {
+          "text": "재생: 요약본에서 Kindle 전송까지",
+          "translatedAt": "2026-10-20T13:43:05.794Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pt": {
+          "text": "Reproduzir: Do resumo direto para o Kindle",
+          "translatedAt": "2026-10-20T13:43:13.252Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "hi": {
+          "text": "Play: Summary से सीधे Kindle पर",
+          "translatedAt": "2026-10-20T13:43:23.582Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "vi": {
+          "text": "Phát: Từ bản tóm tắt chuyển thẳng sang Kindle",
+          "translatedAt": "2026-10-20T13:43:32.459Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "nl": {
+          "text": "Afspelen: Van samenvatting naar Kindle",
+          "translatedAt": "2026-10-20T13:43:42.737Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "it": {
+          "text": "Riproduci: Dal riassunto a Kindle",
+          "translatedAt": "2026-10-20T13:43:52.055Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ru": {
+          "text": "Смотреть: От резюме до Kindle",
+          "translatedAt": "2026-10-20T13:43:58.627Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "uk": {
+          "text": "Відтворити: Від саммарі до Kindle",
+          "translatedAt": "2026-10-20T13:44:06.605Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "tr": {
+          "text": "Oynat: Özetten Kindle'a",
+          "translatedAt": "2026-10-20T13:44:15.758Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "id": {
+          "text": "Putar: Dari ringkasan ke Kindle",
+          "translatedAt": "2026-10-20T13:44:27.579Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pl": {
+          "text": "Odtwórz: Od streszczenia prosto na Kindle",
+          "translatedAt": "2026-10-20T13:44:36.678Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "th": {
+          "text": "เล่น: ส่งสรุปเนื้อหาตรงไปยัง Kindle",
+          "translatedAt": "2026-10-20T13:44:45.816Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ar": {
+          "text": "تشغيل: من الملخص مباشرة إلى Kindle",
+          "translatedAt": "2026-10-20T13:44:55.816Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "sv": {
+          "text": "Spela upp: Från sammanfattning till Kindle",
+          "translatedAt": "2026-10-20T13:45:05.677Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "da": {
+          "text": "Afspil: Fra opsummering til Kindle",
+          "translatedAt": "2026-10-20T13:45:15.885Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "no": {
+          "text": "Spill av: Fra sammendrag til Kindle",
+          "translatedAt": "2026-10-20T13:45:26.451Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fi": {
+          "text": "Toista: Tiivistelmästä Kindleen",
+          "translatedAt": "2026-10-20T13:45:37.041Z",
+          "model": "google/gemini-3.7-flash"
+        }
+      }
     }
   }
 }
