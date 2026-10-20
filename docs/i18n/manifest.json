@@ -97269,6 +97269,606 @@
           "model": "google/gemini-3.7-flash"
         }
       }
+    },
+    "29887a5ff9846ccc23327565a07e17fa6dcaea6211f1898ae825f84ae38f4223": {
+      "en": "Share",
+      "translations": {
+        "de": {
+          "text": "Teilen",
+          "translatedAt": "2026-10-20T16:14:08.216Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fr": {
+          "text": "Partager",
+          "translatedAt": "2026-10-20T16:14:17.362Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "es": {
+          "text": "Compartir",
+          "translatedAt": "2026-10-20T16:14:25.286Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh": {
+          "text": "分享",
+          "translatedAt": "2026-10-20T16:14:30.011Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh-TW": {
+          "text": "分享",
+          "translatedAt": "2026-10-20T16:14:34.658Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ja": {
+          "text": "共有",
+          "translatedAt": "2026-10-20T16:14:42.455Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ko": {
+          "text": "공유",
+          "translatedAt": "2026-10-20T16:14:47.350Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pt": {
+          "text": "Compartilhar",
+          "translatedAt": "2026-10-20T16:14:52.490Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "hi": {
+          "text": "Share करें",
+          "translatedAt": "2026-10-20T16:15:01.072Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "vi": {
+          "text": "Chia sẻ",
+          "translatedAt": "2026-10-20T16:15:06.391Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "nl": {
+          "text": "Delen",
+          "translatedAt": "2026-10-20T16:15:11.818Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "it": {
+          "text": "Condividi",
+          "translatedAt": "2026-10-20T16:15:17.098Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ru": {
+          "text": "Поделиться",
+          "translatedAt": "2026-10-20T16:15:22.113Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "uk": {
+          "text": "Поділитися",
+          "translatedAt": "2026-10-20T16:15:33.929Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "tr": {
+          "text": "Paylaş",
+          "translatedAt": "2026-10-20T16:15:37.914Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "id": {
+          "text": "Bagikan",
+          "translatedAt": "2026-10-20T16:15:41.080Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pl": {
+          "text": "Udostępnij",
+          "translatedAt": "2026-10-20T16:15:45.906Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "th": {
+          "text": "แชร์",
+          "translatedAt": "2026-10-20T16:15:48.383Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ar": {
+          "text": "مشاركة",
+          "translatedAt": "2026-10-20T16:15:52.497Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "sv": {
+          "text": "Dela",
+          "translatedAt": "2026-10-20T16:15:59.973Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "da": {
+          "text": "Del",
+          "translatedAt": "2026-10-20T16:16:04.253Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "no": {
+          "text": "Del",
+          "translatedAt": "2026-10-20T16:16:10.654Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fi": {
+          "text": "Jaa",
+          "translatedAt": "2026-10-20T16:16:17.897Z",
+          "model": "google/gemini-3.7-flash"
+        }
+      }
+    },
+    "d12860c21e78baa522ac743ecfbd77fb9cf4558e581e0e54afcace23b3ce1849": {
+      "en": "Link copied",
+      "translations": {
+        "de": {
+          "text": "Link kopiert",
+          "translatedAt": "2026-10-20T16:14:08.216Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fr": {
+          "text": "Lien copié",
+          "translatedAt": "2026-10-20T16:14:17.362Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "es": {
+          "text": "Enlace copiado",
+          "translatedAt": "2026-10-20T16:14:25.286Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh": {
+          "text": "链接已复制",
+          "translatedAt": "2026-10-20T16:14:30.011Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh-TW": {
+          "text": "已複製連結",
+          "translatedAt": "2026-10-20T16:14:34.658Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ja": {
+          "text": "リンクをコピーしました",
+          "translatedAt": "2026-10-20T16:14:42.455Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ko": {
+          "text": "링크가 복사되었습니다",
+          "translatedAt": "2026-10-20T16:14:47.350Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pt": {
+          "text": "Link copiado",
+          "translatedAt": "2026-10-20T16:14:52.490Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "hi": {
+          "text": "Link copy हो गया",
+          "translatedAt": "2026-10-20T16:15:01.072Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "vi": {
+          "text": "Đã sao chép liên kết",
+          "translatedAt": "2026-10-20T16:15:06.391Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "nl": {
+          "text": "Link gekopieerd",
+          "translatedAt": "2026-10-20T16:15:11.818Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "it": {
+          "text": "Link copiato",
+          "translatedAt": "2026-10-20T16:15:17.098Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ru": {
+          "text": "Ссылка скопирована",
+          "translatedAt": "2026-10-20T16:15:22.113Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "uk": {
+          "text": "Посилання скопійовано",
+          "translatedAt": "2026-10-20T16:15:33.929Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "tr": {
+          "text": "Bağlantı kopyalandı",
+          "translatedAt": "2026-10-20T16:15:37.914Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "id": {
+          "text": "Tautan disalin",
+          "translatedAt": "2026-10-20T16:15:41.080Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pl": {
+          "text": "Skopiowano link",
+          "translatedAt": "2026-10-20T16:15:45.906Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "th": {
+          "text": "คัดลอกลิงก์แล้ว",
+          "translatedAt": "2026-10-20T16:15:48.383Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ar": {
+          "text": "تم نسخ الرابط",
+          "translatedAt": "2026-10-20T16:15:52.497Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "sv": {
+          "text": "Länken kopierad",
+          "translatedAt": "2026-10-20T16:15:59.973Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "da": {
+          "text": "Link kopieret",
+          "translatedAt": "2026-10-20T16:16:04.253Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "no": {
+          "text": "Lenke kopiert",
+          "translatedAt": "2026-10-20T16:16:10.654Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fi": {
+          "text": "Linkki kopioitu",
+          "translatedAt": "2026-10-20T16:16:17.897Z",
+          "model": "google/gemini-3.7-flash"
+        }
+      }
+    },
+    "2f626f6d935ff546285054391fcfde4f2963be68abe6fecbdea3ca56a226202b": {
+      "en": "Add to Firefox — it's free",
+      "translations": {
+        "de": {
+          "text": "Zu Firefox hinzufügen — kostenlos",
+          "translatedAt": "2026-10-20T16:14:08.216Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fr": {
+          "text": "Ajouter à Firefox — c'est gratuit",
+          "translatedAt": "2026-10-20T16:14:17.362Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "es": {
+          "text": "Añadir a Firefox — es gratis",
+          "translatedAt": "2026-10-20T16:14:25.286Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh": {
+          "text": "添加到 Firefox — 免费使用",
+          "translatedAt": "2026-10-20T16:14:30.011Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh-TW": {
+          "text": "新增至 Firefox — 完全免費",
+          "translatedAt": "2026-10-20T16:14:34.658Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ja": {
+          "text": "Firefox に追加 — 無料です",
+          "translatedAt": "2026-10-20T16:14:42.455Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ko": {
+          "text": "Firefox에 추가하기 — 무료",
+          "translatedAt": "2026-10-20T16:14:47.350Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pt": {
+          "text": "Adicionar ao Firefox — é grátis",
+          "translatedAt": "2026-10-20T16:14:52.490Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "hi": {
+          "text": "Firefox में add करें — बिल्कुल free",
+          "translatedAt": "2026-10-20T16:15:01.072Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "vi": {
+          "text": "Thêm vào Firefox — Miễn phí",
+          "translatedAt": "2026-10-20T16:15:06.391Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "nl": {
+          "text": "Toevoegen aan Firefox — gratis",
+          "translatedAt": "2026-10-20T16:15:11.818Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "it": {
+          "text": "Aggiungi a Firefox — è gratis",
+          "translatedAt": "2026-10-20T16:15:17.098Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ru": {
+          "text": "Добавить в Firefox — бесплатно",
+          "translatedAt": "2026-10-20T16:15:22.113Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "uk": {
+          "text": "Додати до Firefox — безкоштовно",
+          "translatedAt": "2026-10-20T16:15:33.929Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "tr": {
+          "text": "Firefox'a ekleyin — ücretsiz",
+          "translatedAt": "2026-10-20T16:15:37.914Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "id": {
+          "text": "Tambahkan ke Firefox — gratis",
+          "translatedAt": "2026-10-20T16:15:41.080Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pl": {
+          "text": "Dodaj do Firefox — bezpłatnie",
+          "translatedAt": "2026-10-20T16:15:45.906Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "th": {
+          "text": "เพิ่มลงใน Firefox — ฟรี",
+          "translatedAt": "2026-10-20T16:15:48.383Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ar": {
+          "text": "أضِف إلى Firefox — مجانًا",
+          "translatedAt": "2026-10-20T16:15:52.497Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "sv": {
+          "text": "Lägg till i Firefox — det är gratis",
+          "translatedAt": "2026-10-20T16:15:59.973Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "da": {
+          "text": "Tilføj til Firefox — det er gratis",
+          "translatedAt": "2026-10-20T16:16:04.253Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "no": {
+          "text": "Legg til i Firefox — det er gratis",
+          "translatedAt": "2026-10-20T16:16:10.654Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fi": {
+          "text": "Lisää Firefoxiin — ilmainen",
+          "translatedAt": "2026-10-20T16:16:17.897Z",
+          "model": "google/gemini-3.7-flash"
+        }
+      }
+    },
+    "03cad7fb37c843a1d25dda452a078f8065c6d3f801ed6a5e0ed41814c7c82bc0": {
+      "en": "Add to your browser — it's free",
+      "translations": {
+        "de": {
+          "text": "Zu Ihrem Browser hinzufügen — kostenlos",
+          "translatedAt": "2026-10-20T16:14:08.216Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fr": {
+          "text": "Ajouter à votre navigateur — c'est gratuit",
+          "translatedAt": "2026-10-20T16:14:17.362Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "es": {
+          "text": "Añadir a tu navegador — es gratis",
+          "translatedAt": "2026-10-20T16:14:25.286Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh": {
+          "text": "添加到浏览器 — 免费使用",
+          "translatedAt": "2026-10-20T16:14:30.011Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh-TW": {
+          "text": "新增至瀏覽器 — 完全免費",
+          "translatedAt": "2026-10-20T16:14:34.658Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ja": {
+          "text": "ブラウザに追加 — 無料です",
+          "translatedAt": "2026-10-20T16:14:42.455Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ko": {
+          "text": "브라우저에 추가하기 — 무료",
+          "translatedAt": "2026-10-20T16:14:47.350Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pt": {
+          "text": "Adicionar ao seu navegador — é grátis",
+          "translatedAt": "2026-10-20T16:14:52.490Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "hi": {
+          "text": "अपने browser में add करें — बिल्कुल free",
+          "translatedAt": "2026-10-20T16:15:01.072Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "vi": {
+          "text": "Thêm vào trình duyệt — Miễn phí",
+          "translatedAt": "2026-10-20T16:15:06.391Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "nl": {
+          "text": "Toevoegen aan je browser — gratis",
+          "translatedAt": "2026-10-20T16:15:11.818Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "it": {
+          "text": "Aggiungi al tuo browser — è gratis",
+          "translatedAt": "2026-10-20T16:15:17.098Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ru": {
+          "text": "Добавить в браузер — бесплатно",
+          "translatedAt": "2026-10-20T16:15:22.113Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "uk": {
+          "text": "Додати до свого браузера — безкоштовно",
+          "translatedAt": "2026-10-20T16:15:33.929Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "tr": {
+          "text": "Tarayıcınıza ekleyin — ücretsiz",
+          "translatedAt": "2026-10-20T16:15:37.914Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "id": {
+          "text": "Tambahkan ke browser Anda — gratis",
+          "translatedAt": "2026-10-20T16:15:41.080Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pl": {
+          "text": "Dodaj do przeglądarki — bezpłatnie",
+          "translatedAt": "2026-10-20T16:15:45.906Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "th": {
+          "text": "เพิ่มลงในเบราว์เซอร์ — ฟรี",
+          "translatedAt": "2026-10-20T16:15:48.383Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ar": {
+          "text": "أضِف إلى متصفحك — مجانًا",
+          "translatedAt": "2026-10-20T16:15:52.497Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "sv": {
+          "text": "Lägg till i din webbläsare — det är gratis",
+          "translatedAt": "2026-10-20T16:15:59.973Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "da": {
+          "text": "Tilføj til din browser — det er gratis",
+          "translatedAt": "2026-10-20T16:16:04.253Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "no": {
+          "text": "Legg til i nettleseren din — det er gratis",
+          "translatedAt": "2026-10-20T16:16:10.654Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fi": {
+          "text": "Lisää selaimeen — ilmainen",
+          "translatedAt": "2026-10-20T16:16:17.897Z",
+          "model": "google/gemini-3.7-flash"
+        }
+      }
+    },
+    "26c3eb8e20b43ffc7ff931068a0d36306ba9d69f3edac1749a534b04483cd393": {
+      "en": "Try it in your browser — it's free",
+      "translations": {
+        "de": {
+          "text": "In Ihrem Browser testen — kostenlos",
+          "translatedAt": "2026-10-20T16:14:08.216Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fr": {
+          "text": "Essayez dans votre navigateur — c'est gratuit",
+          "translatedAt": "2026-10-20T16:14:17.362Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "es": {
+          "text": "Pruébalo en tu navegador — es gratis",
+          "translatedAt": "2026-10-20T16:14:25.286Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh": {
+          "text": "在浏览器中体验 — 免费使用",
+          "translatedAt": "2026-10-20T16:14:30.011Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh-TW": {
+          "text": "在瀏覽器中試用 — 完全免費",
+          "translatedAt": "2026-10-20T16:14:34.658Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ja": {
+          "text": "ブラウザで試す — 無料です",
+          "translatedAt": "2026-10-20T16:14:42.455Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ko": {
+          "text": "브라우저에서 사용해 보기 — 무료",
+          "translatedAt": "2026-10-20T16:14:47.350Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pt": {
+          "text": "Experimente no seu navegador — é grátis",
+          "translatedAt": "2026-10-20T16:14:52.490Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "hi": {
+          "text": "अपने browser में try करें — बिल्कुल free",
+          "translatedAt": "2026-10-20T16:15:01.072Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "vi": {
+          "text": "Trải nghiệm trên trình duyệt — Miễn phí",
+          "translatedAt": "2026-10-20T16:15:06.391Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "nl": {
+          "text": "Probeer het in je browser — gratis",
+          "translatedAt": "2026-10-20T16:15:11.818Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "it": {
+          "text": "Provalo nel tuo browser — è gratis",
+          "translatedAt": "2026-10-20T16:15:17.098Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ru": {
+          "text": "Попробовать в браузере — бесплатно",
+          "translatedAt": "2026-10-20T16:15:22.113Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "uk": {
+          "text": "Спробувати у браузері — безкоштовно",
+          "translatedAt": "2026-10-20T16:15:33.929Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "tr": {
+          "text": "Tarayıcınızda deneyin — ücretsiz",
+          "translatedAt": "2026-10-20T16:15:37.914Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "id": {
+          "text": "Coba di browser Anda — gratis",
+          "translatedAt": "2026-10-20T16:15:41.080Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pl": {
+          "text": "Wypróbuj w przeglądarce — bezpłatnie",
+          "translatedAt": "2026-10-20T16:15:45.906Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "th": {
+          "text": "ทดลองใช้บนเบราว์เซอร์ — ฟรี",
+          "translatedAt": "2026-10-20T16:15:48.383Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ar": {
+          "text": "جرّبه في متصفحك — مجانًا",
+          "translatedAt": "2026-10-20T16:15:52.497Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "sv": {
+          "text": "Testa i din webbläsare — det är gratis",
+          "translatedAt": "2026-10-20T16:15:59.973Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "da": {
+          "text": "Prøv det i din browser — det er gratis",
+          "translatedAt": "2026-10-20T16:16:04.253Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "no": {
+          "text": "Prøv i nettleseren din — det er gratis",
+          "translatedAt": "2026-10-20T16:16:10.654Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fi": {
+          "text": "Kokeile selaimessa — ilmainen",
+          "translatedAt": "2026-10-20T16:16:17.897Z",
+          "model": "google/gemini-3.7-flash"
+        }
+      }
     }
   }
 }
