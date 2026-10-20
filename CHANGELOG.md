@@ -5,6 +5,103 @@ Commit history has the details: <https://github.com/philffm/ai-summary-helper/co
 
 ## Unreleased
 
+## 2.2.21 (2026-10-20)
+
+### Commit log
+
+#### Added
+
+- Add icon.svg to press assets, ignore videos/
+
+#### Changed
+
+- Landing video player: share a clip, install button for the viewer's browser
+  - Every clip in the full-screen player has a share button: the system share sheet where there is one, else the link is copied. The link (#v=<clip>) opens the player right at that clip; the address bar follows the clip on screen.
+  - Under each clip an install button for the browser it is watched in: Chrome Web Store (Chrome; Edge, Brave and Opera get "Add to your browser"), the Firefox add-on, or the bookmarklet page on Safari and phones.
+  - The caption and buttons now sit below the video instead of over it, so the video is always fully visible; the position dots are hidden on narrow screens.
+  - New player labels in index.html (translated by the pipeline); analytics for shares, shared opens and install clicks.
+- Accessibility fix
+- Landing: feature-card clips peek from the corner, Watch stack becomes a focus fan
+- i18n: update translations for changed content
+- Landing: each feature card plays its clip; English videos refreshed
+  - The eight feature cards get their clip as a small thumbnail top right (text flows beside it). Hovering a card previews it silently, a tap opens the full-screen player with all feature clips, starting at that one; title and text in the player come from the card itself (no duplicated copy).
+  - main.js: the player works for any group of clips ([data-vstack], [data-vgroup]) instead of only the stack.
+  - New web videos for the cards: bibliothek and sprache (en, de, es, ja; ko falls back to English).
+  - English: darstellung, prompts, senden, privat (settings subtitles now final) and the montage (no stray frame).
+- i18n: update translations for changed content
+- Blog videos in de, es, ja and ko (and the montage)
+- Blog: video layout A, the clip beside the text instead of a card
+- Demo: Korean sample content
+- i18n: update translations for changed content
+- Landing: a stack of feature videos with a swipeable full-screen player
+  - #videos (between "See it" and the live demo): the clips as a fanned stack of cards; on hover a card lifts, shows its title and previews silently. Phones get a horizontal swipe row.
+  - Tapping a card opens a TikTok-style player (main.js): one clip per screen, vertical scroll-snap, the visible clip plays and the others pause, arrows / j k / space / Esc, sound toggle, progress dots, caption with a link to the post.
+  - Same <figure data-blog-video> markup as the blog, so translate.mjs gives each locale its own recordings (English fallback); the player's labels are page text, so they are translated too.
+- Update content
+- Follow-ups: keep the short answer, offer "Dig deeper" instead of asking
+- Blog: embed the feature videos; soften the unsourced 84% claim
+  - Each blog post embeds its vertical video after the first paragraph (<figure data-blog-video>), English in docs/assets/blog/video/ (720p H.264, poster). translate.mjs swaps in the locale's own recording when it exists (de/es/ja follow) and now also rewrites poster= paths for nested locales.
+  - unread-saves and the homepage no longer state "84%" without a primary source: they cite Bergman & Whittaker (2016), The Science of Managing Our Digital Stuff, doi:10.7551/mitpress/9780262035170.001.0001.
+  - assets/press/icon-1024.svg: the app icon with a 1024 px intrinsic size (same vectors), so effects that rasterize it (videos) stay sharp.
+- Demo: frame-exact video capture and localized sample content
+  - setTimeout/setInterval and requestAnimationFrame of the popup run on the virtual clock once the host drives it; CSS transitions/animations are paused and placed by virtual time; all programmatic scrolls are instant (popup and demo page); AISH_CLOCK.fired() lets the host skip waiting when nothing ran; the language change is fired again on the first advance so settings subtitles refresh in every tab.
+  - localized library (plus real studies and a few light-hearted entries), feeds, and topic names via the learned topic lexicon, so History and the graph show one language
+  - feed "Recap", graph topic briefing, a playful summary for the "Standup humor" extra, and an answer for questions about a highlighted passage
+  - a running Ollama with installed models; reader highlights (yellow) in the demo page
+- Settings subtitles after the form is filled; translated tags on main-screen cards
+  - settingsManager fires aish:settings-populated once the controls hold the stored values (prompt list included); settingsNav refreshes the row subtitles then, instead of guessing with an 800 ms timer. Before, the list could show the defaults ("Highlighting off · ghost off") until the timer happened to catch up.
+  - Main-screen summary cards show tags in the UI language via topicLabel(), one chip per topic, like History.
+- Demo: virtual clock for deterministic video rendering
+- Stream bubble: stop size flicker, keep graph view on history reload
+  - .sc-preview gets a fixed height with a fade mask instead of growing per token
+  - followStreamBubble: ResizeObserver keeps the bubble pinned to the bottom; an upward scroll stops following
+  - scrollToNewest no longer jumps while streaming
+  - workspaceManager only emits close when actually leaving split view
+  - loadHistory({since}) keeps the chosen view (viewChosenAt) instead of resetting it
+- Demo: URL parameters for chrome-less product view, feature modes and automation
+- Update SEO
+- i18n: update translations for changed content
+- Language suggestion: floating glass chip under the pill nav with CTA button, slide-in, mobile layout
+- i18n: menu blog cards use the translated blog page titles
+- i18n: translate aria-label/placeholder/title attributes; menu labels now translatable (only language names stay native)
+- i18n: update translations for changed content
+- Nav menu: back to blog cards on top with collapsed language card; language mode puts languages first, blog below
+- Nav menu: two subtle cards (blog + languages), both always visible
+- Nav menu: blog as cards in hamburger mode, language as single card that expands to search panel
+- Nav menu modes: hamburger shows blog first with languages collapsed; globe shows languages first, expanded
+- Nav: globe button opens full-screen menu focused on language search
+- Nav: language picker moves into full-screen menu (live search + grouped pills), globe dropdown removed; compact blog list
+- Nav: static pill (no scroll morph), remove blog mega dropdown, opaque pill
+- Nav: lighter pill shadow
+- Nav: remove unused pill-logo
+- Website nav v2: bulkier pill with top spacing, icon-only logo, hamburger full-screen menu on desktop with blog post cards
+- Website: floating pill navigation with blog mega menu, compact-on-scroll, language picker, full-screen mobile menu
+- Hero: language pills fade out (100/80/55%) with a +38 label instead of five static pills
+- Demo: guided tour (7 steps, dots, skip, restart) localized for all site languages
+- Demo: simulate Kindle + LocalSend sends, hide destructive/unsupported settings and export formats
+- Store metadata: replace stale English/divergent name+summary in it, hi, ru, ar, zh_CN, pt with translations of the EN listing
+- Demo: hide dock/open-in-tab buttons, simulate a paired phone so Send to phone confirms
+- llms.txt: list all locale folders (generated from locales.json)
+- Hero walkthrough + demo localized for nl, it, ru, uk, tr, id, pl, th, ar, sv, da, no, fi (local stories, summary in the page language), demo posters, RTL full-bleed fix, four language pills
+- Demo: summary-language chip follows the page language (correct language codes, chip refresh)
+- SEO: run seo pass over the new locale pages (canonical, hreflang, JSON-LD, sitemap 265 URLs, llms.txt)
+
+#### Fixed
+
+- Android: fix crash at start on older Android (CJK regex in FeedStacks)
+
+#### Developer experience
+
+- CI: translation runs queue instead of cancelling, and pushes are debounced
+  - a debounce job waits 3 minutes first (pushes only); a newer push cancels that wait, so a second commit shortly after the first does not start a second translation
+  - the translate job queues behind a running one (cancel-in-progress: false); it then starts from the cache of the first run's open PR and only pays for what is new
+  - manual runs skip the debounce
+- CI: stop the translation workflow from producing conflicting PRs
+  - concurrency: a newer run cancels an older one
+  - while a translation PR is open, start from ITS cache (docs/i18n/manifest.json), so unchanged strings keep their wording
+  - a result built on an outdated main (docs/ or site-src/ changed meanwhile) is dropped and a fresh run is started
+  - also run when a language version of a blog video is added (docs/assets/blog/video/**), and open the PR when docs/ changed even if nothing needed translating (git diff, not only 'made API calls')
+
 ## 2.2.20 (2026-10-18)
 
 ### Commit log
