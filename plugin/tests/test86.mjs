@@ -1,4 +1,4 @@
-// Popup follow-up with a cloud / own-key model: the short answer is shown, the full answer is only requested after "Dig deeper".
+// Popup follow-up with a cloud / own-key model: the short answer is kept as the answer, the full one is only requested after "Dig deeper".
 import assert from 'assert';
 import { setup, imp, tick } from './harness.mjs';
 const { w, store } = setup({}); const d = w.document;
@@ -20,19 +20,21 @@ const chip = (t) => [...d.querySelectorAll('.chat-suggest-chip')].find(c => c.te
 chip('Who paid for it?').click();
 await tick(6000);
 assert(d.querySelector('.chat-dig-go'), 'offers to dig deeper once the short answer is typed');
+assert(!d.querySelector('.chat-dig-skip'), 'no "That is enough" choice: the short answer already is the answer');
 assert.equal(calls, 0, 'no model request before the user agrees');
+assert(d.querySelector('.chat-turn-group .chat-a') && !d.querySelector('.chat-a--pending'), 'short answer kept as a finished turn right away');
 assert(!d.querySelector('.chat-more:not([hidden])'), 'no "Thinking more…" yet');
 d.querySelector('.chat-dig-go').click();
 await tick(800);
 assert.equal(calls, 1, 'full answer requested after Dig deeper');
 const last = [...d.querySelectorAll('.chat-a')].pop().textContent;
 assert(last.startsWith(SHORT) && /three million euros/.test(last), 'continuation appended: ' + JSON.stringify(last));
-assert(!d.querySelector('.chat-dig'), 'prompt gone');
-// "That is enough": the short answer is kept and nothing is requested
+assert(!d.querySelector('.chat-dig'), 'offer gone');
+assert.equal(d.querySelectorAll('.chat-turn-group').length, 1, 'the short answer was replaced, not duplicated');
+// Ignoring the offer: the short answer stands, nothing is requested, and asking on drops the old offer
 chip('How long did it take?')?.click();
 await tick(6000);
-d.querySelector('.chat-dig-skip').click();
-await tick(500);
-assert.equal(calls, 1, 'no request after "That is enough"');
 assert(/Two years\./.test([...d.querySelectorAll('.chat-a')].pop().textContent), 'short answer kept');
+assert.equal(d.querySelectorAll('.chat-dig').length, 1, 'only the latest answer offers to dig deeper');
+assert.equal(calls, 1, 'no request without Dig deeper');
 console.log('TEST 86 OK');

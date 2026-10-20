@@ -742,16 +742,19 @@ export function initMainScreen(ui) {
         } catch (_) { return false; }
     }
 
-    async function sendFollowUp(q) {
+    /** `prev`: a kept short answer the user wants continued (Dig deeper) — it is replaced by the longer one. */
+    async function sendFollowUp(q, { prev = null } = {}) {
         if (!conversation || !q) return;
         feed.querySelector('.chat-suggest')?.remove();
-        additionalQuestionsInput.value = '';
+        feed.querySelector('.chat-dig')?.remove();   // Dig deeper belongs to the latest answer only
+        if (!prev) additionalQuestionsInput.value = '';
         fetchSummaryButton.disabled = true;
         const qEl = addTurn('chat-q', q);
         // A suggested question comes with a short answer: type it out like a person while the full answer is requested.
-        const quickText = (conversation.quick && conversation.quick[q]) || '';
+        const quickText = prev ? prev.a : ((conversation.quick && conversation.quick[q]) || '');
         try {
-            if (instant) {
+            if (instant && prev) instant.startChat(q, { heard: quickText });   // the short answer was already read out
+            else if (instant) {
                 instant.startChat(q);
                 // The short answer is already known: hand all of it to the voice at once. It must not wait for the typewriter,
                 // which only releases a sentence after it has typed it out (seconds of silence before the first word).
@@ -769,10 +772,23 @@ export function initMainScreen(ui) {
         const ctrl = new AbortController();
         let stopped = false;
         // Local Ollama models are slow but free: start the full answer straight away so it is (partly) ready when the short one is read.
-        // Paid / cloud models: the short answer stands, the user decides whether the full one is worth the tokens.
-        const auto = !quickText || await isOllamaActive();
+        // Paid / cloud models: the short answer stands on its own, the full one is one click away (Dig deeper) — worth the tokens only if asked for.
+        const auto = !!prev || !quickText || await isOllamaActive();
         // Happy with the short answer? Stop keeps it (and what was already written) and cancels the request.
         stopBtn.addEventListener('click', () => { stopped = true; fullDone = true; ctrl.abort(); });
+        // The answer becomes a saved turn in place of the pending one (a continued answer keeps its place and pin).
+        const keepTurn = (a, sources) => {
+            try { instant && instant.chatDone(a || ''); } catch (_) { /* optional */ }
+            if (prev) conversation.turns = conversation.turns.filter(t => t !== prev);
+            const turn = newTurn(conversation.turns, { q, a, sources });
+            if (prev) turn.pinned = prev.pinned;
+            conversation.turns.push(turn);
+            try { instant && instant.refresh(); } catch (_) { /* optional */ }
+            paintAskCount();
+            const el = turnEl(turn, { onPin: persistConversation, onSource: revealOnPage });
+            qEl.remove(); ans.replaceWith(el);
+            return { turn, el };
+        };
         const paint = () => {
             if (failed) return;
             renderAnswer(ans, typing ? typed : joinContinuation(quickText, cont));
@@ -780,7 +796,7 @@ export function initMainScreen(ui) {
             scrollFeed();
         };
         if (quickText) {
-            const reduce = document.documentElement.getAttribute('data-motion') === 'reduce';
+            const reduce = !!prev || document.documentElement.getAttribute('data-motion') === 'reduce';   // already read: no retyping
             typing = true;
             ans.classList.add('chat-a--quick');
             ans.after(more);
@@ -791,27 +807,30 @@ export function initMainScreen(ui) {
         }
         try {
             if (!auto) {
+                // The short answer is the answer: keep it right away. Going further is an offer, not a question to answer.
                 await typer.done;
+                more.remove();
+                const { turn, el } = keepTurn(quickText, []);
                 const dig = document.createElement('div');
                 dig.className = 'chat-dig';
-                dig.innerHTML = '<button type="button" class="chat-dig-go"></button><button type="button" class="chat-dig-skip"></button>';
-                dig.querySelector('.chat-dig-go').textContent = T('Dig deeper');
-                dig.querySelector('.chat-dig-skip').textContent = T('That is enough');
-                ans.after(dig);
-                scrollFeed();
-                fetchSummaryButton.disabled = false;
-                const deeper = await new Promise((res) => {
-                    dig.querySelector('.chat-dig-go').addEventListener('click', () => res(true));
-                    dig.querySelector('.chat-dig-skip').addEventListener('click', () => res(false));
+                dig.innerHTML = '<button type="button" class="chat-dig-go"></button>';
+                const go = dig.querySelector('.chat-dig-go');
+                go.textContent = T('Dig deeper');
+                const conv = conversation;
+                go.addEventListener('click', () => {
+                    if (conversation !== conv || !conv.turns.includes(turn)) { dig.remove(); return; }
+                    dig.remove(); el.remove();
+                    sendFollowUp(q, { prev: turn });
                 });
-                dig.remove();
-                fetchSummaryButton.disabled = true;
-                if (!deeper) { stopped = true; throw Object.assign(new Error('Cancelled'), { name: 'AbortError' }); }
-                more.hidden = false;
-                more.classList.remove('is-writing');
-                ans.after(more);
+                el.after(dig);
+                renderSuggestions();
+                persistConversation();
+                fetchSummaryButton.disabled = false;
+                scrollFeed();
+                return;
             }
-            const { system, user } = buildPrompt({ ...conversation, question: q, draft: quickText });
+            const history = prev ? conversation.turns.filter(t => t !== prev) : conversation.turns;
+            const { system, user } = buildPrompt({ ...conversation, turns: history, question: q, draft: quickText });
             const raw = await aiComplete(system, user, null, quickText ? ctrl.signal : null, (m) => {
                 // Stream the continuation in as it is written (cleaned of HTML / code fences / the SOURCES line).
                 const t = m && m.text ? answerPreview(m.text) : '';
@@ -826,13 +845,7 @@ export function initMainScreen(ui) {
             const parsed = parseAnswer(raw, conversation.content);
             const { sources, questions, quick } = parsed;
             const a = joinContinuation(quickText, parsed.a);
-            try { instant && instant.chatDone(a || ''); } catch (_) { /* optional */ }
-            const turn = newTurn(conversation.turns, { q, a: a || T('No answer.'), sources });
-            conversation.turns.push(turn);
-            try { instant && instant.refresh(); } catch (_) { /* optional */ }
-            paintAskCount();
-            const el = turnEl(turn, { onPin: persistConversation, onSource: revealOnPage });
-            qEl.remove(); ans.replaceWith(el);
+            keepTurn(a || T('No answer.'), sources);
             // Fresh suggestions arrive with the answer (no extra request); unused older ones stay in the pool.
             conversation.pool = [...(questions || []), ...(conversation.pool || [])];
             conversation.quick = { ...(conversation.quick || {}), ...(quick || {}) };
@@ -844,13 +857,7 @@ export function initMainScreen(ui) {
                 if (typer) await typer.done;
                 more.remove();
                 const keep = (cont.match(/^[\s\S]*[.!?…。!?](?=\s|$)/) || [''])[0];
-                const a = joinContinuation(quickText, keep);
-                try { instant && instant.chatDone(a || ''); } catch (_) { /* optional */ }
-                const turn = newTurn(conversation.turns, { q, a, sources: [] });
-                conversation.turns.push(turn);
-                try { instant && instant.refresh(); } catch (_) { /* optional */ }
-                paintAskCount();
-                qEl.remove(); ans.replaceWith(turnEl(turn, { onPin: persistConversation, onSource: revealOnPage }));
+                keepTurn(joinContinuation(quickText, keep), []);
                 renderSuggestions();
                 persistConversation();
                 fetchSummaryButton.disabled = false;

@@ -185,10 +185,10 @@ export function initInstantRead({ chip, barHost, button, fallback }) {
       else if (msg.action === 'summaryError' || msg.action === 'summaryCancelled') { chain = chain.then(() => abort()).catch(() => {}); }
     },
     abort,
-    /** Follow-up answers: same stream, no title announcement. */
-    startChat(question) {
+    /** Follow-up answers: same stream, no title announcement. `heard`: the start of the answer, already read out earlier (Dig deeper). */
+    startChat(question, { heard = '' } = {}) {
       if (!on || !ready || active) return Promise.resolve();
-      active = true; spoken = 0; lastUnits = [];
+      active = true; spoken = heard ? speakable(streamText(plain(heard)), true).length : 0; lastUnits = [];
       // Text that arrives while the voice is still being prepared (language detection, opening the reading session) waits for it
       // instead of racing it: chatText()/chatDone() run after this promise.
       chatReady = (async () => {
