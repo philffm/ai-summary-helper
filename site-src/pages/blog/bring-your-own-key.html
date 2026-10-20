@@ -44,6 +44,12 @@
     <div class="wrap">
       <div class="prose">
         <p>Every AI summary has the same shape: some text goes out, some text comes back. The question that decides how much you should trust the tool is who sits in the middle. With many products there is a company server there, and your reading passes through it on the way to a model you didn’t pick.</p>
+        <figure class="post-figure post-figure--video" data-blog-video="privat">
+          <video controls playsinline preload="none" width="360" height="640" poster="../assets/blog/video/privat-en.jpg">
+            <source src="../assets/blog/video/privat-en.mp4" type="video/mp4">
+          </video>
+          <figcaption>Video: switch between your own API key, a local model with Ollama, and byPhil Cloud.</figcaption>
+        </figure>
 
         <h2>What “bring your own key” means here</h2>
         <p>You create an API key with a provider you already trust, paste it into AI Summary Helper, and choose a model. When you summarize a page, the extension’s background worker sends the text straight to that provider and streams the answer back. There is no AI Summary Helper server in that path for your own key.</p>

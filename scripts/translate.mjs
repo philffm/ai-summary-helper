@@ -229,11 +229,27 @@ function localizeShots($, locale) {
     });
 }
 
+/**
+ * Blog videos (<figure data-blog-video>): swap "assets/blog/video/<clip>-en.mp4|.jpg" for the locale's own recording
+ * when it exists (see videos/scripts/blog-videos.mjs); other locales keep the English one.
+ */
+function localizeBlogVideos($, locale) {
+    const code = path.basename(locale.dir);
+    const swap = (val) => {
+        const m = val && val.match(/^(.*assets\/blog\/video\/)([^/]+)-en\.(mp4|jpg)$/);
+        if (!m) return val;
+        const file = `${m[2]}-${code}.${m[3]}`;
+        return existsSync(path.join(ROOT, 'assets', 'blog', 'video', file)) ? `${m[1]}${file}` : val;
+    };
+    $('figure[data-blog-video] video').each((_, el) => { const $el = $(el); $el.attr('poster', swap($el.attr('poster'))); });
+    $('figure[data-blog-video] source').each((_, el) => { const $el = $(el); $el.attr('src', swap($el.attr('src'))); });
+}
+
 function rewriteAssetPaths($, locale) {
     const extraUps = '../'.repeat(locale.dir.split('/').length);
-    $('[href], [src], [data-src]').each((_, el) => {
+    $('[href], [src], [data-src], [poster]').each((_, el) => {
         const $el = $(el);
-        for (const attr of ['href', 'src', 'data-src']) {
+        for (const attr of ['href', 'src', 'data-src', 'poster']) {
             const val = $el.attr(attr);
             if (!val) continue;
             if (/^(https?:)?\/\//.test(val) || val.startsWith('#') || val.startsWith('mailto:')) continue;
@@ -448,6 +464,7 @@ async function translateFile(relPath, config, targetLocales, manifest, apiKey) {
         const translations = { ...cached, ...fresh };
         injectUnits($, units, translations);
         localizeShots($, locale);
+        localizeBlogVideos($, locale);
         rewriteAssetPaths($, locale);
         setHtmlLang($, locale);
         addHreflangTags($, config, code, relPath);
