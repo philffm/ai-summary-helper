@@ -2,7 +2,7 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>https://ai-summary-helper.byphil.eu/</loc>
-    <lastmod>2026-10-18</lastmod>
+    <lastmod>2026-10-20</lastmod>
     <priority>1.0</priority>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://ai-summary-helper.byphil.eu/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://ai-summary-helper.byphil.eu/"/>
@@ -2131,6 +2131,13 @@
     <xhtml:link rel="alternate" hreflang="fi" href="https://ai-summary-helper.byphil.eu/fi/privacy.html"/>
   </url>
   <url>
+    <loc>https://ai-summary-helper.byphil.eu/blog/videos.html</loc>
+    <lastmod>2026-10-20</lastmod>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ai-summary-helper.byphil.eu/blog/videos.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ai-summary-helper.byphil.eu/blog/videos.html"/>
+  </url>
+  <url>
     <loc>https://ai-summary-helper.byphil.eu/bookmarklet.html</loc>
     <lastmod>2026-10-18</lastmod>
     <priority>0.8</priority>
@@ -2169,7 +2176,7 @@
   </url>
   <url>
     <loc>https://ai-summary-helper.byphil.eu/blog/feeds-recap.html</loc>
-    <lastmod>2026-10-18</lastmod>
+    <lastmod>2026-10-20</lastmod>
     <priority>0.7</priority>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://ai-summary-helper.byphil.eu/blog/feeds-recap.html"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://ai-summary-helper.byphil.eu/blog/feeds-recap.html"/>
@@ -2199,7 +2206,7 @@
   </url>
   <url>
     <loc>https://ai-summary-helper.byphil.eu/blog/unread-saves.html</loc>
-    <lastmod>2026-10-18</lastmod>
+    <lastmod>2026-10-20</lastmod>
     <priority>0.7</priority>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://ai-summary-helper.byphil.eu/blog/unread-saves.html"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://ai-summary-helper.byphil.eu/blog/unread-saves.html"/>
@@ -3549,7 +3556,7 @@
   </url>
   <url>
     <loc>https://ai-summary-helper.byphil.eu/blog/verify-ai-summary.html</loc>
-    <lastmod>2026-10-18</lastmod>
+    <lastmod>2026-10-20</lastmod>
     <priority>0.7</priority>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://ai-summary-helper.byphil.eu/blog/verify-ai-summary.html"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://ai-summary-helper.byphil.eu/blog/verify-ai-summary.html"/>
@@ -3609,7 +3616,7 @@
   </url>
   <url>
     <loc>https://ai-summary-helper.byphil.eu/blog/bring-your-own-key.html</loc>
-    <lastmod>2026-10-18</lastmod>
+    <lastmod>2026-10-20</lastmod>
     <priority>0.7</priority>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://ai-summary-helper.byphil.eu/blog/bring-your-own-key.html"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://ai-summary-helper.byphil.eu/blog/bring-your-own-key.html"/>
@@ -3639,7 +3646,7 @@
   </url>
   <url>
     <loc>https://ai-summary-helper.byphil.eu/blog/pocket-alternative.html</loc>
-    <lastmod>2026-10-18</lastmod>
+    <lastmod>2026-10-20</lastmod>
     <priority>0.7</priority>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://ai-summary-helper.byphil.eu/blog/pocket-alternative.html"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://ai-summary-helper.byphil.eu/blog/pocket-alternative.html"/>
@@ -4419,7 +4426,7 @@
   </url>
   <url>
     <loc>https://ai-summary-helper.byphil.eu/blog/from-bookmarklet-to-2.html</loc>
-    <lastmod>2026-10-18</lastmod>
+    <lastmod>2026-10-20</lastmod>
     <priority>0.7</priority>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://ai-summary-helper.byphil.eu/blog/from-bookmarklet-to-2.html"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://ai-summary-helper.byphil.eu/blog/from-bookmarklet-to-2.html"/>
@@ -5709,7 +5716,7 @@
   </url>
   <url>
     <loc>https://ai-summary-helper.byphil.eu/blog/highlighting-vs-asking.html</loc>
-    <lastmod>2026-10-18</lastmod>
+    <lastmod>2026-10-20</lastmod>
     <priority>0.7</priority>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://ai-summary-helper.byphil.eu/blog/highlighting-vs-asking.html"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://ai-summary-helper.byphil.eu/blog/highlighting-vs-asking.html"/>
@@ -5739,7 +5746,7 @@
   </url>
   <url>
     <loc>https://ai-summary-helper.byphil.eu/blog/on-device-architecture.html</loc>
-    <lastmod>2026-10-18</lastmod>
+    <lastmod>2026-10-20</lastmod>
     <priority>0.7</priority>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://ai-summary-helper.byphil.eu/blog/on-device-architecture.html"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://ai-summary-helper.byphil.eu/blog/on-device-architecture.html"/>
