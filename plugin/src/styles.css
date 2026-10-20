@@ -3226,7 +3226,16 @@ html[data-mood="off"] .feed-item.has-mood { background-image: none; box-shadow: 
 .sc-progress { margin-bottom: 6px; }
 .sc-progress-track { height: 4px; background: var(--outline, rgba(100,116,139,0.25)); border-radius: 999px; overflow: hidden; }
 .sc-progress-bar { height: 100%; background: var(--accent, #2563eb); border-radius: 999px; transition: width 0.4s ease; }
-.sc-preview { font-size: 12px; opacity: 0.7; line-height: 1.5; max-height: 80px; overflow: hidden; }
+/* Live preview of the text being written. Fixed height, newest text at the bottom, older lines fade out at the top:
+   the card keeps its size while words stream in instead of jumping between one and four lines with every update. */
+.sc-preview {
+  font-size: 12px; opacity: 0.7; line-height: 1.5;
+  height: 4.5em; overflow: hidden;
+  display: flex; flex-direction: column; justify-content: flex-end;
+  -webkit-mask-image: linear-gradient(to bottom, transparent, #000 1.5em);
+  mask-image: linear-gradient(to bottom, transparent, #000 1.5em);
+}
+.sc-preview:empty { display: none; }
 .sc-used-wrap { padding: 0 var(--spacing-s-2); }
 .sc-used { font-size: var(--fs-2xs); color: var(--text-muted); }
 .sc-used summary { cursor: pointer; padding: 2px 0; }

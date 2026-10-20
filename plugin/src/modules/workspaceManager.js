@@ -52,6 +52,7 @@ function applyScreen(cfg) {
     if (!screen) return;
     const n = effective();
     const on = n > 1;
+    const wasSplit = screen.classList.contains('ws-active');
     screen.classList.toggle('ws-active', on);
     screen.style.setProperty('--ws-n', String(n));
     screen.querySelectorAll(':scope > .ws-head').forEach(h => h.remove());
@@ -61,11 +62,15 @@ function applyScreen(cfg) {
     const top = cfg.top && document.getElementById(cfg.top);
     if (top) top.classList.remove('ws-off', 'ws-p1', 'ws-p2', 'ws-p3');
     if (!on) {
-        emit(cfg.scope, 'graph', false);
-        emit(cfg.scope, 'report', false);
-        if (cfg.scope === 'history') {
-            const detailOpen = e.list[1]?.style.display === 'block';
-            if (e.list[0] && !detailOpen) e.list[0].style.display = 'block';
+        // Leaving the split view: back to the list alone. A refresh while already single-pane (every History load
+        // sends one) must not close the Graph or Analytics view the user has open there.
+        if (wasSplit) {
+            emit(cfg.scope, 'graph', false);
+            emit(cfg.scope, 'report', false);
+            if (cfg.scope === 'history') {
+                const detailOpen = e.list[1]?.style.display === 'block';
+                if (e.list[0] && !detailOpen) e.list[0].style.display = 'block';
+            }
         }
         return;
     }

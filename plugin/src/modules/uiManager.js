@@ -148,10 +148,11 @@ class UIManager {
 
         // Side effects per screen (delayed to let animation play)
         if (screenName === 'history') {
+            const since = Date.now();   // a Graph/Analytics view opened during the animation stays open
             setTimeout(async () => {
                 try {
                     const { loadHistory } = await import('./articleManager.js');
-                    loadHistory();
+                    loadHistory({ since });
                 } catch (e) {
                     // Ignore if extension context was invalidated (popup closed)
                 }

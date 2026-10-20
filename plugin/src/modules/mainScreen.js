@@ -174,10 +174,11 @@ export function initMainScreen(ui) {
           <div id="streamPreview" class="sc-preview"></div>
         `;
         feed.appendChild(bubble);
-        // Scroll to show the stream bubble
+        // Scroll to show the stream bubble, then keep following it while it grows
         requestAnimationFrame(() => {
             scrollToNewest();
         });
+        followStreamBubble(bubble);
         // Start elapsed timer
         if (window._streamTimer) clearInterval(window._streamTimer);
         const start = Date.now();
@@ -225,6 +226,7 @@ export function initMainScreen(ui) {
     };
 
     const removeStreamBubble = () => {
+        stopFollowingStream();
         const el = document.getElementById('streamBubble');
         if (el) el.remove();
         if (window._streamTimer) {
@@ -268,13 +270,42 @@ export function initMainScreen(ui) {
     const scrollToNewest = () => {
         try {
             const cards = feed.querySelectorAll('.summary-bubble');
-            // a lone card is shown from its top — unless a conversation is running under it: then follow the newest turn
-            if (cards.length === 1 && !feed.querySelector('.chat-turn, .chat-turn-group')) { cards[0].scrollIntoView({ block: 'start', behavior: 'auto' }); return; }
+            // a lone card is shown from its top — unless something newer is under it (a conversation, or a summary being
+            // written: the stream card is the newest content then, not the older card above it): then follow the bottom
+            if (cards.length === 1 && !feed.querySelector('.chat-turn, .chat-turn-group, .stream-bubble')) { cards[0].scrollIntoView({ block: 'start', behavior: 'auto' }); return; }
             const sp = scrollParent(feed) || document.getElementById('feedScroll');
             if (sp) sp.scrollTop = sp.scrollHeight;
         } catch (_) { /* layout unavailable */ }
     };
     const scrollFeed = () => requestAnimationFrame(scrollToNewest);
+
+    // While a summary streams, its card changes height (steps, progress bar, first preview text). Keep the newest content
+    // in view as it grows, but only while the reader is at the bottom: scrolling up to read something earlier is respected.
+    let stopFollowingStream = () => {};
+    const followStreamBubble = (bubble) => {
+        stopFollowingStream();
+        if (typeof ResizeObserver !== 'function') return;
+        const scroller = () => scrollParent(bubble) || document.getElementById('feedScroll');
+        // Only a move UP means the reader wants to stay where they are. Deciding by "distance to the bottom" instead breaks:
+        // scroll events arrive a frame late, and if the card grew in between, our own scroll looks like "not at the bottom".
+        let atBottom = true;
+        let lastTop = -1;
+        const onScroll = (e) => {
+            const sp = scroller();
+            if (!sp || e.target !== sp) return;
+            const top = sp.scrollTop;
+            if (sp.scrollHeight - top - sp.clientHeight < 48) atBottom = true;
+            else if (lastTop >= 0 && top < lastTop - 2) atBottom = false;
+            lastTop = top;
+        };
+        const ro = new ResizeObserver(() => {
+            const sp = scroller();
+            if (sp && atBottom) sp.scrollTop = sp.scrollHeight;
+        });
+        ro.observe(bubble);
+        document.addEventListener('scroll', onScroll, true);   // scroll events don't bubble; capture sees the real scroller
+        stopFollowingStream = () => { ro.disconnect(); document.removeEventListener('scroll', onScroll, true); stopFollowingStream = () => {}; };
+    };
 
     // Steps: ✓ done · … active (the "Sent to <model>" line also shows how long we have been waiting) · dimmed = still to come.
     let stepsStart = Date.now();

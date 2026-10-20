@@ -1209,6 +1209,7 @@ export function initArticleManager(uiManager) {
             if (rc && !split) rc.style.display = 'none';   // one pane: one view at a time, graph replaces analytics
             graphContainer.style.display = 'block';
             graphContainer.style.opacity = '1';
+            viewChosenAt = Date.now();
             initGraphView();
         }
         syncViewButtons();
@@ -1239,6 +1240,7 @@ export function initArticleManager(uiManager) {
             if (articleDetail) articleDetail.style.display = 'none';
             if (graphContainer) graphContainer.style.display = 'none';
             reportContainer.style.display = 'block';
+            viewChosenAt = Date.now();
             initReportView();
         }
         syncViewButtons();
@@ -1316,22 +1318,28 @@ export function initArticleManager(uiManager) {
     }
 }
 
-export function loadHistory() {
+// When Graph or Analytics was last opened by the user. Switching to History reloads it 350 ms later (after the slide
+// animation, see uiManager.js); that reload must not close a view the user opened in the meantime.
+let viewChosenAt = 0;
+
+/** @param {{since?: number}} [opts] since: when the reload was requested; a view opened after that stays open. */
+export function loadHistory({ since = 0 } = {}) {
+    const keepView = since > 0 && viewChosenAt >= since;
     const graphContainer = document.getElementById('graphContainer');
     const reportContainer = document.getElementById('reportContainer');
     const articleList = document.getElementById('articleList');
     const articleDetail = document.getElementById('articleDetail');
     const historyTopBar = document.getElementById('historyTopBar');
     const detailTopBar = document.getElementById('detailTopBar');
-    if (graphContainer && !wsActive()) graphContainer.style.display = 'none';
-    if (reportContainer && !wsActive()) reportContainer.style.display = 'none';
+    if (graphContainer && !wsActive() && !keepView) graphContainer.style.display = 'none';
+    if (reportContainer && !wsActive() && !keepView) reportContainer.style.display = 'none';
     if (articleDetail) articleDetail.style.display = 'none';
     if (detailTopBar) detailTopBar.style.display = 'none';
     toolbarEditing = false; document.getElementById('toolbarTray')?.remove();
     if (historyTopBar) historyTopBar.classList.remove('scroll-hidden');
     if (detailTopBar) detailTopBar.classList.remove('scroll-hidden');
     if (historyTopBar) historyTopBar.style.display = 'flex';
-    if (articleList) articleList.style.display = 'block';
+    if (articleList && !keepView) articleList.style.display = 'block';
     document.dispatchEvent(new Event('aish:ws-refresh'));
     showSkeleton(articleList);
     import('./feedManager.js')
