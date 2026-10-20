@@ -1154,6 +1154,29 @@ body:has(.nav--pill){padding-top:88px}
   .post-figure--video video{ width:100%; flex-basis:auto; max-width:420px; margin:0 auto; }
 }
 
+/* ── Blog video, layout A: the clip stands to the side of the text, no card (≥1024 px); one column below ──
+   The figure is the FIRST child of .prose, so the float starts beside the first paragraph. .prose is capped at
+   text 560 + gap 56 + clip 300 = 916 px and left-aligned with the title, so the gap stays 56 px at any width.
+   Logical properties (inline-end / inline-start): RTL languages mirror it. Needs :has() — without it the card stays. */
+@supports selector(:has(*)){
+  .prose:has(> .post-figure--video){ display:flow-root; }   /* contains the float */
+  .prose > .post-figure--video{ display:block; margin:24px 0; padding:0; border:0; border-radius:0; background:none; }
+  .prose > .post-figure--video video{ display:block; width:100%; max-width:360px; flex:none; height:auto; aspect-ratio:1080/1560; margin:0; }
+  .prose > .post-figure--video figcaption{ margin:14px 0 0; font-size:14px; line-height:1.5; color:var(--paper-dim); text-align:start; }
+  .prose .post-cta{ clear:both; }
+  /* under 1024 px: one column, the video comes after the first paragraph (it is first in the markup) */
+  @media (max-width:1023px){
+    .prose:has(> .post-figure--video){ display:flex; flex-direction:column; }
+    .prose:has(> .post-figure--video) > p:first-of-type{ order:-1; }
+  }
+  @media (min-width:1024px){
+    .prose:has(> .post-figure--video){ max-width:916px; margin-inline:0; }
+    .prose:has(> .post-figure--video) > :not(.post-figure--video):not(.post-cta){ max-width:560px; }
+    .prose > .post-figure--video{ float:inline-end; width:300px; margin:6px 0 24px; margin-inline-start:56px; }
+    .prose > .post-figure--video video{ width:300px; max-width:none; }
+  }
+}
+
 /* ── Video badge on blog cards, and the videos page (blog/videos.html) ── */
 .blog-video-badge{ display:inline-block; margin:-4px 0 10px; padding:3px 10px; border-radius:999px; font-size:11.5px; font-weight:600; letter-spacing:.02em; color:var(--paper); background:rgba(76,141,255,.16); border:1px solid rgba(76,141,255,.45); }
 .blog-videos-cta{ margin-top:18px; }
