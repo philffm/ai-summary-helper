@@ -6,6 +6,9 @@ on:
     paths:
       - 'site-src/**'
       - 'docs/i18n/locales.json'
+      # A new language version of a blog video: the pages pick it up on the next run (translate.mjs localizeBlogVideos).
+      # The PR this opens only touches docs/<lang>/, so it does not trigger itself.
+      - 'docs/assets/blog/video/**'
   workflow_dispatch:
     inputs:
       locale:
@@ -16,6 +19,14 @@ on:
 permissions:
   contents: write
   pull-requests: write
+  actions: write   # a run that finds main moved on starts a fresh run of this workflow (see "Skip a result built on an outdated main")
+
+# Two pushes in a row (e.g. content + videos) started two runs side by side. Each checked out main WITHOUT the other's
+# result, so each translated every string again with the model and the two PRs conflicted in ~180 files. The newest
+# run covers all changes, so an older one is cancelled.
+concurrency:
+  group: translate-site
+  cancel-in-progress: true
 
 jobs:
   translate:
@@ -32,6 +43,23 @@ jobs:
 
       - name: Install dependencies
         run: npm install
+
+      # Translations only reach main when the PR is merged. A run that starts while the PR is still open would not know
+      # them, translate every string again with the model (different wording, extra cost) and produce a PR that
+      # conflicts with the open one. So: while a translation PR is open, start from ITS cache (docs/i18n/manifest.json,
+      # keyed by a hash of each source string). Only for an OPEN PR: a leftover branch of a closed PR holds
+      # translations nobody reviewed, they must not come back.
+      - name: Reuse the translations of the open translation PR
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          if [ "$(gh pr list --head i18n/auto-update --state open --json number --jq length)" != "0" ]; then
+            git fetch --depth=1 origin i18n/auto-update
+            git checkout FETCH_HEAD -- docs/i18n/manifest.json
+            echo "Using the translation cache of the open PR (docs/i18n/manifest.json)."
+          else
+            echo "No open translation PR: starting from the cache in main."
+          fi
 
       - name: Assemble docs/ from site-src/ templates + partials
         run: node scripts/build-site.mjs
@@ -57,8 +85,33 @@ jobs:
       # locale output can change in one PR here. git-add stays scoped
       # explicitly rather than a blanket `-A`, which in a monorepo risks
       # sweeping up unrelated changes from the extension build.
+      # A run can last minutes. If the site sources or docs/ in main changed in the meantime (typically: the translation
+      # PR was merged), this result is built on an outdated base and would open a PR that conflicts with main. Then drop
+      # it and start a fresh run, which sees the merged translations as cache and only does what is still missing.
+      - name: Skip a result built on an outdated main
+        id: fresh
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          git fetch --depth=1 origin main
+          if git diff --quiet HEAD FETCH_HEAD -- docs site-src; then
+            echo "stale=false" >> "$GITHUB_OUTPUT"
+          else
+            echo "stale=true" >> "$GITHUB_OUTPUT"
+            echo "main moved on while this run was working: not opening a PR from an outdated base, starting a fresh run."
+            gh workflow run translate.yml --ref main
+          fi
+
+      # translate.mjs only reports changes when it made API calls. A run with nothing new to translate can still
+      # change pages (a blog video that now exists in a language), so ask git as well.
+      - name: Check whether docs/ changed
+        id: docs-diff
+        run: |
+          git add -N docs
+          if git diff --quiet -- docs; then echo "changed=false" >> "$GITHUB_OUTPUT"; else echo "changed=true" >> "$GITHUB_OUTPUT"; fi
+
       - name: Open pull request with the updated translations
-        if: steps.translate.outputs.changed == 'true'
+        if: steps.fresh.outputs.stale == 'false' && (steps.translate.outputs.changed == 'true' || steps.docs-diff.outputs.changed == 'true')
         uses: peter-evans/create-pull-request@v6
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
