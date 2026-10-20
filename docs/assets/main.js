@@ -1181,25 +1181,42 @@ function setBilling(period) {
   if (mm && tg) new MutationObserver(function () { document.body.classList.toggle('nav-locked', !mm.hidden); }).observe(mm, { attributes: true, attributeFilter: ['hidden'] });
 })();
 
-/* ── Landing videos (#videos): a stack of clips; tapping one opens a full-screen player you swipe through ──
-   The clips come from the stack's own <figure data-blog-video> elements, so a translated page plays the videos the
-   translation pipeline localized for it. Labels come from the hidden .vfeed-labels (translated with the page). */
+/* ── Landing videos: groups of clips (the #videos stack, the feature cards) that open a full-screen player you swipe ──
+   A group is [data-vstack] or [data-vgroup]; its clips are its <figure data-blog-video> elements, so a translated page
+   plays the videos the translation pipeline localized for it. Title and text in the player come from the figure's
+   <figcaption>, or (feature cards) from the card's own h3 and p. Labels come from the hidden .vfeed-labels. */
 (function () {
-  var stack = document.querySelector('[data-vstack]');
-  if (!stack) return;
-  var items = Array.prototype.slice.call(stack.querySelectorAll('.vstack-item'));
+  var groups = Array.prototype.slice.call(document.querySelectorAll('[data-vstack], [data-vgroup]'));
+  if (!groups.length) return;
   var labels = {};
   Array.prototype.forEach.call(document.querySelectorAll('.vfeed-labels [data-l]'), function (el) { labels[el.getAttribute('data-l')] = el.textContent; });
   var canHover = window.matchMedia && window.matchMedia('(hover: hover)').matches;
   var feed, track, slides, dots, muteBtn, io, muted = false, lastFocus = null, hinted = false;
 
-  items.forEach(function (it, i) {
-    var v = it.querySelector('video');
-    if (canHover) {   // a silent preview while the pointer rests on a card
-      it.addEventListener('mouseenter', function () { v.muted = true; v.play().catch(function () {}); });
-      it.addEventListener('mouseleave', function () { v.pause(); });
-    }
-    it.querySelector('.vstack-open').addEventListener('click', function () { open(i); });
+  function captionHtml(fig) {
+    var cap = fig.querySelector('figcaption');
+    if (cap) return cap.innerHTML;
+    var card = fig.closest('.feature-card');
+    if (!card) return '';
+    var h = card.querySelector('h3'), p = card.querySelector('p');
+    var out = document.createElement('div');
+    if (h) { var st = document.createElement('strong'); st.textContent = h.textContent; out.appendChild(st); }
+    if (p) { var sp = document.createElement('span'); sp.textContent = p.textContent; out.appendChild(sp); }
+    return out.innerHTML;
+  }
+
+  groups.forEach(function (group) {
+    var figs = Array.prototype.slice.call(group.querySelectorAll('figure[data-blog-video]'));
+    figs.forEach(function (fig, i) {
+      var v = fig.querySelector('video');
+      var hoverEl = fig.closest('.feature-card') || fig;   // a feature card previews its clip while the pointer is anywhere on it
+      if (canHover) {
+        hoverEl.addEventListener('mouseenter', function () { v.muted = true; v.play().catch(function () {}); });
+        hoverEl.addEventListener('mouseleave', function () { v.pause(); });
+      }
+      var openBtn = fig.querySelector('.vstack-open, .fvideo-open');
+      if (openBtn) openBtn.addEventListener('click', function () { open(figs, i); });
+    });
   });
 
   function btn(cls, text, label, onClick) {
@@ -1219,26 +1236,13 @@ function setBilling(period) {
   }
   function go(i) { if (slides[i]) slides[i].scrollIntoView({ behavior: 'smooth', block: 'start' }); }
 
-  function build() {
+  function shell() {
     feed = document.createElement('div');
     feed.className = 'vfeed'; feed.hidden = true;
     feed.setAttribute('role', 'dialog'); feed.setAttribute('aria-modal', 'true');
     var h2 = document.querySelector('#videos h2'); if (h2) feed.setAttribute('aria-label', h2.textContent);
     track = document.createElement('div'); track.className = 'vfeed-track';
     dots = document.createElement('div'); dots.className = 'vfeed-dots'; dots.setAttribute('aria-hidden', 'true');
-    items.forEach(function (it) {
-      var slide = document.createElement('section'); slide.className = 'vfeed-slide';
-      var v = document.createElement('video');
-      v.setAttribute('playsinline', ''); v.preload = 'none'; v.loop = true;
-      v.poster = it.querySelector('video').getAttribute('poster');
-      v.src = it.querySelector('source').getAttribute('src');
-      v.addEventListener('click', function () { if (v.paused) v.play().catch(function () {}); else v.pause(); });
-      var cap = document.createElement('div'); cap.className = 'vfeed-cap';
-      cap.innerHTML = it.querySelector('figcaption').innerHTML;
-      slide.appendChild(v); slide.appendChild(cap); track.appendChild(slide);
-      dots.appendChild(document.createElement('i'));
-    });
-    slides = track.children;
     muteBtn = btn('vfeed-mute', '🔊', labels.mute || 'Sound off', function () { muted = !muted; paintMute(); });
     feed.appendChild(track);
     feed.appendChild(btn('vfeed-close', '×', labels.close || 'Close', close));
@@ -1257,7 +1261,6 @@ function setBilling(period) {
         } else if (!v.paused) v.pause();
       });
     }, { root: track, threshold: [0, 0.6] });
-    Array.prototype.forEach.call(slides, function (s) { io.observe(s); });
     feed.addEventListener('keydown', function (e) {
       if (e.key === 'Escape') { e.preventDefault(); close(); }
       else if (e.key === 'ArrowDown' || e.key === 'PageDown' || e.key === 'j') { e.preventDefault(); go(current() + 1); }
@@ -1266,10 +1269,31 @@ function setBilling(period) {
     });
   }
 
-  function open(i) {
-    if (!feed) build();
+  // (re)fill the player with the clips of the group that was tapped
+  function fill(figs) {
+    io.disconnect();
+    track.textContent = ''; dots.textContent = '';
+    figs.forEach(function (fig) {
+      var slide = document.createElement('section'); slide.className = 'vfeed-slide';
+      var v = document.createElement('video');
+      v.setAttribute('playsinline', ''); v.preload = 'none'; v.loop = true;
+      v.poster = fig.querySelector('video').getAttribute('poster');
+      v.src = fig.querySelector('source').getAttribute('src');
+      v.addEventListener('click', function () { if (v.paused) v.play().catch(function () {}); else v.pause(); });
+      var cap = document.createElement('div'); cap.className = 'vfeed-cap';
+      cap.innerHTML = captionHtml(fig);
+      slide.appendChild(v); slide.appendChild(cap); track.appendChild(slide);
+      dots.appendChild(document.createElement('i'));
+    });
+    slides = track.children;
+    Array.prototype.forEach.call(slides, function (s) { io.observe(s); });
+  }
+
+  function open(figs, i) {
+    if (!feed) shell();
+    fill(figs);
     lastFocus = document.activeElement;
-    items.forEach(function (it) { it.querySelector('video').pause(); });
+    figs.forEach(function (f) { f.querySelector('video').pause(); });
     feed.hidden = false;
     document.documentElement.classList.add('vfeed-open');
     track.scrollTop = i * track.clientHeight;   // straight to the tapped clip, no scroll animation

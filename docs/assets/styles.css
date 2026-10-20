@@ -1231,3 +1231,11 @@ html.vfeed-open, html.vfeed-open body{ overflow:hidden; }
 .vfeed-hint{ position:absolute; z-index:2; left:50%; bottom:calc(150px + env(safe-area-inset-bottom)); transform:translateX(-50%); padding:8px 16px; border-radius:999px; background:rgba(20,22,30,.7); font-size:13px; animation:vfeed-hint 2.6s ease forwards; pointer-events:none; }
 @keyframes vfeed-hint{ 0%{ opacity:0; transform:translate(-50%, 10px); } 15%,75%{ opacity:1; transform:translate(-50%, 0); } 100%{ opacity:0; } }
 @media (prefers-reduced-motion: reduce){ .vstack-item{ transition:none; } .vfeed-hint{ animation:none; } }
+
+/* ── Landing feature cards: each one's clip as a small thumbnail top right (text flows beside it) ── */
+.feature-card .fvideo{ float:inline-end; width:66px; margin:0; margin-inline-start:14px; margin-bottom:8px; }
+.fvideo-open{ display:block; position:relative; width:100%; padding:0; border:0; background:none; cursor:pointer; border-radius:10px; overflow:hidden; box-shadow:0 8px 20px rgba(0,0,0,.35); transition:transform .2s ease; }
+.fvideo-open video{ display:block; width:100%; height:auto; aspect-ratio:1080/1560; object-fit:cover; background:#0b1020; }
+.fvideo-play{ position:absolute; inset:auto 0 6px; margin:auto; width:24px; height:24px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:10px; color:#fff; background:rgba(10,14,30,.6); border:1px solid rgba(255,255,255,.4); }
+.feature-card:hover .fvideo-open, .fvideo-open:focus-visible{ transform:scale(1.06); }
+.fvideo-open:focus-visible{ outline:3px solid var(--brass-light); outline-offset:3px; }
