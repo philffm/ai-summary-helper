@@ -347,9 +347,10 @@
     de: { quote: 'die Texte, die diese Auswahl überstehen, werden sorgfältiger gelesen als früher', text: 'Weil die Zusammenfassung schon sortiert hat: Was übrig bleibt, hast du bewusst gewählt, also liest du es mit Absicht statt aus Gewohnheit. Probier es: Sag die Idee in eigenen Worten.', questions: ['Was ändert sich für Autoren?'] },
     es: { quote: 'los textos que superan esa selección se leen con más cuidado que antes', text: 'Porque el resumen ya ha hecho la criba: lo que queda lo elegiste tú, así que lo lees con intención y no por costumbre. Pruébalo: explica la idea con tus palabras.', questions: ['¿Qué cambia para quien escribe?'] },
     ja: { quote: 'その選別を通過した記事は以前より丁寧に読まれます', text: '要約がすでに選別しているからです。残った記事は自分で選んだものなので、習慣ではなく目的を持って読めます。試しに、その考えを自分の言葉で言い換えてみましょう。', questions: ['書き手にとって何が変わる？'] },
+    ko: { quote: '그 선별을 통과한 글은 예전보다 더 꼼꼼히 읽힙니다', text: '요약이 이미 선별을 끝냈기 때문입니다. 남은 글은 스스로 시간을 쓰기로 고른 것이라, 습관이 아니라 의도를 갖고 읽게 됩니다. 직접 해 보세요. 그 생각을 자기 말로 바꿔 말해 보는 겁니다.', questions: ['쓰는 사람에게는 무엇이 달라질까?'] },
   };
   const H = HIGHLIGHT[lang] || HIGHLIGHT.en;
-  if (Array.isArray(D.asks)) D.asks.unshift({ match: /highlight|markierung|resaltado|マーカー/i, text: H.text, sources: [H.quote], questions: H.questions });
+  if (Array.isArray(D.asks)) D.asks.unshift({ match: /highlight|markierung|resaltado|マーカー|하이라이트/i, text: H.text, sources: [H.quote], questions: H.questions });
 
   // The short summary the shim writes for each history entry.
   D.libraryText = {
