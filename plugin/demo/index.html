@@ -27,6 +27,8 @@ iframe{flex:1;border:0;width:100%;min-height:0;background:transparent}
 :root[data-article="0"] .stage{grid-template-columns:minmax(0,1fr);grid-template-rows:minmax(0,1fr);justify-items:center}
 :root[data-article="0"] .page{display:none}
 :root[data-article="0"] .panel{width:min(100%,clamp(400px,32vw,620px))}
+/* ?layout=stack — sample article on top, product below, at any width (vertical video, phone-shaped embeds). */
+:root[data-layout="stack"] .stage{grid-template-columns:minmax(0,1fr);grid-template-rows:minmax(0,24%) minmax(0,1fr)}
 </style></head><body>
 <div class="stage">
 <section class="page"><div class="bar"><i></i><i></i><i></i><span>example.com/the-quiet-comeback-of-the-long-read</span></div>
@@ -43,6 +45,8 @@ const P = new URLSearchParams(location.search), LOC = window.AISH_DEMO.locale, a
 //   tour=0|1         hide the guided tour / force it on (default: show once, then remember)
 //   chrome=0         product only — no sample page, title bars, borders, padding or background
 //   article=0        keep the framed panel but hide the sample article
+//   layout=stack     sample article above the product (any width), for vertical video
+//   clock=manual     virtual clock for frame-exact capture (see AISH_CLOCK in demo-shim.js)
 //   surface=popup    render the popup surface instead of the side panel
 //   screen=main|history|feeds|settings   open that screen on load
 //   panel=language|length|mode|model|account|models|prompts|feeds|feedprefs|reading|send|phoneinbox|appearance|accessibility|library|about
@@ -50,9 +54,11 @@ const P = new URLSearchParams(location.search), LOC = window.AISH_DEMO.locale, a
 const flag = (k) => P.get(k) === '0' ? '0' : P.get(k) === '1' ? '1' : null;
 if (flag('chrome') === '0') document.documentElement.setAttribute('data-chrome', '0');
 if (flag('article') === '0') document.documentElement.setAttribute('data-article', '0');
+if (P.get('layout') === 'stack') document.documentElement.setAttribute('data-layout', 'stack');
+if (P.get('clock') === 'manual') { const si = Element.prototype.scrollIntoView; Element.prototype.scrollIntoView = function (o) { return si.call(this, o && typeof o === 'object' ? { ...o, behavior: 'auto' } : o); }; }
 if (LOC) { document.documentElement.lang = LOC.ui.replace('_', '-'); document.getElementById('panelLabel').textContent = 'AI Summary Helper · ' + LOC.side; document.title = LOC.article.title + ' – AI Summary Helper'; }
 if (P.get('theme') === 'light' || P.get('theme') === 'dark') document.documentElement.setAttribute('data-theme', P.get('theme'));
-appFrame.src = 'app/popup.html?surface=' + (P.get('surface') === 'popup' ? 'popup' : 'sidepanel') + (P.get('lang') ? '&lang=' + encodeURIComponent(P.get('lang')) : '') + (P.get('theme') ? '&theme=' + P.get('theme') : '');
+appFrame.src = 'app/popup.html?surface=' + (P.get('surface') === 'popup' ? 'popup' : 'sidepanel') + (P.get('lang') ? '&lang=' + encodeURIComponent(P.get('lang')) : '') + (P.get('theme') ? '&theme=' + P.get('theme') : '') + (P.get('clock') === 'manual' ? '&clock=manual' : '');
 
 // ?screen= / ?panel= — drive the popup into a feature mode once it has rendered.
 // The popup is same-origin, so we click its real nav items and settings rows rather than
@@ -85,7 +91,7 @@ art0.querySelectorAll('p').forEach((el, i) => { el.textContent = A.paragraphs[i]
 // The popup (an iframe running the real extension UI) tells us which passage an answer came from.
 addEventListener('message', (e) => {
   const m = e.data;
-  if (m && m.aishDemo && m.type === 'theme' && (m.theme === 'light' || m.theme === 'dark')) { document.documentElement.setAttribute('data-theme', m.theme); try { appFrame.contentWindow.postMessage(m, '*'); } catch (_) { /* not ready */ } return; }
+  if (m && m.aishDemo && m.type === 'theme' && (m.theme === 'light' || m.theme === 'dark')) { document.documentElement.setAttribute('data-theme', m.theme); if (e.source !== appFrame.contentWindow) { try { appFrame.contentWindow.postMessage(m, '*'); } catch (_) { /* not ready */ } } return; }   // from the host: pass on to the popup; from the popup (Appearance): only the page follows
   if (!m || !m.aishDemo || m.type !== 'highlight') return;
   const art = document.getElementById('art'); art.querySelectorAll('mark').forEach(x => x.replaceWith(...x.childNodes)); art.normalize();
   if (!m.quote) return;

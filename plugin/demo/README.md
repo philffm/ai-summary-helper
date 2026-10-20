@@ -18,6 +18,8 @@ pipelines, and embedding. Every parameter is optional and composable.
 | `tour` | `0`, `1` | show once, then remember | `0` hides the guided tour, `1` forces it |
 | `chrome` | `0` | framed | `0` = product only: no sample page, title bars, borders, padding or background |
 | `article` | `0` | shown | `0` = keep the framed panel, hide the sample article |
+| `layout` | `stack` | side by side | `stack` = sample article above the product, at any width (vertical video) |
+| `clock` | `manual` | real time | `manual` = virtual clock: nothing streams until the host calls `AISH_CLOCK.advance(ms)` (frame-exact capture; see the next section) |
 | `surface` | `popup`, `sidepanel` | `sidepanel` | Which surface the popup renders as |
 | `screen` | `main`, `history`, `feeds`, `settings` | `main` | Open that screen on load |
 | `panel` | see below | — | Open a settings panel (implies `screen=settings`) |
@@ -105,6 +107,29 @@ Notes:
 
 These are stable entry points for a video tool that needs to drive the demo rather than just
 load a URL.
+
+### `?clock=manual` — virtual clock (frame-exact capture)
+
+With `clock=manual` the mock schedules every delay (summary stream, answer deltas, replies) on a virtual
+clock that only moves when the host asks. Inside the popup window:
+
+```js
+popupWindow.AISH_CLOCK.advance(4000)   // run everything due up to t = 4000 ms
+popupWindow.AISH_CLOCK.now()           // current virtual time
+```
+
+`Date.now()` follows the virtual clock and programmatic scrolls are instant, so the same virtual time
+always produces the same screen.
+
+Two readiness helpers for hosts that start clicking right after load:
+
+```js
+popupWindow.AISH_CLOCK.localesLoaded()  // finished _locales/*.json requests; >= 2 (English fallback + UI language) = translated
+popupWindow.AISH_CLOCK.busy()           // true while a same-origin request is in flight
+```
+
+Wait for both before the first interaction. Otherwise a capture that starts late can click before the UI is translated. Time only moves forward: to go back, reload and replay from 0. The video
+project (`videos/`) drives the demo this way.
 
 ### `window.AISH_TOUR` (on the demo page)
 
