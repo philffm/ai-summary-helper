@@ -278,7 +278,7 @@
       </div>
       <!-- labels for the full-screen player (text here, so the translation pipeline translates them) -->
       <div class="vfeed-labels" hidden="">
-        <span data-l="close">閉じる</span><span data-l="sound">音声オン</span><span data-l="mute">音声オフ</span><span data-l="hint">上にスワイプして次の動画へ</span>
+        <span data-l="close">閉じる</span><span data-l="sound">音声オン</span><span data-l="mute">音声オフ</span><span data-l="hint">上にスワイプして次の動画へ</span><span data-l="prev">前の動画</span><span data-l="next">次の動画</span>
       </div>
       <div class="vstack reveal" data-vstack="">
         <figure class="vstack-item" data-blog-video="montage" style="--i:0">
@@ -399,6 +399,13 @@
           </figcaption>
         </figure>
       </div>
+      <!-- focus fan (desktop): the clip in front gets its title, line and link here; arrows and dots move the focus (main.js) -->
+      <div class="vstack-caption" aria-live="polite" hidden=""></div>
+      <div class="vstack-nav" hidden="">
+        <button class="vstack-arrow" type="button" data-dir="-1" aria-label="前の動画">‹</button>
+        <div class="vstack-dots" aria-hidden="true"></div>
+        <button class="vstack-arrow" type="button" data-dir="1" aria-label="次の動画">›</button>
+      </div>
     </div>
   </section>
 
@@ -447,7 +454,7 @@
       </div>
       <p class="persona-blurb reveal" id="personaBlurb" aria-live="polite">使用するモデルやサーバーの選択から、データを端末外へ送信するかどうかまで、すべてご自身で管理・設定いただけます。</p>
 
-      <!-- each card has its clip (top right): hover plays it silently, a tap opens the swipeable player (main.js) -->
+      <!-- each card's clip peeks out of its bottom corner (tilted like the Watch stack): hover plays it silently, a tap on it or on "Watch the clip" opens the swipeable player (main.js) -->
       <div class="feature-grid reveal" id="featureGrid" data-vgroup="">
         <div class="feature-card" data-personas="privacy researcher">
           <figure class="fvideo" data-blog-video="privat">
@@ -461,6 +468,7 @@
           <div class="f-icon icon-cyan"><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="6" r="2.6" fill="#fff"></circle><circle cx="6" cy="17" r="2.2" fill="#fff" opacity="0.85"></circle><circle cx="18" cy="17" r="2.2" fill="#fff" opacity="0.85"></circle><path d="M12 8.6 L6.8 14.8 M12 8.6 L17.2 14.8" stroke="#fff" stroke-width="1.4" stroke-linecap="round" opacity="0.7"></path></svg></div>
           <h3>AI要約、モデルは自由に選択可能</h3>
           <p>OpenAI、Gemini、Mistral、DeepSeek、カスタムエンドポイントに対応。ローカルのOllamaモデルを指定すれば、このステップでネットワーク通信を一切行わずに処理することも可能です。</p>
+          <button class="fvideo-cta" type="button" tabindex="-1" aria-hidden="true"><span class="fvideo-cta-play">▶</span>クリップを見る</button>
         </div>
         <div class="feature-card" data-personas="privacy researcher">
           <figure class="fvideo" data-blog-video="highlights">
@@ -474,6 +482,7 @@
           <div class="f-icon icon-gold"><svg viewBox="0 0 24 24" fill="none"><path d="M5 5h14M5 9h14M5 13h14M5 17h14" stroke="#fff" stroke-width="2.2" stroke-linecap="round"></path><path d="M5 5l14 0M5 9l14 0M5 13l14 0M5 17l14 0" stroke="#fff" stroke-width="2.2" stroke-linecap="round" opacity="0.35"></path></svg></div>
           <h3>ページ上に直接、さりげなくハイライト</h3>
           <p>AIが <mark class="ai-ghost-highlight">最も重要な原文の抜粋</mark> を記事内で自然にハイライトするため、 <mark class="ai-ghost-highlight">重要なポイントを一目で把握でき</mark>、要約と一緒に Kindle、LocalSend、Markdown にも引き継がれます。</p>
+          <button class="fvideo-cta" type="button" tabindex="-1" aria-hidden="true"><span class="fvideo-cta-play">▶</span>クリップを見る</button>
         </div>
         <div class="feature-card" data-personas="privacy researcher">
           <figure class="fvideo" data-blog-video="bibliothek">
@@ -487,6 +496,7 @@
           <div class="f-icon icon-violet"><svg viewBox="0 0 24 24" fill="none"><path d="M11 4a7 7 0 1 0 4.9 12.1l4.6 4.6" stroke="#fff" stroke-width="1.7" stroke-linecap="round"></path></svg></div>
           <h3>オンデバイスでの本格的な全文検索</h3>
           <p>タイトル、タグ、本文を対象とした全文検索。ブラウザ内で構築されるTF-IDFインデックスにより駆動します。サーバーとの通信遅延はなく、外部へのデータ送信も一切発生しません。</p>
+          <button class="fvideo-cta" type="button" tabindex="-1" aria-hidden="true"><span class="fvideo-cta-play">▶</span>クリップを見る</button>
         </div>
         <div class="feature-card" data-personas="hoarder">
           <figure class="fvideo" data-blog-video="pocket">
@@ -500,6 +510,7 @@
           <div class="f-icon icon-indigo"><svg viewBox="0 0 24 24" fill="none"><path d="M6 3h12v18l-6-4-6 4V3Z" stroke="#fff" stroke-width="1.6" stroke-linejoin="round"></path></svg></div>
           <h3>意図を持った「後で読む」</h3>
           <p>理由や期限を設定して「アクション/判断」としてフラグを立てることで、リマインドを受け取ることができます。二度と開かれないリストの山に埋もれさせることはありません。</p>
+          <button class="fvideo-cta" type="button" tabindex="-1" aria-hidden="true"><span class="fvideo-cta-play">▶</span>クリップを見る</button>
         </div>
         <div class="feature-card" data-personas="hoarder">
           <figure class="fvideo" data-blog-video="digest">
@@ -513,6 +524,7 @@
           <div class="f-icon icon-gold"><svg viewBox="0 0 24 24" fill="none"><rect x="4" y="4" width="16" height="16" rx="3" stroke="#fff" stroke-width="1.6"></rect><path d="M8 9h8M8 13h5" stroke="#fff" stroke-width="1.6" stroke-linecap="round"></path></svg></div>
           <h3>自動キュレーション型ダイジェスト</h3>
           <p>ワンクリックで保存記事から小規模かつ多様なセットを自動選定。同じ話題ばかりが重なるのを防ぎ、1つのファイルにまとめてKindleやLocalSendへ転送します。</p>
+          <button class="fvideo-cta" type="button" tabindex="-1" aria-hidden="true"><span class="fvideo-cta-play">▶</span>クリップを見る</button>
         </div>
         <div class="feature-card" data-personas="researcher">
           <figure class="fvideo" data-blog-video="graph">
@@ -526,6 +538,7 @@
           <div class="f-icon icon-cyan"><svg viewBox="0 0 24 24" fill="none"><circle cx="5" cy="6" r="1.8" fill="#fff"></circle><circle cx="19" cy="6" r="1.8" fill="#fff" opacity="0.85"></circle><circle cx="12" cy="12" r="2.1" fill="#fff"></circle><circle cx="6" cy="18" r="1.8" fill="#fff" opacity="0.85"></circle><circle cx="18" cy="18" r="1.8" fill="#fff" opacity="0.85"></circle><path d="M5 6 12 12M19 6 12 12M12 12 6 18M12 12 18 18" stroke="#fff" stroke-width="1.1" opacity="0.55"></path></svg></div>
           <h3>単なるリストを超えたナレッジグラフ</h3>
           <p>共有タグによる関連性だけでなく、タグが付いていなくても内容の類似度に基づいて保存記事間のつながりを可視化します。</p>
+          <button class="fvideo-cta" type="button" tabindex="-1" aria-hidden="true"><span class="fvideo-cta-play">▶</span>クリップを見る</button>
         </div>
         <div class="feature-card" data-personas="hoarder researcher">
           <figure class="fvideo" data-blog-video="feeds">
@@ -539,6 +552,7 @@
           <div class="f-icon icon-indigo"><svg viewBox="0 0 24 24" fill="none"><circle cx="6" cy="18" r="1.8" fill="#fff"></circle><path d="M5 11a8 8 0 0 1 8 8M5 5a14 14 0 0 1 14 14" stroke="#fff" stroke-width="1.8" stroke-linecap="round"></path></svg></div>
           <h3>内蔵RSSリーダー</h3>
           <p>ブログやニュースサイトをフォローし、ソース、タグ、日付、ムード別に絞り込んだり、OPMLをインポートしてワンクリックで記事を開いたり要約したりできます。拡張機能内でポッドキャストを直接再生できるほか、日々のヘッドラインからAIダイジェストを受け取ることも可能です。お気に入りはアーカイブに保存され、フィードデータはお使いのデバイス内に安全に保存されます。</p>
+          <button class="fvideo-cta" type="button" tabindex="-1" aria-hidden="true"><span class="fvideo-cta-play">▶</span>クリップを見る</button>
         </div>
         <div class="feature-card" data-personas="privacy hoarder researcher">
           <figure class="fvideo" data-blog-video="sprache">
@@ -552,6 +566,7 @@
           <div class="f-icon icon-violet"><svg viewBox="0 0 24 24" fill="none"><path d="M4 12h16M12 4c2.8 2.6 4.2 5.2 4.2 8s-1.4 5.4-4.2 8c-2.8-2.6-4.2-5.2-4.2-8s1.4-5.4 4.2-8Z" stroke="#fff" stroke-width="1.5"></path></svg></div>
           <h3>20以上の言語に対応、クロスプラットフォーム</h3>
           <p>お好みの言語で閲覧・要約。拡張機能、ネイティブサイドパネル、または <a href="../bookmarklet.html">ブックマークレット</a> — 拡張機能が使えない環境でもご利用いただけます。</p>
+          <button class="fvideo-cta" type="button" tabindex="-1" aria-hidden="true"><span class="fvideo-cta-play">▶</span>クリップを見る</button>
         </div>
       </div>
     </div>

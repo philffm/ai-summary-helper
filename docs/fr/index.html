@@ -278,7 +278,7 @@
       </div>
       <!-- labels for the full-screen player (text here, so the translation pipeline translates them) -->
       <div class="vfeed-labels" hidden="">
-        <span data-l="close">Fermer</span><span data-l="sound">Activer le son</span><span data-l="mute">Couper le son</span><span data-l="hint">Balayez vers le haut pour la vidéo suivante</span>
+        <span data-l="close">Fermer</span><span data-l="sound">Activer le son</span><span data-l="mute">Couper le son</span><span data-l="hint">Balayez vers le haut pour la vidéo suivante</span><span data-l="prev">Vidéo précédente</span><span data-l="next">Vidéo suivante</span>
       </div>
       <div class="vstack reveal" data-vstack="">
         <figure class="vstack-item" data-blog-video="montage" style="--i:0">
@@ -399,6 +399,13 @@
           </figcaption>
         </figure>
       </div>
+      <!-- focus fan (desktop): the clip in front gets its title, line and link here; arrows and dots move the focus (main.js) -->
+      <div class="vstack-caption" aria-live="polite" hidden=""></div>
+      <div class="vstack-nav" hidden="">
+        <button class="vstack-arrow" type="button" data-dir="-1" aria-label="Vidéo précédente">‹</button>
+        <div class="vstack-dots" aria-hidden="true"></div>
+        <button class="vstack-arrow" type="button" data-dir="1" aria-label="Vidéo suivante">›</button>
+      </div>
     </div>
   </section>
 
@@ -447,7 +454,7 @@
       </div>
       <p class="persona-blurb reveal" id="personaBlurb" aria-live="polite">Vous choisissez le modèle, le serveur, et si la moindre donnée quitte ou non votre machine.</p>
 
-      <!-- each card has its clip (top right): hover plays it silently, a tap opens the swipeable player (main.js) -->
+      <!-- each card's clip peeks out of its bottom corner (tilted like the Watch stack): hover plays it silently, a tap on it or on "Watch the clip" opens the swipeable player (main.js) -->
       <div class="feature-grid reveal" id="featureGrid" data-vgroup="">
         <div class="feature-card" data-personas="privacy researcher">
           <figure class="fvideo" data-blog-video="privat">
@@ -461,6 +468,7 @@
           <div class="f-icon icon-cyan"><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="6" r="2.6" fill="#fff"></circle><circle cx="6" cy="17" r="2.2" fill="#fff" opacity="0.85"></circle><circle cx="18" cy="17" r="2.2" fill="#fff" opacity="0.85"></circle><path d="M12 8.6 L6.8 14.8 M12 8.6 L17.2 14.8" stroke="#fff" stroke-width="1.4" stroke-linecap="round" opacity="0.7"></path></svg></div>
           <h3>Résumés IA, avec le modèle de votre choix</h3>
           <p>OpenAI, Gemini, Mistral, DeepSeek ou un endpoint personnalisé — ou connectez-le à un modèle local Ollama pour une exécution 100 % on-device sans aucun transfert réseau.</p>
+          <button class="fvideo-cta" type="button" tabindex="-1" aria-hidden="true"><span class="fvideo-cta-play">▶</span>Regarder l'extrait</button>
         </div>
         <div class="feature-card" data-personas="privacy researcher">
           <figure class="fvideo" data-blog-video="highlights">
@@ -474,6 +482,7 @@
           <div class="f-icon icon-gold"><svg viewBox="0 0 24 24" fill="none"><path d="M5 5h14M5 9h14M5 13h14M5 17h14" stroke="#fff" stroke-width="2.2" stroke-linecap="round"></path><path d="M5 5l14 0M5 9l14 0M5 13l14 0M5 17l14 0" stroke="#fff" stroke-width="2.2" stroke-linecap="round" opacity="0.35"></path></svg></div>
           <h3>Surlignages subtils, directement sur la page</h3>
           <p>L'IA surligne délicatement les <mark class="ai-ghost-highlight">passages textuels les plus importants</mark> de l'article — afin que vous puissiez <mark class="ai-ghost-highlight">parcourir les points clés d'un coup d'œil</mark>, et ils accompagnent le résumé vers Kindle, LocalSend ou Markdown.</p>
+          <button class="fvideo-cta" type="button" tabindex="-1" aria-hidden="true"><span class="fvideo-cta-play">▶</span>Regarder l'extrait</button>
         </div>
         <div class="feature-card" data-personas="privacy researcher">
           <figure class="fvideo" data-blog-video="bibliothek">
@@ -487,6 +496,7 @@
           <div class="f-icon icon-violet"><svg viewBox="0 0 24 24" fill="none"><path d="M11 4a7 7 0 1 0 4.9 12.1l4.6 4.6" stroke="#fff" stroke-width="1.7" stroke-linecap="round"></path></svg></div>
           <h3>Une vraie recherche, 100 % locale</h3>
           <p>Recherche plein texte dans les titres, tags et contenus d'articles — propulsée par un index TF-IDF généré dans votre navigateur. Zéro latence, aucun serveur externe, données strictement privées.</p>
+          <button class="fvideo-cta" type="button" tabindex="-1" aria-hidden="true"><span class="fvideo-cta-play">▶</span>Regarder l'extrait</button>
         </div>
         <div class="feature-card" data-personas="hoarder">
           <figure class="fvideo" data-blog-video="pocket">
@@ -500,6 +510,7 @@
           <div class="f-icon icon-indigo"><svg viewBox="0 0 24 24" fill="none"><path d="M6 3h12v18l-6-4-6 4V3Z" stroke="#fff" stroke-width="1.6" stroke-linejoin="round"></path></svg></div>
           <h3>Sauvegardez pour plus tard, avec un but</h3>
           <p>Associez une « décision » avec un motif et une échéance pour recevoir un rappel — au lieu de voir l'article disparaître dans une pile jamais rouverte.</p>
+          <button class="fvideo-cta" type="button" tabindex="-1" aria-hidden="true"><span class="fvideo-cta-play">▶</span>Regarder l'extrait</button>
         </div>
         <div class="feature-card" data-personas="hoarder">
           <figure class="fvideo" data-blog-video="digest">
@@ -513,6 +524,7 @@
           <div class="f-icon icon-gold"><svg viewBox="0 0 24 24" fill="none"><rect x="4" y="4" width="16" height="16" rx="3" stroke="#fff" stroke-width="1.6"></rect><path d="M8 9h8M8 13h5" stroke="#fff" stroke-width="1.6" stroke-linecap="round"></path></svg></div>
           <h3>Un digest qui se compose tout seul</h3>
           <p>En un clic, obtenez une sélection ciblée et variée de vos sauvegardes — pas cinq fois le même sujet — réunie en un fichier prêt pour Kindle ou LocalSend.</p>
+          <button class="fvideo-cta" type="button" tabindex="-1" aria-hidden="true"><span class="fvideo-cta-play">▶</span>Regarder l'extrait</button>
         </div>
         <div class="feature-card" data-personas="researcher">
           <figure class="fvideo" data-blog-video="graph">
@@ -526,6 +538,7 @@
           <div class="f-icon icon-cyan"><svg viewBox="0 0 24 24" fill="none"><circle cx="5" cy="6" r="1.8" fill="#fff"></circle><circle cx="19" cy="6" r="1.8" fill="#fff" opacity="0.85"></circle><circle cx="12" cy="12" r="2.1" fill="#fff"></circle><circle cx="6" cy="18" r="1.8" fill="#fff" opacity="0.85"></circle><circle cx="18" cy="18" r="1.8" fill="#fff" opacity="0.85"></circle><path d="M5 6 12 12M19 6 12 12M12 12 6 18M12 12 18 18" stroke="#fff" stroke-width="1.1" opacity="0.55"></path></svg></div>
           <h3>Un graphe de connaissances, pas une simple liste</h3>
           <p>Visualisez les liens entre vos articles sauvegardés — par tags communs ou par proximité thématique, même sans aucun tag partagé.</p>
+          <button class="fvideo-cta" type="button" tabindex="-1" aria-hidden="true"><span class="fvideo-cta-play">▶</span>Regarder l'extrait</button>
         </div>
         <div class="feature-card" data-personas="hoarder researcher">
           <figure class="fvideo" data-blog-video="feeds">
@@ -539,6 +552,7 @@
           <div class="f-icon icon-indigo"><svg viewBox="0 0 24 24" fill="none"><circle cx="6" cy="18" r="1.8" fill="#fff"></circle><path d="M5 11a8 8 0 0 1 8 8M5 5a14 14 0 0 1 14 14" stroke="#fff" stroke-width="1.8" stroke-linecap="round"></path></svg></div>
           <h3>Un lecteur RSS intégré</h3>
           <p>Suivez des blogs et sites d'actualités, filtrez par source, tag, date ou humeur, importez votre OPML, et ouvrez ou résumez n'importe quel contenu en un clic. Écoutez vos flux de podcasts directement dans l'extension et profitez d'un récapitulatif IA quotidien optionnel à partir des gros titres. Vos favoris rejoignent vos archives et vos flux restent stockés localement sur votre appareil.</p>
+          <button class="fvideo-cta" type="button" tabindex="-1" aria-hidden="true"><span class="fvideo-cta-play">▶</span>Regarder l'extrait</button>
         </div>
         <div class="feature-card" data-personas="privacy hoarder researcher">
           <figure class="fvideo" data-blog-video="sprache">
@@ -552,6 +566,7 @@
           <div class="f-icon icon-violet"><svg viewBox="0 0 24 24" fill="none"><path d="M4 12h16M12 4c2.8 2.6 4.2 5.2 4.2 8s-1.4 5.4-4.2 8c-2.8-2.6-4.2-5.2-4.2-8s1.4-5.4 4.2-8Z" stroke="#fff" stroke-width="1.5"></path></svg></div>
           <h3>Plus de 20 langues, multiplateforme</h3>
           <p>Lisez et résumez dans la langue de votre choix. Extension, panneau latéral natif ou <a href="../bookmarklet.html">bookmarklet</a> — pour tous les cas où l'extension de navigateur ne peut pas intervenir.</p>
+          <button class="fvideo-cta" type="button" tabindex="-1" aria-hidden="true"><span class="fvideo-cta-play">▶</span>Regarder l'extrait</button>
         </div>
       </div>
     </div>

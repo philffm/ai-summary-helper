@@ -96669,6 +96669,606 @@
           "model": "google/gemini-3.7-flash"
         }
       }
+    },
+    "021396e24b11af74435609c5dde222284704a5f3f3a8107f624601e150d03660": {
+      "en": "Previous video",
+      "translations": {
+        "de": {
+          "text": "Vorheriges Video",
+          "translatedAt": "2026-10-20T15:58:00.004Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fr": {
+          "text": "Vidéo précédente",
+          "translatedAt": "2026-10-20T15:58:07.331Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "es": {
+          "text": "Video anterior",
+          "translatedAt": "2026-10-20T15:58:10.207Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh": {
+          "text": "上一个视频",
+          "translatedAt": "2026-10-20T15:58:14.203Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh-TW": {
+          "text": "上一部影片",
+          "translatedAt": "2026-10-20T15:58:18.181Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ja": {
+          "text": "前の動画",
+          "translatedAt": "2026-10-20T15:58:22.534Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ko": {
+          "text": "이전 영상",
+          "translatedAt": "2026-10-20T15:58:26.636Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pt": {
+          "text": "Vídeo anterior",
+          "translatedAt": "2026-10-20T15:58:31.046Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "hi": {
+          "text": "पिछला video",
+          "translatedAt": "2026-10-20T15:58:38.477Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "vi": {
+          "text": "Video trước",
+          "translatedAt": "2026-10-20T15:58:45.236Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "nl": {
+          "text": "Vorige video",
+          "translatedAt": "2026-10-20T15:58:49.707Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "it": {
+          "text": "Video precedente",
+          "translatedAt": "2026-10-20T15:58:56.844Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ru": {
+          "text": "Предыдущее видео",
+          "translatedAt": "2026-10-20T15:59:02.877Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "uk": {
+          "text": "Попереднє відео",
+          "translatedAt": "2026-10-20T15:59:09.540Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "tr": {
+          "text": "Önceki video",
+          "translatedAt": "2026-10-20T15:59:13.910Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "id": {
+          "text": "Video sebelumnya",
+          "translatedAt": "2026-10-20T15:59:19.549Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pl": {
+          "text": "Poprzednie wideo",
+          "translatedAt": "2026-10-20T15:59:25.341Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "th": {
+          "text": "วิดีโอก่อนหน้า",
+          "translatedAt": "2026-10-20T15:59:30.055Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ar": {
+          "text": "الفيديو السابق",
+          "translatedAt": "2026-10-20T15:59:33.141Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "sv": {
+          "text": "Föregående video",
+          "translatedAt": "2026-10-20T15:59:37.666Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "da": {
+          "text": "Forrige video",
+          "translatedAt": "2026-10-20T15:59:43.555Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "no": {
+          "text": "Forrige video",
+          "translatedAt": "2026-10-20T15:59:46.311Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fi": {
+          "text": "Edellinen video",
+          "translatedAt": "2026-10-20T15:59:51.018Z",
+          "model": "google/gemini-3.7-flash"
+        }
+      }
+    },
+    "780bea67085d2d91fd326a32815595e8274b76aeffbee2031cc0232381d75209": {
+      "en": "Next video",
+      "translations": {
+        "de": {
+          "text": "Nächstes Video",
+          "translatedAt": "2026-10-20T15:58:00.004Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fr": {
+          "text": "Vidéo suivante",
+          "translatedAt": "2026-10-20T15:58:07.331Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "es": {
+          "text": "Siguiente video",
+          "translatedAt": "2026-10-20T15:58:10.207Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh": {
+          "text": "下一个视频",
+          "translatedAt": "2026-10-20T15:58:14.203Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh-TW": {
+          "text": "下一部影片",
+          "translatedAt": "2026-10-20T15:58:18.181Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ja": {
+          "text": "次の動画",
+          "translatedAt": "2026-10-20T15:58:22.534Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ko": {
+          "text": "다음 영상",
+          "translatedAt": "2026-10-20T15:58:26.636Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pt": {
+          "text": "Próximo vídeo",
+          "translatedAt": "2026-10-20T15:58:31.046Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "hi": {
+          "text": "अगला video",
+          "translatedAt": "2026-10-20T15:58:38.477Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "vi": {
+          "text": "Video tiếp theo",
+          "translatedAt": "2026-10-20T15:58:45.236Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "nl": {
+          "text": "Volgende video",
+          "translatedAt": "2026-10-20T15:58:49.707Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "it": {
+          "text": "Video successivo",
+          "translatedAt": "2026-10-20T15:58:56.844Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ru": {
+          "text": "Следующее видео",
+          "translatedAt": "2026-10-20T15:59:02.877Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "uk": {
+          "text": "Наступне відео",
+          "translatedAt": "2026-10-20T15:59:09.540Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "tr": {
+          "text": "Sonraki video",
+          "translatedAt": "2026-10-20T15:59:13.910Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "id": {
+          "text": "Video berikutnya",
+          "translatedAt": "2026-10-20T15:59:19.549Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pl": {
+          "text": "Następne wideo",
+          "translatedAt": "2026-10-20T15:59:25.341Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "th": {
+          "text": "วิดีโอถัดไป",
+          "translatedAt": "2026-10-20T15:59:30.055Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ar": {
+          "text": "الفيديو التالي",
+          "translatedAt": "2026-10-20T15:59:33.141Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "sv": {
+          "text": "Nästa video",
+          "translatedAt": "2026-10-20T15:59:37.666Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "da": {
+          "text": "Næste video",
+          "translatedAt": "2026-10-20T15:59:43.555Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "no": {
+          "text": "Neste video",
+          "translatedAt": "2026-10-20T15:59:46.311Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fi": {
+          "text": "Seuraava video",
+          "translatedAt": "2026-10-20T15:59:51.018Z",
+          "model": "google/gemini-3.7-flash"
+        }
+      }
+    },
+    "0685a836e46144a549d3a97c41791a7094f129956e17562db80a5bfe688cae2b": {
+      "en": "‹",
+      "translations": {
+        "de": {
+          "text": "‹",
+          "translatedAt": "2026-10-20T15:58:00.004Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fr": {
+          "text": "‹",
+          "translatedAt": "2026-10-20T15:58:07.331Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "es": {
+          "text": "‹",
+          "translatedAt": "2026-10-20T15:58:10.207Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh": {
+          "text": "‹",
+          "translatedAt": "2026-10-20T15:58:14.203Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh-TW": {
+          "text": "‹",
+          "translatedAt": "2026-10-20T15:58:18.181Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ja": {
+          "text": "‹",
+          "translatedAt": "2026-10-20T15:58:22.534Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ko": {
+          "text": "‹",
+          "translatedAt": "2026-10-20T15:58:26.636Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pt": {
+          "text": "‹",
+          "translatedAt": "2026-10-20T15:58:31.046Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "hi": {
+          "text": "‹",
+          "translatedAt": "2026-10-20T15:58:38.477Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "vi": {
+          "text": "‹",
+          "translatedAt": "2026-10-20T15:58:45.236Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "nl": {
+          "text": "‹",
+          "translatedAt": "2026-10-20T15:58:49.707Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "it": {
+          "text": "‹",
+          "translatedAt": "2026-10-20T15:58:56.844Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ru": {
+          "text": "‹",
+          "translatedAt": "2026-10-20T15:59:02.877Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "uk": {
+          "text": "‹",
+          "translatedAt": "2026-10-20T15:59:09.540Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "tr": {
+          "text": "‹",
+          "translatedAt": "2026-10-20T15:59:13.910Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "id": {
+          "text": "‹",
+          "translatedAt": "2026-10-20T15:59:19.549Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pl": {
+          "text": "‹",
+          "translatedAt": "2026-10-20T15:59:25.341Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "th": {
+          "text": "‹",
+          "translatedAt": "2026-10-20T15:59:30.055Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ar": {
+          "text": "‹",
+          "translatedAt": "2026-10-20T15:59:33.141Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "sv": {
+          "text": "‹",
+          "translatedAt": "2026-10-20T15:59:37.666Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "da": {
+          "text": "‹",
+          "translatedAt": "2026-10-20T15:59:43.555Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "no": {
+          "text": "‹",
+          "translatedAt": "2026-10-20T15:59:46.311Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fi": {
+          "text": "‹",
+          "translatedAt": "2026-10-20T15:59:51.018Z",
+          "model": "google/gemini-3.7-flash"
+        }
+      }
+    },
+    "7bb37df5cb369f1856c1ea4e6052dda69d72ab0558c852fda36e9a4380abdefe": {
+      "en": "›",
+      "translations": {
+        "de": {
+          "text": "›",
+          "translatedAt": "2026-10-20T15:58:00.004Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fr": {
+          "text": "›",
+          "translatedAt": "2026-10-20T15:58:07.331Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "es": {
+          "text": "›",
+          "translatedAt": "2026-10-20T15:58:10.207Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh": {
+          "text": "›",
+          "translatedAt": "2026-10-20T15:58:14.203Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh-TW": {
+          "text": "›",
+          "translatedAt": "2026-10-20T15:58:18.181Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ja": {
+          "text": "›",
+          "translatedAt": "2026-10-20T15:58:22.534Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ko": {
+          "text": "›",
+          "translatedAt": "2026-10-20T15:58:26.636Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pt": {
+          "text": "›",
+          "translatedAt": "2026-10-20T15:58:31.046Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "hi": {
+          "text": "›",
+          "translatedAt": "2026-10-20T15:58:38.477Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "vi": {
+          "text": "›",
+          "translatedAt": "2026-10-20T15:58:45.236Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "nl": {
+          "text": "›",
+          "translatedAt": "2026-10-20T15:58:49.707Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "it": {
+          "text": "›",
+          "translatedAt": "2026-10-20T15:58:56.844Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ru": {
+          "text": "›",
+          "translatedAt": "2026-10-20T15:59:02.877Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "uk": {
+          "text": "›",
+          "translatedAt": "2026-10-20T15:59:09.540Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "tr": {
+          "text": "›",
+          "translatedAt": "2026-10-20T15:59:13.910Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "id": {
+          "text": "›",
+          "translatedAt": "2026-10-20T15:59:19.549Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pl": {
+          "text": "›",
+          "translatedAt": "2026-10-20T15:59:25.341Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "th": {
+          "text": "›",
+          "translatedAt": "2026-10-20T15:59:30.055Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ar": {
+          "text": "›",
+          "translatedAt": "2026-10-20T15:59:33.141Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "sv": {
+          "text": "›",
+          "translatedAt": "2026-10-20T15:59:37.666Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "da": {
+          "text": "›",
+          "translatedAt": "2026-10-20T15:59:43.555Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "no": {
+          "text": "›",
+          "translatedAt": "2026-10-20T15:59:46.311Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fi": {
+          "text": "›",
+          "translatedAt": "2026-10-20T15:59:51.018Z",
+          "model": "google/gemini-3.7-flash"
+        }
+      }
+    },
+    "54b179e57e4684c94f747246204675479717759f83cdeb03bc8f5a289e438992": {
+      "en": "Watch the clip",
+      "translations": {
+        "de": {
+          "text": "Clip ansehen",
+          "translatedAt": "2026-10-20T15:58:00.004Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fr": {
+          "text": "Regarder l'extrait",
+          "translatedAt": "2026-10-20T15:58:07.331Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "es": {
+          "text": "Ver el clip",
+          "translatedAt": "2026-10-20T15:58:10.207Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh": {
+          "text": "观看片段",
+          "translatedAt": "2026-10-20T15:58:14.203Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh-TW": {
+          "text": "觀看短片",
+          "translatedAt": "2026-10-20T15:58:18.181Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ja": {
+          "text": "クリップを見る",
+          "translatedAt": "2026-10-20T15:58:22.534Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ko": {
+          "text": "클립 보기",
+          "translatedAt": "2026-10-20T15:58:26.636Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pt": {
+          "text": "Assistir ao clipe",
+          "translatedAt": "2026-10-20T15:58:31.046Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "hi": {
+          "text": "Clip देखें",
+          "translatedAt": "2026-10-20T15:58:38.477Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "vi": {
+          "text": "Xem clip",
+          "translatedAt": "2026-10-20T15:58:45.236Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "nl": {
+          "text": "Bekijk de clip",
+          "translatedAt": "2026-10-20T15:58:49.707Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "it": {
+          "text": "Guarda la clip",
+          "translatedAt": "2026-10-20T15:58:56.844Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ru": {
+          "text": "Смотреть видео",
+          "translatedAt": "2026-10-20T15:59:02.877Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "uk": {
+          "text": "Дивитися кліп",
+          "translatedAt": "2026-10-20T15:59:09.540Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "tr": {
+          "text": "Klibi izleyin",
+          "translatedAt": "2026-10-20T15:59:13.910Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "id": {
+          "text": "Tonton klip",
+          "translatedAt": "2026-10-20T15:59:19.549Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pl": {
+          "text": "Obejrzyj klip",
+          "translatedAt": "2026-10-20T15:59:25.341Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "th": {
+          "text": "ดูคลิป",
+          "translatedAt": "2026-10-20T15:59:30.055Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ar": {
+          "text": "شاهد المقطع",
+          "translatedAt": "2026-10-20T15:59:33.141Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "sv": {
+          "text": "Se klippet",
+          "translatedAt": "2026-10-20T15:59:37.666Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "da": {
+          "text": "Se klippet",
+          "translatedAt": "2026-10-20T15:59:43.555Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "no": {
+          "text": "Se klippet",
+          "translatedAt": "2026-10-20T15:59:46.311Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fi": {
+          "text": "Katso klippi",
+          "translatedAt": "2026-10-20T15:59:51.018Z",
+          "model": "google/gemini-3.7-flash"
+        }
+      }
     }
   }
 }
