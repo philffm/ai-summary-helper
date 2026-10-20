@@ -1,0 +1,231 @@
+<!DOCTYPE html><html lang="zh-Hans"><head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#08090C">
+<title>演示视频 — AI Summary Helper</title>
+<meta name="description" content="AI Summary Helper 演示短片：带来源引用的摘要、多语言支持、知识图谱、动态简报、Kindle 同步及本地模型运行。">
+
+<script>
+  (function(){
+    try {
+      var saved = localStorage.getItem('aish_theme');
+      var theme = saved === 'light' || saved === 'dark'
+        ? saved
+        : (window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
+      document.documentElement.setAttribute('data-theme', theme);
+    } catch (e) {
+      document.documentElement.setAttribute('data-theme', 'dark');
+    }
+  })();
+</script>
+
+<link rel="icon" type="image/svg+xml" href="../../assets/icon.svg">
+<link rel="stylesheet" href="../../assets/styles.css">
+<script src="../../assets/analytics.js"></script>
+<link rel="alternate" hreflang="x-default" href="https://ai-summary-helper.byphil.eu/blog/videos.html"><link rel="alternate" hreflang="en" href="https://ai-summary-helper.byphil.eu/blog/videos.html"><link rel="alternate" hreflang="de" href="https://ai-summary-helper.byphil.eu/de/blog/videos.html"><link rel="alternate" hreflang="fr" href="https://ai-summary-helper.byphil.eu/fr/blog/videos.html"><link rel="alternate" hreflang="es" href="https://ai-summary-helper.byphil.eu/es/blog/videos.html"><link rel="alternate" hreflang="zh-Hans" href="https://ai-summary-helper.byphil.eu/zh/blog/videos.html"><link rel="alternate" hreflang="zh-Hant" href="https://ai-summary-helper.byphil.eu/zh-tw/blog/videos.html"><link rel="alternate" hreflang="ja" href="https://ai-summary-helper.byphil.eu/ja/blog/videos.html"><link rel="alternate" hreflang="ko" href="https://ai-summary-helper.byphil.eu/ko/blog/videos.html"><link rel="alternate" hreflang="pt-BR" href="https://ai-summary-helper.byphil.eu/pt/blog/videos.html"><link rel="alternate" hreflang="hi" href="https://ai-summary-helper.byphil.eu/hi/blog/videos.html"><link rel="alternate" hreflang="vi" href="https://ai-summary-helper.byphil.eu/vi/blog/videos.html"><link rel="alternate" hreflang="nl" href="https://ai-summary-helper.byphil.eu/nl/blog/videos.html"><link rel="alternate" hreflang="it" href="https://ai-summary-helper.byphil.eu/it/blog/videos.html"><link rel="alternate" hreflang="ru" href="https://ai-summary-helper.byphil.eu/ru/blog/videos.html"><link rel="alternate" hreflang="uk" href="https://ai-summary-helper.byphil.eu/uk/blog/videos.html"><link rel="alternate" hreflang="tr" href="https://ai-summary-helper.byphil.eu/tr/blog/videos.html"><link rel="alternate" hreflang="id" href="https://ai-summary-helper.byphil.eu/id/blog/videos.html"><link rel="alternate" hreflang="pl" href="https://ai-summary-helper.byphil.eu/pl/blog/videos.html"><link rel="alternate" hreflang="th" href="https://ai-summary-helper.byphil.eu/th/blog/videos.html"><link rel="alternate" hreflang="ar" href="https://ai-summary-helper.byphil.eu/ar/blog/videos.html"><link rel="alternate" hreflang="sv" href="https://ai-summary-helper.byphil.eu/sv/blog/videos.html"><link rel="alternate" hreflang="da" href="https://ai-summary-helper.byphil.eu/da/blog/videos.html"><link rel="alternate" hreflang="nb" href="https://ai-summary-helper.byphil.eu/no/blog/videos.html"><link rel="alternate" hreflang="fi" href="https://ai-summary-helper.byphil.eu/fi/blog/videos.html"><link rel="canonical" href="https://ai-summary-helper.byphil.eu/zh/blog/videos.html"><meta property="og:site_name" content="AI Summary Helper"><meta property="og:locale" content="zh_CN"><meta property="og:type" content="article"><meta property="og:title" content="演示视频 — AI Summary Helper"><meta property="og:description" content="AI Summary Helper 演示短片：带来源引用的摘要、多语言支持、知识图谱、动态简报、Kindle 同步及本地模型运行。"><meta property="og:image" content="https://ai-summary-helper.byphil.eu/assets/shots/aish-hero-en.webp"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="演示视频 — AI Summary Helper"><meta name="twitter:description" content="AI Summary Helper 演示短片：带来源引用的摘要、多语言支持、知识图谱、动态简报、Kindle 同步及本地模型运行。"><meta name="twitter:image" content="https://ai-summary-helper.byphil.eu/assets/shots/aish-hero-en.webp"><script type="application/ld+json" data-seo="ld">{"@context":"https://schema.org","@graph":[{"@type":"BlogPosting","@id":"https://ai-summary-helper.byphil.eu/zh/blog/videos.html#post","headline":"实机演示，每个片段不到 20 秒","description":"AI Summary Helper 演示短片：带来源引用的摘要、多语言支持、知识图谱、动态简报、Kindle 同步及本地模型运行。","inLanguage":"zh-Hans","image":"https://ai-summary-helper.byphil.eu/assets/shots/aish-hero-en.webp","mainEntityOfPage":"https://ai-summary-helper.byphil.eu/zh/blog/videos.html","author":{"@id":"https://byphil.eu/#org"},"publisher":{"@type":"Organization","@id":"https://byphil.eu/#org","name":"byphil","url":"https://byphil.eu/"}},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"AI Summary Helper","item":"https://ai-summary-helper.byphil.eu/"},{"@type":"ListItem","position":2,"name":"Blog","item":"https://ai-summary-helper.byphil.eu/zh/blog/"},{"@type":"ListItem","position":3,"name":"实机演示，每个片段不到 20 秒","item":"https://ai-summary-helper.byphil.eu/zh/blog/videos.html"}]}]}</script></head>
+<body>
+
+<a href="#main" class="skip-link">跳转至主要内容</a>
+
+<header class="nav nav--pill" id="siteNav">
+  <div class="wrap nav-pill-row">
+    <a href="../index.html" class="wordmark" aria-label="AI Summary Helper">
+      <img src="../../assets/icon.svg" alt="">
+      AI Summary Helper
+    </a>
+    <nav class="pill" aria-label="主要">
+      <a href="../index.html#features" data-sec="features">功能特性</a>
+      <a href="../index.html#try-it" data-sec="try-it">演示</a>
+      <a href="../index.html#pricing" data-sec="pricing">价格方案</a>
+      <a href="https://chromewebstore.google.com/detail/ai-summary-helper-openai/hldbejcjaedipeegjcinmhejdndchkmb" class="pill-cta" target="_blank" rel="noopener">添加至 Chrome</a>
+    </nav>
+    <div class="nav-tools">
+      <button type="button" class="tool-btn" id="langBtn" aria-label="语言" aria-controls="mobileMenu"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.6"></circle><path d="M3 12h18M12 3c2.6 2.7 3.9 5.7 3.9 9s-1.3 6.3-3.9 9c-2.6-2.7-3.9-5.7-3.9-9S9.4 5.7 12 3Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"></path></svg></button>
+      <button type="button" class="theme-toggle" id="themeToggle" aria-label="切换至浅色模式">
+        <svg class="icon-moon" viewBox="0 0 24 24" fill="none"><path d="M20 14.5A8.5 8.5 0 1 1 9.5 4a6.8 6.8 0 0 0 10.5 10.5Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"></path></svg>
+        <svg class="icon-sun" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="4.2" stroke="currentColor" stroke-width="1.6"></circle><path d="M12 2.5v2.4M12 19.1v2.4M4.4 4.4l1.7 1.7M17.9 17.9l1.7 1.7M2.5 12h2.4M19.1 12h2.4M4.4 19.6l1.7-1.7M17.9 6.1l1.7-1.7" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"></path></svg>
+      </button>
+    </div>
+    <button type="button" class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="mobileMenu" aria-label="打开菜单">
+      <svg viewBox="0 0 24 24" fill="none"><path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"></path></svg>
+    </button>
+  </div>
+  <div class="mobile-menu" id="mobileMenu" hidden="">
+    <div class="wrap mm-inner">
+      <nav class="mm-links" aria-label="移动端">
+        <a href="../index.html#features"><span class="mm-n">01</span>功能特性</a>
+        <a href="../index.html#try-it"><span class="mm-n">02</span>演示</a>
+        <a href="../index.html#pricing"><span class="mm-n">03</span>价格方案</a>
+        <a href="../blog/" aria-current="page"><span class="mm-n">04</span>博客</a>
+          <a href="../blog/pocket-alternative.html" class="mm-sub">Pocket 替代方案：核心关注点</a>
+          <a href="../blog/bring-your-own-key.html" class="mm-sub">你的 API key，你的模型，你的数据。</a>
+          <a href="../blog/verify-ai-summary.html" class="mm-sub">对照原文核验 AI 摘要</a>
+          <a href="../blog/highlighting-vs-asking.html" class="mm-sub">围绕划线高亮发起提问</a>
+        <a href="https://github.com/philffm/ai-summary-helper/" target="_blank" rel="noopener"><span class="mm-n">05</span>GitHub</a>
+      </nav>
+      <div class="mm-lang">
+        <button type="button" class="lang-card" id="langCard"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.6"></circle><path d="M3 12h18M12 3c2.6 2.7 3.9 5.7 3.9 9s-1.3 6.3-3.9 9c-2.6-2.7-3.9-5.7-3.9-9S9.4 5.7 12 3Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"></path></svg><span class="lang-card-cur">英语</span><small>24 种语言</small><b aria-hidden="true">→</b></button>
+        <p class="mm-lang-h">语言 · 24</p>
+        <label class="lang-search"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="11" cy="11" r="6.5" stroke="currentColor" stroke-width="1.7"></circle><path d="m16 16 4 4" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"></path></svg><input type="search" id="langSearch" placeholder="搜索语言…" autocomplete="off" aria-label="搜索语言" spellcheck="false"></label>
+        <div class="lang-groups" id="langGroups">
+          <div class="lang-group"><p class="lang-group-h">热门</p><div class="lang-pills" data-no-translate=""><a href="/" class="lang-pill" data-loc="en" lang="en" hreflang="en" data-q="english english en">English</a><a href="/de/" class="lang-pill" data-loc="de" lang="de" hreflang="de" data-q="deutsch german de">Deutsch</a><a href="/fr/" class="lang-pill" data-loc="fr" lang="fr" hreflang="fr" data-q="français french fr">Français</a><a href="/es/" class="lang-pill" data-loc="es" lang="es" hreflang="es" data-q="español spanish es">Español</a><a href="/zh/" class="lang-pill" data-loc="zh" lang="zh-CN" hreflang="zh-CN" data-q="简体中文 chinese simplified zh">简体中文</a><a href="/ja/" class="lang-pill" data-loc="ja" lang="ja" hreflang="ja" data-q="日本語 japanese ja">日本語</a><a href="/ru/" class="lang-pill" data-loc="ru" lang="ru" hreflang="ru" data-q="русский russian ru">Русский</a></div></div>
+          <div class="lang-group"><p class="lang-group-h">欧洲</p><div class="lang-pills" data-no-translate=""><a href="/pt/" class="lang-pill" data-loc="pt" lang="pt" hreflang="pt" data-q="português portuguese pt">Português</a><a href="/nl/" class="lang-pill" data-loc="nl" lang="nl" hreflang="nl" data-q="nederlands dutch nl">Nederlands</a><a href="/it/" class="lang-pill" data-loc="it" lang="it" hreflang="it" data-q="italiano italian it">Italiano</a><a href="/uk/" class="lang-pill" data-loc="uk" lang="uk" hreflang="uk" data-q="українська ukrainian uk">Українська</a><a href="/tr/" class="lang-pill" data-loc="tr" lang="tr" hreflang="tr" data-q="türkçe turkish tr">Türkçe</a><a href="/pl/" class="lang-pill" data-loc="pl" lang="pl" hreflang="pl" data-q="polski polish pl">Polski</a><a href="/sv/" class="lang-pill" data-loc="sv" lang="sv" hreflang="sv" data-q="svenska swedish sv">Svenska</a><a href="/da/" class="lang-pill" data-loc="da" lang="da" hreflang="da" data-q="dansk danish da">Dansk</a><a href="/no/" class="lang-pill" data-loc="no" lang="nb" hreflang="nb" data-q="norsk norwegian no">Norsk</a><a href="/fi/" class="lang-pill" data-loc="fi" lang="fi" hreflang="fi" data-q="suomi finnish fi">Suomi</a></div></div>
+          <div class="lang-group"><p class="lang-group-h">亚洲及更多</p><div class="lang-pills" data-no-translate=""><a href="/zh-tw/" class="lang-pill" data-loc="zh-tw" lang="zh-TW" hreflang="zh-TW" data-q="繁體中文 chinese traditional zh-tw">繁體中文</a><a href="/ko/" class="lang-pill" data-loc="ko" lang="ko" hreflang="ko" data-q="한국어 korean ko">한국어</a><a href="/hi/" class="lang-pill" data-loc="hi" lang="hi" hreflang="hi" data-q="हिन्दी hindi hi">हिन्दी</a><a href="/vi/" class="lang-pill" data-loc="vi" lang="vi" hreflang="vi" data-q="tiếng việt vietnamese vi">Tiếng Việt</a><a href="/id/" class="lang-pill" data-loc="id" lang="id" hreflang="id" data-q="bahasa indonesia indonesian id">Bahasa Indonesia</a><a href="/th/" class="lang-pill" data-loc="th" lang="th" hreflang="th" data-q="ไทย thai th">ไทย</a><a href="/ar/" class="lang-pill" data-loc="ar" lang="ar" hreflang="ar" data-q="العربية arabic ar">العربية</a></div></div>
+          <p class="lang-empty" hidden="">无匹配结果</p>
+        </div>
+      </div>
+      <div class="mm-posts" aria-label="博客">
+          <p class="mm-posts-h">博客精选</p>
+          <a href="../blog/pocket-alternative.html" class="mm-post"><span class="mega-tag">方案对比</span><strong>Pocket 替代方案：What Matters</strong><span>迁移稍后读工具，完整保留历史存档</span></a>
+          <a href="../blog/bring-your-own-key.html" class="mm-post"><span class="mega-tag">隐私</span><strong>你的 Key。你的模型。你的数据。— AI Summary Helper</strong><span>为什么自带 API key（BYOK）胜过又多一个订阅</span></a>
+          <a href="../blog/verify-ai-summary.html" class="mm-post"><span class="mega-tag">可信度</span><strong>对照原文核对 AI 摘要</strong><span>一分钟内快速抽检 AI 生成内容</span></a>
+          <a href="../blog/highlighting-vs-asking.html" class="mm-post"><span class="mega-tag">实操指南</span><strong>针对高亮内容提问</strong><span>将标记重点转化为精准答案</span></a>
+          <a href="../blog/feeds-recap.html" class="mm-post"><span class="mega-tag">动态订阅</span><strong>以一份精选简报取代 40 个订阅源</strong><span>为你关注的所有内容生成每日简报</span></a>
+          <a href="../blog/on-device-architecture.html" class="mm-post"><span class="mega-tag">技术实现</span><strong>无需云端的搜索与标签管理 —— AI 摘要助手</strong><span>数据如何全程安全保留在本地设备</span></a>
+          <a href="../blog/" class="mm-all">查看全部文章 →</a>
+        </div>
+      <div class="mm-bottom">
+        <a href="https://chromewebstore.google.com/detail/ai-summary-helper-openai/hldbejcjaedipeegjcinmhejdndchkmb" class="pill-cta mm-cta" target="_blank" rel="noopener">添加至 Chrome</a>
+        <div class="mm-row">
+          <a href="https://addons.mozilla.org/en-US/firefox/addon/ai-summary-helper/" target="_blank" rel="noopener">Firefox</a>
+          <a href="../index.html#phone">Android · Beta</a>
+          <a href="https://byphil.eu/#account">我的账户</a>
+        </div>
+        
+        <button type="button" class="theme-toggle-mobile" id="themeToggleMobile">
+          <span id="themeToggleMobileLabel">切换至浅色模式</span>
+          <svg class="icon-moon" viewBox="0 0 24 24" fill="none"><path d="M20 14.5A8.5 8.5 0 1 1 9.5 4a6.8 6.8 0 0 0 10.5 10.5Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"></path></svg>
+          <svg class="icon-sun" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="4.2" stroke="currentColor" stroke-width="1.6"></circle><path d="M12 2.5v2.4M12 19.1v2.4M4.4 4.4l1.7 1.7M17.9 17.9l1.7 1.7M2.5 12h2.4M19.1 12h2.4M4.4 19.6l1.7-1.7M17.9 6.1l1.7-1.7" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"></path></svg>
+        </button>
+      </div>
+    </div>
+  </div>
+</header>
+
+<main id="main">
+  <section class="hero" style="padding-bottom:24px;">
+    <div class="wrap">
+      <div class="eyebrow"><span class="dash"></span> 演示视频 <span class="dash"></span></div>
+      <h1 style="font-size:clamp(30px, 4.6vw, 46px);">实机演示，<br><em>每个片段不到 20 秒</em></h1>
+      <p class="sub">每项功能均基于扩展真实录制，短小精悍。每个片段均附有对应功能的深度解析文章链接。</p>
+    </div>
+  </section>
+
+  <section style="padding-top:24px;">
+    <div class="wrap">
+      <div class="video-grid reveal">
+        <figure class="video-card post-figure--video" data-blog-video="montage">
+          <video controls="" playsinline="" preload="none" width="360" height="520" poster="../../assets/blog/video/montage-en.jpg">
+            <source src="../../assets/blog/video/montage-en.mp4" type="video/mp4">
+          </video>
+          <figcaption>
+            <h3>15 秒了解 AI Summary Helper</h3>
+            <p>内容摘要、信源溯源、41 种语言支持、个人资料库、知识图谱与研究模式。</p>
+          </figcaption>
+        </figure>
+        <figure class="video-card post-figure--video" data-blog-video="quellen">
+          <video controls="" playsinline="" preload="none" width="360" height="520" poster="../../assets/blog/video/quellen-en.jpg">
+            <source src="../../assets/blog/video/quellen-en.mp4" type="video/mp4">
+          </video>
+          <figcaption>
+            <h3>对照原文验证 AI 回答</h3>
+            <p>继续追问，并直接跳转定位至回答引用的原文段落。</p>
+          <a class="blog-read" href="verify-ai-summary.html">阅读全文 →</a>
+          </figcaption>
+        </figure>
+        <figure class="video-card post-figure--video" data-blog-video="highlights">
+          <video controls="" playsinline="" preload="none" width="360" height="520" poster="../../assets/blog/video/highlights-en.jpg">
+            <source src="../../assets/blog/video/highlights-en.mp4" type="video/mp4">
+          </video>
+          <figcaption>
+            <h3>围绕划线高亮发起提问</h3>
+            <p>高亮选中段落即可提问，获取精准引用原文的解答。</p>
+          <a class="blog-read" href="highlighting-vs-asking.html">阅读全文 →</a>
+          </figcaption>
+        </figure>
+        <figure class="video-card post-figure--video" data-blog-video="feeds">
+          <video controls="" playsinline="" preload="none" width="360" height="520" poster="../../assets/blog/video/feeds-en.jpg">
+            <source src="../../assets/blog/video/feeds-en.mp4" type="video/mp4">
+          </video>
+          <figcaption>
+            <h3>一份精选简报，取代 40 个信息源</h3>
+            <p>一天的订阅内容，一份简报搞定。</p>
+          <a class="blog-read" href="feeds-recap.html">阅读全文 →</a>
+          </figcaption>
+        </figure>
+        <figure class="video-card post-figure--video" data-blog-video="graph">
+          <video controls="" playsinline="" preload="none" width="360" height="520" poster="../../assets/blog/video/graph-en.jpg">
+            <source src="../../assets/blog/video/graph-en.mp4" type="video/mp4">
+          </video>
+          <figcaption>
+            <h3>将阅读内容构建为知识图谱</h3>
+            <p>通过主题智能关联文章，并针对任意主题生成简报，全程在本地设备端处理，保障隐私。</p>
+          <a class="blog-read" href="on-device-architecture.html">阅读全文 →</a>
+          </figcaption>
+        </figure>
+        <figure class="video-card post-figure--video" data-blog-video="digest">
+          <video controls="" playsinline="" preload="none" width="360" height="520" poster="../../assets/blog/video/digest-en.jpg">
+            <source src="../../assets/blog/video/digest-en.mp4" type="video/mp4">
+          </video>
+          <figcaption>
+            <h3>告别囤积，生成专属精选合辑</h3>
+            <p>将保存的文章整合成一本电子杂志，发送至 Kindle。</p>
+          <a class="blog-read" href="unread-saves.html">阅读全文 →</a>
+          </figcaption>
+        </figure>
+        <figure class="video-card post-figure--video" data-blog-video="privat">
+          <video controls="" playsinline="" preload="none" width="360" height="520" poster="../../assets/blog/video/privat-en.jpg">
+            <source src="../../assets/blog/video/privat-en.mp4" type="video/mp4">
+          </video>
+          <figcaption>
+            <h3>你的 API key，你的模型，你的数据。</h3>
+            <p>可自由切换自定义 API key、基于 Ollama 的本地私有模型，或 byPhil Cloud 云端服务。</p>
+          <a class="blog-read" href="bring-your-own-key.html">阅读全文 →</a>
+          </figcaption>
+        </figure>
+        <figure class="video-card post-figure--video" data-blog-video="pocket">
+          <video controls="" playsinline="" preload="none" width="360" height="520" poster="../../assets/blog/video/pocket-en.jpg">
+            <source src="../../assets/blog/video/pocket-en.mp4" type="video/mp4">
+          </video>
+          <figcaption>
+            <h3>更强大的 Pocket 替代方案</h3>
+            <p>收藏、生成摘要并一键推送至 Kindle。</p>
+          <a class="blog-read" href="pocket-alternative.html">阅读全文 →</a>
+          </figcaption>
+        </figure>
+        <figure class="video-card post-figure--video" data-blog-video="senden">
+          <video controls="" playsinline="" preload="none" width="360" height="520" poster="../../assets/blog/video/senden-en.jpg">
+            <source src="../../assets/blog/video/senden-en.mp4" type="video/mp4">
+          </video>
+          <figcaption>
+            <h3>从内容摘要到 Kindle 阅读</h3>
+            <p>这也是本项目最初诞生的阅读习惯。</p>
+          <a class="blog-read" href="from-bookmarklet-to-2.html">阅读全文 →</a>
+          </figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="footer-inner">
+      <div class="wordmark"><img src="../../assets/icon.svg" alt="">AI Summary Helper</div>
+      <div class="foot-links">
+        <a href="https://github.com/philffm/ai-summary-helper/" target="_blank" rel="noopener">查看 GitHub 源代码</a>
+        <a href="../privacy.html">隐私</a>
+        <a href="#" data-analytics-settings="">数据分析设置</a>
+        <a href="https://byphil.eu/terms.html#impressum" target="_blank" rel="noopener">法律声明 (Impressum)</a>
+      </div>
+    </div>
+    <div class="copyright">© 2026 Phil Wornath. 隶属于 <a href="https://byphil.eu/" class="credit-link">byphil.eu ↗</a> —— 德国制造的独立软件。<br>
+      设计与开发： <a href="https://philwornath.com/" target="_blank" rel="noopener" class="credit-link">philwornath.com ↗</a>
+    </div>
+  </div>
+</footer>
+
+<script src="../../assets/main.js"></script>
+
+
+</body></html>
