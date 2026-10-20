@@ -278,7 +278,7 @@
       </div>
       <!-- labels for the full-screen player (text here, so the translation pipeline translates them) -->
       <div class="vfeed-labels" hidden="">
-        <span data-l="close">बंद करें</span><span data-l="sound">Sound on</span><span data-l="mute">Sound off</span><span data-l="hint">अगले video के लिए swipe up करें</span>
+        <span data-l="close">बंद करें</span><span data-l="sound">Sound on</span><span data-l="mute">Sound off</span><span data-l="hint">अगले video के लिए swipe up करें</span><span data-l="prev">पिछला video</span><span data-l="next">अगला video</span>
       </div>
       <div class="vstack reveal" data-vstack="">
         <figure class="vstack-item" data-blog-video="montage" style="--i:0">
@@ -399,6 +399,13 @@
           </figcaption>
         </figure>
       </div>
+      <!-- focus fan (desktop): the clip in front gets its title, line and link here; arrows and dots move the focus (main.js) -->
+      <div class="vstack-caption" aria-live="polite" hidden=""></div>
+      <div class="vstack-nav" hidden="">
+        <button class="vstack-arrow" type="button" data-dir="-1" aria-label="पिछला video">‹</button>
+        <div class="vstack-dots" aria-hidden="true"></div>
+        <button class="vstack-arrow" type="button" data-dir="1" aria-label="अगला video">›</button>
+      </div>
     </div>
   </section>
 
@@ -447,7 +454,7 @@
       </div>
       <p class="persona-blurb reveal" id="personaBlurb" aria-live="polite">Model, server और आपकी machine से कोई data बाहर जाएगा या नहीं — यह सब आप खुद तय करते हैं।</p>
 
-      <!-- each card has its clip (top right): hover plays it silently, a tap opens the swipeable player (main.js) -->
+      <!-- each card's clip peeks out of its bottom corner (tilted like the Watch stack): hover plays it silently, a tap on it or on "Watch the clip" opens the swipeable player (main.js) -->
       <div class="feature-grid reveal" id="featureGrid" data-vgroup="">
         <div class="feature-card" data-personas="privacy researcher">
           <figure class="fvideo" data-blog-video="privat">
@@ -461,6 +468,7 @@
           <div class="f-icon icon-cyan"><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="6" r="2.6" fill="#fff"></circle><circle cx="6" cy="17" r="2.2" fill="#fff" opacity="0.85"></circle><circle cx="18" cy="17" r="2.2" fill="#fff" opacity="0.85"></circle><path d="M12 8.6 L6.8 14.8 M12 8.6 L17.2 14.8" stroke="#fff" stroke-width="1.4" stroke-linecap="round" opacity="0.7"></path></svg></div>
           <h3>AI summaries, आपकी पसंद का model</h3>
           <p>OpenAI, Gemini, Mistral, DeepSeek, या कोई custom endpoint — या इसे local Ollama model पर point करें और बिना किसी network usage या recurring cost के पूरी तरह offline चलाएं।</p>
+          <button class="fvideo-cta" type="button" tabindex="-1" aria-hidden="true"><span class="fvideo-cta-play">▶</span>Clip देखें</button>
         </div>
         <div class="feature-card" data-personas="privacy researcher">
           <figure class="fvideo" data-blog-video="highlights">
@@ -474,6 +482,7 @@
           <div class="f-icon icon-gold"><svg viewBox="0 0 24 24" fill="none"><path d="M5 5h14M5 9h14M5 13h14M5 17h14" stroke="#fff" stroke-width="2.2" stroke-linecap="round"></path><path d="M5 5l14 0M5 9l14 0M5 13l14 0M5 17l14 0" stroke="#fff" stroke-width="2.2" stroke-linecap="round" opacity="0.35"></path></svg></div>
           <h3>Ghost highlights, सीधे पेज पर</h3>
           <p>AI हल्के से highlight करता है <mark class="ai-ghost-highlight">सबसे महत्वपूर्ण verbatim passages को</mark> आर्टिकल में — ताकि आप <mark class="ai-ghost-highlight">key insights को एक नज़र में skim कर सकें</mark>, और ये summary के साथ Kindle, LocalSend, या Markdown पर भी चले जाते हैं।</p>
+          <button class="fvideo-cta" type="button" tabindex="-1" aria-hidden="true"><span class="fvideo-cta-play">▶</span>Clip देखें</button>
         </div>
         <div class="feature-card" data-personas="privacy researcher">
           <figure class="fvideo" data-blog-video="bibliothek">
@@ -487,6 +496,7 @@
           <div class="f-icon icon-violet"><svg viewBox="0 0 24 24" fill="none"><path d="M11 4a7 7 0 1 0 4.9 12.1l4.6 4.6" stroke="#fff" stroke-width="1.7" stroke-linecap="round"></path></svg></div>
           <h3>Real search, सीधे on-device</h3>
           <p>Titles, tags और article content में full-text search — आपके ब्राउज़र में बने TF-IDF index द्वारा संचालित। कोई सर्वर round-trip नहीं, कोई lag नहीं, और कोई डेटा बाहर नहीं जाता।</p>
+          <button class="fvideo-cta" type="button" tabindex="-1" aria-hidden="true"><span class="fvideo-cta-play">▶</span>Clip देखें</button>
         </div>
         <div class="feature-card" data-personas="hoarder">
           <figure class="fvideo" data-blog-video="pocket">
@@ -500,6 +510,7 @@
           <div class="f-icon icon-indigo"><svg viewBox="0 0 24 24" fill="none"><path d="M6 3h12v18l-6-4-6 4V3Z" stroke="#fff" stroke-width="1.6" stroke-linejoin="round"></path></svg></div>
           <h3>सोच-समझकर Save for later करें</h3>
           <p>किसी सेव किए गए आर्टिकल को कारण और समय-सीमा के साथ "decision" मार्क करें और रिमाइंडर पाएं — न कि उसे ऐसी फाइलों के ढेर में खो जाने दें जिसे आप कभी नहीं खोलेंगे।</p>
+          <button class="fvideo-cta" type="button" tabindex="-1" aria-hidden="true"><span class="fvideo-cta-play">▶</span>Clip देखें</button>
         </div>
         <div class="feature-card" data-personas="hoarder">
           <figure class="fvideo" data-blog-video="digest">
@@ -513,6 +524,7 @@
           <div class="f-icon icon-gold"><svg viewBox="0 0 24 24" fill="none"><rect x="4" y="4" width="16" height="16" rx="3" stroke="#fff" stroke-width="1.6"></rect><path d="M8 9h8M8 13h5" stroke="#fff" stroke-width="1.6" stroke-linecap="round"></path></svg></div>
           <h3>एक Digest जो खुद आर्टिकल्स चुनता है</h3>
           <p>एक टैप में आपके सेव किए गए आर्टिकल्स का एक छोटा, विविध सेट तैयार — एक ही कहानी के पांच वर्ज़न नहीं — Kindle या LocalSend के लिए एक ही फ़ाइल में बंडल।</p>
+          <button class="fvideo-cta" type="button" tabindex="-1" aria-hidden="true"><span class="fvideo-cta-play">▶</span>Clip देखें</button>
         </div>
         <div class="feature-card" data-personas="researcher">
           <figure class="fvideo" data-blog-video="graph">
@@ -526,6 +538,7 @@
           <div class="f-icon icon-cyan"><svg viewBox="0 0 24 24" fill="none"><circle cx="5" cy="6" r="1.8" fill="#fff"></circle><circle cx="19" cy="6" r="1.8" fill="#fff" opacity="0.85"></circle><circle cx="12" cy="12" r="2.1" fill="#fff"></circle><circle cx="6" cy="18" r="1.8" fill="#fff" opacity="0.85"></circle><circle cx="18" cy="18" r="1.8" fill="#fff" opacity="0.85"></circle><path d="M5 6 12 12M19 6 12 12M12 12 6 18M12 12 18 18" stroke="#fff" stroke-width="1.1" opacity="0.55"></path></svg></div>
           <h3>सिर्फ एक लिस्ट नहीं, एक Knowledge Graph</h3>
           <p>देखें कि आपके सेव किए गए आर्टिकल्स कैसे जुड़े हैं — shared tags से, और टॉपिक सिमिलरिटी से भी भले ही उनमें कोई कॉमन टैग न हो।</p>
+          <button class="fvideo-cta" type="button" tabindex="-1" aria-hidden="true"><span class="fvideo-cta-play">▶</span>Clip देखें</button>
         </div>
         <div class="feature-card" data-personas="hoarder researcher">
           <figure class="fvideo" data-blog-video="feeds">
@@ -539,6 +552,7 @@
           <div class="f-icon icon-indigo"><svg viewBox="0 0 24 24" fill="none"><circle cx="6" cy="18" r="1.8" fill="#fff"></circle><path d="M5 11a8 8 0 0 1 8 8M5 5a14 14 0 0 1 14 14" stroke="#fff" stroke-width="1.8" stroke-linecap="round"></path></svg></div>
           <h3>एक built-in RSS reader</h3>
           <p>Blogs और news sites को follow करें, source, tag, date या mood के हिसाब से filter करें, अपना OPML import करें, और बस एक click में किसी भी item को open या summarize करें। सीधे extension में ही podcast feeds play करें, और headlines से हर दिन का एक optional AI recap पाएं। Favorites आपके archive में save होते हैं, और feeds आपके device पर ही store रहती हैं।</p>
+          <button class="fvideo-cta" type="button" tabindex="-1" aria-hidden="true"><span class="fvideo-cta-play">▶</span>Clip देखें</button>
         </div>
         <div class="feature-card" data-personas="privacy hoarder researcher">
           <figure class="fvideo" data-blog-video="sprache">
@@ -552,6 +566,7 @@
           <div class="f-icon icon-violet"><svg viewBox="0 0 24 24" fill="none"><path d="M4 12h16M12 4c2.8 2.6 4.2 5.2 4.2 8s-1.4 5.4-4.2 8c-2.8-2.6-4.2-5.2-4.2-8s1.4-5.4 4.2-8Z" stroke="#fff" stroke-width="1.5"></path></svg></div>
           <h3>20+ भाषाएं, क्रॉस-प्लेटफ़ॉर्म</h3>
           <p>अपनी पसंद की भाषा में पढ़ें और summarize करें। Extension, native side panel, या <a href="../bookmarklet.html">bookmarklet</a> — हर उस जगह के लिए जहां browser extension नहीं पहुंच सकता।</p>
+          <button class="fvideo-cta" type="button" tabindex="-1" aria-hidden="true"><span class="fvideo-cta-play">▶</span>Clip देखें</button>
         </div>
       </div>
     </div>

@@ -278,7 +278,7 @@
       </div>
       <!-- labels for the full-screen player (text here, so the translation pipeline translates them) -->
       <div class="vfeed-labels" hidden="">
-        <span data-l="close">إغلاق</span><span data-l="sound">تشغيل الصوت</span><span data-l="mute">كتم الصوت</span><span data-l="hint">اسحب للأعلى للانتقال إلى الفيديو التالي</span>
+        <span data-l="close">إغلاق</span><span data-l="sound">تشغيل الصوت</span><span data-l="mute">كتم الصوت</span><span data-l="hint">اسحب للأعلى للانتقال إلى الفيديو التالي</span><span data-l="prev">الفيديو السابق</span><span data-l="next">الفيديو التالي</span>
       </div>
       <div class="vstack reveal" data-vstack="">
         <figure class="vstack-item" data-blog-video="montage" style="--i:0">
@@ -399,6 +399,13 @@
           </figcaption>
         </figure>
       </div>
+      <!-- focus fan (desktop): the clip in front gets its title, line and link here; arrows and dots move the focus (main.js) -->
+      <div class="vstack-caption" aria-live="polite" hidden=""></div>
+      <div class="vstack-nav" hidden="">
+        <button class="vstack-arrow" type="button" data-dir="-1" aria-label="الفيديو السابق">‹</button>
+        <div class="vstack-dots" aria-hidden="true"></div>
+        <button class="vstack-arrow" type="button" data-dir="1" aria-label="الفيديو التالي">›</button>
+      </div>
     </div>
   </section>
 
@@ -447,7 +454,7 @@
       </div>
       <p class="persona-blurb reveal" id="personaBlurb" aria-live="polite">أنت من يحدد النموذج والخادم وما إذا كانت أي بيانات ستغادر جهازك أصلاً.</p>
 
-      <!-- each card has its clip (top right): hover plays it silently, a tap opens the swipeable player (main.js) -->
+      <!-- each card's clip peeks out of its bottom corner (tilted like the Watch stack): hover plays it silently, a tap on it or on "Watch the clip" opens the swipeable player (main.js) -->
       <div class="feature-grid reveal" id="featureGrid" data-vgroup="">
         <div class="feature-card" data-personas="privacy researcher">
           <figure class="fvideo" data-blog-video="privat">
@@ -461,6 +468,7 @@
           <div class="f-icon icon-cyan"><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="6" r="2.6" fill="#fff"></circle><circle cx="6" cy="17" r="2.2" fill="#fff" opacity="0.85"></circle><circle cx="18" cy="17" r="2.2" fill="#fff" opacity="0.85"></circle><path d="M12 8.6 L6.8 14.8 M12 8.6 L17.2 14.8" stroke="#fff" stroke-width="1.4" stroke-linecap="round" opacity="0.7"></path></svg></div>
           <h3>ملخصات ذكاء اصطناعي بنموذجك المفضل</h3>
           <p>OpenAI أو Gemini أو Mistral أو DeepSeek أو نقطة نهاية مخصصة — أو وجّهها إلى نموذج Ollama محلي بالكامل دون لمس شبكة الإنترنت في هذه الخطوة.</p>
+          <button class="fvideo-cta" type="button" tabindex="-1" aria-hidden="true"><span class="fvideo-cta-play">▶</span>شاهد المقطع</button>
         </div>
         <div class="feature-card" data-personas="privacy researcher">
           <figure class="fvideo" data-blog-video="highlights">
@@ -474,6 +482,7 @@
           <div class="f-icon icon-gold"><svg viewBox="0 0 24 24" fill="none"><path d="M5 5h14M5 9h14M5 13h14M5 17h14" stroke="#fff" stroke-width="2.2" stroke-linecap="round"></path><path d="M5 5l14 0M5 9l14 0M5 13l14 0M5 17l14 0" stroke="#fff" stroke-width="2.2" stroke-linecap="round" opacity="0.35"></path></svg></div>
           <h3>تظليلات ذكية ومباشرة على الصفحة</h3>
           <p>يبرز الذكاء الاصطناعي بخفة <mark class="ai-ghost-highlight">أهم الاقتباسات النصية الحرفية</mark> في المقال — حتى تتمكن من <mark class="ai-ghost-highlight">استيعاب النقاط الجوهرية بلمحة سريعة</mark>، وتنتقل هذه التظليلات مع الملخص مباشرة إلى Kindle أو LocalSend أو ملف Markdown.</p>
+          <button class="fvideo-cta" type="button" tabindex="-1" aria-hidden="true"><span class="fvideo-cta-play">▶</span>شاهد المقطع</button>
         </div>
         <div class="feature-card" data-personas="privacy researcher">
           <figure class="fvideo" data-blog-video="bibliothek">
@@ -487,6 +496,7 @@
           <div class="f-icon icon-violet"><svg viewBox="0 0 24 24" fill="none"><path d="M11 4a7 7 0 1 0 4.9 12.1l4.6 4.6" stroke="#fff" stroke-width="1.7" stroke-linecap="round"></path></svg></div>
           <h3>بحث حقيقي بالكامل على جهازك</h3>
           <p>بحث بالنص الكامل عبر العناوين، والوسوم، ومحتوى المقالات — مدعوماً بفهرس TF-IDF يُبنى محلياً داخل متصفحك. استجابة فورية دون تأخير، وبلا إرسال أي بيانات خارج جهازك.</p>
+          <button class="fvideo-cta" type="button" tabindex="-1" aria-hidden="true"><span class="fvideo-cta-play">▶</span>شاهد المقطع</button>
         </div>
         <div class="feature-card" data-personas="hoarder">
           <figure class="fvideo" data-blog-video="pocket">
@@ -500,6 +510,7 @@
           <div class="f-icon icon-indigo"><svg viewBox="0 0 24 24" fill="none"><path d="M6 3h12v18l-6-4-6 4V3Z" stroke="#fff" stroke-width="1.6" stroke-linejoin="round"></path></svg></div>
           <h3>حفظ هادف للرجوع إليه لاحقاً</h3>
           <p>عيّن "قراراً" مع ذكر السبب والإطار الزمني، وتلقَّ تذكيراً به — بدلاً من أن يضيع في كومة مقالات لن تفتحها أبداً.</p>
+          <button class="fvideo-cta" type="button" tabindex="-1" aria-hidden="true"><span class="fvideo-cta-play">▶</span>شاهد المقطع</button>
         </div>
         <div class="feature-card" data-personas="hoarder">
           <figure class="fvideo" data-blog-video="digest">
@@ -513,6 +524,7 @@
           <div class="f-icon icon-gold"><svg viewBox="0 0 24 24" fill="none"><rect x="4" y="4" width="16" height="16" rx="3" stroke="#fff" stroke-width="1.6"></rect><path d="M8 9h8M8 13h5" stroke="#fff" stroke-width="1.6" stroke-linecap="round"></path></svg></div>
           <h3>موجز يختار محتواه بذكاء</h3>
           <p>بنقرة واحدة تنتقي الأداة مجموعة صغيرة ومتنوعة من محفوظاتك — بعيداً عن تكرار زوايا نفس الخبر — وتجمعها في ملف موحد لـ Kindle أو LocalSend.</p>
+          <button class="fvideo-cta" type="button" tabindex="-1" aria-hidden="true"><span class="fvideo-cta-play">▶</span>شاهد المقطع</button>
         </div>
         <div class="feature-card" data-personas="researcher">
           <figure class="fvideo" data-blog-video="graph">
@@ -526,6 +538,7 @@
           <div class="f-icon icon-cyan"><svg viewBox="0 0 24 24" fill="none"><circle cx="5" cy="6" r="1.8" fill="#fff"></circle><circle cx="19" cy="6" r="1.8" fill="#fff" opacity="0.85"></circle><circle cx="12" cy="12" r="2.1" fill="#fff"></circle><circle cx="6" cy="18" r="1.8" fill="#fff" opacity="0.85"></circle><circle cx="18" cy="18" r="1.8" fill="#fff" opacity="0.85"></circle><path d="M5 6 12 12M19 6 12 12M12 12 6 18M12 12 18 18" stroke="#fff" stroke-width="1.1" opacity="0.55"></path></svg></div>
           <h3>مخطط معرفي مترابط، وليس مجرد قائمة</h3>
           <p>شاهد كيف ترتبط مقالاتك المحفوظة معاً — عبر الوسوم المشتركة، وعبر تقارب الموضوعات حتى إن لم تشترك في أي وسوم.</p>
+          <button class="fvideo-cta" type="button" tabindex="-1" aria-hidden="true"><span class="fvideo-cta-play">▶</span>شاهد المقطع</button>
         </div>
         <div class="feature-card" data-personas="hoarder researcher">
           <figure class="fvideo" data-blog-video="feeds">
@@ -539,6 +552,7 @@
           <div class="f-icon icon-indigo"><svg viewBox="0 0 24 24" fill="none"><circle cx="6" cy="18" r="1.8" fill="#fff"></circle><path d="M5 11a8 8 0 0 1 8 8M5 5a14 14 0 0 1 14 14" stroke="#fff" stroke-width="1.8" stroke-linecap="round"></path></svg></div>
           <h3>قارئ RSS مدمج بالكامل</h3>
           <p>تابع المدونات والمواقع الإخبارية، ورتّبها حسب المصدر أو الوسم أو التاريخ أو الطابع، واستورد ملفات OPML، وافتح أي مادة أو لخصها بنقرة واحدة. شغّل خلاصات البودكاست مباشرة داخل الإضافة، واحصل على ملخص ذكاء اصطناعي اختياري لأبرز عناوين اليوم. تُحفظ مفضلاتك داخل الأرشيف، وتُخزن الخلاصات محلياً على جهازك.</p>
+          <button class="fvideo-cta" type="button" tabindex="-1" aria-hidden="true"><span class="fvideo-cta-play">▶</span>شاهد المقطع</button>
         </div>
         <div class="feature-card" data-personas="privacy hoarder researcher">
           <figure class="fvideo" data-blog-video="sprache">
@@ -552,6 +566,7 @@
           <div class="f-icon icon-violet"><svg viewBox="0 0 24 24" fill="none"><path d="M4 12h16M12 4c2.8 2.6 4.2 5.2 4.2 8s-1.4 5.4-4.2 8c-2.8-2.6-4.2-5.2-4.2-8s1.4-5.4 4.2-8Z" stroke="#fff" stroke-width="1.5"></path></svg></div>
           <h3>أكثر من 20 لغة عبر منصات متعددة</h3>
           <p>اقرأ ولخص باللغة التي تفضلها. استخدم الإضافة، أو اللوحة الجانبية، أو <a href="../bookmarklet.html">الرمز المرجعي (Bookmarklet)</a> — للوصول إلى أي مكان لا تبلغه إضافة المتصفح.</p>
+          <button class="fvideo-cta" type="button" tabindex="-1" aria-hidden="true"><span class="fvideo-cta-play">▶</span>شاهد المقطع</button>
         </div>
       </div>
     </div>

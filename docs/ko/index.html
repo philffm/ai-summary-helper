@@ -278,7 +278,7 @@
       </div>
       <!-- labels for the full-screen player (text here, so the translation pipeline translates them) -->
       <div class="vfeed-labels" hidden="">
-        <span data-l="close">닫기</span><span data-l="sound">소리 켜기</span><span data-l="mute">소리 끄기</span><span data-l="hint">다음 영상을 보려면 위로 쓸어올리세요</span>
+        <span data-l="close">닫기</span><span data-l="sound">소리 켜기</span><span data-l="mute">소리 끄기</span><span data-l="hint">다음 영상을 보려면 위로 쓸어올리세요</span><span data-l="prev">이전 영상</span><span data-l="next">다음 영상</span>
       </div>
       <div class="vstack reveal" data-vstack="">
         <figure class="vstack-item" data-blog-video="montage" style="--i:0">
@@ -399,6 +399,13 @@
           </figcaption>
         </figure>
       </div>
+      <!-- focus fan (desktop): the clip in front gets its title, line and link here; arrows and dots move the focus (main.js) -->
+      <div class="vstack-caption" aria-live="polite" hidden=""></div>
+      <div class="vstack-nav" hidden="">
+        <button class="vstack-arrow" type="button" data-dir="-1" aria-label="이전 영상">‹</button>
+        <div class="vstack-dots" aria-hidden="true"></div>
+        <button class="vstack-arrow" type="button" data-dir="1" aria-label="다음 영상">›</button>
+      </div>
     </div>
   </section>
 
@@ -447,7 +454,7 @@
       </div>
       <p class="persona-blurb reveal" id="personaBlurb" aria-live="polite">모델과 서버는 물론, 데이터의 기기 외부 전송 여부까지 직접 선택할 수 있습니다.</p>
 
-      <!-- each card has its clip (top right): hover plays it silently, a tap opens the swipeable player (main.js) -->
+      <!-- each card's clip peeks out of its bottom corner (tilted like the Watch stack): hover plays it silently, a tap on it or on "Watch the clip" opens the swipeable player (main.js) -->
       <div class="feature-grid reveal" id="featureGrid" data-vgroup="">
         <div class="feature-card" data-personas="privacy researcher">
           <figure class="fvideo" data-blog-video="privat">
@@ -461,6 +468,7 @@
           <div class="f-icon icon-cyan"><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="6" r="2.6" fill="#fff"></circle><circle cx="6" cy="17" r="2.2" fill="#fff" opacity="0.85"></circle><circle cx="18" cy="17" r="2.2" fill="#fff" opacity="0.85"></circle><path d="M12 8.6 L6.8 14.8 M12 8.6 L17.2 14.8" stroke="#fff" stroke-width="1.4" stroke-linecap="round" opacity="0.7"></path></svg></div>
           <h3>원하는 모델로 생성하는 AI 요약</h3>
           <p>OpenAI, Gemini, Mistral, DeepSeek 또는 커스텀 엔드포인트는 물론, 로컬 Ollama 모델을 지정해 외부 네트워크 통신 없이 완벽한 프라이버시로 빠르게 처리할 수도 있습니다.</p>
+          <button class="fvideo-cta" type="button" tabindex="-1" aria-hidden="true"><span class="fvideo-cta-play">▶</span>클립 보기</button>
         </div>
         <div class="feature-card" data-personas="privacy researcher">
           <figure class="fvideo" data-blog-video="highlights">
@@ -474,6 +482,7 @@
           <div class="f-icon icon-gold"><svg viewBox="0 0 24 24" fill="none"><path d="M5 5h14M5 9h14M5 13h14M5 17h14" stroke="#fff" stroke-width="2.2" stroke-linecap="round"></path><path d="M5 5l14 0M5 9l14 0M5 13l14 0M5 17l14 0" stroke="#fff" stroke-width="2.2" stroke-linecap="round" opacity="0.35"></path></svg></div>
           <h3>웹페이지에서 바로 확인하는 고스트 하이라이트</h3>
           <p>AI가  <mark class="ai-ghost-highlight">가장 중요한 원문 구절을</mark>  본문에서 은은하게 하이라이트하여 —  <mark class="ai-ghost-highlight">핵심 인사이트를 한눈에 훑어볼 수 있고</mark>, 요약과 함께 Kindle, LocalSend 또는 Markdown으로 함께 전송됩니다.</p>
+          <button class="fvideo-cta" type="button" tabindex="-1" aria-hidden="true"><span class="fvideo-cta-play">▶</span>클립 보기</button>
         </div>
         <div class="feature-card" data-personas="privacy researcher">
           <figure class="fvideo" data-blog-video="bibliothek">
@@ -487,6 +496,7 @@
           <div class="f-icon icon-violet"><svg viewBox="0 0 24 24" fill="none"><path d="M11 4a7 7 0 1 0 4.9 12.1l4.6 4.6" stroke="#fff" stroke-width="1.7" stroke-linecap="round"></path></svg></div>
           <h3>진정한 온디바이스 검색</h3>
           <p>브라우저 내에서 구축된 TF-IDF 인덱스를 통해 제목, 태그, 본문 전체를 대상으로 전문 검색을 지원합니다. 서버 왕복이나 지연이 없으며 데이터가 외부로 전송되지 않습니다.</p>
+          <button class="fvideo-cta" type="button" tabindex="-1" aria-hidden="true"><span class="fvideo-cta-play">▶</span>클립 보기</button>
         </div>
         <div class="feature-card" data-personas="hoarder">
           <figure class="fvideo" data-blog-video="pocket">
@@ -500,6 +510,7 @@
           <div class="f-icon icon-indigo"><svg viewBox="0 0 24 24" fill="none"><path d="M6 3h12v18l-6-4-6 4V3Z" stroke="#fff" stroke-width="1.6" stroke-linejoin="round"></path></svg></div>
           <h3>목적 있는 나중에 읽기</h3>
           <p>다시 열어보지 않을 목록에 쌓아두는 대신, 이유와 기한을 설정해 "결정" 항목으로 표시하고 알림을 받아보세요.</p>
+          <button class="fvideo-cta" type="button" tabindex="-1" aria-hidden="true"><span class="fvideo-cta-play">▶</span>클립 보기</button>
         </div>
         <div class="feature-card" data-personas="hoarder">
           <figure class="fvideo" data-blog-video="digest">
@@ -513,6 +524,7 @@
           <div class="f-icon icon-gold"><svg viewBox="0 0 24 24" fill="none"><rect x="4" y="4" width="16" height="16" rx="3" stroke="#fff" stroke-width="1.6"></rect><path d="M8 9h8M8 13h5" stroke="#fff" stroke-width="1.6" stroke-linecap="round"></path></svg></div>
           <h3>자동으로 선별되는 다이제스트</h3>
           <p>탭 한 번으로 저장한 글 중 중복되지 않는 다채로운 글을 선별하여, Kindle이나 LocalSend용 단일 파일로 묶어 제공합니다.</p>
+          <button class="fvideo-cta" type="button" tabindex="-1" aria-hidden="true"><span class="fvideo-cta-play">▶</span>클립 보기</button>
         </div>
         <div class="feature-card" data-personas="researcher">
           <figure class="fvideo" data-blog-video="graph">
@@ -526,6 +538,7 @@
           <div class="f-icon icon-cyan"><svg viewBox="0 0 24 24" fill="none"><circle cx="5" cy="6" r="1.8" fill="#fff"></circle><circle cx="19" cy="6" r="1.8" fill="#fff" opacity="0.85"></circle><circle cx="12" cy="12" r="2.1" fill="#fff"></circle><circle cx="6" cy="18" r="1.8" fill="#fff" opacity="0.85"></circle><circle cx="18" cy="18" r="1.8" fill="#fff" opacity="0.85"></circle><path d="M5 6 12 12M19 6 12 12M12 12 6 18M12 12 18 18" stroke="#fff" stroke-width="1.1" opacity="0.55"></path></svg></div>
           <h3>단순한 목록을 넘어선 지식 그래프</h3>
           <p>공유 태그뿐만 아니라 공통 태그가 없더라도 주제별 유사성을 분석하여 저장된 글들의 연결 관계를 확인하세요.</p>
+          <button class="fvideo-cta" type="button" tabindex="-1" aria-hidden="true"><span class="fvideo-cta-play">▶</span>클립 보기</button>
         </div>
         <div class="feature-card" data-personas="hoarder researcher">
           <figure class="fvideo" data-blog-video="feeds">
@@ -539,6 +552,7 @@
           <div class="f-icon icon-indigo"><svg viewBox="0 0 24 24" fill="none"><circle cx="6" cy="18" r="1.8" fill="#fff"></circle><path d="M5 11a8 8 0 0 1 8 8M5 5a14 14 0 0 1 14 14" stroke="#fff" stroke-width="1.8" stroke-linecap="round"></path></svg></div>
           <h3>내장 RSS 리더</h3>
           <p>블로그와 뉴스 사이트를 구독하고 출처, 태그, 날짜 또는 분위기별로 필터링해 보세요. OPML 파일을 손쉽게 가져올 수 있으며, 클릭 한 번으로 콘텐츠를 열람하거나 요약할 수 있습니다. 확장 프로그램에서 팟캐스트 피드를 바로 재생하고, 헤드라인을 바탕으로 매일 제공되는 AI 요약 브리핑도 확인할 수 있습니다. 즐겨찾기한 항목은 아카이브에 보관되며, 모든 피드 데이터는 내 기기에 안전하게 저장됩니다.</p>
+          <button class="fvideo-cta" type="button" tabindex="-1" aria-hidden="true"><span class="fvideo-cta-play">▶</span>클립 보기</button>
         </div>
         <div class="feature-card" data-personas="privacy hoarder researcher">
           <figure class="fvideo" data-blog-video="sprache">
@@ -552,6 +566,7 @@
           <div class="f-icon icon-violet"><svg viewBox="0 0 24 24" fill="none"><path d="M4 12h16M12 4c2.8 2.6 4.2 5.2 4.2 8s-1.4 5.4-4.2 8c-2.8-2.6-4.2-5.2-4.2-8s1.4-5.4 4.2-8Z" stroke="#fff" stroke-width="1.5"></path></svg></div>
           <h3>20개 이상의 언어 지원 및 크로스 플랫폼</h3>
           <p>원하는 언어로 읽고 요약해 보세요. 확장 프로그램, 네이티브 사이드 패널, 또는 <a href="../bookmarklet.html">북마클릿</a> — 브라우저 확장 프로그램을 사용할 수 없는 환경에서도 자유롭게 활용해 보세요.</p>
+          <button class="fvideo-cta" type="button" tabindex="-1" aria-hidden="true"><span class="fvideo-cta-play">▶</span>클립 보기</button>
         </div>
       </div>
     </div>

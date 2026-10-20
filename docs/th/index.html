@@ -278,7 +278,7 @@
       </div>
       <!-- labels for the full-screen player (text here, so the translation pipeline translates them) -->
       <div class="vfeed-labels" hidden="">
-        <span data-l="close">ปิด</span><span data-l="sound">เปิดเสียง</span><span data-l="mute">ปิดเสียง</span><span data-l="hint">ปัดขึ้นเพื่อดูวิดีโอถัดไป</span>
+        <span data-l="close">ปิด</span><span data-l="sound">เปิดเสียง</span><span data-l="mute">ปิดเสียง</span><span data-l="hint">ปัดขึ้นเพื่อดูวิดีโอถัดไป</span><span data-l="prev">วิดีโอก่อนหน้า</span><span data-l="next">วิดีโอถัดไป</span>
       </div>
       <div class="vstack reveal" data-vstack="">
         <figure class="vstack-item" data-blog-video="montage" style="--i:0">
@@ -399,6 +399,13 @@
           </figcaption>
         </figure>
       </div>
+      <!-- focus fan (desktop): the clip in front gets its title, line and link here; arrows and dots move the focus (main.js) -->
+      <div class="vstack-caption" aria-live="polite" hidden=""></div>
+      <div class="vstack-nav" hidden="">
+        <button class="vstack-arrow" type="button" data-dir="-1" aria-label="วิดีโอก่อนหน้า">‹</button>
+        <div class="vstack-dots" aria-hidden="true"></div>
+        <button class="vstack-arrow" type="button" data-dir="1" aria-label="วิดีโอถัดไป">›</button>
+      </div>
     </div>
   </section>
 
@@ -447,7 +454,7 @@
       </div>
       <p class="persona-blurb reveal" id="personaBlurb" aria-live="polite">เลือกโมเดล เลือกเซิร์ฟเวอร์ และควบคุมได้เองว่าจะให้ข้อมูลออกจากเครื่องหรือไม่</p>
 
-      <!-- each card has its clip (top right): hover plays it silently, a tap opens the swipeable player (main.js) -->
+      <!-- each card's clip peeks out of its bottom corner (tilted like the Watch stack): hover plays it silently, a tap on it or on "Watch the clip" opens the swipeable player (main.js) -->
       <div class="feature-grid reveal" id="featureGrid" data-vgroup="">
         <div class="feature-card" data-personas="privacy researcher">
           <figure class="fvideo" data-blog-video="privat">
@@ -461,6 +468,7 @@
           <div class="f-icon icon-cyan"><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="6" r="2.6" fill="#fff"></circle><circle cx="6" cy="17" r="2.2" fill="#fff" opacity="0.85"></circle><circle cx="18" cy="17" r="2.2" fill="#fff" opacity="0.85"></circle><path d="M12 8.6 L6.8 14.8 M12 8.6 L17.2 14.8" stroke="#fff" stroke-width="1.4" stroke-linecap="round" opacity="0.7"></path></svg></div>
           <h3>สรุปด้วย AI ตามโมเดลที่คุณเลือก</h3>
           <p>เลือกใช้ OpenAI, Gemini, Mistral, DeepSeek หรือ endpoint ที่กำหนดเอง — หรือเชื่อมต่อกับโมเดล Ollama บนเครื่องเพื่อทำงานแบบออฟไลน์โดยไม่ต้องต่อเน็ตเลย</p>
+          <button class="fvideo-cta" type="button" tabindex="-1" aria-hidden="true"><span class="fvideo-cta-play">▶</span>ดูคลิป</button>
         </div>
         <div class="feature-card" data-personas="privacy researcher">
           <figure class="fvideo" data-blog-video="highlights">
@@ -474,6 +482,7 @@
           <div class="f-icon icon-gold"><svg viewBox="0 0 24 24" fill="none"><path d="M5 5h14M5 9h14M5 13h14M5 17h14" stroke="#fff" stroke-width="2.2" stroke-linecap="round"></path><path d="M5 5l14 0M5 9l14 0M5 13l14 0M5 17l14 0" stroke="#fff" stroke-width="2.2" stroke-linecap="round" opacity="0.35"></path></svg></div>
           <h3>ไฮไลต์ข้อความสำคัญบนหน้าเว็บโดยตรง</h3>
           <p>AI จะไฮไลต์เบาๆ บน <mark class="ai-ghost-highlight">ข้อความสำคัญจากต้นฉบับโดยตรง</mark> ในบทความ — ช่วยให้คุณ <mark class="ai-ghost-highlight">กวาดสายตาดูประเด็นหลักได้ในพริบตา</mark>และไฮไลต์เหล่านี้จะถูกส่งต่อพร้อมบทสรุปไปยัง Kindle, LocalSend หรือ Markdown ได้ทันที</p>
+          <button class="fvideo-cta" type="button" tabindex="-1" aria-hidden="true"><span class="fvideo-cta-play">▶</span>ดูคลิป</button>
         </div>
         <div class="feature-card" data-personas="privacy researcher">
           <figure class="fvideo" data-blog-video="bibliothek">
@@ -487,6 +496,7 @@
           <div class="f-icon icon-violet"><svg viewBox="0 0 24 24" fill="none"><path d="M11 4a7 7 0 1 0 4.9 12.1l4.6 4.6" stroke="#fff" stroke-width="1.7" stroke-linecap="round"></path></svg></div>
           <h3>ระบบค้นหาจริง ทำงานบนอุปกรณ์</h3>
           <p>ค้นหาข้อความเต็มรูปแบบครอบคลุมทั้งชื่อเรื่อง แท็ก และเนื้อหาบทความ — ขับเคลื่อนด้วยดัชนี TF-IDF ที่สร้างขึ้นในเบราว์เซอร์ รวดเร็ว ไม่มีความหน่วง และไม่มีการส่งข้อมูลออกไปภายนอก</p>
+          <button class="fvideo-cta" type="button" tabindex="-1" aria-hidden="true"><span class="fvideo-cta-play">▶</span>ดูคลิป</button>
         </div>
         <div class="feature-card" data-personas="hoarder">
           <figure class="fvideo" data-blog-video="pocket">
@@ -500,6 +510,7 @@
           <div class="f-icon icon-indigo"><svg viewBox="0 0 24 24" fill="none"><path d="M6 3h12v18l-6-4-6 4V3Z" stroke="#fff" stroke-width="1.6" stroke-linejoin="round"></path></svg></div>
           <h3>บันทึกไว้อ่านภายหลังอย่างมีเป้าหมาย</h3>
           <p>กำหนด "การตัดสินใจ" พร้อมระบุเหตุผลและกรอบเวลาเพื่อรับการแจ้งเตือนเตือนความจำ — แทนที่จะปล่อยให้บทความจมหายไปในกองที่ไม่มีวันเปิดอ่านอีก</p>
+          <button class="fvideo-cta" type="button" tabindex="-1" aria-hidden="true"><span class="fvideo-cta-play">▶</span>ดูคลิป</button>
         </div>
         <div class="feature-card" data-personas="hoarder">
           <figure class="fvideo" data-blog-video="digest">
@@ -513,6 +524,7 @@
           <div class="f-icon icon-gold"><svg viewBox="0 0 24 24" fill="none"><rect x="4" y="4" width="16" height="16" rx="3" stroke="#fff" stroke-width="1.6"></rect><path d="M8 9h8M8 13h5" stroke="#fff" stroke-width="1.6" stroke-linecap="round"></path></svg></div>
           <h3>Digest ที่คัดสรรให้อัตโนมัติ</h3>
           <p>แตะเพียงครั้งเดียวเพื่อคัดเลือกบทความที่บันทึกไว้ในปริมาณพอดีและหลากหลาย — ไม่ใช่ข่าวเดียวกันซ้ำๆ 5 บทความ — รวมเป็นไฟล์เดียวพร้อมส่งไปยัง Kindle หรือ LocalSend</p>
+          <button class="fvideo-cta" type="button" tabindex="-1" aria-hidden="true"><span class="fvideo-cta-play">▶</span>ดูคลิป</button>
         </div>
         <div class="feature-card" data-personas="researcher">
           <figure class="fvideo" data-blog-video="graph">
@@ -526,6 +538,7 @@
           <div class="f-icon icon-cyan"><svg viewBox="0 0 24 24" fill="none"><circle cx="5" cy="6" r="1.8" fill="#fff"></circle><circle cx="19" cy="6" r="1.8" fill="#fff" opacity="0.85"></circle><circle cx="12" cy="12" r="2.1" fill="#fff"></circle><circle cx="6" cy="18" r="1.8" fill="#fff" opacity="0.85"></circle><circle cx="18" cy="18" r="1.8" fill="#fff" opacity="0.85"></circle><path d="M5 6 12 12M19 6 12 12M12 12 6 18M12 12 18 18" stroke="#fff" stroke-width="1.1" opacity="0.55"></path></svg></div>
           <h3>กราฟความรู้ที่ไม่ได้เป็นแค่รายการเรียงลำดับ</h3>
           <p>ดูความเชื่อมโยงของบทความที่บันทึกไว้ — ผ่านแท็กที่ใช้ร่วมกัน และความคล้ายคลึงของหัวข้อแม้จะไม่ได้ใส่แท็กเดียวกันก็ตาม</p>
+          <button class="fvideo-cta" type="button" tabindex="-1" aria-hidden="true"><span class="fvideo-cta-play">▶</span>ดูคลิป</button>
         </div>
         <div class="feature-card" data-personas="hoarder researcher">
           <figure class="fvideo" data-blog-video="feeds">
@@ -539,6 +552,7 @@
           <div class="f-icon icon-indigo"><svg viewBox="0 0 24 24" fill="none"><circle cx="6" cy="18" r="1.8" fill="#fff"></circle><path d="M5 11a8 8 0 0 1 8 8M5 5a14 14 0 0 1 14 14" stroke="#fff" stroke-width="1.8" stroke-linecap="round"></path></svg></div>
           <h3>ตัวอ่าน RSS ในตัว</h3>
           <p>ติดตามบล็อกและเว็บไซต์ข่าว กรองตามแหล่งที่มา แท็ก วันที่ หรืออารมณ์ นำเข้าไฟล์ OPML และเปิดหรือสรุปรายการต่างๆ ได้ในคลิกเดียว เล่นพอดแคสต์ได้โดยตรงจากส่วนขยาย และเลือกรับสรุปข่าวประจำวันจากพาดหัวข่าวด้วย AI ได้ บทความโปรดจะถูกเก็บลงคลังข้อมูล และฟีดทั้งหมดจะถูกบันทึกไว้บนอุปกรณ์ของคุณ</p>
+          <button class="fvideo-cta" type="button" tabindex="-1" aria-hidden="true"><span class="fvideo-cta-play">▶</span>ดูคลิป</button>
         </div>
         <div class="feature-card" data-personas="privacy hoarder researcher">
           <figure class="fvideo" data-blog-video="sprache">
@@ -552,6 +566,7 @@
           <div class="f-icon icon-violet"><svg viewBox="0 0 24 24" fill="none"><path d="M4 12h16M12 4c2.8 2.6 4.2 5.2 4.2 8s-1.4 5.4-4.2 8c-2.8-2.6-4.2-5.2-4.2-8s1.4-5.4 4.2-8Z" stroke="#fff" stroke-width="1.5"></path></svg></div>
           <h3>รองรับมากกว่า 20 ภาษา ใช้งานได้ข้ามแพลตฟอร์ม</h3>
           <p>อ่านและสรุปเป็นภาษาที่คุณต้องการ ใช้งานผ่านส่วนขยาย แผงควบคุมด้านข้าง หรือ <a href="../bookmarklet.html">Bookmarklet</a> — สำหรับทุกที่ที่ส่วนขยายเบราว์เซอร์เข้าไม่ถึง</p>
+          <button class="fvideo-cta" type="button" tabindex="-1" aria-hidden="true"><span class="fvideo-cta-play">▶</span>ดูคลิป</button>
         </div>
       </div>
     </div>
