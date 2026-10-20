@@ -266,6 +266,142 @@
     </div>
   </section>
 
+  <!-- ── Videos: a stack of short clips; tapping one opens a swipeable full-screen player (assets/main.js) ──
+       Videos are localized by scripts/translate.mjs like the blog ones: "<clip>-en.mp4" becomes "<clip>-<locale>.mp4"
+       when docs/assets/blog/video/ has it, else it stays English. -->
+  <section id="videos">
+    <div class="wrap">
+      <div class="section-head center reveal">
+        <div class="eyebrow">देखें</div>
+        <h2>हर feature 20 seconds से भी कम में</h2>
+        <p>रियल extension से रिकॉर्ड किए गए शॉर्ट क्लिप्स। एक पर tap करें और बाकी देखने के लिए swipe करें।</p>
+      </div>
+      <!-- labels for the full-screen player (text here, so the translation pipeline translates them) -->
+      <div class="vfeed-labels" hidden="">
+        <span data-l="close">बंद करें</span><span data-l="sound">Sound on</span><span data-l="mute">Sound off</span><span data-l="hint">अगले video के लिए swipe up करें</span>
+      </div>
+      <div class="vstack reveal" data-vstack="">
+        <figure class="vstack-item" data-blog-video="montage" style="--i:0">
+          <button class="vstack-open" type="button" aria-label="Play: 15 seconds में AI Summary Helper">
+            <video muted="" playsinline="" preload="none" width="360" height="520" poster="../assets/blog/video/montage-en.jpg">
+              <source src="../assets/blog/video/montage-en.mp4" type="video/mp4">
+            </video>
+            <span class="vstack-play" aria-hidden="true">▶</span>
+          </button>
+          <figcaption>
+            <strong>AI Summary Helper 15 seconds में</strong>
+            <span>Summaries, sources, 41 languages, library, knowledge graph और research mode।</span>
+            <a href="blog/videos.html">सारे videos →</a>
+          </figcaption>
+        </figure>
+        <figure class="vstack-item" data-blog-video="quellen" style="--i:1">
+          <button class="vstack-open" type="button" aria-label="Play: किसी भी जवाब को उसके source से verify करें">
+            <video muted="" playsinline="" preload="none" width="360" height="520" poster="../assets/blog/video/quellen-en.jpg">
+              <source src="../assets/blog/video/quellen-en.mp4" type="video/mp4">
+            </video>
+            <span class="vstack-play" aria-hidden="true">▶</span>
+          </button>
+          <figcaption>
+            <strong>Answer को उसके source से verify करें</strong>
+            <span>Follow-up सवाल पूछें और सीधे उस passage पर jump करें जहाँ से answer आया है।</span>
+            <a href="blog/verify-ai-summary.html">पोस्ट पढ़ें →</a>
+          </figcaption>
+        </figure>
+        <figure class="vstack-item" data-blog-video="highlights" style="--i:2">
+          <button class="vstack-open" type="button" aria-label="Play: अपने highlights के बारे में सवाल पूछें">
+            <video muted="" playsinline="" preload="none" width="360" height="520" poster="../assets/blog/video/highlights-en.jpg">
+              <source src="../assets/blog/video/highlights-en.mp4" type="video/mp4">
+            </video>
+            <span class="vstack-play" aria-hidden="true">▶</span>
+          </button>
+          <figcaption>
+            <strong>अपने highlights से जुड़े सवाल पूछें</strong>
+            <span>किसी passage को highlight करें, सवाल पूछें, और source citation के साथ answer पाएं।</span>
+            <a href="blog/highlighting-vs-asking.html">पोस्ट पढ़ें →</a>
+          </figcaption>
+        </figure>
+        <figure class="vstack-item" data-blog-video="feeds" style="--i:3">
+          <button class="vstack-open" type="button" aria-label="Play: 40 अलग-अलग feeds के बजाय सिर्फ एक recap">
+            <video muted="" playsinline="" preload="none" width="360" height="520" poster="../assets/blog/video/feeds-en.jpg">
+              <source src="../assets/blog/video/feeds-en.mp4" type="video/mp4">
+            </video>
+            <span class="vstack-play" aria-hidden="true">▶</span>
+          </button>
+          <figcaption>
+            <strong>40 feeds के चक्कर के बजाय सिर्फ एक recap</strong>
+            <span>पूरे दिन की feeds एक ही briefing में।</span>
+            <a href="blog/feeds-recap.html">पोस्ट पढ़ें →</a>
+          </figcaption>
+        </figure>
+        <figure class="vstack-item" data-blog-video="graph" style="--i:4">
+          <button class="vstack-open" type="button" aria-label="Play: आपकी reading, एक knowledge graph के रूप में">
+            <video muted="" playsinline="" preload="none" width="360" height="520" poster="../assets/blog/video/graph-en.jpg">
+              <source src="../assets/blog/video/graph-en.mp4" type="video/mp4">
+            </video>
+            <span class="vstack-play" aria-hidden="true">▶</span>
+          </button>
+          <figcaption>
+            <strong>आपकी reading एक knowledge graph के रूप में</strong>
+            <span>Topics से आपस में जुड़े articles, किसी भी टॉपिक पर तुरंत briefing के साथ।</span>
+            <a href="blog/on-device-architecture.html">पोस्ट पढ़ें →</a>
+          </figcaption>
+        </figure>
+        <figure class="vstack-item" data-blog-video="digest" style="--i:5">
+          <button class="vstack-open" type="button" aria-label="Play: ढेरों आर्टिकल्स के बजाय सिर्फ एक Digest">
+            <video muted="" playsinline="" preload="none" width="360" height="520" poster="../assets/blog/video/digest-en.jpg">
+              <source src="../assets/blog/video/digest-en.mp4" type="video/mp4">
+            </video>
+            <span class="vstack-play" aria-hidden="true">▶</span>
+          </button>
+          <figcaption>
+            <strong>ढेर सारे tabs के बजाय सिर्फ एक Digest</strong>
+            <span>तीन saved articles बन जाते हैं आपके Kindle के लिए एक single magazine।</span>
+            <a href="blog/unread-saves.html">पोस्ट पढ़ें →</a>
+          </figcaption>
+        </figure>
+        <figure class="vstack-item" data-blog-video="privat" style="--i:6">
+          <button class="vstack-open" type="button" aria-label="Play: आपकी key। आपका model। आपका data।">
+            <video muted="" playsinline="" preload="none" width="360" height="520" poster="../assets/blog/video/privat-en.jpg">
+              <source src="../assets/blog/video/privat-en.mp4" type="video/mp4">
+            </video>
+            <span class="vstack-play" aria-hidden="true">▶</span>
+          </button>
+          <figcaption>
+            <strong>आपकी key. आपका model. आपका data.</strong>
+            <span>आपकी अपनी API key, Ollama के साथ 100% offline local model, या byPhil Cloud।</span>
+            <a href="blog/bring-your-own-key.html">पोस्ट पढ़ें →</a>
+          </figcaption>
+        </figure>
+        <figure class="vstack-item" data-blog-video="pocket" style="--i:7">
+          <button class="vstack-open" type="button" aria-label="Play: Pocket का एक बेहतरीन alternative">
+            <video muted="" playsinline="" preload="none" width="360" height="520" poster="../assets/blog/video/pocket-en.jpg">
+              <source src="../assets/blog/video/pocket-en.mp4" type="video/mp4">
+            </video>
+            <span class="vstack-play" aria-hidden="true">▶</span>
+          </button>
+          <figcaption>
+            <strong>एक बेहतर Pocket alternative</strong>
+            <span>Save करें, summarize करें और सीधे अपने Kindle पर भेजें।</span>
+            <a href="blog/pocket-alternative.html">पोस्ट पढ़ें →</a>
+          </figcaption>
+        </figure>
+        <figure class="vstack-item" data-blog-video="senden" style="--i:8">
+          <button class="vstack-open" type="button" aria-label="Play: Summary से सीधे Kindle पर">
+            <video muted="" playsinline="" preload="none" width="360" height="520" poster="../assets/blog/video/senden-en.jpg">
+              <source src="../assets/blog/video/senden-en.mp4" type="video/mp4">
+            </video>
+            <span class="vstack-play" aria-hidden="true">▶</span>
+          </button>
+          <figcaption>
+            <strong>Summary से सीधे Kindle तक</strong>
+            <span>वही आदत जिससे इस project की शुरुआत हुई।</span>
+            <a href="blog/from-bookmarklet-to-2.html">पोस्ट पढ़ें →</a>
+          </figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
   <section id="try-it">
     <div class="wrap">
       <div class="section-head center reveal">

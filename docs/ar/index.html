@@ -266,6 +266,142 @@
     </div>
   </section>
 
+  <!-- ── Videos: a stack of short clips; tapping one opens a swipeable full-screen player (assets/main.js) ──
+       Videos are localized by scripts/translate.mjs like the blog ones: "<clip>-en.mp4" becomes "<clip>-<locale>.mp4"
+       when docs/assets/blog/video/ has it, else it stays English. -->
+  <section id="videos">
+    <div class="wrap">
+      <div class="section-head center reveal">
+        <div class="eyebrow">شاهد</div>
+        <h2>كل ميزة في أقل من 20 ثانية</h2>
+        <p>مقاطع قصيرة مسجلة من الإضافة الفعلية. اضغط على أحدها واسحب لمشاهدة الباقي.</p>
+      </div>
+      <!-- labels for the full-screen player (text here, so the translation pipeline translates them) -->
+      <div class="vfeed-labels" hidden="">
+        <span data-l="close">إغلاق</span><span data-l="sound">تشغيل الصوت</span><span data-l="mute">كتم الصوت</span><span data-l="hint">اسحب للأعلى للانتقال إلى الفيديو التالي</span>
+      </div>
+      <div class="vstack reveal" data-vstack="">
+        <figure class="vstack-item" data-blog-video="montage" style="--i:0">
+          <button class="vstack-open" type="button" aria-label="تشغيل: المساعد الذكي للتلخيص في 15 ثانية">
+            <video muted="" playsinline="" preload="none" width="360" height="520" poster="../assets/blog/video/montage-en.jpg">
+              <source src="../assets/blog/video/montage-en.mp4" type="video/mp4">
+            </video>
+            <span class="vstack-play" aria-hidden="true">▶</span>
+          </button>
+          <figcaption>
+            <strong>AI Summary Helper في 15 ثانية</strong>
+            <span>ملخصات، ومصادر، و41 لغة، ومكتبة، ورسم بياني معرفي، ووضع البحث.</span>
+            <a href="blog/videos.html">جميع مقاطع الفيديو ←</a>
+          </figcaption>
+        </figure>
+        <figure class="vstack-item" data-blog-video="quellen" style="--i:1">
+          <button class="vstack-open" type="button" aria-label="تشغيل: مطابقة الإجابة والتحقق منها عبر مصدرها">
+            <video muted="" playsinline="" preload="none" width="360" height="520" poster="../assets/blog/video/quellen-en.jpg">
+              <source src="../assets/blog/video/quellen-en.mp4" type="video/mp4">
+            </video>
+            <span class="vstack-play" aria-hidden="true">▶</span>
+          </button>
+          <figcaption>
+            <strong>تحقق من الإجابة بمقارنتها بالمصدر</strong>
+            <span>اطرح سؤالاً للمتابعة وانتقل مباشرة إلى الفقرة التي استندت إليها الإجابة.</span>
+            <a href="blog/verify-ai-summary.html">اقرأ المقال →</a>
+          </figcaption>
+        </figure>
+        <figure class="vstack-item" data-blog-video="highlights" style="--i:2">
+          <button class="vstack-open" type="button" aria-label="تشغيل: اسأل عن النصوص المميزة في قراءاتك">
+            <video muted="" playsinline="" preload="none" width="360" height="520" poster="../assets/blog/video/highlights-en.jpg">
+              <source src="../assets/blog/video/highlights-en.mp4" type="video/mp4">
+            </video>
+            <span class="vstack-play" aria-hidden="true">▶</span>
+          </button>
+          <figcaption>
+            <strong>اسأل عن مقتطفاتك ونصوصك المحددة</strong>
+            <span>حدد أي فقرة، واسأل عنها، واحصل على إجابة تستشهد بها مباشرة.</span>
+            <a href="blog/highlighting-vs-asking.html">اقرأ المقال →</a>
+          </figcaption>
+        </figure>
+        <figure class="vstack-item" data-blog-video="feeds" style="--i:3">
+          <button class="vstack-open" type="button" aria-label="تشغيل: ملخص شامل واحد بدلاً من 40 موجزاً">
+            <video muted="" playsinline="" preload="none" width="360" height="520" poster="../assets/blog/video/feeds-en.jpg">
+              <source src="../assets/blog/video/feeds-en.mp4" type="video/mp4">
+            </video>
+            <span class="vstack-play" aria-hidden="true">▶</span>
+          </button>
+          <figcaption>
+            <strong>ملخص موجز واحد بدلاً من 40 موجزاً إخبارياً</strong>
+            <span>خلاصات يوم كامل في موجز واحد.</span>
+            <a href="blog/feeds-recap.html">اقرأ المقال →</a>
+          </figcaption>
+        </figure>
+        <figure class="vstack-item" data-blog-video="graph" style="--i:4">
+          <button class="vstack-open" type="button" aria-label="تشغيل: قراءاتك في صورة رسم بياني معرفي">
+            <video muted="" playsinline="" preload="none" width="360" height="520" poster="../assets/blog/video/graph-en.jpg">
+              <source src="../assets/blog/video/graph-en.mp4" type="video/mp4">
+            </video>
+            <span class="vstack-play" aria-hidden="true">▶</span>
+          </button>
+          <figcaption>
+            <strong>قراءاتك في هيئة رسم بياني معرفي</strong>
+            <span>مقالات مترابطة حسب مواضيعها، مع تقرير موجز حول أي موضوع.</span>
+            <a href="blog/on-device-architecture.html">اقرأ المقال →</a>
+          </figcaption>
+        </figure>
+        <figure class="vstack-item" data-blog-video="digest" style="--i:5">
+          <button class="vstack-open" type="button" aria-label="تشغيل: موجز واحد بدلاً من تراكم المقالات">
+            <video muted="" playsinline="" preload="none" width="360" height="520" poster="../assets/blog/video/digest-en.jpg">
+              <source src="../assets/blog/video/digest-en.mp4" type="video/mp4">
+            </video>
+            <span class="vstack-play" aria-hidden="true">▶</span>
+          </button>
+          <figcaption>
+            <strong>موجز واحد يغنيك عن تراكم المقالات</strong>
+            <span>ثلاث مقالات محفوظة تتحول إلى مجلة واحدة على جهاز Kindle الخاص بك.</span>
+            <a href="blog/unread-saves.html">اقرأ المقال →</a>
+          </figcaption>
+        </figure>
+        <figure class="vstack-item" data-blog-video="privat" style="--i:6">
+          <button class="vstack-open" type="button" aria-label="تشغيل: مفتاحك. نموذجك. بياناتك.">
+            <video muted="" playsinline="" preload="none" width="360" height="520" poster="../assets/blog/video/privat-en.jpg">
+              <source src="../assets/blog/video/privat-en.mp4" type="video/mp4">
+            </video>
+            <span class="vstack-play" aria-hidden="true">▶</span>
+          </button>
+          <figcaption>
+            <strong>مفتاحك. نموذجك. بياناتك.</strong>
+            <span>مفتاح API key خاص بك، أو نموذج محلي عبر Ollama، أو byPhil Cloud.</span>
+            <a href="blog/bring-your-own-key.html">اقرأ المقال →</a>
+          </figcaption>
+        </figure>
+        <figure class="vstack-item" data-blog-video="pocket" style="--i:7">
+          <button class="vstack-open" type="button" aria-label="تشغيل: بديل لتطبيق Pocket">
+            <video muted="" playsinline="" preload="none" width="360" height="520" poster="../assets/blog/video/pocket-en.jpg">
+              <source src="../assets/blog/video/pocket-en.mp4" type="video/mp4">
+            </video>
+            <span class="vstack-play" aria-hidden="true">▶</span>
+          </button>
+          <figcaption>
+            <strong>بديل لتطبيق Pocket</strong>
+            <span>احفظ، ولخّص، وأرسل إلى جهاز Kindle الخاص بك.</span>
+            <a href="blog/pocket-alternative.html">اقرأ المقال →</a>
+          </figcaption>
+        </figure>
+        <figure class="vstack-item" data-blog-video="senden" style="--i:8">
+          <button class="vstack-open" type="button" aria-label="تشغيل: من الملخص مباشرة إلى Kindle">
+            <video muted="" playsinline="" preload="none" width="360" height="520" poster="../assets/blog/video/senden-en.jpg">
+              <source src="../assets/blog/video/senden-en.mp4" type="video/mp4">
+            </video>
+            <span class="vstack-play" aria-hidden="true">▶</span>
+          </button>
+          <figcaption>
+            <strong>من التلخيص إلى Kindle</strong>
+            <span>العادة التي كانت شرارة انطلاق هذا المشروع.</span>
+            <a href="blog/from-bookmarklet-to-2.html">اقرأ المقال →</a>
+          </figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
   <section id="try-it">
     <div class="wrap">
       <div class="section-head center reveal">

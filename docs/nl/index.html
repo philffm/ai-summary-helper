@@ -266,6 +266,142 @@
     </div>
   </section>
 
+  <!-- ── Videos: a stack of short clips; tapping one opens a swipeable full-screen player (assets/main.js) ──
+       Videos are localized by scripts/translate.mjs like the blog ones: "<clip>-en.mp4" becomes "<clip>-<locale>.mp4"
+       when docs/assets/blog/video/ has it, else it stays English. -->
+  <section id="videos">
+    <div class="wrap">
+      <div class="section-head center reveal">
+        <div class="eyebrow">Bekijken</div>
+        <h2>Elke functie in minder dan 20 seconden</h2>
+        <p>Korte clips opgenomen vanuit de echte extensie. Tik op eentje en swipe door de rest.</p>
+      </div>
+      <!-- labels for the full-screen player (text here, so the translation pipeline translates them) -->
+      <div class="vfeed-labels" hidden="">
+        <span data-l="close">Sluiten</span><span data-l="sound">Geluid aan</span><span data-l="mute">Geluid uit</span><span data-l="hint">Swipe omhoog voor de volgende video</span>
+      </div>
+      <div class="vstack reveal" data-vstack="">
+        <figure class="vstack-item" data-blog-video="montage" style="--i:0">
+          <button class="vstack-open" type="button" aria-label="Afspelen: AI Summary Helper in 15 seconden">
+            <video muted="" playsinline="" preload="none" width="360" height="520" poster="../assets/blog/video/montage-en.jpg">
+              <source src="../assets/blog/video/montage-en.mp4" type="video/mp4">
+            </video>
+            <span class="vstack-play" aria-hidden="true">▶</span>
+          </button>
+          <figcaption>
+            <strong>AI Summary Helper in 15 seconden</strong>
+            <span>Samenvattingen, bronnen, 41 talen, een bibliotheek, een knowledge graph en onderzoeksmodus.</span>
+            <a href="blog/videos.html">Alle video's →</a>
+          </figcaption>
+        </figure>
+        <figure class="vstack-item" data-blog-video="quellen" style="--i:1">
+          <button class="vstack-open" type="button" aria-label="Afspelen: Controleer een antwoord direct bij de bron">
+            <video muted="" playsinline="" preload="none" width="360" height="520" poster="../assets/blog/video/quellen-en.jpg">
+              <source src="../assets/blog/video/quellen-en.mp4" type="video/mp4">
+            </video>
+            <span class="vstack-play" aria-hidden="true">▶</span>
+          </button>
+          <figcaption>
+            <strong>Controleer een antwoord direct bij de bron</strong>
+            <span>Stel een vervolgvraag en spring meteen naar de passage waar het antwoord vandaan komt.</span>
+            <a href="blog/verify-ai-summary.html">Lees het artikel →</a>
+          </figcaption>
+        </figure>
+        <figure class="vstack-item" data-blog-video="highlights" style="--i:2">
+          <button class="vstack-open" type="button" aria-label="Afspelen: Stel vragen over je markeringen">
+            <video muted="" playsinline="" preload="none" width="360" height="520" poster="../assets/blog/video/highlights-en.jpg">
+              <source src="../assets/blog/video/highlights-en.mp4" type="video/mp4">
+            </video>
+            <span class="vstack-play" aria-hidden="true">▶</span>
+          </button>
+          <figcaption>
+            <strong>Stel vragen over je markeringen</strong>
+            <span>Markeer een tekst, stel er een vraag over en krijg een antwoord met bronverwijzing.</span>
+            <a href="blog/highlighting-vs-asking.html">Lees het artikel →</a>
+          </figcaption>
+        </figure>
+        <figure class="vstack-item" data-blog-video="feeds" style="--i:3">
+          <button class="vstack-open" type="button" aria-label="Afspelen: Eén overzicht in plaats van 40 feeds">
+            <video muted="" playsinline="" preload="none" width="360" height="520" poster="../assets/blog/video/feeds-en.jpg">
+              <source src="../assets/blog/video/feeds-en.mp4" type="video/mp4">
+            </video>
+            <span class="vstack-play" aria-hidden="true">▶</span>
+          </button>
+          <figcaption>
+            <strong>Eén overzicht in plaats van 40 feeds</strong>
+            <span>Een hele dag aan feeds in één briefing.</span>
+            <a href="blog/feeds-recap.html">Lees het artikel →</a>
+          </figcaption>
+        </figure>
+        <figure class="vstack-item" data-blog-video="graph" style="--i:4">
+          <button class="vstack-open" type="button" aria-label="Afspelen: Je leeslijst als kennisgraaf">
+            <video muted="" playsinline="" preload="none" width="360" height="520" poster="../assets/blog/video/graph-en.jpg">
+              <source src="../assets/blog/video/graph-en.mp4" type="video/mp4">
+            </video>
+            <span class="vstack-play" aria-hidden="true">▶</span>
+          </button>
+          <figcaption>
+            <strong>Je leesgeschiedenis als knowledge graph</strong>
+            <span>Artikelen gekoppeld via hun onderwerpen, met een briefing over elk thema.</span>
+            <a href="blog/on-device-architecture.html">Lees het artikel →</a>
+          </figcaption>
+        </figure>
+        <figure class="vstack-item" data-blog-video="digest" style="--i:5">
+          <button class="vstack-open" type="button" aria-label="Afspelen: Eén samenvatting in plaats van de hele stapel">
+            <video muted="" playsinline="" preload="none" width="360" height="520" poster="../assets/blog/video/digest-en.jpg">
+              <source src="../assets/blog/video/digest-en.mp4" type="video/mp4">
+            </video>
+            <span class="vstack-play" aria-hidden="true">▶</span>
+          </button>
+          <figcaption>
+            <strong>Eén overzicht in plaats van een stapel</strong>
+            <span>Drie opgeslagen artikelen gebundeld tot één magazine op je Kindle.</span>
+            <a href="blog/unread-saves.html">Lees het artikel →</a>
+          </figcaption>
+        </figure>
+        <figure class="vstack-item" data-blog-video="privat" style="--i:6">
+          <button class="vstack-open" type="button" aria-label="Afspelen: Jouw sleutel. Jouw model. Jouw data.">
+            <video muted="" playsinline="" preload="none" width="360" height="520" poster="../assets/blog/video/privat-en.jpg">
+              <source src="../assets/blog/video/privat-en.mp4" type="video/mp4">
+            </video>
+            <span class="vstack-play" aria-hidden="true">▶</span>
+          </button>
+          <figcaption>
+            <strong>Jouw sleutel. Jouw model. Jouw data.</strong>
+            <span>Je eigen API-sleutel, een lokaal model met Ollama of byPhil Cloud.</span>
+            <a href="blog/bring-your-own-key.html">Lees het artikel →</a>
+          </figcaption>
+        </figure>
+        <figure class="vstack-item" data-blog-video="pocket" style="--i:7">
+          <button class="vstack-open" type="button" aria-label="Afspelen: Een alternatief voor Pocket">
+            <video muted="" playsinline="" preload="none" width="360" height="520" poster="../assets/blog/video/pocket-en.jpg">
+              <source src="../assets/blog/video/pocket-en.mp4" type="video/mp4">
+            </video>
+            <span class="vstack-play" aria-hidden="true">▶</span>
+          </button>
+          <figcaption>
+            <strong>Een alternatief voor Pocket</strong>
+            <span>Opslaan, samenvatten en naar je Kindle sturen.</span>
+            <a href="blog/pocket-alternative.html">Lees het artikel →</a>
+          </figcaption>
+        </figure>
+        <figure class="vstack-item" data-blog-video="senden" style="--i:8">
+          <button class="vstack-open" type="button" aria-label="Afspelen: Van samenvatting naar Kindle">
+            <video muted="" playsinline="" preload="none" width="360" height="520" poster="../assets/blog/video/senden-en.jpg">
+              <source src="../assets/blog/video/senden-en.mp4" type="video/mp4">
+            </video>
+            <span class="vstack-play" aria-hidden="true">▶</span>
+          </button>
+          <figcaption>
+            <strong>Van samenvatting naar Kindle</strong>
+            <span>De gewoonte waar dit project mee begon.</span>
+            <a href="blog/from-bookmarklet-to-2.html">Lees het artikel →</a>
+          </figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
   <section id="try-it">
     <div class="wrap">
       <div class="section-head center reveal">

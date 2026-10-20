@@ -266,6 +266,142 @@
     </div>
   </section>
 
+  <!-- ── Videos: a stack of short clips; tapping one opens a swipeable full-screen player (assets/main.js) ──
+       Videos are localized by scripts/translate.mjs like the blog ones: "<clip>-en.mp4" becomes "<clip>-<locale>.mp4"
+       when docs/assets/blog/video/ has it, else it stays English. -->
+  <section id="videos">
+    <div class="wrap">
+      <div class="section-head center reveal">
+        <div class="eyebrow">Ver</div>
+        <h2>Cada función en menos de 20 segundos</h2>
+        <p>Clips cortos grabados desde la extensión real. Toca uno y desliza para ver los demás.</p>
+      </div>
+      <!-- labels for the full-screen player (text here, so the translation pipeline translates them) -->
+      <div class="vfeed-labels" hidden="">
+        <span data-l="close">Cerrar</span><span data-l="sound">Sonido activado</span><span data-l="mute">Sonido desactivado</span><span data-l="hint">Desliza hacia arriba para ver el siguiente video</span>
+      </div>
+      <div class="vstack reveal" data-vstack="">
+        <figure class="vstack-item" data-blog-video="montage" style="--i:0">
+          <button class="vstack-open" type="button" aria-label="Reproducir: AI Summary Helper en 15 segundos">
+            <video muted="" playsinline="" preload="none" width="360" height="520" poster="../assets/blog/video/montage-es.jpg">
+              <source src="../assets/blog/video/montage-es.mp4" type="video/mp4">
+            </video>
+            <span class="vstack-play" aria-hidden="true">▶</span>
+          </button>
+          <figcaption>
+            <strong>AI Summary Helper en 15 segundos</strong>
+            <span>Resúmenes, fuentes, 41 idiomas, biblioteca, grafo de conocimiento y modo de investigación.</span>
+            <a href="blog/videos.html">Todos los videos →</a>
+          </figcaption>
+        </figure>
+        <figure class="vstack-item" data-blog-video="quellen" style="--i:1">
+          <button class="vstack-open" type="button" aria-label="Reproducir: Verifica una respuesta con su fuente original">
+            <video muted="" playsinline="" preload="none" width="360" height="520" poster="../assets/blog/video/quellen-es.jpg">
+              <source src="../assets/blog/video/quellen-es.mp4" type="video/mp4">
+            </video>
+            <span class="vstack-play" aria-hidden="true">▶</span>
+          </button>
+          <figcaption>
+            <strong>Verifica una respuesta con su fuente</strong>
+            <span>Haz una pregunta de seguimiento y salta directamente al fragmento del que proviene la respuesta.</span>
+            <a href="blog/verify-ai-summary.html">Leer el artículo →</a>
+          </figcaption>
+        </figure>
+        <figure class="vstack-item" data-blog-video="highlights" style="--i:2">
+          <button class="vstack-open" type="button" aria-label="Reproducir: Pregunta sobre tus fragmentos destacados">
+            <video muted="" playsinline="" preload="none" width="360" height="520" poster="../assets/blog/video/highlights-es.jpg">
+              <source src="../assets/blog/video/highlights-es.mp4" type="video/mp4">
+            </video>
+            <span class="vstack-play" aria-hidden="true">▶</span>
+          </button>
+          <figcaption>
+            <strong>Haz preguntas sobre tus textos destacados</strong>
+            <span>Selecciona un fragmento, pregunta sobre él y obtén una respuesta que lo cite.</span>
+            <a href="blog/highlighting-vs-asking.html">Leer el artículo →</a>
+          </figcaption>
+        </figure>
+        <figure class="vstack-item" data-blog-video="feeds" style="--i:3">
+          <button class="vstack-open" type="button" aria-label="Reproducir: Un solo resumen en lugar de 40 feeds">
+            <video muted="" playsinline="" preload="none" width="360" height="520" poster="../assets/blog/video/feeds-es.jpg">
+              <source src="../assets/blog/video/feeds-es.mp4" type="video/mp4">
+            </video>
+            <span class="vstack-play" aria-hidden="true">▶</span>
+          </button>
+          <figcaption>
+            <strong>Un solo resumen en lugar de 40 feeds</strong>
+            <span>Todo un día de feeds en un solo informe.</span>
+            <a href="blog/feeds-recap.html">Leer el artículo →</a>
+          </figcaption>
+        </figure>
+        <figure class="vstack-item" data-blog-video="graph" style="--i:4">
+          <button class="vstack-open" type="button" aria-label="Reproducir: Tus lecturas como un grafo de conocimiento">
+            <video muted="" playsinline="" preload="none" width="360" height="520" poster="../assets/blog/video/graph-es.jpg">
+              <source src="../assets/blog/video/graph-es.mp4" type="video/mp4">
+            </video>
+            <span class="vstack-play" aria-hidden="true">▶</span>
+          </button>
+          <figcaption>
+            <strong>Tus lecturas en un grafo de conocimiento</strong>
+            <span>Artículos conectados por sus temas, con un resumen ejecutivo sobre cualquiera de ellos.</span>
+            <a href="blog/on-device-architecture.html">Leer el artículo →</a>
+          </figcaption>
+        </figure>
+        <figure class="vstack-item" data-blog-video="digest" style="--i:5">
+          <button class="vstack-open" type="button" aria-label="Reproducir: Una recopilación en lugar de acumular lecturas">
+            <video muted="" playsinline="" preload="none" width="360" height="520" poster="../assets/blog/video/digest-es.jpg">
+              <source src="../assets/blog/video/digest-es.mp4" type="video/mp4">
+            </video>
+            <span class="vstack-play" aria-hidden="true">▶</span>
+          </button>
+          <figcaption>
+            <strong>Un solo resumen en lugar de una pila de lecturas</strong>
+            <span>Tres artículos guardados se convierten en una revista en tu Kindle.</span>
+            <a href="blog/unread-saves.html">Leer el artículo →</a>
+          </figcaption>
+        </figure>
+        <figure class="vstack-item" data-blog-video="privat" style="--i:6">
+          <button class="vstack-open" type="button" aria-label="Reproducir: Tu clave. Tu modelo. Tus datos.">
+            <video muted="" playsinline="" preload="none" width="360" height="520" poster="../assets/blog/video/privat-es.jpg">
+              <source src="../assets/blog/video/privat-es.mp4" type="video/mp4">
+            </video>
+            <span class="vstack-play" aria-hidden="true">▶</span>
+          </button>
+          <figcaption>
+            <strong>Tu clave. Tu modelo. Tus datos.</strong>
+            <span>Tu propia clave de API, un modelo local con Ollama o byPhil Cloud.</span>
+            <a href="blog/bring-your-own-key.html">Leer el artículo →</a>
+          </figcaption>
+        </figure>
+        <figure class="vstack-item" data-blog-video="pocket" style="--i:7">
+          <button class="vstack-open" type="button" aria-label="Reproducir: Una alternativa a Pocket">
+            <video muted="" playsinline="" preload="none" width="360" height="520" poster="../assets/blog/video/pocket-es.jpg">
+              <source src="../assets/blog/video/pocket-es.mp4" type="video/mp4">
+            </video>
+            <span class="vstack-play" aria-hidden="true">▶</span>
+          </button>
+          <figcaption>
+            <strong>Una alternativa a Pocket</strong>
+            <span>Guarda, resume y envía a tu Kindle.</span>
+            <a href="blog/pocket-alternative.html">Leer el artículo →</a>
+          </figcaption>
+        </figure>
+        <figure class="vstack-item" data-blog-video="senden" style="--i:8">
+          <button class="vstack-open" type="button" aria-label="Reproducir: Del resumen a Kindle">
+            <video muted="" playsinline="" preload="none" width="360" height="520" poster="../assets/blog/video/senden-es.jpg">
+              <source src="../assets/blog/video/senden-es.mp4" type="video/mp4">
+            </video>
+            <span class="vstack-play" aria-hidden="true">▶</span>
+          </button>
+          <figcaption>
+            <strong>Del resumen a Kindle</strong>
+            <span>El hábito con el que comenzó este proyecto.</span>
+            <a href="blog/from-bookmarklet-to-2.html">Leer el artículo →</a>
+          </figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
   <section id="try-it">
     <div class="wrap">
       <div class="section-head center reveal">

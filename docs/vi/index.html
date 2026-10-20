@@ -266,6 +266,142 @@
     </div>
   </section>
 
+  <!-- ── Videos: a stack of short clips; tapping one opens a swipeable full-screen player (assets/main.js) ──
+       Videos are localized by scripts/translate.mjs like the blog ones: "<clip>-en.mp4" becomes "<clip>-<locale>.mp4"
+       when docs/assets/blog/video/ has it, else it stays English. -->
+  <section id="videos">
+    <div class="wrap">
+      <div class="section-head center reveal">
+        <div class="eyebrow">Xem</div>
+        <h2>Mọi tính năng trong chưa đầy 20 giây</h2>
+        <p>Các video ngắn ghi lại trực tiếp từ tiện ích mở rộng thực tế. Chạm để xem và vuốt để xem tiếp.</p>
+      </div>
+      <!-- labels for the full-screen player (text here, so the translation pipeline translates them) -->
+      <div class="vfeed-labels" hidden="">
+        <span data-l="close">Đóng</span><span data-l="sound">Bật âm thanh</span><span data-l="mute">Tắt âm thanh</span><span data-l="hint">Vuốt lên để xem video tiếp theo</span>
+      </div>
+      <div class="vstack reveal" data-vstack="">
+        <figure class="vstack-item" data-blog-video="montage" style="--i:0">
+          <button class="vstack-open" type="button" aria-label="Phát: AI Summary Helper trong 15 giây">
+            <video muted="" playsinline="" preload="none" width="360" height="520" poster="../assets/blog/video/montage-en.jpg">
+              <source src="../assets/blog/video/montage-en.mp4" type="video/mp4">
+            </video>
+            <span class="vstack-play" aria-hidden="true">▶</span>
+          </button>
+          <figcaption>
+            <strong>AI Summary Helper trong 15 giây</strong>
+            <span>Tóm tắt, nguồn dẫn, 41 ngôn ngữ, thư viện lưu trữ, biểu đồ tri thức và chế độ nghiên cứu.</span>
+            <a href="blog/videos.html">Tất cả video →</a>
+          </figcaption>
+        </figure>
+        <figure class="vstack-item" data-blog-video="quellen" style="--i:1">
+          <button class="vstack-open" type="button" aria-label="Phát: Đối chiếu câu trả lời với nguồn gốc">
+            <video muted="" playsinline="" preload="none" width="360" height="520" poster="../assets/blog/video/quellen-en.jpg">
+              <source src="../assets/blog/video/quellen-en.mp4" type="video/mp4">
+            </video>
+            <span class="vstack-play" aria-hidden="true">▶</span>
+          </button>
+          <figcaption>
+            <strong>Đối chiếu câu trả lời với nguồn gốc</strong>
+            <span>Đặt câu hỏi tiếp theo và chuyển ngay đến đoạn văn trích xuất câu trả lời.</span>
+            <a href="blog/verify-ai-summary.html">Đọc bài viết →</a>
+          </figcaption>
+        </figure>
+        <figure class="vstack-item" data-blog-video="highlights" style="--i:2">
+          <button class="vstack-open" type="button" aria-label="Phát: Đặt câu hỏi về các đoạn bạn đã đánh dấu">
+            <video muted="" playsinline="" preload="none" width="360" height="520" poster="../assets/blog/video/highlights-en.jpg">
+              <source src="../assets/blog/video/highlights-en.mp4" type="video/mp4">
+            </video>
+            <span class="vstack-play" aria-hidden="true">▶</span>
+          </button>
+          <figcaption>
+            <strong>Hỏi đáp dựa trên các phần đã đánh dấu</strong>
+            <span>Bôi đen đoạn văn, đặt câu hỏi và nhận câu trả lời có trích dẫn nguồn.</span>
+            <a href="blog/highlighting-vs-asking.html">Đọc bài viết →</a>
+          </figcaption>
+        </figure>
+        <figure class="vstack-item" data-blog-video="feeds" style="--i:3">
+          <button class="vstack-open" type="button" aria-label="Phát: Một bản tóm lược thay vì 40 nguồn cấp tin">
+            <video muted="" playsinline="" preload="none" width="360" height="520" poster="../assets/blog/video/feeds-en.jpg">
+              <source src="../assets/blog/video/feeds-en.mp4" type="video/mp4">
+            </video>
+            <span class="vstack-play" aria-hidden="true">▶</span>
+          </button>
+          <figcaption>
+            <strong>Một bản tóm tắt thay vì 40 nguồn tin</strong>
+            <span>Tổng hợp toàn bộ bảng tin trong ngày chỉ trong một bản tóm lược.</span>
+            <a href="blog/feeds-recap.html">Đọc bài viết →</a>
+          </figcaption>
+        </figure>
+        <figure class="vstack-item" data-blog-video="graph" style="--i:4">
+          <button class="vstack-open" type="button" aria-label="Phát: Biến nội dung bạn đọc thành sơ đồ tri thức">
+            <video muted="" playsinline="" preload="none" width="360" height="520" poster="../assets/blog/video/graph-en.jpg">
+              <source src="../assets/blog/video/graph-en.mp4" type="video/mp4">
+            </video>
+            <span class="vstack-play" aria-hidden="true">▶</span>
+          </button>
+          <figcaption>
+            <strong>Nội dung đọc dưới dạng biểu đồ tri thức</strong>
+            <span>Các bài viết được liên kết theo chủ đề, kèm bản tóm tắt nhanh cho từng chủ đề.</span>
+            <a href="blog/on-device-architecture.html">Đọc bài viết →</a>
+          </figcaption>
+        </figure>
+        <figure class="vstack-item" data-blog-video="digest" style="--i:5">
+          <button class="vstack-open" type="button" aria-label="Phát: Một bản tổng hợp thay cho hàng đống bài viết">
+            <video muted="" playsinline="" preload="none" width="360" height="520" poster="../assets/blog/video/digest-en.jpg">
+              <source src="../assets/blog/video/digest-en.mp4" type="video/mp4">
+            </video>
+            <span class="vstack-play" aria-hidden="true">▶</span>
+          </button>
+          <figcaption>
+            <strong>Một bản tổng hợp thay vì cả chồng bài viết</strong>
+            <span>Ba bài viết đã lưu được gộp thành một ấn phẩm trên Kindle của bạn.</span>
+            <a href="blog/unread-saves.html">Đọc bài viết →</a>
+          </figcaption>
+        </figure>
+        <figure class="vstack-item" data-blog-video="privat" style="--i:6">
+          <button class="vstack-open" type="button" aria-label="Phát: Khóa của bạn. Mô hình của bạn. Dữ liệu của bạn.">
+            <video muted="" playsinline="" preload="none" width="360" height="520" poster="../assets/blog/video/privat-en.jpg">
+              <source src="../assets/blog/video/privat-en.mp4" type="video/mp4">
+            </video>
+            <span class="vstack-play" aria-hidden="true">▶</span>
+          </button>
+          <figcaption>
+            <strong>Khóa của bạn. Mô hình của bạn. Dữ liệu của bạn.</strong>
+            <span>Dùng khóa API riêng của bạn, mô hình AI cục bộ với Ollama, hoặc byPhil Cloud.</span>
+            <a href="blog/bring-your-own-key.html">Đọc bài viết →</a>
+          </figcaption>
+        </figure>
+        <figure class="vstack-item" data-blog-video="pocket" style="--i:7">
+          <button class="vstack-open" type="button" aria-label="Phát: Giải pháp thay thế Pocket">
+            <video muted="" playsinline="" preload="none" width="360" height="520" poster="../assets/blog/video/pocket-en.jpg">
+              <source src="../assets/blog/video/pocket-en.mp4" type="video/mp4">
+            </video>
+            <span class="vstack-play" aria-hidden="true">▶</span>
+          </button>
+          <figcaption>
+            <strong>Giải pháp thay thế Pocket</strong>
+            <span>Lưu trữ, tóm tắt và gửi sang Kindle của bạn.</span>
+            <a href="blog/pocket-alternative.html">Đọc bài viết →</a>
+          </figcaption>
+        </figure>
+        <figure class="vstack-item" data-blog-video="senden" style="--i:8">
+          <button class="vstack-open" type="button" aria-label="Phát: Từ bản tóm tắt chuyển thẳng sang Kindle">
+            <video muted="" playsinline="" preload="none" width="360" height="520" poster="../assets/blog/video/senden-en.jpg">
+              <source src="../assets/blog/video/senden-en.mp4" type="video/mp4">
+            </video>
+            <span class="vstack-play" aria-hidden="true">▶</span>
+          </button>
+          <figcaption>
+            <strong>Từ bản tóm tắt gửi thẳng đến Kindle</strong>
+            <span>Thói quen khởi nguồn cho dự án này.</span>
+            <a href="blog/from-bookmarklet-to-2.html">Đọc bài viết →</a>
+          </figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
   <section id="try-it">
     <div class="wrap">
       <div class="section-head center reveal">

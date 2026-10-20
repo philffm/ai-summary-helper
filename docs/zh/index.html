@@ -266,6 +266,142 @@
     </div>
   </section>
 
+  <!-- ── Videos: a stack of short clips; tapping one opens a swipeable full-screen player (assets/main.js) ──
+       Videos are localized by scripts/translate.mjs like the blog ones: "<clip>-en.mp4" becomes "<clip>-<locale>.mp4"
+       when docs/assets/blog/video/ has it, else it stays English. -->
+  <section id="videos">
+    <div class="wrap">
+      <div class="section-head center reveal">
+        <div class="eyebrow">观看</div>
+        <h2>20 秒内快速了解各项功能</h2>
+        <p>来自插件实录的精炼演示。点击任意视频即可连续播放。</p>
+      </div>
+      <!-- labels for the full-screen player (text here, so the translation pipeline translates them) -->
+      <div class="vfeed-labels" hidden="">
+        <span data-l="close">关闭</span><span data-l="sound">开启声音</span><span data-l="mute">静音</span><span data-l="hint">上滑观看下一个视频</span>
+      </div>
+      <div class="vstack reveal" data-vstack="">
+        <figure class="vstack-item" data-blog-video="montage" style="--i:0">
+          <button class="vstack-open" type="button" aria-label="播放：15 秒了解 AI Summary Helper">
+            <video muted="" playsinline="" preload="none" width="360" height="520" poster="../assets/blog/video/montage-en.jpg">
+              <source src="../assets/blog/video/montage-en.mp4" type="video/mp4">
+            </video>
+            <span class="vstack-play" aria-hidden="true">▶</span>
+          </button>
+          <figcaption>
+            <strong>15 秒认识 AI Summary Helper</strong>
+            <span>智能摘要、来源回溯、41 种语言支持、个人资料库、知识图谱与深度研究模式。</span>
+            <a href="blog/videos.html">所有视频 →</a>
+          </figcaption>
+        </figure>
+        <figure class="vstack-item" data-blog-video="quellen" style="--i:1">
+          <button class="vstack-open" type="button" aria-label="播放：对照原文核验回答">
+            <video muted="" playsinline="" preload="none" width="360" height="520" poster="../assets/blog/video/quellen-en.jpg">
+              <source src="../assets/blog/video/quellen-en.mp4" type="video/mp4">
+            </video>
+            <span class="vstack-play" aria-hidden="true">▶</span>
+          </button>
+          <figcaption>
+            <strong>对照原文核对回答来源</strong>
+            <span>随时追问，并直接定位跳转到回答所引用的原文段落。</span>
+            <a href="blog/verify-ai-summary.html">阅读全文 →</a>
+          </figcaption>
+        </figure>
+        <figure class="vstack-item" data-blog-video="highlights" style="--i:2">
+          <button class="vstack-open" type="button" aria-label="播放：针对划线高亮内容提问">
+            <video muted="" playsinline="" preload="none" width="360" height="520" poster="../assets/blog/video/highlights-en.jpg">
+              <source src="../assets/blog/video/highlights-en.mp4" type="video/mp4">
+            </video>
+            <span class="vstack-play" aria-hidden="true">▶</span>
+          </button>
+          <figcaption>
+            <strong>围绕划线高亮发起提问</strong>
+            <span>高亮选中文本即可发起提问，获取精准引用原文的解答。</span>
+            <a href="blog/highlighting-vs-asking.html">阅读全文 →</a>
+          </figcaption>
+        </figure>
+        <figure class="vstack-item" data-blog-video="feeds" style="--i:3">
+          <button class="vstack-open" type="button" aria-label="播放：一份精要回顾，替代 40 个订阅源">
+            <video muted="" playsinline="" preload="none" width="360" height="520" poster="../assets/blog/video/feeds-en.jpg">
+              <source src="../assets/blog/video/feeds-en.mp4" type="video/mp4">
+            </video>
+            <span class="vstack-play" aria-hidden="true">▶</span>
+          </button>
+          <figcaption>
+            <strong>一份精选简报，取代 40 个信息源</strong>
+            <span>一键汇总全天订阅资讯，快速生成简报。</span>
+            <a href="blog/feeds-recap.html">阅读全文 →</a>
+          </figcaption>
+        </figure>
+        <figure class="vstack-item" data-blog-video="graph" style="--i:4">
+          <button class="vstack-open" type="button" aria-label="播放：将阅读沉淀为知识图谱">
+            <video muted="" playsinline="" preload="none" width="360" height="520" poster="../assets/blog/video/graph-en.jpg">
+              <source src="../assets/blog/video/graph-en.mp4" type="video/mp4">
+            </video>
+            <span class="vstack-play" aria-hidden="true">▶</span>
+          </button>
+          <figcaption>
+            <strong>将阅读内容构建为知识图谱</strong>
+            <span>按主题关联所有文章，并可随时生成任意主题的速读简报。</span>
+            <a href="blog/on-device-architecture.html">阅读全文 →</a>
+          </figcaption>
+        </figure>
+        <figure class="vstack-item" data-blog-video="digest" style="--i:5">
+          <button class="vstack-open" type="button" aria-label="播放：告别内容堆积，一份精选速览">
+            <video muted="" playsinline="" preload="none" width="360" height="520" poster="../assets/blog/video/digest-en.jpg">
+              <source src="../assets/blog/video/digest-en.mp4" type="video/mp4">
+            </video>
+            <span class="vstack-play" aria-hidden="true">▶</span>
+          </button>
+          <figcaption>
+            <strong>以一份精简文摘，告别积压文章</strong>
+            <span>将多篇收藏文章合成为一份专属杂志，直接推送到你的 Kindle。</span>
+            <a href="blog/unread-saves.html">阅读全文 →</a>
+          </figcaption>
+        </figure>
+        <figure class="vstack-item" data-blog-video="privat" style="--i:6">
+          <button class="vstack-open" type="button" aria-label="播放：你的 key，你的模型，你的数据。">
+            <video muted="" playsinline="" preload="none" width="360" height="520" poster="../assets/blog/video/privat-en.jpg">
+              <source src="../assets/blog/video/privat-en.mp4" type="video/mp4">
+            </video>
+            <span class="vstack-play" aria-hidden="true">▶</span>
+          </button>
+          <figcaption>
+            <strong>你的 API key，你的模型，你的数据。</strong>
+            <span>支持自带 API key、通过 Ollama 运行本地模型，或使用 byPhil Cloud。</span>
+            <a href="blog/bring-your-own-key.html">阅读全文 →</a>
+          </figcaption>
+        </figure>
+        <figure class="vstack-item" data-blog-video="pocket" style="--i:7">
+          <button class="vstack-open" type="button" aria-label="播放：Pocket 的替代之选">
+            <video muted="" playsinline="" preload="none" width="360" height="520" poster="../assets/blog/video/pocket-en.jpg">
+              <source src="../assets/blog/video/pocket-en.mp4" type="video/mp4">
+            </video>
+            <span class="vstack-play" aria-hidden="true">▶</span>
+          </button>
+          <figcaption>
+            <strong>更高效的 Pocket 替代方案</strong>
+            <span>一键收藏、智能总结，并直接发送到 Kindle。</span>
+            <a href="blog/pocket-alternative.html">阅读全文 →</a>
+          </figcaption>
+        </figure>
+        <figure class="vstack-item" data-blog-video="senden" style="--i:8">
+          <button class="vstack-open" type="button" aria-label="播放：从内容摘要一键发送至 Kindle">
+            <video muted="" playsinline="" preload="none" width="360" height="520" poster="../assets/blog/video/senden-en.jpg">
+              <source src="../assets/blog/video/senden-en.mp4" type="video/mp4">
+            </video>
+            <span class="vstack-play" aria-hidden="true">▶</span>
+          </button>
+          <figcaption>
+            <strong>从提炼摘要到 Kindle 阅读</strong>
+            <span>打造本项目最初源自的阅读习惯。</span>
+            <a href="blog/from-bookmarklet-to-2.html">阅读全文 →</a>
+          </figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
   <section id="try-it">
     <div class="wrap">
       <div class="section-head center reveal">

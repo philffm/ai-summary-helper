@@ -266,6 +266,142 @@
     </div>
   </section>
 
+  <!-- ── Videos: a stack of short clips; tapping one opens a swipeable full-screen player (assets/main.js) ──
+       Videos are localized by scripts/translate.mjs like the blog ones: "<clip>-en.mp4" becomes "<clip>-<locale>.mp4"
+       when docs/assets/blog/video/ has it, else it stays English. -->
+  <section id="videos">
+    <div class="wrap">
+      <div class="section-head center reveal">
+        <div class="eyebrow">İzle</div>
+        <h2>Her özellik 20 saniyeden kısa sürede</h2>
+        <p>Gerçek uzantıdan kaydedilmiş kısa klipler. Birine dokunun ve diğerlerini kaydırarak izleyin.</p>
+      </div>
+      <!-- labels for the full-screen player (text here, so the translation pipeline translates them) -->
+      <div class="vfeed-labels" hidden="">
+        <span data-l="close">Kapat</span><span data-l="sound">Sesi aç</span><span data-l="mute">Sesi kapat</span><span data-l="hint">Sonraki video için yukarı kaydırın</span>
+      </div>
+      <div class="vstack reveal" data-vstack="">
+        <figure class="vstack-item" data-blog-video="montage" style="--i:0">
+          <button class="vstack-open" type="button" aria-label="Oynat: 15 saniyede AI Summary Helper">
+            <video muted="" playsinline="" preload="none" width="360" height="520" poster="../assets/blog/video/montage-en.jpg">
+              <source src="../assets/blog/video/montage-en.mp4" type="video/mp4">
+            </video>
+            <span class="vstack-play" aria-hidden="true">▶</span>
+          </button>
+          <figcaption>
+            <strong>15 saniyede AI Summary Helper</strong>
+            <span>Özetler, kaynaklar, 41 dil desteği, kütüphane, knowledge graph ve araştırma modu.</span>
+            <a href="blog/videos.html">Tüm videolar →</a>
+          </figcaption>
+        </figure>
+        <figure class="vstack-item" data-blog-video="quellen" style="--i:1">
+          <button class="vstack-open" type="button" aria-label="Oynat: Yanıtı kaynağıyla doğrulayın">
+            <video muted="" playsinline="" preload="none" width="360" height="520" poster="../assets/blog/video/quellen-en.jpg">
+              <source src="../assets/blog/video/quellen-en.mp4" type="video/mp4">
+            </video>
+            <span class="vstack-play" aria-hidden="true">▶</span>
+          </button>
+          <figcaption>
+            <strong>Yanıtı kaynağıyla doğrulayın</strong>
+            <span>Takip sorusu sorun ve yanıtın alındığı metin bölümüne doğrudan geçin.</span>
+            <a href="blog/verify-ai-summary.html">Yazıyı okuyun →</a>
+          </figcaption>
+        </figure>
+        <figure class="vstack-item" data-blog-video="highlights" style="--i:2">
+          <button class="vstack-open" type="button" aria-label="Oynat: Vurguladığınız kısımlar hakkında soru sorun">
+            <video muted="" playsinline="" preload="none" width="360" height="520" poster="../assets/blog/video/highlights-en.jpg">
+              <source src="../assets/blog/video/highlights-en.mp4" type="video/mp4">
+            </video>
+            <span class="vstack-play" aria-hidden="true">▶</span>
+          </button>
+          <figcaption>
+            <strong>Vurguladıklarınız hakkında sorular sorun</strong>
+            <span>Bir metni vurgulayın, soru sorun ve doğrudan o kısımdan alıntı yapan yanıtı alın.</span>
+            <a href="blog/highlighting-vs-asking.html">Yazıyı okuyun →</a>
+          </figcaption>
+        </figure>
+        <figure class="vstack-item" data-blog-video="feeds" style="--i:3">
+          <button class="vstack-open" type="button" aria-label="Oynat: 40 feed yerine tek bir özet">
+            <video muted="" playsinline="" preload="none" width="360" height="520" poster="../assets/blog/video/feeds-en.jpg">
+              <source src="../assets/blog/video/feeds-en.mp4" type="video/mp4">
+            </video>
+            <span class="vstack-play" aria-hidden="true">▶</span>
+          </button>
+          <figcaption>
+            <strong>40 akış yerine tek bir özet</strong>
+            <span>Tüm günün feed akışı tek bir brifingde.</span>
+            <a href="blog/feeds-recap.html">Yazıyı okuyun →</a>
+          </figcaption>
+        </figure>
+        <figure class="vstack-item" data-blog-video="graph" style="--i:4">
+          <button class="vstack-open" type="button" aria-label="Oynat: Okuma geçmişiniz bir knowledge graph olarak">
+            <video muted="" playsinline="" preload="none" width="360" height="520" poster="../assets/blog/video/graph-en.jpg">
+              <source src="../assets/blog/video/graph-en.mp4" type="video/mp4">
+            </video>
+            <span class="vstack-play" aria-hidden="true">▶</span>
+          </button>
+          <figcaption>
+            <strong>Okumalarınız bir knowledge graph halinde</strong>
+            <span>Konularına göre birbirine bağlanan makaleler ve her konu hakkında kısa bir özet.</span>
+            <a href="blog/on-device-architecture.html">Yazıyı okuyun →</a>
+          </figcaption>
+        </figure>
+        <figure class="vstack-item" data-blog-video="digest" style="--i:5">
+          <button class="vstack-open" type="button" aria-label="Oynat: Yığınlar yerine tek bir derleme">
+            <video muted="" playsinline="" preload="none" width="360" height="520" poster="../assets/blog/video/digest-en.jpg">
+              <source src="../assets/blog/video/digest-en.mp4" type="video/mp4">
+            </video>
+            <span class="vstack-play" aria-hidden="true">▶</span>
+          </button>
+          <figcaption>
+            <strong>Okuma yığını yerine tek bir digest</strong>
+            <span>Kaydettiğiniz üç makale, Kindle cihazınızda tek bir dergiye dönüşsün.</span>
+            <a href="blog/unread-saves.html">Yazıyı okuyun →</a>
+          </figcaption>
+        </figure>
+        <figure class="vstack-item" data-blog-video="privat" style="--i:6">
+          <button class="vstack-open" type="button" aria-label="Oynat: Sizin key'iniz. Sizin modeliniz. Sizin verileriniz.">
+            <video muted="" playsinline="" preload="none" width="360" height="520" poster="../assets/blog/video/privat-en.jpg">
+              <source src="../assets/blog/video/privat-en.mp4" type="video/mp4">
+            </video>
+            <span class="vstack-play" aria-hidden="true">▶</span>
+          </button>
+          <figcaption>
+            <strong>Sizin anahtarınız. Sizin modeliniz. Sizin verileriniz.</strong>
+            <span>Kendi API key'iniz, Ollama ile yerel bir model veya byPhil Cloud.</span>
+            <a href="blog/bring-your-own-key.html">Yazıyı okuyun →</a>
+          </figcaption>
+        </figure>
+        <figure class="vstack-item" data-blog-video="pocket" style="--i:7">
+          <button class="vstack-open" type="button" aria-label="Oynat: Pocket alternatifi">
+            <video muted="" playsinline="" preload="none" width="360" height="520" poster="../assets/blog/video/pocket-en.jpg">
+              <source src="../assets/blog/video/pocket-en.mp4" type="video/mp4">
+            </video>
+            <span class="vstack-play" aria-hidden="true">▶</span>
+          </button>
+          <figcaption>
+            <strong>Bir Pocket alternatifi</strong>
+            <span>Kaydedin, özetleyin ve Kindle'ınıza gönderin.</span>
+            <a href="blog/pocket-alternative.html">Yazıyı okuyun →</a>
+          </figcaption>
+        </figure>
+        <figure class="vstack-item" data-blog-video="senden" style="--i:8">
+          <button class="vstack-open" type="button" aria-label="Oynat: Özetten Kindle'a">
+            <video muted="" playsinline="" preload="none" width="360" height="520" poster="../assets/blog/video/senden-en.jpg">
+              <source src="../assets/blog/video/senden-en.mp4" type="video/mp4">
+            </video>
+            <span class="vstack-play" aria-hidden="true">▶</span>
+          </button>
+          <figcaption>
+            <strong>Özetten Kindle'a</strong>
+            <span>Bu projenin doğmasını sağlayan alışkanlık.</span>
+            <a href="blog/from-bookmarklet-to-2.html">Yazıyı okuyun →</a>
+          </figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
   <section id="try-it">
     <div class="wrap">
       <div class="section-head center reveal">

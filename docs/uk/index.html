@@ -266,6 +266,142 @@
     </div>
   </section>
 
+  <!-- ── Videos: a stack of short clips; tapping one opens a swipeable full-screen player (assets/main.js) ──
+       Videos are localized by scripts/translate.mjs like the blog ones: "<clip>-en.mp4" becomes "<clip>-<locale>.mp4"
+       when docs/assets/blog/video/ has it, else it stays English. -->
+  <section id="videos">
+    <div class="wrap">
+      <div class="section-head center reveal">
+        <div class="eyebrow">Дивитися</div>
+        <h2>Кожна функція менш ніж за 20 секунд</h2>
+        <p>Короткі кліпи, записані в реальному розширенні. Торкніться одного та гортайте інші.</p>
+      </div>
+      <!-- labels for the full-screen player (text here, so the translation pipeline translates them) -->
+      <div class="vfeed-labels" hidden="">
+        <span data-l="close">Закрити</span><span data-l="sound">Увімкнути звук</span><span data-l="mute">Вимкнути звук</span><span data-l="hint">Свайпайте вгору для наступного відео</span>
+      </div>
+      <div class="vstack reveal" data-vstack="">
+        <figure class="vstack-item" data-blog-video="montage" style="--i:0">
+          <button class="vstack-open" type="button" aria-label="Відтворити: AI Summary Helper за 15 секунд">
+            <video muted="" playsinline="" preload="none" width="360" height="520" poster="../assets/blog/video/montage-en.jpg">
+              <source src="../assets/blog/video/montage-en.mp4" type="video/mp4">
+            </video>
+            <span class="vstack-play" aria-hidden="true">▶</span>
+          </button>
+          <figcaption>
+            <strong>AI Summary Helper за 15 секунд</strong>
+            <span>Підсумки, джерела, 41 мова, бібліотека, граф знань і дослідницький режим.</span>
+            <a href="blog/videos.html">Усі відео →</a>
+          </figcaption>
+        </figure>
+        <figure class="vstack-item" data-blog-video="quellen" style="--i:1">
+          <button class="vstack-open" type="button" aria-label="Відтворити: Перевірка відповіді за першоджерелом">
+            <video muted="" playsinline="" preload="none" width="360" height="520" poster="../assets/blog/video/quellen-en.jpg">
+              <source src="../assets/blog/video/quellen-en.mp4" type="video/mp4">
+            </video>
+            <span class="vstack-play" aria-hidden="true">▶</span>
+          </button>
+          <figcaption>
+            <strong>Перевіряйте відповідь за першоджерелом</strong>
+            <span>Ставте уточнювальні запитання та миттєво переходьте до фрагмента, з якого взято відповідь.</span>
+            <a href="blog/verify-ai-summary.html">Читати допис →</a>
+          </figcaption>
+        </figure>
+        <figure class="vstack-item" data-blog-video="highlights" style="--i:2">
+          <button class="vstack-open" type="button" aria-label="Відтворити: Запитання до ваших виділень">
+            <video muted="" playsinline="" preload="none" width="360" height="520" poster="../assets/blog/video/highlights-en.jpg">
+              <source src="../assets/blog/video/highlights-en.mp4" type="video/mp4">
+            </video>
+            <span class="vstack-play" aria-hidden="true">▶</span>
+          </button>
+          <figcaption>
+            <strong>Ставте запитання до своїх виділень</strong>
+            <span>Виділіть фрагмент тексту, запитайте про нього та отримайте відповідь із точним цитуванням.</span>
+            <a href="blog/highlighting-vs-asking.html">Читати допис →</a>
+          </figcaption>
+        </figure>
+        <figure class="vstack-item" data-blog-video="feeds" style="--i:3">
+          <button class="vstack-open" type="button" aria-label="Відтворити: Один підсумок замість 40 стрічок">
+            <video muted="" playsinline="" preload="none" width="360" height="520" poster="../assets/blog/video/feeds-en.jpg">
+              <source src="../assets/blog/video/feeds-en.mp4" type="video/mp4">
+            </video>
+            <span class="vstack-play" aria-hidden="true">▶</span>
+          </button>
+          <figcaption>
+            <strong>Один дайджест замість 40 стрічок</strong>
+            <span>Увесь день новинних стрічок в одному огляді.</span>
+            <a href="blog/feeds-recap.html">Читати допис →</a>
+          </figcaption>
+        </figure>
+        <figure class="vstack-item" data-blog-video="graph" style="--i:4">
+          <button class="vstack-open" type="button" aria-label="Відтворити: Прочитане як граф знань">
+            <video muted="" playsinline="" preload="none" width="360" height="520" poster="../assets/blog/video/graph-en.jpg">
+              <source src="../assets/blog/video/graph-en.mp4" type="video/mp4">
+            </video>
+            <span class="vstack-play" aria-hidden="true">▶</span>
+          </button>
+          <figcaption>
+            <strong>Ваші прочитані матеріали у вигляді графа знань</strong>
+            <span>Статті, повʼязані за темами, зі стислим оглядом будь-якої теми.</span>
+            <a href="blog/on-device-architecture.html">Читати допис →</a>
+          </figcaption>
+        </figure>
+        <figure class="vstack-item" data-blog-video="digest" style="--i:5">
+          <button class="vstack-open" type="button" aria-label="Відтворити: Один дайджест замість купи непрочитаного">
+            <video muted="" playsinline="" preload="none" width="360" height="520" poster="../assets/blog/video/digest-en.jpg">
+              <source src="../assets/blog/video/digest-en.mp4" type="video/mp4">
+            </video>
+            <span class="vstack-play" aria-hidden="true">▶</span>
+          </button>
+          <figcaption>
+            <strong>Один дайджест замість купи матеріалів</strong>
+            <span>Три збережені статті перетворюються на один журнал на вашому Kindle.</span>
+            <a href="blog/unread-saves.html">Читати допис →</a>
+          </figcaption>
+        </figure>
+        <figure class="vstack-item" data-blog-video="privat" style="--i:6">
+          <button class="vstack-open" type="button" aria-label="Відтворити: Ваш ключ. Ваша модель. Ваші дані.">
+            <video muted="" playsinline="" preload="none" width="360" height="520" poster="../assets/blog/video/privat-en.jpg">
+              <source src="../assets/blog/video/privat-en.mp4" type="video/mp4">
+            </video>
+            <span class="vstack-play" aria-hidden="true">▶</span>
+          </button>
+          <figcaption>
+            <strong>Ваш ключ. Ваша модель. Ваші дані.</strong>
+            <span>Власний API key, локальна модель з Ollama або byPhil Cloud.</span>
+            <a href="blog/bring-your-own-key.html">Читати допис →</a>
+          </figcaption>
+        </figure>
+        <figure class="vstack-item" data-blog-video="pocket" style="--i:7">
+          <button class="vstack-open" type="button" aria-label="Відтворити: Альтернатива Pocket">
+            <video muted="" playsinline="" preload="none" width="360" height="520" poster="../assets/blog/video/pocket-en.jpg">
+              <source src="../assets/blog/video/pocket-en.mp4" type="video/mp4">
+            </video>
+            <span class="vstack-play" aria-hidden="true">▶</span>
+          </button>
+          <figcaption>
+            <strong>Альтернатива Pocket</strong>
+            <span>Зберігайте, створюйте підсумки та надсилайте на свій Kindle.</span>
+            <a href="blog/pocket-alternative.html">Читати допис →</a>
+          </figcaption>
+        </figure>
+        <figure class="vstack-item" data-blog-video="senden" style="--i:8">
+          <button class="vstack-open" type="button" aria-label="Відтворити: Від саммарі до Kindle">
+            <video muted="" playsinline="" preload="none" width="360" height="520" poster="../assets/blog/video/senden-en.jpg">
+              <source src="../assets/blog/video/senden-en.mp4" type="video/mp4">
+            </video>
+            <span class="vstack-play" aria-hidden="true">▶</span>
+          </button>
+          <figcaption>
+            <strong>Від підсумку — до Kindle</strong>
+            <span>Звичка, з якої розпочався цей проєкт.</span>
+            <a href="blog/from-bookmarklet-to-2.html">Читати допис →</a>
+          </figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
   <section id="try-it">
     <div class="wrap">
       <div class="section-head center reveal">

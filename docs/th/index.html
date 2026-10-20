@@ -266,6 +266,142 @@
     </div>
   </section>
 
+  <!-- ── Videos: a stack of short clips; tapping one opens a swipeable full-screen player (assets/main.js) ──
+       Videos are localized by scripts/translate.mjs like the blog ones: "<clip>-en.mp4" becomes "<clip>-<locale>.mp4"
+       when docs/assets/blog/video/ has it, else it stays English. -->
+  <section id="videos">
+    <div class="wrap">
+      <div class="section-head center reveal">
+        <div class="eyebrow">รับชม</div>
+        <h2>ครบทุกฟีเจอร์ในเวลาไม่ถึง 20 วินาที</h2>
+        <p>คลิปสั้นจากการใช้งานส่วนขยายจริง แตะเพื่อเริ่มดูแล้วปัดเพื่อดูต่อได้ทันที</p>
+      </div>
+      <!-- labels for the full-screen player (text here, so the translation pipeline translates them) -->
+      <div class="vfeed-labels" hidden="">
+        <span data-l="close">ปิด</span><span data-l="sound">เปิดเสียง</span><span data-l="mute">ปิดเสียง</span><span data-l="hint">ปัดขึ้นเพื่อดูวิดีโอถัดไป</span>
+      </div>
+      <div class="vstack reveal" data-vstack="">
+        <figure class="vstack-item" data-blog-video="montage" style="--i:0">
+          <button class="vstack-open" type="button" aria-label="เล่น: ผู้ช่วยสรุปเนื้อหาด้วย AI ใน 15 วินาที">
+            <video muted="" playsinline="" preload="none" width="360" height="520" poster="../assets/blog/video/montage-en.jpg">
+              <source src="../assets/blog/video/montage-en.mp4" type="video/mp4">
+            </video>
+            <span class="vstack-play" aria-hidden="true">▶</span>
+          </button>
+          <figcaption>
+            <strong>AI Summary Helper ใน 15 วินาที</strong>
+            <span>สรุปเนื้อหา, แหล่งอ้างอิง, รองรับ 41 ภาษา, คลังบทความ, กราฟความรู้ (knowledge graph) และโหมดค้นคว้าวิจัย</span>
+            <a href="blog/videos.html">วิดีโอทั้งหมด →</a>
+          </figcaption>
+        </figure>
+        <figure class="vstack-item" data-blog-video="quellen" style="--i:1">
+          <button class="vstack-open" type="button" aria-label="เล่น: ตรวจสอบคำตอบเทียบกับแหล่งที่มา">
+            <video muted="" playsinline="" preload="none" width="360" height="520" poster="../assets/blog/video/quellen-en.jpg">
+              <source src="../assets/blog/video/quellen-en.mp4" type="video/mp4">
+            </video>
+            <span class="vstack-play" aria-hidden="true">▶</span>
+          </button>
+          <figcaption>
+            <strong>ตรวจสอบคำตอบเทียบกับแหล่งที่มา</strong>
+            <span>ถามคำถามต่อเนื่อง พร้อมข้ามไปยังข้อความต้นฉบับที่เป็นที่มาของคำตอบได้ทันที</span>
+            <a href="blog/verify-ai-summary.html">อ่านบทความ →</a>
+          </figcaption>
+        </figure>
+        <figure class="vstack-item" data-blog-video="highlights" style="--i:2">
+          <button class="vstack-open" type="button" aria-label="เล่น: ถามตอบจากข้อความไฮไลต์ของคุณ">
+            <video muted="" playsinline="" preload="none" width="360" height="520" poster="../assets/blog/video/highlights-en.jpg">
+              <source src="../assets/blog/video/highlights-en.mp4" type="video/mp4">
+            </video>
+            <span class="vstack-play" aria-hidden="true">▶</span>
+          </button>
+          <figcaption>
+            <strong>ถามตอบจากไฮไลต์ของคุณ</strong>
+            <span>ไฮไลต์ข้อความ ถามข้อสงสัย และรับคำตอบที่อ้างอิงเนื้อหานั้นโดยตรง</span>
+            <a href="blog/highlighting-vs-asking.html">อ่านบทความ →</a>
+          </figcaption>
+        </figure>
+        <figure class="vstack-item" data-blog-video="feeds" style="--i:3">
+          <button class="vstack-open" type="button" aria-label="เล่น: สรุปจบครบในที่เดียว ไม่ต้องตามอ่านถึง 40 ฟีด">
+            <video muted="" playsinline="" preload="none" width="360" height="520" poster="../assets/blog/video/feeds-en.jpg">
+              <source src="../assets/blog/video/feeds-en.mp4" type="video/mp4">
+            </video>
+            <span class="vstack-play" aria-hidden="true">▶</span>
+          </button>
+          <figcaption>
+            <strong>สรุปภาพรวมชุดเดียว แทนการตามอ่าน 40 ฟีด</strong>
+            <span>สรุปฟีดทั้งวันไว้ในบรีฟเดียว</span>
+            <a href="blog/feeds-recap.html">อ่านบทความ →</a>
+          </figcaption>
+        </figure>
+        <figure class="vstack-item" data-blog-video="graph" style="--i:4">
+          <button class="vstack-open" type="button" aria-label="เล่น: เปลี่ยนประวัติการอ่านให้เป็น Knowledge Graph">
+            <video muted="" playsinline="" preload="none" width="360" height="520" poster="../assets/blog/video/graph-en.jpg">
+              <source src="../assets/blog/video/graph-en.mp4" type="video/mp4">
+            </video>
+            <span class="vstack-play" aria-hidden="true">▶</span>
+          </button>
+          <figcaption>
+            <strong>เปลี่ยนบทความที่อ่านให้เป็นกราฟความรู้ (knowledge graph)</strong>
+            <span>เชื่อมโยงบทความตามหัวข้อ พร้อมสรุปย่อประเด็นสำคัญสำหรับทุกหัวข้อ</span>
+            <a href="blog/on-device-architecture.html">อ่านบทความ →</a>
+          </figcaption>
+        </figure>
+        <figure class="vstack-item" data-blog-video="digest" style="--i:5">
+          <button class="vstack-open" type="button" aria-label="เล่น: สรุปภาพรวมกระชับ แทนที่จะต้องอ่านกองบทความทั้งหมด">
+            <video muted="" playsinline="" preload="none" width="360" height="520" poster="../assets/blog/video/digest-en.jpg">
+              <source src="../assets/blog/video/digest-en.mp4" type="video/mp4">
+            </video>
+            <span class="vstack-play" aria-hidden="true">▶</span>
+          </button>
+          <figcaption>
+            <strong>รวมเป็นฉบับสรุปเดียว แทนที่จะปล่อยให้บทความค้างสะสม</strong>
+            <span>เปลี่ยนบทความที่บันทึกไว้ 3 บทความให้กลายเป็นนิตยสารฉบับเดียวบน Kindle ของคุณ</span>
+            <a href="blog/unread-saves.html">อ่านบทความ →</a>
+          </figcaption>
+        </figure>
+        <figure class="vstack-item" data-blog-video="privat" style="--i:6">
+          <button class="vstack-open" type="button" aria-label="เล่น: Key ของคุณ โมเดลของคุณ ข้อมูลของคุณ เป็นส่วนตัวเต็มขั้น">
+            <video muted="" playsinline="" preload="none" width="360" height="520" poster="../assets/blog/video/privat-en.jpg">
+              <source src="../assets/blog/video/privat-en.mp4" type="video/mp4">
+            </video>
+            <span class="vstack-play" aria-hidden="true">▶</span>
+          </button>
+          <figcaption>
+            <strong>คีย์ของคุณ โมเดลของคุณ ข้อมูลของคุณ</strong>
+            <span>ใช้ API key ของคุณเอง, รันโมเดล Local ออฟไลน์ด้วย Ollama หรือใช้งานผ่าน byPhil Cloud</span>
+            <a href="blog/bring-your-own-key.html">อ่านบทความ →</a>
+          </figcaption>
+        </figure>
+        <figure class="vstack-item" data-blog-video="pocket" style="--i:7">
+          <button class="vstack-open" type="button" aria-label="เล่น: ทางเลือกใหม่ที่ดีกว่า Pocket">
+            <video muted="" playsinline="" preload="none" width="360" height="520" poster="../assets/blog/video/pocket-en.jpg">
+              <source src="../assets/blog/video/pocket-en.mp4" type="video/mp4">
+            </video>
+            <span class="vstack-play" aria-hidden="true">▶</span>
+          </button>
+          <figcaption>
+            <strong>ทางเลือกใหม่ทดแทน Pocket</strong>
+            <span>บันทึก สรุปเนื้อหา และส่งไปยัง Kindle ของคุณ</span>
+            <a href="blog/pocket-alternative.html">อ่านบทความ →</a>
+          </figcaption>
+        </figure>
+        <figure class="vstack-item" data-blog-video="senden" style="--i:8">
+          <button class="vstack-open" type="button" aria-label="เล่น: ส่งสรุปเนื้อหาตรงไปยัง Kindle">
+            <video muted="" playsinline="" preload="none" width="360" height="520" poster="../assets/blog/video/senden-en.jpg">
+              <source src="../assets/blog/video/senden-en.mp4" type="video/mp4">
+            </video>
+            <span class="vstack-play" aria-hidden="true">▶</span>
+          </button>
+          <figcaption>
+            <strong>จากบทสรุปสู่ Kindle</strong>
+            <span>จุดเริ่มต้นของโปรเจกต์ที่เกิดจากนิสัยการอ่านนี้</span>
+            <a href="blog/from-bookmarklet-to-2.html">อ่านบทความ →</a>
+          </figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
   <section id="try-it">
     <div class="wrap">
       <div class="section-head center reveal">

@@ -266,6 +266,142 @@
     </div>
   </section>
 
+  <!-- ── Videos: a stack of short clips; tapping one opens a swipeable full-screen player (assets/main.js) ──
+       Videos are localized by scripts/translate.mjs like the blog ones: "<clip>-en.mp4" becomes "<clip>-<locale>.mp4"
+       when docs/assets/blog/video/ has it, else it stays English. -->
+  <section id="videos">
+    <div class="wrap">
+      <div class="section-head center reveal">
+        <div class="eyebrow">Tonton</div>
+        <h2>Semua fitur dalam kurang dari 20 detik</h2>
+        <p>Klip singkat yang direkam langsung dari ekstensi. Ketuk salah satu dan geser untuk melihat sisanya.</p>
+      </div>
+      <!-- labels for the full-screen player (text here, so the translation pipeline translates them) -->
+      <div class="vfeed-labels" hidden="">
+        <span data-l="close">Tutup</span><span data-l="sound">Suara aktif</span><span data-l="mute">Suara mati</span><span data-l="hint">Geser ke atas untuk video berikutnya</span>
+      </div>
+      <div class="vstack reveal" data-vstack="">
+        <figure class="vstack-item" data-blog-video="montage" style="--i:0">
+          <button class="vstack-open" type="button" aria-label="Putar: AI Summary Helper dalam 15 detik">
+            <video muted="" playsinline="" preload="none" width="360" height="520" poster="../assets/blog/video/montage-en.jpg">
+              <source src="../assets/blog/video/montage-en.mp4" type="video/mp4">
+            </video>
+            <span class="vstack-play" aria-hidden="true">▶</span>
+          </button>
+          <figcaption>
+            <strong>AI Summary Helper dalam 15 detik</strong>
+            <span>Ringkasan, sumber rujukan, 41 bahasa, library, knowledge graph, dan mode riset.</span>
+            <a href="blog/videos.html">Semua video →</a>
+          </figcaption>
+        </figure>
+        <figure class="vstack-item" data-blog-video="quellen" style="--i:1">
+          <button class="vstack-open" type="button" aria-label="Putar: Periksa jawaban langsung dari sumbernya">
+            <video muted="" playsinline="" preload="none" width="360" height="520" poster="../assets/blog/video/quellen-en.jpg">
+              <source src="../assets/blog/video/quellen-en.mp4" type="video/mp4">
+            </video>
+            <span class="vstack-play" aria-hidden="true">▶</span>
+          </button>
+          <figcaption>
+            <strong>Periksa jawaban langsung dari sumbernya</strong>
+            <span>Ajukan pertanyaan lanjutan dan langsung lompat ke bagian teks asal jawaban tersebut.</span>
+            <a href="blog/verify-ai-summary.html">Baca artikel →</a>
+          </figcaption>
+        </figure>
+        <figure class="vstack-item" data-blog-video="highlights" style="--i:2">
+          <button class="vstack-open" type="button" aria-label="Putar: Tanyakan tentang highlight Anda">
+            <video muted="" playsinline="" preload="none" width="360" height="520" poster="../assets/blog/video/highlights-en.jpg">
+              <source src="../assets/blog/video/highlights-en.mp4" type="video/mp4">
+            </video>
+            <span class="vstack-play" aria-hidden="true">▶</span>
+          </button>
+          <figcaption>
+            <strong>Tanyakan seputar sorotan Anda</strong>
+            <span>Sorot bagian teks, tanyakan hal terkait, dan dapatkan jawaban yang mencantumkan sumbernya.</span>
+            <a href="blog/highlighting-vs-asking.html">Baca artikel →</a>
+          </figcaption>
+        </figure>
+        <figure class="vstack-item" data-blog-video="feeds" style="--i:3">
+          <button class="vstack-open" type="button" aria-label="Putar: Satu rekap alih-alih 40 feed">
+            <video muted="" playsinline="" preload="none" width="360" height="520" poster="../assets/blog/video/feeds-en.jpg">
+              <source src="../assets/blog/video/feeds-en.mp4" type="video/mp4">
+            </video>
+            <span class="vstack-play" aria-hidden="true">▶</span>
+          </button>
+          <figcaption>
+            <strong>Satu rekap, bukan 40 feed</strong>
+            <span>Feed seharian penuh dalam satu ringkasan briefing.</span>
+            <a href="blog/feeds-recap.html">Baca artikel →</a>
+          </figcaption>
+        </figure>
+        <figure class="vstack-item" data-blog-video="graph" style="--i:4">
+          <button class="vstack-open" type="button" aria-label="Putar: Bacaan Anda sebagai knowledge graph">
+            <video muted="" playsinline="" preload="none" width="360" height="520" poster="../assets/blog/video/graph-en.jpg">
+              <source src="../assets/blog/video/graph-en.mp4" type="video/mp4">
+            </video>
+            <span class="vstack-play" aria-hidden="true">▶</span>
+          </button>
+          <figcaption>
+            <strong>Bacaan Anda dalam bentuk knowledge graph</strong>
+            <span>Artikel saling terhubung berdasarkan topik, lengkap dengan ringkasan untuk setiap topik.</span>
+            <a href="blog/on-device-architecture.html">Baca artikel →</a>
+          </figcaption>
+        </figure>
+        <figure class="vstack-item" data-blog-video="digest" style="--i:5">
+          <button class="vstack-open" type="button" aria-label="Putar: Satu digest alih-alih tumpukan bacaan">
+            <video muted="" playsinline="" preload="none" width="360" height="520" poster="../assets/blog/video/digest-en.jpg">
+              <source src="../assets/blog/video/digest-en.mp4" type="video/mp4">
+            </video>
+            <span class="vstack-play" aria-hidden="true">▶</span>
+          </button>
+          <figcaption>
+            <strong>Satu digest praktis, tanpa tumpukan artikel</strong>
+            <span>Tiga artikel tersimpan menjadi satu format majalah di Kindle Anda.</span>
+            <a href="blog/unread-saves.html">Baca artikel →</a>
+          </figcaption>
+        </figure>
+        <figure class="vstack-item" data-blog-video="privat" style="--i:6">
+          <button class="vstack-open" type="button" aria-label="Putar: Key Anda. Model Anda. Data Anda.">
+            <video muted="" playsinline="" preload="none" width="360" height="520" poster="../assets/blog/video/privat-en.jpg">
+              <source src="../assets/blog/video/privat-en.mp4" type="video/mp4">
+            </video>
+            <span class="vstack-play" aria-hidden="true">▶</span>
+          </button>
+          <figcaption>
+            <strong>API key Anda. Model Anda. Data Anda.</strong>
+            <span>API key Anda sendiri, model lokal dengan Ollama, atau byPhil Cloud.</span>
+            <a href="blog/bring-your-own-key.html">Baca artikel →</a>
+          </figcaption>
+        </figure>
+        <figure class="vstack-item" data-blog-video="pocket" style="--i:7">
+          <button class="vstack-open" type="button" aria-label="Putar: Alternatif Pocket">
+            <video muted="" playsinline="" preload="none" width="360" height="520" poster="../assets/blog/video/pocket-en.jpg">
+              <source src="../assets/blog/video/pocket-en.mp4" type="video/mp4">
+            </video>
+            <span class="vstack-play" aria-hidden="true">▶</span>
+          </button>
+          <figcaption>
+            <strong>Alternatif untuk Pocket</strong>
+            <span>Simpan, ringkas, dan kirim ke Kindle Anda.</span>
+            <a href="blog/pocket-alternative.html">Baca artikel →</a>
+          </figcaption>
+        </figure>
+        <figure class="vstack-item" data-blog-video="senden" style="--i:8">
+          <button class="vstack-open" type="button" aria-label="Putar: Dari ringkasan ke Kindle">
+            <video muted="" playsinline="" preload="none" width="360" height="520" poster="../assets/blog/video/senden-en.jpg">
+              <source src="../assets/blog/video/senden-en.mp4" type="video/mp4">
+            </video>
+            <span class="vstack-play" aria-hidden="true">▶</span>
+          </button>
+          <figcaption>
+            <strong>Dari ringkasan langsung ke Kindle</strong>
+            <span>Kebiasaan yang menjadi awal mula proyek ini.</span>
+            <a href="blog/from-bookmarklet-to-2.html">Baca artikel →</a>
+          </figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
   <section id="try-it">
     <div class="wrap">
       <div class="section-head center reveal">
