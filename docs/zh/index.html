@@ -447,43 +447,108 @@
       </div>
       <p class="persona-blurb reveal" id="personaBlurb" aria-live="polite">你可以自由选择模型与服务器，并完全掌控数据是否离开你的本地设备。</p>
 
-      <div class="feature-grid reveal" id="featureGrid">
+      <!-- each card has its clip (top right): hover plays it silently, a tap opens the swipeable player (main.js) -->
+      <div class="feature-grid reveal" id="featureGrid" data-vgroup="">
         <div class="feature-card" data-personas="privacy researcher">
+          <figure class="fvideo" data-blog-video="privat">
+            <button class="fvideo-open" type="button"><span class="sr-only">播放视频</span>
+              <video muted="" playsinline="" loop="" preload="none" width="360" height="520" poster="../assets/blog/video/privat-en.jpg">
+                <source src="../assets/blog/video/privat-en.mp4" type="video/mp4">
+              </video>
+              <span class="fvideo-play" aria-hidden="true">▶</span>
+            </button>
+          </figure>
           <div class="f-icon icon-cyan"><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="6" r="2.6" fill="#fff"></circle><circle cx="6" cy="17" r="2.2" fill="#fff" opacity="0.85"></circle><circle cx="18" cy="17" r="2.2" fill="#fff" opacity="0.85"></circle><path d="M12 8.6 L6.8 14.8 M12 8.6 L17.2 14.8" stroke="#fff" stroke-width="1.4" stroke-linecap="round" opacity="0.7"></path></svg></div>
           <h3>AI 摘要，模型随心选择</h3>
           <p>支持 OpenAI、Gemini、Mistral、DeepSeek 或自定义端点——也可以直接指向本地 Ollama 模型，这一步完全在本地运行、无需联网。</p>
         </div>
         <div class="feature-card" data-personas="privacy researcher">
+          <figure class="fvideo" data-blog-video="highlights">
+            <button class="fvideo-open" type="button"><span class="sr-only">播放视频</span>
+              <video muted="" playsinline="" loop="" preload="none" width="360" height="520" poster="../assets/blog/video/highlights-en.jpg">
+                <source src="../assets/blog/video/highlights-en.mp4" type="video/mp4">
+              </video>
+              <span class="fvideo-play" aria-hidden="true">▶</span>
+            </button>
+          </figure>
           <div class="f-icon icon-gold"><svg viewBox="0 0 24 24" fill="none"><path d="M5 5h14M5 9h14M5 13h14M5 17h14" stroke="#fff" stroke-width="2.2" stroke-linecap="round"></path><path d="M5 5l14 0M5 9l14 0M5 13l14 0M5 17l14 0" stroke="#fff" stroke-width="2.2" stroke-linecap="round" opacity="0.35"></path></svg></div>
           <h3>原位幽灵高亮，直接呈现在页面上</h3>
           <p>AI 会轻度高亮标出 <mark class="ai-ghost-highlight">最关键的原文段落</mark> ——方便你 <mark class="ai-ghost-highlight">一眼掌握核心洞见</mark>，且高亮内容会随摘要一同导出至 Kindle、LocalSend 或 Markdown。</p>
         </div>
         <div class="feature-card" data-personas="privacy researcher">
+          <figure class="fvideo" data-blog-video="bibliothek">
+            <button class="fvideo-open" type="button"><span class="sr-only">播放视频</span>
+              <video muted="" playsinline="" loop="" preload="none" width="360" height="520" poster="../assets/blog/video/bibliothek-en.jpg">
+                <source src="../assets/blog/video/bibliothek-en.mp4" type="video/mp4">
+              </video>
+              <span class="fvideo-play" aria-hidden="true">▶</span>
+            </button>
+          </figure>
           <div class="f-icon icon-violet"><svg viewBox="0 0 24 24" fill="none"><path d="M11 4a7 7 0 1 0 4.9 12.1l4.6 4.6" stroke="#fff" stroke-width="1.7" stroke-linecap="round"></path></svg></div>
           <h3>真正的设备端本地搜索</h3>
           <p>依托浏览器内置的 TF-IDF 索引，支持对标题、标签和文章全文进行瞬时检索。无需网络往返，零延迟，数据绝不上云。</p>
         </div>
         <div class="feature-card" data-personas="hoarder">
+          <figure class="fvideo" data-blog-video="pocket">
+            <button class="fvideo-open" type="button"><span class="sr-only">播放视频</span>
+              <video muted="" playsinline="" loop="" preload="none" width="360" height="520" poster="../assets/blog/video/pocket-en.jpg">
+                <source src="../assets/blog/video/pocket-en.mp4" type="video/mp4">
+              </video>
+              <span class="fvideo-play" aria-hidden="true">▶</span>
+            </button>
+          </figure>
           <div class="f-icon icon-indigo"><svg viewBox="0 0 24 24" fill="none"><path d="M6 3h12v18l-6-4-6 4V3Z" stroke="#fff" stroke-width="1.6" stroke-linejoin="round"></path></svg></div>
           <h3>带着目标保存，告别盲目囤积</h3>
           <p>标记“待办决定”，设定理由与时间节点并获得提醒——不再让收藏文章沉睡在永远不看的堆积列表里。</p>
         </div>
         <div class="feature-card" data-personas="hoarder">
+          <figure class="fvideo" data-blog-video="digest">
+            <button class="fvideo-open" type="button"><span class="sr-only">播放视频</span>
+              <video muted="" playsinline="" loop="" preload="none" width="360" height="520" poster="../assets/blog/video/digest-en.jpg">
+                <source src="../assets/blog/video/digest-en.mp4" type="video/mp4">
+              </video>
+              <span class="fvideo-play" aria-hidden="true">▶</span>
+            </button>
+          </figure>
           <div class="f-icon icon-gold"><svg viewBox="0 0 24 24" fill="none"><rect x="4" y="4" width="16" height="16" rx="3" stroke="#fff" stroke-width="1.6"></rect><path d="M8 9h8M8 13h5" stroke="#fff" stroke-width="1.6" stroke-linecap="round"></path></svg></div>
           <h3>智能精选文摘</h3>
           <p>一键精选小体量且主题多元的收藏内容，避免同质化，并自动打包为单一文件推送到 Kindle 或 LocalSend。</p>
         </div>
         <div class="feature-card" data-personas="researcher">
+          <figure class="fvideo" data-blog-video="graph">
+            <button class="fvideo-open" type="button"><span class="sr-only">播放视频</span>
+              <video muted="" playsinline="" loop="" preload="none" width="360" height="520" poster="../assets/blog/video/graph-en.jpg">
+                <source src="../assets/blog/video/graph-en.mp4" type="video/mp4">
+              </video>
+              <span class="fvideo-play" aria-hidden="true">▶</span>
+            </button>
+          </figure>
           <div class="f-icon icon-cyan"><svg viewBox="0 0 24 24" fill="none"><circle cx="5" cy="6" r="1.8" fill="#fff"></circle><circle cx="19" cy="6" r="1.8" fill="#fff" opacity="0.85"></circle><circle cx="12" cy="12" r="2.1" fill="#fff"></circle><circle cx="6" cy="18" r="1.8" fill="#fff" opacity="0.85"></circle><circle cx="18" cy="18" r="1.8" fill="#fff" opacity="0.85"></circle><path d="M5 6 12 12M19 6 12 12M12 12 6 18M12 12 18 18" stroke="#fff" stroke-width="1.1" opacity="0.55"></path></svg></div>
           <h3>知识图谱，超越简单列表</h3>
           <p>直观呈现收藏内容之间的关联——不仅基于共同标签，还能自动识别无共同标签但主题相似的文章。</p>
         </div>
         <div class="feature-card" data-personas="hoarder researcher">
+          <figure class="fvideo" data-blog-video="feeds">
+            <button class="fvideo-open" type="button"><span class="sr-only">播放视频</span>
+              <video muted="" playsinline="" loop="" preload="none" width="360" height="520" poster="../assets/blog/video/feeds-en.jpg">
+                <source src="../assets/blog/video/feeds-en.mp4" type="video/mp4">
+              </video>
+              <span class="fvideo-play" aria-hidden="true">▶</span>
+            </button>
+          </figure>
           <div class="f-icon icon-indigo"><svg viewBox="0 0 24 24" fill="none"><circle cx="6" cy="18" r="1.8" fill="#fff"></circle><path d="M5 11a8 8 0 0 1 8 8M5 5a14 14 0 0 1 14 14" stroke="#fff" stroke-width="1.8" stroke-linecap="round"></path></svg></div>
           <h3>内置 RSS 阅读器</h3>
           <p>关注博客与新闻网站，按来源、标签、日期或心情筛选，支持导入 OPML，一键即可打开或生成摘要。直接在扩展程序内播放播客 Feed，还可选择通过每日头条生成 AI 每日回顾。收藏的内容会保存至归档，订阅源数据完全保存在您的本地设备上。</p>
         </div>
         <div class="feature-card" data-personas="privacy hoarder researcher">
+          <figure class="fvideo" data-blog-video="sprache">
+            <button class="fvideo-open" type="button"><span class="sr-only">播放视频</span>
+              <video muted="" playsinline="" loop="" preload="none" width="360" height="520" poster="../assets/blog/video/sprache-en.jpg">
+                <source src="../assets/blog/video/sprache-en.mp4" type="video/mp4">
+              </video>
+              <span class="fvideo-play" aria-hidden="true">▶</span>
+            </button>
+          </figure>
           <div class="f-icon icon-violet"><svg viewBox="0 0 24 24" fill="none"><path d="M4 12h16M12 4c2.8 2.6 4.2 5.2 4.2 8s-1.4 5.4-4.2 8c-2.8-2.6-4.2-5.2-4.2-8s1.4-5.4 4.2-8Z" stroke="#fff" stroke-width="1.5"></path></svg></div>
           <h3>支持 20 多种语言与跨平台</h3>
           <p>使用您自选的语言阅读与生成摘要。支持扩展、原生侧边栏或 <a href="../bookmarklet.html">Bookmarklet</a> —— 适用于浏览器扩展无法覆盖的各种场景。</p>

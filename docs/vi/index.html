@@ -447,43 +447,108 @@
       </div>
       <p class="persona-blurb reveal" id="personaBlurb" aria-live="polite">Bạn toàn quyền chọn mô hình, máy chủ và quyết định xem liệu có dữ liệu nào rời khỏi thiết bị của mình hay không.</p>
 
-      <div class="feature-grid reveal" id="featureGrid">
+      <!-- each card has its clip (top right): hover plays it silently, a tap opens the swipeable player (main.js) -->
+      <div class="feature-grid reveal" id="featureGrid" data-vgroup="">
         <div class="feature-card" data-personas="privacy researcher">
+          <figure class="fvideo" data-blog-video="privat">
+            <button class="fvideo-open" type="button"><span class="sr-only">Phát video</span>
+              <video muted="" playsinline="" loop="" preload="none" width="360" height="520" poster="../assets/blog/video/privat-en.jpg">
+                <source src="../assets/blog/video/privat-en.mp4" type="video/mp4">
+              </video>
+              <span class="fvideo-play" aria-hidden="true">▶</span>
+            </button>
+          </figure>
           <div class="f-icon icon-cyan"><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="6" r="2.6" fill="#fff"></circle><circle cx="6" cy="17" r="2.2" fill="#fff" opacity="0.85"></circle><circle cx="18" cy="17" r="2.2" fill="#fff" opacity="0.85"></circle><path d="M12 8.6 L6.8 14.8 M12 8.6 L17.2 14.8" stroke="#fff" stroke-width="1.4" stroke-linecap="round" opacity="0.7"></path></svg></div>
           <h3>Tóm tắt bằng AI, tùy chọn mô hình của bạn</h3>
           <p>OpenAI, Gemini, Mistral, DeepSeek hoặc endpoint tùy chỉnh — hoặc trỏ đến mô hình Ollama cục bộ để xử lý hoàn toàn ngoại tuyến mà không cần kết nối mạng.</p>
         </div>
         <div class="feature-card" data-personas="privacy researcher">
+          <figure class="fvideo" data-blog-video="highlights">
+            <button class="fvideo-open" type="button"><span class="sr-only">Phát video</span>
+              <video muted="" playsinline="" loop="" preload="none" width="360" height="520" poster="../assets/blog/video/highlights-en.jpg">
+                <source src="../assets/blog/video/highlights-en.mp4" type="video/mp4">
+              </video>
+              <span class="fvideo-play" aria-hidden="true">▶</span>
+            </button>
+          </figure>
           <div class="f-icon icon-gold"><svg viewBox="0 0 24 24" fill="none"><path d="M5 5h14M5 9h14M5 13h14M5 17h14" stroke="#fff" stroke-width="2.2" stroke-linecap="round"></path><path d="M5 5l14 0M5 9l14 0M5 13l14 0M5 17l14 0" stroke="#fff" stroke-width="2.2" stroke-linecap="round" opacity="0.35"></path></svg></div>
           <h3>Highlight mờ trực quan, ngay trên trang</h3>
           <p>AI sẽ nhẹ nhàng làm nổi bật các <mark class="ai-ghost-highlight">đoạn trích nguyên văn quan trọng nhất</mark> trong bài viết — để bạn có thể <mark class="ai-ghost-highlight">nắm bắt nhanh các thông tin cốt lõi</mark>, và chúng sẽ đi kèm bản tóm tắt sang Kindle, LocalSend hoặc Markdown.</p>
         </div>
         <div class="feature-card" data-personas="privacy researcher">
+          <figure class="fvideo" data-blog-video="bibliothek">
+            <button class="fvideo-open" type="button"><span class="sr-only">Phát video</span>
+              <video muted="" playsinline="" loop="" preload="none" width="360" height="520" poster="../assets/blog/video/bibliothek-en.jpg">
+                <source src="../assets/blog/video/bibliothek-en.mp4" type="video/mp4">
+              </video>
+              <span class="fvideo-play" aria-hidden="true">▶</span>
+            </button>
+          </figure>
           <div class="f-icon icon-violet"><svg viewBox="0 0 24 24" fill="none"><path d="M11 4a7 7 0 1 0 4.9 12.1l4.6 4.6" stroke="#fff" stroke-width="1.7" stroke-linecap="round"></path></svg></div>
           <h3>Tìm kiếm thực thụ, ngay trên thiết bị</h3>
           <p>Tìm kiếm toàn văn (full-text) theo tiêu đề, thẻ (tag) và nội dung bài viết — được hỗ trợ bởi chỉ mục TF-IDF tích hợp ngay trong trình duyệt. Không có độ trễ kết nối, không giật lag, không gửi dữ liệu ra bên ngoài.</p>
         </div>
         <div class="feature-card" data-personas="hoarder">
+          <figure class="fvideo" data-blog-video="pocket">
+            <button class="fvideo-open" type="button"><span class="sr-only">Phát video</span>
+              <video muted="" playsinline="" loop="" preload="none" width="360" height="520" poster="../assets/blog/video/pocket-en.jpg">
+                <source src="../assets/blog/video/pocket-en.mp4" type="video/mp4">
+              </video>
+              <span class="fvideo-play" aria-hidden="true">▶</span>
+            </button>
+          </figure>
           <div class="f-icon icon-indigo"><svg viewBox="0 0 24 24" fill="none"><path d="M6 3h12v18l-6-4-6 4V3Z" stroke="#fff" stroke-width="1.6" stroke-linejoin="round"></path></svg></div>
           <h3>Lưu để đọc sau, có chủ đích</h3>
           <p>Gắn nhãn "quyết định" kèm lý do và mốc thời gian để được nhắc nhở — thay vì để bài viết biến mất vào một đống danh sách không bao giờ mở lại.</p>
         </div>
         <div class="feature-card" data-personas="hoarder">
+          <figure class="fvideo" data-blog-video="digest">
+            <button class="fvideo-open" type="button"><span class="sr-only">Phát video</span>
+              <video muted="" playsinline="" loop="" preload="none" width="360" height="520" poster="../assets/blog/video/digest-en.jpg">
+                <source src="../assets/blog/video/digest-en.mp4" type="video/mp4">
+              </video>
+              <span class="fvideo-play" aria-hidden="true">▶</span>
+            </button>
+          </figure>
           <div class="f-icon icon-gold"><svg viewBox="0 0 24 24" fill="none"><rect x="4" y="4" width="16" height="16" rx="3" stroke="#fff" stroke-width="1.6"></rect><path d="M8 9h8M8 13h5" stroke="#fff" stroke-width="1.6" stroke-linecap="round"></path></svg></div>
           <h3>Bản tin Digest tự động chọn lọc</h3>
           <p>Chỉ với một lần chạm, hệ thống sẽ tuyển chọn một danh sách bài lưu đa dạng — không bị trùng lặp chủ đề — và đóng gói thành một tệp duy nhất để gửi đến Kindle hoặc LocalSend.</p>
         </div>
         <div class="feature-card" data-personas="researcher">
+          <figure class="fvideo" data-blog-video="graph">
+            <button class="fvideo-open" type="button"><span class="sr-only">Phát video</span>
+              <video muted="" playsinline="" loop="" preload="none" width="360" height="520" poster="../assets/blog/video/graph-en.jpg">
+                <source src="../assets/blog/video/graph-en.mp4" type="video/mp4">
+              </video>
+              <span class="fvideo-play" aria-hidden="true">▶</span>
+            </button>
+          </figure>
           <div class="f-icon icon-cyan"><svg viewBox="0 0 24 24" fill="none"><circle cx="5" cy="6" r="1.8" fill="#fff"></circle><circle cx="19" cy="6" r="1.8" fill="#fff" opacity="0.85"></circle><circle cx="12" cy="12" r="2.1" fill="#fff"></circle><circle cx="6" cy="18" r="1.8" fill="#fff" opacity="0.85"></circle><circle cx="18" cy="18" r="1.8" fill="#fff" opacity="0.85"></circle><path d="M5 6 12 12M19 6 12 12M12 12 6 18M12 12 18 18" stroke="#fff" stroke-width="1.1" opacity="0.55"></path></svg></div>
           <h3>Sơ đồ tri thức, không chỉ là danh sách đơn thuần</h3>
           <p>Khám phá mối liên hệ giữa các bài viết đã lưu — qua các thẻ chung hoặc mức độ tương đồng về chủ đề ngay cả khi không có cùng thẻ tag.</p>
         </div>
         <div class="feature-card" data-personas="hoarder researcher">
+          <figure class="fvideo" data-blog-video="feeds">
+            <button class="fvideo-open" type="button"><span class="sr-only">Phát video</span>
+              <video muted="" playsinline="" loop="" preload="none" width="360" height="520" poster="../assets/blog/video/feeds-en.jpg">
+                <source src="../assets/blog/video/feeds-en.mp4" type="video/mp4">
+              </video>
+              <span class="fvideo-play" aria-hidden="true">▶</span>
+            </button>
+          </figure>
           <div class="f-icon icon-indigo"><svg viewBox="0 0 24 24" fill="none"><circle cx="6" cy="18" r="1.8" fill="#fff"></circle><path d="M5 11a8 8 0 0 1 8 8M5 5a14 14 0 0 1 14 14" stroke="#fff" stroke-width="1.8" stroke-linecap="round"></path></svg></div>
           <h3>Trình đọc RSS tích hợp sẵn</h3>
           <p>Theo dõi blog và các trang tin tức, lọc theo nguồn, thẻ, ngày hoặc cảm xúc, nhập tệp OPML và mở hoặc tóm tắt bất kỳ mục nào chỉ với một cú nhấp. Phát các kênh podcast ngay trên tiện ích mở rộng và tùy chọn nhận bản tóm tắt AI mỗi ngày từ các tiêu đề nổi bật. Mục yêu thích sẽ được lưu vào kho lưu trữ cá nhân, và toàn bộ dữ liệu nguồn cấp đều được lưu trữ trực tiếp trên thiết bị của bạn.</p>
         </div>
         <div class="feature-card" data-personas="privacy hoarder researcher">
+          <figure class="fvideo" data-blog-video="sprache">
+            <button class="fvideo-open" type="button"><span class="sr-only">Phát video</span>
+              <video muted="" playsinline="" loop="" preload="none" width="360" height="520" poster="../assets/blog/video/sprache-en.jpg">
+                <source src="../assets/blog/video/sprache-en.mp4" type="video/mp4">
+              </video>
+              <span class="fvideo-play" aria-hidden="true">▶</span>
+            </button>
+          </figure>
           <div class="f-icon icon-violet"><svg viewBox="0 0 24 24" fill="none"><path d="M4 12h16M12 4c2.8 2.6 4.2 5.2 4.2 8s-1.4 5.4-4.2 8c-2.8-2.6-4.2-5.2-4.2-8s1.4-5.4 4.2-8Z" stroke="#fff" stroke-width="1.5"></path></svg></div>
           <h3>Hơn 20 ngôn ngữ, đa nền tảng</h3>
           <p>Đọc và tóm tắt bằng bất kỳ ngôn ngữ nào bạn chọn. Tiện ích mở rộng, thanh bên (side panel) tích hợp, hoặc <a href="../bookmarklet.html">bookmarklet</a> — giải pháp cho mọi nơi mà tiện ích mở rộng trình duyệt không thể tiếp cận.</p>
