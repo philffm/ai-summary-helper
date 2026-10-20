@@ -2,3 +2,4 @@ User-agent: *
 Allow: /
 
 Sitemap: https://ai-summary-helper.byphil.eu/sitemap.xml
+Sitemap: https://ai-summary-helper.byphil.eu/sitemap-index.xml

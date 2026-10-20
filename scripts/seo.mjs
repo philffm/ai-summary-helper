@@ -141,7 +141,9 @@ for (const e of entries) {
 }
 xml += `</urlset>\n`;
 fs.writeFileSync(path.join(DOCS, 'sitemap.xml'), xml);
-fs.writeFileSync(path.join(DOCS, 'robots.txt'), `User-agent: *\nAllow: /\n\nSitemap: ${BASE}/sitemap.xml\n`);
+// Identical copy under a second name: a fresh filename can get past a stuck "Couldn't fetch" in Search Console.
+fs.writeFileSync(path.join(DOCS, 'sitemap-index.xml'), xml);
+fs.writeFileSync(path.join(DOCS, 'robots.txt'), `User-agent: *\nAllow: /\n\nSitemap: ${BASE}/sitemap.xml\nSitemap: ${BASE}/sitemap-index.xml\n`);
 
 // llms.txt: a plain-text map for AI assistants and answer engines (English pages only; each links to its translations via hreflang).
 const en = entries.filter((e) => !isLocalized(e.rel));
