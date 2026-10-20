@@ -1,6 +1,8 @@
 package eu.byphil.aishcompanion
 
 import org.junit.Assert.assertEquals
+import org.junit.Assert.assertFalse
+import org.junit.Assert.assertTrue
 import org.junit.Test
 
 class FeedStacksTest {
@@ -29,5 +31,20 @@ class FeedStacksTest {
 
     @Test fun shortUnrelatedTitlesStayApart() {
         assertEquals(2, FeedStacks.stack(listOf(e("1", "Weather today", 1), e("2", "Weather tomorrow", 2))).size)
+    }
+
+    // CJK is detected by Unicode script (no regex: \p{IsHan} crashed older Android at start), titles become bigrams
+    @Test fun cjkTitlesAreSplitIntoCharacterPairs() {
+        val ja = FeedStacks.tokens("東京で地震")
+        assertTrue(ja.cjk); assertTrue("東京" in ja.words && "地震" in ja.words)
+        assertTrue(FeedStacks.tokens("서울 날씨").cjk)       // Hangul
+        assertTrue(FeedStacks.tokens("カタカナ").cjk)        // Katakana
+        assertTrue(FeedStacks.tokens("北京新闻").cjk)        // Han
+        assertFalse(FeedStacks.tokens("Climate law announced").cjk)
+    }
+
+    @Test fun sameCjkStoryStacks() {
+        val s = FeedStacks.stack(listOf(e("1", "東京で大きな地震が発生しました", 1), e("2", "東京で大きな地震が発生", 2), e("3", "大阪の天気予報", 3)))
+        assertEquals(2, s.size)
     }
 }

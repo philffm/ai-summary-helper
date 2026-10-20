@@ -19,7 +19,14 @@ object FeedStacks {
     private val STOP = ("the a an of to in on for and or at by with is are as from over after new says " +
         "der die das und im zu von mit für ein eine nach über neu el la los las de del y en un una por con " +
         "le les un une et du des pour dans il lo gli di da per con o os as um uma do da dos das и в на с по для").split(Regex("\\s+")).toSet()
-    private val CJK = Regex("[\\p{IsHan}\\p{IsHiragana}\\p{IsKatakana}\\p{IsHangul}]")
+    // CJK by Unicode script, not by regex: Android's ICU regex engine rejects Java's \p{IsHan} names on older
+    // versions (U_ILLEGAL_ARGUMENT_ERROR, seen on Android 9 / LG G6), and because this object compiles its patterns
+    // when it loads, that crashed the app at start. Character.UnicodeScript is plain JDK (API 24+, minSdk is 26).
+    private val CJK_SCRIPTS = setOf(
+        Character.UnicodeScript.HAN, Character.UnicodeScript.HIRAGANA,
+        Character.UnicodeScript.KATAKANA, Character.UnicodeScript.HANGUL,
+    )
+    private fun hasCjk(s: String): Boolean = s.codePoints().anyMatch { Character.UnicodeScript.of(it) in CJK_SCRIPTS }
     private val MARKS = Regex("\\p{M}")
     private val NUMBER = Regex("^\\p{N}+$")
     private val SPLIT = Regex("[^\\p{L}\\p{N}]+")
@@ -34,7 +41,7 @@ object FeedStacks {
         for (w in s.split(SPLIT)) {
             if (w.isEmpty()) continue
             if (NUMBER.matches(w)) { nums.add(w); words.add(w); continue }
-            if (CJK.containsMatchIn(w)) {
+            if (hasCjk(w)) {
                 cjk = true
                 if (w.length == 1) words.add(w)
                 for (k in 0 until w.length - 1) words.add(w.substring(k, k + 2))
