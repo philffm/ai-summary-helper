@@ -1188,10 +1188,48 @@ function setBilling(period) {
 (function () {
   var groups = Array.prototype.slice.call(document.querySelectorAll('[data-vstack], [data-vgroup]'));
   if (!groups.length) return;
-  var labels = {};
-  Array.prototype.forEach.call(document.querySelectorAll('.vfeed-labels [data-l]'), function (el) { labels[el.getAttribute('data-l')] = el.textContent; });
+  var labels = {}, phoneHref = null;
+  Array.prototype.forEach.call(document.querySelectorAll('.vfeed-labels [data-l]'), function (el) {
+    labels[el.getAttribute('data-l')] = el.textContent;
+    if (el.tagName === 'A') phoneHref = el.getAttribute('href');
+  });
   var canHover = window.matchMedia && window.matchMedia('(hover: hover)').matches;
-  var feed, track, slides, dots, muteBtn, io, muted = false, lastFocus = null, hinted = false;
+  var feed, track, slides, dots, muteBtn, io, toast, muted = false, lastFocus = null, hinted = false;
+  var T = function () { if (window.aishTrack) window.aishTrack.apply(null, arguments); };
+
+  /* The install button under every clip, for the browser it is watched in: Firefox (desktop and Android) gets the add-on,
+     desktop Chromium browsers the Chrome Web Store (Edge, Brave and Opera install from there too), Safari and other
+     phones the bookmarklet page. Older translated pages without the labels fall back to English. */
+  var install = (function () {
+    var ua = navigator.userAgent || '';
+    var CWS = 'https://chromewebstore.google.com/detail/ai-summary-helper-openai/hldbejcjaedipeegjcinmhejdndchkmb';
+    var mobile = /Mobi|Android|iPhone|iPad|iPod/i.test(ua) || (/Macintosh/.test(ua) && navigator.maxTouchPoints > 1);
+    if (/Firefox\//.test(ua)) return { href: 'https://addons.mozilla.org/en-US/firefox/addon/ai-summary-helper/', text: labels.add_firefox || 'Add to Firefox — it’s free', store: 'firefox' };
+    if (mobile || !/Chrome\//.test(ua)) return { href: phoneHref || 'bookmarklet.html', text: labels['try'] || 'Try it in your browser — it’s free', store: 'bookmarklet' };
+    if (/Edg\/|OPR\//.test(ua) || navigator.brave) return { href: CWS, text: labels.add_browser || 'Add to your browser — it’s free', store: 'chrome' };
+    return { href: CWS, text: labels.add_chrome || 'Add to Chrome — it’s free', store: 'chrome' };
+  })();
+
+  // Shareable link to one clip: this page with #v=<clip>; opening it starts the player at that clip.
+  function clipUrl(id) { return location.origin + location.pathname + '#v=' + encodeURIComponent(id); }
+  function setHash(id) { try { history.replaceState(null, '', id ? '#v=' + encodeURIComponent(id) : location.pathname + location.search); } catch (e) {} }
+  function flash(text) {
+    if (!toast) { toast = document.createElement('div'); toast.className = 'vfeed-toast'; toast.setAttribute('role', 'status'); feed.appendChild(toast); }
+    toast.textContent = text; toast.classList.remove('on'); void toast.offsetWidth; toast.classList.add('on');
+  }
+  function share(fig) {
+    var id = fig.getAttribute('data-blog-video'), url = clipUrl(id);
+    var tmp = document.createElement('div'); tmp.innerHTML = captionHtml(fig);
+    var title = (tmp.querySelector('strong') || tmp).textContent.trim();
+    T('Video', 'share', id);
+    if (navigator.share) {
+      navigator.share({ title: title, text: title, url: url }).catch(function () {});   // cancelled: nothing to do
+      return;
+    }
+    var done = function () { flash(labels.copied || 'Link copied'); };
+    if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(url).then(done, function () { window.prompt('', url); });
+    else window.prompt('', url);
+  }
 
   function captionHtml(fig) {
     var cap = fig.querySelector('figcaption');
@@ -1326,6 +1364,7 @@ function setBilling(period) {
           v.play().catch(function () { muted = true; paintMute(); v.play().catch(function () {}); });   // autoplay with sound refused
           var k = Array.prototype.indexOf.call(slides, e.target);
           Array.prototype.forEach.call(dots.children, function (d, j) { d.classList.toggle('on', j === k); });
+          if (!feed.hidden) setHash(e.target.getAttribute('data-clip'));   // the address bar always points at the clip on screen
         } else if (!v.paused) v.pause();
       });
     }, { root: track, threshold: [0, 0.6] });
@@ -1350,6 +1389,19 @@ function setBilling(period) {
       v.addEventListener('click', function () { if (v.paused) v.play().catch(function () {}); else v.pause(); });
       var cap = document.createElement('div'); cap.className = 'vfeed-cap';
       cap.innerHTML = captionHtml(fig);
+      // below the caption: install button for this browser + share, in one row (nothing is laid over the video)
+      var row = document.createElement('div'); row.className = 'vfeed-actions';
+      if (install) {
+        var a = document.createElement('a');
+        a.className = 'vfeed-install'; a.href = install.href; a.textContent = install.text;
+        if (/^https?:/.test(install.href)) { a.target = '_blank'; a.rel = 'noopener'; }
+        a.addEventListener('click', function () { T('CTA', 'video_install_' + install.store, fig.getAttribute('data-blog-video')); });
+        row.appendChild(a);
+      }
+      var sh = btn('vfeed-share', '', labels.share || 'Share', function () { share(fig); });
+      sh.innerHTML = '<svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12v7a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-7"/><path d="M16 6l-4-4-4 4"/><path d="M12 2v13"/></svg>';
+      row.appendChild(sh); cap.appendChild(row);
+      slide.setAttribute('data-clip', fig.getAttribute('data-blog-video'));
       slide.appendChild(v); slide.appendChild(cap); track.appendChild(slide);
       dots.appendChild(document.createElement('i'));
     });
@@ -1376,6 +1428,18 @@ function setBilling(period) {
     Array.prototype.forEach.call(slides, function (s) { s.querySelector('video').pause(); });
     feed.hidden = true;
     document.documentElement.classList.remove('vfeed-open');
+    setHash(null);
     if (lastFocus) lastFocus.focus();
   }
+
+  // A shared link (#v=<clip>) opens the player at that clip, with the group it belongs to.
+  var m = /^#v=([\w-]+)$/.exec(location.hash);
+  if (m) groups.some(function (group) {
+    var figs = Array.prototype.slice.call(group.querySelectorAll('figure[data-blog-video]'));
+    var i = figs.map(function (f) { return f.getAttribute('data-blog-video'); }).indexOf(m[1]);
+    if (i < 0) return false;
+    T('Video', 'open_shared', m[1]);
+    open(figs, i);
+    return true;
+  });
 })();

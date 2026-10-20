@@ -1258,22 +1258,33 @@ body:has(.nav--pill){padding-top:88px}
 html.vfeed-open, html.vfeed-open body{ overflow:hidden; }
 .vfeed-track{ height:100%; overflow-y:auto; scroll-snap-type:y mandatory; overscroll-behavior:contain; scrollbar-width:none; }
 .vfeed-track::-webkit-scrollbar{ display:none; }
-.vfeed-slide{ position:relative; height:100vh; height:100dvh; scroll-snap-align:start; scroll-snap-stop:always; display:flex; align-items:center; justify-content:center; }
-.vfeed-slide video{ height:100%; width:auto; max-width:100%; aspect-ratio:1080/1560; object-fit:contain; background:#000; cursor:pointer; }
-.vfeed-cap{ position:absolute; left:0; right:0; bottom:0; padding:60px 20px calc(24px + env(safe-area-inset-bottom)); background:linear-gradient(transparent, rgba(0,0,0,.82)); pointer-events:none; }
+.vfeed-slide{ position:relative; height:100vh; height:100dvh; scroll-snap-align:start; scroll-snap-stop:always; display:flex; flex-direction:column; }
+/* the video takes what the caption leaves: never covered, letterboxed in black */
+.vfeed-slide video{ flex:1 1 0; min-height:0; width:100%; object-fit:contain; background:#000; cursor:pointer; padding-top:env(safe-area-inset-top); box-sizing:border-box; }
+.vfeed-cap{ flex:none; padding:12px 20px calc(18px + env(safe-area-inset-bottom)); }
 .vfeed-cap > *{ max-width:520px; margin-left:auto; margin-right:auto; display:block; }
 .vfeed-cap strong{ font-size:18px; margin-bottom:4px; }
 .vfeed-cap span{ font-size:14.5px; line-height:1.5; color:rgba(255,255,255,.82); }
-.vfeed-cap a{ margin-top:8px; font-weight:600; color:#8ab8ff; pointer-events:auto; }
+.vfeed-cap a{ margin-top:8px; font-weight:600; color:#8ab8ff; }
 .vfeed-btn{ position:absolute; z-index:2; width:44px; height:44px; border-radius:50%; border:1px solid rgba(255,255,255,.3); background:rgba(20,22,30,.55); color:#fff; font-size:20px; line-height:1; cursor:pointer; backdrop-filter:blur(6px); }
 .vfeed-close{ top:calc(14px + env(safe-area-inset-top)); right:14px; font-size:26px; }
 .vfeed-mute{ top:calc(66px + env(safe-area-inset-top)); right:14px; font-size:17px; }
 .vfeed-dots{ position:absolute; z-index:2; right:30px; top:50%; transform:translateY(-50%); display:flex; flex-direction:column; gap:7px; }
+@media (max-width:600px){ .vfeed-dots{ display:none; } }   /* the video is full width there: nothing on top of it */
 .vfeed-dots i{ width:6px; height:6px; border-radius:50%; background:rgba(255,255,255,.35); transition:background .2s, transform .2s; }
 .vfeed-dots i.on{ background:#fff; transform:scale(1.4); }
 .vfeed-hint{ position:absolute; z-index:2; left:50%; bottom:calc(150px + env(safe-area-inset-bottom)); transform:translateX(-50%); padding:8px 16px; border-radius:999px; background:rgba(20,22,30,.7); font-size:13px; animation:vfeed-hint 2.6s ease forwards; pointer-events:none; }
 @keyframes vfeed-hint{ 0%{ opacity:0; transform:translate(-50%, 10px); } 15%,75%{ opacity:1; transform:translate(-50%, 0); } 100%{ opacity:0; } }
-@media (prefers-reduced-motion: reduce){ .vstack-item{ transition:none; } .vfeed-hint{ animation:none; } }
+/* share (TikTok-style, right edge above the caption) and the install button for the viewer's browser */
+.vfeed-cap .vfeed-actions{ display:flex; align-items:center; gap:10px; margin-top:12px; }
+.vfeed-share{ position:static; flex:none; display:grid; place-items:center; }
+.vfeed-cap a.vfeed-install{ display:block; min-width:0; margin:0; padding:11px 20px; border-radius:999px; background:var(--cta-sky-2); color:var(--on-accent); font-size:15px; font-weight:700; text-decoration:none; }
+.vfeed-cap a.vfeed-install:hover{ filter:brightness(1.06); }
+.vfeed-cap a.vfeed-install:focus-visible{ outline:3px solid #fff; outline-offset:2px; }
+.vfeed-toast{ position:absolute; z-index:3; left:50%; top:calc(20px + env(safe-area-inset-top)); transform:translateX(-50%); padding:8px 16px; border-radius:999px; background:rgba(20,22,30,.85); font-size:13.5px; opacity:0; pointer-events:none; }
+.vfeed-toast.on{ animation:vfeed-toast 2.2s ease forwards; }
+@keyframes vfeed-toast{ 0%{ opacity:0; } 10%,80%{ opacity:1; } 100%{ opacity:0; } }
+@media (prefers-reduced-motion: reduce){ .vstack-item{ transition:none; } .vfeed-hint{ animation:none; } .vfeed-toast.on{ animation:none; opacity:1; } }
 
 /* ── Landing feature cards: the clip peeks out of the bottom corner, tilted like the Watch stack; text runs full width ── */
 #featureGrid .feature-card{ position:relative; overflow:hidden; padding-bottom:78px; }
