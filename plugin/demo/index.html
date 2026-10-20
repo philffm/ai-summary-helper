@@ -10,6 +10,7 @@
 .bar{padding:9px 14px;border-bottom:1px solid var(--line);font-size:12.5px;color:var(--dim);display:flex;gap:8px;align-items:center}.bar i{width:9px;height:9px;border-radius:50%;background:var(--line)}
 article{padding:clamp(22px,2.4vw,44px) clamp(24px,3vw,56px);overflow:auto;font-size:clamp(16px,1.1vw,19px)}article h1{font-size:clamp(26px,2.1vw,38px);line-height:1.2;margin:0 0 6px}.meta{color:var(--dim);font-size:13.5px;margin-bottom:18px}
 article mark{background:rgba(76,141,255,.28);color:inherit;border-radius:3px;padding:1px 0;box-shadow:0 0 0 3px rgba(76,141,255,.28)}
+article mark.user{background:rgba(255,214,10,.42);box-shadow:0 0 0 3px rgba(255,214,10,.42)}
 iframe{flex:1;border:0;width:100%;min-height:0;background:transparent}
 .hint{position:fixed;left:50%;bottom:14px;transform:translateX(-50%);font-size:13px;background:var(--card);border:1px solid var(--line);border-radius:99px;padding:6px 14px;color:var(--dim)}
 /* The embedding page chooses the theme (?theme=…); it wins over the OS preference. */
@@ -92,12 +93,13 @@ art0.querySelectorAll('p').forEach((el, i) => { el.textContent = A.paragraphs[i]
 addEventListener('message', (e) => {
   const m = e.data;
   if (m && m.aishDemo && m.type === 'theme' && (m.theme === 'light' || m.theme === 'dark')) { document.documentElement.setAttribute('data-theme', m.theme); if (e.source !== appFrame.contentWindow) { try { appFrame.contentWindow.postMessage(m, '*'); } catch (_) { /* not ready */ } } return; }   // from the host: pass on to the popup; from the popup (Appearance): only the page follows
+  // highlight: the panel shows where an answer came from (blue); { user: true } is a reader's own marker (yellow, videos)
   if (!m || !m.aishDemo || m.type !== 'highlight') return;
   const art = document.getElementById('art'); art.querySelectorAll('mark').forEach(x => x.replaceWith(...x.childNodes)); art.normalize();
   if (!m.quote) return;
   const w = document.createTreeWalker(art, NodeFilter.SHOW_TEXT); let n;
   while ((n = w.nextNode())) { const i = n.nodeValue.toLowerCase().indexOf(m.quote.toLowerCase()); if (i < 0) continue;
-    const r = document.createRange(); r.setStart(n, i); r.setEnd(n, i + m.quote.length); const k = document.createElement('mark'); r.surroundContents(k); k.scrollIntoView({ behavior: 'smooth', block: 'center' }); break; }
+    const r = document.createRange(); r.setStart(n, i); r.setEnd(n, i + m.quote.length); const k = document.createElement('mark'); if (m.user) k.className = 'user'; r.surroundContents(k); k.scrollIntoView({ behavior: 'smooth', block: 'center' }); break; }
 });
 </script>
 <script src="app/demo-tour.js"></script></body></html>

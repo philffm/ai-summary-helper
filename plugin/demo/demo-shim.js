@@ -3,9 +3,13 @@
 (() => {
   const D = window.AISH_DEMO;
   const clone = (v) => JSON.parse(JSON.stringify(v));
+  // Whether the summary style the user last saved has the "Standup humor" extra (prompt settings keep a "focus" list):
+  // the background worker that would turn it into a prompt does not exist here, so the shim decides which recording plays.
+  let styleHasStandup = false;
+  const noteStyle = (o) => { try { const js = JSON.stringify(o); if (js.includes('"focus"')) styleHasStandup = js.includes('"standup"'); } catch (e) { /* not serialisable */ } };
   const mk = () => { const d = {}, ls = new Set(); const area = {
     get: (k, cb) => { let o = {}; if (k == null) o = { ...d }; else if (typeof k === 'string') { if (k in d) o[k] = d[k]; } else if (Array.isArray(k)) k.forEach(x => { if (x in d) o[x] = d[x]; }); else Object.keys(k).forEach(x => { o[x] = x in d ? d[x] : k[x]; }); o = clone(o); if (cb) { cb(o); return; } return Promise.resolve(o); },
-    set: (o, cb) => { const ch = {}; for (const k in o) { ch[k] = { oldValue: d[k], newValue: o[k] }; d[k] = clone(o[k]); } ls.forEach(f => f(ch)); if (cb) { cb(); return; } return Promise.resolve(); },
+    set: (o, cb) => { noteStyle(o); const ch = {}; for (const k in o) { ch[k] = { oldValue: d[k], newValue: o[k] }; d[k] = clone(o[k]); } ls.forEach(f => f(ch)); if (cb) { cb(); return; } return Promise.resolve(); },
     remove: (k, cb) => { [].concat(k).forEach(x => delete d[x]); if (cb) { cb(); return; } return Promise.resolve(); },
     clear: (cb) => { for (const k in d) delete d[k]; if (cb) cb(); return Promise.resolve(); },
     getBytesInUse: (a, cb) => { if (cb) cb(0); return Promise.resolve(0); } };
@@ -58,13 +62,16 @@
     (D.library || []).forEach((a, i) => {
       const d = new Date(); d.setDate(d.getDate() - a.daysAgo); d.setHours(a.hour, (i * 7) % 60, 0, 0);
       const ts = d.toISOString(), id = 'article_demo_' + i;
-      const summary = '<h3>Key points</h3><ul><li>' + a.title + '.</li><li>Context, evidence and what to read next.</li></ul>';
+      const T = D.libraryText || { keyPoints: 'Key points', tail: 'Context, evidence and what to read next.' };
+      const summary = '<h3>' + T.keyPoints + '</h3><ul><li>' + a.title + '</li><li>' + T.tail + '</li></ul>';
       idx.push({ id, title: a.title, url: 'https://' + a.host + '/' + slug(a.title), timestamp: ts, tags: a.tags, modelId: 'demo', summaryLength: 200, summary,
         contentWordCount: a.words, summaryWordCount: 60, archived: false, lastOpened: ts, moodScore: a.mood });
       recs['articles:rec:' + id] = { content: '<p>' + a.title + '</p>', summary, description: '' };
     });
     idx.sort((x, y) => x.timestamp < y.timestamp ? -1 : 1);
     local.set({ 'articles:index': idx, ...recs });
+    // Topic names per language (demo-library-i18n.js), so tags show up translated in History and the graph.
+    if (D.topicLexicon) local.set({ 'topics:lexicon': D.topicLexicon });
   })();
   // A few subscriptions with recent items, so Feeds has something to read.
   (() => {
@@ -96,17 +103,51 @@
   const deliver = (m) => msgL.forEach(f => { try { f(clone(m), { id: 'demo' }, () => {}); } catch (e) { console.error(e); } });
   const bc = (m) => { if (MANUAL) later(0, () => deliver(m)); else setTimeout(() => deliver(m), 0); };
   if (MANUAL) {
+    let fired = 0; // virtual callbacks run so far (a host can skip waiting when an advance ran none)
+    let started = false; // the host's first advance(): from then on the popup's own timers run on the virtual clock too
     const advance = (to) => {
+      if (!started) {
+        started = true;
+        // The load handler below fires a 'change' on the language select after 600 ms of REAL time, and whether the
+        // settings screen had already attached its listener (it refreshes the row subtitles, e.g. "Preset: ✨ Build my
+        // own") depended on how fast the render tab booted: one of four tabs showed other subtitles. Fire it once
+        // more now that everything has booted, so the refresh runs on the virtual clock in every tab alike.
+        const sel = document.getElementById('languageSelect'); if (sel) sel.dispatchEvent(new Event('change', { bubbles: true }));
+      }
       for (;;) {
         let k = -1;
         for (let i = 0; i < vq.length; i++) if (!vq[i].dead && vq[i].at <= to && (k < 0 || vq[i].at < vq[k].at)) k = i;
         if (k < 0) break;
-        const h = vq.splice(k, 1)[0]; vnow = Math.max(vnow, h.at); h.fn();
+        const h = vq.splice(k, 1)[0]; vnow = Math.max(vnow, h.at); fired++; h.fn();
       }
       vnow = Math.max(vnow, to);
       stepGraphs();
+      placeAnimations();
       return vnow;
     };
+    // CSS transitions and animations (panels opening, cards growing, the source highlight in the article) run on the
+    // browser's real clock, so a capture caught them wherever real time happened to be: in the videos the panel moved
+    // in steps every other frame. In manual mode every animation is paused the moment it starts and then placed by
+    // virtual time on each advance (Web Animations API), in the popup and in the demo page around it.
+    const animDocs = [document];
+    try { if (parent !== window && parent.document) animDocs.push(parent.document); } catch (e) { /* not same-origin */ }
+    const anims = new Map();   // Animation -> virtual time it started
+    const adoptAnimations = () => animDocs.forEach((d) => d.getAnimations().forEach((a) => {
+      if (anims.has(a)) return;
+      anims.set(a, vnow); a.pause(); a.currentTime = 0;
+    }));
+    const placeAnimations = () => {
+      adoptAnimations();
+      for (const [a, t0] of anims) {
+        if (a.playState === 'idle') { anims.delete(a); continue; }
+        const end = a.effect?.getComputedTiming().endTime ?? Infinity, t = vnow - t0;
+        if (Number.isFinite(end) && t >= end) { a.finish(); anims.delete(a); } else a.currentTime = t;
+      }
+    };
+    animDocs.forEach((d) => ['transitionrun', 'animationstart'].forEach((ev) => d.addEventListener(ev, adoptAnimations, true)));
+    // CSS smooth scrolling would animate in real time too.
+    const noSmooth = () => animDocs.forEach((d) => { const st = d.createElement('style'); st.textContent = '*{scroll-behavior:auto!important}'; d.documentElement.appendChild(st); });
+    if (document.documentElement) noSmooth(); else addEventListener('DOMContentLoaded', noSmooth);
     // The knowledge graph (archiveGraph.js) is a D3 force simulation that ticks on a real-time animation loop, so every
     // capture would catch a different layout. Here it is driven by the virtual clock instead: as soon as D3 loads, each
     // new simulation is stopped and advance() runs exactly as many ticks as real time would have (60/s). D3's force
@@ -135,14 +176,44 @@
     // busy(): requests in flight (translations, assets). localesLoaded(): finished _locales/*.json requests, so a host
     // can wait until the UI is really translated (the English fallback + the UI language = 2) before it starts clicking.
     // synced(): the summary-language chip has been brought in line with ?lang (see the end of this file).
-    window.AISH_CLOCK = { advance, now: () => vnow, busy: () => net.pending > 0, localesLoaded: () => net.locales, synced: () => Boolean(window.AISH_DEMO_SYNCED) };
+    window.AISH_CLOCK = { advance, now: () => vnow, fired: () => fired, busy: () => net.pending > 0, localesLoaded: () => net.locales, synced: () => Boolean(window.AISH_DEMO_SYNCED) };
+    // The extension's own timers (search debounce, toasts, delayed UI steps) would otherwise run in real time, so how
+    // far they got at a capture depended on how busy the render tab was: one of Remotion's parallel tabs showed a
+    // different screen every 4th frame. Once the host drives the clock, setTimeout/setInterval join the virtual queue.
+    // Before that (booting, loading translations) they stay real, because the host waits for the boot before advancing.
+    const realSetTimeout = window.setTimeout.bind(window), realClearTimeout = window.clearTimeout.bind(window);
+    const realSetInterval = window.setInterval.bind(window), realClearInterval = window.clearInterval.bind(window);
+    const call = (fn, args) => (typeof fn === 'function' ? fn(...args) : (0, eval)(String(fn)));
+    // At least 1 ms (browsers clamp too), so a timer that keeps re-arming itself with 0 ms can't hold advance() forever.
+    window.setTimeout = (fn, ms, ...args) => (started ? later(Math.max(1, Number(ms) || 0), () => call(fn, args)) : realSetTimeout(fn, ms, ...args));
+    window.setInterval = (fn, ms, ...args) => {
+      if (!started) return realSetInterval(fn, ms, ...args);
+      const every = Math.max(1, Number(ms) || 0), h = { dead: false, cur: null };
+      const tick = () => { if (h.dead) return; h.cur = later(every, tick); call(fn, args); };
+      h.cur = later(every, tick);
+      return h;
+    };
+    const clear = (h, real) => { if (h && typeof h === 'object') { h.dead = true; if (h.cur) h.cur.dead = true; } else real(h); };
+    window.clearTimeout = (h) => clear(h, realClearTimeout);
+    window.clearInterval = (h) => clear(h, realClearInterval);
+    // requestAnimationFrame too, at a 60 Hz beat: the extension scrolls to new content in a rAF callback, and whether that
+    // ran before or after a (virtual) timer that changes the feed depended on when the render tab happened to paint —
+    // two of Remotion's four tabs ended up 40 px apart, which looked like stutter. The host waits with the real one (raf).
+    const realRaf = window.requestAnimationFrame.bind(window), realCancelRaf = window.cancelAnimationFrame.bind(window);
+    window.requestAnimationFrame = (cb) => (started ? later(16, () => cb(vnow)) : realRaf(cb));
+    window.cancelAnimationFrame = (h) => clear(h, realCancelRaf);
+    window.AISH_CLOCK.raf = realRaf;
     // Anything that reads the wall clock (elapsed counters) or animates a scroll in real time would differ from
     // render to render: tie Date.now() to the virtual clock and make every programmatic scroll instant.
     const t0 = Date.now(); Date.now = () => t0 + vnow;
     const instant = (o) => (o && typeof o === 'object' ? { ...o, behavior: 'auto' } : o);
-    for (const k of ['scrollIntoView', 'scrollTo', 'scroll', 'scrollBy']) {
-      const orig = Element.prototype[k]; if (orig) Element.prototype[k] = function (...a) { return orig.apply(this, [instant(a[0]), ...a.slice(1)]); };
-    }
+    // In the popup AND the demo page around it (another realm with its own prototypes), and for window.scrollTo too:
+    // a native smooth scroll runs in real time, so the video showed the panel gliding in steps every other frame.
+    const realms = [window];
+    try { if (parent !== window && parent.Element) realms.push(parent); } catch (e) { /* not same-origin */ }
+    realms.forEach((w) => [w.Element.prototype, w].forEach((target) => ['scrollIntoView', 'scrollTo', 'scroll', 'scrollBy'].forEach((k) => {
+      const orig = target[k]; if (typeof orig === 'function') target[k] = function (...a) { return orig.apply(this, [instant(a[0]), ...a.slice(1)]); };
+    })));
     addEventListener('message', (e) => { const m = e.data; if (m && m.aishDemo && m.type === 'advance' && typeof m.t === 'number') advance(m.t); });
   }
   const toParent = (m) => { try { parent !== window && parent.postMessage({ aishDemo: true, ...m }, '*'); } catch (_) { /* standalone */ } };
@@ -166,9 +237,30 @@
       case 'summaryJobs': return respond({ ok: true, jobs: [], running: false });
       case 'queueSummary': {
         respond({ ok: true });
-        stream(D.summary.stream, D.summary.html); return;
+        // A prompt with the "Standup humor" extra gets the playful recording (demo-library-i18n.js), anything else the normal one.
+        const S = D.summaryFun && (styleHasStandup || /standup comedian/i.test(String(m.message || ''))) ? D.summaryFun : D.summary;
+        stream(S.stream, S.html); return;
       }
       case 'aiComplete': {   // follow-up answers: streamed as aiProgress deltas, then returned whole with SOURCES / QUESTIONS like a real model
+        if (/saved article summaries/i.test(String(m.system || ''))) {   // the graph's "✨ Brief me on this topic" (feedAi.askCluster)
+          const n = Math.max(1, ...[...String(m.user || '').matchAll(/\[(\d+)\]/g)].map((x) => Number(x[1])));
+          const lines = (D.topicBriefing || ['- {1} {2}']).map((l) => l.replace(/\{(\d+)\}/g, (_, k) => '[' + Math.min(n, Number(k)) + ']'));
+          const text = lines.join('\n');
+          let n2 = 0; const id = m.id;
+          const tick = () => { const part = text.slice(n2, n2 + (MANUAL ? 6 : 24)); if (!part) return respond({ ok: true, text }); n2 += part.length; bc({ action: 'aiProgress', id, from: n2 - part.length, delta: part, phase: 'stream' }); later(MANUAL ? 13 : 60, tick); };
+          later(500, tick); return;
+        }
+        if (/news-digest recap/i.test(String(m.system || ''))) {   // the feeds' "✨ Recap": a recorded briefing in the format feedAi.parseRecap reads
+          const R = D.feedRecap || { overview: 'A quiet day in your feeds.', themes: [], mood: 'mixed' };
+          const n = Math.max(1, ...[...String(m.user || '').matchAll(/\[(\d+)\]/g)].map((x) => Number(x[1])));
+          const LBL = ['Tech', 'Climate', 'Design', 'Politics', 'Science', 'Health'];
+          const nums = Array.from({ length: n }, (_, i) => i + 1);
+          const text = 'SCORES: ' + nums.map((i) => i + ':' + [2, 1, 3, 0, -1, 2][i % 6]).join(' | ') + '\nLABELS: ' + nums.map((i) => i + ':' + LBL[i % LBL.length]).join(' | ')
+            + '\n' + R.overview + '\n' + R.themes.map((t) => '- ' + t).join('\n') + '\nMOOD: ' + R.mood;
+          let n2 = 0; const id = m.id;
+          const tick = () => { const part = text.slice(n2, n2 + (MANUAL ? 6 : 24)); if (!part) return respond({ ok: true, text }); n2 += part.length; bc({ action: 'aiProgress', id, from: n2 - part.length, delta: part, phase: 'stream' }); later(MANUAL ? 13 : 60, tick); };
+          later(500, tick); return;
+        }
         const q = String(m.user || '').split(/Question:\s*/i).pop() || '';
         const a = D.asks.find(x => x.match.test(q)) || D.asks[D.asks.length - 1];
         const full = a.text + '\nSOURCES: ' + a.sources.map(x => '"' + x + '"').join(' ') + '\nQUESTIONS: ' + JSON.stringify(a.questions);
@@ -205,6 +297,11 @@
   window.fetch = (u, o, ...a) => {
     const url = String(u);
     if (/api\.byphil\.eu\/.*\/aish_inboxes\/[^/]+\/items/.test(url) && o && o.method === 'POST') return new Promise(r => setTimeout(() => r(new Response('{}', { status: 202, headers: { 'Content-Type': 'application/json' } })), 700));
+    // A local Ollama "running" (the privacy video switches to it): a couple of installed models, so the panel shows them.
+    if (/^https?:\/\/(localhost|127\.0\.0\.1):11434\//.test(url)) {
+      const body = /\/api\/tags/.test(url) ? { models: [{ name: 'llama3.2:3b', size: 2019393189 }, { name: 'qwen2.5:7b', size: 4683087332 }, { name: 'gemma3:4b', size: 3338801804 }] } : /\/api\/version/.test(url) ? { version: '0.6.5' } : {};
+      return Promise.resolve(new Response(JSON.stringify(body), { status: 200, headers: { 'Content-Type': 'application/json' } }));
+    }
     if (/\/kindle$/.test(url) && o && o.method === 'POST') return new Promise(r => setTimeout(() => r(new Response('{"success":true}', { status: 200, headers: { 'Content-Type': 'application/json' } })), 900));
     if (/^https?:/.test(url) && !url.startsWith(location.origin)) return Promise.reject(new TypeError('offline demo'));
     net.pending++;
