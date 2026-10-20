@@ -1207,6 +1207,7 @@ function setBilling(period) {
 
   groups.forEach(function (group) {
     var figs = Array.prototype.slice.call(group.querySelectorAll('figure[data-blog-video]'));
+    var fan = group.hasAttribute('data-vstack') ? focusFan(group, figs) : null;
     figs.forEach(function (fig, i) {
       var v = fig.querySelector('video');
       var hoverEl = fig.closest('.feature-card') || fig;   // a feature card previews its clip while the pointer is anywhere on it
@@ -1215,9 +1216,76 @@ function setBilling(period) {
         hoverEl.addEventListener('mouseleave', function () { v.pause(); });
       }
       var openBtn = fig.querySelector('.vstack-open, .fvideo-open');
-      if (openBtn) openBtn.addEventListener('click', function () { open(figs, i); });
+      if (openBtn) openBtn.addEventListener('click', function () {
+        if (fan && fan.on()) {
+          if (fan.justSwiped()) return;                       // a swipe across the fan is not a tap
+          if (fan.index() !== i) { fan.set(i); return; }      // a clip at the side comes to the front first
+        }
+        open(figs, i);
+      });
+      var card = fig.closest('.feature-card');
+      var cta = card && card.querySelector('.fvideo-cta');    // "Watch the clip" under the card text opens the same clip
+      if (cta) cta.addEventListener('click', function () { open(figs, i); });
     });
   });
+
+  /* Focus fan for the #videos stack (desktop only, wide enough for 7 visible clips): one clip in front with its caption
+     below the fan, three neighbours on each side, the rest hidden; it wraps around. Arrows, dots, ←/→, swipe or a tap
+     on a side clip move the focus. Narrow screens (and no JS) keep the scroll-snap row from styles.css. */
+  function focusFan(group, figs) {
+    var wrap = group.parentNode;
+    var capEl = wrap.querySelector('.vstack-caption'), nav = wrap.querySelector('.vstack-nav');
+    var dotsEl = nav && nav.querySelector('.vstack-dots');
+    var n = figs.length, active = 0, isOn = false, swiped = false, x0 = null;
+    if (!capEl || !nav || !dotsEl || n < 3) return null;   // older translated pages without the fan markup keep the plain stack
+    var mq = window.matchMedia('(min-width: 761px)');
+    figs.forEach(function (f, i) {
+      var d = document.createElement('button');
+      d.type = 'button'; d.className = 'vstack-dot'; d.tabIndex = -1;
+      d.addEventListener('click', function () { set(i); });
+      dotsEl.appendChild(d);
+    });
+    Array.prototype.forEach.call(nav.querySelectorAll('.vstack-arrow'), function (b) {
+      var dir = Number(b.getAttribute('data-dir'));
+      var l = labels[dir < 0 ? 'prev' : 'next']; if (l) b.setAttribute('aria-label', l);
+      b.addEventListener('click', function () { set(active + dir); });
+    });
+    function rel(i) { var d = i - active; if (d > n / 2) d -= n; if (d < -n / 2) d += n; return d; }
+    function paint() {
+      figs.forEach(function (f, i) {
+        var d = rel(i);
+        f.setAttribute('data-pos', Math.abs(d) <= 3 ? String(d) : 'far');
+        var b = f.querySelector('.vstack-open'); if (b) b.tabIndex = d === 0 ? 0 : -1;
+        var v = f.querySelector('video'); if (d !== 0 && v && !v.paused) v.pause();
+      });
+      Array.prototype.forEach.call(dotsEl.children, function (d, i) { d.classList.toggle('on', i === active); });
+      var cap = figs[active].querySelector('figcaption');
+      capEl.innerHTML = cap ? cap.innerHTML : '';
+    }
+    function set(i) { active = ((i % n) + n) % n; paint(); }
+    function apply() {
+      isOn = mq.matches;
+      group.classList.toggle('is-fan', isOn);
+      nav.hidden = !isOn; capEl.hidden = !isOn;
+      if (isOn) paint();
+      else figs.forEach(function (f) { f.removeAttribute('data-pos'); var b = f.querySelector('.vstack-open'); if (b) b.tabIndex = 0; });
+    }
+    group.addEventListener('keydown', function (e) {
+      if (!isOn || (e.key !== 'ArrowLeft' && e.key !== 'ArrowRight')) return;
+      e.preventDefault();
+      set(active + (e.key === 'ArrowRight' ? 1 : -1));
+      var b = figs[active].querySelector('.vstack-open'); if (b) b.focus({ preventScroll: true });
+    });
+    group.addEventListener('pointerdown', function (e) { if (isOn) { x0 = e.clientX; swiped = false; } });
+    group.addEventListener('pointerup', function (e) {
+      if (!isOn || x0 === null) return;
+      var dx = e.clientX - x0; x0 = null;
+      if (Math.abs(dx) > 40) { swiped = true; set(active + (dx < 0 ? 1 : -1)); setTimeout(function () { swiped = false; }, 0); }
+    });
+    if (mq.addEventListener) mq.addEventListener('change', apply); else if (mq.addListener) mq.addListener(apply);
+    apply();
+    return { on: function () { return isOn; }, index: function () { return active; }, set: set, justSwiped: function () { return swiped; } };
+  }
 
   function btn(cls, text, label, onClick) {
     var b = document.createElement('button');
