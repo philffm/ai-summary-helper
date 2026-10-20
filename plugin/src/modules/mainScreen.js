@@ -7,7 +7,8 @@ import { debug } from './log.js';
 // Handles main screen UI — chat-style summary feed
 
 import StorageManager from './storageManager.js';
-import { T, TN } from './feedI18n.js';
+import { T, TN, uiLocale } from './feedI18n.js';
+import { topicLabel } from './topicConcepts.js';
 import { t } from './i18n.js';
 import { paperChips } from './paperInfo.js';
 import { aiComplete } from './feedAi.js';
@@ -48,8 +49,9 @@ export function initMainScreen(ui) {
         const preview = textOnly.length > 100 ? textOnly.slice(0, 100) + '…' : textOnly;
         const date = article.timestamp ? new Date(article.timestamp).toLocaleDateString() : '';
 
-        const tags = article.tags || [];
-        const tagsHtml = tags.length ? `<div class="bubble-tags">${tags.map(t => `<span class="bubble-tag">${escapeHtml(t)}</span>`).join('')}</div>` : '';
+        // Tags in the UI language, like History shows them (known and learned topics are translated, one chip per topic)
+        const tags = [...new Set((article.tags || []).map(tag => topicLabel(tag, uiLocale())))];
+        const tagsHtml = tags.length ? `<div class="bubble-tags">${tags.map(tag => `<span class="bubble-tag">${escapeHtml(tag)}</span>`).join('')}</div>` : '';
         const modelHtml = article.modelId ? `<span class="card-model card-model--block">${modelIcon(article)} ${escapeHtml(article.modelId)}</span>` : '';
         const bubble = document.createElement('div');
         bubble.className = 'summary-bubble';

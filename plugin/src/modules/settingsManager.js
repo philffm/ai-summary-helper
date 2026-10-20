@@ -41,7 +41,10 @@ export async function initSettingsManager(ui) {
     initAuthManager(ui);
 
     // Initialize prompt manager with the static DOM elements
-    initPromptSettings(document.getElementById('promptSettingsRoot'));
+    const promptsReady = initPromptSettings(document.getElementById('promptSettingsRoot'));
+    // The controls now hold the stored values (the prompt list once it has loaded): tell settingsNav, so the row
+    // subtitles ("Highlighting on · ghost on", "Delivery: Kindle") describe the real settings instead of the defaults.
+    Promise.resolve(promptsReady).catch(() => {}).finally(() => document.dispatchEvent(new CustomEvent('aish:settings-populated')));
 
     // Prevent form submission page reloads AND persist model settings
     // (API key, endpoint, active service) when the user clicks Save.

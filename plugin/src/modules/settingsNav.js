@@ -227,7 +227,8 @@ export function initSettingsNav(ui) {
 
     // Keep row subtitles in sync with the controls they summarise.
     $('settingsForm').addEventListener('change', () => setTimeout(refreshSubtitles, 50));
-    setTimeout(refreshSubtitles, 800);   // after settingsManager has populated the controls
+    // Once settingsManager has filled the controls from storage (before that they show their defaults, e.g. "off").
+    document.addEventListener('aish:settings-populated', refreshSubtitles);
     refreshSubtitles();
 }
 
