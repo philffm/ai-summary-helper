@@ -3667,6 +3667,7 @@ body[data-surface="tab"] { min-width: 0; }
 .tts-now { background: var(--accent-a10); border-radius: 6px; box-shadow: 0 0 0 4px var(--accent-a10); }
 
 /* ── Instant read ─────────────────────────────────────────────── */
+.chip-sound.is-on { background: var(--accent-a12); border-color: var(--accent-a30); color: var(--accent); }
 .chip-sound.is-on .chip-icon { opacity: 1; }
 .chip-sound:not(.is-on) .chip-icon { opacity: .6; }
 .chip-sound.is-speaking .chip-icon { animation: sr-pulse 1.1s ease-in-out infinite; }
