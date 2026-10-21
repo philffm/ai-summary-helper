@@ -23,6 +23,7 @@ pipelines, and embedding. Every parameter is optional and composable.
 | `surface` | `popup`, `sidepanel` | `sidepanel` | Which surface the popup renders as |
 | `screen` | `main`, `history`, `feeds`, `settings` | `main` | Open that screen on load |
 | `panel` | see below | — | Open a settings panel (implies `screen=settings`) |
+| `scenario` | `youtube`, `pdf`, `paper`, `research`, `mood`, `instant`, `ghost` | — | What the extension "sees" and what is already saved (see below). English content only. |
 
 Base URL: `https://ai-summary-helper.byphil.eu/demo/`
 
@@ -68,6 +69,25 @@ popup width. Good for a "this is the product" card without the fake browser page
 ```
 /demo/?surface=popup&chrome=0&tour=0
 ```
+
+---
+
+## Scenarios (`scenario=`)
+
+The default demo is one article. A scenario (defined in `demo-scenarios.js`, all content made up) swaps the page and the saved data,
+so a feature can be shown that the default cannot:
+
+| `scenario` | Shows |
+|---|---|
+| `youtube` | A YouTube watch page (captions as transcript): summary, follow-up with a source in the transcript |
+| `pdf` | A long PDF in a viewer: summary, "What I used" (words, tokens), follow-up with a source |
+| `paper` | A journal article with a DOI: 🎓 chips on the summary, Research tab, key facts, citation (DOI lookup answered from recorded CSL) |
+| `research` | The research library plus a collection ("Do naps help learning?") with five typed sources; "Create overview" streams agree / disagree / missing |
+| `mood` | AI-rated feeds (good-mood filter) and ~4 months of mood history for Feeds → Insights |
+| `instant` | A fake speech engine, so Instant read (🔊 chip, reading bar) works |
+| `ghost` | After a summary the AI's ghost highlights appear in the article; click one for Keep / Dismiss |
+
+Combine with the other parameters, e.g. `/demo/?scenario=paper&chrome=0` or `?scenario=research&screen=history`.
 
 ---
 

@@ -29,13 +29,13 @@ function copy(from, to) {
 
 fs.rmSync(OUT, { recursive: true, force: true });
 copy(SRC, APP);
-for (const f of ['demo-content.js', 'demo-i18n.js', 'demo-library-i18n.js', 'demo-shim.js', 'demo-tour-i18n.js', 'demo-tour.js']) fs.copyFileSync(path.join(DEMO, f), path.join(APP, f));
+for (const f of ['demo-content.js', 'demo-i18n.js', 'demo-library-i18n.js', 'demo-scenarios-i18n.js', 'demo-scenarios.js', 'demo-shim.js', 'demo-tour-i18n.js', 'demo-tour.js']) fs.copyFileSync(path.join(DEMO, f), path.join(APP, f));
 
 // The same popup.html, with the fake chrome loaded first.
 const html = fs.readFileSync(path.join(SRC, 'popup.html'), 'utf8');
 const tag = '<script src="audioEngine.js"></script>';
 if (!html.includes(tag)) throw new Error('popup.html no longer has the audioEngine script tag: update build-demo.mjs');
-fs.writeFileSync(path.join(APP, 'popup.html'), html.replace(tag, '<script src="demo-content.js"></script><script src="demo-i18n.js"></script><script src="demo-library-i18n.js"></script><script src="demo-shim.js"></script>' + tag));
+fs.writeFileSync(path.join(APP, 'popup.html'), html.replace(tag, '<script src="demo-content.js"></script><script src="demo-i18n.js"></script><script src="demo-library-i18n.js"></script><script src="demo-scenarios-i18n.js"></script><script src="demo-scenarios.js"></script><script src="demo-shim.js"></script>' + tag));
 
 fs.copyFileSync(path.join(DEMO, 'index.html'), path.join(OUT, 'index.html'));
 // The URL-parameter contract for automation (video tools, screenshot pipelines, embedding).

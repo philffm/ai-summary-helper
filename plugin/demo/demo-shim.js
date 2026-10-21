@@ -63,15 +63,17 @@
       const d = new Date(); d.setDate(d.getDate() - a.daysAgo); d.setHours(a.hour, (i * 7) % 60, 0, 0);
       const ts = d.toISOString(), id = 'article_demo_' + i;
       const T = D.libraryText || { keyPoints: 'Key points', tail: 'Context, evidence and what to read next.' };
-      const summary = '<h3>' + T.keyPoints + '</h3><ul><li>' + a.title + '</li><li>' + T.tail + '</li></ul>';
+      const summary = a.summary || ('<h3>' + T.keyPoints + '</h3><ul><li>' + a.title + '</li><li>' + T.tail + '</li></ul>');
       idx.push({ id, title: a.title, url: 'https://' + a.host + '/' + slug(a.title), timestamp: ts, tags: a.tags, modelId: 'demo', summaryLength: 200, summary,
-        contentWordCount: a.words, summaryWordCount: 60, archived: false, lastOpened: ts, moodScore: a.mood });
-      recs['articles:rec:' + id] = { content: '<p>' + a.title + '</p>', summary, description: '' };
+        contentWordCount: a.words, summaryWordCount: 60, archived: false, lastOpened: ts, moodScore: a.mood, ...(a.idx || {}) });
+      recs['articles:rec:' + id] = { content: '<p>' + a.title + '</p>', summary, description: '', ...(a.rec || {}) };
     });
     idx.sort((x, y) => x.timestamp < y.timestamp ? -1 : 1);
     local.set({ 'articles:index': idx, ...recs });
     // Topic names per language (demo-library-i18n.js), so tags show up translated in History and the graph.
     if (D.topicLexicon) local.set({ 'topics:lexicon': D.topicLexicon });
+    // Scenario data that lives in storage: collections, ... (demo-scenarios.js)
+    if (D.seed) local.set(D.seed);
   })();
   // A few subscriptions with recent items, so Feeds has something to read.
   (() => {
@@ -79,8 +81,10 @@
     const hash = (str) => { let h = 5381; for (let i = 0; i < str.length; i++) h = ((h << 5) + h + str.charCodeAt(i)) | 0; return 'f' + (h >>> 0).toString(36); };
     const now = Date.now();
     const subs = F.subs.map(s => ({ id: hash('https://' + s.host + '/feed.xml'), url: 'https://' + s.host + '/feed.xml', title: s.title, siteUrl: 'https://' + s.host + '/', tags: s.tags, addedAt: now - 30 * 864e5, lastFetched: now, error: '' }));
-    const items = F.items.map((it, i) => { const sub = subs[it.feed]; return { id: hash(sub.id + it.title), feedId: sub.id, title: it.title, link: 'https://' + F.subs[it.feed].host + '/p/' + i, published: now - it.hoursAgo * 36e5, snippet: it.snippet, audio: '', dur: 0, img: '', ai: false, read: i > 12 }; }).sort((a, b) => b.published - a.published);
+    const items = F.items.map((it, i) => { const sub = subs[it.feed]; return { id: hash(sub.id + it.title), feedId: sub.id, title: it.title, link: 'https://' + F.subs[it.feed].host + '/p/' + i, published: now - it.hoursAgo * 36e5, snippet: it.snippet, audio: '', dur: 0, img: '', ai: typeof it.sent === 'number', ...(typeof it.sent === 'number' ? { sent: it.sent, cat: it.cat } : {}), read: i > 12 }; }).sort((a, b) => b.published - a.published);
     local.set({ 'feeds:subs': subs, 'feeds:items': items });
+    // A scenario's mood history is keyed by 'f<n>' (the n-th subscription): swap in the real feed ids.
+    if (D.moodSeed) { const m = {}; Object.keys(D.moodSeed).forEach((d) => { m[d] = {}; Object.keys(D.moodSeed[d]).forEach((k) => { const sub = subs[Number(k.slice(1))]; if (sub) m[d][sub.id] = D.moodSeed[d][k]; }); }); local.set({ 'feeds:mood': m }); }
   })();
   const storageL = new Set();
   [local, sync, session].forEach((a, i) => a._ls.add(ch => storageL.forEach(f => f(ch, ['local', 'sync', 'session'][i]))));
@@ -222,13 +226,48 @@
   const stream = (text, html, question) => {
     timers.forEach(unlater); timers = [];
     const T = (ms, fn) => timers.push(later(ms, fn));
-    bc({ action: 'summaryContext', url: TAB.url, title: TAB.title, words: D.words, length: 200, model: 'Demo model', pageTokens: 1600 });
+    bc({ action: 'summaryContext', url: TAB.url, title: TAB.title, words: D.words, length: 200, model: 'Demo model', pageTokens: D.words ? Math.round(D.words * 1.35) : 1600, ...(D.scenario ? { host: new URL(TAB.url).hostname.replace(/^www\./, '') } : {}) });
     T(350, () => bc({ action: 'summaryProgress', chunk: 'Connected' }));
     T(800, () => bc({ action: 'summaryProgress', chunk: 'Receiving data' }));
     const words = text.split(' '); let i = 0;
-    const tick = () => { i = Math.min(words.length, i + (MANUAL ? 1 : 3)); bc({ action: 'summaryProgress', chunk: i + ' words', preview: words.slice(0, i).join(' ') }); if (i < words.length) T(MANUAL ? 37 : 110, tick); else T(250, done); };
-    const done = () => bc({ action: 'summaryComplete', summary: html, title: TAB.title, url: TAB.url, timestamp: new Date().toISOString(), tags: D.summary.tags, modelId: 'demo', questions: D.summary.questions, content: D.article.paragraphs.map(p => '<p>' + p + '</p>').join('') });
+    const tick = () => { i = Math.min(words.length, i + (MANUAL ? 1 : 3)); bc({ action: 'summaryProgress', chunk: i + ' words', preview: words.slice(0, i).join(' ') }); if (i < words.length) T(MANUAL ? 37 : 110, tick); else T(250, finish); };
+    const done = () => bc({ action: 'summaryComplete', summary: html, title: TAB.title, url: TAB.url, timestamp: new Date().toISOString(), tags: D.summary.tags, modelId: 'demo', questions: D.summary.questions, content: D.article.paragraphs.map(p => '<p>' + p + '</p>').join(''), ...(D.summaryMeta ? { meta: D.summaryMeta } : {}) });
+    // Ghost highlights: the AI marks its key passages on the page once the summary is done (the page draws them, see index.html)
+    const finish = () => { done(); if (D.ghost) T(450, () => toParent({ type: 'ghost', quotes: D.ghost })); };
     T(1100, tick);
+  };
+  // A fake speech engine for ?scenario=instant (Instant read): the popup talks to it with {action:'ttsCmd', cmd}, and it
+  // answers with 'ttsState' messages like the real one (background / offscreen document). Each sentence "takes" as long as
+  // its words would, on the virtual clock, so the reading bar counts sentences while the summary is still being written.
+  const TTS_MS = Number(new URLSearchParams(location.search).get('ttsms')) || 330;   // ms per word: a video matches it to its recorded voice
+  const TTS = { state: 'idle', items: [], index: 0, rate: 1, muted: false, finished: false, meta: null, h: null };
+  const ttsState = () => ({ action: 'ttsState', ok: true, available: true, state: TTS.state, index: TTS.index, total: TTS.items.length, rate: TTS.rate, muted: TTS.muted, meta: TTS.meta });
+  const ttsPush = () => bc(ttsState());
+  const ttsSchedule = () => {
+    unlater(TTS.h);
+    const words = String((TTS.items[TTS.index] || {}).text || '').split(/\s+/).length;
+    TTS.h = later(Math.max(900, words * TTS_MS / TTS.rate), () => {
+      if (TTS.state !== 'playing') return;
+      TTS.index++;
+      if (TTS.index >= TTS.items.length) { TTS.state = TTS.finished ? 'idle' : 'waiting'; if (TTS.state === 'idle') TTS.index = 0; ttsPush(); return; }
+      ttsPush(); ttsSchedule();
+    });
+  };
+  const tts = (m) => {
+    switch (m.cmd) {
+      case 'caps': return { ok: true, available: true, voices: [{ name: 'Demo voice', lang: 'en-US' }], state: TTS.state, index: TTS.index, total: TTS.items.length, rate: TTS.rate };
+      case 'speak': TTS.items = m.items || []; TTS.index = m.start || 0; TTS.rate = m.rate || 1; TTS.meta = m.meta || null; TTS.finished = false; TTS.state = 'playing'; ttsSchedule(); ttsPush(); break;
+      case 'append': TTS.items = TTS.items.concat(m.items || []); if (TTS.state === 'waiting') { TTS.state = 'playing'; ttsSchedule(); } ttsPush(); break;
+      case 'finish': TTS.finished = true; if (TTS.state === 'waiting') { TTS.state = 'idle'; TTS.index = 0; ttsPush(); } break;
+      case 'pause': if (TTS.state === 'playing') { TTS.state = 'paused'; unlater(TTS.h); ttsPush(); } break;
+      case 'resume': if (TTS.state === 'paused') { TTS.state = 'playing'; ttsSchedule(); ttsPush(); } break;
+      case 'toggle': return tts({ cmd: TTS.state === 'paused' ? 'resume' : 'pause' });
+      case 'rate': TTS.rate = m.rate || 1; if (TTS.state === 'playing') ttsSchedule(); ttsPush(); break;
+      case 'mute': TTS.muted = m.muted === undefined ? !TTS.muted : !!m.muted; ttsPush(); break;
+      case 'stop': TTS.state = 'idle'; TTS.index = 0; TTS.items = []; unlater(TTS.h); ttsPush(); break;
+      default: break;
+    }
+    return { ok: true };
   };
   const handle = (m, respond) => {
     switch (m.action) {
@@ -242,13 +281,18 @@
         stream(S.stream, S.html); return;
       }
       case 'aiComplete': {   // follow-up answers: streamed as aiProgress deltas, then returned whole with SOURCES / QUESTIONS like a real model
-        if (/saved article summaries/i.test(String(m.system || ''))) {   // the graph's "✨ Brief me on this topic" (feedAi.askCluster)
+        if (/saved article summaries/i.test(String(m.system || '')) && (!D.overview || !/Write exactly three sections/i.test(String(m.system || '')))) {   // the graph's "✨ Brief me on this topic" (feedAi.askCluster)
           const n = Math.max(1, ...[...String(m.user || '').matchAll(/\[(\d+)\]/g)].map((x) => Number(x[1])));
           const lines = (D.topicBriefing || ['- {1} {2}']).map((l) => l.replace(/\{(\d+)\}/g, (_, k) => '[' + Math.min(n, Number(k)) + ']'));
           const text = lines.join('\n');
           let n2 = 0; const id = m.id;
           const tick = () => { const part = text.slice(n2, n2 + (MANUAL ? 6 : 24)); if (!part) return respond({ ok: true, text }); n2 += part.length; bc({ action: 'aiProgress', id, from: n2 - part.length, delta: part, phase: 'stream' }); later(MANUAL ? 13 : 60, tick); };
           later(500, tick); return;
+        }
+        if (D.overview && /Write exactly three sections/i.test(String(m.system || ''))) {   // a collection's "Create overview": agree / disagree / missing
+          const text = D.overview; let n2 = 0; const id = m.id;
+          const tick = () => { const part = text.slice(n2, n2 + (MANUAL ? 6 : 24)); if (!part) return respond({ ok: true, text }); n2 += part.length; bc({ action: 'aiProgress', id, from: n2 - part.length, delta: part, phase: 'stream' }); later(MANUAL ? 37 : 110, tick); };
+          later(700, tick); return;
         }
         if (/news-digest recap/i.test(String(m.system || ''))) {   // the feeds' "✨ Recap": a recorded briefing in the format feedAi.parseRecap reads
           const R = D.feedRecap || { overview: 'A quiet day in your feeds.', themes: [], mood: 'mixed' };
@@ -268,6 +312,7 @@
         const tick = () => { const part = a.text.slice(n, n + (MANUAL ? 3 : 14)); if (!part) return respond({ ok: true, text: full }); bc({ action: 'aiProgress', id, from: n, delta: part, phase: 'stream' }); n += part.length; later(MANUAL ? 13 : 60, tick); };
         later(500, tick); return;
       }
+      case 'ttsCmd': return respond(D.tts ? tts(m) : { ok: true });
       case 'revealQuote': return respond({ ok: true });
       case 'sendLocalSendP2P': return later(700, () => respond({ success: true, ok: true, status: 200, data: /prepare-upload/.test(m.targetUrl || '') ? { sessionId: 'demo', files: {} } : {} }));
       case 'stopSummary': case 'cancelQueuedSummary': timers.forEach(unlater); return respond({ ok: true });
@@ -302,6 +347,8 @@
       const body = /\/api\/tags/.test(url) ? { models: [{ name: 'llama3.2:3b', size: 2019393189 }, { name: 'qwen2.5:7b', size: 4683087332 }, { name: 'gemma3:4b', size: 3338801804 }] } : /\/api\/version/.test(url) ? { version: '0.6.5' } : {};
       return Promise.resolve(new Response(JSON.stringify(body), { status: 200, headers: { 'Content-Type': 'application/json' } }));
     }
+    // doi.org content negotiation (the Cite panel's "Get citation"): answered from the scenario's recorded CSL records
+    { const dm = url.match(/^https:\/\/doi\.org\/(10\.[^?#]+)/); if (dm && D.csl) { const rec = D.csl[decodeURIComponent(dm[1])]; return new Promise(r => setTimeout(() => r(rec ? new Response(JSON.stringify(rec), { status: 200, headers: { 'Content-Type': 'application/json' } }) : new Response('{}', { status: 404 })), 700)); } }
     if (/\/kindle$/.test(url) && o && o.method === 'POST') return new Promise(r => setTimeout(() => r(new Response('{"success":true}', { status: 200, headers: { 'Content-Type': 'application/json' } })), 900));
     if (/^https?:/.test(url) && !url.startsWith(location.origin)) return Promise.reject(new TypeError('offline demo'));
     net.pending++;

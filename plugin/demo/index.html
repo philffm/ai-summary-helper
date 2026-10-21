@@ -12,6 +12,22 @@ article{padding:clamp(22px,2.4vw,44px) clamp(24px,3vw,56px);overflow:auto;font-s
 article mark{background:rgba(76,141,255,.28);color:inherit;border-radius:3px;padding:1px 0;box-shadow:0 0 0 3px rgba(76,141,255,.28)}
 article mark.user{background:rgba(255,214,10,.42);box-shadow:0 0 0 3px rgba(255,214,10,.42)}
 iframe{flex:1;border:0;width:100%;min-height:0;background:transparent}
+.yt-player{position:relative;aspect-ratio:16/9;border-radius:10px;background:linear-gradient(135deg,#1c2233,#0b0e16);margin-bottom:14px;overflow:hidden}
+.yt-play{position:absolute;left:50%;top:50%;width:64px;height:64px;margin:-32px 0 0 -32px;border-radius:50%;background:rgba(255,255,255,.14)}.yt-play:after{content:"";position:absolute;left:25px;top:19px;border-left:21px solid #fff;border-top:13px solid transparent;border-bottom:13px solid transparent}
+.yt-bar{position:absolute;left:0;right:0;bottom:0;height:5px;background:rgba(255,255,255,.2)}.yt-bar i{display:block;width:8%;height:100%;background:#e5484d}
+.yt-time{position:absolute;left:12px;bottom:12px;font-size:12px;color:#e8eaf0;background:rgba(0,0,0,.55);padding:2px 7px;border-radius:5px}
+.yt-chan{display:flex;gap:10px;align-items:center;margin:8px 0 14px;font-size:14px}.yt-chan b{display:block}.yt-av{width:34px;height:34px;border-radius:50%;background:var(--sig);flex:none}
+.yt-tr{border-top:1px solid var(--line);padding-top:10px;margin-top:6px}.yt-tr h4{margin:0 0 6px;font-size:13px;color:var(--dim);text-transform:uppercase;letter-spacing:.04em}
+.yt-tr p{display:flex;gap:12px;margin:0 0 8px;font-size:15px;line-height:1.5}.yt-tr .st{flex:0 0 52px;color:var(--sig);font-size:13px;font-variant-numeric:tabular-nums;padding-top:1px}
+.pdfv{background:#4a4f5c;padding:0 0 28px;min-height:100%}
+.pdfv .tb{background:#2f323b;color:#d8dbe4;font-size:12.5px;padding:8px 14px;display:flex;justify-content:space-between}
+.pdfv .sheet{background:#fff;color:#1b1d26;margin:22px auto 0;width:min(86%,640px);padding:34px 40px;border-radius:2px;box-shadow:0 6px 22px rgba(0,0,0,.35);font-family:Georgia,serif;font-size:15px;line-height:1.55}
+.pdfv .sheet h1{font-family:Georgia,serif;font-size:26px;margin:0 0 4px}.pdfv .sheet .meta{color:#666;font-family:system-ui,sans-serif}.pdfv .sheet p{margin:0 0 12px}.pdfv .sheet mark{color:#1b1d26}
+.jr{font-size:12.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--sig);font-weight:600;margin-bottom:6px}.jr span{color:var(--dim);font-weight:400;letter-spacing:0;text-transform:none;margin-left:8px}
+.doi{display:inline-block;margin:0 0 14px;font-size:13px;color:var(--sig)}
+article mark.ghost{background:rgba(186,230,253,.65);color:#0369a1;border-bottom:2px dashed #0284c7;border-radius:2px;padding:0 2px;box-shadow:none;cursor:pointer}
+#ai-ghost-menu{position:absolute;z-index:9;background:#fff;border:1px solid #e2e8f0;border-radius:8px;padding:6px;box-shadow:0 4px 16px rgba(0,0,0,.15);display:flex;gap:6px;font-size:12px}
+#ai-ghost-menu b{padding:4px 8px;border-radius:4px;font-weight:700}#ai-ghost-menu .keep{background:#fef08a;border:1px solid #fde047;color:#854d0e}#ai-ghost-menu .no{background:#f1f5f9;border:1px solid #cbd5e1;color:#475569;font-weight:400}
 .hint{position:fixed;left:50%;bottom:14px;transform:translateX(-50%);font-size:13px;background:var(--card);border:1px solid var(--line);border-radius:99px;padding:6px 14px;color:var(--dim)}
 /* The embedding page chooses the theme (?theme=…); it wins over the OS preference. */
 :root[data-theme=dark]{color-scheme:dark;--bg:#0e1017;--card:#171a23;--ink:#eef0f6;--dim:#9aa1b4;--line:#262a37}
@@ -37,7 +53,7 @@ iframe{flex:1;border:0;width:100%;min-height:0;background:transparent}
 <section class="panel"><div class="bar"><i></i><i></i><i></i><span id="panelLabel">AI Summary Helper · side panel</span></div>
 <iframe id="app" title="AI Summary Helper"></iframe></section>
 </div>
-<script src="app/demo-content.js"></script><script src="app/demo-i18n.js"></script><script src="app/demo-tour-i18n.js"></script>
+<script src="app/demo-content.js"></script><script src="app/demo-i18n.js"></script><script src="app/demo-tour-i18n.js"></script><script src="app/demo-scenarios-i18n.js"></script><script src="app/demo-scenarios.js"></script>
 <script>
 const P = new URLSearchParams(location.search), LOC = window.AISH_DEMO.locale, appFrame = document.getElementById('app');
 // URL parameters (all optional):
@@ -59,7 +75,7 @@ if (P.get('layout') === 'stack') document.documentElement.setAttribute('data-lay
 if (P.get('clock') === 'manual') { const si = Element.prototype.scrollIntoView; Element.prototype.scrollIntoView = function (o) { return si.call(this, o && typeof o === 'object' ? { ...o, behavior: 'auto' } : o); }; }
 if (LOC) { document.documentElement.lang = LOC.ui.replace('_', '-'); document.getElementById('panelLabel').textContent = 'AI Summary Helper · ' + LOC.side; document.title = LOC.article.title + ' – AI Summary Helper'; }
 if (P.get('theme') === 'light' || P.get('theme') === 'dark') document.documentElement.setAttribute('data-theme', P.get('theme'));
-appFrame.src = 'app/popup.html?surface=' + (P.get('surface') === 'popup' ? 'popup' : 'sidepanel') + (P.get('lang') ? '&lang=' + encodeURIComponent(P.get('lang')) : '') + (P.get('theme') ? '&theme=' + P.get('theme') : '') + (P.get('clock') === 'manual' ? '&clock=manual' : '');
+appFrame.src = 'app/popup.html?surface=' + (P.get('surface') === 'popup' ? 'popup' : 'sidepanel') + (P.get('lang') ? '&lang=' + encodeURIComponent(P.get('lang')) : '') + (P.get('theme') ? '&theme=' + P.get('theme') : '') + (P.get('clock') === 'manual' ? '&clock=manual' : '') + (/^[a-z]+$/.test(P.get('scenario') || '') ? '&scenario=' + P.get('scenario') : '') + (/^\d+$/.test(P.get('ttsms') || '') ? '&ttsms=' + P.get('ttsms') : '');
 
 // ?screen= / ?panel= — drive the popup into a feature mode once it has rendered.
 // The popup is same-origin, so we click its real nav items and settings rows rather than
@@ -85,15 +101,50 @@ if (wantScreen || wantPanel) {
   const boot = setInterval(() => { if (apply()) clearInterval(boot); }, 250);
   setTimeout(() => clearInterval(boot), 15000);
 }
-const A = window.AISH_DEMO.article, art0 = document.getElementById('art');
-art0.innerHTML = '<h1></h1><div class="meta"></div>' + A.paragraphs.map(() => '<p></p>').join('');
-art0.querySelector('h1').textContent = A.title; art0.querySelector('.meta').textContent = A.byline;
-art0.querySelectorAll('p').forEach((el, i) => { el.textContent = A.paragraphs[i]; });
+const A = window.AISH_DEMO.article, art0 = document.getElementById('art'), PG = window.AISH_DEMO.page;
+const esc = (t) => String(t).replace(/[&<>]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;' }[c]));
+// The address in the page's title bar follows the page (a scenario can be a YouTube watch page, a PDF ...)
+try { const u = new URL(window.AISH_DEMO.tab.url); if (window.AISH_DEMO.scenario) document.querySelector('.page .bar span').textContent = u.hostname.replace(/^www\./, '') + u.pathname + u.search; } catch (_) { /* keep the default */ }
+if (PG && PG.kind === 'youtube') {
+  art0.innerHTML = '<div class="yt-player"><div class="yt-play"></div><div class="yt-bar"><i></i></div><span class="yt-time">0:00 / ' + esc(PG.duration) + '</span></div>'
+    + '<h1>' + esc(A.title) + '</h1><div class="yt-chan"><span class="yt-av"></span><span><b>' + esc(PG.channel) + '</b><span class="meta" style="margin:0">' + esc(PG.meta) + '</span></span></div>'
+    + '<div class="yt-tr"><h4>' + esc(PG.transcript || 'Transcript') + '</h4>' + A.paragraphs.map((t, i) => '<p><span class="st">' + esc(PG.stamps[i] || '') + '</span><span>' + esc(t) + '</span></p>').join('') + '</div>';
+} else if (PG && PG.kind === 'pdf') {
+  art0.style.padding = '0'; art0.style.flex = '1'; art0.style.background = '#4a4f5c';
+  art0.innerHTML = '<div class="pdfv"><div class="tb"><span>' + esc(PG.name) + '</span><span>1 / ' + PG.pages + ' &nbsp;·&nbsp; 100%</span></div><div class="sheet"><h1>' + esc(A.title) + '</h1><div class="meta">' + esc(A.byline) + '</div><br>' + A.paragraphs.map((t) => '<p>' + esc(t) + '</p>').join('') + '</div></div>';
+} else if (PG && PG.kind === 'paper') {
+  art0.innerHTML = '<div class="jr">' + esc(PG.journal) + '<span>' + esc(PG.volume) + '</span></div><h1>' + esc(A.title) + '</h1><div class="meta">' + esc(PG.authors) + '</div><a class="doi">https://doi.org/' + esc(PG.doi) + '</a>' + A.paragraphs.map((t) => '<p>' + esc(t) + '</p>').join('');
+} else {
+  art0.innerHTML = '<h1></h1><div class="meta"></div>' + A.paragraphs.map(() => '<p></p>').join('');
+  art0.querySelector('h1').textContent = A.title; art0.querySelector('.meta').textContent = A.byline;
+  art0.querySelectorAll('p').forEach((el, i) => { el.textContent = A.paragraphs[i]; });
+}
+// Ghost highlights (content/highlighter.js): the AI's key passages, dashed blue; click one to keep (yellow) or dismiss it.
+const ghostMenu = (mark) => {
+  let m = document.getElementById('ai-ghost-menu'); if (!m) { m = document.createElement('div'); m.id = 'ai-ghost-menu'; document.body.appendChild(m); }
+  const r = mark.getBoundingClientRect();
+  m.innerHTML = '<b class="keep">⭐ Keep</b><b class="no">✕ Dismiss</b>'; m.style.left = Math.max(8, r.left + scrollX) + 'px'; m.style.top = (r.top + scrollY - 44) + 'px'; m.style.display = 'flex';
+};
 // The popup (an iframe running the real extension UI) tells us which passage an answer came from.
 addEventListener('message', (e) => {
   const m = e.data;
   if (m && m.aishDemo && m.type === 'theme' && (m.theme === 'light' || m.theme === 'dark')) { document.documentElement.setAttribute('data-theme', m.theme); if (e.source !== appFrame.contentWindow) { try { appFrame.contentWindow.postMessage(m, '*'); } catch (_) { /* not ready */ } } return; }   // from the host: pass on to the popup; from the popup (Appearance): only the page follows
   // highlight: the panel shows where an answer came from (blue); { user: true } is a reader's own marker (yellow, videos)
+  if (m && m.aishDemo && m.type === 'ghost') {
+    const art = document.getElementById('art'); if (art.querySelector('mark.ghost, mark.user')) return;
+    (m.quotes || []).forEach((q) => { const w = document.createTreeWalker(art, NodeFilter.SHOW_TEXT); let n;
+      while ((n = w.nextNode())) { const i = n.nodeValue.indexOf(q); if (i < 0) continue; const r = document.createRange(); r.setStart(n, i); r.setEnd(n, i + q.length); const k = document.createElement('mark'); k.className = 'ghost'; k.title = 'AI highlight — click to keep or dismiss'; r.surroundContents(k); break; } });
+    return;
+  }
+  // one ghost is picked (the first); it opens its menu, then turns yellow. Repeated messages change nothing more.
+  if (m && m.aishDemo && m.type === 'ghost-menu') { if (!window.__ghostKept) { const g = document.querySelector('#art mark.ghost'); if (g) ghostMenu(g); } return; }
+  if (m && m.aishDemo && m.type === 'ghost-keep') {
+    if (window.__ghostKept) return;
+    const g = document.querySelector('#art mark.ghost'); if (!g) return;
+    window.__ghostKept = true; const menu = document.getElementById('ai-ghost-menu'); if (menu) menu.style.display = 'none';
+    g.className = 'user'; g.title = 'Click to remove highlight';
+    return;
+  }
   if (!m || !m.aishDemo || m.type !== 'highlight') return;
   const art = document.getElementById('art'); art.querySelectorAll('mark').forEach(x => x.replaceWith(...x.childNodes)); art.normalize();
   if (!m.quote) return;
