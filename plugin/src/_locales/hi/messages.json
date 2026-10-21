@@ -5357,5 +5357,20 @@
   "ctxSummarizeClose": {
     "message": "✨ सारांश बनाकर टैब बंद करें",
     "description": "Right-click menu entry"
+  },
+  "f_kindle_format_dafb": {
+    "message": "Kindle फ़ॉर्मैट"
+  },
+  "f_epub_text_e9bb": {
+    "message": "EPUB (टेक्स्ट)"
+  },
+  "f_epub_images_7120": {
+    "message": "EPUB + चित्र"
+  },
+  "f_html_legacy_e81a": {
+    "message": "HTML (पुराना)"
+  },
+  "f_epub_is_the_format_kindle_re_3a35": {
+    "message": "EPUB वह फ़ॉर्मैट है जिसे Kindle सबसे अच्छे से पढ़ता है। हर चित्र कुछ सौ KB जोड़ता है (अधिकतम 10, छोटे किए हुए)।"
   }
 }

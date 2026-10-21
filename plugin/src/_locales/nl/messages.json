@@ -5640,5 +5640,20 @@
   "ctxSummarizeClose": {
     "message": "✨ Samenvatten & tabblad sluiten",
     "description": "Right-click menu entry"
+  },
+  "f_kindle_format_dafb": {
+    "message": "Kindle-formaat"
+  },
+  "f_epub_text_e9bb": {
+    "message": "EPUB (tekst)"
+  },
+  "f_epub_images_7120": {
+    "message": "EPUB + afbeeldingen"
+  },
+  "f_html_legacy_e81a": {
+    "message": "HTML (oud)"
+  },
+  "f_epub_is_the_format_kindle_re_3a35": {
+    "message": "EPUB is het formaat dat Kindle het best leest. Afbeeldingen voegen een paar honderd KB per afbeelding toe (maximaal 10, verkleind)."
   }
 }

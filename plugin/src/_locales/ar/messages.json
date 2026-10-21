@@ -5357,5 +5357,20 @@
   "ctxSummarizeClose": {
     "message": "✨ لخّص وأغلق علامة التبويب",
     "description": "Right-click menu entry"
+  },
+  "f_kindle_format_dafb": {
+    "message": "تنسيق Kindle"
+  },
+  "f_epub_text_e9bb": {
+    "message": "EPUB (نص)"
+  },
+  "f_epub_images_7120": {
+    "message": "EPUB + صور"
+  },
+  "f_html_legacy_e81a": {
+    "message": "HTML (قديم)"
+  },
+  "f_epub_is_the_format_kindle_re_3a35": {
+    "message": "EPUB هو التنسيق الذي يقرؤه Kindle بأفضل شكل. تضيف الصور بضع مئات من الكيلوبايت لكل صورة (حتى 10 صور، بعد تصغيرها)."
   }
 }

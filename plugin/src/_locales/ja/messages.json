@@ -5357,5 +5357,20 @@
   "ctxSummarizeClose": {
     "message": "✨ 要約してタブを閉じる",
     "description": "Right-click menu entry"
+  },
+  "f_kindle_format_dafb": {
+    "message": "Kindle の形式"
+  },
+  "f_epub_text_e9bb": {
+    "message": "EPUB(テキスト)"
+  },
+  "f_epub_images_7120": {
+    "message": "EPUB + 画像"
+  },
+  "f_html_legacy_e81a": {
+    "message": "HTML(従来)"
+  },
+  "f_epub_is_the_format_kindle_re_3a35": {
+    "message": "EPUB は Kindle が最もきれいに読める形式です。画像は1枚あたり数百KB増えます(最大10枚、縮小済み)。"
   }
 }

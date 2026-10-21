@@ -5640,5 +5640,20 @@
   "ctxSummarizeClose": {
     "message": "✨ สรุปและปิดแท็บ",
     "description": "Right-click menu entry"
+  },
+  "f_kindle_format_dafb": {
+    "message": "รูปแบบ Kindle"
+  },
+  "f_epub_text_e9bb": {
+    "message": "EPUB (ข้อความ)"
+  },
+  "f_epub_images_7120": {
+    "message": "EPUB + รูปภาพ"
+  },
+  "f_html_legacy_e81a": {
+    "message": "HTML (แบบเดิม)"
+  },
+  "f_epub_is_the_format_kindle_re_3a35": {
+    "message": "EPUB เป็นรูปแบบที่ Kindle อ่านได้ดีที่สุด รูปภาพจะเพิ่มขนาดภาพละหลายร้อย KB (สูงสุด 10 ภาพ, ย่อขนาดแล้ว)"
   }
 }

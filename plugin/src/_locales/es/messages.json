@@ -5357,5 +5357,20 @@
   "ctxSummarizeClose": {
     "message": "✨ Resumir y cerrar pestaña",
     "description": "Right-click menu entry"
+  },
+  "f_kindle_format_dafb": {
+    "message": "Formato de Kindle"
+  },
+  "f_epub_text_e9bb": {
+    "message": "EPUB (texto)"
+  },
+  "f_epub_images_7120": {
+    "message": "EPUB + imágenes"
+  },
+  "f_html_legacy_e81a": {
+    "message": "HTML (antiguo)"
+  },
+  "f_epub_is_the_format_kindle_re_3a35": {
+    "message": "EPUB es el formato que mejor lee Kindle. Las imágenes añaden unos cientos de KB cada una (hasta 10, reducidas)."
   }
 }

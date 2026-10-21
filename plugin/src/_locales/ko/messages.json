@@ -5339,5 +5339,20 @@
   "ctxSummarizeClose": {
     "message": "✨ 요약하고 탭 닫기",
     "description": "Right-click menu entry"
+  },
+  "f_kindle_format_dafb": {
+    "message": "Kindle 형식"
+  },
+  "f_epub_text_e9bb": {
+    "message": "EPUB(텍스트)"
+  },
+  "f_epub_images_7120": {
+    "message": "EPUB + 이미지"
+  },
+  "f_html_legacy_e81a": {
+    "message": "HTML(이전 방식)"
+  },
+  "f_epub_is_the_format_kindle_re_3a35": {
+    "message": "EPUB은 Kindle이 가장 잘 읽는 형식입니다. 이미지는 장당 수백 KB가 추가됩니다(최대 10장, 축소됨)."
   }
 }

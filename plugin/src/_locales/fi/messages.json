@@ -5640,5 +5640,20 @@
   "ctxSummarizeClose": {
     "message": "✨ Tiivistä ja sulje välilehti",
     "description": "Right-click menu entry"
+  },
+  "f_kindle_format_dafb": {
+    "message": "Kindle-muoto"
+  },
+  "f_epub_text_e9bb": {
+    "message": "EPUB (teksti)"
+  },
+  "f_epub_images_7120": {
+    "message": "EPUB + kuvat"
+  },
+  "f_html_legacy_e81a": {
+    "message": "HTML (vanha)"
+  },
+  "f_epub_is_the_format_kindle_re_3a35": {
+    "message": "EPUB on muoto, jota Kindle lukee parhaiten. Kuvat lisäävät muutaman sata kt kuvaa kohden (enintään 10, pienennettyinä)."
   }
 }

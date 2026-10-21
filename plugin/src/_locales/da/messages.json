@@ -5640,5 +5640,20 @@
   "ctxSummarizeClose": {
     "message": "✨ Resumér & luk fane",
     "description": "Right-click menu entry"
+  },
+  "f_kindle_format_dafb": {
+    "message": "Kindle-format"
+  },
+  "f_epub_text_e9bb": {
+    "message": "EPUB (tekst)"
+  },
+  "f_epub_images_7120": {
+    "message": "EPUB + billeder"
+  },
+  "f_html_legacy_e81a": {
+    "message": "HTML (ældre)"
+  },
+  "f_epub_is_the_format_kindle_re_3a35": {
+    "message": "EPUB er det format, Kindle læser bedst. Billeder fylder et par hundrede KB pr. billede (op til 10, nedskaleret)."
   }
 }

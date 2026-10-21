@@ -5357,5 +5357,20 @@
   "ctxSummarizeClose": {
     "message": "✨ 总结并关闭标签页",
     "description": "Right-click menu entry"
+  },
+  "f_kindle_format_dafb": {
+    "message": "Kindle 格式"
+  },
+  "f_epub_text_e9bb": {
+    "message": "EPUB(文本)"
+  },
+  "f_epub_images_7120": {
+    "message": "EPUB + 图片"
+  },
+  "f_html_legacy_e81a": {
+    "message": "HTML(旧版)"
+  },
+  "f_epub_is_the_format_kindle_re_3a35": {
+    "message": "EPUB 是 Kindle 阅读效果最好的格式。每张图片会增加数百 KB(最多 10 张,已缩小)。"
   }
 }

@@ -5640,5 +5640,20 @@
   "ctxSummarizeClose": {
     "message": "✨ Підсумувати й закрити вкладку",
     "description": "Right-click menu entry"
+  },
+  "f_kindle_format_dafb": {
+    "message": "Формат для Kindle"
+  },
+  "f_epub_text_e9bb": {
+    "message": "EPUB (текст)"
+  },
+  "f_epub_images_7120": {
+    "message": "EPUB + зображення"
+  },
+  "f_html_legacy_e81a": {
+    "message": "HTML (застарілий)"
+  },
+  "f_epub_is_the_format_kindle_re_3a35": {
+    "message": "EPUB — формат, який Kindle читає найкраще. Кожне зображення додає кілька сотень КБ (до 10, зменшені)."
   }
 }
