@@ -4,6 +4,8 @@
 //  * normalises hreflang hrefs to the same clean form
 //  * drops hreflang alternates whose target page does not exist (not every post is translated)
 //  * fills og:/twitter: tags (locale, site name, image) and adds JSON-LD (WebSite, SoftwareApplication, FAQPage, BlogPosting)
+//  * videos (<figure data-blog-video>, files in docs/assets/blog/video/ + manifest.json from videos/scripts/video-manifest.mjs): VideoObject JSON-LD,
+//    <track> subtitles, a transcript on the video cards, and docs/sitemap-video.xml
 //  * regenerates docs/sitemap.xml (with hreflang alternates), docs/robots.txt and docs/llms.txt
 // Runs at the end of `site:build` and `translate`.
 import fs from 'node:fs';
@@ -48,6 +50,55 @@ const lastmod = (file) => {
 };
 const setMeta = ($, attr, key, content) => { if (content && !$(`meta[${attr}="${key}"]`).length) $('head').append(`<meta ${attr}="${key}" content="${String(content).replace(/"/g, '&quot;')}">`); };
 const monthIso = (txt) => { const m = String(txt || '').match(/(January|February|March|April|May|June|July|August|September|October|November|December)\s+(\d{4})/i); if (!m) return null; return m[2] + '-' + String(['january','february','march','april','may','june','july','august','september','october','november','december'].indexOf(m[1].toLowerCase()) + 1).padStart(2, '0'); };
+// ── videos ───────────────────────────────────────────────────────────────────────────────────────────────────────────
+const VIDEO_DIR = path.join(DOCS, 'assets', 'blog', 'video');
+const VIDEO_MANIFEST = fs.existsSync(path.join(VIDEO_DIR, 'manifest.json')) ? JSON.parse(fs.readFileSync(path.join(VIDEO_DIR, 'manifest.json'), 'utf8')) : {};
+const TRANSCRIPT_LABEL = { en: 'Transcript', de: 'Transkript', es: 'Transcripción', fr: 'Transcription', pt: 'Transcrição', nl: 'Transcriptie', sv: 'Utskrift', ja: '文字起こし', ko: '스크립트' };
+const isoDuration = (sec) => { const s = Math.round(sec); return `PT${Math.floor(s / 60)}M${s % 60}S`; };
+const clip = (t, n) => { const x = String(t || '').replace(/\s+/g, ' ').trim(); return x.length > n ? x.slice(0, n - 1).trimEnd() + '…' : x; };
+const videoEntries = [];   // { self, videos: [{ title, description, thumb, content, duration, date }] } for sitemap-video.xml
+
+/** VideoObject JSON-LD, <track> subtitles and (on the video cards) a transcript for every <figure data-blog-video> of a page. */
+function videoPass($, file, self, lang) {
+  $('[data-seo-video]').remove();
+  const abs = (rel) => BASE + '/' + path.relative(DOCS, path.resolve(path.dirname(file), rel)).split(path.sep).join('/');
+  const objects = [], seen = new Set(), listed = [];
+  $('figure[data-blog-video]').each((_, fig) => {
+    const $fig = $(fig), $src = $fig.find('video source').first();
+    const srcRel = $src.attr('src') || '';
+    const key = path.basename(srcRel).replace(/\.mp4$/, '');
+    const entry = VIDEO_MANIFEST[key];
+    if (!entry) return;
+    const lc = (key.match(/^.+?-([a-z]{2}(?:-[a-z]+)?)$/) || [, 'en'])[1];
+    // subtitles
+    if (entry.vtt && !$fig.find('video track').length) {
+      let label = lc; try { label = new Intl.DisplayNames([lc], { type: 'language' }).of(lc) || lc; } catch (_) { /* keep the code */ }
+      $fig.find('video').first().append(`<track data-seo-video kind="captions" src="${srcRel.replace(/\.mp4$/, '.vtt')}" srclang="${lc}" label="${esc(label)}">`);
+    }
+    // name and description: from the page itself (translated with it), like the player does
+    const card = $fig.closest('.feature-card');
+    const name = clip($fig.find('figcaption strong, figcaption h3').first().text() || card.find('h3').first().text() || ($fig.find('.vstack-open').attr('aria-label') || '').replace(/^[^:]*:\s*/, ''), 100);
+    const description = clip($fig.find('figcaption span, figcaption p').first().text() || card.find('p').first().text() || name, 300);
+    // transcript on the video cards (the page of all videos)
+    if (entry.transcript && $fig.hasClass('video-card') && !$fig.find('.vtranscript').length) {
+      $fig.find('figcaption').first().append(`<details data-seo-video class="vtranscript"><summary>${esc(TRANSCRIPT_LABEL[lc] || TRANSCRIPT_LABEL.en)}</summary><p>${esc(entry.transcript)}</p></details>`);
+    }
+    if (seen.has(key) || !name) return;
+    seen.add(key);
+    const thumb = abs(($fig.find('video').attr('poster') || '').trim() || srcRel.replace(/\.mp4$/, '.jpg'));
+    const content = abs(srcRel);
+    objects.push({
+      '@type': 'VideoObject', name, description, thumbnailUrl: [thumb], uploadDate: entry.uploaded, duration: isoDuration(entry.duration),
+      contentUrl: content, inLanguage: lc, ...(entry.transcript ? { transcript: entry.transcript } : {}), isFamilyFriendly: true,
+      publisher: { '@id': 'https://byphil.eu/#org' },
+    });
+    listed.push({ title: name, description, thumb, content, duration: Math.round(entry.duration), date: entry.uploaded });
+  });
+  if (!objects.length) return;
+  $('head').append(`<script type="application/ld+json" data-seo-video>${JSON.stringify({ '@context': 'https://schema.org', '@graph': objects })}</script>`);
+  videoEntries.push({ self, videos: listed });
+}
+
 function jsonLd($, rel, self, lang, title, desc, image) {
   $('script[data-seo="ld"]').remove();
   const graph = [];
@@ -124,6 +175,7 @@ for (const file of walk(DOCS)) {
   setMeta($, 'name', 'twitter:description', $('meta[property="og:description"]').attr('content') || desc);
   setMeta($, 'name', 'twitter:image', ogImg);
   if (!noindex) jsonLd($, rel, self, lang, title, desc, ogImg);
+  if (!noindex) videoPass($, file, self, lang);
   fs.writeFileSync(file, $.html());
   if (!noindex) {
     if (rel === 'goodbye.html' || rel.endsWith('/goodbye.html')) continue;
@@ -143,7 +195,19 @@ xml += `</urlset>\n`;
 fs.writeFileSync(path.join(DOCS, 'sitemap.xml'), xml);
 // Identical copy under a second name: a fresh filename can get past a stuck "Couldn't fetch" in Search Console.
 fs.writeFileSync(path.join(DOCS, 'sitemap-index.xml'), xml);
-fs.writeFileSync(path.join(DOCS, 'robots.txt'), `User-agent: *\nAllow: /\n\nSitemap: ${BASE}/sitemap.xml\nSitemap: ${BASE}/sitemap-index.xml\n`);
+// Video sitemap: one <url> per page that shows videos, with a <video:video> per video (Google's video extension).
+videoEntries.sort((a, b) => a.self.length - b.self.length || a.self.localeCompare(b.self));
+let vxml = `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:video="http://www.google.com/schemas/sitemap-video/1.1">\n`;
+for (const e of videoEntries) {
+  vxml += `  <url>\n    <loc>${esc(e.self)}</loc>\n`;
+  for (const v of e.videos) {
+    vxml += `    <video:video>\n      <video:thumbnail_loc>${esc(v.thumb)}</video:thumbnail_loc>\n      <video:title>${esc(v.title)}</video:title>\n      <video:description>${esc(v.description)}</video:description>\n      <video:content_loc>${esc(v.content)}</video:content_loc>\n      <video:duration>${v.duration}</video:duration>\n      <video:publication_date>${v.date}</video:publication_date>\n      <video:family_friendly>yes</video:family_friendly>\n    </video:video>\n`;
+  }
+  vxml += `  </url>\n`;
+}
+vxml += `</urlset>\n`;
+fs.writeFileSync(path.join(DOCS, 'sitemap-video.xml'), vxml);
+fs.writeFileSync(path.join(DOCS, 'robots.txt'), `User-agent: *\nAllow: /\n\nSitemap: ${BASE}/sitemap.xml\nSitemap: ${BASE}/sitemap-index.xml\nSitemap: ${BASE}/sitemap-video.xml\n`);
 
 // llms.txt: a plain-text map for AI assistants and answer engines (English pages only; each links to its translations via hreflang).
 const en = entries.filter((e) => !isLocalized(e.rel));
@@ -174,4 +238,4 @@ const llms = [
   '',
 ].join('\n');
 fs.writeFileSync(path.join(DOCS, 'llms.txt'), llms);
-console.log(`seo: ${entries.length} URLs in sitemap, canonical set on all pages`);
+console.log(`seo: ${entries.length} URLs in sitemap, ${videoEntries.reduce((n, e) => n + e.videos.length, 0)} videos on ${videoEntries.length} pages (sitemap-video.xml), canonical set on all pages`);

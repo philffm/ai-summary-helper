@@ -68,6 +68,27 @@ for (const [loc, alts] of altsByLoc) {
   }
 }
 
+// 6. The video sitemap (scripts/seo.mjs): every page and video file it names must exist, titles and durations must be valid.
+const vpath = path.join(DOCS, 'sitemap-video.xml');
+if (fs.existsSync(vpath)) {
+  const vxml = fs.readFileSync(vpath, 'utf8');
+  for (const m of vxml.matchAll(/<url>([\s\S]*?)<\/url>/g)) {
+    const loc = m[1].match(/<loc>([\s\S]*?)<\/loc>/)?.[1] || '';
+    let rel = loc.slice(BASE.length);
+    if (!rel || rel.endsWith('/')) rel += 'index.html';
+    if (!fs.existsSync(path.join(DOCS, rel))) errors.push(`sitemap-video: ${loc} has no file at docs/${rel}`);
+    for (const v of m[1].matchAll(/<video:video>([\s\S]*?)<\/video:video>/g)) {
+      const get = (t) => v[1].match(new RegExp(`<video:${t}>([\\s\\S]*?)</video:${t}>`))?.[1] || '';
+      for (const t of ['thumbnail_loc', 'content_loc']) {
+        const u = get(t);
+        if (!u.startsWith(BASE) || !fs.existsSync(path.join(DOCS, u.slice(BASE.length)))) errors.push(`sitemap-video: ${loc}: ${t} ${u} does not exist`);
+      }
+      if (!get('title') || get('title').length > 100) errors.push(`sitemap-video: ${loc}: bad title "${get('title')}"`);
+      if (!(Number(get('duration')) > 0)) errors.push(`sitemap-video: ${loc}: bad duration`);
+    }
+  }
+}
+
 if (errors.length) {
   console.error(`check-sitemap: ${errors.length} problem(s) in docs/sitemap.xml`);
   for (const e of errors.slice(0, 40)) console.error('  - ' + e);
