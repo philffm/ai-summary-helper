@@ -97869,6 +97869,3966 @@
           "model": "google/gemini-3.7-flash"
         }
       }
+    },
+    "9110ebaf3bbd171a39400fc12a9f8b72e266e497e0496430fa3db26f73b3a1a4": {
+      "en": "A 72-minute lecture, summarized",
+      "translations": {
+        "de": {
+          "text": "Eine 72-minütige Vorlesung – auf den Punkt zusammengefasst",
+          "translatedAt": "2026-10-21T16:21:03.839Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fr": {
+          "text": "Une conférence de 72 minutes, résumée",
+          "translatedAt": "2026-10-21T16:21:21.071Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "es": {
+          "text": "Una conferencia de 72 minutos, resumida",
+          "translatedAt": "2026-10-21T16:21:51.082Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh": {
+          "text": "72 分钟讲座，一键提炼摘要",
+          "translatedAt": "2026-10-21T16:22:07.184Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh-TW": {
+          "text": "72 分鐘的演講，重點一目了然",
+          "translatedAt": "2026-10-21T16:22:27.936Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ja": {
+          "text": "72分の講義も、瞬時に要約",
+          "translatedAt": "2026-10-21T16:22:53.270Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ko": {
+          "text": "72분짜리 강의도 깔끔하게 요약",
+          "translatedAt": "2026-10-21T16:23:00.955Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pt": {
+          "text": "Uma palestra de 72 minutos resumida",
+          "translatedAt": "2026-10-21T16:23:15.682Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "hi": {
+          "text": "72-minute का lecture, summarized",
+          "translatedAt": "2026-10-21T16:23:32.726Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "vi": {
+          "text": "Tóm tắt bài giảng 72 phút trong nháy mắt",
+          "translatedAt": "2026-10-21T16:23:45.506Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "nl": {
+          "text": "Een lezing van 72 minuten, samengevat",
+          "translatedAt": "2026-10-21T16:24:24.982Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "it": {
+          "text": "Una lezione di 72 minuti, riassunta",
+          "translatedAt": "2026-10-21T16:24:39.801Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ru": {
+          "text": "Краткий пересказ 72-минутной лекции",
+          "translatedAt": "2026-10-21T16:25:20.304Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "uk": {
+          "text": "72-хвилинна лекція — стислий підсумок",
+          "translatedAt": "2026-10-21T16:25:48.692Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "tr": {
+          "text": "72 dakikalık bir ders, özetlendi",
+          "translatedAt": "2026-10-21T16:26:05.296Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "id": {
+          "text": "Kuliah 72 menit, diringkas",
+          "translatedAt": "2026-10-21T16:26:26.854Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pl": {
+          "text": "72-minutowy wykład w pigułce",
+          "translatedAt": "2026-10-21T16:26:43.345Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "th": {
+          "text": "สรุปเนื้อหาการบรรยาย 72 นาที",
+          "translatedAt": "2026-10-21T16:27:01.568Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ar": {
+          "text": "محاضرة مدتها 72 دقيقة، ملخّصة",
+          "translatedAt": "2026-10-21T16:27:33.930Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "sv": {
+          "text": "En 72-minuters föreläsning, sammanfattad",
+          "translatedAt": "2026-10-21T16:27:57.164Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "da": {
+          "text": "En 72-minutters forelæsning, opsummeret",
+          "translatedAt": "2026-10-21T16:28:18.642Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "no": {
+          "text": "En 72-minutters forelesning, oppsummert",
+          "translatedAt": "2026-10-21T16:28:48.752Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fi": {
+          "text": "72 minuutin luento tiivistettynä",
+          "translatedAt": "2026-10-21T16:29:14.791Z",
+          "model": "google/gemini-3.7-flash"
+        }
+      }
+    },
+    "66f1bad10e9033c7b9da57fbb8286dde82c4dfa6c495f421d4a8ba5ade43cc97": {
+      "en": "Summaries from a video’s captions, with follow-ups that cite the passage.",
+      "translations": {
+        "de": {
+          "text": "Zusammenfassungen direkt aus den Video-Untertiteln – inklusive Folgefragen mit präzisen Textnachweisen.",
+          "translatedAt": "2026-10-21T16:21:03.839Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fr": {
+          "text": "Des résumés générés à partir des sous-titres, avec des réponses détaillées citant le passage exact.",
+          "translatedAt": "2026-10-21T16:21:21.071Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "es": {
+          "text": "Resúmenes a partir de los subtítulos de un video, con preguntas de seguimiento que citan el fragmento exacto.",
+          "translatedAt": "2026-10-21T16:21:51.082Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh": {
+          "text": "基于视频字幕生成摘要，追问答复均精准标注原文出处。",
+          "translatedAt": "2026-10-21T16:22:07.184Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh-TW": {
+          "text": "根據影片字幕產生摘要，延伸提問還能精準引述對應段落。",
+          "translatedAt": "2026-10-21T16:22:27.936Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ja": {
+          "text": "動画の字幕から要約を作成。該当箇所を引用しながら追加の質問にも回答します。",
+          "translatedAt": "2026-10-21T16:22:53.270Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ko": {
+          "text": "동영상 자막을 기반으로 요약하고, 해당 구간을 인용한 추가 질문 답변까지 제공합니다.",
+          "translatedAt": "2026-10-21T16:23:00.955Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pt": {
+          "text": "Resumos a partir das legendas do vídeo, com respostas complementares que citam o trecho exato.",
+          "translatedAt": "2026-10-21T16:23:15.682Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "hi": {
+          "text": "Video captions से summaries, साथ ही exact passage citations के साथ follow-ups।",
+          "translatedAt": "2026-10-21T16:23:32.726Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "vi": {
+          "text": "Tóm tắt trực tiếp từ phụ đề video, kèm giải đáp trích dẫn chính xác từng đoạn.",
+          "translatedAt": "2026-10-21T16:23:45.506Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "nl": {
+          "text": "Samenvattingen op basis van de ondertiteling, met vervolgvragen die direct naar de passage verwijzen.",
+          "translatedAt": "2026-10-21T16:24:24.982Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "it": {
+          "text": "Riassunti dai sottotitoli dei video, con approfondimenti che citano il passaggio esatto.",
+          "translatedAt": "2026-10-21T16:24:39.801Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ru": {
+          "text": "Выжимка по субтитрам видео с ответами на вопросы и точными цитатами фрагментов.",
+          "translatedAt": "2026-10-21T16:25:20.304Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "uk": {
+          "text": "Підсумки на основі субтитрів відео з уточнювальними відповідями, що посилаються на конкретні фрагменти.",
+          "translatedAt": "2026-10-21T16:25:48.692Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "tr": {
+          "text": "Video altyazılarından özetler ve ilgili bölüme atıf yapan takip yanıtları.",
+          "translatedAt": "2026-10-21T16:26:05.296Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "id": {
+          "text": "Ringkasan dari caption video, dengan tanya jawab lanjutan yang mengutip bagian terkait.",
+          "translatedAt": "2026-10-21T16:26:26.854Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pl": {
+          "text": "Podsumowania na podstawie napisów wideo i odpowiedzi z bezpośrednim cytowaniem fragmentów.",
+          "translatedAt": "2026-10-21T16:26:43.345Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "th": {
+          "text": "สรุปเนื้อหาจากคำบรรยายวิดีโอ พร้อมถามตอบเพิ่มเติมโดยอ้างอิงข้อความที่มา",
+          "translatedAt": "2026-10-21T16:27:01.568Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ar": {
+          "text": "ملخصات من الترجمة التوضيحية للفيديو، مع إجابات للمتابعة تستشهد بالفقرة المحددة.",
+          "translatedAt": "2026-10-21T16:27:33.930Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "sv": {
+          "text": "Sammanfattningar direkt från undertexterna, med uppföljningsfrågor som hänvisar till rätt avsnitt.",
+          "translatedAt": "2026-10-21T16:27:57.164Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "da": {
+          "text": "Resuméer ud fra en videos undertekster med opfølgende svar, der citerer passagen.",
+          "translatedAt": "2026-10-21T16:28:18.642Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "no": {
+          "text": "Sammendrag basert på undertekster, med oppfølgingssvar som viser til kilden.",
+          "translatedAt": "2026-10-21T16:28:48.752Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fi": {
+          "text": "Tiivistelmät videon tekstityksistä sekä jatkokysymysten vastaukset suorin lähdeviittauksin.",
+          "translatedAt": "2026-10-21T16:29:14.791Z",
+          "model": "google/gemini-3.7-flash"
+        }
+      }
+    },
+    "6c96ea21277ad01269a3b1cc3470b57b06e2124afaecc7a76bcadb925ab16c1d": {
+      "en": "An 84-page PDF in seconds",
+      "translations": {
+        "de": {
+          "text": "Ein 84-seitiges PDF in Sekundenschnelle",
+          "translatedAt": "2026-10-21T16:21:03.839Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fr": {
+          "text": "Un PDF de 84 pages en quelques secondes",
+          "translatedAt": "2026-10-21T16:21:21.071Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "es": {
+          "text": "Un PDF de 84 páginas en segundos",
+          "translatedAt": "2026-10-21T16:21:51.082Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh": {
+          "text": "84 页 PDF，数秒内速读",
+          "translatedAt": "2026-10-21T16:22:07.184Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh-TW": {
+          "text": "84 頁的 PDF，數秒內讀完",
+          "translatedAt": "2026-10-21T16:22:27.936Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ja": {
+          "text": "84ページのPDFも、わずか数秒で",
+          "translatedAt": "2026-10-21T16:22:53.270Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ko": {
+          "text": "84페이지 PDF도 단 몇 초 만에",
+          "translatedAt": "2026-10-21T16:23:00.955Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pt": {
+          "text": "Um PDF de 84 páginas em segundos",
+          "translatedAt": "2026-10-21T16:23:15.682Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "hi": {
+          "text": "84-page की PDF, कुछ ही seconds में",
+          "translatedAt": "2026-10-21T16:23:32.726Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "vi": {
+          "text": "Xử lý file PDF 84 trang chỉ trong vài giây",
+          "translatedAt": "2026-10-21T16:23:45.506Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "nl": {
+          "text": "Een pdf van 84 pagina's in seconden",
+          "translatedAt": "2026-10-21T16:24:24.982Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "it": {
+          "text": "Un PDF di 84 pagine in pochi secondi",
+          "translatedAt": "2026-10-21T16:24:39.801Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ru": {
+          "text": "84-страничный PDF за секунды",
+          "translatedAt": "2026-10-21T16:25:20.304Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "uk": {
+          "text": "84-сторінковий PDF за лічені секунди",
+          "translatedAt": "2026-10-21T16:25:48.692Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "tr": {
+          "text": "Saniyeler içinde 84 sayfalık bir PDF",
+          "translatedAt": "2026-10-21T16:26:05.296Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "id": {
+          "text": "PDF 84 halaman dalam hitungan detik",
+          "translatedAt": "2026-10-21T16:26:26.854Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pl": {
+          "text": "84-stronicowy PDF w kilka sekund",
+          "translatedAt": "2026-10-21T16:26:43.345Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "th": {
+          "text": "อ่าน PDF 84 หน้าได้ในไม่กี่วินาที",
+          "translatedAt": "2026-10-21T16:27:01.568Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ar": {
+          "text": "ملف PDF من 84 صفحة في ثوانٍ",
+          "translatedAt": "2026-10-21T16:27:33.930Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "sv": {
+          "text": "En 84-sidig PDF på några sekunder",
+          "translatedAt": "2026-10-21T16:27:57.164Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "da": {
+          "text": "En PDF på 84 sider på få sekunder",
+          "translatedAt": "2026-10-21T16:28:18.642Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "no": {
+          "text": "En 84-siders PDF på få sekunder",
+          "translatedAt": "2026-10-21T16:28:48.752Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fi": {
+          "text": "84-sivuinen PDF sekunneissa",
+          "translatedAt": "2026-10-21T16:29:14.791Z",
+          "model": "google/gemini-3.7-flash"
+        }
+      }
+    },
+    "20275372051e49d29e63878d206e9e9192ca4cfbc543d90ceadd23e566ebc204": {
+      "en": "Open a PDF in the browser and summarize it, in your language.",
+      "translations": {
+        "de": {
+          "text": "Öffnen Sie beliebige PDFs im Browser und fassen Sie sie direkt auf Deutsch zusammen.",
+          "translatedAt": "2026-10-21T16:21:03.839Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fr": {
+          "text": "Ouvrez un PDF dans votre navigateur et résumez-le, dans votre langue.",
+          "translatedAt": "2026-10-21T16:21:21.071Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "es": {
+          "text": "Abre un PDF en el navegador y resúmelo en tu idioma.",
+          "translatedAt": "2026-10-21T16:21:51.082Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh": {
+          "text": "在浏览器中打开 PDF 即可生成摘要，支持你的母语。",
+          "translatedAt": "2026-10-21T16:22:07.184Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh-TW": {
+          "text": "直接在瀏覽器開啟 PDF，就能以你的慣用語言產生重點摘要。",
+          "translatedAt": "2026-10-21T16:22:27.936Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ja": {
+          "text": "ブラウザでPDFを開いて、お好みの言語ですぐに要約できます。",
+          "translatedAt": "2026-10-21T16:22:53.270Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ko": {
+          "text": "브라우저에서 PDF를 열고 원하는 언어로 바로 요약해 보세요.",
+          "translatedAt": "2026-10-21T16:23:00.955Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pt": {
+          "text": "Abra um PDF no navegador e resuma tudo no seu idioma.",
+          "translatedAt": "2026-10-21T16:23:15.682Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "hi": {
+          "text": "Browser में PDF open करें और अपनी भाषा में summarize करें।",
+          "translatedAt": "2026-10-21T16:23:32.726Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "vi": {
+          "text": "Mở tệp PDF ngay trên trình duyệt và tóm tắt nhanh chóng bằng ngôn ngữ của bạn.",
+          "translatedAt": "2026-10-21T16:23:45.506Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "nl": {
+          "text": "Open een pdf in je browser en vat hem direct samen, in je eigen taal.",
+          "translatedAt": "2026-10-21T16:24:24.982Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "it": {
+          "text": "Apri un PDF nel browser e riassumilo, nella tua lingua.",
+          "translatedAt": "2026-10-21T16:24:39.801Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ru": {
+          "text": "Откройте PDF в браузере и получите саммари на вашем языке.",
+          "translatedAt": "2026-10-21T16:25:20.304Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "uk": {
+          "text": "Відкрийте PDF у браузері та отримайте стислий зміст вашою мовою.",
+          "translatedAt": "2026-10-21T16:25:48.692Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "tr": {
+          "text": "Tarayıcıda bir PDF açın ve kendi dilinizde özetleyin.",
+          "translatedAt": "2026-10-21T16:26:05.296Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "id": {
+          "text": "Buka PDF di browser dan buat ringkasannya dalam bahasa Anda.",
+          "translatedAt": "2026-10-21T16:26:26.854Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pl": {
+          "text": "Otwórz plik PDF w przeglądarce i podsumuj go w swoim języku.",
+          "translatedAt": "2026-10-21T16:26:43.345Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "th": {
+          "text": "เปิดไฟล์ PDF ในเบราว์เซอร์แล้วสรุปเนื้อหาเป็นภาษาที่ต้องการได้ทันที",
+          "translatedAt": "2026-10-21T16:27:01.568Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ar": {
+          "text": "افتح أي ملف PDF في المتصفح ولخّصه بلغتك.",
+          "translatedAt": "2026-10-21T16:27:33.930Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "sv": {
+          "text": "Öppna en PDF i webbläsaren och sammanfatta den – på ditt eget språk.",
+          "translatedAt": "2026-10-21T16:27:57.164Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "da": {
+          "text": "Åbn en PDF i browseren og få den opsummeret på dit eget sprog.",
+          "translatedAt": "2026-10-21T16:28:18.642Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "no": {
+          "text": "Åpne en PDF i nettleseren og få den oppsummert, på ditt eget språk.",
+          "translatedAt": "2026-10-21T16:28:48.752Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fi": {
+          "text": "Avaa PDF selaimessa ja tiivistä se omalla kielelläsi.",
+          "translatedAt": "2026-10-21T16:29:14.791Z",
+          "model": "google/gemini-3.7-flash"
+        }
+      }
+    },
+    "4561574f62a0523290ad44b036ab3c614b9b9a78ade07039d14355581885aba2": {
+      "en": "Papers recognised by their DOI",
+      "translations": {
+        "de": {
+          "text": "Wissenschaftliche Publikationen via DOI erkennen",
+          "translatedAt": "2026-10-21T16:21:03.839Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fr": {
+          "text": "Articles scientifiques reconnus par leur DOI",
+          "translatedAt": "2026-10-21T16:21:21.071Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "es": {
+          "text": "Artículos académicos reconocidos por su DOI",
+          "translatedAt": "2026-10-21T16:21:51.082Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh": {
+          "text": "基于 DOI 智能识别学术论文",
+          "translatedAt": "2026-10-21T16:22:07.184Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh-TW": {
+          "text": "透過 DOI 自動辨識學術論文",
+          "translatedAt": "2026-10-21T16:22:27.936Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ja": {
+          "text": "DOIから論文を自動認識",
+          "translatedAt": "2026-10-21T16:22:53.270Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ko": {
+          "text": "DOI로 논문 자동 인식",
+          "translatedAt": "2026-10-21T16:23:00.955Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pt": {
+          "text": "Artigos reconhecidos pelo DOI",
+          "translatedAt": "2026-10-21T16:23:15.682Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "hi": {
+          "text": "DOI से पहचाने जाने वाले research papers",
+          "translatedAt": "2026-10-21T16:23:32.726Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "vi": {
+          "text": "Tự động nhận diện bài báo khoa học qua mã DOI",
+          "translatedAt": "2026-10-21T16:23:45.506Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "nl": {
+          "text": "Papers herkend aan hun DOI",
+          "translatedAt": "2026-10-21T16:24:24.982Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "it": {
+          "text": "Articoli scientifici riconosciuti dal loro DOI",
+          "translatedAt": "2026-10-21T16:24:39.801Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ru": {
+          "text": "Распознавание научных статей по DOI",
+          "translatedAt": "2026-10-21T16:25:20.304Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "uk": {
+          "text": "Наукові статті розпізнаються за DOI",
+          "translatedAt": "2026-10-21T16:25:48.692Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "tr": {
+          "text": "DOI ile tanınan akademik makaleler",
+          "translatedAt": "2026-10-21T16:26:05.296Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "id": {
+          "text": "Paper ilmiah dikenali dari DOI-nya",
+          "translatedAt": "2026-10-21T16:26:26.854Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pl": {
+          "text": "Publikacje naukowe rozpoznawane po numerze DOI",
+          "translatedAt": "2026-10-21T16:26:43.345Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "th": {
+          "text": "ระบุงานวิจัยได้อัตโนมัติจาก DOI",
+          "translatedAt": "2026-10-21T16:27:01.568Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ar": {
+          "text": "التعرف على الأوراق البحثية عبر معرّف DOI",
+          "translatedAt": "2026-10-21T16:27:33.930Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "sv": {
+          "text": "Forskningsartiklar identifieras via DOI",
+          "translatedAt": "2026-10-21T16:27:57.164Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "da": {
+          "text": "Forskningsartikler genkendt via deres DOI",
+          "translatedAt": "2026-10-21T16:28:18.642Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "no": {
+          "text": "Forskningsartikler gjenkjennes via DOI",
+          "translatedAt": "2026-10-21T16:28:48.752Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fi": {
+          "text": "Tieteelliset artikkelit tunnistetaan DOI-tunnisteella",
+          "translatedAt": "2026-10-21T16:29:14.791Z",
+          "model": "google/gemini-3.7-flash"
+        }
+      }
+    },
+    "bf47e8781fc7edff658a52dee80410fa245003c516b9dc35a33ed84eb656d680": {
+      "en": "Trial, review or preprint at a glance, key facts and a citation from the DOI.",
+      "translations": {
+        "de": {
+          "text": "Studie, Review oder Preprint auf einen Blick: Kernaussagen und korrekte Zitation direkt über die DOI.",
+          "translatedAt": "2026-10-21T16:21:03.839Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fr": {
+          "text": "Essai clinique, revue ou prépublication en un coup d'œil : faits marquants et citation issus du DOI.",
+          "translatedAt": "2026-10-21T16:21:21.071Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "es": {
+          "text": "Ensayo, revisión o preprint de un vistazo: datos clave y cita a partir del DOI.",
+          "translatedAt": "2026-10-21T16:21:51.082Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh": {
+          "text": "临床试验、综述或预印本一目了然，快速提取核心结论与规范 DOI 引用。",
+          "translatedAt": "2026-10-21T16:22:07.184Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh-TW": {
+          "text": "一眼看清臨床試驗、綜述或預印本；自動擷取關鍵事實，並由 DOI 直接產生引用格式。",
+          "translatedAt": "2026-10-21T16:22:27.936Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ja": {
+          "text": "臨床試験、総説、プレプリントを一目で見分け、主要なファクトとDOIに基づく正確な引用を抽出します。",
+          "translatedAt": "2026-10-21T16:22:53.270Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ko": {
+          "text": "임상시험, 리뷰, 프리프린트를 한눈에 파악하고, 핵심 내용과 DOI 기반 인용 정보까지 확인하세요.",
+          "translatedAt": "2026-10-21T16:23:00.955Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pt": {
+          "text": "Ensaio clínico, revisão ou preprint num piscar de olhos: pontos principais e citação direta a partir do DOI.",
+          "translatedAt": "2026-10-21T16:23:15.682Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "hi": {
+          "text": "Trial, review या preprint एक नज़र में — key facts और DOI से direct citation।",
+          "translatedAt": "2026-10-21T16:23:32.726Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "vi": {
+          "text": "Nắm bắt nhanh thử nghiệm, tổng quan hay bản thảo sơ bộ; trích xuất dữ liệu then chốt và trích dẫn chuẩn xác từ DOI.",
+          "translatedAt": "2026-10-21T16:23:45.506Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "nl": {
+          "text": "Trial, review of preprint in één oogopslag: kernfeiten en een exacte citatie via het DOI-register.",
+          "translatedAt": "2026-10-21T16:24:24.982Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "it": {
+          "text": "Trial, review o preprint a colpo d'occhio: punti chiave e citazione generata dal DOI.",
+          "translatedAt": "2026-10-21T16:24:39.801Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ru": {
+          "text": "Клиническое исследование, обзор или препринт: ключевые факты и библиографическая ссылка по DOI за секунду.",
+          "translatedAt": "2026-10-21T16:25:20.304Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "uk": {
+          "text": "Клінічне дослідження, огляд чи препринт як на долоні: ключові факти та точне цитування з DOI.",
+          "translatedAt": "2026-10-21T16:25:48.692Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "tr": {
+          "text": "Klinik çalışma, derleme veya preprint bir bakışta karşınızda; temel bulgular ve DOI kaynaklı alıntı.",
+          "translatedAt": "2026-10-21T16:26:05.296Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "id": {
+          "text": "Uji klinis, tinjauan, atau preprint sekilas, lengkap dengan fakta utama dan sitasi dari DOI.",
+          "translatedAt": "2026-10-21T16:26:26.854Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pl": {
+          "text": "Badanie kliniczne, przegląd czy preprint na pierwszy rzut oka – kluczowe fakty i cytowanie prosto z DOI.",
+          "translatedAt": "2026-10-21T16:26:43.345Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "th": {
+          "text": "ดูประเภทงานวิจัย (ทดลอง, ทบทวน หรือ preprint) ประเด็นสำคัญ และการอ้างอิงจาก DOI ได้อย่างรวดเร็ว",
+          "translatedAt": "2026-10-21T16:27:01.568Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ar": {
+          "text": "تجربة، أو مراجعة، أو مسودة أولية بنظرة سريعة، مع أهم الحقائق والاقتباس من معرّف DOI.",
+          "translatedAt": "2026-10-21T16:27:33.930Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "sv": {
+          "text": "Klinisk prövning, översiktsartikel eller preprint i ett ögonkast – med viktiga fakta och källhänvisning från DOI.",
+          "translatedAt": "2026-10-21T16:27:57.164Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "da": {
+          "text": "Forsøg, review eller preprint i et hurtigt overblik: vigtigste fakta og kildehenvisning direkte fra DOI.",
+          "translatedAt": "2026-10-21T16:28:18.642Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "no": {
+          "text": "Klinisk studie, oversiktsartikkel eller preprint ved et øyekast – nøkkelfakta og kildehenvisning rett fra DOI.",
+          "translatedAt": "2026-10-21T16:28:48.752Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fi": {
+          "text": "Koe, katsaus tai preprint yhdellä silmäyksellä: keskeiset faktat ja viitetiedot suoraan DOI:sta.",
+          "translatedAt": "2026-10-21T16:29:14.791Z",
+          "model": "google/gemini-3.7-flash"
+        }
+      }
+    },
+    "e9138b6442d6a5adc58270a0005e9d0a95fe3ce9d10748e0533edb07c41e82b2": {
+      "en": "One question, five sources",
+      "translations": {
+        "de": {
+          "text": "Eine Fragestellung, fünf Quellen",
+          "translatedAt": "2026-10-21T16:21:03.839Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fr": {
+          "text": "Une question, cinq sources",
+          "translatedAt": "2026-10-21T16:21:21.071Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "es": {
+          "text": "Una pregunta, cinco fuentes",
+          "translatedAt": "2026-10-21T16:21:51.082Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh": {
+          "text": "一个问题，多源对照",
+          "translatedAt": "2026-10-21T16:22:07.184Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh-TW": {
+          "text": "一個問題，比對五個資料來源",
+          "translatedAt": "2026-10-21T16:22:27.936Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ja": {
+          "text": "1つの問いに、5つの情報源",
+          "translatedAt": "2026-10-21T16:22:53.270Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ko": {
+          "text": "하나의 질문, 5개의 출처",
+          "translatedAt": "2026-10-21T16:23:00.955Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pt": {
+          "text": "Uma pergunta, cinco fontes",
+          "translatedAt": "2026-10-21T16:23:15.682Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "hi": {
+          "text": "एक सवाल, पाँच sources",
+          "translatedAt": "2026-10-21T16:23:32.726Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "vi": {
+          "text": "Một câu hỏi, năm nguồn đối chiếu",
+          "translatedAt": "2026-10-21T16:23:45.506Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "nl": {
+          "text": "Eén vraag, vijf bronnen",
+          "translatedAt": "2026-10-21T16:24:24.982Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "it": {
+          "text": "Una domanda, cinque fonti",
+          "translatedAt": "2026-10-21T16:24:39.801Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ru": {
+          "text": "Один вопрос — пять источников",
+          "translatedAt": "2026-10-21T16:25:20.304Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "uk": {
+          "text": "Одне запитання — п'ять джерел",
+          "translatedAt": "2026-10-21T16:25:48.692Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "tr": {
+          "text": "Tek bir soru, beş kaynak",
+          "translatedAt": "2026-10-21T16:26:05.296Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "id": {
+          "text": "Satu pertanyaan, lima sumber",
+          "translatedAt": "2026-10-21T16:26:26.854Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pl": {
+          "text": "Jedno pytanie, pięć źródeł",
+          "translatedAt": "2026-10-21T16:26:43.345Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "th": {
+          "text": "หนึ่งคำถาม เทียบ 5 แหล่งข้อมูล",
+          "translatedAt": "2026-10-21T16:27:01.568Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ar": {
+          "text": "سؤال واحد، وخمسة مصادر",
+          "translatedAt": "2026-10-21T16:27:33.930Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "sv": {
+          "text": "En fråga, fem källor",
+          "translatedAt": "2026-10-21T16:27:57.164Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "da": {
+          "text": "Ét spørgsmål, fem kilder",
+          "translatedAt": "2026-10-21T16:28:18.642Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "no": {
+          "text": "Ett spørsmål, fem kilder",
+          "translatedAt": "2026-10-21T16:28:48.752Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fi": {
+          "text": "Yksi kysymys, viisi lähdettä",
+          "translatedAt": "2026-10-21T16:29:14.791Z",
+          "model": "google/gemini-3.7-flash"
+        }
+      }
+    },
+    "dde943f2d73bf629a1c3994bd348fe9503d364ac4d93752e25a8f799599c94cd": {
+      "en": "Collections compare what your sources agree on, disagree on and leave out.",
+      "translations": {
+        "de": {
+          "text": "Collections analysieren, worin Ihre Quellen übereinstimmen, wo Widersprüche liegen und was ausgelassen wird.",
+          "translatedAt": "2026-10-21T16:21:03.839Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fr": {
+          "text": "Les collections comparent les points d'accord, de désaccord et les omissions de vos sources.",
+          "translatedAt": "2026-10-21T16:21:21.071Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "es": {
+          "text": "Las colecciones comparan en qué coinciden tus fuentes, en qué discrepan y qué omiten.",
+          "translatedAt": "2026-10-21T16:21:51.082Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh": {
+          "text": "跨来源合集对比，自动梳理观点共识、分歧与遗漏点。",
+          "translatedAt": "2026-10-21T16:22:07.184Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh-TW": {
+          "text": "建立主題集合，比對不同來源的共識、分歧與各自忽略的盲點。",
+          "translatedAt": "2026-10-21T16:22:27.936Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ja": {
+          "text": "複数の情報源における共通点、相違点、抜け落ちている視点を比較・整理します。",
+          "translatedAt": "2026-10-21T16:22:53.270Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ko": {
+          "text": "컬렉션을 통해 여러 출처의 공통점과 차이점, 누락된 내용을 한눈에 비교해 보세요.",
+          "translatedAt": "2026-10-21T16:23:00.955Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pt": {
+          "text": "As coleções comparam onde suas fontes concordam, onde discordam e o que deixaram de fora.",
+          "translatedAt": "2026-10-21T16:23:15.682Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "hi": {
+          "text": "Collections compare करते हैं कि आपके sources कहाँ agree करते हैं, कहाँ disagree, और क्या छूट गया है।",
+          "translatedAt": "2026-10-21T16:23:32.726Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "vi": {
+          "text": "Bộ sưu tập giúp so sánh điểm tương đồng, bất đồng và những chi tiết bị bỏ sót giữa các nguồn.",
+          "translatedAt": "2026-10-21T16:23:45.506Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "nl": {
+          "text": "Collecties vergelijken waar je bronnen het over eens zijn, waar ze verschillen en wat ze weglaten.",
+          "translatedAt": "2026-10-21T16:24:24.982Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "it": {
+          "text": "Le raccolte confrontano i punti di accordo, disaccordo e le omissioni tra le tue fonti.",
+          "translatedAt": "2026-10-21T16:24:39.801Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ru": {
+          "text": "Коллекции сопоставляют источники: в чём они сходятся, расходятся и о чём умалчивают.",
+          "translatedAt": "2026-10-21T16:25:20.304Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "uk": {
+          "text": "Колекції зіставляють, у чому джерела збігаються, де суперечать одне одному і про що мовчать.",
+          "translatedAt": "2026-10-21T16:25:48.692Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "tr": {
+          "text": "Koleksiyonlar kaynaklarınızın nerede uzlaştığını, nerede ayrıştığını ve neleri atladığını karşılaştırır.",
+          "translatedAt": "2026-10-21T16:26:05.296Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "id": {
+          "text": "Fitur koleksi membandingkan persamaan, perbedaan, dan hal yang terlewat dari sumber-sumber Anda.",
+          "translatedAt": "2026-10-21T16:26:26.854Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pl": {
+          "text": "Kolekcje porównują punkty wspólne, rozbieżności i pominięte wątki w różnych źródłach.",
+          "translatedAt": "2026-10-21T16:26:43.345Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "th": {
+          "text": "Collections เปรียบเทียบจุดที่แหล่งข้อมูลเห็นตรงกัน เห็นต่างกัน และประเด็นที่ตกหล่น",
+          "translatedAt": "2026-10-21T16:27:01.568Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ar": {
+          "text": "تقارن المجموعات ما تتفق عليه مصادرك، وما تختلف فيه، وما أغفلته.",
+          "translatedAt": "2026-10-21T16:27:33.930Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "sv": {
+          "text": "Samlingar jämför vad dina källor är överens om, skiljer sig åt kring och utelämnar.",
+          "translatedAt": "2026-10-21T16:27:57.164Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "da": {
+          "text": "Samlinger sammenligner, hvad dine kilder er enige om, uenige om og udelader.",
+          "translatedAt": "2026-10-21T16:28:18.642Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "no": {
+          "text": "Samlinger sammenligner hva kildene dine er enige om, uenige om og hva som mangler.",
+          "translatedAt": "2026-10-21T16:28:48.752Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fi": {
+          "text": "Kokoelmat vertailevat lähteidesi yhtäläisyyksiä, eroja ja puuttuvia näkökulmia.",
+          "translatedAt": "2026-10-21T16:29:14.791Z",
+          "model": "google/gemini-3.7-flash"
+        }
+      }
+    },
+    "2bc76ff9c883e11cb20a73e06cbc8789f0caf7210493922cc6e67e8854fd6817": {
+      "en": "Ghost highlights",
+      "translations": {
+        "de": {
+          "text": "Automatische Texthervorhebungen",
+          "translatedAt": "2026-10-21T16:21:03.839Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fr": {
+          "text": "Surlignages automatiques",
+          "translatedAt": "2026-10-21T16:21:21.071Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "es": {
+          "text": "Subrayados fantasma",
+          "translatedAt": "2026-10-21T16:21:51.082Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh": {
+          "text": "智能预高亮",
+          "translatedAt": "2026-10-21T16:22:07.184Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh-TW": {
+          "text": "AI 預覽畫重點",
+          "translatedAt": "2026-10-21T16:22:27.936Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ja": {
+          "text": "ゴーストハイライト",
+          "translatedAt": "2026-10-21T16:22:53.270Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ko": {
+          "text": "스마트 자동 하이라이트",
+          "translatedAt": "2026-10-21T16:23:00.955Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pt": {
+          "text": "Destaques fantasma",
+          "translatedAt": "2026-10-21T16:23:15.682Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "hi": {
+          "text": "Ghost highlights",
+          "translatedAt": "2026-10-21T16:23:32.726Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "vi": {
+          "text": "Gợi ý đánh dấu thông minh",
+          "translatedAt": "2026-10-21T16:23:45.506Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "nl": {
+          "text": "Ghost highlights",
+          "translatedAt": "2026-10-21T16:24:24.982Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "it": {
+          "text": "Evidenziazioni automatiche",
+          "translatedAt": "2026-10-21T16:24:39.801Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ru": {
+          "text": "Фантомные выделения",
+          "translatedAt": "2026-10-21T16:25:20.304Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "uk": {
+          "text": "Примарні виділення",
+          "translatedAt": "2026-10-21T16:25:48.692Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "tr": {
+          "text": "Hayalet vurgular",
+          "translatedAt": "2026-10-21T16:26:05.296Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "id": {
+          "text": "Ghost highlights",
+          "translatedAt": "2026-10-21T16:26:26.854Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pl": {
+          "text": "Wirtualne zakreślenia",
+          "translatedAt": "2026-10-21T16:26:43.345Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "th": {
+          "text": "Ghost highlights",
+          "translatedAt": "2026-10-21T16:27:01.568Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ar": {
+          "text": "تظليلات مقترحة",
+          "translatedAt": "2026-10-21T16:27:33.930Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "sv": {
+          "text": "Spökmarkeringar",
+          "translatedAt": "2026-10-21T16:27:57.164Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "da": {
+          "text": "Spøgelsesmarkeringer",
+          "translatedAt": "2026-10-21T16:28:18.642Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "no": {
+          "text": "Spøkelsesmarkeringer",
+          "translatedAt": "2026-10-21T16:28:48.752Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fi": {
+          "text": "Haamukorostukset",
+          "translatedAt": "2026-10-21T16:29:14.791Z",
+          "model": "google/gemini-3.7-flash"
+        }
+      }
+    },
+    "29b7e60d0316f10dde480c84177ec43bffd2587f6d7808a546728cc458f26e31": {
+      "en": "The AI marks the key passages in the article. Keep one, or dismiss it.",
+      "translations": {
+        "de": {
+          "text": "Die KI markiert zentrale Passagen im Artikel. Behalten Sie relevante Highlights oder verwerfen Sie sie.",
+          "translatedAt": "2026-10-21T16:21:03.839Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fr": {
+          "text": "L'IA met en évidence les passages clés de l'article. Conservez-en un ou ignorez-le.",
+          "translatedAt": "2026-10-21T16:21:21.071Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "es": {
+          "text": "La IA marca los pasajes clave del artículo. Conserva uno o descártalo.",
+          "translatedAt": "2026-10-21T16:21:51.082Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh": {
+          "text": "AI 自动标记文章关键段落，你可以一键保留或直接忽略。",
+          "translatedAt": "2026-10-21T16:22:07.184Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh-TW": {
+          "text": "AI 自動標註文章核心段落。你可以選擇保留畫線，或隨手關閉。",
+          "translatedAt": "2026-10-21T16:22:27.936Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ja": {
+          "text": "AIが記事内の重要箇所を自動でハイライト。残すか消すかも自由に選択できます。",
+          "translatedAt": "2026-10-21T16:22:53.270Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ko": {
+          "text": "AI가 글의 핵심 구절을 미리 표시해 줍니다. 마음에 드는 구절만 남겨보세요.",
+          "translatedAt": "2026-10-21T16:23:00.955Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pt": {
+          "text": "A IA destaca os trechos essenciais do artigo. Salve os que quiser ou descarte.",
+          "translatedAt": "2026-10-21T16:23:15.682Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "hi": {
+          "text": "AI article के key passages को mark करता है। जिसे चाहें रखें, या dismiss कर दें।",
+          "translatedAt": "2026-10-21T16:23:32.726Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "vi": {
+          "text": "AI tự động đánh dấu các đoạn trọng tâm trong bài viết. Dễ dàng lưu lại hoặc bỏ qua chỉ với một chạm.",
+          "translatedAt": "2026-10-21T16:23:45.506Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "nl": {
+          "text": "De AI markeert de kernpassages in het artikel. Bewaar een markering of sla hem over.",
+          "translatedAt": "2026-10-21T16:24:24.982Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "it": {
+          "text": "L'IA evidenzia i passaggi chiave dell'articolo. Salvali o ignorali con un clic.",
+          "translatedAt": "2026-10-21T16:24:39.801Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ru": {
+          "text": "ИИ выделяет ключевые фрагменты в тексте. Оставьте нужное выделение или отклоните его.",
+          "translatedAt": "2026-10-21T16:25:20.304Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "uk": {
+          "text": "ШІ позначає ключові уривки в статті. Збережіть потрібний або відхиліть.",
+          "translatedAt": "2026-10-21T16:25:48.692Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "tr": {
+          "text": "Yapay zekâ makaledeki kilit noktaları işaretler. İster saklayın, ister göz ardı edin.",
+          "translatedAt": "2026-10-21T16:26:05.296Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "id": {
+          "text": "AI menandai bagian-bagian penting dalam artikel. Simpan sorotan tersebut atau abaikan.",
+          "translatedAt": "2026-10-21T16:26:26.854Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pl": {
+          "text": "AI zaznacza kluczowe fragmenty artykułu. Możesz je zatwierdzić lub odrzucić.",
+          "translatedAt": "2026-10-21T16:26:43.345Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "th": {
+          "text": "AI ไฮไลต์ประโยคสำคัญในบทความให้ล่วงหน้า สามารถเลือกเก็บไว้หรือซ่อนได้ตามต้องการ",
+          "translatedAt": "2026-10-21T16:27:01.568Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ar": {
+          "text": "يحدد الذكاء الاصطناعي الفقرات الرئيسية في المقال. احتفظ بما تريد منها أو تجاهله.",
+          "translatedAt": "2026-10-21T16:27:33.930Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "sv": {
+          "text": "AI:n markerar de viktigaste passagerna i artikeln. Spara en markering eller avfärda den.",
+          "translatedAt": "2026-10-21T16:27:57.164Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "da": {
+          "text": "AI'en markerer de vigtigste passager i artiklen. Behold en markering, eller afvis den.",
+          "translatedAt": "2026-10-21T16:28:18.642Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "no": {
+          "text": "KI-en markerer nøkkelavsnittene i artikkelen. Behold eller forkast dem som du vil.",
+          "translatedAt": "2026-10-21T16:28:48.752Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fi": {
+          "text": "Tekoäly merkitsee artikkelin avainkohdat. Pidä tai hylkää ne.",
+          "translatedAt": "2026-10-21T16:29:14.791Z",
+          "model": "google/gemini-3.7-flash"
+        }
+      }
+    },
+    "687bc80607d825e9032f09a6761c05691296e830a7f4e3d3d3ed1c32dc26b1e9": {
+      "en": "Your news diet has a mood",
+      "translations": {
+        "de": {
+          "text": "Die Stimmung Ihres Medienkonsums im Blick",
+          "translatedAt": "2026-10-21T16:21:03.839Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fr": {
+          "text": "Vos lectures d'actualités ont une tonalité",
+          "translatedAt": "2026-10-21T16:21:21.071Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "es": {
+          "text": "Tu consumo de noticias tiene un estado de ánimo",
+          "translatedAt": "2026-10-21T16:21:51.082Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh": {
+          "text": "读懂你的资讯情绪画像",
+          "translatedAt": "2026-10-21T16:22:07.184Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh-TW": {
+          "text": "你的新聞閱讀，也有情緒曲線",
+          "translatedAt": "2026-10-21T16:22:27.936Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ja": {
+          "text": "ニュースの傾向とムードを可視化",
+          "translatedAt": "2026-10-21T16:22:53.270Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ko": {
+          "text": "내가 읽는 뉴스의 분위기 분석",
+          "translatedAt": "2026-10-21T16:23:00.955Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pt": {
+          "text": "Seu consumo de notícias tem um clima",
+          "translatedAt": "2026-10-21T16:23:15.682Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "hi": {
+          "text": "आपकी news diet का भी एक mood है",
+          "translatedAt": "2026-10-21T16:23:32.726Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "vi": {
+          "text": "Theo dõi cảm xúc từ thói quen đọc tin tức",
+          "translatedAt": "2026-10-21T16:23:45.506Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "nl": {
+          "text": "Je nieuwsdieet heeft een stemming",
+          "translatedAt": "2026-10-21T16:24:24.982Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "it": {
+          "text": "La tua dieta informativa ha un umore",
+          "translatedAt": "2026-10-21T16:24:39.801Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ru": {
+          "text": "Эмоциональный фон вашей новостной диеты",
+          "translatedAt": "2026-10-21T16:25:20.304Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "uk": {
+          "text": "Ваш новинний раціон має настрій",
+          "translatedAt": "2026-10-21T16:25:48.692Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "tr": {
+          "text": "Haber akışınızın bir modu var",
+          "translatedAt": "2026-10-21T16:26:05.296Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "id": {
+          "text": "Asupan berita Anda punya mood tersendiri",
+          "translatedAt": "2026-10-21T16:26:26.854Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pl": {
+          "text": "Śledzenie nastroju czytanych wiadomości",
+          "translatedAt": "2026-10-21T16:26:43.345Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "th": {
+          "text": "วิเคราะห์อารมณ์ของข่าวที่อ่าน",
+          "translatedAt": "2026-10-21T16:27:01.568Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ar": {
+          "text": "لمحتواك الإخباري طابع ومزاج",
+          "translatedAt": "2026-10-21T16:27:33.930Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "sv": {
+          "text": "Ditt nyhetsintag har en stämning",
+          "translatedAt": "2026-10-21T16:27:57.164Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "da": {
+          "text": "Dit nyhedsforbrug har en stemning",
+          "translatedAt": "2026-10-21T16:28:18.642Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "no": {
+          "text": "Nyhetsvanene dine har en stemning",
+          "translatedAt": "2026-10-21T16:28:48.752Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fi": {
+          "text": "Uutisvirrallasi on oma tunnelmansa",
+          "translatedAt": "2026-10-21T16:29:14.791Z",
+          "model": "google/gemini-3.7-flash"
+        }
+      }
+    },
+    "f26d5d6818f59b6e1b176d45547f984355b916ba88fab8963848a98962735842": {
+      "en": "A good-news filter and a mood chart over the weeks.",
+      "translations": {
+        "de": {
+          "text": "Positive-News-Filter und eine übersichtliche Trendanalyse Ihres Leseverhaltens über Wochen.",
+          "translatedAt": "2026-10-21T16:21:03.839Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fr": {
+          "text": "Un filtre dédié aux bonnes nouvelles et un suivi de votre humeur de lecture au fil des semaines.",
+          "translatedAt": "2026-10-21T16:21:21.071Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "es": {
+          "text": "Un filtro de buenas noticias y un gráfico del estado de ánimo a lo largo de las semanas.",
+          "translatedAt": "2026-10-21T16:21:51.082Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh": {
+          "text": "支持正面资讯筛选，生成周维度阅读情绪趋势图。",
+          "translatedAt": "2026-10-21T16:22:07.184Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh-TW": {
+          "text": "一鍵切換好消息模式，視覺化追蹤數週以來的資訊情緒變化。",
+          "translatedAt": "2026-10-21T16:22:27.936Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ja": {
+          "text": "ポジティブなニュースだけのフィルターや、週間ごとのムード推移チャート。",
+          "translatedAt": "2026-10-21T16:22:53.270Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ko": {
+          "text": "긍정적인 뉴스만 골라보고, 주간 단위로 읽기 습관의 분위기 변화를 살펴보세요.",
+          "translatedAt": "2026-10-21T16:23:00.955Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pt": {
+          "text": "Um filtro de boas notícias e um gráfico de humor ao longo das semanas.",
+          "translatedAt": "2026-10-21T16:23:15.682Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "hi": {
+          "text": "Good-news filter और हफ़्तों भर का mood chart।",
+          "translatedAt": "2026-10-21T16:23:32.726Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "vi": {
+          "text": "Bộ lọc tin tích cực cùng biểu đồ theo dõi tâm trạng qua từng tuần.",
+          "translatedAt": "2026-10-21T16:23:45.506Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "nl": {
+          "text": "Een goednieuwsfilter en een stemmingsgrafiek over de weken heen.",
+          "translatedAt": "2026-10-21T16:24:24.982Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "it": {
+          "text": "Un filtro per le buone notizie e un grafico dell'umore nel corso delle settimane.",
+          "translatedAt": "2026-10-21T16:24:39.801Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ru": {
+          "text": "Фильтр хороших новостей и график динамики настроения по неделям.",
+          "translatedAt": "2026-10-21T16:25:20.304Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "uk": {
+          "text": "Фільтр позитивних новин і графік настрою за тижнями.",
+          "translatedAt": "2026-10-21T16:25:48.692Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "tr": {
+          "text": "İyi haber filtresi ve haftalık duygu durumu grafiği.",
+          "translatedAt": "2026-10-21T16:26:05.296Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "id": {
+          "text": "Filter berita positif dan grafik mood bacaan Anda dari minggu ke minggu.",
+          "translatedAt": "2026-10-21T16:26:26.854Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pl": {
+          "text": "Filtr pozytywnych wiadomości i wykres nastroju na przestrzeni kolejnych tygodni.",
+          "translatedAt": "2026-10-21T16:26:43.345Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "th": {
+          "text": "ตัวกรองเฉพาะข่าวด้านบวก พร้อมกราฟแสดงอารมณ์ของข่าวตลอดหลายสัปดาห์",
+          "translatedAt": "2026-10-21T16:27:01.568Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ar": {
+          "text": "مرشّح للأخبار الإيجابية ومخطط للمزاج على مدار الأسابيع.",
+          "translatedAt": "2026-10-21T16:27:33.930Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "sv": {
+          "text": "Ett filter för goda nyheter och ett stämningsdiagram över veckorna.",
+          "translatedAt": "2026-10-21T16:27:57.164Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "da": {
+          "text": "Et filter til gode nyheder og en stemningsgraf over ugerne.",
+          "translatedAt": "2026-10-21T16:28:18.642Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "no": {
+          "text": "Et filter for gode nyheter og en stemningsgraf over ukene.",
+          "translatedAt": "2026-10-21T16:28:48.752Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fi": {
+          "text": "Hyvien uutisten suodatin ja viikoittainen mielialakaavio.",
+          "translatedAt": "2026-10-21T16:29:14.791Z",
+          "model": "google/gemini-3.7-flash"
+        }
+      }
+    },
+    "5bf5447569e86121ad40ac3ee396884048657e9c7f794342a04cbf48e0bf85ea": {
+      "en": "Instant read",
+      "translations": {
+        "de": {
+          "text": "Sofortiges Vorlesen",
+          "translatedAt": "2026-10-21T16:21:03.839Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fr": {
+          "text": "Lecture instantanée",
+          "translatedAt": "2026-10-21T16:21:21.071Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "es": {
+          "text": "Lectura instantánea",
+          "translatedAt": "2026-10-21T16:21:51.082Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh": {
+          "text": "即时朗读",
+          "translatedAt": "2026-10-21T16:22:07.184Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh-TW": {
+          "text": "即時朗讀",
+          "translatedAt": "2026-10-21T16:22:27.936Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ja": {
+          "text": "インスタント読み上げ",
+          "translatedAt": "2026-10-21T16:22:53.270Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ko": {
+          "text": "실시간 읽어주기",
+          "translatedAt": "2026-10-21T16:23:00.955Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pt": {
+          "text": "Leitura instantânea",
+          "translatedAt": "2026-10-21T16:23:15.682Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "hi": {
+          "text": "Instant read",
+          "translatedAt": "2026-10-21T16:23:32.726Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "vi": {
+          "text": "Đọc ngay tức thì",
+          "translatedAt": "2026-10-21T16:23:45.506Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "nl": {
+          "text": "Direct voorlezen",
+          "translatedAt": "2026-10-21T16:24:24.982Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "it": {
+          "text": "Lettura istantanea",
+          "translatedAt": "2026-10-21T16:24:39.801Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ru": {
+          "text": "Мгновенное чтение",
+          "translatedAt": "2026-10-21T16:25:20.304Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "uk": {
+          "text": "Миттєве читання",
+          "translatedAt": "2026-10-21T16:25:48.692Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "tr": {
+          "text": "Anında okuma",
+          "translatedAt": "2026-10-21T16:26:05.296Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "id": {
+          "text": "Instant read",
+          "translatedAt": "2026-10-21T16:26:26.854Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pl": {
+          "text": "Natychmiastowy odsłuch",
+          "translatedAt": "2026-10-21T16:26:43.345Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "th": {
+          "text": "Instant read",
+          "translatedAt": "2026-10-21T16:27:01.568Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ar": {
+          "text": "قراءة فورية",
+          "translatedAt": "2026-10-21T16:27:33.930Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "sv": {
+          "text": "Direktuppläsning",
+          "translatedAt": "2026-10-21T16:27:57.164Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "da": {
+          "text": "Lyt straks",
+          "translatedAt": "2026-10-21T16:28:18.642Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "no": {
+          "text": "Direktelesing",
+          "translatedAt": "2026-10-21T16:28:48.752Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fi": {
+          "text": "Pikaluku",
+          "translatedAt": "2026-10-21T16:29:14.791Z",
+          "model": "google/gemini-3.7-flash"
+        }
+      }
+    },
+    "c62593c94c692df3a4ec9705279eeecdad25e816e9197122c8c8d6c45ee8b739": {
+      "en": "The summary is spoken while the AI is still writing it.",
+      "translations": {
+        "de": {
+          "text": "Die Zusammenfassung wird vorgelesen, während die KI sie noch generiert.",
+          "translatedAt": "2026-10-21T16:21:03.839Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fr": {
+          "text": "Le résumé est lu à voix haute pendant que l'IA le rédige encore.",
+          "translatedAt": "2026-10-21T16:21:21.071Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "es": {
+          "text": "El resumen se reproduce por voz mientras la IA aún lo está redactando.",
+          "translatedAt": "2026-10-21T16:21:51.082Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh": {
+          "text": "AI 在实时生成摘要的同时，同步进行语音朗读。",
+          "translatedAt": "2026-10-21T16:22:07.184Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh-TW": {
+          "text": "AI 一邊生成摘要，一邊同步語音朗讀，零等待。",
+          "translatedAt": "2026-10-21T16:22:27.936Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ja": {
+          "text": "AIが要約を生成している最中から、リアルタイムで音声読み上げを開始します。",
+          "translatedAt": "2026-10-21T16:22:53.270Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ko": {
+          "text": "AI가 요약본을 작성하는 동안 음성으로 바로 읽어드립니다.",
+          "translatedAt": "2026-10-21T16:23:00.955Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pt": {
+          "text": "O resumo é narrado em voz alta enquanto a IA ainda está escrevendo.",
+          "translatedAt": "2026-10-21T16:23:15.682Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "hi": {
+          "text": "AI summary लिख ही रहा होता है और audio playback शुरू हो जाता है।",
+          "translatedAt": "2026-10-21T16:23:32.726Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "vi": {
+          "text": "Nghe đọc bản tóm tắt bằng giọng nói ngay trong khi AI đang xử lý văn bản.",
+          "translatedAt": "2026-10-21T16:23:45.506Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "nl": {
+          "text": "De samenvatting wordt al voorgelezen terwijl de AI nog aan het schrijven is.",
+          "translatedAt": "2026-10-21T16:24:24.982Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "it": {
+          "text": "Il riassunto viene letto a voce alta mentre l'IA lo sta ancora scrivendo.",
+          "translatedAt": "2026-10-21T16:24:39.801Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ru": {
+          "text": "Саммари озвучивается прямо во время генерации текста ИИ.",
+          "translatedAt": "2026-10-21T16:25:20.304Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "uk": {
+          "text": "Стислий виклад озвучується прямо під час його створення штучним інтелектом.",
+          "translatedAt": "2026-10-21T16:25:48.692Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "tr": {
+          "text": "Yapay zekâ özeti yazmaya devam ederken sesli olarak okunur.",
+          "translatedAt": "2026-10-21T16:26:05.296Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "id": {
+          "text": "Ringkasan dibacakan langsung selagi AI masih menulisnya.",
+          "translatedAt": "2026-10-21T16:26:26.854Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pl": {
+          "text": "Podsumowanie jest odczytywane na głos już w trakcie jego generowania przez AI.",
+          "translatedAt": "2026-10-21T16:26:43.345Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "th": {
+          "text": "ฟังเสียงอ่านสรุปได้ทันทีในระหว่างที่ AI กำลังเขียน",
+          "translatedAt": "2026-10-21T16:27:01.568Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ar": {
+          "text": "يُقرأ الملخص صوتياً بينما لا يزال الذكاء الاصطناعي يكتبه.",
+          "translatedAt": "2026-10-21T16:27:33.930Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "sv": {
+          "text": "Sammanfattningen läses upp medan AI:n fortfarande skriver den.",
+          "translatedAt": "2026-10-21T16:27:57.164Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "da": {
+          "text": "Resuméet læses højt, mens AI'en stadig skriver det.",
+          "translatedAt": "2026-10-21T16:28:18.642Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "no": {
+          "text": "Sammendraget leses opp mens KI-en fortsatt skriver det.",
+          "translatedAt": "2026-10-21T16:28:48.752Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fi": {
+          "text": "Tiivistelmä luetaan ääneen jo silloin, kun tekoäly vasta kirjoittaa sitä.",
+          "translatedAt": "2026-10-21T16:29:14.791Z",
+          "model": "google/gemini-3.7-flash"
+        }
+      }
+    },
+    "3a6e2a993b075a2ea715246bab29bf98c6a512c1f4f6af9368f8964d38e28225": {
+      "en": "YouTube videos, from their captions",
+      "translations": {
+        "de": {
+          "text": "YouTube-Videos anhand ihrer Untertitel",
+          "translatedAt": "2026-10-21T16:21:03.839Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fr": {
+          "text": "Vidéos YouTube, à partir de leurs sous-titres",
+          "translatedAt": "2026-10-21T16:21:21.071Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "es": {
+          "text": "Videos de YouTube, a partir de sus subtítulos",
+          "translatedAt": "2026-10-21T16:21:51.082Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh": {
+          "text": "YouTube 视频字幕即时提炼",
+          "translatedAt": "2026-10-21T16:22:07.184Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh-TW": {
+          "text": "YouTube 影片：直接解析字幕",
+          "translatedAt": "2026-10-21T16:22:27.936Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ja": {
+          "text": "YouTube動画も、字幕からすばやく要約",
+          "translatedAt": "2026-10-21T16:22:53.270Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ko": {
+          "text": "자막 기반 YouTube 동영상 요약",
+          "translatedAt": "2026-10-21T16:23:00.955Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pt": {
+          "text": "Vídeos do YouTube direto das legendas",
+          "translatedAt": "2026-10-21T16:23:15.682Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "hi": {
+          "text": "YouTube videos, उनके captions से",
+          "translatedAt": "2026-10-21T16:23:32.726Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "vi": {
+          "text": "Video YouTube, tóm tắt trực tiếp từ phụ đề",
+          "translatedAt": "2026-10-21T16:23:45.506Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "nl": {
+          "text": "YouTube-video's, direct vanuit de ondertiteling",
+          "translatedAt": "2026-10-21T16:24:24.982Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "it": {
+          "text": "Video di YouTube, direttamente dai sottotitoli",
+          "translatedAt": "2026-10-21T16:24:39.801Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ru": {
+          "text": "Видео на YouTube — прямо по субтитрам",
+          "translatedAt": "2026-10-21T16:25:20.304Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "uk": {
+          "text": "Відео з YouTube за їхніми субтитрами",
+          "translatedAt": "2026-10-21T16:25:48.692Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "tr": {
+          "text": "Altyazılar üzerinden YouTube videoları",
+          "translatedAt": "2026-10-21T16:26:05.296Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "id": {
+          "text": "Video YouTube, langsung dari caption-nya",
+          "translatedAt": "2026-10-21T16:26:26.854Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pl": {
+          "text": "Wideo z YouTube na podstawie napisów",
+          "translatedAt": "2026-10-21T16:26:43.345Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "th": {
+          "text": "สรุปวิดีโอ YouTube จากคำบรรยาย (Captions)",
+          "translatedAt": "2026-10-21T16:27:01.568Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ar": {
+          "text": "فيديوهات YouTube، مباشرة من الترجمة التوضيحية",
+          "translatedAt": "2026-10-21T16:27:33.930Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "sv": {
+          "text": "YouTube-videor, direkt från undertexterna",
+          "translatedAt": "2026-10-21T16:27:57.164Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "da": {
+          "text": "YouTube-videoer direkte fra underteksterne",
+          "translatedAt": "2026-10-21T16:28:18.642Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "no": {
+          "text": "YouTube-videoer, direkte fra undertekstene",
+          "translatedAt": "2026-10-21T16:28:48.752Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fi": {
+          "text": "YouTube-videot tekstitysten pohjalta",
+          "translatedAt": "2026-10-21T16:29:14.791Z",
+          "model": "google/gemini-3.7-flash"
+        }
+      }
+    },
+    "4edf6ca4ef358a6dff29c1db739a95605ebb23be57e9684ae29a5311b017acf9": {
+      "en": "Open a video and summarize it. The extension reads the captions, writes the key points in your language, and follow-up answers cite the passage they come from.",
+      "translations": {
+        "de": {
+          "text": "Öffnen Sie ein Video und lassen Sie es zusammenfassen: Die Erweiterung liest die Untertitel aus, fasst die Kernpunkte auf Deutsch zusammen und belegt Antworten auf Rückfragen mit der genauen Textstelle.",
+          "translatedAt": "2026-10-21T16:21:03.839Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fr": {
+          "text": "Ouvrez une vidéo et résumez-la. L'extension lit les sous-titres, synthétise les points clés dans votre langue, et les réponses à vos questions citent directement le passage source.",
+          "translatedAt": "2026-10-21T16:21:21.071Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "es": {
+          "text": "Abre un video y resúmelo. La extensión lee los subtítulos, redacta los puntos clave en tu idioma y responde preguntas de seguimiento citando el fragmento de origen.",
+          "translatedAt": "2026-10-21T16:21:51.082Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh": {
+          "text": "打开视频即可提取摘要。扩展程序会自动解析字幕，以你的首选语言提炼要点，且后续问答均会标注引用的原文出处。",
+          "translatedAt": "2026-10-21T16:22:07.184Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh-TW": {
+          "text": "打開影片即可產生摘要。擴充功能會自動讀取字幕、以你的語言整理核心要點，後續追問也能標註出處段落。",
+          "translatedAt": "2026-10-21T16:22:27.936Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ja": {
+          "text": "動画を開いて要約を実行。拡張機能が字幕を読み取り、お好みの言語で要点をまとめます。追加の質問にも該当箇所を引用して回答します。",
+          "translatedAt": "2026-10-21T16:22:53.270Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ko": {
+          "text": "동영상을 열고 바로 요약해 보세요. 확장 프로그램이 자막을 분석해 원하는 언어로 핵심을 정리해주며, 추가 질문 시 해당 내용이 나온 구간을 인용해 답변합니다.",
+          "translatedAt": "2026-10-21T16:23:00.955Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pt": {
+          "text": "Abra um vídeo e resuma o conteúdo. A extensão lê as legendas, gera os pontos principais no seu idioma e responde a perguntas citando o trecho exato de onde a informação veio.",
+          "translatedAt": "2026-10-21T16:23:15.682Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "hi": {
+          "text": "कोई भी video open करें और summarize करें। यह extension captions को read करके आपकी भाषा में key points तैयार करता है, और follow-up answers में exact passage cite करता है।",
+          "translatedAt": "2026-10-21T16:23:32.726Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "vi": {
+          "text": "Mở bất kỳ video nào để tóm tắt. Tiện ích mở rộng sẽ đọc phụ đề, trích xuất ý chính bằng ngôn ngữ của bạn và trả lời câu hỏi kèm trích dẫn đoạn tương ứng.",
+          "translatedAt": "2026-10-21T16:23:45.506Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "nl": {
+          "text": "Open een video en vat hem samen. De extensie leest de ondertiteling, formuleert de kernpunten in jouw taal en citeert bij vervolgvragen direct het fragment waar het vandaan komt.",
+          "translatedAt": "2026-10-21T16:24:24.982Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "it": {
+          "text": "Apri un video e riassumilo. L'estensione legge i sottotitoli, estrae i punti chiave nella tua lingua e cita il passaggio esatto nelle risposte di approfondimento.",
+          "translatedAt": "2026-10-21T16:24:39.801Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ru": {
+          "text": "Откройте видео и запустите суммаризацию. Расширение считывает субтитры, формулирует главное на вашем языке, а в ответах на уточняющие вопросы ссылается на конкретные таймкоды и фрагменты.",
+          "translatedAt": "2026-10-21T16:25:20.304Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "uk": {
+          "text": "Відкрийте відео й отримайте стислий огляд. Розширення зчитує субтитри, формулює ключові тези вашою мовою, а відповіді на уточнювальні запитання містять точні посилання на відповідні фрагменти.",
+          "translatedAt": "2026-10-21T16:25:48.692Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "tr": {
+          "text": "Bir video açın ve özetleyin. Uzantı altyazıları okur, ana noktaları kendi dilinizde çıkarır ve takip sorularının yanıtlarında ilgili bölüme atıfta bulunur.",
+          "translatedAt": "2026-10-21T16:26:05.296Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "id": {
+          "text": "Buka video dan buat ringkasannya. Ekstensi membaca caption, merangkum poin-poin utama dalam bahasa Anda, dan jawaban lanjutan akan menyertakan kutipan dari bagian asalnya.",
+          "translatedAt": "2026-10-21T16:26:26.854Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pl": {
+          "text": "Otwórz materiał wideo i wygeneruj podsumowanie. Rozszerzenie analizuje napisy, tworzy kluczowe punkty w Twoim języku, a odpowiedzi na kolejne pytania precyzyjnie wskazują fragment, z którego pochodzą.",
+          "translatedAt": "2026-10-21T16:26:43.345Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "th": {
+          "text": "เปิดวิดีโอแล้วสรุปเนื้อหาได้ทันที ส่วนขยายจะอ่านคำบรรยาย สรุปประเด็นสำคัญเป็นภาษาของคุณ และตอบคำถามเพิ่มเติมพร้อมอ้างอิงช่วงเวลาและข้อความต้นทาง",
+          "translatedAt": "2026-10-21T16:27:01.568Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ar": {
+          "text": "افتح أي فيديو ولخّصه. تقرأ الإضافة الترجمة التوضيحية، وتكتب النقاط الرئيسية بلغتك، وتستشهد إجابات المتابعة بالفقرة التي استندت إليها.",
+          "translatedAt": "2026-10-21T16:27:33.930Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "sv": {
+          "text": "Öppna en video och sammanfatta den. Tillägget läser undertexterna, sammanfattar huvudpunkterna på ditt språk, och uppföljande svar källhänvisar till rätt ställe i videon.",
+          "translatedAt": "2026-10-21T16:27:57.164Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "da": {
+          "text": "Åbn en video og få den opsummeret. Udvidelsen læser underteksterne, opsummerer hovedpointerne på dit eget sprog, og opfølgende svar citerer den præcise passage, de stammer fra.",
+          "translatedAt": "2026-10-21T16:28:18.642Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "no": {
+          "text": "Åpne en video og få den oppsummert. Utvidelsen leser undertekstene, trekker ut hovedpoengene på ditt språk, og oppfølgingssvar siterer nøyaktig hvor i videoen det ble sagt.",
+          "translatedAt": "2026-10-21T16:28:48.752Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fi": {
+          "text": "Avaa video ja tiivistä se. Lisäosa lukee tekstitykset, kirjoittaa pääkohdat omalla kielelläsi ja viittaa vastauksissa suoraan videon kohtiin.",
+          "translatedAt": "2026-10-21T16:29:14.791Z",
+          "model": "google/gemini-3.7-flash"
+        }
+      }
+    },
+    "7e90424c08fe98f3a7c7e4d0a74d82c44f3ac9ecf06e6528193190e583e51543": {
+      "en": "PDFs, like any other page",
+      "translations": {
+        "de": {
+          "text": "PDFs analysieren wie jede Webseite",
+          "translatedAt": "2026-10-21T16:21:03.839Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fr": {
+          "text": "Les PDF, comme n'importe quelle autre page",
+          "translatedAt": "2026-10-21T16:21:21.071Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "es": {
+          "text": "Documentos PDF, como cualquier otra página",
+          "translatedAt": "2026-10-21T16:21:51.082Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh": {
+          "text": "PDF 像普通网页一样轻松阅读",
+          "translatedAt": "2026-10-21T16:22:07.184Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh-TW": {
+          "text": "PDF 檔案，就像普通網頁一樣輕鬆閱讀",
+          "translatedAt": "2026-10-21T16:22:27.936Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ja": {
+          "text": "Webページと同じ感覚でPDFを要約",
+          "translatedAt": "2026-10-21T16:22:53.270Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ko": {
+          "text": "일반 웹페이지처럼 간편한 PDF 요약",
+          "translatedAt": "2026-10-21T16:23:00.955Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pt": {
+          "text": "PDFs como qualquer outra página",
+          "translatedAt": "2026-10-21T16:23:15.682Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "hi": {
+          "text": "PDFs, किसी भी आम page की तरह",
+          "translatedAt": "2026-10-21T16:23:32.726Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "vi": {
+          "text": "Xử lý tài liệu PDF mượt mà như một trang web",
+          "translatedAt": "2026-10-21T16:23:45.506Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "nl": {
+          "text": "Pdf's, net als elke andere pagina",
+          "translatedAt": "2026-10-21T16:24:24.982Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "it": {
+          "text": "PDF, proprio come qualsiasi altra pagina",
+          "translatedAt": "2026-10-21T16:24:39.801Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ru": {
+          "text": "PDF-файлы — как обычные веб-страницы",
+          "translatedAt": "2026-10-21T16:25:20.304Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "uk": {
+          "text": "PDF-файли, як і будь-яка інша сторінка",
+          "translatedAt": "2026-10-21T16:25:48.692Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "tr": {
+          "text": "Tıpkı diğer sayfalar gibi PDF'ler",
+          "translatedAt": "2026-10-21T16:26:05.296Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "id": {
+          "text": "PDF, layaknya halaman web biasa",
+          "translatedAt": "2026-10-21T16:26:26.854Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pl": {
+          "text": "Pliki PDF jak każda inna strona",
+          "translatedAt": "2026-10-21T16:26:43.345Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "th": {
+          "text": "จัดการ PDF ได้ง่ายเหมือนหน้าเว็บทั่วไป",
+          "translatedAt": "2026-10-21T16:27:01.568Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ar": {
+          "text": "ملفات PDF، كأي صفحة ويب أخرى",
+          "translatedAt": "2026-10-21T16:27:33.930Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "sv": {
+          "text": "PDF:er, precis som vilken webbsida som helst",
+          "translatedAt": "2026-10-21T16:27:57.164Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "da": {
+          "text": "PDF'er – præcis som enhver anden side",
+          "translatedAt": "2026-10-21T16:28:18.642Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "no": {
+          "text": "PDF-er, akkurat som vanlige nettsider",
+          "translatedAt": "2026-10-21T16:28:48.752Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fi": {
+          "text": "PDF-tiedostot kuten mikä tahansa sivu",
+          "translatedAt": "2026-10-21T16:29:14.791Z",
+          "model": "google/gemini-3.7-flash"
+        }
+      }
+    },
+    "76e8d991e048864430450e5f14678aecd5b1e527cffeb756176ab9a12355b763": {
+      "en": "Open a PDF in the browser, or attach one from disk, and summarize it like any page. “What I used” shows what the model read: words, tokens and model.",
+      "translations": {
+        "de": {
+          "text": "Öffnen Sie ein PDF im Browser oder laden Sie es lokal hoch – die Auswertung erfolgt wie gewohnt. „Verwendete Daten“ zeigt Ihnen volle Transparenz über gelesene Wörter, Tokens und das genutzte Modell.",
+          "translatedAt": "2026-10-21T16:21:03.839Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fr": {
+          "text": "Ouvrez un PDF dans le navigateur ou chargez-le depuis votre disque, et résumez-le comme une simple page web. L'encadré « Éléments analysés » détaille ce que le modèle a lu : mots, tokens et modèle utilisé.",
+          "translatedAt": "2026-10-21T16:21:21.071Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "es": {
+          "text": "Abre un PDF en el navegador o adjunta uno desde tu disco y resúmelo como cualquier página. «Qué se utilizó» muestra lo que leyó el modelo: palabras, tokens y modelo usado.",
+          "translatedAt": "2026-10-21T16:21:51.082Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh": {
+          "text": "在浏览器中打开 PDF 或从本地导入，即可像普通网页一样提炼摘要。“使用明细”透明展示模型读取的字数、Token 用量及所用模型。",
+          "translatedAt": "2026-10-21T16:22:07.184Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh-TW": {
+          "text": "在瀏覽器中直接開啟或由本機上傳 PDF，就能像一般網頁般快速摘要。「使用明細」清晰顯示讀取的字數、Token 數與使用模型。",
+          "translatedAt": "2026-10-21T16:22:27.936Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ja": {
+          "text": "ブラウザでPDFを開くか、ローカルファイルを指定するだけで、通常のWebページと同様に要約できます。「使用情報」で使用したモデル、読み取った単語数やトークン数を確認できます。",
+          "translatedAt": "2026-10-21T16:22:53.270Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ko": {
+          "text": "브라우저에서 PDF를 열거나 저장된 파일을 불러와 일반 웹페이지처럼 요약할 수 있습니다. '사용 정보'에서 단어 수, 토큰, 사용된 모델 등 분석 내역도 투명하게 확인하세요.",
+          "translatedAt": "2026-10-21T16:23:00.955Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pt": {
+          "text": "Abra um PDF no navegador ou anexe um arquivo do seu computador e resuma como qualquer página web. O painel “O que usei” mostra exatamente o que o modelo leu: palavras, tokens e o modelo utilizado.",
+          "translatedAt": "2026-10-21T16:23:15.682Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "hi": {
+          "text": "Browser में PDF open करें या disk से attach करें, और किसी भी page की तरह summarize करें। “What I used” दिखाता है कि model ने क्या read किया: words, tokens और model।",
+          "translatedAt": "2026-10-21T16:23:32.726Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "vi": {
+          "text": "Mở tệp PDF trên trình duyệt hoặc tải lên từ máy tính để tóm tắt như trang web thông thường. Mục “Nguồn dữ liệu đã dùng” hiển thị rõ: số từ, số token và mô hình AI đã xử lý.",
+          "translatedAt": "2026-10-21T16:23:45.506Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "nl": {
+          "text": "Open een pdf in je browser of voeg er een toe vanaf je schijf, en vat hem samen als elke webpagina. “Wat is gebruikt” toont precies wat het model heeft gelezen: woorden, tokens en het model.",
+          "translatedAt": "2026-10-21T16:24:24.982Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "it": {
+          "text": "Apri un PDF nel browser o allegalo dal disco e riassumilo come qualsiasi pagina. “Cosa ho usato” mostra esattamente cosa ha letto il modello: parole, token e modello impiegato.",
+          "translatedAt": "2026-10-21T16:24:39.801Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ru": {
+          "text": "Откройте PDF в браузере или загрузите с диска и сделайте саммари так же просто, как для веб-страницы. Раздел «Что использовалось» покажет, что именно прочитала модель: количество слов, токенов и название модели.",
+          "translatedAt": "2026-10-21T16:25:20.304Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "uk": {
+          "text": "Відкрийте PDF у браузері або додайте файл із диска й отримайте стислий зміст, як для звичайної сторінки. Розділ «Що використано» показує, що саме прочитала модель: кількість слів, токенів та модель.",
+          "translatedAt": "2026-10-21T16:25:48.692Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "tr": {
+          "text": "Tarayıcıda bir PDF açın veya diskinizden yükleyin; sıradan bir web sayfası gibi özetleyin. “Kullanılanlar” bölümü modelin neleri okuduğunu gösterir: kelimeler, token'lar ve model.",
+          "translatedAt": "2026-10-21T16:26:05.296Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "id": {
+          "text": "Buka PDF di browser atau lampirkan dari penyimpanan lokal, lalu ringkas seperti halaman web biasa. “What I used” memperlihatkan data yang dibaca: jumlah kata, token, dan model yang digunakan.",
+          "translatedAt": "2026-10-21T16:26:26.854Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pl": {
+          "text": "Otwórz plik PDF w przeglądarce lub wczytaj go z dysku i podsumuj jak zwykłą stronę. Sekcja „Użyte zasoby” transparentnie pokazuje, co przetworzył model: liczbę słów, tokenów oraz nazwę modelu.",
+          "translatedAt": "2026-10-21T16:26:43.345Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "th": {
+          "text": "เปิดไฟล์ PDF ในเบราว์เซอร์หรือเลือกจากในเครื่อง แล้วสรุปเนื้อหาเหมือนหน้าเว็บทั่วไป พร้อมฟังก์ชัน “What I used” แสดงข้อมูลที่โมเดลอ่าน: จำนวนคำ โทเค็น และโมเดลที่ใช้",
+          "translatedAt": "2026-10-21T16:27:01.568Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ar": {
+          "text": "افتح ملف PDF في المتصفح أو أرفقه من قرص التخزين، ولخّصه كأي صفحة ويب. يعرض لك قسم «ما تم استخدامه» ما قرأه النموذج: الكلمات، ورموز tokens، واسم النموذج.",
+          "translatedAt": "2026-10-21T16:27:33.930Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "sv": {
+          "text": "Öppna en PDF i webbläsaren eller bifoga en från hårddisken och sammanfatta den som en vanlig sida. ”Vad som användes” visar vad modellen läste: ord, tokens och modell.",
+          "translatedAt": "2026-10-21T16:27:57.164Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "da": {
+          "text": "Åbn en PDF i browseren eller vedhæft en fra disken, og opsummer den som enhver anden side. ”Hvad der blev brugt” viser, hvad modellen har læst: ord, tokens og model.",
+          "translatedAt": "2026-10-21T16:28:18.642Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "no": {
+          "text": "Åpne en PDF i nettleseren eller legg til en fra disken, og oppsummer den som en vanlig nettside. «Dette ble brukt» viser hva modellen leste: ord, tokens og hvilken modell.",
+          "translatedAt": "2026-10-21T16:28:48.752Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fi": {
+          "text": "Avaa PDF selaimessa tai liitä se levyltä ja tiivistä se kuin tavallinen sivu. ”Mitä käytettiin” näyttää, mitä malli luki: sanat, tokenit ja käytetyn mallin.",
+          "translatedAt": "2026-10-21T16:29:14.791Z",
+          "model": "google/gemini-3.7-flash"
+        }
+      }
+    },
+    "cc70415d02760212d31fa616245b0fa711babc548379d7dea5317bac609fc0c2": {
+      "en": "Research mode: papers recognised by their DOI",
+      "translations": {
+        "de": {
+          "text": "Recherche-Modus: Papers anhand ihrer DOI identifizieren",
+          "translatedAt": "2026-10-21T16:21:03.839Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fr": {
+          "text": "Mode recherche : articles scientifiques reconnus par leur DOI",
+          "translatedAt": "2026-10-21T16:21:21.071Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "es": {
+          "text": "Modo de investigación: artículos reconocidos por su DOI",
+          "translatedAt": "2026-10-21T16:21:51.082Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh": {
+          "text": "科研模式：基于 DOI 智能识别学术论文",
+          "translatedAt": "2026-10-21T16:22:07.184Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh-TW": {
+          "text": "研究模式：透過 DOI 自動辨識論文",
+          "translatedAt": "2026-10-21T16:22:27.936Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ja": {
+          "text": "リサーチモード：DOIから学術論文を自動識別",
+          "translatedAt": "2026-10-21T16:22:53.270Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ko": {
+          "text": "연구 모드: DOI 기반 논문 자동 인식",
+          "translatedAt": "2026-10-21T16:23:00.955Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pt": {
+          "text": "Modo de pesquisa: artigos reconhecidos pelo DOI",
+          "translatedAt": "2026-10-21T16:23:15.682Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "hi": {
+          "text": "Research mode: DOI से पहचाने जाने वाले papers",
+          "translatedAt": "2026-10-21T16:23:32.726Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "vi": {
+          "text": "Chế độ nghiên cứu: Tự động nhận diện tài liệu học thuật qua mã DOI",
+          "translatedAt": "2026-10-21T16:23:45.506Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "nl": {
+          "text": "Onderzoeksmodus: papers herkend aan hun DOI",
+          "translatedAt": "2026-10-21T16:24:24.982Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "it": {
+          "text": "Modalità ricerca: paper riconosciuti dal loro DOI",
+          "translatedAt": "2026-10-21T16:24:39.801Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ru": {
+          "text": "Режим исследований: статьи распознаются по DOI",
+          "translatedAt": "2026-10-21T16:25:20.304Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "uk": {
+          "text": "Режим дослідження: статті розпізнаються за DOI",
+          "translatedAt": "2026-10-21T16:25:48.692Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "tr": {
+          "text": "Araştırma modu: DOI ile tanınan makaleler",
+          "translatedAt": "2026-10-21T16:26:05.296Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "id": {
+          "text": "Mode riset: paper dikenali dari DOI-nya",
+          "translatedAt": "2026-10-21T16:26:26.854Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pl": {
+          "text": "Tryb badawczy: artykuły naukowe rozpoznawane po DOI",
+          "translatedAt": "2026-10-21T16:26:43.345Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "th": {
+          "text": "โหมดงานวิจัย: ระบุเปเปอร์อัตโนมัติจาก DOI",
+          "translatedAt": "2026-10-21T16:27:01.568Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ar": {
+          "text": "وضع البحث: التعرف على الأوراق البحثية عبر معرّف DOI",
+          "translatedAt": "2026-10-21T16:27:33.930Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "sv": {
+          "text": "Forskningsläge: artiklar identifieras via DOI",
+          "translatedAt": "2026-10-21T16:27:57.164Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "da": {
+          "text": "Forskningsfunktion: Artikler genkendes på deres DOI",
+          "translatedAt": "2026-10-21T16:28:18.642Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "no": {
+          "text": "Forskningsmodus: artikler gjenkjennes via DOI",
+          "translatedAt": "2026-10-21T16:28:48.752Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fi": {
+          "text": "Tutkimustila: artikkelit tunnistetaan DOI-tunnisteen perusteella",
+          "translatedAt": "2026-10-21T16:29:14.791Z",
+          "model": "google/gemini-3.7-flash"
+        }
+      }
+    },
+    "75aa6356ed1e62de9b091630f985090a794dc507da4fb3070da9716e244cd2a6": {
+      "en": "Scientific papers are recognised from their DOI and citation metadata and flagged as trial, review or preprint. Design, sample and limitations are pulled out, and the citation is built from the DOI registry, not by the AI.",
+      "translations": {
+        "de": {
+          "text": "Wissenschaftliche Arbeiten werden über DOI und Metadaten erkannt und präzise als Studie, Review oder Preprint klassifiziert. Methodik, Stichprobe und Limitationen werden extrahiert – und Zitationen direkt aus dem DOI-Register bezogen, ohne KI-Halluzinationen.",
+          "translatedAt": "2026-10-21T16:21:03.839Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fr": {
+          "text": "Les publications scientifiques sont identifiées grâce à leur DOI et métadonnées, puis catégorisées (essai, revue ou prépublication). Méthodologie, échantillon et limites sont extraits, et la citation provient directement du registre DOI officiel.",
+          "translatedAt": "2026-10-21T16:21:21.071Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "es": {
+          "text": "Los artículos científicos se reconocen mediante su DOI y metadatos de citación, identificándose como ensayo, revisión o preprint. Se extraen el diseño, la muestra y las limitaciones, y la cita se genera a partir del registro DOI, no mediante la IA.",
+          "translatedAt": "2026-10-21T16:21:51.082Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh": {
+          "text": "通过 DOI 与引用元数据自动识别学术论文，标明临床试验、综述或预印本类型。自动提取研究设计、样本规模与局限性，并直接从 DOI 官方注册库生成引用，杜绝 AI 幻觉。",
+          "translatedAt": "2026-10-21T16:22:07.184Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh-TW": {
+          "text": "根據 DOI 與引用中繼資料精準辨識學術論文，並標示為臨床試驗、綜述或預印本。研究架構、樣本與限制一併條列，引用資料更直接來自 DOI 官方登記庫，而非 AI 憑空生成。",
+          "translatedAt": "2026-10-21T16:22:27.936Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ja": {
+          "text": "学術論文のDOIやメタデータを識別し、臨床試験・総説・プレプリントなどの種別を判定。研究デザイン、サンプル、制約事項を抽出し、AIによる創作ではなくDOIレジストリに基づいた正確な引用情報を生成します。",
+          "translatedAt": "2026-10-21T16:22:53.270Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ko": {
+          "text": "DOI 및 인용 메타데이터로 학술 논문을 자동 인식하여 임상시험, 리뷰, 프리프린트 등으로 분류합니다. 연구 설계, 표본, 한계점을 명확히 추출하며, 인용 정보는 AI 생성이 아닌 DOI 등록 데이터를 직접 활용해 정확합니다.",
+          "translatedAt": "2026-10-21T16:23:00.955Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pt": {
+          "text": "Artigos científicos são identificados automaticamente pelo DOI e metadados, sendo classificados como ensaio clínico, revisão ou preprint. Metodologia, amostragem e limitações são extraídas, e a citação é montada direto da base oficial do DOI, sem invenções da IA.",
+          "translatedAt": "2026-10-21T16:23:15.682Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "hi": {
+          "text": "Scientific papers को उनके DOI और citation metadata से पहचानकर trial, review या preprint के रूप में flag किया जाता है। Design, sample और limitations अलग से extract होते हैं, और citation सीधे DOI registry से बनती है, AI द्वारा नहीं।",
+          "translatedAt": "2026-10-21T16:23:32.726Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "vi": {
+          "text": "Các bài báo khoa học được nhận diện tức thì qua mã DOI và siêu dữ liệu trích dẫn, đồng thời phân loại rõ ràng: thử nghiệm lâm sàng, bài tổng quan hay bản thảo sơ bộ. Phương pháp nghiên cứu, kích thước mẫu và các giới hạn được trích xuất cụ thể; trích dẫn nguồn được tạo chuẩn xác trực tiếp từ hệ thống DOI thay vì do AI tự sinh.",
+          "translatedAt": "2026-10-21T16:23:45.506Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "nl": {
+          "text": "Wetenschappelijke papers worden herkend aan hun DOI en citatiemetadata, en direct aangeduid als trial, review of preprint. Onderzoeksopzet, steekproef en beperkingen worden eruit gelicht, en de citatie wordt direct gegenereerd vanuit het officiële DOI-register — niet verzonnen door de AI.",
+          "translatedAt": "2026-10-21T16:24:24.982Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "it": {
+          "text": "Gli articoli scientifici vengono identificati tramite DOI e metadati di citazione, con classificazione tra trial, review o preprint. Metodologia, campione e limiti vengono estratti automaticamente, mentre la citazione è generata dal registro DOI ufficiale, non inventata dall'IA.",
+          "translatedAt": "2026-10-21T16:24:39.801Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ru": {
+          "text": "Научные статьи автоматически распознаются по DOI и метаданным цитирования, получая статус клинического исследования, обзора или препринта. Из текста извлекаются дизайн, выборка и ограничения, а цитата создаётся по реестру DOI, а не выдумывается ИИ.",
+          "translatedAt": "2026-10-21T16:25:20.304Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "uk": {
+          "text": "Наукові статті розпізнаються за їхніми DOI та метаданими цитування й маркуються як дослідження, огляд чи препринт. Дизайн дослідження, вибірка та обмеження виділяються автоматично, а бібліографічне посилання формується з реєстру DOI, а не генерується ШІ.",
+          "translatedAt": "2026-10-21T16:25:48.692Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "tr": {
+          "text": "Bilimsel makaleler DOI ve atıf meta verilerinden tanınarak klinik çalışma, derleme veya preprint olarak etiketlenir. Yöntem, örneklem ve kısıtlar ayıklanır; alıntı ise yapay zekâ tarafından değil, doğrudan DOI kaydından oluşturulur.",
+          "translatedAt": "2026-10-21T16:26:05.296Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "id": {
+          "text": "Paper ilmiah dikenali otomatis dari DOI dan metadata sitasinya, lalu dikategorikan sebagai uji klinis (trial), tinjauan (review), atau preprint. Metodologi, sampel, dan batasan penelitian langsung diekstrak, serta sitasi disusun akurat dari registri DOI, bukan karangan AI.",
+          "translatedAt": "2026-10-21T16:26:26.854Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pl": {
+          "text": "Artykuły naukowe są automatycznie rozpoznawane na podstawie numeru DOI i metadanych, a następnie oznaczane jako badanie kliniczne, przegląd lub preprint. Narzędzie wyodrębnia metodologię, próbę i ograniczenia, a rekord bibliograficzny generuje bezpośrednio z rejestru DOI bez ryzyka halucynacji AI.",
+          "translatedAt": "2026-10-21T16:26:43.345Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "th": {
+          "text": "ตรวจจับเปเปอร์วิชาการจาก DOI และข้อมูลอ้างอิง พร้อมระบุประเภทว่าเป็นงานทดลอง (trial), งานทบทวน (review) หรือ preprint โดยจะดึงข้อมูลการออกแบบวิจัย กลุ่มตัวอย่าง และข้อจำกัดออกมา และสร้างรายการอ้างอิงจากฐานข้อมูล DOI โดยตรงอย่างแม่นยำ ไม่ใช่การคาดเดาจาก AI",
+          "translatedAt": "2026-10-21T16:27:01.568Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ar": {
+          "text": "يتم التعرف على الأوراق العلمية عبر معرّف DOI وبيانات الاقتباس وتصنيفها كتجربة، أو مراجعة، أو مسودة أولية. تُستخرج المنهجية وحجم العينة وأوجه القصور، ويتم توليد الاقتباس من سجل DOI مباشرةً دون تدخل الذكاء الاصطناعي.",
+          "translatedAt": "2026-10-21T16:27:33.930Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "sv": {
+          "text": "Vetenskapliga artiklar identifieras via sin DOI och metadata, och kategoriseras som studie, översikt eller preprint. Studiedesign, urval och begränsningar lyfts fram, och källhänvisningen hämtas direkt från DOI-registret – inte från AI:n.",
+          "translatedAt": "2026-10-21T16:27:57.164Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "da": {
+          "text": "Videnskabelige artikler genkendes automatisk ud fra deres DOI og citationsmetadata og markeres som forsøg, review eller preprint. Studiedesign, stikprøve og begrænsninger fremhæves, og kildehenvisningen hentes direkte fra DOI-registret – ikke genereret af AI'en.",
+          "translatedAt": "2026-10-21T16:28:18.642Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "no": {
+          "text": "Vitenskapelige artikler gjenkjennes automatisk via DOI og metadata, og merkes som klinisk studie, oversiktsartikkel eller preprint. Metode, utvalg og begrensninger trekkes ut, og kildehenvisningen hentes rett fra DOI-registeret – ikke oppdiktet av KI-en.",
+          "translatedAt": "2026-10-21T16:28:48.752Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fi": {
+          "text": "Tieteelliset artikkelit tunnistetaan DOI-tunnisteen ja viitemetadatan perusteella ja merkitään kokeeksi, katsaukseksi tai preprintiksi. Tutkimusasetelma, otoskoko ja rajoitteet eritellään, ja lähdeviite muodostetaan virallisesta DOI-rekisteristä – ei tekoälyn keksimänä.",
+          "translatedAt": "2026-10-21T16:29:14.791Z",
+          "model": "google/gemini-3.7-flash"
+        }
+      }
+    },
+    "281356af4663f03e835773e0876729c861c9fb3c8f1d057a0e2589bd10d5c567": {
+      "en": "Compare sources on one question",
+      "translations": {
+        "de": {
+          "text": "Quellenvergleich zu einer zentralen Frage",
+          "translatedAt": "2026-10-21T16:21:03.839Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fr": {
+          "text": "Comparez plusieurs sources sur une même question",
+          "translatedAt": "2026-10-21T16:21:21.071Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "es": {
+          "text": "Compara fuentes sobre una misma pregunta",
+          "translatedAt": "2026-10-21T16:21:51.082Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh": {
+          "text": "针对单一问题横向对比多方信源",
+          "translatedAt": "2026-10-21T16:22:07.184Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh-TW": {
+          "text": "針對同一問題，跨來源比對",
+          "translatedAt": "2026-10-21T16:22:27.936Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ja": {
+          "text": "1つの問いに対して複数ソースを比較",
+          "translatedAt": "2026-10-21T16:22:53.270Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ko": {
+          "text": "하나의 주제로 여러 출처 비교하기",
+          "translatedAt": "2026-10-21T16:23:00.955Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pt": {
+          "text": "Compare diferentes fontes sobre a mesma questão",
+          "translatedAt": "2026-10-21T16:23:15.682Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "hi": {
+          "text": "एक ही सवाल पर multiple sources compare करें",
+          "translatedAt": "2026-10-21T16:23:32.726Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "vi": {
+          "text": "Đối chiếu đa nguồn cho cùng một vấn đề",
+          "translatedAt": "2026-10-21T16:23:45.506Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "nl": {
+          "text": "Vergelijk bronnen over één vraag",
+          "translatedAt": "2026-10-21T16:24:24.982Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "it": {
+          "text": "Confronta le fonti su una singola domanda",
+          "translatedAt": "2026-10-21T16:24:39.801Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ru": {
+          "text": "Сравнение источников по одному вопросу",
+          "translatedAt": "2026-10-21T16:25:20.304Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "uk": {
+          "text": "Порівняння джерел за одним запитанням",
+          "translatedAt": "2026-10-21T16:25:48.692Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "tr": {
+          "text": "Tek bir soruda kaynakları karşılaştırın",
+          "translatedAt": "2026-10-21T16:26:05.296Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "id": {
+          "text": "Bandingkan berbagai sumber untuk satu pertanyaan",
+          "translatedAt": "2026-10-21T16:26:26.854Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pl": {
+          "text": "Porównaj źródła wokół jednego pytania",
+          "translatedAt": "2026-10-21T16:26:43.345Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "th": {
+          "text": "เปรียบเทียบข้อมูลจากหลายแหล่งในประเด็นเดียว",
+          "translatedAt": "2026-10-21T16:27:01.568Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ar": {
+          "text": "قارن بين المصادر حول سؤال واحد",
+          "translatedAt": "2026-10-21T16:27:33.930Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "sv": {
+          "text": "Jämför källor kring en fråga",
+          "translatedAt": "2026-10-21T16:27:57.164Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "da": {
+          "text": "Sammenlign kilder om ét emne",
+          "translatedAt": "2026-10-21T16:28:18.642Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "no": {
+          "text": "Sammenlign kilder om samme spørsmål",
+          "translatedAt": "2026-10-21T16:28:48.752Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fi": {
+          "text": "Vertaile lähteitä yhden kysymyksen osalta",
+          "translatedAt": "2026-10-21T16:29:14.791Z",
+          "model": "google/gemini-3.7-flash"
+        }
+      }
+    },
+    "428e3b5f39ccdf6134767ce269342cde7175adf5738a49c1b49d73402c7a11d6": {
+      "en": "Bundle saved articles in a collection, type each source (peer-reviewed, preprint, news, opinion), run the lateral-reading check, and let the AI compare the summaries: where they agree, disagree and what is missing.",
+      "translations": {
+        "de": {
+          "text": "Bündeln Sie Artikel in einer Collection, typisieren Sie jede Quelle (Peer-Reviewed, Preprint, Nachrichten, Kommentar), prüfen Sie Querverbindungen und lassen Sie die KI Gemeinsamkeiten, Widersprüche und Lücken transparent aufzeigen.",
+          "translatedAt": "2026-10-21T16:21:03.839Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fr": {
+          "text": "Regroupez vos articles sauvegardés dans une collection, qualifiez chaque source (évaluation par les pairs, prépublication, presse, tribune), lancez la lecture croisée et laissez l'IA comparer les synthèses : convergences, divergences et omissions.",
+          "translatedAt": "2026-10-21T16:21:21.071Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "es": {
+          "text": "Agrupa artículos guardados en una colección, clasifica cada fuente (revisión por pares, preprint, noticias, opinión), ejecuta la verificación de lectura lateral y deja que la IA compare los resúmenes: coincidencias, discrepancias y omisiones.",
+          "translatedAt": "2026-10-21T16:21:51.082Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh": {
+          "text": "将收藏的文章归入合集，标记信源类型（同行评审、预印本、新闻、观点），执行横向阅读核验，让 AI 深入比对各篇摘要：找出共识、分歧与信息盲区。",
+          "translatedAt": "2026-10-21T16:22:07.184Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh-TW": {
+          "text": "將儲存的文章彙整為集合，自訂來源類型（同儕審查、預印本、新聞、評論），啟動側向閱讀檢驗，讓 AI 自動比對摘要：抓出共識、衝突與被遺漏的觀點。",
+          "translatedAt": "2026-10-21T16:22:27.936Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ja": {
+          "text": "保存した記事をコレクションにまとめ、情報源の種類（査読付き論文、プレプリント、ニュース、オピニオンなど）を分類。多角的な検証を行い、各要約の一致点、相違点、不足している観点をAIが比較分析します。",
+          "translatedAt": "2026-10-21T16:22:53.270Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ko": {
+          "text": "저장된 글을 컬렉션으로 묶고 출처 유형(동료 평가 논문, 프리프린트, 뉴스, 오피니언 등)을 분류해 교차 검증해 보세요. AI가 공통점과 차이점, 놓친 부분까지 요약해 비교해 줍니다.",
+          "translatedAt": "2026-10-21T16:23:00.955Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pt": {
+          "text": "Agrupe artigos salvos em uma coleção, classifique cada fonte (revisão por pares, preprint, notícia, opinião), aplique a checagem por leitura lateral e deixe a IA comparar os resumos: mostrando onde elas concordam, onde discordam e o que ficou de fora.",
+          "translatedAt": "2026-10-21T16:23:15.682Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "hi": {
+          "text": "Saved articles को collection में bundle करें, हर source का type चुनें (peer-reviewed, preprint, news, opinion), lateral-reading check run करें, और AI को summaries compare करने दें: वे कहाँ agree करते हैं, कहाँ disagree, और क्या miss हुआ है।",
+          "translatedAt": "2026-10-21T16:23:32.726Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "vi": {
+          "text": "Gom nhóm các bài viết đã lưu vào một bộ sưu tập, phân loại từng nguồn (bài phản biện đồng đẳng, bản thảo sơ bộ, tin tức, quan điểm cá nhân), kích hoạt tính năng kiểm chứng chéo và để AI so sánh: tìm ra điểm tương đồng, điểm mâu thuẫn và các góc nhìn còn thiếu.",
+          "translatedAt": "2026-10-21T16:23:45.506Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "nl": {
+          "text": "Bundel bewaarde artikelen in een collectie, kies het brontype (peer-reviewed, preprint, nieuws, opinie), start de laterale leescheck en laat de AI de samenvattingen vergelijken: overeenkomsten, tegenstrijdigheden en ontbrekende punten.",
+          "translatedAt": "2026-10-21T16:24:24.982Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "it": {
+          "text": "Raggruppa gli articoli salvati in una raccolta, indica il tipo di fonte (peer-reviewed, preprint, news, opinione), esegui la verifica a lettura laterale e lascia che l'IA confronti i riassunti: convergenze, divergenze e aspetti tralasciati.",
+          "translatedAt": "2026-10-21T16:24:39.801Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ru": {
+          "text": "Объединяйте статьи в коллекции, указывайте тип каждого источника (рецензируемый, препринт, новость, колонка мнений), запускайте латеральное чтение и сравнивайте выводы: в чём источники согласны, где спорят и что упустили.",
+          "translatedAt": "2026-10-21T16:25:20.304Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "uk": {
+          "text": "Об'єднуйте збережені статті в колекції, вказуйте тип кожного джерела (рецензоване видання, препринт, новина, авторська колонка), запускайте перевірку методом латерального читання і дозвольте ШІ порівняти підсумки: у чому джерела збігаються, де суперечать одне одному і чого бракує.",
+          "translatedAt": "2026-10-21T16:25:48.692Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "tr": {
+          "text": "Kaydedilen makaleleri bir koleksiyonda toplayın, kaynak türünü belirtin (peer-reviewed, preprint, haber, köşe yazısı), çapraz okuma denetimini çalıştırın ve yapay zekânın özetleri karşılaştırmasını sağlayın: nerede uzlaşıyorlar, nerede ayrışıyorlar ve eksik olan ne?",
+          "translatedAt": "2026-10-21T16:26:05.296Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "id": {
+          "text": "Kelompokkan artikel tersimpan ke dalam koleksi, tentukan jenis sumbernya (peer-reviewed, preprint, berita, opini), jalankan pemeriksaan lateral reading, dan biarkan AI membandingkan ringkasannya: persamaan, perbedaan, serta poin yang belum dibahas.",
+          "translatedAt": "2026-10-21T16:26:26.854Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pl": {
+          "text": "Grupuj zapisane artykuły w kolekcję, określ rodzaj każdego źródła (recenzowane, preprint, publicystyka, opinia), zweryfikuj je równolegle i pozwól AI zestawić podsumowania: sprawdzić punkty wspólne, sprzeczności oraz pominięte kwestie.",
+          "translatedAt": "2026-10-21T16:26:43.345Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "th": {
+          "text": "รวบรวมบทความที่บันทึกไว้ลงใน Collection ระบุประเภทของแต่ละแหล่งข้อมูล (peer-reviewed, preprint, ข่าว, บทวิเคราะห์) ตรวจสอบแบบ lateral reading และให้ AI เปรียบเทียบสรุปเนื้อหา: จุดที่เห็นตรงกัน จุดที่เห็นต่างกัน และสิ่งที่ตกหล่น",
+          "translatedAt": "2026-10-21T16:27:01.568Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ar": {
+          "text": "اجمع المقالات المحفوظة في مجموعة، وصنّف كل مصدر (مُحكّم، مسودة أولية، أخبار، رأي)، وشغّل فحص القراءة المتوازية، ودع الذكاء الاصطناعي يقارن الملخصات: نقاط الاتفاق والاختلاف وما تم إغفاله.",
+          "translatedAt": "2026-10-21T16:27:33.930Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "sv": {
+          "text": "Samla sparade artiklar i en samling, ange typ av källa (sakkunniggranskad, preprint, nyhet, debatt), gör en källkritisk jämförelse och låt AI:n visa var källorna överensstämmer, skiljer sig åt och vad som saknas.",
+          "translatedAt": "2026-10-21T16:27:57.164Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "da": {
+          "text": "Saml gemte artikler i en samling, angiv kildetype (peer-reviewed, preprint, nyheder, debat), kør et lateral reading-tjek, og lad AI'en sammenligne resuméerne: hvor kilderne er enige, uenige, og hvad der mangler.",
+          "translatedAt": "2026-10-21T16:28:18.642Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "no": {
+          "text": "Samle lagrede artikler i en mappe, angi kildetype (fagfellevurdert, preprint, nyheter, meninger), kjør en kildekryssjekk og la KI-en sammenligne sammendragene: hva de er enige om, uenige om og hva som utelates.",
+          "translatedAt": "2026-10-21T16:28:48.752Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fi": {
+          "text": "Kokoa tallennetut artikkelit kokoelmaksi, määritä lähdetyypit (vertaisarvioitu, preprint, uutinen, mielipide), aja rinnakkaislukutarkistus ja anna tekoälyn vertailla tiivistelmiä: missä ne ovat samaa mieltä, missä eri mieltä ja mitä puuttuu.",
+          "translatedAt": "2026-10-21T16:29:14.791Z",
+          "model": "google/gemini-3.7-flash"
+        }
+      }
+    },
+    "f6c0d10388de9508c9654381a8a497eb35fdf251d6ea6fe4a6da380136ce34e7": {
+      "en": "Mood filter and mood over time",
+      "translations": {
+        "de": {
+          "text": "Stimmungsfilter und Verlaufsanalyse",
+          "translatedAt": "2026-10-21T16:21:03.839Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fr": {
+          "text": "Filtre de tonalité et évolution de votre humeur",
+          "translatedAt": "2026-10-21T16:21:21.071Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "es": {
+          "text": "Filtro de estado de ánimo y evolución en el tiempo",
+          "translatedAt": "2026-10-21T16:21:51.082Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh": {
+          "text": "情绪过滤器与阅读情绪走势",
+          "translatedAt": "2026-10-21T16:22:07.184Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh-TW": {
+          "text": "新聞情緒過濾與長期趨勢",
+          "translatedAt": "2026-10-21T16:22:27.936Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ja": {
+          "text": "ムードフィルターと感情の推移",
+          "translatedAt": "2026-10-21T16:22:53.270Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ko": {
+          "text": "뉴스 감정 필터 및 트렌드 분석",
+          "translatedAt": "2026-10-21T16:23:00.955Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pt": {
+          "text": "Filtro de clima e humor ao longo do tempo",
+          "translatedAt": "2026-10-21T16:23:15.682Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "hi": {
+          "text": "Mood filter और समय के साथ mood trends",
+          "translatedAt": "2026-10-21T16:23:32.726Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "vi": {
+          "text": "Bộ lọc tin tích cực và biểu đồ cảm xúc theo thời gian",
+          "translatedAt": "2026-10-21T16:23:45.506Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "nl": {
+          "text": "Stemmingsfilter en verloop in de tijd",
+          "translatedAt": "2026-10-21T16:24:24.982Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "it": {
+          "text": "Filtro dell'umore e andamento nel tempo",
+          "translatedAt": "2026-10-21T16:24:39.801Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ru": {
+          "text": "Фильтр тональности и настроение во времени",
+          "translatedAt": "2026-10-21T16:25:20.304Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "uk": {
+          "text": "Фільтр настрою та динаміка емоційного фону",
+          "translatedAt": "2026-10-21T16:25:48.692Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "tr": {
+          "text": "Duygu durumu filtresi ve zaman içindeki değişim",
+          "translatedAt": "2026-10-21T16:26:05.296Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "id": {
+          "text": "Filter mood dan pantau tren dari waktu ke waktu",
+          "translatedAt": "2026-10-21T16:26:26.854Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pl": {
+          "text": "Filtr nastroju i analiza trendu w czasie",
+          "translatedAt": "2026-10-21T16:26:43.345Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "th": {
+          "text": "ตัวกรองอารมณ์และสถิติอารมณ์ตามช่วงเวลา",
+          "translatedAt": "2026-10-21T16:27:01.568Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ar": {
+          "text": "مرشّح الطابع وتتبع المزاج عبر الوقت",
+          "translatedAt": "2026-10-21T16:27:33.930Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "sv": {
+          "text": "Stämningsfilter och trend över tid",
+          "translatedAt": "2026-10-21T16:27:57.164Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "da": {
+          "text": "Stemningsfilter og udvikling over tid",
+          "translatedAt": "2026-10-21T16:28:18.642Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "no": {
+          "text": "Stemningsfilter og stemning over tid",
+          "translatedAt": "2026-10-21T16:28:48.752Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fi": {
+          "text": "Tunnelmasuodatin ja uutisvirran sävy ajan myötä",
+          "translatedAt": "2026-10-21T16:29:14.791Z",
+          "model": "google/gemini-3.7-flash"
+        }
+      }
+    },
+    "db47a432151c05faf920020a1bcc038a2ddd0734fc98d7e6dc8ea32d1785c216": {
+      "en": "The AI rates headlines from heavy to good. Show only the good news with one tap, and follow the mood of your reading by day, week and month.",
+      "translations": {
+        "de": {
+          "text": "Die KI bewertet Schlagzeilen von bedrückend bis konstruktiv. Blenden Sie mit einem Klick nur Positives ein und verfolgen Sie die Tonalität Ihres Medienkonsums nach Tagen, Wochen und Monaten.",
+          "translatedAt": "2026-10-21T16:21:03.839Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fr": {
+          "text": "L'IA évalue la tonalité des titres, de pesante à positive. Affichez uniquement les bonnes nouvelles en un clic et suivez l'orientation de vos lectures par jour, semaine et mois.",
+          "translatedAt": "2026-10-21T16:21:21.071Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "es": {
+          "text": "La IA clasifica los titulares de densos a positivos. Muestra solo las buenas noticias con un solo toque y sigue el estado de ánimo de tus lecturas por día, semana y mes.",
+          "translatedAt": "2026-10-21T16:21:51.082Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh": {
+          "text": "AI 自动评估新闻标题的情绪倾向（从沉重到积极）。一键切换只看好消息，并按日、周、月追踪你的阅读情绪曲线。",
+          "translatedAt": "2026-10-21T16:22:07.184Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh-TW": {
+          "text": "AI 會將新聞標題從沉重到正面進行評級。一鍵篩選只看正向消息，並以日、週、月為單位追蹤自己的閱讀情緒光譜。",
+          "translatedAt": "2026-10-21T16:22:27.936Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ja": {
+          "text": "AIが見出しのトーン（重い話題〜ポジティブな話題）を判定。ワンタップで明るいニュースのみを表示し、日・週・月ごとの閲覧ムードの推移を把握できます。",
+          "translatedAt": "2026-10-21T16:22:53.270Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ko": {
+          "text": "AI가 헤드라인의 분위기를 분석합니다. 탭 한 번으로 긍정적인 뉴스만 모아보고, 일간·주간·월간 단위로 내가 소비한 콘텐츠의 분위기를 확인해 보세요.",
+          "translatedAt": "2026-10-21T16:23:00.955Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pt": {
+          "text": "A IA analisa o tom das manchetes, de temas pesados a positivos. Exiba apenas as boas notícias com um clique e acompanhe o clima do que você lê por dia, semana e mês.",
+          "translatedAt": "2026-10-21T16:23:15.682Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "hi": {
+          "text": "AI headlines को heavy से good के बीच rate करता है। Single tap में केवल good news देखें, और day, week व month के अनुसार अपनी reading के mood को track करें।",
+          "translatedAt": "2026-10-21T16:23:32.726Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "vi": {
+          "text": "AI tự động đánh giá sắc thái tiêu đề từ tiêu cực/nặng nề đến tích cực. Chỉ hiển thị tin tức lạc quan chỉ với một chạm và theo dõi bức tranh cảm xúc từ thói quen đọc tin của bạn theo ngày, tuần và tháng.",
+          "translatedAt": "2026-10-21T16:23:45.506Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "nl": {
+          "text": "De AI beoordeelt koppen van zwaarmoedig tot opbeurend. Bekijk met één tik alleen het positieve nieuws en volg de sfeer van wat je leest per dag, week en maand.",
+          "translatedAt": "2026-10-21T16:24:24.982Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "it": {
+          "text": "L'IA valuta i titoli da negativi a positivi. Mostra solo le buone notizie con un tocco e monitora il tono delle tue letture per giorno, settimana e mese.",
+          "translatedAt": "2026-10-21T16:24:39.801Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ru": {
+          "text": "ИИ анализирует заголовки — от тревожных до позитивных. Оставьте только хорошие новости в одно нажатие и следите за настроением вашего чтения по дням, неделям и месяцам.",
+          "translatedAt": "2026-10-21T16:25:20.304Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "uk": {
+          "text": "ШІ оцінює заголовки від важких до позитивних. Переглядайте лише добрі новини в один дотик і відстежуйте емоційний настрій прочитаного за днями, тижнями та місяцями.",
+          "translatedAt": "2026-10-21T16:25:48.692Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "tr": {
+          "text": "Yapay zekâ başlıkları ağırlığına ve olumluluğuna göre derecelendirir. Tek dokunuşla sadece iyi haberleri görüntüleyin ve okumalarınızın duygu durumunu gün, hafta ve ay bazında takip edin.",
+          "translatedAt": "2026-10-21T16:26:05.296Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "id": {
+          "text": "AI menilai tajuk berita dari topik yang berat hingga kabar baik. Tampilkan berita positif hanya dengan satu ketukan, dan pantau suasana hati dari bacaan Anda berdasarkan hari, minggu, serta bulan.",
+          "translatedAt": "2026-10-21T16:26:26.854Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pl": {
+          "text": "AI analizuje wydźwięk nagłówków od przytłaczających po budujące. Jednym kliknięciem wyświetl tylko pozytywne wiadomości i śledź ogólny nastrój czytanych treści w ujęciu dziennym, tygodniowym oraz miesięcznym.",
+          "translatedAt": "2026-10-21T16:26:43.345Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "th": {
+          "text": "AI ประเมินโทนของพาดหัวข่าวตั้งแต่ตึงเครียดไปจนถึงเชิงบวก แตะเพียงครั้งเดียวเพื่อดูเฉพาะข่าวด้านบวก พร้อมติดตามแนวโน้มอารมณ์ของสิ่งที่อ่านตามวัน สัปดาห์ และเดือน",
+          "translatedAt": "2026-10-21T16:27:01.568Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ar": {
+          "text": "يصنف الذكاء الاصطناعي العناوين من ثقيلة ومحبطة إلى إيجابية. اعرض الأخبار السارة بنقرة واحدة، وتابع الطابع العام لقراءاتك يومياً وأسبوعياً وشهرياً.",
+          "translatedAt": "2026-10-21T16:27:33.930Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "sv": {
+          "text": "AI:n graderar rubriker från tunga till positiva. Visa enbart goda nyheter med ett klick och följ tonläget i din läsning per dag, vecka och månad.",
+          "translatedAt": "2026-10-21T16:27:57.164Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "da": {
+          "text": "AI'en vurderer overskrifter fra tunge til positive. Vis kun de gode nyheder med et enkelt klik, og følg stemningen i dit læsestof dag for dag, uge for uge og måned for måned.",
+          "translatedAt": "2026-10-21T16:28:18.642Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "no": {
+          "text": "KI-en vurderer overskrifter fra tunge til positive. Vis bare gode nyheter med ett trykk, og følg stemningen i det du leser dag for dag, uke for uke og måned for måned.",
+          "translatedAt": "2026-10-21T16:28:48.752Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fi": {
+          "text": "Tekoäly luokittelee otsikot raskaista iloisiin. Näytä vain hyvät uutiset yhdellä napautuksella ja seuraa lukemistosi sävyä päivittäin, viikoittain ja kuukausittain.",
+          "translatedAt": "2026-10-21T16:29:14.791Z",
+          "model": "google/gemini-3.7-flash"
+        }
+      }
+    },
+    "cbaab818e39862efbdb165f66d69fad47d2b9f8c1e07eae26e4b9c460aef7a70": {
+      "en": "Instant read: listen while it writes",
+      "translations": {
+        "de": {
+          "text": "Instant Read: Zuhören, während der Text entsteht",
+          "translatedAt": "2026-10-21T16:21:03.839Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fr": {
+          "text": "Lecture instantanée : écoutez pendant la rédaction",
+          "translatedAt": "2026-10-21T16:21:21.071Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "es": {
+          "text": "Lectura instantánea: escucha mientras escribe",
+          "translatedAt": "2026-10-21T16:21:51.082Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh": {
+          "text": "即时朗读：生成即开播",
+          "translatedAt": "2026-10-21T16:22:07.184Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh-TW": {
+          "text": "即時朗讀：邊生成邊聆聽",
+          "translatedAt": "2026-10-21T16:22:27.936Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ja": {
+          "text": "インスタント読み上げ：生成しながら同時に音声再生",
+          "translatedAt": "2026-10-21T16:22:53.270Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ko": {
+          "text": "실시간 오디오: 작성과 동시에 듣기",
+          "translatedAt": "2026-10-21T16:23:00.955Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pt": {
+          "text": "Leitura instantânea: ouça enquanto a IA escreve",
+          "translatedAt": "2026-10-21T16:23:15.682Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "hi": {
+          "text": "Instant read: AI लिखते-लिखते सुनाता भी जाए",
+          "translatedAt": "2026-10-21T16:23:32.726Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "vi": {
+          "text": "Đọc tức thì: Lắng nghe ngay khi đang tạo",
+          "translatedAt": "2026-10-21T16:23:45.506Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "nl": {
+          "text": "Direct voorlezen: luister terwijl het geschreven wordt",
+          "translatedAt": "2026-10-21T16:24:24.982Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "it": {
+          "text": "Lettura istantanea: ascolta mentre scrive",
+          "translatedAt": "2026-10-21T16:24:39.801Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ru": {
+          "text": "Мгновенное чтение: слушайте в процессе создания",
+          "translatedAt": "2026-10-21T16:25:20.304Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "uk": {
+          "text": "Миттєве читання: слухайте, поки текст генерується",
+          "translatedAt": "2026-10-21T16:25:48.692Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "tr": {
+          "text": "Anında okuma: yazılırken dinleyin",
+          "translatedAt": "2026-10-21T16:26:05.296Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "id": {
+          "text": "Instant read: dengarkan selagi AI menulis",
+          "translatedAt": "2026-10-21T16:26:26.854Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pl": {
+          "text": "Natychmiastowy odsłuch: słuchaj w trakcie generowania",
+          "translatedAt": "2026-10-21T16:26:43.345Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "th": {
+          "text": "Instant read: ฟังเสียงอ่านขณะกำลังประมวลผล",
+          "translatedAt": "2026-10-21T16:27:01.568Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ar": {
+          "text": "قراءة فورية: استمع أثناء الكتابة",
+          "translatedAt": "2026-10-21T16:27:33.930Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "sv": {
+          "text": "Direktuppläsning: lyssna medan den skriver",
+          "translatedAt": "2026-10-21T16:27:57.164Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "da": {
+          "text": "Lyt straks: Lyt, mens der skrives",
+          "translatedAt": "2026-10-21T16:28:18.642Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "no": {
+          "text": "Direktelesing: lytt mens det skrives",
+          "translatedAt": "2026-10-21T16:28:48.752Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fi": {
+          "text": "Pikaluku: kuuntele samalla kun teksti valmistuu",
+          "translatedAt": "2026-10-21T16:29:14.791Z",
+          "model": "google/gemini-3.7-flash"
+        }
+      }
+    },
+    "d157e1e36b9762c1754e6b36046add7cf229df324066aadfe1909386f3e5252d": {
+      "en": "The summary is spoken while it is still being written: the title first, then sentence by sentence, with pause, mute and speed. Read it again from any card.",
+      "translations": {
+        "de": {
+          "text": "Die Zusammenfassung wird live beim Generieren vorgelesen: erst der Titel, dann Satz für Satz – mit voller Kontrolle über Pause, Stummschaltung und Sprechgeschwindigkeit. Jederzeit direkt aus der Karteikarte abspielbar.",
+          "translatedAt": "2026-10-21T16:21:03.839Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fr": {
+          "text": "Le résumé est lu à voix haute au fur et à mesure de sa rédaction : le titre d'abord, puis phrase par phrase, avec réglage de la pause, du volume et de la vitesse. Réécoutez-le à tout moment depuis chaque fiche.",
+          "translatedAt": "2026-10-21T16:21:21.071Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "es": {
+          "text": "El resumen se lee en voz alta mientras se sigue redactando: primero el título, luego frase por frase, con controles de pausa, silencio y velocidad. Vuelve a escucharlo desde cualquier tarjeta.",
+          "translatedAt": "2026-10-21T16:21:51.082Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh": {
+          "text": "摘要在生成的同时即开始朗读：从标题开始逐句发音，支持暂停、静音及倍速调节。随时可从任意卡片重新播放。",
+          "translatedAt": "2026-10-21T16:22:07.184Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh-TW": {
+          "text": "摘要生成的同時立即語音朗讀：先讀標題，接著逐句播放，支援暫停、靜音與語速調節。日後也能隨時在任一卡片重新收聽。",
+          "translatedAt": "2026-10-21T16:22:27.936Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ja": {
+          "text": "要約の生成中からリアルタイムで音声読み上げを開始。タイトルから一文ずつ順に再生され、一時停止、ミュート、速度調整が可能です。各カードからいつでも再読み上げできます。",
+          "translatedAt": "2026-10-21T16:22:53.270Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ko": {
+          "text": "AI가 요약을 작성하는 도중에도 제목부터 문장 단위로 즉시 음성 재생됩니다. 일시정지, 음소거, 속도 조절이 가능하며 언제든 카드에서 다시 들을 수 있습니다.",
+          "translatedAt": "2026-10-21T16:23:00.955Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pt": {
+          "text": "O resumo é lido em voz alta enquanto é gerado: primeiro o título, depois frase por frase, com controles de pausa, mudo e velocidade. Ouça novamente a qualquer momento a partir de qualquer cartão.",
+          "translatedAt": "2026-10-21T16:23:15.682Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "hi": {
+          "text": "Summary तैयार होने के दौरान ही audio में सुनाई देती है: पहले title, फिर sentence by sentence — pause, mute और speed controls के साथ। इसे किसी भी card से दोबारा सुनें।",
+          "translatedAt": "2026-10-21T16:23:32.726Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "vi": {
+          "text": "Bản tóm tắt được phát âm ngay trong lúc đang khởi tạo: bắt đầu từ tiêu đề, sau đó đến từng câu, kèm đầy đủ tùy chọn tạm dừng, tắt tiếng và điều chỉnh tốc độ đọc. Bạn có thể nghe lại bất cứ lúc nào từ thẻ nội dung.",
+          "translatedAt": "2026-10-21T16:23:45.506Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "nl": {
+          "text": "De samenvatting wordt al uitgesproken terwijl deze nog wordt geschreven: eerst de titel, daarna zin voor zin, met pauze, dempen en snelheidsregeling. Luister later eenvoudig opnieuw vanaf elke kaart.",
+          "translatedAt": "2026-10-21T16:24:24.982Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "it": {
+          "text": "Il riassunto viene letto a voce alta mentre viene generato: prima il titolo, poi frase per frase, con controlli per pausa, muto e velocità. Riascoltalo quando vuoi da qualsiasi scheda.",
+          "translatedAt": "2026-10-21T16:24:39.801Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ru": {
+          "text": "Саммари озвучивается прямо по мере написания: сначала заголовок, затем фраза за фразой — с поддержкой паузы, отключения звука и скорости речи. Повторное воспроизведение доступно из любой карточки.",
+          "translatedAt": "2026-10-21T16:25:20.304Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "uk": {
+          "text": "Стислий огляд озвучується безпосередньо під час написання: спочатку заголовок, а потім речення за реченням — з можливістю паузи, вимкнення звуку та налаштування швидкості. Прослухайте знову з будь-якої картки.",
+          "translatedAt": "2026-10-21T16:25:48.692Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "tr": {
+          "text": "Özet henüz yazılırken seslendirilir: önce başlık, ardından cümle cümle. Duraklatma, sessize alma ve hız kontrolü ile. Dilediğiniz karttan tekrar dinleyin.",
+          "translatedAt": "2026-10-21T16:26:05.296Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "id": {
+          "text": "Ringkasan dibacakan langsung selagi masih ditulis: dimulai dari judul, lalu kalimat demi kalimat, lengkap dengan kontrol jeda, bisukan, dan kecepatan putar. Dengarkan kembali kapan saja dari kartu mana pun.",
+          "translatedAt": "2026-10-21T16:26:26.854Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pl": {
+          "text": "Podsumowanie jest czytane na głos już podczas pisania: najpierw tytuł, a potem zdanie po zdaniu – z pełną kontrolą pauzy, wyciszenia i tempa mowy. Możesz odsłuchać je ponownie z poziomu dowolnej karty.",
+          "translatedAt": "2026-10-21T16:26:43.345Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "th": {
+          "text": "ระบบจะอ่านออกเสียงเนื้อหาสรุปทันทีในระหว่างที่กำลังเขียน: เริ่มจากหัวข้อ แล้วต่อด้วยทีละประโยค พร้อมตัวควบคุมหยุดชั่วคราว ปิดเสียง และปรับความเร็ว และสามารถกลับมาฟังซ้ำได้จากทุกการ์ด",
+          "translatedAt": "2026-10-21T16:27:01.568Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ar": {
+          "text": "يُقرأ الملخص صوتياً أثناء كتابته في الوقت الفعلي: العنوان أولاً، ثم جملة تلو الأخرى، مع خيارات الإيقاف المؤقت وكتم الصوت والتحكم بالسرعة. كما يمكنك الاستماع إليه مجدداً من أي بطاقة.",
+          "translatedAt": "2026-10-21T16:27:33.930Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "sv": {
+          "text": "Sammanfattningen läses upp medan den skapas: titeln först, sedan mening för mening, med full kontroll över paus, ljud och hastighet. Lyssna igen från vilket kort som helst.",
+          "translatedAt": "2026-10-21T16:27:57.164Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "da": {
+          "text": "Resuméet læses højt, mens det bliver skrevet: titlen først, derefter sætning for sætning, med mulighed for pause, lydløs og hastighedskontrol. Genlyt det når som helst fra et vilkårligt kort.",
+          "translatedAt": "2026-10-21T16:28:18.642Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "no": {
+          "text": "Sammendraget leses opp mens det skrives: først tittelen, deretter setning for setning, med full kontroll over pause, demping og hastighet. Hør det på nytt fra hvilket som helst kort.",
+          "translatedAt": "2026-10-21T16:28:48.752Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fi": {
+          "text": "Tiivistelmä luetaan ääneen jo kirjoitusvaiheessa: ensin otsikko ja sitten lause lauseelta. Voit keskeyttää, mykistää ja säätää nopeutta sekä kuunnella sen uudelleen miltä tahansa kortilta.",
+          "translatedAt": "2026-10-21T16:29:14.791Z",
+          "model": "google/gemini-3.7-flash"
+        }
+      }
+    },
+    "51a758ad7a7055cd006293b010082240ff94eb280595f6f8a68ce6e1b797691c": {
+      "en": "Play: A 72-minute lecture, summarized",
+      "translations": {
+        "de": {
+          "text": "Abspielen: Eine 72-minütige Vorlesung, zusammengefasst",
+          "translatedAt": "2026-10-21T16:21:03.839Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fr": {
+          "text": "Lire : Une conférence de 72 minutes, résumée",
+          "translatedAt": "2026-10-21T16:21:21.071Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "es": {
+          "text": "Reproducir: Una conferencia de 72 minutos, resumida",
+          "translatedAt": "2026-10-21T16:21:51.082Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh": {
+          "text": "播放：72 分钟讲座，一键提炼摘要",
+          "translatedAt": "2026-10-21T16:22:07.184Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh-TW": {
+          "text": "播放：72 分鐘的演講，重點一目了然",
+          "translatedAt": "2026-10-21T16:22:27.936Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ja": {
+          "text": "再生：72分の講義も、瞬時に要約",
+          "translatedAt": "2026-10-21T16:22:53.270Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ko": {
+          "text": "재생: 72분짜리 강의도 깔끔하게 요약",
+          "translatedAt": "2026-10-21T16:23:00.955Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pt": {
+          "text": "Reproduzir: Uma palestra de 72 minutos resumida",
+          "translatedAt": "2026-10-21T16:23:15.682Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "hi": {
+          "text": "Play करें: 72-minute का lecture, summarized",
+          "translatedAt": "2026-10-21T16:23:32.726Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "vi": {
+          "text": "Phát: Tóm tắt bài giảng 72 phút trong nháy mắt",
+          "translatedAt": "2026-10-21T16:23:45.506Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "nl": {
+          "text": "Afspelen: Een lezing van 72 minuten, samengevat",
+          "translatedAt": "2026-10-21T16:24:24.982Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "it": {
+          "text": "Riproduci: Una lezione di 72 minuti, riassunta",
+          "translatedAt": "2026-10-21T16:24:39.801Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ru": {
+          "text": "Воспроизвести: Краткий пересказ 72-минутной лекции",
+          "translatedAt": "2026-10-21T16:25:20.304Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "uk": {
+          "text": "Відтворити: 72-хвилинна лекція — стислий підсумок",
+          "translatedAt": "2026-10-21T16:25:48.692Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "tr": {
+          "text": "Oynat: 72 dakikalık bir ders, özetlendi",
+          "translatedAt": "2026-10-21T16:26:05.296Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "id": {
+          "text": "Putar: Kuliah 72 menit, diringkas",
+          "translatedAt": "2026-10-21T16:26:26.854Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pl": {
+          "text": "Odtwórz: 72-minutowy wykład w pigułce",
+          "translatedAt": "2026-10-21T16:26:43.345Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "th": {
+          "text": "เล่น: สรุปเนื้อหาการบรรยาย 72 นาที",
+          "translatedAt": "2026-10-21T16:27:01.568Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ar": {
+          "text": "تشغيل: محاضرة مدتها 72 دقيقة، ملخّصة",
+          "translatedAt": "2026-10-21T16:27:33.930Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "sv": {
+          "text": "Spela upp: En 72-minuters föreläsning, sammanfattad",
+          "translatedAt": "2026-10-21T16:27:57.164Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "da": {
+          "text": "Afspil: En 72-minutters forelæsning, opsummeret",
+          "translatedAt": "2026-10-21T16:28:18.642Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "no": {
+          "text": "Spill av: En 72-minutters forelesning, oppsummert",
+          "translatedAt": "2026-10-21T16:28:48.752Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fi": {
+          "text": "Toista: 72 minuutin luento tiivistettynä",
+          "translatedAt": "2026-10-21T16:29:14.791Z",
+          "model": "google/gemini-3.7-flash"
+        }
+      }
+    },
+    "d32bac0c347048b74bead4d573044b62b2d2eb26139aa479e4aa0dd0da948948": {
+      "en": "Play: An 84-page PDF in seconds",
+      "translations": {
+        "de": {
+          "text": "Abspielen: Ein 84-seitiges PDF in Sekundenschnelle",
+          "translatedAt": "2026-10-21T16:21:03.839Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fr": {
+          "text": "Lire : Un PDF de 84 pages en quelques secondes",
+          "translatedAt": "2026-10-21T16:21:21.071Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "es": {
+          "text": "Reproducir: Un PDF de 84 páginas en segundos",
+          "translatedAt": "2026-10-21T16:21:51.082Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh": {
+          "text": "播放：84 页 PDF，数秒内速读",
+          "translatedAt": "2026-10-21T16:22:07.184Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh-TW": {
+          "text": "播放：84 頁的 PDF，數秒內讀完",
+          "translatedAt": "2026-10-21T16:22:27.936Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ja": {
+          "text": "再生：84ページのPDFも、わずか数秒で",
+          "translatedAt": "2026-10-21T16:22:53.270Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ko": {
+          "text": "재생: 84페이지 PDF도 단 몇 초 만에",
+          "translatedAt": "2026-10-21T16:23:00.955Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pt": {
+          "text": "Reproduzir: Um PDF de 84 páginas em segundos",
+          "translatedAt": "2026-10-21T16:23:15.682Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "hi": {
+          "text": "Play करें: 84-page की PDF, seconds में",
+          "translatedAt": "2026-10-21T16:23:32.726Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "vi": {
+          "text": "Phát: Xử lý file PDF 84 trang chỉ trong vài giây",
+          "translatedAt": "2026-10-21T16:23:45.506Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "nl": {
+          "text": "Afspelen: Een pdf van 84 pagina's in seconden",
+          "translatedAt": "2026-10-21T16:24:24.982Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "it": {
+          "text": "Riproduci: Un PDF di 84 pagine in pochi secondi",
+          "translatedAt": "2026-10-21T16:24:39.801Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ru": {
+          "text": "Воспроизвести: 84-страничный PDF за секунды",
+          "translatedAt": "2026-10-21T16:25:20.304Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "uk": {
+          "text": "Відтворити: 84-сторінковий PDF за лічені секунди",
+          "translatedAt": "2026-10-21T16:25:48.692Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "tr": {
+          "text": "Oynat: Saniyeler içinde 84 sayfalık bir PDF",
+          "translatedAt": "2026-10-21T16:26:05.296Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "id": {
+          "text": "Putar: PDF 84 halaman dalam hitungan detik",
+          "translatedAt": "2026-10-21T16:26:26.854Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pl": {
+          "text": "Odtwórz: 84-stronicowy PDF w kilka sekund",
+          "translatedAt": "2026-10-21T16:26:43.345Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "th": {
+          "text": "เล่น: อ่าน PDF 84 หน้าได้ในไม่กี่วินาที",
+          "translatedAt": "2026-10-21T16:27:01.568Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ar": {
+          "text": "تشغيل: ملف PDF من 84 صفحة في ثوانٍ",
+          "translatedAt": "2026-10-21T16:27:33.930Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "sv": {
+          "text": "Spela upp: En 84-sidig PDF på några sekunder",
+          "translatedAt": "2026-10-21T16:27:57.164Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "da": {
+          "text": "Afspil: En PDF på 84 sider på få sekunder",
+          "translatedAt": "2026-10-21T16:28:18.642Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "no": {
+          "text": "Spill av: En 84-siders PDF på få sekunder",
+          "translatedAt": "2026-10-21T16:28:48.752Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fi": {
+          "text": "Toista: 84-sivuinen PDF sekunneissa",
+          "translatedAt": "2026-10-21T16:29:14.791Z",
+          "model": "google/gemini-3.7-flash"
+        }
+      }
+    },
+    "38840029949e596a1e3a8598b3d31ae19dfb1e9c4ef41c91db50da4ab7f3e0e9": {
+      "en": "Play: Papers recognised by their DOI",
+      "translations": {
+        "de": {
+          "text": "Abspielen: Publikationen via DOI erkennen",
+          "translatedAt": "2026-10-21T16:21:03.839Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fr": {
+          "text": "Lire : Articles scientifiques reconnus par leur DOI",
+          "translatedAt": "2026-10-21T16:21:21.071Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "es": {
+          "text": "Reproducir: Artículos académicos reconocidos por su DOI",
+          "translatedAt": "2026-10-21T16:21:51.082Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh": {
+          "text": "播放：基于 DOI 智能识别学术论文",
+          "translatedAt": "2026-10-21T16:22:07.184Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh-TW": {
+          "text": "播放：透過 DOI 自動辨識學術論文",
+          "translatedAt": "2026-10-21T16:22:27.936Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ja": {
+          "text": "再生：DOIから論文を自動認識",
+          "translatedAt": "2026-10-21T16:22:53.270Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ko": {
+          "text": "재생: DOI로 논문 자동 인식",
+          "translatedAt": "2026-10-21T16:23:00.955Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pt": {
+          "text": "Reproduzir: Artigos reconhecidos pelo DOI",
+          "translatedAt": "2026-10-21T16:23:15.682Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "hi": {
+          "text": "Play करें: DOI से पहचाने जाने वाले papers",
+          "translatedAt": "2026-10-21T16:23:32.726Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "vi": {
+          "text": "Phát: Tự động nhận diện bài báo khoa học qua mã DOI",
+          "translatedAt": "2026-10-21T16:23:45.506Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "nl": {
+          "text": "Afspelen: Papers herkend aan hun DOI",
+          "translatedAt": "2026-10-21T16:24:24.982Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "it": {
+          "text": "Riproduci: Articoli scientifici riconosciuti dal loro DOI",
+          "translatedAt": "2026-10-21T16:24:39.801Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ru": {
+          "text": "Воспроизвести: Распознавание научных статей по DOI",
+          "translatedAt": "2026-10-21T16:25:20.304Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "uk": {
+          "text": "Відтворити: Наукові статті розпізнаються за DOI",
+          "translatedAt": "2026-10-21T16:25:48.692Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "tr": {
+          "text": "Oynat: DOI ile tanınan akademik makaleler",
+          "translatedAt": "2026-10-21T16:26:05.296Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "id": {
+          "text": "Putar: Paper ilmiah dikenali dari DOI-nya",
+          "translatedAt": "2026-10-21T16:26:26.854Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pl": {
+          "text": "Odtwórz: Publikacje naukowe rozpoznawane po numerze DOI",
+          "translatedAt": "2026-10-21T16:26:43.345Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "th": {
+          "text": "เล่น: ระบุงานวิจัยได้อัตโนมัติจาก DOI",
+          "translatedAt": "2026-10-21T16:27:01.568Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ar": {
+          "text": "تشغيل: التعرف على الأوراق البحثية عبر معرّف DOI",
+          "translatedAt": "2026-10-21T16:27:33.930Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "sv": {
+          "text": "Spela upp: Forskningsartiklar identifieras via DOI",
+          "translatedAt": "2026-10-21T16:27:57.164Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "da": {
+          "text": "Afspil: Forskningsartikler genkendt via deres DOI",
+          "translatedAt": "2026-10-21T16:28:18.642Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "no": {
+          "text": "Spill av: Forskningsartikler gjenkjennes via DOI",
+          "translatedAt": "2026-10-21T16:28:48.752Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fi": {
+          "text": "Toista: Tieteelliset artikkelit tunnistetaan DOI-tunnisteella",
+          "translatedAt": "2026-10-21T16:29:14.791Z",
+          "model": "google/gemini-3.7-flash"
+        }
+      }
+    },
+    "e496bfef697e6a797e80c2b579b4a13ae73b90f0113240c416c91085c31c07d5": {
+      "en": "Play: One question, five sources",
+      "translations": {
+        "de": {
+          "text": "Abspielen: Eine Fragestellung, fünf Quellen",
+          "translatedAt": "2026-10-21T16:21:03.839Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fr": {
+          "text": "Lire : Une question, cinq sources",
+          "translatedAt": "2026-10-21T16:21:21.071Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "es": {
+          "text": "Reproducir: Una pregunta, cinco fuentes",
+          "translatedAt": "2026-10-21T16:21:51.082Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh": {
+          "text": "播放：一个问题，多源对照",
+          "translatedAt": "2026-10-21T16:22:07.184Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh-TW": {
+          "text": "播放：一個問題，比對五個資料來源",
+          "translatedAt": "2026-10-21T16:22:27.936Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ja": {
+          "text": "再生：1つの問いに、5つの情報源",
+          "translatedAt": "2026-10-21T16:22:53.270Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ko": {
+          "text": "재생: 하나의 질문, 5개의 출처",
+          "translatedAt": "2026-10-21T16:23:00.955Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pt": {
+          "text": "Reproduzir: Uma pergunta, cinco fontes",
+          "translatedAt": "2026-10-21T16:23:15.682Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "hi": {
+          "text": "Play करें: एक सवाल, पाँच sources",
+          "translatedAt": "2026-10-21T16:23:32.726Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "vi": {
+          "text": "Phát: Một câu hỏi, năm nguồn đối chiếu",
+          "translatedAt": "2026-10-21T16:23:45.506Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "nl": {
+          "text": "Afspelen: Eén vraag, vijf bronnen",
+          "translatedAt": "2026-10-21T16:24:24.982Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "it": {
+          "text": "Riproduci: Una domanda, cinque fonti",
+          "translatedAt": "2026-10-21T16:24:39.801Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ru": {
+          "text": "Воспроизвести: Один вопрос — пять источников",
+          "translatedAt": "2026-10-21T16:25:20.304Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "uk": {
+          "text": "Відтворити: Одне запитання — п'ять джерел",
+          "translatedAt": "2026-10-21T16:25:48.692Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "tr": {
+          "text": "Oynat: Tek bir soru, beş kaynak",
+          "translatedAt": "2026-10-21T16:26:05.296Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "id": {
+          "text": "Putar: Satu pertanyaan, lima sumber",
+          "translatedAt": "2026-10-21T16:26:26.854Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pl": {
+          "text": "Odtwórz: Jedno pytanie, pięć źródeł",
+          "translatedAt": "2026-10-21T16:26:43.345Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "th": {
+          "text": "เล่น: หนึ่งคำถาม เทียบ 5 แหล่งข้อมูล",
+          "translatedAt": "2026-10-21T16:27:01.568Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ar": {
+          "text": "تشغيل: سؤال واحد، وخمسة مصادر",
+          "translatedAt": "2026-10-21T16:27:33.930Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "sv": {
+          "text": "Spela upp: En fråga, fem källor",
+          "translatedAt": "2026-10-21T16:27:57.164Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "da": {
+          "text": "Afspil: Ét spørgsmål, fem kilder",
+          "translatedAt": "2026-10-21T16:28:18.642Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "no": {
+          "text": "Spill av: Ett spørsmål, fem kilder",
+          "translatedAt": "2026-10-21T16:28:48.752Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fi": {
+          "text": "Toista: Yksi kysymys, viisi lähdettä",
+          "translatedAt": "2026-10-21T16:29:14.791Z",
+          "model": "google/gemini-3.7-flash"
+        }
+      }
+    },
+    "88dbf644693dde74440d5380abbb073eae3931bd3f9bc84f3a421b26719d9913": {
+      "en": "Play: Ghost highlights",
+      "translations": {
+        "de": {
+          "text": "Abspielen: Automatische Texthervorhebungen",
+          "translatedAt": "2026-10-21T16:21:03.839Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fr": {
+          "text": "Lire : Surlignages automatiques",
+          "translatedAt": "2026-10-21T16:21:21.071Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "es": {
+          "text": "Reproducir: Subrayados fantasma",
+          "translatedAt": "2026-10-21T16:21:51.082Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh": {
+          "text": "播放：智能预高亮",
+          "translatedAt": "2026-10-21T16:22:07.184Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh-TW": {
+          "text": "播放：AI 預覽畫重點",
+          "translatedAt": "2026-10-21T16:22:27.936Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ja": {
+          "text": "再生：ゴーストハイライト",
+          "translatedAt": "2026-10-21T16:22:53.270Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ko": {
+          "text": "재생: 스마트 자동 하이라이트",
+          "translatedAt": "2026-10-21T16:23:00.955Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pt": {
+          "text": "Reproduzir: Destaques fantasma",
+          "translatedAt": "2026-10-21T16:23:15.682Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "hi": {
+          "text": "Play करें: Ghost highlights",
+          "translatedAt": "2026-10-21T16:23:32.726Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "vi": {
+          "text": "Phát: Gợi ý đánh dấu thông minh",
+          "translatedAt": "2026-10-21T16:23:45.506Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "nl": {
+          "text": "Afspelen: Ghost highlights",
+          "translatedAt": "2026-10-21T16:24:24.982Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "it": {
+          "text": "Riproduci: Evidenziazioni automatiche",
+          "translatedAt": "2026-10-21T16:24:39.801Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ru": {
+          "text": "Воспроизвести: Фантомные выделения",
+          "translatedAt": "2026-10-21T16:25:20.304Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "uk": {
+          "text": "Відтворити: Примарні виділення",
+          "translatedAt": "2026-10-21T16:25:48.692Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "tr": {
+          "text": "Oynat: Hayalet vurgular",
+          "translatedAt": "2026-10-21T16:26:05.296Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "id": {
+          "text": "Putar: Ghost highlights",
+          "translatedAt": "2026-10-21T16:26:26.854Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pl": {
+          "text": "Odtwórz: Wirtualne zakreślenia",
+          "translatedAt": "2026-10-21T16:26:43.345Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "th": {
+          "text": "เล่น: Ghost highlights",
+          "translatedAt": "2026-10-21T16:27:01.568Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ar": {
+          "text": "تشغيل: تظليلات مقترحة",
+          "translatedAt": "2026-10-21T16:27:33.930Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "sv": {
+          "text": "Spela upp: Spökmarkeringar",
+          "translatedAt": "2026-10-21T16:27:57.164Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "da": {
+          "text": "Afspil: Spøgelsesmarkeringer",
+          "translatedAt": "2026-10-21T16:28:18.642Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "no": {
+          "text": "Spill av: Spøkelsesmarkeringer",
+          "translatedAt": "2026-10-21T16:28:48.752Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fi": {
+          "text": "Toista: Haamukorostukset",
+          "translatedAt": "2026-10-21T16:29:14.791Z",
+          "model": "google/gemini-3.7-flash"
+        }
+      }
+    },
+    "7ccbabca65a9554cdd13d9d084fd240d5408d033bd28be7f16f9ba483fe513db": {
+      "en": "Play: Your news diet has a mood",
+      "translations": {
+        "de": {
+          "text": "Abspielen: Die Stimmung Ihres Medienkonsums im Blick",
+          "translatedAt": "2026-10-21T16:21:03.839Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fr": {
+          "text": "Lire : Vos lectures d'actualités ont une tonalité",
+          "translatedAt": "2026-10-21T16:21:21.071Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "es": {
+          "text": "Reproducir: Tu consumo de noticias tiene un estado de ánimo",
+          "translatedAt": "2026-10-21T16:21:51.082Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh": {
+          "text": "播放：读懂你的资讯情绪画像",
+          "translatedAt": "2026-10-21T16:22:07.184Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh-TW": {
+          "text": "播放：你的新聞閱讀，也有情緒曲線",
+          "translatedAt": "2026-10-21T16:22:27.936Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ja": {
+          "text": "再生：ニュースの傾向とムードを可視化",
+          "translatedAt": "2026-10-21T16:22:53.270Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ko": {
+          "text": "재생: 내가 읽는 뉴스의 분위기 분석",
+          "translatedAt": "2026-10-21T16:23:00.955Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pt": {
+          "text": "Reproduzir: Seu consumo de notícias tem um clima",
+          "translatedAt": "2026-10-21T16:23:15.682Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "hi": {
+          "text": "Play करें: आपकी news diet का mood",
+          "translatedAt": "2026-10-21T16:23:32.726Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "vi": {
+          "text": "Phát: Theo dõi cảm xúc từ thói quen đọc tin tức",
+          "translatedAt": "2026-10-21T16:23:45.506Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "nl": {
+          "text": "Afspelen: Je nieuwsdieet heeft een stemming",
+          "translatedAt": "2026-10-21T16:24:24.982Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "it": {
+          "text": "Riproduci: La tua dieta informativa ha un umore",
+          "translatedAt": "2026-10-21T16:24:39.801Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ru": {
+          "text": "Воспроизвести: Эмоциональный фон вашей новостной диеты",
+          "translatedAt": "2026-10-21T16:25:20.304Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "uk": {
+          "text": "Відтворити: Ваш новинний раціон має настрій",
+          "translatedAt": "2026-10-21T16:25:48.692Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "tr": {
+          "text": "Oynat: Haber akışınızın bir modu var",
+          "translatedAt": "2026-10-21T16:26:05.296Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "id": {
+          "text": "Putar: Asupan berita Anda punya mood tersendiri",
+          "translatedAt": "2026-10-21T16:26:26.854Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pl": {
+          "text": "Odtwórz: Śledzenie nastroju czytanych wiadomości",
+          "translatedAt": "2026-10-21T16:26:43.345Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "th": {
+          "text": "เล่น: วิเคราะห์อารมณ์ของข่าวที่อ่าน",
+          "translatedAt": "2026-10-21T16:27:01.568Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ar": {
+          "text": "تشغيل: لمحتواك الإخباري طابع ومزاج",
+          "translatedAt": "2026-10-21T16:27:33.930Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "sv": {
+          "text": "Spela upp: Ditt nyhetsintag har en stämning",
+          "translatedAt": "2026-10-21T16:27:57.164Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "da": {
+          "text": "Afspil: Dit nyhedsforbrug har en stemning",
+          "translatedAt": "2026-10-21T16:28:18.642Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "no": {
+          "text": "Spill av: Nyhetsvanene dine har en stemning",
+          "translatedAt": "2026-10-21T16:28:48.752Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fi": {
+          "text": "Toista: Uutisvirrallasi on oma tunnelmansa",
+          "translatedAt": "2026-10-21T16:29:14.791Z",
+          "model": "google/gemini-3.7-flash"
+        }
+      }
+    },
+    "221891cedcc2dc1bb9a72e9f15579acfa1e355adfb223843207e76b9065696af": {
+      "en": "Play: Instant read",
+      "translations": {
+        "de": {
+          "text": "Abspielen: Sofortiges Vorlesen",
+          "translatedAt": "2026-10-21T16:21:03.839Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fr": {
+          "text": "Lire : Lecture instantanée",
+          "translatedAt": "2026-10-21T16:21:21.071Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "es": {
+          "text": "Reproducir: Lectura instantánea",
+          "translatedAt": "2026-10-21T16:21:51.082Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh": {
+          "text": "播放：即时朗读",
+          "translatedAt": "2026-10-21T16:22:07.184Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh-TW": {
+          "text": "播放：即時朗讀",
+          "translatedAt": "2026-10-21T16:22:27.936Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ja": {
+          "text": "再生：インスタント読み上げ",
+          "translatedAt": "2026-10-21T16:22:53.270Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ko": {
+          "text": "재생: 실시간 읽어주기",
+          "translatedAt": "2026-10-21T16:23:00.955Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pt": {
+          "text": "Reproduzir: Leitura instantânea",
+          "translatedAt": "2026-10-21T16:23:15.682Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "hi": {
+          "text": "Play करें: Instant read",
+          "translatedAt": "2026-10-21T16:23:32.726Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "vi": {
+          "text": "Phát: Đọc ngay tức thì",
+          "translatedAt": "2026-10-21T16:23:45.506Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "nl": {
+          "text": "Afspelen: Direct voorlezen",
+          "translatedAt": "2026-10-21T16:24:24.982Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "it": {
+          "text": "Riproduci: Lettura istantanea",
+          "translatedAt": "2026-10-21T16:24:39.801Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ru": {
+          "text": "Воспроизвести: Мгновенное чтение",
+          "translatedAt": "2026-10-21T16:25:20.304Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "uk": {
+          "text": "Відтворити: Миттєве читання",
+          "translatedAt": "2026-10-21T16:25:48.692Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "tr": {
+          "text": "Oynat: Anında okuma",
+          "translatedAt": "2026-10-21T16:26:05.296Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "id": {
+          "text": "Putar: Instant read",
+          "translatedAt": "2026-10-21T16:26:26.854Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pl": {
+          "text": "Odtwórz: Natychmiastowy odsłuch",
+          "translatedAt": "2026-10-21T16:26:43.345Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "th": {
+          "text": "เล่น: Instant read",
+          "translatedAt": "2026-10-21T16:27:01.568Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ar": {
+          "text": "تشغيل: قراءة فورية",
+          "translatedAt": "2026-10-21T16:27:33.930Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "sv": {
+          "text": "Spela upp: Direktuppläsning",
+          "translatedAt": "2026-10-21T16:27:57.164Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "da": {
+          "text": "Afspil: Lyt straks",
+          "translatedAt": "2026-10-21T16:28:18.642Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "no": {
+          "text": "Spill av: Direktelesing",
+          "translatedAt": "2026-10-21T16:28:48.752Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fi": {
+          "text": "Toista: Pikaluku",
+          "translatedAt": "2026-10-21T16:29:14.791Z",
+          "model": "google/gemini-3.7-flash"
+        }
+      }
     }
   }
 }
