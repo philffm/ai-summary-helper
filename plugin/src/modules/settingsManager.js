@@ -19,6 +19,7 @@ import { learnTagNames, translateFeedTopics, uiLanguage } from './feedAi.js';
 import { escapeHtml } from './textUtils.js';
 import { normalizeChatUrl } from './endpointUrl.js';
 import { T, TN } from './feedI18n.js';
+import { normalizeKindleFormat } from './kindleFormat.js';
 import { setLabel } from './icons.js';
 import { exportHistoryMarkdown } from './markdownArchive.js';
 import { checkOllama } from './ollamaCheck.js';
@@ -886,6 +887,21 @@ function initLocalSendSettings(storageData) {
     const applyDeliveryModeVisibility = (mode) => {
         document.dispatchEvent(new CustomEvent('aish:delivery-default', { detail: { mode } }));
     };
+
+    const kindleFormatSeg = document.getElementById('kindleFormat');
+    if (kindleFormatSeg) {
+        const btns = [...kindleFormatSeg.querySelectorAll('[role=radio]')];
+        const paint = (f) => btns.forEach(b => { const on = b.dataset.value === f; b.classList.toggle('on', on); b.setAttribute('aria-checked', String(on)); b.tabIndex = on ? 0 : -1; });
+        paint(normalizeKindleFormat(storageData.kindleFormat));
+        btns.forEach((b, i) => {
+            b.addEventListener('click', () => { paint(b.dataset.value); autoSave('kindleFormat', b.dataset.value); });
+            b.addEventListener('keydown', (e) => {
+                const d = e.key === 'ArrowRight' || e.key === 'ArrowDown' ? 1 : e.key === 'ArrowLeft' || e.key === 'ArrowUp' ? -1 : 0;
+                if (!d) return;
+                e.preventDefault(); const n = btns[(i + d + btns.length) % btns.length]; n.focus(); n.click();
+            });
+        });
+    }
 
     if (deliveryPreferenceSelect) {
         const btns = [...deliveryPreferenceSelect.querySelectorAll('[role=radio]')];
