@@ -29,15 +29,20 @@ function copy(from, to) {
 
 fs.rmSync(OUT, { recursive: true, force: true });
 copy(SRC, APP);
+// Languages added later: demo/lang/<code>.js (see demo/lang/README.md), all loaded before demo-library-i18n.js
+const LANG_FILES = fs.existsSync(path.join(DEMO, 'lang')) ? fs.readdirSync(path.join(DEMO, 'lang')).filter((f) => /^[a-z-]+\.js$/.test(f)).sort() : [];
+fs.mkdirSync(path.join(APP, 'lang'), { recursive: true });
+for (const f of LANG_FILES) fs.copyFileSync(path.join(DEMO, 'lang', f), path.join(APP, 'lang', f));
+const LANG_TAGS = LANG_FILES.map((f) => `<script src="lang/${f}"></script>`).join('');
 for (const f of ['demo-content.js', 'demo-i18n.js', 'demo-library-i18n.js', 'demo-scenarios-i18n.js', 'demo-scenarios.js', 'demo-shim.js', 'demo-tour-i18n.js', 'demo-tour.js']) fs.copyFileSync(path.join(DEMO, f), path.join(APP, f));
 
 // The same popup.html, with the fake chrome loaded first.
 const html = fs.readFileSync(path.join(SRC, 'popup.html'), 'utf8');
 const tag = '<script src="audioEngine.js"></script>';
 if (!html.includes(tag)) throw new Error('popup.html no longer has the audioEngine script tag: update build-demo.mjs');
-fs.writeFileSync(path.join(APP, 'popup.html'), html.replace(tag, '<script src="demo-content.js"></script><script src="demo-i18n.js"></script><script src="demo-library-i18n.js"></script><script src="demo-scenarios-i18n.js"></script><script src="demo-scenarios.js"></script><script src="demo-shim.js"></script>' + tag));
+fs.writeFileSync(path.join(APP, 'popup.html'), html.replace(tag, '<script src="demo-content.js"></script><script src="demo-i18n.js"></script>' + LANG_TAGS + '<script src="demo-library-i18n.js"></script><script src="demo-scenarios-i18n.js"></script><script src="demo-scenarios.js"></script><script src="demo-shim.js"></script>' + tag));
 
-fs.copyFileSync(path.join(DEMO, 'index.html'), path.join(OUT, 'index.html'));
+fs.writeFileSync(path.join(OUT, 'index.html'), fs.readFileSync(path.join(DEMO, 'index.html'), 'utf8').replace('<!--LANG-->', LANG_FILES.map((f) => `<script src="app/lang/${f}"></script>`).join('')));
 // The URL-parameter contract for automation (video tools, screenshot pipelines, embedding).
 fs.copyFileSync(path.join(DEMO, 'README.md'), path.join(OUT, 'README.md'));
 const version = JSON.parse(fs.readFileSync(path.join(ROOT, 'platforms', 'chrome', 'manifest.json'), 'utf8')).version || '';

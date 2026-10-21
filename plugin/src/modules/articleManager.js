@@ -10,6 +10,7 @@ import { escapeHtml, cleanUntrustedHtml } from './textUtils.js';
 
 
 import StorageManager from './storageManager.js';
+import { normalizeKindleFormat } from './kindleFormat.js';
 import { syncTabbarLater } from './tabbar.js';
 import { sendToLocalSend } from './localSendClient.js';
 import { buildIndex, search as tfidfSearch, similarTo } from './localSearch.js';
@@ -567,6 +568,7 @@ export async function sendToKindle(article) {
             headers,
             body: (() => { const kPlaced = new Set(); return JSON.stringify({
                 kindle_email: kindleEmail,
+                format: normalizeKindleFormat(config.kindleFormat),
                 title: article.title || 'AI Summary Document',
                 content: [markHighlights(article.content || article.summary || '', annotations, kPlaced), annotationsHtml].filter(Boolean).join('\n'),
                 summary: markHighlights(article.summary || '', annotations, kPlaced),
@@ -703,6 +705,7 @@ export async function deliverKindle(article, device) {
             method: 'POST', headers,
             body: (() => { const kPlaced = new Set(); return JSON.stringify({
                 kindle_email: kindleEmail,
+                format: normalizeKindleFormat(config.kindleFormat),
                 title: article.title || 'AI Summary Document',
                 content: [markHighlights(article.content || article.summary || '', annotations, kPlaced), annotationsHtml].filter(Boolean).join('\n'),
                 summary: markHighlights(article.summary || '', annotations, kPlaced),

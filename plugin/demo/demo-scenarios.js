@@ -23,10 +23,11 @@
   const clone = (v) => JSON.parse(JSON.stringify(v));
   // Texts: English here, other languages in demo-scenarios-i18n.js (flat keys). A key without a translation stays English.
   const lang = new URLSearchParams(location.search).get('lang') || 'en';
-  const X = (window.AISH_SCENARIO_I18N || {})[lang] || {};
+  const X = (window.AISH_SCENARIO_I18N || {})[lang] || ((window.AISH_DEMO_LANG || {})[lang] || {}).scenarios || {};
   const t = (key, en) => (X[key] !== undefined ? X[key] : en);
   // topic names for the tags these scenarios add (the demo's topic lexicon, see demo-library-i18n.js)
-  D.topicLexicon = { ...(D.topicLexicon || {}), ...(window.AISH_SCENARIO_TOPICS || {}) };
+  const extTopics = (((window.AISH_DEMO_LANG || {})[lang] || {}).scenarioTopics) || {};
+  D.topicLexicon = { ...(D.topicLexicon || {}), ...Object.fromEntries(Object.entries(window.AISH_SCENARIO_TOPICS || {}).map(([k, v]) => [k, { ...v, ...(extTopics[k] ? { [({ pt: 'pt_BR', zh: 'zh_CN', 'zh-tw': 'zh_TW' })[lang] || lang]: extTopics[k] } : {}) }])) };
   const stream = (html) => html.replace(/<h3>.*?<\/h3>/, '').replace(/<\/li>/g, '. ').replace(/<[^>]+>/g, '').replace(/\.\s*\./g, '.').replace(/\s+/g, ' ').trim();
   const setPage = (tab, article, summary, asks, extra) => {
     D.tab = { id: 1, active: true, windowId: 1, ...tab };

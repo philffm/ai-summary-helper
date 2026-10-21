@@ -1,0 +1,1352 @@
+{
+ "bibliothek-de": {
+  "duration": 17.8,
+  "bytes": 864949,
+  "uploaded": "2026-10-20",
+  "transcript": "Endlich findest du alles Gelesene wieder. Jede Zusammenfassung bleibt auf deinem Gerät. Mit Tags, Suche und Statistik.",
+  "vtt": true
+ },
+ "bibliothek-en": {
+  "duration": 17.5,
+  "bytes": 823933,
+  "uploaded": "2026-10-20",
+  "transcript": "Your reading, finally findable. Everything you summarized stays on your device. With tags, search and stats.",
+  "vtt": true
+ },
+ "bibliothek-es": {
+  "duration": 17.6,
+  "bytes": 851779,
+  "uploaded": "2026-10-20",
+  "transcript": "Tus lecturas, por fin localizables. Todo lo que resumiste se queda en tu dispositivo. Con etiquetas, búsqueda y estadísticas.",
+  "vtt": true
+ },
+ "bibliothek-fr": {
+  "duration": 17.9,
+  "bytes": 899944,
+  "uploaded": "2026-10-21",
+  "transcript": "Enfin, tout ce que vous lisez se retrouve. Tout ce que vous avez résumé reste sur votre appareil. Avec des tags, une recherche et des statistiques.",
+  "vtt": true
+ },
+ "bibliothek-ja": {
+  "duration": 17.8,
+  "bytes": 859958,
+  "uploaded": "2026-10-20",
+  "transcript": "読んだ記事が、すぐ見つかる。要約したものはすべて、あなたの端末に保存。タグ、検索、統計つき。",
+  "vtt": true
+ },
+ "bibliothek-nl": {
+  "duration": 17.4,
+  "bytes": 833094,
+  "uploaded": "2026-10-21",
+  "transcript": "Wat je las, vind je eindelijk terug. Alles wat je samenvatte blijft op je apparaat. Met tags, zoeken en statistieken.",
+  "vtt": true
+ },
+ "bibliothek-pt": {
+  "duration": 17.6,
+  "bytes": 876754,
+  "uploaded": "2026-10-21",
+  "transcript": "Suas leituras, finalmente fáceis de achar. Tudo o que você resumiu fica no seu dispositivo. Com etiquetas, pesquisa e estatísticas.",
+  "vtt": true
+ },
+ "bibliothek-sv": {
+  "duration": 17.9,
+  "bytes": 866991,
+  "uploaded": "2026-10-21",
+  "transcript": "Din läsning, äntligen lätt att hitta. Allt du har sammanfattat stannar på din enhet. Med taggar, sökning och statistik.",
+  "vtt": true
+ },
+ "bibliothek-zh-tw": {
+  "duration": 17.8,
+  "bytes": 844455,
+  "uploaded": "2026-10-21",
+  "transcript": "讀過的內容，一搜就到。你做過摘要的所有內容，都留在你的設備上。有標籤，有搜索，還有統計。",
+  "vtt": true
+ },
+ "bibliothek-zh": {
+  "duration": 17.8,
+  "bytes": 853055,
+  "uploaded": "2026-10-21",
+  "transcript": "读过的内容，一搜就到。你做过摘要的所有内容，都留在你的设备上。有标签，有搜索，还有统计。",
+  "vtt": true
+ },
+ "digest-de": {
+  "duration": 20.4,
+  "bytes": 902674,
+  "uploaded": "2026-10-20",
+  "transcript": "Wir speichern viel mehr, als wir je lesen. Mach aus dem Stapel ein Digest: ein paar Artikel auswählen, und sie landen als ein Magazin auf deinem Kindle.",
+  "vtt": true
+ },
+ "digest-en": {
+  "duration": 20.1,
+  "bytes": 852455,
+  "uploaded": "2026-10-20",
+  "transcript": "We save far more than we ever read. So turn the pile into one digest: pick a few saves, and they land on your Kindle as one magazine.",
+  "vtt": true
+ },
+ "digest-es": {
+  "duration": 20.1,
+  "bytes": 861061,
+  "uploaded": "2026-10-20",
+  "transcript": "Guardamos mucho más de lo que leemos. Convierte la pila en un solo resumen: elige unos cuantos y llegan a tu Kindle como una revista.",
+  "vtt": true
+ },
+ "digest-fr": {
+  "duration": 20.4,
+  "bytes": 911816,
+  "uploaded": "2026-10-21",
+  "transcript": "On sauvegarde bien plus qu’on ne lit. Alors transformez la pile en un seul digest : choisissez quelques articles, et ils arrivent sur votre Kindle sous forme d’un magazine.",
+  "vtt": true
+ },
+ "digest-ja": {
+  "duration": 20.4,
+  "bytes": 894698,
+  "uploaded": "2026-10-20",
+  "transcript": "保存する量は、読む量よりずっと多い。積み上がった記事は、ひとつのダイジェストに。いくつか選べば、1冊の雑誌としてKindleに届きます。",
+  "vtt": true
+ },
+ "digest-ko": {
+  "duration": 20.8,
+  "bytes": 843519,
+  "uploaded": "2026-10-20",
+  "transcript": "우리는 읽는 것보다 훨씬 많이 저장합니다. 그 더미를 하나의 다이제스트로. 몇 개를 고르면 한 권의 잡지처럼 Kindle에 도착합니다.",
+  "vtt": true
+ },
+ "digest-nl": {
+  "duration": 19.9,
+  "bytes": 870182,
+  "uploaded": "2026-10-21",
+  "transcript": "We bewaren veel meer dan we lezen. Maak van de stapel dus één digest: kies een paar bewaarde artikelen, en ze komen als één tijdschrift op je Kindle.",
+  "vtt": true
+ },
+ "digest-pt": {
+  "duration": 20.1,
+  "bytes": 871379,
+  "uploaded": "2026-10-21",
+  "transcript": "Salvamos muito mais do que lemos. Então transforme a pilha em um único digest: escolha alguns salvos, e eles chegam ao seu Kindle como uma revista só.",
+  "vtt": true
+ },
+ "digest-sv": {
+  "duration": 20.4,
+  "bytes": 882802,
+  "uploaded": "2026-10-21",
+  "transcript": "Vi sparar långt mer än vi läser. Gör högen till en enda digest: välj några sparade artiklar, så landar de på din Kindle som en tidning.",
+  "vtt": true
+ },
+ "digest-zh-tw": {
+  "duration": 20.3,
+  "bytes": 866713,
+  "uploaded": "2026-10-21",
+  "transcript": "存得多，讀得少。那就把這一堆變成一份合集：選幾篇保存的文章，它們就會像一本雜誌一樣，出現在你的 Kindle 上。",
+  "vtt": true
+ },
+ "digest-zh": {
+  "duration": 20.3,
+  "bytes": 862307,
+  "uploaded": "2026-10-21",
+  "transcript": "存得多，读得少。那就把这一堆变成一份合集：选几篇保存的文章，它们就会像一本杂志一样，出现在你的 Kindle 上。",
+  "vtt": true
+ },
+ "feeds-de": {
+  "duration": 18.3,
+  "bytes": 1013473,
+  "uploaded": "2026-10-20",
+  "transcript": "Ein RSS-Reader, der zusammenfasst. Abonniere deine Lieblingsquellen. Ein Klick, und du bekommst ein Briefing des ganzen Tages.",
+  "vtt": true
+ },
+ "feeds-en": {
+  "duration": 18,
+  "bytes": 933134,
+  "uploaded": "2026-10-20",
+  "transcript": "An RSS reader that summarizes. Subscribe to your favorite sources. One click, and you get a briefing of the whole day.",
+  "vtt": true
+ },
+ "feeds-es": {
+  "duration": 18.1,
+  "bytes": 955726,
+  "uploaded": "2026-10-20",
+  "transcript": "Un lector RSS que resume. Suscríbete a tus fuentes favoritas. Un clic y tienes un resumen de todo el día.",
+  "vtt": true
+ },
+ "feeds-fr": {
+  "duration": 18.5,
+  "bytes": 1004194,
+  "uploaded": "2026-10-21",
+  "transcript": "Un lecteur RSS qui résume. Abonnez-vous à vos sources préférées. Un clic, et vous obtenez un briefing de toute la journée.",
+  "vtt": true
+ },
+ "feeds-ja": {
+  "duration": 18.3,
+  "bytes": 982771,
+  "uploaded": "2026-10-20",
+  "transcript": "要約してくれるRSSリーダー。お気に入りのサイトを購読。ワンクリックで、その日のニュースをまとめて要約します。",
+  "vtt": true
+ },
+ "feeds-ko": {
+  "duration": 18.8,
+  "bytes": 929318,
+  "uploaded": "2026-10-20",
+  "transcript": "요약해 주는 RSS 리더. 좋아하는 사이트를 구독하세요. 클릭 한 번이면 하루 전체를 브리핑으로 받아볼 수 있어요.",
+  "vtt": true
+ },
+ "feeds-nl": {
+  "duration": 17.9,
+  "bytes": 967573,
+  "uploaded": "2026-10-21",
+  "transcript": "Een RSS-lezer die samenvat. Abonneer je op je favoriete bronnen. Eén klik, en je krijgt een briefing van de hele dag.",
+  "vtt": true
+ },
+ "feeds-pt": {
+  "duration": 18.1,
+  "bytes": 1009388,
+  "uploaded": "2026-10-21",
+  "transcript": "Um leitor de RSS que resume. Assine suas fontes favoritas. Um clique, e você recebe um briefing do dia inteiro.",
+  "vtt": true
+ },
+ "feeds-sv": {
+  "duration": 18.5,
+  "bytes": 1007197,
+  "uploaded": "2026-10-21",
+  "transcript": "En RSS-läsare som sammanfattar. Prenumerera på dina favoritkällor. Ett klick, så får du en briefing över hela dagen.",
+  "vtt": true
+ },
+ "feeds-zh-tw": {
+  "duration": 18.3,
+  "bytes": 995739,
+  "uploaded": "2026-10-21",
+  "transcript": "會做摘要的 RSS 閱讀器。訂閱你喜歡的來源。點一下，就能得到整天內容的簡報。",
+  "vtt": true
+ },
+ "feeds-zh": {
+  "duration": 18.3,
+  "bytes": 985441,
+  "uploaded": "2026-10-21",
+  "transcript": "会做摘要的 RSS 阅读器。订阅你喜欢的来源。点一下，就能得到整天内容的简报。",
+  "vtt": true
+ },
+ "ghost-de": {
+  "duration": 20.4,
+  "bytes": 1404418,
+  "uploaded": "2026-10-21",
+  "transcript": "Die KI markiert, was beim Lesen zählt. Nach der Zusammenfassung markiert die KI die wichtigsten Stellen direkt im Artikel, als Geister-Markierung. Tipp eine an, um sie zu behalten, oder verwirf sie. So wird aus Überfliegen gezieltes Lesen.",
+  "vtt": true
+ },
+ "ghost-en": {
+  "duration": 19.7,
+  "bytes": 1230650,
+  "uploaded": "2026-10-21",
+  "transcript": "The AI marks what matters while you read. After the summary, the AI marks the key passages right in the article, as ghost highlights. Tap one to keep it, or dismiss it. Skimming turns into reading on purpose.",
+  "vtt": true
+ },
+ "ghost-es": {
+  "duration": 20.7,
+  "bytes": 1382079,
+  "uploaded": "2026-10-21",
+  "transcript": "La IA marca lo que importa mientras lees. Tras el resumen, la IA marca los pasajes clave directamente en el artículo, como marcas fantasma. Toca una para conservarla o descártala. Así, hojear se convierte en leer con intención.",
+  "vtt": true
+ },
+ "ghost-fr": {
+  "duration": 20.9,
+  "bytes": 1350137,
+  "uploaded": "2026-10-21",
+  "transcript": "L’IA surligne l’essentiel pendant que vous lisez. Après le résumé, l’IA marque les passages clés directement dans l’article, en surlignage fantôme. Touchez-en un pour le garder, ou ignorez-le. Survoler devient lire avec intention.",
+  "vtt": true
+ },
+ "ghost-ja": {
+  "duration": 22.9,
+  "bytes": 1341454,
+  "uploaded": "2026-10-21",
+  "transcript": "AIが、読むべき箇所に印をつける。要約のあと、AIが重要な箇所を記事の中に直接マークします。ゴースト・ハイライトです。タップして残すか、消すか。流し読みが、狙いを定めた読書に変わります。",
+  "vtt": true
+ },
+ "ghost-ko": {
+  "duration": 20.3,
+  "bytes": 1145206,
+  "uploaded": "2026-10-21",
+  "transcript": "AI가 읽을 때 중요한 곳을 표시합니다. 요약이 끝나면 AI가 핵심 구절을 기사 안에 바로 표시합니다. 고스트 하이라이트입니다. 하나를 눌러 남기거나 지우세요. 훑어보기가 목적 있는 읽기로 바뀝니다.",
+  "vtt": true
+ },
+ "ghost-nl": {
+  "duration": 20.3,
+  "bytes": 1307153,
+  "uploaded": "2026-10-21",
+  "transcript": "De AI markeert wat telt terwijl je leest. Na de samenvatting markeert de AI de belangrijkste passages direct in het artikel, als spookmarkeringen. Tik er één aan om hem te bewaren, of wijs hem af. Zo wordt scannen gericht lezen.",
+  "vtt": true
+ },
+ "ghost-pt": {
+  "duration": 20.8,
+  "bytes": 1364316,
+  "uploaded": "2026-10-21",
+  "transcript": "A IA marca o que importa enquanto você lê. Depois do resumo, a IA marca as passagens principais direto no artigo, como destaques fantasma. Toque em um para mantê-lo, ou dispense. Passar os olhos vira leitura com propósito.",
+  "vtt": true
+ },
+ "ghost-sv": {
+  "duration": 22.4,
+  "bytes": 1373623,
+  "uploaded": "2026-10-21",
+  "transcript": "AI:n markerar det som räknas medan du läser. Efter sammanfattningen markerar AI:n de viktigaste styckena direkt i artikeln, som spökmarkeringar. Tryck på en för att behålla den, eller avfärda den. Så blir skumläsning till läsning med avsikt.",
+  "vtt": true
+ },
+ "ghost-zh-tw": {
+  "duration": 21.4,
+  "bytes": 1148890,
+  "uploaded": "2026-10-21",
+  "transcript": "AI 替你標出重點。摘要之後，AI 會直接在文章裡標出最關鍵的段落，也就是幽靈高亮。點一下保留它，或者忽略它。瀏覽就這樣變成了有目的的閱讀。",
+  "vtt": true
+ },
+ "ghost-zh": {
+  "duration": 21.4,
+  "bytes": 1166389,
+  "uploaded": "2026-10-21",
+  "transcript": "AI 替你标出重点。摘要之后，AI 会直接在文章里标出最关键的段落，也就是幽灵高亮。点一下保留它，或者忽略它。浏览就这样变成了有目的的阅读。",
+  "vtt": true
+ },
+ "graph-de": {
+  "duration": 19.3,
+  "bytes": 996730,
+  "uploaded": "2026-10-20",
+  "transcript": "Was du liest, hängt zusammen. Dein Wissensgraph verbindet Artikel über ihre Themen. Tipp eines an, und du bekommst ein Briefing zu allem, was du darüber gelesen hast.",
+  "vtt": true
+ },
+ "graph-en": {
+  "duration": 19.1,
+  "bytes": 940721,
+  "uploaded": "2026-10-20",
+  "transcript": "What you read is connected. Your knowledge graph links articles through their topics. Tap one, and you get a briefing on everything you have read about it.",
+  "vtt": true
+ },
+ "graph-es": {
+  "duration": 19.1,
+  "bytes": 982266,
+  "uploaded": "2026-10-20",
+  "transcript": "Lo que lees está conectado. Tu grafo de conocimiento conecta artículos por sus temas. Toca uno y obtienes un resumen de todo lo que has leído sobre él.",
+  "vtt": true
+ },
+ "graph-fr": {
+  "duration": 19.4,
+  "bytes": 993946,
+  "uploaded": "2026-10-21",
+  "transcript": "Ce que vous lisez est relié. Votre graphe de connaissances relie les articles par leurs thèmes. Touchez-en un, et vous obtenez un briefing sur tout ce que vous avez lu à ce sujet.",
+  "vtt": true
+ },
+ "graph-ja": {
+  "duration": 19.3,
+  "bytes": 1017480,
+  "uploaded": "2026-10-20",
+  "transcript": "読んだものは、つながっている。ナレッジグラフは、記事をテーマでつなぎます。テーマをタップすると、そのテーマについて読んだ内容をまとめて要約します。",
+  "vtt": true
+ },
+ "graph-ko": {
+  "duration": 19.8,
+  "bytes": 965557,
+  "uploaded": "2026-10-20",
+  "transcript": "읽은 것들은 서로 연결되어 있습니다. 지식 그래프는 주제로 글을 연결합니다. 하나를 누르면 그 주제로 읽은 모든 것을 브리핑해 줍니다.",
+  "vtt": true
+ },
+ "graph-nl": {
+  "duration": 18.9,
+  "bytes": 968489,
+  "uploaded": "2026-10-21",
+  "transcript": "Wat je leest, hangt samen. Je kennisgrafiek verbindt artikelen via hun onderwerpen. Tik er één aan, en je krijgt een briefing over alles wat je erover hebt gelezen.",
+  "vtt": true
+ },
+ "graph-pt": {
+  "duration": 19.1,
+  "bytes": 970851,
+  "uploaded": "2026-10-21",
+  "transcript": "O que você lê está conectado. Seu grafo de conhecimento liga os artigos pelos temas. Toque em um, e você recebe um briefing de tudo o que já leu sobre ele.",
+  "vtt": true
+ },
+ "graph-sv": {
+  "duration": 19.4,
+  "bytes": 991060,
+  "uploaded": "2026-10-21",
+  "transcript": "Det du läser hänger ihop. Din kunskapsgraf länkar artiklar via deras ämnen. Tryck på ett, så får du en briefing över allt du har läst om det.",
+  "vtt": true
+ },
+ "graph-zh-tw": {
+  "duration": 19.3,
+  "bytes": 981973,
+  "uploaded": "2026-10-21",
+  "transcript": "讀過的內容，彼此相連。你的知識圖譜會通過主題，把文章連在一起。點一個主題，就能得到你讀過的所有相關內容的簡報。",
+  "vtt": true
+ },
+ "graph-zh": {
+  "duration": 19.3,
+  "bytes": 995126,
+  "uploaded": "2026-10-21",
+  "transcript": "读过的内容，彼此相连。你的知识图谱会通过主题，把文章连在一起。点一个主题，就能得到你读过的所有相关内容的简报。",
+  "vtt": true
+ },
+ "highlights-de": {
+  "duration": 21.8,
+  "bytes": 1886276,
+  "uploaded": "2026-10-20",
+  "transcript": "Markieren allein bringt beim Lernen kaum etwas. Das zeigt ein großer Überblick über Lerntechniken. Also hör nicht beim Markieren auf: Frag nach, und die Antwort zeigt dir, woher sie stammt.",
+  "vtt": true
+ },
+ "highlights-en": {
+  "duration": 21.5,
+  "bytes": 1725465,
+  "uploaded": "2026-10-20",
+  "transcript": "Highlighting barely helps you learn. That is what a big review of learning techniques found. So do not stop at the highlight: ask about it, and the answer shows you where it comes from.",
+  "vtt": true
+ },
+ "highlights-es": {
+  "duration": 21.6,
+  "bytes": 1727753,
+  "uploaded": "2026-10-20",
+  "transcript": "Subrayar apenas ayuda a aprender. Lo muestra una gran revisión de técnicas de estudio. Así que no te quedes en el subrayado: pregunta, y la respuesta te muestra de dónde viene.",
+  "vtt": true
+ },
+ "highlights-fr": {
+  "duration": 22,
+  "bytes": 1866639,
+  "uploaded": "2026-10-21",
+  "transcript": "Surligner aide à peine à apprendre. C’est ce que conclut une vaste revue des techniques d’apprentissage. Ne vous arrêtez donc pas au surlignage : posez une question, et la réponse vous montre d’où elle vient.",
+  "vtt": true
+ },
+ "highlights-ja": {
+  "duration": 21.8,
+  "bytes": 1783996,
+  "uploaded": "2026-10-20",
+  "transcript": "マーカーを引くだけでは、ほとんど身につかない。学習法の大規模なレビューがそう示しています。だからマーカーで終わらせず、質問してみましょう。答えには根拠の箇所が示されます。",
+  "vtt": true
+ },
+ "highlights-ko": {
+  "duration": 22.3,
+  "bytes": 1651952,
+  "uploaded": "2026-10-20",
+  "transcript": "형광펜만으로는 거의 기억에 남지 않습니다. 학습법에 대한 대규모 리뷰가 그렇게 말합니다. 그러니 형광펜에서 멈추지 말고 질문하세요. 답변이 어디에서 왔는지 보여 줍니다.",
+  "vtt": true
+ },
+ "highlights-nl": {
+  "duration": 21.4,
+  "bytes": 1859233,
+  "uploaded": "2026-10-21",
+  "transcript": "Markeren helpt nauwelijks bij het leren. Dat vond een groot overzicht van leertechnieken. Stop dus niet bij de markering: vraag erover, en het antwoord laat zien waar het vandaan komt.",
+  "vtt": true
+ },
+ "highlights-pt": {
+  "duration": 21.6,
+  "bytes": 1801297,
+  "uploaded": "2026-10-21",
+  "transcript": "Destacar quase não ajuda a aprender. É o que mostrou uma grande revisão de técnicas de aprendizagem. Então não pare no destaque: pergunte sobre ele, e a resposta mostra de onde vem.",
+  "vtt": true
+ },
+ "highlights-sv": {
+  "duration": 22,
+  "bytes": 1750738,
+  "uploaded": "2026-10-21",
+  "transcript": "Att bara stryka under hjälper knappt. Det visar en stor genomgång av inlärningsmetoder. Så sluta inte vid markeringen: fråga om den, så visar svaret var det kommer ifrån.",
+  "vtt": true
+ },
+ "highlights-zh-tw": {
+  "duration": 21.8,
+  "bytes": 1636685,
+  "uploaded": "2026-10-21",
+  "transcript": "光劃重點，幾乎沒用。這是一項大型學習方法綜述得出的結論。所以別停在高亮這一步，去問一問，答案會告訴你它出自哪裡。",
+  "vtt": true
+ },
+ "highlights-zh": {
+  "duration": 21.8,
+  "bytes": 1628972,
+  "uploaded": "2026-10-21",
+  "transcript": "光划重点，几乎没用。这是一项大型学习方法综述得出的结论。所以别停在高亮这一步，去问一问，答案会告诉你它出自哪里。",
+  "vtt": true
+ },
+ "instant-de": {
+  "duration": 27.4,
+  "bytes": 1019796,
+  "uploaded": "2026-10-21",
+  "transcript": "Warum warten, bis die Zusammenfassung fertig ist? Schalte „Sofort vorlesen“ ein, und sie wird gesprochen, während sie noch entsteht.",
+  "vtt": true
+ },
+ "instant-en": {
+  "duration": 28.4,
+  "bytes": 995483,
+  "uploaded": "2026-10-21",
+  "transcript": "Why wait for the summary to finish? Switch on Instant read, and it is spoken while it is still being written.",
+  "vtt": true
+ },
+ "instant-es": {
+  "duration": 26.8,
+  "bytes": 983356,
+  "uploaded": "2026-10-21",
+  "transcript": "¿Por qué esperar a que termine el resumen? Activa la lectura instantánea y se lee en voz alta mientras aún se escribe.",
+  "vtt": true
+ },
+ "instant-fr": {
+  "duration": 27.6,
+  "bytes": 985745,
+  "uploaded": "2026-10-21",
+  "transcript": "Pourquoi attendre la fin du résumé ? Activez la lecture instantanée, et il est lu à voix haute pendant qu’il s’écrit encore.",
+  "vtt": true
+ },
+ "instant-ja": {
+  "duration": 26.3,
+  "bytes": 975676,
+  "uploaded": "2026-10-21",
+  "transcript": "要約が終わるまで、待つ必要ある？即時読み上げをオンにすると、要約は書かれている途中から読み上げられます。",
+  "vtt": true
+ },
+ "instant-ko": {
+  "duration": 27.8,
+  "bytes": 966199,
+  "uploaded": "2026-10-21",
+  "transcript": "요약이 끝날 때까지 왜 기다리나요? 즉시 읽기를 켜면 요약이 작성되는 중에도 소리 내어 읽어 줍니다.",
+  "vtt": true
+ },
+ "instant-nl": {
+  "duration": 27.1,
+  "bytes": 987686,
+  "uploaded": "2026-10-21",
+  "transcript": "Waarom wachten tot de samenvatting klaar is? Zet Direct lezen aan, en hij wordt voorgelezen terwijl hij nog wordt geschreven.",
+  "vtt": true
+ },
+ "instant-pt": {
+  "duration": 27.5,
+  "bytes": 992764,
+  "uploaded": "2026-10-21",
+  "transcript": "Por que esperar o resumo terminar? Ative a Leitura instantânea, e ele é falado enquanto ainda está sendo escrito.",
+  "vtt": true
+ },
+ "instant-sv": {
+  "duration": 29.1,
+  "bytes": 1017976,
+  "uploaded": "2026-10-21",
+  "transcript": "Varför vänta tills sammanfattningen är klar? Slå på Snabbläsning, så läses den upp medan den fortfarande skrivs.",
+  "vtt": true
+ },
+ "instant-zh-tw": {
+  "duration": 28.3,
+  "bytes": 983852,
+  "uploaded": "2026-10-21",
+  "transcript": "何必等摘要寫完？打開即時朗讀，摘要還在撰寫的時候，就已經讀給你聽了。",
+  "vtt": true
+ },
+ "instant-zh": {
+  "duration": 28.3,
+  "bytes": 968533,
+  "uploaded": "2026-10-21",
+  "transcript": "何必等摘要写完？打开即时朗读，摘要还在撰写的时候，就已经读给你听了。",
+  "vtt": true
+ },
+ "montage-de": {
+  "duration": 20.1,
+  "bytes": 1462934,
+  "uploaded": "2026-10-20"
+ },
+ "montage-en": {
+  "duration": 19.7,
+  "bytes": 1368801,
+  "uploaded": "2026-10-20"
+ },
+ "montage-es": {
+  "duration": 19.8,
+  "bytes": 1392983,
+  "uploaded": "2026-10-20"
+ },
+ "montage-fr": {
+  "duration": 20.1,
+  "bytes": 1407990,
+  "uploaded": "2026-10-21"
+ },
+ "montage-ja": {
+  "duration": 20.1,
+  "bytes": 1473010,
+  "uploaded": "2026-10-20"
+ },
+ "montage-ko": {
+  "duration": 20.5,
+  "bytes": 1301225,
+  "uploaded": "2026-10-20"
+ },
+ "montage-nl": {
+  "duration": 19.6,
+  "bytes": 1404283,
+  "uploaded": "2026-10-21"
+ },
+ "montage-pt": {
+  "duration": 19.8,
+  "bytes": 1395915,
+  "uploaded": "2026-10-21"
+ },
+ "montage-sv": {
+  "duration": 20.1,
+  "bytes": 1489402,
+  "uploaded": "2026-10-21"
+ },
+ "montage-zh-tw": {
+  "duration": 20,
+  "bytes": 1513829,
+  "uploaded": "2026-10-21"
+ },
+ "montage-zh": {
+  "duration": 20,
+  "bytes": 1466410,
+  "uploaded": "2026-10-21"
+ },
+ "paper-de": {
+  "duration": 23,
+  "bytes": 1279984,
+  "uploaded": "2026-10-21",
+  "transcript": "Preprint oder begutachtet? Wissen, bevor du zitierst. Fasse ein Paper zusammen, und es wird an seiner DOI erkannt. Studie, Review oder Preprint: du siehst es auf einen Blick. Design, Stichprobe und Grenzen werden herausgezogen, und die Quellenangabe kommt direkt aus dem DOI-Verzeichnis.",
+  "vtt": true
+ },
+ "paper-en": {
+  "duration": 25.1,
+  "bytes": 1299953,
+  "uploaded": "2026-10-21",
+  "transcript": "Preprint or peer-reviewed? Know before you cite. Summarize a paper and it is recognised by its DOI. Trial, review or preprint: you see it at a glance. Design, sample and limitations are pulled out, and the citation comes straight from the DOI registry.",
+  "vtt": true
+ },
+ "paper-es": {
+  "duration": 24.4,
+  "bytes": 1300359,
+  "uploaded": "2026-10-21",
+  "transcript": "¿Preprint o revisado por pares? Entérate antes de citar. Resume un artículo científico y se reconoce por su DOI. Ensayo, revisión o preprint: lo ves de un vistazo. Se extraen el diseño, la muestra y las limitaciones, y la cita llega directa del registro DOI.",
+  "vtt": true
+ },
+ "paper-fr": {
+  "duration": 23.3,
+  "bytes": 1289467,
+  "uploaded": "2026-10-21",
+  "transcript": "Preprint ou évalué ? Sachez avant de citer. Résumez un article scientifique et il est reconnu grâce à son DOI. Essai, revue ou preprint : vous le voyez d’un coup d’œil. Le design, l’échantillon et les limites sont extraits, et la citation vient directement du registre DOI.",
+  "vtt": true
+ },
+ "paper-ja": {
+  "duration": 24.9,
+  "bytes": 1271552,
+  "uploaded": "2026-10-21",
+  "transcript": "プレプリントか、査読済みか。引用する前に知ろう。論文を要約すると、DOIから論文だと認識されます。試験、レビュー、プレプリントがひと目でわかります。研究デザイン、サンプル、限界が抜き出され、引用はDOIレジストリから直接作られます。",
+  "vtt": true
+ },
+ "paper-ko": {
+  "duration": 24.7,
+  "bytes": 1253491,
+  "uploaded": "2026-10-21",
+  "transcript": "프리프린트일까, 동료 심사를 거쳤을까? 인용하기 전에 확인하세요. 논문을 요약하면 DOI로 논문임을 알아봅니다. 시험, 리뷰, 프리프린트가 한눈에 보입니다. 연구 설계, 표본, 한계가 추출되고, 인용은 DOI 등록처에서 바로 가져옵니다.",
+  "vtt": true
+ },
+ "paper-nl": {
+  "duration": 22.8,
+  "bytes": 1291698,
+  "uploaded": "2026-10-21",
+  "transcript": "Preprint of peer-reviewed? Weet het vóór je citeert. Vat een paper samen en het wordt herkend aan zijn DOI. Trial, review of preprint: je ziet het in één oogopslag. Opzet, steekproef en beperkingen worden eruit gehaald, en het citaat komt rechtstreeks uit het DOI-register.",
+  "vtt": true
+ },
+ "paper-pt": {
+  "duration": 23.1,
+  "bytes": 1274179,
+  "uploaded": "2026-10-21",
+  "transcript": "Preprint ou revisado? Saiba antes de citar. Resuma um artigo científico e ele é reconhecido pelo DOI. Ensaio, revisão ou preprint: você vê de relance. Desenho, amostra e limitações são extraídos, e a citação vem direto do registro de DOI.",
+  "vtt": true
+ },
+ "paper-sv": {
+  "duration": 24.3,
+  "bytes": 1315569,
+  "uploaded": "2026-10-21",
+  "transcript": "Preprint eller granskad? Vet innan du citerar. Sammanfatta en forskningsartikel så känns den igen på sin DOI. Studie, översikt eller preprint: du ser det direkt. Upplägg, urval och begränsningar plockas fram, och källhänvisningen kommer rakt från DOI-registret.",
+  "vtt": true
+ },
+ "paper-zh-tw": {
+  "duration": 24.6,
+  "bytes": 1251157,
+  "uploaded": "2026-10-21",
+  "transcript": "預印本還是同行評審？引用前先弄清。摘要一篇論文，它會憑 DOI 被識別出來。試驗、綜述還是預印本，一眼就能看出。研究設計、樣本和局限會被提取出來，引用信息直接來自 DOI 註冊庫。",
+  "vtt": true
+ },
+ "paper-zh": {
+  "duration": 24.6,
+  "bytes": 1253527,
+  "uploaded": "2026-10-21",
+  "transcript": "预印本还是同行评审？引用前先弄清。摘要一篇论文，它会凭 DOI 被识别出来。试验、综述还是预印本，一眼就能看出。研究设计、样本和局限会被提取出来，引用信息直接来自 DOI 注册库。",
+  "vtt": true
+ },
+ "pdf-de": {
+  "duration": 21.3,
+  "bytes": 1172008,
+  "uploaded": "2026-10-21",
+  "transcript": "Vierundachtzig Seiten PDF. Wer liest das? Öffne ein PDF im Browser und tipp auf Zusammenfassen. Berichte, Studien, Handbücher: die Kernpunkte in Sekunden, in deiner Sprache. Und du siehst, was das Modell gelesen hat.",
+  "vtt": true
+ },
+ "pdf-en": {
+  "duration": 21,
+  "bytes": 1109511,
+  "uploaded": "2026-10-21",
+  "transcript": "An 84-page PDF. Who reads that? Open a PDF in your browser and tap Summarize. Reports, studies, manuals: the key points in seconds, in your language. And you can see what the model read.",
+  "vtt": true
+ },
+ "pdf-es": {
+  "duration": 21.1,
+  "bytes": 1185164,
+  "uploaded": "2026-10-21",
+  "transcript": "Un PDF de 84 páginas. ¿Quién lo lee? Abre un PDF en el navegador y pulsa en resumir. Informes, estudios, manuales: las ideas clave en segundos y en tu idioma. Y puedes ver qué leyó el modelo.",
+  "vtt": true
+ },
+ "pdf-fr": {
+  "duration": 21.8,
+  "bytes": 1239303,
+  "uploaded": "2026-10-21",
+  "transcript": "Un PDF de 84 pages. Qui lit ça ? Ouvrez un PDF dans votre navigateur et touchez Résumer. Rapports, études, manuels : les points clés en quelques secondes, dans votre langue. Et vous voyez ce que le modèle a lu.",
+  "vtt": true
+ },
+ "pdf-ja": {
+  "duration": 21.3,
+  "bytes": 1091473,
+  "uploaded": "2026-10-21",
+  "transcript": "84ページのPDF。誰が読む？ブラウザでPDFを開いて、要約をタップ。レポート、論文、マニュアル。要点が数秒で、あなたの言語で手に入ります。モデルが何を読んだかも確認できます。",
+  "vtt": true
+ },
+ "pdf-ko": {
+  "duration": 22.3,
+  "bytes": 1077922,
+  "uploaded": "2026-10-21",
+  "transcript": "84쪽짜리 PDF. 누가 다 읽을까요? 브라우저에서 PDF를 열고 요약을 누르세요. 보고서, 연구, 설명서까지 핵심을 몇 초 만에, 당신의 언어로. 모델이 무엇을 읽었는지도 볼 수 있어요.",
+  "vtt": true
+ },
+ "pdf-nl": {
+  "duration": 21.1,
+  "bytes": 1144182,
+  "uploaded": "2026-10-21",
+  "transcript": "Een pdf van 84 pagina’s. Wie leest dat? Open een pdf in je browser en tik op Samenvatten. Rapporten, studies, handleidingen: de kernpunten in seconden, in jouw taal. En je ziet wat het model heeft gelezen.",
+  "vtt": true
+ },
+ "pdf-pt": {
+  "duration": 21.1,
+  "bytes": 1150883,
+  "uploaded": "2026-10-21",
+  "transcript": "Um PDF de 84 páginas. Quem lê isso? Abra um PDF no navegador e toque em Resumir. Relatórios, estudos, manuais: os pontos principais em segundos, no seu idioma. E você vê o que o modelo leu.",
+  "vtt": true
+ },
+ "pdf-sv": {
+  "duration": 21.5,
+  "bytes": 1152243,
+  "uploaded": "2026-10-21",
+  "transcript": "En PDF på 84 sidor. Vem läser den? Öppna en PDF i webbläsaren och tryck på Sammanfatta. Rapporter, studier, manualer: det viktigaste på sekunder, på ditt språk. Och du ser vad modellen har läst.",
+  "vtt": true
+ },
+ "pdf-zh-tw": {
+  "duration": 21.5,
+  "bytes": 1095673,
+  "uploaded": "2026-10-21",
+  "transcript": "八十四頁的 PDF，誰會讀？在瀏覽器裡打開 PDF，點一下摘要。報告、研究、手冊：幾秒鐘拿到要點，還是用你的語言。而且你能看到模型讀了什麼。",
+  "vtt": true
+ },
+ "pdf-zh": {
+  "duration": 21.5,
+  "bytes": 1081944,
+  "uploaded": "2026-10-21",
+  "transcript": "八十四页的 PDF，谁会读？在浏览器里打开 PDF，点一下摘要。报告、研究、手册：几秒钟拿到要点，还是用你的语言。而且你能看到模型读了什么。",
+  "vtt": true
+ },
+ "pocket-de": {
+  "duration": 19.3,
+  "bytes": 959897,
+  "uploaded": "2026-10-20",
+  "transcript": "Pocket ist weg. Und jetzt? Speichere jede Seite mit einem Klick, samt Zusammenfassung. Deine Bibliothek hat Tags und Suche und schickt an deinen Kindle. Kostenlos, und alles bleibt auf deinem Gerät.",
+  "vtt": true
+ },
+ "pocket-en": {
+  "duration": 19.1,
+  "bytes": 912003,
+  "uploaded": "2026-10-20",
+  "transcript": "Pocket is gone. Now what? Save any page with one click, with a summary on top. Your library has tags and search, and sends to your Kindle. Free, and it all stays on your device.",
+  "vtt": true
+ },
+ "pocket-es": {
+  "duration": 20.4,
+  "bytes": 972072,
+  "uploaded": "2026-10-20",
+  "transcript": "Pocket ya no existe. ¿Y ahora? Guarda cualquier página con un clic, con resumen incluido. Tu biblioteca tiene etiquetas y búsqueda y envía a tu Kindle. Gratis, y todo se queda en tu dispositivo.",
+  "vtt": true
+ },
+ "pocket-fr": {
+  "duration": 19.4,
+  "bytes": 973073,
+  "uploaded": "2026-10-21",
+  "transcript": "Pocket a disparu. Et maintenant ? Sauvegardez n’importe quelle page en un clic, avec un résumé en prime. Votre bibliothèque a des tags et une recherche, et envoie vers votre Kindle. Gratuit, et tout reste sur votre appareil.",
+  "vtt": true
+ },
+ "pocket-ja": {
+  "duration": 20,
+  "bytes": 922532,
+  "uploaded": "2026-10-20",
+  "transcript": "Pocketが終了。次はどうする？どんなページもワンクリックで保存、要約つき。ライブラリにはタグと検索があり、Kindleにも送れます。無料で、データはすべてあなたの端末に。",
+  "vtt": true
+ },
+ "pocket-ko": {
+  "duration": 21.7,
+  "bytes": 946398,
+  "uploaded": "2026-10-20",
+  "transcript": "Pocket이 사라졌다. 이제 어떡하지? 어떤 페이지든 클릭 한 번으로 요약과 함께 저장하세요. 라이브러리에는 태그와 검색이 있고, Kindle로도 보낼 수 있어요. 무료이고, 모든 데이터는 내 기기에 남습니다.",
+  "vtt": true
+ },
+ "pocket-nl": {
+  "duration": 18.9,
+  "bytes": 947701,
+  "uploaded": "2026-10-21",
+  "transcript": "Pocket is weg. En nu? Bewaar elke pagina met één klik, met een samenvatting erbij. Je bibliotheek heeft tags en zoeken, en stuurt door naar je Kindle. Gratis, en alles blijft op je apparaat.",
+  "vtt": true
+ },
+ "pocket-pt": {
+  "duration": 20.1,
+  "bytes": 967582,
+  "uploaded": "2026-10-21",
+  "transcript": "O Pocket acabou. E agora? Salve qualquer página com um clique, já com um resumo no topo. Sua biblioteca tem etiquetas e pesquisa, e envia para o seu Kindle. De graça, e tudo fica no seu dispositivo.",
+  "vtt": true
+ },
+ "pocket-sv": {
+  "duration": 20.4,
+  "bytes": 979191,
+  "uploaded": "2026-10-21",
+  "transcript": "Pocket är borta. Och nu? Spara vilken sida som helst med ett klick, med en sammanfattning överst. Ditt bibliotek har taggar och sökning och skickar till din Kindle. Gratis, och allt stannar på din enhet.",
+  "vtt": true
+ },
+ "pocket-zh-tw": {
+  "duration": 19.3,
+  "bytes": 876298,
+  "uploaded": "2026-10-21",
+  "transcript": "Pocket 沒了，怎麼辦？一鍵保存任何頁面，頂部還附帶摘要。資料庫有標籤和搜索，還能發送到你的 Kindle。免費，而且一切都留在你的設備上。",
+  "vtt": true
+ },
+ "pocket-zh": {
+  "duration": 19.3,
+  "bytes": 870961,
+  "uploaded": "2026-10-21",
+  "transcript": "Pocket 没了，怎么办？一键保存任何页面，顶部还附带摘要。资料库有标签和搜索，还能发送到你的 Kindle。免费，而且一切都留在你的设备上。",
+  "vtt": true
+ },
+ "privat-de": {
+  "duration": 22.3,
+  "bytes": 857043,
+  "uploaded": "2026-10-20",
+  "transcript": "Datenschutz? Eine Abwägung. Wer das Risiko kennt, teilt weniger. Also wählst du: deinen eigenen API-Key, ein lokales Modell mit Ollama oder byPhil Cloud ohne Einrichtung. Deine Bibliothek bleibt im Browser.",
+  "vtt": true
+ },
+ "privat-en": {
+  "duration": 19.5,
+  "bytes": 782845,
+  "uploaded": "2026-10-20",
+  "transcript": "Privacy is a trade-off. When the risk is clear, people share less. So you choose: your own API key, a local model with Ollama, or byPhil Cloud with no setup. Your library stays in the browser.",
+  "vtt": true
+ },
+ "privat-es": {
+  "duration": 22,
+  "bytes": 846087,
+  "uploaded": "2026-10-20",
+  "transcript": "La privacidad es un equilibrio. Cuando el riesgo es claro, compartimos menos. Así que eliges: tu propia clave de API, un modelo local con Ollama o byPhil Cloud sin configuración. Tu biblioteca se queda en el navegador.",
+  "vtt": true
+ },
+ "privat-fr": {
+  "duration": 22.3,
+  "bytes": 864481,
+  "uploaded": "2026-10-21",
+  "transcript": "La confidentialité est un compromis. Quand le risque est clair, on partage moins. Alors vous choisissez : votre propre clé API, un modèle local avec Ollama, ou byPhil Cloud sans configuration. Votre bibliothèque reste dans le navigateur.",
+  "vtt": true
+ },
+ "privat-ja": {
+  "duration": 24.2,
+  "bytes": 855239,
+  "uploaded": "2026-10-20",
+  "transcript": "プライバシーはトレードオフ。リスクが見えると、人は共有を控えます。だから選べます。自分のAPIキー、Ollamaのローカルモデル、または設定不要のbyPhil Cloud。ライブラリはブラウザの中に残ります。",
+  "vtt": true
+ },
+ "privat-ko": {
+  "duration": 22.7,
+  "bytes": 813342,
+  "uploaded": "2026-10-20",
+  "transcript": "프라이버시는 저울질입니다. 위험을 알면 사람은 덜 공유합니다. 그래서 선택할 수 있어요. 내 API 키, Ollama로 돌리는 로컬 모델, 또는 설정 없는 byPhil Cloud. 라이브러리는 브라우저 안에 남습니다.",
+  "vtt": true
+ },
+ "privat-nl": {
+  "duration": 19.1,
+  "bytes": 786273,
+  "uploaded": "2026-10-21",
+  "transcript": "Privacy is een afweging. Wie het risico kent, deelt minder. Dus jij kiest: je eigen API-sleutel, een lokaal model met Ollama, of byPhil Cloud zonder installatie. Je bibliotheek blijft in de browser.",
+  "vtt": true
+ },
+ "privat-pt": {
+  "duration": 21.3,
+  "bytes": 850027,
+  "uploaded": "2026-10-21",
+  "transcript": "Privacidade é uma troca. Quando o risco é claro, as pessoas compartilham menos. Então você escolhe: sua própria chave de API, um modelo local com Ollama ou o byPhil Cloud, sem configuração. Sua biblioteca fica no navegador.",
+  "vtt": true
+ },
+ "privat-sv": {
+  "duration": 22.6,
+  "bytes": 847126,
+  "uploaded": "2026-10-21",
+  "transcript": "Integritet är en avvägning. När risken är tydlig delar folk mindre. Så du väljer: din egen API-nyckel, en lokal modell med Ollama eller byPhil Cloud utan installation. Ditt bibliotek stannar i webbläsaren.",
+  "vtt": true
+ },
+ "privat-zh-tw": {
+  "duration": 22.9,
+  "bytes": 801784,
+  "uploaded": "2026-10-21",
+  "transcript": "隱私是一種權衡。風險一清楚，人們就會少分享。所以由你來選：用自己的 API 密鑰，用 Ollama 跑本地模型，或者免設置的 byPhil Cloud。你的資料庫留在瀏覽器裡。",
+  "vtt": true
+ },
+ "privat-zh": {
+  "duration": 22.9,
+  "bytes": 796527,
+  "uploaded": "2026-10-21",
+  "transcript": "隐私是一种权衡。风险一清楚，人们就会少分享。所以由你来选：用自己的 API 密钥，用 Ollama 跑本地模型，或者免设置的 byPhil Cloud。你的资料库留在浏览器里。",
+  "vtt": true
+ },
+ "quellen-de": {
+  "duration": 17.8,
+  "bytes": 1254492,
+  "uploaded": "2026-10-20",
+  "transcript": "KI-Antworten. Mit Beleg. Stell Folgefragen. Jede Antwort zeigt dir die Stelle im Text, aus der sie stammt.",
+  "vtt": true
+ },
+ "quellen-en": {
+  "duration": 17.5,
+  "bytes": 1180370,
+  "uploaded": "2026-10-20",
+  "transcript": "AI answers. With receipts. Ask follow-up questions. Every answer points to the passage it came from.",
+  "vtt": true
+ },
+ "quellen-es": {
+  "duration": 17.6,
+  "bytes": 1210358,
+  "uploaded": "2026-10-20",
+  "transcript": "Respuestas de IA. Con pruebas. Haz preguntas de seguimiento. Cada respuesta te muestra el pasaje del que procede.",
+  "vtt": true
+ },
+ "quellen-fr": {
+  "duration": 17.9,
+  "bytes": 1274966,
+  "uploaded": "2026-10-21",
+  "transcript": "Des réponses IA. Avec preuves. Posez des questions de suivi. Chaque réponse renvoie au passage dont elle vient.",
+  "vtt": true
+ },
+ "quellen-ja": {
+  "duration": 17.8,
+  "bytes": 1200701,
+  "uploaded": "2026-10-20",
+  "transcript": "AIの回答に、根拠を。続けて質問しよう。どの回答も、根拠となる本文の箇所を示します。",
+  "vtt": true
+ },
+ "quellen-ko": {
+  "duration": 18.3,
+  "bytes": 1072838,
+  "uploaded": "2026-10-20",
+  "transcript": "AI 답변, 근거까지. 추가 질문을 해 보세요. 모든 답변이 근거가 된 문장을 가리킵니다.",
+  "vtt": true
+ },
+ "quellen-nl": {
+  "duration": 17.4,
+  "bytes": 1221111,
+  "uploaded": "2026-10-21",
+  "transcript": "AI-antwoorden. Met bewijs. Stel vervolgvragen. Elk antwoord wijst naar de passage waar het vandaan komt.",
+  "vtt": true
+ },
+ "quellen-pt": {
+  "duration": 17.6,
+  "bytes": 1225154,
+  "uploaded": "2026-10-21",
+  "transcript": "Respostas de IA. Com fonte. Faça perguntas de acompanhamento. Cada resposta aponta a passagem de onde veio.",
+  "vtt": true
+ },
+ "quellen-sv": {
+  "duration": 17.9,
+  "bytes": 1224842,
+  "uploaded": "2026-10-21",
+  "transcript": "AI-svar. Med belägg. Ställ följdfrågor. Varje svar pekar ut stället i texten som det kommer från.",
+  "vtt": true
+ },
+ "quellen-zh-tw": {
+  "duration": 17.8,
+  "bytes": 1071638,
+  "uploaded": "2026-10-21",
+  "transcript": "AI 回答，有據可查。可以接著追問。每個回答都會告訴你，它出自原文的哪一段。",
+  "vtt": true
+ },
+ "quellen-zh": {
+  "duration": 17.8,
+  "bytes": 1085523,
+  "uploaded": "2026-10-21",
+  "transcript": "AI 回答，有据可查。可以接着追问。每个回答都会告诉你，它出自原文的哪一段。",
+  "vtt": true
+ },
+ "recherche-de": {
+  "duration": 23.5,
+  "bytes": 1293177,
+  "uploaded": "2026-10-21",
+  "transcript": "Eine Frage, fünf Quellen. Wo widersprechen sie sich? Bündle gespeicherte Artikel unter einer Frage. Jede Quelle bekommt einen Typ: begutachtet, Preprint, Nachricht oder Meinung. Ein Klick vergleicht sie: wo sie sich einig sind, wo nicht, und was fehlt.",
+  "vtt": true
+ },
+ "recherche-en": {
+  "duration": 22.5,
+  "bytes": 1202941,
+  "uploaded": "2026-10-21",
+  "transcript": "One question, five sources. Where do they disagree? Bundle your saved articles under one question. Every source gets a type: peer-reviewed, preprint, news or opinion. One click compares them: where they agree, where they disagree, and what is missing.",
+  "vtt": true
+ },
+ "recherche-es": {
+  "duration": 23.2,
+  "bytes": 1238969,
+  "uploaded": "2026-10-21",
+  "transcript": "Una pregunta, cinco fuentes. ¿Dónde se contradicen? Agrupa tus artículos guardados bajo una pregunta. Cada fuente recibe un tipo: revisada por pares, preprint, noticia u opinión. Un clic las compara: en qué coinciden, en qué no y qué falta.",
+  "vtt": true
+ },
+ "recherche-fr": {
+  "duration": 23,
+  "bytes": 1273368,
+  "uploaded": "2026-10-21",
+  "transcript": "Une question, cinq sources. Où divergent-elles ? Regroupez vos articles sauvegardés sous une seule question. Chaque source reçoit un type : évalué par des pairs, preprint, actualité ou opinion. Un clic les compare : où elles s’accordent, où elles divergent, et ce qui manque.",
+  "vtt": true
+ },
+ "recherche-ja": {
+  "duration": 22.8,
+  "bytes": 1174192,
+  "uploaded": "2026-10-21",
+  "transcript": "1つの問い、5つの情報源。矛盾はどこ？保存した記事を、ひとつの問いのもとにまとめます。各ソースには種類がつきます。査読済み、プレプリント、ニュース、意見。ワンクリックで比較。一致する点、食い違う点、足りない点がわかります。",
+  "vtt": true
+ },
+ "recherche-ko": {
+  "duration": 26.8,
+  "bytes": 1316052,
+  "uploaded": "2026-10-21",
+  "transcript": "질문 하나, 출처 다섯. 어디서 엇갈릴까요? 저장한 글을 하나의 질문 아래 묶어 보세요. 모든 출처에는 유형이 붙습니다. 동료 심사, 프리프린트, 뉴스, 의견. 클릭 한 번으로 비교합니다. 어디서 일치하고, 어디서 엇갈리고, 무엇이 빠졌는지.",
+  "vtt": true
+ },
+ "recherche-nl": {
+  "duration": 22.4,
+  "bytes": 1212367,
+  "uploaded": "2026-10-21",
+  "transcript": "Eén vraag, vijf bronnen. Waar spreken ze elkaar tegen? Bundel je bewaarde artikelen onder één vraag. Elke bron krijgt een type: peer-reviewed, preprint, nieuws of opinie. Met één klik vergelijk je ze: waar ze het eens zijn, waar niet, en wat ontbreekt.",
+  "vtt": true
+ },
+ "recherche-pt": {
+  "duration": 23.9,
+  "bytes": 1329270,
+  "uploaded": "2026-10-21",
+  "transcript": "Uma pergunta, cinco fontes. Onde elas discordam? Reúna seus artigos salvos sob uma única pergunta. Cada fonte recebe um tipo: revisado por pares, preprint, notícia ou opinião. Um clique compara tudo: onde concordam, onde discordam e o que está faltando.",
+  "vtt": true
+ },
+ "recherche-sv": {
+  "duration": 25.6,
+  "bytes": 1337337,
+  "uploaded": "2026-10-21",
+  "transcript": "En fråga, fem källor. Var säger de emot varandra? Samla dina sparade artiklar under en fråga. Varje källa får en typ: expertgranskad, preprint, nyhet eller åsikt. Ett klick jämför dem: var de är överens, var de inte är det och vad som saknas.",
+  "vtt": true
+ },
+ "recherche-zh-tw": {
+  "duration": 22.8,
+  "bytes": 1167560,
+  "uploaded": "2026-10-21",
+  "transcript": "一個問題，五個來源，分歧在哪？把保存的文章歸到一個問題下。每個來源都有類型：同行評審、預印本、新聞或評論。點一下就能對比：哪裡一致，哪裡有分歧，還缺什麼。",
+  "vtt": true
+ },
+ "recherche-zh": {
+  "duration": 22.8,
+  "bytes": 1152443,
+  "uploaded": "2026-10-21",
+  "transcript": "一个问题，五个来源，分歧在哪？把保存的文章归到一个问题下。每个来源都有类型：同行评审、预印本、新闻或评论。点一下就能对比：哪里一致，哪里有分歧，还缺什么。",
+  "vtt": true
+ },
+ "senden-de": {
+  "duration": 19.3,
+  "bytes": 991320,
+  "uploaded": "2026-10-20",
+  "transcript": "Von der Zusammenfassung zum Kindle. Seite zusammenfassen, Menü öffnen, an den Kindle schicken. Sekunden später liegt sie auf deinem E-Reader, bereit fürs Sofa.",
+  "vtt": true
+ },
+ "senden-en": {
+  "duration": 19.1,
+  "bytes": 930566,
+  "uploaded": "2026-10-20",
+  "transcript": "From summary to Kindle. Summarize the page, open the menu, send it to your Kindle. Seconds later it is on your e-reader, ready for the couch.",
+  "vtt": true
+ },
+ "senden-es": {
+  "duration": 19.1,
+  "bytes": 953291,
+  "uploaded": "2026-10-20",
+  "transcript": "Del resumen al Kindle. Resume la página, abre el menú y envíala a tu Kindle. Segundos después está en tu e-reader, lista para el sofá.",
+  "vtt": true
+ },
+ "senden-fr": {
+  "duration": 19.4,
+  "bytes": 1018073,
+  "uploaded": "2026-10-21",
+  "transcript": "Du résumé à votre Kindle. Résumez la page, ouvrez le menu, envoyez-la vers votre Kindle. Quelques secondes plus tard, elle est sur votre liseuse, prête pour le canapé.",
+  "vtt": true
+ },
+ "senden-ja": {
+  "duration": 19.3,
+  "bytes": 961251,
+  "uploaded": "2026-10-20",
+  "transcript": "要約をそのままKindleへ。ページを要約して、メニューからKindleへ。数秒後には電子書籍リーダーに届き、ソファでゆっくり読めます。",
+  "vtt": true
+ },
+ "senden-ko": {
+  "duration": 19.8,
+  "bytes": 928793,
+  "uploaded": "2026-10-20",
+  "transcript": "요약에서 Kindle까지. 페이지를 요약하고, 메뉴를 열고, Kindle로 보내세요. 몇 초 뒤면 전자책 리더에 도착해 소파에서 읽을 수 있어요.",
+  "vtt": true
+ },
+ "senden-nl": {
+  "duration": 18.9,
+  "bytes": 955804,
+  "uploaded": "2026-10-21",
+  "transcript": "Van samenvatting naar Kindle. Vat de pagina samen, open het menu, stuur het naar je Kindle. Seconden later staat het op je e-reader, klaar voor op de bank.",
+  "vtt": true
+ },
+ "senden-pt": {
+  "duration": 19.1,
+  "bytes": 1003263,
+  "uploaded": "2026-10-21",
+  "transcript": "Do resumo direto para o Kindle. Resuma a página, abra o menu, envie para o seu Kindle. Segundos depois, ele está no seu leitor de e-books, pronto para o sofá.",
+  "vtt": true
+ },
+ "senden-sv": {
+  "duration": 19.4,
+  "bytes": 971482,
+  "uploaded": "2026-10-21",
+  "transcript": "Från sammanfattning till Kindle. Sammanfatta sidan, öppna menyn, skicka den till din Kindle. Några sekunder senare ligger den på din e-läsare, redo för soffan.",
+  "vtt": true
+ },
+ "senden-zh-tw": {
+  "duration": 19.3,
+  "bytes": 907379,
+  "uploaded": "2026-10-21",
+  "transcript": "從摘要直達 Kindle。摘要這個頁面，打開選單，發送到 Kindle。幾秒鐘後，它就出現在你的電子書閱讀器上，躺在沙發上就能讀。",
+  "vtt": true
+ },
+ "senden-zh": {
+  "duration": 19.3,
+  "bytes": 901596,
+  "uploaded": "2026-10-21",
+  "transcript": "从摘要直达 Kindle。摘要这个页面，打开菜单，发送到 Kindle。几秒钟后，它就出现在你的电子书阅读器上，躺在沙发上就能读。",
+  "vtt": true
+ },
+ "sprache-de": {
+  "duration": 16.9,
+  "bytes": 788627,
+  "uploaded": "2026-10-20",
+  "transcript": "Fremdsprachen bremsen dich beim Lesen. Das zeigen Eyetracking-Studien, selbst bei Geübten. Zusammenfassungen in 41 Sprachen: suchen, tippen, fertig.",
+  "vtt": true
+ },
+ "sprache-en": {
+  "duration": 16,
+  "bytes": 756013,
+  "uploaded": "2026-10-20",
+  "transcript": "You read slower in a second language. Eye-tracking studies show it, even for fluent readers. Summaries in 41 languages: search, tap, done.",
+  "vtt": true
+ },
+ "sprache-es": {
+  "duration": 18.1,
+  "bytes": 806178,
+  "uploaded": "2026-10-20",
+  "transcript": "En otro idioma lees más despacio. Lo demuestran estudios de seguimiento ocular, incluso con lectores fluidos. Resúmenes en 41 idiomas: busca, toca, listo.",
+  "vtt": true
+ },
+ "sprache-fr": {
+  "duration": 18.5,
+  "bytes": 823349,
+  "uploaded": "2026-10-21",
+  "transcript": "Lire dans une autre langue ralentit. Les études de suivi oculaire le montrent, même chez les lecteurs aguerris. Des résumés en 41 langues : cherchez, touchez, terminé.",
+  "vtt": true
+ },
+ "sprache-ja": {
+  "duration": 18.5,
+  "bytes": 809034,
+  "uploaded": "2026-10-20",
+  "transcript": "外国語だと、読むのが遅くなる。視線計測の研究が示しています。流暢な人でさえも。要約は41言語に対応。探して、タップするだけ。",
+  "vtt": true
+ },
+ "sprache-nl": {
+  "duration": 16.6,
+  "bytes": 778289,
+  "uploaded": "2026-10-21",
+  "transcript": "In een vreemde taal lees je trager. Eyetrackingonderzoek laat het zien, zelfs bij vloeiende lezers. Samenvattingen in 41 talen: zoeken, tikken, klaar.",
+  "vtt": true
+ },
+ "sprache-pt": {
+  "duration": 17.1,
+  "bytes": 785249,
+  "uploaded": "2026-10-21",
+  "transcript": "Você lê mais devagar em outro idioma. Estudos de rastreamento ocular mostram isso, até em leitores fluentes. Resumos em 41 idiomas: pesquise, toque, pronto.",
+  "vtt": true
+ },
+ "sprache-sv": {
+  "duration": 17.2,
+  "bytes": 785165,
+  "uploaded": "2026-10-21",
+  "transcript": "På ett främmande språk läser du långsammare. Ögonrörelsestudier visar det, även hos van läsare. Sammanfattningar på 41 språk: sök, tryck, klart.",
+  "vtt": true
+ },
+ "sprache-zh-tw": {
+  "duration": 19.4,
+  "bytes": 802579,
+  "uploaded": "2026-10-21",
+  "transcript": "讀外語，速度會變慢。眼動追蹤研究證實了這一點，連熟練的讀者也一樣。摘要支持四十一種語言：搜索，點選，完成。",
+  "vtt": true
+ },
+ "sprache-zh": {
+  "duration": 19.4,
+  "bytes": 802784,
+  "uploaded": "2026-10-21",
+  "transcript": "读外语，速度会变慢。眼动追踪研究证实了这一点，连熟练的读者也一样。摘要支持四十一种语言：搜索，点选，完成。",
+  "vtt": true
+ },
+ "stimmung-de": {
+  "duration": 21.8,
+  "bytes": 961703,
+  "uploaded": "2026-10-21",
+  "transcript": "Deine Nachrichten haben eine Stimmung. Die KI bewertet jede Meldung von schwer bis gut. Tipp auf das Lächeln, und nur die guten Nachrichten bleiben. Und der Stimmungsverlauf zeigt dir, wie sich dein Lesen über Wochen angefühlt hat.",
+  "vtt": true
+ },
+ "stimmung-en": {
+  "duration": 21.5,
+  "bytes": 898734,
+  "uploaded": "2026-10-21",
+  "transcript": "Your news diet has a mood. The AI rates every headline from heavy to good. Tap the smile, and only the good news is left. And the mood chart shows how your reading has felt over the weeks.",
+  "vtt": true
+ },
+ "stimmung-es": {
+  "duration": 21.6,
+  "bytes": 976318,
+  "uploaded": "2026-10-21",
+  "transcript": "Tus noticias tienen un estado de ánimo. La IA valora cada titular, de pesado a bueno. Toca la carita y solo quedan las buenas noticias. Y el gráfico de ánimo muestra cómo se ha sentido tu lectura a lo largo de las semanas.",
+  "vtt": true
+ },
+ "stimmung-fr": {
+  "duration": 22,
+  "bytes": 964844,
+  "uploaded": "2026-10-21",
+  "transcript": "Votre actualité a une humeur. L’IA note chaque titre, de lourd à positif. Touchez le sourire, et il ne reste que les bonnes nouvelles. Et la courbe d’humeur montre comment votre lecture s’est ressentie au fil des semaines.",
+  "vtt": true
+ },
+ "stimmung-ja": {
+  "duration": 22.5,
+  "bytes": 932106,
+  "uploaded": "2026-10-21",
+  "transcript": "あなたのニュースにも、気分がある。AIが見出しをひとつずつ、重い話題から良い話題まで評価します。スマイルをタップすれば、良いニュースだけが残ります。そして気分のグラフが、数週間の読書がどんな気分だったかを見せてくれます。",
+  "vtt": true
+ },
+ "stimmung-ko": {
+  "duration": 24,
+  "bytes": 982779,
+  "uploaded": "2026-10-21",
+  "transcript": "당신의 뉴스에는 분위기가 있습니다. AI가 모든 헤드라인을 무거움부터 좋음까지 평가합니다. 웃는 얼굴을 누르면 좋은 소식만 남습니다. 그리고 분위기 그래프가 몇 주 동안의 독서가 어땠는지 보여 줍니다.",
+  "vtt": true
+ },
+ "stimmung-nl": {
+  "duration": 21.4,
+  "bytes": 945945,
+  "uploaded": "2026-10-21",
+  "transcript": "Je nieuwsdieet heeft een stemming. De AI beoordeelt elke kop van zwaar tot goed. Tik op de smiley, en alleen het goede nieuws blijft over. En de stemmingsgrafiek laat zien hoe je lezen zich de afgelopen weken voelde.",
+  "vtt": true
+ },
+ "stimmung-pt": {
+  "duration": 21.6,
+  "bytes": 937642,
+  "uploaded": "2026-10-21",
+  "transcript": "Suas notícias têm um humor. A IA avalia cada manchete, de pesada a boa. Toque no sorriso, e só ficam as boas notícias. E o gráfico de humor mostra como a sua leitura se sentiu ao longo das semanas.",
+  "vtt": true
+ },
+ "stimmung-sv": {
+  "duration": 22,
+  "bytes": 970235,
+  "uploaded": "2026-10-21",
+  "transcript": "Dina nyheter har en stämning. AI:n betygsätter varje rubrik, från tung till bra. Tryck på smileyn, så blir bara de goda nyheterna kvar. Och stämningsdiagrammet visar hur din läsning har känts under veckorna.",
+  "vtt": true
+ },
+ "stimmung-zh-tw": {
+  "duration": 21.8,
+  "bytes": 907947,
+  "uploaded": "2026-10-21",
+  "transcript": "你的新聞有情緒。AI 會給每條標題評分，從負面到正面。點一下笑臉，只剩下好消息。情緒走勢圖還會告訴你，這幾周的閱讀心情如何。",
+  "vtt": true
+ },
+ "stimmung-zh": {
+  "duration": 21.8,
+  "bytes": 882560,
+  "uploaded": "2026-10-21",
+  "transcript": "你的新闻有情绪。AI 会给每条标题评分，从负面到正面。点一下笑脸，只剩下好消息。情绪走势图还会告诉你，这几周的阅读心情如何。",
+  "vtt": true
+ },
+ "ytvideo-de": {
+  "duration": 20.9,
+  "bytes": 1398278,
+  "uploaded": "2026-10-21",
+  "transcript": "Zweiundsiebzig Minuten Vortrag. Wer hat dafür Zeit? Öffne das Video und tipp auf Zusammenfassen. Die Erweiterung liest die Untertitel, und du bekommst die Kernpunkte in deiner Sprache. Frag nach, und jede Antwort zeigt dir die Stelle im Transkript.",
+  "vtt": true
+ },
+ "ytvideo-en": {
+  "duration": 19.5,
+  "bytes": 1304326,
+  "uploaded": "2026-10-21",
+  "transcript": "A 72-minute lecture. Who has the time? Open the video and tap Summarize. The extension reads the captions, and you get the key points in your language. Ask a follow-up, and every answer shows you the passage in the transcript.",
+  "vtt": true
+ },
+ "ytvideo-es": {
+  "duration": 20.2,
+  "bytes": 1354285,
+  "uploaded": "2026-10-21",
+  "transcript": "Una charla de 72 minutos. ¿Quién tiene tiempo? Abre el vídeo y pulsa en resumir. La extensión lee los subtítulos y te da las ideas clave en tu idioma. Haz una pregunta de seguimiento y cada respuesta te muestra el pasaje de la transcripción.",
+  "vtt": true
+ },
+ "ytvideo-fr": {
+  "duration": 20.7,
+  "bytes": 1376534,
+  "uploaded": "2026-10-21",
+  "transcript": "Une conférence de 72 minutes. Qui a le temps ? Ouvrez la vidéo et touchez Résumer. L’extension lit les sous-titres, et vous obtenez les points clés dans votre langue. Posez une question de suivi, et chaque réponse vous montre le passage dans la transcription.",
+  "vtt": true
+ },
+ "ytvideo-ja": {
+  "duration": 22.8,
+  "bytes": 1315189,
+  "uploaded": "2026-10-21",
+  "transcript": "72分の講義。見る時間、ありますか？動画を開いて、要約をタップ。拡張機能が字幕を読み取り、要点をあなたの言語で届けます。続けて質問すれば、どの回答も文字起こしの該当箇所を示します。",
+  "vtt": true
+ },
+ "ytvideo-ko": {
+  "duration": 22.5,
+  "bytes": 1236164,
+  "uploaded": "2026-10-21",
+  "transcript": "72분짜리 강의. 볼 시간이 있나요? 영상을 열고 요약을 누르세요. 확장 프로그램이 자막을 읽고 핵심을 당신의 언어로 알려 줍니다. 추가로 질문하면 모든 답변이 스크립트의 해당 구절을 보여 줍니다.",
+  "vtt": true
+ },
+ "ytvideo-nl": {
+  "duration": 21.1,
+  "bytes": 1339876,
+  "uploaded": "2026-10-21",
+  "transcript": "Een lezing van 72 minuten. Wie heeft daar tijd voor? Open de video en tik op Samenvatten. De extensie leest de ondertitels, en je krijgt de kernpunten in jouw taal. Stel een vervolgvraag, en elk antwoord toont je de passage in het transcript.",
+  "vtt": true
+ },
+ "ytvideo-pt": {
+  "duration": 21.2,
+  "bytes": 1382546,
+  "uploaded": "2026-10-21",
+  "transcript": "Uma palestra de 72 minutos. Quem tem tempo? Abra o vídeo e toque em Resumir. A extensão lê as legendas, e você recebe os pontos principais no seu idioma. Faça uma pergunta de acompanhamento, e cada resposta mostra a passagem na transcrição.",
+  "vtt": true
+ },
+ "ytvideo-sv": {
+  "duration": 21.5,
+  "bytes": 1378216,
+  "uploaded": "2026-10-21",
+  "transcript": "Ett föredrag på 72 minuter. Vem hinner det? Öppna videon och tryck på Sammanfatta. Tillägget läser undertexterna, och du får det viktigaste på ditt språk. Ställ en följdfråga, så visar varje svar stället i transkriptionen.",
+  "vtt": true
+ },
+ "ytvideo-zh-tw": {
+  "duration": 19.4,
+  "bytes": 1217740,
+  "uploaded": "2026-10-21",
+  "transcript": "七十二分鐘的講座，誰有空看？打開視頻，點一下摘要。擴展會讀取字幕，你就能用自己的語言拿到要點。接著追問，每個回答都會指出文字記錄裡的對應段落。",
+  "vtt": true
+ },
+ "ytvideo-zh": {
+  "duration": 19.4,
+  "bytes": 1187907,
+  "uploaded": "2026-10-21",
+  "transcript": "七十二分钟的讲座，谁有空看？打开视频，点一下摘要。扩展会读取字幕，你就能用自己的语言拿到要点。接着追问，每个回答都会指出文字记录里的对应段落。",
+  "vtt": true
+ }
+}

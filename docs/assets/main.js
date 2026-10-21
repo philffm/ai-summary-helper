@@ -1210,6 +1210,15 @@ function setBilling(period) {
     return { href: CWS, text: labels.add_chrome || 'Add to Chrome — it’s free', store: 'chrome' };
   })();
 
+  // Campaign tags on the install link under a clip (store, add-on or bookmarklet page): the store dashboard and Matomo can then
+  // tell which clip, in which language, brought the install. Pages of this site get them too (Matomo reads utm_*).
+  function campaignUrl(href, clip) {
+    try {
+      var u = new URL(href, location.href), lang = (document.documentElement.getAttribute('lang') || 'en').toLowerCase();
+      u.searchParams.set('utm_source', 'aish-site'); u.searchParams.set('utm_medium', 'video'); u.searchParams.set('utm_campaign', 'video-' + clip + '-' + lang);
+      return /^https?:/.test(href) ? u.toString() : u.pathname.split('/').pop() + u.search + u.hash;
+    } catch (e) { return href; }
+  }
   // Shareable link to one clip: this page with #v=<clip>; opening it starts the player at that clip.
   function clipUrl(id) { return location.origin + location.pathname + '#v=' + encodeURIComponent(id); }
   function setHash(id) { try { history.replaceState(null, '', id ? '#v=' + encodeURIComponent(id) : location.pathname + location.search); } catch (e) {} }
@@ -1393,7 +1402,7 @@ function setBilling(period) {
       var row = document.createElement('div'); row.className = 'vfeed-actions';
       if (install) {
         var a = document.createElement('a');
-        a.className = 'vfeed-install'; a.href = install.href; a.textContent = install.text;
+        a.className = 'vfeed-install'; a.href = campaignUrl(install.href, fig.getAttribute('data-blog-video')); a.textContent = install.text;
         if (/^https?:/.test(install.href)) { a.target = '_blank'; a.rel = 'noopener'; }
         a.addEventListener('click', function () { T('CTA', 'video_install_' + install.store, fig.getAttribute('data-blog-video')); });
         row.appendChild(a);
@@ -1442,4 +1451,52 @@ function setBilling(period) {
     open(figs, i);
     return true;
   });
+})();
+
+/* ── Video plays (Matomo): play, 25 / 50 / 75 % and "complete" per clip, language and place ──
+   Event: category Video, action play | progress_25 | progress_50 | progress_75 | complete, name "<clip>-<lang>|<place>" where place is
+   player (full-screen player), videos (the page of all videos), post (a blog post), card or stack (only when played with sound).
+   A silent hover preview on a feature card or in the stack is not a play. */
+(function () {
+  var T = function () { if (window.aishTrack) window.aishTrack.apply(null, arguments); };
+  var seen = typeof WeakMap === 'function' ? new WeakMap() : null;
+  if (!seen) return;
+  function keyOf(v) {
+    var src = v.currentSrc || ((v.querySelector('source') || {}).src || '');
+    var m = src.match(/\/([^\/]+)\.mp4(?:[?#].*)?$/);
+    return m ? m[1] : null;
+  }
+  function placeOf(v) {
+    if (v.closest('.vfeed')) return 'player';
+    if (v.closest('.video-card')) return 'videos';
+    if (v.closest('.post-figure--video')) return 'post';
+    if (v.closest('.feature-card')) return 'card';
+    if (v.closest('.vstack')) return 'stack';
+    return 'page';
+  }
+  function stateOf(v) {
+    var k = keyOf(v), s = seen.get(v);
+    if (!s || s.key !== k) { s = { key: k, played: false, marks: {} }; seen.set(v, s); }   // another clip in the same element: a new play
+    return s;
+  }
+  document.addEventListener('play', function (e) {
+    var v = e.target;
+    if (!v || v.tagName !== 'VIDEO') return;
+    var s = stateOf(v);
+    if (!s.key || s.played) return;
+    var place = placeOf(v);
+    if ((place === 'card' || place === 'stack') && v.muted) return;
+    s.played = true;
+    T('Video', 'play', s.key + '|' + place);
+  }, true);
+  document.addEventListener('timeupdate', function (e) {
+    var v = e.target;
+    if (!v || v.tagName !== 'VIDEO' || !v.duration) return;
+    var s = stateOf(v);
+    if (!s.played) return;
+    var p = v.currentTime / v.duration;
+    [[0.25, 'progress_25'], [0.5, 'progress_50'], [0.75, 'progress_75'], [0.9, 'complete']].forEach(function (m) {
+      if (p >= m[0] && !s.marks[m[1]]) { s.marks[m[1]] = true; T('Video', m[1], s.key + '|' + placeOf(v)); }
+    });
+  }, true);
 })();

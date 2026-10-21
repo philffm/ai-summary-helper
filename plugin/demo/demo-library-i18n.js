@@ -12,6 +12,8 @@
   const D = window.AISH_DEMO;
   if (!D) return;
   const lang = new URLSearchParams(location.search).get('lang') || 'en';
+  // Languages added later live in demo/lang/<code>.js (window.AISH_DEMO_LANG[code], see demo/lang/README.md) instead of in the tables below.
+  const EXT = (window.AISH_DEMO_LANG || {})[lang] || {};
 
   const TOPICS = {
     software: { en: 'Software', de: 'Software', es: 'Software', ja: 'ソフトウェア' , ko: '소프트웨어' },
@@ -243,6 +245,9 @@
   };
 
   // The lexicon is the same for every language (it maps each tag to all its labels); seeded by demo-shim.js.
+  // the extension looks topic names up by its _locales folder code: Brazilian Portuguese is pt_BR
+  const LEXKEY = { pt: 'pt_BR', zh: 'zh_CN', 'zh-tw': 'zh_TW' }[lang] || lang;
+  Object.entries(EXT.topics || {}).forEach(([k, v]) => { if (TOPICS[k]) TOPICS[k][LEXKEY] = v; });
   D.topicLexicon = Object.fromEntries(Object.entries(TOPICS).map(([k, v]) => [k, { ...v }]));
 
   // The recorded "✨ Recap" briefing of a feed day (demo-shim.js answers the recap prompt with it).
@@ -273,7 +278,7 @@
       mood: 'positive',
     },
   };
-  D.feedRecap = RECAPS[lang] || RECAPS.en;
+  D.feedRecap = RECAPS[lang] || EXT.recap || RECAPS.en;
 
   // The recorded "✨ Brief me on this topic" answer in the graph (topic "Reading"); {n} becomes a citation [n].
   const BRIEFINGS = {
@@ -313,7 +318,7 @@
       '- 그리고 아니요, 열어 둔 탭 100개를 다 읽는 사람은 없다 {8}',
     ],
   };
-  D.topicBriefing = BRIEFINGS[lang] || BRIEFINGS.en;
+  D.topicBriefing = BRIEFINGS[lang] || EXT.briefing || BRIEFINGS.en;
 
   // The summary of the demo article with tone "casual" + "Standup humor" + "Emojis & hashtags" (prompts video).
   const FUN = {
@@ -338,7 +343,7 @@
       html: '<h3>🎤 긴 글의 컴백 투어</h3><ul><li><strong>장문이 돌아왔다.</strong> 가장 긴 글이 이제 가장 오래 읽힌다. 10년 만의 반전 📈</li><li><strong>독자가 원하는 건 맥락</strong>, “믿기 힘들겠지만…”으로 시작하는 헤드라인이 또 하나 필요한 게 아니다</li><li><strong>시간은 클럽 문지기.</strong> 끝까지 읽을 글을 들여보낼지는 요약이 정한다 🚪</li></ul><p>🎙️ <em>스탠드업 한마디:</em> “탭을 100개 열어 뒀어요. 읽으려는 게 아니라, 이건 박물관이에요.”</p><p>#긴글 #슬로웹 #탭부자</p>',
     },
   };
-  D.summaryFun = { ...D.summary, ...(FUN[lang] || FUN.en) };
+  D.summaryFun = { ...D.summary, ...(FUN[lang] || EXT.fun || FUN.en) };
 
   // "Ask about your highlights" (highlights video): the reader marks a passage, asks about it, the answer cites it.
   // `quote` must appear verbatim in that language's article (demo-i18n.js), like every recorded source.
@@ -349,8 +354,8 @@
     ja: { quote: 'その選別を通過した記事は以前より丁寧に読まれます', text: '要約がすでに選別しているからです。残った記事は自分で選んだものなので、習慣ではなく目的を持って読めます。試しに、その考えを自分の言葉で言い換えてみましょう。', questions: ['書き手にとって何が変わる？'] },
     ko: { quote: '그 선별을 통과한 글은 예전보다 더 꼼꼼히 읽힙니다', text: '요약이 이미 선별을 끝냈기 때문입니다. 남은 글은 스스로 시간을 쓰기로 고른 것이라, 습관이 아니라 의도를 갖고 읽게 됩니다. 직접 해 보세요. 그 생각을 자기 말로 바꿔 말해 보는 겁니다.', questions: ['쓰는 사람에게는 무엇이 달라질까?'] },
   };
-  const H = HIGHLIGHT[lang] || HIGHLIGHT.en;
-  if (Array.isArray(D.asks)) D.asks.unshift({ match: /highlight|markierung|resaltado|マーカー|하이라이트/i, text: H.text, sources: [H.quote], questions: H.questions });
+  const H = HIGHLIGHT[lang] || EXT.highlight || HIGHLIGHT.en;
+  if (Array.isArray(D.asks)) D.asks.unshift({ match: new RegExp('highlight|markierung|resaltado|マーカー|하이라이트' + (EXT.highlightRe ? '|' + EXT.highlightRe : ''), 'i'), text: H.text, sources: [H.quote], questions: H.questions });
 
   // The short summary the shim writes for each history entry.
   D.libraryText = {
@@ -359,15 +364,15 @@
     es: { keyPoints: 'Puntos clave', tail: 'Contexto, pruebas y qué leer después.' },
     ja: { keyPoints: '要点', tail: '背景、根拠、次に読むべきもの。' },
     ko: { keyPoints: '핵심 요약', tail: '배경, 근거, 그리고 다음에 읽을 것.' },
-  }[lang];
+  }[lang] || EXT.libraryText;
 
-  const pick = (t) => (typeof t === 'string' ? t : t[lang] || t.en);
-  const titles = TITLES[lang];
+  let humor = 0;   // index among the light-hearted extras (the ones with a title per language)
+  const titles = TITLES[lang] || EXT.titles;
   D.library = [
     ...D.library.map((a, i) => (titles && titles[i] ? { ...a, title: titles[i] } : a)),
-    ...EXTRAS.map((e) => ({ ...e, title: pick(e.title) })),
+    ...EXTRAS.map((e) => { if (typeof e.title === 'string') return e; const t = e.title[lang] || (EXT.extras && EXT.extras[humor]) || e.title.en; humor++; return { ...e, title: t }; }),
   ];
-  const F = FEEDS[lang];
+  const F = FEEDS[lang] || EXT.feeds;
   if (F && D.feeds) {
     D.feeds = {
       subs: D.feeds.subs.map((s, i) => ({ ...s, title: F.subs[i] || s.title })),

@@ -5640,5 +5640,20 @@
   "ctxSummarizeClose": {
     "message": "✨ Summarize & close tab",
     "description": "Right-click menu entry"
+  },
+  "f_kindle_format_dafb": {
+    "message": "Kindle format"
+  },
+  "f_epub_text_e9bb": {
+    "message": "EPUB (text)"
+  },
+  "f_epub_images_7120": {
+    "message": "EPUB + images"
+  },
+  "f_html_legacy_e81a": {
+    "message": "HTML (legacy)"
+  },
+  "f_epub_is_the_format_kindle_re_3a35": {
+    "message": "EPUB is the format Kindle reads best. Images add a few hundred KB per picture (up to 10, downscaled)."
   }
 }

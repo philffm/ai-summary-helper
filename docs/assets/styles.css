@@ -1301,3 +1301,8 @@ html.vfeed-open, html.vfeed-open body{ overflow:hidden; }
 .fvideo-cta:hover{ text-decoration:underline; text-underline-offset:3px; }
 @media (max-width: 560px){ #featureGrid .feature-card{ padding-bottom:74px; } .fvideo-cta{ inset-inline-start:20px; bottom:22px; } }
 @media (prefers-reduced-motion: reduce){ .feature-card .fvideo{ transition:none; } }
+
+/* transcript under a video on the page of all videos (scripts/seo.mjs) */
+.vtranscript{ margin-top:10px; font-size:13px; color:var(--muted, rgba(255,255,255,.65)); }
+.vtranscript summary{ cursor:pointer; font-weight:600; color:var(--paper); }
+.vtranscript p{ margin:8px 0 0; line-height:1.55; }
