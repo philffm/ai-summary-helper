@@ -147,20 +147,20 @@
       <video:family_friendly>yes</video:family_friendly>
     </video:video>
     <video:video>
-      <video:thumbnail_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/bibliothek-en.jpg</video:thumbnail_loc>
-      <video:title>Real search, on-device</video:title>
-      <video:description>Full-text search across titles, tags, and article content — powered by a TF-IDF index built in your browser. No round-trip, no lag, nothing sent anywhere.</video:description>
-      <video:content_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/bibliothek-en.mp4</video:content_loc>
-      <video:duration>18</video:duration>
-      <video:publication_date>2026-10-20</video:publication_date>
-      <video:family_friendly>yes</video:family_friendly>
-    </video:video>
-    <video:video>
       <video:thumbnail_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/sprache-en.jpg</video:thumbnail_loc>
       <video:title>20+ languages, cross-platform</video:title>
       <video:description>Read and summarize in your language of choice. Extension, native side panel, or bookmarklet — for wherever the browser extension can't reach.</video:description>
       <video:content_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/sprache-en.mp4</video:content_loc>
       <video:duration>16</video:duration>
+      <video:publication_date>2026-10-20</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+    <video:video>
+      <video:thumbnail_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/bibliothek-en.jpg</video:thumbnail_loc>
+      <video:title>Real search, on-device</video:title>
+      <video:description>Full-text search across titles, tags, and article content — powered by a TF-IDF index built in your browser. No round-trip, no lag, nothing sent anywhere.</video:description>
+      <video:content_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/bibliothek-en.mp4</video:content_loc>
+      <video:duration>18</video:duration>
       <video:publication_date>2026-10-20</video:publication_date>
       <video:family_friendly>yes</video:family_friendly>
     </video:video>
@@ -312,20 +312,20 @@
       <video:family_friendly>yes</video:family_friendly>
     </video:video>
     <video:video>
-      <video:thumbnail_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/bibliothek-en.jpg</video:thumbnail_loc>
-      <video:title>بحث حقيقي بالكامل على جهازك</video:title>
-      <video:description>بحث بالنص الكامل عبر العناوين، والوسوم، ومحتوى المقالات — مدعوماً بفهرس TF-IDF يُبنى محلياً داخل متصفحك. استجابة فورية دون تأخير، وبلا إرسال أي بيانات خارج جهازك.</video:description>
-      <video:content_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/bibliothek-en.mp4</video:content_loc>
-      <video:duration>18</video:duration>
-      <video:publication_date>2026-10-20</video:publication_date>
-      <video:family_friendly>yes</video:family_friendly>
-    </video:video>
-    <video:video>
       <video:thumbnail_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/sprache-en.jpg</video:thumbnail_loc>
       <video:title>أكثر من 20 لغة عبر منصات متعددة</video:title>
       <video:description>اقرأ ولخص باللغة التي تفضلها. استخدم الإضافة، أو اللوحة الجانبية، أو الرمز المرجعي (Bookmarklet) — للوصول إلى أي مكان لا تبلغه إضافة المتصفح.</video:description>
       <video:content_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/sprache-en.mp4</video:content_loc>
       <video:duration>16</video:duration>
+      <video:publication_date>2026-10-20</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+    <video:video>
+      <video:thumbnail_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/bibliothek-en.jpg</video:thumbnail_loc>
+      <video:title>بحث حقيقي بالكامل على جهازك</video:title>
+      <video:description>بحث بالنص الكامل عبر العناوين، والوسوم، ومحتوى المقالات — مدعوماً بفهرس TF-IDF يُبنى محلياً داخل متصفحك. استجابة فورية دون تأخير، وبلا إرسال أي بيانات خارج جهازك.</video:description>
+      <video:content_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/bibliothek-en.mp4</video:content_loc>
+      <video:duration>18</video:duration>
       <video:publication_date>2026-10-20</video:publication_date>
       <video:family_friendly>yes</video:family_friendly>
     </video:video>
@@ -477,20 +477,20 @@
       <video:family_friendly>yes</video:family_friendly>
     </video:video>
     <video:video>
-      <video:thumbnail_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/bibliothek-en.jpg</video:thumbnail_loc>
-      <video:title>Rigtig søgning, lokalt på enheden</video:title>
-      <video:description>Fuldtekstsøgning på tværs af titler, tags og artikelindhold — drevet af et TF-IDF-indeks bygget i din browser. Ingen ventetid, ingen forsinkelse, intet sendes ud af huset.</video:description>
-      <video:content_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/bibliothek-en.mp4</video:content_loc>
-      <video:duration>18</video:duration>
-      <video:publication_date>2026-10-20</video:publication_date>
-      <video:family_friendly>yes</video:family_friendly>
-    </video:video>
-    <video:video>
       <video:thumbnail_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/sprache-en.jpg</video:thumbnail_loc>
       <video:title>20+ sprog, på tværs af platforme</video:title>
       <video:description>Læs og opsummer på dit foretrukne sprog. Browserudvidelse, integreret sidepanel eller bookmarklet — til alle de steder, browserudvidelsen ikke kan nå.</video:description>
       <video:content_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/sprache-en.mp4</video:content_loc>
       <video:duration>16</video:duration>
+      <video:publication_date>2026-10-20</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+    <video:video>
+      <video:thumbnail_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/bibliothek-en.jpg</video:thumbnail_loc>
+      <video:title>Rigtig søgning, lokalt på enheden</video:title>
+      <video:description>Fuldtekstsøgning på tværs af titler, tags og artikelindhold — drevet af et TF-IDF-indeks bygget i din browser. Ingen ventetid, ingen forsinkelse, intet sendes ud af huset.</video:description>
+      <video:content_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/bibliothek-en.mp4</video:content_loc>
+      <video:duration>18</video:duration>
       <video:publication_date>2026-10-20</video:publication_date>
       <video:family_friendly>yes</video:family_friendly>
     </video:video>
@@ -642,20 +642,20 @@
       <video:family_friendly>yes</video:family_friendly>
     </video:video>
     <video:video>
-      <video:thumbnail_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/bibliothek-de.jpg</video:thumbnail_loc>
-      <video:title>Echte Volltextsuche, direkt auf Ihrem Gerät</video:title>
-      <video:description>Durchsuchen Sie Titel, Tags und Artikelinhalte mit einem im Browser erstellten TF-IDF-Index. Ohne Server-Roundtrip, ohne Verzögerung und ohne Datenweitergabe.</video:description>
-      <video:content_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/bibliothek-de.mp4</video:content_loc>
-      <video:duration>18</video:duration>
-      <video:publication_date>2026-10-20</video:publication_date>
-      <video:family_friendly>yes</video:family_friendly>
-    </video:video>
-    <video:video>
       <video:thumbnail_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/sprache-de.jpg</video:thumbnail_loc>
       <video:title>Über 20 Sprachen, plattformübergreifend</video:title>
       <video:description>Lesen und zusammenfassen in der Sprache Ihrer Wahl. Als Erweiterung, natives Seitenpanel oder Bookmarklet – für alle Bereiche, die die Browser-Erweiterung nicht erreicht.</video:description>
       <video:content_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/sprache-de.mp4</video:content_loc>
       <video:duration>17</video:duration>
+      <video:publication_date>2026-10-20</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+    <video:video>
+      <video:thumbnail_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/bibliothek-de.jpg</video:thumbnail_loc>
+      <video:title>Echte Volltextsuche, direkt auf Ihrem Gerät</video:title>
+      <video:description>Durchsuchen Sie Titel, Tags und Artikelinhalte mit einem im Browser erstellten TF-IDF-Index. Ohne Server-Roundtrip, ohne Verzögerung und ohne Datenweitergabe.</video:description>
+      <video:content_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/bibliothek-de.mp4</video:content_loc>
+      <video:duration>18</video:duration>
       <video:publication_date>2026-10-20</video:publication_date>
       <video:family_friendly>yes</video:family_friendly>
     </video:video>
@@ -807,19 +807,19 @@
       <video:family_friendly>yes</video:family_friendly>
     </video:video>
     <video:video>
-      <video:thumbnail_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/bibliothek-es.jpg</video:thumbnail_loc>
-      <video:title>Búsqueda real en el dispositivo</video:title>
-      <video:description>Búsqueda de texto completo en títulos, etiquetas y contenido de artículos, impulsada por un índice TF-IDF generado en tu navegador. Sin retrasos y sin enviar datos a servidores.</video:description>
-      <video:content_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/bibliothek-es.mp4</video:content_loc>
+      <video:thumbnail_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/sprache-es.jpg</video:thumbnail_loc>
+      <video:title>Más de 20 idiomas, multiplataforma</video:title>
+      <video:description>Lee y resume en el idioma que elijas. Extensión, panel lateral nativo o bookmarklet — para llegar a donde la extensión del navegador no alcanza.</video:description>
+      <video:content_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/sprache-es.mp4</video:content_loc>
       <video:duration>18</video:duration>
       <video:publication_date>2026-10-20</video:publication_date>
       <video:family_friendly>yes</video:family_friendly>
     </video:video>
     <video:video>
-      <video:thumbnail_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/sprache-es.jpg</video:thumbnail_loc>
-      <video:title>Más de 20 idiomas, multiplataforma</video:title>
-      <video:description>Lee y resume en el idioma que elijas. Extensión, panel lateral nativo o bookmarklet — para llegar a donde la extensión del navegador no alcanza.</video:description>
-      <video:content_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/sprache-es.mp4</video:content_loc>
+      <video:thumbnail_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/bibliothek-es.jpg</video:thumbnail_loc>
+      <video:title>Búsqueda real en el dispositivo</video:title>
+      <video:description>Búsqueda de texto completo en títulos, etiquetas y contenido de artículos, impulsada por un índice TF-IDF generado en tu navegador. Sin retrasos y sin enviar datos a servidores.</video:description>
+      <video:content_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/bibliothek-es.mp4</video:content_loc>
       <video:duration>18</video:duration>
       <video:publication_date>2026-10-20</video:publication_date>
       <video:family_friendly>yes</video:family_friendly>
@@ -972,20 +972,20 @@
       <video:family_friendly>yes</video:family_friendly>
     </video:video>
     <video:video>
-      <video:thumbnail_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/bibliothek-en.jpg</video:thumbnail_loc>
-      <video:title>Aito haku suoraan laitteellasi</video:title>
-      <video:description>Kokotekstihaku otsikoista, tunnisteista ja sisällöstä — selaimessa pyörivällä TF-IDF-indeksillä. Ei viivettä, ei palvelinpyyntöjä, mikään ei lähde laitteeltasi.</video:description>
-      <video:content_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/bibliothek-en.mp4</video:content_loc>
-      <video:duration>18</video:duration>
-      <video:publication_date>2026-10-20</video:publication_date>
-      <video:family_friendly>yes</video:family_friendly>
-    </video:video>
-    <video:video>
       <video:thumbnail_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/sprache-en.jpg</video:thumbnail_loc>
       <video:title>Yli 20 kieltä eri alustoilla</video:title>
       <video:description>Lue ja tiivistä valitsemallasi kielellä. Laajennus, natiivi sivupaneeli tai kirjanmerkkisovellus — paikkoihin, joihin selainlaajennus ei yllä.</video:description>
       <video:content_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/sprache-en.mp4</video:content_loc>
       <video:duration>16</video:duration>
+      <video:publication_date>2026-10-20</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+    <video:video>
+      <video:thumbnail_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/bibliothek-en.jpg</video:thumbnail_loc>
+      <video:title>Aito haku suoraan laitteellasi</video:title>
+      <video:description>Kokotekstihaku otsikoista, tunnisteista ja sisällöstä — selaimessa pyörivällä TF-IDF-indeksillä. Ei viivettä, ei palvelinpyyntöjä, mikään ei lähde laitteeltasi.</video:description>
+      <video:content_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/bibliothek-en.mp4</video:content_loc>
+      <video:duration>18</video:duration>
       <video:publication_date>2026-10-20</video:publication_date>
       <video:family_friendly>yes</video:family_friendly>
     </video:video>
@@ -1137,20 +1137,20 @@
       <video:family_friendly>yes</video:family_friendly>
     </video:video>
     <video:video>
-      <video:thumbnail_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/bibliothek-fr.jpg</video:thumbnail_loc>
-      <video:title>Une vraie recherche, 100 % locale</video:title>
-      <video:description>Recherche plein texte dans les titres, tags et contenus d'articles — propulsée par un index TF-IDF généré dans votre navigateur. Zéro latence, aucun serveur externe, données strictement privées.</video:description>
-      <video:content_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/bibliothek-fr.mp4</video:content_loc>
-      <video:duration>18</video:duration>
-      <video:publication_date>2026-10-21</video:publication_date>
-      <video:family_friendly>yes</video:family_friendly>
-    </video:video>
-    <video:video>
       <video:thumbnail_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/sprache-fr.jpg</video:thumbnail_loc>
       <video:title>Plus de 20 langues, multiplateforme</video:title>
       <video:description>Lisez et résumez dans la langue de votre choix. Extension, panneau latéral natif ou bookmarklet — pour tous les cas où l'extension de navigateur ne peut pas intervenir.</video:description>
       <video:content_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/sprache-fr.mp4</video:content_loc>
       <video:duration>19</video:duration>
+      <video:publication_date>2026-10-21</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+    <video:video>
+      <video:thumbnail_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/bibliothek-fr.jpg</video:thumbnail_loc>
+      <video:title>Une vraie recherche, 100 % locale</video:title>
+      <video:description>Recherche plein texte dans les titres, tags et contenus d'articles — propulsée par un index TF-IDF généré dans votre navigateur. Zéro latence, aucun serveur externe, données strictement privées.</video:description>
+      <video:content_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/bibliothek-fr.mp4</video:content_loc>
+      <video:duration>18</video:duration>
       <video:publication_date>2026-10-21</video:publication_date>
       <video:family_friendly>yes</video:family_friendly>
     </video:video>
@@ -1302,20 +1302,20 @@
       <video:family_friendly>yes</video:family_friendly>
     </video:video>
     <video:video>
-      <video:thumbnail_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/bibliothek-en.jpg</video:thumbnail_loc>
-      <video:title>Real search, सीधे on-device</video:title>
-      <video:description>Titles, tags और article content में full-text search — आपके ब्राउज़र में बने TF-IDF index द्वारा संचालित। कोई सर्वर round-trip नहीं, कोई lag नहीं, और कोई डेटा बाहर नहीं जाता।</video:description>
-      <video:content_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/bibliothek-en.mp4</video:content_loc>
-      <video:duration>18</video:duration>
-      <video:publication_date>2026-10-20</video:publication_date>
-      <video:family_friendly>yes</video:family_friendly>
-    </video:video>
-    <video:video>
       <video:thumbnail_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/sprache-en.jpg</video:thumbnail_loc>
       <video:title>20+ भाषाएं, क्रॉस-प्लेटफ़ॉर्म</video:title>
       <video:description>अपनी पसंद की भाषा में पढ़ें और summarize करें। Extension, native side panel, या bookmarklet — हर उस जगह के लिए जहां browser extension नहीं पहुंच सकता।</video:description>
       <video:content_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/sprache-en.mp4</video:content_loc>
       <video:duration>16</video:duration>
+      <video:publication_date>2026-10-20</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+    <video:video>
+      <video:thumbnail_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/bibliothek-en.jpg</video:thumbnail_loc>
+      <video:title>Real search, सीधे on-device</video:title>
+      <video:description>Titles, tags और article content में full-text search — आपके ब्राउज़र में बने TF-IDF index द्वारा संचालित। कोई सर्वर round-trip नहीं, कोई lag नहीं, और कोई डेटा बाहर नहीं जाता।</video:description>
+      <video:content_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/bibliothek-en.mp4</video:content_loc>
+      <video:duration>18</video:duration>
       <video:publication_date>2026-10-20</video:publication_date>
       <video:family_friendly>yes</video:family_friendly>
     </video:video>
@@ -1467,20 +1467,20 @@
       <video:family_friendly>yes</video:family_friendly>
     </video:video>
     <video:video>
-      <video:thumbnail_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/bibliothek-en.jpg</video:thumbnail_loc>
-      <video:title>Pencarian nyata, di perangkat Anda</video:title>
-      <video:description>Pencarian teks lengkap pada judul, tag, dan isi artikel — didukung indeks TF-IDF yang dibangun langsung di browser. Tanpa bolak-balik server, tanpa jeda, tidak ada data yang dikirim ke mana pun.</video:description>
-      <video:content_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/bibliothek-en.mp4</video:content_loc>
-      <video:duration>18</video:duration>
-      <video:publication_date>2026-10-20</video:publication_date>
-      <video:family_friendly>yes</video:family_friendly>
-    </video:video>
-    <video:video>
       <video:thumbnail_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/sprache-en.jpg</video:thumbnail_loc>
       <video:title>20+ bahasa, lintas platform</video:title>
       <video:description>Baca dan ringkas dalam bahasa pilihan Anda. Gunakan ekstensi, panel samping bawaan, atau bookmarklet — untuk platform apa pun yang tidak mendukung ekstensi browser.</video:description>
       <video:content_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/sprache-en.mp4</video:content_loc>
       <video:duration>16</video:duration>
+      <video:publication_date>2026-10-20</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+    <video:video>
+      <video:thumbnail_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/bibliothek-en.jpg</video:thumbnail_loc>
+      <video:title>Pencarian nyata, di perangkat Anda</video:title>
+      <video:description>Pencarian teks lengkap pada judul, tag, dan isi artikel — didukung indeks TF-IDF yang dibangun langsung di browser. Tanpa bolak-balik server, tanpa jeda, tidak ada data yang dikirim ke mana pun.</video:description>
+      <video:content_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/bibliothek-en.mp4</video:content_loc>
+      <video:duration>18</video:duration>
       <video:publication_date>2026-10-20</video:publication_date>
       <video:family_friendly>yes</video:family_friendly>
     </video:video>
@@ -1632,20 +1632,20 @@
       <video:family_friendly>yes</video:family_friendly>
     </video:video>
     <video:video>
-      <video:thumbnail_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/bibliothek-en.jpg</video:thumbnail_loc>
-      <video:title>Vera ricerca, sul tuo dispositivo</video:title>
-      <video:description>Ricerca full-text tra titoli, tag e contenuti degli articoli — basata su un indice TF-IDF generato nel tuo browser. Zero attese, zero latenza e nessun dato condiviso all'esterno.</video:description>
-      <video:content_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/bibliothek-en.mp4</video:content_loc>
-      <video:duration>18</video:duration>
-      <video:publication_date>2026-10-20</video:publication_date>
-      <video:family_friendly>yes</video:family_friendly>
-    </video:video>
-    <video:video>
       <video:thumbnail_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/sprache-en.jpg</video:thumbnail_loc>
       <video:title>Oltre 20 lingue, multipiattaforma</video:title>
       <video:description>Leggi e riassumi nella lingua che preferisci. Estensione, pannello laterale nativo o bookmarklet — per ovunque l'estensione del browser non possa arrivare.</video:description>
       <video:content_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/sprache-en.mp4</video:content_loc>
       <video:duration>16</video:duration>
+      <video:publication_date>2026-10-20</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+    <video:video>
+      <video:thumbnail_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/bibliothek-en.jpg</video:thumbnail_loc>
+      <video:title>Vera ricerca, sul tuo dispositivo</video:title>
+      <video:description>Ricerca full-text tra titoli, tag e contenuti degli articoli — basata su un indice TF-IDF generato nel tuo browser. Zero attese, zero latenza e nessun dato condiviso all'esterno.</video:description>
+      <video:content_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/bibliothek-en.mp4</video:content_loc>
+      <video:duration>18</video:duration>
       <video:publication_date>2026-10-20</video:publication_date>
       <video:family_friendly>yes</video:family_friendly>
     </video:video>
@@ -1797,20 +1797,20 @@
       <video:family_friendly>yes</video:family_friendly>
     </video:video>
     <video:video>
-      <video:thumbnail_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/bibliothek-ja.jpg</video:thumbnail_loc>
-      <video:title>オンデバイスでの本格的な全文検索</video:title>
-      <video:description>タイトル、タグ、本文を対象とした全文検索。ブラウザ内で構築されるTF-IDFインデックスにより駆動します。サーバーとの通信遅延はなく、外部へのデータ送信も一切発生しません。</video:description>
-      <video:content_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/bibliothek-ja.mp4</video:content_loc>
-      <video:duration>18</video:duration>
-      <video:publication_date>2026-10-20</video:publication_date>
-      <video:family_friendly>yes</video:family_friendly>
-    </video:video>
-    <video:video>
       <video:thumbnail_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/sprache-ja.jpg</video:thumbnail_loc>
       <video:title>20以上の言語に対応、クロスプラットフォーム</video:title>
       <video:description>お好みの言語で閲覧・要約。拡張機能、ネイティブサイドパネル、または ブックマークレット — 拡張機能が使えない環境でもご利用いただけます。</video:description>
       <video:content_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/sprache-ja.mp4</video:content_loc>
       <video:duration>19</video:duration>
+      <video:publication_date>2026-10-20</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+    <video:video>
+      <video:thumbnail_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/bibliothek-ja.jpg</video:thumbnail_loc>
+      <video:title>オンデバイスでの本格的な全文検索</video:title>
+      <video:description>タイトル、タグ、本文を対象とした全文検索。ブラウザ内で構築されるTF-IDFインデックスにより駆動します。サーバーとの通信遅延はなく、外部へのデータ送信も一切発生しません。</video:description>
+      <video:content_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/bibliothek-ja.mp4</video:content_loc>
+      <video:duration>18</video:duration>
       <video:publication_date>2026-10-20</video:publication_date>
       <video:family_friendly>yes</video:family_friendly>
     </video:video>
@@ -1962,20 +1962,20 @@
       <video:family_friendly>yes</video:family_friendly>
     </video:video>
     <video:video>
-      <video:thumbnail_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/bibliothek-en.jpg</video:thumbnail_loc>
-      <video:title>진정한 온디바이스 검색</video:title>
-      <video:description>브라우저 내에서 구축된 TF-IDF 인덱스를 통해 제목, 태그, 본문 전체를 대상으로 전문 검색을 지원합니다. 서버 왕복이나 지연이 없으며 데이터가 외부로 전송되지 않습니다.</video:description>
-      <video:content_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/bibliothek-en.mp4</video:content_loc>
-      <video:duration>18</video:duration>
-      <video:publication_date>2026-10-20</video:publication_date>
-      <video:family_friendly>yes</video:family_friendly>
-    </video:video>
-    <video:video>
       <video:thumbnail_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/sprache-en.jpg</video:thumbnail_loc>
       <video:title>20개 이상의 언어 지원 및 크로스 플랫폼</video:title>
       <video:description>원하는 언어로 읽고 요약해 보세요. 확장 프로그램, 네이티브 사이드 패널, 또는 북마클릿 — 브라우저 확장 프로그램을 사용할 수 없는 환경에서도 자유롭게 활용해 보세요.</video:description>
       <video:content_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/sprache-en.mp4</video:content_loc>
       <video:duration>16</video:duration>
+      <video:publication_date>2026-10-20</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+    <video:video>
+      <video:thumbnail_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/bibliothek-en.jpg</video:thumbnail_loc>
+      <video:title>진정한 온디바이스 검색</video:title>
+      <video:description>브라우저 내에서 구축된 TF-IDF 인덱스를 통해 제목, 태그, 본문 전체를 대상으로 전문 검색을 지원합니다. 서버 왕복이나 지연이 없으며 데이터가 외부로 전송되지 않습니다.</video:description>
+      <video:content_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/bibliothek-en.mp4</video:content_loc>
+      <video:duration>18</video:duration>
       <video:publication_date>2026-10-20</video:publication_date>
       <video:family_friendly>yes</video:family_friendly>
     </video:video>
@@ -2127,19 +2127,19 @@
       <video:family_friendly>yes</video:family_friendly>
     </video:video>
     <video:video>
-      <video:thumbnail_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/bibliothek-nl.jpg</video:thumbnail_loc>
-      <video:title>Echt zoeken, lokaal op je apparaat</video:title>
-      <video:description>Volledige tekst doorzoeken op titels, tags en artikelinhoud — aangedreven door een TF-IDF-index in je eigen browser. Geen wachttijd, geen vertraging, niets verlaat je apparaat.</video:description>
-      <video:content_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/bibliothek-nl.mp4</video:content_loc>
+      <video:thumbnail_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/sprache-nl.jpg</video:thumbnail_loc>
+      <video:title>20+ talen, platformonafhankelijk</video:title>
+      <video:description>Lees en vat samen in de taal van jouw keuze. Als extensie, in het zijpaneel, of als bookmarklet — voor overal waar de browserextensie niet kan komen.</video:description>
+      <video:content_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/sprache-nl.mp4</video:content_loc>
       <video:duration>17</video:duration>
       <video:publication_date>2026-10-21</video:publication_date>
       <video:family_friendly>yes</video:family_friendly>
     </video:video>
     <video:video>
-      <video:thumbnail_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/sprache-nl.jpg</video:thumbnail_loc>
-      <video:title>20+ talen, platformonafhankelijk</video:title>
-      <video:description>Lees en vat samen in de taal van jouw keuze. Als extensie, in het zijpaneel, of als bookmarklet — voor overal waar de browserextensie niet kan komen.</video:description>
-      <video:content_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/sprache-nl.mp4</video:content_loc>
+      <video:thumbnail_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/bibliothek-nl.jpg</video:thumbnail_loc>
+      <video:title>Echt zoeken, lokaal op je apparaat</video:title>
+      <video:description>Volledige tekst doorzoeken op titels, tags en artikelinhoud — aangedreven door een TF-IDF-index in je eigen browser. Geen wachttijd, geen vertraging, niets verlaat je apparaat.</video:description>
+      <video:content_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/bibliothek-nl.mp4</video:content_loc>
       <video:duration>17</video:duration>
       <video:publication_date>2026-10-21</video:publication_date>
       <video:family_friendly>yes</video:family_friendly>
@@ -2292,20 +2292,20 @@
       <video:family_friendly>yes</video:family_friendly>
     </video:video>
     <video:video>
-      <video:thumbnail_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/bibliothek-en.jpg</video:thumbnail_loc>
-      <video:title>Ekte søk, lokalt på enheten</video:title>
-      <video:description>Fulltekstsøk i titler, tagger og artikkelinnhold – drevet av en TF-IDF-indeks bygget i nettleseren din. Ingen ventetid mot server, ingen forsinkelse, ingenting sendes bort.</video:description>
-      <video:content_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/bibliothek-en.mp4</video:content_loc>
-      <video:duration>18</video:duration>
-      <video:publication_date>2026-10-20</video:publication_date>
-      <video:family_friendly>yes</video:family_friendly>
-    </video:video>
-    <video:video>
       <video:thumbnail_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/sprache-en.jpg</video:thumbnail_loc>
       <video:title>20+ språk, på tvers av plattformer</video:title>
       <video:description>Les og oppsummer på språket du ønsker. Utvidelse, innebygd sidepanel, eller bookmarklet – for overalt der nettleserutvidelsen ikke når til.</video:description>
       <video:content_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/sprache-en.mp4</video:content_loc>
       <video:duration>16</video:duration>
+      <video:publication_date>2026-10-20</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+    <video:video>
+      <video:thumbnail_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/bibliothek-en.jpg</video:thumbnail_loc>
+      <video:title>Ekte søk, lokalt på enheten</video:title>
+      <video:description>Fulltekstsøk i titler, tagger og artikkelinnhold – drevet av en TF-IDF-indeks bygget i nettleseren din. Ingen ventetid mot server, ingen forsinkelse, ingenting sendes bort.</video:description>
+      <video:content_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/bibliothek-en.mp4</video:content_loc>
+      <video:duration>18</video:duration>
       <video:publication_date>2026-10-20</video:publication_date>
       <video:family_friendly>yes</video:family_friendly>
     </video:video>
@@ -2457,20 +2457,20 @@
       <video:family_friendly>yes</video:family_friendly>
     </video:video>
     <video:video>
-      <video:thumbnail_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/bibliothek-en.jpg</video:thumbnail_loc>
-      <video:title>Prawdziwe wyszukiwanie lokalne na urządzeniu</video:title>
-      <video:description>Wyszukiwanie pełnotekstowe w tytułach, tagach i treści artykułów — oparte na indeksie TF-IDF generowanym lokalnie w przeglądarce. Błyskawiczne działanie bez wysyłania danych do chmury.</video:description>
-      <video:content_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/bibliothek-en.mp4</video:content_loc>
-      <video:duration>18</video:duration>
-      <video:publication_date>2026-10-20</video:publication_date>
-      <video:family_friendly>yes</video:family_friendly>
-    </video:video>
-    <video:video>
       <video:thumbnail_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/sprache-en.jpg</video:thumbnail_loc>
       <video:title>Ponad 20 języków, wieloplatformowość</video:title>
       <video:description>Czytaj i twórz podsumowania w wybranym języku. Rozszerzenie, natywny panel boczny lub skryptozakładka (bookmarklet) — wszędzie tam, gdzie rozszerzenie nie ma dostępu.</video:description>
       <video:content_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/sprache-en.mp4</video:content_loc>
       <video:duration>16</video:duration>
+      <video:publication_date>2026-10-20</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+    <video:video>
+      <video:thumbnail_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/bibliothek-en.jpg</video:thumbnail_loc>
+      <video:title>Prawdziwe wyszukiwanie lokalne na urządzeniu</video:title>
+      <video:description>Wyszukiwanie pełnotekstowe w tytułach, tagach i treści artykułów — oparte na indeksie TF-IDF generowanym lokalnie w przeglądarce. Błyskawiczne działanie bez wysyłania danych do chmury.</video:description>
+      <video:content_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/bibliothek-en.mp4</video:content_loc>
+      <video:duration>18</video:duration>
       <video:publication_date>2026-10-20</video:publication_date>
       <video:family_friendly>yes</video:family_friendly>
     </video:video>
@@ -2622,20 +2622,20 @@
       <video:family_friendly>yes</video:family_friendly>
     </video:video>
     <video:video>
-      <video:thumbnail_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/bibliothek-pt.jpg</video:thumbnail_loc>
-      <video:title>Pesquisa de verdade, no seu dispositivo</video:title>
-      <video:description>Pesquisa de texto completo em títulos, tags e conteúdo dos artigos — alimentada por um índice TF-IDF criado diretamente no seu navegador. Sem latência, sem atrasos e sem enviar nada para fora.</video:description>
-      <video:content_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/bibliothek-pt.mp4</video:content_loc>
-      <video:duration>18</video:duration>
-      <video:publication_date>2026-10-21</video:publication_date>
-      <video:family_friendly>yes</video:family_friendly>
-    </video:video>
-    <video:video>
       <video:thumbnail_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/sprache-pt.jpg</video:thumbnail_loc>
       <video:title>Mais de 20 idiomas, multiplataforma</video:title>
       <video:description>Leia e resuma no idioma que preferir. Extensão, painel lateral nativo ou bookmarklet — para onde a extensão do navegador não alcançar.</video:description>
       <video:content_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/sprache-pt.mp4</video:content_loc>
       <video:duration>17</video:duration>
+      <video:publication_date>2026-10-21</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+    <video:video>
+      <video:thumbnail_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/bibliothek-pt.jpg</video:thumbnail_loc>
+      <video:title>Pesquisa de verdade, no seu dispositivo</video:title>
+      <video:description>Pesquisa de texto completo em títulos, tags e conteúdo dos artigos — alimentada por um índice TF-IDF criado diretamente no seu navegador. Sem latência, sem atrasos e sem enviar nada para fora.</video:description>
+      <video:content_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/bibliothek-pt.mp4</video:content_loc>
+      <video:duration>18</video:duration>
       <video:publication_date>2026-10-21</video:publication_date>
       <video:family_friendly>yes</video:family_friendly>
     </video:video>
@@ -2787,20 +2787,20 @@
       <video:family_friendly>yes</video:family_friendly>
     </video:video>
     <video:video>
-      <video:thumbnail_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/bibliothek-en.jpg</video:thumbnail_loc>
-      <video:title>Полноценный локальный поиск</video:title>
-      <video:description>Полнотекстовый поиск по заголовкам, тегам и содержимому статей на базе TF-IDF индекса прямо в браузере. Без задержек, без отправки данных на сервер.</video:description>
-      <video:content_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/bibliothek-en.mp4</video:content_loc>
-      <video:duration>18</video:duration>
-      <video:publication_date>2026-10-20</video:publication_date>
-      <video:family_friendly>yes</video:family_friendly>
-    </video:video>
-    <video:video>
       <video:thumbnail_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/sprache-en.jpg</video:thumbnail_loc>
       <video:title>Более 20 языков и кроссплатформенность</video:title>
       <video:description>Читайте и делайте выжимки на удобном вам языке. Расширение, боковая панель или букмарклет — там, где расширение для браузера недоступно.</video:description>
       <video:content_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/sprache-en.mp4</video:content_loc>
       <video:duration>16</video:duration>
+      <video:publication_date>2026-10-20</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+    <video:video>
+      <video:thumbnail_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/bibliothek-en.jpg</video:thumbnail_loc>
+      <video:title>Полноценный локальный поиск</video:title>
+      <video:description>Полнотекстовый поиск по заголовкам, тегам и содержимому статей на базе TF-IDF индекса прямо в браузере. Без задержек, без отправки данных на сервер.</video:description>
+      <video:content_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/bibliothek-en.mp4</video:content_loc>
+      <video:duration>18</video:duration>
       <video:publication_date>2026-10-20</video:publication_date>
       <video:family_friendly>yes</video:family_friendly>
     </video:video>
@@ -2952,20 +2952,20 @@
       <video:family_friendly>yes</video:family_friendly>
     </video:video>
     <video:video>
-      <video:thumbnail_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/bibliothek-sv.jpg</video:thumbnail_loc>
-      <video:title>Riktig sökning, direkt på enheten</video:title>
-      <video:description>Fulltextsökning över titlar, taggar och artikelinnehåll — drivet av ett TF-IDF-index som byggs direkt i webbläsaren. Ingen serverfördröjning, inget lagg och ingenting skickas iväg.</video:description>
-      <video:content_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/bibliothek-sv.mp4</video:content_loc>
-      <video:duration>18</video:duration>
-      <video:publication_date>2026-10-21</video:publication_date>
-      <video:family_friendly>yes</video:family_friendly>
-    </video:video>
-    <video:video>
       <video:thumbnail_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/sprache-sv.jpg</video:thumbnail_loc>
       <video:title>20+ språk, över alla plattformar</video:title>
       <video:description>Läs och sammanfatta på ditt favoritspråk. Tillägg, inbyggd sidopanel eller bookmarklet — för överallt där webbläsartillägget inte når.</video:description>
       <video:content_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/sprache-sv.mp4</video:content_loc>
       <video:duration>17</video:duration>
+      <video:publication_date>2026-10-21</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+    <video:video>
+      <video:thumbnail_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/bibliothek-sv.jpg</video:thumbnail_loc>
+      <video:title>Riktig sökning, direkt på enheten</video:title>
+      <video:description>Fulltextsökning över titlar, taggar och artikelinnehåll — drivet av ett TF-IDF-index som byggs direkt i webbläsaren. Ingen serverfördröjning, inget lagg och ingenting skickas iväg.</video:description>
+      <video:content_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/bibliothek-sv.mp4</video:content_loc>
+      <video:duration>18</video:duration>
       <video:publication_date>2026-10-21</video:publication_date>
       <video:family_friendly>yes</video:family_friendly>
     </video:video>
@@ -3117,20 +3117,20 @@
       <video:family_friendly>yes</video:family_friendly>
     </video:video>
     <video:video>
-      <video:thumbnail_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/bibliothek-en.jpg</video:thumbnail_loc>
-      <video:title>ระบบค้นหาจริง ทำงานบนอุปกรณ์</video:title>
-      <video:description>ค้นหาข้อความเต็มรูปแบบครอบคลุมทั้งชื่อเรื่อง แท็ก และเนื้อหาบทความ — ขับเคลื่อนด้วยดัชนี TF-IDF ที่สร้างขึ้นในเบราว์เซอร์ รวดเร็ว ไม่มีความหน่วง และไม่มีการส่งข้อมูลออกไปภายนอก</video:description>
-      <video:content_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/bibliothek-en.mp4</video:content_loc>
-      <video:duration>18</video:duration>
-      <video:publication_date>2026-10-20</video:publication_date>
-      <video:family_friendly>yes</video:family_friendly>
-    </video:video>
-    <video:video>
       <video:thumbnail_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/sprache-en.jpg</video:thumbnail_loc>
       <video:title>รองรับมากกว่า 20 ภาษา ใช้งานได้ข้ามแพลตฟอร์ม</video:title>
       <video:description>อ่านและสรุปเป็นภาษาที่คุณต้องการ ใช้งานผ่านส่วนขยาย แผงควบคุมด้านข้าง หรือ Bookmarklet — สำหรับทุกที่ที่ส่วนขยายเบราว์เซอร์เข้าไม่ถึง</video:description>
       <video:content_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/sprache-en.mp4</video:content_loc>
       <video:duration>16</video:duration>
+      <video:publication_date>2026-10-20</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+    <video:video>
+      <video:thumbnail_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/bibliothek-en.jpg</video:thumbnail_loc>
+      <video:title>ระบบค้นหาจริง ทำงานบนอุปกรณ์</video:title>
+      <video:description>ค้นหาข้อความเต็มรูปแบบครอบคลุมทั้งชื่อเรื่อง แท็ก และเนื้อหาบทความ — ขับเคลื่อนด้วยดัชนี TF-IDF ที่สร้างขึ้นในเบราว์เซอร์ รวดเร็ว ไม่มีความหน่วง และไม่มีการส่งข้อมูลออกไปภายนอก</video:description>
+      <video:content_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/bibliothek-en.mp4</video:content_loc>
+      <video:duration>18</video:duration>
       <video:publication_date>2026-10-20</video:publication_date>
       <video:family_friendly>yes</video:family_friendly>
     </video:video>
@@ -3282,20 +3282,20 @@
       <video:family_friendly>yes</video:family_friendly>
     </video:video>
     <video:video>
-      <video:thumbnail_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/bibliothek-en.jpg</video:thumbnail_loc>
-      <video:title>Cihazınızda gerçek arama</video:title>
-      <video:description>Başlıklar, etiketler ve makale içeriğinde tam metin arama — tarayıcınızda oluşturulan TF-IDF dizini ile desteklenir. Sunucu trafiği yok, gecikme yok, hiçbir yere veri gönderilmez.</video:description>
-      <video:content_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/bibliothek-en.mp4</video:content_loc>
-      <video:duration>18</video:duration>
-      <video:publication_date>2026-10-20</video:publication_date>
-      <video:family_friendly>yes</video:family_friendly>
-    </video:video>
-    <video:video>
       <video:thumbnail_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/sprache-en.jpg</video:thumbnail_loc>
       <video:title>20'den fazla dil, platformlar arası</video:title>
       <video:description>Dilediğiniz dilde okuyun ve özetleyin. Eklenti, yerel yan panel veya bookmarklet — tarayıcı eklentisinin ulaşamadığı her yer için.</video:description>
       <video:content_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/sprache-en.mp4</video:content_loc>
       <video:duration>16</video:duration>
+      <video:publication_date>2026-10-20</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+    <video:video>
+      <video:thumbnail_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/bibliothek-en.jpg</video:thumbnail_loc>
+      <video:title>Cihazınızda gerçek arama</video:title>
+      <video:description>Başlıklar, etiketler ve makale içeriğinde tam metin arama — tarayıcınızda oluşturulan TF-IDF dizini ile desteklenir. Sunucu trafiği yok, gecikme yok, hiçbir yere veri gönderilmez.</video:description>
+      <video:content_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/bibliothek-en.mp4</video:content_loc>
+      <video:duration>18</video:duration>
       <video:publication_date>2026-10-20</video:publication_date>
       <video:family_friendly>yes</video:family_friendly>
     </video:video>
@@ -3447,20 +3447,20 @@
       <video:family_friendly>yes</video:family_friendly>
     </video:video>
     <video:video>
-      <video:thumbnail_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/bibliothek-en.jpg</video:thumbnail_loc>
-      <video:title>Справжній пошук просто на пристрої</video:title>
-      <video:description>Повнотекстовий пошук за заголовками, тегами та вмістом статей на основі індексу TF-IDF, створеного у вашому браузері. Без затримок, без звернень до серверів — усе залишається у вас.</video:description>
-      <video:content_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/bibliothek-en.mp4</video:content_loc>
-      <video:duration>18</video:duration>
-      <video:publication_date>2026-10-20</video:publication_date>
-      <video:family_friendly>yes</video:family_friendly>
-    </video:video>
-    <video:video>
       <video:thumbnail_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/sprache-en.jpg</video:thumbnail_loc>
       <video:title>20+ мов, кросплатформеність</video:title>
       <video:description>Читайте та підсумовуйте зручною мовою. Розширення, нативна бічна панель або букмарклет — для випадків, коли розширення недоступне.</video:description>
       <video:content_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/sprache-en.mp4</video:content_loc>
       <video:duration>16</video:duration>
+      <video:publication_date>2026-10-20</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+    <video:video>
+      <video:thumbnail_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/bibliothek-en.jpg</video:thumbnail_loc>
+      <video:title>Справжній пошук просто на пристрої</video:title>
+      <video:description>Повнотекстовий пошук за заголовками, тегами та вмістом статей на основі індексу TF-IDF, створеного у вашому браузері. Без затримок, без звернень до серверів — усе залишається у вас.</video:description>
+      <video:content_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/bibliothek-en.mp4</video:content_loc>
+      <video:duration>18</video:duration>
       <video:publication_date>2026-10-20</video:publication_date>
       <video:family_friendly>yes</video:family_friendly>
     </video:video>
@@ -3612,20 +3612,20 @@
       <video:family_friendly>yes</video:family_friendly>
     </video:video>
     <video:video>
-      <video:thumbnail_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/bibliothek-en.jpg</video:thumbnail_loc>
-      <video:title>Tìm kiếm thực thụ, ngay trên thiết bị</video:title>
-      <video:description>Tìm kiếm toàn văn (full-text) theo tiêu đề, thẻ (tag) và nội dung bài viết — được hỗ trợ bởi chỉ mục TF-IDF tích hợp ngay trong trình duyệt. Không có độ trễ kết nối, không giật lag, không gửi dữ liệu ra bên ngoài.</video:description>
-      <video:content_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/bibliothek-en.mp4</video:content_loc>
-      <video:duration>18</video:duration>
-      <video:publication_date>2026-10-20</video:publication_date>
-      <video:family_friendly>yes</video:family_friendly>
-    </video:video>
-    <video:video>
       <video:thumbnail_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/sprache-en.jpg</video:thumbnail_loc>
       <video:title>Hơn 20 ngôn ngữ, đa nền tảng</video:title>
       <video:description>Đọc và tóm tắt bằng bất kỳ ngôn ngữ nào bạn chọn. Tiện ích mở rộng, thanh bên (side panel) tích hợp, hoặc bookmarklet — giải pháp cho mọi nơi mà tiện ích mở rộng trình duyệt không thể tiếp cận.</video:description>
       <video:content_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/sprache-en.mp4</video:content_loc>
       <video:duration>16</video:duration>
+      <video:publication_date>2026-10-20</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+    <video:video>
+      <video:thumbnail_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/bibliothek-en.jpg</video:thumbnail_loc>
+      <video:title>Tìm kiếm thực thụ, ngay trên thiết bị</video:title>
+      <video:description>Tìm kiếm toàn văn (full-text) theo tiêu đề, thẻ (tag) và nội dung bài viết — được hỗ trợ bởi chỉ mục TF-IDF tích hợp ngay trong trình duyệt. Không có độ trễ kết nối, không giật lag, không gửi dữ liệu ra bên ngoài.</video:description>
+      <video:content_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/bibliothek-en.mp4</video:content_loc>
+      <video:duration>18</video:duration>
       <video:publication_date>2026-10-20</video:publication_date>
       <video:family_friendly>yes</video:family_friendly>
     </video:video>
@@ -3777,20 +3777,20 @@
       <video:family_friendly>yes</video:family_friendly>
     </video:video>
     <video:video>
-      <video:thumbnail_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/bibliothek-zh.jpg</video:thumbnail_loc>
-      <video:title>真正的设备端本地搜索</video:title>
-      <video:description>依托浏览器内置的 TF-IDF 索引，支持对标题、标签和文章全文进行瞬时检索。无需网络往返，零延迟，数据绝不上云。</video:description>
-      <video:content_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/bibliothek-zh.mp4</video:content_loc>
-      <video:duration>18</video:duration>
-      <video:publication_date>2026-10-21</video:publication_date>
-      <video:family_friendly>yes</video:family_friendly>
-    </video:video>
-    <video:video>
       <video:thumbnail_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/sprache-zh.jpg</video:thumbnail_loc>
       <video:title>支持 20 多种语言与跨平台</video:title>
       <video:description>使用您自选的语言阅读与生成摘要。支持扩展、原生侧边栏或 Bookmarklet —— 适用于浏览器扩展无法覆盖的各种场景。</video:description>
       <video:content_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/sprache-zh.mp4</video:content_loc>
       <video:duration>19</video:duration>
+      <video:publication_date>2026-10-21</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+    <video:video>
+      <video:thumbnail_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/bibliothek-zh.jpg</video:thumbnail_loc>
+      <video:title>真正的设备端本地搜索</video:title>
+      <video:description>依托浏览器内置的 TF-IDF 索引，支持对标题、标签和文章全文进行瞬时检索。无需网络往返，零延迟，数据绝不上云。</video:description>
+      <video:content_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/bibliothek-zh.mp4</video:content_loc>
+      <video:duration>18</video:duration>
       <video:publication_date>2026-10-21</video:publication_date>
       <video:family_friendly>yes</video:family_friendly>
     </video:video>
@@ -3942,20 +3942,20 @@
       <video:family_friendly>yes</video:family_friendly>
     </video:video>
     <video:video>
-      <video:thumbnail_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/bibliothek-zh-tw.jpg</video:thumbnail_loc>
-      <video:title>真正的本機端全文搜尋</video:title>
-      <video:description>涵蓋標題、標籤與文章內容的全文搜尋 — 由瀏覽器內建的 TF-IDF 索引驅動。零延遲、無網路往返，資料絕不上傳。</video:description>
-      <video:content_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/bibliothek-zh-tw.mp4</video:content_loc>
-      <video:duration>18</video:duration>
-      <video:publication_date>2026-10-21</video:publication_date>
-      <video:family_friendly>yes</video:family_friendly>
-    </video:video>
-    <video:video>
       <video:thumbnail_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/sprache-zh-tw.jpg</video:thumbnail_loc>
       <video:title>支援 20 多種語言，跨平台通用</video:title>
       <video:description>以您偏好的語言閱讀並生成摘要。無論是擴充功能、原生側邊欄，還是 書籤小工具 —— 專為瀏覽器擴充功能無法涵蓋的場景而生。</video:description>
       <video:content_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/sprache-zh-tw.mp4</video:content_loc>
       <video:duration>19</video:duration>
+      <video:publication_date>2026-10-21</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+    <video:video>
+      <video:thumbnail_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/bibliothek-zh-tw.jpg</video:thumbnail_loc>
+      <video:title>真正的本機端全文搜尋</video:title>
+      <video:description>涵蓋標題、標籤與文章內容的全文搜尋 — 由瀏覽器內建的 TF-IDF 索引驅動。零延遲、無網路往返，資料絕不上傳。</video:description>
+      <video:content_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/bibliothek-zh-tw.mp4</video:content_loc>
+      <video:duration>18</video:duration>
       <video:publication_date>2026-10-21</video:publication_date>
       <video:family_friendly>yes</video:family_friendly>
     </video:video>
