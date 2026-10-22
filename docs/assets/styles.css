@@ -319,8 +319,8 @@ section{ padding:76px 0; }
 .icon-indigo{ background:linear-gradient(150deg, #8AA6FF, #4C5FD9); }
 .icon-violet{ background:linear-gradient(150deg, #A98AE8, #6B4CC4); }
 .icon-gold{ background:linear-gradient(150deg, #E4C88E, #B4863B); }
-.icon-sun{ background:linear-gradient(150deg, #FFB070, #D9622B); }
-.icon-moon{ background:linear-gradient(150deg, #5FCFC4, #23898F); }
+/* .icon-sun{ background:linear-gradient(150deg, #FFB070, #D9622B); }
+.icon-moon{ background:linear-gradient(150deg, #5FCFC4, #23898F); } */
 
 /* Ghost-highlight style — mirrors the bookmarklet/extension highlight so the
    landing-page card can demo the feature itself. */
@@ -488,8 +488,6 @@ footer .copyright{ font-size:13px; color:var(--paper-dim); margin-top:18px; line
 .persona-btn.active{ background:var(--cta-sky-2); color:var(--on-accent); border-color:transparent; }
 .persona-blurb{ text-align:center; color:var(--paper-dim); font-size:15px; max-width:540px; margin:0 auto 32px; min-height:24px; }
 .feature-card{ transition:opacity 0.25s ease, transform 0.25s ease, border-color 0.25s ease; }
-.feature-card.persona-match{ border-color:var(--brass-light); }
-.feature-card.persona-dim{ opacity:0.6; }
 @media (prefers-reduced-motion: reduce){ .persona-btn, .feature-card{ transition:none; } }
 
 /* ── Language suggestion banner ─────────────────────────────────────
@@ -1308,3 +1306,11 @@ html.vfeed-open, html.vfeed-open body{ overflow:hidden; }
 .vtranscript{ margin-top:10px; font-size:13px; color:var(--muted, rgba(255,255,255,.65)); }
 .vtranscript summary{ cursor:pointer; font-weight:600; color:var(--paper); }
 .vtranscript p{ margin:8px 0 0; line-height:1.55; }
+.feature-card[hidden]{ display:none; }
+.persona-count{ text-align:center; color:var(--paper-dim); font-size:13px; font-variant-numeric:tabular-nums; margin:-20px 0 24px; }
+.persona-count[hidden]{ display:none; }
+@media (max-width: 560px){
+  .persona-switch{ flex-wrap:nowrap; overflow-x:auto; justify-content:flex-start; margin-inline:-16px; padding-inline:16px; scrollbar-width:none; }
+  .persona-switch::-webkit-scrollbar{ display:none; }
+  .persona-btn{ flex-shrink:0; }
+}

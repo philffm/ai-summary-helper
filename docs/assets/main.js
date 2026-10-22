@@ -1419,6 +1419,8 @@ function setBilling(period) {
   }
 
   function open(figs, i) {
+    // cards hidden by the audience filter drop out of the swipe list
+    var current = figs[i]; figs = figs.filter(function (f) { return !f.closest('[hidden]'); }); i = Math.max(0, figs.indexOf(current));
     if (!feed) shell();
     fill(figs);
     lastFocus = document.activeElement;
