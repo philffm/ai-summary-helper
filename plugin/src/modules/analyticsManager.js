@@ -407,7 +407,8 @@ export function initAnalyticsReport(container, articles) {
     // across popup opens. The default (when nothing is stored) is decided by
     // defaultActivityView(): week once the archive spans 3+ weeks, day before.
     const chartWrap = container.querySelector('.ar-chart-wrap');
-    const toggleBtns = container.querySelectorAll('.ar-view-btn');
+    // Only this chart's Day/Week buttons: the Topics-over-time and Mood sections in the same container have .ar-view-btn too.
+    const toggleBtns = chartWrap ? chartWrap.closest('.ar-section').querySelectorAll('.ar-view-btn') : [];
     if (chartWrap && toggleBtns.length) {
         const applyView = (view) => {
             chartWrap.dataset.view = view;

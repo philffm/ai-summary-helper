@@ -34,3 +34,19 @@ b2.dispatchEvent(new w.MouseEvent('click', { bubbles: true })); await tick(300);
 assert.ok(store['articles:index'].every(a => typeof a.moodScore === 'number'), 'all scored');
 assert.ok(box2.querySelector('.feed-mt-big'), 're-rendered with an index');
 console.log('TEST 27b OK');
+// Topics over time: its toggles are independent of the Activity chart's Day/Week buttons (one used to switch all of them on)
+{
+    const box3 = w.document.createElement('div'); w.document.body.append(box3);
+    mod.initAnalyticsReport(box3, arts); await tick(50);
+    const act = (sel) => [...box3.querySelectorAll(sel + ' .ar-view-btn')].filter(b => b.classList.contains('active')).map(b => b.dataset.metric || b.dataset.type || b.dataset.view);
+    const wrap = box3.querySelector('.ar-chart-wrap'); const before = wrap.dataset.view;
+    const click = (b) => b.dispatchEvent(new w.MouseEvent('click', { bubbles: true }));
+    click(box3.querySelector('.tp-metric [data-metric="volume"]')); await tick(30);
+    assert.deepEqual(act('.tp-metric'), ['volume'], 'one metric active');
+    assert.deepEqual(act('.tp-type'), ['bars'], 'one chart type active');
+    click(box3.querySelector('.tp-type [data-type="lines"]')); await tick(30);
+    assert.deepEqual(act('.tp-type'), ['lines']);
+    assert.deepEqual(act('.tp-metric'), ['volume']);
+    assert.equal(wrap.dataset.view, before, 'activity chart view untouched');
+    console.log('TEST 27c OK');
+}
