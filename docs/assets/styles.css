@@ -319,6 +319,8 @@ section{ padding:76px 0; }
 .icon-indigo{ background:linear-gradient(150deg, #8AA6FF, #4C5FD9); }
 .icon-violet{ background:linear-gradient(150deg, #A98AE8, #6B4CC4); }
 .icon-gold{ background:linear-gradient(150deg, #E4C88E, #B4863B); }
+.icon-sun{ background:linear-gradient(150deg, #FFB070, #D9622B); }
+.icon-moon{ background:linear-gradient(150deg, #5FCFC4, #23898F); }
 
 /* Ghost-highlight style — mirrors the bookmarklet/extension highlight so the
    landing-page card can demo the feature itself. */
