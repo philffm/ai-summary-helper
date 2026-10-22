@@ -5,6 +5,37 @@ Commit history has the details: <https://github.com/philffm/ai-summary-helper/co
 
 ## Unreleased
 
+## 2.2.22 (2026-10-22)
+
+### Commit log
+
+#### Changed
+
+- History: Topics-over-time toggles no longer switch on together
+- i18n: update translations for changed content
+- Website: rename mood/instant read icon classes to icon-amber/icon-teal (icon-sun/icon-moon belong to the theme toggle)
+- Website: audience filter hides non-matching feature cards, features ordered by save/understand/find/return
+- Update bg
+- Update bg
+- Kindle format: translations for the new settings strings in all locales
+- i18n: update translations for changed content
+- Website: videos in Simplified and Traditional Chinese
+- Sitemap: lastmod after the video update
+- Demo: scenarios and language packs for the new feature videos
+  - ?scenario= (youtube, pdf, paper, research, mood, instant, ghost) swaps the page and the saved data; a fake speech engine, doi.org lookup, collection overview and ghost highlights are mocked
+  - plugin/demo/lang/<code>.js: sample library, feeds, recorded answers and scenario texts for pt, nl, fr, sv, zh, zh-tw (contract: lang/README.md)
+  - the topic labels use the extension's _locales folder code (pt_BR, zh_CN, zh_TW)
+- Website: seven new feature videos in nine languages, video SEO and video analytics
+  - Landing page: seven new clips (YouTube, PDF, research mode, source comparison, ghost highlights, mood, instant read) in the video stack and as feature cards; the ghost highlights card now shows its own clip
+  - Web versions of the clips in en, de, es, ja, ko, pt, nl, fr, sv, with WebVTT subtitles and a manifest (durations, transcripts, upload dates)
+  - seo.mjs: VideoObject JSON-LD, <track> subtitles, a transcript on the video cards, docs/sitemap-video.xml (checked by check-sitemap.mjs)
+  - main.js: Matomo events for video plays (play, 25/50/75 %, complete; per clip, language and place) and campaign tags (utm_*) on the install link under a clip
+- Kindle format setting (EPUB text, EPUB + images, HTML) sent with every Kindle delivery
+- i18n: update translations for changed content
+- Update content
+- SEO update
+- i18n: update translations for changed content
+
 ## 2.2.21 (2026-10-20)
 
 ### Commit log
