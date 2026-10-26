@@ -5,6 +5,8 @@ Commit history has the details: <https://github.com/philffm/ai-summary-helper/co
 
 ## Unreleased
 
+## 2.2.23 (2026-10-26)
+
 **Your library now works inside your AI apps.** Claude Desktop, LM Studio, Cursor, VS Code and other MCP apps on your computer can search what you saved, quote your highlights and cite your sources. Nothing goes through our server, and it is off until you turn it on.
 
 - **Ask your reading, not the internet.** "What have I saved about AI and surveillance?" gets an answer from your own articles, with links.
@@ -16,6 +18,38 @@ Commit history has the details: <https://github.com/philffm/ai-summary-helper/co
 - **Works offline** with a local model in LM Studio.
 
 Set it up in Settings → AI apps (MCP). Guide: [Use your library in Claude, LM Studio and other AI apps](https://ai-summary-helper.byphil.eu/blog/ai-apps-mcp.html).
+
+### All changes
+
+#### Changed
+
+- i18n: update translations for changed content
+- Demo: answer the AI apps status check
+  - The website demo's background stand-in now knows mcpStatus (feature off, not connected), so build-demo --check passes again
+- Website: guide for using your library in Claude, LM Studio and other AI apps; privacy policy covers it
+  - Blog: "Use your library in Claude, LM Studio and other AI apps" (what to ask, setup, config for Claude Desktop, Cursor, VS Code and LM Studio, the nine tools, privacy, troubleshooting), first on the blog index
+  - Privacy policy: new section on AI apps on your computer (MCP); privacy.md copies regenerated
+  - Blog styles: code blocks in posts
+- i18n: AI apps settings and the remaining untranslated strings in all 24 languages
+  - The AI apps (MCP) panel is now picked up by scripts/feed-i18n.mjs (mcpView.js was missing from its file list)
+  - 25 new strings for the panel, plus 19 that were still English (onboarding mindsets and tags, own-server model status, Obsidian vault)
+  - Every locale is complete again, so the release check passes
+- AI apps (MCP): Claude Desktop, LM Studio, Cursor and other local AI apps can use your library
+  - Settings → AI apps (MCP), off by default: switch, pairing code, permissions (library, full text, feeds, saving links), exclude tag (private), last 50 calls
+  - Nine tools: search_library, get_article, list_highlights, list_due, list_collections, get_collection, library_stats, list_feed_items, save_url
+  - The extension connects outward to a local relay (mcp/, published as aish-mcp) on 127.0.0.1 only; extension Origin and pairing token checked, scopes and exclude tag enforced in the extension
+  - Several apps or copies at once share one connection; the tool list is cached so apps that start before the browser still see the tools
+  - New storage keys mcp:config, mcp:secret (never backed up), mcp:log (transient), all covered by Delete data
+  - test178: tool handlers, scopes, exclude tag, save_url limits, plain-text full text, library_stats
+
+#### Developer experience
+
+- Tests: test12 fixture dates move with the clock (30-day retention pruned them); test92 and test156 exit when done instead of hanging into the runner timeout
+- Release: notes lead with plain-language highlights, the commit list follows
+  - The text under "## Unreleased" in CHANGELOG.md now opens the GitHub release too; the generated list follows under "All changes" (folded on GitHub)
+  - The changelog script warns when a release has no highlights
+  - CONTRIBUTING: how to write highlights; CHANGELOG: highlights for the AI apps release
+  - test125 covers the new notes
 
 ## 2.2.22 (2026-10-22)
 
