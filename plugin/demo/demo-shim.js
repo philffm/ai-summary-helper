@@ -274,6 +274,8 @@
       case 'getActiveTab': return respond({ ok: true, tab: TAB, url: TAB.url, title: TAB.title });
       case 'ping': return respond({ ok: true, caps: ['attachment'] });
       case 'summaryJobs': return respond({ ok: true, jobs: [], running: false });
+      // Settings → AI apps (MCP): the demo has no local relay, so the panel shows the feature switched off and not connected.
+      case 'mcpStatus': return respond({ ok: true, available: true, enabled: false, connected: false });
       case 'queueSummary': {
         respond({ ok: true });
         // A prompt with the "Standup humor" extra gets the playful recording (demo-library-i18n.js), anything else the normal one.
