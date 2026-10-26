@@ -1,0 +1,39 @@
+{
+  "name": "aish-mcp",
+  "version": "0.1.0",
+  "description": "Local relay that exposes your AI Summary Helper library to any MCP-capable app on this computer (Claude Desktop, LM Studio, Cursor, VS Code, Jan, …). No library data leaves your device; the relay stores and logs nothing of what it forwards.",
+  "type": "module",
+  "license": "MIT",
+  "bin": {
+    "aish-mcp": "bin/cli.js"
+  },
+  "files": [
+    "bin",
+    "src",
+    "README.md"
+  ],
+  "engines": {
+    "node": ">=20"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.32.2",
+    "ws": "^8.18.0"
+  },
+  "keywords": [
+    "mcp",
+    "model-context-protocol",
+    "ai-summary-helper",
+    "local",
+    "privacy"
+  ],
+  "homepage": "https://ai-summary-helper.byphil.eu/blog/ai-apps-mcp.html",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/philffm/ai-summary-helper.git",
+    "directory": "mcp"
+  },
+  "bugs": {
+    "url": "https://github.com/philffm/ai-summary-helper/issues"
+  },
+  "author": "Phil Wornath"
+}

@@ -384,6 +384,11 @@
   <span class="settings-row-text"><span class="settings-row-title" data-i18n="settingsLibrary">Library &amp; Data</span><span class="settings-row-sub" data-sub="library" data-i18n="f_backup_tags_delete_5af9">Backup · tags · delete</span></span>
   <span class="settings-row-chev"><span class="ic"><svg class="icon icon-chevron-right" aria-hidden="true" focusable="false"><use href="#i-chevron-right"/></svg><span class="ic-e" aria-hidden="true">›</span></span></span>
 </button>
+<button type="button" class="settings-row" data-panel="mcp">
+  <span class="settings-row-icon"><span class="ic"><svg class="icon icon-bot icon--lg" aria-hidden="true" focusable="false"><use href="#i-bot"/></svg><span class="ic-e" aria-hidden="true">🔌</span></span></span>
+  <span class="settings-row-text"><span class="settings-row-title" data-i18n="f_ai_apps_mcp_613e">AI apps (MCP)</span><span class="settings-row-sub" data-sub="mcp" data-i18n="f_off_b4aa">Off</span></span>
+  <span class="settings-row-chev"><span class="ic"><svg class="icon icon-chevron-right" aria-hidden="true" focusable="false"><use href="#i-chevron-right"/></svg><span class="ic-e" aria-hidden="true">›</span></span></span>
+</button>
 <button type="button" class="settings-row" data-panel="about">
   <span class="settings-row-icon"><span class="ic"><svg class="icon icon-info icon--lg" aria-hidden="true" focusable="false"><use href="#i-info"/></svg><span class="ic-e" aria-hidden="true">💠</span></span></span>
   <span class="settings-row-text"><span class="settings-row-title" data-i18n="settingsAbout">About &amp; Tools</span><span class="settings-row-sub" data-sub="about">Feedback · contact · donate</span></span>
@@ -857,6 +862,13 @@
       <button type="button" id="deleteAllButton" class="button-danger-outline btn-sm" data-i18n="f_delete_all_data_9a3b">Delete all data…</button>
     </div>
   </div>
+</section>
+<section class="settings-panel" id="settingsPanel-mcp" data-panel="mcp" hidden>
+  <div class="settings-panel-head">
+    <button type="button" class="settings-back" data-back data-i18n="settingsBack">‹ Settings</button>
+    <h2><span data-i18n="f_ai_apps_mcp_613e">AI apps (MCP)</span></h2>
+  </div>
+  <div id="mcpSettings" class="setting-group mb-3"></div>
 </section>
 <section class="settings-panel" id="settingsPanel-about" data-panel="about" hidden>
   <div class="settings-panel-head">

@@ -4202,6 +4202,15 @@ a.phone-inbox-link:hover strong { text-decoration: underline; }
 .phone-inbox-actions { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; }
 .phone-inbox-error { color: var(--danger, #c0392b); }
 
+/* AI apps (MCP) settings panel */
+.mcp-activity-log { display: flex; flex-direction: column; gap: 2px; font-size: var(--fs-xs); }
+.mcp-activity-row { display: flex; align-items: center; gap: 8px; padding: 4px 0; border-bottom: 1px solid var(--outline); }
+.mcp-activity-row:last-child { border-bottom: 0; }
+.mcp-activity-tool { flex: 1; font-family: var(--font-mono, monospace); color: var(--text-primary); }
+.mcp-activity-ok { color: var(--success, #2e7d32); }
+.mcp-activity-err { color: var(--danger, #c0392b); }
+.mcp-activity-time { color: var(--text-muted); white-space: nowrap; }
+
 /* Monthly AI allowance (account settings) */
 .ai-quota { margin: 8px 0 4px; display: flex; flex-direction: column; gap: 4px; font-size: var(--fs-xs); color: var(--text-muted); }
 .ai-quota-row { display: flex; justify-content: space-between; gap: 8px; color: var(--text-primary); }

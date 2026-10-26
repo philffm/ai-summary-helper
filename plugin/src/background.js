@@ -13,10 +13,12 @@ try { if (typeof importScripts === 'function') importScripts('finalize.js'); } c
 try { if (typeof importScripts === 'function') importScripts('feed-worker.js'); } catch (_) { /* listed in the manifest instead */ }
 try { if (typeof importScripts === 'function') importScripts('inbox-worker.js'); } catch (_) { /* listed in the manifest instead */ }
 try { if (typeof importScripts === 'function') importScripts('targets-worker.js'); } catch (_) { /* listed in the manifest instead */ }
+try { if (typeof importScripts === 'function') importScripts('mcp-worker.js'); } catch (_) { /* listed in the manifest instead */ }
 const FIN = globalThis.AISH_FINALIZE || null;
 const INBOX = globalThis.AISH_INBOX || null;
 const TARGETS = globalThis.AISH_TARGETS || null;
 const FEED_WORKER = globalThis.AISH_FEED_WORKER || null;
+const MCP = globalThis.AISH_MCP || null;
 const ttsEngine = globalThis.AISH_TTS ? globalThis.AISH_TTS.create({ send: (m) => { try { const r = chrome.runtime.sendMessage(m); if (r && r.catch) r.catch(() => {}); } catch (_) { /* no listener */ } } }) : null;
 
 
@@ -89,6 +91,10 @@ const SK = {
     collIndex: 'coll:index',
     // configuration with secrets (API keys, endpoints) — never synced
     servicesConfig: 'config:services',
+    // AI apps on this computer (MCP relay, aish-mcp) — off by default (claude/prd-local-mcp.md)
+    mcpConfig: 'mcp:config',      // { enabled, port, scopes, excludeTag }
+    mcpSecret: 'mcp:secret',      // pairing token — never backed up
+    mcpLog: 'mcp:log',            // last 50 call records — never backed up
     // migration flags
     devicesMigrated: 'meta:devicesMigrated',
     migrationVersion: 'meta:version',
@@ -219,6 +225,7 @@ function migrateStorageKeys(area) {
 // same migration; it is idempotent, so whichever runs first wins and the other is a no-op.
 const keysReady = migrateStorageKeys(chrome.storage.local);
 const localGet = async (...a) => { await keysReady; return chrome.storage.local.get(...a); };
+const localSet = async (obj) => { await keysReady; return new Promise((resolve) => chrome.storage.local.set(obj, resolve)); };
 
 // Convert an ArrayBuffer to a base64 string in chunks — avoids blowing the
 // call stack on large images (String.fromCharCode.apply on a huge array
@@ -970,9 +977,58 @@ chrome.runtime.onStartup.addListener(() => { applyFeedPollConfig(); applyInboxPo
 // ── Send targets: durable outbox with retry (modules/targets/). No adapter is registered yet, so nothing is ever queued. ──
 const targets = TARGETS ? TARGETS.createTargets({ log: () => {} }) : null;
 if (targets) targets.start().catch((e) => console.warn('[Targets] start failed:', e && e.message));
+
+// ── Local MCP (AI apps on this computer) — off by default (modules/mcp/, claude/prd-local-mcp.md). ──
+// The extension connects OUTWARD to the aish-mcp relay; it never listens for inbound connections itself.
+const DEFAULT_MCP_SCOPES = { library: true, fulltext: false, feeds: false, write: false };
+async function getMcpConfig() {
+    const { [SK.mcpConfig]: cfg } = await localGet({ [SK.mcpConfig]: {} });
+    return { enabled: false, port: 47615, excludeTag: 'private', scopes: DEFAULT_MCP_SCOPES, ...(cfg || {}) };
+}
+const mcp = MCP ? MCP.createMcpClient({
+    storage: { get: (keys) => localGet(keys) },
+    setStorage: (obj) => localSet(obj),
+    getConfig: getMcpConfig,
+    getToken: async () => { const { [SK.mcpSecret]: t } = await localGet({ [SK.mcpSecret]: '' }); return t || ''; },
+    extVersion: chrome.runtime.getManifest ? chrome.runtime.getManifest().version : '',
+    log: (...a) => console.log('[MCP]', ...a),
+}) : null;
+// While the feature is on, a 1-minute alarm wakes the worker if Chrome ever stopped it; waking runs this file again,
+// which reconnects. Nothing else could: the relay cannot reach into the extension.
+const MCP_ALARM = 'mcp_reconnect';
+async function applyMcpAlarm(enabled) {
+    try {
+        if (enabled) { if (!(await chrome.alarms.get(MCP_ALARM))) chrome.alarms.create(MCP_ALARM, { periodInMinutes: 1 }); }
+        else await chrome.alarms.clear(MCP_ALARM);
+    } catch (_) { /* alarms unavailable */ }
+}
+if (mcp) {
+    getMcpConfig().then((cfg) => {
+        applyMcpAlarm(cfg.enabled);
+        if (cfg.enabled) mcp.start().catch((e) => console.warn('[MCP] start failed:', e && e.message));
+    });
+    // Settings flips mcp:config.enabled or mcp:secret directly in storage; follow it here rather than needing a message round-trip.
+    // Only on/off, port or the pairing token need a new socket; scopes and the exclude tag are read on every call.
+    chrome.storage.onChanged.addListener((changes, area) => {
+        if (area !== 'local') return;
+        const c = changes[SK.mcpConfig];
+        const linkChanged = c && (!!(c.oldValue && c.oldValue.enabled) !== !!(c.newValue && c.newValue.enabled)
+            || ((c.oldValue && c.oldValue.port) || 47615) !== ((c.newValue && c.newValue.port) || 47615));
+        if (!linkChanged && !(SK.mcpSecret in changes)) return;
+        mcp.stop();
+        getMcpConfig().then((cfg) => {
+            applyMcpAlarm(cfg.enabled);
+            if (cfg.enabled) mcp.start().catch((e) => console.warn('[MCP] restart failed:', e && e.message));
+        });
+    });
+}
 chrome.runtime.onInstalled.addListener(() => { applyFeedPollConfig(); applyInboxPollConfig(); });
 
 chrome.alarms?.onAlarm?.addListener(async (alarm) => {
+    if (alarm.name === MCP_ALARM) {
+        if (mcp && !mcp.isConnected()) { const cfg = await getMcpConfig(); if (cfg.enabled) mcp.start().catch(() => {}); }
+        return;
+    }
     if (alarm.name === FEED_ALARM) { await pollFeeds(); return; }
     if (alarm.name === INBOX_ALARM) { await pollInbox(); return; }
     if (targets && alarm.name === targets.ALARM) { targets.drain().catch(() => {}); return; }
@@ -1314,7 +1370,7 @@ async function saveFeedItem(url) {
 
 // Actions only extension pages (popup, side panel, in-page sidebar iframe) send. They spend the user's AI key or fetch
 // on the extension's behalf, so a content script running in a compromised page renderer must not reach them.
-const EXTENSION_PAGE_ACTIONS = new Set(['aiComplete', 'aiCancel', 'aiResync', 'fetchFeedText', 'openFeedItem', 'saveFeedItem', 'feedPollConfig', 'feedBadgeClear', 'audioEnsure', 'relayToActiveTab', 'sendLocalSendP2P', 'queueSummary', 'cancelQueuedSummary', 'summaryJobs', 'targetEnqueue', 'targetStatus', 'targetCancel']);
+const EXTENSION_PAGE_ACTIONS = new Set(['aiComplete', 'aiCancel', 'aiResync', 'fetchFeedText', 'openFeedItem', 'saveFeedItem', 'feedPollConfig', 'feedBadgeClear', 'audioEnsure', 'relayToActiveTab', 'sendLocalSendP2P', 'queueSummary', 'cancelQueuedSummary', 'summaryJobs', 'targetEnqueue', 'targetStatus', 'targetCancel', 'mcpStatus']);
 function fromExtensionPage(sender) {
     if (!sender || (sender.id && sender.id !== chrome.runtime.id)) return false;
     // A content script's url is the web page; an extension page's (also inside the sidebar iframe) is our own origin.
@@ -1333,6 +1389,11 @@ chrome.runtime.onMessage.addListener((msg, sender, sendResponse) => {
             : msg.action === 'targetStatus' ? targets.status(msg.targetId ? String(msg.targetId) : '')
             : targets.cancel(String(msg.jobId || ''));
         run.then(sendResponse).catch((e) => sendResponse({ ok: false, error: String((e && e.message) || e) }));
+        return true;
+    }
+    if (msg && msg.action === 'mcpStatus') {
+        if (!mcp) { sendResponse({ ok: true, available: false, enabled: false, connected: false }); return false; }
+        getMcpConfig().then((cfg) => sendResponse({ ok: true, available: true, enabled: !!cfg.enabled, connected: mcp.isConnected() }));
         return true;
     }
     if (msg && msg.action === 'ttsCmd') {

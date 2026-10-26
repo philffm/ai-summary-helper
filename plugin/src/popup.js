@@ -86,11 +86,13 @@ document.addEventListener("DOMContentLoaded", async () => {
         import('./modules/feedManager.js'),
         import('./modules/articleManager.js'),
         import('./modules/inboxView.js'),
-    ]).then(([{ initSettingsManager }, { initFeedManager }, { initArticleManager }, { initInboxView }]) => {
+        import('./modules/mcpView.js'),
+    ]).then(([{ initSettingsManager }, { initFeedManager }, { initArticleManager }, { initInboxView }, { initMcpView }]) => {
         initSettingsManager(ui);
         initFeedManager(ui);
         initArticleManager(ui);
         initInboxView();
+        initMcpView();
     }).catch((e) => console.error('Deferred module init failed:', e));
 
     // ── Auto-open native side panel if enabled ──────────────────────────

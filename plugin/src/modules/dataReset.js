@@ -9,11 +9,11 @@ export const CATEGORY_IDS = ['articles', 'highlights', 'feeds', 'podcasts', 'key
 
 export const SECRET_KEYS = [
     SK.servicesConfig, SK.token, SK.user, SK.otpId, SK.otpEmail,
-    SK.otpExpiresAt, SK.otpRequestedAt, SK.installId, SK.licenseKey, SK.inboxConfig, SK.targetSecrets
+    SK.otpExpiresAt, SK.otpRequestedAt, SK.installId, SK.licenseKey, SK.inboxConfig, SK.targetSecrets, SK.mcpSecret
 ];
 
 /** Never part of a backup, in either direction: restoring them on another device would repeat what was already done there. */
-export const TRANSIENT_KEYS = [SK.targetOutbox];
+export const TRANSIENT_KEYS = [SK.targetOutbox, SK.mcpLog];
 
 export const CATEGORIES = {
     // the summaries and everything attached to them
@@ -31,7 +31,7 @@ export const CATEGORIES = {
     prefs: {
         syncAll: true, localStorageToo: true,
         keys: [SK.feedSettings, SK.feedUi, SK.topicLexicon, SK.podcastName, SK.podcastLength, SK.podcastStyle, SK.podcastCustomStyle,
-            SK.summaryMode, SK.summaryLength, SK.summaryLengthMode, SK.summaryLengthBias, SK.activityView, SK.workspace, SK.reviewPrompt, SK.exportAllQuestions, SK.lastCollection, SK.collStats, SK.storageHint],
+            SK.summaryMode, SK.summaryLength, SK.summaryLengthMode, SK.summaryLengthBias, SK.activityView, SK.workspace, SK.reviewPrompt, SK.exportAllQuestions, SK.lastCollection, SK.collStats, SK.storageHint, SK.mcpConfig, SK.mcpLog],
     },
 };
 

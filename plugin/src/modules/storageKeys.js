@@ -86,6 +86,10 @@ export const SK = {
     collIndex: 'coll:index',
     // configuration with secrets (API keys, endpoints) — never synced
     servicesConfig: 'config:services',
+    // AI apps on this computer (MCP relay, aish-mcp) — off by default (claude/prd-local-mcp.md)
+    mcpConfig: 'mcp:config',      // { enabled, port, scopes, excludeTag }
+    mcpSecret: 'mcp:secret',      // pairing token — never backed up
+    mcpLog: 'mcp:log',            // last 50 call records — never backed up
     // migration flags
     devicesMigrated: 'meta:devicesMigrated',
     migrationVersion: 'meta:version',

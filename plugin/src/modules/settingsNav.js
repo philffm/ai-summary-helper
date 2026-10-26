@@ -58,11 +58,12 @@ const INDEX = [
     ['about', N_('Feedback · contact · donate'), 'settingsPanel-about', 'bug support feedback contact donation help'],
     ['about', N_('Version & GitHub'), 'versionNumber', 'version contribute open source github'],
     ['about', N_('Privacy policy'), 'aboutPrivacyLink', 'privacy data gdpr policy security changelog'],
+    ['mcp', N_('Let AI apps on this computer use my library'), 'mcpSettings', 'mcp model context protocol claude desktop lm studio cursor vs code ollama local ai agent search library search_library'],
 ];
 
 const PANEL_TITLES = {
     account: N_('Account & Plan'), models: N_('Models & API'), prompts: N_('Prompts'), feeds: N_('Sources'), feedprefs: N_('Feed preferences'), reading: N_('Reading & Highlighting'),
-    send: N_('Send & Share'), appearance: N_('Appearance & Language'), accessibility: N_('Accessibility'), library: N_('Library & Data'), about: N_('About & Tools')
+    send: N_('Send & Share'), appearance: N_('Appearance & Language'), accessibility: N_('Accessibility'), library: N_('Library & Data'), mcp: N_('AI apps (MCP)'), about: N_('About & Tools')
 };
 
 let screenEl = null;

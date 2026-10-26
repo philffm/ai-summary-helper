@@ -226,6 +226,14 @@ function writeFeedWorker(outDir, name) {
     console.log(`  ✓ ${name || 'bundle'}: bundled feed-worker.js (${code.length} bytes)`);
 }
 
+function writeMcpWorker(outDir, name) {
+    const entry = path.join(SRC, 'modules', 'mcpBackgroundBundle.js');
+    if (!fs.existsSync(entry)) return;
+    const code = bundleModuleGraph(entry, 'AISH_MCP');
+    fs.writeFileSync(path.join(outDir, 'mcp-worker.js'), code);
+    console.log(`  ✓ ${name || 'bundle'}: bundled mcp-worker.js (${code.length} bytes)`);
+}
+
 /**
  * Copy the shared source into a platform build dir, then overlay the
  * platform-specific manifest (if provided).
@@ -247,6 +255,7 @@ function buildPlatform(name, manifestPath) {
     writeFeedWorker(outDir, name);
     writeInboxWorker(outDir, name);
     writeTargetsWorker(outDir, name);
+    writeMcpWorker(outDir, name);
 
     if (manifestPath && fs.existsSync(manifestPath)) {
         fs.copyFileSync(manifestPath, path.join(outDir, 'manifest.json'));
@@ -287,6 +296,7 @@ function main() {
             writeFeedWorker(targetDir);
             writeInboxWorker(targetDir);
             writeTargetsWorker(targetDir);
+            writeMcpWorker(targetDir);
         } catch (err) {
             console.error(`✗ ${err.message}`);
             process.exit(1);
