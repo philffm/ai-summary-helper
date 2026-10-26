@@ -5,6 +5,14 @@ Commit history has the details: <https://github.com/philffm/ai-summary-helper/co
 
 ## Unreleased
 
+## 2.2.24 (2026-10-26)
+
+### All changes
+
+#### Changed
+
+- Summary: show the working bubble on click, check for a running summary in parallel
+
 ## 2.2.23 (2026-10-26)
 
 **Your library now works inside your AI apps.** Claude Desktop, LM Studio, Cursor, VS Code and other MCP apps on your computer can search what you saved, quote your highlights and cite your sources. Nothing goes through our server, and it is off until you turn it on.
