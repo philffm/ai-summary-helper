@@ -71,4 +71,4 @@ assert(!btn.hidden && btn.getAttribute('aria-label') === 'Detach to popup' && bt
 btn.click(); await tick(50);
 assert.equal(store.useNativeSidePanel, false, 'detach turns attach mode off');
 assert(api.calls.some(c => c[0] === 'openPopup') && api.calls.some(c => c[0] === 'close' && c[1].windowId === 42), 'popup opened, panel of this window closed');
-console.log('ok');
+console.log('ok'); process.exit(0);

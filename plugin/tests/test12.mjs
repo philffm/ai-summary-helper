@@ -1,8 +1,10 @@
 // Feeds: only items with media get a play button.
 import { setup, imp, tick } from './harness.mjs'; import assert from 'assert';
 import fs from 'fs';
-const pod = fs.readFileSync(process.env.AISH_TESTS + '/podcast.xml', 'utf8');
 const now = Date.now();
+// The fixture's dates are fixed; shift them to the last days so retention (keepDays) never prunes them.
+let k = 0;
+const pod = fs.readFileSync(process.env.AISH_TESTS + '/podcast.xml', 'utf8').replace(/<pubDate>[^<]*<\/pubDate>/g, () => `<pubDate>${new Date(now - (++k) * 3600e3).toUTCString()}</pubDate>`);
 const art = `<?xml version="1.0"?><rss version="2.0"><channel><title>Blog</title><link>https://blog.test</link><item><title>Post</title><link>https://blog.test/1</link><pubDate>${new Date(now - 3600e3).toUTCString()}</pubDate><description>x</description></item></channel></rss>`;
 const { store, w } = setup({ 'https://pod.test/feed': pod, 'https://blog.test/feed': art });
 const $ = s => w.document.querySelector(s), $$ = s => [...w.document.querySelectorAll(s)];

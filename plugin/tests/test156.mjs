@@ -44,4 +44,4 @@ assert.equal(store.recentCloudModels[0], 'anthropic/claude-opus-9');
 // Plain words are only a search, never a model id.
 inp.value = 'flash'; inp.dispatchEvent(new w.Event('input', { bubbles: true })); await tick(200);
 assert(![...d.querySelectorAll('#modelIdGrid button')].some(b => b.textContent.startsWith('Use ')), 'no Use pill for a plain search word');
-console.log('test156 ok');
+console.log('test156 ok'); process.exit(0);
