@@ -1302,7 +1302,7 @@ export function initMainScreen(ui) {
         const pageInfo = chipEl ? { title: chipEl.dataset.title, host: chipEl.dataset.host } : null;
         const selectedLanguage = languageSelect.value;
 
-        chrome.storage.sync.get(['prompt', 'promptType', 'presetPrompt'], async (data) => {
+        chrome.storage.sync.get(['prompt', 'promptType', 'presetPrompt', 'connectionMode'], async (data) => {
             let promptToUse = data.prompt || '';
 
             const { [SK.summaryMode]: summaryMode } = await chrome.storage.local.get(SK.summaryMode);
@@ -1324,21 +1324,10 @@ export function initMainScreen(ui) {
                 };
             };
 
-            // Another summary is running → line this one up instead of starting a second stream.
-            if (mode === 'extension' && !attachment) {
-                const jobs = await bgSend({ action: 'summaryJobs' });
-                if (jobs && jobs.running) {
-                    try {
-                        const tab = await getActiveTab();
-                        if (tab && tab.id != null && (await hasSiteAccess(tab.url))) {
-                            await ensureContentScript(tab.id, tab.url);
-                            const r = await bgSend({ action: 'queueSummary', tabId: tab.id, url: tab.url, title: pageInfo && pageInfo.title || tab.title || '', message: await buildMessage() });
-                            if (r && r.queued) { additionalQuestionsInput.value = ''; showQueuedNote(r.id, pageInfo && pageInfo.title || tab.title, r.position); return; }
-                            if (r && r.ok) { return; }   // the other summary ended meanwhile: it started right away
-                        }
-                    } catch (_) { /* fall through to the normal path */ }
-                }
-            }
+            // Ask the background whether another summary is running, but show that the click landed BEFORE the answer
+            // arrives: the question wakes the background service worker, which takes a second or more when it was asleep
+            // (it loads all its bundles first). If a summary is running after all, the bubble makes way for the queue note.
+            const jobsAnswer = (mode === 'extension' && !attachment) ? bgSend({ action: 'summaryJobs' }) : Promise.resolve(null);
 
             if (mode === 'extension' && composer) {
                 composer.set('working');
@@ -1355,8 +1344,8 @@ export function initMainScreen(ui) {
                 if (recentEntry) recentEntry.style.display = 'none';
                 const modelLabel = document.getElementById('chipModelLabel');
                 const chipIcon = document.querySelector('.chip[data-panel="model"] .chip-icon');
-                const isCloud = chipIcon?.dataset.icon === 'cloud' || ((await chrome.storage.sync.get('connectionMode')).connectionMode || 'cloud') === 'cloud';
-                
+                const isCloud = chipIcon?.dataset.icon === 'cloud' || (data.connectionMode || 'cloud') === 'cloud';
+
                 addFirstBubble(pageInfo, additionalQuestions, chipRect);
                 addStreamBubble(modelLabel?.textContent || '', isCloud ? 'cloud' : 'local');
                 updateStream('Contacting content script…');
@@ -1366,6 +1355,26 @@ export function initMainScreen(ui) {
                 // which is exactly what made the bar look like it only
                 // appeared once real content started streaming in.
                 updateStreamProgress(10);
+            }
+
+            // Another summary is running → line this one up instead of starting a second stream.
+            const jobs = await jobsAnswer;
+            if (jobs && jobs.running) {
+                try {
+                    const tab = await getActiveTab();
+                    if (tab && tab.id != null && (await hasSiteAccess(tab.url))) {
+                        await ensureContentScript(tab.id, tab.url);
+                        const r = await bgSend({ action: 'queueSummary', tabId: tab.id, url: tab.url, title: pageInfo && pageInfo.title || tab.title || '', message: await buildMessage() });
+                        if (r && r.queued) {   // waits in line: the bubble shown on click makes way for the queue note
+                            removeStreamBubble();
+                            feed.querySelectorAll('.chat-turn, .chat-turn-group').forEach(n => n.remove());
+                            resetToFetch();
+                            showQueuedNote(r.id, pageInfo && pageInfo.title || tab.title, r.position);
+                            return;
+                        }
+                        if (r && r.ok) { activeTabId = tab.id; return; }   // the other summary ended meanwhile: this one started right away
+                    }
+                } catch (_) { /* fall through to the normal path */ }
             }
 
             try {
