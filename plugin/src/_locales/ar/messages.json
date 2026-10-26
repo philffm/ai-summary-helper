@@ -5372,5 +5372,137 @@
   },
   "f_epub_is_the_format_kindle_re_3a35": {
     "message": "EPUB هو التنسيق الذي يقرؤه Kindle بأفضل شكل. تضيف الصور بضع مئات من الكيلوبايت لكل صورة (حتى 10 صور، بعد تصغيرها)."
+  },
+  "f_ai_apps_mcp_613e": {
+    "message": "تطبيقات الذكاء الاصطناعي (MCP)"
+  },
+  "f_ai_apps_on_this_computer_lik_f8d4": {
+    "message": "تستطيع تطبيقات الذكاء الاصطناعي على هذا الحاسوب، مثل Claude Desktop أو LM Studio أو Cursor، البحث في مكتبتك وقراءتها. لا يمر شيء عبر خادمنا. ما يغادر حاسوبك يعتمد على التطبيق والنموذج اللذين تستخدمهما."
+  },
+  "f_connect_a899": {
+    "message": "اتصال"
+  },
+  "f_connected_9370": {
+    "message": "متصل"
+  },
+  "f_disconnect_790b": {
+    "message": "قطع الاتصال"
+  },
+  "f_full_article_text_5851": {
+    "message": "النص الكامل للمقالات"
+  },
+  "f_how_to_connect_claude_deskto_e81b": {
+    "message": "كيفية ربط Claude Desktop وLM Studio وCursor وغيرها"
+  },
+  "f_let_ai_apps_on_this_computer_12b0": {
+    "message": "السماح لتطبيقات الذكاء الاصطناعي على هذا الحاسوب باستخدام مكتبتي"
+  },
+  "f_lets_an_app_read_the_whole_s_db89": {
+    "message": "يسمح للتطبيق بقراءة النص المحفوظ كاملًا، لا الملخص فقط"
+  },
+  "f_lets_an_app_save_a_url_into__a0a1": {
+    "message": "يسمح للتطبيق بحفظ رابط في صندوق الوارد"
+  },
+  "f_never_show_articles_tagged_148b": {
+    "message": "لا تعرض أبدًا المقالات ذات الوسم"
+  },
+  "f_no_calls_yet_9dfd": {
+    "message": "لا توجد طلبات بعد."
+  },
+  "f_not_connected_open_your_ai_a_d7fb": {
+    "message": "غير متصل. افتح تطبيق الذكاء الاصطناعي أو اتبع الدليل أعلاه لإعداد واحد."
+  },
+  "f_paste_your_pairing_code_dab8": {
+    "message": "الصق رمز الإقران"
+  },
+  "f_recent_activity_cc07": {
+    "message": "النشاط الأخير"
+  },
+  "f_reload_ai_summary_helper_to__97b0": {
+    "message": "أعد تحميل AI Summary Helper لإكمال التفعيل."
+  },
+  "f_replace_code_cd90": {
+    "message": "استبدال الرمز"
+  },
+  "f_save_links_4801": {
+    "message": "حفظ الروابط"
+  },
+  "f_search_read_and_highlights_12f9": {
+    "message": "البحث والقراءة والتظليل"
+  },
+  "f_unread_items_from_your_subsc_11ff": {
+    "message": "العناصر غير المقروءة من اشتراكاتك"
+  },
+  "f_waiting_for_a_pairing_code_ef01": {
+    "message": "في انتظار رمز الإقران."
+  },
+  "f_what_apps_may_do_33b5": {
+    "message": "ما يمكن للتطبيقات فعله"
+  },
+  "f_your_library_5cd1": {
+    "message": "مكتبتك"
+  },
+  "f_error_8751": {
+    "message": "خطأ"
+  },
+  "f_ok_37af": {
+    "message": "تم"
+  },
+  "f_about_you_6a95": {
+    "message": "عنك"
+  },
+  "f_add_your_own_tag_e29b": {
+    "message": "أضف وسمك الخاص"
+  },
+  "f_add_your_own_e_g_parent_of_t_7012": {
+    "message": "أضف وسمك، مثل: أب لطفلين"
+  },
+  "f_enter_the_server_address_in__d23d": {
+    "message": "أدخل عنوان الخادم في الإعدادات"
+  },
+  "f_last_used_vault_2d62": {
+    "message": "آخر خزنة مستخدمة"
+  },
+  "f_mindset_dbbf": {
+    "message": "العقلية"
+  },
+  "f_no_model_list_from_this_serv_6b89": {
+    "message": "لا توجد قائمة نماذج من هذا الخادم — اكتب اسم النموذج"
+  },
+  "f_none_f7fb": {
+    "message": "لا شيء"
+  },
+  "f_obsidian_vault_and_folder_f333": {
+    "message": "خزنة Obsidian ومجلدها"
+  },
+  "f_optimist_6d10": {
+    "message": "متفائل"
+  },
+  "f_pragmatic_bfa7": {
+    "message": "عملي"
+  },
+  "f_remove_0293": {
+    "message": "إزالة {tag}"
+  },
+  "f_server_not_reachable_is_it_r_3c8d": {
+    "message": "تعذّر الوصول إلى الخادم (هل يعمل؟ هل الرابط صحيح؟)"
+  },
+  "f_server_rejects_the_key_check_86bf": {
+    "message": "يرفض الخادم المفتاح — تحقق منه في الإعدادات"
+  },
+  "f_server_models_4913": {
+    "message": "الخادم · {n} نماذج"
+  },
+  "f_show_prompt_b094": {
+    "message": "عرض الموجّه ›"
+  },
+  "f_skeptic_1cb2": {
+    "message": "متشكك"
+  },
+  "f_stoic_8d1b": {
+    "message": "رواقي"
+  },
+  "f_own_server_2c54": {
+    "message": "{name} · خادم خاص"
   }
 }

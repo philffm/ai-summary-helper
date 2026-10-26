@@ -5655,5 +5655,137 @@
   },
   "f_epub_is_the_format_kindle_re_3a35": {
     "message": "EPUB är formatet som Kindle läser bäst. Bilder lägger till några hundra KB per bild (upp till 10, nedskalade)."
+  },
+  "f_ai_apps_mcp_613e": {
+    "message": "AI-appar (MCP)"
+  },
+  "f_ai_apps_on_this_computer_lik_f8d4": {
+    "message": "AI-appar på den här datorn, som Claude Desktop, LM Studio eller Cursor, kan söka i och läsa ditt bibliotek. Inget går via vår server. Vad som lämnar din dator beror på appen och modellen du använder."
+  },
+  "f_connect_a899": {
+    "message": "Anslut"
+  },
+  "f_connected_9370": {
+    "message": "Ansluten"
+  },
+  "f_disconnect_790b": {
+    "message": "Koppla från"
+  },
+  "f_full_article_text_5851": {
+    "message": "Artiklarnas fulltext"
+  },
+  "f_how_to_connect_claude_deskto_e81b": {
+    "message": "Så ansluter du Claude Desktop, LM Studio, Cursor och fler"
+  },
+  "f_let_ai_apps_on_this_computer_12b0": {
+    "message": "Låt AI-appar på den här datorn använda mitt bibliotek"
+  },
+  "f_lets_an_app_read_the_whole_s_db89": {
+    "message": "Låter en app läsa hela den sparade texten, inte bara sammanfattningen"
+  },
+  "f_lets_an_app_save_a_url_into__a0a1": {
+    "message": "Låter en app spara en länk i din inkorg"
+  },
+  "f_never_show_articles_tagged_148b": {
+    "message": "Visa aldrig artiklar med taggen"
+  },
+  "f_no_calls_yet_9dfd": {
+    "message": "Inga anrop än."
+  },
+  "f_not_connected_open_your_ai_a_d7fb": {
+    "message": "Inte ansluten. Öppna din AI-app eller följ guiden ovan för att ställa in en."
+  },
+  "f_paste_your_pairing_code_dab8": {
+    "message": "Klistra in din parkopplingskod"
+  },
+  "f_recent_activity_cc07": {
+    "message": "Senaste aktivitet"
+  },
+  "f_reload_ai_summary_helper_to__97b0": {
+    "message": "Ladda om AI Summary Helper för att slutföra aktiveringen."
+  },
+  "f_replace_code_cd90": {
+    "message": "Byt kod"
+  },
+  "f_save_links_4801": {
+    "message": "Spara länkar"
+  },
+  "f_search_read_and_highlights_12f9": {
+    "message": "Sökning, läsning och markeringar"
+  },
+  "f_unread_items_from_your_subsc_11ff": {
+    "message": "Olästa objekt från dina prenumerationer"
+  },
+  "f_waiting_for_a_pairing_code_ef01": {
+    "message": "Väntar på en parkopplingskod."
+  },
+  "f_what_apps_may_do_33b5": {
+    "message": "Vad appar får göra"
+  },
+  "f_your_library_5cd1": {
+    "message": "Ditt bibliotek"
+  },
+  "f_error_8751": {
+    "message": "fel"
+  },
+  "f_ok_37af": {
+    "message": "ok"
+  },
+  "f_about_you_6a95": {
+    "message": "Om dig"
+  },
+  "f_add_your_own_tag_e29b": {
+    "message": "Lägg till en egen tagg"
+  },
+  "f_add_your_own_e_g_parent_of_t_7012": {
+    "message": "Lägg till din egen, t.ex. förälder till två"
+  },
+  "f_enter_the_server_address_in__d23d": {
+    "message": "Ange serveradressen i Inställningar"
+  },
+  "f_last_used_vault_2d62": {
+    "message": "Senast använda valv"
+  },
+  "f_mindset_dbbf": {
+    "message": "Förhållningssätt"
+  },
+  "f_no_model_list_from_this_serv_6b89": {
+    "message": "Ingen modellista från den här servern – skriv modellnamnet"
+  },
+  "f_none_f7fb": {
+    "message": "Ingen"
+  },
+  "f_obsidian_vault_and_folder_f333": {
+    "message": "Obsidian-valv och mapp"
+  },
+  "f_optimist_6d10": {
+    "message": "Optimist"
+  },
+  "f_pragmatic_bfa7": {
+    "message": "Pragmatisk"
+  },
+  "f_remove_0293": {
+    "message": "Ta bort {tag}"
+  },
+  "f_server_not_reachable_is_it_r_3c8d": {
+    "message": "Servern går inte att nå (körs den? stämmer URL:en?)"
+  },
+  "f_server_rejects_the_key_check_86bf": {
+    "message": "Servern avvisar nyckeln – kontrollera den i Inställningar"
+  },
+  "f_server_models_4913": {
+    "message": "Server · {n} modeller"
+  },
+  "f_show_prompt_b094": {
+    "message": "Visa prompt ›"
+  },
+  "f_skeptic_1cb2": {
+    "message": "Skeptiker"
+  },
+  "f_stoic_8d1b": {
+    "message": "Stoiker"
+  },
+  "f_own_server_2c54": {
+    "message": "{name} · egen server"
   }
 }

@@ -1,33 +1,33 @@
 # Feeds UI translations — coverage & length report
 
-Strings: 1568. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; longer → 1.3× (CJK/emoji count 2 columns).
+Strings: 1597. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; longer → 1.3× (CJK/emoji count 2 columns).
 
 | locale | translated | missing | placeholder errors | too long |
 |---|---|---|---|---|
-| ar | 1549 | 19 | 0 | 47 |
-| da | 1549 | 19 | 0 | 47 |
-| de | 1549 | 19 | 0 | 223 |
-| es | 1549 | 19 | 0 | 186 |
-| fi | 1549 | 19 | 0 | 164 |
-| fr | 1549 | 19 | 0 | 217 |
-| hi | 1549 | 19 | 0 | 86 |
-| id | 1549 | 19 | 0 | 76 |
-| it | 1549 | 19 | 0 | 184 |
-| ja | 1549 | 19 | 0 | 95 |
-| ko | 1549 | 19 | 0 | 26 |
-| nl | 1549 | 19 | 0 | 116 |
-| no | 1549 | 19 | 0 | 44 |
-| pl | 1549 | 19 | 0 | 116 |
-| pt_BR | 1549 | 19 | 0 | 185 |
-| pt_PT | 1549 | 19 | 0 | 202 |
-| ru | 1549 | 19 | 0 | 117 |
-| sv | 1549 | 19 | 0 | 86 |
-| th | 1549 | 19 | 0 | 31 |
-| tr | 1549 | 19 | 0 | 118 |
-| uk | 1549 | 19 | 0 | 79 |
-| zh_CN | 1549 | 19 | 0 | 2 |
-| zh_HK | 1549 | 19 | 0 | 2 |
-| zh_TW | 1549 | 19 | 0 | 2 |
+| ar | 1597 | 0 | 0 | 49 |
+| da | 1597 | 0 | 0 | 47 |
+| de | 1597 | 0 | 0 | 229 |
+| es | 1597 | 0 | 0 | 193 |
+| fi | 1597 | 0 | 0 | 171 |
+| fr | 1597 | 0 | 0 | 231 |
+| hi | 1597 | 0 | 0 | 89 |
+| id | 1597 | 0 | 0 | 84 |
+| it | 1597 | 0 | 0 | 195 |
+| ja | 1597 | 0 | 0 | 97 |
+| ko | 1597 | 0 | 0 | 28 |
+| nl | 1597 | 0 | 0 | 119 |
+| no | 1597 | 0 | 0 | 45 |
+| pl | 1597 | 0 | 0 | 119 |
+| pt_BR | 1597 | 0 | 0 | 191 |
+| pt_PT | 1597 | 0 | 0 | 210 |
+| ru | 1597 | 0 | 0 | 121 |
+| sv | 1597 | 0 | 0 | 87 |
+| th | 1597 | 0 | 0 | 33 |
+| tr | 1597 | 0 | 0 | 124 |
+| uk | 1597 | 0 | 0 | 83 |
+| zh_CN | 1597 | 0 | 0 | 2 |
+| zh_HK | 1597 | 0 | 0 | 2 |
+| zh_TW | 1597 | 0 | 0 | 2 |
 
 ## Over-long translations (check these in the UI)
 
@@ -39,6 +39,7 @@ Strings: 1568. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; lo
 | vs {label} | مقارنةً بـ {label} | 13 vs 5 | 2.6× |
 | Sent | تم الإرسال | 10 vs 4 | 2.5× |
 | reused | مُعاد استخدامه | 14 vs 6 | 2.33× |
+| AI apps (MCP) | تطبيقات الذكاء الاصطناعي (MCP) | 30 vs 13 | 2.31× |
 | Noisy | كثير الضجيج | 11 vs 5 | 2.2× |
 | Resets {date} | يُعاد التعيين في {date} | 19 vs 9 | 2.11× |
 | AI analysis | تحليل بالذكاء الاصطناعي | 23 vs 11 | 2.09× |
@@ -73,6 +74,7 @@ Strings: 1568. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; lo
 | AI ghost highlighting | التمييز الشبحي بالذكاء الاصطناعي | 32 vs 21 | 1.52× |
 | Monthly AI allowance | الحصة الشهرية للذكاء الاصطناعي | 30 vs 20 | 1.5× |
 | 🎓 Mark as paper | 🎓 وضع علامة كورقة بحثية | 24 vs 16 | 1.5× |
+| Let AI apps on this computer use my library | السماح لتطبيقات الذكاء الاصطناعي على هذا الحاسوب باستخدام مكتبتي | 64 vs 43 | 1.49× |
 | GPU or Apple Silicon, 7–8B model | وحدة معالجة رسومات أو Apple Silicon، نموذج 7–8B | 47 vs 32 | 1.47× |
 | {n} tag lists to name | {n} قوائم وسوم بحاجة إلى تسمية | 29 vs 20 | 1.45× |
 | Imported {n} feed | تم استيراد الخلاصات: {n} | 23 vs 16 | 1.44× |
@@ -278,12 +280,14 @@ Strings: 1568. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; lo
 | Hide negative | Negatives ausblenden | 20 vs 13 | 1.54× |
 | Open Settings | Einstellungen öffnen | 20 vs 13 | 1.54× |
 | Found device at {ip} — click Add to save it ✓ | Gerät unter {ip} gefunden – zum Speichern auf „Hinzufügen“ klicken ✓ | 66 vs 43 | 1.53× |
+| Last used vault | Zuletzt genutzter Vault | 23 vs 15 | 1.53× |
 | This page has no text to save. | Diese Seite enthält keinen Text zum Speichern. | 46 vs 30 | 1.53× |
 | 📈 Mood over time | 📈 Stimmung im Zeitverlauf | 26 vs 17 | 1.53× |
 | Clean up & merge tags | Tags bereinigen & zusammenführen | 32 vs 21 | 1.52× |
 | Edit feeds & tags in Settings | Feeds & Tags in den Einstellungen bearbeiten | 44 vs 29 | 1.52× |
 | Summarize a page to see it here | Fasse eine Seite zusammen, um sie hier zu sehen | 47 vs 31 | 1.52× |
 | The synced feed list could not be read. Unpair and pair again. | Die synchronisierte Feed-Liste konnte nicht gelesen werden. Kopplung aufheben und neu koppeln. | 94 vs 62 | 1.52× |
+| Add your own, e.g. parent of two | Eigenen hinzufügen, z. B. Vater von zwei Kindern | 48 vs 32 | 1.5× |
 | Auto-summarize favorites | Favoriten automatisch zusammenfassen | 36 vs 24 | 1.5× |
 | Import / export OPML | OPML importieren / exportieren | 30 vs 20 | 1.5× |
 | No key facts found | Keine Kernaussagen gefunden | 27 vs 18 | 1.5× |
@@ -292,6 +296,7 @@ Strings: 1568. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; lo
 | {n} summary in one file | {n} Zusammenfassung in einer Datei | 33 vs 22 | 1.5× |
 | ↩ Restore to Inbox | ↩ In den Posteingang zurück | 27 vs 18 | 1.5× |
 | 📥 Saved · no AI | 📥 Gespeichert · ohne KI | 24 vs 16 | 1.5× |
+| Lets an app read the whole saved text, not just the summary | Erlaubt einer App, den ganzen gespeicherten Text zu lesen, nicht nur die Zusammenfassung | 88 vs 59 | 1.49× |
 | The quick brown fox jumps over the lazy dog. Summaries use this size and spacing. | Zwölf Boxkämpfer jagen Viktor quer über den großen Sylter Deich. Zusammenfassungen nutzen diese Größe und diesen Abstand. | 121 vs 81 | 1.49× |
 | No tags found. Add tags to your summaries! | Keine Tags gefunden. Füge deinen Zusammenfassungen Tags hinzu! | 62 vs 42 | 1.48× |
 | Not paired · pair now | Nicht gekoppelt · jetzt koppeln | 31 vs 21 | 1.48× |
@@ -305,6 +310,7 @@ Strings: 1568. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; lo
 | Writing a {n}-word summary… | Schreibe Zusammenfassung ({n} Wörter) … | 38 vs 26 | 1.46× |
 | {n} items could not be scored | {n} Einträge konnten nicht bewertet werden | 41 vs 28 | 1.46× |
 | {n} summaries in one file | {n} Zusammenfassungen in einer Datei | 35 vs 24 | 1.46× |
+| Lets an app save a URL into your inbox | Erlaubt einer App, Links in deinem Eingang zu speichern | 55 vs 38 | 1.45× |
 | Not set up yet — add your Kindle in Settings | Noch nicht eingerichtet — Kindle in den Einstellungen hinzufügen | 64 vs 44 | 1.45× |
 | Summary + full article | Zusammenfassung + ganzer Artikel | 32 vs 22 | 1.45× |
 | too many sends, try again later | zu viele Sendungen, versuche es später erneut | 45 vs 31 | 1.45× |
@@ -338,12 +344,14 @@ Strings: 1568. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; lo
 | Delete {n} selected articles? This cannot be undone. | {n} ausgewählte Artikel löschen? Das lässt sich nicht rückgängig machen. | 71 vs 51 | 1.39× |
 | Pick a way to run your summaries. Change it any time in settings. | Wähle, wie deine Zusammenfassungen laufen sollen. Jederzeit in den Einstellungen änderbar. | 90 vs 65 | 1.38× |
 | Remove the saved page text of {n} articles? Summaries and statistics stay. This cannot be undone. | Gespeicherten Seitentext von {n} Artikeln entfernen? Zusammenfassungen und Statistik bleiben. Das lässt sich nicht rückgängig machen. | 132 vs 96 | 1.38× |
+| Server rejects the key — check it in Settings | Server lehnt den Schlüssel ab – prüfe ihn in den Einstellungen | 62 vs 45 | 1.38× |
 | Stopped. Starting again continues where it left off. | Gestoppt. Beim erneuten Start geht es dort weiter, wo es aufgehört hat. | 71 vs 52 | 1.37× |
 | Free cloud models and your summaries on every device. Or skip this and use your own API key. | Kostenlose Cloud-Modelle und deine Zusammenfassungen auf jedem Gerät. Oder überspringen und den eigenen API-Schlüssel nutzen. | 125 vs 92 | 1.36× |
 | Nothing rated yet — write a ✨ Recap to rate items. | Noch nichts bewertet — erstelle ein ✨ Recap, um Artikel zu bewerten. | 68 vs 50 | 1.36× |
 | Ollama is not reachable — set it up in Settings | Ollama ist nicht erreichbar – richte es in den Einstellungen ein | 64 vs 47 | 1.36× |
 | Please set your LocalSend IP in Settings first. | Bitte hinterlege zuerst deine LocalSend-IP in den Einstellungen. | 64 vs 47 | 1.36× |
 | e.g. Prefer European news and keep it upbeat. | z. B. Bevorzuge europäische Nachrichten und halte es positiv. | 61 vs 45 | 1.36× |
+| Let AI apps on this computer use my library | KI-Apps auf diesem Computer dürfen meine Bibliothek nutzen | 58 vs 43 | 1.35× |
 | Feed list synced: {added} added, {updated} changed, {removed} removed | Feed-Liste synchronisiert: {added} hinzugefügt, {updated} geändert, {removed} entfernt | 67 vs 50 | 1.34× |
 | Rates, categorizes and recaps all your feed items in small batches on your own machine. No tokens spent. | Bewertet, kategorisiert und fasst alle deine Feed-Einträge in kleinen Stapeln auf deinem eigenen Rechner zusammen. Keine Tokens verbraucht. | 139 vs 104 | 1.34× |
 | Inline mode is great for "Send to Kindle". | Der Inline-Modus eignet sich gut für „An Kindle senden“. | 56 vs 42 | 1.33× |
@@ -401,6 +409,7 @@ Strings: 1568. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; lo
 | Sync feed list | Sincronizar lista de feeds | 26 vs 14 | 1.86× |
 | About & Tools | Acerca de y herramientas | 24 vs 13 | 1.85× |
 | Auto-Detect | Detección automática | 20 vs 11 | 1.82× |
+| Full article text | Texto completo de los artículos | 31 vs 17 | 1.82× |
 | No background run yet. | Aún no hay ejecuciones en segundo plano. | 40 vs 22 | 1.82× |
 | Phone inbox | Bandeja del teléfono | 20 vs 11 | 1.82× |
 | Unsubscribe | Cancelar suscripción | 20 vs 11 | 1.82× |
@@ -450,6 +459,7 @@ Strings: 1568. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; lo
 | {name} · API key set | {name} · clave API configurada | 26 vs 16 | 1.63× |
 | Click again to unpair | Haz clic otra vez para desvincular | 34 vs 21 | 1.62× |
 | Custom style: | Estilo personalizado: | 21 vs 13 | 1.62× |
+| Never show articles tagged | No mostrar nunca artículos con la etiqueta | 42 vs 26 | 1.62× |
 | Not enough rated items yet | Aún no hay suficientes elementos valorados | 42 vs 26 | 1.62× |
 | (on iOS, hold to drag for 2 seconds) | (en iOS, mantén pulsado para arrastrar durante 2 segundos) | 58 vs 36 | 1.61× |
 | No key facts found | No se encontraron datos clave | 29 vs 18 | 1.61× |
@@ -464,6 +474,7 @@ Strings: 1568. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; lo
 | Dismiss graph stats | Ocultar estadísticas del grafo | 30 vs 19 | 1.58× |
 | Focus search | Enfocar la búsqueda | 19 vs 12 | 1.58× |
 | Instant read | Lectura instantánea | 19 vs 12 | 1.58× |
+| Lets an app save a URL into your inbox | Permite a una app guardar un enlace en tu bandeja de entrada | 60 vs 38 | 1.58× |
 | Recap failed | Error en el resumen | 19 vs 12 | 1.58× |
 | 📈 Topics over time | 📈 Temas a lo largo del tiempo | 30 vs 19 | 1.58× |
 | Best match · {n} items | Mejor coincidencia · {n} elementos | 33 vs 21 | 1.57× |
@@ -473,11 +484,14 @@ Strings: 1568. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; lo
 | Podcast player | Reproductor de podcast | 22 vs 14 | 1.57× |
 | Privacy policy | Política de privacidad | 22 vs 14 | 1.57× |
 | API keys, sign-in & license | Claves de API, inicio de sesión y licencia | 42 vs 27 | 1.56× |
+| Add your own tag | Añadir tu propia etiqueta | 25 vs 16 | 1.56× |
 | Delete all data… | Eliminar todos los datos… | 25 vs 16 | 1.56× |
 | Set as active send target | Establecer como destino de envío activo | 39 vs 25 | 1.56× |
+| What apps may do | Qué pueden hacer las apps | 25 vs 16 | 1.56× |
 | All sources | Todas las fuentes | 17 vs 11 | 1.55× |
 | Not a paper | No es un artículo | 17 vs 11 | 1.55× |
 | ☁️ Free cloud models | ☁️ Modelos en la nube gratuitos | 31 vs 20 | 1.55× |
+| No calls yet. | Aún no hay llamadas. | 20 vs 13 | 1.54× |
 | Reading speed | Velocidad de lectura | 20 vs 13 | 1.54× |
 | {n} day recaps | {n} resúmenes diarios | 20 vs 13 | 1.54× |
 | {n} files sent | {n} archivos enviados | 20 vs 13 | 1.54× |
@@ -494,6 +508,7 @@ Strings: 1568. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; lo
 | Model identifier | Identificador del modelo | 24 vs 16 | 1.5× |
 | No summary returned. | No se devolvió ningún resumen. | 30 vs 20 | 1.5× |
 | Sign in to use byPhil Cloud models | Inicia sesión para usar los modelos de byPhil Cloud | 51 vs 34 | 1.5× |
+| Let AI apps on this computer use my library | Permitir que las apps de IA de este ordenador usen mi biblioteca | 64 vs 43 | 1.49× |
 | Copied as plain text. | Copiado como texto sin formato. | 31 vs 21 | 1.48× |
 | No tags found. Add tags to your summaries! | No se encontraron etiquetas. ¡Añade etiquetas a tus resúmenes! | 62 vs 42 | 1.48× |
 | Scan failed. Enter IP manually. | Falló el escaneo. Introduce la IP manualmente. | 46 vs 31 | 1.48× |
@@ -559,13 +574,17 @@ Strings: 1568. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; lo
 | Add tag | Lisää tunniste | 14 vs 7 | 2× |
 | {n} tags | {n} tunnistetta | 14 vs 7 | 2× |
 | {n} feeds to tag | Tunnisteittavia syötteitä: {n} | 29 vs 15 | 1.93× |
+| Never show articles tagged | Älä koskaan näytä artikkeleita, joissa on tunniste | 50 vs 26 | 1.92× |
 | Mark read | Merkitse luetuksi | 17 vs 9 | 1.89× |
 | Any time | Milloin tahansa | 15 vs 8 | 1.88× |
 | Log Out | Kirjaudu ulos | 13 vs 7 | 1.86× |
 | Restart Ollama | Käynnistä Ollama uudelleen | 26 vs 14 | 1.86× |
 | Saving… | Tallennetaan… | 13 vs 7 | 1.86× |
+| AI apps (MCP) | Tekoälysovellukset (MCP) | 24 vs 13 | 1.85× |
 | Mark {n} read | Merkitse luetuiksi: {n} | 22 vs 12 | 1.83× |
 | Recap failed | Yhteenveto epäonnistui | 22 vs 12 | 1.83× |
+| What apps may do | Mitä sovellukset saavat tehdä | 29 vs 16 | 1.81× |
+| Save links | Linkkien tallennus | 18 vs 10 | 1.8× |
 | + Add tag | + Lisää tunniste | 16 vs 9 | 1.78× |
 | Name tags | Nimeä tunnisteet | 16 vs 9 | 1.78× |
 | Added to “{name}” | Lisätty kokoelmaan “{name}” | 23 vs 13 | 1.77× |
@@ -650,6 +669,7 @@ Strings: 1568. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; lo
 | Reset toolbar | Nollaa työkalupalkki | 20 vs 13 | 1.54× |
 | 🤖 Score {n} unscored items | 🤖 Pisteytä {n} pisteyttämätöntä kohdetta | 40 vs 26 | 1.54× |
 | Add tag or DOI… | Lisää tunniste tai DOI… | 23 vs 15 | 1.53× |
+| Last used vault | Viimeksi käytetty holvi | 23 vs 15 | 1.53× |
 | No recent summaries | Ei viimeaikaisia tiivistelmiä | 29 vs 19 | 1.53× |
 | Saved for Later | Tallennettu myöhemmäksi | 23 vs 15 | 1.53× |
 | ✨ Updating recap… | ✨ Päivitetään yhteenvetoa… | 26 vs 17 | 1.53× |
@@ -672,6 +692,7 @@ Strings: 1568. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; lo
 | AI request failed | Tekoälypyyntö epäonnistui | 25 vs 17 | 1.47× |
 | Delete history? | Poistetaanko historia? | 22 vs 15 | 1.47× |
 | Feed sync is on. Scan the new code in the phone app once. | Syötteiden synkronointi on käytössä. Skannaa uusi koodi puhelinsovelluksessa kerran. | 84 vs 57 | 1.47× |
+| Recent activity | Viimeaikainen toiminta | 22 vs 15 | 1.47× |
 | Stack similar items | Pinoa samankaltaiset kohteet | 28 vs 19 | 1.47× |
 | This page has no text to save. | Tällä sivulla ei ole tallennettavaa tekstiä. | 44 vs 30 | 1.47× |
 | similar content | samankaltainen sisältö | 22 vs 15 | 1.47× |
@@ -683,6 +704,7 @@ Strings: 1568. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; lo
 | {name} · local, no API key | {name} · paikallinen, ei API-avainta | 32 vs 22 | 1.45× |
 | {n} article not shown | {n} artikkeli ei ole näkyvissä | 29 vs 20 | 1.45× |
 | Delete settings? | Poistetaanko asetukset? | 23 vs 16 | 1.44× |
+| Let AI apps on this computer use my library | Salli tämän tietokoneen tekoälysovellusten käyttää kirjastoani | 62 vs 43 | 1.44× |
 | No saved images. | Ei tallennettuja kuvia. | 23 vs 16 | 1.44× |
 | No shortcuts match | Ei vastaavia pikanäppäimiä | 26 vs 18 | 1.44× |
 | Type {word} to confirm | Vahvista kirjoittamalla {word} | 26 vs 18 | 1.44× |
@@ -744,6 +766,8 @@ Strings: 1568. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; lo
 | Detach to popup | Détacher en fenêtre contextuelle | 32 vs 15 | 2.13× |
 | Check now | Vérifier maintenant | 19 vs 9 | 2.11× |
 | Motion on | Animations activées | 19 vs 9 | 2.11× |
+| Save links | Enregistrer des liens | 21 vs 10 | 2.1× |
+| No calls yet. | Aucun appel pour l'instant. | 27 vs 13 | 2.08× |
 | Last synced {when} | Dernière synchronisation : {when} | 29 vs 14 | 2.07× |
 | Add tag | Ajouter un tag | 14 vs 7 | 2× |
 | All time | Toute la période | 16 vs 8 | 2× |
@@ -765,6 +789,7 @@ Strings: 1568. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; lo
 | Auto length bias | Ajustement de la longueur auto | 30 vs 16 | 1.88× |
 | Delete all data? | Supprimer toutes les données ? | 30 vs 16 | 1.88× |
 | Delete all data | Supprimer toutes les données | 28 vs 15 | 1.87× |
+| Mindset | État d'esprit | 13 vs 7 | 1.86× |
 | No Kindle email set. | Aucune adresse e-mail Kindle définie. | 37 vs 20 | 1.85× |
 | Show only research papers | Afficher uniquement les articles scientifiques | 46 vs 25 | 1.84× |
 | Switch on feed sync | Activer la synchronisation des flux | 35 vs 19 | 1.84× |
@@ -772,7 +797,10 @@ Strings: 1568. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; lo
 | No articles saved yet. | Aucun article enregistré pour l’instant. | 40 vs 22 | 1.82× |
 | Delete all data… | Supprimer toutes les données… | 29 vs 16 | 1.81× |
 | Mute / unmute reading | Couper / rétablir le son de la lecture | 38 vs 21 | 1.81× |
+| What apps may do | Ce que les apps peuvent faire | 29 vs 16 | 1.81× |
+| Lets an app save a URL into your inbox | Permet à une app d'enregistrer un lien dans votre boîte de réception | 68 vs 38 | 1.79× |
 | + Add tag | + Ajouter un tag | 16 vs 9 | 1.78× |
+| About you | À propos de vous | 16 vs 9 | 1.78× |
 | Show code | Afficher le code | 16 vs 9 | 1.78× |
 | No devices added yet. | Aucun appareil ajouté pour l’instant. | 37 vs 21 | 1.76× |
 | Feed sync is on. Scan the new code in the phone app once. | La synchronisation des flux est activée. Scannez le nouveau code une fois dans l'appli du téléphone. | 100 vs 57 | 1.75× |
@@ -818,6 +846,7 @@ Strings: 1568. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; lo
 | The feed list is too large to sync. | La liste des flux est trop grande pour être synchronisée. | 57 vs 35 | 1.63× |
 | This page has no text to save. | Cette page ne contient aucun texte à enregistrer. | 49 vs 30 | 1.63× |
 | D3 library failed to load. | Échec du chargement de la bibliothèque D3. | 42 vs 26 | 1.62× |
+| Never show articles tagged | Ne jamais montrer les articles avec le tag | 42 vs 26 | 1.62× |
 | Usage details | Détails d’utilisation | 21 vs 13 | 1.62× |
 | No settings match “{query}”. | Aucun réglage ne correspond à « {query} ». | 37 vs 23 | 1.61× |
 | No shortcuts match | Aucun raccourci ne correspond | 29 vs 18 | 1.61× |
@@ -830,9 +859,11 @@ Strings: 1568. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; lo
 | Switch tab | Changer d’onglet | 16 vs 10 | 1.6× |
 | This page can't be saved. | Cette page ne peut pas être enregistrée. | 40 vs 25 | 1.6× |
 | Verify & Log In | Vérifier et se connecter | 24 vs 15 | 1.6× |
+| Full article text | Texte intégral des articles | 27 vs 17 | 1.59× |
 | Allow browser extensions | Autoriser les extensions du navigateur | 38 vs 24 | 1.58× |
 | Get citation | Obtenir la citation | 19 vs 12 | 1.58× |
 | Instant read | Lecture instantanée | 19 vs 12 | 1.58× |
+| Let AI apps on this computer use my library | Autoriser les apps d'IA de cet ordinateur à utiliser ma bibliothèque | 68 vs 43 | 1.58× |
 | no recap yet | pas encore de récap | 19 vs 12 | 1.58× |
 | ☁️ Top terms | ☁️ Termes fréquents | 19 vs 12 | 1.58× |
 | Delete history | Supprimer l’historique | 22 vs 14 | 1.57× |
@@ -848,6 +879,7 @@ Strings: 1568. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; lo
 | Pair your phone first: Settings → Phone inbox. | Jumelez d’abord votre téléphone : Réglages → Boîte de réception mobile. | 71 vs 46 | 1.54× |
 | Search feeds… | Rechercher des flux… | 20 vs 13 | 1.54× |
 | Send to phone | Envoyer au téléphone | 20 vs 13 | 1.54× |
+| Show prompt › | Afficher le prompt › | 20 vs 13 | 1.54× |
 | Use Native Chrome Side Panel | Utiliser le panneau latéral natif de Chrome | 43 vs 28 | 1.54× |
 | {n} day recaps | {n} récaps quotidiens | 20 vs 13 | 1.54× |
 | Add Kindle device | Ajouter un appareil Kindle | 26 vs 17 | 1.53× |
@@ -856,6 +888,7 @@ Strings: 1568. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; lo
 | Click again to unpair | Cliquez à nouveau pour dissocier | 32 vs 21 | 1.52× |
 | {r} of {n} items rated · mood comes from AI scoring only | {r} articles sur {n} évalués · l’humeur provient uniquement de l’évaluation par l’IA | 82 vs 54 | 1.52× |
 | Sent. To receive it, scan the new code in the phone app once (Settings → Phone inbox). | Envoyé. Pour le recevoir, scannez le nouveau code une fois dans l’application du téléphone (Réglages → Boîte de réception mobile). | 130 vs 86 | 1.51× |
+| Add your own tag | Ajouter votre propre tag | 24 vs 16 | 1.5× |
 | Delete settings? | Supprimer les réglages ? | 24 vs 16 | 1.5× |
 | Error generating podcast: {msg} | Erreur lors de la création du podcast : {msg} | 42 vs 28 | 1.5× |
 | No receiver address set. | Aucune adresse de récepteur définie. | 36 vs 24 | 1.5× |
@@ -870,11 +903,14 @@ Strings: 1568. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; lo
 | Best match · {n} items | Meilleur résultat · {n} éléments | 31 vs 21 | 1.48× |
 | Edit feeds & tags in Settings | Modifier les flux et tags dans les réglages | 43 vs 29 | 1.48× |
 | Failed to load models | Échec du chargement des modèles | 31 vs 21 | 1.48× |
+| Add your own, e.g. parent of two | Ajoutez le vôtre, p. ex. parent de deux enfants | 47 vs 32 | 1.47× |
 | Delete settings | Supprimer les réglages | 22 vs 15 | 1.47× |
 | Found device at {ip} — click Add to save it ✓ | Appareil trouvé à {ip} — cliquez sur Ajouter pour l’enregistrer ✓ | 63 vs 43 | 1.47× |
 | Full style text | Texte de style complet | 22 vs 15 | 1.47× |
+| Last used vault | Dernier coffre utilisé | 22 vs 15 | 1.47× |
 | Open Command Prompt | Ouvrir l’invite de commandes | 28 vs 19 | 1.47× |
 | Used up — local models still work. | Épuisé : les modèles locaux fonctionnent toujours. | 50 vs 34 | 1.47× |
+| {name} · own server | {name} · serveur personnel | 22 vs 15 | 1.47× |
 | 📰  All sources | 📰  Toutes les sources | 22 vs 15 | 1.47× |
 | Ask about this briefing… | Poser une question sur ce briefing… | 35 vs 24 | 1.46× |
 | Export or restore all settings as a JSON file. | Exportez ou restaurez tous les réglages sous forme de fichier JSON. | 67 vs 46 | 1.46× |
@@ -985,6 +1021,7 @@ Strings: 1568. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; lo
 | Set as active send target | सक्रिय भेजने के गंतव्य के रूप में सेट करें | 42 vs 25 | 1.68× |
 | Changelog | बदलावों की सूची | 15 vs 9 | 1.67× |
 | Checking… | जाँच हो रही है… | 15 vs 9 | 1.67× |
+| Last used vault | पिछला इस्तेमाल किया वॉल्ट | 25 vs 15 | 1.67× |
 | Starting… | शुरू हो रहा है… | 15 vs 9 | 1.67× |
 | Scanning... | स्कैन हो रहा है... | 18 vs 11 | 1.64× |
 | View & Copy | देखें और कॉपी करें | 18 vs 11 | 1.64× |
@@ -1001,6 +1038,7 @@ Strings: 1568. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; lo
 | Enjoying AI Summary Helper? | क्या आपको AI Summary Helper पसंद आ रहा है? | 42 vs 27 | 1.56× |
 | Checking... | जांच हो रही है... | 17 vs 11 | 1.55× |
 | No background run yet. | अभी तक कोई बैकग्राउंड रन नहीं हुआ। | 34 vs 22 | 1.55× |
+| No calls yet. | अभी तक कोई कॉल नहीं। | 20 vs 13 | 1.54× |
 | Switching on… | चालू किया जा रहा है… | 20 vs 13 | 1.54× |
 | Export settings | सेटिंग्स एक्सपोर्ट करें | 23 vs 15 | 1.53× |
 | What to export? | क्या एक्सपोर्ट करना है? | 23 vs 15 | 1.53× |
@@ -1027,6 +1065,7 @@ Strings: 1568. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; lo
 | too many sends, try again later | बहुत ज़्यादा भेजे गए, बाद में फिर कोशिश करें | 44 vs 31 | 1.42× |
 | {done} of {total} sent. {error} | {total} में से {done} भेजे गए। {error} | 24 vs 17 | 1.41× |
 | ✨ Updating recap… | ✨ रीकैप अपडेट हो रहा है… | 24 vs 17 | 1.41× |
+| Let AI apps on this computer use my library | इस कंप्यूटर के AI ऐप्स को मेरी लाइब्रेरी इस्तेमाल करने दें | 58 vs 43 | 1.35× |
 | Found device at {ip} — click Add to save it ✓ | {ip} पर डिवाइस मिला — सहेजने के लिए जोड़ें पर क्लिक करें ✓ | 56 vs 43 | 1.3× |
 
 ### id
@@ -1038,6 +1077,7 @@ Strings: 1568. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; lo
 | All time | Sepanjang waktu | 15 vs 8 | 1.88× |
 | Mark as… | Tandai sebagai… | 15 vs 8 | 1.88× |
 | By time | Menurut waktu | 13 vs 7 | 1.86× |
+| What apps may do | Yang boleh dilakukan aplikasi | 29 vs 16 | 1.81× |
 | No answer. | Tidak ada jawaban. | 18 vs 10 | 1.8× |
 | Last used | Terakhir dipakai | 16 vs 9 | 1.78× |
 | Show list | Tampilkan daftar | 16 vs 9 | 1.78× |
@@ -1059,6 +1099,8 @@ Strings: 1568. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; lo
 | Quit Ollama | Keluar dari Ollama | 18 vs 11 | 1.64× |
 | Unsubscribe | Berhenti langganan | 18 vs 11 | 1.64× |
 | or consider | atau pertimbangkan | 18 vs 11 | 1.64× |
+| Add your own tag | Tambahkan tag Anda sendiri | 26 vs 16 | 1.63× |
+| Never show articles tagged | Jangan pernah tampilkan artikel dengan tag | 42 vs 26 | 1.62× |
 | Unknown error | Error tidak diketahui | 21 vs 13 | 1.62× |
 | unknown error | error tidak diketahui | 21 vs 13 | 1.62× |
 | No items to recap here. | Tidak ada item untuk direkap di sini. | 37 vs 23 | 1.61× |
@@ -1074,10 +1116,13 @@ Strings: 1568. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; lo
 | {name} · API key set | {name} · API key sudah diatur | 25 vs 16 | 1.56× |
 | Unread · {n} | Belum dibaca · {n} | 17 vs 11 | 1.55× |
 | What I used | Yang saya gunakan | 17 vs 11 | 1.55× |
+| No calls yet. | Belum ada panggilan. | 20 vs 13 | 1.54× |
+| Lets an app save a URL into your inbox | Memungkinkan aplikasi menyimpan tautan ke kotak masuk Anda | 58 vs 38 | 1.53× |
 | No author found | Penulis tidak ditemukan | 23 vs 15 | 1.53× |
 | No devices added yet. | Belum ada perangkat ditambahkan. | 32 vs 21 | 1.52× |
 | Marked {n} unread | {n} ditandai belum dibaca | 24 vs 16 | 1.5× |
 | a run takes about {t} | satu proses memakan sekitar {t} | 30 vs 20 | 1.5× |
+| Last used vault | Vault terakhir dipakai | 22 vs 15 | 1.47× |
 | Mark {n} summary as… | Tandai {n} ringkasan sebagai… | 28 vs 19 | 1.47× |
 | Storage & cleanup | Penyimpanan & pembersihan | 25 vs 17 | 1.47× |
 | This page has no text to save. | Halaman ini tidak punya teks untuk disimpan. | 44 vs 30 | 1.47× |
@@ -1098,6 +1143,7 @@ Strings: 1568. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; lo
 | No recent summaries | Belum ada ringkasan terbaru | 27 vs 19 | 1.42× |
 | Saved data: {size}. Tick what can go. | Data tersimpan: {size}. Centang yang boleh dihapus. | 47 vs 33 | 1.42× |
 | Scan failed. Enter IP manually. | Pemindaian gagal. Masukkan IP secara manual. | 44 vs 31 | 1.42× |
+| Add your own, e.g. parent of two | Tambahkan milik Anda, mis. orang tua dua anak | 45 vs 32 | 1.41× |
 | Found device at {ip} — click Add to save it ✓ | Perangkat ditemukan di {ip} — klik Tambah untuk menyimpannya ✓ | 60 vs 43 | 1.4× |
 | Nothing large, unopened or duplicated to remove. | Tidak ada yang besar, belum dibuka, atau duplikat untuk dihapus. | 64 vs 48 | 1.33× |
 | Send to phone is on: use ⋯ → Send to phone on any article to read it on the go. | Kirim ke ponsel aktif: gunakan ⋯ → Kirim ke ponsel pada artikel mana pun untuk membacanya saat bepergian. | 105 vs 79 | 1.33× |
@@ -1106,6 +1152,7 @@ Strings: 1568. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; lo
 | ✓ Every frequently used tag already has a name — nothing to do. | ✓ Setiap tag yang sering dipakai sudah punya nama — tidak ada yang perlu dilakukan. | 83 vs 63 | 1.32× |
 | Uses your AI model · one extra call · in your app language | Memakai model AI Anda · satu panggilan tambahan · dalam bahasa aplikasi Anda | 76 vs 58 | 1.31× |
 | Darker = more items · ✨ = recap done · long-press a day, then another, for a range | Lebih gelap = lebih banyak item · ✨ = rekap selesai · tekan lama sebuah hari, lalu hari lain, untuk rentang | 107 vs 82 | 1.3× |
+| Let AI apps on this computer use my library | Izinkan aplikasi AI di komputer ini memakai pustaka saya | 56 vs 43 | 1.3× |
 | Pair your phone first: Settings → Phone inbox. | Pasangkan ponsel Anda dulu: Pengaturan → Kotak masuk ponsel. | 60 vs 46 | 1.3× |
 | The same page saved more than once. The newest copy with a summary stays. | Halaman yang sama tersimpan lebih dari sekali. Salinan terbaru dengan ringkasan tetap disimpan. | 95 vs 73 | 1.3× |
 
@@ -1144,6 +1191,7 @@ Strings: 1568. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; lo
 | Enter code | Inserisci il codice | 19 vs 10 | 1.9× |
 | No items | Nessun articolo | 15 vs 8 | 1.88× |
 | Testing… | Prova in corso… | 15 vs 8 | 1.88× |
+| No calls yet. | Ancora nessuna chiamata. | 24 vs 13 | 1.85× |
 | Switch on feed sync | Attiva la sincronizzazione dei feed | 35 vs 19 | 1.84× |
 | No items yet | Ancora nessun elemento | 22 vs 12 | 1.83× |
 | Recap failed | Riepilogo non riuscito | 22 vs 12 | 1.83× |
@@ -1166,6 +1214,7 @@ Strings: 1568. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; lo
 | Custom prompt text | Testo del prompt personalizzato | 31 vs 18 | 1.72× |
 | No shortcuts match | Nessuna scorciatoia corrisponde | 31 vs 18 | 1.72× |
 | Feed refresh interval | Intervallo di aggiornamento dei feed | 36 vs 21 | 1.71× |
+| Full article text | Testo completo degli articoli | 29 vs 17 | 1.71× |
 | last opened {d} | aperto l’ultima volta {d} | 24 vs 14 | 1.71× |
 | Feed sync is on. Scan the new code in the phone app once. | La sincronizzazione dei feed è attiva. Scansiona il nuovo codice una volta nell'app del telefono. | 97 vs 57 | 1.7× |
 | Mood index | Indice dell’umore | 17 vs 10 | 1.7× |
@@ -1188,6 +1237,7 @@ Strings: 1568. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; lo
 | Unsubscribe | Annulla iscrizione | 18 vs 11 | 1.64× |
 | {input} in / {output} out per 1M tokens | {input} in ingresso / {output} in uscita per 1 M di token | 46 vs 28 | 1.64× |
 | Delete settings? | Eliminare le impostazioni? | 26 vs 16 | 1.63× |
+| Lets an app save a URL into your inbox | Consente a un'app di salvare un link nella tua posta in arrivo | 62 vs 38 | 1.63× |
 | Model identifier | Identificatore del modello | 26 vs 16 | 1.63× |
 | 🕸️ Add a connection map | 🕸️ Aggiungi una mappa dei collegamenti | 39 vs 24 | 1.63× |
 | Custom style: | Stile personalizzato: | 21 vs 13 | 1.62× |
@@ -1208,6 +1258,7 @@ Strings: 1568. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; lo
 | Reference list | Elenco dei riferimenti | 22 vs 14 | 1.57× |
 | Request failed | Richiesta non riuscita | 22 vs 14 | 1.57× |
 | Active send target | Destinazione di invio attiva | 28 vs 18 | 1.56× |
+| Let AI apps on this computer use my library | Consenti alle app di IA su questo computer di usare la mia libreria | 67 vs 43 | 1.56× |
 | Right-click the Ollama tray icon (bottom-right) and choose <b>Quit</b>. | Clicca con il tasto destro sull'icona di Ollama nell'area di notifica (in basso a destra) e scegli <b>Quit</b>. | 111 vs 71 | 1.56× |
 | {name} · API key set | {name} · chiave API impostata | 25 vs 16 | 1.56× |
 | Invalid Key | Chiave non valida | 17 vs 11 | 1.55× |
@@ -1217,6 +1268,7 @@ Strings: 1568. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; lo
 | a run takes about {t} | un’esecuzione richiede circa {t} | 31 vs 20 | 1.55× |
 | waiting {s}s | in attesa da {s} s | 17 vs 11 | 1.55× |
 | Failed to export backup. | Esportazione del backup non riuscita. | 37 vs 24 | 1.54× |
+| Never show articles tagged | Non mostrare mai gli articoli con il tag | 40 vs 26 | 1.54× |
 | Standup humor | Umorismo da stand-up | 20 vs 13 | 1.54× |
 | Usage details | Dettagli di utilizzo | 20 vs 13 | 1.54× |
 | Browser Default | Predefinito del browser | 23 vs 15 | 1.53× |
@@ -1242,6 +1294,7 @@ Strings: 1568. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; lo
 | No background run yet. | Nessuna esecuzione in background. | 33 vs 22 | 1.5× |
 | Page text · {n} words | Testo della pagina · {n} parole | 30 vs 20 | 1.5× |
 | Profile · text size · motion | Profilo · dimensione del testo · movimento | 42 vs 28 | 1.5× |
+| What apps may do | Cosa possono fare le app | 24 vs 16 | 1.5× |
 | Feed sync is on: your feed list (no articles) syncs end-to-end encrypted with your phone. | La sincronizzazione dei feed è attiva: l'elenco dei feed (senza articoli) si sincronizza con il telefono con crittografia end-to-end. | 133 vs 89 | 1.49× |
 | Sent. To receive it, scan the new code in the phone app once (Settings → Phone inbox). | Inviato. Per riceverlo, scansiona il nuovo codice una volta nell’app del telefono (Impostazioni → Posta in arrivo dal telefono). | 128 vs 86 | 1.49× |
 | Switch graph search to highlight mode | Passa la ricerca del grafo alla modalità evidenziazione | 55 vs 37 | 1.49× |
@@ -1274,10 +1327,13 @@ Strings: 1568. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; lo
 | Summary length in words | Lunghezza del riassunto in parole | 33 vs 23 | 1.43× |
 | {n} older item is not in this recap. | {n} elemento più vecchio non è in questo riepilogo. | 50 vs 35 | 1.43× |
 | Allow browser extensions | Consenti le estensioni del browser | 34 vs 24 | 1.42× |
+| Enter the server address in Settings | Inserisci l'indirizzo del server nelle Impostazioni | 51 vs 36 | 1.42× |
 | Local models. No account, no key. | Modelli locali. Nessun account, nessuna chiave. | 47 vs 33 | 1.42× |
 | Native Chrome side panel | Pannello laterale nativo di Chrome | 34 vs 24 | 1.42× |
+| Add your own, e.g. parent of two | Aggiungine uno tuo, es. genitore di due figli | 45 vs 32 | 1.41× |
 | Send to phone is on. Scan the new code in the phone app once. | Invia al telefono è attivo. Scansiona il nuovo codice una volta nell’app del telefono. | 86 vs 61 | 1.41× |
 | TTS returned no audio. | Il TTS non ha restituito audio. | 31 vs 22 | 1.41× |
+| Waiting for a pairing code. | In attesa di un codice di abbinamento. | 38 vs 27 | 1.41× |
 | {name} · local, no API key | {name} · locale, nessuna chiave API | 31 vs 22 | 1.41× |
 | {n} older items are not in this recap. | {n} elementi più vecchi non sono in questo riepilogo. | 52 vs 37 | 1.41× |
 | 📍 Add to article | 📍 Aggiungi all'articolo | 24 vs 17 | 1.41× |
@@ -1292,8 +1348,10 @@ Strings: 1568. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; lo
 | {n} older item is not in this recap (limit: {max} per recap). | {n} elemento più vecchio non è in questo riepilogo (limite: {max} per riepilogo). | 77 vs 57 | 1.35× |
 | {name} · API key missing — add it in Settings | {name} · chiave API mancante: aggiungila nelle Impostazioni | 55 vs 41 | 1.34× |
 | {n} older items are not in this recap (limit: {max} per recap). | {n} elementi più vecchi non sono in questo riepilogo (limite: {max} per riepilogo). | 79 vs 59 | 1.34× |
+| No model list from this server — type the model name | Nessun elenco di modelli da questo server: scrivi il nome del modello | 69 vs 52 | 1.33× |
 | Choose one delivery method for article detail actions. | Scegli un metodo di consegna per le azioni nel dettaglio dell'articolo. | 71 vs 54 | 1.31× |
 | Pick a way to run your summaries. Change it any time in settings. | Scegli come generare i tuoi riassunti. Puoi cambiarlo quando vuoi nelle impostazioni. | 85 vs 65 | 1.31× |
+| Server rejects the key — check it in Settings | Il server rifiuta la chiave: controllala nelle Impostazioni | 59 vs 45 | 1.31× |
 | The synced feed list could not be read. Unpair and pair again. | Impossibile leggere l'elenco dei feed sincronizzato. Scollega e associa di nuovo. | 81 vs 62 | 1.31× |
 | e.g. Prefer European news and keep it upbeat. | es. Preferisci notizie europee e mantieni un tono positivo. | 59 vs 45 | 1.31× |
 
@@ -1309,6 +1367,7 @@ Strings: 1568. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; lo
 | Design | 研究デザイン | 12 vs 6 | 2× |
 | Export | エクスポート | 12 vs 6 | 2× |
 | Name tags | タグに名前を付ける | 18 vs 9 | 2× |
+| No calls yet. | まだ呼び出しはありません。 | 26 vs 13 | 2× |
 | No items yet | アイテムはまだありません | 24 vs 12 | 2× |
 | Paired | ペア設定済み | 12 vs 6 | 2× |
 | Scored {a} of {b}… | {b} 件中 {a} 件をスコアリング済み… | 32 vs 16 | 2× |
@@ -1395,17 +1454,20 @@ Strings: 1568. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; lo
 | Send to phone is on. Scan the new code in the phone app once. | 「スマホに送る」がオンです。スマホアプリで新しいコードを一度スキャンしてください。 | 82 vs 61 | 1.34× |
 | Pick the receiver. Its app has to be open and on the same Wi‑Fi. | 受信先を選択してください。相手のアプリを開き、同じWi‑Fiに接続しておく必要があります。 | 85 vs 64 | 1.33× |
 | the pairing is no longer valid, pair again | ペア設定が無効になりました。もう一度ペア設定してください | 56 vs 42 | 1.33× |
+| Let AI apps on this computer use my library | このコンピュータの AI アプリにライブラリの使用を許可する | 56 vs 43 | 1.3× |
 
 ### ko
 | English | Translation | width | ratio |
 |---|---|---|---|
 | n/a | 해당 없음 | 9 vs 3 | 3× |
+| Stoic | 스토아주의자 | 12 vs 5 | 2.4× |
 | or consider | 또는 다음을 고려해 보세요: | 26 vs 11 | 2.36× |
 | Sent to {name} | {name}(으)로 전송했습니다 | 21 vs 10 | 2.1× |
 | Name tags | 태그 이름 붙이기 | 16 vs 9 | 1.78× |
 | No Kindle email set. | Kindle 이메일이 설정되지 않았어요. | 34 vs 20 | 1.7× |
 | No items yet | 아직 항목이 없습니다 | 20 vs 12 | 1.67× |
 | Phone inbox | 휴대폰 받은 편지함 | 18 vs 11 | 1.64× |
+| No calls yet. | 아직 호출이 없습니다. | 21 vs 13 | 1.62× |
 | 4 digits, sent to {email} | 4자리 코드를 {email}(으)로 보냈습니다 | 32 vs 20 | 1.6× |
 | Best value | 가성비 좋은 모델 | 16 vs 10 | 1.6× |
 | No answer. | 답변이 없습니다. | 16 vs 10 | 1.6× |
@@ -1429,6 +1491,7 @@ Strings: 1568. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; lo
 ### nl
 | English | Translation | width | ratio |
 |---|---|---|---|
+| Disconnect | Verbinding verbreken | 20 vs 10 | 2× |
 | Images | Afbeeldingen | 12 vs 6 | 2× |
 | Use {id} | {id} gebruiken | 12 vs 6 | 2× |
 | Use {p} | {p} gebruiken | 12 vs 6 | 2× |
@@ -1501,6 +1564,7 @@ Strings: 1568. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; lo
 | Summary length in words | Lengte van samenvatting in woorden | 34 vs 23 | 1.48× |
 | {n} steps, then merged | {n} stappen, daarna samengevoegd | 31 vs 21 | 1.48× |
 | Add Kindle device | Kindle-apparaat toevoegen | 25 vs 17 | 1.47× |
+| Last used vault | Laatst gebruikte vault | 22 vs 15 | 1.47× |
 | Only summarized articles can be sent | Alleen samengevatte artikelen kunnen worden verzonden | 53 vs 36 | 1.47× |
 | Open in History | Openen in Geschiedenis | 22 vs 15 | 1.47× |
 | Stack similar items | Vergelijkbare items stapelen | 28 vs 19 | 1.47× |
@@ -1541,6 +1605,7 @@ Strings: 1568. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; lo
 | The synced feed list could not be read. Unpair and pair again. | De gesynchroniseerde feedlijst kon niet worden gelezen. Ontkoppel en koppel opnieuw. | 84 vs 62 | 1.35× |
 | Over {n} articles only the {n} newest are used; narrow topics or period for full coverage. | Bij meer dan {n} artikelen worden alleen de {n} nieuwste gebruikt; beperk onderwerpen of periode voor volledige dekking. | 118 vs 88 | 1.34× |
 | Send to phone is on: use ⋯ → Send to phone on any article to read it on the go. | Naar telefoon sturen staat aan: gebruik ⋯ → Naar telefoon sturen bij een artikel om het onderweg te lezen. | 106 vs 79 | 1.34× |
+| Let AI apps on this computer use my library | AI-apps op deze computer mogen mijn bibliotheek gebruiken | 57 vs 43 | 1.33× |
 | No tags found. Add tags to your summaries! | Geen tags gevonden. Voeg tags toe aan je samenvattingen! | 56 vs 42 | 1.33× |
 | Saved without an AI summary. Open the page and tap ✨ Summarize to add one. | Opgeslagen zonder AI-samenvatting. Open de pagina en tik op ✨ Samenvatten om er een toe te voegen. | 98 vs 74 | 1.32× |
 | {a} items to rate · {b} days to recap · {n} AI requests | {a} items te beoordelen · {b} dagen terug te blikken · {n} AI-verzoeken | 68 vs 52 | 1.31× |
@@ -1593,6 +1658,7 @@ Strings: 1568. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; lo
 | {name} · API key missing — add it in Settings | {name} · API-nøkkel mangler – legg den til i Innstillinger | 54 vs 41 | 1.32× |
 | No feeds yet. Add one below or import an OPML file. | Ingen feeder ennå. Legg til en nedenfor eller importer en OPML-fil. | 67 vs 51 | 1.31× |
 | Nothing new since this recap — Reset rewrites it from scratch. | Ingenting nytt siden denne recapen – Nullstill skriver den på nytt fra bunnen av. | 81 vs 62 | 1.31× |
+| Let AI apps on this computer use my library | La KI-apper på denne datamaskinen bruke biblioteket mitt | 56 vs 43 | 1.3× |
 
 ### pl
 | English | Translation | width | ratio |
@@ -1620,6 +1686,7 @@ Strings: 1568. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; lo
 | Auto-Detect | Wykryj automatycznie | 20 vs 11 | 1.82× |
 | View & Copy | Podgląd i kopiowanie | 20 vs 11 | 1.82× |
 | Not set up | Nie skonfigurowano | 18 vs 10 | 1.8× |
+| Save links | Zapisywanie linków | 18 vs 10 | 1.8× |
 | No key facts found | Nie znaleziono kluczowych faktów | 32 vs 18 | 1.78× |
 | Archived | Zarchiwizowane | 14 vs 8 | 1.75× |
 | Ask a follow-up… | Zadaj pytanie uzupełniające… | 28 vs 16 | 1.75× |
@@ -1638,6 +1705,7 @@ Strings: 1568. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; lo
 | Clear search | Wyczyść wyszukiwanie | 20 vs 12 | 1.67× |
 | Citation lookup failed — try again | Wyszukanie cytowania nie powiodło się — spróbuj ponownie | 56 vs 34 | 1.65× |
 | {n}/mo · {r}% read | {n}/mies. · przeczytano {r}% | 26 vs 16 | 1.63× |
+| No calls yet. | Jeszcze brak wywołań. | 21 vs 13 | 1.62× |
 | {n} paper skipped (no DOI or lookup failed) | {n} publikacja pominięta (brak DOI lub wyszukiwanie nie powiodło się) | 68 vs 42 | 1.62× |
 | All topics | Wszystkie tematy | 16 vs 10 | 1.6× |
 | No answer. | Brak odpowiedzi. | 16 vs 10 | 1.6× |
@@ -1649,6 +1717,7 @@ Strings: 1568. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; lo
 | Recap copied | Skopiowano przegląd | 19 vs 12 | 1.58× |
 | Send & Share | Wyślij i udostępnij | 19 vs 12 | 1.58× |
 | Best match · {n} items | Najlepsze dopasowanie · wpisy: {n} | 33 vs 21 | 1.57× |
+| Let AI apps on this computer use my library | Pozwól aplikacjom AI na tym komputerze korzystać z mojej biblioteki | 67 vs 43 | 1.56× |
 | Exported! ✓ | Wyeksportowano! ✓ | 17 vs 11 | 1.55× |
 | New summary | Nowe podsumowanie | 17 vs 11 | 1.55× |
 | Phone inbox | Skrzynka telefonu | 17 vs 11 | 1.55× |
@@ -1784,6 +1853,7 @@ Strings: 1568. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; lo
 | UI language | Idioma da interface | 19 vs 11 | 1.73× |
 | Last synced {when} | Última sincronização: {when} | 24 vs 14 | 1.71× |
 | World news | Notícias do mundo | 17 vs 10 | 1.7× |
+| No calls yet. | Nenhuma chamada ainda. | 22 vs 13 | 1.69× |
 | Check now | Verificar agora | 15 vs 9 | 1.67× |
 | Motion on | Movimento ativo | 15 vs 9 | 1.67× |
 | Page text | Texto da página | 15 vs 9 | 1.67× |
@@ -1816,10 +1886,12 @@ Strings: 1568. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; lo
 | Marked {n} read | {n} marcados como lidos | 22 vs 14 | 1.57× |
 | View: Filtered | Visualização: filtrada | 22 vs 14 | 1.57× |
 | — Feel free to | — Fique à vontade para | 22 vs 14 | 1.57× |
+| Add your own tag | Adicionar sua própria tag | 25 vs 16 | 1.56× |
 | Delete settings? | Excluir as configurações? | 25 vs 16 | 1.56× |
 | Magic code sent! ✨ Check your inbox. | Código mágico enviado! ✨ Verifique sua caixa de entrada. | 56 vs 36 | 1.56× |
 | No key facts found | Nenhum fato-chave encontrado | 28 vs 18 | 1.56× |
 | Sort: Read share | Ordenar: porcentagem lida | 25 vs 16 | 1.56× |
+| What apps may do | O que os apps podem fazer | 25 vs 16 | 1.56× |
 | Add LocalSend device | Adicionar dispositivo LocalSend | 31 vs 20 | 1.55× |
 | No tags found. Add tags to your summaries! | Nenhuma etiqueta encontrada. Adicione etiquetas aos seus resumos! | 65 vs 42 | 1.55× |
 | {n} tag lists to name | {n} listas de etiquetas a nomear | 31 vs 20 | 1.55× |
@@ -1833,6 +1905,7 @@ Strings: 1568. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; lo
 | ☁️ Word Cloud | ☁️ Nuvem de palavras | 20 vs 13 | 1.54× |
 | (on iOS, hold to drag for 2 seconds) | (no iOS, mantenha pressionado 2 segundos para arrastar) | 55 vs 36 | 1.53× |
 | Found device at {ip} — click Add to save it ✓ | Dispositivo encontrado em {ip} — clique em Adicionar para salvá-lo ✓ | 66 vs 43 | 1.53× |
+| Full article text | Texto completo dos artigos | 26 vs 17 | 1.53× |
 | No author found | Nenhum autor encontrado | 23 vs 15 | 1.53× |
 | Switch on feed sync | Ativar sincronização de feeds | 29 vs 19 | 1.53× |
 | Upgrade to Pro Pass | Fazer upgrade para o Pro Pass | 29 vs 19 | 1.53× |
@@ -1849,6 +1922,7 @@ Strings: 1568. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; lo
 | Delete all data | Excluir todos os dados | 22 vs 15 | 1.47× |
 | Export settings | Exportar configurações | 22 vs 15 | 1.47× |
 | Import settings | Importar configurações | 22 vs 15 | 1.47× |
+| Lets an app save a URL into your inbox | Permite que um app salve um link na sua caixa de entrada | 56 vs 38 | 1.47× |
 | Model Identifiers | Identificadores de modelo | 25 vs 17 | 1.47× |
 | Model is writing… | O modelo está escrevendo… | 25 vs 17 | 1.47× |
 | No sources match. | Nenhuma fonte encontrada. | 25 vs 17 | 1.47× |
@@ -1870,6 +1944,7 @@ Strings: 1568. Length budget: ≤14 cols → max(1.5×, +5); ≤40 → 1.4×; lo
 | Delete all data? | Excluir todos os dados? | 23 vs 16 | 1.44× |
 | Delete all data… | Excluir todos os dados… | 23 vs 16 | 1.44× |
 | Flesch reading ease: {ease}/100 | Facilidade de leitura de Flesch: {ease}/100 | 39 vs 27 | 1.44× |
+| Let AI apps on this computer use my library | Permitir que apps de IA neste computador usem minha biblioteca | 62 vs 43 | 1.44× |
 | Model identifier | Identificador do modelo | 23 vs 16 | 1.44× |
 | No matches found | Nenhuma correspondência | 23 vs 16 | 1.44× |
 | Not set up yet — add a receiver in Settings | Ainda não configurado — adicione um receptor nas Configurações | 62 vs 43 | 1.44× |
@@ -1939,6 +2014,7 @@ Enviar este artigo para o Kindle? | 270 vs 201 | 1.34× |
 | No background run yet. | Ainda não houve uma execução em segundo plano. | 46 vs 22 | 2.09× |
 | Export backup first | Exporte primeiro uma cópia de segurança | 39 vs 19 | 2.05× |
 | AI-rated | Avaliados por IA | 16 vs 8 | 2× |
+| Add your own tag | Adicionar a sua própria etiqueta | 32 vs 16 | 2× |
 | Casual | Descontraído | 12 vs 6 | 2× |
 | Line spacing | Espaçamento entre linhas | 24 vs 12 | 2× |
 | My own API key | A minha própria chave de API | 28 vs 14 | 2× |
@@ -2007,6 +2083,7 @@ Enviar este artigo para o Kindle? | 270 vs 201 | 1.34× |
 | waiting {s}s | a aguardar há {s} s | 18 vs 11 | 1.64× |
 | Dismiss graph stats | Dispensar estatísticas do grafo | 31 vs 19 | 1.63× |
 | Failed to export backup. | Falha ao exportar a cópia de segurança. | 39 vs 24 | 1.63× |
+| Lets an app save a URL into your inbox | Permite que uma app guarde uma ligação na sua caixa de entrada | 62 vs 38 | 1.63× |
 | Marked {n} unread | {n} marcados como não lidos | 26 vs 16 | 1.63× |
 | Pair your phone first: Settings → Phone inbox. | Emparelhe primeiro o telemóvel: Definições → Caixa de entrada do telemóvel. | 75 vs 46 | 1.63× |
 | {name} · API key set | {name} · chave da API definida | 26 vs 16 | 1.63× |
@@ -2025,6 +2102,7 @@ Enviar este artigo para o Kindle? | 270 vs 201 | 1.34× |
 | Open in new tab | Abrir num novo separador | 24 vs 15 | 1.6× |
 | Preset: {name} | Predefinição: {name} | 16 vs 10 | 1.6× |
 | Remove tag | Remover etiqueta | 16 vs 10 | 1.6× |
+| Save links | Guardar ligações | 16 vs 10 | 1.6× |
 | Feed sync is on. Scan the new code in the phone app once. | A sincronização de feeds está ativa. Leia o novo código uma vez na aplicação do telemóvel. | 90 vs 57 | 1.58× |
 | Instant read | Leitura instantânea | 19 vs 12 | 1.58× |
 | Keep feed items for | Manter itens dos feeds durante | 30 vs 19 | 1.58× |
@@ -2034,8 +2112,10 @@ Enviar este artigo para o Kindle? | 270 vs 201 | 1.34× |
 | Marked {n} read | {n} marcados como lidos | 22 vs 14 | 1.57× |
 | Account sync · sign in / log out | Sincronização da conta · iniciar / terminar sessão | 50 vs 32 | 1.56× |
 | Found device at {ip} — click Add to save it ✓ | Dispositivo encontrado em {ip} — clique em Adicionar para o guardar ✓ | 67 vs 43 | 1.56× |
+| Let AI apps on this computer use my library | Permitir que as apps de IA neste computador usem a minha biblioteca | 67 vs 43 | 1.56× |
 | Restore to Inbox | Repor na caixa de entrada | 25 vs 16 | 1.56× |
 | Sort: Read share | Ordenar: percentagem lida | 25 vs 16 | 1.56× |
+| What apps may do | O que as apps podem fazer | 25 vs 16 | 1.56× |
 | Add LocalSend device | Adicionar dispositivo LocalSend | 31 vs 20 | 1.55× |
 | Logged out. | Sessão terminada. | 17 vs 11 | 1.55× |
 | No tags found. Add tags to your summaries! | Nenhuma etiqueta encontrada. Adicione etiquetas aos seus resumos! | 65 vs 42 | 1.55× |
@@ -2046,11 +2126,13 @@ Enviar este artigo para o Kindle? | 270 vs 201 | 1.34× |
 | Showing top tags (archive is large) | A mostrar as etiquetas principais (o arquivo é grande) | 54 vs 35 | 1.54× |
 | ☁️ Word Cloud | ☁️ Nuvem de palavras | 20 vs 13 | 1.54× |
 | Delete all data | Eliminar todos os dados | 23 vs 15 | 1.53× |
+| Full article text | Texto integral dos artigos | 26 vs 17 | 1.53× |
 | No author found | Nenhum autor encontrado | 23 vs 15 | 1.53× |
 | Switch on feed sync | Ativar sincronização de feeds | 29 vs 19 | 1.53× |
 | 📈 Mood over time | 📈 Humor ao longo do tempo | 26 vs 17 | 1.53× |
 | AI-rated: positive news | Avaliado por IA: notícias positivas | 35 vs 23 | 1.52× |
 | API keys, sign-in & license | Chaves de API, início de sessão e licença | 41 vs 27 | 1.52× |
+| Paste your pairing code | Cole o seu código de emparelhamento | 35 vs 23 | 1.52× |
 | No password. We email you a short code. | Sem palavra-passe. Enviamos-lhe um código curto por e-mail. | 59 vs 39 | 1.51× |
 | The feed list is too large to sync. | A lista de feeds é demasiado grande para sincronizar. | 53 vs 35 | 1.51× |
 | Delete all data? | Eliminar todos os dados? | 24 vs 16 | 1.5× |
@@ -2061,6 +2143,7 @@ Enviar este artigo para o Kindle? | 270 vs 201 | 1.34× |
 | ↩ Restore to Inbox | ↩ Repor na caixa de entrada | 27 vs 18 | 1.5× |
 | Not enough text data yet. | Ainda sem dados de texto suficientes. | 37 vs 25 | 1.48× |
 | Sending to {name} in {n} s | A enviar para {name} dentro de {n} s | 31 vs 21 | 1.48× |
+| Waiting for a pairing code. | À espera de um código de emparelhamento. | 40 vs 27 | 1.48× |
 | Filled from doi.org. Check and change anything. | Preenchido a partir de doi.org. Verifique e altere o que for preciso. | 69 vs 47 | 1.47× |
 | Model Identifiers | Identificadores de modelo | 25 vs 17 | 1.47× |
 | Model is writing… | O modelo está a escrever… | 25 vs 17 | 1.47× |
@@ -2147,6 +2230,7 @@ Enviar este artigo para o Kindle? | 270 vs 201 | 1.34× |
 | Use {id} | Использовать {id} | 15 vs 6 | 2.5× |
 | Use {p} | Использовать {p} | 15 vs 6 | 2.5× |
 | Casual | Непринуждённый | 14 vs 6 | 2.33× |
+| Last used vault | Последнее использованное хранилище | 34 vs 15 | 2.27× |
 | Saved | Сэкономлено | 11 vs 5 | 2.2× |
 | Sort: Mood | Сортировка: настроение | 22 vs 10 | 2.2× |
 | Sort: Unread | Сортировка: непрочитанные | 25 vs 12 | 2.08× |
@@ -2189,12 +2273,14 @@ Enviar este artigo para o Kindle? | 270 vs 201 | 1.34× |
 | Save options | Параметры сохранения | 20 vs 12 | 1.67× |
 | Show list | Показать список | 15 vs 9 | 1.67× |
 | Found device at {ip} — click Add to save it ✓ | Устройство найдено по адресу {ip} — нажмите «Добавить», чтобы сохранить ✓ | 71 vs 43 | 1.65× |
+| Let AI apps on this computer use my library | Разрешить ИИ-приложениям на этом компьютере использовать мою библиотеку | 71 vs 43 | 1.65× |
 | High contrast | Высокая контрастность | 21 vs 13 | 1.62× |
 | Next sentence | Следующее предложение | 21 vs 13 | 1.62× |
 | {n} files sent | Отправлено файлов: {n} | 21 vs 13 | 1.62× |
 | Use Native Chrome Side Panel | Использовать встроенную боковую панель Chrome | 45 vs 28 | 1.61× |
 | Free Trial Mode | Бесплатный пробный режим | 24 vs 15 | 1.6× |
 | Open in sidebar | Открыть в боковой панели | 24 vs 15 | 1.6× |
+| Save links | Сохранять ссылки | 16 vs 10 | 1.6× |
 | Sent to {name} | Отправлено на {name} | 16 vs 10 | 1.6× |
 | Queue a question… | Поставить вопрос в очередь… | 27 vs 17 | 1.59× |
 | No items yet | Пока нет материалов | 19 vs 12 | 1.58× |
@@ -2226,6 +2312,7 @@ Enviar este artigo para o Kindle? | 270 vs 201 | 1.34× |
 | Couldn't save this page. Open it once and try again. | Не удалось сохранить эту страницу. Откройте её один раз и повторите попытку. | 76 vs 52 | 1.46× |
 | Add LocalSend device | Добавить устройство LocalSend | 29 vs 20 | 1.45× |
 | ☁️ Free cloud models | ☁️ Бесплатные облачные модели | 29 vs 20 | 1.45× |
+| Add your own, e.g. parent of two | Добавьте свой, например «родитель двоих детей» | 46 vs 32 | 1.44× |
 | Summarize / send | Суммировать / отправить | 23 vs 16 | 1.44× |
 | {n} duplicate tag | Повторяющихся тегов: {n} | 23 vs 16 | 1.44× |
 | Copied as plain text. | Скопировано как обычный текст. | 30 vs 21 | 1.43× |
@@ -2262,6 +2349,7 @@ Enviar este artigo para o Kindle? | 270 vs 201 | 1.34× |
 | English | Translation | width | ratio |
 |---|---|---|---|
 | Add | Lägg till | 9 vs 3 | 3× |
+| Mindset | Förhållningssätt | 16 vs 7 | 2.29× |
 | + Add | + Lägg till | 11 vs 5 | 2.2× |
 | Add tag | Lägg till tagg | 14 vs 7 | 2× |
 | Failed | Misslyckades | 12 vs 6 | 2× |
@@ -2364,6 +2452,7 @@ Enviar este artigo para o Kindle? | 270 vs 201 | 1.34× |
 | Related | ที่เกี่ยวข้อง | 13 vs 7 | 1.86× |
 | Phone inbox | กล่องข้อความโทรศัพท์ | 20 vs 11 | 1.82× |
 | Auto length bias | ความโน้มเอียงความยาวอัตโนมัติ | 29 vs 16 | 1.81× |
+| Disconnect | ยกเลิกการเชื่อมต่อ | 18 vs 10 | 1.8× |
 | Save only | บันทึกอย่างเดียว | 16 vs 9 | 1.78× |
 | {n} panes | {n} บานหน้าต่าง | 14 vs 8 | 1.75× |
 | 🎓 Mark as paper | 🎓 ทำเครื่องหมายเป็นงานวิจัย | 28 vs 16 | 1.75× |
@@ -2371,6 +2460,7 @@ Enviar este artigo para o Kindle? | 270 vs 201 | 1.34× |
 | About & Tools | เกี่ยวกับและเครื่องมือ | 22 vs 13 | 1.69× |
 | Motion & layout | การเคลื่อนไหวและเลย์เอาต์ | 25 vs 15 | 1.67× |
 | Pane {n} view | มุมมองบานหน้าต่าง {n} | 20 vs 12 | 1.67× |
+| {name} · own server | {name} · เซิร์ฟเวอร์ของคุณเอง | 25 vs 15 | 1.67× |
 | Marked {n} unread | ทำเครื่องหมายยังไม่อ่าน {n} | 26 vs 16 | 1.63× |
 | Not set up | ยังไม่ได้ตั้งค่า | 16 vs 10 | 1.6× |
 | Recap failed | สร้างรีแคปไม่สำเร็จ | 19 vs 12 | 1.58× |
@@ -2391,6 +2481,7 @@ Enviar este artigo para o Kindle? | 270 vs 201 | 1.34× |
 | Sent | Gönderildi | 10 vs 4 | 2.5× |
 | Inbox | Gelen Kutusu | 12 vs 5 | 2.4× |
 | {n} paper | {n} bilimsel makale | 18 vs 8 | 2.25× |
+| AI apps (MCP) | Yapay zekâ uygulamaları (MCP) | 29 vs 13 | 2.23× |
 | Sent to {model} | {model} modeline gönderildi | 22 vs 10 | 2.2× |
 | Sent to {name} | {name} cihazına gönderildi | 22 vs 10 | 2.2× |
 | Name tags | Etiketleri adlandır | 19 vs 9 | 2.11× |
@@ -2415,6 +2506,7 @@ Enviar este artigo para o Kindle? | 270 vs 201 | 1.34× |
 | Check if receiver is online. | Alıcının çevrimiçi olup olmadığını kontrol edin. | 48 vs 28 | 1.71× |
 | Restart Ollama | Ollama'yı yeniden başlat | 24 vs 14 | 1.71× |
 | Queued: {title} | Sıraya alındı: {title} | 17 vs 10 | 1.7× |
+| Save links | Bağlantı kaydetme | 17 vs 10 | 1.7× |
 | {name} · API key set | {name} · API anahtarı ayarlandı | 27 vs 16 | 1.69× |
 | Copy list | Listeyi kopyala | 15 vs 9 | 1.67× |
 | Free Tier | Ücretsiz Katman | 15 vs 9 | 1.67× |
@@ -2428,6 +2520,7 @@ Enviar este artigo para o Kindle? | 270 vs 201 | 1.34× |
 | Import failed | İçe aktarma başarısız | 21 vs 13 | 1.62× |
 | Nothing to export yet | Henüz dışa aktarılacak bir şey yok | 34 vs 21 | 1.62× |
 | Reset toolbar | Araç çubuğunu sıfırla | 21 vs 13 | 1.62× |
+| Lets an app save a URL into your inbox | Bir uygulamanın gelen kutuna bağlantı kaydetmesine izin verir | 61 vs 38 | 1.61× |
 | Key quotes | Önemli alıntılar | 16 vs 10 | 1.6× |
 | Mood index | Ruh hali endeksi | 16 vs 10 | 1.6× |
 | Sort: Mood | Sırala: Ruh hali | 16 vs 10 | 1.6× |
@@ -2439,6 +2532,7 @@ Enviar este artigo para o Kindle? | 270 vs 201 | 1.34× |
 | Easy-read font | Kolay okunur yazı tipi | 22 vs 14 | 1.57× |
 | Show more ({n}) | Daha fazla göster ({n}) | 22 vs 14 | 1.57× |
 | ✨ Build my own | ✨ Kendiminkini oluştur | 22 vs 14 | 1.57× |
+| Let AI apps on this computer use my library | Bu bilgisayardaki yapay zekâ uygulamaları kitaplığımı kullanabilsin | 67 vs 43 | 1.56× |
 | Check again | Tekrar kontrol et | 17 vs 11 | 1.55× |
 | Exported! ✓ | Dışa aktarıldı! ✓ | 17 vs 11 | 1.55× |
 | For KOReader, prefer | KOReader için şunu tercih edin: | 31 vs 20 | 1.55× |
@@ -2462,6 +2556,7 @@ Enviar este artigo para o Kindle? | 270 vs 201 | 1.34× |
 | Nothing to analyse | Analiz edilecek bir şey yok | 27 vs 18 | 1.5× |
 | Scored {a} of {b}… | {b} içinden {a} puanlandı… | 24 vs 16 | 1.5× |
 | Sign in to use byPhil Cloud models | byPhil Cloud modellerini kullanmak için giriş yapın | 51 vs 34 | 1.5× |
+| What apps may do | Uygulamalar ne yapabilir | 24 vs 16 | 1.5× |
 | Naming tags… {done} of {total} | Etiketler adlandırılıyor… {done}/{total} | 31 vs 21 | 1.48× |
 | Saved data: {size}. Tick what can go. | Kayıtlı veriler: {size}. Gidebilecekleri işaretleyin. | 49 vs 33 | 1.48× |
 | Sent to {model} · ~{n} tokens | {model} modeline gönderildi · ~{n} token | 34 vs 23 | 1.48× |
@@ -2473,6 +2568,7 @@ Enviar este artigo para o Kindle? | 270 vs 201 | 1.34× |
 | Created Podcasts | Oluşturulan Podcast'ler | 23 vs 16 | 1.44× |
 | Export as Markdown | Markdown olarak dışa aktar | 26 vs 18 | 1.44× |
 | Found device at {ip} — click Add to save it ✓ | {ip} adresinde cihaz bulundu — kaydetmek için Ekle'ye tıklayın ✓ | 62 vs 43 | 1.44× |
+| Lets an app read the whole saved text, not just the summary | Bir uygulamanın yalnızca özeti değil, kaydedilen metnin tamamını okumasına izin verir | 85 vs 59 | 1.44× |
 | Marked {n} unread | {n} öğe okunmadı yapıldı | 23 vs 16 | 1.44× |
 | Nothing to score | Puanlanacak bir şey yok | 23 vs 16 | 1.44× |
 | Subscribed to {name} | {name} akışına abone olundu | 23 vs 16 | 1.44× |
@@ -2509,15 +2605,18 @@ Enviar este artigo para o Kindle? | 270 vs 201 | 1.34× |
 | English | Translation | width | ratio |
 |---|---|---|---|
 | Free | Безкоштовно | 11 vs 4 | 2.75× |
+| Mindset | Налаштування думки | 18 vs 7 | 2.57× |
 | Mute | Ігнорувати | 10 vs 4 | 2.5× |
 | Seek | Перемотати | 10 vs 4 | 2.5× |
 | Sort | Сортування | 10 vs 4 | 2.5× |
 | Trial | Випробування | 12 vs 5 | 2.4× |
 | Rename | Перейменувати | 13 vs 6 | 2.17× |
 | Trials | Випробування | 12 vs 6 | 2× |
+| Save links | Зберігати посилання | 19 vs 10 | 1.9× |
 | Get Key | Отримати ключ | 13 vs 7 | 1.86× |
 | Renamed | Перейменовано | 13 vs 7 | 1.86× |
 | {eta} left | залишилось {eta} | 13 vs 7 | 1.86× |
+| Last used vault | Останнє використане сховище | 27 vs 15 | 1.8× |
 | contact me | зв’язатися зі мною | 18 vs 10 | 1.8× |
 | Last synced {when} | Остання синхронізація: {when} | 25 vs 14 | 1.79× |
 | {n} unread | Непрочитаних: {n} | 16 vs 9 | 1.78× |
@@ -2526,6 +2625,7 @@ Enviar este artigo para o Kindle? | 270 vs 201 | 1.34× |
 | {n} paper | Досліджень: {n} | 14 vs 8 | 1.75× |
 | {n}% left | Залишилось {n}% | 14 vs 8 | 1.75× |
 | 🎓 Paper | 🎓 Дослідження | 14 vs 8 | 1.75× |
+| Let AI apps on this computer use my library | Дозволити ШІ-застосункам на цьому комп'ютері використовувати мою бібліотеку | 75 vs 43 | 1.74× |
 | No settings match “{query}”. | Налаштувань за запитом «{query}» не знайдено. | 40 vs 23 | 1.74× |
 | No saved images. | Збережених зображень немає. | 27 vs 16 | 1.69× |
 | {n} feeds to tag | Стрічок для тегування: {n} | 25 vs 15 | 1.67× |
@@ -2605,511 +2705,3 @@ Enviar este artigo para o Kindle? | 270 vs 201 | 1.34× |
 |---|---|---|---|
 | For KOReader, prefer | 使用 KOReader 時，建議優先使用 | 30 vs 20 | 1.5× |
 | ✓ Named {n} of {total} tags. | ✓ 已為 {total} 個標籤中的 {n} 個命名。 | 32 vs 22 | 1.45× |
-
-## Problems
-
-en is missing 19 strings (run merge)
-
-### ar: 19 missing
-- About you
-- Add your own tag
-- Add your own, e.g. parent of two
-- Enter the server address in Settings
-- Last used vault
-- Mindset
-- No model list from this server — type the model name
-- None
-- Obsidian vault and folder
-- Optimist
-- Pragmatic
-- Remove {tag}
-- Server not reachable (is it running? is the URL right?)
-- Server rejects the key — check it in Settings
-- Server · {n} models
-- Show prompt ›
-- Skeptic
-- Stoic
-- {name} · own server
-
-### da: 19 missing
-- About you
-- Add your own tag
-- Add your own, e.g. parent of two
-- Enter the server address in Settings
-- Last used vault
-- Mindset
-- No model list from this server — type the model name
-- None
-- Obsidian vault and folder
-- Optimist
-- Pragmatic
-- Remove {tag}
-- Server not reachable (is it running? is the URL right?)
-- Server rejects the key — check it in Settings
-- Server · {n} models
-- Show prompt ›
-- Skeptic
-- Stoic
-- {name} · own server
-
-### de: 19 missing
-- About you
-- Add your own tag
-- Add your own, e.g. parent of two
-- Enter the server address in Settings
-- Last used vault
-- Mindset
-- No model list from this server — type the model name
-- None
-- Obsidian vault and folder
-- Optimist
-- Pragmatic
-- Remove {tag}
-- Server not reachable (is it running? is the URL right?)
-- Server rejects the key — check it in Settings
-- Server · {n} models
-- Show prompt ›
-- Skeptic
-- Stoic
-- {name} · own server
-
-### es: 19 missing
-- About you
-- Add your own tag
-- Add your own, e.g. parent of two
-- Enter the server address in Settings
-- Last used vault
-- Mindset
-- No model list from this server — type the model name
-- None
-- Obsidian vault and folder
-- Optimist
-- Pragmatic
-- Remove {tag}
-- Server not reachable (is it running? is the URL right?)
-- Server rejects the key — check it in Settings
-- Server · {n} models
-- Show prompt ›
-- Skeptic
-- Stoic
-- {name} · own server
-
-### fi: 19 missing
-- About you
-- Add your own tag
-- Add your own, e.g. parent of two
-- Enter the server address in Settings
-- Last used vault
-- Mindset
-- No model list from this server — type the model name
-- None
-- Obsidian vault and folder
-- Optimist
-- Pragmatic
-- Remove {tag}
-- Server not reachable (is it running? is the URL right?)
-- Server rejects the key — check it in Settings
-- Server · {n} models
-- Show prompt ›
-- Skeptic
-- Stoic
-- {name} · own server
-
-### fr: 19 missing
-- About you
-- Add your own tag
-- Add your own, e.g. parent of two
-- Enter the server address in Settings
-- Last used vault
-- Mindset
-- No model list from this server — type the model name
-- None
-- Obsidian vault and folder
-- Optimist
-- Pragmatic
-- Remove {tag}
-- Server not reachable (is it running? is the URL right?)
-- Server rejects the key — check it in Settings
-- Server · {n} models
-- Show prompt ›
-- Skeptic
-- Stoic
-- {name} · own server
-
-### hi: 19 missing
-- About you
-- Add your own tag
-- Add your own, e.g. parent of two
-- Enter the server address in Settings
-- Last used vault
-- Mindset
-- No model list from this server — type the model name
-- None
-- Obsidian vault and folder
-- Optimist
-- Pragmatic
-- Remove {tag}
-- Server not reachable (is it running? is the URL right?)
-- Server rejects the key — check it in Settings
-- Server · {n} models
-- Show prompt ›
-- Skeptic
-- Stoic
-- {name} · own server
-
-### id: 19 missing
-- About you
-- Add your own tag
-- Add your own, e.g. parent of two
-- Enter the server address in Settings
-- Last used vault
-- Mindset
-- No model list from this server — type the model name
-- None
-- Obsidian vault and folder
-- Optimist
-- Pragmatic
-- Remove {tag}
-- Server not reachable (is it running? is the URL right?)
-- Server rejects the key — check it in Settings
-- Server · {n} models
-- Show prompt ›
-- Skeptic
-- Stoic
-- {name} · own server
-
-### it: 19 missing
-- About you
-- Add your own tag
-- Add your own, e.g. parent of two
-- Enter the server address in Settings
-- Last used vault
-- Mindset
-- No model list from this server — type the model name
-- None
-- Obsidian vault and folder
-- Optimist
-- Pragmatic
-- Remove {tag}
-- Server not reachable (is it running? is the URL right?)
-- Server rejects the key — check it in Settings
-- Server · {n} models
-- Show prompt ›
-- Skeptic
-- Stoic
-- {name} · own server
-
-### ja: 19 missing
-- About you
-- Add your own tag
-- Add your own, e.g. parent of two
-- Enter the server address in Settings
-- Last used vault
-- Mindset
-- No model list from this server — type the model name
-- None
-- Obsidian vault and folder
-- Optimist
-- Pragmatic
-- Remove {tag}
-- Server not reachable (is it running? is the URL right?)
-- Server rejects the key — check it in Settings
-- Server · {n} models
-- Show prompt ›
-- Skeptic
-- Stoic
-- {name} · own server
-
-### ko: 19 missing
-- About you
-- Add your own tag
-- Add your own, e.g. parent of two
-- Enter the server address in Settings
-- Last used vault
-- Mindset
-- No model list from this server — type the model name
-- None
-- Obsidian vault and folder
-- Optimist
-- Pragmatic
-- Remove {tag}
-- Server not reachable (is it running? is the URL right?)
-- Server rejects the key — check it in Settings
-- Server · {n} models
-- Show prompt ›
-- Skeptic
-- Stoic
-- {name} · own server
-
-### nl: 19 missing
-- About you
-- Add your own tag
-- Add your own, e.g. parent of two
-- Enter the server address in Settings
-- Last used vault
-- Mindset
-- No model list from this server — type the model name
-- None
-- Obsidian vault and folder
-- Optimist
-- Pragmatic
-- Remove {tag}
-- Server not reachable (is it running? is the URL right?)
-- Server rejects the key — check it in Settings
-- Server · {n} models
-- Show prompt ›
-- Skeptic
-- Stoic
-- {name} · own server
-
-### no: 19 missing
-- About you
-- Add your own tag
-- Add your own, e.g. parent of two
-- Enter the server address in Settings
-- Last used vault
-- Mindset
-- No model list from this server — type the model name
-- None
-- Obsidian vault and folder
-- Optimist
-- Pragmatic
-- Remove {tag}
-- Server not reachable (is it running? is the URL right?)
-- Server rejects the key — check it in Settings
-- Server · {n} models
-- Show prompt ›
-- Skeptic
-- Stoic
-- {name} · own server
-
-### pl: 19 missing
-- About you
-- Add your own tag
-- Add your own, e.g. parent of two
-- Enter the server address in Settings
-- Last used vault
-- Mindset
-- No model list from this server — type the model name
-- None
-- Obsidian vault and folder
-- Optimist
-- Pragmatic
-- Remove {tag}
-- Server not reachable (is it running? is the URL right?)
-- Server rejects the key — check it in Settings
-- Server · {n} models
-- Show prompt ›
-- Skeptic
-- Stoic
-- {name} · own server
-
-### pt_BR: 19 missing
-- About you
-- Add your own tag
-- Add your own, e.g. parent of two
-- Enter the server address in Settings
-- Last used vault
-- Mindset
-- No model list from this server — type the model name
-- None
-- Obsidian vault and folder
-- Optimist
-- Pragmatic
-- Remove {tag}
-- Server not reachable (is it running? is the URL right?)
-- Server rejects the key — check it in Settings
-- Server · {n} models
-- Show prompt ›
-- Skeptic
-- Stoic
-- {name} · own server
-
-### pt_PT: 19 missing
-- About you
-- Add your own tag
-- Add your own, e.g. parent of two
-- Enter the server address in Settings
-- Last used vault
-- Mindset
-- No model list from this server — type the model name
-- None
-- Obsidian vault and folder
-- Optimist
-- Pragmatic
-- Remove {tag}
-- Server not reachable (is it running? is the URL right?)
-- Server rejects the key — check it in Settings
-- Server · {n} models
-- Show prompt ›
-- Skeptic
-- Stoic
-- {name} · own server
-
-### ru: 19 missing
-- About you
-- Add your own tag
-- Add your own, e.g. parent of two
-- Enter the server address in Settings
-- Last used vault
-- Mindset
-- No model list from this server — type the model name
-- None
-- Obsidian vault and folder
-- Optimist
-- Pragmatic
-- Remove {tag}
-- Server not reachable (is it running? is the URL right?)
-- Server rejects the key — check it in Settings
-- Server · {n} models
-- Show prompt ›
-- Skeptic
-- Stoic
-- {name} · own server
-
-### sv: 19 missing
-- About you
-- Add your own tag
-- Add your own, e.g. parent of two
-- Enter the server address in Settings
-- Last used vault
-- Mindset
-- No model list from this server — type the model name
-- None
-- Obsidian vault and folder
-- Optimist
-- Pragmatic
-- Remove {tag}
-- Server not reachable (is it running? is the URL right?)
-- Server rejects the key — check it in Settings
-- Server · {n} models
-- Show prompt ›
-- Skeptic
-- Stoic
-- {name} · own server
-
-### th: 19 missing
-- About you
-- Add your own tag
-- Add your own, e.g. parent of two
-- Enter the server address in Settings
-- Last used vault
-- Mindset
-- No model list from this server — type the model name
-- None
-- Obsidian vault and folder
-- Optimist
-- Pragmatic
-- Remove {tag}
-- Server not reachable (is it running? is the URL right?)
-- Server rejects the key — check it in Settings
-- Server · {n} models
-- Show prompt ›
-- Skeptic
-- Stoic
-- {name} · own server
-
-### tr: 19 missing
-- About you
-- Add your own tag
-- Add your own, e.g. parent of two
-- Enter the server address in Settings
-- Last used vault
-- Mindset
-- No model list from this server — type the model name
-- None
-- Obsidian vault and folder
-- Optimist
-- Pragmatic
-- Remove {tag}
-- Server not reachable (is it running? is the URL right?)
-- Server rejects the key — check it in Settings
-- Server · {n} models
-- Show prompt ›
-- Skeptic
-- Stoic
-- {name} · own server
-
-### uk: 19 missing
-- About you
-- Add your own tag
-- Add your own, e.g. parent of two
-- Enter the server address in Settings
-- Last used vault
-- Mindset
-- No model list from this server — type the model name
-- None
-- Obsidian vault and folder
-- Optimist
-- Pragmatic
-- Remove {tag}
-- Server not reachable (is it running? is the URL right?)
-- Server rejects the key — check it in Settings
-- Server · {n} models
-- Show prompt ›
-- Skeptic
-- Stoic
-- {name} · own server
-
-### zh_CN: 19 missing
-- About you
-- Add your own tag
-- Add your own, e.g. parent of two
-- Enter the server address in Settings
-- Last used vault
-- Mindset
-- No model list from this server — type the model name
-- None
-- Obsidian vault and folder
-- Optimist
-- Pragmatic
-- Remove {tag}
-- Server not reachable (is it running? is the URL right?)
-- Server rejects the key — check it in Settings
-- Server · {n} models
-- Show prompt ›
-- Skeptic
-- Stoic
-- {name} · own server
-
-### zh_HK: 19 missing
-- About you
-- Add your own tag
-- Add your own, e.g. parent of two
-- Enter the server address in Settings
-- Last used vault
-- Mindset
-- No model list from this server — type the model name
-- None
-- Obsidian vault and folder
-- Optimist
-- Pragmatic
-- Remove {tag}
-- Server not reachable (is it running? is the URL right?)
-- Server rejects the key — check it in Settings
-- Server · {n} models
-- Show prompt ›
-- Skeptic
-- Stoic
-- {name} · own server
-
-### zh_TW: 19 missing
-- About you
-- Add your own tag
-- Add your own, e.g. parent of two
-- Enter the server address in Settings
-- Last used vault
-- Mindset
-- No model list from this server — type the model name
-- None
-- Obsidian vault and folder
-- Optimist
-- Pragmatic
-- Remove {tag}
-- Server not reachable (is it running? is the URL right?)
-- Server rejects the key — check it in Settings
-- Server · {n} models
-- Show prompt ›
-- Skeptic
-- Stoic
-- {name} · own server

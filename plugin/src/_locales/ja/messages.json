@@ -5372,5 +5372,137 @@
   },
   "f_epub_is_the_format_kindle_re_3a35": {
     "message": "EPUB は Kindle が最もきれいに読める形式です。画像は1枚あたり数百KB増えます(最大10枚、縮小済み)。"
+  },
+  "f_ai_apps_mcp_613e": {
+    "message": "AI アプリ（MCP）"
+  },
+  "f_ai_apps_on_this_computer_lik_f8d4": {
+    "message": "Claude Desktop、LM Studio、Cursor など、このコンピュータの AI アプリがライブラリを検索して読めるようになります。当社のサーバーは一切経由しません。コンピュータの外に何が出るかは、使うアプリとモデルによります。"
+  },
+  "f_connect_a899": {
+    "message": "接続"
+  },
+  "f_connected_9370": {
+    "message": "接続済み"
+  },
+  "f_disconnect_790b": {
+    "message": "接続を解除"
+  },
+  "f_full_article_text_5851": {
+    "message": "記事の全文"
+  },
+  "f_how_to_connect_claude_deskto_e81b": {
+    "message": "Claude Desktop、LM Studio、Cursor などの接続方法"
+  },
+  "f_let_ai_apps_on_this_computer_12b0": {
+    "message": "このコンピュータの AI アプリにライブラリの使用を許可する"
+  },
+  "f_lets_an_app_read_the_whole_s_db89": {
+    "message": "要約だけでなく、保存した本文すべてをアプリが読めるようにします"
+  },
+  "f_lets_an_app_save_a_url_into__a0a1": {
+    "message": "アプリが受信箱にリンクを保存できるようにします"
+  },
+  "f_never_show_articles_tagged_148b": {
+    "message": "このタグの記事は表示しない"
+  },
+  "f_no_calls_yet_9dfd": {
+    "message": "まだ呼び出しはありません。"
+  },
+  "f_not_connected_open_your_ai_a_d7fb": {
+    "message": "未接続です。AI アプリを開くか、上のガイドに従って設定してください。"
+  },
+  "f_paste_your_pairing_code_dab8": {
+    "message": "ペアリングコードを貼り付け"
+  },
+  "f_recent_activity_cc07": {
+    "message": "最近のアクティビティ"
+  },
+  "f_reload_ai_summary_helper_to__97b0": {
+    "message": "有効化を完了するには AI Summary Helper を再読み込みしてください。"
+  },
+  "f_replace_code_cd90": {
+    "message": "コードを置き換える"
+  },
+  "f_save_links_4801": {
+    "message": "リンクの保存"
+  },
+  "f_search_read_and_highlights_12f9": {
+    "message": "検索・閲覧・ハイライト"
+  },
+  "f_unread_items_from_your_subsc_11ff": {
+    "message": "購読中の未読アイテム"
+  },
+  "f_waiting_for_a_pairing_code_ef01": {
+    "message": "ペアリングコードを待っています。"
+  },
+  "f_what_apps_may_do_33b5": {
+    "message": "アプリに許可すること"
+  },
+  "f_your_library_5cd1": {
+    "message": "あなたのライブラリ"
+  },
+  "f_error_8751": {
+    "message": "エラー"
+  },
+  "f_ok_37af": {
+    "message": "OK"
+  },
+  "f_about_you_6a95": {
+    "message": "あなたについて"
+  },
+  "f_add_your_own_tag_e29b": {
+    "message": "独自のタグを追加"
+  },
+  "f_add_your_own_e_g_parent_of_t_7012": {
+    "message": "独自に追加（例：二児の親）"
+  },
+  "f_enter_the_server_address_in__d23d": {
+    "message": "設定でサーバーのアドレスを入力してください"
+  },
+  "f_last_used_vault_2d62": {
+    "message": "前回使った保管庫"
+  },
+  "f_mindset_dbbf": {
+    "message": "視点"
+  },
+  "f_no_model_list_from_this_serv_6b89": {
+    "message": "このサーバーはモデル一覧を返しません。モデル名を入力してください"
+  },
+  "f_none_f7fb": {
+    "message": "なし"
+  },
+  "f_obsidian_vault_and_folder_f333": {
+    "message": "Obsidian の保管庫とフォルダ"
+  },
+  "f_optimist_6d10": {
+    "message": "楽観派"
+  },
+  "f_pragmatic_bfa7": {
+    "message": "実用派"
+  },
+  "f_remove_0293": {
+    "message": "{tag} を削除"
+  },
+  "f_server_not_reachable_is_it_r_3c8d": {
+    "message": "サーバーに接続できません（起動していますか？URL は正しいですか？）"
+  },
+  "f_server_rejects_the_key_check_86bf": {
+    "message": "サーバーがキーを拒否しました。設定で確認してください"
+  },
+  "f_server_models_4913": {
+    "message": "サーバー · {n} モデル"
+  },
+  "f_show_prompt_b094": {
+    "message": "プロンプトを表示 ›"
+  },
+  "f_skeptic_1cb2": {
+    "message": "懐疑派"
+  },
+  "f_stoic_8d1b": {
+    "message": "ストア派"
+  },
+  "f_own_server_2c54": {
+    "message": "{name} · 自分のサーバー"
   }
 }
