@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#08090C">
+<title>Use Your Library in Claude, LM Studio and Cursor — AI Summary Helper</title>
+<meta name="description" content="Connect AI Summary Helper to Claude Desktop, LM Studio, Cursor, VS Code or any MCP app on your computer. Your saved articles, highlights and collections, available to your AI app, without a server in between.">
+
+<script>
+  (function(){
+    try {
+      var saved = localStorage.getItem('aish_theme');
+      var theme = saved === 'light' || saved === 'dark'
+        ? saved
+        : (window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
+      document.documentElement.setAttribute('data-theme', theme);
+    } catch (e) {
+      document.documentElement.setAttribute('data-theme', 'dark');
+    }
+  })();
+</script>
+
+<link rel="icon" type="image/svg+xml" href="../assets/icon.svg">
+<link rel="stylesheet" href="../assets/styles.css">
+<script src="../assets/analytics.js"></script>
+</head>
+<body>
+
+<a href="#main" class="skip-link">Skip to content</a>
+
+<!--include:nav-blog-->
+
+<main id="main">
+  <div class="wrap">
+    <div class="post-hero">
+      <span class="blog-date">Guide · October 2026</span>
+      <h1>Use your library in Claude, LM Studio and other AI apps</h1>
+      <p class="post-sub">Your AI app forgets everything you have read. AI Summary Helper remembers it. Connect the two on your own computer, and your app can search your saved articles, quote your highlights and cite your sources.</p>
+    </div>
+  </div>
+
+  <section>
+    <div class="wrap">
+      <div class="prose">
+        <p>AI Summary Helper can share your library with AI apps that support the Model Context Protocol (MCP): Claude Desktop, LM Studio, Cursor, VS Code, Jan, and local agents. Your app asks a question, AI Summary Helper looks it up in your saved articles, and the answer goes straight back to the app on your machine.</p>
+        <p>It is off by default. Nothing about it involves our server: the extension and the app talk to each other through a small helper program on your computer, <code>aish-mcp</code>, which stores no articles and forwards nothing anywhere else.</p>
+
+        <h2>What you can ask</h2>
+        <ul>
+          <li><strong>Ask your reading, not the internet.</strong> “What have I saved about AI and surveillance? Group it by theme and tell me where the articles disagree.”</li>
+          <li><strong>Write from your own sources.</strong> “Draft a post about the CO₂ cost of AI, and quote my highlights.”</li>
+          <li><strong>Answer a collection's question.</strong> “Use my collection on inflation. Answer its question using only those sources, and say what is missing.”</li>
+          <li><strong>Catch up on saved-for-later.</strong> “What is due this week from my saved-for-later list? Give me a five-minute version of each.”</li>
+          <li><strong>Triage your feeds.</strong> “Go through today's unread feed items about AI and tell me the three worth reading.”</li>
+          <li><strong>See your year.</strong> “Make my reading year in review for 2026: top topics, busiest month, and the articles that defined it.”</li>
+          <li><strong>Let an agent save for you.</strong> “Find three good sources on local-first software and save them to my AISH inbox with a note.”</li>
+        </ul>
+        <p>With a local model in LM Studio, all of this works with your network switched off.</p>
+
+        <h2>Set it up</h2>
+        <p>You need AI Summary Helper in Chrome, Edge or Brave, <a href="https://nodejs.org/" target="_blank" rel="noopener">Node.js</a> 20 or newer, and an MCP app.</p>
+        <ol>
+          <li><strong>Turn it on.</strong> In AI Summary Helper, open Settings → AI apps (MCP) and switch on <em>Let AI apps on this computer use my library</em>.</li>
+          <li><strong>Get your pairing code.</strong> In a terminal, run <code>npx -y aish-mcp pair</code>. It prints a pairing code and stores it in your user folder. Paste the code into the settings panel and select Connect.</li>
+          <li><strong>Add AI Summary Helper to your app.</strong> Use the snippet for your app below, then quit the app completely and open it again.</li>
+          <li><strong>Check the connection.</strong> The settings panel shows <em>Connected</em> once your app is running. Ask your app something about your library: every call it makes appears under Recent activity in the panel.</li>
+        </ol>
+
+        <h3>Claude Desktop</h3>
+        <p>Settings → Developer → Edit Config, then add:</p>
+<pre><code>{
+  "mcpServers": {
+    "aish": { "command": "npx", "args": ["-y", "aish-mcp"] }
+  }
+}</code></pre>
+        <p>If Claude Desktop cannot find <code>npx</code>, use its full path, which <code>which npx</code> prints in a terminal (for example <code>/opt/homebrew/bin/npx</code>).</p>
+
+        <h3>Cursor</h3>
+        <p>In <code>~/.cursor/mcp.json</code> (all projects) or <code>.cursor/mcp.json</code> (one project), add the same <code>"aish"</code> entry as for Claude Desktop.</p>
+
+        <h3>VS Code</h3>
+        <p>In <code>.vscode/mcp.json</code>:</p>
+<pre><code>{
+  "servers": {
+    "aish": { "type": "stdio", "command": "npx", "args": ["-y", "aish-mcp"] }
+  }
+}</code></pre>
+
+        <h3>LM Studio and other apps</h3>
+        <p>Apps with an <code>mcpServers</code> setting (LM Studio's <code>mcp.json</code>, Jan, and most others) take the same entry as Claude Desktop. Apps that only connect over HTTP can use <code>npx -y aish-mcp --http</code> at <code>http://127.0.0.1:47616/</code>, with the header <code>Authorization: Bearer &lt;your pairing code&gt;</code>. For a local model, pick one that supports tool calling, such as Qwen 3 or Llama 3.1 and newer.</p>
+
+        <h2>What your app can do</h2>
+        <table>
+          <thead><tr><th>Tool</th><th>What it does</th><th>Needs</th></tr></thead>
+          <tbody>
+            <tr><td><code>search_library</code></td><td>Search your saved articles, optionally by tag, date or collection</td><td>Your library</td></tr>
+            <tr><td><code>get_article</code></td><td>One article with its summary and highlights</td><td>Your library</td></tr>
+            <tr><td><code>list_highlights</code></td><td>Your highlights, newest first</td><td>Your library</td></tr>
+            <tr><td><code>list_due</code></td><td>Saved-for-later items due soon</td><td>Your library</td></tr>
+            <tr><td><code>list_collections</code>, <code>get_collection</code></td><td>Your collections and their sources</td><td>Your library</td></tr>
+            <tr><td><code>library_stats</code></td><td>Counts only: saves over time, top tags and sites, mood, highlights</td><td>Your library</td></tr>
+            <tr><td><code>get_article</code> with full text</td><td>The whole saved text of an article, as plain text</td><td>Full article text</td></tr>
+            <tr><td><code>list_feed_items</code></td><td>Items from your feed subscriptions</td><td>Feeds</td></tr>
+            <tr><td><code>save_url</code></td><td>Save a link to your inbox with a note, marked as added by an AI app</td><td>Save links</td></tr>
+          </tbody>
+        </table>
+        <p>Only <em>Your library</em> is on when you switch the feature on. Turn on Full article text, Feeds and Save links in the settings panel if you want them; changes apply to the next call without reconnecting. Your app cannot edit or delete anything in AI Summary Helper.</p>
+
+        <h2>Privacy and safety</h2>
+        <ul>
+          <li><strong>Nothing goes through our server.</strong> Data goes from your browser to the helper program and on to the app on your computer. What the app then sends to its model depends on the app and model you chose. A local model keeps everything on your machine.</li>
+          <li><strong>Articles you tag <code>private</code> never appear</strong>, in any result, count or collection. You can choose a different tag in the settings panel.</li>
+          <li><strong>Only your computer can connect.</strong> The helper listens on 127.0.0.1 only, so nothing else on your network can reach it. Websites you visit cannot use it either: it accepts only AI Summary Helper's own extension address, and every connection must carry your pairing code.</li>
+          <li><strong>You can see every call.</strong> The settings panel lists the last 50 calls with the tool name and time, never the content.</li>
+          <li><strong>You can cut it off at any time.</strong> Switch the feature off or select Disconnect. Run <code>npx -y aish-mcp reset</code> to make the old pairing code stop working.</li>
+          <li><strong>Saved pages are text from the web.</strong> Your app is told to treat them as information, not as instructions, but a saved page could still try to mislead an AI. Keep the Save links permission off unless you use it.</li>
+        </ul>
+
+        <h2>If something doesn't work</h2>
+        <table>
+          <thead><tr><th>You see</th><th>What to do</th></tr></thead>
+          <tbody>
+            <tr><td>The panel says <em>Not connected</em></td><td>Your AI app isn't running, or isn't set up yet. Open it, or run <code>npx -y aish-mcp</code> in a terminal to test the connection.</td></tr>
+            <tr><td>Your app shows no AI Summary Helper tools, or misses new ones after an update</td><td>Quit the app completely and open it again. Some apps only read the tool list when they start.</td></tr>
+            <tr><td>“AISH is not running”</td><td>Your browser is closed, or the feature is switched off. Open the browser and check the settings panel.</td></tr>
+            <tr><td>“Scope … is not enabled”</td><td>Your app asked for something you haven't allowed. Turn it on in the settings panel if you want it.</td></tr>
+            <tr><td>The panel never connects after you pasted the code</td><td>Run <code>npx -y aish-mcp pair</code> and paste the code it prints again. It changes after <code>reset</code>.</td></tr>
+          </tbody>
+        </table>
+        <p>Running several AI apps at once is fine: they share one connection.</p>
+
+        <div class="post-cta">
+          <p>AI Summary Helper is a free Chrome extension.</p>
+          <a href="https://chromewebstore.google.com/detail/ai-summary-helper-openai/hldbejcjaedipeegjcinmhejdndchkmb" target="_blank" rel="noopener" class="btn-primary">Add to Chrome</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<!--include:footer-blog-->
+</body>
+</html>
