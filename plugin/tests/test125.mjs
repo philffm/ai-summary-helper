@@ -2,7 +2,7 @@
 import assert from 'assert';
 import path from 'path'; import { pathToFileURL } from 'url';
 const mod = await import(pathToFileURL(path.resolve(process.env.AISH_SRC, '..', '..', 'scripts', 'changelog.mjs')).href);
-const { parseCommits, classify, renderGroups, insertRelease, previousTag } = mod;
+const { parseCommits, classify, renderGroups, insertRelease, previousTag, unreleasedText, releaseNotes } = mod;
 const rec = (author, subject, body = '') => `h\x1f${author}\x1f${subject}\x1f${body}\x1e\n`;
 const raw = rec('Phil', 'Onboarding: compact mask', '- Dropped the heading\n- Continue is inactive until\n  something works\n\nCo-Authored-By: x')
   + rec('github-actions[bot]', 'chore: bump version to 2.2.3 [skip ci]')
@@ -30,10 +30,16 @@ assert.equal(previousTag(['v2.2.3'], '2.2.3'), '', 'the version itself is not it
 const md = '# Changelog\n\nIntro.\n\n## Unreleased\n\n### Added\n- By hand.\n\n## 2.2.x (October 2026)\n- Old.\n';
 const out = insertRelease(md, '2.2.4', '2026-10-10', groups);
 assert(/## Unreleased\n\n## 2\.2\.4 \(2026-10-10\)\n\n### Added\n- By hand\./.test(out), 'fresh empty Unreleased on top, hand-written part kept');
-assert(/### Commit log\n\n#### Added\n\n- Add a back to top button/.test(out), 'generated list under Commit log, headings demoted');
+assert(/### All changes\n\n#### Added\n\n- Add a back to top button/.test(out), 'generated list under All changes, headings demoted');
 assert(out.indexOf('## 2.2.4') < out.indexOf('## 2.2.x'), 'newest first');
 assert.equal(insertRelease(out, '2.2.4', '2026-10-10', groups), out, 'running it twice changes nothing');
 // no Unreleased section: new section above the newest one
 const plain = insertRelease('# Changelog\n\n## 2.2.x\n- Old.\n', '2.2.4', '2026-10-10', groups);
 assert(plain.indexOf('## 2.2.4 (2026-10-10)') < plain.indexOf('## 2.2.x') && /### Added\n\n- Add a back to top button/.test(plain));
+// release notes: hand-written highlights first, the commit list folded below; without highlights, only the list
+assert.equal(unreleasedText(md), '### Added\n- By hand.');
+assert.equal(unreleasedText('# Changelog\n\n## Unreleased\n\n## 2.2.x\n- Old.\n'), '', 'an empty Unreleased has no highlights');
+const notes = releaseNotes('**AI apps** can now read your library.', groups, 4);
+assert(notes.startsWith('**AI apps**') && /<details>\n<summary>All changes \(4 commits\)<\/summary>\n\n### Added/.test(notes), 'highlights lead, details folded');
+assert.equal(releaseNotes('', groups, 4), groups, 'no highlights: unchanged commit list');
 console.log('TEST 125 OK'); process.exit(0);

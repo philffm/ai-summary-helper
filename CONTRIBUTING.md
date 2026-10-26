@@ -41,7 +41,7 @@ Scope: what changed for the user, in one line
 
 - The subject becomes the entry. `Tests:`, `CI:`, `Docs:`, `Build:`, `Size:`, `Chore:` and `Refactor:` go under *Developer experience*; subjects starting with `Add` / `Fix` go under *Added* / *Fixed*; everything else is *Changed*.
 - Merge commits, the bot's version bumps and non-descriptive subjects (`up`, `wip`) are left out; the notes say how many were.
-- Preview: `node scripts/changelog.mjs --version 2.2.4` (prints; add `--from <tag>` to pick the start). Highlights that need a sentence of explanation can still go into `## Unreleased` in `CHANGELOG.md`; the release keeps that text and adds the commit log below it.
+- Preview: `node scripts/changelog.mjs --version 2.2.4` (prints; add `--from <tag>` to pick the start). Before a release, write the highlights under `## Unreleased` in `CHANGELOG.md`: a one-line summary, then what changed for people in plain words (what they can do now, not which files changed). They lead the release notes and `CHANGELOG.md`; the commit list follows under "All changes" (folded on GitHub). Without highlights the release falls back to the commit list and the script warns.
 
 ## Conventions
 

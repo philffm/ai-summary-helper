@@ -5,6 +5,18 @@ Commit history has the details: <https://github.com/philffm/ai-summary-helper/co
 
 ## Unreleased
 
+**Your library now works inside your AI apps.** Claude Desktop, LM Studio, Cursor, VS Code and other MCP apps on your computer can search what you saved, quote your highlights and cite your sources. Nothing goes through our server, and it is off until you turn it on.
+
+- **Ask your reading, not the internet.** "What have I saved about AI and surveillance?" gets an answer from your own articles, with links.
+- **Write from your sources.** Drafts that quote your highlights, or answer a collection's question using only its sources.
+- **Your year in reading.** Ask your app for a year in review: busiest months, top topics, the articles that defined it.
+- **Catch up.** Saved-for-later items that are due, and today's feed items worth reading.
+- **Agents can save for you.** If you allow it, an AI app can add links to your inbox. They are marked as added by an AI app.
+- **You stay in control.** Choose what apps may read (library, full text, feeds, saving links). Articles tagged `private` are never shared. Every call is listed in the settings panel.
+- **Works offline** with a local model in LM Studio.
+
+Set it up in Settings → AI apps (MCP). Guide: [Use your library in Claude, LM Studio and other AI apps](https://ai-summary-helper.byphil.eu/blog/ai-apps-mcp.html).
+
 ## 2.2.22 (2026-10-22)
 
 ### Commit log

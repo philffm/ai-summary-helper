@@ -1,5 +1,6 @@
 #!/usr/bin/env node
-// Release notes from the commit messages between two versions (not from issues or pull requests).
+// Release notes: the hand-written highlights from "## Unreleased" in CHANGELOG.md first (what changed for people,
+// in plain words), then the full list generated from the commit messages since the previous version.
 //
 //   node scripts/changelog.mjs --version 2.2.4                 print the notes (markdown) for v2.2.4
 //   node scripts/changelog.mjs --version 2.2.4 --write         also put the release into CHANGELOG.md
@@ -84,12 +85,28 @@ export function insertRelease(md, version, date, generated) {
         const next = after.search(/^## /m);
         const body = (next >= 0 ? after.slice(0, next) : after).trim();
         const rest = next >= 0 ? after.slice(next) : '';
-        const log = generated ? `\n\n### Commit log\n\n${generated.replace(/^### /gm, '#### ')}` : '';
+        const log = generated ? `\n\n### All changes\n\n${generated.replace(/^### /gm, '#### ')}` : '';
         return `${md.slice(0, u)}## Unreleased\n\n${head}\n\n${body}${log}\n\n${rest}`.replace(/\n{3,}/g, '\n\n').replace(/\n*$/, '\n');
     }
     const first = md.search(/^## /m);
     const section = `${head}\n\n${generated || '_No changes recorded in commit messages._'}\n\n`;
     return first >= 0 ? md.slice(0, first) + section + md.slice(first) : md.replace(/\n*$/, '\n\n') + section;
+}
+
+/** The hand-written text under "## Unreleased" (the release highlights), or '' when there is none. */
+export function unreleasedText(md) {
+    const u = String(md).search(/^## Unreleased\s*$/m);
+    if (u < 0) return '';
+    const after = String(md).slice(u).replace(/^## Unreleased\s*\n/, '');
+    const next = after.search(/^## /m);
+    return (next >= 0 ? after.slice(0, next) : after).trim();
+}
+
+/** GitHub release body: highlights first; the generated list folded away below them. Without highlights, just the list. */
+export function releaseNotes(highlights, generated, commitCount = 0) {
+    if (!highlights) return generated;
+    const label = commitCount ? `All changes (${commitCount} commit${commitCount === 1 ? '' : 's'})` : 'All changes';
+    return `${highlights}\n\n<details>\n<summary>${label}</summary>\n\n${generated}\n\n</details>`;
 }
 
 const semver = (v) => String(v).replace(/^v/, '').split('.').map((n) => parseInt(n, 10) || 0);
@@ -117,12 +134,16 @@ if (process.argv[1] && import.meta.url === pathToFileURL(process.argv[1]).href) 
     const args = process.argv.slice(2);
     const opt = (n) => { const i = args.indexOf(n); return i >= 0 ? args[i + 1] : ''; };
     const version = opt('--version') || JSON.parse(fs.readFileSync(path.join(ROOT, 'current_version.json'), 'utf8')).version;
-    const { start, date, groups, markdown } = notesFor(version, { from: opt('--from'), to: opt('--to') || 'HEAD' });
+    const { start, date, groups, markdown, commits } = notesFor(version, { from: opt('--from'), to: opt('--to') || 'HEAD' });
+    const changelogFile = path.join(ROOT, 'CHANGELOG.md');
+    const highlights = unreleasedText(fs.existsSync(changelogFile) ? fs.readFileSync(changelogFile, 'utf8') : '');
+    if (!highlights) console.error('changelog: no highlights under "## Unreleased" in CHANGELOG.md, so the release notes are only the commit list.');
     const heading = `## ${version}${start ? ` (since ${start})` : ''}\n\n`;
-    if (opt('--notes')) fs.writeFileSync(path.resolve(opt('--notes')), `${heading}${markdown}\n`);
+    const body = releaseNotes(highlights, markdown, commits.length);
+    if (opt('--notes')) fs.writeFileSync(path.resolve(opt('--notes')), `${heading}${body}\n`);
     if (args.includes('--write')) {
         const file = path.join(ROOT, 'CHANGELOG.md');
         fs.writeFileSync(file, insertRelease(fs.readFileSync(file, 'utf8'), version, date, groups));
     }
-    if (!opt('--notes') && !args.includes('--write')) console.log(`${heading}${markdown}`);
+    if (!opt('--notes') && !args.includes('--write')) console.log(`${heading}${body}`);
 }
