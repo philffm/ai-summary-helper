@@ -20,6 +20,7 @@
 ## Blog
 - [Blog](https://ai-summary-helper.byphil.eu/blog/): Notes on reading, search, and building on-device — from the team behind AI Summary Helper.
 - [Videos](https://ai-summary-helper.byphil.eu/blog/videos.html): Short videos of AI Summary Helper: summaries with sources, your language, a knowledge graph, feed recaps, Kindle and local models.
+- [Use Your Library in Claude, LM Studio and Cursor](https://ai-summary-helper.byphil.eu/blog/ai-apps-mcp.html): Connect AI Summary Helper to Claude Desktop, LM Studio, Cursor, VS Code or any MCP app on your computer. Your saved articles, highlights and collections, available to your AI app, without a server in between.
 - [One Recap Instead of 40 Feeds](https://ai-summary-helper.byphil.eu/blog/feeds-recap.html): Following many feeds means many small task switches. Here is how a daily or weekly recap replaces most of them, and why that matters for focus.
 - [You Won't Read What You Save](https://ai-summary-helper.byphil.eu/blog/unread-saves.html): Most bookmarked articles are never reopened. Here's why Digest exists, and why it deliberately doesn't try to make the pile bigger.
 - [Check an AI Summary Against Its Source](https://ai-summary-helper.byphil.eu/blog/verify-ai-summary.html): An AI summary is only useful if you can trust it. Here is a quick way to check any answer against the page it came from, and what a quote can and cannot prove.

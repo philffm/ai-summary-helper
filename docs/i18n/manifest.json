@@ -102909,6 +102909,966 @@
           "model": "google/gemini-3.7-flash"
         }
       }
+    },
+    "7e7fc102589d23018a96636c691324c178d81e7b0eeb7cbee4568185e0f84e78": {
+      "en": "AI apps on your computer (MCP)",
+      "translations": {
+        "de": {
+          "text": "KI-Apps auf Ihrem Computer (MCP)",
+          "translatedAt": "2026-10-26T11:14:55.378Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fr": {
+          "text": "Applications IA sur votre ordinateur (MCP)",
+          "translatedAt": "2026-10-26T11:15:17.900Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "es": {
+          "text": "Aplicaciones de IA en tu computadora (MCP)",
+          "translatedAt": "2026-10-26T11:15:33.273Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh": {
+          "text": "电脑端 AI 应用 (MCP)",
+          "translatedAt": "2026-10-26T11:15:47.185Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh-TW": {
+          "text": "電腦上的 AI 應用程式 (MCP)",
+          "translatedAt": "2026-10-26T11:16:04.516Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ja": {
+          "text": "PC上のAIアプリ (MCP)",
+          "translatedAt": "2026-10-26T11:16:15.337Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ko": {
+          "text": "내 컴퓨터의 AI 앱 (MCP)",
+          "translatedAt": "2026-10-26T11:16:23.859Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pt": {
+          "text": "Apps de IA no seu computador (MCP)",
+          "translatedAt": "2026-10-26T11:16:31.379Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "hi": {
+          "text": "आपके कंप्यूटर पर AI apps (MCP)",
+          "translatedAt": "2026-10-26T11:16:39.748Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "vi": {
+          "text": "Ứng dụng AI trên máy tính (MCP)",
+          "translatedAt": "2026-10-26T11:16:51.104Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "nl": {
+          "text": "AI-apps op je computer (MCP)",
+          "translatedAt": "2026-10-26T11:17:05.904Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "it": {
+          "text": "App IA sul tuo computer (MCP)",
+          "translatedAt": "2026-10-26T11:17:19.343Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ru": {
+          "text": "ИИ-приложения на вашем компьютере (MCP)",
+          "translatedAt": "2026-10-26T11:17:27.068Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "uk": {
+          "text": "ШІ-застосунки на вашому комп'ютері (MCP)",
+          "translatedAt": "2026-10-26T11:17:34.454Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "tr": {
+          "text": "Bilgisayarınızdaki AI uygulamaları (MCP)",
+          "translatedAt": "2026-10-26T11:17:44.461Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "id": {
+          "text": "Aplikasi AI di komputer Anda (MCP)",
+          "translatedAt": "2026-10-26T11:17:52.214Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pl": {
+          "text": "Aplikacje AI na komputerze (MCP)",
+          "translatedAt": "2026-10-26T11:18:07.303Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "th": {
+          "text": "แอป AI บนคอมพิวเตอร์ของคุณ (MCP)",
+          "translatedAt": "2026-10-26T11:18:17.630Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ar": {
+          "text": "تطبيقات الذكاء الاصطناعي على جهازك (MCP)",
+          "translatedAt": "2026-10-26T11:18:26.505Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "sv": {
+          "text": "AI-appar på din dator (MCP)",
+          "translatedAt": "2026-10-26T11:18:44.727Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "da": {
+          "text": "AI-apps på din computer (MCP)",
+          "translatedAt": "2026-10-26T11:18:54.531Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "no": {
+          "text": "AI-apper på datamaskinen din (MCP)",
+          "translatedAt": "2026-10-26T11:19:04.016Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fi": {
+          "text": "Tekoälysovellukset tietokoneellasi (MCP)",
+          "translatedAt": "2026-10-26T11:19:17.910Z",
+          "model": "google/gemini-3.7-flash"
+        }
+      }
+    },
+    "5ae08f7ed100b6ada63b79302c1d09802ec85fd39199dc5a77071b6f457f84dd": {
+      "en": "Off by default. When you turn on Settings → AI apps (MCP), AI apps on your computer that you connect (for example Claude Desktop, LM Studio, Cursor or VS Code) can read the parts of your library you allow: your saved articles with their summaries and highlights, and, only if you turn them on, the full article text, your feed items, and saving links to your inbox. The data goes from your browser through a small helper program on your computer (",
+      "translations": {
+        "de": {
+          "text": "Standardmäßig deaktiviert. Wenn Sie Einstellungen → KI-Apps (MCP) aktivieren, können von Ihnen verbundene KI-Apps auf Ihrem Computer (wie z. B. Claude Desktop, LM Studio, Cursor oder VS Code) die von Ihnen freigegebenen Bereiche Ihrer Bibliothek lesen: Ihre gespeicherten Artikel samt Zusammenfassungen und Markierungen sowie – ausschließlich nach expliziter Freigabe – den vollständigen Artikeltext, Ihre Feed-Einträge und das Speichern von Links in Ihrem Posteingang. Die Datenübertragung erfolgt direkt aus Ihrem Browser über ein kleines lokales Hilfsprogramm auf Ihrem Rechner (",
+          "translatedAt": "2026-10-26T11:14:55.378Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fr": {
+          "text": "Désactivé par défaut. Lorsque vous activez Paramètres → Applications IA (MCP), les applications d'IA connectées sur votre ordinateur (par exemple Claude Desktop, LM Studio, Cursor ou VS Code) peuvent lire les parties de votre bibliothèque que vous autorisez : vos articles enregistrés avec leurs résumés et surlignages, et, uniquement si vous l'activez, le texte intégral des articles, les éléments de vos flux et l'enregistrement de liens dans votre boîte de réception. Les données transitent directement depuis votre navigateur via un petit programme utilitaire sur votre ordinateur (",
+          "translatedAt": "2026-10-26T11:15:17.900Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "es": {
+          "text": "Desactivado por defecto. Cuando activas Configuración → Aplicaciones de IA (MCP), las aplicaciones de IA que conectes en tu computadora (por ejemplo, Claude Desktop, LM Studio, Cursor o VS Code) pueden leer las partes de tu biblioteca que permitas: tus artículos guardados con sus resúmenes y destacados y, solo si lo activas, el texto completo del artículo, los elementos de tu feed y el guardado de enlaces en tu bandeja de entrada. Los datos van desde tu navegador a través de un pequeño programa auxiliar en tu computadora (",
+          "translatedAt": "2026-10-26T11:15:33.273Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh": {
+          "text": "默认关闭。开启“设置 → AI 应用 (MCP)”后，您连接的电脑端 AI 应用（例如 Claude Desktop、LM Studio、Cursor 或 VS Code）可以读取您允许访问的资料库内容：已保存的文章及其摘要和高亮标注；仅在您主动开启时，才会包含全文、订阅源（Feed）条目以及保存至收件箱的链接。数据直接从浏览器经由您电脑上的轻量辅助程序（",
+          "translatedAt": "2026-10-26T11:15:47.185Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh-TW": {
+          "text": "預設為關閉。當您開啟「設定」→「AI 應用程式 (MCP)」時，您所連線的電腦 AI 應用程式（例如 Claude Desktop、LM Studio、Cursor 或 VS Code）即可讀取您允許的資料庫內容：已儲存的文章及其摘要與重點標記；若您開啟相應選項，還包括文章全文、訂閱來源項目，以及將連結儲存至收件匣。資料會從您的瀏覽器經由電腦上的小型輔助程式（",
+          "translatedAt": "2026-10-26T11:16:04.516Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ja": {
+          "text": "デフォルトではオフになっています。「設定」→「AIアプリ (MCP)」を有効にすると、接続したPC上のAIアプリ（例: Claude Desktop、LM Studio、Cursor、VS Codeなど）が、許可したライブラリのデータ（保存済み記事、要約、ハイライト、および有効に設定した場合のみ記事全文、フィード項目、受信トレイへのリンク保存）を読み取れるようになります。データはブラウザーからPC上の軽量なヘルパープログラム（",
+          "translatedAt": "2026-10-26T11:16:15.337Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ko": {
+          "text": "기본적으로 꺼져 있습니다. 설정 → AI 앱 (MCP)을 켜면 연결된 내 컴퓨터의 AI 앱(예: Claude Desktop, LM Studio, Cursor, VS Code 등)이 허용된 라이브러리 항목을 읽을 수 있습니다. 여기에는 저장된 글과 요약, 하이라이트가 포함되며, 직접 활성화한 경우에 한해 전체 본문, 피드 항목, 받은편지함 링크 저장 기능까지 지원합니다. 데이터는 브라우저에서 컴퓨터 내 가벼운 도우미 프로그램(",
+          "translatedAt": "2026-10-26T11:16:23.859Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pt": {
+          "text": "Desativado por padrão. Quando você ativa Configurações → Apps de IA (MCP), os apps de IA no seu computador que você conectar (por exemplo, Claude Desktop, LM Studio, Cursor ou VS Code) podem ler as partes da sua biblioteca que você permitir: seus artigos salvos com os respectivos resumos e destaques e, somente se você ativar essas opções, o texto completo do artigo, os itens do seu feed e o salvamento de links na sua caixa de entrada. Os dados vão do seu navegador por meio de um pequeno programa auxiliar no seu computador (",
+          "translatedAt": "2026-10-26T11:16:31.379Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "hi": {
+          "text": "डिफ़ॉल्ट रूप से Off। जब आप Settings → AI apps (MCP) चालू करते हैं, तो आपके कंप्यूटर पर कनेक्टेड AI apps (जैसे Claude Desktop, LM Studio, Cursor या VS Code) आपकी लाइब्रेरी के उन हिस्सों को पढ़ सकते हैं जिनकी आप अनुमति देते हैं: आपके सेव किए गए आर्टिकल्स उनके summaries और highlights के साथ, और केवल तभी जब आप उन्हें enable करें, पूरा आर्टिकल टेक्स्ट, आपके feed items, और आपके inbox में लिंक्स सेव करना। डेटा आपके ब्राउज़र से आपके कंप्यूटर पर मौजूद एक छोटे helper program (",
+          "translatedAt": "2026-10-26T11:16:39.748Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "vi": {
+          "text": "Mặc định tắt. Khi bạn bật Cài đặt → Ứng dụng AI (MCP), các ứng dụng AI trên máy tính mà bạn kết nối (ví dụ: Claude Desktop, LM Studio, Cursor hoặc VS Code) có thể đọc những phần trong thư viện mà bạn cho phép: các bài viết đã lưu kèm tóm tắt và đoạn đánh dấu nổi bật, và chỉ khi bạn bật, toàn bộ nội dung bài viết, các mục trong nguồn cấp dữ liệu và lưu liên kết vào hộp thư đến. Dữ liệu sẽ đi từ trình duyệt của bạn thông qua một tiện ích trợ giúp nhỏ trên máy tính (",
+          "translatedAt": "2026-10-26T11:16:51.104Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "nl": {
+          "text": "Standaard uitgeschakeld. Wanneer je Instellingen → AI-apps (MCP) inschakelt, kunnen AI-apps op je computer die je koppelt (zoals Claude Desktop, LM Studio, Cursor of VS Code) de delen van je bibliotheek lezen die je toestaat: je opgeslagen artikelen met hun samenvattingen en markeringen, en – alleen als je dit inschakelt – de volledige artikeltekst, je feed-items en het opslaan van links naar je inbox. De gegevens gaan vanuit je browser via een klein hulpprogramma op je computer (",
+          "translatedAt": "2026-10-26T11:17:05.904Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "it": {
+          "text": "Disattivato per impostazione predefinita. Quando attivi Impostazioni → App IA (MCP), le app di IA collegate sul tuo computer (come Claude Desktop, LM Studio, Cursor o VS Code) possono leggere le parti della tua libreria che autorizzi: gli articoli salvati con i relativi riassunti ed evidenziazioni e, solo se attivi l'opzione, il testo completo degli articoli, gli elementi dei tuoi feed e il salvataggio dei link nella casella di posta. I dati transitano dal browser attraverso un piccolo programma helper sul tuo computer (",
+          "translatedAt": "2026-10-26T11:17:19.343Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ru": {
+          "text": "По умолчанию отключено. При включении параметра Настройки → ИИ-приложения (MCP) подключенные ИИ-приложения на вашем компьютере (например, Claude Desktop, LM Studio, Cursor или VS Code) смогут читать разрешенные вами разделы библиотеки: сохраненные статьи с краткими содержаниями и выделениями, а также — только если вы это включите — полные тексты статей, элементы ленты и сохранение ссылок во входящие. Данные передаются из браузера через небольшую вспомогательную программу на вашем компьютере (",
+          "translatedAt": "2026-10-26T11:17:27.068Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "uk": {
+          "text": "Вимкнено за замовчуванням. Якщо ввімкнути Налаштування → ШІ-застосунки (MCP), підключені ШІ-застосунки на вашому комп'ютері (наприклад, Claude Desktop, LM Studio, Cursor або VS Code) зможуть читати дозволені вами частини бібліотеки: збережені статті з їхніми резюме й виділеннями, а також (лише якщо ви це ввімкнете) повний текст статей, елементи вашої стрічки та збереження посилань у «Вхідні». Дані передаються з браузера через невелику допоміжну програму на комп'ютері (",
+          "translatedAt": "2026-10-26T11:17:34.454Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "tr": {
+          "text": "Varsayılan olarak kapalıdır. Ayarlar → AI uygulamaları (MCP) seçeneğini açtığınızda, bağladığınız bilgisayarınızdaki AI uygulamaları (örneğin Claude Desktop, LM Studio, Cursor veya VS Code), kütüphanenizin izin verdiğiniz bölümlerini okuyabilir: özetleri ve vurgularıyla birlikte kayıtlı makaleleriniz ve yalnızca siz izin verirseniz tam makale metni, akış ögeleriniz ve gelen kutunuza bağlantı kaydetme. Veriler, tarayıcınızdan bilgisayarınızdaki küçük bir yardımcı program (",
+          "translatedAt": "2026-10-26T11:17:44.461Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "id": {
+          "text": "Nonaktif secara default. Saat Anda mengaktifkan Pengaturan → Aplikasi AI (MCP), aplikasi AI di komputer yang Anda hubungkan (misalnya Claude Desktop, LM Studio, Cursor, atau VS Code) dapat membaca bagian pustaka yang Anda izinkan: artikel tersimpan beserta ringkasan dan sorotannya, serta—hanya jika Anda mengaktifkannya—teks artikel lengkap, item feed, dan penyimpanan tautan ke inbox Anda. Data dikirim dari browser Anda melalui program helper kecil di komputer Anda (",
+          "translatedAt": "2026-10-26T11:17:52.214Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pl": {
+          "text": "Domyślnie wyłączone. Po włączeniu w Ustawienia → Aplikacje AI (MCP), połączone aplikacje AI na Twoim komputerze (np. Claude Desktop, LM Studio, Cursor czy VS Code) mogą odczytywać te części Twojej biblioteki, na które zezwolisz: zapisane artykuły wraz z ich podsumowaniami i wyróżnieniami, a jeśli to włączysz — także pełną treść artykułów, elementy kanałów oraz zapisywanie linków do skrzynki odbiorczej. Dane trafiają z przeglądarki przez mały program pomocniczy na Twoim komputerze (",
+          "translatedAt": "2026-10-26T11:18:07.303Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "th": {
+          "text": "ปิดใช้งานตามค่าเริ่มต้น เมื่อเปิดใช้งานที่ การตั้งค่า → แอป AI (MCP) แอป AI บนคอมพิวเตอร์ที่เชื่อมต่อไว้ (เช่น Claude Desktop, LM Studio, Cursor หรือ VS Code) จะสามารถอ่านส่วนต่างๆ ในคลังที่คุณอนุญาตได้ ไม่ว่าจะเป็นบทความที่บันทึกไว้พร้อมบทสรุปและไฮไลต์ และหากเปิดการตั้งค่าไว้ จะรวมถึงเนื้อหาบทความฉบับเต็ม รายการฟีด และการบันทึกลิงก์ไปยังกล่องขาเข้า ข้อมูลจะส่งตรงจากเบราว์เซอร์ผ่านโปรแกรมช่วยเหลือขนาดเล็กบนคอมพิวเตอร์ของคุณ (",
+          "translatedAt": "2026-10-26T11:18:17.630Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ar": {
+          "text": "معطّل افتراضيًا. عند تفعيل الإعدادات ← تطبيقات الذكاء الاصطناعي (MCP)، يمكن لتطبيقات الذكاء الاصطناعي المتصلة على جهازك (مثل Claude Desktop أو LM Studio أو Cursor أو VS Code) قراءة الأجزاء التي تسمح بها من مكتبتك: مقالاتك المحفوظة مع ملخصاتها وتظليلاتها، وفقط إذا قمت بتفعيل ذلك، النص الكامل للمقالات، وعناصر الخلاصات، وحفظ الروابط في صندوق الوارد لديك. تنتقل البيانات من متصفحك عبر برنامج مساعد صغير على جهازك (",
+          "translatedAt": "2026-10-26T11:18:26.505Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "sv": {
+          "text": "Avstängt som standard. När du aktiverar Inställningar → AI-appar (MCP) kan AI-appar på din dator som du ansluter (till exempel Claude Desktop, LM Studio, Cursor eller VS Code) läsa de delar av ditt bibliotek som du tillåter: dina sparade artiklar med deras sammanfattningar och markeringar, och – endast om du aktiverar det – hela artikeltexten, dina flödesinlägg samt spara länkar till din inkorg. Datan skickas från din webbläsare genom ett litet hjälpprogram på din dator (",
+          "translatedAt": "2026-10-26T11:18:44.727Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "da": {
+          "text": "Slået fra som standard. Når du aktiverer Indstillinger → AI-apps (MCP), kan AI-apps på din computer, som du forbinder (f.eks. Claude Desktop, LM Studio, Cursor eller VS Code), læse de dele af dit bibliotek, du giver tilladelse til: dine gemte artikler med tilhørende resuméer og fremhævninger, og – kun hvis du vælger at slå det til – den fulde artikeltekst, dine feed-elementer samt muligheden for at gemme links i din indbakke. Dataene sendes direkte fra din browser via et lille hjælpeprogram på din computer (",
+          "translatedAt": "2026-10-26T11:18:54.531Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "no": {
+          "text": "Av som standard. Når du slår på Innstillinger → AI-apper (MCP), kan AI-apper på datamaskinen din som du kobler til (for eksempel Claude Desktop, LM Studio, Cursor eller VS Code), lese de delene av biblioteket ditt du tillater: dine lagrede artikler med sammendrag og markeringer, og – kun hvis du aktiverer det – full artikkeltekst, feed-elementer og lagring av lenker til innboksen din. Dataene sendes fra nettleseren din via et lite hjelpeprogram på datamaskinen din (",
+          "translatedAt": "2026-10-26T11:19:04.016Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fi": {
+          "text": "Oletuksena pois päältä. Kun kytket päälle kohdan Asetukset → Tekoälysovellukset (MCP), yhdistämäsi tietokoneen tekoälysovellukset (kuten Claude Desktop, LM Studio, Cursor tai VS Code) voivat lukea sallimiasi kirjastosi osia: tallennettuja artikkeleita tiivistelmineen ja korostuksineen, sekä – vain erikseen valittaessa – artikkeleiden koko tekstiä, syötekohteita ja linkkien tallennusta Saapuneet-kansioon. Tiedot siirtyvät selaimestasi tietokoneellasi toimivan pienen apuohjelman (",
+          "translatedAt": "2026-10-26T11:19:17.910Z",
+          "model": "google/gemini-3.7-flash"
+        }
+      }
+    },
+    "1a8106719e76cc8502bf9b8151500fe8e8bd4e7d350b7fdb00618c69cd94eb23": {
+      "en": ") to that app. It never passes through our server, and we never see it. The helper accepts connections from your own computer only and needs a pairing code; it stores no articles and keeps no record of what it forwards. Articles with the tag you exclude (",
+      "translations": {
+        "de": {
+          "text": ") an die jeweilige App. Sie werden zu keinem Zeitpunkt über unsere Server geleitet und sind für uns nicht einsehbar. Das Hilfsprogramm akzeptiert ausschließlich lokale Verbindungen von Ihrem eigenen Rechner, erfordert einen Kopplungscode, speichert keine Artikel und legt keine Protokolle über weitergeleitete Inhalte an. Artikel mit dem von Ihnen ausgeschlossenen Tag (",
+          "translatedAt": "2026-10-26T11:14:55.378Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fr": {
+          "text": ") vers cette application. Elles ne passent jamais par nos serveurs et nous n'y avons aucunement accès. Cet utilitaire n'accepte que les connexions provenant de votre propre ordinateur et requiert un code de jumelage ; il ne stocke aucun article et ne conserve aucun historique de ce qu'il transmet. Les articles portant l'étiquette que vous excluez (",
+          "translatedAt": "2026-10-26T11:15:17.900Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "es": {
+          "text": ") hacia esa app. Nunca pasan por nuestro servidor y nunca tenemos acceso a ellos. El asistente solo acepta conexiones desde tu propia computadora y requiere un código de vinculación; no almacena ningún artículo ni guarda registro de lo que reenvía. Los artículos con la etiqueta que excluyas (",
+          "translatedAt": "2026-10-26T11:15:33.273Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh": {
+          "text": "）传输至该应用。数据绝不会经过我们的服务器，我们也无法查看。该辅助程序仅接受来自本机的连接并需要配对码；它不会存储任何文章，也不会记录转发的内容。带有您排除标签（",
+          "translatedAt": "2026-10-26T11:15:47.185Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh-TW": {
+          "text": "）傳送至該應用程式。資料絕不會經過我們的伺服器，我們也絕不會看到。輔助程式僅接受來自您本機電腦的連線並需要配對碼；它不儲存任何文章，也不記錄轉發的內容。含有您排除標籤（",
+          "translatedAt": "2026-10-26T11:16:04.516Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ja": {
+          "text": "）を経由して各アプリに送信されます。当社のサーバーを経由することはなく、当社がデータを閲覧することも一切ありません。ヘルパーはお使いのPCからの接続のみを受け付け、ペアリングコードを必要とします。記事の保存や転送ログの保持は行いません。除外タグ（デフォルトでは ",
+          "translatedAt": "2026-10-26T11:16:15.337Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ko": {
+          "text": ")을 거쳐 해당 앱으로 전달됩니다. 서버를 전혀 거치지 않으므로 개발사에서도 절대 볼 수 없습니다. 도우미 프로그램은 사용자 본인의 컴퓨터 연결만 허용하며 페어링 코드가 필요합니다. 또한 글을 저장하거나 전달 내역을 기록하지 않습니다. 제외하도록 설정한 태그(",
+          "translatedAt": "2026-10-26T11:16:23.859Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pt": {
+          "text": ") para esse app. Eles nunca passam pelo nosso servidor e nós nunca temos acesso a eles. O auxiliar aceita conexões apenas do seu próprio computador e exige um código de pareamento; ele não armazena artigos nem guarda registros do que encaminha. Artigos com a tag que você excluir (",
+          "translatedAt": "2026-10-26T11:16:31.379Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "hi": {
+          "text": ") के ज़रिए उस app तक जाता है। यह कभी भी हमारे सर्वर से होकर नहीं गुज़रता, और हम इसे कभी नहीं देख सकते। यह helper केवल आपके अपने कंप्यूटर से ही कनेक्शन स्वीकार करता है और इसके लिए एक pairing code की ज़रूरत होती है; यह कोई भी आर्टिकल्स स्टोर नहीं करता और जो कुछ भी फ़ॉरवर्ड करता है उसका कोई रिकॉर्ड नहीं रखता। आपके द्वारा exclude किए गए टैग (",
+          "translatedAt": "2026-10-26T11:16:39.748Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "vi": {
+          "text": ") đến ứng dụng đó. Dữ liệu không bao giờ đi qua máy chủ của chúng tôi và chúng tôi hoàn toàn không nhìn thấy nội dung đó. Tiện ích trợ giúp chỉ chấp nhận kết nối từ chính máy tính của bạn và yêu cầu mã ghép nối; tiện ích không lưu trữ bài viết và không lưu lại bản ghi nội dung được chuyển tiếp. Các bài viết có gắn thẻ loại trừ (",
+          "translatedAt": "2026-10-26T11:16:51.104Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "nl": {
+          "text": ") naar die app. Dit passeert nooit onze server en wij krijgen dit nooit te zien. Het hulpprogramma accepteert uitsluitend verbindingen vanaf je eigen computer en vereist een koppelcode; het slaat geen artikelen op en houdt niet bij wat het doorstuurt. Artikelen met de tag die je uitsluit (",
+          "translatedAt": "2026-10-26T11:17:05.904Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "it": {
+          "text": ") verso l'app scelta. Non passano mai attraverso i nostri server e non possiamo vederli in alcun modo. L'helper accetta esclusivamente connessioni locali dal tuo computer e richiede un codice di associazione; non memorizza articoli né tiene traccia di ciò che inoltra. Gli articoli contrassegnati con il tag escluso (",
+          "translatedAt": "2026-10-26T11:17:19.343Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ru": {
+          "text": ") в соответствующее приложение. Они никогда не проходят через наш сервер, и мы не имеем к ним доступа. Вспомогательная программа принимает подключения только с вашего компьютера и требует код сопряжения; она не сохраняет статьи и не ведет историю пересылаемых данных. Статьи с исключенным тегом (",
+          "translatedAt": "2026-10-26T11:17:27.068Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "uk": {
+          "text": ") до цього застосунку. Вони ніколи не проходять через наш сервер, і ми їх не бачимо. Допоміжна програма приймає з'єднання лише з вашого комп'ютера та потребує коду з'єднання; вона не зберігає статті й не записує передані дані. Статті з виключеним тегом (",
+          "translatedAt": "2026-10-26T11:17:34.454Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "tr": {
+          "text": ") aracılığıyla ilgili uygulamaya iletilir. Sunucumuzdan asla geçmez ve verilerinizi kesinlikle görmeyiz. Yardımcı program yalnızca kendi bilgisayarınızdan gelen bağlantıları kabul eder ve bir eşleştirme kodu gerektirir; hiçbir makaleyi saklamaz ve ilettiği bilgilerin kaydını tutmaz. Hariç tuttuğunuz etikete (",
+          "translatedAt": "2026-10-26T11:17:44.461Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "id": {
+          "text": ") ke aplikasi tersebut. Data tidak pernah melewati server kami, dan kami tidak pernah melihatnya. Helper hanya menerima koneksi dari komputer Anda sendiri serta memerlukan pairing code; helper tidak menyimpan artikel apa pun dan tidak mencatat data yang diteruskannya. Artikel dengan tag yang Anda kecualikan (",
+          "translatedAt": "2026-10-26T11:17:52.214Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pl": {
+          "text": ") do danej aplikacji. Nigdy nie przechodzą przez nasz serwer i nie mamy do nich dostępu. Program pomocniczy akceptuje połączenia wyłącznie z Twojego komputera i wymaga kodu parowania; nie przechowuje artykułów ani historii przesyłanych danych. Artykuły z wykluczonym tagiem (",
+          "translatedAt": "2026-10-26T11:18:07.303Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "th": {
+          "text": ") ไปยังแอปนั้นๆ ข้อมูลนี้จะไม่ผ่านเซิร์ฟเวอร์ของเราและเราไม่สามารถมองเห็นได้ โปรแกรมช่วยเหลือจะยอมรับการเชื่อมต่อจากคอมพิวเตอร์ของคุณเท่านั้นและต้องใช้รหัสจับคู่ ทั้งนี้จะไม่มีการจัดเก็บบทความหรือบันทึกประวัติสิ่งที่ส่งต่อ สำหรับบทความที่มีแท็กที่คุณยกเว้น (",
+          "translatedAt": "2026-10-26T11:18:17.630Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ar": {
+          "text": ") إلى ذلك التطبيق. لا تمر البيانات أبدًا عبر خوادمنا، ولا نراها على الإطلاق. يقبل البرنامج المساعد الاتصالات من جهاز الكمبيوتر الخاص بك فقط ويتطلب رمز اقتران؛ ولا يخزن أي مقالات ولا يحتفظ بأي سجل لما يمرره. المقالات التي تحمل الوسم الذي تستبعده (",
+          "translatedAt": "2026-10-26T11:18:26.505Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "sv": {
+          "text": ") till den appen. Datan passerar aldrig vår server och vi ser den aldrig. Hjälpprogrammet accepterar endast anslutningar från din egen dator och kräver en parkopplingskod; det lagrar inga artiklar och sparar ingen historik över vad som vidarebefordras. Artiklar med taggen du exkluderar (",
+          "translatedAt": "2026-10-26T11:18:44.727Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "da": {
+          "text": ") til den pågældende app. De passerer aldrig igennem vores server, og vi ser dem aldrig. Hjælpeprogrammet accepterer udelukkende forbindelser fra din egen computer og kræver en parringskode; det gemmer ingen artikler og logger intet om, hvad der videresendes. Artikler med det tag, du ekskluderer (",
+          "translatedAt": "2026-10-26T11:18:54.531Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "no": {
+          "text": ") til den aktuelle appen. Dataene går aldri via serveren vår, og vi ser dem aldri. Hjelpeprogrammet godtar kun tilkoblinger fra din egen datamaskin og krever en paringskode; det lagrer ingen artikler og fører ingen logg over hva som videresendes. Artikler med taggen du ekskluderer (",
+          "translatedAt": "2026-10-26T11:19:04.016Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fi": {
+          "text": ") kautta suoraan sovellukseen. Tiedot eivät koskaan kulje palvelimemme kautta, emmekä näe niitä. Apuohjelma hyväksyy yhteyksiä vain omalta tietokoneeltasi ja vaatii pariliitoskoodin; se ei tallenna artikkeleita eikä säilytä lokia välittämistään tiedoista. Artikkeleita, joissa on poissuljettu tunniste (",
+          "translatedAt": "2026-10-26T11:19:17.910Z",
+          "model": "google/gemini-3.7-flash"
+        }
+      }
+    },
+    "f0a47340ac8d464c757854496df363c2e3c81c49f5f9d71bf7de2363be5ab613": {
+      "en": "by default) are never shared. The extension keeps a list of the last 50 calls (tool name, time and number of results, no content) on your device, which you can see in the same settings panel. What the AI app then sends to its model depends on the app and the model you choose: with a local model, nothing leaves your computer. Turn the setting off or select Disconnect at any time.",
+      "translations": {
+        "de": {
+          "text": "standardmäßig) werden niemals geteilt. Die Erweiterung führt lokal auf Ihrem Gerät eine Liste der letzten 50 Aufrufe (Tool-Name, Zeitstempel und Anzahl der Ergebnisse, keinerlei Inhalte), die Sie im selben Einstellungsbereich einsehen können. Welche Daten die KI-App an ihr Modell weiterleitet, hängt von der gewählten App und dem Modell ab: Bei einem lokalen Modell verlässt nichts Ihren Computer. Sie können diese Einstellung jederzeit deaktivieren oder die Verbindung trennen.",
+          "translatedAt": "2026-10-26T11:14:55.378Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fr": {
+          "text": "par défaut) ne sont jamais partagés. L'extension conserve localement sur votre appareil la liste des 50 derniers appels (nom de l'outil, horodatage et nombre de résultats, aucun contenu), que vous pouvez consulter dans ce même panneau de paramètres. Ce que l'application d'IA envoie ensuite à son modèle dépend de l'application et du modèle choisis : avec un modèle local (on-device), aucune donnée ne quitte votre ordinateur. Vous pouvez désactiver ce paramètre ou cliquer sur Déconnecter à tout moment.",
+          "translatedAt": "2026-10-26T11:15:17.900Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "es": {
+          "text": "por defecto) nunca se comparten. La extensión guarda en tu dispositivo una lista de las últimas 50 llamadas (nombre de la herramienta, hora y cantidad de resultados, sin contenido), que puedes consultar en el mismo panel de configuración. Lo que la app de IA envíe luego a su modelo dependerá de la app y del modelo que elijas: con un modelo local, nada sale de tu computadora. Desactiva el ajuste o selecciona Desconectar en cualquier momento.",
+          "translatedAt": "2026-10-26T11:15:33.273Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh": {
+          "text": "，默认）的文章绝不会被共享。扩展程序会在本地设备上保留最近 50 次调用的记录（包含工具名称、时间和结果数量，不含具体内容），您可以在同一设置面板中查看。AI 应用随后向模型发送的内容取决于您选择的应用与模型：若使用本地模型，任何数据都不会离开您的电脑。您可以随时关闭该设置或选择“断开连接”。",
+          "translatedAt": "2026-10-26T11:15:47.185Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh-TW": {
+          "text": "，預設值）的文章絕不會被分享。擴充功能會在您的裝置上保留最近 50 次呼叫的清單（包含工具名稱、時間與結果數量，不含內容），您可以在同一個設定面板中查看。AI 應用程式隨後向其模型傳送哪些內容，取決於您選擇的應用程式與模型：若使用本地模型，任何資料都不會離開您的電腦。您可以隨時關閉此設定或選取「中斷連線」。",
+          "translatedAt": "2026-10-26T11:16:04.516Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ja": {
+          "text": "）が付けられた記事が共有されることはありません。拡張機能は、直近50件の呼び出し履歴（ツール名、日時、結果件数のみ。本文コンテンツは含みません）をオンデバイスで保持し、同じ設定パネルから確認できます。その後AIアプリがモデルに何を送信するかは、選択したアプリとモデルに依存します。ローカルモデルを使用している場合、データがPCの外に出ることは一切ありません。設定はいつでもオフにでき、「切断」を選択することも可能です。",
+          "translatedAt": "2026-10-26T11:16:15.337Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ko": {
+          "text": "가 기본값)가 붙은 글은 절대 공유되지 않습니다. 확장 프로그램은 기기 내에 최근 50건의 호출 기록(도구 이름, 일시, 결과 개수만 기록되며 본문 내용은 미포함)을 보관하며, 같은 설정 패널에서 언제든 확인할 수 있습니다. AI 앱이 모델로 전송하는 데이터 범위는 사용하는 앱과 모델에 따라 다르며, 로컬 모델을 사용할 경우 어떤 데이터도 컴퓨터 외부로 유출되지 않습니다. 언제든지 설정을 끄거나 '연결 해제'를 선택할 수 있습니다.",
+          "translatedAt": "2026-10-26T11:16:23.859Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pt": {
+          "text": "por padrão) nunca são compartilhados. A extensão mantém uma lista das últimas 50 chamadas (nome da ferramenta, horário e número de resultados, sem o conteúdo) no seu dispositivo, que você pode visualizar no mesmo painel de configurações. O que o app de IA envia para o modelo depende do app e do modelo escolhido: usando um modelo local, nada sai do seu computador. Desative a configuração ou selecione Desconectar a qualquer momento.",
+          "translatedAt": "2026-10-26T11:16:31.379Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "hi": {
+          "text": ") डिफ़ॉल्ट रूप से) वाले आर्टिकल्स कभी शेयर नहीं किए जाते। यह extension आपके डिवाइस पर पिछली 50 calls की एक लिस्ट रखता है (tool name, time और number of results, कोई content नहीं), जिसे आप उसी settings panel में देख सकते हैं। इसके बाद AI app अपने मॉडल को क्या भेजता है, यह आपके चुने हुए app और मॉडल पर निर्भर करता है: local model के साथ, आपके कंप्यूटर से कुछ भी बाहर नहीं जाता। किसी भी समय setting को off करें या Disconnect चुनें।",
+          "translatedAt": "2026-10-26T11:16:39.748Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "vi": {
+          "text": "theo mặc định) sẽ không bao giờ được chia sẻ. Tiện ích mở rộng lưu lại danh sách 50 lệnh gọi gần nhất (tên công cụ, thời gian và số lượng kết quả, không chứa nội dung) ngay trên thiết bị của bạn, bạn có thể xem trong cùng bảng cài đặt. Dữ liệu mà ứng dụng AI gửi đến mô hình sau đó sẽ tùy thuộc vào ứng dụng và mô hình bạn chọn: với mô hình cục bộ chạy offline, hoàn toàn không có dữ liệu nào rời khỏi máy tính của bạn. Bạn có thể tắt cài đặt hoặc chọn Ngắt kết nối bất cứ lúc nào.",
+          "translatedAt": "2026-10-26T11:16:51.104Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "nl": {
+          "text": "standaard) worden nooit gedeeld. De extensie bewaart een overzicht van de laatste 50 aanroepen (toolnaam, tijdstip en aantal resultaten, geen inhoud) op je apparaat, die je in hetzelfde instellingenpaneel kunt inzien. Wat de AI-app vervolgens naar zijn model stuurt, hangt af van de app en het gekozen model: bij een lokaal model verlaat niets je computer. Schakel de instelling op elk moment uit of selecteer Verbinding verbreken.",
+          "translatedAt": "2026-10-26T11:17:05.904Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "it": {
+          "text": "per impostazione predefinita) non vengono mai condivisi. L'estensione conserva sul tuo dispositivo un registro delle ultime 50 chiamate (nome dello strumento, orario e numero di risultati, senza alcun contenuto), consultabile nello stesso pannello delle impostazioni. Ciò che l'app IA invia al modello dipende esclusivamente dall'applicazione e dal modello che utilizzi: con un modello locale in esecuzione sul dispositivo, nessun dato lascia il tuo computer. Puoi disattivare questa opzione o selezionare Disconnetti in qualsiasi momento.",
+          "translatedAt": "2026-10-26T11:17:19.343Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ru": {
+          "text": "по умолчанию) никогда не передаются. Расширение сохраняет на вашем устройстве журнал последних 50 вызовов (название инструмента, время и количество результатов, без содержимого), который можно посмотреть на той же панели настроек. То, что ИИ-приложение отправляет своей модели, зависит от выбранного приложения и модели: при использовании локальной модели никакие данные не покидают ваш компьютер. Вы можете отключить эту функцию или выбрать «Отключить» в любой момент.",
+          "translatedAt": "2026-10-26T11:17:27.068Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "uk": {
+          "text": "за замовчуванням) ніколи не передаються. Розширення зберігає список останніх 50 викликів (назва інструмента, час і кількість результатів, без вмісту) на вашому пристрої — ви можете переглянути його на цій же панелі налаштувань. Що саме ШІ-застосунок надсилає своїй моделі, залежить від вибраного застосунку та моделі: із локальною моделлю жодні дані не залишають ваш комп'ютер. Ви можете будь-коли вимкнути це налаштування або вибрати «Від'єднати».",
+          "translatedAt": "2026-10-26T11:17:34.454Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "tr": {
+          "text": "varsayılan olarak) sahip makaleler asla paylaşılmaz. Uzantı, cihazınızda son 50 çağrının bir listesini (araç adı, zaman ve sonuç sayısı; içerik yer almaz) saklar ve bunu aynı ayarlar panelinden görebilirsiniz. AI uygulamasının daha sonra modeline ne göndereceği, seçtiğiniz uygulamaya ve modele bağlıdır: yerel bir model kullandığınızda hiçbir veri bilgisayarınızın dışına çıkmaz. İstediğiniz zaman bu ayarı kapatabilir veya Bağlantıyı Kes seçeneğini kullanabilirsiniz.",
+          "translatedAt": "2026-10-26T11:17:44.461Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "id": {
+          "text": "secara default) tidak akan pernah dibagikan. Ekstensi menyimpan daftar 50 panggilan terakhir (tool name, waktu, dan jumlah hasil, tanpa konten) di perangkat Anda, yang dapat Anda lihat di panel pengaturan yang sama. Data yang dikirimkan aplikasi AI ke modelnya bergantung pada aplikasi dan model yang Anda pilih: dengan local model, tidak ada data yang keluar dari komputer Anda. Nonaktifkan pengaturan atau pilih Disconnect kapan saja.",
+          "translatedAt": "2026-10-26T11:17:52.214Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pl": {
+          "text": "domyślnie) nigdy nie są udostępniane. Rozszerzenie przechowuje na Twoim urządzeniu listę ostatnich 50 wywołań (nazwa narzędzia, czas i liczba wyników, bez samej treści), którą możesz przejrzeć w tym samym panelu ustawień. To, co aplikacja AI przesyła do swojego modelu, zależy od wybranej aplikacji i modelu: w przypadku modelu lokalnego żadne dane nie opuszczają Twojego komputera. W dowolnym momencie możesz wyłączyć tę opcję lub wybrać Rozłącz.",
+          "translatedAt": "2026-10-26T11:18:07.303Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "th": {
+          "text": "เป็นค่าเริ่มต้น) จะไม่มีการแชร์โดยเด็ดขาด ส่วนขยายจะบันทึกรายการประวัติการเรียกใช้ 50 รายการล่าสุด (ชื่อเครื่องมือ เวลา และจำนวนผลลัพธ์ โดยไม่มีเนื้อหา) ไว้บนอุปกรณ์ของคุณ ซึ่งสามารถตรวจสอบได้ในหน้าต่างการตั้งค่าเดียวกัน สิ่งที่แอป AI จะส่งต่อไปยังโมเดลจะขึ้นอยู่กับแอปและโมเดลที่คุณเลือก หากใช้โมเดลแบบ Local จะไม่มีข้อมูลใดออกจากคอมพิวเตอร์ของคุณเลย สามารถปิดการตั้งค่านี้หรือเลือก Disconnect ได้ทุกเมื่อ",
+          "translatedAt": "2026-10-26T11:18:17.630Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ar": {
+          "text": "افتراضيًا) لا تتم مشاركتها أبدًا. يحتفظ الامتداد بقائمة لآخر 50 استدعاءً (اسم الأداة، والوقت، وعدد النتائج، دون أي محتوى) على جهازك، ويمكنك الاطلاع عليها في لوحة الإعدادات نفسها. ما يرسله تطبيق الذكاء الاصطناعي بعد ذلك إلى نموذجه يعتمد على التطبيق والنموذج الذي تختاره: فمع النماذج المحلية، لا يغادر أي شيء جهازك. يمكنك إيقاف تفعيل الإعداد أو اختيار قطع الاتصال (Disconnect) في أي وقت.",
+          "translatedAt": "2026-10-26T11:18:26.505Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "sv": {
+          "text": " som standard) delas aldrig. Tillägget sparar en lista över de senaste 50 anropen (verktygsnamn, tidpunkt och antal resultat, inget innehåll) på din enhet, vilket du kan se i samma inställningspanel. Vad AI-appen sedan skickar till sin modell beror på appen och modellen du väljer: med en lokal modell lämnar ingenting din dator. Du kan när som helst stänga av inställningen eller välja Koppla från.",
+          "translatedAt": "2026-10-26T11:18:44.727Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "da": {
+          "text": "som standard), bliver aldrig delt. Udvidelsen gemmer en liste over de seneste 50 kald (værktøjsnavn, tidspunkt og antal resultater – intet indhold) lokalt på din enhed, som du kan se i det samme indstillingspanel. Hvad AI-appen derefter sender videre til sin model, afhænger af den app og model, du vælger: Med en lokal model forlader intet din computer. Du kan altid slå funktionen fra eller vælge Afbryd forbindelse.",
+          "translatedAt": "2026-10-26T11:18:54.531Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "no": {
+          "text": "som standard) deles aldri. Nettleserutvidelsen lagrer en oversikt over de siste 50 forespørslene (verktøynavn, tidspunkt og antall resultater – aldri innhold) lokalt på enheten din, som du kan se i det samme innstillingspanelet. Hva AI-appen deretter sender til modellen sin avhenger av appen og modellen du velger: med en lokal modell forlater ingenting datamaskinen din. Du kan når som helst slå av innstillingen eller velge Koble fra.",
+          "translatedAt": "2026-10-26T11:19:04.016Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fi": {
+          "text": "oletuksena), ei koskaan jaeta. Laajennus säilyttää laitteellasi luettelon 50 viimeisimmästä kutsusta (työkalun nimi, kellonaika ja tulosten määrä, ei sisältöä), jonka näet samassa asetusnäkymässä. Se, mitä tekoälysovellus lähettää tekoälymallille, riippuu valitsemastasi sovelluksesta ja mallista: paikallista mallia käytettäessä mitään ei poistu tietokoneeltasi. Voit ottaa asetuksen pois päältä tai valita Katkaise yhteys milloin tahansa.",
+          "translatedAt": "2026-10-26T11:19:17.910Z",
+          "model": "google/gemini-3.7-flash"
+        }
+      }
+    },
+    "15b0062f75e3aaa4cf5f35b941171ebc2887efadfa70565abfe9bde0b9f8498f": {
+      "en": "aish-mcp",
+      "translations": {
+        "de": {
+          "text": "aish-mcp",
+          "translatedAt": "2026-10-26T11:14:55.378Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fr": {
+          "text": "aish-mcp",
+          "translatedAt": "2026-10-26T11:15:17.900Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "es": {
+          "text": "aish-mcp",
+          "translatedAt": "2026-10-26T11:15:33.273Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh": {
+          "text": "aish-mcp",
+          "translatedAt": "2026-10-26T11:15:47.185Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh-TW": {
+          "text": "aish-mcp",
+          "translatedAt": "2026-10-26T11:16:04.516Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ja": {
+          "text": "aish-mcp",
+          "translatedAt": "2026-10-26T11:16:15.337Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ko": {
+          "text": "aish-mcp",
+          "translatedAt": "2026-10-26T11:16:23.859Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pt": {
+          "text": "aish-mcp",
+          "translatedAt": "2026-10-26T11:16:31.379Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "hi": {
+          "text": "aish-mcp",
+          "translatedAt": "2026-10-26T11:16:39.748Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "vi": {
+          "text": "aish-mcp",
+          "translatedAt": "2026-10-26T11:16:51.104Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "nl": {
+          "text": "aish-mcp",
+          "translatedAt": "2026-10-26T11:17:05.904Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "it": {
+          "text": "aish-mcp",
+          "translatedAt": "2026-10-26T11:17:19.343Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ru": {
+          "text": "aish-mcp",
+          "translatedAt": "2026-10-26T11:17:27.068Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "uk": {
+          "text": "aish-mcp",
+          "translatedAt": "2026-10-26T11:17:34.454Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "tr": {
+          "text": "aish-mcp",
+          "translatedAt": "2026-10-26T11:17:44.461Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "id": {
+          "text": "aish-mcp",
+          "translatedAt": "2026-10-26T11:17:52.214Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pl": {
+          "text": "aish-mcp",
+          "translatedAt": "2026-10-26T11:18:07.303Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "th": {
+          "text": "aish-mcp",
+          "translatedAt": "2026-10-26T11:18:17.630Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ar": {
+          "text": "aish-mcp",
+          "translatedAt": "2026-10-26T11:18:26.505Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "sv": {
+          "text": "aish-mcp",
+          "translatedAt": "2026-10-26T11:18:44.727Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "da": {
+          "text": "aish-mcp",
+          "translatedAt": "2026-10-26T11:18:54.531Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "no": {
+          "text": "aish-mcp",
+          "translatedAt": "2026-10-26T11:19:04.016Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fi": {
+          "text": "aish-mcp",
+          "translatedAt": "2026-10-26T11:19:17.910Z",
+          "model": "google/gemini-3.7-flash"
+        }
+      }
+    },
+    "715dc8493c36579a5b116995100f635e3572fdf8703e708ef1a08d943b36774e": {
+      "en": "private",
+      "translations": {
+        "de": {
+          "text": "private",
+          "translatedAt": "2026-10-26T11:14:55.378Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fr": {
+          "text": "private",
+          "translatedAt": "2026-10-26T11:15:17.900Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "es": {
+          "text": "private",
+          "translatedAt": "2026-10-26T11:15:33.273Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh": {
+          "text": "private",
+          "translatedAt": "2026-10-26T11:15:47.185Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh-TW": {
+          "text": "private",
+          "translatedAt": "2026-10-26T11:16:04.516Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ja": {
+          "text": "private",
+          "translatedAt": "2026-10-26T11:16:15.337Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ko": {
+          "text": "private",
+          "translatedAt": "2026-10-26T11:16:23.859Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pt": {
+          "text": "private",
+          "translatedAt": "2026-10-26T11:16:31.379Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "hi": {
+          "text": "private",
+          "translatedAt": "2026-10-26T11:16:39.748Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "vi": {
+          "text": "private",
+          "translatedAt": "2026-10-26T11:16:51.104Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "nl": {
+          "text": "private",
+          "translatedAt": "2026-10-26T11:17:05.904Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "it": {
+          "text": "private",
+          "translatedAt": "2026-10-26T11:17:19.343Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ru": {
+          "text": "private",
+          "translatedAt": "2026-10-26T11:17:27.068Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "uk": {
+          "text": "private",
+          "translatedAt": "2026-10-26T11:17:34.454Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "tr": {
+          "text": "private",
+          "translatedAt": "2026-10-26T11:17:44.461Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "id": {
+          "text": "private",
+          "translatedAt": "2026-10-26T11:17:52.214Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pl": {
+          "text": "private",
+          "translatedAt": "2026-10-26T11:18:07.303Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "th": {
+          "text": "private",
+          "translatedAt": "2026-10-26T11:18:17.630Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ar": {
+          "text": "private",
+          "translatedAt": "2026-10-26T11:18:26.505Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "sv": {
+          "text": "private",
+          "translatedAt": "2026-10-26T11:18:44.727Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "da": {
+          "text": "private",
+          "translatedAt": "2026-10-26T11:18:54.531Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "no": {
+          "text": "private",
+          "translatedAt": "2026-10-26T11:19:04.016Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fi": {
+          "text": "private",
+          "translatedAt": "2026-10-26T11:19:17.910Z",
+          "model": "google/gemini-3.7-flash"
+        }
+      }
+    },
+    "bac188ec96b081cf0065ae4fe034c3c39b77e9f1ef8da6f9d3efde2aa035758b": {
+      "en": "Use your library in Claude, LM Studio and other AI apps",
+      "translations": {
+        "de": {
+          "text": "Nutzen Sie Ihre Bibliothek in Claude, LM Studio und weiteren KI-Apps",
+          "translatedAt": "2026-10-26T11:19:24.468Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fr": {
+          "text": "Utilisez votre bibliothèque dans Claude, LM Studio et d'autres applications d'IA",
+          "translatedAt": "2026-10-26T11:19:29.106Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "es": {
+          "text": "Usa tu biblioteca en Claude, LM Studio y otras aplicaciones de IA",
+          "translatedAt": "2026-10-26T11:19:33.387Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh": {
+          "text": "在 Claude、LM Studio 及其他 AI 应用中直接使用您的知识库",
+          "translatedAt": "2026-10-26T11:19:38.460Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh-TW": {
+          "text": "在 Claude、LM Studio 及其他 AI 應用程式中使用您的資料庫",
+          "translatedAt": "2026-10-26T11:19:48.498Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ja": {
+          "text": "ClaudeやLM StudioをはじめとするAIアプリでライブラリを活用できます",
+          "translatedAt": "2026-10-26T11:19:56.671Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ko": {
+          "text": "Claude, LM Studio 등 다양한 AI 앱에서 라이브러리를 활용해 보세요",
+          "translatedAt": "2026-10-26T11:20:03.857Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pt": {
+          "text": "Use sua biblioteca no Claude, LM Studio e outros apps de IA",
+          "translatedAt": "2026-10-26T11:20:08.588Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "hi": {
+          "text": "Claude, LM Studio और अन्य AI apps में अपनी library इस्तेमाल करें",
+          "translatedAt": "2026-10-26T11:20:13.484Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "vi": {
+          "text": "Sử dụng thư viện của bạn trong Claude, LM Studio và các ứng dụng AI khác",
+          "translatedAt": "2026-10-26T11:20:18.848Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "nl": {
+          "text": "Gebruik je bibliotheek in Claude, LM Studio en andere AI-apps",
+          "translatedAt": "2026-10-26T11:20:24.883Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "it": {
+          "text": "Usa la tua libreria in Claude, LM Studio e altre app AI",
+          "translatedAt": "2026-10-26T11:20:31.581Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ru": {
+          "text": "Используйте свою библиотеку в Claude, LM Studio и других ИИ-приложениях",
+          "translatedAt": "2026-10-26T11:20:37.756Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "uk": {
+          "text": "Використовуйте свою бібліотеку в Claude, LM Studio та інших ШІ-застосунках",
+          "translatedAt": "2026-10-26T11:20:45.001Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "tr": {
+          "text": "Kütüphanenizi Claude, LM Studio ve diğer AI uygulamalarında kullanın",
+          "translatedAt": "2026-10-26T11:20:52.096Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "id": {
+          "text": "Gunakan library Anda di Claude, LM Studio, dan aplikasi AI lainnya",
+          "translatedAt": "2026-10-26T11:20:57.960Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pl": {
+          "text": "Korzystaj ze swojej biblioteki w Claude, LM Studio i innych aplikacjach AI",
+          "translatedAt": "2026-10-26T11:21:05.016Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "th": {
+          "text": "ใช้งานคลังข้อมูลของคุณร่วมกับ Claude, LM Studio และแอป AI อื่นๆ",
+          "translatedAt": "2026-10-26T11:21:09.801Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ar": {
+          "text": "استخدم مكتبتك في Claude و LM Studio وتطبيقات الذكاء الاصطناعي الأخرى",
+          "translatedAt": "2026-10-26T11:21:15.623Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "sv": {
+          "text": "Använd ditt bibliotek i Claude, LM Studio och andra AI-appar",
+          "translatedAt": "2026-10-26T11:21:22.565Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "da": {
+          "text": "Brug dit bibliotek i Claude, LM Studio og andre AI-apps",
+          "translatedAt": "2026-10-26T11:21:33.322Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "no": {
+          "text": "Bruk biblioteket ditt i Claude, LM Studio og andre AI-apper",
+          "translatedAt": "2026-10-26T11:21:40.789Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fi": {
+          "text": "Käytä kirjastoasi Claudessa, LM Studiossa ja muissa tekoälysovelluksissa",
+          "translatedAt": "2026-10-26T11:21:46.807Z",
+          "model": "google/gemini-3.7-flash"
+        }
+      }
+    },
+    "801616740926bdec4cdaeb177e1dbe1fe3b5f0febe3a38acdaac02be660307d5": {
+      "en": "Connect AI Summary Helper to any MCP app on your computer: search your saves, quote your highlights, cite your sources. No server in between.",
+      "translations": {
+        "de": {
+          "text": "Verbinden Sie AI Summary Helper mit jeder MCP-App auf Ihrem Computer: Durchsuchen Sie Ihre gespeicherten Inhalte, zitieren Sie Ihre Highlights und belegen Sie Ihre Quellen. Ohne zwischengeschaltete Server.",
+          "translatedAt": "2026-10-26T11:19:24.468Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fr": {
+          "text": "Connectez AI Summary Helper à n'importe quelle application MCP sur votre ordinateur : parcourez vos contenus enregistrés, citez vos passages surlignés et référencez vos sources. Sans aucun serveur intermédiaire.",
+          "translatedAt": "2026-10-26T11:19:29.106Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "es": {
+          "text": "Conecta AI Summary Helper con cualquier app MCP en tu equipo: busca tus elementos guardados, cita tus fragmentos destacados y referencia tus fuentes. Sin servidores de por medio.",
+          "translatedAt": "2026-10-26T11:19:33.387Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh": {
+          "text": "将 AI Summary Helper 连接至电脑上的任意 MCP 应用：检索已存内容、引用高亮标注、准确追溯来源。端到端本地直连，无需任何第三方服务器中转。",
+          "translatedAt": "2026-10-26T11:19:38.460Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh-TW": {
+          "text": "將 AI Summary Helper 連接至電腦上的任何 MCP 應用程式：搜尋儲存內容、引用劃線重點、標註資料來源。全程不經任何中介伺服器。",
+          "translatedAt": "2026-10-26T11:19:48.498Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ja": {
+          "text": "AI Summary Helperをお使いのPC上のあらゆるMCPアプリに接続：保存したデータの検索、ハイライトの引用、情報源の参照が可能です。サーバーを一切経由しません。",
+          "translatedAt": "2026-10-26T11:19:56.671Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ko": {
+          "text": "컴퓨터의 모든 MCP 앱에 AI Summary Helper를 연결해 보세요. 저장한 콘텐츠 검색부터 하이라이트 인용, 출처 표기까지 가능하며 중간 서버를 전혀 거치지 않습니다.",
+          "translatedAt": "2026-10-26T11:20:03.857Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pt": {
+          "text": "Conecte o AI Summary Helper a qualquer app MCP no seu computador: pesquise seus itens salvos, cite seus destaques e referencie suas fontes. Sem nenhum servidor intermediário.",
+          "translatedAt": "2026-10-26T11:20:08.588Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "hi": {
+          "text": "अपने कंप्यूटर पर AI Summary Helper को किसी भी MCP app से कनेक्ट करें: अपने saves सर्च करें, highlights quote करें, sources cite करें। बीच में कोई server नहीं।",
+          "translatedAt": "2026-10-26T11:20:13.484Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "vi": {
+          "text": "Kết nối AI Summary Helper với bất kỳ ứng dụng MCP nào trên máy tính của bạn: tìm kiếm nội dung đã lưu, trích dẫn các đoạn highlight, dẫn nguồn tham khảo. Không qua bất kỳ máy chủ trung gian nào.",
+          "translatedAt": "2026-10-26T11:20:18.848Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "nl": {
+          "text": "Verbind AI Summary Helper met elke MCP-app op je computer: doorzoek je opgeslagen items, citeer je highlights en vermeld je bronnen. Zonder tussenliggende server.",
+          "translatedAt": "2026-10-26T11:20:24.883Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "it": {
+          "text": "Collega AI Summary Helper a qualsiasi app MCP sul tuo computer: cerca tra i tuoi salvataggi, riprendi i passaggi evidenziati, cita le tue fonti. Senza alcun server intermediario.",
+          "translatedAt": "2026-10-26T11:20:31.581Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ru": {
+          "text": "Подключите AI Summary Helper к любому MCP-приложению на вашем компьютере: ищите по сохранённым материалам, цитируйте выделенные фрагменты и ссылайтесь на источники. Без промежуточных серверов.",
+          "translatedAt": "2026-10-26T11:20:37.756Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "uk": {
+          "text": "Підключайте AI Summary Helper до будь-якого MCP-застосунку на комп'ютері: шукайте серед збереженого, цитуйте виділені фрагменти та посилайтеся на джерела. Без жодних проміжних серверів.",
+          "translatedAt": "2026-10-26T11:20:45.001Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "tr": {
+          "text": "AI Summary Helper'ı bilgisayarınızdaki herhangi bir MCP uygulamasına bağlayın: kaydettiklerinizi arayın, vurgularınızı alıntılayın, kaynaklarınızı belirtin. Araya hiçbir sunucu girmeden.",
+          "translatedAt": "2026-10-26T11:20:52.096Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "id": {
+          "text": "Hubungkan AI Summary Helper ke aplikasi MCP apa pun di komputer Anda: cari konten tersimpan Anda, kutip highlight Anda, cantumkan sumber Anda. Tanpa perantara server.",
+          "translatedAt": "2026-10-26T11:20:57.960Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pl": {
+          "text": "Połącz AI Summary Helper z dowolną aplikacją MCP na swoim komputerze: przeszukuj zapisane treści, cytuj wyróżnienia, podawaj źródła. Bez serwerów pośredniczących.",
+          "translatedAt": "2026-10-26T11:21:05.016Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "th": {
+          "text": "เชื่อมต่อ AI Summary Helper กับทุกแอป MCP บนคอมพิวเตอร์ของคุณ: ค้นหารายการที่บันทึกไว้ อ้างอิงข้อความไฮไลต์ และระบุแหล่งที่มาได้ทันที โดยไม่ต้องผ่านเซิร์ฟเวอร์ตัวกลาง",
+          "translatedAt": "2026-10-26T11:21:09.801Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ar": {
+          "text": "اربط AI Summary Helper بأي تطبيق MCP على حاسوبك: ابحث في محفوظاتك، واقتبس تمييزاتك، واذكر مصادرك. دون أي خادم وسيط.",
+          "translatedAt": "2026-10-26T11:21:15.623Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "sv": {
+          "text": "Koppla AI Summary Helper till valfri MCP-app på din dator: sök i det du sparat, citera dina markeringar och ange dina källor. Ingen server däremellan.",
+          "translatedAt": "2026-10-26T11:21:22.565Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "da": {
+          "text": "Forbind AI Summary Helper til enhver MCP-app på din computer: Søg i dine gemte elementer, citér dine fremhævninger, og angiv dine kilder. Helt uden en server imellem.",
+          "translatedAt": "2026-10-26T11:21:33.322Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "no": {
+          "text": "Koble AI Summary Helper til en hvilken som helst MCP-app på datamaskinen din: søk i det du har lagret, siter markeringene dine og oppgi kildene. Ingen mellomliggende server.",
+          "translatedAt": "2026-10-26T11:21:40.789Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fi": {
+          "text": "Yhdistä AI Summary Helper mihin tahansa tietokoneesi MCP-sovellukseen: hae tallennuksistasi, lainaa korostuksiasi ja viittaa lähteisiisi. Ei välikäsipalvelimia.",
+          "translatedAt": "2026-10-26T11:21:46.807Z",
+          "model": "google/gemini-3.7-flash"
+        }
+      }
     }
   }
 }
