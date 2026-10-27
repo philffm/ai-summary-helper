@@ -421,6 +421,45 @@
             <a href="{{base}}blog/videos.html">All videos →</a>
           </figcaption>
         </figure>
+        <figure class="vstack-item" data-blog-video="mcp" style="--i:16">
+          <button class="vstack-open" type="button" aria-label="Play: Your library in your AI apps">
+            <video muted playsinline preload="none" width="360" height="520" poster="{{base}}assets/blog/video/mcp-en.jpg">
+              <source src="{{base}}assets/blog/video/mcp-en.mp4" type="video/mp4">
+            </video>
+            <span class="vstack-play" aria-hidden="true">▶</span>
+          </button>
+          <figcaption>
+            <strong>Your library in your AI apps</strong>
+            <span>Claude Desktop, LM Studio and Cursor search your library, quote your highlights and cite your sources.</span>
+            <a href="{{base}}blog/videos.html">All videos →</a>
+          </figcaption>
+        </figure>
+        <figure class="vstack-item" data-blog-video="export" style="--i:17">
+          <button class="vstack-open" type="button" aria-label="Play: Export to Obsidian and more">
+            <video muted playsinline preload="none" width="360" height="520" poster="{{base}}assets/blog/video/export-en.jpg">
+              <source src="{{base}}assets/blog/video/export-en.mp4" type="video/mp4">
+            </video>
+            <span class="vstack-play" aria-hidden="true">▶</span>
+          </button>
+          <figcaption>
+            <strong>Export to Obsidian and more</strong>
+            <span>Every summary leaves as a clean note: Obsidian, Markdown, Word, ODT or PDF.</span>
+            <a href="{{base}}blog/videos.html">All videos →</a>
+          </figcaption>
+        </figure>
+        <figure class="vstack-item" data-blog-video="analytics" style="--i:18">
+          <button class="vstack-open" type="button" aria-label="Play: Your reading, as a report">
+            <video muted playsinline preload="none" width="360" height="520" poster="{{base}}assets/blog/video/analytics-en.jpg">
+              <source src="{{base}}assets/blog/video/analytics-en.mp4" type="video/mp4">
+            </video>
+            <span class="vstack-play" aria-hidden="true">▶</span>
+          </button>
+          <figcaption>
+            <strong>Your reading, as a report</strong>
+            <span>Streak, time saved, activity and topics over the weeks.</span>
+            <a href="{{base}}blog/videos.html">All videos →</a>
+          </figcaption>
+        </figure>
       </div>
       <!-- focus fan (desktop): the clip in front gets its title, line and link here; arrows and dots move the focus (main.js) -->
       <div class="vstack-caption" aria-live="polite" hidden></div>
@@ -693,6 +732,48 @@
           <div class="f-icon icon-amber"><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="8.5" stroke="#fff" stroke-width="1.7"></circle><path d="M8.5 14c1 1.6 2.2 2.3 3.5 2.3s2.5-.7 3.5-2.3M9 9.5h.01M15 9.5h.01" stroke="#fff" stroke-width="1.8" stroke-linecap="round"></path></svg></div>
           <h3>Mood filter and mood over time</h3>
           <p>The AI rates headlines from heavy to good. Show only the good news with one tap, and follow the mood of your reading by day, week and month.</p>
+          <button class="fvideo-cta" type="button" tabindex="-1" aria-hidden="true"><span class="fvideo-cta-play">▶</span>Watch the clip</button>
+        </div>
+        <div class="feature-card" data-personas="privacy researcher hoarder">
+          <figure class="fvideo" data-blog-video="mcp">
+            <button class="fvideo-open" type="button"><span class="sr-only">Play the video</span>
+              <video muted playsinline loop preload="none" width="360" height="520" poster="{{base}}assets/blog/video/mcp-en.jpg">
+                <source src="{{base}}assets/blog/video/mcp-en.mp4" type="video/mp4">
+              </video>
+              <span class="fvideo-play" aria-hidden="true">▶</span>
+            </button>
+          </figure>
+          <div class="f-icon icon-violet"><svg viewBox="0 0 24 24" fill="none"><rect x="4" y="5" width="16" height="11" rx="2.2" stroke="#fff" stroke-width="1.7"></rect><path d="M9 20h6M12 16v4M8.5 10.5l2 2 3.5-4" stroke="#fff" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"></path></svg></div>
+          <h3>Your library inside Claude, LM Studio and Cursor</h3>
+          <p>Switch on AI apps in Settings, and Claude Desktop, LM Studio, Cursor and other MCP apps on your computer can search your library, quote your highlights and list what is due. If you allow it, they can also save links for you. Nothing goes through our server, and you choose what they may read.</p>
+          <button class="fvideo-cta" type="button" tabindex="-1" aria-hidden="true"><span class="fvideo-cta-play">▶</span>Watch the clip</button>
+        </div>
+        <div class="feature-card" data-personas="hoarder researcher">
+          <figure class="fvideo" data-blog-video="export">
+            <button class="fvideo-open" type="button"><span class="sr-only">Play the video</span>
+              <video muted playsinline loop preload="none" width="360" height="520" poster="{{base}}assets/blog/video/export-en.jpg">
+                <source src="{{base}}assets/blog/video/export-en.mp4" type="video/mp4">
+              </video>
+              <span class="fvideo-play" aria-hidden="true">▶</span>
+            </button>
+          </figure>
+          <div class="f-icon icon-teal"><svg viewBox="0 0 24 24" fill="none"><path d="M12 4v11M7.5 10.5 12 15l4.5-4.5M5 19h14" stroke="#fff" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"></path></svg></div>
+          <h3>Export to Obsidian, Markdown, Word and PDF</h3>
+          <p>Send a summary straight to your Obsidian vault, or export it as Markdown, Word (DOCX), OpenDocument or PDF, with the title, source, tags and your highlights in one note.</p>
+          <button class="fvideo-cta" type="button" tabindex="-1" aria-hidden="true"><span class="fvideo-cta-play">▶</span>Watch the clip</button>
+        </div>
+        <div class="feature-card" data-personas="hoarder feeds">
+          <figure class="fvideo" data-blog-video="analytics">
+            <button class="fvideo-open" type="button"><span class="sr-only">Play the video</span>
+              <video muted playsinline loop preload="none" width="360" height="520" poster="{{base}}assets/blog/video/analytics-en.jpg">
+                <source src="{{base}}assets/blog/video/analytics-en.mp4" type="video/mp4">
+              </video>
+              <span class="fvideo-play" aria-hidden="true">▶</span>
+            </button>
+          </figure>
+          <div class="f-icon icon-cyan"><svg viewBox="0 0 24 24" fill="none"><path d="M5 19V11M12 19V5M19 19v-6" stroke="#fff" stroke-width="2.2" stroke-linecap="round"></path></svg></div>
+          <h3>An analytics report of your reading</h3>
+          <p>Reading streak, time saved by summaries, activity, topics over the weeks and a word cloud, computed from your own library.</p>
           <button class="fvideo-cta" type="button" tabindex="-1" aria-hidden="true"><span class="fvideo-cta-play">▶</span>Watch the clip</button>
         </div>
       </div>

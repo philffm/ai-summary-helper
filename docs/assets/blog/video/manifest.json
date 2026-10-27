@@ -1,4 +1,46 @@
 {
+ "analytics-de": {
+  "duration": 20.8,
+  "bytes": 981856,
+  "uploaded": "2026-10-27",
+  "transcript": "Wo ist deine Lesezeit geblieben? Öffne die Analysen, und deine Bibliothek wird zum Bericht: deine Serie, die Zeit, die Zusammenfassungen dir sparen, deine Themen über die Wochen und die Wörter, zu denen du immer wieder zurückkehrst.",
+  "vtt": true
+ },
+ "analytics-en": {
+  "duration": 19.5,
+  "bytes": 899033,
+  "uploaded": "2026-10-27",
+  "transcript": "Where did your reading time go? Open Analytics and your library becomes a report: your streak, the time summaries saved you, your topics over the weeks and the words you keep coming back to.",
+  "vtt": true
+ },
+ "analytics-es": {
+  "duration": 19.6,
+  "bytes": 941527,
+  "uploaded": "2026-10-27",
+  "transcript": "¿A dónde se fue tu tiempo de lectura? Abre Analítica y tu biblioteca se convierte en un informe: tu racha, el tiempo que te ahorraron los resúmenes, tus temas a lo largo de las semanas y las palabras a las que siempre vuelves.",
+  "vtt": true
+ },
+ "analytics-fr": {
+  "duration": 20.2,
+  "bytes": 958446,
+  "uploaded": "2026-10-27",
+  "transcript": "Où est passé votre temps de lecture ? Ouvrez les Statistiques, et votre bibliothèque devient un rapport : votre série, le temps que les résumés vous ont fait gagner, vos thèmes au fil des semaines et les mots auxquels vous revenez sans cesse.",
+  "vtt": true
+ },
+ "analytics-ja": {
+  "duration": 20.9,
+  "bytes": 903345,
+  "uploaded": "2026-10-27",
+  "transcript": "読書の時間、どこへ行った？分析を開くと、ライブラリがレポートになります。連続記録、要約で節約できた時間、週ごとのテーマの移り変わり、そしてよく戻ってくる言葉。",
+  "vtt": true
+ },
+ "analytics-zh": {
+  "duration": 19.8,
+  "bytes": 865784,
+  "uploaded": "2026-10-27",
+  "transcript": "你的阅读时间都去哪儿了？打开“分析”，你的资料库就变成一份报告：连续阅读天数、摘要帮你节省的时间、几周来的主题变化，以及你反复回到的词。",
+  "vtt": true
+ },
  "bibliothek-de": {
   "duration": 17.8,
   "bytes": 864949,
@@ -144,6 +186,48 @@
   "bytes": 862307,
   "uploaded": "2026-10-21",
   "transcript": "存得多，读得少。那就把这一堆变成一份合集：选几篇保存的文章，它们就会像一本杂志一样，出现在你的 Kindle 上。",
+  "vtt": true
+ },
+ "export-de": {
+  "duration": 22.8,
+  "bytes": 1095805,
+  "uploaded": "2026-10-27",
+  "transcript": "Deine Zusammenfassungen gehören in deine Notizen. Jede Zusammenfassung wird zur sauberen Notiz: direkt nach Obsidian, als Markdown, Word, OpenDocument oder PDF. Mit Titel, Quelle, deinen Tags und deinen Markierungen, bereit zum Aufbewahren.",
+  "vtt": true
+ },
+ "export-en": {
+  "duration": 22.5,
+  "bytes": 1033032,
+  "uploaded": "2026-10-27",
+  "transcript": "Your summaries belong in your notes. Every summary leaves as a clean note: to Obsidian, as Markdown, Word, OpenDocument or PDF. With the title, the source, your tags and your highlights, ready to keep.",
+  "vtt": true
+ },
+ "export-es": {
+  "duration": 22.6,
+  "bytes": 1072243,
+  "uploaded": "2026-10-27",
+  "transcript": "Tus resúmenes pertenecen a tus notas. Cada resumen sale como una nota limpia: directo a Obsidian, o como Markdown, Word, OpenDocument o PDF. Con el título, la fuente, tus etiquetas y tus subrayados, listo para guardar.",
+  "vtt": true
+ },
+ "export-fr": {
+  "duration": 23.9,
+  "bytes": 1159934,
+  "uploaded": "2026-10-27",
+  "transcript": "Vos résumés ont leur place dans vos notes. Chaque résumé sort sous forme de note propre : directement dans Obsidian, ou en Markdown, Word, OpenDocument ou PDF. Avec le titre, la source, vos tags et vos surlignages, prête à être conservée.",
+  "vtt": true
+ },
+ "export-ja": {
+  "duration": 24.1,
+  "bytes": 1103322,
+  "uploaded": "2026-10-27",
+  "transcript": "要約は、あなたのノートにあるべき。すべての要約が、きれいなノートとして出ていきます。Obsidianへ直接、またはMarkdown、Word、OpenDocument、PDFで。タイトル、出典、タグ、ハイライト付きで、そのまま保管できます。",
+  "vtt": true
+ },
+ "export-zh": {
+  "duration": 23.5,
+  "bytes": 1073517,
+  "uploaded": "2026-10-27",
+  "transcript": "你的摘要，该放进你的笔记里。每份摘要都能变成一条干净的笔记：直接发到 Obsidian，或导出为 Markdown、Word、OpenDocument、PDF。带上标题、来源、你的标签和高亮，随时保存。",
   "vtt": true
  },
  "feeds-de": {
@@ -529,6 +613,48 @@
   "bytes": 968533,
   "uploaded": "2026-10-21",
   "transcript": "何必等摘要写完？打开即时朗读，摘要还在撰写的时候，就已经读给你听了。",
+  "vtt": true
+ },
+ "mcp-de": {
+  "duration": 27.3,
+  "bytes": 1385794,
+  "uploaded": "2026-10-27",
+  "transcript": "Deine KI-App hat nie gelesen, was du liest. Claude Desktop, LM Studio oder Cursor können jetzt deine Bibliothek durchsuchen und deine Markierungen zitieren. Frag, was fällig ist, lass die besten Feed-Artikel speichern, oder bitte um deinen Jahresrückblick. Nichts läuft über unseren Server, und du bestimmst, was sie lesen dürfen.",
+  "vtt": true
+ },
+ "mcp-en": {
+  "duration": 27.1,
+  "bytes": 1310122,
+  "uploaded": "2026-10-27",
+  "transcript": "Your AI app has never read what you read. Claude Desktop, LM Studio or Cursor can now search your library and quote your highlights. Ask what is due, let it save the best from your feeds, or ask for your year, wrapped. Nothing goes through our server, and you choose what they may read.",
+  "vtt": true
+ },
+ "mcp-es": {
+  "duration": 27.1,
+  "bytes": 1368138,
+  "uploaded": "2026-10-27",
+  "transcript": "Tu app de IA nunca ha leído lo que tú lees. Claude Desktop, LM Studio o Cursor ya pueden buscar en tu biblioteca y citar tus subrayados. Pregunta qué toca leer, haz que guarden lo mejor de tus feeds, o pídele el resumen de tu año. Nada pasa por nuestro servidor, y tú decides qué pueden leer.",
+  "vtt": true
+ },
+ "mcp-fr": {
+  "duration": 27.7,
+  "bytes": 1455351,
+  "uploaded": "2026-10-27",
+  "transcript": "Votre appli d’IA n’a jamais lu ce que vous lisez. Claude Desktop, LM Studio ou Cursor peuvent désormais chercher dans votre bibliothèque et citer vos surlignages. Demandez ce qui est à lire, faites enregistrer le meilleur de vos flux, ou réclamez le bilan de votre année. Rien ne passe par notre serveur, et vous choisissez ce qu’elles peuvent lire.",
+  "vtt": true
+ },
+ "mcp-ja": {
+  "duration": 29.3,
+  "bytes": 1298722,
+  "uploaded": "2026-10-27",
+  "transcript": "あなたのAIアプリは、あなたが読んだものを読んでいない。Claude Desktop、LM Studio、Cursorが、あなたのライブラリを検索し、ハイライトを引用できるようになりました。期限が近いものを聞いたり、フィードの良い記事を保存させたり、一年のまとめを頼んだり。こちらのサーバーは経由せず、読ませる範囲もあなたが決めます。",
+  "vtt": true
+ },
+ "mcp-zh": {
+  "duration": 27.3,
+  "bytes": 1213453,
+  "uploaded": "2026-10-27",
+  "transcript": "AI 应用从没读过你读的东西。Claude Desktop、LM Studio 或 Cursor 现在可以搜索你的资料库，引用你的高亮。问问有哪些到期，让它把订阅里最好的文章存下来，或者让它做出你的年度回顾。一切不经过我们的服务器，能读什么由你决定。",
   "vtt": true
  },
  "montage-de": {
