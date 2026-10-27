@@ -117,6 +117,35 @@ exclude tag (`private` by default) never appear in any result or count. The tool
 in the extension (`plugin/src/modules/mcp/`), so new tools ship with extension updates; this relay
 only forwards them.
 
+## Try asking
+
+Once an app is connected, these work well. Swap the topics for your own.
+
+**Review and recall**
+- "Summarize everything I saved in the last 7 days, grouped by theme, with my highlights quoted."
+- "Pull my highlights tagged `X` and turn them into a study sheet or flashcards."
+- "What's due in my saved-for-later list? Rank it by what I'd regret skipping and give me a 2-line brief for each."
+
+**Research and writing**
+- "Search my library for `topic`, read the top 5 articles in full, and write a brief that says which article each claim came from." (needs *Full article text*)
+- "Do any of my saved articles on `topic` disagree? Show both sides with sources."
+- "Write a blog post outline on `topic` using only what's in my library."
+- "Turn my `Collection` collection into an annotated bibliography or a reading order."
+
+**About your own habits** (these use counts only, via `library_stats`)
+- "What does my saving pattern say about my interests this quarter? What is rising and what has faded?"
+- "Which topics do I save a lot but never highlight?"
+
+**Feeds and inbox**
+- "From my feed items, pick the 5 worth saving based on my library, and save them." (needs *Feeds* and *Save links*)
+
+**Coding apps (Cursor, VS Code)**
+- "Find articles in my library about `library X` and use them as context for this change."
+
+**On a schedule:** an agent can run `list_due` and `list_feed_items` each morning and write you a brief.
+
+The same prompts are in AISH → Settings → AI apps (MCP), where you can tap one to copy it.
+
 ## Troubleshooting
 
 - **AISH panel says "Not connected":** no relay is running. Start your AI app, or run `aish-mcp` in a terminal.
