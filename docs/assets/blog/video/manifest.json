@@ -615,6 +615,42 @@
   "transcript": "何必等摘要写完？打开即时朗读，摘要还在撰写的时候，就已经读给你听了。",
   "vtt": true
  },
+ "komplett-de": {
+  "duration": 44.9,
+  "bytes": 4072109,
+  "uploaded": "2026-10-27",
+  "transcript": "Unter einer Minute, alles, was es kann! Fasse jede Seite zusammen! YouTube-Videos? Erledigt! PDFs? Erledigt! Jede Antwort zeigt ihre Quelle! Die KI markiert die Kernstellen! Paper erkannt an der DOI! Quellen vergleichen, zu einer Frage! Einundvierzig Sprachen! Vorgelesen, während es entsteht! Bibliothek mit Suche und Statistik! Dein Lesen als Bericht! Dein Lesen als Wissensgraph! RSS-Feeds mit Tages-Recap! Nur die guten Nachrichten, wenn du willst! Ab auf deinen Kindle! Export nach Obsidian, Word, PDF! Deine Bibliothek in deinen KI-Apps! Dein Key, ein lokales Modell oder Cloud!"
+ },
+ "komplett-en": {
+  "duration": 44.9,
+  "bytes": 3893029,
+  "uploaded": "2026-10-27",
+  "transcript": "Everything it can do in under a minute! Summarize any page! YouTube videos? Done! PDFs? Done! Every answer shows its source! The AI marks the key passages! Papers recognised by their DOI! Compare sources on one question! Forty-one languages! Read aloud while it writes! A library with search and stats! Your reading, as a report! Your reading as a knowledge graph! RSS feeds with a daily recap! Only the good news, if you like! Send it to your Kindle! Export to Obsidian, Word, PDF! Your library inside your AI apps! Your key, a local model, or cloud!"
+ },
+ "komplett-es": {
+  "duration": 46,
+  "bytes": 4025615,
+  "uploaded": "2026-10-27",
+  "transcript": "¡En menos de un minuto, todo lo que puede hacer! ¡Resume cualquier página! ¿Vídeos de YouTube? ¡Hecho! ¿PDFs? ¡Hecho! ¡Cada respuesta muestra su fuente! ¡La IA marca los pasajes clave! ¡Artículos reconocidos por su DOI! ¡Compara fuentes sobre una pregunta! ¡Cuarenta y un idiomas! ¡Se lee en voz alta mientras se escribe! ¡Biblioteca con búsqueda y estadísticas! ¡Tu lectura, en un informe! ¡Tus lecturas como grafo de conocimiento! ¡Feeds RSS con resumen diario! ¡Solo las buenas noticias, si quieres! ¡Mándalo a tu Kindle! ¡Exporta a Obsidian, Word, PDF! ¡Tu biblioteca dentro de tus apps de IA! ¡Tu clave, un modelo local o la nube!"
+ },
+ "komplett-fr": {
+  "duration": 49.5,
+  "bytes": 4267338,
+  "uploaded": "2026-10-27",
+  "transcript": "En moins d’une minute, tout ce qu’il sait faire ! Résumez n’importe quelle page ! Des vidéos YouTube ? C’est fait ! Des PDF ? C’est fait ! Chaque réponse montre sa source ! L’IA surligne les passages clés ! Les articles reconnus grâce à leur DOI ! Comparez les sources sur une même question ! Quarante et une langues ! Lu à voix haute pendant qu’il écrit ! Une bibliothèque avec recherche et statistiques ! Votre lecture, en rapport ! Votre lecture en graphe de connaissances ! Des flux RSS avec un bilan quotidien ! Rien que les bonnes nouvelles, si vous voulez ! Direction votre Kindle ! Exportez vers Obsidian, Word, PDF ! Votre bibliothèque dans vos applis d’IA ! Votre clé, un modèle local ou le cloud !"
+ },
+ "komplett-ja": {
+  "duration": 48.3,
+  "bytes": 3980701,
+  "uploaded": "2026-10-27",
+  "transcript": "1分以内で、できること全部！どんなページも要約！YouTube動画も、おまかせ！PDFも、おまかせ！どの回答にも出典！AIが重要な箇所にマーク！論文はDOIで自動認識！複数の情報源を、ひとつの問いで比較！41言語に対応！書きながら読み上げ！検索と統計つきのライブラリ！あなたの読書を、レポートに！読書がナレッジグラフに！RSSと毎日のまとめ！良いニュースだけ、も選べる！Kindleにそのまま送信！Obsidian、Word、PDFへ書き出し！AIアプリの中に、あなたのライブラリ！自分のキー、ローカル、クラウドから選べる！"
+ },
+ "komplett-zh": {
+  "duration": 54.1,
+  "bytes": 4018273,
+  "uploaded": "2026-10-27",
+  "transcript": "一分钟内，看完它的全部本事！任何网页，一键摘要！ YouTube 视频？搞定！ PDF？搞定！ 每个回答都附上出处！ AI 标出关键段落！ 论文凭 DOI 自动识别！ 同一个问题，对比多个来源！ 四十一种语言！ 边写边读给你听！ 带搜索和统计的资料库！ 你的阅读，变成报告！ 你的阅读，成为知识图谱！ RSS 订阅，附每日回顾！ 只看好消息，随你选！ 直接发到你的 Kindle！ 导出到 Obsidian、Word、PDF！ 你的资料库，进入你的 AI 应用！ 自己的密钥、本地模型，或云端！"
+ },
  "mcp-de": {
   "duration": 27.3,
   "bytes": 1385794,

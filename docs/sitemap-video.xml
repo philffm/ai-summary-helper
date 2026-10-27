@@ -3,12 +3,12 @@
   <url>
     <loc>https://ai-summary-helper.byphil.eu/</loc>
     <video:video>
-      <video:thumbnail_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/montage-en.jpg</video:thumbnail_loc>
-      <video:title>AI Summary Helper in 15 seconds</video:title>
-      <video:description>Summaries, sources, 41 languages, a library, a knowledge graph and research mode.</video:description>
-      <video:content_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/montage-en.mp4</video:content_loc>
-      <video:duration>20</video:duration>
-      <video:publication_date>2026-10-20T00:00:00+00:00</video:publication_date>
+      <video:thumbnail_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/komplett-en.jpg</video:thumbnail_loc>
+      <video:title>AI Summary Helper in under a minute</video:title>
+      <video:description>Every feature, called out in one fast run: summaries, sources, research mode, a library, feeds, AI apps and more.</video:description>
+      <video:content_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/komplett-en.mp4</video:content_loc>
+      <video:duration>45</video:duration>
+      <video:publication_date>2026-10-27T00:00:00+00:00</video:publication_date>
       <video:family_friendly>yes</video:family_friendly>
     </video:video>
     <video:video>
@@ -4611,12 +4611,12 @@
   <url>
     <loc>https://ai-summary-helper.byphil.eu/blog/videos.html</loc>
     <video:video>
-      <video:thumbnail_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/montage-en.jpg</video:thumbnail_loc>
-      <video:title>AI Summary Helper in 15 seconds</video:title>
-      <video:description>Summaries, sources, 41 languages, a library, a knowledge graph and research mode.</video:description>
-      <video:content_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/montage-en.mp4</video:content_loc>
-      <video:duration>20</video:duration>
-      <video:publication_date>2026-10-20T00:00:00+00:00</video:publication_date>
+      <video:thumbnail_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/komplett-en.jpg</video:thumbnail_loc>
+      <video:title>AI Summary Helper in under a minute</video:title>
+      <video:description>Every feature, called out in one fast run: summaries, sources, research mode, a library, feeds, AI apps and more.</video:description>
+      <video:content_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/komplett-en.mp4</video:content_loc>
+      <video:duration>45</video:duration>
+      <video:publication_date>2026-10-27T00:00:00+00:00</video:publication_date>
       <video:family_friendly>yes</video:family_friendly>
     </video:video>
     <video:video>
