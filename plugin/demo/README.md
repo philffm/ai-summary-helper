@@ -23,7 +23,7 @@ pipelines, and embedding. Every parameter is optional and composable.
 | `surface` | `popup`, `sidepanel` | `sidepanel` | Which surface the popup renders as |
 | `screen` | `main`, `history`, `feeds`, `settings` | `main` | Open that screen on load |
 | `panel` | see below | — | Open a settings panel (implies `screen=settings`) |
-| `scenario` | `youtube`, `pdf`, `paper`, `research`, `mood`, `instant`, `ghost` | — | What the extension "sees" and what is already saved (see below). English content only. |
+| `scenario` | `youtube`, `pdf`, `paper`, `research`, `mood`, `instant`, `ghost`, `mcp`, `export` | — | What the extension "sees" and what is already saved (see below). English content only. |
 
 Base URL: `https://ai-summary-helper.byphil.eu/demo/`
 
@@ -85,6 +85,8 @@ so a feature can be shown that the default cannot:
 | `research` | The research library plus a collection ("Do naps help learning?") with five typed sources; "Create overview" streams agree / disagree / missing |
 | `mood` | AI-rated feeds (good-mood filter) and ~4 months of mood history for Feeds → Insights |
 | `instant` | A fake speech engine, so Instant read (🔊 chip, reading bar) works |
+| `mcp` | Settings → AI apps (MCP) with the feature on, an app connected and a few calls in the activity list (`panel=mcp`) |
+| `export` | Keeps Obsidian, ODT, Word and PDF in the card menu; the download or `obsidian://` link itself is stopped (videos draw the file) |
 | `ghost` | After a summary the AI's ghost highlights appear in the article; click one for Keep / Dismiss |
 
 Combine with the other parameters, e.g. `/demo/?scenario=paper&chrome=0` or `?scenario=research&screen=history`.
@@ -94,7 +96,7 @@ Combine with the other parameters, e.g. `/demo/?scenario=paper&chrome=0` or `?sc
 ## Settings panels (`panel=`)
 
 `account`, `models`, `prompts`, `feeds`, `feedprefs`, `reading`, `send`, `phoneinbox`,
-`appearance`, `accessibility`, `library`, `about`
+`appearance`, `accessibility`, `library`, `mcp`, `about`
 
 `panel=` implies `screen=settings`; you do not need to pass both.
 

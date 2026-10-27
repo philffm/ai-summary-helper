@@ -1,4 +1,4 @@
-// Scenarios for the demo: ?scenario=youtube|pdf|paper|research|mood|instant|ghost
+// Scenarios for the demo: ?scenario=youtube|pdf|paper|research|mood|instant|ghost|mcp|export
 //
 // The default demo is one article ("The quiet comeback of the long read"). A scenario swaps what the extension "sees" and
 // what is already saved, so a video can show a feature the default page cannot (a YouTube lecture, a PDF, a scientific
@@ -266,6 +266,21 @@
       'A long piece now has to justify its length twice',
     ]);
   }
+
+  // ── AI apps (MCP): the feature is on, an app is connected, and a few calls are in the activity list ───────────────
+  if (id === 'mcp') {
+    const now = Date.now(), min = 6e4;
+    const call = (ago, tool, ms) => ({ at: new Date(now - ago * min).toISOString(), tool, ok: true, ms });
+    D.mcp = { connected: true, tools: 9 };
+    D.seed = {
+      ...(D.seed || {}),
+      'mcp:config': { enabled: true, port: 47615, excludeTag: 'private', scopes: { library: true, fulltext: true, feeds: true, write: true } },
+      'mcp:secret': 'demo-pairing-code',
+      'mcp:log': [call(58, 'library_stats', 31), call(41, 'list_highlights', 58), call(30, 'list_due', 44), call(19, 'list_feed_items', 63), call(12, 'save_url', 90), call(7, 'save_url', 85), call(2, 'search_library', 112)],
+    };
+  }
+
+  // ── Export: the card menu keeps Obsidian, ODT, Word and PDF (the shim stops the actual download) ──────────────────
 
   D.scenario = id;
 })();

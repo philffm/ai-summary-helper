@@ -34,7 +34,7 @@
     st.textContent = ids.map(i => '#' + i).join(',') + ',.settings-row[data-panel=account],.settings-row[data-panel=models],.settings-row[data-panel=phoneinbox]{display:none !important}';
     document.head.appendChild(st);
     const drop = new Set(['folders', 'file-text', 'newspaper']);   // Obsidian, ODT/DOCX, PDF
-    new MutationObserver(() => document.querySelectorAll('.card-menu-item').forEach((b) => {
+    if (D.scenario !== 'export') new MutationObserver(() => document.querySelectorAll('.card-menu-item').forEach((b) => {
       const u = b.querySelector('use'); const n = u && (u.getAttribute('href') || '').replace('#i-', '');
       if (drop.has(n)) b.remove();
     })).observe(document.body, { childList: true, subtree: true });
@@ -42,6 +42,8 @@
   // A Kindle and a LocalSend receiver are "already set up", so Send to Kindle / LocalSend run end to end against the mock.
   local.set({ 'send:devices': [{ id: 'demo-kindle', type: 'kindle', label: 'Kindle', addresses: ['you@kindle.com'] }, { id: 'demo-ls', type: 'localsend', label: 'E-reader', addresses: ['192.168.1.42'] }] });
   window.confirm = () => true;
+  // Exports end in a browser download or an obsidian:// link, neither of which belongs in a page: the click is stopped (the video draws the file).
+  document.addEventListener('click', (e) => { const a = e.target.closest && e.target.closest('a'); if (a && (a.hasAttribute('download') || /^obsidian:/.test(a.getAttribute('href') || ''))) e.preventDefault(); }, true);
   addEventListener('message', (e) => { const m = e.data; if (m && m.aishDemo && m.type === 'theme') setTheme(m.theme); });
   // The other direction: when the theme is changed inside the popup (Settings → Appearance), tell the demo page, so the
   // sample article and the panel frame around the popup follow. High contrast is a light theme for the page; "System"
@@ -275,7 +277,7 @@
       case 'ping': return respond({ ok: true, caps: ['attachment'] });
       case 'summaryJobs': return respond({ ok: true, jobs: [], running: false });
       // Settings → AI apps (MCP): the demo has no local relay, so the panel shows the feature switched off and not connected.
-      case 'mcpStatus': return respond({ ok: true, available: true, enabled: false, connected: false });
+      case 'mcpStatus': return respond(D.mcp ? { ok: true, available: true, enabled: true, connected: true, tools: D.mcp.tools } : { ok: true, available: true, enabled: false, connected: false });
       case 'queueSummary': {
         respond({ ok: true });
         // A prompt with the "Standup humor" extra gets the playful recording (demo-library-i18n.js), anything else the normal one.
