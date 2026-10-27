@@ -103869,6 +103869,1806 @@
           "model": "google/gemini-3.7-flash"
         }
       }
+    },
+    "bd65be8a917af4218e93a3e2d4ab0f69bfc8bdd59230975ac2b0f9c6dc0c1aac": {
+      "en": "Your library in your AI apps",
+      "translations": {
+        "de": {
+          "text": "Ihre Bibliothek in Ihren KI-Apps",
+          "translatedAt": "2026-10-27T12:32:46.080Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fr": {
+          "text": "Votre bibliothèque au cœur de vos applications d'IA",
+          "translatedAt": "2026-10-27T12:32:56.928Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "es": {
+          "text": "Tu biblioteca en tus aplicaciones de IA",
+          "translatedAt": "2026-10-27T12:33:05.143Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh": {
+          "text": "在各类 AI 应用中使用您的文库",
+          "translatedAt": "2026-10-27T12:33:18.378Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh-TW": {
+          "text": "在 AI 應用中取用你的個人庫藏",
+          "translatedAt": "2026-10-27T12:33:32.054Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ja": {
+          "text": "お使いのAIアプリからライブラリにアクセス",
+          "translatedAt": "2026-10-27T12:33:45.791Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ko": {
+          "text": "내가 사용하는 AI 앱에서 내 라이브러리를 바로",
+          "translatedAt": "2026-10-27T12:33:55.781Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pt": {
+          "text": "Sua biblioteca nos seus apps de IA",
+          "translatedAt": "2026-10-27T12:34:16.622Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "hi": {
+          "text": "आपकी library, आपके AI apps में",
+          "translatedAt": "2026-10-27T12:34:43.286Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "vi": {
+          "text": "Thư viện của bạn trong các ứng dụng AI",
+          "translatedAt": "2026-10-27T12:35:05.134Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "nl": {
+          "text": "Je bibliotheek in je AI-apps",
+          "translatedAt": "2026-10-27T12:35:14.738Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "it": {
+          "text": "La tua libreria nelle tue app AI",
+          "translatedAt": "2026-10-27T12:35:35.766Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ru": {
+          "text": "Ваша библиотека в ваших ИИ-приложениях",
+          "translatedAt": "2026-10-27T12:35:41.676Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "uk": {
+          "text": "Ваша бібліотека у ваших AI-застосунках",
+          "translatedAt": "2026-10-27T12:35:53.242Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "tr": {
+          "text": "Kütüphaneniz AI uygulamalarınızda",
+          "translatedAt": "2026-10-27T12:36:06.346Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "id": {
+          "text": "Pustaka Anda di aplikasi AI Anda",
+          "translatedAt": "2026-10-27T12:36:13.860Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pl": {
+          "text": "Twoja biblioteka w aplikacjach AI",
+          "translatedAt": "2026-10-27T12:36:21.395Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "th": {
+          "text": "คลังข้อมูลของคุณในแอป AI",
+          "translatedAt": "2026-10-27T12:36:35.564Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ar": {
+          "text": "مكتبتك داخل تطبيقات الذكاء الاصطناعي الخاصة بك",
+          "translatedAt": "2026-10-27T12:36:50.052Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "sv": {
+          "text": "Ditt bibliotek i dina AI-appar",
+          "translatedAt": "2026-10-27T12:37:00.708Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "da": {
+          "text": "Dit bibliotek i dine AI-apps",
+          "translatedAt": "2026-10-27T12:37:09.163Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "no": {
+          "text": "Biblioteket ditt i AI-appene dine",
+          "translatedAt": "2026-10-27T12:37:19.605Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fi": {
+          "text": "Kirjastosi tekoälysovelluksissasi",
+          "translatedAt": "2026-10-27T12:37:32.656Z",
+          "model": "google/gemini-3.7-flash"
+        }
+      }
+    },
+    "af9d423e38a03781b303635829a9c34a71e4a97142f621903ee21abe638f00e2": {
+      "en": "Claude Desktop, LM Studio and Cursor search your library, quote your highlights and cite your sources.",
+      "translations": {
+        "de": {
+          "text": "Claude Desktop, LM Studio und Cursor durchsuchen Ihre Bibliothek, zitieren Ihre Markierungen und belegen Ihre Quellen.",
+          "translatedAt": "2026-10-27T12:32:46.080Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fr": {
+          "text": "Claude Desktop, LM Studio et Cursor explorent votre bibliothèque, citent vos passages surlignés et mentionnent vos sources.",
+          "translatedAt": "2026-10-27T12:32:56.928Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "es": {
+          "text": "Claude Desktop, LM Studio y Cursor buscan en tu biblioteca, citan tus subrayados y referencian tus fuentes.",
+          "translatedAt": "2026-10-27T12:33:05.143Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh": {
+          "text": "Claude Desktop、LM Studio 和 Cursor 可直接检索您的文库、引用高亮标注并注明来源出处。",
+          "translatedAt": "2026-10-27T12:33:18.378Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh-TW": {
+          "text": "Claude Desktop、LM Studio 與 Cursor 能直接搜尋你的庫藏、引用劃線重點並註明資料來源。",
+          "translatedAt": "2026-10-27T12:33:32.054Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ja": {
+          "text": "Claude Desktop、LM Studio、Cursorからライブラリの検索、ハイライトの引用、出典の参照が可能です。",
+          "translatedAt": "2026-10-27T12:33:45.791Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ko": {
+          "text": "Claude Desktop, LM Studio, Cursor에서 라이브러리를 검색하고 하이라이트를 인용하며 출처를 바로 확인할 수 있습니다.",
+          "translatedAt": "2026-10-27T12:33:55.781Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pt": {
+          "text": "O Claude Desktop, o LM Studio e o Cursor pesquisam na sua biblioteca, citam seus destaques e indicam suas fontes.",
+          "translatedAt": "2026-10-27T12:34:16.622Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "hi": {
+          "text": "Claude Desktop, LM Studio और Cursor आपकी library search करते हैं, आपके highlights quote करते हैं और sources cite करते हैं।",
+          "translatedAt": "2026-10-27T12:34:43.286Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "vi": {
+          "text": "Claude Desktop, LM Studio và Cursor có thể tìm kiếm thư viện, trích dẫn phần đánh dấu và dẫn nguồn của bạn.",
+          "translatedAt": "2026-10-27T12:35:05.134Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "nl": {
+          "text": "Claude Desktop, LM Studio en Cursor doorzoeken je bibliotheek, citeren je markeringen en vermelden je bronnen.",
+          "translatedAt": "2026-10-27T12:35:14.738Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "it": {
+          "text": "Claude Desktop, LM Studio e Cursor cercano nella tua libreria, citano i tuoi passaggi evidenziati e indicano le tue fonti.",
+          "translatedAt": "2026-10-27T12:35:35.766Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ru": {
+          "text": "Claude Desktop, LM Studio и Cursor ищут по вашей библиотеке, цитируют ваши выделения и ссылаются на источники.",
+          "translatedAt": "2026-10-27T12:35:41.676Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "uk": {
+          "text": "Claude Desktop, LM Studio та Cursor шукають у вашій бібліотеці, цитують виділені фрагменти та посилаються на джерела.",
+          "translatedAt": "2026-10-27T12:35:53.242Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "tr": {
+          "text": "Claude Desktop, LM Studio ve Cursor kütüphanenizde arama yapar, vurgularınızdan alıntı yapar ve kaynaklarınızı belirtir.",
+          "translatedAt": "2026-10-27T12:36:06.346Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "id": {
+          "text": "Claude Desktop, LM Studio, dan Cursor dapat menelusuri pustaka Anda, mengutip sorotan, serta mencantumkan sumber Anda.",
+          "translatedAt": "2026-10-27T12:36:13.860Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pl": {
+          "text": "Claude Desktop, LM Studio i Cursor przeszukują Twoją bibliotekę, cytują wyróżnienia i podają źródła.",
+          "translatedAt": "2026-10-27T12:36:21.395Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "th": {
+          "text": "Claude Desktop, LM Studio และ Cursor สามารถค้นหาคลังข้อมูล ยกข้อความไฮไลต์ และอ้างอิงแหล่งที่มาของคุณได้ทันที",
+          "translatedAt": "2026-10-27T12:36:35.564Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ar": {
+          "text": "تطبيقات Claude Desktop و LM Studio و Cursor تبحث في مكتبتك، وتقتبس من أبرز تظليلاتك، وتستشهد بمصادرك.",
+          "translatedAt": "2026-10-27T12:36:50.052Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "sv": {
+          "text": "Claude Desktop, LM Studio och Cursor söker i ditt bibliotek, citerar dina markeringar och anger dina källor.",
+          "translatedAt": "2026-10-27T12:37:00.708Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "da": {
+          "text": "Claude Desktop, LM Studio og Cursor søger i dit bibliotek, citerer dine overstregninger og henviser til dine kilder.",
+          "translatedAt": "2026-10-27T12:37:09.163Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "no": {
+          "text": "Claude Desktop, LM Studio og Cursor søker i biblioteket ditt, siterer markeringene dine og oppgir kildene dine.",
+          "translatedAt": "2026-10-27T12:37:19.605Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fi": {
+          "text": "Claude Desktop, LM Studio ja Cursor hakevat kirjastostasi, lainaavat korostuksiasi ja viittaavat lähteisiisi.",
+          "translatedAt": "2026-10-27T12:37:32.656Z",
+          "model": "google/gemini-3.7-flash"
+        }
+      }
+    },
+    "fc62c41d4e7ddc1059d355e2d571e5e1fcb10d15838756d73b77519700f67de4": {
+      "en": "Export to Obsidian and more",
+      "translations": {
+        "de": {
+          "text": "Export nach Obsidian und mehr",
+          "translatedAt": "2026-10-27T12:32:46.080Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fr": {
+          "text": "Exportez vers Obsidian et bien plus",
+          "translatedAt": "2026-10-27T12:32:56.928Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "es": {
+          "text": "Exporta a Obsidian y más",
+          "translatedAt": "2026-10-27T12:33:05.143Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh": {
+          "text": "导出至 Obsidian 等多种格式",
+          "translatedAt": "2026-10-27T12:33:18.378Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh-TW": {
+          "text": "匯出至 Obsidian 及更多平台",
+          "translatedAt": "2026-10-27T12:33:32.054Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ja": {
+          "text": "Obsidianなどへのエクスポート",
+          "translatedAt": "2026-10-27T12:33:45.791Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ko": {
+          "text": "Obsidian을 비롯한 다양한 포맷으로 내보내기",
+          "translatedAt": "2026-10-27T12:33:55.781Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pt": {
+          "text": "Exporte para o Obsidian e muito mais",
+          "translatedAt": "2026-10-27T12:34:16.622Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "hi": {
+          "text": "Obsidian और अन्य formats में export करें",
+          "translatedAt": "2026-10-27T12:34:43.286Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "vi": {
+          "text": "Xuất sang Obsidian và nhiều định dạng khác",
+          "translatedAt": "2026-10-27T12:35:05.134Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "nl": {
+          "text": "Exporteer naar Obsidian en meer",
+          "translatedAt": "2026-10-27T12:35:14.738Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "it": {
+          "text": "Esporta in Obsidian e molto altro",
+          "translatedAt": "2026-10-27T12:35:35.766Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ru": {
+          "text": "Экспорт в Obsidian и не только",
+          "translatedAt": "2026-10-27T12:35:41.676Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "uk": {
+          "text": "Експорт до Obsidian та не тільки",
+          "translatedAt": "2026-10-27T12:35:53.242Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "tr": {
+          "text": "Obsidian ve daha fazlasına aktarın",
+          "translatedAt": "2026-10-27T12:36:06.346Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "id": {
+          "text": "Ekspor ke Obsidian dan lainnya",
+          "translatedAt": "2026-10-27T12:36:13.860Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pl": {
+          "text": "Eksport do Obsidian i nie tylko",
+          "translatedAt": "2026-10-27T12:36:21.395Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "th": {
+          "text": "ส่งออกไปยัง Obsidian และแอปอื่นๆ",
+          "translatedAt": "2026-10-27T12:36:35.564Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ar": {
+          "text": "تصدير إلى Obsidian والمزيد",
+          "translatedAt": "2026-10-27T12:36:50.052Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "sv": {
+          "text": "Exportera till Obsidian och mer",
+          "translatedAt": "2026-10-27T12:37:00.708Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "da": {
+          "text": "Eksportér til Obsidian og mere",
+          "translatedAt": "2026-10-27T12:37:09.163Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "no": {
+          "text": "Eksporter til Obsidian og mer",
+          "translatedAt": "2026-10-27T12:37:19.605Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fi": {
+          "text": "Vie Obsidianiin ja muualle",
+          "translatedAt": "2026-10-27T12:37:32.656Z",
+          "model": "google/gemini-3.7-flash"
+        }
+      }
+    },
+    "0a55c59d0f0acb6fd96d7d57883661f687d184194f298f8895ee5c5618a3e55a": {
+      "en": "Every summary leaves as a clean note: Obsidian, Markdown, Word, ODT or PDF.",
+      "translations": {
+        "de": {
+          "text": "Jede Zusammenfassung wird zu einer sauberen Notiz: Obsidian, Markdown, Word, ODT oder PDF.",
+          "translatedAt": "2026-10-27T12:32:46.080Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fr": {
+          "text": "Chaque résumé est exporté sous forme de note soignée : Obsidian, Markdown, Word, ODT ou PDF.",
+          "translatedAt": "2026-10-27T12:32:56.928Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "es": {
+          "text": "Cada resumen se exporta como una nota impecable: Obsidian, Markdown, Word, ODT o PDF.",
+          "translatedAt": "2026-10-27T12:33:05.143Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh": {
+          "text": "每份摘要均可导出为排版清晰的笔记：支持 Obsidian、Markdown、Word、ODT 或 PDF。",
+          "translatedAt": "2026-10-27T12:33:18.378Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh-TW": {
+          "text": "每篇摘要都能整理成乾淨俐落的筆記匯出：Obsidian、Markdown、Word、ODT 或 PDF。",
+          "translatedAt": "2026-10-27T12:33:32.054Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ja": {
+          "text": "すべての要約をすっきりとしたノートとして出力：Obsidian、Markdown、Word、ODT、PDFに対応。",
+          "translatedAt": "2026-10-27T12:33:45.791Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ko": {
+          "text": "모든 요약본을 깔끔한 노트 형태로 내보내세요: Obsidian, Markdown, Word, ODT, PDF 지원.",
+          "translatedAt": "2026-10-27T12:33:55.781Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pt": {
+          "text": "Cada resumo vira uma nota organizada: Obsidian, Markdown, Word, ODT ou PDF.",
+          "translatedAt": "2026-10-27T12:34:16.622Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "hi": {
+          "text": "हर summary एक clean note के रूप में मिलती है: Obsidian, Markdown, Word, ODT या PDF।",
+          "translatedAt": "2026-10-27T12:34:43.286Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "vi": {
+          "text": "Mọi bản tóm tắt đều được xuất dưới dạng ghi chú gọn gàng: Obsidian, Markdown, Word, ODT hoặc PDF.",
+          "translatedAt": "2026-10-27T12:35:05.134Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "nl": {
+          "text": "Elke samenvatting wordt een nette notitie: Obsidian, Markdown, Word, ODT of PDF.",
+          "translatedAt": "2026-10-27T12:35:14.738Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "it": {
+          "text": "Ogni riassunto viene esportato come una nota pulita: Obsidian, Markdown, Word, ODT o PDF.",
+          "translatedAt": "2026-10-27T12:35:35.766Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ru": {
+          "text": "Каждая сводка экспортируется в виде готовой заметки: Obsidian, Markdown, Word, ODT или PDF.",
+          "translatedAt": "2026-10-27T12:35:41.676Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "uk": {
+          "text": "Кожен підсумок зберігається як охайна нотатка: Obsidian, Markdown, Word, ODT або PDF.",
+          "translatedAt": "2026-10-27T12:35:53.242Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "tr": {
+          "text": "Her özet düzenli bir not olarak dışa aktarılır: Obsidian, Markdown, Word, ODT veya PDF.",
+          "translatedAt": "2026-10-27T12:36:06.346Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "id": {
+          "text": "Setiap ringkasan tersimpan sebagai catatan rapi: Obsidian, Markdown, Word, ODT, atau PDF.",
+          "translatedAt": "2026-10-27T12:36:13.860Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pl": {
+          "text": "Każde podsumowanie zapisuje się jako przejrzysta notatka: Obsidian, Markdown, Word, ODT lub PDF.",
+          "translatedAt": "2026-10-27T12:36:21.395Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "th": {
+          "text": "ทุกบทสรุปพร้อมส่งออกเป็นโน้ตที่จัดรูปแบบเรียบร้อย: Obsidian, Markdown, Word, ODT หรือ PDF",
+          "translatedAt": "2026-10-27T12:36:35.564Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ar": {
+          "text": "كل ملخص يتحول إلى ملاحظة منسقة: Obsidian أو Markdown أو Word أو ODT أو PDF.",
+          "translatedAt": "2026-10-27T12:36:50.052Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "sv": {
+          "text": "Varje sammanfattning exporteras som en ren anteckning: Obsidian, Markdown, Word, ODT eller PDF.",
+          "translatedAt": "2026-10-27T12:37:00.708Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "da": {
+          "text": "Hvert resumé bliver til en ren note: Obsidian, Markdown, Word, ODT eller PDF.",
+          "translatedAt": "2026-10-27T12:37:09.163Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "no": {
+          "text": "Hvert sammendrag blir til et ryddig notat: Obsidian, Markdown, Word, ODT eller PDF.",
+          "translatedAt": "2026-10-27T12:37:19.605Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fi": {
+          "text": "Jokainen tiivistelmä tallentuu siistinä muistiinpanona: Obsidian, Markdown, Word, ODT tai PDF.",
+          "translatedAt": "2026-10-27T12:37:32.656Z",
+          "model": "google/gemini-3.7-flash"
+        }
+      }
+    },
+    "7af5627a38b7e889d627392a8d60a4dd88e18bc3682197c1f3bbf97a5f3a795b": {
+      "en": "Your reading, as a report",
+      "translations": {
+        "de": {
+          "text": "Ihr Leseverhalten als Bericht",
+          "translatedAt": "2026-10-27T12:32:46.080Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fr": {
+          "text": "Vos lectures sous forme de rapport",
+          "translatedAt": "2026-10-27T12:32:56.928Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "es": {
+          "text": "Tus lecturas, en un informe",
+          "translatedAt": "2026-10-27T12:33:05.143Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh": {
+          "text": "阅读历程，化为分析报告",
+          "translatedAt": "2026-10-27T12:33:18.378Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh-TW": {
+          "text": "你的閱讀歷程分析報告",
+          "translatedAt": "2026-10-27T12:33:32.054Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ja": {
+          "text": "読書ログをレポートとして可視化",
+          "translatedAt": "2026-10-27T12:33:45.791Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ko": {
+          "text": "독서 활동을 한눈에 보는 리포트",
+          "translatedAt": "2026-10-27T12:33:55.781Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pt": {
+          "text": "Suas leituras em um relatório",
+          "translatedAt": "2026-10-27T12:34:16.622Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "hi": {
+          "text": "आपकी reading, एक report के रूप में",
+          "translatedAt": "2026-10-27T12:34:43.286Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "vi": {
+          "text": "Báo cáo thói quen đọc của bạn",
+          "translatedAt": "2026-10-27T12:35:05.134Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "nl": {
+          "text": "Je leesgedrag als rapport",
+          "translatedAt": "2026-10-27T12:35:14.738Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "it": {
+          "text": "Le tue letture in un report",
+          "translatedAt": "2026-10-27T12:35:35.766Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ru": {
+          "text": "Ваше чтение в виде отчёта",
+          "translatedAt": "2026-10-27T12:35:41.676Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "uk": {
+          "text": "Ваше читання — у вигляді звіту",
+          "translatedAt": "2026-10-27T12:35:53.242Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "tr": {
+          "text": "Okumalarınız, rapor halinde",
+          "translatedAt": "2026-10-27T12:36:06.346Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "id": {
+          "text": "Laporan aktivitas membaca Anda",
+          "translatedAt": "2026-10-27T12:36:13.860Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pl": {
+          "text": "Twoje czytanie w formie raportu",
+          "translatedAt": "2026-10-27T12:36:21.395Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "th": {
+          "text": "สรุปภาพรวมการอ่านของคุณในรูปแบบรายงาน",
+          "translatedAt": "2026-10-27T12:36:35.564Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ar": {
+          "text": "قراءاتك في تقرير شامل",
+          "translatedAt": "2026-10-27T12:36:50.052Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "sv": {
+          "text": "Din läsning som rapport",
+          "translatedAt": "2026-10-27T12:37:00.708Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "da": {
+          "text": "Din læsning samlet i en rapport",
+          "translatedAt": "2026-10-27T12:37:09.163Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "no": {
+          "text": "Lesingen din, som en rapport",
+          "translatedAt": "2026-10-27T12:37:19.605Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fi": {
+          "text": "Lukemisesi selkeänä raporttina",
+          "translatedAt": "2026-10-27T12:37:32.656Z",
+          "model": "google/gemini-3.7-flash"
+        }
+      }
+    },
+    "fffa8f02ec6d28800559419269391b3f34b1507629b685cc0ffe05429340b677": {
+      "en": "Streak, time saved, activity and topics over the weeks.",
+      "translations": {
+        "de": {
+          "text": "Leseserie, Zeitersparnis, Aktivität und Themen im Zeitverlauf.",
+          "translatedAt": "2026-10-27T12:32:46.080Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fr": {
+          "text": "Séries de lecture, temps gagné, activité et thématiques au fil des semaines.",
+          "translatedAt": "2026-10-27T12:32:56.928Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "es": {
+          "text": "Racha, tiempo ahorrado, actividad y temas a lo largo de las semanas.",
+          "translatedAt": "2026-10-27T12:33:05.143Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh": {
+          "text": "连续阅读天数、节省时间、活跃度以及数周以来的主题演变一目了然。",
+          "translatedAt": "2026-10-27T12:33:18.378Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh-TW": {
+          "text": "連續閱讀天數、節省的時間、活躍度以及每週閱讀主題。",
+          "translatedAt": "2026-10-27T12:33:32.054Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ja": {
+          "text": "継続日数、節約できた時間、アクティビティ、週ごとのトピックを確認できます。",
+          "translatedAt": "2026-10-27T12:33:45.791Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ko": {
+          "text": "연속 독서 일수, 절약한 시간, 주간 활동 내역과 주요 주제를 확인해 보세요.",
+          "translatedAt": "2026-10-27T12:33:55.781Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pt": {
+          "text": "Sequência de leitura, tempo economizado, atividade e tópicos ao longo das semanas.",
+          "translatedAt": "2026-10-27T12:34:16.622Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "hi": {
+          "text": "Streak, time saved, activity और हफ़्तों भर के topics।",
+          "translatedAt": "2026-10-27T12:34:43.286Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "vi": {
+          "text": "Chuỗi ngày đọc, thời gian tiết kiệm, hoạt động và các chủ đề theo từng tuần.",
+          "translatedAt": "2026-10-27T12:35:05.134Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "nl": {
+          "text": "Leesreeks, bespaarde tijd, activiteit en onderwerpen door de weken heen.",
+          "translatedAt": "2026-10-27T12:35:14.738Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "it": {
+          "text": "Serie di lettura, tempo risparmiato, attività e argomenti nel corso delle settimane.",
+          "translatedAt": "2026-10-27T12:35:35.766Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ru": {
+          "text": "Серия дней, сэкономленное время, активность и темы по неделям.",
+          "translatedAt": "2026-10-27T12:35:41.676Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "uk": {
+          "text": "Серія читання, заощаджений час, активність і динаміка тем за тижнями.",
+          "translatedAt": "2026-10-27T12:35:53.242Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "tr": {
+          "text": "Seri (streak), kazanılan zaman, aktivite ve haftalara göre konular.",
+          "translatedAt": "2026-10-27T12:36:06.346Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "id": {
+          "text": "Streak, waktu yang dihemat, aktivitas, dan topik dari minggu ke minggu.",
+          "translatedAt": "2026-10-27T12:36:13.860Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pl": {
+          "text": "Seria dni czytania, zaoszczędzony czas, aktywność i tematy na przestrzeni tygodni.",
+          "translatedAt": "2026-10-27T12:36:21.395Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "th": {
+          "text": "สถิติการอ่านต่อเนื่อง เวลาที่ประหยัดได้ กิจกรรม และหัวข้อต่างๆ ตลอดหลายสัปดาห์",
+          "translatedAt": "2026-10-27T12:36:35.564Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ar": {
+          "text": "سلسلة القراءة المتتالية، الوقت الموفر، النشاط، والموضوعات عبر الأسابيع.",
+          "translatedAt": "2026-10-27T12:36:50.052Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "sv": {
+          "text": "Lässvit, sparad tid, aktivitet och ämnen över veckornas gång.",
+          "translatedAt": "2026-10-27T12:37:00.708Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "da": {
+          "text": "Streak, sparet tid, aktivitet og emner uge for uge.",
+          "translatedAt": "2026-10-27T12:37:09.163Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "no": {
+          "text": "Leserekke, spart tid, aktivitet og temaer uke for uke.",
+          "translatedAt": "2026-10-27T12:37:19.605Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fi": {
+          "text": "Lukujakso, säästetty aika, aktiivisuus ja aiheet viikkojen varrella.",
+          "translatedAt": "2026-10-27T12:37:32.656Z",
+          "model": "google/gemini-3.7-flash"
+        }
+      }
+    },
+    "623e6733972ef071cc7311e5e093d6ade15026c2755d19202770665a424aa99f": {
+      "en": "Your library inside Claude, LM Studio and Cursor",
+      "translations": {
+        "de": {
+          "text": "Ihre Bibliothek direkt in Claude, LM Studio und Cursor",
+          "translatedAt": "2026-10-27T12:32:46.080Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fr": {
+          "text": "Votre bibliothèque intégrée à Claude, LM Studio et Cursor",
+          "translatedAt": "2026-10-27T12:32:56.928Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "es": {
+          "text": "Tu biblioteca dentro de Claude, LM Studio y Cursor",
+          "translatedAt": "2026-10-27T12:33:05.143Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh": {
+          "text": "在 Claude、LM Studio 和 Cursor 中直接调用您的文库",
+          "translatedAt": "2026-10-27T12:33:18.378Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh-TW": {
+          "text": "在 Claude、LM Studio 與 Cursor 中直接取用你的庫藏",
+          "translatedAt": "2026-10-27T12:33:32.054Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ja": {
+          "text": "Claude、LM Studio、Cursor内でライブラリを活用",
+          "translatedAt": "2026-10-27T12:33:45.791Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ko": {
+          "text": "Claude, LM Studio, Cursor에서 직접 만나는 내 라이브러리",
+          "translatedAt": "2026-10-27T12:33:55.781Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pt": {
+          "text": "Sua biblioteca dentro do Claude, LM Studio e Cursor",
+          "translatedAt": "2026-10-27T12:34:16.622Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "hi": {
+          "text": "आपकी library, Claude, LM Studio और Cursor के अंदर",
+          "translatedAt": "2026-10-27T12:34:43.286Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "vi": {
+          "text": "Thư viện của bạn ngay trong Claude, LM Studio và Cursor",
+          "translatedAt": "2026-10-27T12:35:05.134Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "nl": {
+          "text": "Je bibliotheek direct in Claude, LM Studio en Cursor",
+          "translatedAt": "2026-10-27T12:35:14.738Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "it": {
+          "text": "La tua libreria all'interno di Claude, LM Studio e Cursor",
+          "translatedAt": "2026-10-27T12:35:35.766Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ru": {
+          "text": "Ваша библиотека внутри Claude, LM Studio и Cursor",
+          "translatedAt": "2026-10-27T12:35:41.676Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "uk": {
+          "text": "Ваша бібліотека всередині Claude, LM Studio та Cursor",
+          "translatedAt": "2026-10-27T12:35:53.242Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "tr": {
+          "text": "Kütüphaneniz Claude, LM Studio ve Cursor içinde",
+          "translatedAt": "2026-10-27T12:36:06.346Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "id": {
+          "text": "Pustaka Anda di dalam Claude, LM Studio, dan Cursor",
+          "translatedAt": "2026-10-27T12:36:13.860Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pl": {
+          "text": "Twoja biblioteka w Claude, LM Studio i Cursor",
+          "translatedAt": "2026-10-27T12:36:21.395Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "th": {
+          "text": "เข้าถึงคลังข้อมูลของคุณได้โดยตรงจาก Claude, LM Studio และ Cursor",
+          "translatedAt": "2026-10-27T12:36:35.564Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ar": {
+          "text": "مكتبتك داخل Claude و LM Studio و Cursor",
+          "translatedAt": "2026-10-27T12:36:50.052Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "sv": {
+          "text": "Ditt bibliotek direkt i Claude, LM Studio och Cursor",
+          "translatedAt": "2026-10-27T12:37:00.708Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "da": {
+          "text": "Dit bibliotek direkte i Claude, LM Studio og Cursor",
+          "translatedAt": "2026-10-27T12:37:09.163Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "no": {
+          "text": "Biblioteket ditt i Claude, LM Studio og Cursor",
+          "translatedAt": "2026-10-27T12:37:19.605Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fi": {
+          "text": "Kirjastosi suoraan Claudessa, LM Studiossa ja Cursorissa",
+          "translatedAt": "2026-10-27T12:37:32.656Z",
+          "model": "google/gemini-3.7-flash"
+        }
+      }
+    },
+    "5346f1555d451a696d1233525190d8b009ba7f1c98bc590855f35b7f7c947048": {
+      "en": "Switch on AI apps in Settings, and Claude Desktop, LM Studio, Cursor and other MCP apps on your computer can search your library, quote your highlights and list what is due. If you allow it, they can also save links for you. Nothing goes through our server, and you choose what they may read.",
+      "translations": {
+        "de": {
+          "text": "Aktivieren Sie KI-Apps in den Einstellungen, damit Claude Desktop, LM Studio, Cursor und andere MCP-Apps auf Ihrem Rechner Ihre Bibliothek durchsuchen, Markierungen zitieren und fällige Einträge auflisten können. Mit Ihrer Freigabe können sie auch Links für Sie speichern. Nichts verlässt Ihr Gerät über unsere Server – Sie behalten die volle Kontrolle darüber, was gelesen werden darf.",
+          "translatedAt": "2026-10-27T12:32:46.080Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fr": {
+          "text": "Activez les applications d'IA dans les Paramètres : Claude Desktop, LM Studio, Cursor et les autres applications MCP sur votre ordinateur peuvent alors explorer votre bibliothèque, citer vos passages surlignés et lister vos lectures en attente. Si vous l'autorisez, elles peuvent aussi enregistrer des liens pour vous. Rien ne transite par nos serveurs et vous choisissez exactement ce qu'elles peuvent lire.",
+          "translatedAt": "2026-10-27T12:32:56.928Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "es": {
+          "text": "Activa las aplicaciones de IA en Configuración, y Claude Desktop, LM Studio, Cursor y otras aplicaciones MCP en tu equipo podrán buscar en tu biblioteca, citar tus subrayados y mostrar las lecturas pendientes. Si lo autorizas, también pueden guardar enlaces por ti. Nada pasa por nuestro servidor y tú decides qué pueden leer.",
+          "translatedAt": "2026-10-27T12:33:05.143Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh": {
+          "text": "在“设置”中开启 AI 应用支持，电脑上的 Claude Desktop、LM Studio、Cursor 及其他 MCP 应用即可检索您的文库、引用高亮内容并列出待读清单。若经您授权，它们还能为您保存链接。所有数据均不经过我们的服务器，完全由您掌控读取权限。",
+          "translatedAt": "2026-10-27T12:33:18.378Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh-TW": {
+          "text": "在「設定」中啟用 AI 應用程式，即可讓電腦上的 Claude Desktop、LM Studio、Cursor 及其他 MCP 應用程式搜尋你的庫藏、引用劃線重點並列出待讀清單。經你授權後，它們還能為你儲存連結。資料全程不經過我們的伺服器，且由你完全掌控它們能讀取的內容。",
+          "translatedAt": "2026-10-27T12:33:32.054Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ja": {
+          "text": "設定でAIアプリを有効にすると、お使いのPC上のClaude Desktop、LM Studio、CursorなどのMCP対応アプリから、ライブラリの検索、ハイライトの引用、未読・期限の確認が可能になります。許可すればリンクの保存も行えます。データがサーバーを経由することは一切なく、どの情報を読み取らせるかも自由に選択できます。",
+          "translatedAt": "2026-10-27T12:33:45.791Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ko": {
+          "text": "설정에서 AI 앱 연동을 켜면 컴퓨터에 설치된 Claude Desktop, LM Studio, Cursor 및 기타 MCP 앱이 내 라이브러리를 검색하고 하이라이트를 인용하며 읽을거리를 정리해 줍니다. 권한을 허용하면 링크를 대신 저장할 수도 있습니다. 모든 과정은 외부 서버를 거치지 않고 기기 내에서 처리되며, AI가 접근할 수 있는 항목도 직접 제어할 수 있습니다.",
+          "translatedAt": "2026-10-27T12:33:55.781Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pt": {
+          "text": "Ative os apps de IA nas Configurações, e o Claude Desktop, o LM Studio, o Cursor e outros apps MCP no seu computador poderão pesquisar na sua biblioteca, citar seus destaques e listar itens pendentes. Com a sua permissão, eles também podem salvar links para você. Nada passa pelos nossos servidores, e você escolhe exatamente o que eles podem ler.",
+          "translatedAt": "2026-10-27T12:34:16.622Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "hi": {
+          "text": "Settings में AI apps चालू करें, और आपके कंप्यूटर पर Claude Desktop, LM Studio, Cursor और अन्य MCP apps आपकी library search कर सकते हैं, आपके highlights quote कर सकते हैं और क्या due है यह बता सकते हैं। अगर आप allow करें, तो वे आपके लिए links भी save कर सकते हैं। हमारे server से कुछ भी नहीं जाता, और वे क्या read कर सकते हैं यह पूरी तरह आप तय करते हैं।",
+          "translatedAt": "2026-10-27T12:34:43.286Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "vi": {
+          "text": "Bật ứng dụng AI trong Cài đặt, và Claude Desktop, LM Studio, Cursor cùng các ứng dụng MCP khác trên máy tính của bạn có thể tìm kiếm thư viện, trích dẫn đoạn đánh dấu và liệt kê nội dung đến hạn đọc. Nếu được cho phép, các ứng dụng này còn có thể lưu liên kết giúp bạn. Toàn bộ xử lý cục bộ không qua máy chủ của chúng tôi, và bạn toàn quyền chọn nội dung cho phép truy cập.",
+          "translatedAt": "2026-10-27T12:35:05.134Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "nl": {
+          "text": "Schakel AI-apps in via Instellingen, en Claude Desktop, LM Studio, Cursor en andere MCP-apps op je computer kunnen je bibliotheek doorzoeken, je markeringen citeren en tonen wat er op de planning staat. Als je toestemming geeft, kunnen ze ook links voor je opslaan. Er loopt niets via onze servers, en jij bepaalt wat ze mogen inzien.",
+          "translatedAt": "2026-10-27T12:35:14.738Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "it": {
+          "text": "Attiva le app AI nelle Impostazioni: Claude Desktop, LM Studio, Cursor e le altre app MCP sul tuo computer potranno cercare nella tua libreria, citare le tue evidenziazioni ed elencare i contenuti in scadenza. Se lo autorizzi, possono anche salvare link per te. Nessun dato transita sui nostri server: sei sempre tu a decidere cosa possono leggere.",
+          "translatedAt": "2026-10-27T12:35:35.766Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ru": {
+          "text": "Включите ИИ-приложения в Настройках, и Claude Desktop, LM Studio, Cursor и другие MCP-приложения на вашем компьютере смогут искать по вашей библиотеке, цитировать ваши выделения и показывать материалы к прочтению. При вашем разрешении они также могут сохранять для вас ссылки. Данные не проходят через наш сервер, и вы сами выбираете, к чему открыть доступ.",
+          "translatedAt": "2026-10-27T12:35:41.676Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "uk": {
+          "text": "Увімкніть AI-застосунки в Налаштуваннях, і Claude Desktop, LM Studio, Cursor та інші MCP-застосунки на вашому комп'ютері зможуть шукати у вашій бібліотеці, цитувати збережені фрагменти та показувати заплановане. За вашим дозволом вони також можуть зберігати посилання. Жодні дані не проходять через наш сервер, і ви самі обираєте, до чого надати доступ.",
+          "translatedAt": "2026-10-27T12:35:53.242Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "tr": {
+          "text": "Ayarlar'dan AI uygulamalarını etkinleştirin; bilgisayarınızdaki Claude Desktop, LM Studio, Cursor ve diğer MCP uygulamaları kütüphanenizde arama yapabilsin, vurgularınızdan alıntılayabilsin ve okunacakları listeleyebilsin. İzin verirseniz sizin için bağlantı da kaydedebilirler. Hiçbir veri sunucumuza gitmez; neyi okuyabileceklerini tamamen siz belirlersiniz.",
+          "translatedAt": "2026-10-27T12:36:06.346Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "id": {
+          "text": "Aktifkan aplikasi AI di Pengaturan, maka Claude Desktop, LM Studio, Cursor, dan aplikasi MCP lainnya di komputer Anda dapat menelusuri pustaka, mengutip sorotan, dan menampilkan daftar bacaan yang tertunda. Jika Anda izinkan, mereka juga dapat menyimpan tautan untuk Anda. Tidak ada data yang dikirim ke server kami, dan Anda memegang kendali penuh atas apa yang boleh dibaca.",
+          "translatedAt": "2026-10-27T12:36:13.860Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pl": {
+          "text": "Włącz aplikacje AI w Ustawieniach, a Claude Desktop, LM Studio, Cursor i inne aplikacje MCP na Twoim komputerze będą mogły przeszukiwać bibliotekę, cytować wyróżnienia i wyświetlać zaległości. Jeśli na to zezwolisz, mogą również zapisywać dla Ciebie linki. Nic nie trafia na nasz serwer, a Ty decydujesz, do czego mają dostęp.",
+          "translatedAt": "2026-10-27T12:36:21.395Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "th": {
+          "text": "เพียงเปิดใช้งานแอป AI ในหน้าการตั้งค่า จากนั้น Claude Desktop, LM Studio, Cursor รวมถึงแอป MCP อื่นๆ บนคอมพิวเตอร์ของคุณ ก็สามารถค้นหาคลังข้อมูล ดึงข้อความไฮไลต์ และแสดงรายการที่ต้องอ่านได้ทันที และหากอนุญาต แอปเหล่านี้ยังสามารถบันทึกลิงก์ให้ได้อีกด้วย ข้อมูลทั้งหมดทำงานแบบโลคอลไม่ผ่านเซิร์ฟเวอร์ของเรา และสามารถเลือกได้เองว่าต้องการให้เข้าถึงข้อมูลใดบ้าง",
+          "translatedAt": "2026-10-27T12:36:35.564Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ar": {
+          "text": "فعّل تطبيقات الذكاء الاصطناعي في الإعدادات، لتتمكن تطبيقات Claude Desktop و LM Studio و Cursor وتطبيقات MCP الأخرى على جهازك من البحث في مكتبتك، واقتباس تظليلاتك، وعرض ما حان موعد قراءته. وإذا سمحت بذلك، يمكنها أيضًا حفظ الروابط لك. لا يمر أي شيء عبر خوادمنا، وأنت من يحدد ما يمكنها قراءته.",
+          "translatedAt": "2026-10-27T12:36:50.052Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "sv": {
+          "text": "Aktivera AI-appar i Inställningar, så kan Claude Desktop, LM Studio, Cursor och andra MCP-appar på din dator söka i ditt bibliotek, citera dina markeringar och visa vad som är aktuellt. Om du tillåter det kan de även spara länkar åt dig. Inget passerar våra servrar, och du väljer själv vad de får läsa.",
+          "translatedAt": "2026-10-27T12:37:00.708Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "da": {
+          "text": "Slå AI-apps til under Indstillinger, så kan Claude Desktop, LM Studio, Cursor og andre MCP-apps på din computer søge i dit bibliotek, citere dine overstregninger og vise, hvad du mangler at læse. Giver du lov, kan de også gemme links for dig. Intet går gennem vores server, og du bestemmer selv, hvad de må læse.",
+          "translatedAt": "2026-10-27T12:37:09.163Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "no": {
+          "text": "Slå på AI-apper i Innstillinger, så kan Claude Desktop, LM Studio, Cursor og andre MCP-apper på datamaskinen din søke i biblioteket ditt, sitere markeringene dine og liste opp hva som gjenstår. Hvis du tillater det, kan de også lagre lenker for deg. Ingenting går via serveren vår, og du velger selv hva de får lese.",
+          "translatedAt": "2026-10-27T12:37:19.605Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fi": {
+          "text": "Ota tekoälysovellukset käyttöön asetuksissa, niin tietokoneesi Claude Desktop, LM Studio, Cursor ja muut MCP-sovellukset voivat hakea kirjastostasi, lainata korostuksiasi ja listata luettavat tekstit. Luvallasi ne voivat myös tallentaa linkkejä puolestasi. Mikään ei kulje palvelimemme kautta, ja päätät itse, mitä sovellukset saavat lukea.",
+          "translatedAt": "2026-10-27T12:37:32.656Z",
+          "model": "google/gemini-3.7-flash"
+        }
+      }
+    },
+    "85082cb9fae62081a0861550907b52c70962463fd2eaf32be079da58737051c0": {
+      "en": "Export to Obsidian, Markdown, Word and PDF",
+      "translations": {
+        "de": {
+          "text": "Export nach Obsidian, Markdown, Word und PDF",
+          "translatedAt": "2026-10-27T12:32:46.080Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fr": {
+          "text": "Exportez vers Obsidian, Markdown, Word et PDF",
+          "translatedAt": "2026-10-27T12:32:56.928Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "es": {
+          "text": "Exporta a Obsidian, Markdown, Word y PDF",
+          "translatedAt": "2026-10-27T12:33:05.143Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh": {
+          "text": "导出至 Obsidian、Markdown、Word 和 PDF",
+          "translatedAt": "2026-10-27T12:33:18.378Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh-TW": {
+          "text": "匯出至 Obsidian、Markdown、Word 與 PDF",
+          "translatedAt": "2026-10-27T12:33:32.054Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ja": {
+          "text": "Obsidian、Markdown、Word、PDFへエクスポート",
+          "translatedAt": "2026-10-27T12:33:45.791Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ko": {
+          "text": "Obsidian, Markdown, Word, PDF로 내보내기",
+          "translatedAt": "2026-10-27T12:33:55.781Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pt": {
+          "text": "Exporte para o Obsidian, Markdown, Word e PDF",
+          "translatedAt": "2026-10-27T12:34:16.622Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "hi": {
+          "text": "Obsidian, Markdown, Word और PDF में export करें",
+          "translatedAt": "2026-10-27T12:34:43.286Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "vi": {
+          "text": "Xuất sang Obsidian, Markdown, Word và PDF",
+          "translatedAt": "2026-10-27T12:35:05.134Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "nl": {
+          "text": "Exporteer naar Obsidian, Markdown, Word en PDF",
+          "translatedAt": "2026-10-27T12:35:14.738Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "it": {
+          "text": "Esporta in Obsidian, Markdown, Word e PDF",
+          "translatedAt": "2026-10-27T12:35:35.766Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ru": {
+          "text": "Экспорт в Obsidian, Markdown, Word и PDF",
+          "translatedAt": "2026-10-27T12:35:41.676Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "uk": {
+          "text": "Експорт до Obsidian, Markdown, Word та PDF",
+          "translatedAt": "2026-10-27T12:35:53.242Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "tr": {
+          "text": "Obsidian, Markdown, Word ve PDF olarak dışa aktarın",
+          "translatedAt": "2026-10-27T12:36:06.346Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "id": {
+          "text": "Ekspor ke Obsidian, Markdown, Word, dan PDF",
+          "translatedAt": "2026-10-27T12:36:13.860Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pl": {
+          "text": "Eksport do Obsidian, Markdown, Word i PDF",
+          "translatedAt": "2026-10-27T12:36:21.395Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "th": {
+          "text": "ส่งออกไปยัง Obsidian, Markdown, Word และ PDF",
+          "translatedAt": "2026-10-27T12:36:35.564Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ar": {
+          "text": "تصدير إلى Obsidian و Markdown و Word و PDF",
+          "translatedAt": "2026-10-27T12:36:50.052Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "sv": {
+          "text": "Exportera till Obsidian, Markdown, Word och PDF",
+          "translatedAt": "2026-10-27T12:37:00.708Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "da": {
+          "text": "Eksportér til Obsidian, Markdown, Word og PDF",
+          "translatedAt": "2026-10-27T12:37:09.163Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "no": {
+          "text": "Eksporter til Obsidian, Markdown, Word og PDF",
+          "translatedAt": "2026-10-27T12:37:19.605Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fi": {
+          "text": "Vie Obsidianiin, Markdowniin, Wordiin ja PDF:ksi",
+          "translatedAt": "2026-10-27T12:37:32.656Z",
+          "model": "google/gemini-3.7-flash"
+        }
+      }
+    },
+    "11ec5882b42279f60e6c80102148e75e2b418f58ad0526cd41c47e47d87e383e": {
+      "en": "Send a summary straight to your Obsidian vault, or export it as Markdown, Word (DOCX), OpenDocument or PDF, with the title, source, tags and your highlights in one note.",
+      "translations": {
+        "de": {
+          "text": "Senden Sie eine Zusammenfassung direkt an Ihren Obsidian-Vault oder exportieren Sie sie als Markdown, Word (DOCX), OpenDocument oder PDF – mit Titel, Quelle, Tags und Markierungen in einer Notiz.",
+          "translatedAt": "2026-10-27T12:32:46.080Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fr": {
+          "text": "Envoyez directement un résumé vers votre coffre Obsidian ou exportez-le en Markdown, Word (DOCX), OpenDocument ou PDF, en regroupant titre, source, étiquettes et surlignages dans une seule note.",
+          "translatedAt": "2026-10-27T12:32:56.928Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "es": {
+          "text": "Envía un resumen directamente a tu bóveda de Obsidian o expórtalo como Markdown, Word (DOCX), OpenDocument o PDF, con el título, la fuente, las etiquetas y tus subrayados en una sola nota.",
+          "translatedAt": "2026-10-27T12:33:05.143Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh": {
+          "text": "将摘要直接同步至您的 Obsidian vault，或导出为 Markdown、Word (DOCX)、OpenDocument 及 PDF 格式，在一篇笔记中完整包含标题、来源、标签与高亮标注。",
+          "translatedAt": "2026-10-27T12:33:18.378Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh-TW": {
+          "text": "直接將摘要傳送至你的 Obsidian 庫（vault），或匯出為 Markdown、Word (DOCX)、OpenDocument 或 PDF 格式，將標題、來源、標籤與劃線重點整合在同一篇筆記中。",
+          "translatedAt": "2026-10-27T12:33:32.054Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ja": {
+          "text": "要約をObsidianのVault（保管庫）へ直接送信したり、Markdown、Word（DOCX）、OpenDocument、PDFとしてエクスポートしたりできます。タイトル、出典、タグ、ハイライトが1つのノートに綺麗にまとまります。",
+          "translatedAt": "2026-10-27T12:33:45.791Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ko": {
+          "text": "요약본을 Obsidian 보관함으로 바로 전송하거나 Markdown, Word(DOCX), OpenDocument, PDF로 내보내 보세요. 제목, 출처, 태그, 하이라이트가 하나의 깔끔한 노트에 모두 담깁니다.",
+          "translatedAt": "2026-10-27T12:33:55.781Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pt": {
+          "text": "Envie um resumo direto para o seu cofre do Obsidian ou exporte como Markdown, Word (DOCX), OpenDocument ou PDF, reunindo título, fonte, tags e seus destaques em uma única nota.",
+          "translatedAt": "2026-10-27T12:34:16.622Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "hi": {
+          "text": "Summary को सीधे अपने Obsidian vault में भेजें, या title, source, tags और अपने highlights को एक ही note में Markdown, Word (DOCX), OpenDocument या PDF के रूप में export करें।",
+          "translatedAt": "2026-10-27T12:34:43.286Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "vi": {
+          "text": "Chuyển thẳng bản tóm tắt vào Obsidian vault, hoặc xuất dưới dạng Markdown, Word (DOCX), OpenDocument hay PDF, tích hợp đầy đủ tiêu đề, nguồn, thẻ và các đoạn đánh dấu trong một ghi chú duy nhất.",
+          "translatedAt": "2026-10-27T12:35:05.134Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "nl": {
+          "text": "Stuur een samenvatting rechtstreeks naar je Obsidian-vault of exporteer als Markdown, Word (DOCX), OpenDocument of PDF — compleet met titel, bron, tags en markeringen in één notitie.",
+          "translatedAt": "2026-10-27T12:35:14.738Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "it": {
+          "text": "Invia un riassunto direttamente al tuo vault di Obsidian oppure esportalo in formato Markdown, Word (DOCX), OpenDocument o PDF, con titolo, fonte, tag e le tue evidenziazioni in un'unica nota.",
+          "translatedAt": "2026-10-27T12:35:35.766Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ru": {
+          "text": "Отправляйте сводки напрямую в хранилище Obsidian или экспортируйте их в Markdown, Word (DOCX), OpenDocument или PDF — с названием, источником, тегами и вашими выделениями в одной заметке.",
+          "translatedAt": "2026-10-27T12:35:41.676Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "uk": {
+          "text": "Надсилайте підсумки безпосередньо у сховище Obsidian або експортуйте їх у Markdown, Word (DOCX), OpenDocument чи PDF — із назвою, джерелом, тегами та виділеними фрагментами в одній нотатці.",
+          "translatedAt": "2026-10-27T12:35:53.242Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "tr": {
+          "text": "Başlık, kaynak, etiketler ve vurgularınızı tek bir notta toplayarak özeti doğrudan Obsidian vault'unuza gönderin veya Markdown, Word (DOCX), OpenDocument ya da PDF olarak dışa aktarın.",
+          "translatedAt": "2026-10-27T12:36:06.346Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "id": {
+          "text": "Kirim ringkasan langsung ke vault Obsidian Anda, atau ekspor sebagai Markdown, Word (DOCX), OpenDocument, atau PDF, lengkap dengan judul, sumber, tag, dan sorotan Anda dalam satu catatan.",
+          "translatedAt": "2026-10-27T12:36:13.860Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pl": {
+          "text": "Prześlij podsumowanie prosto do skarbca Obsidian lub wyeksportuj je jako Markdown, Word (DOCX), OpenDocument bądź PDF — z tytułem, źródłem, tagami i wyróżnieniami w jednej notatce.",
+          "translatedAt": "2026-10-27T12:36:21.395Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "th": {
+          "text": "ส่งบทสรุปตรงไปยัง Obsidian vault หรือส่งออกเป็นไฟล์ Markdown, Word (DOCX), OpenDocument หรือ PDF พร้อมชื่อเรื่อง แหล่งที่มา แท็ก และข้อความไฮไลต์รวมอยู่ในโน้ตเดียว",
+          "translatedAt": "2026-10-27T12:36:35.564Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ar": {
+          "text": "أرسل الملخص مباشرةً إلى خزانة Obsidian الخاصة بك، أو صدّره كملف Markdown أو Word (DOCX) أو OpenDocument أو PDF، مع العنوان والمصدر والوسوم وتظليلاتك في ملاحظة واحدة.",
+          "translatedAt": "2026-10-27T12:36:50.052Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "sv": {
+          "text": "Skicka en sammanfattning direkt till ditt Obsidian-valv, eller exportera som Markdown, Word (DOCX), OpenDocument eller PDF – med titel, källa, taggar och dina markeringar samlade i en anteckning.",
+          "translatedAt": "2026-10-27T12:37:00.708Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "da": {
+          "text": "Send et resumé direkte til din Obsidian-vault, eller eksportér som Markdown, Word (DOCX), OpenDocument eller PDF – med titel, kilde, tags og dine overstregninger samlet i én note.",
+          "translatedAt": "2026-10-27T12:37:09.163Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "no": {
+          "text": "Send et sammendrag rett til Obsidian-hvelvet ditt, eller eksporter som Markdown, Word (DOCX), OpenDocument eller PDF – med tittel, kilde, tagger og markeringene dine i ett og samme notat.",
+          "translatedAt": "2026-10-27T12:37:19.605Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fi": {
+          "text": "Lähetä tiivistelmä suoraan Obsidian-holviisi tai vie se Markdown-, Word- (DOCX), OpenDocument- tai PDF-muodossa – otsikko, lähde, tunnisteet ja korostuksesi yhdessä muistiinpanossa.",
+          "translatedAt": "2026-10-27T12:37:32.656Z",
+          "model": "google/gemini-3.7-flash"
+        }
+      }
+    },
+    "65231f2e408baf5af552d7f284192aef697f8c09ad9b668d54ec29357e412a12": {
+      "en": "An analytics report of your reading",
+      "translations": {
+        "de": {
+          "text": "Detaillierte Auswertungen Ihres Leseverhaltens",
+          "translatedAt": "2026-10-27T12:32:46.080Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fr": {
+          "text": "Un rapport statistique de vos lectures",
+          "translatedAt": "2026-10-27T12:32:56.928Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "es": {
+          "text": "Un informe de analíticas de tus lecturas",
+          "translatedAt": "2026-10-27T12:33:05.143Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh": {
+          "text": "全方位的个人阅读分析报告",
+          "translatedAt": "2026-10-27T12:33:18.378Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh-TW": {
+          "text": "專屬的閱讀分析報告",
+          "translatedAt": "2026-10-27T12:33:32.054Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ja": {
+          "text": "読書状況を分析するアナリティクスレポート",
+          "translatedAt": "2026-10-27T12:33:45.791Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ko": {
+          "text": "나만의 독서 통계 리포트",
+          "translatedAt": "2026-10-27T12:33:55.781Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pt": {
+          "text": "Um relatório analítico dos seus hábitos de leitura",
+          "translatedAt": "2026-10-27T12:34:16.622Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "hi": {
+          "text": "आपकी reading की एक analytics report",
+          "translatedAt": "2026-10-27T12:34:43.286Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "vi": {
+          "text": "Báo cáo phân tích chi tiết về việc đọc của bạn",
+          "translatedAt": "2026-10-27T12:35:05.134Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "nl": {
+          "text": "Een analyserapport van je leesgedrag",
+          "translatedAt": "2026-10-27T12:35:14.738Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "it": {
+          "text": "Un report statistico sulle tue letture",
+          "translatedAt": "2026-10-27T12:35:35.766Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ru": {
+          "text": "Аналитический отчёт о вашем чтении",
+          "translatedAt": "2026-10-27T12:35:41.676Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "uk": {
+          "text": "Аналітичний звіт про ваше читання",
+          "translatedAt": "2026-10-27T12:35:53.242Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "tr": {
+          "text": "Okumalarınıza dair analitik raporu",
+          "translatedAt": "2026-10-27T12:36:06.346Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "id": {
+          "text": "Laporan analitik dari aktivitas membaca Anda",
+          "translatedAt": "2026-10-27T12:36:13.860Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pl": {
+          "text": "Raport analityczny z Twojego czytania",
+          "translatedAt": "2026-10-27T12:36:21.395Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "th": {
+          "text": "รายงานวิเคราะห์ข้อมูลเชิงลึกเกี่ยวกับการอ่านของคุณ",
+          "translatedAt": "2026-10-27T12:36:35.564Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ar": {
+          "text": "تقرير تحليلي عن عادات قراءتك",
+          "translatedAt": "2026-10-27T12:36:50.052Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "sv": {
+          "text": "En analysrapport över din läsning",
+          "translatedAt": "2026-10-27T12:37:00.708Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "da": {
+          "text": "En analyserapport over din læsning",
+          "translatedAt": "2026-10-27T12:37:09.163Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "no": {
+          "text": "En analyserapport over lesingen din",
+          "translatedAt": "2026-10-27T12:37:19.605Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fi": {
+          "text": "Analytiikkaraportti lukemisestasi",
+          "translatedAt": "2026-10-27T12:37:32.656Z",
+          "model": "google/gemini-3.7-flash"
+        }
+      }
+    },
+    "80ea1ae25f05266595f7e6784ceccecb1fa934fa81d3984164f28d39ba1761cc": {
+      "en": "Reading streak, time saved by summaries, activity, topics over the weeks and a word cloud, computed from your own library.",
+      "translations": {
+        "de": {
+          "text": "Leseserie, durch Zusammenfassungen gesparte Zeit, Aktivität, Themen im Zeitverlauf und eine Schlagwortwolke – lokal berechnet direkt aus Ihrer eigenen Bibliothek.",
+          "translatedAt": "2026-10-27T12:32:46.080Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fr": {
+          "text": "Série de lecture, temps gagné grâce aux résumés, activité, thématiques au fil des semaines et nuage de mots, calculés directement depuis votre propre bibliothèque.",
+          "translatedAt": "2026-10-27T12:32:56.928Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "es": {
+          "text": "Racha de lectura, tiempo ahorrado con los resúmenes, actividad, temas a lo largo de las semanas y una nube de palabras, calculados a partir de tu propia biblioteca.",
+          "translatedAt": "2026-10-27T12:33:05.143Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh": {
+          "text": "基于您本地文库数据生成：涵盖连续阅读天数、摘要节省时间、活跃度、每周阅读主题演变及词云分析。",
+          "translatedAt": "2026-10-27T12:33:18.378Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh-TW": {
+          "text": "根據你的個人庫藏資料，統計連續閱讀天數、摘要節省的時間、活躍度、每週主題分佈以及文字雲。",
+          "translatedAt": "2026-10-27T12:33:32.054Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ja": {
+          "text": "読書の継続日数、要約によって節約された時間、アクティビティ、週ごとのトピック、ワードクラウドを、すべてローカルのライブラリから集計・表示します。",
+          "translatedAt": "2026-10-27T12:33:45.791Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ko": {
+          "text": "내 라이브러리 데이터를 바탕으로 연속 독서 일수, 요약으로 절약한 시간, 활동 기록, 주간별 주제 및 워드 클라우드를 분석해 제공합니다.",
+          "translatedAt": "2026-10-27T12:33:55.781Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pt": {
+          "text": "Sequência de leitura, tempo economizado com resumos, atividade, tópicos ao longo das semanas e nuvem de palavras, tudo processado localmente a partir da sua própria biblioteca.",
+          "translatedAt": "2026-10-27T12:34:16.622Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "hi": {
+          "text": "Reading streak, summaries से time saved, activity, हफ़्तों भर के topics और एक word cloud — सीधे आपकी अपनी library से compute किया गया।",
+          "translatedAt": "2026-10-27T12:34:43.286Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "vi": {
+          "text": "Chuỗi ngày đọc, thời gian tiết kiệm nhờ tóm tắt, lịch sử hoạt động, các chủ đề theo tuần và đám mây từ khóa, được tính toán trực tiếp từ chính thư viện của bạn.",
+          "translatedAt": "2026-10-27T12:35:05.134Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "nl": {
+          "text": "Leesreeks, tijd bespaard dankzij samenvattingen, activiteit, wekelijkse onderwerpen en een woordwolk — lokaal berekend op basis van je eigen bibliotheek.",
+          "translatedAt": "2026-10-27T12:35:14.738Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "it": {
+          "text": "Serie di lettura, tempo risparmiato grazie ai riassunti, attività, argomenti settimana dopo settimana e nuvola di parole, tutto elaborato in locale dalla tua libreria.",
+          "translatedAt": "2026-10-27T12:35:35.766Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ru": {
+          "text": "Серия дней чтения, сэкономленное на сводках время, активность, темы по неделям и облако слов — всё рассчитывается на основе вашей библиотеки.",
+          "translatedAt": "2026-10-27T12:35:41.676Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "uk": {
+          "text": "Серія читання, заощаджений завдяки підсумкам час, активність, динаміка тем за тижнями та хмара слів, сформовані на основі вашої бібліотеки.",
+          "translatedAt": "2026-10-27T12:35:53.242Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "tr": {
+          "text": "Tamamen kendi kütüphanenizden hesaplanan okuma serisi (streak), özetlerle kazanılan zaman, aktivite, haftalara göre konular ve kelime bulutu.",
+          "translatedAt": "2026-10-27T12:36:06.346Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "id": {
+          "text": "Streak membaca, waktu yang dihemat lewat ringkasan, aktivitas, topik dari minggu ke minggu, serta word cloud, yang dihitung langsung dari pustaka lokal Anda.",
+          "translatedAt": "2026-10-27T12:36:13.860Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pl": {
+          "text": "Seria czytania, czas zaoszczędzony dzięki podsumowaniom, aktywność, tematy na przestrzeni tygodni i chmura słów — generowane lokalnie z Twojej biblioteki.",
+          "translatedAt": "2026-10-27T12:36:21.395Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "th": {
+          "text": "สถิติการอ่านต่อเนื่อง เวลาที่ประหยัดได้จากบทสรุป กิจกรรม หัวข้อตลอดหลายสัปดาห์ และ Word Cloud ที่ประมวลผลจากคลังข้อมูลของคุณโดยตรง",
+          "translatedAt": "2026-10-27T12:36:35.564Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ar": {
+          "text": "سلسلة القراءة، الوقت الموفر بفضل الملخصات، النشاط، الموضوعات على مدار الأسابيع، وسحابة الكلمات، وكلها تُحسب محليًا من مكتبتك الخاصة.",
+          "translatedAt": "2026-10-27T12:36:50.052Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "sv": {
+          "text": "Lässvit, tid sparad genom sammanfattningar, aktivitet, ämnen över veckorna och ett ordmoln – genererat lokalt från ditt eget bibliotek.",
+          "translatedAt": "2026-10-27T12:37:00.708Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "da": {
+          "text": "Læsestreak, tid sparet via resuméer, aktivitet, emner uge for uge og en ordsky – beregnet ud fra dit eget bibliotek.",
+          "translatedAt": "2026-10-27T12:37:09.163Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "no": {
+          "text": "Leserekke, tid spart på sammendrag, aktivitet, ukentlige temaer og en ordsky – beregnet direkte fra ditt eget bibliotek.",
+          "translatedAt": "2026-10-27T12:37:19.605Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fi": {
+          "text": "Lukujakso, tiivistelmillä säästetty aika, aktiivisuus, viikoittaiset aiheet ja sanapilvi – laskettuna suoraan omasta kirjastostasi.",
+          "translatedAt": "2026-10-27T12:37:32.656Z",
+          "model": "google/gemini-3.7-flash"
+        }
+      }
+    },
+    "982bb3f6d1e5227198c8852ddedad233e8507ff1dd64505e3481c2bcce87ebff": {
+      "en": "Play: Your library in your AI apps",
+      "translations": {
+        "de": {
+          "text": "Abspielen: Ihre Bibliothek in Ihren KI-Apps",
+          "translatedAt": "2026-10-27T12:32:46.080Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fr": {
+          "text": "Lire : Votre bibliothèque au cœur de vos applications d'IA",
+          "translatedAt": "2026-10-27T12:32:56.928Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "es": {
+          "text": "Reproducir: Tu biblioteca en tus aplicaciones de IA",
+          "translatedAt": "2026-10-27T12:33:05.143Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh": {
+          "text": "播放：在各类 AI 应用中使用您的文库",
+          "translatedAt": "2026-10-27T12:33:18.378Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh-TW": {
+          "text": "播放：在 AI 應用中取用你的個人庫藏",
+          "translatedAt": "2026-10-27T12:33:32.054Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ja": {
+          "text": "再生：お使いのAIアプリからライブラリにアクセス",
+          "translatedAt": "2026-10-27T12:33:45.791Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ko": {
+          "text": "재생: 내가 사용하는 AI 앱에서 내 라이브러리를 바로",
+          "translatedAt": "2026-10-27T12:33:55.781Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pt": {
+          "text": "Reproduzir: Sua biblioteca nos seus apps de IA",
+          "translatedAt": "2026-10-27T12:34:16.622Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "hi": {
+          "text": "Play: आपकी library, आपके AI apps में",
+          "translatedAt": "2026-10-27T12:34:43.286Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "vi": {
+          "text": "Phát: Thư viện của bạn trong các ứng dụng AI",
+          "translatedAt": "2026-10-27T12:35:05.134Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "nl": {
+          "text": "Afspelen: Je bibliotheek in je AI-apps",
+          "translatedAt": "2026-10-27T12:35:14.738Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "it": {
+          "text": "Riproduci: La tua libreria nelle tue app AI",
+          "translatedAt": "2026-10-27T12:35:35.766Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ru": {
+          "text": "Воспроизвести: Ваша библиотека в ваших ИИ-приложениях",
+          "translatedAt": "2026-10-27T12:35:41.676Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "uk": {
+          "text": "Відтворити: Ваша бібліотека у ваших AI-застосунках",
+          "translatedAt": "2026-10-27T12:35:53.242Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "tr": {
+          "text": "Oynat: Kütüphaneniz AI uygulamalarınızda",
+          "translatedAt": "2026-10-27T12:36:06.346Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "id": {
+          "text": "Putar: Pustaka Anda di aplikasi AI Anda",
+          "translatedAt": "2026-10-27T12:36:13.860Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pl": {
+          "text": "Odtwórz: Twoja biblioteka w aplikacjach AI",
+          "translatedAt": "2026-10-27T12:36:21.395Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "th": {
+          "text": "เล่น: คลังข้อมูลของคุณในแอป AI",
+          "translatedAt": "2026-10-27T12:36:35.564Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ar": {
+          "text": "تشغيل: مكتبتك داخل تطبيقات الذكاء الاصطناعي الخاصة بك",
+          "translatedAt": "2026-10-27T12:36:50.052Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "sv": {
+          "text": "Spela upp: Ditt bibliotek i dina AI-appar",
+          "translatedAt": "2026-10-27T12:37:00.708Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "da": {
+          "text": "Afspil: Dit bibliotek i dine AI-apps",
+          "translatedAt": "2026-10-27T12:37:09.163Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "no": {
+          "text": "Spill av: Biblioteket ditt i AI-appene dine",
+          "translatedAt": "2026-10-27T12:37:19.605Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fi": {
+          "text": "Toista: Kirjastosi tekoälysovelluksissasi",
+          "translatedAt": "2026-10-27T12:37:32.656Z",
+          "model": "google/gemini-3.7-flash"
+        }
+      }
+    },
+    "2c5f8f5e78ffa158907478e7d0ad800f47c885218b0abfbaf2171c3af7fd4f05": {
+      "en": "Play: Export to Obsidian and more",
+      "translations": {
+        "de": {
+          "text": "Abspielen: Export nach Obsidian und mehr",
+          "translatedAt": "2026-10-27T12:32:46.080Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fr": {
+          "text": "Lire : Exportez vers Obsidian et bien plus",
+          "translatedAt": "2026-10-27T12:32:56.928Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "es": {
+          "text": "Reproducir: Exporta a Obsidian y más",
+          "translatedAt": "2026-10-27T12:33:05.143Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh": {
+          "text": "播放：导出至 Obsidian 等多种格式",
+          "translatedAt": "2026-10-27T12:33:18.378Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh-TW": {
+          "text": "播放：匯出至 Obsidian 及更多平台",
+          "translatedAt": "2026-10-27T12:33:32.054Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ja": {
+          "text": "再生：Obsidianなどへのエクスポート",
+          "translatedAt": "2026-10-27T12:33:45.791Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ko": {
+          "text": "재생: Obsidian을 비롯한 다양한 포맷으로 내보내기",
+          "translatedAt": "2026-10-27T12:33:55.781Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pt": {
+          "text": "Reproduzir: Exporte para o Obsidian e muito mais",
+          "translatedAt": "2026-10-27T12:34:16.622Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "hi": {
+          "text": "Play: Obsidian और अन्य formats में export करें",
+          "translatedAt": "2026-10-27T12:34:43.286Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "vi": {
+          "text": "Phát: Xuất sang Obsidian và nhiều định dạng khác",
+          "translatedAt": "2026-10-27T12:35:05.134Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "nl": {
+          "text": "Afspelen: Exporteer naar Obsidian en meer",
+          "translatedAt": "2026-10-27T12:35:14.738Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "it": {
+          "text": "Riproduci: Esporta in Obsidian e molto altro",
+          "translatedAt": "2026-10-27T12:35:35.766Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ru": {
+          "text": "Воспроизвести: Экспорт в Obsidian и не только",
+          "translatedAt": "2026-10-27T12:35:41.676Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "uk": {
+          "text": "Відтворити: Експорт до Obsidian та не тільки",
+          "translatedAt": "2026-10-27T12:35:53.242Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "tr": {
+          "text": "Oynat: Obsidian ve daha fazlasına aktarın",
+          "translatedAt": "2026-10-27T12:36:06.346Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "id": {
+          "text": "Putar: Ekspor ke Obsidian dan lainnya",
+          "translatedAt": "2026-10-27T12:36:13.860Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pl": {
+          "text": "Odtwórz: Eksport do Obsidian i nie tylko",
+          "translatedAt": "2026-10-27T12:36:21.395Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "th": {
+          "text": "เล่น: ส่งออกไปยัง Obsidian และแอปอื่นๆ",
+          "translatedAt": "2026-10-27T12:36:35.564Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ar": {
+          "text": "تشغيل: تصدير إلى Obsidian والمزيد",
+          "translatedAt": "2026-10-27T12:36:50.052Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "sv": {
+          "text": "Spela upp: Exportera till Obsidian och mer",
+          "translatedAt": "2026-10-27T12:37:00.708Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "da": {
+          "text": "Afspil: Eksportér til Obsidian og mere",
+          "translatedAt": "2026-10-27T12:37:09.163Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "no": {
+          "text": "Spill av: Eksporter til Obsidian og mer",
+          "translatedAt": "2026-10-27T12:37:19.605Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fi": {
+          "text": "Toista: Vie Obsidianiin ja muualle",
+          "translatedAt": "2026-10-27T12:37:32.656Z",
+          "model": "google/gemini-3.7-flash"
+        }
+      }
+    },
+    "c94228b61564134f423a4ca29df76f70af347f52cc442403bcf65d1d5bb71b79": {
+      "en": "Play: Your reading, as a report",
+      "translations": {
+        "de": {
+          "text": "Abspielen: Ihr Leseverhalten als Bericht",
+          "translatedAt": "2026-10-27T12:32:46.080Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fr": {
+          "text": "Lire : Vos lectures sous forme de rapport",
+          "translatedAt": "2026-10-27T12:32:56.928Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "es": {
+          "text": "Reproducir: Tus lecturas, en un informe",
+          "translatedAt": "2026-10-27T12:33:05.143Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh": {
+          "text": "播放：阅读分析报告",
+          "translatedAt": "2026-10-27T12:33:18.378Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh-TW": {
+          "text": "播放：你的閱讀歷程分析報告",
+          "translatedAt": "2026-10-27T12:33:32.054Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ja": {
+          "text": "再生：読書ログをレポートとして可視化",
+          "translatedAt": "2026-10-27T12:33:45.791Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ko": {
+          "text": "재생: 독서 활동을 한눈에 보는 리포트",
+          "translatedAt": "2026-10-27T12:33:55.781Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pt": {
+          "text": "Reproduzir: Suas leituras em um relatório",
+          "translatedAt": "2026-10-27T12:34:16.622Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "hi": {
+          "text": "Play: आपकी reading, एक report के रूप में",
+          "translatedAt": "2026-10-27T12:34:43.286Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "vi": {
+          "text": "Phát: Báo cáo thói quen đọc của bạn",
+          "translatedAt": "2026-10-27T12:35:05.134Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "nl": {
+          "text": "Afspelen: Je leesgedrag als rapport",
+          "translatedAt": "2026-10-27T12:35:14.738Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "it": {
+          "text": "Riproduci: Le tue letture in un report",
+          "translatedAt": "2026-10-27T12:35:35.766Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ru": {
+          "text": "Воспроизвести: Ваше чтение в виде отчёта",
+          "translatedAt": "2026-10-27T12:35:41.676Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "uk": {
+          "text": "Відтворити: Ваше читання — у вигляді звіту",
+          "translatedAt": "2026-10-27T12:35:53.242Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "tr": {
+          "text": "Oynat: Okumalarınız, rapor halinde",
+          "translatedAt": "2026-10-27T12:36:06.346Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "id": {
+          "text": "Putar: Laporan aktivitas membaca Anda",
+          "translatedAt": "2026-10-27T12:36:13.860Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pl": {
+          "text": "Odtwórz: Twoje czytanie w formie raportu",
+          "translatedAt": "2026-10-27T12:36:21.395Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "th": {
+          "text": "เล่น: สรุปภาพรวมการอ่านของคุณในรูปแบบรายงาน",
+          "translatedAt": "2026-10-27T12:36:35.564Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ar": {
+          "text": "تشغيل: قراءاتك في تقرير شامل",
+          "translatedAt": "2026-10-27T12:36:50.052Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "sv": {
+          "text": "Spela upp: Din läsning som rapport",
+          "translatedAt": "2026-10-27T12:37:00.708Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "da": {
+          "text": "Afspil: Din læsning samlet i en rapport",
+          "translatedAt": "2026-10-27T12:37:09.163Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "no": {
+          "text": "Spill av: Lesingen din, som en rapport",
+          "translatedAt": "2026-10-27T12:37:19.605Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fi": {
+          "text": "Toista: Lukemisesi selkeänä raporttina",
+          "translatedAt": "2026-10-27T12:37:32.656Z",
+          "model": "google/gemini-3.7-flash"
+        }
+      }
     }
   }
 }

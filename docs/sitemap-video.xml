@@ -339,6 +339,33 @@
       <video:family_friendly>yes</video:family_friendly>
     </video:video>
     <video:video>
+      <video:thumbnail_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/mcp-en.jpg</video:thumbnail_loc>
+      <video:title>مكتبتك داخل تطبيقات الذكاء الاصطناعي الخاصة بك</video:title>
+      <video:description>تطبيقات Claude Desktop و LM Studio و Cursor تبحث في مكتبتك، وتقتبس من أبرز تظليلاتك، وتستشهد بمصادرك.</video:description>
+      <video:content_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/mcp-en.mp4</video:content_loc>
+      <video:duration>27</video:duration>
+      <video:publication_date>2026-10-27T00:00:00+00:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+    <video:video>
+      <video:thumbnail_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/export-en.jpg</video:thumbnail_loc>
+      <video:title>تصدير إلى Obsidian والمزيد</video:title>
+      <video:description>كل ملخص يتحول إلى ملاحظة منسقة: Obsidian أو Markdown أو Word أو ODT أو PDF.</video:description>
+      <video:content_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/export-en.mp4</video:content_loc>
+      <video:duration>23</video:duration>
+      <video:publication_date>2026-10-27T00:00:00+00:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+    <video:video>
+      <video:thumbnail_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/analytics-en.jpg</video:thumbnail_loc>
+      <video:title>قراءاتك في تقرير شامل</video:title>
+      <video:description>سلسلة القراءة المتتالية، الوقت الموفر، النشاط، والموضوعات عبر الأسابيع.</video:description>
+      <video:content_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/analytics-en.mp4</video:content_loc>
+      <video:duration>20</video:duration>
+      <video:publication_date>2026-10-27T00:00:00+00:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+    <video:video>
       <video:thumbnail_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/sprache-en.jpg</video:thumbnail_loc>
       <video:title>أكثر من 20 لغة عبر منصات متعددة</video:title>
       <video:description>اقرأ ولخص باللغة التي تفضلها. استخدم الإضافة، أو اللوحة الجانبية، أو الرمز المرجعي (Bookmarklet) — للوصول إلى أي مكان لا تبلغه إضافة المتصفح.</video:description>
@@ -501,6 +528,33 @@
       <video:content_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/instant-en.mp4</video:content_loc>
       <video:duration>28</video:duration>
       <video:publication_date>2026-10-21T00:00:00+00:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+    <video:video>
+      <video:thumbnail_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/mcp-en.jpg</video:thumbnail_loc>
+      <video:title>Dit bibliotek i dine AI-apps</video:title>
+      <video:description>Claude Desktop, LM Studio og Cursor søger i dit bibliotek, citerer dine overstregninger og henviser til dine kilder.</video:description>
+      <video:content_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/mcp-en.mp4</video:content_loc>
+      <video:duration>27</video:duration>
+      <video:publication_date>2026-10-27T00:00:00+00:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+    <video:video>
+      <video:thumbnail_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/export-en.jpg</video:thumbnail_loc>
+      <video:title>Eksportér til Obsidian og mere</video:title>
+      <video:description>Hvert resumé bliver til en ren note: Obsidian, Markdown, Word, ODT eller PDF.</video:description>
+      <video:content_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/export-en.mp4</video:content_loc>
+      <video:duration>23</video:duration>
+      <video:publication_date>2026-10-27T00:00:00+00:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+    <video:video>
+      <video:thumbnail_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/analytics-en.jpg</video:thumbnail_loc>
+      <video:title>Din læsning samlet i en rapport</video:title>
+      <video:description>Streak, sparet tid, aktivitet og emner uge for uge.</video:description>
+      <video:content_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/analytics-en.mp4</video:content_loc>
+      <video:duration>20</video:duration>
+      <video:publication_date>2026-10-27T00:00:00+00:00</video:publication_date>
       <video:family_friendly>yes</video:family_friendly>
     </video:video>
     <video:video>
@@ -669,6 +723,33 @@
       <video:family_friendly>yes</video:family_friendly>
     </video:video>
     <video:video>
+      <video:thumbnail_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/mcp-de.jpg</video:thumbnail_loc>
+      <video:title>Ihre Bibliothek in Ihren KI-Apps</video:title>
+      <video:description>Claude Desktop, LM Studio und Cursor durchsuchen Ihre Bibliothek, zitieren Ihre Markierungen und belegen Ihre Quellen.</video:description>
+      <video:content_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/mcp-de.mp4</video:content_loc>
+      <video:duration>27</video:duration>
+      <video:publication_date>2026-10-27T00:00:00+00:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+    <video:video>
+      <video:thumbnail_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/export-de.jpg</video:thumbnail_loc>
+      <video:title>Export nach Obsidian und mehr</video:title>
+      <video:description>Jede Zusammenfassung wird zu einer sauberen Notiz: Obsidian, Markdown, Word, ODT oder PDF.</video:description>
+      <video:content_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/export-de.mp4</video:content_loc>
+      <video:duration>23</video:duration>
+      <video:publication_date>2026-10-27T00:00:00+00:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+    <video:video>
+      <video:thumbnail_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/analytics-de.jpg</video:thumbnail_loc>
+      <video:title>Ihr Leseverhalten als Bericht</video:title>
+      <video:description>Leseserie, Zeitersparnis, Aktivität und Themen im Zeitverlauf.</video:description>
+      <video:content_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/analytics-de.mp4</video:content_loc>
+      <video:duration>21</video:duration>
+      <video:publication_date>2026-10-27T00:00:00+00:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+    <video:video>
       <video:thumbnail_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/sprache-de.jpg</video:thumbnail_loc>
       <video:title>Über 20 Sprachen, plattformübergreifend</video:title>
       <video:description>Lesen und zusammenfassen in der Sprache Ihrer Wahl. Als Erweiterung, natives Seitenpanel oder Bookmarklet – für alle Bereiche, die die Browser-Erweiterung nicht erreicht.</video:description>
@@ -831,6 +912,33 @@
       <video:content_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/instant-es.mp4</video:content_loc>
       <video:duration>27</video:duration>
       <video:publication_date>2026-10-21T00:00:00+00:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+    <video:video>
+      <video:thumbnail_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/mcp-es.jpg</video:thumbnail_loc>
+      <video:title>Tu biblioteca en tus aplicaciones de IA</video:title>
+      <video:description>Claude Desktop, LM Studio y Cursor buscan en tu biblioteca, citan tus subrayados y referencian tus fuentes.</video:description>
+      <video:content_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/mcp-es.mp4</video:content_loc>
+      <video:duration>27</video:duration>
+      <video:publication_date>2026-10-27T00:00:00+00:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+    <video:video>
+      <video:thumbnail_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/export-es.jpg</video:thumbnail_loc>
+      <video:title>Exporta a Obsidian y más</video:title>
+      <video:description>Cada resumen se exporta como una nota impecable: Obsidian, Markdown, Word, ODT o PDF.</video:description>
+      <video:content_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/export-es.mp4</video:content_loc>
+      <video:duration>23</video:duration>
+      <video:publication_date>2026-10-27T00:00:00+00:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+    <video:video>
+      <video:thumbnail_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/analytics-es.jpg</video:thumbnail_loc>
+      <video:title>Tus lecturas, en un informe</video:title>
+      <video:description>Racha, tiempo ahorrado, actividad y temas a lo largo de las semanas.</video:description>
+      <video:content_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/analytics-es.mp4</video:content_loc>
+      <video:duration>20</video:duration>
+      <video:publication_date>2026-10-27T00:00:00+00:00</video:publication_date>
       <video:family_friendly>yes</video:family_friendly>
     </video:video>
     <video:video>
@@ -999,6 +1107,33 @@
       <video:family_friendly>yes</video:family_friendly>
     </video:video>
     <video:video>
+      <video:thumbnail_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/mcp-en.jpg</video:thumbnail_loc>
+      <video:title>Kirjastosi tekoälysovelluksissasi</video:title>
+      <video:description>Claude Desktop, LM Studio ja Cursor hakevat kirjastostasi, lainaavat korostuksiasi ja viittaavat lähteisiisi.</video:description>
+      <video:content_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/mcp-en.mp4</video:content_loc>
+      <video:duration>27</video:duration>
+      <video:publication_date>2026-10-27T00:00:00+00:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+    <video:video>
+      <video:thumbnail_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/export-en.jpg</video:thumbnail_loc>
+      <video:title>Vie Obsidianiin ja muualle</video:title>
+      <video:description>Jokainen tiivistelmä tallentuu siistinä muistiinpanona: Obsidian, Markdown, Word, ODT tai PDF.</video:description>
+      <video:content_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/export-en.mp4</video:content_loc>
+      <video:duration>23</video:duration>
+      <video:publication_date>2026-10-27T00:00:00+00:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+    <video:video>
+      <video:thumbnail_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/analytics-en.jpg</video:thumbnail_loc>
+      <video:title>Lukemisesi selkeänä raporttina</video:title>
+      <video:description>Lukujakso, säästetty aika, aktiivisuus ja aiheet viikkojen varrella.</video:description>
+      <video:content_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/analytics-en.mp4</video:content_loc>
+      <video:duration>20</video:duration>
+      <video:publication_date>2026-10-27T00:00:00+00:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+    <video:video>
       <video:thumbnail_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/sprache-en.jpg</video:thumbnail_loc>
       <video:title>Yli 20 kieltä eri alustoilla</video:title>
       <video:description>Lue ja tiivistä valitsemallasi kielellä. Laajennus, natiivi sivupaneeli tai kirjanmerkkisovellus — paikkoihin, joihin selainlaajennus ei yllä.</video:description>
@@ -1161,6 +1296,33 @@
       <video:content_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/instant-fr.mp4</video:content_loc>
       <video:duration>28</video:duration>
       <video:publication_date>2026-10-21T00:00:00+00:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+    <video:video>
+      <video:thumbnail_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/mcp-fr.jpg</video:thumbnail_loc>
+      <video:title>Votre bibliothèque au cœur de vos applications d'IA</video:title>
+      <video:description>Claude Desktop, LM Studio et Cursor explorent votre bibliothèque, citent vos passages surlignés et mentionnent vos sources.</video:description>
+      <video:content_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/mcp-fr.mp4</video:content_loc>
+      <video:duration>28</video:duration>
+      <video:publication_date>2026-10-27T00:00:00+00:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+    <video:video>
+      <video:thumbnail_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/export-fr.jpg</video:thumbnail_loc>
+      <video:title>Exportez vers Obsidian et bien plus</video:title>
+      <video:description>Chaque résumé est exporté sous forme de note soignée : Obsidian, Markdown, Word, ODT ou PDF.</video:description>
+      <video:content_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/export-fr.mp4</video:content_loc>
+      <video:duration>24</video:duration>
+      <video:publication_date>2026-10-27T00:00:00+00:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+    <video:video>
+      <video:thumbnail_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/analytics-fr.jpg</video:thumbnail_loc>
+      <video:title>Vos lectures sous forme de rapport</video:title>
+      <video:description>Séries de lecture, temps gagné, activité et thématiques au fil des semaines.</video:description>
+      <video:content_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/analytics-fr.mp4</video:content_loc>
+      <video:duration>20</video:duration>
+      <video:publication_date>2026-10-27T00:00:00+00:00</video:publication_date>
       <video:family_friendly>yes</video:family_friendly>
     </video:video>
     <video:video>
@@ -1329,6 +1491,33 @@
       <video:family_friendly>yes</video:family_friendly>
     </video:video>
     <video:video>
+      <video:thumbnail_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/mcp-en.jpg</video:thumbnail_loc>
+      <video:title>आपकी library, आपके AI apps में</video:title>
+      <video:description>Claude Desktop, LM Studio और Cursor आपकी library search करते हैं, आपके highlights quote करते हैं और sources cite करते हैं।</video:description>
+      <video:content_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/mcp-en.mp4</video:content_loc>
+      <video:duration>27</video:duration>
+      <video:publication_date>2026-10-27T00:00:00+00:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+    <video:video>
+      <video:thumbnail_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/export-en.jpg</video:thumbnail_loc>
+      <video:title>Obsidian और अन्य formats में export करें</video:title>
+      <video:description>हर summary एक clean note के रूप में मिलती है: Obsidian, Markdown, Word, ODT या PDF।</video:description>
+      <video:content_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/export-en.mp4</video:content_loc>
+      <video:duration>23</video:duration>
+      <video:publication_date>2026-10-27T00:00:00+00:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+    <video:video>
+      <video:thumbnail_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/analytics-en.jpg</video:thumbnail_loc>
+      <video:title>आपकी reading, एक report के रूप में</video:title>
+      <video:description>Streak, time saved, activity और हफ़्तों भर के topics।</video:description>
+      <video:content_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/analytics-en.mp4</video:content_loc>
+      <video:duration>20</video:duration>
+      <video:publication_date>2026-10-27T00:00:00+00:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+    <video:video>
       <video:thumbnail_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/sprache-en.jpg</video:thumbnail_loc>
       <video:title>20+ भाषाएं, क्रॉस-प्लेटफ़ॉर्म</video:title>
       <video:description>अपनी पसंद की भाषा में पढ़ें और summarize करें। Extension, native side panel, या bookmarklet — हर उस जगह के लिए जहां browser extension नहीं पहुंच सकता।</video:description>
@@ -1491,6 +1680,33 @@
       <video:content_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/instant-en.mp4</video:content_loc>
       <video:duration>28</video:duration>
       <video:publication_date>2026-10-21T00:00:00+00:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+    <video:video>
+      <video:thumbnail_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/mcp-en.jpg</video:thumbnail_loc>
+      <video:title>Pustaka Anda di aplikasi AI Anda</video:title>
+      <video:description>Claude Desktop, LM Studio, dan Cursor dapat menelusuri pustaka Anda, mengutip sorotan, serta mencantumkan sumber Anda.</video:description>
+      <video:content_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/mcp-en.mp4</video:content_loc>
+      <video:duration>27</video:duration>
+      <video:publication_date>2026-10-27T00:00:00+00:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+    <video:video>
+      <video:thumbnail_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/export-en.jpg</video:thumbnail_loc>
+      <video:title>Ekspor ke Obsidian dan lainnya</video:title>
+      <video:description>Setiap ringkasan tersimpan sebagai catatan rapi: Obsidian, Markdown, Word, ODT, atau PDF.</video:description>
+      <video:content_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/export-en.mp4</video:content_loc>
+      <video:duration>23</video:duration>
+      <video:publication_date>2026-10-27T00:00:00+00:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+    <video:video>
+      <video:thumbnail_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/analytics-en.jpg</video:thumbnail_loc>
+      <video:title>Laporan aktivitas membaca Anda</video:title>
+      <video:description>Streak, waktu yang dihemat, aktivitas, dan topik dari minggu ke minggu.</video:description>
+      <video:content_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/analytics-en.mp4</video:content_loc>
+      <video:duration>20</video:duration>
+      <video:publication_date>2026-10-27T00:00:00+00:00</video:publication_date>
       <video:family_friendly>yes</video:family_friendly>
     </video:video>
     <video:video>
@@ -1659,6 +1875,33 @@
       <video:family_friendly>yes</video:family_friendly>
     </video:video>
     <video:video>
+      <video:thumbnail_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/mcp-en.jpg</video:thumbnail_loc>
+      <video:title>La tua libreria nelle tue app AI</video:title>
+      <video:description>Claude Desktop, LM Studio e Cursor cercano nella tua libreria, citano i tuoi passaggi evidenziati e indicano le tue fonti.</video:description>
+      <video:content_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/mcp-en.mp4</video:content_loc>
+      <video:duration>27</video:duration>
+      <video:publication_date>2026-10-27T00:00:00+00:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+    <video:video>
+      <video:thumbnail_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/export-en.jpg</video:thumbnail_loc>
+      <video:title>Esporta in Obsidian e molto altro</video:title>
+      <video:description>Ogni riassunto viene esportato come una nota pulita: Obsidian, Markdown, Word, ODT o PDF.</video:description>
+      <video:content_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/export-en.mp4</video:content_loc>
+      <video:duration>23</video:duration>
+      <video:publication_date>2026-10-27T00:00:00+00:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+    <video:video>
+      <video:thumbnail_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/analytics-en.jpg</video:thumbnail_loc>
+      <video:title>Le tue letture in un report</video:title>
+      <video:description>Serie di lettura, tempo risparmiato, attività e argomenti nel corso delle settimane.</video:description>
+      <video:content_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/analytics-en.mp4</video:content_loc>
+      <video:duration>20</video:duration>
+      <video:publication_date>2026-10-27T00:00:00+00:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+    <video:video>
       <video:thumbnail_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/sprache-en.jpg</video:thumbnail_loc>
       <video:title>Oltre 20 lingue, multipiattaforma</video:title>
       <video:description>Leggi e riassumi nella lingua che preferisci. Estensione, pannello laterale nativo o bookmarklet — per ovunque l'estensione del browser non possa arrivare.</video:description>
@@ -1821,6 +2064,33 @@
       <video:content_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/instant-ja.mp4</video:content_loc>
       <video:duration>26</video:duration>
       <video:publication_date>2026-10-21T00:00:00+00:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+    <video:video>
+      <video:thumbnail_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/mcp-ja.jpg</video:thumbnail_loc>
+      <video:title>お使いのAIアプリからライブラリにアクセス</video:title>
+      <video:description>Claude Desktop、LM Studio、Cursorからライブラリの検索、ハイライトの引用、出典の参照が可能です。</video:description>
+      <video:content_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/mcp-ja.mp4</video:content_loc>
+      <video:duration>29</video:duration>
+      <video:publication_date>2026-10-27T00:00:00+00:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+    <video:video>
+      <video:thumbnail_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/export-ja.jpg</video:thumbnail_loc>
+      <video:title>Obsidianなどへのエクスポート</video:title>
+      <video:description>すべての要約をすっきりとしたノートとして出力：Obsidian、Markdown、Word、ODT、PDFに対応。</video:description>
+      <video:content_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/export-ja.mp4</video:content_loc>
+      <video:duration>24</video:duration>
+      <video:publication_date>2026-10-27T00:00:00+00:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+    <video:video>
+      <video:thumbnail_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/analytics-ja.jpg</video:thumbnail_loc>
+      <video:title>読書ログをレポートとして可視化</video:title>
+      <video:description>継続日数、節約できた時間、アクティビティ、週ごとのトピックを確認できます。</video:description>
+      <video:content_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/analytics-ja.mp4</video:content_loc>
+      <video:duration>21</video:duration>
+      <video:publication_date>2026-10-27T00:00:00+00:00</video:publication_date>
       <video:family_friendly>yes</video:family_friendly>
     </video:video>
     <video:video>
@@ -1989,6 +2259,33 @@
       <video:family_friendly>yes</video:family_friendly>
     </video:video>
     <video:video>
+      <video:thumbnail_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/mcp-en.jpg</video:thumbnail_loc>
+      <video:title>내가 사용하는 AI 앱에서 내 라이브러리를 바로</video:title>
+      <video:description>Claude Desktop, LM Studio, Cursor에서 라이브러리를 검색하고 하이라이트를 인용하며 출처를 바로 확인할 수 있습니다.</video:description>
+      <video:content_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/mcp-en.mp4</video:content_loc>
+      <video:duration>27</video:duration>
+      <video:publication_date>2026-10-27T00:00:00+00:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+    <video:video>
+      <video:thumbnail_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/export-en.jpg</video:thumbnail_loc>
+      <video:title>Obsidian을 비롯한 다양한 포맷으로 내보내기</video:title>
+      <video:description>모든 요약본을 깔끔한 노트 형태로 내보내세요: Obsidian, Markdown, Word, ODT, PDF 지원.</video:description>
+      <video:content_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/export-en.mp4</video:content_loc>
+      <video:duration>23</video:duration>
+      <video:publication_date>2026-10-27T00:00:00+00:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+    <video:video>
+      <video:thumbnail_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/analytics-en.jpg</video:thumbnail_loc>
+      <video:title>독서 활동을 한눈에 보는 리포트</video:title>
+      <video:description>연속 독서 일수, 절약한 시간, 주간 활동 내역과 주요 주제를 확인해 보세요.</video:description>
+      <video:content_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/analytics-en.mp4</video:content_loc>
+      <video:duration>20</video:duration>
+      <video:publication_date>2026-10-27T00:00:00+00:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+    <video:video>
       <video:thumbnail_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/sprache-en.jpg</video:thumbnail_loc>
       <video:title>20개 이상의 언어 지원 및 크로스 플랫폼</video:title>
       <video:description>원하는 언어로 읽고 요약해 보세요. 확장 프로그램, 네이티브 사이드 패널, 또는 북마클릿 — 브라우저 확장 프로그램을 사용할 수 없는 환경에서도 자유롭게 활용해 보세요.</video:description>
@@ -2151,6 +2448,33 @@
       <video:content_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/instant-nl.mp4</video:content_loc>
       <video:duration>27</video:duration>
       <video:publication_date>2026-10-21T00:00:00+00:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+    <video:video>
+      <video:thumbnail_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/mcp-en.jpg</video:thumbnail_loc>
+      <video:title>Je bibliotheek in je AI-apps</video:title>
+      <video:description>Claude Desktop, LM Studio en Cursor doorzoeken je bibliotheek, citeren je markeringen en vermelden je bronnen.</video:description>
+      <video:content_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/mcp-en.mp4</video:content_loc>
+      <video:duration>27</video:duration>
+      <video:publication_date>2026-10-27T00:00:00+00:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+    <video:video>
+      <video:thumbnail_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/export-en.jpg</video:thumbnail_loc>
+      <video:title>Exporteer naar Obsidian en meer</video:title>
+      <video:description>Elke samenvatting wordt een nette notitie: Obsidian, Markdown, Word, ODT of PDF.</video:description>
+      <video:content_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/export-en.mp4</video:content_loc>
+      <video:duration>23</video:duration>
+      <video:publication_date>2026-10-27T00:00:00+00:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+    <video:video>
+      <video:thumbnail_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/analytics-en.jpg</video:thumbnail_loc>
+      <video:title>Je leesgedrag als rapport</video:title>
+      <video:description>Leesreeks, bespaarde tijd, activiteit en onderwerpen door de weken heen.</video:description>
+      <video:content_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/analytics-en.mp4</video:content_loc>
+      <video:duration>20</video:duration>
+      <video:publication_date>2026-10-27T00:00:00+00:00</video:publication_date>
       <video:family_friendly>yes</video:family_friendly>
     </video:video>
     <video:video>
@@ -2319,6 +2643,33 @@
       <video:family_friendly>yes</video:family_friendly>
     </video:video>
     <video:video>
+      <video:thumbnail_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/mcp-en.jpg</video:thumbnail_loc>
+      <video:title>Biblioteket ditt i AI-appene dine</video:title>
+      <video:description>Claude Desktop, LM Studio og Cursor søker i biblioteket ditt, siterer markeringene dine og oppgir kildene dine.</video:description>
+      <video:content_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/mcp-en.mp4</video:content_loc>
+      <video:duration>27</video:duration>
+      <video:publication_date>2026-10-27T00:00:00+00:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+    <video:video>
+      <video:thumbnail_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/export-en.jpg</video:thumbnail_loc>
+      <video:title>Eksporter til Obsidian og mer</video:title>
+      <video:description>Hvert sammendrag blir til et ryddig notat: Obsidian, Markdown, Word, ODT eller PDF.</video:description>
+      <video:content_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/export-en.mp4</video:content_loc>
+      <video:duration>23</video:duration>
+      <video:publication_date>2026-10-27T00:00:00+00:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+    <video:video>
+      <video:thumbnail_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/analytics-en.jpg</video:thumbnail_loc>
+      <video:title>Lesingen din, som en rapport</video:title>
+      <video:description>Leserekke, spart tid, aktivitet og temaer uke for uke.</video:description>
+      <video:content_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/analytics-en.mp4</video:content_loc>
+      <video:duration>20</video:duration>
+      <video:publication_date>2026-10-27T00:00:00+00:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+    <video:video>
       <video:thumbnail_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/sprache-en.jpg</video:thumbnail_loc>
       <video:title>20+ språk, på tvers av plattformer</video:title>
       <video:description>Les og oppsummer på språket du ønsker. Utvidelse, innebygd sidepanel, eller bookmarklet – for overalt der nettleserutvidelsen ikke når til.</video:description>
@@ -2481,6 +2832,33 @@
       <video:content_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/instant-en.mp4</video:content_loc>
       <video:duration>28</video:duration>
       <video:publication_date>2026-10-21T00:00:00+00:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+    <video:video>
+      <video:thumbnail_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/mcp-en.jpg</video:thumbnail_loc>
+      <video:title>Twoja biblioteka w aplikacjach AI</video:title>
+      <video:description>Claude Desktop, LM Studio i Cursor przeszukują Twoją bibliotekę, cytują wyróżnienia i podają źródła.</video:description>
+      <video:content_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/mcp-en.mp4</video:content_loc>
+      <video:duration>27</video:duration>
+      <video:publication_date>2026-10-27T00:00:00+00:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+    <video:video>
+      <video:thumbnail_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/export-en.jpg</video:thumbnail_loc>
+      <video:title>Eksport do Obsidian i nie tylko</video:title>
+      <video:description>Każde podsumowanie zapisuje się jako przejrzysta notatka: Obsidian, Markdown, Word, ODT lub PDF.</video:description>
+      <video:content_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/export-en.mp4</video:content_loc>
+      <video:duration>23</video:duration>
+      <video:publication_date>2026-10-27T00:00:00+00:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+    <video:video>
+      <video:thumbnail_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/analytics-en.jpg</video:thumbnail_loc>
+      <video:title>Twoje czytanie w formie raportu</video:title>
+      <video:description>Seria dni czytania, zaoszczędzony czas, aktywność i tematy na przestrzeni tygodni.</video:description>
+      <video:content_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/analytics-en.mp4</video:content_loc>
+      <video:duration>20</video:duration>
+      <video:publication_date>2026-10-27T00:00:00+00:00</video:publication_date>
       <video:family_friendly>yes</video:family_friendly>
     </video:video>
     <video:video>
@@ -2649,6 +3027,33 @@
       <video:family_friendly>yes</video:family_friendly>
     </video:video>
     <video:video>
+      <video:thumbnail_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/mcp-en.jpg</video:thumbnail_loc>
+      <video:title>Sua biblioteca nos seus apps de IA</video:title>
+      <video:description>O Claude Desktop, o LM Studio e o Cursor pesquisam na sua biblioteca, citam seus destaques e indicam suas fontes.</video:description>
+      <video:content_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/mcp-en.mp4</video:content_loc>
+      <video:duration>27</video:duration>
+      <video:publication_date>2026-10-27T00:00:00+00:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+    <video:video>
+      <video:thumbnail_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/export-en.jpg</video:thumbnail_loc>
+      <video:title>Exporte para o Obsidian e muito mais</video:title>
+      <video:description>Cada resumo vira uma nota organizada: Obsidian, Markdown, Word, ODT ou PDF.</video:description>
+      <video:content_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/export-en.mp4</video:content_loc>
+      <video:duration>23</video:duration>
+      <video:publication_date>2026-10-27T00:00:00+00:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+    <video:video>
+      <video:thumbnail_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/analytics-en.jpg</video:thumbnail_loc>
+      <video:title>Suas leituras em um relatório</video:title>
+      <video:description>Sequência de leitura, tempo economizado, atividade e tópicos ao longo das semanas.</video:description>
+      <video:content_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/analytics-en.mp4</video:content_loc>
+      <video:duration>20</video:duration>
+      <video:publication_date>2026-10-27T00:00:00+00:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+    <video:video>
       <video:thumbnail_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/sprache-pt.jpg</video:thumbnail_loc>
       <video:title>Mais de 20 idiomas, multiplataforma</video:title>
       <video:description>Leia e resuma no idioma que preferir. Extensão, painel lateral nativo ou bookmarklet — para onde a extensão do navegador não alcançar.</video:description>
@@ -2811,6 +3216,33 @@
       <video:content_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/instant-en.mp4</video:content_loc>
       <video:duration>28</video:duration>
       <video:publication_date>2026-10-21T00:00:00+00:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+    <video:video>
+      <video:thumbnail_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/mcp-en.jpg</video:thumbnail_loc>
+      <video:title>Ваша библиотека в ваших ИИ-приложениях</video:title>
+      <video:description>Claude Desktop, LM Studio и Cursor ищут по вашей библиотеке, цитируют ваши выделения и ссылаются на источники.</video:description>
+      <video:content_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/mcp-en.mp4</video:content_loc>
+      <video:duration>27</video:duration>
+      <video:publication_date>2026-10-27T00:00:00+00:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+    <video:video>
+      <video:thumbnail_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/export-en.jpg</video:thumbnail_loc>
+      <video:title>Экспорт в Obsidian и не только</video:title>
+      <video:description>Каждая сводка экспортируется в виде готовой заметки: Obsidian, Markdown, Word, ODT или PDF.</video:description>
+      <video:content_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/export-en.mp4</video:content_loc>
+      <video:duration>23</video:duration>
+      <video:publication_date>2026-10-27T00:00:00+00:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+    <video:video>
+      <video:thumbnail_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/analytics-en.jpg</video:thumbnail_loc>
+      <video:title>Ваше чтение в виде отчёта</video:title>
+      <video:description>Серия дней, сэкономленное время, активность и темы по неделям.</video:description>
+      <video:content_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/analytics-en.mp4</video:content_loc>
+      <video:duration>20</video:duration>
+      <video:publication_date>2026-10-27T00:00:00+00:00</video:publication_date>
       <video:family_friendly>yes</video:family_friendly>
     </video:video>
     <video:video>
@@ -2979,6 +3411,33 @@
       <video:family_friendly>yes</video:family_friendly>
     </video:video>
     <video:video>
+      <video:thumbnail_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/mcp-en.jpg</video:thumbnail_loc>
+      <video:title>Ditt bibliotek i dina AI-appar</video:title>
+      <video:description>Claude Desktop, LM Studio och Cursor söker i ditt bibliotek, citerar dina markeringar och anger dina källor.</video:description>
+      <video:content_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/mcp-en.mp4</video:content_loc>
+      <video:duration>27</video:duration>
+      <video:publication_date>2026-10-27T00:00:00+00:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+    <video:video>
+      <video:thumbnail_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/export-en.jpg</video:thumbnail_loc>
+      <video:title>Exportera till Obsidian och mer</video:title>
+      <video:description>Varje sammanfattning exporteras som en ren anteckning: Obsidian, Markdown, Word, ODT eller PDF.</video:description>
+      <video:content_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/export-en.mp4</video:content_loc>
+      <video:duration>23</video:duration>
+      <video:publication_date>2026-10-27T00:00:00+00:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+    <video:video>
+      <video:thumbnail_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/analytics-en.jpg</video:thumbnail_loc>
+      <video:title>Din läsning som rapport</video:title>
+      <video:description>Lässvit, sparad tid, aktivitet och ämnen över veckornas gång.</video:description>
+      <video:content_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/analytics-en.mp4</video:content_loc>
+      <video:duration>20</video:duration>
+      <video:publication_date>2026-10-27T00:00:00+00:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+    <video:video>
       <video:thumbnail_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/sprache-sv.jpg</video:thumbnail_loc>
       <video:title>20+ språk, över alla plattformar</video:title>
       <video:description>Läs och sammanfatta på ditt favoritspråk. Tillägg, inbyggd sidopanel eller bookmarklet — för överallt där webbläsartillägget inte når.</video:description>
@@ -3141,6 +3600,33 @@
       <video:content_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/instant-en.mp4</video:content_loc>
       <video:duration>28</video:duration>
       <video:publication_date>2026-10-21T00:00:00+00:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+    <video:video>
+      <video:thumbnail_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/mcp-en.jpg</video:thumbnail_loc>
+      <video:title>คลังข้อมูลของคุณในแอป AI</video:title>
+      <video:description>Claude Desktop, LM Studio และ Cursor สามารถค้นหาคลังข้อมูล ยกข้อความไฮไลต์ และอ้างอิงแหล่งที่มาของคุณได้ทันที</video:description>
+      <video:content_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/mcp-en.mp4</video:content_loc>
+      <video:duration>27</video:duration>
+      <video:publication_date>2026-10-27T00:00:00+00:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+    <video:video>
+      <video:thumbnail_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/export-en.jpg</video:thumbnail_loc>
+      <video:title>ส่งออกไปยัง Obsidian และแอปอื่นๆ</video:title>
+      <video:description>ทุกบทสรุปพร้อมส่งออกเป็นโน้ตที่จัดรูปแบบเรียบร้อย: Obsidian, Markdown, Word, ODT หรือ PDF</video:description>
+      <video:content_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/export-en.mp4</video:content_loc>
+      <video:duration>23</video:duration>
+      <video:publication_date>2026-10-27T00:00:00+00:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+    <video:video>
+      <video:thumbnail_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/analytics-en.jpg</video:thumbnail_loc>
+      <video:title>สรุปภาพรวมการอ่านของคุณในรูปแบบรายงาน</video:title>
+      <video:description>สถิติการอ่านต่อเนื่อง เวลาที่ประหยัดได้ กิจกรรม และหัวข้อต่างๆ ตลอดหลายสัปดาห์</video:description>
+      <video:content_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/analytics-en.mp4</video:content_loc>
+      <video:duration>20</video:duration>
+      <video:publication_date>2026-10-27T00:00:00+00:00</video:publication_date>
       <video:family_friendly>yes</video:family_friendly>
     </video:video>
     <video:video>
@@ -3309,6 +3795,33 @@
       <video:family_friendly>yes</video:family_friendly>
     </video:video>
     <video:video>
+      <video:thumbnail_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/mcp-en.jpg</video:thumbnail_loc>
+      <video:title>Kütüphaneniz AI uygulamalarınızda</video:title>
+      <video:description>Claude Desktop, LM Studio ve Cursor kütüphanenizde arama yapar, vurgularınızdan alıntı yapar ve kaynaklarınızı belirtir.</video:description>
+      <video:content_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/mcp-en.mp4</video:content_loc>
+      <video:duration>27</video:duration>
+      <video:publication_date>2026-10-27T00:00:00+00:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+    <video:video>
+      <video:thumbnail_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/export-en.jpg</video:thumbnail_loc>
+      <video:title>Obsidian ve daha fazlasına aktarın</video:title>
+      <video:description>Her özet düzenli bir not olarak dışa aktarılır: Obsidian, Markdown, Word, ODT veya PDF.</video:description>
+      <video:content_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/export-en.mp4</video:content_loc>
+      <video:duration>23</video:duration>
+      <video:publication_date>2026-10-27T00:00:00+00:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+    <video:video>
+      <video:thumbnail_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/analytics-en.jpg</video:thumbnail_loc>
+      <video:title>Okumalarınız, rapor halinde</video:title>
+      <video:description>Seri (streak), kazanılan zaman, aktivite ve haftalara göre konular.</video:description>
+      <video:content_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/analytics-en.mp4</video:content_loc>
+      <video:duration>20</video:duration>
+      <video:publication_date>2026-10-27T00:00:00+00:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+    <video:video>
       <video:thumbnail_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/sprache-en.jpg</video:thumbnail_loc>
       <video:title>20'den fazla dil, platformlar arası</video:title>
       <video:description>Dilediğiniz dilde okuyun ve özetleyin. Eklenti, yerel yan panel veya bookmarklet — tarayıcı eklentisinin ulaşamadığı her yer için.</video:description>
@@ -3471,6 +3984,33 @@
       <video:content_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/instant-en.mp4</video:content_loc>
       <video:duration>28</video:duration>
       <video:publication_date>2026-10-21T00:00:00+00:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+    <video:video>
+      <video:thumbnail_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/mcp-en.jpg</video:thumbnail_loc>
+      <video:title>Ваша бібліотека у ваших AI-застосунках</video:title>
+      <video:description>Claude Desktop, LM Studio та Cursor шукають у вашій бібліотеці, цитують виділені фрагменти та посилаються на джерела.</video:description>
+      <video:content_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/mcp-en.mp4</video:content_loc>
+      <video:duration>27</video:duration>
+      <video:publication_date>2026-10-27T00:00:00+00:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+    <video:video>
+      <video:thumbnail_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/export-en.jpg</video:thumbnail_loc>
+      <video:title>Експорт до Obsidian та не тільки</video:title>
+      <video:description>Кожен підсумок зберігається як охайна нотатка: Obsidian, Markdown, Word, ODT або PDF.</video:description>
+      <video:content_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/export-en.mp4</video:content_loc>
+      <video:duration>23</video:duration>
+      <video:publication_date>2026-10-27T00:00:00+00:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+    <video:video>
+      <video:thumbnail_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/analytics-en.jpg</video:thumbnail_loc>
+      <video:title>Ваше читання — у вигляді звіту</video:title>
+      <video:description>Серія читання, заощаджений час, активність і динаміка тем за тижнями.</video:description>
+      <video:content_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/analytics-en.mp4</video:content_loc>
+      <video:duration>20</video:duration>
+      <video:publication_date>2026-10-27T00:00:00+00:00</video:publication_date>
       <video:family_friendly>yes</video:family_friendly>
     </video:video>
     <video:video>
@@ -3639,6 +4179,33 @@
       <video:family_friendly>yes</video:family_friendly>
     </video:video>
     <video:video>
+      <video:thumbnail_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/mcp-en.jpg</video:thumbnail_loc>
+      <video:title>Thư viện của bạn trong các ứng dụng AI</video:title>
+      <video:description>Claude Desktop, LM Studio và Cursor có thể tìm kiếm thư viện, trích dẫn phần đánh dấu và dẫn nguồn của bạn.</video:description>
+      <video:content_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/mcp-en.mp4</video:content_loc>
+      <video:duration>27</video:duration>
+      <video:publication_date>2026-10-27T00:00:00+00:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+    <video:video>
+      <video:thumbnail_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/export-en.jpg</video:thumbnail_loc>
+      <video:title>Xuất sang Obsidian và nhiều định dạng khác</video:title>
+      <video:description>Mọi bản tóm tắt đều được xuất dưới dạng ghi chú gọn gàng: Obsidian, Markdown, Word, ODT hoặc PDF.</video:description>
+      <video:content_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/export-en.mp4</video:content_loc>
+      <video:duration>23</video:duration>
+      <video:publication_date>2026-10-27T00:00:00+00:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+    <video:video>
+      <video:thumbnail_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/analytics-en.jpg</video:thumbnail_loc>
+      <video:title>Báo cáo thói quen đọc của bạn</video:title>
+      <video:description>Chuỗi ngày đọc, thời gian tiết kiệm, hoạt động và các chủ đề theo từng tuần.</video:description>
+      <video:content_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/analytics-en.mp4</video:content_loc>
+      <video:duration>20</video:duration>
+      <video:publication_date>2026-10-27T00:00:00+00:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+    <video:video>
       <video:thumbnail_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/sprache-en.jpg</video:thumbnail_loc>
       <video:title>Hơn 20 ngôn ngữ, đa nền tảng</video:title>
       <video:description>Đọc và tóm tắt bằng bất kỳ ngôn ngữ nào bạn chọn. Tiện ích mở rộng, thanh bên (side panel) tích hợp, hoặc bookmarklet — giải pháp cho mọi nơi mà tiện ích mở rộng trình duyệt không thể tiếp cận.</video:description>
@@ -3804,6 +4371,33 @@
       <video:family_friendly>yes</video:family_friendly>
     </video:video>
     <video:video>
+      <video:thumbnail_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/mcp-zh.jpg</video:thumbnail_loc>
+      <video:title>在各类 AI 应用中使用您的文库</video:title>
+      <video:description>Claude Desktop、LM Studio 和 Cursor 可直接检索您的文库、引用高亮标注并注明来源出处。</video:description>
+      <video:content_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/mcp-zh.mp4</video:content_loc>
+      <video:duration>27</video:duration>
+      <video:publication_date>2026-10-27T00:00:00+00:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+    <video:video>
+      <video:thumbnail_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/export-zh.jpg</video:thumbnail_loc>
+      <video:title>导出至 Obsidian 等多种格式</video:title>
+      <video:description>每份摘要均可导出为排版清晰的笔记：支持 Obsidian、Markdown、Word、ODT 或 PDF。</video:description>
+      <video:content_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/export-zh.mp4</video:content_loc>
+      <video:duration>24</video:duration>
+      <video:publication_date>2026-10-27T00:00:00+00:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+    <video:video>
+      <video:thumbnail_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/analytics-zh.jpg</video:thumbnail_loc>
+      <video:title>阅读历程，化为分析报告</video:title>
+      <video:description>连续阅读天数、节省时间、活跃度以及数周以来的主题演变一目了然。</video:description>
+      <video:content_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/analytics-zh.mp4</video:content_loc>
+      <video:duration>20</video:duration>
+      <video:publication_date>2026-10-27T00:00:00+00:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+    <video:video>
       <video:thumbnail_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/sprache-zh.jpg</video:thumbnail_loc>
       <video:title>支持 20 多种语言与跨平台</video:title>
       <video:description>使用您自选的语言阅读与生成摘要。支持扩展、原生侧边栏或 Bookmarklet —— 适用于浏览器扩展无法覆盖的各种场景。</video:description>
@@ -3966,6 +4560,33 @@
       <video:content_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/instant-zh-tw.mp4</video:content_loc>
       <video:duration>28</video:duration>
       <video:publication_date>2026-10-21T00:00:00+00:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+    <video:video>
+      <video:thumbnail_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/mcp-en.jpg</video:thumbnail_loc>
+      <video:title>在 AI 應用中取用你的個人庫藏</video:title>
+      <video:description>Claude Desktop、LM Studio 與 Cursor 能直接搜尋你的庫藏、引用劃線重點並註明資料來源。</video:description>
+      <video:content_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/mcp-en.mp4</video:content_loc>
+      <video:duration>27</video:duration>
+      <video:publication_date>2026-10-27T00:00:00+00:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+    <video:video>
+      <video:thumbnail_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/export-en.jpg</video:thumbnail_loc>
+      <video:title>匯出至 Obsidian 及更多平台</video:title>
+      <video:description>每篇摘要都能整理成乾淨俐落的筆記匯出：Obsidian、Markdown、Word、ODT 或 PDF。</video:description>
+      <video:content_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/export-en.mp4</video:content_loc>
+      <video:duration>23</video:duration>
+      <video:publication_date>2026-10-27T00:00:00+00:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+    <video:video>
+      <video:thumbnail_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/analytics-en.jpg</video:thumbnail_loc>
+      <video:title>你的閱讀歷程分析報告</video:title>
+      <video:description>連續閱讀天數、節省的時間、活躍度以及每週閱讀主題。</video:description>
+      <video:content_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/analytics-en.mp4</video:content_loc>
+      <video:duration>20</video:duration>
+      <video:publication_date>2026-10-27T00:00:00+00:00</video:publication_date>
       <video:family_friendly>yes</video:family_friendly>
     </video:video>
     <video:video>
@@ -4307,6 +4928,33 @@
       <video:publication_date>2026-10-21T00:00:00+00:00</video:publication_date>
       <video:family_friendly>yes</video:family_friendly>
     </video:video>
+    <video:video>
+      <video:thumbnail_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/mcp-en.jpg</video:thumbnail_loc>
+      <video:title>مكتبتك داخل تطبيقات الذكاء الاصطناعي الخاصة بك</video:title>
+      <video:description>تطبيقات Claude Desktop و LM Studio و Cursor تبحث في مكتبتك، وتقتبس من أبرز تظليلاتك، وتستشهد بمصادرك.</video:description>
+      <video:content_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/mcp-en.mp4</video:content_loc>
+      <video:duration>27</video:duration>
+      <video:publication_date>2026-10-27T00:00:00+00:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+    <video:video>
+      <video:thumbnail_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/export-en.jpg</video:thumbnail_loc>
+      <video:title>تصدير إلى Obsidian والمزيد</video:title>
+      <video:description>كل ملخص يتحول إلى ملاحظة منسقة: Obsidian أو Markdown أو Word أو ODT أو PDF.</video:description>
+      <video:content_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/export-en.mp4</video:content_loc>
+      <video:duration>23</video:duration>
+      <video:publication_date>2026-10-27T00:00:00+00:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+    <video:video>
+      <video:thumbnail_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/analytics-en.jpg</video:thumbnail_loc>
+      <video:title>قراءاتك في تقرير شامل</video:title>
+      <video:description>سلسلة القراءة المتتالية، الوقت الموفر، النشاط، والموضوعات عبر الأسابيع.</video:description>
+      <video:content_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/analytics-en.mp4</video:content_loc>
+      <video:duration>20</video:duration>
+      <video:publication_date>2026-10-27T00:00:00+00:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
   </url>
   <url>
     <loc>https://ai-summary-helper.byphil.eu/da/blog/videos.html</loc>
@@ -4452,6 +5100,33 @@
       <video:content_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/instant-en.mp4</video:content_loc>
       <video:duration>28</video:duration>
       <video:publication_date>2026-10-21T00:00:00+00:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+    <video:video>
+      <video:thumbnail_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/mcp-en.jpg</video:thumbnail_loc>
+      <video:title>Dit bibliotek i dine AI-apps</video:title>
+      <video:description>Claude Desktop, LM Studio og Cursor søger i dit bibliotek, citerer dine overstregninger og henviser til dine kilder.</video:description>
+      <video:content_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/mcp-en.mp4</video:content_loc>
+      <video:duration>27</video:duration>
+      <video:publication_date>2026-10-27T00:00:00+00:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+    <video:video>
+      <video:thumbnail_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/export-en.jpg</video:thumbnail_loc>
+      <video:title>Eksportér til Obsidian og mere</video:title>
+      <video:description>Hvert resumé bliver til en ren note: Obsidian, Markdown, Word, ODT eller PDF.</video:description>
+      <video:content_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/export-en.mp4</video:content_loc>
+      <video:duration>23</video:duration>
+      <video:publication_date>2026-10-27T00:00:00+00:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+    <video:video>
+      <video:thumbnail_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/analytics-en.jpg</video:thumbnail_loc>
+      <video:title>Din læsning samlet i en rapport</video:title>
+      <video:description>Streak, sparet tid, aktivitet og emner uge for uge.</video:description>
+      <video:content_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/analytics-en.mp4</video:content_loc>
+      <video:duration>20</video:duration>
+      <video:publication_date>2026-10-27T00:00:00+00:00</video:publication_date>
       <video:family_friendly>yes</video:family_friendly>
     </video:video>
   </url>
@@ -4601,6 +5276,33 @@
       <video:publication_date>2026-10-21T00:00:00+00:00</video:publication_date>
       <video:family_friendly>yes</video:family_friendly>
     </video:video>
+    <video:video>
+      <video:thumbnail_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/mcp-de.jpg</video:thumbnail_loc>
+      <video:title>Ihre Bibliothek in Ihren KI-Apps</video:title>
+      <video:description>Claude Desktop, LM Studio und Cursor durchsuchen Ihre Bibliothek, zitieren Ihre Markierungen und belegen Ihre Quellen.</video:description>
+      <video:content_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/mcp-de.mp4</video:content_loc>
+      <video:duration>27</video:duration>
+      <video:publication_date>2026-10-27T00:00:00+00:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+    <video:video>
+      <video:thumbnail_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/export-de.jpg</video:thumbnail_loc>
+      <video:title>Export nach Obsidian und mehr</video:title>
+      <video:description>Jede Zusammenfassung wird zu einer sauberen Notiz: Obsidian, Markdown, Word, ODT oder PDF.</video:description>
+      <video:content_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/export-de.mp4</video:content_loc>
+      <video:duration>23</video:duration>
+      <video:publication_date>2026-10-27T00:00:00+00:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+    <video:video>
+      <video:thumbnail_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/analytics-de.jpg</video:thumbnail_loc>
+      <video:title>Ihr Leseverhalten als Bericht</video:title>
+      <video:description>Leseserie, Zeitersparnis, Aktivität und Themen im Zeitverlauf.</video:description>
+      <video:content_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/analytics-de.mp4</video:content_loc>
+      <video:duration>21</video:duration>
+      <video:publication_date>2026-10-27T00:00:00+00:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
   </url>
   <url>
     <loc>https://ai-summary-helper.byphil.eu/es/blog/videos.html</loc>
@@ -4746,6 +5448,33 @@
       <video:content_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/instant-es.mp4</video:content_loc>
       <video:duration>27</video:duration>
       <video:publication_date>2026-10-21T00:00:00+00:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+    <video:video>
+      <video:thumbnail_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/mcp-es.jpg</video:thumbnail_loc>
+      <video:title>Tu biblioteca en tus aplicaciones de IA</video:title>
+      <video:description>Claude Desktop, LM Studio y Cursor buscan en tu biblioteca, citan tus subrayados y referencian tus fuentes.</video:description>
+      <video:content_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/mcp-es.mp4</video:content_loc>
+      <video:duration>27</video:duration>
+      <video:publication_date>2026-10-27T00:00:00+00:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+    <video:video>
+      <video:thumbnail_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/export-es.jpg</video:thumbnail_loc>
+      <video:title>Exporta a Obsidian y más</video:title>
+      <video:description>Cada resumen se exporta como una nota impecable: Obsidian, Markdown, Word, ODT o PDF.</video:description>
+      <video:content_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/export-es.mp4</video:content_loc>
+      <video:duration>23</video:duration>
+      <video:publication_date>2026-10-27T00:00:00+00:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+    <video:video>
+      <video:thumbnail_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/analytics-es.jpg</video:thumbnail_loc>
+      <video:title>Tus lecturas, en un informe</video:title>
+      <video:description>Racha, tiempo ahorrado, actividad y temas a lo largo de las semanas.</video:description>
+      <video:content_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/analytics-es.mp4</video:content_loc>
+      <video:duration>20</video:duration>
+      <video:publication_date>2026-10-27T00:00:00+00:00</video:publication_date>
       <video:family_friendly>yes</video:family_friendly>
     </video:video>
   </url>
@@ -4895,6 +5624,33 @@
       <video:publication_date>2026-10-21T00:00:00+00:00</video:publication_date>
       <video:family_friendly>yes</video:family_friendly>
     </video:video>
+    <video:video>
+      <video:thumbnail_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/mcp-en.jpg</video:thumbnail_loc>
+      <video:title>Kirjastosi tekoälysovelluksissasi</video:title>
+      <video:description>Claude Desktop, LM Studio ja Cursor hakevat kirjastostasi, lainaavat korostuksiasi ja viittaavat lähteisiisi.</video:description>
+      <video:content_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/mcp-en.mp4</video:content_loc>
+      <video:duration>27</video:duration>
+      <video:publication_date>2026-10-27T00:00:00+00:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+    <video:video>
+      <video:thumbnail_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/export-en.jpg</video:thumbnail_loc>
+      <video:title>Vie Obsidianiin ja muualle</video:title>
+      <video:description>Jokainen tiivistelmä tallentuu siistinä muistiinpanona: Obsidian, Markdown, Word, ODT tai PDF.</video:description>
+      <video:content_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/export-en.mp4</video:content_loc>
+      <video:duration>23</video:duration>
+      <video:publication_date>2026-10-27T00:00:00+00:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+    <video:video>
+      <video:thumbnail_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/analytics-en.jpg</video:thumbnail_loc>
+      <video:title>Lukemisesi selkeänä raporttina</video:title>
+      <video:description>Lukujakso, säästetty aika, aktiivisuus ja aiheet viikkojen varrella.</video:description>
+      <video:content_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/analytics-en.mp4</video:content_loc>
+      <video:duration>20</video:duration>
+      <video:publication_date>2026-10-27T00:00:00+00:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
   </url>
   <url>
     <loc>https://ai-summary-helper.byphil.eu/fr/blog/videos.html</loc>
@@ -5040,6 +5796,33 @@
       <video:content_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/instant-fr.mp4</video:content_loc>
       <video:duration>28</video:duration>
       <video:publication_date>2026-10-21T00:00:00+00:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+    <video:video>
+      <video:thumbnail_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/mcp-fr.jpg</video:thumbnail_loc>
+      <video:title>Votre bibliothèque au cœur de vos applications d'IA</video:title>
+      <video:description>Claude Desktop, LM Studio et Cursor explorent votre bibliothèque, citent vos passages surlignés et mentionnent vos sources.</video:description>
+      <video:content_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/mcp-fr.mp4</video:content_loc>
+      <video:duration>28</video:duration>
+      <video:publication_date>2026-10-27T00:00:00+00:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+    <video:video>
+      <video:thumbnail_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/export-fr.jpg</video:thumbnail_loc>
+      <video:title>Exportez vers Obsidian et bien plus</video:title>
+      <video:description>Chaque résumé est exporté sous forme de note soignée : Obsidian, Markdown, Word, ODT ou PDF.</video:description>
+      <video:content_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/export-fr.mp4</video:content_loc>
+      <video:duration>24</video:duration>
+      <video:publication_date>2026-10-27T00:00:00+00:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+    <video:video>
+      <video:thumbnail_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/analytics-fr.jpg</video:thumbnail_loc>
+      <video:title>Vos lectures sous forme de rapport</video:title>
+      <video:description>Séries de lecture, temps gagné, activité et thématiques au fil des semaines.</video:description>
+      <video:content_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/analytics-fr.mp4</video:content_loc>
+      <video:duration>20</video:duration>
+      <video:publication_date>2026-10-27T00:00:00+00:00</video:publication_date>
       <video:family_friendly>yes</video:family_friendly>
     </video:video>
   </url>
@@ -5189,6 +5972,33 @@
       <video:publication_date>2026-10-21T00:00:00+00:00</video:publication_date>
       <video:family_friendly>yes</video:family_friendly>
     </video:video>
+    <video:video>
+      <video:thumbnail_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/mcp-en.jpg</video:thumbnail_loc>
+      <video:title>आपकी library, आपके AI apps में</video:title>
+      <video:description>Claude Desktop, LM Studio और Cursor आपकी library search करते हैं, आपके highlights quote करते हैं और sources cite करते हैं।</video:description>
+      <video:content_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/mcp-en.mp4</video:content_loc>
+      <video:duration>27</video:duration>
+      <video:publication_date>2026-10-27T00:00:00+00:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+    <video:video>
+      <video:thumbnail_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/export-en.jpg</video:thumbnail_loc>
+      <video:title>Obsidian और अन्य formats में export करें</video:title>
+      <video:description>हर summary एक clean note के रूप में मिलती है: Obsidian, Markdown, Word, ODT या PDF।</video:description>
+      <video:content_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/export-en.mp4</video:content_loc>
+      <video:duration>23</video:duration>
+      <video:publication_date>2026-10-27T00:00:00+00:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+    <video:video>
+      <video:thumbnail_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/analytics-en.jpg</video:thumbnail_loc>
+      <video:title>आपकी reading, एक report के रूप में</video:title>
+      <video:description>Streak, time saved, activity और हफ़्तों भर के topics।</video:description>
+      <video:content_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/analytics-en.mp4</video:content_loc>
+      <video:duration>20</video:duration>
+      <video:publication_date>2026-10-27T00:00:00+00:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
   </url>
   <url>
     <loc>https://ai-summary-helper.byphil.eu/id/blog/videos.html</loc>
@@ -5334,6 +6144,33 @@
       <video:content_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/instant-en.mp4</video:content_loc>
       <video:duration>28</video:duration>
       <video:publication_date>2026-10-21T00:00:00+00:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+    <video:video>
+      <video:thumbnail_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/mcp-en.jpg</video:thumbnail_loc>
+      <video:title>Pustaka Anda di aplikasi AI Anda</video:title>
+      <video:description>Claude Desktop, LM Studio, dan Cursor dapat menelusuri pustaka Anda, mengutip sorotan, serta mencantumkan sumber Anda.</video:description>
+      <video:content_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/mcp-en.mp4</video:content_loc>
+      <video:duration>27</video:duration>
+      <video:publication_date>2026-10-27T00:00:00+00:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+    <video:video>
+      <video:thumbnail_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/export-en.jpg</video:thumbnail_loc>
+      <video:title>Ekspor ke Obsidian dan lainnya</video:title>
+      <video:description>Setiap ringkasan tersimpan sebagai catatan rapi: Obsidian, Markdown, Word, ODT, atau PDF.</video:description>
+      <video:content_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/export-en.mp4</video:content_loc>
+      <video:duration>23</video:duration>
+      <video:publication_date>2026-10-27T00:00:00+00:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+    <video:video>
+      <video:thumbnail_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/analytics-en.jpg</video:thumbnail_loc>
+      <video:title>Laporan aktivitas membaca Anda</video:title>
+      <video:description>Streak, waktu yang dihemat, aktivitas, dan topik dari minggu ke minggu.</video:description>
+      <video:content_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/analytics-en.mp4</video:content_loc>
+      <video:duration>20</video:duration>
+      <video:publication_date>2026-10-27T00:00:00+00:00</video:publication_date>
       <video:family_friendly>yes</video:family_friendly>
     </video:video>
   </url>
@@ -5483,6 +6320,33 @@
       <video:publication_date>2026-10-21T00:00:00+00:00</video:publication_date>
       <video:family_friendly>yes</video:family_friendly>
     </video:video>
+    <video:video>
+      <video:thumbnail_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/mcp-en.jpg</video:thumbnail_loc>
+      <video:title>La tua libreria nelle tue app AI</video:title>
+      <video:description>Claude Desktop, LM Studio e Cursor cercano nella tua libreria, citano i tuoi passaggi evidenziati e indicano le tue fonti.</video:description>
+      <video:content_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/mcp-en.mp4</video:content_loc>
+      <video:duration>27</video:duration>
+      <video:publication_date>2026-10-27T00:00:00+00:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+    <video:video>
+      <video:thumbnail_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/export-en.jpg</video:thumbnail_loc>
+      <video:title>Esporta in Obsidian e molto altro</video:title>
+      <video:description>Ogni riassunto viene esportato come una nota pulita: Obsidian, Markdown, Word, ODT o PDF.</video:description>
+      <video:content_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/export-en.mp4</video:content_loc>
+      <video:duration>23</video:duration>
+      <video:publication_date>2026-10-27T00:00:00+00:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+    <video:video>
+      <video:thumbnail_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/analytics-en.jpg</video:thumbnail_loc>
+      <video:title>Le tue letture in un report</video:title>
+      <video:description>Serie di lettura, tempo risparmiato, attività e argomenti nel corso delle settimane.</video:description>
+      <video:content_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/analytics-en.mp4</video:content_loc>
+      <video:duration>20</video:duration>
+      <video:publication_date>2026-10-27T00:00:00+00:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
   </url>
   <url>
     <loc>https://ai-summary-helper.byphil.eu/ja/blog/videos.html</loc>
@@ -5628,6 +6492,33 @@
       <video:content_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/instant-ja.mp4</video:content_loc>
       <video:duration>26</video:duration>
       <video:publication_date>2026-10-21T00:00:00+00:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+    <video:video>
+      <video:thumbnail_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/mcp-ja.jpg</video:thumbnail_loc>
+      <video:title>お使いのAIアプリからライブラリにアクセス</video:title>
+      <video:description>Claude Desktop、LM Studio、Cursorからライブラリの検索、ハイライトの引用、出典の参照が可能です。</video:description>
+      <video:content_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/mcp-ja.mp4</video:content_loc>
+      <video:duration>29</video:duration>
+      <video:publication_date>2026-10-27T00:00:00+00:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+    <video:video>
+      <video:thumbnail_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/export-ja.jpg</video:thumbnail_loc>
+      <video:title>Obsidianなどへのエクスポート</video:title>
+      <video:description>すべての要約をすっきりとしたノートとして出力：Obsidian、Markdown、Word、ODT、PDFに対応。</video:description>
+      <video:content_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/export-ja.mp4</video:content_loc>
+      <video:duration>24</video:duration>
+      <video:publication_date>2026-10-27T00:00:00+00:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+    <video:video>
+      <video:thumbnail_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/analytics-ja.jpg</video:thumbnail_loc>
+      <video:title>読書ログをレポートとして可視化</video:title>
+      <video:description>継続日数、節約できた時間、アクティビティ、週ごとのトピックを確認できます。</video:description>
+      <video:content_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/analytics-ja.mp4</video:content_loc>
+      <video:duration>21</video:duration>
+      <video:publication_date>2026-10-27T00:00:00+00:00</video:publication_date>
       <video:family_friendly>yes</video:family_friendly>
     </video:video>
   </url>
@@ -5777,6 +6668,33 @@
       <video:publication_date>2026-10-21T00:00:00+00:00</video:publication_date>
       <video:family_friendly>yes</video:family_friendly>
     </video:video>
+    <video:video>
+      <video:thumbnail_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/mcp-en.jpg</video:thumbnail_loc>
+      <video:title>내가 사용하는 AI 앱에서 내 라이브러리를 바로</video:title>
+      <video:description>Claude Desktop, LM Studio, Cursor에서 라이브러리를 검색하고 하이라이트를 인용하며 출처를 바로 확인할 수 있습니다.</video:description>
+      <video:content_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/mcp-en.mp4</video:content_loc>
+      <video:duration>27</video:duration>
+      <video:publication_date>2026-10-27T00:00:00+00:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+    <video:video>
+      <video:thumbnail_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/export-en.jpg</video:thumbnail_loc>
+      <video:title>Obsidian을 비롯한 다양한 포맷으로 내보내기</video:title>
+      <video:description>모든 요약본을 깔끔한 노트 형태로 내보내세요: Obsidian, Markdown, Word, ODT, PDF 지원.</video:description>
+      <video:content_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/export-en.mp4</video:content_loc>
+      <video:duration>23</video:duration>
+      <video:publication_date>2026-10-27T00:00:00+00:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+    <video:video>
+      <video:thumbnail_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/analytics-en.jpg</video:thumbnail_loc>
+      <video:title>독서 활동을 한눈에 보는 리포트</video:title>
+      <video:description>연속 독서 일수, 절약한 시간, 주간 활동 내역과 주요 주제를 확인해 보세요.</video:description>
+      <video:content_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/analytics-en.mp4</video:content_loc>
+      <video:duration>20</video:duration>
+      <video:publication_date>2026-10-27T00:00:00+00:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
   </url>
   <url>
     <loc>https://ai-summary-helper.byphil.eu/nl/blog/videos.html</loc>
@@ -5922,6 +6840,33 @@
       <video:content_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/instant-nl.mp4</video:content_loc>
       <video:duration>27</video:duration>
       <video:publication_date>2026-10-21T00:00:00+00:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+    <video:video>
+      <video:thumbnail_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/mcp-en.jpg</video:thumbnail_loc>
+      <video:title>Je bibliotheek in je AI-apps</video:title>
+      <video:description>Claude Desktop, LM Studio en Cursor doorzoeken je bibliotheek, citeren je markeringen en vermelden je bronnen.</video:description>
+      <video:content_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/mcp-en.mp4</video:content_loc>
+      <video:duration>27</video:duration>
+      <video:publication_date>2026-10-27T00:00:00+00:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+    <video:video>
+      <video:thumbnail_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/export-en.jpg</video:thumbnail_loc>
+      <video:title>Exporteer naar Obsidian en meer</video:title>
+      <video:description>Elke samenvatting wordt een nette notitie: Obsidian, Markdown, Word, ODT of PDF.</video:description>
+      <video:content_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/export-en.mp4</video:content_loc>
+      <video:duration>23</video:duration>
+      <video:publication_date>2026-10-27T00:00:00+00:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+    <video:video>
+      <video:thumbnail_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/analytics-en.jpg</video:thumbnail_loc>
+      <video:title>Je leesgedrag als rapport</video:title>
+      <video:description>Leesreeks, bespaarde tijd, activiteit en onderwerpen door de weken heen.</video:description>
+      <video:content_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/analytics-en.mp4</video:content_loc>
+      <video:duration>20</video:duration>
+      <video:publication_date>2026-10-27T00:00:00+00:00</video:publication_date>
       <video:family_friendly>yes</video:family_friendly>
     </video:video>
   </url>
@@ -6071,6 +7016,33 @@
       <video:publication_date>2026-10-21T00:00:00+00:00</video:publication_date>
       <video:family_friendly>yes</video:family_friendly>
     </video:video>
+    <video:video>
+      <video:thumbnail_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/mcp-en.jpg</video:thumbnail_loc>
+      <video:title>Biblioteket ditt i AI-appene dine</video:title>
+      <video:description>Claude Desktop, LM Studio og Cursor søker i biblioteket ditt, siterer markeringene dine og oppgir kildene dine.</video:description>
+      <video:content_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/mcp-en.mp4</video:content_loc>
+      <video:duration>27</video:duration>
+      <video:publication_date>2026-10-27T00:00:00+00:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+    <video:video>
+      <video:thumbnail_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/export-en.jpg</video:thumbnail_loc>
+      <video:title>Eksporter til Obsidian og mer</video:title>
+      <video:description>Hvert sammendrag blir til et ryddig notat: Obsidian, Markdown, Word, ODT eller PDF.</video:description>
+      <video:content_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/export-en.mp4</video:content_loc>
+      <video:duration>23</video:duration>
+      <video:publication_date>2026-10-27T00:00:00+00:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+    <video:video>
+      <video:thumbnail_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/analytics-en.jpg</video:thumbnail_loc>
+      <video:title>Lesingen din, som en rapport</video:title>
+      <video:description>Leserekke, spart tid, aktivitet og temaer uke for uke.</video:description>
+      <video:content_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/analytics-en.mp4</video:content_loc>
+      <video:duration>20</video:duration>
+      <video:publication_date>2026-10-27T00:00:00+00:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
   </url>
   <url>
     <loc>https://ai-summary-helper.byphil.eu/pl/blog/videos.html</loc>
@@ -6216,6 +7188,33 @@
       <video:content_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/instant-en.mp4</video:content_loc>
       <video:duration>28</video:duration>
       <video:publication_date>2026-10-21T00:00:00+00:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+    <video:video>
+      <video:thumbnail_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/mcp-en.jpg</video:thumbnail_loc>
+      <video:title>Twoja biblioteka w aplikacjach AI</video:title>
+      <video:description>Claude Desktop, LM Studio i Cursor przeszukują Twoją bibliotekę, cytują wyróżnienia i podają źródła.</video:description>
+      <video:content_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/mcp-en.mp4</video:content_loc>
+      <video:duration>27</video:duration>
+      <video:publication_date>2026-10-27T00:00:00+00:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+    <video:video>
+      <video:thumbnail_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/export-en.jpg</video:thumbnail_loc>
+      <video:title>Eksport do Obsidian i nie tylko</video:title>
+      <video:description>Każde podsumowanie zapisuje się jako przejrzysta notatka: Obsidian, Markdown, Word, ODT lub PDF.</video:description>
+      <video:content_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/export-en.mp4</video:content_loc>
+      <video:duration>23</video:duration>
+      <video:publication_date>2026-10-27T00:00:00+00:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+    <video:video>
+      <video:thumbnail_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/analytics-en.jpg</video:thumbnail_loc>
+      <video:title>Twoje czytanie w formie raportu</video:title>
+      <video:description>Seria dni czytania, zaoszczędzony czas, aktywność i tematy na przestrzeni tygodni.</video:description>
+      <video:content_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/analytics-en.mp4</video:content_loc>
+      <video:duration>20</video:duration>
+      <video:publication_date>2026-10-27T00:00:00+00:00</video:publication_date>
       <video:family_friendly>yes</video:family_friendly>
     </video:video>
   </url>
@@ -6365,6 +7364,33 @@
       <video:publication_date>2026-10-21T00:00:00+00:00</video:publication_date>
       <video:family_friendly>yes</video:family_friendly>
     </video:video>
+    <video:video>
+      <video:thumbnail_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/mcp-en.jpg</video:thumbnail_loc>
+      <video:title>Sua biblioteca nos seus apps de IA</video:title>
+      <video:description>O Claude Desktop, o LM Studio e o Cursor pesquisam na sua biblioteca, citam seus destaques e indicam suas fontes.</video:description>
+      <video:content_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/mcp-en.mp4</video:content_loc>
+      <video:duration>27</video:duration>
+      <video:publication_date>2026-10-27T00:00:00+00:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+    <video:video>
+      <video:thumbnail_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/export-en.jpg</video:thumbnail_loc>
+      <video:title>Exporte para o Obsidian e muito mais</video:title>
+      <video:description>Cada resumo vira uma nota organizada: Obsidian, Markdown, Word, ODT ou PDF.</video:description>
+      <video:content_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/export-en.mp4</video:content_loc>
+      <video:duration>23</video:duration>
+      <video:publication_date>2026-10-27T00:00:00+00:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+    <video:video>
+      <video:thumbnail_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/analytics-en.jpg</video:thumbnail_loc>
+      <video:title>Suas leituras em um relatório</video:title>
+      <video:description>Sequência de leitura, tempo economizado, atividade e tópicos ao longo das semanas.</video:description>
+      <video:content_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/analytics-en.mp4</video:content_loc>
+      <video:duration>20</video:duration>
+      <video:publication_date>2026-10-27T00:00:00+00:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
   </url>
   <url>
     <loc>https://ai-summary-helper.byphil.eu/ru/blog/videos.html</loc>
@@ -6510,6 +7536,33 @@
       <video:content_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/instant-en.mp4</video:content_loc>
       <video:duration>28</video:duration>
       <video:publication_date>2026-10-21T00:00:00+00:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+    <video:video>
+      <video:thumbnail_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/mcp-en.jpg</video:thumbnail_loc>
+      <video:title>Ваша библиотека в ваших ИИ-приложениях</video:title>
+      <video:description>Claude Desktop, LM Studio и Cursor ищут по вашей библиотеке, цитируют ваши выделения и ссылаются на источники.</video:description>
+      <video:content_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/mcp-en.mp4</video:content_loc>
+      <video:duration>27</video:duration>
+      <video:publication_date>2026-10-27T00:00:00+00:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+    <video:video>
+      <video:thumbnail_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/export-en.jpg</video:thumbnail_loc>
+      <video:title>Экспорт в Obsidian и не только</video:title>
+      <video:description>Каждая сводка экспортируется в виде готовой заметки: Obsidian, Markdown, Word, ODT или PDF.</video:description>
+      <video:content_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/export-en.mp4</video:content_loc>
+      <video:duration>23</video:duration>
+      <video:publication_date>2026-10-27T00:00:00+00:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+    <video:video>
+      <video:thumbnail_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/analytics-en.jpg</video:thumbnail_loc>
+      <video:title>Ваше чтение в виде отчёта</video:title>
+      <video:description>Серия дней, сэкономленное время, активность и темы по неделям.</video:description>
+      <video:content_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/analytics-en.mp4</video:content_loc>
+      <video:duration>20</video:duration>
+      <video:publication_date>2026-10-27T00:00:00+00:00</video:publication_date>
       <video:family_friendly>yes</video:family_friendly>
     </video:video>
   </url>
@@ -6659,6 +7712,33 @@
       <video:publication_date>2026-10-21T00:00:00+00:00</video:publication_date>
       <video:family_friendly>yes</video:family_friendly>
     </video:video>
+    <video:video>
+      <video:thumbnail_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/mcp-en.jpg</video:thumbnail_loc>
+      <video:title>Ditt bibliotek i dina AI-appar</video:title>
+      <video:description>Claude Desktop, LM Studio och Cursor söker i ditt bibliotek, citerar dina markeringar och anger dina källor.</video:description>
+      <video:content_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/mcp-en.mp4</video:content_loc>
+      <video:duration>27</video:duration>
+      <video:publication_date>2026-10-27T00:00:00+00:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+    <video:video>
+      <video:thumbnail_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/export-en.jpg</video:thumbnail_loc>
+      <video:title>Exportera till Obsidian och mer</video:title>
+      <video:description>Varje sammanfattning exporteras som en ren anteckning: Obsidian, Markdown, Word, ODT eller PDF.</video:description>
+      <video:content_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/export-en.mp4</video:content_loc>
+      <video:duration>23</video:duration>
+      <video:publication_date>2026-10-27T00:00:00+00:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+    <video:video>
+      <video:thumbnail_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/analytics-en.jpg</video:thumbnail_loc>
+      <video:title>Din läsning som rapport</video:title>
+      <video:description>Lässvit, sparad tid, aktivitet och ämnen över veckornas gång.</video:description>
+      <video:content_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/analytics-en.mp4</video:content_loc>
+      <video:duration>20</video:duration>
+      <video:publication_date>2026-10-27T00:00:00+00:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
   </url>
   <url>
     <loc>https://ai-summary-helper.byphil.eu/th/blog/videos.html</loc>
@@ -6804,6 +7884,33 @@
       <video:content_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/instant-en.mp4</video:content_loc>
       <video:duration>28</video:duration>
       <video:publication_date>2026-10-21T00:00:00+00:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+    <video:video>
+      <video:thumbnail_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/mcp-en.jpg</video:thumbnail_loc>
+      <video:title>คลังข้อมูลของคุณในแอป AI</video:title>
+      <video:description>Claude Desktop, LM Studio และ Cursor สามารถค้นหาคลังข้อมูล ยกข้อความไฮไลต์ และอ้างอิงแหล่งที่มาของคุณได้ทันที</video:description>
+      <video:content_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/mcp-en.mp4</video:content_loc>
+      <video:duration>27</video:duration>
+      <video:publication_date>2026-10-27T00:00:00+00:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+    <video:video>
+      <video:thumbnail_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/export-en.jpg</video:thumbnail_loc>
+      <video:title>ส่งออกไปยัง Obsidian และแอปอื่นๆ</video:title>
+      <video:description>ทุกบทสรุปพร้อมส่งออกเป็นโน้ตที่จัดรูปแบบเรียบร้อย: Obsidian, Markdown, Word, ODT หรือ PDF</video:description>
+      <video:content_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/export-en.mp4</video:content_loc>
+      <video:duration>23</video:duration>
+      <video:publication_date>2026-10-27T00:00:00+00:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+    <video:video>
+      <video:thumbnail_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/analytics-en.jpg</video:thumbnail_loc>
+      <video:title>สรุปภาพรวมการอ่านของคุณในรูปแบบรายงาน</video:title>
+      <video:description>สถิติการอ่านต่อเนื่อง เวลาที่ประหยัดได้ กิจกรรม และหัวข้อต่างๆ ตลอดหลายสัปดาห์</video:description>
+      <video:content_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/analytics-en.mp4</video:content_loc>
+      <video:duration>20</video:duration>
+      <video:publication_date>2026-10-27T00:00:00+00:00</video:publication_date>
       <video:family_friendly>yes</video:family_friendly>
     </video:video>
   </url>
@@ -6953,6 +8060,33 @@
       <video:publication_date>2026-10-21T00:00:00+00:00</video:publication_date>
       <video:family_friendly>yes</video:family_friendly>
     </video:video>
+    <video:video>
+      <video:thumbnail_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/mcp-en.jpg</video:thumbnail_loc>
+      <video:title>Kütüphaneniz AI uygulamalarınızda</video:title>
+      <video:description>Claude Desktop, LM Studio ve Cursor kütüphanenizde arama yapar, vurgularınızdan alıntı yapar ve kaynaklarınızı belirtir.</video:description>
+      <video:content_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/mcp-en.mp4</video:content_loc>
+      <video:duration>27</video:duration>
+      <video:publication_date>2026-10-27T00:00:00+00:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+    <video:video>
+      <video:thumbnail_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/export-en.jpg</video:thumbnail_loc>
+      <video:title>Obsidian ve daha fazlasına aktarın</video:title>
+      <video:description>Her özet düzenli bir not olarak dışa aktarılır: Obsidian, Markdown, Word, ODT veya PDF.</video:description>
+      <video:content_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/export-en.mp4</video:content_loc>
+      <video:duration>23</video:duration>
+      <video:publication_date>2026-10-27T00:00:00+00:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+    <video:video>
+      <video:thumbnail_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/analytics-en.jpg</video:thumbnail_loc>
+      <video:title>Okumalarınız, rapor halinde</video:title>
+      <video:description>Seri (streak), kazanılan zaman, aktivite ve haftalara göre konular.</video:description>
+      <video:content_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/analytics-en.mp4</video:content_loc>
+      <video:duration>20</video:duration>
+      <video:publication_date>2026-10-27T00:00:00+00:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
   </url>
   <url>
     <loc>https://ai-summary-helper.byphil.eu/uk/blog/videos.html</loc>
@@ -7098,6 +8232,33 @@
       <video:content_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/instant-en.mp4</video:content_loc>
       <video:duration>28</video:duration>
       <video:publication_date>2026-10-21T00:00:00+00:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+    <video:video>
+      <video:thumbnail_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/mcp-en.jpg</video:thumbnail_loc>
+      <video:title>Ваша бібліотека у ваших AI-застосунках</video:title>
+      <video:description>Claude Desktop, LM Studio та Cursor шукають у вашій бібліотеці, цитують виділені фрагменти та посилаються на джерела.</video:description>
+      <video:content_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/mcp-en.mp4</video:content_loc>
+      <video:duration>27</video:duration>
+      <video:publication_date>2026-10-27T00:00:00+00:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+    <video:video>
+      <video:thumbnail_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/export-en.jpg</video:thumbnail_loc>
+      <video:title>Експорт до Obsidian та не тільки</video:title>
+      <video:description>Кожен підсумок зберігається як охайна нотатка: Obsidian, Markdown, Word, ODT або PDF.</video:description>
+      <video:content_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/export-en.mp4</video:content_loc>
+      <video:duration>23</video:duration>
+      <video:publication_date>2026-10-27T00:00:00+00:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+    <video:video>
+      <video:thumbnail_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/analytics-en.jpg</video:thumbnail_loc>
+      <video:title>Ваше читання — у вигляді звіту</video:title>
+      <video:description>Серія читання, заощаджений час, активність і динаміка тем за тижнями.</video:description>
+      <video:content_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/analytics-en.mp4</video:content_loc>
+      <video:duration>20</video:duration>
+      <video:publication_date>2026-10-27T00:00:00+00:00</video:publication_date>
       <video:family_friendly>yes</video:family_friendly>
     </video:video>
   </url>
@@ -7247,6 +8408,33 @@
       <video:publication_date>2026-10-21T00:00:00+00:00</video:publication_date>
       <video:family_friendly>yes</video:family_friendly>
     </video:video>
+    <video:video>
+      <video:thumbnail_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/mcp-en.jpg</video:thumbnail_loc>
+      <video:title>Thư viện của bạn trong các ứng dụng AI</video:title>
+      <video:description>Claude Desktop, LM Studio và Cursor có thể tìm kiếm thư viện, trích dẫn phần đánh dấu và dẫn nguồn của bạn.</video:description>
+      <video:content_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/mcp-en.mp4</video:content_loc>
+      <video:duration>27</video:duration>
+      <video:publication_date>2026-10-27T00:00:00+00:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+    <video:video>
+      <video:thumbnail_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/export-en.jpg</video:thumbnail_loc>
+      <video:title>Xuất sang Obsidian và nhiều định dạng khác</video:title>
+      <video:description>Mọi bản tóm tắt đều được xuất dưới dạng ghi chú gọn gàng: Obsidian, Markdown, Word, ODT hoặc PDF.</video:description>
+      <video:content_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/export-en.mp4</video:content_loc>
+      <video:duration>23</video:duration>
+      <video:publication_date>2026-10-27T00:00:00+00:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+    <video:video>
+      <video:thumbnail_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/analytics-en.jpg</video:thumbnail_loc>
+      <video:title>Báo cáo thói quen đọc của bạn</video:title>
+      <video:description>Chuỗi ngày đọc, thời gian tiết kiệm, hoạt động và các chủ đề theo từng tuần.</video:description>
+      <video:content_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/analytics-en.mp4</video:content_loc>
+      <video:duration>20</video:duration>
+      <video:publication_date>2026-10-27T00:00:00+00:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
   </url>
   <url>
     <loc>https://ai-summary-helper.byphil.eu/zh/blog/videos.html</loc>
@@ -7394,6 +8582,33 @@
       <video:publication_date>2026-10-21T00:00:00+00:00</video:publication_date>
       <video:family_friendly>yes</video:family_friendly>
     </video:video>
+    <video:video>
+      <video:thumbnail_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/mcp-zh.jpg</video:thumbnail_loc>
+      <video:title>在各类 AI 应用中使用您的文库</video:title>
+      <video:description>Claude Desktop、LM Studio 和 Cursor 可直接检索您的文库、引用高亮标注并注明来源出处。</video:description>
+      <video:content_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/mcp-zh.mp4</video:content_loc>
+      <video:duration>27</video:duration>
+      <video:publication_date>2026-10-27T00:00:00+00:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+    <video:video>
+      <video:thumbnail_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/export-zh.jpg</video:thumbnail_loc>
+      <video:title>导出至 Obsidian 等多种格式</video:title>
+      <video:description>每份摘要均可导出为排版清晰的笔记：支持 Obsidian、Markdown、Word、ODT 或 PDF。</video:description>
+      <video:content_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/export-zh.mp4</video:content_loc>
+      <video:duration>24</video:duration>
+      <video:publication_date>2026-10-27T00:00:00+00:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+    <video:video>
+      <video:thumbnail_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/analytics-zh.jpg</video:thumbnail_loc>
+      <video:title>阅读历程，化为分析报告</video:title>
+      <video:description>连续阅读天数、节省时间、活跃度以及数周以来的主题演变一目了然。</video:description>
+      <video:content_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/analytics-zh.mp4</video:content_loc>
+      <video:duration>20</video:duration>
+      <video:publication_date>2026-10-27T00:00:00+00:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
   </url>
   <url>
     <loc>https://ai-summary-helper.byphil.eu/zh-tw/blog/videos.html</loc>
@@ -7539,6 +8754,33 @@
       <video:content_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/instant-zh-tw.mp4</video:content_loc>
       <video:duration>28</video:duration>
       <video:publication_date>2026-10-21T00:00:00+00:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+    <video:video>
+      <video:thumbnail_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/mcp-en.jpg</video:thumbnail_loc>
+      <video:title>在 AI 應用中取用你的個人庫藏</video:title>
+      <video:description>Claude Desktop、LM Studio 與 Cursor 能直接搜尋你的庫藏、引用劃線重點並註明資料來源。</video:description>
+      <video:content_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/mcp-en.mp4</video:content_loc>
+      <video:duration>27</video:duration>
+      <video:publication_date>2026-10-27T00:00:00+00:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+    <video:video>
+      <video:thumbnail_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/export-en.jpg</video:thumbnail_loc>
+      <video:title>匯出至 Obsidian 及更多平台</video:title>
+      <video:description>每篇摘要都能整理成乾淨俐落的筆記匯出：Obsidian、Markdown、Word、ODT 或 PDF。</video:description>
+      <video:content_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/export-en.mp4</video:content_loc>
+      <video:duration>23</video:duration>
+      <video:publication_date>2026-10-27T00:00:00+00:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+    <video:video>
+      <video:thumbnail_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/analytics-en.jpg</video:thumbnail_loc>
+      <video:title>你的閱讀歷程分析報告</video:title>
+      <video:description>連續閱讀天數、節省的時間、活躍度以及每週閱讀主題。</video:description>
+      <video:content_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/analytics-en.mp4</video:content_loc>
+      <video:duration>20</video:duration>
+      <video:publication_date>2026-10-27T00:00:00+00:00</video:publication_date>
       <video:family_friendly>yes</video:family_friendly>
     </video:video>
   </url>
