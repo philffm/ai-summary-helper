@@ -1,4 +1,5 @@
 // modules/pageKey.js
+import { unwrapArchiveUrl } from './archiveUrl.js';
 // Stable per-page key for highlights + the list of "feed-like" pages where the
 // highlights panel should never appear.
 
@@ -9,7 +10,7 @@ const KEEP_PARAMS = ['currentJobId', 'v', 'id', 'item', 'story_fbid', 'pid', 'po
 /** origin + pathname (+ content-identifying query params). Fragment and tracking params are dropped. */
 export function pageKeyForUrl(href) {
   try {
-    const u = new URL(href);
+    const u = new URL(unwrapArchiveUrl(href));   // highlights on an archive.ph / Wayback copy belong to the original article
     const keep = KEEP_PARAMS.filter(k => u.searchParams.get(k)).sort()
       .map(k => `${k}=${u.searchParams.get(k)}`);
     return `${u.origin}${u.pathname}${keep.length ? '?' + keep.join('&') : ''}`;

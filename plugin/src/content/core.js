@@ -1,4 +1,5 @@
 import { SK, articleRecKey } from '../modules/storageKeys.js';
+import { unwrapArchiveUrl } from '../modules/archiveUrl.js';
 import { debug } from '../modules/log.js';
 import { detectPaper } from './paper.js';
 // content/core.js
@@ -84,14 +85,17 @@ export function saveToLocalStorage(content, summary, url, title, description, ta
     // lastOpened starts equal to the save time: a freshly saved article is
     // by definition "opened" the moment it's created, so it shouldn't be
     // flagged as neglected until it's actually sat unopened for a while.
+    // saved from archive.ph / Wayback / 12ft…: keep the original article URL, remember the archive copy
+    const originalUrl = unwrapArchiveUrl(url);
     const indexEntry = {
-      id, title: title || 'Untitled', url, timestamp, tags, modelId, summaryLength,
+      id, title: title || 'Untitled', url: originalUrl, timestamp, tags, modelId, summaryLength,
       summary: summary || '',
       contentWordCount: countWords(content || ''),
       summaryWordCount: countWords(summary || ''),
       archived: false,
       lastOpened: timestamp
     };
+    if (originalUrl !== url) indexEntry.archiveUrl = url;
     if (typeof moodScore === 'number' && isFinite(moodScore)) indexEntry.moodScore = moodScore;
     if (pageMeta && pageMeta.favicon) indexEntry.favicon = pageMeta.favicon;   // lean: lists can show it without loading the record
     if (extra && typeof extra === 'object') Object.assign(indexEntry, extra);

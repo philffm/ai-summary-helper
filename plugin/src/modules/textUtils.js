@@ -3,6 +3,7 @@
 // intelligence module (search, tag intelligence, duplicate detection,
 // text metrics). Centralized so the stopword list, tokenizer, and HTML
 // stripper only exist once instead of being copy-pasted four times.
+import { unwrapArchiveUrl } from './archiveUrl.js';
 
 export const STOPWORDS = new Set([
     'the', 'a', 'an', 'and', 'or', 'but', 'in', 'on', 'at', 'to', 'for', 'of', 'with',
@@ -75,7 +76,7 @@ export function normalizeTitle(title) {
 /** Normalize a URL for duplicate comparison: drop protocol, www, trailing slash, tracking params. */
 export function normalizeUrl(url) {
     try {
-        const u = new URL(url);
+        const u = new URL(unwrapArchiveUrl(url));   // an archive.ph / Wayback copy counts as the original article
         const dropParams = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_term', 'utm_content', 'fbclid', 'gclid', 'ref', 'source'];
         dropParams.forEach(p => u.searchParams.delete(p));
         const host = u.hostname.replace(/^www\./, '');
