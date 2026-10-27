@@ -58,7 +58,7 @@ const VIDEO_MANIFEST = fs.existsSync(path.join(VIDEO_DIR, 'manifest.json')) ? JS
 const TRANSCRIPT_LABEL = { en: 'Transcript', de: 'Transkript', es: 'Transcripción', fr: 'Transcription', pt: 'Transcrição', nl: 'Transcriptie', sv: 'Utskrift', ja: '文字起こし', ko: '스크립트' };
 const isoDuration = (sec) => { const s = Math.round(sec); return `PT${Math.floor(s / 60)}M${s % 60}S`; };
 const clip = (t, n) => { const x = String(t || '').replace(/\s+/g, ' ').trim(); return x.length > n ? x.slice(0, n - 1).trimEnd() + '…' : x; };
-const videoEntries = [];   // { self, videos: [{ title, description, thumb, content, duration, date }] } for sitemap-video.xml
+const videoEntries = [];   // { self, videos: [{ title, description, thumb, content, duration, date, english }] } for sitemap-video.xml
 
 /** VideoObject JSON-LD, <track> subtitles and (on the video cards) a transcript for every <figure data-blog-video> of a page. */
 function videoPass($, file, self, lang) {
@@ -94,7 +94,8 @@ function videoPass($, file, self, lang) {
       contentUrl: content, inLanguage: lc, ...(entry.transcript ? { transcript: entry.transcript } : {}), isFamilyFriendly: true,
       publisher: { '@id': 'https://byphil.eu/#org' },
     });
-    listed.push({ title: name, description, thumb, content, duration: Math.round(entry.duration), date: isoDateTime(entry.uploaded) });
+    listed.push({ title: name, description, thumb, content, duration: Math.round(entry.duration), date: isoDateTime(entry.uploaded),
+      english: lc === 'en' && !/^en\b/i.test(lang) });   // a translated page still showing the English original (no recording in its language yet)
   });
   if (!objects.length) return;
   $('head').append(`<script type="application/ld+json" data-seo-video>${JSON.stringify({ '@context': 'https://schema.org', '@graph': objects })}</script>`);
@@ -203,7 +204,7 @@ let vxml = `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.si
 for (const e of videoEntries) {
   vxml += `  <url>\n    <loc>${esc(e.self)}</loc>\n`;
   for (const v of e.videos) {
-    vxml += `    <video:video>\n      <video:thumbnail_loc>${esc(v.thumb)}</video:thumbnail_loc>\n      <video:title>${esc(v.title)}</video:title>\n      <video:description>${esc(v.description)}</video:description>\n      <video:content_loc>${esc(v.content)}</video:content_loc>\n      <video:duration>${v.duration}</video:duration>\n      <video:publication_date>${v.date}</video:publication_date>\n      <video:family_friendly>yes</video:family_friendly>\n    </video:video>\n`;
+    vxml += `    <video:video>\n      <video:thumbnail_loc>${esc(v.thumb)}</video:thumbnail_loc>\n      <video:title>${esc(v.title)}</video:title>\n      <video:description>${esc(v.description)}</video:description>\n      <video:content_loc>${esc(v.content)}</video:content_loc>\n      <video:duration>${v.duration}</video:duration>\n      <video:publication_date>${v.date}</video:publication_date>\n      <video:family_friendly>yes</video:family_friendly>\n${v.english ? '      <video:tag>English original</video:tag>\n' : ''}    </video:video>\n`;
   }
   vxml += `  </url>\n`;
 }
