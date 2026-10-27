@@ -52,6 +52,8 @@ const setMeta = ($, attr, key, content) => { if (content && !$(`meta[${attr}="${
 const monthIso = (txt) => { const m = String(txt || '').match(/(January|February|March|April|May|June|July|August|September|October|November|December)\s+(\d{4})/i); if (!m) return null; return m[2] + '-' + String(['january','february','march','april','may','june','july','august','september','october','november','december'].indexOf(m[1].toLowerCase()) + 1).padStart(2, '0'); };
 // ── videos ───────────────────────────────────────────────────────────────────────────────────────────────────────────
 const VIDEO_DIR = path.join(DOCS, 'assets', 'blog', 'video');
+// Google wants a full ISO 8601 datetime with a time zone for uploadDate / publication_date ("2026-10-20" alone is flagged).
+const isoDateTime = (d) => (/^\d{4}-\d{2}-\d{2}$/.test(d || '') ? `${d}T00:00:00+00:00` : d);
 const VIDEO_MANIFEST = fs.existsSync(path.join(VIDEO_DIR, 'manifest.json')) ? JSON.parse(fs.readFileSync(path.join(VIDEO_DIR, 'manifest.json'), 'utf8')) : {};
 const TRANSCRIPT_LABEL = { en: 'Transcript', de: 'Transkript', es: 'Transcripción', fr: 'Transcription', pt: 'Transcrição', nl: 'Transcriptie', sv: 'Utskrift', ja: '文字起こし', ko: '스크립트' };
 const isoDuration = (sec) => { const s = Math.round(sec); return `PT${Math.floor(s / 60)}M${s % 60}S`; };
@@ -88,11 +90,11 @@ function videoPass($, file, self, lang) {
     const thumb = abs(($fig.find('video').attr('poster') || '').trim() || srcRel.replace(/\.mp4$/, '.jpg'));
     const content = abs(srcRel);
     objects.push({
-      '@type': 'VideoObject', name, description, thumbnailUrl: [thumb], uploadDate: entry.uploaded, duration: isoDuration(entry.duration),
+      '@type': 'VideoObject', name, description, thumbnailUrl: [thumb], uploadDate: isoDateTime(entry.uploaded), duration: isoDuration(entry.duration),
       contentUrl: content, inLanguage: lc, ...(entry.transcript ? { transcript: entry.transcript } : {}), isFamilyFriendly: true,
       publisher: { '@id': 'https://byphil.eu/#org' },
     });
-    listed.push({ title: name, description, thumb, content, duration: Math.round(entry.duration), date: entry.uploaded });
+    listed.push({ title: name, description, thumb, content, duration: Math.round(entry.duration), date: isoDateTime(entry.uploaded) });
   });
   if (!objects.length) return;
   $('head').append(`<script type="application/ld+json" data-seo-video>${JSON.stringify({ '@context': 'https://schema.org', '@graph': objects })}</script>`);
