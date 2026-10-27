@@ -5787,5 +5787,173 @@
   },
   "f_own_server_2c54": {
     "message": "{name} · egen server"
+  },
+  "f_add_aish_to_your_app_d502": {
+    "message": "Legg AISH til i appen din"
+  },
+  "f_add_urls_to_your_inbox_bb8a": {
+    "message": "Legg URL-er i innboksen"
+  },
+  "f_add_this_to_vscode_mcp_json__1fb5": {
+    "message": "Legg dette til i .vscode/mcp.json i prosjektet ditt."
+  },
+  "f_add_this_to_lm_studio_s_mcp__e2eb": {
+    "message": "Legg dette til i mcp.json for LM Studio, og start LM Studio på nytt."
+  },
+  "f_add_this_to_cursor_mcp_json__0a25": {
+    "message": "Legg dette til i ~/.cursor/mcp.json, og start Cursor på nytt."
+  },
+  "f_always_on_fab5": {
+    "message": "Alltid på"
+  },
+  "f_copied_1305": {
+    "message": "Kopiert"
+  },
+  "f_copy_config_ed1a": {
+    "message": "Kopier konfig"
+  },
+  "f_in_claude_desktop_settings_d_ce0e": {
+    "message": "I Claude Desktop: Settings → Developer → Edit Config. Lim inn dette, avslutt Claude Desktop og åpne det igjen."
+  },
+  "f_never_share_articles_tagged_670f": {
+    "message": "Del aldri artikler merket"
+  },
+  "f_now_c597": {
+    "message": "Nå"
+  },
+  "f_off_by_default_switch_off_an_6412": {
+    "message": "Av som standard. Kan slås av når som helst."
+  },
+  "f_pair_aish_mcp_d79f": {
+    "message": "Koble til aish-mcp"
+  },
+  "f_pairing_code_saved_ea33": {
+    "message": "Tilkoblingskode lagret."
+  },
+  "f_paste_the_new_pairing_code_8f62": {
+    "message": "Lim inn den nye tilkoblingskoden"
+  },
+  "f_pick_your_app_and_copy_its_s_0746": {
+    "message": "Velg appen din og kopier innstillingen."
+  },
+  "f_run_this_once_in_a_terminal__78b2": {
+    "message": "Kjør dette én gang i en terminal. Den skriver ut en tilkoblingskode."
+  },
+  "f_save_code_cadd": {
+    "message": "Lagre kode"
+  },
+  "f_search_read_highlights_3910": {
+    "message": "Søk, les, markeringer"
+  },
+  "f_select_and_copy_it_7f3a": {
+    "message": "Merk og kopier"
+  },
+  "f_turned_on_bc1c": {
+    "message": "Slått på"
+  },
+  "f_unread_subscription_items_114b": {
+    "message": "Uleste fra abonnementer"
+  },
+  "f_waiting_for_your_app_this_up_7cde": {
+    "message": "Venter på appen din… Oppdateres av seg selv."
+  },
+  "f_whole_saved_text_a31e": {
+    "message": "Hele den lagrede teksten"
+  },
+  "f_your_ai_app_d117": {
+    "message": "AI-appen din"
+  },
+  "f_your_ai_apps_can_search_and__4b5d": {
+    "message": "AI-appene dine kan søke i og lese biblioteket ditt nå."
+  },
+  "f_your_library_stays_private_u_5ea3": {
+    "message": "Biblioteket ditt er privat til du kobler til en app."
+  },
+  "f_calls_today_bccb": {
+    "message": "kall i dag"
+  },
+  "f_last_call_cf2b": {
+    "message": "siste kall"
+  },
+  "f_tools_255c": {
+    "message": "verktøy"
+  },
+  "f_calls_today_605f": {
+    "message": "{n} kall i dag"
+  },
+  "f_ai_apps_mcp_claude_desktop_l_27c6": {
+    "message": "AI-apper (MCP): Claude Desktop, LM Studio eller Cursor kan søke i biblioteket ditt"
+  },
+  "f_articles_saved_from_archive__a35b": {
+    "message": "Artikler lagret fra archive.ph eller Wayback Machine beholder originallenken"
+  },
+  "f_contact_me_6f3b": {
+    "message": "Kontakt meg"
+  },
+  "f_contribute_on_github_f5d2": {
+    "message": "Bidra på GitHub"
+  },
+  "f_copy_debug_info_21d9": {
+    "message": "Kopier feilsøkingsinfo"
+  },
+  "f_diagnostics_1397": {
+    "message": "Diagnostikk"
+  },
+  "f_do_any_of_my_saved_articles__cf49": {
+    "message": "Er de lagrede artiklene mine om et emne uenige? Vis begge sider med kilder."
+  },
+  "f_from_my_feed_items_pick_the__937f": {
+    "message": "Velg de 5 av feed-elementene mine som er verdt å lagre ut fra biblioteket mitt, og lagre dem."
+  },
+  "f_full_changelog_2a28": {
+    "message": "Hele endringsloggen ›"
+  },
+  "f_give_feedback_465b": {
+    "message": "Gi tilbakemelding"
+  },
+  "f_hi_i_m_phil_141a": {
+    "message": "Hei, jeg er Phil 👋"
+  },
+  "f_i_build_ai_summary_helper_on_470d": {
+    "message": "Jeg lager AI Summary Helper på egen hånd. Det er åpen kildekode, har ingen reklame og holder biblioteket ditt på enheten din."
+  },
+  "f_needs_feeds_and_save_links_s_4125": {
+    "message": "Krever at Feeder og Lagre lenker er slått på nedenfor."
+  },
+  "f_open_source_by_phil_wornath_949d": {
+    "message": "Åpen kildekode av Phil Wornath"
+  },
+  "f_paste_this_into_a_bug_report_88b2": {
+    "message": "Lim dette inn i en feilrapport så feilen kan gjenskapes."
+  },
+  "f_search_my_library_for_a_topi_8a2d": {
+    "message": "Søk i biblioteket mitt etter et emne, les de 5 beste artiklene i sin helhet og skriv et sammendrag som sier hvilken artikkel hver påstand kommer fra."
+  },
+  "f_summarize_everything_i_saved_dd22": {
+    "message": "Oppsummer alt jeg har lagret de siste 7 dagene, gruppert etter tema og med markeringene mine sitert."
+  },
+  "f_summarize_starts_right_away__0002": {
+    "message": "Oppsummering starter med en gang, også når utvidelsen sov"
+  },
+  "f_support_with_a_donation_ceb3": {
+    "message": "Støtt med en donasjon"
+  },
+  "f_tap_one_to_copy_it_then_past_d83a": {
+    "message": "Trykk på en for å kopiere den, og lim den inn i appen din."
+  },
+  "f_tools_96fc": {
+    "message": "Verktøy"
+  },
+  "f_try_asking_your_ai_app_3769": {
+    "message": "Prøv å spørre AI-appen din"
+  },
+  "f_what_does_my_saving_pattern__7f3c": {
+    "message": "Hva sier lagringsmønsteret mitt om interessene mine dette kvartalet? Hva vokser, og hva har falmet?"
+  },
+  "f_what_s_due_in_my_saved_for_l_c857": {
+    "message": "Hva venter på les-senere-listen min? Ranger etter hva jeg ville angret mest på å hoppe over, med 2 linjers sammendrag for hver."
+  },
+  "f_what_s_new_in_9c82": {
+    "message": "Nytt i {v}"
   }
 }

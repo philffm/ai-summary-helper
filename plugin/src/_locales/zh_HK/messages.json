@@ -5504,5 +5504,173 @@
   },
   "f_own_server_2c54": {
     "message": "{name} · 自有伺服器"
+  },
+  "f_add_aish_to_your_app_d502": {
+    "message": "將 AISH 加入你的應用程式"
+  },
+  "f_add_urls_to_your_inbox_bb8a": {
+    "message": "將網址加入收件匣"
+  },
+  "f_add_this_to_vscode_mcp_json__1fb5": {
+    "message": "將此加入專案的 .vscode/mcp.json。"
+  },
+  "f_add_this_to_lm_studio_s_mcp__e2eb": {
+    "message": "將此加入 LM Studio 的 mcp.json，然後重新啟動 LM Studio。"
+  },
+  "f_add_this_to_cursor_mcp_json__0a25": {
+    "message": "將此加入 ~/.cursor/mcp.json，然後重新啟動 Cursor。"
+  },
+  "f_always_on_fab5": {
+    "message": "一律開啟"
+  },
+  "f_copied_1305": {
+    "message": "已複製"
+  },
+  "f_copy_config_ed1a": {
+    "message": "複製設定"
+  },
+  "f_in_claude_desktop_settings_d_ce0e": {
+    "message": "在 Claude Desktop 中：Settings → Developer → Edit Config。貼上後結束 Claude Desktop 再重新開啟。"
+  },
+  "f_never_share_articles_tagged_670f": {
+    "message": "絕不分享帶此標籤的文章"
+  },
+  "f_now_c597": {
+    "message": "目前"
+  },
+  "f_off_by_default_switch_off_an_6412": {
+    "message": "預設關閉，可隨時關閉。"
+  },
+  "f_pair_aish_mcp_d79f": {
+    "message": "配對 aish-mcp"
+  },
+  "f_pairing_code_saved_ea33": {
+    "message": "已儲存配對碼。"
+  },
+  "f_paste_the_new_pairing_code_8f62": {
+    "message": "貼上新的配對碼"
+  },
+  "f_pick_your_app_and_copy_its_s_0746": {
+    "message": "選擇你的應用程式並複製其設定。"
+  },
+  "f_run_this_once_in_a_terminal__78b2": {
+    "message": "在終端機執行一次，會顯示配對碼。"
+  },
+  "f_save_code_cadd": {
+    "message": "儲存代碼"
+  },
+  "f_search_read_highlights_3910": {
+    "message": "搜尋、閱讀、螢光標記"
+  },
+  "f_select_and_copy_it_7f3a": {
+    "message": "選取並複製"
+  },
+  "f_turned_on_bc1c": {
+    "message": "已開啟"
+  },
+  "f_unread_subscription_items_114b": {
+    "message": "訂閱中的未讀項目"
+  },
+  "f_waiting_for_your_app_this_up_7cde": {
+    "message": "正在等待你的應用程式…會自動更新。"
+  },
+  "f_whole_saved_text_a31e": {
+    "message": "完整儲存的內文"
+  },
+  "f_your_ai_app_d117": {
+    "message": "你的 AI 應用程式"
+  },
+  "f_your_ai_apps_can_search_and__4b5d": {
+    "message": "你的 AI 應用程式現在可以搜尋和閱讀你的資料庫。"
+  },
+  "f_your_library_stays_private_u_5ea3": {
+    "message": "配對應用程式之前，你的資料庫會保持私密。"
+  },
+  "f_calls_today_bccb": {
+    "message": "今日呼叫"
+  },
+  "f_last_call_cf2b": {
+    "message": "上次呼叫"
+  },
+  "f_tools_255c": {
+    "message": "工具"
+  },
+  "f_calls_today_605f": {
+    "message": "今日 {n} 次呼叫"
+  },
+  "f_ai_apps_mcp_claude_desktop_l_27c6": {
+    "message": "AI 應用程式（MCP）：Claude Desktop、LM Studio 或 Cursor 可以搜尋你的資料庫"
+  },
+  "f_articles_saved_from_archive__a35b": {
+    "message": "從 archive.ph 或 Wayback Machine 儲存的文章會保留原始連結"
+  },
+  "f_contact_me_6f3b": {
+    "message": "聯絡我"
+  },
+  "f_contribute_on_github_f5d2": {
+    "message": "在 GitHub 上參與"
+  },
+  "f_copy_debug_info_21d9": {
+    "message": "複製偵錯資訊"
+  },
+  "f_diagnostics_1397": {
+    "message": "診斷"
+  },
+  "f_do_any_of_my_saved_articles__cf49": {
+    "message": "我儲存的某個主題文章觀點有衝突嗎？附上來源，列出雙方觀點。"
+  },
+  "f_from_my_feed_items_pick_the__937f": {
+    "message": "從我的訂閱項目中，依我的資料庫挑出 5 則值得儲存的並儲存。"
+  },
+  "f_full_changelog_2a28": {
+    "message": "完整更新紀錄 ›"
+  },
+  "f_give_feedback_465b": {
+    "message": "提供意見"
+  },
+  "f_hi_i_m_phil_141a": {
+    "message": "嗨，我是 Phil 👋"
+  },
+  "f_i_build_ai_summary_helper_on_470d": {
+    "message": "AI Summary Helper 由我一人開發。它是開源、無廣告，資料庫保存在你的裝置上。"
+  },
+  "f_needs_feeds_and_save_links_s_4125": {
+    "message": "需要先在下方開啟「訂閱」和「儲存連結」。"
+  },
+  "f_open_source_by_phil_wornath_949d": {
+    "message": "Phil Wornath 開源作品"
+  },
+  "f_paste_this_into_a_bug_report_88b2": {
+    "message": "把這段貼到問題回報裡，方便重現。"
+  },
+  "f_search_my_library_for_a_topi_8a2d": {
+    "message": "在我的資料庫中搜尋一個主題，完整閱讀前 5 篇文章，寫一份簡報並註明每個論點出自哪篇文章。"
+  },
+  "f_summarize_everything_i_saved_dd22": {
+    "message": "依主題彙整我過去 7 天儲存的所有內容，並引用我的螢光標記。"
+  },
+  "f_summarize_starts_right_away__0002": {
+    "message": "即使擴充功能處於休眠，摘要也會立刻開始"
+  },
+  "f_support_with_a_donation_ceb3": {
+    "message": "捐款支持"
+  },
+  "f_tap_one_to_copy_it_then_past_d83a": {
+    "message": "點一下複製，然後貼到你的應用程式。"
+  },
+  "f_tools_96fc": {
+    "message": "工具"
+  },
+  "f_try_asking_your_ai_app_3769": {
+    "message": "試著問問你的 AI 應用程式"
+  },
+  "f_what_does_my_saving_pattern__7f3c": {
+    "message": "從我的儲存習慣看，這一季我的興趣如何？哪些在上升，哪些已淡去？"
+  },
+  "f_what_s_due_in_my_saved_for_l_c857": {
+    "message": "我的稍後閱讀清單還有什麼？依錯過最可惜的順序排列，每則給 2 行簡介。"
+  },
+  "f_what_s_new_in_9c82": {
+    "message": "{v} 新功能"
   }
 }

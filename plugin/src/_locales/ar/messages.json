@@ -5504,5 +5504,173 @@
   },
   "f_own_server_2c54": {
     "message": "{name} · خادم خاص"
+  },
+  "f_add_aish_to_your_app_d502": {
+    "message": "أضف AISH إلى تطبيقك"
+  },
+  "f_add_urls_to_your_inbox_bb8a": {
+    "message": "إضافة روابط إلى الوارد"
+  },
+  "f_add_this_to_vscode_mcp_json__1fb5": {
+    "message": "أضف هذا إلى ‎.vscode/mcp.json في مشروعك."
+  },
+  "f_add_this_to_lm_studio_s_mcp__e2eb": {
+    "message": "أضف هذا إلى ملف mcp.json في LM Studio، ثم أعد تشغيل LM Studio."
+  },
+  "f_add_this_to_cursor_mcp_json__0a25": {
+    "message": "أضف هذا إلى ‎~/.cursor/mcp.json، ثم أعد تشغيل Cursor."
+  },
+  "f_always_on_fab5": {
+    "message": "مفعّل دائمًا"
+  },
+  "f_copied_1305": {
+    "message": "تم النسخ"
+  },
+  "f_copy_config_ed1a": {
+    "message": "نسخ الإعداد"
+  },
+  "f_in_claude_desktop_settings_d_ce0e": {
+    "message": "في Claude Desktop: Settings → Developer → Edit Config. الصق هذا، ثم أغلق Claude Desktop وافتحه من جديد."
+  },
+  "f_never_share_articles_tagged_670f": {
+    "message": "لا تشارك أبدًا المقالات الموسومة بـ"
+  },
+  "f_now_c597": {
+    "message": "الآن"
+  },
+  "f_off_by_default_switch_off_an_6412": {
+    "message": "متوقف افتراضيًا. يمكنك إيقافه في أي وقت."
+  },
+  "f_pair_aish_mcp_d79f": {
+    "message": "اقرن aish-mcp"
+  },
+  "f_pairing_code_saved_ea33": {
+    "message": "تم حفظ رمز الاقتران."
+  },
+  "f_paste_the_new_pairing_code_8f62": {
+    "message": "الصق رمز الاقتران الجديد"
+  },
+  "f_pick_your_app_and_copy_its_s_0746": {
+    "message": "اختر تطبيقك وانسخ إعداده."
+  },
+  "f_run_this_once_in_a_terminal__78b2": {
+    "message": "شغّل هذا مرة واحدة في الطرفية. سيعرض رمز اقتران."
+  },
+  "f_save_code_cadd": {
+    "message": "حفظ الرمز"
+  },
+  "f_search_read_highlights_3910": {
+    "message": "بحث، قراءة، تظليلات"
+  },
+  "f_select_and_copy_it_7f3a": {
+    "message": "حدّده وانسخه"
+  },
+  "f_turned_on_bc1c": {
+    "message": "مفعّل"
+  },
+  "f_unread_subscription_items_114b": {
+    "message": "غير المقروء من الاشتراكات"
+  },
+  "f_waiting_for_your_app_this_up_7cde": {
+    "message": "بانتظار تطبيقك… يتحدّث تلقائيًا."
+  },
+  "f_whole_saved_text_a31e": {
+    "message": "النص المحفوظ كاملًا"
+  },
+  "f_your_ai_app_d117": {
+    "message": "تطبيق الذكاء الاصطناعي"
+  },
+  "f_your_ai_apps_can_search_and__4b5d": {
+    "message": "يمكن لتطبيقات الذكاء الاصطناعي الآن البحث في مكتبتك وقراءتها."
+  },
+  "f_your_library_stays_private_u_5ea3": {
+    "message": "تبقى مكتبتك خاصة حتى تقرن تطبيقًا."
+  },
+  "f_calls_today_bccb": {
+    "message": "استدعاءات اليوم"
+  },
+  "f_last_call_cf2b": {
+    "message": "آخر استدعاء"
+  },
+  "f_tools_255c": {
+    "message": "أدوات"
+  },
+  "f_calls_today_605f": {
+    "message": "{n} استدعاء اليوم"
+  },
+  "f_ai_apps_mcp_claude_desktop_l_27c6": {
+    "message": "تطبيقات الذكاء الاصطناعي (MCP): يمكن لـ Claude Desktop أو LM Studio أو Cursor البحث في مكتبتك"
+  },
+  "f_articles_saved_from_archive__a35b": {
+    "message": "المقالات المحفوظة من archive.ph أو Wayback Machine تحتفظ بالرابط الأصلي"
+  },
+  "f_contact_me_6f3b": {
+    "message": "راسلني"
+  },
+  "f_contribute_on_github_f5d2": {
+    "message": "ساهم على GitHub"
+  },
+  "f_copy_debug_info_21d9": {
+    "message": "نسخ معلومات التصحيح"
+  },
+  "f_diagnostics_1397": {
+    "message": "التشخيص"
+  },
+  "f_do_any_of_my_saved_articles__cf49": {
+    "message": "هل تتعارض مقالاتي المحفوظة حول موضوع ما؟ اعرض الجانبين مع المصادر."
+  },
+  "f_from_my_feed_items_pick_the__937f": {
+    "message": "من عناصر خلاصاتي، اختر 5 تستحق الحفظ بناءً على مكتبتي واحفظها."
+  },
+  "f_full_changelog_2a28": {
+    "message": "سجل التغييرات كاملًا ›"
+  },
+  "f_give_feedback_465b": {
+    "message": "أرسل ملاحظاتك"
+  },
+  "f_hi_i_m_phil_141a": {
+    "message": "مرحبًا، أنا فيل 👋"
+  },
+  "f_i_build_ai_summary_helper_on_470d": {
+    "message": "أطوّر AI Summary Helper بمفردي. إنه مفتوح المصدر، بلا إعلانات، ويُبقي مكتبتك على جهازك."
+  },
+  "f_needs_feeds_and_save_links_s_4125": {
+    "message": "يتطلب تفعيل الخلاصات وحفظ الروابط أدناه."
+  },
+  "f_open_source_by_phil_wornath_949d": {
+    "message": "مفتوح المصدر من فيل ورنات"
+  },
+  "f_paste_this_into_a_bug_report_88b2": {
+    "message": "الصق هذا في بلاغ الخطأ ليمكن تكراره."
+  },
+  "f_search_my_library_for_a_topi_8a2d": {
+    "message": "ابحث في مكتبتي عن موضوع، واقرأ أفضل 5 مقالات كاملة، واكتب ملخصًا يذكر المقال الذي جاء منه كل ادعاء."
+  },
+  "f_summarize_everything_i_saved_dd22": {
+    "message": "لخّص كل ما حفظته في آخر 7 أيام، مجمّعًا حسب الموضوع، مع اقتباس تظليلاتي."
+  },
+  "f_summarize_starts_right_away__0002": {
+    "message": "يبدأ التلخيص فورًا حتى لو كانت الإضافة في وضع السكون"
+  },
+  "f_support_with_a_donation_ceb3": {
+    "message": "ادعم بتبرع"
+  },
+  "f_tap_one_to_copy_it_then_past_d83a": {
+    "message": "اضغط على أحدها لنسخه، ثم الصقه في تطبيقك."
+  },
+  "f_tools_96fc": {
+    "message": "أدوات"
+  },
+  "f_try_asking_your_ai_app_3769": {
+    "message": "جرّب أن تسأل تطبيق الذكاء الاصطناعي"
+  },
+  "f_what_does_my_saving_pattern__7f3c": {
+    "message": "ماذا يقول نمط حفظي عن اهتماماتي هذا الربع؟ ما الذي يصعد وما الذي خفت؟"
+  },
+  "f_what_s_due_in_my_saved_for_l_c857": {
+    "message": "ما المستحق في قائمة القراءة لاحقًا؟ رتّبها حسب ما سأندم أكثر على تفويته، مع ملخص من سطرين لكل منها."
+  },
+  "f_what_s_new_in_9c82": {
+    "message": "الجديد في {v}"
   }
 }

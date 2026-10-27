@@ -5504,5 +5504,173 @@
   },
   "f_own_server_2c54": {
     "message": "{name} · 自分のサーバー"
+  },
+  "f_add_aish_to_your_app_d502": {
+    "message": "アプリにAISHを追加"
+  },
+  "f_add_urls_to_your_inbox_bb8a": {
+    "message": "受信箱にURLを追加"
+  },
+  "f_add_this_to_vscode_mcp_json__1fb5": {
+    "message": "プロジェクトの .vscode/mcp.json に追加します。"
+  },
+  "f_add_this_to_lm_studio_s_mcp__e2eb": {
+    "message": "LM Studio の mcp.json に追加し、LM Studio を再起動します。"
+  },
+  "f_add_this_to_cursor_mcp_json__0a25": {
+    "message": "~/.cursor/mcp.json に追加し、Cursor を再起動します。"
+  },
+  "f_always_on_fab5": {
+    "message": "常にオン"
+  },
+  "f_copied_1305": {
+    "message": "コピーしました"
+  },
+  "f_copy_config_ed1a": {
+    "message": "設定をコピー"
+  },
+  "f_in_claude_desktop_settings_d_ce0e": {
+    "message": "Claude Desktop で Settings → Developer → Edit Config を開き、これを貼り付けてから Claude Desktop を終了して再度開きます。"
+  },
+  "f_never_share_articles_tagged_670f": {
+    "message": "このタグの記事は共有しない"
+  },
+  "f_now_c597": {
+    "message": "今"
+  },
+  "f_off_by_default_switch_off_an_6412": {
+    "message": "初期設定はオフ。いつでもオフにできます。"
+  },
+  "f_pair_aish_mcp_d79f": {
+    "message": "aish-mcp をペアリング"
+  },
+  "f_pairing_code_saved_ea33": {
+    "message": "ペアリングコードを保存しました。"
+  },
+  "f_paste_the_new_pairing_code_8f62": {
+    "message": "新しいペアリングコードを貼り付け"
+  },
+  "f_pick_your_app_and_copy_its_s_0746": {
+    "message": "アプリを選んで設定をコピーします。"
+  },
+  "f_run_this_once_in_a_terminal__78b2": {
+    "message": "ターミナルで一度だけ実行すると、ペアリングコードが表示されます。"
+  },
+  "f_save_code_cadd": {
+    "message": "コードを保存"
+  },
+  "f_search_read_highlights_3910": {
+    "message": "検索・閲覧・ハイライト"
+  },
+  "f_select_and_copy_it_7f3a": {
+    "message": "選択してコピー"
+  },
+  "f_turned_on_bc1c": {
+    "message": "オン"
+  },
+  "f_unread_subscription_items_114b": {
+    "message": "購読の未読アイテム"
+  },
+  "f_waiting_for_your_app_this_up_7cde": {
+    "message": "アプリを待っています…自動で更新されます。"
+  },
+  "f_whole_saved_text_a31e": {
+    "message": "保存した全文"
+  },
+  "f_your_ai_app_d117": {
+    "message": "AIアプリ"
+  },
+  "f_your_ai_apps_can_search_and__4b5d": {
+    "message": "AIアプリがライブラリを検索・閲覧できるようになりました。"
+  },
+  "f_your_library_stays_private_u_5ea3": {
+    "message": "アプリをペアリングするまでライブラリは非公開です。"
+  },
+  "f_calls_today_bccb": {
+    "message": "今日の呼び出し"
+  },
+  "f_last_call_cf2b": {
+    "message": "最終呼び出し"
+  },
+  "f_tools_255c": {
+    "message": "ツール"
+  },
+  "f_calls_today_605f": {
+    "message": "今日 {n} 回の呼び出し"
+  },
+  "f_ai_apps_mcp_claude_desktop_l_27c6": {
+    "message": "AIアプリ（MCP）：Claude Desktop、LM Studio、Cursor からライブラリを検索できます"
+  },
+  "f_articles_saved_from_archive__a35b": {
+    "message": "archive.ph や Wayback Machine から保存した記事は元のリンクを保持します"
+  },
+  "f_contact_me_6f3b": {
+    "message": "連絡する"
+  },
+  "f_contribute_on_github_f5d2": {
+    "message": "GitHub で協力する"
+  },
+  "f_copy_debug_info_21d9": {
+    "message": "デバッグ情報をコピー"
+  },
+  "f_diagnostics_1397": {
+    "message": "診断"
+  },
+  "f_do_any_of_my_saved_articles__cf49": {
+    "message": "あるテーマで保存した記事どうしで意見が割れていますか？出典付きで両方の立場を示して。"
+  },
+  "f_from_my_feed_items_pick_the__937f": {
+    "message": "フィードの項目から、ライブラリに照らして保存する価値のある5件を選んで保存して。"
+  },
+  "f_full_changelog_2a28": {
+    "message": "変更履歴をすべて見る ›"
+  },
+  "f_give_feedback_465b": {
+    "message": "フィードバックを送る"
+  },
+  "f_hi_i_m_phil_141a": {
+    "message": "こんにちは、Phil です 👋"
+  },
+  "f_i_build_ai_summary_helper_on_470d": {
+    "message": "AI Summary Helper はひとりで作っています。オープンソースで広告なし、ライブラリはあなたのデバイスに保存されます。"
+  },
+  "f_needs_feeds_and_save_links_s_4125": {
+    "message": "下の「フィード」と「リンクの保存」をオンにする必要があります。"
+  },
+  "f_open_source_by_phil_wornath_949d": {
+    "message": "オープンソース・制作 Phil Wornath"
+  },
+  "f_paste_this_into_a_bug_report_88b2": {
+    "message": "再現できるよう、バグ報告に貼り付けてください。"
+  },
+  "f_search_my_library_for_a_topi_8a2d": {
+    "message": "ライブラリでテーマを検索し、上位5件の記事を全文で読み、各主張がどの記事によるものかを示すブリーフを書いて。"
+  },
+  "f_summarize_everything_i_saved_dd22": {
+    "message": "この7日間に保存したものをテーマ別にまとめ、私のハイライトを引用して要約して。"
+  },
+  "f_summarize_starts_right_away__0002": {
+    "message": "拡張機能がスリープ中でも、要約がすぐに始まります"
+  },
+  "f_support_with_a_donation_ceb3": {
+    "message": "寄付で応援する"
+  },
+  "f_tap_one_to_copy_it_then_past_d83a": {
+    "message": "タップしてコピーし、アプリに貼り付けます。"
+  },
+  "f_tools_96fc": {
+    "message": "ツール"
+  },
+  "f_try_asking_your_ai_app_3769": {
+    "message": "AIアプリにこう聞いてみましょう"
+  },
+  "f_what_does_my_saving_pattern__7f3c": {
+    "message": "今四半期の保存傾向から、私の関心について何がわかる？伸びているものと薄れたものは？"
+  },
+  "f_what_s_due_in_my_saved_for_l_c857": {
+    "message": "後で読むリストに何が残っている？見逃したら一番後悔する順に並べ、それぞれ2行で要約して。"
+  },
+  "f_what_s_new_in_9c82": {
+    "message": "{v} の新機能"
   }
 }

@@ -5787,5 +5787,173 @@
   },
   "f_own_server_2c54": {
     "message": "{name} · server sendiri"
+  },
+  "f_add_aish_to_your_app_d502": {
+    "message": "Tambahkan AISH ke aplikasimu"
+  },
+  "f_add_urls_to_your_inbox_bb8a": {
+    "message": "Tambah URL ke kotak masuk"
+  },
+  "f_add_this_to_vscode_mcp_json__1fb5": {
+    "message": "Tambahkan ini ke .vscode/mcp.json di proyekmu."
+  },
+  "f_add_this_to_lm_studio_s_mcp__e2eb": {
+    "message": "Tambahkan ini ke mcp.json LM Studio, lalu mulai ulang LM Studio."
+  },
+  "f_add_this_to_cursor_mcp_json__0a25": {
+    "message": "Tambahkan ini ke ~/.cursor/mcp.json, lalu mulai ulang Cursor."
+  },
+  "f_always_on_fab5": {
+    "message": "Selalu aktif"
+  },
+  "f_copied_1305": {
+    "message": "Disalin"
+  },
+  "f_copy_config_ed1a": {
+    "message": "Salin konfigurasi"
+  },
+  "f_in_claude_desktop_settings_d_ce0e": {
+    "message": "Di Claude Desktop: Settings → Developer → Edit Config. Tempel ini, lalu tutup Claude Desktop dan buka lagi."
+  },
+  "f_never_share_articles_tagged_670f": {
+    "message": "Jangan pernah bagikan artikel bertag"
+  },
+  "f_now_c597": {
+    "message": "Sekarang"
+  },
+  "f_off_by_default_switch_off_an_6412": {
+    "message": "Mati secara default. Bisa dimatikan kapan saja."
+  },
+  "f_pair_aish_mcp_d79f": {
+    "message": "Pasangkan aish-mcp"
+  },
+  "f_pairing_code_saved_ea33": {
+    "message": "Kode pemasangan disimpan."
+  },
+  "f_paste_the_new_pairing_code_8f62": {
+    "message": "Tempel kode pemasangan baru"
+  },
+  "f_pick_your_app_and_copy_its_s_0746": {
+    "message": "Pilih aplikasimu dan salin pengaturannya."
+  },
+  "f_run_this_once_in_a_terminal__78b2": {
+    "message": "Jalankan ini sekali di terminal. Ini menampilkan kode pemasangan."
+  },
+  "f_save_code_cadd": {
+    "message": "Simpan kode"
+  },
+  "f_search_read_highlights_3910": {
+    "message": "Cari, baca, sorotan"
+  },
+  "f_select_and_copy_it_7f3a": {
+    "message": "Pilih lalu salin"
+  },
+  "f_turned_on_bc1c": {
+    "message": "Diaktifkan"
+  },
+  "f_unread_subscription_items_114b": {
+    "message": "Item langganan belum dibaca"
+  },
+  "f_waiting_for_your_app_this_up_7cde": {
+    "message": "Menunggu aplikasimu… Ini diperbarui sendiri."
+  },
+  "f_whole_saved_text_a31e": {
+    "message": "Seluruh teks tersimpan"
+  },
+  "f_your_ai_app_d117": {
+    "message": "Aplikasi AI-mu"
+  },
+  "f_your_ai_apps_can_search_and__4b5d": {
+    "message": "Aplikasi AI-mu sekarang bisa mencari dan membaca pustakamu."
+  },
+  "f_your_library_stays_private_u_5ea3": {
+    "message": "Pustakamu tetap pribadi sampai kamu memasangkan aplikasi."
+  },
+  "f_calls_today_bccb": {
+    "message": "panggilan hari ini"
+  },
+  "f_last_call_cf2b": {
+    "message": "panggilan terakhir"
+  },
+  "f_tools_255c": {
+    "message": "alat"
+  },
+  "f_calls_today_605f": {
+    "message": "{n} panggilan hari ini"
+  },
+  "f_ai_apps_mcp_claude_desktop_l_27c6": {
+    "message": "Aplikasi AI (MCP): Claude Desktop, LM Studio, atau Cursor bisa mencari di pustakamu"
+  },
+  "f_articles_saved_from_archive__a35b": {
+    "message": "Artikel yang disimpan dari archive.ph atau Wayback Machine tetap memakai tautan aslinya"
+  },
+  "f_contact_me_6f3b": {
+    "message": "Hubungi saya"
+  },
+  "f_contribute_on_github_f5d2": {
+    "message": "Berkontribusi di GitHub"
+  },
+  "f_copy_debug_info_21d9": {
+    "message": "Salin info debug"
+  },
+  "f_diagnostics_1397": {
+    "message": "Diagnostik"
+  },
+  "f_do_any_of_my_saved_articles__cf49": {
+    "message": "Apakah artikel tersimpanku tentang suatu topik saling bertentangan? Tunjukkan kedua sisi beserta sumbernya."
+  },
+  "f_from_my_feed_items_pick_the__937f": {
+    "message": "Dari item feed-ku, pilih 5 yang layak disimpan berdasarkan pustakaku, lalu simpan."
+  },
+  "f_full_changelog_2a28": {
+    "message": "Changelog lengkap ›"
+  },
+  "f_give_feedback_465b": {
+    "message": "Beri masukan"
+  },
+  "f_hi_i_m_phil_141a": {
+    "message": "Hai, saya Phil 👋"
+  },
+  "f_i_build_ai_summary_helper_on_470d": {
+    "message": "Saya membuat AI Summary Helper sendiri. Ini open source, tanpa iklan, dan pustakamu tetap di perangkatmu."
+  },
+  "f_needs_feeds_and_save_links_s_4125": {
+    "message": "Perlu Feed dan Simpan tautan diaktifkan di bawah."
+  },
+  "f_open_source_by_phil_wornath_949d": {
+    "message": "Open source oleh Phil Wornath"
+  },
+  "f_paste_this_into_a_bug_report_88b2": {
+    "message": "Tempel ini ke laporan bug agar bisa direproduksi."
+  },
+  "f_search_my_library_for_a_topi_8a2d": {
+    "message": "Cari topik di pustakaku, baca lengkap 5 artikel teratas, dan tulis ringkasan yang menyebut artikel sumber untuk tiap klaim."
+  },
+  "f_summarize_everything_i_saved_dd22": {
+    "message": "Ringkas semua yang kusimpan 7 hari terakhir, dikelompokkan per tema, dengan kutipan sorotanku."
+  },
+  "f_summarize_starts_right_away__0002": {
+    "message": "Ringkasan langsung dimulai, bahkan saat ekstensi sedang tidur"
+  },
+  "f_support_with_a_donation_ceb3": {
+    "message": "Dukung dengan donasi"
+  },
+  "f_tap_one_to_copy_it_then_past_d83a": {
+    "message": "Ketuk salah satu untuk menyalin, lalu tempel di aplikasimu."
+  },
+  "f_tools_96fc": {
+    "message": "Alat"
+  },
+  "f_try_asking_your_ai_app_3769": {
+    "message": "Coba tanyakan ke aplikasi AI-mu"
+  },
+  "f_what_does_my_saving_pattern__7f3c": {
+    "message": "Apa kata pola menyimpanku tentang minatku kuartal ini? Apa yang naik dan apa yang memudar?"
+  },
+  "f_what_s_due_in_my_saved_for_l_c857": {
+    "message": "Apa yang menunggu di daftar baca-nanti-ku? Urutkan menurut yang paling kusesali jika terlewat, dengan ringkasan 2 baris untuk masing-masing."
+  },
+  "f_what_s_new_in_9c82": {
+    "message": "Yang baru di {v}"
   }
 }

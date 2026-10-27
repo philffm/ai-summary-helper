@@ -5504,5 +5504,173 @@
   },
   "f_own_server_2c54": {
     "message": "{name} · servidor propio"
+  },
+  "f_add_aish_to_your_app_d502": {
+    "message": "Añade AISH a tu app"
+  },
+  "f_add_urls_to_your_inbox_bb8a": {
+    "message": "Añadir URL a tu bandeja"
+  },
+  "f_add_this_to_vscode_mcp_json__1fb5": {
+    "message": "Añade esto a .vscode/mcp.json en tu proyecto."
+  },
+  "f_add_this_to_lm_studio_s_mcp__e2eb": {
+    "message": "Añade esto al mcp.json de LM Studio y reinicia LM Studio."
+  },
+  "f_add_this_to_cursor_mcp_json__0a25": {
+    "message": "Añade esto a ~/.cursor/mcp.json y reinicia Cursor."
+  },
+  "f_always_on_fab5": {
+    "message": "Siempre activo"
+  },
+  "f_copied_1305": {
+    "message": "Copiado"
+  },
+  "f_copy_config_ed1a": {
+    "message": "Copiar config"
+  },
+  "f_in_claude_desktop_settings_d_ce0e": {
+    "message": "En Claude Desktop: Settings → Developer → Edit Config. Pega esto, cierra Claude Desktop y vuelve a abrirlo."
+  },
+  "f_never_share_articles_tagged_670f": {
+    "message": "No compartir nunca artículos con la etiqueta"
+  },
+  "f_now_c597": {
+    "message": "Ahora"
+  },
+  "f_off_by_default_switch_off_an_6412": {
+    "message": "Desactivado por defecto. Desactívalo cuando quieras."
+  },
+  "f_pair_aish_mcp_d79f": {
+    "message": "Vincular aish-mcp"
+  },
+  "f_pairing_code_saved_ea33": {
+    "message": "Código de vinculación guardado."
+  },
+  "f_paste_the_new_pairing_code_8f62": {
+    "message": "Pega el nuevo código de vinculación"
+  },
+  "f_pick_your_app_and_copy_its_s_0746": {
+    "message": "Elige tu app y copia su ajuste."
+  },
+  "f_run_this_once_in_a_terminal__78b2": {
+    "message": "Ejecuta esto una vez en un terminal. Muestra un código de vinculación."
+  },
+  "f_save_code_cadd": {
+    "message": "Guardar código"
+  },
+  "f_search_read_highlights_3910": {
+    "message": "Buscar, leer, destacados"
+  },
+  "f_select_and_copy_it_7f3a": {
+    "message": "Selecciónalo y cópialo"
+  },
+  "f_turned_on_bc1c": {
+    "message": "Activado"
+  },
+  "f_unread_subscription_items_114b": {
+    "message": "No leídos de suscripciones"
+  },
+  "f_waiting_for_your_app_this_up_7cde": {
+    "message": "Esperando a tu app… Se actualiza sola."
+  },
+  "f_whole_saved_text_a31e": {
+    "message": "Texto guardado completo"
+  },
+  "f_your_ai_app_d117": {
+    "message": "Tu app de IA"
+  },
+  "f_your_ai_apps_can_search_and__4b5d": {
+    "message": "Tus apps de IA ya pueden buscar y leer tu biblioteca."
+  },
+  "f_your_library_stays_private_u_5ea3": {
+    "message": "Tu biblioteca es privada hasta que vincules una app."
+  },
+  "f_calls_today_bccb": {
+    "message": "llamadas hoy"
+  },
+  "f_last_call_cf2b": {
+    "message": "última llamada"
+  },
+  "f_tools_255c": {
+    "message": "herramientas"
+  },
+  "f_calls_today_605f": {
+    "message": "{n} llamadas hoy"
+  },
+  "f_ai_apps_mcp_claude_desktop_l_27c6": {
+    "message": "Apps de IA (MCP): Claude Desktop, LM Studio o Cursor pueden buscar en tu biblioteca"
+  },
+  "f_articles_saved_from_archive__a35b": {
+    "message": "Los artículos guardados desde archive.ph o la Wayback Machine conservan el enlace original"
+  },
+  "f_contact_me_6f3b": {
+    "message": "Contactarme"
+  },
+  "f_contribute_on_github_f5d2": {
+    "message": "Contribuir en GitHub"
+  },
+  "f_copy_debug_info_21d9": {
+    "message": "Copiar info de depuración"
+  },
+  "f_diagnostics_1397": {
+    "message": "Diagnóstico"
+  },
+  "f_do_any_of_my_saved_articles__cf49": {
+    "message": "¿Se contradicen mis artículos guardados sobre un tema? Muestra ambas posturas con fuentes."
+  },
+  "f_from_my_feed_items_pick_the__937f": {
+    "message": "De mis elementos de feeds, elige los 5 que valen la pena según mi biblioteca y guárdalos."
+  },
+  "f_full_changelog_2a28": {
+    "message": "Registro de cambios completo ›"
+  },
+  "f_give_feedback_465b": {
+    "message": "Dar opinión"
+  },
+  "f_hi_i_m_phil_141a": {
+    "message": "Hola, soy Phil 👋"
+  },
+  "f_i_build_ai_summary_helper_on_470d": {
+    "message": "Desarrollo AI Summary Helper por mi cuenta. Es de código abierto, no tiene anuncios y tu biblioteca se queda en tu dispositivo."
+  },
+  "f_needs_feeds_and_save_links_s_4125": {
+    "message": "Requiere activar Feeds y Guardar enlaces abajo."
+  },
+  "f_open_source_by_phil_wornath_949d": {
+    "message": "Código abierto, por Phil Wornath"
+  },
+  "f_paste_this_into_a_bug_report_88b2": {
+    "message": "Pega esto en un informe de error para poder reproducirlo."
+  },
+  "f_search_my_library_for_a_topi_8a2d": {
+    "message": "Busca un tema en mi biblioteca, lee completos los 5 mejores artículos y escribe un resumen que indique de qué artículo sale cada afirmación."
+  },
+  "f_summarize_everything_i_saved_dd22": {
+    "message": "Resume todo lo que guardé en los últimos 7 días, agrupado por tema y citando mis destacados."
+  },
+  "f_summarize_starts_right_away__0002": {
+    "message": "Resumir empieza al instante, aunque la extensión estuviera dormida"
+  },
+  "f_support_with_a_donation_ceb3": {
+    "message": "Apoyar con una donación"
+  },
+  "f_tap_one_to_copy_it_then_past_d83a": {
+    "message": "Toca uno para copiarlo y pégalo en tu app."
+  },
+  "f_tools_96fc": {
+    "message": "Herramientas"
+  },
+  "f_try_asking_your_ai_app_3769": {
+    "message": "Prueba a preguntarle a tu app de IA"
+  },
+  "f_what_does_my_saving_pattern__7f3c": {
+    "message": "¿Qué dice mi forma de guardar sobre mis intereses este trimestre? ¿Qué sube y qué se ha apagado?"
+  },
+  "f_what_s_due_in_my_saved_for_l_c857": {
+    "message": "¿Qué tengo pendiente en mi lista para más tarde? Ordénalo por lo que más lamentaría saltarme, con un resumen de 2 líneas para cada uno."
+  },
+  "f_what_s_new_in_9c82": {
+    "message": "Novedades de la {v}"
   }
 }

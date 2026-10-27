@@ -5787,5 +5787,173 @@
   },
   "f_own_server_2c54": {
     "message": "{name} · kendi sunucun"
+  },
+  "f_add_aish_to_your_app_d502": {
+    "message": "AISH'i uygulamana ekle"
+  },
+  "f_add_urls_to_your_inbox_bb8a": {
+    "message": "Gelen kutuna URL ekleme"
+  },
+  "f_add_this_to_vscode_mcp_json__1fb5": {
+    "message": "Bunu projendeki .vscode/mcp.json dosyasına ekle."
+  },
+  "f_add_this_to_lm_studio_s_mcp__e2eb": {
+    "message": "Bunu LM Studio'nun mcp.json dosyasına ekle, sonra LM Studio'yu yeniden başlat."
+  },
+  "f_add_this_to_cursor_mcp_json__0a25": {
+    "message": "Bunu ~/.cursor/mcp.json dosyasına ekle, sonra Cursor'ı yeniden başlat."
+  },
+  "f_always_on_fab5": {
+    "message": "Hep açık"
+  },
+  "f_copied_1305": {
+    "message": "Kopyalandı"
+  },
+  "f_copy_config_ed1a": {
+    "message": "Yapılandırmayı kopyala"
+  },
+  "f_in_claude_desktop_settings_d_ce0e": {
+    "message": "Claude Desktop'ta: Settings → Developer → Edit Config. Bunu yapıştır, sonra Claude Desktop'tan çıkıp yeniden aç."
+  },
+  "f_never_share_articles_tagged_670f": {
+    "message": "Bu etiketli makaleleri asla paylaşma"
+  },
+  "f_now_c597": {
+    "message": "Şimdi"
+  },
+  "f_off_by_default_switch_off_an_6412": {
+    "message": "Varsayılan olarak kapalı. İstediğin zaman kapat."
+  },
+  "f_pair_aish_mcp_d79f": {
+    "message": "aish-mcp'yi eşle"
+  },
+  "f_pairing_code_saved_ea33": {
+    "message": "Eşleme kodu kaydedildi."
+  },
+  "f_paste_the_new_pairing_code_8f62": {
+    "message": "Yeni eşleme kodunu yapıştır"
+  },
+  "f_pick_your_app_and_copy_its_s_0746": {
+    "message": "Uygulamanı seç ve ayarını kopyala."
+  },
+  "f_run_this_once_in_a_terminal__78b2": {
+    "message": "Bunu bir kez terminalde çalıştır. Bir eşleme kodu yazdırır."
+  },
+  "f_save_code_cadd": {
+    "message": "Kodu kaydet"
+  },
+  "f_search_read_highlights_3910": {
+    "message": "Arama, okuma, vurgular"
+  },
+  "f_select_and_copy_it_7f3a": {
+    "message": "Seç ve kopyala"
+  },
+  "f_turned_on_bc1c": {
+    "message": "Açıldı"
+  },
+  "f_unread_subscription_items_114b": {
+    "message": "Aboneliklerden okunmamışlar"
+  },
+  "f_waiting_for_your_app_this_up_7cde": {
+    "message": "Uygulaman bekleniyor… Kendiliğinden güncellenir."
+  },
+  "f_whole_saved_text_a31e": {
+    "message": "Kaydedilen metnin tamamı"
+  },
+  "f_your_ai_app_d117": {
+    "message": "Yapay zekâ uygulaman"
+  },
+  "f_your_ai_apps_can_search_and__4b5d": {
+    "message": "Yapay zekâ uygulamaların artık kitaplığında arama yapıp okuyabilir."
+  },
+  "f_your_library_stays_private_u_5ea3": {
+    "message": "Bir uygulama eşleyene kadar kitaplığın gizli kalır."
+  },
+  "f_calls_today_bccb": {
+    "message": "bugünkü çağrı"
+  },
+  "f_last_call_cf2b": {
+    "message": "son çağrı"
+  },
+  "f_tools_255c": {
+    "message": "araç"
+  },
+  "f_calls_today_605f": {
+    "message": "Bugün {n} çağrı"
+  },
+  "f_ai_apps_mcp_claude_desktop_l_27c6": {
+    "message": "Yapay zekâ uygulamaları (MCP): Claude Desktop, LM Studio veya Cursor kitaplığında arama yapabilir"
+  },
+  "f_articles_saved_from_archive__a35b": {
+    "message": "archive.ph veya Wayback Machine'den kaydedilen makaleler asıl bağlantıyı korur"
+  },
+  "f_contact_me_6f3b": {
+    "message": "Bana yaz"
+  },
+  "f_contribute_on_github_f5d2": {
+    "message": "GitHub'da katkıda bulun"
+  },
+  "f_copy_debug_info_21d9": {
+    "message": "Hata ayıklama bilgisini kopyala"
+  },
+  "f_diagnostics_1397": {
+    "message": "Tanılama"
+  },
+  "f_do_any_of_my_saved_articles__cf49": {
+    "message": "Bir konudaki kayıtlı makalelerim birbiriyle çelişiyor mu? İki tarafı da kaynaklarıyla göster."
+  },
+  "f_from_my_feed_items_pick_the__937f": {
+    "message": "Akış öğelerimden kitaplığıma göre kaydetmeye değer 5 tanesini seç ve kaydet."
+  },
+  "f_full_changelog_2a28": {
+    "message": "Tüm değişiklik günlüğü ›"
+  },
+  "f_give_feedback_465b": {
+    "message": "Geri bildirim ver"
+  },
+  "f_hi_i_m_phil_141a": {
+    "message": "Merhaba, ben Phil 👋"
+  },
+  "f_i_build_ai_summary_helper_on_470d": {
+    "message": "AI Summary Helper'ı tek başıma geliştiriyorum. Açık kaynak, reklamsız ve kitaplığını cihazında tutuyor."
+  },
+  "f_needs_feeds_and_save_links_s_4125": {
+    "message": "Aşağıda Akışlar ve Bağlantı kaydetme açık olmalı."
+  },
+  "f_open_source_by_phil_wornath_949d": {
+    "message": "Phil Wornath'tan açık kaynak"
+  },
+  "f_paste_this_into_a_bug_report_88b2": {
+    "message": "Yeniden üretilebilmesi için bunu hata raporuna yapıştır."
+  },
+  "f_search_my_library_for_a_topi_8a2d": {
+    "message": "Kitaplığımda bir konuyu ara, en iyi 5 makaleyi baştan sona oku ve her iddianın hangi makaleden geldiğini belirten bir özet yaz."
+  },
+  "f_summarize_everything_i_saved_dd22": {
+    "message": "Son 7 günde kaydettiğim her şeyi temalara göre grupla ve vurgularımdan alıntı yaparak özetle."
+  },
+  "f_summarize_starts_right_away__0002": {
+    "message": "Özetleme, eklenti uykudayken bile hemen başlar"
+  },
+  "f_support_with_a_donation_ceb3": {
+    "message": "Bağışla destek ol"
+  },
+  "f_tap_one_to_copy_it_then_past_d83a": {
+    "message": "Kopyalamak için birine dokun, sonra uygulamana yapıştır."
+  },
+  "f_tools_96fc": {
+    "message": "Araçlar"
+  },
+  "f_try_asking_your_ai_app_3769": {
+    "message": "Yapay zekâ uygulamana sormayı dene"
+  },
+  "f_what_does_my_saving_pattern__7f3c": {
+    "message": "Kaydetme alışkanlığım bu çeyrekte ilgi alanlarım hakkında ne söylüyor? Ne yükseliyor, ne söndü?"
+  },
+  "f_what_s_due_in_my_saved_for_l_c857": {
+    "message": "Sonra okuma listemde neler var? Atlarsam en çok pişman olacaklarıma göre sırala ve her biri için 2 satırlık özet ver."
+  },
+  "f_what_s_new_in_9c82": {
+    "message": "{v} sürümündeki yenilikler"
   }
 }

@@ -5787,5 +5787,173 @@
   },
   "f_own_server_2c54": {
     "message": "{name} · eigen server"
+  },
+  "f_add_aish_to_your_app_d502": {
+    "message": "Voeg AISH toe aan je app"
+  },
+  "f_add_urls_to_your_inbox_bb8a": {
+    "message": "URL's aan je inbox toevoegen"
+  },
+  "f_add_this_to_vscode_mcp_json__1fb5": {
+    "message": "Voeg dit toe aan .vscode/mcp.json in je project."
+  },
+  "f_add_this_to_lm_studio_s_mcp__e2eb": {
+    "message": "Voeg dit toe aan de mcp.json van LM Studio en herstart LM Studio."
+  },
+  "f_add_this_to_cursor_mcp_json__0a25": {
+    "message": "Voeg dit toe aan ~/.cursor/mcp.json en herstart Cursor."
+  },
+  "f_always_on_fab5": {
+    "message": "Altijd aan"
+  },
+  "f_copied_1305": {
+    "message": "Gekopieerd"
+  },
+  "f_copy_config_ed1a": {
+    "message": "Config kopiëren"
+  },
+  "f_in_claude_desktop_settings_d_ce0e": {
+    "message": "In Claude Desktop: Settings → Developer → Edit Config. Plak dit, sluit Claude Desktop en open het opnieuw."
+  },
+  "f_never_share_articles_tagged_670f": {
+    "message": "Artikelen met deze tag nooit delen"
+  },
+  "f_now_c597": {
+    "message": "Nu"
+  },
+  "f_off_by_default_switch_off_an_6412": {
+    "message": "Standaard uit. Altijd uit te zetten."
+  },
+  "f_pair_aish_mcp_d79f": {
+    "message": "aish-mcp koppelen"
+  },
+  "f_pairing_code_saved_ea33": {
+    "message": "Koppelcode opgeslagen."
+  },
+  "f_paste_the_new_pairing_code_8f62": {
+    "message": "Plak de nieuwe koppelcode"
+  },
+  "f_pick_your_app_and_copy_its_s_0746": {
+    "message": "Kies je app en kopieer de instelling."
+  },
+  "f_run_this_once_in_a_terminal__78b2": {
+    "message": "Voer dit één keer uit in een terminal. Het toont een koppelcode."
+  },
+  "f_save_code_cadd": {
+    "message": "Code opslaan"
+  },
+  "f_search_read_highlights_3910": {
+    "message": "Zoeken, lezen, highlights"
+  },
+  "f_select_and_copy_it_7f3a": {
+    "message": "Selecteer en kopieer"
+  },
+  "f_turned_on_bc1c": {
+    "message": "Ingeschakeld"
+  },
+  "f_unread_subscription_items_114b": {
+    "message": "Ongelezen uit abonnementen"
+  },
+  "f_waiting_for_your_app_this_up_7cde": {
+    "message": "Wachten op je app… Dit werkt zichzelf bij."
+  },
+  "f_whole_saved_text_a31e": {
+    "message": "Volledige opgeslagen tekst"
+  },
+  "f_your_ai_app_d117": {
+    "message": "Je AI-app"
+  },
+  "f_your_ai_apps_can_search_and__4b5d": {
+    "message": "Je AI-apps kunnen je bibliotheek nu doorzoeken en lezen."
+  },
+  "f_your_library_stays_private_u_5ea3": {
+    "message": "Je bibliotheek blijft privé tot je een app koppelt."
+  },
+  "f_calls_today_bccb": {
+    "message": "aanroepen vandaag"
+  },
+  "f_last_call_cf2b": {
+    "message": "laatste aanroep"
+  },
+  "f_tools_255c": {
+    "message": "tools"
+  },
+  "f_calls_today_605f": {
+    "message": "{n} aanroepen vandaag"
+  },
+  "f_ai_apps_mcp_claude_desktop_l_27c6": {
+    "message": "AI-apps (MCP): Claude Desktop, LM Studio of Cursor kunnen je bibliotheek doorzoeken"
+  },
+  "f_articles_saved_from_archive__a35b": {
+    "message": "Artikelen opgeslagen via archive.ph of de Wayback Machine houden de originele link"
+  },
+  "f_contact_me_6f3b": {
+    "message": "Neem contact op"
+  },
+  "f_contribute_on_github_f5d2": {
+    "message": "Bijdragen op GitHub"
+  },
+  "f_copy_debug_info_21d9": {
+    "message": "Debuginfo kopiëren"
+  },
+  "f_diagnostics_1397": {
+    "message": "Diagnose"
+  },
+  "f_do_any_of_my_saved_articles__cf49": {
+    "message": "Spreken mijn opgeslagen artikelen over een onderwerp elkaar tegen? Toon beide kanten met bronnen."
+  },
+  "f_from_my_feed_items_pick_the__937f": {
+    "message": "Kies uit mijn feeditems de 5 die het opslaan waard zijn op basis van mijn bibliotheek, en sla ze op."
+  },
+  "f_full_changelog_2a28": {
+    "message": "Volledige changelog ›"
+  },
+  "f_give_feedback_465b": {
+    "message": "Feedback geven"
+  },
+  "f_hi_i_m_phil_141a": {
+    "message": "Hoi, ik ben Phil 👋"
+  },
+  "f_i_build_ai_summary_helper_on_470d": {
+    "message": "Ik bouw AI Summary Helper in mijn eentje. Het is open source, heeft geen advertenties en houdt je bibliotheek op je apparaat."
+  },
+  "f_needs_feeds_and_save_links_s_4125": {
+    "message": "Hiervoor moeten Feeds en Links opslaan hieronder aan staan."
+  },
+  "f_open_source_by_phil_wornath_949d": {
+    "message": "Open source door Phil Wornath"
+  },
+  "f_paste_this_into_a_bug_report_88b2": {
+    "message": "Plak dit in een bugmelding zodat het te reproduceren is."
+  },
+  "f_search_my_library_for_a_topi_8a2d": {
+    "message": "Doorzoek mijn bibliotheek op een onderwerp, lees de top 5 artikelen volledig en schrijf een briefing die bij elke bewering het artikel noemt."
+  },
+  "f_summarize_everything_i_saved_dd22": {
+    "message": "Vat alles samen wat ik de afgelopen 7 dagen heb opgeslagen, gegroepeerd per thema, met mijn highlights als citaat."
+  },
+  "f_summarize_starts_right_away__0002": {
+    "message": "Samenvatten start meteen, ook als de extensie sliep"
+  },
+  "f_support_with_a_donation_ceb3": {
+    "message": "Steun met een donatie"
+  },
+  "f_tap_one_to_copy_it_then_past_d83a": {
+    "message": "Tik er een aan om te kopiëren en plak hem in je app."
+  },
+  "f_tools_96fc": {
+    "message": "Tools"
+  },
+  "f_try_asking_your_ai_app_3769": {
+    "message": "Vraag je AI-app bijvoorbeeld"
+  },
+  "f_what_does_my_saving_pattern__7f3c": {
+    "message": "Wat zegt mijn opslaggedrag over mijn interesses dit kwartaal? Wat groeit er en wat is vervaagd?"
+  },
+  "f_what_s_due_in_my_saved_for_l_c857": {
+    "message": "Wat staat er op mijn voor-later-lijst? Rangschik op wat ik het meest zou betreuren te missen, met 2 regels briefing per stuk."
+  },
+  "f_what_s_new_in_9c82": {
+    "message": "Nieuw in {v}"
   }
 }

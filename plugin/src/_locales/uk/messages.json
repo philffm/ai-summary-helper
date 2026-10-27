@@ -5787,5 +5787,173 @@
   },
   "f_own_server_2c54": {
     "message": "{name} · власний сервер"
+  },
+  "f_add_aish_to_your_app_d502": {
+    "message": "Додайте AISH у застосунок"
+  },
+  "f_add_urls_to_your_inbox_bb8a": {
+    "message": "Додавати посилання у вхідні"
+  },
+  "f_add_this_to_vscode_mcp_json__1fb5": {
+    "message": "Додайте це в .vscode/mcp.json вашого проєкту."
+  },
+  "f_add_this_to_lm_studio_s_mcp__e2eb": {
+    "message": "Додайте це в mcp.json LM Studio і перезапустіть LM Studio."
+  },
+  "f_add_this_to_cursor_mcp_json__0a25": {
+    "message": "Додайте це в ~/.cursor/mcp.json і перезапустіть Cursor."
+  },
+  "f_always_on_fab5": {
+    "message": "Завжди ввімк."
+  },
+  "f_copied_1305": {
+    "message": "Скопійовано"
+  },
+  "f_copy_config_ed1a": {
+    "message": "Копіювати конфіг"
+  },
+  "f_in_claude_desktop_settings_d_ce0e": {
+    "message": "У Claude Desktop: Settings → Developer → Edit Config. Вставте це, потім закрийте Claude Desktop і відкрийте знову."
+  },
+  "f_never_share_articles_tagged_670f": {
+    "message": "Ніколи не передавати статті з тегом"
+  },
+  "f_now_c597": {
+    "message": "Зараз"
+  },
+  "f_off_by_default_switch_off_an_6412": {
+    "message": "Типово вимкнено. Можна вимкнути будь-коли."
+  },
+  "f_pair_aish_mcp_d79f": {
+    "message": "Під'єднайте aish-mcp"
+  },
+  "f_pairing_code_saved_ea33": {
+    "message": "Код під'єднання збережено."
+  },
+  "f_paste_the_new_pairing_code_8f62": {
+    "message": "Вставте новий код під'єднання"
+  },
+  "f_pick_your_app_and_copy_its_s_0746": {
+    "message": "Виберіть застосунок і скопіюйте його налаштування."
+  },
+  "f_run_this_once_in_a_terminal__78b2": {
+    "message": "Запустіть це один раз у терміналі. Він виведе код під'єднання."
+  },
+  "f_save_code_cadd": {
+    "message": "Зберегти код"
+  },
+  "f_search_read_highlights_3910": {
+    "message": "Пошук, читання, виділення"
+  },
+  "f_select_and_copy_it_7f3a": {
+    "message": "Виділіть і скопіюйте"
+  },
+  "f_turned_on_bc1c": {
+    "message": "Увімкнено"
+  },
+  "f_unread_subscription_items_114b": {
+    "message": "Непрочитане з підписок"
+  },
+  "f_waiting_for_your_app_this_up_7cde": {
+    "message": "Чекаємо на ваш застосунок… Оновиться саме."
+  },
+  "f_whole_saved_text_a31e": {
+    "message": "Весь збережений текст"
+  },
+  "f_your_ai_app_d117": {
+    "message": "Ваш ШІ-застосунок"
+  },
+  "f_your_ai_apps_can_search_and__4b5d": {
+    "message": "Ваші ШІ-застосунки вже можуть шукати й читати вашу бібліотеку."
+  },
+  "f_your_library_stays_private_u_5ea3": {
+    "message": "Бібліотека лишається приватною, доки ви не під'єднаєте застосунок."
+  },
+  "f_calls_today_bccb": {
+    "message": "викликів сьогодні"
+  },
+  "f_last_call_cf2b": {
+    "message": "останній виклик"
+  },
+  "f_tools_255c": {
+    "message": "інструментів"
+  },
+  "f_calls_today_605f": {
+    "message": "Викликів сьогодні: {n}"
+  },
+  "f_ai_apps_mcp_claude_desktop_l_27c6": {
+    "message": "ШІ-застосунки (MCP): Claude Desktop, LM Studio або Cursor можуть шукати у вашій бібліотеці"
+  },
+  "f_articles_saved_from_archive__a35b": {
+    "message": "Статті, збережені з archive.ph або Wayback Machine, зберігають оригінальне посилання"
+  },
+  "f_contact_me_6f3b": {
+    "message": "Написати мені"
+  },
+  "f_contribute_on_github_f5d2": {
+    "message": "Долучитися на GitHub"
+  },
+  "f_copy_debug_info_21d9": {
+    "message": "Копіювати дані для налагодження"
+  },
+  "f_diagnostics_1397": {
+    "message": "Діагностика"
+  },
+  "f_do_any_of_my_saved_articles__cf49": {
+    "message": "Чи суперечать одна одній мої збережені статті на одну тему? Покажи обидві сторони з джерелами."
+  },
+  "f_from_my_feed_items_pick_the__937f": {
+    "message": "З моїх елементів стрічок вибери 5, які варто зберегти з огляду на мою бібліотеку, і збережи їх."
+  },
+  "f_full_changelog_2a28": {
+    "message": "Повний список змін ›"
+  },
+  "f_give_feedback_465b": {
+    "message": "Залишити відгук"
+  },
+  "f_hi_i_m_phil_141a": {
+    "message": "Привіт, я Філ 👋"
+  },
+  "f_i_build_ai_summary_helper_on_470d": {
+    "message": "Я створюю AI Summary Helper сам. Це відкритий код, без реклами, а ваша бібліотека лишається на вашому пристрої."
+  },
+  "f_needs_feeds_and_save_links_s_4125": {
+    "message": "Потрібно ввімкнути нижче «Стрічки» та «Збереження посилань»."
+  },
+  "f_open_source_by_phil_wornath_949d": {
+    "message": "Відкритий код від Філа Ворната"
+  },
+  "f_paste_this_into_a_bug_report_88b2": {
+    "message": "Вставте це у звіт про помилку, щоб її можна було відтворити."
+  },
+  "f_search_my_library_for_a_topi_8a2d": {
+    "message": "Знайди в моїй бібліотеці тему, прочитай повністю 5 найкращих статей і напиши підсумок, де для кожного твердження вказано статтю-джерело."
+  },
+  "f_summarize_everything_i_saved_dd22": {
+    "message": "Підсумуй усе, що я зберіг за останні 7 днів, згрупуй за темами й процитуй мої виділення."
+  },
+  "f_summarize_starts_right_away__0002": {
+    "message": "Підсумок починається одразу, навіть якщо розширення спало"
+  },
+  "f_support_with_a_donation_ceb3": {
+    "message": "Підтримати пожертвою"
+  },
+  "f_tap_one_to_copy_it_then_past_d83a": {
+    "message": "Торкніться, щоб скопіювати, і вставте в застосунок."
+  },
+  "f_tools_96fc": {
+    "message": "Інструменти"
+  },
+  "f_try_asking_your_ai_app_3769": {
+    "message": "Спробуйте запитати ШІ-застосунок"
+  },
+  "f_what_does_my_saving_pattern__7f3c": {
+    "message": "Що мої збереження кажуть про мої інтереси цього кварталу? Що зростає, а що згасло?"
+  },
+  "f_what_s_due_in_my_saved_for_l_c857": {
+    "message": "Що чекає в моєму списку «на потім»? Упорядкуй за тим, пропуск чого я шкодував би найбільше, і дай по 2 рядки підсумку."
+  },
+  "f_what_s_new_in_9c82": {
+    "message": "Що нового у {v}"
   }
 }

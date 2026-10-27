@@ -1393,7 +1393,7 @@ chrome.runtime.onMessage.addListener((msg, sender, sendResponse) => {
     }
     if (msg && msg.action === 'mcpStatus') {
         if (!mcp) { sendResponse({ ok: true, available: false, enabled: false, connected: false }); return false; }
-        getMcpConfig().then((cfg) => sendResponse({ ok: true, available: true, enabled: !!cfg.enabled, connected: mcp.isConnected() }));
+        getMcpConfig().then((cfg) => sendResponse({ ok: true, available: true, enabled: !!cfg.enabled, connected: mcp.isConnected(), tools: MCP.toolList().length }));
         return true;
     }
     if (msg && msg.action === 'ttsCmd') {

@@ -5787,5 +5787,173 @@
   },
   "f_own_server_2c54": {
     "message": "{name} · oma palvelin"
+  },
+  "f_add_aish_to_your_app_d502": {
+    "message": "Lisää AISH sovellukseesi"
+  },
+  "f_add_urls_to_your_inbox_bb8a": {
+    "message": "Lisää URL-osoitteita saapuneisiin"
+  },
+  "f_add_this_to_vscode_mcp_json__1fb5": {
+    "message": "Lisää tämä projektisi tiedostoon .vscode/mcp.json."
+  },
+  "f_add_this_to_lm_studio_s_mcp__e2eb": {
+    "message": "Lisää tämä LM Studion mcp.json-tiedostoon ja käynnistä LM Studio uudelleen."
+  },
+  "f_add_this_to_cursor_mcp_json__0a25": {
+    "message": "Lisää tämä tiedostoon ~/.cursor/mcp.json ja käynnistä Cursor uudelleen."
+  },
+  "f_always_on_fab5": {
+    "message": "Aina päällä"
+  },
+  "f_copied_1305": {
+    "message": "Kopioitu"
+  },
+  "f_copy_config_ed1a": {
+    "message": "Kopioi asetus"
+  },
+  "f_in_claude_desktop_settings_d_ce0e": {
+    "message": "Claude Desktopissa: Settings → Developer → Edit Config. Liitä tämä, sulje Claude Desktop ja avaa se uudelleen."
+  },
+  "f_never_share_articles_tagged_670f": {
+    "message": "Älä koskaan jaa artikkeleita, joiden tunniste on"
+  },
+  "f_now_c597": {
+    "message": "Nyt"
+  },
+  "f_off_by_default_switch_off_an_6412": {
+    "message": "Oletuksena pois. Voit poistaa käytöstä milloin vain."
+  },
+  "f_pair_aish_mcp_d79f": {
+    "message": "Yhdistä aish-mcp"
+  },
+  "f_pairing_code_saved_ea33": {
+    "message": "Yhdistämiskoodi tallennettu."
+  },
+  "f_paste_the_new_pairing_code_8f62": {
+    "message": "Liitä uusi yhdistämiskoodi"
+  },
+  "f_pick_your_app_and_copy_its_s_0746": {
+    "message": "Valitse sovelluksesi ja kopioi sen asetus."
+  },
+  "f_run_this_once_in_a_terminal__78b2": {
+    "message": "Suorita tämä kerran päätteessä. Se tulostaa yhdistämiskoodin."
+  },
+  "f_save_code_cadd": {
+    "message": "Tallenna koodi"
+  },
+  "f_search_read_highlights_3910": {
+    "message": "Haku, luku, korostukset"
+  },
+  "f_select_and_copy_it_7f3a": {
+    "message": "Valitse ja kopioi"
+  },
+  "f_turned_on_bc1c": {
+    "message": "Päällä"
+  },
+  "f_unread_subscription_items_114b": {
+    "message": "Lukemattomat tilauksista"
+  },
+  "f_waiting_for_your_app_this_up_7cde": {
+    "message": "Odotetaan sovellustasi… Päivittyy itsestään."
+  },
+  "f_whole_saved_text_a31e": {
+    "message": "Koko tallennettu teksti"
+  },
+  "f_your_ai_app_d117": {
+    "message": "AI-sovelluksesi"
+  },
+  "f_your_ai_apps_can_search_and__4b5d": {
+    "message": "AI-sovelluksesi voivat nyt hakea ja lukea kirjastoasi."
+  },
+  "f_your_library_stays_private_u_5ea3": {
+    "message": "Kirjastosi pysyy yksityisenä, kunnes yhdistät sovelluksen."
+  },
+  "f_calls_today_bccb": {
+    "message": "kutsua tänään"
+  },
+  "f_last_call_cf2b": {
+    "message": "viimeisin kutsu"
+  },
+  "f_tools_255c": {
+    "message": "työkalua"
+  },
+  "f_calls_today_605f": {
+    "message": "{n} kutsua tänään"
+  },
+  "f_ai_apps_mcp_claude_desktop_l_27c6": {
+    "message": "AI-sovellukset (MCP): Claude Desktop, LM Studio tai Cursor voivat hakea kirjastostasi"
+  },
+  "f_articles_saved_from_archive__a35b": {
+    "message": "archive.ph:sta tai Wayback Machinesta tallennetut artikkelit säilyttävät alkuperäisen linkin"
+  },
+  "f_contact_me_6f3b": {
+    "message": "Ota yhteyttä"
+  },
+  "f_contribute_on_github_f5d2": {
+    "message": "Osallistu GitHubissa"
+  },
+  "f_copy_debug_info_21d9": {
+    "message": "Kopioi vianetsintätiedot"
+  },
+  "f_diagnostics_1397": {
+    "message": "Diagnostiikka"
+  },
+  "f_do_any_of_my_saved_articles__cf49": {
+    "message": "Ovatko tallentamani artikkelit jostain aiheesta ristiriidassa? Näytä molemmat puolet lähteineen."
+  },
+  "f_from_my_feed_items_pick_the__937f": {
+    "message": "Valitse syötekohteistani 5 kirjastoni perusteella tallentamisen arvoista ja tallenna ne."
+  },
+  "f_full_changelog_2a28": {
+    "message": "Koko muutosloki ›"
+  },
+  "f_give_feedback_465b": {
+    "message": "Anna palautetta"
+  },
+  "f_hi_i_m_phil_141a": {
+    "message": "Hei, olen Phil 👋"
+  },
+  "f_i_build_ai_summary_helper_on_470d": {
+    "message": "Teen AI Summary Helperia yksin. Se on avointa lähdekoodia, ei näytä mainoksia ja pitää kirjastosi laitteellasi."
+  },
+  "f_needs_feeds_and_save_links_s_4125": {
+    "message": "Vaatii, että Syötteet ja Linkkien tallennus ovat päällä alla."
+  },
+  "f_open_source_by_phil_wornath_949d": {
+    "message": "Avointa lähdekoodia, tekijä Phil Wornath"
+  },
+  "f_paste_this_into_a_bug_report_88b2": {
+    "message": "Liitä tämä virheraporttiin, jotta virhe voidaan toistaa."
+  },
+  "f_search_my_library_for_a_topi_8a2d": {
+    "message": "Hae kirjastostani aihetta, lue 5 parasta artikkelia kokonaan ja kirjoita tiivistelmä, joka kertoo, mistä artikkelista kukin väite on peräisin."
+  },
+  "f_summarize_everything_i_saved_dd22": {
+    "message": "Tiivistä kaikki, mitä tallensin viimeisen 7 päivän aikana, teemoittain ja korostuksiani lainaten."
+  },
+  "f_summarize_starts_right_away__0002": {
+    "message": "Tiivistys alkaa heti, vaikka laajennus olisi ollut levossa"
+  },
+  "f_support_with_a_donation_ceb3": {
+    "message": "Tue lahjoituksella"
+  },
+  "f_tap_one_to_copy_it_then_past_d83a": {
+    "message": "Napauta yhtä kopioidaksesi sen ja liitä se sovellukseesi."
+  },
+  "f_tools_96fc": {
+    "message": "Työkalut"
+  },
+  "f_try_asking_your_ai_app_3769": {
+    "message": "Kokeile kysyä AI-sovellukseltasi"
+  },
+  "f_what_does_my_saving_pattern__7f3c": {
+    "message": "Mitä tallennustapani kertoo kiinnostuksen kohteistani tällä neljänneksellä? Mikä on nousussa ja mikä hiipunut?"
+  },
+  "f_what_s_due_in_my_saved_for_l_c857": {
+    "message": "Mitä myöhemmin luettavien listallani odottaa? Järjestä sen mukaan, minkä ohittamista katuisin eniten, ja anna kustakin 2 rivin tiivistelmä."
+  },
+  "f_what_s_new_in_9c82": {
+    "message": "Uutta versiossa {v}"
   }
 }

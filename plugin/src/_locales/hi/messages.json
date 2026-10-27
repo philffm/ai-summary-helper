@@ -5504,5 +5504,173 @@
   },
   "f_own_server_2c54": {
     "message": "{name} · अपना सर्वर"
+  },
+  "f_add_aish_to_your_app_d502": {
+    "message": "अपने ऐप में AISH जोड़ें"
+  },
+  "f_add_urls_to_your_inbox_bb8a": {
+    "message": "इनबॉक्स में URL जोड़ें"
+  },
+  "f_add_this_to_vscode_mcp_json__1fb5": {
+    "message": "इसे अपने प्रोजेक्ट की .vscode/mcp.json में जोड़ें।"
+  },
+  "f_add_this_to_lm_studio_s_mcp__e2eb": {
+    "message": "इसे LM Studio की mcp.json में जोड़ें, फिर LM Studio रीस्टार्ट करें।"
+  },
+  "f_add_this_to_cursor_mcp_json__0a25": {
+    "message": "इसे ~/.cursor/mcp.json में जोड़ें, फिर Cursor रीस्टार्ट करें।"
+  },
+  "f_always_on_fab5": {
+    "message": "हमेशा चालू"
+  },
+  "f_copied_1305": {
+    "message": "कॉपी हो गया"
+  },
+  "f_copy_config_ed1a": {
+    "message": "कॉन्फ़िग कॉपी करें"
+  },
+  "f_in_claude_desktop_settings_d_ce0e": {
+    "message": "Claude Desktop में: Settings → Developer → Edit Config. इसे पेस्ट करें, फिर Claude Desktop बंद करके दोबारा खोलें।"
+  },
+  "f_never_share_articles_tagged_670f": {
+    "message": "इस टैग वाले लेख कभी साझा न करें"
+  },
+  "f_now_c597": {
+    "message": "अभी"
+  },
+  "f_off_by_default_switch_off_an_6412": {
+    "message": "डिफ़ॉल्ट रूप से बंद। कभी भी बंद करें।"
+  },
+  "f_pair_aish_mcp_d79f": {
+    "message": "aish-mcp पेयर करें"
+  },
+  "f_pairing_code_saved_ea33": {
+    "message": "पेयरिंग कोड सहेजा गया।"
+  },
+  "f_paste_the_new_pairing_code_8f62": {
+    "message": "नया पेयरिंग कोड पेस्ट करें"
+  },
+  "f_pick_your_app_and_copy_its_s_0746": {
+    "message": "अपना ऐप चुनें और उसकी सेटिंग कॉपी करें।"
+  },
+  "f_run_this_once_in_a_terminal__78b2": {
+    "message": "इसे टर्मिनल में एक बार चलाएँ। यह एक पेयरिंग कोड दिखाता है।"
+  },
+  "f_save_code_cadd": {
+    "message": "कोड सहेजें"
+  },
+  "f_search_read_highlights_3910": {
+    "message": "खोज, पढ़ना, हाइलाइट"
+  },
+  "f_select_and_copy_it_7f3a": {
+    "message": "चुनें और कॉपी करें"
+  },
+  "f_turned_on_bc1c": {
+    "message": "चालू किया"
+  },
+  "f_unread_subscription_items_114b": {
+    "message": "सब्सक्रिप्शन के अनपढ़े आइटम"
+  },
+  "f_waiting_for_your_app_this_up_7cde": {
+    "message": "आपके ऐप का इंतज़ार… यह अपने आप अपडेट होगा।"
+  },
+  "f_whole_saved_text_a31e": {
+    "message": "पूरा सहेजा गया टेक्स्ट"
+  },
+  "f_your_ai_app_d117": {
+    "message": "आपका AI ऐप"
+  },
+  "f_your_ai_apps_can_search_and__4b5d": {
+    "message": "आपके AI ऐप अब आपकी लाइब्रेरी खोज और पढ़ सकते हैं।"
+  },
+  "f_your_library_stays_private_u_5ea3": {
+    "message": "जब तक आप कोई ऐप पेयर नहीं करते, आपकी लाइब्रेरी निजी रहती है।"
+  },
+  "f_calls_today_bccb": {
+    "message": "आज के कॉल"
+  },
+  "f_last_call_cf2b": {
+    "message": "आख़िरी कॉल"
+  },
+  "f_tools_255c": {
+    "message": "टूल"
+  },
+  "f_calls_today_605f": {
+    "message": "आज {n} कॉल"
+  },
+  "f_ai_apps_mcp_claude_desktop_l_27c6": {
+    "message": "AI ऐप (MCP): Claude Desktop, LM Studio या Cursor आपकी लाइब्रेरी खोज सकते हैं"
+  },
+  "f_articles_saved_from_archive__a35b": {
+    "message": "archive.ph या Wayback Machine से सहेजे गए लेख मूल लिंक रखते हैं"
+  },
+  "f_contact_me_6f3b": {
+    "message": "मुझसे संपर्क करें"
+  },
+  "f_contribute_on_github_f5d2": {
+    "message": "GitHub पर योगदान दें"
+  },
+  "f_copy_debug_info_21d9": {
+    "message": "डीबग जानकारी कॉपी करें"
+  },
+  "f_diagnostics_1397": {
+    "message": "डायग्नॉस्टिक्स"
+  },
+  "f_do_any_of_my_saved_articles__cf49": {
+    "message": "क्या किसी विषय पर मेरे सहेजे लेख आपस में असहमत हैं? दोनों पक्ष स्रोतों के साथ दिखाएँ।"
+  },
+  "f_from_my_feed_items_pick_the__937f": {
+    "message": "मेरे फ़ीड आइटम में से मेरी लाइब्रेरी के आधार पर सहेजने लायक 5 चुनें और सहेजें।"
+  },
+  "f_full_changelog_2a28": {
+    "message": "पूरा चेंजलॉग ›"
+  },
+  "f_give_feedback_465b": {
+    "message": "फ़ीडबैक दें"
+  },
+  "f_hi_i_m_phil_141a": {
+    "message": "नमस्ते, मैं फ़िल हूँ 👋"
+  },
+  "f_i_build_ai_summary_helper_on_470d": {
+    "message": "मैं AI Summary Helper अकेले बनाता हूँ। यह ओपन सोर्स है, इसमें विज्ञापन नहीं हैं और आपकी लाइब्रेरी आपके डिवाइस पर रहती है।"
+  },
+  "f_needs_feeds_and_save_links_s_4125": {
+    "message": "इसके लिए नीचे फ़ीड और लिंक सहेजें चालू होने चाहिए।"
+  },
+  "f_open_source_by_phil_wornath_949d": {
+    "message": "फ़िल वॉर्नाथ का ओपन सोर्स"
+  },
+  "f_paste_this_into_a_bug_report_88b2": {
+    "message": "इसे बग रिपोर्ट में पेस्ट करें ताकि समस्या दोहराई जा सके।"
+  },
+  "f_search_my_library_for_a_topi_8a2d": {
+    "message": "मेरी लाइब्रेरी में कोई विषय खोजें, शीर्ष 5 लेख पूरे पढ़ें और ऐसा सार लिखें जो बताए कि हर दावा किस लेख से है।"
+  },
+  "f_summarize_everything_i_saved_dd22": {
+    "message": "पिछले 7 दिनों में मैंने जो सहेजा उसका सार विषयवार दें, मेरे हाइलाइट उद्धृत करते हुए।"
+  },
+  "f_summarize_starts_right_away__0002": {
+    "message": "सारांश तुरंत शुरू होता है, भले ही एक्सटेंशन सोया हुआ हो"
+  },
+  "f_support_with_a_donation_ceb3": {
+    "message": "दान देकर समर्थन करें"
+  },
+  "f_tap_one_to_copy_it_then_past_d83a": {
+    "message": "कॉपी करने के लिए किसी एक पर टैप करें, फिर अपने ऐप में पेस्ट करें।"
+  },
+  "f_tools_96fc": {
+    "message": "टूल"
+  },
+  "f_try_asking_your_ai_app_3769": {
+    "message": "अपने AI ऐप से पूछकर देखें"
+  },
+  "f_what_does_my_saving_pattern__7f3c": {
+    "message": "इस तिमाही मेरी सहेजने की आदत मेरी रुचियों के बारे में क्या कहती है? क्या बढ़ रहा है और क्या फीका पड़ा?"
+  },
+  "f_what_s_due_in_my_saved_for_l_c857": {
+    "message": "मेरी बाद-में-पढ़ें सूची में क्या बाकी है? जिसे छोड़ने का मुझे सबसे ज़्यादा अफ़सोस होगा उस क्रम में रखें, हर एक का 2 पंक्ति सार दें।"
+  },
+  "f_what_s_new_in_9c82": {
+    "message": "{v} में नया"
   }
 }

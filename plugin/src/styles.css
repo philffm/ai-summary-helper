@@ -4500,3 +4500,24 @@ html[data-motion="reduce"] .detail-split-more .icon { transition: none; }
 .toast-action { background: transparent; border: 0; padding: 4px 8px; font-weight: 700; color: var(--accent); cursor: pointer; border-radius: var(--radius-sm); }
 .toast-action:hover { background: var(--accent-glow); }
 .toast-message .toast-action { pointer-events: auto; }
+
+/* About & Tools (modules/aboutView.js) */
+.about-view { display: flex; flex-direction: column; gap: 12px; }
+.about-card { display: flex; flex-direction: column; gap: 10px; padding: 14px 16px; border-radius: 16px; background: var(--glass-card); border: 1px solid var(--glass-border); }
+.about-title { margin: 0; font-size: var(--fs-lg); font-weight: 600; color: var(--text-primary); }
+.about-text { margin: 0; font-size: var(--fs-md); line-height: 1.45; color: var(--text-secondary, var(--text-primary)); }
+.about-muted { color: var(--text-muted); font-size: var(--fs-sm); }
+.about-donate { display: flex; align-items: center; justify-content: center; gap: 8px; text-decoration: none; }
+.about-actions { display: flex; flex-wrap: wrap; gap: 8px; }
+.about-actions .button-secondary { display: inline-flex; align-items: center; gap: 6px; text-decoration: none; background: var(--glass-input); border-color: var(--outline); }
+.about-section-head { display: flex; align-items: baseline; justify-content: space-between; gap: 8px; margin-top: 4px; }
+.about-section-head .settings-caption { margin: 0; }
+.about-news { list-style: none; margin: 0; }
+.about-news li { display: flex; gap: 10px; align-items: flex-start; font-size: var(--fs-md); line-height: 1.4; color: var(--text-primary); }
+.about-news li .ic { color: var(--accent); flex: none; margin-top: 1px; }
+.about-link { color: var(--text-link, var(--accent)); text-decoration: none; font-size: var(--fs-sm); font-weight: 500; }
+.about-link:hover { text-decoration: underline; }
+.about-footer { margin: 0; font-size: var(--fs-sm); color: var(--text-muted); }
+.about-view a.button-primary, .about-view a.button-secondary { box-sizing: border-box; border-radius: var(--radius-md); font-weight: 500; transition: transform 0.15s ease, filter 0.15s ease; }
+.about-view a.button-primary { font-weight: 600; }
+.about-view a.button-primary:active, .about-view a.button-secondary:active { transform: scale(0.97); }

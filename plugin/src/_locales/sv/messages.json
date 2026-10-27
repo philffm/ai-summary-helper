@@ -5787,5 +5787,173 @@
   },
   "f_own_server_2c54": {
     "message": "{name} · egen server"
+  },
+  "f_add_aish_to_your_app_d502": {
+    "message": "Lägg till AISH i din app"
+  },
+  "f_add_urls_to_your_inbox_bb8a": {
+    "message": "Lägg URL:er i din inkorg"
+  },
+  "f_add_this_to_vscode_mcp_json__1fb5": {
+    "message": "Lägg till detta i .vscode/mcp.json i ditt projekt."
+  },
+  "f_add_this_to_lm_studio_s_mcp__e2eb": {
+    "message": "Lägg till detta i LM Studios mcp.json och starta om LM Studio."
+  },
+  "f_add_this_to_cursor_mcp_json__0a25": {
+    "message": "Lägg till detta i ~/.cursor/mcp.json och starta om Cursor."
+  },
+  "f_always_on_fab5": {
+    "message": "Alltid på"
+  },
+  "f_copied_1305": {
+    "message": "Kopierat"
+  },
+  "f_copy_config_ed1a": {
+    "message": "Kopiera konfig"
+  },
+  "f_in_claude_desktop_settings_d_ce0e": {
+    "message": "I Claude Desktop: Settings → Developer → Edit Config. Klistra in detta, avsluta Claude Desktop och öppna det igen."
+  },
+  "f_never_share_articles_tagged_670f": {
+    "message": "Dela aldrig artiklar taggade"
+  },
+  "f_now_c597": {
+    "message": "Nu"
+  },
+  "f_off_by_default_switch_off_an_6412": {
+    "message": "Av som standard. Stäng av när som helst."
+  },
+  "f_pair_aish_mcp_d79f": {
+    "message": "Parkoppla aish-mcp"
+  },
+  "f_pairing_code_saved_ea33": {
+    "message": "Parkopplingskod sparad."
+  },
+  "f_paste_the_new_pairing_code_8f62": {
+    "message": "Klistra in den nya parkopplingskoden"
+  },
+  "f_pick_your_app_and_copy_its_s_0746": {
+    "message": "Välj din app och kopiera dess inställning."
+  },
+  "f_run_this_once_in_a_terminal__78b2": {
+    "message": "Kör detta en gång i en terminal. Den skriver ut en parkopplingskod."
+  },
+  "f_save_code_cadd": {
+    "message": "Spara kod"
+  },
+  "f_search_read_highlights_3910": {
+    "message": "Sök, läs, markeringar"
+  },
+  "f_select_and_copy_it_7f3a": {
+    "message": "Markera och kopiera"
+  },
+  "f_turned_on_bc1c": {
+    "message": "Påslaget"
+  },
+  "f_unread_subscription_items_114b": {
+    "message": "Olästa från prenumerationer"
+  },
+  "f_waiting_for_your_app_this_up_7cde": {
+    "message": "Väntar på din app… Uppdateras av sig själv."
+  },
+  "f_whole_saved_text_a31e": {
+    "message": "Hela den sparade texten"
+  },
+  "f_your_ai_app_d117": {
+    "message": "Din AI-app"
+  },
+  "f_your_ai_apps_can_search_and__4b5d": {
+    "message": "Dina AI-appar kan söka i och läsa ditt bibliotek nu."
+  },
+  "f_your_library_stays_private_u_5ea3": {
+    "message": "Ditt bibliotek är privat tills du parkopplar en app."
+  },
+  "f_calls_today_bccb": {
+    "message": "anrop i dag"
+  },
+  "f_last_call_cf2b": {
+    "message": "senaste anrop"
+  },
+  "f_tools_255c": {
+    "message": "verktyg"
+  },
+  "f_calls_today_605f": {
+    "message": "{n} anrop i dag"
+  },
+  "f_ai_apps_mcp_claude_desktop_l_27c6": {
+    "message": "AI-appar (MCP): Claude Desktop, LM Studio eller Cursor kan söka i ditt bibliotek"
+  },
+  "f_articles_saved_from_archive__a35b": {
+    "message": "Artiklar sparade från archive.ph eller Wayback Machine behåller originallänken"
+  },
+  "f_contact_me_6f3b": {
+    "message": "Kontakta mig"
+  },
+  "f_contribute_on_github_f5d2": {
+    "message": "Bidra på GitHub"
+  },
+  "f_copy_debug_info_21d9": {
+    "message": "Kopiera felsökningsinfo"
+  },
+  "f_diagnostics_1397": {
+    "message": "Diagnostik"
+  },
+  "f_do_any_of_my_saved_articles__cf49": {
+    "message": "Säger mina sparade artiklar om ett ämne emot varandra? Visa båda sidor med källor."
+  },
+  "f_from_my_feed_items_pick_the__937f": {
+    "message": "Välj de 5 av mina flödesobjekt som är värda att spara utifrån mitt bibliotek, och spara dem."
+  },
+  "f_full_changelog_2a28": {
+    "message": "Hela ändringsloggen ›"
+  },
+  "f_give_feedback_465b": {
+    "message": "Ge feedback"
+  },
+  "f_hi_i_m_phil_141a": {
+    "message": "Hej, jag heter Phil 👋"
+  },
+  "f_i_build_ai_summary_helper_on_470d": {
+    "message": "Jag bygger AI Summary Helper på egen hand. Det är öppen källkod, har inga annonser och håller ditt bibliotek på din enhet."
+  },
+  "f_needs_feeds_and_save_links_s_4125": {
+    "message": "Kräver att Flöden och Spara länkar är på nedan."
+  },
+  "f_open_source_by_phil_wornath_949d": {
+    "message": "Öppen källkod av Phil Wornath"
+  },
+  "f_paste_this_into_a_bug_report_88b2": {
+    "message": "Klistra in det här i en felrapport så att felet kan återskapas."
+  },
+  "f_search_my_library_for_a_topi_8a2d": {
+    "message": "Sök i mitt bibliotek efter ett ämne, läs de 5 bästa artiklarna i sin helhet och skriv en sammanfattning som anger vilken artikel varje påstående kommer från."
+  },
+  "f_summarize_everything_i_saved_dd22": {
+    "message": "Sammanfatta allt jag sparat de senaste 7 dagarna, grupperat efter tema och med mina markeringar citerade."
+  },
+  "f_summarize_starts_right_away__0002": {
+    "message": "Sammanfatta startar direkt, även när tillägget sov"
+  },
+  "f_support_with_a_donation_ceb3": {
+    "message": "Stöd med en donation"
+  },
+  "f_tap_one_to_copy_it_then_past_d83a": {
+    "message": "Tryck på en för att kopiera den och klistra in den i din app."
+  },
+  "f_tools_96fc": {
+    "message": "Verktyg"
+  },
+  "f_try_asking_your_ai_app_3769": {
+    "message": "Prova att fråga din AI-app"
+  },
+  "f_what_does_my_saving_pattern__7f3c": {
+    "message": "Vad säger mitt sparmönster om mina intressen det här kvartalet? Vad växer och vad har bleknat?"
+  },
+  "f_what_s_due_in_my_saved_for_l_c857": {
+    "message": "Vad väntar i min spara-till-senare-lista? Rangordna efter vad jag mest skulle ångra att hoppa över, med 2 rader sammanfattning för var och en."
+  },
+  "f_what_s_new_in_9c82": {
+    "message": "Nytt i {v}"
   }
 }

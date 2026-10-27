@@ -38,7 +38,8 @@ d.getElementById('onboardingCustomApiBtn').click();
 for (let k = 0; k < 60 && !d.getElementById('modeLocal').checked; k++) await tick(50);
 assert.equal(d.getElementById('modeLocal').checked, true, 'Own key tab selected');
 
-// About: privacy policy, changelog, security policy
+// About: privacy policy, changelog, security policy (rendered by modules/aboutView.js after the deferred imports)
+(await imp('modules/aboutView.js')).initAboutView();
 const link = d.getElementById('aboutPrivacyLink');
 assert(link && /byphil\.eu\/privacy\.html/.test(link.href));
 const about = d.getElementById('settingsPanel-about');

@@ -131,7 +131,7 @@ async function refreshSubtitles() {
 }
 
 // Panels without a settings form (sign-in and account) have nothing to save: hide the floating Save button there.
-const NO_SAVE_PANELS = new Set(['account']);
+const NO_SAVE_PANELS = new Set(['account', 'mcp', 'about']);
 function syncSaveFab(name) {
     const fab = $('settingsSaveFab');
     if (fab) fab.classList.toggle('no-save', NO_SAVE_PANELS.has(name));

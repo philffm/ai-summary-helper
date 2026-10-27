@@ -5787,5 +5787,173 @@
   },
   "f_own_server_2c54": {
     "message": "{name} · egen server"
+  },
+  "f_add_aish_to_your_app_d502": {
+    "message": "Føj AISH til din app"
+  },
+  "f_add_urls_to_your_inbox_bb8a": {
+    "message": "Læg URL'er i din indbakke"
+  },
+  "f_add_this_to_vscode_mcp_json__1fb5": {
+    "message": "Tilføj dette til .vscode/mcp.json i dit projekt."
+  },
+  "f_add_this_to_lm_studio_s_mcp__e2eb": {
+    "message": "Tilføj dette til LM Studios mcp.json, og genstart LM Studio."
+  },
+  "f_add_this_to_cursor_mcp_json__0a25": {
+    "message": "Tilføj dette til ~/.cursor/mcp.json, og genstart Cursor."
+  },
+  "f_always_on_fab5": {
+    "message": "Altid til"
+  },
+  "f_copied_1305": {
+    "message": "Kopieret"
+  },
+  "f_copy_config_ed1a": {
+    "message": "Kopiér konfiguration"
+  },
+  "f_in_claude_desktop_settings_d_ce0e": {
+    "message": "I Claude Desktop: Settings → Developer → Edit Config. Indsæt dette, luk Claude Desktop og åbn det igen."
+  },
+  "f_never_share_articles_tagged_670f": {
+    "message": "Del aldrig artikler med tagget"
+  },
+  "f_now_c597": {
+    "message": "Nu"
+  },
+  "f_off_by_default_switch_off_an_6412": {
+    "message": "Fra som standard. Kan slås fra når som helst."
+  },
+  "f_pair_aish_mcp_d79f": {
+    "message": "Par aish-mcp"
+  },
+  "f_pairing_code_saved_ea33": {
+    "message": "Parringskode gemt."
+  },
+  "f_paste_the_new_pairing_code_8f62": {
+    "message": "Indsæt den nye parringskode"
+  },
+  "f_pick_your_app_and_copy_its_s_0746": {
+    "message": "Vælg din app, og kopiér dens indstilling."
+  },
+  "f_run_this_once_in_a_terminal__78b2": {
+    "message": "Kør dette én gang i en terminal. Den viser en parringskode."
+  },
+  "f_save_code_cadd": {
+    "message": "Gem kode"
+  },
+  "f_search_read_highlights_3910": {
+    "message": "Søg, læs, markeringer"
+  },
+  "f_select_and_copy_it_7f3a": {
+    "message": "Markér og kopiér"
+  },
+  "f_turned_on_bc1c": {
+    "message": "Slået til"
+  },
+  "f_unread_subscription_items_114b": {
+    "message": "Ulæste fra abonnementer"
+  },
+  "f_waiting_for_your_app_this_up_7cde": {
+    "message": "Venter på din app… Opdateres af sig selv."
+  },
+  "f_whole_saved_text_a31e": {
+    "message": "Hele den gemte tekst"
+  },
+  "f_your_ai_app_d117": {
+    "message": "Din AI-app"
+  },
+  "f_your_ai_apps_can_search_and__4b5d": {
+    "message": "Dine AI-apps kan nu søge i og læse dit bibliotek."
+  },
+  "f_your_library_stays_private_u_5ea3": {
+    "message": "Dit bibliotek er privat, indtil du parrer en app."
+  },
+  "f_calls_today_bccb": {
+    "message": "kald i dag"
+  },
+  "f_last_call_cf2b": {
+    "message": "seneste kald"
+  },
+  "f_tools_255c": {
+    "message": "værktøjer"
+  },
+  "f_calls_today_605f": {
+    "message": "{n} kald i dag"
+  },
+  "f_ai_apps_mcp_claude_desktop_l_27c6": {
+    "message": "AI-apps (MCP): Claude Desktop, LM Studio eller Cursor kan søge i dit bibliotek"
+  },
+  "f_articles_saved_from_archive__a35b": {
+    "message": "Artikler gemt fra archive.ph eller Wayback Machine beholder det oprindelige link"
+  },
+  "f_contact_me_6f3b": {
+    "message": "Kontakt mig"
+  },
+  "f_contribute_on_github_f5d2": {
+    "message": "Bidrag på GitHub"
+  },
+  "f_copy_debug_info_21d9": {
+    "message": "Kopiér fejlfindingsinfo"
+  },
+  "f_diagnostics_1397": {
+    "message": "Diagnostik"
+  },
+  "f_do_any_of_my_saved_articles__cf49": {
+    "message": "Er mine gemte artikler om et emne uenige? Vis begge sider med kilder."
+  },
+  "f_from_my_feed_items_pick_the__937f": {
+    "message": "Vælg de 5 af mine feed-elementer, der er værd at gemme ud fra mit bibliotek, og gem dem."
+  },
+  "f_full_changelog_2a28": {
+    "message": "Hele ændringsloggen ›"
+  },
+  "f_give_feedback_465b": {
+    "message": "Giv feedback"
+  },
+  "f_hi_i_m_phil_141a": {
+    "message": "Hej, jeg er Phil 👋"
+  },
+  "f_i_build_ai_summary_helper_on_470d": {
+    "message": "Jeg udvikler AI Summary Helper alene. Det er open source, har ingen reklamer og holder dit bibliotek på din enhed."
+  },
+  "f_needs_feeds_and_save_links_s_4125": {
+    "message": "Kræver at Feeds og Gem links er slået til nedenfor."
+  },
+  "f_open_source_by_phil_wornath_949d": {
+    "message": "Open source af Phil Wornath"
+  },
+  "f_paste_this_into_a_bug_report_88b2": {
+    "message": "Indsæt dette i en fejlrapport, så den kan genskabes."
+  },
+  "f_search_my_library_for_a_topi_8a2d": {
+    "message": "Søg i mit bibliotek efter et emne, læs de 5 bedste artikler helt og skriv et brief, der angiver hvilken artikel hver påstand kommer fra."
+  },
+  "f_summarize_everything_i_saved_dd22": {
+    "message": "Opsummér alt, hvad jeg har gemt de sidste 7 dage, grupperet efter tema og med mine markeringer citeret."
+  },
+  "f_summarize_starts_right_away__0002": {
+    "message": "Opsummering starter med det samme, også når udvidelsen sov"
+  },
+  "f_support_with_a_donation_ceb3": {
+    "message": "Støt med en donation"
+  },
+  "f_tap_one_to_copy_it_then_past_d83a": {
+    "message": "Tryk på en for at kopiere den, og indsæt den i din app."
+  },
+  "f_tools_96fc": {
+    "message": "Værktøjer"
+  },
+  "f_try_asking_your_ai_app_3769": {
+    "message": "Prøv at spørge din AI-app"
+  },
+  "f_what_does_my_saving_pattern__7f3c": {
+    "message": "Hvad siger mit gemmemønster om mine interesser dette kvartal? Hvad vokser, og hvad er falmet?"
+  },
+  "f_what_s_due_in_my_saved_for_l_c857": {
+    "message": "Hvad venter på min gem-til-senere-liste? Rangér efter hvad jeg ville fortryde mest at springe over, med 2 linjers brief til hver."
+  },
+  "f_what_s_new_in_9c82": {
+    "message": "Nyt i {v}"
   }
 }

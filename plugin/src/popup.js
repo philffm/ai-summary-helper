@@ -87,7 +87,9 @@ document.addEventListener("DOMContentLoaded", async () => {
         import('./modules/articleManager.js'),
         import('./modules/inboxView.js'),
         import('./modules/mcpView.js'),
-    ]).then(([{ initSettingsManager }, { initFeedManager }, { initArticleManager }, { initInboxView }, { initMcpView }]) => {
+        import('./modules/aboutView.js'),
+    ]).then(([{ initSettingsManager }, { initFeedManager }, { initArticleManager }, { initInboxView }, { initMcpView }, { initAboutView }]) => {
+        initAboutView();   // first: settingsNav reads #versionNumber for the About row
         initSettingsManager(ui);
         initFeedManager(ui);
         initArticleManager(ui);

@@ -5486,5 +5486,173 @@
   },
   "f_own_server_2c54": {
     "message": "{name} · 내 서버"
+  },
+  "f_add_aish_to_your_app_d502": {
+    "message": "앱에 AISH 추가"
+  },
+  "f_add_urls_to_your_inbox_bb8a": {
+    "message": "받은편함에 URL 추가"
+  },
+  "f_add_this_to_vscode_mcp_json__1fb5": {
+    "message": "프로젝트의 .vscode/mcp.json에 추가하세요."
+  },
+  "f_add_this_to_lm_studio_s_mcp__e2eb": {
+    "message": "LM Studio의 mcp.json에 추가한 뒤 LM Studio를 다시 시작하세요."
+  },
+  "f_add_this_to_cursor_mcp_json__0a25": {
+    "message": "~/.cursor/mcp.json에 추가한 뒤 Cursor를 다시 시작하세요."
+  },
+  "f_always_on_fab5": {
+    "message": "항상 켜짐"
+  },
+  "f_copied_1305": {
+    "message": "복사됨"
+  },
+  "f_copy_config_ed1a": {
+    "message": "설정 복사"
+  },
+  "f_in_claude_desktop_settings_d_ce0e": {
+    "message": "Claude Desktop에서 Settings → Developer → Edit Config를 열고 붙여넣은 뒤 Claude Desktop을 종료했다가 다시 여세요."
+  },
+  "f_never_share_articles_tagged_670f": {
+    "message": "이 태그가 붙은 글은 공유 안 함"
+  },
+  "f_now_c597": {
+    "message": "지금"
+  },
+  "f_off_by_default_switch_off_an_6412": {
+    "message": "기본값은 꺼짐. 언제든 끌 수 있어요."
+  },
+  "f_pair_aish_mcp_d79f": {
+    "message": "aish-mcp 페어링"
+  },
+  "f_pairing_code_saved_ea33": {
+    "message": "페어링 코드를 저장했어요."
+  },
+  "f_paste_the_new_pairing_code_8f62": {
+    "message": "새 페어링 코드 붙여넣기"
+  },
+  "f_pick_your_app_and_copy_its_s_0746": {
+    "message": "앱을 고르고 설정을 복사하세요."
+  },
+  "f_run_this_once_in_a_terminal__78b2": {
+    "message": "터미널에서 한 번 실행하면 페어링 코드가 표시돼요."
+  },
+  "f_save_code_cadd": {
+    "message": "코드 저장"
+  },
+  "f_search_read_highlights_3910": {
+    "message": "검색, 읽기, 하이라이트"
+  },
+  "f_select_and_copy_it_7f3a": {
+    "message": "선택해서 복사하세요"
+  },
+  "f_turned_on_bc1c": {
+    "message": "켜짐"
+  },
+  "f_unread_subscription_items_114b": {
+    "message": "구독의 읽지 않은 항목"
+  },
+  "f_waiting_for_your_app_this_up_7cde": {
+    "message": "앱을 기다리는 중… 자동으로 업데이트돼요."
+  },
+  "f_whole_saved_text_a31e": {
+    "message": "저장된 전체 텍스트"
+  },
+  "f_your_ai_app_d117": {
+    "message": "AI 앱"
+  },
+  "f_your_ai_apps_can_search_and__4b5d": {
+    "message": "이제 AI 앱이 내 라이브러리를 검색하고 읽을 수 있어요."
+  },
+  "f_your_library_stays_private_u_5ea3": {
+    "message": "앱을 페어링하기 전까지 라이브러리는 비공개예요."
+  },
+  "f_calls_today_bccb": {
+    "message": "오늘 호출"
+  },
+  "f_last_call_cf2b": {
+    "message": "마지막 호출"
+  },
+  "f_tools_255c": {
+    "message": "도구"
+  },
+  "f_calls_today_605f": {
+    "message": "오늘 {n}회 호출"
+  },
+  "f_ai_apps_mcp_claude_desktop_l_27c6": {
+    "message": "AI 앱(MCP): Claude Desktop, LM Studio, Cursor가 라이브러리를 검색할 수 있어요"
+  },
+  "f_articles_saved_from_archive__a35b": {
+    "message": "archive.ph나 Wayback Machine에서 저장한 글은 원래 링크를 유지해요"
+  },
+  "f_contact_me_6f3b": {
+    "message": "연락하기"
+  },
+  "f_contribute_on_github_f5d2": {
+    "message": "GitHub에서 기여하기"
+  },
+  "f_copy_debug_info_21d9": {
+    "message": "디버그 정보 복사"
+  },
+  "f_diagnostics_1397": {
+    "message": "진단"
+  },
+  "f_do_any_of_my_saved_articles__cf49": {
+    "message": "한 주제에 대해 저장한 글들이 서로 엇갈리나요? 출처와 함께 양쪽 입장을 보여줘."
+  },
+  "f_from_my_feed_items_pick_the__937f": {
+    "message": "내 피드 항목 중 라이브러리를 기준으로 저장할 만한 5개를 골라 저장해 줘."
+  },
+  "f_full_changelog_2a28": {
+    "message": "전체 변경 기록 ›"
+  },
+  "f_give_feedback_465b": {
+    "message": "의견 보내기"
+  },
+  "f_hi_i_m_phil_141a": {
+    "message": "안녕하세요, Phil이에요 👋"
+  },
+  "f_i_build_ai_summary_helper_on_470d": {
+    "message": "AI Summary Helper는 혼자 만들고 있어요. 오픈소스이고 광고가 없으며 라이브러리는 내 기기에 보관돼요."
+  },
+  "f_needs_feeds_and_save_links_s_4125": {
+    "message": "아래에서 피드와 링크 저장을 켜야 해요."
+  },
+  "f_open_source_by_phil_wornath_949d": {
+    "message": "Phil Wornath의 오픈소스"
+  },
+  "f_paste_this_into_a_bug_report_88b2": {
+    "message": "재현할 수 있도록 버그 신고에 붙여넣으세요."
+  },
+  "f_search_my_library_for_a_topi_8a2d": {
+    "message": "라이브러리에서 주제를 검색해 상위 5개 글을 전부 읽고, 각 주장이 어느 글에서 나왔는지 밝힌 브리핑을 써 줘."
+  },
+  "f_summarize_everything_i_saved_dd22": {
+    "message": "지난 7일 동안 저장한 모든 것을 주제별로 묶어 하이라이트를 인용해 요약해 줘."
+  },
+  "f_summarize_starts_right_away__0002": {
+    "message": "확장 프로그램이 잠들어 있어도 요약이 바로 시작돼요"
+  },
+  "f_support_with_a_donation_ceb3": {
+    "message": "후원으로 응원하기"
+  },
+  "f_tap_one_to_copy_it_then_past_d83a": {
+    "message": "하나를 눌러 복사한 뒤 앱에 붙여넣으세요."
+  },
+  "f_tools_96fc": {
+    "message": "도구"
+  },
+  "f_try_asking_your_ai_app_3769": {
+    "message": "AI 앱에 이렇게 물어보세요"
+  },
+  "f_what_does_my_saving_pattern__7f3c": {
+    "message": "이번 분기 저장 패턴으로 본 내 관심사는? 뜨는 것과 시든 것은?"
+  },
+  "f_what_s_due_in_my_saved_for_l_c857": {
+    "message": "나중에 읽기 목록에 뭐가 남았지? 놓치면 가장 아쉬울 순서로 정렬하고 각각 2줄로 요약해 줘."
+  },
+  "f_what_s_new_in_9c82": {
+    "message": "{v}의 새로운 기능"
   }
 }

@@ -5787,5 +5787,173 @@
   },
   "f_own_server_2c54": {
     "message": "{name} · เซิร์ฟเวอร์ของคุณเอง"
+  },
+  "f_add_aish_to_your_app_d502": {
+    "message": "เพิ่ม AISH ในแอปของคุณ"
+  },
+  "f_add_urls_to_your_inbox_bb8a": {
+    "message": "เพิ่ม URL ลงกล่องจดหมาย"
+  },
+  "f_add_this_to_vscode_mcp_json__1fb5": {
+    "message": "เพิ่มสิ่งนี้ใน .vscode/mcp.json ของโปรเจกต์"
+  },
+  "f_add_this_to_lm_studio_s_mcp__e2eb": {
+    "message": "เพิ่มสิ่งนี้ใน mcp.json ของ LM Studio แล้วรีสตาร์ต LM Studio"
+  },
+  "f_add_this_to_cursor_mcp_json__0a25": {
+    "message": "เพิ่มสิ่งนี้ใน ~/.cursor/mcp.json แล้วรีสตาร์ต Cursor"
+  },
+  "f_always_on_fab5": {
+    "message": "เปิดเสมอ"
+  },
+  "f_copied_1305": {
+    "message": "คัดลอกแล้ว"
+  },
+  "f_copy_config_ed1a": {
+    "message": "คัดลอกการตั้งค่า"
+  },
+  "f_in_claude_desktop_settings_d_ce0e": {
+    "message": "ใน Claude Desktop: Settings → Developer → Edit Config วางสิ่งนี้ แล้วปิด Claude Desktop และเปิดใหม่"
+  },
+  "f_never_share_articles_tagged_670f": {
+    "message": "ห้ามแชร์บทความที่ติดแท็ก"
+  },
+  "f_now_c597": {
+    "message": "ตอนนี้"
+  },
+  "f_off_by_default_switch_off_an_6412": {
+    "message": "ปิดไว้เป็นค่าเริ่มต้น ปิดได้ทุกเมื่อ"
+  },
+  "f_pair_aish_mcp_d79f": {
+    "message": "จับคู่ aish-mcp"
+  },
+  "f_pairing_code_saved_ea33": {
+    "message": "บันทึกรหัสจับคู่แล้ว"
+  },
+  "f_paste_the_new_pairing_code_8f62": {
+    "message": "วางรหัสจับคู่ใหม่"
+  },
+  "f_pick_your_app_and_copy_its_s_0746": {
+    "message": "เลือกแอปแล้วคัดลอกการตั้งค่า"
+  },
+  "f_run_this_once_in_a_terminal__78b2": {
+    "message": "รันคำสั่งนี้ครั้งเดียวในเทอร์มินัล จะแสดงรหัสจับคู่"
+  },
+  "f_save_code_cadd": {
+    "message": "บันทึกรหัส"
+  },
+  "f_search_read_highlights_3910": {
+    "message": "ค้นหา อ่าน ไฮไลต์"
+  },
+  "f_select_and_copy_it_7f3a": {
+    "message": "เลือกแล้วคัดลอก"
+  },
+  "f_turned_on_bc1c": {
+    "message": "เปิดแล้ว"
+  },
+  "f_unread_subscription_items_114b": {
+    "message": "รายการที่ยังไม่อ่านจากการติดตาม"
+  },
+  "f_waiting_for_your_app_this_up_7cde": {
+    "message": "กำลังรอแอปของคุณ… อัปเดตเอง"
+  },
+  "f_whole_saved_text_a31e": {
+    "message": "ข้อความที่บันทึกทั้งหมด"
+  },
+  "f_your_ai_app_d117": {
+    "message": "แอป AI ของคุณ"
+  },
+  "f_your_ai_apps_can_search_and__4b5d": {
+    "message": "แอป AI ของคุณค้นหาและอ่านคลังของคุณได้แล้ว"
+  },
+  "f_your_library_stays_private_u_5ea3": {
+    "message": "คลังของคุณเป็นส่วนตัวจนกว่าจะจับคู่แอป"
+  },
+  "f_calls_today_bccb": {
+    "message": "การเรียกวันนี้"
+  },
+  "f_last_call_cf2b": {
+    "message": "เรียกล่าสุด"
+  },
+  "f_tools_255c": {
+    "message": "เครื่องมือ"
+  },
+  "f_calls_today_605f": {
+    "message": "วันนี้ {n} ครั้ง"
+  },
+  "f_ai_apps_mcp_claude_desktop_l_27c6": {
+    "message": "แอป AI (MCP): Claude Desktop, LM Studio หรือ Cursor ค้นหาในคลังของคุณได้"
+  },
+  "f_articles_saved_from_archive__a35b": {
+    "message": "บทความที่บันทึกจาก archive.ph หรือ Wayback Machine จะคงลิงก์ต้นฉบับไว้"
+  },
+  "f_contact_me_6f3b": {
+    "message": "ติดต่อฉัน"
+  },
+  "f_contribute_on_github_f5d2": {
+    "message": "ร่วมพัฒนาบน GitHub"
+  },
+  "f_copy_debug_info_21d9": {
+    "message": "คัดลอกข้อมูลดีบัก"
+  },
+  "f_diagnostics_1397": {
+    "message": "การวินิจฉัย"
+  },
+  "f_do_any_of_my_saved_articles__cf49": {
+    "message": "บทความที่ฉันบันทึกในหัวข้อหนึ่งขัดแย้งกันไหม แสดงทั้งสองฝั่งพร้อมแหล่งที่มา"
+  },
+  "f_from_my_feed_items_pick_the__937f": {
+    "message": "จากรายการฟีดของฉัน เลือก 5 รายการที่ควรบันทึกตามคลังของฉัน แล้วบันทึกไว้"
+  },
+  "f_full_changelog_2a28": {
+    "message": "บันทึกการเปลี่ยนแปลงทั้งหมด ›"
+  },
+  "f_give_feedback_465b": {
+    "message": "ส่งความคิดเห็น"
+  },
+  "f_hi_i_m_phil_141a": {
+    "message": "สวัสดี ผมชื่อฟิล 👋"
+  },
+  "f_i_build_ai_summary_helper_on_470d": {
+    "message": "ผมพัฒนา AI Summary Helper คนเดียว เป็นโอเพนซอร์ส ไม่มีโฆษณา และเก็บคลังของคุณไว้ในอุปกรณ์ของคุณ"
+  },
+  "f_needs_feeds_and_save_links_s_4125": {
+    "message": "ต้องเปิดฟีดและการบันทึกลิงก์ด้านล่าง"
+  },
+  "f_open_source_by_phil_wornath_949d": {
+    "message": "โอเพนซอร์สโดย Phil Wornath"
+  },
+  "f_paste_this_into_a_bug_report_88b2": {
+    "message": "วางข้อมูลนี้ในรายงานข้อบกพร่องเพื่อให้ทำซ้ำได้"
+  },
+  "f_search_my_library_for_a_topi_8a2d": {
+    "message": "ค้นหาหัวข้อในคลังของฉัน อ่านบทความ 5 อันดับแรกแบบเต็ม แล้วเขียนสรุปที่ระบุว่าแต่ละข้อมาจากบทความใด"
+  },
+  "f_summarize_everything_i_saved_dd22": {
+    "message": "สรุปทุกอย่างที่ฉันบันทึกใน 7 วันที่ผ่านมา จัดกลุ่มตามธีม พร้อมยกไฮไลต์ของฉัน"
+  },
+  "f_summarize_starts_right_away__0002": {
+    "message": "การสรุปเริ่มทันที แม้ส่วนขยายจะพักอยู่"
+  },
+  "f_support_with_a_donation_ceb3": {
+    "message": "สนับสนุนด้วยการบริจาค"
+  },
+  "f_tap_one_to_copy_it_then_past_d83a": {
+    "message": "แตะรายการหนึ่งเพื่อคัดลอก แล้ววางในแอปของคุณ"
+  },
+  "f_tools_96fc": {
+    "message": "เครื่องมือ"
+  },
+  "f_try_asking_your_ai_app_3769": {
+    "message": "ลองถามแอป AI ของคุณ"
+  },
+  "f_what_does_my_saving_pattern__7f3c": {
+    "message": "รูปแบบการบันทึกของฉันบอกอะไรเกี่ยวกับความสนใจไตรมาสนี้ อะไรกำลังมา อะไรจางหายไป"
+  },
+  "f_what_s_due_in_my_saved_for_l_c857": {
+    "message": "รายการอ่านภายหลังของฉันมีอะไรค้างอยู่ จัดอันดับตามสิ่งที่ฉันจะเสียดายที่สุดถ้าข้ามไป พร้อมสรุป 2 บรรทัดต่อรายการ"
+  },
+  "f_what_s_new_in_9c82": {
+    "message": "มีอะไรใหม่ใน {v}"
   }
 }
