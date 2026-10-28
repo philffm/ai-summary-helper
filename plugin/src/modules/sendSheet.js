@@ -110,7 +110,15 @@ function paintBar() {
 const state = { format: 'digest', include: 'summary', map: 'on', intro: 'off', introStyle: 'briefing', refStyle: 'apa', refSummaries: false };
 
 let sheetTrap = null;
-function closeSheet() { if (sheetTrap) { sheetTrap.release(); sheetTrap = null; } if (sheet) { sheet.remove(); sheet = null; } }
+function closeSheet(instant = false) {
+    if (sheetTrap) { sheetTrap.release(); sheetTrap = null; }
+    if (!sheet) return;
+    const gone = sheet; sheet = null;
+    if (instant) { gone.remove(); return; }
+    gone.classList.add('is-closing');   // slides down (CSS); removed once it ends, or right away when nothing animates
+    gone.style.pointerEvents = 'none';
+    setTimeout(() => gone.remove(), 180);
+}
 
 function selected() {
     return [...sel].map(id => reg.get(id)?.article).filter(Boolean)
@@ -160,7 +168,7 @@ function btn(label, primary, onClick) {
 }
 
 function openSheet(view) {
-    closeSheet();
+    closeSheet(true);
     sheet = el('div', 'sendsheet');
     sheet.setAttribute('role', 'dialog'); sheet.setAttribute('aria-modal', 'true');
     const scrim = el('div', 'sendsheet-scrim');

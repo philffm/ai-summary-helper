@@ -18,6 +18,7 @@ const rss = `<rss><channel>${Array.from({ length: 35 }, (_, i) =>
 const worker = {
     parseWorkerFeed, mergeWorkerItems, boundedLibraryPlan, estimateFeedInterval, feedPriority, feedQualityWeight,
     planLibrary, runLibrary, categoryCounts, chunksOf, startOfDay,
+    saveFeedBodies: async () => 0, pruneFeedBodies: async () => 0,   // full text storage has its own test (test180)
     itemSig: item => item.id, hash: value => value,
     scoreItems: async items => {
         aiCalls++;

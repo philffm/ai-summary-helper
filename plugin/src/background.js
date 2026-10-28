@@ -327,6 +327,7 @@ async function findDecisionArticle(timestamp) {
 const FEED_ALARM = 'feedPoll';
 
 async function pruneBackgroundFeedData(settings) {
+    if (FEED_WORKER) FEED_WORKER.pruneFeedBodies(Date.now() - Math.max(1, Number(settings && settings.keepDays) || 30) * 86400000).catch(() => {});
     const raw = await localGet({ [SK.feedBackground]: {}, [SK.feedItems]: [], [SK.articlesIndex]: [] });
     const state = raw[SK.feedBackground];
     if (!state || !Object.keys(state).length) return;
@@ -521,6 +522,9 @@ async function pollFeeds() {
                     sub.validatorFailures = 0;
                     sub.error = ''; sub.errorCount = 0;
                 const parsed = FEED_WORKER.parseWorkerFeed(fetched.xml, fetched.url, sub);
+                // the full text goes to its own keys; the items stay small (see modules/feedBodies.js)
+                FEED_WORKER.saveFeedBodies(parsed.map(i => ({ id: i.id, html: i.body, published: i.published }))).catch(() => {});
+                parsed.forEach(i => { delete i.body; });
                 const links = parsed.map(i => i.link);
                 const prev = seen[sub.id];
                 if (prev) {

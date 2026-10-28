@@ -42,6 +42,7 @@ import { PRESET_IDS, PRESETS, REFERENCE, REQUEST_STEPS, DEFAULT_REQUESTS, preset
 import { planLibrary, runLibrary, categoryCounts, chunksOf, countRequests, formatEta, cleanBatchSize, BATCH_SIZES, DEFAULT_BATCH } from './libraryBatch.js';
 import { subTitle, hash, safeHttpUrl, normalizeInputUrl, timeAgo } from './feedUtil.js';
 import { parseFeed, opmlXml } from './feedParse.js';
+import { saveFeedBodies, pruneFeedBodies } from './feedBodies.js';
 import { stackItems } from './feedStacks.js';
 import { conceptKey, topicLabel } from './topicConcepts.js';
 import { loadLexicon, saveLexicon } from './topicLexicon.js';
@@ -276,9 +277,8 @@ async function findSummarizedArticle(url) {
 async function viewSummary(item, article) {
     if (settings.markReadOnOpen) setRead([item], true, { silent: true, keep: true });
     if (!uiRef) return;
-    uiRef.showScreen('history');
     const mod = await import('./articleManager.js');
-    setTimeout(() => mod.showArticleDetail(article), 400);
+    mod.openArticleInHistory(article);
 }
 
 // Card click: summarized → its History entry, otherwise the website.
@@ -428,6 +428,8 @@ function mergeItems(sub, parsedItems) {
             read: prev ? prev.read : false
         });
     }
+    // The full text goes to its own keys; the items stay small (see feedBodies.js).
+    saveFeedBodies(usable.map(p => ({ id: p.id, html: p.body, published: p.published }))).catch(() => {});
     // Keep newest N for this feed, plus older items we already had (so read state survives short feeds).
     const seen = new Set(merged.map(m => m.id));
     existing.forEach((v, k) => { if (!seen.has(k)) merged.push(v); });
@@ -445,6 +447,7 @@ function pruneItems() {
     syncMood();   // keep the mood of days that are about to be pruned
     const cutoff = Date.now() - settings.keepDays * DAY_MS;
     items = items.filter(i => i.published >= cutoff || histOf(i).fav);
+    pruneFeedBodies(cutoff).catch(() => {});
     // Recaps follow the same retention window (key starts with the day's timestamp).
     Object.keys(recaps).forEach(k => { const ts = recapKeyTs(k); if (ts != null && ts < startOfDay(cutoff)) delete recaps[k]; });
     chrome.storage.local.set({ [RECAPS_KEY]: recaps }).catch(() => {});

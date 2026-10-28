@@ -77,13 +77,7 @@ export function initMainScreen(ui) {
         // Click to open in history
         bubble.style.cursor = 'pointer';
         bubble.addEventListener('click', async () => {
-            if (ui && typeof ui.showScreen === 'function') {
-                ui.showScreen('history');
-                // Small delay to let the screen slide in before rendering detail
-                setTimeout(() => {
-                    import('./articleManager.js').then(mod => mod.showArticleDetail(article));
-                }, 400);
-            }
+            import('./articleManager.js').then(mod => mod.openArticleInHistory(article));
         });
         // Menu + Ask / replies / Read again need the saved id. A card shown the moment a summary completes has none yet:
         // decorate() runs again when the save is confirmed (see 'summarySaved').
