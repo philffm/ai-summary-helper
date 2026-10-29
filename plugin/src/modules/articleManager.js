@@ -121,6 +121,25 @@ export function statusBadges(a) {
     return out;
 }
 
+/** Cards that leave the list shrink and fade first, so the rest closes the gap instead of jumping. */
+function collapseCards(ids) {
+    const list = document.getElementById('articleList');
+    if (!list || list.style.display === 'none' || !ids.length) return Promise.resolve();
+    let reduce = document.documentElement.getAttribute('data-motion') === 'reduce';
+    try { reduce = reduce || window.matchMedia('(prefers-reduced-motion: reduce)').matches; } catch (_) { /* no matchMedia */ }
+    if (reduce) return Promise.resolve();
+    const want = new Set(ids.map(String));
+    const gone = [...list.querySelectorAll('li[data-id]')].filter(li => want.has(li.dataset.id) && li.animate);
+    return Promise.all(gone.map((li) => {
+        const h = li.getBoundingClientRect().height;
+        li.style.overflow = 'hidden'; li.style.pointerEvents = 'none';
+        return li.animate(
+            [{ height: h + 'px', opacity: 1, marginBottom: getComputedStyle(li).marginBottom }, { height: '0px', opacity: 0, marginBottom: '0px', paddingTop: '0px', paddingBottom: '0px' }],
+            { duration: 200, easing: 'ease-out', fill: 'forwards' }
+        ).finished.catch(() => {});
+    })).then(() => {});
+}
+
 /**
  * Change reading status for several articles (storage + caches + list).
  * patch: { read?, sent?: {kind,label}, archived? } — see StorageManager.patchArticleStatus.
@@ -132,7 +151,11 @@ export async function applyStatus(ids, patch) {
     archivedCache = all.filter(a => a.archived);
     invalidateSearchIndex();
     const list = document.getElementById('articleList');
-    if (list && list.style.display !== 'none') renderTab(); else pendingRender = true;
+    if (list && list.style.display !== 'none') {
+        const stay = new Set(tabList(historyTab).map(a => String(a.id)));
+        await collapseCards(ids.filter(id => !stay.has(String(id))));
+        renderTab();
+    } else pendingRender = true;
 }
 
 // Whether the knowledge graph's node set is hard-filtered by the archive
@@ -876,6 +899,7 @@ export async function removeMany(ids) {
     if (!confirm(T('Delete {n} selected articles? This cannot be undone.', { n: ids.length }))) return false;
     for (const id of ids) await StorageManager.deleteArticle(id);
     const gone = new Set(ids);
+    await collapseCards(ids);
     cachedArticles = cachedArticles.filter(i => !gone.has(i.id));
     archivedCache = archivedCache.filter(i => !gone.has(i.id));
     invalidateSearchIndex();
@@ -889,6 +913,7 @@ export async function removeArticle(article) {
     if (!article || !article.id) return false;
     if (!confirm(T('Are you sure you want to delete this article?'))) return false;
     await StorageManager.deleteArticle(article.id);
+    await collapseCards([article.id]);
     cachedArticles = cachedArticles.filter(i => i.id !== article.id);
     archivedCache = archivedCache.filter(i => i.id !== article.id);
     invalidateSearchIndex();
@@ -1054,7 +1079,7 @@ export function initArticleManager(uiManager) {
             if (articleDetail) articleDetail.style.display = 'none';
             if (graphContainer && !wsActive()) graphContainer.style.display = 'none';
             if (reportContainer && !wsActive()) reportContainer.style.display = 'none';
-            if (articleList) articleList.style.display = 'block';
+            if (articleList) { articleList.style.display = 'block'; playEnter(articleList); }
             if (historyTopBar) historyTopBar.style.display = 'flex';
             if (detailTopBar) detailTopBar.style.display = 'none';
             restoreCardFocus(openedId);
@@ -1273,8 +1298,7 @@ export function initArticleManager(uiManager) {
 
         graphContainer.addEventListener('open-article', (e) => {
             if (e.detail) {
-                uiManager.showScreen('history');
-                setTimeout(() => showArticleDetail(e.detail), 400);
+                openArticleInHistory(e.detail);
             }
         });
 
@@ -1324,27 +1348,33 @@ export function initArticleManager(uiManager) {
 // When Graph or Analytics was last opened by the user. Switching to History reloads it 350 ms later (after the slide
 // animation, see uiManager.js); that reload must not close a view the user opened in the meantime.
 let viewChosenAt = 0;
+// When an article was last opened. Opening one from the summary bubble, a feed or the graph switches to History and shows the
+// article at once; the reload the switch schedules must then only refresh the data behind it, not bring the list back on top.
+let detailChosenAt = 0;
 
 /** @param {{since?: number}} [opts] since: when the reload was requested; a view opened after that stays open. */
 export function loadHistory({ since = 0 } = {}) {
     const keepView = since > 0 && viewChosenAt >= since;
+    const keepDetail = since > 0 && detailChosenAt >= since;
     const graphContainer = document.getElementById('graphContainer');
     const reportContainer = document.getElementById('reportContainer');
     const articleList = document.getElementById('articleList');
     const articleDetail = document.getElementById('articleDetail');
     const historyTopBar = document.getElementById('historyTopBar');
     const detailTopBar = document.getElementById('detailTopBar');
-    if (graphContainer && !wsActive() && !keepView) graphContainer.style.display = 'none';
-    if (reportContainer && !wsActive() && !keepView) reportContainer.style.display = 'none';
-    if (articleDetail) articleDetail.style.display = 'none';
-    if (detailTopBar) detailTopBar.style.display = 'none';
-    toolbarEditing = false; document.getElementById('toolbarTray')?.remove();
-    if (historyTopBar) historyTopBar.classList.remove('scroll-hidden');
-    if (detailTopBar) detailTopBar.classList.remove('scroll-hidden');
-    if (historyTopBar) historyTopBar.style.display = 'flex';
-    if (articleList && !keepView) articleList.style.display = 'block';
+    if (!keepDetail) {
+        if (graphContainer && !wsActive() && !keepView) graphContainer.style.display = 'none';
+        if (reportContainer && !wsActive() && !keepView) reportContainer.style.display = 'none';
+        if (articleDetail) articleDetail.style.display = 'none';
+        if (detailTopBar) detailTopBar.style.display = 'none';
+        toolbarEditing = false; document.getElementById('toolbarTray')?.remove();
+        if (historyTopBar) historyTopBar.classList.remove('scroll-hidden');
+        if (detailTopBar) detailTopBar.classList.remove('scroll-hidden');
+        if (historyTopBar) historyTopBar.style.display = 'flex';
+        if (articleList && !keepView) articleList.style.display = 'block';
+        showSkeleton(articleList);
+    }
     document.dispatchEvent(new Event('aish:ws-refresh'));
-    showSkeleton(articleList);
     import('./feedManager.js')
         .then(m => m.reconcileStubs())
         .catch(() => {})
@@ -1375,6 +1405,13 @@ function renderResearchFilters(bar) {
         b.addEventListener('click', () => { researchFilter = id; renderTab(); });
         row.appendChild(b);
     });
+}
+
+/** Replays a one-shot CSS entrance (the .is-entering rule) on `el`. */
+function playEnter(el) {
+    if (!el) return;
+    el.classList.remove('is-entering'); void el.offsetWidth; el.classList.add('is-entering');
+    el.addEventListener('animationend', () => el.classList.remove('is-entering'), { once: true });
 }
 
 const LAZY_FIRST = 30;   // cards built at once for a long list
@@ -2086,13 +2123,23 @@ function renderPaperRow(article, row) {
     paintSourceSummary(article, summary, row);
 }
 
+/** Open an article from outside History (summary bubble, feed, graph): switch to History and show it at once, without waiting for the list. */
+export function openArticleInHistory(article) {
+    if (uiManagerRef && typeof uiManagerRef.showScreen === 'function') uiManagerRef.showScreen('history');
+    return showArticleDetail(article);
+}
+
 export async function showArticleDetail(article) {
-    await loadCiteStyle();
+    detailChosenAt = Date.now();
+    const needsLoad = !!(article && article.id && article.content === undefined);
+    if (needsLoad) showDetailSkeleton();
     // List/graph/search cards only carry the lean articlesIndex shape (no
     // content) — load the full article:<id> record before rendering detail.
     // Callers that already pass a full in-memory article (e.g. mainScreen.js
     // right after a save) have `content` set and skip this fetch.
-    if (article && article.id && article.content === undefined) {
+    // The cite style and toolbar prefs are needed before the first paint too: read them alongside, not one after another.
+    const prefs = Promise.all([loadCiteStyle(), loadToolbarPrefs()]);
+    if (needsLoad) {
         try {
             const full = await StorageManager.getArticleFull(article.id);
             article = { ...article, ...full };
@@ -2103,7 +2150,8 @@ export async function showArticleDetail(article) {
 
     if (article && article.id && article.conversation === undefined) {
         try {
-            const conversation = await StorageManager.getConversation(article.id);
+            // the full record (read above) already carries the conversation; only a lean article needs its own read
+            const conversation = needsLoad ? [] : await StorageManager.getConversation(article.id);
             article = { ...article, conversation };
             // follow-ups saved before they were appended to the summary: do it now (once)
             if (conversation.length && article.summaryBase === undefined && await StorageManager.saveConversation(article.id, conversation)) {
@@ -2111,6 +2159,7 @@ export async function showArticleDetail(article) {
             }
         } catch (_) { article = { ...article, conversation: [] }; }
     }
+    await prefs;
     currentDetailArticle = article;
     sourceOpen = {};   // the source card starts collapsed on every article
     {   const ds = document.getElementById('detailStarBtn'); if (ds) { ds.hidden = !article.id || !!article.feedStub; paintDetailStar(!!article.favorite); } }
@@ -2157,6 +2206,7 @@ export async function showArticleDetail(article) {
       </div>
     ` : '';
 
+    articleDetailContent.removeAttribute('aria-busy');
     articleDetailContent.innerHTML = `
       <div class="article-detail-card">
         <h3 class="detail-title"><img class="detail-fav" alt="" hidden>${safeTitle}</h3>
@@ -2240,7 +2290,6 @@ export async function showArticleDetail(article) {
         if (bar) attachCardMenu(bar, article, { detail: true, extra: detailExtraItems, onRemoved: () => { const b = document.getElementById('detailBackButton'); if (b) b.click(); } });
     }
     // Show detail, hide list and graph
-    await loadToolbarPrefs();
     // fresh content: drop the previous article's buttons from the top bar (they were moved out of the old content),
     // otherwise every opened article would add another set of Read/Copy/Share/Kindle buttons
     toolbarEditing = false; document.getElementById('toolbarTray')?.remove();
@@ -2252,7 +2301,9 @@ export async function showArticleDetail(article) {
     if (graphContainer && !wsActive()) graphContainer.style.display = 'none';
     if (historyTopBar) historyTopBar.style.display = 'none';
     if (detailTopBar) detailTopBar.style.display = 'flex';
+    const wasShown = articleDetail.style.display === 'block';
     articleDetail.style.display = 'block';
+    if (!wasShown) playEnter(articleDetail);   // the skeleton already showed it for a lean article: no second entrance
     layoutDetailActions();
     mountReadingTools({ scroller: document.getElementById('historyScreen'), content: articleDetailContent, article });   // Scroll to top + contents on long texts
     // Keyboard: focus moves to "Back" (so Esc / Enter returns); the card that opened this stays remembered.
@@ -2561,4 +2612,30 @@ function restoreCardFocus(id) {
     const card = (id && [...list.querySelectorAll('li[data-id]')].find(li => li.dataset.id === id)) || list.querySelector('li[tabindex="0"]');
     if (card) card.focus({ preventScroll: true });
     if (card && typeof card.scrollIntoView === 'function') card.scrollIntoView({ block: 'nearest' });
+}
+
+/** Placeholder in the article pane while the full record loads, so the switch from the list is instant. */
+function showDetailSkeleton() {
+    const articleDetail = document.getElementById('articleDetail');
+    const content = document.getElementById('articleDetailContent');
+    if (!articleDetail || !content) return;
+    content.replaceChildren();
+    const card = document.createElement('div');
+    card.className = 'article-detail-card';
+    card.setAttribute('aria-hidden', 'true');
+    for (const cls of ['skeleton-line skeleton-title', 'skeleton-line', 'skeleton-line skeleton-short', 'skeleton-line', 'skeleton-line', 'skeleton-line skeleton-short']) {
+        const line = document.createElement('div'); line.className = cls; card.appendChild(line);
+    }
+    content.appendChild(card);
+    content.setAttribute('aria-busy', 'true');
+    const articleList = document.getElementById('articleList');
+    if (articleList) articleList.style.display = 'none';
+    const graphContainer = document.getElementById('graphContainer');
+    if (graphContainer && !wsActive()) graphContainer.style.display = 'none';
+    const historyTopBar = document.getElementById('historyTopBar');
+    if (historyTopBar) historyTopBar.style.display = 'none';
+    const detailTopBar = document.getElementById('detailTopBar');
+    if (detailTopBar) detailTopBar.style.display = 'flex';
+    articleDetail.style.display = 'block';
+    playEnter(articleDetail);
 }

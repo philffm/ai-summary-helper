@@ -89,6 +89,16 @@ function markActiveRow(name) {
 
 function $(id) { return document.getElementById(id); }
 
+/** Plays the panel entrance (CSS .st-in-fwd / .st-in-back): forward slides in from the right, back from the left. */
+function playPanelIn(el, dir) {
+    if (!el) return;
+    el.classList.remove('st-in-fwd', 'st-in-back', 'st-in-fade');
+    void el.offsetWidth;
+    const cls = settingsIsWide() ? 'st-in-fade' : (dir === 'back' ? 'st-in-back' : 'st-in-fwd');
+    el.classList.add(cls);
+    el.addEventListener('animationend', () => el.classList.remove(cls), { once: true });
+}
+
 function selectedText(id) {
     const el = $(id);
     const opt = el && el.selectedOptions && el.selectedOptions[0];
@@ -143,6 +153,7 @@ function showHome() {
     if (settingsIsWide()) { openSettingsPanel(currentPanel); return; }
     document.querySelectorAll('.settings-panel').forEach(p => { p.hidden = true; });
     $('settingsHome').hidden = false;
+    playPanelIn($('settingsHome'), 'back');
     if (screenEl) screenEl.scrollTop = 0;
     refreshSubtitles();
 }
@@ -155,7 +166,9 @@ export function openSettingsPanel(name, targetId) {
     syncSaveFab(name);
     markActiveRow(name);
     $('settingsHome').hidden = !settingsIsWide() ? true : false;
+    const wasHidden = panel.hidden;
     document.querySelectorAll('.settings-panel').forEach(p => { p.hidden = p !== panel; });
+    if (wasHidden) playPanelIn(panel, 'fwd');   // re-opening the panel that is already showing does not replay it
     if (screenEl) screenEl.scrollTop = 0;
     panel.scrollTop = 0;
     if (targetId) {

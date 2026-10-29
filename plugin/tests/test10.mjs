@@ -48,7 +48,7 @@ assert.equal(titles().length, 4, 'range 9..5: ' + titles()); console.log('range 
 store['feeds:ui'] = { ...store['feeds:ui'], date: 'today' };
 // no jump mode any more: no segmented switch, recap marker on days with a recap
 click($('#feedFilterChip')); await tick(); click($$('.feed-sheet-reset')[0]); await tick();
-store['feeds:recaps'] = { [`${today - 5 * D}|all`]: { overview: 'x', themes: [], mood: 'neu', hash: 'h', at: now, n: 1 } };
+store['feeds:recaps'] = { [`${dayStart(today - 5 * D)}|all`]: { overview: 'x', themes: [], mood: 'neu', hash: 'h', at: now, n: 1 } };
 const fm2 = await imp('modules/feedManager.js'); fm2.initFeedManager(ui); await fm2.onFeedsScreenShown(ui); await tick(100);
 click($('#feedFilterChip')); await tick(); click($$('.feed-pick-link')[0]); await tick();
 assert.equal($$('.feed-seg').length, 0, 'no jump/only switch');

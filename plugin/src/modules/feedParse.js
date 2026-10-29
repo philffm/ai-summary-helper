@@ -1,5 +1,6 @@
 // feedParse.js — RSS/Atom parsing + OPML export (pure functions, moved out of feedManager.js).
 import { safeHttpUrl, htmlToText, subTitle } from './feedUtil.js';
+import { pickBody } from './feedBodies.js';
 
 // ── Parsing ────────────────────────────────────────────────────────────────
 // Namespace-agnostic child lookup (e.g. content:encoded, dc:date).
@@ -78,6 +79,7 @@ export function parseFeed(xmlText, feedUrl) {
                 link,
                 published: Date.parse(when) || 0,
                 snippet: htmlToText(childByLocalName(e, 'summary') || childByLocalName(e, 'content')).slice(0, 220),
+                body: pickBody([childByLocalName(e, 'content'), childByLocalName(e, 'summary')], t => htmlToText(t).length),
                 audio: enclosureOf(e, feedUrl),
                 dur: parseDuration(childByLocalName(e, 'duration'))
             });
@@ -99,6 +101,7 @@ export function parseFeed(xmlText, feedUrl) {
                 link,
                 published: Date.parse(when) || 0,
                 snippet: htmlToText(childByLocalName(e, 'description') || childByLocalName(e, 'encoded')).slice(0, 220),
+                body: pickBody([childByLocalName(e, 'encoded'), childByLocalName(e, 'description')], t => htmlToText(t).length),
                 audio: enclosureOf(e, feedUrl),
                 dur: parseDuration(childByLocalName(e, 'duration')),
                 img: imageOf(e, feedUrl)

@@ -34,7 +34,7 @@ assert(calls[0].body.content.includes('First') && calls[0].body.content.includes
 assert(!calls[0].body.content.includes('FULLTEXT'),'summary only by default');
 assert(d.querySelector('.sendsheet-done'), 'done view');
 [...d.querySelectorAll('.sendsheet button')].find(b => b.className.includes('primary')).click();
-assert(!d.querySelector('.sendsheet') && !hs.classList.contains('selecting') && !d.querySelector('.sel-bar'), 'closed');
+assert(!d.querySelector('.sendsheet:not(.is-closing)') && !hs.classList.contains('selecting') && !d.querySelector('.sel-bar'), 'closed');
 // separate files via localsend path (deliver stub through sendToLocalSend → runtime message)
 await enterSelection(d);
 const c2 = [...d.querySelectorAll('#articleList .article-card')]; c2[1].click();

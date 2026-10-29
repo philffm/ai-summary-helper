@@ -1,5 +1,6 @@
 import { hash } from './feedHash.js';
 import { normalizeUrl } from './textUtils.js';
+import { pickBody } from './feedBodies.js';
 
 const AUDIO_EXT = /\.(mp3|m4a|aac|ogg|oga|opus|wav|flac)(\?|#|$)/i;
 const MAX_FEED_ITEMS = 100;
@@ -172,6 +173,7 @@ export function parseWorkerFeed(xml, feedUrl, sub, now = Date.now()) {
             link,
             published: Date.parse(textOf(tagValue(block, atom ? 'published' : 'pubDate') || tagValue(block, atom ? 'updated' : 'date'))) || now,
             snippet: textOf(tagValue(block, atom ? 'summary' : 'description') || tagValue(block, atom ? 'content' : 'encoded')).slice(0, 220),
+            body: pickBody((atom ? [tagValue(block, 'content'), tagValue(block, 'summary')] : [tagValue(block, 'encoded'), tagValue(block, 'description')]).map(decodeXml), t => t.replace(/<[^>]*>/g, ' ').replace(/\s+/g, ' ').trim().length),
             audio,
             dur: durationOf(textOf(tagValue(block, 'duration'))),
             img: ''

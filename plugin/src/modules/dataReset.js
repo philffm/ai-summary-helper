@@ -4,6 +4,7 @@
 // so a key added later can never be forgotten by a delete button. The functions take the storage areas as arguments (default:
 // the real chrome ones) so they can be tested with plain objects.
 import { SK, SK_LEGACY, SK_DEAD, ARTICLE_REC, ARTICLE_REC_LEGACY, COLL_REC, TARGET_LEDGER } from './storageKeys.js';
+import { FEED_BODY, FEED_BODY_INDEX } from './feedBodies.js';
 
 export const CATEGORY_IDS = ['articles', 'highlights', 'feeds', 'podcasts', 'keys', 'send', 'prefs'];
 
@@ -21,7 +22,7 @@ export const CATEGORIES = {
     // yellow highlights and AI ghost highlights, all pages
     highlights: { keys: [SK.annotations], extra: [...SK_DEAD.filter((k) => k !== 'articleHistory'), 'annotations'] },
     // RSS: subscriptions, fetched items, recaps, mood snapshots, listening position, background processing state
-    feeds: { keys: [SK.feedSubs, SK.feedItems, SK.feedRecaps, SK.feedMood, SK.feedAudioPos, SK.feedBackground, SK.feedBgSeen, SK.feedPending, SK.feedSync] },
+    feeds: { keys: [SK.feedSubs, SK.feedItems, SK.feedRecaps, SK.feedMood, SK.feedAudioPos, SK.feedBackground, SK.feedBgSeen, SK.feedPending, SK.feedSync, FEED_BODY_INDEX], prefixes: [FEED_BODY] },
     podcasts: { keys: [SK.podcasts] },
     // API keys and endpoints, sign-in, license
     keys: { keys: SECRET_KEYS, extra: ['servicesConfig'] },
