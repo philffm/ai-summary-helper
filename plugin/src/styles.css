@@ -4548,10 +4548,10 @@ html[data-motion="reduce"] .detail-split-more .icon { transition: none; }
 .st-in-fade { animation: stInFade .16s ease-out; }
 @media (prefers-reduced-motion: reduce) { .st-in-fwd, .st-in-back, .st-in-fade { animation: none; } }
 
-/* ── Stop button while a summary is written: a soft accent glow that breathes, so "something is running" reads at a glance ── */
-@keyframes stopGlow {
-  0%, 100% { box-shadow: 0 0 0 0 transparent, 0 0 8px 1px var(--accent-glow); }
-  50%      { box-shadow: 0 0 0 3px var(--accent-glow), 0 0 20px 4px var(--accent-glow); }
+/* ── While a summary is written the composer pill breathes a faint accent glow, so "something is running" reads without shouting ── */
+@keyframes pillGlow {
+  0%, 100% { box-shadow: 0 0 0 0 transparent, 0 0 6px 0 var(--accent-a10); border-color: var(--outline); }
+  50%      { box-shadow: 0 0 0 1px var(--accent-a30), 0 0 16px 2px var(--accent-a10); border-color: var(--accent-a30); }
 }
-.controls-bar[data-state="working"] #fetchSummary { animation: stopGlow 2.2s ease-in-out infinite; }
-@media (prefers-reduced-motion: reduce) { .controls-bar[data-state="working"] #fetchSummary { animation: none; box-shadow: 0 0 0 3px var(--accent-glow), 0 0 14px 2px var(--accent-glow); } }
+.controls-bar[data-state="working"] .composer-pill { animation: pillGlow 2.6s ease-in-out infinite; }
+@media (prefers-reduced-motion: reduce) { .controls-bar[data-state="working"] .composer-pill { animation: none; box-shadow: 0 0 0 1px var(--accent-a30), 0 0 12px 1px var(--accent-a10); border-color: var(--accent-a30); } }
