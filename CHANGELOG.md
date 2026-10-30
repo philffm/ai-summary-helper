@@ -5,6 +5,59 @@ Commit history has the details: <https://github.com/philffm/ai-summary-helper/co
 
 ## Unreleased
 
+## 2.2.37 (2026-10-30)
+
+### All changes
+
+#### Changed
+
+- i18n: update translations for changed content
+- MCP: get_brand tool, poster mode in the brand guide, bump version to 2.2.32
+- Website: send old /?lang=xx links to the language folders
+- MCP: hand AI apps the brand guide (server instructions, aish://brand, on_brand prompt)
+- Site check: fail the build on missing or duplicate meta descriptions
+- Website: video player keeps sound, sound button sits on the picture
+  - The tapped clip starts inside the tap, so browsers allow sound; the player no longer waits for the IntersectionObserver (outside the tap)
+  - In that tap every clip of the group is started and stopped once, so Safari/iOS also let clips play with sound after a swipe
+  - A refused autoplay (shared #v= link, swipe without a tap) no longer turns sound off for the rest of the visit: the clip plays silently and a large "Sound on" pill shows on the picture for 3 s, then the small button; tapping it or the video turns sound on
+  - The sound button sits on the picture itself, top right (the bottom carries the subtitles), below the close button when the picture is full width
+- Website: notify IndexNow (Bing & co.) about new and changed pages
+  - Key file docs/74c386394ab84165be6a819f1e91dc5f.txt at the site root
+  - scripts/indexnow.mjs compares docs/sitemap.xml with the sitemap that was live before the deploy and submits URLs that are new or have a newer lastmod; --all sends every URL, --dry-run only prints them
+  - Pages workflow saves the live sitemap before deploying and notifies IndexNow afterwards (continue-on-error, never fails the deploy)
+  - npm run site:indexnow for the one-time full submission
+- Tags describe only the article, not the personal summary parts, bump version to 2.2.31
+- Soften working glow to composer pill, bump version to 2.2.30
+- Open articles faster, add motion polish, keep feed full text
+  - Opening an article from the summary bubble, a feed or the graph no longer waits 400 ms or reloads the History list behind it: new openArticleInHistory() shows the article at once with a skeleton, and the cite style, toolbar prefs and record load in parallel.
+  - Motion: article view fades in, the Send sheet slides up and down, cards that leave the list collapse first, Settings panels slide in, the Stop button glows while a summary runs.
+  - The conversation chip in the composer has no fill.
+  - Feeds keep the full text (content:encoded / Atom content) under feeds:body:<id>, written for new items only and swept with the retention window, for reading inside the extension later.
+  - tests: test10 no longer breaks across a daylight-saving change, test29 and test108 follow the new behavior, test180 covers the bodies.
+- Update sitemap
+- i18n: update translations for changed content
+- Website: the narrated all-features video replaces the montage
+  - "AI Summary Helper in under a minute" (komplett): a narrator calls out every feature, now including analytics, export and AI apps; first in the landing stack and on the videos page
+  - Videos in en, de, es, ja, fr and zh; the other languages fall back to English until they get their own recording
+  - Opening line says "under a minute" instead of "forty seconds" (the videos run 45 to 54 seconds)
+  - The web version keeps the lower subtitles of this video (own crop, background-coloured sides)
+  - Manifest: transcript for the new video; site and SEO pass re-run
+- i18n: update translations for changed content
+- Website: three new feature videos in six languages (AI apps, export, analytics)
+  - Landing page: the clips in the video stack and as feature cards (your library in Claude, LM Studio and Cursor; export to Obsidian, Markdown, Word and PDF; an analytics report of your reading)
+  - Videos in en, de, es, ja, fr and zh with WebVTT subtitles; other languages fall back to English until they get their own recording
+  - Blog: the AI apps post opens with its video, the videos page lists all three
+  - Site and SEO pass re-run (video sitemap, manifest, canonical order)
+- Demo: scenarios for the AI apps (MCP) and export videos
+  - ?scenario=mcp: feature on, an app connected, all three switches on and a few calls in the activity list; panel=mcp opens Settings → AI apps
+  - ?scenario=export: Obsidian, ODT, Word and PDF stay in the card menu
+  - A download or obsidian:// link clicked inside the demo is stopped instead of leaving the page (the videos draw the file)
+  - README: the new scenarios and panel
+- Settings: About & Tools panel (maker note, what's new, diagnostics, links); About and MCP panels hide the save button; locales
+- Video SEO: uploadDate and publication date as full ISO 8601 datetimes; regenerate docs
+- Archive links: saving from archive.ph, Wayback or 12ft stores the original article URL and keeps the archive copy as archiveUrl
+- AI apps (MCP): redesigned settings panel and a Try asking list of copyable prompts; README recipes
+
 ## 2.2.24 (2026-10-26)
 
 ### All changes
