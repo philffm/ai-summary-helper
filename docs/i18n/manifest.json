@@ -105669,6 +105669,366 @@
           "model": "google/gemini-3.7-flash"
         }
       }
+    },
+    "fca793d83156271505c2b950603cab7bc9465b04be91e9011aec20c88539d840": {
+      "en": "AI Summary Helper in under a minute",
+      "translations": {
+        "de": {
+          "text": "AI Summary Helper in unter einer Minute",
+          "translatedAt": "2026-10-27T14:30:41.910Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fr": {
+          "text": "AI Summary Helper en moins d'une minute",
+          "translatedAt": "2026-10-27T14:30:50.648Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "es": {
+          "text": "AI Summary Helper en menos de un minuto",
+          "translatedAt": "2026-10-27T14:30:53.875Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh": {
+          "text": "一分钟速览 AI Summary Helper",
+          "translatedAt": "2026-10-27T14:31:01.405Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh-TW": {
+          "text": "一分鐘快速掌握 AI Summary Helper",
+          "translatedAt": "2026-10-27T14:31:09.116Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ja": {
+          "text": "1分でわかるAI Summary Helper",
+          "translatedAt": "2026-10-27T14:31:13.938Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ko": {
+          "text": "1분 만에 살펴보는 AI Summary Helper",
+          "translatedAt": "2026-10-27T14:31:20.376Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pt": {
+          "text": "AI Summary Helper em menos de um minuto",
+          "translatedAt": "2026-10-27T14:31:25.121Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "hi": {
+          "text": "AI Summary Helper 1 मिनट से भी कम में",
+          "translatedAt": "2026-10-27T14:31:31.120Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "vi": {
+          "text": "AI Summary Helper trong chưa đầy một phút",
+          "translatedAt": "2026-10-27T14:31:35.845Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "nl": {
+          "text": "AI Summary Helper in minder dan een minuut",
+          "translatedAt": "2026-10-27T14:31:41.122Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "it": {
+          "text": "AI Summary Helper in meno di un minuto",
+          "translatedAt": "2026-10-27T14:31:45.057Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ru": {
+          "text": "AI Summary Helper менее чем за минуту",
+          "translatedAt": "2026-10-27T14:31:53.603Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "uk": {
+          "text": "AI Summary Helper менш ніж за хвилину",
+          "translatedAt": "2026-10-27T14:31:58.507Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "tr": {
+          "text": "Bir dakikadan kısa sürede AI Summary Helper",
+          "translatedAt": "2026-10-27T14:32:06.576Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "id": {
+          "text": "AI Summary Helper dalam waktu kurang dari satu menit",
+          "translatedAt": "2026-10-27T14:32:12.185Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pl": {
+          "text": "AI Summary Helper w mniej niż minutę",
+          "translatedAt": "2026-10-27T14:32:19.485Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "th": {
+          "text": "AI Summary Helper ในเวลาไม่ถึงหนึ่งนาที",
+          "translatedAt": "2026-10-27T14:32:26.652Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ar": {
+          "text": "مساعد التلخيص بالذكاء الاصطناعي في أقل من دقيقة",
+          "translatedAt": "2026-10-27T14:32:35.120Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "sv": {
+          "text": "AI Summary Helper på under en minut",
+          "translatedAt": "2026-10-27T14:32:39.504Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "da": {
+          "text": "AI Summary Helper på under et minut",
+          "translatedAt": "2026-10-27T14:32:42.247Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "no": {
+          "text": "AI Summary Helper på under ett minutt",
+          "translatedAt": "2026-10-27T14:32:46.872Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fi": {
+          "text": "AI Summary Helper alle minuutissa",
+          "translatedAt": "2026-10-27T14:32:52.464Z",
+          "model": "google/gemini-3.7-flash"
+        }
+      }
+    },
+    "ba23bba8283d8ab1751708c1edddd22345dc6d78ad8520fb12d837e19eab352b": {
+      "en": "Every feature, called out in one fast run: summaries, sources, research mode, a library, feeds, AI apps and more.",
+      "translations": {
+        "de": {
+          "text": "Alle Funktionen im schnellen Überblick: Zusammenfassungen, Quellen, Recherche-Modus, Bibliothek, Feeds, KI-Apps und mehr.",
+          "translatedAt": "2026-10-27T14:30:41.910Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fr": {
+          "text": "Toutes les fonctionnalités présentées en un clin d'œil : résumés, sources, mode recherche, bibliothèque, flux, applications IA et bien plus encore.",
+          "translatedAt": "2026-10-27T14:30:50.648Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "es": {
+          "text": "Todas las funciones explicadas en un recorrido rápido: resúmenes, fuentes, modo de investigación, biblioteca, feeds, aplicaciones de IA y más.",
+          "translatedAt": "2026-10-27T14:30:53.875Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh": {
+          "text": "核心功能一览无余：智能摘要、来源追溯、深度研究模式、个人知识库、信息流、AI 应用等诸多特性。",
+          "translatedAt": "2026-10-27T14:31:01.405Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh-TW": {
+          "text": "一次快速瀏覽所有核心功能：內容摘要、引用來源、研究模式、收藏庫、訂閱源、AI 應用以及更多功能。",
+          "translatedAt": "2026-10-27T14:31:09.116Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ja": {
+          "text": "要約、情報源、リサーチモード、ライブラリ、フィード、AIアプリなど、すべての機能をスピーディーにご紹介します。",
+          "translatedAt": "2026-10-27T14:31:13.938Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ko": {
+          "text": "요약, 출처 확인, 리서치 모드, 라이브러리, 피드, AI 앱 등 모든 기능을 한눈에 빠르게 둘러보세요.",
+          "translatedAt": "2026-10-27T14:31:20.376Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pt": {
+          "text": "Todos os recursos apresentados em um tour rápido: resumos, fontes, modo de pesquisa, biblioteca, feeds, apps de IA e muito mais.",
+          "translatedAt": "2026-10-27T14:31:25.121Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "hi": {
+          "text": "हर feature, एक ही fast run में: summaries, sources, research mode, library, feeds, AI apps और भी बहुत कुछ।",
+          "translatedAt": "2026-10-27T14:31:31.120Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "vi": {
+          "text": "Toàn bộ tính năng được điểm nhanh gọn: tóm tắt, trích dẫn nguồn, chế độ nghiên cứu, thư viện lưu trữ, bảng tin, ứng dụng AI và hơn thế nữa.",
+          "translatedAt": "2026-10-27T14:31:35.845Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "nl": {
+          "text": "Elke functie kort en krachtig op een rij: samenvattingen, bronnen, researchmodus, een bibliotheek, feeds, AI-apps en meer.",
+          "translatedAt": "2026-10-27T14:31:41.122Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "it": {
+          "text": "Tutte le funzionalità in una rapida panoramica: riassunti, fonti, modalità ricerca, libreria, feed, app IA e molto altro.",
+          "translatedAt": "2026-10-27T14:31:45.057Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ru": {
+          "text": "Все функции в одном быстром обзоре: саммари, источники, режим исследования, библиотека, ленты, AI-приложения и многое другое.",
+          "translatedAt": "2026-10-27T14:31:53.603Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "uk": {
+          "text": "Усі можливості в одному швидкому огляді: підсумки, джерела, режим дослідження, бібліотека, стрічки, AI-застосунки та багато іншого.",
+          "translatedAt": "2026-10-27T14:31:58.507Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "tr": {
+          "text": "Tüm özellikler tek bir hızlı turda: özetler, kaynaklar, araştırma modu, kütüphane, akışlar, AI uygulamaları ve daha fazlası.",
+          "translatedAt": "2026-10-27T14:32:06.576Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "id": {
+          "text": "Semua fitur, dibahas dalam satu ulasan singkat: ringkasan, sumber, research mode, library, feeds, AI apps, dan banyak lagi.",
+          "translatedAt": "2026-10-27T14:32:12.185Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pl": {
+          "text": "Wszystkie funkcje omówione w ekspresowym tempie: podsumowania, źródła, tryb badawczy, biblioteka, kanały, aplikacje AI i wiele więcej.",
+          "translatedAt": "2026-10-27T14:32:19.485Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "th": {
+          "text": "รวมทุกฟีเจอร์ให้เห็นครบจบอย่างรวดเร็ว: สรุปเนื้อหา, แหล่งที่มา, โหมดค้นคว้า, คลังข้อมูล, ฟีด, แอป AI และอื่นๆ อีกมากมาย",
+          "translatedAt": "2026-10-27T14:32:26.652Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ar": {
+          "text": "كل الميزات في جولة سريعة: الملخصات، المصادر، وضع البحث، المكتبة، الخلاصات، تطبيقات الذكاء الاصطناعي والمزيد.",
+          "translatedAt": "2026-10-27T14:32:35.120Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "sv": {
+          "text": "Alla funktioner i en snabb genomgång: sammanfattningar, källor, research-läge, bibliotek, flöden, AI-appar och mycket mer.",
+          "translatedAt": "2026-10-27T14:32:39.504Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "da": {
+          "text": "Alle funktioner lynhurtigt gennemgået: resuméer, kilder, research-tilstand, bibliotek, feeds, AI-apps og meget mere.",
+          "translatedAt": "2026-10-27T14:32:42.247Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "no": {
+          "text": "Alle funksjoner i en rask gjennomgang: sammendrag, kilder, research-modus, bibliotek, feeder, AI-apper og mer.",
+          "translatedAt": "2026-10-27T14:32:46.872Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fi": {
+          "text": "Kaikki toiminnot nopeassa esittelyssä: tiivistelmät, lähteet, tutkimustila, kirjasto, syötteet, tekoälysovellukset ja paljon muuta.",
+          "translatedAt": "2026-10-27T14:32:52.464Z",
+          "model": "google/gemini-3.7-flash"
+        }
+      }
+    },
+    "2ca0f38d0519344ac1f4d61aecfaa84ad260c8778c896a9992e990257d7bc5b6": {
+      "en": "Play: AI Summary Helper in under a minute",
+      "translations": {
+        "de": {
+          "text": "Abspielen: AI Summary Helper in unter einer Minute",
+          "translatedAt": "2026-10-27T14:30:41.910Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fr": {
+          "text": "Lecture : AI Summary Helper en moins d'une minute",
+          "translatedAt": "2026-10-27T14:30:50.648Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "es": {
+          "text": "Reproducir: AI Summary Helper en menos de un minuto",
+          "translatedAt": "2026-10-27T14:30:53.875Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh": {
+          "text": "播放：一分钟速览 AI Summary Helper",
+          "translatedAt": "2026-10-27T14:31:01.405Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh-TW": {
+          "text": "播放：一分鐘快速掌握 AI Summary Helper",
+          "translatedAt": "2026-10-27T14:31:09.116Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ja": {
+          "text": "再生：1分でわかるAI Summary Helper",
+          "translatedAt": "2026-10-27T14:31:13.938Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ko": {
+          "text": "재생: 1분 만에 살펴보는 AI Summary Helper",
+          "translatedAt": "2026-10-27T14:31:20.376Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pt": {
+          "text": "Reproduzir: AI Summary Helper em menos de um minuto",
+          "translatedAt": "2026-10-27T14:31:25.121Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "hi": {
+          "text": "Play: AI Summary Helper 1 मिनट से भी कम में",
+          "translatedAt": "2026-10-27T14:31:31.120Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "vi": {
+          "text": "Phát: AI Summary Helper trong chưa đầy một phút",
+          "translatedAt": "2026-10-27T14:31:35.845Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "nl": {
+          "text": "Afspelen: AI Summary Helper in minder dan een minuut",
+          "translatedAt": "2026-10-27T14:31:41.122Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "it": {
+          "text": "Riproduci: AI Summary Helper in meno di un minuto",
+          "translatedAt": "2026-10-27T14:31:45.057Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ru": {
+          "text": "Воспроизвести: AI Summary Helper менее чем за минуту",
+          "translatedAt": "2026-10-27T14:31:53.603Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "uk": {
+          "text": "Відтворити: AI Summary Helper менш ніж за хвилину",
+          "translatedAt": "2026-10-27T14:31:58.507Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "tr": {
+          "text": "Oynat: Bir dakikadan kısa sürede AI Summary Helper",
+          "translatedAt": "2026-10-27T14:32:06.576Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "id": {
+          "text": "Putar: AI Summary Helper dalam waktu kurang dari satu menit",
+          "translatedAt": "2026-10-27T14:32:12.185Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pl": {
+          "text": "Odtwórz: AI Summary Helper w mniej niż minutę",
+          "translatedAt": "2026-10-27T14:32:19.485Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "th": {
+          "text": "เล่น: AI Summary Helper ในเวลาไม่ถึงหนึ่งนาที",
+          "translatedAt": "2026-10-27T14:32:26.652Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ar": {
+          "text": "تشغيل: مساعد التلخيص بالذكاء الاصطناعي في أقل من دقيقة",
+          "translatedAt": "2026-10-27T14:32:35.120Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "sv": {
+          "text": "Spela upp: AI Summary Helper på under en minut",
+          "translatedAt": "2026-10-27T14:32:39.504Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "da": {
+          "text": "Afspil: AI Summary Helper på under et minut",
+          "translatedAt": "2026-10-27T14:32:42.247Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "no": {
+          "text": "Spill av: AI Summary Helper på under ett minutt",
+          "translatedAt": "2026-10-27T14:32:46.872Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fi": {
+          "text": "Toista: AI Summary Helper alle minuutissa",
+          "translatedAt": "2026-10-27T14:32:52.464Z",
+          "model": "google/gemini-3.7-flash"
+        }
+      }
     }
   }
 }
