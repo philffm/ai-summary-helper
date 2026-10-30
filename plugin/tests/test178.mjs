@@ -165,5 +165,14 @@ function fixture() {
     assert.equal(none.articles.total, 0);
 }
 
+// Brand guide for AI apps (hello.brand → server instructions, aish://brand, on_brand): the user's own style request wins.
+{
+    const { brandDefinition } = await import('../src/modules/mcp/brand.js');
+    const b = brandDefinition();
+    assert.equal(b.name, 'AI Summary Helper');
+    assert.ok(b.instructions.includes('aish://brand') && /ask for another style/.test(b.instructions));
+    assert.ok(b.guide.includes('#2563eb') && b.guide.includes(':root'));
+}
+
 console.log('TEST 178 OK');
 process.exit(0);

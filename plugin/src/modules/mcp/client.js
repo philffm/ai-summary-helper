@@ -7,6 +7,7 @@
 // Pure-ish: everything that touches chrome.* or the network is passed in,
 // so this is testable with a fake WebSocket and fake storage.
 import { TOOLS, requireScope, ToolError } from './tools.js';
+import { brandDefinition } from './brand.js';
 import { SK } from '../storageKeys.js';
 
 const PROTOCOL_VERSION = 1;
@@ -137,11 +138,16 @@ export function createMcpClient(opts = {}) {
                 token,
                 extVersion,
                 tools: Object.entries(toolDefinitions()).map(([name, def]) => ({ name, ...def })),
-                resources: [{ uri: 'aish://article/{aish_id}', description: 'The article as Markdown.' }],
+                resources: [
+                    { uri: 'aish://article/{aish_id}', description: 'The article as Markdown.' },
+                    { uri: 'aish://brand', description: 'Brand guide (colours, type, shapes, tone) for anything made from this library.' },
+                ],
                 prompts: [
                     { name: 'weekly_review', description: 'Uses list_due + list_highlights to draft a weekly review.' },
                     { name: 'write_from_collection', description: 'Drafts from one collection, citing its sources.', args: ['collection'] },
+                    { name: 'on_brand', description: 'Styles what you make from the library in the brand (colours, type, shapes, tone).' },
                 ],
+                brand: brandDefinition(),
             });
             if (pingTimer) clearInterval(pingTimer);
             // Regular traffic keeps the MV3 service worker alive (each message resets its 30 s idle timer).

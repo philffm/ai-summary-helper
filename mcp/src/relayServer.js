@@ -26,7 +26,7 @@ const EXTENSION_ORIGINS = [/^chrome-extension:\/\//, /^moz-extension:\/\//];
 export function createRelay({ getToken, port = 47615, log = () => {}, onDefs = () => {} }) {
     let wss = null;
     let conn = null;                 // the one connected extension socket
-    let defs = null;                 // { tools, resources, prompts } from the extension's last hello
+    let defs = null;                 // { tools, resources, prompts, brand } from the extension's last hello
     const peers = new Set();         // other aish-mcp copies sharing this relay
     const pending = new Map();       // call id -> { resolve, reject, timer, tool, started, ws }
     const rateGuard = createRateGuard();
@@ -62,7 +62,7 @@ export function createRelay({ getToken, port = 47615, log = () => {}, onDefs = (
                     if (isExtensionConnected() && conn !== ws) return closeWithCode(ws, 4001, 'already-connected');
                     role = 'extension'; clearTimeout(handshakeTimer);
                     conn = ws;
-                    defs = { tools: msg.tools || [], resources: msg.resources || [], prompts: msg.prompts || [] };
+                    defs = { tools: msg.tools || [], resources: msg.resources || [], prompts: msg.prompts || [], brand: msg.brand || null };
                     log(`${new Date().toISOString()} extension connected (v${msg.extVersion || '?'}, ${defs.tools.length} tools)`);
                     onDefs(defs);
                     broadcastStatus();

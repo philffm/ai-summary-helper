@@ -18,8 +18,15 @@ function errorResult(message) {
     return { content: [{ type: 'text', text: message }], isError: true };
 }
 
+// Used until an extension has sent its own brand (the cached one is read on start, so this is only the very first run).
+const FALLBACK_INSTRUCTIONS = 'When you create something visual or shareable from the user\'s AI Summary Helper library, read the aish://brand resource and style it in that brand, unless the user asks for a different style.';
+
 export function createMcpServer(relay) {
-    const server = new Server({ name: 'aish-mcp', version: '0.1.0' }, { capabilities: { tools: { listChanged: true }, resources: { listChanged: true }, prompts: { listChanged: true } } });
+    // `instructions` go out once, when the app connects: the brand cached from the extension's last hello (hub.js), so a
+    // white-label build's own guide is in place even before the browser is running.
+    const brand = relay.brand && relay.brand();
+    const server = new Server({ name: 'aish-mcp', version: '0.1.0' }, { capabilities: { tools: { listChanged: true }, resources: { listChanged: true }, prompts: { listChanged: true } }, instructions: (brand && brand.instructions) || FALLBACK_INSTRUCTIONS });
+    const brandGuide = () => { const b = relay.brand && relay.brand(); return b && b.guide; };
 
     server.setRequestHandler(ListToolsRequestSchema, async () => {
         const defs = relay.toolDefinitions();
@@ -40,6 +47,11 @@ export function createMcpServer(relay) {
     server.setRequestHandler(ListResourcesRequestSchema, async () => ({ resources: relay.resourceDefinitions().map((r) => ({ uri: r.uri, name: r.uri, description: r.description })) }));
     server.setRequestHandler(ReadResourceRequestSchema, async (req) => {
         const uri = req.params.uri;
+        if (uri === 'aish://brand') {   // served from the cache: works while the browser is closed
+            const guide = brandGuide();
+            if (!guide) throw new Error(NOT_RUNNING);
+            return { contents: [{ uri, mimeType: 'text/markdown', text: guide }] };
+        }
         const m = /^aish:\/\/article\/(.+)$/.exec(uri);
         if (!m) throw new Error(`Unknown resource: ${uri}`);
         if (!relay.isExtensionConnected()) throw new Error(NOT_RUNNING);
@@ -56,6 +68,10 @@ export function createMcpServer(relay) {
         if (name === 'write_from_collection') {
             const collection = args && args.collection;
             return { messages: [{ role: 'user', content: { type: 'text', text: `Use list_collections/get_collection to load collection "${collection}" and get_article for each source, then draft from only those sources, quoting my highlights and citing each url.` } }] };
+        }
+        if (name === 'on_brand') {
+            const guide = brandGuide() || 'Read the aish://brand resource.';
+            return { messages: [{ role: 'user', content: { type: 'text', text: `Style what you make from my library in this brand guide, unless I ask for something else:\n\n${guide}` } }] };
         }
         throw new Error(`Unknown prompt: ${name}`);
     });

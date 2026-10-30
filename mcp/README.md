@@ -117,6 +117,16 @@ exclude tag (`private` by default) never appear in any result or count. The tool
 in the extension (`plugin/src/modules/mcp/`), so new tools ship with extension updates; this relay
 only forwards them.
 
+## On-brand output
+
+Whatever an app makes from your library (an artifact, page, deck, doc or chart) is styled in the
+AISH brand by default: the server's `instructions` tell the app to read the **`aish://brand`**
+resource (colours, type, shapes, tone, a CSS starter), and the **`on_brand`** prompt applies it on
+request. Ask for another style and the app follows you instead; answers in chat and work that
+doesn't come from your library are left alone. The guide comes from the extension, so a
+white-labelled build hands out its own, and it is cached with the tool definitions, so it also
+works while the browser is closed.
+
 ## Try asking
 
 Once an app is connected, these work well. Swap the topics for your own.

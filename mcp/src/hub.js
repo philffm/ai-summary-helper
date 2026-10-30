@@ -55,5 +55,6 @@ export function createHub({ getToken, port = 47615, log = () => {}, onDefsChange
         toolDefinitions: () => (defs ? defs.tools : []),
         resourceDefinitions: () => (defs ? defs.resources : []),
         promptDefinitions: () => (defs ? defs.prompts : []),
+        brand: () => (defs && defs.brand) || null,   // { name, short, instructions, guide } of the extension's build
     };
 }

@@ -71,20 +71,21 @@ export function createRateGuard({ max = 5, windowMs = 60000 } = {}) {
 // ── Tool-definition cache (PRD §4.4: "tools are still listed … cached as definitions only") ──
 // MCP apps ask for the tool list once, right at start, often before the browser has connected.
 // The definitions (names, descriptions, input schemas) are kept here so that first answer is
-// never empty. No library data, no arguments, no results are ever written.
+// never empty. The brand guide rides along (it becomes the server's instructions on the next start).
+// No library data, no arguments, no results are ever written.
 function defsPath() { return path.join(configDir(), 'tool-definitions.json'); }
 
 export function readDefsCache() {
     try {
         const d = JSON.parse(fs.readFileSync(defsPath(), 'utf8'));
-        return d && Array.isArray(d.tools) ? { tools: d.tools, resources: d.resources || [], prompts: d.prompts || [] } : null;
+        return d && Array.isArray(d.tools) ? { tools: d.tools, resources: d.resources || [], prompts: d.prompts || [], brand: d.brand || null } : null;
     } catch (_) { return null; }
 }
 
 export function writeDefsCache(defs) {
     try {
         fs.mkdirSync(configDir(), { recursive: true, mode: 0o700 });
-        const clean = { tools: defs.tools || [], resources: defs.resources || [], prompts: defs.prompts || [] };
+        const clean = { tools: defs.tools || [], resources: defs.resources || [], prompts: defs.prompts || [], brand: defs.brand || null };
         fs.writeFileSync(defsPath(), JSON.stringify(clean, null, 2), { mode: 0o600 });
     } catch (_) { /* cache only */ }
 }
