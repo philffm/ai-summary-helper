@@ -9,6 +9,7 @@ on:
     paths:
       - 'docs/**'
       - 'scripts/legacy-lang-stubs.mjs'
+      - 'scripts/indexnow.mjs'
       - 'plugin/src/**'
       - 'plugin/demo/**'
       - 'plugin/scripts/build-demo.mjs'
@@ -42,6 +43,9 @@ jobs:
       # (Google: "Couldn't fetch") can never reach Pages.
       - name: Validate sitemap.xml
         run: node scripts/check-sitemap.mjs
+      # The sitemap that is live right now, so IndexNow only gets the pages this deploy changes.
+      - name: Save the live sitemap
+        run: curl -fsSL https://ai-summary-helper.byphil.eu/sitemap.xml -o "$RUNNER_TEMP/sitemap-before.xml" || true
       - name: Assemble the site
         run: |
           mkdir -p _site
@@ -57,3 +61,7 @@ jobs:
           path: _site
       - id: deployment
         uses: actions/deploy-pages@v4
+      # Bing & co. pick up new and changed pages right away. Never fails the deploy.
+      - name: Notify IndexNow
+        continue-on-error: true
+        run: node scripts/indexnow.mjs --before "$RUNNER_TEMP/sitemap-before.xml"
