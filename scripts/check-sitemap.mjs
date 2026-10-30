@@ -89,6 +89,21 @@ if (fs.existsSync(vpath)) {
   }
 }
 
+// 7. Every listed page needs its own meta description (Bing flags duplicates and gaps).
+const descs = new Map();
+for (const loc of locs) {
+  let rel = loc.slice(BASE.length);
+  if (!rel || rel.endsWith('/')) rel += 'index.html';
+  const file = path.join(DOCS, rel);
+  if (!fs.existsSync(file)) continue;
+  const d = fs.readFileSync(file, 'utf8').match(/<meta name="description" content="([^"]*)"/)?.[1]?.trim();
+  if (!d) { errors.push(`${loc}: missing meta description`); continue; }
+  descs.set(d, [...(descs.get(d) || []), loc]);
+}
+for (const [d, pages] of descs) {
+  if (pages.length > 1) errors.push(`duplicate meta description "${d.slice(0, 60)}…" on ${pages.slice(0, 3).join(', ')}`);
+}
+
 if (errors.length) {
   console.error(`check-sitemap: ${errors.length} problem(s) in docs/sitemap.xml`);
   for (const e of errors.slice(0, 40)) console.error('  - ' + e);
