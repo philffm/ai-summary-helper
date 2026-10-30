@@ -1194,7 +1194,7 @@ function setBilling(period) {
     if (el.tagName === 'A') phoneHref = el.getAttribute('href');
   });
   var canHover = window.matchMedia && window.matchMedia('(hover: hover)').matches;
-  var feed, track, slides, dots, muteBtn, io, toast, muted = false, lastFocus = null, hinted = false;
+  var feed, track, slides, dots, muteBtn, io, toast, muted = false, blocked = false, bigTimer = 0, lastFocus = null, hinted = false;
   var T = function () { if (window.aishTrack) window.aishTrack.apply(null, arguments); };
 
   /* The install button under every clip, for the browser it is watched in: Firefox (desktop and Android) gets the add-on,
@@ -1340,10 +1340,58 @@ function setBilling(period) {
     b.addEventListener('click', onClick);
     return b;
   }
+  /* muted = the visitor turned sound off; blocked = the browser refused sound because no tap started the clip (a shared
+     link, a swipe to the next clip in Safari). Blocked clips play silently with a "Sound on" pill until the next tap. */
   function paintMute() {
-    muteBtn.textContent = muted ? '🔇' : '🔊';
-    muteBtn.setAttribute('aria-label', muted ? (labels.sound || 'Sound on') : (labels.mute || 'Sound off'));
-    Array.prototype.forEach.call(slides, function (s) { s.querySelector('video').muted = muted; });
+    var off = muted || blocked, big = muteBtn.classList.contains('is-big');
+    muteBtn.textContent = big ? '🔇 ' + (labels.sound || 'Sound on') : off ? '🔇' : '🔊';
+    muteBtn.setAttribute('aria-label', off ? (labels.sound || 'Sound on') : (labels.mute || 'Sound off'));
+    Array.prototype.forEach.call(slides, function (s) { s.querySelector('video').muted = off; });
+    placeMute();
+  }
+  // Sound refused: a large "Sound on" pill on the lower part of the picture for 3 s, then the small button in its corner.
+  function showBlocked() {
+    if (blocked) return;
+    blocked = true;
+    muteBtn.classList.add('is-big');
+    clearTimeout(bigTimer);
+    bigTimer = setTimeout(function () { muteBtn.classList.remove('is-big'); paintMute(); }, 3000);
+    paintMute();
+  }
+  /* The sound button sits on the picture itself, top right (the bottom carries the clip's subtitles; the large pill: centred
+     a little below the middle). The video is
+     letterboxed (object-fit: contain), so the picture's box is worked out from the clip's aspect ratio. */
+  function placeMute() {
+    if (!slides || !slides.length || feed.hidden) return;
+    var v = slides[current()].querySelector('video'), r = v.getBoundingClientRect();
+    var pt = parseFloat(getComputedStyle(v).paddingTop) || 0, cw = r.width, ch = r.height - pt;
+    var k = Math.min(cw / (v.videoWidth || 360), ch / (v.videoHeight || 520));
+    var pw = (v.videoWidth || 360) * k, ph = (v.videoHeight || 520) * k;
+    var left = r.left + (cw - pw) / 2, top = r.top + pt + (ch - ph) / 2;
+    if (muteBtn.classList.contains('is-big')) {
+      muteBtn.style.left = (left + pw / 2) + 'px'; muteBtn.style.top = (top + ph * 0.62) + 'px';
+    } else {
+      var x = left + pw - 12 - 44, y = top + 12, c = feed.querySelector('.vfeed-close').getBoundingClientRect();
+      if (x < c.right && x + 44 > c.left && y < c.bottom + 8) y = c.bottom + 8;   // full-width picture (phones): below the ×
+      muteBtn.style.left = x + 'px'; muteBtn.style.top = y + 'px';
+    }
+  }
+  // Inside a tap: start every clip once and stop it again. Safari (iOS above all) then lets each of them play with sound
+  // later, when a swipe brings it on screen; otherwise only the tapped clip would get sound.
+  function unlock() {
+    Array.prototype.forEach.call(slides, function (s) {
+      var v = s.querySelector('video');
+      if (!v.paused) return;
+      v.muted = false;
+      var p = v.play(); v.pause();
+      if (p && p.catch) p.catch(function () {});
+    });
+  }
+  function soundOn() {
+    muted = false; blocked = false;
+    clearTimeout(bigTimer); muteBtn.classList.remove('is-big');
+    unlock(); paintMute();
+    var v = slides[current()].querySelector('video'); v.play().catch(function () {});
   }
   function current() {
     var h = track.clientHeight || 1;
@@ -1358,19 +1406,22 @@ function setBilling(period) {
     var h2 = document.querySelector('#videos h2'); if (h2) feed.setAttribute('aria-label', h2.textContent);
     track = document.createElement('div'); track.className = 'vfeed-track';
     dots = document.createElement('div'); dots.className = 'vfeed-dots'; dots.setAttribute('aria-hidden', 'true');
-    muteBtn = btn('vfeed-mute', '🔊', labels.mute || 'Sound off', function () { muted = !muted; paintMute(); });
+    muteBtn = btn('vfeed-mute', '🔊', labels.mute || 'Sound off', function () { if (muted || blocked) soundOn(); else { muted = true; paintMute(); } });
     feed.appendChild(track);
     feed.appendChild(btn('vfeed-close', '×', labels.close || 'Close', close));
     feed.appendChild(muteBtn);
     feed.appendChild(dots);
     document.body.appendChild(feed);
+    window.addEventListener('resize', placeMute);
     // the slide that fills the screen plays (from the start), every other one is paused
     io = new IntersectionObserver(function (entries) {
       entries.forEach(function (e) {
         var v = e.target.querySelector('video');
         if (e.isIntersecting && e.intersectionRatio >= 0.6) {
-          v.muted = muted; v.currentTime = 0;
-          v.play().catch(function () { muted = true; paintMute(); v.play().catch(function () {}); });   // autoplay with sound refused
+          v.muted = muted || blocked; v.currentTime = 0;
+          v.play().catch(function () { showBlocked(); v.play().catch(function () {}); });   // autoplay with sound refused
+          if (!v.videoWidth) v.addEventListener('loadedmetadata', placeMute, { once: true });   // real aspect ratio known now
+          placeMute();
           var k = Array.prototype.indexOf.call(slides, e.target);
           Array.prototype.forEach.call(dots.children, function (d, j) { d.classList.toggle('on', j === k); });
           if (!feed.hidden) setHash(e.target.getAttribute('data-clip'));   // the address bar always points at the clip on screen
@@ -1395,7 +1446,7 @@ function setBilling(period) {
       v.setAttribute('playsinline', ''); v.preload = 'none'; v.loop = true;
       v.poster = fig.querySelector('video').getAttribute('poster');
       v.src = fig.querySelector('source').getAttribute('src');
-      v.addEventListener('click', function () { if (v.paused) v.play().catch(function () {}); else v.pause(); });
+      v.addEventListener('click', function () { if (blocked) soundOn(); else if (v.paused) v.play().catch(function () {}); else v.pause(); });
       var cap = document.createElement('div'); cap.className = 'vfeed-cap';
       cap.innerHTML = captionHtml(fig);
       // below the caption: install button for this browser + share, in one row (nothing is laid over the video)
@@ -1428,6 +1479,11 @@ function setBilling(period) {
     feed.hidden = false;
     document.documentElement.classList.add('vfeed-open');
     track.scrollTop = i * track.clientHeight;   // straight to the tapped clip, no scroll animation
+    var tapped = navigator.userActivation ? navigator.userActivation.isActive : true;   // false for a shared link opened on load
+    if (tapped && !muted) {   // opened by a tap: sound is allowed now, so start the clip here and not later in the observer
+      blocked = false; clearTimeout(bigTimer); muteBtn.classList.remove('is-big'); unlock(); paintMute();
+      slides[i].querySelector('video').play().catch(function () {});
+    }
     feed.querySelector('.vfeed-close').focus();
     if (!hinted && labels.hint) {   // once per visit: how to get to the next clip
       hinted = true;

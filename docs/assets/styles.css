@@ -1273,7 +1273,8 @@ html.vfeed-open, html.vfeed-open body{ overflow:hidden; }
 .vfeed-cap a{ margin-top:8px; font-weight:600; color:#8ab8ff; }
 .vfeed-btn{ position:absolute; z-index:2; width:44px; height:44px; border-radius:50%; border:1px solid rgba(255,255,255,.3); background:rgba(20,22,30,.55); color:#fff; font-size:20px; line-height:1; cursor:pointer; backdrop-filter:blur(6px); }
 .vfeed-close{ top:calc(14px + env(safe-area-inset-top)); right:14px; font-size:26px; }
-.vfeed-mute{ top:calc(66px + env(safe-area-inset-top)); right:14px; font-size:17px; }
+.vfeed-mute{ font-size:17px; transition:opacity .2s; }   /* left/top set by placeMute(): top right on the picture */
+.vfeed-mute.is-big{ width:auto; height:48px; padding:0 22px; border-radius:24px; font-size:16px; font-weight:600; background:rgba(20,22,30,.82); transform:translate(-50%, -50%); white-space:nowrap; }
 .vfeed-dots{ position:absolute; z-index:2; right:30px; top:50%; transform:translateY(-50%); display:flex; flex-direction:column; gap:7px; }
 @media (max-width:600px){ .vfeed-dots{ display:none; } }   /* the video is full width there: nothing on top of it */
 .vfeed-dots i{ width:6px; height:6px; border-radius:50%; background:rgba(255,255,255,.35); transition:background .2s, transform .2s; }
