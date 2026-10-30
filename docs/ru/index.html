@@ -3,6 +3,17 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <meta name="theme-color" content="#08090C">
 <title>AI Summary Helper: суммаризация, сохранение и поиск в интернете</title>
+<script>
+// Old language links were /?lang=xx. GitHub Pages cannot 301 a query string, so send them to the language folder (canonical already points to /).
+(function () {
+  if (location.pathname !== '/') return;
+  var m = /[?&]lang=([\w-]+)/.exec(location.search); if (!m) return;
+  var dir = { cn: 'zh', tw: 'zh-tw', kr: 'ko', jp: 'ja', ua: 'uk', 'ind-bahasa': 'id', nb: 'no' }[m[1]] || m[1];
+  if (dir === 'en') dir = '';
+  if (dir && !/^(ar|da|de|es|fi|fr|hi|id|it|ja|ko|nl|no|pl|pt|ru|sv|th|tr|uk|vi|zh|zh-tw)$/.test(dir)) return;
+  location.replace('/' + (dir ? dir + '/' : '') + location.hash);
+})();
+</script>
 <meta name="description" content="Расширение для Chrome, которое делает краткие выжимки страниц с помощью AI, читает ваши RSS-ленты и ведет архив с возможностью поиска. Поиск и рекомендации работают прямо на вашем устройстве.">
 
 <script>

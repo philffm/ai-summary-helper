@@ -3,6 +3,17 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <meta name="theme-color" content="#08090C">
 <title>AI Summary Helper：網頁摘要、儲存與搜尋一鍵搞定</title>
+<script>
+// Old language links were /?lang=xx. GitHub Pages cannot 301 a query string, so send them to the language folder (canonical already points to /).
+(function () {
+  if (location.pathname !== '/') return;
+  var m = /[?&]lang=([\w-]+)/.exec(location.search); if (!m) return;
+  var dir = { cn: 'zh', tw: 'zh-tw', kr: 'ko', jp: 'ja', ua: 'uk', 'ind-bahasa': 'id', nb: 'no' }[m[1]] || m[1];
+  if (dir === 'en') dir = '';
+  if (dir && !/^(ar|da|de|es|fi|fr|hi|id|it|ja|ko|nl|no|pl|pt|ru|sv|th|tr|uk|vi|zh|zh-tw)$/.test(dir)) return;
+  location.replace('/' + (dir ? dir + '/' : '') + location.hash);
+})();
+</script>
 <meta name="description" content="運用 AI 自動產生網頁摘要的 Chrome 擴充功能，支援 RSS 訂閱並建立可搜尋的個人知識庫。搜尋與推薦皆在您的本機裝置端完成，兼顧隱私與效率。">
 
 <script>
