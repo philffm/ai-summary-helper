@@ -110,6 +110,7 @@ browser still sees the AISH tools. When the browser connects later, the app is t
 | `list_collections`, `get_collection` | Collections and their sources | Your library |
 | `library_stats` | Counts only: saves over time, top tags/sites/models, mood, highlights | Your library |
 | `list_feed_items` | Items from feed subscriptions | Feeds |
+| `get_brand` | The brand guide (no library data) | Always on |
 | `save_url` | Save a link to the AISH inbox (http/https, 30 per hour, marked "added by AI app") | Save links |
 
 It cannot edit or delete anything, or do anything while the browser is closed. Articles with the
@@ -122,7 +123,8 @@ only forwards them.
 Whatever an app makes from your library (an artifact, page, deck, doc or chart) is styled in the
 AISH brand by default: the server's `instructions` tell the app to read the **`aish://brand`**
 resource (colours, type, shapes, tone, a CSS starter), and the **`on_brand`** prompt applies it on
-request. Ask for another style and the app follows you instead; answers in chat and work that
+request. Some routes (for example a desktop bridge) pass on tools only, so the tool descriptions
+also tell the app to call **`get_brand`** first. Ask for another style and the app follows you instead; answers in chat and work that
 doesn't come from your library are left alone. The guide comes from the extension, so a
 white-labelled build hands out its own, and it is cached with the tool definitions, so it also
 works while the browser is closed.

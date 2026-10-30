@@ -12,6 +12,7 @@ import { SK, articleRecKey, collRecKey } from '../storageKeys.js';
 import { buildIndex, search as rankedSearch } from '../localSearch.js';
 import { toArticleJson } from '../articleFormat.js';
 import { pageKeyForUrl } from '../pageKey.js';
+import { BRAND_GUIDE } from './brand.js';
 
 export class ToolError extends Error {
     constructor(code, message) { super(message); this.code = code; }
@@ -344,17 +345,24 @@ export async function library_stats(args = {}, { storage, excludeTag, now = Date
     };
 }
 
-export const TOOLS = { search_library, get_article, list_highlights, list_due, list_collections, get_collection, list_feed_items, save_url, library_stats };
+/** The brand guide as a tool, because some routes (desktop bridges) pass on tools only, not server instructions or resources. No scope: it holds no library data. */
+export async function get_brand() {
+    return { guide: BRAND_GUIDE };
+}
+
+export const TOOLS = { search_library, get_article, list_highlights, list_due, list_collections, get_collection, list_feed_items, save_url, library_stats, get_brand };
 
 /** Which scope (PRD §4.1/§5 S5) a tool needs. */
 export const TOOL_SCOPE = {
     search_library: 'library', get_article: 'library', list_highlights: 'library', list_due: 'library',
     list_collections: 'library', get_collection: 'library', list_feed_items: 'feeds', save_url: 'write', library_stats: 'library',
+    get_brand: null,   // no library data, always allowed
 };
 
 /** Thrown before a handler runs when its scope is off (S5: the extension enforces this, not the relay). */
 export function requireScope(tool, args, scopes) {
     const need = TOOL_SCOPE[tool];
+    if (need === null) return;
     if (!need || !(scopes && scopes[need])) throw new ToolError('scope_denied', `Scope "${need}" is not enabled`);
     if (tool === 'get_article' && Array.isArray(args && args.include) && args.include.includes('fulltext') && !(scopes && scopes.fulltext)) {
         throw new ToolError('scope_denied', 'Scope "fulltext" is not enabled');

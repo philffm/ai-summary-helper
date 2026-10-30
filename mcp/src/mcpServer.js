@@ -35,6 +35,7 @@ export function createMcpServer(relay) {
 
     server.setRequestHandler(CallToolRequestSchema, async (req) => {
         const { name, arguments: args } = req.params;
+        if (name === 'get_brand' && brandGuide()) return toolResult({ guide: brandGuide() });   // from the cache, works while the browser is closed
         if (!relay.isExtensionConnected()) return errorResult(NOT_RUNNING);
         try {
             const data = await relay.call(name, args || {});

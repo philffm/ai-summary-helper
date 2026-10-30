@@ -174,5 +174,17 @@ function fixture() {
     assert.ok(b.guide.includes('#2563eb') && b.guide.includes(':root'));
 }
 
+// get_brand: a tool, so bridges that pass on tools only still hand over the guide; no scope needed, and the other tools point to it.
+{
+    const { get_brand, requireScope } = await import('../src/modules/mcp/tools.js');
+    const { toolDefinitions } = await import('../src/modules/mcp/client.js');
+    assert.ok((await get_brand()).guide.includes('#2563eb'));
+    requireScope('get_brand', {}, {});   // must not throw with every scope off
+    const defs = toolDefinitions();
+    assert.ok(defs.get_brand);
+    for (const t of ['search_library', 'get_article', 'list_highlights', 'list_due', 'list_collections', 'get_collection', 'list_feed_items', 'library_stats']) assert.ok(defs[t].description.includes('call get_brand first'), t);
+    assert.ok(!defs.save_url.description.includes('get_brand'));
+}
+
 console.log('TEST 178 OK');
 process.exit(0);

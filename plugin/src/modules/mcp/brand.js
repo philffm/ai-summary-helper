@@ -38,6 +38,15 @@ Use the accent sparingly: one accent colour per view, neutrals for everything el
 - Headings bold (700), tight; body 400 at 14 to 16px with a line height of about 1.5.
 - Sentence case for headings and buttons, no ALL CAPS blocks.
 
+## Poster mode (recaps, year in review, "Wrapped"-style reports)
+Plain product screens stay calm; a recap should be loud and fun. There, go big:
+- One huge hero number or phrase per section, 72 to 160px, weight 800 to 900 (Hanken Grotesk ExtraBold or Black), line height 0.95, letter spacing -0.03em.
+- Headlines as short, punchy statements ("255 articles. 1 busy Thursday."), set 40 to 72px, a few words in the accent colour.
+- Big stat blocks instead of small tiles: the number fills the card, the label sits small underneath.
+- Bolder colour: full-bleed accent sections (#2563eb with white text, or a #2563eb to #60a5fa gradient), alternating with the dark background. Still one accent family, no rainbow.
+- Chunky shapes: thick bars, pill labels, big rounded corners (24 to 32px), tight layouts, a little playful rotation (1 to 2 degrees) on a sticker or badge at most.
+- One idea per screen-height block; short lines, lots of contrast.
+
 ## Shape
 - Rounded corners: 8px small controls, 12px inputs and chips, 16px cards, 24px sheets, fully round pills for buttons and tags.
 - Soft shadows only: 0 4px 16px rgba(15,23,42,0.08) for cards.
