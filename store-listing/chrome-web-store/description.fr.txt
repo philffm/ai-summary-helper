@@ -1,4 +1,4 @@
-AI Summary Helper est une extension Chrome gratuite et open source qui résume n'importe quelle page web, PDF ou vidéo YouTube dans votre langue, avec votre propre clé IA (Mistral AI, OpenAI, Gemini, DeepSeek) ou entièrement en local avec Ollama. Vos lectures deviennent une bibliothèque privée et consultable, avec surlignages, questions de suivi, graphe de connaissances, statistiques de lecture, lecteur RSS et envoi vers Kindle. Aucun compte n'est nécessaire avec votre propre clé ou un modèle local, et vos articles restent sur votre appareil.
+AI Summary Helper est une extension Chrome gratuite et open source qui résume n'importe quelle page web, PDF ou vidéo YouTube dans votre langue, avec votre propre clé IA ou entièrement en local avec Ollama. Vos lectures deviennent une bibliothèque privée et consultable, avec surlignages, questions de suivi, graphe de connaissances, statistiques de lecture, lecteur RSS et envoi vers Kindle. Votre bibliothèque peut aussi servir dans des applis IA comme Claude Desktop et Cursor. Aucun compte n'est nécessaire avec votre propre clé ou un modèle local, et vos articles restent sur votre appareil.
 
 ━━━━━━━━━━━━━━━━━━━━
 ✨ EN UNE MINUTE
@@ -25,20 +25,20 @@ Votre propre clé et l'option locale ne demandent aucun compte. Le code source c
 • PDF : articles scientifiques, rapports et manuels ouverts dans votre navigateur, y compris les fichiers de votre ordinateur.
 • Vidéos YouTube : résumés générés à partir des sous-titres, pour savoir si une conférence de 40 minutes vaut le détour.
 • Longueur : « Auto » s'adapte à la longueur de l'article, ou fixez entre 20 et 2 000 mots, en version courte, standard ou longue.
-• Prompts : modèles tels que Analyse technique, Contexte historique, Perspective culturelle et Prévisions, plus vos propres prompts.
+• Prompts : modèles tels que Analyse technique, Contexte historique, Perspective culturelle et Prévisions, plus un assistant guidé « à votre image » qui transforme votre métier et vos centres d'intérêt en prompt personnel.
 • Résumer et fermer l'onglet : résumez, choisissez quand y revenir, et l'onglet se ferme tout seul.
 
 ━━━━━━━━━━━━━━━━━━━━
 🌍 RÉSUMÉS DANS VOTRE LANGUE
 ━━━━━━━━━━━━━━━━━━━━
-Lisez un article en anglais et obtenez l'essentiel en français, ou l'inverse. AI Summary Helper écrit en 41 langues, dont le français, l'anglais, l'allemand, l'espagnol, l'italien, le portugais, le néerlandais, le catalan, le polonais, le roumain, l'arabe, le turc, le japonais, le coréen et le chinois. L'interface est disponible en 14 langues, dont le français.
+Lisez un article en anglais et obtenez l'essentiel en français, ou l'inverse. AI Summary Helper écrit en 41 langues, dont le français, l'anglais, l'allemand, l'espagnol, l'italien, le portugais, le néerlandais, le catalan, le polonais, le roumain, l'arabe, le turc, le japonais, le coréen et le chinois. L'interface est disponible en 24 langues, dont le français.
 
 ━━━━━━━━━━━━━━━━━━━━
 💬 INTERROGEZ LA PAGE
 ━━━━━━━━━━━━━━━━━━━━
 • Questions de suivi sur l'article que vous lisez, dans une conversation qui garde le contexte.
 • Des étiquettes de source renvoient au passage exact de l'article.
-• Trois questions suggérées après chaque synthèse, en un clic.
+• Trois questions suggérées après chaque synthèse, et une réponse courte d'abord avec « Approfondir » quand vous voulez en savoir plus.
 • Épinglez les meilleures réponses : elles sont enregistrées et exportées avec l'article.
 
 ━━━━━━━━━━━━━━━━━━━━
@@ -70,6 +70,7 @@ Chaque résumé est enregistré localement dans votre historique, classé en Bo�
 • Recherche plein texte instantanée dans tous vos articles, sur votre appareil.
 • Articles similaires : ce qui, dans votre bibliothèque, se rapproche de l'article en cours.
 • Détection des doublons par lien, titre et contenu.
+• Un enregistrement depuis archive.ph, la Wayback Machine ou 12ft conserve le lien de l'article d'origine : votre bibliothèque pointe vers la vraie source.
 • Collections : regroupez des articles autour d'une question et vérifiez-les avec une fiche de contrôle des sources.
 • Favoris, tags, notes et rappels.
 
@@ -117,7 +118,7 @@ Ouvrez AI Summary Helper dans un onglet ou élargissez le panneau latéral : l'h
 ━━━━━━━━━━━━━━━━━━━━
 📤 ENVOYER, EXPORTER, PARTAGER
 ━━━━━━━━━━━━━━━━━━━━
-• Envoyer vers Kindle : synthèses et articles mis en forme, surlignages compris, directement sur votre liseuse. Nécessite une connexion byphil gratuite ; 3 envois gratuits, illimité avec Pro.
+• Envoyer vers Kindle : synthèses et articles mis en forme, surlignages compris, directement sur votre liseuse, en EPUB (texte, ou avec images) ou en HTML. Nécessite une connexion byphil gratuite ; 3 envois gratuits, illimité avec Pro.
 • LocalSend : envoyez des articles via votre Wi-Fi vers un téléphone, une tablette ou une liseuse KOReader, sans passer par le cloud.
 • Envoyer au téléphone : associez votre téléphone par QR code. Les liens partagés depuis le téléphone arrivent chiffrés de bout en bout dans votre historique, et les articles complets repartent vers le téléphone.
 • Digest magazine : regroupez plusieurs articles en un numéro pour votre liseuse, LocalSend ou Markdown.
@@ -125,10 +126,22 @@ Ouvrez AI Summary Helper dans un onglet ou élargissez le panneau latéral : l'h
 • Sauvegarde et restauration de la bibliothèque et des réglages ; clés API et connexions exclues, sauf si vous les incluez.
 
 ━━━━━━━━━━━━━━━━━━━━
+🔌 VOTRE BIBLIOTHÈQUE DANS VOS APPLIS IA (NOUVEAU)
+━━━━━━━━━━━━━━━━━━━━
+Votre appli IA n'a jamais lu ce que vous lisez. Activez les applis IA dans les réglages : Claude Desktop, Cursor, LM Studio et d'autres applis MCP sur votre ordinateur peuvent alors utiliser votre bibliothèque.
+
+• Cherchez dans vos articles, citez vos surlignages, voyez ce qui est à relire et parcourez vos collections et flux.
+• Demandez un bilan hebdomadaire, une synthèse d'une collection ou votre année de lecture en rapport, chaque affirmation renvoyant à sa source.
+• Désactivé par défaut. Vous choisissez ce qu'une appli peut lire : bibliothèque, texte complet, flux, et si elle peut enregistrer des liens.
+• Les articles marqués « private » n'apparaissent jamais, et un journal d'activité montre chaque appel.
+• Tourne sur votre ordinateur ; rien ne passe par nos serveurs.
+
+━━━━━━━━━━━━━━━━━━━━
 🔒 CONFIDENTIALITÉ DÈS LA CONCEPTION
 ━━━━━━━━━━━━━━━━━━━━
 • Articles, surlignages, flux et statistiques sont stockés dans votre navigateur, sur votre appareil.
 • Le contenu des pages n'est envoyé qu'au fournisseur IA que vous avez choisi, ou à personne avec un modèle sur votre ordinateur.
+• Les applis IA ne lisent votre bibliothèque que si vous l'activez, uniquement sur votre ordinateur, et seulement ce que vous autorisez.
 • Aucun SDK de suivi ou d'analyse, aucune publicité, aucune revente de données.
 • Dans l'esprit du RGPD : vous décidez où vont vos données ; vous pouvez choisir un fournisseur européen, ou aucun avec un modèle sur votre ordinateur.
 • Open source : tout le code est public sur GitHub (philffm/ai-summary-helper).
@@ -162,13 +175,16 @@ Peut-on résumer des pages avec une IA locale ?
 Oui. Installez Ollama, téléchargez un modèle ouvert et choisissez l'option locale lors de la configuration. Tout fonctionne alors sur votre ordinateur, ou sur votre propre serveur.
 
 Quels fournisseurs fonctionnent avec ma propre clé ?
-Mistral AI, OpenAI, Google Gemini et DeepSeek. Les modèles locaux et auto-hébergés passent par Ollama.
+Mistral AI, OpenAI, Google Gemini et DeepSeek, ainsi que les modèles locaux et auto-hébergés.
 
 L'extension résume-t-elle les PDF et les vidéos YouTube ?
 Oui. Les PDF ouverts dans Chrome, y compris les fichiers locaux, et les vidéos YouTube sous-titrées fonctionnent comme n'importe quelle page.
 
 Comment envoyer des articles web vers mon Kindle ?
 Connectez-vous à byphil, ajoutez kindle@byphil.eu comme expéditeur approuvé dans votre compte Amazon, indiquez l'adresse e-mail de votre appareil dans Réglages → Envoyer, puis choisissez-le dans Envoyer. Trois envois sont gratuits, illimités avec Pro.
+
+Puis-je utiliser ma bibliothèque dans Claude Desktop ou Cursor ?
+Oui. Activez les applis IA dans Réglages → Apps d'IA, associez-la une fois, et l'appli peut chercher dans votre bibliothèque, citer vos surlignages et indiquer ses sources. C'est désactivé par défaut, cela tourne sur votre ordinateur et respecte ce que vous autorisez.
 
 Mes données restent-elles privées ?
 Votre bibliothèque reste dans votre navigateur. Le texte des pages ne va qu'au fournisseur choisi, ou nulle part avec un modèle sur votre ordinateur. Aucun SDK de suivi, et le code est ouvert à l'audit.

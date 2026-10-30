@@ -1,4 +1,4 @@
-AI Summary Helper is a free, open-source Chrome extension that summarizes any web page, PDF or YouTube video in your language, with your own AI key (OpenAI, Gemini, Mistral, DeepSeek) or a fully local model through Ollama. It turns what you read into a private, searchable library with highlights, follow-up questions, a knowledge graph, reading analytics, an RSS reader and Send to Kindle. No account is needed for your own key or a local model, and your articles stay on your device.
+AI Summary Helper is a free, open-source Chrome extension that summarizes any web page, PDF or YouTube video in your language, with your own AI key or a fully local model through Ollama. It turns what you read into a private, searchable library with highlights, follow-up questions, a knowledge graph, reading analytics, an RSS reader and Send to Kindle. Your library can also be used from AI apps like Claude Desktop and Cursor. No account is needed for your own key or a local model, and your articles stay on your device.
 
 ━━━━━━━━━━━━━━━━━━━━
 ✨ WHAT IT DOES IN ONE MINUTE
@@ -27,20 +27,20 @@ Your own key and the on-device option need no account at all. The full source co
 • PDFs: research papers, reports and manuals opened in your browser, including files on your computer.
 • YouTube videos: summaries built from the video's captions, so you can decide whether a 40-minute talk is worth your time.
 • Length: "Auto" scales with the length of the article, or set a fixed length from 20 to 2,000 words, with a short, standard or long bias.
-• Prompts: presets such as Technical Deep Dive, Historical Context, Cultural Perspective and Future Predictions, plus your own custom prompts.
+• Prompts: presets such as Technical Deep Dive, Historical Context, Cultural Perspective and Future Predictions, plus a guided "make it yours" builder that turns your role and interests into your own prompt.
 • Summarize & close tab: get the key points, choose when to come back, and let the tab close itself.
 
 ━━━━━━━━━━━━━━━━━━━━
 🌍 SUMMARIZE IN YOUR LANGUAGE
 ━━━━━━━━━━━━━━━━━━━━
-Read an English article and get the key points in German, Japanese or Spanish, or the other way round. AI Summary Helper writes in 41 languages, including English, German, French, Spanish, Italian, Portuguese, Dutch, Polish, Swedish, Danish, Ukrainian, Russian, Turkish, Arabic, Hindi, Japanese, Korean, Chinese (Simplified and Traditional), Thai, Indonesian and Vietnamese. The interface itself is available in 14 languages.
+Read an English article and get the key points in German, Japanese or Spanish, or the other way round. AI Summary Helper writes in 41 languages, including English, German, French, Spanish, Italian, Portuguese, Dutch, Polish, Swedish, Danish, Ukrainian, Russian, Turkish, Arabic, Hindi, Japanese, Korean, Chinese (Simplified and Traditional), Thai, Indonesian and Vietnamese. The interface itself is available in 24 languages.
 
 ━━━━━━━━━━━━━━━━━━━━
 💬 ASK THE PAGE ANYTHING
 ━━━━━━━━━━━━━━━━━━━━
 • Follow-up questions about the article you are reading, in a chat that remembers the conversation.
 • Answers come with source chips that point to the exact passage in the article.
-• Three suggested questions after every overview, so you can dig deeper with one click.
+• Three suggested questions after every overview, and a short answer first with "Dig deeper" when you want more.
 • Pin the best answers; they are saved with the article and exported with it.
 
 ━━━━━━━━━━━━━━━━━━━━
@@ -72,6 +72,7 @@ Every summary is kept in your History on this device, organized into Inbox, Read
 • Search: instant full-text search across all saved articles, on your device.
 • Similar articles: see what else in your library is related to the article you are reading.
 • Duplicate detection by link, title and content keeps the library clean.
+• Saving from archive.ph, the Wayback Machine or 12ft keeps the original article link, so your library points at the real source.
 • Collections: group articles under one question and work through them with a source-check worksheet.
 • Favorites, tags, notes and timed reminders.
 
@@ -119,7 +120,7 @@ Open AI Summary Helper in its own tab or drag the side panel wider, and History 
 ━━━━━━━━━━━━━━━━━━━━
 📤 SEND, EXPORT AND SHARE
 ━━━━━━━━━━━━━━━━━━━━
-• Send to Kindle: overviews and formatted articles, highlights included, delivered straight to your e-reader. Requires a free byphil sign-in; 3 sends are free, unlimited with Pro.
+• Send to Kindle: overviews and formatted articles, highlights included, delivered straight to your e-reader as EPUB (text, or with images) or HTML. Requires a free byphil sign-in; 3 sends are free, unlimited with Pro.
 • LocalSend: send articles over your home Wi-Fi to phones, tablets or KOReader e-readers, with no cloud in between.
 • Send to phone: pair your phone with a QR code. Links you share on the phone arrive end-to-end encrypted in your History, and you can push full articles back to the phone.
 • Magazine digest: bundle several articles into one issue for your e-reader, LocalSend or Markdown.
@@ -128,10 +129,22 @@ Open AI Summary Helper in its own tab or drag the side panel wider, and History 
 • Backup and restore your whole library and settings; API keys and sign-ins are left out of backups unless you choose to include them.
 
 ━━━━━━━━━━━━━━━━━━━━
+🔌 YOUR LIBRARY IN YOUR AI APPS (NEW)
+━━━━━━━━━━━━━━━━━━━━
+Your AI app has never read what you read. Turn on AI apps in Settings and Claude Desktop, Cursor, LM Studio and other MCP apps on your computer can use your library.
+
+• Search your saved articles, quote your highlights, see what is due and look through your collections and feeds.
+• Ask for a weekly review, a brief from one collection or your reading year as a report, with every claim linked to its source.
+• Off by default. You choose what an app may read: library, full article text, feeds, and whether it may save links.
+• Articles tagged "private" never show up, and an activity log shows every call.
+• Runs on your computer; nothing goes through our servers.
+
+━━━━━━━━━━━━━━━━━━━━
 🔒 PRIVACY BY DESIGN
 ━━━━━━━━━━━━━━━━━━━━
 • Your articles, highlights, feeds and analytics are stored in your browser, on your device.
 • Page content is sent only to the AI provider you chose, or to nobody at all with an on-device model.
+• AI apps can read your library only if you switch it on, only on your computer, and only what you allow.
 • No tracking or analytics SDK, no ads, no selling of data.
 • Open source: the complete code is public on GitHub (philffm/ai-summary-helper) for anyone to audit.
 • Made in the EU by byphil.
@@ -163,7 +176,7 @@ Can I summarize web pages with a local AI model?
 Yes. Install Ollama, download an open model and pick the local option in the setup. Everything, including follow-up questions and feed recaps, then runs on your computer, also with a self-hosted Ollama server on your network.
 
 Which AI providers work with my own API key?
-OpenAI, Google Gemini, Mistral AI and DeepSeek. Local and self-hosted models run through Ollama.
+OpenAI, Google Gemini, Mistral AI and DeepSeek, plus local and self-hosted models.
 
 Does it work with PDFs and YouTube?
 Yes. PDFs opened in Chrome, including files on your computer, and YouTube videos with captions work like any other page.
@@ -173,6 +186,9 @@ Yes. Choose any of 41 summary languages; the source can be in a different langua
 
 How do I send web articles to my Kindle?
 Sign in to byphil, add kindle@byphil.eu as an approved sender in your Amazon account, enter your device's email address in Settings → Send, and choose it under Send. Three sends are free; Pro makes it unlimited.
+
+Can I use my library in Claude Desktop or Cursor?
+Yes. Turn on AI apps in Settings → AI apps, pair it once, and the app can search your library, quote your highlights and cite sources. It is off by default, runs on your computer and respects what you allow.
 
 Is my data private?
 Your library stays in your browser. Page text goes only to the AI provider you picked, or nowhere with an on-device model. The extension contains no tracking SDK, and the code is open for review.

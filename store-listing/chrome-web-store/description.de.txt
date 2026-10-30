@@ -1,4 +1,4 @@
-AI Summary Helper ist eine kostenlose Open-Source-Erweiterung für Chrome, die Webseiten, PDFs und YouTube-Videos mit KI zusammenfasst, in Ihrer Sprache und mit Ihrem eigenen KI-Schlüssel (OpenAI, Gemini, Mistral, DeepSeek) oder komplett lokal mit Ollama. Aus dem, was Sie lesen, entsteht eine private, durchsuchbare Bibliothek mit Markierungen, Rückfragen, Wissensgraph, Leseanalysen, RSS-Reader und Versand an den Kindle. Mit eigenem Schlüssel oder lokalem Modell brauchen Sie kein Konto, und Ihre Artikel bleiben auf Ihrem Gerät.
+AI Summary Helper ist eine kostenlose Open-Source-Erweiterung für Chrome, die Webseiten, PDFs und YouTube-Videos mit KI zusammenfasst, in Ihrer Sprache und mit Ihrem eigenen KI-Schlüssel oder komplett lokal mit Ollama. Aus dem, was Sie lesen, entsteht eine private, durchsuchbare Bibliothek mit Markierungen, Rückfragen, Wissensgraph, Leseanalysen, RSS-Reader und Versand an den Kindle. Ihre Bibliothek lässt sich auch in KI-Apps wie Claude Desktop und Cursor nutzen. Mit eigenem Schlüssel oder lokalem Modell brauchen Sie kein Konto, und Ihre Artikel bleiben auf Ihrem Gerät.
 
 ━━━━━━━━━━━━━━━━━━━━
 ✨ IN EINER MINUTE ERKLÄRT
@@ -27,20 +27,20 @@ Für den eigenen Schlüssel und die lokale Variante brauchen Sie überhaupt kein
 • PDFs: Studien, Berichte und Handbücher, die im Browser geöffnet sind, auch Dateien von Ihrem Rechner.
 • YouTube-Videos: Zusammenfassungen aus den Untertiteln, damit Sie vorher wissen, ob sich der 40-Minuten-Vortrag lohnt.
 • Länge: „Automatisch“ passt sich der Artikellänge an, oder Sie legen 20 bis 2.000 Wörter fest, jeweils mit Tendenz kurz, normal oder lang.
-• Prompts: Vorlagen wie Technischer Tiefgang, Historischer Kontext, Kulturelle Perspektive und Zukunftsausblick, dazu eigene Prompts.
+• Prompts: Vorlagen wie Technischer Tiefgang, Historischer Kontext, Kulturelle Perspektive und Zukunftsausblick, dazu ein geführter „Machen Sie es zu Ihrem“-Baukasten, der aus Ihrer Rolle und Ihren Interessen Ihren eigenen Prompt erstellt.
 • Zusammenfassen & Tab schließen: das Wichtigste holen, Erinnerung wählen, und der Tab schließt sich von selbst.
 
 ━━━━━━━━━━━━━━━━━━━━
 🌍 ZUSAMMENFASSUNGEN IN IHRER SPRACHE
 ━━━━━━━━━━━━━━━━━━━━
-Englischen Artikel lesen, das Wichtigste auf Deutsch bekommen, oder umgekehrt. AI Summary Helper schreibt in 41 Sprachen, darunter Deutsch, Englisch, Französisch, Spanisch, Italienisch, Niederländisch, Polnisch, Tschechisch, Ungarisch, Schwedisch, Dänisch, Norwegisch, Finnisch, Kroatisch, Rumänisch, Bulgarisch, Griechisch, Türkisch, Ukrainisch, Russisch, Arabisch, Japanisch, Koreanisch und Chinesisch. Die Oberfläche gibt es in 14 Sprachen, natürlich auch komplett auf Deutsch.
+Englischen Artikel lesen, das Wichtigste auf Deutsch bekommen, oder umgekehrt. AI Summary Helper schreibt in 41 Sprachen, darunter Deutsch, Englisch, Französisch, Spanisch, Italienisch, Niederländisch, Polnisch, Tschechisch, Ungarisch, Schwedisch, Dänisch, Norwegisch, Finnisch, Kroatisch, Rumänisch, Bulgarisch, Griechisch, Türkisch, Ukrainisch, Russisch, Arabisch, Japanisch, Koreanisch und Chinesisch. Die Oberfläche gibt es in 24 Sprachen, natürlich auch komplett auf Deutsch.
 
 ━━━━━━━━━━━━━━━━━━━━
 💬 FRAGEN SIE DIE SEITE ALLES
 ━━━━━━━━━━━━━━━━━━━━
 • Rückfragen zum Artikel, den Sie gerade lesen, in einem Chat, der sich den Gesprächsverlauf merkt.
 • Antworten mit Quellen-Chips, die auf die genaue Stelle im Artikel verweisen.
-• Nach jedem Überblick drei vorgeschlagene Fragen, ein Klick genügt.
+• Nach jedem Überblick drei vorgeschlagene Fragen, dazu erst eine kurze Antwort und bei Bedarf „Tiefer eintauchen“.
 • Gute Antworten anheften: Sie werden mit dem Artikel gespeichert und exportiert.
 
 ━━━━━━━━━━━━━━━━━━━━
@@ -72,6 +72,7 @@ Jede Zusammenfassung wird in Ihrem Verlauf auf diesem Gerät gespeichert, sortie
 • Volltextsuche über alle gespeicherten Artikel, direkt auf Ihrem Gerät.
 • Ähnliche Artikel: Was in Ihrer Bibliothek passt zum Artikel, den Sie gerade lesen?
 • Dubletten werden über Link, Titel und Inhalt erkannt.
+• Speichern von archive.ph, der Wayback Machine oder 12ft behält den Originallink des Artikels, damit Ihre Bibliothek auf die echte Quelle zeigt.
 • Sammlungen: Artikel unter einer Fragestellung bündeln und mit einem Quellencheck-Arbeitsblatt durcharbeiten.
 • Favoriten, Tags, Notizen und Erinnerungen.
 
@@ -119,7 +120,7 @@ Alle Analysen werden auf Ihrem Gerät berechnet. Nichts geht an einen Tracking-D
 ━━━━━━━━━━━━━━━━━━━━
 📤 SENDEN, EXPORTIEREN, TEILEN
 ━━━━━━━━━━━━━━━━━━━━
-• An Kindle senden: Überblicke und formatierte Artikel inklusive Markierungen direkt auf Ihren E-Reader. Erfordert eine kostenlose byphil-Anmeldung; 3 Sendungen sind gratis, mit Pro unbegrenzt.
+• An Kindle senden: Überblicke und formatierte Artikel inklusive Markierungen direkt auf Ihren E-Reader, als EPUB (Text oder mit Bildern) oder HTML. Erfordert eine kostenlose byphil-Anmeldung; 3 Sendungen sind gratis, mit Pro unbegrenzt.
 • LocalSend: Artikel im heimischen WLAN an Smartphone, Tablet oder KOReader-E-Reader schicken, ohne Cloud dazwischen.
 • An Smartphone senden: Smartphone per QR-Code koppeln. Links, die Sie auf dem Handy teilen, landen Ende-zu-Ende-verschlüsselt in Ihrem Verlauf, und ganze Artikel gehen zurück aufs Handy.
 • Magazin-Digest: mehrere Artikel zu einer Ausgabe bündeln, für E-Reader, LocalSend oder Markdown.
@@ -128,10 +129,22 @@ Alle Analysen werden auf Ihrem Gerät berechnet. Nichts geht an einen Tracking-D
 • Sicherung und Wiederherstellung von Bibliothek und Einstellungen; API-Schlüssel und Anmeldungen sind nur enthalten, wenn Sie es ausdrücklich wählen.
 
 ━━━━━━━━━━━━━━━━━━━━
+🔌 IHRE BIBLIOTHEK IN IHREN KI-APPS (NEU)
+━━━━━━━━━━━━━━━━━━━━
+Ihre KI-App hat nie gelesen, was Sie lesen. Schalten Sie in den Einstellungen die KI-Apps ein, und Claude Desktop, Cursor, LM Studio und andere MCP-Apps auf Ihrem Rechner können Ihre Bibliothek nutzen.
+
+• Gespeicherte Artikel durchsuchen, Markierungen zitieren, Fälliges sehen und Sammlungen und Feeds durchstöbern.
+• Wochenrückblick, Briefing zu einer Sammlung oder Ihr Lesejahr als Bericht, jede Aussage mit Link zur Quelle.
+• Standardmäßig aus. Sie bestimmen, was eine App lesen darf: Bibliothek, vollständiger Artikeltext, Feeds und ob sie Links speichern darf.
+• Artikel mit dem Tag „private“ erscheinen nie, und ein Aktivitätsprotokoll zeigt jeden Aufruf.
+• Läuft auf Ihrem Rechner; nichts geht über unsere Server.
+
+━━━━━━━━━━━━━━━━━━━━
 🔒 DATENSCHUTZ AB WERK
 ━━━━━━━━━━━━━━━━━━━━
 • Artikel, Markierungen, Feeds und Analysen liegen in Ihrem Browser, auf Ihrem Gerät.
 • Seiteninhalte gehen nur an den KI-Anbieter, den Sie gewählt haben, oder bei KI auf Ihrem Rechner an niemanden.
+• KI-Apps können Ihre Bibliothek nur lesen, wenn Sie es einschalten, nur auf Ihrem Rechner und nur, was Sie erlauben.
 • Kein Tracking- oder Analyse-SDK, keine Werbung, kein Datenverkauf.
 • Datenschutzfreundlich nach DSGVO-Grundsätzen: Sie entscheiden, wohin Daten gehen; mit Mistral steht ein Anbieter aus der EU zur Wahl, mit KI auf Ihrem Rechner gar keiner.
 • Open Source: Der komplette Code ist öffentlich auf GitHub (philffm/ai-summary-helper) und für alle prüfbar.
@@ -167,7 +180,7 @@ Ist die Erweiterung DSGVO-freundlich?
 Ihre Bibliothek bleibt im Browser, es gibt kein Tracking-SDK, und Seiteninhalte gehen nur an den Anbieter, den Sie wählen. Wer gar keine Daten weitergeben möchte, nutzt ein Modell auf dem eigenen Rechner; wer einen EU-Anbieter möchte, wählt Mistral.
 
 Welche KI-Anbieter funktionieren mit eigenem Schlüssel?
-OpenAI, Google Gemini, Mistral AI und DeepSeek. Lokale und selbst gehostete Modelle laufen über Ollama.
+OpenAI, Google Gemini, Mistral AI und DeepSeek, dazu lokale und selbst gehostete Modelle.
 
 Funktioniert es mit PDFs und YouTube?
 Ja. In Chrome geöffnete PDFs, auch Dateien von Ihrem Rechner, und YouTube-Videos mit Untertiteln funktionieren wie jede andere Seite.
@@ -177,6 +190,9 @@ Ja. Wählen Sie eine der 41 Zusammenfassungssprachen; der Originaltext darf in e
 
 Wie schicke ich Webartikel an meinen Kindle?
 Melden Sie sich bei byphil an, tragen Sie kindle@byphil.eu in Ihrem Amazon-Konto als zugelassenen Absender ein, hinterlegen Sie die E-Mail-Adresse Ihres Geräts unter Einstellungen → Senden und wählen Sie es beim Senden aus. Drei Sendungen sind gratis, mit Pro unbegrenzt.
+
+Kann ich meine Bibliothek in Claude Desktop oder Cursor nutzen?
+Ja. Schalten Sie unter Einstellungen → KI-Apps die KI-Apps ein, koppeln Sie einmal, und die App kann Ihre Bibliothek durchsuchen, Markierungen zitieren und Quellen nennen. Standardmäßig ist es aus, läuft auf Ihrem Rechner und respektiert, was Sie erlauben.
 
 Wie unterscheidet sich AI Summary Helper von anderen KI-Zusammenfassern?
 Die meisten binden Sie an einen Anbieter, verlangen ein Konto und leiten alles über ihre Server, im Monatsabo. AI Summary Helper funktioniert mit Ihrem eigenen Schlüssel oder komplett lokal, braucht dafür kein Konto und macht aus Ihrer Lektüre eine durchsuchbare Bibliothek mit Wissensgraph, Analysen, RSS und E-Reader-Export.

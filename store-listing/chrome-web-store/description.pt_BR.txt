@@ -1,4 +1,4 @@
-AI Summary Helper é uma extensão do Chrome gratuita e de código aberto para resumir com IA qualquer página da web, PDF ou vídeo do YouTube no seu idioma, usando sua própria chave de IA (OpenAI, Gemini, Mistral, DeepSeek) ou uma IA local que roda no seu computador com o Ollama. Tudo o que você lê vira uma biblioteca privada e pesquisável, com destaques, perguntas de acompanhamento, grafo de conhecimento, estatísticas de leitura, leitor RSS e envio para Kindle. Com sua própria chave ou um modelo local, você não precisa criar conta, e seus artigos ficam no seu dispositivo.
+AI Summary Helper é uma extensão do Chrome gratuita e de código aberto para resumir com IA qualquer página da web, PDF ou vídeo do YouTube no seu idioma, usando sua própria chave de IA ou uma IA local que roda no seu computador com o Ollama. Tudo o que você lê vira uma biblioteca privada e pesquisável, com destaques, perguntas de acompanhamento, grafo de conhecimento, estatísticas de leitura, leitor RSS e envio para Kindle. Sua biblioteca também pode ser usada em apps de IA como o Claude Desktop e o Cursor. Com sua própria chave ou um modelo local, você não precisa criar conta, e seus artigos ficam no seu dispositivo.
 
 ━━━━━━━━━━━━━━━━━━━━
 ✨ COMO FUNCIONA EM UM MINUTO
@@ -27,20 +27,20 @@ Sua própria chave e a opção no dispositivo não exigem conta nenhuma. O códi
 • Resumo de PDF: artigos científicos, relatórios e manuais abertos no navegador, inclusive arquivos do seu computador.
 • Vídeos do YouTube: os pontos principais vêm das legendas do vídeo, para você decidir se uma palestra de 40 minutos vale o seu tempo.
 • Tamanho: "Auto" se ajusta ao tamanho do artigo, ou defina um tamanho fixo de 20 a 2.000 palavras, com tendência curta, padrão ou longa.
-• Prompts: modelos prontos como Análise Técnica Aprofundada, Contexto Histórico, Perspectiva Cultural e Previsões para o Futuro, além dos seus próprios prompts.
+• Prompts: modelos prontos como Análise Técnica Aprofundada, Contexto Histórico, Perspectiva Cultural e Previsões para o Futuro, além de um criador guiado do tipo "faça o seu", que transforma sua profissão e seus interesses em um prompt só seu.
 • Resumir e fechar guia: pegue os pontos principais, escolha quando voltar e deixe a guia se fechar sozinha.
 
 ━━━━━━━━━━━━━━━━━━━━
 🌍 NO SEU IDIOMA
 ━━━━━━━━━━━━━━━━━━━━
-Leia um artigo em inglês e receba os pontos principais em português, alemão ou japonês, ou o contrário. O AI Summary Helper escreve em 41 idiomas, entre eles português, inglês, espanhol, francês, alemão, italiano, holandês, polonês, sueco, dinamarquês, ucraniano, russo, turco, árabe, hindi, japonês, coreano, chinês (simplificado e tradicional), tailandês, indonésio e vietnamita. A própria interface está disponível em 14 idiomas.
+Leia um artigo em inglês e receba os pontos principais em português, alemão ou japonês, ou o contrário. O AI Summary Helper escreve em 41 idiomas, entre eles português, inglês, espanhol, francês, alemão, italiano, holandês, polonês, sueco, dinamarquês, ucraniano, russo, turco, árabe, hindi, japonês, coreano, chinês (simplificado e tradicional), tailandês, indonésio e vietnamita. A própria interface está disponível em 24 idiomas.
 
 ━━━━━━━━━━━━━━━━━━━━
 💬 PERGUNTE QUALQUER COISA À PÁGINA
 ━━━━━━━━━━━━━━━━━━━━
 • Perguntas de acompanhamento sobre o artigo que você está lendo, em um chat que lembra a conversa.
 • As respostas trazem etiquetas de fonte que apontam para o trecho exato do artigo.
-• Três perguntas sugeridas depois de cada visão geral, para você se aprofundar com um clique.
+• Três perguntas sugeridas depois de cada visão geral e, primeiro, uma resposta curta com "Aprofundar" para quando você quiser mais.
 • Fixe as melhores respostas; elas ficam salvas com o artigo e vão junto na exportação.
 
 ━━━━━━━━━━━━━━━━━━━━
@@ -72,6 +72,7 @@ Cada versão curta fica no seu Histórico neste dispositivo, organizada em Caixa
 • Busca: pesquisa instantânea de texto completo em todos os artigos salvos, no seu dispositivo.
 • Artigos semelhantes: veja o que mais na sua biblioteca tem relação com o artigo que você está lendo.
 • A detecção de duplicados por link, título e conteúdo mantém a biblioteca organizada.
+• Salvar a partir do archive.ph, da Wayback Machine ou do 12ft mantém o link original do artigo, e sua biblioteca aponta para a fonte de verdade.
 • Coleções: agrupe artigos em torno de uma pergunta e trabalhe neles com um roteiro de verificação de fontes.
 • Favoritos, etiquetas, notas e lembretes com hora marcada.
 
@@ -119,7 +120,7 @@ Abra o AI Summary Helper em uma guia própria ou arraste o painel lateral para d
 ━━━━━━━━━━━━━━━━━━━━
 📤 ENVIAR, EXPORTAR E COMPARTILHAR
 ━━━━━━━━━━━━━━━━━━━━
-• Enviar para Kindle: visões gerais e artigos formatados, com destaques, entregues direto no seu leitor de e-books. Requer login gratuito na byphil; 3 envios são grátis, ilimitados com o Pro.
+• Enviar para Kindle: visões gerais e artigos formatados, com destaques, entregues direto no seu leitor de e-books em EPUB (texto, ou com imagens) ou HTML. Requer login gratuito na byphil; 3 envios são grátis, ilimitados com o Pro.
 • LocalSend: envie artigos pelo Wi-Fi de casa para celulares, tablets ou leitores com KOReader, sem nuvem no meio do caminho.
 • Enviar para o celular: pareie seu celular com um código QR. Os links que você compartilha no celular chegam com criptografia de ponta a ponta ao seu Histórico, e você pode mandar artigos completos de volta para o celular.
 • Revista digital: junte vários artigos em uma edição para o seu leitor de e-books, LocalSend ou Markdown.
@@ -128,10 +129,22 @@ Abra o AI Summary Helper em uma guia própria ou arraste o painel lateral para d
 • Faça backup e restaure toda a biblioteca e as configurações; chaves de API e logins ficam fora dos backups, a menos que você escolha incluí-los.
 
 ━━━━━━━━━━━━━━━━━━━━
+🔌 SUA BIBLIOTECA NOS SEUS APPS DE IA (NOVIDADE)
+━━━━━━━━━━━━━━━━━━━━
+Seu app de IA nunca leu o que você leu. Ative os apps de IA nas Configurações e o Claude Desktop, o Cursor, o LM Studio e outros apps MCP no seu computador poderão usar sua biblioteca.
+
+• Pesquise seus artigos salvos, cite seus destaques, veja o que vence e navegue pelas suas coleções e feeds.
+• Peça uma revisão semanal, um briefing de uma coleção ou o seu ano de leitura em forma de relatório, com cada afirmação ligada à fonte.
+• Desativado por padrão. Você escolhe o que um app pode ler: biblioteca, texto completo dos artigos, feeds e se ele pode salvar links.
+• Artigos com a etiqueta "private" nunca aparecem, e um registro de atividade mostra cada chamada.
+• Roda no seu computador; nada passa pelos nossos servidores.
+
+━━━━━━━━━━━━━━━━━━━━
 🔒 PRIVACIDADE DESDE A CONCEPÇÃO
 ━━━━━━━━━━━━━━━━━━━━
 • Seus artigos, destaques, feeds e estatísticas ficam armazenados no navegador, no seu dispositivo.
 • O conteúdo da página vai apenas para o provedor de IA que você escolheu, ou para ninguém com um modelo no dispositivo.
+• Os apps de IA só leem sua biblioteca se você ativar, só no seu computador e só o que você permitir.
 • Sem SDK de rastreamento ou de analytics, sem anúncios, sem venda de dados.
 • Código aberto: o código completo é público no GitHub (philffm/ai-summary-helper) para qualquer pessoa auditar.
 • Feito na União Europeia pela byphil.
@@ -163,7 +176,7 @@ Dá para resumir páginas da web com uma IA local?
 Sim. Instale o Ollama, baixe um modelo aberto e escolha a opção local na configuração inicial. A partir daí tudo roda no seu computador, inclusive as perguntas de acompanhamento e os panoramas de feeds, e isso também vale para um servidor Ollama próprio na sua rede.
 
 Quais provedores de IA funcionam com minha própria chave de API?
-OpenAI, Google Gemini, Mistral AI e DeepSeek. Modelos locais e em servidor próprio rodam pelo Ollama.
+OpenAI, Google Gemini, Mistral AI e DeepSeek, além de modelos locais e em servidor próprio.
 
 Funciona com PDF e vídeos do YouTube?
 Sim. PDFs abertos no Chrome, inclusive arquivos do seu computador, e vídeos do YouTube com legendas funcionam como qualquer outra página.
@@ -173,6 +186,9 @@ Sim. Você escolhe entre 41 idiomas de saída, e o texto original pode estar em 
 
 Como envio artigos da web para o meu Kindle?
 Faça login na byphil, adicione kindle@byphil.eu como remetente aprovado na sua conta da Amazon, informe o e-mail do seu aparelho em Configurações → Enviar e escolha esse destino em Enviar. Três envios são grátis; com o Pro, os envios são ilimitados.
+
+Posso usar minha biblioteca no Claude Desktop ou no Cursor?
+Sim. Ative os apps de IA em Configurações → Apps de IA, pareie uma vez e o app poderá pesquisar sua biblioteca, citar seus destaques e indicar as fontes. Vem desativado, roda no seu computador e respeita o que você permitir.
 
 Meus dados ficam privados?
 Sua biblioteca fica no seu navegador. O texto da página vai somente para o provedor de IA que você escolheu, ou para lugar nenhum com um modelo no dispositivo. A extensão não contém SDK de rastreamento, e o código está aberto para revisão.
