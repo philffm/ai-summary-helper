@@ -3,6 +3,17 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <meta name="theme-color" content="#08090C">
 <title>AI Summary Helper: 웹페이지 요약, 저장 및 검색</title>
+<script>
+// Old language links were /?lang=xx. GitHub Pages cannot 301 a query string, so send them to the language folder (canonical already points to /).
+(function () {
+  if (location.pathname !== '/') return;
+  var m = /[?&]lang=([\w-]+)/.exec(location.search); if (!m) return;
+  var dir = { cn: 'zh', tw: 'zh-tw', kr: 'ko', jp: 'ja', ua: 'uk', 'ind-bahasa': 'id', nb: 'no' }[m[1]] || m[1];
+  if (dir === 'en') dir = '';
+  if (dir && !/^(ar|da|de|es|fi|fr|hi|id|it|ja|ko|nl|no|pl|pt|ru|sv|th|tr|uk|vi|zh|zh-tw)$/.test(dir)) return;
+  location.replace('/' + (dir ? dir + '/' : '') + location.hash);
+})();
+</script>
 <meta name="description" content="AI로 웹페이지를 요약하고, RSS 피드를 읽으며, 검색 가능한 아카이브를 구축해 주는 Chrome 확장 프로그램입니다. 검색과 추천 기능은 기기 내에서 직접 로컬로 처리됩니다.">
 
 <script>
