@@ -148,6 +148,32 @@ export function createStampStore({ storage, now = Date.now, lock = withStampLock
         } catch (_) { return 0; }
     }
 
+    /**
+     * Take over stamps that came from another device (the merged result of a pull). Written BEFORE the data they describe, so the
+     * storage events of that data find matching hashes and stamp nothing (the echo guard). Raises the clock above everything seen.
+     * entries: { 'article:<id>': { rev, f, deleted? } }
+     */
+    async function adopt(entries) {
+        const keys = Object.keys(entries || {});
+        if (!keys.length) return 0;
+        return lock(async () => {
+            const meta = await get(storage, { [SK.syncClock]: { t: 0 } });
+            let top = (meta[SK.syncClock] && meta[SK.syncClock].t) || 0;
+            const shards = await get(storage, [...new Set(keys.map((k) => syncStampsKey(shardOf(k))))]);
+            const dirty = new Set();
+            for (const k of keys) {
+                const sk = syncStampsKey(shardOf(k));
+                const shard = shards[sk] && typeof shards[sk] === 'object' ? shards[sk] : (shards[sk] = {});
+                shard[k] = entries[k]; dirty.add(sk);
+                top = Math.max(top, (entries[k].rev && entries[k].rev.t) || 0);
+            }
+            const out = { [SK.syncClock]: { t: top } };
+            for (const sk of dirty) out[sk] = shards[sk];
+            await set(storage, out);
+            return keys.length;
+        });
+    }
+
     /** Every stamp, flattened (for the engine and the tests). */
     async function all() {
         const d = await get(storage, null);
@@ -156,5 +182,5 @@ export function createStampStore({ storage, now = Date.now, lock = withStampLock
         return out;
     }
 
-    return { onChanged, markDeleted, scan, all, enabled };
+    return { onChanged, markDeleted, scan, all, adopt, enabled };
 }
