@@ -108,8 +108,8 @@ export function phaseText(r) {
         case 'checking': return T('Checking your library…');
         case 'verifying': return T('Looking at what is in the folder…');
         case 'removing': return T('Removing {done} of {total}', { done: r.done, total: r.total });
-        case 'pulling': return T('Getting changes {done} of {total}', { done: r.done, total: r.total });
-        case 'uploading': return T('Uploading {done} of {total}', { done: r.done, total: r.total });
+        case 'pulling': return r.local ? T('Reading changes {done} of {total}', { done: r.done, total: r.total }) : T('Getting changes {done} of {total}', { done: r.done, total: r.total });
+        case 'uploading': return r.local ? T('Saving {done} of {total}', { done: r.done, total: r.total }) : T('Uploading {done} of {total}', { done: r.done, total: r.total });
         case 'list': return T('Updating the list…');
         default: return T('Starting…');
     }

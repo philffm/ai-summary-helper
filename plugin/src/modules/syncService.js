@@ -280,13 +280,14 @@ export function createSyncService({ storage, makeStore, stampStore, viewerSource
                 active.add(place.id);
                 const at = new Date(now()).toISOString();
                 const since = now();
+                const isLocal = ((st.connections.find((c) => c.id === place.connectionId) || {}).service) === 'folder';   // a folder on this computer: saving, not uploading
                 let lastWrite = 0, lastPhase = '';
                 let writing = Promise.resolve();
                 const onProgress = (p) => {
                     const t = now();
                     if (p.phase === lastPhase && t - lastWrite < 500 && p.done < p.total) return;   // about twice a second, always on a phase change and at the end
                     lastPhase = p.phase; lastWrite = t;
-                    writing = writing.then(() => setRunning(place.id, { ...p, since, at: t }));
+                    writing = writing.then(() => setRunning(place.id, { ...p, ...(isLocal ? { local: true } : {}), since, at: t }));
                 };
                 await setRunning(place.id, { phase: 'starting', done: 0, total: 0, since, at: since });
                 try {
