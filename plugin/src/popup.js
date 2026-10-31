@@ -1,5 +1,5 @@
 import { modelIconName } from './modules/modelBadge.js';
-import { modelPriceLabel, suggestModels } from './modules/modelManager.js';
+import { modelPriceLabel, suggestModels, autoModels } from './modules/modelManager.js';
 import { regionTag } from './modules/cloudRegion.js';
 import { icon, iconEl, setIcon, setLabel } from './modules/icons.js';
 import { checkOllama } from './modules/ollamaCheck.js';
@@ -556,7 +556,7 @@ document.addEventListener("DOMContentLoaded", async () => {
                 const { preferredCloudModel } = { ...syncData, ...localData };
                 const connectionMode = syncData.connectionMode || 'cloud';
                 const regionPref = syncData.cloudRegionPref === 'prefer-eu' ? 'prefer-eu' : 'any';   // "Prefer EU servers": marks and EU prices in the model lists
-                const regionMark = (btn, model) => { const tg = regionTag(model, regionPref); if (!tg) return; const m = document.createElement('span'); m.className = 'model-region model-region--' + tg.kind; m.textContent = tg.kind === 'eu' ? T('EU') : T('Not EU'); btn.append(' ', m); };
+                const regionMark = (btn, model) => { const tg = regionTag(model, regionPref); if (!tg) return; const m = document.createElement('span'); m.className = 'model-region model-region--' + tg.kind; m.textContent = tg.kind === 'company' ? T('EU company') : tg.kind === 'eu' ? T('EU') : T('Not EU'); btn.append(' ', m); };
                 const servicesConfig = localData[SK.servicesConfig];
                 renderModeSeg(connectionMode === 'cloud' ? 'cloud' : (modelSelect.value === 'ollama' ? 'ollama' : 'local'));
                 if (connectionMode === 'cloud') {
@@ -607,6 +607,25 @@ document.addEventListener("DOMContentLoaded", async () => {
                             if (mySeq !== renderSeq) return;
                             const picks = roster && roster.success ? suggestModels(roster.models, recentCloudModels) : [];
                             if (!roster || !roster.success) cloudRosterCache = null;
+                            const autos = roster && roster.success && !customModelInput.value.trim() ? autoModels(roster.models) : [];
+                            if (autos.length) {   // Auto: the service picks a model per request (and with "Prefer EU servers" only on EU servers)
+                                const note = document.createElement('span'); note.className = 'model-grid-note'; note.textContent = T('Auto');
+                                modelIdGrid.appendChild(note);
+                                autos.forEach(model => {
+                                    const btn = document.createElement('button');
+                                    btn.className = 'pill pill--sm pill--soft'; btn.textContent = model.name; btn.title = T('The service picks a model for each request: short texts get a light model, long ones a larger one.');
+                                    regionMark(btn, model);
+                                    if (model.id === activeCloudModel) btn.classList.add('active');
+                                    btn.addEventListener('click', async (e) => {
+                                        e.preventDefault();
+                                        if (!(await requireCloudSignIn())) return;
+                                        await chrome.storage.sync.set({ preferredCloudModel: model.id, recentCloudModels: [model.id, ...recentCloudModels.filter(m => m !== model.id)].slice(0, 10) });
+                                        await renderUI();
+                                        applyAndClose();
+                                    });
+                                    modelIdGrid.appendChild(btn);
+                                });
+                            }
                             if (picks.length && !customModelInput.value.trim()) {
                                 const note = document.createElement('span'); note.className = 'model-grid-note'; note.textContent = T('Best value');
                                 modelIdGrid.appendChild(note);

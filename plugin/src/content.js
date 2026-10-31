@@ -1102,6 +1102,7 @@ import {
               chrome.runtime.sendMessage({
                 action: 'startFetch',
                 requestId,
+                feature: 'summary',   // what this is for: the hosted service's Auto models use it
                 apiUrl: finalApiUrl,
                 headers: headers,
                 body: requestBody,

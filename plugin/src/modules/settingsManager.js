@@ -367,7 +367,10 @@ async function initModelSettings(storageData) {
                 const price = modelPriceLabel(model, regionPref);
                 const tag = regionTag(model, regionPref);
                 // Example output: "Gemini 3.8 Flash (Context: 1M) · EU · 0.3 in / 2.5 out per 1M tokens"
-                option.textContent = `${model.name} (${T('Context: {n}k', { n: Math.round(model.context / 1000) })})` + (tag ? ' · ' + (tag.kind === 'eu' ? T('EU servers') : T('Not on EU servers')) : '') + (price ? ' · ' + price : '');
+                const tagText = tag ? ' · ' + (tag.kind === 'company' ? T('EU company') : tag.kind === 'eu' ? T('EU servers') : T('Not on EU servers')) : '';
+                option.textContent = model.auto
+                    ? `${model.name} · ${T('picks a model for each request')}` + tagText
+                    : `${model.name} (${T('Context: {n}k', { n: Math.round(model.context / 1000) })})` + tagText + (price ? ' · ' + price : '');
                 cloudModelSelect.appendChild(option);
             });
             cloudModelSelect.value = keep || rosterModels[0].id;
@@ -381,7 +384,7 @@ async function initModelSettings(storageData) {
         const describeRegion = () => {
             const n = document.getElementById('cloudRegionNote');
             if (n) n.textContent = isEuPreferred(regionPref)
-                ? T('Models marked “EU servers” run only on servers in Europe. Every other model still works, is marked “Not on EU servers”, and runs as usual. EU servers can cost a little more; the prices shown are the EU ones. Read-aloud and speech-to-text have no EU option. Your text still passes through our service (a server in Germany) and then OpenRouter, a US company, on the way.')
+                ? T('Models marked “EU servers” run only on servers in Europe, often those of US cloud companies. Only models marked “EU company” are also from a European company. Every other model still works, is marked “Not on EU servers”, and runs as usual; Auto choices stay on EU servers. EU servers can cost a little more; the prices shown are the EU ones. Read-aloud and speech-to-text have no EU option. Your text still passes through our service (a server in Germany) and then OpenRouter, a US company, on the way.')
                 : T('Turn on to run models on servers in Europe where they offer that. All other models keep working and are marked.');
         };
         if (regionSwitch) {

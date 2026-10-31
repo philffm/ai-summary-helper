@@ -25,8 +25,8 @@ let aiSeq = 0;
 let aiTransport = null;
 export function setAiTransport(transport) { aiTransport = typeof transport === 'function' ? transport : null; }
 /** `signal` (AbortSignal) cancels the request in the background worker too — there is no timeout, slow local models may take minutes. */
-export function aiComplete(system, user, onStage, signal, onProgress, { partial = false, service = '' } = {}) {
-    if (aiTransport) return aiTransport({ system, user, signal, partial, service, onStage, onProgress });
+export function aiComplete(system, user, onStage, signal, onProgress, { partial = false, service = '', feature = '' } = {}) {   // `feature` tells the hosted service what the request is for (tags, recap, qa) so its Auto models can choose
+    if (aiTransport) return aiTransport({ system, user, signal, partial, service, feature, onStage, onProgress });
     return new Promise((resolve, reject) => {
         const id = `ai${Date.now()}_${++aiSeq}`;
         let settled = false;
@@ -62,7 +62,7 @@ export function aiComplete(system, user, onStage, signal, onProgress, { partial 
         const done = () => { try { chrome.runtime.onMessage.removeListener(onMsg); } catch (e) { /* no listener API */ } };
         try { chrome.runtime.onMessage.addListener(onMsg); } catch (e) { /* tests */ }
         if (onStage) { onStage('send'); setTimeout(() => onStage('wait'), 350); }
-        chrome.runtime.sendMessage({ action: 'aiComplete', system, user, id, partial, ...(service ? { service } : {}) }, (res) => {
+        chrome.runtime.sendMessage({ action: 'aiComplete', system, user, id, partial, ...(service ? { service } : {}), ...(feature ? { feature } : {}) }, (res) => {
             if (settled) { void chrome.runtime.lastError; return; }
             settled = true; done();
             if (onStage) onStage('parse');
@@ -187,7 +187,7 @@ export async function generateFeedTopics(title, list, { cats = [], signal, onSta
             : 'Write each tag as "tag in that language = its English name", e.g. "Fußball = Football". Reply with ONLY these pairs separated by commas, nothing else.');
     const dist = cats.length ? `\nCategory distribution of all its posts: ${cats.map(([c, n]) => `${c} ×${n}`).join(', ')}` : '';
     const user = `Feed: ${clip(title, 60)}${dist}\nSample of its headlines:\n${itemsForPrompt(list, () => '', null, titlesOnly ? 0 : 80)}${AFTER.topics}`;
-    const pairs = parseTopicPairs(await aiComplete(system, user, onStage, signal, onProgress, { service }));
+    const pairs = parseTopicPairs(await aiComplete(system, user, onStage, signal, onProgress, { service, feature: 'tags' }));
     if (!pairs.length) throw new Error(T('The AI reply could not be read'));
     // keys = language-independent identity of each tag (its English name); the lexicon learns "Fußball" = "football" for every feed and article
     const keys = pairs.map(p => normalizeTopic(p.en || (code === 'en' ? p.label : '')));
@@ -205,7 +205,7 @@ export async function translateFeedTopics(keys, { signal, onStage, onProgress, s
     const todo = keys.filter((_, n) => tags[n] === null);
     if (todo.length) {
         const system = `Translate these topic names into ${name}. Each stays a short tag of one or two words. Reply with ONLY the translations, in the same order, separated by commas.`;
-        const parts = String(await aiComplete(system, todo.join(', '), onStage, signal, onProgress, { service })).split(/[,;|\n]/).map(cleanLabel).filter(Boolean);
+        const parts = String(await aiComplete(system, todo.join(', '), onStage, signal, onProgress, { service, feature: 'tags' })).split(/[,;|\n]/).map(cleanLabel).filter(Boolean);
         if (parts.length !== todo.length) throw new Error(T('The AI reply could not be read'));
         let k = 0; keys.forEach((_, n) => { if (tags[n] === null) { tags[n] = parts[k++]; lexiconLearn(keys[n], code, tags[n]); } });
     }
@@ -235,7 +235,7 @@ export async function learnTagNames(tags, { signal, onStage, onProgress, service
         + 'For each numbered tag reply with its English name (one or two words, singular, e.g. Football, Climate, Economy)'
         + (code === 'en' ? '' : ` followed by " = " and the same topic written in ${name}`)
         + '. Format exactly, one line: 1:Football' + (code === 'en' ? '' : ' = Fußball') + ' | 2:Economy' + (code === 'en' ? '' : ' = Wirtschaft') + ' | … for EVERY tag, nothing else.';
-    const text = await aiComplete(system, tags.map((t, k) => `[${k + 1}] ${clip(t, 40)}`).join('\n'), onStage, signal, onProgress, { service });
+    const text = await aiComplete(system, tags.map((t, k) => `[${k + 1}] ${clip(t, 40)}`).join('\n'), onStage, signal, onProgress, { service, feature: 'tags' });
     const names = parseTagNames(text, tags.length);
     if (!names.some(Boolean)) throw new Error(T('The AI reply could not be read'));
     let named = 0;
@@ -343,7 +343,7 @@ export async function generateRecap(list, subTitleFn, { rate = true, styleText, 
         + 'No headings, no markdown other than the "- " lines.' + suffix + lr;
     const chunk = list.slice(0, recapLimit);
     const text = await aiComplete(system, `Items:\n${itemsForPrompt(chunk, subTitleFn)}${AFTER.recap(rate)}`, onStage, signal,
-        streamRatings(chunk.length, onProgress, rate && onRatings), { partial: true, service });
+        streamRatings(chunk.length, onProgress, rate && onRatings), { partial: true, service, feature: 'recap' });
     const r = parseRecap(text, chunk.length);
     if (!r.overview && !r.themes.length) throw new Error(T('The AI returned an empty recap'));
     return r;
@@ -371,7 +371,7 @@ export async function generateRecapUpdate(prev, fresh, subTitleFn, { rate = true
     const chunk = fresh.slice(0, recapLimit);
     const cur = [prev.overview, ...(prev.themes || []).map(t => '- ' + t), `Mood: ${{ pos: 'positive', neg: 'negative' }[prev.mood] || 'mixed'}`].filter(Boolean).join('\n');
     const text = await aiComplete(system, `Current recap:\n${cur}\n\nNew or edited items:\n${itemsForPrompt(chunk, subTitleFn, i => edited(i) ? ' (edited)' : '')}${AFTER.recap(rate)}`, onStage, signal,
-        streamRatings(chunk.length, onProgress, rate && onRatings), { partial: true, service });
+        streamRatings(chunk.length, onProgress, rate && onRatings), { partial: true, service, feature: 'recap' });
     const r = parseRecap(text, chunk.length);
     if (!r.overview && !r.themes.length) throw new Error(T('The AI returned an empty recap'));
     return { ...r, sent: chunk };
@@ -460,11 +460,11 @@ export async function scoreItems(list, subTitleFn, { labels = true, onStage, sig
     const read = (text) => { const a = parseScoreLine(text, n); return usable(a) ? a : parseScores(text, n); };
 
     const t0 = Date.now();
-    let scores = read(await aiComplete(system, items + AFTER.scores, onStage, signal, onProgress, { service }));
+    let scores = read(await aiComplete(system, items + AFTER.scores, onStage, signal, onProgress, { service, feature: 'tags' }));
     let retried = false;
     if (!usable(scores)) {   // small local models sometimes ignore the format: one more try
         retried = true;
-        scores = read(await aiComplete(system, items + AFTER.scores, onStage, signal, onProgress, { service }));
+        scores = read(await aiComplete(system, items + AFTER.scores, onStage, signal, onProgress, { service, feature: 'tags' }));
     }
     if (!usable(scores)) throw new Error(T('The AI reply could not be read'));
     const t1 = Date.now();
@@ -477,7 +477,7 @@ export async function scoreItems(list, subTitleFn, { labels = true, onStage, sig
             + `If none fits, you may use a NEW category of one or two words, but at most ${MAX_NEW_CATS} different new categories in total and only when really needed. `
             + 'Reply with ONLY the item number and its category, one pair per item, nothing else, like: 1:Tech | 2:Politics | 3:Science';
         try {
-            out = parseCategoryLines(await aiComplete(catSystem, items + AFTER.cats, onStage, signal, onProgress, { service }), n, vocab);
+            out = parseCategoryLines(await aiComplete(catSystem, items + AFTER.cats, onStage, signal, onProgress, { service, feature: 'tags' }), n, vocab);
         } catch (e) {
             if (isCancel(e, signal)) throw e;   // anything else: keep the scores, the caller marks the items as "category tried"
         }
@@ -503,7 +503,7 @@ export async function generateDigestIntro(list, style = 'briefing', { onStage, s
         + `Length and tone: ${INTRO_STYLES[style] || INTRO_STYLES.briefing}. `
         + 'Mention what the pieces have in common or how they differ. Use ONLY information from the summaries: no new facts, no quotes, no markdown, no lists, no title, no greeting. Reply with the intro text only.';
     const user = list.slice(0, 12).map((a, i) => `[${i + 1}] ${clip(a.title, 140)} — ${clip(plain(a.summary), 400)}`).join('\n') + AFTER.intro;
-    const raw = await aiComplete(system, user, onStage, signal, onProgress, { partial: true });
+    const raw = await aiComplete(system, user, onStage, signal, onProgress, { partial: true, feature: 'recap' });
     const text = String(raw || '').replace(/[*#_`>]/g, '').replace(/^["“”'\s]+|["“”'\s]+$/g, '').replace(/\s+/g, ' ').trim().slice(0, 700);
     if (!text) throw new Error(T('The AI reply could not be read'));
     return text;
@@ -543,7 +543,7 @@ export async function askCluster(list, { topic = '', question = '', layout = '' 
         const system = base + (cmp ? compareSys : q ? 'Answer the question in at most 3 short paragraphs or 6 bullet lines. No headings.'
             : layout ? 'Write a short overview paragraph first (2 sentences), then the sections.' + sections
             : 'Write a short briefing: what they say together, where they differ or add to each other, and which one to read first. At most 8 bullet lines, no headings.');
-        text = clean(await aiComplete(system, lines(items, 0) + (q ? `\n\nQuestion: ${clip(q, 400)}` : ''), onStage, signal, onProgress, { partial: true }));
+        text = clean(await aiComplete(system, lines(items, 0) + (q ? `\n\nQuestion: ${clip(q, 400)}` : ''), onStage, signal, onProgress, { partial: true, feature: 'qa' }));
     } else {
         // Too many for one request: one pass per group of CLUSTER_MAX (numbers stay global), then merge the partial answers.
         const partSys = base + (q ? 'Answer the question from these summaries only, in at most 4 bullet lines. If they do not contain the answer, say so in one line.'
@@ -553,7 +553,7 @@ export async function askCluster(list, { topic = '', question = '', layout = '' 
             if (signal && signal.aborted) throw Object.assign(new Error(T('Cancelled')), { name: 'AbortError', cancelled: true });
             if (onPart) onPart({ done: k, total: chunks.length + 1 });
             const from = k * CLUSTER_MAX;
-            parts.push(clean(await aiComplete(partSys, lines(chunks[k], from) + (q ? `\n\nQuestion: ${clip(q, 400)}` : ''), onStage, signal, onProgress, {})));
+            parts.push(clean(await aiComplete(partSys, lines(chunks[k], from) + (q ? `\n\nQuestion: ${clip(q, 400)}` : ''), onStage, signal, onProgress, { feature: 'qa' })));
         }
         if (onPart) onPart({ done: chunks.length, total: chunks.length + 1 });
         const mergeSys = `You combine partial notes that were each written from different numbered article summaries${topic ? ` on the topic "${clip(topic, 40)}"` : ''}. Write in ${lang}. `
@@ -561,7 +561,7 @@ export async function askCluster(list, { topic = '', question = '', layout = '' 
             + (q ? 'Give one answer to the question in at most 3 short paragraphs or 6 bullet lines. No headings.'
                 : layout ? 'Write a short overview paragraph first (2 sentences), then the sections.' + sections
                 : 'Write one briefing: what the articles say together, where they differ or add to each other, and which to read first. At most 10 bullet lines, no headings.');
-        text = clean(await aiComplete(mergeSys, parts.map((p, k) => `Notes ${k + 1} (items ${k * CLUSTER_MAX + 1}-${Math.min(items.length, (k + 1) * CLUSTER_MAX)}):\n${p}`).join('\n\n') + (q ? `\n\nQuestion: ${clip(q, 400)}` : ''), onStage, signal, onProgress, { partial: true }));
+        text = clean(await aiComplete(mergeSys, parts.map((p, k) => `Notes ${k + 1} (items ${k * CLUSTER_MAX + 1}-${Math.min(items.length, (k + 1) * CLUSTER_MAX)}):\n${p}`).join('\n\n') + (q ? `\n\nQuestion: ${clip(q, 400)}` : ''), onStage, signal, onProgress, { partial: true, feature: 'qa' }));
     }
     if (!text) throw new Error(T('The AI reply could not be read'));
     return { text, used: items.length, runs: chunks.length > 1 ? chunks.length + 1 : 1, skipped: all.length - items.length, duplicates: (list || []).length - unique.length, articles: items.map(x => x.a) };   // articles[n-1] is what the text cites as [n]
@@ -600,7 +600,7 @@ export async function generateRollup(parts, { label = '', prev = null, edited = 
         + 'No headings, no markdown other than the "- " lines.' + suffix + lr;
     const body = parts.map(p => partText(p) + (edited(p) ? ' (changed)' : '')).join('\n\n');
     const cur = prev ? [prev.overview, ...(prev.themes || []).map(t => '- ' + t), `Mood: ${{ pos: 'positive', neg: 'negative' }[prev.mood] || 'mixed'}`].filter(Boolean).join('\n') : '';
-    const text = await aiComplete(system, `Period: ${label}\n\n${prev ? `Current period recap:\n${cur}\n\nNew or changed recaps:\n` : 'Recaps:\n'}${body}`, onStage, signal, onProgress, { partial: true, service });
+    const text = await aiComplete(system, `Period: ${label}\n\n${prev ? `Current period recap:\n${cur}\n\nNew or changed recaps:\n` : 'Recaps:\n'}${body}`, onStage, signal, onProgress, { partial: true, service, feature: 'recap' });
     const r = parseRecap(text, 0);
     if (!r.overview && !r.themes.length) throw new Error(T('The AI returned an empty recap'));
     return r;

@@ -108,13 +108,15 @@ export function fmtPrice(n) {
  */
 export function suggestModels(models, taken = [], count = 5) {
     const skip = new Set(taken);
-    const top = (Array.isArray(models) ? models : []).slice(0, 20).filter(m => m && m.id && !skip.has(m.id));
+    const top = (Array.isArray(models) ? models : []).filter(m => m && !m.auto).slice(0, 20).filter(m => m && m.id && !skip.has(m.id));   // Auto choices are offered on their own
     const cost = (m) => (Number.isFinite(m.price_in) && Number.isFinite(m.price_out)) ? m.price_in * 3 + m.price_out : Infinity;
     const byPrice = [...top].sort((a, b) => cost(a) - cost(b));
     const priced = top.every(m => cost(m) !== Infinity);
     const score = (m, i) => i + (priced ? byPrice.indexOf(m) : 0);
     return top.map((m, i) => ({ m, i, sc: score(m, i) })).sort((a, b) => a.sc - b.sc || a.i - b.i).slice(0, count).map(x => x.m);
 }
+/** The Auto choices of the roster (the hosted service picks the model per request), in the server's order. */
+export function autoModels(models) { return (Array.isArray(models) ? models : []).filter(m => m && m.auto && m.id); }
 /** Short price tag for a model from the roster: "$0.10 in / $0.40 out per 1M tokens", "Free", or '' when the server sent no prices. */
 export function modelPriceLabel(model, pref) {
     const p = pricesFor(model, pref);   // with "Prefer EU" on, an EU model shows what it costs on EU servers

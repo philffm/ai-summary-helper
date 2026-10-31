@@ -63,5 +63,6 @@ assert.match(root().querySelector('.phone-inbox-error').textContent, /Wrong pass
 type('syncPassphrase', words.toUpperCase().replace(/ /g, '-  ')); click(byText('button', 'Connect')); await until(() => store[SK.syncPlaces].length === 2);
 assert.equal(store[SK.syncPlaces].length, 2, 'the words in capitals with dashes and double spaces still join it'); assert.ok(!/Save your recovery key/.test(text()), 'a joined place shows no new key');
 // the list shows both as encrypted
+await until(() => root().querySelectorAll('.settings-row').length === 2);   // the list is drawn a moment after the place is saved
 assert.equal(root().querySelectorAll('.settings-row').length, 2);
 console.log('TEST 204 OK'); process.exit(0);

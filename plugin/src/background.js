@@ -763,10 +763,15 @@ const AISH_API_BASE = 'https://api.byphil.eu';
 
 // "Prefer EU servers" (Settings → Models, hosted models only): the hosted service pins EU endpoints for models that have them and runs the others
 // as usual. A service that does not know the header ignores it. The answer's X-AISH-Region says which route was really used; the app shows that.
-async function cloudRegionHeader(url) {
+const AISH_FEATURES = ['summary', 'qa', 'recap', 'tags', 'analysis', 'translate'];
+async function cloudRegionHeader(url, feature) {
     if (!String(url).startsWith(AISH_API_BASE + '/v1/projects/')) return {};
     const s = await chrome.storage.sync.get(['cloudRegionPref']).catch(() => ({}));
-    return s.cloudRegionPref === 'prefer-eu' ? { 'X-AISH-Region': 'prefer-eu' } : {};
+    return {
+        ...(s.cloudRegionPref === 'prefer-eu' ? { 'X-AISH-Region': 'prefer-eu' } : {}),
+        // what the request is for: the hosted service's Auto models use it to pick a model (an older service ignores it)
+        ...(AISH_FEATURES.includes(feature) ? { 'X-AISH-Feature': feature } : {}),
+    };
 }
 function noteCloudRoute(url, res, model) {
     try {
@@ -774,7 +779,8 @@ function noteCloudRoute(url, res, model) {
         const region = res.headers.get('x-aish-region');
         if (region !== 'eu' && region !== 'global') return;   // an older service says nothing: nothing is recorded
         const used = (res.headers.get('x-aish-model-used') || '').slice(0, 120), switched = res.headers.get('x-aish-switched') === 'long-text' ? 'long-text' : '';
-        chrome.storage.local.set({ [SK.cloudRoute]: { region, model: model || '', ...(used ? { used } : {}), ...(switched ? { switched } : {}), at: Date.now() } });
+        const am = /^(tiny|small|large):([a-z-]{1,24})$/.exec(res.headers.get('x-aish-auto') || '');   // Auto: which tier it chose and why
+        chrome.storage.local.set({ [SK.cloudRoute]: { region, model: model || '', ...(used ? { used } : {}), ...(switched ? { switched } : {}), ...(am ? { auto: { tier: am[1], reason: am[2] } } : {}), at: Date.now() } });
     } catch (_) { /* a status note must never break a summary */ }
 }
 
@@ -884,7 +890,7 @@ function aiDelta(line) {
 
 const aiJobs = new Map(); // request id → AbortController, so the popup can cancel a slow (e.g. local) model
 const aiResyncAsked = new Set(); // request ids whose receiver lost a streamed delta: the next tick resends the whole text
-async function aiComplete({ system, user, id, partial, service: forcedService, signal }) {
+async function aiComplete({ system, user, id, partial, service: forcedService, signal, feature }) {
     const sync = await chrome.storage.sync.get(['activeService', 'connectionMode', 'preferredCloudModel']).catch(() => ({}));
     let local = await localGet([SK.servicesConfig, SK.licenseKey, SK.token, SK.installId]).catch(() => ({}));
     if (!forcedService && (sync.connectionMode || 'cloud') === 'cloud' && aiTokenNeedsRefresh(local[SK.token]) && await aiRefreshSession(local[SK.token])) {
@@ -955,7 +961,7 @@ async function aiComplete({ system, user, id, partial, service: forcedService, s
     if (id) aiJobs.set(id, ctrl);
     const progress = (p) => { if (id) { try { chrome.runtime.sendMessage({ action: 'aiProgress', id, ...p }, () => void chrome.runtime.lastError); } catch (_) { /* popup closed */ } } };
     try {
-        Object.assign(headers, await cloudRegionHeader(url));
+        Object.assign(headers, await cloudRegionHeader(url, feature));
         let res = await fetch(url, { method: 'POST', headers, body, signal: ctrl.signal });
         noteCloudRoute(url, res, model);
         // A provider that rejects "stream": true gets one retry without streaming.
@@ -1002,8 +1008,8 @@ async function aiComplete({ system, user, id, partial, service: forcedService, s
 }
 
 if (typeof FEED_WORKER !== 'undefined' && FEED_WORKER) {
-    FEED_WORKER.setAiTransport(({ system, user, signal, partial, service }) =>
-        aiComplete({ system, user, signal, partial, service }).then(result => result.text));
+    FEED_WORKER.setAiTransport(({ system, user, signal, partial, service, feature }) =>
+        aiComplete({ system, user, signal, partial, service, feature }).then(result => result.text));
 }
 
 // ── Phone inbox: while a phone is paired, collect the links it shared every 15 minutes (see modules/inboxManager.js) ──
@@ -1511,7 +1517,7 @@ chrome.runtime.onMessage.addListener((msg, sender, sendResponse) => {
 
     // ── Feeds (RSS reader) ──────────────────────────────────────────────
     if (msg.action === 'aiComplete' && msg.user) {
-        aiComplete({ system: msg.system || '', user: msg.user, id: msg.id, partial: !!msg.partial, service: msg.service })
+        aiComplete({ system: msg.system || '', user: msg.user, id: msg.id, partial: !!msg.partial, service: msg.service, feature: msg.feature })
             .then(r => sendResponse({ ok: true, text: r.text, model: r.model }))
             .catch(e => sendResponse({ ok: false, error: e.message || 'AI request failed' }));
         return true;
@@ -1949,7 +1955,7 @@ async function handleStreamFetch(msg, tabId) {
             push({ meta: 'heartbeat', requestId, elapsedMs: Date.now() - startedAt, chunkCount, byteCount });
         }, 3000);
 
-        const response = await fetch(apiUrl, { method: 'POST', headers: { ...headers, ...(await cloudRegionHeader(apiUrl)) }, body, signal: controller.signal });
+        const response = await fetch(apiUrl, { method: 'POST', headers: { ...headers, ...(await cloudRegionHeader(apiUrl, msg.feature)) }, body, signal: controller.signal });
         { let m = ''; try { m = JSON.parse(body).model || ''; } catch (_) { /* not JSON */ } noteCloudRoute(apiUrl, response, m); }
 
         push({ meta: 'response', requestId, status: response.status, contentType: response.headers.get('content-type') || '' });

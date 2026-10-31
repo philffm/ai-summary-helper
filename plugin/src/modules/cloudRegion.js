@@ -15,6 +15,8 @@ export const supportsEu = (roster) => !!(roster && Array.isArray(roster.regions)
  */
 export function regionTag(model, pref) {
     if (!model || typeof model.eu !== 'boolean') return null;
+    if (model.eu_company) return { kind: 'company', text: 'EU company' };   // a European company's model, which also runs on EU servers
+    if (model.auto && !isEuPreferred(pref)) return null;                    // Auto may pick any model on the normal route: no claim about it
     if (model.eu) return { kind: 'eu', text: 'EU' };
     return isEuPreferred(pref) ? { kind: 'outside', text: 'Not EU' } : null;
 }
@@ -32,9 +34,11 @@ const prettyModel = (id) => String(id || '').split('/').pop().replace(/-(\d{4})$
  * The route the last request took, as a sentence (the server's answer, not our wish). `used` is the model that really answered; when the server
  * swapped it (a long text on the everyday EU model goes to the larger one) that is said, so the cost and the model are never a surprise.
  */
+const AUTO_WHY = { standard: 'an everyday text', 'short-text': 'a short text', 'long-text': 'a long text', 'short-task': 'a short task', analysis: 'an analysis', allowance: 'the monthly allowance is nearly used up', 'only-model': 'the only model of that family on EU servers' };
 export function routeSentence(route) {
     if (!route || !route.region) return '';
     const on = route.region === 'eu' ? 'ran on EU servers' : 'did not run on EU servers';
+    if (route.auto && route.used) return `Auto chose ${prettyModel(route.used)} (${AUTO_WHY[route.auto.reason] || route.auto.reason}). The last request ${on}.`;
     if (route.switched === 'long-text' && route.used) return `The last request ${on}, on ${prettyModel(route.used)}: the text was long, so the larger model was used.`;
     return `The last request ${on}.`;
 }
