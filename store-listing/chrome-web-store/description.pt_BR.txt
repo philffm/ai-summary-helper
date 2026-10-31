@@ -120,7 +120,7 @@ Abra o AI Summary Helper em uma guia própria ou arraste o painel lateral para d
 ━━━━━━━━━━━━━━━━━━━━
 Mantenha sua biblioteca em dia em todos os seus computadores, faça backup ou publique uma parte, sem entregá-la a ninguém. Em Configurações → Sync e backup, adicione um local: Nextcloud ou outro servidor WebDAV, um bucket compatível com S3 ou uma pasta do seu computador.
 
-• Criptografado: tudo é criptografado no seu navegador com a sua frase secreta antes de sair do dispositivo, então o servidor só vê arquivos ilegíveis. Você recebe uma chave de recuperação; sem ela e sem a frase secreta, ninguém consegue lê-los, nem nós.
+• Criptografado: tudo é criptografado no seu navegador com a sua frase secreta antes de sair do dispositivo, então o servidor só vê arquivos ilegíveis. Sem a frase secreta, ninguém consegue lê-los, nem nós.
 • Sincronização nos dois sentidos entre seus dispositivos, combinada campo a campo. A mesma página salva duas vezes vira um só artigo, e uma enxurrada de exclusões vinda de outro dispositivo espera o seu OK.
 • Locais só de backup e restauração com um clique.
 • Publique uma lista no seu próprio site: escolha artigos por tag e receba arquivos simples e uma visão com busca, linha do tempo, grafo de tags e mapa 3D. Notas e textos completos ficam de fora, a menos que você ative.

@@ -36,16 +36,16 @@ click(byText('button', 'Connect')); await until(() => /not the same/.test(text()
 assert.match(text(), /two passphrases are not the same/); assert.ok(!(SK.syncPlaces in store));
 type('syncPassphrase', 'short'); type('syncPassphrase2', 'short'); click(byText('button', 'Connect')); await until(() => /at least 12/.test(text()));
 assert.match(text(), /at least 12 characters/); assert.ok(!(SK.syncPlaces in store));
-// back to the words: the place is saved, and the words and the recovery key are shown once, with the exit locked until it is acknowledged
+// back to the words: the place is saved, and the words (the one key) are shown once, with the exit locked until it is acknowledged
 click(byText('button', 'Suggest random words instead')); await until(() => $('syncWords')); const words = $('syncWords').textContent;
-click(byText('button', 'Connect')); await until(() => /Save your passphrase and recovery key/.test(text()));
-const shown = [...root().querySelectorAll('.sync-recovery')]; assert.equal(shown.length, 2); assert.equal(shown[0].textContent, words, 'the passphrase is shown again, once');
-const key = shown[1].textContent; assert.match(key, /^([A-Z2-7]{4}-)+[A-Z2-7]{1,4}$/);
+click(byText('button', 'Connect')); await until(() => /Save your passphrase/.test(text()));
+const shown = [...root().querySelectorAll('.sync-recovery')]; assert.equal(shown.length, 1, 'one thing to save, not two'); assert.equal(shown[0].textContent, words, 'the passphrase is shown again, once');
+assert.ok(!/recovery key/i.test(text()), 'no second key to explain');
 const done = byText('button', 'Done'); assert.ok(done.disabled, 'Done waits for the box');
 const box = root().querySelector('input[type=checkbox]'); box.checked = true; box.dispatchEvent(new w.Event('change', { bubbles: true }));
 assert.ok(!done.disabled); click(done); await until(() => root().querySelector('.settings-row'));
 assert.equal(store[SK.syncPlaces].length, 1); assert.equal(store[SK.syncPlaces][0].mode, 'encrypted');
-assert.ok(!JSON.stringify(store[SK.syncPlaces]).includes(key) && !JSON.stringify(store[SK.syncPlaces]).includes(words), 'neither the key nor the passphrase sits with the place');
+assert.ok(!JSON.stringify(store[SK.syncPlaces]).includes(words), 'the passphrase does not sit with the place');
 assert.ok(root().querySelector('.settings-row'), 'back at the list');
 
 // a second place in the same folder name: the folder already holds a library, so it is joined, not created
@@ -66,8 +66,11 @@ assert.equal(store[SK.syncPlaces].length, 2, 'the words in capitals with dashes 
 // the list shows both as encrypted
 await until(() => root().querySelectorAll('.settings-row').length === 2);   // the list is drawn a moment after the place is saved
 assert.equal(root().querySelectorAll('.settings-row').length, 2);
-// the same field takes the recovery key (told apart by its shape): a third device joins with it
-const recoveryKey = shown[1].textContent;
+// a recovery key from an older setup still works in the one field (it is found in the place's settings)
+click(root().querySelector('.settings-row')); await until(() => byText('button', 'Show recovery key'));
+click(byText('button', 'Show recovery key')); await until(() => /Recovery key: [A-Z2-7]{4}-/.test(text()));
+const recoveryKey = text().match(/Recovery key: ([A-Z2-7-]+)/)[1];
+click(byText('button', 'Sync & backup')); await until(() => root().querySelector('.settings-row'));
 click(byText('button', 'Add a place')); await until(() => root().querySelectorAll('.settings-row').length === 3); click(root().querySelectorAll('.settings-row')[0]); await until(() => $('syncName') && $('syncPassphrase'));
 type('syncName', 'By key'); type('syncRoot', 'sync');
 click(byText('button', 'Test connection')); await until(() => /already holds/.test(text()));

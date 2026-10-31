@@ -127,7 +127,7 @@ Ouvrez AI Summary Helper dans un onglet ou élargissez le panneau latéral : l'h
 ━━━━━━━━━━━━━━━━━━━━
 Gardez votre bibliothèque à jour sur tous vos ordinateurs, sauvegardez-la ou publiez-en une partie, sans la confier à personne. Dans Réglages → Sync et sauvegarde, ajoutez un lieu : Nextcloud ou un autre serveur WebDAV, un bucket compatible S3 ou un dossier de votre ordinateur.
 
-• Chiffré : tout est chiffré dans votre navigateur avec votre phrase secrète avant de quitter l'appareil, le serveur ne voit donc que des fichiers illisibles. Vous recevez une clé de récupération ; sans elle et sans la phrase secrète, personne ne peut les lire, nous non plus.
+• Chiffré : tout est chiffré dans votre navigateur avec votre phrase secrète avant de quitter l'appareil, le serveur ne voit donc que des fichiers illisibles. Sans la phrase secrète, personne ne peut les lire, nous non plus.
 • Synchronisation dans les deux sens entre vos appareils, fusionnée champ par champ. La même page enregistrée deux fois devient un seul article, et une vague de suppressions venue d'un autre appareil attend votre accord.
 • Lieux de sauvegarde seule et restauration en un clic.
 • Publiez une liste sur votre propre site : choisissez les articles par tag et obtenez des fichiers simples et une vue avec recherche, frise chronologique, graphe de tags et carte 3D. Les notes et les textes intégraux restent à l'écart sauf si vous les activez.

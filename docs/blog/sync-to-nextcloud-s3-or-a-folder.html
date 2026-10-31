@@ -112,7 +112,7 @@
   <section>
     <div class="wrap">
       <div class="prose">
-        <p><strong>The short version.</strong> In AI Summary Helper open <em>Settings → Sync &amp; backup → Add a place</em>, choose Nextcloud/WebDAV, S3-compatible storage or a folder on your computer, and keep the suggested passphrase. Everything is encrypted in your browser before it is uploaded. On your second computer you add the same place and enter the passphrase or the recovery key. That is the whole setup. The rest of this page covers each storage type, what syncs, and what to do when something goes wrong.</p>
+        <p><strong>The short version.</strong> In AI Summary Helper open <em>Settings → Sync &amp; backup → Add a place</em>, choose Nextcloud/WebDAV, S3-compatible storage or a folder on your computer, and keep the suggested passphrase. Everything is encrypted in your browser before it is uploaded. On your second computer you add the same place and enter the passphrase. That is the whole setup. The rest of this page covers each storage type, what syncs, and what to do when something goes wrong.</p>
         <p>Why do this at all? Because a reading library is worth keeping, and a tool you depend on can disappear (<a href="digital-sovereignty-for-individuals.html">more on that here</a>). Syncing to storage you own means the library outlives any one app or account.</p>
 
         <h2>What gets synced, and what does not</h2>
@@ -141,14 +141,14 @@
 
         <h2>Step 2: choose encrypted, and keep the words</h2>
         <p>When you add the place, <em>Encrypted</em> is selected by default and <em>Sync my devices</em> is the purpose. The extension suggests six random words as your passphrase. You can press <em>Another suggestion</em> until you like the combination, or choose your own (at least 12 characters, with a hint if it is weak).</p>
-        <p>After you connect, you see the words and a <strong>recovery key</strong> once. Save both in a password manager. The extension does not store your passphrase. With the passphrase or the recovery key you can open the place on any device; without both, nobody can read the files, including us.</p>
+        <p>After you connect, you see the six words once. Save them in a password manager. The extension does not store your passphrase. With it you can open the place on any device; without it, nobody can read the files, including us. (Places made with an earlier version also have a recovery key, shown in the place's settings; it opens the same library and works in the same field.)</p>
         <p>What the storage provider sees: scrambled files with scrambled names, how many there are, how big they are, and when they change. It does not see titles, links or text. Your library is encrypted in your browser with AES-256-GCM before it leaves the device.</p>
 
         <h2>Step 3: add your second computer</h2>
         <ol>
           <li>Install the extension and open <em>Settings → Sync &amp; backup → Add a place</em>.</li>
           <li>Enter the same server details (or pick the same folder).</li>
-          <li>The extension sees that the folder already holds an encrypted library and asks for the passphrase or the recovery key. Typing the words in any capitalization, with spaces or dashes, works.</li>
+          <li>The extension sees that the folder already holds an encrypted library and asks for the passphrase. Typing the words in any capitalization, with spaces or dashes, works.</li>
           <li>It asks you to confirm that you made a backup of this device first, because joining merges this computer's library with the one in the folder, and where both differ the folder wins. Use <em>Make a backup now</em>.</li>
           <li>Press <em>Connect</em>. The first sync can take a while for a large library; the screen shows progress.</li>
         </ol>
@@ -165,7 +165,7 @@
         <h3>"The server did not accept the username and password"</h3>
         <p>For Nextcloud use an app password. Check that the address ends with your username folder and that two-factor login is not blocking the app password.</p>
         <h3>"Wrong passphrase"</h3>
-        <p>Try the recovery key instead. If you have neither, the files cannot be opened by anyone. Remove the place here, make a new one and start again from the library on your computer.</p>
+        <p>Check the words: capitalization, spaces and dashes do not matter, but every word must be right. A place made with an earlier version may also have a recovery key, which you can enter in the same field. If you have neither, the files cannot be opened by anyone. Remove the place here, make a new one and start again from the library on your computer.</p>
         <h3>A flood of deletions is waiting for me</h3>
         <p>If another device deletes many articles at once, the extension applies a few and asks before the rest, so one mistake cannot empty your library. Check, then press the button to apply them.</p>
         <h3>A computer was away for months</h3>

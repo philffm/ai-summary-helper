@@ -114,7 +114,7 @@
   <section>
     <div class="wrap">
       <div class="prose">
-        <p><strong>Kurz gesagt.</strong> In AI Summary Helper öffnen Sie <em>Einstellungen → Sync &amp; Backup → Ort hinzufügen</em>, wählen Nextcloud/WebDAV, S3-kompatiblen Speicher oder einen Ordner auf Ihrem Computer und behalten die vorgeschlagene Passphrase. Alles wird in Ihrem Browser verschlüsselt, bevor es hochgeladen wird. Auf dem zweiten Rechner fügen Sie denselben Ort hinzu und geben die Passphrase oder den Wiederherstellungsschlüssel ein. Mehr ist nicht nötig. Der Rest dieser Seite erklärt jede Speicherart, was synchronisiert wird und was Sie bei Problemen tun.</p>
+        <p><strong>Kurz gesagt.</strong> In AI Summary Helper öffnen Sie <em>Einstellungen → Sync &amp; Backup → Ort hinzufügen</em>, wählen Nextcloud/WebDAV, S3-kompatiblen Speicher oder einen Ordner auf Ihrem Computer und behalten die vorgeschlagene Passphrase. Alles wird in Ihrem Browser verschlüsselt, bevor es hochgeladen wird. Auf dem zweiten Rechner fügen Sie denselben Ort hinzu und geben die Passphrase ein. Mehr ist nicht nötig. Der Rest dieser Seite erklärt jede Speicherart, was synchronisiert wird und was Sie bei Problemen tun.</p>
         <p>Warum überhaupt? Weil eine Leseliste es wert ist, aufbewahrt zu werden, und weil jedes Werkzeug verschwinden kann (<a href="digital-sovereignty-for-individuals.html">mehr dazu im Ratgeber zur digitalen Souveränität</a>). Wer seine Bibliothek auf Speicher ablegt, den er selbst kontrolliert, behält sie über jede einzelne App und jedes Konto hinaus. Besonders gut passt das zu Nextcloud: Sie kennen den Server, Sie wissen, wo er steht, und die Daten darauf sind zusätzlich verschlüsselt.</p>
 
         <h2>Warum Nextcloud?</h2>
@@ -145,14 +145,14 @@
 
         <h2>Schritt 2: Verschlüsselt wählen und die Wörter aufbewahren</h2>
         <p>Beim Hinzufügen ist <em>Verschlüsselt</em> vorausgewählt, und der Zweck ist <em>Meine Geräte synchronisieren</em>. Die Erweiterung schlägt sechs zufällige Wörter als Passphrase vor. Mit <em>Anderer Vorschlag</em> würfeln Sie, bis Ihnen die Kombination gefällt, oder Sie wählen eine eigene (mindestens 12 Zeichen, mit Hinweis, wenn sie schwach ist).</p>
-        <p>Nach dem Verbinden sehen Sie die Wörter und einen <strong>Wiederherstellungsschlüssel</strong> genau einmal. Speichern Sie beides in einem Passwortmanager. Die Erweiterung speichert Ihre Passphrase nicht. Mit der Passphrase oder dem Wiederherstellungsschlüssel öffnen Sie den Ort auf jedem Gerät; ohne beides kann niemand die Dateien lesen, auch wir nicht.</p>
+        <p>Nach dem Verbinden sehen Sie die sechs Wörter genau einmal. Speichern Sie sie in einem Passwortmanager. Die Erweiterung speichert Ihre Passphrase nicht. Mit ihr öffnen Sie den Ort auf jedem Gerät; ohne sie kann niemand die Dateien lesen, auch wir nicht. (Orte, die mit einer früheren Version angelegt wurden, haben zusätzlich einen Wiederherstellungsschlüssel in den Einstellungen des Ortes; er öffnet dieselbe Bibliothek und funktioniert im selben Feld.)</p>
         <p>Was der Betreiber Ihres Nextcloud-Servers sieht: verschlüsselte Dateien mit verschlüsselten Namen, wie viele es sind, wie groß sie sind und wann sie sich ändern. Titel, Links und Text sieht er nicht. Ihre Bibliothek wird in Ihrem Browser mit AES-256-GCM verschlüsselt, bevor sie das Gerät verlässt. Wichtig zur Einordnung: Das Verfahren ist offen dokumentiert, wurde aber nicht unabhängig geprüft, und der Schlüssel liegt in Ihrem Browserprofil, damit die Synchronisierung im Hintergrund laufen kann.</p>
 
         <h2>Schritt 3: Den zweiten Rechner hinzufügen</h2>
         <ol>
           <li>Erweiterung installieren und <em>Einstellungen → Sync &amp; Backup → Ort hinzufügen</em> öffnen.</li>
           <li>Dieselben Serverdaten eingeben (oder denselben Ordner wählen).</li>
-          <li>Die Erweiterung erkennt, dass dort schon eine verschlüsselte Bibliothek liegt, und fragt nach Passphrase oder Wiederherstellungsschlüssel. Die Wörter funktionieren in beliebiger Groß- und Kleinschreibung, mit Leerzeichen oder Bindestrichen.</li>
+          <li>Die Erweiterung erkennt, dass dort schon eine verschlüsselte Bibliothek liegt, und fragt nach der Passphrase. Die Wörter funktionieren in beliebiger Groß- und Kleinschreibung, mit Leerzeichen oder Bindestrichen.</li>
           <li>Sie werden gebeten zu bestätigen, dass Sie zuvor ein Backup dieses Geräts gemacht haben, denn das Beitreten führt die Bibliothek dieses Rechners mit der im Ordner zusammen, und wo beide abweichen, gewinnt der Ordner. Nutzen Sie <em>Jetzt Backup erstellen</em>.</li>
           <li><em>Verbinden</em> drücken. Die erste Synchronisierung kann bei einer großen Bibliothek dauern; der Fortschritt wird angezeigt.</li>
         </ol>
@@ -176,7 +176,7 @@
         <h3>„Unter dieser Adresse wurde nichts gefunden“</h3>
         <p>Meist stimmt die WebDAV-Adresse nicht: Sie muss auf einen bestehenden Ordner zeigen, bei Nextcloud auf <code>…/remote.php/dav/files/&lt;Benutzername&gt;/</code>. Läuft Nextcloud in einem Unterordner, gehört der vor <code>remote.php</code>.</p>
         <h3>„Falsche Passphrase“</h3>
-        <p>Versuchen Sie stattdessen den Wiederherstellungsschlüssel. Haben Sie beides nicht, kann niemand die Dateien öffnen. Entfernen Sie den Ort hier, legen Sie einen neuen an und beginnen Sie wieder mit der Bibliothek auf Ihrem Rechner.</p>
+        <p>Prüfen Sie die Wörter: Groß- und Kleinschreibung, Leerzeichen und Bindestriche spielen keine Rolle, aber jedes Wort muss stimmen. Ein Ort aus einer früheren Version hat eventuell zusätzlich einen Wiederherstellungsschlüssel, den Sie im selben Feld eingeben können. Haben Sie beides nicht, kann niemand die Dateien öffnen. Entfernen Sie den Ort hier, legen Sie einen neuen an und beginnen Sie wieder mit der Bibliothek auf Ihrem Rechner.</p>
         <h3>„Zugriff auf den Ordner erneut erlauben“</h3>
         <p>Der Browser nimmt den Ordnerzugriff nach einem Neustart zurück. Klicken Sie auf den Knopf oben in <em>Sync &amp; Backup</em>. Hilft das nicht, ist der Ordner einer, den Chrome schützt (Schreibtisch, Dokumente, Downloads oder Ihr Home-Verzeichnis): Wählen Sie einen selbst angelegten Unterordner.</p>
         <h3>Es warten sehr viele Löschungen auf mich</h3>

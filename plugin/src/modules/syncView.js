@@ -210,21 +210,20 @@ async function chooseFolder() {
     openForm('', { folderId: id, folderName: handle.name });
 }
 
-/** Shown once, right after an encrypted place was created: the recovery key cannot be made again from the passphrase. */
+/** Shown once, right after an encrypted place was created with the suggested words: the words are the one key, so they must be saved. */
 function recoveryScreen() {
-    const out = [head(recovery.words ? T('Save your passphrase and recovery key') : T('Save your recovery key'), null)];
-    out.push(el('p', 'setting-note', recovery.words ? T('Two ways to open “{name}”: the passphrase (the words you type on each new device) and this recovery key, a spare for the day you lose the words. Either one is enough. If you lose both, nobody can read the files, not even us. Save both in a password manager.', { name: recovery.name }) : T('If you forget the passphrase, this key opens “{name}”. Without both, nobody can read the files, not even us. Save it in a password manager or print it.', { name: recovery.name })));
-    if (recovery.words) { out.push(el('p', 'settings-caption', TU('Your passphrase'))); const w = el('pre', 'sync-recovery', recovery.words); w.tabIndex = 0; out.push(w); out.push(hint(T('You will type these words when you add this place on another device.'))); out.push(el('p', 'settings-caption', TU('Recovery key'))); }
-    const box = el('pre', 'sync-recovery', recovery.key); box.tabIndex = 0;
-    out.push(box);
+    const out = [head(T('Save your passphrase'), null)];
+    out.push(el('p', 'setting-note', T('These six words are the key to “{name}”. You type them on each new device. If you lose them, nobody can read the files, not even us. Save them in a password manager.', { name: recovery.name })));
+    out.push(el('p', 'settings-caption', TU('Your passphrase')));
+    const w = el('pre', 'sync-recovery', recovery.words); w.tabIndex = 0; out.push(w);
     const row = el('div', 'mcp-actions');
-    row.append(button(T('Copy'), 'button-secondary btn-sm', async () => { try { await navigator.clipboard.writeText(recovery.key); testMsg = { ok: true, text: T('Copied.') }; } catch (_) { testMsg = { ok: false, text: T('Copy did not work. Select the key and copy it by hand.') }; } render(); }),
-        button(T('Download'), 'button-secondary btn-sm', () => { const a = document.createElement('a'); a.href = URL.createObjectURL(new Blob([`AI Summary Helper, place "${recovery.name}"\n\n${recovery.words ? 'Passphrase: ' + recovery.words + '\n' : ''}Recovery key: ${recovery.key}\n`], { type: 'text/plain' })); a.download = 'aish-recovery-key.txt'; a.click(); setTimeout(() => URL.revokeObjectURL(a.href), 2000); }));
+    row.append(button(T('Copy'), 'button-secondary btn-sm', async () => { try { await navigator.clipboard.writeText(recovery.words); testMsg = { ok: true, text: T('Copied.') }; } catch (_) { testMsg = { ok: false, text: T('Copy did not work. Select the words and copy them by hand.') }; } render(); }),
+        button(T('Download'), 'button-secondary btn-sm', () => { const a = document.createElement('a'); a.href = URL.createObjectURL(new Blob([`AI Summary Helper, place "${recovery.name}"\n\nPassphrase: ${recovery.words}\n`], { type: 'text/plain' })); a.download = 'aish-passphrase.txt'; a.click(); setTimeout(() => URL.revokeObjectURL(a.href), 2000); }));
     out.push(row);
     if (testMsg) out.push(el('p', 'setting-note' + (testMsg.ok ? '' : ' phone-inbox-error'), testMsg.text));
     let saved = false;
     const done = button(T('Done'), 'button-primary btn-sm', () => { recovery = null; testMsg = null; view = 'list'; render(); }); done.disabled = true;
-    out.push(switchRow(recovery.words ? T('I saved the passphrase and the recovery key') : T('I saved the recovery key'), '', false, (on) => { saved = on; done.disabled = !saved; }));
+    out.push(switchRow(T('I saved the passphrase'), '', false, (on) => { saved = on; done.disabled = !saved; }));
     out.push(done);
     return out;
 }
@@ -372,7 +371,7 @@ function formScreen(place, st, count, connections = [], places = []) {
         out.push(hint(draft.direction === 'push' ? T('This device writes everything to the place and never reads it back. Restore from it when you need it.') : T('Your articles, highlights, notes, collections, summaries and full texts, kept in step on every device that joins with the same passphrase.')));
         if (!editing) {
             out.push(el('p', 'settings-caption', TU('Passphrase')));
-            if (existingFlag) out.push(el('div', 'explanatory-card', T('This folder already holds an encrypted library. Enter your passphrase (the words), or the recovery key if you have lost them.')));
+            if (existingFlag) out.push(el('div', 'explanatory-card', T('This folder already holds an encrypted library. Enter its passphrase (the words you saved). A recovery key from an older setup works too.')));
             if (existingFlag) {
                 out.push(field('syncPassphrase', T('Passphrase or recovery key'), draft.passphrase, { type: 'password', onInput: (v) => { draft.passphrase = v; } }));
             } else if (!draft.ownPass) {
@@ -380,7 +379,7 @@ function formScreen(place, st, count, connections = [], places = []) {
                 if (!draft.passphrase) { draft.passphrase = suggest(); draft.passphrase2 = draft.passphrase; }
                 const box = el('div', 'sync-words'); box.id = 'syncWords'; box.textContent = draft.passphrase; box.tabIndex = 0;
                 out.push(box);
-                out.push(hint(T('Six random words. You will type them on your other devices, so write them down or keep them in a password manager. They are not saved anywhere else: with the recovery key they are the only way to open your files.')));
+                out.push(hint(T('Six random words. You will type them on your other devices, so write them down or keep them in a password manager. They are not saved anywhere else: if you lose them, nobody can open your files.')));
                 const row = el('div', 'mcp-actions');
                 row.append(button(T('Another suggestion'), 'button-secondary btn-sm', () => { draft.passphrase = suggest(); draft.passphrase2 = draft.passphrase; render(); }),
                     button(T('Copy'), 'button-secondary btn-sm', async () => { try { await navigator.clipboard.writeText(draft.passphrase); testMsg = { ok: true, text: T('Copied.') }; } catch (_) { testMsg = { ok: false, text: T('Copy did not work. Select the words and copy them by hand.') }; } render(); }),
@@ -388,7 +387,7 @@ function formScreen(place, st, count, connections = [], places = []) {
                 out.push(row);
             } else {
                 const f1 = field('syncPassphrase', T('Choose a passphrase'), draft.passphrase, { type: 'password', onInput: (v) => { draft.passphrase = v; const h = $('syncStrength'); if (h) { const k = v ? strengthOf(v) : ''; h.textContent = k === 'strong' ? T('Strong.') : k === 'fine' ? T('Fine. The suggested words are stronger.') : v ? T('Weak: use at least 12 characters, or the suggested words.') : ''; h.dataset.level = k; } },
-                    help: T('At least 12 characters. It is not saved anywhere: if you lose it and the recovery key, the files cannot be opened by anyone.') });
+                    help: T('At least 12 characters. It is not saved anywhere: if you lose it, nobody can open the files.') });
                 out.push(f1);
                 const hl = hint(''); hl.id = 'syncStrength'; hl.setAttribute('role', 'status'); out.push(hl);
                 out.push(field('syncPassphrase2', T('Repeat the passphrase'), draft.passphrase2, { type: 'password', onInput: (v) => { draft.passphrase2 = v; } }));
@@ -488,7 +487,7 @@ function formScreen(place, st, count, connections = [], places = []) {
                 await svc.update(editId, draft); await sendToWorker({ action: 'syncNow', placeId: editId });
             } else {
                 const p = await svc.add(request()); await sendToWorker({ action: 'syncNow', placeId: p.id });
-                if (p.recoveryKey) { recovery = { name: p.name, key: p.recoveryKey, words: draft.ownPass ? '' : draft.passphrase }; view = 'recovery'; } else view = 'list';
+                if (p.recoveryKey && !draft.ownPass) { recovery = { name: p.name, words: draft.passphrase }; view = 'recovery'; } else view = 'list';   // the suggested words are the one key to save; an own passphrase is already known to the person who typed it
             }
             if (view === 'form') view = 'list';
             draft = null; draftSecret = ''; editServer = false;

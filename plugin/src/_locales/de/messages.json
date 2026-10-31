@@ -6353,5 +6353,23 @@
   },
   "f_two_ways_to_open_the_passphr_5ebf": {
     "message": "Zwei Wege, „{name}“ zu öffnen: die Passphrase (die Wörter, die Sie auf jedem neuen Gerät eingeben) und dieser Wiederherstellungsschlüssel, eine Reserve für den Tag, an dem Sie die Wörter verlieren. Einer von beiden genügt. Verlieren Sie beide, kann niemand die Dateien lesen, auch wir nicht. Speichern Sie beide in einem Passwortmanager."
+  },
+  "f_at_least_12_characters_it_is_f78b": {
+    "message": "Mindestens 12 Zeichen. Sie wird nirgends gespeichert: Verlieren Sie sie, kann niemand die Dateien öffnen."
+  },
+  "f_i_saved_the_passphrase_81d0": {
+    "message": "Ich habe die Passphrase gespeichert"
+  },
+  "f_save_your_passphrase_3801": {
+    "message": "Speichern Sie Ihre Passphrase"
+  },
+  "f_six_random_words_you_will_ty_e18c": {
+    "message": "Sechs zufällige Wörter. Sie geben sie auf Ihren anderen Geräten ein, schreiben Sie sie also auf oder legen Sie sie in einem Passwortmanager ab. Sie werden nirgends sonst gespeichert: Verlieren Sie sie, kann niemand Ihre Dateien öffnen."
+  },
+  "f_these_six_words_are_the_key__f595": {
+    "message": "Diese sechs Wörter sind der Schlüssel zu „{name}“. Sie geben sie auf jedem neuen Gerät ein. Verlieren Sie sie, kann niemand die Dateien lesen, auch wir nicht. Speichern Sie sie in einem Passwortmanager."
+  },
+  "f_this_folder_already_holds_an_d923": {
+    "message": "In diesem Ordner liegt bereits eine verschlüsselte Bibliothek. Geben Sie ihre Passphrase ein (die gespeicherten Wörter). Ein Wiederherstellungsschlüssel aus einer älteren Einrichtung funktioniert ebenfalls."
   }
 }
