@@ -154,7 +154,7 @@ function updateRowSub(places, status) {
 
 function listScreen(places, status, counts, connections) {
     const out = [];
-    out.push(el('p', 'setting-note', T('Publish your library to your own server. Each place has its own address, the articles it receives and what goes out. Nothing leaves this device until you add one.')));
+    out.push(el('p', 'setting-note', T('Keep your library in step across your devices, back it up, or publish part of it for others. Each place is a folder on your own server or on this computer. Nothing leaves this device until you add one.')));
     if (places.length) {
         out.push(el('p', 'settings-caption', TU('Places')));
         for (const p of places) { const c = connections.find((x) => x.id === p.connectionId); out.push(listRow(p.mode === 'encrypted' ? 'lock' : 'globe', p.name, (c ? c.name + ' / ' + p.root + ' · ' : '') + statusSub(p, status[p.id], counts[p.id] || 0), () => openForm(p.id))); }
@@ -223,7 +223,7 @@ function openForm(id, folder) {
     Promise.all([getL({ [SK.syncPlaces]: [] }), svc.connectionsNow()]).then(([d, conns]) => {
         const p = id ? (d[SK.syncPlaces] || []).find((x) => x.id === id) : null;
         draft = p ? JSON.parse(JSON.stringify(p)) : blankDraft(folder ? '' : (conns.filter((c) => c.service !== 'folder').pop() || {}).id || '');
-        if (folder) { draft.folderId = folder.folderId; draft.root = 'aish-sync'; serverDraft = { name: folder.folderName, url: '', username: '', service: 'folder' }; }
+        if (folder && folder.folderId) { draft.folderId = folder.folderId; draft.root = 'aish-sync'; serverDraft = { name: folder.folderName, url: '', username: '', service: 'folder' }; }
         const c = conns.find((x) => x.id === draft.connectionId);
         if (c) serverDraft = serverOf(c);
         render().then(refreshPreview);

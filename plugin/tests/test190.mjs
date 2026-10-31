@@ -36,10 +36,14 @@ assert.equal(document.querySelector('.settings-row-sub[data-sub="sync"]').textCo
 
 // add: WebDAV and S3 are available, the folder only where the browser can pick one
 click(byText('button', 'Add a place')); await wait();
-const rows = [...root().querySelectorAll('.settings-row')];
+let rows = [...root().querySelectorAll('.settings-row')];
 assert.equal(rows.length, 3);
 assert.ok(!rows[0].disabled && !rows[1].disabled && rows[2].disabled, 'WebDAV and S3 are available; the folder needs a browser that can pick one');
 assert.match(rows[1].textContent, /S3-compatible/);
+// the S3 row opens a form with bucket, region and access key (not a folder form)
+click(rows[1]); await wait(100);
+assert.ok($('syncBucket') && $('syncRegion') && $('syncUser') && $('syncUrl'), 'S3 fields'); assert.match(root().textContent, /Access key ID/); assert.match(root().textContent, /Secret access key/);
+click(byText('button', 'Sync & backup')); await wait(60); click(byText('button', 'Add a place')); await wait(60); rows = [...root().querySelectorAll('.settings-row')];
 click(rows[0]); await wait(80);
 
 // form: a new place starts encrypted (the safe choice) and asks for a passphrase twice; Readable is one tap away
