@@ -90,6 +90,8 @@ export const SK = {
     mcpConfig: 'mcp:config',      // { enabled, port, scopes, excludeTag }
     mcpSecret: 'mcp:secret',      // pairing token — never backed up
     mcpLog: 'mcp:log',            // last 50 call records — never backed up
+    // library sync (claude/prd-library-sync): this device's id. Never backed up or restored: two devices must not share one.
+    syncDeviceId: 'sync:deviceId',
     // migration flags
     devicesMigrated: 'meta:devicesMigrated',
     migrationVersion: 'meta:version',
@@ -112,6 +114,11 @@ export const isCollRecKey = (k) => typeof k === 'string' && k.startsWith(COLL_RE
 export const TARGET_LEDGER = 'targets:ledger:';
 export const targetLedgerKey = (id) => TARGET_LEDGER + id;
 export const isTargetLedgerKey = (k) => typeof k === 'string' && k.startsWith(TARGET_LEDGER);
+
+/** Prefix of the sync stamp sidecars: sync:stamps:<hh> (revision stamps per record, sharded by id hash). Per device, never backed up. */
+export const SYNC_STAMPS = 'sync:stamps:';
+export const syncStampsKey = (hh) => SYNC_STAMPS + hh;
+export const isSyncStampsKey = (k) => typeof k === 'string' && k.startsWith(SYNC_STAMPS);
 
 /** old (pre-registry) key → new key. Used by the migration and by backup import. */
 export const SK_LEGACY = {
