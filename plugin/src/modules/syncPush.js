@@ -13,9 +13,10 @@
 import { SK, articleRecKey, syncLedgerKey } from './storageKeys.js';
 import { pageKeyForUrl } from './pageKey.js';
 import { hashValue } from './syncStamps.js';
-import { articlePath, LIBRARY_PATH, placeMatches, configHash, buildArticleFile, libraryEntry, toJson } from './syncReadable.js';
+import { articlePath, LIBRARY_PATH, placeMatches, configHash, buildArticleFile, libraryEntry, toJson, includeOf, notesForLibrary } from './syncReadable.js';
 import { TargetError } from './targets/targetError.js';
 import { ensureViewer } from './syncViewer.js';
+import { createNotesStore } from './notesStore.js';
 
 const MAX_REMOVE_SHARE = 0.5, MIN_REMOVE_GUARD = 10;
 const get = (storage, keys) => Promise.resolve(storage.get(keys));
@@ -39,13 +40,20 @@ export async function pushPlace({ place, storage, store, stamps = {}, now = Date
     const items = { ...(ledger.items || {}) };   // a config change only skips the stamp prefilter: unchanged files are still not uploaded again
     const known = new Set(Object.keys(items));
     let viewerState = ledger.viewer;
-    const save = () => storage.set({ [lk]: { cfg, items, lib: ledger.lib || 0, ...(viewerState ? { viewer: viewerState } : {}) } });
+    const save = () => storage.set({ [lk]: { cfg, items, lib: ledger.lib || 0, ...(ledger.notesHash ? { notesHash: ledger.notesHash } : {}), ...(viewerState ? { viewer: viewerState } : {}) } });
 
+    // danger zone: notes and comments are read only when this place is allowed to publish them
+    const inc = includeOf(place);
+    const noteData = inc.notes ? await createNotesStore({ storage, mark: async () => 0 }).list() : { notes: [], comments: {} };
+    const notesPart = inc.notes ? notesForLibrary(noteData.notes) : undefined;
+    const notesHash = inc.notes ? hashValue(notesPart) : '';
+    const notesChanged = (ledger.notesHash || '') !== notesHash;
     const matching = index.filter((e) => placeMatches(e, place));
     const matchIds = new Set(matching.map((e) => e.id));
     const hlByPage = new Map();
     for (const h of annotations) if (h && h.url && !h.dismissed) { const a = hlByPage.get(h.url) || []; a.push(h); hlByPage.set(h.url, a); }
-    const hlT = (page) => Math.max(0, ...(hlByPage.get(page) || []).map((h) => (stamps['hl:' + h.id] && stamps['hl:' + h.id].rev && stamps['hl:' + h.id].rev.t) || 0));
+    const revT = (key) => (stamps[key] && stamps[key].rev && stamps[key].rev.t) || 0;
+    const hlT = (page) => Math.max(0, ...(hlByPage.get(page) || []).map((h) => Math.max(revT('hl:' + h.id), inc.notes ? revT('note:c_' + h.id) : 0)));
 
     // 1) removals first (articles that left the place), guarded
     const gone = [...known].filter((id) => !matchIds.has(id));
@@ -77,7 +85,7 @@ export async function pushPlace({ place, storage, store, stamps = {}, now = Date
     const one = async (e, recs) => {
         const page = pageKeyForUrl(e.url || '');
         const st = stamps['article:' + e.id];
-        const file = buildArticleFile({ entry: e, rec: recs[articleRecKey(e.id)] || null, highlights: hlByPage.get(page) || [], place, rev: st && st.rev });
+        const file = buildArticleFile({ entry: e, rec: recs[articleRecKey(e.id)] || null, highlights: hlByPage.get(page) || [], comments: noteData.comments, place, rev: st && st.rev });
         const text = toJson(file);
         const hash = hashValue(text);
         const t = Math.max((st && st.rev && st.rev.t) || 0, hlT(page));
@@ -111,7 +119,7 @@ export async function pushPlace({ place, storage, store, stamps = {}, now = Date
     out.remaining = Math.max(0, todo.length - done - failed);
 
     // 3) library.json: patch the published list instead of rebuilding it from every record
-    if (!out.more && (out.pushed || out.removed || force || !ledger.lib)) {
+    if (!out.more && (out.pushed || out.removed || force || !ledger.lib || notesChanged)) {
         onProgress({ phase: 'list', done: 0, total: 1 });
         let entries = new Map();
         if (!force && ledger.lib) {
@@ -123,14 +131,14 @@ export async function pushPlace({ place, storage, store, stamps = {}, now = Date
             for (const e of matching) {
                 if (!items[e.id] || changedFiles.has(e.id)) continue;
                 const recs = await get(storage, [articleRecKey(e.id)]);
-                changedFiles.set(e.id, buildArticleFile({ entry: e, rec: recs[articleRecKey(e.id)] || null, highlights: hlByPage.get(pageKeyForUrl(e.url || '')) || [], place, rev: (stamps['article:' + e.id] || {}).rev }));
+                changedFiles.set(e.id, buildArticleFile({ entry: e, rec: recs[articleRecKey(e.id)] || null, highlights: hlByPage.get(pageKeyForUrl(e.url || '')) || [], comments: noteData.comments, place, rev: (stamps['article:' + e.id] || {}).rev }));
             }
         }
         for (const id of [...entries.keys()]) if (!matchIds.has(id) || !items[id]) entries.delete(id);
         for (const [id, file] of changedFiles) entries.set(id, libraryEntry(file));
         const list = [...entries.values()].sort((a, b) => String(b.savedAt || '').localeCompare(String(a.savedAt || '')) || String(a.id).localeCompare(String(b.id)));
-        const lib = { aish: 'library/1', generatedAt: new Date(now()).toISOString(), count: list.length, articles: list };
-        try { await store.put(LIBRARY_PATH, toJson(lib), { contentType: 'application/json' }); out.libraryWritten = true; ledger = { ...ledger, lib: 1 }; await save(); }
+        const lib = { aish: 'library/1', generatedAt: new Date(now()).toISOString(), count: list.length, articles: list, ...(notesPart ? { notes: notesPart } : {}) };
+        try { await store.put(LIBRARY_PATH, toJson(lib), { contentType: 'application/json' }); out.libraryWritten = true; ledger = { ...ledger, lib: 1, notesHash }; await save(); }
         catch (err) { if (err instanceof TargetError && err.kind !== 'permanent') throw err; out.errors.push({ id: LIBRARY_PATH, error: String((err && err.message) || err) }); }
     }
     // 4) the viewer page, when the place wants one

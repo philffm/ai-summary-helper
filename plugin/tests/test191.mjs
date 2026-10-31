@@ -24,19 +24,17 @@ const count = () => [...dav.files.keys()].filter((k) => k.startsWith('site/artic
 const lib = () => JSON.parse(dav.text('site/library.json'));
 
 // parallel: several uploads are in flight at once, and everything arrives
-let t0 = Date.now();
 let r = await P.pushPlace({ place, storage, store });
 assert.equal(r.pushed, N); assert.ok(!r.more); assert.equal(r.remaining, 0);
 assert.ok(maxInflight >= 3 && maxInflight <= 4, 'uploads overlap, but not without limit (max ' + maxInflight + ')');
 assert.equal(count(), N); assert.equal(lib().count, N);
-const parallelMs = Date.now() - t0;
 
-// one at a time takes clearly longer
+// one at a time really is one at a time
 dav.files.clear(); dav.dirs.clear(); dav.dirs.add('');
 local['sync:ledger:p1'] = {};
-t0 = Date.now();
+maxInflight = 0;
 await P.pushPlace({ place, storage, store, concurrency: 1 });
-assert.ok(Date.now() - t0 > parallelMs * 1.8, `parallel is much faster (${parallelMs}ms vs ${Date.now() - t0}ms)`);
+assert.equal(maxInflight, 1, 'concurrency 1 never overlaps uploads');
 
 // out of time: the run says how much is left, the next one finishes it, nothing is uploaded twice
 dav.files.clear(); dav.dirs.clear(); dav.dirs.add('');

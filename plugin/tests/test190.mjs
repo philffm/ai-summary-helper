@@ -58,6 +58,12 @@ const viewerRow = byText('label.mcp-row', 'Also publish a viewer page');
 assert.ok(viewerRow && !viewerRow.querySelector('input').checked, 'off by default');
 assert.match(viewerRow.textContent, /Nextcloud shares do not/);
 
+// the danger zone: three switches, all off, with a plain warning
+const dz = root().querySelector('.sync-danger');
+assert.ok(dz && /Danger zone/i.test(dz.textContent) && /Anyone who can open the folder can read all of this/.test(dz.textContent));
+assert.deepEqual([...dz.querySelectorAll('.mcp-row-title')].map((e) => e.textContent), ['My notes and comments', 'Reminders', 'Full article text']);
+assert.ok([...dz.querySelectorAll('input[type=checkbox]')].every((i) => !i.checked), 'all off by default');
+
 // which articles: a tag, all except a tag, or everything (with a warning)
 assert.equal(root().querySelector('.a11y-seg button.on').textContent, 'With a tag');
 click(byText('.a11y-seg button', 'All except a tag')); await wait(100);
@@ -89,7 +95,7 @@ assert.ok(!(SK.syncPlaces in store));
 type('syncPass', 'secret');
 click(byText('button', 'Connect and publish')); await wait(200);
 assert.equal(store[SK.syncPlaces].length, 1); assert.equal(store[SK.syncConnections].length, 1);
-assert.equal(store[SK.syncPlaces][0].filter.tag, 'public'); assert.equal(store[SK.syncPlaces][0].root, 'site'); assert.equal(store[SK.syncPlaces][0].viewer, false);
+assert.equal(store[SK.syncPlaces][0].filter.tag, 'public'); assert.equal(store[SK.syncPlaces][0].root, 'site'); assert.equal(store[SK.syncPlaces][0].viewer, false); assert.deepEqual(store[SK.syncPlaces][0].include, { highlights: true, qa: false, notes: false, reminders: false, fulltext: false });
 assert.ok(!JSON.stringify([store[SK.syncPlaces], store[SK.syncConnections]]).includes('secret'));
 const connId = store[SK.syncConnections][0].id;
 assert.equal(store[SK.syncSecrets][connId].password, 'secret');

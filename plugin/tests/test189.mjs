@@ -39,7 +39,7 @@ assert.throws(() => S.cleanPlace({ ...place, connectionId: 'c', scope: 'except',
 const everything = S.cleanPlace({ ...place, connectionId: 'c', scope: 'all', filter: { tag: 'ignored' } });
 assert.equal(everything.scope, 'all'); assert.deepEqual(everything.filter, {});
 const clean = S.cleanPlace({ ...place, connectionId: 'c' });
-assert.equal(clean.root, 'public'); assert.deepEqual(clean.include, { highlights: true, qa: false }); assert.ok(/^pl_/.test(clean.id));
+assert.equal(clean.root, 'public'); assert.deepEqual(clean.include, { highlights: true, qa: false, notes: false, reminders: false, fulltext: false }); assert.ok(/^pl_/.test(clean.id));
 assert.equal(S.cleanPlace({ connectionId: 'c', filter: { excludeTag: 'private' } }).scope, 'except', 'an older place with only a filter keeps working');
 
 // preview and tests save nothing

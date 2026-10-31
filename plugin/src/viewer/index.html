@@ -31,6 +31,7 @@ select, .seg button { font:inherit; font-size:14px; border:1px solid var(--outli
 .meta { color:var(--muted); font-size:13px; display:flex; flex-wrap:wrap; gap:4px 12px; }
 .sum { margin:8px 0 0; color:var(--text2); font-size:15px; } .sum.clamp { display:-webkit-box; -webkit-line-clamp:3; -webkit-box-orient:vertical; overflow:hidden; }
 .sum p { margin:0 0 6px; } .sum ul { margin:0 0 6px; padding-left:20px; } .sum h4 { margin:6px 0 2px; font-size:15px; }
+.cm { margin-top:4px; font-size:13px; color:var(--text2); }
 .more { font:inherit; font-size:13px; color:var(--accent); background:none; border:0; padding:4px 0; cursor:pointer; }
 .hl { margin:8px 0 0; padding:0; list-style:none; display:flex; flex-direction:column; gap:6px; }
 .hl li { border-left:3px solid #eab308; background:var(--mark); border-radius:6px; padding:5px 9px; font-size:14px; }
@@ -54,6 +55,7 @@ a { color:var(--accent); }
       <button type="button" data-view="list" aria-pressed="true">List</button>
       <button type="button" data-view="timeline" aria-pressed="false">Timeline</button>
       <button type="button" data-view="graph" aria-pressed="false">Graph</button>
+      <button type="button" data-view="notes" aria-pressed="false" hidden>Notes</button>
     </div>
   </div>
   <div class="tags" id="tags" aria-label="Tags"></div>

@@ -30,7 +30,7 @@ let testMsg = null;           // { ok, text }
 let formError = '';
 let previewToken = 0;
 
-const blankDraft = (connectionId = '') => ({ name: '', root: 'public', connectionId, scope: 'tag', filter: { tag: 'public' }, include: { highlights: true, qa: false }, viewer: false });
+const blankDraft = (connectionId = '') => ({ name: '', root: 'public', connectionId, scope: 'tag', filter: { tag: 'public' }, include: { highlights: true, qa: false, notes: false, reminders: false, fulltext: false }, viewer: false });
 const blankServer = () => ({ name: '', url: '', username: '' });
 
 // ── tiny DOM helpers ──
@@ -298,7 +298,13 @@ function formScreen(place, st, count, connections = [], places = []) {
     out.push(el('p', 'settings-caption', TU('What goes out')));
     out.push(switchRow(T('Highlights'), T('Your yellow and AI highlights'), draft.include.highlights, (on) => { draft.include.highlights = on; }));
     out.push(switchRow(T('Pinned Q&A'), T('Questions you pinned, with answers'), draft.include.qa, (on) => { draft.include.qa = on; }));
-    out.push(hint(T('Notes, reminders and full article text are never published.')));
+    // danger zone: off by default, each one says what it puts where anyone with access to the folder can read it
+    const dz = el('section', 'sync-danger');
+    dz.append(el('p', 'settings-caption', TU('Danger zone')), hint(T('Meant for a folder only you can open, for example a private backup or an internal list. Anyone who can open the folder can read all of this.')));
+    dz.append(switchRow(T('My notes and comments'), T('Your own notes and the comments on your highlights.'), draft.include.notes, (on) => { draft.include.notes = on; }));
+    dz.append(switchRow(T('Reminders'), T('The save-for-later time and your reason for it.'), draft.include.reminders, (on) => { draft.include.reminders = on; }));
+    dz.append(switchRow(T('Full article text'), T('Copies of other people’s articles. Make sure you may share them. Files get much larger.'), draft.include.fulltext, (on) => { draft.include.fulltext = on; }));
+    out.push(dz);
     out.push(switchRow(T('Also publish a viewer page'), T('A simple web page (index.html) that reads library.json: search, tags, timeline and a tag graph. It needs a server that shows HTML pages, for example your own web server or a public bucket. Nextcloud shares do not.'), draft.viewer, (on) => { draft.viewer = on; }));
     const pv = el('section', 'mcp-card');
     const pvHead = el('div', 'mcp-step-head');

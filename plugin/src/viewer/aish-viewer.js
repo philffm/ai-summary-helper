@@ -4,7 +4,7 @@
   'use strict';
   var D3_URL = 'https://cdn.jsdelivr.net/npm/d3@7.9.0/dist/d3.min.js';
   var D3_SRI = 'sha384-CjloA8y00+1SDAUkjs099PVfnY2KmDC2BZnws9kh8D/lX1s46w6EPhpXdqMfjK6i';
-  var state = { all: [], q: '', tags: {}, sort: 'new', view: 'list', month: '' };
+  var state = { all: [], notes: [], q: '', tags: {}, sort: 'new', view: 'list', month: '' };
   var $ = function (id) { return document.getElementById(id); };
 
   function h(tag, attrs, kids) {
@@ -64,7 +64,7 @@
   function card(a) {
     var title = h('h2'), href = safeUrl(a.url);
     title.appendChild(href ? h('a', { href: href, rel: 'noopener noreferrer', target: '_blank', text: a.title || href }) : document.createTextNode(a.title || 'Untitled'));
-    var meta = h('div', { class: 'meta' }, [a.site, fmt(dateOf(a)), a.author].filter(Boolean).map(function (t) { return h('span', { text: t }); }));
+    var meta = h('div', { class: 'meta' }, [a.site, fmt(dateOf(a)), a.author, a.reminder && ('\u{1F516} ' + a.reminder.timeframe + (a.reminder.reason ? ': ' + a.reminder.reason : ''))].filter(Boolean).map(function (t) { return h('span', { text: t }); }));
     var c = h('article', { class: 'card' }, [title, meta]);
     if (a.summary && a.summary.md) {
       var s = markdown(a.summary.md); s.className = 'sum clamp'; c.appendChild(s);
@@ -74,15 +74,41 @@
     }
     if ((a.highlights || []).length) {
       var ul = h('ul', { class: 'hl' });
-      a.highlights.forEach(function (x) { ul.appendChild(h('li', { class: x.type === 'ghost' ? 'ghost' : '', text: x.text })); });
+      a.highlights.forEach(function (x) { var li = h('li', { class: x.type === 'ghost' ? 'ghost' : '', text: x.text }); if (x.comment) li.appendChild(h('div', { class: 'cm', text: '\u{1F4AC} ' + x.comment })); ul.appendChild(li); });
       c.appendChild(ul);
     }
+    if (a.hasText) c.appendChild(fullText(a));
     if ((a.tags || []).length) {
       var tg = h('div', { class: 'tags' });
       a.tags.forEach(function (t) { var b = h('button', { type: 'button', class: 'tag', 'aria-pressed': String(!!state.tags[t]), text: t }); b.addEventListener('click', function () { toggleTag(t); }); tg.appendChild(b); });
       c.appendChild(tg);
     }
     return c;
+  }
+
+  // full text lives in the article's own file; fetched only when someone asks for it, shown as plain paragraphs
+  function fullText(a) {
+    var wrap = h('div'), btn = h('button', { type: 'button', class: 'more', text: 'Read the full text', 'aria-expanded': 'false' }), box = h('div', { class: 'sum' }), loaded = false;
+    btn.addEventListener('click', function () {
+      var open = btn.getAttribute('aria-expanded') !== 'true';
+      btn.setAttribute('aria-expanded', String(open)); btn.textContent = open ? 'Hide the full text' : 'Read the full text'; box.hidden = !open;
+      if (!open || loaded) return; loaded = true; box.textContent = 'Loading…';
+      fetch('articles/' + String(a.id).replace(/[^A-Za-z0-9_.-]/g, '_') + '.json', { cache: 'no-store' }).then(function (r) { if (!r.ok) throw new Error(r.status); return r.json(); }).then(function (f) {
+        box.textContent = ''; (f.blocks || []).forEach(function (b) { box.appendChild(h(b[0] === 'h2' || b[0] === 'h3' ? 'h4' : 'p', { text: b[1] })); });
+      }).catch(function () { box.textContent = 'The full text could not be loaded.'; loaded = false; });
+    });
+    box.hidden = true; wrap.appendChild(btn); wrap.appendChild(box); return wrap;
+  }
+
+  function renderNotes(box) {
+    var notes = state.notes.filter(function (n) { var q = state.q.trim().toLowerCase(); return !q || (n.text + ' ' + (n.tags || []).join(' ')).toLowerCase().indexOf(q) >= 0; });
+    $('count').textContent = notes.length + ' notes';
+    notes.forEach(function (n) {
+      var c = h('article', { class: 'card' }, [h('p', { class: 'sum', text: n.text }), h('div', { class: 'meta' }, [fmt(Date.parse(n.created))].filter(Boolean).map(function (t) { return h('span', { text: t }); }))]);
+      if (n.quote) c.insertBefore(h('p', { class: 'sum', text: '\u201C' + n.quote + '\u201D' }), c.firstChild);
+      box.appendChild(c);
+    });
+    if (!notes.length) box.appendChild(h('div', { class: 'note', text: 'No notes.' }));
   }
 
   function tagCounts() {
@@ -156,6 +182,8 @@
   function render() {
     renderTags();
     var list = visible(), box = $('list'); box.textContent = '';
+    var nb = document.querySelector('#views button[data-view="notes"]'); if (nb) nb.hidden = !state.notes.length;
+    if (state.view === 'notes') { $('extra').textContent = ''; document.querySelectorAll('#views button').forEach(function (b) { b.setAttribute('aria-pressed', String(b.dataset.view === 'notes')); }); return renderNotes(box); }
     $('count').textContent = list.length === state.all.length ? state.all.length + ' articles' : list.length + ' of ' + state.all.length + ' articles';
     $('sub').textContent = state.generated ? 'Updated ' + fmt(Date.parse(state.generated)) : '';
     list.slice(0, 300).forEach(function (a) { box.appendChild(card(a)); });
@@ -168,8 +196,8 @@
 
   function init(lib) {
     if (!lib || !Array.isArray(lib.articles)) throw new Error('library.json has no articles.');
-    state.all = lib.articles.filter(function (a) { return a && typeof a === 'object'; }); state.generated = lib.generatedAt;
-    var hv = (location.hash || '').slice(1); if (hv === 'timeline' || hv === 'graph') state.view = hv;   // a link can open a view directly
+    state.all = lib.articles.filter(function (a) { return a && typeof a === 'object'; }); state.generated = lib.generatedAt; state.notes = Array.isArray(lib.notes) ? lib.notes : [];
+    var hv = (location.hash || '').slice(1); if (hv === 'timeline' || hv === 'graph' || hv === 'notes') state.view = hv;   // a link can open a view directly
     $('q').addEventListener('input', function () { state.q = this.value; render(); });
     $('sort').addEventListener('change', function () { state.sort = this.value; render(); });
     $('views').addEventListener('click', function (e) { var b = e.target.closest('button'); if (!b) return; state.view = b.dataset.view; if (state.view === 'list') state.month = ''; try { history.replaceState(null, '', state.view === 'list' ? location.pathname + location.search : '#' + state.view); } catch (_) { /* file or sandbox */ } render(); });

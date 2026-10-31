@@ -57,7 +57,7 @@ export function cleanPlace(input, { id } = {}) {
         connectionId: p.connectionId,
         root,
         mode: 'readable', direction: 'publish', scope,
-        include: { highlights: !!include.highlights, qa: !!include.qa },
+        include: { highlights: !!include.highlights, qa: !!include.qa, notes: !!include.notes, reminders: !!include.reminders, fulltext: !!include.fulltext },
         viewer: !!p.viewer,
         filter,
         enabled: p.enabled !== false,
