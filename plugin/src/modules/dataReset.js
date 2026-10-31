@@ -39,7 +39,7 @@ export const CATEGORIES = {
 };
 
 /** Bookkeeping keys: removed only together with everything (a partial delete must not break the migrations). */
-export const META_KEYS = [SK.migrationVersion, SK.keysSchema, SK.installedAt, SK.syncDeviceId, SK.syncClock, SK.syncPlaces, SK.syncConnections, SK.syncStatus];
+export const META_KEYS = [SK.migrationVersion, SK.keysSchema, SK.installedAt, SK.syncDeviceId, SK.syncClock, SK.syncPlaces, SK.syncConnections, SK.syncStatus, SK.notesIndex];   // notes go only with "delete everything": no partial delete names them
 
 // old (pre-registry) names of a set of keys
 const legacyNames = (keys) => Object.entries(SK_LEGACY).filter(([, nu]) => keys.includes(nu)).map(([old]) => old);

@@ -99,6 +99,8 @@ export const SK = {
     syncSecrets: 'sync:secrets', // { [connectionId]: { password | accessKey/secret | key } } — secret, never backed up
     syncStatus: 'sync:status',   // { [placeId]: { at, ok, error, counts } } last run per place
     syncClock: 'sync:clock',     // { t }: highest stamp time this device has made or seen
+    // notes (Notes tab): your own notes and the comments on highlights. One key per note, plus a lean index. Backed up with everything else.
+    notesIndex: 'notes:index',
     // migration flags
     devicesMigrated: 'meta:devicesMigrated',
     migrationVersion: 'meta:version',
@@ -121,6 +123,11 @@ export const isCollRecKey = (k) => typeof k === 'string' && k.startsWith(COLL_RE
 export const TARGET_LEDGER = 'targets:ledger:';
 export const targetLedgerKey = (id) => TARGET_LEDGER + id;
 export const isTargetLedgerKey = (k) => typeof k === 'string' && k.startsWith(TARGET_LEDGER);
+
+/** Prefix of the note records: notes:rec:<id> (kind 'note' or 'comment', text, tags, url, quote). */
+export const NOTES_REC = 'notes:rec:';
+export const noteRecKey = (id) => NOTES_REC + id;
+export const isNoteRecKey = (k) => typeof k === 'string' && k.startsWith(NOTES_REC);
 
 /** Prefix of the sync stamp sidecars: sync:stamps:<hh> (revision stamps per record, sharded by id hash). Per device, never backed up. */
 export const SYNC_STAMPS = 'sync:stamps:';

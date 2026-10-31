@@ -7,7 +7,7 @@
 // only from markDeleted(); housekeeping (pruning, reset, restore) therefore never syncs.
 //
 // Ids in the sidecar are namespaced: article:<id>, hl:<id>, coll:<id>.
-import { SK, ARTICLE_REC, SYNC_STAMPS, isArticleRecKey, isCollRecKey, articleRecKey, collRecKey, syncStampsKey } from './storageKeys.js';
+import { SK, ARTICLE_REC, SYNC_STAMPS, isArticleRecKey, isCollRecKey, isNoteRecKey, articleRecKey, collRecKey, noteRecKey, syncStampsKey } from './storageKeys.js';
 import { hashValue, stampRecord, tombstone, syncFields, unknownFields, RECORD_SIDE } from './syncStamps.js';
 
 export const shardOf = (key) => hashValue(key).slice(-2).padStart(2, '0');
@@ -87,6 +87,8 @@ export function createStampStore({ storage, now = Date.now, lock = withStampLock
                 } else if (key === SK.annotations) {
                     const before = byId(ch.oldValue);
                     for (const h of byId(ch.newValue).values()) if (!before.has(h.id) || !same(before.get(h.id), h)) ops.push(stampOp('hl:' + h.id, syncFields('highlight', h), []));
+                } else if (isNoteRecKey(key) && ch.newValue && ch.newValue.id) {
+                    ops.push(stampOp('note:' + ch.newValue.id, syncFields('note', ch.newValue), []));
                 } else if (isCollRecKey(key) && ch.newValue && ch.newValue.id) {
                     ops.push(stampOp('coll:' + ch.newValue.id, syncFields('collection', ch.newValue), []));
                 }
@@ -136,6 +138,11 @@ export function createStampStore({ storage, now = Date.now, lock = withStampLock
             for (let i = 0; i < colls.length; i += chunk) {
                 const recs = await get(storage, colls.slice(i, i + chunk).map((c) => collRecKey(c.id)));
                 n += await commit(Object.values(recs).filter((r) => r && r.id).map((r) => stampOp('coll:' + r.id, syncFields('collection', r), [])));
+            }
+            const notes = (Array.isArray((await get(storage, { [SK.notesIndex]: [] }))[SK.notesIndex]) ? (await get(storage, { [SK.notesIndex]: [] }))[SK.notesIndex] : []).filter((x) => x && x.id);
+            for (let i = 0; i < notes.length; i += chunk) {
+                const recs = await get(storage, notes.slice(i, i + chunk).map((x) => noteRecKey(x.id)));
+                n += await commit(Object.values(recs).filter((r) => r && r.id).map((r) => stampOp('note:' + r.id, syncFields('note', r), [])));
             }
             return n;
         } catch (_) { return 0; }

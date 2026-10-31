@@ -23,6 +23,7 @@ export const LOCAL_ONLY = {
         'contentPruned', 'summary', 'suggested', 'suggestedAnswers', 'summaryBase', 'conversation', 'content', 'tags'],
     highlight: [],
     collection: ['updated', 'sources'],
+    note: ['updated', 'tags'],   // tags are stamped one by one (tag:<name>)
 };
 
 /** Article fields that live in the full record, not in the lean index entry: unknown whenever the record is not loaded. */
@@ -97,6 +98,13 @@ export function syncFields(type, entry, rec) {
     take(entry);
     if (type === 'collection') {
         for (const src of Array.isArray(entry && entry.sources) ? entry.sources : []) if (src && src.articleId) out[SRC + src.articleId] = src;
+        return out;
+    }
+    if (type === 'note') {
+        for (const tag of Array.isArray(entry && entry.tags) ? entry.tags : []) {
+            const name = String(tag || '').trim();
+            if (name && !((TAG + name.toLowerCase()) in out)) out[TAG + name.toLowerCase()] = name;
+        }
         return out;
     }
     if (type !== 'article') return out;

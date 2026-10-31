@@ -9,14 +9,16 @@
 // Content scripts run in the page's origin and cannot take this lock; the main summarize path (content/core.js) is the
 // one writer left outside it.
 
-const NAME = 'aish-articles';
-let tail = Promise.resolve();
+const tails = new Map();
 
-export function withArticleLock(fn) {
+/** One exclusive lock per name (articles, notes, ...). */
+export function withLock(name, fn) {
     if (typeof navigator !== 'undefined' && navigator.locks && typeof navigator.locks.request === 'function') {
-        return navigator.locks.request(NAME, () => fn());
+        return navigator.locks.request(name, () => fn());
     }
-    const run = tail.then(() => fn(), () => fn());
-    tail = run.catch(() => {});
+    const run = (tails.get(name) || Promise.resolve()).then(() => fn(), () => fn());
+    tails.set(name, run.catch(() => {}));
     return run;
 }
+
+export function withArticleLock(fn) { return withLock('aish-articles', fn); }

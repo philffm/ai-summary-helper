@@ -1,4 +1,4 @@
-import { SK, SK_LEGACY, SK_DEAD, LOCAL_KEY_LIST, ARTICLE_REC_LEGACY, articleRecKey, isArticleRecKey, isCollRecKey, isSyncStampsKey, migrateStorageKeys } from './storageKeys.js';
+import { SK, SK_LEGACY, SK_DEAD, LOCAL_KEY_LIST, ARTICLE_REC_LEGACY, articleRecKey, isArticleRecKey, isCollRecKey, isSyncStampsKey, isNoteRecKey, migrateStorageKeys } from './storageKeys.js';
 import { removeArticleFromCollections, clearCollectionSources } from './collections.js';
 import { withArticleLock } from './articleLock.js';
 import { markDeleted } from './syncStampClient.js';
@@ -45,7 +45,7 @@ class StorageManager {
 
     static isLocalKey(key) {
         // Per-article records are dynamic keys (articles:rec:<id>, formerly article:<id>).
-        return this.LOCAL_KEYS.includes(key) || isArticleRecKey(key) || isCollRecKey(key) || isSyncStampsKey(key) || key.startsWith(ARTICLE_REC_LEGACY);
+        return this.LOCAL_KEYS.includes(key) || isArticleRecKey(key) || isCollRecKey(key) || isSyncStampsKey(key) || isNoteRecKey(key) || key.startsWith(ARTICLE_REC_LEGACY);
     }
 
     // ─────────────────────────────────────────────
