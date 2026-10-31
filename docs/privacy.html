@@ -41,7 +41,6 @@
     <nav class="pill" aria-label="Primary">
       <a href="index.html#features" data-sec="features">Features</a>
       <a href="index.html#try-it" data-sec="try-it">Demo</a>
-      <a href="index.html#pricing" data-sec="pricing">Pricing</a>
       <a href="https://chromewebstore.google.com/detail/ai-summary-helper-openai/hldbejcjaedipeegjcinmhejdndchkmb" class="pill-cta" target="_blank" rel="noopener">Add to Chrome</a>
     </nav>
     <div class="nav-tools">
@@ -60,13 +59,12 @@
       <nav class="mm-links" aria-label="Mobile">
         <a href="index.html#features"><span class="mm-n">01</span>Features</a>
         <a href="index.html#try-it"><span class="mm-n">02</span>Demo</a>
-        <a href="index.html#pricing"><span class="mm-n">03</span>Pricing</a>
-        <a href="blog/"><span class="mm-n">04</span>Blog</a>
+        <a href="blog/"><span class="mm-n">03</span>Blog</a>
           <a href="blog/pocket-alternative.html" class="mm-sub">Pocket alternative: what matters</a>
           <a href="blog/bring-your-own-key.html" class="mm-sub">Your key. Your model. Your data.</a>
           <a href="blog/verify-ai-summary.html" class="mm-sub">Check a summary against its source</a>
           <a href="blog/highlighting-vs-asking.html" class="mm-sub">Ask about your highlights</a>
-        <a href="https://github.com/philffm/ai-summary-helper/" target="_blank" rel="noopener"><span class="mm-n">05</span>GitHub</a>
+        <a href="https://github.com/philffm/ai-summary-helper/" target="_blank" rel="noopener"><span class="mm-n">04</span>GitHub</a>
       </nav>
       <div class="mm-lang">
         <button type="button" class="lang-card" id="langCard"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.6"></circle><path d="M3 12h18M12 3c2.6 2.7 3.9 5.7 3.9 9s-1.3 6.3-3.9 9c-2.6-2.7-3.9-5.7-3.9-9S9.4 5.7 12 3Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"></path></svg><span class="lang-card-cur">English</span><small>24 languages</small><b aria-hidden="true">→</b></button>
@@ -139,7 +137,7 @@
         <ul>
           <li><strong>Bring your own key (BYOK)</strong> — OpenAI, Google Gemini, Mistral AI, DeepSeek, or a custom endpoint. Your API key is stored locally on your device only (never synced, never sent to us). Page content you choose to summarize is sent directly from your browser to the provider you selected, using your own key and subject to that provider's own privacy policy. We do not see, log, or store this content.</li>
           <li><strong>Local model via Ollama</strong> — if you run a model locally, page content is sent only to your own machine. Nothing leaves your device.</li>
-          <li><strong>byphil Cloud (optional, paid)</strong> — a hosted option for people who'd rather not manage an API key. If you choose this tier, the text you ask to summarize passes through our backend, which relays the request via OpenRouter to an underlying model provider on your behalf and returns the summary. It is only relayed: we do not store page content, URLs or summaries. What we record per account is usage metadata: the number of completed requests, token usage, the time of the last request and the model used. The account itself is optional; all other features work without one.</li>
+          <li><strong>byphil Cloud (optional, paid)</strong> — a hosted option for people who'd rather not manage an API key. If you choose this tier, the text you ask to summarize passes through our backend, which relays the request via OpenRouter to an underlying model provider on your behalf and returns the summary. It is only relayed: we do not store page content, URLs or summaries. What we record per account is usage metadata: the number of completed requests, token usage, the time of the last request and the model used. The account itself is optional; all other features work without one. With the setting “Prefer EU servers” on, models that have an endpoint in Europe are run only on those endpoints, and the app marks which models do and which do not. This limits where the model runs. It does not remove OpenRouter or our service from the path: your text still passes through both on its way to the model, and read-aloud and speech-to-text have no EU option.</li>
         </ul>
 
         <h3>License and subscription status</h3>
