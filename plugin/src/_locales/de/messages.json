@@ -6338,5 +6338,20 @@
   },
   "f_notes_8096": {
     "message": "{n} Notizen"
+  },
+  "f_for_syncing_and_backup_only__f767": {
+    "message": "Für Sync und Backup. Nur Sie können es lesen, eine Website also nicht. Der Anbieter sieht verschlüsselte Dateien."
+  },
+  "f_passphrase_or_recovery_key_284e": {
+    "message": "Passphrase oder Wiederherstellungsschlüssel"
+  },
+  "f_this_folder_already_holds_an_04e7": {
+    "message": "In diesem Ordner liegt bereits eine verschlüsselte Bibliothek. Geben Sie Ihre Passphrase (die Wörter) ein, oder den Wiederherstellungsschlüssel, falls Sie sie verloren haben."
+  },
+  "f_to_publish_on_your_own_websi_9caf": {
+    "message": "Zum Veröffentlichen auf Ihrer eigenen Website: einfache Dateien, die jeder mit dem Link lesen kann."
+  },
+  "f_two_ways_to_open_the_passphr_5ebf": {
+    "message": "Zwei Wege, „{name}“ zu öffnen: die Passphrase (die Wörter, die Sie auf jedem neuen Gerät eingeben) und dieser Wiederherstellungsschlüssel, eine Reserve für den Tag, an dem Sie die Wörter verlieren. Einer von beiden genügt. Verlieren Sie beide, kann niemand die Dateien lesen, auch wir nicht. Speichern Sie beide in einem Passwortmanager."
   }
 }

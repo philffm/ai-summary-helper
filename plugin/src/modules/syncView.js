@@ -13,7 +13,7 @@ import { createSyncService, cleanPlace } from './syncService.js';
 import { createStampStore } from './syncStampStore.js';
 import { makeStore } from './syncStores.js';
 import { folderSupported } from './syncFolder.js';
-import { suggest, strengthOf } from './syncPassphrase.js';
+import { suggest, strengthOf, looksLikeRecoveryKey } from './syncPassphrase.js';
 import { createHandleVault } from './syncFolderHandles.js';
 
 const $ = (id) => document.getElementById(id);
@@ -213,7 +213,7 @@ async function chooseFolder() {
 /** Shown once, right after an encrypted place was created: the recovery key cannot be made again from the passphrase. */
 function recoveryScreen() {
     const out = [head(recovery.words ? T('Save your passphrase and recovery key') : T('Save your recovery key'), null)];
-    out.push(el('p', 'setting-note', T('If you forget the passphrase, this key opens “{name}”. Without both, nobody can read the files, not even us. Save it in a password manager or print it.', { name: recovery.name })));
+    out.push(el('p', 'setting-note', recovery.words ? T('Two ways to open “{name}”: the passphrase (the words you type on each new device) and this recovery key, a spare for the day you lose the words. Either one is enough. If you lose both, nobody can read the files, not even us. Save both in a password manager.', { name: recovery.name }) : T('If you forget the passphrase, this key opens “{name}”. Without both, nobody can read the files, not even us. Save it in a password manager or print it.', { name: recovery.name })));
     if (recovery.words) { out.push(el('p', 'settings-caption', TU('Your passphrase'))); const w = el('pre', 'sync-recovery', recovery.words); w.tabIndex = 0; out.push(w); out.push(hint(T('You will type these words when you add this place on another device.'))); out.push(el('p', 'settings-caption', TU('Recovery key'))); }
     const box = el('pre', 'sync-recovery', recovery.key); box.tabIndex = 0;
     out.push(box);
@@ -357,8 +357,8 @@ function formScreen(place, st, count, connections = [], places = []) {
     out.push(el('p', 'settings-caption', TU('Who can read it')));
     const tiles = el('div', 'mcp-tiles');
     const pickMode = (mode) => { if (draft.mode === mode || editing) return; draft.mode = mode; draft.direction = mode === 'encrypted' ? 'twoway' : 'publish'; if (mode === 'readable' && draft.root === 'aish-sync') draft.root = 'public'; if (mode === 'encrypted' && draft.root === 'public') draft.root = 'aish-sync'; existingFlag = null; render().then(refreshPreview); };
-    tiles.append(tile('lock', T('Encrypted'), T('Only you can read it. The provider sees scrambled files.'), encrypted ? 'on' : 'off', { onClick: () => pickMode('encrypted') }),
-        tile('globe', T('Readable'), T('Plain JSON files for your website or other tools.'), encrypted ? 'off' : 'on', { onClick: () => pickMode('readable') }));
+    tiles.append(tile('lock', T('Encrypted'), T('For syncing and backup. Only you can read it, and so no website can. The provider sees scrambled files.'), encrypted ? 'on' : 'off', { onClick: () => pickMode('encrypted') }),
+        tile('globe', T('Readable'), T('To publish on your own website: plain files that anyone with the link can read.'), encrypted ? 'off' : 'on', { onClick: () => pickMode('readable') }));
     out.push(tiles);
     if (editing) out.push(hint(T('The kind of a place cannot be changed. Add another place to use the other kind.')));
     if (encrypted) {
@@ -372,9 +372,9 @@ function formScreen(place, st, count, connections = [], places = []) {
         out.push(hint(draft.direction === 'push' ? T('This device writes everything to the place and never reads it back. Restore from it when you need it.') : T('Your articles, highlights, notes, collections, summaries and full texts, kept in step on every device that joins with the same passphrase.')));
         if (!editing) {
             out.push(el('p', 'settings-caption', TU('Passphrase')));
-            if (existingFlag) out.push(el('div', 'explanatory-card', T('This folder already holds an encrypted library. Enter its passphrase, or its recovery key, to join it.')));
+            if (existingFlag) out.push(el('div', 'explanatory-card', T('This folder already holds an encrypted library. Enter your passphrase (the words), or the recovery key if you have lost them.')));
             if (existingFlag) {
-                out.push(field('syncPassphrase', T('Passphrase'), draft.passphrase, { type: 'password', onInput: (v) => { draft.passphrase = v; } }));
+                out.push(field('syncPassphrase', T('Passphrase or recovery key'), draft.passphrase, { type: 'password', onInput: (v) => { draft.passphrase = v; } }));
             } else if (!draft.ownPass) {
                 // a new place: six random words, strong and easy to type on another device
                 if (!draft.passphrase) { draft.passphrase = suggest(); draft.passphrase2 = draft.passphrase; }
@@ -395,7 +395,6 @@ function formScreen(place, st, count, connections = [], places = []) {
                 out.push(button(T('Suggest random words instead'), 'mcp-link-button', () => { draft.ownPass = false; draft.passphrase = ''; draft.passphrase2 = ''; render(); }));
             }
             if (existingFlag) {
-                out.push(field('syncRecovery', T('Recovery key (instead of the passphrase)'), draft.recoveryKey, { onInput: (v) => { draft.recoveryKey = v; } }));
                 if (draft.direction === 'twoway') {
                     out.push(el('div', 'explanatory-card sync-warn', T('Joining merges this device with the library in the folder: where both differ, the folder wins. Make a backup of this device first.')));
                     out.push(button(T('Make a backup now'), 'button-secondary btn-sm', () => { const b = document.getElementById('exportSettingsButton'); if (b) b.click(); }));
@@ -460,7 +459,7 @@ function formScreen(place, st, count, connections = [], places = []) {
     const request = () => ({
         connectionId: draft.connectionId,
         connection: draft.connectionId ? undefined : (draft.folderId ? { id: draft.folderId, service: 'folder', name: serverDraft.name || folderName } : { ...serverDraft }),
-        place: { ...draft, direction: encrypted ? draft.direction : 'publish' },
+        place: { ...draft, direction: encrypted ? draft.direction : 'publish', ...(existingFlag && looksLikeRecoveryKey(draft.passphrase) ? { passphrase: '', recoveryKey: draft.passphrase.trim() } : {}) },   // one field takes either; a recovery key is told apart by its shape
         secret: { password: draftSecret },
     });
     const test = button(T('Test connection'), 'button-secondary btn-sm', async () => {

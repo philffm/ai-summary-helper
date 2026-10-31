@@ -27,6 +27,18 @@ export function canonicalPassphrase(input) {
     return parts.length >= 4 && parts.every((w) => SET.has(w)) ? parts.join(' ') : text;
 }
 
+/**
+ * True when what was typed is a recovery key (52 letters and digits 2-7 in groups of four, dashes or spaces optional) and not a
+ * passphrase. The join screen has one field for both, so nobody has to know which of the two they hold. Words from the list always
+ * count as a passphrase.
+ */
+export function looksLikeRecoveryKey(input) {
+    const text = String(input == null ? '' : input).trim();
+    if (canonicalPassphrase(text) !== text) return false;
+    if (!/^[A-Za-z2-7]{4}([-\s]?[A-Za-z2-7]{4}){11}[-\s]?[A-Za-z2-7]{1,4}$/.test(text)) return false;
+    return text.replace(/[^A-Za-z2-7]/g, '').length >= 52;
+}
+
 const COMMON = ['password', 'passphrase', 'qwertz', 'qwerty', '123456', 'letmein', 'iloveyou', 'correct horse battery staple', 'aish', 'summary'];
 
 /** '' when the passphrase is good enough, else a sentence the screen can show. */

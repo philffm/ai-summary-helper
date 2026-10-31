@@ -53,7 +53,8 @@ click(byText('button', 'Add a place')); await until(() => root().querySelectorAl
 type('syncName', 'Again'); type('syncRoot', 'sync');
 click(byText('button', 'Test connection')); await until(() => /already holds/.test(text()));
 assert.match(text(), /already holds an encrypted library/);
-assert.ok($('syncRecovery') && !$('syncPassphrase2'), 'asks for the passphrase or the recovery key, once');
+assert.ok($('syncPassphrase') && !$('syncRecovery') && !$('syncPassphrase2'), 'one field for the passphrase or the recovery key, asked once');
+assert.match(root().querySelector('label[for="syncPassphrase"], #syncPassphrase').closest('div, label').textContent, /Passphrase or recovery key/);
 assert.match(text(), /Make a backup of this device first/);
 type('syncPassphrase', 'not the passphrase'); click(byText('button', 'Connect')); await until(() => root().querySelector('.phone-inbox-error'));
 assert.match(root().querySelector('.phone-inbox-error').textContent, /backup of this device first/, 'the backup box is required');
@@ -65,4 +66,12 @@ assert.equal(store[SK.syncPlaces].length, 2, 'the words in capitals with dashes 
 // the list shows both as encrypted
 await until(() => root().querySelectorAll('.settings-row').length === 2);   // the list is drawn a moment after the place is saved
 assert.equal(root().querySelectorAll('.settings-row').length, 2);
+// the same field takes the recovery key (told apart by its shape): a third device joins with it
+const recoveryKey = shown[1].textContent;
+click(byText('button', 'Add a place')); await until(() => root().querySelectorAll('.settings-row').length === 3); click(root().querySelectorAll('.settings-row')[0]); await until(() => $('syncName') && $('syncPassphrase'));
+type('syncName', 'By key'); type('syncRoot', 'sync');
+click(byText('button', 'Test connection')); await until(() => /already holds/.test(text()));
+const ack2 = [...root().querySelectorAll('label.mcp-row')].find((l) => /I made a backup/.test(l.textContent)).querySelector('input'); ack2.checked = true; ack2.dispatchEvent(new w.Event('change', { bubbles: true }));
+type('syncPassphrase', recoveryKey.toLowerCase().replace(/-/g, ' ')); click(byText('button', 'Connect')); await until(() => store[SK.syncPlaces].length === 3);
+assert.equal(store[SK.syncPlaces].length, 3, 'the recovery key typed into the one field opens the library');
 console.log('TEST 204 OK'); process.exit(0);
