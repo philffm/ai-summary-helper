@@ -27,6 +27,15 @@
         "responseStructure": "result.choices?.[0]?.message?.content"
     },
     {
+        "id": "demonroute",
+        "name": "Demon Route",
+        "apiKeyDocumentationUrl": "https://demonroute.com/docs",
+        "endpointUrl": "https://api.demonroute.com/v1/chat/completions",
+        "defaultModel": "glm-5.3-flash",
+        "allowCustomEndpoint": false,
+        "responseStructure": "result.choices?.[0]?.message?.content"
+    },
+    {
         "id": "ollama",
         "name": "Ollama",
         "apiKeyDocumentationUrl": "https://ollama.com/",

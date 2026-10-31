@@ -13,7 +13,7 @@ const INDEX = [
     ['account', N_('Pro license key'), 'licenseKey', 'activate plan upgrade pass pro subscription'],
     ['models', N_('Connection path'), 'modeCloud', 'cloud byphil own key bring your own'],
     ['models', N_('Preferred cloud model'), 'cloudModelSelect', 'gemini gpt claude model cloud'],
-    ['models', N_('Provider'), 'model', 'openai mistral deepseek gemini ollama api'],
+    ['models', N_('Provider'), 'model', 'openai mistral deepseek demon route gemini ollama api'],
     ['models', N_('Model identifier'), 'modelIdentifier', 'model name id gpt llama'],
     ['models', N_('API key'), 'apiKey', 'key token secret'],
     ['models', N_('Endpoint URL'), 'customEndpoint', 'ollama local server custom'],

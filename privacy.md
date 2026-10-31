@@ -26,7 +26,7 @@ An account is only needed for the hosted services: byphil Cloud (summaries witho
 
 You choose how summaries are generated:
 
-- **Bring your own key (BYOK)** — OpenAI, Google Gemini, Mistral AI, DeepSeek, or a custom endpoint. Your API key is stored locally on your device only (never synced, never sent to us). Page content you choose to summarize is sent directly from your browser to the provider you selected, using your own key and subject to that provider's own privacy policy. We do not see, log, or store this content.
+- **Bring your own key (BYOK)** — OpenAI, Google Gemini, Mistral AI, DeepSeek, Demon Route, or a custom endpoint. Your API key is stored locally on your device only (never synced, never sent to us). Page content you choose to summarize is sent directly from your browser to the provider you selected, using your own key and subject to that provider's own privacy policy. We do not see, log, or store this content.
 - **Local model via Ollama** — if you run a model locally, page content is sent only to your own machine. Nothing leaves your device.
 - **byphil Cloud (optional, paid)** — a hosted option for people who'd rather not manage an API key. If you choose this tier, the text you ask to summarize passes through our backend, which relays the request via OpenRouter to an underlying model provider on your behalf and returns the summary. It is only relayed: we do not store page content, URLs or summaries. What we record per account is usage metadata: the number of completed requests, token usage, the time of the last request and the model used. The account itself is optional; all other features work without one.
 
@@ -141,7 +141,7 @@ We do not use these permissions to track your browsing, build an advertising pro
 
 Depending on how you configure the extension, your page content may be sent to:
 
-- OpenAI, Google (Gemini), Mistral AI, or DeepSeek — only if you've entered your own API key for that provider, and only for the page you actively summarize.
+- OpenAI, Google (Gemini), Mistral AI, DeepSeek, or Demon Route — only if you've entered your own API key for that provider, and only for the page you actively summarize.
 - Our byphil backend, hosted by IONOS SE in Germany — only if you sign in, use byphil Cloud or Send to Kindle.
 - OpenRouter, through which byphil Cloud connects to the models, and the model provider it routes to — the text you summarize is relayed to the model you use, for that request only.
 - Stripe — payments and subscription management, as Merchant of Record.
