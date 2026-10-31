@@ -16,6 +16,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.safeDrawing
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.MenuBook
+import androidx.compose.material.icons.automirrored.filled.Notes
 import androidx.compose.material.icons.filled.RssFeed
 import androidx.compose.material.icons.filled.Settings
 import androidx.compose.material3.Badge
@@ -138,6 +139,7 @@ class MainActivity : ComponentActivity() {
 private enum class Tab(val label: String, val icon: ImageVector) {
     Feeds("Feeds", Icons.Filled.RssFeed),
     Reading("Reading", Icons.AutoMirrored.Filled.MenuBook),
+    Notes("Notes", Icons.AutoMirrored.Filled.Notes),
     Settings("Settings", Icons.Filled.Settings),
 }
 
@@ -188,7 +190,7 @@ private fun App(model: AppModel, onScan: ((String?) -> Unit) -> Unit, onReady: (
     androidx.compose.runtime.LaunchedEffect(wide, tab) { model.focusReading = false }
     val feedUnread = model.entries.count { !it.stored.read }
     val readingUnread = model.articleList.count { !model.articles.isRead(it.id) }
-    val badge = mapOf(Tab.Feeds to feedUnread, Tab.Reading to readingUnread, Tab.Settings to 0)
+    val badge = mapOf(Tab.Feeds to feedUnread, Tab.Reading to readingUnread, Tab.Notes to 0, Tab.Settings to 0)
 
     @Composable
     fun TabIcon(t: Tab) {
@@ -217,6 +219,7 @@ private fun App(model: AppModel, onScan: ((String?) -> Unit) -> Unit, onReady: (
                     when (Tab.entries[tab]) {
                         Tab.Feeds -> FeedsScreen(model, feedSource, { feedSource = it }, feedSel, { feedSel = it }, onOpenWeb = { webUrl = it }, onOpenSettings = { settingsPanel = it; tab = Tab.Settings.ordinal })
                         Tab.Reading -> ReadingScreen(model, articleSel, { articleSel = it }, onOpenWeb = { webUrl = it })
+                        Tab.Notes -> NotesScreen(model)
                         Tab.Settings -> SettingsScreen(model, onScan, startPanel = settingsPanel)
                     }
                 }

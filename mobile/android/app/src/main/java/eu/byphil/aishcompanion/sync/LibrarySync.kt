@@ -72,7 +72,7 @@ class LibrarySync(
         val config = config() ?: throw IllegalStateException("No library is connected.")
         val master = kv.get(MASTER)?.let { Base64.getDecoder().decode(it) } ?: throw IllegalStateException("The key for this library is not on this device. Remove it and join again.")
         val placeId = kv.get(PLACE) ?: "p_phone"
-        val clock = SyncClock(kv.get(CLOCK)?.toLongOrNull() ?: 0, kv.get(DEVICE) ?: SyncClock.newDeviceId().also { kv.put(DEVICE, it) })
+        val clock = clock()
         try {
             val store = storeFactory(config)
             val meta = readMeta(store) ?: throw IllegalStateException("The library has no meta.json on the server any more. It was removed or set up again.")
@@ -83,6 +83,10 @@ class LibrarySync(
             return Summary(r.pulled, r.pushed, r.applied, r.needsConfirm, r.more, r.errors.toList())
         } catch (e: Exception) { kv.put(ERR, e.message ?: e.javaClass.simpleName); throw e }
     }
+
+    /** This phone's clock and id, kept between runs (notes written offline are stamped with it, so they merge cleanly later). */
+    fun clock(): SyncClock = SyncClock(kv.get(CLOCK)?.toLongOrNull() ?: 0, kv.get(DEVICE) ?: SyncClock.newDeviceId().also { kv.put(DEVICE, it) })
+    fun saveClock(c: SyncClock) { kv.put(CLOCK, c.t.toString()) }
 
     /** Forgets the connection, the key and the words. Records already received stay (they are the phone's copy of the library). */
     fun disconnect() { for (k in listOf(CFG, MASTER, WORDS, LAST, ERR, PLACE, CLOCK)) kv.put(k, null) }

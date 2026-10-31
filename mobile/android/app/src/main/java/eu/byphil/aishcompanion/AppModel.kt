@@ -26,6 +26,7 @@ class AppModel(context: Context) {
     val articles = ArticleStore(app)
     /** The encrypted library of the browser, joined from Settings → Library sync. */
     val library = libraryOf(app)
+    val notes = eu.byphil.aishcompanion.sync.NotesRepo(library)
     val feedStore = FeedStore(File(app.filesDir, "feeds"))
 
     var pairing by mutableStateOf(store.pairing)

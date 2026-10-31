@@ -60,6 +60,12 @@ fun scheduleLibrarySync(context: Context, on: Boolean) {
     wm.enqueueUniquePeriodicWork(WORK, ExistingPeriodicWorkPolicy.KEEP, req)
 }
 
+/** One run soon (after a note was written): the work waits for a network and is skipped when no library is joined. */
+fun syncLibrarySoon(context: Context) {
+    val req = androidx.work.OneTimeWorkRequestBuilder<LibrarySyncWorker>().setConstraints(Constraints.Builder().setRequiredNetworkType(NetworkType.CONNECTED).build()).build()
+    WorkManager.getInstance(context.applicationContext).enqueueUniqueWork("aish-library-sync-soon", androidx.work.ExistingWorkPolicy.REPLACE, req)
+}
+
 class LibrarySyncWorker(ctx: Context, params: WorkerParameters) : CoroutineWorker(ctx, params) {
     override suspend fun doWork(): Result {
         val lib = libraryOf(applicationContext)
