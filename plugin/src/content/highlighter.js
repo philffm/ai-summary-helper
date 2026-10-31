@@ -66,7 +66,8 @@ function hlEnsureStyles() {
   st.id = 'aish-hl-styles';
   st.textContent = `
     ::highlight(aish-user) { background-color: #fef08a; color: #1f2937; }
-    ::highlight(aish-ghost) { background-color: rgba(186,230,253,0.65); color: #0369a1; text-decoration: underline dashed #0284c7; }
+    /* opaque on purpose: a see-through background takes on the page's colour, and on a dark page the blue text on it fell to about 2:1 */
+    ::highlight(aish-ghost) { background-color: #bae6fd; color: #0c4a6e; text-decoration: underline dashed #0369a1; }
     ::highlight(aish-flash) { background-color: #fde047; color: #1f2937; }
     .aish-hl-flash { outline: 3px solid #fde047 !important; }
   `;
@@ -93,7 +94,7 @@ function hlPaint(entry) {
     if (isGhost) {
       mark.className = 'ai-ghost-highlight';
       mark.title = 'AI highlight — click to keep or dismiss';
-      mark.style.cssText = 'background-color:rgba(186,230,253,0.65);color:#0369a1;border-bottom:2px dashed #0284c7;border-radius:2px;padding:0 2px;cursor:pointer;';
+      mark.style.cssText = 'background-color:#bae6fd;color:#0c4a6e;border-bottom:2px dashed #0369a1;border-radius:2px;padding:0 2px;cursor:pointer;';
     } else {
       mark.className = 'ai-user-highlight';
       mark.title = 'Click to remove highlight';
