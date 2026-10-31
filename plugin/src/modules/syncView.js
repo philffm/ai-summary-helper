@@ -139,7 +139,7 @@ async function render() {
     if (view === 'recovery' && recovery) frag.append(...recoveryScreen());
     else if (view === 'add') frag.append(...addScreen());
     else if (view === 'form') frag.append(...formScreen(places.find((p) => p.id === editId), status[editId], counts[editId], connections, places));
-    else frag.append(...listScreen(places, status, counts, connections));
+    else frag.append(...listScreen(places, status, counts, connections, await lapsedFolders(connections).catch(() => [])));
     root.replaceChildren(frag);
     updateRowSub(places, status);
 }
@@ -152,8 +152,24 @@ function updateRowSub(places, status) {
     sub.textContent = TN(places.length, '{n} place', '{n} places') + (times.length ? ' · ' + T('synced {t} ago', { t: timeAgo(Math.max(...times)) }) : '');
 }
 
-function listScreen(places, status, counts, connections) {
+/** Folders whose permission the browser has taken back (it does so after a restart): syncing them waits for one click. */
+export async function lapsedFolders(connections, vault = createHandleVault()) {
     const out = [];
+    for (const c of connections.filter((x) => x.service === 'folder')) {
+        try { const h = await vault.load(c.id); if (h && h.queryPermission && (await h.queryPermission({ mode: 'readwrite' })) !== 'granted') out.push(c); } catch (_) { /* no storage here: nothing to ask */ }
+    }
+    return out;
+}
+
+function listScreen(places, status, counts, connections, lapsed = []) {
+    const out = [];
+    if (lapsed.length) {   // the browser asks for a folder again after a restart and only a click can say yes: make that click easy to find
+        const card = el('section', 'mcp-card'); card.setAttribute('role', 'alert');
+        card.append(el('p', 'mcp-step-title', T('Folder access is waiting')), hint(T('The browser takes back access to a folder when it restarts, and only a click of yours can give it back. Until then the folder is not synced.')));
+        const row = el('div', 'mcp-actions');
+        for (const c of lapsed) row.append(button(T('Allow access to {name}', { name: c.name }), 'button-primary btn-sm', async () => { await ensureFolderAccess(c.id); await sendToWorker({ action: 'syncNow' }); render(); }));
+        card.append(row); out.push(card);
+    }
     out.push(el('p', 'setting-note', T('Keep your library in step across your devices, back it up, or publish part of it for others. Each place is a folder on your own server or on this computer. Nothing leaves this device until you add one.')));
     if (places.length) {
         out.push(el('p', 'settings-caption', TU('Places')));

@@ -27,6 +27,9 @@ for (const id of ['a1', 'a2']) store[articleRecKey(id)] = { content: 'c', summar
 
 // progress wording: a folder on this computer saves, a server is uploaded to
 assert.match(V.phaseText({ phase: 'uploading', done: 2, total: 5, local: true }), /^Saving 2 of 5/); assert.match(V.phaseText({ phase: 'uploading', done: 2, total: 5 }), /^Uploading 2 of 5/);
+// folders the browser took the permission back from are found (and only those)
+const vault = { load: async (id) => ({ queryPermission: async () => (id === 'a' ? 'prompt' : 'granted') }) };
+assert.deepEqual((await V.lapsedFolders([{ id: 'a', service: 'folder', name: 'A' }, { id: 'b', service: 'folder', name: 'B' }, { id: 'c', service: 'webdav', name: 'C' }], vault)).map((c) => c.id), ['a']);
 // start: explains itself, offers one thing, the Settings row says Off
 V.initSyncView(); await wait();
 assert.match(text(), /Nothing leaves this device until you add one/);
