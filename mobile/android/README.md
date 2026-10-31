@@ -29,7 +29,7 @@ A companion for the AISH browser extension, in two directions, both end-to-end e
 ## Build
 Open `mobile/android` in Android Studio (Koala or newer), let it sync, run on a device. The Gradle wrapper is pinned to 8.13 (the
 range the Android Gradle plugin 8.13 supports; Gradle 9.x needs a newer plugin). Unit tests: `./gradlew test`. They use the shared
-vectors in `src/test/resources/` (`inbox-vector.json`, `feed-sync-vector.json`), copies of `plugin/tests/fixtures/`: keep them identical (CI compares).
+vectors in `src/test/resources/` (`inbox-vector.json`, `feed-sync-vector.json`, `sync-vector.json`), copies of `plugin/tests/fixtures/`: keep them identical (CI compares).
 
 ## Pairing
 Extension → Settings → Phone inbox → **Pair a phone** shows a QR code; the app scans it with Google's code scanner
@@ -61,3 +61,10 @@ base64 -i aish-release.jks | pbcopy          # → ANDROID_KEYSTORE_BASE64
 # plus ANDROID_KEYSTORE_PASSWORD, ANDROID_KEY_ALIAS (aish), ANDROID_KEY_PASSWORD
 ```
 Keep the keystore somewhere safe: losing it means users must uninstall to update. Shrinking (R8) is off until a release build has been tested on a device.
+
+## Library sync (in progress)
+`app/src/main/java/eu/byphil/aishcompanion/sync/` is the phone side of the extension's encrypted sync (Settings → Sync & backup): the value
+hash, the key derivation and file format, and the merge, each proven against `sync-vector.json`, which the extension's own code writes
+(`node plugin/tests/gen-sync-vector.mjs`, then copy it here; the extension's test208 and the CI step fail when the two drift apart).
+Files written by this code decrypt in the extension and the other way round (checked once by hand with a fixed nonce, see SyncVectorTest).
+Not built yet: the stores (WebDAV, S3, folder), the sync engine, and the screens.

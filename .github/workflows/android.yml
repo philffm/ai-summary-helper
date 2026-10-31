@@ -5,10 +5,10 @@ name: Android
 
 on:
   pull_request:
-    paths: ['mobile/android/**', 'plugin/tests/fixtures/inbox-vector.json', 'plugin/tests/fixtures/feed-sync-vector.json', 'plugin/tests/fixtures/article-v1-vector.json', '.github/workflows/android.yml']
+    paths: ['mobile/android/**', 'plugin/tests/fixtures/inbox-vector.json', 'plugin/tests/fixtures/feed-sync-vector.json', 'plugin/tests/fixtures/article-v1-vector.json', 'plugin/tests/fixtures/sync-vector.json', '.github/workflows/android.yml']
   push:
     branches: [main]
-    paths: ['mobile/android/**', 'plugin/tests/fixtures/inbox-vector.json', 'plugin/tests/fixtures/feed-sync-vector.json', 'plugin/tests/fixtures/article-v1-vector.json', '.github/workflows/android.yml']
+    paths: ['mobile/android/**', 'plugin/tests/fixtures/inbox-vector.json', 'plugin/tests/fixtures/feed-sync-vector.json', 'plugin/tests/fixtures/article-v1-vector.json', 'plugin/tests/fixtures/sync-vector.json', '.github/workflows/android.yml']
 
 permissions:
   contents: read
@@ -29,6 +29,7 @@ jobs:
           cmp plugin/tests/fixtures/inbox-vector.json mobile/android/app/src/test/resources/inbox-vector.json
           cmp plugin/tests/fixtures/feed-sync-vector.json mobile/android/app/src/test/resources/feed-sync-vector.json
           cmp plugin/tests/fixtures/article-v1-vector.json mobile/android/app/src/test/resources/article-v1-vector.json
+          cmp plugin/tests/fixtures/sync-vector.json mobile/android/app/src/test/resources/sync-vector.json
 
       - uses: actions/setup-java@v4
         with:

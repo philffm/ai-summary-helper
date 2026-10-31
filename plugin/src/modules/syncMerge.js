@@ -7,7 +7,7 @@
 //   • per field the larger stamp wins; equal times break on the device id of the side the record came from;
 //   • a tombstone beats an edit with a smaller or equal revision; an edit with a larger revision brings the record back;
 //   • `excluded` is not a deletion: it is only a hint for readable places and is ignored here.
-import { compareRev } from './syncStamps.js';
+import { compareRev, hashValue } from './syncStamps.js';
 
 const fieldRev = (rec, name) => ({ t: (rec.f && rec.f[name] && rec.f[name].t) || 0, d: (rec.rev && rec.rev.d) || '' });
 
@@ -44,4 +44,5 @@ export function mergeRecord(local, remote) {
 }
 
 const clone = (x) => JSON.parse(JSON.stringify(x));
-const same = (a, b) => JSON.stringify([a.rev, a.f, a.values, !!a.deleted]) === JSON.stringify([b.rev, b.f, b.values, !!b.deleted]);
+// compared by content: the order of keys in a stored record means nothing (and another platform cannot reproduce it)
+const same = (x, y) => hashValue([x.rev, x.f, x.values, !!x.deleted]) === hashValue([y.rev, y.f, y.values, !!y.deleted]);
