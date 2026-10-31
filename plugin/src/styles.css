@@ -4620,6 +4620,7 @@ html[data-motion="reduce"] .detail-split-more .icon { transition: none; }
 .screen.ws-active .notes-head:not(:has(.notes-toggle)) { display: none; }
 
 /* The Notes composer is the Summarize screen's own pill (.composer-pill: field and primary button), docked above the nav the same way */
-.controls-bar.notes-dock { position: sticky; left: auto; right: auto; bottom: calc(var(--bottom-nav-height) + var(--controls-bottom-gap)); max-width: none; margin: auto 0 0; padding: 0; z-index: var(--z-raised); }
+/* sticky offsets are measured from the scroller's content area, which the screen's bottom padding (nav-clearance) shrinks: take it off again, and let the dock use the last 16px of it, so the pill ends where Summarize's does */
+.controls-bar.notes-dock { position: sticky; left: auto; right: auto; bottom: calc(var(--bottom-nav-height) + var(--controls-bottom-gap) - var(--nav-clearance) - 6px); max-width: none; margin: auto 0 calc(-1 * var(--spacing-s-4) - 6px); padding: 0; z-index: var(--z-raised); }
 .notes-dock .composer-pill .notes-add { flex: none; width: auto; margin: 0; white-space: nowrap; min-width: 44px; }
 .notes-dock .notes-hint { color: var(--text-muted); font-size: var(--fs-xs); }
