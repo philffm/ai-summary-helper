@@ -772,7 +772,9 @@ function noteCloudRoute(url, res, model) {
     try {
         if (!String(url).startsWith(AISH_API_BASE + '/v1/projects/')) return;
         const region = res.headers.get('x-aish-region');
-        if (region === 'eu' || region === 'global') chrome.storage.local.set({ [SK.cloudRoute]: { region, model: model || '', at: Date.now() } });
+        if (region !== 'eu' && region !== 'global') return;   // an older service says nothing: nothing is recorded
+        const used = (res.headers.get('x-aish-model-used') || '').slice(0, 120), switched = res.headers.get('x-aish-switched') === 'long-text' ? 'long-text' : '';
+        chrome.storage.local.set({ [SK.cloudRoute]: { region, model: model || '', ...(used ? { used } : {}), ...(switched ? { switched } : {}), at: Date.now() } });
     } catch (_) { /* a status note must never break a summary */ }
 }
 

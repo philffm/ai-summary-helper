@@ -11,7 +11,7 @@ import { filterBackupSecrets, hasBackupSecrets, prepareImportedData } from './ba
 import StorageManager from './storageManager.js';
 import { initPromptSettings } from './promptSettings.js';
 import { updateModelIdentifierUI, modelPriceLabel } from './modelManager.js';
-import { supportsEu, regionTag, isEuPreferred, routeSentence, PREF_EU, PREF_ANY } from './cloudRegion.js';
+import { supportsEu, regionTag, isEuPreferred, routeSentence, euSuggestion, PREF_EU, PREF_ANY } from './cloudRegion.js';
 import { initAuthManager } from './authManager.js';
 import { buildCanonicalTagMap, applyCanonicalTags } from './tagIntelligence.js';
 import { unknownTags, keysNeedingLabel } from './topicConcepts.js';
@@ -343,7 +343,20 @@ async function initModelSettings(storageData) {
         // Fetch filtered cheap models from your backend proxy
         let regionPref = storageData.cloudRegionPref === PREF_EU ? PREF_EU : PREF_ANY;
         const regionGroup = document.getElementById('cloudRegionGroup'), regionSwitch = document.getElementById('cloudRegionPref');
-        let rosterModels = [];
+        let rosterModels = [], rosterData = null;
+        // With "Prefer EU servers" on and a model that cannot run in the EU selected: one line offering the EU default (one tap, never automatic).
+        const updateSuggest = () => {
+            const box = document.getElementById('cloudRegionSuggest'); if (!box) return;
+            const sug = rosterData ? euSuggestion(rosterData, cloudModelSelect.value, regionPref) : null;
+            box.hidden = !sug; if (!sug) return;
+            box.querySelector('span').textContent = T('This model does not run on EU servers. Use {name} (EU) instead?', { name: sug.name });
+            const b = box.querySelector('button'); b.textContent = T('Use {name}', { name: sug.name });
+            b.onclick = async () => {
+                const { [SK.token]: token } = await chrome.storage.local.get([SK.token]);
+                if (!token) { import('./settingsNav.js').then(m => m.openSettingsPanel('account', 'otpEmail')).catch(() => {}); return; }   // choosing needs an account, like the list
+                cloudModelSelect.value = sug.id; await autoSave('preferredCloudModel', sug.id); updateSuggest();
+            };
+        };
         // The model list: every model stays selectable. EU models are marked, and with "Prefer EU servers" on the others are called out and EU prices are shown.
         const fillCloudModels = () => {
             const keep = cloudModelSelect.value || storageData.preferredCloudModel;
@@ -376,7 +389,7 @@ async function initModelSettings(storageData) {
             regionSwitch.addEventListener('change', async () => {
                 regionPref = regionSwitch.checked ? PREF_EU : PREF_ANY;
                 await chrome.storage.sync.set({ cloudRegionPref: regionPref });
-                describeRegion(); if (rosterModels.length) fillCloudModels();
+                describeRegion(); if (rosterModels.length) fillCloudModels(); updateSuggest();
             });
         }
         chrome.storage.onChanged.addListener((ch, area) => { if (area === 'local' && SK.cloudRoute in ch) showRoute(); });
@@ -384,10 +397,11 @@ async function initModelSettings(storageData) {
             .then(res => res.json())
             .then(data => {
                 if (data.success && data.models.length > 0) {
-                    rosterModels = data.models;
+                    rosterModels = data.models; rosterData = data;
                     fillCloudModels();
+                    cloudModelSelect.addEventListener('change', updateSuggest);
                     // Only a server that knows about regions gets the switch: an older one would just ignore it, and nothing would be marked.
-                    if (regionGroup) { regionGroup.hidden = !supportsEu(data); describeRegion(); showRoute(); }
+                    if (regionGroup) { regionGroup.hidden = !supportsEu(data); describeRegion(); showRoute(); updateSuggest(); }
                 } else {
                     throw new Error("Empty model array received");
                 }

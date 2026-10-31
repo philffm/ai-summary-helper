@@ -26,8 +26,27 @@ export function pricesFor(model, pref) {
     return { price_in: model.price_in, price_out: model.price_out };
 }
 
-/** The route the last request took, as a sentence (the server's answer, not our wish). */
+const prettyModel = (id) => String(id || '').split('/').pop().replace(/-(\d{4})$/, '').replace(/-(\d+)-(\d+)(?=-|$)/g, ' $1.$2').replace(/[-_]+/g, ' ').replace(/\b\w/g, (c) => c.toUpperCase());   // mistral-large-4-0 → Mistral Large 4.0
+
+/**
+ * The route the last request took, as a sentence (the server's answer, not our wish). `used` is the model that really answered; when the server
+ * swapped it (a long text on the everyday EU model goes to the larger one) that is said, so the cost and the model are never a surprise.
+ */
 export function routeSentence(route) {
     if (!route || !route.region) return '';
-    return route.region === 'eu' ? 'The last request ran on EU servers.' : 'The last request did not run on EU servers.';
+    const on = route.region === 'eu' ? 'ran on EU servers' : 'did not run on EU servers';
+    if (route.switched === 'long-text' && route.used) return `The last request ${on}, on ${prettyModel(route.used)}: the text was long, so the larger model was used.`;
+    return `The last request ${on}.`;
+}
+
+/**
+ * With "Prefer EU servers" on and the chosen model not available in the EU, the app offers the EU default instead (one tap, never automatic).
+ * @returns {null | { id: string, name: string }}
+ */
+export function euSuggestion(roster, currentId, pref) {
+    if (!isEuPreferred(pref) || !supportsEu(roster) || !roster.eu_default) return null;
+    const cur = (roster.models || []).find((m) => m.id === currentId);
+    if (cur && cur.eu === true) return null;   // already on an EU model
+    const target = (roster.models || []).find((m) => m.id === roster.eu_default);
+    return { id: roster.eu_default, name: target ? target.name : prettyModel(roster.eu_default) };
 }

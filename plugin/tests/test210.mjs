@@ -15,7 +15,15 @@ assert.deepEqual(R.regionTag(non, 'prefer-eu'), { kind: 'outside', text: 'Not EU
 assert.deepEqual(R.pricesFor(eu, 'prefer-eu'), { price_in: 1.1, price_out: 5.5 }); assert.deepEqual(R.pricesFor(eu, 'any'), { price_in: 1, price_out: 5 }); assert.deepEqual(R.pricesFor(non, 'prefer-eu'), { price_in: 0.3, price_out: 2.5 });
 assert.notEqual(MM.modelPriceLabel(eu, 'prefer-eu'), MM.modelPriceLabel(eu, 'any'), 'the label follows the preference'); assert.equal(MM.modelPriceLabel(eu), MM.modelPriceLabel(eu, 'any'), 'callers that pass nothing see the old label');
 assert.equal(MM.modelPriceLabel(old, 'prefer-eu'), MM.modelPriceLabel(old, 'any'));
-assert.match(R.routeSentence({ region: 'eu' }), /ran on EU servers/); assert.match(R.routeSentence({ region: 'global' }), /did not run on EU servers/); assert.equal(R.routeSentence(null), ''); assert.equal(R.routeSentence({}), '');
+assert.match(R.routeSentence({ region: 'eu' }), /ran on EU servers/);
+assert.match(R.routeSentence({ region: 'eu', used: 'mistralai/mistral-large-4-0', switched: 'long-text' }), /on Mistral Large 4\.0: the text was long, so the larger model was used/);
+assert.equal(R.routeSentence({ region: 'eu', used: 'mistralai/mistral-small-2603' }), 'The last request ran on EU servers.', 'no swap, nothing extra said');
+// the one-tap suggestion: only with the preference on, a server that offers a default, and a model that is not on EU servers
+const roster = { regions: ['global', 'eu'], eu_default: 'mistralai/mistral-small-2603', models: [{ id: 'mistralai/mistral-small-2603', name: 'Mistral: Small 4', eu: true }, { id: 'google/gemini-3.6-flash', name: 'Gemini', eu: false }, { id: 'a/b', name: 'B', eu: true }] };
+assert.deepEqual(R.euSuggestion(roster, 'google/gemini-3.6-flash', 'prefer-eu'), { id: 'mistralai/mistral-small-2603', name: 'Mistral: Small 4' });
+assert.equal(R.euSuggestion(roster, 'google/gemini-3.6-flash', 'any'), null); assert.equal(R.euSuggestion(roster, 'a/b', 'prefer-eu'), null, 'already on an EU model');
+assert.equal(R.euSuggestion({ ...roster, eu_default: undefined }, 'google/gemini-3.6-flash', 'prefer-eu'), null); assert.equal(R.euSuggestion({ models: roster.models }, 'google/gemini-3.6-flash', 'prefer-eu'), null, 'an older server offers nothing');
+assert.ok(R.euSuggestion(roster, 'not-in-the-list/x', 'prefer-eu'), 'a model the list does not know is not an EU model either'); assert.match(R.routeSentence({ region: 'global' }), /did not run on EU servers/); assert.equal(R.routeSentence(null), ''); assert.equal(R.routeSentence({}), '');
 
 // the background: the header only for the hosted service and only when asked; the route is recorded from the answer
 const src = fs.readFileSync(path.resolve(process.env.AISH_SRC, 'background.js'), 'utf8');
@@ -29,7 +37,8 @@ pref = { cloudRegionPref: 'any' }; assert.deepEqual(await ctx.cloudRegionHeader(
 pref = { cloudRegionPref: 'prefer-eu' }; assert.deepEqual({ ...await ctx.cloudRegionHeader(API) }, { 'X-AISH-Region': 'prefer-eu' });
 for (const other of ['https://api.openai.com/v1/chat/completions', 'http://localhost:11434/api/chat', 'https://api.byphil.eu.evil.test/v1/projects/x/chat', 'https://evil.test/https://api.byphil.eu/v1/projects/x']) assert.deepEqual(await ctx.cloudRegionHeader(other), {}, 'never to another server: ' + other);
 const res = (v) => ({ headers: { get: (k) => (k === 'x-aish-region' ? v : null) } });
-ctx.noteCloudRoute(API, res('eu'), 'a/b'); assert.equal(local['cloud:route'].region, 'eu'); assert.equal(local['cloud:route'].model, 'a/b');
+ctx.noteCloudRoute(API, res('eu'), 'a/b'); assert.equal(local['cloud:route'].region, 'eu'); assert.equal(local['cloud:route'].model, 'a/b'); assert.ok(!('used' in local['cloud:route']), 'an older service sends no model: nothing invented');
+{ const h = { 'x-aish-region': 'eu', 'x-aish-model-used': 'mistralai/mistral-large-4-0', 'x-aish-switched': 'long-text' }; ctx.noteCloudRoute(API, { headers: { get: (k) => h[k] || null } }, 'mistralai/mistral-small-2603'); assert.deepEqual({ ...local['cloud:route'], at: 0 }, { region: 'eu', model: 'mistralai/mistral-small-2603', used: 'mistralai/mistral-large-4-0', switched: 'long-text', at: 0 }); }
 ctx.noteCloudRoute(API, res('global'), 'c/d'); assert.equal(local['cloud:route'].region, 'global');
 ctx.noteCloudRoute(API, res(null), 'x'); ctx.noteCloudRoute(API, res('mars'), 'x'); assert.equal(local['cloud:route'].model, 'c/d', 'an answer without a known region (an older server) records nothing');
 ctx.noteCloudRoute('https://api.openai.com/v1/chat/completions', res('eu'), 'x'); assert.equal(local['cloud:route'].model, 'c/d', 'only the hosted service is trusted for this');
