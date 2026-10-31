@@ -29,6 +29,7 @@
 - [From Bookmarklet to 2.0](https://ai-summary-helper.byphil.eu/blog/from-bookmarklet-to-2.html): It started as a bookmarklet for one person's Kindle habit. Here's what changed between v1 and the open-source 2.0 rebuild — and why.
 - [Ask About Your Highlights](https://ai-summary-helper.byphil.eu/blog/highlighting-vs-asking.html): Highlighting ranks among the least useful study techniques. Why it still feels productive, and a small change that makes a highlight stick.
 - [Search and Tags Without the Cloud](https://ai-summary-helper.byphil.eu/blog/on-device-architecture.html): The TF-IDF index behind AI Summary Helper's search, duplicate detection, and digest features — and why most of it never needed a server.
+- [Sync Your Reading Library to Nextcloud, S3 or a Folder, Encrypted](https://ai-summary-helper.byphil.eu/blog/sync-to-nextcloud-s3-or-a-folder.html): Step by step: keep your saved articles, highlights and notes in sync between devices on your own Nextcloud, S3 bucket or a local folder, encrypted in the browser.
 - [Digital Sovereignty for Individuals: A Practical Guide (2026)](https://ai-summary-helper.byphil.eu/blog/digital-sovereignty-for-individuals.html): Digital sovereignty is not only for governments. What it means for your data, reading and AI tools in 2026, and a checklist you can follow in one weekend.
 
 ## Translations

@@ -692,7 +692,7 @@
   </url>
   <url>
     <loc>https://ai-summary-helper.byphil.eu/blog/</loc>
-    <lastmod>2026-10-26</lastmod>
+    <lastmod>2026-10-31</lastmod>
     <priority>0.7</priority>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://ai-summary-helper.byphil.eu/blog/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://ai-summary-helper.byphil.eu/blog/"/>
@@ -8653,6 +8653,13 @@
     <xhtml:link rel="alternate" hreflang="da" href="https://ai-summary-helper.byphil.eu/da/blog/on-device-architecture.html"/>
     <xhtml:link rel="alternate" hreflang="nb" href="https://ai-summary-helper.byphil.eu/no/blog/on-device-architecture.html"/>
     <xhtml:link rel="alternate" hreflang="fi" href="https://ai-summary-helper.byphil.eu/fi/blog/on-device-architecture.html"/>
+  </url>
+  <url>
+    <loc>https://ai-summary-helper.byphil.eu/blog/sync-to-nextcloud-s3-or-a-folder.html</loc>
+    <lastmod>2026-10-31</lastmod>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ai-summary-helper.byphil.eu/blog/sync-to-nextcloud-s3-or-a-folder.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ai-summary-helper.byphil.eu/blog/sync-to-nextcloud-s3-or-a-folder.html"/>
   </url>
   <url>
     <loc>https://ai-summary-helper.byphil.eu/blog/digital-sovereignty-for-individuals.html</loc>
