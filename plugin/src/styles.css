@@ -4567,7 +4567,16 @@ html[data-motion="reduce"] .detail-split-more .icon { transition: none; }
 
 /* Notes tab (notesView.js): notes, highlights and comments as stickies, in a list or a grid, with a composer docked at the bottom */
 :root { --st-user-bg:#fef9c3; --st-user-fg:#713f12; --st-user-bar:#eab308; --st-ghost-bg:#e0f2fe; --st-ghost-fg:#0c4a6e; --st-ghost-bar:#0284c7; --st-note-bg:#fce7f3; --st-note-fg:#831843; --st-note-bar:#db2777; }
-:root[data-theme='dark'] { --st-user-bg:#3b3410; --st-user-fg:#fde68a; --st-ghost-bg:#0b2a3d; --st-ghost-fg:#bae6fd; --st-ghost-bar:#38bdf8; --st-note-bg:#3a1530; --st-note-fg:#fbcfe8; --st-note-bar:#f472b6; }
+:root[data-theme='dark'] { --st-user-bg:#2f2a15; --st-user-fg:#f4e6a8; --st-user-bar:#d4a514; --st-ghost-bg:#10293a; --st-ghost-fg:#c9e7f8; --st-ghost-bar:#38bdf8; --st-note-bg:#35182d; --st-note-fg:#f7d6e8; --st-note-bar:#f472b6; }
+/* Theme "System": no data-theme attribute, the browser's dark setting decides (the same colours as above) */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme='light']):not([data-theme='contrast']) { --st-user-bg:#2f2a15; --st-user-fg:#f4e6a8; --st-user-bar:#d4a514; --st-ghost-bg:#10293a; --st-ghost-fg:#c9e7f8; --st-ghost-bar:#38bdf8; --st-note-bg:#35182d; --st-note-fg:#f7d6e8; --st-note-bar:#f472b6; }
+  :root:not([data-theme='light']):not([data-theme='contrast']) .st-c { background: rgba(0,0,0,.25); }
+  :root:not([data-theme='light']):not([data-theme='contrast']) .st-del { color: #fca5a5; }   /* the red of the light theme is too dark on these cards (3:1) */
+  :root:not([data-theme='light']):not([data-theme='contrast']) .st { box-shadow: inset 0 0 0 1px rgba(255,255,255,.06); }
+}
+:root[data-theme='dark'] .st { box-shadow: inset 0 0 0 1px rgba(255,255,255,.06); }
+:root[data-theme='dark'] .st-del { color: #fca5a5; }
 .notes-root { display: flex; flex-direction: column; gap: 10px; min-height: 100%; }
 .notes-head { display: flex; align-items: center; justify-content: space-between; gap: 10px; }
 .notes-head h2 { margin: 0; font-size: var(--fs-xl, 20px); }
