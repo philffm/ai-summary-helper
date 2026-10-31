@@ -25,6 +25,8 @@ store[SK.articlesIndex] = [
 ];
 for (const id of ['a1', 'a2']) store[articleRecKey(id)] = { content: 'c', summary: 's' };
 
+// progress wording: a folder on this computer saves, a server is uploaded to
+assert.match(V.phaseText({ phase: 'uploading', done: 2, total: 5, local: true }), /^Saving 2 of 5/); assert.match(V.phaseText({ phase: 'uploading', done: 2, total: 5 }), /^Uploading 2 of 5/);
 // start: explains itself, offers one thing, the Settings row says Off
 V.initSyncView(); await wait();
 assert.match(text(), /Nothing leaves this device until you add one/);
