@@ -22,6 +22,9 @@ import { typeOf, idOf } from './syncDataAdapter.js';
 import { canonicalOrder, IDENTITY_FIELDS } from './syncIdentity.js';
 
 const TYPES = new Set(['article', 'hl', 'coll', 'note']);
+export const TOMBSTONE_TTL_MS = 90 * 24 * 3600 * 1000;   // a deletion marker is kept this long; a device away for longer rejoins instead of pushing old records back
+export const DELETE_GUARD_MIN = 10, DELETE_GUARD_SHARE = 0.25;   // deletions from other devices applied without asking: the larger of 10 and a quarter of what is here
+const REAL_CLOCK = 1.5e12;   // stamps from a real clock only: a made-up small time says nothing about age
 const KEY_RX = /^(article|hl|coll|note):[A-Za-z0-9_.:-]{1,200}$/;
 export const RECORD_DIR = 'r';
 const get = (storage, keys) => Promise.resolve(storage.get(keys));
@@ -34,16 +37,19 @@ const status = (e) => (e && e.status) || 0;
  * @returns {Promise<{ pulled, applied, pushed, removed, errors: string[], more: boolean, joined: boolean }>}
  */
 export async function syncEncryptedPlace(o) {
-    const { place, storage, store, keys, meta, stampStore, adapter, backup, now = Date.now, budgetMs = 150000, chunk = 25, concurrency = 4, onProgress = () => {}, pullOnly = false, pushOnly = false, forceFirst = false } = o;
+    const { place, storage, store, keys, meta, stampStore, adapter, backup, now = Date.now, budgetMs = 150000, chunk = 25, concurrency = 4, onProgress = () => {}, pullOnly = false, pushOnly = false, forceFirst = false, confirmDeletes = false, tombstoneTtlMs = TOMBSTONE_TTL_MS } = o;
     const started = now();
-    const out = { pulled: 0, applied: 0, pushed: 0, removed: 0, merged: 0, errors: [], more: false, joined: false };
+    const out = { pulled: 0, applied: 0, pushed: 0, removed: 0, merged: 0, purged: 0, needsConfirm: 0, stale: false, errors: [], more: false, joined: false };
     const became = new Set();   // articles that got live data in this run (new here, or brought back): the only ones that can have a twin from another device
     const lk = syncLedgerKey(place.id);
     const L = (await get(storage, { [lk]: {} }))[lk] || {};
     if (L.salt && meta && L.salt !== meta.salt) throw new Error('This place was set up again on the server (a different key). Nothing was changed. Remove the place here and add it again to join it.');
     const items = { ...(L.items || {}) }, dirty = new Set(L.dirty || []);
     const firstRun = !L.joined || forceFirst;   // forceFirst (restore): the server's values win where they differ
-    const save = () => set(storage, { [lk]: { joined: 1, salt: (meta && meta.salt) || L.salt || '', items, dirty: [...dirty] } });
+    const stale = !!(L.lastSync && now() - L.lastSync > tombstoneTtlMs);   // away longer than deletion markers are kept: old records here may have been deleted and forgotten elsewhere
+    out.stale = stale;
+    let lastSync = L.lastSync || 0;
+    const save = () => set(storage, { [lk]: { joined: 1, salt: (meta && meta.salt) || L.salt || '', items, dirty: [...dirty], lastSync, blocked: out.needsConfirm } });
     const overBudget = () => now() - started > budgetMs;
     const names = new Map();
     const nameFor = async (key) => { let n = names.get(key); if (!n) { n = await nameOf(keys, typeOf(key), idOf(key)); names.set(key, n); } return n; };
@@ -53,6 +59,10 @@ export async function syncEncryptedPlace(o) {
     if (firstRun && backup) await backup();   // a failure aborts the run before anything is written
     await stampStore.scan({});
     let stamps = await stampStore.all();
+    const liveHere = Object.values(stamps).filter((s) => s && !s.deleted).length;
+    // an unanswered question stays unanswered: while deletions are waiting for a yes, no further ones are applied on their own
+    const deleteBudget = L.blocked && !confirmDeletes ? 0 : Math.max(DELETE_GUARD_MIN, Math.ceil(liveHere * DELETE_GUARD_SHARE));
+    let deletesApplied = 0;
     const remote = new Map((await store.list(RECORD_DIR)).map((f) => [f.path.slice(RECORD_DIR.length + 1), f]));
 
     // which keys we already know by name
@@ -88,6 +98,10 @@ export async function syncEncryptedPlace(o) {
                 local = { rev: st.rev, f, values };
             }
             const r = mergeRecord(local, rec);
+            if (r.merged.deleted && d && r.changedLocal && !confirmDeletes) {   // another device deleted something that is here: a few are normal, a lot is asked about first
+                if (deletesApplied >= deleteBudget) { out.needsConfirm++; continue; }   // left alone: not adopted, not in the ledger, seen again next run
+                deletesApplied++;
+            }
             if (r.changedLocal) {
                 const entry = r.merged.deleted ? { rev: r.merged.rev, f: {}, deleted: true } : { rev: r.merged.rev, f: r.merged.f };
                 adopt[key] = entry;
@@ -169,7 +183,7 @@ export async function syncEncryptedPlace(o) {
     }
 
     // 2) push
-    const pending = Object.entries(stamps).filter(([key, st]) => st && st.rev && (dirty.has(key) || !items[key] || items[key].t < st.rev.t)).map(([key]) => key);
+    const pending = Object.entries(stamps).filter(([key, st]) => st && st.rev && (dirty.has(key) || !items[key] || items[key].t < st.rev.t) && (!stale || st.rev.t > L.lastSync)).map(([key]) => key);   // after a long absence only what changed since is pushed
     for (let i = 0; i < pending.length; i += chunk) {
         if (overBudget()) { out.more = true; break; }
         onProgress({ phase: 'uploading', done: i, total: pending.length });
@@ -218,7 +232,18 @@ export async function syncEncryptedPlace(o) {
         }
     }
 
+    // deletion markers that have done their job: remove the remote file, then the local stamp
+    if (!out.errors.length && !out.needsConfirm && !stale) {
+        const cutoff = now() - tombstoneTtlMs, gone = [];
+        for (const [key, st] of Object.entries(stamps)) {
+            if (!st || !st.deleted || !(st.rev.t >= REAL_CLOCK) || st.rev.t >= cutoff) continue;
+            try { if (items[key]) await store.remove(path(items[key].n)); } catch (e) { out.errors.push(`${key}: ${e.message}`); continue; }
+            delete items[key]; dirty.delete(key); gone.push(key);
+        }
+        if (gone.length) { out.purged = await stampStore.purge(gone); }
+    }
     out.joined = true;
+    if (!out.errors.length) lastSync = now();
     await save();
     return out;
 }

@@ -247,11 +247,15 @@ function heroNode(place, st, count) {
     if (st && st.viewer === 'customized') hero.append(hint(T('Your own index.html is in this folder, so the viewer was not replaced.')));
     if (st && st.viewer === 'blocked') hero.append(hint(T('An index.html that is not ours is already in this folder, so the viewer was not written. Use another folder.')));
     if (st && st.needsConfirm && !run) {
-        hero.append(hint(TN(st.needsConfirm, '{n} file is no longer wanted here and would be removed from your server. Check that this is right.', '{n} files are no longer wanted here and would be removed from your server. Check that this is right.')));
+        const enc = place.mode === 'encrypted';
+        hero.append(hint(enc
+            ? TN(st.needsConfirm, '{n} more article was deleted on another device. It is still here until you say so. Check that this is right.', '{n} more articles were deleted on other devices. They are still here until you say so. Check that this is right.')
+            : TN(st.needsConfirm, '{n} file is no longer wanted here and would be removed from your server. Check that this is right.', '{n} files are no longer wanted here and would be removed from your server. Check that this is right.')));
         const a = el('div', 'mcp-actions');
-        a.append(button(T('Remove them'), 'button-danger-outline btn-sm', async () => { await sendToWorker({ action: 'syncNow', placeId: place.id, confirmRemovals: true }); }));
+        a.append(button(enc ? T('Delete them here too') : T('Remove them'), 'button-danger-outline btn-sm', async () => { await sendToWorker({ action: 'syncNow', placeId: place.id, confirmRemovals: true }); }));
         hero.append(a);
     }
+    if (st && st.stale && st.ok) hero.append(hint(T('This device was away for a long time. Only what changed since was sent, and nothing was deleted.')));
     const a = el('div', 'mcp-actions');
     const pub = button(run ? (place.mode === 'encrypted' ? T('Syncing…') : T('Publishing…')) : place.mode === 'encrypted' ? (place.direction === 'push' ? T('Back up now') : T('Sync now')) : T('Publish now'), 'button-secondary btn-sm', async () => { pub.disabled = true; pub.textContent = place.mode === 'encrypted' ? T('Syncing…') : T('Publishing…'); await sendToWorker({ action: 'syncNow', placeId: place.id }); refreshHero(); });
     pub.disabled = !!run;

@@ -80,7 +80,12 @@ store[SK.annotations] = [{ id: 'hl_9', url: 'https://x.test/b1', text: 'q', type
 store[SK.collIndex] = [{ id: 'c9' }]; store[collRecKey('c9')] = { id: 'c9', name: 'Nine', sources: [] };
 const scanned = await st.scan();
 all = await st.all();
-assert.deepEqual(Object.keys(all).sort(), ['article:b1', 'article:b2', 'coll:c9', 'hl:hl_9'], 'highlights without an id wait for the backfill');
+const given = store[SK.annotations][1].id;
+assert.match(given, /^hl_l/, 'a highlight without an id is given one by the scan'); assert.equal(store[SK.annotations][0].id, 'hl_9', 'existing ids are never touched');
+assert.deepEqual(Object.keys(all).sort(), ['article:b1', 'article:b2', 'coll:c9', 'hl:' + given, 'hl:hl_9'].sort());
+store[SK.annotations] = [{ url: 'u', text: 'no id' }]; await st.backfillHighlightIds(); assert.equal(store[SK.annotations][0].id, given, 'the same highlight gets the same id again (every device agrees)');
+assert.equal(await st.backfillHighlightIds(), 0, 'nothing left to do the second time');
+store[SK.annotations] = [{ id: 'hl_9', url: 'https://x.test/b1', text: 'q', type: 'ghost', timestamp: 't' }, { id: given, url: 'u', text: 'no id' }];
 assert.ok(all['article:b1'].f.content, 'unstamped records are read by the default scan');
 assert.ok(Object.values(all).every((e) => !e.deleted), 'a scan never makes tombstones');
 assert.ok(scanned >= 4);

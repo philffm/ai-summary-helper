@@ -134,6 +134,7 @@ export function createStampStore({ storage, now = Date.now, lock = withStampLock
     async function scan({ full = false } = {}) {
         try {
             if (!(await enabled())) return 0;
+            await backfillHighlightIds();
             const d = await get(storage, { [SK.articlesIndex]: [], [SK.annotations]: [], [SK.collIndex]: [] });
             const index = Array.isArray(d[SK.articlesIndex]) ? d[SK.articlesIndex].filter((e) => e && e.id) : [];
             let n = 0;
@@ -195,6 +196,47 @@ export function createStampStore({ storage, now = Date.now, lock = withStampLock
         });
     }
 
+    /**
+     * Highlights saved before sync existed may have no id (a page script gives one only when that page is opened). Without an id they cannot be
+     * stamped or synced, so give them one: derived from what the highlight is, so it is the same on every device and every run.
+     */
+    async function backfillHighlightIds() {
+        try {
+            const d = await get(storage, { [SK.annotations]: [] });
+            const list = d[SK.annotations];
+            if (!Array.isArray(list) || !list.some((h) => h && typeof h === 'object' && !h.id && h.url && h.text)) return 0;
+            const fresh = (await get(storage, { [SK.annotations]: [] }))[SK.annotations];   // re-read: page scripts write this array without our lock
+            let n = 0;
+            const used = new Set(fresh.filter((h) => h && h.id).map((h) => h.id));
+            const out = fresh.map((h) => {
+                if (!h || typeof h !== 'object' || h.id || !h.url || !h.text) return h;
+                let id = 'hl_l' + hashValue([h.url, h.text, h.type || 'user', h.timestamp || '']); while (used.has(id)) id += '_';
+                used.add(id); n++;
+                return { ...h, id };
+            });
+            if (n) await set(storage, { [SK.annotations]: out });
+            return n;
+        } catch (_) { return 0; }
+    }
+
+    /** Drop the stamps of records whose deletion marker has been kept long enough (the engine removes the remote file first). */
+    async function purge(keys) {
+        const list = [...new Set(keys || [])];
+        if (!list.length) return 0;
+        return lock(async () => {
+            const shardKeys = [...new Set(list.map((k) => syncStampsKey(shardOf(k))))];
+            const shards = await get(storage, shardKeys);
+            const out = {}; let n = 0;
+            for (const k of list) {
+                const sk = syncStampsKey(shardOf(k));
+                const shard = shards[sk];
+                if (shard && shard[k] && shard[k].deleted) { delete shard[k]; out[sk] = shard; n++; }   // only a deletion marker is ever purged
+            }
+            if (n) await set(storage, out);
+            return n;
+        });
+    }
+
     /** Every stamp, flattened (for the engine and the tests). */
     async function all() {
         const d = await get(storage, null);
@@ -203,5 +245,5 @@ export function createStampStore({ storage, now = Date.now, lock = withStampLock
         return out;
     }
 
-    return { onChanged, markDeleted, scan, all, adopt, release, enabled };
+    return { onChanged, markDeleted, scan, all, adopt, release, purge, backfillHighlightIds, enabled };
 }

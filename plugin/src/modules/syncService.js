@@ -294,9 +294,9 @@ export function createSyncService({ storage, makeStore, stampStore, viewerSource
                     const connection = st.connections.find((c) => c.id === place.connectionId);
                     if (!connection) throw new Error('The server of this place was removed.');
                     if (place.mode === 'encrypted') {
-                        const r = await runEncrypted(place, connection, st, { onProgress });
+                        const r = await runEncrypted(place, connection, st, { onProgress, confirmDeletes: confirmRemovals });
                         await writing; results[place.id] = r;
-                        await setStatus(place.id, { at, ok: true, pushed: r.pushed, pulled: r.pulled, applied: r.applied, errors: r.errors.length, ...(r.errors.length ? { firstError: r.errors[0] } : {}), more: r.more });
+                        await setStatus(place.id, { at, ok: true, pushed: r.pushed, pulled: r.pulled, applied: r.applied, merged: r.merged, purged: r.purged, needsConfirm: r.needsConfirm, stale: r.stale, errors: r.errors.length, ...(r.errors.length ? { firstError: r.errors[0] } : {}), more: r.more });
                         if (r.more) scheduleSoon(1);
                         continue;
                     }
