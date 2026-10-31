@@ -144,12 +144,16 @@
     if (!skyPromise) skyPromise = new Promise(function (res, rej) { var s = document.createElement('script'); s.src = 'aish-sky.js'; s.onload = function () { res(window.AISH_SKY); }; s.onerror = function () { skyPromise = null; rej(new Error('aish-sky.js is missing next to this page.')); }; document.head.appendChild(s); });
     return skyPromise;
   }
-  function showSky(list) {
+  function showSky() {
     loadSky().then(function (S) {
       if (state.view !== 'sky') return;
-      if (sky && $('extra').firstChild) { sky.update(list); return; }
+      if (sky) { sky.update(state.all); return; }
       $('extra').textContent = '';
-      sky = S.mount($('extra'), { items: function () { return list; }, card: card });
+      sky = S.mount($('extra'), {
+        all: function () { return state.all; }, card: card,
+        match: function (q) { q = q.trim().toLowerCase(); if (!q) return null; var ws = q.split(/\s+/), ids = new Set(); state.all.forEach(function (a) { var hs = haystack(a); if (ws.every(function (w) { return hs.indexOf(w) >= 0; })) ids.add(a.id); }); return ids; },
+        exit: function () { sky = null; state.view = 'list'; try { history.replaceState(null, '', '#list'); } catch (e) { /* file:// */ } render(); }
+      });
     }).catch(function (e) { note(e.message, 'err'); });
   }
   function leaveSky() { if (sky) { sky.destroy(); sky = null; } }
@@ -210,7 +214,7 @@
     document.querySelectorAll('#views button').forEach(function (b) { b.setAttribute('aria-pressed', String(b.dataset.view === state.view)); });
     if (state.view !== 'sky') leaveSky();
     if (state.view === 'list') { $('extra').textContent = ''; }
-    else if (state.view === 'sky') showSky(list);
+    else if (state.view === 'sky') showSky();
     else loadD3().then(function (d3) { if (state.view === 'timeline') drawTimeline(d3); else drawGraph(d3); }).catch(function (e) { note(e.message, 'err'); });
   }
 
