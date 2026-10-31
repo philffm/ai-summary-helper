@@ -67,4 +67,4 @@ Keep the keystore somewhere safe: losing it means users must uninstall to update
 hash, the key derivation and file format, and the merge, each proven against `sync-vector.json`, which the extension's own code writes
 (`node plugin/tests/gen-sync-vector.mjs`, then copy it here; the extension's test208 and the CI step fail when the two drift apart).
 Files written by this code decrypt in the extension and the other way round (checked once by hand with a fixed nonce, see SyncVectorTest).
-Not built yet: the stores (WebDAV, S3, folder), the sync engine, and the screens.
+The stores (WebDAV, S3) and the engine are built and tested; `plugin/tests/xsync.mjs` runs the extension's engine and this one against the same folder, taking turns (needs the Android SDK, not part of the normal suite). Not built yet: turning received articles into reading-list entries, the notes screens, the share target, the settings screen and the background job.
