@@ -104,6 +104,9 @@
   "navFeeds": {
     "message": "Flöden"
   },
+  "navNotes": {
+    "message": "Anteckningar"
+  },
   "feedAddPlaceholder": {
     "message": "Webbplats eller flödesadress…"
   },

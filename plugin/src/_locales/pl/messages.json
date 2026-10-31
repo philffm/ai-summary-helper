@@ -104,6 +104,9 @@
   "navFeeds": {
     "message": "Kanały"
   },
+  "navNotes": {
+    "message": "Notatki"
+  },
   "feedAddPlaceholder": {
     "message": "Adres strony lub kanału…"
   },

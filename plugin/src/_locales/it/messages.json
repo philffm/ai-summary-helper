@@ -3422,6 +3422,9 @@
   "navFeeds": {
     "message": "Feed"
   },
+  "navNotes": {
+    "message": "Note"
+  },
   "feedAddPlaceholder": {
     "message": "Indirizzo del sito o del feed…"
   },

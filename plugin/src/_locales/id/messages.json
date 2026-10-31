@@ -104,6 +104,9 @@
   "navFeeds": {
     "message": "Feed"
   },
+  "navNotes": {
+    "message": "Catatan"
+  },
   "feedAddPlaceholder": {
     "message": "Alamat situs atau feed…"
   },

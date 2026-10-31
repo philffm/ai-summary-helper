@@ -104,6 +104,9 @@
   "navFeeds": {
     "message": "Feeds"
   },
+  "navNotes": {
+    "message": "Notities"
+  },
   "feedAddPlaceholder": {
     "message": "Site- of feedadres…"
   },

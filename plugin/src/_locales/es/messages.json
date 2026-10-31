@@ -254,6 +254,9 @@
   "navFeeds": {
     "message": "Fuentes"
   },
+  "navNotes": {
+    "message": "Notas"
+  },
   "feedAddPlaceholder": {
     "message": "Dirección del sitio o del feed…"
   },

@@ -254,6 +254,9 @@
   "navFeeds": {
     "message": "Feeds"
   },
+  "navNotes": {
+    "message": "Notas"
+  },
   "feedAddPlaceholder": {
     "message": "Endereço do site ou do feed…"
   },

@@ -266,6 +266,9 @@
   "navFeeds": {
     "message": "フィード"
   },
+  "navNotes": {
+    "message": "ノート"
+  },
   "feedAddPlaceholder": {
     "message": "サイトまたはフィードのURL…"
   },

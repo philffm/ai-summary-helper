@@ -4,7 +4,7 @@
 // History detail view keep their own pill, so this one stays out of the way there.
 import { T } from './feedI18n.js';
 
-const SCREENS = ['feeds', 'history'];
+const SCREENS = ['feeds', 'history', 'notes'];
 
 export function initBackToTop(doc = document) {
     if (doc.getElementById('backToTopBtn')) return;

@@ -14,7 +14,7 @@ export const ICON_EMOJI = {
     laptop: '💻', layers: '📦', lightbulb: '💡', link: '🔗', loader: '⏳', lock: '🔒', 'message-square': '💬', network: '🕸️',
     newspaper: '📰', palette: '🎨', paperclip: '📎', pause: '⏸', pencil: '✏️', pin: '📌', play: '▶', plus: '＋', 'refresh-cw': '↻',
     ruler: '📏', save: '💾', search: '🔍', send: '📤', server: '🦙', settings: '⚙️', 'share-2': '🔗', 'sliders-horizontal': '🎚️',
-    smartphone: '📱', smile: '😊', sparkles: '✨', 'square-check-big': '☑️', star: ['☆', '★'], tag: '🏷️', 'trash-2': '🗑️',
+    smartphone: '📱', smile: '😊', sparkles: '✨', 'square-check-big': '☑️', star: ['☆', '★'], 'sticky-note': '🗒️', tag: '🏷️', 'trash-2': '🗑️',
     'undo-2': '↩', upload: '📤', user: '👤', 'volume-2': '🔊', 'volume-x': '🔇', x: '✕'
 };
 

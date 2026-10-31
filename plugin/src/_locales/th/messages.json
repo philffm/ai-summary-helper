@@ -104,6 +104,9 @@
   "navFeeds": {
     "message": "ฟีด"
   },
+  "navNotes": {
+    "message": "บันทึก"
+  },
   "feedAddPlaceholder": {
     "message": "ที่อยู่เว็บไซต์หรือฟีด…"
   },

@@ -104,6 +104,9 @@
   "navFeeds": {
     "message": "Syötteet"
   },
+  "navNotes": {
+    "message": "Muistiinpanot"
+  },
   "feedAddPlaceholder": {
     "message": "Sivuston tai syötteen osoite…"
   },

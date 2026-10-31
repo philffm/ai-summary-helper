@@ -266,6 +266,9 @@
   "navFeeds": {
     "message": "Feeds"
   },
+  "navNotes": {
+    "message": "Notizen"
+  },
   "feedAddPlaceholder": {
     "message": "Website- oder Feed-Adresse…"
   },

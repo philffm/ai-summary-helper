@@ -254,6 +254,9 @@
   "navFeeds": {
     "message": "फ़ीड"
   },
+  "navNotes": {
+    "message": "नोट्स"
+  },
   "feedAddPlaceholder": {
     "message": "साइट या फ़ीड का पता…"
   },

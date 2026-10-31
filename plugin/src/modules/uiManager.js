@@ -1,7 +1,7 @@
 // uiManager.js
 class UIManager {
     constructor() {
-        this.screenOrder = ['feeds', 'main', 'history', 'settings'];
+        this.screenOrder = ['feeds', 'main', 'history', 'notes', 'settings'];
         this._currentScreenIdx = undefined;
 
         this.screens = {
@@ -9,6 +9,7 @@ class UIManager {
             settings: document.getElementById('settingsScreen'),
             history: document.getElementById('historyScreen'),
             feeds: document.getElementById('feedsScreen'),
+            notes: document.getElementById('notesScreen'),
             podcast: document.getElementById('podcastScreen')
         };
 
@@ -106,6 +107,10 @@ class UIManager {
                 const { onFeedsScreenShown } = await import('./feedManager.js');
                 onFeedsScreenShown(this);
             }
+            if (screenName === 'notes') {
+                const { onNotesScreenShown } = await import('./notesView.js');
+                onNotesScreenShown();
+            }
             return;
         }
 
@@ -156,6 +161,12 @@ class UIManager {
                 } catch (e) {
                     // Ignore if extension context was invalidated (popup closed)
                 }
+            }, 350);
+        }
+
+        if (screenName === 'notes') {
+            setTimeout(async () => {
+                try { const { onNotesScreenShown } = await import('./notesView.js'); onNotesScreenShown(); } catch (e) { /* the popup was closed */ }
             }, 350);
         }
 

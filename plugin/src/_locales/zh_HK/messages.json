@@ -3422,6 +3422,9 @@
   "navFeeds": {
     "message": "訂閱來源"
   },
+  "navNotes": {
+    "message": "筆記"
+  },
   "feedAddPlaceholder": {
     "message": "網站或訂閱來源網址…"
   },

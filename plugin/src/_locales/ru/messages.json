@@ -3422,6 +3422,9 @@
   "navFeeds": {
     "message": "Ленты"
   },
+  "navNotes": {
+    "message": "Заметки"
+  },
   "feedAddPlaceholder": {
     "message": "Адрес сайта или ленты…"
   },

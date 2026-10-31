@@ -254,6 +254,9 @@
   "navFeeds": {
     "message": "Flux"
   },
+  "navNotes": {
+    "message": "Notes"
+  },
   "feedAddPlaceholder": {
     "message": "Adresse du site ou du flux…"
   },

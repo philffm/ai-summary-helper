@@ -104,6 +104,9 @@
   "navFeeds": {
     "message": "Feeder"
   },
+  "navNotes": {
+    "message": "Notater"
+  },
   "feedAddPlaceholder": {
     "message": "Nettsted eller feedadresse…"
   },

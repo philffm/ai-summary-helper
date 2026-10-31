@@ -248,6 +248,9 @@
   "navFeeds": {
     "message": "피드"
   },
+  "navNotes": {
+    "message": "노트"
+  },
   "feedAddPlaceholder": {
     "message": "사이트 또는 피드 주소…"
   },

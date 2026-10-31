@@ -104,6 +104,9 @@
   "navFeeds": {
     "message": "Стрічки"
   },
+  "navNotes": {
+    "message": "Нотатки"
+  },
   "feedAddPlaceholder": {
     "message": "Адреса сайту чи стрічки…"
   },

@@ -104,6 +104,9 @@
   "navFeeds": {
     "message": "Akışlar"
   },
+  "navNotes": {
+    "message": "Notlar"
+  },
   "feedAddPlaceholder": {
     "message": "Site veya akış adresi…"
   },

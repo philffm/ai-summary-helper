@@ -254,6 +254,9 @@
   "navFeeds": {
     "message": "订阅源"
   },
+  "navNotes": {
+    "message": "笔记"
+  },
   "feedAddPlaceholder": {
     "message": "网站或订阅源地址…"
   },

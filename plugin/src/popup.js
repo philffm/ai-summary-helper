@@ -88,8 +88,9 @@ document.addEventListener("DOMContentLoaded", async () => {
         import('./modules/inboxView.js'),
         import('./modules/mcpView.js'),
         import('./modules/syncView.js'),
+        import('./modules/notesView.js'),
         import('./modules/aboutView.js'),
-    ]).then(([{ initSettingsManager }, { initFeedManager }, { initArticleManager }, { initInboxView }, { initMcpView }, { initSyncView }, { initAboutView }]) => {
+    ]).then(([{ initSettingsManager }, { initFeedManager }, { initArticleManager }, { initInboxView }, { initMcpView }, { initSyncView }, { initNotesView }, { initAboutView }]) => {
         initAboutView();   // first: settingsNav reads #versionNumber for the About row
         initSettingsManager(ui);
         initFeedManager(ui);
@@ -97,6 +98,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         initInboxView();
         initMcpView();
         initSyncView();
+        initNotesView(ui);
     }).catch((e) => console.error('Deferred module init failed:', e));
 
     // ── Auto-open native side panel if enabled ──────────────────────────
@@ -853,7 +855,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     navItems.forEach(item => {
         item.addEventListener('click', () => {
             const screen = item.dataset.screen;
-            if (screen === 'main' || screen === 'history' || screen === 'settings' || screen === 'feeds') {
+            if (screen === 'main' || screen === 'history' || screen === 'settings' || screen === 'feeds' || screen === 'notes') {
                 ui.showScreen(screen);
             }
         });
