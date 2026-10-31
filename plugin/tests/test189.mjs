@@ -29,13 +29,20 @@ assert.throws(() => S.cleanPlace({ ...input, mode: 'encrypted' }), /Encrypted/);
 assert.throws(() => S.cleanPlace({ ...input, direction: 'both' }), /Two-way/);
 assert.throws(() => S.cleanPlace({ ...input, url: 'not a url' }), /address/);
 assert.throws(() => S.cleanPlace({ ...input, url: 'http://cloud.test/dav/' }), /https/);
-assert.throws(() => S.cleanPlace({ ...input, filter: {} }), /tag/, 'a readable place needs a filter unless everything is chosen on purpose');
-assert.equal(S.cleanPlace({ ...input, filter: {}, allowEverything: true }).filter.tag, undefined);
+assert.throws(() => S.cleanPlace({ ...input, filter: {} }), /Choose which articles/, 'a readable place needs a scope: everything is a deliberate choice');
+assert.throws(() => S.cleanPlace({ ...input, scope: 'tag', filter: { tag: ' ' } }), /Enter the tag/);
+assert.throws(() => S.cleanPlace({ ...input, scope: 'except', filter: {} }), /leave out/);
+const everything = S.cleanPlace({ ...input, scope: 'all', filter: { tag: 'ignored' } });
+assert.equal(everything.scope, 'all'); assert.deepEqual(everything.filter, {}, 'scope all has no filter');
+assert.deepEqual(S.cleanPlace({ ...input, scope: 'except', filter: { excludeTag: 'private' } }).filter, { excludeTag: 'private' });
+assert.equal(S.cleanPlace(input).scope, 'tag', 'an older place with only a filter keeps working');
 const clean = S.cleanPlace(input);
 assert.equal(clean.root, 'site'); assert.deepEqual(clean.include, { highlights: true, qa: false }); assert.equal(clean.direction, 'publish'); assert.ok(/^pl_/.test(clean.id));
 
 // preview and test: no saving
 assert.deepEqual(await svc.preview(input), { count: 1 });
+assert.deepEqual(await svc.preview({ ...input, scope: 'all' }), { count: 2 });
+assert.deepEqual(await svc.preview({ ...input, scope: 'except', filter: { excludeTag: 'public' } }), { count: 1 });
 let t = await svc.test(input, { password: 'secret' });
 assert.deepEqual(t, { ok: true, count: 1 });
 t = await svc.test(input, { password: 'wrong' });

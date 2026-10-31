@@ -4,7 +4,7 @@
 //
 // A place (sync:places, no secrets):
 //   { id, name, service: 'webdav', url, root, username, mode: 'readable', direction: 'publish', include: { highlights, qa },
-//     filter: { tag } | { excludeTag }, enabled, allowInsecureLan?, created }
+//     scope: 'tag' | 'except' | 'all', filter: { tag } | { excludeTag } | {}, enabled, allowInsecureLan?, created }
 // Its login lives apart in sync:secrets[id] = { password }. Encrypted places and two-way sync are not built yet and are refused.
 import { SK, syncLedgerKey } from './storageKeys.js';
 import { pushPlace } from './syncPush.js';
@@ -12,6 +12,7 @@ import { placeMatches, INCLUDE_DEFAULT } from './syncReadable.js';
 import { TargetError } from './targets/targetError.js';
 
 export const SERVICES = ['webdav'];
+export const SCOPES = ['tag', 'except', 'all'];
 const get = (storage, keys) => Promise.resolve(storage.get(keys));
 const newId = () => 'pl_' + Date.now().toString(36) + Math.random().toString(36).slice(2, 7);
 const clip = (v, n) => String(v == null ? '' : v).trim().slice(0, n);
@@ -25,10 +26,12 @@ export function cleanPlace(input, { id } = {}) {
     let url;
     try { url = new URL(clip(p.url, 2048)); } catch (_) { throw new Error('Enter the full address, starting with https://'); }
     if (url.protocol !== 'https:' && !(url.protocol === 'http:' && p.allowInsecureLan)) throw new Error('The address must start with https://');
+    // which articles go out: 'tag' (only those with a tag), 'except' (all but those with a tag) or 'all' (a deliberate choice)
+    const scope = SCOPES.includes(p.scope) ? p.scope : (p.filter && p.filter.tag ? 'tag' : p.filter && p.filter.excludeTag ? 'except' : '');
+    if (!scope) throw new Error('Choose which articles to publish.');
     const filter = {};
-    if (clip(p.filter && p.filter.tag, 40)) filter.tag = clip(p.filter.tag, 40);
-    else if (clip(p.filter && p.filter.excludeTag, 40)) filter.excludeTag = clip(p.filter.excludeTag, 40);
-    if (!filter.tag && !filter.excludeTag && !p.allowEverything) throw new Error('Choose which articles to publish: enter a tag.');
+    if (scope === 'tag') { filter.tag = clip(p.filter && p.filter.tag, 40); if (!filter.tag) throw new Error('Enter the tag of the articles to publish.'); }
+    if (scope === 'except') { filter.excludeTag = clip(p.filter && p.filter.excludeTag, 40); if (!filter.excludeTag) throw new Error('Enter the tag of the articles to leave out.'); }
     const include = { ...INCLUDE_DEFAULT, ...(p.include || {}) };
     return {
         id: id || p.id || newId(),
@@ -37,7 +40,7 @@ export function cleanPlace(input, { id } = {}) {
         url: url.href,
         root: clip(p.root, 120).replace(/^\/+|\/+$/g, '') || 'aish-sync',
         username: clip(p.username, 200),
-        mode: 'readable', direction: 'publish',
+        mode: 'readable', direction: 'publish', scope,
         include: { highlights: !!include.highlights, qa: !!include.qa },
         filter,
         enabled: p.enabled !== false,

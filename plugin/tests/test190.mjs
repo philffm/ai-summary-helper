@@ -53,6 +53,17 @@ type('syncTag', 'nothing'); await wait(80);
 assert.equal($('syncPreviewCount').textContent, '0 articles');
 type('syncTag', 'public'); await wait(80);
 
+// which articles: a tag, all except a tag, or everything (with a warning)
+assert.equal(root().querySelector('.a11y-seg button.on').textContent, 'With a tag');
+click(byText('.a11y-seg button', 'All except a tag')); await wait(100);
+assert.match(text(), /Publish everything except articles tagged/); assert.equal($('syncTag').value, 'private');
+assert.equal($('syncPreviewCount').textContent, '1 article', 'everything except private');
+click([...root().querySelectorAll('.a11y-seg button')].find((b) => b.textContent === 'All')); await wait(100);
+assert.ok(!$('syncTag'), 'no tag field for everything'); assert.match(text(), /Every article you saved goes out/);
+assert.equal($('syncPreviewCount').textContent, '2 articles');
+click(byText('.a11y-seg button', 'With a tag')); await wait(100);
+assert.equal($('syncTag').value, 'public', 'switching back restores the tag');
+
 // test connection: a wrong login says so, a right one reports the count
 type('syncName', 'My site'); type('syncUrl', 'https://cloud.test/dav/'); type('syncRoot', 'site'); type('syncUser', 'phil'); type('syncPass', 'wrong');
 click(byText('button', 'Test connection')); await wait(120);

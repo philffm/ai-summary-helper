@@ -28,7 +28,7 @@ let testMsg = null;           // { ok, text }
 let formError = '';
 let previewToken = 0;
 
-const blankDraft = () => ({ service: 'webdav', name: '', url: '', root: 'aish-sync', username: '', filter: { tag: 'public' }, include: { highlights: true, qa: false } });
+const blankDraft = () => ({ service: 'webdav', name: '', url: '', root: 'aish-sync', username: '', scope: 'tag', filter: { tag: 'public' }, include: { highlights: true, qa: false } });
 
 // ── tiny DOM helpers ──
 function el(tag, cls, text) { const e = document.createElement(tag); if (cls) e.className = cls; if (text != null) e.textContent = text; return e; }
@@ -235,15 +235,31 @@ function formScreen(place, st, count) {
     out.push(el('div', 'explanatory-card sync-warn', T('Anyone who can open this folder can read these files. Use a folder you control, and keep it private unless you want to publish it.')));
     out.push(hint(T('This place publishes only: this device writes the files and never reads them back. Syncing between your devices is coming.')));
 
+    out.push(el('p', 'settings-caption', TU('Which articles')));
+    const scope = draft.scope || 'tag';
+    const seg = el('div', 'a11y-seg'); seg.setAttribute('role', 'radiogroup'); seg.setAttribute('aria-label', T('Which articles'));
+    for (const [id, label] of [['tag', T('With a tag')], ['except', T('All except a tag')], ['all', T('All')]]) {
+        const b = button(label, id === scope ? 'on' : '', () => {
+            if (id === scope) return;
+            draft.scope = id;
+            draft.filter = id === 'tag' ? { tag: (draft.lastTag || 'public') } : id === 'except' ? { excludeTag: (draft.lastExcl || 'private') } : {};
+            render().then(refreshPreview);
+        });
+        b.setAttribute('role', 'radio'); b.setAttribute('aria-checked', String(id === scope));
+        seg.append(b);
+    }
+    out.push(seg);
+    if (scope === 'tag') out.push(field('syncTag', T('Only publish articles tagged'), (draft.filter && draft.filter.tag) || '', { placeholder: 'public', onInput: (v) => { draft.filter = { tag: v }; draft.lastTag = v; refreshPreview(); } }));
+    if (scope === 'except') out.push(field('syncTag', T('Publish everything except articles tagged'), (draft.filter && draft.filter.excludeTag) || '', { placeholder: 'private', onInput: (v) => { draft.filter = { excludeTag: v }; draft.lastExcl = v; refreshPreview(); } }));
+    if (scope === 'all') out.push(el('div', 'explanatory-card sync-warn', T('Every article you saved goes out, including ones you may not want others to read. A backup that only you can read should be encrypted instead.')));
     out.push(el('p', 'settings-caption', TU('What goes out')));
-    out.push(field('syncTag', T('Only publish articles tagged'), (draft.filter && draft.filter.tag) || '', { placeholder: 'public', onInput: (v) => { draft.filter = { tag: v }; refreshPreview(); } }));
     out.push(switchRow(T('Highlights'), T('Your yellow and AI highlights'), draft.include.highlights, (on) => { draft.include.highlights = on; }));
     out.push(switchRow(T('Pinned Q&A'), T('Questions you pinned, with answers'), draft.include.qa, (on) => { draft.include.qa = on; }));
     out.push(hint(T('Notes, reminders and full article text are never published.')));
     const pv = el('section', 'mcp-card');
     const pvHead = el('div', 'mcp-step-head');
     pvHead.append(el('span', 'mcp-step-title', T('What goes out')), (() => { const c = chip('…', 'is-accent'); c.id = 'syncPreviewCount'; return c; })());
-    pv.append(pvHead, hint(T('Articles with this tag. Each becomes one file, and a list for your website (library.json).')));
+    pv.append(pvHead, hint(T('Each article becomes one file, plus a list for your website (library.json).')));
     out.push(pv);
 
     if (formError) { const e = el('p', 'setting-note phone-inbox-error', formError); e.setAttribute('role', 'alert'); out.push(e); }
@@ -288,7 +304,8 @@ async function refreshPreview() {
     const chipEl = $('syncPreviewCount');
     if (!chipEl || !draft) return;
     try {
-        const input = { ...draft, url: draft.url || 'https://example.com/', filter: draft.filter && draft.filter.tag ? draft.filter : { tag: '…' }, service: 'webdav' };
+        const f = draft.filter || {};
+        const input = { ...draft, url: draft.url || 'https://example.com/', filter: draft.scope === 'tag' ? { tag: f.tag || '…' } : draft.scope === 'except' ? { excludeTag: f.excludeTag || '…' } : {}, service: 'webdav' };
         const r = await svc.preview(input);
         if (token === previewToken && $('syncPreviewCount')) $('syncPreviewCount').textContent = TN(r.count, '{n} article', '{n} articles');
     } catch (_) { /* an incomplete form has no preview yet */ }
