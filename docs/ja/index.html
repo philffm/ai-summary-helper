@@ -57,7 +57,6 @@
     <nav class="pill" aria-label="プライマリ">
       <a href="index.html#features" data-sec="features">機能</a>
       <a href="index.html#try-it" data-sec="try-it">デモ</a>
-      <a href="index.html#pricing" data-sec="pricing">料金プラン</a>
       <a href="https://chromewebstore.google.com/detail/ai-summary-helper-openai/hldbejcjaedipeegjcinmhejdndchkmb" class="pill-cta" target="_blank" rel="noopener">Chromeに追加</a>
     </nav>
     <div class="nav-tools">
@@ -76,13 +75,12 @@
       <nav class="mm-links" aria-label="モバイル">
         <a href="index.html#features"><span class="mm-n">01</span>機能</a>
         <a href="index.html#try-it"><span class="mm-n">02</span>デモ</a>
-        <a href="index.html#pricing"><span class="mm-n">03</span>料金プラン</a>
-        <a href="blog/"><span class="mm-n">04</span>ブログ</a>
+        <a href="blog/"><span class="mm-n">03</span>ブログ</a>
           <a href="blog/pocket-alternative.html" class="mm-sub">Pocket代替ツール：重視すべきポイント</a>
           <a href="blog/bring-your-own-key.html" class="mm-sub">あなたのAPIキー。あなたのモデル。あなたのデータ。</a>
           <a href="blog/verify-ai-summary.html" class="mm-sub">要約を元の情報源と照合する</a>
           <a href="blog/highlighting-vs-asking.html" class="mm-sub">ハイライトした内容について質問する</a>
-        <a href="https://github.com/philffm/ai-summary-helper/" target="_blank" rel="noopener"><span class="mm-n">05</span>GitHub</a>
+        <a href="https://github.com/philffm/ai-summary-helper/" target="_blank" rel="noopener"><span class="mm-n">04</span>GitHub</a>
       </nav>
       <div class="mm-lang">
         <button type="button" class="lang-card" id="langCard"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.6"></circle><path d="M3 12h18M12 3c2.6 2.7 3.9 5.7 3.9 9s-1.3 6.3-3.9 9c-2.6-2.7-3.9-5.7-3.9-9S9.4 5.7 12 3Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"></path></svg><span class="lang-card-cur">英語</span><small>24言語</small><b aria-hidden="true">→</b></button>
@@ -132,28 +130,11 @@
       <div class="eyebrow"><span class="dash"></span> Chrome拡張機能 · byphil. プロジェクト <span class="dash"></span></div>
       <h1>Webを要約する。<br><em>重要な情報を、確実に手元に。</em></h1>
       <p class="sub">AI Summary Helperは、内蔵RSSリーダーでお気に入りのサイトをフォローし、あらゆるWebページを要約付きで検索可能な記事として保存します。さらに、オンデバイスで作成されるダイジェストを通じてKindleや他のデバイスへ直接送信し、オフラインでもスムーズに読み返せるようサポートします。</p>
-      <div class="hero-switch" role="tablist" aria-label="どのような用途でお使いですか？">
-        <button type="button" class="hero-switch-btn active" role="tab" id="heroTabBrowser" aria-selected="true" aria-controls="heroPaneBrowser" data-hero="browser">
-          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="3" stroke="currentColor" stroke-width="1.6"></rect><path d="M3 9h18" stroke="currentColor" stroke-width="1.6"></path></svg>
-          ブラウザ拡張機能
-        </button>
-        <button type="button" class="hero-switch-btn" role="tab" id="heroTabBookmarklet" aria-selected="false" aria-controls="heroPaneBookmarklet" tabindex="-1" data-hero="bookmarklet">
-          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 3h12v18l-6-4-6 4V3Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"></path></svg>
-          ブックマークレット
-        </button>
-      </div>
-      <div class="hero-pane" id="heroPaneBrowser" role="tabpanel" aria-labelledby="heroTabBrowser">
+      <div class="hero-pane" id="heroPaneBrowser">
         <div class="hero-cta">
           <a href="https://chromewebstore.google.com/detail/ai-summary-helper-openai/hldbejcjaedipeegjcinmhejdndchkmb" target="_blank" rel="noopener" class="btn-primary">Chromeに追加（無料）</a>
         </div>
         <p class="hero-meta">アカウント登録不要ですぐに使えます · byPhil API経由の各種LLMモデル、ご自身のAPIキー、またはOllamaによる完全オフライン利用に対応</p>
-      </div>
-      <div class="hero-pane" id="heroPaneBookmarklet" role="tabpanel" aria-labelledby="heroTabBookmarklet" hidden="">
-        <p class="hero-pane-blurb">ブックマークバーにリンクを1つ追加するだけ。iOSを含むあらゆるブラウザ・OSに対応。インストール不要で、ページ上に直接要約を表示します。</p>
-        <div class="hero-cta">
-          <a href="../bookmarklet.html" class="btn-primary" data-track="bookmarklet-open">ブックマークレットを作成する →</a>
-        </div>
-        <p class="hero-meta">ジェネレーターを開く · byPhil API経由（キー不要）の各種LLMモデル、またはご自身のOpenAI、Gemini、Mistral、DeepSeek、Ollamaに対応</p>
       </div>
       <ol class="hs-steps" data-stage-pane="browser">
   <li class="is-on" data-step="0" role="button" tabindex="0"><b>あらゆるページを閲覧</b><span>いつも通り記事を開くだけ。AISH はブラウザ内で静かに待機します。</span></li>
@@ -203,30 +184,10 @@
           </div>
         </div>
       </div>
+      <!-- The animated demo is nice, but the video shows it better: this opens the full video (komplett-<lang>.mp4, the first clip of #videos) in the player. Without JavaScript it jumps to the clips. -->
+      <a class="hs-watch" href="#videos" data-open-video="komplett"><span class="hs-watch-ico" aria-hidden="true">▶</span><span class="hs-watch-txt"><strong>動画を見る</strong><small>1分ですべてが分かります</small></span></a>
       <div class="hs-ctrl" role="group" aria-label="ウォークスルー"><button type="button" class="hs-pp" aria-label="ウォークスルーを一時停止"><svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><path class="pp-pause" d="M7 5h3v14H7zM14 5h3v14h-3z" fill="currentColor"></path><path class="pp-play" d="M8 5l11 7-11 7z" fill="currentColor"></path></svg></button><button type="button" class="hs-dot is-on" aria-label="ステップ 1"></button><button type="button" class="hs-dot" aria-label="ステップ 2"></button><button type="button" class="hs-dot" aria-label="ステップ 3"></button><button type="button" class="hs-dot" aria-label="ステップ 4"></button></div>
       <p class="sr-only">AI Summary Helper は、サイドパネルに記事の簡潔な要約を表示します。参照元にリンクした追加質問ができるほか、お好みの言語で要約を表示できます。</p>
-    </div>
-    <div class="hs-bm" data-stage-pane="bookmarklet" hidden="">
-      <div class="bm-mock" aria-hidden="true" data-no-translate="">
-            <div class="bm-win">
-              <div class="bm-tb"><i></i><i></i><i></i><span>🔒 dailyledger.example/work-life/office-fern</span></div>
-              <div class="bm-bar"><span>Mail</span><span>Docs</span><span>Maps</span><span class="bm-mark">✨ Summarize</span></div>
-              <div class="bm-page">
-                <div class="bm-mast">The Daily Ledger</div>
-                <h4>Office fern outlives four reorganisations, now up for team lead</h4>
-                <p>Leeds. When the logistics team moved floors in 2019, nobody expected Gerald to survive.</p>
-                <p>Seven years and four reorganisations later, the office fern is the longest-serving member of the department.</p>
-                <p>He has never once scheduled a meeting that could have been an email.</p>
-                <div class="bm-card"><small>✨ AI Summary</small><b>A fern climbs the career ladder</b><span>Gerald, an office fern in Leeds, has outlasted <strong>four reorganisations in seven years</strong> and is now up for team lead.</span></div>
-              </div>
-              <svg class="bm-cursor" viewBox="0 0 24 24" width="26" height="26"><path d="M4 2l15 9-6.5 1.5L9 19z" fill="#14161f" stroke="#fff" stroke-width="1.4" stroke-linejoin="round"></path></svg>
-            </div>
-          </div>
-      <ol class="bm-steps">
-  <li><span class="bm-n">1</span><div><h3>一度作成するだけ</h3><p>byPhil API（キー不要）、またはご自身の OpenAI、Gemini、Mistral、DeepSeek、Ollama を選択します。</p></div></li>
-  <li><span class="bm-n">2</span><div><h3>ブックマークバーにドラッグ＆ドロップ</h3><p>iOS を含むあらゆるブラウザや OS で動作。インストールの手間はありません。</p></div></li>
-  <li><span class="bm-n">3</span><div><h3>好きなページでクリック</h3><p>ページ上に直接要約が表示され、質問への回答や言語切り替えもスムーズに行えます。</p></div></li>
-</ol>
     </div>
   </div>
 </section>
@@ -829,6 +790,16 @@
           <h3>Claude、LM Studio、Cursor内でライブラリを活用</h3>
           <p>設定でAIアプリを有効にすると、お使いのPC上のClaude Desktop、LM Studio、CursorなどのMCP対応アプリから、ライブラリの検索、ハイライトの引用、未読・期限の確認が可能になります。許可すればリンクの保存も行えます。データがサーバーを経由することは一切なく、どの情報を読み取らせるかも自由に選択できます。</p>
           <button class="fvideo-cta" type="button" tabindex="-1" aria-hidden="true"><span class="fvideo-cta-play">▶</span>クリップを見る</button>
+        </div>
+        <div class="feature-card" data-personas="privacy hoarder researcher">
+          <div class="f-icon icon-teal"><svg viewBox="0 0 24 24" fill="none"><path d="M7 18.5h9.5a3.5 3.5 0 0 0 .6-6.95A5 5 0 0 0 7.4 10.6 4 4 0 0 0 7 18.5Z" stroke="#fff" stroke-width="1.7" stroke-linejoin="round"></path><path d="M12 12.5v3M10.8 13.8h2.4" stroke="#fff" stroke-width="1.7" stroke-linecap="round"></path></svg></div>
+          <h3>ご自身のストレージに、暗号化してライブラリを保管</h3>
+          <p>Nextcloudやその他のWebDAVサーバー、S3互換バケット、お使いのコンピューターのフォルダーを使って、複数デバイス間でのライブラリ同期、バックアップ、一部の公開が可能です。すべてのデータは送信前にブラウザ内で暗号化されるため、サーバー側には暗号化されたデータしか見えません。保存したコンテンツの検索機能、タググラフ、3Dマップを備えたリストをご自身のウェブサイトに公開することもできます。保存先を設定するまで機能はオフになっており、同期サーバーの運用やデータの閲覧を行うことは一切ありません。 <a href="../blog/sync-to-nextcloud-s3-or-a-folder.html">設定方法</a> · <a href="../blog/digital-sovereignty-for-individuals.html">なぜ重要なのか</a></p>
+        </div>
+        <div class="feature-card" data-personas="hoarder researcher">
+          <div class="f-icon icon-amber"><svg viewBox="0 0 24 24" fill="none"><path d="M6 4.5h9l3 3V19a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V5.5a1 1 0 0 1 1-1Z" stroke="#fff" stroke-width="1.7" stroke-linejoin="round"></path><path d="M8.5 11h7M8.5 14.5h4.5" stroke="#fff" stroke-width="1.7" stroke-linecap="round"></path></svg></div>
+          <h3>あらゆるページにノートやコメントを追加</h3>
+          <p>テキストを選択するだけで、ハイライト、コメント、引用付きノートの保存が簡単に行えます。作成した内容はすべて「ノート」タブに集約され、記事別やタグ別にリストや付箋形式のグリッドで閲覧でき、ライブラリ全体と同期されます。</p>
         </div>
         <div class="feature-card" data-personas="hoarder researcher">
           <figure class="fvideo" data-blog-video="export">

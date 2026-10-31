@@ -41,7 +41,6 @@
     <nav class="pill" aria-label="Utama">
       <a href="index.html#features" data-sec="features">Fitur</a>
       <a href="index.html#try-it" data-sec="try-it">Demo</a>
-      <a href="index.html#pricing" data-sec="pricing">Harga</a>
       <a href="https://chromewebstore.google.com/detail/ai-summary-helper-openai/hldbejcjaedipeegjcinmhejdndchkmb" class="pill-cta" target="_blank" rel="noopener">Tambahkan ke Chrome</a>
     </nav>
     <div class="nav-tools">
@@ -60,13 +59,12 @@
       <nav class="mm-links" aria-label="Mobile">
         <a href="index.html#features"><span class="mm-n">01</span>Fitur</a>
         <a href="index.html#try-it"><span class="mm-n">02</span>Demo</a>
-        <a href="index.html#pricing"><span class="mm-n">03</span>Harga</a>
-        <a href="blog/"><span class="mm-n">04</span>Blog</a>
+        <a href="blog/"><span class="mm-n">03</span>Blog</a>
           <a href="blog/pocket-alternative.html" class="mm-sub">Alternatif Pocket: hal yang terpenting</a>
           <a href="blog/bring-your-own-key.html" class="mm-sub">API key Anda. Model Anda. Data Anda.</a>
           <a href="blog/verify-ai-summary.html" class="mm-sub">Periksa ringkasan langsung dari sumbernya</a>
           <a href="blog/highlighting-vs-asking.html" class="mm-sub">Tanyakan seputar sorotan Anda</a>
-        <a href="https://github.com/philffm/ai-summary-helper/" target="_blank" rel="noopener"><span class="mm-n">05</span>GitHub</a>
+        <a href="https://github.com/philffm/ai-summary-helper/" target="_blank" rel="noopener"><span class="mm-n">04</span>GitHub</a>
       </nav>
       <div class="mm-lang">
         <button type="button" class="lang-card" id="langCard"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.6"></circle><path d="M3 12h18M12 3c2.6 2.7 3.9 5.7 3.9 9s-1.3 6.3-3.9 9c-2.6-2.7-3.9-5.7-3.9-9S9.4 5.7 12 3Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"></path></svg><span class="lang-card-cur">Bahasa Inggris</span><small>24 bahasa</small><b aria-hidden="true">→</b></button>
@@ -139,7 +137,7 @@
         <ul>
           <li><strong>Gunakan API key sendiri (BYOK)</strong> — OpenAI, Google Gemini, Mistral AI, DeepSeek, atau custom endpoint. API key Anda hanya disimpan secara lokal di perangkat Anda (tidak pernah disinkronkan, tidak pernah dikirim ke kami). Konten halaman yang Anda pilih untuk diringkas dikirim langsung dari browser Anda ke penyedia yang Anda pilih, menggunakan key Anda sendiri dan tunduk pada kebijakan privasi penyedia tersebut. Kami tidak melihat, mencatat log, atau menyimpan konten ini.</li>
           <li><strong>Model lokal via Ollama</strong> — jika Anda menjalankan model secara lokal, konten halaman hanya dikirim ke perangkat Anda sendiri. Tidak ada data yang keluar dari perangkat Anda.</li>
-          <li><strong>byphil Cloud (opsional, berbayar)</strong> — opsi ter-hosting bagi pengguna yang memilih untuk tidak mengelola API key sendiri. Jika Anda memilih tingkatan ini, teks yang ingin Anda ringkas akan melewati backend kami, yang meneruskan permintaan tersebut melalui OpenRouter ke penyedia model dasar atas nama Anda dan mengembalikan ringkasannya. Data ini hanya diteruskan (relay): kami tidak menyimpan konten halaman, URL, atau ringkasan. Yang kami catat per akun adalah metadata penggunaan: jumlah permintaan yang selesai, penggunaan token, waktu permintaan terakhir, dan model yang digunakan. Akun itu sendiri bersifat opsional; semua fitur lainnya berfungsi tanpa akun.</li>
+          <li><strong>byphil Cloud (opsional, berbayar)</strong> — opsi hosting bagi mereka yang tidak ingin mengelola API key sendiri. Jika Anda memilih paket ini, teks yang ingin Anda rangkum akan melewati backend kami, yang meneruskan permintaan tersebut melalui OpenRouter ke penyedia model atas nama Anda dan mengembalikan hasil ringkasannya. Teks tersebut hanya diteruskan: kami tidak menyimpan konten halaman, URL, maupun ringkasan. Data yang kami catat per akun hanyalah metadata penggunaan: jumlah permintaan yang selesai, penggunaan token, waktu permintaan terakhir, dan model yang digunakan. Akun ini sendiri bersifat opsional; semua fitur lainnya tetap berfungsi tanpa akun. Dengan mengaktifkan pengaturan “Prefer EU servers”, model yang memiliki endpoint di Eropa hanya akan dijalankan pada endpoint tersebut, dan aplikasi akan menandai model mana saja yang mendukungnya. Ini membatasi lokasi model dijalankan. Hal ini tidak menghapus perantara dari jalurnya: teks Anda tetap melewati layanan kami (yang berjalan di server di Jerman) dan kemudian melalui OpenRouter, perusahaan asal AS, sebelum menuju ke model; selain itu, fitur read-aloud dan speech-to-text tidak memiliki opsi server UE.</li>
         </ul>
 
         <h3>Status lisensi dan langganan</h3>
@@ -160,6 +158,7 @@
             <tr><td>API key / konfigurasi penyedia</td><td>Lokal</td><td>Tidak — sensitif, khusus perangkat</td></tr>
             <tr><td>Kunci lisensi</td><td>Lokal</td><td>Tidak — sensitif, khusus perangkat</td></tr>
             <tr><td>IP jaringan LocalSend</td><td>Lokal</td><td>Tidak</td></tr>
+            <tr><td>Login library sync, access key, dan kunci enkripsi</td><td>Lokal</td><td>Tidak — sensitif, hanya di perangkat, tidak disertakan dalam backup</td></tr>
             <tr><td>Sorotan teks &amp; ghost highlight AI</td><td>Lokal (per halaman)</td><td>Tidak</td></tr>
             <tr><td>Prompt default, bahasa, panjang ringkasan</td><td>Sinkronisasi</td><td>Ya, via akun Chrome Anda sendiri</td></tr>
             <tr><td>Preferensi aktif/nonaktif sorotan</td><td>Sinkronisasi</td><td>Ya, via akun Chrome Anda sendiri</td></tr>
@@ -178,12 +177,21 @@
           <li><strong>LocalSend dan menu berbagi sistem (misalnya AirDrop) bersifat langsung.</strong> File dikirim langsung dari browser Anda ke perangkat yang Anda pilih di jaringan lokal Anda, atau ke aplikasi yang Anda pilih di menu berbagi. Kami tidak terlibat dan tidak melihat atau menyimpan konten ini. LocalSend dapat digunakan dengan ponsel, tablet, komputer, dan e-reader yang menjalankan aplikasi yang kompatibel.</li>
         </ul>
 
+        <h3>Library sync, backup, dan publikasi (opsional)</h3>
+        <p>Nonaktif sampai Anda menambahkan lokasi di Pengaturan → Sync &amp; backup. Lokasi dapat berupa folder di server pilihan Anda (Nextcloud atau server WebDAV lainnya, atau bucket yang kompatibel dengan S3 seperti AWS S3, Cloudflare R2, atau Backblaze B2) atau folder di komputer Anda sendiri. Kami tidak mengoperasikan server ini, kami tidak terlibat, dan kami tidak pernah melihat apa yang Anda simpan di sana.</p>
+        <ul>
+          <li><strong>Lokasi terenkripsi</strong> selaraskan seluruh library Anda di antara perangkat atau simpan backup: artikel, ringkasan, teks lengkap, sorotan, catatan, koleksi, dan tag. Semuanya dienkripsi di browser Anda (AES-256-GCM, dengan kunci yang dibuat dari passphrase Anda) sebelum keluar dari perangkat, dan nama file diacak. Server atau folder hanya melihat file terenkripsi, ukuran filenya, serta waktu perubahannya. Passphrase Anda tidak disimpan. Kunci yang dihasilkan darinya tetap berada di local storage browser ini agar sinkronisasi dapat berjalan di latar belakang; kunci ini tidak pernah disinkronkan dan tidak pernah menjadi bagian dari backup. Anda mendapatkan recovery key sekali. Jika Anda kehilangan passphrase dan recovery key, tidak ada yang dapat membaca file tersebut, termasuk kami.</li>
+          <li><strong>Lokasi terbaca</strong> publikasikan file biasa (dan, jika Anda mau, halaman viewer kecil) untuk situs web atau alat Anda sendiri. Hanya artikel yang cocok dengan filter tag yang Anda tentukan yang akan dikirim. Catatan, pengingat, dan teks artikel lengkap tidak pernah dipublikasikan kecuali Anda mengaktifkannya sendiri di danger zone, dan siapa pun yang dapat membuka folder tersebut akan dapat membacanya.</li>
+          <li><strong>Cara pengiriman.</strong> Permintaan dikirim langsung dari browser Anda ke alamat yang Anda masukkan melalui HTTPS, menggunakan login atau access key yang Anda berikan. Login tersebut disimpan secara lokal, tidak pernah disinkronkan, dan tidak disertakan dalam backup kecuali Anda memilihnya. Operator server dapat melihat alamat IP Anda dan waktu Anda melakukan sinkronisasi.</li>
+          <li><strong>Folder di komputer ini</strong> menggunakan akses folder browser. Anda memilih folder dan browser akan meminta izin Anda, yang mungkin diminta kembali setelah restart. Kami hanya menyimpan handle browser ke folder tersebut. Layanan apa pun yang Anda gunakan untuk menyinkronkan folder tersebut ke perangkat lain (Syncthing, iCloud Drive, Dropbox) memiliki ketentuan privasinya sendiri.</li>
+        </ul>
+
         <h3>Aplikasi AI di komputer Anda (MCP)</h3>
         <p>Nonaktif secara default. Saat Anda mengaktifkan Pengaturan → Aplikasi AI (MCP), aplikasi AI di komputer yang Anda hubungkan (misalnya Claude Desktop, LM Studio, Cursor, atau VS Code) dapat membaca bagian pustaka yang Anda izinkan: artikel tersimpan beserta ringkasan dan sorotannya, serta—hanya jika Anda mengaktifkannya—teks artikel lengkap, item feed, dan penyimpanan tautan ke inbox Anda. Data dikirim dari browser Anda melalui program helper kecil di komputer Anda (<code>aish-mcp</code>) ke aplikasi tersebut. Data tidak pernah melewati server kami, dan kami tidak pernah melihatnya. Helper hanya menerima koneksi dari komputer Anda sendiri serta memerlukan pairing code; helper tidak menyimpan artikel apa pun dan tidak mencatat data yang diteruskannya. Artikel dengan tag yang Anda kecualikan (<code>private</code> secara default) tidak akan pernah dibagikan. Ekstensi menyimpan daftar 50 panggilan terakhir (tool name, waktu, dan jumlah hasil, tanpa konten) di perangkat Anda, yang dapat Anda lihat di panel pengaturan yang sama. Data yang dikirimkan aplikasi AI ke modelnya bergantung pada aplikasi dan model yang Anda pilih: dengan local model, tidak ada data yang keluar dari komputer Anda. Nonaktifkan pengaturan atau pilih Disconnect kapan saja.</p>
 
         <h2 id="analytics">Analitik &amp; cookie</h2>
         <p><strong>Versi singkat:</strong> situs web ini menetapkan <strong>tanpa cookie</strong> dan tidak menggunakan pelacak iklan atau pelacak lintas-situs. Kami menghitung kunjungan anonim menggunakan instance Matomo mandiri (self-hosted), dan Anda dapat menonaktifkannya kapan saja.</p>
-        <p><strong>Ekstensi browser itu sendiri tidak mengandung kode analitik, telemetri, atau pelacakan apa pun.</strong> Satu-satunya permintaan jaringannya hanya dikirim ke penyedia AI yang Anda konfigurasi, feed yang Anda langgani, halaman yang Anda minta untuk dimuat, dan (jika Anda menggunakannya) backend byphil untuk byphil Cloud, login, pemeriksaan lisensi, serta Kirim ke Kindle.</p>
+        <p><strong>Ekstensi browser itu sendiri tidak mengandung kode analitik, telemetri, atau pelacakan apa pun.</strong> Satu-satunya permintaan jaringan yang dikirimkan hanya ditujukan ke penyedia AI yang Anda konfigurasikan, feed langganan Anda, halaman yang Anda minta untuk dimuat, server yang Anda siapkan untuk library sync, backup, atau publikasi, serta (jika Anda menggunakannya) backend byphil untuk byphil Cloud, login, pemeriksaan lisensi, dan Send to Kindle.</p>
         <h3>Apa yang kami ukur</h3>
         <p>Tampilan halaman, bahasa halaman, referrer, perkiraan negara/browser/kategori perangkat, dan bagian situs mana yang Anda gunakan untuk berinteraksi (misalnya klik pada "Tambahkan ke Chrome", pengalih harga, item FAQ, bagian yang Anda gulir, dan tahapan generator bookmarklet). Peristiwa tidak pernah memuat alamat email, API key, kode sekali pakai, konten halaman, atau data artikel.</p>
         <h3>Bagaimana konfigurasinya</h3>
@@ -223,8 +231,9 @@
             <tr><td><code>sidePanel</code></td><td>Mendukung side panel bawaan Chrome sebagai opsi tampilan</td></tr>
             <tr><td><code>scripting</code></td><td>Menyisipkan content script yang diperlukan untuk membaca dan meringkas halaman</td></tr>
             <tr><td><code>offscreen</code>, <code>tts</code></td><td>Memutar audio podcast dan membacakan ringkasan secara lantang di latar belakang saat popup ditutup</td></tr>
+            <tr><td>Akses File System (folder yang dipilih)</td><td>Hanya saat Anda memilih folder di komputer sebagai lokasi sync atau backup; browser akan meminta izin Anda dan hanya folder tersebut yang dapat diakses</td></tr>
             <tr><td><code>unlimitedStorage</code></td><td>Menyimpan arsip lokal artikel dan sorotan dalam jumlah besar tanpa terbentur kuota penyimpanan default</td></tr>
-            <tr><td><code>host_permissions (&lt;all_urls&gt;)</code></td><td>Memungkinkan Anda meringkas halaman web mana pun yang Anda kunjungi — konten hanya dibaca dan dikirimkan saat Anda secara aktif memicu pembuatan ringkasan, tidak pernah secara pasif</td></tr>
+            <tr><td><code>host_permissions (&lt;all_urls&gt;)</code></td><td>Memungkinkan Anda meringkas halaman apa pun yang Anda kunjungi — konten hanya dibaca dan dikirimkan saat Anda secara aktif memicu pembuatan ringkasan, tidak pernah secara pasif. Juga memungkinkan ekstensi terhubung ke sync server atau bucket yang Anda masukkan, yang dapat berada di alamat mana saja</td></tr>
           </tbody>
         </table>
         <p>Kami tidak menggunakan izin ini untuk melacak aktivitas penjelajahan Anda, membangun profil iklan, atau mengumpulkan data di luar penyediaan fitur-fitur yang dijelaskan di atas.</p>
@@ -234,14 +243,14 @@
           <li>Kami tidak menayangkan iklan, dan kami tidak menjual, menyewakan, atau memperdagangkan data Anda kepada pengiklan atau pialang data.</li>
           <li>Kami tidak mewajibkan pembuatan akun atau login untuk fitur utama apa pun.</li>
           <li>Kami tidak mencatat log atau menyimpan konten halaman yang Anda ringkas melalui API key Anda sendiri atau model lokal, dan kami tidak pernah melihat apa yang Anda kirimkan melalui LocalSend atau menu berbagi.</li>
-          <li>Kami tidak memiliki akses ke riwayat artikel, sorotan, atau API key yang disimpan secara lokal — data tersebut tidak pernah keluar dari perangkat Anda kecuali jika Anda mengekspornya secara eksplisit.</li>
+          <li>Kami tidak memiliki akses ke riwayat artikel, sorotan, atau API key yang tersimpan secara lokal — data tersebut tidak pernah keluar dari perangkat Anda kecuali jika Anda mengekspornya secara eksplisit atau menyiapkan lokasi sync, backup, atau publikasi, dan data hanya dikirim ke tujuan yang Anda tentukan.</li>
         </ul>
 
         <h2>Layanan Pihak Ketiga</h2>
         <p>Tergantung pada cara Anda mengonfigurasi ekstensi, konten halaman Anda dapat dikirim ke:</p>
         <ul>
           <li>OpenAI, Google (Gemini), Mistral AI, atau DeepSeek — hanya jika Anda telah memasukkan API key Anda sendiri untuk penyedia tersebut, dan hanya untuk halaman yang Anda ringkas secara aktif.</li>
-          <li>Backend byphil kami, di-hosting oleh IONOS SE di Jerman — hanya jika Anda masuk log, menggunakan byphil Cloud, atau Kirim ke Kindle.</li>
+          <li>Backend byphil kami beserta databasenya, keduanya di-host oleh IONOS SE di Jerman — hanya jika Anda masuk (sign in), menggunakan byphil Cloud, atau Send to Kindle.</li>
           <li>OpenRouter, jalur penghubung byphil Cloud ke model AI, dan penyedia model yang dituju — teks yang Anda ringkas hanya diteruskan ke model yang Anda gunakan, khusus untuk permintaan tersebut saja.</li>
           <li>Stripe — pengelolaan pembayaran dan langganan, sebagai Merchant of Record.</li>
           <li>Amazon — jika Anda mengirim artikel ke Kindle Anda, Amazon akan mengirimkannya berdasarkan ketentuan privasi mereka sendiri.</li>

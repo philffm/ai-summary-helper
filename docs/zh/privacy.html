@@ -41,7 +41,6 @@
     <nav class="pill" aria-label="主要">
       <a href="index.html#features" data-sec="features">功能特性</a>
       <a href="index.html#try-it" data-sec="try-it">演示</a>
-      <a href="index.html#pricing" data-sec="pricing">价格方案</a>
       <a href="https://chromewebstore.google.com/detail/ai-summary-helper-openai/hldbejcjaedipeegjcinmhejdndchkmb" class="pill-cta" target="_blank" rel="noopener">添加至 Chrome</a>
     </nav>
     <div class="nav-tools">
@@ -60,13 +59,12 @@
       <nav class="mm-links" aria-label="移动端">
         <a href="index.html#features"><span class="mm-n">01</span>功能特性</a>
         <a href="index.html#try-it"><span class="mm-n">02</span>演示</a>
-        <a href="index.html#pricing"><span class="mm-n">03</span>价格方案</a>
-        <a href="blog/"><span class="mm-n">04</span>博客</a>
+        <a href="blog/"><span class="mm-n">03</span>博客</a>
           <a href="blog/pocket-alternative.html" class="mm-sub">Pocket 替代方案：核心关注点</a>
           <a href="blog/bring-your-own-key.html" class="mm-sub">你的 API key，你的模型，你的数据。</a>
           <a href="blog/verify-ai-summary.html" class="mm-sub">对照原文核验 AI 摘要</a>
           <a href="blog/highlighting-vs-asking.html" class="mm-sub">围绕划线高亮发起提问</a>
-        <a href="https://github.com/philffm/ai-summary-helper/" target="_blank" rel="noopener"><span class="mm-n">05</span>GitHub</a>
+        <a href="https://github.com/philffm/ai-summary-helper/" target="_blank" rel="noopener"><span class="mm-n">04</span>GitHub</a>
       </nav>
       <div class="mm-lang">
         <button type="button" class="lang-card" id="langCard"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.6"></circle><path d="M3 12h18M12 3c2.6 2.7 3.9 5.7 3.9 9s-1.3 6.3-3.9 9c-2.6-2.7-3.9-5.7-3.9-9S9.4 5.7 12 3Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"></path></svg><span class="lang-card-cur">英语</span><small>24 种语言</small><b aria-hidden="true">→</b></button>
@@ -139,7 +137,7 @@
         <ul>
           <li><strong>自带密钥（BYOK）</strong> — OpenAI、Google Gemini、Mistral AI、DeepSeek 或自定义端点。您的 API key 仅保存在本地设备上（绝不同步，绝不上报给我们）。您选择生成摘要的页面内容会使用您自己的密钥直接从浏览器发送给所选服务商，并受该服务商自身隐私政策的约束。我们无法查看、记录或存储这些内容。</li>
           <li><strong>通过 Ollama 运行本地模型</strong> — 如果您在本地运行模型，页面内容仅会发送到您自己的机器上。任何数据都不会离开您的设备。</li>
-          <li><strong>byphil Cloud（可选，付费）</strong> —— 为不愿自行管理 API key 的用户提供的云端托管方案。如果您选择此方案，您请求摘要的文本将经由我们的后端处理，后端会代表您通过 OpenRouter 将请求中转至底层的模型提供商，并返回生成的摘要。这仅属于实时转发：我们不会存储任何网页内容、URL 或摘要结果。我们在账户维度记录的仅为使用元数据：已完成请求次数、Token 用量、最后一次请求的时间以及所使用的模型。账户本身完全可选；无需注册账户即可正常使用所有其他功能。</li>
+          <li><strong>byphil Cloud（可选，付费）</strong> — 专为不想自行管理 API key 的用户提供的云端托管方案。若选择此方案，您请求摘要的文本会经由我们的后端，代表您通过 OpenRouter 转发至底层模型提供商，并返回摘要结果。这仅为中继传输：我们不会存储网页内容、URL 或摘要。针对每个账户，我们仅记录用量元数据：已完成的请求数、Token 消耗量、最后一次请求的时间以及所使用的模型。账户本身为可选项；所有其他功能在未登录状态下均可正常使用。开启“优先使用欧盟服务器”设置后，具备欧洲节点的模型将仅在这些节点上运行，应用也会标明哪些模型支持、哪些不支持。这仅限制了模型的运行位置，并未缩短传输链路：您的文本仍会先经过我们的服务（运行于德国服务器），再通过美国公司 OpenRouter 传输至模型，且朗读和语音转文字功能暂无欧盟节点选项。</li>
         </ul>
 
         <h3>许可证与订阅状态</h3>
@@ -160,6 +158,7 @@
             <tr><td>API key / 服务商配置</td><td>本地</td><td>否 — 敏感信息，仅限本机</td></tr>
             <tr><td>License key</td><td>本地</td><td>否 — 敏感信息，仅限本机</td></tr>
             <tr><td>LocalSend 网络 IP</td><td>本地</td><td>否</td></tr>
+            <tr><td>文库同步登录凭证、Access Key 和加密密钥</td><td>本地</td><td>否 — 敏感数据，仅保存在本地设备，不包含在备份中</td></tr>
             <tr><td>文本高亮与 AI 幽灵高亮</td><td>本地（按页面存储）</td><td>否</td></tr>
             <tr><td>默认 Prompt、语言、摘要长度</td><td>同步</td><td>是，通过您绑定的 Chrome 账户</td></tr>
             <tr><td>高亮功能开启/关闭偏好</td><td>同步</td><td>是，通过您绑定的 Chrome 账户</td></tr>
@@ -178,12 +177,21 @@
           <li><strong>LocalSend 与系统分享面板（例如 AirDrop）均为点对点直连。</strong> 文件会直接从您的浏览器传输至局域网中选定的设备，或传送至系统分享面板中选择的应用。我们不会介入，也无法查看或存储这些内容。LocalSend 支持运行兼容应用的手机、平板、电脑及电子书阅读器。</li>
         </ul>
 
+        <h3>文库同步、备份与发布（可选）</h3>
+        <p>默认处于关闭状态，直到你在“设置 → 同步与备份”中添加存储位置。存储位置可以是你自选服务器上的文件夹（如 Nextcloud 或其他 WebDAV 服务器，亦或是 AWS S3、Cloudflare R2 或 Backblaze B2 等 S3 兼容存储桶），也可以是你本地电脑上的文件夹。我们不运营这些服务器，不参与任何中转，也绝无法查看你存放的内容。</p>
+        <ul>
+          <li><strong>加密存储位置</strong> 在不同设备间同步你的整个文库或进行完整备份：包括文章、摘要、全文、高亮批注、笔记、收藏集和标签。所有内容在离开设备前均已在浏览器端完成加密（采用 AES-256-GCM 算法，密钥由你的主密码生成），且文件名经过混淆处理。服务器或目标文件夹只能看到已加密的文件、文件大小及修改时间。我们不会存储你的主密码。由主密码生成的密钥仅保存在当前浏览器的本地存储中，以便同步任务在后台运行；该密钥绝不会被同步，也不会包含在任何备份中。系统会为你生成一次恢复密钥。如果你同时遗失了主密码和恢复密钥，任何人（包括我们）都无法解密或读取这些文件。</li>
+          <li><strong>明文存储位置</strong> 发布明文文件（如需要，还可包含轻量级查看页面），供你自己的网站或工具调用。仅会导出符合你设定的标签筛选条件的文章。除非你在危险区域设置中主动开启，否则笔记、提醒事项和文章全文绝不会被发布；一旦开启，任何有权访问该文件夹的人都可以直接阅读这些内容。</li>
+          <li><strong>传输方式。</strong> 网络请求通过 HTTPS 协议直接从你的浏览器发送至你输入的地址，并使用你提供的登录凭证或 Access Key 进行认证。这些登录信息仅保存在本地，绝不会被同步，且除非你主动选择，否则不会包含在备份中。目标服务器的运营者可以看到你的 IP 地址以及同步时间。</li>
+          <li><strong>本台电脑上的文件夹</strong> 使用浏览器的文件夹访问权限（File System Access）。由你指定文件夹并由浏览器请求授权，浏览器在重启后可能会再次要求确认权限。我们仅在本地保留浏览器对该文件夹的句柄（Handle）。无论你使用何种工具将该文件夹同步到其他设备（如 Syncthing、iCloud Drive、Dropbox），均遵循对应服务自身的隐私条款。</li>
+        </ul>
+
         <h3>电脑端 AI 应用 (MCP)</h3>
         <p>默认关闭。开启“设置 → AI 应用 (MCP)”后，您连接的电脑端 AI 应用（例如 Claude Desktop、LM Studio、Cursor 或 VS Code）可以读取您允许访问的资料库内容：已保存的文章及其摘要和高亮标注；仅在您主动开启时，才会包含全文、订阅源（Feed）条目以及保存至收件箱的链接。数据直接从浏览器经由您电脑上的轻量辅助程序（<code>aish-mcp</code>）传输至该应用。数据绝不会经过我们的服务器，我们也无法查看。该辅助程序仅接受来自本机的连接并需要配对码；它不会存储任何文章，也不会记录转发的内容。带有您排除标签（<code>private</code> ，默认）的文章绝不会被共享。扩展程序会在本地设备上保留最近 50 次调用的记录（包含工具名称、时间和结果数量，不含具体内容），您可以在同一设置面板中查看。AI 应用随后向模型发送的内容取决于您选择的应用与模型：若使用本地模型，任何数据都不会离开您的电脑。您可以随时关闭该设置或选择“断开连接”。</p>
 
         <h2 id="analytics">数据分析与 Cookie</h2>
         <p><strong>简而言之：</strong> 本网站 <strong>不使用任何 Cookie</strong> ，也不使用任何广告或跨站跟踪器。我们通过自托管的 Matomo 实例统计匿名访问数据，您可以随时关闭该统计。</p>
-        <p><strong>浏览器插件本身不包含任何数据分析、遥测或行为追踪代码。</strong> 插件发起的网络请求仅会发送至您配置的 AI 服务商、您订阅的 Feed、您要求抓取的网页，以及在您使用时连接至 byphil 后端（用于 byphil Cloud、登录、许可证验证和 Send to Kindle）。</p>
+        <p><strong>浏览器插件本身不包含任何数据分析、遥测或行为追踪代码。</strong> 其发起的网络请求仅限于：你配置的 AI 服务提供商、你订阅的 RSS Feed 源、你要求抓取的网页、你设置的文库同步/备份/发布服务器，以及（若你启用了对应功能）用于 byphil Cloud、登录、许可证校验和 Send to Kindle 的 byphil 后端服务。</p>
         <h3>我们统计的数据</h3>
         <p>页面浏览量、页面语言、来源网站（referrer）、大致的国家/浏览器/设备类型，以及您与网站各部分的互动（例如点击“Add to Chrome”、价格切换、FAQ 折叠项、页面滚动位置以及小书签生成器的操作步骤）。事件数据绝不包含电子邮件地址、API key、一次性验证码、页面内容或文章数据。</p>
         <h3>配置说明</h3>
@@ -223,8 +231,9 @@
             <tr><td><code>sidePanel</code></td><td>支持使用 Chrome 原生侧边栏作为查看面板选项</td></tr>
             <tr><td><code>scripting</code></td><td>注入提取和总结页面内容所需的内容脚本</td></tr>
             <tr><td><code>offscreen</code>、 <code>tts</code></td><td>在弹窗关闭后，继续在后台播放播客音频并朗读摘要内容</td></tr>
+            <tr><td>文件系统访问（选定文件夹）</td><td>仅当你选择电脑上的本地文件夹作为同步或备份位置时触发；浏览器会请求你的授权，且扩展仅能访问被选中的该文件夹</td></tr>
             <tr><td><code>unlimitedStorage</code></td><td>保存海量本地文章与高亮归档，无需担心触及默认存储配额上限</td></tr>
-            <tr><td><code>host_permissions (&lt;all_urls&gt;)</code></td><td>允许您对访问的网页生成摘要 —— 仅在您主动触发摘要时才会读取和传输内容，绝不会被动抓取</td></tr>
+            <tr><td><code>host_permissions (&lt;all_urls&gt;)</code></td><td>允许你对所访问的任意网页生成摘要 —— 仅在你主动触发摘要操作时才会读取并传输内容，绝不会在后台被动采集。同时允许扩展访问你输入的同步服务器或存储桶（支持任意自定义地址）</td></tr>
           </tbody>
         </table>
         <p>我们绝不会利用这些权限跟踪您的浏览轨迹、建立广告画像，或收集超出上述功能所需之外的任何数据。</p>
@@ -234,14 +243,14 @@
           <li>我们不投放或展示广告，也绝不出售、出租或向广告商及数据经纪人转让您的数据。</li>
           <li>任何核心功能均无需注册或登录账户。</li>
           <li>对于您通过自有 API key 或本地模型总结的网页内容，我们不会记录或保留；通过 LocalSend 或系统分享面板发送的内容，我们也绝不会接触或查看。</li>
-          <li>我们无法访问您本地存储的文章历史记录、高亮标注或 API key —— 除非您主动导出，否则它们绝不会离开您的设备。</li>
+          <li>我们无法访问你保存在本地的文章历史记录、高亮批注或 API key —— 除非你主动导出它们，或配置了同步、备份及发布存储位置，否则它们绝不会离开你的设备；即便进行传输，也只会发送到你指定的存储目标。</li>
         </ul>
 
         <h2>第三方服务</h2>
         <p>根据您的配置偏好，您的页面内容可能会发送至：</p>
         <ul>
           <li>OpenAI、Google (Gemini)、Mistral AI 或 DeepSeek —— 仅当您填入了对应服务商的 API key，且仅针对您主动要求生成摘要的网页。</li>
-          <li>我们的 byphil 后端服务（托管于德国 IONOS SE）—— 仅在您登录账户、使用 byphil Cloud 或使用 Send to Kindle 功能时涉及。</li>
+          <li>我们的 byphil 后端及其数据库，均托管于德国的 IONOS SE —— 仅在您登录、使用 byphil Cloud 或 Send to Kindle 时涉及。</li>
           <li>OpenRouter（byphil Cloud 借此连接模型）及所路由的模型提供商 —— 您提交摘要的文本仅会在该单次请求中转发至您指定的模型。</li>
           <li>Stripe —— 作为法定销售商（Merchant of Record）处理付款交易与订阅管理。</li>
           <li>Amazon —— 若您向 Kindle 发送文章，Amazon 将依据其自身的隐私条款提供投递服务。</li>

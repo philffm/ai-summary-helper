@@ -41,7 +41,6 @@
     <nav class="pill" aria-label="Primary">
       <a href="index.html#features" data-sec="features">Features</a>
       <a href="index.html#try-it" data-sec="try-it">Demo</a>
-      <a href="index.html#pricing" data-sec="pricing">Pricing</a>
       <a href="https://chromewebstore.google.com/detail/ai-summary-helper-openai/hldbejcjaedipeegjcinmhejdndchkmb" class="pill-cta" target="_blank" rel="noopener">Chrome में जोड़ें</a>
     </nav>
     <div class="nav-tools">
@@ -60,13 +59,12 @@
       <nav class="mm-links" aria-label="Mobile">
         <a href="index.html#features"><span class="mm-n">01</span>Features</a>
         <a href="index.html#try-it"><span class="mm-n">02</span>Demo</a>
-        <a href="index.html#pricing"><span class="mm-n">03</span>Pricing</a>
-        <a href="blog/"><span class="mm-n">04</span>Blog</a>
+        <a href="blog/"><span class="mm-n">03</span>Blog</a>
           <a href="blog/pocket-alternative.html" class="mm-sub">Pocket alternative: क्या चीज़ें मायने रखती हैं</a>
           <a href="blog/bring-your-own-key.html" class="mm-sub">आपकी key. आपका model. आपका data.</a>
           <a href="blog/verify-ai-summary.html" class="mm-sub">Summary को ओरिजिनल source से cross-check करें</a>
           <a href="blog/highlighting-vs-asking.html" class="mm-sub">अपने highlights से जुड़े सवाल पूछें</a>
-        <a href="https://github.com/philffm/ai-summary-helper/" target="_blank" rel="noopener"><span class="mm-n">05</span>GitHub</a>
+        <a href="https://github.com/philffm/ai-summary-helper/" target="_blank" rel="noopener"><span class="mm-n">04</span>GitHub</a>
       </nav>
       <div class="mm-lang">
         <button type="button" class="lang-card" id="langCard"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.6"></circle><path d="M3 12h18M12 3c2.6 2.7 3.9 5.7 3.9 9s-1.3 6.3-3.9 9c-2.6-2.7-3.9-5.7-3.9-9S9.4 5.7 12 3Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"></path></svg><span class="lang-card-cur">English</span><small>24 भाषाएं</small><b aria-hidden="true">→</b></button>
@@ -139,7 +137,7 @@
         <ul>
           <li><strong>Bring your own key (BYOK)</strong> — OpenAI, Google Gemini, Mistral AI, DeepSeek, या कोई कस्टम एंडपॉइंट। आपकी API key केवल आपके डिवाइस पर लोकल रूप से स्टोर होती है (यह कभी सिंक नहीं होती, और कभी हमारे पास नहीं भेजी जाती)। जिस पेज को आप समराइज़ करने के लिए चुनते हैं, उसका कंटेंट आपके ब्राउज़र से सीधे आपके चुने हुए प्रोवाइडर को भेजा जाता है, आपकी अपनी key का इस्तेमाल करते हुए और उस प्रोवाइडर की खुद की privacy policy के तहत। हम इस कंटेंट को न तो देखते हैं, न लॉग करते हैं और न ही स्टोर करते हैं।</li>
           <li><strong>Ollama के ज़रिए लोकल मॉडल</strong> — यदि आप किसी मॉडल को लोकली रन करते हैं, तो पेज कंटेंट केवल आपकी अपनी मशीन पर प्रोसेस होता है। आपके डिवाइस से बाहर कुछ भी नहीं जाता — 100% ऑन-डिवाइस और ज़ीरो रिकरिंग कॉस्ट।</li>
-          <li><strong>byphil Cloud (वैकल्पिक, सशुल्क)</strong> — उन लोगों के लिए एक होस्टेड ऑप्शन जो API key खुद मैनेज नहीं करना चाहते। अगर आप यह टियर चुनते हैं, तो जिस टेक्स्ट को आप समराइज़ करने के लिए भेजते हैं वह हमारे बैकएंड से होकर गुज़रता है, जो आपकी तरफ से OpenRouter के ज़रिए रिक्वेस्ट को अंडरलाइंग मॉडल प्रोवाइडर तक रिले करता है और समरी वापस लौटाता है। यह डेटा केवल रिले किया जाता है: हम पेज कंटेंट, URLs या समरीज़ को स्टोर नहीं करते हैं। प्रति अकाउंट हम केवल यूसेज मेटाडेटा रिकॉर्ड करते हैं: पूरे किए गए रिक्वेस्ट्स की संख्या, टोकन यूसेज, आख़िरी रिक्वेस्ट का समय और इस्तेमाल किया गया मॉडल। अकाउंट बनाना पूरी तरह ऑप्शनल है; बाकी सभी फीचर्स बिना किसी अकाउंट के काम करते हैं।</li>
+          <li><strong>byphil Cloud (वैकल्पिक, सशुल्क)</strong> — उन यूज़र्स के लिए एक hosted ऑप्शन जो API key मैनेज नहीं करना चाहते। अगर आप यह tier चुनते हैं, तो जिस टेक्स्ट को आप summarize करने के लिए भेजते हैं, वह हमारे backend से होकर गुजरता है, जो आपकी तरफ से OpenRouter के ज़रिए underlying model provider को request रिले करता है और summary रिटर्न करता है। यह डेटा सिर्फ रिले होता है: हम पेज कंटेंट, URLs या summaries स्टोर नहीं करते। हम प्रति अकाउंट केवल usage metadata रिकॉर्ड करते हैं: पूरे हुए requests की संख्या, token usage, आखिरी request का समय और यूज़ किया गया model। अकाउंट बनाना पूरी तरह ऑप्शनल है; बाकी सभी फीचर्स इसके बिना भी काम करते हैं। “Prefer EU servers” सेटिंग ऑन होने पर, जिन मॉडल्स का यूरोप में endpoint है वे सिर्फ उन्हीं endpoints पर रन होते हैं, और ऐप मार्क करता है कि कौन से मॉडल्स ऐसा करते हैं और कौन से नहीं। यह सिर्फ यह लिमिट करता है कि मॉडल कहाँ रन होता है। यह पाथ से किसी को हटाता नहीं है: आपका टेक्स्ट अभी भी हमारी सर्विस (जो Germany के एक सर्वर पर रन होती है) और फिर मॉडल तक पहुँचने के रास्ते में एक US कंपनी, OpenRouter से होकर गुजरता है, और read-aloud व speech-to-text के लिए कोई EU ऑप्शन उपलब्ध नहीं है।</li>
         </ul>
 
         <h3>लाइसेंस और सब्सक्रिप्शन स्टेटस</h3>
@@ -160,6 +158,7 @@
             <tr><td>API keys / प्रोवाइडर कॉन्फ़िगरेशन</td><td>Local</td><td>नहीं — संवेदनशील, केवल डिवाइस पर</td></tr>
             <tr><td>लाइसेंस की</td><td>Local</td><td>नहीं — संवेदनशील, केवल डिवाइस पर</td></tr>
             <tr><td>LocalSend नेटवर्क IP</td><td>Local</td><td>नहीं</td></tr>
+            <tr><td>Library sync logins, access keys और encryption keys</td><td>Local</td><td>नहीं — sensitive, device-only, backups से बाहर रखा गया है</td></tr>
             <tr><td>टेक्स्ट हाइलाइट्स और AI घोस्ट हाइलाइट्स</td><td>Local (प्रति पेज)</td><td>नहीं</td></tr>
             <tr><td>डिफ़ॉल्ट प्रॉम्प्ट, भाषा, समरी की लंबाई</td><td>Sync</td><td>हाँ, आपके अपने Chrome अकाउंट के ज़रिए</td></tr>
             <tr><td>हाइलाइटिंग ऑन/ऑफ प्रेफ़रेंस</td><td>Sync</td><td>हाँ, आपके अपने Chrome अकाउंट के ज़रिए</td></tr>
@@ -178,12 +177,21 @@
           <li><strong>LocalSend और system share sheet (उदाहरण के लिए AirDrop) direct काम करते हैं।</strong> File आपके browser से सीधे आपके local network पर चुने गए device, या share sheet में चुनी गई app तक जाती है। इसमें हमारा कोई involvement नहीं होता और हम इस content को न तो देखते हैं और न ही store करते हैं। LocalSend compatible app चलाने वाले phones, tablets, computers और e-readers के साथ काम करता है।</li>
         </ul>
 
+        <h3>Library sync, backup और publishing (optional)</h3>
+        <p>Settings → Sync &amp; backup में कोई जगह (place) add करने तक यह off रहता है। Place आपकी पसंद के server पर एक folder होता है (Nextcloud या कोई अन्य WebDAV server, या AWS S3, Cloudflare R2 या Backblaze B2 जैसी S3-compatible bucket) या फिर आपके अपने computer पर एक folder। हम ये servers run नहीं करते, हम इसमें शामिल नहीं हैं, और आप वहाँ क्या रखते हैं यह हम कभी नहीं देख सकते।</p>
+        <ul>
+          <li><strong>Encrypted places</strong> अपनी पूरी library को अपने devices के बीच sync रखें या backup संभाल कर रखें: articles, summaries, full texts, highlights, notes, collections और tags। Device से बाहर जाने से पहले सब कुछ आपके browser में encrypt होता है (AES-256-GCM, आपकी passphrase से डिराइव्ड key के साथ), और file names को scramble कर दिया जाता है। Server या folder को सिर्फ encrypted files, उनका size और उनके modify होने का समय ही दिखता है। आपकी passphrase store नहीं होती। इससे बनी key इसी browser के local storage में रहती है ताकि background में sync चलता रहे; यह कभी sync नहीं होती और backup का हिस्सा भी नहीं बनती। आपको एक बार recovery key मिलती है। अगर आप passphrase और recovery key दोनों खो देते हैं, तो हमारे सहित कोई भी इन files को नहीं पढ़ सकता।</li>
+          <li><strong>Readable places</strong> अपनी खुद की website या tools के लिए plain files (और चाहें तो एक छोटा viewer page) publish करें। केवल वही articles बाहर जाते हैं जो आपके सेट किए गए tag filter से match करते हैं। Notes, reminders और full article text तब तक publish नहीं होते जब तक आप खुद उन्हें danger zone में on न कर दें, और फिर जो भी उस folder को खोल सकता है वह उन्हें पढ़ सकेगा।</li>
+          <li><strong>यह कैसे भेजा जाता है।</strong> Requests आपके दिए गए login या access key का उपयोग करके HTTPS के ज़रिए सीधे आपके browser से आपके द्वारा दर्ज किए गए address पर जाती हैं। वह login locally store होता है, कभी sync नहीं होता, और जब तक आप opt-in न करें backups से बाहर रहता है। Server का operator आपका IP address और sync करने का समय देख सकता है।</li>
+          <li><strong>इस computer पर एक folder</strong> Browser के folder access का उपयोग करता है। आप folder चुनते हैं और browser आपसे permission मांगता है, जो restart के बाद दोबारा भी मांगी जा सकती है। हम केवल उस folder का browser handle ही रखते हैं। उस folder को अन्य devices पर ले जाने के लिए आप जो कुछ भी इस्तेमाल करते हैं (Syncthing, iCloud Drive, Dropbox), उसके अपने privacy terms होते हैं।</li>
+        </ul>
+
         <h3>आपके कंप्यूटर पर AI apps (MCP)</h3>
         <p>डिफ़ॉल्ट रूप से Off। जब आप Settings → AI apps (MCP) चालू करते हैं, तो आपके कंप्यूटर पर कनेक्टेड AI apps (जैसे Claude Desktop, LM Studio, Cursor या VS Code) आपकी लाइब्रेरी के उन हिस्सों को पढ़ सकते हैं जिनकी आप अनुमति देते हैं: आपके सेव किए गए आर्टिकल्स उनके summaries और highlights के साथ, और केवल तभी जब आप उन्हें enable करें, पूरा आर्टिकल टेक्स्ट, आपके feed items, और आपके inbox में लिंक्स सेव करना। डेटा आपके ब्राउज़र से आपके कंप्यूटर पर मौजूद एक छोटे helper program (<code>aish-mcp</code>) के ज़रिए उस app तक जाता है। यह कभी भी हमारे सर्वर से होकर नहीं गुज़रता, और हम इसे कभी नहीं देख सकते। यह helper केवल आपके अपने कंप्यूटर से ही कनेक्शन स्वीकार करता है और इसके लिए एक pairing code की ज़रूरत होती है; यह कोई भी आर्टिकल्स स्टोर नहीं करता और जो कुछ भी फ़ॉरवर्ड करता है उसका कोई रिकॉर्ड नहीं रखता। आपके द्वारा exclude किए गए टैग (<code>private</code> ) डिफ़ॉल्ट रूप से) वाले आर्टिकल्स कभी शेयर नहीं किए जाते। यह extension आपके डिवाइस पर पिछली 50 calls की एक लिस्ट रखता है (tool name, time और number of results, कोई content नहीं), जिसे आप उसी settings panel में देख सकते हैं। इसके बाद AI app अपने मॉडल को क्या भेजता है, यह आपके चुने हुए app और मॉडल पर निर्भर करता है: local model के साथ, आपके कंप्यूटर से कुछ भी बाहर नहीं जाता। किसी भी समय setting को off करें या Disconnect चुनें।</p>
 
         <h2 id="analytics">Analytics और cookies</h2>
         <p><strong>संक्षेप में:</strong> यह वेबसाइट सेट करती है <strong>कोई cookies नहीं</strong> और किसी भी विज्ञापन या cross-site trackers का उपयोग नहीं करती है। हम एक self-hosted Matomo instance के साथ anonymous विज़िट्स ट्रैक करते हैं, और आप इसे किसी भी समय बंद कर सकते हैं।</p>
-        <p><strong>Browser extension में खुद कोई analytics, telemetry या tracking code शामिल नहीं है।</strong> इसके एकमात्र network requests केवल आपके configured AI provider, आपके subscribed feeds, आपके द्वारा fetch करने के लिए कहे गए pages, और (यदि आप उपयोग करते हैं) byphil Cloud, sign-in, license checks और Send to Kindle के लिए byphil backend पर ही जाते हैं।</p>
+        <p><strong>Browser extension में खुद कोई analytics, telemetry या tracking code शामिल नहीं है।</strong> इसकी एकमात्र network requests आपके configure किए गए AI provider, आपके subscribe किए गए feeds, आपके द्वारा fetch करने के लिए कहे गए pages, library sync, backup या publishing के लिए setup किए गए servers और (यदि आप उनका उपयोग करते हैं) byphil Cloud, sign-in, license checks और Send to Kindle के लिए byphil backend पर ही जाती हैं।</p>
         <h3>हम क्या मापते हैं</h3>
         <p>Page views, पेज की भाषा, referrer, अनुमानित देश/browser/device class, और आप साइट के किन हिस्सों के साथ interact करते हैं (उदाहरण के लिए "Add to Chrome" पर क्लिक, pricing toggle, FAQ आइटम्स, वे सेक्शन्स जहाँ आप scroll करते हैं, और bookmarklet generator के स्टेप्स)। इन Events में कभी भी ईमेल एड्रेस, API keys, one-time codes, page content या आर्टिकल डेटा शामिल नहीं होता है।</p>
         <h3>इसे कैसे कॉन्फ़िगर किया गया है</h3>
@@ -223,8 +231,9 @@
             <tr><td><code>sidePanel</code></td><td>व्यूइंग विकल्प के रूप में Chrome के नेटिव साइड पैनल को सपोर्ट करने के लिए</td></tr>
             <tr><td><code>scripting</code></td><td>किसी पेज को पढ़ने और समराइज़ करने के लिए आवश्यक कंटेंट स्क्रिप्ट को इंजेक्ट करने के लिए</td></tr>
             <tr><td><code>offscreen</code>, <code>tts</code></td><td>Popup बंद होने पर भी background में podcast audio play करें और summaries को बोलकर सुनें</td></tr>
+            <tr><td>File System Access (चुना हुआ folder)</td><td>केवल तब जब आप sync या backup place के रूप में अपने computer पर कोई folder चुनते हैं; browser आपसे permission मांगता है और केवल उसी folder तक पहुँचा जा सकता है</td></tr>
             <tr><td><code>unlimitedStorage</code></td><td>Default storage quota की चिंता किए बिना articles और highlights का एक बड़ा local archive सुरक्षित रखें</td></tr>
-            <tr><td><code>host_permissions (&lt;all_urls&gt;)</code></td><td>आपके द्वारा विज़िट किए जाने वाले किसी भी पेज को समराइज़ करने की अनुमति देने के लिए — कंटेंट केवल तभी पढ़ा और ट्रांसमिट किया जाता है जब आप एक्टिवली समरी ट्रिगर करते हैं, कभी भी पैसिवली नहीं</td></tr>
+            <tr><td><code>host_permissions (&lt;all_urls&gt;)</code></td><td>आपके द्वारा visit किए गए किसी भी page को summarize करने की सुविधा देता है — content केवल तभी पढ़ा और transmit किया जाता है जब आप actively summary trigger करते हैं, कभी भी passively नहीं। यह extension को आपके द्वारा enter किए गए sync server या bucket तक पहुँचने की अनुमति भी देता है, जो किसी भी address पर हो सकता है</td></tr>
           </tbody>
         </table>
         <p>हम इन permissions का उपयोग आपके ब्राउज़िंग को ट्रैक करने, एडवरटाइजिंग प्रोफ़ाइल बनाने, या ऊपर बताए गए फीचर्स प्रदान करने के अलावा अन्य कोई भी डेटा इकट्ठा करने के लिए नहीं करते हैं।</p>
@@ -234,14 +243,14 @@
           <li>हम विज्ञापन नहीं चलाते या दिखाते हैं, और हम आपका डेटा विज्ञापनदाताओं या डेटा ब्रोकर्स को बेचते, किराए पर नहीं देते या ट्रेड नहीं करते हैं।</li>
           <li>हमें किसी भी कोर फ़ीचर के लिए अकाउंट या साइन-इन की आवश्यकता नहीं होती है।</li>
           <li>हम आपकी अपनी API key या local model से summarize किए जाने वाले pages का content न तो log करते हैं और न ही retain करते हैं, और LocalSend या share sheet से आप जो कुछ भी भेजते हैं, हम उसे कभी नहीं देखते।</li>
-          <li>हमारे पास आपकी लोकली स्टोर्ड आर्टिकल हिस्ट्री, हाइलाइट्स या API keys का कोई एक्सेस नहीं है — जब तक कि आप उन्हें स्पष्ट रूप से एक्सपोर्ट न करें, वे आपके डिवाइस से कभी बाहर नहीं जाते।</li>
+          <li>हमारे पास आपके locally stored article history, highlights या API keys का कोई access नहीं है — वे आपके device से कभी बाहर नहीं जाते जब तक कि आप उन्हें explicitly export न करें या कोई sync, backup या publishing place setup न करें, और फिर वे केवल वहीं जाते हैं जहाँ आप उन्हें point करते हैं।</li>
         </ul>
 
         <h2>Third-Party Services</h2>
         <p>आप एक्सटेंशन को कैसे कॉन्फ़िगर करते हैं, इसके आधार पर आपका पेज कंटेंट इन्हें भेजा जा सकता है:</p>
         <ul>
           <li>OpenAI, Google (Gemini), Mistral AI, या DeepSeek — केवल तभी जब आपने उस प्रोवाइडर के लिए अपनी खुद की API key दर्ज की हो, और केवल उसी पेज के लिए जिसे आप एक्टिवली समराइज़ करते हैं।</li>
-          <li>हमारा byphil बैकएंड, जो जर्मनी में IONOS SE द्वारा होस्ट किया गया है — केवल तभी जब आप साइन इन करते हैं, byphil Cloud या Send to Kindle का इस्तेमाल करते हैं।</li>
+          <li>हमारा byphil backend और इसका database, दोनों Germany में IONOS SE द्वारा hosted हैं — सिर्फ तभी जब आप साइन इन करते हैं, byphil Cloud इस्तेमाल करते हैं या Send to Kindle का यूज़ करते हैं।</li>
           <li>OpenRouter, जिसके ज़रिए byphil Cloud मॉडल्स से कनेक्ट होता है, और वह मॉडल प्रोवाइडर जिस पर यह रूट करता है — आपका समराइज़ किया जाने वाला टेक्स्ट केवल उसी रिक्वेस्ट के लिए चुने गए मॉडल तक रिले किया जाता है।</li>
           <li>Stripe — Merchant of Record के रूप में पेमेंट्स और सब्सक्रिप्शन मैनेजमेंट।</li>
           <li>Amazon — यदि आप अपने Kindle पर कोई article भेजते हैं, तो Amazon अपनी privacy terms के तहत उसे deliver करता है।</li>

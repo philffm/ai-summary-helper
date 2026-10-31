@@ -57,7 +57,6 @@
     <nav class="pill" aria-label="الرئيسي">
       <a href="index.html#features" data-sec="features">المميزات</a>
       <a href="index.html#try-it" data-sec="try-it">عرض توضيحي</a>
-      <a href="index.html#pricing" data-sec="pricing">الأسعار</a>
       <a href="https://chromewebstore.google.com/detail/ai-summary-helper-openai/hldbejcjaedipeegjcinmhejdndchkmb" class="pill-cta" target="_blank" rel="noopener">أضف إلى Chrome</a>
     </nav>
     <div class="nav-tools">
@@ -76,13 +75,12 @@
       <nav class="mm-links" aria-label="الجوال">
         <a href="index.html#features"><span class="mm-n">01</span>المميزات</a>
         <a href="index.html#try-it"><span class="mm-n">02</span>عرض توضيحي</a>
-        <a href="index.html#pricing"><span class="mm-n">03</span>الأسعار</a>
-        <a href="blog/"><span class="mm-n">04</span>المدونة</a>
+        <a href="blog/"><span class="mm-n">03</span>المدونة</a>
           <a href="blog/pocket-alternative.html" class="mm-sub">بديل Pocket: ما يهم حقاً</a>
           <a href="blog/bring-your-own-key.html" class="mm-sub">مفتاحك. نموذجك. بياناتك.</a>
           <a href="blog/verify-ai-summary.html" class="mm-sub">مطابقة الملخص مع مصدره الأصلي</a>
           <a href="blog/highlighting-vs-asking.html" class="mm-sub">اسأل عن مقتطفاتك ونصوصك المحددة</a>
-        <a href="https://github.com/philffm/ai-summary-helper/" target="_blank" rel="noopener"><span class="mm-n">05</span>GitHub</a>
+        <a href="https://github.com/philffm/ai-summary-helper/" target="_blank" rel="noopener"><span class="mm-n">04</span>GitHub</a>
       </nav>
       <div class="mm-lang">
         <button type="button" class="lang-card" id="langCard"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.6"></circle><path d="M3 12h18M12 3c2.6 2.7 3.9 5.7 3.9 9s-1.3 6.3-3.9 9c-2.6-2.7-3.9-5.7-3.9-9S9.4 5.7 12 3Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"></path></svg><span class="lang-card-cur">الإنجليزية</span><small>24 لغة</small><b aria-hidden="true">→</b></button>
@@ -132,28 +130,11 @@
       <div class="eyebrow"><span class="dash"></span> إضافة متصفح Chrome · جزء من byphil. <span class="dash"></span></div>
       <h1>لخّص محتوى الويب.<br><em>احتفظ بما يهمك فقط.</em></h1>
       <p class="sub">تتابع أداة AI Summary Helper مواقعك المفضلة عبر قارئ RSS مدمج، وتحفظ أي صفحة كمقال ملخص وقابل للبحث — ثم تساعدك على العودة إليها فعلياً، عبر موجز محلي يرسل قراءاتك بلا إنترنت مباشرة إلى Kindle أو أي جهاز آخر.</p>
-      <div class="hero-switch" role="tablist" aria-label="كيف ترغب في استخدامه؟">
-        <button type="button" class="hero-switch-btn active" role="tab" id="heroTabBrowser" aria-selected="true" aria-controls="heroPaneBrowser" data-hero="browser">
-          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="3" stroke="currentColor" stroke-width="1.6"></rect><path d="M3 9h18" stroke="currentColor" stroke-width="1.6"></path></svg>
-          إضافة المتصفح
-        </button>
-        <button type="button" class="hero-switch-btn" role="tab" id="heroTabBookmarklet" aria-selected="false" aria-controls="heroPaneBookmarklet" tabindex="-1" data-hero="bookmarklet">
-          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 3h12v18l-6-4-6 4V3Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"></path></svg>
-          الرمز المرجعي (Bookmarklet)
-        </button>
-      </div>
-      <div class="hero-pane" id="heroPaneBrowser" role="tabpanel" aria-labelledby="heroTabBrowser">
+      <div class="hero-pane" id="heroPaneBrowser">
         <div class="hero-cta">
           <a href="https://chromewebstore.google.com/detail/ai-summary-helper-openai/hldbejcjaedipeegjcinmhejdndchkmb" target="_blank" rel="noopener" class="btn-primary">أضف إلى Chrome — مجاناً</a>
         </div>
         <p class="hero-meta">لا يلزم إنشاء حساب للبدء · يدعم معظم نماذج LLM عبر واجهة byPhil API، أو مفتاح الذكاء الاصطناعي الخاص بك، أو بدون إنترنت تماماً عبر Ollama</p>
-      </div>
-      <div class="hero-pane" id="heroPaneBookmarklet" role="tabpanel" aria-labelledby="heroTabBookmarklet" hidden="">
-        <p class="hero-pane-blurb">رابط واحد في شريط الإشارات المرجعية، على أي متصفح ونظام تشغيل — بما في ذلك iOS. دون تثبيت؛ يظهر الملخص مباشرة على الصفحة.</p>
-        <div class="hero-cta">
-          <a href="../bookmarklet.html" class="btn-primary" data-track="bookmarklet-open">أنشئ الرمز المرجعي الخاص بك →</a>
-        </div>
-        <p class="hero-meta">يفتح أداة الإنشاء · يدعم معظم نماذج LLM عبر byPhil API (دون مفتاح)، أو مفتاحك الخاص من OpenAI أو Gemini أو Mistral أو DeepSeek أو Ollama</p>
       </div>
       <ol class="hs-steps" data-stage-pane="browser">
   <li class="is-on" data-step="0" role="button" tabindex="0"><b>اقرأ أي صفحة.</b><span>افتح المقال كالمعتاد. تعمل الأداة بهدوء تام داخل المتصفح.</span></li>
@@ -203,30 +184,10 @@
           </div>
         </div>
       </div>
+      <!-- The animated demo is nice, but the video shows it better: this opens the full video (komplett-<lang>.mp4, the first clip of #videos) in the player. Without JavaScript it jumps to the clips. -->
+      <a class="hs-watch" href="#videos" data-open-video="komplett"><span class="hs-watch-ico" aria-hidden="true">▶</span><span class="hs-watch-txt"><strong>شاهد الفيديو</strong><small>كل شيء في أقل من دقيقة</small></span></a>
       <div class="hs-ctrl" role="group" aria-label="جولة توضيحية"><button type="button" class="hs-pp" aria-label="إيقاف الجولة التوضيحية مؤقتاً"><svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><path class="pp-pause" d="M7 5h3v14H7zM14 5h3v14h-3z" fill="currentColor"></path><path class="pp-play" d="M8 5l11 7-11 7z" fill="currentColor"></path></svg></button><button type="button" class="hs-dot is-on" aria-label="الخطوة 1"></button><button type="button" class="hs-dot" aria-label="الخطوة 2"></button><button type="button" class="hs-dot" aria-label="الخطوة 3"></button><button type="button" class="hs-dot" aria-label="الخطوة 4"></button></div>
       <p class="sr-only">تفتح أداة AI Summary Helper ملخصاً موجزاً للمقال في لوحة جانبية، وتتيح لك طرح أسئلة استيضاحية ترتبط مباشرة بالنص المصدر، مع إمكانية تحويل الملخصات إلى لغتك المختارة.</p>
-    </div>
-    <div class="hs-bm" data-stage-pane="bookmarklet" hidden="">
-      <div class="bm-mock" aria-hidden="true" data-no-translate="">
-            <div class="bm-win">
-              <div class="bm-tb"><i></i><i></i><i></i><span>🔒 dailyledger.example/work-life/office-fern</span></div>
-              <div class="bm-bar"><span>Mail</span><span>Docs</span><span>Maps</span><span class="bm-mark">✨ Summarize</span></div>
-              <div class="bm-page">
-                <div class="bm-mast">The Daily Ledger</div>
-                <h4>Office fern outlives four reorganisations, now up for team lead</h4>
-                <p>Leeds. When the logistics team moved floors in 2019, nobody expected Gerald to survive.</p>
-                <p>Seven years and four reorganisations later, the office fern is the longest-serving member of the department.</p>
-                <p>He has never once scheduled a meeting that could have been an email.</p>
-                <div class="bm-card"><small>✨ AI Summary</small><b>A fern climbs the career ladder</b><span>Gerald, an office fern in Leeds, has outlasted <strong>four reorganisations in seven years</strong> and is now up for team lead.</span></div>
-              </div>
-              <svg class="bm-cursor" viewBox="0 0 24 24" width="26" height="26"><path d="M4 2l15 9-6.5 1.5L9 19z" fill="#14161f" stroke="#fff" stroke-width="1.4" stroke-linejoin="round"></path></svg>
-            </div>
-          </div>
-      <ol class="bm-steps">
-  <li><span class="bm-n">1</span><div><h3>أنشئه لمرة واحدة</h3><p>اختر واجهة byPhil API (دون مفتاح) أو استخدم مفتاحك الخاص من OpenAI أو Gemini أو Mistral أو DeepSeek أو Ollama.</p></div></li>
-  <li><span class="bm-n">2</span><div><h3>اسحبه إلى شريط الإشارات المرجعية</h3><p>يعمل على أي متصفح ونظام تشغيل، بما فيها iOS. لا يتطلب أي تثبيت.</p></div></li>
-  <li><span class="bm-n">3</span><div><h3>انقر عليه في أي صفحة</h3><p>يظهر الملخص مباشرة فوق الصفحة، مع ميزة متابعة الأسئلة ودعم لغتك المفضلة.</p></div></li>
-</ol>
     </div>
   </div>
 </section>
@@ -829,6 +790,16 @@
           <h3>مكتبتك داخل Claude و LM Studio و Cursor</h3>
           <p>فعّل تطبيقات الذكاء الاصطناعي في الإعدادات، لتتمكن تطبيقات Claude Desktop و LM Studio و Cursor وتطبيقات MCP الأخرى على جهازك من البحث في مكتبتك، واقتباس تظليلاتك، وعرض ما حان موعد قراءته. وإذا سمحت بذلك، يمكنها أيضًا حفظ الروابط لك. لا يمر أي شيء عبر خوادمنا، وأنت من يحدد ما يمكنها قراءته.</p>
           <button class="fvideo-cta" type="button" tabindex="-1" aria-hidden="true"><span class="fvideo-cta-play">▶</span>شاهد المقطع</button>
+        </div>
+        <div class="feature-card" data-personas="privacy hoarder researcher">
+          <div class="f-icon icon-teal"><svg viewBox="0 0 24 24" fill="none"><path d="M7 18.5h9.5a3.5 3.5 0 0 0 .6-6.95A5 5 0 0 0 7.4 10.6 4 4 0 0 0 7 18.5Z" stroke="#fff" stroke-width="1.7" stroke-linejoin="round"></path><path d="M12 12.5v3M10.8 13.8h2.4" stroke="#fff" stroke-width="1.7" stroke-linecap="round"></path></svg></div>
+          <h3>مكتبتك على مساحة التخزين الخاصة بك، مشفرة</h3>
+          <p>حافظ على تزامن مكتبتك عبر أجهزتك، أو انسخها احتياطيًا، أو انشر جزءًا منها على Nextcloud أو أي خادم WebDAV آخر، أو مساحة تخزين متوافقة مع S3، أو مجلد على حاسوبك. يتم تشفير كل شيء داخل متصفحك قبل إرساله، لذا لا يرى الخادم سوى ملفات مشفرة. انشر قائمة على موقعك الإلكتروني مزودة بالبحث، ورسم بياني للوسوم، وخريطة ثلاثية الأبعاد 3D لكل ما حفظته. الميزة معطلة حتى تحدد وجهة؛ فنحن لا ندير خوادم مزامنة ولا نطلع على أي شيء. <a href="../blog/sync-to-nextcloud-s3-or-a-folder.html">كيفية الإعداد</a> · <a href="../blog/digital-sovereignty-for-individuals.html">ما أهمية ذلك</a></p>
+        </div>
+        <div class="feature-card" data-personas="hoarder researcher">
+          <div class="f-icon icon-amber"><svg viewBox="0 0 24 24" fill="none"><path d="M6 4.5h9l3 3V19a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V5.5a1 1 0 0 1 1-1Z" stroke="#fff" stroke-width="1.7" stroke-linejoin="round"></path><path d="M8.5 11h7M8.5 14.5h4.5" stroke="#fff" stroke-width="1.7" stroke-linecap="round"></path></svg></div>
+          <h3>ملاحظات وتعليقات على أي صفحة</h3>
+          <p>حدد أي نص واختر: تمييزه، أو التعليق عليه، أو حفظ ملاحظة تتضمن الاقتباس. يُجمع كل شيء في تبويب Notes، كقائمة أو كشبكة من الملاحظات اللاصقة، حسب المقال أو الوسم، وتتم مزامنته مع بقية مكتبتك.</p>
         </div>
         <div class="feature-card" data-personas="hoarder researcher">
           <figure class="fvideo" data-blog-video="export">

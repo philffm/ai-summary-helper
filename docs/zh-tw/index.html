@@ -57,7 +57,6 @@
     <nav class="pill" aria-label="主要">
       <a href="index.html#features" data-sec="features">功能特色</a>
       <a href="index.html#try-it" data-sec="try-it">功能展示</a>
-      <a href="index.html#pricing" data-sec="pricing">方案定價</a>
       <a href="https://chromewebstore.google.com/detail/ai-summary-helper-openai/hldbejcjaedipeegjcinmhejdndchkmb" class="pill-cta" target="_blank" rel="noopener">新增至 Chrome</a>
     </nav>
     <div class="nav-tools">
@@ -76,13 +75,12 @@
       <nav class="mm-links" aria-label="行動版">
         <a href="index.html#features"><span class="mm-n">01</span>功能特色</a>
         <a href="index.html#try-it"><span class="mm-n">02</span>功能展示</a>
-        <a href="index.html#pricing"><span class="mm-n">03</span>方案定價</a>
-        <a href="blog/"><span class="mm-n">04</span>部落格</a>
+        <a href="blog/"><span class="mm-n">03</span>部落格</a>
           <a href="blog/pocket-alternative.html" class="mm-sub">Pocket 替代方案：挑選重點解析</a>
           <a href="blog/bring-your-own-key.html" class="mm-sub">你的金鑰。你的模型。你的資料。</a>
           <a href="blog/verify-ai-summary.html" class="mm-sub">核對摘要與原文出處</a>
           <a href="blog/highlighting-vs-asking.html" class="mm-sub">向你的劃線重點提問</a>
-        <a href="https://github.com/philffm/ai-summary-helper/" target="_blank" rel="noopener"><span class="mm-n">05</span>GitHub</a>
+        <a href="https://github.com/philffm/ai-summary-helper/" target="_blank" rel="noopener"><span class="mm-n">04</span>GitHub</a>
       </nav>
       <div class="mm-lang">
         <button type="button" class="lang-card" id="langCard"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.6"></circle><path d="M3 12h18M12 3c2.6 2.7 3.9 5.7 3.9 9s-1.3 6.3-3.9 9c-2.6-2.7-3.9-5.7-3.9-9S9.4 5.7 12 3Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"></path></svg><span class="lang-card-cur">英文</span><small>24 種語言</small><b aria-hidden="true">→</b></button>
@@ -132,28 +130,11 @@
       <div class="eyebrow"><span class="dash"></span> Chrome 擴充功能 · byphil. 旗下產品 <span class="dash"></span></div>
       <h1>摘要網頁精華。<br><em>留下真正重要的內容。</em></h1>
       <p class="sub">AI Summary Helper 具備內建 RSS 閱讀器以追蹤喜愛的網站，可將任何網頁儲存為帶有摘要、可搜尋的文章——並透過本機生成的閱讀摘要，直接將內容傳送至你的 Kindle 或其他裝置進行離線閱讀，助你真正消化吸收。</p>
-      <div class="hero-switch" role="tablist" aria-label="你想如何使用？">
-        <button type="button" class="hero-switch-btn active" role="tab" id="heroTabBrowser" aria-selected="true" aria-controls="heroPaneBrowser" data-hero="browser">
-          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="3" stroke="currentColor" stroke-width="1.6"></rect><path d="M3 9h18" stroke="currentColor" stroke-width="1.6"></path></svg>
-          瀏覽器擴充功能
-        </button>
-        <button type="button" class="hero-switch-btn" role="tab" id="heroTabBookmarklet" aria-selected="false" aria-controls="heroPaneBookmarklet" tabindex="-1" data-hero="bookmarklet">
-          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 3h12v18l-6-4-6 4V3Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"></path></svg>
-          書籤小工具
-        </button>
-      </div>
-      <div class="hero-pane" id="heroPaneBrowser" role="tabpanel" aria-labelledby="heroTabBrowser">
+      <div class="hero-pane" id="heroPaneBrowser">
         <div class="hero-cta">
           <a href="https://chromewebstore.google.com/detail/ai-summary-helper-openai/hldbejcjaedipeegjcinmhejdndchkmb" target="_blank" rel="noopener" class="btn-primary">免費新增至 Chrome</a>
         </div>
         <p class="hero-meta">無需註冊即可開始 · 透過 byPhil API 支援多數 LLM 模型、使用您自己的 API Key，或搭配 Ollama 完全離線運作</p>
-      </div>
-      <div class="hero-pane" id="heroPaneBookmarklet" role="tabpanel" aria-labelledby="heroTabBookmarklet" hidden="">
-        <p class="hero-pane-blurb">只需在書籤列加入一個連結，適用於任何瀏覽器與作業系統（包含 iOS）。免安裝，摘要直接在網頁上即時呈現。</p>
-        <div class="hero-cta">
-          <a href="../bookmarklet.html" class="btn-primary" data-track="bookmarklet-open">建立您的書籤小工具 →</a>
-        </div>
-        <p class="hero-meta">開啟產生器 · 透過 byPhil API 支援多數 LLM 模型（免 API Key），或串接您自己的 OpenAI、Gemini、Mistral、DeepSeek 或 Ollama</p>
       </div>
       <ol class="hs-steps" data-stage-pane="browser">
   <li class="is-on" data-step="0" role="button" tabindex="0"><b>閱讀任何網頁。</b><span>照常打開文章閱讀，AISH 在瀏覽器中安靜待命。</span></li>
@@ -203,30 +184,10 @@
           </div>
         </div>
       </div>
+      <!-- The animated demo is nice, but the video shows it better: this opens the full video (komplett-<lang>.mp4, the first clip of #videos) in the player. Without JavaScript it jumps to the clips. -->
+      <a class="hs-watch" href="#videos" data-open-video="komplett"><span class="hs-watch-ico" aria-hidden="true">▶</span><span class="hs-watch-txt"><strong>觀看影片</strong><small>1 分鐘內掌握所有重點</small></span></a>
       <div class="hs-ctrl" role="group" aria-label="功能導覽"><button type="button" class="hs-pp" aria-label="暫停導覽"><svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><path class="pp-pause" d="M7 5h3v14H7zM14 5h3v14h-3z" fill="currentColor"></path><path class="pp-play" d="M8 5l11 7-11 7z" fill="currentColor"></path></svg></button><button type="button" class="hs-dot is-on" aria-label="步驟 1"></button><button type="button" class="hs-dot" aria-label="步驟 2"></button><button type="button" class="hs-dot" aria-label="步驟 3"></button><button type="button" class="hs-dot" aria-label="步驟 4"></button></div>
       <p class="sr-only">AI Summary Helper 在側邊欄呈現精簡文章摘要，支援連結回原文段落的追問功能，並可自由切換為你偏好的語言。</p>
-    </div>
-    <div class="hs-bm" data-stage-pane="bookmarklet" hidden="">
-      <div class="bm-mock" aria-hidden="true" data-no-translate="">
-            <div class="bm-win">
-              <div class="bm-tb"><i></i><i></i><i></i><span>🔒 dailyledger.example/work-life/office-fern</span></div>
-              <div class="bm-bar"><span>Mail</span><span>Docs</span><span>Maps</span><span class="bm-mark">✨ Summarize</span></div>
-              <div class="bm-page">
-                <div class="bm-mast">The Daily Ledger</div>
-                <h4>Office fern outlives four reorganisations, now up for team lead</h4>
-                <p>Leeds. When the logistics team moved floors in 2019, nobody expected Gerald to survive.</p>
-                <p>Seven years and four reorganisations later, the office fern is the longest-serving member of the department.</p>
-                <p>He has never once scheduled a meeting that could have been an email.</p>
-                <div class="bm-card"><small>✨ AI Summary</small><b>A fern climbs the career ladder</b><span>Gerald, an office fern in Leeds, has outlasted <strong>four reorganisations in seven years</strong> and is now up for team lead.</span></div>
-              </div>
-              <svg class="bm-cursor" viewBox="0 0 24 24" width="26" height="26"><path d="M4 2l15 9-6.5 1.5L9 19z" fill="#14161f" stroke="#fff" stroke-width="1.4" stroke-linejoin="round"></path></svg>
-            </div>
-          </div>
-      <ol class="bm-steps">
-  <li><span class="bm-n">1</span><div><h3>一次設定</h3><p>選擇 byPhil API（無需 API Key）或串接你自己的 OpenAI、Gemini、Mistral、DeepSeek 或 Ollama。</p></div></li>
-  <li><span class="bm-n">2</span><div><h3>拖曳至書籤列</h3><p>支援任何瀏覽器與作業系統（包含 iOS），無需安裝任何外掛。</p></div></li>
-  <li><span class="bm-n">3</span><div><h3>在任何網頁上一鍵點擊</h3><p>摘要直接在頁面上即時顯示，並支援深入追問與多語言切換。</p></div></li>
-</ol>
     </div>
   </div>
 </section>
@@ -829,6 +790,16 @@
           <h3>在 Claude、LM Studio 與 Cursor 中直接取用你的庫藏</h3>
           <p>在「設定」中啟用 AI 應用程式，即可讓電腦上的 Claude Desktop、LM Studio、Cursor 及其他 MCP 應用程式搜尋你的庫藏、引用劃線重點並列出待讀清單。經你授權後，它們還能為你儲存連結。資料全程不經過我們的伺服器，且由你完全掌控它們能讀取的內容。</p>
           <button class="fvideo-cta" type="button" tabindex="-1" aria-hidden="true"><span class="fvideo-cta-play">▶</span>觀看短片</button>
+        </div>
+        <div class="feature-card" data-personas="privacy hoarder researcher">
+          <div class="f-icon icon-teal"><svg viewBox="0 0 24 24" fill="none"><path d="M7 18.5h9.5a3.5 3.5 0 0 0 .6-6.95A5 5 0 0 0 7.4 10.6 4 4 0 0 0 7 18.5Z" stroke="#fff" stroke-width="1.7" stroke-linejoin="round"></path><path d="M12 12.5v3M10.8 13.8h2.4" stroke="#fff" stroke-width="1.7" stroke-linecap="round"></path></svg></div>
+          <h3>你的知識庫儲存在專屬儲存空間，全程加密</h3>
+          <p>在多部裝置間同步你的知識庫、進行備份，或將部分內容發布到 Nextcloud、其他 WebDAV 伺服器、相容 S3 的儲存空間（Bucket）或電腦上的本機資料夾。所有內容在傳出瀏覽器前均已完成加密，因此伺服器端只能看到亂碼檔案。你也可以將收藏清單發布至個人網站，享有搜尋功能、標籤關聯圖以及儲存內容的 3D 視覺化地圖。在設定儲存位置前此功能完全關閉；我們不營運任何同步伺服器，也無法讀取你的任何資料。 <a href="../blog/sync-to-nextcloud-s3-or-a-folder.html">如何設定</a> · <a href="../blog/digital-sovereignty-for-individuals.html">為何重要</a></p>
+        </div>
+        <div class="feature-card" data-personas="hoarder researcher">
+          <div class="f-icon icon-amber"><svg viewBox="0 0 24 24" fill="none"><path d="M6 4.5h9l3 3V19a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V5.5a1 1 0 0 1 1-1Z" stroke="#fff" stroke-width="1.7" stroke-linejoin="round"></path><path d="M8.5 11h7M8.5 14.5h4.5" stroke="#fff" stroke-width="1.7" stroke-linecap="round"></path></svg></div>
+          <h3>在任何網頁上新增筆記與評論</h3>
+          <p>選取文字即可自由選擇：畫重點標記、留下評論，或連同引文儲存為筆記。所有內容都會彙整至「筆記」分頁，能以清單或便利貼網格檢視，依文章或標籤整理，並與知識庫的其他內容即時同步。</p>
         </div>
         <div class="feature-card" data-personas="hoarder researcher">
           <figure class="fvideo" data-blog-video="export">

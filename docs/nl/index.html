@@ -57,7 +57,6 @@
     <nav class="pill" aria-label="Primair">
       <a href="index.html#features" data-sec="features">Functies</a>
       <a href="index.html#try-it" data-sec="try-it">Demo</a>
-      <a href="index.html#pricing" data-sec="pricing">Prijzen</a>
       <a href="https://chromewebstore.google.com/detail/ai-summary-helper-openai/hldbejcjaedipeegjcinmhejdndchkmb" class="pill-cta" target="_blank" rel="noopener">Toevoegen aan Chrome</a>
     </nav>
     <div class="nav-tools">
@@ -76,13 +75,12 @@
       <nav class="mm-links" aria-label="Mobiel">
         <a href="index.html#features"><span class="mm-n">01</span>Functies</a>
         <a href="index.html#try-it"><span class="mm-n">02</span>Demo</a>
-        <a href="index.html#pricing"><span class="mm-n">03</span>Prijzen</a>
-        <a href="blog/"><span class="mm-n">04</span>Blog</a>
+        <a href="blog/"><span class="mm-n">03</span>Blog</a>
           <a href="blog/pocket-alternative.html" class="mm-sub">Pocket-alternatief: wat echt belangrijk is</a>
           <a href="blog/bring-your-own-key.html" class="mm-sub">Jouw sleutel. Jouw model. Jouw data.</a>
           <a href="blog/verify-ai-summary.html" class="mm-sub">Controleer een samenvatting aan de hand van de bron</a>
           <a href="blog/highlighting-vs-asking.html" class="mm-sub">Stel vragen over je markeringen</a>
-        <a href="https://github.com/philffm/ai-summary-helper/" target="_blank" rel="noopener"><span class="mm-n">05</span>GitHub</a>
+        <a href="https://github.com/philffm/ai-summary-helper/" target="_blank" rel="noopener"><span class="mm-n">04</span>GitHub</a>
       </nav>
       <div class="mm-lang">
         <button type="button" class="lang-card" id="langCard"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.6"></circle><path d="M3 12h18M12 3c2.6 2.7 3.9 5.7 3.9 9s-1.3 6.3-3.9 9c-2.6-2.7-3.9-5.7-3.9-9S9.4 5.7 12 3Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"></path></svg><span class="lang-card-cur">Engels</span><small>24 talen</small><b aria-hidden="true">→</b></button>
@@ -132,28 +130,11 @@
       <div class="eyebrow"><span class="dash"></span> Chrome-extensie · Onderdeel van byphil. <span class="dash"></span></div>
       <h1>Vat het web samen.<br><em>Bewaar wat telt.</em></h1>
       <p class="sub">AI Summary Helper volgt je favoriete sites met een ingebouwde RSS-lezer, bewaart elke pagina als een samengevat, doorzoekbaar artikel — en helpt je er daadwerkelijk naar terug te keren, met een lokale digest die offline leesvoer direct naar je Kindle of ander apparaat stuurt.</p>
-      <div class="hero-switch" role="tablist" aria-label="Hoe wil je het gebruiken?">
-        <button type="button" class="hero-switch-btn active" role="tab" id="heroTabBrowser" aria-selected="true" aria-controls="heroPaneBrowser" data-hero="browser">
-          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="3" stroke="currentColor" stroke-width="1.6"></rect><path d="M3 9h18" stroke="currentColor" stroke-width="1.6"></path></svg>
-          Browserextensie
-        </button>
-        <button type="button" class="hero-switch-btn" role="tab" id="heroTabBookmarklet" aria-selected="false" aria-controls="heroPaneBookmarklet" tabindex="-1" data-hero="bookmarklet">
-          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 3h12v18l-6-4-6 4V3Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"></path></svg>
-          Bookmarklet
-        </button>
-      </div>
-      <div class="hero-pane" id="heroPaneBrowser" role="tabpanel" aria-labelledby="heroTabBrowser">
+      <div class="hero-pane" id="heroPaneBrowser">
         <div class="hero-cta">
           <a href="https://chromewebstore.google.com/detail/ai-summary-helper-openai/hldbejcjaedipeegjcinmhejdndchkmb" target="_blank" rel="noopener" class="btn-primary">Toevoegen aan Chrome — gratis</a>
         </div>
         <p class="hero-meta">Geen account vereist · De meeste LLM-modellen via de byPhil API, je eigen AI-sleutel, of volledig offline met Ollama</p>
-      </div>
-      <div class="hero-pane" id="heroPaneBookmarklet" role="tabpanel" aria-labelledby="heroTabBookmarklet" hidden="">
-        <p class="hero-pane-blurb">Eén link in je bladwijzerbalk, elke browser, elk besturingssysteem — inclusief iOS. Geen installatie; de samenvatting verschijnt direct op de pagina.</p>
-        <div class="hero-cta">
-          <a href="../bookmarklet.html" class="btn-primary" data-track="bookmarklet-open">Maak je bookmarklet →</a>
-        </div>
-        <p class="hero-meta">Opent de generator · de meeste LLM-modellen via de byPhil API (geen sleutel nodig), of je eigen OpenAI, Gemini, Mistral, DeepSeek of Ollama</p>
       </div>
       <ol class="hs-steps" data-stage-pane="browser">
   <li class="is-on" data-step="0" role="button" tabindex="0"><b>Lees elke pagina.</b><span>Open een artikel zoals gewoonlijk. AISH draait geruisloos op de achtergrond in je browser.</span></li>
@@ -203,30 +184,10 @@
           </div>
         </div>
       </div>
+      <!-- The animated demo is nice, but the video shows it better: this opens the full video (komplett-<lang>.mp4, the first clip of #videos) in the player. Without JavaScript it jumps to the clips. -->
+      <a class="hs-watch" href="#videos" data-open-video="komplett"><span class="hs-watch-ico" aria-hidden="true">▶</span><span class="hs-watch-txt"><strong>Bekijk de video</strong><small>Alles in minder dan een minuut</small></span></a>
       <div class="hs-ctrl" role="group" aria-label="Rondleiding"><button type="button" class="hs-pp" aria-label="Rondleiding pauzeren"><svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><path class="pp-pause" d="M7 5h3v14H7zM14 5h3v14h-3z" fill="currentColor"></path><path class="pp-play" d="M8 5l11 7-11 7z" fill="currentColor"></path></svg></button><button type="button" class="hs-dot is-on" aria-label="Stap 1"></button><button type="button" class="hs-dot" aria-label="Stap 2"></button><button type="button" class="hs-dot" aria-label="Stap 3"></button><button type="button" class="hs-dot" aria-label="Stap 4"></button></div>
       <p class="sr-only">AI Summary Helper toont een korte samenvatting van een artikel in een zijpaneel, laat je vervolgvragen stellen die teruglinken naar de bronpassage, en vertaalt samenvattingen naar de taal die jij kiest.</p>
-    </div>
-    <div class="hs-bm" data-stage-pane="bookmarklet" hidden="">
-      <div class="bm-mock" aria-hidden="true" data-no-translate="">
-            <div class="bm-win">
-              <div class="bm-tb"><i></i><i></i><i></i><span>🔒 dailyledger.example/work-life/office-fern</span></div>
-              <div class="bm-bar"><span>Mail</span><span>Docs</span><span>Maps</span><span class="bm-mark">✨ Summarize</span></div>
-              <div class="bm-page">
-                <div class="bm-mast">The Daily Ledger</div>
-                <h4>Office fern outlives four reorganisations, now up for team lead</h4>
-                <p>Leeds. When the logistics team moved floors in 2019, nobody expected Gerald to survive.</p>
-                <p>Seven years and four reorganisations later, the office fern is the longest-serving member of the department.</p>
-                <p>He has never once scheduled a meeting that could have been an email.</p>
-                <div class="bm-card"><small>✨ AI Summary</small><b>A fern climbs the career ladder</b><span>Gerald, an office fern in Leeds, has outlasted <strong>four reorganisations in seven years</strong> and is now up for team lead.</span></div>
-              </div>
-              <svg class="bm-cursor" viewBox="0 0 24 24" width="26" height="26"><path d="M4 2l15 9-6.5 1.5L9 19z" fill="#14161f" stroke="#fff" stroke-width="1.4" stroke-linejoin="round"></path></svg>
-            </div>
-          </div>
-      <ol class="bm-steps">
-  <li><span class="bm-n">1</span><div><h3>Eenmalig instellen</h3><p>Kies de byPhil API (geen sleutel nodig) of je eigen OpenAI, Gemini, Mistral, DeepSeek of Ollama.</p></div></li>
-  <li><span class="bm-n">2</span><div><h3>Sleep naar je bladwijzerbalk</h3><p>Elke browser, elk besturingssysteem, inclusief iOS. Niets te installeren.</p></div></li>
-  <li><span class="bm-n">3</span><div><h3>Klik erop op elke pagina</h3><p>De samenvatting verschijnt direct op de pagina, compleet met vervolgvragen en in jouw taal.</p></div></li>
-</ol>
     </div>
   </div>
 </section>
@@ -829,6 +790,16 @@
           <h3>Je bibliotheek direct in Claude, LM Studio en Cursor</h3>
           <p>Schakel AI-apps in via Instellingen, en Claude Desktop, LM Studio, Cursor en andere MCP-apps op je computer kunnen je bibliotheek doorzoeken, je markeringen citeren en tonen wat er op de planning staat. Als je toestemming geeft, kunnen ze ook links voor je opslaan. Er loopt niets via onze servers, en jij bepaalt wat ze mogen inzien.</p>
           <button class="fvideo-cta" type="button" tabindex="-1" aria-hidden="true"><span class="fvideo-cta-play">▶</span>Bekijk de clip</button>
+        </div>
+        <div class="feature-card" data-personas="privacy hoarder researcher">
+          <div class="f-icon icon-teal"><svg viewBox="0 0 24 24" fill="none"><path d="M7 18.5h9.5a3.5 3.5 0 0 0 .6-6.95A5 5 0 0 0 7.4 10.6 4 4 0 0 0 7 18.5Z" stroke="#fff" stroke-width="1.7" stroke-linejoin="round"></path><path d="M12 12.5v3M10.8 13.8h2.4" stroke="#fff" stroke-width="1.7" stroke-linecap="round"></path></svg></div>
+          <h3>Je bibliotheek op je eigen opslag, versleuteld</h3>
+          <p>Houd je bibliotheek gesynchroniseerd op al je apparaten, maak back-ups of publiceer een deel ervan via Nextcloud of een andere WebDAV-server, een S3-compatibele bucket of een lokale map op je computer. Alles wordt al in je browser versleuteld voordat het wordt verzonden, zodat de server enkel onleesbare data ziet. Publiceer een overzicht naar je eigen website met zoekfunctie, een tag-grafiek en een 3D-kaart van wat je hebt opgeslagen. Staat standaard uit totdat je zelf een locatie toevoegt; wij beheren geen synchronisatieserver en zien niets. <a href="../blog/sync-to-nextcloud-s3-or-a-folder.html">Zo stel je het in</a> · <a href="../blog/digital-sovereignty-for-individuals.html">Waarom dit belangrijk is</a></p>
+        </div>
+        <div class="feature-card" data-personas="hoarder researcher">
+          <div class="f-icon icon-amber"><svg viewBox="0 0 24 24" fill="none"><path d="M6 4.5h9l3 3V19a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V5.5a1 1 0 0 1 1-1Z" stroke="#fff" stroke-width="1.7" stroke-linejoin="round"></path><path d="M8.5 11h7M8.5 14.5h4.5" stroke="#fff" stroke-width="1.7" stroke-linecap="round"></path></svg></div>
+          <h3>Notities en opmerkingen op elke pagina</h3>
+          <p>Selecteer tekst en kies direct: markeer, voeg een opmerking toe of sla een notitie op met het citaat. Alles komt overzichtelijk terecht in het tabblad Notities — als lijst of als grid met memoblaadjes, gesorteerd op artikel of tag — en synchroniseert met de rest van je bibliotheek.</p>
         </div>
         <div class="feature-card" data-personas="hoarder researcher">
           <figure class="fvideo" data-blog-video="export">

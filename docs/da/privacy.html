@@ -41,7 +41,6 @@
     <nav class="pill" aria-label="Primær">
       <a href="index.html#features" data-sec="features">Funktioner</a>
       <a href="index.html#try-it" data-sec="try-it">Demo</a>
-      <a href="index.html#pricing" data-sec="pricing">Priser</a>
       <a href="https://chromewebstore.google.com/detail/ai-summary-helper-openai/hldbejcjaedipeegjcinmhejdndchkmb" class="pill-cta" target="_blank" rel="noopener">Tilføj til Chrome</a>
     </nav>
     <div class="nav-tools">
@@ -60,13 +59,12 @@
       <nav class="mm-links" aria-label="Mobil">
         <a href="index.html#features"><span class="mm-n">01</span>Funktioner</a>
         <a href="index.html#try-it"><span class="mm-n">02</span>Demo</a>
-        <a href="index.html#pricing"><span class="mm-n">03</span>Priser</a>
-        <a href="blog/"><span class="mm-n">04</span>Blog</a>
+        <a href="blog/"><span class="mm-n">03</span>Blog</a>
           <a href="blog/pocket-alternative.html" class="mm-sub">Alternativ til Pocket: det vigtigste</a>
           <a href="blog/bring-your-own-key.html" class="mm-sub">Din nøgle. Din model. Dine data.</a>
           <a href="blog/verify-ai-summary.html" class="mm-sub">Tjek et resumé mod kilden</a>
           <a href="blog/highlighting-vs-asking.html" class="mm-sub">Stil spørgsmål til dine markeringer</a>
-        <a href="https://github.com/philffm/ai-summary-helper/" target="_blank" rel="noopener"><span class="mm-n">05</span>GitHub</a>
+        <a href="https://github.com/philffm/ai-summary-helper/" target="_blank" rel="noopener"><span class="mm-n">04</span>GitHub</a>
       </nav>
       <div class="mm-lang">
         <button type="button" class="lang-card" id="langCard"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.6"></circle><path d="M3 12h18M12 3c2.6 2.7 3.9 5.7 3.9 9s-1.3 6.3-3.9 9c-2.6-2.7-3.9-5.7-3.9-9S9.4 5.7 12 3Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"></path></svg><span class="lang-card-cur">Engelsk</span><small>24 sprog</small><b aria-hidden="true">→</b></button>
@@ -139,7 +137,7 @@
         <ul>
           <li><strong>Bring your own key (BYOK)</strong> — OpenAI, Google Gemini, Mistral AI, DeepSeek eller et brugerdefineret endpoint. Din API key gemmes udelukkende lokalt på din enhed (synkroniseres aldrig, sendes aldrig til os). Sideindhold, du vælger at opsummere, sendes direkte fra din browser til den valgte udbyder ved hjælp af din egen nøgle og er underlagt udbyderens egen privatlivspolitik. Vi hverken ser, logger eller gemmer dette indhold.</li>
           <li><strong>Lokal model via Ollama</strong> — hvis du kører en model lokalt, sendes sideindholdet kun til din egen maskine. Intet forlader din enhed.</li>
-          <li><strong>byphil Cloud (valgfrit, betalt)</strong> — en hosted mulighed for dem, der foretrækker ikke at håndtere en API key selv. Hvis du vælger denne løsning, sendes teksten, du vil have opsummeret, gennem vores backend, som videresender anmodningen via OpenRouter til en underliggende modeludbyder på dine vegne og returnerer resuméet. Det videresendes udelukkende: vi gemmer ikke sideindhold, URL'er eller resuméer. Det eneste, vi registrerer pr. konto, er forbrugsmetadata: antallet af gennemførte anmodninger, token-forbrug, tidspunktet for sidste anmodning og den anvendte model. Selve kontoen er valgfri; alle andre funktioner fungerer uden.</li>
+          <li><strong>byphil Cloud (valgfrit, betalt)</strong> — en hostet løsning til dig, der helst vil slippe for at administrere en API key. Hvis du vælger denne løsning, sendes den tekst, du ønsker at få opsummeret, gennem vores backend, som videresender anmodningen via OpenRouter til en underliggende modeludbyder på dine vegne og returnerer opsummeringen. Den videresendes udelukkende: Vi gemmer hverken sideindhold, URL'er eller opsummeringer. Det eneste, vi registrerer pr. konto, er brugsmetadata: antallet af gennemførte anmodninger, tokenforbrug, tidspunktet for den seneste anmodning samt den anvendte model. Selve kontoen er valgfri – alle andre funktioner fungerer uden. Med indstillingen “Foretræk EU-servere” slået til, afvikles modeller med et endpoint i Europa udelukkende på disse endpoints, og appen viser tydeligt, hvilke modeller der gør, og hvilke der ikke gør. Dette begrænser, hvor modellen kører. Det fjerner dog ingen led fra kæden: Din tekst passerer stadig gennem vores tjeneste (som kører på en server i Tyskland) og derefter gennem OpenRouter, en amerikansk virksomhed, på vej til modellen. Oplæsning og tale-til-tekst har ingen EU-mulighed.</li>
         </ul>
 
         <h3>Licens- og abonnementsstatus</h3>
@@ -160,6 +158,7 @@
             <tr><td>API keys / udbyderkonfiguration</td><td>Lokalt</td><td>Nej — følsomt, kun på enheden</td></tr>
             <tr><td>Licensnøgle</td><td>Lokalt</td><td>Nej — følsomt, kun på enheden</td></tr>
             <tr><td>LocalSend netværks-IP</td><td>Lokalt</td><td>Nej</td></tr>
+            <tr><td>Logins til bibliotekssynkronisering, adgangsnøgler og krypteringsnøgler</td><td>Lokalt</td><td>Nej – følsomt, kun på enheden, udelades fra sikkerhedskopier</td></tr>
             <tr><td>Tekstoverstregninger og AI-spøgelsesoverstregninger</td><td>Lokalt (pr. side)</td><td>Nej</td></tr>
             <tr><td>Standardprompt, sprog, resumélængde</td><td>Synkroniseret</td><td>Ja, via din egen Chrome-konto</td></tr>
             <tr><td>Indstilling for overstregning til/fra</td><td>Synkroniseret</td><td>Ja, via din egen Chrome-konto</td></tr>
@@ -178,12 +177,21 @@
           <li><strong>LocalSend og systemets delingsmenu (f.eks. AirDrop) er direkte.</strong> Filen sendes fra din browser direkte til den enhed, du har valgt på dit lokale netværk, eller til den app, du valgte i delingsmenuen. Vi er ikke involveret og ser eller gemmer ikke dette indhold. LocalSend fungerer med telefoner, tablets, computere og e-bogslæsere, der kører en kompatibel app.</li>
         </ul>
 
+        <h3>Bibliotekssynkronisering, sikkerhedskopiering og udgivelse (valgfrit)</h3>
+        <p>Deaktiveret, indtil du tilføjer en placering i Indstillinger → Synkronisering og sikkerhedskopiering. En placering er en mappe på en server, du vælger (Nextcloud eller en anden WebDAV-server, eller en S3-kompatibel bucket som f.eks. AWS S3, Cloudflare R2 eller Backblaze B2) eller en mappe på din egen computer. Vi driver ikke disse servere, er ikke involveret og ser aldrig, hvad du gemmer der.</p>
+        <ul>
+          <li><strong>Krypterede placeringer</strong> hold hele dit bibliotek synkroniseret på tværs af dine enheder, eller gem en sikkerhedskopi: artikler, resuméer, fulde tekster, fremhævninger, noter, samlinger og tags. Alt krypteres i din browser (AES-256-GCM, med en nøgle afledt af din adgangskodefrase), før det forlader enheden, og filnavne bliver maskeret. Serveren eller mappen ser kun krypterede filer, deres størrelser og ændringstidspunkter. Din adgangskodefrase gemmes ikke. Nøglen afledt heraf forbliver i denne browsers lokale lager, så synkroniseringen kan køre i baggrunden; den synkroniseres aldrig og indgår aldrig i en sikkerhedskopi. Du får en gendannelsesnøgle én gang. Hvis du mister både adgangskodefrasen og gendannelsesnøglen, kan ingen læse filerne – heller ikke os.</li>
+          <li><strong>Læsbare placeringer</strong> udgiv almindelige filer (og, hvis du vil, en lille visningsside) til din egen hjemmeside eller dine egne værktøjer. Kun de artikler, der matcher dit valgte tagfilter, sendes ud. Noter, påmindelser og fuld artikeltekst udgives aldrig, medmindre du selv slår det til i farezonen – og så kan enhver med adgang til mappen læse dem.</li>
+          <li><strong>Hvordan det sendes.</strong> Forespørgsler går fra din browser direkte til den adresse, du har angivet, via HTTPS, ved hjælp af det login eller den adgangsnøgle, du har oplyst. Dette login gemmes lokalt, synkroniseres aldrig og udelades fra sikkerhedskopier, medmindre du aktivt vælger det til. Serverudbyderen kan se din IP-adresse og tidspunktet for synkronisering.</li>
+          <li><strong>En mappe på denne computer</strong> bruger browserens mappeadgang. Du vælger mappen, og browseren beder om din tilladelse, som den muligvis beder om igen efter en genstart. Vi beholder kun browserens reference til den pågældende mappe. Hvad end du bruger til at overføre mappen til andre enheder (Syncthing, iCloud Drive, Dropbox), har sine egne privatlivsvilkår.</li>
+        </ul>
+
         <h3>AI-apps på din computer (MCP)</h3>
         <p>Slået fra som standard. Når du aktiverer Indstillinger → AI-apps (MCP), kan AI-apps på din computer, som du forbinder (f.eks. Claude Desktop, LM Studio, Cursor eller VS Code), læse de dele af dit bibliotek, du giver tilladelse til: dine gemte artikler med tilhørende resuméer og fremhævninger, og – kun hvis du vælger at slå det til – den fulde artikeltekst, dine feed-elementer samt muligheden for at gemme links i din indbakke. Dataene sendes direkte fra din browser via et lille hjælpeprogram på din computer (<code>aish-mcp</code>) til den pågældende app. De passerer aldrig igennem vores server, og vi ser dem aldrig. Hjælpeprogrammet accepterer udelukkende forbindelser fra din egen computer og kræver en parringskode; det gemmer ingen artikler og logger intet om, hvad der videresendes. Artikler med det tag, du ekskluderer (<code>private</code> som standard), bliver aldrig delt. Udvidelsen gemmer en liste over de seneste 50 kald (værktøjsnavn, tidspunkt og antal resultater – intet indhold) lokalt på din enhed, som du kan se i det samme indstillingspanel. Hvad AI-appen derefter sender videre til sin model, afhænger af den app og model, du vælger: Med en lokal model forlader intet din computer. Du kan altid slå funktionen fra eller vælge Afbryd forbindelse.</p>
 
         <h2 id="analytics">Analyse &amp; cookies</h2>
         <p><strong>Kort version:</strong> dette website sætter <strong>ingen cookies</strong> og bruger ingen reklamer eller cross-site trackers. Vi tæller anonyme besøg med en selvhostet Matomo-instans, og du kan slå det fra når som helst.</p>
-        <p><strong>Selve browserudvidelsen indeholder ingen analyse-, telemetri- eller sporingskode.</strong> Udvidelsens eneste netværksanmodninger går til den AI-udbyder, du har konfigureret, de feeds, du abonnerer på, de sider, du beder den om at hente, og (hvis du bruger dem) byphil-backenden til byphil Cloud, login, licensvalidering og Send to Kindle.</p>
+        <p><strong>Selve browserudvidelsen indeholder ingen analyse-, telemetri- eller sporingskode.</strong> Dens eneste netværksforespørgsler går til den AI-udbyder, du har konfigureret, de feeds, du abonnerer på, de sider, du beder den hente, de servere, du har opsat til bibliotekssynkronisering, sikkerhedskopiering eller udgivelse, og (hvis du bruger dem) byphil-backend til byphil Cloud, login, licenskontrol og Send to Kindle.</p>
         <h3>Hvad vi måler</h3>
         <p>Sidevisninger, sidesprog, henvisningsside (referrer), omtrentligt land/browser/enhedstype, og hvilke dele af websitet du interagerer med (f.eks. klik på "Tilføj til Chrome", prisskifteren, FAQ-elementer, sektioner du scroller til, og trin i bookmarklet-generatoren). Hændelser indeholder aldrig e-mailadresser, API keys, engangskoder, sideindhold eller artikeldata.</p>
         <h3>Hvordan det er konfigureret</h3>
@@ -223,8 +231,9 @@
             <tr><td><code>sidePanel</code></td><td>Understøtte Chromes indbyggede sidepanel som visningsmulighed</td></tr>
             <tr><td><code>scripting</code></td><td>Indsætte det script, der er nødvendigt for at læse og opsummere en side</td></tr>
             <tr><td><code>offscreen</code>, <code>tts</code></td><td>Afspille podcast-lyd og oplæse resuméer i baggrunden, mens pop op-vinduet er lukket</td></tr>
+            <tr><td>Filsystemadgang (valgt mappe)</td><td>Kun når du vælger en mappe på din computer som synkroniserings- eller sikkerhedskopieringsplacering; browseren beder om din tilladelse, og kun denne mappe er tilgængelig</td></tr>
             <tr><td><code>unlimitedStorage</code></td><td>Gemme et stort lokalt arkiv af artikler og overstregninger uden at ramme standardlagergrænsen</td></tr>
-            <tr><td><code>host_permissions (&lt;all_urls&gt;)</code></td><td>Gøre det muligt at opsummere enhver side, du besøger — indhold læses og overføres kun, når du aktivt igangsætter en opsummering, aldrig passivt</td></tr>
+            <tr><td><code>host_permissions (&lt;all_urls&gt;)</code></td><td>Giver dig mulighed for at opsummere enhver side, du besøger – indhold læses og overføres kun, når du aktivt starter et resumé, aldrig passivt. Gør det også muligt for udvidelsen at forbinde til den synkroniseringsserver eller bucket, du indtaster, som kan være på enhver adresse</td></tr>
           </tbody>
         </table>
         <p>Vi bruger ikke disse tilladelser til at spore din browsing, opbygge en reklameprofil eller indsamle data ud over det, der er nødvendigt for funktionerne ovenfor.</p>
@@ -234,14 +243,14 @@
           <li>Vi viser eller formidler ikke reklamer, og vi hverken sælger, udlejer eller udveksler dine data med annoncører eller datamæglere.</li>
           <li>Vi kræver ikke en konto eller login til nogen af kernefunktionerne.</li>
           <li>Vi logger eller gemmer ikke indholdet af sider, du opsummerer via din egen API key eller en lokal model, og vi ser aldrig, hvad du sender via LocalSend eller delingsmenuen.</li>
-          <li>Vi har ikke adgang til din lokalt gemte artikelhistorik, overstregninger eller API keys — de forlader aldrig din enhed, medmindre du udtrykkeligt eksporterer dem.</li>
+          <li>Vi har ikke adgang til din lokalt gemte artikelhistorik, fremhævninger eller API keys – de forlader aldrig din enhed, medmindre du udtrykkeligt eksporterer dem eller opsætter en synkroniserings-, sikkerhedskopierings- eller udgivelsesplacering, og da sendes de kun derhen, hvor du angiver.</li>
         </ul>
 
         <h2>Tredjepartstjenester</h2>
         <p>Afhængigt af hvordan du konfigurerer udvidelsen, kan dit sideindhold blive sendt til:</p>
         <ul>
           <li>OpenAI, Google (Gemini), Mistral AI eller DeepSeek — kun hvis du har indtastet din egen API key for den pågældende udbyder, og kun for den side, du aktivt opsummerer.</li>
-          <li>Vores byphil-backend, hostet hos IONOS SE i Tyskland — kun hvis du logger ind, bruger byphil Cloud eller Send to Kindle.</li>
+          <li>Vores byphil-backend og dens database, begge hosted hos IONOS SE i Tyskland – kun hvis du logger ind, bruger byphil Cloud eller Send to Kindle.</li>
           <li>OpenRouter, hvorigennem byphil Cloud forbinder til modellerne, samt den modeludbyder, der viderestilles til — teksten, du opsummerer, videresendes udelukkende til den model, du bruger, i forbindelse med den konkrete anmodning.</li>
           <li>Stripe — betalinger og abonnementsadministration som Merchant of Record.</li>
           <li>Amazon — hvis du sender en artikel til din Kindle, leverer Amazon den i henhold til deres egne privatlivsvilkår.</li>

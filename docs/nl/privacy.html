@@ -41,7 +41,6 @@
     <nav class="pill" aria-label="Primair">
       <a href="index.html#features" data-sec="features">Functies</a>
       <a href="index.html#try-it" data-sec="try-it">Demo</a>
-      <a href="index.html#pricing" data-sec="pricing">Prijzen</a>
       <a href="https://chromewebstore.google.com/detail/ai-summary-helper-openai/hldbejcjaedipeegjcinmhejdndchkmb" class="pill-cta" target="_blank" rel="noopener">Toevoegen aan Chrome</a>
     </nav>
     <div class="nav-tools">
@@ -60,13 +59,12 @@
       <nav class="mm-links" aria-label="Mobiel">
         <a href="index.html#features"><span class="mm-n">01</span>Functies</a>
         <a href="index.html#try-it"><span class="mm-n">02</span>Demo</a>
-        <a href="index.html#pricing"><span class="mm-n">03</span>Prijzen</a>
-        <a href="blog/"><span class="mm-n">04</span>Blog</a>
+        <a href="blog/"><span class="mm-n">03</span>Blog</a>
           <a href="blog/pocket-alternative.html" class="mm-sub">Pocket-alternatief: wat echt belangrijk is</a>
           <a href="blog/bring-your-own-key.html" class="mm-sub">Jouw sleutel. Jouw model. Jouw data.</a>
           <a href="blog/verify-ai-summary.html" class="mm-sub">Controleer een samenvatting aan de hand van de bron</a>
           <a href="blog/highlighting-vs-asking.html" class="mm-sub">Stel vragen over je markeringen</a>
-        <a href="https://github.com/philffm/ai-summary-helper/" target="_blank" rel="noopener"><span class="mm-n">05</span>GitHub</a>
+        <a href="https://github.com/philffm/ai-summary-helper/" target="_blank" rel="noopener"><span class="mm-n">04</span>GitHub</a>
       </nav>
       <div class="mm-lang">
         <button type="button" class="lang-card" id="langCard"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.6"></circle><path d="M3 12h18M12 3c2.6 2.7 3.9 5.7 3.9 9s-1.3 6.3-3.9 9c-2.6-2.7-3.9-5.7-3.9-9S9.4 5.7 12 3Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"></path></svg><span class="lang-card-cur">Engels</span><small>24 talen</small><b aria-hidden="true">→</b></button>
@@ -139,7 +137,7 @@
         <ul>
           <li><strong>Gebruik je eigen sleutel (BYOK)</strong> — OpenAI, Google Gemini, Mistral AI, DeepSeek of een eigen custom endpoint. Je API-sleutel wordt uitsluitend lokaal op je apparaat opgeslagen (nooit gesynchroniseerd, nooit naar ons verzonden). Pagina-inhoud die je wilt samenvatten wordt rechtstreeks vanuit je browser naar de gekozen provider gestuurd, met gebruik van je eigen sleutel en onderhevig aan het privacybeleid van die provider. Wij kunnen deze inhoud niet inzien, loggen of opslaan.</li>
           <li><strong>Lokaal model via Ollama</strong> — als je een model lokaal draait, wordt pagina-inhoud alleen naar je eigen machine gestuurd. Er verlaat niets je apparaat.</li>
-          <li><strong>byphil Cloud (optioneel, betaald)</strong> — een gehoste optie voor wie liever geen eigen API-sleutel beheert. Als je voor deze optie kiest, loopt de tekst die je wilt samenvatten via onze backend. Deze stuurt het verzoek namens jou door via OpenRouter naar een onderliggende modelprovider en geeft de samenvatting terug. Het wordt enkel doorgestuurd: we slaan geen pagina-inhoud, URL's of samenvattingen op. Wat we per account bijhouden zijn gebruiksgegevens: het aantal voltooide verzoeken, tokenverbruik, het tijdstip van het laatste verzoek en het gebruikte model. Het account zelf is optioneel; alle andere functies werken zonder account.</li>
+          <li><strong>byphil Cloud (optioneel, betaald)</strong> — een gehoste optie voor als je liever geen eigen API-sleutel beheert. Kies je voor deze optie, dan loopt de tekst die je wilt samenvatten via onze backend. Deze stuurt het verzoek namens jou via OpenRouter door naar de achterliggende modelprovider en stuurt de samenvatting terug. De data wordt alleen doorgestuurd: we slaan geen pagina-inhoud, URL's of samenvattingen op. Wat we wel per account vastleggen, zijn minimale gebruiksstatistieken: het aantal voltooide verzoeken, tokenverbruik, het tijdstip van het laatste verzoek en het gebruikte model. Een account is overigens optioneel; alle andere functies werken ook zonder account. Met de instelling “Voorkeur voor EU-servers” ingeschakeld, worden modellen met een Europees eindpunt uitsluitend via die eindpunten uitgevoerd, waarbij de app duidelijk aangeeft welke modellen dit wel of niet ondersteunen. Dit beperkt waar het model draait. Het haalt echter geen partijen uit de keten: je tekst passeert nog steeds onze dienst (draaiend op een server in Duitsland) en vervolgens OpenRouter, een Amerikaans bedrijf, op weg naar het model. Voor voorlezen en spraak-naar-tekst is er momenteel geen EU-optie.</li>
         </ul>
 
         <h3>Licentie- en abonnementsstatus</h3>
@@ -160,6 +158,7 @@
             <tr><td>API-sleutels / providerconfiguratie</td><td>Lokaal</td><td>Nee — gevoelig, alleen op dit apparaat</td></tr>
             <tr><td>Licentiesleutel</td><td>Lokaal</td><td>Nee — gevoelig, alleen op dit apparaat</td></tr>
             <tr><td>LocalSend netwerk-IP</td><td>Lokaal</td><td>Nee</td></tr>
+            <tr><td>Inloggegevens voor bibliotheeksynchronisatie, toegangssleutels en encryptiesleutels</td><td>Lokaal</td><td>Nee — gevoelig, uitsluitend op dit apparaat, niet opgenomen in back-ups</td></tr>
             <tr><td>Tekstmarkeringen &amp; AI ghost-markeringen</td><td>Lokaal (per pagina)</td><td>Nee</td></tr>
             <tr><td>Standaardprompt, taal, lengte van samenvatting</td><td>Sync</td><td>Ja, via je eigen Chrome-account</td></tr>
             <tr><td>Voorkeur markeren aan/uit</td><td>Sync</td><td>Ja, via je eigen Chrome-account</td></tr>
@@ -178,12 +177,21 @@
           <li><strong>LocalSend en het systeemdeelmenu (bijvoorbeeld AirDrop) zijn direct.</strong> Het bestand gaat rechtstreeks van je browser naar het gekozen apparaat op je lokale netwerk, of naar de app die je kiest in het deelmenu. Wij zijn hier niet bij betrokken en kunnen deze inhoud niet inzien of opslaan. LocalSend werkt met telefoons, tablets, computers en e-readers waarop een compatibele app draait.</li>
         </ul>
 
+        <h3>Bibliotheeksynchronisatie, back-up en publiceren (optioneel)</h3>
+        <p>Uitgeschakeld totdat je een locatie toevoegt via Instellingen → Synchronisatie &amp; back-up. Een locatie is een map op een server naar keuze (Nextcloud of een andere WebDAV-server, of een S3-compatibele bucket zoals AWS S3, Cloudflare R2 of Backblaze B2) of een map op je eigen computer. Wij beheren deze servers niet, hebben er geen invloed op en zien nooit wat je daar opslaat.</p>
+        <ul>
+          <li><strong>Versleutelde locaties</strong> houd je hele bibliotheek synchroon tussen je apparaten of bewaar een back-up: artikelen, samenvattingen, volledige teksten, markeringen, notities, collecties en tags. Alles wordt in je browser versleuteld (AES-256-GCM, met een sleutel afgeleid van je wachtwoordzin) voordat het je apparaat verlaat, en bestandsnamen worden gehusseld. De server of map ziet alleen versleutelde bestanden, hun bestandsgrootte en wanneer ze zijn gewijzigd. Je wachtwoordzin wordt niet opgeslagen. De afgeleide sleutel blijft in de lokale opslag van deze browser zodat synchronisatie op de achtergrond kan draaien; deze wordt nooit gesynchroniseerd en maakt nooit deel uit van een back-up. Je ontvangt eenmalig een herstelsleutel. Als je zowel de wachtwoordzin als de herstelsleutel kwijtraakt, kan niemand de bestanden lezen — ook wij niet.</li>
+          <li><strong>Leesbare locaties</strong> publiceer gewone bestanden (en, als je wilt, een eenvoudige weergavepagina) voor je eigen website of tools. Alleen artikelen die voldoen aan je ingestelde tagfilter worden gedeeld. Notities, herinneringen en volledige artikelteksten worden nooit gepubliceerd tenzij je dit zelf inschakelt in de gevarenzone — en dan kan iedereen die toegang heeft tot die map ze lezen.</li>
+          <li><strong>Hoe het wordt verzonden.</strong> Verzoeken gaan vanuit je browser rechtstreeks naar het door jou ingevoerde adres, via HTTPS, met gebruik van de inloggegevens of toegangssleutel die je hebt opgegeven. Deze inloggegevens worden lokaal opgeslagen, nooit gesynchroniseerd en weggelaten uit back-ups tenzij je hier expliciet voor kiest. De beheerder van de server kan je IP-adres zien en wanneer je synchroniseert.</li>
+          <li><strong>Een map op deze computer</strong> gebruikt de maptoegang van je browser. Je kiest de map en de browser vraagt om je toestemming (die na een herstart opnieuw gevraagd kan worden). Wij bewaren alleen de interne verwijzing van de browser naar die map. Welke tool je ook gebruikt om die map naar andere apparaten te synchroniseren (Syncthing, iCloud Drive, Dropbox), valt onder de privacyvoorwaarden van die dienst.</li>
+        </ul>
+
         <h3>AI-apps op je computer (MCP)</h3>
         <p>Standaard uitgeschakeld. Wanneer je Instellingen → AI-apps (MCP) inschakelt, kunnen AI-apps op je computer die je koppelt (zoals Claude Desktop, LM Studio, Cursor of VS Code) de delen van je bibliotheek lezen die je toestaat: je opgeslagen artikelen met hun samenvattingen en markeringen, en – alleen als je dit inschakelt – de volledige artikeltekst, je feed-items en het opslaan van links naar je inbox. De gegevens gaan vanuit je browser via een klein hulpprogramma op je computer (<code>aish-mcp</code>) naar die app. Dit passeert nooit onze server en wij krijgen dit nooit te zien. Het hulpprogramma accepteert uitsluitend verbindingen vanaf je eigen computer en vereist een koppelcode; het slaat geen artikelen op en houdt niet bij wat het doorstuurt. Artikelen met de tag die je uitsluit (<code>private</code> standaard) worden nooit gedeeld. De extensie bewaart een overzicht van de laatste 50 aanroepen (toolnaam, tijdstip en aantal resultaten, geen inhoud) op je apparaat, die je in hetzelfde instellingenpaneel kunt inzien. Wat de AI-app vervolgens naar zijn model stuurt, hangt af van de app en het gekozen model: bij een lokaal model verlaat niets je computer. Schakel de instelling op elk moment uit of selecteer Verbinding verbreken.</p>
 
         <h2 id="analytics">Analytics &amp; cookies</h2>
         <p><strong>Korte versie:</strong> deze website plaatst <strong>geen cookies</strong> en gebruikt geen advertenties of cross-site trackers. We tellen anonieme bezoeken met een zelf-gehoste Matomo-instantie, en je kunt dit op elk moment uitschakelen.</p>
-        <p><strong>De browserextensie zelf bevat geen analytics, telemetrie of trackingcode.</strong> De enige netwerkverzoeken die worden gedaan gaan naar de door jou ingestelde AI-provider, de feeds waarop je bent geabonneerd, de pagina's die je wilt ophalen en (als je ze gebruikt) de byphil-backend voor byphil Cloud, inloggen, licentiecontroles en Send to Kindle.</p>
+        <p><strong>De browserextensie zelf bevat geen analytics, telemetrie of trackingcode.</strong> De enige netwerkverzoeken gaan naar de door jou geconfigureerde AI-provider, de feeds waarop je bent geabonneerd, de pagina's die je opvraagt, de servers die je hebt ingesteld voor bibliotheeksynchronisatie, back-up of publicatie, en (indien gebruikt) de byphil-backend voor byphil Cloud, inloggen, licentiecontroles en Send to Kindle.</p>
         <h3>Wat we meten</h3>
         <p>Paginaweergaven, paginataal, referrer, geschat land/browser/apparaattype, en met welke onderdelen van de site je interactie hebt (bijvoorbeeld klikken op "Toevoegen aan Chrome", de prijswissel, FAQ-items, secties waarnaar je scrollt en stappen van de bookmarklet-generator). Gebeurtenissen bevatten nooit e-mailadressen, API-sleutels, eenmalige codes, pagina-inhoud of artikelgegevens.</p>
         <h3>Hoe het is geconfigureerd</h3>
@@ -223,8 +231,9 @@
             <tr><td><code>sidePanel</code></td><td>Chrome's ingebouwde zijpaneel ondersteunen als weergaveoptie</td></tr>
             <tr><td><code>scripting</code></td><td>Het contentscript invoegen dat nodig is om een pagina te lezen en samen te vatten</td></tr>
             <tr><td><code>offscreen</code>, <code>tts</code></td><td>Podcastaudio afspelen en samenvattingen voorlezen op de achtergrond terwijl de pop-up gesloten is</td></tr>
+            <tr><td>Toegang tot het bestandssysteem (gekozen map)</td><td>Alleen wanneer je een map op je computer kiest als synchronisatie- of back-uplocatie; de browser vraagt om je toestemming en uitsluitend die map is toegankelijk</td></tr>
             <tr><td><code>unlimitedStorage</code></td><td>Een groot lokaal archief van artikelen en markeringen bewaren zonder tegen het standaard opslaglimiet aan te lopen</td></tr>
-            <tr><td><code>host_permissions (&lt;all_urls&gt;)</code></td><td>Elke bezochte pagina kunnen samenvatten — inhoud wordt alleen gelezen en verstuurd wanneer je actief een samenvatting start, nooit passief</td></tr>
+            <tr><td><code>host_permissions (&lt;all_urls&gt;)</code></td><td>Hiermee kun je elke pagina die je bezoekt samenvatten — inhoud wordt alleen gelezen en verzonden wanneer je actief een samenvatting start, nooit passief. Biedt de extensie ook toegang tot de door jou ingevoerde synchronisatieserver of bucket, ongeacht het adres</td></tr>
           </tbody>
         </table>
         <p>We gebruiken deze toestemmingen niet om je surfgedrag te volgen, een advertentieprofiel op te bouwen of gegevens te verzamelen buiten de hierboven beschreven functies om.</p>
@@ -234,14 +243,14 @@
           <li>We tonen of serveren geen advertenties en we verkopen, verhuren of verhandelen je gegevens niet aan adverteerders of databrokers.</li>
           <li>We vereisen geen account of login voor de basisfuncties.</li>
           <li>We loggen of bewaren de inhoud van samengevatte pagina's niet wanneer je je eigen API-sleutel of een lokaal model gebruikt, en we zien nooit wat je verstuurt via LocalSend of het deelmenu.</li>
-          <li>We hebben geen toegang tot je lokaal opgeslagen artikelgeschiedenis, markeringen of API-sleutels — deze verlaten nooit je apparaat tenzij je ze expliciet exporteert.</li>
+          <li>Wij hebben geen toegang tot je lokaal opgeslagen artikelgeschiedenis, markeringen of API-sleutels — deze verlaten je apparaat nooit, tenzij je ze expliciet exporteert of een synchronisatie-, back-up- of publicatielocatie instelt, en zelfs dan gaan ze alleen naar de bestemming die jij kiest.</li>
         </ul>
 
         <h2>Diensten van derden</h2>
         <p>Afhankelijk van hoe je de extensie instelt, kan je pagina-inhoud worden verzonden naar:</p>
         <ul>
           <li>OpenAI, Google (Gemini), Mistral AI of DeepSeek — alleen als je je eigen API-sleutel voor die provider hebt ingevoerd, en alleen voor de pagina die je actief samenvat.</li>
-          <li>Onze byphil-backend, gehost door IONOS SE in Duitsland — alleen als je inlogt, byphil Cloud gebruikt of Send to Kindle inschakelt.</li>
+          <li>Onze byphil-backend en bijbehorende database, beide gehost door IONOS SE in Duitsland — uitsluitend wanneer je inlogt, byphil Cloud gebruikt of Send to Kindle inschakelt.</li>
           <li>OpenRouter, waarmee byphil Cloud verbinding maakt met de modellen, en de uiteindelijke modelprovider waarnaar wordt doorgestuurd — de samen te vatten tekst wordt enkel voor dat specifieke verzoek doorgestuurd naar het gebruikte model.</li>
           <li>Stripe — betalingen en abonnementsbeheer, als Merchant of Record.</li>
           <li>Amazon — als je een artikel naar je Kindle stuurt, levert Amazon dit af onder hun eigen privacyvoorwaarden.</li>

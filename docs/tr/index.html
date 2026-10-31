@@ -57,7 +57,6 @@
     <nav class="pill" aria-label="Birincil">
       <a href="index.html#features" data-sec="features">Özellikler</a>
       <a href="index.html#try-it" data-sec="try-it">Demo</a>
-      <a href="index.html#pricing" data-sec="pricing">Fiyatlandırma</a>
       <a href="https://chromewebstore.google.com/detail/ai-summary-helper-openai/hldbejcjaedipeegjcinmhejdndchkmb" class="pill-cta" target="_blank" rel="noopener">Chrome'a ekle</a>
     </nav>
     <div class="nav-tools">
@@ -76,13 +75,12 @@
       <nav class="mm-links" aria-label="Mobil">
         <a href="index.html#features"><span class="mm-n">01</span>Özellikler</a>
         <a href="index.html#try-it"><span class="mm-n">02</span>Demo</a>
-        <a href="index.html#pricing"><span class="mm-n">03</span>Fiyatlandırma</a>
-        <a href="blog/"><span class="mm-n">04</span>Blog</a>
+        <a href="blog/"><span class="mm-n">03</span>Blog</a>
           <a href="blog/pocket-alternative.html" class="mm-sub">Pocket alternatifi: Gerçekten önemli olanlar</a>
           <a href="blog/bring-your-own-key.html" class="mm-sub">Sizin anahtarınız. Sizin modeliniz. Sizin verileriniz.</a>
           <a href="blog/verify-ai-summary.html" class="mm-sub">Özeti kaynağıyla karşılaştırıp doğrulayın</a>
           <a href="blog/highlighting-vs-asking.html" class="mm-sub">Vurguladıklarınız hakkında sorular sorun</a>
-        <a href="https://github.com/philffm/ai-summary-helper/" target="_blank" rel="noopener"><span class="mm-n">05</span>GitHub</a>
+        <a href="https://github.com/philffm/ai-summary-helper/" target="_blank" rel="noopener"><span class="mm-n">04</span>GitHub</a>
       </nav>
       <div class="mm-lang">
         <button type="button" class="lang-card" id="langCard"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.6"></circle><path d="M3 12h18M12 3c2.6 2.7 3.9 5.7 3.9 9s-1.3 6.3-3.9 9c-2.6-2.7-3.9-5.7-3.9-9S9.4 5.7 12 3Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"></path></svg><span class="lang-card-cur">İngilizce</span><small>24 dil</small><b aria-hidden="true">→</b></button>
@@ -132,28 +130,11 @@
       <div class="eyebrow"><span class="dash"></span> Chrome Eklentisi · byphil. parçasıdır <span class="dash"></span></div>
       <h1>Web'i özetleyin.<br><em>Önemli olanları saklayın.</em></h1>
       <p class="sub">AI Summary Helper, yerleşik RSS okuyucusuyla favori sitelerinizi takip eder, dilediğiniz sayfayı özetlenmiş ve aranabilir bir makale olarak kaydeder — ardından çevrimdışı okumaları doğrudan Kindle'ınıza veya başka bir cihaza gönderen yerel digest özelliğiyle kaydedilenlere gerçekten geri dönmenizi sağlar.</p>
-      <div class="hero-switch" role="tablist" aria-label="Nasıl kullanmak istersiniz?">
-        <button type="button" class="hero-switch-btn active" role="tab" id="heroTabBrowser" aria-selected="true" aria-controls="heroPaneBrowser" data-hero="browser">
-          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="3" stroke="currentColor" stroke-width="1.6"></rect><path d="M3 9h18" stroke="currentColor" stroke-width="1.6"></path></svg>
-          Tarayıcı eklentisi
-        </button>
-        <button type="button" class="hero-switch-btn" role="tab" id="heroTabBookmarklet" aria-selected="false" aria-controls="heroPaneBookmarklet" tabindex="-1" data-hero="bookmarklet">
-          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 3h12v18l-6-4-6 4V3Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"></path></svg>
-          Bookmarklet
-        </button>
-      </div>
-      <div class="hero-pane" id="heroPaneBrowser" role="tabpanel" aria-labelledby="heroTabBrowser">
+      <div class="hero-pane" id="heroPaneBrowser">
         <div class="hero-cta">
           <a href="https://chromewebstore.google.com/detail/ai-summary-helper-openai/hldbejcjaedipeegjcinmhejdndchkmb" target="_blank" rel="noopener" class="btn-primary">Chrome'a ekle — Ücretsiz</a>
         </div>
         <p class="hero-meta">Başlamak için hesap gerekmez · byphil API ile çoğu LLM modeli, kendi AI anahtarınız veya Ollama ile tamamen çevrimdışı</p>
-      </div>
-      <div class="hero-pane" id="heroPaneBookmarklet" role="tabpanel" aria-labelledby="heroTabBookmarklet" hidden="">
-        <p class="hero-pane-blurb">Yer işaretleri çubuğunuzda tek bir bağlantı; her tarayıcı, her işletim sistemi (iOS dahil). Kurulum yok; özet doğrudan sayfa üzerinde belirir.</p>
-        <div class="hero-cta">
-          <a href="../bookmarklet.html" class="btn-primary" data-track="bookmarklet-open">Bookmarklet'inizi oluşturun →</a>
-        </div>
-        <p class="hero-meta">Oluşturucuyu açar · byphil API ile çoğu LLM modeli (anahtar gerekmez) veya kendi OpenAI, Gemini, Mistral, DeepSeek ya da Ollama anahtarınız</p>
       </div>
       <ol class="hs-steps" data-stage-pane="browser">
   <li class="is-on" data-step="0" role="button" tabindex="0"><b>İstediğiniz sayfayı okuyun.</b><span>Her zamanki gibi bir makale açın. AISH tarayıcınızda sessizce bekler.</span></li>
@@ -203,30 +184,10 @@
           </div>
         </div>
       </div>
+      <!-- The animated demo is nice, but the video shows it better: this opens the full video (komplett-<lang>.mp4, the first clip of #videos) in the player. Without JavaScript it jumps to the clips. -->
+      <a class="hs-watch" href="#videos" data-open-video="komplett"><span class="hs-watch-ico" aria-hidden="true">▶</span><span class="hs-watch-txt"><strong>Videoyu izleyin</strong><small>Her şey bir dakikadan kısa sürede</small></span></a>
       <div class="hs-ctrl" role="group" aria-label="Tanıtım turu"><button type="button" class="hs-pp" aria-label="Tanıtımı duraklat"><svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><path class="pp-pause" d="M7 5h3v14H7zM14 5h3v14h-3z" fill="currentColor"></path><path class="pp-play" d="M8 5l11 7-11 7z" fill="currentColor"></path></svg></button><button type="button" class="hs-dot is-on" aria-label="1. Adım"></button><button type="button" class="hs-dot" aria-label="2. Adım"></button><button type="button" class="hs-dot" aria-label="3. Adım"></button><button type="button" class="hs-dot" aria-label="4. Adım"></button></div>
       <p class="sr-only">AI Summary Helper, makalenin kısa bir özetini yan panelde açar, kaynak paragrafa bağlanan devam soruları sormanıza olanak tanır ve özetleri seçtiğiniz dile çevirir.</p>
-    </div>
-    <div class="hs-bm" data-stage-pane="bookmarklet" hidden="">
-      <div class="bm-mock" aria-hidden="true" data-no-translate="">
-            <div class="bm-win">
-              <div class="bm-tb"><i></i><i></i><i></i><span>🔒 dailyledger.example/work-life/office-fern</span></div>
-              <div class="bm-bar"><span>Mail</span><span>Docs</span><span>Maps</span><span class="bm-mark">✨ Summarize</span></div>
-              <div class="bm-page">
-                <div class="bm-mast">The Daily Ledger</div>
-                <h4>Office fern outlives four reorganisations, now up for team lead</h4>
-                <p>Leeds. When the logistics team moved floors in 2019, nobody expected Gerald to survive.</p>
-                <p>Seven years and four reorganisations later, the office fern is the longest-serving member of the department.</p>
-                <p>He has never once scheduled a meeting that could have been an email.</p>
-                <div class="bm-card"><small>✨ AI Summary</small><b>A fern climbs the career ladder</b><span>Gerald, an office fern in Leeds, has outlasted <strong>four reorganisations in seven years</strong> and is now up for team lead.</span></div>
-              </div>
-              <svg class="bm-cursor" viewBox="0 0 24 24" width="26" height="26"><path d="M4 2l15 9-6.5 1.5L9 19z" fill="#14161f" stroke="#fff" stroke-width="1.4" stroke-linejoin="round"></path></svg>
-            </div>
-          </div>
-      <ol class="bm-steps">
-  <li><span class="bm-n">1</span><div><h3>Bir kez oluşturun</h3><p>byphil API'sini (anahtarsız) veya kendi OpenAI, Gemini, Mistral, DeepSeek ya da Ollama modelinizi seçin.</p></div></li>
-  <li><span class="bm-n">2</span><div><h3>Yer işaretleri çubuğunuza sürükleyin</h3><p>Her tarayıcı, her işletim sistemi, iOS dahil. Yüklenecek hiçbir şey yok.</p></div></li>
-  <li><span class="bm-n">3</span><div><h3>Herhangi bir sayfada tıklayın</h3><p>Özet, devam soruları ve kendi dilinizle doğrudan sayfa üzerinde açılır.</p></div></li>
-</ol>
     </div>
   </div>
 </section>
@@ -829,6 +790,16 @@
           <h3>Kütüphaneniz Claude, LM Studio ve Cursor içinde</h3>
           <p>Ayarlar'dan AI uygulamalarını etkinleştirin; bilgisayarınızdaki Claude Desktop, LM Studio, Cursor ve diğer MCP uygulamaları kütüphanenizde arama yapabilsin, vurgularınızdan alıntılayabilsin ve okunacakları listeleyebilsin. İzin verirseniz sizin için bağlantı da kaydedebilirler. Hiçbir veri sunucumuza gitmez; neyi okuyabileceklerini tamamen siz belirlersiniz.</p>
           <button class="fvideo-cta" type="button" tabindex="-1" aria-hidden="true"><span class="fvideo-cta-play">▶</span>Klibi izleyin</button>
+        </div>
+        <div class="feature-card" data-personas="privacy hoarder researcher">
+          <div class="f-icon icon-teal"><svg viewBox="0 0 24 24" fill="none"><path d="M7 18.5h9.5a3.5 3.5 0 0 0 .6-6.95A5 5 0 0 0 7.4 10.6 4 4 0 0 0 7 18.5Z" stroke="#fff" stroke-width="1.7" stroke-linejoin="round"></path><path d="M12 12.5v3M10.8 13.8h2.4" stroke="#fff" stroke-width="1.7" stroke-linecap="round"></path></svg></div>
+          <h3>Kütüphaneniz kendi depolama alanınızda, şifrelenmiş olarak</h3>
+          <p>Kütüphanenizi tüm cihazlarınız arasında senkronize tutun, yedekleyin veya bir kısmını Nextcloud ya da başka bir WebDAV sunucusunda, S3 uyumlu bir bucket'ta veya bilgisayarınızdaki yerel bir klasörde yayınlayın. Her şey cihazınızdan çıkmadan önce tarayıcınızda şifrelenir; bu sayede sunucu yalnızca şifrelenmiş dosyaları görür. Arama özelliği, etiket grafiği ve kaydettiklerinizin 3D haritasıyla kendi web sitenizde bir liste yayınlayın. Siz bir konum ekleyene kadar kapalıdır; hiçbir senkronizasyon sunucusu barındırmıyoruz ve verilerinizi asla görmüyoruz. <a href="../blog/sync-to-nextcloud-s3-or-a-folder.html">Nasıl kurulur</a> · <a href="../blog/digital-sovereignty-for-individuals.html">Neden önemli</a></p>
+        </div>
+        <div class="feature-card" data-personas="hoarder researcher">
+          <div class="f-icon icon-amber"><svg viewBox="0 0 24 24" fill="none"><path d="M6 4.5h9l3 3V19a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V5.5a1 1 0 0 1 1-1Z" stroke="#fff" stroke-width="1.7" stroke-linejoin="round"></path><path d="M8.5 11h7M8.5 14.5h4.5" stroke="#fff" stroke-width="1.7" stroke-linecap="round"></path></svg></div>
+          <h3>Her sayfada notlar ve yorumlar</h3>
+          <p>Metni seçin ve tercihinizi yapın: vurgulayın, yorum ekleyin veya alıntıyla birlikte bir not kaydedin. Her şey Notes sekmesinde toplanır; makaleye veya etikete göre liste ya da yapışkan notlar ızgarası olarak görüntülenir ve kütüphanenizin geri kalanıyla senkronize edilir.</p>
         </div>
         <div class="feature-card" data-personas="hoarder researcher">
           <figure class="fvideo" data-blog-video="export">

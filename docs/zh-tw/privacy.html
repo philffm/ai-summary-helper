@@ -41,7 +41,6 @@
     <nav class="pill" aria-label="主要">
       <a href="index.html#features" data-sec="features">功能特色</a>
       <a href="index.html#try-it" data-sec="try-it">功能展示</a>
-      <a href="index.html#pricing" data-sec="pricing">方案定價</a>
       <a href="https://chromewebstore.google.com/detail/ai-summary-helper-openai/hldbejcjaedipeegjcinmhejdndchkmb" class="pill-cta" target="_blank" rel="noopener">新增至 Chrome</a>
     </nav>
     <div class="nav-tools">
@@ -60,13 +59,12 @@
       <nav class="mm-links" aria-label="行動版">
         <a href="index.html#features"><span class="mm-n">01</span>功能特色</a>
         <a href="index.html#try-it"><span class="mm-n">02</span>功能展示</a>
-        <a href="index.html#pricing"><span class="mm-n">03</span>方案定價</a>
-        <a href="blog/"><span class="mm-n">04</span>部落格</a>
+        <a href="blog/"><span class="mm-n">03</span>部落格</a>
           <a href="blog/pocket-alternative.html" class="mm-sub">Pocket 替代方案：挑選重點解析</a>
           <a href="blog/bring-your-own-key.html" class="mm-sub">你的金鑰。你的模型。你的資料。</a>
           <a href="blog/verify-ai-summary.html" class="mm-sub">核對摘要與原文出處</a>
           <a href="blog/highlighting-vs-asking.html" class="mm-sub">向你的劃線重點提問</a>
-        <a href="https://github.com/philffm/ai-summary-helper/" target="_blank" rel="noopener"><span class="mm-n">05</span>GitHub</a>
+        <a href="https://github.com/philffm/ai-summary-helper/" target="_blank" rel="noopener"><span class="mm-n">04</span>GitHub</a>
       </nav>
       <div class="mm-lang">
         <button type="button" class="lang-card" id="langCard"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.6"></circle><path d="M3 12h18M12 3c2.6 2.7 3.9 5.7 3.9 9s-1.3 6.3-3.9 9c-2.6-2.7-3.9-5.7-3.9-9S9.4 5.7 12 3Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"></path></svg><span class="lang-card-cur">英文</span><small>24 種語言</small><b aria-hidden="true">→</b></button>
@@ -139,7 +137,7 @@
         <ul>
           <li><strong>自備金鑰（BYOK）</strong> — OpenAI、Google Gemini、Mistral AI、DeepSeek 或自訂端點（Custom Endpoint）。您的 API Key 僅儲存於您的本機裝置（絕不同步，亦絕不會傳送給我們）。您選擇摘要的網頁內容會直接從您的瀏覽器發送至指定的服務商，使用您自己的金鑰並受該服務商的隱私權政策規範。我們無法查看、記錄或儲存這些內容。</li>
           <li><strong>透過 Ollama 運行本地模型</strong> — 若您在本地運行模型，網頁內容僅會發送至您自己的電腦。任何資料都不會離開您的裝置。</li>
-          <li><strong>byphil Cloud（可選，付費方案）</strong> ——為不想自行管理 API Key 的使用者提供的託管方案。若您選擇此方案，您要求摘要的文字會經由我們的後端，透過 OpenRouter 代您將請求轉發至底層的模型提供商，並傳回摘要。這僅屬於轉發流程：我們不會儲存任何網頁內容、URL 或摘要結果。我們在各帳號下記錄的僅有使用情況中繼資料：已完成的請求次數、Token 用量、最後一次請求時間及所使用的模型。帳號本身為選用項目，所有其他功能無須帳號即可正常運作。</li>
+          <li><strong>byphil Cloud（可選，付費方案）</strong> ——專為不想自行管理 API Key 的使用者提供的代管方案。如果您選擇此方案，您要求摘要的文字會經過我們的後端，由後端透過 OpenRouter 代表您將請求轉發至底層的模型提供商，並回傳摘要結果。這純粹屬於轉發傳輸：我們不會儲存任何網頁內容、網址或摘要。我們在每個帳號下記錄的僅有使用量詮釋資料（Metadata）：已完成的請求次數、Token 用量、上次請求的時間以及使用的模型。帳號本身為選用；無需帳號亦可使用所有其他功能。開啟「偏好歐盟伺服器」設定後，具備歐洲端點的模型將僅在該端點運行，且應用程式會標示哪些模型支援、哪些不支援。這僅限制了模型的運行位置，並未縮減傳輸路徑中的節點：您的文字仍會先經過我們的服務（運行於德國的伺服器），再透過美國公司 OpenRouter 傳送至模型端；此外，朗讀與語音轉文字功能目前不提供歐盟伺服器選項。</li>
         </ul>
 
         <h3>授權與訂閱狀態</h3>
@@ -160,6 +158,7 @@
             <tr><td>API Key / 服務商設定</td><td>本機</td><td>否 — 敏感資料，僅限本機</td></tr>
             <tr><td>授權金鑰</td><td>本機</td><td>否 — 敏感資料，僅限本機</td></tr>
             <tr><td>LocalSend 網路 IP</td><td>本機</td><td>否</td></tr>
+            <tr><td>文庫同步登入資訊、存取金鑰與加密金鑰</td><td>本機</td><td>否 — 屬敏感資訊，僅限本機儲存，不包含在備份中</td></tr>
             <tr><td>文字劃線與 AI 智慧劃線</td><td>本機（依各網頁儲存）</td><td>否</td></tr>
             <tr><td>預設提示詞、語言、摘要長度</td><td>同步</td><td>是，透過您個人的 Chrome 帳號</td></tr>
             <tr><td>劃線功能啟用/關閉偏好</td><td>同步</td><td>是，透過您個人的 Chrome 帳號</td></tr>
@@ -178,12 +177,21 @@
           <li><strong>LocalSend 與系統分享面板（例如 AirDrop）為點對點直接傳輸。</strong> 檔案會直接從您的瀏覽器傳輸到區域網路中選取的裝置，或是傳送至您在系統分享面板中選擇的 App。我們不會介入此過程，也無法查看或儲存這些內容。LocalSend 支援安裝了相容 App 的手機、平板、電腦以及電子書閱讀器。</li>
         </ul>
 
+        <h3>文庫同步、備份與發佈（選用）</h3>
+        <p>預設關閉，直到您在「設定 → 同步與備份」中新增位置。「位置」可以是您選擇的伺服器上的資料夾（Nextcloud 或其他 WebDAV 伺服器，或相容 S3 的儲存空間如 AWS S3、Cloudflare R2 或 Backblaze B2），也可以是您本機電腦上的資料夾。我們不營運這些伺服器，不參與傳輸過程，也絕不會看到您儲存的內容。</p>
+        <ul>
+          <li><strong>加密位置</strong> 讓您的所有裝置保持整個文庫同步，或保留一份備份：文章、摘要、全文、劃線重點、筆記、收藏集與標籤。所有內容在離開裝置前均已在瀏覽器內完成加密（採用 AES-256-GCM，金鑰由您的通關密語衍生），且檔名均經過混淆處理。伺服器或資料夾僅能看到加密檔案、檔案大小以及變更時間。系統不會儲存您的通關密語。由密語衍生的金鑰僅保留在此瀏覽器的本機儲存空間中，以確保同步能在背景執行；此金鑰絕不會被同步，也不會納入備份。您會取得一組僅顯示一次的復原金鑰。若同時遺失通關密語與復原金鑰，包括我們在內的任何人都無法讀取這些檔案。</li>
+          <li><strong>明文讀取位置</strong> 發佈明文檔案（若有需要，也可包含輕量檢視頁面），供您自己的網站或工具使用。僅有符合您所設標籤篩選條件的文章才會發佈。除非您在危險區域（Danger Zone）手動啟用，否則筆記、提醒事項與文章全文絕不會被發佈；一旦啟用，任何能開啟該資料夾的人皆可閱讀這些內容。</li>
+          <li><strong>傳輸方式。</strong> 請求會透過 HTTPS 從您的瀏覽器直接發送到您輸入的位址，並使用您提供的登入資訊或存取金鑰。該登入資訊僅儲存在本機，絕不同步，且除非您主動選擇，否則不包含在備份中。伺服器營運者能看到您的 IP 位址以及同步時間。</li>
+          <li><strong>本機電腦上的資料夾</strong> 使用瀏覽器的資料夾存取權限。由您選擇資料夾，瀏覽器會向您請求權限（重新啟動後可能會再次詢問）。我們僅保留瀏覽器對該資料夾的控制代碼（handle）。無論您使用何種工具將該資料夾同步至其他裝置（如 Syncthing、iCloud Drive、Dropbox），均適用該工具各自的隱私權條款。</li>
+        </ul>
+
         <h3>電腦上的 AI 應用程式 (MCP)</h3>
         <p>預設為關閉。當您開啟「設定」→「AI 應用程式 (MCP)」時，您所連線的電腦 AI 應用程式（例如 Claude Desktop、LM Studio、Cursor 或 VS Code）即可讀取您允許的資料庫內容：已儲存的文章及其摘要與重點標記；若您開啟相應選項，還包括文章全文、訂閱來源項目，以及將連結儲存至收件匣。資料會從您的瀏覽器經由電腦上的小型輔助程式（<code>aish-mcp</code>）傳送至該應用程式。資料絕不會經過我們的伺服器，我們也絕不會看到。輔助程式僅接受來自您本機電腦的連線並需要配對碼；它不儲存任何文章，也不記錄轉發的內容。含有您排除標籤（<code>private</code> ，預設值）的文章絕不會被分享。擴充功能會在您的裝置上保留最近 50 次呼叫的清單（包含工具名稱、時間與結果數量，不含內容），您可以在同一個設定面板中查看。AI 應用程式隨後向其模型傳送哪些內容，取決於您選擇的應用程式與模型：若使用本地模型，任何資料都不會離開您的電腦。您可以隨時關閉此設定或選取「中斷連線」。</p>
 
         <h2 id="analytics">分析與 Cookie</h2>
         <p><strong>簡短摘要：</strong> 本網站設定 <strong>零 Cookie</strong> ，且不使用廣告或跨網站追蹤器。我們使用自行託管的 Matomo 統計匿名造訪次數，您可以隨時關閉此功能。</p>
-        <p><strong>瀏覽器擴充功能本身不包含任何數據分析、遙測（Telemetry）或追蹤代碼。</strong> 它發出的網路請求僅限於：您設定的 AI 提供商、您訂閱的 Feed、您要求擷取的網頁，以及（若有使用）處理 byphil Cloud、登入、授權檢查與 Send to Kindle 的 byphil 後端。</p>
+        <p><strong>瀏覽器擴充功能本身不包含任何數據分析、遙測（Telemetry）或追蹤代碼。</strong> 它唯一的網路請求只會發送至：您設定的 AI 提供商、您訂閱的 RSS 摘要來源、您要求擷取的網頁、您設定用於文庫同步、備份或發佈的伺服器，以及（若有使用）用於 byphil Cloud、登入、授權檢查與 Send to Kindle 的 byphil 後端。</p>
         <h3>我們衡量的項目</h3>
         <p>頁面瀏覽量、頁面語言、推薦來源（Referrer）、概略的國家/瀏覽器/裝置類型，以及您與網站哪些部分進行互動（例如點擊「加到 Chrome」、價格切換開關、常見問題項目、滾動瀏覽的區塊，以及 Bookmarklet 產生器的操作步驟）。事件中絕不包含電子郵件地址、API Key、一次性驗證碼、網頁內容或文章資料。</p>
         <h3>配置方式</h3>
@@ -223,8 +231,9 @@
             <tr><td><code>sidePanel</code></td><td>支援 Chrome 原生側邊欄作為檢視選項</td></tr>
             <tr><td><code>scripting</code></td><td>插入讀取及摘要網頁內容所需的內容腳本</td></tr>
             <tr><td><code>offscreen</code>、 <code>tts</code></td><td>在彈出視窗關閉時，仍可在背景播放 Podcast 音訊與朗讀摘要內容</td></tr>
+            <tr><td>檔案系統存取權限（所選資料夾）</td><td>僅在您選擇本機電腦上的資料夾作為同步或備份位置時使用；瀏覽器會請求您的授權，且僅有該資料夾可被存取</td></tr>
             <tr><td><code>unlimitedStorage</code></td><td>在本地端保存大量文章與重點標記封存，不受預設儲存空間配額限制</td></tr>
-            <tr><td><code>host_permissions (&lt;all_urls&gt;)</code></td><td>讓您能為瀏覽的任何網頁生成摘要 — 僅在您主動觸發摘要時才會讀取並傳輸內容，絕不會被動監聽或抓取</td></tr>
+            <tr><td><code>host_permissions (&lt;all_urls&gt;)</code></td><td>讓您為造訪的任何頁面生成摘要 — 僅在您主動觸發摘要時才會讀取並傳輸內容，絕不被動收集。同時允許擴充功能連線至您輸入的同步伺服器或儲存空間（bucket），該位址可為任意位址</td></tr>
           </tbody>
         </table>
         <p>我們絕不會利用這些權限追蹤您的瀏覽紀錄、建立廣告畫像，或收集上述功能所需之外的任何資料。</p>
@@ -234,14 +243,14 @@
           <li>我們不投放或展示廣告，亦絕不向廣告商或資料經紀商出售、出租或交換您的資料。</li>
           <li>所有核心功能皆無需註冊或登入帳號即可使用。</li>
           <li>我們不會記錄或保留您透過自訂 API Key 或本地模型摘要的網頁內容，也絕不會看到您透過 LocalSend 或分享面板傳送的任何內容。</li>
-          <li>我們無法存取您儲存於本地的文章歷史紀錄、劃線重點或 API Key — 除非您主動匯出，否則它們絕不會離開您的裝置。</li>
+          <li>我們無法存取您儲存在本機的文章歷史記錄、劃線重點或 API Key — 除非您明確匯出，或設定了同步、備份或發佈位置，否則這些資料絕不會離開您的裝置，且只會傳送至您指定的目的地。</li>
         </ul>
 
         <h2>第三方服務</h2>
         <p>視乎您的擴充功能設定，網頁內容可能會傳送至：</p>
         <ul>
           <li>OpenAI、Google (Gemini)、Mistral AI 或 DeepSeek — 僅限於您已輸入該服務商的 API Key，且僅傳送您主動摘要的網頁。</li>
-          <li>我們的 byphil 後端伺服器（由德國 IONOS SE 託管）——僅在您登入、使用 byphil Cloud 或使用 Send to Kindle 時適用。</li>
+          <li>我們的 byphil 後端及其資料庫，兩者皆託管於德國 IONOS SE——僅在您登入、使用 byphil Cloud 或 Send to Kindle 時適用。</li>
           <li>OpenRouter（byphil Cloud 藉此連線至各 AI 模型）及其所路由至的模型提供商——您要求摘要的文字僅會在該次請求中轉發給您所使用的模型。</li>
           <li>Stripe——作為登記名義商戶（Merchant of Record），處理付款與訂閱管理。</li>
           <li>Amazon —— 若您傳送文章至 Kindle，Amazon 將依據其隱私權條款傳送內容。</li>

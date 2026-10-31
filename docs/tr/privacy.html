@@ -41,7 +41,6 @@
     <nav class="pill" aria-label="Birincil">
       <a href="index.html#features" data-sec="features">Özellikler</a>
       <a href="index.html#try-it" data-sec="try-it">Demo</a>
-      <a href="index.html#pricing" data-sec="pricing">Fiyatlandırma</a>
       <a href="https://chromewebstore.google.com/detail/ai-summary-helper-openai/hldbejcjaedipeegjcinmhejdndchkmb" class="pill-cta" target="_blank" rel="noopener">Chrome'a ekle</a>
     </nav>
     <div class="nav-tools">
@@ -60,13 +59,12 @@
       <nav class="mm-links" aria-label="Mobil">
         <a href="index.html#features"><span class="mm-n">01</span>Özellikler</a>
         <a href="index.html#try-it"><span class="mm-n">02</span>Demo</a>
-        <a href="index.html#pricing"><span class="mm-n">03</span>Fiyatlandırma</a>
-        <a href="blog/"><span class="mm-n">04</span>Blog</a>
+        <a href="blog/"><span class="mm-n">03</span>Blog</a>
           <a href="blog/pocket-alternative.html" class="mm-sub">Pocket alternatifi: Gerçekten önemli olanlar</a>
           <a href="blog/bring-your-own-key.html" class="mm-sub">Sizin anahtarınız. Sizin modeliniz. Sizin verileriniz.</a>
           <a href="blog/verify-ai-summary.html" class="mm-sub">Özeti kaynağıyla karşılaştırıp doğrulayın</a>
           <a href="blog/highlighting-vs-asking.html" class="mm-sub">Vurguladıklarınız hakkında sorular sorun</a>
-        <a href="https://github.com/philffm/ai-summary-helper/" target="_blank" rel="noopener"><span class="mm-n">05</span>GitHub</a>
+        <a href="https://github.com/philffm/ai-summary-helper/" target="_blank" rel="noopener"><span class="mm-n">04</span>GitHub</a>
       </nav>
       <div class="mm-lang">
         <button type="button" class="lang-card" id="langCard"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.6"></circle><path d="M3 12h18M12 3c2.6 2.7 3.9 5.7 3.9 9s-1.3 6.3-3.9 9c-2.6-2.7-3.9-5.7-3.9-9S9.4 5.7 12 3Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"></path></svg><span class="lang-card-cur">İngilizce</span><small>24 dil</small><b aria-hidden="true">→</b></button>
@@ -139,7 +137,7 @@
         <ul>
           <li><strong>Kendi key'inizi getirin (BYOK)</strong> — OpenAI, Google Gemini, Mistral AI, DeepSeek veya özel bir endpoint. API key'iniz yalnızca cihazınızda yerel olarak saklanır (asla senkronize edilmez, bize gönderilmez). Özetlemeyi seçtiğiniz sayfa içeriği, doğrudan tarayıcınızdan seçtiğiniz sağlayıcıya, kendi key'iniz kullanılarak ve ilgili sağlayıcının gizlilik politikasına tabi olarak iletilir. Bu içeriği görmeyiz, kaydetmeyiz veya saklamayız.</li>
           <li><strong>Ollama ile yerel model</strong> — yerel olarak bir model çalıştırıyorsanız sayfa içeriği yalnızca kendi makinenize gönderilir. Cihazınızdan hiçbir veri dışarı çıkmaz.</li>
-          <li><strong>byphil Cloud (isteğe bağlı, ücretli)</strong> — API key yönetmekle uğraşmak istemeyenler için barındırılan bir seçenek. Bu katmanı seçerseniz özetlenmesini istediğiniz metin backend'imiz üzerinden geçer; backend isteği sizin adınıza OpenRouter aracılığıyla ilgili model sağlayıcısına iletir ve özeti geri döndürür. Veriler yalnızca iletilir: sayfa içeriklerini, URL'leri veya özetleri saklamayız. Hesap başına kaydettiğimiz tek veri kullanım metaverileridir: tamamlanan istek sayısı, token kullanımı, son istek zamanı ve kullanılan model. Hesabın kendisi isteğe bağlıdır; diğer tüm özellikler hesapsız çalışır.</li>
+          <li><strong>byphil Cloud (isteğe bağlı, ücretli)</strong> — API key yönetimiyle uğraşmak istemeyenler için barındırılan (hosted) bir seçenek. Bu planı seçerseniz, özetlenmesini istediğiniz metin backend sistemimizden geçer; sistemimiz isteği sizin adınıza OpenRouter aracılığıyla ilgili model sağlayıcısına iletir ve özeti döndürür. Veriler yalnızca aktarılır: sayfa içeriklerini, URL'leri veya özetleri saklamayız. Hesap başına kaydettiğimiz tek bilgi kullanım meta verileridir: tamamlanan istek sayısı, token kullanımı, son istek zamanı ve kullanılan model. Hesap açmak tamamen isteğe bağlıdır; diğer tüm özellikler hesapsız da çalışır. “Prefer EU servers” ayarı açık olduğunda, Avrupa'da bir endpoint'i bulunan modeller yalnızca bu endpoint'ler üzerinde çalıştırılır ve uygulama hangi modellerin buna sahip olup olmadığını gösterir. Bu durum modelin çalıştığı konumu sınırlar. Ancak aktarım yolundaki aracıları ortadan kaldırmaz: metniniz modele ulaşırken yine de servisimizden (Almanya'daki bir sunucuda çalışır) ve ardından ABD merkezli bir şirket olan OpenRouter üzerinden geçer; ayrıca sesli okuma ve speech-to-text özellikleri için AB seçeneği bulunmamaktadır.</li>
         </ul>
 
         <h3>Lisans ve abonelik durumu</h3>
@@ -160,6 +158,7 @@
             <tr><td>API key'ler / sağlayıcı yapılandırması</td><td>Yerel</td><td>Hayır — hassas, yalnızca cihazda</td></tr>
             <tr><td>Lisans anahtarı</td><td>Yerel</td><td>Hayır — hassas, yalnızca cihazda</td></tr>
             <tr><td>LocalSend ağ IP'si</td><td>Yerel</td><td>Hayır</td></tr>
+            <tr><td>Kitaplık senkronizasyon giriş bilgileri, erişim anahtarları ve şifreleme anahtarları</td><td>Yerel</td><td>Hayır — hassas veri, yalnızca cihazda tutulur, yedeklemelere dahil edilmez</td></tr>
             <tr><td>Metin vurguları ve AI ghost vurguları</td><td>Yerel (sayfa başına)</td><td>Hayır</td></tr>
             <tr><td>Varsayılan prompt, dil, özet uzunluğu</td><td>Sync</td><td>Evet, kendi Chrome hesabınız üzerinden</td></tr>
             <tr><td>Vurgulama açık/kapalı tercihi</td><td>Sync</td><td>Evet, kendi Chrome hesabınız üzerinden</td></tr>
@@ -178,12 +177,21 @@
           <li><strong>LocalSend ve sistem paylaşım menüsü (örneğin AirDrop) doğrudan çalışır.</strong> Dosya, tarayıcınızdan doğrudan yerel ağınızda seçtiğiniz cihaza veya paylaşım menüsünde seçtiğiniz uygulamaya gider. Sürece dahil olmayız; bu içeriği görmeyiz veya saklamayız. LocalSend uyumlu bir uygulama çalıştıran telefonlar, tabletler, bilgisayarlar ve e-kitap okuyucularla çalışır.</li>
         </ul>
 
+        <h3>Kitaplık senkronizasyonu, yedekleme ve yayınlama (isteğe bağlı)</h3>
+        <p>Ayarlar → Senkronizasyon ve yedekleme bölümünden bir konum ekleyene kadar kapalıdır. Konum; seçtiğiniz bir sunucudaki klasör (Nextcloud ya da başka bir WebDAV sunucusu veya AWS S3, Cloudflare R2 ya da Backblaze B2 gibi S3 uyumlu bir bucket) veya kendi bilgisayarınızdaki bir klasördür. Bu sunucuları biz işletmiyoruz, sürece dahil değiliz ve oraya koyduğunuz hiçbir şeyi asla görmüyoruz.</p>
+        <ul>
+          <li><strong>Şifrelenmiş konumlar</strong> cihazlarınız arasında tüm kitaplığınızı güncel tutun veya bir yedek bulundurun: makaleler, özetler, tam metinler, vurgular, notlar, koleksiyonlar ve etiketler. Her şey cihazınızdan çıkmadan önce tarayıcınızda şifrelenir (parolanızdan türetilen bir anahtarla AES-256-GCM) ve dosya adları karıştırılır. Sunucu veya klasör yalnızca şifrelenmiş dosyaları, boyutlarını ve ne zaman değiştirildiklerini görür. Parolanız saklanmaz. Paroladan türetilen anahtar, senkronizasyonun arka planda çalışabilmesi için bu tarayıcının yerel depolama alanında tutulur; asla senkronize edilmez ve hiçbir zaman yedeğin bir parçası olmaz. Bir defaya mahsus bir kurtarma anahtarı alırsınız. Hem parolayı hem de kurtarma anahtarını kaybederseniz, biz dahil hiç kimse dosyaları okuyamaz.</li>
+          <li><strong>Okunabilir konumlar</strong> kendi web siteniz veya araçlarınız için düz dosyalar (ve dilerseniz küçük bir görüntüleyici sayfası) yayınlayın. Yalnızca belirlediğiniz etiket filtresiyle eşleşen makaleler dışa aktarılır. Notlar, hatırlatıcılar ve makalenin tam metni; tehlikeli bölgeden siz bizzat etkinleştirmediğiniz sürece asla yayınlanmaz ve etkinleştirildiğinde bu klasörü açabilen herkes bunları okuyabilir.</li>
+          <li><strong>Nasıl gönderilir.</strong> İstekler, sağladığınız giriş bilgisi veya erişim anahtarı kullanılarak HTTPS üzerinden doğrudan tarayıcınızdan girdiğiniz adrese iletilir. Bu giriş bilgisi yerel olarak saklanır, asla senkronize edilmez ve siz açıkça onay vermediğiniz sürece yedeklemelere dahil edilmez. Sunucu yöneticisi IP adresinizi ve ne zaman senkronizasyon yaptığınızı görebilir.</li>
+          <li><strong>Bu bilgisayardaki bir klasör</strong> tarayıcının klasör erişimini kullanır. Klasörü siz seçersiniz ve tarayıcı izninizi ister; yeniden başlatmanın ardından bu izni tekrar isteyebilir. Biz yalnızca tarayıcının o klasöre olan tanıtıcısını (handle) saklarız. Bu klasörü diğer cihazlara taşımak için kullandığınız her ne varsa (Syncthing, iCloud Drive, Dropbox), kendi gizlilik koşullarına tabidir.</li>
+        </ul>
+
         <h3>Bilgisayarınızdaki AI uygulamaları (MCP)</h3>
         <p>Varsayılan olarak kapalıdır. Ayarlar → AI uygulamaları (MCP) seçeneğini açtığınızda, bağladığınız bilgisayarınızdaki AI uygulamaları (örneğin Claude Desktop, LM Studio, Cursor veya VS Code), kütüphanenizin izin verdiğiniz bölümlerini okuyabilir: özetleri ve vurgularıyla birlikte kayıtlı makaleleriniz ve yalnızca siz izin verirseniz tam makale metni, akış ögeleriniz ve gelen kutunuza bağlantı kaydetme. Veriler, tarayıcınızdan bilgisayarınızdaki küçük bir yardımcı program (<code>aish-mcp</code>) aracılığıyla ilgili uygulamaya iletilir. Sunucumuzdan asla geçmez ve verilerinizi kesinlikle görmeyiz. Yardımcı program yalnızca kendi bilgisayarınızdan gelen bağlantıları kabul eder ve bir eşleştirme kodu gerektirir; hiçbir makaleyi saklamaz ve ilettiği bilgilerin kaydını tutmaz. Hariç tuttuğunuz etikete (<code>private</code> varsayılan olarak) sahip makaleler asla paylaşılmaz. Uzantı, cihazınızda son 50 çağrının bir listesini (araç adı, zaman ve sonuç sayısı; içerik yer almaz) saklar ve bunu aynı ayarlar panelinden görebilirsiniz. AI uygulamasının daha sonra modeline ne göndereceği, seçtiğiniz uygulamaya ve modele bağlıdır: yerel bir model kullandığınızda hiçbir veri bilgisayarınızın dışına çıkmaz. İstediğiniz zaman bu ayarı kapatabilir veya Bağlantıyı Kes seçeneğini kullanabilirsiniz.</p>
 
         <h2 id="analytics">Analizler ve çerezler</h2>
         <p><strong>Kısa özet:</strong> bu web sitesi <strong>çerez kullanmaz</strong> kullanır; reklam veya siteler arası izleyici içermez. Anonim ziyaretleri kendi sunucumuzda barındırılan bir Matomo örneği ile sayarız ve bunu istediğiniz zaman kapatabilirsiniz.</p>
-        <p><strong>Tarayıcı eklentisinin kendisi hiçbir analiz, telemetri veya izleme kodu içermez.</strong> Tek ağ istekleri yapılandırdığınız AI sağlayıcısına, abone olduğunuz akışlara, getirmesini istediğiniz sayfalara ve (kullanıyorsanız) byphil Cloud, oturum açma, lisans kontrolleri ve Send to Kindle için byphil backend'ine yöneliktir.</p>
+        <p><strong>Tarayıcı eklentisinin kendisi hiçbir analiz, telemetri veya izleme kodu içermez.</strong> Yalnızca yapılandırdığınız yapay zeka sağlayıcısına, abone olduğunuz akışlara, getirmesini istediğiniz sayfalara, kitaplık senkronizasyonu, yedekleme veya yayınlama için ayarladığınız sunuculara ve (kullanıyorsanız) byphil Cloud, oturum açma, lisans kontrolleri ve Send to Kindle için byphil backend'ine ağ istekleri gönderir.</p>
         <h3>Neleri ölçüyoruz?</h3>
         <p>Sayfa görüntülemeleri, sayfa dili, yönlendiren (referrer), yaklaşık ülke/tarayıcı/cihaz sınıfı ve sitenin hangi bölümleriyle etkileşimde bulunduğunuz (örneğin "Chrome'a Ekle" tıklamaları, fiyatlandırma düğmesi, SSS öğeleri, kaydırdığınız bölümler ve bookmarklet oluşturucu adımları). Etkinlikler asla e-posta adresleri, API key'ler, tek kullanımlık kodlar, sayfa içerikleri veya makale verileri içermez.</p>
         <h3>Nasıl yapılandırıldı?</h3>
@@ -223,8 +231,9 @@
             <tr><td><code>sidePanel</code></td><td>Görüntüleme seçeneği olarak Chrome'un yerel yan panelini desteklemek için</td></tr>
             <tr><td><code>scripting</code></td><td>Bir sayfayı okumak ve özetlemek için gereken içerik komut dosyasını (content script) eklemek için</td></tr>
             <tr><td><code>offscreen</code>, <code>tts</code></td><td>Açılır pencere kapalıyken arka planda podcast sesini çalmak ve özetleri sesli okumak için</td></tr>
+            <tr><td>File System Access (seçilen klasör)</td><td>Yalnızca bilgisayarınızdaki bir klasörü senkronizasyon veya yedekleme konumu olarak seçtiğinizde geçerlidir; tarayıcı izninizi ister ve yalnızca bu klasöre erişilebilir</td></tr>
             <tr><td><code>unlimitedStorage</code></td><td>Varsayılan depolama kotasına takılmadan geniş bir yerel makale ve vurgu arşivi tutmak için</td></tr>
-            <tr><td><code>host_permissions (&lt;all_urls&gt;)</code></td><td>Ziyaret ettiğiniz herhangi bir sayfayı özetlemenize olanak tanır — içerik asla pasif olarak değil, yalnızca siz aktif olarak bir özet tetiklediğinizde okunur ve iletilir</td></tr>
+            <tr><td><code>host_permissions (&lt;all_urls&gt;)</code></td><td>Ziyaret ettiğiniz herhangi bir sayfayı özetlemenizi sağlar — içerik yalnızca siz aktif olarak bir özetleme başlattığınızda okunur ve iletilir, asla pasif olarak aktarılmaz. Ayrıca uzantının, girdiğiniz herhangi bir adreste bulunabilecek senkronizasyon sunucusuna veya bucket'a erişmesine olanak tanır</td></tr>
           </tbody>
         </table>
         <p>Bu izinleri gezinmenizi izlemek, bir reklam profili oluşturmak veya yukarıda açıklanan özellikleri sunmanın ötesinde veri toplamak için kullanmayız.</p>
@@ -234,14 +243,14 @@
           <li>Reklam yayınlamaz veya sunmayız; verilerinizi reklamcılara veya veri simsarlarına satmaz, kiralamaz ya da takas etmeyiz.</li>
           <li>Hiçbir temel özellik için hesap oluşturmanızı veya oturum açmanızı zorunlu tutmayız.</li>
           <li>Kendi API key'iniz veya yerel bir model aracılığıyla özetlediğiniz sayfaların içeriklerini kaydetmeyiz ya da tutmayız; LocalSend veya paylaşım menüsü üzerinden gönderdiğiniz içerikleri asla görmeyiz.</li>
-          <li>Yerel olarak saklanan makale geçmişinize, vurgularınıza veya API key'lerinize erişimimiz yoktur; siz açıkça dışa aktarmadığınız sürece bunlar asla cihazınızdan ayrılmaz.</li>
+          <li>Yerel olarak saklanan makale geçmişinize, vurgularınıza veya API anahtarlarınıza erişimimiz yoktur — siz açıkça dışa aktarmadığınız veya bir senkronizasyon, yedekleme ya da yayınlama konumu ayarlamadığınız sürece bunlar asla cihazınızdan çıkmaz ve yalnızca sizin yönlendirdiğiniz yere gider.</li>
         </ul>
 
         <h2>Üçüncü Taraf Hizmetler</h2>
         <p>Eklentiyi nasıl yapılandırdığınıza bağlı olarak sayfa içeriğiniz şuralara gönderilebilir:</p>
         <ul>
           <li>OpenAI, Google (Gemini), Mistral AI veya DeepSeek — yalnızca ilgili sağlayıcı için kendi API key'inizi girdiyseniz ve yalnızca aktif olarak özetlediğiniz sayfa için.</li>
-          <li>Almanya'da IONOS SE tarafından barındırılan byphil backend'imiz — yalnızca oturum açarsanız, byphil Cloud veya Send to Kindle kullanırsanız.</li>
+          <li>Her ikisi de Almanya'da IONOS SE tarafından barındırılan byphil backend'imiz ve veritabanımız — yalnızca giriş yaptığınızda, byphil Cloud veya Send to Kindle kullandığınızda geçerlidir.</li>
           <li>byphil Cloud'un modellere bağlandığı OpenRouter ve yönlendirdiği model sağlayıcısı — özetlediğiniz metin yalnızca ilgili istek için kullandığınız modele iletilir.</li>
           <li>Stripe — Kayıtlı Satıcı (Merchant of Record) olarak ödemeler ve abonelik yönetimi.</li>
           <li>Amazon — makaleyi Kindle'ınıza gönderirseniz Amazon bunu kendi gizlilik şartları altında teslim eder.</li>

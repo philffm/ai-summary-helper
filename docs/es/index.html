@@ -57,7 +57,6 @@
     <nav class="pill" aria-label="Principal">
       <a href="index.html#features" data-sec="features">Funciones</a>
       <a href="index.html#try-it" data-sec="try-it">Demo</a>
-      <a href="index.html#pricing" data-sec="pricing">Precios</a>
       <a href="https://chromewebstore.google.com/detail/ai-summary-helper-openai/hldbejcjaedipeegjcinmhejdndchkmb" class="pill-cta" target="_blank" rel="noopener">Añadir a Chrome</a>
     </nav>
     <div class="nav-tools">
@@ -76,13 +75,12 @@
       <nav class="mm-links" aria-label="Móvil">
         <a href="index.html#features"><span class="mm-n">01</span>Funciones</a>
         <a href="index.html#try-it"><span class="mm-n">02</span>Demo</a>
-        <a href="index.html#pricing"><span class="mm-n">03</span>Precios</a>
-        <a href="blog/"><span class="mm-n">04</span>Blog</a>
+        <a href="blog/"><span class="mm-n">03</span>Blog</a>
           <a href="blog/pocket-alternative.html" class="mm-sub">Alternativa a Pocket: lo que realmente importa</a>
           <a href="blog/bring-your-own-key.html" class="mm-sub">Tu clave. Tu modelo. Tus datos.</a>
           <a href="blog/verify-ai-summary.html" class="mm-sub">Verifica un resumen frente a su fuente original</a>
           <a href="blog/highlighting-vs-asking.html" class="mm-sub">Haz preguntas sobre tus textos destacados</a>
-        <a href="https://github.com/philffm/ai-summary-helper/" target="_blank" rel="noopener"><span class="mm-n">05</span>GitHub</a>
+        <a href="https://github.com/philffm/ai-summary-helper/" target="_blank" rel="noopener"><span class="mm-n">04</span>GitHub</a>
       </nav>
       <div class="mm-lang">
         <button type="button" class="lang-card" id="langCard"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.6"></circle><path d="M3 12h18M12 3c2.6 2.7 3.9 5.7 3.9 9s-1.3 6.3-3.9 9c-2.6-2.7-3.9-5.7-3.9-9S9.4 5.7 12 3Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"></path></svg><span class="lang-card-cur">Inglés</span><small>24 idiomas</small><b aria-hidden="true">→</b></button>
@@ -132,28 +130,11 @@
       <div class="eyebrow"><span class="dash"></span> Extensión de Chrome · Parte de byphil. <span class="dash"></span></div>
       <h1>Resume la web.<br><em>Conserva lo importante.</em></h1>
       <p class="sub">AI Summary Helper sigue tus sitios favoritos con un lector RSS integrado, guarda cualquier página como un artículo resumido con búsqueda y te ayuda a retomarlo fácilmente con un boletín generado en tu dispositivo que envía lecturas sin conexión directo a tu Kindle u otro equipo.</p>
-      <div class="hero-switch" role="tablist" aria-label="¿Cómo quieres usarlo?">
-        <button type="button" class="hero-switch-btn active" role="tab" id="heroTabBrowser" aria-selected="true" aria-controls="heroPaneBrowser" data-hero="browser">
-          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="3" stroke="currentColor" stroke-width="1.6"></rect><path d="M3 9h18" stroke="currentColor" stroke-width="1.6"></path></svg>
-          Extensión de navegador
-        </button>
-        <button type="button" class="hero-switch-btn" role="tab" id="heroTabBookmarklet" aria-selected="false" aria-controls="heroPaneBookmarklet" tabindex="-1" data-hero="bookmarklet">
-          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 3h12v18l-6-4-6 4V3Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"></path></svg>
-          Bookmarklet
-        </button>
-      </div>
-      <div class="hero-pane" id="heroPaneBrowser" role="tabpanel" aria-labelledby="heroTabBrowser">
+      <div class="hero-pane" id="heroPaneBrowser">
         <div class="hero-cta">
           <a href="https://chromewebstore.google.com/detail/ai-summary-helper-openai/hldbejcjaedipeegjcinmhejdndchkmb" target="_blank" rel="noopener" class="btn-primary">Añadir a Chrome — es gratis</a>
         </div>
         <p class="hero-meta">No requiere cuenta para empezar · La mayoría de los modelos LLM a través de la byPhil API, tu propia clave de IA o totalmente offline con Ollama</p>
-      </div>
-      <div class="hero-pane" id="heroPaneBookmarklet" role="tabpanel" aria-labelledby="heroTabBookmarklet" hidden="">
-        <p class="hero-pane-blurb">Un enlace en tu barra de marcadores, cualquier navegador, cualquier sistema operativo, incluido iOS. Sin instalación: el resumen aparece directamente en la página.</p>
-        <div class="hero-cta">
-          <a href="../bookmarklet.html" class="btn-primary" data-track="bookmarklet-open">Crea tu bookmarklet →</a>
-        </div>
-        <p class="hero-meta">Abre el generador · la mayoría de los modelos LLM a través de la byPhil API (sin clave) o tu propio OpenAI, Gemini, Mistral, DeepSeek u Ollama</p>
       </div>
       <ol class="hs-steps" data-stage-pane="browser">
   <li class="is-on" data-step="0" role="button" tabindex="0"><b>Lee cualquier página.</b><span>Abre un artículo como de costumbre. AISH permanece discretamente en el navegador.</span></li>
@@ -203,30 +184,10 @@
           </div>
         </div>
       </div>
+      <!-- The animated demo is nice, but the video shows it better: this opens the full video (komplett-<lang>.mp4, the first clip of #videos) in the player. Without JavaScript it jumps to the clips. -->
+      <a class="hs-watch" href="#videos" data-open-video="komplett"><span class="hs-watch-ico" aria-hidden="true">▶</span><span class="hs-watch-txt"><strong>Mira el video</strong><small>Todo en menos de un minuto</small></span></a>
       <div class="hs-ctrl" role="group" aria-label="Recorrido guiado"><button type="button" class="hs-pp" aria-label="Pausar recorrido guiado"><svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><path class="pp-pause" d="M7 5h3v14H7zM14 5h3v14h-3z" fill="currentColor"></path><path class="pp-play" d="M8 5l11 7-11 7z" fill="currentColor"></path></svg></button><button type="button" class="hs-dot is-on" aria-label="Paso 1"></button><button type="button" class="hs-dot" aria-label="Paso 2"></button><button type="button" class="hs-dot" aria-label="Paso 3"></button><button type="button" class="hs-dot" aria-label="Paso 4"></button></div>
       <p class="sr-only">AI Summary Helper abre un breve resumen del artículo en un panel lateral, te permite hacer preguntas de seguimiento vinculadas al fragmento de origen y genera resúmenes en el idioma que elijas.</p>
-    </div>
-    <div class="hs-bm" data-stage-pane="bookmarklet" hidden="">
-      <div class="bm-mock" aria-hidden="true" data-no-translate="">
-            <div class="bm-win">
-              <div class="bm-tb"><i></i><i></i><i></i><span>🔒 dailyledger.example/work-life/office-fern</span></div>
-              <div class="bm-bar"><span>Mail</span><span>Docs</span><span>Maps</span><span class="bm-mark">✨ Summarize</span></div>
-              <div class="bm-page">
-                <div class="bm-mast">The Daily Ledger</div>
-                <h4>Office fern outlives four reorganisations, now up for team lead</h4>
-                <p>Leeds. When the logistics team moved floors in 2019, nobody expected Gerald to survive.</p>
-                <p>Seven years and four reorganisations later, the office fern is the longest-serving member of the department.</p>
-                <p>He has never once scheduled a meeting that could have been an email.</p>
-                <div class="bm-card"><small>✨ AI Summary</small><b>A fern climbs the career ladder</b><span>Gerald, an office fern in Leeds, has outlasted <strong>four reorganisations in seven years</strong> and is now up for team lead.</span></div>
-              </div>
-              <svg class="bm-cursor" viewBox="0 0 24 24" width="26" height="26"><path d="M4 2l15 9-6.5 1.5L9 19z" fill="#14161f" stroke="#fff" stroke-width="1.4" stroke-linejoin="round"></path></svg>
-            </div>
-          </div>
-      <ol class="bm-steps">
-  <li><span class="bm-n">1</span><div><h3>Créalo una sola vez</h3><p>Elige la byPhil API (sin clave) o tu propio OpenAI, Gemini, Mistral, DeepSeek u Ollama.</p></div></li>
-  <li><span class="bm-n">2</span><div><h3>Arrástralo a tu barra de marcadores</h3><p>Cualquier navegador, cualquier sistema operativo, incluido iOS. Sin instalar nada.</p></div></li>
-  <li><span class="bm-n">3</span><div><h3>Haz clic en cualquier página</h3><p>El resumen aparece directamente en la página, con preguntas de seguimiento y en tu idioma.</p></div></li>
-</ol>
     </div>
   </div>
 </section>
@@ -829,6 +790,16 @@
           <h3>Tu biblioteca dentro de Claude, LM Studio y Cursor</h3>
           <p>Activa las aplicaciones de IA en Configuración, y Claude Desktop, LM Studio, Cursor y otras aplicaciones MCP en tu equipo podrán buscar en tu biblioteca, citar tus subrayados y mostrar las lecturas pendientes. Si lo autorizas, también pueden guardar enlaces por ti. Nada pasa por nuestro servidor y tú decides qué pueden leer.</p>
           <button class="fvideo-cta" type="button" tabindex="-1" aria-hidden="true"><span class="fvideo-cta-play">▶</span>Ver el clip</button>
+        </div>
+        <div class="feature-card" data-personas="privacy hoarder researcher">
+          <div class="f-icon icon-teal"><svg viewBox="0 0 24 24" fill="none"><path d="M7 18.5h9.5a3.5 3.5 0 0 0 .6-6.95A5 5 0 0 0 7.4 10.6 4 4 0 0 0 7 18.5Z" stroke="#fff" stroke-width="1.7" stroke-linejoin="round"></path><path d="M12 12.5v3M10.8 13.8h2.4" stroke="#fff" stroke-width="1.7" stroke-linecap="round"></path></svg></div>
+          <h3>Tu biblioteca en tu propio almacenamiento, cifrada</h3>
+          <p>Mantén tu biblioteca sincronizada en todos tus dispositivos, crea copias de seguridad o publica parte de ella en Nextcloud u otro servidor WebDAV, en un bucket compatible con S3 o en una carpeta de tu equipo. Todo se cifra en tu navegador antes de salir, por lo que el servidor solo ve archivos ilegibles. Publica una lista en tu propio sitio web con búsqueda, un grafo de etiquetas y un mapa en 3D de lo que has guardado. Desactivado por defecto hasta que añadas una ubicación; no operamos ningún servidor de sincronización y no vemos absolutamente nada. <a href="../blog/sync-to-nextcloud-s3-or-a-folder.html">Cómo configurarlo</a> · <a href="../blog/digital-sovereignty-for-individuals.html">Por qué es importante</a></p>
+        </div>
+        <div class="feature-card" data-personas="hoarder researcher">
+          <div class="f-icon icon-amber"><svg viewBox="0 0 24 24" fill="none"><path d="M6 4.5h9l3 3V19a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V5.5a1 1 0 0 1 1-1Z" stroke="#fff" stroke-width="1.7" stroke-linejoin="round"></path><path d="M8.5 11h7M8.5 14.5h4.5" stroke="#fff" stroke-width="1.7" stroke-linecap="round"></path></svg></div>
+          <h3>Notas y comentarios en cualquier página</h3>
+          <p>Selecciona texto y elige: resaltarlo, comentarlo o guardar una nota con la cita. Todo se reúne en la pestaña Notas, ya sea como lista o en una cuadrícula de notas adhesivas, organizado por artículo o por etiqueta, y se sincroniza con el resto de tu biblioteca.</p>
         </div>
         <div class="feature-card" data-personas="hoarder researcher">
           <figure class="fvideo" data-blog-video="export">

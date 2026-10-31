@@ -57,7 +57,6 @@
     <nav class="pill" aria-label="หลัก">
       <a href="index.html#features" data-sec="features">ฟีเจอร์</a>
       <a href="index.html#try-it" data-sec="try-it">เดโม</a>
-      <a href="index.html#pricing" data-sec="pricing">ราคา</a>
       <a href="https://chromewebstore.google.com/detail/ai-summary-helper-openai/hldbejcjaedipeegjcinmhejdndchkmb" class="pill-cta" target="_blank" rel="noopener">เพิ่มลงใน Chrome</a>
     </nav>
     <div class="nav-tools">
@@ -76,13 +75,12 @@
       <nav class="mm-links" aria-label="มือถือ">
         <a href="index.html#features"><span class="mm-n">01</span>ฟีเจอร์</a>
         <a href="index.html#try-it"><span class="mm-n">02</span>เดโม</a>
-        <a href="index.html#pricing"><span class="mm-n">03</span>ราคา</a>
-        <a href="blog/"><span class="mm-n">04</span>บล็อก</a>
+        <a href="blog/"><span class="mm-n">03</span>บล็อก</a>
           <a href="blog/pocket-alternative.html" class="mm-sub">ทางเลือกใหม่แทน Pocket: สิ่งที่สำคัญที่สุด</a>
           <a href="blog/bring-your-own-key.html" class="mm-sub">คีย์ของคุณ โมเดลของคุณ ข้อมูลของคุณ</a>
           <a href="blog/verify-ai-summary.html" class="mm-sub">ตรวจสอบบทสรุปเทียบกับต้นฉบับ</a>
           <a href="blog/highlighting-vs-asking.html" class="mm-sub">ถามตอบจากไฮไลต์ของคุณ</a>
-        <a href="https://github.com/philffm/ai-summary-helper/" target="_blank" rel="noopener"><span class="mm-n">05</span>GitHub</a>
+        <a href="https://github.com/philffm/ai-summary-helper/" target="_blank" rel="noopener"><span class="mm-n">04</span>GitHub</a>
       </nav>
       <div class="mm-lang">
         <button type="button" class="lang-card" id="langCard"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.6"></circle><path d="M3 12h18M12 3c2.6 2.7 3.9 5.7 3.9 9s-1.3 6.3-3.9 9c-2.6-2.7-3.9-5.7-3.9-9S9.4 5.7 12 3Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"></path></svg><span class="lang-card-cur">ภาษาอังกฤษ</span><small>24 ภาษา</small><b aria-hidden="true">→</b></button>
@@ -132,28 +130,11 @@
       <div class="eyebrow"><span class="dash"></span> ส่วนขยาย Chrome · ส่วนหนึ่งของ byphil. <span class="dash"></span></div>
       <h1>สรุปเนื้อหาบนเว็บ<br><em>เก็บบันทึกเฉพาะสิ่งที่สำคัญ</em></h1>
       <p class="sub">AI Summary Helper ติดตามเว็บไซต์โปรดด้วยตัวอ่าน RSS ในตัว บันทึกทุกหน้าเว็บเป็นบทความสรุปที่ค้นหาได้ง่าย — พร้อมช่วยให้กลับมาอ่านได้จริงด้วยระบบ Digest บนอุปกรณ์ที่ส่งบทความสำหรับอ่านแบบออฟไลน์ไปยัง Kindle หรืออุปกรณ์อื่นได้ทันที</p>
-      <div class="hero-switch" role="tablist" aria-label="ต้องการใช้งานในรูปแบบใด?">
-        <button type="button" class="hero-switch-btn active" role="tab" id="heroTabBrowser" aria-selected="true" aria-controls="heroPaneBrowser" data-hero="browser">
-          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="3" stroke="currentColor" stroke-width="1.6"></rect><path d="M3 9h18" stroke="currentColor" stroke-width="1.6"></path></svg>
-          ส่วนขยายเบราว์เซอร์
-        </button>
-        <button type="button" class="hero-switch-btn" role="tab" id="heroTabBookmarklet" aria-selected="false" aria-controls="heroPaneBookmarklet" tabindex="-1" data-hero="bookmarklet">
-          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 3h12v18l-6-4-6 4V3Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"></path></svg>
-          Bookmarklet
-        </button>
-      </div>
-      <div class="hero-pane" id="heroPaneBrowser" role="tabpanel" aria-labelledby="heroTabBrowser">
+      <div class="hero-pane" id="heroPaneBrowser">
         <div class="hero-cta">
           <a href="https://chromewebstore.google.com/detail/ai-summary-helper-openai/hldbejcjaedipeegjcinmhejdndchkmb" target="_blank" rel="noopener" class="btn-primary">เพิ่มลงใน Chrome — ใช้งานฟรี</a>
         </div>
         <p class="hero-meta">เริ่มต้นได้โดยไม่ต้องสร้างบัญชี · รองรับโมเดล LLM ส่วนใหญ่ผ่าน byPhil API, ใช้ API key ส่วนตัว หรือทำงานแบบออฟไลน์เต็มรูปแบบด้วย Ollama</p>
-      </div>
-      <div class="hero-pane" id="heroPaneBookmarklet" role="tabpanel" aria-labelledby="heroTabBookmarklet" hidden="">
-        <p class="hero-pane-blurb">เพียงลิงก์เดียวบนแถบบุ๊กมาร์ก ใช้งานได้ทุกเบราว์เซอร์ ทุกระบบปฏิบัติการ รวมถึง iOS ไม่ต้องติดตั้ง ส่วนสรุปจะแสดงขึ้นบนหน้าเว็บทันที</p>
-        <div class="hero-cta">
-          <a href="../bookmarklet.html" class="btn-primary" data-track="bookmarklet-open">สร้าง Bookmarklet →</a>
-        </div>
-        <p class="hero-meta">เปิดเครื่องมือสร้าง · รองรับโมเดล LLM ส่วนใหญ่ผ่าน byPhil API (ไม่ต้องใช้คีย์) หรือใช้ OpenAI, Gemini, Mistral, DeepSeek หรือ Ollama ของคุณเอง</p>
       </div>
       <ol class="hs-steps" data-stage-pane="browser">
   <li class="is-on" data-step="0" role="button" tabindex="0"><b>อ่านได้ทุกหน้าเว็บ</b><span>เปิดบทความตามปกติ AISH จะทำงานอย่างเงียบๆ บนเบราว์เซอร์</span></li>
@@ -203,30 +184,10 @@
           </div>
         </div>
       </div>
+      <!-- The animated demo is nice, but the video shows it better: this opens the full video (komplett-<lang>.mp4, the first clip of #videos) in the player. Without JavaScript it jumps to the clips. -->
+      <a class="hs-watch" href="#videos" data-open-video="komplett"><span class="hs-watch-ico" aria-hidden="true">▶</span><span class="hs-watch-txt"><strong>รับชมวิดีโอ</strong><small>ครบจบในเวลาไม่ถึงหนึ่งนาที</small></span></a>
       <div class="hs-ctrl" role="group" aria-label="ทัวร์แนะนำการใช้งาน"><button type="button" class="hs-pp" aria-label="หยุดทัวร์แนะนำชั่วคราว"><svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><path class="pp-pause" d="M7 5h3v14H7zM14 5h3v14h-3z" fill="currentColor"></path><path class="pp-play" d="M8 5l11 7-11 7z" fill="currentColor"></path></svg></button><button type="button" class="hs-dot is-on" aria-label="ขั้นตอนที่ 1"></button><button type="button" class="hs-dot" aria-label="ขั้นตอนที่ 2"></button><button type="button" class="hs-dot" aria-label="ขั้นตอนที่ 3"></button><button type="button" class="hs-dot" aria-label="ขั้นตอนที่ 4"></button></div>
       <p class="sr-only">AI Summary Helper แสดงบทสรุปสั้นๆ ของบทความในแผงด้านข้าง ให้คุณถามคำถามเจาะลึกพร้อมลิงก์ย้อนไปยังข้อความต้นทาง และสลับภาษาของบทสรุปได้ตามต้องการ</p>
-    </div>
-    <div class="hs-bm" data-stage-pane="bookmarklet" hidden="">
-      <div class="bm-mock" aria-hidden="true" data-no-translate="">
-            <div class="bm-win">
-              <div class="bm-tb"><i></i><i></i><i></i><span>🔒 dailyledger.example/work-life/office-fern</span></div>
-              <div class="bm-bar"><span>Mail</span><span>Docs</span><span>Maps</span><span class="bm-mark">✨ Summarize</span></div>
-              <div class="bm-page">
-                <div class="bm-mast">The Daily Ledger</div>
-                <h4>Office fern outlives four reorganisations, now up for team lead</h4>
-                <p>Leeds. When the logistics team moved floors in 2019, nobody expected Gerald to survive.</p>
-                <p>Seven years and four reorganisations later, the office fern is the longest-serving member of the department.</p>
-                <p>He has never once scheduled a meeting that could have been an email.</p>
-                <div class="bm-card"><small>✨ AI Summary</small><b>A fern climbs the career ladder</b><span>Gerald, an office fern in Leeds, has outlasted <strong>four reorganisations in seven years</strong> and is now up for team lead.</span></div>
-              </div>
-              <svg class="bm-cursor" viewBox="0 0 24 24" width="26" height="26"><path d="M4 2l15 9-6.5 1.5L9 19z" fill="#14161f" stroke="#fff" stroke-width="1.4" stroke-linejoin="round"></path></svg>
-            </div>
-          </div>
-      <ol class="bm-steps">
-  <li><span class="bm-n">1</span><div><h3>สร้างเพียงครั้งเดียว</h3><p>เลือกใช้ byPhil API (ไม่ต้องใช้คีย์) หรือเชื่อมต่อ OpenAI, Gemini, Mistral, DeepSeek หรือ Ollama ของคุณเอง</p></div></li>
-  <li><span class="bm-n">2</span><div><h3>ลากไปวางที่แถบบุ๊กมาร์ก</h3><p>ใช้ได้กับทุกเบราว์เซอร์ ทุกระบบปฏิบัติการ รวมถึง iOS ไม่ต้องติดตั้งโปรแกรมใดๆ</p></div></li>
-  <li><span class="bm-n">3</span><div><h3>คลิกใช้งานบนหน้าเว็บใดก็ได้</h3><p>บทสรุปจะปรากฏขึ้นบนหน้าเว็บทันที พร้อมฟังก์ชันถามต่อและเลือกภาษาได้</p></div></li>
-</ol>
     </div>
   </div>
 </section>
@@ -829,6 +790,16 @@
           <h3>เข้าถึงคลังข้อมูลของคุณได้โดยตรงจาก Claude, LM Studio และ Cursor</h3>
           <p>เพียงเปิดใช้งานแอป AI ในหน้าการตั้งค่า จากนั้น Claude Desktop, LM Studio, Cursor รวมถึงแอป MCP อื่นๆ บนคอมพิวเตอร์ของคุณ ก็สามารถค้นหาคลังข้อมูล ดึงข้อความไฮไลต์ และแสดงรายการที่ต้องอ่านได้ทันที และหากอนุญาต แอปเหล่านี้ยังสามารถบันทึกลิงก์ให้ได้อีกด้วย ข้อมูลทั้งหมดทำงานแบบโลคอลไม่ผ่านเซิร์ฟเวอร์ของเรา และสามารถเลือกได้เองว่าต้องการให้เข้าถึงข้อมูลใดบ้าง</p>
           <button class="fvideo-cta" type="button" tabindex="-1" aria-hidden="true"><span class="fvideo-cta-play">▶</span>ดูคลิป</button>
+        </div>
+        <div class="feature-card" data-personas="privacy hoarder researcher">
+          <div class="f-icon icon-teal"><svg viewBox="0 0 24 24" fill="none"><path d="M7 18.5h9.5a3.5 3.5 0 0 0 .6-6.95A5 5 0 0 0 7.4 10.6 4 4 0 0 0 7 18.5Z" stroke="#fff" stroke-width="1.7" stroke-linejoin="round"></path><path d="M12 12.5v3M10.8 13.8h2.4" stroke="#fff" stroke-width="1.7" stroke-linecap="round"></path></svg></div>
+          <h3>คลังข้อมูลส่วนตัวบนพื้นที่จัดเก็บของคุณเอง พร้อมการเข้ารหัสความปลอดภัย</h3>
+          <p>ซิงค์คลังข้อมูลให้ตรงกันทุกอุปกรณ์ สำรองข้อมูล หรือเลือกเผยแพร่บางส่วนผ่าน Nextcloud, เซิร์ฟเวอร์ WebDAV อื่นๆ, S3-compatible bucket หรือโฟลเดอร์บนคอมพิวเตอร์ของคุณ ข้อมูลทุกอย่างจะถูกเข้ารหัสบนเบราว์เซอร์ก่อนส่งออก เซิร์ฟเวอร์จึงมองเห็นเฉพาะไฟล์ที่เข้ารหัสแล้วเท่านั้น นอกจากนี้ยังสามารถเผยแพร่รายการขึ้นเว็บไซต์ส่วนตัวพร้อมระบบค้นหา กราฟแท็ก และแผนผัง 3D แสดงสิ่งที่คุณบันทึกไว้ ฟังก์ชันนี้จะปิดอยู่จนกว่าจะกำหนดพื้นที่จัดเก็บ เราไม่ได้เปิดเซิร์ฟเวอร์ซิงค์และไม่สามารถเข้าถึงข้อมูลใดๆ ของคุณได้ <a href="../blog/sync-to-nextcloud-s3-or-a-folder.html">วิธีตั้งค่า</a> · <a href="../blog/digital-sovereignty-for-individuals.html">ทำไมสิ่งนี้จึงสำคัญ</a></p>
+        </div>
+        <div class="feature-card" data-personas="hoarder researcher">
+          <div class="f-icon icon-amber"><svg viewBox="0 0 24 24" fill="none"><path d="M6 4.5h9l3 3V19a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V5.5a1 1 0 0 1 1-1Z" stroke="#fff" stroke-width="1.7" stroke-linejoin="round"></path><path d="M8.5 11h7M8.5 14.5h4.5" stroke="#fff" stroke-width="1.7" stroke-linecap="round"></path></svg></div>
+          <h3>จดโน้ตและแสดงความคิดเห็นได้ในทุกหน้าเว็บ</h3>
+          <p>เพียงเลือกข้อความแล้วกำหนดสิ่งที่ต้องการ: ไฮไลต์ ใส่ความเห็น หรือบันทึกเป็นโน้ตพร้อมข้อความอ้างอิง ทุกอย่างจะถูกรวบรวมไว้ในแท็บ Notes ทั้งในรูปแบบรายการหรือตาราง sticky notes จัดกลุ่มตามบทความหรือแท็ก และซิงค์เข้ากับคลังข้อมูลส่วนที่เหลือได้ทันที</p>
         </div>
         <div class="feature-card" data-personas="hoarder researcher">
           <figure class="fvideo" data-blog-video="export">
