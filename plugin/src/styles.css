@@ -3032,7 +3032,8 @@ body.has-player .feed-undo { bottom: calc(var(--bottom-nav-height, 60px) + 190px
 /* Layout switcher lives in the app header and only applies to Feeds + History */
 .header .ws-seg { display: none; }
 body[data-screen="feeds"] .header .ws-seg:not([hidden]),
-body[data-screen="history"] .header .ws-seg:not([hidden]) { display: inline-flex; }
+body[data-screen="history"] .header .ws-seg:not([hidden]),
+body[data-screen="notes"] .header .ws-seg:not([hidden]) { display: inline-flex; }
 .ws-seg button { display: inline-flex; gap: 2px; align-items: center; justify-content: center; padding: 6px 8px; border: 0; border-radius: 8px; background: transparent; cursor: pointer; }
 .ws-seg button i { display: block; width: 6px; height: 14px; border-radius: 2px; background: var(--text-muted); }
 .ws-seg button[aria-pressed='true'] { background: var(--glass-base); box-shadow: inset 0 0 0 1px var(--accent-a30); }
@@ -4598,14 +4599,27 @@ html[data-motion="reduce"] .detail-split-more .icon { transition: none; }
 .st-edit { display: flex; flex-direction: column; gap: 6px; }
 .st-ta { width: 100%; resize: vertical; font: inherit; font-size: var(--fs-md); padding: 8px; border-radius: 8px; border: 1px solid var(--outline); background: var(--glass-input); color: var(--text-primary); }
 .st-edit-row { display: flex; gap: 6px; justify-content: flex-end; flex-wrap: wrap; }
-.notes-composer { position: sticky; bottom: calc(var(--nav-clearance) - var(--spacing-s-3)); z-index: var(--z-raised); margin-top: auto; padding: var(--spacing-s-3) var(--spacing-s-4); background: color-mix(in srgb, var(--bg-page) 94%, transparent); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); border: 1px solid var(--outline); box-shadow: var(--glass-inner-glow), var(--shadow-card); display: flex; flex-direction: column; gap: 4px; }
-.notes-composer .input-card-label { margin: 0; }
-textarea.notes-input { width: 100%; resize: none; font: inherit; font-size: var(--fs-lg); line-height: 1.5; border: 0; background: transparent; color: var(--text-primary); outline: none; box-shadow: none; padding: 0; margin: 0; min-height: 54px; height: auto; }
-textarea.notes-input::placeholder { color: var(--text-muted); opacity: .6; }
-.notes-composer-row { display: flex; align-items: center; justify-content: space-between; gap: 8px; }
-.notes-composer:focus-within { border-color: var(--accent-a30); box-shadow: 0 0 0 3px var(--accent-a15), var(--glass-inner-glow), var(--shadow-card); }
 :root[data-theme='contrast'] .st { border: 2px solid #000; border-left-width: 6px; }
 @media (prefers-reduced-motion: reduce) { .notes-composer { transition: none; } }
 
 .sync-danger { border: 1px solid color-mix(in srgb, var(--danger) 55%, transparent); background: color-mix(in srgb, var(--danger) 7%, transparent); border-radius: 12px; padding: 4px 12px 8px; display: flex; flex-direction: column; gap: 4px; }
 .sync-danger .settings-caption { color: var(--danger); }
+
+/* Notes in a split view (notesView.js): a pane in History or Feeds, and the Notes screen's own panes */
+.ws-notes-pane { display: none; }
+.screen.ws-active > .ws-notes-pane.ws-p1, .screen.ws-active > .ws-notes-pane.ws-p2, .screen.ws-active > .ws-notes-pane.ws-p3,
+.screen.ws-active > #notesRoot.ws-p1, .screen.ws-active > #notesRoot.ws-p2, .screen.ws-active > #notesRoot.ws-p3 { display: flex; flex-direction: column; }
+.screen.ws-active > :is(#historyNotesPane, #feedsNotesPane, #notesRoot, #notesArticlesPane, #notesTagsPane) { grid-row: 2 / -1; min-height: 0; overflow-y: auto; margin: 0; padding: 0 0 var(--nav-clearance); }
+.notes-row { display: flex; flex-direction: column; gap: 2px; align-items: flex-start; text-align: left; width: 100%; padding: 10px 12px; margin: 0 0 6px; border: 1px solid var(--outline); border-radius: 12px; background: var(--glass-card); color: var(--text-primary); font: inherit; cursor: pointer; }
+.notes-row.is-selected { border-color: var(--accent); background: var(--accent-a12); }
+.notes-row-title { font-weight: 600; font-size: var(--fs-md); overflow-wrap: anywhere; }
+.notes-cloud .mcp-chip small { opacity: .7; }
+/* in a split the pane selector above already names the pane */
+.screen.ws-active .notes-head h2 { display: none; }
+.screen.ws-active .notes-head { justify-content: flex-end; }
+.screen.ws-active .notes-head:not(:has(.notes-toggle)) { display: none; }
+
+/* The Notes composer is the Summarize screen's own pill (.composer-pill: field and primary button), docked above the nav the same way */
+.controls-bar.notes-dock { position: sticky; left: auto; right: auto; bottom: calc(var(--bottom-nav-height) + var(--controls-bottom-gap)); max-width: none; margin: auto 0 0; padding: 0; z-index: var(--z-raised); }
+.notes-dock .composer-pill .notes-add { flex: none; width: auto; margin: 0; white-space: nowrap; min-width: 44px; }
+.notes-dock .notes-hint { color: var(--text-muted); font-size: var(--fs-xs); }

@@ -48,10 +48,11 @@ assert.ok(root().lastElementChild.id === 'notesComposer', 'and it is the last th
 
 // composer: a card like the Summarize screen's, always visible with its label and Add button; adds a note with tags, clears itself
 const input = document.getElementById('notesInput'), comp = document.getElementById('notesComposer');
-assert.ok(comp.classList.contains('input-card'), 'same card as the Summarize screen');
-assert.match(comp.querySelector('.input-card-label').textContent, /New note/); assert.ok(btn('Add', comp), 'the Add button is always there');
+assert.ok(comp.classList.contains('controls-bar') && comp.querySelector('.composer-pill'), 'the Summarize screen\'s own docked pill');
+assert.ok(comp.querySelector('.composer-pill > textarea.input-card-textarea') && comp.querySelector('.composer-pill > button.button-primary'), 'field and primary button inside the pill, like Summarize');
+assert.match(comp.querySelector('.input-card-label').textContent, /New note/); assert.ok(comp.querySelector('.notes-add') && /Add/.test(comp.querySelector('.notes-add').textContent), 'the Add button is always there');
 input.value = 'Ask Anna about the cap #todo #inflation';
-click(btn('Add', comp)); await wait(120);
+click(comp.querySelector('.notes-add')); await wait(120);
 assert.equal(store[SK.notesIndex].length, 1); const nid = store[SK.notesIndex][0].id;
 assert.equal(store[noteRecKey(nid)].text, 'Ask Anna about the cap'); assert.deepEqual(store[noteRecKey(nid)].tags, ['todo', 'inflation']);
 assert.equal(input.value, '');
