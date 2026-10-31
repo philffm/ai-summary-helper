@@ -22,7 +22,7 @@ const form = { name: 'All devices', root: 'sync', mode: 'encrypted', direction: 
 
 // create: a short passphrase is refused; the first device gets a recovery key, the passphrase is never stored
 const t1 = await svc1.test({ connection: server, place: form, secret: { password: 'secret' } }); assert.ok(t1.ok && t1.existing === false);
-await assert.rejects(() => svc1.add({ connection: server, place: { ...form, passphrase: 'short' }, secret: { password: 'secret' } }), /at least 8/);
+await assert.rejects(() => svc1.add({ connection: server, place: { ...form, passphrase: 'short' }, secret: { password: 'secret' } }), /at least 12/);
 const added = await svc1.add({ connection: server, place: { ...form, passphrase: 'a long passphrase' }, secret: { password: 'secret' } });
 assert.match(added.recoveryKey, /^([A-Z2-7]{4}-)+/); assert.equal(added.mode, 'encrypted');
 const saved = local1[SK.syncPlaces][0]; assert.ok(!('recoveryKey' in saved) && !('passphrase' in saved), 'neither is saved with the place');

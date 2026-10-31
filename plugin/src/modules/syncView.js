@@ -13,6 +13,7 @@ import { createSyncService, cleanPlace } from './syncService.js';
 import { createStampStore } from './syncStampStore.js';
 import { makeStore } from './syncStores.js';
 import { folderSupported } from './syncFolder.js';
+import { suggest, strengthOf } from './syncPassphrase.js';
 import { createHandleVault } from './syncFolderHandles.js';
 
 const $ = (id) => document.getElementById(id);
@@ -211,18 +212,19 @@ async function chooseFolder() {
 
 /** Shown once, right after an encrypted place was created: the recovery key cannot be made again from the passphrase. */
 function recoveryScreen() {
-    const out = [head(T('Save your recovery key'), null)];
+    const out = [head(recovery.words ? T('Save your passphrase and recovery key') : T('Save your recovery key'), null)];
     out.push(el('p', 'setting-note', T('If you forget the passphrase, this key opens “{name}”. Without both, nobody can read the files, not even us. Save it in a password manager or print it.', { name: recovery.name })));
+    if (recovery.words) { out.push(el('p', 'settings-caption', TU('Your passphrase'))); const w = el('pre', 'sync-recovery', recovery.words); w.tabIndex = 0; out.push(w); out.push(hint(T('You will type these words when you add this place on another device.'))); out.push(el('p', 'settings-caption', TU('Recovery key'))); }
     const box = el('pre', 'sync-recovery', recovery.key); box.tabIndex = 0;
     out.push(box);
     const row = el('div', 'mcp-actions');
     row.append(button(T('Copy'), 'button-secondary btn-sm', async () => { try { await navigator.clipboard.writeText(recovery.key); testMsg = { ok: true, text: T('Copied.') }; } catch (_) { testMsg = { ok: false, text: T('Copy did not work. Select the key and copy it by hand.') }; } render(); }),
-        button(T('Download'), 'button-secondary btn-sm', () => { const a = document.createElement('a'); a.href = URL.createObjectURL(new Blob([`AI Summary Helper recovery key for "${recovery.name}"\n\n${recovery.key}\n`], { type: 'text/plain' })); a.download = 'aish-recovery-key.txt'; a.click(); setTimeout(() => URL.revokeObjectURL(a.href), 2000); }));
+        button(T('Download'), 'button-secondary btn-sm', () => { const a = document.createElement('a'); a.href = URL.createObjectURL(new Blob([`AI Summary Helper, place "${recovery.name}"\n\n${recovery.words ? 'Passphrase: ' + recovery.words + '\n' : ''}Recovery key: ${recovery.key}\n`], { type: 'text/plain' })); a.download = 'aish-recovery-key.txt'; a.click(); setTimeout(() => URL.revokeObjectURL(a.href), 2000); }));
     out.push(row);
     if (testMsg) out.push(el('p', 'setting-note' + (testMsg.ok ? '' : ' phone-inbox-error'), testMsg.text));
     let saved = false;
     const done = button(T('Done'), 'button-primary btn-sm', () => { recovery = null; testMsg = null; view = 'list'; render(); }); done.disabled = true;
-    out.push(switchRow(T('I saved the recovery key'), '', false, (on) => { saved = on; done.disabled = !saved; }));
+    out.push(switchRow(recovery.words ? T('I saved the passphrase and the recovery key') : T('I saved the recovery key'), '', false, (on) => { saved = on; done.disabled = !saved; }));
     out.push(done);
     return out;
 }
@@ -371,8 +373,27 @@ function formScreen(place, st, count, connections = [], places = []) {
         if (!editing) {
             out.push(el('p', 'settings-caption', TU('Passphrase')));
             if (existingFlag) out.push(el('div', 'explanatory-card', T('This folder already holds an encrypted library. Enter its passphrase, or its recovery key, to join it.')));
-            out.push(field('syncPassphrase', existingFlag ? T('Passphrase') : T('Choose a passphrase'), draft.passphrase, { type: 'password', onInput: (v) => { draft.passphrase = v; }, help: existingFlag ? '' : T('At least 8 characters. It is not saved anywhere: if you lose it and the recovery key, the files cannot be opened by anyone.') }));
-            if (existingFlag === false || existingFlag === null) out.push(field('syncPassphrase2', T('Repeat the passphrase'), draft.passphrase2, { type: 'password', onInput: (v) => { draft.passphrase2 = v; } }));
+            if (existingFlag) {
+                out.push(field('syncPassphrase', T('Passphrase'), draft.passphrase, { type: 'password', onInput: (v) => { draft.passphrase = v; } }));
+            } else if (!draft.ownPass) {
+                // a new place: six random words, strong and easy to type on another device
+                if (!draft.passphrase) { draft.passphrase = suggest(); draft.passphrase2 = draft.passphrase; }
+                const box = el('div', 'sync-words'); box.id = 'syncWords'; box.textContent = draft.passphrase; box.tabIndex = 0;
+                out.push(box);
+                out.push(hint(T('Six random words. You will type them on your other devices, so write them down or keep them in a password manager. They are not saved anywhere else: with the recovery key they are the only way to open your files.')));
+                const row = el('div', 'mcp-actions');
+                row.append(button(T('Another suggestion'), 'button-secondary btn-sm', () => { draft.passphrase = suggest(); draft.passphrase2 = draft.passphrase; render(); }),
+                    button(T('Copy'), 'button-secondary btn-sm', async () => { try { await navigator.clipboard.writeText(draft.passphrase); testMsg = { ok: true, text: T('Copied.') }; } catch (_) { testMsg = { ok: false, text: T('Copy did not work. Select the words and copy them by hand.') }; } render(); }),
+                    button(T('Use my own passphrase'), 'mcp-link-button', () => { draft.ownPass = true; draft.passphrase = ''; draft.passphrase2 = ''; render(); }));
+                out.push(row);
+            } else {
+                const f1 = field('syncPassphrase', T('Choose a passphrase'), draft.passphrase, { type: 'password', onInput: (v) => { draft.passphrase = v; const h = $('syncStrength'); if (h) { const k = v ? strengthOf(v) : ''; h.textContent = k === 'strong' ? T('Strong.') : k === 'fine' ? T('Fine. The suggested words are stronger.') : v ? T('Weak: use at least 12 characters, or the suggested words.') : ''; h.dataset.level = k; } },
+                    help: T('At least 12 characters. It is not saved anywhere: if you lose it and the recovery key, the files cannot be opened by anyone.') });
+                out.push(f1);
+                const hl = hint(''); hl.id = 'syncStrength'; hl.setAttribute('role', 'status'); out.push(hl);
+                out.push(field('syncPassphrase2', T('Repeat the passphrase'), draft.passphrase2, { type: 'password', onInput: (v) => { draft.passphrase2 = v; } }));
+                out.push(button(T('Suggest random words instead'), 'mcp-link-button', () => { draft.ownPass = false; draft.passphrase = ''; draft.passphrase2 = ''; render(); }));
+            }
             if (existingFlag) {
                 out.push(field('syncRecovery', T('Recovery key (instead of the passphrase)'), draft.recoveryKey, { onInput: (v) => { draft.recoveryKey = v; } }));
                 if (draft.direction === 'twoway') {
@@ -446,7 +467,7 @@ function formScreen(place, st, count, connections = [], places = []) {
         test.disabled = true; testMsg = null; formError = '';
         if (isFolder) await ensureFolderAccess(draft.folderId || draft.connectionId);
         const r = await svc.test(request());
-        if (r.ok && encrypted) existingFlag = !!r.existing;
+        if (r.ok && encrypted) { existingFlag = !!r.existing; if (r.existing && !draft.ownPass) { draft.passphrase = ''; draft.passphrase2 = ''; } }
         testMsg = r.ok ? { ok: true, text: encrypted ? (r.existing ? T('Connected. This folder already holds an encrypted library.') : T('Connected. The folder is empty, so a new encrypted library will be created.')) : TN(r.count, 'Connected. {n} article matches.', 'Connected. {n} articles match.') } : { ok: false, text: r.error.message };
         render();
     });
@@ -459,7 +480,7 @@ function formScreen(place, st, count, connections = [], places = []) {
                     const t = await svc.test(request());
                     if (!t.ok) throw new Error(t.error.message);
                     existingFlag = !!t.existing;
-                    if (t.existing) { busy = false; testMsg = { ok: true, text: T('This folder already holds an encrypted library. Enter its passphrase or recovery key below, then press Connect again.') }; render(); return; }
+                    if (t.existing) { if (!draft.ownPass) { draft.passphrase = ''; draft.passphrase2 = ''; } busy = false; testMsg = { ok: true, text: T('This folder already holds an encrypted library. Enter its passphrase or recovery key below, then press Connect again.') }; render(); return; }
                 }
                 if (!existingFlag && draft.passphrase !== draft.passphrase2) throw new Error(T('The two passphrases are not the same.'));
             }
@@ -468,7 +489,7 @@ function formScreen(place, st, count, connections = [], places = []) {
                 await svc.update(editId, draft); await sendToWorker({ action: 'syncNow', placeId: editId });
             } else {
                 const p = await svc.add(request()); await sendToWorker({ action: 'syncNow', placeId: p.id });
-                if (p.recoveryKey) { recovery = { name: p.name, key: p.recoveryKey }; view = 'recovery'; } else view = 'list';
+                if (p.recoveryKey) { recovery = { name: p.name, key: p.recoveryKey, words: draft.ownPass ? '' : draft.passphrase }; view = 'recovery'; } else view = 'list';
             }
             if (view === 'form') view = 'list';
             draft = null; draftSecret = ''; editServer = false;

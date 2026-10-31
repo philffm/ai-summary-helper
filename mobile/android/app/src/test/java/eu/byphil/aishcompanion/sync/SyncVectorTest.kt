@@ -79,4 +79,14 @@ class SyncVectorTest {
             assertEquals("$name: changedRemote", c.getBoolean("changedRemote"), r.changedRemote)
         }
     }
+
+    @Test fun spellsAPassphraseLikeTheExtension() {
+        val v = vec.getJSONObject("passphrases")
+        val words = SyncWordlist.WORDS
+        assertEquals(v.getInt("words"), words.size)
+        val sha = java.security.MessageDigest.getInstance("SHA-256").digest((words.joinToString("\n") + "\n").toByteArray()).joinToString("") { "%02x".format(it) }
+        assertEquals("the word list is the one the extension suggests from", v.getString("wordlistSha256"), sha)
+        val cases = v.getJSONArray("cases")
+        for (i in 0 until cases.length()) { val c = cases.getJSONObject(i); assertEquals(c.getString("input"), c.getString("canonical"), SyncPassphrase.canonical(c.getString("input"))) }
+    }
 }

@@ -4560,6 +4560,10 @@ html[data-motion="reduce"] .detail-split-more .icon { transition: none; }
 /* Sync & backup settings panel (syncView.js): notice for readable places */
 .explanatory-card.sync-warn { border: 1px solid color-mix(in srgb, var(--warn) 55%, transparent); background: color-mix(in srgb, var(--warn) 10%, transparent); font-size: var(--fs-sm); line-height: 1.45; }
 .sync-progress { width: 100%; height: 6px; accent-color: var(--accent); }
+/* a suggested passphrase and the recovery key: large, selectable, wraps instead of scrolling sideways */
+.sync-words, .sync-recovery { margin: 4px 0 8px; padding: 12px 14px; border-radius: 12px; border: 1px solid var(--outline, rgba(127,127,127,.35)); background: var(--surface-2, rgba(127,127,127,.08)); font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 1.05rem; line-height: 1.5; letter-spacing: .02em; white-space: pre-wrap; overflow-wrap: anywhere; user-select: all; }
+.sync-recovery { font-size: .92rem; }
+#syncStrength[data-level="weak"] { color: var(--danger); } #syncStrength[data-level="strong"] { color: var(--success, #15803d); }
 
 /* Notes tab (notesView.js): notes, highlights and comments as stickies, in a list or a grid, with a composer docked at the bottom */
 :root { --st-user-bg:#fef9c3; --st-user-fg:#713f12; --st-user-bar:#eab308; --st-ghost-bg:#e0f2fe; --st-ghost-fg:#0c4a6e; --st-ghost-bar:#0284c7; --st-note-bg:#fce7f3; --st-note-fg:#831843; --st-note-bar:#db2777; }

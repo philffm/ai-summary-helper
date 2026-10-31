@@ -24,21 +24,28 @@ click(byText('button', 'Add a place')); await until(() => root().querySelectorAl
 type('syncServerName', 'Cloud'); type('syncUrl', 'https://cloud.test/dav/'); type('syncUser', 'phil'); type('syncPass', 'secret');
 type('syncName', 'My devices'); type('syncRoot', 'sync');
 assert.equal(byText('.a11y-seg button', 'Sync my devices').getAttribute('aria-checked'), 'true');
-// two different passphrases are refused, a short one too, nothing is saved
+// a new place starts with six random words: strong and easy to type elsewhere; nothing to repeat
+const WORDS = (await import(new URL('../src/modules/syncWordlist.js', import.meta.url).href)).WORDS;
+const first = $('syncWords').textContent; assert.equal(first.split(' ').length, 6); assert.ok(first.split(' ').every((x) => WORDS.includes(x)), 'words from the list'); assert.ok(!$('syncPassphrase') && !$('syncPassphrase2'));
+click(byText('button', 'Another suggestion')); await until(() => $('syncWords') && $('syncWords').textContent !== first); assert.notEqual($('syncWords').textContent, first, 'another suggestion is another suggestion');
+// your own passphrase: two different ones are refused, a short one too, a weak one is called weak, nothing is saved
+click(byText('button', 'Use my own passphrase')); await until(() => $('syncPassphrase'));
+type('syncPassphrase', 'abcabcabcabc'); assert.equal($('syncStrength').dataset.level, 'weak'); type('syncPassphrase', 'a long passphrase'); assert.equal($('syncStrength').dataset.level, 'fine'); assert.match($('syncStrength').textContent, /suggested words are stronger/);
 type('syncPassphrase', 'a long passphrase'); type('syncPassphrase2', 'another one here');
 click(byText('button', 'Connect')); await until(() => /not the same/.test(text()));
 assert.match(text(), /two passphrases are not the same/); assert.ok(!(SK.syncPlaces in store));
-type('syncPassphrase', 'short'); type('syncPassphrase2', 'short'); click(byText('button', 'Connect')); await until(() => /at least 8/.test(text()));
-assert.match(text(), /at least 8 characters/); assert.ok(!(SK.syncPlaces in store));
-// a good one: the place is saved and the recovery key is shown once, with the exit locked until it is acknowledged
-type('syncPassphrase', 'a long passphrase'); type('syncPassphrase2', 'a long passphrase'); click(byText('button', 'Connect')); await until(() => /Save your recovery key/.test(text()));
-assert.match(text(), /Save your recovery key/);
-const key = root().querySelector('.sync-recovery').textContent; assert.match(key, /^([A-Z2-7]{4}-)+[A-Z2-7]{1,4}$/);
+type('syncPassphrase', 'short'); type('syncPassphrase2', 'short'); click(byText('button', 'Connect')); await until(() => /at least 12/.test(text()));
+assert.match(text(), /at least 12 characters/); assert.ok(!(SK.syncPlaces in store));
+// back to the words: the place is saved, and the words and the recovery key are shown once, with the exit locked until it is acknowledged
+click(byText('button', 'Suggest random words instead')); await until(() => $('syncWords')); const words = $('syncWords').textContent;
+click(byText('button', 'Connect')); await until(() => /Save your passphrase and recovery key/.test(text()));
+const shown = [...root().querySelectorAll('.sync-recovery')]; assert.equal(shown.length, 2); assert.equal(shown[0].textContent, words, 'the passphrase is shown again, once');
+const key = shown[1].textContent; assert.match(key, /^([A-Z2-7]{4}-)+[A-Z2-7]{1,4}$/);
 const done = byText('button', 'Done'); assert.ok(done.disabled, 'Done waits for the box');
 const box = root().querySelector('input[type=checkbox]'); box.checked = true; box.dispatchEvent(new w.Event('change', { bubbles: true }));
 assert.ok(!done.disabled); click(done); await until(() => root().querySelector('.settings-row'));
 assert.equal(store[SK.syncPlaces].length, 1); assert.equal(store[SK.syncPlaces][0].mode, 'encrypted');
-assert.ok(!JSON.stringify(store[SK.syncPlaces]).includes(key) && !JSON.stringify(store[SK.syncPlaces]).includes('long passphrase'), 'neither the key nor the passphrase sits with the place');
+assert.ok(!JSON.stringify(store[SK.syncPlaces]).includes(key) && !JSON.stringify(store[SK.syncPlaces]).includes(words), 'neither the key nor the passphrase sits with the place');
 assert.ok(root().querySelector('.settings-row'), 'back at the list');
 
 // a second place in the same folder name: the folder already holds a library, so it is joined, not created
@@ -53,8 +60,8 @@ assert.match(root().querySelector('.phone-inbox-error').textContent, /backup of 
 const ack = [...root().querySelectorAll('label.mcp-row')].find((l) => /I made a backup/.test(l.textContent)).querySelector('input'); ack.checked = true; ack.dispatchEvent(new w.Event('change', { bubbles: true }));
 click(byText('button', 'Connect')); await until(() => /Wrong passphrase/.test(text()));
 assert.match(root().querySelector('.phone-inbox-error').textContent, /Wrong passphrase/); assert.equal(store[SK.syncPlaces].length, 1, 'a wrong passphrase saves nothing');
-type('syncPassphrase', ''); type('syncRecovery', key); click(byText('button', 'Connect')); await until(() => store[SK.syncPlaces].length === 2);
-assert.equal(store[SK.syncPlaces].length, 2, 'the recovery key joins it'); assert.ok(!/Save your recovery key/.test(text()), 'a joined place shows no new key');
+type('syncPassphrase', words.toUpperCase().replace(/ /g, '-  ')); click(byText('button', 'Connect')); await until(() => store[SK.syncPlaces].length === 2);
+assert.equal(store[SK.syncPlaces].length, 2, 'the words in capitals with dashes and double spaces still join it'); assert.ok(!/Save your recovery key/.test(text()), 'a joined place shows no new key');
 // the list shows both as encrypted
 assert.equal(root().querySelectorAll('.settings-row').length, 2);
 console.log('TEST 204 OK'); process.exit(0);

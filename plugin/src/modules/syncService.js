@@ -13,6 +13,7 @@ import { SK, syncLedgerKey } from './storageKeys.js';
 import { pushPlace } from './syncPush.js';
 import { syncEncryptedPlace, loadOrCreateMeta } from './syncEngine.js';
 import { createDataAdapter } from './syncDataAdapter.js';
+import { canonicalPassphrase, passphraseProblem } from './syncPassphrase.js';
 import { createMeta, openMeta, openWithMaster, recoveryKeyOf, toB64, fromB64 } from './syncCrypto.js';
 import { placeMatches, INCLUDE_DEFAULT } from './syncReadable.js';
 import { TargetError } from './targets/targetError.js';
@@ -188,12 +189,13 @@ export function createSyncService({ storage, makeStore, stampStore, viewerSource
                 let master;
                 if (t.existing) {   // join: the passphrase or the recovery key opens it, and this device must have been backed up first
                     if (place.direction === 'twoway' && !opts.ackBackup) throw new Error('Make a backup of this device first, then join.');
-                    master = (await openMeta(await readMeta(store), { passphrase: opts.passphrase, recoveryKey: opts.recoveryKey })).master;
+                    master = (await openMeta(await readMeta(store), { passphrase: canonicalPassphrase(opts.passphrase), recoveryKey: opts.recoveryKey })).master;
                 } else {
-                    if (String(opts.passphrase || '').length < 8) throw new Error('Choose a passphrase of at least 8 characters.');
-                    const made = await loadOrCreateMeta(store, { createMeta, passphrase: opts.passphrase });
+                    const problem = passphraseProblem(opts.passphrase);
+                    if (problem) throw new Error(problem);
+                    const made = await loadOrCreateMeta(store, { createMeta, passphrase: canonicalPassphrase(opts.passphrase) });
                     if (made.created) { master = made.master; recoveryKey = recoveryKeyOf(master); }
-                    else master = (await openMeta(made.meta, { passphrase: opts.passphrase })).master;   // another device created it a moment ago
+                    else master = (await openMeta(made.meta, { passphrase: canonicalPassphrase(opts.passphrase) })).master;   // another device created it a moment ago
                 }
                 secrets[keyOfPlace(place.id)] = { master: toB64(master) };
             }

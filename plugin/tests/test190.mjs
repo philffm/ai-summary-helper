@@ -52,7 +52,7 @@ click(rows[0]); await wait(80);
 // form: a new place starts encrypted (the safe choice) and asks for a passphrase twice; Readable is one tap away
 let tiles = [...root().querySelectorAll('.mcp-tile')];
 assert.equal(tiles.length, 2); assert.equal(tiles[0].getAttribute('aria-pressed'), 'true', 'encrypted is the default');
-assert.ok($('syncPassphrase') && $('syncPassphrase2') && !root().querySelector('.sync-danger'), 'a passphrase, repeated, and no readable-only options');
+assert.ok($('syncWords') && !root().querySelector('.sync-danger'), 'suggested words, and no readable-only options');
 assert.match(text(), /Sync my devices/); assert.match(text(), /Backup only/); assert.ok(!/Which articles/i.test(text()));
 click(tiles[1]); await wait(80);
 // the readable choice is explained, the tag preview counts matching articles

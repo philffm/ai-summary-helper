@@ -719,5 +719,47 @@
       "changedLocal": true,
       "changedRemote": false
     }
-  ]
+  ],
+  "passphrases": {
+    "wordlistSha256": "2f5eed53a4727b4bf8880d8f3f199efc90e58503646d9ff8eff3a2ed3b24dbda",
+    "words": 2048,
+    "cases": [
+      {
+        "input": "  Abandon-ability, ABLE about above  absent ",
+        "canonical": "abandon ability able about above absent"
+      },
+      {
+        "input": "abandon ability able about above absent",
+        "canonical": "abandon ability able about above absent"
+      },
+      {
+        "input": "abandon ability able",
+        "canonical": "abandon ability able"
+      },
+      {
+        "input": "My Own Phrase 123!",
+        "canonical": "My Own Phrase 123!"
+      },
+      {
+        "input": "  spaces kept  ",
+        "canonical": "  spaces kept  "
+      },
+      {
+        "input": "zoo-zoo-zoo-zoo",
+        "canonical": "zoo zoo zoo zoo"
+      },
+      {
+        "input": "Zoo Zoo Zoo Zoo Zoo Zoo",
+        "canonical": "zoo zoo zoo zoo zoo zoo"
+      },
+      {
+        "input": "abandon ability able about above absentt",
+        "canonical": "abandon ability able about above absentt"
+      },
+      {
+        "input": "ünïcode Pässwörd 🌍",
+        "canonical": "ünïcode Pässwörd 🌍"
+      }
+    ]
+  }
 }
