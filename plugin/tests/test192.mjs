@@ -66,6 +66,23 @@ local[syncLedgerKey('p3')] = {};
 r = await P.pushPlace({ place: { ...place, id: 'p3', viewer: false }, storage: chrome.storage.local, store: store3 });
 assert.equal(r.viewer, undefined); assert.equal(dav3.text('site/index.html'), null);
 
+// library.js: the list as a script, written with the viewer (a page opened from disk cannot fetch library.json)
+{
+    const d = createFakeDav(); const st = W.createWebdavStore({ url: 'https://cloud.test/dav/', root: 'site', username: 'phil', password: 'secret' }, { fetchFn: d.fetchFn });
+    local[syncLedgerKey('p5')] = {};
+    await P.pushPlace({ place: { ...place, id: 'p5', viewer: false }, storage: chrome.storage.local, store: st });
+    assert.equal(d.text('site/library.js'), null, 'no viewer: no script copy');
+    const withV = { ...place, id: 'p5', viewer: true };
+    await P.pushPlace({ place: withV, storage: chrome.storage.local, store: st, viewer: V.renderViewer(tpl, { title: 'Site' }) });
+    const js = d.text('site/library.js');
+    assert.ok(js && js.startsWith('window.AISH_LIBRARY = ') && js.endsWith(';\n'), 'the script sets one global');
+    assert.deepEqual(JSON.parse(js.slice('window.AISH_LIBRARY = '.length, -2)).articles.map((a) => a.id), JSON.parse(d.text('site/library.json')).articles.map((a) => a.id), 'same list as library.json');
+    // a change rewrites both
+    local[SK.articlesIndex][0].title = 'Renamed again';
+    await P.pushPlace({ place: withV, storage: chrome.storage.local, store: st, viewer: V.renderViewer(tpl, { title: 'Site' }), stamps: { 'article:a1': { rev: { t: 500, d: 'x' } } } });
+    assert.ok(d.text('site/library.js').includes('Renamed again') && d.text('site/library.json').includes('Renamed again'));
+}
+
 // the service passes the flag and the rendered viewer through, and keeps the status
 assert.equal(S.cleanPlace({ connectionId: 'c', scope: 'all', viewer: true }).viewer, true);
 assert.equal(S.cleanPlace({ connectionId: 'c', scope: 'all' }).viewer, false);

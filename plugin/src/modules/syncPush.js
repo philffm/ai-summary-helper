@@ -13,7 +13,7 @@
 import { SK, articleRecKey, syncLedgerKey } from './storageKeys.js';
 import { pageKeyForUrl } from './pageKey.js';
 import { hashValue } from './syncStamps.js';
-import { articlePath, LIBRARY_PATH, placeMatches, configHash, buildArticleFile, libraryEntry, toJson, includeOf, notesForLibrary } from './syncReadable.js';
+import { articlePath, LIBRARY_PATH, LIBRARY_JS_PATH, placeMatches, configHash, buildArticleFile, libraryEntry, toJson, includeOf, notesForLibrary } from './syncReadable.js';
 import { TargetError } from './targets/targetError.js';
 import { ensureViewer } from './syncViewer.js';
 import { createNotesStore } from './notesStore.js';
@@ -40,7 +40,7 @@ export async function pushPlace({ place, storage, store, stamps = {}, now = Date
     const items = { ...(ledger.items || {}) };   // a config change only skips the stamp prefilter: unchanged files are still not uploaded again
     const known = new Set(Object.keys(items));
     let viewerState = ledger.viewer;
-    const save = () => storage.set({ [lk]: { cfg, items, lib: ledger.lib || 0, ...(ledger.notesHash ? { notesHash: ledger.notesHash } : {}), ...(viewerState ? { viewer: viewerState } : {}) } });
+    const save = () => storage.set({ [lk]: { cfg, items, lib: ledger.lib || 0, ...(ledger.libJs ? { libJs: 1 } : {}), ...(ledger.notesHash ? { notesHash: ledger.notesHash } : {}), ...(viewerState ? { viewer: viewerState } : {}) } });
 
     // danger zone: notes and comments are read only when this place is allowed to publish them
     const inc = includeOf(place);
@@ -119,7 +119,7 @@ export async function pushPlace({ place, storage, store, stamps = {}, now = Date
     out.remaining = Math.max(0, todo.length - done - failed);
 
     // 3) library.json: patch the published list instead of rebuilding it from every record
-    if (!out.more && (out.pushed || out.removed || force || !ledger.lib || notesChanged)) {
+    if (!out.more && (out.pushed || out.removed || force || !ledger.lib || notesChanged || (viewer && !ledger.libJs))) {
         onProgress({ phase: 'list', done: 0, total: 1 });
         let entries = new Map();
         if (!force && ledger.lib) {
@@ -138,7 +138,12 @@ export async function pushPlace({ place, storage, store, stamps = {}, now = Date
         for (const [id, file] of changedFiles) entries.set(id, libraryEntry(file));
         const list = [...entries.values()].sort((a, b) => String(b.savedAt || '').localeCompare(String(a.savedAt || '')) || String(a.id).localeCompare(String(b.id)));
         const lib = { aish: 'library/1', generatedAt: new Date(now()).toISOString(), count: list.length, articles: list, ...(notesPart ? { notes: notesPart } : {}) };
-        try { await store.put(LIBRARY_PATH, toJson(lib), { contentType: 'application/json' }); out.libraryWritten = true; ledger = { ...ledger, lib: 1, notesHash }; await save(); }
+        try {
+            await store.put(LIBRARY_PATH, toJson(lib), { contentType: 'application/json' });
+            // a page opened from disk (file://) may not fetch(), but it can load a script: the viewer reads this copy first
+            if (viewer) await store.put(LIBRARY_JS_PATH, 'window.AISH_LIBRARY = ' + JSON.stringify(lib) + ';\n', { contentType: 'text/javascript; charset=utf-8' });
+            out.libraryWritten = true; ledger = { ...ledger, lib: 1, notesHash, ...(viewer ? { libJs: 1 } : {}) }; await save();
+        }
         catch (err) { if (err instanceof TargetError && err.kind !== 'permanent') throw err; out.errors.push({ id: LIBRARY_PATH, error: String((err && err.message) || err) }); }
     }
     // 4) the viewer page, when the place wants one

@@ -93,6 +93,7 @@
       var open = btn.getAttribute('aria-expanded') !== 'true';
       btn.setAttribute('aria-expanded', String(open)); btn.textContent = open ? 'Hide the full text' : 'Read the full text'; box.hidden = !open;
       if (!open || loaded) return; loaded = true; box.textContent = 'Loading…';
+      if (fromDisk) { box.textContent = 'The full text needs this page to be opened from a web server, not from disk.'; loaded = false; return; }
       fetch('articles/' + String(a.id).replace(/[^A-Za-z0-9_.-]/g, '_') + '.json', { cache: 'no-store' }).then(function (r) { if (!r.ok) throw new Error(r.status); return r.json(); }).then(function (f) {
         box.textContent = ''; (f.blocks || []).forEach(function (b) { box.appendChild(h(b[0] === 'h2' || b[0] === 'h3' ? 'h4' : 'p', { text: b[1] })); });
       }).catch(function () { box.textContent = 'The full text could not be loaded.'; loaded = false; });
@@ -203,6 +204,19 @@
     $('views').addEventListener('click', function (e) { var b = e.target.closest('button'); if (!b) return; state.view = b.dataset.view; if (state.view === 'list') state.month = ''; try { history.replaceState(null, '', state.view === 'list' ? location.pathname + location.search : '#' + state.view); } catch (_) { /* file or sandbox */ } render(); });
     render();
   }
-  fetch('library.json', { cache: 'no-store' }).then(function (r) { if (!r.ok) throw new Error('library.json answered ' + r.status + '.'); return r.json(); }).then(init)
-    .catch(function (e) { $('sub').textContent = ''; $('list').appendChild(h('div', { class: 'note err', text: 'Could not load the list: ' + e.message })); });
+  // The list comes from library.js (a script: works when this page is opened from disk) or, failing that, library.json (needs a web server).
+  var fromDisk = location.protocol === 'file:';
+  function loadLibrary() {
+    return new Promise(function (resolve, reject) {
+      if (window.AISH_LIBRARY) return resolve(window.AISH_LIBRARY);
+      var s = document.createElement('script'); s.src = 'library.js?' + Date.now();
+      s.onload = function () { window.AISH_LIBRARY ? resolve(window.AISH_LIBRARY) : reject(new Error('library.js is empty.')); };
+      s.onerror = function () {
+        fetch('library.json', { cache: 'no-store' }).then(function (r) { if (!r.ok) throw new Error('library.json answered ' + r.status + '.'); return r.json(); }).then(resolve)
+          .catch(function (e) { reject(new Error(fromDisk ? 'library.js is not next to this page. A page opened from disk can only read the list from library.js; library.json needs a web server.' : e.message)); });
+      };
+      document.head.appendChild(s);
+    });
+  }
+  loadLibrary().then(init).catch(function (e) { $('sub').textContent = ''; $('list').appendChild(h('div', { class: 'note err', text: 'Could not load the list: ' + e.message })); });
 })();

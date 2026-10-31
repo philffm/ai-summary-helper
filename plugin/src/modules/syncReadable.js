@@ -19,6 +19,7 @@ export const INCLUDE_DEFAULT = { highlights: true, qa: false, notes: false, remi
 
 export const articlePath = (id) => 'articles/' + String(id).replace(/[^A-Za-z0-9_.-]/g, '_') + '.json';
 export const LIBRARY_PATH = 'library.json';
+export const LIBRARY_JS_PATH = 'library.js';   // the same list as a script, for a viewer opened from disk
 
 export const includeOf = (place) => ({ ...INCLUDE_DEFAULT, ...((place && place.include) || {}) });
 
