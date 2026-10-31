@@ -13,7 +13,7 @@ import { createSyncService, cleanPlace } from './syncService.js';
 import { createStampStore } from './syncStampStore.js';
 import { makeStore } from './syncStores.js';
 import { folderSupported } from './syncFolder.js';
-import { suggest, strengthOf, looksLikeRecoveryKey } from './syncPassphrase.js';
+import { suggest, strengthOf } from './syncPassphrase.js';
 import { createHandleVault } from './syncFolderHandles.js';
 
 const $ = (id) => document.getElementById(id);
@@ -23,7 +23,7 @@ const svc = createSyncService({ storage: chrome.storage.local, makeStore, stampS
 
 // ── state that survives re-renders ──
 let view = 'list';            // 'list' | 'add' | 'form' | 'recovery'
-let recovery = null;          // { name, key }: shown once after an encrypted place was created
+let recovery = null;          // { name, words }: shown once after an encrypted place was created with the suggested words
 let existingFlag = null;      // the server folder already holds an encrypted place (null = not looked yet)
 let folderName = '';          // the folder picked for a new folder server
 let editId = '';              // '' = a new place
@@ -371,9 +371,9 @@ function formScreen(place, st, count, connections = [], places = []) {
         out.push(hint(draft.direction === 'push' ? T('This device writes everything to the place and never reads it back. Restore from it when you need it.') : T('Your articles, highlights, notes, collections, summaries and full texts, kept in step on every device that joins with the same passphrase.')));
         if (!editing) {
             out.push(el('p', 'settings-caption', TU('Passphrase')));
-            if (existingFlag) out.push(el('div', 'explanatory-card', T('This folder already holds an encrypted library. Enter its passphrase (the words you saved). A recovery key from an older setup works too.')));
+            if (existingFlag) out.push(el('div', 'explanatory-card', T('This folder already holds an encrypted library. Enter its passphrase (the words you saved).')));
             if (existingFlag) {
-                out.push(field('syncPassphrase', T('Passphrase or recovery key'), draft.passphrase, { type: 'password', onInput: (v) => { draft.passphrase = v; } }));
+                out.push(field('syncPassphrase', T('Passphrase'), draft.passphrase, { type: 'password', onInput: (v) => { draft.passphrase = v; } }));
             } else if (!draft.ownPass) {
                 // a new place: six random words, strong and easy to type on another device
                 if (!draft.passphrase) { draft.passphrase = suggest(); draft.passphrase2 = draft.passphrase; }
@@ -402,7 +402,7 @@ function formScreen(place, st, count, connections = [], places = []) {
             }
         } else {
             const row = el('div', 'mcp-actions');
-            row.append(button(T('Show recovery key'), 'button-secondary btn-sm', async () => { try { testMsg = { ok: true, text: T('Recovery key: {k}. Keep it somewhere safe.', { k: await svc.recoveryKey(editId) }) }; } catch (e) { testMsg = { ok: false, text: e.message }; } render(); }),
+            row.append(button(T('Show passphrase'), 'button-secondary btn-sm', async () => { try { const words = await svc.passphrase(editId); testMsg = words ? { ok: true, text: T('Passphrase: {k}. Keep it somewhere safe.', { k: words }) } : { ok: false, text: T('This place uses your own passphrase. It is not kept on this device, so it cannot be shown.') }; } catch (e) { testMsg = { ok: false, text: e.message }; } render(); }),
                 button(T('Restore from here'), 'button-secondary btn-sm', async () => {
                     if (!window.confirm(T('Bring everything in this place back to this device? Where this device differs, the place wins. Nothing here is deleted.'))) return;
                     testMsg = { ok: true, text: T('Restoring…') }; render();
@@ -458,7 +458,7 @@ function formScreen(place, st, count, connections = [], places = []) {
     const request = () => ({
         connectionId: draft.connectionId,
         connection: draft.connectionId ? undefined : (draft.folderId ? { id: draft.folderId, service: 'folder', name: serverDraft.name || folderName } : { ...serverDraft }),
-        place: { ...draft, direction: encrypted ? draft.direction : 'publish', ...(existingFlag && looksLikeRecoveryKey(draft.passphrase) ? { passphrase: '', recoveryKey: draft.passphrase.trim() } : {}) },   // one field takes either; a recovery key is told apart by its shape
+        place: { ...draft, direction: encrypted ? draft.direction : 'publish', },
         secret: { password: draftSecret },
     });
     const test = button(T('Test connection'), 'button-secondary btn-sm', async () => {
@@ -478,7 +478,7 @@ function formScreen(place, st, count, connections = [], places = []) {
                     const t = await svc.test(request());
                     if (!t.ok) throw new Error(t.error.message);
                     existingFlag = !!t.existing;
-                    if (t.existing) { if (!draft.ownPass) { draft.passphrase = ''; draft.passphrase2 = ''; } busy = false; testMsg = { ok: true, text: T('This folder already holds an encrypted library. Enter its passphrase or recovery key below, then press Connect again.') }; render(); return; }
+                    if (t.existing) { if (!draft.ownPass) { draft.passphrase = ''; draft.passphrase2 = ''; } busy = false; testMsg = { ok: true, text: T('This folder already holds an encrypted library. Enter its passphrase below, then press Connect again.') }; render(); return; }
                 }
                 if (!existingFlag && draft.passphrase !== draft.passphrase2) throw new Error(T('The two passphrases are not the same.'));
             }
@@ -487,7 +487,7 @@ function formScreen(place, st, count, connections = [], places = []) {
                 await svc.update(editId, draft); await sendToWorker({ action: 'syncNow', placeId: editId });
             } else {
                 const p = await svc.add(request()); await sendToWorker({ action: 'syncNow', placeId: p.id });
-                if (p.recoveryKey && !draft.ownPass) { recovery = { name: p.name, words: draft.passphrase }; view = 'recovery'; } else view = 'list';   // the suggested words are the one key to save; an own passphrase is already known to the person who typed it
+                if (p.newLibrary && !draft.ownPass) { recovery = { name: p.name, words: draft.passphrase }; view = 'recovery'; } else view = 'list';   // the suggested words are the one key to save; an own passphrase is already known to the person who typed it
             }
             if (view === 'form') view = 'list';
             draft = null; draftSecret = ''; editServer = false;

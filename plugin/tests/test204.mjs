@@ -54,7 +54,6 @@ type('syncName', 'Again'); type('syncRoot', 'sync');
 click(byText('button', 'Test connection')); await until(() => /already holds/.test(text()));
 assert.match(text(), /already holds an encrypted library/);
 assert.ok($('syncPassphrase') && !$('syncRecovery') && !$('syncPassphrase2'), 'one field for the passphrase or the recovery key, asked once');
-assert.match(root().querySelector('label[for="syncPassphrase"], #syncPassphrase').closest('div, label').textContent, /Passphrase or recovery key/);
 assert.match(text(), /Make a backup of this device first/);
 type('syncPassphrase', 'not the passphrase'); click(byText('button', 'Connect')); await until(() => root().querySelector('.phone-inbox-error'));
 assert.match(root().querySelector('.phone-inbox-error').textContent, /backup of this device first/, 'the backup box is required');
@@ -66,15 +65,8 @@ assert.equal(store[SK.syncPlaces].length, 2, 'the words in capitals with dashes 
 // the list shows both as encrypted
 await until(() => root().querySelectorAll('.settings-row').length === 2);   // the list is drawn a moment after the place is saved
 assert.equal(root().querySelectorAll('.settings-row').length, 2);
-// a recovery key from an older setup still works in the one field (it is found in the place's settings)
-click(root().querySelector('.settings-row')); await until(() => byText('button', 'Show recovery key'));
-click(byText('button', 'Show recovery key')); await until(() => /Recovery key: [A-Z2-7]{4}-/.test(text()));
-const recoveryKey = text().match(/Recovery key: ([A-Z2-7-]+)/)[1];
-click(byText('button', 'Sync & backup')); await until(() => root().querySelector('.settings-row'));
-click(byText('button', 'Add a place')); await until(() => root().querySelectorAll('.settings-row').length === 3); click(root().querySelectorAll('.settings-row')[0]); await until(() => $('syncName') && $('syncPassphrase'));
-type('syncName', 'By key'); type('syncRoot', 'sync');
-click(byText('button', 'Test connection')); await until(() => /already holds/.test(text()));
-const ack2 = [...root().querySelectorAll('label.mcp-row')].find((l) => /I made a backup/.test(l.textContent)).querySelector('input'); ack2.checked = true; ack2.dispatchEvent(new w.Event('change', { bubbles: true }));
-type('syncPassphrase', recoveryKey.toLowerCase().replace(/-/g, ' ')); click(byText('button', 'Connect')); await until(() => store[SK.syncPlaces].length === 3);
-assert.equal(store[SK.syncPlaces].length, 3, 'the recovery key typed into the one field opens the library');
+// the words can be looked up where the place was made: place settings → Show passphrase
+click(root().querySelector('.settings-row')); await until(() => byText('button', 'Show passphrase'));
+click(byText('button', 'Show passphrase')); await until(() => /Passphrase: /.test(text()));
+assert.ok(text().includes(words), 'the suggested words are shown again'); assert.ok(!/recovery key/i.test(text()));
 console.log('TEST 204 OK'); process.exit(0);

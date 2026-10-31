@@ -25,18 +25,15 @@ class SyncVectorTest {
         }
     }
 
-    @Test fun derivesTheMasterKeyAndTheRecoveryKey() {
+    @Test fun derivesTheMasterKey() {
         val master = SyncCrypto.deriveMaster(crypto.getString("passphrase"), hex(crypto.getString("saltHex")), crypto.getInt("iterations"))
         assertEquals(crypto.getString("masterHex"), toHex(master))
-        assertEquals(crypto.getString("recoveryKey"), SyncCrypto.recoveryKeyOf(master))
-        assertArrayEquals(master, SyncCrypto.masterFromRecoveryKey(crypto.getString("recoveryKey").lowercase().replace("-", " ")))
     }
 
-    @Test fun opensTheExtensionsPlaceWithPassphraseOrRecoveryKey() {
+    @Test fun opensTheExtensionsPlaceWithItsPassphrase() {
         val meta = crypto.getJSONObject("meta")
         val byPass = SyncCrypto.openMeta(meta, passphrase = crypto.getString("passphrase"))
         assertEquals(crypto.getString("masterHex"), toHex(byPass.master))
-        assertEquals(crypto.getString("masterHex"), toHex(SyncCrypto.openMeta(meta, recoveryKey = crypto.getString("recoveryKey")).master))
         assertThrows(SyncCrypto.WrongKey::class.java) { SyncCrypto.openMeta(meta, passphrase = "wrong") }
         SyncCrypto.openWithMaster(meta, byPass.master)
     }

@@ -1,4 +1,4 @@
-// Encrypted places through the service: create (recovery key), join (wrong passphrase, recovery key, backup first), sync both ways, backup place, restore.
+// Encrypted places through the service: create (suggested words are kept, an own passphrase is not), join (wrong passphrase, backup first), sync both ways, backup place, restore.
 import assert from 'assert';
 import path from 'path'; import { pathToFileURL } from 'url';
 import { setup, imp } from './harness.mjs';
@@ -20,14 +20,15 @@ for (const id of ['a1', 'a2']) local1[articleRecKey(id)] = { content: '<p>text '
 const server = { service: 'webdav', name: 'Cloud', url: 'https://cloud.test/dav/', username: 'phil' };
 const form = { name: 'All devices', root: 'sync', mode: 'encrypted', direction: 'twoway' };
 
-// create: a short passphrase is refused; the first device gets a recovery key, the passphrase is never stored
+// create: a short passphrase is refused; an own passphrase is never stored; the place records only that a library was created
 const t1 = await svc1.test({ connection: server, place: form, secret: { password: 'secret' } }); assert.ok(t1.ok && t1.existing === false);
 await assert.rejects(() => svc1.add({ connection: server, place: { ...form, passphrase: 'short' }, secret: { password: 'secret' } }), /at least 12/);
 const added = await svc1.add({ connection: server, place: { ...form, passphrase: 'a long passphrase' }, secret: { password: 'secret' } });
-assert.match(added.recoveryKey, /^([A-Z2-7]{4}-)+/); assert.equal(added.mode, 'encrypted');
-const saved = local1[SK.syncPlaces][0]; assert.ok(!('recoveryKey' in saved) && !('passphrase' in saved), 'neither is saved with the place');
+assert.equal(added.newLibrary, true); assert.equal(added.mode, 'encrypted');
+const saved = local1[SK.syncPlaces][0]; assert.ok(!('passphrase' in saved) && !('words' in saved), 'neither is saved with the place');
 assert.ok(!JSON.stringify(local1[SK.syncPlaces]).includes('long passphrase') && local1[SK.syncSecrets]['k:' + added.id].master, 'the key is kept in the secrets, which backups leave out');
-assert.equal(await svc1.recoveryKey(added.id), added.recoveryKey);
+assert.equal(await svc1.passphrase(added.id), '', 'an own passphrase is not kept on the device, so it cannot be shown');
+assert.ok(!('words' in local1[SK.syncSecrets]['k:' + added.id]));
 let r = (await svc1.syncNow(added.id))[added.id]; assert.ok(r.pushed >= 2 && !r.errors.length, JSON.stringify(r));
 assert.equal(local1[SK.syncStatus][added.id].ok, true);
 
@@ -37,7 +38,7 @@ const join = (extra) => svc2.add({ connection: server, place: { ...form, ...extr
 await assert.rejects(() => join({ passphrase: 'wrong passphrase', ackBackup: true }), /Wrong passphrase/);
 await assert.rejects(() => join({ passphrase: 'a long passphrase' }), /backup of this device first/);
 assert.equal((data2.get(SK.syncPlaces) || []).length, 0, 'nothing saved by the failed attempts');
-const joined = await join({ recoveryKey: added.recoveryKey, ackBackup: true }); assert.ok(!joined.recoveryKey, 'joining does not make a new recovery key');
+const joined = await join({ passphrase: 'a long passphrase', ackBackup: true }); assert.ok(!joined.newLibrary, 'joining does not create a library');
 r = (await svc2.syncNow(joined.id))[joined.id]; assert.ok(r.pulled >= 2 && !r.errors.length, JSON.stringify(r));
 assert.deepEqual((data2.get(SK.articlesIndex) || []).map((e) => e.id).sort(), ['a1', 'a2']); assert.equal(data2.get(articleRecKey('a1')).content, '<p>text a1</p>');
 
@@ -63,7 +64,7 @@ assert.throws(() => S.cleanConnection({ service: 's3', url: 'https://s3.test', b
 const s3c = S.cleanConnection({ service: 's3', name: 'R2', url: 'https://s3.test', username: 'AKIDTEST', bucket: 'bucket1', region: '' }); assert.equal(s3c.region, 'us-east-1');
 const s3svc = S.createSyncService({ storage: area2, makeStore: async (c, p, sec) => createS3Store({ endpoint: c.url, region: c.region, bucket: c.bucket, accessKeyId: c.username, secretAccessKey: sec.password, root: p.root }, { fetchFn: fs3.fetchFn }), stampStore: SS.createStampStore({ storage: area2 }), scheduleSoon: () => {} });
 const s3add = await s3svc.add({ connection: s3c, place: { name: 'S3 backup', root: 'bk', mode: 'encrypted', direction: 'push', passphrase: 'an s3 passphrase' }, secret: { password: 'k' } });
-assert.ok(s3add.recoveryKey); r = (await s3svc.syncNow(s3add.id))[s3add.id]; assert.ok(r.pushed >= 1 && !r.errors.length, JSON.stringify(r));
+assert.ok(s3add.newLibrary); r = (await s3svc.syncNow(s3add.id))[s3add.id]; assert.ok(r.pushed >= 1 && !r.errors.length, JSON.stringify(r));
 assert.ok([...fs3.files.keys()].some((k) => k.startsWith('bk/r/')) && fs3.files.has('bk/meta.json'));
 const bad = await s3svc.testServer({ connection: { ...s3c, bucket: 'nope' }, secret: { password: 'k' } }); assert.ok(!bad.ok && /bucket was not found/.test(bad.error.message));
 // a folder whose permission lapsed says so (not "wrong password")
@@ -72,4 +73,16 @@ const { createFolderStore } = await import(pathToFileURL(path.resolve(process.en
 const lapsed = S.createSyncService({ storage: area2, makeStore: async () => createFolderStore({ handle: createFakeFolder({ permission: 'prompt' }).handle, root: 'x' }), scheduleSoon: () => {} });
 const lt = await lapsed.test({ connection: { service: 'folder', name: 'F' }, place: { mode: 'encrypted', root: 'x', name: 'n' } });
 assert.ok(!lt.ok && /Allow access to the folder again/.test(lt.error.message) && !/password/.test(lt.error.message));
+// suggested words are kept with the key so they can be shown again; typing them in capitals on a joining device keeps the canonical spelling
+{
+    const P = await imp('modules/syncPassphrase.js');
+    const words = P.suggest();
+    const w1 = await svc1.add({ connection: server, place: { name: 'Words', root: 'words', mode: 'encrypted', direction: 'twoway', passphrase: words }, secret: { password: 'secret' } });
+    assert.equal(w1.newLibrary, true); assert.equal(await svc1.passphrase(w1.id), words, 'the suggested words can be looked up on this device');
+    assert.ok(!JSON.stringify(local1[SK.syncPlaces]).includes(words), 'never in the place itself (the places list is part of backups)');
+    const w2 = await svc2.add({ connection: server, place: { name: 'Words', root: 'words', mode: 'encrypted', direction: 'twoway', passphrase: words.toUpperCase().replace(/ /g, '-  '), ackBackup: true }, secret: { password: 'secret' } });
+    assert.ok(!w2.newLibrary); assert.equal(await svc2.passphrase(w2.id), words, 'a joining device keeps them too, in the canonical spelling');
+    await svc1.remove(w1.id); await assert.rejects(() => svc1.passphrase(w1.id), /not on this device/);
+    assert.ok(!('k:' + w1.id in local1[SK.syncSecrets]), 'removing a place forgets its words with its key');
+}
 console.log('TEST 203 OK'); process.exit(0);

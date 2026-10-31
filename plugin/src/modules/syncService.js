@@ -13,8 +13,8 @@ import { SK, syncLedgerKey } from './storageKeys.js';
 import { pushPlace } from './syncPush.js';
 import { syncEncryptedPlace, loadOrCreateMeta } from './syncEngine.js';
 import { createDataAdapter } from './syncDataAdapter.js';
-import { canonicalPassphrase, passphraseProblem } from './syncPassphrase.js';
-import { createMeta, openMeta, openWithMaster, recoveryKeyOf, toB64, fromB64 } from './syncCrypto.js';
+import { canonicalPassphrase, passphraseProblem, isSuggestedWords } from './syncPassphrase.js';
+import { createMeta, openMeta, openWithMaster, toB64, fromB64 } from './syncCrypto.js';
 import { placeMatches, INCLUDE_DEFAULT } from './syncReadable.js';
 import { TargetError } from './targets/targetError.js';
 
@@ -140,7 +140,7 @@ export function createSyncService({ storage, makeStore, stampStore, viewerSource
         const meta = await readMeta(store);
         if (!meta) throw new Error('The place has no meta.json on the server any more. It was removed or set up again.');
         const held = st.secrets[keyOfPlace(place.id)];
-        if (!held || !held.master) throw new Error('The key for this place is not on this device. Remove the place and add it again with the passphrase or recovery key.');
+        if (!held || !held.master) throw new Error('The key for this place is not on this device. Remove the place and add it again with the passphrase.');
         const keys = await openWithMaster(meta, fromB64(held.master));
         return syncEncryptedPlace({ place, storage, store, keys, meta, stampStore, adapter: createDataAdapter({ storage, hooks: dataHooks }), now, pushOnly: place.direction === 'push' && !opts.pullOnly, ...opts });
     }
@@ -183,21 +183,23 @@ export function createSyncService({ storage, makeStore, stampStore, viewerSource
             if (!t.ok) throw fail(t.error);
             const secrets = { ...st.secrets };
             if (r.isNew) secrets[r.connection.id] = { password: String(r.secret.password || '') };
-            let recoveryKey = '';
+            let created = false;
             if (place.mode === 'encrypted') {
                 const store = await storeOf(r.connection, place, r.secret), opts = input || {};
                 let master;
-                if (t.existing) {   // join: the passphrase or the recovery key opens it, and this device must have been backed up first
+                if (t.existing) {   // join: the passphrase opens it, and this device must have been backed up first
                     if (place.direction === 'twoway' && !opts.ackBackup) throw new Error('Make a backup of this device first, then join.');
-                    master = (await openMeta(await readMeta(store), { passphrase: canonicalPassphrase(opts.passphrase), recoveryKey: opts.recoveryKey })).master;
+                    master = (await openMeta(await readMeta(store), { passphrase: canonicalPassphrase(opts.passphrase) })).master;
                 } else {
                     const problem = passphraseProblem(opts.passphrase);
                     if (problem) throw new Error(problem);
                     const made = await loadOrCreateMeta(store, { createMeta, passphrase: canonicalPassphrase(opts.passphrase) });
-                    if (made.created) { master = made.master; recoveryKey = recoveryKeyOf(master); }
+                    if (made.created) { master = made.master; created = true; }
                     else master = (await openMeta(made.meta, { passphrase: canonicalPassphrase(opts.passphrase) })).master;   // another device created it a moment ago
                 }
-                secrets[keyOfPlace(place.id)] = { master: toB64(master) };
+                // the key stays on this device so syncing can run in the background; suggested words are kept with it so they can be looked up
+                // here later, an own passphrase never is (the person may use it elsewhere)
+                secrets[keyOfPlace(place.id)] = { master: toB64(master), ...(isSuggestedWords(opts.passphrase) ? { words: canonicalPassphrase(opts.passphrase) } : {}) };
             }
             await storage.set({
                 [SK.syncPlaces]: [...st.places, place],
@@ -206,7 +208,7 @@ export function createSyncService({ storage, makeStore, stampStore, viewerSource
             });
             if (stampStore) await stampStore.scan({ full: true });
             scheduleSoon(1);
-            return recoveryKey ? { ...place, recoveryKey } : place;
+            return created ? { ...place, newLibrary: true } : place;
         },
 
         /** Changes a place. A new scope or include list republishes on the next run. */
@@ -247,12 +249,12 @@ export function createSyncService({ storage, makeStore, stampStore, viewerSource
             await storage.remove(syncLedgerKey(id));
         },
 
-        /** The recovery key of an encrypted place, from the key kept on this device. */
-        async recoveryKey(id) {
+        /** The suggested words of an encrypted place, when this device kept them ('' for an own passphrase). */
+        async passphrase(id) {
             const st = await load();
             const held = st.secrets[keyOfPlace(id)];
             if (!held || !held.master) throw new Error('The key for this place is not on this device.');
-            return recoveryKeyOf(fromB64(held.master));
+            return held.words || '';
         },
 
         /** Brings everything in an encrypted place back to this device: the server's values win where they differ, nothing local is deleted. */

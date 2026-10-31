@@ -11,12 +11,6 @@ assert.equal(meta.mode, 'encrypted'); assert.equal(meta.iterations, 1000); asser
 const open = await C.openMeta(meta, { passphrase: 'correct horse' });
 assert.deepEqual([...open.master], [...master], 'the same passphrase gives the same key');
 await assert.rejects(() => C.openMeta(meta, { passphrase: 'wrong' }), /Wrong passphrase/);
-// recovery key: round trip, forgiving input, opens the place without the passphrase
-const rk = C.recoveryKeyOf(master); assert.match(rk, /^([A-Z2-7]{4}-)+[A-Z2-7]{1,4}$/);
-assert.deepEqual([...C.masterFromRecoveryKey(rk.toLowerCase().replace(/-/g, ' '))], [...master]);
-assert.ok((await C.openMeta(meta, { recoveryKey: rk })).keys);
-await assert.rejects(() => C.openMeta(meta, { recoveryKey: 'AAAA-BBBB' }), /too short/);
-const other = C.recoveryKeyOf(new Uint8Array(32).fill(7)); await assert.rejects(() => C.openMeta(meta, { recoveryKey: other }), /Wrong passphrase/);
 await assert.rejects(() => C.openMeta({ mode: 'readable' }, { passphrase: 'x' }), /not an encrypted/);
 // files: round trip, random nonce, nothing readable, tampering and a wrong key are caught, big text survives
 const value = { id: 'a1', text: 'Grüße 🌍 ' + 'x'.repeat(50000) };

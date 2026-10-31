@@ -6371,5 +6371,20 @@
   },
   "f_this_folder_already_holds_an_d923": {
     "message": "In diesem Ordner liegt bereits eine verschlüsselte Bibliothek. Geben Sie ihre Passphrase ein (die gespeicherten Wörter). Ein Wiederherstellungsschlüssel aus einer älteren Einrichtung funktioniert ebenfalls."
+  },
+  "f_passphrase_keep_it_somewhere_ca8a": {
+    "message": "Passphrase: {k}. Bewahren Sie sie sicher auf."
+  },
+  "f_show_passphrase_dda0": {
+    "message": "Passphrase anzeigen"
+  },
+  "f_this_folder_already_holds_an_9f1e": {
+    "message": "In diesem Ordner liegt bereits eine verschlüsselte Bibliothek. Geben Sie ihre Passphrase ein (die gespeicherten Wörter)."
+  },
+  "f_this_folder_already_holds_an_8e8c": {
+    "message": "In diesem Ordner liegt bereits eine verschlüsselte Bibliothek. Geben Sie unten ihre Passphrase ein und drücken Sie erneut auf Verbinden."
+  },
+  "f_this_place_uses_your_own_pas_b61e": {
+    "message": "Dieser Ort nutzt Ihre eigene Passphrase. Sie wird auf diesem Gerät nicht gespeichert und kann deshalb nicht angezeigt werden."
   }
 }

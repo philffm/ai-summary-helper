@@ -1,5 +1,5 @@
 // Writes fixtures/sync-vector.json: what the Android app must reproduce to stay compatible with the extension's sync
-// (value hashes, key derivation, file names, recovery key, encrypted files, merge results).
+// (value hashes, key derivation, file names, encrypted files, merge results).
 //   node plugin/tests/gen-sync-vector.mjs            writes the file (then copy it to mobile/android/app/src/test/resources/)
 // test208 checks that the committed vector still agrees with the code.
 import fs from 'fs'; import path from 'path'; import { fileURLToPath, pathToFileURL } from 'url';
@@ -25,7 +25,7 @@ export async function build() {
     const file = await C.encryptJson(keys, record, nonce);
     const names = [['article', 'a1'], ['hl', 'hl_x_1'], ['note', 'n_abc'], ['coll', 'c-9'], ['article', 'ünï-cödé']];
     const crypto = {
-        passphrase, iterations, saltHex: C.toHex(salt), nonceHex: C.toHex(nonce), masterHex: C.toHex(master), meta, recoveryKey: C.recoveryKeyOf(master),
+        passphrase, iterations, saltHex: C.toHex(salt), nonceHex: C.toHex(nonce), masterHex: C.toHex(master), meta,
         names: await Promise.all(names.map(async ([type, id]) => ({ type, id, name: await C.nameOf(keys, type, id) }))),
         record, recordFile: C.toB64(file),   // an encrypted record exactly as the extension writes it (gzip bytes may differ between zlib builds: decrypt it, do not compare bytes)
     };

@@ -22,12 +22,8 @@ assert.equal(P.canonicalPassphrase('abandon ability able about above absentt'), 
 assert.match(P.passphraseProblem('short'), /at least 12/); assert.match(P.passphraseProblem('aaaaaaaaaaaaaa'), /too easy/); assert.match(P.passphraseProblem('password1234'), /too easy/);
 assert.equal(P.passphraseProblem('a long passphrase'), ''); assert.equal(P.passphraseProblem(P.suggest()), ''); assert.equal(P.passphraseProblem('abandon ability able about above'), '', 'five list words are accepted');
 assert.equal(P.strengthOf(P.suggest()), 'strong'); assert.equal(P.strengthOf('a long passphrase'), 'fine'); assert.equal(P.strengthOf('short'), 'weak'); assert.equal(P.strengthOf('Tr0ub4dor&3 horse is long!'), 'strong'); assert.equal(P.strengthOf('abandon ability able about above'), 'fine');
-// the join screen has one field for the words or the recovery key: the key is told apart by its shape, words never are mistaken for it
-{ const C = await import(pathToFileURL(path.resolve(process.env.AISH_SRC, 'modules/syncCrypto.js')).href);
-  const key = C.recoveryKeyOf(new Uint8Array(32).fill(7));
-  assert.equal(P.looksLikeRecoveryKey(key), true, 'a recovery key as shown'); assert.equal(P.looksLikeRecoveryKey(key.toLowerCase()), true, 'in any capitalisation');
-  assert.equal(P.looksLikeRecoveryKey(key.replace(/-/g, ' ')), true, 'with spaces instead of dashes'); assert.equal(P.looksLikeRecoveryKey(' ' + key + ' \n'), true, 'pasted with spaces around it');
-  assert.equal(P.looksLikeRecoveryKey(key.replace(/-/g, '')), true, 'without separators');
-  assert.equal(P.looksLikeRecoveryKey(P.suggest()), false, 'six random words'); assert.equal(P.looksLikeRecoveryKey('orbit-lemon-tunnel-paper-river-cloud-sunny-green'), false, 'any number of words');
-  assert.equal(P.looksLikeRecoveryKey('my own long passphrase 2026'), false); assert.equal(P.looksLikeRecoveryKey(''), false); assert.equal(P.looksLikeRecoveryKey('AAAA-BBBB'), false, 'a short one is not a key'); }
+// only phrases of list words count as suggested words (those are the ones a device keeps to show again), never an own passphrase
+assert.equal(P.isSuggestedWords(P.suggest()), true); assert.equal(P.isSuggestedWords('ORBIT-lemon  tunnel paper river cloud'.toLowerCase()), P.isSuggestedWords('orbit lemon tunnel paper river cloud'));
+assert.equal(P.isSuggestedWords('abandon ability able about above'), true, 'five list words');
+assert.equal(P.isSuggestedWords('my own long passphrase 2026'), false); assert.equal(P.isSuggestedWords('abandon ability able'), false, 'three words are not enough'); assert.equal(P.isSuggestedWords('abandon ability able zzzzzz above'), false, 'one word off the list'); assert.equal(P.isSuggestedWords(''), false);
 console.log('TEST 209 OK'); process.exit(0);

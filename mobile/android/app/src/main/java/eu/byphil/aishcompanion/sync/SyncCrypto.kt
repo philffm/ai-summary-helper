@@ -19,14 +19,12 @@ import javax.crypto.spec.SecretKeySpec
  *
  *   passphrase --PBKDF2-SHA256(salt, iterations)--> 32-byte master key
  *   master --HKDF-SHA256--> encKey (AES-256-GCM) and nameKey (HMAC-SHA256, for opaque file names)
- *   recovery key = the master key in base32, groups of four: entering it skips the passphrase
  *   file = version byte (1) | 12-byte nonce | AES-GCM ciphertext (tag appended) of gzip(JSON)
  */
 object SyncCrypto {
     const val FILE_VERSION = 1
     const val KDF_ITERATIONS = 600_000
     private const val CHECK_TEXT = "aish-sync-ok"
-    private const val B32 = "ABCDEFGHIJKLMNOPQRSTUVWXYZ234567"
 
     class Keys(val enc: ByteArray, val name: ByteArray)
     class Opened(val master: ByteArray, val keys: Keys)
@@ -70,25 +68,10 @@ object SyncCrypto {
     /** Opaque, stable file name for a record: hex of HMAC(nameKey, "type:id"). */
     fun nameOf(keys: Keys, type: String, id: String): String = hmac(keys.name, "$type:$id".toByteArray(Charsets.UTF_8)).joinToString("") { "%02x".format(it) }
 
-    fun recoveryKeyOf(master: ByteArray): String {
-        var bits = 0; var acc = 0; val out = StringBuilder()
-        for (b in master) { acc = (acc shl 8) or (b.toInt() and 0xff); bits += 8; while (bits >= 5) { out.append(B32[(acc ushr (bits - 5)) and 31]); bits -= 5 }; acc = acc and ((1 shl bits) - 1) }
-        if (bits > 0) out.append(B32[(acc shl (5 - bits)) and 31])
-        return out.chunked(4).joinToString("-")
-    }
-    fun masterFromRecoveryKey(text: String): ByteArray {
-        val s = text.uppercase().filter { it in B32 }
-        var bits = 0; var acc = 0; val out = ArrayList<Byte>()
-        for (ch in s) { acc = (acc shl 5) or B32.indexOf(ch); bits += 5; if (bits >= 8) { out.add(((acc ushr (bits - 8)) and 255).toByte()); bits -= 8; acc = acc and ((1 shl bits) - 1) } }
-        if (out.size < 32) throw WrongKey("That recovery key is too short.")
-        return out.take(32).toByteArray()
-    }
-
-    /** Opens an existing place (its meta.json) with the passphrase or the recovery key. Throws WrongKey("Wrong passphrase."). */
-    fun openMeta(meta: JSONObject, passphrase: String? = null, recoveryKey: String? = null): Opened {
+    /** Opens an existing place (its meta.json) with its passphrase. Throws WrongKey("Wrong passphrase."). */
+    fun openMeta(meta: JSONObject, passphrase: String): Opened {
         if (meta.optString("mode") != "encrypted" || !meta.has("salt") || !meta.has("check")) throw WrongKey("This place is not an encrypted AISH sync place.")
-        val master = if (!recoveryKey.isNullOrBlank()) masterFromRecoveryKey(recoveryKey)
-        else deriveMaster(passphrase ?: "", Base64.getDecoder().decode(meta.getString("salt")), meta.optInt("iterations", KDF_ITERATIONS))
+        val master = deriveMaster(passphrase, Base64.getDecoder().decode(meta.getString("salt")), meta.optInt("iterations", KDF_ITERATIONS))
         val keys = subKeys(master)
         val ok = try { JSONObject.quote(CHECK_TEXT) == decrypt(keys, Base64.getDecoder().decode(meta.getString("check"))) } catch (_: Exception) { false }
         if (!ok) throw WrongKey("Wrong passphrase.")
