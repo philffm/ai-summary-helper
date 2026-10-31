@@ -736,10 +736,10 @@ function setBilling(period) {
 
 
 
-/* ── Hero switch (Browser | Bookmarklet) + old #bookmarklet deep links ── */
+/* ── Old #bookmarklet deep links (the hero no longer offers the bookmarklet; the generator has its own page) ── */
 (function () {
   // The generator moved to its own page; keep old index.html#bookmarklet links working.
-  if (location.hash === '#bookmarklet' && document.getElementById('heroPaneBookmarklet')) {
+  if (location.hash === '#bookmarklet') {
     location.replace(location.pathname.replace(/[^/]*$/, '') + 'bookmarklet.html');
     return;
   }
@@ -1273,6 +1273,19 @@ function setBilling(period) {
       var card = fig.closest('.feature-card');
       var cta = card && card.querySelector('.fvideo-cta');    // "Watch the clip" under the card text opens the same clip
       if (cta) cta.addEventListener('click', function () { open(figs, i); });
+    });
+  });
+
+  /* Hero "Watch the video": opens the player on the named clip of the #videos stack (the localized komplett clip), no scrolling. */
+  Array.prototype.forEach.call(document.querySelectorAll('[data-open-video]'), function (btn) {
+    btn.addEventListener('click', function (e) {
+      var name = btn.getAttribute('data-open-video');
+      for (var g = 0; g < groups.length; g++) {
+        var figs = Array.prototype.slice.call(groups[g].querySelectorAll('figure[data-blog-video]'));
+        for (var k = 0; k < figs.length; k++) {
+          if (figs[k].getAttribute('data-blog-video') === name) { e.preventDefault(); open(figs, k); return; }
+        }
+      }                                                         // no such clip on this page: the link's own jump to #videos stands
     });
   });
 
