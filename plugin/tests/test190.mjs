@@ -32,12 +32,12 @@ assert.ok(byText('button', 'Add a place'));
 assert.ok(!root().querySelector('.settings-row'), 'no places yet');
 assert.equal(document.querySelector('.settings-row-sub[data-sub="sync"]').textContent, 'Off');
 
-// add: WebDAV is available, S3 and a folder are shown as coming
+// add: WebDAV and S3 are available, the folder only where the browser can pick one
 click(byText('button', 'Add a place')); await wait();
 const rows = [...root().querySelectorAll('.settings-row')];
 assert.equal(rows.length, 3);
-assert.ok(!rows[0].disabled && rows[1].disabled && rows[2].disabled);
-assert.match(rows[1].textContent, /Soon/);
+assert.ok(!rows[0].disabled && !rows[1].disabled && rows[2].disabled, 'WebDAV and S3 are available; the folder needs a browser that can pick one');
+assert.match(rows[1].textContent, /S3-compatible/);
 click(rows[0]); await wait(80);
 
 // form: a new place starts encrypted (the safe choice) and asks for a passphrase twice; Readable is one tap away

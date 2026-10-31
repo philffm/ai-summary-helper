@@ -56,6 +56,16 @@ await svc1.remove(added.id); assert.ok(!local1[SK.syncSecrets]['k:' + added.id])
 // a place whose key is gone says so and does nothing
 local1[SK.syncSecrets] = { ...local1[SK.syncSecrets] }; delete local1[SK.syncSecrets]['k:' + bk.id];
 r = (await svc1.syncNow(bk.id))[bk.id]; assert.match(r.error.message, /key for this place is not on this device/);
+// an S3 server: bucket and access key are required, the place works like any other
+const { createFakeS3 } = await import('./fakeS3.mjs'); const { createS3Store } = await import(pathToFileURL(path.resolve(process.env.AISH_SRC, 'modules/syncS3.js')).href);
+const fs3 = createFakeS3({ bucket: 'bucket1' });
+assert.throws(() => S.cleanConnection({ service: 's3', url: 'https://s3.test', bucket: 'b' }), /access key ID/); assert.throws(() => S.cleanConnection({ service: 's3', url: 'https://s3.test', username: 'k', bucket: 'x' }), /bucket name/);
+const s3c = S.cleanConnection({ service: 's3', name: 'R2', url: 'https://s3.test', username: 'AKIDTEST', bucket: 'bucket1', region: '' }); assert.equal(s3c.region, 'us-east-1');
+const s3svc = S.createSyncService({ storage: area2, makeStore: async (c, p, sec) => createS3Store({ endpoint: c.url, region: c.region, bucket: c.bucket, accessKeyId: c.username, secretAccessKey: sec.password, root: p.root }, { fetchFn: fs3.fetchFn }), stampStore: SS.createStampStore({ storage: area2 }), scheduleSoon: () => {} });
+const s3add = await s3svc.add({ connection: s3c, place: { name: 'S3 backup', root: 'bk', mode: 'encrypted', direction: 'push', passphrase: 'an s3 passphrase' }, secret: { password: 'k' } });
+assert.ok(s3add.recoveryKey); r = (await s3svc.syncNow(s3add.id))[s3add.id]; assert.ok(r.pushed >= 1 && !r.errors.length, JSON.stringify(r));
+assert.ok([...fs3.files.keys()].some((k) => k.startsWith('bk/r/')) && fs3.files.has('bk/meta.json'));
+const bad = await s3svc.testServer({ connection: { ...s3c, bucket: 'nope' }, secret: { password: 'k' } }); assert.ok(!bad.ok && /bucket was not found/.test(bad.error.message));
 // a folder whose permission lapsed says so (not "wrong password")
 const { createFakeFolder } = await import('./fakeFolder.mjs');
 const { createFolderStore } = await import(pathToFileURL(path.resolve(process.env.AISH_SRC, 'modules/syncFolder.js')).href);

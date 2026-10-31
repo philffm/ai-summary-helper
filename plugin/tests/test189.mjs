@@ -25,7 +25,7 @@ const server = { service: 'webdav', name: 'My Nextcloud', url: 'https://cloud.te
 const place = { name: 'Website list', root: '/public/', scope: 'tag', filter: { tag: 'public' } };
 
 // validation: servers
-assert.throws(() => S.cleanConnection({ ...server, service: 's3' }), /not available/);
+assert.throws(() => S.cleanConnection({ ...server, service: 'ftp' }), /not available/);
 assert.throws(() => S.cleanConnection({ ...server, url: 'not a url' }), /address/);
 assert.throws(() => S.cleanConnection({ ...server, url: 'http://cloud.test/dav/' }), /https/);
 assert.equal(S.cleanConnection({ ...server, name: '' }).name, 'cloud.test', 'the host names a server without a name');

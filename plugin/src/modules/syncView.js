@@ -36,7 +36,8 @@ let formError = '';
 let previewToken = 0;
 
 const blankDraft = (connectionId = '') => ({ name: '', root: 'aish-sync', connectionId, mode: 'encrypted', direction: 'twoway', passphrase: '', passphrase2: '', recoveryKey: '', ackBackup: false, scope: 'tag', filter: { tag: 'public' }, include: { highlights: true, qa: false, notes: false, reminders: false, fulltext: false }, viewer: false });
-const blankServer = () => ({ name: '', url: '', username: '' });
+const blankServer = (service = 'webdav') => ({ name: '', url: '', username: '', service, ...(service === 's3' ? { region: 'us-east-1', bucket: '' } : {}) });
+const serverOf = (c) => ({ name: c.name, url: c.url || '', username: c.username || '', service: c.service || 'webdav', ...(c.service === 's3' ? { region: c.region || 'us-east-1', bucket: c.bucket || '' } : {}) });
 
 // ── tiny DOM helpers ──
 function el(tag, cls, text) { const e = document.createElement(tag); if (cls) e.className = cls; if (text != null) e.textContent = text; return e; }
@@ -176,7 +177,7 @@ function listScreen(places, status, counts, connections) {
 function addScreen() {
     const out = [head(T('Add a place'), { label: '‹ ' + T('Sync & backup'), fn: () => { view = 'list'; render(); } })];
     out.push(listRow('server', T('Nextcloud / WebDAV'), T('Nextcloud, ownCloud, Synology, most NAS boxes'), () => openForm('')));
-    out.push(listRow('cloud', T('S3-compatible'), T('AWS, Cloudflare R2, Backblaze, MinIO'), null, { disabled: true, tag: T('Soon') }));
+    out.push(listRow('cloud', T('S3-compatible'), T('AWS, Cloudflare R2, Backblaze, MinIO, Wasabi'), () => openForm('', { service: 's3' })));
     out.push(folderSupported()
         ? listRow('folders', T('A folder on this computer'), T('Syncthing, iCloud Drive, Dropbox or a USB drive keep it in step.'), chooseFolder)
         : listRow('folders', T('A folder on this computer'), T('Works in Chrome and Edge on a computer.'), null, { disabled: true, tag: T('Not here') }));
@@ -218,13 +219,13 @@ async function ensureFolderAccess(connId) {
 }
 
 function openForm(id, folder) {
-    editId = id; view = 'form'; testMsg = null; formError = ''; draftSecret = ''; editServer = false; serverDraft = blankServer(); existingFlag = null; folderName = (folder && folder.folderName) || '';
+    editId = id; view = 'form'; testMsg = null; formError = ''; draftSecret = ''; editServer = false; serverDraft = blankServer(folder && folder.service); existingFlag = null; folderName = (folder && folder.folderName) || '';
     Promise.all([getL({ [SK.syncPlaces]: [] }), svc.connectionsNow()]).then(([d, conns]) => {
         const p = id ? (d[SK.syncPlaces] || []).find((x) => x.id === id) : null;
         draft = p ? JSON.parse(JSON.stringify(p)) : blankDraft(folder ? '' : (conns.filter((c) => c.service !== 'folder').pop() || {}).id || '');
-        if (folder) { draft.folderId = folder.folderId; draft.root = 'aish-sync'; serverDraft = { name: folder.folderName, url: '', username: '' }; }
+        if (folder) { draft.folderId = folder.folderId; draft.root = 'aish-sync'; serverDraft = { name: folder.folderName, url: '', username: '', service: 'folder' }; }
         const c = conns.find((x) => x.id === draft.connectionId);
-        if (c) serverDraft = { name: c.name, url: c.url || '', username: c.username || '' };
+        if (c) serverDraft = serverOf(c);
         render().then(refreshPreview);
     });
 }
@@ -275,7 +276,8 @@ function formScreen(place, st, count, connections = [], places = []) {
     const connNow = connections.find((c) => c.id === draft.connectionId);
     const isFolder = !!draft.folderId || !!(connNow && connNow.service === 'folder');
     const encrypted = draft.mode === 'encrypted';
-    const out = [head(editing ? draft.name : isFolder ? T('A folder on this computer') : T('Nextcloud / WebDAV'), { label: '‹ ' + T('Sync & backup'), fn: () => { view = 'list'; render(); } })];
+    const isS3 = (connNow ? connNow.service : serverDraft.service) === 's3';
+    const out = [head(editing ? draft.name : isFolder ? T('A folder on this computer') : isS3 ? T('S3-compatible') : T('Nextcloud / WebDAV'), { label: '‹ ' + T('Sync & backup'), fn: () => { view = 'list'; render(); } })];
     if (editing) out.push(heroNode(place, st, count));
 
     // the server: pick one you already set up, or add a new one
@@ -289,10 +291,10 @@ function formScreen(place, st, count, connections = [], places = []) {
     } else if (connections.some((c) => c.service !== 'folder')) {
         const pick = el('div', 'mcp-apps'); pick.setAttribute('role', 'radiogroup'); pick.setAttribute('aria-label', T('Server'));
         for (const c of connections.filter((x) => x.service !== 'folder')) {
-            const b = button(c.name, 'mcp-chip' + (c.id === draft.connectionId ? ' is-selected' : ''), () => { draft.connectionId = c.id; editServer = false; draftSecret = ''; serverDraft = { name: c.name, url: c.url, username: c.username }; render().then(refreshPreview); });
+            const b = button(c.name, 'mcp-chip' + (c.id === draft.connectionId ? ' is-selected' : ''), () => { draft.connectionId = c.id; editServer = false; draftSecret = ''; serverDraft = serverOf(c); render().then(refreshPreview); });
             b.setAttribute('role', 'radio'); b.setAttribute('aria-checked', String(c.id === draft.connectionId)); pick.append(b);
         }
-        const nb = button(T('New server'), 'mcp-chip' + (isNew ? ' is-selected' : ''), () => { draft.connectionId = ''; editServer = false; draftSecret = ''; serverDraft = blankServer(); render(); });
+        const nb = button(T('New server'), 'mcp-chip' + (isNew ? ' is-selected' : ''), () => { draft.connectionId = ''; editServer = false; draftSecret = ''; serverDraft = blankServer(serverDraft.service === 'folder' ? 'webdav' : serverDraft.service); render(); });
         nb.setAttribute('role', 'radio'); nb.setAttribute('aria-checked', String(isNew)); pick.append(nb);
         out.push(pick);
     }
@@ -306,9 +308,13 @@ function formScreen(place, st, count, connections = [], places = []) {
     }
     if (showFields) {
         out.push(field('syncServerName', T('Server name'), serverDraft.name, { placeholder: T('My Nextcloud'), onInput: (v) => { serverDraft.name = v; } }));
-        out.push(field('syncUrl', T('Server address'), serverDraft.url, { placeholder: 'https://cloud.example.com/remote.php/dav/files/you/', onInput: (v) => { serverDraft.url = v; } }));
-        out.push(field('syncUser', T('Username'), serverDraft.username, { onInput: (v) => { serverDraft.username = v; } }));
-        out.push(field('syncPass', T('App password'), draftSecret, { type: 'password', placeholder: conn ? T('Unchanged') : '', onInput: (v) => { draftSecret = v; }, help: T('In Nextcloud: Settings → Security → create an app password. Never use your main password.') }));
+        out.push(field('syncUrl', isS3 ? T('Endpoint address') : T('Server address'), serverDraft.url, { placeholder: isS3 ? 'https://s3.eu-central-1.amazonaws.com' : 'https://cloud.example.com/remote.php/dav/files/you/', onInput: (v) => { serverDraft.url = v; }, help: isS3 ? T('AWS: https://s3.<region>.amazonaws.com · Cloudflare R2: https://<account>.r2.cloudflarestorage.com · Backblaze: https://s3.<region>.backblazeb2.com') : '' }));
+        if (isS3) {
+            out.push(field('syncBucket', T('Bucket'), serverDraft.bucket, { placeholder: 'my-aish-backup', onInput: (v) => { serverDraft.bucket = v; } }));
+            out.push(field('syncRegion', T('Region'), serverDraft.region, { placeholder: 'us-east-1', onInput: (v) => { serverDraft.region = v; }, help: T('Cloudflare R2: auto. Leave the default if your provider does not ask.') }));
+        }
+        out.push(field('syncUser', isS3 ? T('Access key ID') : T('Username'), serverDraft.username, { onInput: (v) => { serverDraft.username = v; } }));
+        out.push(field('syncPass', isS3 ? T('Secret access key') : T('App password'), draftSecret, { type: 'password', placeholder: conn ? T('Unchanged') : '', onInput: (v) => { draftSecret = v; }, help: isS3 ? T('Make an access key just for this bucket, allowed to read, write, list and delete in it. Never use your account’s main key.') : T('In Nextcloud: Settings → Security → create an app password. Never use your main password.') }));
         if (conn && editServer) {
             out.push(hint(T('Changes here apply to every place on this server.')));
             const row = el('div', 'mcp-actions');
@@ -316,7 +322,7 @@ function formScreen(place, st, count, connections = [], places = []) {
                 try { await svc.updateServer(conn.id, serverDraft, draftSecret ? { password: draftSecret } : null); editServer = false; draftSecret = ''; testMsg = { ok: true, text: T('Server saved.') }; formError = ''; }
                 catch (e) { formError = e.message; }
                 render();
-            }), button(T('Cancel'), 'mcp-link-button', () => { editServer = false; serverDraft = { name: conn.name, url: conn.url, username: conn.username }; draftSecret = ''; render(); }));
+            }), button(T('Cancel'), 'mcp-link-button', () => { editServer = false; serverDraft = serverOf(conn); draftSecret = ''; render(); }));
             out.push(row);
         }
     }
@@ -412,7 +418,7 @@ function formScreen(place, st, count, connections = [], places = []) {
     const actions = el('div', 'mcp-actions');
     const request = () => ({
         connectionId: draft.connectionId,
-        connection: draft.connectionId ? undefined : (draft.folderId ? { id: draft.folderId, service: 'folder', name: serverDraft.name || folderName } : { ...serverDraft, service: 'webdav' }),
+        connection: draft.connectionId ? undefined : (draft.folderId ? { id: draft.folderId, service: 'folder', name: serverDraft.name || folderName } : { ...serverDraft }),
         place: { ...draft, direction: encrypted ? draft.direction : 'publish' },
         secret: { password: draftSecret },
     });

@@ -17,8 +17,8 @@ const byText = (sel, t) => [...root().querySelectorAll(sel)].find((e) => e.textC
 const type = (id, v) => { const i = $(id); i.value = v; i.dispatchEvent(new w.Event('input', { bubbles: true })); };
 store[SK.articlesIndex] = [{ id: 'a1', url: 'https://x.test/a1', title: 'One', timestamp: '2026-03-01T00:00:00Z', tags: [], summary: 's' }];
 store[articleRecKey('a1')] = { content: 'c', summary: 's' };
-V.initSyncView(); await wait();
-click(byText('button', 'Add a place')); await wait(); click(root().querySelectorAll('.settings-row')[0]); await wait(100);
+V.initSyncView(); await until(() => byText('button', 'Add a place'));
+click(byText('button', 'Add a place')); await until(() => root().querySelectorAll('.settings-row').length); click(root().querySelectorAll('.settings-row')[0]); await until(() => $('syncServerName'));
 
 // the server, then the choices: encrypted is on, "Sync my devices" is the default
 type('syncServerName', 'Cloud'); type('syncUrl', 'https://cloud.test/dav/'); type('syncUser', 'phil'); type('syncPass', 'secret');
@@ -36,13 +36,13 @@ assert.match(text(), /Save your recovery key/);
 const key = root().querySelector('.sync-recovery').textContent; assert.match(key, /^([A-Z2-7]{4}-)+[A-Z2-7]{1,4}$/);
 const done = byText('button', 'Done'); assert.ok(done.disabled, 'Done waits for the box');
 const box = root().querySelector('input[type=checkbox]'); box.checked = true; box.dispatchEvent(new w.Event('change', { bubbles: true }));
-assert.ok(!done.disabled); click(done); await wait();
+assert.ok(!done.disabled); click(done); await until(() => root().querySelector('.settings-row'));
 assert.equal(store[SK.syncPlaces].length, 1); assert.equal(store[SK.syncPlaces][0].mode, 'encrypted');
 assert.ok(!JSON.stringify(store[SK.syncPlaces]).includes(key) && !JSON.stringify(store[SK.syncPlaces]).includes('long passphrase'), 'neither the key nor the passphrase sits with the place');
 assert.ok(root().querySelector('.settings-row'), 'back at the list');
 
 // a second place in the same folder name: the folder already holds a library, so it is joined, not created
-click(byText('button', 'Add a place')); await wait(); click(root().querySelectorAll('.settings-row')[0]); await wait(100);
+click(byText('button', 'Add a place')); await until(() => root().querySelectorAll('.settings-row').length === 3); click(root().querySelectorAll('.settings-row')[0]); await until(() => $('syncName') && $('syncPassphrase'));
 type('syncName', 'Again'); type('syncRoot', 'sync');
 click(byText('button', 'Test connection')); await until(() => /already holds/.test(text()));
 assert.match(text(), /already holds an encrypted library/);

@@ -3,6 +3,7 @@ import assert from 'assert';
 import path from 'path'; import { pathToFileURL } from 'url';
 import { createFakeDav } from './fakeDav.mjs';
 import { createFakeFolder } from './fakeFolder.mjs';
+import { createFakeS3 } from './fakeS3.mjs';
 const imp = (m) => import(pathToFileURL(path.resolve(process.env.AISH_SRC, m)).href);
 const { SK, articleRecKey, noteRecKey, syncLedgerKey } = await imp('modules/storageKeys.js');
 const { createStampStore } = await imp('modules/syncStampStore.js');
@@ -11,15 +12,17 @@ const { syncEncryptedPlace, loadOrCreateMeta } = await imp('modules/syncEngine.j
 const { createMeta, openMeta } = await imp('modules/syncCrypto.js');
 const { createWebdavStore } = await imp('modules/syncWebdav.js');
 const { createFolderStore } = await imp('modules/syncFolder.js');
-const FOLDER = process.env.AISH_STORE === 'folder';
+const { createS3Store } = await imp('modules/syncS3.js');
+const BACKEND = process.env.AISH_STORE || 'webdav', FOLDER = BACKEND === 'folder', S3 = BACKEND === 's3';
 const { syncFields } = await imp('modules/syncStamps.js');
 
 const dav = createFakeDav();
 const cfg = { url: 'https://cloud.test/dav/', root: 'sync', username: 'phil', password: 'secret' };
 const fol = createFakeFolder();
-const mkStore = () => (FOLDER ? createFolderStore({ handle: fol.handle, root: 'sync' }) : createWebdavStore(cfg, { fetchFn: dav.fetchFn }));
-const files = FOLDER ? fol.files : dav.files;
-const setRaw = (p, body) => (FOLDER ? fol.files.set(p, { body, mt: Date.now() + Math.random() }) : dav.files.set(p, { body, etag: 'raw' + Math.random() }));
+const s3 = createFakeS3();
+const mkStore = () => (FOLDER ? createFolderStore({ handle: fol.handle, root: 'sync' }) : S3 ? createS3Store({ endpoint: 'https://s3.test', bucket: 'b', accessKeyId: 'AKIDTEST', secretAccessKey: 's', root: 'sync' }, { fetchFn: s3.fetchFn }) : createWebdavStore(cfg, { fetchFn: dav.fetchFn }));
+const files = FOLDER ? fol.files : S3 ? s3.files : dav.files;
+const setRaw = (p, body) => (FOLDER ? fol.files.set(p, { body, mt: Date.now() + Math.random() }) : S3 ? s3.files.set(p, { body, etag: 'raw' + Math.random() }) : dav.files.set(p, { body, etag: 'raw' + Math.random() }));
 await mkStore().ping();
 let clock = 1_000_000;
 
@@ -54,7 +57,7 @@ assert.ok(!second.created && second.meta.salt === created.meta.salt, 'a second d
 assert.ok((await openMeta(second.meta, { passphrase: 'pw' })).keys);
 
 const A = device('A'), B = device('B');
-const puts = () => (FOLDER ? fol.log : dav.log).filter((l) => /^(PUT|WRITE)/.test(l) && l.includes('/r/')).length;
+const puts = () => (FOLDER ? fol.log : S3 ? s3.log : dav.log).filter((l) => /^(PUT|WRITE)/.test(l) && l.includes('/r/')).length;
 
 // ── disjoint edits converge; nothing readable on the server ──
 await A.addArticle('a1', { tags: ['alpha'] }); await A.addArticle('a2');
@@ -131,7 +134,7 @@ assert.equal(puts(), putsBefore); assert.equal(D.index().length, 1, 'nothing cha
 // ── 412: the server copy changed between our listing and our PUT ──
 await A.editEntry('a1', { title: 'A wants this' });
 let raced = false, store412;
-if (FOLDER) { const base = mkStore(); store412 = { ...base, put: async (p, b, o = {}) => { if (!raced && /^r\//.test(p) && o.ifMatch) { raced = true; o = { ...o, ifMatch: 'stale' }; } return base.put(p, b, o); } }; }
+if (FOLDER || S3) { const base = mkStore(); store412 = { ...base, put: async (p, b, o = {}) => { if (!raced && /^r\//.test(p) && o.ifMatch) { raced = true; o = { ...o, ifMatch: 'stale' }; } return base.put(p, b, o); } }; }
 else { const realPut = dav.fetchFn; const racing = (url, init = {}) => { if (!raced && init.method === 'PUT' && /\/r\//.test(url)) { raced = true; return realPut(url, { ...init, headers: { ...init.headers, 'if-match': '"stale"' } }); } return realPut(url, init); }; store412 = createWebdavStore(cfg, { fetchFn: racing }); }
 r = await syncEncryptedPlace({ place: { id: 'p1' }, storage: A.area, store: store412, keys: K.keys, meta: K.meta, stampStore: A.st, adapter: A.adapter }); await A.idle();
 assert.ok(raced, 'the PUT was refused with 412'); assert.equal(r.errors.length, 0, 'a 412 is merged and retried: ' + r.errors.join());

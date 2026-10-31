@@ -17,7 +17,7 @@ import { createMeta, openMeta, openWithMaster, recoveryKeyOf, toB64, fromB64 } f
 import { placeMatches, INCLUDE_DEFAULT } from './syncReadable.js';
 import { TargetError } from './targets/targetError.js';
 
-export const SERVICES = ['webdav', 'folder'];
+export const SERVICES = ['webdav', 'folder', 's3'];
 const keyOfPlace = (id) => 'k:' + id;   // the place's key lives in sync:secrets next to the server logins (never backed up)
 export const SCOPES = ['tag', 'except', 'all'];
 const get = (storage, keys) => Promise.resolve(storage.get(keys));
@@ -32,12 +32,18 @@ export function cleanConnection(input, { id } = {}) {
     let url;
     try { url = new URL(clip(p.url, 2048)); } catch (_) { throw new Error('Enter the full address, starting with https://'); }
     if (url.protocol !== 'https:' && !(url.protocol === 'http:' && p.allowInsecureLan)) throw new Error('The address must start with https://');
+    const s3 = p.service === 's3';
+    if (s3) {   // username = access key id, the secret key is the server's saved login
+        if (!clip(p.username, 200)) throw new Error('Enter the access key ID.');
+        if (!/^[A-Za-z0-9][A-Za-z0-9._-]{2,62}$/.test(clip(p.bucket, 80))) throw new Error('Enter the bucket name (3 to 63 letters, numbers, dots, dashes).');
+    }
     return {
         id: id || p.id || rid('cn_'),
         name: clip(p.name, 60) || url.host,
         service: p.service || 'webdav',
         url: url.href,
         username: clip(p.username, 200),
+        ...(s3 ? { bucket: clip(p.bucket, 80), region: clip(p.region, 40) || 'us-east-1' } : {}),
         ...(p.allowInsecureLan ? { allowInsecureLan: true } : {}),
     };
 }
@@ -312,6 +318,6 @@ export function createSyncService({ storage, makeStore, stampStore, viewerSource
 }
 
 function describe(e) {
-    if (e instanceof TargetError) return { kind: e.kind, message: e.kind === 'auth' && e.status ? 'The server did not accept the username and password.' : e.status === 404 && !/Check the address/.test(e.message) ? 'The address was not found on the server.' : e.message, status: e.status };
+    if (e instanceof TargetError) return { kind: e.kind, message: e.kind === 'auth' && e.status && /^The server answered/.test(e.message) ? 'The server did not accept the username and password.' : e.status === 404 && !/Check the address|bucket/.test(e.message) ? 'The address was not found on the server.' : e.message, status: e.status };
     return { kind: 'permanent', message: String((e && e.message) || e) };
 }
