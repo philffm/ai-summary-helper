@@ -8,6 +8,7 @@ import { SK, isNoteRecKey } from './storageKeys.js';
 import { iconEl } from './icons.js';
 import { createNotesStore } from './notesStore.js';
 import { pageKeyForUrl } from './pageKey.js';
+import { splitTags } from './noteText.js';
 
 const store = createNotesStore();
 const WIDE = 720;
@@ -26,16 +27,7 @@ function el(tag, cls, text) { const e = document.createElement(tag); if (cls) e.
 function button(label, cls, onClick) { const b = el('button', cls, label); b.type = 'button'; b.addEventListener('click', onClick); return b; }
 const stripQuery = (u) => String(u || '').split('#')[0].split('?')[0];
 
-/** Hashtags at the end of what was typed become tags: "Ask Anna #todo #inflation" → text + ['todo','inflation']. */
-export function splitTags(input) {
-    let text = String(input || '').trim(); const tags = [];
-    for (;;) {
-        const m = /(?:^|\s)#([\p{L}\p{N}_-]{1,40})\s*$/u.exec(text);
-        if (!m) break;
-        tags.unshift(m[1]); text = text.slice(0, m.index).trim();
-    }
-    return { text, tags };
-}
+export { splitTags };
 
 /** The stream: notes and highlights together, newest first. Pure: everything it needs is passed in. */
 export function buildStream({ notes, comments, highlights, articles }) {

@@ -1028,6 +1028,9 @@ if (syncStamps) {
     (async () => { try { if (!(await chrome.alarms.get(SYNC_ALARM))) chrome.alarms.create(SYNC_ALARM, { delayInMinutes: 5, periodInMinutes: 30 }); } catch (_) { /* no alarms */ } })();
 }
 
+// ── Notes from the page: the content script asks, the worker writes (modules/notesMessages.js) ──
+const notesMsgs = SYNC ? SYNC.createNotesMessages({ store: SYNC.createNotesStore({ storage: chrome.storage.local }) }) : null;
+
 // ── Local MCP (AI apps on this computer) — off by default (modules/mcp/, claude/prd-local-mcp.md). ──
 // The extension connects OUTWARD to the aish-mcp relay; it never listens for inbound connections itself.
 const DEFAULT_MCP_SCOPES = { library: true, fulltext: false, feeds: false, write: false };
@@ -1439,6 +1442,15 @@ chrome.runtime.onMessage.addListener((msg, sender, sendResponse) => {
         syncSvc.syncNow(msg.placeId ? String(msg.placeId) : undefined, { confirmRemovals: !!msg.confirmRemovals })
             .then((results) => sendResponse({ ok: true, results })).catch((e) => sendResponse({ ok: false, error: String((e && e.message) || e) }));
         return true;
+    }
+    if (msg && (msg.action === 'noteAdd' || msg.action === 'commentSet')) {   // from the page's content script
+        if (!notesMsgs) { sendResponse({ ok: false, error: 'unavailable' }); return false; }
+        notesMsgs.handle(msg, sender).then(sendResponse).catch(() => sendResponse({ ok: false, error: 'failed' }));
+        return true;
+    }
+    if (msg && msg.action === 'openNotes') {
+        try { chrome.tabs.create({ url: chrome.runtime.getURL('popup.html?surface=tab#notes') }); sendResponse({ ok: true }); } catch (_) { sendResponse({ ok: false }); }
+        return false;
     }
     if (msg && msg.action === 'syncHlDeleted') {   // from the page's content script: the user removed these highlights
         if (syncStamps && Array.isArray(msg.ids)) syncStamps.markDeleted('hl', msg.ids.filter((i) => typeof i === 'string').slice(0, 1000));

@@ -77,7 +77,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     initAccordion(ui);
     initBackToTop();
 
-    ui.showScreen("main");
+    ui.showScreen((window.location && window.location.hash) === '#notes' ? 'notes' : "main");   // "Open in Notes" from a page opens this tab on the Notes screen
 
     // Heavy tab modules (Feeds ~110 KB, History ~90 KB, Settings ~60 KB) are loaded after the main screen is up,
     // so the first paint no longer waits for their parse.

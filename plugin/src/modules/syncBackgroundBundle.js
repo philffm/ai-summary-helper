@@ -3,5 +3,7 @@ import { createStampStore } from './syncStampStore.js';
 import { createSyncService } from './syncService.js';
 import { makeStore } from './syncStores.js';
 import { renderViewer, loadViewerTemplates } from './syncViewer.js';
+import { createNotesStore } from './notesStore.js';
+import { createNotesMessages } from './notesMessages.js';
 
-export const API = { createStampStore, createSyncService, makeStore, renderViewer, loadViewerTemplates };
+export const API = { createStampStore, createSyncService, makeStore, renderViewer, loadViewerTemplates, createNotesStore, createNotesMessages };

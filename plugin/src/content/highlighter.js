@@ -8,6 +8,8 @@ import { SK } from '../modules/storageKeys.js';
 
 import { ancScopeRoot, ancBuildIndex, ancMakeSelector, ancResolve, ancToRange, ancQuoteUsable, ancNormalize } from './anchor.js';
 import { hlpRender } from './highlightPanel.js';
+import { npShowToolbar, npShowComposer, npHide } from './notesPopover.js';
+import { splitTags } from '../modules/noteText.js';
 import { pageKeyForUrl, isNoisePage } from '../modules/pageKey.js';
 
 // ── Shared state (module scope, inlined into the content IIFE by the bundler) ──
@@ -362,6 +364,8 @@ export function startAnnotationWatchers() {
       if (area === 'local' && SK.annotations in changes && isAnyHighlightingEnabled()) {
         scheduleRestoreAnnotations(80);
       }
+      // a comment was saved or removed (here, or in the Notes tab): the panel shows it
+      if (area === 'local' && Object.keys(changes).some((k) => k.startsWith('notes:rec:c_'))) hlRefreshPanel();
     });
   }
 }
@@ -475,12 +479,31 @@ export function handleTextSelection(event) {
       ['INPUT', 'TEXTAREA'].includes(anchorNode.parentElement.tagName))) return;
 
   const reattach = hlReattachId;
-  showHighlightTooltip(event.pageX, event.pageY, () => {
-    if (reattach && hlLive.has(reattach)) hlReattach(reattach, selectedRange);
-    else applyHighlightFromRange(selectedRange, selectedText);
-    hlReattachId = null;
-    selection.removeAllRanges();
-  }, reattach ? '🔗 Attach here' : '✏️ Highlight');
+  if (reattach) {   // re-attaching a lost highlight: the single button, as before
+    showHighlightTooltip(event.pageX, event.pageY, () => {
+      if (hlLive.has(reattach)) hlReattach(reattach, selectedRange);
+      else applyHighlightFromRange(selectedRange, selectedText);
+      hlReattachId = null;
+      selection.removeAllRanges();
+    }, '🔗 Attach here');
+    return;
+  }
+  const { pageX: px, pageY: py } = event;
+  const tell = (msg) => new Promise((resolve) => { try { chrome.runtime.sendMessage(msg, (res) => { void chrome.runtime.lastError; resolve(!!(res && res.ok)); }); } catch (_) { resolve(false); } });
+  npShowToolbar({
+    x: px, y: py,
+    onHighlight: () => { applyHighlightFromRange(selectedRange, selectedText); selection.removeAllRanges(); },
+    onComment: () => {   // the highlight is made first; the comment is saved with it
+      const ann = applyHighlightFromRange(selectedRange, selectedText); selection.removeAllRanges();
+      if (!ann) return;
+      npShowComposer({ x: px, y: py, heading: 'Comment', quote: selectedText, placeholder: 'Add a comment…', onSave: (text, tags) => tell({ action: 'commentSet', highlightId: ann.id, text, tags }) });
+    },
+    onNote: () => {      // a note that carries the selected text as its quote, no highlight
+      selection.removeAllRanges();
+      npShowComposer({ x: px, y: py, heading: 'Note', quote: selectedText, placeholder: 'Write a note…', onSave: (text, tags) => tell({ action: 'noteAdd', text, tags, quote: selectedText }) });
+    },
+  });
+  void npHide;
 }
 
 function hlIndexFor(range) {
@@ -772,12 +795,16 @@ function hlRefreshPanel() {
       const cur = seen.get(k);
       if (!cur || (cur.status === 'lost' && e.status !== 'lost')) seen.set(k, e);
     }
+    const noteMsg = (msg) => new Promise((resolve) => { try { chrome.runtime.sendMessage(msg, (res) => { void chrome.runtime.lastError; resolve(!!(res && res.ok)); }); } catch (_) { resolve(false); } });
+    const ids0 = [...seen.values()].map(e => e.ann.id);
+    const render = (comments) => {
     const items = [...seen.values()].map(e => {
       let frac = null;
       if (e.range && e.status !== 'lost') {
         try { const r = e.range.getBoundingClientRect(); frac = Math.min(1, Math.max(0, (r.top + window.scrollY) / docH)); } catch (err) { /* detached */ }
       }
-      return { id: e.ann.id, type: e.ann.type, text: e.ann.text, status: e.status, frac };
+      const c = comments[e.ann.id];
+      return { id: e.ann.id, type: e.ann.type, text: e.ann.text, status: e.status, frac, comment: c && c.text ? c.text : '' };
     });
     // Nothing could be attached on this page (feed that changed, other content under the same URL): stay quiet.
     if (items.length && items.every(i => i.status === 'lost')) { hlpRender([], {}); return; }
@@ -792,8 +819,14 @@ function hlRefreshPanel() {
       },
       summarize: () => (hlSummarizeHandler ? hlSummarizeHandler() : undefined),
       jump: hlJump, remove: (id) => hlRemove(id, { dismiss: hlLive.get(id)?.ann.type === 'ghost' }),
-      keep: hlKeep, reattach: (id) => { hlReattachId = id; }, pending: () => hlReattachId
+      keep: hlKeep, reattach: (id) => { hlReattachId = id; }, pending: () => hlReattachId,
+      comment: (id, raw) => { const { text, tags } = splitTags(raw); return noteMsg({ action: 'commentSet', highlightId: id, text, tags }); },
+      note: (raw) => { const { text, tags } = splitTags(raw); return text ? noteMsg({ action: 'noteAdd', text, tags }) : Promise.resolve(false); },
+      openNotes: () => { try { chrome.runtime.sendMessage({ action: 'openNotes' }, () => void chrome.runtime.lastError); } catch (_) { /* extension reloaded */ } }
     });
+    };
+    // the comments live in the notes store (never in the highlight array): read the ones for the highlights on this page
+    try { chrome.storage.local.get(ids0.map(i => 'notes:rec:c_' + i), (res) => { const m = {}; for (const i of ids0) { const r = res && res['notes:rec:c_' + i]; if (r) m[i] = r; } render(m); }); } catch (_) { render({}); }
   }, 120);
 }
 
