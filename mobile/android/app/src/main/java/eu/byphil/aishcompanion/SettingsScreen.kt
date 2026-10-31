@@ -3,6 +3,7 @@ package eu.byphil.aishcompanion
 import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.compose.material.icons.filled.Person
 import androidx.compose.material.icons.filled.Link
+import androidx.compose.material.icons.filled.Sync
 import androidx.compose.material.icons.filled.AutoAwesome
 import androidx.compose.material.icons.filled.RssFeed
 import androidx.compose.material.icons.filled.Accessibility
@@ -99,6 +100,7 @@ fun SettingsScreen(model: AppModel, onScan: ((String?) -> Unit) -> Unit, startPa
     val rows = listOf(
         SettingsRow("account", "ACCOUNT", Icons.Filled.Person, "Account & Plan", if (model.accountEmail.isNotBlank()) model.accountEmail else "Sign in with an email code", "login log in sign in email code otp plan license pro account"),
         SettingsRow("link", "ACCOUNT", Icons.Filled.Link, "Browser link", if (p == null) "Not paired" else listOf("Paired", if (p.canSync) "feed sync" else "", if (p.canReceive) "send to phone" else "").filter { it.isNotEmpty() }.joinToString(" · "), "pair pairing qr scan sync send to phone unpair extension browser"),
+        SettingsRow("sync", "ACCOUNT", Icons.Filled.Sync, "Library sync", if (model.library.isConnected()) "Joined · " + model.library.config()?.label().orEmpty() else "Join the library of your browser", "library sync nextcloud webdav s3 notes encrypted passphrase browser articles"),
         SettingsRow("ai", "SUMMARIZING", Icons.Filled.AutoAwesome, "On-device AI", "Model · summary language · highlights · read aloud", "model gemma download language ghost highlight key passages read aloud tts speak summary"),
         SettingsRow("feeds", "FEEDS", Icons.Filled.RssFeed, "Feed preferences", if (model.groupSimilar) "Grouping similar items" else "Not grouping", "group similar stories stacks refresh"),
         SettingsRow("access", "APP", Icons.Filled.Accessibility, "Accessibility", if (model.leftHanded) "Left-handed layout" else "Right-handed layout", "left handed right hand thumb reach text size font large accessibility"),
@@ -172,6 +174,7 @@ fun SettingsScreen(model: AppModel, onScan: ((String?) -> Unit) -> Unit, startPa
                     }
                         }
                         "account" -> AccountCard(model)
+                        "sync" -> LibrarySyncCard(model)
                         "ai" -> { ModelCard(model); SummaryCard(model) }
                         "feeds" -> FeedsCard(model)
                         "storage" -> StorageCard(model)

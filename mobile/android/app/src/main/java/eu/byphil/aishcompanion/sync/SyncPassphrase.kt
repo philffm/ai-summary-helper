@@ -13,4 +13,10 @@ object SyncPassphrase {
         val parts = input.trim().lowercase().split(SEPARATORS).filter { it.isNotEmpty() }
         return if (parts.size >= 4 && parts.all { it in SET }) parts.joinToString(" ") else input
     }
+
+    /** True for a phrase made only of list words (four or more): the suggested kind, which a device may keep to show again. */
+    fun isSuggestedWords(input: String): Boolean {
+        val parts = input.trim().lowercase().split(SEPARATORS).filter { it.isNotEmpty() }
+        return parts.size >= 4 && parts.all { it in SET }
+    }
 }
