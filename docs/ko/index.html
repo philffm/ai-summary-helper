@@ -57,7 +57,6 @@
     <nav class="pill" aria-label="기본">
       <a href="index.html#features" data-sec="features">기능</a>
       <a href="index.html#try-it" data-sec="try-it">데모</a>
-      <a href="index.html#pricing" data-sec="pricing">요금제</a>
       <a href="https://chromewebstore.google.com/detail/ai-summary-helper-openai/hldbejcjaedipeegjcinmhejdndchkmb" class="pill-cta" target="_blank" rel="noopener">Chrome에 추가</a>
     </nav>
     <div class="nav-tools">
@@ -76,13 +75,12 @@
       <nav class="mm-links" aria-label="모바일">
         <a href="index.html#features"><span class="mm-n">01</span>기능</a>
         <a href="index.html#try-it"><span class="mm-n">02</span>데모</a>
-        <a href="index.html#pricing"><span class="mm-n">03</span>요금제</a>
-        <a href="blog/"><span class="mm-n">04</span>블로그</a>
+        <a href="blog/"><span class="mm-n">03</span>블로그</a>
           <a href="blog/pocket-alternative.html" class="mm-sub">Pocket 대체 서비스: 가장 중요한 기준</a>
           <a href="blog/bring-your-own-key.html" class="mm-sub">내 키. 내 모델. 내 데이터.</a>
           <a href="blog/verify-ai-summary.html" class="mm-sub">요약 내용 원문과 대조하기</a>
           <a href="blog/highlighting-vs-asking.html" class="mm-sub">하이라이트에 대해 질문하기</a>
-        <a href="https://github.com/philffm/ai-summary-helper/" target="_blank" rel="noopener"><span class="mm-n">05</span>GitHub</a>
+        <a href="https://github.com/philffm/ai-summary-helper/" target="_blank" rel="noopener"><span class="mm-n">04</span>GitHub</a>
       </nav>
       <div class="mm-lang">
         <button type="button" class="lang-card" id="langCard"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.6"></circle><path d="M3 12h18M12 3c2.6 2.7 3.9 5.7 3.9 9s-1.3 6.3-3.9 9c-2.6-2.7-3.9-5.7-3.9-9S9.4 5.7 12 3Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"></path></svg><span class="lang-card-cur">영어</span><small>24개 언어</small><b aria-hidden="true">→</b></button>
@@ -132,28 +130,11 @@
       <div class="eyebrow"><span class="dash"></span> Chrome 확장 프로그램 · byphil 제품군 <span class="dash"></span></div>
       <h1>웹을 요약하세요.<br><em>중요한 내용만 간직하세요.</em></h1>
       <p class="sub">AI Summary Helper는 내장 RSS 리더로 즐겨 찾는 사이트를 구독하고, 모든 페이지를 요약된 검색 가능한 문서로 저장합니다. 또한 기기 내에서 다이제스트를 생성하여 Kindle이나 다른 기기로 오프라인 읽기 콘텐츠를 전송해 언제든 다시 찾아볼 수 있도록 돕습니다.</p>
-      <div class="hero-switch" role="tablist" aria-label="어떤 용도로 사용하시나요?">
-        <button type="button" class="hero-switch-btn active" role="tab" id="heroTabBrowser" aria-selected="true" aria-controls="heroPaneBrowser" data-hero="browser">
-          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="3" stroke="currentColor" stroke-width="1.6"></rect><path d="M3 9h18" stroke="currentColor" stroke-width="1.6"></path></svg>
-          브라우저 확장 프로그램
-        </button>
-        <button type="button" class="hero-switch-btn" role="tab" id="heroTabBookmarklet" aria-selected="false" aria-controls="heroPaneBookmarklet" tabindex="-1" data-hero="bookmarklet">
-          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 3h12v18l-6-4-6 4V3Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"></path></svg>
-          북마클릿
-        </button>
-      </div>
-      <div class="hero-pane" id="heroPaneBrowser" role="tabpanel" aria-labelledby="heroTabBrowser">
+      <div class="hero-pane" id="heroPaneBrowser">
         <div class="hero-cta">
           <a href="https://chromewebstore.google.com/detail/ai-summary-helper-openai/hldbejcjaedipeegjcinmhejdndchkmb" target="_blank" rel="noopener" class="btn-primary">Chrome에 추가 — 무료</a>
         </div>
         <p class="hero-meta">계정 없이 바로 시작 · byPhil API를 통한 대부분의 LLM 모델, 보유한 AI 키 사용 또는 Ollama를 통한 완전한 오프라인 실행</p>
-      </div>
-      <div class="hero-pane" id="heroPaneBookmarklet" role="tabpanel" aria-labelledby="heroTabBookmarklet" hidden="">
-        <p class="hero-pane-blurb">북마크바에 링크 하나만 추가하면 iOS를 포함한 모든 브라우저와 OS에서 사용할 수 있습니다. 별도 설치 없이 페이지에서 바로 요약을 확인해 보세요.</p>
-        <div class="hero-cta">
-          <a href="../bookmarklet.html" class="btn-primary" data-track="bookmarklet-open">북마클릿 만들기 →</a>
-        </div>
-        <p class="hero-meta">생성기 열기 · byPhil API(키 불필요)를 통한 대부분의 LLM 모델 지원, 또는 자체 OpenAI, Gemini, Mistral, DeepSeek, Ollama 연동</p>
       </div>
       <ol class="hs-steps" data-stage-pane="browser">
   <li class="is-on" data-step="0" role="button" tabindex="0"><b>어떤 웹페이지든 편하게 읽으세요.</b><span>평소처럼 아티클을 열기만 하면 됩니다. AISH가 브라우저에 조용히 대기하고 있어요.</span></li>
@@ -203,30 +184,10 @@
           </div>
         </div>
       </div>
+      <!-- The animated demo is nice, but the video shows it better: this opens the full video (komplett-<lang>.mp4, the first clip of #videos) in the player. Without JavaScript it jumps to the clips. -->
+      <a class="hs-watch" href="#videos" data-open-video="komplett"><span class="hs-watch-ico" aria-hidden="true">▶</span><span class="hs-watch-txt"><strong>영상 보기</strong><small>1분 만에 모두 확인해 보세요</small></span></a>
       <div class="hs-ctrl" role="group" aria-label="둘러보기"><button type="button" class="hs-pp" aria-label="둘러보기 일시중지"><svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><path class="pp-pause" d="M7 5h3v14H7zM14 5h3v14h-3z" fill="currentColor"></path><path class="pp-play" d="M8 5l11 7-11 7z" fill="currentColor"></path></svg></button><button type="button" class="hs-dot is-on" aria-label="1단계"></button><button type="button" class="hs-dot" aria-label="2단계"></button><button type="button" class="hs-dot" aria-label="3단계"></button><button type="button" class="hs-dot" aria-label="4단계"></button></div>
       <p class="sr-only">AI Summary Helper는 사이드 패널에 아티클 핵심 요약을 띄워주고, 원문 출처와 연결되는 추가 질문 기능은 물론 원하는 언어로의 요약 전환까지 지원합니다.</p>
-    </div>
-    <div class="hs-bm" data-stage-pane="bookmarklet" hidden="">
-      <div class="bm-mock" aria-hidden="true" data-no-translate="">
-            <div class="bm-win">
-              <div class="bm-tb"><i></i><i></i><i></i><span>🔒 dailyledger.example/work-life/office-fern</span></div>
-              <div class="bm-bar"><span>Mail</span><span>Docs</span><span>Maps</span><span class="bm-mark">✨ Summarize</span></div>
-              <div class="bm-page">
-                <div class="bm-mast">The Daily Ledger</div>
-                <h4>Office fern outlives four reorganisations, now up for team lead</h4>
-                <p>Leeds. When the logistics team moved floors in 2019, nobody expected Gerald to survive.</p>
-                <p>Seven years and four reorganisations later, the office fern is the longest-serving member of the department.</p>
-                <p>He has never once scheduled a meeting that could have been an email.</p>
-                <div class="bm-card"><small>✨ AI Summary</small><b>A fern climbs the career ladder</b><span>Gerald, an office fern in Leeds, has outlasted <strong>four reorganisations in seven years</strong> and is now up for team lead.</span></div>
-              </div>
-              <svg class="bm-cursor" viewBox="0 0 24 24" width="26" height="26"><path d="M4 2l15 9-6.5 1.5L9 19z" fill="#14161f" stroke="#fff" stroke-width="1.4" stroke-linejoin="round"></path></svg>
-            </div>
-          </div>
-      <ol class="bm-steps">
-  <li><span class="bm-n">1</span><div><h3>한 번만 설정하세요</h3><p>별도 키가 필요 없는 byPhil API를 선택하거나 본인의 OpenAI, Gemini, Mistral, DeepSeek, Ollama를 자유롭게 연결하세요.</p></div></li>
-  <li><span class="bm-n">2</span><div><h3>북마크바에 드래그하여 추가하세요</h3><p>iOS를 포함한 모든 브라우저와 OS 지원. 별도 프로그램 설치가 전혀 필요 없습니다.</p></div></li>
-  <li><span class="bm-n">3</span><div><h3>어떤 페이지에서든 클릭하세요</h3><p>페이지 위에 요약이 바로 표시되며, 후속 질문과 맞춤 언어 설정도 함께 지원합니다.</p></div></li>
-</ol>
     </div>
   </div>
 </section>
@@ -829,6 +790,16 @@
           <h3>Claude, LM Studio, Cursor에서 직접 만나는 내 라이브러리</h3>
           <p>설정에서 AI 앱 연동을 켜면 컴퓨터에 설치된 Claude Desktop, LM Studio, Cursor 및 기타 MCP 앱이 내 라이브러리를 검색하고 하이라이트를 인용하며 읽을거리를 정리해 줍니다. 권한을 허용하면 링크를 대신 저장할 수도 있습니다. 모든 과정은 외부 서버를 거치지 않고 기기 내에서 처리되며, AI가 접근할 수 있는 항목도 직접 제어할 수 있습니다.</p>
           <button class="fvideo-cta" type="button" tabindex="-1" aria-hidden="true"><span class="fvideo-cta-play">▶</span>클립 보기</button>
+        </div>
+        <div class="feature-card" data-personas="privacy hoarder researcher">
+          <div class="f-icon icon-teal"><svg viewBox="0 0 24 24" fill="none"><path d="M7 18.5h9.5a3.5 3.5 0 0 0 .6-6.95A5 5 0 0 0 7.4 10.6 4 4 0 0 0 7 18.5Z" stroke="#fff" stroke-width="1.7" stroke-linejoin="round"></path><path d="M12 12.5v3M10.8 13.8h2.4" stroke="#fff" stroke-width="1.7" stroke-linecap="round"></path></svg></div>
+          <h3>내 저장소에 암호화되어 안전하게 보관되는 라이브러리</h3>
+          <p>Nextcloud나 기타 WebDAV 서버, S3 호환 버킷 또는 내 컴퓨터의 로컬 폴더를 활용해 여러 기기 간에 라이브러리를 동기화하고, 백업하거나, 일부를 공유해 보세요. 모든 데이터는 기기를 벗어나기 전 브라우저 내에서 직접 암호화되므로 서버에는 알아볼 수 없는 암호화 파일만 전송됩니다. 검색 기능, 태그 그래프, 저장한 콘텐츠의 3D 맵이 포함된 목록을 내 웹사이트에 발행할 수도 있습니다. 저장 위치를 직접 연결하기 전까지는 기능이 꺼져 있으며, 별도의 동기화 서버를 운영하지 않아 사용자의 데이터를 절대 들여다볼 수 없습니다. <a href="../blog/sync-to-nextcloud-s3-or-a-folder.html">설정 방법</a> · <a href="../blog/digital-sovereignty-for-individuals.html">중요한 이유</a></p>
+        </div>
+        <div class="feature-card" data-personas="hoarder researcher">
+          <div class="f-icon icon-amber"><svg viewBox="0 0 24 24" fill="none"><path d="M6 4.5h9l3 3V19a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V5.5a1 1 0 0 1 1-1Z" stroke="#fff" stroke-width="1.7" stroke-linejoin="round"></path><path d="M8.5 11h7M8.5 14.5h4.5" stroke="#fff" stroke-width="1.7" stroke-linecap="round"></path></svg></div>
+          <h3>모든 웹페이지에서 남기는 메모와 코멘트</h3>
+          <p>텍스트를 선택한 후 하이라이트하거나, 코멘트를 달거나, 인용문과 함께 메모를 저장해 보세요. 모든 내용은 글별 또는 태그별로 '메모' 탭에 모여 목록이나 스티커 메모 그리드 형태로 확인할 수 있으며, 라이브러리의 다른 콘텐츠와도 원활하게 동기화됩니다.</p>
         </div>
         <div class="feature-card" data-personas="hoarder researcher">
           <figure class="fvideo" data-blog-video="export">

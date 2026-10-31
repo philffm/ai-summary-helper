@@ -57,7 +57,6 @@
     <nav class="pill" aria-label="Primær">
       <a href="index.html#features" data-sec="features">Funksjoner</a>
       <a href="index.html#try-it" data-sec="try-it">Demo</a>
-      <a href="index.html#pricing" data-sec="pricing">Priser</a>
       <a href="https://chromewebstore.google.com/detail/ai-summary-helper-openai/hldbejcjaedipeegjcinmhejdndchkmb" class="pill-cta" target="_blank" rel="noopener">Legg til i Chrome</a>
     </nav>
     <div class="nav-tools">
@@ -76,13 +75,12 @@
       <nav class="mm-links" aria-label="Mobil">
         <a href="index.html#features"><span class="mm-n">01</span>Funksjoner</a>
         <a href="index.html#try-it"><span class="mm-n">02</span>Demo</a>
-        <a href="index.html#pricing"><span class="mm-n">03</span>Priser</a>
-        <a href="blog/"><span class="mm-n">04</span>Blogg</a>
+        <a href="blog/"><span class="mm-n">03</span>Blogg</a>
           <a href="blog/pocket-alternative.html" class="mm-sub">Pocket-alternativ: hva som betyr noe</a>
           <a href="blog/bring-your-own-key.html" class="mm-sub">Din nøkkel. Din modell. Dine data.</a>
           <a href="blog/verify-ai-summary.html" class="mm-sub">Sjekk et sammendrag mot kilden</a>
           <a href="blog/highlighting-vs-asking.html" class="mm-sub">Still spørsmål om markeringene dine</a>
-        <a href="https://github.com/philffm/ai-summary-helper/" target="_blank" rel="noopener"><span class="mm-n">05</span>GitHub</a>
+        <a href="https://github.com/philffm/ai-summary-helper/" target="_blank" rel="noopener"><span class="mm-n">04</span>GitHub</a>
       </nav>
       <div class="mm-lang">
         <button type="button" class="lang-card" id="langCard"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.6"></circle><path d="M3 12h18M12 3c2.6 2.7 3.9 5.7 3.9 9s-1.3 6.3-3.9 9c-2.6-2.7-3.9-5.7-3.9-9S9.4 5.7 12 3Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"></path></svg><span class="lang-card-cur">Engelsk</span><small>24 språk</small><b aria-hidden="true">→</b></button>
@@ -132,28 +130,11 @@
       <div class="eyebrow"><span class="dash"></span> Chrome-utvidelse · En del av byphil. <span class="dash"></span></div>
       <h1>Oppsummer nettet.<br><em>Behold det som betyr noe.</em></h1>
       <p class="sub">AI Summary Helper følger favorittsidene dine med en innebygd RSS-leser, lagrer nettsider som oppsummerte, søkbare artikler – og hjelper deg å faktisk lese dem, med et lokalt digest som sender offline-lesing rett til din Kindle eller en annen enhet.</p>
-      <div class="hero-switch" role="tablist" aria-label="Hvordan vil du bruke det?">
-        <button type="button" class="hero-switch-btn active" role="tab" id="heroTabBrowser" aria-selected="true" aria-controls="heroPaneBrowser" data-hero="browser">
-          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="3" stroke="currentColor" stroke-width="1.6"></rect><path d="M3 9h18" stroke="currentColor" stroke-width="1.6"></path></svg>
-          Nettleserutvidelse
-        </button>
-        <button type="button" class="hero-switch-btn" role="tab" id="heroTabBookmarklet" aria-selected="false" aria-controls="heroPaneBookmarklet" tabindex="-1" data-hero="bookmarklet">
-          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 3h12v18l-6-4-6 4V3Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"></path></svg>
-          Bookmarklet
-        </button>
-      </div>
-      <div class="hero-pane" id="heroPaneBrowser" role="tabpanel" aria-labelledby="heroTabBrowser">
+      <div class="hero-pane" id="heroPaneBrowser">
         <div class="hero-cta">
           <a href="https://chromewebstore.google.com/detail/ai-summary-helper-openai/hldbejcjaedipeegjcinmhejdndchkmb" target="_blank" rel="noopener" class="btn-primary">Legg til i Chrome – helt gratis</a>
         </div>
         <p class="hero-meta">Ingen konto kreves for å starte · De fleste LLM-modeller via byPhil API, din egen API key eller helt offline med Ollama</p>
-      </div>
-      <div class="hero-pane" id="heroPaneBookmarklet" role="tabpanel" aria-labelledby="heroTabBookmarklet" hidden="">
-        <p class="hero-pane-blurb">Én lenke i bokmerkeraden, i hvilken som helst nettleser og på alle OS – inkludert iOS. Ingen installasjon; oppsummeringen vises rett på siden.</p>
-        <div class="hero-cta">
-          <a href="../bookmarklet.html" class="btn-primary" data-track="bookmarklet-open">Lag din bookmarklet →</a>
-        </div>
-        <p class="hero-meta">Åpner generatoren · de fleste LLM-modeller via byPhil API (uten nøkkel), eller din egen OpenAI, Gemini, Mistral, DeepSeek eller Ollama</p>
       </div>
       <ol class="hs-steps" data-stage-pane="browser">
   <li class="is-on" data-step="0" role="button" tabindex="0"><b>Les hvilken som helst side.</b><span>Åpne en artikkel som vanlig. AISH holder seg diskret i nettleseren.</span></li>
@@ -203,30 +184,10 @@
           </div>
         </div>
       </div>
+      <!-- The animated demo is nice, but the video shows it better: this opens the full video (komplett-<lang>.mp4, the first clip of #videos) in the player. Without JavaScript it jumps to the clips. -->
+      <a class="hs-watch" href="#videos" data-open-video="komplett"><span class="hs-watch-ico" aria-hidden="true">▶</span><span class="hs-watch-txt"><strong>Se videoen</strong><small>Alt på under ett minutt</small></span></a>
       <div class="hs-ctrl" role="group" aria-label="Gjennomgang"><button type="button" class="hs-pp" aria-label="Sett gjennomgang på pause"><svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><path class="pp-pause" d="M7 5h3v14H7zM14 5h3v14h-3z" fill="currentColor"></path><path class="pp-play" d="M8 5l11 7-11 7z" fill="currentColor"></path></svg></button><button type="button" class="hs-dot is-on" aria-label="Trinn 1"></button><button type="button" class="hs-dot" aria-label="Trinn 2"></button><button type="button" class="hs-dot" aria-label="Trinn 3"></button><button type="button" class="hs-dot" aria-label="Trinn 4"></button></div>
       <p class="sr-only">AI Summary Helper åpner et kort sammendrag av artikkelen i et sidepanel, lar deg stille oppfølgingsspørsmål med lenker tilbake til kildeavsnittet, og oversetter sammendrag til språket du velger.</p>
-    </div>
-    <div class="hs-bm" data-stage-pane="bookmarklet" hidden="">
-      <div class="bm-mock" aria-hidden="true" data-no-translate="">
-            <div class="bm-win">
-              <div class="bm-tb"><i></i><i></i><i></i><span>🔒 dailyledger.example/work-life/office-fern</span></div>
-              <div class="bm-bar"><span>Mail</span><span>Docs</span><span>Maps</span><span class="bm-mark">✨ Summarize</span></div>
-              <div class="bm-page">
-                <div class="bm-mast">The Daily Ledger</div>
-                <h4>Office fern outlives four reorganisations, now up for team lead</h4>
-                <p>Leeds. When the logistics team moved floors in 2019, nobody expected Gerald to survive.</p>
-                <p>Seven years and four reorganisations later, the office fern is the longest-serving member of the department.</p>
-                <p>He has never once scheduled a meeting that could have been an email.</p>
-                <div class="bm-card"><small>✨ AI Summary</small><b>A fern climbs the career ladder</b><span>Gerald, an office fern in Leeds, has outlasted <strong>four reorganisations in seven years</strong> and is now up for team lead.</span></div>
-              </div>
-              <svg class="bm-cursor" viewBox="0 0 24 24" width="26" height="26"><path d="M4 2l15 9-6.5 1.5L9 19z" fill="#14161f" stroke="#fff" stroke-width="1.4" stroke-linejoin="round"></path></svg>
-            </div>
-          </div>
-      <ol class="bm-steps">
-  <li><span class="bm-n">1</span><div><h3>Opprett én gang</h3><p>Velg byPhil API (uten nøkkel) eller din egen OpenAI, Gemini, Mistral, DeepSeek eller Ollama.</p></div></li>
-  <li><span class="bm-n">2</span><div><h3>Dra den til bokmerkeraden</h3><p>Alle nettlesere, alle OS, inkludert iOS. Ingenting å installere.</p></div></li>
-  <li><span class="bm-n">3</span><div><h3>Klikk på den på hvilken som helst side</h3><p>Sammendraget vises rett på siden, med oppfølgingsspørsmål og på språket ditt.</p></div></li>
-</ol>
     </div>
   </div>
 </section>
@@ -829,6 +790,16 @@
           <h3>Biblioteket ditt i Claude, LM Studio og Cursor</h3>
           <p>Slå på AI-apper i Innstillinger, så kan Claude Desktop, LM Studio, Cursor og andre MCP-apper på datamaskinen din søke i biblioteket ditt, sitere markeringene dine og liste opp hva som gjenstår. Hvis du tillater det, kan de også lagre lenker for deg. Ingenting går via serveren vår, og du velger selv hva de får lese.</p>
           <button class="fvideo-cta" type="button" tabindex="-1" aria-hidden="true"><span class="fvideo-cta-play">▶</span>Se klippet</button>
+        </div>
+        <div class="feature-card" data-personas="privacy hoarder researcher">
+          <div class="f-icon icon-teal"><svg viewBox="0 0 24 24" fill="none"><path d="M7 18.5h9.5a3.5 3.5 0 0 0 .6-6.95A5 5 0 0 0 7.4 10.6 4 4 0 0 0 7 18.5Z" stroke="#fff" stroke-width="1.7" stroke-linejoin="round"></path><path d="M12 12.5v3M10.8 13.8h2.4" stroke="#fff" stroke-width="1.7" stroke-linecap="round"></path></svg></div>
+          <h3>Biblioteket ditt på din egen lagring, kryptert</h3>
+          <p>Hold biblioteket synkronisert på tvers av enhetene dine, ta sikkerhetskopi, eller publiser deler av det på Nextcloud eller en annen WebDAV-server, en S3-kompatibel bucket eller en mappe på datamaskinen din. Alt krypteres i nettleseren din før det sendes ut, så serveren ser bare uleselige filer. Publiser en liste til ditt eget nettsted med søk, tag-graf og et 3D-kart over det du har lagret. Deaktivert til du legger til et lagringssted – vi drifter ingen synkroniseringsserver og ser ingenting. <a href="../blog/sync-to-nextcloud-s3-or-a-folder.html">Slik setter du det opp</a> · <a href="../blog/digital-sovereignty-for-individuals.html">Hvorfor det er viktig</a></p>
+        </div>
+        <div class="feature-card" data-personas="hoarder researcher">
+          <div class="f-icon icon-amber"><svg viewBox="0 0 24 24" fill="none"><path d="M6 4.5h9l3 3V19a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V5.5a1 1 0 0 1 1-1Z" stroke="#fff" stroke-width="1.7" stroke-linejoin="round"></path><path d="M8.5 11h7M8.5 14.5h4.5" stroke="#fff" stroke-width="1.7" stroke-linecap="round"></path></svg></div>
+          <h3>Notater og kommentarer på enhver side</h3>
+          <p>Marker tekst og velg: fremhev, kommenter eller lagre et notat med sitatet. Alt havner i Notes-fanen, enten som en liste eller et rutenett med klistrelapper, sortert etter artikkel eller tagg, og synkroniseres sømløst med resten av biblioteket ditt.</p>
         </div>
         <div class="feature-card" data-personas="hoarder researcher">
           <figure class="fvideo" data-blog-video="export">

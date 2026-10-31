@@ -41,7 +41,6 @@
     <nav class="pill" aria-label="Principal">
       <a href="index.html#features" data-sec="features">Fonctionnalités</a>
       <a href="index.html#try-it" data-sec="try-it">Démo</a>
-      <a href="index.html#pricing" data-sec="pricing">Tarifs</a>
       <a href="https://chromewebstore.google.com/detail/ai-summary-helper-openai/hldbejcjaedipeegjcinmhejdndchkmb" class="pill-cta" target="_blank" rel="noopener">Ajouter à Chrome</a>
     </nav>
     <div class="nav-tools">
@@ -60,13 +59,12 @@
       <nav class="mm-links" aria-label="Mobile">
         <a href="index.html#features"><span class="mm-n">01</span>Fonctionnalités</a>
         <a href="index.html#try-it"><span class="mm-n">02</span>Démo</a>
-        <a href="index.html#pricing"><span class="mm-n">03</span>Tarifs</a>
-        <a href="blog/"><span class="mm-n">04</span>Blog</a>
+        <a href="blog/"><span class="mm-n">03</span>Blog</a>
           <a href="blog/pocket-alternative.html" class="mm-sub">Alternative à Pocket : l'essentiel</a>
           <a href="blog/bring-your-own-key.html" class="mm-sub">Votre clé. Votre modèle. Vos données.</a>
           <a href="blog/verify-ai-summary.html" class="mm-sub">Vérifier un résumé par rapport à sa source</a>
           <a href="blog/highlighting-vs-asking.html" class="mm-sub">Interrogez vos surlignages</a>
-        <a href="https://github.com/philffm/ai-summary-helper/" target="_blank" rel="noopener"><span class="mm-n">05</span>GitHub</a>
+        <a href="https://github.com/philffm/ai-summary-helper/" target="_blank" rel="noopener"><span class="mm-n">04</span>GitHub</a>
       </nav>
       <div class="mm-lang">
         <button type="button" class="lang-card" id="langCard"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.6"></circle><path d="M3 12h18M12 3c2.6 2.7 3.9 5.7 3.9 9s-1.3 6.3-3.9 9c-2.6-2.7-3.9-5.7-3.9-9S9.4 5.7 12 3Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"></path></svg><span class="lang-card-cur">Anglais</span><small>24 langues</small><b aria-hidden="true">→</b></button>
@@ -139,7 +137,7 @@
         <ul>
           <li><strong>Apportez votre propre clé (BYOK)</strong> — OpenAI, Google Gemini, Mistral AI, DeepSeek ou un endpoint personnalisé. Votre clé d'API est stockée localement sur votre appareil uniquement (jamais synchronisée, jamais transmise à nos serveurs). Le contenu de la page que vous choisissez de résumer est envoyé directement depuis votre navigateur vers le fournisseur sélectionné, via votre propre clé et conformément à la politique de confidentialité dudit fournisseur. Nous ne voyons, n'enregistrons ni ne stockons ce contenu.</li>
           <li><strong>Modèle local via Ollama</strong> — si vous exécutez un modèle localement, le contenu de la page est envoyé exclusivement à votre propre machine. Rien ne quitte votre appareil.</li>
-          <li><strong>byphil Cloud (optionnel, payant)</strong> — une option hébergée pour les personnes qui préfèrent ne pas gérer de clé API. Si vous choisissez cette offre, le texte que vous souhaitez résumer transite par notre backend, qui relaie la requête via OpenRouter vers un fournisseur de modèle sous-jacent en votre nom et renvoie le résumé. Il s'agit d'un simple relais : nous ne stockons aucun contenu de page, URL ou résumé. Ce que nous enregistrons par compte, ce sont des métadonnées d'utilisation : le nombre de requêtes effectuées, la consommation de tokens, l'horodatage de la dernière requête et le modèle utilisé. La création d'un compte reste facultative ; toutes les autres fonctionnalités fonctionnent sans compte.</li>
+          <li><strong>byphil Cloud (optionnel, payant)</strong> — une option hébergée pour les personnes préférant ne pas avoir à gérer de clé API. Si vous choisissez cette formule, le texte que vous souhaitez résumer transite par notre backend, qui relaie la requête via OpenRouter auprès d'un fournisseur de modèle en votre nom, puis vous renvoie le résumé. Il ne s'agit que d'un simple relais : nous ne conservons ni le contenu des pages, ni les URL, ni les résumés. Ce que nous enregistrons par compte correspond uniquement aux métadonnées d'utilisation : le nombre de requêtes traitées, la consommation de jetons (tokens), l'horodatage de la dernière requête et le modèle utilisé. La création d'un compte reste facultative ; toutes les autres fonctionnalités sont accessibles sans compte. Avec l'option « Préférer les serveurs de l'UE » activée, les modèles disposant d'un point de terminaison en Europe sont exécutés exclusivement sur ces serveurs, et l'application indique clairement quels modèles sont concernés. Cela restreint la localisation de l'exécution du modèle, sans pour autant modifier le circuit de traitement : votre texte transite toujours par notre service (hébergé sur un serveur en Allemagne), puis par OpenRouter (une entreprise américaine) pour parvenir au modèle. Enfin, la lecture à voix haute et la transcription vocale (speech-to-text) ne disposent pas d'option d'hébergement dans l'UE.</li>
         </ul>
 
         <h3>Statut de licence et d'abonnement</h3>
@@ -160,6 +158,7 @@
             <tr><td>Clés d'API / configuration des fournisseurs</td><td>Local</td><td>Non — sensible, sur l'appareil uniquement</td></tr>
             <tr><td>Clé de licence</td><td>Local</td><td>Non — sensible, sur l'appareil uniquement</td></tr>
             <tr><td>Adresse IP réseau LocalSend</td><td>Local</td><td>Non</td></tr>
+            <tr><td>Identifiants de synchronisation de la bibliothèque, clés d'accès et clés de chiffrement</td><td>Local</td><td>Non — données sensibles, strictement locales sur l'appareil, exclues des sauvegardes</td></tr>
             <tr><td>Surlignages de texte et surlignages fantômes IA</td><td>Local (par page)</td><td>Non</td></tr>
             <tr><td>Prompt par défaut, langue, longueur du résumé</td><td>Sync</td><td>Oui, via votre propre compte Chrome</td></tr>
             <tr><td>Préférence d'activation du surlignage</td><td>Sync</td><td>Oui, via votre propre compte Chrome</td></tr>
@@ -178,12 +177,21 @@
           <li><strong>LocalSend et le menu de partage du système (par exemple AirDrop) s'exécutent en direct.</strong> Le fichier est transféré directement de votre navigateur vers l'appareil sélectionné sur votre réseau local, ou vers l'application choisie dans le menu de partage du système. Nous n'intervenons pas et ne pouvons ni voir ni stocker ce contenu. LocalSend fonctionne avec les smartphones, tablettes, ordinateurs et liseuses exécutant une application compatible.</li>
         </ul>
 
+        <h3>Synchronisation, sauvegarde et publication de la bibliothèque (facultatif)</h3>
+        <p>Désactivé jusqu'à ce que vous ajoutiez un emplacement dans Paramètres → Synchronisation et sauvegarde. Un emplacement est un dossier sur un serveur de votre choix (Nextcloud ou un autre serveur WebDAV, ou un bucket compatible S3 tel qu'AWS S3, Cloudflare R2 ou Backblaze B2) ou un dossier sur votre propre ordinateur. Nous n'hébergeons pas ces serveurs, nous n'intervenons à aucun moment et nous n'avons aucun accès à ce que vous y déposez.</p>
+        <ul>
+          <li><strong>Emplacements chiffrés</strong> gardez l'ensemble de votre bibliothèque synchronisée entre vos appareils ou conservez une sauvegarde : articles, résumés, textes intégraux, surlignages, notes, collections et tags. Tout est chiffré dans votre navigateur (AES-256-GCM, avec une clé dérivée de votre phrase secrète) avant de quitter l'appareil, et les noms de fichiers sont brouillés. Le serveur ou le dossier ne voit que des fichiers chiffrés, leur taille et la date de modification. Votre phrase secrète n'est jamais stockée. La clé qui en découle reste dans le stockage local de ce navigateur pour que la synchronisation puisse s'exécuter en arrière-plan ; elle n'est jamais synchronisée ni incluse dans une sauvegarde. Une clé de récupération unique vous est fournie. En cas de perte de la phrase secrète et de la clé de récupération, personne ne pourra lire vos fichiers, y compris nous.</li>
+          <li><strong>Emplacements lisibles en clair</strong> publiez des fichiers bruts (et, si vous le souhaitez, une page de visualisation légère) pour votre propre site web ou vos outils. Seuls les articles correspondant au filtre de tags défini sont exportés. Les notes, rappels et textes intégraux d'articles ne sont jamais publiés, sauf si vous les activez vous-même dans la zone de danger — auquel cas toute personne ayant accès à ce dossier pourra les consulter.</li>
+          <li><strong>Mode de transmission.</strong> Les requêtes partent directement de votre navigateur vers l'adresse indiquée, en HTTPS, à l'aide de l'identifiant ou de la clé d'accès fournie. Cet identifiant est stocké localement, jamais synchronisé et exclu des sauvegardes sauf accord explicite de votre part. L'hébergeur du serveur peut voir votre adresse IP et les moments où vous synchronisez.</li>
+          <li><strong>Un dossier sur cet ordinateur</strong> utilise l'accès aux dossiers du navigateur. Vous choisissez le dossier et le navigateur vous demande l'autorisation, qu'il est susceptible de redemander après un redémarrage. Nous ne conservons que le descripteur d'accès du navigateur pour ce dossier. Tout service utilisé pour transférer ce dossier vers d'autres appareils (Syncthing, iCloud Drive, Dropbox) applique ses propres règles de confidentialité.</li>
+        </ul>
+
         <h3>Applications IA sur votre ordinateur (MCP)</h3>
         <p>Désactivé par défaut. Lorsque vous activez Paramètres → Applications IA (MCP), les applications d'IA connectées sur votre ordinateur (par exemple Claude Desktop, LM Studio, Cursor ou VS Code) peuvent lire les parties de votre bibliothèque que vous autorisez : vos articles enregistrés avec leurs résumés et surlignages, et, uniquement si vous l'activez, le texte intégral des articles, les éléments de vos flux et l'enregistrement de liens dans votre boîte de réception. Les données transitent directement depuis votre navigateur via un petit programme utilitaire sur votre ordinateur (<code>aish-mcp</code>) vers cette application. Elles ne passent jamais par nos serveurs et nous n'y avons aucunement accès. Cet utilitaire n'accepte que les connexions provenant de votre propre ordinateur et requiert un code de jumelage ; il ne stocke aucun article et ne conserve aucun historique de ce qu'il transmet. Les articles portant l'étiquette que vous excluez (<code>private</code> par défaut) ne sont jamais partagés. L'extension conserve localement sur votre appareil la liste des 50 derniers appels (nom de l'outil, horodatage et nombre de résultats, aucun contenu), que vous pouvez consulter dans ce même panneau de paramètres. Ce que l'application d'IA envoie ensuite à son modèle dépend de l'application et du modèle choisis : avec un modèle local (on-device), aucune donnée ne quitte votre ordinateur. Vous pouvez désactiver ce paramètre ou cliquer sur Déconnecter à tout moment.</p>
 
         <h2 id="analytics">Statistiques et cookies</h2>
         <p><strong>En résumé :</strong> ce site web ne dépose <strong>aucun cookie</strong> et n'utilise aucun traceur publicitaire ou intersite. Nous comptabilisons les visites de manière anonyme à l'aide d'une instance Matomo auto-hébergée, et vous pouvez désactiver ce suivi à tout moment.</p>
-        <p><strong>L'extension de navigateur elle-même ne contient aucun code d'analyse d'audience, de télémétrie ou de traçage.</strong> Ses seules requêtes réseau sont destinées au fournisseur d'IA configuré, aux flux auxquels vous êtes abonné, aux pages dont vous demandez l'extraction et (si vous les utilisez) au backend byphil pour byphil Cloud, l'authentification, la vérification des licences et Send to Kindle.</p>
+        <p><strong>L'extension de navigateur elle-même ne contient aucun code d'analyse d'audience, de télémétrie ou de traçage.</strong> Ses seules requêtes réseau sont destinées au fournisseur d'IA que vous avez configuré, aux flux auxquels vous êtes abonné(e), aux pages dont vous demandez l'extraction, aux serveurs configurés pour la synchronisation, la sauvegarde ou la publication de la bibliothèque, et (si vous les utilisez) à l'infrastructure byphil pour byphil Cloud, la connexion, la vérification des licences et Send to Kindle.</p>
         <h3>Ce que nous mesurons</h3>
         <p>Les pages vues, la langue de la page, le site référent, le pays approximatif/le navigateur/le type d'appareil, ainsi que les éléments du site avec lesquels vous interagissez (par exemple les clics sur « Ajouter à Chrome », le sélecteur de tarifs, les éléments de la FAQ, les sections que vous faites défiler et les étapes du générateur de bookmarklet). Les événements ne contiennent jamais d'adresse e-mail, de clé d'API, de code à usage unique, de contenu de page ou de données d'articles.</p>
         <h3>Comment cela est configuré</h3>
@@ -223,8 +231,9 @@
             <tr><td><code>sidePanel</code></td><td>Prendre en charge le panneau latéral natif de Chrome comme option d'affichage</td></tr>
             <tr><td><code>scripting</code></td><td>Injecter le script de contenu nécessaire à la lecture et au résumé d'une page</td></tr>
             <tr><td><code>offscreen</code>, <code>tts</code></td><td>Écouter des podcasts audio et la lecture vocale des résumés en arrière-plan lorsque la fenêtre contextuelle est fermée</td></tr>
+            <tr><td>Accès au système de fichiers (dossier sélectionné)</td><td>Uniquement lorsque vous choisissez un dossier sur votre ordinateur comme emplacement de synchronisation ou de sauvegarde ; le navigateur sollicite votre autorisation et seul ce dossier est accessible</td></tr>
             <tr><td><code>unlimitedStorage</code></td><td>Conserver une archive locale volumineuse d'articles et de surlignages sans atteindre le quota de stockage par défaut</td></tr>
-            <tr><td><code>host_permissions (&lt;all_urls&gt;)</code></td><td>Vous permettre de résumer n'importe quelle page visitée — le contenu n'est lu et transmis que lorsque vous déclenchez activement un résumé, jamais en arrière-plan de manière passive</td></tr>
+            <tr><td><code>host_permissions (&lt;all_urls&gt;)</code></td><td>Vous permet de résumer n'importe quelle page consultée — le contenu n'est lu et transmis que lorsque vous déclenchez activement un résumé, jamais de manière passive. Permet également à l'extension de joindre le serveur de synchronisation ou le bucket renseigné, quelle que soit son adresse</td></tr>
           </tbody>
         </table>
         <p>Nous n'utilisons pas ces autorisations pour suivre votre navigation, créer un profil publicitaire ou collecter des données au-delà de la fourniture stricte des fonctionnalités décrites ci-dessus.</p>
@@ -234,14 +243,14 @@
           <li>Nous ne diffusons aucune publicité et nous ne vendons, ne louons ni n'échangeons vos données avec des annonceurs ou des courtiers en données (data brokers).</li>
           <li>Nous n'exigeons aucun compte ni aucune connexion pour utiliser les fonctionnalités principales.</li>
           <li>Nous n'enregistrons ni ne conservons le contenu des pages résumées avec votre propre clé API ou un modèle local, et nous n'avons aucun accès à ce que vous envoyez via LocalSend ou le menu de partage.</li>
-          <li>Nous n'avons aucun accès à votre historique d'articles, à vos surlignages ou à vos clés d'API stockés localement — ils ne quittent jamais votre appareil, sauf si vous décidez explicitement de les exporter.</li>
+          <li>Nous n'avons aucun accès à votre historique d'articles, à vos surlignages ou à vos clés API stockés localement : ils ne quittent jamais votre appareil, sauf si vous les exportez explicitement ou configurez un emplacement de synchronisation, de sauvegarde ou de publication — et ils ne sont alors transmis qu'à la destination que vous avez choisie.</li>
         </ul>
 
         <h2>Services tiers</h2>
         <p>Selon la configuration que vous choisissez pour l'extension, le contenu de votre page peut être envoyé à :</p>
         <ul>
           <li>OpenAI, Google (Gemini), Mistral AI ou DeepSeek — uniquement si vous avez renseigné votre propre clé d'API pour ce fournisseur, et exclusivement pour la page que vous résumez activement.</li>
-          <li>Notre backend byphil, hébergé par IONOS SE en Allemagne — uniquement si vous vous connectez, utilisez byphil Cloud ou « Send to Kindle ».</li>
+          <li>Notre backend byphil et sa base de données, tous deux hébergés par IONOS SE en Allemagne — uniquement si vous vous connectez, utilisez byphil Cloud ou « Send to Kindle ».</li>
           <li>OpenRouter, par lequel byphil Cloud se connecte aux modèles, ainsi que le fournisseur de modèle vers lequel la requête est routée — le texte que vous résumez est relayé au modèle choisi, uniquement pour le traitement de cette requête.</li>
           <li>Stripe — pour les paiements et la gestion des abonnements, en tant que Merchant of Record (revendeur officiel).</li>
           <li>Amazon — si vous envoyez un article vers votre Kindle, Amazon assure la distribution selon ses propres règles de confidentialité.</li>

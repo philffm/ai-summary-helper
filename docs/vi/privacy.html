@@ -41,7 +41,6 @@
     <nav class="pill" aria-label="Chính">
       <a href="index.html#features" data-sec="features">Tính năng</a>
       <a href="index.html#try-it" data-sec="try-it">Demo</a>
-      <a href="index.html#pricing" data-sec="pricing">Bảng giá</a>
       <a href="https://chromewebstore.google.com/detail/ai-summary-helper-openai/hldbejcjaedipeegjcinmhejdndchkmb" class="pill-cta" target="_blank" rel="noopener">Thêm vào Chrome</a>
     </nav>
     <div class="nav-tools">
@@ -60,13 +59,12 @@
       <nav class="mm-links" aria-label="Di động">
         <a href="index.html#features"><span class="mm-n">01</span>Tính năng</a>
         <a href="index.html#try-it"><span class="mm-n">02</span>Demo</a>
-        <a href="index.html#pricing"><span class="mm-n">03</span>Bảng giá</a>
-        <a href="blog/"><span class="mm-n">04</span>Blog</a>
+        <a href="blog/"><span class="mm-n">03</span>Blog</a>
           <a href="blog/pocket-alternative.html" class="mm-sub">Giải pháp thay thế Pocket: Những yếu tố cốt lõi</a>
           <a href="blog/bring-your-own-key.html" class="mm-sub">Khóa của bạn. Mô hình của bạn. Dữ liệu của bạn.</a>
           <a href="blog/verify-ai-summary.html" class="mm-sub">Đối chiếu bản tóm tắt với nguồn gốc</a>
           <a href="blog/highlighting-vs-asking.html" class="mm-sub">Hỏi đáp dựa trên các phần đã đánh dấu</a>
-        <a href="https://github.com/philffm/ai-summary-helper/" target="_blank" rel="noopener"><span class="mm-n">05</span>GitHub</a>
+        <a href="https://github.com/philffm/ai-summary-helper/" target="_blank" rel="noopener"><span class="mm-n">04</span>GitHub</a>
       </nav>
       <div class="mm-lang">
         <button type="button" class="lang-card" id="langCard"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.6"></circle><path d="M3 12h18M12 3c2.6 2.7 3.9 5.7 3.9 9s-1.3 6.3-3.9 9c-2.6-2.7-3.9-5.7-3.9-9S9.4 5.7 12 3Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"></path></svg><span class="lang-card-cur">Tiếng Anh</span><small>24 ngôn ngữ</small><b aria-hidden="true">→</b></button>
@@ -139,7 +137,7 @@
         <ul>
           <li><strong>Sử dụng API key riêng (BYOK)</strong> — OpenAI, Google Gemini, Mistral AI, DeepSeek, hoặc endpoint tùy chỉnh. API key chỉ được lưu cục bộ trên thiết bị của bạn (không bao giờ đồng bộ hay gửi về máy chủ chúng tôi). Nội dung trang bạn chọn tóm tắt sẽ được gửi trực tiếp từ trình duyệt đến nhà cung cấp bạn đã chọn bằng key của bạn, tuân theo chính sách bảo mật của nhà cung cấp đó. Chúng tôi không thể xem, ghi nhật ký hoặc lưu trữ nội dung này.</li>
           <li><strong>Mô hình cục bộ qua Ollama</strong> — nếu bạn chạy mô hình AI cục bộ, nội dung trang web chỉ được gửi đến chính máy tính của bạn. Hoàn toàn không có dữ liệu nào rời khỏi thiết bị.</li>
-          <li><strong>byphil Cloud (tùy chọn, trả phí)</strong> — tùy chọn máy chủ lưu trữ dành cho những ai không muốn tự quản lý khóa API. Nếu bạn chọn gói này, văn bản bạn yêu cầu tóm tắt sẽ đi qua hệ thống máy chủ của chúng tôi, chuyển tiếp yêu cầu qua OpenRouter đến nhà cung cấp mô hình tương ứng thay cho bạn và trả về bản tóm tắt. Dữ liệu chỉ được chuyển tiếp: chúng tôi không lưu trữ nội dung trang, URL hay bản tóm tắt. Những gì chúng tôi ghi nhận theo từng tài khoản chỉ là siêu dữ liệu sử dụng: số lượng yêu cầu đã hoàn thành, lượng token đã dùng, thời gian của yêu cầu gần nhất và mô hình được sử dụng. Việc tạo tài khoản là hoàn toàn tùy chọn; tất cả các tính năng khác vẫn hoạt động bình thường mà không cần tài khoản.</li>
+          <li><strong>byphil Cloud (tùy chọn, trả phí)</strong> — tùy chọn dịch vụ lưu trữ dành cho những ai không muốn tự quản lý API key. Nếu chọn gói này, văn bản bạn yêu cầu tóm tắt sẽ đi qua backend của chúng tôi, nơi chuyển tiếp yêu cầu qua OpenRouter đến nhà cung cấp mô hình AI thay cho bạn và trả về bản tóm tắt. Dữ liệu chỉ được chuyển tiếp: chúng tôi hoàn toàn không lưu trữ nội dung trang, URL hay các bản tóm tắt. Những gì chúng tôi ghi nhận theo từng tài khoản chỉ là siêu dữ liệu sử dụng: số lượng yêu cầu đã hoàn tất, lượng token đã dùng, thời gian của yêu cầu gần nhất và mô hình AI được sử dụng. Việc tạo tài khoản là hoàn toàn tùy chọn; tất cả các tính năng khác đều hoạt động bình thường mà không cần tài khoản. Khi bật cài đặt “Ưu tiên máy chủ EU”, các mô hình có endpoint tại Châu Âu sẽ chỉ chạy trên các endpoint đó và ứng dụng sẽ đánh dấu rõ mô hình nào hỗ trợ hoặc không. Thiết lập này giới hạn vị trí mô hình được thực thi chứ không loại bỏ các trung gian trong luồng xử lý: văn bản của bạn vẫn đi qua dịch vụ của chúng tôi (chạy trên máy chủ tại Đức) rồi qua OpenRouter, một công ty của Mỹ, trên đường đến mô hình AI; đồng thời tính năng đọc văn bản và chuyển giọng nói thành văn bản không có tùy chọn máy chủ EU.</li>
         </ul>
 
         <h3>Trạng thái giấy phép và gói đăng ký</h3>
@@ -160,6 +158,7 @@
             <tr><td>API key / cấu hình nhà cung cấp</td><td>Cục bộ (Local)</td><td>Không — dữ liệu nhạy cảm, chỉ lưu trên thiết bị</td></tr>
             <tr><td>License key</td><td>Cục bộ (Local)</td><td>Không — dữ liệu nhạy cảm, chỉ lưu trên thiết bị</td></tr>
             <tr><td>IP mạng LocalSend</td><td>Cục bộ (Local)</td><td>Không</td></tr>
+            <tr><td>Thông tin đăng nhập đồng bộ thư viện, khóa truy cập và khóa mã hóa</td><td>Cục bộ (Local)</td><td>Không — dữ liệu nhạy cảm, chỉ lưu trên thiết bị, không bao gồm trong bản sao lưu</td></tr>
             <tr><td>Đoạn văn bản đánh dấu &amp; AI ghost highlights</td><td>Cục bộ (theo từng trang)</td><td>Không</td></tr>
             <tr><td>Prompt mặc định, ngôn ngữ, độ dài tóm tắt</td><td>Đồng bộ (Sync)</td><td>Có, thông qua tài khoản Chrome của bạn</td></tr>
             <tr><td>Tùy chọn bật/tắt tính năng highlight</td><td>Đồng bộ (Sync)</td><td>Có, thông qua tài khoản Chrome của bạn</td></tr>
@@ -178,12 +177,21 @@
           <li><strong>LocalSend và bảng chia sẻ hệ thống (ví dụ: AirDrop) truyền dữ liệu trực tiếp.</strong> Tệp tin được chuyển trực tiếp từ trình duyệt đến thiết bị bạn chọn trong mạng nội bộ, hoặc đến ứng dụng được chọn qua bảng chia sẻ. Chúng tôi hoàn toàn không can thiệp, không xem và không lưu trữ nội dung này. LocalSend hoạt động mượt mà với điện thoại, máy tính bảng, máy tính và máy đọc sách có cài ứng dụng tương thích.</li>
         </ul>
 
+        <h3>Đồng bộ thư viện, sao lưu và xuất bản (tùy chọn)</h3>
+        <p>Tắt cho đến khi bạn thêm một vị trí lưu trữ trong Cài đặt → Đồng bộ &amp; sao lưu. Vị trí lưu trữ là một thư mục trên máy chủ do bạn chọn (Nextcloud hoặc máy chủ WebDAV khác, hay bucket tương thích S3 như AWS S3, Cloudflare R2 hoặc Backblaze B2) hoặc một thư mục trên máy tính của bạn. Chúng tôi không vận hành các máy chủ này, không can thiệp và không bao giờ thấy nội dung bạn lưu trữ ở đó.</p>
+        <ul>
+          <li><strong>Vị trí lưu trữ được mã hóa</strong> đồng bộ toàn bộ thư viện giữa các thiết bị của bạn hoặc lưu giữ bản sao lưu: bài viết, tóm tắt, toàn văn nội dung, điểm nhấn (highlight), ghi chú, bộ sưu tập và thẻ tag. Mọi thứ đều được mã hóa ngay trong trình duyệt của bạn (AES-256-GCM, với khóa được tạo từ cụm mật khẩu của bạn) trước khi rời khỏi thiết bị, và tên tệp được xáo trộn. Máy chủ hoặc thư mục chỉ thấy các tệp đã mã hóa, dung lượng và thời điểm thay đổi của chúng. Cụm mật khẩu của bạn không được lưu trữ. Khóa được tạo từ cụm mật khẩu chỉ lưu trong bộ nhớ cục bộ của trình duyệt này để quá trình đồng bộ có thể chạy nền; khóa này không bao giờ được đồng bộ hay đưa vào bản sao lưu. Bạn chỉ nhận được khóa khôi phục một lần duy nhất. Nếu bạn làm mất cả cụm mật khẩu và khóa khôi phục, không ai có thể đọc được các tệp này, kể cả chúng tôi.</li>
+          <li><strong>Vị trí lưu trữ ở dạng đọc được</strong> xuất bản các tệp văn bản thuần (và nếu muốn, cả một trang xem trước gọn nhẹ) cho trang web hoặc công cụ riêng của bạn. Chỉ những bài viết khớp với bộ lọc thẻ tag do bạn thiết lập mới được xuất. Ghi chú, lời nhắc và toàn văn bài viết không bao giờ được xuất bản trừ khi bạn tự mình bật chúng trong vùng nguy hiểm, và khi đó bất kỳ ai mở được thư mục đó đều có thể đọc chúng.</li>
+          <li><strong>Phương thức truyền tải dữ liệu.</strong> Các yêu cầu được gửi trực tiếp từ trình duyệt của bạn đến địa chỉ bạn đã nhập qua giao thức HTTPS, sử dụng thông tin đăng nhập hoặc khóa truy cập bạn cung cấp. Thông tin đăng nhập đó được lưu trữ cục bộ, không bao giờ được đồng bộ và không nằm trong các bản sao lưu trừ khi bạn chủ động chọn. Quản trị viên máy chủ có thể thấy địa chỉ IP của bạn và thời điểm bạn đồng bộ.</li>
+          <li><strong>Thư mục trên máy tính này</strong> sử dụng quyền truy cập thư mục của trình duyệt. Bạn chọn thư mục và trình duyệt sẽ yêu cầu bạn cấp quyền (có thể yêu cầu lại sau khi khởi động lại). Chúng tôi chỉ lưu handle của trình duyệt đối với thư mục đó. Bất kỳ công cụ nào bạn dùng để chuyển thư mục đó sang các thiết bị khác (Syncthing, iCloud Drive, Dropbox) đều có các điều khoản quyền riêng tư riêng.</li>
+        </ul>
+
         <h3>Ứng dụng AI trên máy tính (MCP)</h3>
         <p>Mặc định tắt. Khi bạn bật Cài đặt → Ứng dụng AI (MCP), các ứng dụng AI trên máy tính mà bạn kết nối (ví dụ: Claude Desktop, LM Studio, Cursor hoặc VS Code) có thể đọc những phần trong thư viện mà bạn cho phép: các bài viết đã lưu kèm tóm tắt và đoạn đánh dấu nổi bật, và chỉ khi bạn bật, toàn bộ nội dung bài viết, các mục trong nguồn cấp dữ liệu và lưu liên kết vào hộp thư đến. Dữ liệu sẽ đi từ trình duyệt của bạn thông qua một tiện ích trợ giúp nhỏ trên máy tính (<code>aish-mcp</code>) đến ứng dụng đó. Dữ liệu không bao giờ đi qua máy chủ của chúng tôi và chúng tôi hoàn toàn không nhìn thấy nội dung đó. Tiện ích trợ giúp chỉ chấp nhận kết nối từ chính máy tính của bạn và yêu cầu mã ghép nối; tiện ích không lưu trữ bài viết và không lưu lại bản ghi nội dung được chuyển tiếp. Các bài viết có gắn thẻ loại trừ (<code>private</code> theo mặc định) sẽ không bao giờ được chia sẻ. Tiện ích mở rộng lưu lại danh sách 50 lệnh gọi gần nhất (tên công cụ, thời gian và số lượng kết quả, không chứa nội dung) ngay trên thiết bị của bạn, bạn có thể xem trong cùng bảng cài đặt. Dữ liệu mà ứng dụng AI gửi đến mô hình sau đó sẽ tùy thuộc vào ứng dụng và mô hình bạn chọn: với mô hình cục bộ chạy offline, hoàn toàn không có dữ liệu nào rời khỏi máy tính của bạn. Bạn có thể tắt cài đặt hoặc chọn Ngắt kết nối bất cứ lúc nào.</p>
 
         <h2 id="analytics">Phân tích &amp; cookie</h2>
         <p><strong>Tóm tắt ngắn gọn:</strong> trang web này <strong>không dùng cookie</strong> và không sử dụng bất kỳ trình theo dõi liên trang web hay quảng cáo nào. Chúng tôi đo lường lượt truy cập ẩn danh bằng phiên bản Matomo tự lưu trữ (self-hosted), và bạn có thể tắt tính năng này bất cứ lúc nào.</p>
-        <p><strong>Bản thân tiện ích mở rộng trình duyệt hoàn toàn không chứa mã phân tích, đo lường từ xa (telemetry) hay theo dõi người dùng.</strong> Các yêu cầu mạng duy nhất phát sinh chỉ gửi đến nhà cung cấp AI do bạn thiết lập, các nguồn cấp dữ liệu (feed) bạn đăng ký, các trang web bạn yêu cầu tải và (nếu bạn sử dụng) hệ thống backend của byphil cho byphil Cloud, đăng nhập, kiểm tra giấy phép và Send to Kindle.</p>
+        <p><strong>Bản thân tiện ích mở rộng trình duyệt hoàn toàn không chứa mã phân tích, đo lường từ xa (telemetry) hay theo dõi người dùng.</strong> Yêu cầu mạng duy nhất của ứng dụng chỉ gửi đến nhà cung cấp AI bạn đã cấu hình, nguồn cấp dữ liệu (feed) bạn đã đăng ký, các trang bạn yêu cầu tải về, máy chủ bạn đã thiết lập để đồng bộ, sao lưu hoặc xuất bản thư viện, và (nếu bạn sử dụng) máy chủ phụ trợ byphil cho byphil Cloud, đăng nhập, kiểm tra giấy phép và tính năng Send to Kindle.</p>
         <h3>Những gì chúng tôi đo lường</h3>
         <p>Lượt xem trang, ngôn ngữ trang, trang giới thiệu (referrer), quốc gia/trình duyệt/loại thiết bị ước tính, và các phần trên trang web mà bạn tương tác (ví dụ: các lượt nhấp vào "Add to Chrome", nút chuyển đổi bảng giá, các mục FAQ, các phần bạn cuộn tới và các bước tạo bookmarklet). Các sự kiện thu thập tuyệt đối không chứa địa chỉ email, khóa API, mã dùng một lần, nội dung trang hoặc dữ liệu bài viết.</p>
         <h3>Cách cấu hình hệ thống</h3>
@@ -223,8 +231,9 @@
             <tr><td><code>sidePanel</code></td><td>Hỗ trợ khung bảng điều khiển bên (side panel) mặc định của Chrome làm tùy chọn xem</td></tr>
             <tr><td><code>scripting</code></td><td>Chèn tập lệnh (content script) cần thiết để đọc và tóm tắt nội dung trang web</td></tr>
             <tr><td><code>offscreen</code>, <code>tts</code></td><td>Phát âm thanh podcast và đọc to bản tóm tắt dưới nền ngay cả khi cửa sổ popup đã đóng</td></tr>
+            <tr><td>Truy cập hệ thống tệp (thư mục đã chọn)</td><td>Chỉ khi bạn chọn một thư mục trên máy tính làm vị trí đồng bộ hoặc sao lưu; trình duyệt sẽ yêu cầu bạn cấp quyền và chỉ thư mục đó mới có thể truy cập được</td></tr>
             <tr><td><code>unlimitedStorage</code></td><td>Lưu trữ cục bộ lượng lớn bài viết và đoạn đánh dấu mà không bị giới hạn dung lượng lưu trữ mặc định</td></tr>
-            <tr><td><code>host_permissions (&lt;all_urls&gt;)</code></td><td>Cho phép bạn tóm tắt bất kỳ trang web nào bạn truy cập — nội dung chỉ được đọc và truyền đi khi bạn chủ động kích hoạt tóm tắt, hoàn toàn không chạy ngầm thụ động</td></tr>
+            <tr><td><code>host_permissions (&lt;all_urls&gt;)</code></td><td>Cho phép bạn tóm tắt bất kỳ trang nào bạn truy cập — nội dung chỉ được đọc và truyền đi khi bạn chủ động kích hoạt tóm tắt, hoàn toàn không thu thập thụ động. Đồng thời cho phép tiện ích mở rộng kết nối với máy chủ đồng bộ hoặc bucket bạn đã nhập, có thể ở bất kỳ địa chỉ nào</td></tr>
           </tbody>
         </table>
         <p>Chúng tôi không sử dụng các quyền này để theo dõi lịch sử duyệt web, lập hồ sơ quảng cáo hoặc thu thập dữ liệu ngoài việc cung cấp các tính năng được nêu ở trên.</p>
@@ -234,14 +243,14 @@
           <li>Chúng tôi không chạy quảng cáo và không bán, cho thuê hoặc trao đổi dữ liệu của bạn cho các nhà quảng cáo hay bên môi giới dữ liệu.</li>
           <li>Chúng tôi không yêu cầu tài khoản hay đăng nhập đối với bất kỳ tính năng cốt lõi nào.</li>
           <li>Chúng tôi không ghi nhật ký hay lưu trữ nội dung các trang bạn tóm tắt qua khóa API riêng hoặc mô hình AI cục bộ, đồng thời không bao giờ tiếp cận nội dung bạn gửi qua LocalSend hay bảng chia sẻ.</li>
-          <li>Chúng tôi không có quyền truy cập vào lịch sử bài viết, các đoạn highlight hoặc API key lưu trên máy bạn — chúng không bao giờ rời khỏi thiết bị trừ khi bạn chủ động xuất ra.</li>
+          <li>Chúng tôi không có quyền truy cập vào lịch sử bài viết, các điểm nhấn (highlight) hay khóa API được lưu cục bộ của bạn — chúng không bao giờ rời khỏi thiết bị trừ khi bạn chủ động xuất dữ liệu hoặc thiết lập vị trí đồng bộ, sao lưu hay xuất bản, và khi đó chúng chỉ được gửi đến đúng nơi bạn chỉ định.</li>
         </ul>
 
         <h2>Dịch vụ của bên thứ ba</h2>
         <p>Tùy thuộc vào cấu hình tiện ích của bạn, nội dung trang web có thể được gửi tới:</p>
         <ul>
           <li>OpenAI, Google (Gemini), Mistral AI, hoặc DeepSeek — chỉ khi bạn đã nhập API key riêng của nhà cung cấp đó, và chỉ đối với trang bạn chủ động tóm tắt.</li>
-          <li>Hệ thống backend byphil của chúng tôi, được lưu trữ bởi IONOS SE tại Đức — chỉ khi bạn đăng nhập, sử dụng byphil Cloud hoặc Send to Kindle.</li>
+          <li>Backend và cơ sở dữ liệu byphil của chúng tôi, cả hai đều được lưu trữ bởi IONOS SE tại Đức — chỉ khi bạn đăng nhập, sử dụng byphil Cloud hoặc Send to Kindle.</li>
           <li>OpenRouter, cầu nối giúp byphil Cloud kết nối với các mô hình, và nhà cung cấp mô hình được định tuyến tới — văn bản bạn tóm tắt chỉ được chuyển tiếp đến mô hình bạn sử dụng cho riêng yêu cầu đó.</li>
           <li>Stripe — xử lý thanh toán và quản lý gói đăng ký, với vai trò là Merchant of Record.</li>
           <li>Amazon — nếu bạn gửi bài viết đến thiết bị Kindle, Amazon sẽ xử lý việc gửi nhận theo các điều khoản bảo mật của riêng họ.</li>

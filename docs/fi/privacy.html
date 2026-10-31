@@ -41,7 +41,6 @@
     <nav class="pill" aria-label="Ensisijainen">
       <a href="index.html#features" data-sec="features">Ominaisuudet</a>
       <a href="index.html#try-it" data-sec="try-it">Demo</a>
-      <a href="index.html#pricing" data-sec="pricing">Hinnasto</a>
       <a href="https://chromewebstore.google.com/detail/ai-summary-helper-openai/hldbejcjaedipeegjcinmhejdndchkmb" class="pill-cta" target="_blank" rel="noopener">Lisää Chromeen</a>
     </nav>
     <div class="nav-tools">
@@ -60,13 +59,12 @@
       <nav class="mm-links" aria-label="Mobiili">
         <a href="index.html#features"><span class="mm-n">01</span>Ominaisuudet</a>
         <a href="index.html#try-it"><span class="mm-n">02</span>Demo</a>
-        <a href="index.html#pricing"><span class="mm-n">03</span>Hinnasto</a>
-        <a href="blog/"><span class="mm-n">04</span>Blogi</a>
+        <a href="blog/"><span class="mm-n">03</span>Blogi</a>
           <a href="blog/pocket-alternative.html" class="mm-sub">Vaihtoehto Pocketille: mikä ratkaisee</a>
           <a href="blog/bring-your-own-key.html" class="mm-sub">Oma avain. Oma malli. Omat tiedot.</a>
           <a href="blog/verify-ai-summary.html" class="mm-sub">Tarkista tiivistelmä lähteestä</a>
           <a href="blog/highlighting-vs-asking.html" class="mm-sub">Kysy korostuksistasi</a>
-        <a href="https://github.com/philffm/ai-summary-helper/" target="_blank" rel="noopener"><span class="mm-n">05</span>GitHub</a>
+        <a href="https://github.com/philffm/ai-summary-helper/" target="_blank" rel="noopener"><span class="mm-n">04</span>GitHub</a>
       </nav>
       <div class="mm-lang">
         <button type="button" class="lang-card" id="langCard"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.6"></circle><path d="M3 12h18M12 3c2.6 2.7 3.9 5.7 3.9 9s-1.3 6.3-3.9 9c-2.6-2.7-3.9-5.7-3.9-9S9.4 5.7 12 3Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"></path></svg><span class="lang-card-cur">Englanti</span><small>24 kieltä</small><b aria-hidden="true">→</b></button>
@@ -139,7 +137,7 @@
         <ul>
           <li><strong>Oma API key (BYOK)</strong> — OpenAI, Google Gemini, Mistral AI, DeepSeek tai mukautettu päätepiste. API-avaimesi tallennetaan vain paikallisesti laitteellesi (ei koskaan synkronoida, ei koskaan lähetetä meille). Sivun sisältö, jonka valitset tiivistettäväksi, lähetetään suoraan selaimestasi valitsemallesi palvelulle käyttäen omaa avaintasi ja palveluntarjoajan omien tietosuojaehtojen mukaisesti. Emme näe, kirjaa lokiin tai tallenna tätä sisältöä.</li>
           <li><strong>Paikallinen malli Ollaman kautta</strong> — jos käytät paikallista mallia, sivun sisältö lähetetään vain omalle koneellesi. Mitään ei poistu laitteeltasi.</li>
-          <li><strong>byphil Cloud (valinnainen, maksullinen)</strong> — ylläpidetty vaihtoehto niille, jotka eivät halua hallinnoida omaa API-avainta. Jos valitset tämän tason, tiivistettäväksi pyytämäsi teksti kulkee taustajärjestelmämme kautta, joka välittää pyynnön OpenRouterin kautta mallintarjoajalle puolestasi ja palauttaa tiivistelmän. Teksti vain välitetään: emme tallenna sivujen sisältöä, verkko-osoitteita tai tiivistelmiä. Tiliä kohden tallennamme vain käytön metatiedot: suoritettujen pyyntöjen määrän, tokenien käytön, viimeisimmän pyynnön ajankohdan ja käytetyn mallin. Käyttäjätili on vapaaehtoinen; kaikki muut ominaisuudet toimivat ilman sitä.</li>
+          <li><strong>byphil Cloud (valinnainen, maksullinen)</strong> — valmis pilvivaihtoehto heille, jotka eivät halua hallinnoida omaa API keytä. Jos valitset tämän tason, tiivistettäväksi pyytämäsi teksti kulkee taustajärjestelmämme kautta, joka välittää pyynnön puolestasi OpenRouterin kautta tekoälymallin tarjoajalle ja palauttaa tiivistelmän. Tietoja vain välitetään: emme tallenna sivujen sisältöä, URL-osoitteita tai tiivistelmiä. Tallennamme käyttäjätilikohtaisesti ainoastaan käytön metatietoja: valmistuneiden pyyntöjen määrän, tokenien kulutuksen, viimeisimmän pyynnön ajankohdan sekä käytetyn mallin. Käyttäjätili on täysin vapaaehtoinen; kaikki muut toiminnot toimivat ilman tiliä. Kun asetus ”Suosi EU-palvelimia” on käytössä, eurooppalaisen päätepisteen omaavat mallit suoritetaan vain EU-alueella, ja sovellus merkitsee mitkä mallit tukevat tätä ja mitkä eivät. Tämä rajaa mallin suorituspaikkaa. Se ei kuitenkaan poista välikäsiä tiedonsiirtoketjusta: tekstisi kulkee edelleen palvelumme kautta (jota ajetaan Saksassa sijaitsevalla palvelimella) ja sen jälkeen yhdysvaltalaisen OpenRouterin kautta matkallaan mallille. Ääneenluvulle ja puheentunnistukselle ei ole EU-vaihtoehtoa.</li>
         </ul>
 
         <h3>Lisenssi ja tilauksen tila</h3>
@@ -160,6 +158,7 @@
             <tr><td>API keys / palvelinasetukset</td><td>Paikallinen</td><td>Ei — arkaluonteinen, vain laitteella</td></tr>
             <tr><td>Lisenssiavain</td><td>Paikallinen</td><td>Ei — arkaluonteinen, vain laitteella</td></tr>
             <tr><td>LocalSend-verkon IP</td><td>Paikallinen</td><td>Ei</td></tr>
+            <tr><td>Kirjaston synkronoinnin kirjautumistiedot, pääsyavaimet ja salausavaimet</td><td>Paikallinen</td><td>Ei — arkaluonteinen, vain laitteella, jätetty pois varmuuskopioista</td></tr>
             <tr><td>Tekstin korostukset ja tekoälykorostukset</td><td>Paikallinen (sivukohtainen)</td><td>Ei</td></tr>
             <tr><td>Oletuskehote, kieli, tiivistelmän pituus</td><td>Synkronoitu</td><td>Kyllä, oman Chrome-tilisi kautta</td></tr>
             <tr><td>Korostus päällä/pois -valinta</td><td>Synkronoitu</td><td>Kyllä, oman Chrome-tilisi kautta</td></tr>
@@ -178,12 +177,21 @@
           <li><strong>LocalSend ja järjestelmän jakovalikko (esim. AirDrop) toimivat suoraan.</strong> Tiedosto siirtyy selaimestasi suoraan paikallisen verkkosi laitteeseen tai jakovalikosta valitsemaasi sovellukseen. Emme ole mukana siirrossa emmekä näe tai tallenna tätä sisältöä. LocalSend toimii puhelimissa, tableteissa, tietokoneissa ja lukulaitteissa, joissa on yhteensopiva sovellus.</li>
         </ul>
 
+        <h3>Kirjaston synkronointi, varmuuskopiointi ja julkaisu (valinnainen)</h3>
+        <p>Poissa käytöstä, kunnes lisäät kohteen valikossa Asetukset → Synkronointi ja varmuuskopiointi. Kohde voi olla kansio valitsemallasi palvelimella (Nextcloud tai muu WebDAV-palvelin tai S3-yhteensopiva tallennustila kuten AWS S3, Cloudflare R2 tai Backblaze B2) tai kansio omalla tietokoneellasi. Emme ylläpidä näitä palvelimia, emme ole osallisia emmekä koskaan näe sinne tallentamiasi tietoja.</p>
+        <ul>
+          <li><strong>Salatut kohteet</strong> Pidä koko kirjastosi ajan tasalla laitteidesi välillä tai säilytä varmuuskopiota: artikkelit, tiivistelmät, kokotekstit, korostukset, muistiinpanot, kokoelmat ja tagit. Kaikki salataan selaimessasi (AES-256-GCM salasanastasi johdetulla avaimella) ennen kuin tiedot poistuvat laitteelta, ja tiedostonimet sekoitetaan. Palvelin tai kansio näkee vain salatut tiedostot, niiden koot ja muokkausajankohdat. Salasanaasi ei tallenneta. Siitä johdettu avain säilyy tämän selaimen paikallisessa tallennustilassa, jotta synkronointi voi toimia taustalla; sitä ei koskaan synkronoida eikä sisällytetä varmuuskopioihin. Saat palautusavaimen kerran. Jos kadotat sekä salasanan että palautusavaimen, kukaan ei voi lukea tiedostoja – emme edes me.</li>
+          <li><strong>Luettavat kohteet</strong> Julkaise selkotekstitiedostoja (ja halutessasi pieni katselunäkymä) omalle verkkosivustollesi tai työkaluillesi. Vain asettamaasi tagisuodatinta vastaavat artikkelit viedään. Muistiinpanoja, muistutuksia ja artikkelien koko tekstejä ei koskaan julkaista, ellet itse kytke niitä päälle vaara-alueen asetuksista – tällöin kuka tahansa kansion avaaja voi lukea ne.</li>
+          <li><strong>Miten tiedot lähetetään.</strong> Pyynnöt kulkevat selaimestasi suoraan antamaasi osoitteeseen HTTPS-yhteydellä käyttäen antamiasi kirjautumistietoja tai pääsyavainta. Kirjautumistiedot tallennetaan paikallisesti, niitä ei koskaan synkronoida ja ne jätetään pois varmuuskopioista, ellet erikseen salli sitä. Palvelimen ylläpitäjä näkee IP-osoitteesi ja synkronointiajankohdan.</li>
+          <li><strong>Kansio tällä tietokoneella</strong> Käyttää selaimen kansion käyttöoikeutta. Valitset kansion ja selain pyytää lupaa, jota se saattaa pyytää uudelleen selaimen käynnistyessä. Säilytämme vain selaimen viitteen kyseiseen kansioon. Millä tahansa siirrätkin kansion muille laitteille (Syncthing, iCloud Drive, Dropbox), siihen sovelletaan sen omia tietosuojakäytäntöjä.</li>
+        </ul>
+
         <h3>Tekoälysovellukset tietokoneellasi (MCP)</h3>
         <p>Oletuksena pois päältä. Kun kytket päälle kohdan Asetukset → Tekoälysovellukset (MCP), yhdistämäsi tietokoneen tekoälysovellukset (kuten Claude Desktop, LM Studio, Cursor tai VS Code) voivat lukea sallimiasi kirjastosi osia: tallennettuja artikkeleita tiivistelmineen ja korostuksineen, sekä – vain erikseen valittaessa – artikkeleiden koko tekstiä, syötekohteita ja linkkien tallennusta Saapuneet-kansioon. Tiedot siirtyvät selaimestasi tietokoneellasi toimivan pienen apuohjelman (<code>aish-mcp</code>) kautta suoraan sovellukseen. Tiedot eivät koskaan kulje palvelimemme kautta, emmekä näe niitä. Apuohjelma hyväksyy yhteyksiä vain omalta tietokoneeltasi ja vaatii pariliitoskoodin; se ei tallenna artikkeleita eikä säilytä lokia välittämistään tiedoista. Artikkeleita, joissa on poissuljettu tunniste (<code>private</code> oletuksena), ei koskaan jaeta. Laajennus säilyttää laitteellasi luettelon 50 viimeisimmästä kutsusta (työkalun nimi, kellonaika ja tulosten määrä, ei sisältöä), jonka näet samassa asetusnäkymässä. Se, mitä tekoälysovellus lähettää tekoälymallille, riippuu valitsemastasi sovelluksesta ja mallista: paikallista mallia käytettäessä mitään ei poistu tietokoneeltasi. Voit ottaa asetuksen pois päältä tai valita Katkaise yhteys milloin tahansa.</p>
 
         <h2 id="analytics">Analytiikka ja evästeet</h2>
         <p><strong>Lyhyesti:</strong> tämä verkkosivusto <strong>ei aseta evästeitä</strong> eikä käytä mainontaa tai sivustojen välistä seurantaa. Tilastoimme anonyymejä käyntejä itse ylläpidetyllä Matomo-asennuksella, ja voit poistaa sen käytöstä milloin tahansa.</p>
-        <p><strong>Itse selainlaajennus ei sisällä mitään analytiikka-, telemetria- tai seurantakoodia.</strong> Sen ainoat verkkopyynnöt suuntautuvat määrittämällesi tekoälypalvelulle, tilaamillesi syötteille, sivuille, joita pyydät sitä hakemaan, sekä (jos käytät niitä) byphil-taustajärjestelmälle byphil Cloudia, kirjautumista, lisenssitarkistuksia ja Send to Kindle -toimintoa varten.</p>
+        <p><strong>Itse selainlaajennus ei sisällä mitään analytiikka-, telemetria- tai seurantakoodia.</strong> Sen ainoat verkkopyynnöt menevät määrittämällesi tekoälytarjoajalle, tilaamillesi syötteille, sivuille joita pyydät sitä noutamaan, kirjaston synkronointiin, varmuuskopiointiin tai julkaisuun määrittämillesi palvelimille sekä (jos käytät niitä) byphil-taustajärjestelmään byphil Cloudia, kirjautumista, lisenssitarkistuksia ja Send to Kindle -toimintoa varten.</p>
         <h3>Mitä mittaamme</h3>
         <p>Sivulataukset, sivun kieli, viittaaja (referrer), arvioitu maa/selain/laiteluokka sekä osat, joiden kanssa olet vuorovaikutuksessa sivustolla (esimerkiksi "Lisää Chromeen" -painikkeen klikkaukset, hinnoitteluvalitsin, UKK-kohdat, osiot, joihin vierität, ja kirjanmerkkisovelluksen luontivaiheet). Tapahtumat eivät koskaan sisällä sähköpostiosoitteita, API-avaimia, kertakäyttökoodeja, sivun sisältöä tai artikkelitietoja.</p>
         <h3>Miten se on määritetty</h3>
@@ -223,8 +231,9 @@
             <tr><td><code>sidePanel</code></td><td>Tukee Chromen natiivia sivupaneelia katseluvaihtoehtona</td></tr>
             <tr><td><code>scripting</code></td><td>Lisää sivun lukemiseen ja tiivistämiseen tarvittavan sisältöskriptin</td></tr>
             <tr><td><code>offscreen</code>, <code>tts</code></td><td>Toistaa podcast-äänet ja lukee tiivistelmät ääneen taustalla, kun ponnahdusikkuna on suljettu</td></tr>
+            <tr><td>Tiedostojärjestelmän käyttöoikeus (valittu kansio)</td><td>Vain silloin, kun valitset tietokoneeltasi kansion synkronointi- tai varmuuskopiointikohteeksi; selain pyytää luvan ja vain kyseiseen kansioon päästään käsiksi</td></tr>
             <tr><td><code>unlimitedStorage</code></td><td>Mahdollistaa laajan paikallisen artikkelien ja korostusten arkiston ilman oletustallennuskiintiön täyttymistä</td></tr>
-            <tr><td><code>host_permissions (&lt;all_urls&gt;)</code></td><td>Mahdollistaa minkä tahansa vierailemasi sivun tiivistämisen — sisältö luetaan ja välitetään vain silloin, kun käynnistät tiivistämisen aktiivisesti, ei koskaan passiivisesti</td></tr>
+            <tr><td><code>host_permissions (&lt;all_urls&gt;)</code></td><td>Mahdollistaa vierailemiesi sivujen tiivistämisen — sisältö luetaan ja lähetetään vain silloin, kun käynnistät tiivistämisen aktiivisesti, ei koskaan passiivisesti. Antaa laajennukselle myös pääsyn määrittämääsi synkronointipalvelimeen tai tallennustilaan, joka voi sijaita missä tahansa osoitteessa</td></tr>
           </tbody>
         </table>
         <p>Emme käytä näitä käyttöoikeuksia selaamisesi seuraamiseen, mainosprofiilin luomiseen tai tietojen keräämiseen muihin kuin edellä kuvattujen ominaisuuksien tarjoamiseen.</p>
@@ -234,14 +243,14 @@
           <li>Emme näytä tai välitä mainoksia, emmekä myy, vuokraa tai luovuta tietojasi mainostajille tai tiedonvälittäjille.</li>
           <li>Emme vaadi tiliä tai kirjautumista mihinkään perusominaisuuteen.</li>
           <li>Emme kirjaa lokiin tai säilytä niiden sivujen sisältöä, joita tiivistät omalla API-avaimellasi tai paikallisella mallilla, emmekä koskaan näe, mitä lähetät LocalSendin tai jakovalikon kautta.</li>
-          <li>Meillä ei ole pääsyä paikallisesti tallennettuun artikkelihistoriaasi, korostuksiisi tai API-avaimiisi — ne eivät koskaan poistu laitteeltasi, ellet nimenomaisesti vie niitä tiedostoon.</li>
+          <li>Meillä ei ole pääsyä paikallisesti tallennettuun artikkelihistoriaasi, korostuksiisi tai API key -avaimiisi — ne eivät koskaan poistu laitteeltasi, ellet erikseen vie niitä tai määritä synkronointi-, varmuuskopiointi- tai julkaisukohdetta, ja silloinkin ne siirtyvät vain osoittamaasi paikkaan.</li>
         </ul>
 
         <h2>Kolmannen osapuolen palvelut</h2>
         <p>Riippuen siitä, miten määrität laajennuksen, sivusi sisältö voidaan lähettää seuraaville:</p>
         <ul>
           <li>OpenAI, Google (Gemini), Mistral AI tai DeepSeek — vain jos olet syöttänyt oman API-avaimesi kyseiselle palveluntarjoajalle, ja vain siltä sivulta, jonka aktiivisesti tiivistät.</li>
-          <li>Meidän byphil-taustajärjestelmämme, jota ylläpitää IONOS SE Saksassa — vain jos kirjaudut sisään, käytät byphil Cloudia tai Send to Kindleä.</li>
+          <li>byphil-taustajärjestelmämme ja sen tietokanta, joita molempia ylläpitää IONOS SE Saksassa — vain jos kirjaudut sisään, käytät byphil Cloudia tai Send to Kindle -toimintoa.</li>
           <li>OpenRouter, jonka kautta byphil Cloud ottaa yhteyden malleihin, sekä sen käyttämä mallintarjoaja — tiivistettävä teksti välitetään käyttämällesi mallille vain kyseisen pyynnön ajaksi.</li>
           <li>Stripe — maksut ja tilausten hallinta kauppiaana (Merchant of Record).</li>
           <li>Amazon — jos lähetät artikkelin Kindleesi, Amazon toimittaa sen omien tietosuojaehtojensa mukaisesti.</li>
