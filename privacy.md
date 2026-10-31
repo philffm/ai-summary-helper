@@ -153,7 +153,7 @@ We do not use these permissions to track your browsing, build an advertising pro
 Depending on how you configure the extension, your page content may be sent to:
 
 - OpenAI, Google (Gemini), Mistral AI, or DeepSeek — only if you've entered your own API key for that provider, and only for the page you actively summarize.
-- Our byphil backend, hosted by IONOS SE in Germany — only if you sign in, use byphil Cloud or Send to Kindle.
+- Our byphil backend and its database, both hosted by IONOS SE in Germany — only if you sign in, use byphil Cloud or Send to Kindle.
 - OpenRouter, through which byphil Cloud connects to the models, and the model provider it routes to — the text you summarize is relayed to the model you use, for that request only.
 - Stripe — payments and subscription management, as Merchant of Record.
 - Amazon — if you send an article to your Kindle, Amazon delivers it under its own privacy terms.
