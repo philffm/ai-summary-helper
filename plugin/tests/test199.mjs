@@ -57,6 +57,12 @@ const dead = { rev: { t: 35, d: 'B' }, f: {}, deleted: true };
 assert.ok(M.mergeRecord(a, dead).merged.deleted, 'older edit loses'); assert.ok(M.mergeRecord(dead, a).merged.deleted);
 assert.ok(!M.mergeRecord(rec('A', 60, { title: [60, 'again'] }), dead).merged.deleted, 'a newer edit wins over the tombstone');
 assert.ok(M.mergeRecord(dead, dead).merged.deleted);
+// two devices delete the same record at different times: both settle on the later marker, and neither has anything left to push
+const dA = { rev: { t: 40, d: 'A' }, f: {}, deleted: true }, dB = { rev: { t: 50, d: 'B' }, f: {}, deleted: true };
+const x1 = M.mergeRecord(dA, dB), x2 = M.mergeRecord(dB, dA);
+assert.deepEqual(x1.merged, x2.merged); assert.equal(x1.merged.rev.t, 50); assert.ok(x1.changedLocal && !x1.changedRemote, 'A takes B\'s marker, B has nothing to change');
+assert.ok(!x2.changedLocal && x2.changedRemote);
+assert.ok(!M.mergeRecord(x1.merged, dB).changedLocal && !M.mergeRecord(x1.merged, dB).changedRemote, 'settled');
 // a removed element (stamp without a value) stays removed
 const gone = { rev: { t: 70, d: 'B' }, f: { 'tag:x': { t: 70, h: S.hashValue(undefined) } }, values: {} };
 const kept = M.mergeRecord(a, gone).merged; assert.ok(!('tag:x' in kept.values), 'the removal at 70 beats the tag at 10');

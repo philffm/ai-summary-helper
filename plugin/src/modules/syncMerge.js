@@ -18,9 +18,11 @@ export function mergeRecord(local, remote) {
 
     if (local.deleted || remote.deleted) {
         const c = compareRev(local.rev, remote.rev);
-        const winner = local.deleted && remote.deleted ? local : (c === 0 ? (local.deleted ? local : remote) : (c > 0 ? local : remote));
+        // both deleted: the same winner on every device (the later stamp, ties on the device id), so two devices that deleted the same record agree and stop rewriting each other's marker
+        const winner = local.deleted && remote.deleted ? (c >= 0 ? local : remote) : (c === 0 ? (local.deleted ? local : remote) : (c > 0 ? local : remote));
         const merged = clone(winner);
-        return { merged, changedLocal: !!merged.deleted !== !!local.deleted || (merged.rev.t !== local.rev.t), changedRemote: !!merged.deleted !== !!remote.deleted || (merged.rev.t !== remote.rev.t) };
+        const diff = (a, b) => !!a.deleted !== !!b.deleted || compareRev(a.rev, b.rev) !== 0;
+        return { merged, changedLocal: diff(merged, local), changedRemote: diff(merged, remote) };
     }
 
     const f = {}, values = {};

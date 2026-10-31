@@ -96,6 +96,14 @@ await A.sync(); await B.sync();
 assert.ok(!B.entry('a2') && !B.rec('a2'), 'a delete reaches the other device (data removed, no new stamps made)');
 const stampsAfter = await B.stampsJson(); await B.sync(); await A.sync(); await B.sync(); assert.deepEqual(await B.stampsJson(), stampsAfter, 'applying a delete made no stamps of its own');
 
+// ── both devices delete the same article on their own: they settle on one marker and stop writing
+await A.addArticle('x1'); await A.sync(); await B.sync(); assert.ok(B.entry('x1'));
+await A.deleteArticle('x1'); await B.deleteArticle('x1');
+for (let i = 0; i < 2; i++) { await A.sync(); await B.sync(); }
+const settled = puts(); await A.sync(); await B.sync(); await A.sync(); await B.sync();
+assert.equal(puts(), settled, 'two tombstones for one record do not overwrite each other forever');
+assert.deepEqual(await A.stampsJson(), await B.stampsJson());
+
 // ── pruned text on one device never erases the text on the other ──
 await A.area.set({ [articleRecKey('a1')]: { ...A.rec('a1'), content: '', contentPruned: true } }); await A.editEntry('a1', { contentPruned: true, favorite: true });
 await A.sync(); await B.sync();
