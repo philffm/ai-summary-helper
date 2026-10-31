@@ -13,6 +13,7 @@ import { escapeHtml } from './textUtils.js';
 // Settings panel and the onboarding mask never drift apart.
 import StorageManager from './storageManager.js';
 import { T, TN } from './feedI18n.js';
+import { newAccountModel } from './cloudRegion.js';
 
 let activeOtpId = null;
 let otpExpiryTimeoutId = null;
@@ -554,7 +555,8 @@ async function verifyOtp(view) {
             const ownApi = sync.connectionMode === 'local' && !!(cfg.apiKey || sync.activeService === 'ollama' || ownServer);
             const upd = {};
             if (!ownApi && sync.connectionMode !== 'cloud') upd.connectionMode = 'cloud';
-            if (!sync.preferredCloudModel) upd.preferredCloudModel = 'google/gemini-3.8-flash';
+            // no model chosen yet = a new account: it starts on Auto where the service offers it (an account that chose a model keeps it)
+            if (!sync.preferredCloudModel) upd.preferredCloudModel = await newAccountModel(StorageManager.getApiBase());
             if (Object.keys(upd).length) await chrome.storage.sync.set(upd);
         } catch (_) { /* defaults apply anyway */ }
 

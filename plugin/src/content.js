@@ -880,7 +880,9 @@ import {
           // can mean the 'done' message itself is lost, which is exactly why
           // this got stuck forever on "Connected to API, waiting for
           // response…" — nothing was left to resolve it.
+          let usedModel = '';   // the model the hosted service says really answered (Auto picks one per request): history and stats record this, not "auto"
           streamHandlers.set(requestId, async (msg) => {
+            if (msg.meta === 'response' && typeof msg.modelUsed === 'string' && msg.modelUsed) usedModel = msg.modelUsed;
             if (msg.stopped) {
               // The user pressed Stop in the popup: nothing is saved.
               if (waitingRampInterval) { clearInterval(waitingRampInterval); waitingRampInterval = null; }
@@ -957,7 +959,7 @@ import {
                   url: sourceUrl,
                   timestamp: new Date().toISOString(),
                   tags: tags,
-                  modelId: modelIdentifier,
+                  modelId: usedModel || modelIdentifier,
                   moodScore,
                   questions: suggestedQuestions,
                   quick: quickAnswers,
@@ -966,7 +968,7 @@ import {
                 });
               }
 
-              saveToLocalStorage(finalContentHtml, cleanHtml, sourceUrl, articleTitle, '', tags, modelIdentifier, summaryLength, moodScore, { ...(pendingFeedUrl && pendingFeedUrl !== sourceUrl ? { feedUrl: pendingFeedUrl } : {}), ...paperIndexFields(pageMeta && pageMeta.paper) }, pageMeta)
+              saveToLocalStorage(finalContentHtml, cleanHtml, sourceUrl, articleTitle, '', tags, usedModel || modelIdentifier, summaryLength, moodScore, { ...(pendingFeedUrl && pendingFeedUrl !== sourceUrl ? { feedUrl: pendingFeedUrl } : {}), ...paperIndexFields(pageMeta && pageMeta.paper) }, pageMeta)
                 .then(savedArticle => {
                   try { chrome.runtime.sendMessage({ action: 'runSaved', requestId }).catch(() => {}); } catch (_) { /* optional */ }
                   if (savedArticle && savedArticle.id) relay('summarySaved', { id: savedArticle.id, url: sourceUrl });

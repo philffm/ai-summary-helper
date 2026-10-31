@@ -773,6 +773,14 @@ async function cloudRegionHeader(url, feature) {
         ...(AISH_FEATURES.includes(feature) ? { 'X-AISH-Feature': feature } : {}),
     };
 }
+// The model that really answered (the hosted service says so in X-AISH-Model-Used), so history and stats show it and never just "auto". '' when not reported.
+function usedModelOf(url, res) {
+    try {
+        if (!String(url).startsWith(AISH_API_BASE + '/v1/projects/')) return '';
+        const m = res.headers.get('x-aish-model-used') || '';
+        return /^[A-Za-z0-9_.:\-]{1,60}\/[A-Za-z0-9_.:\-]{1,80}$/.test(m) ? m : '';
+    } catch (_) { return ''; }
+}
 function noteCloudRoute(url, res, model) {
     try {
         if (!String(url).startsWith(AISH_API_BASE + '/v1/projects/')) return;
@@ -1958,7 +1966,9 @@ async function handleStreamFetch(msg, tabId) {
         const response = await fetch(apiUrl, { method: 'POST', headers: { ...headers, ...(await cloudRegionHeader(apiUrl, msg.feature)) }, body, signal: controller.signal });
         { let m = ''; try { m = JSON.parse(body).model || ''; } catch (_) { /* not JSON */ } noteCloudRoute(apiUrl, response, m); }
 
-        push({ meta: 'response', requestId, status: response.status, contentType: response.headers.get('content-type') || '' });
+        const modelUsed = usedModelOf(apiUrl, response);
+        if (modelUsed && run) run.ctx.modelIdentifier = modelUsed;   // a summary finished here (its page was closed) is saved under the model that wrote it
+        push({ meta: 'response', requestId, status: response.status, contentType: response.headers.get('content-type') || '', ...(modelUsed ? { modelUsed } : {}) });
 
         if (!response.ok) {
             if (heartbeatId) clearInterval(heartbeatId);

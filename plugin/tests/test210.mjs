@@ -62,4 +62,20 @@ ctx.noteCloudRoute(API, { headers: { get() { throw new Error('boom'); } } }, 'x'
 // feeds: what a request is for is handed to the transport (tags, recap, qa)
 { const FA = await imp('modules/feedAi.js'); let seen = null; FA.setAiTransport((o) => { seen = o; return Promise.resolve('ok'); });
   await FA.aiComplete('s', 'u', null, null, null, { feature: 'tags' }); assert.equal(seen.feature, 'tags'); await FA.aiComplete('s', 'u'); assert.equal(seen.feature, '', 'no hint when the caller gives none'); FA.setAiTransport(null); }
+// history and stats record the model that really answered, never just "auto"
+{ const fn = src.slice(src.indexOf('function usedModelOf'), src.indexOf('function noteCloudRoute')); const c2 = { AISH_API_BASE: 'https://api.byphil.eu' }; vm.createContext(c2); vm.runInContext(fn + '\nthis.usedModelOf = usedModelOf;', c2);
+  const res = (v) => ({ headers: { get: (k) => (k === 'x-aish-model-used' ? v : null) } });
+  assert.equal(c2.usedModelOf(API, res('mistralai/mistral-large-4-0')), 'mistralai/mistral-large-4-0'); assert.equal(c2.usedModelOf(API, res('')), ''); assert.equal(c2.usedModelOf(API, res(null)), '', 'an older service reports nothing: the requested model stays');
+  for (const bad of ['auto', '<script>', '../../x', 'a/b c', 'x'.repeat(200) + '/y']) assert.equal(c2.usedModelOf(API, res(bad)), '', 'not trusted: ' + bad.slice(0, 20));
+  assert.equal(c2.usedModelOf('https://api.openai.com/v1/chat/completions', res('a/b')), '', 'only the hosted service is believed');
+  const content = fs.readFileSync(path.resolve(process.env.AISH_SRC, 'content.js'), 'utf8');
+  assert.match(content, /msg\.meta === 'response' && typeof msg\.modelUsed === 'string'/, 'the page takes the reported model from the stream');
+  assert.match(content, /modelId: usedModel \|\| modelIdentifier/); assert.match(content, /tags, usedModel \|\| modelIdentifier, summaryLength/, 'and saves the summary under it');
+  assert.match(src, /run\.ctx\.modelIdentifier = modelUsed/, 'a summary finished in the background is saved under it too'); }
+// a new account starts on Auto only where the service offers it; anything else keeps the plain default, and nothing here can throw
+{ const ok = (o) => async () => ({ json: async () => o });
+  assert.equal(await R.newAccountModel('https://x', ok({ success: true, models: [{ id: 'auto', auto: true }, { id: 'a/b' }] })), 'auto');
+  assert.equal(await R.newAccountModel('https://x', ok({ success: true, models: [{ id: 'a/b' }] })), 'google/gemini-3.8-flash', 'an older service: the old default');
+  assert.equal(await R.newAccountModel('https://x', ok({ success: true, models: [{ id: 'auto:mistral', auto: true }] })), 'google/gemini-3.8-flash', 'only plain auto is the default');
+  assert.equal(await R.newAccountModel('https://x', ok({ success: false })), 'google/gemini-3.8-flash'); assert.equal(await R.newAccountModel('https://x', async () => { throw new Error('offline'); }), 'google/gemini-3.8-flash'); assert.equal(await R.newAccountModel('https://x', ok(null)), 'google/gemini-3.8-flash'); }
 console.log('TEST 210 OK'); process.exit(0);

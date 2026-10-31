@@ -30,6 +30,22 @@ export function pricesFor(model, pref) {
 
 const prettyModel = (id) => String(id || '').split('/').pop().replace(/-(\d{4})$/, '').replace(/-(\d+)-(\d+)(?=-|$)/g, ' $1.$2').replace(/[-_]+/g, ' ').replace(/\b\w/g, (c) => c.toUpperCase());   // mistral-large-4-0 → Mistral Large 4.0
 
+export const FALLBACK_CLOUD_MODEL = 'google/gemini-3.8-flash';
+
+/**
+ * The model a NEW account starts with: Auto when the hosted service offers it, else the plain default. Nothing is assumed: a service that has not
+ * been updated (no Auto in its list, or unreachable) keeps the old default, so a first request never names a model that does not exist.
+ * Accounts that already chose a model are never touched (the caller only asks when none is set).
+ */
+export async function newAccountModel(apiBase, fetchFn = (...a) => globalThis.fetch(...a)) {
+    try {
+        const res = await fetchFn(`${apiBase}/v1/projects/ai_summary_helper/models`, { signal: AbortSignal.timeout(4000) });
+        const roster = await res.json();
+        const auto = roster && roster.success && Array.isArray(roster.models) ? roster.models.find((m) => m && m.auto && m.id === 'auto') : null;
+        return auto ? 'auto' : FALLBACK_CLOUD_MODEL;
+    } catch (_) { return FALLBACK_CLOUD_MODEL; }
+}
+
 /**
  * The route the last request took, as a sentence (the server's answer, not our wish). `used` is the model that really answered; when the server
  * swapped it (a long text on the everyday EU model goes to the larger one) that is said, so the cost and the model are never a surprise.

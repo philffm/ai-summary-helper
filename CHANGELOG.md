@@ -18,6 +18,9 @@ Commit history has the details: <https://github.com/philffm/ai-summary-helper/co
 
 - **Prefer EU servers.** A new setting for the hosted models (byphil Cloud). With it on, models that have an endpoint in Europe run only on those endpoints (no fallbacks), the model list marks them “EU” and shows their EU price, and every other model keeps working and is marked “Not EU”. Settings shows which route the last request really took. Your text still passes through our service (a server in Germany) and then OpenRouter, a US company; read-aloud and speech-to-text have no EU option.
 
+- **Auto.** New choices at the top of the hosted model list: **Auto** and, per family, Auto · Mistral, Google, DeepSeek, Anthropic, Amazon, Qwen. The service picks the model for each request by plain rules: a light model for short texts and tags, Gemini 3.8 Flash for everyday work, a larger model for long texts and analysis, and a light one when the monthly allowance is nearly used up. Settings shows which model it chose and why. With “Prefer EU servers” on, Auto only uses EU models. **New accounts start on Auto** (accounts that already chose a model keep it); the default model is now Gemini 3.8 Flash.
+- **EU company** mark for models from a European company (Mistral), next to “EU servers”, which only says where a model runs.
+
 ### Notes
 
 - **On-page toolbar.** Select text anywhere: ✏️ highlight, 💬 highlight and comment, 📝 note with the quote. Comments show in the highlights panel; "Open in Notes" jumps to the new tab.
