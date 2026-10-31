@@ -10,7 +10,8 @@ let clock = 1000;
 const st = createStampStore({ storage: chrome.storage.local, now: () => (clock += 10) });
 
 const entry = (id, extra = {}) => ({ id, url: 'https://x.test/' + id, title: 'T ' + id, timestamp: '2026-01-01T00:00:00Z', tags: ['one'], favorite: false, summary: 'S', ...extra });
-const change = (key, oldValue, newValue) => ({ [key]: { oldValue, newValue } });
+// the handler reads the stored state (the event only names the key), so the test writes the new value first, like a real write would
+const change = (key, oldValue, newValue) => { if (newValue === undefined) delete store[key]; else store[key] = JSON.parse(JSON.stringify(newValue)); return { [key]: { oldValue, newValue } }; };
 
 // sync off: nothing is written
 assert.equal(await st.onChanged(change(SK.articlesIndex, [], [entry('a1')])), 0);
@@ -36,6 +37,10 @@ assert.equal(await st.onChanged(change(SK.articlesIndex, [entry('a1')], [entry('
 const before = (await st.all())['article:a1'];
 assert.equal(await st.onChanged(change(SK.articlesIndex, [entry('a1')], [entry('a1', { favorite: true })])), 1);
 const after = (await st.all())['article:a1'];
+// an event that arrives late shows an OLD value in its payload, while the store already holds the stamped one: nothing is stamped
+const stale = { [SK.articlesIndex]: { oldValue: [entry('a1', { favorite: true })], newValue: [entry('a1', { favorite: false, title: 'an older title' })] } };
+assert.equal(await st.onChanged(stale), 0, 'the payload is not trusted, the stored state is');
+assert.deepEqual((await st.all())['article:a1'], after);
 assert.ok(after.f.favorite.t > before.f.favorite.t && after.f.title.t === before.f.title.t);
 
 // a record event stamps only record-side fields and never clears index-side ones

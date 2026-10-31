@@ -34,9 +34,9 @@ export function createStampStore({ storage, now = Date.now, lock = withStampLock
     }
 
     /** ops: [{ key, apply(prev) → { entry, changed } }]. Loads the shards involved, applies, writes the changed ones. */
-    async function commit(ops) {
-        if (!ops.length) return 0;
-        return lock(async () => {
+    const commit = (ops) => (ops.length ? lock(() => commitInner(ops)) : Promise.resolve(0));
+    async function commitInner(ops) {
+        {
             const meta = await get(storage, { [SK.syncDeviceId]: '', [SK.syncClock]: { t: 0 } });
             let device = meta[SK.syncDeviceId];
             const clock = { t: (meta[SK.syncClock] && meta[SK.syncClock].t) || 0 };
@@ -57,43 +57,63 @@ export function createStampStore({ storage, now = Date.now, lock = withStampLock
             if (meta[SK.syncDeviceId] !== device) out[SK.syncDeviceId] = device;
             if (Object.keys(out).length) await set(storage, out);
             return n;
-        });
+        }
     }
 
-    const stampOp = (key, fields, skip) => ({ key, apply: (prev, ctx) => stampRecord(prev, fields, { ...ctx, skip }) });
+    // Stamps taken over from another device (adopt) are held until the data they describe is written (release). In that gap the stored data
+    // does not match the stamps yet, and stamping it would turn "not written yet" into a local removal. While a key is held, fields whose
+    // value does not match the adopted stamp are left alone. Events are always read against the CURRENT stored state, never their payload,
+    // so a late event for an earlier write cannot bring an old value back.
+    const HOLD_MS = 30000, held = new Map();   // a safety expiry only: the engine releases right after it has written the data
+    const hold = (entries) => { const until = Date.now() + HOLD_MS; for (const [k, e] of Object.entries(entries)) held.set(k, { f: (e && e.f) || {}, until }); };
+    /** The data for adopted stamps is written: from now on the storage events are read against the stored state like any other. */
+    const release = (keys) => { for (const k of keys || [...held.keys()]) held.delete(k); };
+    const heldNames = (key, fields) => {
+        const p = held.get(key);
+        if (!p || p.until < Date.now()) return [];
+        return Object.keys(p.f).filter((n) => hashValue((fields || {})[n]) !== p.f[n].h);
+    };
+    const stampOp = (key, fields, skip) => ({ key, apply: (prev, ctx) => stampRecord(prev, fields, { ...ctx, skip: [...(skip || []), ...heldNames(key, fields)] }) });
     const articleOp = (entry, rec) => stampOp('article:' + entry.id, syncFields('article', entry, rec), unknownFields('article', entry, rec));
 
     const byId = (list) => new Map((Array.isArray(list) ? list : []).filter((x) => x && x.id).map((x) => [x.id, x]));
 
-    /** chrome.storage.onChanged handler. Never throws into the caller. */
+    /**
+     * chrome.storage.onChanged handler. Never throws into the caller. It only uses the event to learn WHICH keys changed: what gets stamped is
+     * read from storage now, inside the stamp lock, so an event that arrives late (after a sync wrote newer data) cannot stamp an old value.
+     */
     async function onChanged(changes) {
         try {
             if (!changes || !(await enabled())) return 0;
-            const ops = [];
-            for (const [key, ch] of Object.entries(changes)) {
-                if (key === SK.articlesIndex) {
-                    const before = byId(ch.oldValue);
-                    for (const e of byId(ch.newValue).values()) if (!before.has(e.id) || !same(before.get(e.id), e)) ops.push(articleOp(e, null));
-                } else if (isArticleRecKey(key) && ch.newValue) {
-                    // the record alone: stamp only its own fields, leave the index-side fields (tags, favorite, ...) untouched
-                    const id = key.slice(ARTICLE_REC.length);
-                    const rec = ch.newValue;
-                    const all = syncFields('article', {}, rec);
-                    const mine = {}; for (const k of RECORD_SIDE) if (k in all) mine[k] = all[k];
-                    ops.push({ key: 'article:' + id, apply: (prev, ctx) => {
-                        const skip = Object.keys((prev && prev.f) || {}).filter((n) => !RECORD_SIDE.includes(n)).concat(unknownFields('article', {}, rec));
-                        return stampRecord(prev, mine, { ...ctx, skip });
-                    } });
-                } else if (key === SK.annotations) {
-                    const before = byId(ch.oldValue);
-                    for (const h of byId(ch.newValue).values()) if (!before.has(h.id) || !same(before.get(h.id), h)) ops.push(stampOp('hl:' + h.id, syncFields('highlight', h), []));
-                } else if (isNoteRecKey(key) && ch.newValue && ch.newValue.id) {
-                    ops.push(stampOp('note:' + ch.newValue.id, syncFields('note', ch.newValue), []));
-                } else if (isCollRecKey(key) && ch.newValue && ch.newValue.id) {
-                    ops.push(stampOp('coll:' + ch.newValue.id, syncFields('collection', ch.newValue), []));
+            return await lock(async () => {
+                const ops = [];
+                const cur = async (key, empty) => (await get(storage, { [key]: empty }))[key];
+                for (const [key, ch] of Object.entries(changes)) {
+                    if (key === SK.articlesIndex) {
+                        const before = byId(ch.oldValue);
+                        for (const e of byId(await cur(key, [])).values()) if (!before.has(e.id) || !same(before.get(e.id), e)) ops.push(articleOp(e, null));
+                    } else if (isArticleRecKey(key) && ch.newValue) {
+                        // the record alone: stamp only its own fields, leave the index-side fields (tags, favorite, ...) untouched
+                        const id = key.slice(ARTICLE_REC.length);
+                        const rec = await cur(key, null);
+                        if (!rec) continue;
+                        const all = syncFields('article', {}, rec);
+                        const mine = {}; for (const k of RECORD_SIDE) if (k in all) mine[k] = all[k];
+                        ops.push({ key: 'article:' + id, apply: (prev, ctx) => {
+                            const skip = Object.keys((prev && prev.f) || {}).filter((n) => !RECORD_SIDE.includes(n)).concat(unknownFields('article', {}, rec));
+                            return stampRecord(prev, mine, { ...ctx, skip: [...skip, ...heldNames('article:' + id, mine)] });
+                        } });
+                    } else if (key === SK.annotations) {
+                        const before = byId(ch.oldValue);
+                        for (const h of byId(await cur(key, [])).values()) if (!before.has(h.id) || !same(before.get(h.id), h)) ops.push(stampOp('hl:' + h.id, syncFields('highlight', h), []));
+                    } else if (isNoteRecKey(key) && ch.newValue && ch.newValue.id) {
+                        const r = await cur(key, null); if (r && r.id) ops.push(stampOp('note:' + r.id, syncFields('note', r), []));
+                    } else if (isCollRecKey(key) && ch.newValue && ch.newValue.id) {
+                        const r = await cur(key, null); if (r && r.id) ops.push(stampOp('coll:' + r.id, syncFields('collection', r), []));
+                    }
                 }
-            }
-            return await commit(ops);
+                return ops.length ? await commitInner(ops) : 0;
+            });
         } catch (_) { return 0; }
     }
 
@@ -170,6 +190,7 @@ export function createStampStore({ storage, now = Date.now, lock = withStampLock
             const out = { [SK.syncClock]: { t: top } };
             for (const sk of dirty) out[sk] = shards[sk];
             await set(storage, out);
+            hold(entries);
             return keys.length;
         });
     }
@@ -182,5 +203,5 @@ export function createStampStore({ storage, now = Date.now, lock = withStampLock
         return out;
     }
 
-    return { onChanged, markDeleted, scan, all, adopt, enabled };
+    return { onChanged, markDeleted, scan, all, adopt, release, enabled };
 }

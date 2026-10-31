@@ -10,6 +10,7 @@ import { SK, articleRecKey, collRecKey, noteRecKey } from './storageKeys.js';
 import { withLock } from './articleLock.js';
 import { syncFields, unknownFields } from './syncStamps.js';
 import { applyFields } from './syncApply.js';
+import { articleKey } from './syncIdentity.js';
 
 const get = (storage, keys) => Promise.resolve(storage.get(keys));
 const set = (storage, obj) => Promise.resolve(storage.set(obj));
@@ -106,5 +107,34 @@ export function createDataAdapter({ storage, hooks = {} } = {}) {
             if (drops.length) await rm(storage, drops);
         });
     }
-    return { readMany, applyMany };
+    /** Live articles grouped by the identity of their URL: Map(key → [{ id, timestamp }]). Feed stubs and saved-only items are left out. */
+    async function articleGroups() {
+        const idx = list((await get(storage, { [SK.articlesIndex]: [] }))[SK.articlesIndex]);
+        const groups = new Map();
+        for (const e of idx) {
+            if (!e || !e.id || e.feedStub || e.savedOnly) continue;
+            const k = articleKey(e.url); if (!k) continue;
+            (groups.get(k) || groups.set(k, []).get(k)).push({ id: e.id, timestamp: e.timestamp });
+        }
+        return groups;
+    }
+
+    /** A copy of an article went away: collections that listed it list the one that stays (once), and the overview's citations follow. */
+    async function remapArticleId(from, to) {
+        await withLock('aish-collections', async () => {
+            const idx = list((await get(storage, { [SK.collIndex]: [] }))[SK.collIndex]);
+            const recs = await get(storage, idx.map((e) => collRecKey(e.id))), writes = {};
+            for (const e of idx) {
+                const r = recs[collRecKey(e.id)]; if (!r || !Array.isArray(r.sources)) continue;
+                const hasFrom = r.sources.some((x) => x.articleId === from), citesFrom = r.overview && Array.isArray(r.overview.ids) && r.overview.ids.includes(from);
+                if (!hasFrom && !citesFrom) continue;
+                const next = { ...r };
+                if (hasFrom) { const keep = r.sources.filter((x) => x.articleId !== from); next.sources = keep.some((x) => x.articleId === to) ? keep : [...keep, { ...r.sources.find((x) => x.articleId === from), articleId: to }]; }
+                if (citesFrom) next.overview = { ...r.overview, ids: [...new Set(r.overview.ids.map((x) => (x === from ? to : x)))] };
+                writes[collRecKey(e.id)] = next;
+            }
+            if (Object.keys(writes).length) await set(storage, writes);
+        });
+    }
+    return { readMany, applyMany, articleGroups, remapArticleId };
 }

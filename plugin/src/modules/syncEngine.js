@@ -19,6 +19,7 @@ import { syncLedgerKey } from './storageKeys.js';
 import { mergeRecord } from './syncMerge.js';
 import { decryptJson, encryptJson, nameOf } from './syncCrypto.js';
 import { typeOf, idOf } from './syncDataAdapter.js';
+import { canonicalOrder, IDENTITY_FIELDS } from './syncIdentity.js';
 
 const TYPES = new Set(['article', 'hl', 'coll', 'note']);
 const KEY_RX = /^(article|hl|coll|note):[A-Za-z0-9_.:-]{1,200}$/;
@@ -35,7 +36,8 @@ const status = (e) => (e && e.status) || 0;
 export async function syncEncryptedPlace(o) {
     const { place, storage, store, keys, meta, stampStore, adapter, backup, now = Date.now, budgetMs = 150000, chunk = 25, concurrency = 4, onProgress = () => {}, pullOnly = false, pushOnly = false, forceFirst = false } = o;
     const started = now();
-    const out = { pulled: 0, applied: 0, pushed: 0, removed: 0, errors: [], more: false, joined: false };
+    const out = { pulled: 0, applied: 0, pushed: 0, removed: 0, merged: 0, errors: [], more: false, joined: false };
+    const became = new Set();   // articles that got live data in this run (new here, or brought back): the only ones that can have a twin from another device
     const lk = syncLedgerKey(place.id);
     const L = (await get(storage, { [lk]: {} }))[lk] || {};
     if (L.salt && meta && L.salt !== meta.salt) throw new Error('This place was set up again on the server (a different key). Nothing was changed. Remove the place here and add it again to join it.');
@@ -90,6 +92,7 @@ export async function syncEncryptedPlace(o) {
                 const entry = r.merged.deleted ? { rev: r.merged.rev, f: {}, deleted: true } : { rev: r.merged.rev, f: r.merged.f };
                 adopt[key] = entry;
                 if (!(r.merged.deleted && !d)) apply.push({ key, merged: r.merged });
+                if (key.startsWith('article:') && !r.merged.deleted && !d) became.add(idOf(key));
             }
             items[key] = { n: name, e: etag, t: rec.rev.t };
             if (r.changedRemote) dirty.add(key);
@@ -97,6 +100,7 @@ export async function syncEncryptedPlace(o) {
         }
         await stampStore.adopt(adopt);            // the stamps first...
         await adapter.applyMany(apply);           // ...then the data they describe
+        if (stampStore.release) stampStore.release(Object.keys(adopt));   // written: events are read against the stored state again
         stamps = await stampStore.all();
         out.applied += apply.length;
     }
@@ -117,6 +121,52 @@ export async function syncEncryptedPlace(o) {
         await save();
     }
     if (out.more || pullOnly) { out.joined = !out.more; await save(); return out; }
+    await dedupe();
+
+    /**
+     * The same URL saved on two devices arrives as two articles. After everything is applied, every group of live articles with one
+     * URL identity that contains a newcomer collapses into the earliest saved one (the same pick on every device): fields it lacks are
+     * filled from the others WITH their original stamps (so a later real edit still wins and both devices write identical stamps),
+     * collections follow, and the others go away through a tombstone. Highlights and notes belong to the URL and stay.
+     */
+    async function dedupe() {
+        if (!became.size || !adapter.articleGroups) return;
+        const work = [];
+        for (const list of (await adapter.articleGroups()).values()) if (list.length > 1 && list.some((x) => became.has(x.id))) work.push(list.slice().sort(canonicalOrder));
+        if (!work.length) return;
+        stamps = await stampStore.all();
+        const data = await adapter.readMany(work.flat().map((x) => 'article:' + x.id));
+        const adopt = {}, apply = [], drop = [], tomb = [], remap = [];
+        for (const [win, ...losers] of work) {
+            const wk = 'article:' + win.id, ws = stamps[wk], wd = data.get(wk);
+            if (!ws || ws.deleted || !wd) continue;
+            const f = { ...ws.f }, filled = {}, values = {};
+            for (const l of losers) {
+                const lk = 'article:' + l.id, ls = stamps[lk], ld = data.get(lk);
+                if (ls && !ls.deleted && ld) {
+                    for (const [name, st] of Object.entries(ls.f)) {
+                        if (IDENTITY_FIELDS.has(name) || name in f) continue;   // the one that stays has it, or removed it on purpose
+                        if (name in ld.fields && ld.fields[name] !== undefined) { f[name] = st; filled[name] = st; values[name] = ld.fields[name]; }
+                    }
+                }
+                remap.push([l.id, win.id]); drop.push({ key: lk, merged: { deleted: true } }); tomb.push(l.id);
+            }
+            if (Object.keys(filled).length) {
+                adopt[wk] = { rev: { t: Math.max(ws.rev.t, ...Object.values(filled).map((x) => x.t)), d: ws.rev.d }, f };
+                apply.push({ key: wk, merged: { f: filled, values } });
+            }
+        }
+        if (!tomb.length) return;
+        await stampStore.adopt(adopt);           // stamps first, then data (the echo guard again)
+        await adapter.applyMany(apply);
+        await adapter.applyMany(drop);
+        if (stampStore.release) stampStore.release(Object.keys(adopt));
+        for (const [from, to] of remap) await adapter.remapArticleId(from, to);
+        await stampStore.markDeleted('article', tomb);
+        await stampStore.scan({ full: true });   // collections changed: stamp them now, they go out in this run
+        stamps = await stampStore.all();
+        out.merged = tomb.length;
+    }
 
     // 2) push
     const pending = Object.entries(stamps).filter(([key, st]) => st && st.rev && (dirty.has(key) || !items[key] || items[key].t < st.rev.t)).map(([key]) => key);
