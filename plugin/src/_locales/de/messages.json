@@ -6308,5 +6308,35 @@
   },
   "f_places_use_this_server_4df9": {
     "message": "{n} Orte nutzen diesen Server."
+  },
+  "f_add_note_9108": {
+    "message": "Notiz hinzufügen"
+  },
+  "f_no_notes_on_this_article_yet_b876": {
+    "message": "Zu diesem Artikel gibt es noch keine Notizen."
+  },
+  "f_notes_and_highlights_0e9c": {
+    "message": "Notizen und Markierungen"
+  },
+  "f_write_a_note_about_this_arti_e1b4": {
+    "message": "Notiz zu diesem Artikel schreiben …"
+  },
+  "f_ai_highlight_8f93": {
+    "message": "{n} KI-Markierung"
+  },
+  "f_ai_highlights_7da0": {
+    "message": "{n} KI-Markierungen"
+  },
+  "f_highlight_5f43": {
+    "message": "{n} Markierung"
+  },
+  "f_highlights_d890": {
+    "message": "{n} Markierungen"
+  },
+  "f_note_b2a1": {
+    "message": "{n} Notiz"
+  },
+  "f_notes_8096": {
+    "message": "{n} Notizen"
   }
 }

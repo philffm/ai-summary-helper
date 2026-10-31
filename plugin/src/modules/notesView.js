@@ -82,7 +82,7 @@ function sticky(item, inst) {
     if (item.comment && !editing) { const c = el('p', 'st-c'); c.append(iconEl('message-square'), document.createTextNode(' ' + item.comment)); card.append(c); }
     if (editing) card.append(editor(item, inst));
     const foot = el('footer');
-    if (item.source) { const a = button(item.source.title, 'st-src', () => { if (item.url && chrome.tabs && chrome.tabs.create) chrome.tabs.create({ url: item.url }); }); a.title = T('Open the page'); foot.append(a); }
+    if (item.source && !inst.article) { const a = button(item.source.title, 'st-src', () => { if (item.url && chrome.tabs && chrome.tabs.create) chrome.tabs.create({ url: item.url }); }); a.title = T('Open the page'); foot.append(a); }
     for (const t of item.tags || []) foot.append(button('#' + t, 'st-tag', () => { shared.tag = shared.tag === t ? '' : t; renderAll(); }));
     const actions = el('span', 'st-actions');
     if (!editing) {
@@ -147,6 +147,7 @@ async function render(inst) {
     const data = await load();
     if (token !== inst.token) return;
     const all = buildStream(data);
+    if (inst.mode === 'article') return renderOfArticle(inst, all);
     if (inst.mode === 'articles') return renderArticles(inst, all);
     if (inst.mode === 'tags') return renderTags(inst, all);
     const list = filterStream(all, { filter: inst.filter, q: inst.q, tag: shared.tag, article: shared.article });
@@ -180,12 +181,65 @@ function renderArticles(inst, all) {
     const rows = groupByArticle(all), frag = document.createDocumentFragment();
     if (!rows.length) frag.append(el('div', 'notes-empty', T('Nothing here yet.')));
     for (const r of rows) {
+        const wrap = el('div', 'notes-row-wrap');
         const b = button('', 'notes-row' + (shared.article === r.key ? ' is-selected' : ''), () => { shared.article = shared.article === r.key ? '' : r.key; renderAll(); });
         b.setAttribute('aria-pressed', String(shared.article === r.key));
         b.append(el('span', 'notes-row-title', r.key === FREE ? T('Notes without an article') : r.title), el('span', 'mcp-row-hint', [r.site, [r.mine && '✏️ ' + r.mine, r.ai && '✨ ' + r.ai, r.notes && '📝 ' + r.notes].filter(Boolean).join('  ')].filter(Boolean).join(' · ')));
-        frag.append(b);
+        wrap.append(b);
+        if (r.key !== FREE) wrap.append(button(T('Open'), 'notes-open', () => openArticle(r.key)));   // the article itself, in History
+        frag.append(wrap);
     }
     inst.body.replaceChildren(frag);
+}
+
+/** Shows one article in History (the lean index entry is enough: the detail view loads the rest). */
+async function openArticle(id) {
+    const index = (await getL({ [SK.articlesIndex]: [] }))[SK.articlesIndex];
+    const article = Array.isArray(index) ? index.find((a) => a && a.id === id) : null;
+    if (!article) return;
+    const mod = await import('./articleManager.js');
+    mod.openArticleInHistory(article);
+}
+
+/** What one article carries, for its detail view: its notes, your highlights and the AI's, with their comments. */
+function renderOfArticle(inst, all) {
+    const mine = all.filter((i) => i.source && i.source.id === inst.article.id);
+    const frag = document.createDocumentFragment();
+    if (!mine.length) frag.append(el('p', 'mcp-row-hint', T('No notes on this article yet.')));
+    for (const i of mine) frag.append(sticky(i, inst));
+    inst.body.replaceChildren(frag);
+    if (inst.title) inst.title.textContent = T('Notes and highlights') + (mine.length ? ' · ' + mine.length : '');
+}
+
+/** The small field under an article's notes: a note about this article, linked to its page. */
+function articleComposer(inst) {
+    const box = el('div', 'notes-article-add');
+    const ta = document.createElement('textarea'); ta.rows = 2; ta.className = 'st-ta'; ta.placeholder = T('Write a note about this article…'); ta.setAttribute('aria-label', ta.placeholder);
+    const row = el('div', 'st-edit-row');
+    const add = button(T('Add note'), 'button-primary btn-sm', async () => {
+        const { text, tags } = splitTags(ta.value); if (!text) { ta.focus(); return; }
+        add.disabled = true;
+        try { await store.add({ text, tags, url: inst.article.url, title: inst.article.title }); ta.value = ''; renderAll(); } finally { add.disabled = false; }
+    });
+    ta.addEventListener('keydown', (e) => { if ((e.metaKey || e.ctrlKey) && e.key === 'Enter') { e.preventDefault(); add.click(); } });
+    row.append(el('span', 'notes-hint', T('End with #tags · ⌘/Ctrl+Enter to add')), add);
+    box.append(ta, row);
+    return box;
+}
+
+/** Notes for the History cards: { articleId → { mine, ai, notes } } for every article that has any. */
+export async function noteCountsByArticle() {
+    const out = new Map();
+    for (const r of groupByArticle(buildStream(await load()))) if (r.key !== FREE) out.set(r.key, { mine: r.mine, ai: r.ai, notes: r.notes });
+    return out;
+}
+
+let articlePane = null;
+/** Mounts the notes of one article in `host` (its detail view); the previous article's pane is dropped. */
+export function mountArticleNotes(host, article) {
+    if (articlePane) destroyNotesPane(articlePane);
+    articlePane = createNotesPane(host, { mode: 'article', article: { id: article.id, url: article.url || '', title: article.title || '' }, composer: false });
+    return articlePane;
 }
 
 function renderTags(inst, all) {
@@ -200,12 +254,13 @@ function renderTags(inst, all) {
 function renderAll() { for (const i of instances) render(i); }
 
 /** Builds one pane in `root`. mode: 'stream' (the notes, with search and filters), 'articles' or 'tags'. `primary` panes carry the ids and the composer. */
-export function createNotesPane(root, { mode = 'stream', primary = false, composer: withComposer = primary } = {}) {
-    const inst = { root, mode, primary, filter: 'all', q: '', editing: '', token: 0, body: null, toggle: null, count: null };
+export function createNotesPane(root, { mode = 'stream', primary = false, composer: withComposer = primary, article = null } = {}) {
+    const inst = { root, mode, primary, article, filter: 'all', q: '', editing: '', token: 0, body: null, toggle: null, count: null, title: null };
     const id = (name) => (primary ? name : '');
     const withId = (e, name) => { if (primary && name) e.id = name; return e; };
     const head = el('div', 'notes-head');
-    head.append(el('h2', null, mode === 'articles' ? T('By article') : mode === 'tags' ? T('Tags') : T('Notes')));
+    if (mode === 'article') { inst.title = el('h4', 'notes-article-title', T('Notes and highlights')); head.append(inst.title); }
+    else head.append(el('h2', null, mode === 'articles' ? T('By article') : mode === 'tags' ? T('Tags') : T('Notes')));
     const parts = [head];
     if (mode === 'stream') {
         const toggle = withId(el('div', 'a11y-seg notes-toggle'), id('notesViewToggle')); toggle.setAttribute('role', 'radiogroup'); toggle.setAttribute('aria-label', T('View'));
@@ -228,6 +283,7 @@ export function createNotesPane(root, { mode = 'stream', primary = false, compos
     inst.body = withId(el('div', 'notes-body'), id('notesBody'));
     parts.push(inst.body);
     if (withComposer) parts.push(composerEl(primary));
+    if (mode === 'article') parts.push(articleComposer(inst));
     root.replaceChildren(...parts);
     instances.add(inst);
     render(inst);
@@ -287,7 +343,7 @@ export function initNotesView(ui) {
         if (area !== 'local') return;
         if (!(SK.annotations in changes || SK.notesIndex in changes || Object.keys(changes).some((k) => isNoteRecKey(k)) || SK.articlesIndex in changes)) return;
         if ([...instances].some((i) => i.editing)) return;   // not while someone is typing in a note
-        const visible = document.body.dataset.screen === 'notes' || [...mounted.values()].length;
+        const visible = document.body.dataset.screen === 'notes' || [...mounted.values()].length || (articlePane && articlePane.root && articlePane.root.isConnected);
         if (!visible) return;
         clearTimeout(timer); timer = setTimeout(renderAll, 150);
     });

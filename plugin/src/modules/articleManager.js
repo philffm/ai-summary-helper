@@ -3,7 +3,7 @@ import { showSkeleton, clearSkeleton } from './skeleton.js';
 import { modelIcon } from './modelBadge.js';
 import { icon, iconEl, setIconLabel, stripEmoji } from './icons.js';
 import { TOOLBAR_CATALOG, TOOLBAR_PREF, DEFAULT_TOOLBAR, normalizeToolbar } from './detailToolbar.js';
-import { SK } from './storageKeys.js';
+import { SK, isNoteRecKey } from './storageKeys.js';
 import { escapeHtml, cleanUntrustedHtml } from './textUtils.js';
 // Article Manager
 // Handles article rendering, expand/collapse, search, etc.
@@ -17,7 +17,7 @@ import { buildIndex, search as tfidfSearch, similarTo } from './localSearch.js';
 import { computeMetrics } from './textMetrics.js';
 import { initSelection, registerCard, toggleCard, selectionActive, canSelect, startSelectionWith } from './sendSheet.js';
 import { attachCardMenu } from './cardMenu.js';
-import { T, locale, uiLocale } from './feedI18n.js';
+import { T, TN, locale, uiLocale } from './feedI18n.js';
 import { topicLabel } from './topicConcepts.js';
 import { tagMatches } from './topicConcepts.js';
 import { loadLexicon } from './topicLexicon.js';
@@ -1517,11 +1517,37 @@ export function renderArticles(articles) {
  * @param {object} article
  * @returns {HTMLLIElement}
  */
+// Notes on the History cards: one count chip per article (✏️ your highlights, ✨ the AI's, 📝 notes), read once and kept until a note changes.
+let noteCountsP = null;
+const noteCountsOnce = () => (noteCountsP = noteCountsP || import('./notesView.js').then((m) => m.noteCountsByArticle()).catch(() => new Map()));
+function paintNoteChip(card, counts) {
+    const c = counts.get(card.dataset.aid);
+    const old = card.querySelector('.note-chip'); if (old) old.remove();
+    if (!c || !(c.mine || c.ai || c.notes)) return;
+    const host = card.querySelector('.article-header > div'); if (!host) return;
+    let row = host.querySelector('.card-tags');
+    if (!row) { row = document.createElement('div'); row.className = 'card-tags'; const anchor = host.querySelector('.article-date'); if (anchor) anchor.after(row); else host.appendChild(row); }
+    const chip = document.createElement('span'); chip.className = 'tag-chip note-chip';
+    chip.textContent = [c.mine && '✏️ ' + c.mine, c.ai && '✨ ' + c.ai, c.notes && '📝 ' + c.notes].filter(Boolean).join('  ');
+    chip.title = [c.mine && TN(c.mine, '{n} highlight', '{n} highlights'), c.ai && TN(c.ai, '{n} AI highlight', '{n} AI highlights'), c.notes && TN(c.notes, '{n} note', '{n} notes')].filter(Boolean).join(' · ');
+    row.appendChild(chip);
+}
+function paintNoteChips() { noteCountsOnce().then((counts) => document.querySelectorAll('#articleList .article-card[data-aid]').forEach((card) => paintNoteChip(card, counts))); }
+try {
+    let noteTimer = 0;
+    chrome.storage.onChanged.addListener((changes, area) => {
+        if (area !== 'local') return;
+        if (!(SK.annotations in changes || SK.notesIndex in changes || SK.articlesIndex in changes || Object.keys(changes).some((k) => isNoteRecKey(k)))) return;
+        noteCountsP = null; clearTimeout(noteTimer); noteTimer = setTimeout(paintNoteChips, 250);
+    });
+} catch (_) { /* no extension storage (tests) */ }
+
 function buildArticleCard(article) {
     const articleHeader = article.title || (article.content && article.content.split('\n')[0]) || T('No title available');
     const listItem = document.createElement('li');
     listItem.classList.add('article-card');
     listItem.dataset.ts = String(article.timestamp);
+    if (article.id) listItem.dataset.aid = String(article.id);
     const formattedDate = new Date(article.timestamp).toLocaleDateString(undefined, { year: 'numeric', month: 'short', day: 'numeric' });
     let articleDomain = '';
     if (article.url) {
@@ -1670,6 +1696,7 @@ function buildArticleCard(article) {
         showArticleDetail(article);
     });
 
+    if (article.id) noteCountsOnce().then((counts) => paintNoteChip(listItem, counts));
     return listItem;
 }
 
@@ -2231,6 +2258,7 @@ export async function showArticleDetail(article) {
           <div id="qaMount" class="detail-qa"></div>
         </div>
         <div id="sourceCheckMount" class="detail-source"></div>
+        <section id="articleNotesMount" class="detail-notes" aria-label="${escAttr(T('Notes and highlights'))}"></section>
         <div id="localInsights" class="detail-insights"></div>
         <details class="detail-original">
           <summary>${T('📄 Original Content')}</summary>
@@ -2248,6 +2276,7 @@ export async function showArticleDetail(article) {
     renderPaperRow(article, articleDetailContent.querySelector('.paper-row'));
     renderDetailQa(article, articleDetailContent.querySelector('#qaMount'));
     mountSourceCheck(article, articleDetailContent.querySelector('#sourceCheckMount'));
+    import('./notesView.js').then((m) => { const host = articleDetailContent.querySelector('#articleNotesMount'); if (host && article.id) m.mountArticleNotes(host, article); }).catch(() => { /* notes are optional here */ });
     {   // saved page metadata: favicon + description (set as text, never as HTML)
         const m = article.meta || {};
         const fav = m.favicon || article.favicon;
