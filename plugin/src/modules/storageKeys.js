@@ -97,6 +97,7 @@ export const SK = {
     // the servers (WebDAV, S3, ...) places live on: [{ id, name, service, url, username }]. One server can hold several places (folders). No secrets.
     syncConnections: 'sync:connections',
     syncSecrets: 'sync:secrets', // { [connectionId]: { password | accessKey/secret | key } } — secret, never backed up
+    cloudRoute: 'cloud:route',   // { region: 'eu' | 'global', model, at }: the route the hosted service reported for the last request (transient)
     syncStatus: 'sync:status',   // { [placeId]: { at, ok, error, counts } } last run per place
     syncClock: 'sync:clock',     // { t }: highest stamp time this device has made or seen
     // notes (Notes tab): your own notes and the comments on highlights. One key per note, plus a lean index. Backed up with everything else.

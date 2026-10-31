@@ -4628,3 +4628,8 @@ html[data-motion="reduce"] .detail-split-more .icon { transition: none; }
 .controls-bar.notes-dock { position: sticky; left: auto; right: auto; bottom: calc(var(--bottom-nav-height) + var(--controls-bottom-gap) - var(--nav-clearance) - 6px); max-width: none; margin: auto 0 calc(-1 * var(--spacing-s-4) - 6px); padding: 0; z-index: var(--z-raised); }
 .notes-dock .composer-pill .notes-add { flex: none; width: auto; margin: 0; white-space: nowrap; min-width: 44px; }
 .notes-dock .notes-hint { color: var(--text-muted); font-size: var(--fs-xs); }
+
+/* hosted models: EU servers, or (with "Prefer EU servers" on) a model that does not run there */
+.model-region { font-size: .72em; font-weight: 700; letter-spacing: .02em; padding: 1px 6px; border-radius: 999px; vertical-align: middle; }
+.model-region--eu { background: color-mix(in srgb, var(--accent) 18%, transparent); color: var(--accent); }
+.model-region--outside { background: color-mix(in srgb, var(--warn) 22%, transparent); color: var(--warn); }

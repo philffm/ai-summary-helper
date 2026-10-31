@@ -104,6 +104,7 @@ const SK = {
     // the servers (WebDAV, S3, ...) places live on: [{ id, name, service, url, username }]. One server can hold several places (folders). No secrets.
     syncConnections: 'sync:connections',
     syncSecrets: 'sync:secrets', // { [connectionId]: { password | accessKey/secret | key } } — secret, never backed up
+    cloudRoute: 'cloud:route',   // { region: 'eu' | 'global', model, at }: the route the hosted service reported for the last request (transient)
     syncStatus: 'sync:status',   // { [placeId]: { at, ok, error, counts } } last run per place
     syncClock: 'sync:clock',     // { t }: highest stamp time this device has made or seen
     // notes (Notes tab): your own notes and the comments on highlights. One key per note, plus a lean index. Backed up with everything else.
@@ -760,6 +761,21 @@ if (typeof AishAudio !== 'undefined' && typeof Audio !== 'undefined') AishAudio.
 
 const AISH_API_BASE = 'https://api.byphil.eu';
 
+// "Prefer EU servers" (Settings → Models, hosted models only): the hosted service pins EU endpoints for models that have them and runs the others
+// as usual. A service that does not know the header ignores it. The answer's X-AISH-Region says which route was really used; the app shows that.
+async function cloudRegionHeader(url) {
+    if (!String(url).startsWith(AISH_API_BASE + '/v1/projects/')) return {};
+    const s = await chrome.storage.sync.get(['cloudRegionPref']).catch(() => ({}));
+    return s.cloudRegionPref === 'prefer-eu' ? { 'X-AISH-Region': 'prefer-eu' } : {};
+}
+function noteCloudRoute(url, res, model) {
+    try {
+        if (!String(url).startsWith(AISH_API_BASE + '/v1/projects/')) return;
+        const region = res.headers.get('x-aish-region');
+        if (region === 'eu' || region === 'global') chrome.storage.local.set({ [SK.cloudRoute]: { region, model: model || '', at: Date.now() } });
+    } catch (_) { /* a status note must never break a summary */ }
+}
+
 // Login-token expiry (same rule as modules/sessionToken.js; this file is not a module). Only a readable JWT with a past `exp` counts.
 function aiTokenExpired(token) {
     if (!token || typeof token !== 'string') return false;
@@ -937,7 +953,9 @@ async function aiComplete({ system, user, id, partial, service: forcedService, s
     if (id) aiJobs.set(id, ctrl);
     const progress = (p) => { if (id) { try { chrome.runtime.sendMessage({ action: 'aiProgress', id, ...p }, () => void chrome.runtime.lastError); } catch (_) { /* popup closed */ } } };
     try {
+        Object.assign(headers, await cloudRegionHeader(url));
         let res = await fetch(url, { method: 'POST', headers, body, signal: ctrl.signal });
+        noteCloudRoute(url, res, model);
         // A provider that rejects "stream": true gets one retry without streaming.
         if ((res.status === 400 || res.status === 422) && service !== 'gemini') {
             res = await fetch(url, { method: 'POST', headers, body: body.replace('"stream":true', '"stream":false'), signal: ctrl.signal });
@@ -1929,7 +1947,8 @@ async function handleStreamFetch(msg, tabId) {
             push({ meta: 'heartbeat', requestId, elapsedMs: Date.now() - startedAt, chunkCount, byteCount });
         }, 3000);
 
-        const response = await fetch(apiUrl, { method: 'POST', headers, body, signal: controller.signal });
+        const response = await fetch(apiUrl, { method: 'POST', headers: { ...headers, ...(await cloudRegionHeader(apiUrl)) }, body, signal: controller.signal });
+        { let m = ''; try { m = JSON.parse(body).model || ''; } catch (_) { /* not JSON */ } noteCloudRoute(apiUrl, response, m); }
 
         push({ meta: 'response', requestId, status: response.status, contentType: response.headers.get('content-type') || '' });
 

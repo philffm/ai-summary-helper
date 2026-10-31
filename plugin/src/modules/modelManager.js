@@ -1,6 +1,7 @@
 import { T } from './feedI18n.js';
 import { escapeHtml as esc } from './textUtils.js';
 import { SK } from './storageKeys.js';
+import { pricesFor } from './cloudRegion.js';
 // Model Manager modelManager.js
 // Handles service/model config and label logic
 
@@ -115,9 +116,10 @@ export function suggestModels(models, taken = [], count = 5) {
     return top.map((m, i) => ({ m, i, sc: score(m, i) })).sort((a, b) => a.sc - b.sc || a.i - b.i).slice(0, count).map(x => x.m);
 }
 /** Short price tag for a model from the roster: "$0.10 in / $0.40 out per 1M tokens", "Free", or '' when the server sent no prices. */
-export function modelPriceLabel(model) {
-    if (!model || !Number.isFinite(model.price_in) || !Number.isFinite(model.price_out)) return '';
-    if (model.price_in === 0 && model.price_out === 0) return T('Free');
-    return T('{input} in / {output} out per 1M tokens', { input: fmtPrice(model.price_in), output: fmtPrice(model.price_out) });
+export function modelPriceLabel(model, pref) {
+    const p = pricesFor(model, pref);   // with "Prefer EU" on, an EU model shows what it costs on EU servers
+    if (!model || !Number.isFinite(p.price_in) || !Number.isFinite(p.price_out)) return '';
+    if (p.price_in === 0 && p.price_out === 0) return T('Free');
+    return T('{input} in / {output} out per 1M tokens', { input: fmtPrice(p.price_in), output: fmtPrice(p.price_out) });
 }
 export { updateModelIdentifierUI };

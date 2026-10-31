@@ -14,6 +14,10 @@ Commit history has the details: <https://github.com/philffm/ai-summary-helper/co
 - **Safer by design.** A flood of deletions from other devices waits for your yes; old delete markers expire after 90 days; a device away for longer sends only what changed since; a folder the browser took permission back from is shown at the top with one button.
 - **Progress and status.** Live progress while syncing ("Saving 225 of 246" for a folder, "Uploading" for a server).
 
+### Hosted models
+
+- **Prefer EU servers.** A new setting for the hosted models (byphil Cloud). With it on, models that have an endpoint in Europe run only on those endpoints (no fallbacks), the model list marks them “EU” and shows their EU price, and every other model keeps working and is marked “Not EU”. Settings shows which route the last request really took. Your text still passes through our service and our model router; read-aloud and speech-to-text have no EU option.
+
 ### Notes
 
 - **On-page toolbar.** Select text anywhere: ✏️ highlight, 💬 highlight and comment, 📝 note with the quote. Comments show in the highlights panel; "Open in Notes" jumps to the new tab.

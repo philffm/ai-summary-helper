@@ -485,6 +485,11 @@
                             <option value="" disabled selected data-i18n="f_connecting_to_proxy_metrics_32c8"><span class="ic"><svg class="icon icon-refresh-cw" aria-hidden="true" focusable="false"><use href="#i-refresh-cw"/></svg><span class="ic-e" aria-hidden="true">↻</span></span> Connecting to proxy metrics...</option>
                         </select>
                     </div>
+                    <div class="setting-group" id="cloudRegionGroup" hidden>
+                        <div class="send-default-row"><span id="cloudRegionLabel">Prefer EU servers</span><label class="switch"><input type="checkbox" id="cloudRegionPref" aria-labelledby="cloudRegionLabel" aria-describedby="cloudRegionNote" /><span class="slider-toggle"></span></label></div>
+                        <p class="setting-note" id="cloudRegionNote"></p>
+                        <p class="setting-note" id="cloudRouteLast" role="status" hidden></p>
+                    </div>
                 </div>
                 <div id="developerModeContainer" class="flex column gap-3" style="display:none">
                   <label for="model" id="providerLabel"><span data-i18n="f_provider_88dc">Provider</span> <span class="fw-normal" id="apiKeyLink"></span></label>

@@ -1,5 +1,6 @@
 import { modelIconName } from './modules/modelBadge.js';
 import { modelPriceLabel, suggestModels } from './modules/modelManager.js';
+import { regionTag } from './modules/cloudRegion.js';
 import { icon, iconEl, setIcon, setLabel } from './modules/icons.js';
 import { checkOllama } from './modules/ollamaCheck.js';
 import { checkOpenAiModels } from './modules/openaiModelsCheck.js';
@@ -549,11 +550,13 @@ document.addEventListener("DOMContentLoaded", async () => {
             renderModelUI = renderUI; // expose for the model panel chip handler
             // servicesConfig now lives in LOCAL storage; prefs stay in sync.
             return Promise.all([
-                chrome.storage.sync.get(['connectionMode', 'preferredCloudModel']),
+                chrome.storage.sync.get(['connectionMode', 'preferredCloudModel', 'cloudRegionPref']),
                 chrome.storage.local.get([SK.servicesConfig])
             ]).then(async ([syncData, localData]) => {
                 const { preferredCloudModel } = { ...syncData, ...localData };
                 const connectionMode = syncData.connectionMode || 'cloud';
+                const regionPref = syncData.cloudRegionPref === 'prefer-eu' ? 'prefer-eu' : 'any';   // "Prefer EU servers": marks and EU prices in the model lists
+                const regionMark = (btn, model) => { const tg = regionTag(model, regionPref); if (!tg) return; const m = document.createElement('span'); m.className = 'model-region model-region--' + tg.kind; m.textContent = tg.kind === 'eu' ? T('EU') : T('Not EU'); btn.append(' ', m); };
                 const servicesConfig = localData[SK.servicesConfig];
                 renderModeSeg(connectionMode === 'cloud' ? 'cloud' : (modelSelect.value === 'ollama' ? 'ollama' : 'local'));
                 if (connectionMode === 'cloud') {
@@ -611,7 +614,8 @@ document.addEventListener("DOMContentLoaded", async () => {
                                     const btn = document.createElement('button');
                                     btn.className = 'pill pill--sm pill--soft';
                                     btn.textContent = model.name.includes(': ') ? model.name.split(': ').slice(1).join(': ') : model.name;
-                                    const price = modelPriceLabel(model); btn.title = model.name + (price ? ' · ' + price : '');
+                                    regionMark(btn, model);
+                                    const price = modelPriceLabel(model, regionPref); btn.title = model.name + (price ? ' · ' + price : '');
                                     if (model.id === activeCloudModel) btn.classList.add('active');
                                     btn.addEventListener('click', async (e) => {
                                         e.preventDefault();
@@ -663,7 +667,8 @@ document.addEventListener("DOMContentLoaded", async () => {
                                 const btn = document.createElement('button');
                                 btn.className = 'pill pill--sm pill--soft';
                                 btn.textContent = model.name;
-                                { const price = modelPriceLabel(model); if (price) btn.title = model.name + ' · ' + price; }
+                                regionMark(btn, model);
+                                { const price = modelPriceLabel(model, regionPref); if (price) btn.title = model.name + ' · ' + price; }
                                 if (model.id === activeCloudModel) btn.classList.add('active');
                                 btn.addEventListener('click', async (e) => {
                                     e.preventDefault();

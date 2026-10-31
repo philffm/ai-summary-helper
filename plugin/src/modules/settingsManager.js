@@ -11,6 +11,7 @@ import { filterBackupSecrets, hasBackupSecrets, prepareImportedData } from './ba
 import StorageManager from './storageManager.js';
 import { initPromptSettings } from './promptSettings.js';
 import { updateModelIdentifierUI, modelPriceLabel } from './modelManager.js';
+import { supportsEu, regionTag, isEuPreferred, routeSentence, PREF_EU, PREF_ANY } from './cloudRegion.js';
 import { initAuthManager } from './authManager.js';
 import { buildCanonicalTagMap, applyCanonicalTags } from './tagIntelligence.js';
 import { unknownTags, keysNeedingLabel } from './topicConcepts.js';
@@ -340,25 +341,53 @@ async function initModelSettings(storageData) {
     // ── 2. Initialize Cloud Settings State ──────────────────────────
     if (cloudModelSelect) {
         // Fetch filtered cheap models from your backend proxy
+        let regionPref = storageData.cloudRegionPref === PREF_EU ? PREF_EU : PREF_ANY;
+        const regionGroup = document.getElementById('cloudRegionGroup'), regionSwitch = document.getElementById('cloudRegionPref');
+        let rosterModels = [];
+        // The model list: every model stays selectable. EU models are marked, and with "Prefer EU servers" on the others are called out and EU prices are shown.
+        const fillCloudModels = () => {
+            const keep = cloudModelSelect.value || storageData.preferredCloudModel;
+            cloudModelSelect.innerHTML = '';
+            rosterModels.forEach(model => {
+                const option = document.createElement('option');
+                option.value = model.id;
+                const price = modelPriceLabel(model, regionPref);
+                const tag = regionTag(model, regionPref);
+                // Example output: "Gemini 3.8 Flash (Context: 1M) · EU · 0.3 in / 2.5 out per 1M tokens"
+                option.textContent = `${model.name} (${T('Context: {n}k', { n: Math.round(model.context / 1000) })})` + (tag ? ' · ' + (tag.kind === 'eu' ? T('EU servers') : T('Not on EU servers')) : '') + (price ? ' · ' + price : '');
+                cloudModelSelect.appendChild(option);
+            });
+            cloudModelSelect.value = keep || rosterModels[0].id;
+        };
+        const showRoute = async () => {
+            const note = document.getElementById('cloudRouteLast'); if (!note) return;
+            const { [SK.cloudRoute]: route } = await chrome.storage.local.get(SK.cloudRoute);
+            const text = routeSentence(route);
+            note.textContent = text ? T(text) : ''; note.hidden = !text;
+        };
+        const describeRegion = () => {
+            const n = document.getElementById('cloudRegionNote');
+            if (n) n.textContent = isEuPreferred(regionPref)
+                ? T('Models marked “EU servers” run only on servers in Europe. Every other model still works, is marked “Not on EU servers”, and runs as usual. EU servers can cost a little more; the prices shown are the EU ones. Read-aloud and speech-to-text have no EU option. Your text still passes through our service and our model router on the way.')
+                : T('Turn on to run models on servers in Europe where they offer that. All other models keep working and are marked.');
+        };
+        if (regionSwitch) {
+            regionSwitch.checked = isEuPreferred(regionPref);
+            regionSwitch.addEventListener('change', async () => {
+                regionPref = regionSwitch.checked ? PREF_EU : PREF_ANY;
+                await chrome.storage.sync.set({ cloudRegionPref: regionPref });
+                describeRegion(); if (rosterModels.length) fillCloudModels();
+            });
+        }
+        chrome.storage.onChanged.addListener((ch, area) => { if (area === 'local' && SK.cloudRoute in ch) showRoute(); });
         fetch(`${StorageManager.getApiBase()}/v1/projects/ai_summary_helper/models`)
             .then(res => res.json())
             .then(data => {
                 if (data.success && data.models.length > 0) {
-                    // Clear the loading indicator option
-                    cloudModelSelect.innerHTML = '';
-                    
-                    // Populate options dynamically
-                    data.models.forEach(model => {
-                        const option = document.createElement('option');
-                        option.value = model.id;
-                        // Example output: "Gemini 3.8 Flash (Context: 1M)"
-                        const price = modelPriceLabel(model);
-                        option.textContent = `${model.name} (${T('Context: {n}k', { n: Math.round(model.context / 1000) })})` + (price ? ' · ' + price : '');
-                        cloudModelSelect.appendChild(option);
-                    });
-
-                    // Restore user's previous selection or default to the first cheap model
-                    cloudModelSelect.value = storageData.preferredCloudModel || data.models[0].id;
+                    rosterModels = data.models;
+                    fillCloudModels();
+                    // Only a server that knows about regions gets the switch: an older one would just ignore it, and nothing would be marked.
+                    if (regionGroup) { regionGroup.hidden = !supportsEu(data); describeRegion(); showRoute(); }
                 } else {
                     throw new Error("Empty model array received");
                 }
