@@ -324,7 +324,7 @@
     }
   };
   // Feeds, AI helpers, reader and side-panel plumbing are not part of the demo: acknowledged, nothing happens.
-  const quiet = new Set(['ttsCmd', 'audioCmd', 'feedPollConfig', 'audioEnsure', 'feedBadgeClear', 'aiCancel', 'aiResync', 'fetchFeedText', 'inboxMeta', 'openFeedItem', 'openNativeSidePanel', 'relayToActiveTab', 'saveFeedItem', 'closeTabSelf', 'fetchImageAsDataUrl', 'fetchPdfBytes']);
+  const quiet = new Set(['openNotes', 'syncHlDeleted', 'ttsCmd', 'audioCmd', 'feedPollConfig', 'audioEnsure', 'feedBadgeClear', 'aiCancel', 'aiResync', 'fetchFeedText', 'inboxMeta', 'openFeedItem', 'openNativeSidePanel', 'relayToActiveTab', 'saveFeedItem', 'closeTabSelf', 'fetchImageAsDataUrl', 'fetchPdfBytes']);
   window.chrome = {
     storage: { local, sync, session, onChanged: { addListener: f => storageL.add(f), removeListener: f => storageL.delete(f) } },
     runtime: { lastError: undefined, id: 'demo', getURL: p => new URL('./' + p, location.href).href, reload() {},
