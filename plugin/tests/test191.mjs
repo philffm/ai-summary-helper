@@ -13,7 +13,7 @@ const { SK, articleRecKey } = K;
 
 const dav = createFakeDav();
 let inflight = 0, maxInflight = 0;
-const slowFetch = async (url, init) => { inflight++; maxInflight = Math.max(maxInflight, inflight); await new Promise((r) => setTimeout(r, 8)); try { return await dav.fetchFn(url, init); } finally { inflight--; } };
+const slowFetch = async (url, init) => { const put = ((init && init.method) || '') === 'PUT'; if (put) { inflight++; maxInflight = Math.max(maxInflight, inflight); } await new Promise((r) => setTimeout(r, 8)); try { return await dav.fetchFn(url, init); } finally { if (put) inflight--; } };   // only uploads are counted: the folder check lists in parallel
 const N = 300;
 local[SK.articlesIndex] = Array.from({ length: N }, (_, i) => ({ id: 'a' + i, url: 'https://x.test/' + i, title: 'T' + i, timestamp: new Date(1767225600000 + i * 1000).toISOString(), tags: ['public'], summary: 's' }));
 for (let i = 0; i < N; i++) local[articleRecKey('a' + i)] = { content: 'x'.repeat(2000), summary: 's' };
@@ -40,6 +40,7 @@ assert.equal(maxInflight, 1, 'concurrency 1 never overlaps uploads');
 dav.files.clear(); dav.dirs.clear(); dav.dirs.add('');
 local['sync:ledger:p1'] = {};
 let clock = 0; const tick = () => (clock += 1);
+local['sync:ledger:p1'] = { checkedAt: Number.MAX_SAFE_INTEGER };
 r = await P.pushPlace({ place, storage, store, now: tick, budgetMs: 40, chunk: 20 });
 assert.ok(r.more && r.remaining > 0 && r.remaining < N, 'stopped early with ' + r.remaining + ' left');
 const first = r.pushed; assert.equal(first + r.remaining, N, 'pushed + remaining = all');

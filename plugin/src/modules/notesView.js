@@ -187,25 +187,22 @@ function build() {
     root.replaceChildren(head, bar, filters, body, composer());
 }
 
-/** The docked composer: a slim bar that opens upwards. */
+/** The docked composer: a card like the one on the Summarize screen, always visible, in thumb and mouse reach. */
 function composer() {
-    const wrap = el('div', 'notes-composer'); wrap.id = 'notesComposer';
-    const ta = document.createElement('textarea'); ta.id = 'notesInput'; ta.rows = 1; ta.className = 'notes-input'; ta.placeholder = T('Write a note…'); ta.setAttribute('aria-label', T('Write a note'));
-    const hintRow = el('div', 'notes-composer-row');
+    const wrap = el('div', 'input-card notes-composer'); wrap.id = 'notesComposer';
+    const label = el('label', 'input-card-label', T('New note')); label.htmlFor = 'notesInput';
+    const ta = document.createElement('textarea'); ta.id = 'notesInput'; ta.rows = 2; ta.className = 'notes-input'; ta.placeholder = T('Write a note, or a thought worth keeping…');
+    const row = el('div', 'notes-composer-row');
     const hint = el('span', 'mcp-row-hint', T('End with #tags. ⌘/Ctrl+Enter to add.'));
     const add = button(T('Add'), 'button-primary btn-sm', async () => { await submit(); });
-    hintRow.append(hint, add);
-    const open = () => { wrap.classList.add('is-open'); ta.rows = 3; };
-    const close = () => { if (!ta.value.trim()) { wrap.classList.remove('is-open'); ta.rows = 1; } };
+    row.append(hint, add);
     async function submit() {
         const { text, tags } = splitTags(ta.value); if (!text) { ta.focus(); return; }
         add.disabled = true;
-        try { await store.add({ text, tags }); ta.value = ''; wrap.classList.remove('is-open'); ta.rows = 1; render(); } finally { add.disabled = false; }
+        try { await store.add({ text, tags }); ta.value = ''; render(); } finally { add.disabled = false; }
     }
-    ta.addEventListener('focus', open);
-    ta.addEventListener('blur', () => setTimeout(() => { if (!wrap.contains(document.activeElement)) close(); }, 120));
-    ta.addEventListener('keydown', (e) => { if ((e.metaKey || e.ctrlKey) && e.key === 'Enter') { e.preventDefault(); submit(); } else if (e.key === 'Escape') { ta.value = ''; ta.blur(); close(); } });
-    wrap.append(ta, hintRow);
+    ta.addEventListener('keydown', (e) => { if ((e.metaKey || e.ctrlKey) && e.key === 'Enter') { e.preventDefault(); submit(); } else if (e.key === 'Escape') { ta.value = ''; ta.blur(); } });
+    wrap.append(label, ta, row);
     return wrap;
 }
 

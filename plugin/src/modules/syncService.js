@@ -223,10 +223,10 @@ export function createSyncService({ storage, makeStore, stampStore, viewerSource
                     const connection = st.connections.find((c) => c.id === place.connectionId);
                     if (!connection) throw new Error('The server of this place was removed.');
                     const viewer = place.viewer && viewerSource ? await viewerSource(place) : null;
-                    const r = await pushPlace({ place, storage, store: storeOf(connection, place, st.secrets[connection.id]), stamps, now, confirmRemovals, onProgress, viewer });
+                    const r = await pushPlace({ place, storage, store: storeOf(connection, place, st.secrets[connection.id]), stamps, now, confirmRemovals, onProgress, viewer, verify: !!id });   // a manual publish looks at the folder first
                     await writing;
                     results[place.id] = r;
-                    await setStatus(place.id, { at, ok: true, pushed: r.pushed, removed: r.removed, unchanged: r.unchanged, errors: r.errors.length, more: r.more, remaining: r.remaining, needsConfirm: r.needsConfirm, viewer: r.viewer });   // no `running`: the run is over
+                    await setStatus(place.id, { at, ok: true, pushed: r.pushed, removed: r.removed, unchanged: r.unchanged, errors: r.errors.length, more: r.more, remaining: r.remaining, needsConfirm: r.needsConfirm, viewer: r.viewer, repaired: r.repaired, orphans: r.orphans });   // no `running`: the run is over
                     if (r.more) scheduleSoon(1);
                 } catch (e) {
                     log('[sync]', place.id, e && e.message);

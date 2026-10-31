@@ -137,6 +137,23 @@
   }
   function note(text, cls) { var n = h('div', { class: 'note' + (cls ? ' ' + cls : ''), text: text }); $('extra').textContent = ''; $('extra').appendChild(n); }
 
+  // the Sky: every article a star (aish-sky.js, loaded only here). The list below stays, as the accessible version of the same stars.
+  var skyPromise = null, sky = null;
+  function loadSky() {
+    if (window.AISH_SKY) return Promise.resolve(window.AISH_SKY);
+    if (!skyPromise) skyPromise = new Promise(function (res, rej) { var s = document.createElement('script'); s.src = 'aish-sky.js'; s.onload = function () { res(window.AISH_SKY); }; s.onerror = function () { skyPromise = null; rej(new Error('aish-sky.js is missing next to this page.')); }; document.head.appendChild(s); });
+    return skyPromise;
+  }
+  function showSky(list) {
+    loadSky().then(function (S) {
+      if (state.view !== 'sky') return;
+      if (sky && $('extra').firstChild) { sky.update(list); return; }
+      $('extra').textContent = '';
+      sky = S.mount($('extra'), { items: function () { return list; }, card: card });
+    }).catch(function (e) { note(e.message, 'err'); });
+  }
+  function leaveSky() { if (sky) { sky.destroy(); sky = null; } }
+
   function drawTimeline(d3) {
     var counts = {}; state.all.forEach(function (a) { var m = monthOf(a); if (m) counts[m] = (counts[m] || 0) + 1; });
     var months = Object.keys(counts).sort(); if (!months.length) return note('No dates to draw.');
@@ -191,14 +208,16 @@
     if (list.length > 300) box.appendChild(h('div', { class: 'note', text: 'Showing the first 300. Search or filter to narrow it down.' }));
     if (!list.length) box.appendChild(h('div', { class: 'note', text: 'Nothing matches.' }));
     document.querySelectorAll('#views button').forEach(function (b) { b.setAttribute('aria-pressed', String(b.dataset.view === state.view)); });
+    if (state.view !== 'sky') leaveSky();
     if (state.view === 'list') { $('extra').textContent = ''; }
+    else if (state.view === 'sky') showSky(list);
     else loadD3().then(function (d3) { if (state.view === 'timeline') drawTimeline(d3); else drawGraph(d3); }).catch(function (e) { note(e.message, 'err'); });
   }
 
   function init(lib) {
     if (!lib || !Array.isArray(lib.articles)) throw new Error('library.json has no articles.');
     state.all = lib.articles.filter(function (a) { return a && typeof a === 'object'; }); state.generated = lib.generatedAt; state.notes = Array.isArray(lib.notes) ? lib.notes : [];
-    var hv = (location.hash || '').slice(1); if (hv === 'timeline' || hv === 'graph' || hv === 'notes') state.view = hv;   // a link can open a view directly
+    var hv = (location.hash || '').slice(1); if (hv === 'timeline' || hv === 'graph' || hv === 'notes' || hv === 'sky') state.view = hv;   // a link can open a view directly
     $('q').addEventListener('input', function () { state.q = this.value; render(); });
     $('sort').addEventListener('change', function () { state.sort = this.value; render(); });
     $('views').addEventListener('click', function (e) { var b = e.target.closest('button'); if (!b) return; state.view = b.dataset.view; if (state.view === 'list') state.month = ''; try { history.replaceState(null, '', state.view === 'list' ? location.pathname + location.search : '#' + state.view); } catch (_) { /* file or sandbox */ } render(); });

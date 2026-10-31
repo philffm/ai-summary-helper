@@ -4598,11 +4598,12 @@ html[data-motion="reduce"] .detail-split-more .icon { transition: none; }
 .st-edit { display: flex; flex-direction: column; gap: 6px; }
 .st-ta { width: 100%; resize: vertical; font: inherit; font-size: var(--fs-md); padding: 8px; border-radius: 8px; border: 1px solid var(--outline); background: var(--glass-input); color: var(--text-primary); }
 .st-edit-row { display: flex; gap: 6px; justify-content: flex-end; flex-wrap: wrap; }
-.notes-composer { position: sticky; bottom: calc(var(--nav-clearance) - var(--spacing-s-3)); z-index: var(--z-raised); margin-top: auto; background: color-mix(in srgb, var(--bg-page) 96%, transparent); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); border: 1px solid var(--outline); border-radius: 16px; padding: 8px 12px; box-shadow: var(--shadow-raised); display: flex; flex-direction: column; gap: 6px; }
-textarea.notes-input { width: 100%; resize: none; font: inherit; font-size: var(--fs-md); border: 0; background: transparent; color: var(--text-primary); outline: none; box-shadow: none; padding: 4px 0; margin: 0; min-height: 0; height: auto; }
-.notes-composer-row { display: none; align-items: center; justify-content: space-between; gap: 8px; }
-.notes-composer.is-open .notes-composer-row { display: flex; }
-.notes-composer:focus-within { border-color: var(--accent-a30); box-shadow: 0 0 0 3px var(--accent-a15), var(--shadow-raised); }
+.notes-composer { position: sticky; bottom: calc(var(--nav-clearance) - var(--spacing-s-3)); z-index: var(--z-raised); margin-top: auto; padding: var(--spacing-s-3) var(--spacing-s-4); background: color-mix(in srgb, var(--bg-page) 94%, transparent); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); border: 1px solid var(--outline); box-shadow: var(--glass-inner-glow), var(--shadow-card); display: flex; flex-direction: column; gap: 4px; }
+.notes-composer .input-card-label { margin: 0; }
+textarea.notes-input { width: 100%; resize: none; font: inherit; font-size: var(--fs-lg); line-height: 1.5; border: 0; background: transparent; color: var(--text-primary); outline: none; box-shadow: none; padding: 0; margin: 0; min-height: 54px; height: auto; }
+textarea.notes-input::placeholder { color: var(--text-muted); opacity: .6; }
+.notes-composer-row { display: flex; align-items: center; justify-content: space-between; gap: 8px; }
+.notes-composer:focus-within { border-color: var(--accent-a30); box-shadow: 0 0 0 3px var(--accent-a15), var(--glass-inner-glow), var(--shadow-card); }
 :root[data-theme='contrast'] .st { border: 2px solid #000; border-left-width: 6px; }
 @media (prefers-reduced-motion: reduce) { .notes-composer { transition: none; } }
 

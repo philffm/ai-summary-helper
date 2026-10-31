@@ -46,14 +46,15 @@ assert.equal(root().querySelectorAll('.st').length, 2, 'the two highlights are s
 assert.ok(document.getElementById('notesComposer') && document.getElementById('notesInput'), 'the composer is docked below the stream');
 assert.ok(root().lastElementChild.id === 'notesComposer', 'and it is the last thing on the screen');
 
-// composer: closed until focused, adds a note with tags, clears itself
+// composer: a card like the Summarize screen's, always visible with its label and Add button; adds a note with tags, clears itself
 const input = document.getElementById('notesInput'), comp = document.getElementById('notesComposer');
-assert.ok(!comp.classList.contains('is-open')); input.dispatchEvent(new w.Event('focus')); assert.ok(comp.classList.contains('is-open'), 'opens when it gets focus');
+assert.ok(comp.classList.contains('input-card'), 'same card as the Summarize screen');
+assert.match(comp.querySelector('.input-card-label').textContent, /New note/); assert.ok(btn('Add', comp), 'the Add button is always there');
 input.value = 'Ask Anna about the cap #todo #inflation';
 click(btn('Add', comp)); await wait(120);
 assert.equal(store[SK.notesIndex].length, 1); const nid = store[SK.notesIndex][0].id;
 assert.equal(store[noteRecKey(nid)].text, 'Ask Anna about the cap'); assert.deepEqual(store[noteRecKey(nid)].tags, ['todo', 'inflation']);
-assert.equal(input.value, ''); assert.ok(!comp.classList.contains('is-open'), 'closed again');
+assert.equal(input.value, '');
 assert.equal(root().querySelectorAll('.st').length, 3); assert.ok(root().querySelector('.st-note'), 'the note is a pink sticky');
 
 // a wide window starts as a grid (jsdom is 1024px wide); list groups by day, grid does not; the choice is remembered

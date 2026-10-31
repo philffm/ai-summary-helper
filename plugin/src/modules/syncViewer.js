@@ -8,15 +8,15 @@
 //   • a changed index.html is the user's own: left alone (status 'customized').
 import { hashValue } from './syncStamps.js';
 
-export const VIEWER_VERSION = 1;
-export const VIEWER_FILES = { 'index.html': 'text/html; charset=utf-8', 'aish-viewer.js': 'text/javascript; charset=utf-8' };
+export const VIEWER_VERSION = 2;
+export const VIEWER_FILES = { 'index.html': 'text/html; charset=utf-8', 'aish-viewer.js': 'text/javascript; charset=utf-8', 'aish-sky.js': 'text/javascript; charset=utf-8' };
 const ESC = { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' };
 const esc = (s) => String(s == null ? '' : s).replace(/[&<>"']/g, (c) => ESC[c]);
 
 /** Fills the template: the place name (escaped) and the viewer version. → { version, files } */
 export function renderViewer(templates, { title } = {}) {
     const html = String(templates['index.html'] || '').split('{{TITLE}}').join(esc(title || 'Reading list')).split('{{VERSION}}').join(String(VIEWER_VERSION));
-    return { version: VIEWER_VERSION, files: { 'index.html': html, 'aish-viewer.js': String(templates['aish-viewer.js'] || '') } };
+    return { version: VIEWER_VERSION, files: { 'index.html': html, 'aish-viewer.js': String(templates['aish-viewer.js'] || ''), 'aish-sky.js': String(templates['aish-sky.js'] || '') } };
 }
 
 export const isOurs = (text) => /<meta name="aish-viewer"/.test(String(text || ''));

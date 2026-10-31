@@ -18,17 +18,18 @@ import { TargetError } from './targets/targetError.js';
 import { ensureViewer } from './syncViewer.js';
 import { createNotesStore } from './notesStore.js';
 
-const MAX_REMOVE_SHARE = 0.5, MIN_REMOVE_GUARD = 10;
+const MAX_REMOVE_SHARE = 0.5, MIN_REMOVE_GUARD = 10, VERIFY_EVERY_MS = 30 * 60 * 1000, MAX_ORPHAN_CHECKS = 100;
 const get = (storage, keys) => Promise.resolve(storage.get(keys));
 
 /**
+ * verify: look at what is really on the server before pushing (also done on the first run and every half hour).
  * @param {{ place, storage, store, stamps?, now?, budgetMs?, confirmRemovals?, chunk?, concurrency?, onProgress?: ({ phase, done, total }) => void }} o
  *   onProgress phases: 'checking' (reading the library), 'removing', 'uploading', 'list' (library.json)
- * @returns {Promise<{ pushed, unchanged, removed, errors, more, remaining, needsConfirm, libraryWritten, viewer? }>}  `more`: the time budget ran out, `remaining` files are left for the next run
+ * @returns {Promise<{ pushed, unchanged, removed, errors, more, remaining, needsConfirm, libraryWritten, repaired, orphans, viewer? }>}  `more`: the time budget ran out, `remaining` files are left for the next run
  */
-export async function pushPlace({ place, storage, store, stamps = {}, now = Date.now, budgetMs = 150000, confirmRemovals = false, chunk = 25, concurrency = 4, onProgress = () => {}, viewer = null }) {
+export async function pushPlace({ place, storage, store, stamps = {}, now = Date.now, budgetMs = 150000, confirmRemovals = false, chunk = 25, concurrency = 4, onProgress = () => {}, viewer = null, verify = false }) {
     const started = now();
-    const out = { pushed: 0, unchanged: 0, removed: 0, errors: [], more: false, remaining: 0, needsConfirm: 0, libraryWritten: false };
+    const out = { pushed: 0, unchanged: 0, removed: 0, errors: [], more: false, remaining: 0, needsConfirm: 0, libraryWritten: false, repaired: 0, orphans: 0 };
     const lk = syncLedgerKey(place.id);
     onProgress({ phase: 'checking', done: 0, total: 0 });
     const d = await get(storage, { [SK.articlesIndex]: [], [SK.annotations]: [], [lk]: {} });
@@ -40,7 +41,7 @@ export async function pushPlace({ place, storage, store, stamps = {}, now = Date
     const items = { ...(ledger.items || {}) };   // a config change only skips the stamp prefilter: unchanged files are still not uploaded again
     const known = new Set(Object.keys(items));
     let viewerState = ledger.viewer;
-    const save = () => storage.set({ [lk]: { cfg, items, lib: ledger.lib || 0, ...(ledger.libJs ? { libJs: 1 } : {}), ...(ledger.notesHash ? { notesHash: ledger.notesHash } : {}), ...(viewerState ? { viewer: viewerState } : {}) } });
+    const save = () => storage.set({ [lk]: { cfg, items, lib: ledger.lib || 0, ...(ledger.checkedAt ? { checkedAt: ledger.checkedAt } : {}), ...(ledger.libJs ? { libJs: 1 } : {}), ...(ledger.notesHash ? { notesHash: ledger.notesHash } : {}), ...(viewerState ? { viewer: viewerState } : {}) } });
 
     // danger zone: notes and comments are read only when this place is allowed to publish them
     const inc = includeOf(place);
@@ -55,8 +56,40 @@ export async function pushPlace({ place, storage, store, stamps = {}, now = Date
     const revT = (key) => (stamps[key] && stamps[key].rev && stamps[key].rev.t) || 0;
     const hlT = (page) => Math.max(0, ...(hlByPage.get(page) || []).map((h) => Math.max(revT('hl:' + h.id), inc.notes ? revT('note:c_' + h.id) : 0)));
 
-    // 1) removals first (articles that left the place), guarded
-    const gone = [...known].filter((id) => !matchIds.has(id));
+    // 0) look at what is really on the server: restore files that went missing or were changed, find leftovers, check the list and the viewer
+    const remotePath = new Map();   // article id → the path it has on the server
+    const orphanIds = [];
+    if (verify || !ledger.checkedAt || now() - ledger.checkedAt > VERIFY_EVERY_MS) {
+        onProgress({ phase: 'verifying', done: 0, total: 0 });
+        try {
+            const [files, top] = await Promise.all([store.list('articles'), store.list('')]);
+            const byPath = new Map(files.map((f) => [f.path, f]));
+            for (const id of Object.keys(items)) {
+                const f = byPath.get(articlePath(id)), it = items[id];
+                if (!f || (it.size && f.size && f.size !== it.size)) { delete items[id]; known.delete(id); if (matchIds.has(id)) out.repaired++; }   // missing or not what we wrote: it is pushed again below
+            }
+            for (const f of files) {
+                if (!/^articles\/[^/]+\.json$/.test(f.path)) continue;
+                const id = f.path.slice('articles/'.length, -'.json'.length);
+                remotePath.set(id, f.path);
+                if (!matchIds.has(id) && !known.has(id) && orphanIds.length < MAX_ORPHAN_CHECKS) orphanIds.push(id);
+            }
+            const names = new Set(top.map((f) => f.path));
+            if (!names.has(LIBRARY_PATH)) ledger = { ...ledger, lib: 0 };                                  // the list is gone: rebuild it
+            if (viewer && !names.has(LIBRARY_JS_PATH)) ledger = { ...ledger, libJs: 0 };
+            if (viewer && viewerState && !names.has('index.html')) viewerState = undefined;                 // the viewer page is gone: write it again
+            ledger = { ...ledger, checkedAt: now() };
+        } catch (err) { if (err instanceof TargetError && err.kind !== 'permanent') throw err; /* a server that cannot list: carry on as before */ }
+    }
+    // a leftover is only ours if it says so: files someone else put there are never touched
+    const leftovers = [];
+    for (const id of orphanIds) {
+        try { const g = await store.get(remotePath.get(id)); if (g && JSON.parse(new TextDecoder().decode(g.bytes)).aish === 'article/1') leftovers.push(id); } catch (_) { /* not ours, or not readable */ }
+    }
+    out.orphans = leftovers.length;
+
+    // 1) removals first (articles that left the place, and leftovers of articles that did), guarded
+    const gone = [...[...known].filter((id) => !matchIds.has(id)), ...leftovers];
     const published = known.size;
     if (gone.length && !confirmRemovals && gone.length > Math.max(MIN_REMOVE_GUARD, Math.floor(published * MAX_REMOVE_SHARE))) {
         out.needsConfirm = gone.length;
@@ -64,7 +97,7 @@ export async function pushPlace({ place, storage, store, stamps = {}, now = Date
         let removing = 0;
         for (const id of gone) {
             onProgress({ phase: 'removing', done: removing++, total: gone.length });
-            try { await store.remove(articlePath(id)); delete items[id]; out.removed++; }
+            try { await store.remove(remotePath.get(id) || articlePath(id)); delete items[id]; out.removed++; }
             catch (e) { if (e instanceof TargetError && e.kind !== 'permanent') throw e; out.errors.push({ id, error: String(e.message || e) }); }
         }
     }
@@ -93,7 +126,7 @@ export async function pushPlace({ place, storage, store, stamps = {}, now = Date
         try {
             if (!prev || prev.hash !== hash) {
                 const r = await store.put(articlePath(e.id), text, { contentType: 'application/json' });
-                items[e.id] = { hash, t, etag: r.etag };
+                items[e.id] = { hash, t, etag: r.etag, size: new TextEncoder().encode(text).length };
                 changedFiles.set(e.id, file);
                 out.pushed++;
             } else { items[e.id] = { ...prev, t }; out.unchanged++; }

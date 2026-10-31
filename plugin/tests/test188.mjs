@@ -100,9 +100,9 @@ assert.ok(r.removed >= 10); assert.equal(lib().count, 1);
 seed();
 let ticks = 0;
 const slow = () => (ticks += 1000);
-local[syncLedgerKey('p1')] = {};
+local[syncLedgerKey('p1')] = { checkedAt: Number.MAX_SAFE_INTEGER };   // the folder was just looked at: this test is about the time budget
 dav.files.clear();
-r = await run({ now: slow, budgetMs: 1500, chunk: 2, concurrency: 1 });
+r = await run({ now: slow, budgetMs: 2500, chunk: 2, concurrency: 1 });
 assert.ok(r.more && r.pushed >= 1 && r.pushed < 2, 'stopped early');
 r = await run();
 assert.ok(!r.more); assert.equal(lib().count, 2);

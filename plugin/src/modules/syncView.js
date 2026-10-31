@@ -99,6 +99,7 @@ export function runningOf(st, now = Date.now()) { return st && st.running && now
 export function phaseText(r) {
     switch (r && r.phase) {
         case 'checking': return T('Checking your library…');
+        case 'verifying': return T('Looking at what is in the folder…');
         case 'removing': return T('Removing {done} of {total}', { done: r.done, total: r.total });
         case 'uploading': return T('Uploading {done} of {total}', { done: r.done, total: r.total });
         case 'list': return T('Updating the list…');
@@ -195,6 +196,7 @@ function heroNode(place, st, count) {
         hero.append(bar);
         s.setAttribute('role', 'status'); s.setAttribute('aria-live', 'polite');
     }
+    if (st && !run && (st.repaired || st.orphans)) hero.append(hint(T('Checked the folder: {r} restored, {o} leftovers found.', { r: st.repaired || 0, o: st.orphans || 0 })));
     if (st && st.viewer === 'customized') hero.append(hint(T('Your own index.html is in this folder, so the viewer was not replaced.')));
     if (st && st.viewer === 'blocked') hero.append(hint(T('An index.html that is not ours is already in this folder, so the viewer was not written. Use another folder.')));
     if (st && st.needsConfirm && !run) {
