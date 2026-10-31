@@ -34,12 +34,13 @@ assert.deepEqual(S.collectSet(S.syncFields('article', { ...entry, tags: ['A', 'a
 assert.equal(r3.entry.rev.t, 3000);
 
 // an index-only event (record not loaded) says nothing about the record's fields: nothing is cleared
-const indexOnly = S.syncFields('article', { ...entry, favorite: true }, null);
+const entry3 = { ...entry, tags: ['one', 'two'] };   // the state r3 was stamped from
+const indexOnly = S.syncFields('article', entry3, null);
 for (const k of S.RECORD_SIDE) assert.ok(!(k in indexOnly), k + ' is unknown without the record');
 assert.ok(!('summaryBase' in indexOnly), 'the index summary (with pinned questions) is never used as the base');
-const idxSkip = { ...ctx(3900, c), skip: S.unknownFields('article', entry, null) };
+const idxSkip = { ...ctx(3900, c), skip: S.unknownFields('article', entry3, null) };
 assert.equal(S.stampRecord(r3.entry, indexOnly, idxSkip).changed, false, 'index-only event: no field cleared');
-const favOff = S.stampRecord(r3.entry, S.syncFields('article', { ...entry, favorite: undefined }, null), idxSkip);
+const favOff = S.stampRecord(r3.entry, S.syncFields('article', { ...entry3, favorite: undefined }, null), idxSkip);
 assert.ok(favOff.changed && favOff.entry.f.favorite.t > 3000, 'but an index field that was really removed is stamped');
 
 // local-only changes never stamp (opening an article is not a sync event)
