@@ -83,6 +83,16 @@ export function masterFromRecoveryKey(text) {
     return new Uint8Array(out.slice(0, 32));
 }
 
+/** Keys from a master key already held by this device (the background worker): checks the key-check blob first. */
+export async function openWithMaster(meta, master) {
+    if (!meta || meta.mode !== 'encrypted' || !meta.check) throw new Error('This place is not an encrypted AISH sync place.');
+    const keys = await subKeys(master);
+    let ok = false;
+    try { ok = (await decryptJson(keys, fromB64(meta.check))) === CHECK_TEXT; } catch (_) { ok = false; }
+    if (!ok) throw new Error('The key saved on this device does not open this place any more. Remove the place and add it again.');
+    return keys;
+}
+
 // ── meta.json ──
 /** A new place: random salt, key-check blob. Returns { meta, master, keys }. */
 export async function createMeta(passphrase, { iterations = KDF_ITERATIONS } = {}) {

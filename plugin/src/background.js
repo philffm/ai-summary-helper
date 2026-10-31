@@ -1015,7 +1015,7 @@ if (targets) targets.start().catch((e) => console.warn('[Targets] start failed:'
 const syncStamps = SYNC ? SYNC.createStampStore({ storage: chrome.storage.local }) : null;
 const SYNC_ALARM = 'aish-sync', SYNC_SOON = 'aish-sync-soon';
 const syncSoon = (min) => { try { chrome.alarms?.create(SYNC_SOON, { delayInMinutes: Math.max(1, min) }); } catch (_) { /* no alarms */ } };   // same name replaces the last one: a debounce
-const syncSvc = syncStamps ? SYNC.createSyncService({ storage: chrome.storage.local, makeStore: SYNC.makeStore, stampStore: syncStamps, log: (...a) => console.log(...a), scheduleSoon: syncSoon,
+const syncSvc = syncStamps ? SYNC.createSyncService({ storage: chrome.storage.local, makeStore: SYNC.makeStore, stampStore: syncStamps, dataHooks: SYNC.dataHooks, log: (...a) => console.log(...a), scheduleSoon: syncSoon,
     viewerSource: async (place) => SYNC.renderViewer(await SYNC.loadViewerTemplates({ getUrl: (p) => chrome.runtime.getURL(p) }), { title: place.name }) }) : null;
 if (syncStamps) {
     chrome.storage.onChanged.addListener((changes, area) => {
@@ -1424,7 +1424,7 @@ async function saveFeedItem(url) {
 
 // Actions only extension pages (popup, side panel, in-page sidebar iframe) send. They spend the user's AI key or fetch
 // on the extension's behalf, so a content script running in a compromised page renderer must not reach them.
-const EXTENSION_PAGE_ACTIONS = new Set(['syncNow', 'aiComplete', 'aiCancel', 'aiResync', 'fetchFeedText', 'openFeedItem', 'saveFeedItem', 'feedPollConfig', 'feedBadgeClear', 'audioEnsure', 'relayToActiveTab', 'sendLocalSendP2P', 'queueSummary', 'cancelQueuedSummary', 'summaryJobs', 'targetEnqueue', 'targetStatus', 'targetCancel', 'mcpStatus']);
+const EXTENSION_PAGE_ACTIONS = new Set(['syncNow', 'syncRestore', 'aiComplete', 'aiCancel', 'aiResync', 'fetchFeedText', 'openFeedItem', 'saveFeedItem', 'feedPollConfig', 'feedBadgeClear', 'audioEnsure', 'relayToActiveTab', 'sendLocalSendP2P', 'queueSummary', 'cancelQueuedSummary', 'summaryJobs', 'targetEnqueue', 'targetStatus', 'targetCancel', 'mcpStatus']);
 function fromExtensionPage(sender) {
     if (!sender || (sender.id && sender.id !== chrome.runtime.id)) return false;
     // A content script's url is the web page; an extension page's (also inside the sidebar iframe) is our own origin.
@@ -1441,6 +1441,12 @@ chrome.runtime.onMessage.addListener((msg, sender, sendResponse) => {
         if (!syncSvc) { sendResponse({ ok: false, error: 'unavailable' }); return false; }
         syncSvc.syncNow(msg.placeId ? String(msg.placeId) : undefined, { confirmRemovals: !!msg.confirmRemovals })
             .then((results) => sendResponse({ ok: true, results })).catch((e) => sendResponse({ ok: false, error: String((e && e.message) || e) }));
+        return true;
+    }
+    if (msg && msg.action === 'syncRestore') {    // from the settings screen: bring an encrypted place back to this device
+        if (!syncSvc) { sendResponse({ ok: false, error: 'unavailable' }); return false; }
+        syncSvc.restore(String(msg.placeId || ''))
+            .then((r) => sendResponse({ ok: true, result: { pulled: r.pulled, applied: r.applied, errors: r.errors.length, more: r.more } })).catch((e) => sendResponse({ ok: false, error: String((e && e.message) || e) }));
         return true;
     }
     if (msg && (msg.action === 'noteAdd' || msg.action === 'commentSet')) {   // from the page's content script

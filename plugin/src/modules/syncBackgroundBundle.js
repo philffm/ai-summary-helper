@@ -5,5 +5,9 @@ import { makeStore } from './syncStores.js';
 import { renderViewer, loadViewerTemplates } from './syncViewer.js';
 import { createNotesStore } from './notesStore.js';
 import { createNotesMessages } from './notesMessages.js';
+import { countWords } from './textUtils.js';
+import { withQuestions } from './conversation.js';
 
-export const API = { createStampStore, createSyncService, makeStore, renderViewer, loadViewerTemplates, createNotesStore, createNotesMessages };
+// how a pulled article's displayed summary and word counts are made on this device (the same functions the popup uses)
+const dataHooks = { count: countWords, compose: (base, turns) => withQuestions(base, turns, { all: false }) };
+export const API = { dataHooks, createStampStore, createSyncService, makeStore, renderViewer, loadViewerTemplates, createNotesStore, createNotesMessages };

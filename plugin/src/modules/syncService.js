@@ -11,10 +11,14 @@
 // Encrypted places and two-way sync are not built yet and are refused.
 import { SK, syncLedgerKey } from './storageKeys.js';
 import { pushPlace } from './syncPush.js';
+import { syncEncryptedPlace, loadOrCreateMeta } from './syncEngine.js';
+import { createDataAdapter } from './syncDataAdapter.js';
+import { createMeta, openMeta, openWithMaster, recoveryKeyOf, toB64, fromB64 } from './syncCrypto.js';
 import { placeMatches, INCLUDE_DEFAULT } from './syncReadable.js';
 import { TargetError } from './targets/targetError.js';
 
-export const SERVICES = ['webdav'];
+export const SERVICES = ['webdav', 'folder'];
+const keyOfPlace = (id) => 'k:' + id;   // the place's key lives in sync:secrets next to the server logins (never backed up)
 export const SCOPES = ['tag', 'except', 'all'];
 const get = (storage, keys) => Promise.resolve(storage.get(keys));
 const rid = (prefix) => prefix + Date.now().toString(36) + Math.random().toString(36).slice(2, 7);
@@ -24,6 +28,7 @@ const clip = (v, n) => String(v == null ? '' : v).trim().slice(0, n);
 export function cleanConnection(input, { id } = {}) {
     const p = input || {};
     if (!SERVICES.includes(p.service || 'webdav')) throw new Error('This kind of place is not available yet.');
+    if (p.service === 'folder') return { id: id || p.id || rid('cn_'), name: clip(p.name, 60) || 'Folder', service: 'folder' };   // the folder itself is kept by the browser (syncFolderHandles.js)
     let url;
     try { url = new URL(clip(p.url, 2048)); } catch (_) { throw new Error('Enter the full address, starting with https://'); }
     if (url.protocol !== 'https:' && !(url.protocol === 'http:' && p.allowInsecureLan)) throw new Error('The address must start with https://');
@@ -40,9 +45,13 @@ export function cleanConnection(input, { id } = {}) {
 /** A place (a folder on a server), from what the form sent. */
 export function cleanPlace(input, { id } = {}) {
     const p = input || {};
-    if (p.mode && p.mode !== 'readable') throw new Error('Encrypted places are not available yet.');
-    if (p.direction && p.direction !== 'publish') throw new Error('Two-way sync is not available yet.');
     if (!p.connectionId) throw new Error('Choose a server.');
+    if (p.mode === 'encrypted') {   // everything, encrypted: 'twoway' keeps your devices in step, 'push' is a backup that only this device writes
+        const root = clip(p.root, 120).replace(/^\/+|\/+$/g, '') || 'aish-sync';
+        return { id: id || p.id || rid('pl_'), name: clip(p.name, 60) || root, connectionId: p.connectionId, root, mode: 'encrypted', direction: p.direction === 'push' ? 'push' : 'twoway', scope: 'all', include: { ...INCLUDE_DEFAULT }, viewer: false, filter: {}, enabled: p.enabled !== false, created: p.created || new Date().toISOString() };
+    }
+    if (p.mode && p.mode !== 'readable') throw new Error('This kind of place is not available yet.');
+    if (p.direction && p.direction !== 'publish') throw new Error('This kind of place is not available yet.');
     // which articles go out: 'tag' (only those with a tag), 'except' (all but those with a tag) or 'all' (a deliberate choice)
     const scope = SCOPES.includes(p.scope) ? p.scope : (p.filter && p.filter.tag ? 'tag' : p.filter && p.filter.excludeTag ? 'except' : '');
     if (!scope) throw new Error('Choose which articles to publish.');
@@ -84,7 +93,7 @@ export function migrateLegacy(places, connections, secrets) {
     return { places: out, connections: conns, secrets: sec, changed };
 }
 
-export function createSyncService({ storage, makeStore, stampStore, viewerSource, now = () => Date.now(), log = () => {}, scheduleSoon = () => {} }) {
+export function createSyncService({ storage, makeStore, stampStore, viewerSource, dataHooks = {}, now = () => Date.now(), log = () => {}, scheduleSoon = () => {} }) {
     const active = new Set();   // places with a run going: the alarm, the debounce and "Publish now" must not start a second one on the same place
     const statusNow = async () => { const d = await get(storage, { [SK.syncStatus]: {} }); return d[SK.syncStatus] && typeof d[SK.syncStatus] === 'object' ? d[SK.syncStatus] : {}; };
     const setStatus = async (id, s) => storage.set({ [SK.syncStatus]: { ...(await statusNow()), [id]: s } });
@@ -100,7 +109,8 @@ export function createSyncService({ storage, makeStore, stampStore, viewerSource
     }
     const placesNow = async () => (await load()).places;
     const connectionsNow = async () => (await load()).connections;
-    const storeOf = (connection, place, secret) => makeStore(connection, place, secret || {});
+    const storeOf = async (connection, place, secret) => makeStore(connection, place, secret || {});   // a store may need an async step (the folder handle)
+    const readMeta = async (store) => { const f = await store.get('meta.json'); return f ? JSON.parse(new TextDecoder().decode(f.bytes)) : null; }
     const fail = (e) => { const err = new Error(e.message); err.kind = e.kind; return err; };
 
     async function matchingCount(place) {
@@ -117,6 +127,17 @@ export function createSyncService({ storage, makeStore, stampStore, viewerSource
         return { connection: cleanConnection(conn, {}), secret: secret || {}, isNew: true };
     }
 
+    /** One run of an encrypted place with the key kept on this device. opts: pullOnly / forceFirst (restore). */
+    async function runEncrypted(place, connection, st, opts = {}) {
+        const store = await storeOf(connection, place, st.secrets[connection.id]);
+        const meta = await readMeta(store);
+        if (!meta) throw new Error('The place has no meta.json on the server any more. It was removed or set up again.');
+        const held = st.secrets[keyOfPlace(place.id)];
+        if (!held || !held.master) throw new Error('The key for this place is not on this device. Remove the place and add it again with the passphrase or recovery key.');
+        const keys = await openWithMaster(meta, fromB64(held.master));
+        return syncEncryptedPlace({ place, storage, store, keys, meta, stampStore, adapter: createDataAdapter({ storage, hooks: dataHooks }), now, pushOnly: place.direction === 'push' && !opts.pullOnly, ...opts });
+    }
+
     return {
         placesNow, connectionsNow, statusNow,
 
@@ -128,7 +149,7 @@ export function createSyncService({ storage, makeStore, stampStore, viewerSource
             try {
                 const st = await load();
                 const r = await resolveConnection(connectionId, conn, secret, st);
-                await storeOf(r.connection, { root: '' }, r.secret).ping();
+                await (await storeOf(r.connection, { root: '' }, r.secret)).ping();
                 return { ok: true };
             } catch (e) { return { ok: false, error: describe(e) }; }
         },
@@ -139,7 +160,9 @@ export function createSyncService({ storage, makeStore, stampStore, viewerSource
                 const st = await load();
                 const r = await resolveConnection(connectionId, conn, secret, st);
                 const place = cleanPlace({ ...input, connectionId: r.connection.id }, { id: 'test' });
-                await storeOf(r.connection, place, r.secret).ping();
+                const store = await storeOf(r.connection, place, r.secret);
+                await store.ping();
+                if (place.mode === 'encrypted') return { ok: true, count: await matchingCount(place), existing: !!(await readMeta(store)) };   // existing: join it with its passphrase instead of creating it
                 return { ok: true, count: await matchingCount(place) };
             } catch (e) { return { ok: false, error: describe(e) }; }
         },
@@ -151,13 +174,31 @@ export function createSyncService({ storage, makeStore, stampStore, viewerSource
             const place = cleanPlace({ ...input, connectionId: r.connection.id }, {});
             const t = await this.test({ connectionId: r.isNew ? '' : r.connection.id, connection: r.isNew ? r.connection : undefined, place, secret: r.secret });
             if (!t.ok) throw fail(t.error);
+            const secrets = { ...st.secrets };
+            if (r.isNew) secrets[r.connection.id] = { password: String(r.secret.password || '') };
+            let recoveryKey = '';
+            if (place.mode === 'encrypted') {
+                const store = await storeOf(r.connection, place, r.secret), opts = input || {};
+                let master;
+                if (t.existing) {   // join: the passphrase or the recovery key opens it, and this device must have been backed up first
+                    if (place.direction === 'twoway' && !opts.ackBackup) throw new Error('Make a backup of this device first, then join.');
+                    master = (await openMeta(await readMeta(store), { passphrase: opts.passphrase, recoveryKey: opts.recoveryKey })).master;
+                } else {
+                    if (String(opts.passphrase || '').length < 8) throw new Error('Choose a passphrase of at least 8 characters.');
+                    const made = await loadOrCreateMeta(store, { createMeta, passphrase: opts.passphrase });
+                    if (made.created) { master = made.master; recoveryKey = recoveryKeyOf(master); }
+                    else master = (await openMeta(made.meta, { passphrase: opts.passphrase })).master;   // another device created it a moment ago
+                }
+                secrets[keyOfPlace(place.id)] = { master: toB64(master) };
+            }
             await storage.set({
                 [SK.syncPlaces]: [...st.places, place],
-                ...(r.isNew ? { [SK.syncConnections]: [...st.connections, r.connection], [SK.syncSecrets]: { ...st.secrets, [r.connection.id]: { password: String(r.secret.password || '') } } } : {}),
+                ...(r.isNew ? { [SK.syncConnections]: [...st.connections, r.connection] } : {}),
+                [SK.syncSecrets]: secrets,
             });
             if (stampStore) await stampStore.scan({ full: true });
             scheduleSoon(1);
-            return place;
+            return recoveryKey ? { ...place, recoveryKey } : place;
         },
 
         /** Changes a place. A new scope or include list republishes on the next run. */
@@ -193,8 +234,31 @@ export function createSyncService({ storage, makeStore, stampStore, viewerSource
             const keep = place && places.some((p) => p.connectionId === place.connectionId);
             const secrets = { ...st.secrets };
             if (place && !keep) delete secrets[place.connectionId];
+            delete secrets[keyOfPlace(id)];
             await storage.set({ [SK.syncPlaces]: places, [SK.syncStatus]: status, [SK.syncSecrets]: secrets, [SK.syncConnections]: place && !keep ? st.connections.filter((c) => c.id !== place.connectionId) : st.connections });
             await storage.remove(syncLedgerKey(id));
+        },
+
+        /** The recovery key of an encrypted place, from the key kept on this device. */
+        async recoveryKey(id) {
+            const st = await load();
+            const held = st.secrets[keyOfPlace(id)];
+            if (!held || !held.master) throw new Error('The key for this place is not on this device.');
+            return recoveryKeyOf(fromB64(held.master));
+        },
+
+        /** Brings everything in an encrypted place back to this device: the server's values win where they differ, nothing local is deleted. */
+        async restore(id, { onProgress = () => {} } = {}) {
+            const st = await load();
+            const place = st.places.find((p) => p.id === id);
+            if (!place || place.mode !== 'encrypted') throw new Error('Only an encrypted place can be restored from.');
+            if (active.has(id)) throw new Error('This place is syncing right now. Try again in a moment.');
+            active.add(id);
+            try {
+                const connection = st.connections.find((c) => c.id === place.connectionId);
+                if (!connection) throw new Error('The server of this place was removed.');
+                return await runEncrypted(place, connection, st, { pullOnly: true, forceFirst: true, onProgress });
+            } finally { active.delete(id); }
         },
 
         /** Runs one place or all of them. Never throws: the outcome of each is stored as its status. */
@@ -222,8 +286,15 @@ export function createSyncService({ storage, makeStore, stampStore, viewerSource
                 try {
                     const connection = st.connections.find((c) => c.id === place.connectionId);
                     if (!connection) throw new Error('The server of this place was removed.');
+                    if (place.mode === 'encrypted') {
+                        const r = await runEncrypted(place, connection, st, { onProgress });
+                        await writing; results[place.id] = r;
+                        await setStatus(place.id, { at, ok: true, pushed: r.pushed, pulled: r.pulled, applied: r.applied, errors: r.errors.length, ...(r.errors.length ? { firstError: r.errors[0] } : {}), more: r.more });
+                        if (r.more) scheduleSoon(1);
+                        continue;
+                    }
                     const viewer = place.viewer && viewerSource ? await viewerSource(place) : null;
-                    const r = await pushPlace({ place, storage, store: storeOf(connection, place, st.secrets[connection.id]), stamps, now, confirmRemovals, onProgress, viewer, verify: !!id });   // a manual publish looks at the folder first
+                    const r = await pushPlace({ place, storage, store: await storeOf(connection, place, st.secrets[connection.id]), stamps, now, confirmRemovals, onProgress, viewer, verify: !!id });   // a manual publish looks at the folder first
                     await writing;
                     results[place.id] = r;
                     await setStatus(place.id, { at, ok: true, pushed: r.pushed, removed: r.removed, unchanged: r.unchanged, errors: r.errors.length, more: r.more, remaining: r.remaining, needsConfirm: r.needsConfirm, viewer: r.viewer, repaired: r.repaired, orphans: r.orphans });   // no `running`: the run is over

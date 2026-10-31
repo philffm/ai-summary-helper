@@ -33,14 +33,14 @@ const status = (e) => (e && e.status) || 0;
  * @returns {Promise<{ pulled, applied, pushed, removed, errors: string[], more: boolean, joined: boolean }>}
  */
 export async function syncEncryptedPlace(o) {
-    const { place, storage, store, keys, meta, stampStore, adapter, backup, now = Date.now, budgetMs = 150000, chunk = 25, concurrency = 4, onProgress = () => {} } = o;
+    const { place, storage, store, keys, meta, stampStore, adapter, backup, now = Date.now, budgetMs = 150000, chunk = 25, concurrency = 4, onProgress = () => {}, pullOnly = false, pushOnly = false, forceFirst = false } = o;
     const started = now();
     const out = { pulled: 0, applied: 0, pushed: 0, removed: 0, errors: [], more: false, joined: false };
     const lk = syncLedgerKey(place.id);
     const L = (await get(storage, { [lk]: {} }))[lk] || {};
     if (L.salt && meta && L.salt !== meta.salt) throw new Error('This place was set up again on the server (a different key). Nothing was changed. Remove the place here and add it again to join it.');
     const items = { ...(L.items || {}) }, dirty = new Set(L.dirty || []);
-    const firstRun = !L.joined;
+    const firstRun = !L.joined || forceFirst;   // forceFirst (restore): the server's values win where they differ
     const save = () => set(storage, { [lk]: { joined: 1, salt: (meta && meta.salt) || L.salt || '', items, dirty: [...dirty] } });
     const overBudget = () => now() - started > budgetMs;
     const names = new Map();
@@ -102,7 +102,8 @@ export async function syncEncryptedPlace(o) {
     }
 
     // 1) pull
-    const toPull = [...remote.entries()].filter(([name, f]) => { const k = known.get(name); return !k || !items[k] || items[k].e !== f.etag; }).map(([name]) => name);
+    const toPull = pushOnly ? [] : [...remote.entries()].filter(([name, f]) => { if (forceFirst) return true;   // a restore looks at every file: the ledger says what was seen, not what is still here
+        const k = known.get(name); return !k || !items[k] || items[k].e !== f.etag; }).map(([name]) => name);
     for (let i = 0; i < toPull.length; i += chunk) {
         if (overBudget()) { out.more = true; break; }
         onProgress({ phase: 'pulling', done: i, total: toPull.length });
@@ -115,7 +116,7 @@ export async function syncEncryptedPlace(o) {
         await ingest(got); out.pulled += got.length;
         await save();
     }
-    if (out.more) { await save(); return out; }
+    if (out.more || pullOnly) { out.joined = !out.more; await save(); return out; }
 
     // 2) push
     const pending = Object.entries(stamps).filter(([key, st]) => st && st.rev && (dirty.has(key) || !items[key] || items[key].t < st.rev.t)).map(([key]) => key);

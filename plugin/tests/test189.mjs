@@ -31,8 +31,11 @@ assert.throws(() => S.cleanConnection({ ...server, url: 'http://cloud.test/dav/'
 assert.equal(S.cleanConnection({ ...server, name: '' }).name, 'cloud.test', 'the host names a server without a name');
 // validation: places
 assert.throws(() => S.cleanPlace({ ...place }), /Choose a server/);
-assert.throws(() => S.cleanPlace({ ...place, connectionId: 'c', mode: 'encrypted' }), /Encrypted/);
-assert.throws(() => S.cleanPlace({ ...place, connectionId: 'c', direction: 'both' }), /Two-way/);
+const enc = S.cleanPlace({ ...place, connectionId: 'c', mode: 'encrypted', scope: undefined, filter: undefined, viewer: true, include: { notes: true } });
+assert.deepEqual([enc.mode, enc.direction, enc.scope, enc.viewer, enc.include.notes], ['encrypted', 'twoway', 'all', false, false], 'an encrypted place takes everything and never publishes readable extras');
+assert.equal(S.cleanPlace({ ...place, connectionId: 'c', mode: 'encrypted', direction: 'push' }).direction, 'push', 'a backup only writes');
+assert.throws(() => S.cleanPlace({ ...place, connectionId: 'c', direction: 'twoway' }), /not available/, 'a readable place cannot sync both ways');
+assert.equal(S.cleanConnection({ service: 'folder', name: ' Syncthing ' }).service, 'folder');
 assert.throws(() => S.cleanPlace({ ...place, connectionId: 'c', scope: undefined, filter: {} }), /Choose which articles/, 'everything is a deliberate choice');
 assert.throws(() => S.cleanPlace({ ...place, connectionId: 'c', scope: 'tag', filter: { tag: ' ' } }), /Enter the tag/);
 assert.throws(() => S.cleanPlace({ ...place, connectionId: 'c', scope: 'except', filter: {} }), /leave out/);
