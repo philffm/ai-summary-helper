@@ -20,13 +20,13 @@ const MAX_REMOVE_SHARE = 0.5, MIN_REMOVE_GUARD = 10;
 const get = (storage, keys) => Promise.resolve(storage.get(keys));
 
 /**
- * @param {{ place, storage, store, stamps?, now?, budgetMs?, confirmRemovals?, chunk?, onProgress?: ({ phase, done, total }) => void }} o
+ * @param {{ place, storage, store, stamps?, now?, budgetMs?, confirmRemovals?, chunk?, concurrency?, onProgress?: ({ phase, done, total }) => void }} o
  *   onProgress phases: 'checking' (reading the library), 'removing', 'uploading', 'list' (library.json)
- * @returns {Promise<{ pushed, unchanged, removed, errors, more, needsConfirm, libraryWritten }>}
+ * @returns {Promise<{ pushed, unchanged, removed, errors, more, remaining, needsConfirm, libraryWritten }>}  `more`: the time budget ran out, `remaining` files are left for the next run
  */
-export async function pushPlace({ place, storage, store, stamps = {}, now = Date.now, budgetMs = 20000, confirmRemovals = false, chunk = 25, onProgress = () => {} }) {
+export async function pushPlace({ place, storage, store, stamps = {}, now = Date.now, budgetMs = 150000, confirmRemovals = false, chunk = 25, concurrency = 4, onProgress = () => {} }) {
     const started = now();
-    const out = { pushed: 0, unchanged: 0, removed: 0, errors: [], more: false, needsConfirm: 0, libraryWritten: false };
+    const out = { pushed: 0, unchanged: 0, removed: 0, errors: [], more: false, remaining: 0, needsConfirm: 0, libraryWritten: false };
     const lk = syncLedgerKey(place.id);
     onProgress({ phase: 'checking', done: 0, total: 0 });
     const d = await get(storage, { [SK.articlesIndex]: [], [SK.annotations]: [], [lk]: {} });
@@ -68,38 +68,45 @@ export async function pushPlace({ place, storage, store, stamps = {}, now = Date
         return force || !it || !st || t > (it.t || 0);
     });
     out.unchanged = matching.length - todo.length;
-    let done = 0;
+    let done = 0, failed = 0;
     if (todo.length) onProgress({ phase: 'uploading', done: 0, total: todo.length });
-    for (let i = 0; i < todo.length; i += chunk) {
+
+    // one article: build its file, upload it unless the content is unchanged. Network and login errors propagate; a single bad file is recorded.
+    const one = async (e, recs) => {
+        const page = pageKeyForUrl(e.url || '');
+        const st = stamps['article:' + e.id];
+        const file = buildArticleFile({ entry: e, rec: recs[articleRecKey(e.id)] || null, highlights: hlByPage.get(page) || [], place, rev: st && st.rev });
+        const text = toJson(file);
+        const hash = hashValue(text);
+        const t = Math.max((st && st.rev && st.rev.t) || 0, hlT(page));
+        const prev = items[e.id];
+        try {
+            if (!prev || prev.hash !== hash) {
+                const r = await store.put(articlePath(e.id), text, { contentType: 'application/json' });
+                items[e.id] = { hash, t, etag: r.etag };
+                changedFiles.set(e.id, file);
+                out.pushed++;
+            } else { items[e.id] = { ...prev, t }; out.unchanged++; }
+            done++;
+            onProgress({ phase: 'uploading', done: done + failed, total: todo.length });
+        } catch (err) {
+            if (err instanceof TargetError && err.kind !== 'permanent') throw err;   // network or login: stop, keep progress
+            failed++;
+            out.errors.push({ id: e.id, error: String((err && err.message) || err) });
+        }
+    };
+    for (let i = 0; i < todo.length && !out.more; i += chunk) {
         const part = todo.slice(i, i + chunk);
         const recs = await get(storage, part.map((e) => articleRecKey(e.id)));
-        for (const e of part) {
+        for (let k = 0; k < part.length; k += concurrency) {
             if (now() - started > budgetMs) { out.more = true; break; }
-            const page = pageKeyForUrl(e.url || '');
-            const st = stamps['article:' + e.id];
-            const file = buildArticleFile({ entry: e, rec: recs[articleRecKey(e.id)] || null, highlights: hlByPage.get(page) || [], place, rev: st && st.rev });
-            const text = toJson(file);
-            const hash = hashValue(text);
-            const t = Math.max((st && st.rev && st.rev.t) || 0, hlT(page));
-            const prev = items[e.id];
-            try {
-                if (!prev || prev.hash !== hash) {
-                    const r = await store.put(articlePath(e.id), text, { contentType: 'application/json' });
-                    items[e.id] = { hash, t, etag: r.etag };
-                    changedFiles.set(e.id, file);
-                    out.pushed++;
-                } else { items[e.id] = { ...prev, t }; out.unchanged++; }
-                done++;
-                onProgress({ phase: 'uploading', done, total: todo.length });
-            } catch (err) {
-                if (err instanceof TargetError && err.kind !== 'permanent') { await save(); throw err; }   // network or login: stop, keep progress
-                out.errors.push({ id: e.id, error: String((err && err.message) || err) });
-            }
+            const results = await Promise.allSettled(part.slice(k, k + concurrency).map((e) => one(e, recs)));
+            const bad = results.find((r) => r.status === 'rejected');
+            if (bad) { await save(); throw bad.reason; }
         }
         await save();
-        if (out.more) break;
     }
-    void done;
+    out.remaining = Math.max(0, todo.length - done - failed);
 
     // 3) library.json: patch the published list instead of rebuilding it from every record
     if (!out.more && (out.pushed || out.removed || force || !ledger.lib)) {

@@ -102,7 +102,7 @@ let ticks = 0;
 const slow = () => (ticks += 1000);
 local[syncLedgerKey('p1')] = {};
 dav.files.clear();
-r = await run({ now: slow, budgetMs: 1500, chunk: 2 });
+r = await run({ now: slow, budgetMs: 1500, chunk: 2, concurrency: 1 });
 assert.ok(r.more && r.pushed >= 1 && r.pushed < 2, 'stopped early');
 r = await run();
 assert.ok(!r.more); assert.equal(lib().count, 2);

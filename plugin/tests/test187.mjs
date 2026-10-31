@@ -17,6 +17,12 @@ assert.equal(await W.createWebdavStore(cfg, { fetchFn: dav.fetchFn }).ping(), tr
 const bad = W.createWebdavStore({ ...cfg, password: 'nope' }, { fetchFn: dav.fetchFn });
 await assert.rejects(() => bad.ping(), (e) => e.kind === 'auth' && e.status === 401);
 
+// the folder disappears on the server while the store is running: the next upload makes it again
+dav.files.clear(); dav.dirs.clear(); dav.dirs.add('');
+const again = await st.put('articles/back.json', 'x');
+assert.ok(again.etag && dav.text('aish-sync/v1/articles/back.json') === 'x', 'recovered from a missing folder');
+await st.put('articles/a1.json', '{"id":"a1"}');   // keep the later steps' data in place
+
 // a wrong address reads as that: the address folder is missing, or a folder above the root is
 const lost = W.createWebdavStore({ ...cfg, url: 'https://cloud.test/dav/missing/' }, { fetchFn: dav.fetchFn });
 await assert.rejects(() => lost.ping(), (e) => e.status === 404 && /Check the address/.test(e.message));
@@ -46,7 +52,7 @@ assert.equal(dav.text('aish-sync/v1/articles/ä ö.json'), 'u');
 // list: the files directly in a folder, with etag and size; folders and the folder itself are left out
 await st.put('library.json', '{}');
 const listed = await st.list('articles');
-assert.deepEqual(listed.map((f) => f.path).sort(), ['articles/a1.json', 'articles/a2.json', 'articles/ä ö.json']);
+assert.deepEqual(listed.map((f) => f.path).sort(), ['articles/a1.json', 'articles/a2.json', 'articles/back.json', 'articles/ä ö.json']);
 assert.ok(listed.every((f) => f.etag && f.size > 0));
 assert.deepEqual((await st.list('')).map((f) => f.path), ['library.json'], 'folders are not files');
 assert.deepEqual(await st.list('nothing-here'), []);

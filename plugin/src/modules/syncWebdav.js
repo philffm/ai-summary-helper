@@ -77,11 +77,19 @@ export function createWebdavStore(cfg, { fetchFn, timeoutMs, log } = {}) {
         },
         async put(path, body, { contentType = 'application/octet-stream', ifMatch, ifNoneMatch } = {}) {
             const parts = segs(path);
-            await ensureDir(parts.slice(0, -1));
+            try { await ensureDir(parts.slice(0, -1)); }
+            catch (e) { if (status(e) !== 409) throw e; made.clear(); await ensureDir(parts.slice(0, -1)); }   // a folder we thought existed is gone
             const headers = { ...auth, 'content-type': contentType };
             if (ifMatch) headers['if-match'] = `"${ifMatch}"`;
             if (ifNoneMatch) headers['if-none-match'] = ifNoneMatch;
-            const res = await safe(urlOf(path), { method: 'PUT', headers, body });
+            let res;
+            try { res = await safe(urlOf(path), { method: 'PUT', headers, body }); }
+            catch (e) {
+                if (status(e) !== 409) throw e;
+                made.clear();   // the folder was removed on the server since we made it: make it again and retry once
+                await ensureDir(parts.slice(0, -1));
+                res = await safe(urlOf(path), { method: 'PUT', headers, body });
+            }
             return { etag: (res.headers && res.headers.get && res.headers.get('etag') || '').replace(/^W\//, '').replace(/^"|"$/g, '') };
         },
         async get(path) {

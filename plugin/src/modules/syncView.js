@@ -110,6 +110,7 @@ function statusSub(place, st, count) {
     const run = runningOf(st);
     if (run) return phaseText(run);
     if (!st) return T('Not published yet');
+    if (st.ok && st.more) return TN(st.remaining || 0, 'Continuing… {n} file left', 'Continuing… {n} files left');
     if (!st.ok) return (st.error && st.error.message) || T('Could not reach the server');
     return TN(count, '{n} article', '{n} articles') + ' · ' + T('published {t} ago', { t: timeAgo(Date.parse(st.at)) });
 }
@@ -154,7 +155,7 @@ function listScreen(places, status, counts, connections) {
         out.push(el('p', 'settings-caption', TU('All places')));
         const actions = el('div', 'mcp-actions');
         const running = places.some((p) => runningOf(status[p.id]));
-        const now = button(running ? T('Syncing…') : T('Sync now'), 'button-secondary btn-sm', async () => { now.disabled = true; now.textContent = T('Syncing…'); await sendToWorker({ action: 'syncNow' }); });
+        const now = button(running ? T('Syncing…') : T('Sync now'), 'button-secondary btn-sm', async () => { now.disabled = true; now.textContent = T('Syncing…'); await sendToWorker({ action: 'syncNow' }); render(); });
         now.disabled = running;
         actions.append(now);
         out.push(actions);
@@ -201,7 +202,7 @@ function heroNode(place, st, count) {
         hero.append(a);
     }
     const a = el('div', 'mcp-actions');
-    const pub = button(run ? T('Publishing…') : T('Publish now'), 'button-secondary btn-sm', async () => { pub.disabled = true; pub.textContent = T('Publishing…'); await sendToWorker({ action: 'syncNow', placeId: place.id }); });
+    const pub = button(run ? T('Publishing…') : T('Publish now'), 'button-secondary btn-sm', async () => { pub.disabled = true; pub.textContent = T('Publishing…'); await sendToWorker({ action: 'syncNow', placeId: place.id }); refreshHero(); });
     pub.disabled = !!run;
     a.append(pub);
     hero.append(a);

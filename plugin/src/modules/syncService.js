@@ -84,6 +84,7 @@ export function migrateLegacy(places, connections, secrets) {
 }
 
 export function createSyncService({ storage, makeStore, stampStore, now = () => Date.now(), log = () => {}, scheduleSoon = () => {} }) {
+    const active = new Set();   // places with a run going: the alarm, the debounce and "Publish now" must not start a second one on the same place
     const statusNow = async () => { const d = await get(storage, { [SK.syncStatus]: {} }); return d[SK.syncStatus] && typeof d[SK.syncStatus] === 'object' ? d[SK.syncStatus] : {}; };
     const setStatus = async (id, s) => storage.set({ [SK.syncStatus]: { ...(await statusNow()), [id]: s } });
     // the last finished result stays; `running` rides on top of it while a run is going (and goes with it)
@@ -204,6 +205,8 @@ export function createSyncService({ storage, makeStore, stampStore, now = () => 
             const stamps = stampStore ? await stampStore.all() : {};
             const results = {};
             for (const place of places) {
+                if (active.has(place.id)) { results[place.id] = { skipped: 'running' }; continue; }
+                active.add(place.id);
                 const at = new Date(now()).toISOString();
                 const since = now();
                 let lastWrite = 0, lastPhase = '';
@@ -221,14 +224,14 @@ export function createSyncService({ storage, makeStore, stampStore, now = () => 
                     const r = await pushPlace({ place, storage, store: storeOf(connection, place, st.secrets[connection.id]), stamps, now, confirmRemovals, onProgress });
                     await writing;
                     results[place.id] = r;
-                    await setStatus(place.id, { at, ok: true, pushed: r.pushed, removed: r.removed, unchanged: r.unchanged, errors: r.errors.length, more: r.more, needsConfirm: r.needsConfirm });   // no `running`: the run is over
+                    await setStatus(place.id, { at, ok: true, pushed: r.pushed, removed: r.removed, unchanged: r.unchanged, errors: r.errors.length, more: r.more, remaining: r.remaining, needsConfirm: r.needsConfirm });   // no `running`: the run is over
                     if (r.more) scheduleSoon(1);
                 } catch (e) {
                     log('[sync]', place.id, e && e.message);
                     await writing;
                     results[place.id] = { error: describe(e) };
                     await setStatus(place.id, { at, ok: false, error: describe(e) });
-                }
+                } finally { active.delete(place.id); }
             }
             return results;
         },
