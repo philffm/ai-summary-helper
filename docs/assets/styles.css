@@ -851,14 +851,14 @@ footer .copyright a:hover, .foot-links a:hover{ text-decoration-color:currentCol
 .hs-grid{ align-items:center; }
 .hs-vwrap{ align-self:center; position:relative; }
 /* "Watch the video" over the animated hero demo: the demo is nice, the video shows it better */
-.hs-watch{ position:absolute; z-index:5; left:50%; top:71%; transform:translateX(-50%); display:flex; align-items:center; gap:10px; padding:8px 16px 8px 8px; border-radius:999px; text-decoration:none; color:#fff; background:rgba(10,14,30,.82); border:1px solid rgba(255,255,255,.22); box-shadow:0 8px 24px rgba(0,0,0,.35); backdrop-filter:blur(6px); transition:transform .15s ease, background .15s ease; }
-.hs-watch:hover{ transform:translateX(-50%) translateY(-2px); background:rgba(10,14,30,.94); }
+.hs-watch{ position:absolute; z-index:5; left:50%; top:44%; transform:translate(-50%,-50%); display:flex; align-items:center; gap:10px; padding:8px 16px 8px 8px; border-radius:999px; text-decoration:none; color:#fff; background:rgba(10,14,30,.82); border:1px solid rgba(255,255,255,.22); box-shadow:0 8px 24px rgba(0,0,0,.35); backdrop-filter:blur(6px); transition:transform .15s ease, background .15s ease; }
+.hs-watch:hover{ transform:translate(-50%,-50%) translateY(-2px); background:rgba(10,14,30,.94); }
 .hs-watch:focus-visible{ outline:2px solid var(--signal); outline-offset:3px; }
 .hs-watch-ico{ width:40px; height:40px; border-radius:50%; display:grid; place-items:center; font-size:16px; padding-left:3px; color:#fff; background:linear-gradient(135deg,#2563eb,#6aa0ff); flex:none; }
 .hs-watch-txt{ display:flex; flex-direction:column; line-height:1.2; text-align:left; }
 .hs-watch-txt strong{ font:600 14px var(--font-display); }
 .hs-watch-txt small{ font-size:12px; color:rgba(255,255,255,.75); }
-@media (max-width:640px){ .hs-watch{ top:66%; } }
+@media (max-width:640px){ .hs-watch{ top:40%; } }
 @media (prefers-reduced-motion:reduce){ .hs-watch{ transition:none; } }
 .hs-bar span{ flex:0 1 380px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
 .hs-ext{ margin-left:auto; display:flex; align-items:center; gap:6px; }

@@ -1289,6 +1289,24 @@ function setBilling(period) {
     });
   });
 
+  /* The hero button sits on the exact centre of the demo window. The demo is scaled to fit, so the CSS percentages are only the fallback. */
+  (function () {
+    var btn = document.querySelector('.hs-watch'), win = document.querySelector('.hs-win'), wrap = btn && btn.parentNode;
+    if (!btn || !win || !wrap) return;
+    function place() {
+      var w = win.getBoundingClientRect(), r = wrap.getBoundingClientRect();
+      if (!w.width || !r.width) return;
+      btn.style.left = Math.round(w.left - r.left + w.width / 2) + 'px';
+      btn.style.top = Math.round(w.top - r.top + w.height / 2) + 'px';
+    }
+    place();
+    window.addEventListener('resize', place);
+    window.addEventListener('load', place);
+    window.addEventListener('hs-refresh', function () { setTimeout(place, 50); });
+    if (window.ResizeObserver) new ResizeObserver(place).observe(wrap);
+    [300, 900, 2000].forEach(function (ms) { setTimeout(place, ms); });   // the scene scales in with a transition
+  })();
+
   /* Focus fan for the #videos stack (desktop only, wide enough for 7 visible clips): one clip in front with its caption
      below the fan, three neighbours on each side, the rest hidden; it wraps around. Arrows, dots, ←/→, swipe or a tap
      on a side clip move the focus. Narrow screens (and no JS) keep the scroll-snap row from styles.css. */
