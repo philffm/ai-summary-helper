@@ -14,7 +14,7 @@ export const SECRET_KEYS = [
 ];
 
 /** Never part of a backup, in either direction: restoring them on another device would repeat what was already done there. */
-export const TRANSIENT_KEYS = [SK.targetOutbox, SK.mcpLog, SK.syncDeviceId, SK.syncPlaces, SK.syncStatus, SK.syncClock];
+export const TRANSIENT_KEYS = [SK.targetOutbox, SK.mcpLog, SK.syncDeviceId, SK.syncPlaces, SK.syncConnections, SK.syncStatus, SK.syncClock];
 /** Key prefixes that are per device and never leave it (sync stamps describe this device's view of the library). */
 export const TRANSIENT_PREFIXES = [SYNC_STAMPS, SYNC_LEDGER];
 
@@ -39,7 +39,7 @@ export const CATEGORIES = {
 };
 
 /** Bookkeeping keys: removed only together with everything (a partial delete must not break the migrations). */
-export const META_KEYS = [SK.migrationVersion, SK.keysSchema, SK.installedAt, SK.syncDeviceId, SK.syncClock, SK.syncPlaces, SK.syncStatus];
+export const META_KEYS = [SK.migrationVersion, SK.keysSchema, SK.installedAt, SK.syncDeviceId, SK.syncClock, SK.syncPlaces, SK.syncConnections, SK.syncStatus];
 
 // old (pre-registry) names of a set of keys
 const legacyNames = (keys) => Object.entries(SK_LEGACY).filter(([, nu]) => keys.includes(nu)).map(([old]) => old);

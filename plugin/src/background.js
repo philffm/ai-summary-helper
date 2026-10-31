@@ -101,7 +101,9 @@ const SK = {
     syncDeviceId: 'sync:deviceId',
     // the places (WebDAV, S3, folder) this device syncs with: [{ id, name, service, url, root, mode, direction, include, filter, enabled }]. No secrets. Per device, never backed up.
     syncPlaces: 'sync:places',
-    syncSecrets: 'sync:secrets', // { [placeId]: { password | accessKey/secret | key } } — secret, never backed up
+    // the servers (WebDAV, S3, ...) places live on: [{ id, name, service, url, username }]. One server can hold several places (folders). No secrets.
+    syncConnections: 'sync:connections',
+    syncSecrets: 'sync:secrets', // { [connectionId]: { password | accessKey/secret | key } } — secret, never backed up
     syncStatus: 'sync:status',   // { [placeId]: { at, ok, error, counts } } last run per place
     syncClock: 'sync:clock',     // { t }: highest stamp time this device has made or seen
     // migration flags

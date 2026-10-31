@@ -65,30 +65,31 @@ click(byText('.a11y-seg button', 'With a tag')); await wait(100);
 assert.equal($('syncTag').value, 'public', 'switching back restores the tag');
 
 // test connection: a wrong login says so, a right one reports the count
-type('syncName', 'My site'); type('syncUrl', 'https://cloud.test/dav/'); type('syncRoot', 'site'); type('syncUser', 'phil'); type('syncPass', 'wrong');
+type('syncServerName', 'My site'); type('syncName', 'Website list'); type('syncUrl', 'https://cloud.test/dav/'); type('syncRoot', 'site'); type('syncUser', 'phil'); type('syncPass', 'wrong');
 click(byText('button', 'Test connection')); await wait(120);
 assert.match(text(), /did not accept the username and password/);
 type('syncPass', 'secret');
 click(byText('button', 'Test connection')); await wait(120);
 assert.match(text(), /Connected\. 1 article matches\./);
-assert.ok(!(SK.syncPlaces in store), 'testing saves nothing');
+assert.ok(!(SK.syncPlaces in store) && !(SK.syncConnections in store), 'testing saves nothing');
 
 // a wrong login blocks saving and keeps what was typed
 type('syncPass', 'wrong');
 click(byText('button', 'Connect and publish')); await wait(150);
 assert.match(text(), /username and password/);
-assert.equal($('syncName').value, 'My site', 'the form keeps its content');
+assert.equal($('syncName').value, 'Website list', 'the form keeps its content'); assert.equal($('syncServerName').value, 'My site');
 assert.ok(!(SK.syncPlaces in store));
 
 // save: the place is stored (password apart), the list shows it
 type('syncPass', 'secret');
 click(byText('button', 'Connect and publish')); await wait(200);
-assert.equal(store[SK.syncPlaces].length, 1);
-assert.equal(store[SK.syncPlaces][0].filter.tag, 'public');
-assert.ok(!JSON.stringify(store[SK.syncPlaces]).includes('secret'));
-assert.equal(store[SK.syncSecrets][store[SK.syncPlaces][0].id].password, 'secret');
+assert.equal(store[SK.syncPlaces].length, 1); assert.equal(store[SK.syncConnections].length, 1);
+assert.equal(store[SK.syncPlaces][0].filter.tag, 'public'); assert.equal(store[SK.syncPlaces][0].root, 'site');
+assert.ok(!JSON.stringify([store[SK.syncPlaces], store[SK.syncConnections]]).includes('secret'));
+const connId = store[SK.syncConnections][0].id;
+assert.equal(store[SK.syncSecrets][connId].password, 'secret');
 const row = root().querySelector('.settings-row');
-assert.ok(row && /My site/.test(row.textContent) && /Not published yet/.test(row.textContent));
+assert.ok(row && /Website list/.test(row.textContent) && /My site \/ site/.test(row.textContent) && /Not published yet/.test(row.textContent));
 assert.match(document.querySelector('.settings-row-sub[data-sub="sync"]').textContent, /^1 place/);
 assert.ok(byText('button', 'Sync now'));
 
@@ -96,15 +97,31 @@ assert.ok(byText('button', 'Sync now'));
 click(row); await wait(100);
 assert.match(text(), /Not published yet/);
 assert.ok(byText('button', 'Publish now'));
+assert.ok(!$('syncPass'), 'the server login is not open while you edit the folder');
+assert.match(text(), /1 place uses this server/);
+click(byText('button', 'Edit server')); await wait(80);
 assert.equal($('syncPass').value, '', 'a saved password is never shown again');
 assert.equal($('syncPass').placeholder, 'Unchanged');
+assert.equal($('syncUrl').value, 'https://cloud.test/dav/');
 type('syncName', 'Renamed site');
-click(byText('button', 'Save')); await wait(200);
+click([...root().querySelectorAll('button')].find((b) => b.textContent === 'Save')); await wait(200);
 assert.equal(store[SK.syncPlaces][0].name, 'Renamed site');
-assert.equal(store[SK.syncSecrets][store[SK.syncPlaces][0].id].password, 'secret', 'an empty password field keeps the saved login');
+assert.equal(store[SK.syncSecrets][connId].password, 'secret', 'an empty password field keeps the saved login');
+
+// a second folder on the same server: pick the server, no login typed, everything for a backup
+click(byText('button', 'Add a place')); await wait(80);
+click(root().querySelectorAll('.settings-row')[0]); await wait(120);
+assert.ok(root().querySelector('.mcp-chip.is-selected').textContent.includes('My site'), 'the server you already have is preselected');
+assert.ok(!$('syncPass'), 'no login fields for an existing server');
+type('syncName', 'Backup'); type('syncRoot', 'backup');
+click([...root().querySelectorAll('.a11y-seg button')].find((b) => b.textContent === 'All')); await wait(100);
+click(byText('button', 'Connect and publish')); await wait(250);
+assert.equal(store[SK.syncPlaces].length, 2); assert.equal(store[SK.syncConnections].length, 1, 'one server, two folders');
+assert.deepEqual(store[SK.syncPlaces].map((p) => p.root), ['site', 'backup']); assert.equal(store[SK.syncPlaces][1].scope, 'all');
+const idsNow = () => store[SK.syncPlaces].map((p) => p.id);
+const id = store[SK.syncPlaces][0].id;
 
 // an error from the last run is shown on the place
-const id = store[SK.syncPlaces][0].id;
 store[SK.syncStatus] = { [id]: { at: new Date().toISOString(), ok: false, error: { kind: 'auth', message: 'The server did not accept the username and password.' } } };
 V.initSyncView(); await wait();
 assert.match(root().querySelector('.settings-row').textContent, /did not accept/);
@@ -134,8 +151,13 @@ click(byText('button', '‹ Sync')); await wait(80);
 // remove
 click(root().querySelector('.settings-row')); await wait(100);
 click(byText('button', 'Remove this place')); await wait(150);
-assert.deepEqual(store[SK.syncPlaces], []);
+assert.equal(store[SK.syncPlaces].length, 1); assert.equal(store[SK.syncConnections].length, 1, 'the server stays while another folder uses it');
+click(root().querySelector('.settings-row')); await wait(100);
+click(byText('button', 'Remove this place')); await wait(150);
+assert.deepEqual(store[SK.syncPlaces], []); assert.deepEqual(store[SK.syncConnections], []);
+assert.ok(!(connId in store[SK.syncSecrets]), 'the last place takes the server and its login with it');
 assert.ok(!root().querySelector('.settings-row'));
+void idsNow;
 
 console.log('TEST 190 OK');
 process.exit(0);
