@@ -56,4 +56,10 @@ await svc1.remove(added.id); assert.ok(!local1[SK.syncSecrets]['k:' + added.id])
 // a place whose key is gone says so and does nothing
 local1[SK.syncSecrets] = { ...local1[SK.syncSecrets] }; delete local1[SK.syncSecrets]['k:' + bk.id];
 r = (await svc1.syncNow(bk.id))[bk.id]; assert.match(r.error.message, /key for this place is not on this device/);
+// a folder whose permission lapsed says so (not "wrong password")
+const { createFakeFolder } = await import('./fakeFolder.mjs');
+const { createFolderStore } = await import(pathToFileURL(path.resolve(process.env.AISH_SRC, 'modules/syncFolder.js')).href);
+const lapsed = S.createSyncService({ storage: area2, makeStore: async () => createFolderStore({ handle: createFakeFolder({ permission: 'prompt' }).handle, root: 'x' }), scheduleSoon: () => {} });
+const lt = await lapsed.test({ connection: { service: 'folder', name: 'F' }, place: { mode: 'encrypted', root: 'x', name: 'n' } });
+assert.ok(!lt.ok && /Allow access to the folder again/.test(lt.error.message) && !/password/.test(lt.error.message));
 console.log('TEST 203 OK'); process.exit(0);

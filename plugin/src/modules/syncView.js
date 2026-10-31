@@ -210,6 +210,13 @@ function recoveryScreen() {
     return out;
 }
 
+/** A folder's permission may have lapsed (or never carried over): ask in the click that starts the test or save, where the browser allows it. */
+async function ensureFolderAccess(connId) {
+    if (!connId) return;
+    const vault = createHandleVault();
+    try { const h = await vault.load(connId); if (h) await vault.allow(h); } catch (_) { /* the store reports it */ }
+}
+
 function openForm(id, folder) {
     editId = id; view = 'form'; testMsg = null; formError = ''; draftSecret = ''; editServer = false; serverDraft = blankServer(); existingFlag = null; folderName = (folder && folder.folderName) || '';
     Promise.all([getL({ [SK.syncPlaces]: [] }), svc.connectionsNow()]).then(([d, conns]) => {
@@ -411,6 +418,7 @@ function formScreen(place, st, count, connections = [], places = []) {
     });
     const test = button(T('Test connection'), 'button-secondary btn-sm', async () => {
         test.disabled = true; testMsg = null; formError = '';
+        if (isFolder) await ensureFolderAccess(draft.folderId || draft.connectionId);
         const r = await svc.test(request());
         if (r.ok && encrypted) existingFlag = !!r.existing;
         testMsg = r.ok ? { ok: true, text: encrypted ? (r.existing ? T('Connected. This folder already holds an encrypted library.') : T('Connected. The folder is empty, so a new encrypted library will be created.')) : TN(r.count, 'Connected. {n} article matches.', 'Connected. {n} articles match.') } : { ok: false, text: r.error.message };
@@ -418,6 +426,7 @@ function formScreen(place, st, count, connections = [], places = []) {
     });
     const save = button(editing ? T('Save') : encrypted ? T('Connect') : T('Connect and publish'), 'button-primary btn-sm', async () => {
         if (busy) return; busy = true; save.disabled = true; formError = ''; testMsg = null;
+        if (isFolder) await ensureFolderAccess(draft.folderId || draft.connectionId);
         try {
             if (!editing && encrypted) {   // look at the folder first: a new library needs a passphrase twice, an existing one is joined
                 if (existingFlag === null) {
