@@ -466,6 +466,8 @@ export function scheduleRestoreAnnotations(delay = 160) {
 
 export function handleTextSelection(event) {
   if (!userHighlightingEnabled || isHighlightingSuppressed()) return;
+  // pressing a button of our own toolbar or composer ends in a mouse-up too: that is not a new selection (it would draw the toolbar again and swallow the click)
+  if (event && typeof event.composedPath === 'function' && event.composedPath().some((n) => n && (n.id === 'aish-np-host' || n.id === 'aish-hl-host'))) return;
   const selection = window.getSelection();
   if (!selection || selection.rangeCount === 0) return;
 

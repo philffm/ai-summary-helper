@@ -40,7 +40,7 @@ function npEnsureHost() {
     host.style.cssText = 'position:absolute;top:0;left:0;width:0;height:0;z-index:2147483646;';
     const root = host.attachShadow({ mode: 'open' });
     const st = document.createElement('style'); st.textContent = NP_CSS; root.appendChild(st);
-    for (const type of ['keydown', 'keyup', 'keypress']) host.addEventListener(type, (e) => e.stopPropagation());   // page shortcuts must not fire while typing here
+    for (const type of ['keydown', 'keyup', 'keypress', 'mouseup']) host.addEventListener(type, (e) => e.stopPropagation());   // page shortcuts must not fire while typing here, and a press on our own button is not a new text selection
     document.documentElement.appendChild(host);
     host._root = root;
   }

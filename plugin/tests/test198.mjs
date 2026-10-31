@@ -48,6 +48,11 @@ click(hostOf()._root.querySelector('.bar button')); assert.deepEqual(hit, ['cm',
 POP.npShowToolbar({ x: 10, y: 10, onHighlight() {}, onComment() {}, onNote() {} }); await tick(100);
 d.body.dispatchEvent(new w.MouseEvent('mousedown', { bubbles: true })); assert.equal(hostOf(), null);
 POP.npShowToolbar({ x: 10, y: 10, onHighlight() {}, onComment() {}, onNote() {} }); d.dispatchEvent(new w.KeyboardEvent('keydown', { key: 'Escape', bubbles: true })); assert.equal(hostOf(), null);
+// a press on a button ends in a mouse-up that must not reach the page's selection handler (it would draw the toolbar again and swallow the click)
+POP.npShowToolbar({ x: 10, y: 10, onHighlight() {}, onComment() {}, onNote() {} });
+let ups = 0; const onUp = () => ups++; d.addEventListener('mouseup', onUp);
+hostOf()._root.querySelector('.bar button').dispatchEvent(new w.MouseEvent('mouseup', { bubbles: true, composed: true })); assert.equal(ups, 0, 'the mouse-up stays inside our toolbar');
+d.body.dispatchEvent(new w.MouseEvent('mouseup', { bubbles: true })); assert.equal(ups, 1, 'a mouse-up on the page itself still reaches it'); d.removeEventListener('mouseup', onUp); POP.npHide();
 // page shortcuts do not see typing in it
 POP.npShowToolbar({ x: 10, y: 10, onHighlight() {}, onComment() {}, onNote() {} });
 let pageSaw = 0; d.addEventListener('keydown', () => pageSaw++);
