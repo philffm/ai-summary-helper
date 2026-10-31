@@ -18,11 +18,25 @@
 
 /** Fields that never sync. Everything else is user data (deny-list: a new field is synced rather than silently lost). */
 export const LOCAL_ONLY = {
+    // feedStub and savedOnly DO sync: reconcileStubs needs both flags to clean a stub up on every device
     article: ['lastOpened', 'sentTo', 'qaCount', 'contentWordCount', 'summaryWordCount', 'favicon', 'moodScore', 'fromPhone',
-        'contentPruned', 'feedStub', 'summary', 'suggested', 'suggestedAnswers', 'summaryBase', 'conversation', 'content'],
+        'contentPruned', 'summary', 'suggested', 'suggestedAnswers', 'summaryBase', 'conversation', 'content', 'tags'],
     highlight: [],
-    collection: ['updated'],
+    collection: ['updated', 'sources'],
 };
+
+/** Article fields that live in the full record, not in the lean index entry: unknown whenever the record is not loaded. */
+export const RECORD_SIDE = ['content', 'description', 'meta', 'sourceProfile', 'sourceCheck', 'summaryBase', 'conversation'];
+
+// Sets are stamped one pseudo-field per element, so a tag added on one device and another added on a second device both
+// survive a merge (a whole-list stamp could only keep the newer list). A removed element is a missing field.
+export const TAG = 'tag:';
+export const SRC = 'src:';
+
+/** The elements of a set back out of a flat field map: { 'tag:ai': 'AI' } → ['AI']. */
+export function collectSet(fields, prefix) {
+    return Object.entries(fields || {}).filter(([k, v]) => k.startsWith(prefix) && v !== undefined && v !== null).map(([, v]) => v);
+}
 
 // ── hashing ──────────────────────────────────────────────────────────────
 
@@ -81,13 +95,21 @@ export function syncFields(type, entry, rec) {
     const out = {};
     const take = (obj) => { for (const [k, v] of Object.entries(obj || {})) if (!deny.has(k) && v !== undefined) out[k] = v; };
     take(entry);
+    if (type === 'collection') {
+        for (const src of Array.isArray(entry && entry.sources) ? entry.sources : []) if (src && src.articleId) out[SRC + src.articleId] = src;
+        return out;
+    }
     if (type !== 'article') return out;
-    const r = rec || {};
-    take(r);
-    const base = r.summaryBase !== undefined ? r.summaryBase : (r.summary !== undefined ? r.summary : (entry && entry.summary));
+    for (const tag of Array.isArray(entry && entry.tags) ? entry.tags : []) {
+        const name = String(tag || '').trim();
+        if (name && !((TAG + name.toLowerCase()) in out)) out[TAG + name.toLowerCase()] = name;   // key lower-cased (setTags de-duplicates case-insensitively), first spelling wins
+    }
+    if (!rec) return out;                                   // record not loaded: its fields are unknown, see unknownFields
+    take(rec);
+    const base = rec.summaryBase !== undefined ? rec.summaryBase : rec.summary;   // never the index copy: it already holds the pinned questions
     if (base !== undefined) out.summaryBase = base;
-    if (Array.isArray(r.conversation) && r.conversation.length) out.conversation = r.conversation;
-    if (!textUnknown(entry, r)) out.content = r.content;
+    if (Array.isArray(rec.conversation) && rec.conversation.length) out.conversation = rec.conversation;
+    if (!textUnknown(entry, rec)) out.content = rec.content;
     return out;
 }
 
@@ -96,7 +118,9 @@ const textUnknown = (entry, r) => !(typeof r.content === 'string' && r.content) 
 
 /** Fields whose absence says nothing (stampRecord must neither stamp nor clear them). Pass the result as `skip`. */
 export function unknownFields(type, entry, rec) {
-    return type === 'article' && textUnknown(entry, rec || {}) ? ['content'] : [];
+    if (type !== 'article') return [];
+    if (!rec) return [...RECORD_SIDE];                      // an index-only event says nothing about the record's fields
+    return textUnknown(entry, rec) ? ['content'] : [];
 }
 
 // ── stamping ─────────────────────────────────────────────────────────────

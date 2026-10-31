@@ -15,7 +15,7 @@ assert.notEqual(S.hashValue(undefined), S.hashValue(null));
 // what is synced: derived and local fields stay out, the effective base and the conversation go in
 const f = S.syncFields('article', entry, rec);
 for (const k of ['lastOpened', 'qaCount', 'contentWordCount', 'favicon', 'summary', 'suggested']) assert.ok(!(k in f), k + ' is not synced');
-assert.equal(f.summaryBase, 'S'); assert.equal(f.conversation.length, 1); assert.equal(f.title, 'T'); assert.equal(f.favorite, true); assert.equal(f.content, '<p>full</p>');
+assert.equal(f.summaryBase, 'S'); assert.equal(f.conversation.length, 1); assert.equal(f.title, 'T'); assert.ok(!('tags' in f) && f['tag:one'] === 'one', 'tags are stamped per element'); assert.equal(f.favorite, true); assert.equal(f.content, '<p>full</p>');
 const noConv = S.syncFields('article', { ...entry, summary: 'plain' }, { content: '<p>x</p>', summary: 'plain' });
 assert.equal(noConv.summaryBase, 'plain', 'without pinned questions the summary is the base'); assert.ok(!('conversation' in noConv));
 
@@ -27,8 +27,20 @@ const r2 = S.stampRecord(r1.entry, f, ctx(2000, c));
 assert.equal(r2.changed, false); assert.equal(r2.entry, r1.entry);
 const edited = S.syncFields('article', { ...entry, tags: ['one', 'two'] }, rec);
 const r3 = S.stampRecord(r1.entry, edited, ctx(3000, c));
-assert.ok(r3.changed); assert.equal(r3.entry.f.tags.t, 3000); assert.equal(r3.entry.f.title.t, 1000, 'untouched fields keep their stamp');
+assert.ok(r3.changed); assert.equal(r3.entry.f['tag:two'].t, 3000); assert.equal(r3.entry.f['tag:one'].t, 1000, 'an existing tag keeps its stamp'); assert.equal(r3.entry.f.title.t, 1000, 'untouched fields keep their stamp');
+const removed = S.stampRecord(r3.entry, S.syncFields('article', { ...entry, tags: ['two'] }, rec), ctx(3500, c));
+assert.ok(removed.changed && removed.entry.f['tag:one'].t === 3500, 'a removed tag is stamped as removed');
+assert.deepEqual(S.collectSet(S.syncFields('article', { ...entry, tags: ['A', 'a', 'B'] }, rec), S.TAG).sort(), ['A', 'B'], 'tags differing only in case are one');
 assert.equal(r3.entry.rev.t, 3000);
+
+// an index-only event (record not loaded) says nothing about the record's fields: nothing is cleared
+const indexOnly = S.syncFields('article', { ...entry, favorite: true }, null);
+for (const k of S.RECORD_SIDE) assert.ok(!(k in indexOnly), k + ' is unknown without the record');
+assert.ok(!('summaryBase' in indexOnly), 'the index summary (with pinned questions) is never used as the base');
+const idxSkip = { ...ctx(3900, c), skip: S.unknownFields('article', entry, null) };
+assert.equal(S.stampRecord(r3.entry, indexOnly, idxSkip).changed, false, 'index-only event: no field cleared');
+const favOff = S.stampRecord(r3.entry, S.syncFields('article', { ...entry, favorite: undefined }, null), idxSkip);
+assert.ok(favOff.changed && favOff.entry.f.favorite.t > 3000, 'but an index field that was really removed is stamped');
 
 // local-only changes never stamp (opening an article is not a sync event)
 const opened = S.syncFields('article', { ...entry, lastOpened: 'later', sentTo: [{ kind: 'kindle' }] }, rec);
@@ -85,7 +97,10 @@ assert.ok(h1.entry.f.text);
 assert.equal(S.stampRecord(h1.entry, S.syncFields('highlight', { ...hl, dismissed: true }), ctx(2, { t: 1 })).changed, true, 'dismissed is a change');
 const col = { id: 'c1', name: 'N', question: 'Q', created: 'x', updated: 'y', sources: [{ articleId: 'a1' }] };
 const cf = S.syncFields('collection', col);
-assert.ok(!('updated' in cf) && cf.sources.length === 1);
+assert.ok(!('updated' in cf) && !('sources' in cf) && cf['src:a1'].articleId === 'a1', 'collection sources are stamped per article');
+assert.deepEqual(S.collectSet(cf, S.SRC).map((x) => x.articleId), ['a1']);
+// stubs sync: both flags are needed on every device to clean one up
+assert.ok(S.syncFields('article', { id: 's', feedStub: true, savedOnly: true }, null).feedStub === true);
 
 console.log('TEST 182 OK');
 process.exit(0);
