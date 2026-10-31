@@ -8660,6 +8660,7 @@
     <priority>0.7</priority>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://ai-summary-helper.byphil.eu/blog/sync-to-nextcloud-s3-or-a-folder.html"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://ai-summary-helper.byphil.eu/blog/sync-to-nextcloud-s3-or-a-folder.html"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://ai-summary-helper.byphil.eu/de/blog/sync-to-nextcloud-s3-or-a-folder.html"/>
   </url>
   <url>
     <loc>https://ai-summary-helper.byphil.eu/blog/digital-sovereignty-for-individuals.html</loc>
@@ -8668,6 +8669,14 @@
     <xhtml:link rel="alternate" hreflang="x-default" href="https://ai-summary-helper.byphil.eu/blog/digital-sovereignty-for-individuals.html"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://ai-summary-helper.byphil.eu/blog/digital-sovereignty-for-individuals.html"/>
     <xhtml:link rel="alternate" hreflang="de" href="https://ai-summary-helper.byphil.eu/de/blog/digital-sovereignty-for-individuals.html"/>
+  </url>
+  <url>
+    <loc>https://ai-summary-helper.byphil.eu/de/blog/sync-to-nextcloud-s3-or-a-folder.html</loc>
+    <lastmod>2026-10-31</lastmod>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ai-summary-helper.byphil.eu/blog/sync-to-nextcloud-s3-or-a-folder.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ai-summary-helper.byphil.eu/blog/sync-to-nextcloud-s3-or-a-folder.html"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://ai-summary-helper.byphil.eu/de/blog/sync-to-nextcloud-s3-or-a-folder.html"/>
   </url>
   <url>
     <loc>https://ai-summary-helper.byphil.eu/de/blog/digital-sovereignty-for-individuals.html</loc>
