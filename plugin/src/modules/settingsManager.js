@@ -368,7 +368,7 @@ async function initModelSettings(storageData) {
         const describeRegion = () => {
             const n = document.getElementById('cloudRegionNote');
             if (n) n.textContent = isEuPreferred(regionPref)
-                ? T('Models marked “EU servers” run only on servers in Europe. Every other model still works, is marked “Not on EU servers”, and runs as usual. EU servers can cost a little more; the prices shown are the EU ones. Read-aloud and speech-to-text have no EU option. Your text still passes through our service and our model router on the way.')
+                ? T('Models marked “EU servers” run only on servers in Europe. Every other model still works, is marked “Not on EU servers”, and runs as usual. EU servers can cost a little more; the prices shown are the EU ones. Read-aloud and speech-to-text have no EU option. Your text still passes through our service (a server in Germany) and then OpenRouter, a US company, on the way.')
                 : T('Turn on to run models on servers in Europe where they offer that. All other models keep working and are marked.');
         };
         if (regionSwitch) {

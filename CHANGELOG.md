@@ -16,7 +16,7 @@ Commit history has the details: <https://github.com/philffm/ai-summary-helper/co
 
 ### Hosted models
 
-- **Prefer EU servers.** A new setting for the hosted models (byphil Cloud). With it on, models that have an endpoint in Europe run only on those endpoints (no fallbacks), the model list marks them “EU” and shows their EU price, and every other model keeps working and is marked “Not EU”. Settings shows which route the last request really took. Your text still passes through our service and our model router; read-aloud and speech-to-text have no EU option.
+- **Prefer EU servers.** A new setting for the hosted models (byphil Cloud). With it on, models that have an endpoint in Europe run only on those endpoints (no fallbacks), the model list marks them “EU” and shows their EU price, and every other model keeps working and is marked “Not EU”. Settings shows which route the last request really took. Your text still passes through our service (a server in Germany) and then OpenRouter, a US company; read-aloud and speech-to-text have no EU option.
 
 ### Notes
 
