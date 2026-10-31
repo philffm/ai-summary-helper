@@ -13,6 +13,15 @@ const NOT_FOUND = (e) => e && (e.name === 'NotFoundError' || e.code === 8);
 const etagOf = (file) => `${file.lastModified}-${file.size}`;
 const conflict = (m) => new TargetError({ kind: 'permanent', status: 412, message: m });
 
+/** The browser's own wording for a refused folder is hard to act on: say what it usually means and what to do. */
+const BLOCKED = 'The browser does not allow writing in this folder. Choose a new folder of your own (for example Documents/AISH-sync), not Desktop, Documents, Downloads or your home folder itself, and press Allow access when the browser asks. Chrome and Edge only; open Settings in a full tab if it keeps failing.';
+const refused = (e) => e && (e.name === 'SecurityError' || e.name === 'NotAllowedError');
+function guarded(store) {
+    const out = {};
+    for (const [name, fn] of Object.entries(store)) out[name] = async (...a) => { try { return await fn(...a); } catch (e) { if (refused(e)) throw new TargetError({ kind: 'auth', message: BLOCKED }); throw e; } };
+    return out;
+}
+
 /** @param {{ handle: FileSystemDirectoryHandle, root?: string }} cfg */
 export function createFolderStore(cfg) {
     const rootSegs = segs(cfg.root);
@@ -30,7 +39,7 @@ export function createFolderStore(cfg) {
         catch (e) { if (NOT_FOUND(e) || (e && e.name === 'TypeMismatchError')) return null; throw e; }
     }
 
-    return {
+    return guarded({
         async ping() {
             if (!cfg.handle) throw new TargetError({ kind: 'auth', message: 'No folder is chosen for this place.' });
             if (cfg.handle.queryPermission) {
@@ -69,7 +78,7 @@ export function createFolderStore(cfg) {
             }
             return out;
         },
-    };
+    });
 }
 
 /** Is this browser able to use a folder at all? (Not Firefox, Safari or Android.) */

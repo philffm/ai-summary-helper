@@ -20,4 +20,7 @@ assert.deepEqual(await st.list('none'), []);
 assert.equal(await st.remove('r/a1'), true); assert.equal(await st.remove('r/a1'), false);
 await assert.rejects(() => createFolderStore({ handle: createFakeFolder({ permission: 'prompt' }).handle }).ping(), (e) => e.kind === 'auth' && /Allow access/.test(e.message));
 await assert.rejects(() => createFolderStore({}).ping(), /No folder/);
+// a refusal from the browser (protected folder, no permission in this context) is explained, not passed on raw
+const refusing = { queryPermission: async () => 'granted', getDirectoryHandle: async () => { throw Object.assign(new Error('The request is not allowed by the user agent or the platform in the current context.'), { name: 'SecurityError' }); } };
+await assert.rejects(() => createFolderStore({ handle: refusing, root: 'x' }).ping(), (e) => e.kind === 'auth' && /new folder of your own/.test(e.message) && !/user agent/.test(e.message));
 console.log('TEST 201 OK'); process.exit(0);
