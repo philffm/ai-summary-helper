@@ -128,7 +128,7 @@ Abre AI Summary Helper en su propia pestaña o ensancha el panel lateral: el his
 ━━━━━━━━━━━━━━━━━━━━
 ☁️ TU BIBLIOTECA EN TU PROPIO ALMACENAMIENTO (NUEVO)
 ━━━━━━━━━━━━━━━━━━━━
-Mantén tu biblioteca al día en todos tus ordenadores, haz copias de seguridad o publica una parte, sin entregársela a nadie. En Ajustes → Sync y copia de seguridad añades un lugar: un servidor WebDAV, un bucket compatible con S3 o una carpeta de tu ordenador.
+Mantén tu biblioteca al día en todos tus ordenadores, haz copias de seguridad o publica una parte, sin entregársela a nadie. En Ajustes → Sync y copia de seguridad añades un lugar: Nextcloud u otro servidor WebDAV, un bucket compatible con S3 o una carpeta de tu ordenador.
 
 • Cifrado: todo se cifra en tu navegador con tu frase de paso antes de salir del dispositivo, así que el servidor solo ve archivos ilegibles. Recibes una clave de recuperación; sin ella y sin la frase de paso nadie puede leerlos, tampoco nosotros.
 • Sincronización en ambos sentidos entre tus dispositivos, combinada campo a campo. La misma página guardada dos veces se convierte en un solo artículo, y un montón de borrados desde otro dispositivo espera tu visto bueno.

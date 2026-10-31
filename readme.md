@@ -239,7 +239,7 @@ Reads are targeted (`StorageManager.get([keys])` routes each key to sync or loca
 
 ### Library sync
 
-Settings → Sync & backup. A **place** is a folder on a **server** (WebDAV, S3-compatible) or on this computer; one server can hold several places (for example `public/` and `backup/`).
+Settings → Sync & backup. A **place** is a folder on a **server** (Nextcloud or another WebDAV server, S3-compatible) or on this computer; one server can hold several places (for example `public/` and `backup/`).
 
 | | Encrypted place | Readable place |
 | --- | --- | --- |

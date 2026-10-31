@@ -119,7 +119,7 @@ Alle Analysen werden auf Ihrem Gerät berechnet. Nichts geht an einen Tracking-D
 ━━━━━━━━━━━━━━━━━━━━
 ☁️ IHRE BIBLIOTHEK AUF IHREM EIGENEN SPEICHER (NEU)
 ━━━━━━━━━━━━━━━━━━━━
-Halten Sie Ihre Bibliothek auf allen Rechnern aktuell, sichern Sie sie oder veröffentlichen Sie einen Teil davon, ohne sie jemandem zu übergeben. Unter Einstellungen → Sync & Backup fügen Sie einen Ort hinzu: einen WebDAV-Server, einen S3-kompatiblen Bucket oder einen Ordner auf Ihrem Computer.
+Halten Sie Ihre Bibliothek auf allen Rechnern aktuell, sichern Sie sie oder veröffentlichen Sie einen Teil davon, ohne sie jemandem zu übergeben. Unter Einstellungen → Sync & Backup fügen Sie einen Ort hinzu: Nextcloud oder einen anderen WebDAV-Server, einen S3-kompatiblen Bucket oder einen Ordner auf Ihrem Computer.
 
 • Verschlüsselt: Alles wird in Ihrem Browser mit Ihrer Passphrase verschlüsselt, bevor es das Gerät verlässt. Der Server sieht nur unlesbare Dateien. Sie erhalten einen Wiederherstellungsschlüssel; ohne ihn und die Passphrase kann niemand die Dateien lesen, auch wir nicht.
 • Sync in beide Richtungen zwischen Ihren Geräten, Feld für Feld zusammengeführt. Dieselbe Seite zweimal gespeichert wird zu einem Artikel; viele Löschungen von einem anderen Gerät warten auf Ihr OK.

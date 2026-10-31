@@ -131,7 +131,7 @@ Open AI Summary Helper in its own tab or drag the side panel wider, and History 
 ━━━━━━━━━━━━━━━━━━━━
 ☁️ YOUR LIBRARY ON YOUR OWN STORAGE (NEW)
 ━━━━━━━━━━━━━━━━━━━━
-Keep your library on all your computers, back it up, or publish part of it, without handing it to anyone. In Settings → Sync & backup, add a place: a WebDAV server, an S3-compatible bucket or a folder on your computer.
+Keep your library on all your computers, back it up, or publish part of it, without handing it to anyone. In Settings → Sync & backup, add a place: Nextcloud or another WebDAV server, an S3-compatible bucket or a folder on your computer.
 
 • Encrypted: everything is encrypted in your browser with your passphrase before it leaves the device, so the server only sees scrambled files. You get a recovery key; without it and the passphrase, nobody can read them, including us.
 • Two-way sync between your devices, merged field by field. The same page saved twice becomes one article, and a flood of deletions from another device waits for your OK.
