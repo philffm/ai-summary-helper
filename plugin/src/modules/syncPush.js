@@ -20,13 +20,15 @@ const MAX_REMOVE_SHARE = 0.5, MIN_REMOVE_GUARD = 10;
 const get = (storage, keys) => Promise.resolve(storage.get(keys));
 
 /**
- * @param {{ place, storage, store, stamps?, now?, budgetMs?, confirmRemovals?, chunk? }} o
+ * @param {{ place, storage, store, stamps?, now?, budgetMs?, confirmRemovals?, chunk?, onProgress?: ({ phase, done, total }) => void }} o
+ *   onProgress phases: 'checking' (reading the library), 'removing', 'uploading', 'list' (library.json)
  * @returns {Promise<{ pushed, unchanged, removed, errors, more, needsConfirm, libraryWritten }>}
  */
-export async function pushPlace({ place, storage, store, stamps = {}, now = Date.now, budgetMs = 20000, confirmRemovals = false, chunk = 25 }) {
+export async function pushPlace({ place, storage, store, stamps = {}, now = Date.now, budgetMs = 20000, confirmRemovals = false, chunk = 25, onProgress = () => {} }) {
     const started = now();
     const out = { pushed: 0, unchanged: 0, removed: 0, errors: [], more: false, needsConfirm: 0, libraryWritten: false };
     const lk = syncLedgerKey(place.id);
+    onProgress({ phase: 'checking', done: 0, total: 0 });
     const d = await get(storage, { [SK.articlesIndex]: [], [SK.annotations]: [], [lk]: {} });
     const index = Array.isArray(d[SK.articlesIndex]) ? d[SK.articlesIndex] : [];
     const annotations = Array.isArray(d[SK.annotations]) ? d[SK.annotations] : [];
@@ -49,7 +51,9 @@ export async function pushPlace({ place, storage, store, stamps = {}, now = Date
     if (gone.length && !confirmRemovals && gone.length > Math.max(MIN_REMOVE_GUARD, Math.floor(published * MAX_REMOVE_SHARE))) {
         out.needsConfirm = gone.length;
     } else {
+        let removing = 0;
         for (const id of gone) {
+            onProgress({ phase: 'removing', done: removing++, total: gone.length });
             try { await store.remove(articlePath(id)); delete items[id]; out.removed++; }
             catch (e) { if (e instanceof TargetError && e.kind !== 'permanent') throw e; out.errors.push({ id, error: String(e.message || e) }); }
         }
@@ -65,6 +69,7 @@ export async function pushPlace({ place, storage, store, stamps = {}, now = Date
     });
     out.unchanged = matching.length - todo.length;
     let done = 0;
+    if (todo.length) onProgress({ phase: 'uploading', done: 0, total: todo.length });
     for (let i = 0; i < todo.length; i += chunk) {
         const part = todo.slice(i, i + chunk);
         const recs = await get(storage, part.map((e) => articleRecKey(e.id)));
@@ -85,6 +90,7 @@ export async function pushPlace({ place, storage, store, stamps = {}, now = Date
                     out.pushed++;
                 } else { items[e.id] = { ...prev, t }; out.unchanged++; }
                 done++;
+                onProgress({ phase: 'uploading', done, total: todo.length });
             } catch (err) {
                 if (err instanceof TargetError && err.kind !== 'permanent') { await save(); throw err; }   // network or login: stop, keep progress
                 out.errors.push({ id: e.id, error: String((err && err.message) || err) });
@@ -97,6 +103,7 @@ export async function pushPlace({ place, storage, store, stamps = {}, now = Date
 
     // 3) library.json: patch the published list instead of rebuilding it from every record
     if (!out.more && (out.pushed || out.removed || force || !ledger.lib)) {
+        onProgress({ phase: 'list', done: 0, total: 1 });
         let entries = new Map();
         if (!force && ledger.lib) {
             try { const g = await store.get(LIBRARY_PATH); if (g) for (const a of JSON.parse(new TextDecoder().decode(g.bytes)).articles || []) entries.set(a.id, a); } catch (_) { entries = new Map(); }

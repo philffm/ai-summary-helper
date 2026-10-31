@@ -4558,3 +4558,4 @@ html[data-motion="reduce"] .detail-split-more .icon { transition: none; }
 
 /* Sync & backup settings panel (syncView.js): notice for readable places */
 .explanatory-card.sync-warn { border: 1px solid color-mix(in srgb, var(--warn) 55%, transparent); background: color-mix(in srgb, var(--warn) 10%, transparent); font-size: var(--fs-sm); line-height: 1.45; }
+.sync-progress { width: 100%; height: 6px; accent-color: var(--accent); }

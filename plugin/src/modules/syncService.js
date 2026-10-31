@@ -51,6 +51,8 @@ export function createSyncService({ storage, makeStore, stampStore, now = () => 
     const secretsNow = async () => { const d = await get(storage, { [SK.syncSecrets]: {} }); return d[SK.syncSecrets] && typeof d[SK.syncSecrets] === 'object' ? d[SK.syncSecrets] : {}; };
     const statusNow = async () => { const d = await get(storage, { [SK.syncStatus]: {} }); return d[SK.syncStatus] && typeof d[SK.syncStatus] === 'object' ? d[SK.syncStatus] : {}; };
     const setStatus = async (id, s) => storage.set({ [SK.syncStatus]: { ...(await statusNow()), [id]: s } });
+    // the last finished result stays; `running` rides on top of it while a run is going (and goes with it)
+    const setRunning = async (id, running) => { const all = await statusNow(); storage.set({ [SK.syncStatus]: { ...all, [id]: { ...(all[id] || {}), running } } }); };
     const storeOf = (place, secret) => makeStore(place, secret || {});
 
     async function matchingCount(place) {
@@ -114,13 +116,25 @@ export function createSyncService({ storage, makeStore, stampStore, now = () => 
             const results = {};
             for (const place of places) {
                 const at = new Date(now()).toISOString();
+                const since = now();
+                let lastWrite = 0, lastPhase = '';
+                let writing = Promise.resolve();
+                const onProgress = (p) => {
+                    const t = now();
+                    if (p.phase === lastPhase && t - lastWrite < 500 && p.done < p.total) return;   // about twice a second, always on a phase change and at the end
+                    lastPhase = p.phase; lastWrite = t;
+                    writing = writing.then(() => setRunning(place.id, { ...p, since, at: t }));
+                };
+                await setRunning(place.id, { phase: 'starting', done: 0, total: 0, since, at: since });
                 try {
-                    const r = await pushPlace({ place, storage, store: storeOf(place, secrets[place.id]), stamps, now, confirmRemovals });
+                    const r = await pushPlace({ place, storage, store: storeOf(place, secrets[place.id]), stamps, now, confirmRemovals, onProgress });
+                    await writing;
                     results[place.id] = r;
-                    await setStatus(place.id, { at, ok: true, pushed: r.pushed, removed: r.removed, unchanged: r.unchanged, errors: r.errors.length, more: r.more, needsConfirm: r.needsConfirm });
+                    await setStatus(place.id, { at, ok: true, pushed: r.pushed, removed: r.removed, unchanged: r.unchanged, errors: r.errors.length, more: r.more, needsConfirm: r.needsConfirm });   // no `running`: the run is over
                     if (r.more) scheduleSoon(1);
                 } catch (e) {
                     log('[sync]', place.id, e && e.message);
+                    await writing;
                     results[place.id] = { error: describe(e) };
                     await setStatus(place.id, { at, ok: false, error: describe(e) });
                 }

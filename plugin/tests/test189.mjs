@@ -51,12 +51,18 @@ assert.ok(!JSON.stringify(local[SK.syncPlaces]).includes('secret'), 'the passwor
 assert.ok(Object.keys(await stampStore.all()).includes('article:a1'), 'adding a place stamps the existing library');
 assert.ok(soon >= 1, 'the first publish is scheduled');
 
-// sync now: publishes, records the status
-const res = await svc.syncNow();
+// sync now: publishes, records the status. While it runs, the status says what it is doing.
+const seen = [];
+const spy = S.createSyncService({ storage: chrome.storage.local, stampStore, scheduleSoon: () => {}, makeStore: (pl, sec) => { const st = makeStore(pl, sec); const put = st.put; st.put = async (...a) => { seen.push(JSON.parse(JSON.stringify(local[SK.syncStatus] || {}))); return put(...a); }; return st; } });
+const res = await spy.syncNow();
+const mid = seen.find((x) => x[place.id] && x[place.id].running && x[place.id].running.phase === 'uploading');
+assert.ok(mid, 'a status with running progress was visible during the upload');
+assert.equal(mid[place.id].running.total, 1); assert.equal(mid[place.id].running.done, 0); assert.ok(mid[place.id].running.since);
 assert.equal(res[place.id].pushed, 1);
 assert.ok(dav.text('site/articles/a1.json') && !dav.text('site/articles/a2.json'));
 let st = (await svc.statusNow())[place.id];
 assert.ok(st.ok && st.pushed === 1 && st.at);
+assert.ok(!('running' in st), 'the run is over: no running flag');
 await svc.syncNow(place.id);
 st = (await svc.statusNow())[place.id]; assert.equal(st.pushed, 0, 'second run: nothing to do');
 

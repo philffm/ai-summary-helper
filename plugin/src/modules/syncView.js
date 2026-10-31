@@ -91,8 +91,21 @@ function sendToWorker(msg) {
 
 // ── status text ──
 async function ledgerCount(id) { const d = await getL({ [syncLedgerKey(id)]: {} }); const l = d[syncLedgerKey(id)]; return l && l.items ? Object.keys(l.items).length : 0; }
+// A run that stopped writing progress (the worker was killed) stops looking "running" after 90 seconds.
+export function runningOf(st, now = Date.now()) { return st && st.running && now - (st.running.at || 0) < 90000 ? st.running : null; }
+export function phaseText(r) {
+    switch (r && r.phase) {
+        case 'checking': return T('Checking your library…');
+        case 'removing': return T('Removing {done} of {total}', { done: r.done, total: r.total });
+        case 'uploading': return T('Uploading {done} of {total}', { done: r.done, total: r.total });
+        case 'list': return T('Updating the list…');
+        default: return T('Starting…');
+    }
+}
 function statusSub(place, st, count) {
     if (place.enabled === false) return T('Paused');
+    const run = runningOf(st);
+    if (run) return phaseText(run);
     if (!st) return T('Not published yet');
     if (!st.ok) return (st.error && st.error.message) || T('Could not reach the server');
     return TN(count, '{n} article', '{n} articles') + ' · ' + T('published {t} ago', { t: timeAgo(Date.parse(st.at)) });
@@ -137,7 +150,9 @@ function listScreen(places, status, counts) {
     if (places.length) {
         out.push(el('p', 'settings-caption', TU('All places')));
         const actions = el('div', 'mcp-actions');
-        const now = button(T('Sync now'), 'button-secondary btn-sm', async () => { now.disabled = true; now.textContent = T('Syncing…'); await sendToWorker({ action: 'syncNow' }); render(); });
+        const running = places.some((p) => runningOf(status[p.id]));
+        const now = button(running ? T('Syncing…') : T('Sync now'), 'button-secondary btn-sm', async () => { now.disabled = true; now.textContent = T('Syncing…'); await sendToWorker({ action: 'syncNow' }); });
+        now.disabled = running;
         actions.append(now);
         out.push(actions);
     }
@@ -161,28 +176,49 @@ function openForm(id) {
     });
 }
 
+function heroNode(place, st, count) {
+    const hero = el('section', 'mcp-card mcp-hero'); hero.id = 'syncHero';
+    const run = runningOf(st);
+    const s = el('div', 'mcp-hero-status');
+    s.append(el('span', 'mcp-dot' + (run ? ' is-wait' : st && st.ok === false ? ' is-wait' : '')), el('span', null, statusSub(place, st, count)));
+    hero.append(s);
+    if (run) {
+        const bar = document.createElement('progress'); bar.className = 'sync-progress';
+        if (run.total > 0) { bar.max = run.total; bar.value = Math.min(run.done, run.total); }
+        bar.setAttribute('aria-label', phaseText(run));
+        hero.append(bar);
+        s.setAttribute('role', 'status'); s.setAttribute('aria-live', 'polite');
+    }
+    if (st && st.needsConfirm && !run) {
+        hero.append(hint(TN(st.needsConfirm, '{n} file is no longer wanted here and would be removed from your server. Check that this is right.', '{n} files are no longer wanted here and would be removed from your server. Check that this is right.')));
+        const a = el('div', 'mcp-actions');
+        a.append(button(T('Remove them'), 'button-danger-outline btn-sm', async () => { await sendToWorker({ action: 'syncNow', placeId: place.id, confirmRemovals: true }); }));
+        hero.append(a);
+    }
+    const a = el('div', 'mcp-actions');
+    const pub = button(run ? T('Publishing…') : T('Publish now'), 'button-secondary btn-sm', async () => { pub.disabled = true; pub.textContent = T('Publishing…'); await sendToWorker({ action: 'syncNow', placeId: place.id }); });
+    pub.disabled = !!run;
+    a.append(pub);
+    hero.append(a);
+    return hero;
+}
+
+/** Replaces only the status card while someone edits the form: nothing they typed is touched. */
+async function refreshHero() {
+    const old = $('syncHero');
+    if (!old || view !== 'form' || !editId) return;
+    const [places, status] = await Promise.all([svc.placesNow(), svc.statusNow()]);
+    const place = places.find((p) => p.id === editId);
+    if (!place || !$('syncHero')) return;
+    $('syncHero').replaceWith(heroNode(place, status[editId], await ledgerCount(editId)));
+}
+
 function formScreen(place, st, count) {
     if (!draft) draft = blankDraft();
     const editing = !!editId && !!place;
     const out = [head(editing ? draft.name : T('Nextcloud / WebDAV'), { label: '‹ ' + T('Sync & backup'), fn: () => { view = 'list'; render(); } })];
 
-    if (editing) {
-        const hero = el('section', 'mcp-card mcp-hero');
-        const s = el('div', 'mcp-hero-status');
-        s.append(el('span', 'mcp-dot' + (st && st.ok === false ? ' is-wait' : '')), el('span', null, statusSub(place, st, count)));
-        hero.append(s);
-        if (st && st.needsConfirm) {
-            hero.append(hint(TN(st.needsConfirm, '{n} file is no longer wanted here and would be removed from your server. Check that this is right.', '{n} files are no longer wanted here and would be removed from your server. Check that this is right.')));
-            const a = el('div', 'mcp-actions');
-            a.append(button(T('Remove them'), 'button-danger-outline btn-sm', async () => { await sendToWorker({ action: 'syncNow', placeId: editId, confirmRemovals: true }); render(); }));
-            hero.append(a);
-        }
-        const a = el('div', 'mcp-actions');
-        const pub = button(T('Publish now'), 'button-secondary btn-sm', async () => { pub.disabled = true; pub.textContent = T('Publishing…'); await sendToWorker({ action: 'syncNow', placeId: editId }); render(); });
-        a.append(pub);
-        hero.append(a);
-        out.push(hero);
-    }
+    if (editing) out.push(heroNode(place, st, count));
 
     out.push(el('p', 'settings-caption', TU('Where')));
     out.push(field('syncName', T('Name'), draft.name, { placeholder: T('My website'), onInput: (v) => { draft.name = v; } }));
@@ -262,7 +298,7 @@ export function initSyncView() {
     render();
     chrome.storage.onChanged.addListener((changes, area) => {
         if (area !== 'local') return;
-        if (view === 'form' && !(SK.syncStatus in changes)) return;   // never re-render a form while someone types in it
+        if (view === 'form') { if (SK.syncStatus in changes) refreshHero(); return; }   // never re-render a form while someone types in it
         if (SK.syncPlaces in changes || SK.syncStatus in changes) render();
     });
 }

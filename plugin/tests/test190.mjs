@@ -98,6 +98,28 @@ store[SK.syncStatus] = { [id]: { at: new Date().toISOString(), ok: false, error:
 V.initSyncView(); await wait();
 assert.match(root().querySelector('.settings-row').textContent, /did not accept/);
 
+// live progress: the row says what it is doing, the form's status card follows without touching what is typed
+store[SK.syncStatus] = { [id]: { at: new Date().toISOString(), ok: true, pushed: 1, running: { phase: 'uploading', done: 12, total: 340, since: Date.now(), at: Date.now() } } };
+V.initSyncView(); await wait();
+assert.match(root().querySelector('.settings-row').textContent, /Uploading 12 of 340/);
+assert.ok(byText('button', 'Syncing…').disabled, 'Sync now is off while a run is going');
+click(root().querySelector('.settings-row')); await wait(100);
+assert.match($('syncHero').textContent, /Uploading 12 of 340/);
+const bar = $('syncHero').querySelector('progress'); assert.equal(bar.max, 340); assert.equal(bar.value, 12);
+assert.ok(byText('button', 'Publishing…').disabled);
+type('syncName', 'Typed while syncing');
+store[SK.syncStatus] = { [id]: { at: new Date().toISOString(), ok: true, pushed: 1, running: { phase: 'uploading', done: 200, total: 340, since: Date.now(), at: Date.now() } } };
+for (const f of globalThis.__chL || []) f({ [SK.syncStatus]: { newValue: store[SK.syncStatus] } }, 'local');
+await wait(80);
+assert.equal($('syncHero').querySelector('progress').value, 200, 'the bar moved');
+assert.equal($('syncName').value, 'Typed while syncing', 'the form was not re-rendered');
+// a run that stopped writing progress (worker killed) stops looking busy
+store[SK.syncStatus] = { [id]: { at: new Date().toISOString(), ok: true, pushed: 1, running: { phase: 'uploading', done: 5, total: 340, since: Date.now() - 600000, at: Date.now() - 600000 } } };
+for (const f of globalThis.__chL || []) f({ [SK.syncStatus]: { newValue: store[SK.syncStatus] } }, 'local');
+await wait(80);
+assert.ok(!$('syncHero').querySelector('progress'), 'a stale run is not shown as running');
+click(byText('button', '‹ Sync')); await wait(80);
+
 // remove
 click(root().querySelector('.settings-row')); await wait(100);
 click(byText('button', 'Remove this place')); await wait(150);
