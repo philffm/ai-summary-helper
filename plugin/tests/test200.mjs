@@ -2,6 +2,7 @@
 import assert from 'assert';
 import path from 'path'; import { pathToFileURL } from 'url';
 import { createFakeDav } from './fakeDav.mjs';
+import { createFakeFolder } from './fakeFolder.mjs';
 const imp = (m) => import(pathToFileURL(path.resolve(process.env.AISH_SRC, m)).href);
 const { SK, articleRecKey, noteRecKey, syncLedgerKey } = await imp('modules/storageKeys.js');
 const { createStampStore } = await imp('modules/syncStampStore.js');
@@ -9,11 +10,16 @@ const { createDataAdapter } = await imp('modules/syncDataAdapter.js');
 const { syncEncryptedPlace, loadOrCreateMeta } = await imp('modules/syncEngine.js');
 const { createMeta, openMeta } = await imp('modules/syncCrypto.js');
 const { createWebdavStore } = await imp('modules/syncWebdav.js');
+const { createFolderStore } = await imp('modules/syncFolder.js');
+const FOLDER = process.env.AISH_STORE === 'folder';
 const { syncFields } = await imp('modules/syncStamps.js');
 
 const dav = createFakeDav();
 const cfg = { url: 'https://cloud.test/dav/', root: 'sync', username: 'phil', password: 'secret' };
-const mkStore = () => createWebdavStore(cfg, { fetchFn: dav.fetchFn });
+const fol = createFakeFolder();
+const mkStore = () => (FOLDER ? createFolderStore({ handle: fol.handle, root: 'sync' }) : createWebdavStore(cfg, { fetchFn: dav.fetchFn }));
+const files = FOLDER ? fol.files : dav.files;
+const setRaw = (p, body) => (FOLDER ? fol.files.set(p, { body, mt: Date.now() + Math.random() }) : dav.files.set(p, { body, etag: 'raw' + Math.random() }));
 await mkStore().ping();
 let clock = 1_000_000;
 
@@ -48,7 +54,7 @@ assert.ok(!second.created && second.meta.salt === created.meta.salt, 'a second d
 assert.ok((await openMeta(second.meta, { passphrase: 'pw' })).keys);
 
 const A = device('A'), B = device('B');
-const puts = () => dav.log.filter((l) => l.startsWith('PUT') && l.includes('/r/')).length;
+const puts = () => (FOLDER ? fol.log : dav.log).filter((l) => /^(PUT|WRITE)/.test(l) && l.includes('/r/')).length;
 
 // ── disjoint edits converge; nothing readable on the server ──
 await A.addArticle('a1', { tags: ['alpha'] }); await A.addArticle('a2');
@@ -58,9 +64,9 @@ r = await B.sync(); assert.equal(r.pulled, 2); assert.equal(r.pushed, 1); assert
 r = await A.sync(); assert.equal(r.pulled, 1);
 for (const dev of [A, B]) assert.deepEqual(dev.index().map((e) => e.id).sort(), ['a1', 'a2', 'b1']);
 assert.equal(B.rec('a1').content, '<p>text a1</p>', 'the full text came along');
-const raw = [...dav.files.values()].map((f) => new TextDecoder('latin1').decode(f.body)).join('');
+const raw = [...files.values()].map((f) => new TextDecoder('latin1').decode(f.body)).join('');
 assert.ok(!raw.includes('text a1') && !raw.includes('x.test'), 'the server holds nothing readable');
-assert.equal([...dav.files.keys()].filter((p) => p.startsWith('sync/r/')).length, 3);
+assert.equal([...files.keys()].filter((p) => p.startsWith('sync/r/')).length, 3);
 
 // ── the echo guard: a second round after convergence does nothing ──
 const before = [await A.stampsJson(), await B.stampsJson()], p0 = puts();
@@ -96,13 +102,13 @@ assert.ok(onServer.values.content === '<p>text a1</p>', 'and so does the server'
 
 // ── a damaged file is skipped and never overwritten ──
 const { nameOf } = await imp('modules/syncCrypto.js');
-const victim = 'sync/r/' + await nameOf(K.keys, 'article', 'a1'); const good = dav.files.get(victim).body;
-dav.files.set(victim, { body: new Uint8Array(40).fill(7), etag: 'bad1' });
+const victim = 'sync/r/' + await nameOf(K.keys, 'article', 'a1'); const good = files.get(victim).body;
+setRaw(victim, new Uint8Array(40).fill(7));
 await A.editEntry('a1', { title: 'A after damage' });
 r = await B.sync(); assert.ok(r.errors.length >= 1, 'reported');
 r = await A.sync(); assert.ok(r.errors.length >= 1 && /not overwriting|decrypt/.test(r.errors.join()), 'A does not push over a file it cannot read');
-assert.deepEqual([...dav.files.get(victim).body], new Array(40).fill(7), 'the damaged file is untouched');
-dav.files.set(victim, { body: good, etag: 'good1' });
+assert.deepEqual([...files.get(victim).body], new Array(40).fill(7), 'the damaged file is untouched');
+setRaw(victim, good);
 
 // ── a wrong place (re-created on the server) stops the run ──
 const fresh = await createMeta('other', { iterations: 1000 });
@@ -115,7 +121,7 @@ let backups = 0;
 r = await C.sync({ backup: async () => { backups++; } });
 assert.equal(backups, 1, 'the local backup ran before the first sync');
 assert.notEqual(C.entry('a1').title, 'C local title', 'the server value won the conflict');
-assert.ok(dav.files.has('sync/r/' + await nameOf(K.keys, 'article', 'c-only')), 'a local-only article was pushed');
+assert.ok(files.has('sync/r/' + await nameOf(K.keys, 'article', 'c-only')), 'a local-only article was pushed');
 await C.sync({ backup: async () => { backups++; } }); assert.equal(backups, 1, 'the backup runs once, not on every sync');
 // a failing backup stops the join before anything is written
 const D = device('D'); await D.addArticle('d1'); const putsBefore = puts();
@@ -124,9 +130,9 @@ assert.equal(puts(), putsBefore); assert.equal(D.index().length, 1, 'nothing cha
 
 // ── 412: the server copy changed between our listing and our PUT ──
 await A.editEntry('a1', { title: 'A wants this' });
-const realPut = dav.fetchFn; let raced = false;
-const racing = (url, init = {}) => { if (!raced && init.method === 'PUT' && /\/r\//.test(url)) { raced = true; return realPut(url, { ...init, headers: { ...init.headers, 'if-match': '"stale"' } }); } return realPut(url, init); };
-const store412 = createWebdavStore(cfg, { fetchFn: racing });
+let raced = false, store412;
+if (FOLDER) { const base = mkStore(); store412 = { ...base, put: async (p, b, o = {}) => { if (!raced && /^r\//.test(p) && o.ifMatch) { raced = true; o = { ...o, ifMatch: 'stale' }; } return base.put(p, b, o); } }; }
+else { const realPut = dav.fetchFn; const racing = (url, init = {}) => { if (!raced && init.method === 'PUT' && /\/r\//.test(url)) { raced = true; return realPut(url, { ...init, headers: { ...init.headers, 'if-match': '"stale"' } }); } return realPut(url, init); }; store412 = createWebdavStore(cfg, { fetchFn: racing }); }
 r = await syncEncryptedPlace({ place: { id: 'p1' }, storage: A.area, store: store412, keys: K.keys, meta: K.meta, stampStore: A.st, adapter: A.adapter }); await A.idle();
 assert.ok(raced, 'the PUT was refused with 412'); assert.equal(r.errors.length, 0, 'a 412 is merged and retried: ' + r.errors.join());
 await B.sync(); assert.equal(B.entry('a1').title, 'A wants this');
