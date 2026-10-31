@@ -8,6 +8,7 @@ import { createInboxManager } from './inboxManager.js';
 import { feedSyncAdapter } from './feedSyncStore.js';
 import { setLabel, setIconLabel } from './icons.js';
 import { normalizeUrl } from './textUtils.js';
+import { withArticleLock } from './articleLock.js';
 
 const $ = (id) => document.getElementById(id);
 const manager = createInboxManager();
@@ -297,18 +298,20 @@ async function dismiss(entry) {
  * saved after the link arrived. Returns how many were marked.
  */
 export async function markFromPhone(entry, ids = null) {
-    let index = [];
-    try { index = (await chrome.storage.local.get(SK.articlesIndex))[SK.articlesIndex] || []; } catch (_) { return 0; }
-    const key = normalizeUrl(entry.url);
-    let n = 0;
-    for (const a of index) {
-        if (!a || a.fromPhone || a.feedStub) continue;
-        const hit = ids ? ids.includes(a.id)
-            : (Date.parse(a.timestamp) || 0) >= (entry.receivedAt || 0) && [a.url, a.feedUrl].some(u => u && normalizeUrl(u) === key);
-        if (hit) { a.fromPhone = true; n++; }
-    }
-    if (n) { try { await chrome.storage.local.set({ [SK.articlesIndex]: index }); } catch (_) { n = 0; } }
-    return n;
+    return withArticleLock(async () => {
+        let index = [];
+        try { index = (await chrome.storage.local.get(SK.articlesIndex))[SK.articlesIndex] || []; } catch (_) { return 0; }
+        const key = normalizeUrl(entry.url);
+        let n = 0;
+        for (const a of index) {
+            if (!a || a.fromPhone || a.feedStub) continue;
+            const hit = ids ? ids.includes(a.id)
+                : (Date.parse(a.timestamp) || 0) >= (entry.receivedAt || 0) && [a.url, a.feedUrl].some(u => u && normalizeUrl(u) === key);
+            if (hit) { a.fromPhone = true; n++; }
+        }
+        if (n) { try { await chrome.storage.local.set({ [SK.articlesIndex]: index }); } catch (_) { n = 0; } }
+        return n;
+    });
 }
 /** The article is written to History right around the completion message: look for it for a few seconds. */
 async function markWhenSaved(entry) {

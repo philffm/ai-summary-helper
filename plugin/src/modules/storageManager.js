@@ -1,5 +1,6 @@
 import { SK, SK_LEGACY, SK_DEAD, LOCAL_KEY_LIST, ARTICLE_REC_LEGACY, articleRecKey, isArticleRecKey, isCollRecKey, migrateStorageKeys } from './storageKeys.js';
 import { removeArticleFromCollections, clearCollectionSources } from './collections.js';
+import { withArticleLock } from './articleLock.js';
 import { debug } from './log.js';
 import { countWords } from './textUtils.js';
 import { withQuestions } from './conversation.js';
@@ -470,6 +471,22 @@ class StorageManager {
         await removeArticleFromCollections(id);   // no dead references in any collection
     }
 
+    /**
+     * Delete several articles at once: index entries, records and collection references. Returns how many existed.
+     * Every delete path should come through here (or deleteArticle) so no collection keeps a dead reference.
+     */
+    static async deleteArticles(ids) {
+        const drop = new Set((Array.isArray(ids) ? ids : []).filter(Boolean));
+        if (!drop.size) return 0;
+        const { [SK.articlesIndex]: articlesIndex = [] } = await this.getLocal({ [SK.articlesIndex]: [] });
+        const gone = articlesIndex.filter(a => drop.has(a.id)).map(a => a.id);
+        if (!gone.length) return 0;
+        await this.setLocal({ [SK.articlesIndex]: articlesIndex.filter(a => !drop.has(a.id)) });
+        await new Promise(resolve => chrome.storage.local.remove(gone.map(articleRecKey), resolve));
+        for (const id of gone) await removeArticleFromCollections(id);
+        return gone.length;
+    }
+
     // Deletes every article record, not just the index — a plain
     // setLocal({ [SK.articlesIndex]: [] }) would leave every articles:rec:<id> record
     // orphaned in storage forever.
@@ -926,6 +943,13 @@ class StorageManager {
             responseStructure: activeCfg.responseStructure
         };
     }
+}
+
+// Every method that rewrites the article index (or an article record) runs under one lock, see articleLock.js.
+for (const name of ['saveArticle', 'setTitle', 'setTags', 'setArticleMoods', 'setArticleArchived', 'patchArticleStatus', 'touchArticleOpened',
+    'toggleFavorite', 'saveConversation', 'savePaperInfo', 'deleteArticle', 'deleteArticles', 'clearAllArticles']) {
+    const original = StorageManager[name];
+    StorageManager[name] = function (...args) { return withArticleLock(() => original.apply(StorageManager, args)); };
 }
 
 export default StorageManager;

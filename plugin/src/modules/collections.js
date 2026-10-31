@@ -9,6 +9,7 @@
 // sources:[{articleId, addedAt}]}. Writes go through one queue: two quick adds never overwrite each other.
 import { SK, collRecKey, articleRecKey } from './storageKeys.js';
 import { paperState, paperType } from './paperInfo.js';
+import { withArticleLock } from './articleLock.js';
 
 export const MAX_SOURCES = 15;
 export const MAX_NAME = 80;
@@ -363,13 +364,16 @@ export async function lastCollectionId() {
 
 // ── per-article source facts (stored on the article record) ──
 
-async function patchArticle(articleId, patch) {
-    const k = articleRecKey(articleId);
-    const cur = (await getL(k))[k];
-    if (!cur) return null;
-    const next = { ...cur, ...patch };
-    await setL({ [k]: next });
-    return next;
+function patchArticle(articleId, patch) {
+    // the record is also rewritten by StorageManager (conversation, paper info): take the same lock
+    return withArticleLock(async () => {
+        const k = articleRecKey(articleId);
+        const cur = (await getL(k))[k];
+        if (!cur) return null;
+        const next = { ...cur, ...patch };
+        await setL({ [k]: next });
+        return next;
+    });
 }
 
 export function saveSourceProfile(articleId, profile) {

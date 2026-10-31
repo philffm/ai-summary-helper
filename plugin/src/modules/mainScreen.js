@@ -1,6 +1,6 @@
 import { modelIcon } from './modelBadge.js';
 import { icon, iconEl, setIconLabel } from './icons.js';
-import { SK, articleRecKey } from './storageKeys.js';
+import { SK } from './storageKeys.js';
 import { escapeHtml } from './textUtils.js';
 import { debug } from './log.js';
 // mainScreen.js
@@ -1197,9 +1197,7 @@ export function initMainScreen(ui) {
         const { undoToast } = await import('./sendSheet.js');
         const id = res.id;
         undoToast(T('📥 Saved without AI'), async () => {
-            const { [SK.articlesIndex]: idx = [] } = await StorageManager.getLocal({ [SK.articlesIndex]: [] });
-            await StorageManager.setLocal({ [SK.articlesIndex]: idx.filter(a => a.id !== id) });
-            try { await new Promise(r => chrome.storage.local.remove([articleRecKey(id)], r)); } catch (_) { /* ignore */ }
+            try { await StorageManager.deleteArticle(id); } catch (_) { /* ignore */ }
         });
     };
     if (saveMenuBtn) {

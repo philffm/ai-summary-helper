@@ -1,4 +1,4 @@
-import { SK, articleRecKey } from './storageKeys.js';
+import { SK } from './storageKeys.js';
 import { attachSearchClear } from './searchField.js';
 // feedManager.js
 // Small RSS/Atom reader built for fast triage. Feeds + items live in their own
@@ -19,6 +19,7 @@ import { attachSearchClear } from './searchField.js';
 
 import { showSkeleton, clearSkeleton } from './skeleton.js';
 import StorageManager from './storageManager.js';
+import { withArticleLock } from './articleLock.js';
 import { normalizeUrl } from './textUtils.js';
 import { itemMood, MOOD_EMOJI } from './feedSentiment.js';
 import { play as playAudio, initPlayer, isPlaying, formatDuration } from './feedPlayer.js';
@@ -248,21 +249,22 @@ function histOf(item) { return historyByUrl.get(normalizeUrl(item.link)) || { fa
 // page has been summarized for real, the stub's star moves to the real entry
 // and the stub is removed so History doesn't show the page twice.
 export async function reconcileStubs() {
-    const { [SK.articlesIndex]: articlesIndex = [] } = await StorageManager.getLocal({ [SK.articlesIndex]: [] });
-    const stubs = articlesIndex.filter(a => (a.feedStub || a.savedOnly) && a.url);
-    if (!stubs.length) return;
-    const drop = new Set();
-    for (const stub of stubs) {
-        const key = normalizeUrl(stub.url);
-        const real = articlesIndex.filter(a => !a.feedStub && !a.savedOnly && hasUrl(a, key));
-        if (!real.length) continue;
-        if (stub.favorite) real.forEach(r => { r.favorite = true; });
-        drop.add(stub.id);
-    }
-    if (!drop.size) return;
-    const next = articlesIndex.filter(a => !drop.has(a.id));
-    await StorageManager.setLocal({ [SK.articlesIndex]: next });
-    await new Promise(res => chrome.storage.local.remove([...drop].map(articleRecKey), res));
+    // the star moves to the real entry under the lock; the stubs go through deleteArticles (own lock, collection cleanup)
+    const drop = await withArticleLock(async () => {
+        const { [SK.articlesIndex]: articlesIndex = [] } = await StorageManager.getLocal({ [SK.articlesIndex]: [] });
+        const stubs = articlesIndex.filter(a => (a.feedStub || a.savedOnly) && a.url);
+        const ids = [];
+        for (const stub of stubs) {
+            const key = normalizeUrl(stub.url);
+            const real = articlesIndex.filter(a => !a.feedStub && !a.savedOnly && hasUrl(a, key));
+            if (!real.length) continue;
+            if (stub.favorite) real.forEach(r => { r.favorite = true; });
+            ids.push(stub.id);
+        }
+        if (ids.length) await StorageManager.setLocal({ [SK.articlesIndex]: articlesIndex });
+        return ids;
+    });
+    if (drop.length) await StorageManager.deleteArticles(drop);
 }
 
 // Find the real (non-stub) History entry for a feed item's URL.
@@ -289,16 +291,25 @@ async function onCardClick(item) {
 
 async function toggleFavorite(item) {
     const key = normalizeUrl(item.link);
-    const { [SK.articlesIndex]: articlesIndex = [] } = await StorageManager.getLocal({ [SK.articlesIndex]: [] });
-    const matches = articlesIndex.filter(a => hasUrl(a, key));
-    const isFav = matches.some(a => a.favorite);
+    // flip the stars under the lock; creating a stub and deleting stubs use StorageManager (own lock) afterwards
+    const { isFav, matched, removeIds } = await withArticleLock(async () => {
+        const { [SK.articlesIndex]: articlesIndex = [] } = await StorageManager.getLocal({ [SK.articlesIndex]: [] });
+        const matches = articlesIndex.filter(a => hasUrl(a, key));
+        const fav = matches.some(a => a.favorite);
+        const ids = [];
+        if (!fav && matches.length) {
+            matches.forEach(a => { a.favorite = true; });
+            await StorageManager.setLocal({ [SK.articlesIndex]: articlesIndex });
+        } else if (fav) {
+            matches.forEach(a => { a.favorite = false; if (a.feedStub) ids.push(a.id); });
+            await StorageManager.setLocal({ [SK.articlesIndex]: articlesIndex });
+        }
+        return { isFav: fav, matched: matches.length, removeIds: ids };
+    });
     let createdStub = false;
 
     if (!isFav) {
-        if (matches.length) {
-            matches.forEach(a => { a.favorite = true; });
-            await StorageManager.setLocal({ [SK.articlesIndex]: articlesIndex });
-        } else {
+        if (!matched) {
             const feedName = subTitle(subs.find(x => x.id === item.feedId) || {});
             await StorageManager.saveArticle({
                 content: '',
@@ -311,12 +322,8 @@ async function toggleFavorite(item) {
             });
             createdStub = true;
         }
-    } else {
-        const removeIds = [];
-        matches.forEach(a => { a.favorite = false; if (a.feedStub) removeIds.push(a.id); });
-        const next = articlesIndex.filter(a => !removeIds.includes(a.id));
-        await StorageManager.setLocal({ [SK.articlesIndex]: next });
-        if (removeIds.length) await new Promise(res => chrome.storage.local.remove(removeIds.map(articleRecKey), res));
+    } else if (removeIds.length) {
+        await StorageManager.deleteArticles(removeIds);
     }
     await loadHistoryMap();
     render();
