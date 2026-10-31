@@ -149,6 +149,13 @@ export function clearHighlightElementsByType(type) {
 
 // ── Annotation storage (one array for all pages, see storage-schema notes) ──
 
+/** Tell the background which highlights the user removed: library sync writes a deletion marker for them (a highlight that is merely missing from the array is not a deletion). */
+export function hlTellDeleted(ids) {
+  const list = (ids || []).filter(i => typeof i === 'string' && i);
+  if (!list.length) return;
+  try { const r = chrome.runtime.sendMessage({ action: 'syncHlDeleted', ids: list }); if (r && r.catch) r.catch(() => {}); } catch (_) { /* extension reloaded */ }
+}
+
 /** Save (or find) an annotation; returns the stored record. */
 export function saveAnnotationToStorage(text, type = 'user', meta = {}) {
   const currentUrl = getPageKey();
@@ -186,6 +193,7 @@ function hlRemoveFromStorage(id, { dismiss = false } = {}) {
       ? annotations.map(a => (a.id === id ? { ...a, dismissed: true } : a))
       : annotations.filter(a => a.id !== id);
     chrome.storage.local.set({ [SK.annotations]: next });
+    if (!dismiss) hlTellDeleted([id]);
   });
 }
 
@@ -195,8 +203,10 @@ export function removeAnnotationFromStorage(text, type = 'user') {
     const currentUrl = getPageKey();
     const compactText = (text || '').replace(/\s+/g, ' ').trim();
     if (!compactText) return;
+    const removed = annotations.filter(a => a.url === currentUrl && a.text === compactText && a.type === type).map(a => a.id);
     annotations = annotations.filter(a => !(a.url === currentUrl && a.text === compactText && a.type === type));
     chrome.storage.local.set({ [SK.annotations]: annotations });
+    hlTellDeleted(removed);
   });
 }
 

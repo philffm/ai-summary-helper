@@ -1,6 +1,7 @@
 import { SK, SK_LEGACY, SK_DEAD, LOCAL_KEY_LIST, ARTICLE_REC_LEGACY, articleRecKey, isArticleRecKey, isCollRecKey, isSyncStampsKey, migrateStorageKeys } from './storageKeys.js';
 import { removeArticleFromCollections, clearCollectionSources } from './collections.js';
 import { withArticleLock } from './articleLock.js';
+import { markDeleted } from './syncStampClient.js';
 import { debug } from './log.js';
 import { countWords } from './textUtils.js';
 import { withQuestions } from './conversation.js';
@@ -469,6 +470,7 @@ class StorageManager {
         await this.setLocal({ [SK.articlesIndex]: articlesIndex.filter(a => a.id !== id) });
         await new Promise(resolve => chrome.storage.local.remove(articleRecKey(id), resolve));
         await removeArticleFromCollections(id);   // no dead references in any collection
+        await markDeleted('article', [id]);       // sync: the user deleted it (clearAllArticles is a reset and writes none)
     }
 
     /**
@@ -484,6 +486,7 @@ class StorageManager {
         await this.setLocal({ [SK.articlesIndex]: articlesIndex.filter(a => !drop.has(a.id)) });
         await new Promise(resolve => chrome.storage.local.remove(gone.map(articleRecKey), resolve));
         for (const id of gone) await removeArticleFromCollections(id);
+        await markDeleted('article', gone);
         return gone.length;
     }
 

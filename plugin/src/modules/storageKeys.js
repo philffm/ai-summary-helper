@@ -92,6 +92,8 @@ export const SK = {
     mcpLog: 'mcp:log',            // last 50 call records — never backed up
     // library sync (claude/prd-library-sync): this device's id. Never backed up or restored: two devices must not share one.
     syncDeviceId: 'sync:deviceId',
+    syncConfig: 'sync:config',   // { enabled } for now; the targets come with the engine. Per device, never backed up.
+    syncClock: 'sync:clock',     // { t }: highest stamp time this device has made or seen
     // migration flags
     devicesMigrated: 'meta:devicesMigrated',
     migrationVersion: 'meta:version',

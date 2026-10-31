@@ -10,6 +10,7 @@
 import { SK, collRecKey, articleRecKey } from './storageKeys.js';
 import { paperState, paperType } from './paperInfo.js';
 import { withArticleLock } from './articleLock.js';
+import { markDeleted } from './syncStampClient.js';
 
 export const MAX_SOURCES = 15;
 export const MAX_NAME = 80;
@@ -295,6 +296,7 @@ export function deleteCollection(id) {
         await setL({ [SK.collIndex]: (d[SK.collIndex] || []).filter(e => e.id !== id) });
         await removeL(collRecKey(id));
         if (d[SK.lastCollection] === id) await removeL(SK.lastCollection);
+        await markDeleted('coll', [id]);
     });
 }
 

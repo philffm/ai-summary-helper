@@ -57,6 +57,7 @@ import {
   handleGhostHighlightClick,
   getUserHighlightTexts,
   revealQuote,
+  hlTellDeleted,
   setPageSummarizeHandler
 } from './content/highlighter.js';
 
@@ -272,7 +273,9 @@ import {
         let annotations = res[SK.annotations];
         if (Array.isArray(annotations)) {
           const currentUrl = window.location.href.split('#')[0];
+          const removed = annotations.filter(a => a.url === currentUrl).map(a => a.id);
           annotations = annotations.filter(a => a.url !== currentUrl);
+          hlTellDeleted(removed);
           chrome.storage.local.set({ [SK.annotations]: annotations }, () => {
             sendResponse({ status: 'ok' });
           });

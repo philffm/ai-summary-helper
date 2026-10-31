@@ -14,11 +14,13 @@ try { if (typeof importScripts === 'function') importScripts('feed-worker.js'); 
 try { if (typeof importScripts === 'function') importScripts('inbox-worker.js'); } catch (_) { /* listed in the manifest instead */ }
 try { if (typeof importScripts === 'function') importScripts('targets-worker.js'); } catch (_) { /* listed in the manifest instead */ }
 try { if (typeof importScripts === 'function') importScripts('mcp-worker.js'); } catch (_) { /* listed in the manifest instead */ }
+try { if (typeof importScripts === 'function') importScripts('sync-worker.js'); } catch (_) { /* listed in the manifest instead */ }
 const FIN = globalThis.AISH_FINALIZE || null;
 const INBOX = globalThis.AISH_INBOX || null;
 const TARGETS = globalThis.AISH_TARGETS || null;
 const FEED_WORKER = globalThis.AISH_FEED_WORKER || null;
 const MCP = globalThis.AISH_MCP || null;
+const SYNC = globalThis.AISH_SYNC || null;
 const ttsEngine = globalThis.AISH_TTS ? globalThis.AISH_TTS.create({ send: (m) => { try { const r = chrome.runtime.sendMessage(m); if (r && r.catch) r.catch(() => {}); } catch (_) { /* no listener */ } } }) : null;
 
 
@@ -97,6 +99,8 @@ const SK = {
     mcpLog: 'mcp:log',            // last 50 call records — never backed up
     // library sync (claude/prd-library-sync): this device's id. Never backed up or restored: two devices must not share one.
     syncDeviceId: 'sync:deviceId',
+    syncConfig: 'sync:config',   // { enabled } for now; the targets come with the engine. Per device, never backed up.
+    syncClock: 'sync:clock',     // { t }: highest stamp time this device has made or seen
     // migration flags
     devicesMigrated: 'meta:devicesMigrated',
     migrationVersion: 'meta:version',
@@ -989,6 +993,14 @@ chrome.runtime.onStartup.addListener(() => { applyFeedPollConfig(); applyInboxPo
 const targets = TARGETS ? TARGETS.createTargets({ log: () => {} }) : null;
 if (targets) targets.start().catch((e) => console.warn('[Targets] start failed:', e && e.message));
 
+// ── Library sync: revision stamps (modules/syncStampStore.js, .briefs/prd-library-sync.md). Does nothing until sync is on. ──
+// Registered at top level so MV3 wakes the worker for storage events; a scan on every wake catches what was missed.
+const syncStamps = SYNC ? SYNC.createStampStore({ storage: chrome.storage.local }) : null;
+if (syncStamps) {
+    chrome.storage.onChanged.addListener((changes, area) => { if (area === 'local') syncStamps.onChanged(changes); });
+    syncStamps.scan().catch(() => {});
+}
+
 // ── Local MCP (AI apps on this computer) — off by default (modules/mcp/, claude/prd-local-mcp.md). ──
 // The extension connects OUTWARD to the aish-mcp relay; it never listens for inbound connections itself.
 const DEFAULT_MCP_SCOPES = { library: true, fulltext: false, feeds: false, write: false };
@@ -1392,6 +1404,11 @@ function fromExtensionPage(sender) {
 chrome.runtime.onMessage.addListener((msg, sender, sendResponse) => {
     if (msg && EXTENSION_PAGE_ACTIONS.has(msg.action) && !fromExtensionPage(sender)) {
         sendResponse({ ok: false, success: false, error: 'Not allowed from a web page' });
+        return false;
+    }
+    if (msg && msg.action === 'syncHlDeleted') {   // from the page's content script: the user removed these highlights
+        if (syncStamps && Array.isArray(msg.ids)) syncStamps.markDeleted('hl', msg.ids.filter((i) => typeof i === 'string').slice(0, 1000));
+        sendResponse({ ok: true });
         return false;
     }
     if (msg && (msg.action === 'targetEnqueue' || msg.action === 'targetStatus' || msg.action === 'targetCancel')) {

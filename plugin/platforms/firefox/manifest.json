@@ -38,6 +38,7 @@
       "feed-worker.js",
       "inbox-worker.js",
       "targets-worker.js",
+      "sync-worker.js",
       "background.js"
     ]
   },
