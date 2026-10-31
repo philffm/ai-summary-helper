@@ -15,6 +15,7 @@ import { pageKeyForUrl } from './pageKey.js';
 import { hashValue } from './syncStamps.js';
 import { articlePath, LIBRARY_PATH, placeMatches, configHash, buildArticleFile, libraryEntry, toJson } from './syncReadable.js';
 import { TargetError } from './targets/targetError.js';
+import { ensureViewer } from './syncViewer.js';
 
 const MAX_REMOVE_SHARE = 0.5, MIN_REMOVE_GUARD = 10;
 const get = (storage, keys) => Promise.resolve(storage.get(keys));
@@ -22,9 +23,9 @@ const get = (storage, keys) => Promise.resolve(storage.get(keys));
 /**
  * @param {{ place, storage, store, stamps?, now?, budgetMs?, confirmRemovals?, chunk?, concurrency?, onProgress?: ({ phase, done, total }) => void }} o
  *   onProgress phases: 'checking' (reading the library), 'removing', 'uploading', 'list' (library.json)
- * @returns {Promise<{ pushed, unchanged, removed, errors, more, remaining, needsConfirm, libraryWritten }>}  `more`: the time budget ran out, `remaining` files are left for the next run
+ * @returns {Promise<{ pushed, unchanged, removed, errors, more, remaining, needsConfirm, libraryWritten, viewer? }>}  `more`: the time budget ran out, `remaining` files are left for the next run
  */
-export async function pushPlace({ place, storage, store, stamps = {}, now = Date.now, budgetMs = 150000, confirmRemovals = false, chunk = 25, concurrency = 4, onProgress = () => {} }) {
+export async function pushPlace({ place, storage, store, stamps = {}, now = Date.now, budgetMs = 150000, confirmRemovals = false, chunk = 25, concurrency = 4, onProgress = () => {}, viewer = null }) {
     const started = now();
     const out = { pushed: 0, unchanged: 0, removed: 0, errors: [], more: false, remaining: 0, needsConfirm: 0, libraryWritten: false };
     const lk = syncLedgerKey(place.id);
@@ -37,7 +38,8 @@ export async function pushPlace({ place, storage, store, stamps = {}, now = Date
     const force = ledger.cfg !== cfg;
     const items = { ...(ledger.items || {}) };   // a config change only skips the stamp prefilter: unchanged files are still not uploaded again
     const known = new Set(Object.keys(items));
-    const save = () => storage.set({ [lk]: { cfg, items, lib: ledger.lib || 0 } });
+    let viewerState = ledger.viewer;
+    const save = () => storage.set({ [lk]: { cfg, items, lib: ledger.lib || 0, ...(viewerState ? { viewer: viewerState } : {}) } });
 
     const matching = index.filter((e) => placeMatches(e, place));
     const matchIds = new Set(matching.map((e) => e.id));
@@ -130,6 +132,11 @@ export async function pushPlace({ place, storage, store, stamps = {}, now = Date
         const lib = { aish: 'library/1', generatedAt: new Date(now()).toISOString(), count: list.length, articles: list };
         try { await store.put(LIBRARY_PATH, toJson(lib), { contentType: 'application/json' }); out.libraryWritten = true; ledger = { ...ledger, lib: 1 }; await save(); }
         catch (err) { if (err instanceof TargetError && err.kind !== 'permanent') throw err; out.errors.push({ id: LIBRARY_PATH, error: String((err && err.message) || err) }); }
+    }
+    // 4) the viewer page, when the place wants one
+    if (viewer && !out.more) {
+        try { const v = await ensureViewer({ store, state: viewerState, viewer }); viewerState = v.state; out.viewer = v.status; await save(); }
+        catch (err) { if (err instanceof TargetError && err.kind !== 'permanent') throw err; out.errors.push({ id: 'viewer', error: String((err && err.message) || err) }); }
     }
     return out;
 }

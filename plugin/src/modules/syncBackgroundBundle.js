@@ -2,5 +2,6 @@
 import { createStampStore } from './syncStampStore.js';
 import { createSyncService } from './syncService.js';
 import { makeStore } from './syncStores.js';
+import { renderViewer, loadViewerTemplates } from './syncViewer.js';
 
-export const API = { createStampStore, createSyncService, makeStore };
+export const API = { createStampStore, createSyncService, makeStore, renderViewer, loadViewerTemplates };

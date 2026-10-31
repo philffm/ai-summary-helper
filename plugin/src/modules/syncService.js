@@ -6,7 +6,7 @@
 //   its login lives apart in sync:secrets[connectionId] = { password }
 // A place (sync:places) is one folder on a server:
 //   { id, name, connectionId, root, mode: 'readable', direction: 'publish', scope: 'tag' | 'except' | 'all',
-//     filter: { tag } | { excludeTag } | {}, include: { highlights, qa }, enabled, created }
+//     filter: { tag } | { excludeTag } | {}, include: { highlights, qa }, viewer (also publish index.html), enabled, created }
 // One server can hold several places, for example `public/` (a readable list for a website) next to `backup/`.
 // Encrypted places and two-way sync are not built yet and are refused.
 import { SK, syncLedgerKey } from './storageKeys.js';
@@ -58,6 +58,7 @@ export function cleanPlace(input, { id } = {}) {
         root,
         mode: 'readable', direction: 'publish', scope,
         include: { highlights: !!include.highlights, qa: !!include.qa },
+        viewer: !!p.viewer,
         filter,
         enabled: p.enabled !== false,
         created: p.created || new Date().toISOString(),
@@ -83,7 +84,7 @@ export function migrateLegacy(places, connections, secrets) {
     return { places: out, connections: conns, secrets: sec, changed };
 }
 
-export function createSyncService({ storage, makeStore, stampStore, now = () => Date.now(), log = () => {}, scheduleSoon = () => {} }) {
+export function createSyncService({ storage, makeStore, stampStore, viewerSource, now = () => Date.now(), log = () => {}, scheduleSoon = () => {} }) {
     const active = new Set();   // places with a run going: the alarm, the debounce and "Publish now" must not start a second one on the same place
     const statusNow = async () => { const d = await get(storage, { [SK.syncStatus]: {} }); return d[SK.syncStatus] && typeof d[SK.syncStatus] === 'object' ? d[SK.syncStatus] : {}; };
     const setStatus = async (id, s) => storage.set({ [SK.syncStatus]: { ...(await statusNow()), [id]: s } });
@@ -221,10 +222,11 @@ export function createSyncService({ storage, makeStore, stampStore, now = () => 
                 try {
                     const connection = st.connections.find((c) => c.id === place.connectionId);
                     if (!connection) throw new Error('The server of this place was removed.');
-                    const r = await pushPlace({ place, storage, store: storeOf(connection, place, st.secrets[connection.id]), stamps, now, confirmRemovals, onProgress });
+                    const viewer = place.viewer && viewerSource ? await viewerSource(place) : null;
+                    const r = await pushPlace({ place, storage, store: storeOf(connection, place, st.secrets[connection.id]), stamps, now, confirmRemovals, onProgress, viewer });
                     await writing;
                     results[place.id] = r;
-                    await setStatus(place.id, { at, ok: true, pushed: r.pushed, removed: r.removed, unchanged: r.unchanged, errors: r.errors.length, more: r.more, remaining: r.remaining, needsConfirm: r.needsConfirm });   // no `running`: the run is over
+                    await setStatus(place.id, { at, ok: true, pushed: r.pushed, removed: r.removed, unchanged: r.unchanged, errors: r.errors.length, more: r.more, remaining: r.remaining, needsConfirm: r.needsConfirm, viewer: r.viewer });   // no `running`: the run is over
                     if (r.more) scheduleSoon(1);
                 } catch (e) {
                     log('[sync]', place.id, e && e.message);

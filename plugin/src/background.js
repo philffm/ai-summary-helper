@@ -1008,7 +1008,8 @@ if (targets) targets.start().catch((e) => console.warn('[Targets] start failed:'
 const syncStamps = SYNC ? SYNC.createStampStore({ storage: chrome.storage.local }) : null;
 const SYNC_ALARM = 'aish-sync', SYNC_SOON = 'aish-sync-soon';
 const syncSoon = (min) => { try { chrome.alarms?.create(SYNC_SOON, { delayInMinutes: Math.max(1, min) }); } catch (_) { /* no alarms */ } };   // same name replaces the last one: a debounce
-const syncSvc = syncStamps ? SYNC.createSyncService({ storage: chrome.storage.local, makeStore: SYNC.makeStore, stampStore: syncStamps, log: (...a) => console.log(...a), scheduleSoon: syncSoon }) : null;
+const syncSvc = syncStamps ? SYNC.createSyncService({ storage: chrome.storage.local, makeStore: SYNC.makeStore, stampStore: syncStamps, log: (...a) => console.log(...a), scheduleSoon: syncSoon,
+    viewerSource: async (place) => SYNC.renderViewer(await SYNC.loadViewerTemplates({ getUrl: (p) => chrome.runtime.getURL(p) }), { title: place.name }) }) : null;
 if (syncStamps) {
     chrome.storage.onChanged.addListener((changes, area) => {
         if (area !== 'local') return;

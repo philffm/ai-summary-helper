@@ -30,7 +30,7 @@ let testMsg = null;           // { ok, text }
 let formError = '';
 let previewToken = 0;
 
-const blankDraft = (connectionId = '') => ({ name: '', root: 'public', connectionId, scope: 'tag', filter: { tag: 'public' }, include: { highlights: true, qa: false } });
+const blankDraft = (connectionId = '') => ({ name: '', root: 'public', connectionId, scope: 'tag', filter: { tag: 'public' }, include: { highlights: true, qa: false }, viewer: false });
 const blankServer = () => ({ name: '', url: '', username: '' });
 
 // ── tiny DOM helpers ──
@@ -195,6 +195,8 @@ function heroNode(place, st, count) {
         hero.append(bar);
         s.setAttribute('role', 'status'); s.setAttribute('aria-live', 'polite');
     }
+    if (st && st.viewer === 'customized') hero.append(hint(T('Your own index.html is in this folder, so the viewer was not replaced.')));
+    if (st && st.viewer === 'blocked') hero.append(hint(T('An index.html that is not ours is already in this folder, so the viewer was not written. Use another folder.')));
     if (st && st.needsConfirm && !run) {
         hero.append(hint(TN(st.needsConfirm, '{n} file is no longer wanted here and would be removed from your server. Check that this is right.', '{n} files are no longer wanted here and would be removed from your server. Check that this is right.')));
         const a = el('div', 'mcp-actions');
@@ -297,6 +299,7 @@ function formScreen(place, st, count, connections = [], places = []) {
     out.push(switchRow(T('Highlights'), T('Your yellow and AI highlights'), draft.include.highlights, (on) => { draft.include.highlights = on; }));
     out.push(switchRow(T('Pinned Q&A'), T('Questions you pinned, with answers'), draft.include.qa, (on) => { draft.include.qa = on; }));
     out.push(hint(T('Notes, reminders and full article text are never published.')));
+    out.push(switchRow(T('Also publish a viewer page'), T('A simple web page (index.html) that reads library.json: search, tags, timeline and a tag graph. It needs a server that shows HTML pages, for example your own web server or a public bucket. Nextcloud shares do not.'), draft.viewer, (on) => { draft.viewer = on; }));
     const pv = el('section', 'mcp-card');
     const pvHead = el('div', 'mcp-step-head');
     pvHead.append(el('span', 'mcp-step-title', T('What goes out')), (() => { const c = chip('…', 'is-accent'); c.id = 'syncPreviewCount'; return c; })());
