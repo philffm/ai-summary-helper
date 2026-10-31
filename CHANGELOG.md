@@ -5,6 +5,24 @@ Commit history has the details: <https://github.com/philffm/ai-summary-helper/co
 
 ## Unreleased
 
+### Library sync, backup and publishing
+
+- **Sync & backup (Settings).** Add a place on your own storage: Nextcloud or any WebDAV server, an S3-compatible bucket (AWS S3, Cloudflare R2, Backblaze B2, MinIO) or a folder on your computer (Chrome and Edge on desktop).
+- **Encrypted places.** Sync your library both ways between devices, or keep a backup that only this device writes. Encrypted in the browser with a passphrase and a one-time recovery key; the server sees only scrambled files. Restore a place onto a device.
+- **Readable places.** Publish chosen articles (by tag, all but a tag, or all) as plain files with a `library.json` for your website, plus an optional viewer page with search, timeline, tag graph and a full-screen 3D "Sky" of your saves. It also opens from a local folder without a server. Notes, reminders and full text are published only if you switch them on in the danger zone.
+- **One article per URL.** The same page saved on two devices becomes one article (tags and missing fields combined).
+- **Safer by design.** A flood of deletions from other devices waits for your yes; old delete markers expire after 90 days; a device away for longer sends only what changed since; a folder the browser took permission back from is shown at the top with one button.
+- **Progress and status.** Live progress while syncing ("Saving 225 of 246" for a folder, "Uploading" for a server).
+
+### Notes
+
+- **On-page toolbar.** Select text anywhere: ✏️ highlight, 💬 highlight and comment, 📝 note with the quote. Comments show in the highlights panel; "Open in Notes" jumps to the new tab.
+- **Notes tab.** Notes and comments as a list or a sticky-note grid, by article or by tag, as a pane in split views; a composer that matches the Summarize screen.
+
+### Android (not user-visible yet)
+
+- The phone app's sync core (value hashes, encrypted files, merge, WebDAV and S3 stores, engine) is built and tested against the extension; the screens follow.
+
 ## 2.2.37 (2026-10-30)
 
 ### All changes

@@ -41,10 +41,14 @@ Paste each text into the matching field. Checked against `plugin/platforms/chrom
 ## Host permissions
 
 **`<all_urls>`**
-> The user can summarize any web page, so the extension must read the text of whichever page they choose and show highlights on it again when they come back. It also fetches the RSS and Atom feeds the user subscribed to, from many different sites. Page content is sent only to the AI provider the user configured (or nowhere with a local model). The extension never reads or modifies pages in the background for any other purpose.
+> The user can summarize any web page, so the extension must read the text of whichever page they choose and show highlights on it again when they come back. It also fetches the RSS and Atom feeds the user subscribed to, from many different sites, and talks to the sync, backup or publishing server (WebDAV or S3-compatible) that the user enters in Settings, whose address can be anywhere. Library sync is off until the user adds such a place; everything is encrypted in the browser before upload unless the user chooses to publish readable files. Page content is sent only to the AI provider the user configured (or nowhere with a local model). The extension never reads or modifies pages in the background for any other purpose.
 
 **`file:///*`**
 > Lets the user summarize PDF and HTML files stored on their computer, which Chrome only allows when the user turns on "Allow access to file URLs" for the extension.
+
+## Folder on this computer
+
+No manifest permission. When the user picks a folder as a sync or backup place, Chrome's own folder picker and permission prompt apply (File System Access API); the extension keeps only Chrome's handle to that one folder and can reach nothing else on the disk.
 
 ## Remote code
 

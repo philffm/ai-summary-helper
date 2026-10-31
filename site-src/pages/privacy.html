@@ -89,6 +89,7 @@
             <tr><td>API keys / provider config</td><td>Local</td><td>No — sensitive, device-only</td></tr>
             <tr><td>License key</td><td>Local</td><td>No — sensitive, device-only</td></tr>
             <tr><td>LocalSend network IP</td><td>Local</td><td>No</td></tr>
+            <tr><td>Library sync logins, access keys and encryption keys</td><td>Local</td><td>No — sensitive, device-only, left out of backups</td></tr>
             <tr><td>Text highlights &amp; AI ghost highlights</td><td>Local (per page)</td><td>No</td></tr>
             <tr><td>Default prompt, language, summary length</td><td>Sync</td><td>Yes, via your own Chrome account</td></tr>
             <tr><td>Highlighting on/off preference</td><td>Sync</td><td>Yes, via your own Chrome account</td></tr>
@@ -107,12 +108,21 @@
           <li><strong>LocalSend and the system share sheet (for example AirDrop) are direct.</strong> The file goes from your browser straight to the device you picked on your local network, or to the app you chose in the share sheet. We are not involved and do not see or store this content. LocalSend works with phones, tablets, computers and e-readers that run a compatible app.</li>
         </ul>
 
+        <h3>Library sync, backup and publishing (optional)</h3>
+        <p>Off until you add a place in Settings → Sync &amp; backup. A place is a folder on a server you choose (Nextcloud or another WebDAV server, or an S3-compatible bucket such as AWS S3, Cloudflare R2 or Backblaze B2) or a folder on your own computer. We do not run these servers, we are not involved, and we never see what you put there.</p>
+        <ul>
+          <li><strong>Encrypted places</strong> keep your whole library in step between your devices or hold a backup: articles, summaries, full texts, highlights, notes, collections and tags. Everything is encrypted in your browser (AES-256-GCM, with a key derived from your passphrase) before it leaves the device, and file names are scrambled. The server or folder only sees encrypted files, their sizes and when they changed. Your passphrase is not stored. The key derived from it stays in this browser's local storage, so syncing can run in the background; it is never synced and never part of a backup. You get a recovery key once. If you lose both the passphrase and the recovery key, nobody can read the files, including us.</li>
+          <li><strong>Readable places</strong> publish plain files (and, if you want, a small viewer page) for your own website or tools. Only the articles that match the tag filter you set go out. Notes, reminders and full article text are never published unless you switch them on yourself in the danger zone, and then anyone who can open that folder can read them.</li>
+          <li><strong>How it is sent.</strong> Requests go from your browser straight to the address you entered, over HTTPS, using the login or access key you gave. That login is stored locally, never synced, and left out of backups unless you opt in. The operator of the server can see your IP address and when you sync.</li>
+          <li><strong>A folder on this computer</strong> uses the browser's folder access. You choose the folder and the browser asks for your permission, which it may ask for again after a restart. We keep only the browser's handle to that folder. Whatever you use to carry that folder to other devices (Syncthing, iCloud Drive, Dropbox) has its own privacy terms.</li>
+        </ul>
+
         <h3>AI apps on your computer (MCP)</h3>
         <p>Off by default. When you turn on Settings → AI apps (MCP), AI apps on your computer that you connect (for example Claude Desktop, LM Studio, Cursor or VS Code) can read the parts of your library you allow: your saved articles with their summaries and highlights, and, only if you turn them on, the full article text, your feed items, and saving links to your inbox. The data goes from your browser through a small helper program on your computer (<code>aish-mcp</code>) to that app. It never passes through our server, and we never see it. The helper accepts connections from your own computer only and needs a pairing code; it stores no articles and keeps no record of what it forwards. Articles with the tag you exclude (<code>private</code> by default) are never shared. The extension keeps a list of the last 50 calls (tool name, time and number of results, no content) on your device, which you can see in the same settings panel. What the AI app then sends to its model depends on the app and the model you choose: with a local model, nothing leaves your computer. Turn the setting off or select Disconnect at any time.</p>
 
         <h2 id="analytics">Analytics &amp; cookies</h2>
         <p><strong>Short version:</strong> this website sets <strong>no cookies</strong> and uses no advertising or cross-site trackers. We count anonymous visits with a self-hosted Matomo instance, and you can switch that off at any time.</p>
-        <p><strong>The browser extension itself contains no analytics, telemetry or tracking code.</strong> Its only network requests go to the AI provider you configured, the feeds you subscribed to, the pages you ask it to fetch, and (if you use them) the byphil backend for byphil Cloud, sign-in, license checks and Send to Kindle.</p>
+        <p><strong>The browser extension itself contains no analytics, telemetry or tracking code.</strong> Its only network requests go to the AI provider you configured, the feeds you subscribed to, the pages you ask it to fetch, the servers you set up for library sync, backup or publishing, and (if you use them) the byphil backend for byphil Cloud, sign-in, license checks and Send to Kindle.</p>
         <h3>What we measure</h3>
         <p>Page views, the page language, referrer, approximate country/browser/device class, and which parts of the site you interact with (for example clicks on "Add to Chrome", the pricing toggle, FAQ items, sections you scroll to, and steps of the bookmarklet generator). Events never contain e-mail addresses, API keys, one-time codes, page content or article data.</p>
         <h3>How it is configured</h3>
@@ -152,8 +162,9 @@
             <tr><td><code>sidePanel</code></td><td>Support Chrome's native side panel as a viewing option</td></tr>
             <tr><td><code>scripting</code></td><td>Inject the content script needed to read and summarize a page</td></tr>
             <tr><td><code>offscreen</code>, <code>tts</code></td><td>Play podcast audio and read summaries aloud in the background while the popup is closed</td></tr>
+            <tr><td>File System Access (chosen folder)</td><td>Only when you pick a folder on your computer as a sync or backup place; the browser asks for your permission and only that folder is reachable</td></tr>
             <tr><td><code>unlimitedStorage</code></td><td>Keep a large local archive of articles and highlights without hitting the default storage quota</td></tr>
-            <tr><td><code>host_permissions (&lt;all_urls&gt;)</code></td><td>Let you summarize any page you visit — content is only read and transmitted when you actively trigger a summary, never passively</td></tr>
+            <tr><td><code>host_permissions (&lt;all_urls&gt;)</code></td><td>Let you summarize any page you visit — content is only read and transmitted when you actively trigger a summary, never passively. Also lets the extension reach the sync server or bucket you enter, which can be on any address</td></tr>
           </tbody>
         </table>
         <p>We do not use these permissions to track your browsing, build an advertising profile, or collect data beyond providing the features described above.</p>
@@ -163,7 +174,7 @@
           <li>We don't run or serve ads, and we don't sell, rent, or trade your data to advertisers or data brokers.</li>
           <li>We don't require an account or sign-in for any core feature.</li>
           <li>We don't log or retain the content of pages you summarize via your own API key or a local model, and we never see what you send over LocalSend or the share sheet.</li>
-          <li>We don't have access to your locally stored article history, highlights, or API keys — they never leave your device unless you explicitly export them.</li>
+          <li>We don't have access to your locally stored article history, highlights, or API keys — they never leave your device unless you explicitly export them or set up a sync, backup or publishing place, and then they go only where you point them.</li>
         </ul>
 
         <h2>Third-Party Services</h2>

@@ -49,6 +49,7 @@ Everything you save is stored locally in your browser, using Chrome's built-in s
 | API keys / provider config | Local | No — sensitive, device-only |
 | License key | Local | No — sensitive, device-only |
 | LocalSend network IP | Local | No |
+| Library sync logins, access keys and encryption keys | Local | No — sensitive, device-only, left out of backups |
 | Text highlights & AI ghost highlights | Local (per page) | No |
 | Default prompt, language, summary length | Sync | Yes, via your own Chrome account |
 | Highlighting on/off preference | Sync | Yes, via your own Chrome account |
@@ -68,6 +69,15 @@ There are two different paths, and only one of them touches our server:
 - **Send to Kindle goes through our server.** Amazon only accepts documents by email from approved senders, so the extension sends the article (title, summary, text, highlights and source address) to the byphil backend, which emails it to the Kindle address you entered. You add our sender address (kindle@byphil.eu) to your approved senders list in your Amazon account. The content is used only to create and send that email. Kindle delivery requires being signed in or having a license; the free tier includes 3 sends.
 - **LocalSend and the system share sheet (for example AirDrop) are direct.** The file goes from your browser straight to the device you picked on your local network, or to the app you chose in the share sheet. We are not involved and do not see or store this content. LocalSend works with phones, tablets, computers and e-readers that run a compatible app.
 
+### Library sync, backup and publishing (optional)
+
+Off until you add a place in Settings → Sync & backup. A place is a folder on a server you choose (Nextcloud or another WebDAV server, or an S3-compatible bucket such as AWS S3, Cloudflare R2 or Backblaze B2) or a folder on your own computer. We do not run these servers, we are not involved, and we never see what you put there.
+
+- **Encrypted places** keep your whole library in step between your devices or hold a backup: articles, summaries, full texts, highlights, notes, collections and tags. Everything is encrypted in your browser (AES-256-GCM, with a key derived from your passphrase) before it leaves the device, and file names are scrambled. The server or folder only sees encrypted files, their sizes and when they changed. Your passphrase is not stored. The key derived from it stays in this browser's local storage, so syncing can run in the background; it is never synced and never part of a backup. You get a recovery key once. If you lose both the passphrase and the recovery key, nobody can read the files, including us.
+- **Readable places** publish plain files (and, if you want, a small viewer page) for your own website or tools. Only the articles that match the tag filter you set go out. Notes, reminders and full article text are never published unless you switch them on yourself in the danger zone, and then anyone who can open that folder can read them.
+- **How it is sent.** Requests go from your browser straight to the address you entered, over HTTPS, using the login or access key you gave. That login is stored locally, never synced, and left out of backups unless you opt in. The operator of the server can see your IP address and when you sync.
+- **A folder on this computer** uses the browser's folder access. You choose the folder and the browser asks for your permission, which it may ask for again after a restart. We keep only the browser's handle to that folder. Whatever you use to carry that folder to other devices (Syncthing, iCloud Drive, Dropbox) has its own privacy terms.
+
 ### AI apps on your computer (MCP)
 
 Off by default. When you turn on Settings → AI apps (MCP), AI apps on your computer that you connect (for example Claude Desktop, LM Studio, Cursor or VS Code) can read the parts of your library you allow: your saved articles with their summaries and highlights, and, only if you turn them on, the full article text, your feed items, and saving links to your inbox. The data goes from your browser through a small helper program on your computer (`aish-mcp`) to that app. It never passes through our server, and we never see it. The helper accepts connections from your own computer only and needs a pairing code; it stores no articles and keeps no record of what it forwards. Articles with the tag you exclude (`private` by default) are never shared. The extension keeps a list of the last 50 calls (tool name, time and number of results, no content) on your device, which you can see in the same settings panel. What the AI app then sends to its model depends on the app and the model you choose: with a local model, nothing leaves your computer. Turn the setting off or select Disconnect at any time.
@@ -76,7 +86,7 @@ Off by default. When you turn on Settings → AI apps (MCP), AI apps on your com
 
 **Short version:** this website sets **no cookies** and uses no advertising or cross-site trackers. We count anonymous visits with a self-hosted Matomo instance, and you can switch that off at any time.
 
-**The browser extension itself contains no analytics, telemetry or tracking code.** Its only network requests go to the AI provider you configured, the feeds you subscribed to, the pages you ask it to fetch, and (if you use them) the byphil backend for byphil Cloud, sign-in, license checks and Send to Kindle.
+**The browser extension itself contains no analytics, telemetry or tracking code.** Its only network requests go to the AI provider you configured, the feeds you subscribed to, the pages you ask it to fetch, the servers you set up for library sync, backup or publishing, and (if you use them) the byphil backend for byphil Cloud, sign-in, license checks and Send to Kindle.
 
 ### What we measure
 
@@ -125,8 +135,9 @@ You can export your account data and delete your account at any time at [byphil.
 | `sidePanel` | Support Chrome's native side panel as a viewing option |
 | `scripting` | Inject the content script needed to read and summarize a page |
 | `offscreen`, `tts` | Play podcast audio and read summaries aloud in the background while the popup is closed |
+| File System Access (chosen folder) | Only when you pick a folder on your computer as a sync or backup place; the browser asks for your permission and only that folder is reachable |
 | `unlimitedStorage` | Keep a large local archive of articles and highlights without hitting the default storage quota |
-| `host_permissions (<all_urls>)` | Let you summarize any page you visit — content is only read and transmitted when you actively trigger a summary, never passively |
+| `host_permissions (<all_urls>)` | Let you summarize any page you visit — content is only read and transmitted when you actively trigger a summary, never passively. Also lets the extension reach the sync server or bucket you enter, which can be on any address |
 
 We do not use these permissions to track your browsing, build an advertising profile, or collect data beyond providing the features described above.
 
@@ -135,7 +146,7 @@ We do not use these permissions to track your browsing, build an advertising pro
 - We don't run or serve ads, and we don't sell, rent, or trade your data to advertisers or data brokers.
 - We don't require an account or sign-in for any core feature.
 - We don't log or retain the content of pages you summarize via your own API key or a local model, and we never see what you send over LocalSend or the share sheet.
-- We don't have access to your locally stored article history, highlights, or API keys — they never leave your device unless you explicitly export them.
+- We don't have access to your locally stored article history, highlights, or API keys — they never leave your device unless you explicitly export them or set up a sync, backup or publishing place, and then they go only where you point them.
 
 ## Third-Party Services
 

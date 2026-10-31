@@ -70,8 +70,6 @@ Feche a guia e guarde a ideia. Salve um artigo para ler depois com uma nota e um
 Cada versão curta fica no seu Histórico neste dispositivo, organizada em Caixa de entrada, Lidos, Enviados, Pesquisa, Coleções e Arquivo.
 
 • Busca: pesquisa instantânea de texto completo em todos os artigos salvos, no seu dispositivo.
-• Artigos semelhantes: veja o que mais na sua biblioteca tem relação com o artigo que você está lendo.
-• A detecção de duplicados por link, título e conteúdo mantém a biblioteca organizada.
 • Salvar a partir do archive.ph, da Wayback Machine ou do 12ft mantém o link original do artigo, e sua biblioteca aponta para a fonte de verdade.
 • Coleções: agrupe artigos em torno de uma pergunta e trabalhe neles com um roteiro de verificação de fontes.
 • Favoritos, etiquetas, notas e lembretes com hora marcada.
@@ -84,10 +82,6 @@ Veja como tudo o que você leu se conecta. O grafo de conhecimento agrupa seus a
 ━━━━━━━━━━━━━━━━━━━━
 📊 ESTATÍSTICAS DE LEITURA
 ━━━━━━━━━━━━━━━━━━━━
-• Tempo economizado: quanto tempo os artigos completos levariam em comparação com as versões curtas.
-• Artigos, palavras lidas, dias seguidos e melhor sequência.
-• Gráfico de atividade dos últimos 30 dias ou 12 semanas.
-• Categorias principais e uma nuvem de palavras do que você lê.
 • Humor ao longo do tempo: o tom das notícias que você lê, por dia, semana ou mês, e o que o fez mudar.
 
 Todas as estatísticas são calculadas no seu dispositivo. Nada é enviado para serviços de rastreamento.
@@ -102,20 +96,14 @@ Abra o AI Summary Helper em uma guia própria ou arraste o painel lateral para d
 ━━━━━━━━━━━━━━━━━━━━
 • Siga blogs, jornais e podcasts por RSS ou Atom; importe e exporte suas assinaturas em OPML.
 • Panoramas diários que se juntam em visões gerais semanais e mensais, escritos pela IA que você escolheu. Só títulos e trechos são enviados, e apenas quando você pede.
-• Com um modelo local, os novos itens podem ser avaliados e condensados em segundo plano a cada 15 minutos a 6 horas.
-• Pilhas de notícias agrupam a mesma história publicada por veículos diferentes.
 • Insights dos feeds: atividade, temas, sua "dieta de fontes" dos últimos 30 dias e o humor dos seus feeds ao longo do tempo.
-• Player de podcasts integrado que continua tocando quando o pop-up fecha, de 0,75× a 2× de velocidade.
-• Marque um item com estrela para receber os pontos principais e guardá-lo no seu Histórico.
 
 ━━━━━━━━━━━━━━━━━━━━
 🎓 MODO PESQUISA E CITAÇÕES
 ━━━━━━━━━━━━━━━━━━━━
 • Detecta artigos acadêmicos no PubMed, Springer, Wiley, JSTOR e em outras editoras.
 • Citações corretas a partir do DOI em APA 7, MLA 9, Chicago (autor-data), BibTeX e RIS. Os dados da citação vêm do doi.org, nunca da IA, e só o DOI sai do seu dispositivo.
-• Baixe references.bib ou .ris para Zotero, Mendeley ou LaTeX.
 • Verificação de fonte para qualquer página: tipo, autor, data e editora, além de quatro perguntas de leitura lateral para avaliar uma fonte antes de confiar nela. Dicas, não notas.
-• Uma aba Pesquisa com filtros para revisões, ensaios clínicos e preprints.
 
 ━━━━━━━━━━━━━━━━━━━━
 📤 ENVIAR, EXPORTAR E COMPARTILHAR
@@ -123,10 +111,21 @@ Abra o AI Summary Helper em uma guia própria ou arraste o painel lateral para d
 • Enviar para Kindle: visões gerais e artigos formatados, com destaques, entregues direto no seu leitor de e-books em EPUB (texto, ou com imagens) ou HTML. Requer login gratuito na byphil; 3 envios são grátis, ilimitados com o Pro.
 • LocalSend: envie artigos pelo Wi-Fi de casa para celulares, tablets ou leitores com KOReader, sem nuvem no meio do caminho.
 • Enviar para o celular: pareie seu celular com um código QR. Os links que você compartilha no celular chegam com criptografia de ponta a ponta ao seu Histórico, e você pode mandar artigos completos de volta para o celular.
-• Revista digital: junte vários artigos em uma edição para o seu leitor de e-books, LocalSend ou Markdown.
 • Exporte em Markdown (um artigo, ou a biblioteca inteira em ZIP com front matter), Word (DOCX), OpenDocument (ODT) ou PDF, ou envie direto para o Obsidian.
 • Compartilhe pelo menu de compartilhamento do sistema, quando disponível.
 • Faça backup e restaure toda a biblioteca e as configurações; chaves de API e logins ficam fora dos backups, a menos que você escolha incluí-los.
+
+━━━━━━━━━━━━━━━━━━━━
+☁️ SUA BIBLIOTECA NO SEU PRÓPRIO ARMAZENAMENTO (NOVIDADE)
+━━━━━━━━━━━━━━━━━━━━
+Mantenha sua biblioteca em dia em todos os seus computadores, faça backup ou publique uma parte, sem entregá-la a ninguém. Em Configurações → Sync e backup, adicione um local: um servidor WebDAV, um bucket compatível com S3 ou uma pasta do seu computador.
+
+• Criptografado: tudo é criptografado no seu navegador com a sua frase secreta antes de sair do dispositivo, então o servidor só vê arquivos ilegíveis. Você recebe uma chave de recuperação; sem ela e sem a frase secreta, ninguém consegue lê-los, nem nós.
+• Sincronização nos dois sentidos entre seus dispositivos, combinada campo a campo. A mesma página salva duas vezes vira um só artigo, e uma enxurrada de exclusões vinda de outro dispositivo espera o seu OK.
+• Locais só de backup e restauração com um clique.
+• Publique uma lista no seu próprio site: escolha artigos por tag e receba arquivos simples e uma visão com busca, linha do tempo, grafo de tags e mapa 3D. Notas e textos completos ficam de fora, a menos que você ative.
+• Notas e comentários: selecione um texto e destaque, comente ou salve uma nota com a citação.
+• Desativado até você adicionar um local. Não temos servidor de sincronização e não vemos nada.
 
 ━━━━━━━━━━━━━━━━━━━━
 🔌 SUA BIBLIOTECA NOS SEUS APPS DE IA (NOVIDADE)

@@ -69,6 +69,8 @@ Images for press and reviews live in [`assets/press/`](assets/press/).
 - **Highlights and ghost highlights.** Mark text yourself or let the AI mark the key passages. Start a summary straight from the on-page highlights panel.
 - **A searchable archive.** On-device full-text search, a knowledge graph of your saves, and an analytics report of your reading.
 - **Read it later, on purpose.** "Summarize & Close" saves a tab with a reminder; the digest sends a varied selection to Kindle or LocalSend.
+- **Notes and comments.** Select text on any page and choose ✏️ highlight, 💬 highlight with a comment, or 📝 note with the quote. They live in a Notes tab (list or sticky-note grid, by article, by tag) and in the page's highlights panel.
+- **Library sync, backup and publishing.** Keep your library in step across your devices, back it up, or publish part of it, on **your own** storage: a Nextcloud/WebDAV server, an S3-compatible bucket (AWS, Cloudflare R2, Backblaze B2, MinIO) or a folder on your computer. Encrypted places are encrypted in your browser (passphrase plus recovery key) and sync both ways; readable places publish plain files and an optional viewer page with search, a timeline, a tag graph and an immersive 3D "Sky" of your saves. Nothing leaves your device until you add a place. See [Library sync](#library-sync).
 - **Your language.** 41 summary languages (including Traditional and Simplified Chinese) and an interface in 14 languages.
 - **Export.** Markdown and Obsidian export alongside Send to Kindle and LocalSend.
 
@@ -100,6 +102,8 @@ Images for press and reviews live in [`assets/press/`](assets/press/).
 | Save for Later (Tab Close) | ❌ | ✅ |
 | Context Menu Actions | ❌ | ✅ |
 | Backup & Restore | ❌ | ✅ |
+| Sync between devices (Nextcloud, S3, folder), encrypted | ❌ | ✅ |
+| Notes and comments on highlights | ❌ | ✅ |
 
 ## Quick start for contributors
 
@@ -233,6 +237,21 @@ All access goes through `StorageManager`; keys are defined once in `modules/stor
 
 Reads are targeted (`StorageManager.get([keys])` routes each key to sync or local). `getAll()` is reserved for backup and first-run migration.
 
+### Library sync
+
+Settings → Sync & backup. A **place** is a folder on a **server** (WebDAV, S3-compatible) or on this computer; one server can hold several places (for example `public/` and `backup/`).
+
+| | Encrypted place | Readable place |
+| --- | --- | --- |
+| For | Sync between devices (two-way) or a backup (push only) | Publishing to a website or other tools |
+| Content | Everything: articles, full text, summaries, highlights, notes, collections | Articles that match a tag filter; notes, reminders and full text only when switched on in the danger zone |
+| Files | `meta.json` plus `r/<hmac name>`: one AES-256-GCM file per record, names scrambled | `articles/<id>.json`, `library.json`, `library.js`, optional `index.html` viewer |
+| Keys | Passphrase (PBKDF2) → master key; recovery key shown once; the key stays in `sync:secrets`, never in backups | none |
+
+How it works, in short: every record (article, highlight, collection, note) carries per-field **stamps** (`syncStamps.js`: a hash of the value and a hybrid logical clock time), made from storage events and a catch-up scan. A run pulls the files whose etag changed, merges per field (`syncMerge.js`: later stamp wins, ties on device id, delete markers beat older edits, a newer edit brings a record back), adopts the merged stamps before it writes the data (`syncEngine.js`), then pushes what is newer. The same URL saved on two devices becomes one article (`syncIdentity.js`). Old delete markers expire after 90 days, and a flood of deletions from other devices waits for a yes. The stores (`syncWebdav.js`, `syncS3.js` with AWS Signature V4, `syncFolder.js` on the File System Access API) share one four-call interface, so the engine does not care which one it talks to. Tests run the whole thing between two simulated devices on each store; `plugin/tests/gen-sync-vector.mjs` writes the shared vector that the Android app (`mobile/android/.../sync/`) must reproduce, and `plugin/tests/xsync.mjs` runs the extension's and the phone's engines against one folder.
+
+Notes: Android can already read and write the sync format and run the engine; its screens are not built yet.
+
 ### UI, i18n, security
 
 - **i18n.** The English text is the key (`T('Send me a code')`, `data-i18n` ids in `popup.html`). `node scripts/feed-i18n.mjs extract | merge <dir> | check` keeps the 13 locales complete.
@@ -343,6 +362,9 @@ ai-summary-helper/
 | `articleManager.js`, `archiveManager.js`, `archiveGraph.js`, `analyticsManager.js`, `topicsChart.js`, `historyMood.js`, `moodView.js`, `digestBuilder.js`, `annotationExporter.js` | History, knowledge graph, analytics, digests and exports |
 | `settingsManager.js`, `modelManager.js`, `promptManager.js`, `promptSettings.js`, `promptBuilder.js`, `languageManager.js`, `moodSetting.js`, `workspaceManager.js` | Settings, providers and models, prompts, languages, workspaces |
 | `authManager.js` | byphil Cloud sign-in (shared form for onboarding and Account, code boxes, plan card) |
+| `syncStamps.js`, `syncStampStore.js`, `syncMerge.js`, `syncApply.js`, `syncEngine.js`, `syncDataAdapter.js`, `syncIdentity.js`, `syncCrypto.js` | Library sync: stamps, merge, applying merged records, the two-way engine, same-URL merge, keys and encrypted files |
+| `syncWebdav.js`, `syncS3.js`, `syncFolder.js`, `syncFolderHandles.js`, `syncPush.js`, `syncReadable.js`, `syncViewer.js`, `syncService.js`, `syncView.js` | Stores, readable publishing and the viewer page, the service the settings screen calls, the Sync & backup screen |
+| `notesStore.js`, `notesView.js`, `notesMessages.js` | Notes and comments: records, the Notes tab, messages from the on-page toolbar |
 | `storageManager.js`, `storageKeys.js`, `pageKey.js` | Storage abstraction, key registry, page keys for highlights |
 | `sidebarChannel.js` | Token check for `postMessage` from the content script into the in-page sidebar |
 | `panelDock.js` | Attach the popup to Chrome's side panel and detach it back |
@@ -385,6 +407,8 @@ Bookmarklet generator generally ships faster since it is faster to iterate on.
 - [x] **Save for Later** — right-click any tab → "Summarize & Close": generates summary, saves with timeframe reminder (tomorrow / weekend / week / research session), closes the tab, shows in history with metadata
 - [x] **RSVP Speed-reading overlay** — while summarizing on close, the AI output streams word-by-word as a speed-reading display; adjustable speed (slow/medium/fast) saved between sessions
 - [x] **Timed reminders** — Chrome notifications remind you to revisit saved articles at your chosen timeframe
+- [x] **Library sync** — encrypted two-way sync and backup, or readable publishing, on Nextcloud/WebDAV, S3-compatible storage or a local folder; restore from a backup place
+- [x] **Notes** — on-page toolbar (highlight, comment, note), Notes tab, comments on highlights
 - [x] Backup & Restore (settings + full article history; API keys and sign-in/license secrets excluded by default, with warned opt-in)
 - [x] Inline mode ("Send to Kindle" friendly)
 - [x] Native side panel support

@@ -83,9 +83,6 @@ Voyez comment tout ce que vous avez lu est relié. Le graphe regroupe vos articl
 📊 STATISTIQUES DE LECTURE
 ━━━━━━━━━━━━━━━━━━━━
 • Temps gagné : la durée de lecture des articles complets comparée aux versions courtes.
-• Articles, mots lus, jours d'affilée et meilleure série.
-• Activité sur 30 jours ou 12 semaines.
-• Catégories principales et nuage de mots de vos lectures.
 • Humeur au fil du temps : le ton des actualités que vous lisez, par jour, semaine ou mois, et ce qui l'a fait évoluer.
 
 Toutes les statistiques sont calculées sur votre appareil. Rien n'est envoyé à un service de suivi.
@@ -124,6 +121,18 @@ Ouvrez AI Summary Helper dans un onglet ou élargissez le panneau latéral : l'h
 • Digest magazine : regroupez plusieurs articles en un numéro pour votre liseuse, LocalSend ou Markdown.
 • Export en Markdown (un article ou toute la bibliothèque en ZIP avec front matter), Word (DOCX), OpenDocument (ODT) ou PDF, ou directement vers Obsidian.
 • Sauvegarde et restauration de la bibliothèque et des réglages ; clés API et connexions exclues, sauf si vous les incluez.
+
+━━━━━━━━━━━━━━━━━━━━
+☁️ VOTRE BIBLIOTHÈQUE SUR VOTRE PROPRE STOCKAGE (NOUVEAU)
+━━━━━━━━━━━━━━━━━━━━
+Gardez votre bibliothèque à jour sur tous vos ordinateurs, sauvegardez-la ou publiez-en une partie, sans la confier à personne. Dans Réglages → Sync et sauvegarde, ajoutez un lieu : un serveur WebDAV, un bucket compatible S3 ou un dossier de votre ordinateur.
+
+• Chiffré : tout est chiffré dans votre navigateur avec votre phrase secrète avant de quitter l'appareil, le serveur ne voit donc que des fichiers illisibles. Vous recevez une clé de récupération ; sans elle et sans la phrase secrète, personne ne peut les lire, nous non plus.
+• Synchronisation dans les deux sens entre vos appareils, fusionnée champ par champ. La même page enregistrée deux fois devient un seul article, et une vague de suppressions venue d'un autre appareil attend votre accord.
+• Lieux de sauvegarde seule et restauration en un clic.
+• Publiez une liste sur votre propre site : choisissez les articles par tag et obtenez des fichiers simples et une vue avec recherche, frise chronologique, graphe de tags et carte 3D. Les notes et les textes intégraux restent à l'écart sauf si vous les activez.
+• Notes et commentaires : sélectionnez du texte, puis surlignez-le, commentez-le ou gardez une note avec la citation.
+• Désactivé tant que vous n'ajoutez pas de lieu. Nous n'exploitons aucun serveur de synchronisation et ne voyons rien.
 
 ━━━━━━━━━━━━━━━━━━━━
 🔌 VOTRE BIBLIOTHÈQUE DANS VOS APPLIS IA (NOUVEAU)

@@ -126,6 +126,18 @@ Abre AI Summary Helper en su propia pestaña o ensancha el panel lateral: el his
 • Copia de seguridad y restauración de la biblioteca y los ajustes; las claves de API y los inicios de sesión solo se incluyen si lo eliges.
 
 ━━━━━━━━━━━━━━━━━━━━
+☁️ TU BIBLIOTECA EN TU PROPIO ALMACENAMIENTO (NUEVO)
+━━━━━━━━━━━━━━━━━━━━
+Mantén tu biblioteca al día en todos tus ordenadores, haz copias de seguridad o publica una parte, sin entregársela a nadie. En Ajustes → Sync y copia de seguridad añades un lugar: un servidor WebDAV, un bucket compatible con S3 o una carpeta de tu ordenador.
+
+• Cifrado: todo se cifra en tu navegador con tu frase de paso antes de salir del dispositivo, así que el servidor solo ve archivos ilegibles. Recibes una clave de recuperación; sin ella y sin la frase de paso nadie puede leerlos, tampoco nosotros.
+• Sincronización en ambos sentidos entre tus dispositivos, combinada campo a campo. La misma página guardada dos veces se convierte en un solo artículo, y un montón de borrados desde otro dispositivo espera tu visto bueno.
+• Lugares solo de copia de seguridad y restauración con un clic.
+• Publica una lista en tu propia web: elige artículos por etiqueta y obtén archivos simples y una vista con búsqueda, línea de tiempo, grafo de etiquetas y un mapa 3D. Las notas y los textos completos se quedan fuera salvo que los actives.
+• Notas y comentarios: selecciona texto y resáltalo, coméntalo o guarda una nota con la cita.
+• Desactivado hasta que añadas un lugar. No tenemos servidor de sincronización y no vemos nada.
+
+━━━━━━━━━━━━━━━━━━━━
 🔌 TU BIBLIOTECA EN TUS APPS DE IA (NUEVO)
 ━━━━━━━━━━━━━━━━━━━━
 Tu app de IA nunca ha leído lo que tú lees. Activa las apps de IA en Ajustes y Claude Desktop, Cursor, LM Studio y otras apps MCP de tu ordenador podrán usar tu biblioteca.

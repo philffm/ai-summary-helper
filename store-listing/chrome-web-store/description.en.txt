@@ -126,7 +126,18 @@ Open AI Summary Helper in its own tab or drag the side panel wider, and History 
 • Magazine digest: bundle several articles into one issue for your e-reader, LocalSend or Markdown.
 • Export as Markdown (one article, or the whole library as a ZIP with front matter), Word (DOCX), OpenDocument (ODT) or PDF, or send it straight to Obsidian.
 • Share through your system's share sheet where available.
-• Backup and restore your whole library and settings; API keys and sign-ins are left out of backups unless you choose to include them.
+• Backup and restore your whole library and settings; API keys and sign-ins are left out of backups unless you choose to include them. Notes and comments: select text, then highlight it, comment on it or save a note with the quote.
+
+━━━━━━━━━━━━━━━━━━━━
+☁️ YOUR LIBRARY ON YOUR OWN STORAGE (NEW)
+━━━━━━━━━━━━━━━━━━━━
+Keep your library on all your computers, back it up, or publish part of it, without handing it to anyone. In Settings → Sync & backup, add a place: a WebDAV server, an S3-compatible bucket or a folder on your computer.
+
+• Encrypted: everything is encrypted in your browser with your passphrase before it leaves the device, so the server only sees scrambled files. You get a recovery key; without it and the passphrase, nobody can read them, including us.
+• Two-way sync between your devices, merged field by field. The same page saved twice becomes one article, and a flood of deletions from another device waits for your OK.
+• Backup-only places, and restore with one click.
+• Publish a list to your own website: pick articles by tag and get plain files plus a viewer page with search, timeline, tag graph and a 3D map of what you saved. Notes and full texts stay out unless you switch them on.
+• Off until you add a place. We run no sync server and see nothing.
 
 ━━━━━━━━━━━━━━━━━━━━
 🔌 YOUR LIBRARY IN YOUR AI APPS (NEW)
@@ -142,7 +153,7 @@ Your AI app has never read what you read. Turn on AI apps in Settings and Claude
 ━━━━━━━━━━━━━━━━━━━━
 🔒 PRIVACY BY DESIGN
 ━━━━━━━━━━━━━━━━━━━━
-• Your articles, highlights, feeds and analytics are stored in your browser, on your device.
+• Your articles, highlights, feeds and analytics are stored in your browser, on your device. Sync, backup and publishing go only to a server or folder you add yourself.
 • Page content is sent only to the AI provider you chose, or to nobody at all with an on-device model.
 • AI apps can read your library only if you switch it on, only on your computer, and only what you allow.
 • No tracking or analytics SDK, no ads, no selling of data.

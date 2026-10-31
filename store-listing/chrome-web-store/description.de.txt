@@ -70,8 +70,6 @@ Tab schließen, Gedanken behalten. Speichern Sie einen Artikel mit Notiz und Zei
 Jede Zusammenfassung wird in Ihrem Verlauf auf diesem Gerät gespeichert, sortiert nach Posteingang, Gelesen, Gesendet, Recherche, Sammlungen und Archiv.
 
 • Volltextsuche über alle gespeicherten Artikel, direkt auf Ihrem Gerät.
-• Ähnliche Artikel: Was in Ihrer Bibliothek passt zum Artikel, den Sie gerade lesen?
-• Dubletten werden über Link, Titel und Inhalt erkannt.
 • Speichern von archive.ph, der Wayback Machine oder 12ft behält den Originallink des Artikels, damit Ihre Bibliothek auf die echte Quelle zeigt.
 • Sammlungen: Artikel unter einer Fragestellung bündeln und mit einem Quellencheck-Arbeitsblatt durcharbeiten.
 • Favoriten, Tags, Notizen und Erinnerungen.
@@ -84,10 +82,6 @@ Sehen Sie, wie alles zusammenhängt, was Sie gelesen haben. Der Wissensgraph ord
 ━━━━━━━━━━━━━━━━━━━━
 📊 LESEANALYSEN
 ━━━━━━━━━━━━━━━━━━━━
-• Zeitersparnis: wie lange die kompletten Artikel gedauert hätten, verglichen mit den Kurzfassungen.
-• Artikel, gelesene Wörter, Tage in Folge und beste Serie.
-• Aktivität der letzten 30 Tage oder 12 Wochen.
-• Top-Kategorien und eine Wortwolke Ihrer Lektüre.
 • Stimmung im Zeitverlauf: der Ton der Nachrichten, die Sie lesen, nach Tag, Woche oder Monat, und was ihn bewegt hat.
 
 Alle Analysen werden auf Ihrem Gerät berechnet. Nichts geht an einen Tracking-Dienst.
@@ -102,20 +96,14 @@ Alle Analysen werden auf Ihrem Gerät berechnet. Nichts geht an einen Tracking-D
 ━━━━━━━━━━━━━━━━━━━━
 • Blogs, Zeitungen und Podcasts per RSS oder Atom abonnieren; Abos als OPML importieren und exportieren.
 • Tagesrückblicke, die zu Wochen- und Monatsüberblicken zusammenlaufen, geschrieben von der KI Ihrer Wahl. Gesendet werden nur Titel und Anrisse, und nur, wenn Sie es auslösen.
-• Mit einem lokalen Modell werden neue Einträge im Hintergrund bewertet und zusammengefasst, alle 15 Minuten bis 6 Stunden.
-• Story-Stapel bündeln dieselbe Nachricht aus verschiedenen Medien.
 • Feed-Analysen: Aktivität, Themen, Ihr „Quellen-Mix“ der letzten 30 Tage und die Stimmung Ihrer Feeds im Zeitverlauf.
-• Eingebauter Podcast-Player, der weiterläuft, wenn das Popup schließt, mit 0,75- bis 2-facher Geschwindigkeit.
-• Einen Eintrag mit Stern markieren: Das Wichtigste wird herausgezogen und im Verlauf abgelegt.
 
 ━━━━━━━━━━━━━━━━━━━━
 🎓 RECHERCHE-MODUS UND ZITATE
 ━━━━━━━━━━━━━━━━━━━━
 • Erkennt wissenschaftliche Artikel auf PubMed, Springer, Wiley, JSTOR und bei anderen Verlagen.
 • Korrekte Quellenangaben aus der DOI in APA 7, MLA 9, Chicago (Autor-Jahr), BibTeX und RIS. Die Daten kommen von doi.org, nie von der KI, und nur die DOI verlässt Ihr Gerät.
-• references.bib oder .ris herunterladen, für Zotero, Citavi, Mendeley oder LaTeX.
 • Quellencheck für jede Seite: Art, Autor, Datum und Herausgeber, dazu vier Fragen zum lateralen Lesen, bevor Sie einer Quelle vertrauen. Hinweise, keine Bewertungen.
-• Ein Recherche-Tab mit Filtern für Reviews, Studien und Preprints.
 
 ━━━━━━━━━━━━━━━━━━━━
 📤 SENDEN, EXPORTIEREN, TEILEN
@@ -127,6 +115,18 @@ Alle Analysen werden auf Ihrem Gerät berechnet. Nichts geht an einen Tracking-D
 • Export als Markdown (einzelner Artikel oder die ganze Bibliothek als ZIP mit Front Matter), Word (DOCX), OpenDocument (ODT) oder PDF, oder direkt an Obsidian.
 • Teilen über das Teilen-Menü Ihres Systems, wo verfügbar.
 • Sicherung und Wiederherstellung von Bibliothek und Einstellungen; API-Schlüssel und Anmeldungen sind nur enthalten, wenn Sie es ausdrücklich wählen.
+
+━━━━━━━━━━━━━━━━━━━━
+☁️ IHRE BIBLIOTHEK AUF IHREM EIGENEN SPEICHER (NEU)
+━━━━━━━━━━━━━━━━━━━━
+Halten Sie Ihre Bibliothek auf allen Rechnern aktuell, sichern Sie sie oder veröffentlichen Sie einen Teil davon, ohne sie jemandem zu übergeben. Unter Einstellungen → Sync & Backup fügen Sie einen Ort hinzu: einen WebDAV-Server, einen S3-kompatiblen Bucket oder einen Ordner auf Ihrem Computer.
+
+• Verschlüsselt: Alles wird in Ihrem Browser mit Ihrer Passphrase verschlüsselt, bevor es das Gerät verlässt. Der Server sieht nur unlesbare Dateien. Sie erhalten einen Wiederherstellungsschlüssel; ohne ihn und die Passphrase kann niemand die Dateien lesen, auch wir nicht.
+• Sync in beide Richtungen zwischen Ihren Geräten, Feld für Feld zusammengeführt. Dieselbe Seite zweimal gespeichert wird zu einem Artikel; viele Löschungen von einem anderen Gerät warten auf Ihr OK.
+• Reine Backup-Orte und Wiederherstellung mit einem Klick.
+• Veröffentlichen Sie eine Liste auf Ihrer eigenen Website: Artikel per Tag wählen, dazu schlichte Dateien und eine Ansicht mit Suche, Zeitleiste, Tag-Graph und 3D-Karte. Notizen und Volltexte bleiben draußen, solange Sie sie nicht einschalten.
+• Notizen und Kommentare: Text markieren, dann hervorheben, kommentieren oder als Notiz mit Zitat speichern.
+• Aus, bis Sie einen Ort hinzufügen. Wir betreiben keinen Sync-Server und sehen nichts.
 
 ━━━━━━━━━━━━━━━━━━━━
 🔌 IHRE BIBLIOTHEK IN IHREN KI-APPS (NEU)
