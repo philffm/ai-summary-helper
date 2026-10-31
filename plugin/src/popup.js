@@ -87,14 +87,16 @@ document.addEventListener("DOMContentLoaded", async () => {
         import('./modules/articleManager.js'),
         import('./modules/inboxView.js'),
         import('./modules/mcpView.js'),
+        import('./modules/syncView.js'),
         import('./modules/aboutView.js'),
-    ]).then(([{ initSettingsManager }, { initFeedManager }, { initArticleManager }, { initInboxView }, { initMcpView }, { initAboutView }]) => {
+    ]).then(([{ initSettingsManager }, { initFeedManager }, { initArticleManager }, { initInboxView }, { initMcpView }, { initSyncView }, { initAboutView }]) => {
         initAboutView();   // first: settingsNav reads #versionNumber for the About row
         initSettingsManager(ui);
         initFeedManager(ui);
         initArticleManager(ui);
         initInboxView();
         initMcpView();
+        initSyncView();
     }).catch((e) => console.error('Deferred module init failed:', e));
 
     // ── Auto-open native side panel if enabled ──────────────────────────

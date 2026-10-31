@@ -58,12 +58,13 @@ const INDEX = [
     ['about', N_('Feedback · contact · donate'), 'settingsPanel-about', 'bug support feedback contact donation help'],
     ['about', N_('Version & GitHub'), 'versionNumber', 'version contribute open source github'],
     ['about', N_('Privacy policy'), 'aboutPrivacyLink', 'privacy data gdpr policy security changelog'],
+    ['sync', N_('Publish my library to my own server'), 'syncSettings', 'sync backup publish webdav nextcloud owncloud synology nas website server json library list s3 folder'],
     ['mcp', N_('Let AI apps on this computer use my library'), 'mcpSettings', 'mcp model context protocol claude desktop lm studio cursor vs code ollama local ai agent search library search_library'],
 ];
 
 const PANEL_TITLES = {
     account: N_('Account & Plan'), models: N_('Models & API'), prompts: N_('Prompts'), feeds: N_('Sources'), feedprefs: N_('Feed preferences'), reading: N_('Reading & Highlighting'),
-    send: N_('Send & Share'), appearance: N_('Appearance & Language'), accessibility: N_('Accessibility'), library: N_('Library & Data'), mcp: N_('AI apps (MCP)'), about: N_('About & Tools')
+    send: N_('Send & Share'), appearance: N_('Appearance & Language'), accessibility: N_('Accessibility'), library: N_('Library & Data'), sync: N_('Sync & backup'), mcp: N_('AI apps (MCP)'), about: N_('About & Tools')
 };
 
 let screenEl = null;
@@ -141,7 +142,7 @@ async function refreshSubtitles() {
 }
 
 // Panels without a settings form (sign-in and account) have nothing to save: hide the floating Save button there.
-const NO_SAVE_PANELS = new Set(['account', 'mcp', 'about']);
+const NO_SAVE_PANELS = new Set(['account', 'mcp', 'sync', 'about']);
 function syncSaveFab(name) {
     const fab = $('settingsSaveFab');
     if (fab) fab.classList.toggle('no-save', NO_SAVE_PANELS.has(name));
