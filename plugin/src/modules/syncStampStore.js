@@ -2,7 +2,7 @@
 // Keeps the sync stamp sidecars (sync:stamps:<hh>) up to date. Storage is injected, so the same code runs in the background
 // worker (storage events, wake-up scan), in extension pages (explicit deletes) and in the Node tests.
 //
-// Stamps are only written while sync is enabled (sync:config.enabled); with sync off this module does nothing.
+// Stamps are only written while a place is set up (sync:places has one that is not switched off); otherwise this module does nothing.
 // Rules (see syncStamps.js): stamping is hash-based and idempotent; a missing record is never a deletion, tombstones come
 // only from markDeleted(); housekeeping (pruning, reset, restore) therefore never syncs.
 //
@@ -27,9 +27,10 @@ const set = (storage, obj) => new Promise((res) => { const r = storage.set(obj, 
 const same = (a, b) => JSON.stringify(a) === JSON.stringify(b);
 
 export function createStampStore({ storage, now = Date.now, lock = withStampLock, chunk = 25 } = {}) {
+    /** Stamps are kept only while at least one place is set up (and not switched off). */
     async function enabled() {
-        const d = await get(storage, { [SK.syncConfig]: {} });
-        return !!(d[SK.syncConfig] && d[SK.syncConfig].enabled);
+        const d = await get(storage, { [SK.syncPlaces]: [] });
+        return Array.isArray(d[SK.syncPlaces]) && d[SK.syncPlaces].some((p) => p && p.enabled !== false);
     }
 
     /** ops: [{ key, apply(prev) → { entry, changed } }]. Loads the shards involved, applies, writes the changed ones. */

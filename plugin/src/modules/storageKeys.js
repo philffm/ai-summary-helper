@@ -92,7 +92,10 @@ export const SK = {
     mcpLog: 'mcp:log',            // last 50 call records — never backed up
     // library sync (claude/prd-library-sync): this device's id. Never backed up or restored: two devices must not share one.
     syncDeviceId: 'sync:deviceId',
-    syncConfig: 'sync:config',   // { enabled } for now; the targets come with the engine. Per device, never backed up.
+    // the places (WebDAV, S3, folder) this device syncs with: [{ id, name, service, url, root, mode, direction, include, filter, enabled }]. No secrets. Per device, never backed up.
+    syncPlaces: 'sync:places',
+    syncSecrets: 'sync:secrets', // { [placeId]: { password | accessKey/secret | key } } — secret, never backed up
+    syncStatus: 'sync:status',   // { [placeId]: { at, ok, error, counts } } last run per place
     syncClock: 'sync:clock',     // { t }: highest stamp time this device has made or seen
     // migration flags
     devicesMigrated: 'meta:devicesMigrated',
@@ -121,6 +124,11 @@ export const isTargetLedgerKey = (k) => typeof k === 'string' && k.startsWith(TA
 export const SYNC_STAMPS = 'sync:stamps:';
 export const syncStampsKey = (hh) => SYNC_STAMPS + hh;
 export const isSyncStampsKey = (k) => typeof k === 'string' && k.startsWith(SYNC_STAMPS);
+
+/** Prefix of the per-place ledgers: sync:ledger:<placeId> (what that place holds: id → pushed rev, etag, excluded). */
+export const SYNC_LEDGER = 'sync:ledger:';
+export const syncLedgerKey = (placeId) => SYNC_LEDGER + placeId;
+export const isSyncLedgerKey = (k) => typeof k === 'string' && k.startsWith(SYNC_LEDGER);
 
 /** old (pre-registry) key → new key. Used by the migration and by backup import. */
 export const SK_LEGACY = {

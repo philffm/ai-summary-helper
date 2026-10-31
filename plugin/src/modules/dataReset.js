@@ -3,24 +3,24 @@
 // Every key the extension owns belongs to one category here; test104 fails when a key in storageKeys.js (SK) is in none of them,
 // so a key added later can never be forgotten by a delete button. The functions take the storage areas as arguments (default:
 // the real chrome ones) so they can be tested with plain objects.
-import { SK, SK_LEGACY, SK_DEAD, ARTICLE_REC, ARTICLE_REC_LEGACY, COLL_REC, TARGET_LEDGER, SYNC_STAMPS } from './storageKeys.js';
+import { SK, SK_LEGACY, SK_DEAD, ARTICLE_REC, ARTICLE_REC_LEGACY, COLL_REC, TARGET_LEDGER, SYNC_STAMPS, SYNC_LEDGER } from './storageKeys.js';
 import { FEED_BODY, FEED_BODY_INDEX } from './feedBodies.js';
 
 export const CATEGORY_IDS = ['articles', 'highlights', 'feeds', 'podcasts', 'keys', 'send', 'prefs'];
 
 export const SECRET_KEYS = [
     SK.servicesConfig, SK.token, SK.user, SK.otpId, SK.otpEmail,
-    SK.otpExpiresAt, SK.otpRequestedAt, SK.installId, SK.licenseKey, SK.inboxConfig, SK.targetSecrets, SK.mcpSecret
+    SK.otpExpiresAt, SK.otpRequestedAt, SK.installId, SK.licenseKey, SK.inboxConfig, SK.targetSecrets, SK.mcpSecret, SK.syncSecrets
 ];
 
 /** Never part of a backup, in either direction: restoring them on another device would repeat what was already done there. */
-export const TRANSIENT_KEYS = [SK.targetOutbox, SK.mcpLog, SK.syncDeviceId, SK.syncConfig, SK.syncClock];
+export const TRANSIENT_KEYS = [SK.targetOutbox, SK.mcpLog, SK.syncDeviceId, SK.syncPlaces, SK.syncStatus, SK.syncClock];
 /** Key prefixes that are per device and never leave it (sync stamps describe this device's view of the library). */
-export const TRANSIENT_PREFIXES = [SYNC_STAMPS];
+export const TRANSIENT_PREFIXES = [SYNC_STAMPS, SYNC_LEDGER];
 
 export const CATEGORIES = {
     // the summaries and everything attached to them
-    articles: { keys: [SK.articlesIndex, SK.articlesSchema, SK.collIndex], prefixes: [ARTICLE_REC, ARTICLE_REC_LEGACY, COLL_REC, SYNC_STAMPS], extra: ['articles', 'articleHistory'] },
+    articles: { keys: [SK.articlesIndex, SK.articlesSchema, SK.collIndex], prefixes: [ARTICLE_REC, ARTICLE_REC_LEGACY, COLL_REC, SYNC_STAMPS, SYNC_LEDGER], extra: ['articles', 'articleHistory'] },
     // yellow highlights and AI ghost highlights, all pages
     highlights: { keys: [SK.annotations], extra: [...SK_DEAD.filter((k) => k !== 'articleHistory'), 'annotations'] },
     // RSS: subscriptions, fetched items, recaps, mood snapshots, listening position, background processing state
@@ -39,7 +39,7 @@ export const CATEGORIES = {
 };
 
 /** Bookkeeping keys: removed only together with everything (a partial delete must not break the migrations). */
-export const META_KEYS = [SK.migrationVersion, SK.keysSchema, SK.installedAt, SK.syncDeviceId, SK.syncClock, SK.syncConfig];
+export const META_KEYS = [SK.migrationVersion, SK.keysSchema, SK.installedAt, SK.syncDeviceId, SK.syncClock, SK.syncPlaces, SK.syncStatus];
 
 // old (pre-registry) names of a set of keys
 const legacyNames = (keys) => Object.entries(SK_LEGACY).filter(([, nu]) => keys.includes(nu)).map(([old]) => old);

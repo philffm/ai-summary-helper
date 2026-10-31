@@ -21,7 +21,7 @@ await SM.deleteArticle('a1');
 assert.deepEqual(await st.all(), {});
 
 // sync on
-store[SK.syncConfig] = { enabled: true };
+store[SK.syncPlaces] = [{ id: 'p1', enabled: true }];
 await SM.deleteArticle('a2');
 assert.ok((await st.all())['article:a2'].deleted, 'deleteArticle writes a tombstone');
 seed();

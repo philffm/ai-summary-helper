@@ -19,7 +19,7 @@ assert.equal(await st.markDeleted('article', ['a1']), 0);
 assert.equal(await st.scan(), 0);
 assert.ok(!(SK.syncDeviceId in store), 'no device id until sync is on');
 
-store[SK.syncConfig] = { enabled: true };
+store[SK.syncPlaces] = [{ id: 'p1', enabled: true }];
 
 // a new index entry is stamped; the device id is created once and kept
 assert.equal(await st.onChanged(change(SK.articlesIndex, [], [entry('a1')])), 1);
