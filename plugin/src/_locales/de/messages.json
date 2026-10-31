@@ -5675,5 +5675,638 @@
   },
   "f_what_s_new_in_9c82": {
     "message": "Neu in {v}"
+  },
+  "f_a_folder_on_this_computer_bbe4": {
+    "message": "Ordner auf diesem Computer"
+  },
+  "f_a_simple_web_page_index_html_d002": {
+    "message": "Eine einfache Webseite (index.html), die library.json liest: Suche, Tags, Zeitleiste und Tag-Graph. Sie braucht einen Server, der HTML-Seiten ausliefert, etwa Ihren eigenen Webserver oder einen öffentlichen Bucket. Nextcloud-Freigaben tun das nicht."
+  },
+  "f_ai_135f": {
+    "message": "KI"
+  },
+  "f_ai_highlight_b91f": {
+    "message": "KI-Markierung"
+  },
+  "f_aws_cloudflare_r2_backblaze__139d": {
+    "message": "AWS, Cloudflare R2, Backblaze, MinIO, Wasabi"
+  },
+  "f_aws_https_s3_region_amazonaw_c68d": {
+    "message": "AWS: https://s3.<region>.amazonaws.com · Cloudflare R2: https://<account>.r2.cloudflarestorage.com · Backblaze: https://s3.<region>.backblazeb2.com"
+  },
+  "f_access_is_allowed_7031": {
+    "message": "Der Zugriff ist erlaubt."
+  },
+  "f_access_key_id_8d75": {
+    "message": "Zugriffsschlüssel-ID"
+  },
+  "f_add_a_comment_9c08": {
+    "message": "Kommentar hinzufügen …"
+  },
+  "f_add_a_place_799c": {
+    "message": "Ort hinzufügen"
+  },
+  "f_all_except_a_tag_ca3e": {
+    "message": "Alle außer einem Tag"
+  },
+  "f_all_places_fdbc": {
+    "message": "Alle Orte"
+  },
+  "f_allow_access_again_cc7c": {
+    "message": "Zugriff erneut erlauben"
+  },
+  "f_allow_access_to_599a": {
+    "message": "Zugriff auf {name} erlauben"
+  },
+  "f_also_publish_a_viewer_page_2d07": {
+    "message": "Zusätzlich eine Viewer-Seite veröffentlichen"
+  },
+  "f_an_index_html_that_is_not_ou_889b": {
+    "message": "In diesem Ordner liegt bereits eine index.html, die nicht von uns stammt, deshalb wurde der Viewer nicht geschrieben. Wählen Sie einen anderen Ordner."
+  },
+  "f_another_suggestion_09e8": {
+    "message": "Anderer Vorschlag"
+  },
+  "f_anyone_who_can_open_this_fol_86f7": {
+    "message": "Jeder, der diesen Ordner öffnen kann, kann diese Dateien lesen. Nehmen Sie einen Ordner, den Sie kontrollieren, und halten Sie ihn privat, solange Sie nichts veröffentlichen wollen."
+  },
+  "f_app_password_6505": {
+    "message": "App-Passwort"
+  },
+  "f_at_least_12_characters_it_is_01f8": {
+    "message": "Mindestens 12 Zeichen. Sie wird nirgends gespeichert: Verlieren Sie sie und den Wiederherstellungsschlüssel, kann niemand die Dateien öffnen."
+  },
+  "f_back_up_now_63b3": {
+    "message": "Jetzt sichern"
+  },
+  "f_backup_only_e75f": {
+    "message": "Nur Backup"
+  },
+  "f_bring_everything_in_this_pla_0150": {
+    "message": "Alles aus diesem Ort auf dieses Gerät zurückholen? Wo dieses Gerät abweicht, gewinnt der Ort. Hier wird nichts gelöscht."
+  },
+  "f_bucket_3557": {
+    "message": "Bucket"
+  },
+  "f_by_article_5c16": {
+    "message": "Nach Artikel"
+  },
+  "f_changes_here_apply_to_every__822d": {
+    "message": "Änderungen hier gelten für jeden Ort auf diesem Server."
+  },
+  "f_checked_the_folder_restored__7f16": {
+    "message": "Ordner geprüft: {r} wiederhergestellt, {o} Reste gefunden."
+  },
+  "f_checking_your_library_f467": {
+    "message": "Ihre Bibliothek wird geprüft …"
+  },
+  "f_choose_6160": {
+    "message": "Auswählen"
+  },
+  "f_choose_a_passphrase_c9a1": {
+    "message": "Passphrase wählen"
+  },
+  "f_choose_another_folder_1129": {
+    "message": "Anderen Ordner wählen"
+  },
+  "f_cloudflare_r2_auto_leave_the_74e0": {
+    "message": "Cloudflare R2: auto. Lassen Sie den Standard stehen, wenn Ihr Anbieter nicht danach fragt."
+  },
+  "f_comment_9ffe": {
+    "message": "Kommentar"
+  },
+  "f_connect_and_publish_3387": {
+    "message": "Verbinden und veröffentlichen"
+  },
+  "f_connected_the_folder_is_empt_688d": {
+    "message": "Verbunden. Der Ordner ist leer, deshalb wird eine neue verschlüsselte Bibliothek angelegt."
+  },
+  "f_connected_this_folder_alread_7ea2": {
+    "message": "Verbunden. In diesem Ordner liegt bereits eine verschlüsselte Bibliothek."
+  },
+  "f_connected_article_matches_b205": {
+    "message": "Verbunden. {n} Artikel passt."
+  },
+  "f_connected_articles_match_40f2": {
+    "message": "Verbunden. {n} Artikel passen."
+  },
+  "f_continuing_file_left_4bdc": {
+    "message": "Es geht weiter … noch {n} Datei"
+  },
+  "f_continuing_files_left_7869": {
+    "message": "Es geht weiter … noch {n} Dateien"
+  },
+  "f_copied_2cb1": {
+    "message": "Kopiert."
+  },
+  "f_copies_of_other_people_s_art_db7e": {
+    "message": "Kopien fremder Artikel. Prüfen Sie, ob Sie sie weitergeben dürfen. Die Dateien werden deutlich größer."
+  },
+  "f_copy_did_not_work_select_the_5970": {
+    "message": "Kopieren hat nicht geklappt. Markieren Sie den Schlüssel und kopieren Sie ihn von Hand."
+  },
+  "f_copy_did_not_work_select_the_1dcb": {
+    "message": "Kopieren hat nicht geklappt. Markieren Sie die Wörter und kopieren Sie sie von Hand."
+  },
+  "f_could_not_reach_the_server_aa7e": {
+    "message": "Der Server ist nicht erreichbar"
+  },
+  "f_could_not_save_this_place_cf23": {
+    "message": "Dieser Ort konnte nicht gespeichert werden."
+  },
+  "f_created_for_you_use_one_fold_0390": {
+    "message": "Wird für Sie angelegt. Nehmen Sie für jeden Zweck einen eigenen Ordner, zum Beispiel „public“ für eine Website-Liste und „backup“ für eine vollständige Kopie."
+  },
+  "f_danger_zone_19b4": {
+    "message": "Gefahrenbereich"
+  },
+  "f_delete_them_here_too_9d48": {
+    "message": "Hier ebenfalls löschen"
+  },
+  "f_delete_this_note_3253": {
+    "message": "Diese Notiz löschen?"
+  },
+  "f_download_bb19": {
+    "message": "Herunterladen"
+  },
+  "f_eu_1f4f": {
+    "message": "EU"
+  },
+  "f_eu_company_ef04": {
+    "message": "EU-Unternehmen"
+  },
+  "f_eu_servers_987b": {
+    "message": "EU-Server"
+  },
+  "f_each_article_becomes_one_fil_f81c": {
+    "message": "Jeder Artikel wird eine Datei, dazu eine Liste für Ihre Website (library.json)."
+  },
+  "f_edit_comment_f0e4": {
+    "message": "Kommentar bearbeiten"
+  },
+  "f_edit_server_63e0": {
+    "message": "Server bearbeiten"
+  },
+  "f_encrypted_e253": {
+    "message": "Verschlüsselt"
+  },
+  "f_end_with_tags_ctrl_enter_to__83e2": {
+    "message": "Mit #Tags abschließen · ⌘/Strg+Enter zum Hinzufügen"
+  },
+  "f_endpoint_address_ce54": {
+    "message": "Endpunkt-Adresse"
+  },
+  "f_every_article_you_saved_goes_f744": {
+    "message": "Jeder gespeicherte Artikel geht hinaus, auch solche, die andere vielleicht nicht lesen sollen. Ein Backup, das nur Sie lesen können, sollte stattdessen verschlüsselt sein."
+  },
+  "f_everything_8340": {
+    "message": "Alles"
+  },
+  "f_everything_is_encrypted_on_t_1b86": {
+    "message": "Alles wird auf diesem Gerät verschlüsselt, bevor es hochgeladen wird. Notizen, Erinnerungen und Volltexte sind enthalten, weil nur Sie sie lesen können."
+  },
+  "f_files_go_into_a_subfolder_of_5a98": {
+    "message": "Die Dateien kommen in einen Unterordner davon. Was diesen Ordner abgleicht (Syncthing, iCloud Drive, Dropbox, ein USB-Stick), bringt sie auf Ihre anderen Geräte."
+  },
+  "f_fine_the_suggested_words_are_36c0": {
+    "message": "In Ordnung. Die vorgeschlagenen Wörter sind stärker."
+  },
+  "f_folder_7afd": {
+    "message": "Ordner"
+  },
+  "f_folder_access_is_waiting_b754": {
+    "message": "Der Ordnerzugriff wartet"
+  },
+  "f_folder_on_the_server_b74c": {
+    "message": "Ordner auf dem Server"
+  },
+  "f_folder_960e": {
+    "message": "Ordner: {name}"
+  },
+  "f_getting_changes_of_8fbb": {
+    "message": "Änderungen holen: {done} von {total}"
+  },
+  "f_grid_66b1": {
+    "message": "Raster"
+  },
+  "f_highlight_05c7": {
+    "message": "Markierung"
+  },
+  "f_i_made_a_backup_of_this_devi_c05b": {
+    "message": "Ich habe ein Backup dieses Geräts gemacht"
+  },
+  "f_i_saved_the_passphrase_and_t_17c6": {
+    "message": "Ich habe die Passphrase und den Wiederherstellungsschlüssel gespeichert"
+  },
+  "f_i_saved_the_recovery_key_5648": {
+    "message": "Ich habe den Wiederherstellungsschlüssel gespeichert"
+  },
+  "f_if_you_forget_the_passphrase_b15b": {
+    "message": "Wenn Sie die Passphrase vergessen, öffnet dieser Schlüssel „{name}“. Ohne beides kann niemand die Dateien lesen, auch wir nicht. Speichern Sie ihn in einem Passwortmanager oder drucken Sie ihn aus."
+  },
+  "f_in_nextcloud_settings_securi_4fee": {
+    "message": "In Nextcloud: Einstellungen → Sicherheit → App-Passwort erstellen. Nehmen Sie nie Ihr Hauptpasswort."
+  },
+  "f_joining_merges_this_device_w_8048": {
+    "message": "Beim Beitreten wird dieses Gerät mit der Bibliothek im Ordner zusammengeführt: Wo beide abweichen, gewinnt der Ordner. Machen Sie vorher ein Backup dieses Geräts."
+  },
+  "f_keep_your_library_in_step_ac_b5fe": {
+    "message": "Halten Sie Ihre Bibliothek auf allen Geräten aktuell, sichern Sie sie oder veröffentlichen Sie einen Teil für andere. Jeder Ort ist ein Ordner auf Ihrem eigenen Server oder auf diesem Computer. Nichts verlässt dieses Gerät, bis Sie einen Ort hinzufügen."
+  },
+  "f_looking_at_what_is_in_the_fo_1e05": {
+    "message": "Der Ordnerinhalt wird angesehen …"
+  },
+  "f_make_a_backup_now_3046": {
+    "message": "Jetzt Backup erstellen"
+  },
+  "f_make_an_access_key_just_for__abc9": {
+    "message": "Erstellen Sie einen Zugriffsschlüssel nur für diesen Bucket, mit Rechten zum Lesen, Schreiben, Auflisten und Löschen darin. Nehmen Sie nie den Hauptschlüssel Ihres Kontos."
+  },
+  "f_meant_for_a_folder_only_you__33c0": {
+    "message": "Gedacht für einen Ordner, den nur Sie öffnen können, etwa ein privates Backup oder eine interne Liste. Jeder, der den Ordner öffnen kann, kann all das lesen."
+  },
+  "f_mine_84d6": {
+    "message": "Meine"
+  },
+  "f_models_marked_eu_servers_run_7b00": {
+    "message": "Modelle mit „EU-Server“ laufen nur auf Servern in Europa, oft auf denen von US-Cloud-Konzernen. Nur Modelle mit „EU-Unternehmen“ stammen auch von einem europäischen Unternehmen. Jedes andere Modell funktioniert weiterhin, ist mit „Nicht auf EU-Servern“ markiert und läuft wie gewohnt; Auto-Auswahlen bleiben auf EU-Servern. EU-Server können etwas mehr kosten; angezeigt werden die EU-Preise. Vorlesen und Sprache-zu-Text haben keine EU-Option. Ihr Text läuft unterwegs weiterhin über unseren Dienst (ein Server in Deutschland) und dann über OpenRouter, ein US-Unternehmen."
+  },
+  "f_my_nextcloud_741d": {
+    "message": "Meine Nextcloud"
+  },
+  "f_my_notes_and_comments_099b": {
+    "message": "Meine Notizen und Kommentare"
+  },
+  "f_new_note_7123": {
+    "message": "Neue Notiz"
+  },
+  "f_new_server_9ee0": {
+    "message": "Neuer Server"
+  },
+  "f_nextcloud_webdav_2b5d": {
+    "message": "Nextcloud / WebDAV"
+  },
+  "f_nextcloud_owncloud_synology__5752": {
+    "message": "Nextcloud, ownCloud, Synology, die meisten NAS-Systeme"
+  },
+  "f_no_notes_yet_68d5": {
+    "message": "Noch keine Notizen."
+  },
+  "f_no_tags_yet_end_a_note_with__ae68": {
+    "message": "Noch keine Tags. Schließen Sie eine Notiz mit #Tag ab."
+  },
+  "f_not_eu_fb9c": {
+    "message": "Nicht EU"
+  },
+  "f_not_here_d910": {
+    "message": "Nicht hier"
+  },
+  "f_not_on_eu_servers_abcb": {
+    "message": "Nicht auf EU-Servern"
+  },
+  "f_not_published_yet_d0ae": {
+    "message": "Noch nicht veröffentlicht"
+  },
+  "f_not_synced_yet_7efe": {
+    "message": "Noch nicht synchronisiert"
+  },
+  "f_note_c15d": {
+    "message": "Notiz"
+  },
+  "f_notes_1b6a": {
+    "message": "Notizen"
+  },
+  "f_notes_without_an_article_5bd7": {
+    "message": "Notizen ohne Artikel"
+  },
+  "f_nothing_here_yet_5bfc": {
+    "message": "Hier ist noch nichts."
+  },
+  "f_nothing_matches_03c3": {
+    "message": "Nichts passt."
+  },
+  "f_only_publish_articles_tagged_b789": {
+    "message": "Nur Artikel mit diesem Tag veröffentlichen"
+  },
+  "f_only_you_can_read_it_the_pro_a549": {
+    "message": "Nur Sie können es lesen. Der Anbieter sieht verschlüsselte Dateien."
+  },
+  "f_open_the_page_ab11": {
+    "message": "Seite öffnen"
+  },
+  "f_passphrase_2dc5": {
+    "message": "Passphrase"
+  },
+  "f_paused_1feb": {
+    "message": "Pausiert"
+  },
+  "f_pinned_q_a_faa5": {
+    "message": "Angeheftete Fragen & Antworten"
+  },
+  "f_places_d03d": {
+    "message": "Orte"
+  },
+  "f_plain_json_files_for_your_we_5d31": {
+    "message": "Einfache JSON-Dateien für Ihre Website oder andere Werkzeuge."
+  },
+  "f_publish_everything_except_ar_74e7": {
+    "message": "Alles veröffentlichen außer Artikel mit diesem Tag"
+  },
+  "f_publish_my_library_to_my_own_a71f": {
+    "message": "Meine Bibliothek auf meinem eigenen Server veröffentlichen"
+  },
+  "f_publish_now_ae60": {
+    "message": "Jetzt veröffentlichen"
+  },
+  "f_publishing_e1f2": {
+    "message": "Wird veröffentlicht …"
+  },
+  "f_questions_you_pinned_with_an_5f9e": {
+    "message": "Von Ihnen angeheftete Fragen mit Antworten"
+  },
+  "f_readable_00b5": {
+    "message": "Lesbar"
+  },
+  "f_reading_changes_of_9b27": {
+    "message": "Änderungen lesen: {done} von {total}"
+  },
+  "f_recovery_key_4a59": {
+    "message": "Wiederherstellungsschlüssel"
+  },
+  "f_recovery_key_instead_of_the__33fa": {
+    "message": "Wiederherstellungsschlüssel (statt der Passphrase)"
+  },
+  "f_recovery_key_keep_it_somewhe_2fee": {
+    "message": "Wiederherstellungsschlüssel: {k}. Bewahren Sie ihn sicher auf."
+  },
+  "f_region_789d": {
+    "message": "Region"
+  },
+  "f_reminders_b654": {
+    "message": "Erinnerungen"
+  },
+  "f_remove_comment_2340": {
+    "message": "Kommentar entfernen"
+  },
+  "f_remove_them_401d": {
+    "message": "Entfernen"
+  },
+  "f_remove_this_place_6efc": {
+    "message": "Diesen Ort entfernen"
+  },
+  "f_remove_this_place_the_files__ad9c": {
+    "message": "Diesen Ort entfernen? Die Dateien, die schon auf Ihrem Server liegen, werden nicht gelöscht."
+  },
+  "f_removing_a_place_stops_publi_caa4": {
+    "message": "Wird ein Ort entfernt, endet das Veröffentlichen. Die Dateien auf Ihrem Server bleiben, wo sie sind. Ein Server, den kein Ort mehr nutzt, wird samt Zugangsdaten vergessen."
+  },
+  "f_removing_of_9a27": {
+    "message": "Entfernen: {done} von {total}"
+  },
+  "f_repeat_the_passphrase_c2a7": {
+    "message": "Passphrase wiederholen"
+  },
+  "f_restore_from_here_3623": {
+    "message": "Von hier wiederherstellen"
+  },
+  "f_restored_item_changed_on_thi_f959": {
+    "message": "Wiederhergestellt. {n} Eintrag auf diesem Gerät geändert."
+  },
+  "f_restored_items_changed_on_th_853c": {
+    "message": "Wiederhergestellt. {n} Einträge auf diesem Gerät geändert."
+  },
+  "f_restoring_daec": {
+    "message": "Wird wiederhergestellt …"
+  },
+  "f_s3_compatible_4144": {
+    "message": "S3-kompatibel"
+  },
+  "f_save_5d68": {
+    "message": "Speichern"
+  },
+  "f_save_server_bca3": {
+    "message": "Server speichern"
+  },
+  "f_save_your_passphrase_and_rec_6a30": {
+    "message": "Speichern Sie Passphrase und Wiederherstellungsschlüssel"
+  },
+  "f_save_your_recovery_key_8c25": {
+    "message": "Speichern Sie den Wiederherstellungsschlüssel"
+  },
+  "f_saving_of_566a": {
+    "message": "Speichern: {done} von {total}"
+  },
+  "f_search_highlights_comments_n_4f81": {
+    "message": "Markierungen, Kommentare, Notizen durchsuchen …"
+  },
+  "f_secret_access_key_d3a2": {
+    "message": "Geheimer Zugriffsschlüssel"
+  },
+  "f_selected_3294": {
+    "message": "Ausgewählt"
+  },
+  "f_server_02f2": {
+    "message": "Server"
+  },
+  "f_server_address_025e": {
+    "message": "Serveradresse"
+  },
+  "f_server_name_22f5": {
+    "message": "Servername"
+  },
+  "f_server_saved_27e1": {
+    "message": "Server gespeichert."
+  },
+  "f_show_2e5c": {
+    "message": "Anzeigen"
+  },
+  "f_show_recovery_key_b938": {
+    "message": "Wiederherstellungsschlüssel anzeigen"
+  },
+  "f_six_random_words_you_will_ty_5dd2": {
+    "message": "Sechs zufällige Wörter. Sie geben sie auf Ihren anderen Geräten ein, schreiben Sie sie also auf oder legen Sie sie in einem Passwortmanager ab. Sie werden nirgends sonst gespeichert: Zusammen mit dem Wiederherstellungsschlüssel sind sie der einzige Weg, Ihre Dateien zu öffnen."
+  },
+  "f_soon_da12": {
+    "message": "Bald"
+  },
+  "f_strong_db5c": {
+    "message": "Stark."
+  },
+  "f_suggest_random_words_instead_a3fb": {
+    "message": "Stattdessen zufällige Wörter vorschlagen"
+  },
+  "f_sync_backup_9786": {
+    "message": "Sync & Backup"
+  },
+  "f_sync_my_devices_79fb": {
+    "message": "Meine Geräte synchronisieren"
+  },
+  "f_sync_now_d8fe": {
+    "message": "Jetzt synchronisieren"
+  },
+  "f_syncthing_icloud_drive_dropb_a87d": {
+    "message": "Syncthing, iCloud Drive, Dropbox oder ein USB-Stick halten ihn aktuell."
+  },
+  "f_test_connection_b6b7": {
+    "message": "Verbindung testen"
+  },
+  "f_the_browser_could_not_rememb_f257": {
+    "message": "Der Browser konnte sich diesen Ordner nicht merken."
+  },
+  "f_the_browser_did_not_allow_ac_5245": {
+    "message": "Der Browser hat den Zugriff nicht erlaubt."
+  },
+  "f_the_browser_takes_back_acces_aaf9": {
+    "message": "Der Browser nimmt den Zugriff auf einen Ordner beim Neustart zurück, und nur ein Klick von Ihnen gibt ihn wieder. Bis dahin wird der Ordner nicht synchronisiert."
+  },
+  "f_the_kind_of_a_place_cannot_b_8037": {
+    "message": "Die Art eines Ortes lässt sich nicht ändern. Fügen Sie einen weiteren Ort hinzu, um die andere Art zu nutzen."
+  },
+  "f_the_login_is_saved_once_for__bcba": {
+    "message": "Die Zugangsdaten werden einmal für alle gespeichert."
+  },
+  "f_the_restore_did_not_finish_a4b5": {
+    "message": "Die Wiederherstellung wurde nicht abgeschlossen."
+  },
+  "f_the_save_for_later_time_and__7dff": {
+    "message": "Der Zeitpunkt zum späteren Lesen und Ihr Grund dafür."
+  },
+  "f_the_service_picks_a_model_fo_a591": {
+    "message": "Der Dienst wählt für jede Anfrage ein Modell: Kurze Texte bekommen ein leichtes, lange ein größeres."
+  },
+  "f_the_two_passphrases_are_not__e90b": {
+    "message": "Die beiden Passphrasen stimmen nicht überein."
+  },
+  "f_this_device_was_away_for_a_l_46de": {
+    "message": "Dieses Gerät war lange weg. Es wurde nur gesendet, was sich seitdem geändert hat, und nichts wurde gelöscht."
+  },
+  "f_this_device_writes_everythin_1070": {
+    "message": "Dieses Gerät schreibt alles in den Ort und liest nie zurück. Stellen Sie daraus wieder her, wenn Sie es brauchen."
+  },
+  "f_this_folder_already_holds_an_35d9": {
+    "message": "In diesem Ordner liegt bereits eine verschlüsselte Bibliothek. Geben Sie unten ihre Passphrase oder ihren Wiederherstellungsschlüssel ein und drücken Sie erneut auf Verbinden."
+  },
+  "f_this_folder_already_holds_an_7f00": {
+    "message": "In diesem Ordner liegt bereits eine verschlüsselte Bibliothek. Geben Sie ihre Passphrase oder ihren Wiederherstellungsschlüssel ein, um beizutreten."
+  },
+  "f_this_model_does_not_run_on_e_21da": {
+    "message": "Dieses Modell läuft nicht auf EU-Servern. Stattdessen {name} (EU) verwenden?"
+  },
+  "f_this_place_publishes_only_th_f3b8": {
+    "message": "Dieser Ort veröffentlicht nur: Dieses Gerät schreibt die Dateien und liest sie nie zurück."
+  },
+  "f_turn_on_to_run_models_on_ser_af13": {
+    "message": "Einschalten, um Modelle auf Servern in Europa laufen zu lassen, wo das angeboten wird. Alle anderen Modelle funktionieren weiter und sind markiert."
+  },
+  "f_unchanged_e05e": {
+    "message": "Unverändert"
+  },
+  "f_updating_the_list_d48e": {
+    "message": "Liste wird aktualisiert …"
+  },
+  "f_uploading_of_c6b9": {
+    "message": "Hochladen: {done} von {total}"
+  },
+  "f_use_my_own_passphrase_c42a": {
+    "message": "Eigene Passphrase verwenden"
+  },
+  "f_use_4021": {
+    "message": "{name} verwenden"
+  },
+  "f_username_d4d9": {
+    "message": "Benutzername"
+  },
+  "f_view_aa18": {
+    "message": "Ansicht"
+  },
+  "f_weak_use_at_least_12_charact_690f": {
+    "message": "Schwach: Nehmen Sie mindestens 12 Zeichen oder die vorgeschlagenen Wörter."
+  },
+  "f_website_list_be8a": {
+    "message": "Website-Liste"
+  },
+  "f_what_goes_out_1113": {
+    "message": "Was hinausgeht"
+  },
+  "f_what_it_is_for_84ef": {
+    "message": "Wofür der Ort gedacht ist"
+  },
+  "f_who_can_read_it_ceb4": {
+    "message": "Wer es lesen kann"
+  },
+  "f_with_a_tag_c382": {
+    "message": "Mit einem Tag"
+  },
+  "f_works_in_chrome_and_edge_on__f2c7": {
+    "message": "Funktioniert in Chrome und Edge am Computer."
+  },
+  "f_write_a_note_or_a_thought_wo_67b1": {
+    "message": "Schreiben Sie eine Notiz oder einen Gedanken, der es wert ist …"
+  },
+  "f_write_a_note_c7c9": {
+    "message": "Notiz schreiben …"
+  },
+  "f_write_one_below_or_highlight_7627": {
+    "message": "Schreiben Sie unten eine oder markieren Sie Text auf einer beliebigen Seite. Ihre Markierungen und die der KI erscheinen hier ebenfalls."
+  },
+  "f_you_will_type_these_words_wh_5bc5": {
+    "message": "Diese Wörter geben Sie ein, wenn Sie diesen Ort auf einem anderen Gerät hinzufügen."
+  },
+  "f_your_articles_highlights_not_9c7c": {
+    "message": "Ihre Artikel, Markierungen, Notizen, Sammlungen, Zusammenfassungen und Volltexte, aktuell gehalten auf jedem Gerät, das mit derselben Passphrase beitritt."
+  },
+  "f_your_own_index_html_is_in_th_8069": {
+    "message": "In diesem Ordner liegt Ihre eigene index.html, deshalb wurde der Viewer nicht ersetzt."
+  },
+  "f_your_own_notes_and_the_comme_6ef8": {
+    "message": "Ihre eigenen Notizen und die Kommentare zu Ihren Markierungen."
+  },
+  "f_your_passphrase_2512": {
+    "message": "Ihre Passphrase"
+  },
+  "f_your_yellow_and_ai_highlight_15a0": {
+    "message": "Ihre gelben und die KI-Markierungen"
+  },
+  "f_backed_up_ago_845b": {
+    "message": "vor {t} gesichert"
+  },
+  "f_picks_a_model_for_each_reque_519c": {
+    "message": "wählt für jede Anfrage ein Modell"
+  },
+  "f_published_ago_0576": {
+    "message": "vor {t} veröffentlicht"
+  },
+  "f_synced_ago_174c": {
+    "message": "vor {t} synchronisiert"
+  },
+  "f_of_9ced": {
+    "message": "{a} von {b}"
+  },
+  "f_file_is_no_longer_wanted_her_48c4": {
+    "message": "{n} Datei wird hier nicht mehr gebraucht und würde von Ihrem Server entfernt. Prüfen Sie, ob das stimmt."
+  },
+  "f_files_are_no_longer_wanted_h_6975": {
+    "message": "{n} Dateien werden hier nicht mehr gebraucht und würden von Ihrem Server entfernt. Prüfen Sie, ob das stimmt."
+  },
+  "f_files_had_problems_a60b": {
+    "message": "{n} Dateien hatten Probleme"
+  },
+  "f_more_article_was_deleted_on__0e7e": {
+    "message": "{n} weiterer Artikel wurde auf einem anderen Gerät gelöscht. Er bleibt hier, bis Sie zustimmen. Prüfen Sie, ob das stimmt."
+  },
+  "f_more_articles_were_deleted_o_8348": {
+    "message": "{n} weitere Artikel wurden auf anderen Geräten gelöscht. Sie bleiben hier, bis Sie zustimmen. Prüfen Sie, ob das stimmt."
+  },
+  "f_place_b298": {
+    "message": "{n} Ort"
+  },
+  "f_place_uses_this_server_133b": {
+    "message": "{n} Ort nutzt diesen Server."
+  },
+  "f_places_a7f1": {
+    "message": "{n} Orte"
+  },
+  "f_places_use_this_server_4df9": {
+    "message": "{n} Orte nutzen diesen Server."
   }
 }
