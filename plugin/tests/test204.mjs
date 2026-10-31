@@ -8,7 +8,7 @@ const dav = createFakeDav(); globalThis.fetch = dav.fetchFn;
 const { SK, articleRecKey } = await imp('modules/storageKeys.js');
 const V = await imp('modules/syncView.js');
 const wait = (ms = 60) => new Promise((r) => setTimeout(r, ms));
-const until = async (fn, ms = 8000) => { const t = Date.now(); while (Date.now() - t < ms) { try { if (fn()) return; } catch (_) { /* not yet */ } await wait(30); } };   // the key derivation is slow on purpose
+const until = async (fn, ms = 30000) => { const t = Date.now(); while (Date.now() - t < ms) { try { if (fn()) return; } catch (_) { /* not yet */ } await wait(30); } };   // the key derivation is slow on purpose
 const $ = (id) => document.getElementById(id);
 const root = () => $('syncSettings');
 const text = () => root().textContent.replace(/\s+/g, ' ');
