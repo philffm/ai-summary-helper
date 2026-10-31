@@ -49,7 +49,9 @@ const lastmod = (file) => {
   return null;
 };
 const setMeta = ($, attr, key, content) => { if (content && !$(`meta[${attr}="${key}"]`).length) $('head').append(`<meta ${attr}="${key}" content="${String(content).replace(/"/g, '&quot;')}">`); };
-const monthIso = (txt) => { const m = String(txt || '').match(/(January|February|March|April|May|June|July|August|September|October|November|December)\s+(\d{4})/i); if (!m) return null; return m[2] + '-' + String(['january','february','march','april','may','june','july','august','september','october','november','december'].indexOf(m[1].toLowerCase()) + 1).padStart(2, '0'); };
+// English and German month names ("October 2026", "Oktober 2026"): the date of a post, for BlogPosting datePublished.
+const MONTHS = ['january|januar', 'february|februar', 'march|märz|maerz', 'april', 'may|mai', 'june|juni', 'july|juli', 'august', 'september', 'october|oktober', 'november', 'december|dezember'];
+const monthIso = (txt) => { const m = String(txt || '').match(new RegExp('(' + MONTHS.join('|') + ')\\s+(\\d{4})', 'i')); if (!m) return null; const n = MONTHS.findIndex((alts) => alts.split('|').includes(m[1].toLowerCase())); return n < 0 ? null : m[2] + '-' + String(n + 1).padStart(2, '0'); };
 // ── videos ───────────────────────────────────────────────────────────────────────────────────────────────────────────
 const VIDEO_DIR = path.join(DOCS, 'assets', 'blog', 'video');
 // Google wants a full ISO 8601 datetime with a time zone for uploadDate / publication_date ("2026-10-20" alone is flagged).

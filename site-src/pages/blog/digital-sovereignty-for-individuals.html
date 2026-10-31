@@ -97,13 +97,15 @@
           <li><strong>You choose how the AI is reached.</strong> Bring your own key for a provider you pick (<a href="bring-your-own-key.html">why that matters</a>), run a local model with Ollama so page content never leaves your machine, or use our optional hosted service. With a local model, the summary itself needs no network at all.</li>
           <li><strong>Sync and backup on your own storage.</strong> Add a Nextcloud or other WebDAV server, an S3-compatible bucket or a folder on your computer (<a href="sync-to-nextcloud-s3-or-a-folder.html">step by step</a>). In encrypted places everything is encrypted in your browser (AES-256-GCM, a key derived from your passphrase) before it leaves the device, and you get a recovery key. The storage provider sees scrambled files.</li>
           <li><strong>Publish on your own site.</strong> A readable place writes plain files and an optional viewer page for your own website, only for the articles you tag. Notes and full texts stay out unless you switch them on.</li>
+          <li><strong>An EU option for the hosted service.</strong> If you use our optional hosted service, a "Prefer EU servers" switch in the settings sends your requests only to EU endpoints of the model provider, never to a fallback elsewhere. Models are marked <em>EU company</em> (Mistral, which is based in Paris) or <em>EU servers</em> (a US company's EU region), because those are not the same thing. Models that have no EU route stay selectable but are marked, and the <em>Auto</em> choice never picks them while the switch is on.</li>
           <li><strong>Your AI apps, on your computer.</strong> Optionally, desktop AI apps can read your library through a local connection, with nothing going through our servers (<a href="ai-apps-mcp.html">how that works</a>).</li>
           <li><strong>Open source.</strong> The code is public on GitHub, so what we claim here can be checked.</li>
         </ul>
         <p><strong>What it does not do.</strong> Being honest matters more than a clean story:</p>
         <ul>
           <li>It runs inside a browser made by a US company. A local model removes the AI provider from the picture; it does not remove the browser.</li>
-          <li>Most hosted AI providers are US companies. If you use one with your own key, the page text you summarize goes to them. Only a local model keeps it entirely on your machine. Our optional hosted service passes your text through our backend and on to a model provider via OpenRouter, so it is a convenience, not a sovereignty feature.</li>
+          <li>Most hosted AI providers are US companies. If you use one with your own key, the page text you summarize goes to them. Only a local model keeps it entirely on your machine. </li>
+          <li>Our optional hosted service runs its server and its database at IONOS in Germany. Your text still goes on to a model provider through OpenRouter, a US company. The EU switch pins the model's servers to the EU, it does not change who the companies are. Treat the hosted service as a convenience with an EU option, not as the sovereign choice: for that, use your own key or a local model.</li>
           <li>The encryption key for a sync place is kept in your browser profile so syncing can run in the background. Someone with access to your unlocked profile could use it. The storage provider still sees how many files there are, their sizes and when they change.</li>
           <li>The encryption design is open but has not been independently audited.</li>
           <li>A readable (published) place is not encrypted. That is its purpose, and the settings screen says so.</li>
@@ -112,6 +114,8 @@
         <h2>Questions people ask</h2>
         <h3>Is storing my data in the EU enough?</h3>
         <p>It helps with latency and some legal questions, but it does not settle who can compel access: that depends on the company's jurisdiction, not only the server's location. Encryption with keys you hold changes the picture more than a postcode does.</p>
+        <h3>Is a European AI model the same as running on EU servers?</h3>
+        <p>No. A company based in Europe, such as Mistral in Paris, is subject to EU and national law. A US company's model running in an EU region is physically in Europe, but the company behind it is still American, which is the CLOUD Act point above. Both can be reasonable choices, and neither is a guarantee. That is why we label them separately. Check the provider's current terms and hosting, because partnerships and investors change.</p>
         <h3>Do I have to self-host to be sovereign?</h3>
         <p>No. Self-hosting is one way to reach levels 3 and 4. A European provider, or a bucket under your own account with encryption on your side, gets you much of the way with far less work.</p>
         <h3>Are local AI models good enough to summarize articles?</h3>
