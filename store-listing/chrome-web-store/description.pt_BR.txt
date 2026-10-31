@@ -16,7 +16,7 @@ Escolha o modelo que cabe no seu bolso e nas suas exigências de privacidade:
 
 • Chave de API própria (BYOK): OpenAI, Google Gemini, Mistral AI ou DeepSeek. Você paga ao provedor por uso, normalmente alguns centavos por mês, em vez de uma assinatura fixa.
 • IA local com Ollama: rode um modelo aberto no seu próprio computador ou em um servidor próprio na sua rede. Sem chave de API, sem custo por pedido, e o conteúdo da página nunca sai da sua máquina.
-• byphil Cloud (opcional): sem chave e sem configuração. Entre com seu e-mail e um código de uso único e ganhe uma pequena cota diária gratuita; com o Pro, o uso é ilimitado.
+• byphil Cloud (opcional): sem chave e sem configuração. Entre com seu e-mail e um código de uso único e ganhe uma pequena cota diária gratuita; com o Support Pass, o uso é ilimitado.
 
 Sua própria chave e a opção no dispositivo não exigem conta nenhuma. O código-fonte completo é público no GitHub, então você pode conferir exatamente o que a extensão envia e para onde.
 
@@ -108,7 +108,7 @@ Abra o AI Summary Helper em uma guia própria ou arraste o painel lateral para d
 ━━━━━━━━━━━━━━━━━━━━
 📤 ENVIAR, EXPORTAR E COMPARTILHAR
 ━━━━━━━━━━━━━━━━━━━━
-• Enviar para Kindle: visões gerais e artigos formatados, com destaques, entregues direto no seu leitor de e-books em EPUB (texto, ou com imagens) ou HTML. Requer login gratuito na byphil; 3 envios são grátis, ilimitados com o Pro.
+• Enviar para Kindle: visões gerais e artigos formatados, com destaques, entregues direto no seu leitor de e-books em EPUB (texto, ou com imagens) ou HTML. Requer login gratuito na byphil; 3 envios são grátis, ilimitados com o Support Pass.
 • LocalSend: envie artigos pelo Wi-Fi de casa para celulares, tablets ou leitores com KOReader, sem nuvem no meio do caminho.
 • Enviar para o celular: pareie seu celular com um código QR. Os links que você compartilha no celular chegam com criptografia de ponta a ponta ao seu Histórico, e você pode mandar artigos completos de volta para o celular.
 • Exporte em Markdown (um artigo, ou a biblioteca inteira em ZIP com front matter), Word (DOCX), OpenDocument (ODT) ou PDF, ou envie direto para o Obsidian.
@@ -169,7 +169,7 @@ Seu app de IA nunca leu o que você leu. Ative os apps de IA nas Configurações
 ❓ PERGUNTAS FREQUENTES
 ━━━━━━━━━━━━━━━━━━━━
 O AI Summary Helper é gratuito?
-Sim. A extensão é gratuita e de código aberto. Com sua própria chave de API, você paga direto ao seu provedor, normalmente alguns centavos por mês. Um modelo rodando no seu computador não custa nada. A byphil Cloud inclui uma pequena cota diária gratuita, e o Pro remove os limites.
+Sim. A extensão é gratuita e de código aberto. Com sua própria chave de API, você paga direto ao seu provedor, normalmente alguns centavos por mês. Um modelo rodando no seu computador não custa nada. A byphil Cloud inclui uma pequena cota diária gratuita, e o Support Pass remove os limites.
 
 Dá para resumir páginas da web com uma IA local?
 Sim. Instale o Ollama, baixe um modelo aberto e escolha a opção local na configuração inicial. A partir daí tudo roda no seu computador, inclusive as perguntas de acompanhamento e os panoramas de feeds, e isso também vale para um servidor Ollama próprio na sua rede.
@@ -184,7 +184,7 @@ Dá para resumir um artigo em inglês em outro idioma?
 Sim. Você escolhe entre 41 idiomas de saída, e o texto original pode estar em um idioma diferente.
 
 Como envio artigos da web para o meu Kindle?
-Faça login na byphil, adicione kindle@byphil.eu como remetente aprovado na sua conta da Amazon, informe o e-mail do seu aparelho em Configurações → Enviar e escolha esse destino em Enviar. Três envios são grátis; com o Pro, os envios são ilimitados.
+Faça login na byphil, adicione kindle@byphil.eu como remetente aprovado na sua conta da Amazon, informe o e-mail do seu aparelho em Configurações → Enviar e escolha esse destino em Enviar. Três envios são grátis; com o Support Pass, os envios são ilimitados.
 
 Posso usar minha biblioteca no Claude Desktop ou no Cursor?
 Sim. Ative os apps de IA em Configurações → Apps de IA, pareie uma vez e o app poderá pesquisar sua biblioteca, citar seus destaques e indicar as fontes. Vem desativado, roda no seu computador e respeita o que você permitir.

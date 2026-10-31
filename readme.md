@@ -24,7 +24,7 @@
 
 ## At a glance
 
-- **Free and MIT-licensed.** No account for your own key or local models. Optional byphil Cloud has a small free daily allowance and a Pro plan.
+- **Free and MIT-licensed.** No account for your own key or local models. Optional byphil Cloud has a small free daily allowance; a donation (the Support Pass) unlocks many more AI models and unlimited use.
 - **Private by design.** Library, highlights and statistics are stored in the browser. No tracking or analytics SDKs. See the [privacy policy](privacy.md).
 - **Answers you can check.** Follow-up answers point to the passage they come from; quotes that are not in the article are discarded.
 - **Your language.** Summaries in 41 languages, interface in 14.

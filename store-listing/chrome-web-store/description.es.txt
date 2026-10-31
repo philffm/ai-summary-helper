@@ -14,7 +14,7 @@ AI Summary Helper es una extensión de Chrome gratuita y de código abierto que 
 ━━━━━━━━━━━━━━━━━━━━
 • Tu propia clave de API: OpenAI, Google Gemini, Mistral AI o DeepSeek. Pagas al proveedor por uso, normalmente unos céntimos al mes, en lugar de una suscripción fija.
 • 100 % local con Ollama: ejecuta un modelo abierto en tu ordenador, o en un servidor propio de tu red. Sin clave, sin coste por consulta, y el contenido de la página nunca sale de tu equipo.
-• byphil Cloud (opcional): sin clave y sin configuración. Inicia sesión con tu correo y un código de un solo uso y obtén una pequeña cuota diaria gratuita; ilimitado con Pro.
+• byphil Cloud (opcional): sin clave y sin configuración. Inicia sesión con tu correo y un código de un solo uso y obtén una pequeña cuota diaria gratuita; ilimitado con el Support Pass.
 
 Tu propia clave y la opción local no necesitan cuenta. Todo el código fuente es público en GitHub, así que puedes comprobar qué envía la extensión y a dónde.
 
@@ -118,7 +118,7 @@ Abre AI Summary Helper en su propia pestaña o ensancha el panel lateral: el his
 ━━━━━━━━━━━━━━━━━━━━
 📤 ENVIAR, EXPORTAR Y COMPARTIR
 ━━━━━━━━━━━━━━━━━━━━
-• Enviar a Kindle: síntesis y artículos con formato, subrayados incluidos, directo a tu lector electrónico en EPUB (texto o con imágenes) o HTML. Requiere iniciar sesión gratis en byphil; 3 envíos gratis, ilimitados con Pro.
+• Enviar a Kindle: síntesis y artículos con formato, subrayados incluidos, directo a tu lector electrónico en EPUB (texto o con imágenes) o HTML. Requiere iniciar sesión gratis en byphil; 3 envíos gratis, ilimitados con el Support Pass.
 • LocalSend: envía artículos por tu wifi a móviles, tabletas o lectores KOReader, sin pasar por la nube.
 • Enviar al móvil: vincula tu móvil con un código QR. Los enlaces que compartes en el móvil llegan cifrados de extremo a extremo a tu historial, y puedes devolver artículos completos al móvil.
 • Resumen tipo revista: agrupa varios artículos en un número para tu lector electrónico, LocalSend o Markdown.
@@ -177,7 +177,7 @@ Tu app de IA nunca ha leído lo que tú lees. Activa las apps de IA en Ajustes y
 ❓ PREGUNTAS FRECUENTES
 ━━━━━━━━━━━━━━━━━━━━
 ¿AI Summary Helper es gratis?
-Sí. La extensión es gratuita y de código abierto. Con tu propia clave de API pagas directamente al proveedor, normalmente unos céntimos al mes. Con un modelo en tu ordenador no cuesta nada. byphil Cloud incluye una pequeña cuota diaria gratuita; Pro elimina los límites.
+Sí. La extensión es gratuita y de código abierto. Con tu propia clave de API pagas directamente al proveedor, normalmente unos céntimos al mes. Con un modelo en tu ordenador no cuesta nada. byphil Cloud incluye una pequeña cuota diaria gratuita; el Support Pass elimina los límites.
 
 ¿Puedo resumir un artículo en inglés en español?
 Sí. Elige el español como idioma del resumen; el original puede estar en cualquier otro idioma.
@@ -195,7 +195,7 @@ Sí. Los PDF abiertos en Chrome, también archivos locales, y los vídeos de You
 Sí. En artículos científicos con DOI crea la cita en APA 7, MLA 9, Chicago, BibTeX o RIS con datos de doi.org.
 
 ¿Cómo envío artículos web a mi Kindle?
-Inicia sesión en byphil, añade kindle@byphil.eu como remitente aprobado en tu cuenta de Amazon, escribe el correo de tu dispositivo en Ajustes → Enviar y elígelo al enviar. Tres envíos son gratis; con Pro, ilimitados.
+Inicia sesión en byphil, añade kindle@byphil.eu como remitente aprobado en tu cuenta de Amazon, escribe el correo de tu dispositivo en Ajustes → Enviar y elígelo al enviar. Tres envíos son gratis; con el Support Pass, ilimitados.
 
 ¿Puedo usar mi biblioteca en Claude Desktop o Cursor?
 Sí. Activa las apps de IA en Ajustes → Apps de IA, vincúlalas una vez y la app podrá buscar en tu biblioteca, citar tus subrayados e indicar las fuentes. Está desactivado por defecto, funciona en tu ordenador y respeta lo que permitas.

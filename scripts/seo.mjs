@@ -113,7 +113,7 @@ function jsonLd($, rel, self, lang, title, desc, image) {
   if (isHome) {
     graph.push({ '@type': 'WebSite', '@id': BASE + '/#website', url: BASE + '/', name: 'AI Summary Helper', inLanguage: lang, publisher: { '@id': publisher['@id'] } });
     graph.push({ '@type': 'SoftwareApplication', '@id': BASE + '/#app', name: 'AI Summary Helper', url: self, description: desc, applicationCategory: 'BrowserApplication', operatingSystem: 'Chrome, Chromium browsers, Firefox, Android (beta companion app)', installUrl: 'https://chromewebstore.google.com/detail/ai-summary-helper-openai/hldbejcjaedipeegjcinmhejdndchkmb', downloadUrl: 'https://addons.mozilla.org/en-US/firefox/addon/ai-summary-helper/', downloadUrl: STORE, image, inLanguage: lang,
-      offers: { '@type': 'Offer', price: '0', priceCurrency: 'EUR', description: 'Free to start; optional Support Pass for premium features' }, author: { '@id': publisher['@id'] }, publisher });
+      offers: { '@type': 'Offer', price: '0', priceCurrency: 'EUR', description: 'Free; a donation (Support Pass) unlocks byphil Cloud with many AI models' }, author: { '@id': publisher['@id'] }, publisher });
     const qa = [];
     $('.faq details').each((_, el) => { const q = $(el).find('summary').first().text().trim(), a = $(el).find('p').text().trim().replace(/\s+/g, ' '); if (q && a) qa.push({ '@type': 'Question', name: q, acceptedAnswer: { '@type': 'Answer', text: a } }); });
     if (qa.length) graph.push({ '@type': 'FAQPage', '@id': self + '#faq', inLanguage: lang, mainEntity: qa });
@@ -223,7 +223,7 @@ const llms = [
   '> AI Summary Helper is a browser extension (Chrome, Chromium-based browsers and Firefox, plus an Android companion app in beta) that summarizes web pages with the AI provider you choose (your own API key or a local Ollama model), follows sites with a built-in RSS reader, saves pages into a searchable on-device archive, and sends reading digests to Kindle or LocalSend. Search, de-duplication and recommendations run on the device.',
   '',
   '## Key facts',
-  '- Free to start. Optional Support Pass unlocks premium features across the byphil tools.',
+  '- Free for everyone. A donation (Support Pass) unlocks byphil Cloud with many AI models and supports all byphil tools.',
   '- Bring your own key or run fully local with Ollama: only the summarization request leaves the browser.',
   `- Install (Chrome): ${STORE}`,
   `- Install (Firefox): https://addons.mozilla.org/en-US/firefox/addon/ai-summary-helper/`,

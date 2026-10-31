@@ -16,7 +16,7 @@ Pick the model that fits your budget and your privacy needs:
 
 • Own API key (BYOK): OpenAI, Google Gemini, Mistral AI or DeepSeek. You pay the provider per request, usually a few cents a month, instead of a flat subscription.
 • Fully local with Ollama: run an open model on your own computer, or on a self-hosted server in your network. No API key, no cost per request, and page content never leaves your machine.
-• byphil Cloud (optional): no key and no setup. Sign in with your email and a one-time code and get a small free daily allowance; upgrade to Pro for unlimited summaries.
+• byphil Cloud (optional): no key and no setup. Sign in with your email and a one-time code and get a small free daily allowance; a Support Pass (a donation to the project) unlocks unlimited use and many more models.
 
 Your own key and the on-device option need no account at all. The full source code is public on GitHub, so you can check exactly what the extension sends and where.
 
@@ -120,7 +120,7 @@ Open AI Summary Helper in its own tab or drag the side panel wider, and History 
 ━━━━━━━━━━━━━━━━━━━━
 📤 SEND, EXPORT AND SHARE
 ━━━━━━━━━━━━━━━━━━━━
-• Send to Kindle: overviews and formatted articles, highlights included, delivered straight to your e-reader as EPUB (text, or with images) or HTML. Requires a free byphil sign-in; 3 sends are free, unlimited with Pro.
+• Send to Kindle: overviews and formatted articles, highlights included, delivered straight to your e-reader as EPUB (text, or with images) or HTML. Requires a free byphil sign-in; 3 sends are free, unlimited with a Support Pass.
 • LocalSend: send articles over your home Wi-Fi to phones, tablets or KOReader e-readers, with no cloud in between.
 • Send to phone: pair your phone with a QR code. Links you share on the phone arrive end-to-end encrypted in your History, and you can push full articles back to the phone.
 • Magazine digest: bundle several articles into one issue for your e-reader, LocalSend or Markdown.
@@ -181,7 +181,7 @@ Your AI app has never read what you read. Turn on AI apps in Settings and Claude
 ❓ FREQUENTLY ASKED QUESTIONS
 ━━━━━━━━━━━━━━━━━━━━
 Is AI Summary Helper free?
-Yes. The extension is free and open source. With your own API key you pay your provider directly, usually a few cents a month. An on-device model costs nothing. byphil Cloud includes a small free daily allowance; Pro removes the limits.
+Yes. The extension is free and open source. With your own API key you pay your provider directly, usually a few cents a month. An on-device model costs nothing. byphil Cloud includes a small free daily allowance; a Support Pass, which is a donation to the project, removes the limits.
 
 Can I summarize web pages with a local AI model?
 Yes. Install Ollama, download an open model and pick the local option in the setup. Everything, including follow-up questions and feed recaps, then runs on your computer, also with a self-hosted Ollama server on your network.
@@ -196,7 +196,7 @@ Can it summarize an English article in another language?
 Yes. Choose any of 41 summary languages; the source can be in a different language.
 
 How do I send web articles to my Kindle?
-Sign in to byphil, add kindle@byphil.eu as an approved sender in your Amazon account, enter your device's email address in Settings → Send, and choose it under Send. Three sends are free; Pro makes it unlimited.
+Sign in to byphil, add kindle@byphil.eu as an approved sender in your Amazon account, enter your device's email address in Settings → Send, and choose it under Send. Three sends are free; a Support Pass makes it unlimited.
 
 Can I use my library in Claude Desktop or Cursor?
 Yes. Turn on AI apps in Settings → AI apps, pair it once, and the app can search your library, quote your highlights and cite sources. It is off by default, runs on your computer and respects what you allow.

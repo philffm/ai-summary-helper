@@ -14,7 +14,7 @@ AI Summary Helper est une extension Chrome gratuite et open source qui résume n
 ━━━━━━━━━━━━━━━━━━━━
 • Votre propre clé API : Mistral AI (fournisseur français), OpenAI, Google Gemini ou DeepSeek. Vous payez le fournisseur à l'usage, souvent quelques centimes par mois, au lieu d'un abonnement fixe.
 • 100 % local avec Ollama : faites tourner un modèle ouvert sur votre ordinateur, ou sur un serveur auto-hébergé de votre réseau. Pas de clé, pas de coût par requête, et le contenu des pages ne quitte jamais votre machine.
-• byphil Cloud (facultatif) : sans clé ni configuration. Connexion par e-mail et code à usage unique, avec un petit quota quotidien gratuit ; illimité avec Pro.
+• byphil Cloud (facultatif) : sans clé ni configuration. Connexion par e-mail et code à usage unique, avec un petit quota quotidien gratuit ; illimité avec le Support Pass.
 
 Votre propre clé et l'option locale ne demandent aucun compte. Le code source complet est public sur GitHub : vous pouvez vérifier ce que l'extension envoie, et à qui.
 
@@ -115,7 +115,7 @@ Ouvrez AI Summary Helper dans un onglet ou élargissez le panneau latéral : l'h
 ━━━━━━━━━━━━━━━━━━━━
 📤 ENVOYER, EXPORTER, PARTAGER
 ━━━━━━━━━━━━━━━━━━━━
-• Envoyer vers Kindle : synthèses et articles mis en forme, surlignages compris, directement sur votre liseuse, en EPUB (texte, ou avec images) ou en HTML. Nécessite une connexion byphil gratuite ; 3 envois gratuits, illimité avec Pro.
+• Envoyer vers Kindle : synthèses et articles mis en forme, surlignages compris, directement sur votre liseuse, en EPUB (texte, ou avec images) ou en HTML. Nécessite une connexion byphil gratuite ; 3 envois gratuits, illimité avec le Support Pass.
 • LocalSend : envoyez des articles via votre Wi-Fi vers un téléphone, une tablette ou une liseuse KOReader, sans passer par le cloud.
 • Envoyer au téléphone : associez votre téléphone par QR code. Les liens partagés depuis le téléphone arrivent chiffrés de bout en bout dans votre historique, et les articles complets repartent vers le téléphone.
 • Digest magazine : regroupez plusieurs articles en un numéro pour votre liseuse, LocalSend ou Markdown.
@@ -175,7 +175,7 @@ Votre appli IA n'a jamais lu ce que vous lisez. Activez les applis IA dans les r
 ❓ QUESTIONS FRÉQUENTES
 ━━━━━━━━━━━━━━━━━━━━
 AI Summary Helper est-il gratuit ?
-Oui. L'extension est gratuite et open source. Avec votre propre clé API, vous payez directement le fournisseur, souvent quelques centimes par mois. Un modèle sur votre ordinateur ne coûte rien. byphil Cloud inclut un petit quota quotidien gratuit ; Pro lève les limites.
+Oui. L'extension est gratuite et open source. Avec votre propre clé API, vous payez directement le fournisseur, souvent quelques centimes par mois. Un modèle sur votre ordinateur ne coûte rien. byphil Cloud inclut un petit quota quotidien gratuit ; le Support Pass lève les limites.
 
 Peut-on résumer une page web avec Mistral ?
 Oui. Saisissez votre clé Mistral AI dans les réglages ; vos synthèses, questions et récapitulatifs passent alors par ce fournisseur européen.
@@ -190,7 +190,7 @@ L'extension résume-t-elle les PDF et les vidéos YouTube ?
 Oui. Les PDF ouverts dans Chrome, y compris les fichiers locaux, et les vidéos YouTube sous-titrées fonctionnent comme n'importe quelle page.
 
 Comment envoyer des articles web vers mon Kindle ?
-Connectez-vous à byphil, ajoutez kindle@byphil.eu comme expéditeur approuvé dans votre compte Amazon, indiquez l'adresse e-mail de votre appareil dans Réglages → Envoyer, puis choisissez-le dans Envoyer. Trois envois sont gratuits, illimités avec Pro.
+Connectez-vous à byphil, ajoutez kindle@byphil.eu comme expéditeur approuvé dans votre compte Amazon, indiquez l'adresse e-mail de votre appareil dans Réglages → Envoyer, puis choisissez-le dans Envoyer. Trois envois sont gratuits, illimités avec le Support Pass.
 
 Puis-je utiliser ma bibliothèque dans Claude Desktop ou Cursor ?
 Oui. Activez les applis IA dans Réglages → Apps d'IA, associez-la une fois, et l'appli peut chercher dans votre bibliothèque, citer vos surlignages et indiquer ses sources. C'est désactivé par défaut, cela tourne sur votre ordinateur et respecte ce que vous autorisez.

@@ -16,7 +16,7 @@ Wählen Sie das Modell, das zu Ihrem Budget und Ihren Datenschutzanforderungen p
 
 • Eigener API-Schlüssel (BYOK): OpenAI, Google Gemini, Mistral AI (Anbieter aus der EU) oder DeepSeek. Sie zahlen den Anbieter pro Anfrage, meist nur wenige Cent im Monat, statt eines festen Abos.
 • Komplett lokal mit Ollama: Ein offenes Modell läuft auf Ihrem eigenen Rechner, auf Wunsch auch auf einem selbst gehosteten Server im Heim- oder Firmennetz. Kein Schlüssel, keine Kosten pro Anfrage, und der Seiteninhalt verlässt Ihren Rechner nie.
-• byphil Cloud (optional): ohne Schlüssel und ohne Einrichtung. Anmeldung per E-Mail und Einmalcode, mit einem kleinen kostenlosen Tageskontingent; mit Pro ohne Limit.
+• byphil Cloud (optional): ohne Schlüssel und ohne Einrichtung. Anmeldung per E-Mail und Einmalcode, mit einem kleinen kostenlosen Tageskontingent; mit dem Support Pass (einer Spende) ohne Limit und mit vielen weiteren Modellen.
 
 Für den eigenen Schlüssel und die lokale Variante brauchen Sie überhaupt kein Konto. Der komplette Quellcode ist öffentlich auf GitHub, Sie können also genau nachprüfen, was die Erweiterung wohin sendet.
 
@@ -108,7 +108,7 @@ Alle Analysen werden auf Ihrem Gerät berechnet. Nichts geht an einen Tracking-D
 ━━━━━━━━━━━━━━━━━━━━
 📤 SENDEN, EXPORTIEREN, TEILEN
 ━━━━━━━━━━━━━━━━━━━━
-• An Kindle senden: Überblicke und formatierte Artikel inklusive Markierungen direkt auf Ihren E-Reader, als EPUB (Text oder mit Bildern) oder HTML. Erfordert eine kostenlose byphil-Anmeldung; 3 Sendungen sind gratis, mit Pro unbegrenzt.
+• An Kindle senden: Überblicke und formatierte Artikel inklusive Markierungen direkt auf Ihren E-Reader, als EPUB (Text oder mit Bildern) oder HTML. Erfordert eine kostenlose byphil-Anmeldung; 3 Sendungen sind gratis, mit dem Support Pass unbegrenzt.
 • LocalSend: Artikel im heimischen WLAN an Smartphone, Tablet oder KOReader-E-Reader schicken, ohne Cloud dazwischen.
 • An Smartphone senden: Smartphone per QR-Code koppeln. Links, die Sie auf dem Handy teilen, landen Ende-zu-Ende-verschlüsselt in Ihrem Verlauf, und ganze Artikel gehen zurück aufs Handy.
 • Magazin-Digest: mehrere Artikel zu einer Ausgabe bündeln, für E-Reader, LocalSend oder Markdown.
@@ -171,7 +171,7 @@ Ihre KI-App hat nie gelesen, was Sie lesen. Schalten Sie in den Einstellungen di
 ❓ HÄUFIGE FRAGEN
 ━━━━━━━━━━━━━━━━━━━━
 Ist AI Summary Helper kostenlos?
-Ja. Die Erweiterung ist kostenlos und Open Source. Mit eigenem API-Schlüssel zahlen Sie Ihren Anbieter direkt, meist wenige Cent im Monat. Auf dem eigenen Rechner kostet es nichts. byphil Cloud hat ein kleines kostenloses Tageskontingent; Pro hebt die Grenzen auf.
+Ja. Die Erweiterung ist kostenlos und Open Source. Mit eigenem API-Schlüssel zahlen Sie Ihren Anbieter direkt, meist wenige Cent im Monat. Auf dem eigenen Rechner kostet es nichts. byphil Cloud hat ein kleines kostenloses Tageskontingent; der Support Pass (eine Spende) hebt die Grenzen auf.
 
 Kann ich Webseiten mit einer lokalen KI zusammenfassen?
 Ja. Installieren Sie Ollama, laden Sie ein offenes Modell und wählen Sie in der Einrichtung die lokale Variante. Alles, auch Rückfragen und Feed-Rückblicke, läuft dann auf Ihrem Rechner oder auf einem eigenen Server im Netzwerk.
@@ -189,7 +189,7 @@ Kann ich einen englischen Artikel auf Deutsch zusammenfassen lassen?
 Ja. Wählen Sie eine der 41 Zusammenfassungssprachen; der Originaltext darf in einer anderen Sprache sein.
 
 Wie schicke ich Webartikel an meinen Kindle?
-Melden Sie sich bei byphil an, tragen Sie kindle@byphil.eu in Ihrem Amazon-Konto als zugelassenen Absender ein, hinterlegen Sie die E-Mail-Adresse Ihres Geräts unter Einstellungen → Senden und wählen Sie es beim Senden aus. Drei Sendungen sind gratis, mit Pro unbegrenzt.
+Melden Sie sich bei byphil an, tragen Sie kindle@byphil.eu in Ihrem Amazon-Konto als zugelassenen Absender ein, hinterlegen Sie die E-Mail-Adresse Ihres Geräts unter Einstellungen → Senden und wählen Sie es beim Senden aus. Drei Sendungen sind gratis, mit dem Support Pass unbegrenzt.
 
 Kann ich meine Bibliothek in Claude Desktop oder Cursor nutzen?
 Ja. Schalten Sie unter Einstellungen → KI-Apps die KI-Apps ein, koppeln Sie einmal, und die App kann Ihre Bibliothek durchsuchen, Markierungen zitieren und Quellen nennen. Standardmäßig ist es aus, läuft auf Ihrem Rechner und respektiert, was Sie erlauben.
