@@ -46,7 +46,11 @@ export function createWebdavStore(cfg, { fetchFn, timeoutMs, log } = {}) {
     const status = (e) => (e instanceof TargetError ? e.status : 0);
 
     async function mkcol(url) {
-        try { await safe(url, { method: 'MKCOL', headers: auth }); } catch (e) { if (status(e) !== 405) throw e; }   // 405 = it already exists
+        try { await safe(url, { method: 'MKCOL', headers: auth }); } catch (e) {
+            if (status(e) === 405) return;   // it already exists
+            if (status(e) === 409) throw new TargetError({ kind: 'permanent', status: 409, message: `The server could not create the folder because the folder above it does not exist (${new URL(url).pathname}). Check the address: it must be an existing folder, for Nextcloud https://host/remote.php/dav/files/<your user>/` });
+            throw e;
+        }
     }
     async function ensureDir(dirSegs) {
         const all = [...rootSegs, ...dirSegs];
@@ -61,6 +65,12 @@ export function createWebdavStore(cfg, { fetchFn, timeoutMs, log } = {}) {
 
     return {
         async ping() {
+            // the address itself first, so a wrong address or login is reported as that and not as a failed MKCOL later
+            try { await safe(base, { method: 'PROPFIND', headers: { ...auth, depth: '0' } }); }
+            catch (e) {
+                if (status(e) === 404) throw new TargetError({ kind: 'permanent', status: 404, message: `Nothing was found at ${new URL(base).pathname}. Check the address (Nextcloud: https://host/remote.php/dav/files/<your user>/).` });
+                throw e;
+            }
             try { await safe(urlOf(''), { method: 'PROPFIND', headers: { ...auth, depth: '0' } }); }
             catch (e) { if (status(e) !== 404) throw e; await ensureDir([]); }
             return true;

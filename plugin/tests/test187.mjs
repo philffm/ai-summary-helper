@@ -17,6 +17,12 @@ assert.equal(await W.createWebdavStore(cfg, { fetchFn: dav.fetchFn }).ping(), tr
 const bad = W.createWebdavStore({ ...cfg, password: 'nope' }, { fetchFn: dav.fetchFn });
 await assert.rejects(() => bad.ping(), (e) => e.kind === 'auth' && e.status === 401);
 
+// a wrong address reads as that: the address folder is missing, or a folder above the root is
+const lost = W.createWebdavStore({ ...cfg, url: 'https://cloud.test/dav/missing/' }, { fetchFn: dav.fetchFn });
+await assert.rejects(() => lost.ping(), (e) => e.status === 404 && /Check the address/.test(e.message));
+const deep = W.createWebdavStore({ ...cfg, root: 'a/b/c' }, { fetchFn: dav.fetchFn });
+assert.equal(await deep.ping(), true, 'every level of the root folder is created, parents first');
+
 // put creates folders on the way, returns an etag; get returns the same bytes
 const a = await st.put('articles/a1.json', '{"id":"a1"}', { contentType: 'application/json' });
 assert.ok(a.etag);

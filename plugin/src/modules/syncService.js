@@ -131,6 +131,6 @@ export function createSyncService({ storage, makeStore, stampStore, now = () => 
 }
 
 function describe(e) {
-    if (e instanceof TargetError) return { kind: e.kind, message: e.kind === 'auth' ? 'The server did not accept the username and password.' : e.status === 404 ? 'The address was not found on the server.' : e.message, status: e.status };
+    if (e instanceof TargetError) return { kind: e.kind, message: e.kind === 'auth' ? 'The server did not accept the username and password.' : e.status === 404 && !/Check the address/.test(e.message) ? 'The address was not found on the server.' : e.message, status: e.status };
     return { kind: 'permanent', message: String((e && e.message) || e) };
 }
