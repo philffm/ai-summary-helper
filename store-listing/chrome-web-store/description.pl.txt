@@ -1,0 +1,218 @@
+AI Summary Helper to darmowe rozszerzenie do Chrome o otwartym kodzie, które podsumowuje dowolną stronę, plik PDF lub film z YouTube w Twoim języku — z własnym kluczem AI albo w pełni lokalnym modelem przez Ollama. To, co czytasz, staje się prywatną biblioteką z wyszukiwarką: z wyróżnieniami, pytaniami pogłębiającymi, grafem wiedzy, statystykami czytania, czytnikiem RSS i wysyłaniem do Kindle. Z biblioteki można też korzystać w aplikacjach AI, takich jak Claude Desktop i Cursor. Własny klucz i model lokalny nie wymagają konta, a artykuły zostają na Twoim urządzeniu.
+
+━━━━━━━━━━━━━━━━━━━━
+✨ CO ROBI W JEDNĄ MINUTĘ
+━━━━━━━━━━━━━━━━━━━━
+• Naciśnij Ctrl+Shift+E (⌘+Shift+E na Macu) lub kliknij prawym przyciskiem → „Podsumuj tę stronę”.
+• Wynik pojawia się na bieżąco w panelu bocznym, w oknie rozszerzenia lub na pasku na stronie, w jednym z 41 języków.
+• Kluczowe zdania podświetlają się na stronie jako „widmowe wyróżnienia”, więc od razu trafisz do źródła.
+• Zadawaj pytania pogłębiające; odpowiedzi cytują fragment, z którego pochodzą.
+• Wszystko trafia do Historii: przeszukasz ją, oznaczysz gwiazdką, zobaczysz powiązania tematów i wyeksportujesz.
+
+━━━━━━━━━━━━━━━━━━━━
+🔑 TWOJA AI, TWÓJ WYBÓR
+━━━━━━━━━━━━━━━━━━━━
+Wybierz model pasujący do budżetu i potrzeb prywatności:
+
+• Własny klucz API (BYOK): OpenAI, Google Gemini, Mistral AI lub DeepSeek. Płacisz dostawcy za zapytania, zwykle kilka groszy miesięcznie, zamiast stałego abonamentu.
+• W pełni lokalnie z Ollama: uruchom otwarty model na własnym komputerze lub na serwerze we własnej sieci. Bez klucza, bez opłat za zapytania, a treść stron nie opuszcza komputera.
+• byphil Cloud (opcjonalnie): bez klucza i bez konfiguracji. Zaloguj się e-mailem i jednorazowym kodem i korzystaj z niewielkiego darmowego dziennego limitu; Support Pass (darowizna na rzecz projektu) odblokowuje nieograniczone użycie i wiele dodatkowych modeli.
+
+Własny klucz i opcja na urządzeniu w ogóle nie wymagają konta. Pełny kod źródłowy jest publiczny na GitHubie, więc możesz sprawdzić, co rozszerzenie wysyła i dokąd.
+
+━━━━━━━━━━━━━━━━━━━━
+📄 STRONY, PLIKI PDF I FILMY
+━━━━━━━━━━━━━━━━━━━━
+• Strony i artykuły prasowe: czysty tekst artykułu, bez menu, reklam i banerów cookie.
+• Pliki PDF: prace naukowe, raporty i instrukcje w przeglądarce, także pliki z Twojego komputera.
+• Filmy z YouTube: podsumowania z napisów, by ocenić, czy 40-minutowe wystąpienie warto obejrzeć.
+• Długość: „Auto” dopasowuje się do długości artykułu, albo ustaw stałą długość od 20 do 2000 słów, z krótszym, standardowym lub dłuższym nachyleniem.
+• Prompty: szablony, takie jak Techniczne zagłębienie, Kontekst historyczny, Perspektywa kulturowa i Prognozy na przyszłość, a także kreator „dopasuj do siebie”, który zamienia Twoją rolę i zainteresowania we własny prompt.
+• Podsumuj i zamknij kartę: odbierz najważniejsze punkty, wybierz termin powrotu, a karta zamknie się sama.
+
+━━━━━━━━━━━━━━━━━━━━
+🌍 PODSUMOWANIA W TWOIM JĘZYKU
+━━━━━━━━━━━━━━━━━━━━
+Przeczytaj artykuł po angielsku i otrzymaj najważniejsze punkty po polsku, a także odwrotnie. AI Summary Helper pisze w 41 językach, między innymi po angielsku, niemiecku, francusku, hiszpańsku, włosku, portugalsku, holendersku, polsku, szwedzku, duńsku, ukraińsku, rosyjsku, turecku, arabsku, hindi, japońsku, koreańsku, chińsku (uproszczonym i tradycyjnym), tajsku, indonezyjsku i wietnamsku. Interfejs jest dostępny w 24 językach.
+
+━━━━━━━━━━━━━━━━━━━━
+💬 ZAPYTAJ STRONĘ O CO CHCESZ
+━━━━━━━━━━━━━━━━━━━━
+• Pytania pogłębiające o czytany artykuł, w czacie pamiętającym rozmowę.
+• Znaczniki źródeł wskazują dokładny fragment artykułu.
+• Trzy proponowane pytania po każdym przeglądzie; najpierw krótka odpowiedź, a gdy chcesz więcej, „Zagłęb się”.
+• Przypnij najlepsze odpowiedzi; zapisują się i są eksportowane razem z artykułem.
+
+━━━━━━━━━━━━━━━━━━━━
+🖊️ WYRÓŻNIENIA, KTÓRE ZOSTAJĄ
+━━━━━━━━━━━━━━━━━━━━
+• Widmowe wyróżnianie AI: najważniejsze zdania są zaznaczone jasnoniebieskim bezpośrednio na stronie.
+• Własne wyróżnienia na żółto, z menu prawego przycisku; wracają po ponownym otwarciu strony.
+• Wyróżnienia trafiają razem z artykułem do eksportów Markdown, Word, czytnika e-booków i Obsidiana.
+
+━━━━━━━━━━━━━━━━━━━━
+🎧 CZYTAJ PO SWOJEMU
+━━━━━━━━━━━━━━━━━━━━
+• Słuchaj: artykuł lub przegląd czytany na głos głosami przeglądarki, w wybranym tempie.
+• Szybki odczyt (Instant Read): każde zdanie słychać, gdy tylko AI je napisze, bez użycia rąk.
+• Szybkie czytanie (RSVP): odpowiedź AI słowo po słowie, w wolnym, średnim lub szybkim tempie.
+• Widok czytnika z pierścieniem postępu i spisem treści dla długich artykułów.
+• Wskaźniki czytelności (Flesch i poziom trudności) dla każdego zapisanego artykułu.
+
+━━━━━━━━━━━━━━━━━━━━
+🔖 ZAPISZ NA PÓŹNIEJ, BEZ 100 OTWARTYCH KART
+━━━━━━━━━━━━━━━━━━━━
+Zamknij kartę, zachowaj myśl. Zapisz artykuł z notatką i terminem powrotu: Jutro, Weekend, Ten tydzień lub Sesja badawcza. Powiadomienie Chrome przypomni o nim wraz z notatką, dokładnie kiedy chcesz.
+
+━━━━━━━━━━━━━━━━━━━━
+🗂️ TWOJA BIBLIOTEKA CZYTANIA
+━━━━━━━━━━━━━━━━━━━━
+Każde podsumowanie jest przechowywane w Historii na tym urządzeniu i uporządkowane w Odebrane, Przeczytane, Wysłane, Badania, Kolekcje i Archiwum.
+
+• Wyszukiwanie: błyskawiczne przeszukiwanie pełnego tekstu zapisanych artykułów, na Twoim urządzeniu.
+• Podobne artykuły: zobacz, co w bibliotece wiąże się z czytanym tekstem.
+• Duplikaty wykrywane po linku, tytule i treści.
+• Zapis z archive.ph, Wayback Machine lub 12ft zachowuje link do oryginalnego artykułu, więc biblioteka wskazuje prawdziwe źródło.
+• Kolekcje: grupuj artykuły wokół jednego pytania i opracuj z arkuszem weryfikacji źródeł.
+• Ulubione, tagi, notatki i przypomnienia z terminem.
+
+━━━━━━━━━━━━━━━━━━━━
+🕸️ GRAF WIEDZY
+━━━━━━━━━━━━━━━━━━━━
+Zobacz, jak łączy się wszystko, co przeczytano. Graf wiedzy grupuje artykuły w skupiska tematyczne, łączy te o wspólnych tagach lub treści i pokazuje listę czytania z tematami nieotwieranymi od 30 dni. Napisz krótki brief dla dowolnego skupiska i wyeksportuj go do Markdown.
+
+━━━━━━━━━━━━━━━━━━━━
+📊 STATYSTYKI CZYTANIA
+━━━━━━━━━━━━━━━━━━━━
+• Zaoszczędzony czas: pełne artykuły w porównaniu z krótkimi wersjami.
+• Artykuły, przeczytane słowa, seria dni i najlepsza seria.
+• Wykres aktywności z 30 dni lub 12 tygodni.
+• Najczęstsze kategorie i chmura słów z tego, co czytasz.
+• Nastrój w czasie: ton czytanych wiadomości według dnia, tygodnia lub miesiąca oraz to, co go zmieniło.
+
+Wszystkie statystyki są obliczane na Twoim urządzeniu. Nic nie trafia do usługi śledzącej.
+
+━━━━━━━━━━━━━━━━━━━━
+🖥️ TRYB SZEROKI I WIDOK PODZIELONY (NOWOŚĆ W 2.2)
+━━━━━━━━━━━━━━━━━━━━
+Otwórz AI Summary Helper w osobnej karcie lub rozszerz panel boczny, a Historia i Kanały przełączą się na widok podzielony: lista i graf wiedzy obok siebie od 720 pikseli, lista, graf i statystyki w trzech panelach od 1100 pikseli. Wybierz w nagłówku 1, 2 lub 3 panele i to, co pokazuje każdy.
+
+━━━━━━━━━━━━━━━━━━━━
+📰 CZYTNIK RSS Z PODSUMOWANIAMI AI
+━━━━━━━━━━━━━━━━━━━━
+• Obserwuj blogi, gazety i podcasty przez RSS lub Atom; subskrypcje importujesz i eksportujesz jako OPML.
+• Dzienne podsumowania, które tworzą przeglądy tygodniowe i miesięczne, pisane przez wybraną AI. Wysyłane są tylko tytuły i fragmenty, tylko na Twoje życzenie.
+• Z modelem lokalnym nowe wpisy mogą być oceniane i podsumowywane w tle co 15 minut do 6 godzin.
+• Stosy wiadomości grupują ten sam temat z różnych mediów.
+• Analiza kanałów: aktywność, tematy, Twoja „dieta źródeł” z ostatnich 30 dni oraz nastrój kanałów w czasie.
+• Wbudowany odtwarzacz podcastów, grający dalej po zamknięciu okna, od 0,75× do 2×.
+• Oznacz wpis gwiazdką, aby otrzymać jego najważniejsze punkty i zapisać go w Historii.
+
+━━━━━━━━━━━━━━━━━━━━
+🎓 TRYB BADAWCZY I CYTOWANIA
+━━━━━━━━━━━━━━━━━━━━
+• Wykrywa prace naukowe w PubMed, Springer, Wiley, JSTOR i innych.
+• Poprawne cytowania na podstawie DOI w stylach APA 7, MLA 9, Chicago (autor-data), BibTeX i RIS. Dane cytowań pochodzą z doi.org, nigdy od AI, a z urządzenia wychodzi tylko DOI.
+• Pobierz references.bib lub .ris dla Zotero, Mendeley lub LaTeX.
+• Weryfikacja źródła dla dowolnej strony: typ, autor, data i wydawca, plus cztery pytania do czytania lateralnego, by ocenić źródło, zanim mu zaufasz. Wskazówki, nie oceny.
+• Karta Badania z filtrami dla przeglądów, badań klinicznych i preprintów.
+
+━━━━━━━━━━━━━━━━━━━━
+📤 WYSYŁAJ, EKSPORTUJ I UDOSTĘPNIAJ
+━━━━━━━━━━━━━━━━━━━━
+• Wyślij do Kindle: przeglądy i sformatowane artykuły, z wyróżnieniami, dostarczane prosto na czytnik jako EPUB (sam tekst lub z obrazami) albo HTML. Wymaga darmowego logowania byphil; 3 wysyłki są darmowe, bez limitu z Support Pass.
+• LocalSend: wysyłaj artykuły przez domowe Wi-Fi na telefony, tablety lub czytniki KOReader, bez chmury po drodze.
+• Wyślij na telefon: sparuj telefon kodem QR. Linki udostępnione na telefonie trafiają do Historii z szyfrowaniem end-to-end, a pełne artykuły odeślesz na telefon.
+• Skrót magazynowy: kilka artykułów w jednym numerze dla czytnika, LocalSend lub Markdown.
+• Eksportuj do Markdown (jeden artykuł lub całą bibliotekę jako ZIP z front matter), Worda (DOCX), OpenDocument (ODT) lub PDF, albo wyślij prosto do Obsidian.
+• Udostępnianie przez systemowe menu, gdzie jest dostępne.
+• Kopia zapasowa i przywracanie całej biblioteki i ustawień; klucze API i logowania są pomijane w kopiach, chyba że zdecydujesz się je dołączyć. Notatki i komentarze: zaznacz tekst, a następnie wyróżnij go, skomentuj lub zapisz notatkę z cytatem.
+
+━━━━━━━━━━━━━━━━━━━━
+☁️ TWOJA BIBLIOTEKA NA WŁASNYM MIEJSCU (NOWOŚĆ)
+━━━━━━━━━━━━━━━━━━━━
+Miej bibliotekę na wszystkich komputerach, twórz jej kopie lub publikuj jej część, nikomu jej nie oddając. W Ustawienia → Synchr. i kopie dodaj miejsce: Nextcloud lub inny serwer WebDAV, bucket zgodny z S3 albo folder na komputerze.
+
+• Szyfrowanie: wszystko jest szyfrowane w przeglądarce Twoją frazą, zanim opuści urządzenie, więc serwer widzi tylko nieczytelne pliki. Bez frazy nikt ich nie odczyta, także my.
+• Dwukierunkowa synchronizacja między urządzeniami, scalana pole po polu. Ta sama strona zapisana dwa razy staje się jednym artykułem, a fala usunięć z innego urządzenia czeka na Twoją zgodę.
+• Miejsca tylko do kopii zapasowych i przywracanie jednym kliknięciem.
+• Opublikuj listę na własnej stronie: wybierz artykuły według tagu i otrzymaj zwykłe pliki oraz stronę podglądu z wyszukiwaniem, osią czasu, grafem tagów i mapą 3D tego, co zapisałeś. Notatki i pełne teksty zostają poza nią, dopóki ich nie włączysz.
+• Wyłączone, dopóki nie dodasz miejsca. Nie prowadzimy serwera synchronizacji i niczego nie widzimy.
+
+━━━━━━━━━━━━━━━━━━━━
+🔌 TWOJA BIBLIOTEKA W APLIKACJACH AI (NOWOŚĆ)
+━━━━━━━━━━━━━━━━━━━━
+Twoja aplikacja AI nie czytała tego, co Ty. Włącz Aplikacje AI w Ustawieniach, a Claude Desktop, Cursor, LM Studio i inne aplikacje MCP na Twoim komputerze będą mogły korzystać z Twojej biblioteki.
+
+• Przeszukuj zapisane artykuły, cytuj wyróżnienia, sprawdzaj, co czeka na przeczytanie, i przeglądaj kolekcje oraz kanały.
+• Poproś o przegląd tygodnia, brief z kolekcji lub swój rok czytania jako raport, w którym każde twierdzenie ma link do źródła.
+• Domyślnie wyłączone. Ty decydujesz, co aplikacja może czytać: bibliotekę, pełny tekst artykułów, kanały, oraz czy może zapisywać linki.
+• Artykuły z tagiem „private” nigdy się nie pojawiają, a dziennik aktywności pokazuje każde wywołanie.
+• Działa na Twoim komputerze; nic nie przechodzi przez nasze serwery.
+
+━━━━━━━━━━━━━━━━━━━━
+🔒 PRYWATNOŚĆ OD PODSTAW
+━━━━━━━━━━━━━━━━━━━━
+• Artykuły, wyróżnienia, kanały i statystyki są przechowywane w Twojej przeglądarce, na Twoim urządzeniu. Synchronizacja, kopie i publikowanie trafiają tylko na serwer lub do folderu, który sam dodasz.
+• Treść stron jest wysyłana wyłącznie do wybranego dostawcy AI, a przy modelu na urządzeniu do nikogo.
+• Aplikacje AI czytają bibliotekę tylko po włączeniu, tylko na Twoim komputerze i tylko to, na co pozwolisz.
+• Bez SDK śledzących i analitycznych, reklam i sprzedaży danych.
+• Otwarty kod: pełny kod jest publiczny na GitHubie (philffm/ai-summary-helper) i każdy może go sprawdzić.
+• Stworzone w UE przez byphil.
+
+━━━━━━━━━━━━━━━━━━━━
+♿ DOSTĘPNE I WYGODNE
+━━━━━━━━━━━━━━━━━━━━
+• Motywy jasny, ciemny i wysokiego kontrastu albo zgodny z systemem.
+• Rozmiar tekstu od 85 do 150 procent i trzy opcje interlinii.
+• Opcjonalna czcionka Atkinson Hyperlegible dla lepszej czytelności.
+• Szanuje ograniczenie ruchu; skróty klawiszowe w całej aplikacji (naciśnij ?, by zobaczyć wszystkie).
+• Ustawienia wstępne: Domyślny, Duży, Kontrast i Spokojny.
+
+━━━━━━━━━━━━━━━━━━━━
+⌨️ GDZIE Z TEGO KORZYSTAĆ
+━━━━━━━━━━━━━━━━━━━━
+• Panel boczny Chrome, okno rozszerzenia, pasek boczny na stronie, osobna karta lub wysuwane okno.
+• Klawiatura: Ctrl+Shift+E podsumowuje bieżącą stronę, Ctrl+Shift+Y otwiera AI Summary Helper (⌘ na Macu). W aplikacji: Ctrl+F lub / do wyszukiwania, j i k do przechodzenia między kartami, Esc, aby wrócić.
+• Menu prawego przycisku: Podsumuj tę stronę, Podsumuj i zamknij kartę, Wyróżnij zaznaczenie, Usuń wszystkie wyróżnienia.
+• Inne przeglądarki i telefony: bookmarklet daje podsumowania w każdej przeglądarce, także na iOS i Androidzie (wymaga byphil Cloud).
+
+━━━━━━━━━━━━━━━━━━━━
+❓ NAJCZĘŚCIEJ ZADAWANE PYTANIA
+━━━━━━━━━━━━━━━━━━━━
+Czy AI Summary Helper jest darmowy?
+Tak. Rozszerzenie jest darmowe i ma otwarty kod. Z własnym kluczem API płacisz bezpośrednio dostawcy, zwykle kilka groszy miesięcznie. Model na urządzeniu nic nie kosztuje. byphil Cloud zawiera niewielki darmowy dzienny limit; Support Pass, czyli darowizna na rzecz projektu, znosi limity.
+
+Czy mogę podsumowywać strony lokalnym modelem AI?
+Tak. Zainstaluj Ollama, pobierz otwarty model i wybierz opcję lokalną w konfiguracji. Wtedy wszystko, także pytania pogłębiające i podsumowania kanałów, działa na Twoim komputerze lub na własnym serwerze Ollama w sieci.
+
+Którzy dostawcy AI działają z moim własnym kluczem API?
+OpenAI, Google Gemini, Mistral AI i DeepSeek, a także modele lokalne i hostowane we własnym zakresie.
+
+Czy działa z plikami PDF i YouTube?
+Tak. Pliki PDF otwarte w Chrome, także z Twojego komputera, oraz filmy z YouTube z napisami działają jak każda inna strona.
+
+Czy może podsumować angielski artykuł w innym języku?
+Tak. Wybierz dowolny z 41 języków podsumowań; źródło może być w innym języku.
+
+Jak wysłać artykuły z sieci na mojego Kindle'a?
+Zaloguj się do byphil, dodaj kindle@byphil.eu jako zatwierdzonego nadawcę na koncie Amazon, wpisz adres e-mail urządzenia w Ustawienia → Wyślij i wybierz go w Wyślij. Trzy wysyłki są darmowe; Support Pass znosi limit.
+
+Czy mogę używać biblioteki w Claude Desktop lub Cursorze?
+Tak. Włącz Aplikacje AI w Ustawienia → Aplikacje AI (MCP), sparuj raz, a aplikacja będzie mogła przeszukiwać Twoją bibliotekę, cytować Twoje wyróżnienia i podawać źródła. Jest domyślnie wyłączone, działa na Twoim komputerze i respektuje to, na co pozwolisz.
+
+Czy moje dane są prywatne?
+Twoja biblioteka zostaje w Twojej przeglądarce. Tekst stron trafia tylko do wybranego dostawcy AI, a przy modelu na urządzeniu donikąd. Rozszerzenie nie zawiera SDK śledzącego, a kod jest otwarty.
+
+Czym różni się od innych rozszerzeń podsumowujących z AI?
+Większość narzędzi do czytania z AI uzależnia od jednego dostawcy, wymaga konta i kieruje wszystko przez swoje serwery w abonamencie. AI Summary Helper pozwala użyć własnego klucza lub działać w pełni lokalnie, w żadnym z tych przypadków nie wymaga konta i zamienia to, co czytasz, w bibliotekę z wyszukiwarką, grafem wiedzy, statystykami, RSS i eksportem na czytnik.
+
+━━━━━━━━━━━━━━━━━━━━
+🚀 ZACZNIJ
+━━━━━━━━━━━━━━━━━━━━
+1. Dodaj AI Summary Helper do Chrome i przypnij go do paska narzędzi.
+2. W krótkiej konfiguracji wybierz byphil Cloud, własny klucz API lub model na urządzeniu.
+3. Otwórz dowolny artykuł, plik PDF lub film i naciśnij Ctrl+Shift+E (⌘+Shift+E na Macu).
+4. Czytaj, słuchaj, zadawaj pytania pogłębiające i znajdź to później w Historii.
+
+Opinie i pomysły mile widziane na GitHubie. Stworzone przez byphil.

@@ -1,0 +1,218 @@
+AI Summary Helper is een gratis, open-source Chrome-extensie die elke webpagina, pdf of YouTube-video samenvat in jouw taal, met je eigen AI-sleutel of een volledig lokaal model via Ollama. Wat je leest wordt een privé, doorzoekbare bibliotheek met markeringen, vervolgvragen, kennisgrafiek, leesstatistieken, RSS-lezer en Naar Kindle sturen. Je bibliotheek werkt ook in AI-apps als Claude Desktop en Cursor. Voor je eigen sleutel of een lokaal model heb je geen account nodig; je artikelen blijven op je apparaat.
+
+━━━━━━━━━━━━━━━━━━━━
+✨ WAT HET IN ÉÉN MINUUT DOET
+━━━━━━━━━━━━━━━━━━━━
+• Druk op Ctrl+Shift+E (⌘+Shift+E op Mac) of klik met rechts op "Deze pagina samenvatten".
+• Het resultaat verschijnt live in het zijpaneel, de popup of een zijbalk op de pagina, in 41 talen.
+• Sleutelzinnen lichten op de pagina op als "spookmarkeringen", zodat je direct bij het bewijs bent.
+• Stel vervolgvragen; antwoorden citeren de passage waar ze vandaan komen.
+• Alles staat in je Geschiedenis: doorzoek, geef een ster, zie hoe onderwerpen samenhangen, exporteer.
+
+━━━━━━━━━━━━━━━━━━━━
+🔑 JOUW AI, JOUW KEUZE
+━━━━━━━━━━━━━━━━━━━━
+Kies het model dat bij je budget en privacy past:
+
+• Eigen API-sleutel (BYOK): OpenAI, Google Gemini, Mistral AI of DeepSeek. Je betaalt de aanbieder per verzoek, meestal een paar cent per maand, geen vast abonnement.
+• Volledig lokaal met Ollama: draai een open model op je computer of op een zelfgehoste server in je netwerk. Geen API-sleutel, geen kosten per verzoek, en pagina-inhoud verlaat je computer nooit.
+• byphil Cloud (optioneel): geen sleutel en geen installatie. Log in met je e-mailadres en een eenmalige code en krijg een klein gratis dagtegoed; een Support Pass (een donatie aan het project) geeft onbeperkt gebruik en veel meer modellen.
+
+Voor je eigen sleutel en de lokale optie heb je geen account nodig. De volledige broncode is openbaar op GitHub, dus je kunt nagaan wat de extensie verstuurt en waarheen.
+
+━━━━━━━━━━━━━━━━━━━━
+📄 WEBPAGINA'S, PDF'S EN VIDEO'S
+━━━━━━━━━━━━━━━━━━━━
+• Webpagina's en nieuwsartikelen: de artikeltekst netjes uitgelezen, zonder menu's, advertenties of cookiebanners.
+• Pdf's: onderzoeksartikelen, rapporten en handleidingen in je browser, ook lokale bestanden.
+• YouTube-video's: samenvattingen op basis van de ondertitels, zodat je weet of een lezing van 40 minuten je tijd waard is.
+• Lengte: "Auto" schaalt mee met de lengte van het artikel, of stel een vaste lengte in van 20 tot 2.000 woorden, met een korte, standaard of lange voorkeur.
+• Prompts: presets zoals Technische verdieping, Historische context, Cultureel perspectief en Toekomstvoorspellingen, plus een begeleide "maak het van jou"-assistent die je rol en interesses omzet in een eigen prompt.
+• Samenvatten & tabblad sluiten: krijg de hoofdpunten, kies wanneer je terugkomt en het tabblad sluit zichzelf.
+
+━━━━━━━━━━━━━━━━━━━━
+🌍 SAMENVATTEN IN JOUW TAAL
+━━━━━━━━━━━━━━━━━━━━
+Lees een Engels artikel en krijg de hoofdpunten in het Nederlands, Duits, Japans of Spaans, of andersom. AI Summary Helper schrijft in 41 talen, waaronder Engels, Duits, Frans, Spaans, Italiaans, Portugees, Nederlands, Pools, Zweeds, Deens, Oekraïens, Russisch, Turks, Arabisch, Hindi, Japans, Koreaans, Chinees (vereenvoudigd en traditioneel), Thai, Indonesisch en Vietnamees. De interface zelf is er in 24 talen.
+
+━━━━━━━━━━━━━━━━━━━━
+💬 STEL DE PAGINA VRAGEN
+━━━━━━━━━━━━━━━━━━━━
+• Vervolgvragen over het artikel, in een chat die het gesprek onthoudt.
+• Antwoorden hebben bronlabels die naar de exacte passage wijzen.
+• Drie voorgestelde vragen na elk overzicht, en eerst een kort antwoord met "Dieper graven" als je meer wilt.
+• Pin de beste antwoorden vast; ze worden met het artikel opgeslagen en geëxporteerd.
+
+━━━━━━━━━━━━━━━━━━━━
+🖊️ MARKERINGEN DIE BLIJVEN
+━━━━━━━━━━━━━━━━━━━━
+• AI-spookmarkeringen: de belangrijkste zinnen worden lichtblauw gemarkeerd, direct op de pagina.
+• Je eigen markeringen in geel, via het rechtermuisknopmenu; ze komen terug als je de pagina heropent.
+• Markeringen gaan mee met het artikel naar exports in Markdown, Word, e-reader en Obsidian.
+
+━━━━━━━━━━━━━━━━━━━━
+🎧 LEES OP JOUW MANIER
+━━━━━━━━━━━━━━━━━━━━
+• Luisteren: laat artikelen of overzichten voorlezen met de stemmen van je browser, in jouw tempo.
+• Direct lezen: hoor elke zin zodra de AI hem schrijft, handsfree.
+• Snellezen (RSVP): lees het AI-antwoord woord voor woord terwijl het binnenkomt, in langzaam, gemiddeld of snel tempo.
+• Leesweergave met voortgangsring en inhoudsopgave voor lange artikelen.
+• Leesbaarheidsscores (Flesch-leesgemak en niveau) per opgeslagen artikel.
+
+━━━━━━━━━━━━━━━━━━━━
+🔖 BEWAAR VOOR LATER, ZONDER 100 OPEN TABBLADEN
+━━━━━━━━━━━━━━━━━━━━
+Sluit het tabblad, houd de gedachte vast. Bewaar een artikel met een notitie en een moment om terug te komen: Morgen, Weekend, Deze week of Onderzoekssessie. Een Chrome-melding haalt je er op het gevraagde moment terug, met je notitie.
+
+━━━━━━━━━━━━━━━━━━━━
+🗂️ JE LEESBIBLIOTHEEK
+━━━━━━━━━━━━━━━━━━━━
+Elke samenvatting wordt op dit apparaat bewaard in je Geschiedenis, geordend in Inbox, Gelezen, Gestuurd, Onderzoek, Collecties en Archief.
+
+• Zoeken: direct zoeken in de volledige tekst van al je artikelen, op je apparaat.
+• Vergelijkbare artikelen: zie wat in je bibliotheek verwant is aan het artikel dat je leest.
+• Dubbelen worden herkend op link, titel en inhoud, zodat je bibliotheek netjes blijft.
+• Opslaan vanaf archive.ph, de Wayback Machine of 12ft behoudt de originele link, zodat je bibliotheek naar de echte bron wijst.
+• Collecties: groepeer artikelen rond één vraag en werk ze door met een bronnenwerkblad.
+• Favorieten, tags, notities en herinneringen.
+
+━━━━━━━━━━━━━━━━━━━━
+🕸️ KENNISGRAFIEK
+━━━━━━━━━━━━━━━━━━━━
+Zie hoe alles wat je las samenhangt. De kennisgrafiek groepeert artikelen in onderwerpclusters, verbindt artikelen met dezelfde tags of inhoud en toont een leeslijst met onderwerpen die je 30 dagen niet opende. Schrijf een korte brief per cluster en exporteer die als Markdown.
+
+━━━━━━━━━━━━━━━━━━━━
+📊 LEESSTATISTIEKEN
+━━━━━━━━━━━━━━━━━━━━
+• Bespaarde tijd: hoe lang de volledige artikelen hadden gekost, vergeleken met de korte versies.
+• Artikelen, gelezen woorden, dagenreeks en beste reeks.
+• Activiteitengrafiek voor de laatste 30 dagen of 12 weken.
+• Topcategorieën en een woordenwolk van je lectuur.
+• Stemming in de tijd: de toon van het nieuws dat je leest, per dag, week of maand, en wat die veranderde.
+
+Alle statistieken worden op je apparaat berekend. Niets gaat naar een trackingdienst.
+
+━━━━━━━━━━━━━━━━━━━━
+🖥️ BREDE MODUS EN GESPLITSTE WEERGAVE (NIEUW IN 2.2)
+━━━━━━━━━━━━━━━━━━━━
+Open AI Summary Helper in een eigen tabblad of sleep het zijpaneel breder, en Geschiedenis en Feeds krijgen een gesplitste weergave: lijst en kennisgrafiek naast elkaar vanaf 720 pixels, lijst, grafiek en statistieken als drie panelen vanaf 1.100 pixels. Kies 1, 2 of 3 panelen in de kop en wat elk toont.
+
+━━━━━━━━━━━━━━━━━━━━
+📰 RSS-LEZER MET AI-SAMENVATTINGEN
+━━━━━━━━━━━━━━━━━━━━
+• Volg blogs, kranten en podcasts via RSS of Atom; importeer en exporteer je abonnementen als OPML.
+• Dagelijkse samenvattingen die doorlopen in week- en maandoverzichten, geschreven door je gekozen AI. Alleen titels en fragmenten worden verstuurd, en alleen op jouw verzoek.
+• Met een lokaal model kunnen nieuwe items elke 15 minuten tot 6 uur op de achtergrond worden beoordeeld en samengevat.
+• Verhaalstapels groeperen hetzelfde verhaal van verschillende media.
+• Feed-inzichten: activiteit, onderwerpen, je "bronnendieet" van de afgelopen 30 dagen en de stemming van je feeds in de tijd.
+• Ingebouwde podcastspeler die speelt door als de popup sluit, op 0,75× tot 2× snelheid.
+• Geef een item een ster voor de hoofdpunten en bewaar het in je Geschiedenis.
+
+━━━━━━━━━━━━━━━━━━━━
+🎓 ONDERZOEKSMODUS EN CITATEN
+━━━━━━━━━━━━━━━━━━━━
+• Herkent wetenschappelijke artikelen op PubMed, Springer, Wiley, JSTOR en bij andere uitgevers.
+• Correcte citaten vanuit de DOI in APA 7, MLA 9, Chicago (auteur-jaar), BibTeX en RIS. Citaatgegevens komen van doi.org, nooit van de AI, en alleen de DOI verlaat je apparaat.
+• Download references.bib of .ris voor Zotero, Mendeley of LaTeX.
+• Bronnencheck voor elke pagina: type, auteur, datum en uitgever, plus vier vragen voor lateraal lezen om een bron te beoordelen voor je erop vertrouwt. Aanwijzingen, geen beoordelingen.
+• Een tabblad Onderzoek met filters voor reviews, trials en preprints.
+
+━━━━━━━━━━━━━━━━━━━━
+📤 STUREN, EXPORTEREN EN DELEN
+━━━━━━━━━━━━━━━━━━━━
+• Naar Kindle sturen: overzichten en opgemaakte artikelen, inclusief markeringen, direct naar je e-reader als EPUB (tekst, of met afbeeldingen) of HTML. Vereist een gratis byphil-login; 3 verzendingen zijn gratis, onbeperkt met een Support Pass.
+• LocalSend: stuur artikelen via je wifi thuis naar telefoons, tablets of KOReader-e-readers, zonder cloud ertussen.
+• Naar telefoon sturen: koppel je telefoon met een QR-code. Links die je op de telefoon deelt komen end-to-end versleuteld aan in je Geschiedenis, en volledige artikelen stuur je terug naar de telefoon.
+• Magazinedigest: bundel meerdere artikelen tot één editie voor je e-reader, LocalSend of Markdown.
+• Exporteer als Markdown (één artikel, of de hele bibliotheek als ZIP met front matter), Word (DOCX), OpenDocument (ODT) of pdf, of stuur het naar Obsidian.
+• Delen via het deelmenu van je systeem, waar beschikbaar.
+• Back-up en herstel van je hele bibliotheek en instellingen; API-sleutels en logins blijven erbuiten, tenzij je ze opneemt. Notities en reacties: selecteer tekst en markeer die, geef er commentaar op of bewaar een notitie met het citaat.
+
+━━━━━━━━━━━━━━━━━━━━
+☁️ JE BIBLIOTHEEK OP JE EIGEN OPSLAG (NIEUW)
+━━━━━━━━━━━━━━━━━━━━
+Houd je bibliotheek op al je computers bij, maak een back-up of publiceer een deel, zonder het uit handen te geven. Voeg in Instellingen → Sync & back-up een locatie toe: Nextcloud of een andere WebDAV-server, een S3-compatibele bucket of een map op je computer.
+
+• Versleuteld: alles wordt in je browser met je wachtwoordzin versleuteld voordat het je apparaat verlaat, dus de server ziet alleen onleesbare bestanden. Zonder wachtwoordzin kan niemand ze lezen, wij ook niet.
+• Tweerichtingssync tussen je apparaten, veld voor veld samengevoegd. Dezelfde pagina twee keer opgeslagen wordt één artikel, en een golf verwijderingen van een ander apparaat wacht op jouw akkoord.
+• Locaties alleen voor back-ups, en herstel met één klik.
+• Publiceer een lijst op je eigen website: kies artikelen op tag en krijg gewone bestanden plus een weergavepagina met zoeken, tijdlijn, taggrafiek en een 3D-kaart van je bewaarde artikelen. Notities en volledige teksten blijven erbuiten tenzij je ze aanzet.
+• Uit tot je een locatie toevoegt. Wij draaien geen syncserver en zien niets.
+
+━━━━━━━━━━━━━━━━━━━━
+🔌 JE BIBLIOTHEEK IN JE AI-APPS (NIEUW)
+━━━━━━━━━━━━━━━━━━━━
+Je AI-app heeft nooit gelezen wat jij leest. Zet AI-apps aan in Instellingen en Claude Desktop, Cursor, LM Studio en andere MCP-apps op je computer kunnen je bibliotheek gebruiken.
+
+• Doorzoek je artikelen, citeer je markeringen, zie wat aan de beurt is en blader door collecties en feeds.
+• Vraag om een weekoverzicht, een brief uit één collectie of je leesjaar als rapport, met elke bewering gekoppeld aan de bron.
+• Standaard uit. Jij bepaalt wat een app mag lezen: bibliotheek, volledige artikeltekst, feeds, en of het links mag opslaan.
+• Artikelen met de tag "private" verschijnen nooit, en een activiteitenlogboek toont elke aanroep.
+• Draait op je computer; niets gaat via onze servers.
+
+━━━━━━━━━━━━━━━━━━━━
+🔒 PRIVACY DOOR ONTWERP
+━━━━━━━━━━━━━━━━━━━━
+• Artikelen, markeringen, feeds en statistieken staan in je browser, op je apparaat. Sync, back-up en publiceren gaan alleen naar een server of map die je zelf toevoegt.
+• Pagina-inhoud gaat alleen naar de AI-aanbieder die je koos, of naar niemand met een model op je apparaat.
+• AI-apps kunnen je bibliotheek alleen lezen als je dat aanzet, alleen op je computer, en alleen wat jij toestaat.
+• Geen tracking- of analyse-SDK, geen advertenties, geen verkoop van gegevens.
+• Open source: de volledige code is openbaar op GitHub (philffm/ai-summary-helper), voor iedereen om te controleren.
+• Gemaakt in de EU door byphil.
+
+━━━━━━━━━━━━━━━━━━━━
+♿ TOEGANKELIJK EN COMFORTABEL
+━━━━━━━━━━━━━━━━━━━━
+• Lichte, donkere en hoogcontrastthema's, of volg je systeem.
+• Tekstgrootte van 85 tot 150 procent en drie regelafstanden.
+• Optioneel het lettertype Atkinson Hyperlegible voor betere leesbaarheid.
+• Respecteert beperkte beweging; overal sneltoetsen (? toont ze allemaal).
+• Presets: Standaard, Groot, Contrast en Rustig.
+
+━━━━━━━━━━━━━━━━━━━━
+⌨️ WAAR JE HET KUNT GEBRUIKEN
+━━━━━━━━━━━━━━━━━━━━
+• Zijpaneel van Chrome, popup, zijbalk op de pagina, eigen tabblad of los venster.
+• Toetsenbord: Ctrl+Shift+E vat de pagina samen, Ctrl+Shift+Y opent AI Summary Helper (⌘ op Mac). In de app: Ctrl+F of / om te zoeken, j en k om tussen kaarten te gaan, Esc om terug te gaan.
+• Rechtermuisknopmenu: Deze pagina samenvatten, Samenvatten & tabblad sluiten, Selectie markeren, Alle markeringen verwijderen.
+• Andere browsers en telefoons: een bookmarklet brengt samenvattingen naar elke browser, ook iOS en Android (vereist byphil Cloud).
+
+━━━━━━━━━━━━━━━━━━━━
+❓ VEELGESTELDE VRAGEN
+━━━━━━━━━━━━━━━━━━━━
+Is AI Summary Helper gratis?
+Ja. De extensie is gratis en open source. Met je eigen API-sleutel betaal je je aanbieder rechtstreeks, meestal een paar cent per maand. Een model op je apparaat kost niets. byphil Cloud bevat een klein gratis dagtegoed; een Support Pass, een donatie aan het project, heft de limieten op.
+
+Kan ik webpagina's samenvatten met een lokaal AI-model?
+Ja. Installeer Ollama, download een open model en kies de lokale optie bij de installatie. Alles, ook vervolgvragen en feedsamenvattingen, draait dan op je computer, ook met een zelfgehoste Ollama-server in je netwerk.
+
+Welke AI-aanbieders werken met mijn eigen API-sleutel?
+OpenAI, Google Gemini, Mistral AI en DeepSeek, plus lokale en zelfgehoste modellen.
+
+Werkt het met pdf's en YouTube?
+Ja. Pdf's in Chrome, ook lokale bestanden, en YouTube-video's met ondertiteling werken zoals elke andere pagina.
+
+Kan het een Engels artikel in een andere taal samenvatten?
+Ja. Kies een van de 41 samenvattingstalen; de bron mag in een andere taal zijn.
+
+Hoe stuur ik artikelen naar mijn Kindle?
+Log in bij byphil, voeg kindle@byphil.eu toe als goedgekeurde afzender in je Amazon-account, vul het e-mailadres van je apparaat in bij Instellingen → Verzenden en kies het onder Stuur. Drie verzendingen zijn gratis; met een Support Pass is het onbeperkt.
+
+Kan ik mijn bibliotheek gebruiken in Claude Desktop of Cursor?
+Ja. Zet AI-apps aan bij Instellingen → AI-apps, koppel één keer, en de app kan in je bibliotheek zoeken, je markeringen citeren en bronnen noemen. Het staat standaard uit, draait op je computer en houdt zich aan wat je toestaat.
+
+Zijn mijn gegevens privé?
+Je bibliotheek blijft in je browser. Paginatekst gaat alleen naar de AI-aanbieder die je koos, of nergens heen met een model op je apparaat. De extensie bevat geen tracking-SDK; de code is open voor controle.
+
+Wat onderscheidt dit van andere AI-samenvatters?
+De meeste AI-leestools binden je aan één aanbieder, vereisen een account en sturen alles via hun servers, voor een maandabonnement. AI Summary Helper werkt met je eigen sleutel of volledig lokaal, zonder account, en maakt van je lectuur een doorzoekbare bibliotheek met kennisgrafiek, statistieken, RSS en e-reader-export.
+
+━━━━━━━━━━━━━━━━━━━━
+🚀 AAN DE SLAG
+━━━━━━━━━━━━━━━━━━━━
+1. Voeg AI Summary Helper toe aan Chrome en pin het vast in de werkbalk.
+2. Kies byphil Cloud, je eigen API-sleutel of een model op je apparaat in de korte setup.
+3. Open een artikel, pdf of video en druk op Ctrl+Shift+E (⌘+Shift+E op Mac).
+4. Lees, luister, stel vervolgvragen en vind het later terug in je Geschiedenis.
+
+Feedback en functieverzoeken zijn welkom op GitHub. Gemaakt door byphil.

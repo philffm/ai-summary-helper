@@ -1,0 +1,218 @@
+AI Summary Helper è un'estensione di Chrome gratuita e open source che riassume qualsiasi pagina web, PDF o video di YouTube nella tua lingua, con la tua chiave IA o con un modello locale tramite Ollama. Ciò che leggi diventa una libreria privata e ricercabile con evidenziazioni, domande di approfondimento, grafo della conoscenza, statistiche di lettura, lettore RSS e Invia a Kindle, utilizzabile anche da app di IA come Claude Desktop e Cursor. Con la tua chiave o un modello locale non serve alcun account, e i tuoi articoli restano sul tuo dispositivo.
+
+━━━━━━━━━━━━━━━━━━━━
+✨ COSA FA IN UN MINUTO
+━━━━━━━━━━━━━━━━━━━━
+• Premi Ctrl+Shift+E (⌘+Shift+E su Mac) oppure fai clic destro → "Riassumi questa pagina".
+• Il risultato arriva in streaming nel pannello laterale, nel popup o in una barra laterale nella pagina, in una delle 41 lingue.
+• Le frasi chiave si illuminano sulla pagina come "evidenziazioni fantasma", così puoi andare dritto alle prove.
+• Fai domande di approfondimento; le risposte citano il passaggio da cui provengono.
+• Tutto finisce nella Cronologia: cercalo, contrassegnalo con la stella, guarda i collegamenti tra argomenti, esportalo.
+
+━━━━━━━━━━━━━━━━━━━━
+🔑 LA TUA IA, LA TUA SCELTA
+━━━━━━━━━━━━━━━━━━━━
+Scegli il modello adatto a budget e privacy:
+
+• Chiave API personale (BYOK): OpenAI, Google Gemini, Mistral AI o DeepSeek. Paghi il provider a richiesta, di solito pochi centesimi al mese, senza abbonamento fisso.
+• Completamente locale con Ollama: esegui un modello aperto sul tuo computer o su un server self-hosted in rete. Nessuna chiave API, nessun costo per richiesta, e il contenuto delle pagine non lascia mai il computer.
+• byphil Cloud (facoltativo): nessuna chiave e nessuna configurazione. Accedi con email e codice monouso e ottieni una piccola quota giornaliera gratuita; un Support Pass (una donazione al progetto) sblocca uso illimitato e molti più modelli.
+
+Chiave personale e opzione sul dispositivo non richiedono account. Il codice sorgente è pubblico su GitHub: puoi verificare cosa invia l'estensione.
+
+━━━━━━━━━━━━━━━━━━━━
+📄 PAGINE WEB, PDF E VIDEO
+━━━━━━━━━━━━━━━━━━━━
+• Pagine web e articoli: testo estratto pulito, senza menu, pubblicità o banner dei cookie.
+• PDF: articoli scientifici, report e manuali aperti nel browser, compresi i file sul tuo computer.
+• Video di YouTube: riassunti dai sottotitoli, per decidere se un intervento di 40 minuti vale il tuo tempo.
+• Lunghezza: "Auto" si adatta alla lunghezza dell'articolo, oppure una lunghezza fissa da 20 a 2.000 parole, con tendenza breve, standard o lunga.
+• Prompt: preset come Approfondimento tecnico, Contesto storico, Prospettiva culturale e Previsioni future, più un builder guidato "rendilo tuo" che trasforma ruolo e interessi in un tuo prompt.
+• Riassumi e chiudi la scheda: ottieni i punti chiave, scegli quando tornare e la scheda si chiude da sola.
+
+━━━━━━━━━━━━━━━━━━━━
+🌍 RIASSUNTI NELLA TUA LINGUA
+━━━━━━━━━━━━━━━━━━━━
+Leggi un articolo in inglese e ottieni il riassunto in italiano, o viceversa. AI Summary Helper scrive in 41 lingue, tra cui inglese, tedesco, francese, spagnolo, italiano, portoghese, olandese, polacco, svedese, danese, ucraino, russo, turco, arabo, hindi, giapponese, coreano, cinese (semplificato e tradizionale), thailandese, indonesiano e vietnamita. L'interfaccia è disponibile in 24 lingue.
+
+━━━━━━━━━━━━━━━━━━━━
+💬 CHIEDI QUALSIASI COSA ALLA PAGINA
+━━━━━━━━━━━━━━━━━━━━
+• Domande di approfondimento sull'articolo che leggi, in una chat che ricorda la conversazione.
+• Le risposte hanno chip delle fonti che indicano il passaggio esatto.
+• Tre domande suggerite dopo ogni panoramica; risposta breve prima, poi "Approfondisci".
+• Fissa le risposte migliori: vengono salvate ed esportate con l'articolo.
+
+━━━━━━━━━━━━━━━━━━━━
+🖊️ EVIDENZIAZIONI CHE RESTANO
+━━━━━━━━━━━━━━━━━━━━
+• Evidenziazioni fantasma con IA: le frasi più importanti in azzurro, direttamente sulla pagina.
+• Le tue evidenziazioni in giallo, dal clic destro; riappaiono quando torni sulla pagina.
+• Le evidenziazioni seguono l'articolo nelle esportazioni in Markdown, Word, e-reader e Obsidian.
+
+━━━━━━━━━━━━━━━━━━━━
+🎧 LEGGI A MODO TUO
+━━━━━━━━━━━━━━━━━━━━
+• Ascolta: articoli e panoramiche letti ad alta voce con le voci del browser, alla velocità che vuoi.
+• Lettura istantanea: ogni frase letta appena l'IA la scrive, a mani libere.
+• Lettura veloce (RSVP): la risposta dell'IA parola per parola mentre arriva, a velocità lenta, media o alta.
+• Vista lettura con anello di avanzamento e indice per articoli lunghi.
+• Indici di leggibilità (Flesch Reading Ease e livello scolastico) per ogni articolo salvato.
+
+━━━━━━━━━━━━━━━━━━━━
+🔖 SALVA PER DOPO, SENZA 100 SCHEDE APERTE
+━━━━━━━━━━━━━━━━━━━━
+Chiudi la scheda, tieni l'idea. Salva un articolo con una nota e un momento per tornarci: Domani, Weekend, Questa settimana o Sessione di ricerca. Una notifica di Chrome te lo ripropone, con la tua nota, quando l'hai chiesto.
+
+━━━━━━━━━━━━━━━━━━━━
+🗂️ LA TUA LIBRERIA DI LETTURA
+━━━━━━━━━━━━━━━━━━━━
+Ogni riassunto resta nella Cronologia su questo dispositivo, organizzato in Posta in arrivo, Letto, Inviato, Ricerca, Raccolte e Archivio.
+
+• Ricerca: ricerca istantanea a testo completo in tutti gli articoli salvati, sul dispositivo.
+• Articoli simili: cos'altro nella libreria è collegato a quello che stai leggendo.
+• Rilevamento dei duplicati per link, titolo e contenuto, per una libreria in ordine.
+• Salvando da archive.ph, Wayback Machine o 12ft si mantiene il link originale, così la libreria punta alla fonte reale.
+• Raccolte: raggruppa gli articoli attorno a una domanda e verificali con una scheda di controllo delle fonti.
+• Preferiti, tag, note e promemoria a tempo.
+
+━━━━━━━━━━━━━━━━━━━━
+🕸️ GRAFO DELLA CONOSCENZA
+━━━━━━━━━━━━━━━━━━━━
+Guarda come si collega tutto ciò che hai letto. Il grafo raggruppa gli articoli in cluster di argomenti, collega quelli con tag o contenuto in comune e mostra una lista di lettura degli argomenti che non apri da 30 giorni. Scrivi un breve brief per ogni cluster ed esportalo in Markdown.
+
+━━━━━━━━━━━━━━━━━━━━
+📊 STATISTICHE DI LETTURA
+━━━━━━━━━━━━━━━━━━━━
+• Tempo risparmiato: il tempo degli articoli completi rispetto alle versioni brevi.
+• Articoli, parole lette, serie di giorni e serie migliore.
+• Attività degli ultimi 30 giorni o 12 settimane.
+• Categorie principali e nuvola di parole di ciò che leggi.
+• Umore nel tempo: il tono delle notizie che leggi, per giorno, settimana o mese, e cosa lo ha mosso.
+
+Tutte le statistiche sono calcolate sul tuo dispositivo. Nulla va a servizi di tracciamento.
+
+━━━━━━━━━━━━━━━━━━━━
+🖥️ MODALITÀ AMPIA E VISTA DIVISA (NOVITÀ DELLA 2.2)
+━━━━━━━━━━━━━━━━━━━━
+Apri AI Summary Helper in una scheda o allarga il pannello laterale: Cronologia e Feed passano a una vista divisa, con elenco e grafo affiancati da 720 pixel e elenco, grafo e statistiche in tre riquadri da 1.100 pixel. Scegli 1, 2 o 3 riquadri dall'intestazione e cosa mostra ognuno.
+
+━━━━━━━━━━━━━━━━━━━━
+📰 LETTORE RSS CON RIEPILOGHI IA
+━━━━━━━━━━━━━━━━━━━━
+• Segui blog, giornali e podcast via RSS o Atom; importa ed esporta le iscrizioni come OPML.
+• Riepiloghi giornalieri che confluiscono in panoramiche settimanali e mensili, scritti dall'IA che hai scelto. Vengono inviati solo titoli ed estratti, e solo quando lo chiedi.
+• Con un modello locale, i nuovi elementi si valutano e riassumono in background ogni 15 minuti-6 ore.
+• Le pile di storie raggruppano la stessa notizia da testate diverse.
+• Approfondimenti sui feed: attività, argomenti, la tua "dieta di fonti" degli ultimi 30 giorni e l'umore dei feed nel tempo.
+• Lettore di podcast integrato che continua quando il popup si chiude, da 0,75× a 2×.
+• Una stella su un elemento ne dà i punti chiave e lo archivia nella Cronologia.
+
+━━━━━━━━━━━━━━━━━━━━
+🎓 MODALITÀ RICERCA E CITAZIONI
+━━━━━━━━━━━━━━━━━━━━
+• Riconosce gli articoli scientifici su PubMed, Springer, Wiley, JSTOR e altri editori.
+• Citazioni corrette dal DOI in APA 7, MLA 9, Chicago (autore-data), BibTeX e RIS. I dati arrivano da doi.org, mai dall'IA, e dal dispositivo esce solo il DOI.
+• Scarica references.bib o .ris per Zotero, Mendeley o LaTeX.
+• Source check per qualsiasi pagina: tipo, autore, data ed editore, più quattro domande di lettura laterale per valutare una fonte. Indizi, non valutazioni.
+• Una scheda Ricerca con filtri per revisioni, studi clinici e preprint.
+
+━━━━━━━━━━━━━━━━━━━━
+📤 INVIA, ESPORTA E CONDIVIDI
+━━━━━━━━━━━━━━━━━━━━
+• Invia a Kindle: panoramiche e articoli formattati, evidenziazioni incluse, direttamente al tuo e-reader come EPUB (testo o con immagini) o HTML. Richiede un accesso byphil gratuito; 3 invii gratuiti, illimitati con un Support Pass.
+• LocalSend: invia articoli via Wi-Fi di casa a telefoni, tablet o e-reader KOReader, senza cloud di mezzo.
+• Invia al telefono: associa il telefono con un codice QR. I link condivisi dal telefono arrivano nella Cronologia con crittografia end-to-end, e puoi rimandare al telefono articoli completi.
+• Digest in stile rivista: più articoli in un unico numero per e-reader, LocalSend o Markdown.
+• Esporta in Markdown (un articolo o tutta la libreria in ZIP con front matter), Word (DOCX), OpenDocument (ODT) o PDF, o invia a Obsidian.
+• Condividi dal foglio di condivisione del sistema, dove disponibile.
+• Backup e ripristino di libreria e impostazioni; chiavi API e accessi restano fuori dai backup, a meno che tu non scelga di includerli. Note e commenti: seleziona il testo, poi evidenzialo, commentalo o salva una nota con la citazione.
+
+━━━━━━━━━━━━━━━━━━━━
+☁️ LA TUA LIBRERIA SUL TUO SPAZIO DI ARCHIVIAZIONE (NOVITÀ)
+━━━━━━━━━━━━━━━━━━━━
+Tieni la libreria su tutti i tuoi computer, fanne il backup o pubblicane una parte, senza affidarla a nessuno. In Impostazioni → Sync e backup aggiungi una destinazione: Nextcloud o un altro server WebDAV, un bucket compatibile con S3 o una cartella sul tuo computer.
+
+• Crittografato: tutto è crittografato nel browser con la tua passphrase prima di lasciare il dispositivo, quindi il server vede solo file illeggibili. Senza passphrase nessuno può leggerli, noi compresi.
+• Sincronizzazione bidirezionale tra i dispositivi, unita campo per campo. La stessa pagina salvata due volte diventa un solo articolo, e una raffica di eliminazioni da un altro dispositivo aspetta il tuo OK.
+• Destinazioni solo backup e ripristino con un clic.
+• Pubblica una lista sul tuo sito: scegli gli articoli per tag e ottieni file semplici più una pagina di consultazione con ricerca, timeline, grafo dei tag e mappa 3D di ciò che hai salvato. Note e testi completi restano esclusi se non li attivi.
+• Disattivato finché non aggiungi una destinazione. Non abbiamo server di sync e non vediamo nulla.
+
+━━━━━━━━━━━━━━━━━━━━
+🔌 LA TUA LIBRERIA NELLE TUE APP DI IA (NOVITÀ)
+━━━━━━━━━━━━━━━━━━━━
+La tua app di IA non ha mai letto ciò che leggi tu. Attiva le app di IA nelle Impostazioni e Claude Desktop, Cursor, LM Studio e altre app MCP sul tuo computer potranno usare la libreria.
+
+• Cerca tra gli articoli salvati, cita le evidenziazioni, scopri cosa è in scadenza e sfoglia raccolte e feed.
+• Chiedi una revisione settimanale, un brief da una raccolta o l'anno di letture come report, con ogni affermazione collegata alla fonte.
+• Disattivato di default. Scegli tu cosa può leggere un'app: libreria, testo completo, feed, e se può salvare link.
+• Gli articoli con tag "private" non compaiono mai, e un registro attività mostra ogni chiamata.
+• Funziona sul tuo computer; nulla passa dai nostri server.
+
+━━━━━━━━━━━━━━━━━━━━
+🔒 PRIVACY PER PROGETTO
+━━━━━━━━━━━━━━━━━━━━
+• Articoli, evidenziazioni, feed e statistiche sono archiviati nel tuo browser, sul tuo dispositivo. Sync, backup e pubblicazione vanno solo a un server o a una cartella che aggiungi tu.
+• Il contenuto delle pagine va solo al provider IA che hai scelto, o a nessuno con un modello sul dispositivo.
+• Le app di IA leggono la libreria solo se lo attivi, solo sul tuo computer e solo ciò che consenti.
+• Nessun SDK di tracciamento o di analisi, nessuna pubblicità, nessuna vendita di dati.
+• Open source: il codice è pubblico su GitHub (philffm/ai-summary-helper), verificabile da tutti.
+• Realizzato nell'UE da byphil.
+
+━━━━━━━━━━━━━━━━━━━━
+♿ ACCESSIBILE E COMODO
+━━━━━━━━━━━━━━━━━━━━
+• Temi chiaro, scuro e ad alto contrasto, oppure segui il sistema.
+• Testo dall'85 al 150 percento e tre interlinee.
+• Font Atkinson Hyperlegible facoltativo, più leggibile.
+• Rispetta la riduzione del movimento; scorciatoie da tastiera ovunque (? per vederle).
+• Preset: Predefinito, Grande, Contrasto e Calmo.
+
+━━━━━━━━━━━━━━━━━━━━
+⌨️ DOVE PUOI USARLO
+━━━━━━━━━━━━━━━━━━━━
+• Pannello laterale di Chrome, popup, barra laterale nella pagina, scheda dedicata o finestra separata.
+• Tastiera: Ctrl+Shift+E riassume la pagina corrente, Ctrl+Shift+Y apre AI Summary Helper (⌘ su Mac). Nell'app: Ctrl+F o / per cercare, j e k per spostarti tra le schede, Esc per tornare indietro.
+• Clic destro: Riassumi questa pagina, Riassumi e chiudi la scheda, Evidenzia selezione, Rimuovi tutte le evidenziazioni.
+• Altri browser e telefoni: un bookmarklet porta i riassunti su qualsiasi browser, anche iOS e Android (richiede byphil Cloud).
+
+━━━━━━━━━━━━━━━━━━━━
+❓ DOMANDE FREQUENTI
+━━━━━━━━━━━━━━━━━━━━
+AI Summary Helper è gratuito?
+Sì, gratuita e open source. Con la tua chiave API paghi il provider, di solito pochi centesimi al mese. Un modello sul dispositivo è gratis. byphil Cloud include una piccola quota giornaliera gratuita; un Support Pass, che è una donazione al progetto, elimina i limiti.
+
+Posso riassumere pagine web con un modello IA locale?
+Sì. Installa Ollama, scarica un modello aperto e scegli l'opzione locale. Tutto, anche domande di approfondimento e riepiloghi dei feed, gira sul tuo computer o su un server Ollama self-hosted in rete.
+
+Quali provider IA funzionano con la mia chiave API?
+OpenAI, Google Gemini, Mistral AI e DeepSeek, oltre ai modelli locali e self-hosted.
+
+Funziona con PDF e YouTube?
+Sì. I PDF aperti in Chrome, anche i file sul tuo computer, e i video di YouTube con sottotitoli funzionano come qualsiasi pagina.
+
+Può riassumere un articolo in inglese in un'altra lingua?
+Sì. Scegli una delle 41 lingue di riassunto; la fonte può essere in un'altra lingua.
+
+Come invio gli articoli web al mio Kindle?
+Accedi a byphil, aggiungi kindle@byphil.eu come mittente approvato nel tuo account Amazon, inserisci l'email del tuo dispositivo in Impostazioni → Invia e sceglilo in Invia. Tre invii sono gratuiti; con un Support Pass diventano illimitati.
+
+Posso usare la mia libreria in Claude Desktop o Cursor?
+Sì. Attiva le app di IA in Impostazioni → App di IA, associale una volta e l'app potrà cercare nella libreria, citare le evidenziazioni e indicare le fonti. È disattivato per impostazione predefinita, funziona sul tuo computer e rispetta ciò che consenti.
+
+I miei dati sono privati?
+La tua libreria resta nel browser. Il testo delle pagine va solo al provider IA scelto, o da nessuna parte con un modello sul dispositivo. L'estensione non contiene SDK di tracciamento e il codice è aperto alla verifica.
+
+In cosa è diverso dalle altre estensioni di riassunto con IA?
+La maggior parte degli strumenti di lettura con IA ti lega a un provider, richiede un account e fa passare tutto dai propri server con abbonamento mensile. AI Summary Helper usa la tua chiave o lavora in locale, senza account, e trasforma ciò che leggi in una libreria ricercabile con grafo della conoscenza, statistiche, RSS ed esportazione verso e-reader.
+
+━━━━━━━━━━━━━━━━━━━━
+🚀 PRIMI PASSI
+━━━━━━━━━━━━━━━━━━━━
+1. Aggiungi AI Summary Helper a Chrome e fissalo alla barra degli strumenti.
+2. Scegli byphil Cloud, la tua chiave API o un modello sul dispositivo nella configurazione.
+3. Apri un articolo, PDF o video e premi Ctrl+Shift+E (⌘+Shift+E su Mac).
+4. Leggi, ascolta, fai domande e ritrovalo più tardi nella Cronologia.
+
+Feedback e richieste di funzioni su GitHub sono benvenuti. Realizzato da byphil.
