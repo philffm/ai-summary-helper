@@ -6401,5 +6401,8 @@
   },
   "f_copy_puts_the_words_in_one_p_9b1c": {
     "message": "Kopieren liefert die Wörter in einem Stück, mit Bindestrichen verbunden. Das übersteht Konfigurationsdateien, Shells und Chat-Apps; beim Eintippen funktionieren Leerzeichen und Bindestriche gleichermaßen."
+  },
+  "f_remove_this_highlight_3cc8": {
+    "message": "Diese Markierung entfernen?"
   }
 }

@@ -89,11 +89,30 @@ function sticky(item, inst) {
         if (item.kind === 'note') {
             actions.append(button(T('Edit'), 'st-act', () => { inst.editing = item.id; render(inst); }));
             actions.append(button(T('Delete'), 'st-act st-del', async () => { if (!window.confirm(T('Delete this note?'))) return; await store.remove(item.id); renderAll(); }));
-        } else actions.append(button(item.comment ? T('Edit comment') : T('Comment'), 'st-act', () => { inst.editing = item.id; render(inst); }));
+        } else {
+            actions.append(button(item.comment ? T('Edit comment') : T('Comment'), 'st-act', () => { inst.editing = item.id; render(inst); }));
+            actions.append(button(T('Remove'), 'st-act st-del', async () => { if (!window.confirm(T('Remove this highlight?'))) return; await removeHighlight(item); renderAll(); }));
+        }
     }
     foot.append(actions);
     card.append(foot);
     return card;
+}
+
+/**
+ * Removes a highlight the way the page itself does: your own is taken out of the list and gets a deletion marker for sync; an AI highlight is kept
+ * as dismissed (so it never comes back) and needs no marker. Its comment goes with it. Pages that show it follow the storage change on their own.
+ */
+async function removeHighlight(item) {
+    const d = await getL({ [SK.annotations]: [] });
+    const list = d[SK.annotations];
+    if (!Array.isArray(list)) return false;   // an older shape of the list: the pages normalise it, this tab does not touch it
+    const ghost = item.kind === 'ghost';
+    const next = ghost ? list.map((a) => (a && a.id === item.id ? { ...a, dismissed: true } : a)) : list.filter((a) => !(a && a.id === item.id));
+    await new Promise((r) => chrome.storage.local.set({ [SK.annotations]: next }, r));
+    if (!ghost) { try { const r = chrome.runtime.sendMessage({ action: 'syncHlDeleted', ids: [item.id] }); if (r && r.catch) r.catch(() => {}); } catch (_) { /* the worker restarts on the next event */ } }
+    await store.setComment(item.id, { text: '', tags: [] });
+    return true;
 }
 
 function editor(item, inst) {
