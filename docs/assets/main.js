@@ -1196,9 +1196,17 @@ function setBilling(period) {
   if (known.indexOf(cur) < 0) cur = 'en';
   var rest = location.pathname.replace(/^\/(?:[a-z]{2}(?:-[a-z]{2})?)\//i, '/');
   if (known.indexOf(m && m[1].toLowerCase()) < 0) rest = location.pathname;
+  // The page names its own language partners (<link rel="alternate" hreflang>), also when the address differs per language
+  // (/education/ <-> /de/bildung/, localized blog names). Landing pages without a partner keep the link the build gave them.
+  var alts = {};
+  [].forEach.call(document.querySelectorAll('link[rel="alternate"][hreflang]'), function (l) {
+    try { alts[(l.getAttribute('hreflang') || '').toLowerCase()] = new URL(l.href).pathname; } catch (e) {}
+  });
+  var landing = !!document.querySelector('meta[name="aish:landing"]');
   [].forEach.call(nav.querySelectorAll('[data-loc]'), function (a) {
-    var l = a.getAttribute('data-loc');
-    a.href = (l === 'en' ? '' : '/' + l) + (rest.indexOf('/') === 0 ? rest : '/' + rest);
+    var l = a.getAttribute('data-loc'), hl = (a.getAttribute('hreflang') || l).toLowerCase();
+    if (alts[hl]) a.href = alts[hl];
+    else if (!landing) a.href = (l === 'en' ? '' : '/' + l) + (rest.indexOf('/') === 0 ? rest : '/' + rest);
     if (l === cur) a.setAttribute('aria-current', 'true');
   });
 
