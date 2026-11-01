@@ -1348,3 +1348,8 @@ html.vfeed-open, html.vfeed-open body{ overflow:hidden; }
 /* "Example article" tag in the hero mockup: the article and its numbers are made up */
 .hs-art{ position:relative; }
 .hs-example{ position:absolute; left:0; bottom:-150px; padding:5px 13px; border-radius:999px; font-size:14px; font-weight:600; letter-spacing:.05em; text-transform:uppercase; background:rgba(128,128,150,.22); color:inherit; opacity:.85; pointer-events:none; }
+
+/* Proof line under the hero button: only real, checkable facts */
+.hero-proof{ font-size:14px; font-weight:500; color:var(--paper); margin:0 0 10px; }
+.hero-proof a{ color:inherit; text-decoration:underline; text-decoration-color:rgba(128,128,150,.6); text-underline-offset:3px; }
+.hero-proof a:hover{ text-decoration-color:currentColor; }
