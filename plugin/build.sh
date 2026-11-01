@@ -41,10 +41,15 @@ cp -f compatible-tools.json src/
 
 # Read the base version from current_version.json as the single source of truth
 VERSION=$(jq -r '.version' ../current_version.json)
-NEW_VERSION=$(echo "$VERSION" | awk -F. '{$NF = $NF + 1;} 1' | sed 's/ /./g')
+if [ -n "$KEEP_VERSION" ]; then
+  # Rebuild the current version (e.g. after a packaging fix): no bump, nothing stamped, the manifests already carry it.
+  NEW_VERSION="$VERSION"
+else
+  NEW_VERSION=$(echo "$VERSION" | awk -F. '{$NF = $NF + 1;} 1' | sed 's/ /./g')
 
-# Stamp it into the platform manifests, current_version.json and popup.html.
-"$SCRIPT_DIR/scripts/set-version.sh" "$NEW_VERSION"
+  # Stamp it into the platform manifests, current_version.json and popup.html.
+  "$SCRIPT_DIR/scripts/set-version.sh" "$NEW_VERSION"
+fi
 
 
 # ==========================================

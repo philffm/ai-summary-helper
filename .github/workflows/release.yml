@@ -5,6 +5,19 @@ on:
     tags:
       - 'v*'
   workflow_dispatch:
+    inputs:
+      keep_version:
+        description: 'Rebuild the current version (no version bump, no commit to main) and upload the files to its existing release'
+        type: boolean
+        default: false
+      skip_android:
+        description: 'Skip the Android companion APK (the slow part); the browser extension zips are always built'
+        type: boolean
+        default: false
+      run_tests:
+        description: 'Run lint and the release tests first'
+        type: boolean
+        default: true
 
 permissions:
   contents: write
@@ -32,7 +45,7 @@ jobs:
       # Tags are cut from main, which ci.yml already linted and tested on push — don't run it a second time.
       # A manual run can start from any ref, so that one still checks.
       - name: Run tests (manual runs only)
-        if: github.event_name == 'workflow_dispatch'
+        if: github.event_name == 'workflow_dispatch' && inputs.run_tests
         run: |
           npm ci --no-audit --no-fund
           npm run lint -- --quiet   # errors only (undefined identifiers etc.)
@@ -45,6 +58,8 @@ jobs:
           git checkout origin/main -- current_version.json
 
       - name: Run build script
+        env:
+          KEEP_VERSION: ${{ inputs.keep_version == true && '1' || '' }}
         run: |
           chmod +x plugin/build.sh
           cd plugin
@@ -54,6 +69,7 @@ jobs:
       # version line nobody else edits, so there is nothing to resolve and nothing to overwrite. If main moves
       # between fetch and push, fetch and stamp again; after 5 tries the job fails instead of forcing anything.
       - name: Commit version bump to main
+        if: ${{ inputs.keep_version != true }}
         run: |
           git config --local user.email "github-actions[bot]@users.noreply.github.com"
           git config --local user.name "github-actions[bot]"
@@ -79,15 +95,18 @@ jobs:
       # ANDROID_KEYSTORE_PASSWORD, ANDROID_KEY_ALIAS, ANDROID_KEY_PASSWORD); otherwise it is built debug-signed, which installs the same.
       # Always published under the same file name so the website can link releases/latest/download/aish-companion.apk.
       - uses: actions/setup-java@v4
+        if: ${{ inputs.skip_android != true }}
         with:
           distribution: temurin
           java-version: '17'
 
       - uses: gradle/actions/setup-gradle@v4
+        if: ${{ inputs.skip_android != true }}
         with:
           gradle-version: '9.6.0'
 
       - name: Build Android companion APK
+        if: ${{ inputs.skip_android != true }}
         working-directory: mobile/android
         env:
           KEYSTORE_B64: ${{ secrets.ANDROID_KEYSTORE_BASE64 }}
@@ -122,7 +141,7 @@ jobs:
         with:
           tag_name: ${{ env.TAG_NAME }} # Force it to use the new version as the tag
           body_path: ${{ env.NOTES_FILE }}   # commit-based notes from scripts/changelog.mjs
-          generate_release_notes: true       # GitHub's list of pull requests and new contributors is appended below
+          generate_release_notes: ${{ inputs.keep_version != true }}       # GitHub's list of pull requests and new contributors is appended below (not when only re-uploading files)
           files: |
             plugin/prod/aish-extension-chrome-*.zip
             plugin/prod/aish-extension-android-*.zip
