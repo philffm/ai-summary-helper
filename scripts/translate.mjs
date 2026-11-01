@@ -39,6 +39,7 @@ import { existsSync } from 'node:fs';
 import path from 'node:path';
 import crypto from 'node:crypto';
 import * as cheerio from 'cheerio';
+import { localizedPath, englishPath, rewriteLocalizedLinks, redirectStub, SITE_URL } from './lib/localized-paths.mjs';
 
 const REPO_ROOT = process.cwd();
 const ROOT = path.join(REPO_ROOT, 'docs'); // docs/ is assembled by build-site.mjs and is the canonical English source
@@ -273,7 +274,7 @@ function addHreflangTags($, config, currentLocaleCode, relPath) {
     head.append(entry('x-default', `${base}/${relPath}`));
     head.append(entry('en', `${base}/${relPath}`));
     for (const [code, loc] of Object.entries(config.locales)) {
-        head.append(entry(loc.hreflang, `${base}/${loc.dir}/${relPath}`));
+        head.append(entry(loc.hreflang, `${base}/${loc.dir}/${localizedPath(relPath, code)}`));
     }
 }
 
@@ -467,11 +468,20 @@ async function translateFile(relPath, config, targetLocales, manifest, apiKey) {
         localizeBlogVideos($, locale);
         rewriteAssetPaths($, locale);
         setHtmlLang($, locale);
+        rewriteLocalizedLinks($, relPath, code);   // links to other pages use the localized names (docs/i18n/slugs.json)
         addHreflangTags($, config, code, relPath);
 
-        const outPath = path.join(ROOT, locale.dir, relPath);
+        const outPath = path.join(ROOT, locale.dir, localizedPath(relPath, code));
         await ensureDir(outPath);
         await writeFile(outPath, $.html(), 'utf8');
+        // The old, English-named address stays as a small redirect page (canonical + refresh): links and a submitted sitemap keep working.
+        if (localizedPath(relPath, code) !== relPath) {
+            const oldPath = path.join(ROOT, locale.dir, relPath);
+            const newRel = path.posix.relative(path.posix.dirname(relPath), localizedPath(relPath, code));
+            const newAbs = `${SITE_URL}/${locale.dir}/${localizedPath(relPath, code)}`;
+            await ensureDir(oldPath);
+            await writeFile(oldPath, redirectStub({ lang: locale.hreflang, newRel, newAbs, title: $('head > title').text().trim() }), 'utf8');
+        }
     }
 
     return anyApiCallsThisFile;
@@ -489,7 +499,7 @@ async function syncNavPostTitles(config, targetLocales, files) {
         for (const f of files) {
             const m = f.match(/^blog\/([^/]+)\.html$/);
             if (!m || m[1] === 'index') continue;
-            const fp = path.join(ROOT, locale.dir, f);
+            const fp = path.join(ROOT, locale.dir, localizedPath(f, code));
             if (!existsSync(fp)) continue;
             const t = cheerio.load(await readFile(fp, 'utf8'))('head > title').text().trim();
             // drop the trailing "— Site name" suffix (any dash/pipe variant)
@@ -497,14 +507,16 @@ async function syncNavPostTitles(config, targetLocales, files) {
             if (clean) titles[m[1]] = clean;
         }
         for (const f of files) {
-            const fp = path.join(ROOT, locale.dir, f);
+            const fp = path.join(ROOT, locale.dir, localizedPath(f, code));
             if (!existsSync(fp)) continue;
             const html = await readFile(fp, 'utf8');
             if (!html.includes('mm-post')) continue;
             const $ = cheerio.load(html, { decodeEntities: false });
             let changed = false;
             $('a.mm-post').each((_, el) => {
-                const slug = ($(el).attr('href') || '').match(/([^/]+)\.html$/)?.[1];
+                // the link carries the localized name; the titles are keyed by the English slug
+                const hrefName = ($(el).attr('href') || '').match(/([^/]+)\.html$/)?.[1];
+                const slug = hrefName && englishPath('blog/' + hrefName + '.html', code).replace(/^blog\//, '').replace(/\.html$/, '');
                 if (slug && titles[slug]) { $(el).find('strong').text(titles[slug]); changed = true; }
             });
             if (changed) await writeFile(fp, $.html(), 'utf8');

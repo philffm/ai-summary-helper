@@ -149,6 +149,7 @@ for (const file of walk(DOCS)) {
   const rel = path.relative(DOCS, file).split(path.sep).join('/');
   const html = fs.readFileSync(file, 'utf8');
   const $ = cheerio.load(html, { decodeEntities: false });
+  if ($('meta[name="aish:redirect"]').length) continue;   // redirect page for an old address: keeps its own canonical, no sitemap entry, no markup
   const self = clean(rel);
   const noindex = /noindex/i.test($('meta[name="robots"]').attr('content') || '');
   $('link[rel="canonical"]').remove();

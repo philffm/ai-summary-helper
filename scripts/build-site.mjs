@@ -23,6 +23,7 @@
 import { readFile, writeFile, mkdir, readdir } from 'node:fs/promises';
 import path from 'node:path';
 import * as cheerio from 'cheerio';
+import { localizedPath } from './lib/localized-paths.mjs';
 
 const ROOT = process.cwd();
 const SITE_SRC = path.join(ROOT, 'site-src');
@@ -76,8 +77,8 @@ function addHreflangTags($, config, relPath) {
     const entry = (hreflang, href) => `<link rel="alternate" hreflang="${hreflang}" href="${href}">`;
     head.append(entry('x-default', `${SITE_BASE}/${relPath}`));
     head.append(entry('en', `${SITE_BASE}/${relPath}`));
-    for (const loc of Object.values(config.locales)) {
-        head.append(entry(loc.hreflang, `${SITE_BASE}/${loc.dir}/${relPath}`));
+    for (const [code, loc] of Object.entries(config.locales)) {
+        head.append(entry(loc.hreflang, `${SITE_BASE}/${loc.dir}/${localizedPath(relPath, code)}`));
     }
 }
 

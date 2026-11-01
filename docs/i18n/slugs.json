@@ -1,0 +1,11 @@
+{
+  "_about": "Localized page paths. Key: the English path (as in locales.json 'content'). Value: per locale code, the path inside that locale folder. Names are ASCII, written once and never changed afterwards (changing one breaks URLs). A page without an entry keeps its English path. The old English-named path stays as a small redirect page (canonical + refresh), see scripts/lib/localized-paths.mjs.",
+  "privacy.html": { "de": "datenschutz.html" },
+  "blog/unread-saves.html": { "de": "blog/gespeichert-aber-nie-gelesen.html" },
+  "blog/on-device-architecture.html": { "de": "blog/suche-und-tags-ohne-cloud.html" },
+  "blog/from-bookmarklet-to-2.html": { "de": "blog/vom-bookmarklet-zu-2-0.html" },
+  "blog/bring-your-own-key.html": { "de": "blog/eigener-schluessel-eigenes-modell.html" },
+  "blog/feeds-recap.html": { "de": "blog/ein-rueckblick-statt-40-feeds.html" },
+  "blog/highlighting-vs-asking.html": { "de": "blog/markieren-oder-fragen.html" },
+  "blog/verify-ai-summary.html": { "de": "blog/ki-zusammenfassung-an-der-quelle-pruefen.html" }
+}
