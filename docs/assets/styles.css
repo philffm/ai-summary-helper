@@ -1740,3 +1740,27 @@ body:has(.hero--photo){ padding-top:0; }
 
 .cx--fit .cx-track{ align-items:flex-start; overflow-y:hidden; transition:height .25s ease; }
 @media (prefers-reduced-motion:reduce){ .cx--fit .cx-track{ transition:none; } }
+
+/* ── Menu: soft open (overlay fades in, links rise one after another, number slides, panels follow) ── */
+@media (prefers-reduced-motion:no-preference){
+  .nav--pill .mobile-menu:not([hidden]){animation:mmIn .38s cubic-bezier(.2,.7,.2,1) both}
+  .nav--pill .mobile-menu:not([hidden]) .mm-links>a{animation:mmRise .5s cubic-bezier(.2,.7,.2,1) both;animation-delay:calc(.05s + var(--i,0)*.045s)}
+  .nav--pill .mobile-menu:not([hidden]) .mm-links>a .mm-n{animation:mmNum .6s cubic-bezier(.2,.7,.2,1) both;animation-delay:calc(.12s + var(--i,0)*.045s)}
+  .nav--pill .mobile-menu:not([hidden]) .mm-lang,
+  .nav--pill .mobile-menu:not([hidden]) .mm-posts,
+  .nav--pill .mobile-menu:not([hidden]) .mm-bottom{animation:mmRise .55s cubic-bezier(.2,.7,.2,1) .28s both}
+  .nav--pill .mm-links>a{transition:padding-left .25s cubic-bezier(.2,.7,.2,1),color .2s}
+  .nav--pill .mm-links>a:not(.mm-sub):hover{padding-left:10px;color:var(--signal)}
+}
+@keyframes mmIn{from{opacity:0;transform:translateY(-10px) scale(.992);clip-path:inset(0 0 12% 0)}to{opacity:1;transform:none;clip-path:inset(0 0 0 0)}}
+@keyframes mmRise{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}
+@keyframes mmNum{from{opacity:0;transform:translateX(-10px)}to{opacity:1;transform:none}}
+.nav--pill .mm-links>a:nth-child(2){--i:1}
+.nav--pill .mm-links>a:nth-child(3){--i:2}
+.nav--pill .mm-links>a:nth-child(4){--i:3}
+.nav--pill .mm-links>a:nth-child(5){--i:4}
+.nav--pill .mm-links>a:nth-child(6){--i:5}
+.nav--pill .mm-links>a:nth-child(7){--i:6}
+.nav--pill .mm-links>a:nth-child(8){--i:7}
+.nav--pill .mm-links>a:nth-child(9){--i:8}
+.nav--pill .mm-links>a:nth-child(9){--i:4}
