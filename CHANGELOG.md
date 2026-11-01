@@ -5,6 +5,86 @@ Commit history has the details: <https://github.com/philffm/ai-summary-helper/co
 
 ## Unreleased
 
+## 2.2.39 (2026-11-01)
+
+### All changes
+
+#### Added
+
+- blog: new mood photos on five posts and the videos page (NAS shelf for sync, magnifier for verify, offline laptop for on-device, paper stack for unread saves, one-page recap for feeds, dark desk for videos)
+
+#### Changed
+
+- i18n: update translations for changed content
+- extension i18n: the 222 strings for Sync & backup, Notes and the EU/Auto texts translated into fr, es, pt_BR, pt_PT, nl, ja, ko, zh_CN, zh_TW, zh_HK (all 1859 strings now present in these locales)
+- site: phone variant of the live demo on the education pages too (side panel only, 'Demo ausprobieren' jumps to it, pilot button under it)
+- site: restore SEO output (captions tracks, canonical hreflang) in docs/index.html after the previous build-only commit
+- site: phone variant of the live demo (side panel only, laid out at 420px and scaled into a phone frame) as the last slide of 'See it' on small screens; the desktop demo stays desktop-only
+- site: menu opens with a soft staggered animation (fade, links rise, numbers slide), hover nudge; respects reduced motion
+- i18n: translated German pages link to /de/bildung/ instead of the English /education/ (native sibling map, also applied by translate.mjs)
+- i18n: update translations for changed content
+- i18n: localized page names for 13 more languages (fr es pt it nl pl sv da no fi tr id vi), old addresses redirect; market notes and translate prompt no longer ask for GDPR/hosting claims; drop a GDPR claim from the da on-device post
+- i18n: localized page names for German (docs/i18n/slugs.json), translate/build/seo/banner use them; old addresses stay as redirect pages (canonical + refresh), sitemap lists only the new ones
+- site: language switch goes between /education/ and /de/bildung/; 'Education' / 'Bildung' as item 03 of the menu (English, blog and German menus)
+- i18n: update translations for changed content
+- site: English education page /education/ (HEPI + CHE evidence, same structure as /de/bildung/), hreflang pair with the German page, menu and footer entries point to it
+- site: 'For education' entry in the menu and the footer (English and German pages)
+- site: slider controls sit right under the active slide; 'See it' on the landing page sized to the window height like the Bildung pitch
+- site: pitch text on the slides (photo cards, screenshot slide with a text box), demo scaled down instead of re-flowing, demo in full window, slider sized to the window height
+- site: pitch slider sized to the window height (slide width from 100vh), smaller caption text
+- site: Bildung pitch in the 'See it' style (photo claim cards with sources, German screenshot, live demo with the pilot button as the last slide); hero demo button jumps to it
+- site: roadmap as a timeline; house gallery classes renamed hw- (they clashed with the home hero's hs- classes and broke its article); missing sofa image sizes added
+- site: Bildung pitch as a six-slide slider with sources (CHE survey, Sparrow et al. 2011, Dunlosky et al. 2013) replacing 'Warum jetzt'
+- site: photo stage in light mode (light veil, dark text); accessible secondary button on the stage (white in dark mode)
+- site: shorter Bildung page (steps merged into the feature section, house before the data table); taller rows in the building map
+- site: Bildung page with a walk-through-the-house gallery (one picture at a time, small building map), education features, consulting section and a roadmap marked as planned
+- site: visible transcript lines next to the poster card (from the video manifest, localized); landing pages put card, title and transcript side by side
+- site: smaller poster cards on desktop (220 px on landing pages, 190 px rail in posts, four across on the video page)
+- site: poster card also on the 'All videos' page and the two landing pages (all English sources now use it)
+- site: back to the taller photo stage with a clean bottom edge (the soft fade looked too staged in light mode)
+- site: calmer photo stage (lower on posts, dissolves into the page colour, credit above the fade); blog card badge and read link no longer stretch full width
+- site: blog video as a poster card that opens the full-screen player; sticky rail beside the text on wide screens
+- site: photo stage behind the head of every blog post (one mood picture per post, captioned as AI-generated)
+- site: photo hero runs up under the floating menu (no reserved band above it)
+- site: mood photo as hero stage on the Pocket and Bildung pages (dark gradient, light text, captioned as AI-generated)
+- site: mood illustrations in two blog posts that had none and in two home sections (small, captioned as AI-generated)
+- site: scene illustrations (laptop mockups) on the Bildung and Pocket pages; small sizes only, captioned as AI-generated illustrations
+- site: tidier blog block (centered head, equal cards, one quiet list, one button)
+- site: blog teaser shows the three posts with the best search entry, every other post as a text link, plus the two landing pages
+- site: Bildung audiences as a slider with five cards (adds pupils and students); shorter digest, Android and privacy blocks on the home page
+- site: tall blocks (the feature grid) fade in as soon as their top edge is on screen instead of waiting for 15 percent of their height
+- site: shorter text on the sync/encrypted-storage feature card
+- site: AI-generated illustrations (compressed webp, two widths, alt text, captioned as illustrations) on the Pocket and Bildung pages
+- i18n: update translations for changed content
+- site: /de/bildung/ with the CHE survey numbers (sourced, scope stated) and 'Made in the EU'
+- site: /de/bildung/ (native German page, pilot request by mailto); native pages keep their own hreflang and get header/footer from the translated locale; language banner only suggests versions a landing page declares
+- Android: folding or unfolding gives one light haptic tick and the list slides in beside the open item (no tick or motion at start-up or with reduce-motion)
+- site: Pocket alternative landing page (P1, English); product name in site.json; landing pages get WebPage/FAQPage/BreadcrumbList JSON-LD
+- DRAFT license: AGPL-3.0 plus commercial license for later versions; earlier releases stay MIT
+  - LICENSE is now AGPL-3.0; the old text is kept as LICENSE-MIT with a note (releases up to 2.2.38)
+  - COMMERCIAL-LICENSE.md: how to get a commercial license (no prices yet)
+  - CONTRIBUTING: contributors grant the right to dual-license their contribution
+  - README, FAQ and one blog sentence no longer say MIT
+- site: gallery dots and the Demo pill share one centre line
+- site: live demo is the last slide of the 'See it' gallery with a labelled Demo dot; desktop only
+- site: live demo smaller (about 460-620px tall, 1180px wide) and moved below the videos
+- site: restore 'Made in the EU' in the hero proof line
+- site: drop 'Made in the EU' from the hero proof line (byphil Cloud runs through OpenRouter; EU servers and models are an option, not the default)
+- site: pricing as two cards (Free, Support Pass); the one-time donation is a text link
+- site: byphil ecosystem links as their own footer group
+- site: ecosystem block replaced by PetSetLife and Matrix links in the footer
+- site: live demo directly after the hero; its Chrome button is device-aware too
+- site: hero proof line (139 Product Hunt upvotes, open source, made in the EU)
+- site: shorter hero (one outcome, one reassurance line); mockup marked as an example
+- site: hero CTA is there at once (no fade on first paint); slimmer analytics notice on phones
+- site: phones get 'Send to my computer' (share sheet, copy link, mail) instead of the Chrome store button; header icon on home and blog
+
+#### Fixed
+
+- extension i18n: the 222 strings for Sync & backup, Notes and the EU/Auto texts in the 13 remaining languages (ar da fi hi id it no pl ru sv th tr uk); fixes the release test (every locale has all 1859 strings)
+- site: language switch uses the page's own hreflang partners (fixes /de/bildung/ -> /education/, and localized blog names in every language); landing pages without a partner keep the built link
+- i18n: fix asset paths in translated pages (srcset, inline style url(), previously unshifted -> /de/assets/...); translate.mjs shifts them, new scripts/check-assets.mjs verifies every relative asset reference resolves
+
 ## 2.2.38 (2026-11-01)
 
 ### Library sync, backup and publishing
