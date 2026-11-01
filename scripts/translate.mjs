@@ -35,7 +35,7 @@
 //   node scripts/translate.mjs --file=index.html  # only this source file
 
 import { readFile, writeFile, mkdir } from 'node:fs/promises';
-import { existsSync } from 'node:fs';
+import { existsSync, writeFileSync, appendFileSync } from 'node:fs';
 import path from 'node:path';
 import crypto from 'node:crypto';
 import * as cheerio from 'cheerio';
@@ -46,7 +46,7 @@ const REPO_ROOT = process.cwd();
 const ROOT = path.join(REPO_ROOT, 'docs'); // docs/ is assembled by build-site.mjs and is the canonical English source
 const CONFIG_PATH = path.join(ROOT, 'i18n', 'locales.json');
 const MANIFEST_PATH = path.join(ROOT, 'i18n', 'manifest.json');
-const OPENROUTER_MODEL = process.env.OPENROUTER_MODEL || 'google/gemini-3.7-flash';
+const OPENROUTER_MODEL = process.env.OPENROUTER_MODEL || 'deepseek/deepseek-v4.1-flash';
 const OPENROUTER_URL = 'https://openrouter.ai/api/v1/chat/completions';
 
 const args = process.argv.slice(2);
@@ -559,10 +559,27 @@ async function main() {
         ? { [ONLY_LOCALE]: config.locales[ONLY_LOCALE] }
         : config.locales;
 
+    // A cancelled workflow run sends SIGINT/SIGTERM: save the cache and report changes before exiting.
     let filesWithApiCalls = 0;
+    let stopping = false;
+    for (const sig of ['SIGINT', 'SIGTERM']) {
+        process.once(sig, () => {
+            if (stopping) return;
+            stopping = true;
+            console.warn(`\n${sig} received: saving translation progress.`);
+            try {
+                if (!DRY_RUN) writeFileSync(MANIFEST_PATH, JSON.stringify(manifest, null, 2) + '\n', 'utf8');
+                if (process.env.GITHUB_OUTPUT) appendFileSync(process.env.GITHUB_OUTPUT, 'changed=true\n');
+            } finally {
+                process.exit(130);
+            }
+        });
+    }
     for (const relPath of targetFiles) {
         const called = await translateFile(relPath, config, targetLocales, manifest, apiKey, pageInventory);
         if (called) filesWithApiCalls++;
+        // Persist progress after every file so an aborted run keeps what was already paid for.
+        if (called && !DRY_RUN) await saveJson(MANIFEST_PATH, manifest);
     }
 
     await syncNavPostTitles(config, targetLocales, targetFiles);
