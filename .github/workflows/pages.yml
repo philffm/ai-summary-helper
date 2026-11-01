@@ -36,13 +36,15 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
+      - name: Install site validation dependencies
+        run: npm ci --no-audit --no-fund
       - name: Build the live demo (fails if the mock lacks a popup action)
         run: node plugin/scripts/build-demo.mjs --check
       # docs/ is committed, so the sitemap is only regenerated when someone runs
       # `npm run site:build` locally. Validate it here so a malformed sitemap
       # (Google: "Couldn't fetch") can never reach Pages.
       - name: Validate sitemap.xml
-        run: node scripts/check-sitemap.mjs
+        run: node --test scripts/tests/sitemap-links.test.mjs && node scripts/check-sitemap.mjs
       # The sitemap that is live right now, so IndexNow only gets the pages this deploy changes.
       - name: Save the live sitemap
         run: curl -fsSL https://ai-summary-helper.byphil.eu/sitemap.xml -o "$RUNNER_TEMP/sitemap-before.xml" || true

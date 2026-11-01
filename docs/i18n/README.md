@@ -63,8 +63,10 @@ npm run translate
 ## GitHub Actions
 
 `.github/workflows/translate.yml` runs on any push to `main` touching
-`site-src/**` or `docs/i18n/locales.json`. It runs `build-site.mjs` then
-`translate.mjs`, and **opens a pull request** rather than committing
+`site-src/**`, `docs/i18n/locales.json`, or `docs/i18n/slugs.json`. It runs
+`build-site.mjs` then `translate.mjs`, validates local links from sitemap
+pages and checks that every configured translation is present in the sitemap,
+and **opens a pull request** rather than committing
 directly — machine translation and market adaptation should get a human
 read-through before going live, at least until you've built up trust in a
 given locale's output quality.

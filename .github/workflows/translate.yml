@@ -6,6 +6,7 @@ on:
     paths:
       - 'site-src/**'
       - 'docs/i18n/locales.json'
+      - 'docs/i18n/slugs.json'
       # A new language version of a blog video: the pages pick it up on the next run (translate.mjs localizeBlogVideos).
       # The PR this opens only touches docs/<lang>/, so it does not trigger itself.
       - 'docs/assets/blog/video/**'
@@ -96,7 +97,11 @@ jobs:
       # Translation adds/removes locale pages, so the sitemap, hreflang alternates,
       # canonical tags and llms.txt must be rebuilt before the PR is opened.
       - name: Regenerate SEO artefacts (sitemap, hreflang, llms.txt)
-        run: node scripts/seo.mjs && node scripts/check-sitemap.mjs
+        run: |
+          node scripts/seo.mjs
+          node plugin/scripts/build-demo.mjs
+          node --test scripts/tests/sitemap-links.test.mjs
+          node scripts/check-sitemap.mjs
 
       # docs/ is generated (by build-site.mjs) and committed (GitHub Pages
       # serves it directly), so both the English pages AND the translated
