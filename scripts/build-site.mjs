@@ -108,6 +108,17 @@ async function buildPage(relPath, partials, config) {
         // ones below describe an English page and its translations, so they would label a German page as "en".
         // (a page with <meta name="aish:hreflang" content="custom"> brings its own alternates, e.g. /education/ <-> /de/bildung/)
         if (($('html').attr('lang') || 'en').toLowerCase().startsWith('en') && !$('meta[name="aish:hreflang"][content="custom"]').length) addHreflangTags($, config, relPath);
+        // Landing pages with a sibling in another language (e.g. /education/ <-> /de/bildung/): the language pills of the menu go to that
+        // sibling instead of the other language's home page.
+        // Only for pages that declare their own, real siblings: a native page (not English) or a page with <meta name="aish:hreflang" content="custom">.
+        if ($('meta[name="aish:landing"]').length && (($('html').attr('lang') || 'en').toLowerCase() !== 'en' || $('meta[name="aish:hreflang"][content="custom"]').length)) {
+            $('link[rel="alternate"][hreflang]').each((_, el) => {
+                const h = ($(el).attr('hreflang') || '').toLowerCase();
+                if (h === 'x-default') return;
+                let pth; try { pth = new URL($(el).attr('href')).pathname; } catch { return; }
+                $(`a.lang-pill[data-loc="${h}"]`).attr('href', pth);
+            });
+        }
         html = $.html();
     }
 
