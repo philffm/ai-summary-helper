@@ -118509,6 +118509,486 @@
           "model": "google/gemini-3.7-flash"
         }
       }
+    },
+    "235d16b84d5e04c51bffb3ed7755c5a7fc9abf7695705635d77f53fc80b662b9": {
+      "en": "Try the side panel",
+      "translations": {
+        "de": {
+          "text": "Seitenleiste ausprobieren",
+          "translatedAt": "2026-11-01T13:11:18.234Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fr": {
+          "text": "Essayez le panneau latéral",
+          "translatedAt": "2026-11-01T13:11:22.361Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "es": {
+          "text": "Prueba el panel lateral",
+          "translatedAt": "2026-11-01T13:11:27.110Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh": {
+          "text": "试用侧边栏",
+          "translatedAt": "2026-11-01T13:11:31.729Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh-TW": {
+          "text": "試用側邊欄",
+          "translatedAt": "2026-11-01T13:11:37.876Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ja": {
+          "text": "サイドパネルをお試しください",
+          "translatedAt": "2026-11-01T13:11:40.819Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ko": {
+          "text": "사이드 패널 체험하기",
+          "translatedAt": "2026-11-01T13:11:46.600Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pt": {
+          "text": "Experimente o painel lateral",
+          "translatedAt": "2026-11-01T13:11:51.588Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "hi": {
+          "text": "Side panel ट्राई करें",
+          "translatedAt": "2026-11-01T13:11:55.873Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "vi": {
+          "text": "Trải nghiệm bảng bên",
+          "translatedAt": "2026-11-01T13:12:00.726Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "nl": {
+          "text": "Probeer het zijpaneel",
+          "translatedAt": "2026-11-01T13:12:08.005Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "it": {
+          "text": "Prova il pannello laterale",
+          "translatedAt": "2026-11-01T13:12:12.348Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ru": {
+          "text": "Попробуйте боковую панель",
+          "translatedAt": "2026-11-01T13:12:19.832Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "uk": {
+          "text": "Спробуйте бічну панель",
+          "translatedAt": "2026-11-01T13:12:25.283Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "tr": {
+          "text": "Yan paneli deneyin",
+          "translatedAt": "2026-11-01T13:12:31.340Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "id": {
+          "text": "Coba side panel",
+          "translatedAt": "2026-11-01T13:12:36.556Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pl": {
+          "text": "Wypróbuj panel boczny",
+          "translatedAt": "2026-11-01T13:12:43.067Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "th": {
+          "text": "ทดลองใช้งานแถบด้านข้าง",
+          "translatedAt": "2026-11-01T13:12:49.934Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ar": {
+          "text": "جرّب اللوحة الجانبية",
+          "translatedAt": "2026-11-01T13:12:58.531Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "sv": {
+          "text": "Testa sidopanelen",
+          "translatedAt": "2026-11-01T13:13:02.996Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "da": {
+          "text": "Prøv sidepanelet",
+          "translatedAt": "2026-11-01T13:13:07.518Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "no": {
+          "text": "Prøv sidepanelet",
+          "translatedAt": "2026-11-01T13:13:13.174Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fi": {
+          "text": "Kokeile sivupaneelia",
+          "translatedAt": "2026-11-01T13:13:17.816Z",
+          "model": "google/gemini-3.7-flash"
+        }
+      }
+    },
+    "1369bfb1a1d396bd3e87f1c3e00300a1ad6cb37b7d82cf2ef7c3f30ce1fcdb64": {
+      "en": "Try it right here",
+      "translations": {
+        "de": {
+          "text": "Direkt hier ausprobieren",
+          "translatedAt": "2026-11-01T13:11:18.234Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fr": {
+          "text": "Essayez-le directement ici",
+          "translatedAt": "2026-11-01T13:11:22.361Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "es": {
+          "text": "Pruébalo aquí mismo",
+          "translatedAt": "2026-11-01T13:11:27.110Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh": {
+          "text": "在此直接体验",
+          "translatedAt": "2026-11-01T13:11:31.729Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh-TW": {
+          "text": "直接在這裡體驗",
+          "translatedAt": "2026-11-01T13:11:37.876Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ja": {
+          "text": "ここですぐにお試しいただけます",
+          "translatedAt": "2026-11-01T13:11:40.819Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ko": {
+          "text": "여기서 바로 사용해 보세요",
+          "translatedAt": "2026-11-01T13:11:46.600Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pt": {
+          "text": "Experimente aqui mesmo",
+          "translatedAt": "2026-11-01T13:11:51.588Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "hi": {
+          "text": "इसे यहीं ट्राई करें",
+          "translatedAt": "2026-11-01T13:11:55.873Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "vi": {
+          "text": "Dùng thử ngay tại đây",
+          "translatedAt": "2026-11-01T13:12:00.726Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "nl": {
+          "text": "Probeer het hier direct uit",
+          "translatedAt": "2026-11-01T13:12:08.005Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "it": {
+          "text": "Provalo proprio qui",
+          "translatedAt": "2026-11-01T13:12:12.348Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ru": {
+          "text": "Попробуйте прямо здесь",
+          "translatedAt": "2026-11-01T13:12:19.832Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "uk": {
+          "text": "Спробуйте просто тут",
+          "translatedAt": "2026-11-01T13:12:25.283Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "tr": {
+          "text": "Hemen burada deneyin",
+          "translatedAt": "2026-11-01T13:12:31.340Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "id": {
+          "text": "Coba langsung di sini",
+          "translatedAt": "2026-11-01T13:12:36.556Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pl": {
+          "text": "Wypróbuj tutaj",
+          "translatedAt": "2026-11-01T13:12:43.067Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "th": {
+          "text": "ทดลองใช้งานได้ที่นี่",
+          "translatedAt": "2026-11-01T13:12:49.934Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ar": {
+          "text": "جرّبها هنا مباشرة",
+          "translatedAt": "2026-11-01T13:12:58.531Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "sv": {
+          "text": "Testa direkt här",
+          "translatedAt": "2026-11-01T13:13:02.996Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "da": {
+          "text": "Prøv det lige her",
+          "translatedAt": "2026-11-01T13:13:07.518Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "no": {
+          "text": "Prøv det rett her",
+          "translatedAt": "2026-11-01T13:13:13.174Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fi": {
+          "text": "Kokeile suoraan tässä",
+          "translatedAt": "2026-11-01T13:13:17.816Z",
+          "model": "google/gemini-3.7-flash"
+        }
+      }
+    },
+    "77b8662dc610c03b6401e53f0018ad4af0b64bb5cc4eb97a83a730a88f6094e3": {
+      "en": "The real side panel of the extension, running in your browser. Tap Summarize. Nothing is sent anywhere.",
+      "translations": {
+        "de": {
+          "text": "Die echte Seitenleiste der Erweiterung, direkt in Ihrem Browser. Klicken Sie auf „Zusammenfassen“. Nichts wird irgendwohin gesendet.",
+          "translatedAt": "2026-11-01T13:11:18.234Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fr": {
+          "text": "Le véritable panneau latéral de l'extension, fonctionnant dans votre navigateur. Cliquez sur Résumer. Rien n'est envoyé nulle part.",
+          "translatedAt": "2026-11-01T13:11:22.361Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "es": {
+          "text": "El panel lateral real de la extensión, ejecutándose en tu navegador. Toca Resumir. Nada se envía a ningún lado.",
+          "translatedAt": "2026-11-01T13:11:27.110Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh": {
+          "text": "扩展程序的真实侧边栏，直接在浏览器中运行。点击 Summarize。数据不会发送至任何地方。",
+          "translatedAt": "2026-11-01T13:11:31.729Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh-TW": {
+          "text": "這是擴充功能的真實側邊欄，直接在你的瀏覽器中運作。點擊「摘要」，任何資料都不會外傳。",
+          "translatedAt": "2026-11-01T13:11:37.876Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ja": {
+          "text": "拡張機能の実際のサイドパネルが、お使いのブラウザ上でそのまま動作します。「要約」をタップしてみてください。データが外部に送信されることは一切ありません。",
+          "translatedAt": "2026-11-01T13:11:40.819Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ko": {
+          "text": "브라우저에서 직접 실행되는 확장 프로그램의 실제 사이드 패널입니다. '요약'을 눌러보세요. 어떤 데이터도 외부로 전송되지 않습니다.",
+          "translatedAt": "2026-11-01T13:11:46.600Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pt": {
+          "text": "O painel lateral real da extensão, rodando no seu navegador. Toque em Resumir. Nada é enviado para lugar nenhum.",
+          "translatedAt": "2026-11-01T13:11:51.588Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "hi": {
+          "text": "Extension का असली side panel, जो आपके browser में रन हो रहा है। Summarize पर टैप करें। कुछ भी कहीं नहीं भेजा जाता।",
+          "translatedAt": "2026-11-01T13:11:55.873Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "vi": {
+          "text": "Bảng bên thực tế của tiện ích mở rộng, hoạt động ngay trong trình duyệt của bạn. Nhấn Tóm tắt. Không có gì được gửi đi bất cứ đâu.",
+          "translatedAt": "2026-11-01T13:12:00.726Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "nl": {
+          "text": "Het echte zijpaneel van de extensie, draaiend in je browser. Tik op Samenvatten. Er wordt niets ergens naartoe gestuurd.",
+          "translatedAt": "2026-11-01T13:12:08.005Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "it": {
+          "text": "Il vero pannello laterale dell'estensione, in esecuzione nel tuo browser. Tocca Riassumi. Nessun dato viene inviato altrove.",
+          "translatedAt": "2026-11-01T13:12:12.348Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ru": {
+          "text": "Настоящая боковая панель расширения, работающая в вашем браузере. Нажмите «Суммировать». Никакие данные никуда не отправляются.",
+          "translatedAt": "2026-11-01T13:12:19.832Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "uk": {
+          "text": "Справжня бічна панель розширення, що працює у вашому браузері. Натисніть «Summarize». Нічого нікуди не надсилається.",
+          "translatedAt": "2026-11-01T13:12:25.283Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "tr": {
+          "text": "Eklentinin tarayıcınızda çalışan gerçek yan paneli. Özetle'ye dokunun. Hiçbir şey hiçbir yere gönderilmez.",
+          "translatedAt": "2026-11-01T13:12:31.340Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "id": {
+          "text": "Side panel asli dari ekstensi ini, berjalan di browser Anda. Ketuk Summarize. Tidak ada yang dikirim ke mana pun.",
+          "translatedAt": "2026-11-01T13:12:36.556Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pl": {
+          "text": "Prawdziwy panel boczny rozszerzenia działający w przeglądarce. Kliknij Podsumuj. Nic nie jest nigdzie wysyłane.",
+          "translatedAt": "2026-11-01T13:12:43.067Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "th": {
+          "text": "แถบด้านข้างจริงของส่วนขยาย ทำงานบนเบราว์เซอร์ของคุณ แตะที่ Summarize ไม่มีการส่งข้อมูลใด ๆ ออกไปภายนอก",
+          "translatedAt": "2026-11-01T13:12:49.934Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ar": {
+          "text": "اللوحة الجانبية الفعلية للإضافة، تعمل داخل متصفحك. اضغط على تلخيص. لا يتم إرسال أي شيء إلى أي مكان.",
+          "translatedAt": "2026-11-01T13:12:58.531Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "sv": {
+          "text": "Tilläggets riktiga sidopanel, som körs direkt i din webbläsare. Klicka på Summarize. Inget skickas någonstans.",
+          "translatedAt": "2026-11-01T13:13:02.996Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "da": {
+          "text": "Udvidelsens rigtige sidepanel, der kører i din browser. Tryk på Opsummer. Intet bliver sendt nogen steder hen.",
+          "translatedAt": "2026-11-01T13:13:07.518Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "no": {
+          "text": "Det ekte sidepanelet til utvidelsen, som kjører i nettleseren din. Trykk på Oppsummer. Ingenting sendes noe sted.",
+          "translatedAt": "2026-11-01T13:13:13.174Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fi": {
+          "text": "Laajennuksen aito sivupaneeli toiminnassa selaimessasi. Napauta Tiivistä. Mitään ei lähetetä minnekään.",
+          "translatedAt": "2026-11-01T13:13:17.816Z",
+          "model": "google/gemini-3.7-flash"
+        }
+      }
+    },
+    "6bd7dcf9ffa6c4051e9966ca8c46aab5fbd5cd0de2b1a2c868c4b7e70af3f9af": {
+      "en": "See it in action, in under 20 seconds each",
+      "translations": {
+        "de": {
+          "text": "Erleben Sie es in Aktion – jeweils in unter 20 Sekunden",
+          "translatedAt": "2026-11-01T13:29:02.347Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fr": {
+          "text": "Découvrez-le en action, en moins de 20 secondes chacun",
+          "translatedAt": "2026-11-01T13:29:06.863Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "es": {
+          "text": "Míralo en acción, en menos de 20 segundos cada uno",
+          "translatedAt": "2026-11-01T13:29:10.295Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh": {
+          "text": "查看实际演示，每段不到 20 秒",
+          "translatedAt": "2026-11-01T13:29:13.733Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh-TW": {
+          "text": "觀看實際操作展示，每段不到 20 秒",
+          "translatedAt": "2026-11-01T13:29:17.592Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ja": {
+          "text": "実際の動作を、それぞれ20秒以内でご覧いただけます",
+          "translatedAt": "2026-11-01T13:29:21.827Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ko": {
+          "text": "각각 20초 이내로 실제 작동 모습을 확인해 보세요",
+          "translatedAt": "2026-11-01T13:29:25.954Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pt": {
+          "text": "Veja em ação, em menos de 20 segundos cada",
+          "translatedAt": "2026-11-01T13:29:28.037Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "hi": {
+          "text": "इसे एक्शन में देखें, हर एक 20 सेकंड से भी कम में",
+          "translatedAt": "2026-11-01T13:29:31.091Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "vi": {
+          "text": "Xem cách hoạt động thực tế, chỉ dưới 20 giây mỗi phần",
+          "translatedAt": "2026-11-01T13:29:36.095Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "nl": {
+          "text": "Bekijk het in actie, in minder dan 20 seconden per stuk",
+          "translatedAt": "2026-11-01T13:29:40.701Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "it": {
+          "text": "Guardalo in azione, in meno di 20 secondi ciascuno",
+          "translatedAt": "2026-11-01T13:29:43.807Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ru": {
+          "text": "Посмотрите в действии: меньше 20 секунд на каждый пример",
+          "translatedAt": "2026-11-01T13:29:46.864Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "uk": {
+          "text": "Подивіться в дії: менш ніж 20 секунд на кожен",
+          "translatedAt": "2026-11-01T13:29:50.182Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "tr": {
+          "text": "Her biri 20 saniyeden kısa sürede iş başında görün",
+          "translatedAt": "2026-11-01T13:29:53.795Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "id": {
+          "text": "Lihat cara kerjanya, masing-masing kurang dari 20 detik",
+          "translatedAt": "2026-11-01T13:29:57.570Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pl": {
+          "text": "Zobacz w akcji – każde w mniej niż 20 sekund",
+          "translatedAt": "2026-11-01T13:30:02.499Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "th": {
+          "text": "ดูการทำงานจริง ในเวลาไม่ถึง 20 วินาทีต่อรายการ",
+          "translatedAt": "2026-11-01T13:30:09.833Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ar": {
+          "text": "شاهدها عملياً، في أقل من 20 ثانية لكل منها",
+          "translatedAt": "2026-11-01T13:30:11.913Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "sv": {
+          "text": "Se hur det fungerar, på under 20 sekunder vardera",
+          "translatedAt": "2026-11-01T13:30:15.074Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "da": {
+          "text": "Se det i aktion på under 20 sekunder hver",
+          "translatedAt": "2026-11-01T13:30:18.082Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "no": {
+          "text": "Se det i aksjon, på under 20 sekunder hver",
+          "translatedAt": "2026-11-01T13:30:21.559Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fi": {
+          "text": "Katso miten se toimii – kukin alle 20 sekunnissa",
+          "translatedAt": "2026-11-01T13:30:25.902Z",
+          "model": "google/gemini-3.7-flash"
+        }
+      }
     }
   }
 }
