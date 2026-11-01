@@ -87,7 +87,17 @@
         }
       });
     }, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
-    reveals.forEach(function (el) { observer.observe(el); });
+    // A block taller than the screen (the whole feature grid) never has 15 % of itself in view early, so it appeared very late:
+    // for those, reveal as soon as the top edge comes into view.
+    var tallObserver = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+          tallObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0, rootMargin: '0px 0px -80px 0px' });
+    reveals.forEach(function (el) { (el.offsetHeight > window.innerHeight * 0.9 ? tallObserver : observer).observe(el); });
   } else {
     reveals.forEach(function (el) { el.classList.add('is-visible'); });
   }
