@@ -1680,3 +1680,53 @@ function setBilling(period) {
     update();
   });
 })();
+
+
+/* ── Building cross-section: [data-building] with SVG rooms [data-room], chips [data-room-chip] and panels [data-room-panel] ── */
+(function () {
+  document.querySelectorAll('[data-building]').forEach(function (root) {
+    var rooms = [].slice.call(root.querySelectorAll('[data-room]')), chips = [].slice.call(root.querySelectorAll('[data-room-chip]')), panels = [].slice.call(root.querySelectorAll('[data-room-panel]'));
+    if (!panels.length) return;
+    function select(id) {
+      rooms.forEach(function (r) { var on = r.getAttribute('data-room') === id; r.classList.toggle('is-on', on); r.setAttribute('aria-pressed', on ? 'true' : 'false'); });
+      chips.forEach(function (c) { var on = c.getAttribute('data-room-chip') === id; c.classList.toggle('is-on', on); c.setAttribute('aria-pressed', on ? 'true' : 'false'); });
+      panels.forEach(function (p) { p.hidden = p.getAttribute('data-room-panel') !== id; });
+    }
+    rooms.forEach(function (r) {
+      r.addEventListener('click', function () { select(r.getAttribute('data-room')); });
+      r.addEventListener('keydown', function (e) { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); select(r.getAttribute('data-room')); } });
+    });
+    chips.forEach(function (c) { c.addEventListener('click', function () { select(c.getAttribute('data-room-chip')); }); });
+    select(panels[0].getAttribute('data-room-panel'));
+  });
+})();
+
+
+/* ── Walk through the house: [data-house] with .hs-track slides, prev/next, and a small building map ([data-room]) that jumps and follows ── */
+(function () {
+  var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  document.querySelectorAll('[data-house]').forEach(function (root) {
+    var track = root.querySelector('.hs-track'), slides = [].slice.call(root.querySelectorAll('.hs-slide')), prev = root.querySelector('.hs-prev'), next = root.querySelector('.hs-next'), count = root.querySelector('.hs-count');
+    var navs = [].slice.call(root.querySelectorAll('[data-room]')), ids = slides.map(function (x) { return x.getAttribute('data-room-panel'); }), active = -1, raf = 0;
+    if (!track || !slides.length) return;
+    function setActive(i) {
+      if (i === active) return; active = i;
+      navs.forEach(function (n) { var on = n.getAttribute('data-room') === ids[i]; n.classList.toggle('is-on', on); n.setAttribute('aria-pressed', on ? 'true' : 'false'); });
+      slides.forEach(function (x, k) { x.classList.toggle('is-active', k === i); });
+      if (count) count.textContent = (i + 1) + ' / ' + slides.length;
+      if (prev) prev.disabled = i === 0; if (next) next.disabled = i === slides.length - 1;
+    }
+    function go(i) { i = Math.max(0, Math.min(slides.length - 1, i)); track.scrollTo({ left: slides[i].offsetLeft, behavior: reduce ? 'auto' : 'smooth' }); setActive(i); }
+    function nearest() { var best = 0, bd = Infinity; slides.forEach(function (x, k) { var d = Math.abs(x.offsetLeft - track.scrollLeft); if (d < bd) { bd = d; best = k; } }); return best; }
+    track.addEventListener('scroll', function () { if (raf) return; raf = requestAnimationFrame(function () { raf = 0; setActive(nearest()); }); }, { passive: true });
+    if (prev) prev.addEventListener('click', function () { go(active - 1); });
+    if (next) next.addEventListener('click', function () { go(active + 1); });
+    track.addEventListener('keydown', function (e) { if (e.key === 'ArrowRight') { e.preventDefault(); go(active + 1); } else if (e.key === 'ArrowLeft') { e.preventDefault(); go(active - 1); } });
+    navs.forEach(function (n) {
+      n.addEventListener('click', function () { go(ids.indexOf(n.getAttribute('data-room'))); });
+      n.addEventListener('keydown', function (e) { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); go(ids.indexOf(n.getAttribute('data-room'))); } });
+    });
+    window.addEventListener('resize', function () { track.scrollTo({ left: slides[active].offsetLeft, behavior: 'auto' }); });
+    setActive(0);
+  });
+})();
