@@ -1626,3 +1626,9 @@ body:has(.hero--photo){ padding-top:0; }
   .hs-map{ order:2; padding-top:0; }
   .bq3d--mini .bq3d-tag{ display:none; }
 }
+
+/* Building map: taller rows so a click lands on the room you aim at */
+.hs-map .bq3d{ max-width:240px; }
+.bq3d--mini .bq3d-room{ aspect-ratio:1.9/1; }
+.bq3d--mini .bq3d-row--one .bq3d-room{ aspect-ratio:3.8/1; }
+.bq3d--mini .bq3d-row--base .bq3d-room, .bq3d--mini .bq3d-room--ki{ height:46px; }
