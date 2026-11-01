@@ -614,7 +614,8 @@ footer .copyright{ font-size:13px; color:var(--paper-dim); margin-top:18px; line
 .hero-switch-btn.active{ background:var(--cta-sky-2); color:var(--on-accent); }
 .hero-pane[hidden]{ display:none; }
 .hero-pane-blurb{ max-width:520px; margin:0 auto 20px; color:var(--paper-dim); font-size:16px; line-height:1.55; }
-.hero-pane{ animation:heroPaneIn .25s ease; }
+/* only animate when the visitor switches panes (class set by main.js), never on first paint: the hero CTA must be there at once */
+.hero-pane.is-switching{ animation:heroPaneIn .25s ease; }
 @keyframes heroPaneIn{ from{ opacity:0; transform:translateY(4px);} to{ opacity:1; transform:none;} }
 @media (prefers-reduced-motion: reduce){ .hero-pane{ animation:none; } .hero-switch-btn{ transition:none; } }
 .bm-back{ padding-top:28px; }
@@ -643,7 +644,12 @@ footer .copyright{ font-size:13px; color:var(--paper-dim); margin-top:18px; line
 .an-dialog h2{ margin:0; font-size:20px; }
 .an-dialog p{ margin:0; }
 .an-small{ font-size:12.5px; opacity:.8; }
-@media (max-width:520px){ .an-notice{ left:8px; right:8px; bottom:8px; max-width:none; } }
+@media (max-width:520px){
+  /* slim bar: text and buttons side by side, small type, so it no longer covers a third of the first screen */
+  .an-notice{ left:8px; right:8px; bottom:8px; max-width:none; flex-direction:row; align-items:center; gap:8px; padding:8px 10px; font-size:12px; line-height:1.35; border-radius:10px; }
+  .an-notice .an-actions{ flex-wrap:nowrap; flex:none; }
+  .an-notice .an-btn{ padding:5px 10px; font-size:12px; }
+}
 
 /* ── Accessibility: focus on filled controls, target size, link affordance ── */
 .hero-switch-btn.active:focus-visible, .persona-btn.active:focus-visible, .tier-toggle button.active:focus-visible,
