@@ -1704,11 +1704,11 @@ function setBilling(period) {
 })();
 
 
-/* ── Walk through the house: [data-house] with .hs-track slides, prev/next, and a small building map ([data-room]) that jumps and follows ── */
+/* ── Walk through the house: [data-house] with .hw-track slides, prev/next, and a small building map ([data-room]) that jumps and follows ── */
 (function () {
   var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   document.querySelectorAll('[data-house]').forEach(function (root) {
-    var track = root.querySelector('.hs-track'), slides = [].slice.call(root.querySelectorAll('.hs-slide')), prev = root.querySelector('.hs-prev'), next = root.querySelector('.hs-next'), count = root.querySelector('.hs-count');
+    var track = root.querySelector('.hw-track'), slides = [].slice.call(root.querySelectorAll('.hw-slide')), prev = root.querySelector('.hw-prev'), next = root.querySelector('.hw-next'), count = root.querySelector('.hw-count');
     var navs = [].slice.call(root.querySelectorAll('[data-room]')), ids = slides.map(function (x) { return x.getAttribute('data-room-panel'); }), active = -1, raf = 0;
     if (!track || !slides.length) return;
     function setActive(i) {
