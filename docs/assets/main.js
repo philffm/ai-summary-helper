@@ -1206,9 +1206,16 @@ function setBilling(period) {
     try { alts[(l.getAttribute('hreflang') || '').toLowerCase()] = new URL(l.href).pathname; } catch (e) {}
   });
   var landing = !!document.querySelector('meta[name="aish:landing"]');
+  var hasAlts = Object.keys(alts).length > 0;
   [].forEach.call(nav.querySelectorAll('[data-loc]'), function (a) {
     var l = a.getAttribute('data-loc'), hl = (a.getAttribute('hreflang') || l).toLowerCase();
     if (alts[hl]) a.href = alts[hl];
+    else if (!landing && hasAlts) {
+      // The page lists its real translations and this language is not among them (not translated yet): the folder swap would 404,
+      // so land on that language's blog index (for posts) or home page instead.
+      var base = l === 'en' ? '' : '/' + l;
+      a.href = base + (/^\/blog\//.test(rest) ? '/blog/' : '/');
+    }
     else if (!landing) a.href = (l === 'en' ? '' : '/' + l) + (rest.indexOf('/') === 0 ? rest : '/' + rest);
     if (l === cur) a.setAttribute('aria-current', 'true');
   });
