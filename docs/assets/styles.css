@@ -1440,3 +1440,8 @@ button.tier-cta[hidden]{ display:none; }
 .hero--photo h1, .hero--photo p.sub{ text-shadow:0 1px 14px rgba(0,0,0,.45); }
 .hero--photo .eyebrow{ color:#F2D9A6; }
 .hero--photo .hero-meta{ color:rgba(245,245,247,.82); }
+
+/* Immersive stage: on pages with a photo hero the picture runs up under the floating menu (no reserved band above it). */
+body:has(.hero--photo){ padding-top:0; }
+.hero--photo{ padding:196px 0 96px; }
+@media (max-width:860px){ .hero--photo{ padding:148px 0 72px; } }
