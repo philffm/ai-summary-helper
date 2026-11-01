@@ -117,15 +117,20 @@
 
   <section>
     <div class="wrap">
-      <div class="prose">
-        <figure class="post-figure post-figure--video" data-blog-video="senden">
-          <video controls="" playsinline="" preload="none" width="360" height="520" poster="../assets/blog/video/senden-en.jpg">
-            <source src="../assets/blog/video/senden-en.mp4" type="video/mp4">
-          <track data-seo-video="" kind="captions" src="../assets/blog/video/senden-en.vtt" srclang="en" label="English"></video>
-          <figcaption>Video: from summary to Kindle, the habit this project started with.</figcaption>
-        </figure>
+      <div class="prose" data-vgroup="">
 
         <p><strong>AI Summary Helper is a free, open-source Chrome extension that summarizes any web page using your own AI provider or a fully local model, saves articles for later with timed reminders, and turns your reading history into a searchable, connected archive.</strong> None of that existed in the first version. Here's what did, and how it got from there to here.</p>
+        <figure class="post-figure post-video" data-blog-video="senden">
+          <div class="post-video-in">
+            <button class="fvideo-open post-video-open" type="button"><span class="sr-only">Play the video</span>
+              <video muted="" playsinline="" loop="" preload="none" width="360" height="520" poster="../assets/blog/video/senden-en.jpg">
+            <source src="../assets/blog/video/senden-en.mp4" type="video/mp4">
+          <track data-seo-video="" kind="captions" src="../assets/blog/video/senden-en.vtt" srclang="en" label="English"></video>
+              <span class="post-video-play" aria-hidden="true">▶</span>
+            </button>
+            <figcaption>Video: from summary to Kindle, the habit this project started with.</figcaption>
+          </div>
+        </figure>
 
         <h2>How this actually started</h2>
         <p>In July 2024, this was a bookmarklet — not even an extension. You'd hunt down interesting articles, open a dozen tabs, and, like almost everyone, never get around to reading most of them. The original pitch was narrow and personal: a custom-prompt summarizer that inserted its output directly into the page, so the summary could ride along when you sent the article to a Kindle using <a href="https://send.reabble.com/" target="_blank" rel="noopener">Reabble's Send-to-Kindle tool</a>. That was the whole product. One AI provider. One prompt field. A bookmarklet variant that worked anywhere, even iOS Safari, and a Chrome extension variant for people who wanted the prompt adjustable on the fly.</p>
@@ -167,6 +172,12 @@
   </section>
 </main>
 
+<div class="vfeed-labels" hidden="">
+  <span data-l="close">Close</span><span data-l="sound">Sound on</span><span data-l="mute">Sound off</span><span data-l="hint">Swipe up for the next video</span><span data-l="prev">Previous video</span><span data-l="next">Next video</span>
+  <span data-l="share">Share</span><span data-l="copied">Link copied</span>
+  <span data-l="add_chrome">Add to Chrome — it's free</span><span data-l="add_firefox">Add to Firefox — it's free</span><span data-l="add_browser">Add to your browser — it's free</span>
+  <a data-l="try" href="../bookmarklet.html">Try it in your browser — it's free</a>
+</div>
 <footer>
   <div class="wrap">
     <div class="footer-inner">

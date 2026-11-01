@@ -1453,3 +1453,18 @@ body:has(.hero--photo){ padding-top:0; }
 .post-stage .post-hero .post-sub{ color:rgba(245,245,247,.88); text-shadow:0 1px 14px rgba(0,0,0,.45); }
 .post-stage .post-hero .blog-date{ color:#F2D9A6; }
 @media (max-width:860px){ .post-stage{ padding:128px 0 44px; } }
+
+/* Blog video: a poster card that opens the same full-screen player as the home page. Wide screens: a sticky rail beside the text. */
+.post-video{ margin:28px 0; }
+.post-video-open{ position:relative; display:block; width:100%; max-width:300px; padding:0; border:0; background:none; cursor:pointer; border-radius:18px; overflow:hidden; box-shadow:0 18px 44px rgba(0,0,0,.34); }
+.post-video-open video{ display:block; width:100%; height:auto; aspect-ratio:1080/1560; object-fit:cover; background:#0b1020; }
+.post-video-play{ position:absolute; left:50%; top:50%; width:64px; height:64px; margin:-32px 0 0 -32px; border-radius:50%; background:rgba(8,9,12,.62); -webkit-backdrop-filter:blur(6px); backdrop-filter:blur(6px); color:#fff; display:flex; align-items:center; justify-content:center; font-size:22px; padding-left:3px; box-shadow:0 0 0 6px rgba(255,255,255,.14); transition:transform .15s ease; }
+.post-video-open:hover .post-video-play{ transform:scale(1.08); }
+.post-video-open:focus-visible{ outline:3px solid var(--brass-light); outline-offset:3px; }
+.post-video figcaption{ margin:12px 0 0; font-size:14px; line-height:1.5; color:var(--paper-dim); text-align:start; }
+.prose:has(> .post-video){ position:relative; }
+@media (min-width:1280px){
+  .prose > .post-video{ position:absolute; top:0; bottom:0; left:calc(100% + 44px); width:230px; margin:0; }
+  .post-video-in{ position:sticky; top:104px; }
+  .post-video-open{ max-width:none; }
+}

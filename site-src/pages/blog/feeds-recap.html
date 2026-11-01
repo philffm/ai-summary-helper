@@ -46,14 +46,19 @@
 
   <section>
     <div class="wrap">
-      <div class="prose">
-        <figure class="post-figure post-figure--video" data-blog-video="feeds">
-          <video controls playsinline preload="none" width="360" height="520" poster="../assets/blog/video/feeds-en.jpg">
+      <div class="prose" data-vgroup>
+        <p>In 2009, Sophie Leroy described what she called attention residue: when you switch from one task to another, part of your attention stays with the task you left. In her experiments, people who had been interrupted on one task did worse on the next one, and the effect was stronger when they had to hurry.</p>
+        <figure class="post-figure post-video" data-blog-video="feeds">
+          <div class="post-video-in">
+            <button class="fvideo-open post-video-open" type="button"><span class="sr-only">Play the video</span>
+              <video muted playsinline loop preload="none" width="360" height="520" poster="../assets/blog/video/feeds-en.jpg">
             <source src="../assets/blog/video/feeds-en.mp4" type="video/mp4">
           </video>
-          <figcaption>Video: a whole day of feeds in one recap.</figcaption>
+              <span class="post-video-play" aria-hidden="true">&#9654;</span>
+            </button>
+            <figcaption>Video: a whole day of feeds in one recap.</figcaption>
+          </div>
         </figure>
-        <p>In 2009, Sophie Leroy described what she called attention residue: when you switch from one task to another, part of your attention stays with the task you left. In her experiments, people who had been interrupted on one task did worse on the next one, and the effect was stronger when they had to hurry.</p>
         <p>A feed reader is a machine for switching tasks. Each item is a different topic, a different tone, a different tab. Even if every item is quick, the residue adds up. By the time you are back at your actual work, part of you is still thinking about a pricing change at a hosting provider.</p>
 
         <h2>Why “inbox zero” for feeds never works</h2>
@@ -79,6 +84,7 @@
   </section>
 </main>
 
+<!--include:vfeed-labels-->
 <!--include:footer-blog-->
 </body>
 </html>

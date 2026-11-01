@@ -117,14 +117,19 @@
 
   <section>
     <div class="wrap">
-      <div class="prose">
-        <figure class="post-figure post-figure--video" data-blog-video="mcp">
-          <video controls="" playsinline="" preload="none" width="360" height="520" poster="../assets/blog/video/mcp-en.jpg">
+      <div class="prose" data-vgroup="">
+        <p>AI Summary Helper can share your library with AI apps that support the Model Context Protocol (MCP): Claude Desktop, LM Studio, Cursor, VS Code, Jan, and local agents. Your app asks a question, AI Summary Helper looks it up in your saved articles, and the answer goes straight back to the app on your machine.</p>
+        <figure class="post-figure post-video" data-blog-video="mcp">
+          <div class="post-video-in">
+            <button class="fvideo-open post-video-open" type="button"><span class="sr-only">Play the video</span>
+              <video muted="" playsinline="" loop="" preload="none" width="360" height="520" poster="../assets/blog/video/mcp-en.jpg">
             <source src="../assets/blog/video/mcp-en.mp4" type="video/mp4">
           <track data-seo-video="" kind="captions" src="../assets/blog/video/mcp-en.vtt" srclang="en" label="English"></video>
-          <figcaption>Video: ask your AI app about your reading, with quotes, what is due and a yearly wrapped.</figcaption>
+              <span class="post-video-play" aria-hidden="true">▶</span>
+            </button>
+            <figcaption>Video: ask your AI app about your reading, with quotes, what is due and a yearly wrapped.</figcaption>
+          </div>
         </figure>
-        <p>AI Summary Helper can share your library with AI apps that support the Model Context Protocol (MCP): Claude Desktop, LM Studio, Cursor, VS Code, Jan, and local agents. Your app asks a question, AI Summary Helper looks it up in your saved articles, and the answer goes straight back to the app on your machine.</p>
         <p>It is off by default. Nothing about it involves our server: the extension and the app talk to each other through a small helper program on your computer, <code>aish-mcp</code>, which stores no articles and forwards nothing anywhere else.</p>
 
         <h2>What you can ask</h2>
@@ -222,6 +227,12 @@
   </section>
 </main>
 
+<div class="vfeed-labels" hidden="">
+  <span data-l="close">Close</span><span data-l="sound">Sound on</span><span data-l="mute">Sound off</span><span data-l="hint">Swipe up for the next video</span><span data-l="prev">Previous video</span><span data-l="next">Next video</span>
+  <span data-l="share">Share</span><span data-l="copied">Link copied</span>
+  <span data-l="add_chrome">Add to Chrome — it's free</span><span data-l="add_firefox">Add to Firefox — it's free</span><span data-l="add_browser">Add to your browser — it's free</span>
+  <a data-l="try" href="../bookmarklet.html">Try it in your browser — it's free</a>
+</div>
 <footer>
   <div class="wrap">
     <div class="footer-inner">
