@@ -229,7 +229,7 @@ for (const e of videoEntries) {
 }
 vxml += `</urlset>\n`;
 fs.writeFileSync(path.join(DOCS, 'sitemap-video.xml'), vxml);
-fs.writeFileSync(path.join(DOCS, 'robots.txt'), `User-agent: *\nAllow: /\n\nSitemap: ${BASE}/sitemap.xml\nSitemap: ${BASE}/sitemap-index.xml\nSitemap: ${BASE}/sitemap-video.xml\n`);
+fs.writeFileSync(path.join(DOCS, 'robots.txt'), `User-agent: *\nAllow: /\n\nUser-agent: Googlebot\nAllow: /\n\nUser-agent: Bingbot\nAllow: /\n\nUser-agent: PerplexityBot\nAllow: /\n\nUser-agent: OAI-SearchBot\nAllow: /\n\nUser-agent: Claude-User\nAllow: /\n\nSitemap: ${BASE}/sitemap-index.xml\nSitemap: ${BASE}/sitemap-video.xml\n`);
 
 // llms.txt: a plain-text map for AI assistants and answer engines (English pages only; each links to its translations via hreflang).
 const en = entries.filter((e) => !isLocalized(e.rel));
