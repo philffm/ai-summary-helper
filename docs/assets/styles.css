@@ -1420,3 +1420,8 @@ button.tier-cta[hidden]{ display:none; }
 .photo-row--3{ grid-template-columns:repeat(3, 1fr); max-width:1180px; margin-left:auto; margin-right:auto; }
 .photo-row--3 img{ aspect-ratio:4/3; }
 @media (max-width:900px){ .photo-row--3{ grid-template-columns:1fr; max-width:560px; } }
+
+/* One quiet illustration inside a section (home page) and inside blog posts */
+.section-photo{ margin:26px auto 0; max-width:520px; }
+.section-photo img, .post-figure--photo img{ display:block; width:100%; height:auto; border-radius:14px; border:1px solid var(--border-subtle); background:var(--surface-2); }
+.section-photo figcaption{ margin-top:10px; font-size:13.5px; line-height:1.5; color:var(--paper-dim); text-align:center; }
