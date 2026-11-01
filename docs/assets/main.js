@@ -862,6 +862,10 @@ function setBilling(period) {
   var root = document.querySelector('[data-carousel]');
   if (!root) return;
   var track = root.querySelector('.cx-track');
+  // The live demo slide is for desktop only: on phones it (and its dot) is removed before the slides are counted.
+  if (window.matchMedia && window.matchMedia('(max-width: 820px)').matches) {
+    [].slice.call(root.querySelectorAll('[data-desktop-only], .cx-dot--demo')).forEach(function (n) { n.remove(); });
+  }
   var slides = [].slice.call(track.children);
   var dots = [].slice.call(root.querySelectorAll('.cx-dot'));
   var prev = root.querySelector('.cx-prev'), next = root.querySelector('.cx-next');

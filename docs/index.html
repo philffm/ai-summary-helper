@@ -56,7 +56,7 @@
     </a>
     <nav class="pill" aria-label="Primary">
       <a href="index.html#features" data-sec="features">Features</a>
-      <a href="index.html#try-it" data-sec="try-it">Demo</a>
+      <a href="index.html#see-it" data-sec="see-it">Demo</a>
       <a href="https://chromewebstore.google.com/detail/ai-summary-helper-openai/hldbejcjaedipeegjcinmhejdndchkmb" class="pill-cta" target="_blank" rel="noopener">Add to Chrome</a>
     </nav>
     <div class="nav-tools">
@@ -75,7 +75,7 @@
     <div class="wrap mm-inner">
       <nav class="mm-links" aria-label="Mobile">
         <a href="index.html#features"><span class="mm-n">01</span>Features</a>
-        <a href="index.html#try-it"><span class="mm-n">02</span>Demo</a>
+        <a href="index.html#see-it"><span class="mm-n">02</span>Demo</a>
         <a href="blog/"><span class="mm-n">03</span>Blog</a>
           <a href="blog/pocket-alternative.html" class="mm-sub">Pocket alternative: what matters</a>
           <a href="blog/bring-your-own-key.html" class="mm-sub">Your key. Your model. Your data.</a>
@@ -211,35 +211,44 @@
       <div class="cx reveal" data-carousel="" role="region" aria-roledescription="carousel" aria-label="Product screenshots">
         <div class="cx-stage">
           <ul class="cx-track" tabindex="0">
-          <li class="cx-slide is-active" role="group" aria-roledescription="slide" aria-label="1 / 4">
+          <li class="cx-slide is-active" role="group" aria-roledescription="slide" aria-label="1 / 5">
             <figure>
               <img src="assets/shots/aish-inpage-detail-en.webp" width="1440" height="900" loading="lazy" alt="Summary in the side panel next to the article">
               <figcaption><strong>The summary beside the article</strong><span>Read the overview without leaving the page.</span></figcaption>
             </figure>
           </li>
-          <li class="cx-slide" role="group" aria-roledescription="slide" aria-label="2 / 4">
+          <li class="cx-slide" role="group" aria-roledescription="slide" aria-label="2 / 5">
             <figure>
               <img src="assets/shots/aish-inpage-ask-en.webp" width="1440" height="900" loading="lazy" alt="Follow-up answer with a source marker and highlighted sentences in the article">
               <figcaption><strong>Ask the page</strong><span>Answers point to the passage they come from.</span></figcaption>
             </figure>
           </li>
-          <li class="cx-slide" role="group" aria-roledescription="slide" aria-label="3 / 4">
+          <li class="cx-slide" role="group" aria-roledescription="slide" aria-label="3 / 5">
             <figure>
               <img src="assets/shots/aish-split-wide-en.webp" width="1280" height="800" loading="lazy" alt="Split view with the list, knowledge graph and analytics side by side">
               <figcaption><strong>New in 2.2: split view</strong><span>List, knowledge graph and analytics side by side on large screens.</span></figcaption>
             </figure>
           </li>
-          <li class="cx-slide" role="group" aria-roledescription="slide" aria-label="4 / 4">
+          <li class="cx-slide" role="group" aria-roledescription="slide" aria-label="4 / 5">
             <figure>
               <img src="assets/shots/aish-research-dark-en.webp" width="1280" height="800" loading="lazy" alt="Research mode with a collection of papers, in dark mode">
               <figcaption><strong>New in 2.2: research mode</strong><span>Study details, DOI citations and collections for scientific papers.</span></figcaption>
+            </figure>
+          </li>
+          <li class="cx-slide cx-slide--demo" role="group" aria-roledescription="slide" aria-label="5 / 5" data-desktop-only="">
+            <figure>
+              <div class="demo-frame" data-demo="" data-src="demo/index.html">
+                <button class="demo-start" type="button"><span class="demo-play" aria-hidden="true">▶</span><span>Start the live demo</span></button>
+                <a class="demo-open" href="demo/index.html" target="_blank" rel="noopener">Open full screen ↗</a>
+              </div>
+              <figcaption><strong>Press Summarize on a real page</strong><span>This is the actual extension interface running in your browser, on a sample article. Nothing is sent anywhere.</span></figcaption>
             </figure>
           </li>
           </ul>
           <button type="button" class="cx-nav cx-prev" aria-label="Previous slide"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m15 18-6-6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg></button>
           <button type="button" class="cx-nav cx-next" aria-label="Next slide"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m9 18 6-6-6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg></button>
         </div>
-        <div class="cx-dots"><button type="button" class="cx-dot is-active" aria-label="Slide 1"></button><button type="button" class="cx-dot" aria-label="Slide 2"></button><button type="button" class="cx-dot" aria-label="Slide 3"></button><button type="button" class="cx-dot" aria-label="Slide 4"></button></div>
+        <div class="cx-dots"><button type="button" class="cx-dot is-active" aria-label="Slide 1"></button><button type="button" class="cx-dot" aria-label="Slide 2"></button><button type="button" class="cx-dot" aria-label="Slide 3"></button><button type="button" class="cx-dot" aria-label="Slide 4"></button><button type="button" class="cx-dot cx-dot--demo" aria-label="Slide 5: live demo">Demo</button></div>
       </div>
     </div>
   </section>
@@ -517,21 +526,6 @@
         <div class="vstack-dots" aria-hidden="true"></div>
         <button class="vstack-arrow" type="button" data-dir="1" aria-label="Next video">›</button>
       </div>
-    </div>
-  </section>
-
-  <section id="try-it">
-    <div class="wrap">
-      <div class="section-head center reveal">
-        <div class="eyebrow">Try it</div>
-        <h2>Press Summarize on a real page</h2>
-        <p>This is the actual extension interface running in your browser, on a sample article. Nothing is sent anywhere.</p>
-      </div>
-      <div class="demo-frame reveal" data-demo="" data-src="demo/index.html">
-        <button class="demo-start" type="button"><span class="demo-play" aria-hidden="true">▶</span><span>Start the live demo</span></button>
-        <a class="demo-open" href="demo/index.html" target="_blank" rel="noopener">Open full screen ↗</a>
-      </div>
-      <div class="demo-cta reveal"><a href="https://chromewebstore.google.com/detail/ai-summary-helper-openai/hldbejcjaedipeegjcinmhejdndchkmb" target="_blank" rel="noopener" class="btn-primary" data-desktop-cta="" data-track="demo-add-chrome">Add to Chrome — it's free</a><a href="https://addons.mozilla.org/en-US/firefox/addon/ai-summary-helper/" target="_blank" rel="noopener" class="btn-secondary" data-desktop-cta="" data-store="alt" data-track="demo-add-firefox">Firefox</a><button type="button" class="btn-primary" data-send="" hidden="">Send to my computer</button></div>
     </div>
   </section>
 
