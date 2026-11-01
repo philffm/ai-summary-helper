@@ -39,7 +39,7 @@ import { existsSync } from 'node:fs';
 import path from 'node:path';
 import crypto from 'node:crypto';
 import * as cheerio from 'cheerio';
-import { localizedPath, englishPath, rewriteLocalizedLinks, redirectStub, SITE_URL } from './lib/localized-paths.mjs';
+import { localizedPath, englishPath, rewriteLocalizedLinks, rewriteNativeSiblingLinks, redirectStub, SITE_URL } from './lib/localized-paths.mjs';
 
 const REPO_ROOT = process.cwd();
 const ROOT = path.join(REPO_ROOT, 'docs'); // docs/ is assembled by build-site.mjs and is the canonical English source
@@ -468,7 +468,8 @@ async function translateFile(relPath, config, targetLocales, manifest, apiKey) {
         localizeBlogVideos($, locale);
         rewriteAssetPaths($, locale);
         setHtmlLang($, locale);
-        rewriteLocalizedLinks($, relPath, code);   // links to other pages use the localized names (docs/i18n/slugs.json)
+        rewriteLocalizedLinks($, relPath, code);
+        rewriteNativeSiblingLinks($, `${locale.dir}/${localizedPath(relPath, code)}`, code);   // links to other pages use the localized names (docs/i18n/slugs.json)
         addHreflangTags($, config, code, relPath);
 
         const outPath = path.join(ROOT, locale.dir, localizedPath(relPath, code));

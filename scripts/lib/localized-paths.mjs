@@ -66,3 +66,26 @@ export function redirectStub({ lang, newRel, newAbs, title }) {
 `;
 }
 export const SITE_URL = SITE;
+
+/** Hand-written pages with a different address per language: root path of the English page -> root path per locale folder. */
+const NATIVE_SIBLINGS = { 'education/': { de: 'de/bildung/' } };
+
+/**
+ * Links to a page that exists natively in this language (e.g. /education/ -> /de/bildung/) point at the native one.
+ * `pageRootPath` is the page's path from docs/ (e.g. "de/blog/x.html"), links are resolved from there.
+ */
+export function rewriteNativeSiblingLinks($, pageRootPath, code) {
+    const dirRoot = path.posix.dirname(pageRootPath);
+    $('a[href]').each((_, el) => {
+        const val = $(el).attr('href');
+        if (!val || /^(https?:)?\/\/|^(#|mailto:|tel:|javascript:|\/)/.test(val)) return;
+        const m = val.match(/^([^#?]*)([#?].*)?$/); const p = m[1], rest = m[2] || '';
+        if (!p) return;
+        let t = path.posix.normalize(path.posix.join(dirRoot, p));
+        t = t.replace(/index\.html$/, '');
+        if (t && !t.endsWith('/')) t += '/';
+        const to = NATIVE_SIBLINGS[t] && NATIVE_SIBLINGS[t][code];
+        if (!to) return;
+        $(el).attr('href', path.posix.relative(dirRoot, to) + '/' + rest);
+    });
+}
