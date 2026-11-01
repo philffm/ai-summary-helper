@@ -1712,10 +1712,10 @@ function setBilling(period) {
   });
   // links that jump to one slide of a slider ([data-slider-goto="<slide id>"]); on small screens they use data-fallback-href instead
   function jump(id, soft) {
-    var el = document.getElementById(id); var root = el && el.closest('[data-slider], [data-carousel]');
+    var el = document.getElementById(id) || document.getElementById(id + '-m'); var root = el && el.closest('[data-slider], [data-carousel]');
     if (!root || !root.slideGo) return false;
     root.scrollIntoView({ behavior: reduce || !soft ? 'auto' : 'smooth', block: 'center' });
-    setTimeout(function () { root.slideGo(id); }, soft ? 350 : 0); return true;
+    setTimeout(function () { (root.slideGo(id) || root.slideGo(id + '-m')); }, soft ? 350 : 0); return true;
   }
   document.querySelectorAll('[data-slider-goto]').forEach(function (a) {
     a.addEventListener('click', function (e) {
