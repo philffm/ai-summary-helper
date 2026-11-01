@@ -707,7 +707,7 @@ footer .copyright a:hover, .foot-links a:hover{ text-decoration-color:currentCol
 .cx-nav:hover{ border-color:var(--signal); }
 .cx-nav:focus-visible, .cx-dot:focus-visible{ outline:2px solid var(--signal); outline-offset:3px; }
 .cx-nav[disabled]{ opacity:.35; cursor:default; }
-.cx-dots{ display:flex; justify-content:center; gap:8px; margin-top:8px; }
+.cx-dots{ display:flex; justify-content:center; align-items:center; gap:8px; margin-top:8px; }
 .cx-dot{ width:8px; height:8px; padding:0; border:0; border-radius:4px; background:var(--border-strong); cursor:pointer; transition:width .25s ease, background .25s ease; }
 .cx-dot.is-active{ width:28px; background:var(--signal); }
 @media (max-width:720px){ .cx{ --cx-w:88vw; } .cx-nav{ display:none; } .hero-shot{ margin-top:36px; } .cx-track{ gap:16px; } }
