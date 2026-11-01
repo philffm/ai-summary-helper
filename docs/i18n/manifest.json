@@ -28544,7 +28544,7 @@
           "model": "google/gemini-3.7-flash"
         },
         "da": {
-          "text": "Privatlivsaspektet er afgørende — en udvidelse med brede tilladelser, der sender sideindhold til en server for ting, der ikke behøver det, er et reelt tillidsspørgsmål. Men den mere pragmatiske grund er, at det simpelthen er bedre ingeniørarbejde. TF-IDF-søgning behøver ikke 200 ms netværksforsinkelse. Tag-oprydning behøver ikke en API-regning. Når man vælger det rette værktøj til opgaven i stedet for at sende alt i skyen som standard, får man noget, der er hurtigere, billigere i drift og fungerer offline — og den stærke databeskyttelse følger automatisk med.",
+          "text": "Privatlivsaspektet er afgørende — en udvidelse med brede tilladelser, der sender sideindhold til en server for ting, der ikke behøver det, er et reelt tillidsspørgsmål og en vigtig overvejelse under GDPR. Men den mere pragmatiske grund er, at det simpelthen er bedre ingeniørarbejde. TF-IDF-søgning behøver ikke 200 ms netværksforsinkelse. Tag-oprydning behøver ikke en API-regning. Når man vælger det rette værktøj til opgaven i stedet for at sende alt i skyen som standard, får man noget, der er hurtigere, billigere i drift og fungerer offline — og den stærke databeskyttelse følger automatisk med.",
           "translatedAt": "2026-10-18T13:17:37.764Z",
           "model": "google/gemini-3.7-flash"
         },
@@ -118386,6 +118386,126 @@
         "fi": {
           "text": "Lähdetarkistus kouluille ja kirjastoille",
           "translatedAt": "2026-11-01T12:03:57.414Z",
+          "model": "google/gemini-3.7-flash"
+        }
+      }
+    },
+    "512ab3c6b9869577bd4474c56b88f9e3f1c40c54d18e8e5a2329821254d362d2": {
+      "en": "Education",
+      "translations": {
+        "de": {
+          "text": "Bildung",
+          "translatedAt": "2026-11-01T12:23:26.224Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fr": {
+          "text": "Éducation",
+          "translatedAt": "2026-11-01T12:23:29.336Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "es": {
+          "text": "Educación",
+          "translatedAt": "2026-11-01T12:23:31.378Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh": {
+          "text": "教育",
+          "translatedAt": "2026-11-01T12:23:34.024Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh-TW": {
+          "text": "教育",
+          "translatedAt": "2026-11-01T12:23:36.472Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ja": {
+          "text": "教育",
+          "translatedAt": "2026-11-01T12:23:39.475Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ko": {
+          "text": "교육",
+          "translatedAt": "2026-11-01T12:23:41.904Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pt": {
+          "text": "Educação",
+          "translatedAt": "2026-11-01T12:23:43.688Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "hi": {
+          "text": "शिक्षा",
+          "translatedAt": "2026-11-01T12:23:47.834Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "vi": {
+          "text": "Giáo dục",
+          "translatedAt": "2026-11-01T12:23:49.693Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "nl": {
+          "text": "Onderwijs",
+          "translatedAt": "2026-11-01T12:23:51.452Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "it": {
+          "text": "Istruzione",
+          "translatedAt": "2026-11-01T12:23:53.957Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ru": {
+          "text": "Образование",
+          "translatedAt": "2026-11-01T12:23:55.640Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "uk": {
+          "text": "Освіта",
+          "translatedAt": "2026-11-01T12:23:57.921Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "tr": {
+          "text": "Eğitim",
+          "translatedAt": "2026-11-01T12:24:00.223Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "id": {
+          "text": "Pendidikan",
+          "translatedAt": "2026-11-01T12:24:02.356Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pl": {
+          "text": "Edukacja",
+          "translatedAt": "2026-11-01T12:24:11.632Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "th": {
+          "text": "การศึกษา",
+          "translatedAt": "2026-11-01T12:24:14.399Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ar": {
+          "text": "التعليم",
+          "translatedAt": "2026-11-01T12:24:16.325Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "sv": {
+          "text": "Utbildning",
+          "translatedAt": "2026-11-01T12:24:18.297Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "da": {
+          "text": "Uddannelse",
+          "translatedAt": "2026-11-01T12:24:20.331Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "no": {
+          "text": "Utdanning",
+          "translatedAt": "2026-11-01T12:24:23.070Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fi": {
+          "text": "Koulutus",
+          "translatedAt": "2026-11-01T12:24:25.167Z",
           "model": "google/gemini-3.7-flash"
         }
       }
