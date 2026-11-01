@@ -50,13 +50,19 @@ fun libraryOf(context: Context): LibrarySync {
         override fun get(key: String) = prefs.getString(key, null)
         override fun put(key: String, value: String?) { prefs.edit().apply { if (value == null) remove(key) else putString(key, value) }.apply() }
     }
-    return LibrarySync(kv, FileRecordStore(File(app.filesDir, "sync")))
+    val records = FileRecordStore(File(app.filesDir, "sync"))
+    val uploaded = File(app.filesDir, "sync/uploaded.json")
+    return LibrarySync(kv, records, afterPull = { clock ->
+        val up = PhoneUploader(records, { System.currentTimeMillis() }, uploaded)
+        up.run(StorePhoneArticles(ArticleStore(app)), clock)
+        up.ownKeys()
+    })
 }
 
 /** Makes reading-list articles of the synced records (the background run has no screen to refresh: the list reads them when the app opens). */
 fun materializeLibrary(context: Context): Int {
     val app = context.applicationContext
-    val r = ArticleMaterializer(libraryOf(app).records, ArticleStoreSink(ArticleStore(app)), File(app.filesDir, "sync/materialized.json")).run()
+    val r = ArticleMaterializer(libraryOf(app).records, ArticleStoreSink(ArticleStore(app)), File(app.filesDir, "sync/materialized.json"), own = { PhoneUploader(libraryOf(app).records, { System.currentTimeMillis() }, File(app.filesDir, "sync/uploaded.json")).ownKeys() }).run()
     return r.saved + r.removed
 }
 

@@ -30,7 +30,7 @@ class AppModel(context: Context) {
 
     /** Turns what the library synced into reading-list articles (and removes what the browser deleted); the list on screen follows. Call off the main thread. */
     fun materialize(): Int {
-        val r = ArticleMaterializer(library.records, ArticleStoreSink(articles), File(app.filesDir, "sync/materialized.json")).run()
+        val r = ArticleMaterializer(library.records, ArticleStoreSink(articles), File(app.filesDir, "sync/materialized.json"), own = { PhoneUploader(library.records, { System.currentTimeMillis() }, File(app.filesDir, "sync/uploaded.json")).ownKeys() }).run()
         if (r.saved + r.removed > 0) articleList = articles.list()
         return r.saved + r.removed
     }

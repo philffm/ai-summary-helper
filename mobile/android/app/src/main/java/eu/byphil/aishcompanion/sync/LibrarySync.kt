@@ -19,6 +19,8 @@ class LibrarySync(
     private val kv: KeyValue, val records: RecordStore,
     private val storeFactory: (Config) -> SyncStore = { defaultStore(it) },
     private val now: () -> Long = { System.currentTimeMillis() },
+    /** Runs after a complete pull: turns what was saved on this phone into records and returns the keys it made (the engine then uploads them). */
+    private val afterPull: (SyncClock) -> Set<String> = { emptySet() },
 ) {
     /** Where the library lives. kind: "webdav" (Nextcloud, ownCloud, most NAS) or "s3". */
     data class Config(
@@ -78,6 +80,14 @@ class LibrarySync(
             val meta = readMeta(store) ?: throw IllegalStateException("The library has no meta.json on the server any more. It was removed or set up again.")
             val keys = SyncCrypto.openWithMaster(meta, master)
             val r = SyncEngine(store, keys, meta, records, clock, placeId, now = now).run(confirmDeletes = confirmDeletes)
+            // only after a complete, clean pull does this phone know what the library already holds; then what it saved itself goes up
+            if (r.errors.isEmpty() && !r.more) {
+                val mine = afterPull(clock)
+                if (mine.isNotEmpty()) {
+                    val second = SyncEngine(store, keys, meta, records, clock, placeId, now = now, extraKeys = mine).run()
+                    r.pushed += second.pushed; r.pulled += second.pulled; r.applied += second.applied; r.errors.addAll(second.errors); r.more = r.more || second.more
+                }
+            }
             kv.put(CLOCK, clock.t.toString())
             if (r.errors.isEmpty() && !r.more) { kv.put(LAST, now().toString()); kv.put(ERR, null) } else kv.put(ERR, r.errors.firstOrNull() ?: "Not finished yet, it continues next time.")
             return Summary(r.pulled, r.pushed, r.applied, r.needsConfirm, r.more, r.errors.toList())

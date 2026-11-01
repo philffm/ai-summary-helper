@@ -22,6 +22,8 @@ class SyncEngine(
     private val store: SyncStore, private val keys: SyncCrypto.Keys, private val meta: JSONObject, private val records: RecordStore,
     private val clock: SyncClock, private val placeId: String, private val now: () -> Long = { System.currentTimeMillis() },
     private val owned: Set<String> = setOf("note"),
+    /** Record keys besides the owned types that this phone made and may upload (articles and highlights it saved itself). Received records are never in here. */
+    private val extraKeys: Set<String> = emptySet(),
 ) {
     class Result { var pulled = 0; var pushed = 0; var applied = 0; var needsConfirm = 0; var more = false; var stale = false; val errors = ArrayList<String>(); val changed = LinkedHashSet<String>() }
 
@@ -99,7 +101,7 @@ class SyncEngine(
         if (out.more) { save(); return out }
 
         // 2) push what this phone owns (after a long absence only what changed since)
-        val pending = records.keys().filter { type(it) in owned }.filter { k ->
+        val pending = records.keys().filter { type(it) in owned || it in extraKeys }.filter { k ->
             val rec = records.get(k) ?: return@filter false
             val t = rec.optJSONObject("rev")?.optLong("t") ?: 0
             (k in dirty || !items.has(k) || items.getJSONObject(k).optLong("t") < t) && (!stale || t > lastSync)

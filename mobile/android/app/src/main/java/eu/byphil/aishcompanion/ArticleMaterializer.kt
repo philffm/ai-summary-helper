@@ -20,23 +20,25 @@ class ArticleStoreSink(private val store: ArticleStore) : ArticleSink {
  * remembered (id → the record's stamp), so a run only touches what changed, a deletion in the browser removes only what this made, and an article
  * that came another way (sent from the browser, or summarized here) is never overwritten or removed.
  */
-class ArticleMaterializer(private val records: RecordStore, private val sink: ArticleSink, private val stateFile: File) {
+class ArticleMaterializer(private val records: RecordStore, private val sink: ArticleSink, private val stateFile: File, private val own: () -> Set<String> = { emptySet() }) {
     class Result(var saved: Int = 0, var removed: Int = 0, var skipped: Int = 0)
 
     private fun loadState(): JSONObject = runCatching { JSONObject(stateFile.readText()) }.getOrDefault(JSONObject())
     private fun norm(url: String) = url.substringBefore('#').trimEnd('/')
 
     fun run(): Result {
-        val out = Result(); val state = loadState(); val seen = HashSet<String>()
+        val out = Result(); val state = loadState(); val seen = HashSet<String>(); val mine = own()   // records this phone made itself (see PhoneUploader) are never turned back into articles
         // highlights by page, once
         val marks = HashMap<String, ArrayList<JSONArray>>()
         for (k in records.keys("hl:")) {
+            if (k in mine) continue
             val v = records.get(k)?.takeIf { !it.optBoolean("deleted", false) }?.optJSONObject("values") ?: continue
             val text = v.optString("text").trim(); val url = v.optString("url")
             if (text.length < 5 || url.isEmpty() || v.optBoolean("dismissed", false)) continue
             marks.getOrPut(norm(url)) { ArrayList() }.add(JSONArray().put(if (v.optString("type") == "ghost") "g" else "u").put(text.take(600)))
         }
         for (k in records.keys("article:")) {
+            if (k in mine) continue
             val id = k.removePrefix("article:"); val rec = records.get(k) ?: continue
             if (!ArticleStore.ID.matches(id)) { out.skipped++; continue }
             seen.add(id)
