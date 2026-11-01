@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#08090C">
+<meta name="aish:landing" content="pocket-alternative">
+<title>Pocket alternative with AI summaries and Kindle digest</title>
+<meta name="description" content="Free, open-source Chrome extension: save articles, get an AI summary, send a digest to your Kindle. Own AI key or fully offline.">
+<script>
+  (function(){
+    try {
+      var saved = localStorage.getItem('aish_theme');
+      var theme = saved === 'light' || saved === 'dark'
+        ? saved
+        : (window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
+      document.documentElement.setAttribute('data-theme', theme);
+    } catch (e) {
+      document.documentElement.setAttribute('data-theme', 'dark');
+    }
+  })();
+</script>
+<link rel="icon" type="image/svg+xml" href="{{base}}assets/icon.svg">
+<link rel="stylesheet" href="{{base}}assets/styles.css">
+<meta property="og:title" content="Pocket alternative with AI summaries and Kindle digest">
+<meta property="og:description" content="Save articles, get an AI summary, send a digest to your Kindle. Free, open source, no account.">
+<meta property="og:url" content="https://ai-summary-helper.byphil.eu/pocket-alternative/">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://ai-summary-helper.byphil.eu/assets/shots/aish-hero-en.webp">
+<meta name="twitter:card" content="summary_large_image">
+<script src="{{base}}assets/analytics.js"></script>
+</head>
+<body>
+<a href="#main" class="skip-link">Skip to content</a>
+
+<!--include:nav-home-->
+
+<main id="main">
+
+  <!-- ── Promise ─────────────────────────────────────────────────── -->
+  <section class="hero">
+    <div class="wrap">
+      <div class="eyebrow">Still looking for a Pocket replacement?</div>
+      <h1>A read-later pile that<br><em>actually gets read.</em></h1>
+      <p class="sub">{{product}} is a free, open-source browser extension for Chrome and Firefox. It saves any page, summarizes it with your own AI key or a local model, and sends a digest of what you saved to your Kindle. No account needed. Your library stays in your browser.</p>
+      <div class="hero-cta">
+        <a href="https://chromewebstore.google.com/detail/ai-summary-helper-openai/hldbejcjaedipeegjcinmhejdndchkmb" target="_blank" rel="noopener" class="btn-primary" data-desktop-cta>Add to Chrome — it's free</a>
+        <button type="button" class="btn-primary" data-send hidden>Send to my computer</button>
+      </div>
+      <p class="send-note" data-send-note hidden>Chrome on a phone can't install extensions. Send the link to your computer and add it there. <a href="#" data-send-mail>Email it to me</a> · <a href="#" data-send-copy>Copy link</a></p>
+      <p class="hero-proof"><a href="https://www.producthunt.com/products/ai-summary-helper/launches/ai-summary-helper-summarize-articles" target="_blank" rel="noopener">139 upvotes on Product Hunt</a> · <a href="https://github.com/philffm/ai-summary-helper/" target="_blank" rel="noopener">Open source</a> · Made in the EU</p>
+      <p class="hero-meta">No account needed · Use your own AI key, or run fully offline with Ollama</p>
+    </div>
+  </section>
+
+  <!-- ── Video ───────────────────────────────────────────────────── -->
+  <section>
+    <div class="wrap wrap-narrow">
+      <figure class="post-figure post-figure--video" data-blog-video="pocket" style="margin:0 auto;">
+        <video controls playsinline preload="none" width="360" height="520" poster="{{base}}assets/blog/video/pocket-en.jpg">
+          <source src="{{base}}assets/blog/video/pocket-en.mp4" type="video/mp4">
+        </video>
+        <figcaption>Save, summarize and send to your Kindle, without Pocket.</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <!-- ── At a glance ─────────────────────────────────────────────── -->
+  <section>
+    <div class="wrap wrap-narrow">
+      <div class="section-head center reveal">
+        <div class="eyebrow">At a glance</div>
+        <h2>What it is, what it costs, where your data goes</h2>
+      </div>
+      <dl class="glance reveal">
+        <div><dt>Price</dt><dd>Free. Optional Support Pass (€4.99/month or €29.94/year) for byphil Cloud models and unlimited Kindle sends.</dd></div>
+        <div><dt>Platforms</dt><dd>Chrome and Firefox on desktop. Android companion (Beta) for sharing links from your phone. Not available on iOS.</dd></div>
+        <div><dt>AI models</dt><dd>Your own key (OpenAI, Gemini, Mistral, DeepSeek or a custom endpoint), a local model with Ollama, or optional byphil Cloud.</dd></div>
+        <div><dt>Where your library lives</dt><dd>In your browser, on your device. No account, no server copy.</dd></div>
+        <div><dt>What leaves the browser</dt><dd>Only the text you ask to summarize, sent to the AI provider you chose. With a local model, nothing leaves your machine.</dd></div>
+        <div><dt>Code</dt><dd>Open source, on <a href="https://github.com/philffm/ai-summary-helper/" target="_blank" rel="noopener">GitHub</a>.</dd></div>
+        <div><dt>Last checked</dt><dd>1 November 2026</dd></div>
+      </dl>
+    </div>
+  </section>
+
+  <!-- ── How it works ────────────────────────────────────────────── -->
+  <section>
+    <div class="wrap">
+      <div class="section-head center reveal">
+        <div class="eyebrow">How it works</div>
+        <h2>Save it, understand it, read it where you want</h2>
+      </div>
+      <div class="feature-grid digest-steps reveal">
+        <div class="feature-card">
+          <h3 style="margin-top:0;">1. Save in one click</h3>
+          <p>Open any article, press the button, and it is in your library with a summary and tags. Search it later, even by a phrase you half remember.</p>
+        </div>
+        <div class="feature-card">
+          <h3 style="margin-top:0;">2. Read the summary first</h3>
+          <p>A short summary appears beside the article. Ask a follow-up and the answer points to the passage it came from, so you can check it.</p>
+        </div>
+        <div class="feature-card">
+          <h3 style="margin-top:0;">3. Get a digest of your pile</h3>
+          <p>Tap Digest: it picks five of your saves and sends them as one bundle to your Kindle or a device on your network. The first three Kindle sends are included.</p>
+        </div>
+      </div>
+      <p class="hero-meta reveal" style="text-align:center;margin-top:22px;">Saved a link on your phone? The Android companion (Beta) adds “AISH” to the share sheet, and the link waits in your browser's History for one tap.</p>
+    </div>
+  </section>
+
+  <!-- ── Compared with Pocket ────────────────────────────────────── -->
+  <section>
+    <div class="wrap wrap-narrow">
+      <div class="section-head center reveal">
+        <div class="eyebrow">Compared with Pocket</div>
+        <h2>What changes, and what you give up</h2>
+        <p>Pocket was announced as closing in May 2025 and shut down in July 2025. This is how {{product}} differs, as of November 2026.</p>
+      </div>
+      <div class="prose reveal">
+        <table>
+          <thead><tr><th></th><th>Pocket (closed)</th><th>{{product}}</th></tr></thead>
+          <tbody>
+            <tr><td>Where your saves live</td><td>On the service's servers</td><td>In your browser, on your device</td></tr>
+            <tr><td>Account</td><td>Required</td><td>Not needed</td></tr>
+            <tr><td>Reading offline</td><td>In its own app</td><td>Digest to Kindle or a device on your network</td></tr>
+            <tr><td>Can be switched off by someone else</td><td>Yes, and it was</td><td>No: open source, data on your device</td></tr>
+            <tr><td><strong>What you give up</strong></td><td></td><td>No web app and no iOS app. You need desktop Chrome or Firefox to save pages. The Android companion is in Beta.</td></tr>
+          </tbody>
+        </table>
+        <p>Not sure if this is the right kind of tool for you? Read the <a href="{{base}}blog/pocket-alternative.html">honest comparison of read-later tools</a>, including the ones that are a better fit if you only want bookmarks.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Questions ───────────────────────────────────────────────── -->
+  <section>
+    <div class="wrap wrap-narrow">
+      <div class="section-head center reveal">
+        <div class="eyebrow">Questions</div>
+        <h2>Before you switch</h2>
+      </div>
+      <div class="faq reveal">
+        <details>
+          <summary>Do I need an account?</summary>
+          <p>No. Install it, bring your own AI provider key (or use a local Ollama model), and start saving. An account only matters if you want byphil Cloud.</p>
+        </details>
+        <details>
+          <summary>Does it cost anything?</summary>
+          <p>No. Everything works for free with your own key or a local model. A donation (the Support Pass) unlocks byphil Cloud models and unlimited Kindle sends.</p>
+        </details>
+        <details>
+          <summary>What leaves my browser?</summary>
+          <p>Only the text you ask to summarize, sent to the AI provider you chose. With a local model nothing leaves your machine. Your library itself stays on your device.</p>
+        </details>
+        <details>
+          <summary>Can I send articles to my Kindle?</summary>
+          <p>Yes. Digest bundles five of your saves and sends them to your Kindle or a device on your network. The first three Kindle sends are included; unlimited sends need the Support Pass.</p>
+        </details>
+        <details>
+          <summary>What if I stop using it, or you stop?</summary>
+          <p>Your library is stored in your browser and can be exported, so a shutdown of the service cannot take it away. The code is open source.</p>
+        </details>
+        <details>
+          <summary>Can I use it on my phone?</summary>
+          <p>Saving needs the browser extension on a computer. On Android, the companion app (Beta) lets you share links to it from your phone. iOS is not available yet.</p>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── More ────────────────────────────────────────────────────── -->
+  <section>
+    <div class="wrap wrap-narrow">
+      <p class="tier-once reveal">There is more than a read-later pile: reading feeds, source checks, highlights. <a href="{{base}}index.html">See everything {{product}} does</a></p>
+    </div>
+  </section>
+
+</main>
+
+<!--include:footer-home-->
+</body>
+</html>

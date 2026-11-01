@@ -1372,3 +1372,12 @@ button.tier-cta[hidden]{ display:none; }
 .cx-dot--demo::before{ content:"\25B6"; font-size:9px; }
 .cx-dot--demo:not(.is-active){ background:transparent; border:1px solid var(--signal); }
 .cx-dot--demo.is-active{ background:var(--signal); color:var(--on-accent,#fff); border-color:var(--signal); }
+
+/* "At a glance" fact list on landing pages (answer engines quote it; keep it plain) */
+.glance{ margin:0 auto; max-width:760px; display:grid; gap:0; border:1px solid var(--border-subtle); border-radius:14px; overflow:hidden; background:var(--surface-2); }
+.glance > div{ display:grid; grid-template-columns:minmax(120px, 200px) 1fr; gap:6px 18px; padding:13px 18px; border-top:1px solid var(--border-subtle); }
+.glance > div:first-child{ border-top:0; }
+.glance dt{ font-weight:600; font-size:14px; color:var(--paper); }
+.glance dd{ margin:0; font-size:14.5px; line-height:1.55; color:var(--paper-dim); }
+.glance a{ color:inherit; text-decoration:underline; text-underline-offset:3px; }
+@media (max-width:560px){ .glance > div{ grid-template-columns:1fr; } }

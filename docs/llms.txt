@@ -16,6 +16,7 @@
 - [AI Summary Helper: summarize, save, search the web](https://ai-summary-helper.byphil.eu/): Chrome extension that summarizes pages with AI, reads your RSS feeds and keeps a searchable archive. Search and recommendations run on your device.
 - [Privacy Policy](https://ai-summary-helper.byphil.eu/privacy.html): How AI Summary Helper handles data: API keys and history stay on your device, and page text goes only to the AI provider you choose.
 - [Create your bookmarklet](https://ai-summary-helper.byphil.eu/bookmarklet.html): One-click AI summary bookmarklet for any browser, including iOS. Use byPhil Cloud without a key, or bring OpenAI, Gemini, Mistral, DeepSeek or Ollama.
+- [Pocket alternative with AI summaries and Kindle digest](https://ai-summary-helper.byphil.eu/pocket-alternative/): Free, open-source Chrome extension: save articles, get an AI summary, send a digest to your Kindle. Own AI key or fully offline.
 
 ## Blog
 - [Blog](https://ai-summary-helper.byphil.eu/blog/): Notes on reading, search, and building on-device — from the team behind AI Summary Helper.

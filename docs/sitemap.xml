@@ -8686,4 +8686,11 @@
     <xhtml:link rel="alternate" hreflang="en" href="https://ai-summary-helper.byphil.eu/blog/digital-sovereignty-for-individuals.html"/>
     <xhtml:link rel="alternate" hreflang="de" href="https://ai-summary-helper.byphil.eu/de/blog/digital-sovereignty-for-individuals.html"/>
   </url>
+  <url>
+    <loc>https://ai-summary-helper.byphil.eu/pocket-alternative/</loc>
+    <lastmod>2026-11-01</lastmod>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ai-summary-helper.byphil.eu/pocket-alternative/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ai-summary-helper.byphil.eu/pocket-alternative/"/>
+  </url>
 </urlset>

@@ -32,6 +32,9 @@ const OUT_DIR = path.join(ROOT, 'docs');
 const LOCALES_PATH = path.join(OUT_DIR, 'i18n', 'locales.json');
 const SITE_BASE = 'https://ai-summary-helper.byphil.eu';
 
+// One place for the product name (the rename is undecided): pages written with {{product}} pick it up from site-src/site.json.
+const PRODUCT = JSON.parse(await readFile(path.join(SITE_SRC, 'site.json'), 'utf8')).product;
+
 const INCLUDE_RE = /<!--include:([a-zA-Z0-9_-]+)-->/g;
 
 async function loadPartials() {
@@ -93,6 +96,7 @@ async function buildPage(relPath, partials, config) {
     });
 
     html = html.replaceAll('{{base}}', base);
+    html = html.replaceAll('{{product}}', PRODUCT);
 
     // Reciprocal hreflang: every translated page already points back at
     // this English page as an alternate (translate.mjs handles that) —

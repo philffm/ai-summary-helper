@@ -117,6 +117,14 @@ function jsonLd($, rel, self, lang, title, desc, image) {
     const qa = [];
     $('.faq details').each((_, el) => { const q = $(el).find('summary').first().text().trim(), a = $(el).find('p').text().trim().replace(/\s+/g, ' '); if (q && a) qa.push({ '@type': 'Question', name: q, acceptedAnswer: { '@type': 'Answer', text: a } }); });
     if (qa.length) graph.push({ '@type': 'FAQPage', '@id': self + '#faq', inLanguage: lang, mainEntity: qa });
+  } else if ($('meta[name="aish:landing"]').length) {
+    // Cluster landing pages (<meta name="aish:landing" content="...">): WebPage + FAQPage from the visible FAQ + breadcrumb back to the hub.
+    const h1 = $('h1').first().text().replace(/\s+/g, ' ').trim();
+    graph.push({ '@type': 'WebPage', '@id': self + '#page', url: self, name: title, description: desc, inLanguage: lang, isPartOf: { '@id': BASE + '/#website' }, about: { '@id': BASE + '/#app' }, publisher: { '@id': publisher['@id'] } });
+    const qa = [];
+    $('.faq details').each((_, el) => { const q = $(el).find('summary').first().text().trim(), a = $(el).find('p').text().trim().replace(/\s+/g, ' '); if (q && a) qa.push({ '@type': 'Question', name: q, acceptedAnswer: { '@type': 'Answer', text: a } }); });
+    if (qa.length) graph.push({ '@type': 'FAQPage', '@id': self + '#faq', inLanguage: lang, mainEntity: qa });
+    graph.push({ '@type': 'BreadcrumbList', itemListElement: [{ '@type': 'ListItem', position: 1, name: 'AI Summary Helper', item: BASE + '/' }, { '@type': 'ListItem', position: 2, name: h1 || title, item: self }] });
   } else if (isPost) {
     const h1 = $('h1').first().text().trim();
     const dt = monthIso($('.blog-date').first().text());
