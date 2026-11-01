@@ -5675,5 +5675,671 @@
   },
   "f_what_s_new_in_9c82": {
     "message": "Что нового в {v}"
+  },
+  "f_a_folder_on_this_computer_bbe4": {
+    "message": "Папка на этом компьютере"
+  },
+  "f_a_simple_web_page_index_html_d002": {
+    "message": "Простая веб-страница (index.html), которая читает library.json: поиск, теги, лента времени и граф тегов. Нужен сервер, отдающий HTML-страницы, например ваш веб-сервер или публичный бакет. Общие ссылки Nextcloud так не работают."
+  },
+  "f_ai_135f": {
+    "message": "ИИ"
+  },
+  "f_ai_highlight_b91f": {
+    "message": "Выделение ИИ"
+  },
+  "f_aws_cloudflare_r2_backblaze__139d": {
+    "message": "AWS, Cloudflare R2, Backblaze, MinIO, Wasabi"
+  },
+  "f_aws_https_s3_region_amazonaw_c68d": {
+    "message": "AWS: https://s3.<region>.amazonaws.com · Cloudflare R2: https://<account>.r2.cloudflarestorage.com · Backblaze: https://s3.<region>.backblazeb2.com"
+  },
+  "f_access_is_allowed_7031": {
+    "message": "Доступ разрешён."
+  },
+  "f_access_key_id_8d75": {
+    "message": "ID ключа доступа"
+  },
+  "f_add_a_comment_9c08": {
+    "message": "Ваш комментарий…"
+  },
+  "f_add_a_place_799c": {
+    "message": "Добавить место"
+  },
+  "f_add_note_9108": {
+    "message": "+ Заметка"
+  },
+  "f_all_except_a_tag_ca3e": {
+    "message": "Все, кроме тега"
+  },
+  "f_all_places_fdbc": {
+    "message": "Все места"
+  },
+  "f_allow_access_again_cc7c": {
+    "message": "Разрешить доступ снова"
+  },
+  "f_allow_access_to_599a": {
+    "message": "Разрешить доступ к {name}"
+  },
+  "f_also_publish_a_viewer_page_2d07": {
+    "message": "Опубликовать и страницу просмотра"
+  },
+  "f_an_index_html_that_is_not_ou_889b": {
+    "message": "В этой папке уже есть чужой index.html, поэтому страница просмотра не записана. Выберите другую папку."
+  },
+  "f_another_suggestion_09e8": {
+    "message": "Другой вариант"
+  },
+  "f_anyone_who_can_open_this_fol_86f7": {
+    "message": "Любой, кто может открыть эту папку, прочитает эти файлы. Выберите папку под вашим контролем и держите её закрытой, если не хотите публиковать."
+  },
+  "f_app_password_6505": {
+    "message": "Пароль приложения"
+  },
+  "f_at_least_12_characters_it_is_f78b": {
+    "message": "Минимум 12 символов. Она нигде не сохраняется: если вы её потеряете, никто не сможет открыть файлы."
+  },
+  "f_back_up_now_63b3": {
+    "message": "Бэкап сейчас"
+  },
+  "f_backup_only_e75f": {
+    "message": "Только бэкап"
+  },
+  "f_bring_everything_in_this_pla_0150": {
+    "message": "Вернуть всё из этого места на это устройство? Где устройство отличается, приоритет у места. Ничего не удаляется."
+  },
+  "f_bucket_3557": {
+    "message": "Бакет"
+  },
+  "f_by_article_5c16": {
+    "message": "По статье"
+  },
+  "f_changes_here_apply_to_every__822d": {
+    "message": "Изменения здесь касаются всех мест на этом сервере."
+  },
+  "f_checked_the_folder_restored__7f16": {
+    "message": "Папка проверена: восстановлено {r}, найдено остатков: {o}."
+  },
+  "f_checking_your_library_f467": {
+    "message": "Проверка библиотеки…"
+  },
+  "f_choose_6160": {
+    "message": "Выбрать"
+  },
+  "f_choose_a_passphrase_c9a1": {
+    "message": "Выберите парольную фразу"
+  },
+  "f_choose_another_folder_1129": {
+    "message": "Выбрать другую папку"
+  },
+  "f_cloudflare_r2_auto_leave_the_74e0": {
+    "message": "Cloudflare R2: auto. Оставьте значение по умолчанию, если провайдер его не запрашивает."
+  },
+  "f_code_for_the_phone_8494": {
+    "message": "Код для телефона"
+  },
+  "f_comment_9ffe": {
+    "message": "Комментарий"
+  },
+  "f_connect_and_publish_3387": {
+    "message": "Подключить и опубликовать"
+  },
+  "f_connected_the_folder_is_empt_688d": {
+    "message": "Подключено. Папка пуста, поэтому будет создана новая зашифрованная библиотека."
+  },
+  "f_connected_this_folder_alread_7ea2": {
+    "message": "Подключено. В этой папке уже есть зашифрованная библиотека."
+  },
+  "f_connected_article_matches_b205": {
+    "message": "Подключено. Подходящих статей: {n}."
+  },
+  "f_connected_articles_match_40f2": {
+    "message": "Подключено. Подходящих статей: {n}."
+  },
+  "f_continuing_file_left_4bdc": {
+    "message": "Продолжаем… осталось файлов: {n}"
+  },
+  "f_continuing_files_left_7869": {
+    "message": "Продолжаем… осталось файлов: {n}"
+  },
+  "f_copied_2cb1": {
+    "message": "Скопировано."
+  },
+  "f_copies_of_other_people_s_art_db7e": {
+    "message": "Копии чужих статей. Убедитесь, что вам можно ими делиться. Файлы станут намного больше."
+  },
+  "f_copy_did_not_work_select_the_1dcb": {
+    "message": "Копирование не удалось. Выделите слова и скопируйте вручную."
+  },
+  "f_copy_puts_the_words_in_one_p_9b1c": {
+    "message": "Копирование даёт слова одним куском, соединённые дефисами. Так они переживают файлы конфигурации, оболочки и мессенджеры; вводить можно и через пробелы, и через дефисы."
+  },
+  "f_could_not_reach_the_server_aa7e": {
+    "message": "Не удалось связаться с сервером"
+  },
+  "f_could_not_save_this_place_cf23": {
+    "message": "Не удалось сохранить место."
+  },
+  "f_created_for_you_use_one_fold_0390": {
+    "message": "Будет создана для вас. Используйте отдельную папку для каждой цели, например public для списка сайта и backup для полной копии."
+  },
+  "f_danger_zone_19b4": {
+    "message": "Опасная зона"
+  },
+  "f_delete_them_here_too_9d48": {
+    "message": "Удалить их и здесь"
+  },
+  "f_delete_this_note_3253": {
+    "message": "Удалить заметку?"
+  },
+  "f_download_bb19": {
+    "message": "Скачать"
+  },
+  "f_eu_1f4f": {
+    "message": "ЕС"
+  },
+  "f_eu_company_ef04": {
+    "message": "Компания ЕС"
+  },
+  "f_eu_servers_987b": {
+    "message": "Серверы ЕС"
+  },
+  "f_each_article_becomes_one_fil_f81c": {
+    "message": "Каждая статья становится файлом, плюс список для вашего сайта (library.json)."
+  },
+  "f_edit_comment_f0e4": {
+    "message": "Правка комментария"
+  },
+  "f_edit_server_63e0": {
+    "message": "Изменить сервер"
+  },
+  "f_encrypted_e253": {
+    "message": "Зашифровано"
+  },
+  "f_end_with_tags_ctrl_enter_to__83e2": {
+    "message": "Завершите #тегами · ⌘/Ctrl+Enter, чтобы добавить"
+  },
+  "f_endpoint_address_ce54": {
+    "message": "Адрес endpoint"
+  },
+  "f_every_article_you_saved_goes_f744": {
+    "message": "Отправляется каждая сохранённая статья, в том числе те, которые вы, возможно, не хотите показывать другим. Бэкап, который можете читать только вы, лучше шифровать."
+  },
+  "f_everything_8340": {
+    "message": "Всё"
+  },
+  "f_everything_is_encrypted_on_t_1b86": {
+    "message": "Всё шифруется на этом устройстве до загрузки. Заметки, напоминания и полные тексты включены, ведь читать их можете только вы."
+  },
+  "f_files_go_into_a_subfolder_of_5a98": {
+    "message": "Файлы попадают в подпапку внутри неё. То, что синхронизирует эту папку (Syncthing, iCloud Drive, Dropbox, USB-накопитель), доставит их на другие ваши устройства."
+  },
+  "f_fine_the_suggested_words_are_36c0": {
+    "message": "Хорошо. Предложенные слова надёжнее."
+  },
+  "f_folder_7afd": {
+    "message": "Папка"
+  },
+  "f_folder_access_is_waiting_b754": {
+    "message": "Доступ к папке ожидается"
+  },
+  "f_folder_on_the_server_b74c": {
+    "message": "Папка на сервере"
+  },
+  "f_folder_960e": {
+    "message": "Папка: {name}"
+  },
+  "f_for_syncing_and_backup_only__f767": {
+    "message": "Для синхронизации и бэкапа. Читать можете только вы, поэтому сайты не могут. Провайдер видит зашифрованные файлы."
+  },
+  "f_getting_changes_of_8fbb": {
+    "message": "Получение изменений: {done} из {total}"
+  },
+  "f_grid_66b1": {
+    "message": "Сетка"
+  },
+  "f_highlight_05c7": {
+    "message": "Выделение"
+  },
+  "f_i_made_a_backup_of_this_devi_c05b": {
+    "message": "Бэкап этого устройства создан"
+  },
+  "f_i_saved_the_passphrase_81d0": {
+    "message": "Парольная фраза сохранена"
+  },
+  "f_in_nextcloud_settings_securi_4fee": {
+    "message": "В Nextcloud: Настройки → Безопасность → создать пароль приложения. Никогда не используйте основной пароль."
+  },
+  "f_joining_merges_this_device_w_8048": {
+    "message": "При присоединении это устройство объединяется с библиотекой в папке: где они различаются, побеждает папка. Сначала сделайте бэкап этого устройства."
+  },
+  "f_keep_your_library_in_step_ac_b5fe": {
+    "message": "Синхронизируйте библиотеку между устройствами, делайте её бэкап или публикуйте её часть для других. Каждое место — папка на вашем сервере или на этом компьютере. Ничего не покидает это устройство, пока вы не добавите место."
+  },
+  "f_looking_at_what_is_in_the_fo_1e05": {
+    "message": "Просмотр содержимого папки…"
+  },
+  "f_make_a_backup_now_3046": {
+    "message": "Создать бэкап сейчас"
+  },
+  "f_make_an_access_key_just_for__abc9": {
+    "message": "Создайте ключ только для этого бакета с правами на чтение, запись, список и удаление. Не используйте главный ключ аккаунта."
+  },
+  "f_meant_for_a_folder_only_you__33c0": {
+    "message": "Предназначено для папки, которую можете открыть только вы, например для личного бэкапа или внутреннего списка. Любой, кто может открыть папку, прочитает всё это."
+  },
+  "f_mine_84d6": {
+    "message": "Мои"
+  },
+  "f_models_marked_eu_servers_run_7b00": {
+    "message": "Модели с пометкой «Серверы ЕС» работают только на серверах в Европе, часто принадлежащих американским облачным компаниям. Только модели с пометкой «Компания ЕС» к тому же созданы европейской компанией. Любая другая модель по-прежнему работает, помечена «Не на серверах ЕС» и запускается как обычно; автовыбор остаётся на серверах ЕС. Серверы ЕС могут стоить немного дороже; показаны цены для ЕС. У озвучивания и преобразования речи в текст нет варианта ЕС. Ваш текст по пути по-прежнему проходит через наш сервис (сервер в Германии), а затем через OpenRouter, американскую компанию."
+  },
+  "f_my_nextcloud_741d": {
+    "message": "Мой Nextcloud"
+  },
+  "f_my_notes_and_comments_099b": {
+    "message": "Мои заметки и комментарии"
+  },
+  "f_new_note_7123": {
+    "message": "Новая заметка"
+  },
+  "f_new_server_9ee0": {
+    "message": "Новый сервер"
+  },
+  "f_nextcloud_webdav_2b5d": {
+    "message": "Nextcloud / WebDAV"
+  },
+  "f_nextcloud_owncloud_synology__5752": {
+    "message": "Nextcloud, ownCloud, Synology, большинство NAS"
+  },
+  "f_no_notes_on_this_article_yet_b876": {
+    "message": "К этой статье пока нет заметок."
+  },
+  "f_no_notes_yet_68d5": {
+    "message": "Заметок пока нет."
+  },
+  "f_no_tags_yet_end_a_note_with__ae68": {
+    "message": "Тегов пока нет. Закончите заметку #тегом."
+  },
+  "f_not_eu_fb9c": {
+    "message": "Не ЕС"
+  },
+  "f_not_here_d910": {
+    "message": "Не здесь"
+  },
+  "f_not_on_eu_servers_abcb": {
+    "message": "Не на серверах ЕС"
+  },
+  "f_not_published_yet_d0ae": {
+    "message": "Ещё не опубликовано"
+  },
+  "f_not_synced_yet_7efe": {
+    "message": "Не синхронизировано"
+  },
+  "f_note_c15d": {
+    "message": "Заметка"
+  },
+  "f_notes_1b6a": {
+    "message": "Заметки"
+  },
+  "f_notes_and_highlights_0e9c": {
+    "message": "Заметки и выделения"
+  },
+  "f_notes_without_an_article_5bd7": {
+    "message": "Заметки без статьи"
+  },
+  "f_nothing_here_yet_5bfc": {
+    "message": "Здесь пока пусто."
+  },
+  "f_nothing_matches_03c3": {
+    "message": "Ничего не найдено."
+  },
+  "f_only_publish_articles_tagged_b789": {
+    "message": "Публиковать только статьи с тегом"
+  },
+  "f_open_the_page_ab11": {
+    "message": "Открыть страницу"
+  },
+  "f_passphrase_2dc5": {
+    "message": "Парольная фраза"
+  },
+  "f_passphrase_keep_it_somewhere_ca8a": {
+    "message": "Парольная фраза: {k}. Храните её в надёжном месте."
+  },
+  "f_paused_1feb": {
+    "message": "Пауза"
+  },
+  "f_pinned_q_a_faa5": {
+    "message": "Закрепл. Q&A"
+  },
+  "f_places_d03d": {
+    "message": "Места"
+  },
+  "f_publish_everything_except_ar_74e7": {
+    "message": "Публиковать всё, кроме статей с тегом"
+  },
+  "f_publish_my_library_to_my_own_a71f": {
+    "message": "Опубликовать библиотеку на своём сервере"
+  },
+  "f_publish_now_ae60": {
+    "message": "Опубликовать"
+  },
+  "f_publishing_e1f2": {
+    "message": "Публикация…"
+  },
+  "f_questions_you_pinned_with_an_5f9e": {
+    "message": "Закреплённые вопросы с ответами"
+  },
+  "f_readable_00b5": {
+    "message": "Читаемый"
+  },
+  "f_reading_changes_of_9b27": {
+    "message": "Чтение изменений: {done} из {total}"
+  },
+  "f_region_789d": {
+    "message": "Регион"
+  },
+  "f_reminders_b654": {
+    "message": "Напоминания"
+  },
+  "f_remove_comment_2340": {
+    "message": "Удалить комментарий"
+  },
+  "f_remove_them_401d": {
+    "message": "Удалить их"
+  },
+  "f_remove_this_highlight_3cc8": {
+    "message": "Удалить это выделение?"
+  },
+  "f_remove_this_place_6efc": {
+    "message": "Удалить это место"
+  },
+  "f_remove_this_place_the_files__ad9c": {
+    "message": "Удалить это место? Файлы на вашем сервере не удаляются."
+  },
+  "f_removing_a_place_stops_publi_caa4": {
+    "message": "При удалении места публикация прекращается. Файлы на вашем сервере остаются на месте. Сервер, который больше не используется ни одним местом, удаляется вместе с логином."
+  },
+  "f_removing_of_9a27": {
+    "message": "Удаление: {done} из {total}"
+  },
+  "f_repeat_the_passphrase_c2a7": {
+    "message": "Повторите парольную фразу"
+  },
+  "f_restore_from_here_3623": {
+    "message": "Восстановить отсюда"
+  },
+  "f_restored_item_changed_on_thi_f959": {
+    "message": "Восстановлено. Изменено записей на устройстве: {n}."
+  },
+  "f_restored_items_changed_on_th_853c": {
+    "message": "Восстановлено. Изменено записей на устройстве: {n}."
+  },
+  "f_restoring_daec": {
+    "message": "Возврат…"
+  },
+  "f_s3_compatible_4144": {
+    "message": "S3-совместимое"
+  },
+  "f_save_5d68": {
+    "message": "Сохранить"
+  },
+  "f_save_server_bca3": {
+    "message": "Сохранить сервер"
+  },
+  "f_save_your_passphrase_3801": {
+    "message": "Сохраните парольную фразу"
+  },
+  "f_saving_of_566a": {
+    "message": "Сохранение: {done} из {total}"
+  },
+  "f_scan_it_with_ai_summary_help_572d": {
+    "message": "Отсканируйте его в AI Summary Helper на телефоне: Настройки → Library sync → Сканировать код. Код содержит данные входа на ваш сервер, поэтому показывайте его только своему телефону. Он скрывается через минуту."
+  },
+  "f_search_highlights_comments_n_4f81": {
+    "message": "Поиск по выделениям, комментариям, заметкам…"
+  },
+  "f_secret_access_key_d3a2": {
+    "message": "Секретный ключ доступа"
+  },
+  "f_selected_3294": {
+    "message": "Выбрано"
+  },
+  "f_server_02f2": {
+    "message": "Сервер"
+  },
+  "f_server_address_025e": {
+    "message": "Адрес сервера"
+  },
+  "f_server_name_22f5": {
+    "message": "Имя сервера"
+  },
+  "f_server_saved_27e1": {
+    "message": "Сервер сохранён."
+  },
+  "f_show_2e5c": {
+    "message": "Показать"
+  },
+  "f_show_code_for_the_phone_a8c1": {
+    "message": "Показать код для телефона"
+  },
+  "f_show_passphrase_dda0": {
+    "message": "Показать фразу"
+  },
+  "f_six_random_words_you_will_ty_e18c": {
+    "message": "Шесть случайных слов. Вы будете вводить их на других устройствах, поэтому запишите их или храните в менеджере паролей. Больше они нигде не сохраняются: если вы их потеряете, никто не сможет открыть ваши файлы."
+  },
+  "f_soon_da12": {
+    "message": "Скоро"
+  },
+  "f_strong_db5c": {
+    "message": "Надёжно."
+  },
+  "f_suggest_random_words_instead_a3fb": {
+    "message": "Предложить случайные слова"
+  },
+  "f_sync_backup_9786": {
+    "message": "Синхр. и бэкап"
+  },
+  "f_sync_my_devices_79fb": {
+    "message": "Синхр. устройств"
+  },
+  "f_sync_now_d8fe": {
+    "message": "Синхр. сейчас"
+  },
+  "f_syncthing_icloud_drive_dropb_a87d": {
+    "message": "Syncthing, iCloud Drive, Dropbox или USB-накопитель поддерживают его актуальным."
+  },
+  "f_test_connection_b6b7": {
+    "message": "Проверить соединение"
+  },
+  "f_the_browser_could_not_rememb_f257": {
+    "message": "Браузер не смог запомнить эту папку."
+  },
+  "f_the_browser_did_not_allow_ac_5245": {
+    "message": "Браузер не разрешил доступ."
+  },
+  "f_the_browser_takes_back_acces_aaf9": {
+    "message": "Браузер отзывает доступ к папке при перезапуске, и вернуть его может только ваш клик. Пока этого не произошло, папка не синхронизируется."
+  },
+  "f_the_kind_of_a_place_cannot_b_8037": {
+    "message": "Тип места изменить нельзя. Добавьте ещё одно место, чтобы использовать другой тип."
+  },
+  "f_the_login_is_saved_once_for__bcba": {
+    "message": "Логин сохраняется один раз для всех."
+  },
+  "f_the_restore_did_not_finish_a4b5": {
+    "message": "Восстановление не завершено."
+  },
+  "f_the_save_for_later_time_and__7dff": {
+    "message": "Время отложенного чтения и ваша причина."
+  },
+  "f_the_service_picks_a_model_fo_a591": {
+    "message": "Сервис выбирает модель для каждого запроса: для коротких текстов лёгкую, для длинных — более крупную."
+  },
+  "f_the_two_passphrases_are_not__e90b": {
+    "message": "Две парольные фразы не совпадают."
+  },
+  "f_these_six_words_are_the_key__f595": {
+    "message": "Эти шесть слов — ключ к «{name}». Вы вводите их на каждом новом устройстве. Если вы их потеряете, никто не сможет прочитать файлы, даже мы. Сохраните их в менеджере паролей."
+  },
+  "f_this_device_was_away_for_a_l_46de": {
+    "message": "Это устройство долго отсутствовало. Отправлено только то, что изменилось с тех пор, и ничего не удалено."
+  },
+  "f_this_device_writes_everythin_1070": {
+    "message": "Это устройство записывает всё в место и никогда не читает обратно. Восстанавливайте из него, когда понадобится."
+  },
+  "f_this_folder_already_holds_an_9f1e": {
+    "message": "В этой папке уже есть зашифрованная библиотека. Введите её парольную фразу (сохранённые слова)."
+  },
+  "f_this_folder_already_holds_an_8e8c": {
+    "message": "В этой папке уже есть зашифрованная библиотека. Введите её парольную фразу ниже и снова нажмите «Подключить»."
+  },
+  "f_this_model_does_not_run_on_e_21da": {
+    "message": "Эта модель не работает на серверах ЕС. Использовать вместо неё {name} (ЕС)?"
+  },
+  "f_this_place_publishes_only_th_f3b8": {
+    "message": "Это место только для публикации: устройство записывает файлы и никогда не читает их обратно."
+  },
+  "f_this_place_uses_your_own_pas_823b": {
+    "message": "Это место использует вашу собственную парольную фразу. Её нет в коде: введите её на телефоне."
+  },
+  "f_this_place_uses_your_own_pas_b61e": {
+    "message": "Это место использует вашу парольную фразу. Она не хранится на этом устройстве, поэтому показать её нельзя."
+  },
+  "f_to_publish_on_your_own_websi_9caf": {
+    "message": "Для публикации на вашем сайте: обычные файлы, которые может прочитать любой, у кого есть ссылка."
+  },
+  "f_turn_on_to_run_models_on_ser_af13": {
+    "message": "Включите, чтобы запускать модели на серверах в Европе, где это возможно. Остальные модели продолжают работать и помечены."
+  },
+  "f_unchanged_e05e": {
+    "message": "Без изменений"
+  },
+  "f_updating_the_list_d48e": {
+    "message": "Обновление списка…"
+  },
+  "f_uploading_of_c6b9": {
+    "message": "Загрузка: {done} из {total}"
+  },
+  "f_use_my_own_passphrase_c42a": {
+    "message": "Своя парольная фраза"
+  },
+  "f_use_4021": {
+    "message": "Взять {name}"
+  },
+  "f_username_d4d9": {
+    "message": "Логин"
+  },
+  "f_view_aa18": {
+    "message": "Вид"
+  },
+  "f_weak_use_at_least_12_charact_690f": {
+    "message": "Слабая: минимум 12 символов или предложенные слова."
+  },
+  "f_website_list_be8a": {
+    "message": "Список для сайта"
+  },
+  "f_what_goes_out_1113": {
+    "message": "Что уходит наружу"
+  },
+  "f_what_it_is_for_84ef": {
+    "message": "Для чего это место"
+  },
+  "f_who_can_read_it_ceb4": {
+    "message": "Кто может читать"
+  },
+  "f_with_a_tag_c382": {
+    "message": "С тегом"
+  },
+  "f_works_in_chrome_and_edge_on__f2c7": {
+    "message": "Работает в Chrome и Edge на компьютере."
+  },
+  "f_write_a_note_about_this_arti_e1b4": {
+    "message": "Напишите заметку об этой статье…"
+  },
+  "f_write_a_note_or_a_thought_wo_67b1": {
+    "message": "Заметка или мысль, которую стоит сохранить…"
+  },
+  "f_write_a_note_c7c9": {
+    "message": "Напишите заметку…"
+  },
+  "f_write_one_below_or_highlight_7627": {
+    "message": "Напишите заметку ниже или выделите текст на любой странице. Здесь также появятся ваши выделения и выделения ИИ."
+  },
+  "f_your_articles_highlights_not_9c7c": {
+    "message": "Ваши статьи, выделения, заметки, коллекции, резюме и полные тексты синхронизируются на всех устройствах с той же парольной фразой."
+  },
+  "f_your_own_index_html_is_in_th_8069": {
+    "message": "В этой папке лежит ваш собственный index.html, поэтому страница просмотра не заменена."
+  },
+  "f_your_own_notes_and_the_comme_6ef8": {
+    "message": "Ваши собственные заметки и комментарии к выделениям."
+  },
+  "f_your_passphrase_2512": {
+    "message": "Ваша парольная фраза"
+  },
+  "f_your_yellow_and_ai_highlight_15a0": {
+    "message": "Ваши жёлтые выделения и выделения ИИ"
+  },
+  "f_backed_up_ago_845b": {
+    "message": "бэкап {t} назад"
+  },
+  "f_picks_a_model_for_each_reque_519c": {
+    "message": "выбирает модель для каждого запроса"
+  },
+  "f_published_ago_0576": {
+    "message": "опубликовано {t} назад"
+  },
+  "f_synced_ago_174c": {
+    "message": "синхр. {t} назад"
+  },
+  "f_of_9ced": {
+    "message": "{a} из {b}"
+  },
+  "f_ai_highlight_8f93": {
+    "message": "Выделений ИИ: {n}"
+  },
+  "f_ai_highlights_7da0": {
+    "message": "Выделений ИИ: {n}"
+  },
+  "f_file_is_no_longer_wanted_her_48c4": {
+    "message": "Файлов к удалению с вашего сервера: {n}. Они здесь больше не нужны. Проверьте, всё ли верно."
+  },
+  "f_files_are_no_longer_wanted_h_6975": {
+    "message": "Файлов к удалению с вашего сервера: {n}. Они здесь больше не нужны. Проверьте, всё ли верно."
+  },
+  "f_files_had_problems_a60b": {
+    "message": "Файлов с ошибками: {n}"
+  },
+  "f_highlight_5f43": {
+    "message": "Выделений: {n}"
+  },
+  "f_highlights_d890": {
+    "message": "Выделений: {n}"
+  },
+  "f_more_article_was_deleted_on__0e7e": {
+    "message": "Ещё статей, удалённых на другом устройстве: {n}. Пока вы не подтвердите, они остаются здесь. Проверьте, всё ли верно."
+  },
+  "f_more_articles_were_deleted_o_8348": {
+    "message": "Ещё статей, удалённых на других устройствах: {n}. Пока вы не подтвердите, они остаются здесь. Проверьте, всё ли верно."
+  },
+  "f_note_b2a1": {
+    "message": "Заметок: {n}"
+  },
+  "f_notes_8096": {
+    "message": "Заметок: {n}"
+  },
+  "f_place_b298": {
+    "message": "Мест: {n}"
+  },
+  "f_place_uses_this_server_133b": {
+    "message": "Мест, использующих сервер: {n}."
+  },
+  "f_places_a7f1": {
+    "message": "Мест: {n}"
+  },
+  "f_places_use_this_server_4df9": {
+    "message": "Мест, использующих сервер: {n}."
   }
 }

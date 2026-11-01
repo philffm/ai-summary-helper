@@ -5675,5 +5675,671 @@
   },
   "f_what_s_new_in_9c82": {
     "message": "{v} में नया"
+  },
+  "f_a_folder_on_this_computer_bbe4": {
+    "message": "इस कंप्यूटर का फ़ोल्डर"
+  },
+  "f_a_simple_web_page_index_html_d002": {
+    "message": "एक सरल वेब पेज (index.html) जो library.json पढ़ता है: खोज, टैग, टाइमलाइन और टैग ग्राफ़। इसके लिए HTML पेज दिखाने वाला सर्वर चाहिए, जैसे आपका अपना वेब सर्वर या सार्वजनिक बकेट। Nextcloud शेयर इसमें नहीं चलते।"
+  },
+  "f_ai_135f": {
+    "message": "AI"
+  },
+  "f_ai_highlight_b91f": {
+    "message": "AI हाइलाइट"
+  },
+  "f_aws_cloudflare_r2_backblaze__139d": {
+    "message": "AWS, Cloudflare R2, Backblaze, MinIO, Wasabi"
+  },
+  "f_aws_https_s3_region_amazonaw_c68d": {
+    "message": "AWS: https://s3.<region>.amazonaws.com · Cloudflare R2: https://<account>.r2.cloudflarestorage.com · Backblaze: https://s3.<region>.backblazeb2.com"
+  },
+  "f_access_is_allowed_7031": {
+    "message": "पहुँच की अनुमति है।"
+  },
+  "f_access_key_id_8d75": {
+    "message": "Access key ID"
+  },
+  "f_add_a_comment_9c08": {
+    "message": "टिप्पणी जोड़ें…"
+  },
+  "f_add_a_place_799c": {
+    "message": "जगह जोड़ें"
+  },
+  "f_add_note_9108": {
+    "message": "नोट जोड़ें"
+  },
+  "f_all_except_a_tag_ca3e": {
+    "message": "टैग को छोड़कर सभी"
+  },
+  "f_all_places_fdbc": {
+    "message": "सभी जगहें"
+  },
+  "f_allow_access_again_cc7c": {
+    "message": "फिर अनुमति दें"
+  },
+  "f_allow_access_to_599a": {
+    "message": "{name} तक पहुँच दें"
+  },
+  "f_also_publish_a_viewer_page_2d07": {
+    "message": "व्यूअर पेज भी प्रकाशित करें"
+  },
+  "f_an_index_html_that_is_not_ou_889b": {
+    "message": "इस फ़ोल्डर में पहले से एक अन्य index.html है, इसलिए व्यूअर नहीं लिखा गया। दूसरा फ़ोल्डर चुनें।"
+  },
+  "f_another_suggestion_09e8": {
+    "message": "एक और सुझाव"
+  },
+  "f_anyone_who_can_open_this_fol_86f7": {
+    "message": "जो भी यह फ़ोल्डर खोल सकता है, वह ये फ़ाइलें पढ़ सकता है। अपने नियंत्रण वाला फ़ोल्डर चुनें और इसे निजी रखें, जब तक प्रकाशित न करना हो।"
+  },
+  "f_app_password_6505": {
+    "message": "ऐप पासवर्ड"
+  },
+  "f_at_least_12_characters_it_is_f78b": {
+    "message": "कम से कम 12 अक्षर। यह कहीं सहेजा नहीं जाता: खो गया तो कोई फ़ाइलें नहीं खोल सकेगा।"
+  },
+  "f_back_up_now_63b3": {
+    "message": "अभी बैकअप लें"
+  },
+  "f_backup_only_e75f": {
+    "message": "केवल बैकअप"
+  },
+  "f_bring_everything_in_this_pla_0150": {
+    "message": "इस जगह की सारी सामग्री इस डिवाइस पर वापस लाएँ? जहाँ डिवाइस अलग है, वहाँ इस जगह का संस्करण चलेगा। यहाँ कुछ हटाया नहीं जाता।"
+  },
+  "f_bucket_3557": {
+    "message": "बकेट"
+  },
+  "f_by_article_5c16": {
+    "message": "लेख के अनुसार"
+  },
+  "f_changes_here_apply_to_every__822d": {
+    "message": "यहाँ के बदलाव इस सर्वर की हर जगह पर लागू होते हैं।"
+  },
+  "f_checked_the_folder_restored__7f16": {
+    "message": "फ़ोल्डर जाँचा: {r} बहाल, {o} बचे मिले।"
+  },
+  "f_checking_your_library_f467": {
+    "message": "आपकी लाइब्रेरी जाँच रहे हैं…"
+  },
+  "f_choose_6160": {
+    "message": "चुनें"
+  },
+  "f_choose_a_passphrase_c9a1": {
+    "message": "पासफ़्रेज़ चुनें"
+  },
+  "f_choose_another_folder_1129": {
+    "message": "दूसरा फ़ोल्डर चुनें"
+  },
+  "f_cloudflare_r2_auto_leave_the_74e0": {
+    "message": "Cloudflare R2: auto। अगर प्रदाता न पूछे तो डिफ़ॉल्ट रखें।"
+  },
+  "f_code_for_the_phone_8494": {
+    "message": "फ़ोन के लिए कोड"
+  },
+  "f_comment_9ffe": {
+    "message": "टिप्पणी"
+  },
+  "f_connect_and_publish_3387": {
+    "message": "जोड़ें और प्रकाशित करें"
+  },
+  "f_connected_the_folder_is_empt_688d": {
+    "message": "कनेक्ट हो गया। फ़ोल्डर खाली है, इसलिए नई एन्क्रिप्टेड लाइब्रेरी बनेगी।"
+  },
+  "f_connected_this_folder_alread_7ea2": {
+    "message": "कनेक्ट हो गया। इस फ़ोल्डर में पहले से एन्क्रिप्टेड लाइब्रेरी है।"
+  },
+  "f_connected_article_matches_b205": {
+    "message": "कनेक्ट हो गया। {n} लेख मेल खाता है।"
+  },
+  "f_connected_articles_match_40f2": {
+    "message": "कनेक्ट हो गया। {n} लेख मेल खाते हैं।"
+  },
+  "f_continuing_file_left_4bdc": {
+    "message": "जारी है… {n} फ़ाइल बाकी"
+  },
+  "f_continuing_files_left_7869": {
+    "message": "जारी है… {n} फ़ाइलें बाकी"
+  },
+  "f_copied_2cb1": {
+    "message": "कॉपी हो गया।"
+  },
+  "f_copies_of_other_people_s_art_db7e": {
+    "message": "दूसरों के लेखों की प्रतियाँ। पक्का करें कि आप इन्हें साझा कर सकते हैं। फ़ाइलें काफ़ी बड़ी हो जाती हैं।"
+  },
+  "f_copy_did_not_work_select_the_1dcb": {
+    "message": "कॉपी नहीं हो सका। शब्द चुनकर हाथ से कॉपी करें।"
+  },
+  "f_copy_puts_the_words_in_one_p_9b1c": {
+    "message": "कॉपी शब्दों को डैश से जोड़कर एक टुकड़े में रखता है। यह कॉन्फ़िग फ़ाइलों, शेल और चैट ऐप्स में सुरक्षित रहता है; स्पेस या डैश, दोनों से टाइप कर सकते हैं।"
+  },
+  "f_could_not_reach_the_server_aa7e": {
+    "message": "सर्वर तक नहीं पहुँच सके"
+  },
+  "f_could_not_save_this_place_cf23": {
+    "message": "यह जगह सहेजी नहीं जा सकी।"
+  },
+  "f_created_for_you_use_one_fold_0390": {
+    "message": "आपके लिए बनाया गया। हर काम के लिए एक फ़ोल्डर रखें, जैसे वेबसाइट सूची के लिए public और पूरी प्रति के लिए backup।"
+  },
+  "f_danger_zone_19b4": {
+    "message": "ख़तरे का क्षेत्र"
+  },
+  "f_delete_them_here_too_9d48": {
+    "message": "यहाँ से भी हटाएँ"
+  },
+  "f_delete_this_note_3253": {
+    "message": "यह नोट हटाएँ?"
+  },
+  "f_download_bb19": {
+    "message": "डाउनलोड"
+  },
+  "f_eu_1f4f": {
+    "message": "EU"
+  },
+  "f_eu_company_ef04": {
+    "message": "EU कंपनी"
+  },
+  "f_eu_servers_987b": {
+    "message": "EU सर्वर"
+  },
+  "f_each_article_becomes_one_fil_f81c": {
+    "message": "हर लेख एक फ़ाइल बनता है, साथ में आपकी वेबसाइट के लिए एक सूची (library.json)।"
+  },
+  "f_edit_comment_f0e4": {
+    "message": "टिप्पणी बदलें"
+  },
+  "f_edit_server_63e0": {
+    "message": "सर्वर बदलें"
+  },
+  "f_encrypted_e253": {
+    "message": "एन्क्रिप्टेड"
+  },
+  "f_end_with_tags_ctrl_enter_to__83e2": {
+    "message": "अंत में #टैग लगाएँ · जोड़ने को ⌘/Ctrl+Enter"
+  },
+  "f_endpoint_address_ce54": {
+    "message": "एंडपॉइंट पता"
+  },
+  "f_every_article_you_saved_goes_f744": {
+    "message": "आपके सहेजे हर लेख बाहर जाएँगे, वे भी जिन्हें आप शायद दूसरों को पढ़ाना न चाहें। जो बैकअप केवल आप पढ़ें, उसे एन्क्रिप्ट करना बेहतर है।"
+  },
+  "f_everything_8340": {
+    "message": "सब कुछ"
+  },
+  "f_everything_is_encrypted_on_t_1b86": {
+    "message": "अपलोड से पहले सब कुछ इस डिवाइस पर एन्क्रिप्ट होता है। नोट, रिमाइंडर और पूरा पाठ भी शामिल हैं, क्योंकि इन्हें केवल आप पढ़ सकते हैं।"
+  },
+  "f_files_go_into_a_subfolder_of_5a98": {
+    "message": "फ़ाइलें इसके एक सबफ़ोल्डर में जाती हैं। जो भी इस फ़ोल्डर को सिंक रखता है (Syncthing, iCloud Drive, Dropbox, USB ड्राइव), वह उन्हें आपके दूसरे डिवाइस तक पहुँचाता है।"
+  },
+  "f_fine_the_suggested_words_are_36c0": {
+    "message": "ठीक है। सुझाए गए शब्द ज़्यादा मज़बूत हैं।"
+  },
+  "f_folder_7afd": {
+    "message": "फ़ोल्डर"
+  },
+  "f_folder_access_is_waiting_b754": {
+    "message": "फ़ोल्डर की पहुँच रुकी है"
+  },
+  "f_folder_on_the_server_b74c": {
+    "message": "सर्वर पर फ़ोल्डर"
+  },
+  "f_folder_960e": {
+    "message": "फ़ोल्डर: {name}"
+  },
+  "f_for_syncing_and_backup_only__f767": {
+    "message": "सिंक और बैकअप के लिए। इसे केवल आप पढ़ सकते हैं, कोई वेबसाइट नहीं। प्रदाता को बिखरी हुई फ़ाइलें दिखती हैं।"
+  },
+  "f_getting_changes_of_8fbb": {
+    "message": "बदलाव लाए जा रहे हैं {done}/{total}"
+  },
+  "f_grid_66b1": {
+    "message": "ग्रिड"
+  },
+  "f_highlight_05c7": {
+    "message": "हाइलाइट"
+  },
+  "f_i_made_a_backup_of_this_devi_c05b": {
+    "message": "मैंने इस डिवाइस का बैकअप ले लिया"
+  },
+  "f_i_saved_the_passphrase_81d0": {
+    "message": "मैंने पासफ़्रेज़ सहेज लिया"
+  },
+  "f_in_nextcloud_settings_securi_4fee": {
+    "message": "Nextcloud में: सेटिंग्स → सुरक्षा → ऐप पासवर्ड बनाएँ। मुख्य पासवर्ड कभी न दें।"
+  },
+  "f_joining_merges_this_device_w_8048": {
+    "message": "जुड़ने पर यह डिवाइस फ़ोल्डर की लाइब्रेरी से मिल जाता है: जहाँ दोनों अलग हों, वहाँ फ़ोल्डर का संस्करण चलेगा। पहले इस डिवाइस का बैकअप लें।"
+  },
+  "f_keep_your_library_in_step_ac_b5fe": {
+    "message": "अपनी लाइब्रेरी को सभी डिवाइस पर सिंक रखें, उसका बैकअप लें, या कुछ हिस्सा दूसरों के लिए प्रकाशित करें। हर जगह आपके अपने सर्वर या इस कंप्यूटर का एक फ़ोल्डर है। जब तक आप कोई जगह नहीं जोड़ते, कुछ भी इस डिवाइस से बाहर नहीं जाता।"
+  },
+  "f_looking_at_what_is_in_the_fo_1e05": {
+    "message": "फ़ोल्डर में क्या है, देख रहे हैं…"
+  },
+  "f_make_a_backup_now_3046": {
+    "message": "अभी बैकअप लें"
+  },
+  "f_make_an_access_key_just_for__abc9": {
+    "message": "सिर्फ़ इस बकेट के लिए एक एक्सेस की बनाएँ, जिसे इसमें पढ़ने, लिखने, सूची देखने और हटाने की अनुमति हो। अपने खाते की मुख्य की कभी न दें।"
+  },
+  "f_meant_for_a_folder_only_you__33c0": {
+    "message": "ऐसे फ़ोल्डर के लिए जिसे केवल आप खोल सकें, जैसे निजी बैकअप या आंतरिक सूची। जो भी फ़ोल्डर खोल सकता है, यह सब पढ़ सकता है।"
+  },
+  "f_mine_84d6": {
+    "message": "मेरे"
+  },
+  "f_models_marked_eu_servers_run_7b00": {
+    "message": "मॉडल जिन पर “EU सर्वर” का निशान है, वे केवल यूरोप के सर्वरों पर चलते हैं, अक्सर अमेरिकी क्लाउड कंपनियों के। केवल “EU कंपनी” वाले मॉडल यूरोपीय कंपनी के भी होते हैं। बाकी हर मॉडल फिर भी काम करता है, उस पर “EU सर्वर पर नहीं” लिखा होता है, और वह सामान्य रूप से चलता है; Auto विकल्प EU सर्वरों पर ही रहते हैं। EU सर्वर थोड़े महँगे हो सकते हैं; दिखाई गई कीमतें EU की हैं। पढ़कर सुनाने और बोली से पाठ में EU विकल्प नहीं है। आपका पाठ रास्ते में हमारी सेवा (जर्मनी का एक सर्वर) और फिर अमेरिकी कंपनी OpenRouter से होकर गुज़रता है।"
+  },
+  "f_my_nextcloud_741d": {
+    "message": "मेरा Nextcloud"
+  },
+  "f_my_notes_and_comments_099b": {
+    "message": "मेरे नोट और टिप्पणियाँ"
+  },
+  "f_new_note_7123": {
+    "message": "नया नोट"
+  },
+  "f_new_server_9ee0": {
+    "message": "नया सर्वर"
+  },
+  "f_nextcloud_webdav_2b5d": {
+    "message": "Nextcloud / WebDAV"
+  },
+  "f_nextcloud_owncloud_synology__5752": {
+    "message": "Nextcloud, ownCloud, Synology, ज़्यादातर NAS"
+  },
+  "f_no_notes_on_this_article_yet_b876": {
+    "message": "इस लेख पर अभी कोई नोट नहीं।"
+  },
+  "f_no_notes_yet_68d5": {
+    "message": "अभी कोई नोट नहीं।"
+  },
+  "f_no_tags_yet_end_a_note_with__ae68": {
+    "message": "अभी कोई टैग नहीं। नोट को #tag पर खत्म करें।"
+  },
+  "f_not_eu_fb9c": {
+    "message": "EU नहीं"
+  },
+  "f_not_here_d910": {
+    "message": "यहाँ नहीं"
+  },
+  "f_not_on_eu_servers_abcb": {
+    "message": "EU सर्वर पर नहीं"
+  },
+  "f_not_published_yet_d0ae": {
+    "message": "अभी प्रकाशित नहीं"
+  },
+  "f_not_synced_yet_7efe": {
+    "message": "अभी सिंक नहीं हुआ"
+  },
+  "f_note_c15d": {
+    "message": "नोट"
+  },
+  "f_notes_1b6a": {
+    "message": "नोट"
+  },
+  "f_notes_and_highlights_0e9c": {
+    "message": "नोट और हाइलाइट"
+  },
+  "f_notes_without_an_article_5bd7": {
+    "message": "बिना लेख के नोट"
+  },
+  "f_nothing_here_yet_5bfc": {
+    "message": "यहाँ अभी कुछ नहीं।"
+  },
+  "f_nothing_matches_03c3": {
+    "message": "कुछ मेल नहीं खाता।"
+  },
+  "f_only_publish_articles_tagged_b789": {
+    "message": "केवल इस टैग वाले लेख प्रकाशित करें"
+  },
+  "f_open_the_page_ab11": {
+    "message": "पेज खोलें"
+  },
+  "f_passphrase_2dc5": {
+    "message": "पासफ़्रेज़"
+  },
+  "f_passphrase_keep_it_somewhere_ca8a": {
+    "message": "पासफ़्रेज़: {k}। इसे सुरक्षित रखें।"
+  },
+  "f_paused_1feb": {
+    "message": "रुका हुआ"
+  },
+  "f_pinned_q_a_faa5": {
+    "message": "पिन किए Q&A"
+  },
+  "f_places_d03d": {
+    "message": "जगहें"
+  },
+  "f_publish_everything_except_ar_74e7": {
+    "message": "इस टैग वाले लेखों को छोड़ सब प्रकाशित करें"
+  },
+  "f_publish_my_library_to_my_own_a71f": {
+    "message": "अपनी लाइब्रेरी अपने सर्वर पर प्रकाशित करें"
+  },
+  "f_publish_now_ae60": {
+    "message": "प्रकाशित करें"
+  },
+  "f_publishing_e1f2": {
+    "message": "प्रकाशन जारी…"
+  },
+  "f_questions_you_pinned_with_an_5f9e": {
+    "message": "आपके पिन किए सवाल, जवाबों सहित"
+  },
+  "f_readable_00b5": {
+    "message": "पढ़ने योग्य"
+  },
+  "f_reading_changes_of_9b27": {
+    "message": "बदलाव पढ़े जा रहे हैं {done}/{total}"
+  },
+  "f_region_789d": {
+    "message": "क्षेत्र"
+  },
+  "f_reminders_b654": {
+    "message": "रिमाइंडर"
+  },
+  "f_remove_comment_2340": {
+    "message": "टिप्पणी हटाएँ"
+  },
+  "f_remove_them_401d": {
+    "message": "इन्हें हटाएँ"
+  },
+  "f_remove_this_highlight_3cc8": {
+    "message": "यह हाइलाइट हटाएँ?"
+  },
+  "f_remove_this_place_6efc": {
+    "message": "यह जगह हटाएँ"
+  },
+  "f_remove_this_place_the_files__ad9c": {
+    "message": "यह जगह हटाएँ? आपके सर्वर पर पहले से मौजूद फ़ाइलें नहीं हटेंगी।"
+  },
+  "f_removing_a_place_stops_publi_caa4": {
+    "message": "जगह हटाने पर प्रकाशन रुक जाता है। आपके सर्वर पर पहले से मौजूद फ़ाइलें वहीं रहती हैं। जिस सर्वर को अब कोई जगह इस्तेमाल नहीं करती, वह लॉगिन सहित भुला दिया जाता है।"
+  },
+  "f_removing_of_9a27": {
+    "message": "हटा रहे हैं {done}/{total}"
+  },
+  "f_repeat_the_passphrase_c2a7": {
+    "message": "पासफ़्रेज़ दोहराएँ"
+  },
+  "f_restore_from_here_3623": {
+    "message": "यहाँ से बहाल करें"
+  },
+  "f_restored_item_changed_on_thi_f959": {
+    "message": "बहाल हुआ। इस डिवाइस पर {n} आइटम बदला।"
+  },
+  "f_restored_items_changed_on_th_853c": {
+    "message": "बहाल हुआ। इस डिवाइस पर {n} आइटम बदले।"
+  },
+  "f_restoring_daec": {
+    "message": "बहाल हो रहा है…"
+  },
+  "f_s3_compatible_4144": {
+    "message": "S3-संगत"
+  },
+  "f_save_5d68": {
+    "message": "सहेजें"
+  },
+  "f_save_server_bca3": {
+    "message": "सर्वर सहेजें"
+  },
+  "f_save_your_passphrase_3801": {
+    "message": "अपना पासफ़्रेज़ सहेजें"
+  },
+  "f_saving_of_566a": {
+    "message": "सहेज रहे हैं {done}/{total}"
+  },
+  "f_scan_it_with_ai_summary_help_572d": {
+    "message": "इसे फ़ोन पर AI Summary Helper से स्कैन करें: सेटिंग्स → लाइब्रेरी सिंक → कोड स्कैन करें। कोड में आपके सर्वर का लॉगिन है, इसलिए इसे केवल अपने फ़ोन को दिखाएँ। यह एक मिनट बाद अपने आप छिप जाता है।"
+  },
+  "f_search_highlights_comments_n_4f81": {
+    "message": "हाइलाइट, टिप्पणियाँ, नोट खोजें…"
+  },
+  "f_secret_access_key_d3a2": {
+    "message": "गुप्त एक्सेस की"
+  },
+  "f_selected_3294": {
+    "message": "चुना गया"
+  },
+  "f_server_02f2": {
+    "message": "सर्वर"
+  },
+  "f_server_address_025e": {
+    "message": "सर्वर का पता"
+  },
+  "f_server_name_22f5": {
+    "message": "सर्वर का नाम"
+  },
+  "f_server_saved_27e1": {
+    "message": "सर्वर सहेजा गया।"
+  },
+  "f_show_2e5c": {
+    "message": "दिखाएँ"
+  },
+  "f_show_code_for_the_phone_a8c1": {
+    "message": "फ़ोन के लिए कोड दिखाएँ"
+  },
+  "f_show_passphrase_dda0": {
+    "message": "पासफ़्रेज़ दिखाएँ"
+  },
+  "f_six_random_words_you_will_ty_e18c": {
+    "message": "छह यादृच्छिक शब्द। आप इन्हें अपने दूसरे डिवाइस पर टाइप करेंगे, इसलिए लिख लें या पासवर्ड मैनेजर में रखें। ये कहीं और सहेजे नहीं जाते: खो गए तो कोई आपकी फ़ाइलें नहीं खोल सकेगा।"
+  },
+  "f_soon_da12": {
+    "message": "जल्द"
+  },
+  "f_strong_db5c": {
+    "message": "मज़बूत।"
+  },
+  "f_suggest_random_words_instead_a3fb": {
+    "message": "इसके बजाय यादृच्छिक शब्द सुझाएँ"
+  },
+  "f_sync_backup_9786": {
+    "message": "सिंक और बैकअप"
+  },
+  "f_sync_my_devices_79fb": {
+    "message": "डिवाइस सिंक करें"
+  },
+  "f_sync_now_d8fe": {
+    "message": "अभी सिंक करें"
+  },
+  "f_syncthing_icloud_drive_dropb_a87d": {
+    "message": "Syncthing, iCloud Drive, Dropbox या USB ड्राइव इसे सिंक रखते हैं।"
+  },
+  "f_test_connection_b6b7": {
+    "message": "कनेक्शन जाँचें"
+  },
+  "f_the_browser_could_not_rememb_f257": {
+    "message": "ब्राउज़र इस फ़ोल्डर को याद नहीं रख सका।"
+  },
+  "f_the_browser_did_not_allow_ac_5245": {
+    "message": "ब्राउज़र ने पहुँच नहीं दी।"
+  },
+  "f_the_browser_takes_back_acces_aaf9": {
+    "message": "ब्राउज़र रीस्टार्ट होने पर फ़ोल्डर की पहुँच वापस ले लेता है, और उसे केवल आपका क्लिक लौटा सकता है। तब तक फ़ोल्डर सिंक नहीं होता।"
+  },
+  "f_the_kind_of_a_place_cannot_b_8037": {
+    "message": "जगह का प्रकार बदला नहीं जा सकता। दूसरा प्रकार चाहिए तो नई जगह जोड़ें।"
+  },
+  "f_the_login_is_saved_once_for__bcba": {
+    "message": "लॉगिन सबके लिए एक बार सहेजा जाता है।"
+  },
+  "f_the_restore_did_not_finish_a4b5": {
+    "message": "बहाली पूरी नहीं हुई।"
+  },
+  "f_the_save_for_later_time_and__7dff": {
+    "message": "बाद के लिए सहेजने का समय और उसका कारण।"
+  },
+  "f_the_service_picks_a_model_fo_a591": {
+    "message": "सेवा हर अनुरोध के लिए मॉडल चुनती है: छोटे पाठ को हल्का मॉडल, लंबे को बड़ा।"
+  },
+  "f_the_two_passphrases_are_not__e90b": {
+    "message": "दोनों पासफ़्रेज़ एक जैसे नहीं हैं।"
+  },
+  "f_these_six_words_are_the_key__f595": {
+    "message": "ये छह शब्द “{name}” की कुंजी हैं। हर नए डिवाइस पर इन्हें टाइप करना होगा। खो गए तो कोई फ़ाइलें नहीं पढ़ सकेगा, हम भी नहीं। इन्हें पासवर्ड मैनेजर में सहेजें।"
+  },
+  "f_this_device_was_away_for_a_l_46de": {
+    "message": "यह डिवाइस लंबे समय तक दूर रहा। तब से जो बदला, केवल वही भेजा गया, और कुछ हटाया नहीं गया।"
+  },
+  "f_this_device_writes_everythin_1070": {
+    "message": "यह डिवाइस सब कुछ इस जगह पर लिखता है, वापस कभी नहीं पढ़ता। ज़रूरत पड़ने पर यहाँ से बहाल करें।"
+  },
+  "f_this_folder_already_holds_an_9f1e": {
+    "message": "इस फ़ोल्डर में पहले से एन्क्रिप्टेड लाइब्रेरी है। उसका पासफ़्रेज़ (आपके सहेजे शब्द) डालें।"
+  },
+  "f_this_folder_already_holds_an_8e8c": {
+    "message": "इस फ़ोल्डर में पहले से एन्क्रिप्टेड लाइब्रेरी है। नीचे उसका पासफ़्रेज़ डालें, फिर कनेक्ट दोबारा दबाएँ।"
+  },
+  "f_this_model_does_not_run_on_e_21da": {
+    "message": "यह मॉडल EU सर्वर पर नहीं चलता। इसके बजाय {name} (EU) इस्तेमाल करें?"
+  },
+  "f_this_place_publishes_only_th_f3b8": {
+    "message": "यह जगह केवल प्रकाशित करती है: यह डिवाइस फ़ाइलें लिखता है, वापस कभी नहीं पढ़ता।"
+  },
+  "f_this_place_uses_your_own_pas_823b": {
+    "message": "इस जगह का अपना पासफ़्रेज़ है। वह कोड में नहीं है: उसे फ़ोन पर टाइप करें।"
+  },
+  "f_this_place_uses_your_own_pas_b61e": {
+    "message": "इस जगह का अपना पासफ़्रेज़ है। वह इस डिवाइस पर नहीं रखा जाता, इसलिए दिखाया नहीं जा सकता।"
+  },
+  "f_to_publish_on_your_own_websi_9caf": {
+    "message": "अपनी वेबसाइट पर प्रकाशन के लिए: सादी फ़ाइलें, जिन्हें लिंक वाला कोई भी पढ़ सकता है।"
+  },
+  "f_turn_on_to_run_models_on_ser_af13": {
+    "message": "इसे चालू करें ताकि जहाँ संभव हो मॉडल यूरोप के सर्वरों पर चलें। बाकी सभी मॉडल काम करते रहते हैं और उन पर निशान होता है।"
+  },
+  "f_unchanged_e05e": {
+    "message": "अपरिवर्तित"
+  },
+  "f_updating_the_list_d48e": {
+    "message": "सूची अपडेट हो रही है…"
+  },
+  "f_uploading_of_c6b9": {
+    "message": "अपलोड हो रहा है {done}/{total}"
+  },
+  "f_use_my_own_passphrase_c42a": {
+    "message": "अपना पासफ़्रेज़ रखें"
+  },
+  "f_use_4021": {
+    "message": "{name} लें"
+  },
+  "f_username_d4d9": {
+    "message": "यूज़रनेम"
+  },
+  "f_view_aa18": {
+    "message": "देखें"
+  },
+  "f_weak_use_at_least_12_charact_690f": {
+    "message": "कमज़ोर: कम से कम 12 अक्षर रखें, या सुझाए शब्द लें।"
+  },
+  "f_website_list_be8a": {
+    "message": "वेबसाइट सूची"
+  },
+  "f_what_goes_out_1113": {
+    "message": "क्या बाहर जाता है"
+  },
+  "f_what_it_is_for_84ef": {
+    "message": "यह किसलिए है"
+  },
+  "f_who_can_read_it_ceb4": {
+    "message": "कौन पढ़ सकता है"
+  },
+  "f_with_a_tag_c382": {
+    "message": "टैग के साथ"
+  },
+  "f_works_in_chrome_and_edge_on__f2c7": {
+    "message": "कंप्यूटर पर Chrome और Edge में चलता है।"
+  },
+  "f_write_a_note_about_this_arti_e1b4": {
+    "message": "इस लेख पर नोट लिखें…"
+  },
+  "f_write_a_note_or_a_thought_wo_67b1": {
+    "message": "नोट लिखें, या कोई याद रखने लायक विचार…"
+  },
+  "f_write_a_note_c7c9": {
+    "message": "नोट लिखें…"
+  },
+  "f_write_one_below_or_highlight_7627": {
+    "message": "नीचे एक लिखें, या किसी भी पेज पर पाठ हाइलाइट करें। आपके और AI के हाइलाइट भी यहाँ दिखते हैं।"
+  },
+  "f_your_articles_highlights_not_9c7c": {
+    "message": "आपके लेख, हाइलाइट, नोट, संग्रह, सारांश और पूरा पाठ, उसी पासफ़्रेज़ से जुड़े हर डिवाइस पर सिंक रहते हैं।"
+  },
+  "f_your_own_index_html_is_in_th_8069": {
+    "message": "इस फ़ोल्डर में आपकी अपनी index.html है, इसलिए व्यूअर नहीं बदला गया।"
+  },
+  "f_your_own_notes_and_the_comme_6ef8": {
+    "message": "आपके अपने नोट और हाइलाइट पर टिप्पणियाँ।"
+  },
+  "f_your_passphrase_2512": {
+    "message": "आपका पासफ़्रेज़"
+  },
+  "f_your_yellow_and_ai_highlight_15a0": {
+    "message": "आपके पीले और AI हाइलाइट"
+  },
+  "f_backed_up_ago_845b": {
+    "message": "{t} पहले बैकअप हुआ"
+  },
+  "f_picks_a_model_for_each_reque_519c": {
+    "message": "हर अनुरोध के लिए मॉडल चुनता है"
+  },
+  "f_published_ago_0576": {
+    "message": "{t} पहले प्रकाशित हुआ"
+  },
+  "f_synced_ago_174c": {
+    "message": "{t} पहले सिंक हुआ"
+  },
+  "f_of_9ced": {
+    "message": "{a}/{b}"
+  },
+  "f_ai_highlight_8f93": {
+    "message": "{n} AI हाइलाइट"
+  },
+  "f_ai_highlights_7da0": {
+    "message": "{n} AI हाइलाइट"
+  },
+  "f_file_is_no_longer_wanted_her_48c4": {
+    "message": "{n} फ़ाइल अब यहाँ नहीं चाहिए और आपके सर्वर से हटा दी जाएगी। जाँच लें कि यह सही है।"
+  },
+  "f_files_are_no_longer_wanted_h_6975": {
+    "message": "{n} फ़ाइलें अब यहाँ नहीं चाहिए और आपके सर्वर से हटा दी जाएँगी। जाँच लें कि यह सही है।"
+  },
+  "f_files_had_problems_a60b": {
+    "message": "{n} फ़ाइलों में समस्या थी"
+  },
+  "f_highlight_5f43": {
+    "message": "{n} हाइलाइट"
+  },
+  "f_highlights_d890": {
+    "message": "{n} हाइलाइट"
+  },
+  "f_more_article_was_deleted_on__0e7e": {
+    "message": "दूसरे डिवाइस पर {n} और लेख हटाया गया। आप कहें, तब तक वह यहाँ रहेगा। जाँच लें कि यह सही है।"
+  },
+  "f_more_articles_were_deleted_o_8348": {
+    "message": "दूसरे डिवाइस पर {n} और लेख हटाए गए। आप कहें, तब तक वे यहाँ रहेंगे। जाँच लें कि यह सही है।"
+  },
+  "f_note_b2a1": {
+    "message": "{n} नोट"
+  },
+  "f_notes_8096": {
+    "message": "{n} नोट"
+  },
+  "f_place_b298": {
+    "message": "{n} जगह"
+  },
+  "f_place_uses_this_server_133b": {
+    "message": "इस सर्वर को {n} जगह इस्तेमाल करती है।"
+  },
+  "f_places_a7f1": {
+    "message": "{n} जगहें"
+  },
+  "f_places_use_this_server_4df9": {
+    "message": "{n} जगहें यह सर्वर लेती हैं।"
   }
 }

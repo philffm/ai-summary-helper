@@ -5958,5 +5958,671 @@
   },
   "f_what_s_new_in_9c82": {
     "message": "Що нового у {v}"
+  },
+  "f_a_folder_on_this_computer_bbe4": {
+    "message": "Тека на цьому комп’ютері"
+  },
+  "f_a_simple_web_page_index_html_d002": {
+    "message": "Проста вебсторінка (index.html), що читає library.json: пошук, теги, хронологія й граф тегів. Потрібен сервер, який віддає HTML-сторінки, наприклад ваш власний вебсервер або публічне сховище. Спільний доступ Nextcloud так не працює."
+  },
+  "f_ai_135f": {
+    "message": "ШІ"
+  },
+  "f_ai_highlight_b91f": {
+    "message": "Виділення ШІ"
+  },
+  "f_aws_cloudflare_r2_backblaze__139d": {
+    "message": "AWS, Cloudflare R2, Backblaze, MinIO, Wasabi"
+  },
+  "f_aws_https_s3_region_amazonaw_c68d": {
+    "message": "AWS: https://s3.<region>.amazonaws.com · Cloudflare R2: https://<account>.r2.cloudflarestorage.com · Backblaze: https://s3.<region>.backblazeb2.com"
+  },
+  "f_access_is_allowed_7031": {
+    "message": "Доступ дозволено."
+  },
+  "f_access_key_id_8d75": {
+    "message": "ID ключа доступу"
+  },
+  "f_add_a_comment_9c08": {
+    "message": "Додати коментар…"
+  },
+  "f_add_a_place_799c": {
+    "message": "Додати місце"
+  },
+  "f_add_note_9108": {
+    "message": "Нотатка +"
+  },
+  "f_all_except_a_tag_ca3e": {
+    "message": "Усі, крім тегу"
+  },
+  "f_all_places_fdbc": {
+    "message": "Усі місця"
+  },
+  "f_allow_access_again_cc7c": {
+    "message": "Дозволити доступ знову"
+  },
+  "f_allow_access_to_599a": {
+    "message": "Дозволити доступ до {name}"
+  },
+  "f_also_publish_a_viewer_page_2d07": {
+    "message": "Також опублікувати сторінку"
+  },
+  "f_an_index_html_that_is_not_ou_889b": {
+    "message": "У цій теці вже є чужий index.html, тому сторінку перегляду не записано. Виберіть іншу теку."
+  },
+  "f_another_suggestion_09e8": {
+    "message": "Інша пропозиція"
+  },
+  "f_anyone_who_can_open_this_fol_86f7": {
+    "message": "Будь-хто, хто може відкрити цю теку, може читати ці файли. Використовуйте теку, яку контролюєте, і тримайте її приватною, якщо не хочете публікувати."
+  },
+  "f_app_password_6505": {
+    "message": "Пароль застосунку"
+  },
+  "f_at_least_12_characters_it_is_f78b": {
+    "message": "Щонайменше 12 символів. Його ніде не збережено: якщо ви його втратите, ніхто не відкриє файли."
+  },
+  "f_back_up_now_63b3": {
+    "message": "Створити копію"
+  },
+  "f_backup_only_e75f": {
+    "message": "Лише копія"
+  },
+  "f_bring_everything_in_this_pla_0150": {
+    "message": "Повернути все з цього місця на цей пристрій? Де пристрій відрізняється, переважає місце. Нічого тут не видаляється."
+  },
+  "f_bucket_3557": {
+    "message": "Bucket"
+  },
+  "f_by_article_5c16": {
+    "message": "За статтею"
+  },
+  "f_changes_here_apply_to_every__822d": {
+    "message": "Зміни тут діють для кожного місця на цьому сервері."
+  },
+  "f_checked_the_folder_restored__7f16": {
+    "message": "Теку перевірено: відновлено {r}, залишків знайдено {o}."
+  },
+  "f_checking_your_library_f467": {
+    "message": "Перевірка бібліотеки…"
+  },
+  "f_choose_6160": {
+    "message": "Вибрати"
+  },
+  "f_choose_a_passphrase_c9a1": {
+    "message": "Придумайте парольну фразу"
+  },
+  "f_choose_another_folder_1129": {
+    "message": "Вибрати іншу теку"
+  },
+  "f_cloudflare_r2_auto_leave_the_74e0": {
+    "message": "Cloudflare R2: auto. Залиште типове значення, якщо провайдер цього не просить."
+  },
+  "f_code_for_the_phone_8494": {
+    "message": "Код для телефона"
+  },
+  "f_comment_9ffe": {
+    "message": "Коментар"
+  },
+  "f_connect_and_publish_3387": {
+    "message": "Підключити й опублікувати"
+  },
+  "f_connected_the_folder_is_empt_688d": {
+    "message": "Підключено. Тека порожня, тож буде створено нову зашифровану бібліотеку."
+  },
+  "f_connected_this_folder_alread_7ea2": {
+    "message": "Підключено. У цій теці вже є зашифрована бібліотека."
+  },
+  "f_connected_article_matches_b205": {
+    "message": "Підключено. Підходить статей: {n}."
+  },
+  "f_connected_articles_match_40f2": {
+    "message": "Підключено. Підходить статей: {n}."
+  },
+  "f_continuing_file_left_4bdc": {
+    "message": "Триває… залишилось файлів: {n}"
+  },
+  "f_continuing_files_left_7869": {
+    "message": "Триває… залишилось файлів: {n}"
+  },
+  "f_copied_2cb1": {
+    "message": "Скопійовано."
+  },
+  "f_copies_of_other_people_s_art_db7e": {
+    "message": "Копії чужих статей. Переконайтеся, що можете ними ділитися. Файли стають набагато більшими."
+  },
+  "f_copy_did_not_work_select_the_1dcb": {
+    "message": "Не вдалося скопіювати. Виділіть слова й скопіюйте вручну."
+  },
+  "f_copy_puts_the_words_in_one_p_9b1c": {
+    "message": "Копіювання дає слова одним рядком, з’єднані дефісами. Це не ламається в конфіг-файлах, оболонках і чатах; вводити можна і з пробілами, і з дефісами."
+  },
+  "f_could_not_reach_the_server_aa7e": {
+    "message": "Не вдалося зв’язатися із сервером"
+  },
+  "f_could_not_save_this_place_cf23": {
+    "message": "Не вдалося зберегти це місце."
+  },
+  "f_created_for_you_use_one_fold_0390": {
+    "message": "Буде створено для вас. Використовуйте окрему теку для кожної мети, наприклад public для списку сайту й backup для повної копії."
+  },
+  "f_danger_zone_19b4": {
+    "message": "Небезпечна зона"
+  },
+  "f_delete_them_here_too_9d48": {
+    "message": "Видалити й тут"
+  },
+  "f_delete_this_note_3253": {
+    "message": "Видалити цю нотатку?"
+  },
+  "f_download_bb19": {
+    "message": "Завантажити"
+  },
+  "f_eu_1f4f": {
+    "message": "ЄС"
+  },
+  "f_eu_company_ef04": {
+    "message": "Компанія з ЄС"
+  },
+  "f_eu_servers_987b": {
+    "message": "Сервери ЄС"
+  },
+  "f_each_article_becomes_one_fil_f81c": {
+    "message": "Кожна стаття стає окремим файлом, плюс список для вашого сайту (library.json)."
+  },
+  "f_edit_comment_f0e4": {
+    "message": "Змінити коментар"
+  },
+  "f_edit_server_63e0": {
+    "message": "Змінити сервер"
+  },
+  "f_encrypted_e253": {
+    "message": "Зашифровано"
+  },
+  "f_end_with_tags_ctrl_enter_to__83e2": {
+    "message": "Додайте #теги в кінці · ⌘/Ctrl+Enter"
+  },
+  "f_endpoint_address_ce54": {
+    "message": "Адреса кінцевої точки"
+  },
+  "f_every_article_you_saved_goes_f744": {
+    "message": "Опублікується кожна збережена стаття, зокрема й ті, які ви не хочете показувати іншим. Копію, яку читаєте лише ви, краще зашифрувати."
+  },
+  "f_everything_8340": {
+    "message": "Усе"
+  },
+  "f_everything_is_encrypted_on_t_1b86": {
+    "message": "Усе шифрується на цьому пристрої до завантаження. Нотатки, нагадування й повні тексти включено, бо їх можете читати лише ви."
+  },
+  "f_files_go_into_a_subfolder_of_5a98": {
+    "message": "Файли потрапляють у підтеку. Те, що синхронізує цю теку (Syncthing, iCloud Drive, Dropbox, USB-накопичувач), донесе їх на інші ваші пристрої."
+  },
+  "f_fine_the_suggested_words_are_36c0": {
+    "message": "Добре. Запропоновані слова надійніші."
+  },
+  "f_folder_7afd": {
+    "message": "Тека"
+  },
+  "f_folder_access_is_waiting_b754": {
+    "message": "Очікується доступ до теки"
+  },
+  "f_folder_on_the_server_b74c": {
+    "message": "Тека на сервері"
+  },
+  "f_folder_960e": {
+    "message": "Тека: {name}"
+  },
+  "f_for_syncing_and_backup_only__f767": {
+    "message": "Для синхронізації та копій. Читати можете лише ви, тож жоден сайт не зможе. Провайдер бачить зашифровані файли."
+  },
+  "f_getting_changes_of_8fbb": {
+    "message": "Отримання змін: {done} з {total}"
+  },
+  "f_grid_66b1": {
+    "message": "Сітка"
+  },
+  "f_highlight_05c7": {
+    "message": "Виділення"
+  },
+  "f_i_made_a_backup_of_this_devi_c05b": {
+    "message": "Я зробив(ла) копію цього пристрою"
+  },
+  "f_i_saved_the_passphrase_81d0": {
+    "message": "Я зберіг(ла) парольну фразу"
+  },
+  "f_in_nextcloud_settings_securi_4fee": {
+    "message": "У Nextcloud: Налаштування → Безпека → створіть пароль застосунку. Ніколи не використовуйте головний пароль."
+  },
+  "f_joining_merges_this_device_w_8048": {
+    "message": "Приєднання об’єднає цей пристрій із бібліотекою в теці: де вони відрізняються, переважає тека. Спершу створіть копію цього пристрою."
+  },
+  "f_keep_your_library_in_step_ac_b5fe": {
+    "message": "Підтримуйте бібліотеку в актуальному стані на всіх пристроях, робіть копії або публікуйте її частину для інших. Кожне місце — це тека на вашому сервері або на цьому комп’ютері. Нічого не залишає цей пристрій, доки ви не додасте місце."
+  },
+  "f_looking_at_what_is_in_the_fo_1e05": {
+    "message": "Перегляд вмісту теки…"
+  },
+  "f_make_a_backup_now_3046": {
+    "message": "Створити копію зараз"
+  },
+  "f_make_an_access_key_just_for__abc9": {
+    "message": "Створіть ключ доступу лише для цього bucket з правом читати, записувати, переглядати й видаляти. Ніколи не використовуйте головний ключ облікового запису."
+  },
+  "f_meant_for_a_folder_only_you__33c0": {
+    "message": "Для теки, яку можете відкрити лише ви, наприклад приватної копії чи внутрішнього списку. Будь-хто, хто може відкрити теку, прочитає все це."
+  },
+  "f_mine_84d6": {
+    "message": "Мої"
+  },
+  "f_models_marked_eu_servers_run_7b00": {
+    "message": "Моделі з позначкою «Сервери ЄС» працюють лише на серверах у Європі, часто це сервери американських хмарних компаній. Лише моделі з позначкою «Компанія з ЄС» ще й належать європейській компанії. Усі інші моделі теж працюють, мають позначку «Не на серверах ЄС» і діють як зазвичай; автовибір лишається на серверах ЄС. Сервери ЄС можуть коштувати трохи більше; показано ціни для ЄС. Озвучення й перетворення мовлення на текст не мають варіанта для ЄС. Ваш текст дорогою все одно проходить через наш сервіс (сервер у Німеччині), а потім через OpenRouter, американську компанію."
+  },
+  "f_my_nextcloud_741d": {
+    "message": "Моя Nextcloud"
+  },
+  "f_my_notes_and_comments_099b": {
+    "message": "Мої нотатки й коментарі"
+  },
+  "f_new_note_7123": {
+    "message": "Нова нотатка"
+  },
+  "f_new_server_9ee0": {
+    "message": "Новий сервер"
+  },
+  "f_nextcloud_webdav_2b5d": {
+    "message": "Nextcloud / WebDAV"
+  },
+  "f_nextcloud_owncloud_synology__5752": {
+    "message": "Nextcloud, ownCloud, Synology, більшість NAS"
+  },
+  "f_no_notes_on_this_article_yet_b876": {
+    "message": "До цієї статті ще немає нотаток."
+  },
+  "f_no_notes_yet_68d5": {
+    "message": "Ще немає нотаток."
+  },
+  "f_no_tags_yet_end_a_note_with__ae68": {
+    "message": "Ще немає тегів. Завершіть нотатку тегом #тег."
+  },
+  "f_not_eu_fb9c": {
+    "message": "Не ЄС"
+  },
+  "f_not_here_d910": {
+    "message": "Не тут"
+  },
+  "f_not_on_eu_servers_abcb": {
+    "message": "Не на серверах ЄС"
+  },
+  "f_not_published_yet_d0ae": {
+    "message": "Ще не опубліковано"
+  },
+  "f_not_synced_yet_7efe": {
+    "message": "Ще не синхронізовано"
+  },
+  "f_note_c15d": {
+    "message": "Нотатка"
+  },
+  "f_notes_1b6a": {
+    "message": "Нотатки"
+  },
+  "f_notes_and_highlights_0e9c": {
+    "message": "Нотатки й виділення"
+  },
+  "f_notes_without_an_article_5bd7": {
+    "message": "Нотатки без статті"
+  },
+  "f_nothing_here_yet_5bfc": {
+    "message": "Тут ще нічого немає."
+  },
+  "f_nothing_matches_03c3": {
+    "message": "Нічого не знайдено."
+  },
+  "f_only_publish_articles_tagged_b789": {
+    "message": "Публікувати лише статті з тегом"
+  },
+  "f_open_the_page_ab11": {
+    "message": "Відкрити сторінку"
+  },
+  "f_passphrase_2dc5": {
+    "message": "Парольна фраза"
+  },
+  "f_passphrase_keep_it_somewhere_ca8a": {
+    "message": "Парольна фраза: {k}. Зберігайте її в надійному місці."
+  },
+  "f_paused_1feb": {
+    "message": "Призупинено"
+  },
+  "f_pinned_q_a_faa5": {
+    "message": "Закріплені Q&A"
+  },
+  "f_places_d03d": {
+    "message": "Місця"
+  },
+  "f_publish_everything_except_ar_74e7": {
+    "message": "Публікувати все, крім статей з тегом"
+  },
+  "f_publish_my_library_to_my_own_a71f": {
+    "message": "Опублікувати мою бібліотеку на власному сервері"
+  },
+  "f_publish_now_ae60": {
+    "message": "Опублікувати"
+  },
+  "f_publishing_e1f2": {
+    "message": "Публікація…"
+  },
+  "f_questions_you_pinned_with_an_5f9e": {
+    "message": "Закріплені вами запитання з відповідями"
+  },
+  "f_readable_00b5": {
+    "message": "Читабельно"
+  },
+  "f_reading_changes_of_9b27": {
+    "message": "Читання змін: {done} з {total}"
+  },
+  "f_region_789d": {
+    "message": "Регіон"
+  },
+  "f_reminders_b654": {
+    "message": "Нагадування"
+  },
+  "f_remove_comment_2340": {
+    "message": "Вилучити коментар"
+  },
+  "f_remove_them_401d": {
+    "message": "Вилучити"
+  },
+  "f_remove_this_highlight_3cc8": {
+    "message": "Вилучити це виділення?"
+  },
+  "f_remove_this_place_6efc": {
+    "message": "Вилучити це місце"
+  },
+  "f_remove_this_place_the_files__ad9c": {
+    "message": "Вилучити це місце? Файли, що вже на вашому сервері, не видаляються."
+  },
+  "f_removing_a_place_stops_publi_caa4": {
+    "message": "Вилучення місця зупиняє публікацію. Файли на вашому сервері залишаються там, де були. Сервер, який жодне місце більше не використовує, забувається разом із входом."
+  },
+  "f_removing_of_9a27": {
+    "message": "Вилучення: {done} з {total}"
+  },
+  "f_repeat_the_passphrase_c2a7": {
+    "message": "Повторіть парольну фразу"
+  },
+  "f_restore_from_here_3623": {
+    "message": "Відновити звідси"
+  },
+  "f_restored_item_changed_on_thi_f959": {
+    "message": "Відновлено. Змінено елементів на цьому пристрої: {n}."
+  },
+  "f_restored_items_changed_on_th_853c": {
+    "message": "Відновлено. Змінено елементів на цьому пристрої: {n}."
+  },
+  "f_restoring_daec": {
+    "message": "Відновлення…"
+  },
+  "f_s3_compatible_4144": {
+    "message": "Сумісне з S3"
+  },
+  "f_save_5d68": {
+    "message": "Зберегти"
+  },
+  "f_save_server_bca3": {
+    "message": "Зберегти сервер"
+  },
+  "f_save_your_passphrase_3801": {
+    "message": "Збережіть парольну фразу"
+  },
+  "f_saving_of_566a": {
+    "message": "Збереження: {done} з {total}"
+  },
+  "f_scan_it_with_ai_summary_help_572d": {
+    "message": "Скануйте його в AI Summary Helper на телефоні: Налаштування → Library sync → Сканувати код. Код містить ваш вхід на сервер, тож показуйте його лише своєму телефону. Він сам зникне за хвилину."
+  },
+  "f_search_highlights_comments_n_4f81": {
+    "message": "Пошук у виділеннях, коментарях, нотатках…"
+  },
+  "f_secret_access_key_d3a2": {
+    "message": "Секретний ключ доступу"
+  },
+  "f_selected_3294": {
+    "message": "Вибрано"
+  },
+  "f_server_02f2": {
+    "message": "Сервер"
+  },
+  "f_server_address_025e": {
+    "message": "Адреса сервера"
+  },
+  "f_server_name_22f5": {
+    "message": "Назва сервера"
+  },
+  "f_server_saved_27e1": {
+    "message": "Сервер збережено."
+  },
+  "f_show_2e5c": {
+    "message": "Показати"
+  },
+  "f_show_code_for_the_phone_a8c1": {
+    "message": "Показати код для телефона"
+  },
+  "f_show_passphrase_dda0": {
+    "message": "Показати фразу"
+  },
+  "f_six_random_words_you_will_ty_e18c": {
+    "message": "Шість випадкових слів. Ви вводитимете їх на інших пристроях, тож запишіть їх або збережіть у менеджері паролів. Більше ніде вони не зберігаються: якщо ви їх втратите, ніхто не відкриє ваші файли."
+  },
+  "f_soon_da12": {
+    "message": "Скоро"
+  },
+  "f_strong_db5c": {
+    "message": "Надійно."
+  },
+  "f_suggest_random_words_instead_a3fb": {
+    "message": "Запропонувати натомість випадкові слова"
+  },
+  "f_sync_backup_9786": {
+    "message": "Синхр. і копії"
+  },
+  "f_sync_my_devices_79fb": {
+    "message": "Синхр. мої пристрої"
+  },
+  "f_sync_now_d8fe": {
+    "message": "Синхр. зараз"
+  },
+  "f_syncthing_icloud_drive_dropb_a87d": {
+    "message": "Syncthing, iCloud Drive, Dropbox або USB-диск підтримують його актуальним."
+  },
+  "f_test_connection_b6b7": {
+    "message": "Тест підключення"
+  },
+  "f_the_browser_could_not_rememb_f257": {
+    "message": "Браузер не зміг запам’ятати цю теку."
+  },
+  "f_the_browser_did_not_allow_ac_5245": {
+    "message": "Браузер не дозволив доступ."
+  },
+  "f_the_browser_takes_back_acces_aaf9": {
+    "message": "Браузер забирає доступ до теки після перезапуску, і повернути його може лише ваш клік. Доти тека не синхронізується."
+  },
+  "f_the_kind_of_a_place_cannot_b_8037": {
+    "message": "Тип місця змінити не можна. Додайте інше місце, щоб використати інший тип."
+  },
+  "f_the_login_is_saved_once_for__bcba": {
+    "message": "Вхід зберігається один раз для всіх них."
+  },
+  "f_the_restore_did_not_finish_a4b5": {
+    "message": "Відновлення не завершено."
+  },
+  "f_the_save_for_later_time_and__7dff": {
+    "message": "Час відкладеного читання й ваша причина."
+  },
+  "f_the_service_picks_a_model_fo_a591": {
+    "message": "Сервіс сам вибирає модель для кожного запиту: короткі тексти отримують легку, довгі — більшу."
+  },
+  "f_the_two_passphrases_are_not__e90b": {
+    "message": "Дві парольні фрази не збігаються."
+  },
+  "f_these_six_words_are_the_key__f595": {
+    "message": "Ці шість слів — ключ до «{name}». Ви вводите їх на кожному новому пристрої. Якщо ви їх втратите, ніхто не прочитає файли, навіть ми. Збережіть їх у менеджері паролів."
+  },
+  "f_this_device_was_away_for_a_l_46de": {
+    "message": "Цей пристрій довго був поза мережею. Надіслано лише те, що змінилося відтоді, і нічого не видалено."
+  },
+  "f_this_device_writes_everythin_1070": {
+    "message": "Цей пристрій записує все в місце й ніколи не читає назад. Відновлюйте звідти, коли потрібно."
+  },
+  "f_this_folder_already_holds_an_9f1e": {
+    "message": "У цій теці вже є зашифрована бібліотека. Введіть її парольну фразу (збережені слова)."
+  },
+  "f_this_folder_already_holds_an_8e8c": {
+    "message": "У цій теці вже є зашифрована бібліотека. Введіть її парольну фразу нижче й знову натисніть «Підключити»."
+  },
+  "f_this_model_does_not_run_on_e_21da": {
+    "message": "Ця модель не працює на серверах ЄС. Натомість використати {name} (ЄС)?"
+  },
+  "f_this_place_publishes_only_th_f3b8": {
+    "message": "Це місце лише публікує: цей пристрій записує файли й ніколи не читає їх назад."
+  },
+  "f_this_place_uses_your_own_pas_823b": {
+    "message": "Це місце використовує вашу власну парольну фразу. Її немає в коді: введіть її на телефоні."
+  },
+  "f_this_place_uses_your_own_pas_b61e": {
+    "message": "Це місце використовує вашу власну парольну фразу. Її не збережено на цьому пристрої, тому показати її не можна."
+  },
+  "f_to_publish_on_your_own_websi_9caf": {
+    "message": "Для публікації на вашому сайті: прості файли, які може читати кожен, хто має посилання."
+  },
+  "f_turn_on_to_run_models_on_ser_af13": {
+    "message": "Увімкніть, щоб запускати моделі на серверах у Європі, де це доступно. Усі інші моделі працюють далі й мають позначку."
+  },
+  "f_unchanged_e05e": {
+    "message": "Без змін"
+  },
+  "f_updating_the_list_d48e": {
+    "message": "Оновлення списку…"
+  },
+  "f_uploading_of_c6b9": {
+    "message": "Завантаження: {done} з {total}"
+  },
+  "f_use_my_own_passphrase_c42a": {
+    "message": "Власна парольна фраза"
+  },
+  "f_use_4021": {
+    "message": "Взяти {name}"
+  },
+  "f_username_d4d9": {
+    "message": "Логін"
+  },
+  "f_view_aa18": {
+    "message": "Вигляд"
+  },
+  "f_weak_use_at_least_12_charact_690f": {
+    "message": "Слабко: щонайменше 12 символів або запропоновані слова."
+  },
+  "f_website_list_be8a": {
+    "message": "Список для сайту"
+  },
+  "f_what_goes_out_1113": {
+    "message": "Що публікується"
+  },
+  "f_what_it_is_for_84ef": {
+    "message": "Призначення місця"
+  },
+  "f_who_can_read_it_ceb4": {
+    "message": "Хто може читати"
+  },
+  "f_with_a_tag_c382": {
+    "message": "З тегом"
+  },
+  "f_works_in_chrome_and_edge_on__f2c7": {
+    "message": "Працює в Chrome і Edge на комп’ютері."
+  },
+  "f_write_a_note_about_this_arti_e1b4": {
+    "message": "Напишіть нотатку до цієї статті…"
+  },
+  "f_write_a_note_or_a_thought_wo_67b1": {
+    "message": "Напишіть нотатку чи думку, яку варто зберегти…"
+  },
+  "f_write_a_note_c7c9": {
+    "message": "Напишіть нотатку…"
+  },
+  "f_write_one_below_or_highlight_7627": {
+    "message": "Напишіть її нижче або виділіть текст на будь-якій сторінці. Тут також з’являються ваші виділення й виділення ШІ."
+  },
+  "f_your_articles_highlights_not_9c7c": {
+    "message": "Ваші статті, виділення, нотатки, колекції, підсумки й повні тексти, синхронізовані на кожному пристрої, що приєднався з тією самою парольною фразою."
+  },
+  "f_your_own_index_html_is_in_th_8069": {
+    "message": "У цій теці лежить ваш власний index.html, тому сторінку перегляду не замінено."
+  },
+  "f_your_own_notes_and_the_comme_6ef8": {
+    "message": "Ваші власні нотатки й коментарі до виділень."
+  },
+  "f_your_passphrase_2512": {
+    "message": "Ваша парольна фраза"
+  },
+  "f_your_yellow_and_ai_highlight_15a0": {
+    "message": "Жовті виділення та виділення ШІ"
+  },
+  "f_backed_up_ago_845b": {
+    "message": "копію створено {t} тому"
+  },
+  "f_picks_a_model_for_each_reque_519c": {
+    "message": "сам вибирає модель для кожного запиту"
+  },
+  "f_published_ago_0576": {
+    "message": "опубліковано {t} тому"
+  },
+  "f_synced_ago_174c": {
+    "message": "синхр. {t} тому"
+  },
+  "f_of_9ced": {
+    "message": "{a} з {b}"
+  },
+  "f_ai_highlight_8f93": {
+    "message": "Виділення ШІ: {n}"
+  },
+  "f_ai_highlights_7da0": {
+    "message": "Виділення ШІ: {n}"
+  },
+  "f_file_is_no_longer_wanted_her_48c4": {
+    "message": "Файл, що тут більше не потрібен, буде вилучено з вашого сервера: {n}. Перевірте, чи все гаразд."
+  },
+  "f_files_are_no_longer_wanted_h_6975": {
+    "message": "Файли, що тут більше не потрібні, буде вилучено з вашого сервера: {n}. Перевірте, чи все гаразд."
+  },
+  "f_files_had_problems_a60b": {
+    "message": "Файлів із проблемами: {n}"
+  },
+  "f_highlight_5f43": {
+    "message": "Виділень: {n}"
+  },
+  "f_highlights_d890": {
+    "message": "Виділень: {n}"
+  },
+  "f_more_article_was_deleted_on__0e7e": {
+    "message": "Ще одну статтю видалено на іншому пристрої: {n}. Вона лишається тут, доки ви не підтвердите. Перевірте, чи все гаразд."
+  },
+  "f_more_articles_were_deleted_o_8348": {
+    "message": "Ще статей видалено на інших пристроях: {n}. Вони лишаються тут, доки ви не підтвердите. Перевірте, чи все гаразд."
+  },
+  "f_note_b2a1": {
+    "message": "Нотаток: {n}"
+  },
+  "f_notes_8096": {
+    "message": "Нотаток: {n}"
+  },
+  "f_place_b298": {
+    "message": "Місць: {n}"
+  },
+  "f_place_uses_this_server_133b": {
+    "message": "Цей сервер використовує місць: {n}."
+  },
+  "f_places_a7f1": {
+    "message": "Місць: {n}"
+  },
+  "f_places_use_this_server_4df9": {
+    "message": "Цей сервер використовує місць: {n}."
   }
 }

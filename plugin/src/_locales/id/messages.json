@@ -5958,5 +5958,671 @@
   },
   "f_what_s_new_in_9c82": {
     "message": "Yang baru di {v}"
+  },
+  "f_a_folder_on_this_computer_bbe4": {
+    "message": "Folder di komputer ini"
+  },
+  "f_a_simple_web_page_index_html_d002": {
+    "message": "Halaman web sederhana (index.html) yang membaca library.json: pencarian, tag, linimasa, dan grafik tag. Butuh server yang menampilkan halaman HTML, misalnya server webmu sendiri atau bucket publik. Berbagi Nextcloud tidak bisa."
+  },
+  "f_ai_135f": {
+    "message": "AI"
+  },
+  "f_ai_highlight_b91f": {
+    "message": "Sorotan AI"
+  },
+  "f_aws_cloudflare_r2_backblaze__139d": {
+    "message": "AWS, Cloudflare R2, Backblaze, MinIO, Wasabi"
+  },
+  "f_aws_https_s3_region_amazonaw_c68d": {
+    "message": "AWS: https://s3.<region>.amazonaws.com · Cloudflare R2: https://<account>.r2.cloudflarestorage.com · Backblaze: https://s3.<region>.backblazeb2.com"
+  },
+  "f_access_is_allowed_7031": {
+    "message": "Akses diizinkan."
+  },
+  "f_access_key_id_8d75": {
+    "message": "ID kunci akses"
+  },
+  "f_add_a_comment_9c08": {
+    "message": "Tambah komentar…"
+  },
+  "f_add_a_place_799c": {
+    "message": "Tambah lokasi"
+  },
+  "f_add_note_9108": {
+    "message": "Tambah"
+  },
+  "f_all_except_a_tag_ca3e": {
+    "message": "Semua kecuali satu tag"
+  },
+  "f_all_places_fdbc": {
+    "message": "Semua lokasi"
+  },
+  "f_allow_access_again_cc7c": {
+    "message": "Izinkan akses lagi"
+  },
+  "f_allow_access_to_599a": {
+    "message": "Izinkan akses ke {name}"
+  },
+  "f_also_publish_a_viewer_page_2d07": {
+    "message": "Terbitkan juga halaman penampil"
+  },
+  "f_an_index_html_that_is_not_ou_889b": {
+    "message": "Sudah ada index.html bukan buatan kami di folder ini, jadi penampil tidak ditulis. Pakai folder lain."
+  },
+  "f_another_suggestion_09e8": {
+    "message": "Saran lain"
+  },
+  "f_anyone_who_can_open_this_fol_86f7": {
+    "message": "Siapa pun yang bisa membuka folder ini bisa membaca file-nya. Pakai folder yang kamu kendalikan, dan biarkan privat kecuali kamu mau menerbitkannya."
+  },
+  "f_app_password_6505": {
+    "message": "Sandi aplikasi"
+  },
+  "f_at_least_12_characters_it_is_f78b": {
+    "message": "Minimal 12 karakter. Tidak disimpan di mana pun: kalau hilang, tidak ada yang bisa membuka file."
+  },
+  "f_back_up_now_63b3": {
+    "message": "Cadangkan"
+  },
+  "f_backup_only_e75f": {
+    "message": "Hanya cadangan"
+  },
+  "f_bring_everything_in_this_pla_0150": {
+    "message": "Pulihkan semua dari lokasi ini ke perangkat ini? Jika berbeda dengan perangkat ini, lokasi yang menang. Tidak ada yang dihapus di sini."
+  },
+  "f_bucket_3557": {
+    "message": "Bucket"
+  },
+  "f_by_article_5c16": {
+    "message": "Per artikel"
+  },
+  "f_changes_here_apply_to_every__822d": {
+    "message": "Perubahan di sini berlaku untuk semua lokasi di server ini."
+  },
+  "f_checked_the_folder_restored__7f16": {
+    "message": "Folder dicek: {r} dipulihkan, {o} sisa ditemukan."
+  },
+  "f_checking_your_library_f467": {
+    "message": "Memeriksa pustakamu…"
+  },
+  "f_choose_6160": {
+    "message": "Pilih"
+  },
+  "f_choose_a_passphrase_c9a1": {
+    "message": "Pilih frasa sandi"
+  },
+  "f_choose_another_folder_1129": {
+    "message": "Pilih folder lain"
+  },
+  "f_cloudflare_r2_auto_leave_the_74e0": {
+    "message": "Cloudflare R2: auto. Biarkan default jika penyedia tidak memintanya."
+  },
+  "f_code_for_the_phone_8494": {
+    "message": "Kode untuk ponsel"
+  },
+  "f_comment_9ffe": {
+    "message": "Komentar"
+  },
+  "f_connect_and_publish_3387": {
+    "message": "Hubungkan & terbitkan"
+  },
+  "f_connected_the_folder_is_empt_688d": {
+    "message": "Terhubung. Folder kosong, jadi pustaka terenkripsi baru akan dibuat."
+  },
+  "f_connected_this_folder_alread_7ea2": {
+    "message": "Terhubung. Folder ini sudah berisi pustaka terenkripsi."
+  },
+  "f_connected_article_matches_b205": {
+    "message": "Terhubung. {n} artikel cocok."
+  },
+  "f_connected_articles_match_40f2": {
+    "message": "Terhubung. {n} artikel cocok."
+  },
+  "f_continuing_file_left_4bdc": {
+    "message": "Melanjutkan… sisa {n} file"
+  },
+  "f_continuing_files_left_7869": {
+    "message": "Melanjutkan… sisa {n} file"
+  },
+  "f_copied_2cb1": {
+    "message": "Disalin."
+  },
+  "f_copies_of_other_people_s_art_db7e": {
+    "message": "Salinan artikel orang lain. Pastikan kamu boleh membagikannya. File jadi jauh lebih besar."
+  },
+  "f_copy_did_not_work_select_the_1dcb": {
+    "message": "Gagal menyalin. Pilih kata-katanya dan salin manual."
+  },
+  "f_copy_puts_the_words_in_one_p_9b1c": {
+    "message": "Salin menaruh kata-kata jadi satu, dihubungkan tanda hubung. Ini aman di file konfigurasi, shell, dan aplikasi chat; mengetik dengan spasi atau tanda hubung sama-sama bisa."
+  },
+  "f_could_not_reach_the_server_aa7e": {
+    "message": "Server tidak terjangkau"
+  },
+  "f_could_not_save_this_place_cf23": {
+    "message": "Lokasi ini tidak bisa disimpan."
+  },
+  "f_created_for_you_use_one_fold_0390": {
+    "message": "Dibuatkan untukmu. Pakai satu folder untuk tiap tujuan, misalnya public untuk daftar situs web dan backup untuk salinan lengkap."
+  },
+  "f_danger_zone_19b4": {
+    "message": "Zona bahaya"
+  },
+  "f_delete_them_here_too_9d48": {
+    "message": "Hapus juga di sini"
+  },
+  "f_delete_this_note_3253": {
+    "message": "Hapus catatan ini?"
+  },
+  "f_download_bb19": {
+    "message": "Unduh"
+  },
+  "f_eu_1f4f": {
+    "message": "UE"
+  },
+  "f_eu_company_ef04": {
+    "message": "Perusahaan UE"
+  },
+  "f_eu_servers_987b": {
+    "message": "Server UE"
+  },
+  "f_each_article_becomes_one_fil_f81c": {
+    "message": "Tiap artikel jadi satu file, plus daftar untuk situs webmu (library.json)."
+  },
+  "f_edit_comment_f0e4": {
+    "message": "Edit komentar"
+  },
+  "f_edit_server_63e0": {
+    "message": "Edit server"
+  },
+  "f_encrypted_e253": {
+    "message": "Terenkripsi"
+  },
+  "f_end_with_tags_ctrl_enter_to__83e2": {
+    "message": "Akhiri dengan #tag · ⌘/Ctrl+Enter untuk menambah"
+  },
+  "f_endpoint_address_ce54": {
+    "message": "Alamat endpoint"
+  },
+  "f_every_article_you_saved_goes_f744": {
+    "message": "Setiap artikel yang kamu simpan ikut keluar, termasuk yang mungkin tak ingin kamu tunjukkan ke orang lain. Cadangan yang hanya bisa kamu baca sebaiknya dienkripsi."
+  },
+  "f_everything_8340": {
+    "message": "Semua"
+  },
+  "f_everything_is_encrypted_on_t_1b86": {
+    "message": "Semuanya dienkripsi di perangkat ini sebelum diunggah. Catatan, pengingat, dan teks lengkap ikut disertakan, karena hanya kamu yang bisa membacanya."
+  },
+  "f_files_go_into_a_subfolder_of_5a98": {
+    "message": "File masuk ke subfolder di dalamnya. Apa pun yang menyinkronkan folder itu (Syncthing, iCloud Drive, Dropbox, flash disk USB) membawanya ke perangkat lainmu."
+  },
+  "f_fine_the_suggested_words_are_36c0": {
+    "message": "Oke. Kata yang disarankan lebih kuat."
+  },
+  "f_folder_7afd": {
+    "message": "Folder"
+  },
+  "f_folder_access_is_waiting_b754": {
+    "message": "Akses folder menunggu"
+  },
+  "f_folder_on_the_server_b74c": {
+    "message": "Folder di server"
+  },
+  "f_folder_960e": {
+    "message": "Folder: {name}"
+  },
+  "f_for_syncing_and_backup_only__f767": {
+    "message": "Untuk sinkronisasi dan cadangan. Hanya kamu yang bisa membacanya, jadi situs web tidak bisa. Penyedia hanya melihat file teracak."
+  },
+  "f_getting_changes_of_8fbb": {
+    "message": "Mengambil perubahan {done} dari {total}"
+  },
+  "f_grid_66b1": {
+    "message": "Kisi"
+  },
+  "f_highlight_05c7": {
+    "message": "Sorotan"
+  },
+  "f_i_made_a_backup_of_this_devi_c05b": {
+    "message": "Saya sudah mencadangkan perangkat ini"
+  },
+  "f_i_saved_the_passphrase_81d0": {
+    "message": "Frasa sandi sudah kusimpan"
+  },
+  "f_in_nextcloud_settings_securi_4fee": {
+    "message": "Di Nextcloud: Pengaturan → Keamanan → buat sandi aplikasi. Jangan pernah pakai sandi utamamu."
+  },
+  "f_joining_merges_this_device_w_8048": {
+    "message": "Bergabung akan menggabungkan perangkat ini dengan pustaka di folder: jika berbeda, folder yang menang. Cadangkan perangkat ini dulu."
+  },
+  "f_keep_your_library_in_step_ac_b5fe": {
+    "message": "Jaga pustakamu tetap sinkron di semua perangkat, cadangkan, atau terbitkan sebagian untuk orang lain. Tiap lokasi adalah folder di servermu sendiri atau di komputer ini. Tidak ada yang keluar dari perangkat ini sampai kamu menambahkannya."
+  },
+  "f_looking_at_what_is_in_the_fo_1e05": {
+    "message": "Melihat isi folder…"
+  },
+  "f_make_a_backup_now_3046": {
+    "message": "Buat cadangan sekarang"
+  },
+  "f_make_an_access_key_just_for__abc9": {
+    "message": "Buat kunci akses khusus bucket ini, dengan izin membaca, menulis, mendaftar, dan menghapus di dalamnya. Jangan pernah pakai kunci utama akunmu."
+  },
+  "f_meant_for_a_folder_only_you__33c0": {
+    "message": "Untuk folder yang hanya bisa kamu buka, misalnya cadangan privat atau daftar internal. Siapa pun yang bisa membuka folder bisa membaca semua ini."
+  },
+  "f_mine_84d6": {
+    "message": "Milikku"
+  },
+  "f_models_marked_eu_servers_run_7b00": {
+    "message": "Model berlabel “Server UE” hanya berjalan di server di Eropa, sering milik perusahaan cloud AS. Hanya model berlabel “Perusahaan UE” yang juga berasal dari perusahaan Eropa. Model lain tetap berfungsi, ditandai “Bukan di server UE”, dan berjalan seperti biasa; pilihan Auto tetap di server UE. Server UE bisa sedikit lebih mahal; harga yang ditampilkan adalah harga UE. Baca nyaring dan ucapan-ke-teks tidak punya opsi UE. Teksmu tetap melewati layanan kami (server di Jerman) lalu OpenRouter, perusahaan AS, di perjalanan."
+  },
+  "f_my_nextcloud_741d": {
+    "message": "Nextcloud-ku"
+  },
+  "f_my_notes_and_comments_099b": {
+    "message": "Catatan dan komentarku"
+  },
+  "f_new_note_7123": {
+    "message": "Catatan baru"
+  },
+  "f_new_server_9ee0": {
+    "message": "Server baru"
+  },
+  "f_nextcloud_webdav_2b5d": {
+    "message": "Nextcloud / WebDAV"
+  },
+  "f_nextcloud_owncloud_synology__5752": {
+    "message": "Nextcloud, ownCloud, Synology, kebanyakan NAS"
+  },
+  "f_no_notes_on_this_article_yet_b876": {
+    "message": "Belum ada catatan untuk artikel ini."
+  },
+  "f_no_notes_yet_68d5": {
+    "message": "Belum ada catatan."
+  },
+  "f_no_tags_yet_end_a_note_with__ae68": {
+    "message": "Belum ada tag. Akhiri catatan dengan #tag."
+  },
+  "f_not_eu_fb9c": {
+    "message": "Bukan UE"
+  },
+  "f_not_here_d910": {
+    "message": "Bukan di sini"
+  },
+  "f_not_on_eu_servers_abcb": {
+    "message": "Bukan di server UE"
+  },
+  "f_not_published_yet_d0ae": {
+    "message": "Belum diterbitkan"
+  },
+  "f_not_synced_yet_7efe": {
+    "message": "Belum disinkronkan"
+  },
+  "f_note_c15d": {
+    "message": "Catatan"
+  },
+  "f_notes_1b6a": {
+    "message": "Catatan"
+  },
+  "f_notes_and_highlights_0e9c": {
+    "message": "Catatan dan sorotan"
+  },
+  "f_notes_without_an_article_5bd7": {
+    "message": "Catatan tanpa artikel"
+  },
+  "f_nothing_here_yet_5bfc": {
+    "message": "Belum ada apa-apa."
+  },
+  "f_nothing_matches_03c3": {
+    "message": "Tidak ada yang cocok."
+  },
+  "f_only_publish_articles_tagged_b789": {
+    "message": "Hanya terbitkan artikel bertag"
+  },
+  "f_open_the_page_ab11": {
+    "message": "Buka halaman"
+  },
+  "f_passphrase_2dc5": {
+    "message": "Frasa sandi"
+  },
+  "f_passphrase_keep_it_somewhere_ca8a": {
+    "message": "Frasa sandi: {k}. Simpan di tempat aman."
+  },
+  "f_paused_1feb": {
+    "message": "Dijeda"
+  },
+  "f_pinned_q_a_faa5": {
+    "message": "T&J tersemat"
+  },
+  "f_places_d03d": {
+    "message": "Lokasi"
+  },
+  "f_publish_everything_except_ar_74e7": {
+    "message": "Terbitkan semua kecuali artikel bertag"
+  },
+  "f_publish_my_library_to_my_own_a71f": {
+    "message": "Terbitkan pustakaku ke servernya sendiri"
+  },
+  "f_publish_now_ae60": {
+    "message": "Terbitkan"
+  },
+  "f_publishing_e1f2": {
+    "message": "Menerbitkan…"
+  },
+  "f_questions_you_pinned_with_an_5f9e": {
+    "message": "Pertanyaan yang kamu sematkan, beserta jawaban"
+  },
+  "f_readable_00b5": {
+    "message": "Terbaca"
+  },
+  "f_reading_changes_of_9b27": {
+    "message": "Membaca perubahan {done} dari {total}"
+  },
+  "f_region_789d": {
+    "message": "Region"
+  },
+  "f_reminders_b654": {
+    "message": "Pengingat"
+  },
+  "f_remove_comment_2340": {
+    "message": "Hapus komentar"
+  },
+  "f_remove_them_401d": {
+    "message": "Hapus"
+  },
+  "f_remove_this_highlight_3cc8": {
+    "message": "Hapus sorotan ini?"
+  },
+  "f_remove_this_place_6efc": {
+    "message": "Hapus lokasi ini"
+  },
+  "f_remove_this_place_the_files__ad9c": {
+    "message": "Hapus lokasi ini? File yang sudah ada di servermu tidak dihapus."
+  },
+  "f_removing_a_place_stops_publi_caa4": {
+    "message": "Menghapus lokasi menghentikan penerbitan. File yang sudah ada di servermu tetap di tempatnya. Server yang tidak dipakai lokasi mana pun akan dilupakan beserta loginnya."
+  },
+  "f_removing_of_9a27": {
+    "message": "Menghapus {done} dari {total}"
+  },
+  "f_repeat_the_passphrase_c2a7": {
+    "message": "Ulangi frasa sandi"
+  },
+  "f_restore_from_here_3623": {
+    "message": "Pulihkan dari sini"
+  },
+  "f_restored_item_changed_on_thi_f959": {
+    "message": "Dipulihkan. {n} item berubah di perangkat ini."
+  },
+  "f_restored_items_changed_on_th_853c": {
+    "message": "Dipulihkan. {n} item berubah di perangkat ini."
+  },
+  "f_restoring_daec": {
+    "message": "Memulihkan…"
+  },
+  "f_s3_compatible_4144": {
+    "message": "Kompatibel S3"
+  },
+  "f_save_5d68": {
+    "message": "Simpan"
+  },
+  "f_save_server_bca3": {
+    "message": "Simpan server"
+  },
+  "f_save_your_passphrase_3801": {
+    "message": "Simpan frasa sandimu"
+  },
+  "f_saving_of_566a": {
+    "message": "Menyimpan {done} dari {total}"
+  },
+  "f_scan_it_with_ai_summary_help_572d": {
+    "message": "Pindai dengan AI Summary Helper di ponselmu: Pengaturan → Library sync → Pindai kode. Kode ini berisi login servermu, jadi tunjukkan hanya ke ponselmu sendiri. Kode menghilang sendiri setelah semenit."
+  },
+  "f_search_highlights_comments_n_4f81": {
+    "message": "Cari sorotan, komentar, catatan…"
+  },
+  "f_secret_access_key_d3a2": {
+    "message": "Kunci akses rahasia"
+  },
+  "f_selected_3294": {
+    "message": "Dipilih"
+  },
+  "f_server_02f2": {
+    "message": "Server"
+  },
+  "f_server_address_025e": {
+    "message": "Alamat server"
+  },
+  "f_server_name_22f5": {
+    "message": "Nama server"
+  },
+  "f_server_saved_27e1": {
+    "message": "Server tersimpan."
+  },
+  "f_show_2e5c": {
+    "message": "Tampilkan"
+  },
+  "f_show_code_for_the_phone_a8c1": {
+    "message": "Tampilkan kode untuk ponsel"
+  },
+  "f_show_passphrase_dda0": {
+    "message": "Tampilkan frasa sandi"
+  },
+  "f_six_random_words_you_will_ty_e18c": {
+    "message": "Enam kata acak. Kamu akan mengetiknya di perangkat lain, jadi tulis atau simpan di pengelola sandi. Kata-kata ini tidak disimpan di tempat lain: kalau hilang, tidak ada yang bisa membuka filemu."
+  },
+  "f_soon_da12": {
+    "message": "Segera"
+  },
+  "f_strong_db5c": {
+    "message": "Kuat."
+  },
+  "f_suggest_random_words_instead_a3fb": {
+    "message": "Sarankan kata acak saja"
+  },
+  "f_sync_backup_9786": {
+    "message": "Sinkron & cadangan"
+  },
+  "f_sync_my_devices_79fb": {
+    "message": "Sinkronkan perangkat"
+  },
+  "f_sync_now_d8fe": {
+    "message": "Sinkronkan"
+  },
+  "f_syncthing_icloud_drive_dropb_a87d": {
+    "message": "Syncthing, iCloud Drive, Dropbox, atau flash disk USB menjaganya tetap sinkron."
+  },
+  "f_test_connection_b6b7": {
+    "message": "Tes koneksi"
+  },
+  "f_the_browser_could_not_rememb_f257": {
+    "message": "Browser tidak bisa mengingat folder ini."
+  },
+  "f_the_browser_did_not_allow_ac_5245": {
+    "message": "Browser tidak mengizinkan akses."
+  },
+  "f_the_browser_takes_back_acces_aaf9": {
+    "message": "Browser mencabut akses ke folder saat dimulai ulang, dan hanya klikmu yang bisa mengembalikannya. Sampai saat itu folder tidak disinkronkan."
+  },
+  "f_the_kind_of_a_place_cannot_b_8037": {
+    "message": "Jenis lokasi tidak bisa diubah. Tambah lokasi lain untuk memakai jenis yang lain."
+  },
+  "f_the_login_is_saved_once_for__bcba": {
+    "message": "Login disimpan sekali untuk semuanya."
+  },
+  "f_the_restore_did_not_finish_a4b5": {
+    "message": "Pemulihan tidak selesai."
+  },
+  "f_the_save_for_later_time_and__7dff": {
+    "message": "Waktu simpan-untuk-nanti dan alasanmu."
+  },
+  "f_the_service_picks_a_model_fo_a591": {
+    "message": "Layanan memilih model untuk tiap permintaan: teks pendek pakai model ringan, teks panjang pakai yang lebih besar."
+  },
+  "f_the_two_passphrases_are_not__e90b": {
+    "message": "Kedua frasa sandi tidak sama."
+  },
+  "f_these_six_words_are_the_key__f595": {
+    "message": "Enam kata ini adalah kunci ke “{name}”. Kamu mengetiknya di tiap perangkat baru. Kalau hilang, tidak ada yang bisa membaca file, termasuk kami. Simpan di pengelola sandi."
+  },
+  "f_this_device_was_away_for_a_l_46de": {
+    "message": "Perangkat ini lama tidak aktif. Hanya yang berubah sejak itu yang dikirim, dan tidak ada yang dihapus."
+  },
+  "f_this_device_writes_everythin_1070": {
+    "message": "Perangkat ini menulis semuanya ke lokasi dan tidak pernah membacanya kembali. Pulihkan dari sana saat butuh."
+  },
+  "f_this_folder_already_holds_an_9f1e": {
+    "message": "Folder ini sudah berisi pustaka terenkripsi. Masukkan frasa sandinya (kata-kata yang kamu simpan)."
+  },
+  "f_this_folder_already_holds_an_8e8c": {
+    "message": "Folder ini sudah berisi pustaka terenkripsi. Masukkan frasa sandinya di bawah, lalu tekan Hubungkan lagi."
+  },
+  "f_this_model_does_not_run_on_e_21da": {
+    "message": "Model ini tidak berjalan di server UE. Pakai {name} (UE) saja?"
+  },
+  "f_this_place_publishes_only_th_f3b8": {
+    "message": "Lokasi ini hanya menerbitkan: perangkat ini menulis file dan tidak pernah membacanya kembali."
+  },
+  "f_this_place_uses_your_own_pas_823b": {
+    "message": "Lokasi ini memakai frasa sandimu sendiri. Tidak ada di dalam kode: ketik di ponsel."
+  },
+  "f_this_place_uses_your_own_pas_b61e": {
+    "message": "Lokasi ini memakai frasa sandimu sendiri. Tidak disimpan di perangkat ini, jadi tidak bisa ditampilkan."
+  },
+  "f_to_publish_on_your_own_websi_9caf": {
+    "message": "Untuk menerbitkan di situs webmu sendiri: file biasa yang bisa dibaca siapa pun yang punya tautannya."
+  },
+  "f_turn_on_to_run_models_on_ser_af13": {
+    "message": "Aktifkan untuk menjalankan model di server di Eropa jika tersedia. Model lain tetap berfungsi dan diberi tanda."
+  },
+  "f_unchanged_e05e": {
+    "message": "Tidak berubah"
+  },
+  "f_updating_the_list_d48e": {
+    "message": "Memperbarui daftar…"
+  },
+  "f_uploading_of_c6b9": {
+    "message": "Mengunggah {done} dari {total}"
+  },
+  "f_use_my_own_passphrase_c42a": {
+    "message": "Pakai frasa sandiku sendiri"
+  },
+  "f_use_4021": {
+    "message": "Pakai {name}"
+  },
+  "f_username_d4d9": {
+    "message": "Nama pengguna"
+  },
+  "f_view_aa18": {
+    "message": "Tampilan"
+  },
+  "f_weak_use_at_least_12_charact_690f": {
+    "message": "Lemah: pakai minimal 12 karakter, atau kata yang disarankan."
+  },
+  "f_website_list_be8a": {
+    "message": "Daftar situs web"
+  },
+  "f_what_goes_out_1113": {
+    "message": "Apa yang keluar"
+  },
+  "f_what_it_is_for_84ef": {
+    "message": "Untuk apa lokasi ini"
+  },
+  "f_who_can_read_it_ceb4": {
+    "message": "Siapa yang bisa baca"
+  },
+  "f_with_a_tag_c382": {
+    "message": "Dengan tag"
+  },
+  "f_works_in_chrome_and_edge_on__f2c7": {
+    "message": "Berfungsi di Chrome dan Edge di komputer."
+  },
+  "f_write_a_note_about_this_arti_e1b4": {
+    "message": "Tulis catatan tentang artikel ini…"
+  },
+  "f_write_a_note_or_a_thought_wo_67b1": {
+    "message": "Tulis catatan atau pemikiran yang layak disimpan…"
+  },
+  "f_write_a_note_c7c9": {
+    "message": "Tulis catatan…"
+  },
+  "f_write_one_below_or_highlight_7627": {
+    "message": "Tulis di bawah, atau sorot teks di halaman mana pun. Sorotanmu dan sorotan AI juga muncul di sini."
+  },
+  "f_your_articles_highlights_not_9c7c": {
+    "message": "Artikel, sorotan, catatan, koleksi, ringkasan, dan teks lengkapmu, tetap sinkron di setiap perangkat yang bergabung dengan frasa sandi yang sama."
+  },
+  "f_your_own_index_html_is_in_th_8069": {
+    "message": "Ada index.html milikmu di folder ini, jadi penampil tidak diganti."
+  },
+  "f_your_own_notes_and_the_comme_6ef8": {
+    "message": "Catatan dan komentar pada sorotanmu sendiri."
+  },
+  "f_your_passphrase_2512": {
+    "message": "Frasa sandimu"
+  },
+  "f_your_yellow_and_ai_highlight_15a0": {
+    "message": "Sorotan kuning dan AI-mu"
+  },
+  "f_backed_up_ago_845b": {
+    "message": "dicadangkan {t} lalu"
+  },
+  "f_picks_a_model_for_each_reque_519c": {
+    "message": "memilih model untuk tiap permintaan"
+  },
+  "f_published_ago_0576": {
+    "message": "diterbitkan {t} lalu"
+  },
+  "f_synced_ago_174c": {
+    "message": "sinkron {t} lalu"
+  },
+  "f_of_9ced": {
+    "message": "{a} dari {b}"
+  },
+  "f_ai_highlight_8f93": {
+    "message": "{n} sorotan AI"
+  },
+  "f_ai_highlights_7da0": {
+    "message": "{n} sorotan AI"
+  },
+  "f_file_is_no_longer_wanted_her_48c4": {
+    "message": "{n} file tidak lagi diperlukan di sini dan akan dihapus dari servermu. Pastikan ini benar."
+  },
+  "f_files_are_no_longer_wanted_h_6975": {
+    "message": "{n} file tidak lagi diperlukan di sini dan akan dihapus dari servermu. Pastikan ini benar."
+  },
+  "f_files_had_problems_a60b": {
+    "message": "{n} file bermasalah"
+  },
+  "f_highlight_5f43": {
+    "message": "{n} sorotan"
+  },
+  "f_highlights_d890": {
+    "message": "{n} sorotan"
+  },
+  "f_more_article_was_deleted_on__0e7e": {
+    "message": "{n} artikel lagi dihapus di perangkat lain. Artikel tetap di sini sampai kamu setuju. Pastikan ini benar."
+  },
+  "f_more_articles_were_deleted_o_8348": {
+    "message": "{n} artikel lagi dihapus di perangkat lain. Artikel tetap di sini sampai kamu setuju. Pastikan ini benar."
+  },
+  "f_note_b2a1": {
+    "message": "{n} catatan"
+  },
+  "f_notes_8096": {
+    "message": "{n} catatan"
+  },
+  "f_place_b298": {
+    "message": "{n} lokasi"
+  },
+  "f_place_uses_this_server_133b": {
+    "message": "{n} lokasi memakai server ini."
+  },
+  "f_places_a7f1": {
+    "message": "{n} lokasi"
+  },
+  "f_places_use_this_server_4df9": {
+    "message": "{n} lokasi memakai server ini."
   }
 }

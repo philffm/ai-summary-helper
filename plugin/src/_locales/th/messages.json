@@ -5958,5 +5958,671 @@
   },
   "f_what_s_new_in_9c82": {
     "message": "มีอะไรใหม่ใน {v}"
+  },
+  "f_a_folder_on_this_computer_bbe4": {
+    "message": "โฟลเดอร์ในคอมพิวเตอร์นี้"
+  },
+  "f_a_simple_web_page_index_html_d002": {
+    "message": "หน้าเว็บอย่างง่าย (index.html) ที่อ่าน library.json: ค้นหา แท็ก ไทม์ไลน์ และกราฟแท็ก ต้องใช้เซิร์ฟเวอร์ที่แสดงหน้า HTML เช่นเว็บเซิร์ฟเวอร์ของคุณเองหรือบักเก็ตสาธารณะ ลิงก์แชร์ของ Nextcloud ใช้ไม่ได้"
+  },
+  "f_ai_135f": {
+    "message": "AI"
+  },
+  "f_ai_highlight_b91f": {
+    "message": "ไฮไลต์ AI"
+  },
+  "f_aws_cloudflare_r2_backblaze__139d": {
+    "message": "AWS, Cloudflare R2, Backblaze, MinIO, Wasabi"
+  },
+  "f_aws_https_s3_region_amazonaw_c68d": {
+    "message": "AWS: https://s3.<region>.amazonaws.com · Cloudflare R2: https://<account>.r2.cloudflarestorage.com · Backblaze: https://s3.<region>.backblazeb2.com"
+  },
+  "f_access_is_allowed_7031": {
+    "message": "อนุญาตการเข้าถึงแล้ว"
+  },
+  "f_access_key_id_8d75": {
+    "message": "Access key ID"
+  },
+  "f_add_a_comment_9c08": {
+    "message": "เพิ่มความคิดเห็น…"
+  },
+  "f_add_a_place_799c": {
+    "message": "เพิ่มที่เก็บ"
+  },
+  "f_add_note_9108": {
+    "message": "เพิ่มโน้ต"
+  },
+  "f_all_except_a_tag_ca3e": {
+    "message": "ทั้งหมดยกเว้นแท็ก"
+  },
+  "f_all_places_fdbc": {
+    "message": "ทุกที่เก็บ"
+  },
+  "f_allow_access_again_cc7c": {
+    "message": "อนุญาตอีกครั้ง"
+  },
+  "f_allow_access_to_599a": {
+    "message": "อนุญาตให้เข้าถึง {name}"
+  },
+  "f_also_publish_a_viewer_page_2d07": {
+    "message": "เผยแพร่หน้าดูด้วย"
+  },
+  "f_an_index_html_that_is_not_ou_889b": {
+    "message": "มี index.html ที่ไม่ใช่ของเราอยู่ในโฟลเดอร์นี้แล้ว จึงไม่ได้เขียนหน้าดู โปรดใช้โฟลเดอร์อื่น"
+  },
+  "f_another_suggestion_09e8": {
+    "message": "ข้อเสนออื่น"
+  },
+  "f_anyone_who_can_open_this_fol_86f7": {
+    "message": "ใครที่เปิดโฟลเดอร์นี้ได้ก็อ่านไฟล์เหล่านี้ได้ ใช้โฟลเดอร์ที่คุณควบคุมเอง และเก็บเป็นส่วนตัว เว้นแต่ต้องการเผยแพร่"
+  },
+  "f_app_password_6505": {
+    "message": "รหัสผ่านแอป"
+  },
+  "f_at_least_12_characters_it_is_f78b": {
+    "message": "อย่างน้อย 12 ตัวอักษร ไม่ได้บันทึกไว้ที่ใด: ถ้าลืม จะไม่มีใครเปิดไฟล์ได้"
+  },
+  "f_back_up_now_63b3": {
+    "message": "สำรองตอนนี้"
+  },
+  "f_backup_only_e75f": {
+    "message": "สำรองอย่างเดียว"
+  },
+  "f_bring_everything_in_this_pla_0150": {
+    "message": "ดึงทุกอย่างในที่เก็บนี้กลับมายังอุปกรณ์นี้ไหม ส่วนที่ต่างกัน ที่เก็บจะมีผลเหนือกว่า จะไม่มีอะไรถูกลบ"
+  },
+  "f_bucket_3557": {
+    "message": "Bucket"
+  },
+  "f_by_article_5c16": {
+    "message": "ตามบทความ"
+  },
+  "f_changes_here_apply_to_every__822d": {
+    "message": "การเปลี่ยนแปลงนี้ใช้กับทุกที่เก็บบนเซิร์ฟเวอร์นี้"
+  },
+  "f_checked_the_folder_restored__7f16": {
+    "message": "ตรวจโฟลเดอร์แล้ว: กู้คืน {r} ตกค้าง {o}"
+  },
+  "f_checking_your_library_f467": {
+    "message": "กำลังตรวจคลังของคุณ…"
+  },
+  "f_choose_6160": {
+    "message": "เลือก"
+  },
+  "f_choose_a_passphrase_c9a1": {
+    "message": "ตั้งวลีรหัสผ่าน"
+  },
+  "f_choose_another_folder_1129": {
+    "message": "เลือกโฟลเดอร์อื่น"
+  },
+  "f_cloudflare_r2_auto_leave_the_74e0": {
+    "message": "Cloudflare R2: auto ใช้ค่าเริ่มต้นหากผู้ให้บริการไม่ถาม"
+  },
+  "f_code_for_the_phone_8494": {
+    "message": "รหัสสำหรับโทรศัพท์"
+  },
+  "f_comment_9ffe": {
+    "message": "ความคิดเห็น"
+  },
+  "f_connect_and_publish_3387": {
+    "message": "เชื่อมต่อและเผยแพร่"
+  },
+  "f_connected_the_folder_is_empt_688d": {
+    "message": "เชื่อมต่อแล้ว โฟลเดอร์ว่าง จะสร้างคลังเข้ารหัสใหม่"
+  },
+  "f_connected_this_folder_alread_7ea2": {
+    "message": "เชื่อมต่อแล้ว โฟลเดอร์นี้มีคลังเข้ารหัสอยู่แล้ว"
+  },
+  "f_connected_article_matches_b205": {
+    "message": "เชื่อมต่อแล้ว ตรงกับ {n} บทความ"
+  },
+  "f_connected_articles_match_40f2": {
+    "message": "เชื่อมต่อแล้ว ตรงกับ {n} บทความ"
+  },
+  "f_continuing_file_left_4bdc": {
+    "message": "กำลังทำต่อ… เหลือ {n} ไฟล์"
+  },
+  "f_continuing_files_left_7869": {
+    "message": "กำลังทำต่อ… เหลือ {n} ไฟล์"
+  },
+  "f_copied_2cb1": {
+    "message": "คัดลอกแล้ว"
+  },
+  "f_copies_of_other_people_s_art_db7e": {
+    "message": "สำเนาบทความของผู้อื่น ตรวจว่าคุณแชร์ได้ ไฟล์จะใหญ่ขึ้นมาก"
+  },
+  "f_copy_did_not_work_select_the_1dcb": {
+    "message": "คัดลอกไม่สำเร็จ เลือกคำแล้วคัดลอกเอง"
+  },
+  "f_copy_puts_the_words_in_one_p_9b1c": {
+    "message": "เมื่อกดคัดลอก คำจะต่อกันเป็นชุดเดียวคั่นด้วยขีด ซึ่งคงอยู่ได้ในไฟล์ตั้งค่า เชลล์ และแอปแชต พิมพ์แบบเว้นวรรคหรือมีขีดก็ใช้ได้"
+  },
+  "f_could_not_reach_the_server_aa7e": {
+    "message": "เชื่อมต่อเซิร์ฟเวอร์ไม่ได้"
+  },
+  "f_could_not_save_this_place_cf23": {
+    "message": "บันทึกที่เก็บนี้ไม่ได้"
+  },
+  "f_created_for_you_use_one_fold_0390": {
+    "message": "สร้างให้คุณแล้ว ใช้หนึ่งโฟลเดอร์ต่อหนึ่งงาน เช่น public สำหรับรายการเว็บไซต์ และ backup สำหรับสำเนาเต็ม"
+  },
+  "f_danger_zone_19b4": {
+    "message": "โซนอันตราย"
+  },
+  "f_delete_them_here_too_9d48": {
+    "message": "ลบที่นี่ด้วย"
+  },
+  "f_delete_this_note_3253": {
+    "message": "ลบโน้ตนี้ไหม"
+  },
+  "f_download_bb19": {
+    "message": "ดาวน์โหลด"
+  },
+  "f_eu_1f4f": {
+    "message": "EU"
+  },
+  "f_eu_company_ef04": {
+    "message": "บริษัท EU"
+  },
+  "f_eu_servers_987b": {
+    "message": "เซิร์ฟเวอร์ EU"
+  },
+  "f_each_article_becomes_one_fil_f81c": {
+    "message": "แต่ละบทความเป็นหนึ่งไฟล์ พร้อมรายการสำหรับเว็บไซต์ (library.json)"
+  },
+  "f_edit_comment_f0e4": {
+    "message": "แก้ไขความเห็น"
+  },
+  "f_edit_server_63e0": {
+    "message": "แก้ไขเซิร์ฟเวอร์"
+  },
+  "f_encrypted_e253": {
+    "message": "เข้ารหัสแล้ว"
+  },
+  "f_end_with_tags_ctrl_enter_to__83e2": {
+    "message": "ปิดท้ายด้วย #แท็ก · ⌘/Ctrl+Enter เพื่อเพิ่ม"
+  },
+  "f_endpoint_address_ce54": {
+    "message": "ที่อยู่ Endpoint"
+  },
+  "f_every_article_you_saved_goes_f744": {
+    "message": "ทุกบทความที่คุณบันทึกจะถูกส่งออก รวมถึงที่คุณอาจไม่อยากให้ใครอ่าน ควรเข้ารหัสสำเนาสำรองที่มีแต่คุณอ่านได้"
+  },
+  "f_everything_8340": {
+    "message": "ทุกอย่าง"
+  },
+  "f_everything_is_encrypted_on_t_1b86": {
+    "message": "ทุกอย่างถูกเข้ารหัสบนอุปกรณ์นี้ก่อนอัปโหลด รวมโน้ต การเตือน และข้อความเต็ม เพราะมีแต่คุณที่อ่านได้"
+  },
+  "f_files_go_into_a_subfolder_of_5a98": {
+    "message": "ไฟล์จะอยู่ในโฟลเดอร์ย่อย สิ่งที่ซิงก์โฟลเดอร์นั้น (Syncthing, iCloud Drive, Dropbox, USB) จะนำไปยังอุปกรณ์อื่นของคุณ"
+  },
+  "f_fine_the_suggested_words_are_36c0": {
+    "message": "ได้ แต่คำที่แนะนำปลอดภัยกว่า"
+  },
+  "f_folder_7afd": {
+    "message": "โฟลเดอร์"
+  },
+  "f_folder_access_is_waiting_b754": {
+    "message": "รอการเข้าถึงโฟลเดอร์"
+  },
+  "f_folder_on_the_server_b74c": {
+    "message": "โฟลเดอร์บนเซิร์ฟเวอร์"
+  },
+  "f_folder_960e": {
+    "message": "โฟลเดอร์: {name}"
+  },
+  "f_for_syncing_and_backup_only__f767": {
+    "message": "สำหรับซิงก์และสำรอง มีแต่คุณที่อ่านได้ เว็บไซต์จึงอ่านไม่ได้ ผู้ให้บริการเห็นเพียงไฟล์ที่ถูกสลับ"
+  },
+  "f_getting_changes_of_8fbb": {
+    "message": "กำลังรับการเปลี่ยนแปลง {done}/{total}"
+  },
+  "f_grid_66b1": {
+    "message": "ตาราง"
+  },
+  "f_highlight_05c7": {
+    "message": "ไฮไลต์"
+  },
+  "f_i_made_a_backup_of_this_devi_c05b": {
+    "message": "ฉันสำรองอุปกรณ์นี้ไว้แล้ว"
+  },
+  "f_i_saved_the_passphrase_81d0": {
+    "message": "ฉันบันทึกวลีรหัสผ่านแล้ว"
+  },
+  "f_in_nextcloud_settings_securi_4fee": {
+    "message": "ใน Nextcloud: การตั้งค่า → ความปลอดภัย → สร้างรหัสผ่านแอป อย่าใช้รหัสผ่านหลัก"
+  },
+  "f_joining_merges_this_device_w_8048": {
+    "message": "การเข้าร่วมจะรวมอุปกรณ์นี้กับคลังในโฟลเดอร์ ส่วนที่ต่างกันโฟลเดอร์จะมีผลเหนือกว่า สำรองอุปกรณ์นี้ก่อน"
+  },
+  "f_keep_your_library_in_step_ac_b5fe": {
+    "message": "เก็บคลังของคุณให้ตรงกันทุกอุปกรณ์ สำรองข้อมูล หรือเผยแพร่บางส่วนให้ผู้อื่น แต่ละที่เก็บคือโฟลเดอร์บนเซิร์ฟเวอร์ของคุณเองหรือในคอมพิวเตอร์เครื่องนี้ จะไม่มีอะไรออกจากอุปกรณ์นี้จนกว่าคุณจะเพิ่ม"
+  },
+  "f_looking_at_what_is_in_the_fo_1e05": {
+    "message": "กำลังดูสิ่งที่อยู่ในโฟลเดอร์…"
+  },
+  "f_make_a_backup_now_3046": {
+    "message": "สำรองตอนนี้"
+  },
+  "f_make_an_access_key_just_for__abc9": {
+    "message": "สร้าง access key เฉพาะสำหรับบักเก็ตนี้ ให้อ่าน เขียน แสดงรายการ และลบในนั้นได้ อย่าใช้คีย์หลักของบัญชี"
+  },
+  "f_meant_for_a_folder_only_you__33c0": {
+    "message": "สำหรับโฟลเดอร์ที่มีแต่คุณเปิดได้ เช่น สำรองส่วนตัวหรือรายการภายใน ใครที่เปิดโฟลเดอร์ได้ก็อ่านทั้งหมดนี้ได้"
+  },
+  "f_mine_84d6": {
+    "message": "ของฉัน"
+  },
+  "f_models_marked_eu_servers_run_7b00": {
+    "message": "โมเดลที่ทำเครื่องหมาย “เซิร์ฟเวอร์ EU” ทำงานบนเซิร์ฟเวอร์ในยุโรปเท่านั้น ซึ่งมักเป็นของบริษัทคลาวด์สหรัฐฯ เฉพาะโมเดลที่ทำเครื่องหมาย “บริษัท EU” เท่านั้นที่มาจากบริษัทยุโรปด้วย โมเดลอื่นทั้งหมดยังใช้ได้ ทำเครื่องหมาย “ไม่ใช่เซิร์ฟเวอร์ EU” และทำงานตามปกติ ตัวเลือกอัตโนมัติจะอยู่บนเซิร์ฟเวอร์ EU เซิร์ฟเวอร์ EU อาจแพงขึ้นเล็กน้อย ราคาที่แสดงเป็นราคา EU การอ่านออกเสียงและการแปลงเสียงเป็นข้อความไม่มีตัวเลือก EU ข้อความของคุณยังผ่านบริการของเรา (เซิร์ฟเวอร์ในเยอรมนี) แล้วไปยัง OpenRouter บริษัทสหรัฐฯ"
+  },
+  "f_my_nextcloud_741d": {
+    "message": "Nextcloud ของฉัน"
+  },
+  "f_my_notes_and_comments_099b": {
+    "message": "โน้ตและความเห็นของฉัน"
+  },
+  "f_new_note_7123": {
+    "message": "โน้ตใหม่"
+  },
+  "f_new_server_9ee0": {
+    "message": "เซิร์ฟเวอร์ใหม่"
+  },
+  "f_nextcloud_webdav_2b5d": {
+    "message": "Nextcloud / WebDAV"
+  },
+  "f_nextcloud_owncloud_synology__5752": {
+    "message": "Nextcloud, ownCloud, Synology, NAS ส่วนใหญ่"
+  },
+  "f_no_notes_on_this_article_yet_b876": {
+    "message": "บทความนี้ยังไม่มีโน้ต"
+  },
+  "f_no_notes_yet_68d5": {
+    "message": "ยังไม่มีโน้ต"
+  },
+  "f_no_tags_yet_end_a_note_with__ae68": {
+    "message": "ยังไม่มีแท็ก ปิดท้ายโน้ตด้วย #แท็ก"
+  },
+  "f_not_eu_fb9c": {
+    "message": "ไม่ใช่ EU"
+  },
+  "f_not_here_d910": {
+    "message": "ไม่ใช่ที่นี่"
+  },
+  "f_not_on_eu_servers_abcb": {
+    "message": "ไม่ใช่เซิร์ฟเวอร์ EU"
+  },
+  "f_not_published_yet_d0ae": {
+    "message": "ยังไม่เผยแพร่"
+  },
+  "f_not_synced_yet_7efe": {
+    "message": "ยังไม่ซิงก์"
+  },
+  "f_note_c15d": {
+    "message": "โน้ต"
+  },
+  "f_notes_1b6a": {
+    "message": "โน้ต"
+  },
+  "f_notes_and_highlights_0e9c": {
+    "message": "โน้ตและไฮไลต์"
+  },
+  "f_notes_without_an_article_5bd7": {
+    "message": "โน้ตที่ไม่มีบทความ"
+  },
+  "f_nothing_here_yet_5bfc": {
+    "message": "ยังไม่มีอะไร"
+  },
+  "f_nothing_matches_03c3": {
+    "message": "ไม่มีรายการตรงกัน"
+  },
+  "f_only_publish_articles_tagged_b789": {
+    "message": "เผยแพร่เฉพาะบทความที่มีแท็ก"
+  },
+  "f_open_the_page_ab11": {
+    "message": "เปิดหน้า"
+  },
+  "f_passphrase_2dc5": {
+    "message": "วลีรหัสผ่าน"
+  },
+  "f_passphrase_keep_it_somewhere_ca8a": {
+    "message": "วลีรหัสผ่าน: {k} เก็บไว้ในที่ปลอดภัย"
+  },
+  "f_paused_1feb": {
+    "message": "พักไว้"
+  },
+  "f_pinned_q_a_faa5": {
+    "message": "Q&A ที่ปักหมุด"
+  },
+  "f_places_d03d": {
+    "message": "ที่เก็บ"
+  },
+  "f_publish_everything_except_ar_74e7": {
+    "message": "เผยแพร่ทุกอย่างยกเว้นบทความที่มีแท็ก"
+  },
+  "f_publish_my_library_to_my_own_a71f": {
+    "message": "เผยแพร่คลังไปยังเซิร์ฟเวอร์ของฉัน"
+  },
+  "f_publish_now_ae60": {
+    "message": "เผยแพร่ตอนนี้"
+  },
+  "f_publishing_e1f2": {
+    "message": "กำลังเผยแพร่…"
+  },
+  "f_questions_you_pinned_with_an_5f9e": {
+    "message": "คำถามที่คุณปักหมุดพร้อมคำตอบ"
+  },
+  "f_readable_00b5": {
+    "message": "อ่านได้"
+  },
+  "f_reading_changes_of_9b27": {
+    "message": "กำลังอ่านการเปลี่ยนแปลง {done}/{total}"
+  },
+  "f_region_789d": {
+    "message": "Region"
+  },
+  "f_reminders_b654": {
+    "message": "การเตือน"
+  },
+  "f_remove_comment_2340": {
+    "message": "ลบความเห็น"
+  },
+  "f_remove_them_401d": {
+    "message": "ลบออก"
+  },
+  "f_remove_this_highlight_3cc8": {
+    "message": "ลบไฮไลต์นี้ไหม"
+  },
+  "f_remove_this_place_6efc": {
+    "message": "ลบที่เก็บนี้"
+  },
+  "f_remove_this_place_the_files__ad9c": {
+    "message": "ลบที่เก็บนี้ไหม ไฟล์ที่อยู่บนเซิร์ฟเวอร์ของคุณจะไม่ถูกลบ"
+  },
+  "f_removing_a_place_stops_publi_caa4": {
+    "message": "การลบที่เก็บจะหยุดการเผยแพร่ ไฟล์ที่อยู่บนเซิร์ฟเวอร์ของคุณยังอยู่ที่เดิม เซิร์ฟเวอร์ที่ไม่มีที่เก็บใดใช้แล้วจะถูกลืมพร้อมการเข้าสู่ระบบ"
+  },
+  "f_removing_of_9a27": {
+    "message": "กำลังลบ {done}/{total}"
+  },
+  "f_repeat_the_passphrase_c2a7": {
+    "message": "พิมพ์วลีรหัสผ่านซ้ำ"
+  },
+  "f_restore_from_here_3623": {
+    "message": "กู้คืนจากที่นี่"
+  },
+  "f_restored_item_changed_on_thi_f959": {
+    "message": "กู้คืนแล้ว มี {n} รายการเปลี่ยนบนอุปกรณ์นี้"
+  },
+  "f_restored_items_changed_on_th_853c": {
+    "message": "กู้คืนแล้ว มี {n} รายการเปลี่ยนบนอุปกรณ์นี้"
+  },
+  "f_restoring_daec": {
+    "message": "กำลังกู้คืน…"
+  },
+  "f_s3_compatible_4144": {
+    "message": "เข้ากันได้กับ S3"
+  },
+  "f_save_5d68": {
+    "message": "บันทึก"
+  },
+  "f_save_server_bca3": {
+    "message": "เก็บเซิร์ฟเวอร์"
+  },
+  "f_save_your_passphrase_3801": {
+    "message": "บันทึกวลีรหัสผ่าน"
+  },
+  "f_saving_of_566a": {
+    "message": "กำลังบันทึก {done}/{total}"
+  },
+  "f_scan_it_with_ai_summary_help_572d": {
+    "message": "สแกนด้วย AI Summary Helper บนโทรศัพท์: การตั้งค่า → ซิงก์คลัง → สแกนรหัส รหัสมีข้อมูลเข้าสู่ระบบเซิร์ฟเวอร์ของคุณ จึงแสดงให้โทรศัพท์ของคุณเองเท่านั้น รหัสจะซ่อนเองใน 1 นาที"
+  },
+  "f_search_highlights_comments_n_4f81": {
+    "message": "ค้นหาไฮไลต์ ความเห็น โน้ต…"
+  },
+  "f_secret_access_key_d3a2": {
+    "message": "Secret access key"
+  },
+  "f_selected_3294": {
+    "message": "เลือกแล้ว"
+  },
+  "f_server_02f2": {
+    "message": "เซิร์ฟเวอร์"
+  },
+  "f_server_address_025e": {
+    "message": "ที่อยู่เซิร์ฟเวอร์"
+  },
+  "f_server_name_22f5": {
+    "message": "ชื่อเซิร์ฟเวอร์"
+  },
+  "f_server_saved_27e1": {
+    "message": "เก็บเซิร์ฟเวอร์แล้ว"
+  },
+  "f_show_2e5c": {
+    "message": "แสดง"
+  },
+  "f_show_code_for_the_phone_a8c1": {
+    "message": "แสดงรหัสสำหรับโทรศัพท์"
+  },
+  "f_show_passphrase_dda0": {
+    "message": "แสดงวลีรหัสผ่าน"
+  },
+  "f_six_random_words_you_will_ty_e18c": {
+    "message": "คำสุ่มหกคำ คุณจะพิมพ์บนอุปกรณ์อื่น จึงควรจดไว้หรือเก็บในตัวจัดการรหัสผ่าน ไม่ได้บันทึกไว้ที่อื่น: ถ้าลืม จะไม่มีใครเปิดไฟล์ได้"
+  },
+  "f_soon_da12": {
+    "message": "เร็วๆ นี้"
+  },
+  "f_strong_db5c": {
+    "message": "แข็งแรง"
+  },
+  "f_suggest_random_words_instead_a3fb": {
+    "message": "แนะนำคำสุ่มแทน"
+  },
+  "f_sync_backup_9786": {
+    "message": "ซิงก์และสำรอง"
+  },
+  "f_sync_my_devices_79fb": {
+    "message": "ซิงก์อุปกรณ์ของฉัน"
+  },
+  "f_sync_now_d8fe": {
+    "message": "ซิงก์ตอนนี้"
+  },
+  "f_syncthing_icloud_drive_dropb_a87d": {
+    "message": "Syncthing, iCloud Drive, Dropbox หรือ USB จะช่วยให้ตรงกัน"
+  },
+  "f_test_connection_b6b7": {
+    "message": "ทดสอบการเชื่อมต่อ"
+  },
+  "f_the_browser_could_not_rememb_f257": {
+    "message": "เบราว์เซอร์จำโฟลเดอร์นี้ไม่ได้"
+  },
+  "f_the_browser_did_not_allow_ac_5245": {
+    "message": "เบราว์เซอร์ไม่อนุญาตให้เข้าถึง"
+  },
+  "f_the_browser_takes_back_acces_aaf9": {
+    "message": "เบราว์เซอร์จะเพิกถอนสิทธิ์โฟลเดอร์เมื่อรีสตาร์ท และต้องให้คุณคลิกเพื่อคืนสิทธิ์ จนกว่าจะถึงตอนนั้นโฟลเดอร์จะไม่ซิงก์"
+  },
+  "f_the_kind_of_a_place_cannot_b_8037": {
+    "message": "เปลี่ยนชนิดของที่เก็บไม่ได้ เพิ่มที่เก็บอีกอันเพื่อใช้ชนิดอื่น"
+  },
+  "f_the_login_is_saved_once_for__bcba": {
+    "message": "บันทึกการเข้าสู่ระบบครั้งเดียวสำหรับทุกอัน"
+  },
+  "f_the_restore_did_not_finish_a4b5": {
+    "message": "การกู้คืนไม่เสร็จสิ้น"
+  },
+  "f_the_save_for_later_time_and__7dff": {
+    "message": "เวลาอ่านทีหลังและเหตุผลของคุณ"
+  },
+  "f_the_service_picks_a_model_fo_a591": {
+    "message": "บริการจะเลือกโมเดลให้ในแต่ละคำขอ ข้อความสั้นใช้โมเดลเบา ข้อความยาวใช้โมเดลใหญ่กว่า"
+  },
+  "f_the_two_passphrases_are_not__e90b": {
+    "message": "วลีรหัสผ่านทั้งสองไม่ตรงกัน"
+  },
+  "f_these_six_words_are_the_key__f595": {
+    "message": "คำหกคำนี้คือกุญแจของ “{name}” คุณพิมพ์บนอุปกรณ์ใหม่ทุกเครื่อง ถ้าลืม จะไม่มีใครอ่านไฟล์ได้ แม้แต่เรา เก็บไว้ในตัวจัดการรหัสผ่าน"
+  },
+  "f_this_device_was_away_for_a_l_46de": {
+    "message": "อุปกรณ์นี้ไม่ได้ใช้งานนาน ส่งเฉพาะสิ่งที่เปลี่ยนตั้งแต่นั้น และไม่ได้ลบอะไร"
+  },
+  "f_this_device_writes_everythin_1070": {
+    "message": "อุปกรณ์นี้เขียนทุกอย่างลงที่เก็บและไม่อ่านกลับ กู้คืนจากที่นี่เมื่อต้องการ"
+  },
+  "f_this_folder_already_holds_an_9f1e": {
+    "message": "โฟลเดอร์นี้มีคลังเข้ารหัสอยู่แล้ว ใส่วลีรหัสผ่าน (คำที่คุณบันทึกไว้)"
+  },
+  "f_this_folder_already_holds_an_8e8c": {
+    "message": "โฟลเดอร์นี้มีคลังเข้ารหัสอยู่แล้ว ใส่วลีรหัสผ่านด้านล่าง แล้วกดเชื่อมต่ออีกครั้ง"
+  },
+  "f_this_model_does_not_run_on_e_21da": {
+    "message": "โมเดลนี้ไม่ทำงานบนเซิร์ฟเวอร์ EU ใช้ {name} (EU) แทนไหม"
+  },
+  "f_this_place_publishes_only_th_f3b8": {
+    "message": "ที่เก็บนี้เผยแพร่อย่างเดียว: อุปกรณ์นี้เขียนไฟล์และไม่อ่านกลับ"
+  },
+  "f_this_place_uses_your_own_pas_823b": {
+    "message": "ที่เก็บนี้ใช้วลีรหัสผ่านของคุณเอง ไม่อยู่ในรหัส: พิมพ์บนโทรศัพท์"
+  },
+  "f_this_place_uses_your_own_pas_b61e": {
+    "message": "ที่เก็บนี้ใช้วลีรหัสผ่านของคุณเอง ไม่ได้เก็บไว้ในอุปกรณ์นี้ จึงแสดงไม่ได้"
+  },
+  "f_to_publish_on_your_own_websi_9caf": {
+    "message": "เพื่อเผยแพร่บนเว็บไซต์ของคุณ: ไฟล์ธรรมดาที่ใครมีลิงก์ก็อ่านได้"
+  },
+  "f_turn_on_to_run_models_on_ser_af13": {
+    "message": "เปิดเพื่อรันโมเดลบนเซิร์ฟเวอร์ในยุโรปเท่าที่มี โมเดลอื่นทั้งหมดยังใช้ได้และมีเครื่องหมายกำกับ"
+  },
+  "f_unchanged_e05e": {
+    "message": "ไม่เปลี่ยน"
+  },
+  "f_updating_the_list_d48e": {
+    "message": "กำลังอัปเดตรายการ…"
+  },
+  "f_uploading_of_c6b9": {
+    "message": "กำลังอัปโหลด {done}/{total}"
+  },
+  "f_use_my_own_passphrase_c42a": {
+    "message": "ใช้วลีรหัสผ่านของฉันเอง"
+  },
+  "f_use_4021": {
+    "message": "ใช้ {name}"
+  },
+  "f_username_d4d9": {
+    "message": "ชื่อผู้ใช้"
+  },
+  "f_view_aa18": {
+    "message": "ดู"
+  },
+  "f_weak_use_at_least_12_charact_690f": {
+    "message": "อ่อน: ใช้อย่างน้อย 12 ตัวอักษร หรือคำที่แนะนำ"
+  },
+  "f_website_list_be8a": {
+    "message": "รายการเว็บไซต์"
+  },
+  "f_what_goes_out_1113": {
+    "message": "สิ่งที่ส่งออก"
+  },
+  "f_what_it_is_for_84ef": {
+    "message": "ใช้ทำอะไร"
+  },
+  "f_who_can_read_it_ceb4": {
+    "message": "ใครอ่านได้"
+  },
+  "f_with_a_tag_c382": {
+    "message": "มีแท็ก"
+  },
+  "f_works_in_chrome_and_edge_on__f2c7": {
+    "message": "ใช้ได้ใน Chrome และ Edge บนคอมพิวเตอร์"
+  },
+  "f_write_a_note_about_this_arti_e1b4": {
+    "message": "เขียนโน้ตเกี่ยวกับบทความนี้…"
+  },
+  "f_write_a_note_or_a_thought_wo_67b1": {
+    "message": "เขียนโน้ตหรือความคิดที่ควรเก็บ…"
+  },
+  "f_write_a_note_c7c9": {
+    "message": "เขียนโน้ต…"
+  },
+  "f_write_one_below_or_highlight_7627": {
+    "message": "เขียนด้านล่าง หรือไฮไลต์ข้อความในหน้าใดก็ได้ ไฮไลต์ของคุณและของ AI จะแสดงที่นี่ด้วย"
+  },
+  "f_your_articles_highlights_not_9c7c": {
+    "message": "บทความ ไฮไลต์ โน้ต คอลเลกชัน สรุป และข้อความเต็มของคุณ ซิงก์ตรงกันทุกอุปกรณ์ที่เข้าร่วมด้วยวลีรหัสผ่านเดียวกัน"
+  },
+  "f_your_own_index_html_is_in_th_8069": {
+    "message": "มี index.html ของคุณเองในโฟลเดอร์นี้ จึงไม่ได้แทนที่หน้าดู"
+  },
+  "f_your_own_notes_and_the_comme_6ef8": {
+    "message": "โน้ตของคุณเองและความเห็นบนไฮไลต์"
+  },
+  "f_your_passphrase_2512": {
+    "message": "วลีรหัสผ่านของคุณ"
+  },
+  "f_your_yellow_and_ai_highlight_15a0": {
+    "message": "ไฮไลต์สีเหลืองและ AI ของคุณ"
+  },
+  "f_backed_up_ago_845b": {
+    "message": "สำรอง {t} ที่แล้ว"
+  },
+  "f_picks_a_model_for_each_reque_519c": {
+    "message": "เลือกโมเดลในแต่ละคำขอ"
+  },
+  "f_published_ago_0576": {
+    "message": "เผยแพร่ {t} ที่แล้ว"
+  },
+  "f_synced_ago_174c": {
+    "message": "ซิงก์ {t} ที่แล้ว"
+  },
+  "f_of_9ced": {
+    "message": "{a}/{b}"
+  },
+  "f_ai_highlight_8f93": {
+    "message": "ไฮไลต์ AI {n}"
+  },
+  "f_ai_highlights_7da0": {
+    "message": "ไฮไลต์ AI {n}"
+  },
+  "f_file_is_no_longer_wanted_her_48c4": {
+    "message": "{n} ไฟล์ไม่ต้องการที่นี่แล้วและจะถูกลบจากเซิร์ฟเวอร์ของคุณ ตรวจสอบว่าถูกต้อง"
+  },
+  "f_files_are_no_longer_wanted_h_6975": {
+    "message": "{n} ไฟล์ไม่ต้องการที่นี่แล้วและจะถูกลบจากเซิร์ฟเวอร์ของคุณ ตรวจสอบว่าถูกต้อง"
+  },
+  "f_files_had_problems_a60b": {
+    "message": "{n} ไฟล์มีปัญหา"
+  },
+  "f_highlight_5f43": {
+    "message": "ไฮไลต์ {n}"
+  },
+  "f_highlights_d890": {
+    "message": "ไฮไลต์ {n}"
+  },
+  "f_more_article_was_deleted_on__0e7e": {
+    "message": "อีก {n} บทความถูกลบบนอุปกรณ์อื่น ยังอยู่ที่นี่จนกว่าคุณจะสั่ง ตรวจสอบว่าถูกต้อง"
+  },
+  "f_more_articles_were_deleted_o_8348": {
+    "message": "อีก {n} บทความถูกลบบนอุปกรณ์อื่น ยังอยู่ที่นี่จนกว่าคุณจะสั่ง ตรวจสอบว่าถูกต้อง"
+  },
+  "f_note_b2a1": {
+    "message": "โน้ต {n}"
+  },
+  "f_notes_8096": {
+    "message": "โน้ต {n}"
+  },
+  "f_place_b298": {
+    "message": "{n} ที่เก็บ"
+  },
+  "f_place_uses_this_server_133b": {
+    "message": "{n} ที่เก็บใช้เซิร์ฟเวอร์นี้"
+  },
+  "f_places_a7f1": {
+    "message": "{n} ที่เก็บ"
+  },
+  "f_places_use_this_server_4df9": {
+    "message": "{n} ที่เก็บใช้เซิร์ฟเวอร์นี้"
   }
 }

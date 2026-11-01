@@ -5958,5 +5958,671 @@
   },
   "f_what_s_new_in_9c82": {
     "message": "Nytt i {v}"
+  },
+  "f_a_folder_on_this_computer_bbe4": {
+    "message": "En mappe på denne datamaskinen"
+  },
+  "f_a_simple_web_page_index_html_d002": {
+    "message": "En enkel nettside (index.html) som leser library.json: søk, tagger, tidslinje og tagggraf. Den trenger en server som viser HTML-sider, for eksempel din egen webserver eller en offentlig bucket. Nextcloud-delinger fungerer ikke."
+  },
+  "f_ai_135f": {
+    "message": "AI"
+  },
+  "f_ai_highlight_b91f": {
+    "message": "AI-markering"
+  },
+  "f_aws_cloudflare_r2_backblaze__139d": {
+    "message": "AWS, Cloudflare R2, Backblaze, MinIO, Wasabi"
+  },
+  "f_aws_https_s3_region_amazonaw_c68d": {
+    "message": "AWS: https://s3.<region>.amazonaws.com · Cloudflare R2: https://<account>.r2.cloudflarestorage.com · Backblaze: https://s3.<region>.backblazeb2.com"
+  },
+  "f_access_is_allowed_7031": {
+    "message": "Tilgang er tillatt."
+  },
+  "f_access_key_id_8d75": {
+    "message": "Tilgangsnøkkel-ID"
+  },
+  "f_add_a_comment_9c08": {
+    "message": "Legg til kommentar…"
+  },
+  "f_add_a_place_799c": {
+    "message": "Legg til sted"
+  },
+  "f_add_note_9108": {
+    "message": "Legg til"
+  },
+  "f_all_except_a_tag_ca3e": {
+    "message": "Alle unntatt én tagg"
+  },
+  "f_all_places_fdbc": {
+    "message": "Alle steder"
+  },
+  "f_allow_access_again_cc7c": {
+    "message": "Tillat tilgang igjen"
+  },
+  "f_allow_access_to_599a": {
+    "message": "Tillat tilgang til {name}"
+  },
+  "f_also_publish_a_viewer_page_2d07": {
+    "message": "Publiser også en visningsside"
+  },
+  "f_an_index_html_that_is_not_ou_889b": {
+    "message": "Det finnes allerede en index.html som ikke er vår i denne mappen, så visningen ble ikke skrevet. Bruk en annen mappe."
+  },
+  "f_another_suggestion_09e8": {
+    "message": "Nytt forslag"
+  },
+  "f_anyone_who_can_open_this_fol_86f7": {
+    "message": "Alle som kan åpne denne mappen, kan lese disse filene. Bruk en mappe du kontrollerer, og hold den privat med mindre du vil publisere den."
+  },
+  "f_app_password_6505": {
+    "message": "App-passord"
+  },
+  "f_at_least_12_characters_it_is_f78b": {
+    "message": "Minst 12 tegn. Det lagres ingen steder: mister du det, kan ingen åpne filene."
+  },
+  "f_back_up_now_63b3": {
+    "message": "Ta backup nå"
+  },
+  "f_backup_only_e75f": {
+    "message": "Bare backup"
+  },
+  "f_bring_everything_in_this_pla_0150": {
+    "message": "Hente alt på dette stedet tilbake til denne enheten? Der enheten avviker, vinner stedet. Ingenting slettes her."
+  },
+  "f_bucket_3557": {
+    "message": "Bucket"
+  },
+  "f_by_article_5c16": {
+    "message": "Per artikkel"
+  },
+  "f_changes_here_apply_to_every__822d": {
+    "message": "Endringer her gjelder alle steder på denne serveren."
+  },
+  "f_checked_the_folder_restored__7f16": {
+    "message": "Mappen er sjekket: {r} gjenopprettet, {o} rester funnet."
+  },
+  "f_checking_your_library_f467": {
+    "message": "Sjekker biblioteket ditt…"
+  },
+  "f_choose_6160": {
+    "message": "Velg"
+  },
+  "f_choose_a_passphrase_c9a1": {
+    "message": "Velg en passfrase"
+  },
+  "f_choose_another_folder_1129": {
+    "message": "Velg en annen mappe"
+  },
+  "f_cloudflare_r2_auto_leave_the_74e0": {
+    "message": "Cloudflare R2: auto. La standard stå hvis leverandøren ikke spør."
+  },
+  "f_code_for_the_phone_8494": {
+    "message": "Kode til telefonen"
+  },
+  "f_comment_9ffe": {
+    "message": "Kommentar"
+  },
+  "f_connect_and_publish_3387": {
+    "message": "Koble til og publiser"
+  },
+  "f_connected_the_folder_is_empt_688d": {
+    "message": "Tilkoblet. Mappen er tom, så et nytt kryptert bibliotek opprettes."
+  },
+  "f_connected_this_folder_alread_7ea2": {
+    "message": "Tilkoblet. Denne mappen inneholder allerede et kryptert bibliotek."
+  },
+  "f_connected_article_matches_b205": {
+    "message": "Tilkoblet. {n} artikkel samsvarer."
+  },
+  "f_connected_articles_match_40f2": {
+    "message": "Tilkoblet. {n} artikler samsvarer."
+  },
+  "f_continuing_file_left_4bdc": {
+    "message": "Fortsetter… {n} fil igjen"
+  },
+  "f_continuing_files_left_7869": {
+    "message": "Fortsetter… {n} filer igjen"
+  },
+  "f_copied_2cb1": {
+    "message": "Kopiert."
+  },
+  "f_copies_of_other_people_s_art_db7e": {
+    "message": "Kopier av andres artikler. Sørg for at du har lov til å dele dem. Filene blir mye større."
+  },
+  "f_copy_did_not_work_select_the_1dcb": {
+    "message": "Kopiering mislyktes. Marker ordene og kopier dem manuelt."
+  },
+  "f_copy_puts_the_words_in_one_p_9b1c": {
+    "message": "Kopier setter ordene sammen med bindestreker. Det overlever konfigfiler, skall og chat-apper; å skrive dem med mellomrom eller bindestreker fungerer begge deler."
+  },
+  "f_could_not_reach_the_server_aa7e": {
+    "message": "Fikk ikke kontakt med serveren"
+  },
+  "f_could_not_save_this_place_cf23": {
+    "message": "Kunne ikke lagre dette stedet."
+  },
+  "f_created_for_you_use_one_fold_0390": {
+    "message": "Opprettet for deg. Bruk én mappe per formål, for eksempel public for en nettsideliste og backup for en full kopi."
+  },
+  "f_danger_zone_19b4": {
+    "message": "Faresone"
+  },
+  "f_delete_them_here_too_9d48": {
+    "message": "Slett dem her også"
+  },
+  "f_delete_this_note_3253": {
+    "message": "Slette dette notatet?"
+  },
+  "f_download_bb19": {
+    "message": "Last ned"
+  },
+  "f_eu_1f4f": {
+    "message": "EU"
+  },
+  "f_eu_company_ef04": {
+    "message": "EU-selskap"
+  },
+  "f_eu_servers_987b": {
+    "message": "EU-servere"
+  },
+  "f_each_article_becomes_one_fil_f81c": {
+    "message": "Hver artikkel blir én fil, pluss en liste til nettsiden din (library.json)."
+  },
+  "f_edit_comment_f0e4": {
+    "message": "Rediger kommentar"
+  },
+  "f_edit_server_63e0": {
+    "message": "Rediger server"
+  },
+  "f_encrypted_e253": {
+    "message": "Kryptert"
+  },
+  "f_end_with_tags_ctrl_enter_to__83e2": {
+    "message": "Avslutt med #tagger · ⌘/Ctrl+Enter for å legge til"
+  },
+  "f_endpoint_address_ce54": {
+    "message": "Endepunktadresse"
+  },
+  "f_every_article_you_saved_goes_f744": {
+    "message": "Hver artikkel du har lagret sendes ut, også noen du kanskje ikke vil at andre skal lese. En backup som bare du kan lese, bør heller krypteres."
+  },
+  "f_everything_8340": {
+    "message": "Alt"
+  },
+  "f_everything_is_encrypted_on_t_1b86": {
+    "message": "Alt krypteres på denne enheten før det lastes opp. Notater, påminnelser og fulltekster er med, fordi bare du kan lese dem."
+  },
+  "f_files_go_into_a_subfolder_of_5a98": {
+    "message": "Filene havner i en undermappe. Det som holder mappen synkronisert (Syncthing, iCloud Drive, Dropbox, en USB-disk) bringer dem til de andre enhetene dine."
+  },
+  "f_fine_the_suggested_words_are_36c0": {
+    "message": "Greit. De foreslåtte ordene er sterkere."
+  },
+  "f_folder_7afd": {
+    "message": "Mappe"
+  },
+  "f_folder_access_is_waiting_b754": {
+    "message": "Mappetilgang venter"
+  },
+  "f_folder_on_the_server_b74c": {
+    "message": "Mappe på serveren"
+  },
+  "f_folder_960e": {
+    "message": "Mappe: {name}"
+  },
+  "f_for_syncing_and_backup_only__f767": {
+    "message": "For synkronisering og backup. Bare du kan lese den, og derfor ingen nettsider. Leverandøren ser kun uleselige filer."
+  },
+  "f_getting_changes_of_8fbb": {
+    "message": "Henter endringer {done} av {total}"
+  },
+  "f_grid_66b1": {
+    "message": "Rutenett"
+  },
+  "f_highlight_05c7": {
+    "message": "Markering"
+  },
+  "f_i_made_a_backup_of_this_devi_c05b": {
+    "message": "Jeg har tatt backup av denne enheten"
+  },
+  "f_i_saved_the_passphrase_81d0": {
+    "message": "Jeg har lagret passfrasen"
+  },
+  "f_in_nextcloud_settings_securi_4fee": {
+    "message": "I Nextcloud: Innstillinger → Sikkerhet → opprett et app-passord. Bruk aldri hovedpassordet ditt."
+  },
+  "f_joining_merges_this_device_w_8048": {
+    "message": "Å bli med slår denne enheten sammen med biblioteket i mappen: der de er ulike, vinner mappen. Ta først en backup av denne enheten."
+  },
+  "f_keep_your_library_in_step_ac_b5fe": {
+    "message": "Hold biblioteket i synk på tvers av enhetene dine, ta backup, eller publiser deler av det for andre. Hvert sted er en mappe på din egen server eller på denne datamaskinen. Ingenting forlater denne enheten før du legger til ett."
+  },
+  "f_looking_at_what_is_in_the_fo_1e05": {
+    "message": "Ser på hva som er i mappen…"
+  },
+  "f_make_a_backup_now_3046": {
+    "message": "Ta backup nå"
+  },
+  "f_make_an_access_key_just_for__abc9": {
+    "message": "Lag en tilgangsnøkkel bare for denne bucketen, med lov til å lese, skrive, liste og slette i den. Bruk aldri kontoens hovednøkkel."
+  },
+  "f_meant_for_a_folder_only_you__33c0": {
+    "message": "Beregnet på en mappe bare du kan åpne, for eksempel en privat backup eller en intern liste. Alle som kan åpne mappen, kan lese alt dette."
+  },
+  "f_mine_84d6": {
+    "message": "Mine"
+  },
+  "f_models_marked_eu_servers_run_7b00": {
+    "message": "Modeller merket «EU-servere» kjører bare på servere i Europa, ofte hos amerikanske skyselskaper. Bare modeller merket «EU-selskap» kommer også fra et europeisk selskap. Alle andre modeller fungerer fortsatt, er merket «Ikke på EU-servere» og kjører som vanlig; Auto-valg holder seg på EU-servere. EU-servere kan koste litt mer; prisene som vises er EU-prisene. Opplesing og tale-til-tekst har ingen EU-variant. Teksten din går fortsatt gjennom tjenesten vår (en server i Tyskland) og deretter OpenRouter, et amerikansk selskap, på veien."
+  },
+  "f_my_nextcloud_741d": {
+    "message": "Min Nextcloud"
+  },
+  "f_my_notes_and_comments_099b": {
+    "message": "Mine notater og kommentarer"
+  },
+  "f_new_note_7123": {
+    "message": "Nytt notat"
+  },
+  "f_new_server_9ee0": {
+    "message": "Ny server"
+  },
+  "f_nextcloud_webdav_2b5d": {
+    "message": "Nextcloud / WebDAV"
+  },
+  "f_nextcloud_owncloud_synology__5752": {
+    "message": "Nextcloud, ownCloud, Synology, de fleste NAS-bokser"
+  },
+  "f_no_notes_on_this_article_yet_b876": {
+    "message": "Ingen notater om denne artikkelen ennå."
+  },
+  "f_no_notes_yet_68d5": {
+    "message": "Ingen notater ennå."
+  },
+  "f_no_tags_yet_end_a_note_with__ae68": {
+    "message": "Ingen tagger ennå. Avslutt et notat med #tagg."
+  },
+  "f_not_eu_fb9c": {
+    "message": "Ikke EU"
+  },
+  "f_not_here_d910": {
+    "message": "Ikke her"
+  },
+  "f_not_on_eu_servers_abcb": {
+    "message": "Ikke på EU-servere"
+  },
+  "f_not_published_yet_d0ae": {
+    "message": "Ikke publisert ennå"
+  },
+  "f_not_synced_yet_7efe": {
+    "message": "Ikke synket ennå"
+  },
+  "f_note_c15d": {
+    "message": "Notat"
+  },
+  "f_notes_1b6a": {
+    "message": "Notater"
+  },
+  "f_notes_and_highlights_0e9c": {
+    "message": "Notater og markeringer"
+  },
+  "f_notes_without_an_article_5bd7": {
+    "message": "Notater uten artikkel"
+  },
+  "f_nothing_here_yet_5bfc": {
+    "message": "Ingenting her ennå."
+  },
+  "f_nothing_matches_03c3": {
+    "message": "Ingen treff."
+  },
+  "f_only_publish_articles_tagged_b789": {
+    "message": "Publiser bare artikler med tagg"
+  },
+  "f_open_the_page_ab11": {
+    "message": "Åpne siden"
+  },
+  "f_passphrase_2dc5": {
+    "message": "Passfrase"
+  },
+  "f_passphrase_keep_it_somewhere_ca8a": {
+    "message": "Passfrase: {k}. Oppbevar den trygt."
+  },
+  "f_paused_1feb": {
+    "message": "På pause"
+  },
+  "f_pinned_q_a_faa5": {
+    "message": "Festede Q&A"
+  },
+  "f_places_d03d": {
+    "message": "Steder"
+  },
+  "f_publish_everything_except_ar_74e7": {
+    "message": "Publiser alt unntatt artikler med tagg"
+  },
+  "f_publish_my_library_to_my_own_a71f": {
+    "message": "Publiser biblioteket mitt på min egen server"
+  },
+  "f_publish_now_ae60": {
+    "message": "Publiser nå"
+  },
+  "f_publishing_e1f2": {
+    "message": "Publiserer…"
+  },
+  "f_questions_you_pinned_with_an_5f9e": {
+    "message": "Spørsmål du festet, med svar"
+  },
+  "f_readable_00b5": {
+    "message": "Lesbar"
+  },
+  "f_reading_changes_of_9b27": {
+    "message": "Leser endringer {done} av {total}"
+  },
+  "f_region_789d": {
+    "message": "Region"
+  },
+  "f_reminders_b654": {
+    "message": "Påminnelser"
+  },
+  "f_remove_comment_2340": {
+    "message": "Fjern kommentar"
+  },
+  "f_remove_them_401d": {
+    "message": "Fjern dem"
+  },
+  "f_remove_this_highlight_3cc8": {
+    "message": "Fjerne denne markeringen?"
+  },
+  "f_remove_this_place_6efc": {
+    "message": "Fjern dette stedet"
+  },
+  "f_remove_this_place_the_files__ad9c": {
+    "message": "Fjerne dette stedet? Filene som allerede ligger på serveren din, slettes ikke."
+  },
+  "f_removing_a_place_stops_publi_caa4": {
+    "message": "Å fjerne et sted stopper publiseringen. Filene som allerede ligger på serveren din, blir liggende. En server som ingen steder bruker lenger, glemmes sammen med innloggingen."
+  },
+  "f_removing_of_9a27": {
+    "message": "Fjerner {done} av {total}"
+  },
+  "f_repeat_the_passphrase_c2a7": {
+    "message": "Gjenta passfrasen"
+  },
+  "f_restore_from_here_3623": {
+    "message": "Gjenopprett herfra"
+  },
+  "f_restored_item_changed_on_thi_f959": {
+    "message": "Gjenopprettet. {n} element endret på denne enheten."
+  },
+  "f_restored_items_changed_on_th_853c": {
+    "message": "Gjenopprettet. {n} elementer endret på denne enheten."
+  },
+  "f_restoring_daec": {
+    "message": "Gjenoppretter…"
+  },
+  "f_s3_compatible_4144": {
+    "message": "S3-kompatibel"
+  },
+  "f_save_5d68": {
+    "message": "Lagre"
+  },
+  "f_save_server_bca3": {
+    "message": "Lagre server"
+  },
+  "f_save_your_passphrase_3801": {
+    "message": "Lagre passfrasen din"
+  },
+  "f_saving_of_566a": {
+    "message": "Lagrer {done} av {total}"
+  },
+  "f_scan_it_with_ai_summary_help_572d": {
+    "message": "Skann den med AI Summary Helper på telefonen: Innstillinger → Bibliotekssynk → Skann kode. Koden inneholder serverinnloggingen din, så vis den bare til din egen telefon. Den skjuler seg selv etter ett minutt."
+  },
+  "f_search_highlights_comments_n_4f81": {
+    "message": "Søk i markeringer, kommentarer, notater…"
+  },
+  "f_secret_access_key_d3a2": {
+    "message": "Hemmelig tilgangsnøkkel"
+  },
+  "f_selected_3294": {
+    "message": "Valgt"
+  },
+  "f_server_02f2": {
+    "message": "Server"
+  },
+  "f_server_address_025e": {
+    "message": "Serveradresse"
+  },
+  "f_server_name_22f5": {
+    "message": "Servernavn"
+  },
+  "f_server_saved_27e1": {
+    "message": "Server lagret."
+  },
+  "f_show_2e5c": {
+    "message": "Vis"
+  },
+  "f_show_code_for_the_phone_a8c1": {
+    "message": "Vis kode til telefonen"
+  },
+  "f_show_passphrase_dda0": {
+    "message": "Vis passfrase"
+  },
+  "f_six_random_words_you_will_ty_e18c": {
+    "message": "Seks tilfeldige ord. Du skriver dem inn på de andre enhetene dine, så skriv dem ned eller ha dem i en passordbehandler. De lagres ingen andre steder: mister du dem, kan ingen åpne filene dine."
+  },
+  "f_soon_da12": {
+    "message": "Snart"
+  },
+  "f_strong_db5c": {
+    "message": "Sterk."
+  },
+  "f_suggest_random_words_instead_a3fb": {
+    "message": "Foreslå tilfeldige ord i stedet"
+  },
+  "f_sync_backup_9786": {
+    "message": "Synk og backup"
+  },
+  "f_sync_my_devices_79fb": {
+    "message": "Synk enhetene mine"
+  },
+  "f_sync_now_d8fe": {
+    "message": "Synk nå"
+  },
+  "f_syncthing_icloud_drive_dropb_a87d": {
+    "message": "Syncthing, iCloud Drive, Dropbox eller en USB-disk holder den synkronisert."
+  },
+  "f_test_connection_b6b7": {
+    "message": "Test tilkobling"
+  },
+  "f_the_browser_could_not_rememb_f257": {
+    "message": "Nettleseren kunne ikke huske denne mappen."
+  },
+  "f_the_browser_did_not_allow_ac_5245": {
+    "message": "Nettleseren ga ikke tilgang."
+  },
+  "f_the_browser_takes_back_acces_aaf9": {
+    "message": "Nettleseren tar tilbake tilgangen til en mappe når den startes på nytt, og bare et klikk fra deg kan gi den tilbake. Frem til da synkroniseres ikke mappen."
+  },
+  "f_the_kind_of_a_place_cannot_b_8037": {
+    "message": "Typen til et sted kan ikke endres. Legg til et nytt sted for å bruke den andre typen."
+  },
+  "f_the_login_is_saved_once_for__bcba": {
+    "message": "Innloggingen lagres én gang for alle."
+  },
+  "f_the_restore_did_not_finish_a4b5": {
+    "message": "Gjenopprettingen ble ikke ferdig."
+  },
+  "f_the_save_for_later_time_and__7dff": {
+    "message": "Tidspunktet for «lagre til senere» og grunnen din til det."
+  },
+  "f_the_service_picks_a_model_fo_a591": {
+    "message": "Tjenesten velger en modell for hver forespørsel: korte tekster får en lett modell, lange en større."
+  },
+  "f_the_two_passphrases_are_not__e90b": {
+    "message": "De to passfrasene er ikke like."
+  },
+  "f_these_six_words_are_the_key__f595": {
+    "message": "Disse seks ordene er nøkkelen til «{name}». Du skriver dem inn på hver nye enhet. Mister du dem, kan ingen lese filene, ikke engang vi. Lagre dem i en passordbehandler."
+  },
+  "f_this_device_was_away_for_a_l_46de": {
+    "message": "Denne enheten var borte lenge. Bare det som er endret siden, ble sendt, og ingenting ble slettet."
+  },
+  "f_this_device_writes_everythin_1070": {
+    "message": "Denne enheten skriver alt til stedet og leser det aldri tilbake. Gjenopprett herfra når du trenger det."
+  },
+  "f_this_folder_already_holds_an_9f1e": {
+    "message": "Denne mappen inneholder allerede et kryptert bibliotek. Skriv inn passfrasen (ordene du lagret)."
+  },
+  "f_this_folder_already_holds_an_8e8c": {
+    "message": "Denne mappen inneholder allerede et kryptert bibliotek. Skriv inn passfrasen nedenfor, og trykk Koble til igjen."
+  },
+  "f_this_model_does_not_run_on_e_21da": {
+    "message": "Denne modellen kjører ikke på EU-servere. Bruke {name} (EU) i stedet?"
+  },
+  "f_this_place_publishes_only_th_f3b8": {
+    "message": "Dette stedet bare publiserer: denne enheten skriver filene og leser dem aldri tilbake."
+  },
+  "f_this_place_uses_your_own_pas_823b": {
+    "message": "Dette stedet bruker din egen passfrase. Den er ikke i koden: skriv den inn på telefonen."
+  },
+  "f_this_place_uses_your_own_pas_b61e": {
+    "message": "Dette stedet bruker din egen passfrase. Den lagres ikke på denne enheten, så den kan ikke vises."
+  },
+  "f_to_publish_on_your_own_websi_9caf": {
+    "message": "For publisering på din egen nettside: vanlige filer som alle med lenken kan lese."
+  },
+  "f_turn_on_to_run_models_on_ser_af13": {
+    "message": "Slå på for å kjøre modeller på servere i Europa der de tilbyr det. Alle andre modeller fungerer fortsatt og er merket."
+  },
+  "f_unchanged_e05e": {
+    "message": "Uendret"
+  },
+  "f_updating_the_list_d48e": {
+    "message": "Oppdaterer listen…"
+  },
+  "f_uploading_of_c6b9": {
+    "message": "Laster opp {done} av {total}"
+  },
+  "f_use_my_own_passphrase_c42a": {
+    "message": "Bruk min egen passfrase"
+  },
+  "f_use_4021": {
+    "message": "Bruk {name}"
+  },
+  "f_username_d4d9": {
+    "message": "Brukernavn"
+  },
+  "f_view_aa18": {
+    "message": "Vis"
+  },
+  "f_weak_use_at_least_12_charact_690f": {
+    "message": "Svak: bruk minst 12 tegn, eller de foreslåtte ordene."
+  },
+  "f_website_list_be8a": {
+    "message": "Nettsideliste"
+  },
+  "f_what_goes_out_1113": {
+    "message": "Hva som sendes ut"
+  },
+  "f_what_it_is_for_84ef": {
+    "message": "Hva det er til"
+  },
+  "f_who_can_read_it_ceb4": {
+    "message": "Hvem kan lese det"
+  },
+  "f_with_a_tag_c382": {
+    "message": "Med en tagg"
+  },
+  "f_works_in_chrome_and_edge_on__f2c7": {
+    "message": "Fungerer i Chrome og Edge på datamaskin."
+  },
+  "f_write_a_note_about_this_arti_e1b4": {
+    "message": "Skriv et notat om denne artikkelen…"
+  },
+  "f_write_a_note_or_a_thought_wo_67b1": {
+    "message": "Skriv et notat, eller en tanke verdt å ta vare på…"
+  },
+  "f_write_a_note_c7c9": {
+    "message": "Skriv et notat…"
+  },
+  "f_write_one_below_or_highlight_7627": {
+    "message": "Skriv ett nedenfor, eller marker tekst på en hvilken som helst side. Dine markeringer og AI-ens vises også her."
+  },
+  "f_your_articles_highlights_not_9c7c": {
+    "message": "Artiklene, markeringene, notatene, samlingene, sammendragene og fulltekstene dine, holdt i synk på alle enheter som kobler seg til med samme passfrase."
+  },
+  "f_your_own_index_html_is_in_th_8069": {
+    "message": "Din egen index.html ligger i denne mappen, så visningen ble ikke erstattet."
+  },
+  "f_your_own_notes_and_the_comme_6ef8": {
+    "message": "Dine egne notater og kommentarene til markeringene dine."
+  },
+  "f_your_passphrase_2512": {
+    "message": "Passfrasen din"
+  },
+  "f_your_yellow_and_ai_highlight_15a0": {
+    "message": "Dine gule og AI-markeringer"
+  },
+  "f_backed_up_ago_845b": {
+    "message": "backup for {t} siden"
+  },
+  "f_picks_a_model_for_each_reque_519c": {
+    "message": "velger en modell for hver forespørsel"
+  },
+  "f_published_ago_0576": {
+    "message": "publisert for {t} siden"
+  },
+  "f_synced_ago_174c": {
+    "message": "synket for {t} siden"
+  },
+  "f_of_9ced": {
+    "message": "{a} av {b}"
+  },
+  "f_ai_highlight_8f93": {
+    "message": "{n} AI-markering"
+  },
+  "f_ai_highlights_7da0": {
+    "message": "{n} AI-markeringer"
+  },
+  "f_file_is_no_longer_wanted_her_48c4": {
+    "message": "{n} fil er ikke lenger ønsket her og ville blitt fjernet fra serveren din. Sjekk at dette stemmer."
+  },
+  "f_files_are_no_longer_wanted_h_6975": {
+    "message": "{n} filer er ikke lenger ønsket her og ville blitt fjernet fra serveren din. Sjekk at dette stemmer."
+  },
+  "f_files_had_problems_a60b": {
+    "message": "{n} filer hadde problemer"
+  },
+  "f_highlight_5f43": {
+    "message": "{n} markering"
+  },
+  "f_highlights_d890": {
+    "message": "{n} markeringer"
+  },
+  "f_more_article_was_deleted_on__0e7e": {
+    "message": "{n} artikkel til ble slettet på en annen enhet. Den ligger her til du sier fra. Sjekk at dette stemmer."
+  },
+  "f_more_articles_were_deleted_o_8348": {
+    "message": "{n} artikler til ble slettet på andre enheter. De ligger her til du sier fra. Sjekk at dette stemmer."
+  },
+  "f_note_b2a1": {
+    "message": "{n} notat"
+  },
+  "f_notes_8096": {
+    "message": "{n} notater"
+  },
+  "f_place_b298": {
+    "message": "{n} sted"
+  },
+  "f_place_uses_this_server_133b": {
+    "message": "{n} sted bruker denne serveren."
+  },
+  "f_places_a7f1": {
+    "message": "{n} steder"
+  },
+  "f_places_use_this_server_4df9": {
+    "message": "{n} steder bruker denne serveren."
   }
 }

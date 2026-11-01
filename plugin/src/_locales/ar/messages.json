@@ -5675,5 +5675,671 @@
   },
   "f_what_s_new_in_9c82": {
     "message": "الجديد في {v}"
+  },
+  "f_a_folder_on_this_computer_bbe4": {
+    "message": "مجلد على هذا الكمبيوتر"
+  },
+  "f_a_simple_web_page_index_html_d002": {
+    "message": "صفحة ويب بسيطة (index.html) تقرأ library.json: بحث ووسوم وخط زمني ورسم للوسوم. تحتاج إلى خادم يعرض صفحات HTML، مثل خادم الويب الخاص بك أو حاوية عامة. مشاركات Nextcloud لا تعمل."
+  },
+  "f_ai_135f": {
+    "message": "AI"
+  },
+  "f_ai_highlight_b91f": {
+    "message": "تمييز AI"
+  },
+  "f_aws_cloudflare_r2_backblaze__139d": {
+    "message": "AWS, Cloudflare R2, Backblaze, MinIO, Wasabi"
+  },
+  "f_aws_https_s3_region_amazonaw_c68d": {
+    "message": "AWS: https://s3.<region>.amazonaws.com · Cloudflare R2: https://<account>.r2.cloudflarestorage.com · Backblaze: https://s3.<region>.backblazeb2.com"
+  },
+  "f_access_is_allowed_7031": {
+    "message": "الوصول مسموح."
+  },
+  "f_access_key_id_8d75": {
+    "message": "معرّف مفتاح الوصول"
+  },
+  "f_add_a_comment_9c08": {
+    "message": "أضف تعليقًا…"
+  },
+  "f_add_a_place_799c": {
+    "message": "أضف مكانًا"
+  },
+  "f_add_note_9108": {
+    "message": "أضف ملاحظة"
+  },
+  "f_all_except_a_tag_ca3e": {
+    "message": "الكل عدا وسم"
+  },
+  "f_all_places_fdbc": {
+    "message": "كل الأماكن"
+  },
+  "f_allow_access_again_cc7c": {
+    "message": "اسمح بالوصول مجددًا"
+  },
+  "f_allow_access_to_599a": {
+    "message": "اسمح بالوصول إلى {name}"
+  },
+  "f_also_publish_a_viewer_page_2d07": {
+    "message": "انشر أيضًا صفحة عرض"
+  },
+  "f_an_index_html_that_is_not_ou_889b": {
+    "message": "يوجد index.html ليس من إنشائنا في هذا المجلد، فلم تُكتب صفحة العرض. استخدم مجلدًا آخر."
+  },
+  "f_another_suggestion_09e8": {
+    "message": "اقتراح آخر"
+  },
+  "f_anyone_who_can_open_this_fol_86f7": {
+    "message": "يمكن لأي شخص يفتح هذا المجلد قراءة هذه الملفات. استخدم مجلدًا تتحكم فيه، وأبقِه خاصًا ما لم ترد النشر."
+  },
+  "f_app_password_6505": {
+    "message": "كلمة مرور التطبيق"
+  },
+  "f_at_least_12_characters_it_is_f78b": {
+    "message": "12 حرفًا على الأقل. لا تُحفظ في أي مكان: إذا فقدتها فلن يتمكن أحد من فتح الملفات."
+  },
+  "f_back_up_now_63b3": {
+    "message": "نسخ احتياطي الآن"
+  },
+  "f_backup_only_e75f": {
+    "message": "نسخ احتياطي فقط"
+  },
+  "f_bring_everything_in_this_pla_0150": {
+    "message": "استعادة كل ما في هذا المكان إلى هذا الجهاز؟ عند الاختلاف يُعتمد ما في المكان. لا يُحذف شيء هنا."
+  },
+  "f_bucket_3557": {
+    "message": "الحاوية"
+  },
+  "f_by_article_5c16": {
+    "message": "حسب المقال"
+  },
+  "f_changes_here_apply_to_every__822d": {
+    "message": "التغييرات هنا تسري على كل الأماكن في هذا الخادم."
+  },
+  "f_checked_the_folder_restored__7f16": {
+    "message": "فُحص المجلد: استُعيد {r}، ووُجد {o} من المتبقيات."
+  },
+  "f_checking_your_library_f467": {
+    "message": "جارٍ فحص مكتبتك…"
+  },
+  "f_choose_6160": {
+    "message": "اختر"
+  },
+  "f_choose_a_passphrase_c9a1": {
+    "message": "اختر عبارة مرور"
+  },
+  "f_choose_another_folder_1129": {
+    "message": "اختر مجلدًا آخر"
+  },
+  "f_cloudflare_r2_auto_leave_the_74e0": {
+    "message": "Cloudflare R2: auto. اترك الافتراضي إن لم يطلب مزوّدك ذلك."
+  },
+  "f_code_for_the_phone_8494": {
+    "message": "رمز للهاتف"
+  },
+  "f_comment_9ffe": {
+    "message": "تعليق"
+  },
+  "f_connect_and_publish_3387": {
+    "message": "اتصل وانشر"
+  },
+  "f_connected_the_folder_is_empt_688d": {
+    "message": "تم الاتصال. المجلد فارغ، لذا ستُنشأ مكتبة مشفّرة جديدة."
+  },
+  "f_connected_this_folder_alread_7ea2": {
+    "message": "تم الاتصال. يحتوي هذا المجلد على مكتبة مشفّرة بالفعل."
+  },
+  "f_connected_article_matches_b205": {
+    "message": "تم الاتصال. يوجد {n} مقال مطابق."
+  },
+  "f_connected_articles_match_40f2": {
+    "message": "تم الاتصال. يوجد {n} مقالات مطابقة."
+  },
+  "f_continuing_file_left_4bdc": {
+    "message": "جارٍ المتابعة… بقي {n} ملف"
+  },
+  "f_continuing_files_left_7869": {
+    "message": "جارٍ المتابعة… بقي {n} ملفات"
+  },
+  "f_copied_2cb1": {
+    "message": "تم النسخ."
+  },
+  "f_copies_of_other_people_s_art_db7e": {
+    "message": "نسخ من مقالات أشخاص آخرين. تأكد أن لك حق مشاركتها. تصبح الملفات أكبر بكثير."
+  },
+  "f_copy_did_not_work_select_the_1dcb": {
+    "message": "لم ينجح النسخ. حدد الكلمات وانسخها يدويًا."
+  },
+  "f_copy_puts_the_words_in_one_p_9b1c": {
+    "message": "ينسخ الزر الكلمات متصلة بشرطات. هذا الشكل يصمد في ملفات الإعداد والطرفيات وتطبيقات الدردشة؛ ويصح إدخالها بمسافات أو بشرطات."
+  },
+  "f_could_not_reach_the_server_aa7e": {
+    "message": "تعذّر الوصول إلى الخادم"
+  },
+  "f_could_not_save_this_place_cf23": {
+    "message": "تعذّر حفظ هذا المكان."
+  },
+  "f_created_for_you_use_one_fold_0390": {
+    "message": "أُنشئ لك. استخدم مجلدًا لكل غرض، مثل public لقائمة موقع و backup لنسخة كاملة."
+  },
+  "f_danger_zone_19b4": {
+    "message": "منطقة الخطر"
+  },
+  "f_delete_them_here_too_9d48": {
+    "message": "احذفها هنا أيضًا"
+  },
+  "f_delete_this_note_3253": {
+    "message": "حذف هذه الملاحظة؟"
+  },
+  "f_download_bb19": {
+    "message": "تنزيل"
+  },
+  "f_eu_1f4f": {
+    "message": "EU"
+  },
+  "f_eu_company_ef04": {
+    "message": "شركة أوروبية"
+  },
+  "f_eu_servers_987b": {
+    "message": "خوادم أوروبية"
+  },
+  "f_each_article_becomes_one_fil_f81c": {
+    "message": "يصبح كل مقال ملفًا واحدًا، إضافة إلى قائمة لموقعك (library.json)."
+  },
+  "f_edit_comment_f0e4": {
+    "message": "تعديل التعليق"
+  },
+  "f_edit_server_63e0": {
+    "message": "تعديل الخادم"
+  },
+  "f_encrypted_e253": {
+    "message": "مشفّر"
+  },
+  "f_end_with_tags_ctrl_enter_to__83e2": {
+    "message": "اختم بـ #وسوم · ⌘/Ctrl+Enter للإضافة"
+  },
+  "f_endpoint_address_ce54": {
+    "message": "عنوان نقطة النهاية"
+  },
+  "f_every_article_you_saved_goes_f744": {
+    "message": "يُرسَل كل مقال حفظته، بما فيها ما قد لا تريد أن يقرأه الآخرون. النسخة التي لا يقرؤها غيرك يجب أن تكون مشفّرة بدلًا من ذلك."
+  },
+  "f_everything_8340": {
+    "message": "كل شيء"
+  },
+  "f_everything_is_encrypted_on_t_1b86": {
+    "message": "يُشفَّر كل شيء على هذا الجهاز قبل رفعه. تشمل الملاحظات والتذكيرات والنصوص الكاملة، لأنك وحدك من يقرؤها."
+  },
+  "f_files_go_into_a_subfolder_of_5a98": {
+    "message": "تُوضع الملفات في مجلد فرعي منه. ما يُبقي هذا المجلد متزامنًا (Syncthing أو iCloud Drive أو Dropbox أو قرص USB) ينقلها إلى أجهزتك الأخرى."
+  },
+  "f_fine_the_suggested_words_are_36c0": {
+    "message": "حسنًا. الكلمات المقترحة أقوى."
+  },
+  "f_folder_7afd": {
+    "message": "مجلد"
+  },
+  "f_folder_access_is_waiting_b754": {
+    "message": "الوصول إلى المجلد بانتظارك"
+  },
+  "f_folder_on_the_server_b74c": {
+    "message": "مجلد على الخادم"
+  },
+  "f_folder_960e": {
+    "message": "المجلد: {name}"
+  },
+  "f_for_syncing_and_backup_only__f767": {
+    "message": "للمزامنة والنسخ الاحتياطي. أنت وحدك من يقرؤها، فلا يستطيع أي موقع ذلك. يرى المزوّد ملفات مشوّشة."
+  },
+  "f_getting_changes_of_8fbb": {
+    "message": "جارٍ جلب التغييرات {done} من {total}"
+  },
+  "f_grid_66b1": {
+    "message": "شبكة"
+  },
+  "f_highlight_05c7": {
+    "message": "تمييز"
+  },
+  "f_i_made_a_backup_of_this_devi_c05b": {
+    "message": "أخذت نسخة احتياطية من هذا الجهاز"
+  },
+  "f_i_saved_the_passphrase_81d0": {
+    "message": "حفظت عبارة المرور"
+  },
+  "f_in_nextcloud_settings_securi_4fee": {
+    "message": "في Nextcloud: الإعدادات ← الأمان ← أنشئ كلمة مرور تطبيق. لا تستخدم كلمة مرورك الرئيسية أبدًا."
+  },
+  "f_joining_merges_this_device_w_8048": {
+    "message": "الانضمام يدمج هذا الجهاز مع المكتبة في المجلد: عند الاختلاف يُعتمد ما في المجلد. خذ نسخة احتياطية من هذا الجهاز أولًا."
+  },
+  "f_keep_your_library_in_step_ac_b5fe": {
+    "message": "أبقِ مكتبتك متزامنة بين أجهزتك، أو انسخها احتياطيًا، أو انشر جزءًا منها للآخرين. كل مكان هو مجلد على خادمك أو على هذا الكمبيوتر. لا يغادر شيء هذا الجهاز قبل أن تضيف مكانًا."
+  },
+  "f_looking_at_what_is_in_the_fo_1e05": {
+    "message": "جارٍ النظر في محتوى المجلد…"
+  },
+  "f_make_a_backup_now_3046": {
+    "message": "انسخ احتياطيًا الآن"
+  },
+  "f_make_an_access_key_just_for__abc9": {
+    "message": "أنشئ مفتاح وصول لهذه الحاوية فقط، مع إذن القراءة والكتابة والعرض والحذف فيها. لا تستخدم المفتاح الرئيسي لحسابك."
+  },
+  "f_meant_for_a_folder_only_you__33c0": {
+    "message": "مخصص لمجلد لا يفتحه غيرك، مثل نسخة احتياطية خاصة أو قائمة داخلية. يمكن لأي شخص يفتح المجلد قراءة كل هذا."
+  },
+  "f_mine_84d6": {
+    "message": "ملكي"
+  },
+  "f_models_marked_eu_servers_run_7b00": {
+    "message": "النماذج المعلَّمة بـ «خوادم أوروبية» تعمل على خوادم في أوروبا فقط، وغالبًا خوادم شركات سحابية أمريكية. فقط النماذج المعلَّمة بـ «شركة أوروبية» تعود أيضًا لشركة أوروبية. كل نموذج آخر يعمل أيضًا ويُعلَّم بـ «ليس على خوادم أوروبية» ويعمل كالمعتاد؛ وخيارات Auto تبقى على الخوادم الأوروبية. قد تكلّف الخوادم الأوروبية أكثر قليلًا؛ والأسعار المعروضة هي الأوروبية. القراءة بصوت عالٍ والتحويل من كلام إلى نص ليس لهما خيار أوروبي. يمر نصك عبر خدمتنا (خادم في ألمانيا) ثم OpenRouter، شركة أمريكية، في طريقه."
+  },
+  "f_my_nextcloud_741d": {
+    "message": "Nextcloud الخاص بي"
+  },
+  "f_my_notes_and_comments_099b": {
+    "message": "ملاحظاتي وتعليقاتي"
+  },
+  "f_new_note_7123": {
+    "message": "ملاحظة جديدة"
+  },
+  "f_new_server_9ee0": {
+    "message": "خادم جديد"
+  },
+  "f_nextcloud_webdav_2b5d": {
+    "message": "Nextcloud / WebDAV"
+  },
+  "f_nextcloud_owncloud_synology__5752": {
+    "message": "Nextcloud وownCloud وSynology ومعظم أجهزة NAS"
+  },
+  "f_no_notes_on_this_article_yet_b876": {
+    "message": "لا ملاحظات على هذا المقال بعد."
+  },
+  "f_no_notes_yet_68d5": {
+    "message": "لا ملاحظات بعد."
+  },
+  "f_no_tags_yet_end_a_note_with__ae68": {
+    "message": "لا وسوم بعد. اختم ملاحظة بـ #وسم."
+  },
+  "f_not_eu_fb9c": {
+    "message": "ليس EU"
+  },
+  "f_not_here_d910": {
+    "message": "ليس هنا"
+  },
+  "f_not_on_eu_servers_abcb": {
+    "message": "ليس على خوادم أوروبية"
+  },
+  "f_not_published_yet_d0ae": {
+    "message": "لم يُنشر بعد"
+  },
+  "f_not_synced_yet_7efe": {
+    "message": "لم يُزامَن بعد"
+  },
+  "f_note_c15d": {
+    "message": "ملاحظة"
+  },
+  "f_notes_1b6a": {
+    "message": "ملاحظات"
+  },
+  "f_notes_and_highlights_0e9c": {
+    "message": "ملاحظات وتمييزات"
+  },
+  "f_notes_without_an_article_5bd7": {
+    "message": "ملاحظات بلا مقال"
+  },
+  "f_nothing_here_yet_5bfc": {
+    "message": "لا شيء هنا بعد."
+  },
+  "f_nothing_matches_03c3": {
+    "message": "لا نتائج مطابقة."
+  },
+  "f_only_publish_articles_tagged_b789": {
+    "message": "انشر المقالات الموسومة فقط"
+  },
+  "f_open_the_page_ab11": {
+    "message": "افتح الصفحة"
+  },
+  "f_passphrase_2dc5": {
+    "message": "عبارة المرور"
+  },
+  "f_passphrase_keep_it_somewhere_ca8a": {
+    "message": "عبارة المرور: {k}. احفظها في مكان آمن."
+  },
+  "f_paused_1feb": {
+    "message": "متوقف"
+  },
+  "f_pinned_q_a_faa5": {
+    "message": "أسئلة مثبّتة"
+  },
+  "f_places_d03d": {
+    "message": "الأماكن"
+  },
+  "f_publish_everything_except_ar_74e7": {
+    "message": "انشر كل شيء عدا المقالات الموسومة"
+  },
+  "f_publish_my_library_to_my_own_a71f": {
+    "message": "انشر مكتبتي على خادمي"
+  },
+  "f_publish_now_ae60": {
+    "message": "انشر الآن"
+  },
+  "f_publishing_e1f2": {
+    "message": "جارٍ النشر…"
+  },
+  "f_questions_you_pinned_with_an_5f9e": {
+    "message": "الأسئلة التي ثبّتّها مع أجوبتها"
+  },
+  "f_readable_00b5": {
+    "message": "قابل للقراءة"
+  },
+  "f_reading_changes_of_9b27": {
+    "message": "جارٍ قراءة التغييرات {done} من {total}"
+  },
+  "f_region_789d": {
+    "message": "المنطقة"
+  },
+  "f_reminders_b654": {
+    "message": "تذكيرات"
+  },
+  "f_remove_comment_2340": {
+    "message": "احذف التعليق"
+  },
+  "f_remove_them_401d": {
+    "message": "أزلها"
+  },
+  "f_remove_this_highlight_3cc8": {
+    "message": "إزالة هذا التمييز؟"
+  },
+  "f_remove_this_place_6efc": {
+    "message": "أزل هذا المكان"
+  },
+  "f_remove_this_place_the_files__ad9c": {
+    "message": "إزالة هذا المكان؟ لا تُحذف الملفات الموجودة على خادمك."
+  },
+  "f_removing_a_place_stops_publi_caa4": {
+    "message": "إزالة مكان توقف النشر. تبقى الملفات الموجودة على خادمك كما هي. الخادم الذي لم يعد يستخدمه أي مكان يُنسى مع بيانات دخوله."
+  },
+  "f_removing_of_9a27": {
+    "message": "جارٍ إزالة {done} من {total}"
+  },
+  "f_repeat_the_passphrase_c2a7": {
+    "message": "أعد كتابة عبارة المرور"
+  },
+  "f_restore_from_here_3623": {
+    "message": "استعد من هنا"
+  },
+  "f_restored_item_changed_on_thi_f959": {
+    "message": "تمت الاستعادة. تغيّر {n} عنصر على هذا الجهاز."
+  },
+  "f_restored_items_changed_on_th_853c": {
+    "message": "تمت الاستعادة. تغيّرت {n} عناصر على هذا الجهاز."
+  },
+  "f_restoring_daec": {
+    "message": "جارٍ الاستعادة…"
+  },
+  "f_s3_compatible_4144": {
+    "message": "متوافق مع S3"
+  },
+  "f_save_5d68": {
+    "message": "حفظ"
+  },
+  "f_save_server_bca3": {
+    "message": "احفظ الخادم"
+  },
+  "f_save_your_passphrase_3801": {
+    "message": "احفظ عبارة المرور"
+  },
+  "f_saving_of_566a": {
+    "message": "جارٍ حفظ {done} من {total}"
+  },
+  "f_scan_it_with_ai_summary_help_572d": {
+    "message": "امسحه ضوئيًا بتطبيق AI Summary Helper على هاتفك: الإعدادات ← مزامنة المكتبة ← مسح الرمز. يحتوي الرمز على بيانات دخول خادمك، فلا تعرضه إلا على هاتفك. يختفي من تلقاء نفسه بعد دقيقة."
+  },
+  "f_search_highlights_comments_n_4f81": {
+    "message": "ابحث في التمييزات والتعليقات والملاحظات…"
+  },
+  "f_secret_access_key_d3a2": {
+    "message": "مفتاح الوصول السري"
+  },
+  "f_selected_3294": {
+    "message": "المحدد"
+  },
+  "f_server_02f2": {
+    "message": "الخادم"
+  },
+  "f_server_address_025e": {
+    "message": "عنوان الخادم"
+  },
+  "f_server_name_22f5": {
+    "message": "اسم الخادم"
+  },
+  "f_server_saved_27e1": {
+    "message": "تم حفظ الخادم."
+  },
+  "f_show_2e5c": {
+    "message": "إظهار"
+  },
+  "f_show_code_for_the_phone_a8c1": {
+    "message": "أظهر رمز الهاتف"
+  },
+  "f_show_passphrase_dda0": {
+    "message": "أظهر عبارة المرور"
+  },
+  "f_six_random_words_you_will_ty_e18c": {
+    "message": "ست كلمات عشوائية. ستكتبها على أجهزتك الأخرى، فدوّنها أو احفظها في مدير كلمات المرور. لا تُحفظ في أي مكان آخر: إذا فقدتها فلن يتمكن أحد من فتح ملفاتك."
+  },
+  "f_soon_da12": {
+    "message": "قريبًا"
+  },
+  "f_strong_db5c": {
+    "message": "قوية."
+  },
+  "f_suggest_random_words_instead_a3fb": {
+    "message": "اقترح كلمات عشوائية بدلًا من ذلك"
+  },
+  "f_sync_backup_9786": {
+    "message": "مزامنة ونسخ"
+  },
+  "f_sync_my_devices_79fb": {
+    "message": "زامن أجهزتي"
+  },
+  "f_sync_now_d8fe": {
+    "message": "زامن الآن"
+  },
+  "f_syncthing_icloud_drive_dropb_a87d": {
+    "message": "Syncthing أو iCloud Drive أو Dropbox أو قرص USB تُبقيه متزامنًا."
+  },
+  "f_test_connection_b6b7": {
+    "message": "اختبر الاتصال"
+  },
+  "f_the_browser_could_not_rememb_f257": {
+    "message": "تعذّر على المتصفح تذكّر هذا المجلد."
+  },
+  "f_the_browser_did_not_allow_ac_5245": {
+    "message": "لم يسمح المتصفح بالوصول."
+  },
+  "f_the_browser_takes_back_acces_aaf9": {
+    "message": "يسحب المتصفح الوصول إلى المجلد عند إعادة تشغيله، ولا يعيده إلا نقرة منك. حتى ذلك الحين لا يُزامَن المجلد."
+  },
+  "f_the_kind_of_a_place_cannot_b_8037": {
+    "message": "لا يمكن تغيير نوع المكان. أضف مكانًا آخر لاستخدام النوع الآخر."
+  },
+  "f_the_login_is_saved_once_for__bcba": {
+    "message": "يُحفظ تسجيل الدخول مرة واحدة للجميع."
+  },
+  "f_the_restore_did_not_finish_a4b5": {
+    "message": "لم تكتمل الاستعادة."
+  },
+  "f_the_save_for_later_time_and__7dff": {
+    "message": "وقت الحفظ للقراءة لاحقًا وسببك لذلك."
+  },
+  "f_the_service_picks_a_model_fo_a591": {
+    "message": "تختار الخدمة نموذجًا لكل طلب: النصوص القصيرة تأخذ نموذجًا خفيفًا والطويلة نموذجًا أكبر."
+  },
+  "f_the_two_passphrases_are_not__e90b": {
+    "message": "عبارتا المرور غير متطابقتين."
+  },
+  "f_these_six_words_are_the_key__f595": {
+    "message": "هذه الكلمات الست هي مفتاح «{name}». تكتبها على كل جهاز جديد. إذا فقدتها فلن يستطيع أحد قراءة الملفات، ولا نحن. احفظها في مدير كلمات المرور."
+  },
+  "f_this_device_was_away_for_a_l_46de": {
+    "message": "غاب هذا الجهاز طويلًا. أُرسل فقط ما تغيّر منذ ذلك الحين، ولم يُحذف شيء."
+  },
+  "f_this_device_writes_everythin_1070": {
+    "message": "يكتب هذا الجهاز كل شيء إلى المكان ولا يقرؤه مرة أخرى. استعد منه عند الحاجة."
+  },
+  "f_this_folder_already_holds_an_9f1e": {
+    "message": "يحتوي هذا المجلد على مكتبة مشفّرة بالفعل. أدخل عبارة المرور الخاصة بها (الكلمات التي حفظتها)."
+  },
+  "f_this_folder_already_holds_an_8e8c": {
+    "message": "يحتوي هذا المجلد على مكتبة مشفّرة بالفعل. أدخل عبارة المرور أدناه ثم اضغط اتصال مرة أخرى."
+  },
+  "f_this_model_does_not_run_on_e_21da": {
+    "message": "هذا النموذج لا يعمل على خوادم أوروبية. استخدم {name} (EU) بدلًا منه؟"
+  },
+  "f_this_place_publishes_only_th_f3b8": {
+    "message": "هذا المكان للنشر فقط: يكتب هذا الجهاز الملفات ولا يقرؤها مرة أخرى."
+  },
+  "f_this_place_uses_your_own_pas_823b": {
+    "message": "يستخدم هذا المكان عبارة المرور الخاصة بك. ليست في الرمز: اكتبها على الهاتف."
+  },
+  "f_this_place_uses_your_own_pas_b61e": {
+    "message": "يستخدم هذا المكان عبارة المرور الخاصة بك. ليست محفوظة على هذا الجهاز، لذا لا يمكن عرضها."
+  },
+  "f_to_publish_on_your_own_websi_9caf": {
+    "message": "للنشر على موقعك: ملفات عادية يقرؤها كل من لديه الرابط."
+  },
+  "f_turn_on_to_run_models_on_ser_af13": {
+    "message": "فعّله لتشغيل النماذج على خوادم في أوروبا حيث يتوفر ذلك. تبقى النماذج الأخرى تعمل وتُعلَّم."
+  },
+  "f_unchanged_e05e": {
+    "message": "دون تغيير"
+  },
+  "f_updating_the_list_d48e": {
+    "message": "جارٍ تحديث القائمة…"
+  },
+  "f_uploading_of_c6b9": {
+    "message": "جارٍ رفع {done} من {total}"
+  },
+  "f_use_my_own_passphrase_c42a": {
+    "message": "استخدم عبارة مروري"
+  },
+  "f_use_4021": {
+    "message": "استخدم {name}"
+  },
+  "f_username_d4d9": {
+    "message": "اسم المستخدم"
+  },
+  "f_view_aa18": {
+    "message": "عرض"
+  },
+  "f_weak_use_at_least_12_charact_690f": {
+    "message": "ضعيفة: استخدم 12 حرفًا على الأقل أو الكلمات المقترحة."
+  },
+  "f_website_list_be8a": {
+    "message": "قائمة الموقع"
+  },
+  "f_what_goes_out_1113": {
+    "message": "ما الذي يُرسل"
+  },
+  "f_what_it_is_for_84ef": {
+    "message": "الغرض منه"
+  },
+  "f_who_can_read_it_ceb4": {
+    "message": "من يقرؤه"
+  },
+  "f_with_a_tag_c382": {
+    "message": "بوسم"
+  },
+  "f_works_in_chrome_and_edge_on__f2c7": {
+    "message": "يعمل في Chrome وEdge على الكمبيوتر."
+  },
+  "f_write_a_note_about_this_arti_e1b4": {
+    "message": "اكتب ملاحظة عن هذا المقال…"
+  },
+  "f_write_a_note_or_a_thought_wo_67b1": {
+    "message": "اكتب ملاحظة أو فكرة تستحق الحفظ…"
+  },
+  "f_write_a_note_c7c9": {
+    "message": "اكتب ملاحظة…"
+  },
+  "f_write_one_below_or_highlight_7627": {
+    "message": "اكتب واحدة أدناه، أو مَيّز نصًا في أي صفحة. تظهر هنا أيضًا تمييزاتك وتمييزات الذكاء الاصطناعي."
+  },
+  "f_your_articles_highlights_not_9c7c": {
+    "message": "مقالاتك وتمييزاتك وملاحظاتك ومجموعاتك وملخصاتك ونصوصك الكاملة، متزامنة على كل جهاز ينضم بعبارة المرور نفسها."
+  },
+  "f_your_own_index_html_is_in_th_8069": {
+    "message": "يوجد index.html خاص بك في هذا المجلد، فلم تُستبدل صفحة العرض."
+  },
+  "f_your_own_notes_and_the_comme_6ef8": {
+    "message": "ملاحظاتك والتعليقات على تمييزاتك."
+  },
+  "f_your_passphrase_2512": {
+    "message": "عبارة مرورك"
+  },
+  "f_your_yellow_and_ai_highlight_15a0": {
+    "message": "تمييزاتك الصفراء وتمييزات AI"
+  },
+  "f_backed_up_ago_845b": {
+    "message": "نُسخ احتياطيًا منذ {t}"
+  },
+  "f_picks_a_model_for_each_reque_519c": {
+    "message": "يختار نموذجًا لكل طلب"
+  },
+  "f_published_ago_0576": {
+    "message": "نُشر منذ {t}"
+  },
+  "f_synced_ago_174c": {
+    "message": "زُومن منذ {t}"
+  },
+  "f_of_9ced": {
+    "message": "{a} من {b}"
+  },
+  "f_ai_highlight_8f93": {
+    "message": "{n} تمييز AI"
+  },
+  "f_ai_highlights_7da0": {
+    "message": "{n} تمييزات AI"
+  },
+  "f_file_is_no_longer_wanted_her_48c4": {
+    "message": "{n} ملف لم يعد مطلوبًا هنا وسيُزال من خادمك. تحقق من صحة ذلك."
+  },
+  "f_files_are_no_longer_wanted_h_6975": {
+    "message": "{n} ملفات لم تعد مطلوبة هنا وستُزال من خادمك. تحقق من صحة ذلك."
+  },
+  "f_files_had_problems_a60b": {
+    "message": "{n} ملفات بها مشكلات"
+  },
+  "f_highlight_5f43": {
+    "message": "{n} تمييز"
+  },
+  "f_highlights_d890": {
+    "message": "{n} تمييزات"
+  },
+  "f_more_article_was_deleted_on__0e7e": {
+    "message": "حُذف {n} مقال آخر على جهاز آخر. ما زال هنا حتى تقرر. تحقق من صحة ذلك."
+  },
+  "f_more_articles_were_deleted_o_8348": {
+    "message": "حُذفت {n} مقالات أخرى على أجهزة أخرى. ما زالت هنا حتى تقرر. تحقق من صحة ذلك."
+  },
+  "f_note_b2a1": {
+    "message": "{n} ملاحظة"
+  },
+  "f_notes_8096": {
+    "message": "{n} ملاحظات"
+  },
+  "f_place_b298": {
+    "message": "{n} مكان"
+  },
+  "f_place_uses_this_server_133b": {
+    "message": "يستخدم {n} مكان هذا الخادم."
+  },
+  "f_places_a7f1": {
+    "message": "{n} أماكن"
+  },
+  "f_places_use_this_server_4df9": {
+    "message": "تستخدم {n} أماكن هذا الخادم."
   }
 }
