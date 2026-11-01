@@ -1391,3 +1391,14 @@ button.tier-cta[hidden]{ display:none; }
 .card-photo{ margin:-4px -4px 14px; }
 .card-photo img{ aspect-ratio:16/10; border-radius:10px; }
 @media (max-width:760px){ .photo-row{ grid-template-columns:1fr; } }
+
+/* Slider: scroll-snap row, native swipe on touch, arrow buttons on desktop (main.js) */
+.slider{ position:relative; }
+.slider-track{ display:flex; gap:16px; overflow-x:auto; scroll-snap-type:x mandatory; padding:4px 2px 14px; scrollbar-width:thin; -webkit-overflow-scrolling:touch; }
+.slider-track:focus-visible{ outline:2px solid var(--signal); outline-offset:4px; border-radius:14px; }
+.slider .slide{ flex:0 0 min(340px, 82vw); scroll-snap-align:start; }
+.slider-btn{ position:absolute; top:34%; width:40px; height:40px; border-radius:50%; border:1px solid var(--border-medium); background:var(--surface-1-strong); color:var(--paper); font-size:24px; line-height:1; cursor:pointer; display:flex; align-items:center; justify-content:center; box-shadow:0 6px 18px rgba(0,0,0,.18); }
+.slider-btn[hidden]{ display:none; }
+.slider-btn:disabled{ opacity:.35; cursor:default; }
+.slider-prev{ left:-14px; } .slider-next{ right:-14px; }
+@media (pointer:coarse){ .slider-btn{ display:none; } }

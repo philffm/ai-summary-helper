@@ -1653,3 +1653,30 @@ function setBilling(period) {
     });
   }, true);
 })();
+
+
+/* ── Simple slider (scroll-snap row with arrow buttons): [data-slider] > .slider-track, .slider-prev, .slider-next ── */
+(function () {
+  var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  document.querySelectorAll('[data-slider]').forEach(function (root) {
+    var track = root.querySelector('.slider-track'), prev = root.querySelector('.slider-prev'), next = root.querySelector('.slider-next');
+    if (!track || !prev || !next) return;
+    function step() { var c = track.querySelector('.slide'); return c ? c.getBoundingClientRect().width + 16 : 300; }
+    function update() {
+      var max = track.scrollWidth - track.clientWidth;
+      var scrolls = max > 4;
+      prev.hidden = next.hidden = !scrolls;          // nothing to page through on a wide screen: no arrows
+      prev.disabled = track.scrollLeft <= 4;
+      next.disabled = track.scrollLeft >= max - 4;
+    }
+    prev.addEventListener('click', function () { track.scrollBy({ left: -step(), behavior: reduce ? 'auto' : 'smooth' }); });
+    next.addEventListener('click', function () { track.scrollBy({ left: step(), behavior: reduce ? 'auto' : 'smooth' }); });
+    track.addEventListener('scroll', function () { window.requestAnimationFrame(update); }, { passive: true });
+    track.addEventListener('keydown', function (e) {
+      if (e.key === 'ArrowRight') { e.preventDefault(); next.click(); }
+      else if (e.key === 'ArrowLeft') { e.preventDefault(); prev.click(); }
+    });
+    window.addEventListener('resize', update);
+    update();
+  });
+})();
