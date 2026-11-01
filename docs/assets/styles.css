@@ -376,7 +376,7 @@ section{ padding:76px 0; }
 }
 .tier-toggle button.active{ background:var(--cta-sky-2); color:var(--on-accent); }
 
-.tiers{ display:grid; grid-template-columns:repeat(3, 1fr); gap:14px; }
+.tiers{ display:grid; grid-template-columns:repeat(2, 1fr); gap:14px; }
 .tier-card{ border:1px solid var(--border-subtle); border-radius:16px; padding:22px 20px; background:var(--surface-2); position:relative; }
 .tier-card.best{ border-color:var(--best-border); background:var(--best-tint); }
 .tier-card .best-badge{
@@ -1357,3 +1357,10 @@ html.vfeed-open, html.vfeed-open body{ overflow:hidden; }
 /* Footer: the byphil ecosystem as its own group, apart from the legal links */
 footer .foot-eco{ display:flex; align-items:baseline; gap:8px 20px; flex-wrap:wrap; margin-top:18px; padding-top:16px; border-top:1px solid var(--border-medium); }
 footer .foot-eco-h{ font-family:var(--font-mono); font-size:11.5px; letter-spacing:.06em; text-transform:uppercase; color:var(--paper-dim); }
+
+/* Pricing: two cards (Free, Support Pass); the one-time donation is a text link below */
+.tier-once{ text-align:center; font-size:14px; color:var(--paper-dim); margin:22px auto 0; max-width:560px; line-height:1.55; }
+.tier-once a{ color:var(--paper); text-decoration:underline; text-decoration-color:var(--border-strong); text-underline-offset:3px; }
+.tier-once a:hover{ text-decoration-color:currentColor; }
+button.tier-cta{ width:100%; font-family:inherit; cursor:pointer; color:inherit; }
+button.tier-cta[hidden]{ display:none; }
