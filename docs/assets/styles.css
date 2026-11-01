@@ -1344,3 +1344,7 @@ html.vfeed-open, html.vfeed-open body{ overflow:hidden; }
 .send-toast{ position:fixed; left:50%; bottom:24px; transform:translate(-50%,12px); z-index:1000; max-width:calc(100vw - 32px); padding:12px 18px; border-radius:999px; background:#15161B; color:#F5F5F7; border:1px solid rgba(255,255,255,.18); font-size:14px; box-shadow:0 6px 24px rgba(0,0,0,.3); opacity:0; pointer-events:none; transition:opacity .2s ease, transform .2s ease; }
 .send-toast.is-on{ opacity:1; transform:translate(-50%,0); }
 @media (prefers-reduced-motion: reduce){ .send-toast{ transition:none; } }
+
+/* "Example article" tag in the hero mockup: the article and its numbers are made up */
+.hs-art{ position:relative; }
+.hs-example{ position:absolute; left:0; bottom:-150px; padding:5px 13px; border-radius:999px; font-size:14px; font-weight:600; letter-spacing:.05em; text-transform:uppercase; background:rgba(128,128,150,.22); color:inherit; opacity:.85; pointer-events:none; }
