@@ -230,6 +230,7 @@ fun FeedsScreen(
                             Column(Modifier.weight(1f)) {
                             if (showOnboarding) OnboardingCard(model, onOpenSettings, onAddByAddress = { showAdd = true })
                             else if (model.feeds.isEmpty()) {
+                                model.feedStore.readProblem?.let { InfoCard("Your feed list could not be read", it, isError = true) }
                                 EmptyState("No feeds yet", "Add a feed, or switch on feed sync in Settings to get the ones from your browser extension.")
                                 Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.Center) { FilledTonalButton(onClick = { showAdd = true }) { Icon(Icons.Filled.Add, null, Modifier.size(18.dp)); Text("  Add feed") } }
                             }

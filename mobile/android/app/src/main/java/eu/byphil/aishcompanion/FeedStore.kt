@@ -55,9 +55,32 @@ class FeedStore(private val dir: File) {
 
     @Synchronized fun feeds(): List<Feed> = readRoot().first
 
+    private val backupFile get() = File(dir, "feeds.json.bak")
+
+    /** Set when the feed list could not be read last time (and was recovered from the copy, or set aside), so the screen can say so instead of "No feeds yet". */
+    @Volatile var readProblem: String? = null
+
+    /**
+     * The feed list. A missing file is a fresh install (no feeds). A file that cannot be read is NOT "no feeds": the last good copy (feeds.json.bak, kept
+     * after every write that has feeds) is used and put back, and when there is none the unreadable file is set aside as feeds.json.unreadable instead of being overwritten
+     * by the next write.
+     */
     @Synchronized private fun readRoot(): Pair<List<Feed>, SyncState> {
         val f = feedsFile
         if (!f.exists()) return emptyList<Feed>() to SyncState()
+        parse(f)?.let { return it }
+        val good = backupFile.takeIf { it.exists() }?.let { parse(it) }
+        if (good != null) {
+            runCatching { backupFile.copyTo(f, overwrite = true) }
+            readProblem = "The feed list could not be read; it was restored from the last copy."
+            return good
+        }
+        runCatching { f.copyTo(File(dir, "feeds.json.unreadable"), overwrite = true); f.delete() }
+        readProblem = "The feed list could not be read and no copy was found. The unreadable file is kept as feeds.json.unreadable."
+        return emptyList<Feed>() to SyncState()
+    }
+
+    private fun parse(f: File): Pair<List<Feed>, SyncState>? {
         return try {
             val o = JSONObject(f.readText())
             val arr = o.optJSONArray("subs")
@@ -72,7 +95,7 @@ class FeedStore(private val dir: File) {
             val sy = o.optJSONObject("sync")
             val state = if (sy == null) SyncState() else SyncState(sy.optLong("rev", 0), sy.optJSONArray("base")?.let { FeedSync.parseEntries(it) } ?: emptyList(), sy.optLong("lastSyncAt", 0))
             list to state
-        } catch (_: Exception) { emptyList<Feed>() to SyncState() }
+        } catch (_: Exception) { null }
     }
 
     @Synchronized private fun write(feeds: List<Feed>, state: SyncState) {
@@ -84,6 +107,8 @@ class FeedStore(private val dir: File) {
         val tmp = File(dir, "feeds.json.tmp")
         tmp.writeText(o.toString())
         if (!tmp.renameTo(feedsFile)) { feedsFile.delete(); tmp.renameTo(feedsFile) }
+        // the newest list that has feeds is kept as a copy: what comes back if the file is ever unreadable (an empty list never replaces it)
+        if (feeds.isNotEmpty()) runCatching { feedsFile.copyTo(backupFile, overwrite = true) }
     }
 
     @Synchronized fun saveFeeds(feeds: List<Feed>) = write(feeds, readRoot().second)

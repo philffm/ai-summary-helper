@@ -109,3 +109,36 @@ class FeedArchiveTest {
         assertEquals(setOf("a", "b", "c", "d"), st.items(f.url).map { it.item.id }.toSet())
     }
 }
+
+class FeedStoreRecoveryTest {
+    private fun dir() = java.nio.file.Files.createTempDirectory("feeds").toFile()
+
+    @org.junit.Test fun aFreshInstallHasNoFeedsAndNoProblem() {
+        val s = FeedStore(dir()); org.junit.Assert.assertTrue(s.feeds().isEmpty()); org.junit.Assert.assertNull(s.readProblem)
+    }
+
+    @org.junit.Test fun anUnreadableFileIsRestoredFromTheLastGoodCopy() {
+        val d = dir(); val s = FeedStore(d)
+        s.add("https://a.example/feed.xml", "A", emptyList(), 1); s.add("https://b.example/feed.xml", "B", emptyList(), 2)
+        java.io.File(d, "feeds.json").writeText("{ this is cut off")
+        val again = FeedStore(d)
+        org.junit.Assert.assertEquals(listOf("https://a.example/feed.xml", "https://b.example/feed.xml"), again.feeds().map { it.url })
+        org.junit.Assert.assertTrue(again.readProblem!!.contains("restored")); org.junit.Assert.assertEquals("the file is whole again", 2, FeedStore(d).feeds().size)
+    }
+
+    @org.junit.Test fun withoutACopyTheUnreadableFileIsKeptAndNotOverwritten() {
+        val d = dir(); java.io.File(d, "feeds.json").writeText("garbage")
+        val s = FeedStore(d)
+        org.junit.Assert.assertTrue(s.feeds().isEmpty()); org.junit.Assert.assertTrue(s.readProblem!!.contains("unreadable"))
+        org.junit.Assert.assertEquals("kept for a person to look at", "garbage", java.io.File(d, "feeds.json.unreadable").readText())
+        s.add("https://c.example/feed.xml", "C", emptyList(), 3)   // a later write works and does not touch the kept file
+        org.junit.Assert.assertEquals(1, FeedStore(d).feeds().size); org.junit.Assert.assertEquals("garbage", java.io.File(d, "feeds.json.unreadable").readText())
+    }
+
+    @org.junit.Test fun theCopyIsTheLastNonEmptyList() {
+        val d = dir(); val s = FeedStore(d)
+        s.add("https://a.example/feed.xml", "A", emptyList(), 1); s.remove("https://a.example/feed.xml")   // now empty on purpose
+        java.io.File(d, "feeds.json").writeText("broken")
+        org.junit.Assert.assertEquals("the last list that had feeds is what comes back", 1, FeedStore(d).feeds().size)
+    }
+}
