@@ -89,6 +89,7 @@
         <div class="mm-row">
           <a href="https://addons.mozilla.org/en-US/firefox/addon/ai-summary-helper/" target="_blank" rel="noopener">Firefox</a>
           <a href="../index.html#phone">Android · ベータ版</a>
+          <a href="../../education/">教育機関向け</a>
           <a href="https://byphil.eu/#account">マイアカウント</a>
         </div>
         
@@ -103,24 +104,33 @@
 </header>
 
 <main id="main">
-  <div class="wrap">
-    <div class="post-hero">
+  <section class="hero--photo post-stage">
+    <img class="hero-bg" src="../../assets/photo/researcher-desk-notes-800.webp" srcset="../assets/photo/researcher-desk-notes-800.webp 800w, ../assets/photo/researcher-desk-notes-1600.webp 1600w" sizes="100vw" width="1600" height="893" alt="" fetchpriority="high" decoding="async" style="--bgpos:60% 45%">
+    <p class="hero-credit">イラスト（AI生成）</p>
+    <div class="wrap">
+      <div class="post-hero">
       <span class="blog-date">ガイド · 2026年10月</span>
       <h1>AIの要約を10秒で情報元と照合する方法</h1>
       <p class="post-sub">検証できない要約は、文法が整った単なる推測にすぎません。それを防ぐための習慣と、照合をすばやく行うための AI Summary Helper の仕組みをご紹介します。</p>
+      </div>
     </div>
-  </div>
+  </section>
 
   <section>
     <div class="wrap">
-      <div class="prose">
-        <figure class="post-figure post-figure--video" data-blog-video="quellen">
-          <video controls="" playsinline="" preload="none" width="360" height="520" poster="../../assets/blog/video/quellen-ja.jpg">
+      <div class="prose" data-vgroup="">
+        <p>2011年、Sparrow氏、Liu氏、Wegner氏は <em>『Science』誌</em> において、人は後で調べられると分かっている場合、事実そのものよりも「どこを探せば見つかるか」を記憶しやすいと報告しました。検索エンジンは一種の外部記憶となり、私たちはそれに適応してきたのです。</p>
+        <figure class="post-figure post-video" data-blog-video="quellen">
+          <div class="post-video-in">
+            <button class="fvideo-open post-video-open" type="button"><span class="sr-only">動画を再生</span>
+              <video muted="" playsinline="" loop="" preload="none" width="360" height="520" poster="../../assets/blog/video/quellen-ja.jpg">
             <source src="../../assets/blog/video/quellen-ja.mp4" type="video/mp4">
           <track data-seo-video="" kind="captions" src="../../assets/blog/video/quellen-ja.vtt" srclang="ja" label="日本語"></video>
-          <figcaption>動画：追加の質問をして、回答の根拠となった該当箇所へ直接ジャンプできます。</figcaption>
+              <span class="post-video-play" aria-hidden="true">▶</span>
+            </button>
+            <figcaption>動画：追加の質問をして、回答の根拠となった該当箇所へ直接ジャンプできます。</figcaption>
+          <div data-seo-video="" class="vtext"><p class="vtext-h">文字起こし · 0:18</p><ul><li>AIの回答に、根拠を。</li><li>続けて質問しよう。</li><li>どの回答も、根拠となる本文の箇所を示します。</li></ul></div></div>
         </figure>
-        <p>2011年、Sparrow氏、Liu氏、Wegner氏は <em>『Science』誌</em> において、人は後で調べられると分かっている場合、事実そのものよりも「どこを探せば見つかるか」を記憶しやすいと報告しました。検索エンジンは一種の外部記憶となり、私たちはそれに適応してきたのです。</p>
         <p>AIの要約はこの適応をさらに加速させます。整った文章を読むと、その文章自体は記憶に残っても、元のページは意識から消えてしまいます。要約が正確であれば問題ありませんが、不正確な場合には困ったことになります。文章のどこが怪しいのかは、要約を読むだけでは分からないからです。</p>
 
         <h2>10秒でできる確認法</h2>
@@ -152,12 +162,19 @@
   </section>
 </main>
 
+<div class="vfeed-labels" hidden="">
+  <span data-l="close">閉じる</span><span data-l="sound">音声オン</span><span data-l="mute">音声オフ</span><span data-l="hint">上にスワイプして次の動画へ</span><span data-l="prev">前の動画</span><span data-l="next">次の動画</span>
+  <span data-l="share">共有</span><span data-l="copied">リンクをコピーしました</span>
+  <span data-l="add_chrome">Chromeに追加（無料）</span><span data-l="add_firefox">Firefox に追加 — 無料です</span><span data-l="add_browser">ブラウザに追加 — 無料です</span>
+  <a data-l="try" href="../../bookmarklet.html">ブラウザで試す — 無料です</a>
+</div>
 <footer>
   <div class="wrap">
     <div class="footer-inner">
       <div class="wordmark"><img src="../../assets/icon.svg" alt="">AI Summary Helper</div>
       <div class="foot-links">
         <a href="https://github.com/philffm/ai-summary-helper/" target="_blank" rel="noopener">GitHubでソースコードを見る</a>
+        <a href="../../education/">教育機関向け</a>
         <a href="../privacy.html">プライバシー</a>
         <a href="#" data-analytics-settings="">アナリティクス設定</a>
         <a href="https://byphil.eu/terms.html#impressum" target="_blank" rel="noopener">法的表記（Impressum）</a>

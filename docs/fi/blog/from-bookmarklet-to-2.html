@@ -89,6 +89,7 @@
         <div class="mm-row">
           <a href="https://addons.mozilla.org/en-US/firefox/addon/ai-summary-helper/" target="_blank" rel="noopener">Firefox</a>
           <a href="../index.html#phone">Android · Beta</a>
+          <a href="../../education/">Opetukseen</a>
           <a href="https://byphil.eu/#account">Oma tili</a>
         </div>
         
@@ -103,25 +104,34 @@
 </header>
 
 <main id="main">
-  <div class="wrap">
-    <div class="post-hero">
+  <section class="hero--photo post-stage">
+    <img class="hero-bg" src="../../assets/photo/ereader-bedside-table-800.webp" srcset="../assets/photo/ereader-bedside-table-800.webp 800w, ../assets/photo/ereader-bedside-table-1600.webp 1600w" sizes="100vw" width="1600" height="1195" alt="" fetchpriority="high" decoding="async" style="--bgpos:50% 50%">
+    <p class="hero-credit">Kuvitus, tekoälyn luoma</p>
+    <div class="wrap">
+      <div class="post-hero">
       <span class="blog-date">Tuote · Kesäkuu 2026</span>
       <h1>Kirjanmerkkityökalusta 2.0-versioon: mitä AI Summary Helper on nykyään</h1>
       <p class="post-sub">Se alkoi yhden klikkauksen bookmarkletina Kindle-lukemista varten. Kaksi vuotta ja täysi arkkitehtuurikierros myöhemmin suurin osa nykyisistä ominaisuuksista ei ollut edes olemassa, kun ensimmäiset sata käyttäjää liittyivät mukaan.</p>
+      </div>
     </div>
-  </div>
+  </section>
 
   <section>
     <div class="wrap">
-      <div class="prose">
-        <figure class="post-figure post-figure--video" data-blog-video="senden">
-          <video controls="" playsinline="" preload="none" width="360" height="520" poster="../../assets/blog/video/senden-en.jpg">
-            <source src="../../assets/blog/video/senden-en.mp4" type="video/mp4">
-          <track data-seo-video="" kind="captions" src="../../assets/blog/video/senden-en.vtt" srclang="en" label="English"></video>
-          <figcaption>Video: tiivistelmästä Kindlelle – tapa, josta tämä projekti sai alkunsa.</figcaption>
-        </figure>
+      <div class="prose" data-vgroup="">
 
         <p><strong>AI Summary Helper on ilmainen, avoimen lähdekoodin Chrome-laajennus, joka tiivistää minkä tahansa verkkosivun valitsemallasi tekoälypalvelulla tai täysin paikallisella mallilla. Se tallentaa artikkelit myöhemmäksi ajastettujen muistutusten kera ja muuntaa lukuhistoriasi haettavaksi, linkittyneeksi arkistoksi.</strong> Ensimmäisessä versiossa ei ollut mitään näistä. Tässä kerrotaan, mitä silloin oli ja miten tähän pisteeseen päädyttiin.</p>
+        <figure class="post-figure post-video" data-blog-video="senden">
+          <div class="post-video-in">
+            <button class="fvideo-open post-video-open" type="button"><span class="sr-only">Toista video</span>
+              <video muted="" playsinline="" loop="" preload="none" width="360" height="520" poster="../../assets/blog/video/senden-en.jpg">
+            <source src="../../assets/blog/video/senden-en.mp4" type="video/mp4">
+          <track data-seo-video="" kind="captions" src="../../assets/blog/video/senden-en.vtt" srclang="en" label="English"></video>
+              <span class="post-video-play" aria-hidden="true">▶</span>
+            </button>
+            <figcaption>Video: tiivistelmästä Kindlelle – tapa, josta tämä projekti sai alkunsa.</figcaption>
+          <div data-seo-video="" class="vtext"><p class="vtext-h">Transcript · 0:19</p><ul><li>From summary to Kindle.</li><li>Summarize the page, open the menu, send it to your Kindle.</li><li>Seconds later it is on your e-reader, ready for the couch.</li></ul></div></div>
+        </figure>
 
         <h2>Miten tämä oikeasti alkoi</h2>
         <p>Heinäkuussa 2024 tämä oli pelkkä bookmarklet – ei edes selainlaajennus. Selasit kiinnostavia artikkeleita, avasit kymmenen välilehteä etkä useimpien tavoin ehtinyt koskaan lukea niistä puoliakaan. Alkuperäinen idea oli kapea ja henkilökohtainen: mukautettavalla kehotteella toimiva tiivistäjä, joka lisäsi tiivistelmän suoraan sivulle, jotta se siirtyi mukaan, kun artikkeli lähetettiin Kindlelle työkalulla <a href="https://send.reabble.com/" target="_blank" rel="noopener">Reabblen Send-to-Kindle-työkalu</a>. Siinä oli koko tuote. Yksi tekoälytarjoaja. Yksi kehoteikkuna. Bookmarklet-versio, joka toimi missä tahansa (jopa iOS Safarissa), sekä Chrome-laajennus niille, jotka halusivat muokata kehotetta lennosta.</p>
@@ -163,12 +173,19 @@
   </section>
 </main>
 
+<div class="vfeed-labels" hidden="">
+  <span data-l="close">Sulje</span><span data-l="sound">Äänet päälle</span><span data-l="mute">Äänet pois</span><span data-l="hint">Pyyhkäise ylös seuraavaan videoon</span><span data-l="prev">Edellinen video</span><span data-l="next">Seuraava video</span>
+  <span data-l="share">Jaa</span><span data-l="copied">Linkki kopioitu</span>
+  <span data-l="add_chrome">Lisää Chromeen — maksuton</span><span data-l="add_firefox">Lisää Firefoxiin — ilmainen</span><span data-l="add_browser">Lisää selaimeen — ilmainen</span>
+  <a data-l="try" href="../../bookmarklet.html">Kokeile selaimessa — ilmainen</a>
+</div>
 <footer>
   <div class="wrap">
     <div class="footer-inner">
       <div class="wordmark"><img src="../../assets/icon.svg" alt="">AI Summary Helper</div>
       <div class="foot-links">
         <a href="https://github.com/philffm/ai-summary-helper/" target="_blank" rel="noopener">Lähdekoodi GitHubissa</a>
+        <a href="../../education/">Opetukseen</a>
         <a href="../privacy.html">Tietosuoja</a>
         <a href="#" data-analytics-settings="">Analytiikka-asetukset</a>
         <a href="https://byphil.eu/terms.html#impressum" target="_blank" rel="noopener">Impressum</a>

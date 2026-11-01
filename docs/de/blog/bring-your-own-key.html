@@ -89,6 +89,7 @@
         <div class="mm-row">
           <a href="https://addons.mozilla.org/en-US/firefox/addon/ai-summary-helper/" target="_blank" rel="noopener">Firefox</a>
           <a href="../index.html#phone">Android · Beta</a>
+          <a href="../../education/">Für Bildungseinrichtungen</a>
           <a href="https://byphil.eu/#account">Mein Konto</a>
         </div>
         
@@ -103,24 +104,33 @@
 </header>
 
 <main id="main">
-  <div class="wrap">
-    <div class="post-hero">
+  <section class="hero--photo post-stage">
+    <img class="hero-bg" src="../../assets/photo/hands-keyboard-closeup-800.webp" srcset="../assets/photo/hands-keyboard-closeup-800.webp 800w, ../assets/photo/hands-keyboard-closeup-1600.webp 1600w" sizes="100vw" width="1600" height="893" alt="" fetchpriority="high" decoding="async" style="--bgpos:50% 50%">
+    <p class="hero-credit">Illustration, KI-generiert</p>
+    <div class="wrap">
+      <div class="post-hero">
       <span class="blog-date">Produkt · Oktober 2026</span>
       <h1>Ihr Key. Ihr Modell. Ihre Daten.</h1>
       <p class="post-sub">Die meisten KI-Tools schalten einen Server zwischen Sie und das Modell. Hier erfahren Sie, was sich ändert, wenn kein Zwischenserver existiert – und was weiterhin in Ihrer Verantwortung liegt.</p>
+      </div>
     </div>
-  </div>
+  </section>
 
   <section>
     <div class="wrap">
-      <div class="prose">
-        <figure class="post-figure post-figure--video" data-blog-video="privat">
-          <video controls="" playsinline="" preload="none" width="360" height="520" poster="../../assets/blog/video/privat-de.jpg">
+      <div class="prose" data-vgroup="">
+        <p>Jede KI-Zusammenfassung folgt demselben Schema: Text wird gesendet, Text kommt zurück. Die entscheidende Frage für Ihr Vertrauen in das Tool lautet: Wer sitzt dazwischen? Bei vielen Produkten steht dort ein Unternehmensserver, über den Ihre gelesenen Inhalte geleitet werden – auf dem Weg zu einem Modell, das Sie nicht selbst gewählt haben.</p>
+        <figure class="post-figure post-video" data-blog-video="privat">
+          <div class="post-video-in">
+            <button class="fvideo-open post-video-open" type="button"><span class="sr-only">Video abspielen</span>
+              <video muted="" playsinline="" loop="" preload="none" width="360" height="520" poster="../../assets/blog/video/privat-de.jpg">
             <source src="../../assets/blog/video/privat-de.mp4" type="video/mp4">
           <track data-seo-video="" kind="captions" src="../../assets/blog/video/privat-de.vtt" srclang="de" label="Deutsch"></video>
-          <figcaption>Video: Wechseln Sie zwischen Ihrem eigenen API-Schlüssel, einem lokalen Modell mit Ollama und byPhil Cloud.</figcaption>
+              <span class="post-video-play" aria-hidden="true">▶</span>
+            </button>
+            <figcaption>Video: Wechseln Sie zwischen Ihrem eigenen API-Schlüssel, einem lokalen Modell mit Ollama und byPhil Cloud.</figcaption>
+          <div data-seo-video="" class="vtext"><p class="vtext-h">Transkript · 0:22</p><ul><li>Datenschutz?</li><li>Eine Abwägung.</li><li>Wer das Risiko kennt, teilt weniger.</li><li>Also wählst du: deinen eigenen API-Key, ein lokales Modell mit Ollama oder byPhil Cloud ohne Einrichtung.</li><li>Deine Bibliothek bleibt im Browser.</li></ul></div></div>
         </figure>
-        <p>Jede KI-Zusammenfassung folgt demselben Schema: Text wird gesendet, Text kommt zurück. Die entscheidende Frage für Ihr Vertrauen in das Tool lautet: Wer sitzt dazwischen? Bei vielen Produkten steht dort ein Unternehmensserver, über den Ihre gelesenen Inhalte geleitet werden – auf dem Weg zu einem Modell, das Sie nicht selbst gewählt haben.</p>
 
         <h2>Was „Bring Your Own Key“ hier konkret bedeutet</h2>
         <p>Sie erstellen einen API-Key bei einem Anbieter, dem Sie bereits vertrauen, fügen ihn in AI Summary Helper ein und wählen ein Modell aus. Wenn Sie eine Seite zusammenfassen, sendet der Background-Worker der Erweiterung den Text direkt an diesen Anbieter und streamt die Antwort zurück. Bei Nutzung Ihres eigenen Keys existiert auf diesem Weg kein Server von AI Summary Helper.</p>
@@ -151,12 +161,19 @@
   </section>
 </main>
 
+<div class="vfeed-labels" hidden="">
+  <span data-l="close">Schließen</span><span data-l="sound">Ton ein</span><span data-l="mute">Ton aus</span><span data-l="hint">Nach oben wischen für das nächste Video</span><span data-l="prev">Vorheriges Video</span><span data-l="next">Nächstes Video</span>
+  <span data-l="share">Teilen</span><span data-l="copied">Link kopiert</span>
+  <span data-l="add_chrome">Zu Chrome hinzufügen — kostenlos</span><span data-l="add_firefox">Zu Firefox hinzufügen — kostenlos</span><span data-l="add_browser">Zu Ihrem Browser hinzufügen — kostenlos</span>
+  <a data-l="try" href="../../bookmarklet.html">In Ihrem Browser testen — kostenlos</a>
+</div>
 <footer>
   <div class="wrap">
     <div class="footer-inner">
       <div class="wordmark"><img src="../../assets/icon.svg" alt="">AI Summary Helper</div>
       <div class="foot-links">
         <a href="https://github.com/philffm/ai-summary-helper/" target="_blank" rel="noopener">Quellcode auf GitHub</a>
+        <a href="../../education/">Für Bildungseinrichtungen</a>
         <a href="../privacy.html">Datenschutz</a>
         <a href="#" data-analytics-settings="">Analyse-Einstellungen</a>
         <a href="https://byphil.eu/terms.html#impressum" target="_blank" rel="noopener">Impressum</a>

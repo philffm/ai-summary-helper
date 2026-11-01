@@ -89,6 +89,7 @@
         <div class="mm-row">
           <a href="https://addons.mozilla.org/en-US/firefox/addon/ai-summary-helper/" target="_blank" rel="noopener">Firefox</a>
           <a href="../index.html#phone">Android · Beta</a>
+          <a href="../../education/">Eğitim için</a>
           <a href="https://byphil.eu/#account">Hesabım</a>
         </div>
         
@@ -103,24 +104,33 @@
 </header>
 
 <main id="main">
-  <div class="wrap">
-    <div class="post-hero">
+  <section class="hero--photo post-stage">
+    <img class="hero-bg" src="../../assets/photo/bokeh-strip-blue-amber-800.webp" srcset="../assets/photo/bokeh-strip-blue-amber-800.webp 800w, ../assets/photo/bokeh-strip-blue-amber-1600.webp 1600w" sizes="100vw" width="1600" height="679" alt="" fetchpriority="high" decoding="async" style="--bgpos:50% 50%">
+    <p class="hero-credit">İllüstrasyon, yapay zekâ üretimi</p>
+    <div class="wrap">
+      <div class="post-hero">
       <span class="blog-date">Mühendislik · Ağustos 2026</span>
       <h1>Arama, Etiketleme ve Önerileri Neden Buluttan Cihaza Taşıdık?</h1>
       <p class="post-sub">Arama, mükerrer kayıt temizleme, etiket düzenleme ve öneriler tek bir küçük on-device dizini paylaşıyor. Bunun nasıl çalıştığını ve neden sadece bir gizlilik argümanından ibaret olmadığını keşfedin.</p>
+      </div>
     </div>
-  </div>
+  </section>
 
   <section>
     <div class="wrap">
-      <div class="prose">
-        <figure class="post-figure post-figure--video" data-blog-video="graph">
-          <video controls="" playsinline="" preload="none" width="360" height="520" poster="../../assets/blog/video/graph-en.jpg">
+      <div class="prose" data-vgroup="">
+<p>"Yapay zeka destekli" çoğu tarayıcı eklentisi, yapay zekayla uzaktan yakından ilgisi olmayan kısımlar da dahil olmak üzere her şeyi bir sunucuya gönderir. Arama, etiket temizleme, "benzer öğeleri bulma": bunlar onlarca yıllık, son derece iyi bilinen tekniklerdir. Bir dil modeline ihtiyaç duymazlar ve kesinlikle fazladan bir network gidiş-dönüşüne (round-trip) gereksinimleri yoktur. AI Summary Helper'ın tüm özelliklerini tek tek ele alarak her biri için şu soruyu sorduk: Bunun gerçekten buluta ihtiyacı var mı, yoksa sırf mimari açıdan kolayı bu olduğu için mi varsayılan olarak bulutu seçiyoruz?</p>
+        <figure class="post-figure post-video" data-blog-video="graph">
+          <div class="post-video-in">
+            <button class="fvideo-open post-video-open" type="button"><span class="sr-only">Videoyu oynat</span>
+              <video muted="" playsinline="" loop="" preload="none" width="360" height="520" poster="../../assets/blog/video/graph-en.jpg">
             <source src="../../assets/blog/video/graph-en.mp4" type="video/mp4">
           <track data-seo-video="" kind="captions" src="../../assets/blog/video/graph-en.vtt" srclang="en" label="English"></video>
-          <figcaption>Video: Cihazınızda oluşturulan knowledge graph, makalelerinizi konuları üzerinden birbirine bağlar.</figcaption>
+              <span class="post-video-play" aria-hidden="true">▶</span>
+            </button>
+            <figcaption>Video: Cihazınızda oluşturulan knowledge graph, makalelerinizi konuları üzerinden birbirine bağlar.</figcaption>
+          <div data-seo-video="" class="vtext"><p class="vtext-h">Transcript · 0:19</p><ul><li>What you read is connected.</li><li>Your knowledge graph links articles through their topics.</li><li>Tap one, and you get a briefing on everything you have read about it.</li></ul></div></div>
         </figure>
-<p>"Yapay zeka destekli" çoğu tarayıcı eklentisi, yapay zekayla uzaktan yakından ilgisi olmayan kısımlar da dahil olmak üzere her şeyi bir sunucuya gönderir. Arama, etiket temizleme, "benzer öğeleri bulma": bunlar onlarca yıllık, son derece iyi bilinen tekniklerdir. Bir dil modeline ihtiyaç duymazlar ve kesinlikle fazladan bir network gidiş-dönüşüne (round-trip) gereksinimleri yoktur. AI Summary Helper'ın tüm özelliklerini tek tek ele alarak her biri için şu soruyu sorduk: Bunun gerçekten buluta ihtiyacı var mı, yoksa sırf mimari açıdan kolayı bu olduğu için mi varsayılan olarak bulutu seçiyoruz?</p>
         <p>Çoğunun buna hiç ihtiyacı yoktu.</p>
 
         <figure class="post-figure post-figure--portrait"><img src="../../assets/blog/knowledge-graph.webp" alt="Slayt: “Anlam ve bağlantıyla ilişkilendirilen bilgi, yalnızca göz gezdirdiğiniz bilgiden daha kalıcıdır” metnini içeren, birbiriyle bağlantılı konular haritası" width="800" height="1000" loading="lazy"><figcaption>Arama, etiketleme ve benzer makaleler aynı on-device dizin üzerinde çalışır; böylece kaydettikleriniz arasındaki bağlantılar sıfır maliyetle kurulur.</figcaption></figure>
@@ -148,12 +158,19 @@
   </section>
 </main>
 
+<div class="vfeed-labels" hidden="">
+  <span data-l="close">Kapat</span><span data-l="sound">Sesi aç</span><span data-l="mute">Sesi kapat</span><span data-l="hint">Sonraki video için yukarı kaydırın</span><span data-l="prev">Önceki video</span><span data-l="next">Sonraki video</span>
+  <span data-l="share">Paylaş</span><span data-l="copied">Bağlantı kopyalandı</span>
+  <span data-l="add_chrome">Chrome'a ekle — Ücretsiz</span><span data-l="add_firefox">Firefox'a ekleyin — ücretsiz</span><span data-l="add_browser">Tarayıcınıza ekleyin — ücretsiz</span>
+  <a data-l="try" href="../../bookmarklet.html">Tarayıcınızda deneyin — ücretsiz</a>
+</div>
 <footer>
   <div class="wrap">
     <div class="footer-inner">
       <div class="wordmark"><img src="../../assets/icon.svg" alt="">AI Summary Helper</div>
       <div class="foot-links">
         <a href="https://github.com/philffm/ai-summary-helper/" target="_blank" rel="noopener">GitHub'da Kaynak Kodlar</a>
+        <a href="../../education/">Eğitim için</a>
         <a href="../privacy.html">Gizlilik</a>
         <a href="#" data-analytics-settings="">Analitik ayarları</a>
         <a href="https://byphil.eu/terms.html#impressum" target="_blank" rel="noopener">Künye</a>

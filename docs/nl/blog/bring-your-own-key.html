@@ -89,6 +89,7 @@
         <div class="mm-row">
           <a href="https://addons.mozilla.org/en-US/firefox/addon/ai-summary-helper/" target="_blank" rel="noopener">Firefox</a>
           <a href="../index.html#phone">Android · Bèta</a>
+          <a href="../../education/">Voor het onderwijs</a>
           <a href="https://byphil.eu/#account">Mijn account</a>
         </div>
         
@@ -103,24 +104,33 @@
 </header>
 
 <main id="main">
-  <div class="wrap">
-    <div class="post-hero">
+  <section class="hero--photo post-stage">
+    <img class="hero-bg" src="../../assets/photo/hands-keyboard-closeup-800.webp" srcset="../assets/photo/hands-keyboard-closeup-800.webp 800w, ../assets/photo/hands-keyboard-closeup-1600.webp 1600w" sizes="100vw" width="1600" height="893" alt="" fetchpriority="high" decoding="async" style="--bgpos:50% 50%">
+    <p class="hero-credit">Illustratie, AI-gegenereerd</p>
+    <div class="wrap">
+      <div class="post-hero">
       <span class="blog-date">Product · Oktober 2026</span>
       <h1>Jouw sleutel. Jouw model. Jouw data.</h1>
       <p class="post-sub">De meeste AI-tools plaatsen een server tussen jou en het model. Dit is wat er verandert als die ontbreekt, en wat nog steeds afhangt van jouw keuzes.</p>
+      </div>
     </div>
-  </div>
+  </section>
 
   <section>
     <div class="wrap">
-      <div class="prose">
-        <figure class="post-figure post-figure--video" data-blog-video="privat">
-          <video controls="" playsinline="" preload="none" width="360" height="520" poster="../../assets/blog/video/privat-nl.jpg">
+      <div class="prose" data-vgroup="">
+        <p>Elke AI-samenvatting werkt volgens hetzelfde principe: er gaat tekst uit, er komt tekst terug. De cruciale vraag voor je privacy is: wie zit er tussenin? Bij veel producten staat daar een server van het bedrijf, waardoor alles wat je leest eerst via hen passeert op weg naar een model dat je zelf niet hebt gekozen.</p>
+        <figure class="post-figure post-video" data-blog-video="privat">
+          <div class="post-video-in">
+            <button class="fvideo-open post-video-open" type="button"><span class="sr-only">Video afspelen</span>
+              <video muted="" playsinline="" loop="" preload="none" width="360" height="520" poster="../../assets/blog/video/privat-nl.jpg">
             <source src="../../assets/blog/video/privat-nl.mp4" type="video/mp4">
           <track data-seo-video="" kind="captions" src="../../assets/blog/video/privat-nl.vtt" srclang="nl" label="Nederlands"></video>
-          <figcaption>Video: schakel tussen je eigen API-sleutel, een lokaal model met Ollama en byPhil Cloud.</figcaption>
+              <span class="post-video-play" aria-hidden="true">▶</span>
+            </button>
+            <figcaption>Video: schakel tussen je eigen API-sleutel, een lokaal model met Ollama en byPhil Cloud.</figcaption>
+          <div data-seo-video="" class="vtext"><p class="vtext-h">Transcriptie · 0:19</p><ul><li>Privacy is een afweging.</li><li>Wie het risico kent, deelt minder.</li><li>Dus jij kiest: je eigen API-sleutel, een lokaal model met Ollama, of byPhil Cloud zonder installatie.</li><li>Je bibliotheek blijft in de browser.</li></ul></div></div>
         </figure>
-        <p>Elke AI-samenvatting werkt volgens hetzelfde principe: er gaat tekst uit, er komt tekst terug. De cruciale vraag voor je privacy is: wie zit er tussenin? Bij veel producten staat daar een server van het bedrijf, waardoor alles wat je leest eerst via hen passeert op weg naar een model dat je zelf niet hebt gekozen.</p>
 
         <h2>Wat 'bring your own key' hier betekent</h2>
         <p>Je maakt een API-sleutel aan bij een provider die je vertrouwt, plakt deze in AI Summary Helper en kiest een model. Zodra je een pagina samenvat, stuurt de background worker van de extensie de tekst rechtstreeks naar die provider en streamt het resultaat direct terug. Er komt voor jouw eigen sleutel geen server van AI Summary Helper aan te pas.</p>
@@ -151,12 +161,19 @@
   </section>
 </main>
 
+<div class="vfeed-labels" hidden="">
+  <span data-l="close">Sluiten</span><span data-l="sound">Geluid aan</span><span data-l="mute">Geluid uit</span><span data-l="hint">Swipe omhoog voor de volgende video</span><span data-l="prev">Vorige video</span><span data-l="next">Volgende video</span>
+  <span data-l="share">Delen</span><span data-l="copied">Link gekopieerd</span>
+  <span data-l="add_chrome">Toevoegen aan Chrome — gratis</span><span data-l="add_firefox">Toevoegen aan Firefox — gratis</span><span data-l="add_browser">Toevoegen aan je browser — gratis</span>
+  <a data-l="try" href="../../bookmarklet.html">Probeer het in je browser — gratis</a>
+</div>
 <footer>
   <div class="wrap">
     <div class="footer-inner">
       <div class="wordmark"><img src="../../assets/icon.svg" alt="">AI Summary Helper</div>
       <div class="foot-links">
         <a href="https://github.com/philffm/ai-summary-helper/" target="_blank" rel="noopener">Broncode op GitHub</a>
+        <a href="../../education/">Voor het onderwijs</a>
         <a href="../privacy.html">Privacy</a>
         <a href="#" data-analytics-settings="">Analytics-instellingen</a>
         <a href="https://byphil.eu/terms.html#impressum" target="_blank" rel="noopener">Impressum</a>

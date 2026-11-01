@@ -89,6 +89,7 @@
         <div class="mm-row">
           <a href="https://addons.mozilla.org/en-US/firefox/addon/ai-summary-helper/" target="_blank" rel="noopener">Firefox</a>
           <a href="../index.html#phone">Android · Beta</a>
+          <a href="../../education/">Untuk pendidikan</a>
           <a href="https://byphil.eu/#account">Akun saya</a>
         </div>
         
@@ -103,25 +104,34 @@
 </header>
 
 <main id="main">
-  <div class="wrap">
-    <div class="post-hero">
+  <section class="hero--photo post-stage">
+    <img class="hero-bg" src="../../assets/photo/ereader-bedside-table-800.webp" srcset="../assets/photo/ereader-bedside-table-800.webp 800w, ../assets/photo/ereader-bedside-table-1600.webp 1600w" sizes="100vw" width="1600" height="1195" alt="" fetchpriority="high" decoding="async" style="--bgpos:50% 50%">
+    <p class="hero-credit">Ilustrasi, dibuat oleh AI</p>
+    <div class="wrap">
+      <div class="post-hero">
       <span class="blog-date">Produk · Juni 2026</span>
       <h1>Dari Bookmarklet ke 2.0: Wujud Sebenarnya dari AI Summary Helper Saat Ini</h1>
       <p class="post-sub">Semua berawal dari bookmarklet sekali klik untuk membaca di Kindle. Dua tahun dan perombakan total kemudian, sebagian besar kemampuannya hari ini bahkan belum ada saat seratus pengguna pertama mendaftar.</p>
+      </div>
     </div>
-  </div>
+  </section>
 
   <section>
     <div class="wrap">
-      <div class="prose">
-        <figure class="post-figure post-figure--video" data-blog-video="senden">
-          <video controls="" playsinline="" preload="none" width="360" height="520" poster="../../assets/blog/video/senden-en.jpg">
-            <source src="../../assets/blog/video/senden-en.mp4" type="video/mp4">
-          <track data-seo-video="" kind="captions" src="../../assets/blog/video/senden-en.vtt" srclang="en" label="English"></video>
-          <figcaption>Video: dari ringkasan ke Kindle, kebiasaan yang mengawali proyek ini.</figcaption>
-        </figure>
+      <div class="prose" data-vgroup="">
 
         <p><strong>AI Summary Helper adalah ekstensi Chrome gratis dan open-source yang meringkas halaman web apa pun menggunakan penyedia AI pilihan Anda atau model lokal sepenuhnya, menyimpan artikel untuk dibaca nanti dengan pengingat terjadwal, dan mengubah riwayat membaca Anda menjadi arsip terhubung yang mudah dicari.</strong> Semua fitur tersebut belum ada di versi pertama. Inilah kemampuan awalnya, dan bagaimana perjalanannya hingga sampai di titik ini.</p>
+        <figure class="post-figure post-video" data-blog-video="senden">
+          <div class="post-video-in">
+            <button class="fvideo-open post-video-open" type="button"><span class="sr-only">Putar video</span>
+              <video muted="" playsinline="" loop="" preload="none" width="360" height="520" poster="../../assets/blog/video/senden-en.jpg">
+            <source src="../../assets/blog/video/senden-en.mp4" type="video/mp4">
+          <track data-seo-video="" kind="captions" src="../../assets/blog/video/senden-en.vtt" srclang="en" label="English"></video>
+              <span class="post-video-play" aria-hidden="true">▶</span>
+            </button>
+            <figcaption>Video: dari ringkasan ke Kindle, kebiasaan yang mengawali proyek ini.</figcaption>
+          <div data-seo-video="" class="vtext"><p class="vtext-h">Transcript · 0:19</p><ul><li>From summary to Kindle.</li><li>Summarize the page, open the menu, send it to your Kindle.</li><li>Seconds later it is on your e-reader, ready for the couch.</li></ul></div></div>
+        </figure>
 
         <h2>Bagaimana awal mulanya</h2>
         <p>Pada Juli 2024, alat ini hanyalah sebuah bookmarklet — bahkan bukan sebuah ekstensi. Anda mencari artikel menarik, membuka belasan tab, dan seperti kebanyakan orang, tidak pernah sempat membaca sebagian besarnya. Ide awalnya sederhana dan personal: peringkas dengan custom prompt yang memasukkan hasilnya langsung ke dalam halaman, sehingga ringkasan ikut terbawa saat Anda mengirim artikel ke Kindle menggunakan <a href="https://send.reabble.com/" target="_blank" rel="noopener">alat Send-to-Kindle dari Reabble</a>. Hanya itu seluruh produknya. Satu penyedia AI. Satu kolom prompt. Varian bookmarklet yang berfungsi di mana saja, bahkan di Safari iOS, dan varian ekstensi Chrome bagi mereka yang ingin menyesuaikan prompt secara instan.</p>
@@ -163,12 +173,19 @@
   </section>
 </main>
 
+<div class="vfeed-labels" hidden="">
+  <span data-l="close">Tutup</span><span data-l="sound">Suara aktif</span><span data-l="mute">Suara mati</span><span data-l="hint">Geser ke atas untuk video berikutnya</span><span data-l="prev">Video sebelumnya</span><span data-l="next">Video berikutnya</span>
+  <span data-l="share">Bagikan</span><span data-l="copied">Tautan disalin</span>
+  <span data-l="add_chrome">Tambahkan ke Chrome — gratis</span><span data-l="add_firefox">Tambahkan ke Firefox — gratis</span><span data-l="add_browser">Tambahkan ke browser Anda — gratis</span>
+  <a data-l="try" href="../../bookmarklet.html">Coba di browser Anda — gratis</a>
+</div>
 <footer>
   <div class="wrap">
     <div class="footer-inner">
       <div class="wordmark"><img src="../../assets/icon.svg" alt="">AI Summary Helper</div>
       <div class="foot-links">
         <a href="https://github.com/philffm/ai-summary-helper/" target="_blank" rel="noopener">Kode sumber di GitHub</a>
+        <a href="../../education/">Untuk pendidikan</a>
         <a href="../privacy.html">Privasi</a>
         <a href="#" data-analytics-settings="">Pengaturan analitik</a>
         <a href="https://byphil.eu/terms.html#impressum" target="_blank" rel="noopener">Impressum</a>

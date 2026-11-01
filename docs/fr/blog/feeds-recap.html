@@ -89,6 +89,7 @@
         <div class="mm-row">
           <a href="https://addons.mozilla.org/en-US/firefox/addon/ai-summary-helper/" target="_blank" rel="noopener">Firefox</a>
           <a href="../index.html#phone">Android · Bêta</a>
+          <a href="../../education/">Pour l'éducation</a>
           <a href="https://byphil.eu/#account">Mon compte</a>
         </div>
         
@@ -103,24 +104,33 @@
 </header>
 
 <main id="main">
-  <div class="wrap">
-    <div class="post-hero">
+  <section class="hero--photo post-stage">
+    <img class="hero-bg" src="../../assets/photo/commuter-train-reading-800.webp" srcset="../assets/photo/commuter-train-reading-800.webp 800w, ../assets/photo/commuter-train-reading-1600.webp 1600w" sizes="100vw" width="1600" height="893" alt="" fetchpriority="high" decoding="async" style="--bgpos:50% 40%">
+    <p class="hero-credit">Illustration, générée par IA</p>
+    <div class="wrap">
+      <div class="post-hero">
       <span class="blog-date">Guide · Octobre 2026</span>
       <h1>Un seul récapitulatif plutôt que 40 flux</h1>
       <p class="post-sub">Quarante flux représentent quarante micro-interruptions avant la pause déjeuner. Un récapitulatif les rassemble en une lecture unique et maîtrisée.</p>
+      </div>
     </div>
-  </div>
+  </section>
 
   <section>
     <div class="wrap">
-      <div class="prose">
-        <figure class="post-figure post-figure--video" data-blog-video="feeds">
-          <video controls="" playsinline="" preload="none" width="360" height="520" poster="../../assets/blog/video/feeds-fr.jpg">
+      <div class="prose" data-vgroup="">
+        <p>En 2009, Sophie Leroy a décrit ce qu'elle appelle le « résidu attentionnel » (attention residue) : lorsque vous passez d'une tâche à une autre, une partie de votre attention reste attachée à la tâche précédente. Lors de ses expériences, les personnes interrompues pendant une tâche obtenaient de moins bons résultats sur la suivante, un effet encore plus marqué lorsqu'elles devaient se dépêcher.</p>
+        <figure class="post-figure post-video" data-blog-video="feeds">
+          <div class="post-video-in">
+            <button class="fvideo-open post-video-open" type="button"><span class="sr-only">Lire la vidéo</span>
+              <video muted="" playsinline="" loop="" preload="none" width="360" height="520" poster="../../assets/blog/video/feeds-fr.jpg">
             <source src="../../assets/blog/video/feeds-fr.mp4" type="video/mp4">
           <track data-seo-video="" kind="captions" src="../../assets/blog/video/feeds-fr.vtt" srclang="fr" label="français"></video>
-          <figcaption>Vidéo : toute une journée de flux en un seul récapitulatif.</figcaption>
+              <span class="post-video-play" aria-hidden="true">▶</span>
+            </button>
+            <figcaption>Vidéo : toute une journée de flux en un seul récapitulatif.</figcaption>
+          <div data-seo-video="" class="vtext"><p class="vtext-h">Transcription · 0:19</p><ul><li>Un lecteur RSS qui résume.</li><li>Abonnez-vous à vos sources préférées.</li><li>Un clic, et vous obtenez un briefing de toute la journée.</li></ul></div></div>
         </figure>
-        <p>En 2009, Sophie Leroy a décrit ce qu'elle appelle le « résidu attentionnel » (attention residue) : lorsque vous passez d'une tâche à une autre, une partie de votre attention reste attachée à la tâche précédente. Lors de ses expériences, les personnes interrompues pendant une tâche obtenaient de moins bons résultats sur la suivante, un effet encore plus marqué lorsqu'elles devaient se dépêcher.</p>
         <p>Un lecteur de flux RSS est un accélérateur de dispersion mentale. Chaque publication apporte un sujet différent, un ton différent, un nouvel onglet. Même si chaque lecture est brève, le résidu d'attention s'accumule. Au moment de vous remettre au travail, une partie de votre esprit réfléchit encore au changement de tarif d'un hébergeur.</p>
 
         <h2>Pourquoi « l'inbox zero » ne fonctionne jamais avec les flux</h2>
@@ -146,12 +156,19 @@
   </section>
 </main>
 
+<div class="vfeed-labels" hidden="">
+  <span data-l="close">Fermer</span><span data-l="sound">Activer le son</span><span data-l="mute">Couper le son</span><span data-l="hint">Balayez vers le haut pour la vidéo suivante</span><span data-l="prev">Vidéo précédente</span><span data-l="next">Vidéo suivante</span>
+  <span data-l="share">Partager</span><span data-l="copied">Lien copié</span>
+  <span data-l="add_chrome">Ajouter à Chrome — c'est gratuit</span><span data-l="add_firefox">Ajouter à Firefox — c'est gratuit</span><span data-l="add_browser">Ajouter à votre navigateur — c'est gratuit</span>
+  <a data-l="try" href="../../bookmarklet.html">Essayez dans votre navigateur — c'est gratuit</a>
+</div>
 <footer>
   <div class="wrap">
     <div class="footer-inner">
       <div class="wordmark"><img src="../../assets/icon.svg" alt="">AI Summary Helper</div>
       <div class="foot-links">
         <a href="https://github.com/philffm/ai-summary-helper/" target="_blank" rel="noopener">Code source sur GitHub</a>
+        <a href="../../education/">Pour l'éducation</a>
         <a href="../privacy.html">Confidentialité</a>
         <a href="#" data-analytics-settings="">Paramètres d'analyse</a>
         <a href="https://byphil.eu/terms.html#impressum" target="_blank" rel="noopener">Mentions légales</a>

@@ -89,6 +89,7 @@
         <div class="mm-row">
           <a href="https://addons.mozilla.org/en-US/firefox/addon/ai-summary-helper/" target="_blank" rel="noopener">Firefox</a>
           <a href="../index.html#phone">Android · Бета</a>
+          <a href="../../education/">Для освіти</a>
           <a href="https://byphil.eu/#account">Мій акаунт</a>
         </div>
         
@@ -103,25 +104,34 @@
 </header>
 
 <main id="main">
-  <div class="wrap">
-    <div class="post-hero">
+  <section class="hero--photo post-stage">
+    <img class="hero-bg" src="../../assets/photo/ereader-bedside-table-800.webp" srcset="../assets/photo/ereader-bedside-table-800.webp 800w, ../assets/photo/ereader-bedside-table-1600.webp 1600w" sizes="100vw" width="1600" height="1195" alt="" fetchpriority="high" decoding="async" style="--bgpos:50% 50%">
+    <p class="hero-credit">Ілюстрація, згенерована ШІ</p>
+    <div class="wrap">
+      <div class="post-hero">
       <span class="blog-date">Продукт · Червень 2026</span>
       <h1>Від букмарклету до версії 2.0: чим насправді став AI Summary Helper</h1>
       <p class="post-sub">Усе почалося зі звичайного букмарклету в один клік для читання на Kindle. Минуло два роки, проєкт пережив повне переосмислення — і більшості сьогоднішніх функцій просто не існувало, коли з'явилася перша сотня користувачів.</p>
+      </div>
     </div>
-  </div>
+  </section>
 
   <section>
     <div class="wrap">
-      <div class="prose">
-        <figure class="post-figure post-figure--video" data-blog-video="senden">
-          <video controls="" playsinline="" preload="none" width="360" height="520" poster="../../assets/blog/video/senden-en.jpg">
-            <source src="../../assets/blog/video/senden-en.mp4" type="video/mp4">
-          <track data-seo-video="" kind="captions" src="../../assets/blog/video/senden-en.vtt" srclang="en" label="English"></video>
-          <figcaption>Відео: від конспекту до Kindle — звичка, з якої почався цей проєкт.</figcaption>
-        </figure>
+      <div class="prose" data-vgroup="">
 
         <p><strong>AI Summary Helper — це безкоштовне розширення для Chrome з відкритим кодом. Воно створює стислий зміст будь-якої вебсторінки за допомогою вашого AI-провайдера або повністю локальної моделі, зберігає статті на потім із нагадуваннями за розкладом та перетворює вашу історію читання на зручний архів зі спільним пошуком і зв'язками.</strong> Усього цього не було в першій версії. Розповідаємо, з чого все починалося та як проєкт прийшов до свого нинішнього вигляду.</p>
+        <figure class="post-figure post-video" data-blog-video="senden">
+          <div class="post-video-in">
+            <button class="fvideo-open post-video-open" type="button"><span class="sr-only">Відтворити відео</span>
+              <video muted="" playsinline="" loop="" preload="none" width="360" height="520" poster="../../assets/blog/video/senden-en.jpg">
+            <source src="../../assets/blog/video/senden-en.mp4" type="video/mp4">
+          <track data-seo-video="" kind="captions" src="../../assets/blog/video/senden-en.vtt" srclang="en" label="English"></video>
+              <span class="post-video-play" aria-hidden="true">▶</span>
+            </button>
+            <figcaption>Відео: від конспекту до Kindle — звичка, з якої почався цей проєкт.</figcaption>
+          <div data-seo-video="" class="vtext"><p class="vtext-h">Transcript · 0:19</p><ul><li>From summary to Kindle.</li><li>Summarize the page, open the menu, send it to your Kindle.</li><li>Seconds later it is on your e-reader, ready for the couch.</li></ul></div></div>
+        </figure>
 
         <h2>Як усе починалося насправді</h2>
         <p>У липні 2024 року це був лише букмарклет — навіть не розширення. Ви шукали цікаві статті, відкривали десятки вкладок і, як і більшість людей, так і не знаходили часу їх прочитати. Початковий задум був суто прикладним і особистим: кастомний промпт для резюмування, який вставляв результат прямо на сторінку, щоб короткий зміст автоматично додавався під час відправки статті на Kindle через <a href="https://send.reabble.com/" target="_blank" rel="noopener">інструмент Send-to-Kindle від Reabble</a>. Ось і весь продукт. Один AI-провайдер. Одне поле для промпту. Версія букмарклету, яка працювала скрізь, навіть в iOS Safari, і версія розширення для Chrome — для тих, хто хотів змінювати промпт на льоту.</p>
@@ -163,12 +173,19 @@
   </section>
 </main>
 
+<div class="vfeed-labels" hidden="">
+  <span data-l="close">Закрити</span><span data-l="sound">Увімкнути звук</span><span data-l="mute">Вимкнути звук</span><span data-l="hint">Свайпайте вгору для наступного відео</span><span data-l="prev">Попереднє відео</span><span data-l="next">Наступне відео</span>
+  <span data-l="share">Поділитися</span><span data-l="copied">Посилання скопійовано</span>
+  <span data-l="add_chrome">Додати в Chrome — це безкоштовно</span><span data-l="add_firefox">Додати до Firefox — безкоштовно</span><span data-l="add_browser">Додати до свого браузера — безкоштовно</span>
+  <a data-l="try" href="../../bookmarklet.html">Спробувати у браузері — безкоштовно</a>
+</div>
 <footer>
   <div class="wrap">
     <div class="footer-inner">
       <div class="wordmark"><img src="../../assets/icon.svg" alt="">AI Summary Helper</div>
       <div class="foot-links">
         <a href="https://github.com/philffm/ai-summary-helper/" target="_blank" rel="noopener">Вихідний код на GitHub</a>
+        <a href="../../education/">Для освіти</a>
         <a href="../privacy.html">Конфіденційність</a>
         <a href="#" data-analytics-settings="">Налаштування аналітики</a>
         <a href="https://byphil.eu/terms.html#impressum" target="_blank" rel="noopener">Правова інформація (Impressum)</a>

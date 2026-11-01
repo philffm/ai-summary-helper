@@ -89,6 +89,7 @@
         <div class="mm-row">
           <a href="https://addons.mozilla.org/en-US/firefox/addon/ai-summary-helper/" target="_blank" rel="noopener">Firefox</a>
           <a href="../index.html#phone">Android · Beta</a>
+          <a href="../../education/">Opetukseen</a>
           <a href="https://byphil.eu/#account">Oma tili</a>
         </div>
         
@@ -103,24 +104,33 @@
 </header>
 
 <main id="main">
-  <div class="wrap">
-    <div class="post-hero">
+  <section class="hero--photo post-stage">
+    <img class="hero-bg" src="../../assets/photo/bokeh-strip-blue-amber-800.webp" srcset="../assets/photo/bokeh-strip-blue-amber-800.webp 800w, ../assets/photo/bokeh-strip-blue-amber-1600.webp 1600w" sizes="100vw" width="1600" height="679" alt="" fetchpriority="high" decoding="async" style="--bgpos:50% 50%">
+    <p class="hero-credit">Kuvitus, tekoälyn luoma</p>
+    <div class="wrap">
+      <div class="post-hero">
       <span class="blog-date">Kehitys · Elokuu 2026</span>
       <h1>Miksi siirsimme haun, tunnisteet ja suositukset pois pilvestä</h1>
       <p class="post-sub">Haku, kaksoiskappaleiden karsinta, tunnisteiden siivous ja suositukset jakavat yhden pienen paikallisen indeksin. Näin se toimii — ja miksi kyse ei ole vain yksityisyydellä markkinoinnista.</p>
+      </div>
     </div>
-  </div>
+  </section>
 
   <section>
     <div class="wrap">
-      <div class="prose">
-        <figure class="post-figure post-figure--video" data-blog-video="graph">
-          <video controls="" playsinline="" preload="none" width="360" height="520" poster="../../assets/blog/video/graph-en.jpg">
+      <div class="prose" data-vgroup="">
+<p>Useimmat tekoälypohjaiset selainlaajennukset lähettävät kaiken palvelimelle — myös toiminnot, joilla ei ole mitään tekemistä tekoälyn kanssa. Haku, tunnisteiden siivous ja "löydä samankaltaisia" ovat vuosikymmeniä vanhoja, perusteellisesti ymmärrettyjä tekniikoita. Ne eivät vaadi kielimallia eivätkä varsinkaan verkkoliikennettä. Kävimme AI Summary Helperin toiminnot läpi yksitellen ja kysyimme: tarvitseeko tämä oikeasti pilveä, vai käytämmekö sitä vain siksi, että se on helpoin arkkitehtuuri?</p>
+        <figure class="post-figure post-video" data-blog-video="graph">
+          <div class="post-video-in">
+            <button class="fvideo-open post-video-open" type="button"><span class="sr-only">Toista video</span>
+              <video muted="" playsinline="" loop="" preload="none" width="360" height="520" poster="../../assets/blog/video/graph-en.jpg">
             <source src="../../assets/blog/video/graph-en.mp4" type="video/mp4">
           <track data-seo-video="" kind="captions" src="../../assets/blog/video/graph-en.vtt" srclang="en" label="English"></video>
-          <figcaption>Video: tietograafi yhdistää artikkelisi niiden aiheiden perusteella suoraan omalla laitteellasi.</figcaption>
+              <span class="post-video-play" aria-hidden="true">▶</span>
+            </button>
+            <figcaption>Video: tietograafi yhdistää artikkelisi niiden aiheiden perusteella suoraan omalla laitteellasi.</figcaption>
+          <div data-seo-video="" class="vtext"><p class="vtext-h">Transcript · 0:19</p><ul><li>What you read is connected.</li><li>Your knowledge graph links articles through their topics.</li><li>Tap one, and you get a briefing on everything you have read about it.</li></ul></div></div>
         </figure>
-<p>Useimmat tekoälypohjaiset selainlaajennukset lähettävät kaiken palvelimelle — myös toiminnot, joilla ei ole mitään tekemistä tekoälyn kanssa. Haku, tunnisteiden siivous ja "löydä samankaltaisia" ovat vuosikymmeniä vanhoja, perusteellisesti ymmärrettyjä tekniikoita. Ne eivät vaadi kielimallia eivätkä varsinkaan verkkoliikennettä. Kävimme AI Summary Helperin toiminnot läpi yksitellen ja kysyimme: tarvitseeko tämä oikeasti pilveä, vai käytämmekö sitä vain siksi, että se on helpoin arkkitehtuuri?</p>
         <p>Suurin osa ei tarvinnut.</p>
 
         <figure class="post-figure post-figure--portrait"><img src="../../assets/blog/knowledge-graph.webp" alt="Dia: kartta toisiinsa liittyvistä aiheista ja teksti ”Merkitykseen ja yhteyksiin sidottu tieto säilyy pidempään kuin tieto, jota vain vilkaisit”" width="800" height="1000" loading="lazy"><figcaption>Haku, tunnisteet ja samankaltaiset artikkelit käyttävät samaa laitteella pyörivää indeksiä, joten tallennusten väliset yhteydet eivät maksa mitään.</figcaption></figure>
@@ -148,12 +158,19 @@
   </section>
 </main>
 
+<div class="vfeed-labels" hidden="">
+  <span data-l="close">Sulje</span><span data-l="sound">Äänet päälle</span><span data-l="mute">Äänet pois</span><span data-l="hint">Pyyhkäise ylös seuraavaan videoon</span><span data-l="prev">Edellinen video</span><span data-l="next">Seuraava video</span>
+  <span data-l="share">Jaa</span><span data-l="copied">Linkki kopioitu</span>
+  <span data-l="add_chrome">Lisää Chromeen — maksuton</span><span data-l="add_firefox">Lisää Firefoxiin — ilmainen</span><span data-l="add_browser">Lisää selaimeen — ilmainen</span>
+  <a data-l="try" href="../../bookmarklet.html">Kokeile selaimessa — ilmainen</a>
+</div>
 <footer>
   <div class="wrap">
     <div class="footer-inner">
       <div class="wordmark"><img src="../../assets/icon.svg" alt="">AI Summary Helper</div>
       <div class="foot-links">
         <a href="https://github.com/philffm/ai-summary-helper/" target="_blank" rel="noopener">Lähdekoodi GitHubissa</a>
+        <a href="../../education/">Opetukseen</a>
         <a href="../privacy.html">Tietosuoja</a>
         <a href="#" data-analytics-settings="">Analytiikka-asetukset</a>
         <a href="https://byphil.eu/terms.html#impressum" target="_blank" rel="noopener">Impressum</a>

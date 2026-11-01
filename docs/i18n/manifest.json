@@ -117549,6 +117549,846 @@
           "model": "google/gemini-3.7-flash"
         }
       }
+    },
+    "e904d531b132daf2af33def6f449eab7bbab78cfe2197f472eba54a924c900e4": {
+      "en": "Read it in the evening, not in twelve tabs. Illustration, AI-generated.",
+      "translations": {
+        "de": {
+          "text": "Lesen Sie am Abend – nicht in zwölf offenen Tabs. Illustration, KI-generiert.",
+          "translatedAt": "2026-11-01T11:07:54.490Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fr": {
+          "text": "Lisez-le le soir, pas dans douze onglets. Illustration générée par IA.",
+          "translatedAt": "2026-11-01T11:07:59.739Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "es": {
+          "text": "Léelo por la noche, no en doce pestañas. Ilustración generada por IA.",
+          "translatedAt": "2026-11-01T11:08:04.453Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh": {
+          "text": "留到晚上慢慢读，而不是散落在十几个标签页里。插图由 AI 生成。",
+          "translatedAt": "2026-11-01T11:08:09.554Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh-TW": {
+          "text": "留到晚上靜心閱讀，別堆在 12 個分頁裡。插圖由 AI 生成。",
+          "translatedAt": "2026-11-01T11:08:16.851Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ja": {
+          "text": "12個のタブを開きっぱなしにするのではなく、夜にまとめて読みましょう。イラスト：AI生成",
+          "translatedAt": "2026-11-01T11:08:26.046Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ko": {
+          "text": "12개의 탭 대신, 저녁에 여유롭게 읽어보세요. 일러스트레이션, AI 생성.",
+          "translatedAt": "2026-11-01T11:08:32.591Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pt": {
+          "text": "Leia à noite, não em doze abas. Ilustração gerada por IA.",
+          "translatedAt": "2026-11-01T11:08:37.964Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "hi": {
+          "text": "इसे शाम को आराम से पढ़ें, 12 tabs में नहीं। Illustration, AI-generated.",
+          "translatedAt": "2026-11-01T11:08:44.730Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "vi": {
+          "text": "Đọc trọn vẹn vào buổi tối, thay vì mở mười hai tab. Hình minh họa do AI tạo.",
+          "translatedAt": "2026-11-01T11:08:50.009Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "nl": {
+          "text": "Lees het 's avonds, niet in twaalf tabbladen. Illustratie, AI-gegenereerd.",
+          "translatedAt": "2026-11-01T11:08:54.363Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "it": {
+          "text": "Leggilo la sera con calma, non tra dodici schede aperte. Illustrazione generata dall'IA.",
+          "translatedAt": "2026-11-01T11:08:58.216Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ru": {
+          "text": "Читайте вечером, а не в двенадцати вкладках. Иллюстрация создана ИИ.",
+          "translatedAt": "2026-11-01T11:09:02.941Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "uk": {
+          "text": "Читайте ввечері, а не у дванадцяти вкладках. Ілюстрація, згенерована ШІ.",
+          "translatedAt": "2026-11-01T11:09:07.202Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "tr": {
+          "text": "On iki sekme arasında değil, akşam keyifle okuyun. İllüstrasyon, yapay zekâ ile oluşturulmuştur.",
+          "translatedAt": "2026-11-01T11:09:12.011Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "id": {
+          "text": "Baca di malam hari, bukan di dua belas tab. Ilustrasi, dibuat dengan AI.",
+          "translatedAt": "2026-11-01T11:09:17.370Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pl": {
+          "text": "Przeczytaj wieczorem, zamiast w dwunastu otwartych kartach. Ilustracja wygenerowana przez AI.",
+          "translatedAt": "2026-11-01T11:09:22.277Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "th": {
+          "text": "อ่านสบายๆ ยามค่ำคืน แทนที่จะเปิดค้างไว้ถึงสิบสองแท็บ ภาพประกอบสร้างโดย AI",
+          "translatedAt": "2026-11-01T11:09:27.332Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ar": {
+          "text": "اقرأ في المساء، بدلاً من التشتت بين اثنتي عشرة علامة تبويب. رسم توضيحي تم إنشاؤه بالذكاء الاصطناعي.",
+          "translatedAt": "2026-11-01T11:09:32.558Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "sv": {
+          "text": "Läs på kvällen, inte i tolv flikar. Illustration, AI-genererad.",
+          "translatedAt": "2026-11-01T11:09:39.784Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "da": {
+          "text": "Læs det om aftenen, ikke i tolv faner. Illustration, AI-genereret.",
+          "translatedAt": "2026-11-01T11:09:43.003Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "no": {
+          "text": "Les det på kvelden, ikke i tolv åpne faner. Illustrasjon, AI-generert.",
+          "translatedAt": "2026-11-01T11:09:49.215Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fi": {
+          "text": "Lue rauhassa illalla, älä kahdessatoista välilehdessä. Kuvitus, tekoälyn luoma.",
+          "translatedAt": "2026-11-01T11:09:53.943Z",
+          "model": "google/gemini-3.7-flash"
+        }
+      }
+    },
+    "208295b9cc14a638668cb75a83859d13414367036728d156971123d6e275a9df": {
+      "en": "Your library lives on your device. Illustration, AI-generated.",
+      "translations": {
+        "de": {
+          "text": "Ihre Bibliothek bleibt lokal auf Ihrem Gerät. Illustration, KI-generiert.",
+          "translatedAt": "2026-11-01T11:07:54.490Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fr": {
+          "text": "Votre bibliothèque reste sur votre appareil. Illustration générée par IA.",
+          "translatedAt": "2026-11-01T11:07:59.739Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "es": {
+          "text": "Tu biblioteca vive en tu dispositivo. Ilustración generada por IA.",
+          "translatedAt": "2026-11-01T11:08:04.453Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh": {
+          "text": "你的书库完全保存在本地设备。插图由 AI 生成。",
+          "translatedAt": "2026-11-01T11:08:09.554Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh-TW": {
+          "text": "你的個人書庫完全儲存在本機裝置。插圖由 AI 生成。",
+          "translatedAt": "2026-11-01T11:08:16.851Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ja": {
+          "text": "ライブラリのデータはお使いのデバイス内にのみ保存されます。イラスト：AI生成",
+          "translatedAt": "2026-11-01T11:08:26.046Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ko": {
+          "text": "나만의 라이브러리는 내 기기에 안전하게 보관돼요. 일러스트레이션, AI 생성.",
+          "translatedAt": "2026-11-01T11:08:32.591Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pt": {
+          "text": "Sua biblioteca fica no seu dispositivo. Ilustração gerada por IA.",
+          "translatedAt": "2026-11-01T11:08:37.964Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "hi": {
+          "text": "आपकी library आपके device पर ही रहती है। Illustration, AI-generated.",
+          "translatedAt": "2026-11-01T11:08:44.730Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "vi": {
+          "text": "Thư viện lưu trữ ngay trên thiết bị của bạn. Hình minh họa do AI tạo.",
+          "translatedAt": "2026-11-01T11:08:50.009Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "nl": {
+          "text": "Je bibliotheek staat op je eigen apparaat. Illustratie, AI-gegenereerd.",
+          "translatedAt": "2026-11-01T11:08:54.363Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "it": {
+          "text": "La tua libreria resta sul tuo dispositivo. Illustrazione generata dall'IA.",
+          "translatedAt": "2026-11-01T11:08:58.216Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ru": {
+          "text": "Ваша библиотека хранится на вашем устройстве. Иллюстрация создана ИИ.",
+          "translatedAt": "2026-11-01T11:09:02.941Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "uk": {
+          "text": "Ваша бібліотека зберігається на вашому пристрої. Ілюстрація, згенерована ШІ.",
+          "translatedAt": "2026-11-01T11:09:07.202Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "tr": {
+          "text": "Kütüphaneniz tamamen cihazınızda barınır. İllüstrasyon, yapay zekâ ile oluşturulmuştur.",
+          "translatedAt": "2026-11-01T11:09:12.011Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "id": {
+          "text": "Pustaka Anda tersimpan di perangkat Anda. Ilustrasi, dibuat dengan AI.",
+          "translatedAt": "2026-11-01T11:09:17.370Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pl": {
+          "text": "Twoja biblioteka pozostaje na Twoim urządzeniu. Ilustracja wygenerowana przez AI.",
+          "translatedAt": "2026-11-01T11:09:22.277Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "th": {
+          "text": "คลังของคุณจัดเก็บบนอุปกรณ์ของคุณเอง ภาพประกอบสร้างโดย AI",
+          "translatedAt": "2026-11-01T11:09:27.332Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ar": {
+          "text": "مكتبتك تبقى بأمان على جهازك. رسم توضيحي تم إنشاؤه بالذكاء الاصطناعي.",
+          "translatedAt": "2026-11-01T11:09:32.558Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "sv": {
+          "text": "Ditt bibliotek finns på din enhet. Illustration, AI-genererad.",
+          "translatedAt": "2026-11-01T11:09:39.784Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "da": {
+          "text": "Dit bibliotek ligger på din enhed. Illustration, AI-genereret.",
+          "translatedAt": "2026-11-01T11:09:43.003Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "no": {
+          "text": "Biblioteket ditt ligger på enheten din. Illustrasjon, AI-generert.",
+          "translatedAt": "2026-11-01T11:09:49.215Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fi": {
+          "text": "Kirjastosi pysyy omalla laitteellasi. Kuvitus, tekoälyn luoma.",
+          "translatedAt": "2026-11-01T11:09:53.943Z",
+          "model": "google/gemini-3.7-flash"
+        }
+      }
+    },
+    "82d87763775b79a3805f8dfeb513add5f1cfb68f321b6ab283b7a181d00c3f2f": {
+      "en": "Illustration: a person on a sofa in the evening, reading on an e-reader under a blanket",
+      "translations": {
+        "de": {
+          "text": "Illustration: Eine Person sitzt abends auf dem Sofa und liest unter einer Decke auf einem E-Reader",
+          "translatedAt": "2026-11-01T11:07:54.490Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fr": {
+          "text": "Illustration : une personne sur un canapé en soirée, lisant sur une liseuse sous un plaid",
+          "translatedAt": "2026-11-01T11:07:59.739Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "es": {
+          "text": "Ilustración: una persona en un sofá por la noche, leyendo en un lector electrónico bajo una manta",
+          "translatedAt": "2026-11-01T11:08:04.453Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh": {
+          "text": "插图：夜晚，一个人盖着毛毯坐在沙发上使用电子阅读器阅读",
+          "translatedAt": "2026-11-01T11:08:09.554Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh-TW": {
+          "text": "插圖：夜晚時分，一人蓋著毯子坐在沙發上，使用電子閱讀器閱讀",
+          "translatedAt": "2026-11-01T11:08:16.851Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ja": {
+          "text": "イラスト：夜、ソファでブランケットにくるまりながら電子書籍リーダーを読む人",
+          "translatedAt": "2026-11-01T11:08:26.046Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ko": {
+          "text": "일러스트: 저녁에 담요를 덮고 소파에 앉아 전자책 리더기로 글을 읽는 사람",
+          "translatedAt": "2026-11-01T11:08:32.591Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pt": {
+          "text": "Ilustração: uma pessoa no sofá à noite, lendo em um e-reader sob um cobertor",
+          "translatedAt": "2026-11-01T11:08:37.964Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "hi": {
+          "text": "Illustration: शाम के समय सोफे पर कंबल में e-reader पर पढ़ता हुआ एक व्यक्ति",
+          "translatedAt": "2026-11-01T11:08:44.730Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "vi": {
+          "text": "Hình minh họa: một người đang ngồi trên ghế sofa vào buổi tối, đắp chăn đọc sách trên máy đọc sách điện tử",
+          "translatedAt": "2026-11-01T11:08:50.009Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "nl": {
+          "text": "Illustratie: een persoon 's avonds op de bank, lezend op een e-reader onder een dekentje",
+          "translatedAt": "2026-11-01T11:08:54.363Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "it": {
+          "text": "Illustrazione: una persona sul divano di sera che legge su un e-reader sotto una coperta",
+          "translatedAt": "2026-11-01T11:08:58.216Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ru": {
+          "text": "Иллюстрация: человек сидит вечером на диване под пледом и читает с электронной книги",
+          "translatedAt": "2026-11-01T11:09:02.941Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "uk": {
+          "text": "Ілюстрація: людина ввечері на дивані читає з рідера під ковдрою",
+          "translatedAt": "2026-11-01T11:09:07.202Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "tr": {
+          "text": "İllüstrasyon: Akşam vakti koltukta, battaniyenin altında e-kitap okuyucusundan okuma yapan bir kişi",
+          "translatedAt": "2026-11-01T11:09:12.011Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "id": {
+          "text": "Ilustrasi: seseorang di sofa pada malam hari, sedang membaca di e-reader di balik selimut",
+          "translatedAt": "2026-11-01T11:09:17.370Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pl": {
+          "text": "Ilustracja: osoba na kanapie wieczorem, czytająca na czytniku e-booków pod kocem",
+          "translatedAt": "2026-11-01T11:09:22.277Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "th": {
+          "text": "ภาพประกอบ: บุคคลกำลังนั่งอ่าน e-reader อยู่บนโซฟาใต้ผ้าห่มในยามค่ำคืน",
+          "translatedAt": "2026-11-01T11:09:27.332Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ar": {
+          "text": "رسم توضيحي: شخص يجلس على أريكة في المساء، يقرأ على قارئ إلكتروني تحت غطاء دافئ",
+          "translatedAt": "2026-11-01T11:09:32.558Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "sv": {
+          "text": "Illustration: en person i en soffa på kvällen som läser på en läsplatta under en filt",
+          "translatedAt": "2026-11-01T11:09:39.784Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "da": {
+          "text": "Illustration: en person på en sofa om aftenen, der læser på en e-læser under et tæppe",
+          "translatedAt": "2026-11-01T11:09:43.003Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "no": {
+          "text": "Illustrasjon: en person i sofaen om kvelden, som leser på et lesebrett under et pledd",
+          "translatedAt": "2026-11-01T11:09:49.215Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fi": {
+          "text": "Kuvitus: henkilö sohvalla illalla lukemassa lukulaitteella viltin alla",
+          "translatedAt": "2026-11-01T11:09:53.943Z",
+          "model": "google/gemini-3.7-flash"
+        }
+      }
+    },
+    "32b98a4a772485d076bda50c8059b0d321f68c68efb19ccbd67231859c64b602": {
+      "en": "Illustration: a laptop on a tidy wooden desk next to a plant and a stack of notebooks",
+      "translations": {
+        "de": {
+          "text": "Illustration: Ein Laptop auf einem aufgeräumten Holzschreibtisch neben einer Pflanze und einem Stapel Notizbücher",
+          "translatedAt": "2026-11-01T11:07:54.490Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fr": {
+          "text": "Illustration : un ordinateur portable sur un bureau en bois bien rangé, à côté d'une plante et d'une pile de carnets",
+          "translatedAt": "2026-11-01T11:07:59.739Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "es": {
+          "text": "Ilustración: una computadora portátil en un escritorio de madera ordenado junto a una planta y una pila de cuadernos",
+          "translatedAt": "2026-11-01T11:08:04.453Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh": {
+          "text": "插图：整洁的木质书桌上放着一台笔记本电脑，旁边有一盆绿植和一叠笔记本",
+          "translatedAt": "2026-11-01T11:08:09.554Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh-TW": {
+          "text": "插圖：整潔的木質桌面上擺放著筆記型電腦，旁邊有一盆植栽與一疊筆記本",
+          "translatedAt": "2026-11-01T11:08:16.851Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ja": {
+          "text": "イラスト：観葉植物と積み重ねられたノートの横に置かれた、すっきりと片付いた木製デスクの上のノートPC",
+          "translatedAt": "2026-11-01T11:08:26.046Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ko": {
+          "text": "일러스트: 화분과 공책 더미 옆, 깔끔한 원목 책상 위에 놓인 노트북",
+          "translatedAt": "2026-11-01T11:08:32.591Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pt": {
+          "text": "Ilustração: um notebook em uma mesa de madeira organizada ao lado de uma planta e uma pilha de cadernos",
+          "translatedAt": "2026-11-01T11:08:37.964Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "hi": {
+          "text": "Illustration: एक साफ़-सुथरी लकड़ी की desk पर रखा laptop, पास में एक पौधा और notebooks का ढेर",
+          "translatedAt": "2026-11-01T11:08:44.730Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "vi": {
+          "text": "Hình minh họa: một chiếc laptop trên bàn gỗ ngăn nắp, bên cạnh chậu cây và chồng sổ tay",
+          "translatedAt": "2026-11-01T11:08:50.009Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "nl": {
+          "text": "Illustratie: een laptop op een opgeruimd houten bureau naast een plant en een stapel notitieboeken",
+          "translatedAt": "2026-11-01T11:08:54.363Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "it": {
+          "text": "Illustrazione: un portatile su una scrivania di legno ordinata, accanto a una pianta e a una pila di taccuini",
+          "translatedAt": "2026-11-01T11:08:58.216Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ru": {
+          "text": "Иллюстрация: ноутбук на аккуратном деревянном столе рядом с растением и стопкой блокнотов",
+          "translatedAt": "2026-11-01T11:09:02.941Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "uk": {
+          "text": "Ілюстрація: ноутбук на охайному дерев'яному столі поруч із кімнатною рослиною та стосом записників",
+          "translatedAt": "2026-11-01T11:09:07.202Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "tr": {
+          "text": "İllüstrasyon: Düzenli ahşap bir masanın üzerinde, bir bitki ve not defterlerinin yanında duran bir dizüstü bilgisayar",
+          "translatedAt": "2026-11-01T11:09:12.011Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "id": {
+          "text": "Ilustrasi: laptop di atas meja kayu yang rapi di sebelah tanaman dan tumpukan buku catatan",
+          "translatedAt": "2026-11-01T11:09:17.370Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pl": {
+          "text": "Ilustracja: laptop na uporządkowanym drewnianym biurku obok rośliny i stosu notatników",
+          "translatedAt": "2026-11-01T11:09:22.277Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "th": {
+          "text": "ภาพประกอบ: แล็ปท็อปบนโต๊ะไม้ที่จัดเป็นระเบียบ วางอยู่ข้างต้นไม้และกองสมุดโน้ต",
+          "translatedAt": "2026-11-01T11:09:27.332Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ar": {
+          "text": "رسم توضيحي: حاسوب محمول على مكتب خشبي مرتب بجانب نبتة ومجموعة دفاتر",
+          "translatedAt": "2026-11-01T11:09:32.558Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "sv": {
+          "text": "Illustration: en laptop på ett prydligt träskrivbord bredvid en växt och en trave anteckningsböcker",
+          "translatedAt": "2026-11-01T11:09:39.784Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "da": {
+          "text": "Illustration: en bærbar computer på et ryddeligt træskrivebord ved siden af en plante og en stak notesbøger",
+          "translatedAt": "2026-11-01T11:09:43.003Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "no": {
+          "text": "Illustrasjon: en laptop på et ryddig treskrivebord ved siden av en plante og en bunke notatbøker",
+          "translatedAt": "2026-11-01T11:09:49.215Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fi": {
+          "text": "Kuvitus: kannettava tietokone siistillä puupöydällä huonekasvin ja muistikirjapinon vieressä",
+          "translatedAt": "2026-11-01T11:09:53.943Z",
+          "model": "google/gemini-3.7-flash"
+        }
+      }
+    },
+    "b7f99658c3ca481979bc27dc1397eec6a41bc764db30a2a9b99f21c864a72127": {
+      "en": "Illustration, AI-generated",
+      "translations": {
+        "de": {
+          "text": "Illustration, KI-generiert",
+          "translatedAt": "2026-11-01T11:09:57.249Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fr": {
+          "text": "Illustration, générée par IA",
+          "translatedAt": "2026-11-01T11:10:01.633Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "es": {
+          "text": "Ilustración, generada por IA",
+          "translatedAt": "2026-11-01T11:10:04.292Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh": {
+          "text": "插图由 AI 生成",
+          "translatedAt": "2026-11-01T11:10:07.931Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh-TW": {
+          "text": "插圖，AI 生成",
+          "translatedAt": "2026-11-01T11:10:11.848Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ja": {
+          "text": "イラスト（AI生成）",
+          "translatedAt": "2026-11-01T11:10:16.661Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ko": {
+          "text": "AI 생성 일러스트",
+          "translatedAt": "2026-11-01T11:10:21.301Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pt": {
+          "text": "Ilustração gerada por IA",
+          "translatedAt": "2026-11-01T11:10:23.214Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "hi": {
+          "text": "इलस्ट्रेशन, AI-जनरेटेड",
+          "translatedAt": "2026-11-01T11:10:26.822Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "vi": {
+          "text": "Hình minh họa, do AI tạo",
+          "translatedAt": "2026-11-01T11:10:29.687Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "nl": {
+          "text": "Illustratie, AI-gegenereerd",
+          "translatedAt": "2026-11-01T11:10:33.095Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "it": {
+          "text": "Illustrazione, generata dall'IA",
+          "translatedAt": "2026-11-01T11:10:35.809Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ru": {
+          "text": "Иллюстрация, сгенерировано ИИ",
+          "translatedAt": "2026-11-01T11:10:39.801Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "uk": {
+          "text": "Ілюстрація, згенерована ШІ",
+          "translatedAt": "2026-11-01T11:10:42.256Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "tr": {
+          "text": "İllüstrasyon, yapay zekâ üretimi",
+          "translatedAt": "2026-11-01T11:10:46.035Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "id": {
+          "text": "Ilustrasi, dibuat oleh AI",
+          "translatedAt": "2026-11-01T11:10:48.537Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pl": {
+          "text": "Ilustracja wygenerowana przez AI",
+          "translatedAt": "2026-11-01T11:10:50.595Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "th": {
+          "text": "ภาพประกอบ, สร้างโดย AI",
+          "translatedAt": "2026-11-01T11:10:54.302Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ar": {
+          "text": "رسم توضيحي، مُولّد بالذكاء الاصطناعي",
+          "translatedAt": "2026-11-01T11:10:58.650Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "sv": {
+          "text": "Illustration, AI-genererad",
+          "translatedAt": "2026-11-01T11:11:01.219Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "da": {
+          "text": "Illustration, AI-genereret",
+          "translatedAt": "2026-11-01T11:11:03.554Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "no": {
+          "text": "Illustrasjon, AI-generert",
+          "translatedAt": "2026-11-01T11:11:07.226Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fi": {
+          "text": "Kuvitus, tekoälyn luoma",
+          "translatedAt": "2026-11-01T11:11:10.514Z",
+          "model": "google/gemini-3.7-flash"
+        }
+      }
+    },
+    "34829f314e222dcb89327e8c2b1541b8bda271ba92adeb8284c152d695562488": {
+      "en": "For education",
+      "translations": {
+        "de": {
+          "text": "Für Bildungseinrichtungen",
+          "translatedAt": "2026-11-01T12:02:31.669Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fr": {
+          "text": "Pour l'éducation",
+          "translatedAt": "2026-11-01T12:02:37.539Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "es": {
+          "text": "Para educación",
+          "translatedAt": "2026-11-01T12:02:41.027Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh": {
+          "text": "教育方案",
+          "translatedAt": "2026-11-01T12:02:45.250Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh-TW": {
+          "text": "教育方案",
+          "translatedAt": "2026-11-01T12:02:51.153Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ja": {
+          "text": "教育機関向け",
+          "translatedAt": "2026-11-01T12:02:53.998Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ko": {
+          "text": "교육용",
+          "translatedAt": "2026-11-01T12:02:58.332Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pt": {
+          "text": "Para educação",
+          "translatedAt": "2026-11-01T12:03:01.225Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "hi": {
+          "text": "Education के लिए",
+          "translatedAt": "2026-11-01T12:03:04.193Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "vi": {
+          "text": "Dành cho giáo dục",
+          "translatedAt": "2026-11-01T12:03:08.558Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "nl": {
+          "text": "Voor het onderwijs",
+          "translatedAt": "2026-11-01T12:03:12.618Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "it": {
+          "text": "Per l'istruzione",
+          "translatedAt": "2026-11-01T12:03:16.142Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ru": {
+          "text": "Для образования",
+          "translatedAt": "2026-11-01T12:03:18.443Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "uk": {
+          "text": "Для освіти",
+          "translatedAt": "2026-11-01T12:03:22.359Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "tr": {
+          "text": "Eğitim için",
+          "translatedAt": "2026-11-01T12:03:25.636Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "id": {
+          "text": "Untuk pendidikan",
+          "translatedAt": "2026-11-01T12:03:29.490Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pl": {
+          "text": "Dla edukacji",
+          "translatedAt": "2026-11-01T12:03:35.269Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "th": {
+          "text": "สำหรับการศึกษา",
+          "translatedAt": "2026-11-01T12:03:37.627Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ar": {
+          "text": "للتعليم",
+          "translatedAt": "2026-11-01T12:03:41.506Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "sv": {
+          "text": "För utbildning",
+          "translatedAt": "2026-11-01T12:03:45.475Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "da": {
+          "text": "Til uddannelse",
+          "translatedAt": "2026-11-01T12:03:48.445Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "no": {
+          "text": "For utdanning",
+          "translatedAt": "2026-11-01T12:03:51.794Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fi": {
+          "text": "Opetukseen",
+          "translatedAt": "2026-11-01T12:03:57.414Z",
+          "model": "google/gemini-3.7-flash"
+        }
+      }
+    },
+    "f76527a7d13c30cd60fb09d871653af8b2ed75e10d3f1168325584382016e2fd": {
+      "en": "Source checking for schools and libraries",
+      "translations": {
+        "de": {
+          "text": "Quellenprüfung für Schulen und Bibliotheken",
+          "translatedAt": "2026-11-01T12:02:31.669Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fr": {
+          "text": "Vérification des sources pour les écoles et les bibliothèques",
+          "translatedAt": "2026-11-01T12:02:37.539Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "es": {
+          "text": "Verificación de fuentes para escuelas y bibliotecas",
+          "translatedAt": "2026-11-01T12:02:41.027Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh": {
+          "text": "面向学校与图书馆的信源核查",
+          "translatedAt": "2026-11-01T12:02:45.250Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh-TW": {
+          "text": "專為學校與圖書館打造的資料來源查核",
+          "translatedAt": "2026-11-01T12:02:51.153Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ja": {
+          "text": "学校・図書館向けの情報源チェック",
+          "translatedAt": "2026-11-01T12:02:53.998Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ko": {
+          "text": "학교 및 도서관을 위한 출처 검증",
+          "translatedAt": "2026-11-01T12:02:58.332Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pt": {
+          "text": "Verificação de fontes para escolas e bibliotecas",
+          "translatedAt": "2026-11-01T12:03:01.225Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "hi": {
+          "text": "Schools और libraries के लिए source checking",
+          "translatedAt": "2026-11-01T12:03:04.193Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "vi": {
+          "text": "Kiểm tra nguồn cho trường học và thư viện",
+          "translatedAt": "2026-11-01T12:03:08.558Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "nl": {
+          "text": "Broncontrole voor scholen en bibliotheken",
+          "translatedAt": "2026-11-01T12:03:12.618Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "it": {
+          "text": "Verifica delle fonti per scuole e biblioteche",
+          "translatedAt": "2026-11-01T12:03:16.142Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ru": {
+          "text": "Проверка источников для школ и библиотек",
+          "translatedAt": "2026-11-01T12:03:18.443Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "uk": {
+          "text": "Перевірка джерел для шкіл та бібліотек",
+          "translatedAt": "2026-11-01T12:03:22.359Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "tr": {
+          "text": "Okullar ve kütüphaneler için kaynak doğrulama",
+          "translatedAt": "2026-11-01T12:03:25.636Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "id": {
+          "text": "Pemeriksaan sumber untuk sekolah dan perpustakaan",
+          "translatedAt": "2026-11-01T12:03:29.490Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pl": {
+          "text": "Weryfikacja źródeł dla szkół i bibliotek",
+          "translatedAt": "2026-11-01T12:03:35.269Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "th": {
+          "text": "การตรวจสอบแหล่งที่มาสำหรับโรงเรียนและห้องสมุด",
+          "translatedAt": "2026-11-01T12:03:37.627Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ar": {
+          "text": "التحقق من المصادر للمدارس والمكتبات",
+          "translatedAt": "2026-11-01T12:03:41.506Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "sv": {
+          "text": "Källgranskning för skolor och bibliotek",
+          "translatedAt": "2026-11-01T12:03:45.475Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "da": {
+          "text": "Kildetjek til skoler og biblioteker",
+          "translatedAt": "2026-11-01T12:03:48.445Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "no": {
+          "text": "Kildesjekk for skoler og bibliotek",
+          "translatedAt": "2026-11-01T12:03:51.794Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fi": {
+          "text": "Lähdetarkistus kouluille ja kirjastoille",
+          "translatedAt": "2026-11-01T12:03:57.414Z",
+          "model": "google/gemini-3.7-flash"
+        }
+      }
     }
   }
 }

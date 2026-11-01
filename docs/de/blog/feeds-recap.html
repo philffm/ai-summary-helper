@@ -89,6 +89,7 @@
         <div class="mm-row">
           <a href="https://addons.mozilla.org/en-US/firefox/addon/ai-summary-helper/" target="_blank" rel="noopener">Firefox</a>
           <a href="../index.html#phone">Android · Beta</a>
+          <a href="../../education/">Für Bildungseinrichtungen</a>
           <a href="https://byphil.eu/#account">Mein Konto</a>
         </div>
         
@@ -103,24 +104,33 @@
 </header>
 
 <main id="main">
-  <div class="wrap">
-    <div class="post-hero">
+  <section class="hero--photo post-stage">
+    <img class="hero-bg" src="../../assets/photo/commuter-train-reading-800.webp" srcset="../assets/photo/commuter-train-reading-800.webp 800w, ../assets/photo/commuter-train-reading-1600.webp 1600w" sizes="100vw" width="1600" height="893" alt="" fetchpriority="high" decoding="async" style="--bgpos:50% 40%">
+    <p class="hero-credit">Illustration, KI-generiert</p>
+    <div class="wrap">
+      <div class="post-hero">
       <span class="blog-date">Leitfaden · Oktober 2026</span>
       <h1>Ein Recap statt 40 Feeds</h1>
       <p class="post-sub">Vierzig Feeds bedeuten vierzig kleine Unterbrechungen vor dem Mittagessen. Ein Recap bündelt alles in einem einzigen Dokument, das Sie einmalig lesen.</p>
+      </div>
     </div>
-  </div>
+  </section>
 
   <section>
     <div class="wrap">
-      <div class="prose">
-        <figure class="post-figure post-figure--video" data-blog-video="feeds">
-          <video controls="" playsinline="" preload="none" width="360" height="520" poster="../../assets/blog/video/feeds-de.jpg">
+      <div class="prose" data-vgroup="">
+        <p>Im Jahr 2009 beschrieb Sophie Leroy das Phänomen der Aufmerksamkeitsrückstände („Attention Residue“): Wenn Sie von einer Aufgabe zur nächsten wechseln, verbleibt ein Teil Ihrer Aufmerksamkeit bei der vorherigen Aufgabe. In ihren Experimenten schnitten Personen, die unterbrochen wurden, bei der Folgeaufgabe schlechter ab – besonders dann, wenn sie unter Zeitdruck standen.</p>
+        <figure class="post-figure post-video" data-blog-video="feeds">
+          <div class="post-video-in">
+            <button class="fvideo-open post-video-open" type="button"><span class="sr-only">Video abspielen</span>
+              <video muted="" playsinline="" loop="" preload="none" width="360" height="520" poster="../../assets/blog/video/feeds-de.jpg">
             <source src="../../assets/blog/video/feeds-de.mp4" type="video/mp4">
           <track data-seo-video="" kind="captions" src="../../assets/blog/video/feeds-de.vtt" srclang="de" label="Deutsch"></video>
-          <figcaption>Video: Ein ganzer Tag voller Feeds in einer Zusammenfassung.</figcaption>
+              <span class="post-video-play" aria-hidden="true">▶</span>
+            </button>
+            <figcaption>Video: Ein ganzer Tag voller Feeds in einer Zusammenfassung.</figcaption>
+          <div data-seo-video="" class="vtext"><p class="vtext-h">Transkript · 0:18</p><ul><li>Ein RSS-Reader, der zusammenfasst.</li><li>Abonniere deine Lieblingsquellen.</li><li>Ein Klick, und du bekommst ein Briefing des ganzen Tages.</li></ul></div></div>
         </figure>
-        <p>Im Jahr 2009 beschrieb Sophie Leroy das Phänomen der Aufmerksamkeitsrückstände („Attention Residue“): Wenn Sie von einer Aufgabe zur nächsten wechseln, verbleibt ein Teil Ihrer Aufmerksamkeit bei der vorherigen Aufgabe. In ihren Experimenten schnitten Personen, die unterbrochen wurden, bei der Folgeaufgabe schlechter ab – besonders dann, wenn sie unter Zeitdruck standen.</p>
         <p>Ein Feedreader ist eine Maschinerie für permanente Kontextwechsel. Jeder Eintrag bringt ein neues Thema, einen neuen Tonfall, einen neuen Tab. Selbst wenn man jeden Beitrag nur überfliegt, summiert sich der Aufmerksamkeitsverlust. Wenn Sie zu Ihrer eigentlichen Arbeit zurückkehren, ist ein Teil Ihrer Gedanken immer noch bei der Preisänderung eines Hosting-Anbieters.</p>
 
         <h2>Warum „Inbox Zero“ bei Feeds nicht funktioniert</h2>
@@ -146,12 +156,19 @@
   </section>
 </main>
 
+<div class="vfeed-labels" hidden="">
+  <span data-l="close">Schließen</span><span data-l="sound">Ton ein</span><span data-l="mute">Ton aus</span><span data-l="hint">Nach oben wischen für das nächste Video</span><span data-l="prev">Vorheriges Video</span><span data-l="next">Nächstes Video</span>
+  <span data-l="share">Teilen</span><span data-l="copied">Link kopiert</span>
+  <span data-l="add_chrome">Zu Chrome hinzufügen — kostenlos</span><span data-l="add_firefox">Zu Firefox hinzufügen — kostenlos</span><span data-l="add_browser">Zu Ihrem Browser hinzufügen — kostenlos</span>
+  <a data-l="try" href="../../bookmarklet.html">In Ihrem Browser testen — kostenlos</a>
+</div>
 <footer>
   <div class="wrap">
     <div class="footer-inner">
       <div class="wordmark"><img src="../../assets/icon.svg" alt="">AI Summary Helper</div>
       <div class="foot-links">
         <a href="https://github.com/philffm/ai-summary-helper/" target="_blank" rel="noopener">Quellcode auf GitHub</a>
+        <a href="../../education/">Für Bildungseinrichtungen</a>
         <a href="../privacy.html">Datenschutz</a>
         <a href="#" data-analytics-settings="">Analyse-Einstellungen</a>
         <a href="https://byphil.eu/terms.html#impressum" target="_blank" rel="noopener">Impressum</a>

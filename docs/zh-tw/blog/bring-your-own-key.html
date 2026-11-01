@@ -89,6 +89,7 @@
         <div class="mm-row">
           <a href="https://addons.mozilla.org/en-US/firefox/addon/ai-summary-helper/" target="_blank" rel="noopener">Firefox</a>
           <a href="../index.html#phone">Android · Beta</a>
+          <a href="../../education/">教育方案</a>
           <a href="https://byphil.eu/#account">我的帳戶</a>
         </div>
         
@@ -103,24 +104,33 @@
 </header>
 
 <main id="main">
-  <div class="wrap">
-    <div class="post-hero">
+  <section class="hero--photo post-stage">
+    <img class="hero-bg" src="../../assets/photo/hands-keyboard-closeup-800.webp" srcset="../assets/photo/hands-keyboard-closeup-800.webp 800w, ../assets/photo/hands-keyboard-closeup-1600.webp 1600w" sizes="100vw" width="1600" height="893" alt="" fetchpriority="high" decoding="async" style="--bgpos:50% 50%">
+    <p class="hero-credit">插圖，AI 生成</p>
+    <div class="wrap">
+      <div class="post-hero">
       <span class="blog-date">產品動態 · 2026 年 10 月</span>
       <h1>你的 API Key。你的模型。你的資料。</h1>
       <p class="post-sub">大多數 AI 工具都會在你與模型之間架設一層伺服器。以下將說明少了這層中介時會有何改變，以及哪些部分仍取決於你的設定。</p>
+      </div>
     </div>
-  </div>
+  </section>
 
   <section>
     <div class="wrap">
-      <div class="prose">
-        <figure class="post-figure post-figure--video" data-blog-video="privat">
-          <video controls="" playsinline="" preload="none" width="360" height="520" poster="../../assets/blog/video/privat-zh-tw.jpg">
+      <div class="prose" data-vgroup="">
+        <p>每一次 AI 摘要的運作流程都大同小異：傳出文字，取回摘要。決定你是否能信任該工具的關鍵，在於誰處於中間位置。許多產品會在中間架設自家伺服器，你正在閱讀的內容在傳送給預設模型前，都會先經過他們的伺服器。</p>
+        <figure class="post-figure post-video" data-blog-video="privat">
+          <div class="post-video-in">
+            <button class="fvideo-open post-video-open" type="button"><span class="sr-only">播放影片</span>
+              <video muted="" playsinline="" loop="" preload="none" width="360" height="520" poster="../../assets/blog/video/privat-zh-tw.jpg">
             <source src="../../assets/blog/video/privat-zh-tw.mp4" type="video/mp4">
           <track data-seo-video="" kind="captions" src="../../assets/blog/video/privat-zh-tw.vtt" srclang="zh-tw" label="中文（台灣）"></video>
-          <figcaption>影片：在自備的 API Key、Ollama 本地模型與 byPhil Cloud 之間自由切換。</figcaption>
+              <span class="post-video-play" aria-hidden="true">▶</span>
+            </button>
+            <figcaption>影片：在自備的 API Key、Ollama 本地模型與 byPhil Cloud 之間自由切換。</figcaption>
+          <div data-seo-video="" class="vtext"><p class="vtext-h">Transcript · 0:23</p><ul><li>隱私是一種權衡。</li><li>風險一清楚，人們就會少分享。</li><li>所以由你來選：用自己的 API 密鑰，用 Ollama 跑本地模型，或者免設置的 byPhil Cloud。</li><li>你的資料庫留在瀏覽器裡。</li></ul></div></div>
         </figure>
-        <p>每一次 AI 摘要的運作流程都大同小異：傳出文字，取回摘要。決定你是否能信任該工具的關鍵，在於誰處於中間位置。許多產品會在中間架設自家伺服器，你正在閱讀的內容在傳送給預設模型前，都會先經過他們的伺服器。</p>
 
         <h2>在這裡，「自備 API Key」究竟代表什麼</h2>
         <p>你只需向信任的提供商申請 API Key，貼到 AI Summary Helper 並選擇模型即可。當你摘要網頁時，擴充功能的背景程序會直接將文字發送到該提供商，並即時串流傳回結果。使用自己的 API Key 時，整個過程中完全沒有 AI Summary Helper 的伺服器介入。</p>
@@ -151,12 +161,19 @@
   </section>
 </main>
 
+<div class="vfeed-labels" hidden="">
+  <span data-l="close">關閉</span><span data-l="sound">開啟聲音</span><span data-l="mute">靜音</span><span data-l="hint">向上滑動觀看下一部影片</span><span data-l="prev">上一部影片</span><span data-l="next">下一部影片</span>
+  <span data-l="share">分享</span><span data-l="copied">已複製連結</span>
+  <span data-l="add_chrome">免費新增至 Chrome</span><span data-l="add_firefox">新增至 Firefox — 完全免費</span><span data-l="add_browser">新增至瀏覽器 — 完全免費</span>
+  <a data-l="try" href="../../bookmarklet.html">在瀏覽器中試用 — 完全免費</a>
+</div>
 <footer>
   <div class="wrap">
     <div class="footer-inner">
       <div class="wordmark"><img src="../../assets/icon.svg" alt="">AI Summary Helper</div>
       <div class="foot-links">
         <a href="https://github.com/philffm/ai-summary-helper/" target="_blank" rel="noopener">GitHub 原始碼</a>
+        <a href="../../education/">教育方案</a>
         <a href="../privacy.html">隱私權政策</a>
         <a href="#" data-analytics-settings="">數據分析設定</a>
         <a href="https://byphil.eu/terms.html#impressum" target="_blank" rel="noopener">法律資訊 (Impressum)</a>

@@ -89,6 +89,7 @@
         <div class="mm-row">
           <a href="https://addons.mozilla.org/en-US/firefox/addon/ai-summary-helper/" target="_blank" rel="noopener">Firefox</a>
           <a href="../index.html#phone">Android · Beta</a>
+          <a href="../../education/">Dành cho giáo dục</a>
           <a href="https://byphil.eu/#account">Tài khoản của tôi</a>
         </div>
         
@@ -103,24 +104,33 @@
 </header>
 
 <main id="main">
-  <div class="wrap">
-    <div class="post-hero">
+  <section class="hero--photo post-stage">
+    <img class="hero-bg" src="../../assets/photo/hands-keyboard-closeup-800.webp" srcset="../assets/photo/hands-keyboard-closeup-800.webp 800w, ../assets/photo/hands-keyboard-closeup-1600.webp 1600w" sizes="100vw" width="1600" height="893" alt="" fetchpriority="high" decoding="async" style="--bgpos:50% 50%">
+    <p class="hero-credit">Hình minh họa, do AI tạo</p>
+    <div class="wrap">
+      <div class="post-hero">
       <span class="blog-date">Sản phẩm · Tháng 10 năm 2026</span>
       <h1>API Key của bạn. Mô hình của bạn. Dữ liệu của bạn.</h1>
       <p class="post-sub">Hầu hết các công cụ AI đều đặt một máy chủ trung gian giữa bạn và mô hình. Dưới đây là những gì sẽ thay đổi khi không còn máy chủ trung gian, và những gì vẫn do bạn quyết định.</p>
+      </div>
     </div>
-  </div>
+  </section>
 
   <section>
     <div class="wrap">
-      <div class="prose">
-        <figure class="post-figure post-figure--video" data-blog-video="privat">
-          <video controls="" playsinline="" preload="none" width="360" height="520" poster="../../assets/blog/video/privat-en.jpg">
+      <div class="prose" data-vgroup="">
+        <p>Mọi bản tóm tắt AI đều hoạt động theo cùng một cơ chế: gửi dữ liệu văn bản đi và nhận kết quả trả về. Yếu tố quyết định mức độ tin cậy của công cụ chính là ai đứng ở giữa. Với nhiều sản phẩm, máy chủ của công ty trung gian sẽ nằm ở đó, và nội dung bạn đọc buộc phải đi qua máy chủ này trước khi đến một mô hình mà bạn thậm chí không được tự chọn.</p>
+        <figure class="post-figure post-video" data-blog-video="privat">
+          <div class="post-video-in">
+            <button class="fvideo-open post-video-open" type="button"><span class="sr-only">Phát video</span>
+              <video muted="" playsinline="" loop="" preload="none" width="360" height="520" poster="../../assets/blog/video/privat-en.jpg">
             <source src="../../assets/blog/video/privat-en.mp4" type="video/mp4">
           <track data-seo-video="" kind="captions" src="../../assets/blog/video/privat-en.vtt" srclang="en" label="English"></video>
-          <figcaption>Video: chuyển đổi giữa API key riêng của bạn, mô hình cục bộ với Ollama và byPhil Cloud.</figcaption>
+              <span class="post-video-play" aria-hidden="true">▶</span>
+            </button>
+            <figcaption>Video: chuyển đổi giữa API key riêng của bạn, mô hình cục bộ với Ollama và byPhil Cloud.</figcaption>
+          <div data-seo-video="" class="vtext"><p class="vtext-h">Transcript · 0:20</p><ul><li>Privacy is a trade-off.</li><li>When the risk is clear, people share less.</li><li>So you choose: your own API key, a local model with Ollama, or byPhil Cloud with no setup.</li><li>Your library stays in the browser.</li></ul></div></div>
         </figure>
-        <p>Mọi bản tóm tắt AI đều hoạt động theo cùng một cơ chế: gửi dữ liệu văn bản đi và nhận kết quả trả về. Yếu tố quyết định mức độ tin cậy của công cụ chính là ai đứng ở giữa. Với nhiều sản phẩm, máy chủ của công ty trung gian sẽ nằm ở đó, và nội dung bạn đọc buộc phải đi qua máy chủ này trước khi đến một mô hình mà bạn thậm chí không được tự chọn.</p>
 
         <h2>Khái niệm “Tự mang API key” (BYOK) tại đây nghĩa là gì</h2>
         <p>Bạn tạo API key từ nhà cung cấp mình tin tưởng, dán vào AI Summary Helper và chọn mô hình. Khi bạn tóm tắt một trang, background worker của tiện ích sẽ gửi văn bản trực tiếp đến nhà cung cấp đó và truyền dữ liệu phản hồi (stream) về. Hoàn toàn không có máy chủ trung gian nào của AI Summary Helper can thiệp vào luồng này khi bạn dùng key riêng.</p>
@@ -151,12 +161,19 @@
   </section>
 </main>
 
+<div class="vfeed-labels" hidden="">
+  <span data-l="close">Đóng</span><span data-l="sound">Bật âm thanh</span><span data-l="mute">Tắt âm thanh</span><span data-l="hint">Vuốt lên để xem video tiếp theo</span><span data-l="prev">Video trước</span><span data-l="next">Video tiếp theo</span>
+  <span data-l="share">Chia sẻ</span><span data-l="copied">Đã sao chép liên kết</span>
+  <span data-l="add_chrome">Thêm vào Chrome — Hoàn toàn miễn phí</span><span data-l="add_firefox">Thêm vào Firefox — Miễn phí</span><span data-l="add_browser">Thêm vào trình duyệt — Miễn phí</span>
+  <a data-l="try" href="../../bookmarklet.html">Trải nghiệm trên trình duyệt — Miễn phí</a>
+</div>
 <footer>
   <div class="wrap">
     <div class="footer-inner">
       <div class="wordmark"><img src="../../assets/icon.svg" alt="">AI Summary Helper</div>
       <div class="foot-links">
         <a href="https://github.com/philffm/ai-summary-helper/" target="_blank" rel="noopener">Mã nguồn trên GitHub</a>
+        <a href="../../education/">Dành cho giáo dục</a>
         <a href="../privacy.html">Quyền riêng tư</a>
         <a href="#" data-analytics-settings="">Cài đặt phân tích</a>
         <a href="https://byphil.eu/terms.html#impressum" target="_blank" rel="noopener">Thông tin pháp lý (Impressum)</a>

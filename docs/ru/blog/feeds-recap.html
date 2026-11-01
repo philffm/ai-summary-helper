@@ -89,6 +89,7 @@
         <div class="mm-row">
           <a href="https://addons.mozilla.org/en-US/firefox/addon/ai-summary-helper/" target="_blank" rel="noopener">Firefox</a>
           <a href="../index.html#phone">Android · Beta</a>
+          <a href="../../education/">Для образования</a>
           <a href="https://byphil.eu/#account">Мой аккаунт</a>
         </div>
         
@@ -103,24 +104,33 @@
 </header>
 
 <main id="main">
-  <div class="wrap">
-    <div class="post-hero">
+  <section class="hero--photo post-stage">
+    <img class="hero-bg" src="../../assets/photo/commuter-train-reading-800.webp" srcset="../assets/photo/commuter-train-reading-800.webp 800w, ../assets/photo/commuter-train-reading-1600.webp 1600w" sizes="100vw" width="1600" height="893" alt="" fetchpriority="high" decoding="async" style="--bgpos:50% 40%">
+    <p class="hero-credit">Иллюстрация, сгенерировано ИИ</p>
+    <div class="wrap">
+      <div class="post-hero">
       <span class="blog-date">Руководство · Октябрь 2026</span>
       <h1>Один дайджест вместо 40 лент</h1>
       <p class="post-sub">Сорок лент — это сорок мелких отвлечений еще до обеда. Дайджест объединяет их в один материал, который вы читаете за один раз.</p>
+      </div>
     </div>
-  </div>
+  </section>
 
   <section>
     <div class="wrap">
-      <div class="prose">
-        <figure class="post-figure post-figure--video" data-blog-video="feeds">
-          <video controls="" playsinline="" preload="none" width="360" height="520" poster="../../assets/blog/video/feeds-en.jpg">
+      <div class="prose" data-vgroup="">
+        <p>В 2009 году исследователь Софи Лерой описала феномен «остаточного внимания» (attention residue): при переключении с одной задачи на другую часть внимания остается на предыдущей. В ее экспериментах люди, которых отвлекали, хуже справлялись со следующей задачей — и эффект усиливался, если приходилось спешить.</p>
+        <figure class="post-figure post-video" data-blog-video="feeds">
+          <div class="post-video-in">
+            <button class="fvideo-open post-video-open" type="button"><span class="sr-only">Воспроизвести видео</span>
+              <video muted="" playsinline="" loop="" preload="none" width="360" height="520" poster="../../assets/blog/video/feeds-en.jpg">
             <source src="../../assets/blog/video/feeds-en.mp4" type="video/mp4">
           <track data-seo-video="" kind="captions" src="../../assets/blog/video/feeds-en.vtt" srclang="en" label="English"></video>
-          <figcaption>Видео: ленты за весь день в одной сводке.</figcaption>
+              <span class="post-video-play" aria-hidden="true">▶</span>
+            </button>
+            <figcaption>Видео: ленты за весь день в одной сводке.</figcaption>
+          <div data-seo-video="" class="vtext"><p class="vtext-h">Transcript · 0:18</p><ul><li>An RSS reader that summarizes.</li><li>Subscribe to your favorite sources.</li><li>One click, and you get a briefing of the whole day.</li></ul></div></div>
         </figure>
-        <p>В 2009 году исследователь Софи Лерой описала феномен «остаточного внимания» (attention residue): при переключении с одной задачи на другую часть внимания остается на предыдущей. В ее экспериментах люди, которых отвлекали, хуже справлялись со следующей задачей — и эффект усиливался, если приходилось спешить.</p>
         <p>RSS-ридер — это генератор переключений внимания. Каждая публикация — это новая тема, другая тональность и отдельная вкладка. Даже если просматривать их быстро, остаточное внимание накапливается. К моменту возвращения к работе вы все еще думаете об изменении тарифов хостинг-провайдера.</p>
 
         <h2>Почему принцип «Inbox Zero» не работает для лент</h2>
@@ -146,12 +156,19 @@
   </section>
 </main>
 
+<div class="vfeed-labels" hidden="">
+  <span data-l="close">Закрыть</span><span data-l="sound">Включить звук</span><span data-l="mute">Выключить звук</span><span data-l="hint">Смахните вверх для следующего видео</span><span data-l="prev">Предыдущее видео</span><span data-l="next">Следующее видео</span>
+  <span data-l="share">Поделиться</span><span data-l="copied">Ссылка скопирована</span>
+  <span data-l="add_chrome">Установить в Chrome — бесплатно</span><span data-l="add_firefox">Добавить в Firefox — бесплатно</span><span data-l="add_browser">Добавить в браузер — бесплатно</span>
+  <a data-l="try" href="../../bookmarklet.html">Попробовать в браузере — бесплатно</a>
+</div>
 <footer>
   <div class="wrap">
     <div class="footer-inner">
       <div class="wordmark"><img src="../../assets/icon.svg" alt="">AI Summary Helper</div>
       <div class="foot-links">
         <a href="https://github.com/philffm/ai-summary-helper/" target="_blank" rel="noopener">Исходный код на GitHub</a>
+        <a href="../../education/">Для образования</a>
         <a href="../privacy.html">Конфиденциальность</a>
         <a href="#" data-analytics-settings="">Настройки аналитики</a>
         <a href="https://byphil.eu/terms.html#impressum" target="_blank" rel="noopener">Правовая информация</a>

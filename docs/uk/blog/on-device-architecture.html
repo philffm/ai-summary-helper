@@ -89,6 +89,7 @@
         <div class="mm-row">
           <a href="https://addons.mozilla.org/en-US/firefox/addon/ai-summary-helper/" target="_blank" rel="noopener">Firefox</a>
           <a href="../index.html#phone">Android · Бета</a>
+          <a href="../../education/">Для освіти</a>
           <a href="https://byphil.eu/#account">Мій акаунт</a>
         </div>
         
@@ -103,24 +104,33 @@
 </header>
 
 <main id="main">
-  <div class="wrap">
-    <div class="post-hero">
+  <section class="hero--photo post-stage">
+    <img class="hero-bg" src="../../assets/photo/bokeh-strip-blue-amber-800.webp" srcset="../assets/photo/bokeh-strip-blue-amber-800.webp 800w, ../assets/photo/bokeh-strip-blue-amber-1600.webp 1600w" sizes="100vw" width="1600" height="679" alt="" fetchpriority="high" decoding="async" style="--bgpos:50% 50%">
+    <p class="hero-credit">Ілюстрація, згенерована ШІ</p>
+    <div class="wrap">
+      <div class="post-hero">
       <span class="blog-date">Інженерія · Серпень 2026</span>
       <h1>Чому ми перенесли пошук, тегування та рекомендації з хмари на пристрій</h1>
       <p class="post-sub">Пошук, дедуплікація, очищення тегів і рекомендації використовують один невеликий локальний індекс. Розповідаємо, як це працює і чому це не просто маркетингові розмови про приватність.</p>
+      </div>
     </div>
-  </div>
+  </section>
 
   <section>
     <div class="wrap">
-      <div class="prose">
-        <figure class="post-figure post-figure--video" data-blog-video="graph">
-          <video controls="" playsinline="" preload="none" width="360" height="520" poster="../../assets/blog/video/graph-en.jpg">
+      <div class="prose" data-vgroup="">
+<p>Більшість розширень для браузера «на базі ШІ» відправляють на сервер геть усе — навіть те, що не має до ШІ жодного стосунку. Пошук, очищення тегів, «знайти схоже»: усім цим надійним методам уже десятки років. Їм не потрібна мовна модель і тим паче не потрібні зайві мережеві запити. Ми переглянули кожну функцію AI Summary Helper і запитали себе: чи справді тут потрібна хмара, чи ми використовуємо її лише за звичкою, бо так простіше розробляти?</p>
+        <figure class="post-figure post-video" data-blog-video="graph">
+          <div class="post-video-in">
+            <button class="fvideo-open post-video-open" type="button"><span class="sr-only">Відтворити відео</span>
+              <video muted="" playsinline="" loop="" preload="none" width="360" height="520" poster="../../assets/blog/video/graph-en.jpg">
             <source src="../../assets/blog/video/graph-en.mp4" type="video/mp4">
           <track data-seo-video="" kind="captions" src="../../assets/blog/video/graph-en.vtt" srclang="en" label="English"></video>
-          <figcaption>Відео: граф знань пов'язує ваші статті за темами, створюючись безпосередньо на вашому пристрої.</figcaption>
+              <span class="post-video-play" aria-hidden="true">▶</span>
+            </button>
+            <figcaption>Відео: граф знань пов'язує ваші статті за темами, створюючись безпосередньо на вашому пристрої.</figcaption>
+          <div data-seo-video="" class="vtext"><p class="vtext-h">Transcript · 0:19</p><ul><li>What you read is connected.</li><li>Your knowledge graph links articles through their topics.</li><li>Tap one, and you get a briefing on everything you have read about it.</li></ul></div></div>
         </figure>
-<p>Більшість розширень для браузера «на базі ШІ» відправляють на сервер геть усе — навіть те, що не має до ШІ жодного стосунку. Пошук, очищення тегів, «знайти схоже»: усім цим надійним методам уже десятки років. Їм не потрібна мовна модель і тим паче не потрібні зайві мережеві запити. Ми переглянули кожну функцію AI Summary Helper і запитали себе: чи справді тут потрібна хмара, чи ми використовуємо її лише за звичкою, бо так простіше розробляти?</p>
         <p>Виявилося, що для більшості функцій хмара не потрібна.</p>
 
         <figure class="post-figure post-figure--portrait"><img src="../../assets/blog/knowledge-graph.webp" alt="Слайд: мапа пов'язаних тем із підписом «Інформація, поєднана зі змістом і контекстом, живе довше, ніж та, на яку ви лише мигцем поглянули»" width="800" height="1000" loading="lazy"><figcaption>Пошук, тегування та схожі статті працюють на одному локальному індексі, тому зв'язки між збереженими матеріалами не потребують жодних серверних ресурсів.</figcaption></figure>
@@ -148,12 +158,19 @@
   </section>
 </main>
 
+<div class="vfeed-labels" hidden="">
+  <span data-l="close">Закрити</span><span data-l="sound">Увімкнути звук</span><span data-l="mute">Вимкнути звук</span><span data-l="hint">Свайпайте вгору для наступного відео</span><span data-l="prev">Попереднє відео</span><span data-l="next">Наступне відео</span>
+  <span data-l="share">Поділитися</span><span data-l="copied">Посилання скопійовано</span>
+  <span data-l="add_chrome">Додати в Chrome — це безкоштовно</span><span data-l="add_firefox">Додати до Firefox — безкоштовно</span><span data-l="add_browser">Додати до свого браузера — безкоштовно</span>
+  <a data-l="try" href="../../bookmarklet.html">Спробувати у браузері — безкоштовно</a>
+</div>
 <footer>
   <div class="wrap">
     <div class="footer-inner">
       <div class="wordmark"><img src="../../assets/icon.svg" alt="">AI Summary Helper</div>
       <div class="foot-links">
         <a href="https://github.com/philffm/ai-summary-helper/" target="_blank" rel="noopener">Вихідний код на GitHub</a>
+        <a href="../../education/">Для освіти</a>
         <a href="../privacy.html">Конфіденційність</a>
         <a href="#" data-analytics-settings="">Налаштування аналітики</a>
         <a href="https://byphil.eu/terms.html#impressum" target="_blank" rel="noopener">Правова інформація (Impressum)</a>

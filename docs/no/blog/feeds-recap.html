@@ -89,6 +89,7 @@
         <div class="mm-row">
           <a href="https://addons.mozilla.org/en-US/firefox/addon/ai-summary-helper/" target="_blank" rel="noopener">Firefox</a>
           <a href="../index.html#phone">Android · Beta</a>
+          <a href="../../education/">For utdanning</a>
           <a href="https://byphil.eu/#account">Min konto</a>
         </div>
         
@@ -103,24 +104,33 @@
 </header>
 
 <main id="main">
-  <div class="wrap">
-    <div class="post-hero">
+  <section class="hero--photo post-stage">
+    <img class="hero-bg" src="../../assets/photo/commuter-train-reading-800.webp" srcset="../assets/photo/commuter-train-reading-800.webp 800w, ../assets/photo/commuter-train-reading-1600.webp 1600w" sizes="100vw" width="1600" height="893" alt="" fetchpriority="high" decoding="async" style="--bgpos:50% 40%">
+    <p class="hero-credit">Illustrasjon, AI-generert</p>
+    <div class="wrap">
+      <div class="post-hero">
       <span class="blog-date">Veiledning · Oktober 2026</span>
       <h1>Én oppsummering i stedet for 40 feeder</h1>
       <p class="post-sub">Førti feeder betyr førti små avsporinger før lunsj. En oppsummering samler alt til én ting du leser én gang.</p>
+      </div>
     </div>
-  </div>
+  </section>
 
   <section>
     <div class="wrap">
-      <div class="prose">
-        <figure class="post-figure post-figure--video" data-blog-video="feeds">
-          <video controls="" playsinline="" preload="none" width="360" height="520" poster="../../assets/blog/video/feeds-en.jpg">
+      <div class="prose" data-vgroup="">
+        <p>I 2009 beskrev Sophie Leroy det hun kalte oppmerksomhetsrester («attention residue»): når du bytter fra én oppgave til en annen, henger deler av oppmerksomheten igjen hos den forrige. I eksperimentene hennes presterte de som ble avbrutt dårligere på neste oppgave, og effekten ble enda sterkere når de måtte skynde seg.</p>
+        <figure class="post-figure post-video" data-blog-video="feeds">
+          <div class="post-video-in">
+            <button class="fvideo-open post-video-open" type="button"><span class="sr-only">Spill av videoen</span>
+              <video muted="" playsinline="" loop="" preload="none" width="360" height="520" poster="../../assets/blog/video/feeds-en.jpg">
             <source src="../../assets/blog/video/feeds-en.mp4" type="video/mp4">
           <track data-seo-video="" kind="captions" src="../../assets/blog/video/feeds-en.vtt" srclang="en" label="English"></video>
-          <figcaption>Video: en hel dag med feeder i én oppsummering.</figcaption>
+              <span class="post-video-play" aria-hidden="true">▶</span>
+            </button>
+            <figcaption>Video: en hel dag med feeder i én oppsummering.</figcaption>
+          <div data-seo-video="" class="vtext"><p class="vtext-h">Transcript · 0:18</p><ul><li>An RSS reader that summarizes.</li><li>Subscribe to your favorite sources.</li><li>One click, and you get a briefing of the whole day.</li></ul></div></div>
         </figure>
-        <p>I 2009 beskrev Sophie Leroy det hun kalte oppmerksomhetsrester («attention residue»): når du bytter fra én oppgave til en annen, henger deler av oppmerksomheten igjen hos den forrige. I eksperimentene hennes presterte de som ble avbrutt dårligere på neste oppgave, og effekten ble enda sterkere når de måtte skynde seg.</p>
         <p>En feed-leser er en maskin for kontekstbytter. Hver sak har et nytt tema, en annen tone og en ny fane. Selv om hver sak er kort, hoper restene seg opp. Når du omsider er tilbake ved det faktiske arbeidet ditt, tenker deler av deg fortsatt på en prisendring hos en hosting-leverandør.</p>
 
         <h2>Hvorfor «inbox zero» for feeder aldri fungerer</h2>
@@ -146,12 +156,19 @@
   </section>
 </main>
 
+<div class="vfeed-labels" hidden="">
+  <span data-l="close">Lukk</span><span data-l="sound">Lyd på</span><span data-l="mute">Lyd av</span><span data-l="hint">Sveip opp for neste video</span><span data-l="prev">Forrige video</span><span data-l="next">Neste video</span>
+  <span data-l="share">Del</span><span data-l="copied">Lenke kopiert</span>
+  <span data-l="add_chrome">Legg til i Chrome – helt gratis</span><span data-l="add_firefox">Legg til i Firefox — det er gratis</span><span data-l="add_browser">Legg til i nettleseren din — det er gratis</span>
+  <a data-l="try" href="../../bookmarklet.html">Prøv i nettleseren din — det er gratis</a>
+</div>
 <footer>
   <div class="wrap">
     <div class="footer-inner">
       <div class="wordmark"><img src="../../assets/icon.svg" alt="">AI Summary Helper</div>
       <div class="foot-links">
         <a href="https://github.com/philffm/ai-summary-helper/" target="_blank" rel="noopener">Kildekode på GitHub</a>
+        <a href="../../education/">For utdanning</a>
         <a href="../privacy.html">Personvern</a>
         <a href="#" data-analytics-settings="">Analyseinnstillinger</a>
         <a href="https://byphil.eu/terms.html#impressum" target="_blank" rel="noopener">Impressum</a>

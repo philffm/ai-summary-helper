@@ -89,6 +89,7 @@
         <div class="mm-row">
           <a href="https://addons.mozilla.org/en-US/firefox/addon/ai-summary-helper/" target="_blank" rel="noopener">Firefox</a>
           <a href="../index.html#phone">Android · Beta</a>
+          <a href="../../education/">教育方案</a>
           <a href="https://byphil.eu/#account">我的账户</a>
         </div>
         
@@ -103,24 +104,33 @@
 </header>
 
 <main id="main">
-  <div class="wrap">
-    <div class="post-hero">
+  <section class="hero--photo post-stage">
+    <img class="hero-bg" src="../../assets/photo/bokeh-strip-blue-amber-800.webp" srcset="../assets/photo/bokeh-strip-blue-amber-800.webp 800w, ../assets/photo/bokeh-strip-blue-amber-1600.webp 1600w" sizes="100vw" width="1600" height="679" alt="" fetchpriority="high" decoding="async" style="--bgpos:50% 50%">
+    <p class="hero-credit">插图由 AI 生成</p>
+    <div class="wrap">
+      <div class="post-hero">
       <span class="blog-date">工程技术 · 2026 年 8 月</span>
       <h1>为什么我们将搜索、标签与推荐功能移出云端</h1>
       <p class="post-sub">搜索、查重、标签整理和内容推荐共用一个轻量级本地端索引。本文将解析其工作原理，以及为什么这不仅仅是一个关于隐私的宣传点。</p>
+      </div>
     </div>
-  </div>
+  </section>
 
   <section>
     <div class="wrap">
-      <div class="prose">
-        <figure class="post-figure post-figure--video" data-blog-video="graph">
-          <video controls="" playsinline="" preload="none" width="360" height="520" poster="../../assets/blog/video/graph-zh.jpg">
+      <div class="prose" data-vgroup="">
+<p>大多数“AI 驱动”的浏览器扩展程序会将所有数据发送到服务器 —— 甚至是那些与 AI 完全无关的部分。搜索、标签整理、“查找相似内容”：这些都是发展了数十年、技术非常成熟的方法。它们不需要大语言模型，更不需要耗费一次网络往返。我们逐一审视了 AI Summary Helper 的每项功能并自问：这真的需要云端吗？还是我们仅仅因为云端架构最省事就默认采用了它？</p>
+        <figure class="post-figure post-video" data-blog-video="graph">
+          <div class="post-video-in">
+            <button class="fvideo-open post-video-open" type="button"><span class="sr-only">播放视频</span>
+              <video muted="" playsinline="" loop="" preload="none" width="360" height="520" poster="../../assets/blog/video/graph-zh.jpg">
             <source src="../../assets/blog/video/graph-zh.mp4" type="video/mp4">
           <track data-seo-video="" kind="captions" src="../../assets/blog/video/graph-zh.vtt" srclang="zh" label="中文"></video>
-          <figcaption>视频：知识图谱基于主题关联你的文章，完全在设备本地构建。</figcaption>
+              <span class="post-video-play" aria-hidden="true">▶</span>
+            </button>
+            <figcaption>视频：知识图谱基于主题关联你的文章，完全在设备本地构建。</figcaption>
+          <div data-seo-video="" class="vtext"><p class="vtext-h">Transcript · 0:19</p><ul><li>读过的内容，彼此相连。</li><li>你的知识图谱会通过主题，把文章连在一起。</li><li>点一个主题，就能得到你读过的所有相关内容的简报。</li></ul></div></div>
         </figure>
-<p>大多数“AI 驱动”的浏览器扩展程序会将所有数据发送到服务器 —— 甚至是那些与 AI 完全无关的部分。搜索、标签整理、“查找相似内容”：这些都是发展了数十年、技术非常成熟的方法。它们不需要大语言模型，更不需要耗费一次网络往返。我们逐一审视了 AI Summary Helper 的每项功能并自问：这真的需要云端吗？还是我们仅仅因为云端架构最省事就默认采用了它？</p>
         <p>事实证明，绝大多数功能根本不需要。</p>
 
         <figure class="post-figure post-figure--portrait"><img src="../../assets/blog/knowledge-graph.webp" alt="幻灯片：一张相互关联的主题图谱，配文“与意义和关联紧密相连的信息，比仅仅匆匆瞥过的内容更历久弥新”" width="800" height="1000" loading="lazy"><figcaption>搜索、标签以及相似文章推荐均基于同一个设备端索引运行，因此在保存内容之间建立关联完全零成本。</figcaption></figure>
@@ -148,12 +158,19 @@
   </section>
 </main>
 
+<div class="vfeed-labels" hidden="">
+  <span data-l="close">关闭</span><span data-l="sound">开启声音</span><span data-l="mute">静音</span><span data-l="hint">上滑观看下一个视频</span><span data-l="prev">上一个视频</span><span data-l="next">下一个视频</span>
+  <span data-l="share">分享</span><span data-l="copied">链接已复制</span>
+  <span data-l="add_chrome">免费添加到 Chrome</span><span data-l="add_firefox">添加到 Firefox — 免费使用</span><span data-l="add_browser">添加到浏览器 — 免费使用</span>
+  <a data-l="try" href="../../bookmarklet.html">在浏览器中体验 — 免费使用</a>
+</div>
 <footer>
   <div class="wrap">
     <div class="footer-inner">
       <div class="wordmark"><img src="../../assets/icon.svg" alt="">AI Summary Helper</div>
       <div class="foot-links">
         <a href="https://github.com/philffm/ai-summary-helper/" target="_blank" rel="noopener">查看 GitHub 源代码</a>
+        <a href="../../education/">教育方案</a>
         <a href="../privacy.html">隐私</a>
         <a href="#" data-analytics-settings="">数据分析设置</a>
         <a href="https://byphil.eu/terms.html#impressum" target="_blank" rel="noopener">法律声明 (Impressum)</a>

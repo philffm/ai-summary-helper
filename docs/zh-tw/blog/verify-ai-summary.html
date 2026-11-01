@@ -89,6 +89,7 @@
         <div class="mm-row">
           <a href="https://addons.mozilla.org/en-US/firefox/addon/ai-summary-helper/" target="_blank" rel="noopener">Firefox</a>
           <a href="../index.html#phone">Android · Beta</a>
+          <a href="../../education/">教育方案</a>
           <a href="https://byphil.eu/#account">我的帳戶</a>
         </div>
         
@@ -103,24 +104,33 @@
 </header>
 
 <main id="main">
-  <div class="wrap">
-    <div class="post-hero">
+  <section class="hero--photo post-stage">
+    <img class="hero-bg" src="../../assets/photo/researcher-desk-notes-800.webp" srcset="../assets/photo/researcher-desk-notes-800.webp 800w, ../assets/photo/researcher-desk-notes-1600.webp 1600w" sizes="100vw" width="1600" height="893" alt="" fetchpriority="high" decoding="async" style="--bgpos:60% 45%">
+    <p class="hero-credit">插圖，AI 生成</p>
+    <div class="wrap">
+      <div class="post-hero">
       <span class="blog-date">指南 · 2026 年 10 月</span>
       <h1>如何在 10 秒內比對 AI 摘要與原文出處</h1>
       <p class="post-sub">無法查證的摘要，只不過是文法通順的猜測。培養這個好習慣即可解決此問題，同時了解 AI Summary Helper 如何幫你快速核對。</p>
+      </div>
     </div>
-  </div>
+  </section>
 
   <section>
     <div class="wrap">
-      <div class="prose">
-        <figure class="post-figure post-figure--video" data-blog-video="quellen">
-          <video controls="" playsinline="" preload="none" width="360" height="520" poster="../../assets/blog/video/quellen-zh-tw.jpg">
+      <div class="prose" data-vgroup="">
+        <p>2011 年，Sparrow、Liu 與 Wegner 在 <em>《Science》期刊</em> 發表研究指出：當人們預期日後可以隨時查閱某些資訊時，對事實本身的記憶會變少，反而更清楚「要去哪裡找」。搜尋引擎儼然成為某種外部記憶體，而我們也隨之調整了習慣。</p>
+        <figure class="post-figure post-video" data-blog-video="quellen">
+          <div class="post-video-in">
+            <button class="fvideo-open post-video-open" type="button"><span class="sr-only">播放影片</span>
+              <video muted="" playsinline="" loop="" preload="none" width="360" height="520" poster="../../assets/blog/video/quellen-zh-tw.jpg">
             <source src="../../assets/blog/video/quellen-zh-tw.mp4" type="video/mp4">
           <track data-seo-video="" kind="captions" src="../../assets/blog/video/quellen-zh-tw.vtt" srclang="zh-tw" label="中文（台灣）"></video>
-          <figcaption>影片：提出追問，並直接跳轉至答案出處的段落。</figcaption>
+              <span class="post-video-play" aria-hidden="true">▶</span>
+            </button>
+            <figcaption>影片：提出追問，並直接跳轉至答案出處的段落。</figcaption>
+          <div data-seo-video="" class="vtext"><p class="vtext-h">Transcript · 0:18</p><ul><li>AI 回答，有據可查。</li><li>可以接著追問。</li><li>每個回答都會告訴你，它出自原文的哪一段。</li></ul></div></div>
         </figure>
-        <p>2011 年，Sparrow、Liu 與 Wegner 在 <em>《Science》期刊</em> 發表研究指出：當人們預期日後可以隨時查閱某些資訊時，對事實本身的記憶會變少，反而更清楚「要去哪裡找」。搜尋引擎儼然成為某種外部記憶體，而我們也隨之調整了習慣。</p>
         <p>AI 摘要進一步加深了這種轉變。你讀到一段條理分明的文字，記住了它，卻完全忘了原始網頁。當摘要正確時固然沒問題；但若有謬誤，麻煩就大了——因為文字本身不會告訴你哪句話有問題。</p>
 
         <h2>10 秒查證法</h2>
@@ -152,12 +162,19 @@
   </section>
 </main>
 
+<div class="vfeed-labels" hidden="">
+  <span data-l="close">關閉</span><span data-l="sound">開啟聲音</span><span data-l="mute">靜音</span><span data-l="hint">向上滑動觀看下一部影片</span><span data-l="prev">上一部影片</span><span data-l="next">下一部影片</span>
+  <span data-l="share">分享</span><span data-l="copied">已複製連結</span>
+  <span data-l="add_chrome">免費新增至 Chrome</span><span data-l="add_firefox">新增至 Firefox — 完全免費</span><span data-l="add_browser">新增至瀏覽器 — 完全免費</span>
+  <a data-l="try" href="../../bookmarklet.html">在瀏覽器中試用 — 完全免費</a>
+</div>
 <footer>
   <div class="wrap">
     <div class="footer-inner">
       <div class="wordmark"><img src="../../assets/icon.svg" alt="">AI Summary Helper</div>
       <div class="foot-links">
         <a href="https://github.com/philffm/ai-summary-helper/" target="_blank" rel="noopener">GitHub 原始碼</a>
+        <a href="../../education/">教育方案</a>
         <a href="../privacy.html">隱私權政策</a>
         <a href="#" data-analytics-settings="">數據分析設定</a>
         <a href="https://byphil.eu/terms.html#impressum" target="_blank" rel="noopener">法律資訊 (Impressum)</a>

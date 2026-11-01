@@ -89,6 +89,7 @@
         <div class="mm-row">
           <a href="https://addons.mozilla.org/en-US/firefox/addon/ai-summary-helper/" target="_blank" rel="noopener">Firefox</a>
           <a href="../index.html#phone">Android · Beta</a>
+          <a href="../../education/">สำหรับการศึกษา</a>
           <a href="https://byphil.eu/#account">บัญชีของฉัน</a>
         </div>
         
@@ -103,24 +104,33 @@
 </header>
 
 <main id="main">
-  <div class="wrap">
-    <div class="post-hero">
+  <section class="hero--photo post-stage">
+    <img class="hero-bg" src="../../assets/photo/commuter-train-reading-800.webp" srcset="../assets/photo/commuter-train-reading-800.webp 800w, ../assets/photo/commuter-train-reading-1600.webp 1600w" sizes="100vw" width="1600" height="893" alt="" fetchpriority="high" decoding="async" style="--bgpos:50% 40%">
+    <p class="hero-credit">ภาพประกอบ, สร้างโดย AI</p>
+    <div class="wrap">
+      <div class="post-hero">
       <span class="blog-date">คู่มือ · ตุลาคม 2026</span>
       <h1>รวมสรุปฉบับเดียวแทนที่จะต้องตามอ่าน 40 ฟีด</h1>
       <p class="post-sub">การติดตามถึง 40 ฟีดหมายถึงการถูกรบกวนสมาธิถึง 40 ครั้งก่อนมื้อเที่ยง แต่การสรุปภาพรวมจะรวมทุกอย่างให้อ่านจบครบในรอบเดียว</p>
+      </div>
     </div>
-  </div>
+  </section>
 
   <section>
     <div class="wrap">
-      <div class="prose">
-        <figure class="post-figure post-figure--video" data-blog-video="feeds">
-          <video controls="" playsinline="" preload="none" width="360" height="520" poster="../../assets/blog/video/feeds-en.jpg">
+      <div class="prose" data-vgroup="">
+        <p>ในปี 2009 Sophie Leroy ได้อธิบายถึงภาวะที่เรียกว่า attention residue (เศษเสี้ยวสมาธิที่ค้างอยู่) ว่าเมื่อใดก็ตามที่มีการสลับจากงานหนึ่งไปอีกงานหนึ่ง สมาธิส่วนหนึ่งจะยังคงค้างอยู่กับงานก่อนหน้า จากการทดลองพบว่า ผู้ที่ถูกขัดจังหวะขณะทำงานหนึ่งจะมีประสิทธิภาพลดลงในงานถัดไป และผลกระทบนี้จะยิ่งชัดเจนขึ้นเมื่อต้องรีบเร่ง</p>
+        <figure class="post-figure post-video" data-blog-video="feeds">
+          <div class="post-video-in">
+            <button class="fvideo-open post-video-open" type="button"><span class="sr-only">เล่นวิดีโอ</span>
+              <video muted="" playsinline="" loop="" preload="none" width="360" height="520" poster="../../assets/blog/video/feeds-en.jpg">
             <source src="../../assets/blog/video/feeds-en.mp4" type="video/mp4">
           <track data-seo-video="" kind="captions" src="../../assets/blog/video/feeds-en.vtt" srclang="en" label="English"></video>
-          <figcaption>วิดีโอ: สรุปฟีดตลอดทั้งวันในคลิปเดียว</figcaption>
+              <span class="post-video-play" aria-hidden="true">▶</span>
+            </button>
+            <figcaption>วิดีโอ: สรุปฟีดตลอดทั้งวันในคลิปเดียว</figcaption>
+          <div data-seo-video="" class="vtext"><p class="vtext-h">Transcript · 0:18</p><ul><li>An RSS reader that summarizes.</li><li>Subscribe to your favorite sources.</li><li>One click, and you get a briefing of the whole day.</li></ul></div></div>
         </figure>
-        <p>ในปี 2009 Sophie Leroy ได้อธิบายถึงภาวะที่เรียกว่า attention residue (เศษเสี้ยวสมาธิที่ค้างอยู่) ว่าเมื่อใดก็ตามที่มีการสลับจากงานหนึ่งไปอีกงานหนึ่ง สมาธิส่วนหนึ่งจะยังคงค้างอยู่กับงานก่อนหน้า จากการทดลองพบว่า ผู้ที่ถูกขัดจังหวะขณะทำงานหนึ่งจะมีประสิทธิภาพลดลงในงานถัดไป และผลกระทบนี้จะยิ่งชัดเจนขึ้นเมื่อต้องรีบเร่ง</p>
         <p>เครื่องมืออ่านฟีดเปรียบเสมือนเครื่องจักรที่บังคับให้สลับสมาธิตลอดเวลา แต่ละรายการมีหัวข้อ โทนเสียง และแท็บที่แตกต่างกัน แม้แต่ละเรื่องจะอ่านจบเร็ว แต่เศษเสี้ยวสมาธิที่ตกค้างจะค่อย ๆ สะสม จนเมื่อกลับมาทำงานจริง สมาธิส่วนหนึ่งก็ยังคงพะวงอยู่กับการปรับราคาของผู้ให้บริการโฮสติ้ง</p>
 
         <h2>เหตุใดแนวคิด “Inbox Zero” จึงไม่เคยได้ผลกับฟีดข่าว</h2>
@@ -146,12 +156,19 @@
   </section>
 </main>
 
+<div class="vfeed-labels" hidden="">
+  <span data-l="close">ปิด</span><span data-l="sound">เปิดเสียง</span><span data-l="mute">ปิดเสียง</span><span data-l="hint">ปัดขึ้นเพื่อดูวิดีโอถัดไป</span><span data-l="prev">วิดีโอก่อนหน้า</span><span data-l="next">วิดีโอถัดไป</span>
+  <span data-l="share">แชร์</span><span data-l="copied">คัดลอกลิงก์แล้ว</span>
+  <span data-l="add_chrome">เพิ่มลงใน Chrome — ใช้งานฟรี</span><span data-l="add_firefox">เพิ่มลงใน Firefox — ฟรี</span><span data-l="add_browser">เพิ่มลงในเบราว์เซอร์ — ฟรี</span>
+  <a data-l="try" href="../../bookmarklet.html">ทดลองใช้บนเบราว์เซอร์ — ฟรี</a>
+</div>
 <footer>
   <div class="wrap">
     <div class="footer-inner">
       <div class="wordmark"><img src="../../assets/icon.svg" alt="">AI Summary Helper</div>
       <div class="foot-links">
         <a href="https://github.com/philffm/ai-summary-helper/" target="_blank" rel="noopener">ซอร์สโค้ดบน GitHub</a>
+        <a href="../../education/">สำหรับการศึกษา</a>
         <a href="../privacy.html">ความเป็นส่วนตัว</a>
         <a href="#" data-analytics-settings="">การตั้งค่าการวิเคราะห์</a>
         <a href="https://byphil.eu/terms.html#impressum" target="_blank" rel="noopener">ข้อมูลทางกฎหมาย (Impressum)</a>

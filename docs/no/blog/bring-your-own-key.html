@@ -89,6 +89,7 @@
         <div class="mm-row">
           <a href="https://addons.mozilla.org/en-US/firefox/addon/ai-summary-helper/" target="_blank" rel="noopener">Firefox</a>
           <a href="../index.html#phone">Android · Beta</a>
+          <a href="../../education/">For utdanning</a>
           <a href="https://byphil.eu/#account">Min konto</a>
         </div>
         
@@ -103,24 +104,33 @@
 </header>
 
 <main id="main">
-  <div class="wrap">
-    <div class="post-hero">
+  <section class="hero--photo post-stage">
+    <img class="hero-bg" src="../../assets/photo/hands-keyboard-closeup-800.webp" srcset="../assets/photo/hands-keyboard-closeup-800.webp 800w, ../assets/photo/hands-keyboard-closeup-1600.webp 1600w" sizes="100vw" width="1600" height="893" alt="" fetchpriority="high" decoding="async" style="--bgpos:50% 50%">
+    <p class="hero-credit">Illustrasjon, AI-generert</p>
+    <div class="wrap">
+      <div class="post-hero">
       <span class="blog-date">Produkt · Oktober 2026</span>
       <h1>Din nøkkel. Din modell. Dine data.</h1>
       <p class="post-sub">De fleste AI-verktøy setter en server mellom deg og modellen. Her ser du hva som endrer seg når den er borte – og hva som fortsatt er opp til deg.</p>
+      </div>
     </div>
-  </div>
+  </section>
 
   <section>
     <div class="wrap">
-      <div class="prose">
-        <figure class="post-figure post-figure--video" data-blog-video="privat">
-          <video controls="" playsinline="" preload="none" width="360" height="520" poster="../../assets/blog/video/privat-en.jpg">
+      <div class="prose" data-vgroup="">
+        <p>Alle AI-sammendrag fungerer likt: tekst sendes ut, og tekst kommer tilbake. Spørsmålet som avgjør hvor mye du kan stole på verktøyet, er hvem som sitter i midten. Med mange produkter står det en bedriftsserver der, og det du leser passerer gjennom den på vei til en modell du ikke selv har valgt.</p>
+        <figure class="post-figure post-video" data-blog-video="privat">
+          <div class="post-video-in">
+            <button class="fvideo-open post-video-open" type="button"><span class="sr-only">Spill av videoen</span>
+              <video muted="" playsinline="" loop="" preload="none" width="360" height="520" poster="../../assets/blog/video/privat-en.jpg">
             <source src="../../assets/blog/video/privat-en.mp4" type="video/mp4">
           <track data-seo-video="" kind="captions" src="../../assets/blog/video/privat-en.vtt" srclang="en" label="English"></video>
-          <figcaption>Video: bytt mellom din egen API key, en lokal modell med Ollama og byPhil Cloud.</figcaption>
+              <span class="post-video-play" aria-hidden="true">▶</span>
+            </button>
+            <figcaption>Video: bytt mellom din egen API key, en lokal modell med Ollama og byPhil Cloud.</figcaption>
+          <div data-seo-video="" class="vtext"><p class="vtext-h">Transcript · 0:20</p><ul><li>Privacy is a trade-off.</li><li>When the risk is clear, people share less.</li><li>So you choose: your own API key, a local model with Ollama, or byPhil Cloud with no setup.</li><li>Your library stays in the browser.</li></ul></div></div>
         </figure>
-        <p>Alle AI-sammendrag fungerer likt: tekst sendes ut, og tekst kommer tilbake. Spørsmålet som avgjør hvor mye du kan stole på verktøyet, er hvem som sitter i midten. Med mange produkter står det en bedriftsserver der, og det du leser passerer gjennom den på vei til en modell du ikke selv har valgt.</p>
 
         <h2>Hva «bring your own key» betyr her</h2>
         <p>Du oppretter en API key hos en leverandør du allerede stoler på, limer den inn i AI Summary Helper og velger en modell. Når du oppsummerer en side, sender utvidelsens bakgrunnsprosess teksten direkte til leverandøren og strømmer svaret tilbake. Ingen server fra AI Summary Helper er involvert når du bruker egen nøkkel.</p>
@@ -151,12 +161,19 @@
   </section>
 </main>
 
+<div class="vfeed-labels" hidden="">
+  <span data-l="close">Lukk</span><span data-l="sound">Lyd på</span><span data-l="mute">Lyd av</span><span data-l="hint">Sveip opp for neste video</span><span data-l="prev">Forrige video</span><span data-l="next">Neste video</span>
+  <span data-l="share">Del</span><span data-l="copied">Lenke kopiert</span>
+  <span data-l="add_chrome">Legg til i Chrome – helt gratis</span><span data-l="add_firefox">Legg til i Firefox — det er gratis</span><span data-l="add_browser">Legg til i nettleseren din — det er gratis</span>
+  <a data-l="try" href="../../bookmarklet.html">Prøv i nettleseren din — det er gratis</a>
+</div>
 <footer>
   <div class="wrap">
     <div class="footer-inner">
       <div class="wordmark"><img src="../../assets/icon.svg" alt="">AI Summary Helper</div>
       <div class="foot-links">
         <a href="https://github.com/philffm/ai-summary-helper/" target="_blank" rel="noopener">Kildekode på GitHub</a>
+        <a href="../../education/">For utdanning</a>
         <a href="../privacy.html">Personvern</a>
         <a href="#" data-analytics-settings="">Analyseinnstillinger</a>
         <a href="https://byphil.eu/terms.html#impressum" target="_blank" rel="noopener">Impressum</a>

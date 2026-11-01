@@ -89,6 +89,7 @@
         <div class="mm-row">
           <a href="https://addons.mozilla.org/en-US/firefox/addon/ai-summary-helper/" target="_blank" rel="noopener">Firefox</a>
           <a href="../index.html#phone">Android · Beta</a>
+          <a href="../../education/">Education के लिए</a>
           <a href="https://byphil.eu/#account">My account</a>
         </div>
         
@@ -103,24 +104,33 @@
 </header>
 
 <main id="main">
-  <div class="wrap">
-    <div class="post-hero">
+  <section class="hero--photo post-stage">
+    <img class="hero-bg" src="../../assets/photo/bokeh-strip-blue-amber-800.webp" srcset="../assets/photo/bokeh-strip-blue-amber-800.webp 800w, ../assets/photo/bokeh-strip-blue-amber-1600.webp 1600w" sizes="100vw" width="1600" height="679" alt="" fetchpriority="high" decoding="async" style="--bgpos:50% 50%">
+    <p class="hero-credit">इलस्ट्रेशन, AI-जनरेटेड</p>
+    <div class="wrap">
+      <div class="post-hero">
       <span class="blog-date">Engineering · August 2026</span>
       <h1>हमने Search, Tagging, और Recommendations को Cloud से बाहर क्यों शिफ्ट किया</h1>
       <p class="post-sub">Search, dedup, tag cleanup, और recommendations एक ही छोटा on-device index शेयर करते हैं। जानिए यह कैसे काम करता है, और यह सिर्फ़ एक privacy talking point क्यों नहीं है।</p>
+      </div>
     </div>
-  </div>
+  </section>
 
   <section>
     <div class="wrap">
-      <div class="prose">
-        <figure class="post-figure post-figure--video" data-blog-video="graph">
-          <video controls="" playsinline="" preload="none" width="360" height="520" poster="../../assets/blog/video/graph-en.jpg">
+      <div class="prose" data-vgroup="">
+<p>ज़्यादातर "AI-powered" browser extensions सब कुछ server पर भेज देते हैं — यहाँ तक कि उन चीज़ों को भी जिनका AI से कोई लेना-देना नहीं है। Search, tag cleanup, "find similar items": ये दशकों पुरानी, well-understood टेक्निक्स हैं। इन्हें किसी language model की ज़रूरत नहीं है, और network round-trip की तो बिल्कुल नहीं। हमने AI Summary Helper के हर feature को एक-एक करके परखा और पूछा: क्या इसे वाकई cloud की ज़रूरत है, या हम बस इसलिए cloud यूज़ कर रहे हैं क्योंकि यह आसान architecture है?</p>
+        <figure class="post-figure post-video" data-blog-video="graph">
+          <div class="post-video-in">
+            <button class="fvideo-open post-video-open" type="button"><span class="sr-only">वीडियो चलाएं</span>
+              <video muted="" playsinline="" loop="" preload="none" width="360" height="520" poster="../../assets/blog/video/graph-en.jpg">
             <source src="../../assets/blog/video/graph-en.mp4" type="video/mp4">
           <track data-seo-video="" kind="captions" src="../../assets/blog/video/graph-en.vtt" srclang="en" label="English"></video>
-          <figcaption>Video: knowledge graph आपके articles को उनके topics के ज़रिए लिंक करता है, सीधे आपके device पर बना हुआ।</figcaption>
+              <span class="post-video-play" aria-hidden="true">▶</span>
+            </button>
+            <figcaption>Video: knowledge graph आपके articles को उनके topics के ज़रिए लिंक करता है, सीधे आपके device पर बना हुआ।</figcaption>
+          <div data-seo-video="" class="vtext"><p class="vtext-h">Transcript · 0:19</p><ul><li>What you read is connected.</li><li>Your knowledge graph links articles through their topics.</li><li>Tap one, and you get a briefing on everything you have read about it.</li></ul></div></div>
         </figure>
-<p>ज़्यादातर "AI-powered" browser extensions सब कुछ server पर भेज देते हैं — यहाँ तक कि उन चीज़ों को भी जिनका AI से कोई लेना-देना नहीं है। Search, tag cleanup, "find similar items": ये दशकों पुरानी, well-understood टेक्निक्स हैं। इन्हें किसी language model की ज़रूरत नहीं है, और network round-trip की तो बिल्कुल नहीं। हमने AI Summary Helper के हर feature को एक-एक करके परखा और पूछा: क्या इसे वाकई cloud की ज़रूरत है, या हम बस इसलिए cloud यूज़ कर रहे हैं क्योंकि यह आसान architecture है?</p>
         <p>उनमें से ज़्यादातर को इसकी ज़रूरत नहीं थी।</p>
 
         <figure class="post-figure post-figure--portrait"><img src="../../assets/blog/knowledge-graph.webp" alt="Slide: connected topics का एक map जिस पर लिखा है “अर्थ और गहरे जुड़ाव वाली जानकारी उस जानकारी से कहीं ज़्यादा समय तक टिकती है जिसे आपने सिर्फ एक नज़र देखा हो”" width="800" height="1000" loading="lazy"><figcaption>Search, tagging और similar articles सब एक ही on-device index पर काम करते हैं, इसलिए saves के बीच connections की कोई cost नहीं लगती।</figcaption></figure>
@@ -148,12 +158,19 @@
   </section>
 </main>
 
+<div class="vfeed-labels" hidden="">
+  <span data-l="close">बंद करें</span><span data-l="sound">Sound on</span><span data-l="mute">Sound off</span><span data-l="hint">अगले video के लिए swipe up करें</span><span data-l="prev">पिछला video</span><span data-l="next">अगला video</span>
+  <span data-l="share">Share करें</span><span data-l="copied">Link copy हो गया</span>
+  <span data-l="add_chrome">Chrome में जोड़ें — बिल्कुल Free</span><span data-l="add_firefox">Firefox में add करें — बिल्कुल free</span><span data-l="add_browser">अपने browser में add करें — बिल्कुल free</span>
+  <a data-l="try" href="../../bookmarklet.html">अपने browser में try करें — बिल्कुल free</a>
+</div>
 <footer>
   <div class="wrap">
     <div class="footer-inner">
       <div class="wordmark"><img src="../../assets/icon.svg" alt="">AI Summary Helper</div>
       <div class="foot-links">
         <a href="https://github.com/philffm/ai-summary-helper/" target="_blank" rel="noopener">GitHub पर Source</a>
+        <a href="../../education/">Education के लिए</a>
         <a href="../privacy.html">Privacy</a>
         <a href="#" data-analytics-settings="">Analytics settings</a>
         <a href="https://byphil.eu/terms.html#impressum" target="_blank" rel="noopener">Impressum</a>

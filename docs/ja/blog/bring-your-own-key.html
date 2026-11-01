@@ -89,6 +89,7 @@
         <div class="mm-row">
           <a href="https://addons.mozilla.org/en-US/firefox/addon/ai-summary-helper/" target="_blank" rel="noopener">Firefox</a>
           <a href="../index.html#phone">Android · ベータ版</a>
+          <a href="../../education/">教育機関向け</a>
           <a href="https://byphil.eu/#account">マイアカウント</a>
         </div>
         
@@ -103,24 +104,33 @@
 </header>
 
 <main id="main">
-  <div class="wrap">
-    <div class="post-hero">
+  <section class="hero--photo post-stage">
+    <img class="hero-bg" src="../../assets/photo/hands-keyboard-closeup-800.webp" srcset="../assets/photo/hands-keyboard-closeup-800.webp 800w, ../assets/photo/hands-keyboard-closeup-1600.webp 1600w" sizes="100vw" width="1600" height="893" alt="" fetchpriority="high" decoding="async" style="--bgpos:50% 50%">
+    <p class="hero-credit">イラスト（AI生成）</p>
+    <div class="wrap">
+      <div class="post-hero">
       <span class="blog-date">プロダクト · 2026年10月</span>
       <h1>自分自身のキー。モデル。データ。</h1>
       <p class="post-sub">一般的なAIツールの多くは、ユーザーとモデルの間にサーバーを挟みます。仲介サーバーが存在しない場合、何が変わり、何が自己管理になるのかを解説します。</p>
+      </div>
     </div>
-  </div>
+  </section>
 
   <section>
     <div class="wrap">
-      <div class="prose">
-        <figure class="post-figure post-figure--video" data-blog-video="privat">
-          <video controls="" playsinline="" preload="none" width="360" height="520" poster="../../assets/blog/video/privat-ja.jpg">
+      <div class="prose" data-vgroup="">
+        <p>どのAI要約も仕組みは同じです。テキストを送信し、結果を受け取ります。そのツールをどれだけ信頼できるかを決めるポイントは、「その間に誰が存在するか」です。多くの製品では企業のサーバーを経由し、閲覧中のコンテンツがユーザーの選んでいないモデルへと送られています。</p>
+        <figure class="post-figure post-video" data-blog-video="privat">
+          <div class="post-video-in">
+            <button class="fvideo-open post-video-open" type="button"><span class="sr-only">動画を再生</span>
+              <video muted="" playsinline="" loop="" preload="none" width="360" height="520" poster="../../assets/blog/video/privat-ja.jpg">
             <source src="../../assets/blog/video/privat-ja.mp4" type="video/mp4">
           <track data-seo-video="" kind="captions" src="../../assets/blog/video/privat-ja.vtt" srclang="ja" label="日本語"></video>
-          <figcaption>動画：ご自身のAPIキー、Ollamaによるローカルモデル、byPhil Cloudを切り替えてご利用いただけます。</figcaption>
+              <span class="post-video-play" aria-hidden="true">▶</span>
+            </button>
+            <figcaption>動画：ご自身のAPIキー、Ollamaによるローカルモデル、byPhil Cloudを切り替えてご利用いただけます。</figcaption>
+          <div data-seo-video="" class="vtext"><p class="vtext-h">文字起こし · 0:24</p><ul><li>プライバシーはトレードオフ。</li><li>リスクが見えると、人は共有を控えます。</li><li>だから選べます。</li><li>自分のAPIキー、Ollamaのローカルモデル、または設定不要のbyPhil Cloud。</li><li>ライブラリはブラウザの中に残ります。</li></ul></div></div>
         </figure>
-        <p>どのAI要約も仕組みは同じです。テキストを送信し、結果を受け取ります。そのツールをどれだけ信頼できるかを決めるポイントは、「その間に誰が存在するか」です。多くの製品では企業のサーバーを経由し、閲覧中のコンテンツがユーザーの選んでいないモデルへと送られています。</p>
 
         <h2>ここで言う「独自のキーの持ち込み（BYOK）」とは</h2>
         <p>信頼できるプロバイダーで作成したAPIキーを AI Summary Helper に貼り付け、モデルを選択するだけです。ページを要約する際、拡張機能のバックグラウンドワーカーがプロバイダーへ直接テキストを送信し、回答をストリーミング受信します。独自のキーを使用する場合、その経路に AI Summary Helper のサーバーが介在することはありません。</p>
@@ -151,12 +161,19 @@
   </section>
 </main>
 
+<div class="vfeed-labels" hidden="">
+  <span data-l="close">閉じる</span><span data-l="sound">音声オン</span><span data-l="mute">音声オフ</span><span data-l="hint">上にスワイプして次の動画へ</span><span data-l="prev">前の動画</span><span data-l="next">次の動画</span>
+  <span data-l="share">共有</span><span data-l="copied">リンクをコピーしました</span>
+  <span data-l="add_chrome">Chromeに追加（無料）</span><span data-l="add_firefox">Firefox に追加 — 無料です</span><span data-l="add_browser">ブラウザに追加 — 無料です</span>
+  <a data-l="try" href="../../bookmarklet.html">ブラウザで試す — 無料です</a>
+</div>
 <footer>
   <div class="wrap">
     <div class="footer-inner">
       <div class="wordmark"><img src="../../assets/icon.svg" alt="">AI Summary Helper</div>
       <div class="foot-links">
         <a href="https://github.com/philffm/ai-summary-helper/" target="_blank" rel="noopener">GitHubでソースコードを見る</a>
+        <a href="../../education/">教育機関向け</a>
         <a href="../privacy.html">プライバシー</a>
         <a href="#" data-analytics-settings="">アナリティクス設定</a>
         <a href="https://byphil.eu/terms.html#impressum" target="_blank" rel="noopener">法的表記（Impressum）</a>

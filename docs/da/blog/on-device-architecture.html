@@ -89,6 +89,7 @@
         <div class="mm-row">
           <a href="https://addons.mozilla.org/en-US/firefox/addon/ai-summary-helper/" target="_blank" rel="noopener">Firefox</a>
           <a href="../index.html#phone">Android · Beta</a>
+          <a href="../../education/">Til uddannelse</a>
           <a href="https://byphil.eu/#account">Min konto</a>
         </div>
         
@@ -103,24 +104,33 @@
 </header>
 
 <main id="main">
-  <div class="wrap">
-    <div class="post-hero">
+  <section class="hero--photo post-stage">
+    <img class="hero-bg" src="../../assets/photo/bokeh-strip-blue-amber-800.webp" srcset="../assets/photo/bokeh-strip-blue-amber-800.webp 800w, ../assets/photo/bokeh-strip-blue-amber-1600.webp 1600w" sizes="100vw" width="1600" height="679" alt="" fetchpriority="high" decoding="async" style="--bgpos:50% 50%">
+    <p class="hero-credit">Illustration, AI-genereret</p>
+    <div class="wrap">
+      <div class="post-hero">
       <span class="blog-date">Engineering · August 2026</span>
       <h1>Hvorfor vi flyttede søgning, tagging og anbefalinger ud af skyen</h1>
       <p class="post-sub">Søgning, duplikattjek, tag-oprydning og anbefalinger deler ét lille indeks på din enhed. Se hvordan det fungerer, og hvorfor det handler om mere end bare privatliv.</p>
+      </div>
     </div>
-  </div>
+  </section>
 
   <section>
     <div class="wrap">
-      <div class="prose">
-        <figure class="post-figure post-figure--video" data-blog-video="graph">
-          <video controls="" playsinline="" preload="none" width="360" height="520" poster="../../assets/blog/video/graph-en.jpg">
+      <div class="prose" data-vgroup="">
+<p>De fleste »AI-drevne« browserudvidelser sender alt til en server — også de dele, der intet har med AI at gøre. Søgning, oprydning i tags, »find lignende artikler«: det er velafprøvede teknikker, der har eksisteret i årtier. De kræver ikke en sprogmodel, og de behøver slet ikke en tur over netværket. Vi gennemgik AI Summary Helper funktion for funktion og spurgte: behøver dette overhovedet skyen, eller gør vi det bare, fordi det er den nemme arkitektur?</p>
+        <figure class="post-figure post-video" data-blog-video="graph">
+          <div class="post-video-in">
+            <button class="fvideo-open post-video-open" type="button"><span class="sr-only">Afspil videoen</span>
+              <video muted="" playsinline="" loop="" preload="none" width="360" height="520" poster="../../assets/blog/video/graph-en.jpg">
             <source src="../../assets/blog/video/graph-en.mp4" type="video/mp4">
           <track data-seo-video="" kind="captions" src="../../assets/blog/video/graph-en.vtt" srclang="en" label="English"></video>
-          <figcaption>Video: Vidensgrafen forbinder dine artikler via deres emner – bygget lokalt på din enhed.</figcaption>
+              <span class="post-video-play" aria-hidden="true">▶</span>
+            </button>
+            <figcaption>Video: Vidensgrafen forbinder dine artikler via deres emner – bygget lokalt på din enhed.</figcaption>
+          <div data-seo-video="" class="vtext"><p class="vtext-h">Transcript · 0:19</p><ul><li>What you read is connected.</li><li>Your knowledge graph links articles through their topics.</li><li>Tap one, and you get a briefing on everything you have read about it.</li></ul></div></div>
         </figure>
-<p>De fleste »AI-drevne« browserudvidelser sender alt til en server — også de dele, der intet har med AI at gøre. Søgning, oprydning i tags, »find lignende artikler«: det er velafprøvede teknikker, der har eksisteret i årtier. De kræver ikke en sprogmodel, og de behøver slet ikke en tur over netværket. Vi gennemgik AI Summary Helper funktion for funktion og spurgte: behøver dette overhovedet skyen, eller gør vi det bare, fordi det er den nemme arkitektur?</p>
         <p>Det meste behøvede det slet ikke.</p>
 
         <figure class="post-figure post-figure--portrait"><img src="../../assets/blog/knowledge-graph.webp" alt="Slide: et kort over forbundne emner med teksten »Information knyttet til mening og sammenhæng holder længere end information, du blot har skummet«" width="800" height="1000" loading="lazy"><figcaption>Søgning, tagging og lignende artikler kører alle på det samme lokale indeks på din enhed, så forbindelser mellem gemte sider koster ingenting.</figcaption></figure>
@@ -148,12 +158,19 @@
   </section>
 </main>
 
+<div class="vfeed-labels" hidden="">
+  <span data-l="close">Luk</span><span data-l="sound">Lyd til</span><span data-l="mute">Lyd fra</span><span data-l="hint">Swipe op for næste video</span><span data-l="prev">Forrige video</span><span data-l="next">Næste video</span>
+  <span data-l="share">Del</span><span data-l="copied">Link kopieret</span>
+  <span data-l="add_chrome">Tilføj til Chrome — det er gratis</span><span data-l="add_firefox">Tilføj til Firefox — det er gratis</span><span data-l="add_browser">Tilføj til din browser — det er gratis</span>
+  <a data-l="try" href="../../bookmarklet.html">Prøv det i din browser — det er gratis</a>
+</div>
 <footer>
   <div class="wrap">
     <div class="footer-inner">
       <div class="wordmark"><img src="../../assets/icon.svg" alt="">AI Summary Helper</div>
       <div class="foot-links">
         <a href="https://github.com/philffm/ai-summary-helper/" target="_blank" rel="noopener">Kildekode på GitHub</a>
+        <a href="../../education/">Til uddannelse</a>
         <a href="../privacy.html">Privatliv</a>
         <a href="#" data-analytics-settings="">Analytics-indstillinger</a>
         <a href="https://byphil.eu/terms.html#impressum" target="_blank" rel="noopener">Impressum</a>

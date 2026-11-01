@@ -89,6 +89,7 @@
         <div class="mm-row">
           <a href="https://addons.mozilla.org/en-US/firefox/addon/ai-summary-helper/" target="_blank" rel="noopener">Firefox</a>
           <a href="../index.html#phone">Android · ベータ版</a>
+          <a href="../../education/">教育機関向け</a>
           <a href="https://byphil.eu/#account">マイアカウント</a>
         </div>
         
@@ -103,25 +104,34 @@
 </header>
 
 <main id="main">
-  <div class="wrap">
-    <div class="post-hero">
+  <section class="hero--photo post-stage">
+    <img class="hero-bg" src="../../assets/photo/ereader-bedside-table-800.webp" srcset="../assets/photo/ereader-bedside-table-800.webp 800w, ../assets/photo/ereader-bedside-table-1600.webp 1600w" sizes="100vw" width="1600" height="1195" alt="" fetchpriority="high" decoding="async" style="--bgpos:50% 50%">
+    <p class="hero-credit">イラスト（AI生成）</p>
+    <div class="wrap">
+      <div class="post-hero">
       <span class="blog-date">プロダクト · 2026年6月</span>
       <h1>ブックマークレットから2.0へ：現在のAI Summary Helperとは</h1>
       <p class="post-sub">始まりは、Kindleで記事を読むためのワンクリック・ブックマークレットでした。2年の歳月と完全なリビルドを経て、最初の100人が使い始めた頃には存在すらしていなかった機能が、現在の主力となっています。</p>
+      </div>
     </div>
-  </div>
+  </section>
 
   <section>
     <div class="wrap">
-      <div class="prose">
-        <figure class="post-figure post-figure--video" data-blog-video="senden">
-          <video controls="" playsinline="" preload="none" width="360" height="520" poster="../../assets/blog/video/senden-ja.jpg">
-            <source src="../../assets/blog/video/senden-ja.mp4" type="video/mp4">
-          <track data-seo-video="" kind="captions" src="../../assets/blog/video/senden-ja.vtt" srclang="ja" label="日本語"></video>
-          <figcaption>動画：要約からKindleへ、このプロジェクトの原点となった習慣。</figcaption>
-        </figure>
+      <div class="prose" data-vgroup="">
 
         <p><strong>AI Summary Helper は、無料のオープンソースChrome拡張機能です。お好みのAIプロバイダーや完全なローカルモデルを使ってWebページを要約し、リマインダー付きで後読み保存。さらに読書履歴を検索可能なナレッジアーカイブへと変換します。</strong> 初期バージョンには、現在の機能は一切ありませんでした。当時何ができたのか、そしてどのように現在の姿へと進化したのかを振り返ります。</p>
+        <figure class="post-figure post-video" data-blog-video="senden">
+          <div class="post-video-in">
+            <button class="fvideo-open post-video-open" type="button"><span class="sr-only">動画を再生</span>
+              <video muted="" playsinline="" loop="" preload="none" width="360" height="520" poster="../../assets/blog/video/senden-ja.jpg">
+            <source src="../../assets/blog/video/senden-ja.mp4" type="video/mp4">
+          <track data-seo-video="" kind="captions" src="../../assets/blog/video/senden-ja.vtt" srclang="ja" label="日本語"></video>
+              <span class="post-video-play" aria-hidden="true">▶</span>
+            </button>
+            <figcaption>動画：要約からKindleへ、このプロジェクトの原点となった習慣。</figcaption>
+          <div data-seo-video="" class="vtext"><p class="vtext-h">文字起こし · 0:19</p><ul><li>要約をそのままKindleへ。</li><li>ページを要約して、メニューからKindleへ。</li><li>数秒後には電子書籍リーダーに届き、ソファでゆっくり読めます。</li></ul></div></div>
+        </figure>
 
         <h2>プロジェクトの原点</h2>
         <p>2024年7月当時、これは拡張機能ですらなく、ただのブックマークレットでした。面白そうな記事を見つけて何十個もタブを開くものの、大半は結局読まれずに終わる――多くの人が抱えるこの課題に対し、開発の動機は極めて個人的でシンプルなものでした。カスタムプロンプトによる要約結果をページ内に直接挿入し、 <a href="https://send.reabble.com/" target="_blank" rel="noopener">ReabbleのSend-to-Kindleツール</a>を使ってKindleへ記事を転送する際に、要約も一緒に読めるようにすること。それがプロダクトのすべてでした。選べるAIプロバイダーは1つ、プロンプト入力欄も1つ。iOSのSafariでもどこでも動くブックマークレット版と、プロンプトをその場で調整したい人向けのChrome拡張機能版を用意しただけのものでした。</p>
@@ -163,12 +173,19 @@
   </section>
 </main>
 
+<div class="vfeed-labels" hidden="">
+  <span data-l="close">閉じる</span><span data-l="sound">音声オン</span><span data-l="mute">音声オフ</span><span data-l="hint">上にスワイプして次の動画へ</span><span data-l="prev">前の動画</span><span data-l="next">次の動画</span>
+  <span data-l="share">共有</span><span data-l="copied">リンクをコピーしました</span>
+  <span data-l="add_chrome">Chromeに追加（無料）</span><span data-l="add_firefox">Firefox に追加 — 無料です</span><span data-l="add_browser">ブラウザに追加 — 無料です</span>
+  <a data-l="try" href="../../bookmarklet.html">ブラウザで試す — 無料です</a>
+</div>
 <footer>
   <div class="wrap">
     <div class="footer-inner">
       <div class="wordmark"><img src="../../assets/icon.svg" alt="">AI Summary Helper</div>
       <div class="foot-links">
         <a href="https://github.com/philffm/ai-summary-helper/" target="_blank" rel="noopener">GitHubでソースコードを見る</a>
+        <a href="../../education/">教育機関向け</a>
         <a href="../privacy.html">プライバシー</a>
         <a href="#" data-analytics-settings="">アナリティクス設定</a>
         <a href="https://byphil.eu/terms.html#impressum" target="_blank" rel="noopener">法的表記（Impressum）</a>

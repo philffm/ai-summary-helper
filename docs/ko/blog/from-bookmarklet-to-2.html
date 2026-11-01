@@ -89,6 +89,7 @@
         <div class="mm-row">
           <a href="https://addons.mozilla.org/en-US/firefox/addon/ai-summary-helper/" target="_blank" rel="noopener">Firefox</a>
           <a href="../index.html#phone">Android · 베타</a>
+          <a href="../../education/">교육용</a>
           <a href="https://byphil.eu/#account">내 계정</a>
         </div>
         
@@ -103,25 +104,34 @@
 </header>
 
 <main id="main">
-  <div class="wrap">
-    <div class="post-hero">
+  <section class="hero--photo post-stage">
+    <img class="hero-bg" src="../../assets/photo/ereader-bedside-table-800.webp" srcset="../assets/photo/ereader-bedside-table-800.webp 800w, ../assets/photo/ereader-bedside-table-1600.webp 1600w" sizes="100vw" width="1600" height="1195" alt="" fetchpriority="high" decoding="async" style="--bgpos:50% 50%">
+    <p class="hero-credit">AI 생성 일러스트</p>
+    <div class="wrap">
+      <div class="post-hero">
       <span class="blog-date">제품 · 2026년 6월</span>
       <h1>북마크릿에서 2.0까지: AI Summary Helper는 지금 어떤 도구일까요</h1>
       <p class="post-sub">Kindle에서 글을 읽기 위한 원클릭 북마클릿으로 시작했습니다. 2년의 시간과 전면적인 재구축을 거친 지금, 현재 제공하는 대부분의 기능은 초기 100명이 가입했을 당시에는 아예 존재하지도 않았습니다.</p>
+      </div>
     </div>
-  </div>
+  </section>
 
   <section>
     <div class="wrap">
-      <div class="prose">
-        <figure class="post-figure post-figure--video" data-blog-video="senden">
-          <video controls="" playsinline="" preload="none" width="360" height="520" poster="../../assets/blog/video/senden-ko.jpg">
-            <source src="../../assets/blog/video/senden-ko.mp4" type="video/mp4">
-          <track data-seo-video="" kind="captions" src="../../assets/blog/video/senden-ko.vtt" srclang="ko" label="한국어"></video>
-          <figcaption>동영상: 요약부터 Kindle까지, 이 프로젝트의 시작이 된 습관.</figcaption>
-        </figure>
+      <div class="prose" data-vgroup="">
 
         <p><strong>AI Summary Helper는 무료 오픈소스 Chrome 확장 프로그램입니다. 보유한 AI 제공자나 완전 로컬 모델을 활용해 웹 페이지를 요약하고, 알림 시간과 함께 나중에 볼 아티클로 저장하며, 읽기 기록을 검색과 연결이 가능한 아카이브로 바꿔줍니다.</strong> 첫 번째 버전에는 이런 기능이 전혀 없었습니다. 초기에 무엇이 있었고, 어떻게 지금에 이르게 되었는지 살펴보겠습니다.</p>
+        <figure class="post-figure post-video" data-blog-video="senden">
+          <div class="post-video-in">
+            <button class="fvideo-open post-video-open" type="button"><span class="sr-only">동영상 재생</span>
+              <video muted="" playsinline="" loop="" preload="none" width="360" height="520" poster="../../assets/blog/video/senden-ko.jpg">
+            <source src="../../assets/blog/video/senden-ko.mp4" type="video/mp4">
+          <track data-seo-video="" kind="captions" src="../../assets/blog/video/senden-ko.vtt" srclang="ko" label="한국어"></video>
+              <span class="post-video-play" aria-hidden="true">▶</span>
+            </button>
+            <figcaption>동영상: 요약부터 Kindle까지, 이 프로젝트의 시작이 된 습관.</figcaption>
+          <div data-seo-video="" class="vtext"><p class="vtext-h">스크립트 · 0:20</p><ul><li>요약에서 Kindle까지.</li><li>페이지를 요약하고, 메뉴를 열고, Kindle로 보내세요.</li><li>몇 초 뒤면 전자책 리더에 도착해 소파에서 읽을 수 있어요.</li></ul></div></div>
+        </figure>
 
         <h2>프로젝트의 시작</h2>
         <p>2024년 7월, 이 도구는 확장 프로그램도 아닌 북마클릿이었습니다. 흥미로운 아티클을 찾아 탭을 수십 개씩 열어두고도 다른 많은 사람들처럼 대부분 읽지 못하곤 했습니다. 처음 기획 의도는 단순하고 개인적이었습니다. 맞춤 프롬프트 요약기가 생성 결과를 페이지에 바로 삽입해 주면, 다음 서비스를 통해 글을 Kindle로 보낼 때 요약본도 함께 전송되도록 하는 것이었죠. <a href="https://send.reabble.com/" target="_blank" rel="noopener">Reabble의 Send-to-Kindle 도구</a>. 그게 제품의 전부였습니다. AI 제공자 하나, 프롬프트 입력창 하나, 그리고 iOS Safari를 포함해 어디서나 작동하는 북마클릿 버전과 즉석에서 프롬프트를 조정하고 싶은 사람들을 위한 Chrome 확장 프로그램 버전뿐이었습니다.</p>
@@ -163,12 +173,19 @@
   </section>
 </main>
 
+<div class="vfeed-labels" hidden="">
+  <span data-l="close">닫기</span><span data-l="sound">소리 켜기</span><span data-l="mute">소리 끄기</span><span data-l="hint">다음 영상을 보려면 위로 쓸어올리세요</span><span data-l="prev">이전 영상</span><span data-l="next">다음 영상</span>
+  <span data-l="share">공유</span><span data-l="copied">링크가 복사되었습니다</span>
+  <span data-l="add_chrome">Chrome에 추가 — 무료</span><span data-l="add_firefox">Firefox에 추가하기 — 무료</span><span data-l="add_browser">브라우저에 추가하기 — 무료</span>
+  <a data-l="try" href="../../bookmarklet.html">브라우저에서 사용해 보기 — 무료</a>
+</div>
 <footer>
   <div class="wrap">
     <div class="footer-inner">
       <div class="wordmark"><img src="../../assets/icon.svg" alt="">AI Summary Helper</div>
       <div class="foot-links">
         <a href="https://github.com/philffm/ai-summary-helper/" target="_blank" rel="noopener">GitHub에서 소스 보기</a>
+        <a href="../../education/">교육용</a>
         <a href="../privacy.html">개인정보 보호</a>
         <a href="#" data-analytics-settings="">분석 설정</a>
         <a href="https://byphil.eu/terms.html#impressum" target="_blank" rel="noopener">Impressum (발행인 정보)</a>

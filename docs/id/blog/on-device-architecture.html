@@ -89,6 +89,7 @@
         <div class="mm-row">
           <a href="https://addons.mozilla.org/en-US/firefox/addon/ai-summary-helper/" target="_blank" rel="noopener">Firefox</a>
           <a href="../index.html#phone">Android · Beta</a>
+          <a href="../../education/">Untuk pendidikan</a>
           <a href="https://byphil.eu/#account">Akun saya</a>
         </div>
         
@@ -103,24 +104,33 @@
 </header>
 
 <main id="main">
-  <div class="wrap">
-    <div class="post-hero">
+  <section class="hero--photo post-stage">
+    <img class="hero-bg" src="../../assets/photo/bokeh-strip-blue-amber-800.webp" srcset="../assets/photo/bokeh-strip-blue-amber-800.webp 800w, ../assets/photo/bokeh-strip-blue-amber-1600.webp 1600w" sizes="100vw" width="1600" height="679" alt="" fetchpriority="high" decoding="async" style="--bgpos:50% 50%">
+    <p class="hero-credit">Ilustrasi, dibuat oleh AI</p>
+    <div class="wrap">
+      <div class="post-hero">
       <span class="blog-date">Engineering · Agustus 2026</span>
       <h1>Alasan Kami Memindahkan Pencarian, Penandaan Tag, dan Rekomendasi Keluar dari Cloud</h1>
       <p class="post-sub">Pencarian, dedup, pembersihan tag, dan rekomendasi berbagi satu indeks on-device yang ringan. Begini cara kerjanya, dan mengapa ini bukan sekadar gimik privasi.</p>
+      </div>
     </div>
-  </div>
+  </section>
 
   <section>
     <div class="wrap">
-      <div class="prose">
-        <figure class="post-figure post-figure--video" data-blog-video="graph">
-          <video controls="" playsinline="" preload="none" width="360" height="520" poster="../../assets/blog/video/graph-en.jpg">
+      <div class="prose" data-vgroup="">
+<p>Sebagian besar ekstensi browser "bertenaga AI" mengirimkan semuanya ke server — termasuk bagian yang sama sekali tidak berhubungan dengan AI. Pencarian, pembersihan tag, "temukan item serupa": ini adalah teknik berusia puluhan tahun yang sudah teruji. Teknik ini tidak memerlukan language model, dan jelas tidak butuh latensi bolak-balik jaringan. Kami meninjau fitur AI Summary Helper satu per satu dan bertanya: apakah ini benar-benar membutuhkan cloud, atau kita hanya menjadikannya default karena arsitekturnya yang paling gampang?</p>
+        <figure class="post-figure post-video" data-blog-video="graph">
+          <div class="post-video-in">
+            <button class="fvideo-open post-video-open" type="button"><span class="sr-only">Putar video</span>
+              <video muted="" playsinline="" loop="" preload="none" width="360" height="520" poster="../../assets/blog/video/graph-en.jpg">
             <source src="../../assets/blog/video/graph-en.mp4" type="video/mp4">
           <track data-seo-video="" kind="captions" src="../../assets/blog/video/graph-en.vtt" srclang="en" label="English"></video>
-          <figcaption>Video: knowledge graph menghubungkan artikel Anda melalui topiknya, dibuat langsung di perangkat Anda.</figcaption>
+              <span class="post-video-play" aria-hidden="true">▶</span>
+            </button>
+            <figcaption>Video: knowledge graph menghubungkan artikel Anda melalui topiknya, dibuat langsung di perangkat Anda.</figcaption>
+          <div data-seo-video="" class="vtext"><p class="vtext-h">Transcript · 0:19</p><ul><li>What you read is connected.</li><li>Your knowledge graph links articles through their topics.</li><li>Tap one, and you get a briefing on everything you have read about it.</li></ul></div></div>
         </figure>
-<p>Sebagian besar ekstensi browser "bertenaga AI" mengirimkan semuanya ke server — termasuk bagian yang sama sekali tidak berhubungan dengan AI. Pencarian, pembersihan tag, "temukan item serupa": ini adalah teknik berusia puluhan tahun yang sudah teruji. Teknik ini tidak memerlukan language model, dan jelas tidak butuh latensi bolak-balik jaringan. Kami meninjau fitur AI Summary Helper satu per satu dan bertanya: apakah ini benar-benar membutuhkan cloud, atau kita hanya menjadikannya default karena arsitekturnya yang paling gampang?</p>
         <p>Sebagian besar ternyata tidak membutuhkannya.</p>
 
         <figure class="post-figure post-figure--portrait"><img src="../../assets/blog/knowledge-graph.webp" alt="Slide: peta topik yang saling terhubung dengan tulisan “Informasi yang terikat pada makna dan keterhubungan bertahan lebih lama daripada informasi yang hanya Anda lihat sekilas”" width="800" height="1000" loading="lazy"><figcaption>Pencarian, penandaan tag, dan artikel serupa semuanya bekerja pada indeks on-device yang sama, sehingga keterhubungan antar-simpanan tidak memakan biaya apa pun.</figcaption></figure>
@@ -148,12 +158,19 @@
   </section>
 </main>
 
+<div class="vfeed-labels" hidden="">
+  <span data-l="close">Tutup</span><span data-l="sound">Suara aktif</span><span data-l="mute">Suara mati</span><span data-l="hint">Geser ke atas untuk video berikutnya</span><span data-l="prev">Video sebelumnya</span><span data-l="next">Video berikutnya</span>
+  <span data-l="share">Bagikan</span><span data-l="copied">Tautan disalin</span>
+  <span data-l="add_chrome">Tambahkan ke Chrome — gratis</span><span data-l="add_firefox">Tambahkan ke Firefox — gratis</span><span data-l="add_browser">Tambahkan ke browser Anda — gratis</span>
+  <a data-l="try" href="../../bookmarklet.html">Coba di browser Anda — gratis</a>
+</div>
 <footer>
   <div class="wrap">
     <div class="footer-inner">
       <div class="wordmark"><img src="../../assets/icon.svg" alt="">AI Summary Helper</div>
       <div class="foot-links">
         <a href="https://github.com/philffm/ai-summary-helper/" target="_blank" rel="noopener">Kode sumber di GitHub</a>
+        <a href="../../education/">Untuk pendidikan</a>
         <a href="../privacy.html">Privasi</a>
         <a href="#" data-analytics-settings="">Pengaturan analitik</a>
         <a href="https://byphil.eu/terms.html#impressum" target="_blank" rel="noopener">Impressum</a>

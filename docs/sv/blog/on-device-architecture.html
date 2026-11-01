@@ -89,6 +89,7 @@
         <div class="mm-row">
           <a href="https://addons.mozilla.org/en-US/firefox/addon/ai-summary-helper/" target="_blank" rel="noopener">Firefox</a>
           <a href="../index.html#phone">Android · Beta</a>
+          <a href="../../education/">För utbildning</a>
           <a href="https://byphil.eu/#account">Mitt konto</a>
         </div>
         
@@ -103,24 +104,33 @@
 </header>
 
 <main id="main">
-  <div class="wrap">
-    <div class="post-hero">
+  <section class="hero--photo post-stage">
+    <img class="hero-bg" src="../../assets/photo/bokeh-strip-blue-amber-800.webp" srcset="../assets/photo/bokeh-strip-blue-amber-800.webp 800w, ../assets/photo/bokeh-strip-blue-amber-1600.webp 1600w" sizes="100vw" width="1600" height="679" alt="" fetchpriority="high" decoding="async" style="--bgpos:50% 50%">
+    <p class="hero-credit">Illustration, AI-genererad</p>
+    <div class="wrap">
+      <div class="post-hero">
       <span class="blog-date">Engineering · Augusti 2026</span>
       <h1>Varför vi flyttade sök, taggning och rekommendationer bort från molnet</h1>
       <p class="post-sub">Sök, dubbletthantering, taggstädning och rekommendationer delar ett litet index direkt på enheten. Så fungerar det – och varför det handlar om mer än bara integritet och GDPR.</p>
+      </div>
     </div>
-  </div>
+  </section>
 
   <section>
     <div class="wrap">
-      <div class="prose">
-        <figure class="post-figure post-figure--video" data-blog-video="graph">
-          <video controls="" playsinline="" preload="none" width="360" height="520" poster="../../assets/blog/video/graph-sv.jpg">
+      <div class="prose" data-vgroup="">
+<p>De flesta "AI-drivna" webbläsartillägg skickar allt till en server – även funktioner som inte har något med AI att göra. Sökning, tagghantering och "hitta liknande artiklar" bygger på välbeprövade tekniker sedan decennier. De kräver varken språkmodeller eller onödiga nätverksanrop. Vi gick igenom AI Summary Helper funktion för funktion och ställde oss frågan: behöver det här verkligen molnet, eller väljer vi bara det av gammal vana?</p>
+        <figure class="post-figure post-video" data-blog-video="graph">
+          <div class="post-video-in">
+            <button class="fvideo-open post-video-open" type="button"><span class="sr-only">Spela upp videon</span>
+              <video muted="" playsinline="" loop="" preload="none" width="360" height="520" poster="../../assets/blog/video/graph-sv.jpg">
             <source src="../../assets/blog/video/graph-sv.mp4" type="video/mp4">
           <track data-seo-video="" kind="captions" src="../../assets/blog/video/graph-sv.vtt" srclang="sv" label="svenska"></video>
-          <figcaption>Video: kunskapsgrafen kopplar ihop dina artiklar via deras ämnen, skapad lokalt på din enhet.</figcaption>
+              <span class="post-video-play" aria-hidden="true">▶</span>
+            </button>
+            <figcaption>Video: kunskapsgrafen kopplar ihop dina artiklar via deras ämnen, skapad lokalt på din enhet.</figcaption>
+          <div data-seo-video="" class="vtext"><p class="vtext-h">Utskrift · 0:19</p><ul><li>Det du läser hänger ihop.</li><li>Din kunskapsgraf länkar artiklar via deras ämnen.</li><li>Tryck på ett, så får du en briefing över allt du har läst om det.</li></ul></div></div>
         </figure>
-<p>De flesta "AI-drivna" webbläsartillägg skickar allt till en server – även funktioner som inte har något med AI att göra. Sökning, tagghantering och "hitta liknande artiklar" bygger på välbeprövade tekniker sedan decennier. De kräver varken språkmodeller eller onödiga nätverksanrop. Vi gick igenom AI Summary Helper funktion för funktion och ställde oss frågan: behöver det här verkligen molnet, eller väljer vi bara det av gammal vana?</p>
         <p>Det visade sig att det mesta inte behövde det.</p>
 
         <figure class="post-figure post-figure--portrait"><img src="../../assets/blog/knowledge-graph.webp" alt="Slide: en karta över sammankopplade ämnen med texten ”Information tied to meaning and connection outlasts information you just glanced at”" width="800" height="1000" loading="lazy"><figcaption>Sök, taggning och liknande artiklar körs mot samma lokala index på enheten, så kopplingar mellan sparade sidor kostar ingenting.</figcaption></figure>
@@ -148,12 +158,19 @@
   </section>
 </main>
 
+<div class="vfeed-labels" hidden="">
+  <span data-l="close">Stäng</span><span data-l="sound">Ljud på</span><span data-l="mute">Ljud av</span><span data-l="hint">Svep uppåt för nästa video</span><span data-l="prev">Föregående video</span><span data-l="next">Nästa video</span>
+  <span data-l="share">Dela</span><span data-l="copied">Länken kopierad</span>
+  <span data-l="add_chrome">Lägg till i Chrome — helt gratis</span><span data-l="add_firefox">Lägg till i Firefox — det är gratis</span><span data-l="add_browser">Lägg till i din webbläsare — det är gratis</span>
+  <a data-l="try" href="../../bookmarklet.html">Testa i din webbläsare — det är gratis</a>
+</div>
 <footer>
   <div class="wrap">
     <div class="footer-inner">
       <div class="wordmark"><img src="../../assets/icon.svg" alt="">AI Summary Helper</div>
       <div class="foot-links">
         <a href="https://github.com/philffm/ai-summary-helper/" target="_blank" rel="noopener">Källkod på GitHub</a>
+        <a href="../../education/">För utbildning</a>
         <a href="../privacy.html">Integritetspolicy</a>
         <a href="#" data-analytics-settings="">Analysinställningar</a>
         <a href="https://byphil.eu/terms.html#impressum" target="_blank" rel="noopener">Impressum</a>
