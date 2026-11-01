@@ -715,14 +715,14 @@ footer .copyright a:hover, .foot-links a:hover{ text-decoration-color:currentCol
 
 /* Live demo: the real popup in an iframe, loaded only when asked for */
 /* Wide and tall: breaks out of the text column, fills most of the viewport, scales down on small screens */
-.demo-frame{ --dw:min(1640px, calc(100vw - 40px)); position:relative; width:var(--dw); max-width:none; margin:0 0 0 calc(50% - var(--dw) / 2); height:clamp(600px, calc(100vh - 120px), 1000px); border:1px solid var(--border-medium); border-radius:16px; background:var(--surface-2); box-shadow:0 24px 48px -24px var(--card-shadow); overflow:hidden; display:grid; place-items:center; }
+.demo-frame{ --dw:min(1180px, calc(100vw - 40px)); position:relative; width:var(--dw); max-width:none; margin:0 0 0 calc(50% - var(--dw) / 2); height:clamp(460px, 62vh, 620px); border:1px solid var(--border-medium); border-radius:16px; background:var(--surface-2); box-shadow:0 24px 48px -24px var(--card-shadow); overflow:hidden; display:grid; place-items:center; }
 .demo-frame iframe{ position:absolute; inset:0; width:100%; height:100%; border:0; }
 .demo-start{ display:inline-flex; align-items:center; gap:12px; padding:14px 24px; border-radius:999px; border:1px solid var(--border-strong); background:var(--surface-1-strong); color:var(--paper); font:600 16px var(--font-display); cursor:pointer; }
 .demo-start:hover{ border-color:var(--signal); }
 .demo-play{ display:grid; place-items:center; width:28px; height:28px; border-radius:50%; background:var(--signal); color:#fff; font-size:11px; padding-left:2px; }
 .demo-open{ position:absolute; right:14px; bottom:12px; font-size:13px; color:var(--paper-dim); }
 .demo-frame.is-live .demo-start{ display:none; }
-@media (max-width:820px){ .demo-frame{ --dw:calc(100vw - 24px); height:min(820px, 88vh); } }
+@media (max-width:820px){ .demo-frame{ --dw:calc(100vw - 24px); height:min(560px, 76vh); } }
 
 /* ── Hero scene: native, scroll-reactive (replaces the hero screenshot) ──
    1280×800 design canvas scaled by JS; scroll progress p (0..1) drives the stages. Without JS / with reduced motion it renders statically. */
