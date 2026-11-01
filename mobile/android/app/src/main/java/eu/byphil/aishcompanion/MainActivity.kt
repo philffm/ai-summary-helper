@@ -9,6 +9,7 @@ import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.WindowInsets
+import androidx.compose.foundation.layout.consumeWindowInsets
 import androidx.compose.foundation.layout.WindowInsetsSides
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.only
@@ -207,7 +208,7 @@ private fun App(model: AppModel, onScan: ((String?) -> Unit) -> Unit, onReady: (
             }
         },
     ) { padding ->
-        Row(Modifier.padding(padding).fillMaxSize()) {
+        Row(Modifier.padding(padding).consumeWindowInsets(padding).fillMaxSize()) {   // consume: the keyboard padding of the screens inside then does not count the bar twice
             if (wide && !model.focusReading) NavigationRail {
                 // The items sit in the vertical middle of the rail, not at the top: equal spacers above and below.
                 Spacer(Modifier.weight(1f))

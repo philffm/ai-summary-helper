@@ -18,7 +18,9 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
+import androidx.compose.foundation.relocation.bringIntoViewRequester
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.focus.onFocusEvent
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.unit.dp
 import androidx.work.Constraints
@@ -142,19 +144,19 @@ fun LibrarySyncCard(model: AppModel, onScan: ((String?) -> Unit) -> Unit = {}) {
                 FilterChip(kind == "s3", { kind = "s3" }, { Text("S3") })
             }
             if (kind == "webdav") {
-                OutlinedTextField(url, { url = it }, Modifier.fillMaxWidth(), label = { Text("WebDAV address") }, placeholder = { Text("https://cloud.example.com/remote.php/dav/files/you/") }, singleLine = true)
-                OutlinedTextField(user, { user = it }, Modifier.fillMaxWidth(), label = { Text("Username") }, singleLine = true)
-                OutlinedTextField(pass, { pass = it }, Modifier.fillMaxWidth(), label = { Text("App password") }, singleLine = true, visualTransformation = PasswordVisualTransformation())
+                OutlinedTextField(url, { url = it }, Modifier.fillMaxWidth().keepVisible(), label = { Text("WebDAV address") }, placeholder = { Text("https://cloud.example.com/remote.php/dav/files/you/") }, singleLine = true)
+                OutlinedTextField(user, { user = it }, Modifier.fillMaxWidth().keepVisible(), label = { Text("Username") }, singleLine = true)
+                OutlinedTextField(pass, { pass = it }, Modifier.fillMaxWidth().keepVisible(), label = { Text("App password") }, singleLine = true, visualTransformation = PasswordVisualTransformation())
                 Text("In Nextcloud: Settings → Security → create an app password. Never use your main password.", style = MaterialTheme.typography.bodySmall, color = MaterialTheme.colorScheme.onSurfaceVariant)
             } else {
-                OutlinedTextField(url, { url = it }, Modifier.fillMaxWidth(), label = { Text("Endpoint address") }, placeholder = { Text("https://s3.eu-central-1.amazonaws.com") }, singleLine = true)
-                OutlinedTextField(region, { region = it }, Modifier.fillMaxWidth(), label = { Text("Region") }, singleLine = true)
-                OutlinedTextField(bucket, { bucket = it }, Modifier.fillMaxWidth(), label = { Text("Bucket") }, singleLine = true)
-                OutlinedTextField(keyId, { keyId = it }, Modifier.fillMaxWidth(), label = { Text("Access key ID") }, singleLine = true)
-                OutlinedTextField(secret, { secret = it }, Modifier.fillMaxWidth(), label = { Text("Secret access key") }, singleLine = true, visualTransformation = PasswordVisualTransformation())
+                OutlinedTextField(url, { url = it }, Modifier.fillMaxWidth().keepVisible(), label = { Text("Endpoint address") }, placeholder = { Text("https://s3.eu-central-1.amazonaws.com") }, singleLine = true)
+                OutlinedTextField(region, { region = it }, Modifier.fillMaxWidth().keepVisible(), label = { Text("Region") }, singleLine = true)
+                OutlinedTextField(bucket, { bucket = it }, Modifier.fillMaxWidth().keepVisible(), label = { Text("Bucket") }, singleLine = true)
+                OutlinedTextField(keyId, { keyId = it }, Modifier.fillMaxWidth().keepVisible(), label = { Text("Access key ID") }, singleLine = true)
+                OutlinedTextField(secret, { secret = it }, Modifier.fillMaxWidth().keepVisible(), label = { Text("Secret access key") }, singleLine = true, visualTransformation = PasswordVisualTransformation())
             }
-            OutlinedTextField(root, { root = it }, Modifier.fillMaxWidth(), label = { Text("Folder on the server") }, singleLine = true)
-            OutlinedTextField(passphrase, { passphrase = it }, Modifier.fillMaxWidth(), label = { Text("Passphrase") }, singleLine = true, visualTransformation = PasswordVisualTransformation())
+            OutlinedTextField(root, { root = it }, Modifier.fillMaxWidth().keepVisible(), label = { Text("Folder on the server") }, singleLine = true)
+            OutlinedTextField(passphrase, { passphrase = it }, Modifier.fillMaxWidth().keepVisible(), label = { Text("Passphrase") }, singleLine = true, visualTransformation = PasswordVisualTransformation())
             val ready = !busy && passphrase.isNotBlank() && url.isNotBlank() && (if (kind == "s3") bucket.isNotBlank() && keyId.isNotBlank() && secret.isNotBlank() else user.isNotBlank() && pass.isNotBlank())
             Button(onClick = {
                 val cfg = LibrarySync.Config(kind, url.trim(), user.trim(), pass, root.trim().ifEmpty { "aish-sync" }, region.trim().ifEmpty { "us-east-1" }, bucket.trim(), keyId.trim(), secret)
@@ -176,4 +178,13 @@ fun LibrarySyncCard(model: AppModel, onScan: ((String?) -> Unit) -> Unit = {}) {
         lib.lastError()?.let { InfoCard("Last problem", it, isError = true) }
     }
     message?.let { InfoCard(if (failed) "Could not finish" else "Library sync", it, isError = failed) }
+}
+
+/** When this field gets focus, scroll it into view once the keyboard is up (it would otherwise sit under it, low on the screen). */
+@OptIn(androidx.compose.foundation.ExperimentalFoundationApi::class)
+@Composable
+private fun Modifier.keepVisible(): Modifier {
+    val requester = remember { androidx.compose.foundation.relocation.BringIntoViewRequester() }
+    val scope = rememberCoroutineScope()
+    return this.bringIntoViewRequester(requester).onFocusEvent { if (it.isFocused) scope.launch { kotlinx.coroutines.delay(350); requester.bringIntoView() } }
 }
