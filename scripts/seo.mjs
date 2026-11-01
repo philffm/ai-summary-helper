@@ -87,6 +87,14 @@ function videoPass($, file, self, lang) {
     if (entry.transcript && $fig.hasClass('video-card') && !$fig.find('.vtranscript').length) {
       $fig.find('figcaption').first().append(`<details data-seo-video class="vtranscript"><summary>${esc(TRANSCRIPT_LABEL[lc] || TRANSCRIPT_LABEL.en)}</summary><p>${esc(entry.transcript)}</p></details>`);
     }
+    // visible text next to the poster card (posts and landing pages): the transcript as short lines, so the clip stands out
+    // and the page still carries its content as plain text (title and caption come from the page, the transcript from the manifest)
+    if (entry.transcript && $fig.hasClass('post-video') && !$fig.hasClass('video-card') && !$fig.find('.vtext').length) {
+      const t = String(entry.transcript).trim();
+      const parts = (/[。！？]/.test(t) ? t.split(/(?<=[。！？])/) : t.split(/(?<=[.!?])\s+/)).map((x) => x.trim()).filter(Boolean);
+      const secs = Math.round(entry.duration || 0), dur = secs ? ` · ${Math.floor(secs / 60)}:${String(secs % 60).padStart(2, '0')}` : '';
+      $fig.find('.post-video-in').first().append(`<div data-seo-video class="vtext"><p class="vtext-h">${esc(TRANSCRIPT_LABEL[lc] || TRANSCRIPT_LABEL.en)}${dur}</p><ul>${parts.map((x) => `<li>${esc(x)}</li>`).join('')}</ul></div>`);
+    }
     if (seen.has(key) || !name) return;
     seen.add(key);
     const thumb = abs(($fig.find('video').attr('poster') || '').trim() || srcRel.replace(/\.mp4$/, '.jpg'));

@@ -1487,3 +1487,21 @@ body:has(.hero--photo){ padding-top:0; }
   .prose > .post-video{ width:190px; left:calc(100% + 40px); }
   .post-video-open{ max-width:none; }
 }
+
+/* Transcript lines next to the poster card (added by scripts/seo.mjs): visible text for readers and search engines */
+.vtext{ margin-top:14px; font-size:13px; line-height:1.55; color:var(--paper-dim); text-align:start; }
+.vtext-h{ margin:0 0 6px; font-family:var(--font-mono); font-size:11px; letter-spacing:.06em; text-transform:uppercase; color:var(--brass-light); }
+.vtext ul{ margin:0; padding-left:16px; }
+.vtext li{ margin:0 0 4px; }
+/* landing pages: card on the left, title and transcript on the right */
+.post-video--center{ max-width:720px; }
+.post-video--center .post-video-in{ display:grid; grid-template-columns:220px minmax(0,1fr); gap:0 36px; align-items:center; text-align:left; }
+.post-video--center .post-video-open{ grid-row:1 / span 2; }
+.post-video--center figcaption{ align-self:end; margin:0 0 10px; font-size:19px; line-height:1.4; color:var(--paper); }
+.post-video--center .vtext{ align-self:start; margin-top:0; font-size:15px; }
+@media (max-width:640px){
+  .post-video--center{ max-width:300px; }
+  .post-video--center .post-video-in{ display:block; }
+  .post-video--center figcaption{ font-size:15px; margin:12px 0 0; }
+  .post-video--center .vtext{ margin-top:12px; font-size:13px; }
+}
