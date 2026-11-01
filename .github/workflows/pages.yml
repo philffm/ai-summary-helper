@@ -45,7 +45,7 @@ jobs:
       # `npm run site:build` locally. Validate it here so a malformed sitemap
       # (Google: "Couldn't fetch") can never reach Pages.
       - name: Validate sitemap.xml
-        run: node --test scripts/tests/sitemap-links.test.mjs && node scripts/check-sitemap.mjs
+        run: node --test scripts/tests/sitemap-links.test.mjs scripts/tests/localized-paths.test.mjs && node scripts/check-sitemap.mjs
       # The sitemap that is live right now, so IndexNow only gets the pages this deploy changes.
       - name: Save the live sitemap
         run: curl -fsSL https://ai-summary-helper.byphil.eu/sitemap.xml -o "$RUNNER_TEMP/sitemap-before.xml" || true

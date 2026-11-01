@@ -39,7 +39,7 @@ import { existsSync } from 'node:fs';
 import path from 'node:path';
 import crypto from 'node:crypto';
 import * as cheerio from 'cheerio';
-import { localizedPath, englishPath, rewriteLocalizedLinks, rewriteNativeSiblingLinks, redirectStub, SITE_URL } from './lib/localized-paths.mjs';
+import { localizedPath, englishPath, rewriteLocalizedLinks, buildLocalizedPageInventory, rewriteAvailablePageLinks, redirectStub, SITE_URL } from './lib/localized-paths.mjs';
 
 const REPO_ROOT = process.cwd();
 const ROOT = path.join(REPO_ROOT, 'docs'); // docs/ is assembled by build-site.mjs and is the canonical English source
@@ -424,7 +424,7 @@ function stringKey(text) {
     return sha256(text);
 }
 
-async function translateFile(relPath, config, targetLocales, manifest, apiKey) {
+async function translateFile(relPath, config, targetLocales, manifest, apiKey, pageInventory) {
     const srcPath = path.join(ROOT, relPath);
     const srcContent = await readFile(srcPath, 'utf8');
 
@@ -481,8 +481,8 @@ async function translateFile(relPath, config, targetLocales, manifest, apiKey) {
         localizeBlogVideos($, locale);
         rewriteAssetPaths($, locale);
         setHtmlLang($, locale);
-        rewriteLocalizedLinks($, relPath, code);
-        rewriteNativeSiblingLinks($, `${locale.dir}/${localizedPath(relPath, code)}`, code);   // links to other pages use the localized names (docs/i18n/slugs.json)
+        rewriteLocalizedLinks($, relPath, code, pageInventory);
+        rewriteAvailablePageLinks($, `${locale.dir}/${localizedPath(relPath, code)}`, code, pageInventory, locale.dir);
         addHreflangTags($, config, code, relPath);
 
         const outPath = path.join(ROOT, locale.dir, localizedPath(relPath, code));
@@ -540,6 +540,7 @@ async function syncNavPostTitles(config, targetLocales, files) {
 
 async function main() {
     const config = await loadJson(CONFIG_PATH);
+    const pageInventory = buildLocalizedPageInventory(config, ROOT);
     const manifest = existsSync(MANIFEST_PATH) ? await loadJson(MANIFEST_PATH) : { strings: {} };
     manifest.strings = manifest.strings || {};
 
@@ -556,7 +557,7 @@ async function main() {
 
     let filesWithApiCalls = 0;
     for (const relPath of targetFiles) {
-        const called = await translateFile(relPath, config, targetLocales, manifest, apiKey);
+        const called = await translateFile(relPath, config, targetLocales, manifest, apiKey, pageInventory);
         if (called) filesWithApiCalls++;
     }
 
