@@ -1695,3 +1695,12 @@ body:has(.hero--photo){ padding-top:0; }
 .cx-slide figcaption .cx-cta{ margin-top:6px; }
 .cx-slide--demo .demo-frame{ --dw:100%; width:100%; margin:0; height:auto; aspect-ratio:16/10; }
 @media (max-width:820px){ .cx-slide--demo, .cx-dot--demo{ display:none; } }
+
+/* Pitch slider fits the window: the slide width follows the window height (card + caption + dots stay inside one screen) */
+.cx--fit{ --cx-w:min(1080px, 80vw, max(480px, calc((100vh - 430px) * 1.6))); }
+.cx--fit .cx-slide figcaption{ margin-top:14px; gap:6px; }
+.cx--fit .cx-slide figcaption strong{ font-size:clamp(18px, 1.7vw, 24px); }
+.cx--fit .cx-slide figcaption span{ font-size:clamp(14px, 1.2vw, 16.5px); line-height:1.5; }
+.cx--fit .cx-slide figcaption small.cx-src{ font-size:12px; }
+.cx--fit .cx-dots{ margin-top:4px; }
+@media (max-width:720px){ .cx--fit{ --cx-w:88vw; } }
