@@ -1,6 +1,20 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://ai-summary-helper.byphil.eu/sitemap.xml
+User-agent: Googlebot
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: Claude-User
+Allow: /
+
 Sitemap: https://ai-summary-helper.byphil.eu/sitemap-index.xml
 Sitemap: https://ai-summary-helper.byphil.eu/sitemap-video.xml
