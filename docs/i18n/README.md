@@ -43,7 +43,16 @@ needs real files to serve, same reasoning as before):
    to OpenRouter in one batched request per (file, locale), reinjects the
    full set (cache hits + fresh) into a clone of the DOM, rewrites `assets/`
    paths for the extra locale-directory depth, adds `hreflang` tags, and
-   writes to `{locale.dir}/{originalPath}`.
+   writes to `{locale.dir}/{localizedPath}`.
+
+### Adding a page with a localized slug
+
+Add the English page to `locales.json`'s `content` list. If a locale uses a
+different URL, add its path inside that locale folder to `slugs.json`, keyed
+by the English source path. The translation pipeline then writes that
+locale's page directly to the configured path. It builds one page inventory
+per run from configured and existing pages. Links use localized routes when
+available; the SEO pass points untranslated links back to English.
 
 ## Running it
 

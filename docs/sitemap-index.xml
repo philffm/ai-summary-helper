@@ -2766,6 +2766,7 @@
     <priority>0.7</priority>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://ai-summary-helper.byphil.eu/blog/ai-apps-mcp.html"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://ai-summary-helper.byphil.eu/blog/ai-apps-mcp.html"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://ai-summary-helper.byphil.eu/de/blog/ki-apps-mcp.html"/>
   </url>
   <url>
     <loc>https://ai-summary-helper.byphil.eu/blog/feeds-recap.html</loc>
@@ -2976,6 +2977,14 @@
     <xhtml:link rel="alternate" hreflang="da" href="https://ai-summary-helper.byphil.eu/da/blog/et-resume-i-stedet-for-40-feeds.html"/>
     <xhtml:link rel="alternate" hreflang="nb" href="https://ai-summary-helper.byphil.eu/no/blog/en-oppsummering-i-stedet-for-40-feeder.html"/>
     <xhtml:link rel="alternate" hreflang="fi" href="https://ai-summary-helper.byphil.eu/fi/blog/yksi-yhteenveto-40-syotteen-sijaan.html"/>
+  </url>
+  <url>
+    <loc>https://ai-summary-helper.byphil.eu/de/blog/ki-apps-mcp.html</loc>
+    <lastmod>2026-11-01</lastmod>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ai-summary-helper.byphil.eu/blog/ai-apps-mcp.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ai-summary-helper.byphil.eu/blog/ai-apps-mcp.html"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://ai-summary-helper.byphil.eu/de/blog/ki-apps-mcp.html"/>
   </url>
   <url>
     <loc>https://ai-summary-helper.byphil.eu/hi/blog/feeds-recap.html</loc>

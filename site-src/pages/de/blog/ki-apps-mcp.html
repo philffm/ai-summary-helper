@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="theme-color" content="#08090C">
+  <meta name="aish:hreflang" content="custom">
+  <title>Ihre Bibliothek in Claude, LM Studio und anderen KI-Apps nutzen — AI Summary Helper</title>
+  <meta name="description" content="Verbinden Sie Ihre Bibliothek über MCP mit Claude Desktop, LM Studio, Cursor, VS Code und anderen KI-Apps auf Ihrem Computer.">
+  <link rel="icon" type="image/svg+xml" href="{{base}}assets/icon.svg">
+  <link rel="stylesheet" href="{{base}}assets/styles.css">
+  <link rel="alternate" hreflang="x-default" href="https://ai-summary-helper.byphil.eu/blog/ai-apps-mcp.html">
+  <link rel="alternate" hreflang="en" href="https://ai-summary-helper.byphil.eu/blog/ai-apps-mcp.html">
+  <link rel="alternate" hreflang="de" href="https://ai-summary-helper.byphil.eu/de/blog/ki-apps-mcp.html">
+  <script src="{{base}}assets/analytics.js"></script>
+</head>
+<body>
+  <a href="#main" class="skip-link">Zum Inhalt springen</a>
+  <!--include:nav-de-->
+  <main id="main">
+    <section class="hero--photo post-stage">
+      <div class="wrap">
+        <div class="post-hero">
+          <span class="blog-date">Anleitung · Oktober 2026</span>
+          <h1>Ihre Bibliothek in Claude, LM Studio und anderen KI-Apps nutzen</h1>
+          <p class="post-sub">Ihre KI-App vergisst, was Sie gelesen haben. AI Summary Helper merkt es sich. Verbinden Sie beide auf Ihrem Computer, damit Ihre App in gespeicherten Artikeln suchen, Ihre Markierungen zitieren und Quellen belegen kann.</p>
+        </div>
+      </div>
+    </section>
+    <section>
+      <div class="wrap">
+        <div class="prose">
+          <p>AI Summary Helper kann Ihre Bibliothek mit KI-Apps teilen, die das Model Context Protocol (MCP) unterstützen: Claude Desktop, LM Studio, Cursor, VS Code, Jan und lokale Agents. Ihre App stellt eine Frage, AI Summary Helper durchsucht Ihre gespeicherten Artikel und sendet die Antwort direkt an die App auf Ihrem Computer.</p>
+          <h2>Was Sie fragen können</h2>
+          <ul>
+            <li><strong>In Ihren Artikeln statt im Internet suchen.</strong> Lassen Sie gespeicherte Inhalte thematisch ordnen und Widersprüche zwischen Artikeln herausarbeiten.</li>
+            <li><strong>Mit Ihren Quellen schreiben.</strong> Entwürfe mit Zitaten aus Ihren Markierungen erstellen.</li>
+            <li><strong>Sammlungen auswerten.</strong> Fragen anhand der Quellen einer Sammlung beantworten lassen und fehlende Informationen benennen.</li>
+            <li><strong>Gespeichertes nachholen.</strong> Fällige Artikel aus Ihrer Merkliste zusammenfassen lassen.</li>
+          </ul>
+          <h2>Einrichtung</h2>
+          <p>Sie benötigen AI Summary Helper in Chrome, Edge oder Brave, Node.js 20 oder neuer und eine MCP-App.</p>
+          <ol>
+            <li>Öffnen Sie in AI Summary Helper die Einstellungen, wählen Sie <em>AI-Apps (MCP)</em> und aktivieren Sie den Zugriff auf Ihre Bibliothek.</li>
+            <li>Führen Sie in einem Terminal <code>npx -y aish-mcp pair</code> aus. Geben Sie den angezeigten Kopplungscode in den Einstellungen ein und wählen Sie „Verbinden“.</li>
+            <li>Fügen Sie Ihrer MCP-App den Server mit dem Befehl <code>npx -y aish-mcp</code> hinzu und starten Sie die App neu.</li>
+          </ol>
+          <h2>Datenschutz und Kontrolle</h2>
+          <p>Die Funktion ist standardmäßig ausgeschaltet. Nichts läuft über unsere Server: Die Erweiterung und Ihre App kommunizieren über ein kleines Hilfsprogramm auf Ihrem Computer. Sie entscheiden, welche Berechtigungen aktiv sind, können Aufrufe in den Einstellungen prüfen und die Verbindung jederzeit trennen. Als „private“ markierte Artikel werden nicht angezeigt.</p>
+          <p>Die <a href="https://ai-summary-helper.byphil.eu/blog/ai-apps-mcp.html">vollständige Anleitung mit Konfigurationsbeispielen (englisch)</a> enthält weitere Details zur Einrichtung.</p>
+        </div>
+      </div>
+    </section>
+  </main>
+  <!--include:footer-de-->
+</body>
+</html>
