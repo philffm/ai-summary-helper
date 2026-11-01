@@ -115149,6 +115149,2406 @@
           "model": "google/gemini-3.7-flash"
         }
       }
+    },
+    "829a89e1832e996b8dea4e7be359b9c00a6b9e0e4c1fa1ec6959a0bc38739506": {
+      "en": "Sync and back up your library to your own Nextcloud, WebDAV server, S3 bucket or a folder on your computer. Everything is encrypted in your browser first, so the server only sees scrambled files. You can also publish a list to your own website, with search, a tag graph and a 3D map. Off until you add a place; we run no sync server and see nothing.",
+      "translations": {
+        "de": {
+          "text": "Synchronisieren und sichern Sie Ihre Bibliothek auf Ihrer eigenen Nextcloud, einem WebDAV-Server, S3-Bucket oder einem lokalen Ordner auf Ihrem Computer. Alles wird vorab direkt in Ihrem Browser verschlüsselt, sodass der Server nur unlesbare Daten sieht. Sie können eine Liste auch auf Ihrer eigenen Website veröffentlichen – inklusive Suche, Schlagwort-Graph und 3D-Karte. Standardmäßig deaktiviert, bis Sie ein Ziel hinzufügen; wir betreiben keinen Sync-Server und haben keinerlei Zugriff auf Ihre Daten.",
+          "translatedAt": "2026-11-01T09:46:54.285Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fr": {
+          "text": "Synchronisez et sauvegardez votre bibliothèque sur votre propre instance Nextcloud, serveur WebDAV, bucket S3 ou un dossier local. Tout est chiffré directement dans votre navigateur : le serveur ne reçoit que des données illisibles. Vous pouvez également publier une liste sur votre propre site web, avec recherche, graphe de tags et carte 3D. Désactivé par défaut jusqu'à ce que vous configuriez un emplacement : nous n'opérons aucun serveur de synchronisation et n'avons accès à rien.",
+          "translatedAt": "2026-11-01T09:47:06.489Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "es": {
+          "text": "Sincroniza y respalda tu biblioteca en tu propio Nextcloud, servidor WebDAV, bucket de S3 o en una carpeta de tu dispositivo. Todo se cifra primero en tu navegador, por lo que el servidor solo recibe archivos ilegibles. También puedes publicar una lista en tu propio sitio web, con buscador, grafo de etiquetas y mapa 3D. Permanece inactivo hasta que agregues una ubicación; no operamos ningún servidor de sincronización y no vemos nada.",
+          "translatedAt": "2026-11-01T09:47:15.804Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh": {
+          "text": "将你的知识库同步并备份到自建的 Nextcloud、WebDAV 服务器、S3 bucket 或电脑本地文件夹。所有内容均在浏览器端先行加密，服务端只能看到密文。你还可以将书单发布到个人网站，支持搜索、标签图谱和 3D 地图。默认处于关闭状态，直到你添加存储位置；我们不设同步服务器，亦无法获取任何数据。",
+          "translatedAt": "2026-11-01T09:47:28.587Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh-TW": {
+          "text": "將資料庫同步並備份至你自己的 Nextcloud、WebDAV 伺服器、S3 bucket 或電腦上的資料夾。所有內容皆在瀏覽器端預先加密，伺服器端只能看到加密後的亂碼檔案。你也可以將清單發布到自己的網站，並附帶搜尋、標籤圖譜與 3D 地圖。在手動設定前此功能完全關閉；我們不架設任何同步伺服器，也無法窺探你的任何資料。",
+          "translatedAt": "2026-11-01T09:47:39.389Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ja": {
+          "text": "ライブラリをご自身の Nextcloud、WebDAV サーバー、S3 バケット、または PC 上のフォルダーに同期・バックアップできます。データはすべてブラウザ上で暗号化されてから送信されるため、サーバー側には暗号化されたファイルしか見えません。検索機能、タググラフ、3Dマップを備えたリストをご自身のウェブサイトに公開することも可能です。保存先を追加するまでこの機能はオフになっており、同期サーバーの運用やデータの閲覧は一切行っていません。",
+          "translatedAt": "2026-11-01T09:47:50.513Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ko": {
+          "text": "라이브러리를 개인 Nextcloud, WebDAV 서버, S3 버킷 또는 컴퓨터의 로컬 폴더로 동기화하고 백업하세요. 모든 데이터는 브라우저에서 먼저 암호화되므로 서버에는 암호화된 파일만 전송됩니다. 또한 검색 기능, 태그 그래프, 3D 맵이 포함된 목록을 내 웹사이트에 직접 공개할 수도 있습니다. 저장 위치를 추가하기 전까지는 기능이 비활성화되며, 별도의 동기화 서버를 운영하지 않아 사용자의 데이터를 전혀 볼 수 없습니다.",
+          "translatedAt": "2026-11-01T09:47:56.510Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pt": {
+          "text": "Sincronize e faça backup da sua biblioteca no seu próprio Nextcloud, servidor WebDAV, bucket S3 ou em uma pasta no seu computador. Tudo é criptografado diretamente no seu navegador antes do envio, então o servidor só enxerga arquivos ilegíveis. Você também pode publicar uma lista no seu próprio site, com busca, grafo de tags e um mapa 3D. Fica desativado até você configurar um local; não usamos servidores de sincronização e não vemos nada.",
+          "translatedAt": "2026-11-01T09:48:12.380Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "hi": {
+          "text": "अपनी library को अपने खुद के Nextcloud, WebDAV server, S3 bucket या कंप्यूटर के किसी folder में sync और back up करें। सब कुछ पहले आपके browser में ही encrypt होता है, इसलिए server को सिर्फ scrambled files दिखती हैं। आप search, tag graph और 3D map के साथ अपनी website पर list भी publish कर सकते हैं। जब तक आप कोई location add नहीं करते यह off रहता है; हम कोई sync server नहीं चलाते और आपका data कभी नहीं देखते।",
+          "translatedAt": "2026-11-01T09:48:23.743Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "vi": {
+          "text": "Đồng bộ và sao lưu thư viện của bạn lên Nextcloud, máy chủ WebDAV, S3 bucket riêng hoặc một thư mục trên máy tính. Mọi dữ liệu đều được mã hóa ngay trên trình duyệt trước, vì vậy máy chủ chỉ thấy các tệp đã được xáo trộn mã hóa. Bạn cũng có thể xuất bản danh sách lên trang web riêng, tích hợp tìm kiếm, biểu đồ thẻ và bản đồ 3D. Mặc định tắt cho đến khi bạn cấu hình vị trí lưu trữ; chúng tôi không vận hành máy chủ đồng bộ và không thể xem dữ liệu của bạn.",
+          "translatedAt": "2026-11-01T09:48:35.986Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "nl": {
+          "text": "Synchroniseer je bibliotheek en maak back-ups naar je eigen Nextcloud, WebDAV-server, S3-bucket of een map op je computer. Alles wordt eerst versleuteld in je browser, dus de server ziet alleen onleesbare bestanden. Je kunt ook een lijst op je eigen website publiceren, compleet met zoekfunctie, tag-grafiek en een 3D-kaart. Staat standaard uit totdat je een locatie toevoegt; we beheren geen synchronisatieserver en zien helemaal niets.",
+          "translatedAt": "2026-11-01T09:48:50.273Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "it": {
+          "text": "Sincronizza ed esegui il backup della tua libreria sul tuo Nextcloud, server WebDAV, bucket S3 o in una cartella del tuo computer. Tutto viene prima crittografato direttamente nel tuo browser, quindi il server vede solo file cifrati. Puoi anche pubblicare un elenco sul tuo sito web, completo di ricerca, grafo dei tag e mappa 3D. Disattivato finché non configuri una destinazione; non gestiamo alcun server di sincronizzazione e non abbiamo accesso a nulla.",
+          "translatedAt": "2026-11-01T09:49:00.666Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ru": {
+          "text": "Синхронизируйте и сохраняйте резервные копии библиотеки в собственный Nextcloud, на WebDAV-сервер, в S3-хранилище или в папку на компьютере. Всё шифруется прямо в браузере, поэтому сервер видит только зашифрованные файлы. Вы также можете опубликовать список на своём сайте — с поиском, графом тегов и 3D-картой. Функция отключена, пока вы не укажете хранилище; у нас нет сервера синхронизации, и мы ничего не видим.",
+          "translatedAt": "2026-11-01T09:49:11.888Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "uk": {
+          "text": "Синхронізуйте та зберігайте резервні копії бібліотеки у власному Nextcloud, на сервері WebDAV, у бакеті S3 або в папці на комп’ютері. Усе шифрується спочатку у вашому браузері, тому сервер бачить лише зашифровані файли. Ви також можете опублікувати список на власному сайті — з пошуком, графом тегів і 3D-картою. Функція вимкнена, доки ви не додасте сховище: ми не маємо сервера синхронізації та нічого не бачимо.",
+          "translatedAt": "2026-11-01T09:49:25.241Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "tr": {
+          "text": "Kütüphanenizi kendi Nextcloud, WebDAV sunucunuz, S3 bucket'ınız veya bilgisayarınızdaki bir klasörle eşitleyip yedekleyin. Her şey önce tarayıcınızda şifrelenir; bu sayede sunucu yalnızca şifrelenmiş dosyaları görür. Ayrıca arama, etiket grafiği ve 3D harita içeren bir listeyi kendi web sitenizde yayınlayabilirsiniz. Bir konum ekleyene kadar kapalıdır; hiçbir eşitleme sunucusu barındırmıyoruz ve verilerinizi kesinlikle görmüyoruz.",
+          "translatedAt": "2026-11-01T09:49:36.780Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "id": {
+          "text": "Sinkronkan dan cadangkan pustaka Anda ke Nextcloud, server WebDAV, S3 bucket, atau folder di komputer Anda sendiri. Semuanya dienkripsi terlebih dahulu di browser, sehingga server hanya melihat file acak terenkripsi. Anda juga dapat memublikasikan daftar ke situs web sendiri, lengkap dengan fitur pencarian, tag graph, dan peta 3D. Nonaktif sampai Anda menambahkan lokasi; kami tidak mengoperasikan server sinkronisasi dan tidak melihat data apa pun.",
+          "translatedAt": "2026-11-01T09:49:51.370Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pl": {
+          "text": "Synchronizuj i twórz kopie zapasowe biblioteki we własnej chmurze Nextcloud, na serwerze WebDAV, w zasobniku S3 lub w folderze na komputerze. Wszystko jest najpierw szyfrowane w przeglądarce, więc serwer widzi wyłącznie zaszyfrowane pliki. Możesz też opublikować listę na własnej stronie – wraz z wyszukiwarką, grafem tagów i mapą 3D. Domyślnie wyłączone; nie prowadzimy serwera synchronizacji i nie mamy dostępu do Twoich danych.",
+          "translatedAt": "2026-11-01T09:50:05.009Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "th": {
+          "text": "ซิงค์และสำรองข้อมูลคลังของคุณไปยัง Nextcloud, เซิร์ฟเวอร์ WebDAV, S3 bucket หรือโฟลเดอร์บนคอมพิวเตอร์ของคุณเอง ข้อมูลทั้งหมดจะได้รับการเข้ารหัสบนเบราว์เซอร์ก่อนเสมอ เซิร์ฟเวอร์จึงเห็นเพียงไฟล์ที่ถูกเข้ารหัสไว้ นอกจากนี้ยังสามารถเผยแพร่รายการขึ้นบนเว็บไซต์ของคุณเอง พร้อมระบบค้นหา กราฟแท็ก และแผนที่แบบ 3 มิติ ฟังก์ชันนี้จะปิดอยู่จนกว่าจะมีการกำหนดปลายทาง เราไม่มีเซิร์ฟเวอร์ซิงค์และไม่สามารถเข้าถึงข้อมูลใดๆ ของคุณได้",
+          "translatedAt": "2026-11-01T09:50:16.249Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ar": {
+          "text": "قم بمزامنة مكتبتك ونسخها احتياطياً إلى خادم Nextcloud أو خادم WebDAV أو حاوية S3 الخاصة بك، أو حتى إلى مجلد على جهازك. يُشفّر كل شيء داخل متصفحك أولاً، بحيث لا يرى الخادم سوى ملفات مشفرة وغير قابلة للقراءة. يمكنك أيضاً نشر قائمة على موقعك الإلكتروني الخاص مزودة بميزة البحث، ورسم بياني للوسوم، وخريطة ثلاثية الأبعاد 3D. الميزة معطلة حتى تقوم بإضافة وجهة المزامنة؛ نحن لا ندير أي خادم للمزامنة ولا نطلع على أي شيء.",
+          "translatedAt": "2026-11-01T09:50:23.295Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "sv": {
+          "text": "Synka och säkerhetskopiera ditt bibliotek till din egen Nextcloud, WebDAV-server, S3-bucket eller en mapp på datorn. Allt krypteras direkt i din webbläsare först, så servern ser bara oläsliga filer. Du kan även publicera en lista på din egen webbplats, komplett med sökning, taggraf och en 3D-karta. Avstängt tills du lägger till en plats – vi har ingen synkserver och ser ingenting.",
+          "translatedAt": "2026-11-01T09:50:33.712Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "da": {
+          "text": "Synkroniser og sikkerhedskopier dit bibliotek til din egen Nextcloud, WebDAV-server, S3-bucket eller en mappe på din computer. Alt krypteres først i din browser, så serveren kun ser krypterede filer. Du kan også udgive en liste på din egen hjemmeside med søgning, tag-graf og et 3D-kort. Deaktiveret, indtil du tilføjer en placering – vi har ingen synkroniseringsserver og ser intet.",
+          "translatedAt": "2026-11-01T09:50:45.328Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "no": {
+          "text": "Synkroniser og ta sikkerhetskopi av biblioteket ditt til din egen Nextcloud, WebDAV-server, S3-bøtte eller en mappe på datamaskinen din. Alt krypteres først i nettleseren din, så serveren ser bare uleselige data. Du kan også publisere en liste på din egen nettside, med søk, tagg-graf og et 3D-kart. Avslått frem til du legger til et sted; vi har ingen synkroniseringsserver og ser ingenting.",
+          "translatedAt": "2026-11-01T09:50:56.867Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fi": {
+          "text": "Synkronoi ja varmuuskopioi kirjastosi omaan Nextcloudiin, WebDAV-palvelimelle, S3-bucketiin tai tietokoneesi kansioon. Kaikki salataan suoraan selaimessasi, joten palvelin näkee vain salattua dataa. Voit myös julkaista listan omalle verkkosivustollesi hakutoiminnolla, aihetunnisteverkolla ja 3D-kartalla varustettuna. Toiminto on pois päältä, kunnes määrität tallennuskohteen – emme pyöritä synkronointipalvelinta emmekä näe mitään.",
+          "translatedAt": "2026-11-01T09:51:08.582Z",
+          "model": "google/gemini-3.7-flash"
+        }
+      }
+    },
+    "5bd4520e26c68aa16f036cd3752d2432ddc7ed990973e2c2fc2fad26c42b89b6": {
+      "en": "Much of what we save is rarely opened again. Digest picks five saves for you and sends them to read offline.",
+      "translations": {
+        "de": {
+          "text": "Vieles von dem, was wir speichern, öffnen wir nie wieder. Digest wählt fünf gespeicherte Artikel für Sie aus und sendet sie Ihnen zum Offline-Lesen.",
+          "translatedAt": "2026-11-01T09:46:54.285Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fr": {
+          "text": "La plupart des contenus que nous sauvegardons ne sont jamais relus. Digest sélectionne cinq de vos sauvegardes et vous les envoie pour une lecture hors ligne.",
+          "translatedAt": "2026-11-01T09:47:06.489Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "es": {
+          "text": "Gran parte de lo que guardamos rara vez se vuelve a abrir. Digest selecciona cinco de tus enlaces guardados y te los envía para leer sin conexión.",
+          "translatedAt": "2026-11-01T09:47:15.804Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh": {
+          "text": "我们收藏的大多数内容往往再也没有打开过。Digest 为你精选 5 篇收藏，并推送到离线设备供你阅读。",
+          "translatedAt": "2026-11-01T09:47:28.587Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh-TW": {
+          "text": "我們儲存的內容大多很少再次翻閱。「摘要精選（Digest）」為你挑選 5 篇典藏內容，並傳送至裝置供離線閱讀。",
+          "translatedAt": "2026-11-01T09:47:39.389Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ja": {
+          "text": "保存した記事の多くは、二度と開かれないままになりがちです。ダイジェスト機能は保存した中から5件を厳選し、オフラインでも読めるようにお届けします。",
+          "translatedAt": "2026-11-01T09:47:50.513Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ko": {
+          "text": "저장해 둔 글 중 다시 열어보지 않는 글이 많죠. 다이제스트가 저장된 글 5개를 골라 오프라인에서도 읽을 수 있도록 보내드립니다.",
+          "translatedAt": "2026-11-01T09:47:56.510Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pt": {
+          "text": "A maior parte do que salvamos quase nunca é aberta de novo. O Digest seleciona cinco itens salvos para você e os envia para leitura offline.",
+          "translatedAt": "2026-11-01T09:48:12.380Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "hi": {
+          "text": "हम जो कुछ भी save करते हैं, उसमें से ज़्यादातर चीज़ें शायद ही दोबारा कभी खुलती हैं। Digest आपके लिए पाँच saves चुनता है और उन्हें offline पढ़ने के लिए भेजता है।",
+          "translatedAt": "2026-11-01T09:48:23.743Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "vi": {
+          "text": "Phần lớn những gì chúng ta lưu lại hiếm khi được mở lại. Digest sẽ chọn ra 5 nội dung đã lưu và gửi đến bạn để đọc ngoại tuyến.",
+          "translatedAt": "2026-11-01T09:48:35.986Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "nl": {
+          "text": "Veel van wat we opslaan, bekijken we zelden opnieuw. Digest kiest vijf opgeslagen pagina's voor je uit en stuurt ze door om offline te lezen.",
+          "translatedAt": "2026-11-01T09:48:50.273Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "it": {
+          "text": "Molto di ciò che salviamo non viene quasi mai riaperto. Digest seleziona per te cinque elementi salvati e te li invia per leggerli offline.",
+          "translatedAt": "2026-11-01T09:49:00.666Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ru": {
+          "text": "Многое из сохранённого мы редко открываем снова. Дайджест отбирает для вас пять материалов и отправляет их для чтения офлайн.",
+          "translatedAt": "2026-11-01T09:49:11.888Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "uk": {
+          "text": "Більшість збереженого ми рідко відкриваємо знову. Дайджест відбирає для вас п’ять збережених матеріалів і надсилає їх для читання офлайн.",
+          "translatedAt": "2026-11-01T09:49:25.241Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "tr": {
+          "text": "Kaydettiğimiz içeriklerin çoğunu bir daha nadiren açarız. Digest sizin için beş kayıt seçer ve çevrimdışı okumanız için iletir.",
+          "translatedAt": "2026-11-01T09:49:36.780Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "id": {
+          "text": "Banyak hal yang kita simpan jarang dibuka kembali. Digest memilih lima artikel tersimpan untuk Anda dan mengirimkannya agar dapat dibaca secara offline.",
+          "translatedAt": "2026-11-01T09:49:51.370Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pl": {
+          "text": "Większość zapisywanych treści rzadko otwieramy ponownie. Digest wybiera dla Ciebie pięć pozycji i przesyła je do czytania offline.",
+          "translatedAt": "2026-11-01T09:50:05.009Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "th": {
+          "text": "คอนเทนต์ส่วนใหญ่ที่เราบันทึกไว้มักแทบไม่ได้เปิดอ่านซ้ำ ฟีเจอร์ Digest จึงคัดเลือก 5 รายการที่บันทึกไว้ส่งตรงให้อ่านแบบออฟไลน์ได้ทันที",
+          "translatedAt": "2026-11-01T09:50:16.249Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ar": {
+          "text": "نادراً ما نعود لفتح ما نقوم بحفظه. يختار لك Digest خمسة عناصر محفوظة ويرسلها لتقرأها دون اتصال بالإنترنت.",
+          "translatedAt": "2026-11-01T09:50:23.295Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "sv": {
+          "text": "Mycket av det vi sparar öppnas sällan igen. Digest väljer ut fem sparade artiklar åt dig och skickar dem så att du kan läsa offline.",
+          "translatedAt": "2026-11-01T09:50:33.712Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "da": {
+          "text": "Meget af det, vi gemmer, bliver sjældent åbnet igen. Digest udvælger fem gemte artikler til dig og gør dem klar til offline-læsning.",
+          "translatedAt": "2026-11-01T09:50:45.328Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "no": {
+          "text": "Mye av det vi lagrer blir sjelden åpnet igjen. Digest velger ut fem lagrede artikler for deg og sender dem til offline lesing.",
+          "translatedAt": "2026-11-01T09:50:56.867Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fi": {
+          "text": "Suurta osaa tallennetuista sivuista ei avata koskaan uudelleen. Digest poimii sinulle viisi tallennusta ja lähettää ne luettavaksi offline-tilassa.",
+          "translatedAt": "2026-11-01T09:51:08.582Z",
+          "model": "google/gemini-3.7-flash"
+        }
+      }
+    },
+    "22f03276d3ee140e7bf29fd15b2a13dfeff4d9d4f5cb30852133063ad911a196": {
+      "en": "Five of your saves, chosen for recency and variety.",
+      "translations": {
+        "de": {
+          "text": "Fünf Ihrer gespeicherten Artikel, ausgewählt nach Aktualität und thematischer Vielfalt.",
+          "translatedAt": "2026-11-01T09:46:54.285Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fr": {
+          "text": "Cinq de vos sauvegardes, sélectionnées selon leur récence et leur diversité.",
+          "translatedAt": "2026-11-01T09:47:06.489Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "es": {
+          "text": "Cinco de tus lecturas guardadas, seleccionadas por actualidad y variedad.",
+          "translatedAt": "2026-11-01T09:47:15.804Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh": {
+          "text": "精选 5 篇收藏内容，兼顾时效性与多样性。",
+          "translatedAt": "2026-11-01T09:47:28.587Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh-TW": {
+          "text": "精選 5 篇典藏，兼顧時效性與內容多元度。",
+          "translatedAt": "2026-11-01T09:47:39.389Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ja": {
+          "text": "新しさや多様性を考慮して、保存済みリストから5件をピックアップします。",
+          "translatedAt": "2026-11-01T09:47:50.513Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ko": {
+          "text": "최신성과 다양성을 고려해 선별한 5개의 저장 목록입니다.",
+          "translatedAt": "2026-11-01T09:47:56.510Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pt": {
+          "text": "Cinco dos seus itens salvos, selecionados por atualidade e variedade.",
+          "translatedAt": "2026-11-01T09:48:12.380Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "hi": {
+          "text": "आपके पाँच saved items, जो recency और variety के आधार पर चुने गए हैं।",
+          "translatedAt": "2026-11-01T09:48:23.743Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "vi": {
+          "text": "5 mục đã lưu của bạn, được chọn lọc theo độ mới và tính đa dạng.",
+          "translatedAt": "2026-11-01T09:48:35.986Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "nl": {
+          "text": "Vijf van je opgeslagen items, geselecteerd op recentheid en variatie.",
+          "translatedAt": "2026-11-01T09:48:50.273Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "it": {
+          "text": "Cinque dei tuoi elementi salvati, scelti in base a novità e varietà.",
+          "translatedAt": "2026-11-01T09:49:00.666Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ru": {
+          "text": "Пять ваших сохранённых страниц, подобранных по новизне и разнообразию тем.",
+          "translatedAt": "2026-11-01T09:49:11.888Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "uk": {
+          "text": "П’ять ваших збережень, дібраних за новизною та різноманітністю.",
+          "translatedAt": "2026-11-01T09:49:25.241Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "tr": {
+          "text": "Güncellik ve çeşitliliğe göre özenle seçilmiş beş kaydınız.",
+          "translatedAt": "2026-11-01T09:49:36.780Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "id": {
+          "text": "Lima artikel tersimpan Anda, dipilih berdasarkan keterkinian dan variasi topik.",
+          "translatedAt": "2026-11-01T09:49:51.370Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pl": {
+          "text": "Pięć zapisanych materiałów, dobranych pod kątem aktualności i różnorodności.",
+          "translatedAt": "2026-11-01T09:50:05.009Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "th": {
+          "text": "5 รายการที่คุณบันทึกไว้ คัดสรรจากความสดใหม่และความหลากหลาย",
+          "translatedAt": "2026-11-01T09:50:16.249Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ar": {
+          "text": "خمسة عناصر من محفوظاتك، تم اختيارها بعناية بناءً على الحداثة والتنوع.",
+          "translatedAt": "2026-11-01T09:50:23.295Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "sv": {
+          "text": "Fem av dina sparade länkar, utvalda efter aktualitet och variation.",
+          "translatedAt": "2026-11-01T09:50:33.712Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "da": {
+          "text": "Fem af dine gemte artikler, udvalgt efter aktualitet og variation.",
+          "translatedAt": "2026-11-01T09:50:45.328Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "no": {
+          "text": "Fem av dine lagrede elementer, valgt ut etter aktualitet og variasjon.",
+          "translatedAt": "2026-11-01T09:50:56.867Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fi": {
+          "text": "Viisi tallennustasi tuoreuden ja monipuolisuuden perusteella valittuna.",
+          "translatedAt": "2026-11-01T09:51:08.582Z",
+          "model": "google/gemini-3.7-flash"
+        }
+      }
+    },
+    "31abe83f57631f37ca2393097a5fb2e15b7ef2f87fdb1626fbea61b0d7c7f347": {
+      "en": "Upbeat, neutral or deep: the pick follows your mood.",
+      "translations": {
+        "de": {
+          "text": "Inspirierend, neutral oder tiefgründig: Die Auswahl richtet sich nach Ihrer Stimmung.",
+          "translatedAt": "2026-11-01T09:46:54.285Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fr": {
+          "text": "Inspirant, neutre ou approfondi : la sélection s'adapte à votre humeur.",
+          "translatedAt": "2026-11-01T09:47:06.489Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "es": {
+          "text": "Optimista, neutral o profundo: la selección se adapta a tu estado de ánimo.",
+          "translatedAt": "2026-11-01T09:47:15.804Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh": {
+          "text": "轻松、中立或深度：随你的心境定制精选内容。",
+          "translatedAt": "2026-11-01T09:47:28.587Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh-TW": {
+          "text": "輕鬆、客觀或深入：依照你的心情隨心挑選。",
+          "translatedAt": "2026-11-01T09:47:39.389Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ja": {
+          "text": "気分に合わせて「軽快」「ニュートラル」「じっくり」から選択できます。",
+          "translatedAt": "2026-11-01T09:47:50.513Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ko": {
+          "text": "가볍게, 담백하게, 혹은 깊이 있게: 내 기분에 맞는 글을 골라보세요.",
+          "translatedAt": "2026-11-01T09:47:56.510Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pt": {
+          "text": "Descontraído, neutro ou profundo: a seleção se adapta ao seu momento.",
+          "translatedAt": "2026-11-01T09:48:12.380Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "hi": {
+          "text": "Upbeat, neutral या deep: चुनाव आपके mood के हिसाब से होता है।",
+          "translatedAt": "2026-11-01T09:48:23.743Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "vi": {
+          "text": "Tươi mới, trung tính hay chuyên sâu: danh sách chọn lọc theo đúng tâm trạng của bạn.",
+          "translatedAt": "2026-11-01T09:48:35.986Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "nl": {
+          "text": "Luchtig, neutraal of diepgaand: de selectie past zich aan jouw stemming aan.",
+          "translatedAt": "2026-11-01T09:48:50.273Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "it": {
+          "text": "Leggero, neutro o approfondito: la selezione si adatta al tuo umore.",
+          "translatedAt": "2026-11-01T09:49:00.666Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ru": {
+          "text": "Лёгкое, нейтральное или вдумчивое чтение: подборка подстраивается под ваше настроение.",
+          "translatedAt": "2026-11-01T09:49:11.888Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "uk": {
+          "text": "Надихаюче, нейтральне чи глибоке: добірка підлаштовується під ваш настрій.",
+          "translatedAt": "2026-11-01T09:49:25.241Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "tr": {
+          "text": "İster neşeli, ister tarafsız, ister derin: seçim tamamen ruh halinize ayak uydurur.",
+          "translatedAt": "2026-11-01T09:49:36.780Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "id": {
+          "text": "Ringan, netral, atau mendalam: pilihannya menyesuaikan suasana hati Anda.",
+          "translatedAt": "2026-11-01T09:49:51.370Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pl": {
+          "text": "Lekkie, neutralne czy pogłębione: wybór dopasowuje się do Twojego nastroju.",
+          "translatedAt": "2026-11-01T09:50:05.009Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "th": {
+          "text": "ไม่ว่าจะเป็นแนวเบาสมอง ทั่วไป หรือเจาะลึก ระบบจะคัดเลือกให้ตรงกับอารมณ์ของคุณ",
+          "translatedAt": "2026-11-01T09:50:16.249Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ar": {
+          "text": "محتوى خفيف، محايد، أو متعمق: تتماشى الاختيارات مع مزاجك.",
+          "translatedAt": "2026-11-01T09:50:23.295Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "sv": {
+          "text": "Upplyftande, neutralt eller fördjupande: urvalet anpassas efter ditt humör.",
+          "translatedAt": "2026-11-01T09:50:33.712Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "da": {
+          "text": "Let, neutral eller fordybende: udvalget matcher dit humør.",
+          "translatedAt": "2026-11-01T09:50:45.328Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "no": {
+          "text": "Lettbent, nøytralt eller dyptgående: utvalget tilpasser seg humøret ditt.",
+          "translatedAt": "2026-11-01T09:50:56.867Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fi": {
+          "text": "Kevyttä, neutraalia tai syvällistä: valinta mukautuu mielialaasi.",
+          "translatedAt": "2026-11-01T09:51:08.582Z",
+          "model": "google/gemini-3.7-flash"
+        }
+      }
+    },
+    "647bf8cc6602c41ea15086f4eef3eaf36f7079467ce521336d80db5d9cf84362": {
+      "en": "One bundle to your Kindle or a device on your network, ready for a flight or a commute.",
+      "translations": {
+        "de": {
+          "text": "Ein gebündeltes Paket auf Ihren Kindle oder ein Gerät in Ihrem lokalen Netzwerk – perfekt für die Reise oder den Arbeitsweg.",
+          "translatedAt": "2026-11-01T09:46:54.285Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fr": {
+          "text": "Un condensé unique envoyé vers votre Kindle ou un appareil de votre réseau, prêt pour un vol ou vos trajets quotidiens.",
+          "translatedAt": "2026-11-01T09:47:06.489Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "es": {
+          "text": "Un único paquete directo a tu Kindle o a un dispositivo en tu red local, listo para un vuelo o tu trayecto diario.",
+          "translatedAt": "2026-11-01T09:47:15.804Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh": {
+          "text": "一键打包推送到你的 Kindle 或局域网设备，随心应对飞行与通勤阅读。",
+          "translatedAt": "2026-11-01T09:47:28.587Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh-TW": {
+          "text": "一鍵打包傳送至 Kindle 或同區域網路內的裝置，通勤或搭機隨時離線閱讀。",
+          "translatedAt": "2026-11-01T09:47:39.389Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ja": {
+          "text": "ひとまとめにして Kindle やネットワーク内のデバイスへ送信。フライトや通勤中のお供に最適です。",
+          "translatedAt": "2026-11-01T09:47:50.513Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ko": {
+          "text": "Kindle이나 네트워크에 연결된 기기로 하나의 번들을 전송해 비행기 안이나 출퇴근길에 바로 읽어보세요.",
+          "translatedAt": "2026-11-01T09:47:56.510Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pt": {
+          "text": "Um único pacote direto no seu Kindle ou em um dispositivo na sua rede local, pronto para ler no voo ou no trânsito.",
+          "translatedAt": "2026-11-01T09:48:12.380Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "hi": {
+          "text": "आपकी Kindle या network device पर एक single bundle, flight या commute के दौरान पढ़ने के लिए तैयार।",
+          "translatedAt": "2026-11-01T09:48:23.743Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "vi": {
+          "text": "Một gói nội dung gửi thẳng đến Kindle hoặc thiết bị trong mạng của bạn, sẵn sàng cho chuyến bay hay lúc đi lại.",
+          "translatedAt": "2026-11-01T09:48:35.986Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "nl": {
+          "text": "Eén gebundeld bestand naar je Kindle of een apparaat op je netwerk, klaar voor een vlucht of je woon-werkverkeer.",
+          "translatedAt": "2026-11-01T09:48:50.273Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "it": {
+          "text": "Un unico pacchetto inviato al tuo Kindle o a un dispositivo sulla tua rete locale, pronto per un volo o per il tragitto quotidiano.",
+          "translatedAt": "2026-11-01T09:49:00.666Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ru": {
+          "text": "Единый сборник для вашего Kindle или устройства в локальной сети — удобно читать в дороге или в самолёте.",
+          "translatedAt": "2026-11-01T09:49:11.888Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "uk": {
+          "text": "Один пакунок на ваш Kindle або пристрій у вашій мережі — ідеально для подорожі чи дороги на роботу.",
+          "translatedAt": "2026-11-01T09:49:25.241Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "tr": {
+          "text": "Uçuşta veya yolculukta okumak için hazır, Kindle'ınıza veya ağınızdaki bir cihaza tek bir paket halinde.",
+          "translatedAt": "2026-11-01T09:49:36.780Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "id": {
+          "text": "Satu bundel langsung ke Kindle atau perangkat di jaringan Anda, siap dibaca saat penerbangan atau perjalanan harian.",
+          "translatedAt": "2026-11-01T09:49:51.370Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pl": {
+          "text": "Jedna paczka na Twój czytnik Kindle lub urządzenie w sieci lokalnej – gotowa na lot lub dojazd do pracy.",
+          "translatedAt": "2026-11-01T09:50:05.009Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "th": {
+          "text": "รวมเป็นชุดเดียวส่งตรงไปยัง Kindle หรืออุปกรณ์บนเครือข่ายของคุณ พร้อมอ่านระหว่างเดินทางหรือบนเครื่องบิน",
+          "translatedAt": "2026-11-01T09:50:16.249Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ar": {
+          "text": "حزمة واحدة تُرسل إلى جهاز Kindle الخاص بك أو إلى أي جهاز آخر على شبكتك المحلية، جاهزة لرحلتك أو تنقلاتك اليومية.",
+          "translatedAt": "2026-11-01T09:50:23.295Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "sv": {
+          "text": "Ett samlat paket till din Kindle eller en enhet på ditt lokala nätverk – redo för flygresan eller pendlingen.",
+          "translatedAt": "2026-11-01T09:50:33.712Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "da": {
+          "text": "Én samlet pakke til din Kindle eller en enhed på dit netværk, klar til flyveturen eller pendlingen.",
+          "translatedAt": "2026-11-01T09:50:45.328Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "no": {
+          "text": "Én samlepakke til din Kindle eller en enhet på nettverket ditt, klar for flyturen eller pendleveien.",
+          "translatedAt": "2026-11-01T09:50:56.867Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fi": {
+          "text": "Yksi paketti Kindle-laitteeseesi tai kotiverkkosi laitteelle, valmiina lennolle tai työmatkalle.",
+          "translatedAt": "2026-11-01T09:51:08.582Z",
+          "model": "google/gemini-3.7-flash"
+        }
+      }
+    },
+    "b74b5f64133d3e28cedce4909b95fe7acf2854642875c4dea0a06802df786943": {
+      "en": "Scan the QR code from Settings → Phone inbox. No account needed.",
+      "translations": {
+        "de": {
+          "text": "Scannen Sie den QR-Code unter Einstellungen → Smartphone-Posteingang. Kein Account erforderlich.",
+          "translatedAt": "2026-11-01T09:46:54.285Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fr": {
+          "text": "Scannez le code QR depuis Paramètres → Boîte de réception du téléphone. Aucun compte requis.",
+          "translatedAt": "2026-11-01T09:47:06.489Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "es": {
+          "text": "Escanea el código QR desde Configuración → Buzón del teléfono. No se requiere ninguna cuenta.",
+          "translatedAt": "2026-11-01T09:47:15.804Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh": {
+          "text": "从“设置 → 手机收件箱”扫描 QR code。无需注册账号。",
+          "translatedAt": "2026-11-01T09:47:28.587Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh-TW": {
+          "text": "從「設定」→「手機收件匣」掃描 QR code，無需註冊帳號。",
+          "translatedAt": "2026-11-01T09:47:39.389Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ja": {
+          "text": "「設定」→「スマートフォン受信トレイ」からQRコードをスキャンします。アカウント登録は不要です。",
+          "translatedAt": "2026-11-01T09:47:50.513Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ko": {
+          "text": "설정 → 스마트폰 수신함에서 QR 코드를 스캔하세요. 계정 없이도 바로 사용 가능합니다.",
+          "translatedAt": "2026-11-01T09:47:56.510Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pt": {
+          "text": "Escaneie o código QR em Configurações → Caixa de entrada do celular. Sem precisar de conta.",
+          "translatedAt": "2026-11-01T09:48:12.380Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "hi": {
+          "text": "Settings → Phone inbox से QR code scan करें। किसी account की ज़रूरत नहीं।",
+          "translatedAt": "2026-11-01T09:48:23.743Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "vi": {
+          "text": "Quét mã QR từ Cài đặt → Hộp thư đến điện thoại. Không cần tài khoản.",
+          "translatedAt": "2026-11-01T09:48:35.986Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "nl": {
+          "text": "Scan de QR-code via Instellingen → Telefoon-inbox. Geen account nodig.",
+          "translatedAt": "2026-11-01T09:48:50.273Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "it": {
+          "text": "Scansiona il codice QR da Impostazioni → Inbox telefono. Nessun account richiesto.",
+          "translatedAt": "2026-11-01T09:49:00.666Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ru": {
+          "text": "Отсканируйте QR-код в меню Настройки → Входящие с телефона. Создавать аккаунт не требуется.",
+          "translatedAt": "2026-11-01T09:49:11.888Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "uk": {
+          "text": "Відскануйте QR-код у меню Налаштування → Вхідні з телефона. Обліковий запис не потрібен.",
+          "translatedAt": "2026-11-01T09:49:25.241Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "tr": {
+          "text": "Ayarlar → Telefon gelen kutusu menüsünden QR kodu tarayın. Hesap açmanıza gerek yoktur.",
+          "translatedAt": "2026-11-01T09:49:36.780Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "id": {
+          "text": "Pindai kode QR dari Settings → Phone inbox. Tanpa perlu akun.",
+          "translatedAt": "2026-11-01T09:49:51.370Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pl": {
+          "text": "Zeskanuj kod QR z menu Ustawienia → Skrzynka telefonu. Bez konieczności zakładania konta.",
+          "translatedAt": "2026-11-01T09:50:05.009Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "th": {
+          "text": "สแกน QR code จาก Settings → Phone inbox โดยไม่ต้องสร้างบัญชี",
+          "translatedAt": "2026-11-01T09:50:16.249Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ar": {
+          "text": "امسح رمز QR ضوئياً من الإعدادات Settings ← صندوق وارد الهاتف Phone inbox. لا يلزم إنشاء حساب.",
+          "translatedAt": "2026-11-01T09:50:23.295Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "sv": {
+          "text": "Skanna QR-koden från Inställningar → Telefoninkorg. Inget konto behövs.",
+          "translatedAt": "2026-11-01T09:50:33.712Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "da": {
+          "text": "Scan QR-koden fra Indstillinger → Telefonindbakke. Ingen konto nødvendig.",
+          "translatedAt": "2026-11-01T09:50:45.328Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "no": {
+          "text": "Skann QR-koden fra Innstillinger → Innboks på mobil. Du trenger ingen konto.",
+          "translatedAt": "2026-11-01T09:50:56.867Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fi": {
+          "text": "Skannaa QR-koodi kohdasta Asetukset → Puhelimen saapuneet. Tiliä ei tarvita.",
+          "translatedAt": "2026-11-01T09:51:08.582Z",
+          "model": "google/gemini-3.7-flash"
+        }
+      }
+    },
+    "363a5e25e814d7c00629b59dc2f131aca77eb2be6dc596c1f5306043b5a027d6": {
+      "en": "Tap Share → AISH in any app. Offline works too: it sends when you're back online.",
+      "translations": {
+        "de": {
+          "text": "Tippen Sie in einer beliebigen App auf Teilen → AISH. Funktioniert auch offline: Der Versand erfolgt automatisch, sobald Sie wieder online sind.",
+          "translatedAt": "2026-11-01T09:46:54.285Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fr": {
+          "text": "Appuyez sur Partager → AISH depuis n'importe quelle application. Fonctionne aussi hors ligne : l'envoi s'effectue dès que vous êtes reconnecté.",
+          "translatedAt": "2026-11-01T09:47:06.489Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "es": {
+          "text": "Toca Compartir → AISH en cualquier aplicación. También funciona sin conexión: se enviará cuando vuelvas a conectarte.",
+          "translatedAt": "2026-11-01T09:47:15.804Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh": {
+          "text": "在任意应用中点击“分享 → AISH”。离线状态下同样可用：重新联网后会自动发送。",
+          "translatedAt": "2026-11-01T09:47:28.587Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh-TW": {
+          "text": "在任何應用程式中點擊「分享」→「AISH」。支援離線操作：重新連線後將自動發送。",
+          "translatedAt": "2026-11-01T09:47:39.389Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ja": {
+          "text": "任意のアプリで「共有」→「AISH」をタップするだけ。オフライン時にも動作し、オンライン復帰時に送信されます。",
+          "translatedAt": "2026-11-01T09:47:50.513Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ko": {
+          "text": "어떤 앱에서든 공유 → AISH를 탭하세요. 오프라인 상태에서도 작동하며, 다시 온라인 상태가 되면 자동으로 전송됩니다.",
+          "translatedAt": "2026-11-01T09:47:56.510Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pt": {
+          "text": "Toque em Compartilhar → AISH em qualquer app. Funciona offline também: o envio acontece assim que você reconectar.",
+          "translatedAt": "2026-11-01T09:48:12.380Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "hi": {
+          "text": "किसी भी app में Share → AISH पर tap करें। यह offline भी काम करता है: वापस online आते ही यह send हो जाता है।",
+          "translatedAt": "2026-11-01T09:48:23.743Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "vi": {
+          "text": "Nhấn Chia sẻ → AISH trong bất kỳ ứng dụng nào. Hoạt động cả khi ngoại tuyến: nội dung sẽ gửi khi bạn có mạng trở lại.",
+          "translatedAt": "2026-11-01T09:48:35.986Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "nl": {
+          "text": "Tik in elke gewenste app op Delen → AISH. Werkt ook offline: het wordt verstuurd zodra je weer online bent.",
+          "translatedAt": "2026-11-01T09:48:50.273Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "it": {
+          "text": "Tocca Condividi → AISH in qualsiasi app. Funziona anche offline: l'invio avverrà non appena torni online.",
+          "translatedAt": "2026-11-01T09:49:00.666Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ru": {
+          "text": "Нажмите «Поделиться» → AISH в любом приложении. Работает и офлайн: ссылка отправится, как только появится сеть.",
+          "translatedAt": "2026-11-01T09:49:11.888Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "uk": {
+          "text": "Торкніться Поділитися → AISH у будь-якому застосунку. Працює й офлайн: надішлеться, щойно з’явиться зв’язок.",
+          "translatedAt": "2026-11-01T09:49:25.241Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "tr": {
+          "text": "Herhangi bir uygulamada Paylaş → AISH seçeneğine dokunun. Çevrimdışı da çalışır: tekrar internete bağlandığınızda iletilir.",
+          "translatedAt": "2026-11-01T09:49:36.780Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "id": {
+          "text": "Ketuk Share → AISH di aplikasi apa pun. Bisa offline: tautan akan dikirim begitu Anda kembali online.",
+          "translatedAt": "2026-11-01T09:49:51.370Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pl": {
+          "text": "W dowolnej aplikacji wybierz Udostępnij → AISH. Działa też offline: treść zostanie przesłana po odzyskaniu połączenia.",
+          "translatedAt": "2026-11-01T09:50:05.009Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "th": {
+          "text": "แตะ Share → AISH จากแอปใดก็ได้ ใช้งานแบบออฟไลน์ได้เช่นกัน โดยระบบจะส่งข้อมูลทันทีเมื่อกลับมาออนไลน์",
+          "translatedAt": "2026-11-01T09:50:16.249Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ar": {
+          "text": "اضغط على مشاركة Share ← AISH في أي تطبيق. تعمل الميزة دون اتصال بالإنترنت أيضاً، حيث يتم الإرسال فور اتصالك بالشبكة مجدداً.",
+          "translatedAt": "2026-11-01T09:50:23.295Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "sv": {
+          "text": "Tryck på Dela → AISH i valfri app. Fungerar även offline – det skickas när du är uppkopplad igen.",
+          "translatedAt": "2026-11-01T09:50:33.712Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "da": {
+          "text": "Tryk på Del → AISH i en hvilken som helst app. Fungerer også offline: indholdet sendes, så snart du er online igen.",
+          "translatedAt": "2026-11-01T09:50:45.328Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "no": {
+          "text": "Trykk på Del → AISH i hvilken som helst app. Det fungerer også offline: innholdet sendes så snart du er på nett igjen.",
+          "translatedAt": "2026-11-01T09:50:56.867Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fi": {
+          "text": "Napauta Jaa → AISH missä tahansa sovelluksessa. Toimii myös offline-tilassa: sisältö lähetetään, kun olet taas verkossa.",
+          "translatedAt": "2026-11-01T09:51:08.582Z",
+          "model": "google/gemini-3.7-flash"
+        }
+      }
+    },
+    "b32f7632c3c20a4f29f52fb745808ade17c5f040566abd26267e75459bc5b28e": {
+      "en": "Your links wait under History → From phone. One tap summarizes them with your own AI provider.",
+      "translations": {
+        "de": {
+          "text": "Ihre Links warten unter Verlauf → Vom Smartphone. Ein Klick genügt, und Ihr eigener KI-Anbieter fasst sie für Sie zusammen.",
+          "translatedAt": "2026-11-01T09:46:54.285Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fr": {
+          "text": "Vos liens vous attendent sous Historique → Depuis le téléphone. Un simple clic génère un résumé via votre propre fournisseur d'IA.",
+          "translatedAt": "2026-11-01T09:47:06.489Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "es": {
+          "text": "Tus enlaces te esperan en Historial → Desde el teléfono. Con un solo toque, obtén un resumen usando tu propio proveedor de IA.",
+          "translatedAt": "2026-11-01T09:47:15.804Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh": {
+          "text": "你的链接将保存在“历史记录 → 来自手机”中。一键调用你配置的 AI provider 即可生成摘要。",
+          "translatedAt": "2026-11-01T09:47:28.587Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh-TW": {
+          "text": "連結會暫存於「歷史紀錄」→「來自手機」。一鍵即可透過你指定的 AI 服務商進行內容摘要。",
+          "translatedAt": "2026-11-01T09:47:39.389Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ja": {
+          "text": "リンクは「履歴」→「スマートフォンから」に保存されます。ワンタップでお好みのAIプロバイダーを使って要約できます。",
+          "translatedAt": "2026-11-01T09:47:50.513Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ko": {
+          "text": "공유한 링크는 히스토리 → 스마트폰에서 전송됨에 보관됩니다. 탭 한 번으로 내가 선택한 AI를 통해 바로 요약해 보세요.",
+          "translatedAt": "2026-11-01T09:47:56.510Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pt": {
+          "text": "Seus links ficam aguardando em Histórico → Do celular. Com apenas um toque, gere resumos usando o seu próprio provedor de IA.",
+          "translatedAt": "2026-11-01T09:48:12.380Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "hi": {
+          "text": "आपके links History → From phone में इंतज़ार कर रहे हैं। बस एक tap में अपने AI provider से उन्हें summarize करें।",
+          "translatedAt": "2026-11-01T09:48:23.743Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "vi": {
+          "text": "Các liên kết chờ sẵn tại Lịch sử → Từ điện thoại. Chỉ một chạm để tóm tắt bằng nhà cung cấp AI của riêng bạn.",
+          "translatedAt": "2026-11-01T09:48:35.986Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "nl": {
+          "text": "Je links staan klaar onder Geschiedenis → Vanaf telefoon. Met één tik vat je ze samen met je eigen AI-provider.",
+          "translatedAt": "2026-11-01T09:48:50.273Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "it": {
+          "text": "I tuoi link ti aspettano in Cronologia → Dal telefono. Basta un tocco per riassumerli con il tuo provider AI preferito.",
+          "translatedAt": "2026-11-01T09:49:00.666Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ru": {
+          "text": "Ваши ссылки будут ждать в разделе История → С телефона. В одно нажатие ваш AI-провайдер подготовит краткую выжимку.",
+          "translatedAt": "2026-11-01T09:49:11.888Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "uk": {
+          "text": "Ваші посилання чекають у меню Історія → З телефона. Один дотик — і ваш власний AI-провайдер створить резюме.",
+          "translatedAt": "2026-11-01T09:49:25.241Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "tr": {
+          "text": "Bağlantılarınız Geçmiş → Telefondan altında bekler. Tek bir dokunuşla, kendi AI sağlayıcınızı kullanarak özetleyin.",
+          "translatedAt": "2026-11-01T09:49:36.780Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "id": {
+          "text": "Tautan Anda tersimpan di History → From phone. Cukup satu ketukan untuk merangkumnya dengan penyedia AI pilihan Anda.",
+          "translatedAt": "2026-11-01T09:49:51.370Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pl": {
+          "text": "Twoje linki czekają w sekcji Historia → Z telefonu. Jedno kliknięcie pozwala wygenerować podsumowanie za pomocą wybranego dostawcy AI.",
+          "translatedAt": "2026-11-01T09:50:05.009Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "th": {
+          "text": "ลิงก์ของคุณจะรออยู่ที่ History → From phone แตะเพียงครั้งเดียวเพื่อสรุปเนื้อหาด้วยผู้ให้บริการ AI ที่คุณเลือก",
+          "translatedAt": "2026-11-01T09:50:16.249Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ar": {
+          "text": "تنتظرك روابطك في السجل History ← من الهاتف From phone. بنقرة واحدة يمكنك تلخيصها باستخدام مزود الذكاء الاصطناعي AI الخاص بك.",
+          "translatedAt": "2026-11-01T09:50:23.295Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "sv": {
+          "text": "Dina länkar väntar under Historik → Från telefonen. Med ett klick sammanfattar du dem med din egen AI-leverantör.",
+          "translatedAt": "2026-11-01T09:50:33.712Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "da": {
+          "text": "Dine links venter under Historik → Fra telefon. Ét tryk opsummerer dem med din egen AI-udbyder.",
+          "translatedAt": "2026-11-01T09:50:45.328Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "no": {
+          "text": "Lenkene dine venter under Historikk → Fra mobil. Ett trykk oppsummerer dem med din egen AI-leverandør.",
+          "translatedAt": "2026-11-01T09:50:56.867Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fi": {
+          "text": "Linkit odottavat kohdassa Historia → Puhelimesta. Yhdellä napautuksella tiivistät ne omalla tekoälypalvelullasi.",
+          "translatedAt": "2026-11-01T09:51:08.582Z",
+          "model": "google/gemini-3.7-flash"
+        }
+      }
+    },
+    "49bed30a00e65a3133d9c4fa93cd39d7752794d1751e93c7cbfc13f86b3daca5": {
+      "en": "Android 8 or newer · free and open source · needs the browser extension · iOS is not available yet",
+      "translations": {
+        "de": {
+          "text": "Android 8 oder neuer · Kostenlos und Open Source · Erfordert die Browser-Erweiterung · iOS noch nicht verfügbar",
+          "translatedAt": "2026-11-01T09:46:54.285Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fr": {
+          "text": "Android 8 ou supérieur · gratuit et open source · nécessite l'extension de navigateur · non disponible sur iOS pour le moment",
+          "translatedAt": "2026-11-01T09:47:06.489Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "es": {
+          "text": "Android 8 o posterior · gratuito y de código abierto · requiere la extensión de navegador · iOS no está disponible aún",
+          "translatedAt": "2026-11-01T09:47:15.804Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh": {
+          "text": "Android 8 或更高版本 · 免费且开源 · 需配合浏览器扩展使用 · 暂不支持 iOS",
+          "translatedAt": "2026-11-01T09:47:28.587Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh-TW": {
+          "text": "支援 Android 8 以上版本 · 免費且開源 · 需搭配瀏覽器擴充功能 · iOS 版本尚未推出",
+          "translatedAt": "2026-11-01T09:47:39.389Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ja": {
+          "text": "Android 8 以降 · 無料＆オープンソース · ブラウザ拡張機能が必要 · iOS 版は未対応",
+          "translatedAt": "2026-11-01T09:47:50.513Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ko": {
+          "text": "Android 8 이상 지원 · 무료 및 오픈 소스 · 브라우저 확장 프로그램 필요 · iOS는 추후 지원 예정",
+          "translatedAt": "2026-11-01T09:47:56.510Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pt": {
+          "text": "Android 8 ou superior · gratuito e de código aberto · requer a extensão de navegador · iOS ainda não disponível",
+          "translatedAt": "2026-11-01T09:48:12.380Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "hi": {
+          "text": "Android 8 या नया · free और open source · browser extension ज़रूरी है · iOS अभी available नहीं है",
+          "translatedAt": "2026-11-01T09:48:23.743Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "vi": {
+          "text": "Android 8 trở lên · miễn phí và mã nguồn mở · cần tiện ích mở rộng trình duyệt · chưa hỗ trợ iOS",
+          "translatedAt": "2026-11-01T09:48:35.986Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "nl": {
+          "text": "Android 8 of nieuwer · gratis en open source · vereist de browserextensie · iOS is nog niet beschikbaar",
+          "translatedAt": "2026-11-01T09:48:50.273Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "it": {
+          "text": "Android 8 o successivo · gratuito e open source · richiede l'estensione per browser · iOS non ancora disponibile",
+          "translatedAt": "2026-11-01T09:49:00.666Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ru": {
+          "text": "Android 8 или новее · бесплатно и с открытым исходным кодом · требуется расширение для браузера · версия для iOS пока недоступна",
+          "translatedAt": "2026-11-01T09:49:11.888Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "uk": {
+          "text": "Android 8 або новіша версія · безкоштовно та з відкритим кодом · потрібне розширення для браузера · iOS поки що недоступна",
+          "translatedAt": "2026-11-01T09:49:25.241Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "tr": {
+          "text": "Android 8 veya üzeri · ücretsiz ve açık kaynaklı · tarayıcı eklentisi gerektirir · iOS henüz kullanılamıyor",
+          "translatedAt": "2026-11-01T09:49:36.780Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "id": {
+          "text": "Android 8 atau lebih baru · gratis dan open source · membutuhkan ekstensi browser · iOS belum tersedia",
+          "translatedAt": "2026-11-01T09:49:51.370Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pl": {
+          "text": "Android 8 lub nowszy · bezpłatna i otwartoźródłowa (open source) · wymaga rozszerzenia do przeglądarki · wersja na iOS nie jest jeszcze dostępna",
+          "translatedAt": "2026-11-01T09:50:05.009Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "th": {
+          "text": "Android 8 ขึ้นไป · ฟรีและเป็นโอเพนซอร์ส · ต้องใช้ส่วนขยายเบราว์เซอร์ · ยังไม่รองรับ iOS",
+          "translatedAt": "2026-11-01T09:50:16.249Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ar": {
+          "text": "Android 8 أو أحدث · مجاني ومفتوح المصدر · يتطلب إضافة المتصفح · غير متوفر على iOS حالياً",
+          "translatedAt": "2026-11-01T09:50:23.295Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "sv": {
+          "text": "Android 8 eller senare · gratis och öppen källkod · kräver webbläsartillägget · iOS är inte tillgängligt ännu",
+          "translatedAt": "2026-11-01T09:50:33.712Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "da": {
+          "text": "Android 8 eller nyere · gratis og open source · kræver browserudvidelsen · iOS er ikke tilgængelig endnu",
+          "translatedAt": "2026-11-01T09:50:45.328Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "no": {
+          "text": "Android 8 eller nyere · gratis og åpen kildekode · krever nettleserutvidelsen · iOS er ikke tilgjengelig ennå",
+          "translatedAt": "2026-11-01T09:50:56.867Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fi": {
+          "text": "Android 8 tai uudempi · ilmainen ja avointa lähdekoodia · vaatii selainlaajennuksen · iOS ei vielä saatavilla",
+          "translatedAt": "2026-11-01T09:51:08.582Z",
+          "model": "google/gemini-3.7-flash"
+        }
+      }
+    },
+    "f7e7dbdb605c9f639f6c69e3d4bdeff515a64cda1659d33f463cdabf56b80391": {
+      "en": "Search, duplicate detection, tag cleanup and similar-article suggestions run in your browser, with no server and no account. Only the summary request leaves it, and only to the AI provider you chose. With a local Ollama model, even that stays home.",
+      "translations": {
+        "de": {
+          "text": "Suche, Duplikaterkennung, Schlagwort-Bereinigung und Vorschläge für ähnliche Artikel laufen vollständig in Ihrem Browser – ohne Server und ohne Account. Lediglich die Anfrage für die Zusammenfassung verlässt Ihr Gerät, und zwar ausschließlich an den von Ihnen gewählten KI-Anbieter. Mit einem lokalen Ollama-Modell bleibt selbst das vollständig auf Ihrem Rechner.",
+          "translatedAt": "2026-11-01T09:46:54.285Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fr": {
+          "text": "La recherche, la détection des doublons, le nettoyage des tags et les suggestions d'articles similaires s'exécutent localement dans votre navigateur, sans serveur ni compte. Seule la requête de résumé quitte votre appareil, et uniquement vers le fournisseur d'IA de votre choix. Avec un modèle local Ollama, l'intégralité de vos données reste chez vous.",
+          "translatedAt": "2026-11-01T09:47:06.489Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "es": {
+          "text": "La búsqueda, la detección de duplicados, la limpieza de etiquetas y las sugerencias de artículos similares se ejecutan íntegramente en tu navegador, sin servidores ni cuentas. Solo la solicitud de resumen sale de tu equipo, y únicamente hacia el proveedor de IA que hayas elegido. Con un modelo local de Ollama, absolutamente todo se procesa de forma local.",
+          "translatedAt": "2026-11-01T09:47:15.804Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh": {
+          "text": "搜索、重复内容检测、标签整理以及相似文章推荐均在浏览器本地运行，无需服务器和账号。只有摘要请求会发送出去，且仅发送至你选择的 AI provider。配合本地运行的 Ollama 模型，连这部分数据也能完全保留在本地。",
+          "translatedAt": "2026-11-01T09:47:28.587Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh-TW": {
+          "text": "搜尋、重複偵測、標籤整理與相似文章推薦皆完全在瀏覽器本機端執行，無需伺服器也無需帳號。只有摘要請求會發送出去，且僅限於你自行選擇的 AI 服務商。若搭配本機 Ollama 模型，所有資料更可 100% 留在本機。",
+          "translatedAt": "2026-11-01T09:47:39.389Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ja": {
+          "text": "検索、重複検出、タグの整理、類似記事の提案はすべてブラウザ上で完結し、サーバーやアカウントは一切不要です。外部と通信するのは要約リクエスト時のみで、指定したAIプロバイダーだけに送信されます。ローカルの Ollama モデルを使用すれば、データが外部に出ることも一切ありません。",
+          "translatedAt": "2026-11-01T09:47:50.513Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ko": {
+          "text": "검색, 중복 감지, 태그 정리, 유사 글 추천 등 모든 작업이 별도의 서버나 계정 없이 브라우저 내에서 직접 실행됩니다. 오직 요약 요청만 사용자가 선택한 AI 제공업체로 전송되며, 로컬 Ollama 모델을 사용하면 이마저도 외부로 유출되지 않고 기기 내에 안전하게 보관됩니다.",
+          "translatedAt": "2026-11-01T09:47:56.510Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pt": {
+          "text": "Busca, detecção de duplicatas, organização de tags e sugestões de artigos similares rodam direto no seu navegador, sem servidores e sem conta. Apenas o pedido de resumo sai do dispositivo, e somente para o provedor de IA que você escolheu. E com um modelo local no Ollama, até isso fica 100% na sua máquina — sem custos de assinatura e totalmente offline.",
+          "translatedAt": "2026-11-01T09:48:12.380Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "hi": {
+          "text": "Search, duplicate detection, tag cleanup और similar-article suggestions सब कुछ आपके browser में on-device चलता है—बिना किसी server या account के। सिर्फ summary request बाहर जाती है, वो भी आपके चुने हुए AI provider के पास। और local Ollama model के साथ, वो data भी पूरी तरह offline आपके पास ही रहता है।",
+          "translatedAt": "2026-11-01T09:48:23.743Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "vi": {
+          "text": "Tìm kiếm, phát hiện trùng lặp, dọn dẹp thẻ và gợi ý bài viết tương tự đều chạy cục bộ trong trình duyệt, không cần máy chủ và không cần tài khoản. Chỉ có yêu cầu tóm tắt được gửi đi, và chỉ đến nhà cung cấp AI bạn đã chọn. Khi dùng mô hình Ollama cục bộ, ngay cả yêu cầu đó cũng hoàn toàn không rời khỏi máy.",
+          "translatedAt": "2026-11-01T09:48:35.986Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "nl": {
+          "text": "Zoeken, duplicaten opsporen, tags opschonen en suggesties voor vergelijkbare artikelen draaien allemaal in je browser, zonder server en zonder account. Alleen het samenvattingsverzoek verlaat je apparaat, en uitsluitend naar de door jou gekozen AI-provider. Met een lokaal Ollama-model blijft zelfs dat volledig op je eigen computer.",
+          "translatedAt": "2026-11-01T09:48:50.273Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "it": {
+          "text": "Ricerca, rilevamento dei duplicati, pulizia dei tag e suggerimenti di articoli simili vengono elaborati interamente nel tuo browser, senza server e senza account. Solo la richiesta di riassunto esce dal dispositivo, e unicamente verso il provider AI che hai scelto. Con un modello locale Ollama, anche questi dati rimangono al 100% in locale.",
+          "translatedAt": "2026-11-01T09:49:00.666Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ru": {
+          "text": "Поиск, обнаружение дубликатов, упорядочивание тегов и рекомендации похожих статей работают прямо в браузере — без сторонних серверов и аккаунтов. Наружу уходят только запросы на суммаризацию, и только к выбранному вами AI-провайдеру. А с локальной моделью Ollama даже эти данные остаются у вас.",
+          "translatedAt": "2026-11-01T09:49:11.888Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "uk": {
+          "text": "Пошук, виявлення дублікатів, упорядкування тегів і рекомендації схожих статей працюють просто у вашому браузері — без сервера та облікового запису. Назовні виходить лише запит на резюме, і тільки до обраного вами AI-провайдера. А з локальною моделлю Ollama навіть цей запит не залишає вашого пристрою.",
+          "translatedAt": "2026-11-01T09:49:25.241Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "tr": {
+          "text": "Arama, mükerrer kayıt tespiti, etiket temizleme ve benzer makale önerileri; sunucusuz ve hesapsız olarak doğrudan tarayıcınızda çalışır. Tarayıcınızdan yalnızca özetleme istekleri çıkar ve o da sadece sizin seçtiğiniz AI sağlayıcısına iletilir. Yerel bir Ollama modeli kullandığınızda ise bu veriler bile cihazınızda kalır.",
+          "translatedAt": "2026-11-01T09:49:36.780Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "id": {
+          "text": "Pencarian, deteksi duplikat, pembersihan tag, dan saran artikel serupa berjalan langsung di browser Anda, tanpa server dan tanpa akun. Hanya permintaan ringkasan yang keluar dari browser, dan hanya dikirim ke penyedia AI yang Anda pilih. Dengan model lokal Ollama, seluruh data tetap aman di perangkat Anda.",
+          "translatedAt": "2026-11-01T09:49:51.370Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pl": {
+          "text": "Wyszukiwanie, wykrywanie duplikatów, porządkowanie tagów i sugestie podobnych artykułów działają bezpośrednio w Twojej przeglądarce – bez serwerów i bez konta. Jedynie zapytanie o podsumowanie trafia na zewnątrz, i to wyłącznie do wybranego przez Ciebie dostawcy AI. Z lokalnym modelem Ollama nawet te dane nie opuszczają Twojego urządzenia.",
+          "translatedAt": "2026-11-01T09:50:05.009Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "th": {
+          "text": "ระบบค้นหา การตรวจจับรายการซ้ำ การจัดระเบียบแท็ก และการแนะนำบทความที่คล้ายกัน ทำงานบนเบราว์เซอร์ของคุณโดยตรง ไม่ต้องพึ่งพาเซิร์ฟเวอร์หรือสร้างบัญชี จะมีเพียงคำขอสรุปเนื้อหาเท่านั้นที่ถูกส่งออกไป และจะส่งไปยังผู้ให้บริการ AI ที่คุณเลือกไว้เท่านั้น หากใช้โมเดล Ollama แบบ Local ข้อมูลทุกอย่างก็จะอยู่บนเครื่องของคุณอย่างสมบูรณ์",
+          "translatedAt": "2026-11-01T09:50:16.249Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ar": {
+          "text": "تتم عمليات البحث، واكتشاف العناصر المكررة، وتنظيم الوسوم، واقتراح مقالات مشابهة مباشرةً داخل متصفحك دون الحاجة إلى خادم ودون حساب. طلب التلخيص فقط هو ما يغادر جهازك، ويتجه حصرياً إلى مزود الذكاء الاصطناعي AI الذي تختاره بنفسك. وباستخدام نموذج Ollama المحلي، حتى هذا الطلب لن يغادر جهازك إطلاقاً.",
+          "translatedAt": "2026-11-01T09:50:23.295Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "sv": {
+          "text": "Sökning, dubblettkontroll, tagghantering och förslag på liknande artiklar körs direkt i din webbläsare, helt utan server och utan konto. Endast sammanfattningsförfrågan skickas vidare, och bara till den AI-leverantör du själv valt. Med en lokal Ollama-modell stannar även den lokalt.",
+          "translatedAt": "2026-11-01T09:50:33.712Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "da": {
+          "text": "Søgning, registrering af dubletter, tag-oprydning og forslag til lignende artikler kører lokalt i din browser – helt uden server og uden konto. Kun anmodningen om opsummering forlader browseren, og udelukkende til den AI-udbyder, du selv vælger. Med en lokal Ollama-model forbliver alt på din egen maskine.",
+          "translatedAt": "2026-11-01T09:50:45.328Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "no": {
+          "text": "Søk, duplikatgjenkjenning, opprydding i tagger og forslag til lignende artikler kjøres lokalt i nettleseren din, helt uten server og uten konto. Kun forespørselen om oppsummering forlater nettleseren, og bare til AI-leverandøren du har valgt. Med en lokal Ollama-modell forblir alt lokalt hos deg.",
+          "translatedAt": "2026-11-01T09:50:56.867Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fi": {
+          "text": "Haku, kaksoiskappaleiden tunnistus, tagien siivous ja samankaltaisten artikkeleiden suositukset toimivat suoraan selaimessasi ilman palvelinta tai käyttäjätiliä. Vain tiivistyspyyntö lähetetään eteenpäin – ja sekin ainoastaan valitsemallesi tekoälypalvelulle. Paikallista Ollama-mallia käyttäessäsi sekään ei poistu laitteeltasi.",
+          "translatedAt": "2026-11-01T09:51:08.582Z",
+          "model": "google/gemini-3.7-flash"
+        }
+      }
+    },
+    "cb6e26f4ee14ed1cdd242ca39655079f847a18f2c10b75c7c8a6b69989f55e82": {
+      "en": "Notes on reading, search and trust",
+      "translations": {
+        "de": {
+          "text": "Gedanken zu Lesegewohnheiten, Suche und digitalem Vertrauen",
+          "translatedAt": "2026-11-01T09:46:54.285Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fr": {
+          "text": "Notes sur la lecture, la recherche et la confiance",
+          "translatedAt": "2026-11-01T09:47:06.489Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "es": {
+          "text": "Notas sobre lectura, búsqueda y confianza",
+          "translatedAt": "2026-11-01T09:47:15.804Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh": {
+          "text": "关于阅读、搜索与信任的思考笔记",
+          "translatedAt": "2026-11-01T09:47:28.587Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh-TW": {
+          "text": "關於閱讀、搜尋與信任的思考札記",
+          "translatedAt": "2026-11-01T09:47:39.389Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ja": {
+          "text": "リーディング、検索、そして信頼性についてのノート",
+          "translatedAt": "2026-11-01T09:47:50.513Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ko": {
+          "text": "읽기, 검색, 그리고 신뢰성에 관한 노트",
+          "translatedAt": "2026-11-01T09:47:56.510Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pt": {
+          "text": "Notas sobre leitura, busca e confiabilidade",
+          "translatedAt": "2026-11-01T09:48:12.380Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "hi": {
+          "text": "Reading, search और trust पर कुछ जरूरी notes",
+          "translatedAt": "2026-11-01T09:48:23.743Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "vi": {
+          "text": "Ghi chú về thói quen đọc, tìm kiếm và độ tin cậy",
+          "translatedAt": "2026-11-01T09:48:35.986Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "nl": {
+          "text": "Notities over lezen, zoeken en betrouwbaarheid",
+          "translatedAt": "2026-11-01T09:48:50.273Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "it": {
+          "text": "Riflessioni su lettura, ricerca e fiducia",
+          "translatedAt": "2026-11-01T09:49:00.666Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ru": {
+          "text": "Заметки о чтении, поиске и доверии к источникам",
+          "translatedAt": "2026-11-01T09:49:11.888Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "uk": {
+          "text": "Нотатки про читання, пошук і довіру",
+          "translatedAt": "2026-11-01T09:49:25.241Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "tr": {
+          "text": "Okuma, arama ve güven üzerine notlar",
+          "translatedAt": "2026-11-01T09:49:36.780Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "id": {
+          "text": "Catatan tentang membaca, pencarian, dan kepercayaan",
+          "translatedAt": "2026-11-01T09:49:51.370Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pl": {
+          "text": "O czytaniu, wyszukiwaniu i zaufaniu do źródeł",
+          "translatedAt": "2026-11-01T09:50:05.009Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "th": {
+          "text": "บันทึกเกี่ยวกับการอ่าน การค้นหา และความน่าเชื่อถือ",
+          "translatedAt": "2026-11-01T09:50:16.249Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ar": {
+          "text": "ملاحظات حول القراءة والبحث والموثوقية",
+          "translatedAt": "2026-11-01T09:50:23.295Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "sv": {
+          "text": "Anteckningar om läsning, sökning och källkritik",
+          "translatedAt": "2026-11-01T09:50:33.712Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "da": {
+          "text": "Noter om læsning, søgning og tillid",
+          "translatedAt": "2026-11-01T09:50:45.328Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "no": {
+          "text": "Notater om lesing, søk og tillit",
+          "translatedAt": "2026-11-01T09:50:56.867Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fi": {
+          "text": "Muistiinpanoja lukemisesta, hausta ja luottamuksesta",
+          "translatedAt": "2026-11-01T09:51:08.582Z",
+          "model": "google/gemini-3.7-flash"
+        }
+      }
+    },
+    "7ca30a58234653bbdde27b416dd486ab2f0a56decffcb4686c193db26082de59": {
+      "en": "How the search, digest and source checks work, and how to choose a read-it-later tool.",
+      "translations": {
+        "de": {
+          "text": "Wie Suche, Digest und Quellprüfungen funktionieren – und wie Sie das passende Read-it-Later-Tool auswählen.",
+          "translatedAt": "2026-11-01T09:46:54.285Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fr": {
+          "text": "Comment fonctionnent la recherche, le digest et la vérification des sources, et comment choisir un outil de lecture différée.",
+          "translatedAt": "2026-11-01T09:47:06.489Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "es": {
+          "text": "Cómo funcionan la búsqueda, el digest y la verificación de fuentes, y cómo elegir una herramienta para leer después.",
+          "translatedAt": "2026-11-01T09:47:15.804Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh": {
+          "text": "详解搜索、文摘和信源核验的工作原理，以及如何挑选一款适合你的稍后读工具。",
+          "translatedAt": "2026-11-01T09:47:28.587Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh-TW": {
+          "text": "深入了解搜尋、精選摘要與來源核對的運作原理，以及如何挑選適合的稍後閱讀工具。",
+          "translatedAt": "2026-11-01T09:47:39.389Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ja": {
+          "text": "検索、ダイジェスト、ソース検証の仕組みと、「あとで読む」ツールの選び方。",
+          "translatedAt": "2026-11-01T09:47:50.513Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ko": {
+          "text": "검색, 다이제스트, 출처 검증의 작동 원리와 나에게 맞는 나중에 읽기 도구를 선택하는 방법.",
+          "translatedAt": "2026-11-01T09:47:56.510Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pt": {
+          "text": "Como funcionam a busca, o digest e a checagem de fontes, e como escolher uma ferramenta de leitura posterior.",
+          "translatedAt": "2026-11-01T09:48:12.380Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "hi": {
+          "text": "Search, digest और source checks कैसे काम करते हैं, और अपने लिए सही read-it-later tool कैसे चुनें।",
+          "translatedAt": "2026-11-01T09:48:23.743Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "vi": {
+          "text": "Cách tính năng tìm kiếm, digest và đối chiếu nguồn hoạt động, cùng cách chọn công cụ đọc sau (read-it-later).",
+          "translatedAt": "2026-11-01T09:48:35.986Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "nl": {
+          "text": "Hoe het zoeken, Digest en broncontroles werken, en hoe je een 'later lezen'-tool kiest.",
+          "translatedAt": "2026-11-01T09:48:50.273Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "it": {
+          "text": "Come funzionano la ricerca, il digest e la verifica delle fonti, e come scegliere uno strumento read-it-later.",
+          "translatedAt": "2026-11-01T09:49:00.666Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ru": {
+          "text": "Как устроены поиск, дайджест и проверка источников, и как выбрать инструмент для отложенного чтения.",
+          "translatedAt": "2026-11-01T09:49:11.888Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "uk": {
+          "text": "Як працюють пошук, дайджест і перевірка джерел, а також як обрати інструмент для відкладеного читання.",
+          "translatedAt": "2026-11-01T09:49:25.241Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "tr": {
+          "text": "Arama, digest ve kaynak doğrulamanın nasıl çalıştığı ve ideal bir 'daha sonra oku' aracının nasıl seçileceği.",
+          "translatedAt": "2026-11-01T09:49:36.780Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "id": {
+          "text": "Cara kerja pencarian, digest, dan verifikasi sumber, serta panduan memilih alat read-it-later.",
+          "translatedAt": "2026-11-01T09:49:51.370Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pl": {
+          "text": "Jak działają wyszukiwanie, przeglądy (digest) oraz weryfikacja źródeł i czym kierować się przy wyborze narzędzia typu read-it-later.",
+          "translatedAt": "2026-11-01T09:50:05.009Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "th": {
+          "text": "การทำงานของระบบค้นหา Digest และการตรวจสอบแหล่งที่มา พร้อมคำแนะนำในการเลือกเครื่องมือบันทึกไว้อ่านทีหลัง",
+          "translatedAt": "2026-11-01T09:50:16.249Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ar": {
+          "text": "كيف تعمل آليات البحث، والملخصات، والتحقق من المصادر، وكيفية اختيار أداة حفظ المقالات وقراءتها لاحقاً.",
+          "translatedAt": "2026-11-01T09:50:23.295Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "sv": {
+          "text": "Hur sökningen, digest och källkontroller fungerar, och hur du väljer rätt verktyg för att spara och läsa senare.",
+          "translatedAt": "2026-11-01T09:50:33.712Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "da": {
+          "text": "Sådan fungerer søgning, digest og kildetjek – og sådan vælger du det rette read-it-later-værktøj.",
+          "translatedAt": "2026-11-01T09:50:45.328Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "no": {
+          "text": "Hvordan søk, digest og kildesjekk fungerer, og hvordan du velger et les-senere-verktøy.",
+          "translatedAt": "2026-11-01T09:50:56.867Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fi": {
+          "text": "Miten haku, kooste ja lähteiden tarkistus toimivat, ja miten valita sopiva lue myöhemmin -työkalu.",
+          "translatedAt": "2026-11-01T09:51:08.582Z",
+          "model": "google/gemini-3.7-flash"
+        }
+      }
+    },
+    "ce436560b097d7524b3a824da93be49c2a874bf113f0db8bc19a642c563dc3ac": {
+      "en": "Check an AI summary against its source",
+      "translations": {
+        "de": {
+          "text": "KI-Zusammenfassungen direkt an der Originalquelle prüfen",
+          "translatedAt": "2026-11-01T09:46:54.285Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fr": {
+          "text": "Vérifier un résumé IA à partir de sa source",
+          "translatedAt": "2026-11-01T09:47:06.489Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "es": {
+          "text": "Verifica un resumen de IA frente a su fuente original",
+          "translatedAt": "2026-11-01T09:47:15.804Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh": {
+          "text": "对照原文核验 AI 摘要",
+          "translatedAt": "2026-11-01T09:47:28.587Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh-TW": {
+          "text": "比對 AI 摘要與原始出處",
+          "translatedAt": "2026-11-01T09:47:39.389Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ja": {
+          "text": "AIの要約と元の情報源を照合する",
+          "translatedAt": "2026-11-01T09:47:50.513Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ko": {
+          "text": "AI 요약 내용과 원본 출처 대조하기",
+          "translatedAt": "2026-11-01T09:47:56.510Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pt": {
+          "text": "Confira um resumo de IA diretamente na fonte",
+          "translatedAt": "2026-11-01T09:48:12.380Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "hi": {
+          "text": "AI summary को उसके original source से verify करें",
+          "translatedAt": "2026-11-01T09:48:23.743Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "vi": {
+          "text": "Đối chiếu bản tóm tắt của AI với nguồn gốc",
+          "translatedAt": "2026-11-01T09:48:35.986Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "nl": {
+          "text": "Controleer een AI-samenvatting aan de hand van de bron",
+          "translatedAt": "2026-11-01T09:48:50.273Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "it": {
+          "text": "Verifica un riassunto dell'IA rispetto alla fonte originale",
+          "translatedAt": "2026-11-01T09:49:00.666Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ru": {
+          "text": "Сверка AI-выжимки с первоисточником",
+          "translatedAt": "2026-11-01T09:49:11.888Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "uk": {
+          "text": "Перевірка AI-резюме за першоджерелом",
+          "translatedAt": "2026-11-01T09:49:25.241Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "tr": {
+          "text": "AI tarafından hazırlanan özeti kaynağıyla karşılaştırın",
+          "translatedAt": "2026-11-01T09:49:36.780Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "id": {
+          "text": "Verifikasi ringkasan AI dengan sumber aslinya",
+          "translatedAt": "2026-11-01T09:49:51.370Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pl": {
+          "text": "Weryfikuj podsumowanie AI z tekstem źródłowym",
+          "translatedAt": "2026-11-01T09:50:05.009Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "th": {
+          "text": "ตรวจสอบเนื้อหาที่ AI สรุปเทียบกับหน้าต้นฉบับ",
+          "translatedAt": "2026-11-01T09:50:16.249Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ar": {
+          "text": "التحقق من ملخص الذكاء الاصطناعي AI ومقارنته بالمصدر",
+          "translatedAt": "2026-11-01T09:50:23.295Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "sv": {
+          "text": "Granska en AI-sammanfattning mot källan",
+          "translatedAt": "2026-11-01T09:50:33.712Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "da": {
+          "text": "Tjek et AI-resumé mod dets kilde",
+          "translatedAt": "2026-11-01T09:50:45.328Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "no": {
+          "text": "Sjekk et AI-sammendrag opp mot kilden",
+          "translatedAt": "2026-11-01T09:50:56.867Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fi": {
+          "text": "Tarkista tekoälyn tiivistelmä alkuperäislähteestä",
+          "translatedAt": "2026-11-01T09:51:08.582Z",
+          "model": "google/gemini-3.7-flash"
+        }
+      }
+    },
+    "5c01fab00482ee18f838f5700b61694fdfff53c19b77bbc787c5244810cb555a": {
+      "en": "A quick way to check any answer against the page it came from, and what a quote can and cannot prove.",
+      "translations": {
+        "de": {
+          "text": "So überprüfen Sie jede KI-Antwort schnell anhand der Ursprungsseite – und was ein Zitat belegen kann und was nicht.",
+          "translatedAt": "2026-11-01T09:46:54.285Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fr": {
+          "text": "Une méthode rapide pour confronter une réponse à la page d'origine, et comprendre ce qu'une citation peut ou ne peut pas prouver.",
+          "translatedAt": "2026-11-01T09:47:06.489Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "es": {
+          "text": "Una forma rápida de contrastar cualquier respuesta con la página de donde proviene, y qué puede o no demostrar una cita.",
+          "translatedAt": "2026-11-01T09:47:15.804Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh": {
+          "text": "快速对照来源页面核实回答内容，并探讨引文能证明什么、不能证明什么。",
+          "translatedAt": "2026-11-01T09:47:28.587Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh-TW": {
+          "text": "快速比對任何回答與其來源網頁的方法，以及引文能證明與無法證明的事物。",
+          "translatedAt": "2026-11-01T09:47:39.389Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ja": {
+          "text": "生成された回答を参照元ページと素早く照合する方法と、引用が証明できること・できないことについて。",
+          "translatedAt": "2026-11-01T09:47:50.513Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ko": {
+          "text": "AI의 답변을 원본 웹페이지와 빠르게 대조하는 방법, 그리고 인용문으로 입증할 수 있는 것과 없는 것.",
+          "translatedAt": "2026-11-01T09:47:56.510Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pt": {
+          "text": "Uma forma rápida de conferir qualquer resposta com a página original, e o que uma citação pode ou não comprovar.",
+          "translatedAt": "2026-11-01T09:48:12.380Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "hi": {
+          "text": "किसी भी answer को उसके source page से verify करने का आसान तरीका, और एक quote क्या साबित कर सकता है और क्या नहीं।",
+          "translatedAt": "2026-11-01T09:48:23.743Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "vi": {
+          "text": "Cách nhanh chóng để đối chiếu mọi câu trả lời với trang gốc, và những gì một đoạn trích dẫn có thể hoặc không thể chứng minh.",
+          "translatedAt": "2026-11-01T09:48:35.986Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "nl": {
+          "text": "Een snelle manier om elk antwoord te verifiëren met de pagina waar het vandaan komt, en wat een citaat wel en niet kan bewijzen.",
+          "translatedAt": "2026-11-01T09:48:50.273Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "it": {
+          "text": "Un metodo rapido per confrontare qualsiasi risposta con la pagina di origine, e cosa una citazione può o non può dimostrare.",
+          "translatedAt": "2026-11-01T09:49:00.666Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ru": {
+          "text": "Быстрый способ сопоставить любой ответ с исходной страницей, а также о том, что цитата может и чего не может подтвердить.",
+          "translatedAt": "2026-11-01T09:49:11.888Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "uk": {
+          "text": "Швидкий спосіб зіставити будь-яку відповідь зі сторінкою, звідки її взято, і що цитата може та чого не може довести.",
+          "translatedAt": "2026-11-01T09:49:25.241Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "tr": {
+          "text": "Herhangi bir yanıtı alındığı web sayfasıyla hızlıca karşılaştırmanın yolu ve bir alıntının neleri kanıtlayıp neleri kanıtlayamayacağı üzerine.",
+          "translatedAt": "2026-11-01T09:49:36.780Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "id": {
+          "text": "Cara cepat untuk memverifikasi jawaban dengan halaman sumbernya, serta batasan bukti dari sebuah kutipan.",
+          "translatedAt": "2026-11-01T09:49:51.370Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pl": {
+          "text": "Szybki sposób na porównanie odpowiedzi ze stroną źródłową oraz o tym, co cytat może, a czego nie może udowodnić.",
+          "translatedAt": "2026-11-01T09:50:05.009Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "th": {
+          "text": "วิธีตรวจสอบคำตอบเทียบกับหน้าต้นฉบับอย่างรวดเร็ว พร้อมทำความเข้าใจว่าข้อความอ้างอิงสามารถพิสูจน์อะไรได้และไม่ได้บ้าง",
+          "translatedAt": "2026-11-01T09:50:16.249Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ar": {
+          "text": "طريقة سريعة للتحقق من أي إجابة بمقارنتها بالصفحة التي وردت منها، وما يمكن للاقتباس إثباته وما يعجز عنه.",
+          "translatedAt": "2026-11-01T09:50:23.295Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "sv": {
+          "text": "Ett snabbt sätt att dubbelkolla alla svar mot ursprungssidan, och vad ett citat faktiskt kan och inte kan bevisa.",
+          "translatedAt": "2026-11-01T09:50:33.712Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "da": {
+          "text": "En hurtig måde at kontrollere ethvert svar mod den oprindelige side, og hvad et citat kan og ikke kan bevise.",
+          "translatedAt": "2026-11-01T09:50:45.328Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "no": {
+          "text": "En rask måte å sjekke ethvert svar mot originalsiden, og hva et sitat faktisk kan og ikke kan bevise.",
+          "translatedAt": "2026-11-01T09:50:56.867Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fi": {
+          "text": "Nopea tapa tarkistaa mikä tahansa vastaus alkuperäistä sivua vasten sekä ymmärtää, mitä sitaatti voi ja ei voi todistaa.",
+          "translatedAt": "2026-11-01T09:51:08.582Z",
+          "model": "google/gemini-3.7-flash"
+        }
+      }
+    },
+    "d47d7cb0e4f8fd2be5ee07826694c18917d83ca77d0a01698582d05f432db996": {
+      "en": "More",
+      "translations": {
+        "de": {
+          "text": "Mehr",
+          "translatedAt": "2026-11-01T09:46:54.285Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fr": {
+          "text": "En savoir plus",
+          "translatedAt": "2026-11-01T09:47:06.489Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "es": {
+          "text": "Más",
+          "translatedAt": "2026-11-01T09:47:15.804Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh": {
+          "text": "更多",
+          "translatedAt": "2026-11-01T09:47:28.587Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh-TW": {
+          "text": "更多",
+          "translatedAt": "2026-11-01T09:47:39.389Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ja": {
+          "text": "その他",
+          "translatedAt": "2026-11-01T09:47:50.513Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ko": {
+          "text": "더 보기",
+          "translatedAt": "2026-11-01T09:47:56.510Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pt": {
+          "text": "Mais",
+          "translatedAt": "2026-11-01T09:48:12.380Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "hi": {
+          "text": "और देखें",
+          "translatedAt": "2026-11-01T09:48:23.743Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "vi": {
+          "text": "Xem thêm",
+          "translatedAt": "2026-11-01T09:48:35.986Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "nl": {
+          "text": "Meer",
+          "translatedAt": "2026-11-01T09:48:50.273Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "it": {
+          "text": "Altro",
+          "translatedAt": "2026-11-01T09:49:00.666Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ru": {
+          "text": "Ещё",
+          "translatedAt": "2026-11-01T09:49:11.888Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "uk": {
+          "text": "Більше",
+          "translatedAt": "2026-11-01T09:49:25.241Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "tr": {
+          "text": "Daha fazla",
+          "translatedAt": "2026-11-01T09:49:36.780Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "id": {
+          "text": "Lainnya",
+          "translatedAt": "2026-11-01T09:49:51.370Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pl": {
+          "text": "Więcej",
+          "translatedAt": "2026-11-01T09:50:05.009Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "th": {
+          "text": "เพิ่มเติม",
+          "translatedAt": "2026-11-01T09:50:16.249Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ar": {
+          "text": "المزيد",
+          "translatedAt": "2026-11-01T09:50:23.295Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "sv": {
+          "text": "Mer",
+          "translatedAt": "2026-11-01T09:50:33.712Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "da": {
+          "text": "Mere",
+          "translatedAt": "2026-11-01T09:50:45.328Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "no": {
+          "text": "Mer",
+          "translatedAt": "2026-11-01T09:50:56.867Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fi": {
+          "text": "Lisää",
+          "translatedAt": "2026-11-01T09:51:08.582Z",
+          "model": "google/gemini-3.7-flash"
+        }
+      }
+    },
+    "5644affd67053ff6f7daae43ac09febd66ab10e06e45e56447b344540cd19ce8": {
+      "en": "Sync your library to Nextcloud, S3 or a folder, encrypted",
+      "translations": {
+        "de": {
+          "text": "Bibliothek verschlüsselt mit Nextcloud, S3 oder einem lokalen Ordner synchronisieren",
+          "translatedAt": "2026-11-01T09:46:54.285Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fr": {
+          "text": "Synchronisez votre bibliothèque avec Nextcloud, S3 ou un dossier, de manière chiffrée",
+          "translatedAt": "2026-11-01T09:47:06.489Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "es": {
+          "text": "Sincroniza tu biblioteca con Nextcloud, S3 o una carpeta local de forma cifrada",
+          "translatedAt": "2026-11-01T09:47:15.804Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh": {
+          "text": "加密同步知识库至 Nextcloud、S3 或本地文件夹",
+          "translatedAt": "2026-11-01T09:47:28.587Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh-TW": {
+          "text": "透過端對端加密將資料庫同步至 Nextcloud、S3 或本機資料夾",
+          "translatedAt": "2026-11-01T09:47:39.389Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ja": {
+          "text": "ライブラリを暗号化して Nextcloud、S3、またはフォルダーに同期",
+          "translatedAt": "2026-11-01T09:47:50.513Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ko": {
+          "text": "Nextcloud, S3 또는 로컬 폴더로 라이브러리 암호화 동기화",
+          "translatedAt": "2026-11-01T09:47:56.510Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pt": {
+          "text": "Sincronize sua biblioteca no Nextcloud, S3 ou em uma pasta com criptografia de ponta a ponta",
+          "translatedAt": "2026-11-01T09:48:12.380Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "hi": {
+          "text": "अपनी library को Nextcloud, S3 या folder में sync करें, पूरी तरह encrypted",
+          "translatedAt": "2026-11-01T09:48:23.743Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "vi": {
+          "text": "Đồng bộ thư viện của bạn lên Nextcloud, S3 hoặc thư mục, được mã hóa an toàn",
+          "translatedAt": "2026-11-01T09:48:35.986Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "nl": {
+          "text": "Synchroniseer je bibliotheek versleuteld naar Nextcloud, S3 of een map",
+          "translatedAt": "2026-11-01T09:48:50.273Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "it": {
+          "text": "Sincronizza la tua libreria su Nextcloud, S3 o in una cartella, con crittografia end-to-end",
+          "translatedAt": "2026-11-01T09:49:00.666Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ru": {
+          "text": "Синхронизация библиотеки с Nextcloud, S3 или локальной папкой в зашифрованном виде",
+          "translatedAt": "2026-11-01T09:49:11.888Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "uk": {
+          "text": "Синхронізація бібліотеки з Nextcloud, S3 або папкою із шифруванням",
+          "translatedAt": "2026-11-01T09:49:25.241Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "tr": {
+          "text": "Kütüphanenizi Nextcloud'a, S3'e veya yerel bir klasöre uçtan uca şifreli olarak eşitleyin",
+          "translatedAt": "2026-11-01T09:49:36.780Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "id": {
+          "text": "Sinkronkan pustaka Anda ke Nextcloud, S3, atau folder lokal secara terenkripsi",
+          "translatedAt": "2026-11-01T09:49:51.370Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pl": {
+          "text": "Synchronizuj bibliotekę z Nextcloud, S3 lub folderem – z pełnym szyfrowaniem",
+          "translatedAt": "2026-11-01T09:50:05.009Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "th": {
+          "text": "ซิงค์คลังของคุณไปยัง Nextcloud, S3 หรือโฟลเดอร์ พร้อมการเข้ารหัสความปลอดภัย",
+          "translatedAt": "2026-11-01T09:50:16.249Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ar": {
+          "text": "مزامنة مكتبتك مشفرةً مع Nextcloud أو S3 أو مجلد محلي",
+          "translatedAt": "2026-11-01T09:50:23.295Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "sv": {
+          "text": "Synka ditt bibliotek till Nextcloud, S3 eller en mapp, krypterat",
+          "translatedAt": "2026-11-01T09:50:33.712Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "da": {
+          "text": "Synkroniser dit bibliotek krypteret til Nextcloud, S3 eller en mappe",
+          "translatedAt": "2026-11-01T09:50:45.328Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "no": {
+          "text": "Synkroniser biblioteket ditt kryptert til Nextcloud, S3 eller en mappe",
+          "translatedAt": "2026-11-01T09:50:56.867Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fi": {
+          "text": "Synkronoi kirjastosi Nextcloudiin, S3:een tai kansioon salattuna",
+          "translatedAt": "2026-11-01T09:51:08.582Z",
+          "model": "google/gemini-3.7-flash"
+        }
+      }
+    },
+    "2c7f7376b3e3447246287221d473d637cc0461baa566f3a0d63dd2f5bc5aaa98": {
+      "en": "Use your library in Claude, LM Studio and Cursor",
+      "translations": {
+        "de": {
+          "text": "Ihre Bibliothek in Claude, LM Studio und Cursor nutzen",
+          "translatedAt": "2026-11-01T09:46:54.285Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fr": {
+          "text": "Utilisez votre bibliothèque dans Claude, LM Studio et Cursor",
+          "translatedAt": "2026-11-01T09:47:06.489Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "es": {
+          "text": "Usa tu biblioteca en Claude, LM Studio y Cursor",
+          "translatedAt": "2026-11-01T09:47:15.804Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh": {
+          "text": "在 Claude、LM Studio 和 Cursor 中调用你的知识库",
+          "translatedAt": "2026-11-01T09:47:28.587Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh-TW": {
+          "text": "在 Claude、LM Studio 與 Cursor 中使用你的個人資料庫",
+          "translatedAt": "2026-11-01T09:47:39.389Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ja": {
+          "text": "Claude、LM Studio、Cursor でライブラリを活用する",
+          "translatedAt": "2026-11-01T09:47:50.513Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ko": {
+          "text": "Claude, LM Studio, Cursor에서 내 라이브러리 활용하기",
+          "translatedAt": "2026-11-01T09:47:56.510Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pt": {
+          "text": "Use sua biblioteca no Claude, LM Studio e Cursor",
+          "translatedAt": "2026-11-01T09:48:12.380Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "hi": {
+          "text": "अपनी library को Claude, LM Studio और Cursor में use करें",
+          "translatedAt": "2026-11-01T09:48:23.743Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "vi": {
+          "text": "Sử dụng thư viện của bạn trong Claude, LM Studio và Cursor",
+          "translatedAt": "2026-11-01T09:48:35.986Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "nl": {
+          "text": "Gebruik je bibliotheek in Claude, LM Studio en Cursor",
+          "translatedAt": "2026-11-01T09:48:50.273Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "it": {
+          "text": "Usa la tua libreria in Claude, LM Studio e Cursor",
+          "translatedAt": "2026-11-01T09:49:00.666Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ru": {
+          "text": "Использование библиотеки в Claude, LM Studio и Cursor",
+          "translatedAt": "2026-11-01T09:49:11.888Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "uk": {
+          "text": "Використовуйте свою бібліотеку в Claude, LM Studio та Cursor",
+          "translatedAt": "2026-11-01T09:49:25.241Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "tr": {
+          "text": "Kütüphanenizi Claude, LM Studio ve Cursor içinde kullanın",
+          "translatedAt": "2026-11-01T09:49:36.780Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "id": {
+          "text": "Gunakan pustaka Anda di Claude, LM Studio, dan Cursor",
+          "translatedAt": "2026-11-01T09:49:51.370Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pl": {
+          "text": "Korzystaj ze swojej biblioteki w Claude, LM Studio i Cursor",
+          "translatedAt": "2026-11-01T09:50:05.009Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "th": {
+          "text": "ใช้งานคลังของคุณร่วมกับ Claude, LM Studio และ Cursor",
+          "translatedAt": "2026-11-01T09:50:16.249Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ar": {
+          "text": "استخدم مكتبتك داخل Claude وLM Studio وCursor",
+          "translatedAt": "2026-11-01T09:50:23.295Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "sv": {
+          "text": "Använd ditt bibliotek i Claude, LM Studio och Cursor",
+          "translatedAt": "2026-11-01T09:50:33.712Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "da": {
+          "text": "Brug dit bibliotek i Claude, LM Studio og Cursor",
+          "translatedAt": "2026-11-01T09:50:45.328Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "no": {
+          "text": "Bruk biblioteket ditt i Claude, LM Studio og Cursor",
+          "translatedAt": "2026-11-01T09:50:56.867Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fi": {
+          "text": "Käytä kirjastoasi Claudessa, LM Studiossa ja Cursorissa",
+          "translatedAt": "2026-11-01T09:51:08.582Z",
+          "model": "google/gemini-3.7-flash"
+        }
+      }
+    },
+    "2820749709a342220bc479d3af4576a60cc10ca07c2a04e3575830840f44a091": {
+      "en": "From bookmarklet to 2.0",
+      "translations": {
+        "de": {
+          "text": "Vom Bookmarklet zu Version 2.0",
+          "translatedAt": "2026-11-01T09:46:54.285Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fr": {
+          "text": "Du bookmarklet à la version 2.0",
+          "translatedAt": "2026-11-01T09:47:06.489Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "es": {
+          "text": "De bookmarklet a 2.0",
+          "translatedAt": "2026-11-01T09:47:15.804Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh": {
+          "text": "从 Bookmarklet 到 2.0 的演进历程",
+          "translatedAt": "2026-11-01T09:47:28.587Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh-TW": {
+          "text": "從書籤工具（Bookmarklet）走向 2.0",
+          "translatedAt": "2026-11-01T09:47:39.389Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ja": {
+          "text": "ブックマークレットから 2.0 への歩み",
+          "translatedAt": "2026-11-01T09:47:50.513Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ko": {
+          "text": "북마클릿에서 2.0 버전까지의 여정",
+          "translatedAt": "2026-11-01T09:47:56.510Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pt": {
+          "text": "Do bookmarklet à versão 2.0",
+          "translatedAt": "2026-11-01T09:48:12.380Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "hi": {
+          "text": "Bookmarklet से 2.0 तक का सफर",
+          "translatedAt": "2026-11-01T09:48:23.743Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "vi": {
+          "text": "Từ bookmarklet đến phiên bản 2.0",
+          "translatedAt": "2026-11-01T09:48:35.986Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "nl": {
+          "text": "Van bookmarklet naar 2.0",
+          "translatedAt": "2026-11-01T09:48:50.273Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "it": {
+          "text": "Dal bookmarklet alla versione 2.0",
+          "translatedAt": "2026-11-01T09:49:00.666Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ru": {
+          "text": "От букмарклета до версии 2.0",
+          "translatedAt": "2026-11-01T09:49:11.888Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "uk": {
+          "text": "Від букмарклету до 2.0",
+          "translatedAt": "2026-11-01T09:49:25.241Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "tr": {
+          "text": "Bookmarklet'ten sürüm 2.0'a",
+          "translatedAt": "2026-11-01T09:49:36.780Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "id": {
+          "text": "Dari bookmarklet hingga 2.0",
+          "translatedAt": "2026-11-01T09:49:51.370Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pl": {
+          "text": "Od skryptozakładki do wersji 2.0",
+          "translatedAt": "2026-11-01T09:50:05.009Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "th": {
+          "text": "จาก Bookmarklet สู่เวอร์ชัน 2.0",
+          "translatedAt": "2026-11-01T09:50:16.249Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ar": {
+          "text": "من أداة المتصفح المصغرة (bookmarklet) إلى الإصدار 2.0",
+          "translatedAt": "2026-11-01T09:50:23.295Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "sv": {
+          "text": "Från bookmarklet till 2.0",
+          "translatedAt": "2026-11-01T09:50:33.712Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "da": {
+          "text": "Fra bookmarklet til 2.0",
+          "translatedAt": "2026-11-01T09:50:45.328Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "no": {
+          "text": "Fra bookmarklet til 2.0",
+          "translatedAt": "2026-11-01T09:50:56.867Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fi": {
+          "text": "Kirjanmerkkisovelluksesta versioon 2.0",
+          "translatedAt": "2026-11-01T09:51:08.582Z",
+          "model": "google/gemini-3.7-flash"
+        }
+      }
+    },
+    "c374cb629ca84da5f2ee729bb57fe0e95421d4c24380abd8b2a6a31171f09ade": {
+      "en": "Pocket alternative: the short version",
+      "translations": {
+        "de": {
+          "text": "Pocket-Alternative: Das Wichtigste in Kürze",
+          "translatedAt": "2026-11-01T09:46:54.285Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fr": {
+          "text": "Alternative à Pocket : la version courte",
+          "translatedAt": "2026-11-01T09:47:06.489Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "es": {
+          "text": "Alternativa a Pocket: la versión resumida",
+          "translatedAt": "2026-11-01T09:47:15.804Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh": {
+          "text": "Pocket 替代方案速览",
+          "translatedAt": "2026-11-01T09:47:28.587Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh-TW": {
+          "text": "Pocket 替代方案精簡版",
+          "translatedAt": "2026-11-01T09:47:39.389Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ja": {
+          "text": "Pocket の代替ツール：概要まとめ",
+          "translatedAt": "2026-11-01T09:47:50.513Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ko": {
+          "text": "Pocket 대안: 핵심 요약",
+          "translatedAt": "2026-11-01T09:47:56.510Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pt": {
+          "text": "Alternativa ao Pocket: a versão resumida",
+          "translatedAt": "2026-11-01T09:48:12.380Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "hi": {
+          "text": "Pocket alternative: संक्षेप में",
+          "translatedAt": "2026-11-01T09:48:23.743Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "vi": {
+          "text": "Giải pháp thay thế Pocket: tóm tắt ngắn gọn",
+          "translatedAt": "2026-11-01T09:48:35.986Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "nl": {
+          "text": "Pocket-alternatief: de korte versie",
+          "translatedAt": "2026-11-01T09:48:50.273Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "it": {
+          "text": "Un'alternativa a Pocket: in breve",
+          "translatedAt": "2026-11-01T09:49:00.666Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ru": {
+          "text": "Альтернатива Pocket: кратко о главном",
+          "translatedAt": "2026-11-01T09:49:11.888Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "uk": {
+          "text": "Альтернатива Pocket: коротко про головне",
+          "translatedAt": "2026-11-01T09:49:25.241Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "tr": {
+          "text": "Pocket alternatifi: kısaca",
+          "translatedAt": "2026-11-01T09:49:36.780Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "id": {
+          "text": "Alternatif Pocket: versi ringkas",
+          "translatedAt": "2026-11-01T09:49:51.370Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pl": {
+          "text": "Alternatywa dla Pocket: w skrócie",
+          "translatedAt": "2026-11-01T09:50:05.009Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "th": {
+          "text": "ทางเลือกแทน Pocket: ฉบับสรุปสั้น",
+          "translatedAt": "2026-11-01T09:50:16.249Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ar": {
+          "text": "بديل Pocket: ملخص موجز",
+          "translatedAt": "2026-11-01T09:50:23.295Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "sv": {
+          "text": "Ett alternativ till Pocket: den korta versionen",
+          "translatedAt": "2026-11-01T09:50:33.712Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "da": {
+          "text": "Pocket-alternativ: den korte version",
+          "translatedAt": "2026-11-01T09:50:45.328Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "no": {
+          "text": "Alternativ til Pocket: kortversjonen",
+          "translatedAt": "2026-11-01T09:50:56.867Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fi": {
+          "text": "Pocketin vaihtoehto pähkinänkuoressa",
+          "translatedAt": "2026-11-01T09:51:08.582Z",
+          "model": "google/gemini-3.7-flash"
+        }
+      }
+    },
+    "3d3d4bc138a4fe6b16b4af4bcbf2f64d534beab42cc88485d8b7fe7b2fb28b75": {
+      "en": "Quellen prüfen in Schule und Hochschule (German)",
+      "translations": {
+        "de": {
+          "text": "Quellen prüfen in Schule und Hochschule (Deutsch)",
+          "translatedAt": "2026-11-01T09:46:54.285Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fr": {
+          "text": "Quellen prüfen in Schule und Hochschule (allemand)",
+          "translatedAt": "2026-11-01T09:47:06.489Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "es": {
+          "text": "Quellen prüfen in Schule und Hochschule (alemán)",
+          "translatedAt": "2026-11-01T09:47:15.804Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh": {
+          "text": "中学与高校中的信源核验（德语）",
+          "translatedAt": "2026-11-01T09:47:28.587Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh-TW": {
+          "text": "學校與高等教育機構中的來源查核（德文）",
+          "translatedAt": "2026-11-01T09:47:39.389Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ja": {
+          "text": "学校や大学における情報源の検証（ドイツ語）",
+          "translatedAt": "2026-11-01T09:47:50.513Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ko": {
+          "text": "학교 및 대학에서의 출처 검증 (독일어)",
+          "translatedAt": "2026-11-01T09:47:56.510Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pt": {
+          "text": "Quellen prüfen in Schule und Hochschule (Alemão)",
+          "translatedAt": "2026-11-01T09:48:12.380Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "hi": {
+          "text": "Quellen prüfen in Schule und Hochschule (German)",
+          "translatedAt": "2026-11-01T09:48:23.743Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "vi": {
+          "text": "Quellen prüfen in Schule und Hochschule (Tiếng Đức)",
+          "translatedAt": "2026-11-01T09:48:35.986Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "nl": {
+          "text": "Quellen prüfen in Schule und Hochschule (Duits)",
+          "translatedAt": "2026-11-01T09:48:50.273Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "it": {
+          "text": "Quellen prüfen in Schule und Hochschule (in tedesco)",
+          "translatedAt": "2026-11-01T09:49:00.666Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ru": {
+          "text": "Quellen prüfen in Schule und Hochschule (на немецком)",
+          "translatedAt": "2026-11-01T09:49:11.888Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "uk": {
+          "text": "Quellen prüfen in Schule und Hochschule (німецькою)",
+          "translatedAt": "2026-11-01T09:49:25.241Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "tr": {
+          "text": "Quellen prüfen in Schule und Hochschule (Almanca)",
+          "translatedAt": "2026-11-01T09:49:36.780Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "id": {
+          "text": "Quellen prüfen in Schule und Hochschule (Jerman)",
+          "translatedAt": "2026-11-01T09:49:51.370Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pl": {
+          "text": "Quellen prüfen in Schule und Hochschule (po niemiecku)",
+          "translatedAt": "2026-11-01T09:50:05.009Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "th": {
+          "text": "Quellen prüfen in Schule und Hochschule (ภาษาเยอรมัน)",
+          "translatedAt": "2026-11-01T09:50:16.249Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ar": {
+          "text": "Quellen prüfen in Schule und Hochschule (الألمانية)",
+          "translatedAt": "2026-11-01T09:50:23.295Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "sv": {
+          "text": "Quellen prüfen in Schule und Hochschule (tyska)",
+          "translatedAt": "2026-11-01T09:50:33.712Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "da": {
+          "text": "Quellen prüfen in Schule und Hochschule (tysk)",
+          "translatedAt": "2026-11-01T09:50:45.328Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "no": {
+          "text": "Quellen prüfen in Schule und Hochschule (tysk)",
+          "translatedAt": "2026-11-01T09:50:56.867Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fi": {
+          "text": "Quellen prüfen in Schule und Hochschule (saksaksi)",
+          "translatedAt": "2026-11-01T09:51:08.582Z",
+          "model": "google/gemini-3.7-flash"
+        }
+      }
     }
   }
 }
