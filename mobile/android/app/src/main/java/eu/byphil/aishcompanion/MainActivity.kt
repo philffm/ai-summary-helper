@@ -9,6 +9,19 @@ import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.WindowInsets
+import androidx.compose.ui.unit.dp
+import androidx.compose.foundation.layout.navigationBars
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.ui.Alignment
+import androidx.compose.ui.draw.clip
+import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.selection.selectable
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.widthIn
+import androidx.compose.foundation.layout.heightIn
+import androidx.compose.foundation.layout.windowInsetsPadding
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.consumeWindowInsets
 import androidx.compose.foundation.layout.WindowInsetsSides
 import androidx.compose.foundation.layout.fillMaxSize
@@ -203,9 +216,7 @@ private fun App(model: AppModel, onScan: ((String?) -> Unit) -> Unit, onReady: (
     Scaffold(
         contentWindowInsets = if (wide) WindowInsets.safeDrawing.only(WindowInsetsSides.Horizontal + WindowInsetsSides.Bottom) else WindowInsets.safeDrawing.only(WindowInsetsSides.Horizontal),
         bottomBar = {
-            if (!wide) NavigationBar {
-                Tab.entries.forEach { t -> NavigationBarItem(selected = tab == t.ordinal, onClick = { tab = t.ordinal }, icon = { TabIcon(t) }, label = { Text(t.label) }) }
-            }
+            if (!wide) FloatingNav(Tab.entries, tab, { TabIcon(it) }, { tab = it })
         },
     ) { padding ->
         Row(Modifier.padding(padding).consumeWindowInsets(padding).fillMaxSize()) {   // consume: the keyboard padding of the screens inside then does not count the bar twice
@@ -225,6 +236,38 @@ private fun App(model: AppModel, onScan: ((String?) -> Unit) -> Unit, onReady: (
                     }
                 }
                 MiniPlayer()
+            }
+        }
+    }
+}
+
+/**
+ * The bottom navigation as in the extension: a rounded bar that floats above the content, the current tab as a filled pill. Sizes keep every item a
+ * comfortable touch target (48 dp or more); the pill carries white/dark text on the brand blue, so the current tab is told by shape and colour.
+ */
+@Composable
+private fun FloatingNav(tabs: List<Tab>, selected: Int, icon: @Composable (Tab) -> Unit, onSelect: (Int) -> Unit) {
+    val scheme = MaterialTheme.colorScheme
+    Box(Modifier.fillMaxWidth().windowInsetsPadding(WindowInsets.navigationBars).padding(horizontal = 20.dp, vertical = 10.dp), contentAlignment = Alignment.Center) {
+        Surface(
+            Modifier.widthIn(max = 520.dp).fillMaxWidth(), shape = RoundedCornerShape(28.dp), color = scheme.surfaceContainerLow,
+            tonalElevation = 3.dp, shadowElevation = 6.dp, border = androidx.compose.foundation.BorderStroke(1.dp, scheme.outlineVariant),
+        ) {
+            Row(Modifier.padding(6.dp), horizontalArrangement = Arrangement.spacedBy(4.dp)) {
+                tabs.forEach { t ->
+                    val on = selected == t.ordinal
+                    val content = if (on) scheme.onPrimary else scheme.onSurfaceVariant
+                    androidx.compose.foundation.layout.Column(
+                        Modifier.weight(1f).heightIn(min = 52.dp).clip(RoundedCornerShape(22.dp)).background(if (on) scheme.primary else androidx.compose.ui.graphics.Color.Transparent)
+                            .selectable(selected = on, role = androidx.compose.ui.semantics.Role.Tab, onClick = { onSelect(t.ordinal) }).padding(vertical = 8.dp),
+                        horizontalAlignment = Alignment.CenterHorizontally, verticalArrangement = Arrangement.Center,
+                    ) {
+                        androidx.compose.runtime.CompositionLocalProvider(androidx.compose.material3.LocalContentColor provides content) {
+                            icon(t)
+                            Text(t.label, style = MaterialTheme.typography.labelSmall, fontWeight = if (on) androidx.compose.ui.text.font.FontWeight.SemiBold else androidx.compose.ui.text.font.FontWeight.Medium)
+                        }
+                    }
+                }
             }
         }
     }
