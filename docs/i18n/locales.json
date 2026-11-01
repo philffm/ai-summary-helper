@@ -13,7 +13,16 @@
     "blog/bring-your-own-key.html",
     "blog/feeds-recap.html",
     "blog/highlighting-vs-asking.html",
-    "blog/verify-ai-summary.html"
+    "blog/verify-ai-summary.html",
+    "blog/ai-apps-mcp.html",
+    "blog/digital-sovereignty-for-individuals.html",
+    "blog/sync-to-nextcloud-s3-or-a-folder.html"
+  ],
+  "exempt": [
+    "bookmarklet.html",
+    "goodbye.html",
+    "education/index.html",
+    "pocket-alternative/index.html"
   ],
   "locales": {
     "de": {

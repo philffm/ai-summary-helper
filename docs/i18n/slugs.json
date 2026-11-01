@@ -130,5 +130,11 @@
   },
   "blog/ai-apps-mcp.html": {
     "de": "blog/ki-apps-mcp.html"
+  },
+  "blog/digital-sovereignty-for-individuals.html": {
+    "de": "blog/digitale-souveraenitaet-fuer-einzelne.html"
+  },
+  "blog/sync-to-nextcloud-s3-or-a-folder.html": {
+    "de": "blog/sync-mit-nextcloud-s3-oder-ordner.html"
   }
 }
