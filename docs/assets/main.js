@@ -1072,6 +1072,44 @@ function setBilling(period) {
   loop();
 })();
 
+// Device-aware install path: Chrome on a phone or tablet cannot install extensions, so there the primary action
+// becomes "Send to my computer" (native share sheet, else copy link). Nothing is collected: no address is asked for,
+// the mail option only opens the visitor's own mail app.
+(function () {
+  var ua = navigator.userAgent || '';
+  var handheld = /Android|iPhone|iPod|iPad|Mobi/i.test(ua) || (/Macintosh/.test(ua) && navigator.maxTouchPoints > 1);
+  if (!handheld) return;
+  var URL_ = 'https://ai-summary-helper.byphil.eu/', TITLE = 'AI Summary Helper', TEXT = 'Add AI Summary Helper to your browser on your computer:';
+  document.documentElement.classList.add('is-handheld');
+  document.querySelectorAll('[data-desktop-cta]').forEach(function (e) { e.hidden = true; });
+  document.querySelectorAll('[data-send], [data-send-note]').forEach(function (e) { e.hidden = false; });
+  var toast;
+  function say(msg) {
+    if (!toast) { toast = document.createElement('div'); toast.className = 'send-toast'; toast.setAttribute('role', 'status'); document.body.appendChild(toast); }
+    toast.textContent = msg; toast.classList.add('is-on');
+    clearTimeout(say.t); say.t = setTimeout(function () { toast.classList.remove('is-on'); }, 2600);
+  }
+  function track(a) { try { window.aishTrack && window.aishTrack('send-to-computer', a); } catch (e) {} }
+  function copy() {
+    track('copy');
+    var done = function () { say('Link copied. Open it on your computer.'); };
+    if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(URL_).then(done, function () { say(URL_); });
+    else say(URL_);
+  }
+  function send() {
+    if (navigator.share) {
+      track('share');
+      navigator.share({ title: TITLE, text: TEXT, url: URL_ }).catch(function (e) { if (e && e.name !== 'AbortError') copy(); });
+    } else copy();
+  }
+  document.querySelectorAll('[data-send]').forEach(function (b) { b.addEventListener('click', send); });
+  document.querySelectorAll('[data-send-copy]').forEach(function (a) { a.addEventListener('click', function (e) { e.preventDefault(); copy(); }); });
+  document.querySelectorAll('[data-send-mail]').forEach(function (a) {
+    a.href = 'mailto:?subject=' + encodeURIComponent(TITLE) + '&body=' + encodeURIComponent(TEXT + '\n' + URL_);
+    a.addEventListener('click', function () { track('mail'); });
+  });
+})();
+
 // Browser-aware store links: Firefox visitors get the add-on page (and "Chrome" in the label becomes "Firefox"); the other store stays as a secondary link.
 (function () {
   if (!/Firefox\//.test(navigator.userAgent) || /Seamonkey/.test(navigator.userAgent)) return;

@@ -1330,3 +1330,11 @@ html.vfeed-open, html.vfeed-open body{ overflow:hidden; }
   .persona-switch::-webkit-scrollbar{ display:none; }
   .persona-btn{ flex-shrink:0; }
 }
+
+/* Device-aware install path (main.js): phones get "Send to my computer" instead of the Chrome store button */
+.send-note{ font-size:14px; line-height:1.5; color:var(--paper-dim); max-width:520px; margin:0 0 12px; }
+.send-note a{ color:inherit; text-decoration:underline; text-underline-offset:3px; }
+.send-note[hidden], [data-send][hidden]{ display:none !important; }
+.send-toast{ position:fixed; left:50%; bottom:24px; transform:translate(-50%,12px); z-index:1000; max-width:calc(100vw - 32px); padding:12px 18px; border-radius:999px; background:#15161B; color:#F5F5F7; border:1px solid rgba(255,255,255,.18); font-size:14px; box-shadow:0 6px 24px rgba(0,0,0,.3); opacity:0; pointer-events:none; transition:opacity .2s ease, transform .2s ease; }
+.send-toast.is-on{ opacity:1; transform:translate(-50%,0); }
+@media (prefers-reduced-motion: reduce){ .send-toast{ transition:none; } }
