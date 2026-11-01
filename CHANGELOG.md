@@ -5,6 +5,8 @@ Commit history has the details: <https://github.com/philffm/ai-summary-helper/co
 
 ## Unreleased
 
+## 2.2.38 (2026-11-01)
+
 ### Library sync, backup and publishing
 
 - **Sync & backup (Settings).** Add a place on your own storage: Nextcloud or any WebDAV server, an S3-compatible bucket (AWS S3, Cloudflare R2, Backblaze B2, MinIO) or a folder on your computer (Chrome and Edge on desktop).
@@ -37,6 +39,105 @@ Commit history has the details: <https://github.com/philffm/ai-summary-helper/co
 ### Android (not user-visible yet)
 
 - The phone app's sync core (value hashes, encrypted files, merge, WebDAV and S3 stores, engine) is built and tested against the extension; the screens follow.
+
+### All changes
+
+#### Added
+
+- Auto: new accounts start on it (where the service offers it), history and stats record the model that really answered
+
+#### Changed
+
+- i18n: update translations for changed content
+- Android: an unreadable feed list is recovered from the last good copy (or kept aside) instead of being shown as 'No feeds yet' and overwritten by the next write; the Feeds screen says why it is empty
+- Android: pages summarized on the phone and passages marked there go to the library (only pages it does not hold yet, never replacing the browser's text; unmarking removes the passage); the engine uploads only records the phone made; tests incl. a round trip and the extension's side
+- Android: the bottom navigation floats as a rounded bar with the current tab as a filled pill; a test keeps the app's core colours and sticky colours in step with the extension
+- Android look closer to the extension: notes as coloured stickies (same colours as the extension, dark variant, checked contrast), pill chips everywhere, outlined line icons in the navigation, settings and notes
+- Notes tab: your own highlights and the AI's can be removed (yours with a deletion marker for sync, the AI's dismissed so they never return), their comments with them
+- Android: the keyboard no longer covers fields low on a Settings screen (the screens make room for it, the focused field scrolls into view)
+- QR join: a place's settings show a code for the phone (server login, folder and, for the suggested words, the passphrase; hidden after a minute, never stored) and the Android app scans it; shared vector keeps both sides in step. Copy puts the words on the clipboard in one piece with dashes
+- Android: articles and highlights of the synced library become reading-list articles (own tolerant HTML-to-blocks reader, summary as text, deletions follow, articles that came another way are never touched); unit tests
+- YouTube: age-restricted and sign-in-only videos fall back to the page's own transcript panel (the endpoint cannot sign in); empty caption downloads do too; a sign-in wall gets its own message
+- Android: Notes tab (write, edit, delete offline, trailing #tags), notes sync both ways with the browser, 'Save as a note' in the share sheet; unit tests incl. a round trip with an encrypted place
+- Android: Settings → Library sync joins the browser's encrypted library (Nextcloud/WebDAV or S3) with its passphrase, syncs now and every six hours, shows the suggested words again, disconnects; logic covered by unit tests
+- Website and store listings: free for everyone, donations (the Support Pass) unlock byphil Cloud with many AI models; no more 'Pro when you need it' wording; the structured data and llms.txt say the same
+- Notes: the sticky colours follow the browser's dark setting (theme System had no dark variant), calmer dark cards with a hairline edge, a readable delete link; contrast test covers the card colours
+- Sync: no recovery key. One passphrase for everything; a device keeps the suggested words with its key so they can be shown again in the place's settings (an own passphrase is never kept). The key code is removed from the extension, the Android app and the shared test vector; guides and privacy policy say so
+- Sync: one passphrase for everything. A new place shows only its six words once (no second key to save); the guides, privacy policy, readme, changelog and store listings no longer describe a recovery key; the join field still accepts one from an older setup
+- Sync: joining takes the passphrase or the recovery key in one field (told apart by shape), clearer words for what the two are, and for Encrypted (sync and backup, not for a website) versus Readable (to publish); German texts
+- Notes in History: count chips on the cards, a Notes and highlights section in the article view (with a field that links a new note to the page), an Open button in By article; German texts
+- Hero: the video button sits on the exact centre of the demo window at every screen size
+- Hero: the video button sits centered in the lower third of the demo window
+- Hero: a play button over the animated demo opens the full video (komplett, in the page's language) in the player; the bookmarklet is no longer offered in the hero (old #bookmarklet links still redirect)
+- German: the Sync & backup screen, the Notes tab and the EU/Auto texts are translated (211 strings that were English in every language; the extractor now covers syncView.js and notesView.js); the German Nextcloud guide uses the German button names
+- Blog: German Nextcloud guide (written for the German market: WebDAV address, app password, hosting options without prices, GDPR note), linked from the German sovereignty article; button names given as they appear in the English-only sync screen
+- Highlights: readable on every page colour (AI highlight now opaque with dark blue text, 7:1 instead of 2:1 on dark pages), the on-page panel's links and remove action readable in dark mode, scroll ticks visible on any background; test pins the contrast ratios
+- Blog: German edition of the digital sovereignty article (written for the German market, not machine-translated); both editions now cover the EU option for the hosted service, EU company vs EU servers, and the IONOS/OpenRouter facts; post dates in German month names reach the structured data
+- Hosted models: Auto choices (the service picks a model per request) in the model lists, the EU company mark, what a request is for sent along, and what Auto chose and why shown in Settings
+- Hosted models: EU default (Mistral Small) suggestion in one tap, the model that really answered and why (long text), shown in Settings
+- Privacy: the backend and its database are both hosted by IONOS in Germany
+- EU option: say plainly that the text passes through our service (server in Germany, IONOS) and OpenRouter (US company)
+- Hosted models: Prefer EU servers (header to the service, EU marks and prices in the model lists, which route the last request took); the service pins EU endpoints, other models keep working
+- Website: no Pricing in the menu (everything is free; supporting is voluntary)
+- SEO: how-to article for syncing to Nextcloud, S3 or a folder; internal links from the home page, the other posts and the sovereignty article
+- Blog: Digital sovereignty for individuals (English; sourced guide with a ladder, a weekend checklist and an honest look at what the extension does and does not do)
+- Sync: a new place starts with six random words (BIP-39 list) as passphrase, with copy, another suggestion and own-passphrase checks (12 characters minimum, strength hint); one spelling of word phrases on every device, including the phone app's test vector
+- Content: name Nextcloud next to WebDAV (website card, store listings, README, permission notes)
+- Website: feature cards for library sync on your own storage and for notes (English; the translation workflow does the other languages), privacy page updated
+- Content: library sync, backup and publishing and Notes in the privacy policy, README, changelog, store listings (9 languages) and permission justifications
+- Demo shim: openNotes and syncHlDeleted are quiet actions (CI contract check)
+- Sync settings: a folder the browser took permission back from is shown at the top of the list with one button to allow it again
+- Android sync: engine (pull, merge, push of the phone's own notes, delete guard, long-absence rule), record store, stamping; ten engine tests and a cross-implementation run against the extension's engine through a folder
+- Android sync: WebDAV and S3 stores (OkHttp, SigV4 against AWS's example) with in-memory test servers
+- Android: sync core in Kotlin (value hash, key derivation, encrypted files, merge) proven against a shared vector made by the extension's code; the merge's change test no longer depends on key order
+- Sync cleanup: old deletion markers expire (remote file and stamp), a device away longer than that sends only what changed, a flood of deletions from other devices waits for a yes, older highlights get stable ids
+- Sync settings: the S3 row opens the S3 form (found in a real browser run), the intro describes what places are for now
+- Sync: the same URL saved on several devices becomes one article (earliest saved stays, missing fields filled with their original stamps, collections follow, tombstone for the rest); stamp events are read against stored state, adopted stamps are held until their data is written
+- Sync merge: two tombstones for one record settle on the later one (they used to overwrite each other on every run)
+- Sync: a folder on this computer says Saving, not Uploading
+- Sync folder: a refusal from the browser is explained (choose your own folder, allow access) instead of shown raw
+- Sync: S3-compatible store (SigV4, path style, conditional writes with a HEAD check), S3 as a server in Settings, engine test on all three stores
+- Sync: a folder permission problem is shown as that (not as a wrong password), and asked for in the click that tests or saves
+- Sync: encrypted places in the app (create with passphrase and recovery key, join, sync both ways or back up only, restore), a folder on this computer as a server, key kept in the secrets
+- Sync: folder store (File System Access API) with the WebDAV interface, handle vault, fake folder; the two-device encrypted sync passes on both stores
+- Sync: two-way engine for encrypted places (pull, merge, adopt stamps then data, push; first-join rule, backup hook, damaged-file and pruned-text safety, 412 retry, resumable) with a data adapter and a two-device test
+- Sync: crypto and merge tested; syncApply puts merged fields back onto storage (round trip with syncFields, per-element tags and sources)
+- Viewer Sky: full-screen immersive overlay (calm labels that never overlap, fewer clusters, softer glow, legend, search, tour, 3D flight)
+- Notes from the page: selection toolbar (highlight, comment, note) with a small composer, comments and notes in the page panel, Open in Notes; the worker files them (address from the tab)
+- Viewer Sky: clusters from shared tags (force layout, named, nebulae), constellations, fly-in, cluster flights, tour, neighbours, 3D with fitted camera; Notes composer ends where Summarize's does
+- Notes: split view (Notes as a pane in History and Feeds, the Notes screen with By article and Tags panes, layout switcher on the Notes screen); the composer is the Summarize screen's own pill and button
+- Publish: look at the folder first (restore missing or changed files, find leftovers, rebuild a missing list or viewer); viewer Sky (2D map, timeline, 3D with three.js); Notes composer as a card like the Summarize screen
+- Notes: a solid, slim composer bar (the app's global textarea rule had made it tall and see-through)
+- Viewer: opened from disk it reads library.js (a script) instead of fetching library.json; clear message when it is missing
+- Sync places: danger zone for notes, comments, reminders and full text (off by default); viewer shows them
+- Notes tab: fourth bottom-bar item with list and grid, docked composer, comments on highlights, search and filters
+- Notes: store for notes and highlight comments (own records, never in the highlight array), sync stamps and deletion markers, registry and backup routing
+- Sync: optional viewer page for readable places (index.html + aish-viewer.js, reads library.json, d3 timeline and tag graph loaded on demand)
+- Sync publish: parallel uploads, longer run budget, 'Continuing… N left', no overlapping runs on one place, WebDAV recovers when a folder was removed
+- Sync: one server can hold several places (folders); logins are saved once per server; places from before are migrated
+- Sync places: choose which articles go out (a tag, all except a tag, or all)
+- Sync: live progress while a run is going (phase, counts, progress bar); the form's status card updates without re-rendering the form
+- WebDAV: say which step failed (wrong address, missing parent folder) instead of a bare 409
+- Settings: Sync & backup panel (list of places, add flow, form with test and save, status), publish-only WebDAV places
+- Sync: places service (add/test/update/remove/run), worker alarm, debounce on library changes, syncNow message
+- Sync: readable format, WebDAV store and the publish-only push engine (hash-based, resumable, guarded removals)
+- Sync: places, secrets and per-place ledgers in the registry; stamps follow 'a place exists' instead of a flag
+- Sync: stamp store with a background-worker observer, explicit deletion markers, highlight deletions reported by the page
+- Sync: register the device id and stamp sidecars (never backed up, restored or shared between devices)
+- Test 182: the index-only case compares against the state the stamp came from
+- Sync stamps: a missing record is unknown, not cleared; tags and collection sources are stamped per element; stubs sync
+- Sync: pure stamping module (hash-based, idempotent, no deletes from diffs, pruning never syncs)
+- Articles: serialize index and record writes behind one lock; every delete path cleans collection references
+- Store listing: AI apps (MCP), Kindle formats, archive links, prompt builder, 24 UI languages in all markets; permission justifications
+
+#### Fixed
+
+- Fix: pressing a button of the selection toolbar did nothing (its mouse-up counted as a new selection, drew the toolbar again and swallowed the click)
+
+#### Developer experience
+
+- Test: progress wording for a local folder
+- Test: wait longer for the deliberately slow key derivation
 
 ## 2.2.37 (2026-10-30)
 
