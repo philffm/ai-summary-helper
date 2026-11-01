@@ -1468,3 +1468,14 @@ body:has(.hero--photo){ padding-top:0; }
   .post-video-in{ position:sticky; top:104px; }
   .post-video-open{ max-width:none; }
 }
+
+/* Calmer stage: the dark veil is its own layer, and the picture dissolves into the page colour at the bottom instead of ending in a hard edge. */
+.hero--photo::after{ inset:auto 0 0 0; height:96px; background:linear-gradient(180deg, rgba(0,0,0,0), var(--ink-950)); }
+.hero--photo::before{ content:""; position:absolute; inset:0; z-index:-1; background:linear-gradient(180deg, rgba(8,9,12,.80) 0%, rgba(8,9,12,.66) 50%, rgba(8,9,12,.72) 100%); }
+.post-stage{ padding:112px 0 80px; }
+.post-stage::before{ background:linear-gradient(180deg, rgba(8,9,12,.78) 0%, rgba(8,9,12,.62) 60%, rgba(8,9,12,.66) 100%); }
+.post-stage::after{ height:72px; }
+@media (max-width:860px){ .post-stage{ padding:100px 0 64px; } }
+.hero--photo .hero-credit{ bottom:108px; }
+.post-stage .hero-credit{ bottom:84px; }
+.blog-card .blog-video-badge, .blog-card .blog-read{ align-self:flex-start; }
