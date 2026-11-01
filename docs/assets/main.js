@@ -888,6 +888,9 @@ function setBilling(period) {
   // The live demo slide is for desktop only: on phones it (and its dot) is removed before the slides are counted.
   if (window.matchMedia && window.matchMedia('(max-width: 820px)').matches) {
     [].slice.call(root.querySelectorAll('[data-desktop-only], .cx-dot--demo')).forEach(function (n) { n.remove(); });
+  } else {
+    // ... and the phone variant of the demo (side panel only) is for small screens only
+    [].slice.call(root.querySelectorAll('[data-mobile-only], .cx-dot--demo-m')).forEach(function (n) { n.remove(); });
   }
   var slides = [].slice.call(track.children);
   var dots = [].slice.call(root.querySelectorAll('.cx-dot'));
@@ -945,17 +948,17 @@ function setBilling(period) {
 (function () {
   function siteTheme() { return document.documentElement.getAttribute('data-theme') === 'light' ? 'light' : 'dark'; }
   function siteLang() { var seg = location.pathname.split('/').filter(Boolean)[0] || ''; return /^[a-z]{2}(-[a-z]{2})?$/.test(seg) ? seg : 'en'; }
-  function demoUrl(u) { return u.split('?')[0] + '?lang=' + siteLang() + '&theme=' + siteTheme(); }
+  function demoUrl(u, extra) { return u.split('?')[0] + '?lang=' + siteLang() + '&theme=' + siteTheme() + (extra ? '&' + extra : ''); }
   document.querySelectorAll('.demo-open').forEach(function (a) { a.addEventListener('click', function () { a.href = demoUrl(a.getAttribute('href')); }); });
   document.querySelectorAll('[data-demo]').forEach(function (box) {
     var btn = box.querySelector('.demo-start');
     if (!btn) return;
     function poster() { box.style.backgroundImage = 'url(' + box.getAttribute('data-src').replace('demo/index.html', 'assets/demo-poster/' + (/^(en|de|fr|es|pt|zh|zh-tw|ja|ko|hi|vi|nl|it|ru|uk|tr|id|pl|th|ar|sv|da|no|fi)$/.test(siteLang()) ? siteLang() : 'en') + '-' + siteTheme() + '.webp') + ')'; }
-    poster();
-    new MutationObserver(function () { if (!box.classList.contains('is-live')) poster(); }).observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme'] });
+    if (!box.hasAttribute('data-demo-fit')) poster();
+    if (!box.hasAttribute('data-demo-fit')) new MutationObserver(function () { if (!box.classList.contains('is-live')) poster(); }).observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme'] });
     btn.addEventListener('click', function () {
       var f = document.createElement('iframe');
-      f.src = demoUrl(box.getAttribute('data-src')); f.title = 'AI Summary Helper live demo'; f.loading = 'lazy';
+      f.src = demoUrl(box.getAttribute('data-src'), box.getAttribute('data-demo-params')); f.title = 'AI Summary Helper live demo'; f.loading = 'lazy';
       box.appendChild(f); box.classList.add('is-live');
       // Follow the site's light/dark switch while the demo is open.
       new MutationObserver(function () { try { f.contentWindow.postMessage({ aishDemo: true, type: 'theme', theme: siteTheme() }, '*'); } catch (e) { /* not ready */ } })
@@ -1682,6 +1685,7 @@ function setBilling(period) {
     if (!track || !prev || !next) return;
     // slides marked data-desktop-only (the live demo) do not exist on small screens
     if (window.matchMedia && window.matchMedia('(max-width: 820px)').matches) track.querySelectorAll('[data-desktop-only]').forEach(function (n) { n.remove(); });
+    else track.querySelectorAll('[data-mobile-only]').forEach(function (n) { n.remove(); });
     root.slideGo = function (id) {
       var el = track.querySelector('#' + id); if (!el) return false;
       track.scrollTo({ left: el.offsetLeft, behavior: reduce ? 'auto' : 'smooth' }); return true;
@@ -1784,6 +1788,24 @@ function setBilling(period) {
   });
 })();
 
+
+/* Phone demo frames: data-demo-fit="<width>x<height>": the side panel is laid out at that size (it needs about 420px) and scaled to the frame. */
+(function () {
+  document.querySelectorAll('[data-demo-fit]').forEach(function (box) {
+    var d = (box.getAttribute('data-demo-fit') || '420x800').split('x'), W = Number(d[0]) || 420, H = Number(d[1]) || 800;
+    box.style.setProperty('--fw', W + 'px'); box.style.setProperty('--fh', H + 'px'); box.style.aspectRatio = W + ' / ' + H;
+    function set() { box.style.setProperty('--ds', (box.clientWidth / W).toFixed(4)); }
+    set();
+    if (window.ResizeObserver) new ResizeObserver(set).observe(box); else window.addEventListener('resize', set);
+  });
+  document.querySelectorAll('.demo-open-m').forEach(function (a) {
+    a.addEventListener('click', function () {
+      var seg = location.pathname.split('/').filter(Boolean)[0] || '';
+      var lang = /^[a-z]{2}(-[a-z]{2})?$/.test(seg) ? seg : 'en';
+      a.href = a.getAttribute('href').split('&lang=')[0] + '&lang=' + lang + '&theme=' + (document.documentElement.getAttribute('data-theme') === 'light' ? 'light' : 'dark');
+    });
+  });
+})();
 
 /* Demo in full window: [data-demo-fullscreen] (a button in the same slide) and the demo's own "open full screen" link use the browser's
    Fullscreen API on the demo frame; where that is not available (iOS), the demo opens in a new tab. */
