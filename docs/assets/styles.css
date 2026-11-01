@@ -1415,3 +1415,8 @@ button.tier-cta[hidden]{ display:none; }
 .blog-more a:hover::after{ opacity:1; }
 .blog-all{ text-align:center; margin:26px 0 0; }
 @media (max-width:640px){ .blog-more{ grid-template-columns:1fr; } }
+
+/* Three scene illustrations in a row (the screen content is only atmosphere here, not a product screenshot) */
+.photo-row--3{ grid-template-columns:repeat(3, 1fr); max-width:1180px; margin-left:auto; margin-right:auto; }
+.photo-row--3 img{ aspect-ratio:4/3; }
+@media (max-width:900px){ .photo-row--3{ grid-template-columns:1fr; max-width:560px; } }
