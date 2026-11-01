@@ -62,3 +62,7 @@ Scope: what changed for the user, in one line
 ## Reporting bugs and ideas
 
 Use the issue templates. For security problems see [SECURITY.md](SECURITY.md).
+
+## License of contributions
+
+The project is dual-licensed (AGPL-3.0 and a commercial license, see `COMMERCIAL-LICENSE.md`). By opening a pull request you confirm that you wrote the change (or have the right to submit it) and that you license it to the project under AGPL-3.0 **and** grant the maintainer the right to also distribute it under the project's commercial license. Without that grant a contribution could not be part of the dual-licensed code, and we would have to decline it.
