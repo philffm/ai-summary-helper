@@ -110829,6 +110829,1686 @@
           "model": "google/gemini-3.7-flash"
         }
       }
+    },
+    "aa1b3bf2d0cd028bd03c800faa600c3731dfe7aaaceab79f23c1ba0577e69cf4": {
+      "en": "keep your whole library in step between your devices or hold a backup: articles, summaries, full texts, highlights, notes, collections and tags. Everything is encrypted in your browser (AES-256-GCM, with a key derived from your passphrase) before it leaves the device, and file names are scrambled. The server or folder only sees encrypted files, their sizes and when they changed. The key derived from your passphrase stays in this browser's local storage, so syncing can run in the background. If you use the suggested random words, the words are kept there too, so you can look them up in the place's settings; a passphrase you chose yourself is not stored. None of this is ever synced or part of a backup. If you lose the passphrase, nobody can read the files, including us.",
+      "translations": {
+        "de": {
+          "text": "Halten Sie Ihre gesamte Bibliothek geräteübergreifend synchron oder erstellen Sie ein Backup: Artikel, Zusammenfassungen, Volltexte, Markierungen, Notizen, Sammlungen und Tags. Alles wird direkt in Ihrem Browser verschlüsselt (AES-256-GCM mit einem aus Ihrer Passphrase abgeleiteten Schlüssel), bevor es das Gerät verlässt; auch Dateinamen werden unkenntlich gemacht. Der Server oder Ordner sieht ausschließlich verschlüsselte Dateien, deren Dateigrößen und Änderungszeitpunkte. Der aus Ihrer Passphrase abgeleitete Schlüssel verbleibt im lokalen Speicher dieses Browsers, damit die Synchronisierung im Hintergrund laufen kann. Wenn Sie die vorgeschlagenen Zufallswörter verwenden, werden diese ebenfalls dort gespeichert, damit Sie sie in den Einstellungen des Speicherorts einsehen können; eine selbst gewählte Passphrase wird nicht gespeichert. Nichts davon wird jemals synchronisiert oder Teil eines Backups. Wenn Sie die Passphrase verlieren, kann niemand die Dateien lesen – auch wir nicht.",
+          "translatedAt": "2026-10-31T23:30:49.739Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fr": {
+          "text": "Gardez toute votre bibliothèque synchronisée entre vos appareils ou conservez une sauvegarde : articles, résumés, textes intégraux, surlignages, notes, collections et tags. Tout est chiffré dans votre navigateur (AES-256-GCM, avec une clé dérivée de votre phrase de passe) avant de quitter votre appareil, et les noms de fichiers sont brouillés. Le serveur ou le dossier ne voit que des fichiers chiffrés, leur taille et leur date de modification. La clé dérivée de votre phrase de passe reste dans le stockage local de ce navigateur afin que la synchronisation puisse s'exécuter en arrière-plan. Si vous utilisez les mots aléatoires suggérés, ils y sont également conservés pour vous permettre de les consulter dans les paramètres de l'espace ; une phrase de passe choisie par vos soins n'est pas stockée. Aucun de ces éléments n'est synchronisé ni inclus dans une sauvegarde. Si vous perdez votre phrase de passe, personne ne pourra lire vos fichiers, pas même nous.",
+          "translatedAt": "2026-10-31T23:30:58.237Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "es": {
+          "text": "Mantén toda tu biblioteca sincronizada entre tus dispositivos o guarda una copia de seguridad: artículos, resúmenes, textos completos, destacados, notas, colecciones y etiquetas. Todo se cifra en tu navegador (AES-256-GCM, con una clave derivada de tu frase de contraseña) antes de salir del dispositivo, y los nombres de los archivos se ofuscan. El servidor o la carpeta solo ven archivos cifrados, su tamaño y cuándo se modificaron. La clave derivada de tu frase de contraseña permanece en el almacenamiento local de este navegador, para que la sincronización pueda ejecutarse en segundo plano. Si usas las palabras aleatorias sugeridas, también se conservan allí para que puedas consultarlas en la configuración del espacio; una frase de contraseña que hayas elegido tú mismo no se almacena. Nada de esto se sincroniza jamás ni forma parte de una copia de seguridad. Si pierdes la frase de contraseña, nadie podrá leer los archivos, incluidos nosotros.",
+          "translatedAt": "2026-10-31T23:31:03.485Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh": {
+          "text": "在多台设备间同步您的整个资料库，或妥善保留一份备份：文章、摘要、全文、高亮标注、笔记、合集及标签。所有数据在离开设备前均已在浏览器内完成加密（采用基于您密码派生的 AES-256-GCM 密钥），文件名亦经过混淆处理。服务器或存储目录仅能看到加密文件、文件大小及修改时间。由密码派生的密钥始终仅保留在当前浏览器的本地存储中，以确保同步可在后台运行。如果您使用系统推荐的随机词组，词组也会保存在本地，方便您随时在对应设置中查阅；若使用自定义密码，系统则不会予以存储。这些敏感信息绝不会被同步，也不会包含在任何备份中。若遗失密码，任何人（包括我们）都无法解密并读取您的文件。",
+          "translatedAt": "2026-10-31T23:31:08.907Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh-TW": {
+          "text": "讓所有裝置隨時同步你的完整資料庫，或建立安全備份：包含文章、摘要、全文、重點畫線、筆記、收藏集與標籤。所有內容在離開裝置前，都會先於瀏覽器端完成加密（採用 AES-256-GCM，金鑰由你的通行密碼衍生），且檔案名稱均會經過混淆處理。伺服器或同步資料夾僅能讀取加密檔案、檔案大小與變更時間。由通行密碼衍生的金鑰只會保留在此瀏覽器的本機儲存空間中，以便在背景持續同步。若你使用系統建議的隨機單字組合，這些單字也會儲存在本機，方便你隨時在該處的設定中查看；若為自行設定的通行密碼則絕不儲存。上述任何金鑰或密碼資訊皆不會被同步或納入備份。若遺失通行密碼，包含我們在內的任何人都無法讀取你的檔案。",
+          "translatedAt": "2026-10-31T23:31:21.778Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ja": {
+          "text": "デバイス間でライブラリ全体を常に同期し、バックアップを保持できます。記事、要約、全文、ハイライト、メモ、コレクション、タグなどすべてが対象です。すべてのデータはデバイスから送信される前にブラウザ内で暗号化され（パスフレーズから生成されたキーによるAES-256-GCM暗号化）、ファイル名もスクランブル化されます。サーバーや保存先フォルダー側から確認できるのは、暗号化されたファイル、ファイルサイズ、更新日時のみです。パスフレーズから生成されたキーはお使いのブラウザのローカルストレージにのみ保持されるため、バックグラウンドでの同期が可能です。自動提案されたランダムな単語を使用した場合は、設定画面から確認できるように単語もローカルに保持されますが、ご自身で設定したパスフレーズは保存されません。これらの情報が同期されたり、バックアップに含まれたりすることは一切ありません。万が一パスフレーズを紛失した場合、開発元である私たちを含め、誰もファイルを閲覧・復元することはできません。",
+          "translatedAt": "2026-10-31T23:31:29.571Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ko": {
+          "text": "기기 간에 전체 라이브러리를 항상 최신 상태로 동기화하거나 백업해 두세요. 아티클, 요약, 전문 텍스트, 하이라이트, 메모, 컬렉션, 태그까지 모두 지원합니다. 모든 데이터는 기기 외부로 전송되기 전 브라우저 내에서 안전하게 암호화(패스프레이즈 기반 키를 사용한 AES-256-GCM 방식)되며, 파일 이름도 난독화 처리됩니다. 서버나 저장 폴더에서는 오직 암호화된 파일, 파일 크기, 변경 시점만 확인할 수 있습니다. 패스프레이즈로 생성된 키는 현재 브라우저의 로컬 스토리지에만 보관되어 백그라운드 동기화가 원활하게 진행됩니다. 자동 생성된 추천 단어 조합을 사용하는 경우 해당 단어 역시 로컬에 보관되어 설정에서 다시 확인할 수 있으며, 직접 입력한 패스프레이즈는 어디에도 저장되지 않습니다. 이 모든 인증 정보는 절대 동기화되거나 백업에 포함되지 않습니다. 패스프레이즈를 분실하면 개발팀을 포함해 그 누구도 파일을 복구하거나 열람할 수 없습니다.",
+          "translatedAt": "2026-10-31T23:31:35.002Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pt": {
+          "text": "mantenha toda a sua biblioteca sincronizada entre seus dispositivos ou guarde um backup: artigos, resumos, textos completos, destaques, notas, coleções e tags. Tudo é criptografado no seu navegador (AES-256-GCM, com uma chave derivada da sua frase-senha) antes de sair do dispositivo, e os nomes dos arquivos são embaralhados. O servidor ou pasta só vê arquivos criptografados, seus tamanhos e quando foram modificados. A chave derivada da sua frase-senha permanece no armazenamento local deste navegador, permitindo que a sincronização funcione em segundo plano. Se você usar as palavras aleatórias sugeridas, elas também serão mantidas lá, para que você possa consultá-las nas configurações do local; uma frase-senha escolhida por você não é armazenada. Nada disso é sincronizado ou incluído em backups. Se você perder a frase-senha, ninguém conseguirá ler os arquivos, inclusive nós.",
+          "translatedAt": "2026-10-31T23:31:41.213Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "hi": {
+          "text": "अपनी पूरी library को अपने devices के बीच sync में रखें या backup संभाल कर रखें: articles, summaries, full texts, highlights, notes, collections और tags। device से बाहर जाने से पहले सब कुछ आपके browser में ही encrypt (AES-256-GCM, आपके passphrase से generate हुई key के साथ) हो जाता है, और file names scramble कर दिए जाते हैं। server या folder को केवल encrypted files, उनका size और वे कब modify हुए, यही दिखता है। आपके passphrase से बनी key इसी browser के local storage में रहती है, ताकि syncing background में चलती रहे। अगर आप suggested random words इस्तेमाल करते हैं, तो वे words भी वहीं रहते हैं ताकि आप उन्हें settings में देख सकें; आपके द्वारा खुद चुना गया passphrase कभी store नहीं किया जाता। इसमें से कुछ भी कभी sync नहीं होता और न ही backup का हिस्सा बनता है। अगर आप passphrase खो देते हैं, तो उन files को कोई नहीं पढ़ सकता, हम भी नहीं।",
+          "translatedAt": "2026-10-31T23:31:47.507Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "vi": {
+          "text": "đồng bộ toàn bộ thư viện trên các thiết bị của bạn hoặc lưu trữ bản sao lưu: bài viết, tóm tắt, nội dung toàn văn, đoạn đánh dấu, ghi chú, bộ sưu tập và thẻ. Mọi dữ liệu đều được mã hóa ngay trong trình duyệt của bạn (AES-256-GCM, với khóa được tạo từ cụm mật khẩu của bạn) trước khi rời khỏi thiết bị, và tên tệp cũng được xáo trộn. Máy chủ hoặc thư mục chỉ thấy các tệp đã mã hóa, kích thước và thời gian thay đổi của chúng. Khóa tạo từ cụm mật khẩu được lưu trong bộ nhớ cục bộ của trình duyệt này, cho phép quá trình đồng bộ có thể chạy ngầm. Nếu bạn sử dụng các từ ngẫu nhiên được gợi ý, các từ này cũng được lưu tại đó để bạn có thể tra cứu lại trong phần cài đặt vị trí lưu trữ; cụm mật khẩu do bạn tự chọn sẽ không được lưu lại. Không có thông tin nào trong số này được đồng bộ hay đưa vào bản sao lưu. Nếu bạn làm mất cụm mật khẩu, không ai có thể đọc được các tệp này, kể cả chúng tôi.",
+          "translatedAt": "2026-10-31T23:31:55.042Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "nl": {
+          "text": "houd je hele bibliotheek synchroon tussen je apparaten of bewaar een back-up: artikelen, samenvattingen, volledige teksten, markeringen, notities, collecties en tags. Alles wordt in je browser versleuteld (AES-256-GCM, met een sleutel afgeleid van je wachtwoordzin) voordat het je apparaat verlaat, en bestandsnamen worden onherkenbaar gemaakt. De server of map ziet alleen versleutelde bestanden, de grootte ervan en wanneer ze zijn gewijzigd. De sleutel die is afgeleid van je wachtwoordzin blijft in de lokale opslag van deze browser, zodat synchronisatie op de achtergrond kan plaatsvinden. Als je de voorgestelde willekeurige woorden gebruikt, worden deze woorden daar ook bewaard, zodat je ze kunt terugvinden in de instellingen van de locatie; een zelfgekozen wachtwoordzin wordt niet opgeslagen. Niets hiervan wordt ooit gesynchroniseerd of opgenomen in een back-up. Als je de wachtwoordzin kwijtraakt, kan niemand de bestanden lezen, ook wij niet.",
+          "translatedAt": "2026-10-31T23:32:04.674Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "it": {
+          "text": "Mantieni sincronizzata l'intera libreria tra tutti i tuoi dispositivi o conserva una copia di backup: articoli, riassunti, testi completi, evidenziazioni, note, raccolte e tag. Tutto viene crittografato direttamente nel tuo browser (AES-256-GCM, con una chiave derivata dalla tua passphrase) prima di lasciare il dispositivo, e i nomi dei file vengono offuscati. Il server o la cartella vedono unicamente i file crittografati, le loro dimensioni e quando sono stati modificati. La chiave derivata dalla tua passphrase rimane nel local storage di questo browser, consentendo alla sincronizzazione di funzionare in background. Se utilizzi le parole casuali suggerite, vengono conservate lì per permetterti di consultarle nelle impostazioni dello spazio; se invece scegli una passphrase personalizzata, questa non viene memorizzata. Nessuno di questi dati viene mai sincronizzato o incluso in un backup. Se perdi la passphrase, nessuno potrà leggere i tuoi file, nemmeno noi.",
+          "translatedAt": "2026-10-31T23:32:15.630Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ru": {
+          "text": "синхронизируйте всю библиотеку между вашими устройствами или храните резервную копию: статьи, краткие содержания, полные тексты, выделенные фрагменты, заметки, коллекции и теги. Все данные шифруются прямо в браузере (AES-256-GCM с ключом, созданным на основе вашей кодовой фразы) перед отправкой с устройства, а имена файлов маскируются. Сервер или папка видят только зашифрованные файлы, их размер и дату изменения. Ключ, созданный на основе кодовой фразы, остается в локальном хранилище этого браузера, чтобы синхронизация могла работать в фоновом режиме. Если вы используете предложенные случайные слова, они также сохраняются там, чтобы вы могли посмотреть их в настройках; кодовая фраза, заданная вами самостоятельно, не сохраняется. Эти данные никогда не синхронизируются и не попадают в резервную копию. Если вы потеряете кодовую фразу, никто не сможет прочесть файлы, включая нас.",
+          "translatedAt": "2026-10-31T23:32:23.012Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "uk": {
+          "text": "Синхронізуйте всю свою бібліотеку між пристроями або зберігайте резервну копію: статті, резюме, повні тексти, виділені фрагменти, нотатки, колекції та теги. Усе шифрується у вашому браузері (AES-256-GCM із ключем, згенерованим із вашої парольної фрази) ще до того, як залишає пристрій, а назви файлів маскуються. Сервер або папка бачать лише зашифровані файли, їхній розмір і час зміни. Ключ, отриманий із вашої парольної фрази, залишається в локальному сховищі цього браузера, тож синхронізація може відбуватися у фоновому режимі. Якщо ви використовуєте запропоновані випадкові слова, вони також зберігаються там, щоб ви могли переглянути їх у налаштуваннях сховища; парольна фраза, яку ви вибрали самостійно, не зберігається. Ніщо з цього ніколи не синхронізується і не потрапляє до резервної копії. Якщо ви втратите парольну фразу, ніхто не зможе прочитати файли — включно з нами.",
+          "translatedAt": "2026-10-31T23:32:34.013Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "tr": {
+          "text": "Tüm kitaplığınızı cihazlarınız arasında senkronize tutun veya bir yedek bulundurun: makaleler, özetler, tam metinler, vurgular, notlar, koleksiyonlar ve etiketler. Her şey cihazınızdan çıkmadan önce tarayıcınızda şifrelenir (passphrase'inizden türetilen bir anahtarla AES-256-GCM) ve dosya adları karıştırılır. Sunucu veya klasör yalnızca şifrelenmiş dosyaları, boyutlarını ve değiştirilme tarihlerini görür. Passphrase'inizden türetilen anahtar, senkronizasyonun arka planda çalışabilmesi için bu tarayıcının local storage alanında tutulur. Önerilen rastgele kelimeleri kullanırsanız, bu kelimeler de orada saklanır; böylece bunları konum ayarlarından kontrol edebilirsiniz; kendi belirlediğiniz bir passphrase ise saklanmaz. Bunların hiçbiri asla senkronize edilmez veya yedeğe dahil edilmez. Passphrase'inizi kaybederseniz, biz dahil hiç kimse dosyaları okuyamaz.",
+          "translatedAt": "2026-10-31T23:32:42.225Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "id": {
+          "text": "Sinkronkan seluruh library Anda di semua perangkat atau simpan backup: artikel, ringkasan, teks lengkap, sorotan, catatan, koleksi, dan tag. Semuanya dienkripsi di browser Anda (AES-256-GCM, dengan kunci yang dibuat dari passphrase Anda) sebelum keluar dari perangkat, dan nama file diacak. Server atau folder hanya dapat melihat file terenkripsi, ukuran file, serta waktu perubahannya. Kunci yang dibuat dari passphrase Anda tetap tersimpan di local storage browser ini, sehingga syncing dapat berjalan di background. Jika Anda menggunakan saran kata acak, kata-kata tersebut juga disimpan di sana agar Anda dapat melihatnya di pengaturan; passphrase yang Anda tentukan sendiri tidak akan disimpan. Semua ini tidak pernah di-sync atau menjadi bagian dari backup. Jika Anda kehilangan passphrase, tidak ada yang dapat membaca file tersebut, termasuk kami.",
+          "translatedAt": "2026-10-31T23:32:49.943Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pl": {
+          "text": "synchronizuj całą bibliotekę między urządzeniami lub twórz kopię zapasową: artykuły, podsumowania, pełne teksty, wyróżnienia, notatki, kolekcje i tagi. Wszystko jest szyfrowane w przeglądarce (AES-256-GCM, za pomocą klucza generowanego z hasła), zanim opuści urządzenie, a nazwy plików są maskowane. Serwer lub folder widzi tylko zaszyfrowane pliki, ich rozmiar oraz czas modyfikacji. Klucz wygenerowany z hasła pozostaje w pamięci lokalnej tej przeglądarki, co pozwala na synchronizację w tle. Jeśli wybierzesz sugerowane losowe słowa, one również są tam przechowywane, więc możesz je podejrzeć w ustawieniach; samodzielnie utworzone hasło nie jest nigdzie zapisywane. Żadna z tych informacji nie jest synchronizowana ani dołączana do kopii zapasowej. Jeśli zgubisz hasło, nikt nie będzie w stanie odczytać plików — łącznie z nami.",
+          "translatedAt": "2026-10-31T23:33:01.194Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "th": {
+          "text": "ซิงก์คลังข้อมูลทั้งหมดให้ตรงกันระหว่างอุปกรณ์ หรือเก็บเป็นข้อมูลสำรองไว้: ทั้งบทความ บทสรุป เนื้อหาฉบับเต็ม ไฮไลต์ โน้ต คอลเลกชัน และแท็ก ทุกอย่างจะได้รับการเข้ารหัสภายในเบราว์เซอร์ของคุณ (AES-256-GCM โดยใช้คีย์ที่สร้างจาก Passphrase) ก่อนส่งออกจากอุปกรณ์ และชื่อไฟล์จะถูกเข้ารหัสแบบสุ่ม เซิร์ฟเวอร์หรือโฟลเดอร์จะมองเห็นเพียงไฟล์ที่ถูกเข้ารหัส ขนาดไฟล์ และเวลาที่แก้ไขเท่านั้น คีย์ที่สร้างจาก Passphrase จะถูกจัดเก็บไว้ใน Local Storage ของเบราว์เซอร์นี้ เพื่อให้การซิงก์ทำงานในเบื้องหลังได้อย่างต่อเนื่อง หากเลือกใช้ชุดคำสุ่มที่ระบบแนะนำ คำเหล่านั้นจะถูกเก็บไว้ที่นี่เช่นกันเพื่อให้สามารถตรวจสอบได้ในการตั้งค่า แต่หากเป็น Passphrase ที่กำหนดขึ้นเอง ระบบจะไม่มีการจัดเก็บไว้ ข้อมูลเหล่านี้จะไม่ถูกนำไปซิงก์หรือรวมอยู่ในการสำรองข้อมูลอย่างเด็ดขาด หากทำ Passphrase สูญหาย จะไม่มีใครสามารถเข้าถึงหรืออ่านไฟล์ของคุณได้เลย รวมถึงทีมงานของเราด้วย",
+          "translatedAt": "2026-10-31T23:33:10.401Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ar": {
+          "text": "حافظ على مزامنة مكتبتك بالكامل عبر أجهزتك أو احتفظ بنسخة احتياطية: المقالات، والملخصات، والنصوص الكاملة، والتحديدات، والملاحظات، والمجموعات، والوسوم. يتم تشفير كل شيء داخل متصفحك (بمعيار AES-256-GCM، باستخدام مفتاح مشتق من عبارة المرور الخاصة بك) قبل أن يغادر جهازك، كما يتم تشويش أسماء الملفات. لا يرى الخادم أو المجلد سوى ملفات مشفرة وأحجامها ووقت تعديلها. يبقى المفتاح المشتق من عبارة المرور في وحدة التخزين المحلية لهذا المتصفح، لتتمكن المزامنة من العمل في الخلفية. إذا استخدمت الكلمات العشوائية المقترحة، فسيتم الاحتفاظ بها هناك أيضاً لتتمكن من مراجعتها في إعدادات المكان؛ أما عبارة المرور التي تختارها بنفسك فلا يتم تخزينها. لا تتم مزامنة أي من هذه البيانات إطلاقاً ولا تكون جزءاً من النسخة الاحتياطية. إذا فقدت عبارة المرور، فلن يتمكن أي شخص من قراءة الملفات، بما في ذلك نحن.",
+          "translatedAt": "2026-10-31T23:33:16.399Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "sv": {
+          "text": "Håll hela ditt bibliotek synkroniserat mellan dina enheter eller spara en säkerhetskopia: artiklar, sammanfattningar, fulltexter, markeringar, anteckningar, samlingar och taggar. Allt krypteras i din webbläsare (AES-256-GCM, med en nyckel som härleds från din lösenfras) innan det lämnar enheten, och filnamnen förvrängs. Servern eller mappen ser bara krypterade filer, deras storlek och när de ändrades. Nyckeln som härleds från din lösenfras stannar i webbläsarens lokala lagring, så att synkningen kan köras i bakgrunden. Om du använder de föreslagna slumpmässiga orden sparas de också där, så att du kan se dem i platsens inställningar. En lösenfras du har valt själv sparas inte. Inget av detta synkas någonsin eller ingår i en säkerhetskopia. Om du tappar bort lösenfrasen kan ingen läsa filerna – inte ens vi.",
+          "translatedAt": "2026-10-31T23:33:26.867Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "da": {
+          "text": "hold hele dit bibliotek synkroniseret mellem dine enheder eller hav en backup: artikler, resuméer, fulde tekster, fremhævninger, noter, samlinger og tags. Alt krypteres i din browser (AES-256-GCM med en nøgle afledt af din adgangskodefrase), før det forlader enheden, og filnavne sløres. Serveren eller mappen ser kun krypterede filer, deres størrelse, og hvornår de blev ændret. Nøglen afledt af din adgangskodefrase bliver i browserens lokale lager, så synkronisering kan køre i baggrunden. Hvis du bruger de foreslåede tilfældige ord, gemmes ordene også dér, så du kan slå dem op i stedets indstillinger; en adgangskodefrase, du selv har valgt, gemmes ikke. Intet af dette synkroniseres nogensinde eller indgår i en backup. Hvis du mister adgangskodefrasen, kan ingen læse filerne – heller ikke os.",
+          "translatedAt": "2026-10-31T23:33:35.544Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "no": {
+          "text": "hold hele biblioteket ditt synkronisert mellom enhetene dine eller ta en sikkerhetskopi: artikler, sammendrag, fulltekster, markeringer, notater, samlinger og tagger. Alt krypteres i nettleseren din (AES-256-GCM, med en nøkkel avledet fra passordfrasen din) før det forlater enheten, og filnavnene gjøres uleselige. Serveren eller mappen ser bare krypterte filer, størrelsen på dem og når de ble endret. Nøkkelen avledet fra passordfrasen din blir værende i denne nettleserens lokale lagring, slik at synkroniseringen kan kjøre i bakgrunnen. Hvis du bruker de foreslåtte tilfeldige ordene, lagres ordene der også, slik at du kan slå dem opp i innstillingene for lagringsstedet; en passordfrase du har valgt selv, blir ikke lagret. Ingenting av dette blir noensinne synkronisert eller inkludert i en sikkerhetskopi. Hvis du mister passordfrasen, kan ingen lese filene – heller ikke vi.",
+          "translatedAt": "2026-10-31T23:33:44.639Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fi": {
+          "text": "Pidä koko kirjastosi ajan tasalla laitteidesi välillä tai säilytä varmuuskopiota: artikkelit, tiivistelmät, kokotekstit, korostukset, muistiinpanot, kokoelmat ja tunnisteet. Kaikki salataan selaimessasi (AES-256-GCM salalauseestasi johdetulla avaimella) ennen kuin tiedot lähtevät laitteelta, ja tiedostonimet sekoitetaan. Palvelin tai kansio näkee vain salatut tiedostot, niiden koot ja muutosajankohdat. Salalauseestasi johdettu avain pysyy tämän selaimen paikallisessa tallennustilassa, jotta synkronointi voi toimia taustalla. Jos käytät ehdotettuja satunnaissanoja, myös ne säilytetään siellä, jotta voit tarkistaa ne kohteen asetuksista; itse valitsemaasi salalausetta ei tallenneta. Mitään näistä ei koskaan synkronoida eikä sisällytetä varmuuskopioon. Jos kadotat salalauseen, kukaan ei voi lukea tiedostoja – emme edes me.",
+          "translatedAt": "2026-10-31T23:33:51.541Z",
+          "model": "google/gemini-3.7-flash"
+        }
+      }
+    },
+    "2adf8c90cc093fc51cb1616fbe5a2356b429438f06d8b206f50c859ecdaf0d98": {
+      "en": "Ten minutes, no account with us: what syncs, how the passphrase works, and what to do when something goes wrong.",
+      "translations": {
+        "de": {
+          "text": "Zehn Minuten, ganz ohne Konto bei uns: Was synchronisiert wird, wie die Passphrase funktioniert und was zu tun ist, falls etwas schiefgeht.",
+          "translatedAt": "2026-10-31T23:33:55.548Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fr": {
+          "text": "Dix minutes, sans aucun compte chez nous : ce qui est synchronisé, le fonctionnement de la phrase secrète et la marche à suivre en cas de problème.",
+          "translatedAt": "2026-10-31T23:33:59.460Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "es": {
+          "text": "Diez minutos, sin cuenta con nosotros: qué se sincroniza, cómo funciona la frase de contraseña y qué hacer si algo sale mal.",
+          "translatedAt": "2026-10-31T23:34:03.432Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh": {
+          "text": "10 分钟快速了解，无需注册账号：数据同步机制、passphrase 运作原理，以及遇到问题时的排查指南。",
+          "translatedAt": "2026-10-31T23:34:08.324Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh-TW": {
+          "text": "十分鐘快速上手，無需註冊帳號：同步內容有哪些、通關密語如何運作，以及發生問題時該如何處理。",
+          "translatedAt": "2026-10-31T23:34:13.233Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ja": {
+          "text": "わずか10分、アカウント登録は不要です。何が同期されるのか、パスフレーズの仕組み、そして万が一トラブルが発生した際の対処法について解説します。",
+          "translatedAt": "2026-10-31T23:34:16.811Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ko": {
+          "text": "단 10분, 별도의 계정 없이 시작해 보세요. 동기화되는 항목, 암호 문구(passphrase) 작동 방식, 문제 발생 시 대처 방법까지 안내해 드립니다.",
+          "translatedAt": "2026-10-31T23:34:22.656Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pt": {
+          "text": "Dez minutos, sem criar conta conosco: o que sincroniza, como a frase-senha funciona e o que fazer quando algo der errado.",
+          "translatedAt": "2026-10-31T23:34:26.620Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "hi": {
+          "text": "दस मिनट, हमारे साथ बिना किसी account के: क्या sync होता है, passphrase कैसे काम करता है, और अगर कुछ गड़बड़ हो जाए तो क्या करना है।",
+          "translatedAt": "2026-10-31T23:34:31.050Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "vi": {
+          "text": "Mười phút, không cần tạo tài khoản: dữ liệu nào được đồng bộ, cách hoạt động của cụm mật khẩu và hướng xử lý khi gặp sự cố.",
+          "translatedAt": "2026-10-31T23:34:35.207Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "nl": {
+          "text": "Tien minuten, geen account bij ons: wat er synchroniseert, hoe de wachtwoordzin werkt en wat je moet doen als er iets misgaat.",
+          "translatedAt": "2026-10-31T23:34:38.610Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "it": {
+          "text": "Dieci minuti, nessun account con noi: cosa viene sincronizzato, come funziona la passphrase e cosa fare se qualcosa va storto.",
+          "translatedAt": "2026-10-31T23:34:44.391Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ru": {
+          "text": "Десять минут без создания аккаунта у нас: что синхронизируется, как работает кодовая фраза и что делать, если что-то пойдет не так.",
+          "translatedAt": "2026-10-31T23:34:47.780Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "uk": {
+          "text": "Десять хвилин, жодного акаунта в нас: що синхронізується, як працює парольна фраза та що робити, якщо щось піде не так.",
+          "translatedAt": "2026-10-31T23:34:53.759Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "tr": {
+          "text": "On dakika, bizde hesap açmanıza gerek yok: nelerin senkronize edildiği, passphrase'in nasıl çalıştığı ve bir sorun oluştuğunda ne yapılması gerektiği.",
+          "translatedAt": "2026-10-31T23:34:59.161Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "id": {
+          "text": "Sepuluh menit, tanpa perlu akun: apa yang disinkronkan, cara kerja passphrase, dan apa yang harus dilakukan jika terjadi kendala.",
+          "translatedAt": "2026-10-31T23:35:03.260Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pl": {
+          "text": "Dziesięć minut, bez konta u nas: co się synchronizuje, jak działa hasło szyfrujące i co zrobić, gdy coś pójdzie nie tak.",
+          "translatedAt": "2026-10-31T23:35:07.171Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "th": {
+          "text": "ใช้เวลาเพียง 10 นาที ไม่ต้องมีบัญชีกับเรา: ข้อมูลใดบ้างที่ซิงค์, Passphrase ทำงานอย่างไร และวิธีจัดการเมื่อเกิดข้อผิดพลาด",
+          "translatedAt": "2026-10-31T23:35:10.458Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ar": {
+          "text": "عشر دقائق، دون الحاجة لإنشاء حساب لدينا: ما الذي تتم مزامنته، وكيف تعمل عبارة المرور، وماذا تفعل عند حدوث أي خطأ.",
+          "translatedAt": "2026-10-31T23:35:15.041Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "sv": {
+          "text": "Tio minuter, inget konto hos oss: vad som synkas, hur lösenfrasen fungerar och vad du gör om något går fel.",
+          "translatedAt": "2026-10-31T23:35:17.927Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "da": {
+          "text": "Ti minutter, ingen konto hos os: hvad der synkroniseres, hvordan adgangsfrasen fungerer, og hvad du gør, hvis noget går galt.",
+          "translatedAt": "2026-10-31T23:35:22.204Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "no": {
+          "text": "Ti minutter, ingen konto hos oss: hva som synkroniseres, hvordan passordfrasen fungerer, og hva du gjør hvis noe går galt.",
+          "translatedAt": "2026-10-31T23:35:25.759Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fi": {
+          "text": "Kymmenen minuuttia, ei käyttäjätiliä: mitä synkronoidaan, miten salalause toimii ja mitä tehdä ongelmatilanteissa.",
+          "translatedAt": "2026-10-31T23:35:30.513Z",
+          "model": "google/gemini-3.7-flash"
+        }
+      }
+    },
+    "01065daa84d26ef5205f9453165e88666f8da6b748862e5c5184d9eee4b39e93": {
+      "en": "Free for everyone",
+      "translations": {
+        "de": {
+          "text": "Kostenlos für alle",
+          "translatedAt": "2026-10-31T23:43:36.713Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fr": {
+          "text": "Gratuit pour tous",
+          "translatedAt": "2026-10-31T23:43:49.655Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "es": {
+          "text": "Gratis para todo el mundo",
+          "translatedAt": "2026-10-31T23:43:53.172Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh": {
+          "text": "所有人皆可免费使用",
+          "translatedAt": "2026-10-31T23:43:56.976Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh-TW": {
+          "text": "所有人皆可免費使用",
+          "translatedAt": "2026-10-31T23:44:04.378Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ja": {
+          "text": "どなたでも無料で利用可能",
+          "translatedAt": "2026-10-31T23:44:13.135Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ko": {
+          "text": "누구나 무료로 이용 가능",
+          "translatedAt": "2026-10-31T23:44:19.367Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pt": {
+          "text": "Grátis para todo mundo",
+          "translatedAt": "2026-10-31T23:44:27.767Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "hi": {
+          "text": "सबके लिए Free",
+          "translatedAt": "2026-10-31T23:44:34.101Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "vi": {
+          "text": "Miễn phí cho mọi người",
+          "translatedAt": "2026-10-31T23:44:40.983Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "nl": {
+          "text": "Gratis voor iedereen",
+          "translatedAt": "2026-10-31T23:44:51.776Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "it": {
+          "text": "Gratis per tutti",
+          "translatedAt": "2026-10-31T23:45:01.263Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ru": {
+          "text": "Бесплатно для всех",
+          "translatedAt": "2026-10-31T23:45:09.238Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "uk": {
+          "text": "Безкоштовно для всіх",
+          "translatedAt": "2026-10-31T23:45:19.708Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "tr": {
+          "text": "Herkes için ücretsiz",
+          "translatedAt": "2026-10-31T23:45:27.316Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "id": {
+          "text": "Gratis untuk semua orang",
+          "translatedAt": "2026-10-31T23:45:32.926Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pl": {
+          "text": "Bezpłatne dla każdego",
+          "translatedAt": "2026-10-31T23:45:41.707Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "th": {
+          "text": "ใช้งานได้ฟรีสำหรับทุกคน",
+          "translatedAt": "2026-10-31T23:45:48.031Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ar": {
+          "text": "مجاني للجميع",
+          "translatedAt": "2026-10-31T23:45:54.712Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "sv": {
+          "text": "Gratis för alla",
+          "translatedAt": "2026-10-31T23:46:06.898Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "da": {
+          "text": "Gratis for alle",
+          "translatedAt": "2026-10-31T23:46:17.550Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "no": {
+          "text": "Gratis for alle",
+          "translatedAt": "2026-10-31T23:46:24.212Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fi": {
+          "text": "Ilmainen kaikille",
+          "translatedAt": "2026-10-31T23:46:35.158Z",
+          "model": "google/gemini-3.7-flash"
+        }
+      }
+    },
+    "a40d5bdf4d3c9efcbff7f9933c0c9674c1ac2dd13efa64eb2da214e0005f5c45": {
+      "en": "Free. Donations unlock the AI models.",
+      "translations": {
+        "de": {
+          "text": "Kostenlos. Spenden schalten die KI-Modelle frei.",
+          "translatedAt": "2026-10-31T23:43:36.713Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fr": {
+          "text": "Gratuit. Les dons débloquent les modèles d'IA.",
+          "translatedAt": "2026-10-31T23:43:49.655Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "es": {
+          "text": "Gratis. Las donaciones desbloquean los modelos de IA.",
+          "translatedAt": "2026-10-31T23:43:53.172Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh": {
+          "text": "完全免费。赞助即可解锁云端 AI 模型。",
+          "translatedAt": "2026-10-31T23:43:56.976Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh-TW": {
+          "text": "完全免費。贊助即可解鎖各款 AI 模型。",
+          "translatedAt": "2026-10-31T23:44:04.378Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ja": {
+          "text": "基本無料。ご寄付いただくことで、各種AIモデルをご利用いただけます。",
+          "translatedAt": "2026-10-31T23:44:13.135Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ko": {
+          "text": "무료입니다. 후원하시면 AI 모델을 이용하실 수 있어요.",
+          "translatedAt": "2026-10-31T23:44:19.367Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pt": {
+          "text": "Grátis. Doações desbloqueiam os modelos de IA.",
+          "translatedAt": "2026-10-31T23:44:27.767Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "hi": {
+          "text": "Free है। Donations से AI models अनलॉक होते हैं।",
+          "translatedAt": "2026-10-31T23:44:34.101Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "vi": {
+          "text": "Miễn phí. Mở khóa các mô hình AI khi ủng hộ dự án.",
+          "translatedAt": "2026-10-31T23:44:40.983Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "nl": {
+          "text": "Gratis. Donaties ontgrendelen de AI-modellen.",
+          "translatedAt": "2026-10-31T23:44:51.776Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "it": {
+          "text": "Gratis. Le donazioni sbloccano i modelli di IA.",
+          "translatedAt": "2026-10-31T23:45:01.263Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ru": {
+          "text": "Бесплатно. Донат открывает доступ к AI-моделям.",
+          "translatedAt": "2026-10-31T23:45:09.238Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "uk": {
+          "text": "Безкоштовно. Донати відкривають доступ до AI-моделей.",
+          "translatedAt": "2026-10-31T23:45:19.708Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "tr": {
+          "text": "Ücretsiz. Bağışlar AI modellerinin kilidini açar.",
+          "translatedAt": "2026-10-31T23:45:27.316Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "id": {
+          "text": "Gratis. Donasi membuka akses ke model AI.",
+          "translatedAt": "2026-10-31T23:45:32.926Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pl": {
+          "text": "Bezpłatne. Darowizny odblokowują modele AI.",
+          "translatedAt": "2026-10-31T23:45:41.707Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "th": {
+          "text": "ฟรี ร่วมสนับสนุนเพื่อปลดล็อกโมเดล AI",
+          "translatedAt": "2026-10-31T23:45:48.031Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ar": {
+          "text": "مجاني. التبرعات تتيح لك الوصول إلى نماذج الذكاء الاصطناعي.",
+          "translatedAt": "2026-10-31T23:45:54.712Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "sv": {
+          "text": "Gratis. Donationer låser upp AI-modellerna.",
+          "translatedAt": "2026-10-31T23:46:06.898Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "da": {
+          "text": "Gratis. Donationer låser op for AI-modellerne.",
+          "translatedAt": "2026-10-31T23:46:17.550Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "no": {
+          "text": "Gratis. Donasjoner låser opp AI-modellene.",
+          "translatedAt": "2026-10-31T23:46:24.212Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fi": {
+          "text": "Ilmainen. Lahjoitukset avaavat tekoälymallit käyttöösi.",
+          "translatedAt": "2026-10-31T23:46:35.158Z",
+          "model": "google/gemini-3.7-flash"
+        }
+      }
+    },
+    "16a86b61bfeeb847afd90a2bd699e47411ff46e554096ed4ba0770e069219f3e": {
+      "en": "Everything works for free with your own AI key or a local model. If you like it, a donation is how you say thanks. It also gives you byphil Cloud: many AI models in one place, no key and no setup, and it supports every tool byphil builds.",
+      "translations": {
+        "de": {
+          "text": "Alle Funktionen sind mit Ihrem eigenen KI-Schlüssel oder einem lokalen Modell vollständig kostenlos nutzbar. Wenn Ihnen das Tool gefällt, können Sie mit einer Spende Danke sagen. Zudem erhalten Sie Zugriff auf byphil Cloud: zahlreiche KI-Modelle an einem Ort, ohne eigenen Schlüssel und ohne Einrichtungsaufwand – und Sie unterstützen damit jedes Tool von byphil.",
+          "translatedAt": "2026-10-31T23:43:36.713Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fr": {
+          "text": "Tout fonctionne gratuitement avec votre propre clé d'IA ou un modèle local. Si le projet vous plaît, un don est une excellente façon de nous remercier. Il vous donne également accès à byphil Cloud : de nombreux modèles d'IA réunis au même endroit, sans clé ni configuration, tout en soutenant chaque outil développé par byphil.",
+          "translatedAt": "2026-10-31T23:43:49.655Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "es": {
+          "text": "Todo funciona gratis con tu propia clave de IA o con un modelo local. Si te gusta la herramienta, puedes agradecérmelo con una donación. Además, obtendrás acceso a byphil Cloud: múltiples modelos de IA en un solo lugar, sin claves ni configuraciones, y apoyarás el desarrollo de todas las herramientas de byphil.",
+          "translatedAt": "2026-10-31T23:43:53.172Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh": {
+          "text": "自带 API key 或使用本地模型即可免费使用所有功能。如果您喜欢这款工具，可以通过赞助来表达支持。赞助还将为您开启 byphil Cloud：一站式畅享多种 AI 模型，无需配置 key，即开即用，同时支持 byphil 旗下的所有工具。",
+          "translatedAt": "2026-10-31T23:43:56.976Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh-TW": {
+          "text": "只要使用自己的 AI API Key 或本機模型，所有功能皆可免費使用。若你喜歡這款工具，歡迎透過贊助表達支持！贊助還能讓你享有 byphil Cloud：一站整合眾多 AI 模型，免填 Key 亦無需繁瑣設定，同時還能支持 byphil 開發的所有工具。",
+          "translatedAt": "2026-10-31T23:44:04.378Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ja": {
+          "text": "ご自身のAPIキーまたはローカルモデルを使用すれば、すべての機能を無料で利用できます。気に入っていただけましたら、応援としてご寄付をご検討ください。ご寄付により、キーの設定不要で多彩なAIモデルをまとめて利用できる「byphil Cloud」へのアクセスが可能になるほか、byphilが開発するすべてのツールの支援にもつながります。",
+          "translatedAt": "2026-10-31T23:44:13.135Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ko": {
+          "text": "개인 AI 키나 로컬 모델을 사용하면 모든 기능을 무료로 이용할 수 있어요. 서비스가 마음에 드신다면 후원으로 감사의 마음을 전해보세요. 후원 시 별도 키 설정 없이 다양한 AI 모델을 한곳에서 쓸 수 있는 byphil Cloud가 제공되며, byphil이 만드는 모든 도구를 지원하는 데 큰 힘이 됩니다.",
+          "translatedAt": "2026-10-31T23:44:19.367Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pt": {
+          "text": "Tudo funciona de graça com sua própria chave de IA ou com um modelo local. Se você gostar, uma doação é a melhor forma de apoiar. Ela também dá acesso ao byphil Cloud: vários modelos de IA em um só lugar, sem precisar de chave nem configuração, além de apoiar todas as ferramentas criadas pelo byphil.",
+          "translatedAt": "2026-10-31T23:44:27.767Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "hi": {
+          "text": "आपकी अपनी AI key या local model के साथ सब कुछ एकदम free काम करता है। अगर आपको यह पसंद आए, तो आप donation देकर शुक्रिया कह सकते हैं। इससे आपको byphil Cloud भी मिलता है: एक ही जगह पर कई सारे AI models, बिना किसी key या setup के, और यह byphil के बनाए हर tool को सपोर्ट करता है।",
+          "translatedAt": "2026-10-31T23:44:34.101Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "vi": {
+          "text": "Mọi tính năng đều hoạt động miễn phí khi sử dụng khóa AI riêng hoặc mô hình cục bộ. Nếu yêu thích dự án, bạn có thể ủng hộ như một lời cảm ơn. Khoản đóng góp cũng mở khóa byphil Cloud: tập hợp nhiều mô hình AI tại một nơi, không cần khóa API hay cấu hình, đồng thời hỗ trợ phát triển mọi công cụ của byphil.",
+          "translatedAt": "2026-10-31T23:44:40.983Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "nl": {
+          "text": "Alles werkt gratis met je eigen AI-sleutel of een lokaal model. Vind je het nuttig? Dan kun je bedanken met een donatie. Daarmee krijg je ook toegang tot byphil Cloud: talloze AI-modellen op één plek, zonder sleutel of configuratie, én steun je elke tool die byphil bouwt.",
+          "translatedAt": "2026-10-31T23:44:51.776Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "it": {
+          "text": "Tutto funziona gratis con la tua chiave API o con un modello locale. Se ti piace il progetto, puoi ringraziarci con una donazione. In più, ottieni byphil Cloud: tanti modelli di IA in un unico posto, senza chiavi API né configurazioni, supportando ogni strumento sviluppato da byphil.",
+          "translatedAt": "2026-10-31T23:45:01.263Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ru": {
+          "text": "Все функции работают бесплатно с вашим собственным API key или локальной моделью. Если вам нравится проект, лучшая благодарность — это донат. Он также открывает доступ к byphil Cloud: множество AI-моделей в одном месте без ключей и настройки, а также поддержка всех инструментов byphil.",
+          "translatedAt": "2026-10-31T23:45:09.238Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "uk": {
+          "text": "Усе працює безкоштовно з вашим власним AI key або локальною моделлю. Якщо вам подобається застосунок, донат — це чудовий спосіб подякувати. Він також надає доступ до byphil Cloud: безліч AI-моделей в одному місці, без ключів та зайвих налаштувань, і підтримує кожен інструмент, який створює byphil.",
+          "translatedAt": "2026-10-31T23:45:19.708Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "tr": {
+          "text": "Kendi AI anahtarınızla veya yerel bir modelle her şey ücretsiz çalışır. Beğendiyseniz, teşekkür etmenin en iyi yolu bir bağış yapmaktır. Bağış yaptığınızda ayrıca byphil Cloud'a erişirsiniz: Tek bir yerde birçok AI modeli, anahtar veya kurulum gerektirmez ve byphil tarafından geliştirilen tüm araçları destekler.",
+          "translatedAt": "2026-10-31T23:45:27.316Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "id": {
+          "text": "Semua fitur berfungsi gratis dengan API key Anda sendiri atau model lokal. Jika Anda menyukainya, Anda bisa berdonasi sebagai bentuk dukungan. Donasi juga memberi Anda akses ke byphil Cloud: berbagai model AI di satu tempat, tanpa key dan tanpa repot setup, sekaligus mendukung setiap fitur yang dikembangkan byphil.",
+          "translatedAt": "2026-10-31T23:45:32.926Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pl": {
+          "text": "Wszystko działa bezpłatnie z własnym kluczem AI lub modelem lokalnym. Jeśli projekt Ci się podoba, możesz podziękować darowizną. Zapewnia ona również dostęp do byphil Cloud: wiele modeli AI w jednym miejscu, bez klucza i konfiguracji, a przy tym wspiera każde narzędzie tworzone przez byphil.",
+          "translatedAt": "2026-10-31T23:45:41.707Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "th": {
+          "text": "ใช้งานทุกฟีเจอร์ได้ฟรีเมื่อใช้ AI key ของคุณเองหรือโมเดล AI แบบ local หากชื่นชอบ สามารถร่วมสนับสนุนเพื่อแทนคำขอบคุณ พร้อมรับสิทธิ์ใช้งาน byphil Cloud ที่รวมโมเดล AI หลากหลายไว้ในที่เดียว ไม่ต้องใช้ key ไม่ต้องตั้งค่าใดๆ และยังช่วยสนับสนุนทุกเครื่องมือที่พัฒนาโดย byphil",
+          "translatedAt": "2026-10-31T23:45:48.031Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ar": {
+          "text": "يعمل كل شيء مجانًا باستخدام مفتاح الذكاء الاصطناعي الخاص بك أو عبر نموذج محلي. وإذا نال إعجابك، يمكنك التعبير عن تقديرك من خلال التبرع. يمنحك التبرع أيضًا إمكانية استخدام byphil Cloud: نماذج ذكاء اصطناعي متعددة في مكان واحد، دون الحاجة إلى مفتاح أو أي إعداد مسبق، بالإضافة إلى دعم جميع الأدوات التي يطورها byphil.",
+          "translatedAt": "2026-10-31T23:45:54.712Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "sv": {
+          "text": "Allt fungerar gratis med din egen AI-nyckel eller en lokal modell. Om du gillar verktyget är en donation ett fint sätt att säga tack. Det ger dig också byphil Cloud: massor av AI-modeller på ett ställe, utan API key eller installation, samtidigt som du stöttar alla verktyg som byphil bygger.",
+          "translatedAt": "2026-10-31T23:46:06.898Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "da": {
+          "text": "Alt fungerer gratis med din egen AI-nøgle eller en lokal model. Hvis du er glad for det, kan du sige tak med en donation. Det giver dig også byphil Cloud: mange AI-modeller samlet ét sted, helt uden nøgle eller opsætning – og så støtter det alle værktøjer, byphil bygger.",
+          "translatedAt": "2026-10-31T23:46:17.550Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "no": {
+          "text": "Alt fungerer helt gratis med din egen API key eller en lokal modell. Hvis du liker verktøyet, kan du støtte prosjektet med en donasjon. Det gir deg også tilgang til byphil Cloud: mange AI-modeller på ett sted, uten behov for nøkkel eller oppsett, samtidig som du støtter utviklingen av alle byphil-verktøy.",
+          "translatedAt": "2026-10-31T23:46:24.212Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fi": {
+          "text": "Kaikki toimii maksutta omalla API key -avaimella tai paikallisella mallilla. Jos pidät sovelluksesta, voit kiittää lahjoituksella. Saat samalla käyttöösi byphil Cloudin: useita tekoälymalleja yhdessä paikassa ilman avainta tai käyttöönottoa – ja tuet samalla kaikkia byphilin kehittämiä työkaluja.",
+          "translatedAt": "2026-10-31T23:46:35.158Z",
+          "model": "google/gemini-3.7-flash"
+        }
+      }
+    },
+    "6c5e6855518085d414dbd3eed8f0343cc0d1e82bce55292f089d29bf39e6df0d": {
+      "en": "Encrypted sync and backup to your own Nextcloud, S3 or folder",
+      "translations": {
+        "de": {
+          "text": "Verschlüsselte Synchronisierung und Backups auf Ihre eigene Nextcloud, S3 oder einen lokalen Ordner",
+          "translatedAt": "2026-10-31T23:43:36.713Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fr": {
+          "text": "Synchronisation et sauvegarde chiffrées vers votre propre Nextcloud, S3 ou dossier",
+          "translatedAt": "2026-10-31T23:43:49.655Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "es": {
+          "text": "Sincronización y copia de seguridad cifradas en tu propio Nextcloud, S3 o carpeta local",
+          "translatedAt": "2026-10-31T23:43:53.172Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh": {
+          "text": "加密同步与备份至您自己的 Nextcloud、S3 或本地文件夹",
+          "translatedAt": "2026-10-31T23:43:56.976Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh-TW": {
+          "text": "加密同步與備份至你自己的 Nextcloud、S3 或本地資料夾",
+          "translatedAt": "2026-10-31T23:44:04.378Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ja": {
+          "text": "ご自身のNextcloud、S3、またはローカルフォルダーへの暗号化同期とバックアップ",
+          "translatedAt": "2026-10-31T23:44:13.135Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ko": {
+          "text": "개인 Nextcloud, S3 또는 폴더로 암호화 동기화 및 백업",
+          "translatedAt": "2026-10-31T23:44:19.367Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pt": {
+          "text": "Sincronização e backup criptografados para o seu próprio Nextcloud, S3 ou pasta",
+          "translatedAt": "2026-10-31T23:44:27.767Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "hi": {
+          "text": "आपके अपने Nextcloud, S3 या folder पर Encrypted sync और backup",
+          "translatedAt": "2026-10-31T23:44:34.101Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "vi": {
+          "text": "Đồng bộ và sao lưu mã hóa tới Nextcloud, S3 hoặc thư mục riêng của bạn",
+          "translatedAt": "2026-10-31T23:44:40.983Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "nl": {
+          "text": "Versleutelde synchronisatie en back-up naar je eigen Nextcloud, S3 of lokale map",
+          "translatedAt": "2026-10-31T23:44:51.776Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "it": {
+          "text": "Sincronizzazione e backup crittografati sul tuo Nextcloud, S3 o cartella locale",
+          "translatedAt": "2026-10-31T23:45:01.263Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ru": {
+          "text": "Зашифрованная синхронизация и резервное копирование в ваш Nextcloud, S3 или локальную папку",
+          "translatedAt": "2026-10-31T23:45:09.238Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "uk": {
+          "text": "Зашифрована синхронізація та бекап у ваш власний Nextcloud, S3 або теку",
+          "translatedAt": "2026-10-31T23:45:19.708Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "tr": {
+          "text": "Kendi Nextcloud, S3 veya klasörünüze uçtan uca şifreli senkronizasyon ve yedekleme",
+          "translatedAt": "2026-10-31T23:45:27.316Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "id": {
+          "text": "Sinkronisasi dan cadangan terenkripsi ke Nextcloud, S3, atau folder Anda sendiri",
+          "translatedAt": "2026-10-31T23:45:32.926Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pl": {
+          "text": "Szyfrowana synchronizacja i kopia zapasowa na własny Nextcloud, S3 lub do folderu",
+          "translatedAt": "2026-10-31T23:45:41.707Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "th": {
+          "text": "ซิงก์และสำรองข้อมูลแบบเข้ารหัสไปยัง Nextcloud, S3 หรือโฟลเดอร์ของคุณเอง",
+          "translatedAt": "2026-10-31T23:45:48.031Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ar": {
+          "text": "مزامنة ونسخ احتياطي مشفّران إلى Nextcloud أو S3 الخاصين بك أو إلى مجلد محلي",
+          "translatedAt": "2026-10-31T23:45:54.712Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "sv": {
+          "text": "Krypterad synk och backup till din egen Nextcloud, S3 eller mapp",
+          "translatedAt": "2026-10-31T23:46:06.898Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "da": {
+          "text": "Krypteret synkronisering og backup til din egen Nextcloud, S3 eller mappe",
+          "translatedAt": "2026-10-31T23:46:17.550Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "no": {
+          "text": "Kryptert synkronisering og sikkerhetskopi til din egen Nextcloud, S3 eller mappe",
+          "translatedAt": "2026-10-31T23:46:24.212Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fi": {
+          "text": "Salattu synkronointi ja varmuuskopiointi omaan Nextcloudiin, S3-tallennustilaan tai kansioon",
+          "translatedAt": "2026-10-31T23:46:35.158Z",
+          "model": "google/gemini-3.7-flash"
+        }
+      }
+    },
+    "fa953fb159469e8b261b8172225e4045a8c23105de40e716998b78e8732d48b1": {
+      "en": "Support Pass · a donation",
+      "translations": {
+        "de": {
+          "text": "Support Pass · Förderspende",
+          "translatedAt": "2026-10-31T23:43:36.713Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fr": {
+          "text": "Support Pass · un don",
+          "translatedAt": "2026-10-31T23:43:49.655Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "es": {
+          "text": "Support Pass · una donación",
+          "translatedAt": "2026-10-31T23:43:53.172Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh": {
+          "text": "Support Pass · 赞助支持",
+          "translatedAt": "2026-10-31T23:43:56.976Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh-TW": {
+          "text": "Support Pass · 贊助支持",
+          "translatedAt": "2026-10-31T23:44:04.378Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ja": {
+          "text": "Support Pass · ご寄付",
+          "translatedAt": "2026-10-31T23:44:13.135Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ko": {
+          "text": "Support Pass · 후원",
+          "translatedAt": "2026-10-31T23:44:19.367Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pt": {
+          "text": "Support Pass · uma doação",
+          "translatedAt": "2026-10-31T23:44:27.767Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "hi": {
+          "text": "Support Pass · एक donation",
+          "translatedAt": "2026-10-31T23:44:34.101Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "vi": {
+          "text": "Support Pass · khoản ủng hộ",
+          "translatedAt": "2026-10-31T23:44:40.983Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "nl": {
+          "text": "Support Pass · een donatie",
+          "translatedAt": "2026-10-31T23:44:51.776Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "it": {
+          "text": "Support Pass · una donazione",
+          "translatedAt": "2026-10-31T23:45:01.263Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ru": {
+          "text": "Support Pass · добровольное пожертвование",
+          "translatedAt": "2026-10-31T23:45:09.238Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "uk": {
+          "text": "Support Pass · донат",
+          "translatedAt": "2026-10-31T23:45:19.708Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "tr": {
+          "text": "Support Pass · bir bağış",
+          "translatedAt": "2026-10-31T23:45:27.316Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "id": {
+          "text": "Support Pass · donasi",
+          "translatedAt": "2026-10-31T23:45:32.926Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pl": {
+          "text": "Support Pass · darowizna",
+          "translatedAt": "2026-10-31T23:45:41.707Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "th": {
+          "text": "Support Pass · ร่วมสนับสนุน",
+          "translatedAt": "2026-10-31T23:45:48.031Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ar": {
+          "text": "Support Pass · عبر التبرع",
+          "translatedAt": "2026-10-31T23:45:54.712Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "sv": {
+          "text": "Support Pass · en donation",
+          "translatedAt": "2026-10-31T23:46:06.898Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "da": {
+          "text": "Support Pass · en donation",
+          "translatedAt": "2026-10-31T23:46:17.550Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "no": {
+          "text": "Support Pass · en donasjon",
+          "translatedAt": "2026-10-31T23:46:24.212Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fi": {
+          "text": "Support Pass · lahjoitus",
+          "translatedAt": "2026-10-31T23:46:35.158Z",
+          "model": "google/gemini-3.7-flash"
+        }
+      }
+    },
+    "cf5c4e317a8f4c0479731cc4252e7272215fbefa5e6687c405bbf2af9ad281b9": {
+      "en": "byphil Cloud: many AI models, no API key needed",
+      "translations": {
+        "de": {
+          "text": "byphil Cloud: zahlreiche KI-Modelle, kein API-Schlüssel erforderlich",
+          "translatedAt": "2026-10-31T23:43:36.713Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fr": {
+          "text": "byphil Cloud : de nombreux modèles d'IA, sans clé API requise",
+          "translatedAt": "2026-10-31T23:43:49.655Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "es": {
+          "text": "byphil Cloud: múltiples modelos de IA, sin necesidad de clave API",
+          "translatedAt": "2026-10-31T23:43:53.172Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh": {
+          "text": "byphil Cloud：聚合多种 AI 模型，无需自带 API key",
+          "translatedAt": "2026-10-31T23:43:56.976Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh-TW": {
+          "text": "byphil Cloud：整合多款 AI 模型，無需 API Key",
+          "translatedAt": "2026-10-31T23:44:04.378Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ja": {
+          "text": "byphil Cloud：APIキー不要で多彩なAIモデルを利用可能",
+          "translatedAt": "2026-10-31T23:44:13.135Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ko": {
+          "text": "byphil Cloud: API 키 없이 이용하는 다양한 AI 모델",
+          "translatedAt": "2026-10-31T23:44:19.367Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pt": {
+          "text": "byphil Cloud: vários modelos de IA, sem precisar de chave de API",
+          "translatedAt": "2026-10-31T23:44:27.767Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "hi": {
+          "text": "byphil Cloud: कई सारे AI models, कोई API key ज़रूरी नहीं",
+          "translatedAt": "2026-10-31T23:44:34.101Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "vi": {
+          "text": "byphil Cloud: nhiều mô hình AI, không cần khóa API",
+          "translatedAt": "2026-10-31T23:44:40.983Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "nl": {
+          "text": "byphil Cloud: talloze AI-modellen, geen API-sleutel nodig",
+          "translatedAt": "2026-10-31T23:44:51.776Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "it": {
+          "text": "byphil Cloud: tanti modelli di IA, nessuna chiave API necessaria",
+          "translatedAt": "2026-10-31T23:45:01.263Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ru": {
+          "text": "byphil Cloud: множество AI-моделей, API key не требуется",
+          "translatedAt": "2026-10-31T23:45:09.238Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "uk": {
+          "text": "byphil Cloud: безліч AI-моделей, API key не потрібен",
+          "translatedAt": "2026-10-31T23:45:19.708Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "tr": {
+          "text": "byphil Cloud: Birçok AI modeli, API anahtarı gerekmez",
+          "translatedAt": "2026-10-31T23:45:27.316Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "id": {
+          "text": "byphil Cloud: berbagai model AI, tanpa perlu API key",
+          "translatedAt": "2026-10-31T23:45:32.926Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pl": {
+          "text": "byphil Cloud: wiele modeli AI, bez konieczności posiadania klucza API",
+          "translatedAt": "2026-10-31T23:45:41.707Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "th": {
+          "text": "byphil Cloud: รวมหลากหลายโมเดล AI ไม่ต้องใช้ API key",
+          "translatedAt": "2026-10-31T23:45:48.031Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ar": {
+          "text": "byphil Cloud: نماذج ذكاء اصطناعي متعددة، دون الحاجة إلى API key",
+          "translatedAt": "2026-10-31T23:45:54.712Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "sv": {
+          "text": "byphil Cloud: flera AI-modeller, ingen API key behövs",
+          "translatedAt": "2026-10-31T23:46:06.898Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "da": {
+          "text": "byphil Cloud: mange AI-modeller, ingen API key påkrævet",
+          "translatedAt": "2026-10-31T23:46:17.550Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "no": {
+          "text": "byphil Cloud: mange AI-modeller, ingen API key nødvendig",
+          "translatedAt": "2026-10-31T23:46:24.212Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fi": {
+          "text": "byphil Cloud: useita tekoälymalleja, API keytä ei tarvita",
+          "translatedAt": "2026-10-31T23:46:35.158Z",
+          "model": "google/gemini-3.7-flash"
+        }
+      }
+    },
+    "b956bf09b9b9396995534deeec6e18c3c8c0da5ebccd67769010c7e2b0af7426": {
+      "en": "Supports every byphil tool",
+      "translations": {
+        "de": {
+          "text": "Unterstützt jedes byphil-Tool",
+          "translatedAt": "2026-10-31T23:43:36.713Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fr": {
+          "text": "Soutient tous les outils byphil",
+          "translatedAt": "2026-10-31T23:43:49.655Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "es": {
+          "text": "Apoya todas las herramientas de byphil",
+          "translatedAt": "2026-10-31T23:43:53.172Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh": {
+          "text": "支持 byphil 旗下所有工具",
+          "translatedAt": "2026-10-31T23:43:56.976Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh-TW": {
+          "text": "支持所有 byphil 開發的工具",
+          "translatedAt": "2026-10-31T23:44:04.378Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ja": {
+          "text": "byphilのすべてのツールをサポート",
+          "translatedAt": "2026-10-31T23:44:13.135Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ko": {
+          "text": "모든 byphil 도구 지원",
+          "translatedAt": "2026-10-31T23:44:19.367Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pt": {
+          "text": "Apoia todas as ferramentas byphil",
+          "translatedAt": "2026-10-31T23:44:27.767Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "hi": {
+          "text": "हर byphil tool को सपोर्ट करता है",
+          "translatedAt": "2026-10-31T23:44:34.101Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "vi": {
+          "text": "Hỗ trợ mọi công cụ do byphil phát triển",
+          "translatedAt": "2026-10-31T23:44:40.983Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "nl": {
+          "text": "Ondersteunt elke byphil-tool",
+          "translatedAt": "2026-10-31T23:44:51.776Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "it": {
+          "text": "Supporta tutti gli strumenti byphil",
+          "translatedAt": "2026-10-31T23:45:01.263Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ru": {
+          "text": "Поддержка всех инструментов byphil",
+          "translatedAt": "2026-10-31T23:45:09.238Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "uk": {
+          "text": "Підтримує кожен інструмент byphil",
+          "translatedAt": "2026-10-31T23:45:19.708Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "tr": {
+          "text": "Tüm byphil araçlarını destekler",
+          "translatedAt": "2026-10-31T23:45:27.316Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "id": {
+          "text": "Mendukung semua fitur byphil",
+          "translatedAt": "2026-10-31T23:45:32.926Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pl": {
+          "text": "Wspiera każde narzędzie byphil",
+          "translatedAt": "2026-10-31T23:45:41.707Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "th": {
+          "text": "สนับสนุนทุกเครื่องมือของ byphil",
+          "translatedAt": "2026-10-31T23:45:48.031Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ar": {
+          "text": "يدعم جميع أدوات byphil",
+          "translatedAt": "2026-10-31T23:45:54.712Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "sv": {
+          "text": "Stöttar alla byphil-verktyg",
+          "translatedAt": "2026-10-31T23:46:06.898Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "da": {
+          "text": "Støtter alle byphil-værktøjer",
+          "translatedAt": "2026-10-31T23:46:17.550Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "no": {
+          "text": "Støtter alle byphil-verktøy",
+          "translatedAt": "2026-10-31T23:46:24.212Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fi": {
+          "text": "Tukee kaikkia byphil-työkaluja",
+          "translatedAt": "2026-10-31T23:46:35.158Z",
+          "model": "google/gemini-3.7-flash"
+        }
+      }
+    },
+    "d67c05cd35c4d9ce93f0a3c2fb90e302f3b9726fafd0bfb80fa11ede8a0335a0": {
+      "en": "Support the project",
+      "translations": {
+        "de": {
+          "text": "Projekt unterstützen",
+          "translatedAt": "2026-10-31T23:43:36.713Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fr": {
+          "text": "Soutenir le projet",
+          "translatedAt": "2026-10-31T23:43:49.655Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "es": {
+          "text": "Apoyar el proyecto",
+          "translatedAt": "2026-10-31T23:43:53.172Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh": {
+          "text": "支持该项目",
+          "translatedAt": "2026-10-31T23:43:56.976Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh-TW": {
+          "text": "支持此專案",
+          "translatedAt": "2026-10-31T23:44:04.378Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ja": {
+          "text": "プロジェクトを支援する",
+          "translatedAt": "2026-10-31T23:44:13.135Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ko": {
+          "text": "프로젝트 후원하기",
+          "translatedAt": "2026-10-31T23:44:19.367Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pt": {
+          "text": "Apoiar o projeto",
+          "translatedAt": "2026-10-31T23:44:27.767Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "hi": {
+          "text": "Project को सपोर्ट करें",
+          "translatedAt": "2026-10-31T23:44:34.101Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "vi": {
+          "text": "Ủng hộ dự án",
+          "translatedAt": "2026-10-31T23:44:40.983Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "nl": {
+          "text": "Steun het project",
+          "translatedAt": "2026-10-31T23:44:51.776Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "it": {
+          "text": "Sostieni il progetto",
+          "translatedAt": "2026-10-31T23:45:01.263Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ru": {
+          "text": "Поддержать проект",
+          "translatedAt": "2026-10-31T23:45:09.238Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "uk": {
+          "text": "Підтримати проєкт",
+          "translatedAt": "2026-10-31T23:45:19.708Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "tr": {
+          "text": "Projeyi destekleyin",
+          "translatedAt": "2026-10-31T23:45:27.316Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "id": {
+          "text": "Dukung proyek ini",
+          "translatedAt": "2026-10-31T23:45:32.926Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pl": {
+          "text": "Wesprzyj projekt",
+          "translatedAt": "2026-10-31T23:45:41.707Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "th": {
+          "text": "ร่วมสนับสนุนโปรเจกต์",
+          "translatedAt": "2026-10-31T23:45:48.031Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ar": {
+          "text": "ادعم المشروع",
+          "translatedAt": "2026-10-31T23:45:54.712Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "sv": {
+          "text": "Stötta projektet",
+          "translatedAt": "2026-10-31T23:46:06.898Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "da": {
+          "text": "Støt projektet",
+          "translatedAt": "2026-10-31T23:46:17.550Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "no": {
+          "text": "Støtt prosjektet",
+          "translatedAt": "2026-10-31T23:46:24.212Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fi": {
+          "text": "Tue projektia",
+          "translatedAt": "2026-10-31T23:46:35.158Z",
+          "model": "google/gemini-3.7-flash"
+        }
+      }
+    },
+    "5bb552b9c6b1ab492d60fcb1fdc26b0bc8b30ce0ed776b1df2b0d304a57db48b": {
+      "en": "One-time donation",
+      "translations": {
+        "de": {
+          "text": "Einmalige Spende",
+          "translatedAt": "2026-10-31T23:43:36.713Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fr": {
+          "text": "Don ponctuel",
+          "translatedAt": "2026-10-31T23:43:49.655Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "es": {
+          "text": "Donación única",
+          "translatedAt": "2026-10-31T23:43:53.172Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh": {
+          "text": "单次赞助",
+          "translatedAt": "2026-10-31T23:43:56.976Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh-TW": {
+          "text": "單次贊助",
+          "translatedAt": "2026-10-31T23:44:04.378Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ja": {
+          "text": "1回限りのご寄付",
+          "translatedAt": "2026-10-31T23:44:13.135Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ko": {
+          "text": "1회 후원",
+          "translatedAt": "2026-10-31T23:44:19.367Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pt": {
+          "text": "Doação única",
+          "translatedAt": "2026-10-31T23:44:27.767Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "hi": {
+          "text": "One-time donation",
+          "translatedAt": "2026-10-31T23:44:34.101Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "vi": {
+          "text": "Ủng hộ một lần",
+          "translatedAt": "2026-10-31T23:44:40.983Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "nl": {
+          "text": "Eenmalige donatie",
+          "translatedAt": "2026-10-31T23:44:51.776Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "it": {
+          "text": "Donazione una tantum",
+          "translatedAt": "2026-10-31T23:45:01.263Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ru": {
+          "text": "Разовый донат",
+          "translatedAt": "2026-10-31T23:45:09.238Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "uk": {
+          "text": "Одноразовий донат",
+          "translatedAt": "2026-10-31T23:45:19.708Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "tr": {
+          "text": "Tek seferlik bağış",
+          "translatedAt": "2026-10-31T23:45:27.316Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "id": {
+          "text": "Donasi sekali bayar",
+          "translatedAt": "2026-10-31T23:45:32.926Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pl": {
+          "text": "Jednorazowa darowizna",
+          "translatedAt": "2026-10-31T23:45:41.707Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "th": {
+          "text": "ร่วมสนับสนุนแบบครั้งเดียว",
+          "translatedAt": "2026-10-31T23:45:48.031Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ar": {
+          "text": "تبرع لمرة واحدة",
+          "translatedAt": "2026-10-31T23:45:54.712Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "sv": {
+          "text": "Engångsdonation",
+          "translatedAt": "2026-10-31T23:46:06.898Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "da": {
+          "text": "Engangsdonation",
+          "translatedAt": "2026-10-31T23:46:17.550Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "no": {
+          "text": "Engangsdonasjon",
+          "translatedAt": "2026-10-31T23:46:24.212Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fi": {
+          "text": "Kertalahjoitus",
+          "translatedAt": "2026-10-31T23:46:35.158Z",
+          "model": "google/gemini-3.7-flash"
+        }
+      }
+    },
+    "8b89cce2c2e9bff2549d4a4b64e8087cf0d6028522fb8ec6a5b2a991a55a2173": {
+      "en": "Everything in the Support Pass",
+      "translations": {
+        "de": {
+          "text": "Alles aus dem Support Pass",
+          "translatedAt": "2026-10-31T23:43:36.713Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fr": {
+          "text": "Tout ce qui est inclus dans le Support Pass",
+          "translatedAt": "2026-10-31T23:43:49.655Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "es": {
+          "text": "Todo lo incluido en el Support Pass",
+          "translatedAt": "2026-10-31T23:43:53.172Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh": {
+          "text": "包含 Support Pass 的所有权益",
+          "translatedAt": "2026-10-31T23:43:56.976Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh-TW": {
+          "text": "包含 Support Pass 的所有內容",
+          "translatedAt": "2026-10-31T23:44:04.378Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ja": {
+          "text": "Support Passのすべての特典",
+          "translatedAt": "2026-10-31T23:44:13.135Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ko": {
+          "text": "Support Pass의 모든 혜택 포함",
+          "translatedAt": "2026-10-31T23:44:19.367Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pt": {
+          "text": "Tudo incluído no Support Pass",
+          "translatedAt": "2026-10-31T23:44:27.767Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "hi": {
+          "text": "Support Pass में मौजूद सब कुछ",
+          "translatedAt": "2026-10-31T23:44:34.101Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "vi": {
+          "text": "Bao gồm tất cả quyền lợi trong Support Pass",
+          "translatedAt": "2026-10-31T23:44:40.983Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "nl": {
+          "text": "Alles in de Support Pass",
+          "translatedAt": "2026-10-31T23:44:51.776Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "it": {
+          "text": "Tutto ciò che è incluso nel Support Pass",
+          "translatedAt": "2026-10-31T23:45:01.263Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ru": {
+          "text": "Всё, что входит в Support Pass",
+          "translatedAt": "2026-10-31T23:45:09.238Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "uk": {
+          "text": "Усе, що входить до Support Pass",
+          "translatedAt": "2026-10-31T23:45:19.708Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "tr": {
+          "text": "Support Pass kapsamındaki her şey",
+          "translatedAt": "2026-10-31T23:45:27.316Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "id": {
+          "text": "Semua yang ada di Support Pass",
+          "translatedAt": "2026-10-31T23:45:32.926Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pl": {
+          "text": "Wszystko, co zawiera Support Pass",
+          "translatedAt": "2026-10-31T23:45:41.707Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "th": {
+          "text": "ทุกฟีเจอร์ใน Support Pass",
+          "translatedAt": "2026-10-31T23:45:48.031Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ar": {
+          "text": "كل ما يتضمنه Support Pass",
+          "translatedAt": "2026-10-31T23:45:54.712Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "sv": {
+          "text": "Allt i Support Pass",
+          "translatedAt": "2026-10-31T23:46:06.898Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "da": {
+          "text": "Alt i Support Pass",
+          "translatedAt": "2026-10-31T23:46:17.550Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "no": {
+          "text": "Alt i Support Pass",
+          "translatedAt": "2026-10-31T23:46:24.212Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fi": {
+          "text": "Kaikki mitä Support Pass sisältää",
+          "translatedAt": "2026-10-31T23:46:35.158Z",
+          "model": "google/gemini-3.7-flash"
+        }
+      }
+    },
+    "0754c3d18c2d8193df0b6c959b74aa95dd1568a0ad056476d959df7402b008d0": {
+      "en": "No. Install it, bring your own AI provider key (or use a local Ollama model), and start saving. An account only matters if you want byphil Cloud (many AI models without a key) or more Kindle/LocalSend sends, which a donation unlocks.",
+      "translations": {
+        "de": {
+          "text": "Nein. Einfach installieren, Ihren eigenen KI-Anbieterschlüssel hinterlegen (oder ein lokales Ollama-Modell nutzen) und direkt loslegen. Ein Konto ist nur erforderlich, wenn Sie byphil Cloud (zahlreiche KI-Modelle ohne eigenen Schlüssel) nutzen oder zusätzliche Sendekontingente für Kindle/LocalSend freischalten möchten, die durch eine Spende bereitgestellt werden.",
+          "translatedAt": "2026-10-31T23:43:36.713Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fr": {
+          "text": "Non. Installez l'application, renseignez votre propre clé de fournisseur d'IA (ou utilisez un modèle local Ollama), et commencez à sauvegarder. Un compte n'est utile que si vous souhaitez profiter de byphil Cloud (de nombreux modèles d'IA sans clé API) ou bénéficier de plus d'envois Kindle/LocalSend, débloqués grâce à un don.",
+          "translatedAt": "2026-10-31T23:43:49.655Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "es": {
+          "text": "No. Solo instálalo, añade tu propia clave de proveedor de IA (o usa un modelo local con Ollama) y empieza a guardar. Solo necesitas una cuenta si quieres usar byphil Cloud (múltiples modelos de IA sin clave API) o más envíos a Kindle/LocalSend, los cuales se desbloquean con una donación.",
+          "translatedAt": "2026-10-31T23:43:53.172Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh": {
+          "text": "不需要。安装后，只需填入您自己的 AI 提供商 API key（或直接连接本地 Ollama 模型），即可立即开始保存内容。仅当您需要使用 byphil Cloud（免 key 使用多种 AI 模型）或解锁更多 Kindle/LocalSend 发送额度时，才需要注册账户并通过赞助解锁。",
+          "translatedAt": "2026-10-31T23:43:56.976Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh-TW": {
+          "text": "不需要。安裝後只要填入你自己的 AI 服務商 API Key（或直接使用本機 Ollama 模型），就能立即開始儲存。只有當你想使用 byphil Cloud（免 Key 即可使用多款 AI 模型），或是想解鎖贊助專屬的更多 Kindle／LocalSend 傳送額度時，才需要註冊帳號。",
+          "translatedAt": "2026-10-31T23:44:04.378Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ja": {
+          "text": "いいえ、不要です。インストール後、ご自身のAIプロバイダーのAPIキーを設定する（またはローカルのOllamaモデルを使用する）だけで、すぐに保存を始められます。アカウント登録が必要になるのは、キー不要で多彩なAIモデルが使える「byphil Cloud」を利用する場合や、ご寄付によってアンロックされるKindle／LocalSendへの送信枠を追加したい場合のみです。",
+          "translatedAt": "2026-10-31T23:44:13.135Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ko": {
+          "text": "아니요. 설치 후 보유 중인 AI 제공업체 키를 입력하거나 로컬 Ollama 모델을 연결하기만 하면 바로 저장을 시작할 수 있어요. 계정은 키 없이 여러 AI 모델을 사용할 수 있는 byphil Cloud나, 후원을 통해 잠금 해제되는 추가 Kindle/LocalSend 전송 기능이 필요할 때만 생성하시면 됩니다.",
+          "translatedAt": "2026-10-31T23:44:19.367Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pt": {
+          "text": "Não. Basta instalar, usar a chave do seu próprio provedor de IA (ou usar um modelo local do Ollama) e começar a salvar. Você só precisa de uma conta se quiser o byphil Cloud (vários modelos de IA sem precisar de chave) ou mais envios para Kindle/LocalSend, liberados com uma doação.",
+          "translatedAt": "2026-10-31T23:44:27.767Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "hi": {
+          "text": "नहीं। बस install करें, अपनी AI provider key लगाएं (या local Ollama model इस्तेमाल करें), और save करना शुरू करें। Account की ज़रूरत केवल तब होती है जब आप byphil Cloud (बिना key के कई AI models) या ज़्यादा Kindle/LocalSend सेंड्स चाहते हों, जो donation से अनलॉक होते हैं।",
+          "translatedAt": "2026-10-31T23:44:34.101Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "vi": {
+          "text": "Không. Chỉ cần cài đặt, dùng khóa nhà cung cấp AI của riêng bạn (hoặc mô hình Ollama cục bộ) và bắt đầu lưu trữ. Bạn chỉ cần tài khoản nếu muốn sử dụng byphil Cloud (nhiều mô hình AI mà không cần khóa) hoặc tăng lượt gửi tới Kindle/LocalSend được mở khóa khi ủng hộ.",
+          "translatedAt": "2026-10-31T23:44:40.983Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "nl": {
+          "text": "Nee. Installeer het, gebruik je eigen AI-sleutel (of draai lokaal een model via Ollama) en begin direct met opslaan. Een account is alleen nodig als je byphil Cloud wilt (meerdere AI-modellen zonder eigen sleutel) of vaker wilt verzenden naar Kindle of LocalSend, wat je ontgrendelt met een donatie.",
+          "translatedAt": "2026-10-31T23:44:51.776Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "it": {
+          "text": "No. Installalo, inserisci la tua chiave API (o usa un modello locale con Ollama) e inizia subito a salvare i tuoi contenuti. L'account è necessario solo se desideri byphil Cloud (tanti modelli di IA senza configurare chiavi) o più invii verso Kindle/LocalSend, sbloccati con una donazione.",
+          "translatedAt": "2026-10-31T23:45:01.263Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ru": {
+          "text": "Нет. Просто установите приложение, укажите свой ключ провайдера AI (или используйте локальную модель Ollama) и сохраняйте контент. Аккаунт нужен только для byphil Cloud (множество AI-моделей без своего ключа) или для увеличения лимита отправок на Kindle и через LocalSend, которые открываются за донат.",
+          "translatedAt": "2026-10-31T23:45:09.238Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "uk": {
+          "text": "Ні. Встановіть застосунок, додайте власний ключ провайдера AI (або використовуйте локальну модель Ollama) і починайте зберігати. Акаунт потрібен лише у разі, якщо вам потрібен byphil Cloud (безліч AI-моделей без ключа) або більше відправок на Kindle/LocalSend, які відкриваються за донат.",
+          "translatedAt": "2026-10-31T23:45:19.708Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "tr": {
+          "text": "Hayır. Yükleyin, kendi AI sağlayıcı anahtarınızı ekleyin (veya yerel bir Ollama modeli kullanın) ve kaydetmeye başlayın. Hesap yalnızca byphil Cloud (anahtarsız birçok AI modeli) veya bağışla açılan daha fazla Kindle/LocalSend gönderimi istiyorsanız gereklidir.",
+          "translatedAt": "2026-10-31T23:45:27.316Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "id": {
+          "text": "Tidak. Cukup install, gunakan API key penyedia AI Anda sendiri (atau gunakan model lokal Ollama), dan mulai simpan. Akun hanya diperlukan jika Anda menginginkan byphil Cloud (berbagai model AI tanpa API key) atau kuota pengiriman Kindle/LocalSend ekstra, yang terbuka melalui donasi.",
+          "translatedAt": "2026-10-31T23:45:32.926Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pl": {
+          "text": "Nie. Zainstaluj aplikację, dodaj własny klucz dostawcy AI (lub użyj lokalnego modelu Ollama) i zacznij zapisywać. Konto jest potrzebne tylko wtedy, gdy chcesz korzystać z byphil Cloud (wiele modeli AI bez własnego klucza) lub zwiększyć liczbę wysyłek na Kindle/LocalSend, co odblokowuje darowizna.",
+          "translatedAt": "2026-10-31T23:45:41.707Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "th": {
+          "text": "ไม่จำเป็น เพียงติดตั้ง นำ AI provider key ของคุณมาใส่ (หรือใช้โมเดล local ผ่าน Ollama) ก็เริ่มบันทึกได้ทันที บัญชีผู้ใช้จำเป็นเฉพาะเมื่อต้องการใช้งาน byphil Cloud (เข้าถึงโมเดล AI หลากหลายโดยไม่ต้องใช้ key) หรือต้องการโควตาส่งไปยัง Kindle/LocalSend เพิ่มเติม ซึ่งปลดล็อกได้ผ่านการร่วมสนับสนุน",
+          "translatedAt": "2026-10-31T23:45:48.031Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ar": {
+          "text": "لا. ثبّت التطبيق، واستخدم مفتاح مزود الذكاء الاصطناعي الخاص بك (أو استخدم نموذج Ollama محليًا)، وابدأ الحفظ فورًا. لا يلزمك إنشاء حساب إلا إذا أردت استخدام byphil Cloud (نماذج ذكاء اصطناعي متعددة دون مفتاح) أو إرسال المزيد عبر Kindle/LocalSend، وهي ميزات يتيحها التبرع.",
+          "translatedAt": "2026-10-31T23:45:54.712Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "sv": {
+          "text": "Nej. Installera, använd din egen nyckel från valfri AI-leverantör (eller använd en lokal Ollama-modell) och börja spara. Du behöver bara ett konto om du vill använda byphil Cloud (flera AI-modeller utan API key) eller skicka mer till Kindle/LocalSend, vilket låses upp med en donation.",
+          "translatedAt": "2026-10-31T23:46:06.898Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "da": {
+          "text": "Nej. Installer det, brug din egen AI-udbydernøgle (eller en lokal Ollama-model), og gå i gang med at gemme. Du behøver kun en konto, hvis du vil have byphil Cloud (mange AI-modeller uden nøgle) eller flere Kindle-/LocalSend-afsendelser, som låses op med en donation.",
+          "translatedAt": "2026-10-31T23:46:17.550Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "no": {
+          "text": "Nei. Bare installer, legg til din egen API key (eller bruk en lokal Ollama-modell), og begynn å lagre. Du trenger kun en konto hvis du vil bruke byphil Cloud (mange AI-modeller uten egen nøkkel) eller trenger flere Kindle/LocalSend-utsendinger, som låses opp via en donasjon.",
+          "translatedAt": "2026-10-31T23:46:24.212Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fi": {
+          "text": "Et. Asenna sovellus, käytä omaa AI-tarjoajan API keytä (tai paikallista Ollama-mallia) ja aloita tallentaminen. Tiliä tarvitaan vain, jos haluat käyttää byphil Cloudia (useita tekoälymalleja ilman omaa avainta) tai useampia Kindle- ja LocalSend-lähetyksiä, jotka avautuvat lahjoituksella.",
+          "translatedAt": "2026-10-31T23:46:35.158Z",
+          "model": "google/gemini-3.7-flash"
+        }
+      }
+    },
+    "5ce4362a7c6819f1f40a21be45ee38a37cf7ba51cb87146135dec4e9d39d5b4c": {
+      "en": "What happens to my saves if I stop supporting the project?",
+      "translations": {
+        "de": {
+          "text": "Was passiert mit meinen gespeicherten Inhalten, wenn ich das Projekt nicht mehr unterstütze?",
+          "translatedAt": "2026-10-31T23:43:36.713Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fr": {
+          "text": "Qu'advient-il de mes sauvegardes si j'arrête de soutenir le projet ?",
+          "translatedAt": "2026-10-31T23:43:49.655Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "es": {
+          "text": "¿Qué pasa con mis elementos guardados si dejo de apoyar el proyecto?",
+          "translatedAt": "2026-10-31T23:43:53.172Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh": {
+          "text": "如果我停止赞助该项目，已保存的内容会受影响吗？",
+          "translatedAt": "2026-10-31T23:43:56.976Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh-TW": {
+          "text": "如果我停止贊助專案，已儲存的內容會受到影響嗎？",
+          "translatedAt": "2026-10-31T23:44:04.378Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ja": {
+          "text": "プロジェクトへの支援を停止した場合、保存したデータはどうなりますか？",
+          "translatedAt": "2026-10-31T23:44:13.135Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ko": {
+          "text": "프로젝트 후원을 중단하면 저장된 데이터는 어떻게 되나요?",
+          "translatedAt": "2026-10-31T23:44:19.367Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pt": {
+          "text": "O que acontece com os meus itens salvos se eu parar de apoiar o projeto?",
+          "translatedAt": "2026-10-31T23:44:27.767Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "hi": {
+          "text": "अगर मैं project को सपोर्ट करना बंद कर दूँ तो मेरे saves का क्या होगा?",
+          "translatedAt": "2026-10-31T23:44:34.101Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "vi": {
+          "text": "Điều gì sẽ xảy ra với các nội dung đã lưu nếu tôi ngừng ủng hộ dự án?",
+          "translatedAt": "2026-10-31T23:44:40.983Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "nl": {
+          "text": "Wat gebeurt er met mijn opgeslagen items als ik stop met het steunen van het project?",
+          "translatedAt": "2026-10-31T23:44:51.776Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "it": {
+          "text": "Cosa succede ai miei salvataggi se smetto di sostenere il progetto?",
+          "translatedAt": "2026-10-31T23:45:01.263Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ru": {
+          "text": "Что произойдет с сохраненными данными, если я перестану поддерживать проект?",
+          "translatedAt": "2026-10-31T23:45:09.238Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "uk": {
+          "text": "Що станеться з моїми збереженнями, якщо я припиню підтримувати проєкт?",
+          "translatedAt": "2026-10-31T23:45:19.708Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "tr": {
+          "text": "Projeyi desteklemeyi bırakırsam kayıtlarıma ne olur?",
+          "translatedAt": "2026-10-31T23:45:27.316Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "id": {
+          "text": "Apa yang terjadi dengan data simpanan saya jika saya berhenti mendukung proyek ini?",
+          "translatedAt": "2026-10-31T23:45:32.926Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pl": {
+          "text": "Co stanie się z moimi zapisami, jeśli przestanę wspierać projekt?",
+          "translatedAt": "2026-10-31T23:45:41.707Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "th": {
+          "text": "จะเกิดอะไรขึ้นกับข้อมูลที่บันทึกไว้ หากหยุดสนับสนุนโปรเจกต์?",
+          "translatedAt": "2026-10-31T23:45:48.031Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ar": {
+          "text": "ماذا يحدث لمحفوظاتي إذا توقفت عن دعم المشروع؟",
+          "translatedAt": "2026-10-31T23:45:54.712Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "sv": {
+          "text": "Vad händer med det jag sparat om jag slutar stötta projektet?",
+          "translatedAt": "2026-10-31T23:46:06.898Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "da": {
+          "text": "Hvad sker der med mine gemte data, hvis jeg stopper med at støtte projektet?",
+          "translatedAt": "2026-10-31T23:46:17.550Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "no": {
+          "text": "Hva skjer med det jeg har lagret dersom jeg slutter å støtte prosjektet?",
+          "translatedAt": "2026-10-31T23:46:24.212Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fi": {
+          "text": "Mitä tallennuksilleni tapahtuu, jos lopetan projektin tukemisen?",
+          "translatedAt": "2026-10-31T23:46:35.158Z",
+          "model": "google/gemini-3.7-flash"
+        }
+      }
     }
   }
 }
