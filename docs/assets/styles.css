@@ -1445,3 +1445,11 @@ button.tier-cta[hidden]{ display:none; }
 body:has(.hero--photo){ padding-top:0; }
 .hero--photo{ padding:196px 0 96px; }
 @media (max-width:860px){ .hero--photo{ padding:148px 0 72px; } }
+
+/* Blog posts: the photo stage behind the post head (left-aligned text, light on the dark gradient) */
+.post-stage{ padding:176px 0 64px; text-align:left; }
+.post-stage .post-hero{ padding:0; max-width:760px; }
+.post-stage .post-hero h1{ color:#F5F5F7; text-shadow:0 1px 14px rgba(0,0,0,.45); }
+.post-stage .post-hero .post-sub{ color:rgba(245,245,247,.88); text-shadow:0 1px 14px rgba(0,0,0,.45); }
+.post-stage .post-hero .blog-date{ color:#F2D9A6; }
+@media (max-width:860px){ .post-stage{ padding:128px 0 44px; } }
