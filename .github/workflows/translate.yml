@@ -94,6 +94,11 @@ jobs:
             node scripts/translate.mjs
           fi
 
+      # Every English page must exist in every locale (besides the "exempt" pages in locales.json).
+      - name: Check translations are structurally in sync with English
+        if: ${{ github.event.inputs.locale == '' }}
+        run: node scripts/check-translations.mjs
+
       # Translation adds/removes locale pages, so the sitemap, hreflang alternates,
       # canonical tags and llms.txt must be rebuilt before the PR is opened.
       - name: Regenerate SEO artefacts (sitemap, hreflang, llms.txt)

@@ -39,6 +39,7 @@ import { existsSync } from 'node:fs';
 import path from 'node:path';
 import crypto from 'node:crypto';
 import * as cheerio from 'cheerio';
+import { untrackedPages } from './lib/translation-coverage.mjs';
 import { localizedPath, englishPath, rewriteLocalizedLinks, buildLocalizedPageInventory, rewriteAvailablePageLinks, redirectStub, SITE_URL } from './lib/localized-paths.mjs';
 
 const REPO_ROOT = process.cwd();
@@ -550,7 +551,10 @@ async function main() {
         process.exit(1);
     }
 
-    const targetFiles = ONLY_FILE ? [ONLY_FILE] : config.content;
+    // An English page nobody listed in "content" (or "exempt") would silently stay untranslated: translate it anyway.
+    const untracked = untrackedPages(ROOT, config);
+    for (const p of untracked) console.warn(`warning: ${p} is not in locales.json "content" or "exempt" - translating it anyway, please add it.`);
+    const targetFiles = ONLY_FILE ? [ONLY_FILE] : [...config.content, ...untracked];
     const targetLocales = ONLY_LOCALE
         ? { [ONLY_LOCALE]: config.locales[ONLY_LOCALE] }
         : config.locales;
