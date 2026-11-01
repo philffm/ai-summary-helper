@@ -36,6 +36,7 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
+          cache: 'npm'
       - name: Install site validation dependencies
         run: npm ci --no-audit --no-fund
       - name: Build the live demo (fails if the mock lacks a popup action)
