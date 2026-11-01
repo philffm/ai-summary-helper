@@ -238,6 +238,14 @@ function writeMcpWorker(outDir, name) {
  * Copy the shared source into a platform build dir, then overlay the
  * platform-specific manifest (if provided).
  */
+function writeSyncWorker(outDir, name) {
+    const entry = path.join(SRC, 'modules', 'syncBackgroundBundle.js');
+    if (!fs.existsSync(entry)) return;
+    const code = bundleModuleGraph(entry, 'AISH_SYNC');
+    fs.writeFileSync(path.join(outDir, 'sync-worker.js'), code);
+    console.log(`  ✓ ${name || 'bundle'}: bundled sync-worker.js (${code.length} bytes)`);
+}
+
 function buildPlatform(name, manifestPath) {
     const outDir = path.join(DEV, `aish-extension-${name}`);
     fs.rmSync(outDir, { recursive: true, force: true });
@@ -256,6 +264,7 @@ function buildPlatform(name, manifestPath) {
     writeInboxWorker(outDir, name);
     writeTargetsWorker(outDir, name);
     writeMcpWorker(outDir, name);
+    writeSyncWorker(outDir, name);
 
     if (manifestPath && fs.existsSync(manifestPath)) {
         fs.copyFileSync(manifestPath, path.join(outDir, 'manifest.json'));
@@ -297,6 +306,7 @@ function main() {
             writeInboxWorker(targetDir);
             writeTargetsWorker(targetDir);
             writeMcpWorker(targetDir);
+            writeSyncWorker(targetDir);
         } catch (err) {
             console.error(`✗ ${err.message}`);
             process.exit(1);
