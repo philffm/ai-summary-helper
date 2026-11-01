@@ -1662,7 +1662,9 @@ function setBilling(period) {
     var track = root.querySelector('.slider-track'), prev = root.querySelector('.slider-prev'), next = root.querySelector('.slider-next');
     if (!track || !prev || !next) return;
     function step() { var c = track.querySelector('.slide'); return c ? c.getBoundingClientRect().width + 16 : 300; }
+    var counter = root.querySelector('.slider-count');
     function update() {
+      if (counter) { var sl = track.querySelectorAll('.slide'); var w = step(); var n = Math.max(0, Math.min(sl.length - 1, Math.round(track.scrollLeft / w))); counter.textContent = (n + 1) + ' / ' + sl.length; }
       var max = track.scrollWidth - track.clientWidth;
       var scrolls = max > 4;
       prev.hidden = next.hidden = !scrolls;          // nothing to page through on a wide screen: no arrows
