@@ -1381,3 +1381,13 @@ button.tier-cta[hidden]{ display:none; }
 .glance dd{ margin:0; font-size:14.5px; line-height:1.55; color:var(--paper-dim); }
 .glance a{ color:inherit; text-decoration:underline; text-underline-offset:3px; }
 @media (max-width:560px){ .glance > div{ grid-template-columns:1fr; } }
+
+/* Illustrations on landing pages (AI-generated; always captioned as such). Responsive via srcset, fixed aspect ratio so nothing jumps. */
+.photo-row{ display:grid; grid-template-columns:repeat(2, 1fr); gap:16px; margin-top:28px; }
+.photo-row figure{ margin:0; }
+.photo-row img, .card-photo img{ display:block; width:100%; height:auto; aspect-ratio:4/3; object-fit:cover; border-radius:14px; border:1px solid var(--border-subtle); background:var(--surface-2); }
+.photo-row figcaption{ margin-top:10px; font-size:14px; line-height:1.5; color:var(--paper-dim); text-align:center; }
+.photo-note{ margin:14px auto 0; max-width:640px; text-align:center; font-size:12.5px; color:var(--paper-dim); }
+.card-photo{ margin:-4px -4px 14px; }
+.card-photo img{ aspect-ratio:16/10; border-radius:10px; }
+@media (max-width:760px){ .photo-row{ grid-template-columns:1fr; } }
