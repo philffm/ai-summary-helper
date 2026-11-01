@@ -1,0 +1,203 @@
+<!DOCTYPE html><html lang="nl"><head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#08090C">
+<title>Van Bookmarklet naar 2.0 — AI Summary Helper</title>
+<meta name="description" content="Het begon als een bookmarklet voor één persoon met een Kindle-gewoonte. Dit is wat er veranderde tussen v1 en de open-source 2.0-rebuild — en waarom.">
+
+<script>
+  (function(){
+    try {
+      var saved = localStorage.getItem('aish_theme');
+      var theme = saved === 'light' || saved === 'dark'
+        ? saved
+        : (window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
+      document.documentElement.setAttribute('data-theme', theme);
+    } catch (e) {
+      document.documentElement.setAttribute('data-theme', 'dark');
+    }
+  })();
+</script>
+
+<link rel="icon" type="image/svg+xml" href="../../assets/icon.svg">
+<link rel="stylesheet" href="../../assets/styles.css">
+<script src="../../assets/analytics.js"></script>
+<link rel="alternate" hreflang="x-default" href="https://ai-summary-helper.byphil.eu/blog/from-bookmarklet-to-2.html"><link rel="alternate" hreflang="en" href="https://ai-summary-helper.byphil.eu/blog/from-bookmarklet-to-2.html"><link rel="alternate" hreflang="de" href="https://ai-summary-helper.byphil.eu/de/blog/vom-bookmarklet-zu-2-0.html"><link rel="alternate" hreflang="fr" href="https://ai-summary-helper.byphil.eu/fr/blog/du-bookmarklet-a-2-0.html"><link rel="alternate" hreflang="es" href="https://ai-summary-helper.byphil.eu/es/blog/del-bookmarklet-a-2-0.html"><link rel="alternate" hreflang="zh-Hans" href="https://ai-summary-helper.byphil.eu/zh/blog/from-bookmarklet-to-2.html"><link rel="alternate" hreflang="zh-Hant" href="https://ai-summary-helper.byphil.eu/zh-tw/blog/from-bookmarklet-to-2.html"><link rel="alternate" hreflang="ja" href="https://ai-summary-helper.byphil.eu/ja/blog/from-bookmarklet-to-2.html"><link rel="alternate" hreflang="ko" href="https://ai-summary-helper.byphil.eu/ko/blog/from-bookmarklet-to-2.html"><link rel="alternate" hreflang="pt-BR" href="https://ai-summary-helper.byphil.eu/pt/blog/do-bookmarklet-ao-2-0.html"><link rel="alternate" hreflang="hi" href="https://ai-summary-helper.byphil.eu/hi/blog/from-bookmarklet-to-2.html"><link rel="alternate" hreflang="vi" href="https://ai-summary-helper.byphil.eu/vi/blog/tu-bookmarklet-den-2-0.html"><link rel="alternate" hreflang="nl" href="https://ai-summary-helper.byphil.eu/nl/blog/van-bookmarklet-naar-2-0.html"><link rel="alternate" hreflang="it" href="https://ai-summary-helper.byphil.eu/it/blog/dal-bookmarklet-alla-2-0.html"><link rel="alternate" hreflang="ru" href="https://ai-summary-helper.byphil.eu/ru/blog/from-bookmarklet-to-2.html"><link rel="alternate" hreflang="uk" href="https://ai-summary-helper.byphil.eu/uk/blog/from-bookmarklet-to-2.html"><link rel="alternate" hreflang="tr" href="https://ai-summary-helper.byphil.eu/tr/blog/bookmarklettan-2-0a.html"><link rel="alternate" hreflang="id" href="https://ai-summary-helper.byphil.eu/id/blog/dari-bookmarklet-ke-2-0.html"><link rel="alternate" hreflang="pl" href="https://ai-summary-helper.byphil.eu/pl/blog/od-bookmarkletu-do-2-0.html"><link rel="alternate" hreflang="th" href="https://ai-summary-helper.byphil.eu/th/blog/from-bookmarklet-to-2.html"><link rel="alternate" hreflang="ar" href="https://ai-summary-helper.byphil.eu/ar/blog/from-bookmarklet-to-2.html"><link rel="alternate" hreflang="sv" href="https://ai-summary-helper.byphil.eu/sv/blog/fran-bookmarklet-till-2-0.html"><link rel="alternate" hreflang="da" href="https://ai-summary-helper.byphil.eu/da/blog/fra-bookmarklet-til-2-0.html"><link rel="alternate" hreflang="nb" href="https://ai-summary-helper.byphil.eu/no/blog/fra-bookmarklet-til-2-0.html"><link rel="alternate" hreflang="fi" href="https://ai-summary-helper.byphil.eu/fi/blog/kirjanmerkista-versioon-2-0.html"><meta property="og:site_name" content="AI Summary Helper"><meta property="og:locale" content="nl"><meta property="og:type" content="article"><meta property="og:title" content="Van Bookmarklet naar 2.0 — AI Summary Helper"><meta property="og:description" content="Het begon als een bookmarklet voor één persoon met een Kindle-gewoonte. Dit is wat er veranderde tussen v1 en de open-source 2.0-rebuild — en waarom."><meta property="og:image" content="https://ai-summary-helper.byphil.eu/assets/shots/aish-hero-en.webp"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="Van Bookmarklet naar 2.0 — AI Summary Helper"><meta name="twitter:description" content="Het begon als een bookmarklet voor één persoon met een Kindle-gewoonte. Dit is wat er veranderde tussen v1 en de open-source 2.0-rebuild — en waarom."><meta name="twitter:image" content="https://ai-summary-helper.byphil.eu/assets/shots/aish-hero-en.webp"><link rel="canonical" href="https://ai-summary-helper.byphil.eu/nl/blog/van-bookmarklet-naar-2-0.html"><script type="application/ld+json" data-seo="ld">{"@context":"https://schema.org","@graph":[{"@type":"BlogPosting","@id":"https://ai-summary-helper.byphil.eu/nl/blog/van-bookmarklet-naar-2-0.html#post","headline":"Van een bookmarklet naar 2.0: wat AI Summary Helper nu eigenlijk is","description":"Het begon als een bookmarklet voor één persoon met een Kindle-gewoonte. Dit is wat er veranderde tussen v1 en de open-source 2.0-rebuild — en waarom.","datePublished":"2026-06","inLanguage":"nl","image":"https://ai-summary-helper.byphil.eu/assets/shots/aish-hero-en.webp","mainEntityOfPage":"https://ai-summary-helper.byphil.eu/nl/blog/van-bookmarklet-naar-2-0.html","author":{"@id":"https://byphil.eu/#org"},"publisher":{"@type":"Organization","@id":"https://byphil.eu/#org","name":"byphil","url":"https://byphil.eu/"}},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"AI Summary Helper","item":"https://ai-summary-helper.byphil.eu/"},{"@type":"ListItem","position":2,"name":"Blog","item":"https://ai-summary-helper.byphil.eu/nl/blog/"},{"@type":"ListItem","position":3,"name":"Van een bookmarklet naar 2.0: wat AI Summary Helper nu eigenlijk is","item":"https://ai-summary-helper.byphil.eu/nl/blog/van-bookmarklet-naar-2-0.html"}]}]}</script></head>
+<body>
+
+<a href="#main" class="skip-link">Naar inhoud springen</a>
+
+<header class="nav nav--pill" id="siteNav">
+  <div class="wrap nav-pill-row">
+    <a href="../index.html" class="wordmark" aria-label="AI Summary Helper">
+      <img src="../../assets/icon.svg" alt="">
+      AI Summary Helper
+    </a>
+    <nav class="pill" aria-label="Primair">
+      <a href="../index.html#features" data-sec="features">Functies</a>
+      <a href="../index.html#see-it" data-sec="see-it">Demo</a>
+      <a href="https://chromewebstore.google.com/detail/ai-summary-helper-openai/hldbejcjaedipeegjcinmhejdndchkmb" class="pill-cta" target="_blank" rel="noopener">Toevoegen aan Chrome</a>
+    </nav>
+    <div class="nav-tools">
+      <button type="button" class="tool-btn" id="sendBtn" data-send="" hidden="" aria-label="Stuur deze pagina naar mijn computer" title="Stuur naar mijn computer"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="3" y="4.5" width="18" height="12" rx="2" stroke="currentColor" stroke-width="1.6"></rect><path d="M8 20h8M12 16.5V20M12 13V8m0 0-2.2 2.2M12 8l2.2 2.2" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"></path></svg></button>
+      <button type="button" class="tool-btn" id="langBtn" aria-label="Taal" aria-controls="mobileMenu"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.6"></circle><path d="M3 12h18M12 3c2.6 2.7 3.9 5.7 3.9 9s-1.3 6.3-3.9 9c-2.6-2.7-3.9-5.7-3.9-9S9.4 5.7 12 3Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"></path></svg></button>
+      <button type="button" class="theme-toggle" id="themeToggle" aria-label="Overschakelen naar lichte modus">
+        <svg class="icon-moon" viewBox="0 0 24 24" fill="none"><path d="M20 14.5A8.5 8.5 0 1 1 9.5 4a6.8 6.8 0 0 0 10.5 10.5Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"></path></svg>
+        <svg class="icon-sun" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="4.2" stroke="currentColor" stroke-width="1.6"></circle><path d="M12 2.5v2.4M12 19.1v2.4M4.4 4.4l1.7 1.7M17.9 17.9l1.7 1.7M2.5 12h2.4M19.1 12h2.4M4.4 19.6l1.7-1.7M17.9 6.1l1.7-1.7" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"></path></svg>
+      </button>
+    </div>
+    <button type="button" class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="mobileMenu" aria-label="Menu openen">
+      <svg viewBox="0 0 24 24" fill="none"><path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"></path></svg>
+    </button>
+  </div>
+  <div class="mobile-menu" id="mobileMenu" hidden="">
+    <div class="wrap mm-inner">
+      <nav class="mm-links" aria-label="Mobiel">
+        <a href="../index.html#features"><span class="mm-n">01</span>Functies</a>
+        <a href="../index.html#see-it"><span class="mm-n">02</span>Demo</a>
+        <a href="../blog/" aria-current="page"><span class="mm-n">03</span>Blog</a>
+          <a href="../blog/pocket-alternative.html" class="mm-sub">Pocket-alternatief: wat echt belangrijk is</a>
+          <a href="eigen-sleutel-eigen-model.html" class="mm-sub">Jouw sleutel. Jouw model. Jouw data.</a>
+          <a href="een-ai-samenvatting-bij-de-bron-controleren.html" class="mm-sub">Controleer een samenvatting aan de hand van de bron</a>
+          <a href="markeren-of-vragen.html" class="mm-sub">Stel vragen over je markeringen</a>
+        <a href="https://github.com/philffm/ai-summary-helper/" target="_blank" rel="noopener"><span class="mm-n">04</span>GitHub</a>
+      </nav>
+      <div class="mm-lang">
+        <button type="button" class="lang-card" id="langCard"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.6"></circle><path d="M3 12h18M12 3c2.6 2.7 3.9 5.7 3.9 9s-1.3 6.3-3.9 9c-2.6-2.7-3.9-5.7-3.9-9S9.4 5.7 12 3Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"></path></svg><span class="lang-card-cur">Engels</span><small>24 talen</small><b aria-hidden="true">→</b></button>
+        <p class="mm-lang-h">Taal · 24</p>
+        <label class="lang-search"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="11" cy="11" r="6.5" stroke="currentColor" stroke-width="1.7"></circle><path d="m16 16 4 4" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"></path></svg><input type="search" id="langSearch" placeholder="Zoek een taal…" autocomplete="off" aria-label="Taal zoeken" spellcheck="false"></label>
+        <div class="lang-groups" id="langGroups">
+          <div class="lang-group"><p class="lang-group-h">Populair</p><div class="lang-pills" data-no-translate=""><a href="/" class="lang-pill" data-loc="en" lang="en" hreflang="en" data-q="english english en">English</a><a href="/de/" class="lang-pill" data-loc="de" lang="de" hreflang="de" data-q="deutsch german de">Deutsch</a><a href="/fr/" class="lang-pill" data-loc="fr" lang="fr" hreflang="fr" data-q="français french fr">Français</a><a href="/es/" class="lang-pill" data-loc="es" lang="es" hreflang="es" data-q="español spanish es">Español</a><a href="/zh/" class="lang-pill" data-loc="zh" lang="zh-CN" hreflang="zh-CN" data-q="简体中文 chinese simplified zh">简体中文</a><a href="/ja/" class="lang-pill" data-loc="ja" lang="ja" hreflang="ja" data-q="日本語 japanese ja">日本語</a><a href="/ru/" class="lang-pill" data-loc="ru" lang="ru" hreflang="ru" data-q="русский russian ru">Русский</a></div></div>
+          <div class="lang-group"><p class="lang-group-h">Europa</p><div class="lang-pills" data-no-translate=""><a href="/pt/" class="lang-pill" data-loc="pt" lang="pt" hreflang="pt" data-q="português portuguese pt">Português</a><a href="/nl/" class="lang-pill" data-loc="nl" lang="nl" hreflang="nl" data-q="nederlands dutch nl">Nederlands</a><a href="/it/" class="lang-pill" data-loc="it" lang="it" hreflang="it" data-q="italiano italian it">Italiano</a><a href="/uk/" class="lang-pill" data-loc="uk" lang="uk" hreflang="uk" data-q="українська ukrainian uk">Українська</a><a href="/tr/" class="lang-pill" data-loc="tr" lang="tr" hreflang="tr" data-q="türkçe turkish tr">Türkçe</a><a href="/pl/" class="lang-pill" data-loc="pl" lang="pl" hreflang="pl" data-q="polski polish pl">Polski</a><a href="/sv/" class="lang-pill" data-loc="sv" lang="sv" hreflang="sv" data-q="svenska swedish sv">Svenska</a><a href="/da/" class="lang-pill" data-loc="da" lang="da" hreflang="da" data-q="dansk danish da">Dansk</a><a href="/no/" class="lang-pill" data-loc="no" lang="nb" hreflang="nb" data-q="norsk norwegian no">Norsk</a><a href="/fi/" class="lang-pill" data-loc="fi" lang="fi" hreflang="fi" data-q="suomi finnish fi">Suomi</a></div></div>
+          <div class="lang-group"><p class="lang-group-h">Azië &amp; meer</p><div class="lang-pills" data-no-translate=""><a href="/zh-tw/" class="lang-pill" data-loc="zh-tw" lang="zh-TW" hreflang="zh-TW" data-q="繁體中文 chinese traditional zh-tw">繁體中文</a><a href="/ko/" class="lang-pill" data-loc="ko" lang="ko" hreflang="ko" data-q="한국어 korean ko">한국어</a><a href="/hi/" class="lang-pill" data-loc="hi" lang="hi" hreflang="hi" data-q="हिन्दी hindi hi">हिन्दी</a><a href="/vi/" class="lang-pill" data-loc="vi" lang="vi" hreflang="vi" data-q="tiếng việt vietnamese vi">Tiếng Việt</a><a href="/id/" class="lang-pill" data-loc="id" lang="id" hreflang="id" data-q="bahasa indonesia indonesian id">Bahasa Indonesia</a><a href="/th/" class="lang-pill" data-loc="th" lang="th" hreflang="th" data-q="ไทย thai th">ไทย</a><a href="/ar/" class="lang-pill" data-loc="ar" lang="ar" hreflang="ar" data-q="العربية arabic ar">العربية</a></div></div>
+          <p class="lang-empty" hidden="">Geen resultaten</p>
+        </div>
+      </div>
+      <div class="mm-posts" aria-label="Blog">
+          <p class="mm-posts-h">Uit het blog</p>
+          <a href="../blog/pocket-alternative.html" class="mm-post"><span class="mega-tag">Vergelijken</span><strong>Pocket-alternatief: Wat écht telt</strong><span>Overstappen van lees-later-app zonder je archief te verliezen</span></a>
+          <a href="eigen-sleutel-eigen-model.html" class="mm-post"><span class="mega-tag">Privacy</span><strong>Jouw sleutel. Jouw model. Jouw data.</strong><span>Waarom je eigen API-sleutel beter is dan nóg een abonnement</span></a>
+          <a href="een-ai-samenvatting-bij-de-bron-controleren.html" class="mm-post"><span class="mega-tag">Betrouwbaarheid</span><strong>Controleer een AI-samenvatting aan de hand van de bron</strong><span>Controleer AI-uitvoer in minder dan een minuut</span></a>
+          <a href="markeren-of-vragen.html" class="mm-post"><span class="mega-tag">Uitleg</span><strong>Stel vragen over je markeringen</strong><span>Zet je markeringen om in duidelijke antwoorden</span></a>
+          <a href="een-recap-in-plaats-van-40-feeds.html" class="mm-post"><span class="mega-tag">Feeds</span><strong>Eén overzicht in plaats van 40 feeds</strong><span>Een dagelijks overzicht van alles wat je volgt</span></a>
+          <a href="zoeken-en-tags-zonder-cloud.html" class="mm-post"><span class="mega-tag">Onder de motorkap</span><strong>Zoeken en tags zonder de cloud</strong><span>Hoe alles veilig op je eigen apparaat blijft</span></a>
+          <a href="../blog/" class="mm-all">Alle artikelen →</a>
+        </div>
+      <div class="mm-bottom">
+        <a href="https://chromewebstore.google.com/detail/ai-summary-helper-openai/hldbejcjaedipeegjcinmhejdndchkmb" class="pill-cta mm-cta" data-desktop-cta="" target="_blank" rel="noopener">Toevoegen aan Chrome</a>
+        <button type="button" class="pill-cta mm-cta" data-send="" hidden="">Stuur naar mijn computer</button>
+        <div class="mm-row">
+          <a href="https://addons.mozilla.org/en-US/firefox/addon/ai-summary-helper/" target="_blank" rel="noopener">Firefox</a>
+          <a href="../index.html#phone">Android · Bèta</a>
+          <a href="../../education/">Voor het onderwijs</a>
+          <a href="https://byphil.eu/#account">Mijn account</a>
+        </div>
+        
+        <button type="button" class="theme-toggle-mobile" id="themeToggleMobile">
+          <span id="themeToggleMobileLabel">Overschakelen naar lichte modus</span>
+          <svg class="icon-moon" viewBox="0 0 24 24" fill="none"><path d="M20 14.5A8.5 8.5 0 1 1 9.5 4a6.8 6.8 0 0 0 10.5 10.5Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"></path></svg>
+          <svg class="icon-sun" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="4.2" stroke="currentColor" stroke-width="1.6"></circle><path d="M12 2.5v2.4M12 19.1v2.4M4.4 4.4l1.7 1.7M17.9 17.9l1.7 1.7M2.5 12h2.4M19.1 12h2.4M4.4 19.6l1.7-1.7M17.9 6.1l1.7-1.7" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"></path></svg>
+        </button>
+      </div>
+    </div>
+  </div>
+</header>
+
+<main id="main">
+  <section class="hero--photo post-stage">
+    <img class="hero-bg" src="../../assets/photo/ereader-bedside-table-800.webp" srcset="../assets/photo/ereader-bedside-table-800.webp 800w, ../assets/photo/ereader-bedside-table-1600.webp 1600w" sizes="100vw" width="1600" height="1195" alt="" fetchpriority="high" decoding="async" style="--bgpos:50% 50%">
+    <p class="hero-credit">Illustratie, AI-gegenereerd</p>
+    <div class="wrap">
+      <div class="post-hero">
+      <span class="blog-date">Product · Juni 2026</span>
+      <h1>Van een bookmarklet naar 2.0: wat AI Summary Helper nu eigenlijk is</h1>
+      <p class="post-sub">Het begon als een bookmarklet met één klik om te lezen op een Kindle. Twee jaar en een complete herbouw later bestond het meeste van wat het nu doet nog niet eens toen de eerste honderd mensen zich aanmeldden.</p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <div class="prose" data-vgroup="">
+
+        <p><strong>AI Summary Helper is een gratis, open-source Chrome-extensie die elke webpagina samenvat met je eigen AI-provider of een volledig lokaal model, artikelen bewaart voor later met geplande herinneringen, en van je leesgeschiedenis een doorzoekbaar, verbonden archief maakt.</strong> Niets daarvan bestond in de eerste versie. Dit is wat er wel was, en hoe het zich van daaruit heeft ontwikkeld.</p>
+        <figure class="post-figure post-video" data-blog-video="senden">
+          <div class="post-video-in">
+            <button class="fvideo-open post-video-open" type="button"><span class="sr-only">Video afspelen</span>
+              <video muted="" playsinline="" loop="" preload="none" width="360" height="520" poster="../../assets/blog/video/senden-nl.jpg">
+            <source src="../../assets/blog/video/senden-nl.mp4" type="video/mp4">
+          <track data-seo-video="" kind="captions" src="../../assets/blog/video/senden-nl.vtt" srclang="nl" label="Nederlands"></video>
+              <span class="post-video-play" aria-hidden="true">▶</span>
+            </button>
+            <figcaption>Video: van samenvatting naar Kindle, de gewoonte waarmee dit project begon.</figcaption>
+          <div data-seo-video="" class="vtext"><p class="vtext-h">Transcriptie · 0:19</p><ul><li>Van samenvatting naar Kindle.</li><li>Vat de pagina samen, open het menu, stuur het naar je Kindle.</li><li>Seconden later staat het op je e-reader, klaar voor op de bank.</li></ul></div></div>
+        </figure>
+
+        <h2>Hoe dit eigenlijk begon</h2>
+        <p>In juli 2024 was dit een bookmarklet — nog niet eens een extensie. Je zocht interessante artikelen op, opende een dozijn tabbladen en kwam er, zoals bijna iedereen, nooit aan toe om het merendeel te lezen. De oorspronkelijke opzet was bescheiden en persoonlijk: een samenvatter met een eigen prompt die de uitvoer direct in de pagina invoegde, zodat de samenvatting meeging wanneer je het artikel naar een Kindle stuurde via <a href="https://send.reabble.com/" target="_blank" rel="noopener">Reabble's Send-to-Kindle tool</a>. Dat was het hele product. Eén AI-provider. Eén promptveld. Een bookmarklet-variant die overal werkte, zelfs in iOS Safari, en een Chrome-extensievariant voor wie de prompt direct wilde kunnen aanpassen.</p>
+        <p>Enkele weken later passeerde het de grens van 100 actieve gebruikers — echt verrassend, want het was gebouwd om de eigen leesgewoonte van één persoon op te lossen, niet om een product te worden.</p>
+
+        <figure class="post-figure"><img src="../../assets/blog/summary-end-to-end.webp" alt="Diagram: een samenvatting van begin tot eind, van Vragen, Streamen, Afronden en Opslaan tot Vervolgactie" width="1760" height="620" loading="lazy"><figcaption>Wat er vandaag de dag gebeurt wanneer je op Samenvatten klikt, in vijf stappen.</figcaption></figure>
+        <h2>Wat er werkelijk veranderde tussen toen en 2.0</h2>
+        <p>Het kernidee — samenvatten op jouw voorwaarden, rustig lezen buiten een browsertabblad — is nooit veranderd. Bijna al het andere wel:</p>
+
+        <h3>Eén provider werd een keuze uit vijf</h3>
+        <p>v1 werkte uitsluitend met OpenAI, je eigen sleutel, één endpoint. 2.0 ondersteunt OpenAI, Google Gemini, Mistral en DeepSeek met je eigen API-sleutel, plus een volledig lokale optie via Ollama — wat betekent dat pagina-inhoud je apparaat nooit hoeft te verlaten als je dat niet wilt (volledig privé, geen tracking). Er is ook een optionele gehoste optie (byphil Cloud) voor wie liever geen sleutels beheert, maar die is nooit verplicht gemaakt. Dat was geen kleine toevoeging; het veranderde het hele karakter van het product. v1 vroeg je om standaard één bedrijf te vertrouwen met je content. 2.0 vraagt je niemand te vertrouwen die je niet zelf hebt gekozen.</p>
+
+        <h3>"In de pagina invoegen" werd een volwaardige workflow</h3>
+        <p>Het oorspronkelijke inzicht — lees het later, op een rustigere plek dan een browser — is er nog steeds, maar het is niet langer alleen een samenvatting geplakt in de DOM. Met een rechtermuisklik op een pagina kies je nu <strong>Summarize &amp; Close Tab</strong>: kies een tijdsbestek (Morgen, Weekend, Deze week, Onderzoekssessie), voeg een notitie toe en het tabblad sluit zichzelf zodra je de samenvatting snel hebt doorgenomen in een RSVP-overlay. Een Chrome-melding brengt je er precies naar terug wanneer jij dat wilde — niet "ooit", niet "wanneer je er toevallig aan denkt".</p>
+
+        <h3>Een berg opgeslagen artikelen werd iets waar je echt doorheen kunt navigeren</h3>
+        <p>v1 had helemaal geen geschiedenis — de samenvatting stond op de pagina en daarna was hij weg. Elk opgeslagen artikel staat nu in een lokaal, doorzoekbaar archief, compleet met markeringen (plus door AI voorgestelde "ghost"-markeringen op kernpassages), een heatmap voor leesstatistieken en een D3-kennisgraaf die wat je hebt gelezen ordent op onderwerp in plaats van een onoverzichtelijke lijst.</p>
+
+        <h3>Kindle was het hoofddoel. Nu is het één optie van de vele</h3>
+        <p>Send-to-Kindle via Reabble's tool was de hele reden van het bestaan. Het wordt nog steeds native ondersteund, maar rustig lezen buiten je browser betekent nu ook AirDrop naar een iPhone of iPad (opent direct in Apple Books) of LocalSend naar bijvoorbeeld KOReader over je eigen lokale wifi. Het onderliggende principe — weg uit de browser, naar een apparaat dat gemaakt is om te lezen — heeft nu gewoon meer routes.</p>
+
+        <h2>Wat niet veranderd is</h2>
+        <p>Het is nog steeds gratis, nog steeds open source (AGPL-3.0, volledige broncode op GitHub; bedrijven die andere voorwaarden nodig hebben, kunnen een commerciële licentie krijgen) en je hebt voor geen enkele kernfunctie een account nodig. Dat stond nooit ter discussie — het is precies de reden waarom v1 ooit begon als bookmarklet: gebouwd door iemand die zijn eigen leestool wilde bezitten, niet huren.</p>
+
+        <h2>Veelgestelde vragen</h2>
+        <p><strong>Is dit hetzelfde project als de oorspronkelijke bookmarklet?</strong><br>
+        Ja — hetzelfde open-sourceproject, dezelfde GitHub-repo, continu doorontwikkeld sinds juli 2024. De bookmarklet-variant bestaat nog steeds voor wie een browseronafhankelijke optie wil zonder installatie.</p>
+        <p><strong>Heb ik een OpenAI-account nodig om het te gebruiken?</strong><br>
+        Nee. Dat gold voor v1, maar is al heel lang niet meer zo. Elke ondersteunde provider werkt, of een volledig lokaal model via Ollama zonder dat er een extern account aan te pas komt.</p>
+        <p><strong>Wat is er met de Gumroad-versie gebeurd?</strong><br>
+        Het project begon daar als een manier om steun van vroege gebruikers te ontvangen. De extensie zelf is altijd gratis en open source geweest — Gumroad is nooit een betaalmuur voor de tool geweest.</p>
+
+        <div class="post-cta">
+          <p>AI Summary Helper is een gratis Chrome-extensie.</p>
+          <a href="https://chromewebstore.google.com/detail/ai-summary-helper-openai/hldbejcjaedipeegjcinmhejdndchkmb" target="_blank" rel="noopener" class="btn-primary">Toevoegen aan Chrome</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<div class="vfeed-labels" hidden="">
+  <span data-l="close">Sluiten</span><span data-l="sound">Geluid aan</span><span data-l="mute">Geluid uit</span><span data-l="hint">Swipe omhoog voor de volgende video</span><span data-l="prev">Vorige video</span><span data-l="next">Volgende video</span>
+  <span data-l="share">Delen</span><span data-l="copied">Link gekopieerd</span>
+  <span data-l="add_chrome">Toevoegen aan Chrome — gratis</span><span data-l="add_firefox">Toevoegen aan Firefox — gratis</span><span data-l="add_browser">Toevoegen aan je browser — gratis</span>
+  <a data-l="try" href="../../bookmarklet.html">Probeer het in je browser — gratis</a>
+</div>
+<footer>
+  <div class="wrap">
+    <div class="footer-inner">
+      <div class="wordmark"><img src="../../assets/icon.svg" alt="">AI Summary Helper</div>
+      <div class="foot-links">
+        <a href="https://github.com/philffm/ai-summary-helper/" target="_blank" rel="noopener">Broncode op GitHub</a>
+        <a href="../../education/">Voor het onderwijs</a>
+        <a href="../privacy-en-gegevens.html">Privacy</a>
+        <a href="#" data-analytics-settings="">Analytics-instellingen</a>
+        <a href="https://byphil.eu/terms.html#impressum" target="_blank" rel="noopener">Impressum</a>
+      </div>
+    </div>
+    <div class="copyright">© 2026 Phil Wornath. Onderdeel van <a href="https://byphil.eu/" class="credit-link">byphil.eu ↗</a> — onafhankelijke software gemaakt in Duitsland.<br>
+      Ontworpen &amp; gebouwd door <a href="https://philwornath.com/" target="_blank" rel="noopener" class="credit-link">philwornath.com ↗</a>
+    </div>
+  </div>
+</footer>
+
+<script src="../../assets/main.js"></script>
+
+
+</body></html>

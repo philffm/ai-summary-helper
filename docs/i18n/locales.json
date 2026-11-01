@@ -20,13 +20,13 @@
       "name": "German",
       "dir": "de",
       "hreflang": "de",
-      "marketNotes": "Germany, Austria, Switzerland. Use standard formal 'Sie' register throughout — this is a productivity tool for knowledge workers and researchers. Strongly emphasize data sovereignty, local-first processing, and EU/German hosting ('nothing leaves your machine' / Ollama support). Keep product terms (e.g. 'Digest', 'LocalSend', 'Kindle', 'Markdown') in their standard technical forms."
+      "marketNotes": "Germany, Austria, Switzerland. Use standard formal 'Sie' register throughout — this is a productivity tool for knowledge workers and researchers. Emphasize local-first processing and control over your own data ('nothing leaves your machine' with a local Ollama model or your own key). Do not claim EU or German hosting, GDPR/DSGVO compliance or any certification. Keep product terms (e.g. 'Digest', 'LocalSend', 'Kindle', 'Markdown') in their standard technical forms."
     },
     "fr": {
       "name": "French",
       "dir": "fr",
       "hreflang": "fr",
-      "marketNotes": "France + francophone Europe/Canada. Use polite 'vous' register throughout. Emphasize GDPR compliance, local on-device LLM execution, and EU data privacy. Keep technical terms ('on-device', 'LocalSend', 'Kindle') natural; keep EUR pricing as-is."
+      "marketNotes": "France + francophone Europe/Canada. Use polite 'vous' register throughout. Emphasize local on-device LLM execution and control over your own data. Do not claim GDPR compliance, certification or EU hosting. Keep technical terms ('on-device', 'LocalSend', 'Kindle') natural; keep EUR pricing as-is."
     },
     "es": {
       "name": "Spanish",
@@ -80,13 +80,13 @@
       "name": "Dutch",
       "dir": "nl",
       "hreflang": "nl",
-      "marketNotes": "Netherlands and Belgium (Flanders). Informal-but-professional \"je/jij\" for web copy, clear imperatives in UI. Emphasize privacy, GDPR, local processing with Ollama, no tracking."
+      "marketNotes": "Netherlands and Belgium (Flanders). Informal-but-professional \"je/jij\" for web copy, clear imperatives in UI. Emphasize privacy, local processing with Ollama, no tracking. Do not claim GDPR compliance."
     },
     "it": {
       "name": "Italian",
       "dir": "it",
       "hreflang": "it",
-      "marketNotes": "Italy and Italian-speaking Switzerland. Polite but modern \"tu\" for web copy (as common in SaaS), clear imperatives in UI. Emphasize GDPR privacy, on-device processing and Ollama."
+      "marketNotes": "Italy and Italian-speaking Switzerland. Polite but modern \"tu\" for web copy (as common in SaaS), clear imperatives in UI. Emphasize privacy, on-device processing and Ollama. Do not claim GDPR compliance."
     },
     "ru": {
       "name": "Russian",
@@ -116,7 +116,7 @@
       "name": "Polish",
       "dir": "pl",
       "hreflang": "pl",
-      "marketNotes": "Poland. Professional modern register (\"Ty\" capitalised is not needed; use \"możesz\" style or impersonal forms). Emphasize GDPR privacy, local processing with Ollama, bring-your-own-key."
+      "marketNotes": "Poland. Professional modern register (\"Ty\" capitalised is not needed; use \"możesz\" style or impersonal forms). Emphasize privacy, local processing with Ollama, bring-your-own-key. Do not claim GDPR compliance."
     },
     "th": {
       "name": "Thai",
@@ -135,13 +135,13 @@
       "name": "Swedish",
       "dir": "sv",
       "hreflang": "sv",
-      "marketNotes": "Sweden (and Swedish-speaking Finland). Informal modern \"du\" register, plain and concise like Swedish SaaS copy. Emphasize privacy, GDPR, local processing with Ollama and bring-your-own-key. Keep tech terms (Ollama, Kindle, LocalSend, Markdown, API key) in English."
+      "marketNotes": "Sweden (and Swedish-speaking Finland). Informal modern \"du\" register, plain and concise like Swedish SaaS copy. Emphasize privacy, local processing with Ollama and bring-your-own-key. Do not claim GDPR compliance. Keep tech terms (Ollama, Kindle, LocalSend, Markdown, API key) in English."
     },
     "da": {
       "name": "Danish",
       "dir": "da",
       "hreflang": "da",
-      "marketNotes": "Denmark. Informal modern \"du\" register, plain and concise. Emphasize privacy, GDPR, local processing with Ollama and bring-your-own-key. Keep tech terms (Ollama, Kindle, LocalSend, Markdown, API key) in English."
+      "marketNotes": "Denmark. Informal modern \"du\" register, plain and concise. Emphasize privacy, local processing with Ollama and bring-your-own-key. Do not claim GDPR compliance. Keep tech terms (Ollama, Kindle, LocalSend, Markdown, API key) in English."
     },
     "no": {
       "name": "Norwegian (Bokmål)",
@@ -153,7 +153,7 @@
       "name": "Finnish",
       "dir": "fi",
       "hreflang": "fi",
-      "marketNotes": "Finland. Natural modern Finnish, informal \"sinä\" implied, concise UI verbs (avoid stiff literal translations of English). Emphasize privacy, GDPR, local processing with Ollama and bring-your-own-key. Keep tech terms (Ollama, Kindle, LocalSend, Markdown, API key) in English."
+      "marketNotes": "Finland. Natural modern Finnish, informal \"sinä\" implied, concise UI verbs (avoid stiff literal translations of English). Emphasize privacy, local processing with Ollama and bring-your-own-key. Do not claim GDPR compliance. Keep tech terms (Ollama, Kindle, LocalSend, Markdown, API key) in English."
     }
   }
 }

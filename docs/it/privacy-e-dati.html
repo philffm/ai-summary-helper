@@ -1,0 +1,318 @@
+<!DOCTYPE html><html lang="it"><head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#08090C">
+<title>Informativa sulla privacy — AI Summary Helper</title>
+<meta name="description" content="Come AI Summary Helper gestisce i dati: chiavi API e cronologia restano sul tuo dispositivo, e il testo delle pagine viene inviato solo al provider AI che scegli.">
+
+<script>
+  (function(){
+    try {
+      var saved = localStorage.getItem('aish_theme');
+      var theme = saved === 'light' || saved === 'dark'
+        ? saved
+        : (window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
+      document.documentElement.setAttribute('data-theme', theme);
+    } catch (e) {
+      document.documentElement.setAttribute('data-theme', 'dark');
+    }
+  })();
+</script>
+
+<link rel="icon" type="image/svg+xml" href="../assets/icon.svg">
+<link rel="stylesheet" href="../assets/styles.css">
+
+<meta property="og:title" content="Informativa sulla privacy — AI Summary Helper">
+<meta property="og:description" content="Come AI Summary Helper gestisce i tuoi dati: le tue chiavi API e la cronologia degli articoli restano sul tuo dispositivo.">
+<meta property="og:url" content="https://ai-summary-helper.byphil.eu/it/privacy-e-dati.html">
+<meta property="og:type" content="website">
+<script src="../assets/analytics.js"></script>
+<link rel="alternate" hreflang="x-default" href="https://ai-summary-helper.byphil.eu/privacy.html"><link rel="alternate" hreflang="en" href="https://ai-summary-helper.byphil.eu/privacy.html"><link rel="alternate" hreflang="de" href="https://ai-summary-helper.byphil.eu/de/datenschutz.html"><link rel="alternate" hreflang="fr" href="https://ai-summary-helper.byphil.eu/fr/confidentialite.html"><link rel="alternate" hreflang="es" href="https://ai-summary-helper.byphil.eu/es/privacidad.html"><link rel="alternate" hreflang="zh-Hans" href="https://ai-summary-helper.byphil.eu/zh/privacy.html"><link rel="alternate" hreflang="zh-Hant" href="https://ai-summary-helper.byphil.eu/zh-tw/privacy.html"><link rel="alternate" hreflang="ja" href="https://ai-summary-helper.byphil.eu/ja/privacy.html"><link rel="alternate" hreflang="ko" href="https://ai-summary-helper.byphil.eu/ko/privacy.html"><link rel="alternate" hreflang="pt-BR" href="https://ai-summary-helper.byphil.eu/pt/privacidade.html"><link rel="alternate" hreflang="hi" href="https://ai-summary-helper.byphil.eu/hi/privacy.html"><link rel="alternate" hreflang="vi" href="https://ai-summary-helper.byphil.eu/vi/quyen-rieng-tu.html"><link rel="alternate" hreflang="nl" href="https://ai-summary-helper.byphil.eu/nl/privacy-en-gegevens.html"><link rel="alternate" hreflang="it" href="https://ai-summary-helper.byphil.eu/it/privacy-e-dati.html"><link rel="alternate" hreflang="ru" href="https://ai-summary-helper.byphil.eu/ru/privacy.html"><link rel="alternate" hreflang="uk" href="https://ai-summary-helper.byphil.eu/uk/privacy.html"><link rel="alternate" hreflang="tr" href="https://ai-summary-helper.byphil.eu/tr/gizlilik.html"><link rel="alternate" hreflang="id" href="https://ai-summary-helper.byphil.eu/id/privasi.html"><link rel="alternate" hreflang="pl" href="https://ai-summary-helper.byphil.eu/pl/prywatnosc.html"><link rel="alternate" hreflang="th" href="https://ai-summary-helper.byphil.eu/th/privacy.html"><link rel="alternate" hreflang="ar" href="https://ai-summary-helper.byphil.eu/ar/privacy.html"><link rel="alternate" hreflang="sv" href="https://ai-summary-helper.byphil.eu/sv/integritet.html"><link rel="alternate" hreflang="da" href="https://ai-summary-helper.byphil.eu/da/privatliv.html"><link rel="alternate" hreflang="nb" href="https://ai-summary-helper.byphil.eu/no/personvern.html"><link rel="alternate" hreflang="fi" href="https://ai-summary-helper.byphil.eu/fi/yksityisyys.html"><meta property="og:site_name" content="AI Summary Helper"><meta property="og:locale" content="it"><meta property="og:image" content="https://ai-summary-helper.byphil.eu/assets/shots/aish-hero-en.webp"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="Informativa sulla privacy — AI Summary Helper"><meta name="twitter:description" content="Come AI Summary Helper gestisce i tuoi dati: le tue chiavi API e la cronologia degli articoli restano sul tuo dispositivo."><meta name="twitter:image" content="https://ai-summary-helper.byphil.eu/assets/shots/aish-hero-en.webp"><link rel="canonical" href="https://ai-summary-helper.byphil.eu/it/privacy-e-dati.html"></head>
+<body>
+
+<a href="#main" class="skip-link">Salta al contenuto</a>
+
+<header class="nav nav--pill" id="siteNav">
+  <div class="wrap nav-pill-row">
+    <a href="index.html" class="wordmark" aria-label="AI Summary Helper">
+      <img src="../assets/icon.svg" alt="">
+      AI Summary Helper
+    </a>
+    <nav class="pill" aria-label="Principale">
+      <a href="index.html#features" data-sec="features">Funzionalità</a>
+      <a href="index.html#see-it" data-sec="see-it">Demo</a>
+      <a href="https://chromewebstore.google.com/detail/ai-summary-helper-openai/hldbejcjaedipeegjcinmhejdndchkmb" class="pill-cta" target="_blank" rel="noopener">Aggiungi a Chrome</a>
+    </nav>
+    <div class="nav-tools">
+      <button type="button" class="tool-btn" id="sendBtn" data-send="" hidden="" aria-label="Invia questa pagina al mio computer" title="Invia al mio computer"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="3" y="4.5" width="18" height="12" rx="2" stroke="currentColor" stroke-width="1.6"></rect><path d="M8 20h8M12 16.5V20M12 13V8m0 0-2.2 2.2M12 8l2.2 2.2" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"></path></svg></button>
+      <button type="button" class="tool-btn" id="langBtn" aria-label="Lingua" aria-controls="mobileMenu"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.6"></circle><path d="M3 12h18M12 3c2.6 2.7 3.9 5.7 3.9 9s-1.3 6.3-3.9 9c-2.6-2.7-3.9-5.7-3.9-9S9.4 5.7 12 3Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"></path></svg></button>
+      <button type="button" class="theme-toggle" id="themeToggle" aria-label="Passa alla modalità chiara">
+        <svg class="icon-moon" viewBox="0 0 24 24" fill="none"><path d="M20 14.5A8.5 8.5 0 1 1 9.5 4a6.8 6.8 0 0 0 10.5 10.5Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"></path></svg>
+        <svg class="icon-sun" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="4.2" stroke="currentColor" stroke-width="1.6"></circle><path d="M12 2.5v2.4M12 19.1v2.4M4.4 4.4l1.7 1.7M17.9 17.9l1.7 1.7M2.5 12h2.4M19.1 12h2.4M4.4 19.6l1.7-1.7M17.9 6.1l1.7-1.7" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"></path></svg>
+      </button>
+    </div>
+    <button type="button" class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="mobileMenu" aria-label="Apri menu">
+      <svg viewBox="0 0 24 24" fill="none"><path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"></path></svg>
+    </button>
+  </div>
+  <div class="mobile-menu" id="mobileMenu" hidden="">
+    <div class="wrap mm-inner">
+      <nav class="mm-links" aria-label="Mobile">
+        <a href="index.html#features"><span class="mm-n">01</span>Funzionalità</a>
+        <a href="index.html#see-it"><span class="mm-n">02</span>Demo</a>
+        <a href="blog/"><span class="mm-n">03</span>Blog</a>
+          <a href="blog/pocket-alternative.html" class="mm-sub">Un'alternativa a Pocket: cosa conta davvero</a>
+          <a href="blog/la-tua-chiave-il-tuo-modello.html" class="mm-sub">La tua chiave. Il tuo modello. I tuoi dati.</a>
+          <a href="blog/verificare-un-riassunto-ia-alla-fonte.html" class="mm-sub">Confronta il riassunto con la fonte originale</a>
+          <a href="blog/evidenziare-o-chiedere.html" class="mm-sub">Fai domande sui tuoi passaggi evidenziati</a>
+        <a href="https://github.com/philffm/ai-summary-helper/" target="_blank" rel="noopener"><span class="mm-n">04</span>GitHub</a>
+      </nav>
+      <div class="mm-lang">
+        <button type="button" class="lang-card" id="langCard"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.6"></circle><path d="M3 12h18M12 3c2.6 2.7 3.9 5.7 3.9 9s-1.3 6.3-3.9 9c-2.6-2.7-3.9-5.7-3.9-9S9.4 5.7 12 3Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"></path></svg><span class="lang-card-cur">Inglese</span><small>24 lingue</small><b aria-hidden="true">→</b></button>
+        <p class="mm-lang-h">Lingua · 24</p>
+        <label class="lang-search"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="11" cy="11" r="6.5" stroke="currentColor" stroke-width="1.7"></circle><path d="m16 16 4 4" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"></path></svg><input type="search" id="langSearch" placeholder="Cerca lingua…" autocomplete="off" aria-label="Cerca lingua" spellcheck="false"></label>
+        <div class="lang-groups" id="langGroups">
+          <div class="lang-group"><p class="lang-group-h">Popolari</p><div class="lang-pills" data-no-translate=""><a href="/" class="lang-pill" data-loc="en" lang="en" hreflang="en" data-q="english english en">English</a><a href="../de/" class="lang-pill" data-loc="de" lang="de" hreflang="de" data-q="deutsch german de">Deutsch</a><a href="../fr/" class="lang-pill" data-loc="fr" lang="fr" hreflang="fr" data-q="français french fr">Français</a><a href="../es/" class="lang-pill" data-loc="es" lang="es" hreflang="es" data-q="español spanish es">Español</a><a href="../zh/" class="lang-pill" data-loc="zh" lang="zh-CN" hreflang="zh-CN" data-q="简体中文 chinese simplified zh">简体中文</a><a href="../ja/" class="lang-pill" data-loc="ja" lang="ja" hreflang="ja" data-q="日本語 japanese ja">日本語</a><a href="../ru/" class="lang-pill" data-loc="ru" lang="ru" hreflang="ru" data-q="русский russian ru">Русский</a></div></div>
+          <div class="lang-group"><p class="lang-group-h">Europa</p><div class="lang-pills" data-no-translate=""><a href="../pt/" class="lang-pill" data-loc="pt" lang="pt" hreflang="pt" data-q="português portuguese pt">Português</a><a href="../nl/" class="lang-pill" data-loc="nl" lang="nl" hreflang="nl" data-q="nederlands dutch nl">Nederlands</a><a href="/" class="lang-pill" data-loc="it" lang="it" hreflang="it" data-q="italiano italian it">Italiano</a><a href="../uk/" class="lang-pill" data-loc="uk" lang="uk" hreflang="uk" data-q="українська ukrainian uk">Українська</a><a href="../tr/" class="lang-pill" data-loc="tr" lang="tr" hreflang="tr" data-q="türkçe turkish tr">Türkçe</a><a href="../pl/" class="lang-pill" data-loc="pl" lang="pl" hreflang="pl" data-q="polski polish pl">Polski</a><a href="../sv/" class="lang-pill" data-loc="sv" lang="sv" hreflang="sv" data-q="svenska swedish sv">Svenska</a><a href="../da/" class="lang-pill" data-loc="da" lang="da" hreflang="da" data-q="dansk danish da">Dansk</a><a href="../no/" class="lang-pill" data-loc="no" lang="nb" hreflang="nb" data-q="norsk norwegian no">Norsk</a><a href="../fi/" class="lang-pill" data-loc="fi" lang="fi" hreflang="fi" data-q="suomi finnish fi">Suomi</a></div></div>
+          <div class="lang-group"><p class="lang-group-h">Asia e altro</p><div class="lang-pills" data-no-translate=""><a href="../zh-tw/" class="lang-pill" data-loc="zh-tw" lang="zh-TW" hreflang="zh-TW" data-q="繁體中文 chinese traditional zh-tw">繁體中文</a><a href="../ko/" class="lang-pill" data-loc="ko" lang="ko" hreflang="ko" data-q="한국어 korean ko">한국어</a><a href="../hi/" class="lang-pill" data-loc="hi" lang="hi" hreflang="hi" data-q="हिन्दी hindi hi">हिन्दी</a><a href="../vi/" class="lang-pill" data-loc="vi" lang="vi" hreflang="vi" data-q="tiếng việt vietnamese vi">Tiếng Việt</a><a href="../id/" class="lang-pill" data-loc="id" lang="id" hreflang="id" data-q="bahasa indonesia indonesian id">Bahasa Indonesia</a><a href="../th/" class="lang-pill" data-loc="th" lang="th" hreflang="th" data-q="ไทย thai th">ไทย</a><a href="../ar/" class="lang-pill" data-loc="ar" lang="ar" hreflang="ar" data-q="العربية arabic ar">العربية</a></div></div>
+          <p class="lang-empty" hidden="">Nessun risultato</p>
+        </div>
+      </div>
+      <div class="mm-posts" aria-label="Blog">
+          <p class="mm-posts-h">Dal blog</p>
+          <a href="blog/pocket-alternative.html" class="mm-post"><span class="mega-tag">Confronto</span><strong>Alternative a Pocket: cosa conta davvero</strong><span>Passare a un altro strumento 'leggi dopo' senza perdere il tuo archivio</span></a>
+          <a href="blog/la-tua-chiave-il-tuo-modello.html" class="mm-post"><span class="mega-tag">Informativa sulla privacy</span><strong>La tua chiave. Il tuo modello. I tuoi dati.</strong><span>Perché usare la tua chiave API è meglio di un altro abbonamento</span></a>
+          <a href="blog/verificare-un-riassunto-ia-alla-fonte.html" class="mm-post"><span class="mega-tag">Affidabilità</span><strong>Verifica un riassunto IA rispetto alla fonte</strong><span>Verifica le risposte dell'IA in meno di un minuto</span></a>
+          <a href="blog/evidenziare-o-chiedere.html" class="mm-post"><span class="mega-tag">Guide</span><strong>Fai domande sulle tue evidenziazioni</strong><span>Trasforma ciò che hai evidenziato in risposte chiare</span></a>
+          <a href="blog/un-riepilogo-al-posto-di-40-feed.html" class="mm-post"><span class="mega-tag">Feed</span><strong>Un unico recap al posto di 40 feed</strong><span>Un riassunto giornaliero di tutto ciò che segui</span></a>
+          <a href="blog/ricerca-e-tag-senza-cloud.html" class="mm-post"><span class="mega-tag">Dietro le quinte</span><strong>Ricerca e tag senza cloud</strong><span>Come garantire che tutto rimanga sul tuo dispositivo</span></a>
+          <a href="blog/" class="mm-all">Tutti gli articoli →</a>
+        </div>
+      <div class="mm-bottom">
+        <a href="https://chromewebstore.google.com/detail/ai-summary-helper-openai/hldbejcjaedipeegjcinmhejdndchkmb" class="pill-cta mm-cta" data-desktop-cta="" target="_blank" rel="noopener">Aggiungi a Chrome</a>
+        <button type="button" class="pill-cta mm-cta" data-send="" hidden="">Invia al mio computer</button>
+        <div class="mm-row">
+          <a href="https://addons.mozilla.org/en-US/firefox/addon/ai-summary-helper/" target="_blank" rel="noopener">Firefox</a>
+          <a href="index.html#phone">Android · Beta</a>
+          <a href="../education/">Per l'istruzione</a>
+          <a href="https://byphil.eu/#account">Il mio account</a>
+        </div>
+        
+        <button type="button" class="theme-toggle-mobile" id="themeToggleMobile">
+          <span id="themeToggleMobileLabel">Passa alla modalità chiara</span>
+          <svg class="icon-moon" viewBox="0 0 24 24" fill="none"><path d="M20 14.5A8.5 8.5 0 1 1 9.5 4a6.8 6.8 0 0 0 10.5 10.5Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"></path></svg>
+          <svg class="icon-sun" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="4.2" stroke="currentColor" stroke-width="1.6"></circle><path d="M12 2.5v2.4M12 19.1v2.4M4.4 4.4l1.7 1.7M17.9 17.9l1.7 1.7M2.5 12h2.4M19.1 12h2.4M4.4 19.6l1.7-1.7M17.9 6.1l1.7-1.7" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"></path></svg>
+        </button>
+      </div>
+    </div>
+  </div>
+</header>
+
+<main id="main">
+  <div class="wrap">
+    <div class="post-hero">
+      <span class="blog-date">Informativa sulla privacy</span>
+      <h1>Informativa sulla privacy</h1>
+      <p class="post-sub">Le tue chiavi API, la cronologia degli articoli e le evidenziazioni restano sul tuo dispositivo. I contenuti delle pagine vengono inviati esclusivamente al provider AI che scegli — inclusi modelli completamente locali, se preferisci.</p>
+    </div>
+  </div>
+
+  <section>
+    <div class="wrap">
+      <div class="prose">
+        <p><em>Ultimo aggiornamento: ottobre 2026</em></p>
+
+        <p>Questa Informativa sulla privacy spiega quali dati gestisce AI Summary Helper, dove vengono inviati e perché. In sintesi: le tue chiavi API, la cronologia degli articoli e le tue evidenziazioni restano sul tuo dispositivo. I contenuti delle pagine vengono inviati esclusivamente al provider AI che decidi di collegare — compreso, se lo desideri, un modello completamente locale per cui nessun dato lascia la tua macchina. Non mostriamo annunci, non vendiamo dati e non richiediamo alcun account per le funzionalità principali.</p>
+
+        <p>Se non concordi con qualsiasi parte di questa informativa, ti invitiamo a non installare o utilizzare l'estensione.</p>
+
+        <h2>Titolare del trattamento</h2>
+        <p>Il titolare del trattamento ai sensi dell'Art. 4(7) del GDPR è Phil Wornath. Il nome completo e l'indirizzo per le comunicazioni sono indicati nelle <a href="https://philwornath.com/de/legal" target="_blank" rel="noopener">note legali</a>; puoi contattarci ai recapiti riportati in fondo a questa informativa.</p>
+
+        <h2>Nessun account richiesto per le funzioni principali</h2>
+        <p>AI Summary Helper non richiede di creare un account, accedere o fornire dati personali per riassumere pagine, evidenziare, seguire feed o conservare il tuo archivio. La tua chiave API (se ne usi una tua) e l'intera cronologia degli articoli risiedono nella memoria locale del tuo browser.</p>
+        <p>Un account è necessario solo per i servizi ospitati: byphil Cloud (riassunti senza una chiave personale) e Send to Kindle. L'accesso avviene tramite indirizzo email e un codice monouso. Memorizziamo tale indirizzo email, lo stato del tuo piano o della licenza e contatori di utilizzo di base (ad esempio il numero di richieste e invii a Kindle) per poter applicare i limiti del piano.</p>
+
+        <h2>Quali dati gestiamo e dove vanno</h2>
+
+        <h3>Il tuo collegamento al provider AI</h3>
+        <p>Scegli tu come generare i riassunti:</p>
+        <ul>
+          <li><strong>Porta la tua chiave (BYOK)</strong> — OpenAI, Google Gemini, Mistral AI, DeepSeek o un endpoint personalizzato. La tua chiave API viene memorizzata solo localmente sul tuo dispositivo (mai sincronizzata, mai inviata a noi). I contenuti delle pagine che decidi di riassumere vengono inviati direttamente dal tuo browser al provider selezionato, usando la tua chiave e in base all'informativa sulla privacy di tale provider. Noi non visualizziamo, registriamo né archiviamo questi contenuti.</li>
+          <li><strong>Modello locale tramite Ollama</strong> — se esegui un modello in locale, i contenuti delle pagine vengono inviati solo alla tua macchina. Nessun dato esce dal tuo dispositivo.</li>
+          <li><strong>byphil Cloud (facoltativo, a pagamento)</strong> — un'opzione hosted per chi preferisce non gestire una chiave API. Se scegli questo piano, il testo di cui richiedi il riassunto passa attraverso il nostro backend, che inoltra la richiesta tramite OpenRouter a un provider del modello sottostante per tuo conto e restituisce il riassunto. Viene solo inoltrato: non memorizziamo i contenuti delle pagine, gli URL o i riassunti. Ciò che registriamo per ciascun account sono solo i metadati di utilizzo: il numero di richieste completate, l'uso dei token, l'orario dell'ultima richiesta e il modello utilizzato. L'account è del tutto facoltativo; tutte le altre funzioni sono utilizzabili senza crearlo. Attivando l'opzione “Preferisci server UE”, i modelli che dispongono di un endpoint in Europa vengono eseguiti esclusivamente su quegli endpoint, e l'app segnala quali modelli li supportano e quali no. Questo limita la posizione geografica in cui viene eseguito il modello, ma non esclude i passaggi intermedi: il testo passa comunque attraverso il nostro servizio (in esecuzione su un server in Germania) e poi attraverso OpenRouter, una società statunitense, prima di raggiungere il modello; inoltre, la lettura ad alta voce e lo speech-to-text non dispongono di un'opzione su server UE.</li>
+        </ul>
+
+        <h3>Stato della licenza e dell'abbonamento</h3>
+        <p>Se attivi una licenza Pro o un abbonamento a byphil Cloud, la tua chiave di licenza viene memorizzata localmente sul tuo dispositivo (mai sincronizzata) e utilizzata per verificare lo stato dell'abbonamento con il nostro backend. I metadati di base relativi all'account e alla fatturazione sono gestiti dal nostro processore di pagamento e dal backend; non memorizziamo i contenuti delle pagine o la cronologia di lettura sui nostri server.</p>
+
+        <h3>Feedback alla disinstallazione</h3>
+        <p>Quando disinstalli l'estensione, Chrome apre una breve pagina di feedback su questo sito. L'indirizzo contiene solo la versione dell'estensione e il numero di giorni di installazione — nessun identificatore, nessun contenuto di pagina, nessuna cronologia. Ciò che selezioni o scrivi nel modulo (un motivo, un commento facoltativo) viene registrato come evento nei nostri strumenti di analisi self-hosted senza cookie, insieme alla versione dell'estensione e ai giorni di installazione, ed è utilizzato esclusivamente per migliorare l'estensione. Se il tuo browser invia Do Not Track o hai disattivato le statistiche, non viene inviato nulla. Non è presente alcun campo email; per ricevere una risposta, apri una issue su GitHub. Puoi chiudere la pagina senza rispondere.</p>
+
+        <h3>Cronologia articoli, evidenziazioni e impostazioni</h3>
+        <p>Tutto ciò che salvi viene memorizzato localmente nel tuo browser, tramite le API di archiviazione integrate di Chrome — mai sui nostri server:</p>
+        <table>
+          <thead>
+            <tr><th>Dati</th><th>Archiviazione</th><th>Sincronizzato tramite Chrome?</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Articoli salvati e riassunti</td><td>Locale</td><td>No</td></tr>
+            <tr><td>Iscrizioni ed elementi dei feed RSS</td><td>Locale</td><td>No</td></tr>
+            <tr><td>Chiavi API / config. provider</td><td>Locale</td><td>No — dato sensibile, solo su dispositivo</td></tr>
+            <tr><td>Chiave di licenza</td><td>Locale</td><td>No — dato sensibile, solo su dispositivo</td></tr>
+            <tr><td>IP di rete LocalSend</td><td>Locale</td><td>No</td></tr>
+            <tr><td>Credenziali per la sincronizzazione della libreria, chiavi di accesso e chiavi di crittografia</td><td>Locale</td><td>No — dati sensibili, salvati solo sul dispositivo ed esclusi dai backup</td></tr>
+            <tr><td>Evidenziazioni di testo ed evidenziazioni fantasma AI</td><td>Locale (per pagina)</td><td>No</td></tr>
+            <tr><td>Prompt predefinito, lingua, lunghezza del riassunto</td><td>Sincronizzazione</td><td>Sì, tramite il tuo account Chrome</td></tr>
+            <tr><td>Preferenza attivazione/disattivazione evidenziazione</td><td>Sincronizzazione</td><td>Sì, tramite il tuo account Chrome</td></tr>
+          </tbody>
+        </table>
+        <p>Gli elementi contrassegnati con "Sincronizzazione" utilizzano la sincronizzazione nativa di Chrome collegata al tuo account Google — questi dati passano attraverso l'infrastruttura di Google, non la nostra, esattamente come i tuoi preferiti. Non abbiamo alcun accesso separato ad essi.</p>
+        <p>Puoi esportare i tuoi dati in qualsiasi momento da Impostazioni → Libreria e dati → Backup e ripristino. I backup omettono per impostazione predefinita chiavi API, dati di accesso, chiavi di licenza e identificatori di installazione; includerli richiede un consenso esplicito con avviso, poiché chiunque abbia quel file potrebbe utilizzarli. Mantieni privati i file esportati e ricorda che i backup precedenti potrebbero contenere dati sensibili. Nella stessa sezione, la Zona di pericolo ti consente di eliminare per categoria, con il conteggio degli elementi rimossi: riassunti e archivio, evidenziazioni, feed, podcast, chiavi API / credenziali / licenza, destinazioni di invio (Kindle, LocalSend) e preferenze. <em>Elimina tutti i dati</em> rimuove tutto ciò che l'estensione memorizza sul dispositivo e la reimposta da zero. Anche la rimozione dell'estensione cancella i relativi dati. Queste azioni eliminano solo i dati locali. Il tuo account e i record conservati sul nostro server (vedi sotto) sono gestiti su <a href="https://byphil.eu/#account" target="_blank" rel="noopener">byphil.eu/#account</a>: lì puoi esportare i tuoi dati ed eliminare il tuo account. L'estensione e l'app Android vi rimandano dalle impostazioni dell'account.</p>
+
+        <h3>Feed RSS</h3>
+        <p>Il lettore di Feed integrato memorizza le tue iscrizioni e gli elementi recuperati localmente nel tuo browser — mai sincronizzati, mai inviati a noi. Quando aggiungi o aggiorni un feed, l'estensione richiede l'indirizzo del feed direttamente al server dell'editore, esattamente come farebbe il tuo browser visitando il sito, quindi l'editore può vedere la richiesta. Non facciamo da proxy, non registriamo né vediamo le tue iscrizioni o la cronologia di lettura. L'importazione OPML viene elaborata interamente sul tuo dispositivo. Se attivi i controlli in background (disattivati di default), l'estensione aggiorna i tuoi feed all'intervallo scelto solo per mostrare un contatore sull'icona della barra degli strumenti. Riassumere un elemento del feed funziona come riassumere qualsiasi altra pagina: il suo contenuto viene inviato solo al provider AI scelto, e solo quando richiedi un riassunto. Il recap giornaliero AI e la valutazione del tono AI facoltativi funzionano allo stesso modo: solo quando fai clic, l'estensione invia titoli degli elementi, nomi delle fonti e brevi estratti (non articoli completi) al provider AI che hai scelto, e il recap risultante viene memorizzato nella cache sul tuo dispositivo. Gli episodi podcast di un feed vengono riprodotti in streaming direttamente dal server dell'editore quando premi Play.</p>
+
+        <h3>Invio di articoli: Kindle, LocalSend e menu di condivisione</h3>
+        <p>Ci sono due percorsi diversi e solo uno tocca il nostro server:</p>
+        <ul>
+          <li><strong>Invia a Kindle passa attraverso il nostro server.</strong> Amazon accetta documenti via email solo da mittenti approvati, quindi l'estensione invia l'articolo (titolo, riassunto, testo, evidenziazioni e indirizzo sorgente) al backend byphil, che lo invia tramite email all'indirizzo Kindle inserito. Devi aggiungere il nostro indirizzo mittente (kindle@byphil.eu) all'elenco dei mittenti approvati nel tuo account Amazon. Il contenuto viene utilizzato unicamente per creare e inviare tale email. L'invio a Kindle richiede l'accesso all'account o una licenza; il piano gratuito include 3 invii.</li>
+          <li><strong>LocalSend e il menu di condivisione di sistema (ad esempio AirDrop) sono diretti.</strong> Il file passa dal tuo browser direttamente al dispositivo selezionato sulla rete locale o all'app scelta nel menu di condivisione. Non siamo coinvolti e non vediamo né archiviamo questi contenuti. LocalSend funziona con telefoni, tablet, computer ed e-reader compatibili.</li>
+        </ul>
+
+        <h3>Sincronizzazione, backup e pubblicazione della libreria (opzionale)</h3>
+        <p>Disattivato finché non aggiungi una destinazione in Impostazioni → Sincronizzazione e backup. Una destinazione è una cartella su un server a tua scelta (Nextcloud o un altro server WebDAV, oppure un bucket compatibile con S3 come AWS S3, Cloudflare R2 o Backblaze B2) o una cartella sul tuo computer. Non gestiamo questi server, non siamo coinvolti e non possiamo mai vedere cosa vi archivi.</p>
+        <ul>
+          <li><strong>Destinazioni crittografate</strong> Mantieni sincronizzata l'intera libreria tra tutti i tuoi dispositivi o conserva una copia di backup: articoli, riassunti, testi completi, evidenziazioni, note, raccolte e tag. Tutto viene crittografato direttamente nel tuo browser (AES-256-GCM, con una chiave derivata dalla tua passphrase) prima di lasciare il dispositivo, e i nomi dei file vengono offuscati. Il server o la cartella vedono unicamente i file crittografati, le loro dimensioni e quando sono stati modificati. La chiave derivata dalla tua passphrase rimane nel local storage di questo browser, consentendo alla sincronizzazione di funzionare in background. Se utilizzi le parole casuali suggerite, vengono conservate lì per permetterti di consultarle nelle impostazioni dello spazio; se invece scegli una passphrase personalizzata, questa non viene memorizzata. Nessuno di questi dati viene mai sincronizzato o incluso in un backup. Se perdi la passphrase, nessuno potrà leggere i tuoi file, nemmeno noi.</li>
+          <li><strong>Destinazioni in chiaro</strong> pubblica file in testo semplice (e, se lo desideri, una pagina di visualizzazione minimale) per il tuo sito web o i tuoi strumenti personali. Vengono inviati solo gli articoli che corrispondono al filtro tag configurato. Note, promemoria e il testo integrale degli articoli non vengono mai pubblicati, a meno che non sia tu ad attivarli esplicitamente nella danger zone; in tal caso, chiunque abbia accesso a quella cartella potrà leggerli.</li>
+          <li><strong>Come vengono inviati i dati.</strong> Le richieste partono direttamente dal tuo browser verso l'indirizzo inserito, via HTTPS, utilizzando le credenziali o la chiave di accesso fornite. Tali credenziali rimangono archiviate localmente, non vengono mai sincronizzate e sono escluse dai backup salvo tua esplicita scelta. Il gestore del server può visualizzare il tuo indirizzo IP e i timestamp di sincronizzazione.</li>
+          <li><strong>Una cartella su questo computer</strong> utilizza l'accesso al file system del browser. Scegli la cartella e il browser richiede la tua autorizzazione, che potrebbe essere richiesta nuovamente dopo un riavvio. Conserviamo esclusivamente l'handle fornito dal browser per quella specifica cartella. Qualsiasi strumento utilizzato per sincronizzare tale cartella su altri dispositivi (Syncthing, iCloud Drive, Dropbox) applica le proprie condizioni sulla privacy.</li>
+        </ul>
+
+        <h3>App IA sul tuo computer (MCP)</h3>
+        <p>Disattivato per impostazione predefinita. Quando attivi Impostazioni → App IA (MCP), le app di IA collegate sul tuo computer (come Claude Desktop, LM Studio, Cursor o VS Code) possono leggere le parti della tua libreria che autorizzi: gli articoli salvati con i relativi riassunti ed evidenziazioni e, solo se attivi l'opzione, il testo completo degli articoli, gli elementi dei tuoi feed e il salvataggio dei link nella casella di posta. I dati transitano dal browser attraverso un piccolo programma helper sul tuo computer (<code>aish-mcp</code>) verso l'app scelta. Non passano mai attraverso i nostri server e non possiamo vederli in alcun modo. L'helper accetta esclusivamente connessioni locali dal tuo computer e richiede un codice di associazione; non memorizza articoli né tiene traccia di ciò che inoltra. Gli articoli contrassegnati con il tag escluso (<code>private</code> per impostazione predefinita) non vengono mai condivisi. L'estensione conserva sul tuo dispositivo un registro delle ultime 50 chiamate (nome dello strumento, orario e numero di risultati, senza alcun contenuto), consultabile nello stesso pannello delle impostazioni. Ciò che l'app IA invia al modello dipende esclusivamente dall'applicazione e dal modello che utilizzi: con un modello locale in esecuzione sul dispositivo, nessun dato lascia il tuo computer. Puoi disattivare questa opzione o selezionare Disconnetti in qualsiasi momento.</p>
+
+        <h2 id="analytics">Analisi e cookie</h2>
+        <p><strong>In breve:</strong> questo sito imposta <strong>zero cookie</strong> e non utilizza pubblicità né tracker cross-site. Conteggiamo le visite anonime tramite un'istanza Matomo self-hosted, e puoi disattivarlo in qualsiasi momento.</p>
+        <p><strong>L'estensione per browser in sé non contiene codice di analisi, telemetria o tracciamento.</strong> Le uniche richieste di rete effettuate sono destinate al provider AI configurato, ai feed a cui ti iscrivi, alle pagine web di cui richiedi l'elaborazione, ai server impostati per la sincronizzazione, il backup o la pubblicazione della libreria e (se utilizzati) all'infrastruttura backend di byphil per byphil Cloud, autenticazione, verifica delle licenze e Send to Kindle.</p>
+        <h3>Cosa misuriamo</h3>
+        <p>Visualizzazioni di pagina, lingua della pagina, referrer, classe approssimativa di paese/browser/dispositivo e le parti del sito con cui interagisci (ad esempio clic su "Aggiungi a Chrome", selettore dei prezzi, voci delle FAQ, sezioni raggiunte scorrendo e passaggi del generatore di bookmarklet). Gli eventi non contengono mai indirizzi email, chiavi API, codici monouso, contenuti di pagine o dati di articoli.</p>
+        <h3>Come è configurato</h3>
+        <p>Matomo è ospitato sul nostro server (analytics.philwornath.de, Germania), non presso terzi. Viene caricato con i cookie disabilitati e senza fingerprinting delle caratteristiche del browser; gli indirizzi IP vengono anonimizzati prima della memorizzazione; non viene assegnato alcun ID utente o identificatore cross-site, quindi le visite non possono essere collegate tra giorni o dispositivi diversi. I dati non vengono venduti né condivisi con terzi.</p>
+        <p>Poiché nulla viene memorizzato o letto dal tuo dispositivo a fini di tracciamento, questa misurazione si basa sul nostro legittimo interesse a comprendere come viene utilizzato il sito (Art. 6(1)(f) GDPR) e non richiede un banner di consenso per i cookie ai sensi del § 25 TDDDG / Direttiva ePrivacy. Hai il diritto di opporti (Art. 21 GDPR) in qualsiasi momento.</p>
+        <h3>Le tue scelte</h3>
+        <p>I sistemi di analisi vengono disattivati automaticamente se il tuo browser invia <em>Do Not Track</em> o <em>Global Privacy Control</em>. Puoi anche disattivarlo manualmente tramite <a href="#" data-analytics-settings="">Impostazioni statistiche</a> (presente anche nel piè di pagina di ogni pagina). <span id="analyticsStatusInline"></span></p>
+        <h3>Cosa viene memorizzato nel tuo browser</h3>
+        <p>Solo preferenze funzionali, mai per il tracciamento: <code>aish_analytics</code> (la tua scelta di opt-out), <code>aish_analytics_notice</code> (la presa visione dell'informativa) e, se usati, la scelta del tema, la chiusura del suggerimento di lingua e le impostazioni del generatore di bookmarklet. Rimangono sul tuo dispositivo e non ci vengono inviati.</p>
+        <h3>Font e risorse esterne</h3>
+        <p>I font (Inter, Space Grotesk, JetBrains Mono; licenza SIL Open Font) sono ospitati direttamente da questo sito, quindi il tuo indirizzo IP non viene trasmesso a Google o a fornitori di font per la sola visita. Le uniche richieste esterne riguardano i link su cui fai clic e le pagine facoltative dell'account byPhil / checkout Stripe che decidi di aprire.</p>
+
+
+        <h2>Basi giuridiche e conservazione dei dati</h2>
+        <p>Quasi tutto viene elaborato sul tuo dispositivo e non ci raggiunge mai. Laddove trattiamo dati, queste sono le basi giuridiche e i tempi di conservazione:</p>
+        <ul>
+          <li><strong>Account e accesso</strong> (indirizzo email, codice monouso, chiave di licenza, stato del piano) — per fornire l'account richiesto, Art. 6(1)(b) GDPR. Conservati per tutta la durata dell'account; quando elimini l'account vengono cancellati.</li>
+          <li><strong>byphil Cloud</strong> (inoltro del testo da riassumere, contatori di utilizzo, token utilizzati, ultima richiesta, ultimo modello) — per l'esecuzione del servizio, Art. 6(1)(b). Il testo viene solo inoltrato e non memorizzato. I metadati di utilizzo vengono conservati finché l'account esiste e cancellati insieme ad esso.</li>
+          <li><strong>Invia a Kindle</strong> (l'articolo inviato, il tuo indirizzo Kindle) — per eseguire l'invio richiesto, Art. 6(1)(b). Utilizzato solo per creare e inviare tale email.</li>
+          <li><strong>Pagamenti e verifica delle licenze</strong> — per eseguire il contratto e adempiere agli obblighi contabili, Art. 6(1)(b) e (c). I documenti contabili sono conservati per il tempo previsto dalla legge.</li>
+          <li><strong>Analisi del sito web e feedback di disinstallazione</strong> — il nostro legittimo interesse a migliorare il sito e l'estensione, Art. 6(1)(f). I dati sono anonimi (vedi Analisi e cookie).</li>
+        </ul>
+        <p>Puoi esportare i dati del tuo account ed eliminare il tuo account in qualsiasi momento su <a href="https://byphil.eu/#account" target="_blank" rel="noopener">byphil.eu/#account</a>. L'eliminazione dell'account cancella i dati memorizzati ad esso associati.</p>
+
+        <h2>Autorizzazioni richieste e relative motivazioni</h2>
+        <table>
+          <thead>
+            <tr><th>Autorizzazione</th><th>Perché è necessaria</th></tr>
+          </thead>
+          <tbody>
+            <tr><td><code>activeTab</code></td><td>Leggere il contenuto della pagina che scegli attivamente di riassumere</td></tr>
+            <tr><td><code>storage</code></td><td>Salvare le tue impostazioni, la cronologia degli articoli e le evidenziazioni in locale</td></tr>
+            <tr><td><code>contextMenus</code></td><td>Fornire azioni nel menu contestuale col tasto destro (Riassumi, Evidenzia, ecc.)</td></tr>
+            <tr><td><code>notifications</code></td><td>Mostrare promemoria programmati per gli articoli salvati per dopo</td></tr>
+            <tr><td><code>alarms</code></td><td>Pianificare le notifiche di promemoria</td></tr>
+            <tr><td><code>tabs</code></td><td>Chiudere automaticamente la scheda dopo "Riassumi e chiudi"</td></tr>
+            <tr><td><code>sidePanel</code></td><td>Supportare il riquadro laterale nativo di Chrome come opzione di visualizzazione</td></tr>
+            <tr><td><code>scripting</code></td><td>Iniettare lo script di contenuto necessario per leggere e riassumere una pagina</td></tr>
+            <tr><td><code>offscreen</code>, <code>tts</code></td><td>Riprodurre l'audio dei podcast e leggere i riassunti ad alta voce in background mentre il popup è chiuso</td></tr>
+            <tr><td>Accesso al file system (cartella selezionata)</td><td>Solo quando selezioni una cartella sul tuo computer come destinazione di sincronizzazione o backup; il browser richiederà la tua autorizzazione ed esclusivamente quella cartella risulterà accessibile</td></tr>
+            <tr><td><code>unlimitedStorage</code></td><td>Mantenere un ampio archivio locale di articoli ed evidenziazioni senza superare la quota di archiviazione predefinita</td></tr>
+            <tr><td><code>host_permissions (&lt;all_urls&gt;)</code></td><td>Ti consente di riassumere qualsiasi pagina web visitata: i contenuti vengono letti e trasmessi solo quando richiedi attivamente la generazione di un riassunto, mai in background o passivamente. Permette inoltre all'estensione di raggiungere il server di sincronizzazione o il bucket specificato, su qualsiasi indirizzo</td></tr>
+          </tbody>
+        </table>
+        <p>Non utilizziamo queste autorizzazioni per tracciare la tua navigazione, profilarti a scopo pubblicitario o raccogliere dati oltre a quanto necessario per fornire le funzionalità descritte.</p>
+
+        <h2>Cosa non facciamo</h2>
+        <ul>
+          <li>Non pubblichiamo né mostriamo annunci e non vendiamo, affittiamo o scambiamo i tuoi dati con inserzionisti o data broker.</li>
+          <li>Non richiediamo un account o l'accesso per alcuna funzionalità di base.</li>
+          <li>Non registriamo né conserviamo i contenuti delle pagine che riassumi tramite la tua chiave API o un modello locale, e non vediamo mai ciò che invii tramite LocalSend o il menu di condivisione.</li>
+          <li>Non abbiamo alcun accesso alla cronologia dei tuoi articoli salvati in locale, alle evidenziazioni o alle tue chiavi API: non lasciano mai il tuo dispositivo a meno che tu non le esporti esplicitamente o configuri una destinazione di sincronizzazione, backup o pubblicazione, e anche in quel caso vengono trasmesse unicamente dove decidi tu.</li>
+        </ul>
+
+        <h2>Servizi di terze parti</h2>
+        <p>A seconda di come configuri l'estensione, i contenuti delle pagine possono essere inviati a:</p>
+        <ul>
+          <li>OpenAI, Google (Gemini), Mistral AI o DeepSeek — solo se hai inserito la tua chiave API per quel provider e solo per la pagina che riassumi attivamente.</li>
+          <li>Il nostro backend byphil e il relativo database, entrambi ospitati da IONOS SE in Germania — solo se effettui l'accesso, utilizzi byphil Cloud o Send to Kindle.</li>
+          <li>OpenRouter, tramite cui byphil Cloud si collega ai modelli, e il provider del modello di destinazione — il testo da riassumere viene inoltrato al modello utilizzato esclusivamente per quella specifica richiesta.</li>
+          <li>Stripe — pagamenti e gestione degli abbonamenti, in qualità di Merchant of Record.</li>
+          <li>Amazon — se invii un articolo al tuo Kindle, Amazon lo consegna secondo i propri termini di privacy.</li>
+          <li>La tua istanza locale di Ollama — non è una terza parte; resta sulla tua macchina.</li>
+        </ul>
+        <p>Non siamo responsabili per le pratiche di privacy dei provider AI di terze parti che decidi di collegare. Ti invitiamo a verificare le loro informative prima di collegare un account.</p>
+        <p><strong>Sei tu a decidere quale modello elabora il tuo testo.</strong> Sia che tu usi una chiave personale o byphil Cloud, scegli il provider e il modello nelle impostazioni e sei responsabile di verificare i termini di tale provider e dove vengono elaborati i dati. OpenRouter, i provider dei modelli sottostanti e Amazon potrebbero elaborare i dati al di fuori dell'UE/SEE in conformità alle proprie garanzie (ad esempio clausole contrattuali tipo); noi non trasferiamo direttamente i tuoi dati verso paesi terzi.</p>
+
+        <h2>Sicurezza dei dati</h2>
+        <p>Adottiamo misure tecniche ragionevoli e commisurate ai dati trattati — la maggior parte dei quali non raggiunge mai i nostri server, essendo archiviata localmente nel browser. Le comunicazioni con il nostro backend (per byphil Cloud e la verifica della licenza) sono crittografate durante il transito. Nessun metodo di trasmissione o archiviazione è sicuro al 100% e non possiamo garantire la sicurezza assoluta, ma non raccogliamo nulla di più di quanto necessario per fornire le funzionalità descritte.</p>
+
+        <h2>Privacy dei minori</h2>
+        <p>AI Summary Helper non è rivolto a minori di 13 anni (o all'età minima equivalente nella tua giurisdizione) e non raccogliamo consapevolmente dati personali di minori.</p>
+
+        <h2>I tuoi diritti (GDPR / CCPA e normative analoghe)</h2>
+        <p>Poiché quasi tutti i tuoi dati sono memorizzati localmente sul tuo dispositivo, ne hai già il controllo diretto: puoi visualizzarli, esportarli o cancellarli in qualsiasi momento tramite le Impostazioni dell'estensione o disinstallandola. Per i pochi dati conservati sui nostri server (metadati dell'abbonamento/fatturazione di byphil Cloud), puoi gestirli, esportarli ed eliminare il tuo account su <a href="https://byphil.eu/#account" target="_blank" rel="noopener">byphil.eu/#account</a>, oppure contattandoci ai recapiti sottostanti.</p>
+        <p>Hai il diritto di accesso (Art. 15), rettifica (Art. 16), cancellazione (Art. 17), limitazione del trattamento (Art. 18), portabilità dei dati (Art. 20) e opposizione (Art. 21), nonché di revocare il consenso in qualsiasi momento. Hai inoltre il diritto di proporre reclamo a un'autorità di controllo (Art. 77), in particolare nello Stato membro in cui risiedi. Non utilizziamo i tuoi dati per processi decisionali automatizzati che producano effetti giuridici o per la profilazione.</p>
+
+        <h2>Modifiche a questa informativa</h2>
+        <p>Potremmo aggiornare questa Informativa sulla privacy con l'evolversi delle funzionalità dell'estensione. Le modifiche rilevanti saranno riportate qui con una data aggiornata in "Ultimo aggiornamento". L'uso continuato dell'estensione dopo una modifica costituisce accettazione dell'informativa aggiornata.</p>
+
+        <h2>Contatti</h2>
+        <p>Domande su questa Informativa sulla privacy? Contattaci all'indirizzo <a href="mailto:info@byphil.eu">info@byphil.eu</a>, oppure tramite <a href="https://github.com/philffm/ai-summary-helper/issues">GitHub Issues</a>.</p>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="footer-inner">
+      <div class="wordmark"><img src="../assets/icon.svg" alt="">AI Summary Helper</div>
+      <div class="foot-links">
+        <a href="https://github.com/philffm/ai-summary-helper/" target="_blank" rel="noopener">Codice sorgente su GitHub</a>
+        <a href="../bookmarklet.html">Bookmarklet (senza installazione)</a>
+        <a href="../education/">Per l'istruzione</a>
+        <a href="privacy-e-dati.html">Informativa sulla privacy</a>
+        <a href="#" data-analytics-settings="">Impostazioni statistiche</a>
+        <a href="https://byphil.eu/terms.html#terms-of-service" target="_blank" rel="noopener">Termini di servizio</a>
+        <a href="https://byphil.eu/terms.html#refunds" target="_blank" rel="noopener">Rimborsi e resi</a>
+        <a href="https://byphil.eu/terms.html#impressum" target="_blank" rel="noopener">Note legali (Impressum)</a>
+      </div>
+    </div>
+    <div class="foot-eco">
+      <span class="foot-eco-h">Altro da byphil</span>
+      <div class="foot-links">
+        <a href="https://petsetlife.byphil.eu/" target="_blank" rel="noopener">PetSetLife</a>
+        <a href="https://matrix.byphil.eu/" target="_blank" rel="noopener">Matrix</a>
+        <a href="https://byphil.eu/" target="_blank" rel="noopener">Tutti gli strumenti di byphil ↗</a>
+      </div>
+    </div>
+    <div class="copyright">© 2026 Phil Wornath. Parte di <a href="https://byphil.eu/" class="credit-link">byphil.<span style="color:inherit;">eu</span> ↗</a> — software indipendente sviluppato in Germania. Pagamenti gestiti da Stripe come Merchant of Record.<br>
+      <a href="https://ec.europa.eu/consumers/odr" target="_blank" rel="noopener">Risoluzione delle controversie dei consumatori UE</a> · Progettato e sviluppato da <a href="https://philwornath.com/" target="_blank" rel="noopener" class="credit-link">philwornath.com ↗</a>
+    </div>
+  </div>
+</footer>
+
+<script src="../assets/hero-i18n.js"></script>
+<script src="../assets/main.js"></script>
+
+
+</body></html>

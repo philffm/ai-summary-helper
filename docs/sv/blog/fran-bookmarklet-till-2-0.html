@@ -1,0 +1,203 @@
+<!DOCTYPE html><html lang="sv"><head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#08090C">
+<title>Från bookmarklet till 2.0 – AI Summary Helper</title>
+<meta name="description" content="Det började som ett bookmarklet för en persons Kindle-vanor. Här är vad som förändrades mellan v1 och den öppna källkodsversionen 2.0 – och varför.">
+
+<script>
+  (function(){
+    try {
+      var saved = localStorage.getItem('aish_theme');
+      var theme = saved === 'light' || saved === 'dark'
+        ? saved
+        : (window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
+      document.documentElement.setAttribute('data-theme', theme);
+    } catch (e) {
+      document.documentElement.setAttribute('data-theme', 'dark');
+    }
+  })();
+</script>
+
+<link rel="icon" type="image/svg+xml" href="../../assets/icon.svg">
+<link rel="stylesheet" href="../../assets/styles.css">
+<script src="../../assets/analytics.js"></script>
+<link rel="alternate" hreflang="x-default" href="https://ai-summary-helper.byphil.eu/blog/from-bookmarklet-to-2.html"><link rel="alternate" hreflang="en" href="https://ai-summary-helper.byphil.eu/blog/from-bookmarklet-to-2.html"><link rel="alternate" hreflang="de" href="https://ai-summary-helper.byphil.eu/de/blog/vom-bookmarklet-zu-2-0.html"><link rel="alternate" hreflang="fr" href="https://ai-summary-helper.byphil.eu/fr/blog/du-bookmarklet-a-2-0.html"><link rel="alternate" hreflang="es" href="https://ai-summary-helper.byphil.eu/es/blog/del-bookmarklet-a-2-0.html"><link rel="alternate" hreflang="zh-Hans" href="https://ai-summary-helper.byphil.eu/zh/blog/from-bookmarklet-to-2.html"><link rel="alternate" hreflang="zh-Hant" href="https://ai-summary-helper.byphil.eu/zh-tw/blog/from-bookmarklet-to-2.html"><link rel="alternate" hreflang="ja" href="https://ai-summary-helper.byphil.eu/ja/blog/from-bookmarklet-to-2.html"><link rel="alternate" hreflang="ko" href="https://ai-summary-helper.byphil.eu/ko/blog/from-bookmarklet-to-2.html"><link rel="alternate" hreflang="pt-BR" href="https://ai-summary-helper.byphil.eu/pt/blog/do-bookmarklet-ao-2-0.html"><link rel="alternate" hreflang="hi" href="https://ai-summary-helper.byphil.eu/hi/blog/from-bookmarklet-to-2.html"><link rel="alternate" hreflang="vi" href="https://ai-summary-helper.byphil.eu/vi/blog/tu-bookmarklet-den-2-0.html"><link rel="alternate" hreflang="nl" href="https://ai-summary-helper.byphil.eu/nl/blog/van-bookmarklet-naar-2-0.html"><link rel="alternate" hreflang="it" href="https://ai-summary-helper.byphil.eu/it/blog/dal-bookmarklet-alla-2-0.html"><link rel="alternate" hreflang="ru" href="https://ai-summary-helper.byphil.eu/ru/blog/from-bookmarklet-to-2.html"><link rel="alternate" hreflang="uk" href="https://ai-summary-helper.byphil.eu/uk/blog/from-bookmarklet-to-2.html"><link rel="alternate" hreflang="tr" href="https://ai-summary-helper.byphil.eu/tr/blog/bookmarklettan-2-0a.html"><link rel="alternate" hreflang="id" href="https://ai-summary-helper.byphil.eu/id/blog/dari-bookmarklet-ke-2-0.html"><link rel="alternate" hreflang="pl" href="https://ai-summary-helper.byphil.eu/pl/blog/od-bookmarkletu-do-2-0.html"><link rel="alternate" hreflang="th" href="https://ai-summary-helper.byphil.eu/th/blog/from-bookmarklet-to-2.html"><link rel="alternate" hreflang="ar" href="https://ai-summary-helper.byphil.eu/ar/blog/from-bookmarklet-to-2.html"><link rel="alternate" hreflang="sv" href="https://ai-summary-helper.byphil.eu/sv/blog/fran-bookmarklet-till-2-0.html"><link rel="alternate" hreflang="da" href="https://ai-summary-helper.byphil.eu/da/blog/fra-bookmarklet-til-2-0.html"><link rel="alternate" hreflang="nb" href="https://ai-summary-helper.byphil.eu/no/blog/fra-bookmarklet-til-2-0.html"><link rel="alternate" hreflang="fi" href="https://ai-summary-helper.byphil.eu/fi/blog/kirjanmerkista-versioon-2-0.html"><meta property="og:site_name" content="AI Summary Helper"><meta property="og:locale" content="sv"><meta property="og:type" content="article"><meta property="og:title" content="Från bookmarklet till 2.0 – AI Summary Helper"><meta property="og:description" content="Det började som ett bookmarklet för en persons Kindle-vanor. Här är vad som förändrades mellan v1 och den öppna källkodsversionen 2.0 – och varför."><meta property="og:image" content="https://ai-summary-helper.byphil.eu/assets/shots/aish-hero-en.webp"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="Från bookmarklet till 2.0 – AI Summary Helper"><meta name="twitter:description" content="Det började som ett bookmarklet för en persons Kindle-vanor. Här är vad som förändrades mellan v1 och den öppna källkodsversionen 2.0 – och varför."><meta name="twitter:image" content="https://ai-summary-helper.byphil.eu/assets/shots/aish-hero-en.webp"><link rel="canonical" href="https://ai-summary-helper.byphil.eu/sv/blog/fran-bookmarklet-till-2-0.html"><script type="application/ld+json" data-seo="ld">{"@context":"https://schema.org","@graph":[{"@type":"BlogPosting","@id":"https://ai-summary-helper.byphil.eu/sv/blog/fran-bookmarklet-till-2-0.html#post","headline":"Från ett bokmärke till 2.0: Vad AI Summary Helper faktiskt är idag","description":"Det började som ett bookmarklet för en persons Kindle-vanor. Här är vad som förändrades mellan v1 och den öppna källkodsversionen 2.0 – och varför.","datePublished":"2026-06","inLanguage":"sv","image":"https://ai-summary-helper.byphil.eu/assets/shots/aish-hero-en.webp","mainEntityOfPage":"https://ai-summary-helper.byphil.eu/sv/blog/fran-bookmarklet-till-2-0.html","author":{"@id":"https://byphil.eu/#org"},"publisher":{"@type":"Organization","@id":"https://byphil.eu/#org","name":"byphil","url":"https://byphil.eu/"}},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"AI Summary Helper","item":"https://ai-summary-helper.byphil.eu/"},{"@type":"ListItem","position":2,"name":"Blog","item":"https://ai-summary-helper.byphil.eu/sv/blog/"},{"@type":"ListItem","position":3,"name":"Från ett bokmärke till 2.0: Vad AI Summary Helper faktiskt är idag","item":"https://ai-summary-helper.byphil.eu/sv/blog/fran-bookmarklet-till-2-0.html"}]}]}</script></head>
+<body>
+
+<a href="#main" class="skip-link">Hoppa till innehållet</a>
+
+<header class="nav nav--pill" id="siteNav">
+  <div class="wrap nav-pill-row">
+    <a href="../index.html" class="wordmark" aria-label="AI Summary Helper">
+      <img src="../../assets/icon.svg" alt="">
+      AI Summary Helper
+    </a>
+    <nav class="pill" aria-label="Primär">
+      <a href="../index.html#features" data-sec="features">Funktioner</a>
+      <a href="../index.html#see-it" data-sec="see-it">Demo</a>
+      <a href="https://chromewebstore.google.com/detail/ai-summary-helper-openai/hldbejcjaedipeegjcinmhejdndchkmb" class="pill-cta" target="_blank" rel="noopener">Lägg till i Chrome</a>
+    </nav>
+    <div class="nav-tools">
+      <button type="button" class="tool-btn" id="sendBtn" data-send="" hidden="" aria-label="Skicka den här sidan till min dator" title="Skicka till min dator"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="3" y="4.5" width="18" height="12" rx="2" stroke="currentColor" stroke-width="1.6"></rect><path d="M8 20h8M12 16.5V20M12 13V8m0 0-2.2 2.2M12 8l2.2 2.2" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"></path></svg></button>
+      <button type="button" class="tool-btn" id="langBtn" aria-label="Språk" aria-controls="mobileMenu"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.6"></circle><path d="M3 12h18M12 3c2.6 2.7 3.9 5.7 3.9 9s-1.3 6.3-3.9 9c-2.6-2.7-3.9-5.7-3.9-9S9.4 5.7 12 3Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"></path></svg></button>
+      <button type="button" class="theme-toggle" id="themeToggle" aria-label="Växla till ljust läge">
+        <svg class="icon-moon" viewBox="0 0 24 24" fill="none"><path d="M20 14.5A8.5 8.5 0 1 1 9.5 4a6.8 6.8 0 0 0 10.5 10.5Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"></path></svg>
+        <svg class="icon-sun" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="4.2" stroke="currentColor" stroke-width="1.6"></circle><path d="M12 2.5v2.4M12 19.1v2.4M4.4 4.4l1.7 1.7M17.9 17.9l1.7 1.7M2.5 12h2.4M19.1 12h2.4M4.4 19.6l1.7-1.7M17.9 6.1l1.7-1.7" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"></path></svg>
+      </button>
+    </div>
+    <button type="button" class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="mobileMenu" aria-label="Öppna meny">
+      <svg viewBox="0 0 24 24" fill="none"><path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"></path></svg>
+    </button>
+  </div>
+  <div class="mobile-menu" id="mobileMenu" hidden="">
+    <div class="wrap mm-inner">
+      <nav class="mm-links" aria-label="Mobil">
+        <a href="../index.html#features"><span class="mm-n">01</span>Funktioner</a>
+        <a href="../index.html#see-it"><span class="mm-n">02</span>Demo</a>
+        <a href="../blog/" aria-current="page"><span class="mm-n">03</span>Blogg</a>
+          <a href="../blog/pocket-alternative.html" class="mm-sub">Pocket-alternativ: vad som spelar roll</a>
+          <a href="egen-nyckel-egen-modell.html" class="mm-sub">Din nyckel. Din modell. Din data.</a>
+          <a href="kontrollera-en-ai-sammanfattning-vid-kallan.html" class="mm-sub">Granska sammanfattningen mot källan</a>
+          <a href="markera-eller-fraga.html" class="mm-sub">Ställ frågor om dina markeringar</a>
+        <a href="https://github.com/philffm/ai-summary-helper/" target="_blank" rel="noopener"><span class="mm-n">04</span>GitHub</a>
+      </nav>
+      <div class="mm-lang">
+        <button type="button" class="lang-card" id="langCard"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.6"></circle><path d="M3 12h18M12 3c2.6 2.7 3.9 5.7 3.9 9s-1.3 6.3-3.9 9c-2.6-2.7-3.9-5.7-3.9-9S9.4 5.7 12 3Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"></path></svg><span class="lang-card-cur">Engelska</span><small>24 språk</small><b aria-hidden="true">→</b></button>
+        <p class="mm-lang-h">Språk · 24</p>
+        <label class="lang-search"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="11" cy="11" r="6.5" stroke="currentColor" stroke-width="1.7"></circle><path d="m16 16 4 4" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"></path></svg><input type="search" id="langSearch" placeholder="Sök språk…" autocomplete="off" aria-label="Sök språk" spellcheck="false"></label>
+        <div class="lang-groups" id="langGroups">
+          <div class="lang-group"><p class="lang-group-h">Populära</p><div class="lang-pills" data-no-translate=""><a href="/" class="lang-pill" data-loc="en" lang="en" hreflang="en" data-q="english english en">English</a><a href="/de/" class="lang-pill" data-loc="de" lang="de" hreflang="de" data-q="deutsch german de">Deutsch</a><a href="/fr/" class="lang-pill" data-loc="fr" lang="fr" hreflang="fr" data-q="français french fr">Français</a><a href="/es/" class="lang-pill" data-loc="es" lang="es" hreflang="es" data-q="español spanish es">Español</a><a href="/zh/" class="lang-pill" data-loc="zh" lang="zh-CN" hreflang="zh-CN" data-q="简体中文 chinese simplified zh">简体中文</a><a href="/ja/" class="lang-pill" data-loc="ja" lang="ja" hreflang="ja" data-q="日本語 japanese ja">日本語</a><a href="/ru/" class="lang-pill" data-loc="ru" lang="ru" hreflang="ru" data-q="русский russian ru">Русский</a></div></div>
+          <div class="lang-group"><p class="lang-group-h">Europa</p><div class="lang-pills" data-no-translate=""><a href="/pt/" class="lang-pill" data-loc="pt" lang="pt" hreflang="pt" data-q="português portuguese pt">Português</a><a href="/nl/" class="lang-pill" data-loc="nl" lang="nl" hreflang="nl" data-q="nederlands dutch nl">Nederlands</a><a href="/it/" class="lang-pill" data-loc="it" lang="it" hreflang="it" data-q="italiano italian it">Italiano</a><a href="/uk/" class="lang-pill" data-loc="uk" lang="uk" hreflang="uk" data-q="українська ukrainian uk">Українська</a><a href="/tr/" class="lang-pill" data-loc="tr" lang="tr" hreflang="tr" data-q="türkçe turkish tr">Türkçe</a><a href="/pl/" class="lang-pill" data-loc="pl" lang="pl" hreflang="pl" data-q="polski polish pl">Polski</a><a href="/sv/" class="lang-pill" data-loc="sv" lang="sv" hreflang="sv" data-q="svenska swedish sv">Svenska</a><a href="/da/" class="lang-pill" data-loc="da" lang="da" hreflang="da" data-q="dansk danish da">Dansk</a><a href="/no/" class="lang-pill" data-loc="no" lang="nb" hreflang="nb" data-q="norsk norwegian no">Norsk</a><a href="/fi/" class="lang-pill" data-loc="fi" lang="fi" hreflang="fi" data-q="suomi finnish fi">Suomi</a></div></div>
+          <div class="lang-group"><p class="lang-group-h">Asien och fler</p><div class="lang-pills" data-no-translate=""><a href="/zh-tw/" class="lang-pill" data-loc="zh-tw" lang="zh-TW" hreflang="zh-TW" data-q="繁體中文 chinese traditional zh-tw">繁體中文</a><a href="/ko/" class="lang-pill" data-loc="ko" lang="ko" hreflang="ko" data-q="한국어 korean ko">한국어</a><a href="/hi/" class="lang-pill" data-loc="hi" lang="hi" hreflang="hi" data-q="हिन्दी hindi hi">हिन्दी</a><a href="/vi/" class="lang-pill" data-loc="vi" lang="vi" hreflang="vi" data-q="tiếng việt vietnamese vi">Tiếng Việt</a><a href="/id/" class="lang-pill" data-loc="id" lang="id" hreflang="id" data-q="bahasa indonesia indonesian id">Bahasa Indonesia</a><a href="/th/" class="lang-pill" data-loc="th" lang="th" hreflang="th" data-q="ไทย thai th">ไทย</a><a href="/ar/" class="lang-pill" data-loc="ar" lang="ar" hreflang="ar" data-q="العربية arabic ar">العربية</a></div></div>
+          <p class="lang-empty" hidden="">Inga träffar</p>
+        </div>
+      </div>
+      <div class="mm-posts" aria-label="Blogg">
+          <p class="mm-posts-h">Från bloggen</p>
+          <a href="../blog/pocket-alternative.html" class="mm-post"><span class="mega-tag">Jämför</span><strong>Pocket-alternativ: Det här är viktigt</strong><span>Byt läs-senare-verktyg utan att förlora ditt arkiv</span></a>
+          <a href="egen-nyckel-egen-modell.html" class="mm-post"><span class="mega-tag">Integritetspolicy</span><strong>Din nyckel. Din modell. Din data.</strong><span>Varför bring-your-own-key slår ännu ett abonnemang</span></a>
+          <a href="kontrollera-en-ai-sammanfattning-vid-kallan.html" class="mm-post"><span class="mega-tag">Tillit</span><strong>Granska en AI-sammanfattning mot källan</strong><span>Dubbelkolla AI-resultat på under en minut</span></a>
+          <a href="markera-eller-fraga.html" class="mm-post"><span class="mega-tag">Så gör du</span><strong>Ställ frågor om dina markeringar</strong><span>Förvandla dina markeringar till svar</span></a>
+          <a href="en-sammanfattning-i-stallet-for-40-floden.html" class="mm-post"><span class="mega-tag">Flöden</span><strong>En sammanfattning istället för 40 flöden</strong><span>Ett dagligt sammandrag av allt du följer</span></a>
+          <a href="sok-och-taggar-utan-moln.html" class="mm-post"><span class="mega-tag">Under huven</span><strong>Sökning och taggar utan molnet</strong><span>Hur allt stannar lokalt på din enhet</span></a>
+          <a href="../blog/" class="mm-all">Alla inlägg →</a>
+        </div>
+      <div class="mm-bottom">
+        <a href="https://chromewebstore.google.com/detail/ai-summary-helper-openai/hldbejcjaedipeegjcinmhejdndchkmb" class="pill-cta mm-cta" data-desktop-cta="" target="_blank" rel="noopener">Lägg till i Chrome</a>
+        <button type="button" class="pill-cta mm-cta" data-send="" hidden="">Skicka till min dator</button>
+        <div class="mm-row">
+          <a href="https://addons.mozilla.org/en-US/firefox/addon/ai-summary-helper/" target="_blank" rel="noopener">Firefox</a>
+          <a href="../index.html#phone">Android · Beta</a>
+          <a href="../../education/">För utbildning</a>
+          <a href="https://byphil.eu/#account">Mitt konto</a>
+        </div>
+        
+        <button type="button" class="theme-toggle-mobile" id="themeToggleMobile">
+          <span id="themeToggleMobileLabel">Växla till ljust läge</span>
+          <svg class="icon-moon" viewBox="0 0 24 24" fill="none"><path d="M20 14.5A8.5 8.5 0 1 1 9.5 4a6.8 6.8 0 0 0 10.5 10.5Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"></path></svg>
+          <svg class="icon-sun" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="4.2" stroke="currentColor" stroke-width="1.6"></circle><path d="M12 2.5v2.4M12 19.1v2.4M4.4 4.4l1.7 1.7M17.9 17.9l1.7 1.7M2.5 12h2.4M19.1 12h2.4M4.4 19.6l1.7-1.7M17.9 6.1l1.7-1.7" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"></path></svg>
+        </button>
+      </div>
+    </div>
+  </div>
+</header>
+
+<main id="main">
+  <section class="hero--photo post-stage">
+    <img class="hero-bg" src="../../assets/photo/ereader-bedside-table-800.webp" srcset="../assets/photo/ereader-bedside-table-800.webp 800w, ../assets/photo/ereader-bedside-table-1600.webp 1600w" sizes="100vw" width="1600" height="1195" alt="" fetchpriority="high" decoding="async" style="--bgpos:50% 50%">
+    <p class="hero-credit">Illustration, AI-genererad</p>
+    <div class="wrap">
+      <div class="post-hero">
+      <span class="blog-date">Produkt · Juni 2026</span>
+      <h1>Från ett bokmärke till 2.0: Vad AI Summary Helper faktiskt är idag</h1>
+      <p class="post-sub">Det började som ett enkelt bookmarklet för att läsa på Kindle. Två år och en total omskrivning senare fanns det mesta som verktyget gör idag inte ens när de första hundra användarna dök upp.</p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <div class="prose" data-vgroup="">
+
+        <p><strong>AI Summary Helper är ett gratis open source-tillägg till Chrome som sammanfattar valfri webbsida med din egen AI-leverantör eller en helt lokal modell, sparar artiklar till senare med schemalagda påminnelser och förvandlar din läshistorik till ett sökbart och sammanlänkat arkiv.</strong> Inget av det fanns i den första versionen. Här är vad som fanns, och hur resan såg ut därifrån till hit.</p>
+        <figure class="post-figure post-video" data-blog-video="senden">
+          <div class="post-video-in">
+            <button class="fvideo-open post-video-open" type="button"><span class="sr-only">Spela upp videon</span>
+              <video muted="" playsinline="" loop="" preload="none" width="360" height="520" poster="../../assets/blog/video/senden-sv.jpg">
+            <source src="../../assets/blog/video/senden-sv.mp4" type="video/mp4">
+          <track data-seo-video="" kind="captions" src="../../assets/blog/video/senden-sv.vtt" srclang="sv" label="svenska"></video>
+              <span class="post-video-play" aria-hidden="true">▶</span>
+            </button>
+            <figcaption>Video: från sammanfattning till Kindle – vanan som projektet började med.</figcaption>
+          <div data-seo-video="" class="vtext"><p class="vtext-h">Utskrift · 0:19</p><ul><li>Från sammanfattning till Kindle.</li><li>Sammanfatta sidan, öppna menyn, skicka den till din Kindle.</li><li>Några sekunder senare ligger den på din e-läsare, redo för soffan.</li></ul></div></div>
+        </figure>
+
+        <h2>Hur det hela faktiskt började</h2>
+        <p>I juli 2024 var detta bara ett bookmarklet – inte ens ett tillägg. Du hittade intressanta artiklar, öppnade ett dussin flikar och kom (som nästan alla andra) aldrig till skott med att läsa dem. Den ursprungliga idén var nischad och personlig: en sammanfattare med anpassade prompts som lade in resultatet direkt på sidan, så att sammanfattningen följde med när du skickade artikeln till din Kindle via <a href="https://send.reabble.com/" target="_blank" rel="noopener">Reabbles Send-to-Kindle-verktyg</a>. Det var hela produkten. En AI-leverantör. Ett prompt-fält. En bookmarklet-variant som fungerade överallt, till och med i Safari på iOS, och ett Chrome-tillägg för de som ville kunna justera prompten i farten.</p>
+        <p>Några veckor senare passerades 100 aktiva användare – genuint överraskande, eftersom det bara byggts för att lösa en enda persons egna läsvanor, inte för att bli en färdig produkt.</p>
+
+        <figure class="post-figure"><img src="../../assets/blog/summary-end-to-end.webp" alt="Diagram: en sammanfattning från start till mål – från Fråga, Streama, Slutför och Spara till Uppföljning" width="1760" height="620" loading="lazy"><figcaption>Vad som händer i fem steg när du klickar på Sammanfatta idag.</figcaption></figure>
+        <h2>Vad som faktiskt förändrades fram till 2.0</h2>
+        <p>Grundidén – sammanfatta på dina egna villkor och läs på en trevligare plats än en webbläsarflik – ändrades aldrig. Men nästan allt runt omkring gjorde det:</p>
+
+        <h3>En leverantör blev fem valbara alternativ</h3>
+        <p>v1 stödde bara OpenAI: din egen API key och en enda slutpunkt. 2.0 stöder OpenAI, Google Gemini, Mistral och DeepSeek med din egen API key, plus ett helt lokalt alternativ via Ollama – vilket innebär att sidans innehåll aldrig behöver lämna din dator om du inte vill. Det finns även en valfri molntjänst (byphil Cloud) för de som vill slippa hantera nycklar helt, men den är aldrig obligatorisk. Det var inte bara en liten funktionsuppdatering; det förändrade hela produktens natur. v1 krävde att du förlitade dig på ett specifikt företag. 2.0 kräver inte att du delar data med någon du inte själv valt.</p>
+
+        <h3>"Klistra in på sidan" blev ett riktigt arbetsflöde</h3>
+        <p>Kärninsikten – läs det senare, i en lugnare miljö än webbläsaren – lever kvar, men det handlar inte längre bara om en sammanfattning som klistras in i DOM-trädet. Högerklickar du på en sida kan du nu välja <strong>Sammanfatta &amp; stäng flik</strong>: välj en tidsram (Imorgon, Helgen, Denna vecka, Forskningspass), lägg till en anteckning och fliken stängs automatiskt när du skummat igenom sammanfattningen i ett snabbläsningsfönster (RSVP). En Chrome-notis påminner dig precis när du vill – inte "någon gång", utan exakt när du bestämt.</p>
+
+        <h3>En hög med sparade artiklar blev ett strukturerat bibliotek</h3>
+        <p>v1 hade ingen historik alls – sammanfattningen visades på sidan och var sedan borta. Nu sparas varje artikel i ett lokalt och sökbart arkiv, komplett med textmarkeringar (plus AI-genererade markeringar på viktiga stycken), en aktivitetsvy (heatmap) över din läsning och en D3-kunskapsgraf som grupperar det du läst efter ämne istället för en oöverskådlig lista.</p>
+
+        <h3>Kindle var hela poängen. Nu är det bara ett av flera alternativ</h3>
+        <p>Send-to-Kindle via Reabbles verktyg var hela anledningen till att projektet skapades. Det stöds fortfarande fullt ut, men att läsa utanför webbläsaren innebär nu även AirDrop till iPhone eller iPad (öppnas direkt i Apple Books) eller LocalSend till exempelvis KOReader över ditt eget Wi-Fi. Grundtanken – bort från webbläsaren till en dedikerad läsenhet – har bara fått fler vägar.</p>
+
+        <h2>Vad som inte har förändrats</h2>
+        <p>Det är fortfarande gratis, fortfarande öppen källkod (AGPL-3.0, all källkod på GitHub; företag som behöver andra villkor kan teckna en kommersiell licens) och du behöver fortfarande inget konto för någon av kärnfunktionerna. Den delen har aldrig varit förhandlingsbar – det är samma anledning till att v1 skapades som ett bookmarklet från första början: byggt av någon som ville äga sitt eget läsverktyg, inte hyra det.</p>
+
+        <h2>Vanliga frågor</h2>
+        <p><strong>Är det här samma projekt som det ursprungliga bookmarkletet?</strong><br>
+        Ja – samma open source-projekt, samma GitHub-repo, under kontinuerlig utveckling sedan juli 2024. Bookmarklet-varianten finns fortfarande kvar för alla som vill ha ett webbläsaroberoende alternativ helt utan installation.</p>
+        <p><strong>Måste jag ha ett OpenAI-konto för att använda det?</strong><br>
+        Nej. Så var det i v1, men inte längre. Alla leverantörer som stöds fungerar, eller en helt lokal modell via Ollama helt utan externa konton.</p>
+        <p><strong>Vad hände med Gumroad-versionen?</strong><br>
+        Projektet började där som ett sätt att ta emot stöd från tidiga användare. Själva tillägget har alltid varit gratis och open source – Gumroad var aldrig en betalvägg för verktyget.</p>
+
+        <div class="post-cta">
+          <p>AI Summary Helper är ett gratis tillägg för Chrome.</p>
+          <a href="https://chromewebstore.google.com/detail/ai-summary-helper-openai/hldbejcjaedipeegjcinmhejdndchkmb" target="_blank" rel="noopener" class="btn-primary">Lägg till i Chrome</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<div class="vfeed-labels" hidden="">
+  <span data-l="close">Stäng</span><span data-l="sound">Ljud på</span><span data-l="mute">Ljud av</span><span data-l="hint">Svep uppåt för nästa video</span><span data-l="prev">Föregående video</span><span data-l="next">Nästa video</span>
+  <span data-l="share">Dela</span><span data-l="copied">Länken kopierad</span>
+  <span data-l="add_chrome">Lägg till i Chrome — helt gratis</span><span data-l="add_firefox">Lägg till i Firefox — det är gratis</span><span data-l="add_browser">Lägg till i din webbläsare — det är gratis</span>
+  <a data-l="try" href="../../bookmarklet.html">Testa i din webbläsare — det är gratis</a>
+</div>
+<footer>
+  <div class="wrap">
+    <div class="footer-inner">
+      <div class="wordmark"><img src="../../assets/icon.svg" alt="">AI Summary Helper</div>
+      <div class="foot-links">
+        <a href="https://github.com/philffm/ai-summary-helper/" target="_blank" rel="noopener">Källkod på GitHub</a>
+        <a href="../../education/">För utbildning</a>
+        <a href="../integritet.html">Integritetspolicy</a>
+        <a href="#" data-analytics-settings="">Analysinställningar</a>
+        <a href="https://byphil.eu/terms.html#impressum" target="_blank" rel="noopener">Impressum</a>
+      </div>
+    </div>
+    <div class="copyright">© 2026 Phil Wornath. En del av <a href="https://byphil.eu/" class="credit-link">byphil.eu ↗</a> — oberoende mjukvara utvecklad i Tyskland.<br>
+      Designad och utvecklad av <a href="https://philwornath.com/" target="_blank" rel="noopener" class="credit-link">philwornath.com ↗</a>
+    </div>
+  </div>
+</footer>
+
+<script src="../../assets/main.js"></script>
+
+
+</body></html>

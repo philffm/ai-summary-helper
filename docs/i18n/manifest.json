@@ -28544,7 +28544,7 @@
           "model": "google/gemini-3.7-flash"
         },
         "da": {
-          "text": "Privatlivsaspektet er afgørende — en udvidelse med brede tilladelser, der sender sideindhold til en server for ting, der ikke behøver det, er et reelt tillidsspørgsmål og en vigtig overvejelse under GDPR. Men den mere pragmatiske grund er, at det simpelthen er bedre ingeniørarbejde. TF-IDF-søgning behøver ikke 200 ms netværksforsinkelse. Tag-oprydning behøver ikke en API-regning. Når man vælger det rette værktøj til opgaven i stedet for at sende alt i skyen som standard, får man noget, der er hurtigere, billigere i drift og fungerer offline — og den stærke databeskyttelse følger automatisk med.",
+          "text": "Privatlivsaspektet er afgørende — en udvidelse med brede tilladelser, der sender sideindhold til en server for ting, der ikke behøver det, er et reelt tillidsspørgsmål. Men den mere pragmatiske grund er, at det simpelthen er bedre ingeniørarbejde. TF-IDF-søgning behøver ikke 200 ms netværksforsinkelse. Tag-oprydning behøver ikke en API-regning. Når man vælger det rette værktøj til opgaven i stedet for at sende alt i skyen som standard, får man noget, der er hurtigere, billigere i drift og fungerer offline — og den stærke databeskyttelse følger automatisk med.",
           "translatedAt": "2026-10-18T13:17:37.764Z",
           "model": "google/gemini-3.7-flash"
         },

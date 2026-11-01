@@ -328,7 +328,7 @@ async function translateUnits(units, locale, apiKey) {
         return out;
     }
 
-    const system = `You are a professional translator and market localizer. Translate the given UI/content strings from English into ${locale.name}. This is not just literal translation — adapt tone, examples, and framing for the target market using the notes below. Preserve any HTML entities, emoji, and inline formatting markers exactly. Do not translate proper nouns, product/feature names given in backticks, or URLs. Return ONLY a JSON object mapping each input id to its translated string — no other text, no markdown fences.
+    const system = `You are a professional translator and market localizer. Translate the given UI/content strings from English into ${locale.name}. This is not just literal translation — adapt tone, examples, and framing for the target market using the notes below. Preserve any HTML entities, emoji, and inline formatting markers exactly. Do not translate proper nouns, product/feature names given in backticks, or URLs. Never add or strengthen claims that are not in the source text: in particular no claims of legal compliance, certification or approval (GDPR, DSGVO, ISO and similar), no statements about where data is hosted, and no performance or security guarantees. Translate such statements exactly as the source makes them. Return ONLY a JSON object mapping each input id to its translated string — no other text, no markdown fences.
 
 Market adaptation notes for ${locale.name}:
 ${locale.marketNotes}`;

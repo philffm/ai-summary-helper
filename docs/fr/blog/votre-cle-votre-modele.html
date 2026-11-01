@@ -1,0 +1,191 @@
+<!DOCTYPE html><html lang="fr"><head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#08090C">
+<title>Votre clé. Votre modèle. Vos données. — AI Summary Helper</title>
+<meta name="description" content="Ce que signifie concrètement l'utilisation de votre propre clé d'API pour une extension de navigateur : où réside votre clé, où transitent vos données de navigation et ce qui change avec un modèle local.">
+
+<script>
+  (function(){
+    try {
+      var saved = localStorage.getItem('aish_theme');
+      var theme = saved === 'light' || saved === 'dark'
+        ? saved
+        : (window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
+      document.documentElement.setAttribute('data-theme', theme);
+    } catch (e) {
+      document.documentElement.setAttribute('data-theme', 'dark');
+    }
+  })();
+</script>
+
+<link rel="icon" type="image/svg+xml" href="../../assets/icon.svg">
+<link rel="stylesheet" href="../../assets/styles.css">
+<script src="../../assets/analytics.js"></script>
+<link rel="alternate" hreflang="x-default" href="https://ai-summary-helper.byphil.eu/blog/bring-your-own-key.html"><link rel="alternate" hreflang="en" href="https://ai-summary-helper.byphil.eu/blog/bring-your-own-key.html"><link rel="alternate" hreflang="de" href="https://ai-summary-helper.byphil.eu/de/blog/eigener-schluessel-eigenes-modell.html"><link rel="alternate" hreflang="fr" href="https://ai-summary-helper.byphil.eu/fr/blog/votre-cle-votre-modele.html"><link rel="alternate" hreflang="es" href="https://ai-summary-helper.byphil.eu/es/blog/tu-clave-tu-modelo.html"><link rel="alternate" hreflang="zh-Hans" href="https://ai-summary-helper.byphil.eu/zh/blog/bring-your-own-key.html"><link rel="alternate" hreflang="zh-Hant" href="https://ai-summary-helper.byphil.eu/zh-tw/blog/bring-your-own-key.html"><link rel="alternate" hreflang="ja" href="https://ai-summary-helper.byphil.eu/ja/blog/bring-your-own-key.html"><link rel="alternate" hreflang="ko" href="https://ai-summary-helper.byphil.eu/ko/blog/bring-your-own-key.html"><link rel="alternate" hreflang="pt-BR" href="https://ai-summary-helper.byphil.eu/pt/blog/sua-chave-seu-modelo.html"><link rel="alternate" hreflang="hi" href="https://ai-summary-helper.byphil.eu/hi/blog/bring-your-own-key.html"><link rel="alternate" hreflang="vi" href="https://ai-summary-helper.byphil.eu/vi/blog/khoa-rieng-mo-hinh-rieng.html"><link rel="alternate" hreflang="nl" href="https://ai-summary-helper.byphil.eu/nl/blog/eigen-sleutel-eigen-model.html"><link rel="alternate" hreflang="it" href="https://ai-summary-helper.byphil.eu/it/blog/la-tua-chiave-il-tuo-modello.html"><link rel="alternate" hreflang="ru" href="https://ai-summary-helper.byphil.eu/ru/blog/bring-your-own-key.html"><link rel="alternate" hreflang="uk" href="https://ai-summary-helper.byphil.eu/uk/blog/bring-your-own-key.html"><link rel="alternate" hreflang="tr" href="https://ai-summary-helper.byphil.eu/tr/blog/kendi-anahtarin-kendi-modelin.html"><link rel="alternate" hreflang="id" href="https://ai-summary-helper.byphil.eu/id/blog/kunci-sendiri-model-sendiri.html"><link rel="alternate" hreflang="pl" href="https://ai-summary-helper.byphil.eu/pl/blog/wlasny-klucz-wlasny-model.html"><link rel="alternate" hreflang="th" href="https://ai-summary-helper.byphil.eu/th/blog/bring-your-own-key.html"><link rel="alternate" hreflang="ar" href="https://ai-summary-helper.byphil.eu/ar/blog/bring-your-own-key.html"><link rel="alternate" hreflang="sv" href="https://ai-summary-helper.byphil.eu/sv/blog/egen-nyckel-egen-modell.html"><link rel="alternate" hreflang="da" href="https://ai-summary-helper.byphil.eu/da/blog/egen-noegle-egen-model.html"><link rel="alternate" hreflang="nb" href="https://ai-summary-helper.byphil.eu/no/blog/egen-nokkel-egen-modell.html"><link rel="alternate" hreflang="fi" href="https://ai-summary-helper.byphil.eu/fi/blog/oma-avain-oma-malli.html"><meta property="og:site_name" content="AI Summary Helper"><meta property="og:locale" content="fr_FR"><meta property="og:type" content="article"><meta property="og:title" content="Votre clé. Votre modèle. Vos données. — AI Summary Helper"><meta property="og:description" content="Ce que signifie concrètement l'utilisation de votre propre clé d'API pour une extension de navigateur : où réside votre clé, où transitent vos données de navigation et ce qui change avec un modèle local."><meta property="og:image" content="https://ai-summary-helper.byphil.eu/assets/shots/aish-hero-en.webp"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="Votre clé. Votre modèle. Vos données. — AI Summary Helper"><meta name="twitter:description" content="Ce que signifie concrètement l'utilisation de votre propre clé d'API pour une extension de navigateur : où réside votre clé, où transitent vos données de navigation et ce qui change avec un modèle local."><meta name="twitter:image" content="https://ai-summary-helper.byphil.eu/assets/shots/aish-hero-en.webp"><link rel="canonical" href="https://ai-summary-helper.byphil.eu/fr/blog/votre-cle-votre-modele.html"><script type="application/ld+json" data-seo="ld">{"@context":"https://schema.org","@graph":[{"@type":"BlogPosting","@id":"https://ai-summary-helper.byphil.eu/fr/blog/votre-cle-votre-modele.html#post","headline":"Votre clé. Votre modèle. Vos données.","description":"Ce que signifie concrètement l'utilisation de votre propre clé d'API pour une extension de navigateur : où réside votre clé, où transitent vos données de navigation et ce qui change avec un modèle local.","inLanguage":"fr","image":"https://ai-summary-helper.byphil.eu/assets/shots/aish-hero-en.webp","mainEntityOfPage":"https://ai-summary-helper.byphil.eu/fr/blog/votre-cle-votre-modele.html","author":{"@id":"https://byphil.eu/#org"},"publisher":{"@type":"Organization","@id":"https://byphil.eu/#org","name":"byphil","url":"https://byphil.eu/"}},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"AI Summary Helper","item":"https://ai-summary-helper.byphil.eu/"},{"@type":"ListItem","position":2,"name":"Blog","item":"https://ai-summary-helper.byphil.eu/fr/blog/"},{"@type":"ListItem","position":3,"name":"Votre clé. Votre modèle. Vos données.","item":"https://ai-summary-helper.byphil.eu/fr/blog/votre-cle-votre-modele.html"}]}]}</script></head>
+<body>
+
+<a href="#main" class="skip-link">Aller au contenu</a>
+
+<header class="nav nav--pill" id="siteNav">
+  <div class="wrap nav-pill-row">
+    <a href="../index.html" class="wordmark" aria-label="AI Summary Helper">
+      <img src="../../assets/icon.svg" alt="">
+      AI Summary Helper
+    </a>
+    <nav class="pill" aria-label="Principal">
+      <a href="../index.html#features" data-sec="features">Fonctionnalités</a>
+      <a href="../index.html#see-it" data-sec="see-it">Démo</a>
+      <a href="https://chromewebstore.google.com/detail/ai-summary-helper-openai/hldbejcjaedipeegjcinmhejdndchkmb" class="pill-cta" target="_blank" rel="noopener">Ajouter à Chrome</a>
+    </nav>
+    <div class="nav-tools">
+      <button type="button" class="tool-btn" id="sendBtn" data-send="" hidden="" aria-label="Envoyer cette page sur mon ordinateur" title="Envoyer sur mon ordinateur"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="3" y="4.5" width="18" height="12" rx="2" stroke="currentColor" stroke-width="1.6"></rect><path d="M8 20h8M12 16.5V20M12 13V8m0 0-2.2 2.2M12 8l2.2 2.2" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"></path></svg></button>
+      <button type="button" class="tool-btn" id="langBtn" aria-label="Langue" aria-controls="mobileMenu"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.6"></circle><path d="M3 12h18M12 3c2.6 2.7 3.9 5.7 3.9 9s-1.3 6.3-3.9 9c-2.6-2.7-3.9-5.7-3.9-9S9.4 5.7 12 3Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"></path></svg></button>
+      <button type="button" class="theme-toggle" id="themeToggle" aria-label="Passer au mode clair">
+        <svg class="icon-moon" viewBox="0 0 24 24" fill="none"><path d="M20 14.5A8.5 8.5 0 1 1 9.5 4a6.8 6.8 0 0 0 10.5 10.5Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"></path></svg>
+        <svg class="icon-sun" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="4.2" stroke="currentColor" stroke-width="1.6"></circle><path d="M12 2.5v2.4M12 19.1v2.4M4.4 4.4l1.7 1.7M17.9 17.9l1.7 1.7M2.5 12h2.4M19.1 12h2.4M4.4 19.6l1.7-1.7M17.9 6.1l1.7-1.7" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"></path></svg>
+      </button>
+    </div>
+    <button type="button" class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="mobileMenu" aria-label="Ouvrir le menu">
+      <svg viewBox="0 0 24 24" fill="none"><path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"></path></svg>
+    </button>
+  </div>
+  <div class="mobile-menu" id="mobileMenu" hidden="">
+    <div class="wrap mm-inner">
+      <nav class="mm-links" aria-label="Mobile">
+        <a href="../index.html#features"><span class="mm-n">01</span>Fonctionnalités</a>
+        <a href="../index.html#see-it"><span class="mm-n">02</span>Démo</a>
+        <a href="../blog/" aria-current="page"><span class="mm-n">03</span>Blog</a>
+          <a href="../blog/pocket-alternative.html" class="mm-sub">Alternative à Pocket : l'essentiel</a>
+          <a href="votre-cle-votre-modele.html" class="mm-sub">Votre clé. Votre modèle. Vos données.</a>
+          <a href="verifier-un-resume-ia-a-la-source.html" class="mm-sub">Vérifier un résumé par rapport à sa source</a>
+          <a href="surligner-ou-demander.html" class="mm-sub">Interrogez vos surlignages</a>
+        <a href="https://github.com/philffm/ai-summary-helper/" target="_blank" rel="noopener"><span class="mm-n">04</span>GitHub</a>
+      </nav>
+      <div class="mm-lang">
+        <button type="button" class="lang-card" id="langCard"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.6"></circle><path d="M3 12h18M12 3c2.6 2.7 3.9 5.7 3.9 9s-1.3 6.3-3.9 9c-2.6-2.7-3.9-5.7-3.9-9S9.4 5.7 12 3Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"></path></svg><span class="lang-card-cur">Anglais</span><small>24 langues</small><b aria-hidden="true">→</b></button>
+        <p class="mm-lang-h">Langue · 24</p>
+        <label class="lang-search"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="11" cy="11" r="6.5" stroke="currentColor" stroke-width="1.7"></circle><path d="m16 16 4 4" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"></path></svg><input type="search" id="langSearch" placeholder="Rechercher une langue…" autocomplete="off" aria-label="Rechercher une langue" spellcheck="false"></label>
+        <div class="lang-groups" id="langGroups">
+          <div class="lang-group"><p class="lang-group-h">Populaires</p><div class="lang-pills" data-no-translate=""><a href="/" class="lang-pill" data-loc="en" lang="en" hreflang="en" data-q="english english en">English</a><a href="/de/" class="lang-pill" data-loc="de" lang="de" hreflang="de" data-q="deutsch german de">Deutsch</a><a href="/fr/" class="lang-pill" data-loc="fr" lang="fr" hreflang="fr" data-q="français french fr">Français</a><a href="/es/" class="lang-pill" data-loc="es" lang="es" hreflang="es" data-q="español spanish es">Español</a><a href="/zh/" class="lang-pill" data-loc="zh" lang="zh-CN" hreflang="zh-CN" data-q="简体中文 chinese simplified zh">简体中文</a><a href="/ja/" class="lang-pill" data-loc="ja" lang="ja" hreflang="ja" data-q="日本語 japanese ja">日本語</a><a href="/ru/" class="lang-pill" data-loc="ru" lang="ru" hreflang="ru" data-q="русский russian ru">Русский</a></div></div>
+          <div class="lang-group"><p class="lang-group-h">Europe</p><div class="lang-pills" data-no-translate=""><a href="/pt/" class="lang-pill" data-loc="pt" lang="pt" hreflang="pt" data-q="português portuguese pt">Português</a><a href="/nl/" class="lang-pill" data-loc="nl" lang="nl" hreflang="nl" data-q="nederlands dutch nl">Nederlands</a><a href="/it/" class="lang-pill" data-loc="it" lang="it" hreflang="it" data-q="italiano italian it">Italiano</a><a href="/uk/" class="lang-pill" data-loc="uk" lang="uk" hreflang="uk" data-q="українська ukrainian uk">Українська</a><a href="/tr/" class="lang-pill" data-loc="tr" lang="tr" hreflang="tr" data-q="türkçe turkish tr">Türkçe</a><a href="/pl/" class="lang-pill" data-loc="pl" lang="pl" hreflang="pl" data-q="polski polish pl">Polski</a><a href="/sv/" class="lang-pill" data-loc="sv" lang="sv" hreflang="sv" data-q="svenska swedish sv">Svenska</a><a href="/da/" class="lang-pill" data-loc="da" lang="da" hreflang="da" data-q="dansk danish da">Dansk</a><a href="/no/" class="lang-pill" data-loc="no" lang="nb" hreflang="nb" data-q="norsk norwegian no">Norsk</a><a href="/fi/" class="lang-pill" data-loc="fi" lang="fi" hreflang="fi" data-q="suomi finnish fi">Suomi</a></div></div>
+          <div class="lang-group"><p class="lang-group-h">Asie et autres</p><div class="lang-pills" data-no-translate=""><a href="/zh-tw/" class="lang-pill" data-loc="zh-tw" lang="zh-TW" hreflang="zh-TW" data-q="繁體中文 chinese traditional zh-tw">繁體中文</a><a href="/ko/" class="lang-pill" data-loc="ko" lang="ko" hreflang="ko" data-q="한국어 korean ko">한국어</a><a href="/hi/" class="lang-pill" data-loc="hi" lang="hi" hreflang="hi" data-q="हिन्दी hindi hi">हिन्दी</a><a href="/vi/" class="lang-pill" data-loc="vi" lang="vi" hreflang="vi" data-q="tiếng việt vietnamese vi">Tiếng Việt</a><a href="/id/" class="lang-pill" data-loc="id" lang="id" hreflang="id" data-q="bahasa indonesia indonesian id">Bahasa Indonesia</a><a href="/th/" class="lang-pill" data-loc="th" lang="th" hreflang="th" data-q="ไทย thai th">ไทย</a><a href="/ar/" class="lang-pill" data-loc="ar" lang="ar" hreflang="ar" data-q="العربية arabic ar">العربية</a></div></div>
+          <p class="lang-empty" hidden="">Aucun résultat</p>
+        </div>
+      </div>
+      <div class="mm-posts" aria-label="Blog">
+          <p class="mm-posts-h">Sur le blog</p>
+          <a href="../blog/pocket-alternative.html" class="mm-post"><span class="mega-tag">Comparatif</span><strong>Alternative à Pocket : What Matters</strong><span>Changer d'outil de lecture différée sans perdre vos archives</span></a>
+          <a href="votre-cle-votre-modele.html" class="mm-post"><span class="mega-tag">Confidentialité</span><strong>Votre clé. Votre modèle. Vos données.</strong><span>Pourquoi apporter votre propre clé API surpasse un énième abonnement</span></a>
+          <a href="verifier-un-resume-ia-a-la-source.html" class="mm-post"><span class="mega-tag">Confiance et contrôle</span><strong>Vérifier un résumé IA à partir de sa source</strong><span>Vérifiez les résultats de l'IA en moins d'une minute</span></a>
+          <a href="surligner-ou-demander.html" class="mm-post"><span class="mega-tag">Guide pratique</span><strong>Interrogez vos surlignages</strong><span>Transformez vos passages surlignés en réponses</span></a>
+          <a href="un-recap-plutot-que-40-flux.html" class="mm-post"><span class="mega-tag">Flux</span><strong>Un seul récapitulatif plutôt que 40 flux</strong><span>Un récapitulatif quotidien de tous vos abonnements</span></a>
+          <a href="recherche-et-tags-sans-cloud.html" class="mm-post"><span class="mega-tag">Sous le capot</span><strong>Recherche et tags sans le cloud</strong><span>Comment tout reste 100 % sur votre appareil</span></a>
+          <a href="../blog/" class="mm-all">Tous les articles →</a>
+        </div>
+      <div class="mm-bottom">
+        <a href="https://chromewebstore.google.com/detail/ai-summary-helper-openai/hldbejcjaedipeegjcinmhejdndchkmb" class="pill-cta mm-cta" data-desktop-cta="" target="_blank" rel="noopener">Ajouter à Chrome</a>
+        <button type="button" class="pill-cta mm-cta" data-send="" hidden="">Envoyer sur mon ordinateur</button>
+        <div class="mm-row">
+          <a href="https://addons.mozilla.org/en-US/firefox/addon/ai-summary-helper/" target="_blank" rel="noopener">Firefox</a>
+          <a href="../index.html#phone">Android · Bêta</a>
+          <a href="../../education/">Pour l'éducation</a>
+          <a href="https://byphil.eu/#account">Mon compte</a>
+        </div>
+        
+        <button type="button" class="theme-toggle-mobile" id="themeToggleMobile">
+          <span id="themeToggleMobileLabel">Passer au mode clair</span>
+          <svg class="icon-moon" viewBox="0 0 24 24" fill="none"><path d="M20 14.5A8.5 8.5 0 1 1 9.5 4a6.8 6.8 0 0 0 10.5 10.5Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"></path></svg>
+          <svg class="icon-sun" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="4.2" stroke="currentColor" stroke-width="1.6"></circle><path d="M12 2.5v2.4M12 19.1v2.4M4.4 4.4l1.7 1.7M17.9 17.9l1.7 1.7M2.5 12h2.4M19.1 12h2.4M4.4 19.6l1.7-1.7M17.9 6.1l1.7-1.7" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"></path></svg>
+        </button>
+      </div>
+    </div>
+  </div>
+</header>
+
+<main id="main">
+  <section class="hero--photo post-stage">
+    <img class="hero-bg" src="../../assets/photo/hands-keyboard-closeup-800.webp" srcset="../assets/photo/hands-keyboard-closeup-800.webp 800w, ../assets/photo/hands-keyboard-closeup-1600.webp 1600w" sizes="100vw" width="1600" height="893" alt="" fetchpriority="high" decoding="async" style="--bgpos:50% 50%">
+    <p class="hero-credit">Illustration, générée par IA</p>
+    <div class="wrap">
+      <div class="post-hero">
+      <span class="blog-date">Produit · Octobre 2026</span>
+      <h1>Votre clé. Votre modèle. Vos données.</h1>
+      <p class="post-sub">La plupart des outils d'IA placent un serveur intermédiaire entre vous et le modèle. Voici ce qui change lorsqu'il n'y en a aucun, et ce qui relève toujours de votre responsabilité.</p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <div class="prose" data-vgroup="">
+        <p>Chaque résumé par IA fonctionne selon le même principe : un texte est envoyé, une synthèse revient. La vraie question pour accorder votre confiance à un outil est de savoir qui se trouve au milieu. Avec de nombreux services, le serveur d'une entreprise s'interpose et vos lectures y transitent avant d'atteindre un modèle que vous n'avez pas choisi.</p>
+        <figure class="post-figure post-video" data-blog-video="privat">
+          <div class="post-video-in">
+            <button class="fvideo-open post-video-open" type="button"><span class="sr-only">Lire la vidéo</span>
+              <video muted="" playsinline="" loop="" preload="none" width="360" height="520" poster="../../assets/blog/video/privat-fr.jpg">
+            <source src="../../assets/blog/video/privat-fr.mp4" type="video/mp4">
+          <track data-seo-video="" kind="captions" src="../../assets/blog/video/privat-fr.vtt" srclang="fr" label="français"></video>
+              <span class="post-video-play" aria-hidden="true">▶</span>
+            </button>
+            <figcaption>Vidéo : basculez entre votre propre clé API, un modèle local avec Ollama et byPhil Cloud.</figcaption>
+          <div data-seo-video="" class="vtext"><p class="vtext-h">Transcription · 0:22</p><ul><li>La confidentialité est un compromis.</li><li>Quand le risque est clair, on partage moins.</li><li>Alors vous choisissez : votre propre clé API, un modèle local avec Ollama, ou byPhil Cloud sans configuration.</li><li>Votre bibliothèque reste dans le navigateur.</li></ul></div></div>
+        </figure>
+
+        <h2>Ce que signifie « utiliser sa propre clé » (BYOK)</h2>
+        <p>Vous générez une clé d'API auprès d'un fournisseur de confiance, vous la collez dans AI Summary Helper et vous choisissez votre modèle. Lorsque vous résumez une page, le worker d'arrière-plan de l'extension envoie directement le texte à ce fournisseur et reçoit la réponse en streaming. Aucun serveur AI Summary Helper n'intervient sur ce trajet lorsque vous utilisez votre propre clé.</p>
+        <p>Vous pouvez également connecter l'extension à un modèle exécuté en local sur votre propre machine, par exemple via Ollama. Dans ce cas, le contenu de la page ne quitte jamais votre ordinateur.</p>
+        <figure class="post-figure post-figure--portrait"><img src="../../assets/blog/bring-your-own-key.webp" alt="Diapositive : Apportez votre propre clé, avec pastilles pour modèles locaux, open source et clés stockées dans votre navigateur" width="800" height="1000" loading="lazy"><figcaption>Vous choisissez le fournisseur ou un modèle local. La clé reste dans votre navigateur.</figcaption></figure>
+        <h2>Où est stockée votre clé</h2>
+        <p>La clé est conservée dans le stockage local de l'extension au sein de votre navigateur, et non dans le stockage synchronisé. Elle n'est donc pas transmise à d'autres appareils via votre compte de navigateur. En contrepartie, vous devez la saisir une fois par navigateur. Les clés servent exclusivement à communiquer avec le fournisseur configuré.</p>
+
+        <h2>Ce qui est protégé et ce qui ne l'est pas</h2>
+        <p>Soyons précis : apporter votre propre clé supprime l'intermédiaire, mais pas le fournisseur du modèle. Tout ce que vous envoyez à un modèle hébergé reste soumis aux conditions d'utilisation et aux règles de conservation (RGPD/privacy) de ce fournisseur : veillez à les consulter. Seul un modèle on-device / local conserve l'intégralité du texte sur votre machine, sachant que les modèles locaux sont généralement plus légers et plus lents que les modèles cloud.</p>
+        <p>Le projet est open source, vous n'avez donc pas à nous croire sur parole. Le code gérant les clés et les requêtes est accessible et vérifiable directement dans le dépôt public.</p>
+
+        <h2>Choisir votre configuration</h2>
+        <ol>
+          <li><strong>Lectures du quotidien :</strong> un modèle hébergé auprès d'un fournisseur dont vous acceptez la politique de confidentialité. Rapide, performant, et vous gardez le contrôle total sur votre clé.</li>
+          <li><strong>Documents confidentiels :</strong> un modèle local. Moins rapide et moins puissant, mais aucune donnée ne quitte votre appareil.</li>
+          <li><strong>Expérimentation :</strong> configurez plusieurs fournisseurs et comparez leurs réponses sur un même article. C'est le moyen le plus efficace d'identifier le modèle adapté à chaque type de contenu.</li>
+        </ol>
+        <p>L'objectif n'est pas d'imposer une configuration unique, mais de vous laisser l'entière maîtrise de vos choix.</p>
+        <p><em>Sur le même sujet : une vue d'ensemble sur l'accès à vos données et comment faire les bons choix : <a href="../../blog/digital-sovereignty-for-individuals.html">Souveraineté numérique pour les particuliers</a>.</em></p>
+
+        <div class="post-cta">
+          <p>AI Summary Helper est une extension Chrome gratuite.</p>
+          <a href="https://chromewebstore.google.com/detail/ai-summary-helper-openai/hldbejcjaedipeegjcinmhejdndchkmb" target="_blank" rel="noopener" class="btn-primary">Ajouter à Chrome</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<div class="vfeed-labels" hidden="">
+  <span data-l="close">Fermer</span><span data-l="sound">Activer le son</span><span data-l="mute">Couper le son</span><span data-l="hint">Balayez vers le haut pour la vidéo suivante</span><span data-l="prev">Vidéo précédente</span><span data-l="next">Vidéo suivante</span>
+  <span data-l="share">Partager</span><span data-l="copied">Lien copié</span>
+  <span data-l="add_chrome">Ajouter à Chrome — c'est gratuit</span><span data-l="add_firefox">Ajouter à Firefox — c'est gratuit</span><span data-l="add_browser">Ajouter à votre navigateur — c'est gratuit</span>
+  <a data-l="try" href="../../bookmarklet.html">Essayez dans votre navigateur — c'est gratuit</a>
+</div>
+<footer>
+  <div class="wrap">
+    <div class="footer-inner">
+      <div class="wordmark"><img src="../../assets/icon.svg" alt="">AI Summary Helper</div>
+      <div class="foot-links">
+        <a href="https://github.com/philffm/ai-summary-helper/" target="_blank" rel="noopener">Code source sur GitHub</a>
+        <a href="../../education/">Pour l'éducation</a>
+        <a href="../confidentialite.html">Confidentialité</a>
+        <a href="#" data-analytics-settings="">Paramètres d'analyse</a>
+        <a href="https://byphil.eu/terms.html#impressum" target="_blank" rel="noopener">Mentions légales</a>
+      </div>
+    </div>
+    <div class="copyright">© 2026 Phil Wornath. Un projet <a href="https://byphil.eu/" class="credit-link">byphil.eu ↗</a> — logiciel indépendant développé en Allemagne.<br>
+      Conçu et développé par <a href="https://philwornath.com/" target="_blank" rel="noopener" class="credit-link">philwornath.com ↗</a>
+    </div>
+  </div>
+</footer>
+
+<script src="../../assets/main.js"></script>
+
+
+</body></html>

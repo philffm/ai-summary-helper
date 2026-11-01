@@ -1,0 +1,318 @@
+<!DOCTYPE html><html lang="da"><head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#08090C">
+<title>Privatlivspolitik — AI Summary Helper</title>
+<meta name="description" content="Hvordan AI Summary Helper håndterer data: API keys og historik bliver på din enhed, og sidetekst sendes kun til den AI-udbyder, du vælger.">
+
+<script>
+  (function(){
+    try {
+      var saved = localStorage.getItem('aish_theme');
+      var theme = saved === 'light' || saved === 'dark'
+        ? saved
+        : (window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
+      document.documentElement.setAttribute('data-theme', theme);
+    } catch (e) {
+      document.documentElement.setAttribute('data-theme', 'dark');
+    }
+  })();
+</script>
+
+<link rel="icon" type="image/svg+xml" href="../assets/icon.svg">
+<link rel="stylesheet" href="../assets/styles.css">
+
+<meta property="og:title" content="Privatlivspolitik — AI Summary Helper">
+<meta property="og:description" content="Hvordan AI Summary Helper håndterer dine data: dine API keys og artikelhistorik bliver på din enhed.">
+<meta property="og:url" content="https://ai-summary-helper.byphil.eu/da/privatliv.html">
+<meta property="og:type" content="website">
+<script src="../assets/analytics.js"></script>
+<link rel="alternate" hreflang="x-default" href="https://ai-summary-helper.byphil.eu/privacy.html"><link rel="alternate" hreflang="en" href="https://ai-summary-helper.byphil.eu/privacy.html"><link rel="alternate" hreflang="de" href="https://ai-summary-helper.byphil.eu/de/datenschutz.html"><link rel="alternate" hreflang="fr" href="https://ai-summary-helper.byphil.eu/fr/confidentialite.html"><link rel="alternate" hreflang="es" href="https://ai-summary-helper.byphil.eu/es/privacidad.html"><link rel="alternate" hreflang="zh-Hans" href="https://ai-summary-helper.byphil.eu/zh/privacy.html"><link rel="alternate" hreflang="zh-Hant" href="https://ai-summary-helper.byphil.eu/zh-tw/privacy.html"><link rel="alternate" hreflang="ja" href="https://ai-summary-helper.byphil.eu/ja/privacy.html"><link rel="alternate" hreflang="ko" href="https://ai-summary-helper.byphil.eu/ko/privacy.html"><link rel="alternate" hreflang="pt-BR" href="https://ai-summary-helper.byphil.eu/pt/privacidade.html"><link rel="alternate" hreflang="hi" href="https://ai-summary-helper.byphil.eu/hi/privacy.html"><link rel="alternate" hreflang="vi" href="https://ai-summary-helper.byphil.eu/vi/quyen-rieng-tu.html"><link rel="alternate" hreflang="nl" href="https://ai-summary-helper.byphil.eu/nl/privacy-en-gegevens.html"><link rel="alternate" hreflang="it" href="https://ai-summary-helper.byphil.eu/it/privacy-e-dati.html"><link rel="alternate" hreflang="ru" href="https://ai-summary-helper.byphil.eu/ru/privacy.html"><link rel="alternate" hreflang="uk" href="https://ai-summary-helper.byphil.eu/uk/privacy.html"><link rel="alternate" hreflang="tr" href="https://ai-summary-helper.byphil.eu/tr/gizlilik.html"><link rel="alternate" hreflang="id" href="https://ai-summary-helper.byphil.eu/id/privasi.html"><link rel="alternate" hreflang="pl" href="https://ai-summary-helper.byphil.eu/pl/prywatnosc.html"><link rel="alternate" hreflang="th" href="https://ai-summary-helper.byphil.eu/th/privacy.html"><link rel="alternate" hreflang="ar" href="https://ai-summary-helper.byphil.eu/ar/privacy.html"><link rel="alternate" hreflang="sv" href="https://ai-summary-helper.byphil.eu/sv/integritet.html"><link rel="alternate" hreflang="da" href="https://ai-summary-helper.byphil.eu/da/privatliv.html"><link rel="alternate" hreflang="nb" href="https://ai-summary-helper.byphil.eu/no/personvern.html"><link rel="alternate" hreflang="fi" href="https://ai-summary-helper.byphil.eu/fi/yksityisyys.html"><meta property="og:site_name" content="AI Summary Helper"><meta property="og:locale" content="da"><meta property="og:image" content="https://ai-summary-helper.byphil.eu/assets/shots/aish-hero-en.webp"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="Privatlivspolitik — AI Summary Helper"><meta name="twitter:description" content="Hvordan AI Summary Helper håndterer dine data: dine API keys og artikelhistorik bliver på din enhed."><meta name="twitter:image" content="https://ai-summary-helper.byphil.eu/assets/shots/aish-hero-en.webp"><link rel="canonical" href="https://ai-summary-helper.byphil.eu/da/privatliv.html"></head>
+<body>
+
+<a href="#main" class="skip-link">Gå til indhold</a>
+
+<header class="nav nav--pill" id="siteNav">
+  <div class="wrap nav-pill-row">
+    <a href="index.html" class="wordmark" aria-label="AI Summary Helper">
+      <img src="../assets/icon.svg" alt="">
+      AI Summary Helper
+    </a>
+    <nav class="pill" aria-label="Primær">
+      <a href="index.html#features" data-sec="features">Funktioner</a>
+      <a href="index.html#see-it" data-sec="see-it">Demo</a>
+      <a href="https://chromewebstore.google.com/detail/ai-summary-helper-openai/hldbejcjaedipeegjcinmhejdndchkmb" class="pill-cta" target="_blank" rel="noopener">Tilføj til Chrome</a>
+    </nav>
+    <div class="nav-tools">
+      <button type="button" class="tool-btn" id="sendBtn" data-send="" hidden="" aria-label="Send denne side til min computer" title="Send til min computer"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="3" y="4.5" width="18" height="12" rx="2" stroke="currentColor" stroke-width="1.6"></rect><path d="M8 20h8M12 16.5V20M12 13V8m0 0-2.2 2.2M12 8l2.2 2.2" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"></path></svg></button>
+      <button type="button" class="tool-btn" id="langBtn" aria-label="Sprog" aria-controls="mobileMenu"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.6"></circle><path d="M3 12h18M12 3c2.6 2.7 3.9 5.7 3.9 9s-1.3 6.3-3.9 9c-2.6-2.7-3.9-5.7-3.9-9S9.4 5.7 12 3Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"></path></svg></button>
+      <button type="button" class="theme-toggle" id="themeToggle" aria-label="Skift til lyst tema">
+        <svg class="icon-moon" viewBox="0 0 24 24" fill="none"><path d="M20 14.5A8.5 8.5 0 1 1 9.5 4a6.8 6.8 0 0 0 10.5 10.5Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"></path></svg>
+        <svg class="icon-sun" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="4.2" stroke="currentColor" stroke-width="1.6"></circle><path d="M12 2.5v2.4M12 19.1v2.4M4.4 4.4l1.7 1.7M17.9 17.9l1.7 1.7M2.5 12h2.4M19.1 12h2.4M4.4 19.6l1.7-1.7M17.9 6.1l1.7-1.7" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"></path></svg>
+      </button>
+    </div>
+    <button type="button" class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="mobileMenu" aria-label="Åbn menu">
+      <svg viewBox="0 0 24 24" fill="none"><path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"></path></svg>
+    </button>
+  </div>
+  <div class="mobile-menu" id="mobileMenu" hidden="">
+    <div class="wrap mm-inner">
+      <nav class="mm-links" aria-label="Mobil">
+        <a href="index.html#features"><span class="mm-n">01</span>Funktioner</a>
+        <a href="index.html#see-it"><span class="mm-n">02</span>Demo</a>
+        <a href="blog/"><span class="mm-n">03</span>Blog</a>
+          <a href="blog/pocket-alternative.html" class="mm-sub">Alternativ til Pocket: det vigtigste</a>
+          <a href="blog/egen-noegle-egen-model.html" class="mm-sub">Din nøgle. Din model. Dine data.</a>
+          <a href="blog/kontroller-et-ai-resume-ved-kilden.html" class="mm-sub">Tjek et resumé mod kilden</a>
+          <a href="blog/marker-eller-spoerg.html" class="mm-sub">Stil spørgsmål til dine markeringer</a>
+        <a href="https://github.com/philffm/ai-summary-helper/" target="_blank" rel="noopener"><span class="mm-n">04</span>GitHub</a>
+      </nav>
+      <div class="mm-lang">
+        <button type="button" class="lang-card" id="langCard"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.6"></circle><path d="M3 12h18M12 3c2.6 2.7 3.9 5.7 3.9 9s-1.3 6.3-3.9 9c-2.6-2.7-3.9-5.7-3.9-9S9.4 5.7 12 3Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"></path></svg><span class="lang-card-cur">Engelsk</span><small>24 sprog</small><b aria-hidden="true">→</b></button>
+        <p class="mm-lang-h">Sprog · 24</p>
+        <label class="lang-search"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="11" cy="11" r="6.5" stroke="currentColor" stroke-width="1.7"></circle><path d="m16 16 4 4" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"></path></svg><input type="search" id="langSearch" placeholder="Søg efter sprog…" autocomplete="off" aria-label="Søg efter sprog" spellcheck="false"></label>
+        <div class="lang-groups" id="langGroups">
+          <div class="lang-group"><p class="lang-group-h">Populære</p><div class="lang-pills" data-no-translate=""><a href="/" class="lang-pill" data-loc="en" lang="en" hreflang="en" data-q="english english en">English</a><a href="../de/" class="lang-pill" data-loc="de" lang="de" hreflang="de" data-q="deutsch german de">Deutsch</a><a href="../fr/" class="lang-pill" data-loc="fr" lang="fr" hreflang="fr" data-q="français french fr">Français</a><a href="../es/" class="lang-pill" data-loc="es" lang="es" hreflang="es" data-q="español spanish es">Español</a><a href="../zh/" class="lang-pill" data-loc="zh" lang="zh-CN" hreflang="zh-CN" data-q="简体中文 chinese simplified zh">简体中文</a><a href="../ja/" class="lang-pill" data-loc="ja" lang="ja" hreflang="ja" data-q="日本語 japanese ja">日本語</a><a href="../ru/" class="lang-pill" data-loc="ru" lang="ru" hreflang="ru" data-q="русский russian ru">Русский</a></div></div>
+          <div class="lang-group"><p class="lang-group-h">Europa</p><div class="lang-pills" data-no-translate=""><a href="../pt/" class="lang-pill" data-loc="pt" lang="pt" hreflang="pt" data-q="português portuguese pt">Português</a><a href="../nl/" class="lang-pill" data-loc="nl" lang="nl" hreflang="nl" data-q="nederlands dutch nl">Nederlands</a><a href="../it/" class="lang-pill" data-loc="it" lang="it" hreflang="it" data-q="italiano italian it">Italiano</a><a href="../uk/" class="lang-pill" data-loc="uk" lang="uk" hreflang="uk" data-q="українська ukrainian uk">Українська</a><a href="../tr/" class="lang-pill" data-loc="tr" lang="tr" hreflang="tr" data-q="türkçe turkish tr">Türkçe</a><a href="../pl/" class="lang-pill" data-loc="pl" lang="pl" hreflang="pl" data-q="polski polish pl">Polski</a><a href="../sv/" class="lang-pill" data-loc="sv" lang="sv" hreflang="sv" data-q="svenska swedish sv">Svenska</a><a href="/" class="lang-pill" data-loc="da" lang="da" hreflang="da" data-q="dansk danish da">Dansk</a><a href="../no/" class="lang-pill" data-loc="no" lang="nb" hreflang="nb" data-q="norsk norwegian no">Norsk</a><a href="../fi/" class="lang-pill" data-loc="fi" lang="fi" hreflang="fi" data-q="suomi finnish fi">Suomi</a></div></div>
+          <div class="lang-group"><p class="lang-group-h">Asien og mere</p><div class="lang-pills" data-no-translate=""><a href="../zh-tw/" class="lang-pill" data-loc="zh-tw" lang="zh-TW" hreflang="zh-TW" data-q="繁體中文 chinese traditional zh-tw">繁體中文</a><a href="../ko/" class="lang-pill" data-loc="ko" lang="ko" hreflang="ko" data-q="한국어 korean ko">한국어</a><a href="../hi/" class="lang-pill" data-loc="hi" lang="hi" hreflang="hi" data-q="हिन्दी hindi hi">हिन्दी</a><a href="../vi/" class="lang-pill" data-loc="vi" lang="vi" hreflang="vi" data-q="tiếng việt vietnamese vi">Tiếng Việt</a><a href="../id/" class="lang-pill" data-loc="id" lang="id" hreflang="id" data-q="bahasa indonesia indonesian id">Bahasa Indonesia</a><a href="../th/" class="lang-pill" data-loc="th" lang="th" hreflang="th" data-q="ไทย thai th">ไทย</a><a href="../ar/" class="lang-pill" data-loc="ar" lang="ar" hreflang="ar" data-q="العربية arabic ar">العربية</a></div></div>
+          <p class="lang-empty" hidden="">Ingen resultater</p>
+        </div>
+      </div>
+      <div class="mm-posts" aria-label="Blog">
+          <p class="mm-posts-h">Fra bloggen</p>
+          <a href="blog/pocket-alternative.html" class="mm-post"><span class="mega-tag">Sammenlign</span><strong>Alternativ til Pocket: Hvad der virkelig betyder noget</strong><span>Skift læs-senere-værktøj uden at miste dit arkiv</span></a>
+          <a href="blog/egen-noegle-egen-model.html" class="mm-post"><span class="mega-tag">Privatliv</span><strong>Din nøgle. Din model. Dine data.</strong><span>Hvorfor bring-your-own-key slår endnu et abonnement</span></a>
+          <a href="blog/kontroller-et-ai-resume-ved-kilden.html" class="mm-post"><span class="mega-tag">Tillid</span><strong>Tjek et AI-resumé mod dets kilde</strong><span>Stikprøvetjek AI-output på under et minut</span></a>
+          <a href="blog/marker-eller-spoerg.html" class="mm-post"><span class="mega-tag">Guide</span><strong>Stil spørgsmål til dine overstregninger</strong><span>Forvandl dine markeringer til svar</span></a>
+          <a href="blog/et-resume-i-stedet-for-40-feeds.html" class="mm-post"><span class="mega-tag">Feeds</span><strong>Ét overblik i stedet for 40 feeds</strong><span>Et dagligt overblik over alt det, du følger</span></a>
+          <a href="blog/soegning-og-tags-uden-cloud.html" class="mm-post"><span class="mega-tag">Under motorhjelmen</span><strong>Søgning og tags uden skyen</strong><span>Sådan forbliver alt på din enhed</span></a>
+          <a href="blog/" class="mm-all">Alle indlæg →</a>
+        </div>
+      <div class="mm-bottom">
+        <a href="https://chromewebstore.google.com/detail/ai-summary-helper-openai/hldbejcjaedipeegjcinmhejdndchkmb" class="pill-cta mm-cta" data-desktop-cta="" target="_blank" rel="noopener">Tilføj til Chrome</a>
+        <button type="button" class="pill-cta mm-cta" data-send="" hidden="">Send til min computer</button>
+        <div class="mm-row">
+          <a href="https://addons.mozilla.org/en-US/firefox/addon/ai-summary-helper/" target="_blank" rel="noopener">Firefox</a>
+          <a href="index.html#phone">Android · Beta</a>
+          <a href="../education/">Til uddannelse</a>
+          <a href="https://byphil.eu/#account">Min konto</a>
+        </div>
+        
+        <button type="button" class="theme-toggle-mobile" id="themeToggleMobile">
+          <span id="themeToggleMobileLabel">Skift til lyst tema</span>
+          <svg class="icon-moon" viewBox="0 0 24 24" fill="none"><path d="M20 14.5A8.5 8.5 0 1 1 9.5 4a6.8 6.8 0 0 0 10.5 10.5Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"></path></svg>
+          <svg class="icon-sun" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="4.2" stroke="currentColor" stroke-width="1.6"></circle><path d="M12 2.5v2.4M12 19.1v2.4M4.4 4.4l1.7 1.7M17.9 17.9l1.7 1.7M2.5 12h2.4M19.1 12h2.4M4.4 19.6l1.7-1.7M17.9 6.1l1.7-1.7" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"></path></svg>
+        </button>
+      </div>
+    </div>
+  </div>
+</header>
+
+<main id="main">
+  <div class="wrap">
+    <div class="post-hero">
+      <span class="blog-date">Privatlivspolitik</span>
+      <h1>Privatlivspolitik</h1>
+      <p class="post-sub">Dine API keys, artikelhistorik og overstregninger bliver på din enhed. Sideindhold sendes kun til den AI-udbyder, du vælger — inklusive en helt lokal model, hvis du foretrækker det.</p>
+    </div>
+  </div>
+
+  <section>
+    <div class="wrap">
+      <div class="prose">
+        <p><em>Sidst opdateret: oktober 2026</em></p>
+
+        <p>Denne privatlivspolitik forklarer, hvilke data AI Summary Helper håndterer, hvor de sendes hen, og hvorfor. Den korte version: dine API keys, din artikelhistorik og dine overstregninger bliver på din enhed. Sideindhold sendes kun til den AI-udbyder, du vælger at forbinde — inklusive, hvis du vælger det, en helt lokal model, hvor intet forlader din computer. Vi viser ingen reklamer, sælger ingen data og kræver ingen konto til nogen af kernefunktionerne.</p>
+
+        <p>Hvis du ikke er enig i nogen del af denne politik, bedes du undlade at installere eller bruge udvidelsen.</p>
+
+        <h2>Hvem er ansvarlig</h2>
+        <p>Den dataansvarlige i henhold til GDPR art. 4, nr. 7 er Phil Wornath. Det fulde navn og adresse fremgår af <a href="https://philwornath.com/de/legal" target="_blank" rel="noopener">den juridiske meddelelse</a>; du kan kontakte os via kontaktoplysningerne i slutningen af denne politik.</p>
+
+        <h2>Ingen konto påkrævet til kernefunktioner</h2>
+        <p>AI Summary Helper kræver ikke, at du opretter en konto, logger ind eller afgiver personlige oplysninger for at opsummere sider, overstrege tekst, følge feeds eller gemme dit arkiv. Din API key (hvis du bruger din egen) og hele din artikelhistorik gemmes lokalt i din browsers lager.</p>
+        <p>En konto er kun nødvendig til de hostede tjenester: byphil Cloud (resuméer uden egen nøgle) og Send to Kindle. Login foregår med din e-mailadresse og en engangskode. Vi gemmer e-mailadressen, din abonnements- eller licensstatus samt grundlæggende forbrugstællere (f.eks. antal anmodninger og Kindle-afsendelser) for at kunne håndtere grænserne i dit abonnement.</p>
+
+        <h2>Hvilke data vi håndterer, og hvor de sendes hen</h2>
+
+        <h3>Din AI-udbyderforbindelse</h3>
+        <p>Du vælger selv, hvordan resuméer genereres:</p>
+        <ul>
+          <li><strong>Bring your own key (BYOK)</strong> — OpenAI, Google Gemini, Mistral AI, DeepSeek eller et brugerdefineret endpoint. Din API key gemmes udelukkende lokalt på din enhed (synkroniseres aldrig, sendes aldrig til os). Sideindhold, du vælger at opsummere, sendes direkte fra din browser til den valgte udbyder ved hjælp af din egen nøgle og er underlagt udbyderens egen privatlivspolitik. Vi hverken ser, logger eller gemmer dette indhold.</li>
+          <li><strong>Lokal model via Ollama</strong> — hvis du kører en model lokalt, sendes sideindholdet kun til din egen maskine. Intet forlader din enhed.</li>
+          <li><strong>byphil Cloud (valgfrit, betalt)</strong> — en hostet løsning til dig, der helst vil slippe for at administrere en API key. Hvis du vælger denne løsning, sendes den tekst, du ønsker at få opsummeret, gennem vores backend, som videresender anmodningen via OpenRouter til en underliggende modeludbyder på dine vegne og returnerer opsummeringen. Den videresendes udelukkende: Vi gemmer hverken sideindhold, URL'er eller opsummeringer. Det eneste, vi registrerer pr. konto, er brugsmetadata: antallet af gennemførte anmodninger, tokenforbrug, tidspunktet for den seneste anmodning samt den anvendte model. Selve kontoen er valgfri – alle andre funktioner fungerer uden. Med indstillingen “Foretræk EU-servere” slået til, afvikles modeller med et endpoint i Europa udelukkende på disse endpoints, og appen viser tydeligt, hvilke modeller der gør, og hvilke der ikke gør. Dette begrænser, hvor modellen kører. Det fjerner dog ingen led fra kæden: Din tekst passerer stadig gennem vores tjeneste (som kører på en server i Tyskland) og derefter gennem OpenRouter, en amerikansk virksomhed, på vej til modellen. Oplæsning og tale-til-tekst har ingen EU-mulighed.</li>
+        </ul>
+
+        <h3>Licens- og abonnementsstatus</h3>
+        <p>Hvis du aktiverer en Pro-licens eller et byphil Cloud-abonnement, gemmes din licensnøgle lokalt på din enhed (synkroniseres aldrig) og bruges til at verificere abonnementsstatus mod vores backend. Grundlæggende konto- og faktureringsdata håndteres af vores betalingsudbyder og backend; vi gemmer ikke dit sideindhold eller din læsehistorik på vores servere.</p>
+
+        <h3>Feedback ved afinstallation</h3>
+        <p>Når du afinstallerer udvidelsen, åbner Chrome en kort feedback-side på dette website. Adressen indeholder kun udvidelsens version og antallet af dage, den var installeret — ingen identifikatorer, intet sideindhold, ingen historik. Hvad du vælger eller skriver i formularen (en årsag, en valgfri kommentar) registreres som en hændelse i vores selvhostede, cookiefri analyseværktøj sammen med udvidelsens version og antal installerede dage, og bruges udelukkende til at forbedre udvidelsen. Hvis din browser sender Do Not Track, eller du har fravalgt analyse, sendes der intet. Der er intet e-mailfelt; hvis du ønsker et svar, kan du oprette et GitHub issue. Du kan lukke siden uden at svare.</p>
+
+        <h3>Artikelhistorik, overstregninger og indstillinger</h3>
+        <p>Alt, hvad du gemmer, lagres lokalt i din browser via Chromes indbyggede lager-API'er — aldrig på vores servere:</p>
+        <table>
+          <thead>
+            <tr><th>Data</th><th>Lagring</th><th>Synkroniseret via Chrome?</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Gemte artikler og resuméer</td><td>Lokalt</td><td>Nej</td></tr>
+            <tr><td>RSS-feed-abonnementer og elementer</td><td>Lokalt</td><td>Nej</td></tr>
+            <tr><td>API keys / udbyderkonfiguration</td><td>Lokalt</td><td>Nej — følsomt, kun på enheden</td></tr>
+            <tr><td>Licensnøgle</td><td>Lokalt</td><td>Nej — følsomt, kun på enheden</td></tr>
+            <tr><td>LocalSend netværks-IP</td><td>Lokalt</td><td>Nej</td></tr>
+            <tr><td>Logins til bibliotekssynkronisering, adgangsnøgler og krypteringsnøgler</td><td>Lokalt</td><td>Nej – følsomt, kun på enheden, udelades fra sikkerhedskopier</td></tr>
+            <tr><td>Tekstoverstregninger og AI-spøgelsesoverstregninger</td><td>Lokalt (pr. side)</td><td>Nej</td></tr>
+            <tr><td>Standardprompt, sprog, resumélængde</td><td>Synkroniseret</td><td>Ja, via din egen Chrome-konto</td></tr>
+            <tr><td>Indstilling for overstregning til/fra</td><td>Synkroniseret</td><td>Ja, via din egen Chrome-konto</td></tr>
+          </tbody>
+        </table>
+        <p>Elementer markeret med "Synkroniseret" bruger Chromes egen indbyggede synkronisering knyttet til din Google-konto — disse data passerer gennem Googles infrastruktur, ikke vores, præcis som dine bogmærker. Vi har ingen adgang til dem.</p>
+        <p>Du kan til enhver tid eksportere dine data via Indstillinger → Bibliotek &amp; data → Sikkerhedskopiering &amp; gendannelse. Sikkerhedskopier udelader som standard API keys, loginoplysninger, licensnøgler og installationsidentifikatorer; at inkludere dem kræver et aktivt tilvalg med en advarsel, da enhver med adgang til filen kan bruge dem. Hold eksporterede filer private, og husk, at ældre sikkerhedskopier kan indeholde hemmeligheder. Samme sted giver farezonen dig mulighed for at slette efter kategori med en oversigt over, hvad der slettes: resuméer og arkiv, overstregninger, feeds, podcasts, API keys / login / licens, afsendelsesdestinationer (Kindle, LocalSend) og indstillinger. <em>Slet alle data</em> fjerner alt, hvad udvidelsen gemmer på enheden, og nulstiller den. Hvis du fjerner udvidelsen, slettes dens data også. Disse handlinger sletter kun lokale data. Din konto og de oplysninger, vi har på vores server (se nedenfor), administrerer du på <a href="https://byphil.eu/#account" target="_blank" rel="noopener">byphil.eu/#account</a>: her kan du eksportere dine data og slette din konto. Udvidelsen og Android-appen linker dertil fra kontoindstillingerne.</p>
+
+        <h3>RSS-feeds</h3>
+        <p>Den indbyggede feed-læser gemmer dine abonnementer og de hentede feed-elementer lokalt i din browser — aldrig synkroniseret, aldrig sendt til os. Når du tilføjer eller opdaterer et feed, anmoder udvidelsen om feed-adressen direkte fra udgiverens server, præcis som din browser ville gøre ved et almindeligt besøg, så udgiveren kan se anmodningen. Vi hverken viderestiller (proxyer), logger eller ser dine abonnementer eller din læseliste. OPML-import behandles udelukkende på din enhed. Hvis du slår baggrundstjek til (slået fra som standard), anmoder udvidelsen om dine feeds med det interval, du vælger, udelukkende for at vise et antal på værktøjslinjeikonet. Opsummering af et feed-element fungerer som enhver anden side: indholdet sendes kun til den AI-udbyder, du har valgt, og kun når du starter en opsummering. Den valgfrie AI-dagsoversigt og AI-tonevurdering fungerer på samme måde: kun når du klikker på dem, sender udvidelsen titler, kildenavne og korte uddrag (ikke hele artikler) til den AI-udbyder, du har valgt, og oversigten gemmes lokalt på din enhed. Podcastepisoder i et feed streames direkte fra udgiverens server, når du trykker på Afspil.</p>
+
+        <h3>Afsendelse af artikler: Kindle, LocalSend og delingsmenuen</h3>
+        <p>Der er to forskellige måder, og kun den ene berører vores server:</p>
+        <ul>
+          <li><strong>Send to Kindle går gennem vores server.</strong> Amazon accepterer kun dokumenter via e-mail fra godkendte afsendere, så udvidelsen sender artiklen (titel, resumé, tekst, overstregninger og kildeadresse) til byphil-backenden, som sender den via e-mail til den Kindle-adresse, du har angivet. Du tilføjer vores afsenderadresse (kindle@byphil.eu) til listen over godkendte afsendere på din Amazon-konto. Indholdet bruges udelukkende til at oprette og sende den pågældende e-mail. Kindle-levering kræver, at du er logget ind eller har en licens; gratisudgaven inkluderer 3 afsendelser.</li>
+          <li><strong>LocalSend og systemets delingsmenu (f.eks. AirDrop) er direkte.</strong> Filen sendes fra din browser direkte til den enhed, du har valgt på dit lokale netværk, eller til den app, du valgte i delingsmenuen. Vi er ikke involveret og ser eller gemmer ikke dette indhold. LocalSend fungerer med telefoner, tablets, computere og e-bogslæsere, der kører en kompatibel app.</li>
+        </ul>
+
+        <h3>Bibliotekssynkronisering, sikkerhedskopiering og udgivelse (valgfrit)</h3>
+        <p>Deaktiveret, indtil du tilføjer en placering i Indstillinger → Synkronisering og sikkerhedskopiering. En placering er en mappe på en server, du vælger (Nextcloud eller en anden WebDAV-server, eller en S3-kompatibel bucket som f.eks. AWS S3, Cloudflare R2 eller Backblaze B2) eller en mappe på din egen computer. Vi driver ikke disse servere, er ikke involveret og ser aldrig, hvad du gemmer der.</p>
+        <ul>
+          <li><strong>Krypterede placeringer</strong> hold hele dit bibliotek synkroniseret mellem dine enheder eller hav en backup: artikler, resuméer, fulde tekster, fremhævninger, noter, samlinger og tags. Alt krypteres i din browser (AES-256-GCM med en nøgle afledt af din adgangskodefrase), før det forlader enheden, og filnavne sløres. Serveren eller mappen ser kun krypterede filer, deres størrelse, og hvornår de blev ændret. Nøglen afledt af din adgangskodefrase bliver i browserens lokale lager, så synkronisering kan køre i baggrunden. Hvis du bruger de foreslåede tilfældige ord, gemmes ordene også dér, så du kan slå dem op i stedets indstillinger; en adgangskodefrase, du selv har valgt, gemmes ikke. Intet af dette synkroniseres nogensinde eller indgår i en backup. Hvis du mister adgangskodefrasen, kan ingen læse filerne – heller ikke os.</li>
+          <li><strong>Læsbare placeringer</strong> udgiv almindelige filer (og, hvis du vil, en lille visningsside) til din egen hjemmeside eller dine egne værktøjer. Kun de artikler, der matcher dit valgte tagfilter, sendes ud. Noter, påmindelser og fuld artikeltekst udgives aldrig, medmindre du selv slår det til i farezonen – og så kan enhver med adgang til mappen læse dem.</li>
+          <li><strong>Hvordan det sendes.</strong> Forespørgsler går fra din browser direkte til den adresse, du har angivet, via HTTPS, ved hjælp af det login eller den adgangsnøgle, du har oplyst. Dette login gemmes lokalt, synkroniseres aldrig og udelades fra sikkerhedskopier, medmindre du aktivt vælger det til. Serverudbyderen kan se din IP-adresse og tidspunktet for synkronisering.</li>
+          <li><strong>En mappe på denne computer</strong> bruger browserens mappeadgang. Du vælger mappen, og browseren beder om din tilladelse, som den muligvis beder om igen efter en genstart. Vi beholder kun browserens reference til den pågældende mappe. Hvad end du bruger til at overføre mappen til andre enheder (Syncthing, iCloud Drive, Dropbox), har sine egne privatlivsvilkår.</li>
+        </ul>
+
+        <h3>AI-apps på din computer (MCP)</h3>
+        <p>Slået fra som standard. Når du aktiverer Indstillinger → AI-apps (MCP), kan AI-apps på din computer, som du forbinder (f.eks. Claude Desktop, LM Studio, Cursor eller VS Code), læse de dele af dit bibliotek, du giver tilladelse til: dine gemte artikler med tilhørende resuméer og fremhævninger, og – kun hvis du vælger at slå det til – den fulde artikeltekst, dine feed-elementer samt muligheden for at gemme links i din indbakke. Dataene sendes direkte fra din browser via et lille hjælpeprogram på din computer (<code>aish-mcp</code>) til den pågældende app. De passerer aldrig igennem vores server, og vi ser dem aldrig. Hjælpeprogrammet accepterer udelukkende forbindelser fra din egen computer og kræver en parringskode; det gemmer ingen artikler og logger intet om, hvad der videresendes. Artikler med det tag, du ekskluderer (<code>private</code> som standard), bliver aldrig delt. Udvidelsen gemmer en liste over de seneste 50 kald (værktøjsnavn, tidspunkt og antal resultater – intet indhold) lokalt på din enhed, som du kan se i det samme indstillingspanel. Hvad AI-appen derefter sender videre til sin model, afhænger af den app og model, du vælger: Med en lokal model forlader intet din computer. Du kan altid slå funktionen fra eller vælge Afbryd forbindelse.</p>
+
+        <h2 id="analytics">Analyse &amp; cookies</h2>
+        <p><strong>Kort version:</strong> dette website sætter <strong>ingen cookies</strong> og bruger ingen reklamer eller cross-site trackers. Vi tæller anonyme besøg med en selvhostet Matomo-instans, og du kan slå det fra når som helst.</p>
+        <p><strong>Selve browserudvidelsen indeholder ingen analyse-, telemetri- eller sporingskode.</strong> Dens eneste netværksforespørgsler går til den AI-udbyder, du har konfigureret, de feeds, du abonnerer på, de sider, du beder den hente, de servere, du har opsat til bibliotekssynkronisering, sikkerhedskopiering eller udgivelse, og (hvis du bruger dem) byphil-backend til byphil Cloud, login, licenskontrol og Send to Kindle.</p>
+        <h3>Hvad vi måler</h3>
+        <p>Sidevisninger, sidesprog, henvisningsside (referrer), omtrentligt land/browser/enhedstype, og hvilke dele af websitet du interagerer med (f.eks. klik på "Tilføj til Chrome", prisskifteren, FAQ-elementer, sektioner du scroller til, og trin i bookmarklet-generatoren). Hændelser indeholder aldrig e-mailadresser, API keys, engangskoder, sideindhold eller artikeldata.</p>
+        <h3>Hvordan det er konfigureret</h3>
+        <p>Matomo kører på vores egen server (analytics.philwornath.de, Tyskland), ikke hos en tredjepart. Det indlæses med cookies deaktiveret og uden browser-fingerprinting; IP-adresser anonymiseres før lagring; der tildeles intet bruger-ID eller cross-site identifikator, så besøg ikke kan kobles på tværs af dage eller enheder. Data hverken sælges eller deles med tredjeparter.</p>
+        <p>Da intet gemmes på eller læses fra din enhed til sporingsformål, er denne måling baseret på vores legitime interesse i at forstå, hvordan websitet bruges (GDPR art. 6, stk. 1, litra f) og kræver ikke et cookie-samtykkebanner under ePrivacy-direktivet / telelovgivningen. Du har til enhver tid ret til at gøre indsigelse (GDPR art. 21).</p>
+        <h3>Dine valgmuligheder</h3>
+        <p>Analyse deaktiveres automatisk, hvis din browser sender <em>Do Not Track</em> eller <em>Global Privacy Control</em>. Du kan også fravælge manuelt via <a href="#" data-analytics-settings="">Analytics-indstillinger</a> (findes også i bunden af alle sider). <span id="analyticsStatusInline"></span></p>
+        <h3>Hvad der gemmes i din browser</h3>
+        <p>Udelukkende funktionelle indstillinger, aldrig til sporing: <code>aish_analytics</code> (dit fravalg), <code>aish_analytics_notice</code> (at du har lukket informationsbeskeden), samt, hvis de anvendes, temavalg, afvisning af sprogforslag og indstillinger for bookmarklet-generatoren. Disse forbliver på din enhed og sendes ikke til os.</p>
+        <h3>Skrifttyper og eksterne ressourcer</h3>
+        <p>Skrifttyper (Inter, Space Grotesk, JetBrains Mono; SIL Open Font License) leveres direkte fra dette website, så din IP-adresse videregives ikke til Google eller andre skrifttypeudbydere ved et simpelt besøg. De eneste eksterne anmodninger er links, du klikker på, og de valgfrie sider til byPhil-konto / Stripe-betaling, som du selv vælger at åbne.</p>
+
+
+        <h2>Retsgrundlag og opbevaring</h2>
+        <p>Næsten alt behandles på din enhed og når aldrig frem til os. Hvor vi behandler data, er dette grundlaget og opbevaringsperioden:</p>
+        <ul>
+          <li><strong>Konto og login</strong> (e-mailadresse, engangskode, licensnøgle, abonnementsstatus) — for at levere den konto, du har anmodet om, GDPR art. 6, stk. 1, litra b. Opbevares så længe kontoen eksisterer; når du sletter kontoen, slettes de.</li>
+          <li><strong>byphil Cloud</strong> (videresendelse af teksten du opsummerer, forbrugstællere, token-forbrug, sidste anmodning, senest brugte model) — for at levere tjenesten, GDPR art. 6, stk. 1, litra b. Teksten videresendes kun og gemmes ikke. Forbrugsmetadata opbevares så længe kontoen eksisterer og slettes sammen med den.</li>
+          <li><strong>Send to Kindle</strong> (artiklen du sender, din Kindle-adresse) — for at udføre den afsendelse, du igangsætter, GDPR art. 6, stk. 1, litra b. Bruges udelukkende til at oprette og sende den pågældende e-mail.</li>
+          <li><strong>Betalinger og licensvalidering</strong> — for at opfylde kontrakten og overholde regnskabsmæssige forpligtelser, GDPR art. 6, stk. 1, litra b og c. Faktureringsoplysninger opbevares så længe loven kræver det.</li>
+          <li><strong>Websiteanalyse og feedback ved afinstallation</strong> — vores legitime interesse i at forbedre websitet og udvidelsen, GDPR art. 6, stk. 1, litra f. Dataene er anonyme (se Analyse &amp; cookies).</li>
+        </ul>
+        <p>Du kan til enhver tid eksportere dine kontodata og slette din konto på <a href="https://byphil.eu/#account" target="_blank" rel="noopener">byphil.eu/#account</a>. Sletning af kontoen sletter de data, der er gemt til den.</p>
+
+        <h2>Rettigheder vi anmoder om, og hvorfor</h2>
+        <table>
+          <thead>
+            <tr><th>Rettighed</th><th>Hvorfor vi behøver den</th></tr>
+          </thead>
+          <tbody>
+            <tr><td><code>activeTab</code></td><td>Læse indholdet af den side, du aktivt vælger at opsummere</td></tr>
+            <tr><td><code>storage</code></td><td>Gemme dine indstillinger, artikelhistorik og overstregninger lokalt</td></tr>
+            <tr><td><code>contextMenus</code></td><td>Tilbyde handlinger i højrekliksmenuen (opsummer, overstreg osv.)</td></tr>
+            <tr><td><code>notifications</code></td><td>Vise tidsindstillede påmindelser for artikler, du har gemt til senere</td></tr>
+            <tr><td><code>alarms</code></td><td>Planlægge påmindelsesnotifikationerne</td></tr>
+            <tr><td><code>tabs</code></td><td>Lukke fanen automatisk efter "Opsummer &amp; luk"</td></tr>
+            <tr><td><code>sidePanel</code></td><td>Understøtte Chromes indbyggede sidepanel som visningsmulighed</td></tr>
+            <tr><td><code>scripting</code></td><td>Indsætte det script, der er nødvendigt for at læse og opsummere en side</td></tr>
+            <tr><td><code>offscreen</code>, <code>tts</code></td><td>Afspille podcast-lyd og oplæse resuméer i baggrunden, mens pop op-vinduet er lukket</td></tr>
+            <tr><td>Filsystemadgang (valgt mappe)</td><td>Kun når du vælger en mappe på din computer som synkroniserings- eller sikkerhedskopieringsplacering; browseren beder om din tilladelse, og kun denne mappe er tilgængelig</td></tr>
+            <tr><td><code>unlimitedStorage</code></td><td>Gemme et stort lokalt arkiv af artikler og overstregninger uden at ramme standardlagergrænsen</td></tr>
+            <tr><td><code>host_permissions (&lt;all_urls&gt;)</code></td><td>Giver dig mulighed for at opsummere enhver side, du besøger – indhold læses og overføres kun, når du aktivt starter et resumé, aldrig passivt. Gør det også muligt for udvidelsen at forbinde til den synkroniseringsserver eller bucket, du indtaster, som kan være på enhver adresse</td></tr>
+          </tbody>
+        </table>
+        <p>Vi bruger ikke disse tilladelser til at spore din browsing, opbygge en reklameprofil eller indsamle data ud over det, der er nødvendigt for funktionerne ovenfor.</p>
+
+        <h2>Hvad vi ikke gør</h2>
+        <ul>
+          <li>Vi viser eller formidler ikke reklamer, og vi hverken sælger, udlejer eller udveksler dine data med annoncører eller datamæglere.</li>
+          <li>Vi kræver ikke en konto eller login til nogen af kernefunktionerne.</li>
+          <li>Vi logger eller gemmer ikke indholdet af sider, du opsummerer via din egen API key eller en lokal model, og vi ser aldrig, hvad du sender via LocalSend eller delingsmenuen.</li>
+          <li>Vi har ikke adgang til din lokalt gemte artikelhistorik, fremhævninger eller API keys – de forlader aldrig din enhed, medmindre du udtrykkeligt eksporterer dem eller opsætter en synkroniserings-, sikkerhedskopierings- eller udgivelsesplacering, og da sendes de kun derhen, hvor du angiver.</li>
+        </ul>
+
+        <h2>Tredjepartstjenester</h2>
+        <p>Afhængigt af hvordan du konfigurerer udvidelsen, kan dit sideindhold blive sendt til:</p>
+        <ul>
+          <li>OpenAI, Google (Gemini), Mistral AI eller DeepSeek — kun hvis du har indtastet din egen API key for den pågældende udbyder, og kun for den side, du aktivt opsummerer.</li>
+          <li>Vores byphil-backend og dens database, begge hosted hos IONOS SE i Tyskland – kun hvis du logger ind, bruger byphil Cloud eller Send to Kindle.</li>
+          <li>OpenRouter, hvorigennem byphil Cloud forbinder til modellerne, samt den modeludbyder, der viderestilles til — teksten, du opsummerer, videresendes udelukkende til den model, du bruger, i forbindelse med den konkrete anmodning.</li>
+          <li>Stripe — betalinger og abonnementsadministration som Merchant of Record.</li>
+          <li>Amazon — hvis du sender en artikel til din Kindle, leverer Amazon den i henhold til deres egne privatlivsvilkår.</li>
+          <li>Din egen lokale Ollama-instans — ikke en tredjepart; forbliver på din maskine.</li>
+        </ul>
+        <p>Vi er ikke ansvarlige for privatlivspraksis hos de tredjeparts-AI-udbydere, du vælger at forbinde. Vi opfordrer dig til at gennemgå deres politikker, før du tilknytter en konto.</p>
+        <p><strong>Du bestemmer, hvilken model der behandler din tekst.</strong> Uanset om du bruger din egen nøgle eller byphil Cloud, vælger du selv udbyder og model i indstillingerne, og du er selv ansvarlig for at kontrollere den pågældende udbyders vilkår, og hvor data behandles. OpenRouter, de bagvedliggende modeludbydere og Amazon kan behandle data uden for EU/EØS under deres egne garantier (f.eks. standardkontraktbestemmelser); vi overfører ikke selv dine data til tredjelande.</p>
+
+        <h2>Datasikkerhed</h2>
+        <p>Vi anvender rimelige tekniske foranstaltninger tilpasset de pågældende data — hvoraf det meste aldrig når vores servere, da det gemmes lokalt i din browser. Kommunikation med vores backend (til byphil Cloud og licensvalidering) er krypteret under overførsel. Ingen transmissions- eller lagringsmetode er 100 % sikker, og vi kan ikke garantere absolut sikkerhed, men vi indsamler ikke mere end nødvendigt for at levere de beskrevne funktioner.</p>
+
+        <h2>Børns privatliv</h2>
+        <p>AI Summary Helper henvender sig ikke til børn under 13 år (eller den relevante minimumsalder i din jurisdiktion), og vi indsamler ikke bevidst personoplysninger fra børn.</p>
+
+        <h2>Dine rettigheder (GDPR mv.)</h2>
+        <p>Da næsten alle dine data gemmes lokalt på din egen enhed, har du allerede direkte kontrol over dem — du kan se, eksportere eller slette dem når som helst via udvidelsens indstillinger eller ved at afinstallere udvidelsen. For eventuelle data, vi har på vores servere (byphil Cloud-abonnements- og faktureringsdata), kan du administrere og eksportere dem samt slette din konto på <a href="https://byphil.eu/#account" target="_blank" rel="noopener">byphil.eu/#account</a>, eller kontakte os nedenfor.</p>
+        <p>Du har ret til indsigt (art. 15), berigtigelse (art. 16), sletning (art. 17), begrænsning (art. 18), dataportabilitet (art. 20) og indsigelse (art. 21), samt til at trække samtykke tilbage til enhver tid. Du har også ret til at indgive en klage til en tilsynsmyndighed (art. 77, i Danmark Datatilsynet), særligt i den medlemsstat, hvor du har bopæl. Vi bruger ikke dine data til automatiserede afgørelser med retsvirkning eller profilering.</p>
+
+        <h2>Ændringer af denne politik</h2>
+        <p>Vi kan opdatere denne privatlivspolitik, efterhånden som udvidelsens funktioner ændrer sig. Væsentlige ændringer vil fremgå her med en opdateret "Sidst opdateret"-dato. Fortsat brug af udvidelsen efter en ændring betragtes som accept af den opdaterede politik.</p>
+
+        <h2>Kontakt os</h2>
+        <p>Spørgsmål til denne privatlivspolitik? Kontakt os på <a href="mailto:info@byphil.eu">info@byphil.eu</a>, eller via <a href="https://github.com/philffm/ai-summary-helper/issues">GitHub Issues</a>.</p>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="footer-inner">
+      <div class="wordmark"><img src="../assets/icon.svg" alt="">AI Summary Helper</div>
+      <div class="foot-links">
+        <a href="https://github.com/philffm/ai-summary-helper/" target="_blank" rel="noopener">Kildekode på GitHub</a>
+        <a href="../bookmarklet.html">Bookmarklet (ingen installation)</a>
+        <a href="../education/">Til uddannelse</a>
+        <a href="privatliv.html">Privatliv</a>
+        <a href="#" data-analytics-settings="">Analytics-indstillinger</a>
+        <a href="https://byphil.eu/terms.html#terms-of-service" target="_blank" rel="noopener">Servicevilkår</a>
+        <a href="https://byphil.eu/terms.html#refunds" target="_blank" rel="noopener">Refusion &amp; returnering</a>
+        <a href="https://byphil.eu/terms.html#impressum" target="_blank" rel="noopener">Impressum</a>
+      </div>
+    </div>
+    <div class="foot-eco">
+      <span class="foot-eco-h">Mere fra byphil</span>
+      <div class="foot-links">
+        <a href="https://petsetlife.byphil.eu/" target="_blank" rel="noopener">PetSetLife</a>
+        <a href="https://matrix.byphil.eu/" target="_blank" rel="noopener">Matrix</a>
+        <a href="https://byphil.eu/" target="_blank" rel="noopener">Alle byphil-værktøjer ↗</a>
+      </div>
+    </div>
+    <div class="copyright">© 2026 Phil Wornath. En del af <a href="https://byphil.eu/" class="credit-link">byphil.<span style="color:inherit;">eu</span> ↗</a> — uafhængig software bygget i Tyskland. Betalinger håndteres af Stripe som Merchant of Record.<br>
+      <a href="https://ec.europa.eu/consumers/odr" target="_blank" rel="noopener">EU-klageportal (ODR)</a> · Designet &amp; bygget af <a href="https://philwornath.com/" target="_blank" rel="noopener" class="credit-link">philwornath.com ↗</a>
+    </div>
+  </div>
+</footer>
+
+<script src="../assets/hero-i18n.js"></script>
+<script src="../assets/main.js"></script>
+
+
+</body></html>

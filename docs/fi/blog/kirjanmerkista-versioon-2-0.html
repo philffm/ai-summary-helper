@@ -1,0 +1,203 @@
+<!DOCTYPE html><html lang="fi"><head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#08090C">
+<title>Bookmarkletista versioon 2.0 — AI Summary Helper</title>
+<meta name="description" content="Kaikki alkoi yksinkertaisesta bookmarkletista yhden ihmisen Kindle-lukutottumuksia varten. Tässä katsaus siihen, mikä muuttui v1-version ja avoimen lähdekoodin 2.0-uudistuksen välillä – ja miksi.">
+
+<script>
+  (function(){
+    try {
+      var saved = localStorage.getItem('aish_theme');
+      var theme = saved === 'light' || saved === 'dark'
+        ? saved
+        : (window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
+      document.documentElement.setAttribute('data-theme', theme);
+    } catch (e) {
+      document.documentElement.setAttribute('data-theme', 'dark');
+    }
+  })();
+</script>
+
+<link rel="icon" type="image/svg+xml" href="../../assets/icon.svg">
+<link rel="stylesheet" href="../../assets/styles.css">
+<script src="../../assets/analytics.js"></script>
+<link rel="alternate" hreflang="x-default" href="https://ai-summary-helper.byphil.eu/blog/from-bookmarklet-to-2.html"><link rel="alternate" hreflang="en" href="https://ai-summary-helper.byphil.eu/blog/from-bookmarklet-to-2.html"><link rel="alternate" hreflang="de" href="https://ai-summary-helper.byphil.eu/de/blog/vom-bookmarklet-zu-2-0.html"><link rel="alternate" hreflang="fr" href="https://ai-summary-helper.byphil.eu/fr/blog/du-bookmarklet-a-2-0.html"><link rel="alternate" hreflang="es" href="https://ai-summary-helper.byphil.eu/es/blog/del-bookmarklet-a-2-0.html"><link rel="alternate" hreflang="zh-Hans" href="https://ai-summary-helper.byphil.eu/zh/blog/from-bookmarklet-to-2.html"><link rel="alternate" hreflang="zh-Hant" href="https://ai-summary-helper.byphil.eu/zh-tw/blog/from-bookmarklet-to-2.html"><link rel="alternate" hreflang="ja" href="https://ai-summary-helper.byphil.eu/ja/blog/from-bookmarklet-to-2.html"><link rel="alternate" hreflang="ko" href="https://ai-summary-helper.byphil.eu/ko/blog/from-bookmarklet-to-2.html"><link rel="alternate" hreflang="pt-BR" href="https://ai-summary-helper.byphil.eu/pt/blog/do-bookmarklet-ao-2-0.html"><link rel="alternate" hreflang="hi" href="https://ai-summary-helper.byphil.eu/hi/blog/from-bookmarklet-to-2.html"><link rel="alternate" hreflang="vi" href="https://ai-summary-helper.byphil.eu/vi/blog/tu-bookmarklet-den-2-0.html"><link rel="alternate" hreflang="nl" href="https://ai-summary-helper.byphil.eu/nl/blog/van-bookmarklet-naar-2-0.html"><link rel="alternate" hreflang="it" href="https://ai-summary-helper.byphil.eu/it/blog/dal-bookmarklet-alla-2-0.html"><link rel="alternate" hreflang="ru" href="https://ai-summary-helper.byphil.eu/ru/blog/from-bookmarklet-to-2.html"><link rel="alternate" hreflang="uk" href="https://ai-summary-helper.byphil.eu/uk/blog/from-bookmarklet-to-2.html"><link rel="alternate" hreflang="tr" href="https://ai-summary-helper.byphil.eu/tr/blog/bookmarklettan-2-0a.html"><link rel="alternate" hreflang="id" href="https://ai-summary-helper.byphil.eu/id/blog/dari-bookmarklet-ke-2-0.html"><link rel="alternate" hreflang="pl" href="https://ai-summary-helper.byphil.eu/pl/blog/od-bookmarkletu-do-2-0.html"><link rel="alternate" hreflang="th" href="https://ai-summary-helper.byphil.eu/th/blog/from-bookmarklet-to-2.html"><link rel="alternate" hreflang="ar" href="https://ai-summary-helper.byphil.eu/ar/blog/from-bookmarklet-to-2.html"><link rel="alternate" hreflang="sv" href="https://ai-summary-helper.byphil.eu/sv/blog/fran-bookmarklet-till-2-0.html"><link rel="alternate" hreflang="da" href="https://ai-summary-helper.byphil.eu/da/blog/fra-bookmarklet-til-2-0.html"><link rel="alternate" hreflang="nb" href="https://ai-summary-helper.byphil.eu/no/blog/fra-bookmarklet-til-2-0.html"><link rel="alternate" hreflang="fi" href="https://ai-summary-helper.byphil.eu/fi/blog/kirjanmerkista-versioon-2-0.html"><meta property="og:site_name" content="AI Summary Helper"><meta property="og:locale" content="fi"><meta property="og:type" content="article"><meta property="og:title" content="Bookmarkletista versioon 2.0 — AI Summary Helper"><meta property="og:description" content="Kaikki alkoi yksinkertaisesta bookmarkletista yhden ihmisen Kindle-lukutottumuksia varten. Tässä katsaus siihen, mikä muuttui v1-version ja avoimen lähdekoodin 2.0-uudistuksen välillä – ja miksi."><meta property="og:image" content="https://ai-summary-helper.byphil.eu/assets/shots/aish-hero-en.webp"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="Bookmarkletista versioon 2.0 — AI Summary Helper"><meta name="twitter:description" content="Kaikki alkoi yksinkertaisesta bookmarkletista yhden ihmisen Kindle-lukutottumuksia varten. Tässä katsaus siihen, mikä muuttui v1-version ja avoimen lähdekoodin 2.0-uudistuksen välillä – ja miksi."><meta name="twitter:image" content="https://ai-summary-helper.byphil.eu/assets/shots/aish-hero-en.webp"><link rel="canonical" href="https://ai-summary-helper.byphil.eu/fi/blog/kirjanmerkista-versioon-2-0.html"><script type="application/ld+json" data-seo="ld">{"@context":"https://schema.org","@graph":[{"@type":"BlogPosting","@id":"https://ai-summary-helper.byphil.eu/fi/blog/kirjanmerkista-versioon-2-0.html#post","headline":"Kirjanmerkkityökalusta 2.0-versioon: mitä AI Summary Helper on nykyään","description":"Kaikki alkoi yksinkertaisesta bookmarkletista yhden ihmisen Kindle-lukutottumuksia varten. Tässä katsaus siihen, mikä muuttui v1-version ja avoimen lähdekoodin 2.0-uudistuksen välillä – ja miksi.","inLanguage":"fi","image":"https://ai-summary-helper.byphil.eu/assets/shots/aish-hero-en.webp","mainEntityOfPage":"https://ai-summary-helper.byphil.eu/fi/blog/kirjanmerkista-versioon-2-0.html","author":{"@id":"https://byphil.eu/#org"},"publisher":{"@type":"Organization","@id":"https://byphil.eu/#org","name":"byphil","url":"https://byphil.eu/"}},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"AI Summary Helper","item":"https://ai-summary-helper.byphil.eu/"},{"@type":"ListItem","position":2,"name":"Blog","item":"https://ai-summary-helper.byphil.eu/fi/blog/"},{"@type":"ListItem","position":3,"name":"Kirjanmerkkityökalusta 2.0-versioon: mitä AI Summary Helper on nykyään","item":"https://ai-summary-helper.byphil.eu/fi/blog/kirjanmerkista-versioon-2-0.html"}]}]}</script></head>
+<body>
+
+<a href="#main" class="skip-link">Siirry sisältöön</a>
+
+<header class="nav nav--pill" id="siteNav">
+  <div class="wrap nav-pill-row">
+    <a href="../index.html" class="wordmark" aria-label="AI Summary Helper">
+      <img src="../../assets/icon.svg" alt="">
+      AI Summary Helper
+    </a>
+    <nav class="pill" aria-label="Ensisijainen">
+      <a href="../index.html#features" data-sec="features">Ominaisuudet</a>
+      <a href="../index.html#see-it" data-sec="see-it">Demo</a>
+      <a href="https://chromewebstore.google.com/detail/ai-summary-helper-openai/hldbejcjaedipeegjcinmhejdndchkmb" class="pill-cta" target="_blank" rel="noopener">Lisää Chromeen</a>
+    </nav>
+    <div class="nav-tools">
+      <button type="button" class="tool-btn" id="sendBtn" data-send="" hidden="" aria-label="Lähetä tämä sivu tietokoneelle" title="Lähetä tietokoneelle"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="3" y="4.5" width="18" height="12" rx="2" stroke="currentColor" stroke-width="1.6"></rect><path d="M8 20h8M12 16.5V20M12 13V8m0 0-2.2 2.2M12 8l2.2 2.2" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"></path></svg></button>
+      <button type="button" class="tool-btn" id="langBtn" aria-label="Kieli" aria-controls="mobileMenu"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.6"></circle><path d="M3 12h18M12 3c2.6 2.7 3.9 5.7 3.9 9s-1.3 6.3-3.9 9c-2.6-2.7-3.9-5.7-3.9-9S9.4 5.7 12 3Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"></path></svg></button>
+      <button type="button" class="theme-toggle" id="themeToggle" aria-label="Vaihda vaaleaan tilaan">
+        <svg class="icon-moon" viewBox="0 0 24 24" fill="none"><path d="M20 14.5A8.5 8.5 0 1 1 9.5 4a6.8 6.8 0 0 0 10.5 10.5Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"></path></svg>
+        <svg class="icon-sun" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="4.2" stroke="currentColor" stroke-width="1.6"></circle><path d="M12 2.5v2.4M12 19.1v2.4M4.4 4.4l1.7 1.7M17.9 17.9l1.7 1.7M2.5 12h2.4M19.1 12h2.4M4.4 19.6l1.7-1.7M17.9 6.1l1.7-1.7" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"></path></svg>
+      </button>
+    </div>
+    <button type="button" class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="mobileMenu" aria-label="Avaa valikko">
+      <svg viewBox="0 0 24 24" fill="none"><path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"></path></svg>
+    </button>
+  </div>
+  <div class="mobile-menu" id="mobileMenu" hidden="">
+    <div class="wrap mm-inner">
+      <nav class="mm-links" aria-label="Mobiili">
+        <a href="../index.html#features"><span class="mm-n">01</span>Ominaisuudet</a>
+        <a href="../index.html#see-it"><span class="mm-n">02</span>Demo</a>
+        <a href="../blog/" aria-current="page"><span class="mm-n">03</span>Blogi</a>
+          <a href="../blog/pocket-alternative.html" class="mm-sub">Vaihtoehto Pocketille: mikä ratkaisee</a>
+          <a href="oma-avain-oma-malli.html" class="mm-sub">Oma avain. Oma malli. Omat tiedot.</a>
+          <a href="tarkista-tekoalytiivistelma-lahteesta.html" class="mm-sub">Tarkista tiivistelmä lähteestä</a>
+          <a href="korosta-tai-kysy.html" class="mm-sub">Kysy korostuksistasi</a>
+        <a href="https://github.com/philffm/ai-summary-helper/" target="_blank" rel="noopener"><span class="mm-n">04</span>GitHub</a>
+      </nav>
+      <div class="mm-lang">
+        <button type="button" class="lang-card" id="langCard"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.6"></circle><path d="M3 12h18M12 3c2.6 2.7 3.9 5.7 3.9 9s-1.3 6.3-3.9 9c-2.6-2.7-3.9-5.7-3.9-9S9.4 5.7 12 3Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"></path></svg><span class="lang-card-cur">Englanti</span><small>24 kieltä</small><b aria-hidden="true">→</b></button>
+        <p class="mm-lang-h">Kieli · 24</p>
+        <label class="lang-search"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="11" cy="11" r="6.5" stroke="currentColor" stroke-width="1.7"></circle><path d="m16 16 4 4" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"></path></svg><input type="search" id="langSearch" placeholder="Hae kieltä…" autocomplete="off" aria-label="Hae kieltä" spellcheck="false"></label>
+        <div class="lang-groups" id="langGroups">
+          <div class="lang-group"><p class="lang-group-h">Suositut</p><div class="lang-pills" data-no-translate=""><a href="/" class="lang-pill" data-loc="en" lang="en" hreflang="en" data-q="english english en">English</a><a href="/de/" class="lang-pill" data-loc="de" lang="de" hreflang="de" data-q="deutsch german de">Deutsch</a><a href="/fr/" class="lang-pill" data-loc="fr" lang="fr" hreflang="fr" data-q="français french fr">Français</a><a href="/es/" class="lang-pill" data-loc="es" lang="es" hreflang="es" data-q="español spanish es">Español</a><a href="/zh/" class="lang-pill" data-loc="zh" lang="zh-CN" hreflang="zh-CN" data-q="简体中文 chinese simplified zh">简体中文</a><a href="/ja/" class="lang-pill" data-loc="ja" lang="ja" hreflang="ja" data-q="日本語 japanese ja">日本語</a><a href="/ru/" class="lang-pill" data-loc="ru" lang="ru" hreflang="ru" data-q="русский russian ru">Русский</a></div></div>
+          <div class="lang-group"><p class="lang-group-h">Eurooppa</p><div class="lang-pills" data-no-translate=""><a href="/pt/" class="lang-pill" data-loc="pt" lang="pt" hreflang="pt" data-q="português portuguese pt">Português</a><a href="/nl/" class="lang-pill" data-loc="nl" lang="nl" hreflang="nl" data-q="nederlands dutch nl">Nederlands</a><a href="/it/" class="lang-pill" data-loc="it" lang="it" hreflang="it" data-q="italiano italian it">Italiano</a><a href="/uk/" class="lang-pill" data-loc="uk" lang="uk" hreflang="uk" data-q="українська ukrainian uk">Українська</a><a href="/tr/" class="lang-pill" data-loc="tr" lang="tr" hreflang="tr" data-q="türkçe turkish tr">Türkçe</a><a href="/pl/" class="lang-pill" data-loc="pl" lang="pl" hreflang="pl" data-q="polski polish pl">Polski</a><a href="/sv/" class="lang-pill" data-loc="sv" lang="sv" hreflang="sv" data-q="svenska swedish sv">Svenska</a><a href="/da/" class="lang-pill" data-loc="da" lang="da" hreflang="da" data-q="dansk danish da">Dansk</a><a href="/no/" class="lang-pill" data-loc="no" lang="nb" hreflang="nb" data-q="norsk norwegian no">Norsk</a><a href="/fi/" class="lang-pill" data-loc="fi" lang="fi" hreflang="fi" data-q="suomi finnish fi">Suomi</a></div></div>
+          <div class="lang-group"><p class="lang-group-h">Aasia ja muut</p><div class="lang-pills" data-no-translate=""><a href="/zh-tw/" class="lang-pill" data-loc="zh-tw" lang="zh-TW" hreflang="zh-TW" data-q="繁體中文 chinese traditional zh-tw">繁體中文</a><a href="/ko/" class="lang-pill" data-loc="ko" lang="ko" hreflang="ko" data-q="한국어 korean ko">한국어</a><a href="/hi/" class="lang-pill" data-loc="hi" lang="hi" hreflang="hi" data-q="हिन्दी hindi hi">हिन्दी</a><a href="/vi/" class="lang-pill" data-loc="vi" lang="vi" hreflang="vi" data-q="tiếng việt vietnamese vi">Tiếng Việt</a><a href="/id/" class="lang-pill" data-loc="id" lang="id" hreflang="id" data-q="bahasa indonesia indonesian id">Bahasa Indonesia</a><a href="/th/" class="lang-pill" data-loc="th" lang="th" hreflang="th" data-q="ไทย thai th">ไทย</a><a href="/ar/" class="lang-pill" data-loc="ar" lang="ar" hreflang="ar" data-q="العربية arabic ar">العربية</a></div></div>
+          <p class="lang-empty" hidden="">Ei tuloksia</p>
+        </div>
+      </div>
+      <div class="mm-posts" aria-label="Blogi">
+          <p class="mm-posts-h">Blogista</p>
+          <a href="../blog/pocket-alternative.html" class="mm-post"><span class="mega-tag">Vertaa</span><strong>Vaihtoehto Pocketille: Mikä ratkaisee</strong><span>Lue myöhemmin -sovelluksen vaihto ilman arkiston menettämistä</span></a>
+          <a href="oma-avain-oma-malli.html" class="mm-post"><span class="mega-tag">Tietosuoja</span><strong>Oma avain. Oma malli. Omat tiedot.</strong><span>Miksi oma API key voittaa uuden tilauksen</span></a>
+          <a href="tarkista-tekoalytiivistelma-lahteesta.html" class="mm-post"><span class="mega-tag">Luotettavuus</span><strong>Tarkista tekoälytiivistelmä lähteestä</strong><span>Tarkista tekoälyn tulokset alle minuutissa</span></a>
+          <a href="korosta-tai-kysy.html" class="mm-post"><span class="mega-tag">Opas</span><strong>Kysy korostuksistasi</strong><span>Muuta merkintäsi vastauksiksi</span></a>
+          <a href="yksi-yhteenveto-40-syotteen-sijaan.html" class="mm-post"><span class="mega-tag">Syötteet</span><strong>Yksi kooste 40 syötteen sijaan</strong><span>Päivittäinen kooste kaikesta, mitä seuraat</span></a>
+          <a href="haku-ja-tunnisteet-ilman-pilvea.html" class="mm-post"><span class="mega-tag">Pinnan alla</span><strong>Haku ja tunnisteet ilman pilveä</strong><span>Miten kaikki pysyy omalla laitteellasi</span></a>
+          <a href="../blog/" class="mm-all">Kaikki julkaisut →</a>
+        </div>
+      <div class="mm-bottom">
+        <a href="https://chromewebstore.google.com/detail/ai-summary-helper-openai/hldbejcjaedipeegjcinmhejdndchkmb" class="pill-cta mm-cta" data-desktop-cta="" target="_blank" rel="noopener">Lisää Chromeen</a>
+        <button type="button" class="pill-cta mm-cta" data-send="" hidden="">Lähetä tietokoneelle</button>
+        <div class="mm-row">
+          <a href="https://addons.mozilla.org/en-US/firefox/addon/ai-summary-helper/" target="_blank" rel="noopener">Firefox</a>
+          <a href="../index.html#phone">Android · Beta</a>
+          <a href="../../education/">Opetukseen</a>
+          <a href="https://byphil.eu/#account">Oma tili</a>
+        </div>
+        
+        <button type="button" class="theme-toggle-mobile" id="themeToggleMobile">
+          <span id="themeToggleMobileLabel">Vaihda vaaleaan tilaan</span>
+          <svg class="icon-moon" viewBox="0 0 24 24" fill="none"><path d="M20 14.5A8.5 8.5 0 1 1 9.5 4a6.8 6.8 0 0 0 10.5 10.5Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"></path></svg>
+          <svg class="icon-sun" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="4.2" stroke="currentColor" stroke-width="1.6"></circle><path d="M12 2.5v2.4M12 19.1v2.4M4.4 4.4l1.7 1.7M17.9 17.9l1.7 1.7M2.5 12h2.4M19.1 12h2.4M4.4 19.6l1.7-1.7M17.9 6.1l1.7-1.7" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"></path></svg>
+        </button>
+      </div>
+    </div>
+  </div>
+</header>
+
+<main id="main">
+  <section class="hero--photo post-stage">
+    <img class="hero-bg" src="../../assets/photo/ereader-bedside-table-800.webp" srcset="../assets/photo/ereader-bedside-table-800.webp 800w, ../assets/photo/ereader-bedside-table-1600.webp 1600w" sizes="100vw" width="1600" height="1195" alt="" fetchpriority="high" decoding="async" style="--bgpos:50% 50%">
+    <p class="hero-credit">Kuvitus, tekoälyn luoma</p>
+    <div class="wrap">
+      <div class="post-hero">
+      <span class="blog-date">Tuote · Kesäkuu 2026</span>
+      <h1>Kirjanmerkkityökalusta 2.0-versioon: mitä AI Summary Helper on nykyään</h1>
+      <p class="post-sub">Se alkoi yhden klikkauksen bookmarkletina Kindle-lukemista varten. Kaksi vuotta ja täysi arkkitehtuurikierros myöhemmin suurin osa nykyisistä ominaisuuksista ei ollut edes olemassa, kun ensimmäiset sata käyttäjää liittyivät mukaan.</p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <div class="prose" data-vgroup="">
+
+        <p><strong>AI Summary Helper on ilmainen, avoimen lähdekoodin Chrome-laajennus, joka tiivistää minkä tahansa verkkosivun valitsemallasi tekoälypalvelulla tai täysin paikallisella mallilla. Se tallentaa artikkelit myöhemmäksi ajastettujen muistutusten kera ja muuntaa lukuhistoriasi haettavaksi, linkittyneeksi arkistoksi.</strong> Ensimmäisessä versiossa ei ollut mitään näistä. Tässä kerrotaan, mitä silloin oli ja miten tähän pisteeseen päädyttiin.</p>
+        <figure class="post-figure post-video" data-blog-video="senden">
+          <div class="post-video-in">
+            <button class="fvideo-open post-video-open" type="button"><span class="sr-only">Toista video</span>
+              <video muted="" playsinline="" loop="" preload="none" width="360" height="520" poster="../../assets/blog/video/senden-en.jpg">
+            <source src="../../assets/blog/video/senden-en.mp4" type="video/mp4">
+          <track data-seo-video="" kind="captions" src="../../assets/blog/video/senden-en.vtt" srclang="en" label="English"></video>
+              <span class="post-video-play" aria-hidden="true">▶</span>
+            </button>
+            <figcaption>Video: tiivistelmästä Kindlelle – tapa, josta tämä projekti sai alkunsa.</figcaption>
+          <div data-seo-video="" class="vtext"><p class="vtext-h">Transcript · 0:19</p><ul><li>From summary to Kindle.</li><li>Summarize the page, open the menu, send it to your Kindle.</li><li>Seconds later it is on your e-reader, ready for the couch.</li></ul></div></div>
+        </figure>
+
+        <h2>Miten tämä oikeasti alkoi</h2>
+        <p>Heinäkuussa 2024 tämä oli pelkkä bookmarklet – ei edes selainlaajennus. Selasit kiinnostavia artikkeleita, avasit kymmenen välilehteä etkä useimpien tavoin ehtinyt koskaan lukea niistä puoliakaan. Alkuperäinen idea oli kapea ja henkilökohtainen: mukautettavalla kehotteella toimiva tiivistäjä, joka lisäsi tiivistelmän suoraan sivulle, jotta se siirtyi mukaan, kun artikkeli lähetettiin Kindlelle työkalulla <a href="https://send.reabble.com/" target="_blank" rel="noopener">Reabblen Send-to-Kindle-työkalu</a>. Siinä oli koko tuote. Yksi tekoälytarjoaja. Yksi kehoteikkuna. Bookmarklet-versio, joka toimi missä tahansa (jopa iOS Safarissa), sekä Chrome-laajennus niille, jotka halusivat muokata kehotetta lennosta.</p>
+        <p>Muutamaa viikkoa myöhemmin aktiivisia käyttäjiä oli jo yli sata – melkoinen yllätys työkalulle, joka oli rakennettu vain ratkaisemaan tekijänsä oma lukupino-ongelma, ei kaupalliseksi tuotteeksi.</p>
+
+        <figure class="post-figure"><img src="../../assets/blog/summary-end-to-end.webp" alt="Kaavio: tiivistämisprosessi alusta loppuun: Ask, Stream, Finalize, Save ja Follow up" width="1760" height="620" loading="lazy"><figcaption>Mitä tapahtuu, kun klikkaat Tiivistä tänään – viisi vaihetta.</figcaption></figure>
+        <h2>Mikä oikeasti muuttui sen ja version 2.0 välillä</h2>
+        <p>Perusajatus pysyi samana: tee tiivistelmä omilla ehdoillasi ja lue se jossain paremmassa paikassa kuin selaimen välilehdellä. Lähes kaikki muu sen ympärillä muuttui:</p>
+
+        <h3>Yhden palveluntarjoajan sijaan valittavana on nyt viisi</h3>
+        <p>Versio 1 toimi vain OpenAI:lla omalla avaimella ja yhdellä päätepisteellä. Versio 2.0 tukee OpenAI:ta, Google Geminiä, Mistralia ja DeepSeekiä omalla API key -avaimella sekä täysin paikallista mallia Ollaman kautta – eli sivun sisältö ei poistu koneeltasi minnekään, ellet itse halua. Lisäksi tarjolla on valinnainen pilviversio (byphil Cloud) niille, jotka eivät halua hallinnoida avaimia itse, mutta se ei ole pakollinen. Tämä ei ollut pelkkä pikkulisäys, vaan se muutti koko tuotteen luonteen: v1 oletti sinun luottavan yhteen yhtiöön, kun taas 2.0 takaa täyden tietosuojan ja valinnanvapauden.</p>
+
+        <h3>"Lisää sivulle" kehittyi aidoksi työnkuluksi</h3>
+        <p>Alkuperäinen oivallus – lue myöhemmin, rauhallisemmassa ympäristössä kuin selain – on yhä tallella, mutta kyse ei ole enää pelkästä DOM-rakenteeseen liitetystä tiivistelmästä. Sivun kakkospainikkeella saa nyt suoraan esiin toiminnon <strong>Tiivistä ja sulje välilehti</strong>: valitse ajankohta (Huomenna, Viikonloppuna, Tällä viikolla, Tutkimussessio), lisää muistiinpano, ja välilehti sulkeutuu itsestään, kun olet silmäillyt tiivistelmän RSVP-pikanäkymässä. Chromen ilmoitus muistuttaa artikkelista juuri silloin kuin halusit – ei "joskus myöhemmin" tai "sitten kun satut muistamaan".</p>
+
+        <h3>Tallennuspinosta tuli selkeä ja hallittava arkisto</h3>
+        <p>Versiossa 1 ei ollut lainkaan historiaa: tiivistelmä näkyi sivulla ja katosi sitten. Nyt jokainen tallennettu artikkeli säilyy paikallisessa, haettavassa arkistossa. Mukana on tekstikorostukset (sekä tekoälyn ehdottamat korostukset avainkohdista), lukuanalytiikan lämpökartta ja D3-tietoverkko, joka ryhmittelee luetut sisällöt aiheittain tasapaksun listan sijaan.</p>
+
+        <h3>Kindle oli aiemmin koko homman ydin – nyt se on vain yksi vaihtoehto muiden joukossa</h3>
+        <p>Send-to-Kindle Reabblen työkalun kautta oli koko projektin perimmäinen syy. Se toimii edelleen natiivisti, mutta selaimen ulkopuolella lukeminen onnistuu nyt myös AirDropilla iPhoneen tai iPadiin (aukeaa suoraan Apple Books -sovellukseen) tai LocalSend-työkalulla esimerkiksi KOReaderiin oman Wi-Fi-verkon yli. Perusajatus – siirrä teksti pois selaimesta oikealle lukulaitteelle – tarjoaa vain enemmän reittejä.</p>
+
+        <h2>Mikä ei muuttunut</h2>
+        <p>Se on edelleen ilmainen, edelleen avointa lähdekoodia (AGPL-3.0, koko koodi GitHubissa; muita ehtoja tarvitsevat yritykset voivat hankkia kaupallisen lisenssin), eikä minkään ydintoiminnon käyttö vaadi käyttäjätiliä. Tästä ei ole koskaan tingitty — juuri tästä syystä v1 tehtiin alun perinkin bookmarkletina: sen rakensi joku, joka halusi omistaa oman lukutyökalunsa sen vuokraamisen sijaan.</p>
+
+        <h2>UKK</h2>
+        <p><strong>Onko tämä sama projekti kuin alkuperäinen bookmarklet?</strong><br>
+        Kyllä – kyseessä on sama avoimen lähdekoodin projekti ja sama GitHub-repositorio, jota on kehitetty yhtäjaksoisesti heinäkuusta 2024 lähtien. Bookmarklet-versio on edelleen olemassa niille, jotka haluavat selainriippumattoman vaihtoehdon ilman asennusta.</p>
+        <p><strong>Tarvitsenko OpenAI-tilin käyttääkseni tätä?</strong><br>
+        Ei. Tämä piti paikkansa versiossa 1, mutta ei enää aikoihin. Voit käyttää mitä tahansa tuettua tekoälypalvelua tai täysin paikallista mallia Ollaman kautta ilman minkäänlaista ulkopuolista käyttäjätiliä.</p>
+        <p><strong>Mitä tapahtui Gumroad-versiolle?</strong><br>
+        Projekti aloitti siellä mahdollistaakseen tuen vastaanottamisen varhaisilta käyttäjiltä. Itse selainlaajennus on aina ollut ilmainen ja avointa lähdekoodia – Gumroad ei koskaan toiminut työkalun maksumuurina.</p>
+
+        <div class="post-cta">
+          <p>AI Summary Helper on ilmainen Chrome-laajennus.</p>
+          <a href="https://chromewebstore.google.com/detail/ai-summary-helper-openai/hldbejcjaedipeegjcinmhejdndchkmb" target="_blank" rel="noopener" class="btn-primary">Lisää Chromeen</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<div class="vfeed-labels" hidden="">
+  <span data-l="close">Sulje</span><span data-l="sound">Äänet päälle</span><span data-l="mute">Äänet pois</span><span data-l="hint">Pyyhkäise ylös seuraavaan videoon</span><span data-l="prev">Edellinen video</span><span data-l="next">Seuraava video</span>
+  <span data-l="share">Jaa</span><span data-l="copied">Linkki kopioitu</span>
+  <span data-l="add_chrome">Lisää Chromeen — maksuton</span><span data-l="add_firefox">Lisää Firefoxiin — ilmainen</span><span data-l="add_browser">Lisää selaimeen — ilmainen</span>
+  <a data-l="try" href="../../bookmarklet.html">Kokeile selaimessa — ilmainen</a>
+</div>
+<footer>
+  <div class="wrap">
+    <div class="footer-inner">
+      <div class="wordmark"><img src="../../assets/icon.svg" alt="">AI Summary Helper</div>
+      <div class="foot-links">
+        <a href="https://github.com/philffm/ai-summary-helper/" target="_blank" rel="noopener">Lähdekoodi GitHubissa</a>
+        <a href="../../education/">Opetukseen</a>
+        <a href="../yksityisyys.html">Tietosuoja</a>
+        <a href="#" data-analytics-settings="">Analytiikka-asetukset</a>
+        <a href="https://byphil.eu/terms.html#impressum" target="_blank" rel="noopener">Impressum</a>
+      </div>
+    </div>
+    <div class="copyright">© 2026 Phil Wornath. Osa <a href="https://byphil.eu/" class="credit-link">byphil.eu ↗</a> — riippumatonta ohjelmistoa, kehitetty Saksassa.<br>
+      Suunnitellut ja kehittänyt <a href="https://philwornath.com/" target="_blank" rel="noopener" class="credit-link">philwornath.com ↗</a>
+    </div>
+  </div>
+</footer>
+
+<script src="../../assets/main.js"></script>
+
+
+</body></html>
