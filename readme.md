@@ -9,7 +9,7 @@
 </p>
 
 <p align="center">
-  <a href="LICENSE"><img alt="License: MIT" src="https://img.shields.io/badge/license-MIT-blue"></a>
+  <a href="LICENSE"><img alt="License: AGPL-3.0 or commercial" src="https://img.shields.io/badge/license-AGPL--3.0%20%2B%20commercial-blue"></a>
   <a href="https://github.com/philffm/ai-summary-helper/releases/latest"><img alt="Latest release" src="https://img.shields.io/github/v/release/philffm/ai-summary-helper?label=version&color=4C8DFF"></a>
   <img alt="Manifest V3" src="https://img.shields.io/badge/Manifest-V3-555">
   <img alt="Vanilla JS, no framework" src="https://img.shields.io/badge/vanilla-ES_modules-F0C36B">
@@ -24,7 +24,7 @@
 
 ## At a glance
 
-- **Free and MIT-licensed.** No account for your own key or local models. Optional byphil Cloud has a small free daily allowance; a donation (the Support Pass) unlocks many more AI models and unlimited use.
+- **Free and open source (AGPL-3.0; commercial use can be licensed).** No account for your own key or local models. Optional byphil Cloud has a small free daily allowance; a donation (the Support Pass) unlocks many more AI models and unlimited use.
 - **Private by design.** Library, highlights and statistics are stored in the browser. No tracking or analytics SDKs. See the [privacy policy](privacy.md).
 - **Answers you can check.** Follow-up answers point to the passage they come from; quotes that are not in the article are discarded.
 - **Your language.** Summaries in 41 languages, interface in 14.
@@ -343,7 +343,7 @@ ai-summary-helper/
 ├── package.json                  # npm scripts (build, build:chrome, build:firefox, …)
 ├── readme.md                     # This overview (also feeds compatible-tools.json)
 ├── privacy.md                    # Generated copy of the privacy policy (also bundled in the extension)
-├── LICENSE                       # MIT
+├── LICENSE                       # AGPL-3.0 (earlier releases: LICENSE-MIT; commercial: COMMERCIAL-LICENSE.md)
 │
 └── .github/workflows/
     ├── release.yml               # Tag-triggered: build + version bump + GitHub release
@@ -523,7 +523,7 @@ Summaries go only to the AI provider you configure (or fully local with Ollama).
 
 ## License
 
-2024 Phil Wornath - [MIT License](LICENSE)
+2024 Phil Wornath. Versions after 2.2.38: [AGPL-3.0](LICENSE), or a [commercial license](COMMERCIAL-LICENSE.md) for uses the AGPL does not allow. Versions up to 2.2.38: [MIT](LICENSE-MIT).
 
 ## Third-Party Libraries
 
