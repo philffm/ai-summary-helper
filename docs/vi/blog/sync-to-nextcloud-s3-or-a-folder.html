@@ -1,0 +1,222 @@
+<!DOCTYPE html><html lang="vi"><head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#08090C">
+<title>Đồng bộ thư viện đọc của bạn với Nextcloud, S3 hoặc thư mục cục bộ, có mã hóa — AI Summary Helper</title>
+<meta name="description" content="Từng bước một: đồng bộ các bài viết đã lưu, điểm nổi bật và ghi chú giữa các thiết bị trên Nextcloud, S3 bucket hoặc thư mục cục bộ của bạn, được mã hóa ngay trong trình duyệt.">
+
+<script>
+  (function(){
+    try {
+      var saved = localStorage.getItem('aish_theme');
+      var theme = saved === 'light' || saved === 'dark'
+        ? saved
+        : (window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
+      document.documentElement.setAttribute('data-theme', theme);
+    } catch (e) {
+      document.documentElement.setAttribute('data-theme', 'dark');
+    }
+  })();
+</script>
+
+<link rel="icon" type="image/svg+xml" href="../../assets/icon.svg">
+<link rel="stylesheet" href="../../assets/styles.css">
+<script src="../../assets/analytics.js"></script>
+<link rel="alternate" hreflang="x-default" href="https://ai-summary-helper.byphil.eu/blog/sync-to-nextcloud-s3-or-a-folder.html"><link rel="alternate" hreflang="en" href="https://ai-summary-helper.byphil.eu/blog/sync-to-nextcloud-s3-or-a-folder.html"><link rel="alternate" hreflang="de" href="https://ai-summary-helper.byphil.eu/de/blog/sync-mit-nextcloud-s3-oder-ordner.html"><link rel="alternate" hreflang="fr" href="https://ai-summary-helper.byphil.eu/fr/blog/sync-to-nextcloud-s3-or-a-folder.html"><link rel="alternate" hreflang="es" href="https://ai-summary-helper.byphil.eu/es/blog/sync-to-nextcloud-s3-or-a-folder.html"><link rel="alternate" hreflang="zh-Hans" href="https://ai-summary-helper.byphil.eu/zh/blog/sync-to-nextcloud-s3-or-a-folder.html"><link rel="alternate" hreflang="zh-Hant" href="https://ai-summary-helper.byphil.eu/zh-tw/blog/sync-to-nextcloud-s3-or-a-folder.html"><link rel="alternate" hreflang="ja" href="https://ai-summary-helper.byphil.eu/ja/blog/sync-to-nextcloud-s3-or-a-folder.html"><link rel="alternate" hreflang="ko" href="https://ai-summary-helper.byphil.eu/ko/blog/sync-to-nextcloud-s3-or-a-folder.html"><link rel="alternate" hreflang="pt-BR" href="https://ai-summary-helper.byphil.eu/pt/blog/sync-to-nextcloud-s3-or-a-folder.html"><link rel="alternate" hreflang="hi" href="https://ai-summary-helper.byphil.eu/hi/blog/sync-to-nextcloud-s3-or-a-folder.html"><link rel="alternate" hreflang="vi" href="https://ai-summary-helper.byphil.eu/vi/blog/sync-to-nextcloud-s3-or-a-folder.html"><link rel="alternate" hreflang="nl" href="https://ai-summary-helper.byphil.eu/nl/blog/sync-to-nextcloud-s3-or-a-folder.html"><link rel="alternate" hreflang="it" href="https://ai-summary-helper.byphil.eu/it/blog/sync-to-nextcloud-s3-or-a-folder.html"><link rel="alternate" hreflang="ru" href="https://ai-summary-helper.byphil.eu/ru/blog/sync-to-nextcloud-s3-or-a-folder.html"><link rel="alternate" hreflang="uk" href="https://ai-summary-helper.byphil.eu/uk/blog/sync-to-nextcloud-s3-or-a-folder.html"><link rel="alternate" hreflang="tr" href="https://ai-summary-helper.byphil.eu/tr/blog/sync-to-nextcloud-s3-or-a-folder.html"><link rel="alternate" hreflang="id" href="https://ai-summary-helper.byphil.eu/id/blog/sync-to-nextcloud-s3-or-a-folder.html"><link rel="alternate" hreflang="pl" href="https://ai-summary-helper.byphil.eu/pl/blog/sync-to-nextcloud-s3-or-a-folder.html"><link rel="alternate" hreflang="th" href="https://ai-summary-helper.byphil.eu/th/blog/sync-to-nextcloud-s3-or-a-folder.html"><link rel="alternate" hreflang="ar" href="https://ai-summary-helper.byphil.eu/ar/blog/sync-to-nextcloud-s3-or-a-folder.html"><link rel="alternate" hreflang="sv" href="https://ai-summary-helper.byphil.eu/sv/blog/sync-to-nextcloud-s3-or-a-folder.html"><link rel="alternate" hreflang="da" href="https://ai-summary-helper.byphil.eu/da/blog/sync-to-nextcloud-s3-or-a-folder.html"><link rel="alternate" hreflang="nb" href="https://ai-summary-helper.byphil.eu/no/blog/sync-to-nextcloud-s3-or-a-folder.html"><link rel="alternate" hreflang="fi" href="https://ai-summary-helper.byphil.eu/fi/blog/sync-to-nextcloud-s3-or-a-folder.html"><link rel="canonical" href="https://ai-summary-helper.byphil.eu/vi/blog/sync-to-nextcloud-s3-or-a-folder.html"><meta property="og:site_name" content="AI Summary Helper"><meta property="og:locale" content="vi_VN"><meta property="og:type" content="article"><meta property="og:title" content="Đồng bộ thư viện đọc của bạn với Nextcloud, S3 hoặc thư mục cục bộ, có mã hóa — AI Summary Helper"><meta property="og:description" content="Từng bước một: đồng bộ các bài viết đã lưu, điểm nổi bật và ghi chú giữa các thiết bị trên Nextcloud, S3 bucket hoặc thư mục cục bộ của bạn, được mã hóa ngay trong trình duyệt."><meta property="og:image" content="https://ai-summary-helper.byphil.eu/assets/shots/aish-hero-en.webp"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="Đồng bộ thư viện đọc của bạn với Nextcloud, S3 hoặc thư mục cục bộ, có mã hóa — AI Summary Helper"><meta name="twitter:description" content="Từng bước một: đồng bộ các bài viết đã lưu, điểm nổi bật và ghi chú giữa các thiết bị trên Nextcloud, S3 bucket hoặc thư mục cục bộ của bạn, được mã hóa ngay trong trình duyệt."><meta name="twitter:image" content="https://ai-summary-helper.byphil.eu/assets/shots/aish-hero-en.webp"><script type="application/ld+json" data-seo="ld">{"@context":"https://schema.org","@graph":[{"@type":"BlogPosting","@id":"https://ai-summary-helper.byphil.eu/vi/blog/sync-to-nextcloud-s3-or-a-folder.html#post","headline":"Cách đồng bộ thư viện đọc của bạn với Nextcloud, S3 hoặc thư mục cục bộ, có mã hóa","description":"Từng bước một: đồng bộ các bài viết đã lưu, điểm nổi bật và ghi chú giữa các thiết bị trên Nextcloud, S3 bucket hoặc thư mục cục bộ của bạn, được mã hóa ngay trong trình duyệt.","inLanguage":"vi","image":"https://ai-summary-helper.byphil.eu/assets/shots/aish-hero-en.webp","mainEntityOfPage":"https://ai-summary-helper.byphil.eu/vi/blog/sync-to-nextcloud-s3-or-a-folder.html","author":{"@id":"https://byphil.eu/#org"},"publisher":{"@type":"Organization","@id":"https://byphil.eu/#org","name":"byphil","url":"https://byphil.eu/"}},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"AI Summary Helper","item":"https://ai-summary-helper.byphil.eu/"},{"@type":"ListItem","position":2,"name":"Blog","item":"https://ai-summary-helper.byphil.eu/vi/blog/"},{"@type":"ListItem","position":3,"name":"Cách đồng bộ thư viện đọc của bạn với Nextcloud, S3 hoặc thư mục cục bộ, có mã hóa","item":"https://ai-summary-helper.byphil.eu/vi/blog/sync-to-nextcloud-s3-or-a-folder.html"}]}]}</script></head>
+<body>
+
+<a href="#main" class="skip-link">Chuyển đến nội dung</a>
+
+<header class="nav nav--pill" id="siteNav">
+  <div class="wrap nav-pill-row">
+    <a href="../index.html" class="wordmark" aria-label="AI Summary Helper">
+      <img src="../../assets/icon.svg" alt="">
+      AI Summary Helper
+    </a>
+    <nav class="pill" aria-label="Chính">
+      <a href="../index.html#features" data-sec="features">Tính năng</a>
+      <a href="../index.html#see-it" data-sec="see-it">Demo</a>
+      <a href="https://chromewebstore.google.com/detail/ai-summary-helper-openai/hldbejcjaedipeegjcinmhejdndchkmb" class="pill-cta" target="_blank" rel="noopener">Thêm vào Chrome</a>
+    </nav>
+    <div class="nav-tools">
+      <button type="button" class="tool-btn" id="sendBtn" data-send="" hidden="" aria-label="Gửi trang này đến máy tính của tôi" title="Gửi đến máy tính của tôi"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="3" y="4.5" width="18" height="12" rx="2" stroke="currentColor" stroke-width="1.6"></rect><path d="M8 20h8M12 16.5V20M12 13V8m0 0-2.2 2.2M12 8l2.2 2.2" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"></path></svg></button>
+      <button type="button" class="tool-btn" id="langBtn" aria-label="Ngôn ngữ" aria-controls="mobileMenu"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.6"></circle><path d="M3 12h18M12 3c2.6 2.7 3.9 5.7 3.9 9s-1.3 6.3-3.9 9c-2.6-2.7-3.9-5.7-3.9-9S9.4 5.7 12 3Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"></path></svg></button>
+      <button type="button" class="theme-toggle" id="themeToggle" aria-label="Chuyển sang chế độ sáng">
+        <svg class="icon-moon" viewBox="0 0 24 24" fill="none"><path d="M20 14.5A8.5 8.5 0 1 1 9.5 4a6.8 6.8 0 0 0 10.5 10.5Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"></path></svg>
+        <svg class="icon-sun" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="4.2" stroke="currentColor" stroke-width="1.6"></circle><path d="M12 2.5v2.4M12 19.1v2.4M4.4 4.4l1.7 1.7M17.9 17.9l1.7 1.7M2.5 12h2.4M19.1 12h2.4M4.4 19.6l1.7-1.7M17.9 6.1l1.7-1.7" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"></path></svg>
+      </button>
+    </div>
+    <button type="button" class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="mobileMenu" aria-label="Mở menu">
+      <svg viewBox="0 0 24 24" fill="none"><path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"></path></svg>
+    </button>
+  </div>
+  <div class="mobile-menu" id="mobileMenu" hidden="">
+    <div class="wrap mm-inner">
+      <nav class="mm-links" aria-label="Di động">
+        <a href="../index.html#features"><span class="mm-n">01</span>Tính năng</a>
+        <a href="../index.html#see-it"><span class="mm-n">02</span>Demo</a>
+        <a href="../../education/"><span class="mm-n">03</span>Giáo dục</a>
+        <a href="./" aria-current="page"><span class="mm-n">04</span>Blog</a>
+          <a href="pocket-alternative.html" class="mm-sub">Giải pháp thay thế Pocket: Những yếu tố cốt lõi</a>
+          <a href="khoa-rieng-mo-hinh-rieng.html" class="mm-sub">Khóa của bạn. Mô hình của bạn. Dữ liệu của bạn.</a>
+          <a href="kiem-tra-tom-tat-ai-tai-nguon.html" class="mm-sub">Đối chiếu bản tóm tắt với nguồn gốc</a>
+          <a href="danh-dau-hay-hoi.html" class="mm-sub">Hỏi đáp dựa trên các phần đã đánh dấu</a>
+        <a href="https://github.com/philffm/ai-summary-helper/" target="_blank" rel="noopener"><span class="mm-n">05</span>GitHub</a>
+      </nav>
+      <div class="mm-lang">
+        <button type="button" class="lang-card" id="langCard"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.6"></circle><path d="M3 12h18M12 3c2.6 2.7 3.9 5.7 3.9 9s-1.3 6.3-3.9 9c-2.6-2.7-3.9-5.7-3.9-9S9.4 5.7 12 3Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"></path></svg><span class="lang-card-cur">Tiếng Anh</span><small>24 ngôn ngữ</small><b aria-hidden="true">→</b></button>
+        <p class="mm-lang-h">Ngôn ngữ · 24</p>
+        <label class="lang-search"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="11" cy="11" r="6.5" stroke="currentColor" stroke-width="1.7"></circle><path d="m16 16 4 4" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"></path></svg><input type="search" id="langSearch" placeholder="Tìm kiếm ngôn ngữ…" autocomplete="off" aria-label="Tìm kiếm ngôn ngữ" spellcheck="false"></label>
+        <div class="lang-groups" id="langGroups">
+          <div class="lang-group"><p class="lang-group-h">Phổ biến</p><div class="lang-pills" data-no-translate=""><a href="/" class="lang-pill" data-loc="en" lang="en" hreflang="en" data-q="english english en">English</a><a href="/de/" class="lang-pill" data-loc="de" lang="de" hreflang="de" data-q="deutsch german de">Deutsch</a><a href="/fr/" class="lang-pill" data-loc="fr" lang="fr" hreflang="fr" data-q="français french fr">Français</a><a href="/es/" class="lang-pill" data-loc="es" lang="es" hreflang="es" data-q="español spanish es">Español</a><a href="/zh/" class="lang-pill" data-loc="zh" lang="zh-CN" hreflang="zh-CN" data-q="简体中文 chinese simplified zh">简体中文</a><a href="/ja/" class="lang-pill" data-loc="ja" lang="ja" hreflang="ja" data-q="日本語 japanese ja">日本語</a><a href="/ru/" class="lang-pill" data-loc="ru" lang="ru" hreflang="ru" data-q="русский russian ru">Русский</a></div></div>
+          <div class="lang-group"><p class="lang-group-h">Châu Âu</p><div class="lang-pills" data-no-translate=""><a href="/pt/" class="lang-pill" data-loc="pt" lang="pt" hreflang="pt" data-q="português portuguese pt">Português</a><a href="/nl/" class="lang-pill" data-loc="nl" lang="nl" hreflang="nl" data-q="nederlands dutch nl">Nederlands</a><a href="/it/" class="lang-pill" data-loc="it" lang="it" hreflang="it" data-q="italiano italian it">Italiano</a><a href="/uk/" class="lang-pill" data-loc="uk" lang="uk" hreflang="uk" data-q="українська ukrainian uk">Українська</a><a href="/tr/" class="lang-pill" data-loc="tr" lang="tr" hreflang="tr" data-q="türkçe turkish tr">Türkçe</a><a href="/pl/" class="lang-pill" data-loc="pl" lang="pl" hreflang="pl" data-q="polski polish pl">Polski</a><a href="/sv/" class="lang-pill" data-loc="sv" lang="sv" hreflang="sv" data-q="svenska swedish sv">Svenska</a><a href="/da/" class="lang-pill" data-loc="da" lang="da" hreflang="da" data-q="dansk danish da">Dansk</a><a href="/no/" class="lang-pill" data-loc="no" lang="nb" hreflang="nb" data-q="norsk norwegian no">Norsk</a><a href="/fi/" class="lang-pill" data-loc="fi" lang="fi" hreflang="fi" data-q="suomi finnish fi">Suomi</a></div></div>
+          <div class="lang-group"><p class="lang-group-h">Châu Á &amp; khu vực khác</p><div class="lang-pills" data-no-translate=""><a href="/zh-tw/" class="lang-pill" data-loc="zh-tw" lang="zh-TW" hreflang="zh-TW" data-q="繁體中文 chinese traditional zh-tw">繁體中文</a><a href="/ko/" class="lang-pill" data-loc="ko" lang="ko" hreflang="ko" data-q="한국어 korean ko">한국어</a><a href="/hi/" class="lang-pill" data-loc="hi" lang="hi" hreflang="hi" data-q="हिन्दी hindi hi">हिन्दी</a><a href="/vi/" class="lang-pill" data-loc="vi" lang="vi" hreflang="vi" data-q="tiếng việt vietnamese vi">Tiếng Việt</a><a href="/id/" class="lang-pill" data-loc="id" lang="id" hreflang="id" data-q="bahasa indonesia indonesian id">Bahasa Indonesia</a><a href="/th/" class="lang-pill" data-loc="th" lang="th" hreflang="th" data-q="ไทย thai th">ไทย</a><a href="/ar/" class="lang-pill" data-loc="ar" lang="ar" hreflang="ar" data-q="العربية arabic ar">العربية</a></div></div>
+          <p class="lang-empty" hidden="">Không có kết quả phù hợp</p>
+        </div>
+      </div>
+      <div class="mm-posts" aria-label="Blog">
+          <p class="mm-posts-h">Từ blog</p>
+          <a href="pocket-alternative.html" class="mm-post"><span class="mega-tag">So sánh</span><strong>Giải pháp thay thế Pocket: What Matters</strong><span>Chuyển đổi công cụ đọc sau mà không mất dữ liệu lưu trữ</span></a>
+          <a href="khoa-rieng-mo-hinh-rieng.html" class="mm-post"><span class="mega-tag">Quyền riêng tư</span><strong>API Key của bạn. Mô hình của bạn. Dữ liệu của bạn.</strong><span>Vì sao tự cấp API key tối ưu hơn việc trả phí định kỳ</span></a>
+          <a href="kiem-tra-tom-tat-ai-tai-nguon.html" class="mm-post"><span class="mega-tag">Độ tin cậy</span><strong>Đối chiếu tóm tắt AI với nguồn gốc</strong><span>Kiểm tra nhanh kết quả từ AI trong chưa đầy một phút</span></a>
+          <a href="danh-dau-hay-hoi.html" class="mm-post"><span class="mega-tag">Hướng dẫn</span><strong>Đặt câu hỏi về các đoạn Highlight</strong><span>Biến nội dung đã đánh dấu thành câu trả lời</span></a>
+          <a href="mot-ban-tom-tat-thay-cho-40-nguon-cap.html" class="mm-post"><span class="mega-tag">Nguồn tin</span><strong>Một bản tóm tắt thay vì 40 nguồn tin</strong><span>Bản tổng hợp hằng ngày cho mọi nội dung bạn theo dõi</span></a>
+          <a href="tim-kiem-va-the-khong-can-cloud.html" class="mm-post"><span class="mega-tag">Bên trong công nghệ</span><strong>Tìm kiếm và Gắn thẻ Không cần Đám mây</strong><span>Cách toàn bộ dữ liệu được bảo mật cục bộ trên thiết bị</span></a>
+          <a href="./" class="mm-all">Tất cả bài viết →</a>
+        </div>
+      <div class="mm-bottom">
+        <a href="https://chromewebstore.google.com/detail/ai-summary-helper-openai/hldbejcjaedipeegjcinmhejdndchkmb" class="pill-cta mm-cta" data-desktop-cta="" target="_blank" rel="noopener">Thêm vào Chrome</a>
+        <button type="button" class="pill-cta mm-cta" data-send="" hidden="">Gửi đến máy tính của tôi</button>
+        <div class="mm-row">
+          <a href="https://addons.mozilla.org/en-US/firefox/addon/ai-summary-helper/" target="_blank" rel="noopener">Firefox</a>
+          <a href="../index.html#phone">Android · Beta</a>
+          <a href="https://byphil.eu/#account">Tài khoản của tôi</a>
+        </div>
+        
+        <button type="button" class="theme-toggle-mobile" id="themeToggleMobile">
+          <span id="themeToggleMobileLabel">Chuyển sang chế độ sáng</span>
+          <svg class="icon-moon" viewBox="0 0 24 24" fill="none"><path d="M20 14.5A8.5 8.5 0 1 1 9.5 4a6.8 6.8 0 0 0 10.5 10.5Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"></path></svg>
+          <svg class="icon-sun" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="4.2" stroke="currentColor" stroke-width="1.6"></circle><path d="M12 2.5v2.4M12 19.1v2.4M4.4 4.4l1.7 1.7M17.9 17.9l1.7 1.7M2.5 12h2.4M19.1 12h2.4M4.4 19.6l1.7-1.7M17.9 6.1l1.7-1.7" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"></path></svg>
+        </button>
+      </div>
+    </div>
+  </div>
+</header>
+
+<main id="main">
+  <section class="hero--photo post-stage">
+    <img class="hero-bg" src="../../assets/photo/nas-shelf-laptop-phone-800.webp" srcset="../../assets/photo/nas-shelf-laptop-phone-800.webp 800w, ../../assets/photo/nas-shelf-laptop-phone-1600.webp 1600w" sizes="100vw" width="1600" height="893" alt="" fetchpriority="high" decoding="async" style="--bgpos:60% 55%">
+    <p class="hero-credit">Hình minh họa, do AI tạo</p>
+    <div class="wrap">
+      <div class="post-hero">
+      <span class="blog-date">Hướng dẫn · Tháng 10 năm 2026</span>
+      <h1>Cách đồng bộ thư viện đọc của bạn với Nextcloud, S3 hoặc thư mục cục bộ, có mã hóa</h1>
+      <p class="post-sub">Các bài viết đã lưu, tóm tắt, điểm nổi bật và ghi chú trên tất cả máy tính của bạn, được lưu trữ tại nơi bạn chọn, chỉ có thể đọc bằng khóa của bạn. Chỉ mất mười phút, không cần tài khoản.</p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <div class="prose">
+        <p><strong>Tóm tắt nhanh.</strong> Trong AI Summary Helper, mở <em>Settings → Sync &amp; backup → Add a place</em>, chọn Nextcloud/WebDAV, bộ nhớ tương thích S3 hoặc một thư mục trên máy tính của bạn, và lưu cụm mật khẩu được đề xuất. Mọi thứ đều được mã hóa ngay trong trình duyệt trước khi tải lên. Trên máy tính thứ hai, bạn chỉ cần thêm cùng vị trí đó và nhập cụm mật khẩu. Toàn bộ quá trình thiết lập chỉ có vậy. Phần còn lại của trang này trình bày chi tiết về từng loại lưu trữ, những gì được đồng bộ và cách xử lý sự cố.</p>
+        <figure class="post-figure post-figure--photo"><img src="../../assets/photo/commuter-train-reading-800.webp" srcset="../../assets/photo/commuter-train-reading-800.webp 800w, ../../assets/photo/commuter-train-reading-1600.webp 1600w" sizes="(max-width: 720px) 92vw, 680px" width="1600" height="893" loading="lazy" decoding="async" alt="Minh họa: một hành khách trên chuyến tàu khu vực, đang cầm máy đọc sách và điện thoại"><figcaption>Một thư viện, nhiều thiết bị. Minh họa tạo bởi AI.</figcaption></figure>
+        <p>Tại sao nên làm điều này? Bởi vì một thư viện đọc rất đáng để gìn giữ, và một công cụ bạn phụ thuộc có thể biến mất bất cứ lúc nào (<a href="digital-sovereignty-for-individuals.html">tìm hiểu thêm tại đây</a>). Đồng bộ hóa với bộ nhớ bạn tự sở hữu đồng nghĩa với việc thư viện sẽ tồn tại lâu dài, không phụ thuộc vào bất kỳ ứng dụng hay tài khoản đơn lẻ nào.</p>
+
+        <h2>Dữ liệu nào được đồng bộ và không được đồng bộ</h2>
+        <ul>
+          <li><strong>Được đồng bộ:</strong> các bài viết đã lưu cùng toàn văn nội dung và bản tóm tắt, thẻ (tag), điểm nổi bật, ghi chú và nhận xét của bạn, cùng các bộ sưu tập.</li>
+          <li><strong>Không đồng bộ:</strong> khóa API, thông tin đăng nhập, thông tin xác thực đồng bộ và cài đặt riêng của từng thiết bị. Bản sao lưu và đồng bộ chủ ý loại trừ các mục này.</li>
+          <li><strong>Một bài viết cho mỗi trang:</strong> nếu bạn lưu cùng một trang trên hai máy tính, kết quả sẽ là một bài viết duy nhất (thẻ và các trường còn thiếu sẽ được kết hợp).</li>
+          <li><strong>Tự động gộp chỉnh sửa theo từng trường:</strong> tiêu đề được đổi trên một máy tính và thẻ được thêm trên máy tính khác đều sẽ được giữ lại. Nếu cả hai cùng thay đổi một trường, chỉnh sửa mới hơn sẽ được áp dụng trên tất cả thiết bị.</li>
+        </ul>
+
+        <h2>Bước 1: Chọn nơi lưu trữ</h2>
+        <h3>Nextcloud hoặc máy chủ WebDAV khác</h3>
+        <p>Lựa chọn tốt nhất nếu bạn đang tự vận hành Nextcloud hoặc sử dụng dịch vụ lưu trữ đám mây có sẵn (nhiều nhà cung cấp châu Âu hỗ trợ). Bạn cần ba thông tin:</p>
+        <ol>
+          <li><strong>Địa chỉ tệp của bạn.</strong> Đối với Nextcloud, định dạng sẽ có dạng <code>https://your-server/remote.php/dav/files/your-username/</code>. Trong Nextcloud, mở <em>Files → Settings</em> và sao chép địa chỉ WebDAV hiển thị tại đó.</li>
+          <li><strong>Tên người dùng của bạn.</strong></li>
+          <li><strong>Mật khẩu ứng dụng (App password), không phải mật khẩu chính của bạn.</strong> Trong Nextcloud: <em>Settings → Security → Devices &amp; sessions → create a new app password</em>. Nếu muốn thu hồi quyền truy cập bất cứ lúc nào, bạn chỉ cần xóa mục đó.</li>
+        </ol>
+        <p>Chọn tên thư mục, chẳng hạn như <code>aish-sync</code>. Thư mục sẽ được tự động tạo. Các máy chủ WebDAV khác (nhiều thiết bị NAS, ownCloud) cũng hoạt động tương tự; chỉ có định dạng địa chỉ là khác biệt.</p>
+
+        <h3>Bucket tương thích S3</h3>
+        <p>Lựa chọn tối ưu nếu bạn ưu tiên lưu trữ đối tượng (object storage): AWS S3, Cloudflare R2, Backblaze B2, MinIO và tương tự. Hãy tạo một bucket, sau đó tạo access key <strong>chỉ dành riêng cho bucket này</strong> với quyền đọc, ghi, liệt kê danh sách và xóa trong bucket đó. Tuyệt đối không dùng khóa chính của tài khoản. Trong tiện ích mở rộng, hãy nhập địa chỉ endpoint (ví dụ <code>https://s3.eu-central-1.amazonaws.com</code>, hoặc địa chỉ do nhà cung cấp của bạn hiển thị), tên bucket, khu vực (region - giữ mặc định nếu nhà cung cấp không yêu cầu), Access Key ID và Secret Key.</p>
+
+        <h3>Một thư mục trên máy tính của bạn</h3>
+        <p>Phù hợp nhất nếu bạn đã có công cụ đồng bộ thư mục giữa các thiết bị: Syncthing, ứng dụng đồng bộ trên máy tính, iCloud Drive, hoặc ổ USB. Chọn <em>Thư mục trên máy tính này</em> và chọn một <strong>thư mục mới, trống do bạn tạo</strong>, ví dụ <code>Documents/AISH-sync</code>. Chrome không cho phép chọn trực tiếp Desktop, Documents hoặc Downloads làm thư mục đồng bộ, vì vậy hãy chọn một thư mục con. Tính năng này hoạt động trên Chrome và Edge trên máy tính. Hai điều cần lưu ý: trình duyệt có thể yêu cầu cấp lại quyền truy cập sau khi khởi động lại (màn hình cài đặt có nút cho việc này), và thư mục chỉ tiếp tục đồng bộ khi trình duyệt đang chạy.</p>
+
+        <h2>Bước 2: Chọn mã hóa và lưu lại cụm từ khóa</h2>
+        <p>Khi bạn thêm vị trí lưu trữ, <em>Encrypted</em> được chọn theo mặc định và <em>Sync my devices</em> là mục đích sử dụng. Tiện ích mở rộng sẽ gợi ý sáu từ ngẫu nhiên làm cụm mật khẩu. Bạn có thể nhấn <em>Another suggestion</em> cho đến khi chọn được tổ hợp ưng ý, hoặc tự đặt cụm mật khẩu của riêng mình (tối thiểu 12 ký tự, kèm gợi ý nếu mật khẩu quá yếu).</p>
+        <p>Sau khi kết nối, bạn sẽ thấy sáu từ này một lần duy nhất. Hãy lưu chúng vào trình quản lý mật khẩu; nút Sao chép sẽ lưu toàn bộ cụm từ vào khay nhớ tạm, nối với nhau bằng dấu gạch ngang để tránh lỗi định dạng trong các tệp cấu hình và ứng dụng nhắn tin. Có cụm từ này, bạn có thể mở vị trí lưu trữ trên bất kỳ thiết bị nào; không có nó, không ai có thể đọc được các tệp, kể cả chúng tôi. Trên máy tính thiết lập ban đầu, bạn có thể xem lại trong cài đặt của vị trí lưu trữ, <em>Show passphrase</em>. Nếu bạn tự đặt cụm mật khẩu riêng, cụm mật khẩu đó sẽ không được lưu ở bất kỳ đâu, do đó tiện ích không thể hiển thị lại.</p>
+        <p>Những gì nhà cung cấp lưu trữ thấy: các tệp đã mã hóa với tên bị xáo trộn, số lượng tệp, dung lượng và thời điểm thay đổi. Họ không thể thấy tiêu đề, liên kết hay nội dung văn bản. Thư viện của bạn được mã hóa ngay trong trình duyệt bằng AES-256-GCM trước khi rời khỏi thiết bị.</p>
+
+        <h2>Bước 3: Thêm máy tính thứ hai</h2>
+        <ol>
+          <li>Cài đặt tiện ích mở rộng và mở <em>Settings → Sync &amp; backup → Add a place</em>.</li>
+          <li>Nhập cùng thông tin máy chủ (hoặc chọn cùng thư mục).</li>
+          <li>Tiện ích mở rộng sẽ nhận diện thư mục đã chứa thư viện được mã hóa và yêu cầu nhập cụm mật khẩu. Bạn có thể nhập chữ hoa hay chữ thường, dùng dấu cách hoặc dấu gạch ngang đều được.</li>
+          <li>Hệ thống sẽ yêu cầu bạn xác nhận đã sao lưu thiết bị này trước, vì việc tham gia sẽ gộp thư viện của máy tính này với thư viện trong thư mục, và nếu có xung đột, dữ liệu trong thư mục sẽ được ưu tiên. Sử dụng <em>Make a backup now</em>.</li>
+          <li>Nhấn <em>Connect</em>. Quá trình đồng bộ lần đầu có thể mất một lúc đối với thư viện lớn; màn hình sẽ hiển thị tiến trình.</li>
+        </ol>
+
+        <h2>Chỉ sao lưu, khôi phục và xuất bản</h2>
+        <ul>
+          <li><strong>Backup only.</strong> Chọn <em>Backup only</em> thay vì <em>Sync my devices</em> khi đó máy tính chỉ ghi dữ liệu vào vị trí lưu trữ và không bao giờ đọc từ đó. Khôi phục từ cài đặt vị trí khi cần: thao tác này sẽ lấy lại mọi thứ, và nếu máy tính này có điểm khác biệt, dữ liệu từ vị trí lưu trữ sẽ được ưu tiên. Không có gì bị xóa.</li>
+          <li><strong>Publish to your website.</strong> Một loại vị trí riêng biệt, <em>Readable</em>, ghi các tệp dạng văn bản thuần cho trang web của bạn, chỉ dành cho các bài viết bạn gắn thẻ, kèm theo trang xem tùy chọn. Ghi chú và toàn văn nội dung sẽ không được đưa vào trừ khi bạn bật lên, vì bất kỳ ai mở được thư mục đó đều có thể đọc nội dung. Không sử dụng vị trí có thể đọc công khai cho dữ liệu riêng tư.</li>
+        </ul>
+
+        <h2>Khi xảy ra sự cố</h2>
+        <h3>"Allow access to the folder again"</h3>
+        <p>Trình duyệt sẽ thu hồi quyền truy cập thư mục sau khi khởi động lại. Nhấn vào nút ở đầu mục <em>Sync &amp; backup</em>. Nếu vẫn không thành công, thư mục đó có thể là thư mục được Chrome bảo vệ (Desktop, Documents, Downloads hoặc thư mục người dùng cá nhân): hãy chọn một thư mục con do bạn tự tạo.</p>
+        <h3>"The server did not accept the username and password"</h3>
+        <p>Đối với Nextcloud, hãy sử dụng mật khẩu ứng dụng. Kiểm tra để đảm bảo địa chỉ kết thúc bằng thư mục tên người dùng của bạn và xác thực hai yếu tố không chặn mật khẩu ứng dụng.</p>
+        <h3>"Wrong passphrase"</h3>
+        <p>Kiểm tra lại các từ: chữ hoa/thường, khoảng trắng và dấu gạch ngang không quan trọng, nhưng từng từ phải hoàn toàn chính xác. Trên máy tính đã thiết lập sẵn, hãy mở cài đặt của vị trí và nhấn <em>Show passphrase</em>. Nếu bạn đã làm mất cụm từ ở mọi nơi, không ai có thể mở lại các tệp này: hãy xóa vị trí lưu trữ tại đây, tạo một vị trí mới và bắt đầu lại từ thư viện trên máy tính của bạn.</p>
+        <h3>Hàng loạt yêu cầu xóa đang chờ xử lý</h3>
+        <p>Nếu một thiết bị khác xóa nhiều bài viết cùng lúc, tiện ích mở rộng sẽ áp dụng một vài mục trước và hỏi ý kiến trước khi xóa phần còn lại, tránh trường hợp một sơ suất làm mất sạch thư viện của bạn. Hãy kiểm tra, sau đó nhấn nút để áp dụng.</p>
+        <h3>Một máy tính không hoạt động trong nhiều tháng</h3>
+        <p>Sau khoảng ba tháng, máy tính chỉ gửi những thay đổi kể từ lần đồng bộ cuối và không tự ý xóa dữ liệu, do đó các bài viết cũ đã bị xóa ở nơi khác sẽ không vô tình xuất hiện trở lại.</p>
+
+        <h2>Câu hỏi thường gặp</h2>
+        <h3>Tôi có cần tài khoản bên bạn không?</h3>
+        <p>Không. Quá trình đồng bộ kết nối trực tiếp từ trình duyệt của bạn đến bộ nhớ đã nhập. Chúng tôi không vận hành máy chủ đồng bộ nào.</p>
+        <h3>Tính năng này có hoạt động trên điện thoại không?</h3>
+        <p>Trên Android, có. Ứng dụng đi kèm (tệp APK từ <a href="https://github.com/philffm/ai-summary-helper/releases/latest" rel="noopener">mục phát hành trên GitHub</a>; hiện chưa có trên Google Play) có thể tham gia vào thư viện của bạn trong mục <em>Settings → Library sync</em>. Cách nhanh nhất là dùng mã: trong trình duyệt, mở cài đặt vị trí lưu trữ của bạn, nhấn <em>Show code for the phone</em> và quét mã đó. Mã này chứa thông tin đăng nhập máy chủ của bạn, vì vậy chỉ quét bằng điện thoại cá nhân của bạn. Điện thoại sẽ hiển thị các bài viết đã lưu cùng tóm tắt và điểm nổi bật, đồng thời ghi chú được đồng bộ hai chiều. Các trang bạn tóm tắt trên điện thoại và các đoạn văn bạn đánh dấu tại đó cũng sẽ được đưa vào thư viện, nhưng chỉ với các trang chưa có: nội dung gốc trên trình duyệt không bao giờ bị ghi đè. Hiện chưa có ứng dụng cho iPhone.</p>
+        <h3>Tôi có thể sử dụng nhiều hơn một vị trí lưu trữ không?</h3>
+        <p>Có. Cách thiết lập phổ biến là dùng một vị trí mã hóa để đồng bộ giữa các máy tính và một vị trí chỉ sao lưu ở một nhà cung cấp khác.</p>
+        <h3>Đưa thư viện lên đám mây có an toàn không?</h3>
+        <p>An toàn hơn hầu hết các giải pháp khác, vì nhà cung cấp chỉ lưu trữ các tệp đã được mã hóa. Tuy nhiên độ an toàn vẫn phụ thuộc hoàn toàn vào cụm mật khẩu và thiết bị của bạn. Đọc thêm về <a href="digital-sovereignty-for-individuals.html">các giới hạn minh bạch</a>, bao gồm cả việc thuật toán mã hóa chưa được kiểm toán độc lập.</p>
+
+        <div class="post-cta">
+          <p>AI Summary Helper là một tiện ích mở rộng trình duyệt miễn phí, mã nguồn mở. Tính năng đồng bộ sẽ tắt cho đến khi bạn thêm một vị trí lưu trữ.</p>
+          <a href="https://chromewebstore.google.com/detail/ai-summary-helper-openai/hldbejcjaedipeegjcinmhejdndchkmb" target="_blank" rel="noopener" class="btn-primary">Thêm vào Chrome</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="footer-inner">
+      <div class="wordmark"><img src="../../assets/icon.svg" alt="">AI Summary Helper</div>
+      <div class="foot-links">
+        <a href="https://github.com/philffm/ai-summary-helper/" target="_blank" rel="noopener">Mã nguồn trên GitHub</a>
+        <a href="../../education/">Dành cho giáo dục</a>
+        <a href="../quyen-rieng-tu.html">Quyền riêng tư</a>
+        <a href="#" data-analytics-settings="">Cài đặt phân tích</a>
+        <a href="https://byphil.eu/terms.html#impressum" target="_blank" rel="noopener">Thông tin pháp lý (Impressum)</a>
+      </div>
+    </div>
+    <div class="copyright">© 2026 Phil Wornath. Một phần của <a href="https://byphil.eu/" class="credit-link">byphil.eu ↗</a> — phần mềm độc lập được phát triển tại Đức.<br>
+      Thiết kế &amp; phát triển bởi <a href="https://philwornath.com/" target="_blank" rel="noopener" class="credit-link">philwornath.com ↗</a>
+    </div>
+  </div>
+</footer>
+
+<script src="../../assets/main.js"></script>
+
+
+</body></html>

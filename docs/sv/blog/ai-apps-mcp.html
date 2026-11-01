@@ -1,0 +1,258 @@
+<!DOCTYPE html><html lang="sv"><head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#08090C">
+<title>Använd ditt bibliotek i Claude, LM Studio och Cursor — AI Summary Helper</title>
+<meta name="description" content="Koppla AI Summary Helper till Claude Desktop, LM Studio, Cursor, VS Code eller valfri MCP-app på din dator. Dina sparade artiklar, markeringar och samlingar blir tillgängliga för din AI-app – utan någon server emellan.">
+
+<script>
+  (function(){
+    try {
+      var saved = localStorage.getItem('aish_theme');
+      var theme = saved === 'light' || saved === 'dark'
+        ? saved
+        : (window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
+      document.documentElement.setAttribute('data-theme', theme);
+    } catch (e) {
+      document.documentElement.setAttribute('data-theme', 'dark');
+    }
+  })();
+</script>
+
+<link rel="icon" type="image/svg+xml" href="../../assets/icon.svg">
+<link rel="stylesheet" href="../../assets/styles.css">
+<script src="../../assets/analytics.js"></script>
+<link rel="alternate" hreflang="x-default" href="https://ai-summary-helper.byphil.eu/blog/ai-apps-mcp.html"><link rel="alternate" hreflang="en" href="https://ai-summary-helper.byphil.eu/blog/ai-apps-mcp.html"><link rel="alternate" hreflang="de" href="https://ai-summary-helper.byphil.eu/de/blog/ki-apps-mcp.html"><link rel="alternate" hreflang="fr" href="https://ai-summary-helper.byphil.eu/fr/blog/ai-apps-mcp.html"><link rel="alternate" hreflang="es" href="https://ai-summary-helper.byphil.eu/es/blog/ai-apps-mcp.html"><link rel="alternate" hreflang="zh-Hans" href="https://ai-summary-helper.byphil.eu/zh/blog/ai-apps-mcp.html"><link rel="alternate" hreflang="zh-Hant" href="https://ai-summary-helper.byphil.eu/zh-tw/blog/ai-apps-mcp.html"><link rel="alternate" hreflang="ja" href="https://ai-summary-helper.byphil.eu/ja/blog/ai-apps-mcp.html"><link rel="alternate" hreflang="ko" href="https://ai-summary-helper.byphil.eu/ko/blog/ai-apps-mcp.html"><link rel="alternate" hreflang="pt-BR" href="https://ai-summary-helper.byphil.eu/pt/blog/ai-apps-mcp.html"><link rel="alternate" hreflang="hi" href="https://ai-summary-helper.byphil.eu/hi/blog/ai-apps-mcp.html"><link rel="alternate" hreflang="vi" href="https://ai-summary-helper.byphil.eu/vi/blog/ai-apps-mcp.html"><link rel="alternate" hreflang="nl" href="https://ai-summary-helper.byphil.eu/nl/blog/ai-apps-mcp.html"><link rel="alternate" hreflang="it" href="https://ai-summary-helper.byphil.eu/it/blog/ai-apps-mcp.html"><link rel="alternate" hreflang="ru" href="https://ai-summary-helper.byphil.eu/ru/blog/ai-apps-mcp.html"><link rel="alternate" hreflang="uk" href="https://ai-summary-helper.byphil.eu/uk/blog/ai-apps-mcp.html"><link rel="alternate" hreflang="tr" href="https://ai-summary-helper.byphil.eu/tr/blog/ai-apps-mcp.html"><link rel="alternate" hreflang="id" href="https://ai-summary-helper.byphil.eu/id/blog/ai-apps-mcp.html"><link rel="alternate" hreflang="pl" href="https://ai-summary-helper.byphil.eu/pl/blog/ai-apps-mcp.html"><link rel="alternate" hreflang="th" href="https://ai-summary-helper.byphil.eu/th/blog/ai-apps-mcp.html"><link rel="alternate" hreflang="ar" href="https://ai-summary-helper.byphil.eu/ar/blog/ai-apps-mcp.html"><link rel="alternate" hreflang="sv" href="https://ai-summary-helper.byphil.eu/sv/blog/ai-apps-mcp.html"><link rel="alternate" hreflang="da" href="https://ai-summary-helper.byphil.eu/da/blog/ai-apps-mcp.html"><link rel="alternate" hreflang="nb" href="https://ai-summary-helper.byphil.eu/no/blog/ai-apps-mcp.html"><link rel="alternate" hreflang="fi" href="https://ai-summary-helper.byphil.eu/fi/blog/ai-apps-mcp.html"><link rel="canonical" href="https://ai-summary-helper.byphil.eu/sv/blog/ai-apps-mcp.html"><meta property="og:site_name" content="AI Summary Helper"><meta property="og:locale" content="sv"><meta property="og:type" content="article"><meta property="og:title" content="Använd ditt bibliotek i Claude, LM Studio och Cursor — AI Summary Helper"><meta property="og:description" content="Koppla AI Summary Helper till Claude Desktop, LM Studio, Cursor, VS Code eller valfri MCP-app på din dator. Dina sparade artiklar, markeringar och samlingar blir tillgängliga för din AI-app – utan någon server emellan."><meta property="og:image" content="https://ai-summary-helper.byphil.eu/assets/shots/aish-hero-en.webp"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="Använd ditt bibliotek i Claude, LM Studio och Cursor — AI Summary Helper"><meta name="twitter:description" content="Koppla AI Summary Helper till Claude Desktop, LM Studio, Cursor, VS Code eller valfri MCP-app på din dator. Dina sparade artiklar, markeringar och samlingar blir tillgängliga för din AI-app – utan någon server emellan."><meta name="twitter:image" content="https://ai-summary-helper.byphil.eu/assets/shots/aish-hero-en.webp"><script type="application/ld+json" data-seo="ld">{"@context":"https://schema.org","@graph":[{"@type":"BlogPosting","@id":"https://ai-summary-helper.byphil.eu/sv/blog/ai-apps-mcp.html#post","headline":"Använd ditt bibliotek i Claude, LM Studio och andra AI-appar","description":"Koppla AI Summary Helper till Claude Desktop, LM Studio, Cursor, VS Code eller valfri MCP-app på din dator. Dina sparade artiklar, markeringar och samlingar blir tillgängliga för din AI-app – utan någon server emellan.","datePublished":"2026-10","inLanguage":"sv","image":"https://ai-summary-helper.byphil.eu/assets/shots/aish-hero-en.webp","mainEntityOfPage":"https://ai-summary-helper.byphil.eu/sv/blog/ai-apps-mcp.html","author":{"@id":"https://byphil.eu/#org"},"publisher":{"@type":"Organization","@id":"https://byphil.eu/#org","name":"byphil","url":"https://byphil.eu/"}},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"AI Summary Helper","item":"https://ai-summary-helper.byphil.eu/"},{"@type":"ListItem","position":2,"name":"Blog","item":"https://ai-summary-helper.byphil.eu/sv/blog/"},{"@type":"ListItem","position":3,"name":"Använd ditt bibliotek i Claude, LM Studio och andra AI-appar","item":"https://ai-summary-helper.byphil.eu/sv/blog/ai-apps-mcp.html"}]}]}</script></head>
+<body>
+
+<a href="#main" class="skip-link">Hoppa till innehållet</a>
+
+<header class="nav nav--pill" id="siteNav">
+  <div class="wrap nav-pill-row">
+    <a href="../index.html" class="wordmark" aria-label="AI Summary Helper">
+      <img src="../../assets/icon.svg" alt="">
+      AI Summary Helper
+    </a>
+    <nav class="pill" aria-label="Primär">
+      <a href="../index.html#features" data-sec="features">Funktioner</a>
+      <a href="../index.html#see-it" data-sec="see-it">Demo</a>
+      <a href="https://chromewebstore.google.com/detail/ai-summary-helper-openai/hldbejcjaedipeegjcinmhejdndchkmb" class="pill-cta" target="_blank" rel="noopener">Lägg till i Chrome</a>
+    </nav>
+    <div class="nav-tools">
+      <button type="button" class="tool-btn" id="sendBtn" data-send="" hidden="" aria-label="Skicka den här sidan till min dator" title="Skicka till min dator"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="3" y="4.5" width="18" height="12" rx="2" stroke="currentColor" stroke-width="1.6"></rect><path d="M8 20h8M12 16.5V20M12 13V8m0 0-2.2 2.2M12 8l2.2 2.2" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"></path></svg></button>
+      <button type="button" class="tool-btn" id="langBtn" aria-label="Språk" aria-controls="mobileMenu"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.6"></circle><path d="M3 12h18M12 3c2.6 2.7 3.9 5.7 3.9 9s-1.3 6.3-3.9 9c-2.6-2.7-3.9-5.7-3.9-9S9.4 5.7 12 3Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"></path></svg></button>
+      <button type="button" class="theme-toggle" id="themeToggle" aria-label="Växla till ljust läge">
+        <svg class="icon-moon" viewBox="0 0 24 24" fill="none"><path d="M20 14.5A8.5 8.5 0 1 1 9.5 4a6.8 6.8 0 0 0 10.5 10.5Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"></path></svg>
+        <svg class="icon-sun" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="4.2" stroke="currentColor" stroke-width="1.6"></circle><path d="M12 2.5v2.4M12 19.1v2.4M4.4 4.4l1.7 1.7M17.9 17.9l1.7 1.7M2.5 12h2.4M19.1 12h2.4M4.4 19.6l1.7-1.7M17.9 6.1l1.7-1.7" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"></path></svg>
+      </button>
+    </div>
+    <button type="button" class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="mobileMenu" aria-label="Öppna meny">
+      <svg viewBox="0 0 24 24" fill="none"><path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"></path></svg>
+    </button>
+  </div>
+  <div class="mobile-menu" id="mobileMenu" hidden="">
+    <div class="wrap mm-inner">
+      <nav class="mm-links" aria-label="Mobil">
+        <a href="../index.html#features"><span class="mm-n">01</span>Funktioner</a>
+        <a href="../index.html#see-it"><span class="mm-n">02</span>Demo</a>
+        <a href="../../education/"><span class="mm-n">03</span>Utbildning</a>
+        <a href="./" aria-current="page"><span class="mm-n">04</span>Blogg</a>
+          <a href="pocket-alternative.html" class="mm-sub">Pocket-alternativ: vad som spelar roll</a>
+          <a href="egen-nyckel-egen-modell.html" class="mm-sub">Din nyckel. Din modell. Din data.</a>
+          <a href="kontrollera-en-ai-sammanfattning-vid-kallan.html" class="mm-sub">Granska sammanfattningen mot källan</a>
+          <a href="markera-eller-fraga.html" class="mm-sub">Ställ frågor om dina markeringar</a>
+        <a href="https://github.com/philffm/ai-summary-helper/" target="_blank" rel="noopener"><span class="mm-n">05</span>GitHub</a>
+      </nav>
+      <div class="mm-lang">
+        <button type="button" class="lang-card" id="langCard"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.6"></circle><path d="M3 12h18M12 3c2.6 2.7 3.9 5.7 3.9 9s-1.3 6.3-3.9 9c-2.6-2.7-3.9-5.7-3.9-9S9.4 5.7 12 3Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"></path></svg><span class="lang-card-cur">Engelska</span><small>24 språk</small><b aria-hidden="true">→</b></button>
+        <p class="mm-lang-h">Språk · 24</p>
+        <label class="lang-search"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="11" cy="11" r="6.5" stroke="currentColor" stroke-width="1.7"></circle><path d="m16 16 4 4" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"></path></svg><input type="search" id="langSearch" placeholder="Sök språk…" autocomplete="off" aria-label="Sök språk" spellcheck="false"></label>
+        <div class="lang-groups" id="langGroups">
+          <div class="lang-group"><p class="lang-group-h">Populära</p><div class="lang-pills" data-no-translate=""><a href="/" class="lang-pill" data-loc="en" lang="en" hreflang="en" data-q="english english en">English</a><a href="/de/" class="lang-pill" data-loc="de" lang="de" hreflang="de" data-q="deutsch german de">Deutsch</a><a href="/fr/" class="lang-pill" data-loc="fr" lang="fr" hreflang="fr" data-q="français french fr">Français</a><a href="/es/" class="lang-pill" data-loc="es" lang="es" hreflang="es" data-q="español spanish es">Español</a><a href="/zh/" class="lang-pill" data-loc="zh" lang="zh-CN" hreflang="zh-CN" data-q="简体中文 chinese simplified zh">简体中文</a><a href="/ja/" class="lang-pill" data-loc="ja" lang="ja" hreflang="ja" data-q="日本語 japanese ja">日本語</a><a href="/ru/" class="lang-pill" data-loc="ru" lang="ru" hreflang="ru" data-q="русский russian ru">Русский</a></div></div>
+          <div class="lang-group"><p class="lang-group-h">Europa</p><div class="lang-pills" data-no-translate=""><a href="/pt/" class="lang-pill" data-loc="pt" lang="pt" hreflang="pt" data-q="português portuguese pt">Português</a><a href="/nl/" class="lang-pill" data-loc="nl" lang="nl" hreflang="nl" data-q="nederlands dutch nl">Nederlands</a><a href="/it/" class="lang-pill" data-loc="it" lang="it" hreflang="it" data-q="italiano italian it">Italiano</a><a href="/uk/" class="lang-pill" data-loc="uk" lang="uk" hreflang="uk" data-q="українська ukrainian uk">Українська</a><a href="/tr/" class="lang-pill" data-loc="tr" lang="tr" hreflang="tr" data-q="türkçe turkish tr">Türkçe</a><a href="/pl/" class="lang-pill" data-loc="pl" lang="pl" hreflang="pl" data-q="polski polish pl">Polski</a><a href="/sv/" class="lang-pill" data-loc="sv" lang="sv" hreflang="sv" data-q="svenska swedish sv">Svenska</a><a href="/da/" class="lang-pill" data-loc="da" lang="da" hreflang="da" data-q="dansk danish da">Dansk</a><a href="/no/" class="lang-pill" data-loc="no" lang="nb" hreflang="nb" data-q="norsk norwegian no">Norsk</a><a href="/fi/" class="lang-pill" data-loc="fi" lang="fi" hreflang="fi" data-q="suomi finnish fi">Suomi</a></div></div>
+          <div class="lang-group"><p class="lang-group-h">Asien och fler</p><div class="lang-pills" data-no-translate=""><a href="/zh-tw/" class="lang-pill" data-loc="zh-tw" lang="zh-TW" hreflang="zh-TW" data-q="繁體中文 chinese traditional zh-tw">繁體中文</a><a href="/ko/" class="lang-pill" data-loc="ko" lang="ko" hreflang="ko" data-q="한국어 korean ko">한국어</a><a href="/hi/" class="lang-pill" data-loc="hi" lang="hi" hreflang="hi" data-q="हिन्दी hindi hi">हिन्दी</a><a href="/vi/" class="lang-pill" data-loc="vi" lang="vi" hreflang="vi" data-q="tiếng việt vietnamese vi">Tiếng Việt</a><a href="/id/" class="lang-pill" data-loc="id" lang="id" hreflang="id" data-q="bahasa indonesia indonesian id">Bahasa Indonesia</a><a href="/th/" class="lang-pill" data-loc="th" lang="th" hreflang="th" data-q="ไทย thai th">ไทย</a><a href="/ar/" class="lang-pill" data-loc="ar" lang="ar" hreflang="ar" data-q="العربية arabic ar">العربية</a></div></div>
+          <p class="lang-empty" hidden="">Inga träffar</p>
+        </div>
+      </div>
+      <div class="mm-posts" aria-label="Blogg">
+          <p class="mm-posts-h">Från bloggen</p>
+          <a href="pocket-alternative.html" class="mm-post"><span class="mega-tag">Jämför</span><strong>Pocket-alternativ: Det här är viktigt</strong><span>Byt läs-senare-verktyg utan att förlora ditt arkiv</span></a>
+          <a href="egen-nyckel-egen-modell.html" class="mm-post"><span class="mega-tag">Integritetspolicy</span><strong>Din nyckel. Din modell. Din data.</strong><span>Varför bring-your-own-key slår ännu ett abonnemang</span></a>
+          <a href="kontrollera-en-ai-sammanfattning-vid-kallan.html" class="mm-post"><span class="mega-tag">Tillit</span><strong>Granska en AI-sammanfattning mot källan</strong><span>Dubbelkolla AI-resultat på under en minut</span></a>
+          <a href="markera-eller-fraga.html" class="mm-post"><span class="mega-tag">Så gör du</span><strong>Ställ frågor om dina markeringar</strong><span>Förvandla dina markeringar till svar</span></a>
+          <a href="en-sammanfattning-i-stallet-for-40-floden.html" class="mm-post"><span class="mega-tag">Flöden</span><strong>En sammanfattning istället för 40 flöden</strong><span>Ett dagligt sammandrag av allt du följer</span></a>
+          <a href="sok-och-taggar-utan-moln.html" class="mm-post"><span class="mega-tag">Under huven</span><strong>Sökning och taggar utan molnet</strong><span>Hur allt stannar lokalt på din enhet</span></a>
+          <a href="./" class="mm-all">Alla inlägg →</a>
+        </div>
+      <div class="mm-bottom">
+        <a href="https://chromewebstore.google.com/detail/ai-summary-helper-openai/hldbejcjaedipeegjcinmhejdndchkmb" class="pill-cta mm-cta" data-desktop-cta="" target="_blank" rel="noopener">Lägg till i Chrome</a>
+        <button type="button" class="pill-cta mm-cta" data-send="" hidden="">Skicka till min dator</button>
+        <div class="mm-row">
+          <a href="https://addons.mozilla.org/en-US/firefox/addon/ai-summary-helper/" target="_blank" rel="noopener">Firefox</a>
+          <a href="../index.html#phone">Android · Beta</a>
+          <a href="https://byphil.eu/#account">Mitt konto</a>
+        </div>
+        
+        <button type="button" class="theme-toggle-mobile" id="themeToggleMobile">
+          <span id="themeToggleMobileLabel">Växla till ljust läge</span>
+          <svg class="icon-moon" viewBox="0 0 24 24" fill="none"><path d="M20 14.5A8.5 8.5 0 1 1 9.5 4a6.8 6.8 0 0 0 10.5 10.5Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"></path></svg>
+          <svg class="icon-sun" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="4.2" stroke="currentColor" stroke-width="1.6"></circle><path d="M12 2.5v2.4M12 19.1v2.4M4.4 4.4l1.7 1.7M17.9 17.9l1.7 1.7M2.5 12h2.4M19.1 12h2.4M4.4 19.6l1.7-1.7M17.9 6.1l1.7-1.7" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"></path></svg>
+        </button>
+      </div>
+    </div>
+  </div>
+</header>
+
+<main id="main">
+  <section class="hero--photo post-stage">
+    <img class="hero-bg" src="../../assets/photo/colleagues-laptop-office-800.webp" srcset="../../assets/photo/colleagues-laptop-office-800.webp 800w, ../../assets/photo/colleagues-laptop-office-1600.webp 1600w" sizes="100vw" width="1600" height="893" alt="" fetchpriority="high" decoding="async" style="--bgpos:50% 50%">
+    <p class="hero-credit">Illustration, AI-genererad</p>
+    <div class="wrap">
+      <div class="post-hero">
+      <span class="blog-date">Guide · Oktober 2026</span>
+      <h1>Använd ditt bibliotek i Claude, LM Studio och andra AI-appar</h1>
+      <p class="post-sub">Din AI-app glömmer allt du har läst. AI Summary Helper kommer ihåg det. Koppla ihop dem på din egen dator så kan appen söka bland dina sparade artiklar, citera dina markeringar och ange dina källor.</p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <div class="prose" data-vgroup="">
+        <p>AI Summary Helper kan dela ditt bibliotek med AI-appar som stöder Model Context Protocol (MCP): Claude Desktop, LM Studio, Cursor, VS Code, Jan och lokala agenter. Din app ställer en fråga, AI Summary Helper slår upp svaret bland dina sparade artiklar, och svaret går direkt tillbaka till appen på din dator.</p>
+        <figure class="post-figure post-video" data-blog-video="mcp">
+          <div class="post-video-in">
+            <button class="fvideo-open post-video-open" type="button"><span class="sr-only">Spela upp videon</span>
+              <video muted="" playsinline="" loop="" preload="none" width="360" height="520" poster="../../assets/blog/video/mcp-en.jpg">
+            <source src="../../assets/blog/video/mcp-en.mp4" type="video/mp4">
+          <track data-seo-video="" kind="captions" src="../../assets/blog/video/mcp-en.vtt" srclang="en" label="English"></video>
+              <span class="post-video-play" aria-hidden="true">▶</span>
+            </button>
+            <figcaption>Video: fråga din AI-app om din läsning, med citat, vad som är på tur och en årssammanfattning.</figcaption>
+          <div data-seo-video="" class="vtext"><p class="vtext-h">Transcript · 0:27</p><ul><li>Your AI app has never read what you read.</li><li>Claude Desktop, LM Studio or Cursor can now search your library and quote your highlights.</li><li>Ask what is due, let it save the best from your feeds, or ask for your year, wrapped.</li><li>Nothing goes through our server, and you choose what they may read.</li></ul></div></div>
+        </figure>
+        <p>Funktionen är avstängd som standard. Inget passerar våra servrar: tillägget och appen pratar med varandra via ett litet hjälpprogram på din dator, <code>aish-mcp</code>, som varken sparar artiklar eller vidarebefordrar något någon annanstans.</p>
+
+        <h2>Vad du kan fråga</h2>
+        <ul>
+          <li><strong>Fråga det du har läst, inte internet.</strong> ”Vad har jag sparat om AI och övervakning? Gruppera efter tema och berätta var artiklarna skiljer sig åt.”</li>
+          <li><strong>Skriv utifrån dina egna källor.</strong> ”Skriv ett utkast till ett inlägg om AI:s koldioxidavtryck och citera mina markeringar.”</li>
+          <li><strong>Besvara frågan i en samling.</strong> ”Använd min samling om inflation. Besvara frågan enbart utifrån dessa källor och berätta vad som saknas.”</li>
+          <li><strong>Kom ikapp med sparade artiklar.</strong> ”Vad står på tur den här veckan från min spara till senare-lista? Ge mig en femminutersversion av varje.”</li>
+          <li><strong>Prioritera i dina flöden.</strong> ”Gå igenom dagens olästa flödesinlägg om AI och berätta vilka tre som är värda att läsa.”</li>
+          <li><strong>Se ditt läsår.</strong> ”Skapa min årssammanfattning för läsningen 2026: toppämnen, mest aktiva månad och artiklarna som präglade året.”</li>
+          <li><strong>Låt en agent spara åt dig.</strong> ”Hitta tre bra källor om local-first-mjukvara och spara dem i min AISH-inkorg med en anteckning.”</li>
+        </ul>
+        <p>Med en lokal modell i LM Studio fungerar allt detta även med nätverket avstängt.</p>
+
+        <h2>Kom igång</h2>
+        <p>Du behöver AI Summary Helper i Chrome, Edge eller Brave, <a href="https://nodejs.org/" target="_blank" rel="noopener">Node.js</a> 20 eller senare, samt en MCP-app.</p>
+        <ol>
+          <li><strong>Slå på det.</strong> Öppna Inställningar → AI-appar (MCP) i AI Summary Helper och aktivera <em>Låt AI-appar på den här datorn använda mitt bibliotek</em>.</li>
+          <li><strong>Hämta din parkopplingskod.</strong> Kör följande i en terminal: <code>npx -y aish-mcp pair</code>. Den visar en parkopplingskod och sparar den i din användarmapp. Klistra in koden i inställningspanelen och välj Anslut.</li>
+          <li><strong>Lägg till AI Summary Helper i din app.</strong> Använd kodavsnittet för din app nedan, stäng sedan appen helt och öppna den igen.</li>
+          <li><strong>Kontrollera anslutningen.</strong> Inställningspanelen visar <em>Ansluten</em> så snart din app körs. Fråga din app något om ditt bibliotek: varje anrop den gör syns under Senaste aktivitet i panelen.</li>
+        </ol>
+
+        <h3>Claude Desktop</h3>
+        <p>Settings → Developer → Edit Config, lägg sedan till:</p>
+<pre><code>{
+  "mcpServers": {
+    "aish": { "command": "npx", "args": ["-y", "aish-mcp"] }
+  }
+}</code></pre>
+        <p>Om Claude Desktop inte kan hitta <code>npx</code>, använd dess fullständiga sökväg, som <code>which npx</code> visar i en terminal (till exempel <code>/opt/homebrew/bin/npx</code>).</p>
+
+        <h3>Cursor</h3>
+        <p>I <code>~/.cursor/mcp.json</code> (alla projekt) eller <code>.cursor/mcp.json</code> (ett projekt), lägg till samma <code>"aish"</code> -post som för Claude Desktop.</p>
+
+        <h3>VS Code</h3>
+        <p>I <code>.vscode/mcp.json</code>:</p>
+<pre><code>{
+  "servers": {
+    "aish": { "type": "stdio", "command": "npx", "args": ["-y", "aish-mcp"] }
+  }
+}</code></pre>
+
+        <h3>LM Studio och andra appar</h3>
+        <p>Appar med en <code>mcpServers</code> -inställning (LM Studios <code>mcp.json</code>, Jan och de flesta andra) använder samma post som Claude Desktop. Appar som bara ansluter via HTTP kan använda <code>npx -y aish-mcp --http</code> på <code>http://127.0.0.1:47616/</code>, med headern <code>Authorization: Bearer &lt;din parkopplingskod&gt;</code>. För en lokal modell, välj en som har stöd för tool calling, till exempel Qwen 3 eller Llama 3.1 och senare.</p>
+
+        <h2>Vad din app kan göra</h2>
+        <table>
+          <thead><tr><th>Verktyg</th><th>Funktioner</th><th>Kräver</th></tr></thead>
+          <tbody>
+            <tr><td><code>search_library</code></td><td>Sök bland dina sparade artiklar, valfritt filtrerat på tagg, datum eller samling</td><td>Ditt bibliotek</td></tr>
+            <tr><td><code>get_article</code></td><td>En artikel med dess sammanfattning och markeringar</td><td>Ditt bibliotek</td></tr>
+            <tr><td><code>list_highlights</code></td><td>Dina markeringar, nyast först</td><td>Ditt bibliotek</td></tr>
+            <tr><td><code>list_due</code></td><td>Sparade artiklar som är på tur snart</td><td>Ditt bibliotek</td></tr>
+            <tr><td><code>list_collections</code>, <code>get_collection</code></td><td>Dina samlingar och deras källor</td><td>Ditt bibliotek</td></tr>
+            <tr><td><code>library_stats</code></td><td>Endast statistik: sparade över tid, populäraste taggar och webbplatser, sinnesstämning, markeringar</td><td>Ditt bibliotek</td></tr>
+            <tr><td><code>get_article</code> med fulltext</td><td>Hela den sparade artikeltexten som ren text</td><td>Fullständig artikeltext</td></tr>
+            <tr><td><code>list_feed_items</code></td><td>Inlägg från dina flödesprenumerationer</td><td>Flöden</td></tr>
+            <tr><td><code>save_url</code></td><td>Spara en länk till din inkorg med en anteckning, märkt som tillagd av en AI-app</td><td>Spara länkar</td></tr>
+          </tbody>
+        </table>
+        <p>Endast <em>Ditt bibliotek</em> är aktiverat när du slår på funktionen. Slå på Fullständig artikeltext, Flöden och Spara länkar i inställningspanelen om du vill använda dem; ändringarna gäller vid nästa anrop utan att du behöver återansluta. Din app kan inte redigera eller radera något i AI Summary Helper.</p>
+
+        <h2>Integritet och säkerhet</h2>
+        <ul>
+          <li><strong>Inget går via våra servrar.</strong> Data går från din webbläsare till hjälpprogrammet och vidare till appen på din dator. Vad appen sedan skickar till sin modell beror på vilken app och modell du har valt. En lokal modell behåller allt på din maskin.</li>
+          <li><strong>Artiklar du taggar med <code>private</code> visas aldrig</strong>, varken i sökresultat, statistik eller samlingar. Du kan välja en annan tagg i inställningspanelen.</li>
+          <li><strong>Endast din dator kan ansluta.</strong> Hjälpprogrammet lyssnar endast på 127.0.0.1, så inget annat på ditt nätverk kan nå det. Webbplatser du besöker kan inte heller använda det: det accepterar endast AI Summary Helpers egen tilläggsadress, och varje anslutning måste innehålla din parkopplingskod.</li>
+          <li><strong>Du kan se varje anrop.</strong> Inställningspanelen visar de senaste 50 anropen med verktygsnamn och tidpunkt, aldrig innehållet.</li>
+          <li><strong>Du kan bryta anslutningen när som helst.</strong> Stäng av funktionen eller välj Koppla från. Kör <code>npx -y aish-mcp reset</code> för att göra den gamla parkopplingskoden ogiltig.</li>
+          <li><strong>Sparade sidor är text från webben.</strong> Din app instrueras att behandla dem som information och inte som instruktioner, men en sparad sida kan ändå försöka vilseleda en AI. Låt behörigheten Spara länkar vara avstängd om du inte använder den.</li>
+        </ul>
+
+        <h2>Om något inte fungerar</h2>
+        <table>
+          <thead><tr><th>Du ser</th><th>Åtgärd</th></tr></thead>
+          <tbody>
+            <tr><td>Panelen visar <em>Inte ansluten</em></td><td>Din AI-app körs inte eller är inte konfigurerad än. Öppna den, eller kör <code>npx -y aish-mcp</code> i en terminal för att testa anslutningen.</td></tr>
+            <tr><td>Din app visar inga AI Summary Helper-verktyg, eller saknar nya efter en uppdatering</td><td>Stäng appen helt och öppna den igen. Vissa appar läser bara in verktygslistan när de startar.</td></tr>
+            <tr><td>”AISH is not running”</td><td>Din webbläsare är stängd eller så är funktionen avstängd. Öppna webbläsaren och kontrollera inställningspanelen.</td></tr>
+            <tr><td>”Scope … is not enabled”</td><td>Din app efterfrågade något du inte har tillåtit. Slå på det i inställningspanelen om du vill använda det.</td></tr>
+            <tr><td>Panelen ansluter aldrig efter att du klistrat in koden</td><td>Kör <code>npx -y aish-mcp pair</code> och klistra in koden den visar igen. Den ändras efter <code>reset</code>.</td></tr>
+          </tbody>
+        </table>
+        <p>Det går utmärkt att köra flera AI-appar samtidigt – de delar på samma anslutning.</p>
+
+        <p><em>Relaterat: <a href="digital-sovereignty-for-individuals.html">Digital suveränitet för individer</a>.</em></p>
+
+        <div class="post-cta">
+          <p>AI Summary Helper är ett gratis tillägg för Chrome.</p>
+          <a href="https://chromewebstore.google.com/detail/ai-summary-helper-openai/hldbejcjaedipeegjcinmhejdndchkmb" target="_blank" rel="noopener" class="btn-primary">Lägg till i Chrome</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<div class="vfeed-labels" hidden="">
+  <span data-l="close">Stäng</span><span data-l="sound">Ljud på</span><span data-l="mute">Ljud av</span><span data-l="hint">Svep uppåt för nästa video</span><span data-l="prev">Föregående video</span><span data-l="next">Nästa video</span>
+  <span data-l="share">Dela</span><span data-l="copied">Länken kopierad</span>
+  <span data-l="add_chrome">Lägg till i Chrome — helt gratis</span><span data-l="add_firefox">Lägg till i Firefox — det är gratis</span><span data-l="add_browser">Lägg till i din webbläsare — det är gratis</span>
+  <a data-l="try" href="../../bookmarklet.html">Testa i din webbläsare — det är gratis</a>
+</div>
+<footer>
+  <div class="wrap">
+    <div class="footer-inner">
+      <div class="wordmark"><img src="../../assets/icon.svg" alt="">AI Summary Helper</div>
+      <div class="foot-links">
+        <a href="https://github.com/philffm/ai-summary-helper/" target="_blank" rel="noopener">Källkod på GitHub</a>
+        <a href="../../education/">För utbildning</a>
+        <a href="../integritet.html">Integritetspolicy</a>
+        <a href="#" data-analytics-settings="">Analysinställningar</a>
+        <a href="https://byphil.eu/terms.html#impressum" target="_blank" rel="noopener">Impressum</a>
+      </div>
+    </div>
+    <div class="copyright">© 2026 Phil Wornath. En del av <a href="https://byphil.eu/" class="credit-link">byphil.eu ↗</a> — oberoende mjukvara utvecklad i Tyskland.<br>
+      Designad och utvecklad av <a href="https://philwornath.com/" target="_blank" rel="noopener" class="credit-link">philwornath.com ↗</a>
+    </div>
+  </div>
+</footer>
+
+<script src="../../assets/main.js"></script>
+
+
+</body></html>

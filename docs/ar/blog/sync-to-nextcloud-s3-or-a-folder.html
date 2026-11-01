@@ -1,0 +1,222 @@
+<!DOCTYPE html><html lang="ar" dir="rtl"><head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#08090C">
+<title>مزامنة مكتبة القراءة مشفرة مع Nextcloud أو S3 أو مجلد محلي — AI Summary Helper</title>
+<meta name="description" content="خطوة بخطوة: حافظ على مزامنة مقالاتك المحفوظة وإبرازاتك وملاحظاتك بين أجهزتك عبر Nextcloud الخاص بك أو حاوية S3 أو مجلد محلي، مع التشفير مباشرة في المتصفح.">
+
+<script>
+  (function(){
+    try {
+      var saved = localStorage.getItem('aish_theme');
+      var theme = saved === 'light' || saved === 'dark'
+        ? saved
+        : (window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
+      document.documentElement.setAttribute('data-theme', theme);
+    } catch (e) {
+      document.documentElement.setAttribute('data-theme', 'dark');
+    }
+  })();
+</script>
+
+<link rel="icon" type="image/svg+xml" href="../../assets/icon.svg">
+<link rel="stylesheet" href="../../assets/styles.css">
+<script src="../../assets/analytics.js"></script>
+<link rel="alternate" hreflang="x-default" href="https://ai-summary-helper.byphil.eu/blog/sync-to-nextcloud-s3-or-a-folder.html"><link rel="alternate" hreflang="en" href="https://ai-summary-helper.byphil.eu/blog/sync-to-nextcloud-s3-or-a-folder.html"><link rel="alternate" hreflang="de" href="https://ai-summary-helper.byphil.eu/de/blog/sync-mit-nextcloud-s3-oder-ordner.html"><link rel="alternate" hreflang="fr" href="https://ai-summary-helper.byphil.eu/fr/blog/sync-to-nextcloud-s3-or-a-folder.html"><link rel="alternate" hreflang="es" href="https://ai-summary-helper.byphil.eu/es/blog/sync-to-nextcloud-s3-or-a-folder.html"><link rel="alternate" hreflang="zh-Hans" href="https://ai-summary-helper.byphil.eu/zh/blog/sync-to-nextcloud-s3-or-a-folder.html"><link rel="alternate" hreflang="zh-Hant" href="https://ai-summary-helper.byphil.eu/zh-tw/blog/sync-to-nextcloud-s3-or-a-folder.html"><link rel="alternate" hreflang="ja" href="https://ai-summary-helper.byphil.eu/ja/blog/sync-to-nextcloud-s3-or-a-folder.html"><link rel="alternate" hreflang="ko" href="https://ai-summary-helper.byphil.eu/ko/blog/sync-to-nextcloud-s3-or-a-folder.html"><link rel="alternate" hreflang="pt-BR" href="https://ai-summary-helper.byphil.eu/pt/blog/sync-to-nextcloud-s3-or-a-folder.html"><link rel="alternate" hreflang="hi" href="https://ai-summary-helper.byphil.eu/hi/blog/sync-to-nextcloud-s3-or-a-folder.html"><link rel="alternate" hreflang="vi" href="https://ai-summary-helper.byphil.eu/vi/blog/sync-to-nextcloud-s3-or-a-folder.html"><link rel="alternate" hreflang="nl" href="https://ai-summary-helper.byphil.eu/nl/blog/sync-to-nextcloud-s3-or-a-folder.html"><link rel="alternate" hreflang="it" href="https://ai-summary-helper.byphil.eu/it/blog/sync-to-nextcloud-s3-or-a-folder.html"><link rel="alternate" hreflang="ru" href="https://ai-summary-helper.byphil.eu/ru/blog/sync-to-nextcloud-s3-or-a-folder.html"><link rel="alternate" hreflang="uk" href="https://ai-summary-helper.byphil.eu/uk/blog/sync-to-nextcloud-s3-or-a-folder.html"><link rel="alternate" hreflang="tr" href="https://ai-summary-helper.byphil.eu/tr/blog/sync-to-nextcloud-s3-or-a-folder.html"><link rel="alternate" hreflang="id" href="https://ai-summary-helper.byphil.eu/id/blog/sync-to-nextcloud-s3-or-a-folder.html"><link rel="alternate" hreflang="pl" href="https://ai-summary-helper.byphil.eu/pl/blog/sync-to-nextcloud-s3-or-a-folder.html"><link rel="alternate" hreflang="th" href="https://ai-summary-helper.byphil.eu/th/blog/sync-to-nextcloud-s3-or-a-folder.html"><link rel="alternate" hreflang="ar" href="https://ai-summary-helper.byphil.eu/ar/blog/sync-to-nextcloud-s3-or-a-folder.html"><link rel="alternate" hreflang="sv" href="https://ai-summary-helper.byphil.eu/sv/blog/sync-to-nextcloud-s3-or-a-folder.html"><link rel="alternate" hreflang="da" href="https://ai-summary-helper.byphil.eu/da/blog/sync-to-nextcloud-s3-or-a-folder.html"><link rel="alternate" hreflang="nb" href="https://ai-summary-helper.byphil.eu/no/blog/sync-to-nextcloud-s3-or-a-folder.html"><link rel="alternate" hreflang="fi" href="https://ai-summary-helper.byphil.eu/fi/blog/sync-to-nextcloud-s3-or-a-folder.html"><link rel="canonical" href="https://ai-summary-helper.byphil.eu/ar/blog/sync-to-nextcloud-s3-or-a-folder.html"><meta property="og:site_name" content="AI Summary Helper"><meta property="og:locale" content="ar"><meta property="og:type" content="article"><meta property="og:title" content="مزامنة مكتبة القراءة مشفرة مع Nextcloud أو S3 أو مجلد محلي — AI Summary Helper"><meta property="og:description" content="خطوة بخطوة: حافظ على مزامنة مقالاتك المحفوظة وإبرازاتك وملاحظاتك بين أجهزتك عبر Nextcloud الخاص بك أو حاوية S3 أو مجلد محلي، مع التشفير مباشرة في المتصفح."><meta property="og:image" content="https://ai-summary-helper.byphil.eu/assets/shots/aish-hero-en.webp"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="مزامنة مكتبة القراءة مشفرة مع Nextcloud أو S3 أو مجلد محلي — AI Summary Helper"><meta name="twitter:description" content="خطوة بخطوة: حافظ على مزامنة مقالاتك المحفوظة وإبرازاتك وملاحظاتك بين أجهزتك عبر Nextcloud الخاص بك أو حاوية S3 أو مجلد محلي، مع التشفير مباشرة في المتصفح."><meta name="twitter:image" content="https://ai-summary-helper.byphil.eu/assets/shots/aish-hero-en.webp"><script type="application/ld+json" data-seo="ld">{"@context":"https://schema.org","@graph":[{"@type":"BlogPosting","@id":"https://ai-summary-helper.byphil.eu/ar/blog/sync-to-nextcloud-s3-or-a-folder.html#post","headline":"كيفية مزامنة مكتبة القراءة مشفرة مع Nextcloud أو S3 أو مجلد محلي","description":"خطوة بخطوة: حافظ على مزامنة مقالاتك المحفوظة وإبرازاتك وملاحظاتك بين أجهزتك عبر Nextcloud الخاص بك أو حاوية S3 أو مجلد محلي، مع التشفير مباشرة في المتصفح.","datePublished":"2026-10","inLanguage":"ar","image":"https://ai-summary-helper.byphil.eu/assets/shots/aish-hero-en.webp","mainEntityOfPage":"https://ai-summary-helper.byphil.eu/ar/blog/sync-to-nextcloud-s3-or-a-folder.html","author":{"@id":"https://byphil.eu/#org"},"publisher":{"@type":"Organization","@id":"https://byphil.eu/#org","name":"byphil","url":"https://byphil.eu/"}},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"AI Summary Helper","item":"https://ai-summary-helper.byphil.eu/"},{"@type":"ListItem","position":2,"name":"Blog","item":"https://ai-summary-helper.byphil.eu/ar/blog/"},{"@type":"ListItem","position":3,"name":"كيفية مزامنة مكتبة القراءة مشفرة مع Nextcloud أو S3 أو مجلد محلي","item":"https://ai-summary-helper.byphil.eu/ar/blog/sync-to-nextcloud-s3-or-a-folder.html"}]}]}</script></head>
+<body>
+
+<a href="#main" class="skip-link">الانتقال إلى المحتوى</a>
+
+<header class="nav nav--pill" id="siteNav">
+  <div class="wrap nav-pill-row">
+    <a href="../index.html" class="wordmark" aria-label="AI Summary Helper">
+      <img src="../../assets/icon.svg" alt="">
+      AI Summary Helper
+    </a>
+    <nav class="pill" aria-label="الرئيسي">
+      <a href="../index.html#features" data-sec="features">المميزات</a>
+      <a href="../index.html#see-it" data-sec="see-it">عرض توضيحي</a>
+      <a href="https://chromewebstore.google.com/detail/ai-summary-helper-openai/hldbejcjaedipeegjcinmhejdndchkmb" class="pill-cta" target="_blank" rel="noopener">أضف إلى Chrome</a>
+    </nav>
+    <div class="nav-tools">
+      <button type="button" class="tool-btn" id="sendBtn" data-send="" hidden="" aria-label="إرسال هذه الصفحة إلى حاسوبي" title="إرسال إلى حاسوبي"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="3" y="4.5" width="18" height="12" rx="2" stroke="currentColor" stroke-width="1.6"></rect><path d="M8 20h8M12 16.5V20M12 13V8m0 0-2.2 2.2M12 8l2.2 2.2" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"></path></svg></button>
+      <button type="button" class="tool-btn" id="langBtn" aria-label="اللغة" aria-controls="mobileMenu"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.6"></circle><path d="M3 12h18M12 3c2.6 2.7 3.9 5.7 3.9 9s-1.3 6.3-3.9 9c-2.6-2.7-3.9-5.7-3.9-9S9.4 5.7 12 3Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"></path></svg></button>
+      <button type="button" class="theme-toggle" id="themeToggle" aria-label="التبديل إلى الوضع الفاتح">
+        <svg class="icon-moon" viewBox="0 0 24 24" fill="none"><path d="M20 14.5A8.5 8.5 0 1 1 9.5 4a6.8 6.8 0 0 0 10.5 10.5Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"></path></svg>
+        <svg class="icon-sun" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="4.2" stroke="currentColor" stroke-width="1.6"></circle><path d="M12 2.5v2.4M12 19.1v2.4M4.4 4.4l1.7 1.7M17.9 17.9l1.7 1.7M2.5 12h2.4M19.1 12h2.4M4.4 19.6l1.7-1.7M17.9 6.1l1.7-1.7" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"></path></svg>
+      </button>
+    </div>
+    <button type="button" class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="mobileMenu" aria-label="فتح القائمة">
+      <svg viewBox="0 0 24 24" fill="none"><path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"></path></svg>
+    </button>
+  </div>
+  <div class="mobile-menu" id="mobileMenu" hidden="">
+    <div class="wrap mm-inner">
+      <nav class="mm-links" aria-label="الجوال">
+        <a href="../index.html#features"><span class="mm-n">01</span>المميزات</a>
+        <a href="../index.html#see-it"><span class="mm-n">02</span>عرض توضيحي</a>
+        <a href="../../education/"><span class="mm-n">03</span>التعليم</a>
+        <a href="./" aria-current="page"><span class="mm-n">04</span>المدونة</a>
+          <a href="pocket-alternative.html" class="mm-sub">بديل Pocket: ما يهم حقاً</a>
+          <a href="bring-your-own-key.html" class="mm-sub">مفتاحك. نموذجك. بياناتك.</a>
+          <a href="verify-ai-summary.html" class="mm-sub">مطابقة الملخص مع مصدره الأصلي</a>
+          <a href="highlighting-vs-asking.html" class="mm-sub">اسأل عن مقتطفاتك ونصوصك المحددة</a>
+        <a href="https://github.com/philffm/ai-summary-helper/" target="_blank" rel="noopener"><span class="mm-n">05</span>GitHub</a>
+      </nav>
+      <div class="mm-lang">
+        <button type="button" class="lang-card" id="langCard"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.6"></circle><path d="M3 12h18M12 3c2.6 2.7 3.9 5.7 3.9 9s-1.3 6.3-3.9 9c-2.6-2.7-3.9-5.7-3.9-9S9.4 5.7 12 3Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"></path></svg><span class="lang-card-cur">الإنجليزية</span><small>24 لغة</small><b aria-hidden="true">→</b></button>
+        <p class="mm-lang-h">اللغة · 24</p>
+        <label class="lang-search"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="11" cy="11" r="6.5" stroke="currentColor" stroke-width="1.7"></circle><path d="m16 16 4 4" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"></path></svg><input type="search" id="langSearch" placeholder="البحث عن لغة…" autocomplete="off" aria-label="البحث عن لغة" spellcheck="false"></label>
+        <div class="lang-groups" id="langGroups">
+          <div class="lang-group"><p class="lang-group-h">الشائعة</p><div class="lang-pills" data-no-translate=""><a href="/" class="lang-pill" data-loc="en" lang="en" hreflang="en" data-q="english english en">English</a><a href="/de/" class="lang-pill" data-loc="de" lang="de" hreflang="de" data-q="deutsch german de">Deutsch</a><a href="/fr/" class="lang-pill" data-loc="fr" lang="fr" hreflang="fr" data-q="français french fr">Français</a><a href="/es/" class="lang-pill" data-loc="es" lang="es" hreflang="es" data-q="español spanish es">Español</a><a href="/zh/" class="lang-pill" data-loc="zh" lang="zh-CN" hreflang="zh-CN" data-q="简体中文 chinese simplified zh">简体中文</a><a href="/ja/" class="lang-pill" data-loc="ja" lang="ja" hreflang="ja" data-q="日本語 japanese ja">日本語</a><a href="/ru/" class="lang-pill" data-loc="ru" lang="ru" hreflang="ru" data-q="русский russian ru">Русский</a></div></div>
+          <div class="lang-group"><p class="lang-group-h">أوروبا</p><div class="lang-pills" data-no-translate=""><a href="/pt/" class="lang-pill" data-loc="pt" lang="pt" hreflang="pt" data-q="português portuguese pt">Português</a><a href="/nl/" class="lang-pill" data-loc="nl" lang="nl" hreflang="nl" data-q="nederlands dutch nl">Nederlands</a><a href="/it/" class="lang-pill" data-loc="it" lang="it" hreflang="it" data-q="italiano italian it">Italiano</a><a href="/uk/" class="lang-pill" data-loc="uk" lang="uk" hreflang="uk" data-q="українська ukrainian uk">Українська</a><a href="/tr/" class="lang-pill" data-loc="tr" lang="tr" hreflang="tr" data-q="türkçe turkish tr">Türkçe</a><a href="/pl/" class="lang-pill" data-loc="pl" lang="pl" hreflang="pl" data-q="polski polish pl">Polski</a><a href="/sv/" class="lang-pill" data-loc="sv" lang="sv" hreflang="sv" data-q="svenska swedish sv">Svenska</a><a href="/da/" class="lang-pill" data-loc="da" lang="da" hreflang="da" data-q="dansk danish da">Dansk</a><a href="/no/" class="lang-pill" data-loc="no" lang="nb" hreflang="nb" data-q="norsk norwegian no">Norsk</a><a href="/fi/" class="lang-pill" data-loc="fi" lang="fi" hreflang="fi" data-q="suomi finnish fi">Suomi</a></div></div>
+          <div class="lang-group"><p class="lang-group-h">آسيا والمزيد</p><div class="lang-pills" data-no-translate=""><a href="/zh-tw/" class="lang-pill" data-loc="zh-tw" lang="zh-TW" hreflang="zh-TW" data-q="繁體中文 chinese traditional zh-tw">繁體中文</a><a href="/ko/" class="lang-pill" data-loc="ko" lang="ko" hreflang="ko" data-q="한국어 korean ko">한국어</a><a href="/hi/" class="lang-pill" data-loc="hi" lang="hi" hreflang="hi" data-q="हिन्दी hindi hi">हिन्दी</a><a href="/vi/" class="lang-pill" data-loc="vi" lang="vi" hreflang="vi" data-q="tiếng việt vietnamese vi">Tiếng Việt</a><a href="/id/" class="lang-pill" data-loc="id" lang="id" hreflang="id" data-q="bahasa indonesia indonesian id">Bahasa Indonesia</a><a href="/th/" class="lang-pill" data-loc="th" lang="th" hreflang="th" data-q="ไทย thai th">ไทย</a><a href="/ar/" class="lang-pill" data-loc="ar" lang="ar" hreflang="ar" data-q="العربية arabic ar">العربية</a></div></div>
+          <p class="lang-empty" hidden="">لا توجد نتائج مطابقة</p>
+        </div>
+      </div>
+      <div class="mm-posts" aria-label="المدونة">
+          <p class="mm-posts-h">من المدونة</p>
+          <a href="pocket-alternative.html" class="mm-post"><span class="mega-tag">مقارنة</span><strong>بديل Pocket: ما يهم حقاً</strong><span>الانتقال بين تطبيقات القراءة لاحقاً دون فقدان أرشيفك</span></a>
+          <a href="bring-your-own-key.html" class="mm-post"><span class="mega-tag">الخصوصية</span><strong>مفتاحك. نموذجك. بياناتك.</strong><span>لماذا يتفوق استخدام مفتاحك الخاص (bring-your-own-key) على أي اشتراك آخر</span></a>
+          <a href="verify-ai-summary.html" class="mm-post"><span class="mega-tag">الموثوقية والأمان</span><strong>التحقق من ملخص الذكاء الاصطناعي بمقارنته بالمصدر</strong><span>تدقيق مخرجات الذكاء الاصطناعي في أقل من دقيقة</span></a>
+          <a href="highlighting-vs-asking.html" class="mm-post"><span class="mega-tag">دليل إرشادي</span><strong>اطرح أسئلة حول ما حددته</strong><span>حوّل ما حددته وظللته إلى إجابات</span></a>
+          <a href="feeds-recap.html" class="mm-post"><span class="mega-tag">الخلاصات</span><strong>موجز واحد بدلاً من 40 موجز إخباري</strong><span>ملخص يومي لكل ما تتابعه</span></a>
+          <a href="on-device-architecture.html" class="mm-post"><span class="mega-tag">آلية العمل الداخلية</span><strong>البحث والوسوم بدون سحابة</strong><span>كيف تبقى بياناتك بالكامل داخل جهازك</span></a>
+          <a href="./" class="mm-all">جميع المقالات ←</a>
+        </div>
+      <div class="mm-bottom">
+        <a href="https://chromewebstore.google.com/detail/ai-summary-helper-openai/hldbejcjaedipeegjcinmhejdndchkmb" class="pill-cta mm-cta" data-desktop-cta="" target="_blank" rel="noopener">أضف إلى Chrome</a>
+        <button type="button" class="pill-cta mm-cta" data-send="" hidden="">إرسال إلى حاسوبي</button>
+        <div class="mm-row">
+          <a href="https://addons.mozilla.org/en-US/firefox/addon/ai-summary-helper/" target="_blank" rel="noopener">Firefox</a>
+          <a href="../index.html#phone">Android · Beta</a>
+          <a href="https://byphil.eu/#account">حسابي</a>
+        </div>
+        
+        <button type="button" class="theme-toggle-mobile" id="themeToggleMobile">
+          <span id="themeToggleMobileLabel">التبديل إلى الوضع الفاتح</span>
+          <svg class="icon-moon" viewBox="0 0 24 24" fill="none"><path d="M20 14.5A8.5 8.5 0 1 1 9.5 4a6.8 6.8 0 0 0 10.5 10.5Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"></path></svg>
+          <svg class="icon-sun" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="4.2" stroke="currentColor" stroke-width="1.6"></circle><path d="M12 2.5v2.4M12 19.1v2.4M4.4 4.4l1.7 1.7M17.9 17.9l1.7 1.7M2.5 12h2.4M19.1 12h2.4M4.4 19.6l1.7-1.7M17.9 6.1l1.7-1.7" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"></path></svg>
+        </button>
+      </div>
+    </div>
+  </div>
+</header>
+
+<main id="main">
+  <section class="hero--photo post-stage">
+    <img class="hero-bg" src="../../assets/photo/nas-shelf-laptop-phone-800.webp" srcset="../../assets/photo/nas-shelf-laptop-phone-800.webp 800w, ../../assets/photo/nas-shelf-laptop-phone-1600.webp 1600w" sizes="100vw" width="1600" height="893" alt="" fetchpriority="high" decoding="async" style="--bgpos:60% 55%">
+    <p class="hero-credit">رسم توضيحي، مُولّد بالذكاء الاصطناعي</p>
+    <div class="wrap">
+      <div class="post-hero">
+      <span class="blog-date">دليل إرشادي · October 2026</span>
+      <h1>كيفية مزامنة مكتبة القراءة مشفرة مع Nextcloud أو S3 أو مجلد محلي</h1>
+      <p class="post-sub">مقالاتك المحفوظة وملخصاتك وإبرازاتك وملاحظاتك على جميع أجهزتك، مخزنة حيث تختار أنت، ولا يمكن قراءتها إلا بمفتاحك الخاص. الإعداد يستغرق عشر دقائق فقط، وبدون الحاجة لإنشاء حساب لدينا.</p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <div class="prose">
+        <p><strong>النسخة المختصرة.</strong> في AI Summary Helper، افتح <em>Settings → Sync &amp; backup → Add a place</em>، ثم اختر Nextcloud/WebDAV أو وحدة تخزين متوافقة مع S3 أو مجلداً على حاسوبك، واحتفظ بعبارة المرور المقترحة. يتم تشفير كل شيء في متصفحك قبل رفعه. وعلى حاسوبك الثاني، أضف نفس الموقع وأدخل عبارة المرور. هذا هو كل الإعداد. وتغطي بقية هذه الصفحة كل نوع تخزين، وما يتم مزامنته، وما يجب فعله عند حدوث خطأ ما.</p>
+        <figure class="post-figure post-figure--photo"><img src="../../assets/photo/commuter-train-reading-800.webp" srcset="../../assets/photo/commuter-train-reading-800.webp 800w, ../../assets/photo/commuter-train-reading-1600.webp 1600w" sizes="(max-width: 720px) 92vw, 680px" width="1600" height="893" loading="lazy" decoding="async" alt="رسم توضيحي: مسافر على متن قطار إقليمي يحمل قارئاً إلكترونياً وهاتفاً"><figcaption>مكتبة واحدة، وأجهزة متعددة. رسم توضيحي تم إنشاؤه بالذكاء الاصطناعي.</figcaption></figure>
+        <p>لماذا تفعل هذا بالأساس؟ لأن مكتبة القراءة تستحق الاحتفاظ بها، ولأن أي أداة تعتمد عليها قد تختفي (<a href="digital-sovereignty-for-individuals.html">المزيد حول ذلك هنا</a>). المزامنة مع مساحة تخزين تملكها تعني بقاء مكتبتك واستمرارها بمعزل عن أي تطبيق أو حساب معين.</p>
+
+        <h2>ما يتم مزامنته وما لا يتم مزامنته</h2>
+        <ul>
+          <li><strong>ما تتم مزامنته:</strong> المقالات المحفوظة بنصوصها الكاملة وملخصاتها، والوسوم، والإبرازات، وملاحظاتك وتعليقاتك، والمجموعات.</li>
+          <li><strong>ما لا تتم مزامنته:</strong> مفاتيح API key الخاصة بك، وبيانات تسجيل الدخول، ومعلومات تسجيل دخول المزامنة نفسها، وإعدادات كل جهاز على حدة. النسخ الاحتياطي والمزامنة تستبعد هذه البيانات عن قصد.</li>
+          <li><strong>مقال واحد لكل صفحة:</strong> إذا قمت بحفظ نفس الصفحة على جهازين، فستحصل في النهاية على مقال واحد (حيث يتم دمج الوسوم والحقول المفقودة).</li>
+          <li><strong>دمج التعديلات حقلاً بحقل:</strong> تعديل العنوان على حاسوب وإضافة وسم على حاسوب آخر يتم الاحتفاظ بكليهما. وإذا تم تعديل نفس الحقل على كلا الجهازين، يُعتمد التعديل الأحدث ويُطبق على جميع الأجهزة.</li>
+        </ul>
+
+        <h2>الخطوة 1: اختر مكان حفظ البيانات</h2>
+        <h3>Nextcloud أو خادم WebDAV آخر</h3>
+        <p>الخيار الأفضل إذا كنت تدير خادم Nextcloud بالفعل أو تستخدم خادماً مستضافاً (يقدمه العديد من المزودين الأوروبيين). ستحتاج إلى ثلاثة أمور:</p>
+        <ol>
+          <li><strong>عنوان ملفاتك.</strong> بالنسبة لـ Nextcloud، يبدو بالشكل التالي <code>https://your-server/remote.php/dav/files/your-username/</code>. في Nextcloud، افتح <em>Files → Settings</em> وانسخ عنوان WebDAV الموضح هناك.</li>
+          <li><strong>اسم المستخدم الخاص بك.</strong></li>
+          <li><strong>كلمة مرور التطبيق، وليس كلمة مرورك الرئيسية.</strong> في Nextcloud: <em>Settings → Security → Devices &amp; sessions → create a new app password</em>. إذا أردت يوماً إلغاء الوصول، يمكنك حذف هذا الإدخال فقط.</li>
+        </ol>
+        <p>اختر اسماً للمجلد مثل <code>aish-sync</code>. وسيتم إنشاؤه لك تلقائياً. وتعمل خادم WebDAV الأخرى (العديد من أجهزة NAS و ownCloud) بنفس الطريقة؛ مع اختلاف صيغة العنوان فقط.</p>
+
+        <h3>حاوية تخزين متوافقة مع S3</h3>
+        <p>الخيار الأفضل إذا كنت تفضل التخزين الكائني: مثل AWS S3 أو Cloudflare R2 أو Backblaze B2 أو MinIO وما شابه ذلك. قم بإنشاء حاوية، ثم أنشئ مفتاح وصول <strong>لهذه الحاوية فقط</strong> مع صلاحيات القراءة والكتابة وعرض المحتوى والحذف فيها. لا تستخدم أبداً المفتاح الرئيسي لحسابك. في الإضافة، أدخل عنوان نقطة النهاية (على سبيل المثال <code>https://s3.eu-central-1.amazonaws.com</code>، أو العنوان الذي يعرضه مزود الخدمة لديك)، واسم الحاوية، والمنطقة (اترك القيمة الافتراضية إذا لم يطلب المزود ذلك)، ومُعرّف مفتاح الوصول والمفتاح السري.</p>
+
+        <h3>مجلد على حاسوبك</h3>
+        <p>الخيار الأفضل إذا كان لديك تطبيق آخر ينقل المجلد بالفعل بين أجهزتك: مثل Syncthing أو برنامج المزامنة المكتبي لديك أو iCloud Drive أو محرك أقراص USB. اختر <em>مجلد على هذا الحاسوب</em> وحدد <strong>مجلداً جديداً وفارغاً خاصاً بك</strong>، على سبيل المثال <code>Documents/AISH-sync</code>. لا يقبل Chrome مجلدات Desktop أو Documents أو Downloads نفسها لهذا الغرض، لذا اختر مجلداً فرعياً. يعمل هذا في متصفحي Chrome و Edge على أجهزة الحاسوب. هناك أمران يجب معرفتهما: قد يطلب منك المتصفح السماح بالوصول مرة أخرى بعد إعادة التشغيل (تعرض شاشة الإعدادات زراً لذلك)، وتستمر مزامنة المجلد فقط أثناء تشغيل المتصفح.</p>
+
+        <h2>الخطوة 2: اختر وضع التشفير واحتفظ بالكلمات</h2>
+        <p>عند إضافة الموقع، <em>Encrypted</em> يكون محدداً افتراضياً و <em>Sync my devices</em> هو الغرض المحدد. تقترح الإضافة ست كلمات عشوائية كعبارة مرور لك. يمكنك الضغط على <em>Another suggestion</em> حتى تعجبك التوليفة، أو يمكنك تعيين عبارتك الخاصة (12 حرفاً على الأقل، مع تنبيه إذا كانت ضعيفة).</p>
+        <p>بعد الاتصال، ستظهر لك الكلمات الست مرة واحدة. احفظها في مدير كلمات المرور؛ حيث ينسخها زر النسخ إلى الحافظة ككتلة واحدة مفصولة بشرطات، مما يحافظ عليها في ملفات الإعداد وتطبيقات المراسلة. باستخدام هذه الكلمات يمكنك فتح الموقع على أي جهاز؛ وبدونها، لا يمكن لأي شخص قراءة الملفات بما في ذلك نحن. وعلى الحاسوب الذي أعددت فيه المزامنة، يمكنك الاطلاع عليها مجدداً من إعدادات الموقع، <em>Show passphrase</em>. أما إذا اخترت عبارة المرور الخاصة بك بنفسك، فلن يتم تخزينها في أي مكان، وبالتالي لا تستطيع الإضافة إظهارها.</p>
+        <p>ما يراه مزود التخزين: ملفات مشفرة بأسماء مشفرة، وعددها، وحجمها، ووقت تعديلها. ولا يرى العناوين أو الروابط أو النصوص. يتم تشفير مكتبتك في متصفحك باستخدام AES-256-GCM قبل مغادرة جهازك.</p>
+
+        <h2>الخطوة 3: أضف حاسوبك الثاني</h2>
+        <ol>
+          <li>ثبّت الإضافة وافتح <em>Settings → Sync &amp; backup → Add a place</em>.</li>
+          <li>أدخل تفاصيل الخادم نفسها (أو اختر نفس المجلد).</li>
+          <li>ستكتشف الإضافة أن المجلد يحتوي بالفعل على مكتبة مشفرة وتطلب عبارة المرور. يمكنك كتابة الكلمات بحروف كبيرة أو صغيرة، مع فواصل أو شرطات.</li>
+          <li>ستطلب منك التأكيد على قيامك بعمل نسخة احتياطية لهذا الجهاز أولاً، لأن الانضمام يدمج مكتبة هذا الحاسوب مع المكتبة الموجودة في المجلد، وحيثما وجد اختلاف، يتم اعتماد محتوى المجلد. استخدم <em>Make a backup now</em>.</li>
+          <li>اضغط على <em>Connect</em>. قد تستغرق المزامنة الأولى بعض الوقت إذا كانت المكتبة كبيرة؛ وستعرض الشاشة مستوى التقدم.</li>
+        </ol>
+
+        <h2>النسخ الاحتياطي فقط، والاستعادة، والنشر</h2>
+        <ul>
+          <li><strong>النسخ الاحتياطي فقط.</strong> اختر <em>Backup only</em> بدلاً من <em>Sync my devices</em> وحينها سيقوم الحاسوب بالكتابة إلى الموقع فقط دون القراءة منه مطلقاً. يمكنك الاستعادة من إعدادات الموقع متى احتجت: سيعيد كل شيء، وحيثما يختلف هذا الحاسوب، تكون الأولوية للموقع. ولا يتم حذف أي شيء.</li>
+          <li><strong>النشر على موقعك الإلكتروني.</strong> هناك نوع منفصل من المواقع، <em>Readable</em>، يكتب ملفات نصية بسيطة لموقعك الخاص، فقط للمقالات التي تضع لها وسوماً، مع صفحة عرض اختيارية. تظل الملاحظات والنصوص الكاملة مستبعدة ما لم تقم بتفعيلها، لأن أي شخص يمكنه فتح هذا المجلد يستطيع قراءته. لا تستخدم موقعاً قابلاً للقراءة للبيانات الخاصة.</li>
+        </ul>
+
+        <h2>عند حدوث خطأ ما</h2>
+        <h3>"السماح بالوصول إلى المجلد مجدداً"</h3>
+        <p>يقوم المتصفح بإلغاء إذن الوصول إلى المجلد بعد إعادة التشغيل. اضغط على الزر الموجود في أعلى <em>Sync &amp; backup</em>. وإذا استمر الفشل، فقد يكون المجلد من المجلدات المحمية بواسطة Chrome (مثل Desktop أو Documents أو Downloads أو المجلد الرئيسي لديك): اختر مجلداً فرعياً قمت بإنشائه.</p>
+        <h3>"لم يقبل الخادم اسم المستخدم وكلمة المرور"</h3>
+        <p>بالنسبة لـ Nextcloud، استخدم كلمة مرور التطبيق. تأكد من أن العنوان ينتهي بمجلد اسم المستخدم الخاص بك، وأن تسجيل الدخول بخطوتين لا يحظر كلمة مرور التطبيق.</p>
+        <h3>"عبارة مرور خاطئة"</h3>
+        <p>تحقق من الكلمات: لا تهم حالة الأحرف أو المسافات أو الشرطات، ولكن يجب أن تكون كل كلمة صحيحة. على جهاز تم إعداده مسبقاً، افتح إعدادات الموقع واضغط على <em>Show passphrase</em>. وإذا فقدتها في كل الأماكن، فلن يتمكن أي شخص من فتح الملفات: قم بإزالة الموقع من هنا، وأنشئ موقعاً جديداً، وابدأ مجدداً من المكتبة الموجودة على حاسوبك.</p>
+        <h3>هناك عدد كبير من عمليات الحذف في الانتظار</h3>
+        <p>إذا قام جهاز آخر بحذف العديد من المقالات في وقت واحد، فستطبق الإضافة بضع عمليات فقط وتطلب تأكيدك قبل تنفيذ البقية، حتى لا يتسبب خطأ واحد في إفراغ مكتبتك. تحقق أولاً، ثم اضغط على الزر لتطبيقها.</p>
+        <h3>جهاز حاسوب كان غير متصل لعدة أشهر</h3>
+        <p>بعد مرور ثلاثة أشهر تقريباً، يرسل الحاسوب فقط ما تم تغييره منذ ذلك الحين ولا يحذف أي شيء من تلقاء نفسه، وذلك لضمان عدم عودة المقالات القديمة التي تم حذفها من مكان آخر عن طريق الخطأ.</p>
+
+        <h2>الأسئلة الشائعة</h2>
+        <h3>هل أحتاج إلى إنشاء حساب لديكم؟</h3>
+        <p>لا. تتواصل المزامنة مباشرة من متصفحك إلى مساحة التخزين التي أدخلتها. فنحن لا ندير أي خادم مزامنة.</p>
+        <h3>هل يعمل التطبيق على هاتفي؟</h3>
+        <p>نعم، على Android. يمكن للتطبيق المرافق (ملف APK من <a href="https://github.com/philffm/ai-summary-helper/releases/latest" rel="noopener">إصدارات GitHub</a>؛ وهو غير متوفر على Google Play حتى الآن) الانضمام إلى مكتبتك عبر <em>Settings → Library sync</em>. الطريقة الأسرع هي الرمز: في المتصفح، افتح إعدادات الموقع، واضغط على <em>Show code for the phone</em> وقم بمسحه ضوئياً. يحتوي الرمز على بيانات تسجيل الدخول إلى خادمك، لذا لا تعرضه إلا لهاتفك الخاص. يعرض الهاتف مقالاتك المحفوظة مع ملخصاتها وإبرازاتها، وتتم مزامنة الملاحظات في كلا الاتجاهين. كما تُضاف الصفحات التي تلخصها على الهاتف والفقرات التي تبرزها هناك إلى مكتبتك أيضاً، ولكن فقط للصفحات غير الموجودة بعد: ولا يتم استبدال نص المتصفح الأصلي أبداً. ولا يتوفر تطبيق لهواتف iPhone حتى الآن.</p>
+        <h3>هل يمكنني استخدام أكثر من موقع واحد؟</h3>
+        <p>نعم. أحد الإعدادات الشائعة هو استخدام موقع مشفر واحد للمزامنة بين أجهزة الحاسوب، وموقع آخر مخصص للنسخ الاحتياطي فقط لدى مزود مختلف.</p>
+        <h3>هل وضع مكتبتي على السحابة آمن؟</h3>
+        <p>إنه أكثر أماناً من معظم الحلول، لأن مزود الخدمة لا يحتفظ سوى بملفات مشفرة. ومع ذلك، تظل درجة الأمان مرتبطة بقوة عبارة المرور وأمان جهازك. اقرأ <a href="digital-sovereignty-for-individuals.html">الحدود والقيود بكل شفافية</a>، بما في ذلك أن التشفير لم يخضع لتدقيق مستقل.</p>
+
+        <div class="post-cta">
+          <p>AI Summary Helper هو إضافة متصفح مجانية ومفتوحة المصدر. وتكون المزامنة معطلة حتى تقوم بإضافة موقع.</p>
+          <a href="https://chromewebstore.google.com/detail/ai-summary-helper-openai/hldbejcjaedipeegjcinmhejdndchkmb" target="_blank" rel="noopener" class="btn-primary">أضف إلى Chrome</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="footer-inner">
+      <div class="wordmark"><img src="../../assets/icon.svg" alt="">AI Summary Helper</div>
+      <div class="foot-links">
+        <a href="https://github.com/philffm/ai-summary-helper/" target="_blank" rel="noopener">المصدر على GitHub</a>
+        <a href="../../education/">للتعليم</a>
+        <a href="../privacy.html">الخصوصية</a>
+        <a href="#" data-analytics-settings="">إعدادات التحليلات</a>
+        <a href="https://byphil.eu/terms.html#impressum" target="_blank" rel="noopener">بيانات الموقع والناشر (Impressum)</a>
+      </div>
+    </div>
+    <div class="copyright">© 2026 Phil Wornath. جزء من <a href="https://byphil.eu/" class="credit-link">byphil.eu ↗</a> — برمجيات مستقلة مطوّرة في ألمانيا.<br>
+      تصميم وتطوير <a href="https://philwornath.com/" target="_blank" rel="noopener" class="credit-link">philwornath.com ↗</a>
+    </div>
+  </div>
+</footer>
+
+<script src="../../assets/main.js"></script>
+
+
+</body></html>

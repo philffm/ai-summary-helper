@@ -1,0 +1,222 @@
+<!DOCTYPE html><html lang="ko"><head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#08090C">
+<title>읽기 라이브러리를 Nextcloud, S3 또는 로컬 폴더에 암호화하여 동기화하기 — AI Summary Helper</title>
+<meta name="description" content="단계별 가이드: 저장한 글, 하이라이트, 메모를 브라우저 내 암호화를 통해 개인 Nextcloud, S3 버킷 또는 로컬 폴더에 안전하게 동기화하고 기기 간에 유지하세요.">
+
+<script>
+  (function(){
+    try {
+      var saved = localStorage.getItem('aish_theme');
+      var theme = saved === 'light' || saved === 'dark'
+        ? saved
+        : (window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
+      document.documentElement.setAttribute('data-theme', theme);
+    } catch (e) {
+      document.documentElement.setAttribute('data-theme', 'dark');
+    }
+  })();
+</script>
+
+<link rel="icon" type="image/svg+xml" href="../../assets/icon.svg">
+<link rel="stylesheet" href="../../assets/styles.css">
+<script src="../../assets/analytics.js"></script>
+<link rel="alternate" hreflang="x-default" href="https://ai-summary-helper.byphil.eu/blog/sync-to-nextcloud-s3-or-a-folder.html"><link rel="alternate" hreflang="en" href="https://ai-summary-helper.byphil.eu/blog/sync-to-nextcloud-s3-or-a-folder.html"><link rel="alternate" hreflang="de" href="https://ai-summary-helper.byphil.eu/de/blog/sync-mit-nextcloud-s3-oder-ordner.html"><link rel="alternate" hreflang="fr" href="https://ai-summary-helper.byphil.eu/fr/blog/sync-to-nextcloud-s3-or-a-folder.html"><link rel="alternate" hreflang="es" href="https://ai-summary-helper.byphil.eu/es/blog/sync-to-nextcloud-s3-or-a-folder.html"><link rel="alternate" hreflang="zh-Hans" href="https://ai-summary-helper.byphil.eu/zh/blog/sync-to-nextcloud-s3-or-a-folder.html"><link rel="alternate" hreflang="zh-Hant" href="https://ai-summary-helper.byphil.eu/zh-tw/blog/sync-to-nextcloud-s3-or-a-folder.html"><link rel="alternate" hreflang="ja" href="https://ai-summary-helper.byphil.eu/ja/blog/sync-to-nextcloud-s3-or-a-folder.html"><link rel="alternate" hreflang="ko" href="https://ai-summary-helper.byphil.eu/ko/blog/sync-to-nextcloud-s3-or-a-folder.html"><link rel="alternate" hreflang="pt-BR" href="https://ai-summary-helper.byphil.eu/pt/blog/sync-to-nextcloud-s3-or-a-folder.html"><link rel="alternate" hreflang="hi" href="https://ai-summary-helper.byphil.eu/hi/blog/sync-to-nextcloud-s3-or-a-folder.html"><link rel="alternate" hreflang="vi" href="https://ai-summary-helper.byphil.eu/vi/blog/sync-to-nextcloud-s3-or-a-folder.html"><link rel="alternate" hreflang="nl" href="https://ai-summary-helper.byphil.eu/nl/blog/sync-to-nextcloud-s3-or-a-folder.html"><link rel="alternate" hreflang="it" href="https://ai-summary-helper.byphil.eu/it/blog/sync-to-nextcloud-s3-or-a-folder.html"><link rel="alternate" hreflang="ru" href="https://ai-summary-helper.byphil.eu/ru/blog/sync-to-nextcloud-s3-or-a-folder.html"><link rel="alternate" hreflang="uk" href="https://ai-summary-helper.byphil.eu/uk/blog/sync-to-nextcloud-s3-or-a-folder.html"><link rel="alternate" hreflang="tr" href="https://ai-summary-helper.byphil.eu/tr/blog/sync-to-nextcloud-s3-or-a-folder.html"><link rel="alternate" hreflang="id" href="https://ai-summary-helper.byphil.eu/id/blog/sync-to-nextcloud-s3-or-a-folder.html"><link rel="alternate" hreflang="pl" href="https://ai-summary-helper.byphil.eu/pl/blog/sync-to-nextcloud-s3-or-a-folder.html"><link rel="alternate" hreflang="th" href="https://ai-summary-helper.byphil.eu/th/blog/sync-to-nextcloud-s3-or-a-folder.html"><link rel="alternate" hreflang="ar" href="https://ai-summary-helper.byphil.eu/ar/blog/sync-to-nextcloud-s3-or-a-folder.html"><link rel="alternate" hreflang="sv" href="https://ai-summary-helper.byphil.eu/sv/blog/sync-to-nextcloud-s3-or-a-folder.html"><link rel="alternate" hreflang="da" href="https://ai-summary-helper.byphil.eu/da/blog/sync-to-nextcloud-s3-or-a-folder.html"><link rel="alternate" hreflang="nb" href="https://ai-summary-helper.byphil.eu/no/blog/sync-to-nextcloud-s3-or-a-folder.html"><link rel="alternate" hreflang="fi" href="https://ai-summary-helper.byphil.eu/fi/blog/sync-to-nextcloud-s3-or-a-folder.html"><link rel="canonical" href="https://ai-summary-helper.byphil.eu/ko/blog/sync-to-nextcloud-s3-or-a-folder.html"><meta property="og:site_name" content="AI Summary Helper"><meta property="og:locale" content="ko_KR"><meta property="og:type" content="article"><meta property="og:title" content="읽기 라이브러리를 Nextcloud, S3 또는 로컬 폴더에 암호화하여 동기화하기 — AI Summary Helper"><meta property="og:description" content="단계별 가이드: 저장한 글, 하이라이트, 메모를 브라우저 내 암호화를 통해 개인 Nextcloud, S3 버킷 또는 로컬 폴더에 안전하게 동기화하고 기기 간에 유지하세요."><meta property="og:image" content="https://ai-summary-helper.byphil.eu/assets/shots/aish-hero-en.webp"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="읽기 라이브러리를 Nextcloud, S3 또는 로컬 폴더에 암호화하여 동기화하기 — AI Summary Helper"><meta name="twitter:description" content="단계별 가이드: 저장한 글, 하이라이트, 메모를 브라우저 내 암호화를 통해 개인 Nextcloud, S3 버킷 또는 로컬 폴더에 안전하게 동기화하고 기기 간에 유지하세요."><meta name="twitter:image" content="https://ai-summary-helper.byphil.eu/assets/shots/aish-hero-en.webp"><script type="application/ld+json" data-seo="ld">{"@context":"https://schema.org","@graph":[{"@type":"BlogPosting","@id":"https://ai-summary-helper.byphil.eu/ko/blog/sync-to-nextcloud-s3-or-a-folder.html#post","headline":"읽기 라이브러리를 Nextcloud, S3 또는 로컬 폴더에 암호화하여 동기화하는 방법","description":"단계별 가이드: 저장한 글, 하이라이트, 메모를 브라우저 내 암호화를 통해 개인 Nextcloud, S3 버킷 또는 로컬 폴더에 안전하게 동기화하고 기기 간에 유지하세요.","inLanguage":"ko","image":"https://ai-summary-helper.byphil.eu/assets/shots/aish-hero-en.webp","mainEntityOfPage":"https://ai-summary-helper.byphil.eu/ko/blog/sync-to-nextcloud-s3-or-a-folder.html","author":{"@id":"https://byphil.eu/#org"},"publisher":{"@type":"Organization","@id":"https://byphil.eu/#org","name":"byphil","url":"https://byphil.eu/"}},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"AI Summary Helper","item":"https://ai-summary-helper.byphil.eu/"},{"@type":"ListItem","position":2,"name":"Blog","item":"https://ai-summary-helper.byphil.eu/ko/blog/"},{"@type":"ListItem","position":3,"name":"읽기 라이브러리를 Nextcloud, S3 또는 로컬 폴더에 암호화하여 동기화하는 방법","item":"https://ai-summary-helper.byphil.eu/ko/blog/sync-to-nextcloud-s3-or-a-folder.html"}]}]}</script></head>
+<body>
+
+<a href="#main" class="skip-link">본문으로 건너뛰기</a>
+
+<header class="nav nav--pill" id="siteNav">
+  <div class="wrap nav-pill-row">
+    <a href="../index.html" class="wordmark" aria-label="AI Summary Helper">
+      <img src="../../assets/icon.svg" alt="">
+      AI Summary Helper
+    </a>
+    <nav class="pill" aria-label="기본">
+      <a href="../index.html#features" data-sec="features">기능</a>
+      <a href="../index.html#see-it" data-sec="see-it">데모</a>
+      <a href="https://chromewebstore.google.com/detail/ai-summary-helper-openai/hldbejcjaedipeegjcinmhejdndchkmb" class="pill-cta" target="_blank" rel="noopener">Chrome에 추가</a>
+    </nav>
+    <div class="nav-tools">
+      <button type="button" class="tool-btn" id="sendBtn" data-send="" hidden="" aria-label="이 페이지를 내 컴퓨터로 보내기" title="내 컴퓨터로 보내기"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="3" y="4.5" width="18" height="12" rx="2" stroke="currentColor" stroke-width="1.6"></rect><path d="M8 20h8M12 16.5V20M12 13V8m0 0-2.2 2.2M12 8l2.2 2.2" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"></path></svg></button>
+      <button type="button" class="tool-btn" id="langBtn" aria-label="언어" aria-controls="mobileMenu"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.6"></circle><path d="M3 12h18M12 3c2.6 2.7 3.9 5.7 3.9 9s-1.3 6.3-3.9 9c-2.6-2.7-3.9-5.7-3.9-9S9.4 5.7 12 3Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"></path></svg></button>
+      <button type="button" class="theme-toggle" id="themeToggle" aria-label="라이트 모드로 전환">
+        <svg class="icon-moon" viewBox="0 0 24 24" fill="none"><path d="M20 14.5A8.5 8.5 0 1 1 9.5 4a6.8 6.8 0 0 0 10.5 10.5Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"></path></svg>
+        <svg class="icon-sun" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="4.2" stroke="currentColor" stroke-width="1.6"></circle><path d="M12 2.5v2.4M12 19.1v2.4M4.4 4.4l1.7 1.7M17.9 17.9l1.7 1.7M2.5 12h2.4M19.1 12h2.4M4.4 19.6l1.7-1.7M17.9 6.1l1.7-1.7" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"></path></svg>
+      </button>
+    </div>
+    <button type="button" class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="mobileMenu" aria-label="메뉴 열기">
+      <svg viewBox="0 0 24 24" fill="none"><path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"></path></svg>
+    </button>
+  </div>
+  <div class="mobile-menu" id="mobileMenu" hidden="">
+    <div class="wrap mm-inner">
+      <nav class="mm-links" aria-label="모바일">
+        <a href="../index.html#features"><span class="mm-n">01</span>기능</a>
+        <a href="../index.html#see-it"><span class="mm-n">02</span>데모</a>
+        <a href="../../education/"><span class="mm-n">03</span>교육</a>
+        <a href="./" aria-current="page"><span class="mm-n">04</span>블로그</a>
+          <a href="pocket-alternative.html" class="mm-sub">Pocket 대체 서비스: 가장 중요한 기준</a>
+          <a href="bring-your-own-key.html" class="mm-sub">내 키. 내 모델. 내 데이터.</a>
+          <a href="verify-ai-summary.html" class="mm-sub">요약 내용 원문과 대조하기</a>
+          <a href="highlighting-vs-asking.html" class="mm-sub">하이라이트에 대해 질문하기</a>
+        <a href="https://github.com/philffm/ai-summary-helper/" target="_blank" rel="noopener"><span class="mm-n">05</span>GitHub</a>
+      </nav>
+      <div class="mm-lang">
+        <button type="button" class="lang-card" id="langCard"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.6"></circle><path d="M3 12h18M12 3c2.6 2.7 3.9 5.7 3.9 9s-1.3 6.3-3.9 9c-2.6-2.7-3.9-5.7-3.9-9S9.4 5.7 12 3Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"></path></svg><span class="lang-card-cur">영어</span><small>24개 언어</small><b aria-hidden="true">→</b></button>
+        <p class="mm-lang-h">언어 · 24</p>
+        <label class="lang-search"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="11" cy="11" r="6.5" stroke="currentColor" stroke-width="1.7"></circle><path d="m16 16 4 4" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"></path></svg><input type="search" id="langSearch" placeholder="언어 검색…" autocomplete="off" aria-label="언어 검색" spellcheck="false"></label>
+        <div class="lang-groups" id="langGroups">
+          <div class="lang-group"><p class="lang-group-h">인기</p><div class="lang-pills" data-no-translate=""><a href="/" class="lang-pill" data-loc="en" lang="en" hreflang="en" data-q="english english en">English</a><a href="/de/" class="lang-pill" data-loc="de" lang="de" hreflang="de" data-q="deutsch german de">Deutsch</a><a href="/fr/" class="lang-pill" data-loc="fr" lang="fr" hreflang="fr" data-q="français french fr">Français</a><a href="/es/" class="lang-pill" data-loc="es" lang="es" hreflang="es" data-q="español spanish es">Español</a><a href="/zh/" class="lang-pill" data-loc="zh" lang="zh-CN" hreflang="zh-CN" data-q="简体中文 chinese simplified zh">简体中文</a><a href="/ja/" class="lang-pill" data-loc="ja" lang="ja" hreflang="ja" data-q="日本語 japanese ja">日本語</a><a href="/ru/" class="lang-pill" data-loc="ru" lang="ru" hreflang="ru" data-q="русский russian ru">Русский</a></div></div>
+          <div class="lang-group"><p class="lang-group-h">유럽</p><div class="lang-pills" data-no-translate=""><a href="/pt/" class="lang-pill" data-loc="pt" lang="pt" hreflang="pt" data-q="português portuguese pt">Português</a><a href="/nl/" class="lang-pill" data-loc="nl" lang="nl" hreflang="nl" data-q="nederlands dutch nl">Nederlands</a><a href="/it/" class="lang-pill" data-loc="it" lang="it" hreflang="it" data-q="italiano italian it">Italiano</a><a href="/uk/" class="lang-pill" data-loc="uk" lang="uk" hreflang="uk" data-q="українська ukrainian uk">Українська</a><a href="/tr/" class="lang-pill" data-loc="tr" lang="tr" hreflang="tr" data-q="türkçe turkish tr">Türkçe</a><a href="/pl/" class="lang-pill" data-loc="pl" lang="pl" hreflang="pl" data-q="polski polish pl">Polski</a><a href="/sv/" class="lang-pill" data-loc="sv" lang="sv" hreflang="sv" data-q="svenska swedish sv">Svenska</a><a href="/da/" class="lang-pill" data-loc="da" lang="da" hreflang="da" data-q="dansk danish da">Dansk</a><a href="/no/" class="lang-pill" data-loc="no" lang="nb" hreflang="nb" data-q="norsk norwegian no">Norsk</a><a href="/fi/" class="lang-pill" data-loc="fi" lang="fi" hreflang="fi" data-q="suomi finnish fi">Suomi</a></div></div>
+          <div class="lang-group"><p class="lang-group-h">아시아 및 기타</p><div class="lang-pills" data-no-translate=""><a href="/zh-tw/" class="lang-pill" data-loc="zh-tw" lang="zh-TW" hreflang="zh-TW" data-q="繁體中文 chinese traditional zh-tw">繁體中文</a><a href="/ko/" class="lang-pill" data-loc="ko" lang="ko" hreflang="ko" data-q="한국어 korean ko">한국어</a><a href="/hi/" class="lang-pill" data-loc="hi" lang="hi" hreflang="hi" data-q="हिन्दी hindi hi">हिन्दी</a><a href="/vi/" class="lang-pill" data-loc="vi" lang="vi" hreflang="vi" data-q="tiếng việt vietnamese vi">Tiếng Việt</a><a href="/id/" class="lang-pill" data-loc="id" lang="id" hreflang="id" data-q="bahasa indonesia indonesian id">Bahasa Indonesia</a><a href="/th/" class="lang-pill" data-loc="th" lang="th" hreflang="th" data-q="ไทย thai th">ไทย</a><a href="/ar/" class="lang-pill" data-loc="ar" lang="ar" hreflang="ar" data-q="العربية arabic ar">العربية</a></div></div>
+          <p class="lang-empty" hidden="">검색 결과 없음</p>
+        </div>
+      </div>
+      <div class="mm-posts" aria-label="블로그">
+          <p class="mm-posts-h">블로그 아티클</p>
+          <a href="pocket-alternative.html" class="mm-post"><span class="mega-tag">비교</span><strong>Pocket 대안: What Matters</strong><span>기존 아카이브 손실 없이 '나중에 읽기' 도구 전환하기</span></a>
+          <a href="bring-your-own-key.html" class="mm-post"><span class="mega-tag">개인정보 보호</span><strong>내 키. 내 모델. 내 데이터.</strong><span>또 다른 구독보다 자체 API 키(BYOK) 연동이 더 나은 이유</span></a>
+          <a href="verify-ai-summary.html" class="mm-post"><span class="mega-tag">신뢰성</span><strong>AI 요약과 원문 대조하기</strong><span>1분 안에 AI 결과물 꼼꼼히 검증하기</span></a>
+          <a href="highlighting-vs-asking.html" class="mm-post"><span class="mega-tag">활용 가이드</span><strong>하이라이트 내용에 대해 질문하기</strong><span>표시해 둔 하이라이트를 명확한 답변으로 전환하기</span></a>
+          <a href="feeds-recap.html" class="mm-post"><span class="mega-tag">피드</span><strong>40개의 피드 대신 단 하나의 리캡으로</strong><span>팔로우 중인 모든 콘텐츠를 매일 한눈에 확인하는 다이제스트</span></a>
+          <a href="on-device-architecture.html" class="mm-post"><span class="mega-tag">작동 원리</span><strong>클라우드 없이 안전한 검색과 태그</strong><span>모든 데이터가 내 기기 안에서 안전하게 보관되는 방식</span></a>
+          <a href="./" class="mm-all">전체 글 보기 →</a>
+        </div>
+      <div class="mm-bottom">
+        <a href="https://chromewebstore.google.com/detail/ai-summary-helper-openai/hldbejcjaedipeegjcinmhejdndchkmb" class="pill-cta mm-cta" data-desktop-cta="" target="_blank" rel="noopener">Chrome에 추가</a>
+        <button type="button" class="pill-cta mm-cta" data-send="" hidden="">내 컴퓨터로 보내기</button>
+        <div class="mm-row">
+          <a href="https://addons.mozilla.org/en-US/firefox/addon/ai-summary-helper/" target="_blank" rel="noopener">Firefox</a>
+          <a href="../index.html#phone">Android · 베타</a>
+          <a href="https://byphil.eu/#account">내 계정</a>
+        </div>
+        
+        <button type="button" class="theme-toggle-mobile" id="themeToggleMobile">
+          <span id="themeToggleMobileLabel">라이트 모드로 전환</span>
+          <svg class="icon-moon" viewBox="0 0 24 24" fill="none"><path d="M20 14.5A8.5 8.5 0 1 1 9.5 4a6.8 6.8 0 0 0 10.5 10.5Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"></path></svg>
+          <svg class="icon-sun" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="4.2" stroke="currentColor" stroke-width="1.6"></circle><path d="M12 2.5v2.4M12 19.1v2.4M4.4 4.4l1.7 1.7M17.9 17.9l1.7 1.7M2.5 12h2.4M19.1 12h2.4M4.4 19.6l1.7-1.7M17.9 6.1l1.7-1.7" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"></path></svg>
+        </button>
+      </div>
+    </div>
+  </div>
+</header>
+
+<main id="main">
+  <section class="hero--photo post-stage">
+    <img class="hero-bg" src="../../assets/photo/nas-shelf-laptop-phone-800.webp" srcset="../../assets/photo/nas-shelf-laptop-phone-800.webp 800w, ../../assets/photo/nas-shelf-laptop-phone-1600.webp 1600w" sizes="100vw" width="1600" height="893" alt="" fetchpriority="high" decoding="async" style="--bgpos:60% 55%">
+    <p class="hero-credit">AI 생성 일러스트</p>
+    <div class="wrap">
+      <div class="post-hero">
+      <span class="blog-date">사용 가이드 · 2026년 10월</span>
+      <h1>읽기 라이브러리를 Nextcloud, S3 또는 로컬 폴더에 암호화하여 동기화하는 방법</h1>
+      <p class="post-sub">내가 지정한 위치에 저장되고 내 암호화 키로만 열어볼 수 있는 저장된 글, 요약, 하이라이트, 메모. 별도 계정 가입 없이 10분이면 설정할 수 있습니다.</p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <div class="prose">
+        <p><strong>요약 가이드</strong> AI Summary Helper에서 다음 경로로 이동하세요: <em>설정 → 동기화 및 백업 → 위치 추가</em>, 그 다음 Nextcloud/WebDAV, S3 호환 스토리지 또는 컴퓨터의 로컬 폴더를 선택하고 제안된 암호 문구(Passphrase)를 그대로 보관하세요. 모든 데이터는 업로드되기 전 브라우저 내에서 안전하게 암호화됩니다. 두 번째 컴퓨터에서는 동일한 위치를 추가하고 암호 문구를 입력하기만 하면 됩니다. 설정은 이것으로 끝입니다. 이 페이지의 나머지 부분에서는 스토리지 유형별 안내, 동기화 항목, 문제 해결 방법을 다룹니다.</p>
+        <figure class="post-figure post-figure--photo"><img src="../../assets/photo/commuter-train-reading-800.webp" srcset="../../assets/photo/commuter-train-reading-800.webp 800w, ../../assets/photo/commuter-train-reading-1600.webp 1600w" sizes="(max-width: 720px) 92vw, 680px" width="1600" height="893" loading="lazy" decoding="async" alt="일러스트: 전자책 단말기와 스마트폰을 들고 있는 광역 열차 탑승객"><figcaption>하나의 라이브러리, 여러 기기. AI 생성 일러스트.</figcaption></figure>
+        <p>왜 이렇게 해야 할까요? 읽기 라이브러리는 평생 간직할 가치가 있지만, 특정 서비스는 언제든 사라질 수 있기 때문입니다 (<a href="digital-sovereignty-for-individuals.html">자세한 내용 보기</a>). 내가 소유한 스토리지에 동기화하면 라이브러리가 특정 앱이나 계정의 서비스 종료에 영향받지 않고 영구적으로 유지됩니다.</p>
+
+        <h2>동기화되는 항목과 제외되는 항목</h2>
+        <ul>
+          <li><strong>동기화 대상:</strong> 저장된 글의 전체 본문 및 요약, 태그, 하이라이트, 작성한 메모와 댓글, 컬렉션.</li>
+          <li><strong>동기화 제외 대상:</strong> API 키, 로그인 정보, 동기화 로그인 자격 증명, 기기별 설정. 백업 및 동기화 시 보안을 위해 의도적으로 제외됩니다.</li>
+          <li><strong>페이지당 단일 글:</strong> 두 대의 컴퓨터에서 같은 페이지를 저장한 경우, 하나의 글로 병합됩니다(태그 및 누락된 필드가 통합됨).</li>
+          <li><strong>필드 단위 편집 병합:</strong> 한 컴퓨터에서 제목을 수정하고 다른 컴퓨터에서 태그를 추가해도 둘 다 유지됩니다. 두 기기에서 동일한 필드를 수정한 경우, 더 나중에 변경된 내용이 모든 기기에 우선 적용됩니다.</li>
+        </ul>
+
+        <h2>1단계: 스토리지 위치 선택</h2>
+        <h3>Nextcloud 또는 기타 WebDAV 서버</h3>
+        <p>Nextcloud를 직접 운영 중이거나 호스팅 서비스를 사용하고 있을 때 적합합니다(다수의 유럽 제공업체에서 지원). 세 가지 정보가 필요합니다:</p>
+        <ol>
+          <li><strong>파일 주소.</strong> Nextcloud의 경우 다음과 같은 형태입니다: <code>https://your-server/remote.php/dav/files/your-username/</code>. Nextcloud에서 다음 메뉴를 열고 <em>파일 → 설정</em> 표시된 WebDAV 주소를 복사하세요.</li>
+          <li><strong>사용자 이름.</strong></li>
+          <li><strong>기본 비밀번호가 아닌 앱 비밀번호.</strong> Nextcloud 설정: <em>설정 → 보안 → 기기 및 세션 → 새 앱 비밀번호 생성</em>. 접근 권한을 해제하고 싶을 때는 해당 항목만 삭제하면 됩니다.</li>
+        </ol>
+        <p>다음과 같이 폴더 이름을 지정하세요: <code>aish-sync</code>. 폴더가 자동으로 생성됩니다. 다른 WebDAV 서버(다양한 NAS 기기, ownCloud 등)도 주소 형식만 다를 뿐 동일하게 작동합니다.</p>
+
+        <h3>S3 호환 버킷</h3>
+        <p>AWS S3, Cloudflare R2, Backblaze B2, MinIO 등 오브젝트 스토리지를 선호할 때 적합합니다. 버킷을 생성한 후, 다음 권한을 가진 액세스 키를 생성하세요: <strong>이 버킷 전용 키</strong> (읽기, 쓰기, 목록 조회, 삭제 권한). 계정의 루트/메인 키는 절대 사용하지 마세요. 확장 프로그램에서 엔드포인트 주소(예: <code>https://s3.eu-central-1.amazonaws.com</code> 또는 서비스 제공업체에서 안내하는 주소), 버킷 이름, 리전(제공업체에서 요구하지 않는 경우 기본값 유지), 액세스 키 ID 및 시크릿 키를 입력합니다.</p>
+
+        <h3>컴퓨터의 로컬 폴더</h3>
+        <p>Syncthing, 데스크톱 동기화 클라이언트, iCloud Drive, USB 드라이브 등 기기 간 폴더 동기화 도구를 이미 사용 중일 때 적합합니다. 다음을 선택하세요: <em>이 컴퓨터의 로컬 폴더</em> 그리고 <strong>새로 만든 빈 폴더</strong>를 선택하세요(예: <code>Documents/AISH-sync</code>). Chrome은 바탕화면, 문서, 다운로드 폴더 자체를 직접 지정하는 것을 허용하지 않으므로 하위 폴더를 지정해야 합니다. 이 방식은 PC 환경의 Chrome 및 Edge에서 지원됩니다. 참고 사항: 브라우저 재시작 후 폴더 접근 권한을 다시 요청할 수 있으며(설정 화면에 버튼 표시됨), 브라우저가 실행 중일 때만 폴더 동기화가 유지됩니다.</p>
+
+        <h2>2단계: 암호화 선택 및 암호 단어 보관</h2>
+        <p>위치를 추가할 때 <em>암호화됨</em> 가 기본 선택되어 있으며 <em>내 기기 간 동기화</em> 가 목적으로 설정됩니다. 확장 프로그램에서 6개의 무작위 단어로 구성된 암호 문구를 제안합니다. 마음에 드는 조합이 나올 때까지 <em>다른 단어 제안</em> 버튼을 누르거나 직접 입력할 수도 있습니다(최소 12자 이상, 보안 수준이 낮으면 힌트 제공).</p>
+        <p>연결 후 6개 단어가 한 번 표시됩니다. 이 단어들을 비밀번호 관리자에 저장하세요. 복사 버튼을 누르면 하이픈(-)으로 연결된 형태로 클립보드에 복사되어 설정 파일이나 메시지 앱에 붙여넣기 쉽습니다. 이 암호 문구만 있으면 어떤 기기에서든 위치를 열 수 있지만, 분실 시 개발사를 포함해 그 누구도 파일을 복구할 수 없습니다. 처음 설정한 컴퓨터에서는 해당 위치 설정의 <em>암호 문구 보기</em> 메뉴에서 다시 확인할 수 있습니다. 직접 암호 문구를 입력한 경우에는 어디에도 저장되지 않으므로 확장 프로그램에서 다시 확인할 수 없습니다.</p>
+        <p>스토리지 제공업체가 확인할 수 있는 정보: 암호화된 파일명과 암호화된 파일 내용, 파일 개수, 파일 크기, 변경 시점뿐입니다. 제목, 링크, 본문 내용은 전혀 볼 수 없습니다. 라이브러리는 기기를 떠나기 전 브라우저 내에서 AES-256-GCM으로 안전하게 암호화됩니다.</p>
+
+        <h2>3단계: 두 번째 컴퓨터 추가</h2>
+        <ol>
+          <li>확장 프로그램을 설치하고 다음 경로로 이동하세요: <em>설정 → 동기화 및 백업 → 위치 추가</em>.</li>
+          <li>동일한 서버 정보를 입력합니다(또는 동일한 폴더 선택).</li>
+          <li>확장 프로그램이 폴더에 이미 암호화된 라이브러리가 있음을 감지하고 암호 문구를 요청합니다. 대소문자 구분 없이 공백이나 하이픈으로 구분하여 입력하면 됩니다.</li>
+          <li>기존 라이브러리에 연결하면 현재 컴퓨터의 라이브러리와 폴더의 데이터가 병합되며 충돌 시 폴더 데이터가 우선하므로, 먼저 이 기기의 백업을 생성했는지 확인을 요청합니다. 다음을 이용하세요: <em>지금 백업 만들기</em>.</li>
+          <li>다음 버튼을 누르세요: <em>연결</em>. 라이브러리 용량이 큰 경우 첫 동기화에 다소 시간이 걸릴 수 있으며 화면에 진행 상태가 표시됩니다.</li>
+        </ol>
+
+        <h2>백업 전용, 복원 및 게시</h2>
+        <ul>
+          <li><strong>백업 전용 모드</strong> 다음을 선택하면 <em>백업 전용</em> 대신 <em>내 기기 간 동기화</em> 컴퓨터가 해당 위치에 쓰기만 수행하고 읽어오지는 않습니다. 필요할 때 위치 설정에서 복원하세요. 모든 데이터를 다시 가져오며, 현재 컴퓨터와 데이터가 다를 경우 저장 위치의 데이터가 우선 적용됩니다. 어떤 데이터도 삭제되지 않습니다.</li>
+          <li><strong>웹사이트에 게시</strong> 또 다른 저장 위치 유형인 <em>읽기 가능 (Readable)</em>는 태그가 지정된 글에 한해 웹사이트 게시용 일반 텍스트 파일을 생성하며, 선택적으로 뷰어 페이지도 함께 제공합니다. 해당 폴더에 접근할 수 있는 사람은 누구나 읽을 수 있으므로 직접 활성화하지 않는 한 메모와 전체 본문은 제외됩니다. 개인적인 데이터에는 읽기 가능 위치를 사용하지 마세요.</li>
+        </ul>
+
+        <h2>문제 해결</h2>
+        <h3>"폴더 접근 권한 다시 허용"</h3>
+        <p>브라우저를 재시작하면 폴더 접근 권한이 초기화됩니다. 다음 메뉴 상단의 버튼을 누르세요: <em>동기화 및 백업</em>. 계속 실패하는 경우 Chrome 보호 폴더(바탕화면, 문서, 다운로드 또는 홈 폴더)일 수 있으므로 직접 만든 하위 폴더를 선택하세요.</p>
+        <h3>"서버에서 사용자 이름과 비밀번호를 수락하지 않았습니다"</h3>
+        <p>Nextcloud의 경우 앱 비밀번호를 사용하세요. 주소가 사용자 이름 폴더로 끝나는지 확인하고, 2단계 인증이 앱 비밀번호를 차단하고 있지 않은지 확인하세요.</p>
+        <h3>"잘못된 암호 문구"</h3>
+        <p>단어를 확인하세요. 대소문자, 공백, 하이픈은 상관없지만 모든 단어가 정확해야 합니다. 이미 설정된 컴퓨터에서 위치 설정을 열고 다음 버튼을 누르세요: <em>암호 문구 보기</em>. 모든 기기에서 암호 문구를 분실한 경우 누구도 파일을 열 수 없습니다. 여기서 위치를 삭제하고 새로 생성한 뒤 현재 컴퓨터의 라이브러리부터 다시 시작해야 합니다.</p>
+        <h3>대량 삭제 대기 알림이 표시되는 경우</h3>
+        <p>다른 기기에서 많은 글을 한 번에 삭제한 경우, 실수로 라이브러리가 비워지는 것을 방지하기 위해 일부만 먼저 적용하고 나머지는 사용자에게 확인을 요청합니다. 확인 후 버튼을 눌러 적용하세요.</p>
+        <h3>몇 달 동안 사용하지 않은 컴퓨터</h3>
+        <p>약 3개월이 지난 컴퓨터는 그동안 변경된 내용만 전송하고 스스로 삭제 작업을 수행하지 않으므로, 다른 곳에서 삭제된 예전 글이 실수로 복원되지 않습니다.</p>
+
+        <h2>자주 묻는 질문</h2>
+        <h3>별도 계정 가입이 필요한가요?</h3>
+        <p>아니요. 동기화는 브라우저에서 사용자가 입력한 스토리지로 직접 연결됩니다. 저희는 별도의 동기화 서버를 운영하지 않습니다.</p>
+        <h3>스마트폰에서도 사용할 수 있나요?</h3>
+        <p>Android에서는 가능합니다. 컴패니언 앱( <a href="https://github.com/philffm/ai-summary-helper/releases/latest" rel="noopener">GitHub 릴리스</a>의 APK 파일, 아직 Google Play에는 출시되지 않음)을 설치한 후 다음 메뉴에서 라이브러리에 참여할 수 있습니다: <em>설정 → 라이브러리 동기화</em>. 가장 빠른 방법은 코드를 사용하는 것입니다. 브라우저에서 위치 설정을 열고 다음 버튼을 누르세요: <em>스마트폰용 코드 표시</em> 그리고 코드를 스캔하세요. 서버 로그인 정보가 포함되어 있으므로 반드시 본인의 스마트폰으로만 스캔해야 합니다. 스마트폰 앱에서는 저장된 글과 요약, 하이라이트를 확인할 수 있으며 메모는 양방향으로 동기화됩니다. 스마트폰에서 요약한 페이지와 표시한 구절도 라이브러리에 추가되지만, 라이브러리에 아직 없는 페이지만 추가되며 브라우저의 기존 텍스트는 절대 덮어쓰지 않습니다. 현재 iPhone 앱은 지원되지 않습니다.</p>
+        <h3>여러 개의 저장 위치를 사용할 수 있나요?</h3>
+        <p>네, 가능합니다. 컴퓨터 간 동기화를 위한 암호화 위치 1개와 다른 서비스 제공업체에 백업 전용 위치 1개를 구성하는 방식이 자주 사용됩니다.</p>
+        <h3>라이브러리를 클라우드에 저장해도 안전한가요?</h3>
+        <p>스토리지 제공업체에는 암호화된 파일만 저장되므로 대부분의 환경보다 안전합니다. 다만 암호 문구와 기기 자체의 보안 수준에 영향을 받습니다. 다음 문서를 확인하세요: <a href="digital-sovereignty-for-individuals.html">투명한 한계점 안내</a>(암호화 방식에 대한 독립적 보안 감사는 아직 받지 않았다는 점을 포함합니다).</p>
+
+        <div class="post-cta">
+          <p>AI Summary Helper는 무료 오픈소스 브라우저 확장 프로그램입니다. 위치를 추가하기 전까지는 동기화 기능이 꺼져 있습니다.</p>
+          <a href="https://chromewebstore.google.com/detail/ai-summary-helper-openai/hldbejcjaedipeegjcinmhejdndchkmb" target="_blank" rel="noopener" class="btn-primary">Chrome에 추가</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="footer-inner">
+      <div class="wordmark"><img src="../../assets/icon.svg" alt="">AI Summary Helper</div>
+      <div class="foot-links">
+        <a href="https://github.com/philffm/ai-summary-helper/" target="_blank" rel="noopener">GitHub에서 소스 보기</a>
+        <a href="../../education/">교육용</a>
+        <a href="../privacy.html">개인정보 보호</a>
+        <a href="#" data-analytics-settings="">분석 설정</a>
+        <a href="https://byphil.eu/terms.html#impressum" target="_blank" rel="noopener">Impressum (발행인 정보)</a>
+      </div>
+    </div>
+    <div class="copyright">© 2026 Phil Wornath. Part of <a href="https://byphil.eu/" class="credit-link">byphil.eu ↗</a> — 독일에서 개발된 독립 소프트웨어입니다.<br>
+      Designed &amp; built by <a href="https://philwornath.com/" target="_blank" rel="noopener" class="credit-link">philwornath.com ↗</a>
+    </div>
+  </div>
+</footer>
+
+<script src="../../assets/main.js"></script>
+
+
+</body></html>

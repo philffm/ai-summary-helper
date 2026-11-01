@@ -1,0 +1,222 @@
+<!DOCTYPE html><html lang="it"><head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#08090C">
+<title>Sincronizza la tua libreria di lettura su Nextcloud, S3 o una cartella, con crittografia — AI Summary Helper</title>
+<meta name="description" content="Passo dopo passo: sincronizza articoli salvati, evidenziazioni e note tra dispositivi sul tuo Nextcloud, bucket S3 o una cartella locale, con crittografia nel browser.">
+
+<script>
+  (function(){
+    try {
+      var saved = localStorage.getItem('aish_theme');
+      var theme = saved === 'light' || saved === 'dark'
+        ? saved
+        : (window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
+      document.documentElement.setAttribute('data-theme', theme);
+    } catch (e) {
+      document.documentElement.setAttribute('data-theme', 'dark');
+    }
+  })();
+</script>
+
+<link rel="icon" type="image/svg+xml" href="../../assets/icon.svg">
+<link rel="stylesheet" href="../../assets/styles.css">
+<script src="../../assets/analytics.js"></script>
+<link rel="alternate" hreflang="x-default" href="https://ai-summary-helper.byphil.eu/blog/sync-to-nextcloud-s3-or-a-folder.html"><link rel="alternate" hreflang="en" href="https://ai-summary-helper.byphil.eu/blog/sync-to-nextcloud-s3-or-a-folder.html"><link rel="alternate" hreflang="de" href="https://ai-summary-helper.byphil.eu/de/blog/sync-mit-nextcloud-s3-oder-ordner.html"><link rel="alternate" hreflang="fr" href="https://ai-summary-helper.byphil.eu/fr/blog/sync-to-nextcloud-s3-or-a-folder.html"><link rel="alternate" hreflang="es" href="https://ai-summary-helper.byphil.eu/es/blog/sync-to-nextcloud-s3-or-a-folder.html"><link rel="alternate" hreflang="zh-Hans" href="https://ai-summary-helper.byphil.eu/zh/blog/sync-to-nextcloud-s3-or-a-folder.html"><link rel="alternate" hreflang="zh-Hant" href="https://ai-summary-helper.byphil.eu/zh-tw/blog/sync-to-nextcloud-s3-or-a-folder.html"><link rel="alternate" hreflang="ja" href="https://ai-summary-helper.byphil.eu/ja/blog/sync-to-nextcloud-s3-or-a-folder.html"><link rel="alternate" hreflang="ko" href="https://ai-summary-helper.byphil.eu/ko/blog/sync-to-nextcloud-s3-or-a-folder.html"><link rel="alternate" hreflang="pt-BR" href="https://ai-summary-helper.byphil.eu/pt/blog/sync-to-nextcloud-s3-or-a-folder.html"><link rel="alternate" hreflang="hi" href="https://ai-summary-helper.byphil.eu/hi/blog/sync-to-nextcloud-s3-or-a-folder.html"><link rel="alternate" hreflang="vi" href="https://ai-summary-helper.byphil.eu/vi/blog/sync-to-nextcloud-s3-or-a-folder.html"><link rel="alternate" hreflang="nl" href="https://ai-summary-helper.byphil.eu/nl/blog/sync-to-nextcloud-s3-or-a-folder.html"><link rel="alternate" hreflang="it" href="https://ai-summary-helper.byphil.eu/it/blog/sync-to-nextcloud-s3-or-a-folder.html"><link rel="alternate" hreflang="ru" href="https://ai-summary-helper.byphil.eu/ru/blog/sync-to-nextcloud-s3-or-a-folder.html"><link rel="alternate" hreflang="uk" href="https://ai-summary-helper.byphil.eu/uk/blog/sync-to-nextcloud-s3-or-a-folder.html"><link rel="alternate" hreflang="tr" href="https://ai-summary-helper.byphil.eu/tr/blog/sync-to-nextcloud-s3-or-a-folder.html"><link rel="alternate" hreflang="id" href="https://ai-summary-helper.byphil.eu/id/blog/sync-to-nextcloud-s3-or-a-folder.html"><link rel="alternate" hreflang="pl" href="https://ai-summary-helper.byphil.eu/pl/blog/sync-to-nextcloud-s3-or-a-folder.html"><link rel="alternate" hreflang="th" href="https://ai-summary-helper.byphil.eu/th/blog/sync-to-nextcloud-s3-or-a-folder.html"><link rel="alternate" hreflang="ar" href="https://ai-summary-helper.byphil.eu/ar/blog/sync-to-nextcloud-s3-or-a-folder.html"><link rel="alternate" hreflang="sv" href="https://ai-summary-helper.byphil.eu/sv/blog/sync-to-nextcloud-s3-or-a-folder.html"><link rel="alternate" hreflang="da" href="https://ai-summary-helper.byphil.eu/da/blog/sync-to-nextcloud-s3-or-a-folder.html"><link rel="alternate" hreflang="nb" href="https://ai-summary-helper.byphil.eu/no/blog/sync-to-nextcloud-s3-or-a-folder.html"><link rel="alternate" hreflang="fi" href="https://ai-summary-helper.byphil.eu/fi/blog/sync-to-nextcloud-s3-or-a-folder.html"><link rel="canonical" href="https://ai-summary-helper.byphil.eu/it/blog/sync-to-nextcloud-s3-or-a-folder.html"><meta property="og:site_name" content="AI Summary Helper"><meta property="og:locale" content="it"><meta property="og:type" content="article"><meta property="og:title" content="Sincronizza la tua libreria di lettura su Nextcloud, S3 o una cartella, con crittografia — AI Summary Helper"><meta property="og:description" content="Passo dopo passo: sincronizza articoli salvati, evidenziazioni e note tra dispositivi sul tuo Nextcloud, bucket S3 o una cartella locale, con crittografia nel browser."><meta property="og:image" content="https://ai-summary-helper.byphil.eu/assets/shots/aish-hero-en.webp"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="Sincronizza la tua libreria di lettura su Nextcloud, S3 o una cartella, con crittografia — AI Summary Helper"><meta name="twitter:description" content="Passo dopo passo: sincronizza articoli salvati, evidenziazioni e note tra dispositivi sul tuo Nextcloud, bucket S3 o una cartella locale, con crittografia nel browser."><meta name="twitter:image" content="https://ai-summary-helper.byphil.eu/assets/shots/aish-hero-en.webp"><script type="application/ld+json" data-seo="ld">{"@context":"https://schema.org","@graph":[{"@type":"BlogPosting","@id":"https://ai-summary-helper.byphil.eu/it/blog/sync-to-nextcloud-s3-or-a-folder.html#post","headline":"Come sincronizzare la libreria di lettura su Nextcloud, S3 o una cartella locale, in modo crittografato","description":"Passo dopo passo: sincronizza articoli salvati, evidenziazioni e note tra dispositivi sul tuo Nextcloud, bucket S3 o una cartella locale, con crittografia nel browser.","inLanguage":"it","image":"https://ai-summary-helper.byphil.eu/assets/shots/aish-hero-en.webp","mainEntityOfPage":"https://ai-summary-helper.byphil.eu/it/blog/sync-to-nextcloud-s3-or-a-folder.html","author":{"@id":"https://byphil.eu/#org"},"publisher":{"@type":"Organization","@id":"https://byphil.eu/#org","name":"byphil","url":"https://byphil.eu/"}},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"AI Summary Helper","item":"https://ai-summary-helper.byphil.eu/"},{"@type":"ListItem","position":2,"name":"Blog","item":"https://ai-summary-helper.byphil.eu/it/blog/"},{"@type":"ListItem","position":3,"name":"Come sincronizzare la libreria di lettura su Nextcloud, S3 o una cartella locale, in modo crittografato","item":"https://ai-summary-helper.byphil.eu/it/blog/sync-to-nextcloud-s3-or-a-folder.html"}]}]}</script></head>
+<body>
+
+<a href="#main" class="skip-link">Salta al contenuto</a>
+
+<header class="nav nav--pill" id="siteNav">
+  <div class="wrap nav-pill-row">
+    <a href="../index.html" class="wordmark" aria-label="AI Summary Helper">
+      <img src="../../assets/icon.svg" alt="">
+      AI Summary Helper
+    </a>
+    <nav class="pill" aria-label="Principale">
+      <a href="../index.html#features" data-sec="features">Funzionalità</a>
+      <a href="../index.html#see-it" data-sec="see-it">Demo</a>
+      <a href="https://chromewebstore.google.com/detail/ai-summary-helper-openai/hldbejcjaedipeegjcinmhejdndchkmb" class="pill-cta" target="_blank" rel="noopener">Aggiungi a Chrome</a>
+    </nav>
+    <div class="nav-tools">
+      <button type="button" class="tool-btn" id="sendBtn" data-send="" hidden="" aria-label="Invia questa pagina al mio computer" title="Invia al mio computer"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="3" y="4.5" width="18" height="12" rx="2" stroke="currentColor" stroke-width="1.6"></rect><path d="M8 20h8M12 16.5V20M12 13V8m0 0-2.2 2.2M12 8l2.2 2.2" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"></path></svg></button>
+      <button type="button" class="tool-btn" id="langBtn" aria-label="Lingua" aria-controls="mobileMenu"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.6"></circle><path d="M3 12h18M12 3c2.6 2.7 3.9 5.7 3.9 9s-1.3 6.3-3.9 9c-2.6-2.7-3.9-5.7-3.9-9S9.4 5.7 12 3Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"></path></svg></button>
+      <button type="button" class="theme-toggle" id="themeToggle" aria-label="Passa alla modalità chiara">
+        <svg class="icon-moon" viewBox="0 0 24 24" fill="none"><path d="M20 14.5A8.5 8.5 0 1 1 9.5 4a6.8 6.8 0 0 0 10.5 10.5Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"></path></svg>
+        <svg class="icon-sun" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="4.2" stroke="currentColor" stroke-width="1.6"></circle><path d="M12 2.5v2.4M12 19.1v2.4M4.4 4.4l1.7 1.7M17.9 17.9l1.7 1.7M2.5 12h2.4M19.1 12h2.4M4.4 19.6l1.7-1.7M17.9 6.1l1.7-1.7" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"></path></svg>
+      </button>
+    </div>
+    <button type="button" class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="mobileMenu" aria-label="Apri menu">
+      <svg viewBox="0 0 24 24" fill="none"><path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"></path></svg>
+    </button>
+  </div>
+  <div class="mobile-menu" id="mobileMenu" hidden="">
+    <div class="wrap mm-inner">
+      <nav class="mm-links" aria-label="Mobile">
+        <a href="../index.html#features"><span class="mm-n">01</span>Funzionalità</a>
+        <a href="../index.html#see-it"><span class="mm-n">02</span>Demo</a>
+        <a href="../../education/"><span class="mm-n">03</span>Istruzione</a>
+        <a href="./" aria-current="page"><span class="mm-n">04</span>Blog</a>
+          <a href="pocket-alternative.html" class="mm-sub">Un'alternativa a Pocket: cosa conta davvero</a>
+          <a href="la-tua-chiave-il-tuo-modello.html" class="mm-sub">La tua chiave. Il tuo modello. I tuoi dati.</a>
+          <a href="verificare-un-riassunto-ia-alla-fonte.html" class="mm-sub">Confronta il riassunto con la fonte originale</a>
+          <a href="evidenziare-o-chiedere.html" class="mm-sub">Fai domande sui tuoi passaggi evidenziati</a>
+        <a href="https://github.com/philffm/ai-summary-helper/" target="_blank" rel="noopener"><span class="mm-n">05</span>GitHub</a>
+      </nav>
+      <div class="mm-lang">
+        <button type="button" class="lang-card" id="langCard"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.6"></circle><path d="M3 12h18M12 3c2.6 2.7 3.9 5.7 3.9 9s-1.3 6.3-3.9 9c-2.6-2.7-3.9-5.7-3.9-9S9.4 5.7 12 3Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"></path></svg><span class="lang-card-cur">Inglese</span><small>24 lingue</small><b aria-hidden="true">→</b></button>
+        <p class="mm-lang-h">Lingua · 24</p>
+        <label class="lang-search"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="11" cy="11" r="6.5" stroke="currentColor" stroke-width="1.7"></circle><path d="m16 16 4 4" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"></path></svg><input type="search" id="langSearch" placeholder="Cerca lingua…" autocomplete="off" aria-label="Cerca lingua" spellcheck="false"></label>
+        <div class="lang-groups" id="langGroups">
+          <div class="lang-group"><p class="lang-group-h">Popolari</p><div class="lang-pills" data-no-translate=""><a href="/" class="lang-pill" data-loc="en" lang="en" hreflang="en" data-q="english english en">English</a><a href="/de/" class="lang-pill" data-loc="de" lang="de" hreflang="de" data-q="deutsch german de">Deutsch</a><a href="/fr/" class="lang-pill" data-loc="fr" lang="fr" hreflang="fr" data-q="français french fr">Français</a><a href="/es/" class="lang-pill" data-loc="es" lang="es" hreflang="es" data-q="español spanish es">Español</a><a href="/zh/" class="lang-pill" data-loc="zh" lang="zh-CN" hreflang="zh-CN" data-q="简体中文 chinese simplified zh">简体中文</a><a href="/ja/" class="lang-pill" data-loc="ja" lang="ja" hreflang="ja" data-q="日本語 japanese ja">日本語</a><a href="/ru/" class="lang-pill" data-loc="ru" lang="ru" hreflang="ru" data-q="русский russian ru">Русский</a></div></div>
+          <div class="lang-group"><p class="lang-group-h">Europa</p><div class="lang-pills" data-no-translate=""><a href="/pt/" class="lang-pill" data-loc="pt" lang="pt" hreflang="pt" data-q="português portuguese pt">Português</a><a href="/nl/" class="lang-pill" data-loc="nl" lang="nl" hreflang="nl" data-q="nederlands dutch nl">Nederlands</a><a href="/it/" class="lang-pill" data-loc="it" lang="it" hreflang="it" data-q="italiano italian it">Italiano</a><a href="/uk/" class="lang-pill" data-loc="uk" lang="uk" hreflang="uk" data-q="українська ukrainian uk">Українська</a><a href="/tr/" class="lang-pill" data-loc="tr" lang="tr" hreflang="tr" data-q="türkçe turkish tr">Türkçe</a><a href="/pl/" class="lang-pill" data-loc="pl" lang="pl" hreflang="pl" data-q="polski polish pl">Polski</a><a href="/sv/" class="lang-pill" data-loc="sv" lang="sv" hreflang="sv" data-q="svenska swedish sv">Svenska</a><a href="/da/" class="lang-pill" data-loc="da" lang="da" hreflang="da" data-q="dansk danish da">Dansk</a><a href="/no/" class="lang-pill" data-loc="no" lang="nb" hreflang="nb" data-q="norsk norwegian no">Norsk</a><a href="/fi/" class="lang-pill" data-loc="fi" lang="fi" hreflang="fi" data-q="suomi finnish fi">Suomi</a></div></div>
+          <div class="lang-group"><p class="lang-group-h">Asia e altro</p><div class="lang-pills" data-no-translate=""><a href="/zh-tw/" class="lang-pill" data-loc="zh-tw" lang="zh-TW" hreflang="zh-TW" data-q="繁體中文 chinese traditional zh-tw">繁體中文</a><a href="/ko/" class="lang-pill" data-loc="ko" lang="ko" hreflang="ko" data-q="한국어 korean ko">한국어</a><a href="/hi/" class="lang-pill" data-loc="hi" lang="hi" hreflang="hi" data-q="हिन्दी hindi hi">हिन्दी</a><a href="/vi/" class="lang-pill" data-loc="vi" lang="vi" hreflang="vi" data-q="tiếng việt vietnamese vi">Tiếng Việt</a><a href="/id/" class="lang-pill" data-loc="id" lang="id" hreflang="id" data-q="bahasa indonesia indonesian id">Bahasa Indonesia</a><a href="/th/" class="lang-pill" data-loc="th" lang="th" hreflang="th" data-q="ไทย thai th">ไทย</a><a href="/ar/" class="lang-pill" data-loc="ar" lang="ar" hreflang="ar" data-q="العربية arabic ar">العربية</a></div></div>
+          <p class="lang-empty" hidden="">Nessun risultato</p>
+        </div>
+      </div>
+      <div class="mm-posts" aria-label="Blog">
+          <p class="mm-posts-h">Dal blog</p>
+          <a href="pocket-alternative.html" class="mm-post"><span class="mega-tag">Confronto</span><strong>Alternative a Pocket: cosa conta davvero</strong><span>Passare a un altro strumento 'leggi dopo' senza perdere il tuo archivio</span></a>
+          <a href="la-tua-chiave-il-tuo-modello.html" class="mm-post"><span class="mega-tag">Informativa sulla privacy</span><strong>La tua chiave. Il tuo modello. I tuoi dati.</strong><span>Perché usare la tua chiave API è meglio di un altro abbonamento</span></a>
+          <a href="verificare-un-riassunto-ia-alla-fonte.html" class="mm-post"><span class="mega-tag">Affidabilità</span><strong>Verifica un riassunto IA rispetto alla fonte</strong><span>Verifica le risposte dell'IA in meno di un minuto</span></a>
+          <a href="evidenziare-o-chiedere.html" class="mm-post"><span class="mega-tag">Guide</span><strong>Fai domande sulle tue evidenziazioni</strong><span>Trasforma ciò che hai evidenziato in risposte chiare</span></a>
+          <a href="un-riepilogo-al-posto-di-40-feed.html" class="mm-post"><span class="mega-tag">Feed</span><strong>Un unico recap al posto di 40 feed</strong><span>Un riassunto giornaliero di tutto ciò che segui</span></a>
+          <a href="ricerca-e-tag-senza-cloud.html" class="mm-post"><span class="mega-tag">Dietro le quinte</span><strong>Ricerca e tag senza cloud</strong><span>Come garantire che tutto rimanga sul tuo dispositivo</span></a>
+          <a href="./" class="mm-all">Tutti gli articoli →</a>
+        </div>
+      <div class="mm-bottom">
+        <a href="https://chromewebstore.google.com/detail/ai-summary-helper-openai/hldbejcjaedipeegjcinmhejdndchkmb" class="pill-cta mm-cta" data-desktop-cta="" target="_blank" rel="noopener">Aggiungi a Chrome</a>
+        <button type="button" class="pill-cta mm-cta" data-send="" hidden="">Invia al mio computer</button>
+        <div class="mm-row">
+          <a href="https://addons.mozilla.org/en-US/firefox/addon/ai-summary-helper/" target="_blank" rel="noopener">Firefox</a>
+          <a href="../index.html#phone">Android · Beta</a>
+          <a href="https://byphil.eu/#account">Il mio account</a>
+        </div>
+        
+        <button type="button" class="theme-toggle-mobile" id="themeToggleMobile">
+          <span id="themeToggleMobileLabel">Passa alla modalità chiara</span>
+          <svg class="icon-moon" viewBox="0 0 24 24" fill="none"><path d="M20 14.5A8.5 8.5 0 1 1 9.5 4a6.8 6.8 0 0 0 10.5 10.5Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"></path></svg>
+          <svg class="icon-sun" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="4.2" stroke="currentColor" stroke-width="1.6"></circle><path d="M12 2.5v2.4M12 19.1v2.4M4.4 4.4l1.7 1.7M17.9 17.9l1.7 1.7M2.5 12h2.4M19.1 12h2.4M4.4 19.6l1.7-1.7M17.9 6.1l1.7-1.7" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"></path></svg>
+        </button>
+      </div>
+    </div>
+  </div>
+</header>
+
+<main id="main">
+  <section class="hero--photo post-stage">
+    <img class="hero-bg" src="../../assets/photo/nas-shelf-laptop-phone-800.webp" srcset="../../assets/photo/nas-shelf-laptop-phone-800.webp 800w, ../../assets/photo/nas-shelf-laptop-phone-1600.webp 1600w" sizes="100vw" width="1600" height="893" alt="" fetchpriority="high" decoding="async" style="--bgpos:60% 55%">
+    <p class="hero-credit">Illustrazione, generata dall'IA</p>
+    <div class="wrap">
+      <div class="post-hero">
+      <span class="blog-date">Guida · Ottobre 2026</span>
+      <h1>Come sincronizzare la libreria di lettura su Nextcloud, S3 o una cartella locale, in modo crittografato</h1>
+      <p class="post-sub">I tuoi articoli salvati, riassunti, evidenziazioni e note su tutti i tuoi computer, archiviati dove decidi tu, leggibili solo con la tua chiave. Dieci minuti, nessun account con noi.</p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <div class="prose">
+        <p><strong>In breve.</strong> In AI Summary Helper apri <em>Impostazioni → Sincronizzazione e backup → Aggiungi una posizione</em>, scegli Nextcloud/WebDAV, uno storage compatibile con S3 o una cartella sul tuo computer, e conserva la passphrase suggerita. Tutto viene crittografato nel browser prima del caricamento. Sul tuo secondo computer aggiungi lo stesso percorso e inserisci la passphrase. La configurazione è tutta qui. Il resto di questa pagina descrive ogni tipo di archiviazione, cosa viene sincronizzato e cosa fare in caso di problemi.</p>
+        <figure class="post-figure post-figure--photo"><img src="../../assets/photo/commuter-train-reading-800.webp" srcset="../../assets/photo/commuter-train-reading-800.webp 800w, ../../assets/photo/commuter-train-reading-1600.webp 1600w" sizes="(max-width: 720px) 92vw, 680px" width="1600" height="893" loading="lazy" decoding="async" alt="Illustrazione: un pendolare su un treno regionale, con un e-reader e uno smartphone"><figcaption>Un'unica libreria, più dispositivi. Illustrazione generata da IA.</figcaption></figure>
+        <p>Perché farlo? Perché una libreria di lettura ha valore, e uno strumento da cui dipendi può scomparire (<a href="digital-sovereignty-for-individuals.html">maggiori dettagli qui</a>). Sincronizzare su uno spazio di archiviazione di tua proprietà significa che la libreria sopravviverà a qualsiasi app o account.</p>
+
+        <h2>Cosa viene sincronizzato e cosa no</h2>
+        <ul>
+          <li><strong>Sincronizzato:</strong> articoli salvati con testo completo e riassunti, tag, evidenziazioni, le tue note e commenti, e collezioni.</li>
+          <li><strong>Non sincronizzato:</strong> le tue chiavi API, dati di accesso, le credenziali di sincronizzazione stesse e le impostazioni specifiche del dispositivo. I backup e la sincronizzazione li escludono intenzionalmente.</li>
+          <li><strong>Un articolo per pagina:</strong> se hai salvato la stessa pagina su due computer, otterrai un unico articolo (i tag e i campi mancanti vengono uniti).</li>
+          <li><strong>Le modifiche si uniscono campo per campo:</strong> se modifichi un titolo su un computer e aggiungi un tag su un altro, entrambe le modifiche vengono mantenute. Se entrambi modificano lo stesso campo, prevale la modifica più recente, identica su ogni dispositivo.</li>
+        </ul>
+
+        <h2>Passo 1: scegli dove archiviare i dati</h2>
+        <h3>Nextcloud o un altro server WebDAV</h3>
+        <p>Ideale se hai già una tua istanza Nextcloud o ne usi una gestita (molti provider europei la offrono). Ti servono tre elementi:</p>
+        <ol>
+          <li><strong>L'indirizzo dei tuoi file.</strong> Per Nextcloud la struttura è del tipo <code>https://your-server/remote.php/dav/files/your-username/</code>. In Nextcloud apri <em>File → Impostazioni</em> e copia l'indirizzo WebDAV mostrato lì.</li>
+          <li><strong>Il tuo nome utente.</strong></li>
+          <li><strong>Una password per l'app, non la tua password principale.</strong> In Nextcloud: <em>Impostazioni → Sicurezza → Dispositivi e sessioni → crea una nuova password per l'app</em>. Se vuoi revocare l'accesso, ti basta eliminare quella singola voce.</li>
+        </ol>
+        <p>Scegli il nome di una cartella, ad esempio <code>aish-sync</code>. Verrà creata automaticamente. Altri server WebDAV (molti NAS, ownCloud) funzionano allo stesso modo; cambia solo il formato dell'indirizzo.</p>
+
+        <h3>Un bucket compatibile con S3</h3>
+        <p>Ideale se preferisci l'object storage: AWS S3, Cloudflare R2, Backblaze B2, MinIO e simili. Crea un bucket, poi genera una chiave di accesso <strong>dedicata solo a questo bucket</strong> con permessi di lettura, scrittura, elenco ed eliminazione al suo interno. Non usare mai la chiave principale del tuo account. Nell'estensione inserisci l'indirizzo dell'endpoint (ad esempio <code>https://s3.eu-central-1.amazonaws.com</code>, o l'indirizzo indicato dal tuo provider), il nome del bucket, la regione (lascia il valore predefinito se il tuo provider non la richiede), l'Access Key ID e la Secret Key.</p>
+
+        <h3>Una cartella sul tuo computer</h3>
+        <p>Ideale se utilizzi già un altro strumento per sincronizzare una cartella tra dispositivi: Syncthing, il tuo client desktop di sync, iCloud Drive, una chiavetta USB. Scegli <em>Una cartella su questo computer</em> e seleziona una <strong>nuova cartella vuota creata da te</strong>, ad esempio <code>Documenti/AISH-sync</code>. Chrome non consente di selezionare direttamente Desktop, Documenti o Download per questo scopo, quindi scegli una sottocartella. Funziona su Chrome ed Edge su computer. Due dettagli importanti: il browser potrebbe richiedere nuovamente l'autorizzazione di accesso dopo un riavvio (la schermata delle impostazioni mostra un pulsante apposito) e la cartella si sincronizza solo mentre il browser è aperto.</p>
+
+        <h2>Passo 2: scegli l'opzione crittografata e conserva le parole</h2>
+        <p>Quando aggiungi la posizione, <em>Crittografato</em> è selezionato per impostazione predefinita e lo scopo è <em>Sincronizza i miei dispositivi</em> . L'estensione suggerisce sei parole casuali come passphrase. Puoi cliccare su <em>Altro suggerimento</em> fino a trovare la combinazione che preferisci, oppure crearne una personalizzata (almeno 12 caratteri, con indicazione se risulta debole).</p>
+        <p>Dopo aver effettuato la connessione, vedrai le sei parole una sola volta. Salvale in un password manager; il pulsante Copia le copia negli appunti come stringa unica, unite da trattini, comoda per file di configurazione e app di messaggistica. Con esse puoi aprire la posizione su qualsiasi dispositivo; senza di esse, nessuno potrà leggere i file, noi compresi. Sul computer in cui hai eseguito la configurazione puoi visualizzarle di nuovo nelle impostazioni della posizione, <em>Mostra passphrase</em>. Se invece hai inserito una passphrase personalizzata, non viene memorizzata da nessuna parte, quindi l'estensione non potrà mostrarla.</p>
+        <p>Cosa vede il provider di archiviazione: file cifrati con nomi cifrati, quanti sono, quanto sono grandi e quando vengono modificati. Non vede titoli, link o testi. La tua libreria viene crittografata nel browser con AES-256-GCM prima di lasciare il dispositivo.</p>
+
+        <h2>Passo 3: aggiungi il tuo secondo computer</h2>
+        <ol>
+          <li>Installa l'estensione e apri <em>Impostazioni → Sincronizzazione e backup → Aggiungi una posizione</em>.</li>
+          <li>Inserisci gli stessi dati del server (oppure seleziona la stessa cartella).</li>
+          <li>L'estensione rileverà che la cartella contiene già una libreria crittografata e chiederà la passphrase. Puoi inserire le parole in maiuscolo o minuscolo, separate da spazi o trattini.</li>
+          <li>Ti verrà chiesto di confermare di aver prima creato un backup di questo dispositivo, poiché l'accesso unisce la libreria di questo computer con quella nella cartella e, in caso di differenze, prevale la cartella. Usa <em>Esegui un backup ora</em>.</li>
+          <li>Clicca su <em>Connetti</em>. La prima sincronizzazione può richiedere un po' di tempo per le librerie più grandi; lo schermo mostrerà l'avanzamento.</li>
+        </ol>
+
+        <h2>Solo backup, ripristino e pubblicazione</h2>
+        <ul>
+          <li><strong>Solo backup.</strong> Scegli <em>Solo backup</em> al posto di <em>Sincronizza i miei dispositivi</em> e il computer scriverà soltanto nella posizione, senza mai leggere da essa. Esegui il ripristino dalle impostazioni della posizione quando ne hai bisogno: recupera tutto e, dove questo computer differisce, prevale la posizione remota. Nulla viene cancellato.</li>
+          <li><strong>Pubblica sul tuo sito web.</strong> Un tipo separato di posizione, <em>Leggibile</em>, genera file in testo non crittografato per il tuo sito web, solo per gli articoli con tag specifico, con una pagina di visualizzazione opzionale. Note e testi integrali restano esclusi a meno che tu non decida di abilitarli, poiché chiunque possa aprire quella cartella potrà leggerne il contenuto. Non usare una posizione leggibile per dati privati.</li>
+        </ul>
+
+        <h2>Risoluzione dei problemi</h2>
+        <h3>"Consenti nuovamente l'accesso alla cartella"</h3>
+        <p>Il browser revoca l'accesso alla cartella dopo un riavvio. Clicca sul pulsante in cima a <em>Sincronizzazione e backup</em>. Se continua a fallire, la cartella potrebbe essere una di quelle protette da Chrome (Desktop, Documenti, Download o la tua cartella utente): scegli una sottocartella creata da te.</p>
+        <h3>"Il server non ha accettato il nome utente e la password"</h3>
+        <p>Per Nextcloud usa una password per l'app. Controlla che l'indirizzo termini con la cartella del tuo nome utente e che l'autenticazione a due fattori non stia bloccando la password dell'app.</p>
+        <h3>"Passphrase errata"</h3>
+        <p>Controlla le parole: maiuscole/minuscole, spazi e trattini non contano, ma ogni singola parola deve essere corretta. Su un computer già configurato, apri le impostazioni della posizione e clicca su <em>Mostra passphrase</em>. Se l'hai persa ovunque, i file non potranno più essere aperti da nessuno: rimuovi la posizione qui, creane una nuova e riparti dalla libreria presente sul tuo computer.</p>
+        <h3>È in attesa un numero elevato di eliminazioni</h3>
+        <p>Se un altro dispositivo elimina molti articoli contemporaneamente, l'estensione ne applica alcuni e chiede conferma prima di procedere con il resto, evitando che un errore accidentale svuoti la tua libreria. Verifica e poi clicca sul pulsante per applicarle.</p>
+        <h3>Un computer è rimasto scollegato per mesi</h3>
+        <p>Dopo circa tre mesi, il computer invia solo le modifiche avvenute nel frattempo e non elimina nulla in autonomia, evitando che vecchi articoli eliminati altrove ricompaiano per errore.</p>
+
+        <h2>Domande frequenti</h2>
+        <h3>Devo creare un account con voi?</h3>
+        <p>No. La sincronizzazione comunica direttamente dal tuo browser allo spazio di archiviazione che hai inserito. Non gestiamo alcun server di sincronizzazione.</p>
+        <h3>Funziona anche sul telefono?</h3>
+        <p>Su Android, sì. L'app complementare (un file APK da <a href="https://github.com/philffm/ai-summary-helper/releases/latest" rel="noopener">le release su GitHub</a>; non è ancora disponibile su Google Play) può sincronizzarsi con la tua libreria in <em>Impostazioni → Sincronizzazione libreria</em>. Il modo più rapido è tramite codice: nel browser apri le impostazioni della tua posizione, clicca su <em>Mostra codice per il telefono</em> e scansionalo. Contiene i dati di accesso al tuo server, quindi mostralo solo al tuo telefono. Il telefono mostra i tuoi articoli salvati con riassunti ed evidenziazioni, e le note si sincronizzano in entrambe le direzioni. Le pagine che riassumi sul telefono e i passaggi che evidenzi lì confluiscono nella tua libreria, ma solo se non sono già presenti: il testo generato nel browser non viene mai sovrascritto. Non esiste ancora un'app per iPhone.</p>
+        <h3>Posso usare più di una posizione?</h3>
+        <p>Sì. Una configurazione comune prevede una posizione crittografata per sincronizzare i computer e una posizione di solo backup su un provider diverso.</p>
+        <h3>È sicuro archiviare la mia libreria nel cloud?</h3>
+        <p>È più sicuro della maggior parte delle soluzioni, perché il provider conserva unicamente file crittografati. La sicurezza dipende comunque dalla robustezza della tua passphrase e dal tuo dispositivo. Leggi <a href="digital-sovereignty-for-individuals.html">i limiti in tutta trasparenza</a>, inclusa la specifica che la crittografia non è stata sottoposta a un audit indipendente.</p>
+
+        <div class="post-cta">
+          <p>AI Summary Helper è un'estensione per browser gratuita e open source. La sincronizzazione resta disattivata finché non aggiungi una posizione.</p>
+          <a href="https://chromewebstore.google.com/detail/ai-summary-helper-openai/hldbejcjaedipeegjcinmhejdndchkmb" target="_blank" rel="noopener" class="btn-primary">Aggiungi a Chrome</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="footer-inner">
+      <div class="wordmark"><img src="../../assets/icon.svg" alt="">AI Summary Helper</div>
+      <div class="foot-links">
+        <a href="https://github.com/philffm/ai-summary-helper/" target="_blank" rel="noopener">Codice sorgente su GitHub</a>
+        <a href="../../education/">Per l'istruzione</a>
+        <a href="../privacy-e-dati.html">Informativa sulla privacy</a>
+        <a href="#" data-analytics-settings="">Impostazioni statistiche</a>
+        <a href="https://byphil.eu/terms.html#impressum" target="_blank" rel="noopener">Note legali (Impressum)</a>
+      </div>
+    </div>
+    <div class="copyright">© 2026 Phil Wornath. Parte di <a href="https://byphil.eu/" class="credit-link">byphil.eu ↗</a> — software indipendente sviluppato in Germania.<br>
+      Progettato e sviluppato da <a href="https://philwornath.com/" target="_blank" rel="noopener" class="credit-link">philwornath.com ↗</a>
+    </div>
+  </div>
+</footer>
+
+<script src="../../assets/main.js"></script>
+
+
+</body></html>

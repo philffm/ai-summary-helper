@@ -1,0 +1,258 @@
+<!DOCTYPE html><html lang="it"><head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#08090C">
+<title>Usa la tua libreria in Claude, LM Studio e Cursor — AI Summary Helper</title>
+<meta name="description" content="Collega AI Summary Helper a Claude Desktop, LM Studio, Cursor, VS Code o a qualsiasi app MCP sul tuo computer. I tuoi articoli salvati, le evidenziazioni e le raccolte a disposizione della tua app IA, senza server intermedi.">
+
+<script>
+  (function(){
+    try {
+      var saved = localStorage.getItem('aish_theme');
+      var theme = saved === 'light' || saved === 'dark'
+        ? saved
+        : (window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
+      document.documentElement.setAttribute('data-theme', theme);
+    } catch (e) {
+      document.documentElement.setAttribute('data-theme', 'dark');
+    }
+  })();
+</script>
+
+<link rel="icon" type="image/svg+xml" href="../../assets/icon.svg">
+<link rel="stylesheet" href="../../assets/styles.css">
+<script src="../../assets/analytics.js"></script>
+<link rel="alternate" hreflang="x-default" href="https://ai-summary-helper.byphil.eu/blog/ai-apps-mcp.html"><link rel="alternate" hreflang="en" href="https://ai-summary-helper.byphil.eu/blog/ai-apps-mcp.html"><link rel="alternate" hreflang="de" href="https://ai-summary-helper.byphil.eu/de/blog/ki-apps-mcp.html"><link rel="alternate" hreflang="fr" href="https://ai-summary-helper.byphil.eu/fr/blog/ai-apps-mcp.html"><link rel="alternate" hreflang="es" href="https://ai-summary-helper.byphil.eu/es/blog/ai-apps-mcp.html"><link rel="alternate" hreflang="zh-Hans" href="https://ai-summary-helper.byphil.eu/zh/blog/ai-apps-mcp.html"><link rel="alternate" hreflang="zh-Hant" href="https://ai-summary-helper.byphil.eu/zh-tw/blog/ai-apps-mcp.html"><link rel="alternate" hreflang="ja" href="https://ai-summary-helper.byphil.eu/ja/blog/ai-apps-mcp.html"><link rel="alternate" hreflang="ko" href="https://ai-summary-helper.byphil.eu/ko/blog/ai-apps-mcp.html"><link rel="alternate" hreflang="pt-BR" href="https://ai-summary-helper.byphil.eu/pt/blog/ai-apps-mcp.html"><link rel="alternate" hreflang="hi" href="https://ai-summary-helper.byphil.eu/hi/blog/ai-apps-mcp.html"><link rel="alternate" hreflang="vi" href="https://ai-summary-helper.byphil.eu/vi/blog/ai-apps-mcp.html"><link rel="alternate" hreflang="nl" href="https://ai-summary-helper.byphil.eu/nl/blog/ai-apps-mcp.html"><link rel="alternate" hreflang="it" href="https://ai-summary-helper.byphil.eu/it/blog/ai-apps-mcp.html"><link rel="alternate" hreflang="ru" href="https://ai-summary-helper.byphil.eu/ru/blog/ai-apps-mcp.html"><link rel="alternate" hreflang="uk" href="https://ai-summary-helper.byphil.eu/uk/blog/ai-apps-mcp.html"><link rel="alternate" hreflang="tr" href="https://ai-summary-helper.byphil.eu/tr/blog/ai-apps-mcp.html"><link rel="alternate" hreflang="id" href="https://ai-summary-helper.byphil.eu/id/blog/ai-apps-mcp.html"><link rel="alternate" hreflang="pl" href="https://ai-summary-helper.byphil.eu/pl/blog/ai-apps-mcp.html"><link rel="alternate" hreflang="th" href="https://ai-summary-helper.byphil.eu/th/blog/ai-apps-mcp.html"><link rel="alternate" hreflang="ar" href="https://ai-summary-helper.byphil.eu/ar/blog/ai-apps-mcp.html"><link rel="alternate" hreflang="sv" href="https://ai-summary-helper.byphil.eu/sv/blog/ai-apps-mcp.html"><link rel="alternate" hreflang="da" href="https://ai-summary-helper.byphil.eu/da/blog/ai-apps-mcp.html"><link rel="alternate" hreflang="nb" href="https://ai-summary-helper.byphil.eu/no/blog/ai-apps-mcp.html"><link rel="alternate" hreflang="fi" href="https://ai-summary-helper.byphil.eu/fi/blog/ai-apps-mcp.html"><link rel="canonical" href="https://ai-summary-helper.byphil.eu/it/blog/ai-apps-mcp.html"><meta property="og:site_name" content="AI Summary Helper"><meta property="og:locale" content="it"><meta property="og:type" content="article"><meta property="og:title" content="Usa la tua libreria in Claude, LM Studio e Cursor — AI Summary Helper"><meta property="og:description" content="Collega AI Summary Helper a Claude Desktop, LM Studio, Cursor, VS Code o a qualsiasi app MCP sul tuo computer. I tuoi articoli salvati, le evidenziazioni e le raccolte a disposizione della tua app IA, senza server intermedi."><meta property="og:image" content="https://ai-summary-helper.byphil.eu/assets/shots/aish-hero-en.webp"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="Usa la tua libreria in Claude, LM Studio e Cursor — AI Summary Helper"><meta name="twitter:description" content="Collega AI Summary Helper a Claude Desktop, LM Studio, Cursor, VS Code o a qualsiasi app MCP sul tuo computer. I tuoi articoli salvati, le evidenziazioni e le raccolte a disposizione della tua app IA, senza server intermedi."><meta name="twitter:image" content="https://ai-summary-helper.byphil.eu/assets/shots/aish-hero-en.webp"><script type="application/ld+json" data-seo="ld">{"@context":"https://schema.org","@graph":[{"@type":"BlogPosting","@id":"https://ai-summary-helper.byphil.eu/it/blog/ai-apps-mcp.html#post","headline":"Usa la tua libreria in Claude, LM Studio e altre app AI","description":"Collega AI Summary Helper a Claude Desktop, LM Studio, Cursor, VS Code o a qualsiasi app MCP sul tuo computer. I tuoi articoli salvati, le evidenziazioni e le raccolte a disposizione della tua app IA, senza server intermedi.","inLanguage":"it","image":"https://ai-summary-helper.byphil.eu/assets/shots/aish-hero-en.webp","mainEntityOfPage":"https://ai-summary-helper.byphil.eu/it/blog/ai-apps-mcp.html","author":{"@id":"https://byphil.eu/#org"},"publisher":{"@type":"Organization","@id":"https://byphil.eu/#org","name":"byphil","url":"https://byphil.eu/"}},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"AI Summary Helper","item":"https://ai-summary-helper.byphil.eu/"},{"@type":"ListItem","position":2,"name":"Blog","item":"https://ai-summary-helper.byphil.eu/it/blog/"},{"@type":"ListItem","position":3,"name":"Usa la tua libreria in Claude, LM Studio e altre app AI","item":"https://ai-summary-helper.byphil.eu/it/blog/ai-apps-mcp.html"}]}]}</script></head>
+<body>
+
+<a href="#main" class="skip-link">Salta al contenuto</a>
+
+<header class="nav nav--pill" id="siteNav">
+  <div class="wrap nav-pill-row">
+    <a href="../index.html" class="wordmark" aria-label="AI Summary Helper">
+      <img src="../../assets/icon.svg" alt="">
+      AI Summary Helper
+    </a>
+    <nav class="pill" aria-label="Principale">
+      <a href="../index.html#features" data-sec="features">Funzionalità</a>
+      <a href="../index.html#see-it" data-sec="see-it">Demo</a>
+      <a href="https://chromewebstore.google.com/detail/ai-summary-helper-openai/hldbejcjaedipeegjcinmhejdndchkmb" class="pill-cta" target="_blank" rel="noopener">Aggiungi a Chrome</a>
+    </nav>
+    <div class="nav-tools">
+      <button type="button" class="tool-btn" id="sendBtn" data-send="" hidden="" aria-label="Invia questa pagina al mio computer" title="Invia al mio computer"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="3" y="4.5" width="18" height="12" rx="2" stroke="currentColor" stroke-width="1.6"></rect><path d="M8 20h8M12 16.5V20M12 13V8m0 0-2.2 2.2M12 8l2.2 2.2" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"></path></svg></button>
+      <button type="button" class="tool-btn" id="langBtn" aria-label="Lingua" aria-controls="mobileMenu"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.6"></circle><path d="M3 12h18M12 3c2.6 2.7 3.9 5.7 3.9 9s-1.3 6.3-3.9 9c-2.6-2.7-3.9-5.7-3.9-9S9.4 5.7 12 3Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"></path></svg></button>
+      <button type="button" class="theme-toggle" id="themeToggle" aria-label="Passa alla modalità chiara">
+        <svg class="icon-moon" viewBox="0 0 24 24" fill="none"><path d="M20 14.5A8.5 8.5 0 1 1 9.5 4a6.8 6.8 0 0 0 10.5 10.5Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"></path></svg>
+        <svg class="icon-sun" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="4.2" stroke="currentColor" stroke-width="1.6"></circle><path d="M12 2.5v2.4M12 19.1v2.4M4.4 4.4l1.7 1.7M17.9 17.9l1.7 1.7M2.5 12h2.4M19.1 12h2.4M4.4 19.6l1.7-1.7M17.9 6.1l1.7-1.7" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"></path></svg>
+      </button>
+    </div>
+    <button type="button" class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="mobileMenu" aria-label="Apri menu">
+      <svg viewBox="0 0 24 24" fill="none"><path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"></path></svg>
+    </button>
+  </div>
+  <div class="mobile-menu" id="mobileMenu" hidden="">
+    <div class="wrap mm-inner">
+      <nav class="mm-links" aria-label="Mobile">
+        <a href="../index.html#features"><span class="mm-n">01</span>Funzionalità</a>
+        <a href="../index.html#see-it"><span class="mm-n">02</span>Demo</a>
+        <a href="../../education/"><span class="mm-n">03</span>Istruzione</a>
+        <a href="./" aria-current="page"><span class="mm-n">04</span>Blog</a>
+          <a href="pocket-alternative.html" class="mm-sub">Un'alternativa a Pocket: cosa conta davvero</a>
+          <a href="la-tua-chiave-il-tuo-modello.html" class="mm-sub">La tua chiave. Il tuo modello. I tuoi dati.</a>
+          <a href="verificare-un-riassunto-ia-alla-fonte.html" class="mm-sub">Confronta il riassunto con la fonte originale</a>
+          <a href="evidenziare-o-chiedere.html" class="mm-sub">Fai domande sui tuoi passaggi evidenziati</a>
+        <a href="https://github.com/philffm/ai-summary-helper/" target="_blank" rel="noopener"><span class="mm-n">05</span>GitHub</a>
+      </nav>
+      <div class="mm-lang">
+        <button type="button" class="lang-card" id="langCard"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.6"></circle><path d="M3 12h18M12 3c2.6 2.7 3.9 5.7 3.9 9s-1.3 6.3-3.9 9c-2.6-2.7-3.9-5.7-3.9-9S9.4 5.7 12 3Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"></path></svg><span class="lang-card-cur">Inglese</span><small>24 lingue</small><b aria-hidden="true">→</b></button>
+        <p class="mm-lang-h">Lingua · 24</p>
+        <label class="lang-search"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="11" cy="11" r="6.5" stroke="currentColor" stroke-width="1.7"></circle><path d="m16 16 4 4" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"></path></svg><input type="search" id="langSearch" placeholder="Cerca lingua…" autocomplete="off" aria-label="Cerca lingua" spellcheck="false"></label>
+        <div class="lang-groups" id="langGroups">
+          <div class="lang-group"><p class="lang-group-h">Popolari</p><div class="lang-pills" data-no-translate=""><a href="/" class="lang-pill" data-loc="en" lang="en" hreflang="en" data-q="english english en">English</a><a href="/de/" class="lang-pill" data-loc="de" lang="de" hreflang="de" data-q="deutsch german de">Deutsch</a><a href="/fr/" class="lang-pill" data-loc="fr" lang="fr" hreflang="fr" data-q="français french fr">Français</a><a href="/es/" class="lang-pill" data-loc="es" lang="es" hreflang="es" data-q="español spanish es">Español</a><a href="/zh/" class="lang-pill" data-loc="zh" lang="zh-CN" hreflang="zh-CN" data-q="简体中文 chinese simplified zh">简体中文</a><a href="/ja/" class="lang-pill" data-loc="ja" lang="ja" hreflang="ja" data-q="日本語 japanese ja">日本語</a><a href="/ru/" class="lang-pill" data-loc="ru" lang="ru" hreflang="ru" data-q="русский russian ru">Русский</a></div></div>
+          <div class="lang-group"><p class="lang-group-h">Europa</p><div class="lang-pills" data-no-translate=""><a href="/pt/" class="lang-pill" data-loc="pt" lang="pt" hreflang="pt" data-q="português portuguese pt">Português</a><a href="/nl/" class="lang-pill" data-loc="nl" lang="nl" hreflang="nl" data-q="nederlands dutch nl">Nederlands</a><a href="/it/" class="lang-pill" data-loc="it" lang="it" hreflang="it" data-q="italiano italian it">Italiano</a><a href="/uk/" class="lang-pill" data-loc="uk" lang="uk" hreflang="uk" data-q="українська ukrainian uk">Українська</a><a href="/tr/" class="lang-pill" data-loc="tr" lang="tr" hreflang="tr" data-q="türkçe turkish tr">Türkçe</a><a href="/pl/" class="lang-pill" data-loc="pl" lang="pl" hreflang="pl" data-q="polski polish pl">Polski</a><a href="/sv/" class="lang-pill" data-loc="sv" lang="sv" hreflang="sv" data-q="svenska swedish sv">Svenska</a><a href="/da/" class="lang-pill" data-loc="da" lang="da" hreflang="da" data-q="dansk danish da">Dansk</a><a href="/no/" class="lang-pill" data-loc="no" lang="nb" hreflang="nb" data-q="norsk norwegian no">Norsk</a><a href="/fi/" class="lang-pill" data-loc="fi" lang="fi" hreflang="fi" data-q="suomi finnish fi">Suomi</a></div></div>
+          <div class="lang-group"><p class="lang-group-h">Asia e altro</p><div class="lang-pills" data-no-translate=""><a href="/zh-tw/" class="lang-pill" data-loc="zh-tw" lang="zh-TW" hreflang="zh-TW" data-q="繁體中文 chinese traditional zh-tw">繁體中文</a><a href="/ko/" class="lang-pill" data-loc="ko" lang="ko" hreflang="ko" data-q="한국어 korean ko">한국어</a><a href="/hi/" class="lang-pill" data-loc="hi" lang="hi" hreflang="hi" data-q="हिन्दी hindi hi">हिन्दी</a><a href="/vi/" class="lang-pill" data-loc="vi" lang="vi" hreflang="vi" data-q="tiếng việt vietnamese vi">Tiếng Việt</a><a href="/id/" class="lang-pill" data-loc="id" lang="id" hreflang="id" data-q="bahasa indonesia indonesian id">Bahasa Indonesia</a><a href="/th/" class="lang-pill" data-loc="th" lang="th" hreflang="th" data-q="ไทย thai th">ไทย</a><a href="/ar/" class="lang-pill" data-loc="ar" lang="ar" hreflang="ar" data-q="العربية arabic ar">العربية</a></div></div>
+          <p class="lang-empty" hidden="">Nessun risultato</p>
+        </div>
+      </div>
+      <div class="mm-posts" aria-label="Blog">
+          <p class="mm-posts-h">Dal blog</p>
+          <a href="pocket-alternative.html" class="mm-post"><span class="mega-tag">Confronto</span><strong>Alternative a Pocket: cosa conta davvero</strong><span>Passare a un altro strumento 'leggi dopo' senza perdere il tuo archivio</span></a>
+          <a href="la-tua-chiave-il-tuo-modello.html" class="mm-post"><span class="mega-tag">Informativa sulla privacy</span><strong>La tua chiave. Il tuo modello. I tuoi dati.</strong><span>Perché usare la tua chiave API è meglio di un altro abbonamento</span></a>
+          <a href="verificare-un-riassunto-ia-alla-fonte.html" class="mm-post"><span class="mega-tag">Affidabilità</span><strong>Verifica un riassunto IA rispetto alla fonte</strong><span>Verifica le risposte dell'IA in meno di un minuto</span></a>
+          <a href="evidenziare-o-chiedere.html" class="mm-post"><span class="mega-tag">Guide</span><strong>Fai domande sulle tue evidenziazioni</strong><span>Trasforma ciò che hai evidenziato in risposte chiare</span></a>
+          <a href="un-riepilogo-al-posto-di-40-feed.html" class="mm-post"><span class="mega-tag">Feed</span><strong>Un unico recap al posto di 40 feed</strong><span>Un riassunto giornaliero di tutto ciò che segui</span></a>
+          <a href="ricerca-e-tag-senza-cloud.html" class="mm-post"><span class="mega-tag">Dietro le quinte</span><strong>Ricerca e tag senza cloud</strong><span>Come garantire che tutto rimanga sul tuo dispositivo</span></a>
+          <a href="./" class="mm-all">Tutti gli articoli →</a>
+        </div>
+      <div class="mm-bottom">
+        <a href="https://chromewebstore.google.com/detail/ai-summary-helper-openai/hldbejcjaedipeegjcinmhejdndchkmb" class="pill-cta mm-cta" data-desktop-cta="" target="_blank" rel="noopener">Aggiungi a Chrome</a>
+        <button type="button" class="pill-cta mm-cta" data-send="" hidden="">Invia al mio computer</button>
+        <div class="mm-row">
+          <a href="https://addons.mozilla.org/en-US/firefox/addon/ai-summary-helper/" target="_blank" rel="noopener">Firefox</a>
+          <a href="../index.html#phone">Android · Beta</a>
+          <a href="https://byphil.eu/#account">Il mio account</a>
+        </div>
+        
+        <button type="button" class="theme-toggle-mobile" id="themeToggleMobile">
+          <span id="themeToggleMobileLabel">Passa alla modalità chiara</span>
+          <svg class="icon-moon" viewBox="0 0 24 24" fill="none"><path d="M20 14.5A8.5 8.5 0 1 1 9.5 4a6.8 6.8 0 0 0 10.5 10.5Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"></path></svg>
+          <svg class="icon-sun" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="4.2" stroke="currentColor" stroke-width="1.6"></circle><path d="M12 2.5v2.4M12 19.1v2.4M4.4 4.4l1.7 1.7M17.9 17.9l1.7 1.7M2.5 12h2.4M19.1 12h2.4M4.4 19.6l1.7-1.7M17.9 6.1l1.7-1.7" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"></path></svg>
+        </button>
+      </div>
+    </div>
+  </div>
+</header>
+
+<main id="main">
+  <section class="hero--photo post-stage">
+    <img class="hero-bg" src="../../assets/photo/colleagues-laptop-office-800.webp" srcset="../../assets/photo/colleagues-laptop-office-800.webp 800w, ../../assets/photo/colleagues-laptop-office-1600.webp 1600w" sizes="100vw" width="1600" height="893" alt="" fetchpriority="high" decoding="async" style="--bgpos:50% 50%">
+    <p class="hero-credit">Illustrazione, generata dall'IA</p>
+    <div class="wrap">
+      <div class="post-hero">
+      <span class="blog-date">Guida · Ottobre 2026</span>
+      <h1>Usa la tua libreria in Claude, LM Studio e altre app AI</h1>
+      <p class="post-sub">La tua app IA dimentica tutto ciò che leggi. AI Summary Helper se ne ricorda. Collegale direttamente sul tuo computer: la tua app potrà cercare tra gli articoli salvati, citare le tue evidenziazioni e indicare le fonti.</p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <div class="prose" data-vgroup="">
+        <p>AI Summary Helper può condividere la tua libreria con le app IA che supportano il Model Context Protocol (MCP): Claude Desktop, LM Studio, Cursor, VS Code, Jan e agenti locali. La tua app fa una domanda, AI Summary Helper cerca nei tuoi articoli salvati e la risposta torna direttamente all'app sul tuo dispositivo.</p>
+        <figure class="post-figure post-video" data-blog-video="mcp">
+          <div class="post-video-in">
+            <button class="fvideo-open post-video-open" type="button"><span class="sr-only">Riproduci il video</span>
+              <video muted="" playsinline="" loop="" preload="none" width="360" height="520" poster="../../assets/blog/video/mcp-en.jpg">
+            <source src="../../assets/blog/video/mcp-en.mp4" type="video/mp4">
+          <track data-seo-video="" kind="captions" src="../../assets/blog/video/mcp-en.vtt" srclang="en" label="English"></video>
+              <span class="post-video-play" aria-hidden="true">▶</span>
+            </button>
+            <figcaption>Video: fai domande alla tua app IA sulle tue letture, con citazioni, scadenze e un riassunto dell'anno.</figcaption>
+          <div data-seo-video="" class="vtext"><p class="vtext-h">Transcript · 0:27</p><ul><li>Your AI app has never read what you read.</li><li>Claude Desktop, LM Studio or Cursor can now search your library and quote your highlights.</li><li>Ask what is due, let it save the best from your feeds, or ask for your year, wrapped.</li><li>Nothing goes through our server, and you choose what they may read.</li></ul></div></div>
+        </figure>
+        <p>È disattivato per impostazione predefinita. Nessun dato passa dai nostri server: l'estensione e l'app comunicano tra loro tramite un piccolo programma helper sul tuo computer, <code>aish-mcp</code>, che non memorizza articoli né inoltra nulla altrove.</p>
+
+        <h2>Cosa puoi chiedere</h2>
+        <ul>
+          <li><strong>Interroga le tue letture, non Internet.</strong> «Cosa ho salvato su IA e sorveglianza? Raggruppalo per tema e dimmi su quali punti gli articoli sono in disaccordo.»</li>
+          <li><strong>Scrivi a partire dalle tue fonti.</strong> «Scrivi una bozza di post sull'impatto di CO₂ dell'IA, citando le mie evidenziazioni.»</li>
+          <li><strong>Rispondi alla domanda di una raccolta.</strong> «Usa la mia raccolta sull'inflazione. Rispondi alla domanda usando solo quelle fonti e indica cosa manca.»</li>
+          <li><strong>Recupera i contenuti salvati da leggere.</strong> «Cosa ho in scadenza questa settimana tra gli elementi salvati da leggere? Fammi un riassunto di cinque minuti per ciascuno.»</li>
+          <li><strong>Fai ordine nei tuoi feed.</strong> «Controlla gli elementi non letti di oggi nei feed sull'IA e indicami i tre che vale la pena leggere.»</li>
+          <li><strong>Guarda il tuo anno.</strong> «Crea il riepilogo delle mie letture del 2026: argomenti principali, mese più attivo e gli articoli più significativi.»</li>
+          <li><strong>Lascia che sia un agente a salvare per te.</strong> «Trova tre buone fonti sul software local-first e salvale nella mia posta in arrivo di AISH con una nota.»</li>
+        </ul>
+        <p>Con un modello locale in LM Studio, tutto questo funziona anche a connessione di rete disattivata.</p>
+
+        <h2>Configurazione</h2>
+        <p>Ti servono AI Summary Helper su Chrome, Edge o Brave, <a href="https://nodejs.org/" target="_blank" rel="noopener">Node.js</a> 20 o superiore e un'app MCP.</p>
+        <ol>
+          <li><strong>Attivalo.</strong> In AI Summary Helper, apri Impostazioni → App IA (MCP) e attiva <em>Consenti alle app IA su questo computer di usare la mia libreria</em>.</li>
+          <li><strong>Ottieni il codice di abbinamento.</strong> In un terminale, esegui <code>npx -y aish-mcp pair</code>. Verrà mostrato un codice di abbinamento salvato nella tua cartella utente. Incolla il codice nel pannello delle impostazioni e seleziona Connetti.</li>
+          <li><strong>Aggiungi AI Summary Helper alla tua app.</strong> Usa lo snippet corrispondente alla tua app qui sotto, poi chiudi completamente l'app e riaprila.</li>
+          <li><strong>Verifica la connessione.</strong> Il pannello delle impostazioni mostra <em>Connesso</em> non appena l'app è in esecuzione. Fai una domanda alla tua app sulla tua libreria: ogni chiamata effettuata comparirà sotto Attività recente nel pannello.</li>
+        </ol>
+
+        <h3>Claude Desktop</h3>
+        <p>Settings → Developer → Edit Config, quindi aggiungi:</p>
+<pre><code>{
+  "mcpServers": {
+    "aish": { "command": "npx", "args": ["-y", "aish-mcp"] }
+  }
+}</code></pre>
+        <p>Se Claude Desktop non riesce a trovare <code>npx</code>, usa il percorso completo, che <code>which npx</code> mostra nel terminale (ad esempio <code>/opt/homebrew/bin/npx</code>).</p>
+
+        <h3>Cursor</h3>
+        <p>In <code>~/.cursor/mcp.json</code> (tutti i progetti) o <code>.cursor/mcp.json</code> (un singolo progetto), aggiungi la stessa voce <code>"aish"</code> usata per Claude Desktop.</p>
+
+        <h3>VS Code</h3>
+        <p>In <code>.vscode/mcp.json</code>:</p>
+<pre><code>{
+  "servers": {
+    "aish": { "type": "stdio", "command": "npx", "args": ["-y", "aish-mcp"] }
+  }
+}</code></pre>
+
+        <h3>LM Studio e altre app</h3>
+        <p>Le app con un'impostazione <code>mcpServers</code> (come <code>mcp.json</code>di LM Studio, Jan e quasi tutte le altre) accettano la stessa voce di Claude Desktop. Le app che si connettono solo via HTTP possono usare <code>npx -y aish-mcp --http</code> su <code>http://127.0.0.1:47616/</code>, con l'header <code>Authorization: Bearer &lt;il tuo codice di abbinamento&gt;</code>. Per un modello locale, scegline uno che supporti il tool calling, come Qwen 3 o Llama 3.1 e successivi.</p>
+
+        <h2>Cosa può fare la tua app</h2>
+        <table>
+          <thead><tr><th>Strumento</th><th>Cosa fa</th><th>Richiede</th></tr></thead>
+          <tbody>
+            <tr><td><code>search_library</code></td><td>Cerca tra gli articoli salvati, con filtri opzionali per tag, data o raccolta</td><td>La tua libreria</td></tr>
+            <tr><td><code>get_article</code></td><td>Un singolo articolo con riassunto ed evidenziazioni</td><td>La tua libreria</td></tr>
+            <tr><td><code>list_highlights</code></td><td>Le tue evidenziazioni, dalle più recenti</td><td>La tua libreria</td></tr>
+            <tr><td><code>list_due</code></td><td>Elementi salvati da leggere in scadenza a breve</td><td>La tua libreria</td></tr>
+            <tr><td><code>list_collections</code>, <code>get_collection</code></td><td>Le tue raccolte e le relative fonti</td><td>La tua libreria</td></tr>
+            <tr><td><code>library_stats</code></td><td>Solo statistiche: salvataggi nel tempo, tag e siti principali, mood, evidenziazioni</td><td>La tua libreria</td></tr>
+            <tr><td><code>get_article</code> con testo completo</td><td>L'intero testo salvato di un articolo, in testo normale</td><td>Testo completo dell'articolo</td></tr>
+            <tr><td><code>list_feed_items</code></td><td>Elementi dalle tue iscrizioni ai feed</td><td>Feed</td></tr>
+            <tr><td><code>save_url</code></td><td>Salva un link nella posta in arrivo con una nota, contrassegnato come aggiunto da un'app IA</td><td>Salva link</td></tr>
+          </tbody>
+        </table>
+        <p>Solo <em>La tua libreria</em> è abilitato quando attivi la funzionalità. Abilita Testo completo dell'articolo, Feed e Salva link nel pannello delle impostazioni se desideri usarli; le modifiche avranno effetto dalla chiamata successiva senza bisogno di riconnettersi. La tua app non può modificare né eliminare nulla in AI Summary Helper.</p>
+
+        <h2>Privacy e sicurezza</h2>
+        <ul>
+          <li><strong>Nessun dato passa dai nostri server.</strong> I dati passano dal browser al programma helper e poi all'app sul tuo computer. Ciò che l'app invia al modello dipende dall'app e dal modello scelti. Un modello locale mantiene tutto sul tuo dispositivo.</li>
+          <li><strong>Gli articoli con il tag <code>private</code> non compaiono mai</strong>, in nessun risultato, conteggio o raccolta. Puoi scegliere un tag diverso nel pannello delle impostazioni.</li>
+          <li><strong>Solo il tuo computer può connettersi.</strong> L'helper resta in ascolto solo su 127.0.0.1, quindi nessun altro dispositivo sulla tua rete può raggiungerlo. Nemmeno i siti web che visiti possono usarlo: accetta solo l'indirizzo dell'estensione AI Summary Helper e ogni connessione deve includere il tuo codice di abbinamento.</li>
+          <li><strong>Puoi monitorare ogni chiamata.</strong> Il pannello delle impostazioni elenca le ultime 50 chiamate indicando il nome dello strumento e l'ora, mai il contenuto.</li>
+          <li><strong>Puoi interrompere il collegamento in qualsiasi momento.</strong> Disattiva la funzionalità o seleziona Disconnetti. Esegui <code>npx -y aish-mcp reset</code> per revocare la validità del vecchio codice di abbinamento.</li>
+          <li><strong>Le pagine salvate sono testo proveniente dal web.</strong> L'app riceve l'istruzione di considerarli come informazioni e non come comandi, ma una pagina salvata potrebbe comunque tentare di ingannare l'IA. Mantieni disattivato il permesso Salva link se non lo utilizzi.</li>
+        </ul>
+
+        <h2>Risoluzione dei problemi</h2>
+        <table>
+          <thead><tr><th>Cosa vedi</th><th>Cosa fare</th></tr></thead>
+          <tbody>
+            <tr><td>Il pannello mostra <em>Non connesso</em></td><td>La tua app IA non è in esecuzione o non è ancora configurata. Aprila oppure esegui <code>npx -y aish-mcp</code> in un terminale per testare la connessione.</td></tr>
+            <tr><td>La tua app non mostra gli strumenti di AI Summary Helper, oppure mancano quelli nuovi dopo un aggiornamento</td><td>Chiudi completamente l'app e riaprila. Alcune app leggono l'elenco degli strumenti solo all'avvio.</td></tr>
+            <tr><td>«AISH is not running»</td><td>Il browser è chiuso o la funzionalità è disattivata. Apri il browser e controlla il pannello delle impostazioni.</td></tr>
+            <tr><td>«Scope … is not enabled»</td><td>La tua app ha richiesto un elemento non autorizzato. Abilitalo nel pannello delle impostazioni se desideri usarlo.</td></tr>
+            <tr><td>Il pannello non si connette dopo aver incollato il codice</td><td>Esegui <code>npx -y aish-mcp pair</code> e incolla di nuovo il codice mostrato. Il codice cambia dopo un <code>reset</code>.</td></tr>
+          </tbody>
+        </table>
+        <p>Puoi eseguire più app IA contemporaneamente senza problemi: condividono una sola connessione.</p>
+
+        <p><em>Correlati: <a href="digital-sovereignty-for-individuals.html">Sovranità digitale per le persone</a>.</em></p>
+
+        <div class="post-cta">
+          <p>AI Summary Helper è un'estensione gratuita per Chrome.</p>
+          <a href="https://chromewebstore.google.com/detail/ai-summary-helper-openai/hldbejcjaedipeegjcinmhejdndchkmb" target="_blank" rel="noopener" class="btn-primary">Aggiungi a Chrome</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<div class="vfeed-labels" hidden="">
+  <span data-l="close">Chiudi</span><span data-l="sound">Attiva audio</span><span data-l="mute">Disattiva audio</span><span data-l="hint">Scorri verso l'alto per il video successivo</span><span data-l="prev">Video precedente</span><span data-l="next">Video successivo</span>
+  <span data-l="share">Condividi</span><span data-l="copied">Link copiato</span>
+  <span data-l="add_chrome">Aggiungi a Chrome — è gratis</span><span data-l="add_firefox">Aggiungi a Firefox — è gratis</span><span data-l="add_browser">Aggiungi al tuo browser — è gratis</span>
+  <a data-l="try" href="../../bookmarklet.html">Provalo nel tuo browser — è gratis</a>
+</div>
+<footer>
+  <div class="wrap">
+    <div class="footer-inner">
+      <div class="wordmark"><img src="../../assets/icon.svg" alt="">AI Summary Helper</div>
+      <div class="foot-links">
+        <a href="https://github.com/philffm/ai-summary-helper/" target="_blank" rel="noopener">Codice sorgente su GitHub</a>
+        <a href="../../education/">Per l'istruzione</a>
+        <a href="../privacy-e-dati.html">Informativa sulla privacy</a>
+        <a href="#" data-analytics-settings="">Impostazioni statistiche</a>
+        <a href="https://byphil.eu/terms.html#impressum" target="_blank" rel="noopener">Note legali (Impressum)</a>
+      </div>
+    </div>
+    <div class="copyright">© 2026 Phil Wornath. Parte di <a href="https://byphil.eu/" class="credit-link">byphil.eu ↗</a> — software indipendente sviluppato in Germania.<br>
+      Progettato e sviluppato da <a href="https://philwornath.com/" target="_blank" rel="noopener" class="credit-link">philwornath.com ↗</a>
+    </div>
+  </div>
+</footer>
+
+<script src="../../assets/main.js"></script>
+
+
+</body></html>

@@ -1,0 +1,222 @@
+<!DOCTYPE html><html lang="tr"><head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#08090C">
+<title>Okuma Kitaplığınızı Nextcloud, S3 veya Bir Klasörle Şifreli Senkronize Edin — AI Summary Helper</title>
+<meta name="description" content="Adım adım: Kaydedilen makalelerinizi, vurgularınızı ve notlarınızı kendi Nextcloud sunucunuzda, S3 bucket'ınızda veya yerel bir klasörde, tarayıcıda şifrelenmiş olarak cihazlarınız arasında senkronize tutun.">
+
+<script>
+  (function(){
+    try {
+      var saved = localStorage.getItem('aish_theme');
+      var theme = saved === 'light' || saved === 'dark'
+        ? saved
+        : (window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
+      document.documentElement.setAttribute('data-theme', theme);
+    } catch (e) {
+      document.documentElement.setAttribute('data-theme', 'dark');
+    }
+  })();
+</script>
+
+<link rel="icon" type="image/svg+xml" href="../../assets/icon.svg">
+<link rel="stylesheet" href="../../assets/styles.css">
+<script src="../../assets/analytics.js"></script>
+<link rel="alternate" hreflang="x-default" href="https://ai-summary-helper.byphil.eu/blog/sync-to-nextcloud-s3-or-a-folder.html"><link rel="alternate" hreflang="en" href="https://ai-summary-helper.byphil.eu/blog/sync-to-nextcloud-s3-or-a-folder.html"><link rel="alternate" hreflang="de" href="https://ai-summary-helper.byphil.eu/de/blog/sync-mit-nextcloud-s3-oder-ordner.html"><link rel="alternate" hreflang="fr" href="https://ai-summary-helper.byphil.eu/fr/blog/sync-to-nextcloud-s3-or-a-folder.html"><link rel="alternate" hreflang="es" href="https://ai-summary-helper.byphil.eu/es/blog/sync-to-nextcloud-s3-or-a-folder.html"><link rel="alternate" hreflang="zh-Hans" href="https://ai-summary-helper.byphil.eu/zh/blog/sync-to-nextcloud-s3-or-a-folder.html"><link rel="alternate" hreflang="zh-Hant" href="https://ai-summary-helper.byphil.eu/zh-tw/blog/sync-to-nextcloud-s3-or-a-folder.html"><link rel="alternate" hreflang="ja" href="https://ai-summary-helper.byphil.eu/ja/blog/sync-to-nextcloud-s3-or-a-folder.html"><link rel="alternate" hreflang="ko" href="https://ai-summary-helper.byphil.eu/ko/blog/sync-to-nextcloud-s3-or-a-folder.html"><link rel="alternate" hreflang="pt-BR" href="https://ai-summary-helper.byphil.eu/pt/blog/sync-to-nextcloud-s3-or-a-folder.html"><link rel="alternate" hreflang="hi" href="https://ai-summary-helper.byphil.eu/hi/blog/sync-to-nextcloud-s3-or-a-folder.html"><link rel="alternate" hreflang="vi" href="https://ai-summary-helper.byphil.eu/vi/blog/sync-to-nextcloud-s3-or-a-folder.html"><link rel="alternate" hreflang="nl" href="https://ai-summary-helper.byphil.eu/nl/blog/sync-to-nextcloud-s3-or-a-folder.html"><link rel="alternate" hreflang="it" href="https://ai-summary-helper.byphil.eu/it/blog/sync-to-nextcloud-s3-or-a-folder.html"><link rel="alternate" hreflang="ru" href="https://ai-summary-helper.byphil.eu/ru/blog/sync-to-nextcloud-s3-or-a-folder.html"><link rel="alternate" hreflang="uk" href="https://ai-summary-helper.byphil.eu/uk/blog/sync-to-nextcloud-s3-or-a-folder.html"><link rel="alternate" hreflang="tr" href="https://ai-summary-helper.byphil.eu/tr/blog/sync-to-nextcloud-s3-or-a-folder.html"><link rel="alternate" hreflang="id" href="https://ai-summary-helper.byphil.eu/id/blog/sync-to-nextcloud-s3-or-a-folder.html"><link rel="alternate" hreflang="pl" href="https://ai-summary-helper.byphil.eu/pl/blog/sync-to-nextcloud-s3-or-a-folder.html"><link rel="alternate" hreflang="th" href="https://ai-summary-helper.byphil.eu/th/blog/sync-to-nextcloud-s3-or-a-folder.html"><link rel="alternate" hreflang="ar" href="https://ai-summary-helper.byphil.eu/ar/blog/sync-to-nextcloud-s3-or-a-folder.html"><link rel="alternate" hreflang="sv" href="https://ai-summary-helper.byphil.eu/sv/blog/sync-to-nextcloud-s3-or-a-folder.html"><link rel="alternate" hreflang="da" href="https://ai-summary-helper.byphil.eu/da/blog/sync-to-nextcloud-s3-or-a-folder.html"><link rel="alternate" hreflang="nb" href="https://ai-summary-helper.byphil.eu/no/blog/sync-to-nextcloud-s3-or-a-folder.html"><link rel="alternate" hreflang="fi" href="https://ai-summary-helper.byphil.eu/fi/blog/sync-to-nextcloud-s3-or-a-folder.html"><link rel="canonical" href="https://ai-summary-helper.byphil.eu/tr/blog/sync-to-nextcloud-s3-or-a-folder.html"><meta property="og:site_name" content="AI Summary Helper"><meta property="og:locale" content="tr"><meta property="og:type" content="article"><meta property="og:title" content="Okuma Kitaplığınızı Nextcloud, S3 veya Bir Klasörle Şifreli Senkronize Edin — AI Summary Helper"><meta property="og:description" content="Adım adım: Kaydedilen makalelerinizi, vurgularınızı ve notlarınızı kendi Nextcloud sunucunuzda, S3 bucket'ınızda veya yerel bir klasörde, tarayıcıda şifrelenmiş olarak cihazlarınız arasında senkronize tutun."><meta property="og:image" content="https://ai-summary-helper.byphil.eu/assets/shots/aish-hero-en.webp"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="Okuma Kitaplığınızı Nextcloud, S3 veya Bir Klasörle Şifreli Senkronize Edin — AI Summary Helper"><meta name="twitter:description" content="Adım adım: Kaydedilen makalelerinizi, vurgularınızı ve notlarınızı kendi Nextcloud sunucunuzda, S3 bucket'ınızda veya yerel bir klasörde, tarayıcıda şifrelenmiş olarak cihazlarınız arasında senkronize tutun."><meta name="twitter:image" content="https://ai-summary-helper.byphil.eu/assets/shots/aish-hero-en.webp"><script type="application/ld+json" data-seo="ld">{"@context":"https://schema.org","@graph":[{"@type":"BlogPosting","@id":"https://ai-summary-helper.byphil.eu/tr/blog/sync-to-nextcloud-s3-or-a-folder.html#post","headline":"Okuma Kitaplığınızı Nextcloud, S3 veya Yerel Bir Klasörle Şifreli Olarak Nasıl Senkronize Edersiniz?","description":"Adım adım: Kaydedilen makalelerinizi, vurgularınızı ve notlarınızı kendi Nextcloud sunucunuzda, S3 bucket'ınızda veya yerel bir klasörde, tarayıcıda şifrelenmiş olarak cihazlarınız arasında senkronize tutun.","inLanguage":"tr","image":"https://ai-summary-helper.byphil.eu/assets/shots/aish-hero-en.webp","mainEntityOfPage":"https://ai-summary-helper.byphil.eu/tr/blog/sync-to-nextcloud-s3-or-a-folder.html","author":{"@id":"https://byphil.eu/#org"},"publisher":{"@type":"Organization","@id":"https://byphil.eu/#org","name":"byphil","url":"https://byphil.eu/"}},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"AI Summary Helper","item":"https://ai-summary-helper.byphil.eu/"},{"@type":"ListItem","position":2,"name":"Blog","item":"https://ai-summary-helper.byphil.eu/tr/blog/"},{"@type":"ListItem","position":3,"name":"Okuma Kitaplığınızı Nextcloud, S3 veya Yerel Bir Klasörle Şifreli Olarak Nasıl Senkronize Edersiniz?","item":"https://ai-summary-helper.byphil.eu/tr/blog/sync-to-nextcloud-s3-or-a-folder.html"}]}]}</script></head>
+<body>
+
+<a href="#main" class="skip-link">İçeriğe atla</a>
+
+<header class="nav nav--pill" id="siteNav">
+  <div class="wrap nav-pill-row">
+    <a href="../index.html" class="wordmark" aria-label="AI Summary Helper">
+      <img src="../../assets/icon.svg" alt="">
+      AI Summary Helper
+    </a>
+    <nav class="pill" aria-label="Birincil">
+      <a href="../index.html#features" data-sec="features">Özellikler</a>
+      <a href="../index.html#see-it" data-sec="see-it">Demo</a>
+      <a href="https://chromewebstore.google.com/detail/ai-summary-helper-openai/hldbejcjaedipeegjcinmhejdndchkmb" class="pill-cta" target="_blank" rel="noopener">Chrome'a ekle</a>
+    </nav>
+    <div class="nav-tools">
+      <button type="button" class="tool-btn" id="sendBtn" data-send="" hidden="" aria-label="Bu sayfayı bilgisayarıma gönder" title="Bilgisayarıma gönder"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="3" y="4.5" width="18" height="12" rx="2" stroke="currentColor" stroke-width="1.6"></rect><path d="M8 20h8M12 16.5V20M12 13V8m0 0-2.2 2.2M12 8l2.2 2.2" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"></path></svg></button>
+      <button type="button" class="tool-btn" id="langBtn" aria-label="Dil" aria-controls="mobileMenu"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.6"></circle><path d="M3 12h18M12 3c2.6 2.7 3.9 5.7 3.9 9s-1.3 6.3-3.9 9c-2.6-2.7-3.9-5.7-3.9-9S9.4 5.7 12 3Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"></path></svg></button>
+      <button type="button" class="theme-toggle" id="themeToggle" aria-label="Açık temaya geç">
+        <svg class="icon-moon" viewBox="0 0 24 24" fill="none"><path d="M20 14.5A8.5 8.5 0 1 1 9.5 4a6.8 6.8 0 0 0 10.5 10.5Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"></path></svg>
+        <svg class="icon-sun" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="4.2" stroke="currentColor" stroke-width="1.6"></circle><path d="M12 2.5v2.4M12 19.1v2.4M4.4 4.4l1.7 1.7M17.9 17.9l1.7 1.7M2.5 12h2.4M19.1 12h2.4M4.4 19.6l1.7-1.7M17.9 6.1l1.7-1.7" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"></path></svg>
+      </button>
+    </div>
+    <button type="button" class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="mobileMenu" aria-label="Menüyü aç">
+      <svg viewBox="0 0 24 24" fill="none"><path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"></path></svg>
+    </button>
+  </div>
+  <div class="mobile-menu" id="mobileMenu" hidden="">
+    <div class="wrap mm-inner">
+      <nav class="mm-links" aria-label="Mobil">
+        <a href="../index.html#features"><span class="mm-n">01</span>Özellikler</a>
+        <a href="../index.html#see-it"><span class="mm-n">02</span>Demo</a>
+        <a href="../../education/"><span class="mm-n">03</span>Eğitim</a>
+        <a href="./" aria-current="page"><span class="mm-n">04</span>Blog</a>
+          <a href="pocket-alternative.html" class="mm-sub">Pocket alternatifi: Gerçekten önemli olanlar</a>
+          <a href="kendi-anahtarin-kendi-modelin.html" class="mm-sub">Sizin anahtarınız. Sizin modeliniz. Sizin verileriniz.</a>
+          <a href="yapay-zeka-ozetini-kaynakta-dogrula.html" class="mm-sub">Özeti kaynağıyla karşılaştırıp doğrulayın</a>
+          <a href="vurgula-ya-da-sor.html" class="mm-sub">Vurguladıklarınız hakkında sorular sorun</a>
+        <a href="https://github.com/philffm/ai-summary-helper/" target="_blank" rel="noopener"><span class="mm-n">05</span>GitHub</a>
+      </nav>
+      <div class="mm-lang">
+        <button type="button" class="lang-card" id="langCard"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.6"></circle><path d="M3 12h18M12 3c2.6 2.7 3.9 5.7 3.9 9s-1.3 6.3-3.9 9c-2.6-2.7-3.9-5.7-3.9-9S9.4 5.7 12 3Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"></path></svg><span class="lang-card-cur">İngilizce</span><small>24 dil</small><b aria-hidden="true">→</b></button>
+        <p class="mm-lang-h">Dil · 24</p>
+        <label class="lang-search"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="11" cy="11" r="6.5" stroke="currentColor" stroke-width="1.7"></circle><path d="m16 16 4 4" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"></path></svg><input type="search" id="langSearch" placeholder="Dil ara…" autocomplete="off" aria-label="Dil ara" spellcheck="false"></label>
+        <div class="lang-groups" id="langGroups">
+          <div class="lang-group"><p class="lang-group-h">Popüler</p><div class="lang-pills" data-no-translate=""><a href="/" class="lang-pill" data-loc="en" lang="en" hreflang="en" data-q="english english en">English</a><a href="/de/" class="lang-pill" data-loc="de" lang="de" hreflang="de" data-q="deutsch german de">Deutsch</a><a href="/fr/" class="lang-pill" data-loc="fr" lang="fr" hreflang="fr" data-q="français french fr">Français</a><a href="/es/" class="lang-pill" data-loc="es" lang="es" hreflang="es" data-q="español spanish es">Español</a><a href="/zh/" class="lang-pill" data-loc="zh" lang="zh-CN" hreflang="zh-CN" data-q="简体中文 chinese simplified zh">简体中文</a><a href="/ja/" class="lang-pill" data-loc="ja" lang="ja" hreflang="ja" data-q="日本語 japanese ja">日本語</a><a href="/ru/" class="lang-pill" data-loc="ru" lang="ru" hreflang="ru" data-q="русский russian ru">Русский</a></div></div>
+          <div class="lang-group"><p class="lang-group-h">Avrupa</p><div class="lang-pills" data-no-translate=""><a href="/pt/" class="lang-pill" data-loc="pt" lang="pt" hreflang="pt" data-q="português portuguese pt">Português</a><a href="/nl/" class="lang-pill" data-loc="nl" lang="nl" hreflang="nl" data-q="nederlands dutch nl">Nederlands</a><a href="/it/" class="lang-pill" data-loc="it" lang="it" hreflang="it" data-q="italiano italian it">Italiano</a><a href="/uk/" class="lang-pill" data-loc="uk" lang="uk" hreflang="uk" data-q="українська ukrainian uk">Українська</a><a href="/tr/" class="lang-pill" data-loc="tr" lang="tr" hreflang="tr" data-q="türkçe turkish tr">Türkçe</a><a href="/pl/" class="lang-pill" data-loc="pl" lang="pl" hreflang="pl" data-q="polski polish pl">Polski</a><a href="/sv/" class="lang-pill" data-loc="sv" lang="sv" hreflang="sv" data-q="svenska swedish sv">Svenska</a><a href="/da/" class="lang-pill" data-loc="da" lang="da" hreflang="da" data-q="dansk danish da">Dansk</a><a href="/no/" class="lang-pill" data-loc="no" lang="nb" hreflang="nb" data-q="norsk norwegian no">Norsk</a><a href="/fi/" class="lang-pill" data-loc="fi" lang="fi" hreflang="fi" data-q="suomi finnish fi">Suomi</a></div></div>
+          <div class="lang-group"><p class="lang-group-h">Asya ve diğerleri</p><div class="lang-pills" data-no-translate=""><a href="/zh-tw/" class="lang-pill" data-loc="zh-tw" lang="zh-TW" hreflang="zh-TW" data-q="繁體中文 chinese traditional zh-tw">繁體中文</a><a href="/ko/" class="lang-pill" data-loc="ko" lang="ko" hreflang="ko" data-q="한국어 korean ko">한국어</a><a href="/hi/" class="lang-pill" data-loc="hi" lang="hi" hreflang="hi" data-q="हिन्दी hindi hi">हिन्दी</a><a href="/vi/" class="lang-pill" data-loc="vi" lang="vi" hreflang="vi" data-q="tiếng việt vietnamese vi">Tiếng Việt</a><a href="/id/" class="lang-pill" data-loc="id" lang="id" hreflang="id" data-q="bahasa indonesia indonesian id">Bahasa Indonesia</a><a href="/th/" class="lang-pill" data-loc="th" lang="th" hreflang="th" data-q="ไทย thai th">ไทย</a><a href="/ar/" class="lang-pill" data-loc="ar" lang="ar" hreflang="ar" data-q="العربية arabic ar">العربية</a></div></div>
+          <p class="lang-empty" hidden="">Sonuç bulunamadı</p>
+        </div>
+      </div>
+      <div class="mm-posts" aria-label="Blog">
+          <p class="mm-posts-h">Blogdan</p>
+          <a href="pocket-alternative.html" class="mm-post"><span class="mega-tag">Karşılaştırın</span><strong>Pocket Alternatifi: Gerçekten Önemli Olanlar</strong><span>Arşivinizi kaybetmeden daha sonra oku araçlarını değiştirin</span></a>
+          <a href="kendi-anahtarin-kendi-modelin.html" class="mm-post"><span class="mega-tag">Gizlilik</span><strong>Anahtarınız. Modeliniz. Verileriniz.</strong><span>Neden bring-your-own-key yeni bir abonelikten daha avantajlı?</span></a>
+          <a href="yapay-zeka-ozetini-kaynakta-dogrula.html" class="mm-post"><span class="mega-tag">Güvenilirlik</span><strong>Bir Yapay Zekâ Özetini Kaynağıyla Doğrulayın</strong><span>AI çıktılarını bir dakikadan kısa sürede kontrol edin</span></a>
+          <a href="vurgula-ya-da-sor.html" class="mm-post"><span class="mega-tag">Nasıl Yapılır</span><strong>Vurguladıklarınız Hakkında Soru Sorun</strong><span>İşaretlediğiniz kısımları yanıtlara dönüştürün</span></a>
+          <a href="40-akis-yerine-tek-ozet.html" class="mm-post"><span class="mega-tag">Akışlar</span><strong>40 Akış Yerine Tek Bir Özet</strong><span>Takip ettiğiniz her şeyin günlük özeti</span></a>
+          <a href="bulutsuz-arama-ve-etiketler.html" class="mm-post"><span class="mega-tag">Perde arkası</span><strong>Buluta İhtiyaç Duymadan Arama ve Etiketleme</strong><span>Tüm veriler cihazınızda nasıl kalıyor?</span></a>
+          <a href="./" class="mm-all">Tüm yazılar →</a>
+        </div>
+      <div class="mm-bottom">
+        <a href="https://chromewebstore.google.com/detail/ai-summary-helper-openai/hldbejcjaedipeegjcinmhejdndchkmb" class="pill-cta mm-cta" data-desktop-cta="" target="_blank" rel="noopener">Chrome'a ekle</a>
+        <button type="button" class="pill-cta mm-cta" data-send="" hidden="">Bilgisayarıma gönder</button>
+        <div class="mm-row">
+          <a href="https://addons.mozilla.org/en-US/firefox/addon/ai-summary-helper/" target="_blank" rel="noopener">Firefox</a>
+          <a href="../index.html#phone">Android · Beta</a>
+          <a href="https://byphil.eu/#account">Hesabım</a>
+        </div>
+        
+        <button type="button" class="theme-toggle-mobile" id="themeToggleMobile">
+          <span id="themeToggleMobileLabel">Açık temaya geç</span>
+          <svg class="icon-moon" viewBox="0 0 24 24" fill="none"><path d="M20 14.5A8.5 8.5 0 1 1 9.5 4a6.8 6.8 0 0 0 10.5 10.5Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"></path></svg>
+          <svg class="icon-sun" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="4.2" stroke="currentColor" stroke-width="1.6"></circle><path d="M12 2.5v2.4M12 19.1v2.4M4.4 4.4l1.7 1.7M17.9 17.9l1.7 1.7M2.5 12h2.4M19.1 12h2.4M4.4 19.6l1.7-1.7M17.9 6.1l1.7-1.7" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"></path></svg>
+        </button>
+      </div>
+    </div>
+  </div>
+</header>
+
+<main id="main">
+  <section class="hero--photo post-stage">
+    <img class="hero-bg" src="../../assets/photo/nas-shelf-laptop-phone-800.webp" srcset="../../assets/photo/nas-shelf-laptop-phone-800.webp 800w, ../../assets/photo/nas-shelf-laptop-phone-1600.webp 1600w" sizes="100vw" width="1600" height="893" alt="" fetchpriority="high" decoding="async" style="--bgpos:60% 55%">
+    <p class="hero-credit">İllüstrasyon, yapay zekâ üretimi</p>
+    <div class="wrap">
+      <div class="post-hero">
+      <span class="blog-date">Nasıl Yapılır · Ekim 2026</span>
+      <h1>Okuma Kitaplığınızı Nextcloud, S3 veya Yerel Bir Klasörle Şifreli Olarak Nasıl Senkronize Edersiniz?</h1>
+      <p class="post-sub">Kaydettiğiniz makaleler, özetler, vurgular ve notlar tüm bilgisayarlarınızda; yalnızca sizin belirlediğiniz yerde saklanır ve yalnızca sizin anahtarınızla okunabilir. On dakika, bizde hesap açmanıza gerek yok.</p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <div class="prose">
+        <p><strong>Kısa versiyon.</strong> AI Summary Helper içinde şunu açın: <em>Settings → Sync &amp; backup → Add a place</em>, Nextcloud/WebDAV, S3 uyumlu depolama veya bilgisayarınızdaki bir klasörü seçin ve önerilen parola ifadesini (passphrase) saklayın. Her şey yüklenmeden önce tarayıcınızda şifrelenir. İkinci bilgisayarınızda aynı konumu ekleyip parola ifadesini girersiniz. Tüm kurulum bundan ibaret. Bu sayfanın geri kalanı her depolama türünü, nelerin senkronize edildiğini ve bir sorun oluştuğunda ne yapılması gerektiğini açıklamaktadır.</p>
+        <figure class="post-figure post-figure--photo"><img src="../../assets/photo/commuter-train-reading-800.webp" srcset="../../assets/photo/commuter-train-reading-800.webp 800w, ../../assets/photo/commuter-train-reading-1600.webp 1600w" sizes="(max-width: 720px) 92vw, 680px" width="1600" height="893" loading="lazy" decoding="async" alt="İllüstrasyon: Bölgesel bir trende elinde e-kitap okuyucu ve telefon tutan bir yolcu"><figcaption>Tek bir kitaplık, birden fazla cihaz. İllüstrasyon, yapay zekâ tarafından oluşturulmuştur.</figcaption></figure>
+        <p>Bunu neden yapmalısınız? Çünkü bir okuma kitaplığı saklanmaya değerdir ve güvendiğiniz bir araç aniden yok olabilir (<a href="digital-sovereignty-for-individuals.html">bu konuda daha fazla bilgi</a>). Sahip olduğunuz bir depolama alanına senkronize etmek, kitaplığınızın tek bir uygulamadan veya hesaptan daha uzun ömürlü olması anlamına gelir.</p>
+
+        <h2>Neler senkronize edilir, neler edilmez?</h2>
+        <ul>
+          <li><strong>Senkronize edilenler:</strong> tam metinleri ve özetleriyle kaydedilmiş makaleler, etiketler, vurgular, notlarınız ve yorumlarınız ile koleksiyonlar.</li>
+          <li><strong>Senkronize edilmeyenler:</strong> API anahtarlarınız, giriş bilgileriniz, senkronizasyon oturumunun kendisi ve cihaz bazlı ayarlar. Yedekleme ve senkronizasyon bunları kasıtlı olarak hariç tutar.</li>
+          <li><strong>Sayfa başına bir makale:</strong> aynı sayfayı iki bilgisayarda kaydettiyseniz, tek bir makale elde edersiniz (etiketler ve eksik alanlar birleştirilir).</li>
+          <li><strong>Düzenlemeler alan bazında birleştirilir:</strong> bir bilgisayarda değiştirilen başlık ve diğerinde eklenen etiket korunur. Her ikisi de aynı alanı değiştirirse, sonraki değişiklik geçerli olur; bu durum her cihazda aynıdır.</li>
+        </ul>
+
+        <h2>1. Adım: Nerede saklanacağını seçin</h2>
+        <h3>Nextcloud veya başka bir WebDAV sunucusu</h3>
+        <p>Halihazırda Nextcloud kullanıyorsanız veya barındırılan bir hizmetiniz varsa (birçok Avrupalı sağlayıcı bunu sunar) en iyi seçenektir. Üç şeye ihtiyacınız var:</p>
+        <ol>
+          <li><strong>Dosyalarınızın adresi.</strong> Nextcloud için şuna benzer: <code>https://your-server/remote.php/dav/files/your-username/</code>. Nextcloud içinde şunu açın: <em>Files → Settings</em> ve orada gösterilen WebDAV adresini kopyalayın.</li>
+          <li><strong>Kullanıcı adınız.</strong></li>
+          <li><strong>Ana şifreniz değil, bir uygulama şifresi (app password).</strong> Nextcloud içinde: <em>Settings → Security → Devices &amp; sessions → create a new app password</em>. Erişimi sonlandırmak isterseniz, yalnızca bu girişi silmeniz yeterlidir.</li>
+        </ol>
+        <p>Şunun gibi bir klasör adı seçin: <code>aish-sync</code>. Klasör sizin için oluşturulur. Diğer WebDAV sunucuları da (birçok NAS cihazı, ownCloud) aynı şekilde çalışır; yalnızca adres biçimi farklılık gösterir.</p>
+
+        <h3>S3 uyumlu bir bucket</h3>
+        <p>Nesne depolama (object storage) tercih ediyorsanız en iyisidir: AWS S3, Cloudflare R2, Backblaze B2, MinIO ve benzerleri. Bir bucket oluşturun, ardından bir erişim anahtarı (access key) oluşturun <strong>yalnızca bu bucket için</strong> okuma, yazma, listeleme ve silme izinlerine sahip olmalıdır. Asla hesabınızın ana anahtarını kullanmayın. Eklentide endpoint adresini (örneğin <code>https://s3.eu-central-1.amazonaws.com</code>veya sağlayıcınızın belirttiği adresi), bucket adını, bölgeyi (sağlayıcınız istemiyorsa varsayılanı bırakın), access key ID ve secret key bilgilerini girin.</p>
+
+        <h3>Bilgisayarınızdaki bir klasör</h3>
+        <p>Cihazlarınız arasında bir klasörü zaten başka bir araç taşıyorsa en iyisidir: Syncthing, masaüstü senkronizasyon istemciniz, iCloud Drive veya bir USB bellek. Seçin: <em>Bu bilgisayardaki bir klasör</em> ve şunu seçin: <strong>kendinize ait yeni, boş bir klasör</strong>, örneğin <code>Documents/AISH-sync</code>. Chrome doğrudan Masaüstü, Belgeler veya İndirilenler klasörlerini kabul etmez, bu nedenle bir alt klasör seçin. Bu özellik bilgisayardaki Chrome ve Edge'de çalışır. Bilmeniz gereken iki şey: Tarayıcı yeniden başlatıldıktan sonra erişime tekrar izin vermenizi isteyebilir (ayarlar ekranında bunun için bir düğme bulunur) ve klasör yalnızca tarayıcı çalışırken senkronize olmaya devam eder.</p>
+
+        <h2>2. Adım: Şifreliyi seçin ve kelimeleri saklayın</h2>
+        <p>Konumu eklediğinizde, <em>Encrypted</em> varsayılan olarak seçilidir ve <em>Sync my devices</em> amaç olarak ayarlanmıştır. Eklenti, parola ifadeniz (passphrase) olarak rastgele altı kelime önerir. Şuna basabilirsiniz: <em>Another suggestion</em> beğendiğiniz bir kombinasyon gelene kadar basabilir veya kendi parolanızı belirleyebilirsiniz (en az 12 karakter; zayıfsa bir ipucu verilir).</p>
+        <p>Bağlandıktan sonra altı kelimeyi bir kez görürsünüz. Bunları bir şifre yöneticisine kaydedin; Kopyala butonu kelimeleri tirelerle birleştirilmiş tek bir metin olarak panoya kopyalar, böylece yapılandırma dosyalarında ve sohbet uygulamalarında bozulmaz. Bu kelimelerle konumu herhangi bir cihazda açabilirsiniz; onlar olmadan biz dahil hiç kimse dosyaları okuyamaz. Kurulumu yaptığınız bilgisayarda, konum ayarları altından bunları tekrar görebilirsiniz: <em>Show passphrase</em>. Bunun yerine kendi parola ifadenizi belirlediyseniz, hiçbir yerde saklanmaz; bu yüzden eklenti bunu gösteremez.</p>
+        <p>Depolama sağlayıcısının gördükleri: karmaşık isimlere sahip şifrelenmiş dosyalar, kaç adet oldukları, boyutları ve ne zaman değiştikleri. Başlıkları, bağlantıları veya metinleri göremez. Kitaplığınız cihazdan ayrılmadan önce tarayıcınızda AES-256-GCM ile şifrelenir.</p>
+
+        <h2>3. Adım: İkinci bilgisayarınızı ekleyin</h2>
+        <ol>
+          <li>Eklentiyi yükleyin ve şunu açın: <em>Settings → Sync &amp; backup → Add a place</em>.</li>
+          <li>Aynı sunucu bilgilerini girin (veya aynı klasörü seçin).</li>
+          <li>Eklenti, klasörün zaten şifreli bir kitaplık içerdiğini algılar ve parola ifadesini sorar. Kelimeleri büyük/küçük harf fark etmeksizin, boşluklu veya tireli olarak yazabilirsiniz.</li>
+          <li>Öncelikle bu cihazın bir yedeğini aldığınızı onaylamanızı ister; çünkü katılma işlemi bu bilgisayarın kitaplığını klasördekiyle birleştirir ve farklılık olan yerlerde klasördeki geçerli olur. Şunu kullanın: <em>Make a backup now</em>.</li>
+          <li>Şuna basın: <em>Connect</em>. Büyük bir kitaplık için ilk senkronizasyon biraz zaman alabilir; ekranda ilerleme durumu gösterilir.</li>
+        </ol>
+
+        <h2>Yalnızca yedekleme, geri yükleme ve yayınlama</h2>
+        <ul>
+          <li><strong>Backup only.</strong> Şunu seçin: <em>Backup only</em> yerine: <em>Sync my devices</em> böylece bilgisayar konuma yalnızca yazar ve oradan hiçbir şey okumaz. İhtiyaç duyduğunuzda konum ayarlarından geri yükleyin: her şeyi geri getirir ve bu bilgisayarla farklılık olduğunda konumdaki veriler geçerli olur. Hiçbir şey silinmez.</li>
+          <li><strong>Publish to your website.</strong> Ayrı bir konum türü olan <em>Readable</em>, kendi siteniz için yalnızca etiketlediğiniz makalelere ait düz dosyalar yazar ve isteğe bağlı bir görüntüleyici sayfası sunar. Siz etkinleştirmediğiniz sürece notlar ve tam metinler dahil edilmez, çünkü bu klasörü açabilen herkes içeriği okuyabilir. Gizli veriler için okunabilir bir konum kullanmayın.</li>
+        </ul>
+
+        <h2>Bir sorun oluştuğunda</h2>
+        <h3>"Klasöre yeniden erişim izni ver"</h3>
+        <p>Tarayıcı, yeniden başlatmanın ardından klasör erişimini geri alır. Şunun üst kısmındaki butona basın: <em>Sync &amp; backup</em>. Sorun devam ederse klasör Chrome'un koruduğu bir dizin olabilir (Masaüstü, Belgeler, İndirilenler veya ana dizininiz): kendi oluşturduğunuz bir alt klasörü seçin.</p>
+        <h3>"Sunucu kullanıcı adını ve şifreyi kabul etmedi"</h3>
+        <p>Nextcloud için bir uygulama şifresi (app password) kullanın. Adresin kullanıcı adı klasörünüzle bittiğini ve iki faktörlü doğrulamanın uygulama şifresini engellemediğini kontrol edin.</p>
+        <h3>"Yanlış parola ifadesi"</h3>
+        <p>Kelimeleri kontrol edin: büyük/küçük harf, boşluklar ve tireler önemli değildir ancak her kelime doğru olmalıdır. Zaten kurulu bir bilgisayarda konum ayarlarını açın ve şuna basın: <em>Show passphrase</em>. Eğer her yerde kaybettiyseniz, dosyalar hiç kimse tarafından açılamaz: konumu buradan kaldırın, yeni bir tane oluşturun ve bilgisayarınızdaki kitaplıktan baştan başlayın.</p>
+        <h3>Çok sayıda silme işlemi beni bekliyor</h3>
+        <p>Başka bir cihaz aynı anda çok sayıda makaleyi silerse, eklenti birkaçını uygular ve geri kalanı için onay ister; böylece tek bir hata kitaplığınızı tamamen boşaltamaz. Kontrol edin, ardından uygulamak için butona basın.</p>
+        <h3>Bir bilgisayar aylarca çevrimdışı kaldı</h3>
+        <p>Yaklaşık üç ay sonra, bilgisayar yalnızca o zamandan beri değişenleri gönderir ve kendiliğinden hiçbir şeyi silmez; böylece başka bir yerde silinen eski makaleler yanlışlıkla geri gelmez.</p>
+
+        <h2>Sorular</h2>
+        <h3>Sizde bir hesap açmam gerekiyor mu?</h3>
+        <p>Hayır. Senkronizasyon doğrudan tarayıcınızdan girdiğiniz depolama alanına bağlanır. Herhangi bir senkronizasyon sunucusu barındırmıyoruz.</p>
+        <h3>Telefonumda çalışır mı?</h3>
+        <p>Android'de evet. Yardımcı uygulama ( <a href="https://github.com/philffm/ai-summary-helper/releases/latest" rel="noopener">the GitHub releases</a>üzerindeki bir APK; henüz Google Play'de yok) kitaplığınıza şuradan katılabilir: <em>Settings → Library sync</em>. En hızlı yol koddur: tarayıcıda konum ayarlarınızı açın, şuna basın: <em>Show code for the phone</em> ve taratın. Sunucu giriş bilgilerinizi içerir, bu yüzden yalnızca kendi telefonunuza gösterin. Telefon; kaydedilen makalelerinizi özetleri ve vurgularıyla gösterir, notlar ise iki yönlü senkronize edilir. Telefonda özetlediğiniz sayfalar ve işaretlediğiniz pasajlar da kitaplığınıza eklenir ancak yalnızca henüz mevcut olmayan sayfalar için geçerlidir: tarayıcının kendi metni asla üzerine yazılmaz. Henüz bir iPhone uygulaması yoktur.</p>
+        <h3>Birden fazla konum kullanabilir miyim?</h3>
+        <p>Evet. Yaygın bir kurulum; bilgisayarlar arasında senkronizasyon için şifreli bir konum ve farklı bir sağlayıcıda yalnızca yedekleme amaçlı bir konum kullanmaktır.</p>
+        <h3>Kitaplığımı buluta koymak güvenli mi?</h3>
+        <p>Çoğu kurulumdan daha güvenlidir, çünkü sağlayıcı yalnızca şifrelenmiş dosyaları tutar. Yine de yalnızca parola ifadeniz ve cihazınız kadar güçlüdür. Şurayı okuyun: <a href="digital-sovereignty-for-individuals.html">the honest limits</a>, şifrelemenin bağımsız olarak denetlenmediği bilgisi de buna dahildir.</p>
+
+        <div class="post-cta">
+          <p>AI Summary Helper ücretsiz, açık kaynaklı bir tarayıcı eklentisidir. Bir konum ekleyene kadar senkronizasyon kapalıdır.</p>
+          <a href="https://chromewebstore.google.com/detail/ai-summary-helper-openai/hldbejcjaedipeegjcinmhejdndchkmb" target="_blank" rel="noopener" class="btn-primary">Chrome'a ekle</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="footer-inner">
+      <div class="wordmark"><img src="../../assets/icon.svg" alt="">AI Summary Helper</div>
+      <div class="foot-links">
+        <a href="https://github.com/philffm/ai-summary-helper/" target="_blank" rel="noopener">GitHub'da Kaynak Kodlar</a>
+        <a href="../../education/">Eğitim için</a>
+        <a href="../gizlilik.html">Gizlilik</a>
+        <a href="#" data-analytics-settings="">Analitik ayarları</a>
+        <a href="https://byphil.eu/terms.html#impressum" target="_blank" rel="noopener">Künye</a>
+      </div>
+    </div>
+    <div class="copyright">© 2026 Phil Wornath. Parçasıdır: <a href="https://byphil.eu/" class="credit-link">byphil.eu ↗</a> — Almanya'da geliştirilen bağımsız yazılım.<br>
+      Tasarım &amp; geliştirme: <a href="https://philwornath.com/" target="_blank" rel="noopener" class="credit-link">philwornath.com ↗</a>
+    </div>
+  </div>
+</footer>
+
+<script src="../../assets/main.js"></script>
+
+
+</body></html>
