@@ -1737,3 +1737,6 @@ body:has(.hero--photo){ padding-top:0; }
 .cx-card--shot img{ position:absolute; inset:0; width:100%; height:100%; max-height:none; object-fit:cover; object-position:top left; border:0; border-radius:0; }
 .cx-card--shot .cx-shot-text{ position:relative; z-index:1; flex:none; margin:clamp(10px, 1.8vw, 22px); padding:clamp(12px, 1.6vw, 20px) clamp(14px, 1.8vw, 22px); max-width:46%; background:rgba(8,9,12,.86); -webkit-backdrop-filter:blur(6px); backdrop-filter:blur(6px); border-radius:12px; justify-content:flex-start; }
 @media (max-width:720px){ .cx-card--shot{ min-height:430px; } .cx-card--shot .cx-shot-text{ max-width:none; } }
+
+.cx--fit .cx-track{ align-items:flex-start; overflow-y:hidden; transition:height .25s ease; }
+@media (prefers-reduced-motion:reduce){ .cx--fit .cx-track{ transition:none; } }

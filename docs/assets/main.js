@@ -907,7 +907,16 @@ function setBilling(period) {
     dots.forEach(function (d, k) { d.classList.toggle('is-active', k === i); if (k === i) d.setAttribute('aria-current', 'true'); else d.removeAttribute('aria-current'); });
     if (prev) prev.disabled = i === 0;
     if (next) next.disabled = i === slides.length - 1;
+    fit();
   }
+  // .cx--fit: the track is only as tall as the active slide, so the dots sit right under the card (no gap left by the taller demo slide)
+  function fit() {
+    if (!root.classList.contains('cx--fit') || !slides[active]) return;
+    var cs = getComputedStyle(track), pad = parseFloat(cs.paddingTop) + parseFloat(cs.paddingBottom);
+    track.style.height = (cs.boxSizing === 'border-box' ? slides[active].offsetHeight + pad : slides[active].offsetHeight) + 'px';
+  }
+  window.addEventListener('resize', fit);
+  window.addEventListener('load', fit);
   function go(i) {
     i = Math.max(0, Math.min(slides.length - 1, i));
     var el = slides[i];
