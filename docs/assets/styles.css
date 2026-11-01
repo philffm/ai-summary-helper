@@ -1679,3 +1679,19 @@ body:has(.hero--photo){ padding-top:0; }
   .rm-step{ padding-top:0; }
   .rm-node{ left:-42px; margin-left:0; top:14px; }
 }
+
+/* The live demo as a slide of the pitch slider (desktop only; main.js removes the slide on small screens) */
+.pitch-slide--demo{ min-height:0; }
+.pitch-slide--demo .demo-frame{ --dw:100%; width:100%; margin:14px 0 0; height:auto; aspect-ratio:16/10; }
+@media (max-width:820px){ .pitch-slide--demo{ display:none; } }
+
+/* Pitch in the "See it" style: a photo card with a big claim, caption (claim text and source) below the active slide */
+.cx-card{ position:relative; display:flex; flex-direction:column; justify-content:flex-end; gap:6px; aspect-ratio:16/10; padding:clamp(18px,3vw,36px); border-radius:14px; border:1px solid var(--border-medium); box-shadow:0 24px 48px -24px var(--card-shadow); background:linear-gradient(180deg, rgba(8,9,12,.25), rgba(8,9,12,.78)), var(--img) center/cover; color:#F5F5F7; overflow:hidden; }
+.cx-big{ font-family:var(--font-display); font-weight:600; font-size:clamp(54px, 11vw, 132px); line-height:1; letter-spacing:-.02em; text-shadow:0 2px 24px rgba(0,0,0,.4); }
+.cx-big--text{ font-size:clamp(30px, 5.4vw, 64px); line-height:1.08; max-width:14ch; }
+.cx-lead{ font-size:clamp(14px, 1.7vw, 20px); color:rgba(245,245,247,.9); }
+.cx-slide figcaption small.cx-src{ display:block; margin-top:2px; font-size:13px; line-height:1.5; color:var(--paper-dim); }
+.cx-slide figcaption small.cx-src a{ color:var(--paper); text-decoration:underline; text-underline-offset:3px; word-break:break-word; }
+.cx-slide figcaption .cx-cta{ margin-top:6px; }
+.cx-slide--demo .demo-frame{ --dw:100%; width:100%; margin:0; height:auto; aspect-ratio:16/10; }
+@media (max-width:820px){ .cx-slide--demo, .cx-dot--demo{ display:none; } }

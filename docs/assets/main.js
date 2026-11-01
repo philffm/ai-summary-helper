@@ -926,6 +926,7 @@ function setBilling(period) {
     else if (e.key === 'ArrowLeft') { e.preventDefault(); go(active - 1); }
   });
   window.addEventListener('resize', function () { go(active); });
+  root.slideGo = function (id) { var i = slides.findIndex(function (x) { return x.id === id; }); if (i < 0) return false; go(i); return true; };
   go(0); sync(0);
 })();
 
@@ -1661,6 +1662,12 @@ function setBilling(period) {
   document.querySelectorAll('[data-slider]').forEach(function (root) {
     var track = root.querySelector('.slider-track'), prev = root.querySelector('.slider-prev'), next = root.querySelector('.slider-next');
     if (!track || !prev || !next) return;
+    // slides marked data-desktop-only (the live demo) do not exist on small screens
+    if (window.matchMedia && window.matchMedia('(max-width: 820px)').matches) track.querySelectorAll('[data-desktop-only]').forEach(function (n) { n.remove(); });
+    root.slideGo = function (id) {
+      var el = track.querySelector('#' + id); if (!el) return false;
+      track.scrollTo({ left: el.offsetLeft, behavior: reduce ? 'auto' : 'smooth' }); return true;
+    };
     function step() { var c = track.querySelector('.slide'); return c ? c.getBoundingClientRect().width + 16 : 300; }
     var counter = root.querySelector('.slider-count');
     function update() {
@@ -1681,6 +1688,20 @@ function setBilling(period) {
     window.addEventListener('resize', update);
     update();
   });
+  // links that jump to one slide of a slider ([data-slider-goto="<slide id>"]); on small screens they use data-fallback-href instead
+  function jump(id, soft) {
+    var el = document.getElementById(id); var root = el && el.closest('[data-slider], [data-carousel]');
+    if (!root || !root.slideGo) return false;
+    root.scrollIntoView({ behavior: reduce || !soft ? 'auto' : 'smooth', block: 'center' });
+    setTimeout(function () { root.slideGo(id); }, soft ? 350 : 0); return true;
+  }
+  document.querySelectorAll('[data-slider-goto]').forEach(function (a) {
+    a.addEventListener('click', function (e) {
+      var ok = jump(a.getAttribute('data-slider-goto'), true);
+      if (ok) e.preventDefault(); else if (a.getAttribute('data-fallback-href')) { e.preventDefault(); window.open(a.getAttribute('data-fallback-href'), '_blank', 'noopener'); }
+    });
+  });
+  if (location.hash.length > 1) { try { jump(decodeURIComponent(location.hash.slice(1)), false); } catch (e) {} }
 })();
 
 
