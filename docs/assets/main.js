@@ -1753,3 +1753,34 @@ function setBilling(period) {
     setActive(0);
   });
 })();
+
+
+/* Demo frames with data-demo-scale="<design width>": the demo is always laid out at that width (so it keeps its wide, side-by-side
+   layout) and scaled down to the frame, instead of re-flowing into the narrow stacked layout. */
+(function () {
+  document.querySelectorAll('[data-demo-scale]').forEach(function (box) {
+    var W = Number(box.getAttribute('data-demo-scale')) || 1180;
+    function set() { box.style.setProperty('--ds', (box.clientWidth / W).toFixed(4)); }
+    set();
+    if (window.ResizeObserver) new ResizeObserver(set).observe(box); else window.addEventListener('resize', set);
+  });
+})();
+
+
+/* Demo in full window: [data-demo-fullscreen] (a button in the same slide) and the demo's own "open full screen" link use the browser's
+   Fullscreen API on the demo frame; where that is not available (iOS), the demo opens in a new tab. */
+(function () {
+  function full(frame) {
+    var start = frame.querySelector('.demo-start');
+    if (!frame.classList.contains('is-live') && start) start.click();
+    var rq = frame.requestFullscreen || frame.webkitRequestFullscreen;
+    if (rq) { try { var r = rq.call(frame); if (r && r.catch) r.catch(function () { window.open(frame.getAttribute('data-src'), '_blank', 'noopener'); }); } catch (e) { window.open(frame.getAttribute('data-src'), '_blank', 'noopener'); } }
+    else window.open(frame.getAttribute('data-src'), '_blank', 'noopener');
+  }
+  document.querySelectorAll('[data-demo-fullscreen]').forEach(function (btn) {
+    btn.addEventListener('click', function () { var sl = btn.closest('.cx-slide'); var f = sl && sl.querySelector('.demo-frame'); if (f) full(f); });
+  });
+  document.querySelectorAll('.demo-frame[data-demo-scale] .demo-open').forEach(function (a) {
+    a.addEventListener('click', function (e) { if (document.fullscreenEnabled || document.webkitFullscreenEnabled) { e.preventDefault(); full(a.closest('.demo-frame')); } });
+  });
+})();

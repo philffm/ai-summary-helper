@@ -1704,3 +1704,36 @@ body:has(.hero--photo){ padding-top:0; }
 .cx--fit .cx-slide figcaption small.cx-src{ font-size:12px; }
 .cx--fit .cx-dots{ margin-top:4px; }
 @media (max-width:720px){ .cx--fit{ --cx-w:88vw; } }
+
+.demo-frame[data-demo-scale] iframe{ inset:0 auto auto 0; width:1180px; height:737.5px; max-width:none; transform:scale(var(--ds, 1)); transform-origin:0 0; }
+
+/* Pitch captions: left-aligned, flush with the card, a readable line length */
+.cx--fit .cx-slide figcaption{ align-items:flex-start; text-align:left; margin-left:0; margin-right:auto; max-width:68ch; }
+.cx--fit .cx-slide figcaption .cx-cta{ margin-top:8px; }
+
+/* In full window the demo uses its natural size again (no scaling) */
+.demo-frame:fullscreen{ width:100vw !important; height:100vh !important; max-width:none; margin:0 !important; aspect-ratio:auto; border-radius:0; border:0; }
+.demo-frame:-webkit-full-screen{ width:100vw !important; height:100vh !important; max-width:none; margin:0 !important; aspect-ratio:auto; border-radius:0; border:0; }
+.demo-frame:fullscreen iframe, .demo-frame:fullscreen[data-demo-scale] iframe{ width:100% !important; height:100% !important; transform:none !important; inset:0 !important; }
+.demo-frame:-webkit-full-screen iframe{ width:100% !important; height:100% !important; transform:none !important; inset:0 !important; }
+.cx--fit .cx-slide figcaption .cx-cta{ display:flex; flex-wrap:wrap; gap:10px; }
+
+/* Pitch: the text sits on the slide (photo card), the slide is only as tall as the card */
+.cx--fit{ --cx-w:min(1080px, 80vw, max(480px, calc((100vh - 340px) * 1.6))); }
+.cx-card{ align-items:flex-start; justify-content:flex-end; background:linear-gradient(90deg, rgba(8,9,12,.86) 0%, rgba(8,9,12,.72) 52%, rgba(8,9,12,.38) 100%), var(--img) center/cover; }
+.cx-card .cx-big{ font-size:clamp(46px, 8.4vw, 104px); }
+.cx-card .cx-big--text{ font-size:clamp(26px, 4.2vw, 50px); max-width:15ch; }
+.cx-title{ margin-top:10px; font-family:var(--font-display); font-size:clamp(17px, 1.9vw, 24px); line-height:1.25; color:#fff; }
+.cx-text{ max-width:52ch; font-size:clamp(12.5px, 1.12vw, 15.5px); line-height:1.5; color:rgba(245,245,247,.94); }
+.cx-card .cx-src{ max-width:62ch; margin-top:6px; font-size:11.5px; line-height:1.45; color:rgba(245,245,247,.74); }
+.cx-card .cx-src a{ color:#fff; text-decoration:underline; text-underline-offset:2px; word-break:break-word; }
+.cx-card--shot{ flex-direction:row; align-items:stretch; justify-content:flex-start; gap:clamp(16px, 2.4vw, 32px); background:linear-gradient(135deg, #0c1220, #131a2e); }
+.cx-shot-text{ flex:0 0 44%; display:flex; flex-direction:column; justify-content:center; }
+.cx-card--shot img{ flex:1 1 0; min-width:0; align-self:center; max-height:100%; object-fit:cover; border-radius:10px; border:1px solid rgba(255,255,255,.14); }
+@media (max-width:720px){ .cx-card{ aspect-ratio:auto; min-height:430px; } .cx-card--shot{ flex-direction:column; } .cx-shot-text{ flex:none; } .cx-card--shot img{ max-height:46%; } }
+
+/* Screenshot slide: the real interface fills the card, the text sits in a dark box over the article part (bottom left) */
+.cx-card--shot{ flex-direction:column; justify-content:flex-end; align-items:flex-start; gap:0; padding:0; background:#0c1220; }
+.cx-card--shot img{ position:absolute; inset:0; width:100%; height:100%; max-height:none; object-fit:cover; object-position:top left; border:0; border-radius:0; }
+.cx-card--shot .cx-shot-text{ position:relative; z-index:1; flex:none; margin:clamp(10px, 1.8vw, 22px); padding:clamp(12px, 1.6vw, 20px) clamp(14px, 1.8vw, 22px); max-width:46%; background:rgba(8,9,12,.86); -webkit-backdrop-filter:blur(6px); backdrop-filter:blur(6px); border-radius:12px; justify-content:flex-start; }
+@media (max-width:720px){ .cx-card--shot{ min-height:430px; } .cx-card--shot .cx-shot-text{ max-width:none; } }
