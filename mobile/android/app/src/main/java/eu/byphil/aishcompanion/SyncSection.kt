@@ -50,6 +50,13 @@ fun libraryOf(context: Context): LibrarySync {
     return LibrarySync(kv, FileRecordStore(File(app.filesDir, "sync")))
 }
 
+/** Makes reading-list articles of the synced records (the background run has no screen to refresh: the list reads them when the app opens). */
+fun materializeLibrary(context: Context): Int {
+    val app = context.applicationContext
+    val r = ArticleMaterializer(libraryOf(app).records, ArticleStoreSink(ArticleStore(app)), File(app.filesDir, "sync/materialized.json")).run()
+    return r.saved + r.removed
+}
+
 private const val WORK = "aish-library-sync"
 
 /** Sync every few hours while there is a network, as long as a library is joined. */
@@ -70,7 +77,7 @@ class LibrarySyncWorker(ctx: Context, params: WorkerParameters) : CoroutineWorke
     override suspend fun doWork(): Result {
         val lib = libraryOf(applicationContext)
         if (!lib.isConnected()) return Result.success()
-        return try { lib.syncNow(); Result.success() }
+        return try { lib.syncNow(); materializeLibrary(applicationContext); Result.success() }
         catch (e: StoreError) { if (e.kind == StoreError.Kind.PERMANENT) Result.failure() else Result.retry() }   // the screen shows the last problem
         catch (_: Exception) { Result.failure() }
     }
@@ -108,9 +115,11 @@ fun LibrarySyncCard(model: AppModel) {
             busy = false; tick++
         }
     }
-    fun summary(s: eu.byphil.aishcompanion.sync.LibrarySync.Summary) =
-        if (s.errors.isNotEmpty()) "${s.errors.size} problem(s): ${s.errors.first()}" else if (s.needsConfirm > 0) "${s.needsConfirm} deletion(s) from other devices are waiting for your OK." else
-            "Done. ${s.pulled} received, ${s.pushed} sent." + if (s.more) " More to come, it continues next time." else ""
+    fun summary(s: eu.byphil.aishcompanion.sync.LibrarySync.Summary): String {
+        val articles = model.materialize()   // runs here, off the main thread (see run())
+        return if (s.errors.isNotEmpty()) "${s.errors.size} problem(s): ${s.errors.first()}" else if (s.needsConfirm > 0) "${s.needsConfirm} deletion(s) from other devices are waiting for your OK." else
+            "Done. ${s.pulled} received, ${s.pushed} sent." + (if (articles > 0) " $articles article(s) added to your reading list." else "") + if (s.more) " More to come, it continues next time." else ""
+    }
 
     if (!connected) {
         InfoCard("Join your library", "Set up sync in the browser first (Settings → Sync & backup → Add a place). Then enter the same server and passphrase here. Your library is encrypted before it leaves the browser, and this phone opens it with the passphrase.")

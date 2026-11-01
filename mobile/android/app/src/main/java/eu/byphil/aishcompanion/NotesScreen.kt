@@ -65,7 +65,7 @@ fun NotesScreen(model: AppModel) {
     fun syncNow() {
         syncing = true; status = null
         scope.launch {
-            status = try { withContext(Dispatchers.IO) { val s = model.library.syncNow(); if (s.errors.isEmpty()) null else s.errors.first() } } catch (e: Exception) { e.message ?: "Could not sync." }
+            status = try { withContext(Dispatchers.IO) { val s = model.library.syncNow(); model.materialize(); if (s.errors.isEmpty()) null else s.errors.first() } } catch (e: Exception) { e.message ?: "Could not sync." }
             reload(); syncing = false
         }
     }

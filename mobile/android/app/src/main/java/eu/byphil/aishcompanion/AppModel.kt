@@ -27,6 +27,13 @@ class AppModel(context: Context) {
     /** The encrypted library of the browser, joined from Settings → Library sync. */
     val library = libraryOf(app)
     val notes = eu.byphil.aishcompanion.sync.NotesRepo(library)
+
+    /** Turns what the library synced into reading-list articles (and removes what the browser deleted); the list on screen follows. Call off the main thread. */
+    fun materialize(): Int {
+        val r = ArticleMaterializer(library.records, ArticleStoreSink(articles), File(app.filesDir, "sync/materialized.json")).run()
+        if (r.saved + r.removed > 0) articleList = articles.list()
+        return r.saved + r.removed
+    }
     val feedStore = FeedStore(File(app.filesDir, "feeds"))
 
     var pairing by mutableStateOf(store.pairing)
