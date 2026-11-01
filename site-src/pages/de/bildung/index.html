@@ -58,14 +58,19 @@
 
   <!-- ── Video ───────────────────────────────────────────────────── -->
   <section>
-    <div class="wrap wrap-narrow">
-      <figure class="post-figure post-figure--video" data-blog-video="quellen" style="margin:0 auto;">
-        <video controls playsinline preload="none" width="360" height="520" poster="{{base}}assets/blog/video/quellen-de.jpg">
+    <div class="wrap wrap-narrow" data-vgroup>
+      <figure class="post-figure post-video post-video--center" data-blog-video="quellen">
+          <div class="post-video-in">
+            <button class="fvideo-open post-video-open" type="button"><span class="sr-only">Video abspielen</span>
+              <video muted playsinline loop preload="none" width="360" height="520" poster="{{base}}assets/blog/video/quellen-de.jpg">
           <source src="{{base}}assets/blog/video/quellen-de.mp4" type="video/mp4">
           <track kind="subtitles" srclang="de" label="Deutsch" src="{{base}}assets/blog/video/quellen-de.vtt" default>
         </video>
-        <figcaption>Eine Antwort gegen ihre Quelle prüfen: ein Klick führt zur Textstelle.</figcaption>
-      </figure>
+              <span class="post-video-play" aria-hidden="true">&#9654;</span>
+            </button>
+            <figcaption>Eine Antwort gegen ihre Quelle prüfen: ein Klick führt zur Textstelle.</figcaption>
+          </div>
+        </figure>
     </div>
   </section>
 
@@ -245,6 +250,7 @@
 
 </main>
 
+<!--include:vfeed-labels-->
 <!--include:footer-de-->
 <script src="{{base}}assets/hero-i18n.js"></script>
 <script src="{{base}}assets/main.js"></script>

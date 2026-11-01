@@ -57,13 +57,18 @@
 
   <!-- ── Video ───────────────────────────────────────────────────── -->
   <section>
-    <div class="wrap wrap-narrow">
-      <figure class="post-figure post-figure--video" data-blog-video="pocket" style="margin:0 auto;">
-        <video controls playsinline preload="none" width="360" height="520" poster="{{base}}assets/blog/video/pocket-en.jpg">
+    <div class="wrap wrap-narrow" data-vgroup>
+      <figure class="post-figure post-video post-video--center" data-blog-video="pocket">
+          <div class="post-video-in">
+            <button class="fvideo-open post-video-open" type="button"><span class="sr-only">Play the video</span>
+              <video muted playsinline loop preload="none" width="360" height="520" poster="{{base}}assets/blog/video/pocket-en.jpg">
           <source src="{{base}}assets/blog/video/pocket-en.mp4" type="video/mp4">
         </video>
-        <figcaption>Save, summarize and send to your Kindle, without Pocket.</figcaption>
-      </figure>
+              <span class="post-video-play" aria-hidden="true">&#9654;</span>
+            </button>
+            <figcaption>Save, summarize and send to your Kindle, without Pocket.</figcaption>
+          </div>
+        </figure>
     </div>
   </section>
 
@@ -195,6 +200,7 @@
 
 </main>
 
+<!--include:vfeed-labels-->
 <!--include:footer-home-->
 </body>
 </html>
