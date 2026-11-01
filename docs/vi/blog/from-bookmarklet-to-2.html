@@ -89,6 +89,7 @@
         <div class="mm-row">
           <a href="https://addons.mozilla.org/en-US/firefox/addon/ai-summary-helper/" target="_blank" rel="noopener">Firefox</a>
           <a href="../index.html#phone">Android · Beta</a>
+          <a href="../../education/">Dành cho giáo dục</a>
           <a href="https://byphil.eu/#account">Tài khoản của tôi</a>
         </div>
         
@@ -103,25 +104,34 @@
 </header>
 
 <main id="main">
-  <div class="wrap">
-    <div class="post-hero">
+  <section class="hero--photo post-stage">
+    <img class="hero-bg" src="../../assets/photo/ereader-bedside-table-800.webp" srcset="../assets/photo/ereader-bedside-table-800.webp 800w, ../assets/photo/ereader-bedside-table-1600.webp 1600w" sizes="100vw" width="1600" height="1195" alt="" fetchpriority="high" decoding="async" style="--bgpos:50% 50%">
+    <p class="hero-credit">Hình minh họa, do AI tạo</p>
+    <div class="wrap">
+      <div class="post-hero">
       <span class="blog-date">Sản phẩm · Tháng 6, 2026</span>
       <h1>Từ Bookmarklet đến phiên bản 2.0: AI Summary Helper hiện nay thực sự là gì</h1>
       <p class="post-sub">Dự án khởi đầu như một bookmarklet một chạm để đọc bài viết trên Kindle. Hai năm trôi qua cùng một đợt tái thiết kế toàn diện, hầu hết các tính năng hiện tại thậm chí còn chưa từng tồn tại khi 100 người đầu tiên đăng ký sử dụng.</p>
+      </div>
     </div>
-  </div>
+  </section>
 
   <section>
     <div class="wrap">
-      <div class="prose">
-        <figure class="post-figure post-figure--video" data-blog-video="senden">
-          <video controls="" playsinline="" preload="none" width="360" height="520" poster="../../assets/blog/video/senden-en.jpg">
-            <source src="../../assets/blog/video/senden-en.mp4" type="video/mp4">
-          <track data-seo-video="" kind="captions" src="../../assets/blog/video/senden-en.vtt" srclang="en" label="English"></video>
-          <figcaption>Video: từ tóm tắt đến Kindle, thói quen đã khởi nguồn cho dự án này.</figcaption>
-        </figure>
+      <div class="prose" data-vgroup="">
 
         <p><strong>AI Summary Helper là tiện ích mở rộng Chrome miễn phí, mã nguồn mở, giúp tóm tắt bất kỳ trang web nào bằng nhà cung cấp AI của riêng bạn hoặc mô hình hoàn toàn cục bộ (local AI), lưu bài viết để đọc sau kèm lời nhắc theo thời gian, và biến lịch sử đọc thành kho lưu trữ liên kết có thể tìm kiếm.</strong> Không tính năng nào trong số đó từng có ở phiên bản đầu tiên. Dưới đây là những gì đã có, và hành trình phát triển để đạt đến ngày hôm nay.</p>
+        <figure class="post-figure post-video" data-blog-video="senden">
+          <div class="post-video-in">
+            <button class="fvideo-open post-video-open" type="button"><span class="sr-only">Phát video</span>
+              <video muted="" playsinline="" loop="" preload="none" width="360" height="520" poster="../../assets/blog/video/senden-en.jpg">
+            <source src="../../assets/blog/video/senden-en.mp4" type="video/mp4">
+          <track data-seo-video="" kind="captions" src="../../assets/blog/video/senden-en.vtt" srclang="en" label="English"></video>
+              <span class="post-video-play" aria-hidden="true">▶</span>
+            </button>
+            <figcaption>Video: từ tóm tắt đến Kindle, thói quen đã khởi nguồn cho dự án này.</figcaption>
+          <div data-seo-video="" class="vtext"><p class="vtext-h">Transcript · 0:19</p><ul><li>From summary to Kindle.</li><li>Summarize the page, open the menu, send it to your Kindle.</li><li>Seconds later it is on your e-reader, ready for the couch.</li></ul></div></div>
+        </figure>
 
         <h2>Dự án này thực sự bắt đầu như thế nào</h2>
         <p>Vào tháng 7 năm 2024, đây chỉ là một bookmarklet — thậm chí chưa phải là một tiện ích mở rộng. Bạn tìm thấy các bài viết thú vị, mở hàng tá tab, và giống như hầu hết mọi người, chẳng bao giờ đọc hết chúng. Mục đích ban đầu rất cụ thể và mang tính cá nhân: một công cụ tóm tắt tùy chỉnh prompt có khả năng chèn trực tiếp nội dung tóm tắt vào trang, để phần tóm tắt được gửi kèm khi bạn chuyển bài viết sang Kindle bằng <a href="https://send.reabble.com/" target="_blank" rel="noopener">công cụ Send-to-Kindle của Reabble</a>. Đó là toàn bộ sản phẩm. Một nhà cung cấp AI. Một ô nhập prompt. Một phiên bản bookmarklet hoạt động ở mọi nơi, kể cả iOS Safari, và một phiên bản tiện ích mở rộng Chrome dành cho những ai muốn linh hoạt tùy chỉnh prompt ngay lập tức.</p>
@@ -163,12 +173,19 @@
   </section>
 </main>
 
+<div class="vfeed-labels" hidden="">
+  <span data-l="close">Đóng</span><span data-l="sound">Bật âm thanh</span><span data-l="mute">Tắt âm thanh</span><span data-l="hint">Vuốt lên để xem video tiếp theo</span><span data-l="prev">Video trước</span><span data-l="next">Video tiếp theo</span>
+  <span data-l="share">Chia sẻ</span><span data-l="copied">Đã sao chép liên kết</span>
+  <span data-l="add_chrome">Thêm vào Chrome — Hoàn toàn miễn phí</span><span data-l="add_firefox">Thêm vào Firefox — Miễn phí</span><span data-l="add_browser">Thêm vào trình duyệt — Miễn phí</span>
+  <a data-l="try" href="../../bookmarklet.html">Trải nghiệm trên trình duyệt — Miễn phí</a>
+</div>
 <footer>
   <div class="wrap">
     <div class="footer-inner">
       <div class="wordmark"><img src="../../assets/icon.svg" alt="">AI Summary Helper</div>
       <div class="foot-links">
         <a href="https://github.com/philffm/ai-summary-helper/" target="_blank" rel="noopener">Mã nguồn trên GitHub</a>
+        <a href="../../education/">Dành cho giáo dục</a>
         <a href="../privacy.html">Quyền riêng tư</a>
         <a href="#" data-analytics-settings="">Cài đặt phân tích</a>
         <a href="https://byphil.eu/terms.html#impressum" target="_blank" rel="noopener">Thông tin pháp lý (Impressum)</a>

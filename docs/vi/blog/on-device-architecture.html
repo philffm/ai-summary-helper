@@ -89,6 +89,7 @@
         <div class="mm-row">
           <a href="https://addons.mozilla.org/en-US/firefox/addon/ai-summary-helper/" target="_blank" rel="noopener">Firefox</a>
           <a href="../index.html#phone">Android · Beta</a>
+          <a href="../../education/">Dành cho giáo dục</a>
           <a href="https://byphil.eu/#account">Tài khoản của tôi</a>
         </div>
         
@@ -103,24 +104,33 @@
 </header>
 
 <main id="main">
-  <div class="wrap">
-    <div class="post-hero">
+  <section class="hero--photo post-stage">
+    <img class="hero-bg" src="../../assets/photo/bokeh-strip-blue-amber-800.webp" srcset="../assets/photo/bokeh-strip-blue-amber-800.webp 800w, ../assets/photo/bokeh-strip-blue-amber-1600.webp 1600w" sizes="100vw" width="1600" height="679" alt="" fetchpriority="high" decoding="async" style="--bgpos:50% 50%">
+    <p class="hero-credit">Hình minh họa, do AI tạo</p>
+    <div class="wrap">
+      <div class="post-hero">
       <span class="blog-date">Kỹ thuật · Tháng 8 năm 2026</span>
       <h1>Vì sao chúng tôi chuyển Tìm kiếm, Gắn thẻ và Gợi ý ra khỏi đám mây</h1>
       <p class="post-sub">Tìm kiếm, loại bỏ trùng lặp, chuẩn hóa thẻ và gợi ý đều dùng chung một chỉ mục nhỏ ngay trên thiết bị. Dưới đây là cơ chế hoạt động, và lý do vì sao đây không đơn thuần là câu chuyện tiếp thị về quyền riêng tư.</p>
+      </div>
     </div>
-  </div>
+  </section>
 
   <section>
     <div class="wrap">
-      <div class="prose">
-        <figure class="post-figure post-figure--video" data-blog-video="graph">
-          <video controls="" playsinline="" preload="none" width="360" height="520" poster="../../assets/blog/video/graph-en.jpg">
+      <div class="prose" data-vgroup="">
+<p>Hầu hết các tiện ích mở rộng trình duyệt "tích hợp AI" đều gửi mọi thứ về máy chủ — bao gồm cả những phần hoàn toàn không liên quan gì đến AI. Tìm kiếm, dọn dẹp thẻ, "tìm mục tương tự": đây là những kỹ thuật đã có từ nhiều thập kỷ và được hiểu rất rõ. Chúng không cần mô hình ngôn ngữ lớn, và chắc chắn không cần độ trễ khứ hồi qua mạng. Chúng tôi đã rà soát từng tính năng của AI Summary Helper và tự đặt câu hỏi: liệu tính năng này có thực sự cần đám mây hay chúng tôi chỉ đang mặc định chọn nó vì kiến trúc đó dễ triển khai hơn?</p>
+        <figure class="post-figure post-video" data-blog-video="graph">
+          <div class="post-video-in">
+            <button class="fvideo-open post-video-open" type="button"><span class="sr-only">Phát video</span>
+              <video muted="" playsinline="" loop="" preload="none" width="360" height="520" poster="../../assets/blog/video/graph-en.jpg">
             <source src="../../assets/blog/video/graph-en.mp4" type="video/mp4">
           <track data-seo-video="" kind="captions" src="../../assets/blog/video/graph-en.vtt" srclang="en" label="English"></video>
-          <figcaption>Video: đồ thị tri thức liên kết các bài viết của bạn thông qua các chủ đề, được xây dựng trực tiếp ngay trên thiết bị.</figcaption>
+              <span class="post-video-play" aria-hidden="true">▶</span>
+            </button>
+            <figcaption>Video: đồ thị tri thức liên kết các bài viết của bạn thông qua các chủ đề, được xây dựng trực tiếp ngay trên thiết bị.</figcaption>
+          <div data-seo-video="" class="vtext"><p class="vtext-h">Transcript · 0:19</p><ul><li>What you read is connected.</li><li>Your knowledge graph links articles through their topics.</li><li>Tap one, and you get a briefing on everything you have read about it.</li></ul></div></div>
         </figure>
-<p>Hầu hết các tiện ích mở rộng trình duyệt "tích hợp AI" đều gửi mọi thứ về máy chủ — bao gồm cả những phần hoàn toàn không liên quan gì đến AI. Tìm kiếm, dọn dẹp thẻ, "tìm mục tương tự": đây là những kỹ thuật đã có từ nhiều thập kỷ và được hiểu rất rõ. Chúng không cần mô hình ngôn ngữ lớn, và chắc chắn không cần độ trễ khứ hồi qua mạng. Chúng tôi đã rà soát từng tính năng của AI Summary Helper và tự đặt câu hỏi: liệu tính năng này có thực sự cần đám mây hay chúng tôi chỉ đang mặc định chọn nó vì kiến trúc đó dễ triển khai hơn?</p>
         <p>Phần lớn trong số đó không hề cần đến.</p>
 
         <figure class="post-figure post-figure--portrait"><img src="../../assets/blog/knowledge-graph.webp" alt="Slide: sơ đồ các chủ đề được kết nối với dòng chữ “Thông tin gắn liền với ý nghĩa và sự liên kết sẽ tồn tại lâu hơn thông tin bạn chỉ vừa lướt qua”" width="800" height="1000" loading="lazy"><figcaption>Tìm kiếm, gắn thẻ và gợi ý bài viết tương tự đều hoạt động trên cùng một chỉ mục ngay trên thiết bị, giúp liên kết giữa các nội dung đã lưu hoàn toàn không tốn tài nguyên.</figcaption></figure>
@@ -148,12 +158,19 @@
   </section>
 </main>
 
+<div class="vfeed-labels" hidden="">
+  <span data-l="close">Đóng</span><span data-l="sound">Bật âm thanh</span><span data-l="mute">Tắt âm thanh</span><span data-l="hint">Vuốt lên để xem video tiếp theo</span><span data-l="prev">Video trước</span><span data-l="next">Video tiếp theo</span>
+  <span data-l="share">Chia sẻ</span><span data-l="copied">Đã sao chép liên kết</span>
+  <span data-l="add_chrome">Thêm vào Chrome — Hoàn toàn miễn phí</span><span data-l="add_firefox">Thêm vào Firefox — Miễn phí</span><span data-l="add_browser">Thêm vào trình duyệt — Miễn phí</span>
+  <a data-l="try" href="../../bookmarklet.html">Trải nghiệm trên trình duyệt — Miễn phí</a>
+</div>
 <footer>
   <div class="wrap">
     <div class="footer-inner">
       <div class="wordmark"><img src="../../assets/icon.svg" alt="">AI Summary Helper</div>
       <div class="foot-links">
         <a href="https://github.com/philffm/ai-summary-helper/" target="_blank" rel="noopener">Mã nguồn trên GitHub</a>
+        <a href="../../education/">Dành cho giáo dục</a>
         <a href="../privacy.html">Quyền riêng tư</a>
         <a href="#" data-analytics-settings="">Cài đặt phân tích</a>
         <a href="https://byphil.eu/terms.html#impressum" target="_blank" rel="noopener">Thông tin pháp lý (Impressum)</a>

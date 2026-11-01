@@ -89,6 +89,7 @@
         <div class="mm-row">
           <a href="https://addons.mozilla.org/en-US/firefox/addon/ai-summary-helper/" target="_blank" rel="noopener">Firefox</a>
           <a href="../index.html#phone">Android · 베타</a>
+          <a href="../../education/">교육용</a>
           <a href="https://byphil.eu/#account">내 계정</a>
         </div>
         
@@ -103,24 +104,33 @@
 </header>
 
 <main id="main">
-  <div class="wrap">
-    <div class="post-hero">
+  <section class="hero--photo post-stage">
+    <img class="hero-bg" src="../../assets/photo/hands-keyboard-closeup-800.webp" srcset="../assets/photo/hands-keyboard-closeup-800.webp 800w, ../assets/photo/hands-keyboard-closeup-1600.webp 1600w" sizes="100vw" width="1600" height="893" alt="" fetchpriority="high" decoding="async" style="--bgpos:50% 50%">
+    <p class="hero-credit">AI 생성 일러스트</p>
+    <div class="wrap">
+      <div class="post-hero">
       <span class="blog-date">제품 · 2026년 10월</span>
       <h1>내 키. 내 모델. 내 데이터.</h1>
       <p class="post-sub">대부분의 AI 도구는 사용자와 모델 사이에 자체 서버를 둡니다. 중개 서버가 없을 때 무엇이 달라지는지, 그리고 여전히 사용자가 직접 관리해야 하는 부분은 무엇인지 살펴봅니다.</p>
+      </div>
     </div>
-  </div>
+  </section>
 
   <section>
     <div class="wrap">
-      <div class="prose">
-        <figure class="post-figure post-figure--video" data-blog-video="privat">
-          <video controls="" playsinline="" preload="none" width="360" height="520" poster="../../assets/blog/video/privat-ko.jpg">
+      <div class="prose" data-vgroup="">
+        <p>모든 AI 요약의 기본 구조는 동일합니다. 텍스트가 전송되고, 결과가 반환됩니다. 도구의 신뢰도를 결정짓는 핵심은 바로 '중간에 누가 있는가'입니다. 수많은 서비스에서는 그 자리에 기업의 중개 서버가 자리 잡고 있어, 사용자가 읽는 콘텐츠가 직접 고르지도 않은 모델로 전달되기 전에 해당 서버를 거치게 됩니다.</p>
+        <figure class="post-figure post-video" data-blog-video="privat">
+          <div class="post-video-in">
+            <button class="fvideo-open post-video-open" type="button"><span class="sr-only">동영상 재생</span>
+              <video muted="" playsinline="" loop="" preload="none" width="360" height="520" poster="../../assets/blog/video/privat-ko.jpg">
             <source src="../../assets/blog/video/privat-ko.mp4" type="video/mp4">
           <track data-seo-video="" kind="captions" src="../../assets/blog/video/privat-ko.vtt" srclang="ko" label="한국어"></video>
-          <figcaption>동영상: 개인 API 키, Ollama 로컬 모델, byPhil Cloud 간에 자유롭게 전환해 보세요.</figcaption>
+              <span class="post-video-play" aria-hidden="true">▶</span>
+            </button>
+            <figcaption>동영상: 개인 API 키, Ollama 로컬 모델, byPhil Cloud 간에 자유롭게 전환해 보세요.</figcaption>
+          <div data-seo-video="" class="vtext"><p class="vtext-h">스크립트 · 0:23</p><ul><li>프라이버시는 저울질입니다.</li><li>위험을 알면 사람은 덜 공유합니다.</li><li>그래서 선택할 수 있어요.</li><li>내 API 키, Ollama로 돌리는 로컬 모델, 또는 설정 없는 byPhil Cloud.</li><li>라이브러리는 브라우저 안에 남습니다.</li></ul></div></div>
         </figure>
-        <p>모든 AI 요약의 기본 구조는 동일합니다. 텍스트가 전송되고, 결과가 반환됩니다. 도구의 신뢰도를 결정짓는 핵심은 바로 '중간에 누가 있는가'입니다. 수많은 서비스에서는 그 자리에 기업의 중개 서버가 자리 잡고 있어, 사용자가 읽는 콘텐츠가 직접 고르지도 않은 모델로 전달되기 전에 해당 서버를 거치게 됩니다.</p>
 
         <h2>여기서 'API 키 직접 사용'이 의미하는 것</h2>
         <p>신뢰하는 제공업체에서 API 키를 생성한 후 AI Summary Helper에 붙여넣고 모델을 선택하기만 하면 됩니다. 웹페이지를 요약할 때 확장 프로그램의 백그라운드 워커가 해당 제공업체로 텍스트를 직접 전송하고 답변을 실시간 스트리밍으로 받아옵니다. 직접 등록한 API 키를 사용하는 경로에는 AI Summary Helper 서버가 전혀 개입하지 않습니다.</p>
@@ -151,12 +161,19 @@
   </section>
 </main>
 
+<div class="vfeed-labels" hidden="">
+  <span data-l="close">닫기</span><span data-l="sound">소리 켜기</span><span data-l="mute">소리 끄기</span><span data-l="hint">다음 영상을 보려면 위로 쓸어올리세요</span><span data-l="prev">이전 영상</span><span data-l="next">다음 영상</span>
+  <span data-l="share">공유</span><span data-l="copied">링크가 복사되었습니다</span>
+  <span data-l="add_chrome">Chrome에 추가 — 무료</span><span data-l="add_firefox">Firefox에 추가하기 — 무료</span><span data-l="add_browser">브라우저에 추가하기 — 무료</span>
+  <a data-l="try" href="../../bookmarklet.html">브라우저에서 사용해 보기 — 무료</a>
+</div>
 <footer>
   <div class="wrap">
     <div class="footer-inner">
       <div class="wordmark"><img src="../../assets/icon.svg" alt="">AI Summary Helper</div>
       <div class="foot-links">
         <a href="https://github.com/philffm/ai-summary-helper/" target="_blank" rel="noopener">GitHub에서 소스 보기</a>
+        <a href="../../education/">교육용</a>
         <a href="../privacy.html">개인정보 보호</a>
         <a href="#" data-analytics-settings="">분석 설정</a>
         <a href="https://byphil.eu/terms.html#impressum" target="_blank" rel="noopener">Impressum (발행인 정보)</a>

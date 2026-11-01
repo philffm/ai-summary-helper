@@ -89,6 +89,7 @@
         <div class="mm-row">
           <a href="https://addons.mozilla.org/en-US/firefox/addon/ai-summary-helper/" target="_blank" rel="noopener">Firefox</a>
           <a href="../index.html#phone">Android · Beta</a>
+          <a href="../../education/">Opetukseen</a>
           <a href="https://byphil.eu/#account">Oma tili</a>
         </div>
         
@@ -103,24 +104,33 @@
 </header>
 
 <main id="main">
-  <div class="wrap">
-    <div class="post-hero">
+  <section class="hero--photo post-stage">
+    <img class="hero-bg" src="../../assets/photo/researcher-desk-notes-800.webp" srcset="../assets/photo/researcher-desk-notes-800.webp 800w, ../assets/photo/researcher-desk-notes-1600.webp 1600w" sizes="100vw" width="1600" height="893" alt="" fetchpriority="high" decoding="async" style="--bgpos:60% 45%">
+    <p class="hero-credit">Kuvitus, tekoälyn luoma</p>
+    <div class="wrap">
+      <div class="post-hero">
       <span class="blog-date">Opas · Lokakuu 2026</span>
       <h1>Miten tekoälytiivistelmä tarkistetaan lähteestä 10 sekunnissa</h1>
       <p class="post-sub">Tiivistelmä, jota ei voi tarkistaa, on vain hyvää suomea oleva arvaus. Tässä on tapa asian korjaamiseen ja siihen, miten AI Summary Helper tekee siitä nopeaa.</p>
+      </div>
     </div>
-  </div>
+  </section>
 
   <section>
     <div class="wrap">
-      <div class="prose">
-        <figure class="post-figure post-figure--video" data-blog-video="quellen">
-          <video controls="" playsinline="" preload="none" width="360" height="520" poster="../../assets/blog/video/quellen-en.jpg">
+      <div class="prose" data-vgroup="">
+        <p>Vuonna 2011 Sparrow, Liu ja Wegner raportoivat <em>Science</em> -lehdessä, että kun ihmiset olettavat voivansa hakea tiedon myöhemmin, he muistavat itse asian huonommin ja sen löytöpaikan paremmin. Hakukoneista tuli eräänlainen ulkoinen muisti, johon sopeudumme.</p>
+        <figure class="post-figure post-video" data-blog-video="quellen">
+          <div class="post-video-in">
+            <button class="fvideo-open post-video-open" type="button"><span class="sr-only">Toista video</span>
+              <video muted="" playsinline="" loop="" preload="none" width="360" height="520" poster="../../assets/blog/video/quellen-en.jpg">
             <source src="../../assets/blog/video/quellen-en.mp4" type="video/mp4">
           <track data-seo-video="" kind="captions" src="../../assets/blog/video/quellen-en.vtt" srclang="en" label="English"></video>
-          <figcaption>Video: kysy jatkokysymys ja hyppää suoraan kohtaan, josta vastaus on peräisin.</figcaption>
+              <span class="post-video-play" aria-hidden="true">▶</span>
+            </button>
+            <figcaption>Video: kysy jatkokysymys ja hyppää suoraan kohtaan, josta vastaus on peräisin.</figcaption>
+          <div data-seo-video="" class="vtext"><p class="vtext-h">Transcript · 0:18</p><ul><li>AI answers.</li><li>With receipts.</li><li>Ask follow-up questions.</li><li>Every answer points to the passage it came from.</li></ul></div></div>
         </figure>
-        <p>Vuonna 2011 Sparrow, Liu ja Wegner raportoivat <em>Science</em> -lehdessä, että kun ihmiset olettavat voivansa hakea tiedon myöhemmin, he muistavat itse asian huonommin ja sen löytöpaikan paremmin. Hakukoneista tuli eräänlainen ulkoinen muisti, johon sopeudumme.</p>
         <p>Tekoälytiivistelmät vievät tätä sopeutumista vielä pidemmälle. Saat selkeän kappaleen, muistat kappaleen, ja alkuperäinen sivu unohtuu taustalle. Se on hienoa silloin, kun tiivistelmä on oikeassa. Ongelma syntyy, kun se ei ole – mikään kappaleessa kun ei paljasta, mikä lauseista on epävarma.</p>
 
         <h2>10 sekunnin tarkistus</h2>
@@ -152,12 +162,19 @@
   </section>
 </main>
 
+<div class="vfeed-labels" hidden="">
+  <span data-l="close">Sulje</span><span data-l="sound">Äänet päälle</span><span data-l="mute">Äänet pois</span><span data-l="hint">Pyyhkäise ylös seuraavaan videoon</span><span data-l="prev">Edellinen video</span><span data-l="next">Seuraava video</span>
+  <span data-l="share">Jaa</span><span data-l="copied">Linkki kopioitu</span>
+  <span data-l="add_chrome">Lisää Chromeen — maksuton</span><span data-l="add_firefox">Lisää Firefoxiin — ilmainen</span><span data-l="add_browser">Lisää selaimeen — ilmainen</span>
+  <a data-l="try" href="../../bookmarklet.html">Kokeile selaimessa — ilmainen</a>
+</div>
 <footer>
   <div class="wrap">
     <div class="footer-inner">
       <div class="wordmark"><img src="../../assets/icon.svg" alt="">AI Summary Helper</div>
       <div class="foot-links">
         <a href="https://github.com/philffm/ai-summary-helper/" target="_blank" rel="noopener">Lähdekoodi GitHubissa</a>
+        <a href="../../education/">Opetukseen</a>
         <a href="../privacy.html">Tietosuoja</a>
         <a href="#" data-analytics-settings="">Analytiikka-asetukset</a>
         <a href="https://byphil.eu/terms.html#impressum" target="_blank" rel="noopener">Impressum</a>

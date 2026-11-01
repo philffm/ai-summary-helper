@@ -89,6 +89,7 @@
         <div class="mm-row">
           <a href="https://addons.mozilla.org/en-US/firefox/addon/ai-summary-helper/" target="_blank" rel="noopener">Firefox</a>
           <a href="../index.html#phone">Android · Beta</a>
+          <a href="../../education/">Education के लिए</a>
           <a href="https://byphil.eu/#account">My account</a>
         </div>
         
@@ -103,24 +104,33 @@
 </header>
 
 <main id="main">
-  <div class="wrap">
-    <div class="post-hero">
+  <section class="hero--photo post-stage">
+    <img class="hero-bg" src="../../assets/photo/commuter-train-reading-800.webp" srcset="../assets/photo/commuter-train-reading-800.webp 800w, ../assets/photo/commuter-train-reading-1600.webp 1600w" sizes="100vw" width="1600" height="893" alt="" fetchpriority="high" decoding="async" style="--bgpos:50% 40%">
+    <p class="hero-credit">इलस्ट्रेशन, AI-जनरेटेड</p>
+    <div class="wrap">
+      <div class="post-hero">
       <span class="blog-date">Guide · अक्टूबर 2026</span>
       <h1>40 Feeds के बदले सिर्फ एक Recap</h1>
       <p class="post-sub">चालीस feeds का मतलब है लंच से पहले चालीस छोटे-छोटे interruptions। एक recap उन सबको समेटकर एक सिंगल रीड में बदल देता है।</p>
+      </div>
     </div>
-  </div>
+  </section>
 
   <section>
     <div class="wrap">
-      <div class="prose">
-        <figure class="post-figure post-figure--video" data-blog-video="feeds">
-          <video controls="" playsinline="" preload="none" width="360" height="520" poster="../../assets/blog/video/feeds-en.jpg">
+      <div class="prose" data-vgroup="">
+        <p>2009 में, Sophie Leroy ने 'attention residue' का कॉन्सेप्ट समझाया था: जब आप एक task से दूसरे पर switch करते हैं, तो आपका कुछ ध्यान पिछले task पर ही अटका रह जाता है। उनके एक्सपेरिमेंट्स में, जिन लोगों को काम के बीच टोका गया था, उनका परफॉरमेंस अगले task में खराब रहा — खासकर तब जब वे जल्दी में थे।</p>
+        <figure class="post-figure post-video" data-blog-video="feeds">
+          <div class="post-video-in">
+            <button class="fvideo-open post-video-open" type="button"><span class="sr-only">वीडियो चलाएं</span>
+              <video muted="" playsinline="" loop="" preload="none" width="360" height="520" poster="../../assets/blog/video/feeds-en.jpg">
             <source src="../../assets/blog/video/feeds-en.mp4" type="video/mp4">
           <track data-seo-video="" kind="captions" src="../../assets/blog/video/feeds-en.vtt" srclang="en" label="English"></video>
-          <figcaption>Video: पूरे दिन के feeds सिर्फ एक recap में।</figcaption>
+              <span class="post-video-play" aria-hidden="true">▶</span>
+            </button>
+            <figcaption>Video: पूरे दिन के feeds सिर्फ एक recap में।</figcaption>
+          <div data-seo-video="" class="vtext"><p class="vtext-h">Transcript · 0:18</p><ul><li>An RSS reader that summarizes.</li><li>Subscribe to your favorite sources.</li><li>One click, and you get a briefing of the whole day.</li></ul></div></div>
         </figure>
-        <p>2009 में, Sophie Leroy ने 'attention residue' का कॉन्सेप्ट समझाया था: जब आप एक task से दूसरे पर switch करते हैं, तो आपका कुछ ध्यान पिछले task पर ही अटका रह जाता है। उनके एक्सपेरिमेंट्स में, जिन लोगों को काम के बीच टोका गया था, उनका परफॉरमेंस अगले task में खराब रहा — खासकर तब जब वे जल्दी में थे।</p>
         <p>एक feed reader असल में task switching की मशीन है। हर item एक नया टॉपिक, अलग टोन और एक नया tab होता है। भले ही हर item को पढ़ने में कम समय लगे, यह attention residue जुड़ता जाता है। जब तक आप अपने असली काम पर लौटते हैं, आपका दिमाग अभी भी किसी hosting provider के pricing change के बारे में सोच रहा होता है।</p>
 
         <h2>Feeds के लिए “inbox zero” कभी काम क्यों नहीं करता</h2>
@@ -146,12 +156,19 @@
   </section>
 </main>
 
+<div class="vfeed-labels" hidden="">
+  <span data-l="close">बंद करें</span><span data-l="sound">Sound on</span><span data-l="mute">Sound off</span><span data-l="hint">अगले video के लिए swipe up करें</span><span data-l="prev">पिछला video</span><span data-l="next">अगला video</span>
+  <span data-l="share">Share करें</span><span data-l="copied">Link copy हो गया</span>
+  <span data-l="add_chrome">Chrome में जोड़ें — बिल्कुल Free</span><span data-l="add_firefox">Firefox में add करें — बिल्कुल free</span><span data-l="add_browser">अपने browser में add करें — बिल्कुल free</span>
+  <a data-l="try" href="../../bookmarklet.html">अपने browser में try करें — बिल्कुल free</a>
+</div>
 <footer>
   <div class="wrap">
     <div class="footer-inner">
       <div class="wordmark"><img src="../../assets/icon.svg" alt="">AI Summary Helper</div>
       <div class="foot-links">
         <a href="https://github.com/philffm/ai-summary-helper/" target="_blank" rel="noopener">GitHub पर Source</a>
+        <a href="../../education/">Education के लिए</a>
         <a href="../privacy.html">Privacy</a>
         <a href="#" data-analytics-settings="">Analytics settings</a>
         <a href="https://byphil.eu/terms.html#impressum" target="_blank" rel="noopener">Impressum</a>

@@ -89,6 +89,7 @@
         <div class="mm-row">
           <a href="https://addons.mozilla.org/en-US/firefox/addon/ai-summary-helper/" target="_blank" rel="noopener">Firefox</a>
           <a href="../index.html#phone">Android · Beta</a>
+          <a href="../../education/">สำหรับการศึกษา</a>
           <a href="https://byphil.eu/#account">บัญชีของฉัน</a>
         </div>
         
@@ -103,25 +104,34 @@
 </header>
 
 <main id="main">
-  <div class="wrap">
-    <div class="post-hero">
+  <section class="hero--photo post-stage">
+    <img class="hero-bg" src="../../assets/photo/ereader-bedside-table-800.webp" srcset="../assets/photo/ereader-bedside-table-800.webp 800w, ../assets/photo/ereader-bedside-table-1600.webp 1600w" sizes="100vw" width="1600" height="1195" alt="" fetchpriority="high" decoding="async" style="--bgpos:50% 50%">
+    <p class="hero-credit">ภาพประกอบ, สร้างโดย AI</p>
+    <div class="wrap">
+      <div class="post-hero">
       <span class="blog-date">ผลิตภัณฑ์ · มิถุนายน 2026</span>
       <h1>จาก Bookmarklet สู่เวอร์ชัน 2.0: ตัวตนที่แท้จริงของ AI Summary Helper ในปัจจุบัน</h1>
       <p class="post-sub">เริ่มต้นจากการเป็น bookmarklet คลิกเดียวเพื่อส่งไปอ่านบน Kindle สองปีต่อมาพร้อมการสร้างใหม่ทั้งหมด ฟีเจอร์ส่วนใหญ่ที่มีในวันนี้ยังไม่เคยมีอยู่เลยตอนที่มีผู้ใช้งาน 100 คนแรก</p>
+      </div>
     </div>
-  </div>
+  </section>
 
   <section>
     <div class="wrap">
-      <div class="prose">
-        <figure class="post-figure post-figure--video" data-blog-video="senden">
-          <video controls="" playsinline="" preload="none" width="360" height="520" poster="../../assets/blog/video/senden-en.jpg">
-            <source src="../../assets/blog/video/senden-en.mp4" type="video/mp4">
-          <track data-seo-video="" kind="captions" src="../../assets/blog/video/senden-en.vtt" srclang="en" label="English"></video>
-          <figcaption>วิดีโอ: จากการสรุปเนื้อหาสู่ Kindle นิสัยการใช้งานที่เป็นจุดเริ่มต้นของโปรเจกต์นี้</figcaption>
-        </figure>
+      <div class="prose" data-vgroup="">
 
         <p><strong>AI Summary Helper เป็นส่วนขยาย Chrome แบบโอเพนซอร์สที่ใช้งานได้ฟรี ช่วยสรุปเนื้อหาหน้าเว็บได้ทันทีด้วยผู้ให้บริการ AI ของคุณเอง หรือใช้งานโมเดลภายในเครื่อง (Local AI) แบบออฟไลน์ 100% บันทึกบทความไว้อ่านภายหลังพร้อมการแจ้งเตือนตามเวลา และเปลี่ยนประวัติการอ่านให้เป็นคลังความรู้ที่เชื่อมโยงและค้นหาได้ง่าย</strong> ไม่มีฟีเจอร์เหล่านั้นเลยในเวอร์ชันแรก และนี่คือสิ่งที่มีในวันนั้น รวมถึงเส้นทางที่พัฒนามาจนถึงจุดนี้</p>
+        <figure class="post-figure post-video" data-blog-video="senden">
+          <div class="post-video-in">
+            <button class="fvideo-open post-video-open" type="button"><span class="sr-only">เล่นวิดีโอ</span>
+              <video muted="" playsinline="" loop="" preload="none" width="360" height="520" poster="../../assets/blog/video/senden-en.jpg">
+            <source src="../../assets/blog/video/senden-en.mp4" type="video/mp4">
+          <track data-seo-video="" kind="captions" src="../../assets/blog/video/senden-en.vtt" srclang="en" label="English"></video>
+              <span class="post-video-play" aria-hidden="true">▶</span>
+            </button>
+            <figcaption>วิดีโอ: จากการสรุปเนื้อหาสู่ Kindle นิสัยการใช้งานที่เป็นจุดเริ่มต้นของโปรเจกต์นี้</figcaption>
+          <div data-seo-video="" class="vtext"><p class="vtext-h">Transcript · 0:19</p><ul><li>From summary to Kindle.</li><li>Summarize the page, open the menu, send it to your Kindle.</li><li>Seconds later it is on your e-reader, ready for the couch.</li></ul></div></div>
+        </figure>
 
         <h2>จุดเริ่มต้นที่แท้จริง</h2>
         <p>ในเดือนกรกฎาคม 2024 โปรเจกต์นี้เป็นเพียง bookmarklet ไม่ใช่ส่วนขยายด้วยซ้ำ หลายคนมักค้นพบบทความน่าสนใจ เปิดแท็บทิ้งไว้เป็นสิบๆ แท็บ แล้วสุดท้ายก็แทบไม่ได้อ่าน แนวคิดดั้งเดิมจึงเรียบง่ายและตอบโจทย์ส่วนตัว: เครื่องมือสรุปเนื้อหาตาม prompt ที่กำหนดเอง โดยแทรกผลลัพธ์ลงในหน้าเว็บโดยตรง เพื่อให้เนื้อหาสรุปติดไปด้วยเมื่อส่งบทความไปยัง Kindle ผ่าน <a href="https://send.reabble.com/" target="_blank" rel="noopener">เครื่องมือ Send-to-Kindle ของ Reabble</a>นั่นคือฟังก์ชันทั้งหมดของผลิตภัณฑ์ในตอนนั้น มีผู้ให้บริการ AI เพียงรายเดียว ช่องใส่ prompt ช่องเดียว มีทั้งรูปแบบ bookmarklet ที่ใช้ได้ทุกที่แม้แต่บน iOS Safari และส่วนขยาย Chrome สำหรับผู้ที่ต้องการปรับเปลี่ยน prompt ได้สะดวกรวดเร็ว</p>
@@ -163,12 +173,19 @@
   </section>
 </main>
 
+<div class="vfeed-labels" hidden="">
+  <span data-l="close">ปิด</span><span data-l="sound">เปิดเสียง</span><span data-l="mute">ปิดเสียง</span><span data-l="hint">ปัดขึ้นเพื่อดูวิดีโอถัดไป</span><span data-l="prev">วิดีโอก่อนหน้า</span><span data-l="next">วิดีโอถัดไป</span>
+  <span data-l="share">แชร์</span><span data-l="copied">คัดลอกลิงก์แล้ว</span>
+  <span data-l="add_chrome">เพิ่มลงใน Chrome — ใช้งานฟรี</span><span data-l="add_firefox">เพิ่มลงใน Firefox — ฟรี</span><span data-l="add_browser">เพิ่มลงในเบราว์เซอร์ — ฟรี</span>
+  <a data-l="try" href="../../bookmarklet.html">ทดลองใช้บนเบราว์เซอร์ — ฟรี</a>
+</div>
 <footer>
   <div class="wrap">
     <div class="footer-inner">
       <div class="wordmark"><img src="../../assets/icon.svg" alt="">AI Summary Helper</div>
       <div class="foot-links">
         <a href="https://github.com/philffm/ai-summary-helper/" target="_blank" rel="noopener">ซอร์สโค้ดบน GitHub</a>
+        <a href="../../education/">สำหรับการศึกษา</a>
         <a href="../privacy.html">ความเป็นส่วนตัว</a>
         <a href="#" data-analytics-settings="">การตั้งค่าการวิเคราะห์</a>
         <a href="https://byphil.eu/terms.html#impressum" target="_blank" rel="noopener">ข้อมูลทางกฎหมาย (Impressum)</a>

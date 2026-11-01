@@ -89,6 +89,7 @@
         <div class="mm-row">
           <a href="https://addons.mozilla.org/en-US/firefox/addon/ai-summary-helper/" target="_blank" rel="noopener">Firefox</a>
           <a href="../index.html#phone">Android · Bêta</a>
+          <a href="../../education/">Pour l'éducation</a>
           <a href="https://byphil.eu/#account">Mon compte</a>
         </div>
         
@@ -103,24 +104,33 @@
 </header>
 
 <main id="main">
-  <div class="wrap">
-    <div class="post-hero">
+  <section class="hero--photo post-stage">
+    <img class="hero-bg" src="../../assets/photo/bokeh-strip-blue-amber-800.webp" srcset="../assets/photo/bokeh-strip-blue-amber-800.webp 800w, ../assets/photo/bokeh-strip-blue-amber-1600.webp 1600w" sizes="100vw" width="1600" height="679" alt="" fetchpriority="high" decoding="async" style="--bgpos:50% 50%">
+    <p class="hero-credit">Illustration, générée par IA</p>
+    <div class="wrap">
+      <div class="post-hero">
       <span class="blog-date">Ingénierie · Août 2026</span>
       <h1>Pourquoi nous avons rapatrié la recherche, les tags et les recommandations hors du cloud</h1>
       <p class="post-sub">Recherche, déduplication, nettoyage des tags et recommandations partagent un unique index local léger. Voici comment cela fonctionne, et pourquoi il ne s'agit pas d'un simple argument marketing sur la confidentialité.</p>
+      </div>
     </div>
-  </div>
+  </section>
 
   <section>
     <div class="wrap">
-      <div class="prose">
-        <figure class="post-figure post-figure--video" data-blog-video="graph">
-          <video controls="" playsinline="" preload="none" width="360" height="520" poster="../../assets/blog/video/graph-fr.jpg">
+      <div class="prose" data-vgroup="">
+<p>La plupart des extensions de navigateur « dopées à l'IA » envoient l'intégralité des données vers un serveur — y compris les fonctions qui n'ont absolument aucun rapport avec l'IA. Recherche, normalisation de tags, détection de contenus similaires : ce sont des techniques éprouvées depuis des décennies. Elles n'exigent aucun modèle de langage et n'ont absolument pas besoin d'un aller-retour réseau. Nous avons passé au crible chaque fonctionnalité d'AI Summary Helper en nous posant une question systématique : cette fonction a-t-elle réellement besoin du cloud, ou l'utilisons-nous par défaut par simple facilité architecturale ?</p>
+        <figure class="post-figure post-video" data-blog-video="graph">
+          <div class="post-video-in">
+            <button class="fvideo-open post-video-open" type="button"><span class="sr-only">Lire la vidéo</span>
+              <video muted="" playsinline="" loop="" preload="none" width="360" height="520" poster="../../assets/blog/video/graph-fr.jpg">
             <source src="../../assets/blog/video/graph-fr.mp4" type="video/mp4">
           <track data-seo-video="" kind="captions" src="../../assets/blog/video/graph-fr.vtt" srclang="fr" label="français"></video>
-          <figcaption>Vidéo : le graphe de connaissances relie vos articles selon leurs thématiques, généré directement sur votre appareil.</figcaption>
+              <span class="post-video-play" aria-hidden="true">▶</span>
+            </button>
+            <figcaption>Vidéo : le graphe de connaissances relie vos articles selon leurs thématiques, généré directement sur votre appareil.</figcaption>
+          <div data-seo-video="" class="vtext"><p class="vtext-h">Transcription · 0:19</p><ul><li>Ce que vous lisez est relié.</li><li>Votre graphe de connaissances relie les articles par leurs thèmes.</li><li>Touchez-en un, et vous obtenez un briefing sur tout ce que vous avez lu à ce sujet.</li></ul></div></div>
         </figure>
-<p>La plupart des extensions de navigateur « dopées à l'IA » envoient l'intégralité des données vers un serveur — y compris les fonctions qui n'ont absolument aucun rapport avec l'IA. Recherche, normalisation de tags, détection de contenus similaires : ce sont des techniques éprouvées depuis des décennies. Elles n'exigent aucun modèle de langage et n'ont absolument pas besoin d'un aller-retour réseau. Nous avons passé au crible chaque fonctionnalité d'AI Summary Helper en nous posant une question systématique : cette fonction a-t-elle réellement besoin du cloud, ou l'utilisons-nous par défaut par simple facilité architecturale ?</p>
         <p>La plupart n'en avaient aucunement besoin.</p>
 
         <figure class="post-figure post-figure--portrait"><img src="../../assets/blog/knowledge-graph.webp" alt="Diapositive : une carte de sujets connectés avec la phrase « L'information ancrée dans le sens et les connexions dure bien plus longtemps que celle simplement survolée »" width="800" height="1000" loading="lazy"><figcaption>La recherche, l'étiquetage et les articles similaires s'appuient tous sur le même index on-device : établir des connexions entre vos sauvegardes ne coûte rien.</figcaption></figure>
@@ -148,12 +158,19 @@
   </section>
 </main>
 
+<div class="vfeed-labels" hidden="">
+  <span data-l="close">Fermer</span><span data-l="sound">Activer le son</span><span data-l="mute">Couper le son</span><span data-l="hint">Balayez vers le haut pour la vidéo suivante</span><span data-l="prev">Vidéo précédente</span><span data-l="next">Vidéo suivante</span>
+  <span data-l="share">Partager</span><span data-l="copied">Lien copié</span>
+  <span data-l="add_chrome">Ajouter à Chrome — c'est gratuit</span><span data-l="add_firefox">Ajouter à Firefox — c'est gratuit</span><span data-l="add_browser">Ajouter à votre navigateur — c'est gratuit</span>
+  <a data-l="try" href="../../bookmarklet.html">Essayez dans votre navigateur — c'est gratuit</a>
+</div>
 <footer>
   <div class="wrap">
     <div class="footer-inner">
       <div class="wordmark"><img src="../../assets/icon.svg" alt="">AI Summary Helper</div>
       <div class="foot-links">
         <a href="https://github.com/philffm/ai-summary-helper/" target="_blank" rel="noopener">Code source sur GitHub</a>
+        <a href="../../education/">Pour l'éducation</a>
         <a href="../privacy.html">Confidentialité</a>
         <a href="#" data-analytics-settings="">Paramètres d'analyse</a>
         <a href="https://byphil.eu/terms.html#impressum" target="_blank" rel="noopener">Mentions légales</a>

@@ -89,6 +89,7 @@
         <div class="mm-row">
           <a href="https://addons.mozilla.org/en-US/firefox/addon/ai-summary-helper/" target="_blank" rel="noopener">Firefox</a>
           <a href="../index.html#phone">Android · Beta</a>
+          <a href="../../education/">教育方案</a>
           <a href="https://byphil.eu/#account">我的帳戶</a>
         </div>
         
@@ -103,25 +104,34 @@
 </header>
 
 <main id="main">
-  <div class="wrap">
-    <div class="post-hero">
+  <section class="hero--photo post-stage">
+    <img class="hero-bg" src="../../assets/photo/ereader-bedside-table-800.webp" srcset="../assets/photo/ereader-bedside-table-800.webp 800w, ../assets/photo/ereader-bedside-table-1600.webp 1600w" sizes="100vw" width="1600" height="1195" alt="" fetchpriority="high" decoding="async" style="--bgpos:50% 50%">
+    <p class="hero-credit">插圖，AI 生成</p>
+    <div class="wrap">
+      <div class="post-hero">
       <span class="blog-date">產品 · 2026 年 6 月</span>
       <h1>從書籤小工具到 2.0：現在的 AI Summary Helper 究竟是什麼？</h1>
       <p class="post-sub">它最初只是一個為了在 Kindle 上閱讀而設計的一鍵 Bookmarklet 小書籤。經過兩年的演進與全面重構，如今它所擁有的大部分功能，在最初前一百名使用者加入時都還未曾出現。</p>
+      </div>
     </div>
-  </div>
+  </section>
 
   <section>
     <div class="wrap">
-      <div class="prose">
-        <figure class="post-figure post-figure--video" data-blog-video="senden">
-          <video controls="" playsinline="" preload="none" width="360" height="520" poster="../../assets/blog/video/senden-zh-tw.jpg">
-            <source src="../../assets/blog/video/senden-zh-tw.mp4" type="video/mp4">
-          <track data-seo-video="" kind="captions" src="../../assets/blog/video/senden-zh-tw.vtt" srclang="zh-tw" label="中文（台灣）"></video>
-          <figcaption>影片：從摘要到 Kindle，這正是催生本專案的最初習慣。</figcaption>
-        </figure>
+      <div class="prose" data-vgroup="">
 
         <p><strong>AI Summary Helper 是一款免費、開源的 Chrome 擴充功能。它能使用你自選的 AI 服務商或完全本機端執行的模型來摘要任何網頁，支援設定定時提醒以供日後閱讀，並能將你的閱讀歷程轉化為可搜尋、互相關聯的知識庫存檔。</strong> 第一版中完全沒有這些功能。以下是當時的面貌，以及它是如何一路演進至今的。</p>
+        <figure class="post-figure post-video" data-blog-video="senden">
+          <div class="post-video-in">
+            <button class="fvideo-open post-video-open" type="button"><span class="sr-only">播放影片</span>
+              <video muted="" playsinline="" loop="" preload="none" width="360" height="520" poster="../../assets/blog/video/senden-zh-tw.jpg">
+            <source src="../../assets/blog/video/senden-zh-tw.mp4" type="video/mp4">
+          <track data-seo-video="" kind="captions" src="../../assets/blog/video/senden-zh-tw.vtt" srclang="zh-tw" label="中文（台灣）"></video>
+              <span class="post-video-play" aria-hidden="true">▶</span>
+            </button>
+            <figcaption>影片：從摘要到 Kindle，這正是催生本專案的最初習慣。</figcaption>
+          <div data-seo-video="" class="vtext"><p class="vtext-h">Transcript · 0:19</p><ul><li>從摘要直達 Kindle。</li><li>摘要這個頁面，打開選單，發送到 Kindle。</li><li>幾秒鐘後，它就出現在你的電子書閱讀器上，躺在沙發上就能讀。</li></ul></div></div>
+        </figure>
 
         <h2>這一切究竟是如何開始的</h2>
         <p>在 2024 年 7 月，它還只是一個 Bookmarklet 小書籤——甚至連擴充功能都不是。那時你總是到處尋找有趣的文章，開了幾十個分頁，然後就像多數人一樣，大部分都再也沒打開讀過。最初的初衷非常純粹且個人化：一個自訂提示詞（Prompt）的摘要工具，能直接將摘要內容插入網頁中，這樣當你使用 <a href="https://send.reabble.com/" target="_blank" rel="noopener">Reabble 的 Send-to-Kindle 工具</a>將文章傳送到 Kindle 時，摘要就能隨附在內。這就是當時整個產品的全部。單一 AI 服務商、單一提示詞欄位。一個在任何地方（甚至 iOS Safari）都能運作的 Bookmarklet 版本，以及一個讓想即時調整提示詞的使用者使用的 Chrome 擴充功能版本。</p>
@@ -163,12 +173,19 @@
   </section>
 </main>
 
+<div class="vfeed-labels" hidden="">
+  <span data-l="close">關閉</span><span data-l="sound">開啟聲音</span><span data-l="mute">靜音</span><span data-l="hint">向上滑動觀看下一部影片</span><span data-l="prev">上一部影片</span><span data-l="next">下一部影片</span>
+  <span data-l="share">分享</span><span data-l="copied">已複製連結</span>
+  <span data-l="add_chrome">免費新增至 Chrome</span><span data-l="add_firefox">新增至 Firefox — 完全免費</span><span data-l="add_browser">新增至瀏覽器 — 完全免費</span>
+  <a data-l="try" href="../../bookmarklet.html">在瀏覽器中試用 — 完全免費</a>
+</div>
 <footer>
   <div class="wrap">
     <div class="footer-inner">
       <div class="wordmark"><img src="../../assets/icon.svg" alt="">AI Summary Helper</div>
       <div class="foot-links">
         <a href="https://github.com/philffm/ai-summary-helper/" target="_blank" rel="noopener">GitHub 原始碼</a>
+        <a href="../../education/">教育方案</a>
         <a href="../privacy.html">隱私權政策</a>
         <a href="#" data-analytics-settings="">數據分析設定</a>
         <a href="https://byphil.eu/terms.html#impressum" target="_blank" rel="noopener">法律資訊 (Impressum)</a>

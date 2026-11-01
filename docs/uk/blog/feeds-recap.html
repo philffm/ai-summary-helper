@@ -89,6 +89,7 @@
         <div class="mm-row">
           <a href="https://addons.mozilla.org/en-US/firefox/addon/ai-summary-helper/" target="_blank" rel="noopener">Firefox</a>
           <a href="../index.html#phone">Android · Бета</a>
+          <a href="../../education/">Для освіти</a>
           <a href="https://byphil.eu/#account">Мій акаунт</a>
         </div>
         
@@ -103,24 +104,33 @@
 </header>
 
 <main id="main">
-  <div class="wrap">
-    <div class="post-hero">
+  <section class="hero--photo post-stage">
+    <img class="hero-bg" src="../../assets/photo/commuter-train-reading-800.webp" srcset="../assets/photo/commuter-train-reading-800.webp 800w, ../assets/photo/commuter-train-reading-1600.webp 1600w" sizes="100vw" width="1600" height="893" alt="" fetchpriority="high" decoding="async" style="--bgpos:50% 40%">
+    <p class="hero-credit">Ілюстрація, згенерована ШІ</p>
+    <div class="wrap">
+      <div class="post-hero">
       <span class="blog-date">Гайд · Жовтень 2026</span>
       <h1>Один підсумок замість 40 стрічок</h1>
       <p class="post-sub">Сорок стрічок новин означають сорок дрібних відволікань ще до обіду. Підсумок перетворює їх на один матеріал, який ви читаєте за один раз.</p>
+      </div>
     </div>
-  </div>
+  </section>
 
   <section>
     <div class="wrap">
-      <div class="prose">
-        <figure class="post-figure post-figure--video" data-blog-video="feeds">
-          <video controls="" playsinline="" preload="none" width="360" height="520" poster="../../assets/blog/video/feeds-en.jpg">
+      <div class="prose" data-vgroup="">
+        <p>У 2009 році Софі Леруа описала явище, яке вона назвала «залишком уваги» (attention residue): коли ви перемикаєтеся з одного завдання на інше, частина вашої уваги залишається на попередньому. У її експериментах люди, яких переривали під час виконання завдання, гірше справлялися з наступним, і цей ефект посилювався, якщо їм доводилося поспішати.</p>
+        <figure class="post-figure post-video" data-blog-video="feeds">
+          <div class="post-video-in">
+            <button class="fvideo-open post-video-open" type="button"><span class="sr-only">Відтворити відео</span>
+              <video muted="" playsinline="" loop="" preload="none" width="360" height="520" poster="../../assets/blog/video/feeds-en.jpg">
             <source src="../../assets/blog/video/feeds-en.mp4" type="video/mp4">
           <track data-seo-video="" kind="captions" src="../../assets/blog/video/feeds-en.vtt" srclang="en" label="English"></video>
-          <figcaption>Відео: увесь день стрічок в одному підсумку.</figcaption>
+              <span class="post-video-play" aria-hidden="true">▶</span>
+            </button>
+            <figcaption>Відео: увесь день стрічок в одному підсумку.</figcaption>
+          <div data-seo-video="" class="vtext"><p class="vtext-h">Transcript · 0:18</p><ul><li>An RSS reader that summarizes.</li><li>Subscribe to your favorite sources.</li><li>One click, and you get a briefing of the whole day.</li></ul></div></div>
         </figure>
-        <p>У 2009 році Софі Леруа описала явище, яке вона назвала «залишком уваги» (attention residue): коли ви перемикаєтеся з одного завдання на інше, частина вашої уваги залишається на попередньому. У її експериментах люди, яких переривали під час виконання завдання, гірше справлялися з наступним, і цей ефект посилювався, якщо їм доводилося поспішати.</p>
         <p>RSS-рідер — це машина для перемикання уваги. Кожен пункт — це інша тема, інший тон, інша вкладка. Навіть якщо переглядати все швидко, залишок уваги накопичується. І коли ви повертаєтеся до справжньої роботи, частина ваших думок усе ще зайнята зміною тарифів у якогось хостинг-провайдера.</p>
 
         <h2>Чому «inbox zero» для стрічок новин ніколи не працює</h2>
@@ -146,12 +156,19 @@
   </section>
 </main>
 
+<div class="vfeed-labels" hidden="">
+  <span data-l="close">Закрити</span><span data-l="sound">Увімкнути звук</span><span data-l="mute">Вимкнути звук</span><span data-l="hint">Свайпайте вгору для наступного відео</span><span data-l="prev">Попереднє відео</span><span data-l="next">Наступне відео</span>
+  <span data-l="share">Поділитися</span><span data-l="copied">Посилання скопійовано</span>
+  <span data-l="add_chrome">Додати в Chrome — це безкоштовно</span><span data-l="add_firefox">Додати до Firefox — безкоштовно</span><span data-l="add_browser">Додати до свого браузера — безкоштовно</span>
+  <a data-l="try" href="../../bookmarklet.html">Спробувати у браузері — безкоштовно</a>
+</div>
 <footer>
   <div class="wrap">
     <div class="footer-inner">
       <div class="wordmark"><img src="../../assets/icon.svg" alt="">AI Summary Helper</div>
       <div class="foot-links">
         <a href="https://github.com/philffm/ai-summary-helper/" target="_blank" rel="noopener">Вихідний код на GitHub</a>
+        <a href="../../education/">Для освіти</a>
         <a href="../privacy.html">Конфіденційність</a>
         <a href="#" data-analytics-settings="">Налаштування аналітики</a>
         <a href="https://byphil.eu/terms.html#impressum" target="_blank" rel="noopener">Правова інформація (Impressum)</a>

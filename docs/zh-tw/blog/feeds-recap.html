@@ -89,6 +89,7 @@
         <div class="mm-row">
           <a href="https://addons.mozilla.org/en-US/firefox/addon/ai-summary-helper/" target="_blank" rel="noopener">Firefox</a>
           <a href="../index.html#phone">Android · Beta</a>
+          <a href="../../education/">教育方案</a>
           <a href="https://byphil.eu/#account">我的帳戶</a>
         </div>
         
@@ -103,24 +104,33 @@
 </header>
 
 <main id="main">
-  <div class="wrap">
-    <div class="post-hero">
+  <section class="hero--photo post-stage">
+    <img class="hero-bg" src="../../assets/photo/commuter-train-reading-800.webp" srcset="../assets/photo/commuter-train-reading-800.webp 800w, ../assets/photo/commuter-train-reading-1600.webp 1600w" sizes="100vw" width="1600" height="893" alt="" fetchpriority="high" decoding="async" style="--bgpos:50% 40%">
+    <p class="hero-credit">插圖，AI 生成</p>
+    <div class="wrap">
+      <div class="post-hero">
       <span class="blog-date">指南 · 2026 年 10 月</span>
       <h1>一份重點摘要取代 40 個訂閱源</h1>
       <p class="post-sub">40 個訂閱源代表午餐前要經歷 40 次微小干擾。一份摘要將它們整合為一次讀完的精華內容。</p>
+      </div>
     </div>
-  </div>
+  </section>
 
   <section>
     <div class="wrap">
-      <div class="prose">
-        <figure class="post-figure post-figure--video" data-blog-video="feeds">
-          <video controls="" playsinline="" preload="none" width="360" height="520" poster="../../assets/blog/video/feeds-zh-tw.jpg">
+      <div class="prose" data-vgroup="">
+        <p>2009 年，Sophie Leroy 提出了「注意力殘留」（attention residue）的概念：當你從一項任務切換到另一項任務時，部分注意力仍會停留在先前的任務上。她的實驗顯示，在任務中受到干擾的人在下一項任務中的表現明顯較差，且在時間緊迫時這種效應更為顯著。</p>
+        <figure class="post-figure post-video" data-blog-video="feeds">
+          <div class="post-video-in">
+            <button class="fvideo-open post-video-open" type="button"><span class="sr-only">播放影片</span>
+              <video muted="" playsinline="" loop="" preload="none" width="360" height="520" poster="../../assets/blog/video/feeds-zh-tw.jpg">
             <source src="../../assets/blog/video/feeds-zh-tw.mp4" type="video/mp4">
           <track data-seo-video="" kind="captions" src="../../assets/blog/video/feeds-zh-tw.vtt" srclang="zh-tw" label="中文（台灣）"></video>
-          <figcaption>影片：將一整天的動態內容濃縮為精華摘要。</figcaption>
+              <span class="post-video-play" aria-hidden="true">▶</span>
+            </button>
+            <figcaption>影片：將一整天的動態內容濃縮為精華摘要。</figcaption>
+          <div data-seo-video="" class="vtext"><p class="vtext-h">Transcript · 0:18</p><ul><li>會做摘要的 RSS 閱讀器。</li><li>訂閱你喜歡的來源。</li><li>點一下，就能得到整天內容的簡報。</li></ul></div></div>
         </figure>
-        <p>2009 年，Sophie Leroy 提出了「注意力殘留」（attention residue）的概念：當你從一項任務切換到另一項任務時，部分注意力仍會停留在先前的任務上。她的實驗顯示，在任務中受到干擾的人在下一項任務中的表現明顯較差，且在時間緊迫時這種效應更為顯著。</p>
         <p>RSS 閱讀器就像一台「任務切換產生器」。每條內容都代表不同的主題、語氣與新分頁。即使每則訊息掃一眼只要幾秒，累積的注意力殘留依然可觀。當你回到真正的工作時，腦中可能還在想著某個主機商的方案調價公告。</p>
 
         <h2>為什麼資訊訂閱的「收件匣歸零」（Inbox Zero）永遠行不通</h2>
@@ -146,12 +156,19 @@
   </section>
 </main>
 
+<div class="vfeed-labels" hidden="">
+  <span data-l="close">關閉</span><span data-l="sound">開啟聲音</span><span data-l="mute">靜音</span><span data-l="hint">向上滑動觀看下一部影片</span><span data-l="prev">上一部影片</span><span data-l="next">下一部影片</span>
+  <span data-l="share">分享</span><span data-l="copied">已複製連結</span>
+  <span data-l="add_chrome">免費新增至 Chrome</span><span data-l="add_firefox">新增至 Firefox — 完全免費</span><span data-l="add_browser">新增至瀏覽器 — 完全免費</span>
+  <a data-l="try" href="../../bookmarklet.html">在瀏覽器中試用 — 完全免費</a>
+</div>
 <footer>
   <div class="wrap">
     <div class="footer-inner">
       <div class="wordmark"><img src="../../assets/icon.svg" alt="">AI Summary Helper</div>
       <div class="foot-links">
         <a href="https://github.com/philffm/ai-summary-helper/" target="_blank" rel="noopener">GitHub 原始碼</a>
+        <a href="../../education/">教育方案</a>
         <a href="../privacy.html">隱私權政策</a>
         <a href="#" data-analytics-settings="">數據分析設定</a>
         <a href="https://byphil.eu/terms.html#impressum" target="_blank" rel="noopener">法律資訊 (Impressum)</a>

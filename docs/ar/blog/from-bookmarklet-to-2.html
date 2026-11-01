@@ -89,6 +89,7 @@
         <div class="mm-row">
           <a href="https://addons.mozilla.org/en-US/firefox/addon/ai-summary-helper/" target="_blank" rel="noopener">Firefox</a>
           <a href="../index.html#phone">Android · Beta</a>
+          <a href="../../education/">للتعليم</a>
           <a href="https://byphil.eu/#account">حسابي</a>
         </div>
         
@@ -103,25 +104,34 @@
 </header>
 
 <main id="main">
-  <div class="wrap">
-    <div class="post-hero">
+  <section class="hero--photo post-stage">
+    <img class="hero-bg" src="../../assets/photo/ereader-bedside-table-800.webp" srcset="../assets/photo/ereader-bedside-table-800.webp 800w, ../assets/photo/ereader-bedside-table-1600.webp 1600w" sizes="100vw" width="1600" height="1195" alt="" fetchpriority="high" decoding="async" style="--bgpos:50% 50%">
+    <p class="hero-credit">رسم توضيحي، مُولّد بالذكاء الاصطناعي</p>
+    <div class="wrap">
+      <div class="post-hero">
       <span class="blog-date">المنتج · يونيو 2026</span>
       <h1>من أداة مصغّرة إلى الإصدار 2.0: حقيقة ما أصبح عليه AI Summary Helper اليوم</h1>
       <p class="post-sub">بدأ الأمر كأداة Bookmarklet بنقرة واحدة للقراءة على جهاز Kindle. وبعد عامين وإعادة بناء شاملة، أصبحت معظم ميزاته الحالية أشياء لم تكن موجودة أصلًا عندما اشترك أول مئة مستخدم.</p>
+      </div>
     </div>
-  </div>
+  </section>
 
   <section>
     <div class="wrap">
-      <div class="prose">
-        <figure class="post-figure post-figure--video" data-blog-video="senden">
-          <video controls="" playsinline="" preload="none" width="360" height="520" poster="../../assets/blog/video/senden-en.jpg">
-            <source src="../../assets/blog/video/senden-en.mp4" type="video/mp4">
-          <track data-seo-video="" kind="captions" src="../../assets/blog/video/senden-en.vtt" srclang="en" label="English"></video>
-          <figcaption>فيديو: من التلخيص إلى Kindle، العادة التي انطلق منها هذا المشروع.</figcaption>
-        </figure>
+      <div class="prose" data-vgroup="">
 
         <p><strong>تطبيق AI Summary Helper هو إضافة مجانية ومفتوحة المصدر لمتصفح Chrome تلخص أي صفحة ويب باستخدام مزود الذكاء الاصطناعي الخاص بك أو عبر نموذج محلي بالكامل، وتحفظ المقالات لوقت لاحق مع تذكيرات محددة بوقت، وتحول سجل قراءتك إلى أرشيف مترابط وقابل للبحث.</strong> لم يكن أي من ذلك متوفرًا في الإصدار الأول. إليك ما كان موجودًا بالفعل، وكيف تطور المشروع ليصل إلى ما هو عليه اليوم.</p>
+        <figure class="post-figure post-video" data-blog-video="senden">
+          <div class="post-video-in">
+            <button class="fvideo-open post-video-open" type="button"><span class="sr-only">تشغيل الفيديو</span>
+              <video muted="" playsinline="" loop="" preload="none" width="360" height="520" poster="../../assets/blog/video/senden-en.jpg">
+            <source src="../../assets/blog/video/senden-en.mp4" type="video/mp4">
+          <track data-seo-video="" kind="captions" src="../../assets/blog/video/senden-en.vtt" srclang="en" label="English"></video>
+              <span class="post-video-play" aria-hidden="true">▶</span>
+            </button>
+            <figcaption>فيديو: من التلخيص إلى Kindle، العادة التي انطلق منها هذا المشروع.</figcaption>
+          <div data-seo-video="" class="vtext"><p class="vtext-h">Transcript · 0:19</p><ul><li>From summary to Kindle.</li><li>Summarize the page, open the menu, send it to your Kindle.</li><li>Seconds later it is on your e-reader, ready for the couch.</li></ul></div></div>
+        </figure>
 
         <h2>كيف بدأت القصة في الواقع</h2>
         <p>في يوليو 2024، كان المشروع مجرد Bookmarklet — ولم يكن حتى إضافة للمتصفح. كنت تبحث عن مقالات مثيرة للاهتمام، وتفتح عشرات التبويبات، ثم، كحال أغلب الناس، لا تجد وقتًا لقراءة معظمها. كانت الفكرة الأصلية بسيطة وشخصية للغاية: أداة تلخيص بأوامر مخصصة تُدرج مخرجاتها مباشرة داخل الصفحة، بحيث ينتقل الملخص مع المقال عند إرساله إلى جهاز Kindle باستخدام <a href="https://send.reabble.com/" target="_blank" rel="noopener">أداة Send-to-Kindle من Reabble</a>. كان هذا هو المنتج بأكمله: مزود ذكاء اصطناعي واحد، وحقل أوامر واحد، وإصدار Bookmarklet يعمل في أي مكان حتى على متصفح Safari لنظام iOS، وإصدار إضافة Chrome لمن يريد تعديل الأوامر أثناء التصفح.</p>
@@ -163,12 +173,19 @@
   </section>
 </main>
 
+<div class="vfeed-labels" hidden="">
+  <span data-l="close">إغلاق</span><span data-l="sound">تشغيل الصوت</span><span data-l="mute">كتم الصوت</span><span data-l="hint">اسحب للأعلى للانتقال إلى الفيديو التالي</span><span data-l="prev">الفيديو السابق</span><span data-l="next">الفيديو التالي</span>
+  <span data-l="share">مشاركة</span><span data-l="copied">تم نسخ الرابط</span>
+  <span data-l="add_chrome">أضف إلى Chrome — مجاناً</span><span data-l="add_firefox">أضِف إلى Firefox — مجانًا</span><span data-l="add_browser">أضِف إلى متصفحك — مجانًا</span>
+  <a data-l="try" href="../../bookmarklet.html">جرّبه في متصفحك — مجانًا</a>
+</div>
 <footer>
   <div class="wrap">
     <div class="footer-inner">
       <div class="wordmark"><img src="../../assets/icon.svg" alt="">AI Summary Helper</div>
       <div class="foot-links">
         <a href="https://github.com/philffm/ai-summary-helper/" target="_blank" rel="noopener">المصدر على GitHub</a>
+        <a href="../../education/">للتعليم</a>
         <a href="../privacy.html">الخصوصية</a>
         <a href="#" data-analytics-settings="">إعدادات التحليلات</a>
         <a href="https://byphil.eu/terms.html#impressum" target="_blank" rel="noopener">بيانات الموقع والناشر (Impressum)</a>

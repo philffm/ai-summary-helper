@@ -89,6 +89,7 @@
         <div class="mm-row">
           <a href="https://addons.mozilla.org/en-US/firefox/addon/ai-summary-helper/" target="_blank" rel="noopener">Firefox</a>
           <a href="../index.html#phone">Android · Beta</a>
+          <a href="../../education/">教育方案</a>
           <a href="https://byphil.eu/#account">我的账户</a>
         </div>
         
@@ -103,24 +104,33 @@
 </header>
 
 <main id="main">
-  <div class="wrap">
-    <div class="post-hero">
+  <section class="hero--photo post-stage">
+    <img class="hero-bg" src="../../assets/photo/hands-keyboard-closeup-800.webp" srcset="../assets/photo/hands-keyboard-closeup-800.webp 800w, ../assets/photo/hands-keyboard-closeup-1600.webp 1600w" sizes="100vw" width="1600" height="893" alt="" fetchpriority="high" decoding="async" style="--bgpos:50% 50%">
+    <p class="hero-credit">插图由 AI 生成</p>
+    <div class="wrap">
+      <div class="post-hero">
       <span class="blog-date">产品动态 · 2026 年 10 月</span>
       <h1>你的 Key。你的模型。你的数据。</h1>
       <p class="post-sub">大多数 AI 工具都会在你与模型之间架设一层专属服务器。本文将探讨去掉这个中间层后会发生什么变化，以及哪些环节依然取决于你自己的选择。</p>
+      </div>
     </div>
-  </div>
+  </section>
 
   <section>
     <div class="wrap">
-      <div class="prose">
-        <figure class="post-figure post-figure--video" data-blog-video="privat">
-          <video controls="" playsinline="" preload="none" width="360" height="520" poster="../../assets/blog/video/privat-zh.jpg">
+      <div class="prose" data-vgroup="">
+        <p>所有 AI 摘要的基本逻辑都一样：发送文本，接收结果。决定你是否能信任该工具的核心，在于谁处于数据传输的中间环节。在许多产品中，中间往往存在一个第三方服务器，你阅读的内容必须经过它，才能传递给你并未亲自选择的模型。</p>
+        <figure class="post-figure post-video" data-blog-video="privat">
+          <div class="post-video-in">
+            <button class="fvideo-open post-video-open" type="button"><span class="sr-only">播放视频</span>
+              <video muted="" playsinline="" loop="" preload="none" width="360" height="520" poster="../../assets/blog/video/privat-zh.jpg">
             <source src="../../assets/blog/video/privat-zh.mp4" type="video/mp4">
           <track data-seo-video="" kind="captions" src="../../assets/blog/video/privat-zh.vtt" srclang="zh" label="中文"></video>
-          <figcaption>视频：在您自己的 API key、Ollama 本地模型与 byPhil Cloud 之间自由切换。</figcaption>
+              <span class="post-video-play" aria-hidden="true">▶</span>
+            </button>
+            <figcaption>视频：在您自己的 API key、Ollama 本地模型与 byPhil Cloud 之间自由切换。</figcaption>
+          <div data-seo-video="" class="vtext"><p class="vtext-h">Transcript · 0:23</p><ul><li>隐私是一种权衡。</li><li>风险一清楚，人们就会少分享。</li><li>所以由你来选：用自己的 API 密钥，用 Ollama 跑本地模型，或者免设置的 byPhil Cloud。</li><li>你的资料库留在浏览器里。</li></ul></div></div>
         </figure>
-        <p>所有 AI 摘要的基本逻辑都一样：发送文本，接收结果。决定你是否能信任该工具的核心，在于谁处于数据传输的中间环节。在许多产品中，中间往往存在一个第三方服务器，你阅读的内容必须经过它，才能传递给你并未亲自选择的模型。</p>
 
         <h2>在此处，“自带 API key”究竟意味着什么</h2>
         <p>你在自己信任的供应商处生成 API key，粘贴进 AI Summary Helper 并选择模型。当你对网页生成摘要时，插件的后台 Worker 会将文本直接发送给该供应商，并以流式传输返回结果。在使用你自己的 API key 时，整个链路中没有任何 AI Summary Helper 的服务器介入。</p>
@@ -151,12 +161,19 @@
   </section>
 </main>
 
+<div class="vfeed-labels" hidden="">
+  <span data-l="close">关闭</span><span data-l="sound">开启声音</span><span data-l="mute">静音</span><span data-l="hint">上滑观看下一个视频</span><span data-l="prev">上一个视频</span><span data-l="next">下一个视频</span>
+  <span data-l="share">分享</span><span data-l="copied">链接已复制</span>
+  <span data-l="add_chrome">免费添加到 Chrome</span><span data-l="add_firefox">添加到 Firefox — 免费使用</span><span data-l="add_browser">添加到浏览器 — 免费使用</span>
+  <a data-l="try" href="../../bookmarklet.html">在浏览器中体验 — 免费使用</a>
+</div>
 <footer>
   <div class="wrap">
     <div class="footer-inner">
       <div class="wordmark"><img src="../../assets/icon.svg" alt="">AI Summary Helper</div>
       <div class="foot-links">
         <a href="https://github.com/philffm/ai-summary-helper/" target="_blank" rel="noopener">查看 GitHub 源代码</a>
+        <a href="../../education/">教育方案</a>
         <a href="../privacy.html">隐私</a>
         <a href="#" data-analytics-settings="">数据分析设置</a>
         <a href="https://byphil.eu/terms.html#impressum" target="_blank" rel="noopener">法律声明 (Impressum)</a>

@@ -89,6 +89,7 @@
         <div class="mm-row">
           <a href="https://addons.mozilla.org/en-US/firefox/addon/ai-summary-helper/" target="_blank" rel="noopener">Firefox</a>
           <a href="../index.html#phone">Android · Beta</a>
+          <a href="../../education/">För utbildning</a>
           <a href="https://byphil.eu/#account">Mitt konto</a>
         </div>
         
@@ -103,24 +104,33 @@
 </header>
 
 <main id="main">
-  <div class="wrap">
-    <div class="post-hero">
+  <section class="hero--photo post-stage">
+    <img class="hero-bg" src="../../assets/photo/commuter-train-reading-800.webp" srcset="../assets/photo/commuter-train-reading-800.webp 800w, ../assets/photo/commuter-train-reading-1600.webp 1600w" sizes="100vw" width="1600" height="893" alt="" fetchpriority="high" decoding="async" style="--bgpos:50% 40%">
+    <p class="hero-credit">Illustration, AI-genererad</p>
+    <div class="wrap">
+      <div class="post-hero">
       <span class="blog-date">Guide · Oktober 2026</span>
       <h1>En sammanfattning istället för 40 flöden</h1>
       <p class="post-sub">Fyrtio flöden betyder fyrtio små avbrott innan lunch. En sammanfattning gör om dem till en enda text som du läser en gång.</p>
+      </div>
     </div>
-  </div>
+  </section>
 
   <section>
     <div class="wrap">
-      <div class="prose">
-        <figure class="post-figure post-figure--video" data-blog-video="feeds">
-          <video controls="" playsinline="" preload="none" width="360" height="520" poster="../../assets/blog/video/feeds-sv.jpg">
+      <div class="prose" data-vgroup="">
+        <p>År 2009 beskrev Sophie Leroy begreppet uppmärksamhetsrester (attention residue): när du växlar från en uppgift till en annan stannar en del av din uppmärksamhet kvar vid det du just lämnade. I hennes experiment presterade personer som blivit avbrutna sämre på nästa uppgift, och effekten var ännu tydligare vid tidspress.</p>
+        <figure class="post-figure post-video" data-blog-video="feeds">
+          <div class="post-video-in">
+            <button class="fvideo-open post-video-open" type="button"><span class="sr-only">Spela upp videon</span>
+              <video muted="" playsinline="" loop="" preload="none" width="360" height="520" poster="../../assets/blog/video/feeds-sv.jpg">
             <source src="../../assets/blog/video/feeds-sv.mp4" type="video/mp4">
           <track data-seo-video="" kind="captions" src="../../assets/blog/video/feeds-sv.vtt" srclang="sv" label="svenska"></video>
-          <figcaption>Video: hela dagens flöden i en sammanfattning.</figcaption>
+              <span class="post-video-play" aria-hidden="true">▶</span>
+            </button>
+            <figcaption>Video: hela dagens flöden i en sammanfattning.</figcaption>
+          <div data-seo-video="" class="vtext"><p class="vtext-h">Utskrift · 0:19</p><ul><li>En RSS-läsare som sammanfattar.</li><li>Prenumerera på dina favoritkällor.</li><li>Ett klick, så får du en briefing över hela dagen.</li></ul></div></div>
         </figure>
-        <p>År 2009 beskrev Sophie Leroy begreppet uppmärksamhetsrester (attention residue): när du växlar från en uppgift till en annan stannar en del av din uppmärksamhet kvar vid det du just lämnade. I hennes experiment presterade personer som blivit avbrutna sämre på nästa uppgift, och effekten var ännu tydligare vid tidspress.</p>
         <p>En flödesläsare är som en maskin för kontextbyten. Varje inlägg innebär ett nytt ämne, en ny ton och en ny flik. Även om varje notis går snabbt byggs resterna upp. När du väl är tillbaka vid ditt faktiska arbete tänker du fortfarande på en prisjustering hos ett webbhotell.</p>
 
         <h2>Varför ”inbox zero” för flöden aldrig fungerar</h2>
@@ -146,12 +156,19 @@
   </section>
 </main>
 
+<div class="vfeed-labels" hidden="">
+  <span data-l="close">Stäng</span><span data-l="sound">Ljud på</span><span data-l="mute">Ljud av</span><span data-l="hint">Svep uppåt för nästa video</span><span data-l="prev">Föregående video</span><span data-l="next">Nästa video</span>
+  <span data-l="share">Dela</span><span data-l="copied">Länken kopierad</span>
+  <span data-l="add_chrome">Lägg till i Chrome — helt gratis</span><span data-l="add_firefox">Lägg till i Firefox — det är gratis</span><span data-l="add_browser">Lägg till i din webbläsare — det är gratis</span>
+  <a data-l="try" href="../../bookmarklet.html">Testa i din webbläsare — det är gratis</a>
+</div>
 <footer>
   <div class="wrap">
     <div class="footer-inner">
       <div class="wordmark"><img src="../../assets/icon.svg" alt="">AI Summary Helper</div>
       <div class="foot-links">
         <a href="https://github.com/philffm/ai-summary-helper/" target="_blank" rel="noopener">Källkod på GitHub</a>
+        <a href="../../education/">För utbildning</a>
         <a href="../privacy.html">Integritetspolicy</a>
         <a href="#" data-analytics-settings="">Analysinställningar</a>
         <a href="https://byphil.eu/terms.html#impressum" target="_blank" rel="noopener">Impressum</a>

@@ -89,6 +89,7 @@
         <div class="mm-row">
           <a href="https://addons.mozilla.org/en-US/firefox/addon/ai-summary-helper/" target="_blank" rel="noopener">Firefox</a>
           <a href="../index.html#phone">Android · Beta</a>
+          <a href="../../education/">Untuk pendidikan</a>
           <a href="https://byphil.eu/#account">Akun saya</a>
         </div>
         
@@ -103,24 +104,33 @@
 </header>
 
 <main id="main">
-  <div class="wrap">
-    <div class="post-hero">
+  <section class="hero--photo post-stage">
+    <img class="hero-bg" src="../../assets/photo/hands-keyboard-closeup-800.webp" srcset="../assets/photo/hands-keyboard-closeup-800.webp 800w, ../assets/photo/hands-keyboard-closeup-1600.webp 1600w" sizes="100vw" width="1600" height="893" alt="" fetchpriority="high" decoding="async" style="--bgpos:50% 50%">
+    <p class="hero-credit">Ilustrasi, dibuat oleh AI</p>
+    <div class="wrap">
+      <div class="post-hero">
       <span class="blog-date">Produk · Oktober 2026</span>
       <h1>API Key Anda. Model Anda. Data Anda.</h1>
       <p class="post-sub">Sebagian besar alat AI menempatkan server perantara antara Anda dan model. Inilah yang terjadi jika tidak ada server perantara, dan apa yang tetap berada di bawah kendali Anda.</p>
+      </div>
     </div>
-  </div>
+  </section>
 
   <section>
     <div class="wrap">
-      <div class="prose">
-        <figure class="post-figure post-figure--video" data-blog-video="privat">
-          <video controls="" playsinline="" preload="none" width="360" height="520" poster="../../assets/blog/video/privat-en.jpg">
+      <div class="prose" data-vgroup="">
+        <p>Setiap ringkasan AI memiliki pola yang sama: teks dikirim, ringkasan diterima. Pertanyaan kunci untuk menentukan seberapa aman alat tersebut adalah siapa pihak perantara di baliknya. Pada banyak produk, ada server perusahaan yang menjadi perantara, dan apa yang Anda baca melewatinya sebelum sampai ke model yang bahkan tidak Anda pilih sendiri.</p>
+        <figure class="post-figure post-video" data-blog-video="privat">
+          <div class="post-video-in">
+            <button class="fvideo-open post-video-open" type="button"><span class="sr-only">Putar video</span>
+              <video muted="" playsinline="" loop="" preload="none" width="360" height="520" poster="../../assets/blog/video/privat-en.jpg">
             <source src="../../assets/blog/video/privat-en.mp4" type="video/mp4">
           <track data-seo-video="" kind="captions" src="../../assets/blog/video/privat-en.vtt" srclang="en" label="English"></video>
-          <figcaption>Video: beralih antara API key Anda sendiri, local model dengan Ollama, dan byPhil Cloud.</figcaption>
+              <span class="post-video-play" aria-hidden="true">▶</span>
+            </button>
+            <figcaption>Video: beralih antara API key Anda sendiri, local model dengan Ollama, dan byPhil Cloud.</figcaption>
+          <div data-seo-video="" class="vtext"><p class="vtext-h">Transcript · 0:20</p><ul><li>Privacy is a trade-off.</li><li>When the risk is clear, people share less.</li><li>So you choose: your own API key, a local model with Ollama, or byPhil Cloud with no setup.</li><li>Your library stays in the browser.</li></ul></div></div>
         </figure>
-        <p>Setiap ringkasan AI memiliki pola yang sama: teks dikirim, ringkasan diterima. Pertanyaan kunci untuk menentukan seberapa aman alat tersebut adalah siapa pihak perantara di baliknya. Pada banyak produk, ada server perusahaan yang menjadi perantara, dan apa yang Anda baca melewatinya sebelum sampai ke model yang bahkan tidak Anda pilih sendiri.</p>
 
         <h2>Arti “bring your own key” di sini</h2>
         <p>Anda membuat API key dari provider pilihan Anda, menempelkannya ke AI Summary Helper, lalu memilih model. Saat Anda meringkas halaman, background worker ekstensi langsung mengirimkan teks ke provider tersebut dan menerima balasannya secara streaming. Tidak ada server AI Summary Helper sebagai perantara saat menggunakan API key Anda sendiri.</p>
@@ -151,12 +161,19 @@
   </section>
 </main>
 
+<div class="vfeed-labels" hidden="">
+  <span data-l="close">Tutup</span><span data-l="sound">Suara aktif</span><span data-l="mute">Suara mati</span><span data-l="hint">Geser ke atas untuk video berikutnya</span><span data-l="prev">Video sebelumnya</span><span data-l="next">Video berikutnya</span>
+  <span data-l="share">Bagikan</span><span data-l="copied">Tautan disalin</span>
+  <span data-l="add_chrome">Tambahkan ke Chrome — gratis</span><span data-l="add_firefox">Tambahkan ke Firefox — gratis</span><span data-l="add_browser">Tambahkan ke browser Anda — gratis</span>
+  <a data-l="try" href="../../bookmarklet.html">Coba di browser Anda — gratis</a>
+</div>
 <footer>
   <div class="wrap">
     <div class="footer-inner">
       <div class="wordmark"><img src="../../assets/icon.svg" alt="">AI Summary Helper</div>
       <div class="foot-links">
         <a href="https://github.com/philffm/ai-summary-helper/" target="_blank" rel="noopener">Kode sumber di GitHub</a>
+        <a href="../../education/">Untuk pendidikan</a>
         <a href="../privacy.html">Privasi</a>
         <a href="#" data-analytics-settings="">Pengaturan analitik</a>
         <a href="https://byphil.eu/terms.html#impressum" target="_blank" rel="noopener">Impressum</a>

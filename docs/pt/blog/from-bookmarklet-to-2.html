@@ -89,6 +89,7 @@
         <div class="mm-row">
           <a href="https://addons.mozilla.org/en-US/firefox/addon/ai-summary-helper/" target="_blank" rel="noopener">Firefox</a>
           <a href="../index.html#phone">Android · Beta</a>
+          <a href="../../education/">Para educação</a>
           <a href="https://byphil.eu/#account">Minha conta</a>
         </div>
         
@@ -103,25 +104,34 @@
 </header>
 
 <main id="main">
-  <div class="wrap">
-    <div class="post-hero">
+  <section class="hero--photo post-stage">
+    <img class="hero-bg" src="../../assets/photo/ereader-bedside-table-800.webp" srcset="../assets/photo/ereader-bedside-table-800.webp 800w, ../assets/photo/ereader-bedside-table-1600.webp 1600w" sizes="100vw" width="1600" height="1195" alt="" fetchpriority="high" decoding="async" style="--bgpos:50% 50%">
+    <p class="hero-credit">Ilustração gerada por IA</p>
+    <div class="wrap">
+      <div class="post-hero">
       <span class="blog-date">Produto · Junho de 2026</span>
       <h1>De um Bookmarklet ao 2.0: O que o AI Summary Helper realmente é agora</h1>
       <p class="post-sub">Tudo começou com um bookmarklet de um clique para ler no Kindle. Dois anos e uma reconstrução completa depois, a maior parte do que ele faz hoje ainda nem existia quando os primeiros cem usuários chegaram.</p>
+      </div>
     </div>
-  </div>
+  </section>
 
   <section>
     <div class="wrap">
-      <div class="prose">
-        <figure class="post-figure post-figure--video" data-blog-video="senden">
-          <video controls="" playsinline="" preload="none" width="360" height="520" poster="../../assets/blog/video/senden-pt.jpg">
-            <source src="../../assets/blog/video/senden-pt.mp4" type="video/mp4">
-          <track data-seo-video="" kind="captions" src="../../assets/blog/video/senden-pt.vtt" srclang="pt" label="português"></video>
-          <figcaption>Vídeo: do resumo ao Kindle, o hábito que deu início a este projeto.</figcaption>
-        </figure>
+      <div class="prose" data-vgroup="">
 
         <p><strong>O AI Summary Helper é uma extensão gratuita e open source para o Chrome que resume qualquer página da web usando seu próprio provedor de IA ou um modelo 100% local, salva artigos para depois com lembretes programados e transforma seu histórico de leitura em um acervo pesquisável e conectado.</strong> Nada disso existia na primeira versão. Veja o que havia antes e como o projeto chegou até aqui.</p>
+        <figure class="post-figure post-video" data-blog-video="senden">
+          <div class="post-video-in">
+            <button class="fvideo-open post-video-open" type="button"><span class="sr-only">Reproduzir o vídeo</span>
+              <video muted="" playsinline="" loop="" preload="none" width="360" height="520" poster="../../assets/blog/video/senden-pt.jpg">
+            <source src="../../assets/blog/video/senden-pt.mp4" type="video/mp4">
+          <track data-seo-video="" kind="captions" src="../../assets/blog/video/senden-pt.vtt" srclang="pt" label="português"></video>
+              <span class="post-video-play" aria-hidden="true">▶</span>
+            </button>
+            <figcaption>Vídeo: do resumo ao Kindle, o hábito que deu início a este projeto.</figcaption>
+          <div data-seo-video="" class="vtext"><p class="vtext-h">Transcrição · 0:19</p><ul><li>Do resumo direto para o Kindle.</li><li>Resuma a página, abra o menu, envie para o seu Kindle.</li><li>Segundos depois, ele está no seu leitor de e-books, pronto para o sofá.</li></ul></div></div>
+        </figure>
 
         <h2>Como tudo realmente começou</h2>
         <p>Em julho de 2024, isto era apenas um bookmarklet — nem chegava a ser uma extensão. Você encontrava artigos interessantes, abria uma dúzia de abas e, como quase todo mundo, nunca conseguia ler a maioria. A proposta inicial era simples e pessoal: um sumarizador com prompt customizado que inseria o resultado direto na página, para que o resumo fosse junto ao enviar o artigo para o Kindle usando o <a href="https://send.reabble.com/" target="_blank" rel="noopener">recurso Send-to-Kindle do Reabble</a>. Esse era o produto inteiro. Um provedor de IA. Um campo de prompt. Uma variante de bookmarklet que funcionava em qualquer lugar, até no Safari do iOS, e uma extensão para Chrome para quem quisesse ajustar o prompt na hora.</p>
@@ -163,12 +173,19 @@
   </section>
 </main>
 
+<div class="vfeed-labels" hidden="">
+  <span data-l="close">Fechar</span><span data-l="sound">Ativar som</span><span data-l="mute">Desativar som</span><span data-l="hint">Deslize para cima para o próximo vídeo</span><span data-l="prev">Vídeo anterior</span><span data-l="next">Próximo vídeo</span>
+  <span data-l="share">Compartilhar</span><span data-l="copied">Link copiado</span>
+  <span data-l="add_chrome">Adicionar ao Chrome — é grátis</span><span data-l="add_firefox">Adicionar ao Firefox — é grátis</span><span data-l="add_browser">Adicionar ao seu navegador — é grátis</span>
+  <a data-l="try" href="../../bookmarklet.html">Experimente no seu navegador — é grátis</a>
+</div>
 <footer>
   <div class="wrap">
     <div class="footer-inner">
       <div class="wordmark"><img src="../../assets/icon.svg" alt="">AI Summary Helper</div>
       <div class="foot-links">
         <a href="https://github.com/philffm/ai-summary-helper/" target="_blank" rel="noopener">Código-fonte no GitHub</a>
+        <a href="../../education/">Para educação</a>
         <a href="../privacy.html">Privacidade</a>
         <a href="#" data-analytics-settings="">Configurações de analytics</a>
         <a href="https://byphil.eu/terms.html#impressum" target="_blank" rel="noopener">Impressum</a>

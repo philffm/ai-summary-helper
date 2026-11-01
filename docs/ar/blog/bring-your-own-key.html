@@ -89,6 +89,7 @@
         <div class="mm-row">
           <a href="https://addons.mozilla.org/en-US/firefox/addon/ai-summary-helper/" target="_blank" rel="noopener">Firefox</a>
           <a href="../index.html#phone">Android · Beta</a>
+          <a href="../../education/">للتعليم</a>
           <a href="https://byphil.eu/#account">حسابي</a>
         </div>
         
@@ -103,24 +104,33 @@
 </header>
 
 <main id="main">
-  <div class="wrap">
-    <div class="post-hero">
+  <section class="hero--photo post-stage">
+    <img class="hero-bg" src="../../assets/photo/hands-keyboard-closeup-800.webp" srcset="../assets/photo/hands-keyboard-closeup-800.webp 800w, ../assets/photo/hands-keyboard-closeup-1600.webp 1600w" sizes="100vw" width="1600" height="893" alt="" fetchpriority="high" decoding="async" style="--bgpos:50% 50%">
+    <p class="hero-credit">رسم توضيحي، مُولّد بالذكاء الاصطناعي</p>
+    <div class="wrap">
+      <div class="post-hero">
       <span class="blog-date">المنتج · أكتوبر 2026</span>
       <h1>مفتاحك. نموذجك. بياناتك.</h1>
       <p class="post-sub">تضع معظم أدوات الذكاء الاصطناعي خادماً وسيطاً بينك وبين النموذج. إليك ما يتغير عند غياب هذا الوسيط، وما يظل معتمداً على خياراتك.</p>
+      </div>
     </div>
-  </div>
+  </section>
 
   <section>
     <div class="wrap">
-      <div class="prose">
-        <figure class="post-figure post-figure--video" data-blog-video="privat">
-          <video controls="" playsinline="" preload="none" width="360" height="520" poster="../../assets/blog/video/privat-en.jpg">
+      <div class="prose" data-vgroup="">
+        <p>تتبع جميع عمليات التلخيص بالذكاء الاصطناعي المسار نفسه: يُرسل نص، ويُستقبل نص مُلخّص. لكن المعيار الأساسي لمدى ثقتك بالأداة هو: من يقف في المنتصف؟ في العديد من المنتجات، يوجد خادم تابع للشركة يمر من خلاله ما تقرؤه في طريقه إلى نموذج لم تختره أنت.</p>
+        <figure class="post-figure post-video" data-blog-video="privat">
+          <div class="post-video-in">
+            <button class="fvideo-open post-video-open" type="button"><span class="sr-only">تشغيل الفيديو</span>
+              <video muted="" playsinline="" loop="" preload="none" width="360" height="520" poster="../../assets/blog/video/privat-en.jpg">
             <source src="../../assets/blog/video/privat-en.mp4" type="video/mp4">
           <track data-seo-video="" kind="captions" src="../../assets/blog/video/privat-en.vtt" srclang="en" label="English"></video>
-          <figcaption>فيديو: التبديل بين مفتاح API key الخاص بك، ونموذج محلي عبر Ollama، وسحابة byPhil Cloud.</figcaption>
+              <span class="post-video-play" aria-hidden="true">▶</span>
+            </button>
+            <figcaption>فيديو: التبديل بين مفتاح API key الخاص بك، ونموذج محلي عبر Ollama، وسحابة byPhil Cloud.</figcaption>
+          <div data-seo-video="" class="vtext"><p class="vtext-h">Transcript · 0:20</p><ul><li>Privacy is a trade-off.</li><li>When the risk is clear, people share less.</li><li>So you choose: your own API key, a local model with Ollama, or byPhil Cloud with no setup.</li><li>Your library stays in the browser.</li></ul></div></div>
         </figure>
-        <p>تتبع جميع عمليات التلخيص بالذكاء الاصطناعي المسار نفسه: يُرسل نص، ويُستقبل نص مُلخّص. لكن المعيار الأساسي لمدى ثقتك بالأداة هو: من يقف في المنتصف؟ في العديد من المنتجات، يوجد خادم تابع للشركة يمر من خلاله ما تقرؤه في طريقه إلى نموذج لم تختره أنت.</p>
 
         <h2>ما يعنيه مبدأ «استخدام مفتاحك الخاص» هنا</h2>
         <p>تقوم بإنشاء API key لدى مزود خدمة تثق به بالفعل، وتلصقه في AI Summary Helper، ثم تختار النموذج. عند تلخيص صفحة ما، تُرسل عملية الخلفية للإضافة النص مباشرةً إلى ذلك المزود وتبث الإجابة إليك فورياً. لا يوجد أي خادم وسيط تابع لـ AI Summary Helper في هذا المسار عند استخدام مفتاحك الخاص.</p>
@@ -151,12 +161,19 @@
   </section>
 </main>
 
+<div class="vfeed-labels" hidden="">
+  <span data-l="close">إغلاق</span><span data-l="sound">تشغيل الصوت</span><span data-l="mute">كتم الصوت</span><span data-l="hint">اسحب للأعلى للانتقال إلى الفيديو التالي</span><span data-l="prev">الفيديو السابق</span><span data-l="next">الفيديو التالي</span>
+  <span data-l="share">مشاركة</span><span data-l="copied">تم نسخ الرابط</span>
+  <span data-l="add_chrome">أضف إلى Chrome — مجاناً</span><span data-l="add_firefox">أضِف إلى Firefox — مجانًا</span><span data-l="add_browser">أضِف إلى متصفحك — مجانًا</span>
+  <a data-l="try" href="../../bookmarklet.html">جرّبه في متصفحك — مجانًا</a>
+</div>
 <footer>
   <div class="wrap">
     <div class="footer-inner">
       <div class="wordmark"><img src="../../assets/icon.svg" alt="">AI Summary Helper</div>
       <div class="foot-links">
         <a href="https://github.com/philffm/ai-summary-helper/" target="_blank" rel="noopener">المصدر على GitHub</a>
+        <a href="../../education/">للتعليم</a>
         <a href="../privacy.html">الخصوصية</a>
         <a href="#" data-analytics-settings="">إعدادات التحليلات</a>
         <a href="https://byphil.eu/terms.html#impressum" target="_blank" rel="noopener">بيانات الموقع والناشر (Impressum)</a>

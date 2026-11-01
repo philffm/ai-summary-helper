@@ -89,6 +89,7 @@
         <div class="mm-row">
           <a href="https://addons.mozilla.org/en-US/firefox/addon/ai-summary-helper/" target="_blank" rel="noopener">Firefox</a>
           <a href="../index.html#phone">Android · Beta</a>
+          <a href="../../education/">Для образования</a>
           <a href="https://byphil.eu/#account">Мой аккаунт</a>
         </div>
         
@@ -103,24 +104,33 @@
 </header>
 
 <main id="main">
-  <div class="wrap">
-    <div class="post-hero">
+  <section class="hero--photo post-stage">
+    <img class="hero-bg" src="../../assets/photo/hands-keyboard-closeup-800.webp" srcset="../assets/photo/hands-keyboard-closeup-800.webp 800w, ../assets/photo/hands-keyboard-closeup-1600.webp 1600w" sizes="100vw" width="1600" height="893" alt="" fetchpriority="high" decoding="async" style="--bgpos:50% 50%">
+    <p class="hero-credit">Иллюстрация, сгенерировано ИИ</p>
+    <div class="wrap">
+      <div class="post-hero">
       <span class="blog-date">Продукт · Октябрь 2026</span>
       <h1>Ваш ключ. Ваша модель. Ваши данные.</h1>
       <p class="post-sub">Большинство ИИ-инструментов ставят промежуточный сервер между вами и моделью. Рассказываем, что меняется, когда посредника нет, и за что по-прежнему отвечаете вы.</p>
+      </div>
     </div>
-  </div>
+  </section>
 
   <section>
     <div class="wrap">
-      <div class="prose">
-        <figure class="post-figure post-figure--video" data-blog-video="privat">
-          <video controls="" playsinline="" preload="none" width="360" height="520" poster="../../assets/blog/video/privat-en.jpg">
+      <div class="prose" data-vgroup="">
+        <p>Любая саммаризация работает по одной схеме: текст отправляется, ответ возвращается. Главный вопрос доверия — кто находится посередине. Во многих сервисах между вами стоит сервер компании, и прочитанные вами страницы проходят через него по пути к модели, которую вы даже не выбирали.</p>
+        <figure class="post-figure post-video" data-blog-video="privat">
+          <div class="post-video-in">
+            <button class="fvideo-open post-video-open" type="button"><span class="sr-only">Воспроизвести видео</span>
+              <video muted="" playsinline="" loop="" preload="none" width="360" height="520" poster="../../assets/blog/video/privat-en.jpg">
             <source src="../../assets/blog/video/privat-en.mp4" type="video/mp4">
           <track data-seo-video="" kind="captions" src="../../assets/blog/video/privat-en.vtt" srclang="en" label="English"></video>
-          <figcaption>Видео: переключайтесь между собственным API key, локальной моделью с Ollama и byPhil Cloud.</figcaption>
+              <span class="post-video-play" aria-hidden="true">▶</span>
+            </button>
+            <figcaption>Видео: переключайтесь между собственным API key, локальной моделью с Ollama и byPhil Cloud.</figcaption>
+          <div data-seo-video="" class="vtext"><p class="vtext-h">Transcript · 0:20</p><ul><li>Privacy is a trade-off.</li><li>When the risk is clear, people share less.</li><li>So you choose: your own API key, a local model with Ollama, or byPhil Cloud with no setup.</li><li>Your library stays in the browser.</li></ul></div></div>
         </figure>
-        <p>Любая саммаризация работает по одной схеме: текст отправляется, ответ возвращается. Главный вопрос доверия — кто находится посередине. Во многих сервисах между вами стоит сервер компании, и прочитанные вами страницы проходят через него по пути к модели, которую вы даже не выбирали.</p>
 
         <h2>Что означает «свой ключ» (bring your own key)</h2>
         <p>Вы создаете API key у провайдера, которому доверяете, вставляете его в AI Summary Helper и выбираете модель. Когда вы делаете саммари страницы, фоновый процесс расширения отправляет текст напрямую провайдеру и стримит ответ обратно. Серверов AI Summary Helper в этой цепочке просто нет.</p>
@@ -151,12 +161,19 @@
   </section>
 </main>
 
+<div class="vfeed-labels" hidden="">
+  <span data-l="close">Закрыть</span><span data-l="sound">Включить звук</span><span data-l="mute">Выключить звук</span><span data-l="hint">Смахните вверх для следующего видео</span><span data-l="prev">Предыдущее видео</span><span data-l="next">Следующее видео</span>
+  <span data-l="share">Поделиться</span><span data-l="copied">Ссылка скопирована</span>
+  <span data-l="add_chrome">Установить в Chrome — бесплатно</span><span data-l="add_firefox">Добавить в Firefox — бесплатно</span><span data-l="add_browser">Добавить в браузер — бесплатно</span>
+  <a data-l="try" href="../../bookmarklet.html">Попробовать в браузере — бесплатно</a>
+</div>
 <footer>
   <div class="wrap">
     <div class="footer-inner">
       <div class="wordmark"><img src="../../assets/icon.svg" alt="">AI Summary Helper</div>
       <div class="foot-links">
         <a href="https://github.com/philffm/ai-summary-helper/" target="_blank" rel="noopener">Исходный код на GitHub</a>
+        <a href="../../education/">Для образования</a>
         <a href="../privacy.html">Конфиденциальность</a>
         <a href="#" data-analytics-settings="">Настройки аналитики</a>
         <a href="https://byphil.eu/terms.html#impressum" target="_blank" rel="noopener">Правовая информация</a>

@@ -89,6 +89,7 @@
         <div class="mm-row">
           <a href="https://addons.mozilla.org/en-US/firefox/addon/ai-summary-helper/" target="_blank" rel="noopener">Firefox</a>
           <a href="../index.html#phone">Android · Bèta</a>
+          <a href="../../education/">Voor het onderwijs</a>
           <a href="https://byphil.eu/#account">Mijn account</a>
         </div>
         
@@ -103,24 +104,33 @@
 </header>
 
 <main id="main">
-  <div class="wrap">
-    <div class="post-hero">
+  <section class="hero--photo post-stage">
+    <img class="hero-bg" src="../../assets/photo/commuter-train-reading-800.webp" srcset="../assets/photo/commuter-train-reading-800.webp 800w, ../assets/photo/commuter-train-reading-1600.webp 1600w" sizes="100vw" width="1600" height="893" alt="" fetchpriority="high" decoding="async" style="--bgpos:50% 40%">
+    <p class="hero-credit">Illustratie, AI-gegenereerd</p>
+    <div class="wrap">
+      <div class="post-hero">
       <span class="blog-date">Gids · oktober 2026</span>
       <h1>Eén overzicht in plaats van 40 feeds</h1>
       <p class="post-sub">Veertig feeds betekenen veertig kleine onderbrekingen vóór de lunch. Een overzicht bundelt ze tot één update die je in één keer leest.</p>
+      </div>
     </div>
-  </div>
+  </section>
 
   <section>
     <div class="wrap">
-      <div class="prose">
-        <figure class="post-figure post-figure--video" data-blog-video="feeds">
-          <video controls="" playsinline="" preload="none" width="360" height="520" poster="../../assets/blog/video/feeds-nl.jpg">
+      <div class="prose" data-vgroup="">
+        <p>In 2009 beschreef Sophie Leroy wat zij ‘aandachtsresidu’ (attention residue) noemde: wanneer je van de ene naar de andere taak overstapt, blijft een deel van je aandacht hangen bij de vorige taak. Uit haar onderzoek bleek dat mensen die tijdens een taak werden onderbroken, slechter presteerden op de volgende taak — een effect dat nog sterker was als ze haast hadden.</p>
+        <figure class="post-figure post-video" data-blog-video="feeds">
+          <div class="post-video-in">
+            <button class="fvideo-open post-video-open" type="button"><span class="sr-only">Video afspelen</span>
+              <video muted="" playsinline="" loop="" preload="none" width="360" height="520" poster="../../assets/blog/video/feeds-nl.jpg">
             <source src="../../assets/blog/video/feeds-nl.mp4" type="video/mp4">
           <track data-seo-video="" kind="captions" src="../../assets/blog/video/feeds-nl.vtt" srclang="nl" label="Nederlands"></video>
-          <figcaption>Video: een hele dag aan feeds in één overzicht.</figcaption>
+              <span class="post-video-play" aria-hidden="true">▶</span>
+            </button>
+            <figcaption>Video: een hele dag aan feeds in één overzicht.</figcaption>
+          <div data-seo-video="" class="vtext"><p class="vtext-h">Transcriptie · 0:18</p><ul><li>Een RSS-lezer die samenvat.</li><li>Abonneer je op je favoriete bronnen.</li><li>Eén klik, en je krijgt een briefing van de hele dag.</li></ul></div></div>
         </figure>
-        <p>In 2009 beschreef Sophie Leroy wat zij ‘aandachtsresidu’ (attention residue) noemde: wanneer je van de ene naar de andere taak overstapt, blijft een deel van je aandacht hangen bij de vorige taak. Uit haar onderzoek bleek dat mensen die tijdens een taak werden onderbroken, slechter presteerden op de volgende taak — een effect dat nog sterker was als ze haast hadden.</p>
         <p>Een feedreader dwingt je continu van taak te wisselen. Elk item heeft een ander onderwerp, een andere toon en opent in een ander tabblad. Zelfs als elk berichtje snel leest, stapelt het residu zich op. Tegen de tijd dat je weer aan het werk bent, denk je onbewust nog na over een prijswijziging bij een hostingprovider.</p>
 
         <h2>Waarom ‘inbox zero’ voor feeds nooit werkt</h2>
@@ -146,12 +156,19 @@
   </section>
 </main>
 
+<div class="vfeed-labels" hidden="">
+  <span data-l="close">Sluiten</span><span data-l="sound">Geluid aan</span><span data-l="mute">Geluid uit</span><span data-l="hint">Swipe omhoog voor de volgende video</span><span data-l="prev">Vorige video</span><span data-l="next">Volgende video</span>
+  <span data-l="share">Delen</span><span data-l="copied">Link gekopieerd</span>
+  <span data-l="add_chrome">Toevoegen aan Chrome — gratis</span><span data-l="add_firefox">Toevoegen aan Firefox — gratis</span><span data-l="add_browser">Toevoegen aan je browser — gratis</span>
+  <a data-l="try" href="../../bookmarklet.html">Probeer het in je browser — gratis</a>
+</div>
 <footer>
   <div class="wrap">
     <div class="footer-inner">
       <div class="wordmark"><img src="../../assets/icon.svg" alt="">AI Summary Helper</div>
       <div class="foot-links">
         <a href="https://github.com/philffm/ai-summary-helper/" target="_blank" rel="noopener">Broncode op GitHub</a>
+        <a href="../../education/">Voor het onderwijs</a>
         <a href="../privacy.html">Privacy</a>
         <a href="#" data-analytics-settings="">Analytics-instellingen</a>
         <a href="https://byphil.eu/terms.html#impressum" target="_blank" rel="noopener">Impressum</a>

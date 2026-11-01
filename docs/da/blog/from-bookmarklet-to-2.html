@@ -89,6 +89,7 @@
         <div class="mm-row">
           <a href="https://addons.mozilla.org/en-US/firefox/addon/ai-summary-helper/" target="_blank" rel="noopener">Firefox</a>
           <a href="../index.html#phone">Android · Beta</a>
+          <a href="../../education/">Til uddannelse</a>
           <a href="https://byphil.eu/#account">Min konto</a>
         </div>
         
@@ -103,25 +104,34 @@
 </header>
 
 <main id="main">
-  <div class="wrap">
-    <div class="post-hero">
+  <section class="hero--photo post-stage">
+    <img class="hero-bg" src="../../assets/photo/ereader-bedside-table-800.webp" srcset="../assets/photo/ereader-bedside-table-800.webp 800w, ../assets/photo/ereader-bedside-table-1600.webp 1600w" sizes="100vw" width="1600" height="1195" alt="" fetchpriority="high" decoding="async" style="--bgpos:50% 50%">
+    <p class="hero-credit">Illustration, AI-genereret</p>
+    <div class="wrap">
+      <div class="post-hero">
       <span class="blog-date">Produkt · Juni 2026</span>
       <h1>Fra en bookmarklet til 2.0: Hvad AI Summary Helper egentlig er nu</h1>
       <p class="post-sub">Det startede som en ét-kliks bookmarklet til læsning på en Kindle. To år og en komplet genopbygning senere eksisterede det meste af det, den kan i dag, slet ikke, da de første hundrede brugere kom til.</p>
+      </div>
     </div>
-  </div>
+  </section>
 
   <section>
     <div class="wrap">
-      <div class="prose">
-        <figure class="post-figure post-figure--video" data-blog-video="senden">
-          <video controls="" playsinline="" preload="none" width="360" height="520" poster="../../assets/blog/video/senden-en.jpg">
-            <source src="../../assets/blog/video/senden-en.mp4" type="video/mp4">
-          <track data-seo-video="" kind="captions" src="../../assets/blog/video/senden-en.vtt" srclang="en" label="English"></video>
-          <figcaption>Video: fra resumé til Kindle – vanen, dette projekt startede med.</figcaption>
-        </figure>
+      <div class="prose" data-vgroup="">
 
         <p><strong>AI Summary Helper er en gratis, open source Chrome-udvidelse, der opsummerer enhver webside ved hjælp af din egen AI-udbyder eller en helt lokal model, gemmer artikler til senere med tidsindstillede påmindelser og forvandler din læsehistorik til et søgbart, forbundet arkiv.</strong> Intet af det fandtes i den første version. Her er, hvad der gjorde, og hvordan det udviklede sig hertil.</p>
+        <figure class="post-figure post-video" data-blog-video="senden">
+          <div class="post-video-in">
+            <button class="fvideo-open post-video-open" type="button"><span class="sr-only">Afspil videoen</span>
+              <video muted="" playsinline="" loop="" preload="none" width="360" height="520" poster="../../assets/blog/video/senden-en.jpg">
+            <source src="../../assets/blog/video/senden-en.mp4" type="video/mp4">
+          <track data-seo-video="" kind="captions" src="../../assets/blog/video/senden-en.vtt" srclang="en" label="English"></video>
+              <span class="post-video-play" aria-hidden="true">▶</span>
+            </button>
+            <figcaption>Video: fra resumé til Kindle – vanen, dette projekt startede med.</figcaption>
+          <div data-seo-video="" class="vtext"><p class="vtext-h">Transcript · 0:19</p><ul><li>From summary to Kindle.</li><li>Summarize the page, open the menu, send it to your Kindle.</li><li>Seconds later it is on your e-reader, ready for the couch.</li></ul></div></div>
+        </figure>
 
         <h2>Hvordan det hele egentlig startede</h2>
         <p>I juli 2024 var det her en bookmarklet — ikke engang en udvidelse. Du fandt interessante artikler, åbnede en snes faner og nåede, som næsten alle andre, aldrig at læse de fleste af dem. Den oprindelige idé var simpel og personlig: et opsummeringsværktøj med brugerdefinerede prompts, der indsatte resultatet direkte på siden, så resuméet kom med, når du sendte artiklen til en Kindle via <a href="https://send.reabble.com/" target="_blank" rel="noopener">Reabbles Send-to-Kindle-værktøj</a>. Det var hele produktet. Én AI-udbyder. Ét prompt-felt. En bookmarklet-variant, der virkede overalt, selv i iOS Safari, og en Chrome-udvidelse til dem, der ville kunne justere prompten løbende.</p>
@@ -163,12 +173,19 @@
   </section>
 </main>
 
+<div class="vfeed-labels" hidden="">
+  <span data-l="close">Luk</span><span data-l="sound">Lyd til</span><span data-l="mute">Lyd fra</span><span data-l="hint">Swipe op for næste video</span><span data-l="prev">Forrige video</span><span data-l="next">Næste video</span>
+  <span data-l="share">Del</span><span data-l="copied">Link kopieret</span>
+  <span data-l="add_chrome">Tilføj til Chrome — det er gratis</span><span data-l="add_firefox">Tilføj til Firefox — det er gratis</span><span data-l="add_browser">Tilføj til din browser — det er gratis</span>
+  <a data-l="try" href="../../bookmarklet.html">Prøv det i din browser — det er gratis</a>
+</div>
 <footer>
   <div class="wrap">
     <div class="footer-inner">
       <div class="wordmark"><img src="../../assets/icon.svg" alt="">AI Summary Helper</div>
       <div class="foot-links">
         <a href="https://github.com/philffm/ai-summary-helper/" target="_blank" rel="noopener">Kildekode på GitHub</a>
+        <a href="../../education/">Til uddannelse</a>
         <a href="../privacy.html">Privatliv</a>
         <a href="#" data-analytics-settings="">Analytics-indstillinger</a>
         <a href="https://byphil.eu/terms.html#impressum" target="_blank" rel="noopener">Impressum</a>

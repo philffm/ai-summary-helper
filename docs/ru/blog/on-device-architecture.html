@@ -89,6 +89,7 @@
         <div class="mm-row">
           <a href="https://addons.mozilla.org/en-US/firefox/addon/ai-summary-helper/" target="_blank" rel="noopener">Firefox</a>
           <a href="../index.html#phone">Android · Beta</a>
+          <a href="../../education/">Для образования</a>
           <a href="https://byphil.eu/#account">Мой аккаунт</a>
         </div>
         
@@ -103,24 +104,33 @@
 </header>
 
 <main id="main">
-  <div class="wrap">
-    <div class="post-hero">
+  <section class="hero--photo post-stage">
+    <img class="hero-bg" src="../../assets/photo/bokeh-strip-blue-amber-800.webp" srcset="../assets/photo/bokeh-strip-blue-amber-800.webp 800w, ../assets/photo/bokeh-strip-blue-amber-1600.webp 1600w" sizes="100vw" width="1600" height="679" alt="" fetchpriority="high" decoding="async" style="--bgpos:50% 50%">
+    <p class="hero-credit">Иллюстрация, сгенерировано ИИ</p>
+    <div class="wrap">
+      <div class="post-hero">
       <span class="blog-date">Инженерия · Август 2026</span>
       <h1>Почему мы перенесли поиск, тегирование и рекомендации из облака</h1>
       <p class="post-sub">Поиск, дедупликация, очистка тегов и рекомендации используют один компактный локальный индекс. Рассказываем, как это устроено и почему дело не только в приватности.</p>
+      </div>
     </div>
-  </div>
+  </section>
 
   <section>
     <div class="wrap">
-      <div class="prose">
-        <figure class="post-figure post-figure--video" data-blog-video="graph">
-          <video controls="" playsinline="" preload="none" width="360" height="520" poster="../../assets/blog/video/graph-en.jpg">
+      <div class="prose" data-vgroup="">
+<p>Большинство браузерных расширений «с поддержкой ИИ» отправляют на сервер абсолютно все данные — включая то, что к ИИ не имеет никакого отношения. Поиск, очистка тегов, поиск похожих материалов — все это десятилетиями проверенные и понятные технологии. Им не нужна языковая модель, и уж точно не требуется сетевой запрос. Мы внимательно разобрали каждую функцию AI Summary Helper и задали себе вопрос: действительно ли здесь нужно облако, или мы просто используем его по привычке, потому что так проще проектировать архитектуру?</p>
+        <figure class="post-figure post-video" data-blog-video="graph">
+          <div class="post-video-in">
+            <button class="fvideo-open post-video-open" type="button"><span class="sr-only">Воспроизвести видео</span>
+              <video muted="" playsinline="" loop="" preload="none" width="360" height="520" poster="../../assets/blog/video/graph-en.jpg">
             <source src="../../assets/blog/video/graph-en.mp4" type="video/mp4">
           <track data-seo-video="" kind="captions" src="../../assets/blog/video/graph-en.vtt" srclang="en" label="English"></video>
-          <figcaption>Видео: граф знаний связывает ваши статьи по темам и строится прямо на вашем устройстве.</figcaption>
+              <span class="post-video-play" aria-hidden="true">▶</span>
+            </button>
+            <figcaption>Видео: граф знаний связывает ваши статьи по темам и строится прямо на вашем устройстве.</figcaption>
+          <div data-seo-video="" class="vtext"><p class="vtext-h">Transcript · 0:19</p><ul><li>What you read is connected.</li><li>Your knowledge graph links articles through their topics.</li><li>Tap one, and you get a briefing on everything you have read about it.</li></ul></div></div>
         </figure>
-<p>Большинство браузерных расширений «с поддержкой ИИ» отправляют на сервер абсолютно все данные — включая то, что к ИИ не имеет никакого отношения. Поиск, очистка тегов, поиск похожих материалов — все это десятилетиями проверенные и понятные технологии. Им не нужна языковая модель, и уж точно не требуется сетевой запрос. Мы внимательно разобрали каждую функцию AI Summary Helper и задали себе вопрос: действительно ли здесь нужно облако, или мы просто используем его по привычке, потому что так проще проектировать архитектуру?</p>
         <p>Как оказалось, большинству функций облако не нужно.</p>
 
         <figure class="post-figure post-figure--portrait"><img src="../../assets/blog/knowledge-graph.webp" alt="Слайд: карта связанных тем с текстом «Информация, связанная со смыслом и контекстом, сохраняется дольше, чем просто бегло просмотренные данные»" width="800" height="1000" loading="lazy"><figcaption>Поиск, тегирование и похожие статьи работают на базе единого локального индекса, поэтому выявление связей между сохраненными материалами ничего не стоит.</figcaption></figure>
@@ -148,12 +158,19 @@
   </section>
 </main>
 
+<div class="vfeed-labels" hidden="">
+  <span data-l="close">Закрыть</span><span data-l="sound">Включить звук</span><span data-l="mute">Выключить звук</span><span data-l="hint">Смахните вверх для следующего видео</span><span data-l="prev">Предыдущее видео</span><span data-l="next">Следующее видео</span>
+  <span data-l="share">Поделиться</span><span data-l="copied">Ссылка скопирована</span>
+  <span data-l="add_chrome">Установить в Chrome — бесплатно</span><span data-l="add_firefox">Добавить в Firefox — бесплатно</span><span data-l="add_browser">Добавить в браузер — бесплатно</span>
+  <a data-l="try" href="../../bookmarklet.html">Попробовать в браузере — бесплатно</a>
+</div>
 <footer>
   <div class="wrap">
     <div class="footer-inner">
       <div class="wordmark"><img src="../../assets/icon.svg" alt="">AI Summary Helper</div>
       <div class="foot-links">
         <a href="https://github.com/philffm/ai-summary-helper/" target="_blank" rel="noopener">Исходный код на GitHub</a>
+        <a href="../../education/">Для образования</a>
         <a href="../privacy.html">Конфиденциальность</a>
         <a href="#" data-analytics-settings="">Настройки аналитики</a>
         <a href="https://byphil.eu/terms.html#impressum" target="_blank" rel="noopener">Правовая информация</a>

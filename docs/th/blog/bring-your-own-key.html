@@ -89,6 +89,7 @@
         <div class="mm-row">
           <a href="https://addons.mozilla.org/en-US/firefox/addon/ai-summary-helper/" target="_blank" rel="noopener">Firefox</a>
           <a href="../index.html#phone">Android · Beta</a>
+          <a href="../../education/">สำหรับการศึกษา</a>
           <a href="https://byphil.eu/#account">บัญชีของฉัน</a>
         </div>
         
@@ -103,24 +104,33 @@
 </header>
 
 <main id="main">
-  <div class="wrap">
-    <div class="post-hero">
+  <section class="hero--photo post-stage">
+    <img class="hero-bg" src="../../assets/photo/hands-keyboard-closeup-800.webp" srcset="../assets/photo/hands-keyboard-closeup-800.webp 800w, ../assets/photo/hands-keyboard-closeup-1600.webp 1600w" sizes="100vw" width="1600" height="893" alt="" fetchpriority="high" decoding="async" style="--bgpos:50% 50%">
+    <p class="hero-credit">ภาพประกอบ, สร้างโดย AI</p>
+    <div class="wrap">
+      <div class="post-hero">
       <span class="blog-date">ผลิตภัณฑ์ · ตุลาคม 2026</span>
       <h1>คีย์ของคุณ โมเดลของคุณ ข้อมูลของคุณ</h1>
       <p class="post-sub">เครื่องมือ AI ส่วนใหญ่วางเซิร์ฟเวอร์ไว้คั่นกลางระหว่างคุณกับโมเดล นี่คือสิ่งที่จะเปลี่ยนไปเมื่อไม่มีเซิร์ฟเวอร์คั่นกลาง และสิ่งที่ยังคงขึ้นอยู่กับการควบคุมของคุณเอง</p>
+      </div>
     </div>
-  </div>
+  </section>
 
   <section>
     <div class="wrap">
-      <div class="prose">
-        <figure class="post-figure post-figure--video" data-blog-video="privat">
-          <video controls="" playsinline="" preload="none" width="360" height="520" poster="../../assets/blog/video/privat-en.jpg">
+      <div class="prose" data-vgroup="">
+        <p>การสรุปผลด้วย AI ทุกตัวมีหลักการทำงานเหมือนกันคือ ส่งข้อความออกไป แล้วรับข้อความกลับมา แต่สิ่งที่เป็นตัวตัดสินว่าคุณควรไว้ใจเครื่องมือนั้นได้มากแค่ไหน คือใครอยู่ตรงกลาง หลายผลิตภัณฑ์มีเซิร์ฟเวอร์ของบริษัทตั้งอยู่ตรงนั้น และเนื้อหาที่คุณกำลังอ่านต้องส่งผ่านเซิร์ฟเวอร์ดังกล่าวก่อนจะไปถึงโมเดลที่คุณไม่ได้เป็นคนเลือก</p>
+        <figure class="post-figure post-video" data-blog-video="privat">
+          <div class="post-video-in">
+            <button class="fvideo-open post-video-open" type="button"><span class="sr-only">เล่นวิดีโอ</span>
+              <video muted="" playsinline="" loop="" preload="none" width="360" height="520" poster="../../assets/blog/video/privat-en.jpg">
             <source src="../../assets/blog/video/privat-en.mp4" type="video/mp4">
           <track data-seo-video="" kind="captions" src="../../assets/blog/video/privat-en.vtt" srclang="en" label="English"></video>
-          <figcaption>วิดีโอ: สลับการใช้งานระหว่าง API key ของคุณเอง, โมเดล Local ด้วย Ollama และ byPhil Cloud</figcaption>
+              <span class="post-video-play" aria-hidden="true">▶</span>
+            </button>
+            <figcaption>วิดีโอ: สลับการใช้งานระหว่าง API key ของคุณเอง, โมเดล Local ด้วย Ollama และ byPhil Cloud</figcaption>
+          <div data-seo-video="" class="vtext"><p class="vtext-h">Transcript · 0:20</p><ul><li>Privacy is a trade-off.</li><li>When the risk is clear, people share less.</li><li>So you choose: your own API key, a local model with Ollama, or byPhil Cloud with no setup.</li><li>Your library stays in the browser.</li></ul></div></div>
         </figure>
-        <p>การสรุปผลด้วย AI ทุกตัวมีหลักการทำงานเหมือนกันคือ ส่งข้อความออกไป แล้วรับข้อความกลับมา แต่สิ่งที่เป็นตัวตัดสินว่าคุณควรไว้ใจเครื่องมือนั้นได้มากแค่ไหน คือใครอยู่ตรงกลาง หลายผลิตภัณฑ์มีเซิร์ฟเวอร์ของบริษัทตั้งอยู่ตรงนั้น และเนื้อหาที่คุณกำลังอ่านต้องส่งผ่านเซิร์ฟเวอร์ดังกล่าวก่อนจะไปถึงโมเดลที่คุณไม่ได้เป็นคนเลือก</p>
 
         <h2>“การนำคีย์มาเอง (Bring your own key)” ในที่นี้หมายถึงอะไร</h2>
         <p>คุณสร้าง API key กับผู้ให้บริการที่คุณไว้วางใจ นำมาวางใน AI Summary Helper แล้วเลือกโมเดล เมื่อคุณกดสรุปเนื้อหาหน้าเว็บ background worker ของส่วนขยายจะส่งข้อความตรงไปยังผู้ให้บริการนั้นและสตรีมคำตอบกลับมาทันที โดยไม่มีเซิร์ฟเวอร์ของ AI Summary Helper เข้ามาคั่นกลางในกระบวนการนี้เมื่อใช้คีย์ของคุณเอง</p>
@@ -151,12 +161,19 @@
   </section>
 </main>
 
+<div class="vfeed-labels" hidden="">
+  <span data-l="close">ปิด</span><span data-l="sound">เปิดเสียง</span><span data-l="mute">ปิดเสียง</span><span data-l="hint">ปัดขึ้นเพื่อดูวิดีโอถัดไป</span><span data-l="prev">วิดีโอก่อนหน้า</span><span data-l="next">วิดีโอถัดไป</span>
+  <span data-l="share">แชร์</span><span data-l="copied">คัดลอกลิงก์แล้ว</span>
+  <span data-l="add_chrome">เพิ่มลงใน Chrome — ใช้งานฟรี</span><span data-l="add_firefox">เพิ่มลงใน Firefox — ฟรี</span><span data-l="add_browser">เพิ่มลงในเบราว์เซอร์ — ฟรี</span>
+  <a data-l="try" href="../../bookmarklet.html">ทดลองใช้บนเบราว์เซอร์ — ฟรี</a>
+</div>
 <footer>
   <div class="wrap">
     <div class="footer-inner">
       <div class="wordmark"><img src="../../assets/icon.svg" alt="">AI Summary Helper</div>
       <div class="foot-links">
         <a href="https://github.com/philffm/ai-summary-helper/" target="_blank" rel="noopener">ซอร์สโค้ดบน GitHub</a>
+        <a href="../../education/">สำหรับการศึกษา</a>
         <a href="../privacy.html">ความเป็นส่วนตัว</a>
         <a href="#" data-analytics-settings="">การตั้งค่าการวิเคราะห์</a>
         <a href="https://byphil.eu/terms.html#impressum" target="_blank" rel="noopener">ข้อมูลทางกฎหมาย (Impressum)</a>

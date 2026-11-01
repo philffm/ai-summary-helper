@@ -89,6 +89,7 @@
         <div class="mm-row">
           <a href="https://addons.mozilla.org/en-US/firefox/addon/ai-summary-helper/" target="_blank" rel="noopener">Firefox</a>
           <a href="../index.html#phone">Android · Beta</a>
+          <a href="../../education/">Opetukseen</a>
           <a href="https://byphil.eu/#account">Oma tili</a>
         </div>
         
@@ -103,24 +104,33 @@
 </header>
 
 <main id="main">
-  <div class="wrap">
-    <div class="post-hero">
+  <section class="hero--photo post-stage">
+    <img class="hero-bg" src="../../assets/photo/hands-keyboard-closeup-800.webp" srcset="../assets/photo/hands-keyboard-closeup-800.webp 800w, ../assets/photo/hands-keyboard-closeup-1600.webp 1600w" sizes="100vw" width="1600" height="893" alt="" fetchpriority="high" decoding="async" style="--bgpos:50% 50%">
+    <p class="hero-credit">Kuvitus, tekoälyn luoma</p>
+    <div class="wrap">
+      <div class="post-hero">
       <span class="blog-date">Tuote · Lokakuu 2026</span>
       <h1>Oma avain. Oma malli. Omat tiedot.</h1>
       <p class="post-sub">Useimmat tekoälytyökalut asettavat väliin oman palvelimensa. Näin tilanne muuttuu ilman välikäsiä – ja nämä asiat jäävät edelleen omalle vastuullesi.</p>
+      </div>
     </div>
-  </div>
+  </section>
 
   <section>
     <div class="wrap">
-      <div class="prose">
-        <figure class="post-figure post-figure--video" data-blog-video="privat">
-          <video controls="" playsinline="" preload="none" width="360" height="520" poster="../../assets/blog/video/privat-en.jpg">
+      <div class="prose" data-vgroup="">
+        <p>Jokainen tekoälytiivistelmä toimii samalla periaatteella: tekstiä lähetetään ja tekstiä saadaan takaisin. Luottamuksen kannalta ratkaisevaa on se, kuka on välissä. Monissa palveluissa välissä on yrityksen palvelin, jonka kautta lukemasi sisältö kulkee ennalta määrättyyn malliin.</p>
+        <figure class="post-figure post-video" data-blog-video="privat">
+          <div class="post-video-in">
+            <button class="fvideo-open post-video-open" type="button"><span class="sr-only">Toista video</span>
+              <video muted="" playsinline="" loop="" preload="none" width="360" height="520" poster="../../assets/blog/video/privat-en.jpg">
             <source src="../../assets/blog/video/privat-en.mp4" type="video/mp4">
           <track data-seo-video="" kind="captions" src="../../assets/blog/video/privat-en.vtt" srclang="en" label="English"></video>
-          <figcaption>Video: vaihda oman API keyn, paikallisen Ollama-mallin ja byPhil Cloudin välillä.</figcaption>
+              <span class="post-video-play" aria-hidden="true">▶</span>
+            </button>
+            <figcaption>Video: vaihda oman API keyn, paikallisen Ollama-mallin ja byPhil Cloudin välillä.</figcaption>
+          <div data-seo-video="" class="vtext"><p class="vtext-h">Transcript · 0:20</p><ul><li>Privacy is a trade-off.</li><li>When the risk is clear, people share less.</li><li>So you choose: your own API key, a local model with Ollama, or byPhil Cloud with no setup.</li><li>Your library stays in the browser.</li></ul></div></div>
         </figure>
-        <p>Jokainen tekoälytiivistelmä toimii samalla periaatteella: tekstiä lähetetään ja tekstiä saadaan takaisin. Luottamuksen kannalta ratkaisevaa on se, kuka on välissä. Monissa palveluissa välissä on yrityksen palvelin, jonka kautta lukemasi sisältö kulkee ennalta määrättyyn malliin.</p>
 
         <h2>Mitä oman API keyn käyttö tässä tarkoittaa</h2>
         <p>Luot API keyn valitsemallesi luotettavalle palveluntarjoajalle, liität sen AI Summary Helperiin ja valitset mallin. Kun teet tiivistelmän sivusta, laajennuksen taustaprosessi lähettää tekstin suoraan kyseiselle tarjoajalle ja suoratoistaa vastauksen takaisin. Omalla avaimella välissä ei ole lainkaan AI Summary Helperin palvelinta.</p>
@@ -151,12 +161,19 @@
   </section>
 </main>
 
+<div class="vfeed-labels" hidden="">
+  <span data-l="close">Sulje</span><span data-l="sound">Äänet päälle</span><span data-l="mute">Äänet pois</span><span data-l="hint">Pyyhkäise ylös seuraavaan videoon</span><span data-l="prev">Edellinen video</span><span data-l="next">Seuraava video</span>
+  <span data-l="share">Jaa</span><span data-l="copied">Linkki kopioitu</span>
+  <span data-l="add_chrome">Lisää Chromeen — maksuton</span><span data-l="add_firefox">Lisää Firefoxiin — ilmainen</span><span data-l="add_browser">Lisää selaimeen — ilmainen</span>
+  <a data-l="try" href="../../bookmarklet.html">Kokeile selaimessa — ilmainen</a>
+</div>
 <footer>
   <div class="wrap">
     <div class="footer-inner">
       <div class="wordmark"><img src="../../assets/icon.svg" alt="">AI Summary Helper</div>
       <div class="foot-links">
         <a href="https://github.com/philffm/ai-summary-helper/" target="_blank" rel="noopener">Lähdekoodi GitHubissa</a>
+        <a href="../../education/">Opetukseen</a>
         <a href="../privacy.html">Tietosuoja</a>
         <a href="#" data-analytics-settings="">Analytiikka-asetukset</a>
         <a href="https://byphil.eu/terms.html#impressum" target="_blank" rel="noopener">Impressum</a>

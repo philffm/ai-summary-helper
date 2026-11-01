@@ -89,6 +89,7 @@
         <div class="mm-row">
           <a href="https://addons.mozilla.org/en-US/firefox/addon/ai-summary-helper/" target="_blank" rel="noopener">Firefox</a>
           <a href="../index.html#phone">Android · Beta</a>
+          <a href="../../education/">Eğitim için</a>
           <a href="https://byphil.eu/#account">Hesabım</a>
         </div>
         
@@ -103,25 +104,34 @@
 </header>
 
 <main id="main">
-  <div class="wrap">
-    <div class="post-hero">
+  <section class="hero--photo post-stage">
+    <img class="hero-bg" src="../../assets/photo/ereader-bedside-table-800.webp" srcset="../assets/photo/ereader-bedside-table-800.webp 800w, ../assets/photo/ereader-bedside-table-1600.webp 1600w" sizes="100vw" width="1600" height="1195" alt="" fetchpriority="high" decoding="async" style="--bgpos:50% 50%">
+    <p class="hero-credit">İllüstrasyon, yapay zekâ üretimi</p>
+    <div class="wrap">
+      <div class="post-hero">
       <span class="blog-date">Ürün · Haziran 2026</span>
       <h1>Bir Bookmarklet'ten 2.0'a: AI Summary Helper Artık Gerçekte Ne?</h1>
       <p class="post-sub">Kindle'da okumak için tek tıkla çalışan bir bookmarklet olarak başladı. İki yıl ve baştan sona yeniden geliştirmenin ardından, bugün sunduğu özelliklerin çoğu ilk yüz kullanıcı kaydolduğunda henüz ortada bile yoktu.</p>
+      </div>
     </div>
-  </div>
+  </section>
 
   <section>
     <div class="wrap">
-      <div class="prose">
-        <figure class="post-figure post-figure--video" data-blog-video="senden">
-          <video controls="" playsinline="" preload="none" width="360" height="520" poster="../../assets/blog/video/senden-en.jpg">
-            <source src="../../assets/blog/video/senden-en.mp4" type="video/mp4">
-          <track data-seo-video="" kind="captions" src="../../assets/blog/video/senden-en.vtt" srclang="en" label="English"></video>
-          <figcaption>Video: Özetten Kindle'a, bu projeyi başlatan alışkanlık.</figcaption>
-        </figure>
+      <div class="prose" data-vgroup="">
 
         <p><strong>AI Summary Helper; kendi yapay zeka sağlayıcınızı veya tamamen yerel bir modeli kullanarak herhangi bir web sayfasını özetleyen, makaleleri zamanlanmış hatırlatıcılarla daha sonra okumak üzere kaydeden ve okuma geçmişinizi aranabilir, bağlantılı bir arşive dönüştüren ücretsiz ve açık kaynaklı bir Chrome eklentisidir.</strong> İlk sürümde bunların hiçbiri yoktu. İşte ilk sürümde olanlar ve uygulamanın bugüne nasıl geldiği.</p>
+        <figure class="post-figure post-video" data-blog-video="senden">
+          <div class="post-video-in">
+            <button class="fvideo-open post-video-open" type="button"><span class="sr-only">Videoyu oynat</span>
+              <video muted="" playsinline="" loop="" preload="none" width="360" height="520" poster="../../assets/blog/video/senden-en.jpg">
+            <source src="../../assets/blog/video/senden-en.mp4" type="video/mp4">
+          <track data-seo-video="" kind="captions" src="../../assets/blog/video/senden-en.vtt" srclang="en" label="English"></video>
+              <span class="post-video-play" aria-hidden="true">▶</span>
+            </button>
+            <figcaption>Video: Özetten Kindle'a, bu projeyi başlatan alışkanlık.</figcaption>
+          <div data-seo-video="" class="vtext"><p class="vtext-h">Transcript · 0:19</p><ul><li>From summary to Kindle.</li><li>Summarize the page, open the menu, send it to your Kindle.</li><li>Seconds later it is on your e-reader, ready for the couch.</li></ul></div></div>
+        </figure>
 
         <h2>Her şey nasıl başladı?</h2>
         <p>Temmuz 2024'te bu sadece bir bookmarklet'ti; henüz bir tarayıcı eklentisi bile değildi. İlgi çekici makaleler bulur, onlarca sekme açar ve neredeyse herkes gibi çoğunu okumaya asla vakit bulamazdınız. Orijinal fikir son derece sade ve kişiseldi: çıktısını doğrudan sayfaya ekleyen özel prompt'lu bir özetleyici; böylece makaleyi Kindle'a gönderdiğinizde özet de beraberinde gidecekti. Bunun için kullanılan araç: <a href="https://send.reabble.com/" target="_blank" rel="noopener">Reabble'ın Send-to-Kindle aracı</a>. Bütün ürün bundan ibaretti. Tek bir yapay zeka sağlayıcısı. Tek bir prompt alanı. iOS Safari dahil her yerde çalışan bir bookmarklet varyantı ve prompt'u anında düzenlemek isteyenler için bir Chrome eklentisi varyantı.</p>
@@ -163,12 +173,19 @@
   </section>
 </main>
 
+<div class="vfeed-labels" hidden="">
+  <span data-l="close">Kapat</span><span data-l="sound">Sesi aç</span><span data-l="mute">Sesi kapat</span><span data-l="hint">Sonraki video için yukarı kaydırın</span><span data-l="prev">Önceki video</span><span data-l="next">Sonraki video</span>
+  <span data-l="share">Paylaş</span><span data-l="copied">Bağlantı kopyalandı</span>
+  <span data-l="add_chrome">Chrome'a ekle — Ücretsiz</span><span data-l="add_firefox">Firefox'a ekleyin — ücretsiz</span><span data-l="add_browser">Tarayıcınıza ekleyin — ücretsiz</span>
+  <a data-l="try" href="../../bookmarklet.html">Tarayıcınızda deneyin — ücretsiz</a>
+</div>
 <footer>
   <div class="wrap">
     <div class="footer-inner">
       <div class="wordmark"><img src="../../assets/icon.svg" alt="">AI Summary Helper</div>
       <div class="foot-links">
         <a href="https://github.com/philffm/ai-summary-helper/" target="_blank" rel="noopener">GitHub'da Kaynak Kodlar</a>
+        <a href="../../education/">Eğitim için</a>
         <a href="../privacy.html">Gizlilik</a>
         <a href="#" data-analytics-settings="">Analitik ayarları</a>
         <a href="https://byphil.eu/terms.html#impressum" target="_blank" rel="noopener">Künye</a>

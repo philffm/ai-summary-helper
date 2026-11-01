@@ -89,6 +89,7 @@
         <div class="mm-row">
           <a href="https://addons.mozilla.org/en-US/firefox/addon/ai-summary-helper/" target="_blank" rel="noopener">Firefox</a>
           <a href="../index.html#phone">Android · Бета</a>
+          <a href="../../education/">Для освіти</a>
           <a href="https://byphil.eu/#account">Мій акаунт</a>
         </div>
         
@@ -103,24 +104,33 @@
 </header>
 
 <main id="main">
-  <div class="wrap">
-    <div class="post-hero">
+  <section class="hero--photo post-stage">
+    <img class="hero-bg" src="../../assets/photo/hands-keyboard-closeup-800.webp" srcset="../assets/photo/hands-keyboard-closeup-800.webp 800w, ../assets/photo/hands-keyboard-closeup-1600.webp 1600w" sizes="100vw" width="1600" height="893" alt="" fetchpriority="high" decoding="async" style="--bgpos:50% 50%">
+    <p class="hero-credit">Ілюстрація, згенерована ШІ</p>
+    <div class="wrap">
+      <div class="post-hero">
       <span class="blog-date">Продукт · Жовтень 2026</span>
       <h1>Ваш ключ. Ваша модель. Ваші дані.</h1>
       <p class="post-sub">Більшість ШІ-інструментів ставлять посередником сервер між вами та моделлю. Ось що змінюється, коли його немає, і що все одно залежить лише від вас.</p>
+      </div>
     </div>
-  </div>
+  </section>
 
   <section>
     <div class="wrap">
-      <div class="prose">
-        <figure class="post-figure post-figure--video" data-blog-video="privat">
-          <video controls="" playsinline="" preload="none" width="360" height="520" poster="../../assets/blog/video/privat-en.jpg">
+      <div class="prose" data-vgroup="">
+        <p>Будь-яке ШІ-резюмування має однакову схему: текст надсилається, відповідь повертається. Рівень довіри до інструмента визначається тим, хто стоїть посередині. У багатьох сервісах там розташований сервер компанії, і все, що ви читаєте, проходить крізь нього на шляху до моделі, яку ви навіть не обирали.</p>
+        <figure class="post-figure post-video" data-blog-video="privat">
+          <div class="post-video-in">
+            <button class="fvideo-open post-video-open" type="button"><span class="sr-only">Відтворити відео</span>
+              <video muted="" playsinline="" loop="" preload="none" width="360" height="520" poster="../../assets/blog/video/privat-en.jpg">
             <source src="../../assets/blog/video/privat-en.mp4" type="video/mp4">
           <track data-seo-video="" kind="captions" src="../../assets/blog/video/privat-en.vtt" srclang="en" label="English"></video>
-          <figcaption>Відео: перемикайтеся між власним API key, локальною моделлю через Ollama та byPhil Cloud.</figcaption>
+              <span class="post-video-play" aria-hidden="true">▶</span>
+            </button>
+            <figcaption>Відео: перемикайтеся між власним API key, локальною моделлю через Ollama та byPhil Cloud.</figcaption>
+          <div data-seo-video="" class="vtext"><p class="vtext-h">Transcript · 0:20</p><ul><li>Privacy is a trade-off.</li><li>When the risk is clear, people share less.</li><li>So you choose: your own API key, a local model with Ollama, or byPhil Cloud with no setup.</li><li>Your library stays in the browser.</li></ul></div></div>
         </figure>
-        <p>Будь-яке ШІ-резюмування має однакову схему: текст надсилається, відповідь повертається. Рівень довіри до інструмента визначається тим, хто стоїть посередині. У багатьох сервісах там розташований сервер компанії, і все, що ви читаєте, проходить крізь нього на шляху до моделі, яку ви навіть не обирали.</p>
 
         <h2>Що означає власний ключ (bring-your-own-key)</h2>
         <p>Ви створюєте API key у провайдера, якому довіряєте, вставляєте його в AI Summary Helper і обираєте модель. Коли ви робите саммарі сторінки, фоновий процес розширення надсилає текст напряму цьому провайдеру й транслює відповідь назад. Жодного проміжного сервера AI Summary Helper на цьому шляху немає.</p>
@@ -151,12 +161,19 @@
   </section>
 </main>
 
+<div class="vfeed-labels" hidden="">
+  <span data-l="close">Закрити</span><span data-l="sound">Увімкнути звук</span><span data-l="mute">Вимкнути звук</span><span data-l="hint">Свайпайте вгору для наступного відео</span><span data-l="prev">Попереднє відео</span><span data-l="next">Наступне відео</span>
+  <span data-l="share">Поділитися</span><span data-l="copied">Посилання скопійовано</span>
+  <span data-l="add_chrome">Додати в Chrome — це безкоштовно</span><span data-l="add_firefox">Додати до Firefox — безкоштовно</span><span data-l="add_browser">Додати до свого браузера — безкоштовно</span>
+  <a data-l="try" href="../../bookmarklet.html">Спробувати у браузері — безкоштовно</a>
+</div>
 <footer>
   <div class="wrap">
     <div class="footer-inner">
       <div class="wordmark"><img src="../../assets/icon.svg" alt="">AI Summary Helper</div>
       <div class="foot-links">
         <a href="https://github.com/philffm/ai-summary-helper/" target="_blank" rel="noopener">Вихідний код на GitHub</a>
+        <a href="../../education/">Для освіти</a>
         <a href="../privacy.html">Конфіденційність</a>
         <a href="#" data-analytics-settings="">Налаштування аналітики</a>
         <a href="https://byphil.eu/terms.html#impressum" target="_blank" rel="noopener">Правова інформація (Impressum)</a>

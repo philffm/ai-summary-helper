@@ -89,6 +89,7 @@
         <div class="mm-row">
           <a href="https://addons.mozilla.org/en-US/firefox/addon/ai-summary-helper/" target="_blank" rel="noopener">Firefox</a>
           <a href="../index.html#phone">Android · 베타</a>
+          <a href="../../education/">교육용</a>
           <a href="https://byphil.eu/#account">내 계정</a>
         </div>
         
@@ -103,24 +104,33 @@
 </header>
 
 <main id="main">
-  <div class="wrap">
-    <div class="post-hero">
+  <section class="hero--photo post-stage">
+    <img class="hero-bg" src="../../assets/photo/commuter-train-reading-800.webp" srcset="../assets/photo/commuter-train-reading-800.webp 800w, ../assets/photo/commuter-train-reading-1600.webp 1600w" sizes="100vw" width="1600" height="893" alt="" fetchpriority="high" decoding="async" style="--bgpos:50% 40%">
+    <p class="hero-credit">AI 생성 일러스트</p>
+    <div class="wrap">
+      <div class="post-hero">
       <span class="blog-date">가이드 · 2026년 10월</span>
       <h1>40개의 피드 대신 단 하나의 리캡으로</h1>
       <p class="post-sub">40개의 피드를 본다는 것은 점심시간 전까지 40번의 방해를 받는 것과 같습니다. 리캡은 이 모든 것을 한 번에 읽을 수 있는 하나의 글로 정리해 줍니다.</p>
+      </div>
     </div>
-  </div>
+  </section>
 
   <section>
     <div class="wrap">
-      <div class="prose">
-        <figure class="post-figure post-figure--video" data-blog-video="feeds">
-          <video controls="" playsinline="" preload="none" width="360" height="520" poster="../../assets/blog/video/feeds-ko.jpg">
+      <div class="prose" data-vgroup="">
+        <p>2009년 소피 르루아(Sophie Leroy) 교수는 '주의 잔여(Attention Residue)'라는 개념을 발표했습니다. 하나의 작업에서 다른 작업으로 전환할 때 주의력의 일부는 이전 작업에 머물러 있다는 이론입니다. 그녀의 실험에 따르면 작업 중 방해를 받은 사람들은 다음 작업의 성과가 떨어졌으며, 서둘러야 할 때 이 영향은 더욱 컸습니다.</p>
+        <figure class="post-figure post-video" data-blog-video="feeds">
+          <div class="post-video-in">
+            <button class="fvideo-open post-video-open" type="button"><span class="sr-only">동영상 재생</span>
+              <video muted="" playsinline="" loop="" preload="none" width="360" height="520" poster="../../assets/blog/video/feeds-ko.jpg">
             <source src="../../assets/blog/video/feeds-ko.mp4" type="video/mp4">
           <track data-seo-video="" kind="captions" src="../../assets/blog/video/feeds-ko.vtt" srclang="ko" label="한국어"></video>
-          <figcaption>영상: 하루치 피드를 요약 하나로 확인해 보세요.</figcaption>
+              <span class="post-video-play" aria-hidden="true">▶</span>
+            </button>
+            <figcaption>영상: 하루치 피드를 요약 하나로 확인해 보세요.</figcaption>
+          <div data-seo-video="" class="vtext"><p class="vtext-h">스크립트 · 0:19</p><ul><li>요약해 주는 RSS 리더.</li><li>좋아하는 사이트를 구독하세요.</li><li>클릭 한 번이면 하루 전체를 브리핑으로 받아볼 수 있어요.</li></ul></div></div>
         </figure>
-        <p>2009년 소피 르루아(Sophie Leroy) 교수는 '주의 잔여(Attention Residue)'라는 개념을 발표했습니다. 하나의 작업에서 다른 작업으로 전환할 때 주의력의 일부는 이전 작업에 머물러 있다는 이론입니다. 그녀의 실험에 따르면 작업 중 방해를 받은 사람들은 다음 작업의 성과가 떨어졌으며, 서둘러야 할 때 이 영향은 더욱 컸습니다.</p>
         <p>피드 리더는 주의력을 분산시키는 대표적인 도구입니다. 글마다 주제와 어조가 다르고 열리는 탭도 제각각입니다. 아무리 가볍게 읽더라도 주의력 잔여는 누적됩니다. 결국 본업으로 돌아왔을 때도 머릿속 한편에서는 어느 호스팅 업체의 요금제 변경 소식을 생각하게 됩니다.</p>
 
         <h2>피드에서 ‘인박스 제로(Inbox Zero)’가 불가능한 이유</h2>
@@ -146,12 +156,19 @@
   </section>
 </main>
 
+<div class="vfeed-labels" hidden="">
+  <span data-l="close">닫기</span><span data-l="sound">소리 켜기</span><span data-l="mute">소리 끄기</span><span data-l="hint">다음 영상을 보려면 위로 쓸어올리세요</span><span data-l="prev">이전 영상</span><span data-l="next">다음 영상</span>
+  <span data-l="share">공유</span><span data-l="copied">링크가 복사되었습니다</span>
+  <span data-l="add_chrome">Chrome에 추가 — 무료</span><span data-l="add_firefox">Firefox에 추가하기 — 무료</span><span data-l="add_browser">브라우저에 추가하기 — 무료</span>
+  <a data-l="try" href="../../bookmarklet.html">브라우저에서 사용해 보기 — 무료</a>
+</div>
 <footer>
   <div class="wrap">
     <div class="footer-inner">
       <div class="wordmark"><img src="../../assets/icon.svg" alt="">AI Summary Helper</div>
       <div class="foot-links">
         <a href="https://github.com/philffm/ai-summary-helper/" target="_blank" rel="noopener">GitHub에서 소스 보기</a>
+        <a href="../../education/">교육용</a>
         <a href="../privacy.html">개인정보 보호</a>
         <a href="#" data-analytics-settings="">분석 설정</a>
         <a href="https://byphil.eu/terms.html#impressum" target="_blank" rel="noopener">Impressum (발행인 정보)</a>

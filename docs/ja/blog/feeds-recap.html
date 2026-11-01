@@ -89,6 +89,7 @@
         <div class="mm-row">
           <a href="https://addons.mozilla.org/en-US/firefox/addon/ai-summary-helper/" target="_blank" rel="noopener">Firefox</a>
           <a href="../index.html#phone">Android · ベータ版</a>
+          <a href="../../education/">教育機関向け</a>
           <a href="https://byphil.eu/#account">マイアカウント</a>
         </div>
         
@@ -103,24 +104,33 @@
 </header>
 
 <main id="main">
-  <div class="wrap">
-    <div class="post-hero">
+  <section class="hero--photo post-stage">
+    <img class="hero-bg" src="../../assets/photo/commuter-train-reading-800.webp" srcset="../assets/photo/commuter-train-reading-800.webp 800w, ../assets/photo/commuter-train-reading-1600.webp 1600w" sizes="100vw" width="1600" height="893" alt="" fetchpriority="high" decoding="async" style="--bgpos:50% 40%">
+    <p class="hero-credit">イラスト（AI生成）</p>
+    <div class="wrap">
+      <div class="post-hero">
       <span class="blog-date">ガイド · 2026年10月</span>
       <h1>40件のフィードを追う代わりに、1つのダイジェストを</h1>
       <p class="post-sub">40件のフィードは、昼休みまでに40回もの集中の中断を生み出します。ダイジェストにまとめれば、1回読むだけで完結します。</p>
+      </div>
     </div>
-  </div>
+  </section>
 
   <section>
     <div class="wrap">
-      <div class="prose">
-        <figure class="post-figure post-figure--video" data-blog-video="feeds">
-          <video controls="" playsinline="" preload="none" width="360" height="520" poster="../../assets/blog/video/feeds-ja.jpg">
+      <div class="prose" data-vgroup="">
+        <p>2009年、ソフィー・ルロワ（Sophie Leroy）氏は「注意の残留（attention residue）」と呼ぶ現象を提唱しました。あるタスクから別のタスクへと切り替える際、注意力の一部は直前のタスクに残ったままになります。彼女の実験では、途中で中断されたタスクを抱えた人は次のタスクでのパフォーマンスが低下し、急かされている状況ではその傾向がさらに強まることが示されました。</p>
+        <figure class="post-figure post-video" data-blog-video="feeds">
+          <div class="post-video-in">
+            <button class="fvideo-open post-video-open" type="button"><span class="sr-only">動画を再生</span>
+              <video muted="" playsinline="" loop="" preload="none" width="360" height="520" poster="../../assets/blog/video/feeds-ja.jpg">
             <source src="../../assets/blog/video/feeds-ja.mp4" type="video/mp4">
           <track data-seo-video="" kind="captions" src="../../assets/blog/video/feeds-ja.vtt" srclang="ja" label="日本語"></video>
-          <figcaption>動画：1日分のフィードを1つのダイジェストに。</figcaption>
+              <span class="post-video-play" aria-hidden="true">▶</span>
+            </button>
+            <figcaption>動画：1日分のフィードを1つのダイジェストに。</figcaption>
+          <div data-seo-video="" class="vtext"><p class="vtext-h">文字起こし · 0:18</p><ul><li>要約してくれるRSSリーダー。</li><li>お気に入りのサイトを購読。</li><li>ワンクリックで、その日のニュースをまとめて要約します。</li></ul></div></div>
         </figure>
-        <p>2009年、ソフィー・ルロワ（Sophie Leroy）氏は「注意の残留（attention residue）」と呼ぶ現象を提唱しました。あるタスクから別のタスクへと切り替える際、注意力の一部は直前のタスクに残ったままになります。彼女の実験では、途中で中断されたタスクを抱えた人は次のタスクでのパフォーマンスが低下し、急かされている状況ではその傾向がさらに強まることが示されました。</p>
         <p>フィードリーダーは、いわば「タスク切り替えの発生装置」です。記事ごとに異なるトピック、トーン、タブが展開されます。たとえ1つひとつを素早くチェックしても、注意の残留は蓄積していきます。いざ本来の作業に戻ったときにも、意識の一部はまだホスティング業者の料金改定のニュースに囚われていたりします。</p>
 
         <h2>フィードの「インボックス・ゼロ」が機能しない理由</h2>
@@ -146,12 +156,19 @@
   </section>
 </main>
 
+<div class="vfeed-labels" hidden="">
+  <span data-l="close">閉じる</span><span data-l="sound">音声オン</span><span data-l="mute">音声オフ</span><span data-l="hint">上にスワイプして次の動画へ</span><span data-l="prev">前の動画</span><span data-l="next">次の動画</span>
+  <span data-l="share">共有</span><span data-l="copied">リンクをコピーしました</span>
+  <span data-l="add_chrome">Chromeに追加（無料）</span><span data-l="add_firefox">Firefox に追加 — 無料です</span><span data-l="add_browser">ブラウザに追加 — 無料です</span>
+  <a data-l="try" href="../../bookmarklet.html">ブラウザで試す — 無料です</a>
+</div>
 <footer>
   <div class="wrap">
     <div class="footer-inner">
       <div class="wordmark"><img src="../../assets/icon.svg" alt="">AI Summary Helper</div>
       <div class="foot-links">
         <a href="https://github.com/philffm/ai-summary-helper/" target="_blank" rel="noopener">GitHubでソースコードを見る</a>
+        <a href="../../education/">教育機関向け</a>
         <a href="../privacy.html">プライバシー</a>
         <a href="#" data-analytics-settings="">アナリティクス設定</a>
         <a href="https://byphil.eu/terms.html#impressum" target="_blank" rel="noopener">法的表記（Impressum）</a>

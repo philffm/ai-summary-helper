@@ -89,6 +89,7 @@
         <div class="mm-row">
           <a href="https://addons.mozilla.org/en-US/firefox/addon/ai-summary-helper/" target="_blank" rel="noopener">Firefox</a>
           <a href="../index.html#phone">Android · Beta</a>
+          <a href="../../education/">Per l'istruzione</a>
           <a href="https://byphil.eu/#account">Il mio account</a>
         </div>
         
@@ -103,24 +104,33 @@
 </header>
 
 <main id="main">
-  <div class="wrap">
-    <div class="post-hero">
+  <section class="hero--photo post-stage">
+    <img class="hero-bg" src="../../assets/photo/hands-keyboard-closeup-800.webp" srcset="../assets/photo/hands-keyboard-closeup-800.webp 800w, ../assets/photo/hands-keyboard-closeup-1600.webp 1600w" sizes="100vw" width="1600" height="893" alt="" fetchpriority="high" decoding="async" style="--bgpos:50% 50%">
+    <p class="hero-credit">Illustrazione, generata dall'IA</p>
+    <div class="wrap">
+      <div class="post-hero">
       <span class="blog-date">Prodotto · Ottobre 2026</span>
       <h1>La tua chiave. Il tuo modello. I tuoi dati.</h1>
       <p class="post-sub">La maggior parte degli strumenti di IA interpone un server tra te e il modello. Ecco cosa cambia quando questo intermediario non c'è, e cosa rimane sotto la tua responsabilità.</p>
+      </div>
     </div>
-  </div>
+  </section>
 
   <section>
     <div class="wrap">
-      <div class="prose">
-        <figure class="post-figure post-figure--video" data-blog-video="privat">
-          <video controls="" playsinline="" preload="none" width="360" height="520" poster="../../assets/blog/video/privat-en.jpg">
+      <div class="prose" data-vgroup="">
+        <p>Ogni riassunto generato dall'IA funziona allo stesso modo: viene inviato del testo e ne viene restituito dell'altro. La domanda fondamentale per decidere quanto fidarsi dello strumento è: chi c'è nel mezzo? In molti prodotti c'è un server aziendale intermedio, e ciò che leggi vi transita prima di raggiungere un modello che non hai scelto tu.</p>
+        <figure class="post-figure post-video" data-blog-video="privat">
+          <div class="post-video-in">
+            <button class="fvideo-open post-video-open" type="button"><span class="sr-only">Riproduci il video</span>
+              <video muted="" playsinline="" loop="" preload="none" width="360" height="520" poster="../../assets/blog/video/privat-en.jpg">
             <source src="../../assets/blog/video/privat-en.mp4" type="video/mp4">
           <track data-seo-video="" kind="captions" src="../../assets/blog/video/privat-en.vtt" srclang="en" label="English"></video>
-          <figcaption>Video: passa tra la tua chiave API personale, un modello locale con Ollama e byPhil Cloud.</figcaption>
+              <span class="post-video-play" aria-hidden="true">▶</span>
+            </button>
+            <figcaption>Video: passa tra la tua chiave API personale, un modello locale con Ollama e byPhil Cloud.</figcaption>
+          <div data-seo-video="" class="vtext"><p class="vtext-h">Transcript · 0:20</p><ul><li>Privacy is a trade-off.</li><li>When the risk is clear, people share less.</li><li>So you choose: your own API key, a local model with Ollama, or byPhil Cloud with no setup.</li><li>Your library stays in the browser.</li></ul></div></div>
         </figure>
-        <p>Ogni riassunto generato dall'IA funziona allo stesso modo: viene inviato del testo e ne viene restituito dell'altro. La domanda fondamentale per decidere quanto fidarsi dello strumento è: chi c'è nel mezzo? In molti prodotti c'è un server aziendale intermedio, e ciò che leggi vi transita prima di raggiungere un modello che non hai scelto tu.</p>
 
         <h2>Cosa significa qui “bring your own key”</h2>
         <p>Generi una chiave API con un provider di cui ti fidi già, la incolli in AI Summary Helper e scegli un modello. Quando riassumi una pagina, il background worker dell'estensione invia il testo direttamente a quel provider e riceve la risposta in streaming. In questo percorso non c'è alcun server di AI Summary Helper a fare da tramite.</p>
@@ -151,12 +161,19 @@
   </section>
 </main>
 
+<div class="vfeed-labels" hidden="">
+  <span data-l="close">Chiudi</span><span data-l="sound">Attiva audio</span><span data-l="mute">Disattiva audio</span><span data-l="hint">Scorri verso l'alto per il video successivo</span><span data-l="prev">Video precedente</span><span data-l="next">Video successivo</span>
+  <span data-l="share">Condividi</span><span data-l="copied">Link copiato</span>
+  <span data-l="add_chrome">Aggiungi a Chrome — è gratis</span><span data-l="add_firefox">Aggiungi a Firefox — è gratis</span><span data-l="add_browser">Aggiungi al tuo browser — è gratis</span>
+  <a data-l="try" href="../../bookmarklet.html">Provalo nel tuo browser — è gratis</a>
+</div>
 <footer>
   <div class="wrap">
     <div class="footer-inner">
       <div class="wordmark"><img src="../../assets/icon.svg" alt="">AI Summary Helper</div>
       <div class="foot-links">
         <a href="https://github.com/philffm/ai-summary-helper/" target="_blank" rel="noopener">Codice sorgente su GitHub</a>
+        <a href="../../education/">Per l'istruzione</a>
         <a href="../privacy.html">Informativa sulla privacy</a>
         <a href="#" data-analytics-settings="">Impostazioni statistiche</a>
         <a href="https://byphil.eu/terms.html#impressum" target="_blank" rel="noopener">Note legali (Impressum)</a>

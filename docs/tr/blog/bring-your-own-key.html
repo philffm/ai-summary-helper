@@ -89,6 +89,7 @@
         <div class="mm-row">
           <a href="https://addons.mozilla.org/en-US/firefox/addon/ai-summary-helper/" target="_blank" rel="noopener">Firefox</a>
           <a href="../index.html#phone">Android · Beta</a>
+          <a href="../../education/">Eğitim için</a>
           <a href="https://byphil.eu/#account">Hesabım</a>
         </div>
         
@@ -103,24 +104,33 @@
 </header>
 
 <main id="main">
-  <div class="wrap">
-    <div class="post-hero">
+  <section class="hero--photo post-stage">
+    <img class="hero-bg" src="../../assets/photo/hands-keyboard-closeup-800.webp" srcset="../assets/photo/hands-keyboard-closeup-800.webp 800w, ../assets/photo/hands-keyboard-closeup-1600.webp 1600w" sizes="100vw" width="1600" height="893" alt="" fetchpriority="high" decoding="async" style="--bgpos:50% 50%">
+    <p class="hero-credit">İllüstrasyon, yapay zekâ üretimi</p>
+    <div class="wrap">
+      <div class="post-hero">
       <span class="blog-date">Ürün · Ekim 2026</span>
       <h1>Anahtarınız. Modeliniz. Verileriniz.</h1>
       <p class="post-sub">Çoğu yapay zekâ aracı, sizinle model arasına bir sunucu yerleştirir. Araya sunucu girmediğinde nelerin değiştiğini ve kontrolün nasıl sizde kaldığını burada bulabilirsiniz.</p>
+      </div>
     </div>
-  </div>
+  </section>
 
   <section>
     <div class="wrap">
-      <div class="prose">
-        <figure class="post-figure post-figure--video" data-blog-video="privat">
-          <video controls="" playsinline="" preload="none" width="360" height="520" poster="../../assets/blog/video/privat-en.jpg">
+      <div class="prose" data-vgroup="">
+        <p>Her yapay zekâ özetinin işleyişi aynıdır: bir metin gönderilir, karşılığında bir metin alınır. Araca ne kadar güvenebileceğinizi belirleyen asıl soru, arada kimin durduğudur. Birçok üründe araya şirket sunucuları girer ve okuduğunuz içerik, sizin seçmediğiniz bir modele giderken bu sunucudan geçer.</p>
+        <figure class="post-figure post-video" data-blog-video="privat">
+          <div class="post-video-in">
+            <button class="fvideo-open post-video-open" type="button"><span class="sr-only">Videoyu oynat</span>
+              <video muted="" playsinline="" loop="" preload="none" width="360" height="520" poster="../../assets/blog/video/privat-en.jpg">
             <source src="../../assets/blog/video/privat-en.mp4" type="video/mp4">
           <track data-seo-video="" kind="captions" src="../../assets/blog/video/privat-en.vtt" srclang="en" label="English"></video>
-          <figcaption>Video: Kendi API key'iniz, Ollama ile yerel model ve byPhil Cloud arasında geçiş yapın.</figcaption>
+              <span class="post-video-play" aria-hidden="true">▶</span>
+            </button>
+            <figcaption>Video: Kendi API key'iniz, Ollama ile yerel model ve byPhil Cloud arasında geçiş yapın.</figcaption>
+          <div data-seo-video="" class="vtext"><p class="vtext-h">Transcript · 0:20</p><ul><li>Privacy is a trade-off.</li><li>When the risk is clear, people share less.</li><li>So you choose: your own API key, a local model with Ollama, or byPhil Cloud with no setup.</li><li>Your library stays in the browser.</li></ul></div></div>
         </figure>
-        <p>Her yapay zekâ özetinin işleyişi aynıdır: bir metin gönderilir, karşılığında bir metin alınır. Araca ne kadar güvenebileceğinizi belirleyen asıl soru, arada kimin durduğudur. Birçok üründe araya şirket sunucuları girer ve okuduğunuz içerik, sizin seçmediğiniz bir modele giderken bu sunucudan geçer.</p>
 
         <h2>Burada “kendi anahtarını getir” ne anlama geliyor?</h2>
         <p>Güvendiğiniz bir sağlayıcıdan bir API key oluşturur, bunu AI Summary Helper içine yapıştırır ve bir model seçersiniz. Bir sayfayı özetlediğinizde, uzantının background worker'ı metni doğrudan o sağlayıcıya gönderir ve yanıtı anlık olarak geri aktarır. Kendi anahtarınızı kullandığınız bu süreçte hiçbir AI Summary Helper sunucusu yer almaz.</p>
@@ -151,12 +161,19 @@
   </section>
 </main>
 
+<div class="vfeed-labels" hidden="">
+  <span data-l="close">Kapat</span><span data-l="sound">Sesi aç</span><span data-l="mute">Sesi kapat</span><span data-l="hint">Sonraki video için yukarı kaydırın</span><span data-l="prev">Önceki video</span><span data-l="next">Sonraki video</span>
+  <span data-l="share">Paylaş</span><span data-l="copied">Bağlantı kopyalandı</span>
+  <span data-l="add_chrome">Chrome'a ekle — Ücretsiz</span><span data-l="add_firefox">Firefox'a ekleyin — ücretsiz</span><span data-l="add_browser">Tarayıcınıza ekleyin — ücretsiz</span>
+  <a data-l="try" href="../../bookmarklet.html">Tarayıcınızda deneyin — ücretsiz</a>
+</div>
 <footer>
   <div class="wrap">
     <div class="footer-inner">
       <div class="wordmark"><img src="../../assets/icon.svg" alt="">AI Summary Helper</div>
       <div class="foot-links">
         <a href="https://github.com/philffm/ai-summary-helper/" target="_blank" rel="noopener">GitHub'da Kaynak Kodlar</a>
+        <a href="../../education/">Eğitim için</a>
         <a href="../privacy.html">Gizlilik</a>
         <a href="#" data-analytics-settings="">Analitik ayarları</a>
         <a href="https://byphil.eu/terms.html#impressum" target="_blank" rel="noopener">Künye</a>

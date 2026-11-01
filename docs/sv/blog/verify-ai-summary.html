@@ -89,6 +89,7 @@
         <div class="mm-row">
           <a href="https://addons.mozilla.org/en-US/firefox/addon/ai-summary-helper/" target="_blank" rel="noopener">Firefox</a>
           <a href="../index.html#phone">Android · Beta</a>
+          <a href="../../education/">För utbildning</a>
           <a href="https://byphil.eu/#account">Mitt konto</a>
         </div>
         
@@ -103,24 +104,33 @@
 </header>
 
 <main id="main">
-  <div class="wrap">
-    <div class="post-hero">
+  <section class="hero--photo post-stage">
+    <img class="hero-bg" src="../../assets/photo/researcher-desk-notes-800.webp" srcset="../assets/photo/researcher-desk-notes-800.webp 800w, ../assets/photo/researcher-desk-notes-1600.webp 1600w" sizes="100vw" width="1600" height="893" alt="" fetchpriority="high" decoding="async" style="--bgpos:60% 45%">
+    <p class="hero-credit">Illustration, AI-genererad</p>
+    <div class="wrap">
+      <div class="post-hero">
       <span class="blog-date">Guide · Oktober 2026</span>
       <h1>Så granskar du en AI-sammanfattning mot källan på 10 sekunder</h1>
       <p class="post-sub">En sammanfattning du inte kan verifiera är bara en gissning med bra grammatik. Här är vanan som löser problemet och hur AI Summary Helper gör det snabbt.</p>
+      </div>
     </div>
-  </div>
+  </section>
 
   <section>
     <div class="wrap">
-      <div class="prose">
-        <figure class="post-figure post-figure--video" data-blog-video="quellen">
-          <video controls="" playsinline="" preload="none" width="360" height="520" poster="../../assets/blog/video/quellen-sv.jpg">
+      <div class="prose" data-vgroup="">
+        <p>År 2011 rapporterade Sparrow, Liu och Wegner i <em>Science</em> att när människor förväntar sig att kunna slå upp något senare, minns de själva faktan sämre och fokuserar mer på var den finns. Sökmotorer blev ett slags externt minne, och vi anpassade oss.</p>
+        <figure class="post-figure post-video" data-blog-video="quellen">
+          <div class="post-video-in">
+            <button class="fvideo-open post-video-open" type="button"><span class="sr-only">Spela upp videon</span>
+              <video muted="" playsinline="" loop="" preload="none" width="360" height="520" poster="../../assets/blog/video/quellen-sv.jpg">
             <source src="../../assets/blog/video/quellen-sv.mp4" type="video/mp4">
           <track data-seo-video="" kind="captions" src="../../assets/blog/video/quellen-sv.vtt" srclang="sv" label="svenska"></video>
-          <figcaption>Video: ställ en följdfråga och hoppa direkt till stycket svaret kom ifrån.</figcaption>
+              <span class="post-video-play" aria-hidden="true">▶</span>
+            </button>
+            <figcaption>Video: ställ en följdfråga och hoppa direkt till stycket svaret kom ifrån.</figcaption>
+          <div data-seo-video="" class="vtext"><p class="vtext-h">Utskrift · 0:18</p><ul><li>AI-svar.</li><li>Med belägg.</li><li>Ställ följdfrågor.</li><li>Varje svar pekar ut stället i texten som det kommer från.</li></ul></div></div>
         </figure>
-        <p>År 2011 rapporterade Sparrow, Liu och Wegner i <em>Science</em> att när människor förväntar sig att kunna slå upp något senare, minns de själva faktan sämre och fokuserar mer på var den finns. Sökmotorer blev ett slags externt minne, och vi anpassade oss.</p>
         <p>AI-sammanfattningar driver den anpassningen ännu längre. Du får ett prydligt stycke, minns stycket, och sidan det kom ifrån faller helt i glömska. Det fungerar bra så länge sammanfattningen stämmer. Men det blir ett problem när den inte gör det, eftersom inget i texten avslöjar vilken mening som är osäker.</p>
 
         <h2>10-sekunderskollen</h2>
@@ -152,12 +162,19 @@
   </section>
 </main>
 
+<div class="vfeed-labels" hidden="">
+  <span data-l="close">Stäng</span><span data-l="sound">Ljud på</span><span data-l="mute">Ljud av</span><span data-l="hint">Svep uppåt för nästa video</span><span data-l="prev">Föregående video</span><span data-l="next">Nästa video</span>
+  <span data-l="share">Dela</span><span data-l="copied">Länken kopierad</span>
+  <span data-l="add_chrome">Lägg till i Chrome — helt gratis</span><span data-l="add_firefox">Lägg till i Firefox — det är gratis</span><span data-l="add_browser">Lägg till i din webbläsare — det är gratis</span>
+  <a data-l="try" href="../../bookmarklet.html">Testa i din webbläsare — det är gratis</a>
+</div>
 <footer>
   <div class="wrap">
     <div class="footer-inner">
       <div class="wordmark"><img src="../../assets/icon.svg" alt="">AI Summary Helper</div>
       <div class="foot-links">
         <a href="https://github.com/philffm/ai-summary-helper/" target="_blank" rel="noopener">Källkod på GitHub</a>
+        <a href="../../education/">För utbildning</a>
         <a href="../privacy.html">Integritetspolicy</a>
         <a href="#" data-analytics-settings="">Analysinställningar</a>
         <a href="https://byphil.eu/terms.html#impressum" target="_blank" rel="noopener">Impressum</a>
