@@ -162422,6 +162422,11 @@
           "text": "Valitse",
           "translatedAt": "2026-11-01T20:57:59.885Z",
           "model": "google/gemini-3.7-flash"
+        },
+        "ja": {
+          "text": "選択",
+          "translatedAt": "2026-11-01T21:36:50.426Z",
+          "model": "deepseek/deepseek-v4.1-flash"
         }
       }
     },
@@ -167222,6 +167227,1446 @@
           "text": "Kuvitus: työmatkalainen lähijunassa lukulaitteen ja puhelimen kanssa",
           "translatedAt": "2026-11-01T20:57:59.885Z",
           "model": "google/gemini-3.7-flash"
+        }
+      }
+    },
+    "b46aafea37443fbd5110bd8732baacacb190a5e83f30f6db715f4c94c19d44c4": {
+      "en": "). If you didn't export in time, your library was gone. We wrote about what to look for in a replacement in",
+      "translations": {
+        "de": {
+          "text": "). Wenn Sie nicht rechtzeitig exportiert haben, war Ihre Bibliothek verloren. Wir haben beschrieben, worauf Sie bei einem Ersatz achten sollten, in",
+          "translatedAt": "2026-11-01T21:32:16.608Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        },
+        "fr": {
+          "text": "). Si vous n'avez pas exporté à temps, votre bibliothèque avait disparu. Nous avons écrit sur ce qu'il faut rechercher dans une solution de remplacement dans",
+          "translatedAt": "2026-11-01T21:32:19.877Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        },
+        "es": {
+          "text": "). Si no exportaste a tiempo, tu biblioteca se perdió. Escribimos sobre qué buscar en un reemplazo en",
+          "translatedAt": "2026-11-01T21:32:37.058Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        },
+        "zh": {
+          "text": "）。如果你没能及时导出，你的资料库就没了。我们写过一篇关于挑选替代方案时该注意什么的文章，见",
+          "translatedAt": "2026-11-01T21:32:39.575Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        },
+        "zh-TW": {
+          "text": "）。如果你沒有及時匯出，你的收藏庫就消失了。我們曾在這裡寫過挑選替代品時該注意什麼：",
+          "translatedAt": "2026-11-01T21:32:43.990Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        },
+        "ja": {
+          "text": "）。期限内にエクスポートしなければ、あなたのライブラリは失われていました。代替ツールを選ぶ際に注目すべきポイントについては、こちらで解説しています",
+          "translatedAt": "2026-11-01T21:32:55.157Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        },
+        "ko": {
+          "text": "). 제때 내보내지 않았다면, 라이브러리는 사라졌을 거예요. 대체 서비스를 고를 때 무엇을 살펴봐야 하는지는 다음 글에서 다뤘어요:",
+          "translatedAt": "2026-11-01T21:33:12.663Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        },
+        "pt": {
+          "text": "). Se você não exportou a tempo, sua biblioteca se foi. Escrevemos sobre o que observar em um substituto em",
+          "translatedAt": "2026-11-01T21:33:27.585Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        },
+        "hi": {
+          "text": "). अगर आपने समय पर export नहीं किया, तो आपकी library चली गई। हमने लिखा था कि replacement में क्या देखें, इसमें",
+          "translatedAt": "2026-11-01T21:33:46.607Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        },
+        "vi": {
+          "text": "). Nếu bạn không kịp xuất dữ liệu, thư viện của bạn đã mất. Chúng tôi đã viết về những điều cần tìm ở một giải pháp thay thế trong",
+          "translatedAt": "2026-11-01T21:33:59.942Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        },
+        "nl": {
+          "text": "). Als je niet op tijd exporteerde, was je bibliotheek verdwenen. We schreven over waar je op moet letten bij een vervanger in",
+          "translatedAt": "2026-11-01T21:34:02.877Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        },
+        "it": {
+          "text": "). Se non hai esportato in tempo, la tua libreria era persa. Abbiamo scritto cosa cercare in un'alternativa in",
+          "translatedAt": "2026-11-01T21:34:05.775Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        },
+        "ru": {
+          "text": "). Если вы не успели экспортировать данные, ваша библиотека пропала. О том, на что стоит обращать внимание при выборе замены, мы писали в",
+          "translatedAt": "2026-11-01T21:34:17.533Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        },
+        "uk": {
+          "text": "). Якщо ви не встигли експортувати, ваша бібліотека зникла. Ми писали про те, на що звертати увагу в заміннику, у",
+          "translatedAt": "2026-11-01T21:34:37.266Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        },
+        "tr": {
+          "text": "). Zamanında dışa aktarmadıysanız, kütüphaneniz gitmişti. Yerine neye bakmanız gerektiğini şurada yazdık:",
+          "translatedAt": "2026-11-01T21:34:48.254Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        },
+        "id": {
+          "text": "). Jika Anda tidak mengekspor tepat waktu, pustaka Anda sudah hilang. Kami menulis tentang apa yang harus dicari dalam penggantinya di",
+          "translatedAt": "2026-11-01T21:34:51.772Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        },
+        "pl": {
+          "text": "). Jeśli nie zdążyłeś wyeksportować danych, Twoja biblioteka przepadła. O tym, na co zwrócić uwagę przy wyborze zamiennika, pisaliśmy w",
+          "translatedAt": "2026-11-01T21:35:49.765Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        },
+        "th": {
+          "text": "). หากคุณไม่ได้ส่งออกทันเวลา ไลบรารีของคุณก็หายไป เราเขียนเกี่ยวกับสิ่งที่ควรพิจารณาในการหาตัวแทนใน",
+          "translatedAt": "2026-11-01T21:36:06.402Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        },
+        "ar": {
+          "text": "). إذا لم تقم بالتصدير في الوقت المناسب، فقدت مكتبتك. كتبنا عن ما ينبغي البحث عنه في بديل في",
+          "translatedAt": "2026-11-01T21:36:21.140Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        },
+        "sv": {
+          "text": "). Om du inte exporterade i tid var ditt bibliotek borta. Vi skrev om vad du bör leta efter i en ersättare i",
+          "translatedAt": "2026-11-01T21:36:27.423Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        },
+        "da": {
+          "text": "). Hvis du ikke fik eksporteret i tide, var dit bibliotek væk. Vi har skrevet om, hvad du skal kigge efter i en erstatning i",
+          "translatedAt": "2026-11-01T21:36:31.975Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        },
+        "no": {
+          "text": "). Hvis du ikke eksporterte i tide, var biblioteket ditt borte. Vi skrev om hva du bør se etter i en erstatning i",
+          "translatedAt": "2026-11-01T21:36:40.964Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        },
+        "fi": {
+          "text": "). Jos et ehtinyt viedä kirjastoasi ajoissa, se oli mennyttä. Kirjoitimme artikkelissa siitä, mitä korvaavassa palvelussa kannattaa etsiä:",
+          "translatedAt": "2026-11-01T21:36:49.043Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "17b531ee694c2fac48606715eeed20172a7df268077d0f74e0d03c6d137517a5": {
+      "en": "We offer the extension for Firefox—a popular choice for privacy-conscious users—as well as Chrome. However, both Google and Mozilla are US entities subject to US jurisdiction. A local model removes the AI provider from the picture, but it does not completely remove US reach from the browser environment itself.",
+      "translations": {
+        "de": {
+          "text": "Wir bieten die Erweiterung für Firefox — eine beliebte Wahl für datenschutzbewusste Nutzer — sowie für Chrome an. Allerdings sind sowohl Google als auch Mozilla US-amerikanische Unternehmen, die der US-amerikanischen Gerichtsbarkeit unterliegen. Ein lokales Modell nimmt den KI-Anbieter aus dem Spiel, aber es entfernt nicht vollständig die US-Reichweite aus der Browserumgebung selbst.",
+          "translatedAt": "2026-11-01T21:32:16.608Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        },
+        "fr": {
+          "text": "Nous proposons l'extension pour Firefox—un choix populaire auprès des utilisateurs soucieux de leur vie privée—ainsi que pour Chrome. Toutefois, Google et Mozilla sont tous deux des entités américaines soumises à la juridiction américaine. Un modèle local retire le fournisseur d'IA de l'équation, mais il n'élimine pas complètement la portée américaine de l'environnement du navigateur lui-même.",
+          "translatedAt": "2026-11-01T21:32:19.877Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        },
+        "es": {
+          "text": "Ofrecemos la extensión para Firefox—una opción popular entre los usuarios preocupados por la privacidad—así como para Chrome. Sin embargo, tanto Google como Mozilla son entidades estadounidenses sujetas a la jurisdicción de EE. UU. Un modelo local elimina al proveedor de IA de la ecuación, pero no elimina por completo el alcance estadounidense del propio entorno del navegador.",
+          "translatedAt": "2026-11-01T21:32:37.058Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        },
+        "zh": {
+          "text": "我们为 Firefox——注重隐私的用户的热门选择——以及 Chrome 提供扩展程序。不过，Google 和 Mozilla 都是受美国司法管辖的美国实体。本地模型让 AI 服务商退出了这一环节，但并不能完全消除美国对浏览器环境本身的影响。",
+          "translatedAt": "2026-11-01T21:32:39.575Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        },
+        "zh-TW": {
+          "text": "我們提供 Firefox 與 Chrome 的擴充功能——Firefox 是重視隱私的使用者的熱門選擇。然而，Google 和 Mozilla 都是受美國司法管轄的美國實體。本地模型讓 AI 供應商退出這個環節，但並未完全消除美國對瀏覽器環境本身的影響力。",
+          "translatedAt": "2026-11-01T21:32:43.990Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        },
+        "ja": {
+          "text": "当社は、プライバシーを重視するユーザーに人気のFirefox向けに加えて、Chrome向けにも拡張機能を提供しています。ただし、GoogleもMozillaも、米国の管轄下にある米国の組織です。ローカルモデルはAIプロバイダーを介在させませんが、ブラウザ環境そのものから米国の影響力を完全に排除するわけではありません。",
+          "translatedAt": "2026-11-01T21:32:55.157Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        },
+        "ko": {
+          "text": "우리는 Firefox용 확장 프로그램—개인정보 보호에 민감한 사용자들에게 인기 있는 선택—과 Chrome용 확장 프로그램을 제공해요. 하지만 Google과 Mozilla는 모두 미국 관할권에 속한 미국 법인이에요. 로컬 모델은 AI 제공자를 배제하지만, 브라우저 환경 자체에서 미국의 영향력을 완전히 없애지는 못해요.",
+          "translatedAt": "2026-11-01T21:33:12.663Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        },
+        "pt": {
+          "text": "Oferecemos a extensão para o Firefox — uma escolha popular entre quem se preocupa com privacidade — e também para o Chrome. No entanto, tanto o Google quanto a Mozilla são entidades dos EUA sujeitas à jurisdição americana. Um modelo local tira o provedor de IA da equação, mas não elimina completamente o alcance dos EUA do próprio ambiente do navegador.",
+          "translatedAt": "2026-11-01T21:33:27.585Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        },
+        "hi": {
+          "text": "हम Firefox—privacy-conscious users के लिए एक popular choice—के साथ-साथ Chrome के लिए भी extension offer करते हैं। हालाँकि, Google और Mozilla दोनों US entities हैं जो US jurisdiction के अधीन हैं। एक local model AI provider को picture से हटा देता है, लेकिन यह browser environment से US reach को पूरी तरह से नहीं हटाता।",
+          "translatedAt": "2026-11-01T21:33:46.607Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        },
+        "vi": {
+          "text": "Chúng tôi cung cấp tiện ích mở rộng cho Firefox—lựa chọn phổ biến của người dùng quan tâm đến quyền riêng tư—cũng như Chrome. Tuy nhiên, cả Google và Mozilla đều là các thực thể Hoa Kỳ chịu sự tài phán của Hoa Kỳ. Mô hình cục bộ loại bỏ nhà cung cấp AI khỏi bức tranh, nhưng không loại bỏ hoàn toàn phạm vi ảnh hưởng của Hoa Kỳ khỏi chính môi trường trình duyệt.",
+          "translatedAt": "2026-11-01T21:33:59.942Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        },
+        "nl": {
+          "text": "We bieden de extensie aan voor Firefox—een populaire keuze voor privacybewuste gebruikers—en ook voor Chrome. Zowel Google als Mozilla zijn echter Amerikaanse entiteiten die onder Amerikaanse jurisdictie vallen. Een lokaal model haalt de AI-provider uit het plaatje, maar haalt het Amerikaanse bereik niet volledig weg uit de browseromgeving zelf.",
+          "translatedAt": "2026-11-01T21:34:02.877Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        },
+        "it": {
+          "text": "Offriamo l'estensione per Firefox—una scelta popolare tra gli utenti attenti alla privacy—oltre che per Chrome. Tuttavia, sia Google sia Mozilla sono entità statunitensi soggette alla giurisdizione degli Stati Uniti. Un modello locale elimina il provider di AI dall'equazione, ma non rimuove del tutto la portata statunitense dall'ambiente del browser stesso.",
+          "translatedAt": "2026-11-01T21:34:05.775Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        },
+        "ru": {
+          "text": "Мы предлагаем расширение для Firefox — популярного выбора среди тех, кто заботится о приватности, — а также для Chrome. Однако и Google, и Mozilla — американские компании, подпадающие под юрисдикцию США. Локальная модель убирает поставщика ИИ из уравнения, но не устраняет полностью влияние США из самой среды браузера.",
+          "translatedAt": "2026-11-01T21:34:17.533Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        },
+        "uk": {
+          "text": "Ми пропонуємо розширення для Firefox — популярного вибору серед користувачів, які дбають про приватність — а також для Chrome. Однак і Google, і Mozilla є американськими компаніями, що підпадають під юрисдикцію США. Локальна модель прибирає AI-провайдера з рівняння, але не усуває повністю вплив США із самого середовища браузера.",
+          "translatedAt": "2026-11-01T21:34:37.266Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        },
+        "tr": {
+          "text": "Firefox için de uzantı sunuyoruz—gizliliğine düşkün kullanıcıların popüler tercihi—Chrome için de. Ancak hem Google hem de Mozilla, ABD yargı yetkisine tabi ABD kuruluşlarıdır. Yerel bir model, AI sağlayıcısını denklemden çıkarır, ancak tarayıcı ortamının kendisinden ABD erişimini tamamen ortadan kaldırmaz.",
+          "translatedAt": "2026-11-01T21:34:48.254Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        },
+        "id": {
+          "text": "Kami menyediakan ekstensi untuk Firefox—pilihan populer bagi pengguna yang peduli privasi—serta Chrome. Namun, Google dan Mozilla sama-sama entitas AS yang tunduk pada yurisdiksi AS. Model lokal menghilangkan penyedia AI dari persamaan, tetapi tidak sepenuhnya menghilangkan jangkauan AS dari lingkungan browser itu sendiri.",
+          "translatedAt": "2026-11-01T21:34:51.772Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        },
+        "pl": {
+          "text": "Rozszerzenie oferujemy dla Firefoksa — popularnego wyboru wśród osób dbających o prywatność — oraz dla Chrome. Zarówno Google, jak i Mozilla to jednak podmioty z USA podlegające amerykańskiej jurysdykcji. Model lokalny usuwa dostawcę AI z równania, ale nie usuwa całkowicie amerykańskiego zasięgu z samego środowiska przeglądarki.",
+          "translatedAt": "2026-11-01T21:35:49.765Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        },
+        "th": {
+          "text": "เราเสนอส่วนขยายสำหรับ Firefox—ตัวเลือกยอดนิยมสำหรับผู้ที่ใส่ใจความเป็นส่วนตัว—รวมถึง Chrome อย่างไรก็ตาม ทั้ง Google และ Mozilla เป็นนิติบุคคลสหรัฐฯ ที่อยู่ภายใต้เขตอำนาจศาลสหรัฐฯ โมเดลท้องถิ่นตัดผู้ให้บริการ AI ออกจากภาพ แต่ไม่ได้กำจัดการเข้าถึงของสหรัฐฯ จากสภาพแวดล้อมของเบราว์เซอร์เองอย่างสมบูรณ์",
+          "translatedAt": "2026-11-01T21:36:06.402Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        },
+        "ar": {
+          "text": "نوفّر الإضافة لـ Firefox — وهو خيار شائع للمستخدمين المهتمين بالخصوصية — وكذلك Chrome. ومع ذلك، فإن Google وMozilla كيانان أمريكيان خاضعان للاختصاص القضائي الأمريكي. النموذج المحلي يزيل مزوّد الذكاء الاصطناعي من الصورة، لكنه لا يزيل تمامًا مدى وصول الولايات المتحدة من بيئة المتصفح نفسها.",
+          "translatedAt": "2026-11-01T21:36:21.140Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        },
+        "sv": {
+          "text": "Vi erbjuder tillägget för Firefox – ett populärt val för integritetsmedvetna användare – liksom Chrome. Men både Google och Mozilla är amerikanska enheter som lyder under amerikansk jurisdiktion. En lokal modell tar bort AI-leverantören från bilden, men den tar inte helt bort USA:s räckvidd från själva webbläsarmiljön.",
+          "translatedAt": "2026-11-01T21:36:27.423Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        },
+        "da": {
+          "text": "Vi tilbyder udvidelsen til Firefox – et populært valg for privatlivsbevidste brugere – såvel som Chrome. Men både Google og Mozilla er amerikanske virksomheder underlagt amerikansk jurisdiktion. En lokal model fjerner AI-udbyderen fra billedet, men den fjerner ikke helt den amerikanske rækkevidde fra selve browsermiljøet.",
+          "translatedAt": "2026-11-01T21:36:31.975Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        },
+        "no": {
+          "text": "Vi tilbyr utvidelsen for Firefox – et populært valg blant personvernbevisste brukere – og for Chrome. Men både Google og Mozilla er amerikanske aktører underlagt amerikansk jurisdiksjon. En lokal modell fjerner AI-leverandøren fra bildet, men den fjerner ikke helt amerikansk rekkevidde fra selve nettlesermiljøet.",
+          "translatedAt": "2026-11-01T21:36:40.964Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        },
+        "fi": {
+          "text": "Tarjoamme laajennuksen Firefoxille—suosittu valinta yksityisyydestä huolta kantaville käyttäjille—sekä Chromelle. Sekä Google että Mozilla ovat kuitenkin yhdysvaltalaisia toimijoita, jotka ovat Yhdysvaltain lainkäyttövallan alaisia. Paikallinen malli poistaa tekoälytarjoajan kuvasta, mutta ei poista Yhdysvaltain ulottuvuutta kokonaan selainympäristöstä itsestään.",
+          "translatedAt": "2026-11-01T21:36:49.043Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "3c1278ead4127c5df5e3d9d164f96d3e57e35f839b7a42359ee51d91fd1b4bb7": {
+      "en": "Your browser's roots are still American.",
+      "translations": {
+        "de": {
+          "text": "Die Wurzeln Ihres Browsers sind weiterhin amerikanisch.",
+          "translatedAt": "2026-11-01T21:32:16.608Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        },
+        "fr": {
+          "text": "Les racines de votre navigateur restent américaines.",
+          "translatedAt": "2026-11-01T21:32:19.877Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        },
+        "es": {
+          "text": "Las raíces de tu navegador siguen siendo estadounidenses.",
+          "translatedAt": "2026-11-01T21:32:37.058Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        },
+        "zh": {
+          "text": "你的浏览器，根子仍在美国。",
+          "translatedAt": "2026-11-01T21:32:39.575Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        },
+        "zh-TW": {
+          "text": "你的瀏覽器根源仍在美國。",
+          "translatedAt": "2026-11-01T21:32:43.990Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        },
+        "ja": {
+          "text": "あなたのブラウザのルーツは、依然としてアメリカにあります。",
+          "translatedAt": "2026-11-01T21:32:55.157Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        },
+        "ko": {
+          "text": "여러분의 브라우저 뿌리는 여전히 미국에 있어요.",
+          "translatedAt": "2026-11-01T21:33:12.663Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        },
+        "pt": {
+          "text": "As raízes do seu navegador continuam americanas.",
+          "translatedAt": "2026-11-01T21:33:27.585Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        },
+        "hi": {
+          "text": "आपके browser की जड़ें अभी भी American हैं।",
+          "translatedAt": "2026-11-01T21:33:46.607Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        },
+        "vi": {
+          "text": "Gốc rễ trình duyệt của bạn vẫn là Hoa Kỳ.",
+          "translatedAt": "2026-11-01T21:33:59.942Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        },
+        "nl": {
+          "text": "Je browser heeft nog steeds Amerikaanse wortels.",
+          "translatedAt": "2026-11-01T21:34:02.877Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        },
+        "it": {
+          "text": "Le radici del tuo browser restano comunque americane.",
+          "translatedAt": "2026-11-01T21:34:05.775Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        },
+        "ru": {
+          "text": "Корни вашего браузера по-прежнему американские.",
+          "translatedAt": "2026-11-01T21:34:17.533Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        },
+        "uk": {
+          "text": "Коріння вашого браузера досі американське.",
+          "translatedAt": "2026-11-01T21:34:37.266Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        },
+        "tr": {
+          "text": "Tarayıcınızın kökleri hâlâ Amerikan.",
+          "translatedAt": "2026-11-01T21:34:48.254Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        },
+        "id": {
+          "text": "Akar browser Anda masih Amerika.",
+          "translatedAt": "2026-11-01T21:34:51.772Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        },
+        "pl": {
+          "text": "Korzenie Twojej przeglądarki wciąż są amerykańskie.",
+          "translatedAt": "2026-11-01T21:35:49.765Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        },
+        "th": {
+          "text": "รากเหง้าของเบราว์เซอร์คุณยังเป็นอเมริกัน",
+          "translatedAt": "2026-11-01T21:36:06.402Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        },
+        "ar": {
+          "text": "جذور متصفحك ما زالت أمريكية.",
+          "translatedAt": "2026-11-01T21:36:21.140Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        },
+        "sv": {
+          "text": "Din webbläsares rötter är fortfarande amerikanska.",
+          "translatedAt": "2026-11-01T21:36:27.423Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        },
+        "da": {
+          "text": "Din browsers rødder er stadig amerikanske.",
+          "translatedAt": "2026-11-01T21:36:31.975Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        },
+        "no": {
+          "text": "Nettleseren din har fortsatt amerikanske røtter.",
+          "translatedAt": "2026-11-01T21:36:40.964Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        },
+        "fi": {
+          "text": "Selaimesi juuret ovat yhä amerikkalaiset.",
+          "translatedAt": "2026-11-01T21:36:49.043Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "65564744e104da4b6c25124cc1de713935a2e24121a9f9f542c9e3d39ef055cd": {
+      "en": "For the Builders",
+      "translations": {
+        "de": {
+          "text": "Für die Macher",
+          "translatedAt": "2026-11-01T21:32:16.608Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        },
+        "fr": {
+          "text": "Pour celles et ceux qui construisent",
+          "translatedAt": "2026-11-01T21:32:19.877Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        },
+        "es": {
+          "text": "Para quienes construyen",
+          "translatedAt": "2026-11-01T21:32:37.058Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        },
+        "zh": {
+          "text": "写给构建者",
+          "translatedAt": "2026-11-01T21:32:39.575Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        },
+        "zh-TW": {
+          "text": "給打造者",
+          "translatedAt": "2026-11-01T21:32:43.990Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        },
+        "ja": {
+          "text": "ビルダーの方へ",
+          "translatedAt": "2026-11-01T21:32:55.157Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        },
+        "ko": {
+          "text": "빌더를 위해",
+          "translatedAt": "2026-11-01T21:33:12.663Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        },
+        "pt": {
+          "text": "Para quem constrói",
+          "translatedAt": "2026-11-01T21:33:27.585Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        },
+        "hi": {
+          "text": "Builders के लिए",
+          "translatedAt": "2026-11-01T21:33:46.607Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        },
+        "vi": {
+          "text": "Dành cho những người xây dựng",
+          "translatedAt": "2026-11-01T21:33:59.942Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        },
+        "nl": {
+          "text": "Voor de bouwers",
+          "translatedAt": "2026-11-01T21:34:02.877Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        },
+        "it": {
+          "text": "Per chi costruisce",
+          "translatedAt": "2026-11-01T21:34:05.775Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        },
+        "ru": {
+          "text": "Для создателей",
+          "translatedAt": "2026-11-01T21:34:17.533Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        },
+        "uk": {
+          "text": "Для творців",
+          "translatedAt": "2026-11-01T21:34:37.266Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        },
+        "tr": {
+          "text": "Üreticiler İçin",
+          "translatedAt": "2026-11-01T21:34:48.254Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        },
+        "id": {
+          "text": "Untuk Para Pembangun",
+          "translatedAt": "2026-11-01T21:34:51.772Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        },
+        "pl": {
+          "text": "Dla twórców",
+          "translatedAt": "2026-11-01T21:35:49.765Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        },
+        "th": {
+          "text": "สำหรับผู้สร้าง",
+          "translatedAt": "2026-11-01T21:36:06.402Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        },
+        "ar": {
+          "text": "للمطوّرين",
+          "translatedAt": "2026-11-01T21:36:21.140Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        },
+        "sv": {
+          "text": "För dig som bygger",
+          "translatedAt": "2026-11-01T21:36:27.423Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        },
+        "da": {
+          "text": "Til dem, der bygger",
+          "translatedAt": "2026-11-01T21:36:31.975Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        },
+        "no": {
+          "text": "For utviklere",
+          "translatedAt": "2026-11-01T21:36:40.964Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        },
+        "fi": {
+          "text": "Tekijöille",
+          "translatedAt": "2026-11-01T21:36:49.043Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "0304ceb22005d39421b8ab3f706469941f191df1875fbe2070c90cb833b7ca19": {
+      "en": "If you design or engineer digital products yourself, the architectural choices you make shape this reality for your users. You dictate whether they can export their data or if they are locked into your ecosystem. For a look at the other side of this equation—how to build with these principles in mind—read my related essay:",
+      "translations": {
+        "de": {
+          "text": "Wenn Sie digitale Produkte selbst gestalten oder entwickeln, prägen die architektonischen Entscheidungen, die Sie treffen, diese Realität für Ihre Nutzer. Sie bestimmen, ob diese ihre Daten exportieren können oder ob sie in Ihrem Ökosystem gefangen sind. Für einen Blick auf die andere Seite dieser Gleichung — wie Sie mit diesen Prinzipien im Hinterkopf entwickeln — lesen Sie meinen zugehörigen Essay:",
+          "translatedAt": "2026-11-01T21:32:16.608Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        },
+        "fr": {
+          "text": "Si vous concevez ou développez vous-même des produits numériques, les choix d'architecture que vous faites façonnent cette réalité pour vos utilisateurs. Vous décidez s'ils peuvent exporter leurs données ou s'ils sont enfermés dans votre écosystème. Pour découvrir l'autre versant de cette équation—comment construire en gardant ces principes à l'esprit—lisez mon essai associé :",
+          "translatedAt": "2026-11-01T21:32:19.877Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        },
+        "es": {
+          "text": "Si diseñas o desarrollas productos digitales tú mismo, las decisiones arquitectónicas que tomas dan forma a esta realidad para tus usuarios. Tú dictas si pueden exportar sus datos o si quedan atrapados en tu ecosistema. Para ver el otro lado de esta ecuación—cómo construir con estos principios en mente—lee mi ensayo relacionado:",
+          "translatedAt": "2026-11-01T21:32:37.058Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        },
+        "zh": {
+          "text": "如果你自己设计或开发数字产品，你所做的架构选择正在为你的用户塑造这一现实。他们能否导出自己的数据，还是被锁在你的生态里，由你决定。想看看这个等式的另一面——如何带着这些原则去做产品——可以读读我的相关文章：",
+          "translatedAt": "2026-11-01T21:32:39.575Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        },
+        "zh-TW": {
+          "text": "如果你自己設計或開發數位產品，你所做的架構選擇會為你的使用者塑造這樣的現實。他們能否匯出自己的資料，或是被鎖在你的生態系中，由你決定。若想看看這個等式的另一面——如何帶著這些原則來打造產品——請讀我的相關文章：",
+          "translatedAt": "2026-11-01T21:32:43.990Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        },
+        "ja": {
+          "text": "ご自身でデジタルプロダクトをデザインまたは開発しているなら、あなたが下すアーキテクチャ上の選択が、ユーザーにとってのこうした現実を形づくります。ユーザーが自分のデータをエクスポートできるのか、それともあなたのエコシステムに囲い込まれるのかを決めるのは、あなたです。この方程式の反対側、つまりこうした原則を念頭に置いてどうつくるかについては、関連するこちらのエッセイをお読みください：",
+          "translatedAt": "2026-11-01T21:32:55.157Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        },
+        "ko": {
+          "text": "여러분이 직접 디지털 제품을 디자인하거나 엔지니어링한다면, 여러분이 내리는 아키텍처 선택이 사용자들에게 이러한 현실을 만들어 줘요. 사용자가 데이터를 내보낼 수 있는지, 아니면 여러분의 생태계에 갇히는지를 여러분이 결정해요. 이 방정식의 반대편—이러한 원칙을 염두에 두고 구축하는 방법—을 보려면, 제 관련 에세이를 읽어 보세요:",
+          "translatedAt": "2026-11-01T21:33:12.663Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        },
+        "pt": {
+          "text": "Se você mesmo projeta ou desenvolve produtos digitais, as escolhas arquitetônicas que você faz moldam essa realidade para seus usuários. Você determina se eles podem exportar seus dados ou se ficam presos ao seu ecossistema. Para ver o outro lado dessa equação — como construir com esses princípios em mente — leia meu ensaio relacionado:",
+          "translatedAt": "2026-11-01T21:33:27.585Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        },
+        "hi": {
+          "text": "अगर आप खुद digital products design या engineer करते हैं, तो आपके architectural choices आपके users के लिए इस reality को shape करते हैं। आप तय करते हैं कि वे अपना data export कर सकते हैं या वे आपके ecosystem में locked हैं। इस equation के दूसरे पक्ष पर एक नज़र के लिए—इन principles को ध्यान में रखते हुए कैसे build करें—मेरा related essay पढ़ें:",
+          "translatedAt": "2026-11-01T21:33:46.607Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        },
+        "vi": {
+          "text": "Nếu bạn tự thiết kế hoặc phát triển sản phẩm số, các lựa chọn kiến trúc bạn đưa ra sẽ định hình thực tế này cho người dùng của bạn. Bạn quyết định liệu họ có thể xuất dữ liệu của mình hay bị khóa chặt trong hệ sinh thái của bạn. Để xem phía bên kia của phương trình này—cách xây dựng với những nguyên tắc này trong đầu—hãy đọc bài viết liên quan của tôi:",
+          "translatedAt": "2026-11-01T21:33:59.942Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        },
+        "nl": {
+          "text": "Als je zelf digitale producten ontwerpt of ontwikkelt, bepalen de architectuurkeuzes die je maakt deze realiteit voor je gebruikers. Jij bepaalt of ze hun data kunnen exporteren of vastzitten in jouw ecosysteem. Voor een blik op de andere kant van deze vergelijking—hoe je met deze principes in gedachten bouwt—lees mijn gerelateerde essay:",
+          "translatedAt": "2026-11-01T21:34:02.877Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        },
+        "it": {
+          "text": "Se progetti o sviluppi tu stesso prodotti digitali, le scelte architetturali che fai plasmano questa realtà per i tuoi utenti. Decidi tu se possono esportare i loro dati o se restano bloccati nel tuo ecosistema. Per vedere l'altro lato di questa equazione—come costruire tenendo presenti questi principi—leggi il mio saggio correlato:",
+          "translatedAt": "2026-11-01T21:34:05.775Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        },
+        "ru": {
+          "text": "Если вы сами проектируете или разрабатываете цифровые продукты, архитектурные решения, которые вы принимаете, формируют эту реальность для ваших пользователей. Именно вы определяете, смогут ли они экспортировать свои данные или окажутся заперты в вашей экосистеме. Чтобы взглянуть на другую сторону этого уравнения — как создавать продукты с учётом этих принципов, — прочитайте моё эссе на эту тему:",
+          "translatedAt": "2026-11-01T21:34:17.533Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        },
+        "uk": {
+          "text": "Якщо ви самі проєктуєте чи розробляєте цифрові продукти, архітектурні рішення, які ви ухвалюєте, формують цю реальність для ваших користувачів. Ви визначаєте, чи зможуть вони експортувати свої дані, чи будуть замкнені у вашій екосистемі. Щоб поглянути на інший бік цього рівняння — як будувати з огляду на ці принципи — прочитайте мій пов'язаний есей:",
+          "translatedAt": "2026-11-01T21:34:37.266Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        },
+        "tr": {
+          "text": "Dijital ürünleri kendiniz tasarlıyor veya geliştiriyorsanız, yaptığınız mimari seçimler kullanıcılarınız için bu gerçekliği şekillendirir. Verilerini dışa aktarıp aktaramayacaklarını veya ekosisteminize kilitlenip kilitlenmeyeceklerini siz belirlersiniz. Bu denklemin diğer tarafına—bu ilkeleri akılda tutarak nasıl inşa edileceğine—bir göz atmak için ilgili makalemi okuyun:",
+          "translatedAt": "2026-11-01T21:34:48.254Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        },
+        "id": {
+          "text": "Jika Anda sendiri merancang atau merekayasa produk digital, pilihan arsitektur yang Anda buat membentuk realitas ini bagi pengguna Anda. Anda yang menentukan apakah mereka dapat mengekspor data mereka atau terkunci dalam ekosistem Anda. Untuk melihat sisi lain dari persamaan ini—bagaimana membangun dengan prinsip-prinsip ini dalam pikiran—baca esai terkait saya:",
+          "translatedAt": "2026-11-01T21:34:51.772Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        },
+        "pl": {
+          "text": "Jeśli sam projektujesz lub tworzysz produkty cyfrowe, podejmowane przez Ciebie decyzje architektoniczne kształtują tę rzeczywistość dla Twoich użytkowników. To Ty decydujesz, czy mogą wyeksportować swoje dane, czy zostaną zamknięci w Twoim ekosystemie. Drugą stronę tego równania — jak budować z myślą o tych zasadach — opisuję w moim powiązanym eseju:",
+          "translatedAt": "2026-11-01T21:35:49.765Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        },
+        "th": {
+          "text": "หากคุณออกแบบหรือพัฒนาเชิงวิศวกรรมผลิตภัณฑ์ดิจิทัลด้วยตัวเอง ทางเลือกด้านสถาปัตยกรรมที่คุณทำจะกำหนดความเป็นจริงนี้ให้ผู้ใช้ของคุณ คุณเป็นผู้กำหนดว่าพวกเขาสามารถส่งออกข้อมูลได้หรือไม่ หรือถูกล็อกไว้ในระบบนิเวศของคุณ หากต้องการมองอีกด้านของสมการนี้—วิธีสร้างโดยคำนึงถึงหลักการเหล่านี้—อ่านบทความที่เกี่ยวข้องของฉัน:",
+          "translatedAt": "2026-11-01T21:36:06.402Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        },
+        "ar": {
+          "text": "إذا كنت تصمّم أو تهندس منتجات رقمية بنفسك، فإن الخيارات المعمارية التي تتخذها تشكّل هذا الواقع لمستخدميك. أنت تفرض ما إذا كان بإمكانهم تصدير بياناتهم أو إذا كانوا محبوسين داخل نظامك البيئي. لإلقاء نظرة على الجانب الآخر من هذه المعادلة — كيف تبني مع وضع هذه المبادئ في الاعتبار — اقرأ مقالي ذي الصلة:",
+          "translatedAt": "2026-11-01T21:36:21.140Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        },
+        "sv": {
+          "text": "Om du själv designar eller utvecklar digitala produkter formar de arkitektoniska val du gör denna verklighet för dina användare. Du bestämmer om de kan exportera sina data eller om de är inlåsta i ditt ekosystem. För en titt på andra sidan av denna ekvation – hur man bygger med dessa principer i åtanke – läs min relaterade essä:",
+          "translatedAt": "2026-11-01T21:36:27.423Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        },
+        "da": {
+          "text": "Hvis du selv designer eller udvikler digitale produkter, er det dine arkitekturvalg, der former denne virkelighed for dine brugere. Du bestemmer, om de kan eksportere deres data, eller om de er låst inde i dit økosystem. Vil du se den anden side af regnestykket – hvordan du bygger med disse principper for øje – så læs mit relaterede essay:",
+          "translatedAt": "2026-11-01T21:36:31.975Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        },
+        "no": {
+          "text": "Hvis du selv designer eller utvikler digitale produkter, er det de arkitektoniske valgene dine som former denne virkeligheten for brukerne dine. Du bestemmer om de kan eksportere dataene sine, eller om de er låst til økosystemet ditt. For å se den andre siden av denne ligningen – hvordan du bygger med disse prinsippene i tankene – kan du lese det relaterte essayet mitt:",
+          "translatedAt": "2026-11-01T21:36:40.964Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        },
+        "fi": {
+          "text": "Jos suunnittelet tai kehität digitaalisia tuotteita itse, tekemäsi arkkitehtuurivalinnat muovaavat tätä todellisuutta käyttäjillesi. Sinä päätät, voivatko he viedä tietonsa vai ovatko he lukittuina ekosysteemiisi. Toisesta näkökulmasta tähän yhtälöön—miten rakentaa näitä periaatteita noudattaen—voit lukea vastaavasta esseestäni:",
+          "translatedAt": "2026-11-01T21:36:49.043Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "83e10be1d3f3d61cbcdf548d68815a7f45aada97b69db8b14e2e4497e8dacb2c": {
+      "en": "Digital Sovereignty as a Designer (philwornath.com) ↗",
+      "translations": {
+        "de": {
+          "text": "Digitale Souveränität als Designer (philwornath.com) ↗",
+          "translatedAt": "2026-11-01T21:32:16.608Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        },
+        "fr": {
+          "text": "La souveraineté numérique vue par le designer (philwornath.com) ↗",
+          "translatedAt": "2026-11-01T21:32:19.877Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        },
+        "es": {
+          "text": "Soberanía digital como diseñador (philwornath.com) ↗",
+          "translatedAt": "2026-11-01T21:32:37.058Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        },
+        "zh": {
+          "text": "作为设计师的数字主权（philwornath.com）↗",
+          "translatedAt": "2026-11-01T21:32:39.575Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        },
+        "zh-TW": {
+          "text": "設計師的數位主權（philwornath.com）↗",
+          "translatedAt": "2026-11-01T21:32:43.990Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        },
+        "ja": {
+          "text": "デザイナーとしてのデジタル主権 (philwornath.com) ↗",
+          "translatedAt": "2026-11-01T21:32:55.157Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        },
+        "ko": {
+          "text": "디자이너로서의 디지털 주권 (philwornath.com) ↗",
+          "translatedAt": "2026-11-01T21:33:12.663Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        },
+        "pt": {
+          "text": "Soberania Digital como Designer (philwornath.com) ↗",
+          "translatedAt": "2026-11-01T21:33:27.585Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        },
+        "hi": {
+          "text": "एक Designer के रूप में Digital Sovereignty (philwornath.com) ↗",
+          "translatedAt": "2026-11-01T21:33:46.607Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        },
+        "vi": {
+          "text": "Chủ quyền số với tư cách là nhà thiết kế (philwornath.com) ↗",
+          "translatedAt": "2026-11-01T21:33:59.942Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        },
+        "nl": {
+          "text": "Digitale soevereiniteit als ontwerper (philwornath.com) ↗",
+          "translatedAt": "2026-11-01T21:34:02.877Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        },
+        "it": {
+          "text": "La sovranità digitale per chi progetta (philwornath.com) ↗",
+          "translatedAt": "2026-11-01T21:34:05.775Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        },
+        "ru": {
+          "text": "Цифровой суверенитет глазами дизайнера (philwornath.com) ↗",
+          "translatedAt": "2026-11-01T21:34:17.533Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        },
+        "uk": {
+          "text": "Цифровий суверенітет очима дизайнера (philwornath.com) ↗",
+          "translatedAt": "2026-11-01T21:34:37.266Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        },
+        "tr": {
+          "text": "Tasarımcı Olarak Dijital Egemenlik (philwornath.com) ↗",
+          "translatedAt": "2026-11-01T21:34:48.254Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        },
+        "id": {
+          "text": "Kedaulatan Digital sebagai Desainer (philwornath.com) ↗",
+          "translatedAt": "2026-11-01T21:34:51.772Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        },
+        "pl": {
+          "text": "Suwerenność cyfrowa oczami projektanta (philwornath.com) ↗",
+          "translatedAt": "2026-11-01T21:35:49.765Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        },
+        "th": {
+          "text": "อธิปไตยดิจิทัลในฐานะนักออกแบบ (philwornath.com) ↗",
+          "translatedAt": "2026-11-01T21:36:06.402Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        },
+        "ar": {
+          "text": "السيادة الرقمية كمصمّم (philwornath.com) ↗",
+          "translatedAt": "2026-11-01T21:36:21.140Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        },
+        "sv": {
+          "text": "Digital suveränitet som designer (philwornath.com) ↗",
+          "translatedAt": "2026-11-01T21:36:27.423Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        },
+        "da": {
+          "text": "Digital suverænitet som designer (philwornath.com) ↗",
+          "translatedAt": "2026-11-01T21:36:31.975Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        },
+        "no": {
+          "text": "Digital suverenitet som designer (philwornath.com) ↗",
+          "translatedAt": "2026-11-01T21:36:40.964Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        },
+        "fi": {
+          "text": "Digitaalinen suvereniteetti suunnittelijan näkökulmasta (philwornath.com) ↗",
+          "translatedAt": "2026-11-01T21:36:49.043Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "bec5f7d0f484454988019ffc4d4cbd52c57b892e3178106d632cf7d39475e6fe": {
+      "en": "It helps with latency and some legal questions, but it does not settle who can compel access: that depends on the company's",
+      "translations": {
+        "de": {
+          "text": "Es hilft bei Latenz und einigen rechtlichen Fragen, aber es klärt nicht, wer Zugriff erzwingen kann: Das hängt von der",
+          "translatedAt": "2026-11-01T21:32:16.608Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        },
+        "fr": {
+          "text": "Cela aide pour la latence et certaines questions juridiques, mais cela ne règle pas la question de savoir qui peut contraindre l'accès : cela dépend de la juridiction de l'entreprise",
+          "translatedAt": "2026-11-01T21:32:19.877Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        },
+        "es": {
+          "text": "Ayuda con la latencia y algunas cuestiones legales, pero no resuelve quién puede obligar al acceso: eso depende de la",
+          "translatedAt": "2026-11-01T21:32:37.058Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        },
+        "zh": {
+          "text": "这有助于降低延迟、缓解一些法律问题，但并不能决定谁有权强制调取数据：这取决于公司的",
+          "translatedAt": "2026-11-01T21:32:39.575Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        },
+        "zh-TW": {
+          "text": "這有助於改善延遲並處理一些法律問題，但無法決定誰能強制要求存取：那取決於公司的",
+          "translatedAt": "2026-11-01T21:32:43.990Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        },
+        "ja": {
+          "text": "レイテンシや一部の法的な問題の解決には役立ちますが、誰がアクセスを強制できるかを決めるものではありません。それは、その企業の",
+          "translatedAt": "2026-11-01T21:32:55.157Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        },
+        "ko": {
+          "text": "지연 시간과 일부 법적 문제에는 도움이 되지만, 누가 접근을 강제할 수 있는지는 해결하지 못해요: 그것은 회사의",
+          "translatedAt": "2026-11-01T21:33:12.663Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        },
+        "pt": {
+          "text": "Isso ajuda com latência e algumas questões legais, mas não resolve quem pode obrigar o acesso: isso depende da",
+          "translatedAt": "2026-11-01T21:33:27.585Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        },
+        "hi": {
+          "text": "यह latency और कुछ legal questions में मदद करता है, लेकिन यह तय नहीं करता कि access के लिए कौन compel कर सकता है: यह company की",
+          "translatedAt": "2026-11-01T21:33:46.607Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        },
+        "vi": {
+          "text": "Nó giúp ích về độ trễ và một số vấn đề pháp lý, nhưng không giải quyết được ai có thể buộc phải cung cấp quyền truy cập: điều đó phụ thuộc vào",
+          "translatedAt": "2026-11-01T21:33:59.942Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        },
+        "nl": {
+          "text": "Het helpt bij latentie en sommige juridische vragen, maar het beslecht niet wie toegang kan afdwingen: dat hangt af van de",
+          "translatedAt": "2026-11-01T21:34:02.877Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        },
+        "it": {
+          "text": "Aiuta con la latenza e alcune questioni legali, ma non risolve chi può obbligare all'accesso: dipende dalla",
+          "translatedAt": "2026-11-01T21:34:05.775Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        },
+        "ru": {
+          "text": "Это помогает с задержкой и некоторыми юридическими вопросами, но не решает, кто может принудить к предоставлению доступа: это зависит от того, какая у компании",
+          "translatedAt": "2026-11-01T21:34:17.533Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        },
+        "uk": {
+          "text": "Це допомагає із затримками та деякими юридичними питаннями, але не вирішує, хто може вимагати доступу: це залежить від",
+          "translatedAt": "2026-11-01T21:34:37.266Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        },
+        "tr": {
+          "text": "Gecikme ve bazı yasal sorular konusunda yardımcı olur, ancak erişimi kimin zorlayabileceğini çözmez: bu, şirketin",
+          "translatedAt": "2026-11-01T21:34:48.254Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        },
+        "id": {
+          "text": "Hal ini membantu dengan latensi dan beberapa pertanyaan hukum, tetapi tidak menyelesaikan siapa yang dapat memaksa akses: itu tergantung pada",
+          "translatedAt": "2026-11-01T21:34:51.772Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        },
+        "pl": {
+          "text": "Pomaga to w kwestii opóźnień i niektórych zagadnień prawnych, ale nie rozstrzyga, kto może wymusić dostęp: zależy to od",
+          "translatedAt": "2026-11-01T21:35:49.765Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        },
+        "th": {
+          "text": "มันช่วยเรื่องความหน่วงและคำถามทางกฎหมายบางอย่าง แต่ไม่ได้ชี้ขาดว่าใครสามารถบังคับให้เข้าถึงได้: นั่นขึ้นอยู่กับ",
+          "translatedAt": "2026-11-01T21:36:06.402Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        },
+        "ar": {
+          "text": "يساعد في تقليل زمن الاستجابة وبعض المسائل القانونية، لكنه لا يحسم من يمكنه إجبار الوصول: فهذا يعتمد على اختصاص الشركة",
+          "translatedAt": "2026-11-01T21:36:21.140Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        },
+        "sv": {
+          "text": "Det hjälper mot latens och vissa juridiska frågor, men det avgör inte vem som kan tvinga fram åtkomst: det beror på företagets",
+          "translatedAt": "2026-11-01T21:36:27.423Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        },
+        "da": {
+          "text": "Det hjælper på latenstid og nogle juridiske spørgsmål, men det afgør ikke, hvem der kan kræve adgang: det afhænger af virksomhedens",
+          "translatedAt": "2026-11-01T21:36:31.975Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        },
+        "no": {
+          "text": "Det hjelper mot latency og enkelte juridiske spørsmål, men det avgjør ikke hvem som kan tvinge frem tilgang: det avhenger av selskapets",
+          "translatedAt": "2026-11-01T21:36:40.964Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        },
+        "fi": {
+          "text": "Se auttaa viiveen ja joidenkin oikeudellisten kysymysten kanssa, mutta ei ratkaise sitä, kuka voi vaatia pääsyä: se riippuu yrityksen",
+          "translatedAt": "2026-11-01T21:36:49.043Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "33b87641b2eaf94fbf0f54c34f2815bd591ad9642a2decf75d1cd676decf3bc2": {
+      "en": ", not only the server's",
+      "translations": {
+        "de": {
+          "text": ", nicht nur vom",
+          "translatedAt": "2026-11-01T21:32:16.608Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        },
+        "fr": {
+          "text": ", et pas seulement de celle du serveur",
+          "translatedAt": "2026-11-01T21:32:19.877Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        },
+        "es": {
+          "text": ", no solo de la",
+          "translatedAt": "2026-11-01T21:32:37.058Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        },
+        "zh": {
+          "text": "，而不只是服务器的",
+          "translatedAt": "2026-11-01T21:32:39.575Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        },
+        "zh-TW": {
+          "text": "，而不只是伺服器的",
+          "translatedAt": "2026-11-01T21:32:43.990Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        },
+        "ja": {
+          "text": "だけでなく、サーバーの",
+          "translatedAt": "2026-11-01T21:32:55.157Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        },
+        "ko": {
+          "text": ", 서버의 것뿐만 아니라",
+          "translatedAt": "2026-11-01T21:33:12.663Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        },
+        "pt": {
+          "text": " da empresa, e não apenas da",
+          "translatedAt": "2026-11-01T21:33:27.585Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        },
+        "hi": {
+          "text": ", सिर्फ server की नहीं",
+          "translatedAt": "2026-11-01T21:33:46.607Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        },
+        "vi": {
+          "text": ", chứ không chỉ của máy chủ",
+          "translatedAt": "2026-11-01T21:33:59.942Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        },
+        "nl": {
+          "text": ", niet alleen van de",
+          "translatedAt": "2026-11-01T21:34:02.877Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        },
+        "it": {
+          "text": "giurisdizione della società, non solo da quella del server",
+          "translatedAt": "2026-11-01T21:34:05.775Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        },
+        "ru": {
+          "text": ", а не только от того, какое у сервера",
+          "translatedAt": "2026-11-01T21:34:17.533Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        },
+        "uk": {
+          "text": " компанії, а не лише від",
+          "translatedAt": "2026-11-01T21:34:37.266Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        },
+        "tr": {
+          "text": ", yalnızca sunucunun değil",
+          "translatedAt": "2026-11-01T21:34:48.254Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        },
+        "id": {
+          "text": ", bukan hanya",
+          "translatedAt": "2026-11-01T21:34:51.772Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        },
+        "pl": {
+          "text": ", a nie tylko",
+          "translatedAt": "2026-11-01T21:35:49.765Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        },
+        "th": {
+          "text": ", ไม่ใช่แค่",
+          "translatedAt": "2026-11-01T21:36:06.402Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        },
+        "ar": {
+          "text": "، وليس فقط على موقع الخادم",
+          "translatedAt": "2026-11-01T21:36:21.140Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        },
+        "sv": {
+          "text": ", inte bara serverns",
+          "translatedAt": "2026-11-01T21:36:27.423Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        },
+        "da": {
+          "text": ", ikke kun serverens",
+          "translatedAt": "2026-11-01T21:36:31.975Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        },
+        "no": {
+          "text": ", ikke bare serverens",
+          "translatedAt": "2026-11-01T21:36:40.964Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        },
+        "fi": {
+          "text": ", ei vain palvelimen",
+          "translatedAt": "2026-11-01T21:36:49.043Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "8768416dbfb9b15254a2dea45b743ed4bbeefd90fd5d7feee24a94999f6bd7ee": {
+      "en": ". Encryption with keys you hold changes the picture more than a postcode does.",
+      "translations": {
+        "de": {
+          "text": ". Verschlüsselung mit Schlüsseln, die Sie selbst halten, ändert das Bild stärker als eine Postleitzahl.",
+          "translatedAt": "2026-11-01T21:32:16.608Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        },
+        "fr": {
+          "text": ". Un chiffrement dont vous détenez les clés change davantage la donne qu'un code postal.",
+          "translatedAt": "2026-11-01T21:32:19.877Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        },
+        "es": {
+          "text": ". El cifrado con claves que tú controlas cambia más el panorama que un código postal.",
+          "translatedAt": "2026-11-01T21:32:37.058Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        },
+        "zh": {
+          "text": "。用你自己持有的密钥加密，比换个邮编更能改变局面。",
+          "translatedAt": "2026-11-01T21:32:39.575Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        },
+        "zh-TW": {
+          "text": "。由你自己持有金鑰的加密，比郵遞區號更能改變局面。",
+          "translatedAt": "2026-11-01T21:32:43.990Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        },
+        "ja": {
+          "text": "にもよります。自分で鍵を保有する暗号化は、郵便番号よりも大きく状況を変えます。",
+          "translatedAt": "2026-11-01T21:32:55.157Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        },
+        "ko": {
+          "text": ". 여러분이 보유한 키로 하는 암호화는 우편번호보다 상황을 더 많이 바꿔 놓아요.",
+          "translatedAt": "2026-11-01T21:33:12.663Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        },
+        "pt": {
+          "text": " do servidor. A criptografia com chaves que você detém muda o cenário mais do que um CEP.",
+          "translatedAt": "2026-11-01T21:33:27.585Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        },
+        "hi": {
+          "text": ". जिन keys को आप रखते हैं, उनके साथ encryption, postcode से ज़्यादा picture बदल देता है।",
+          "translatedAt": "2026-11-01T21:33:46.607Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        },
+        "vi": {
+          "text": ". Mã hóa bằng khóa do bạn nắm giữ thay đổi cục diện nhiều hơn một mã bưu chính.",
+          "translatedAt": "2026-11-01T21:33:59.942Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        },
+        "nl": {
+          "text": ". Versleuteling met sleutels die jij bezit verandert het plaatje meer dan een postcode dat doet.",
+          "translatedAt": "2026-11-01T21:34:02.877Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        },
+        "it": {
+          "text": ". La crittografia con chiavi che tieni tu cambia le cose più di un codice postale.",
+          "translatedAt": "2026-11-01T21:34:05.775Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        },
+        "ru": {
+          "text": ". Шифрование с ключами, которые храните вы, меняет картину сильнее, чем почтовый индекс.",
+          "translatedAt": "2026-11-01T21:34:17.533Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        },
+        "uk": {
+          "text": ". Шифрування з ключами, які зберігаєте ви, змінює картину більше, ніж поштовий індекс.",
+          "translatedAt": "2026-11-01T21:34:37.266Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        },
+        "tr": {
+          "text": ". Sahip olduğunuz anahtarlarla şifreleme, bir posta kodundan daha fazla resmi değiştirir.",
+          "translatedAt": "2026-11-01T21:34:48.254Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        },
+        "id": {
+          "text": ". Enkripsi dengan kunci yang Anda pegang mengubah gambaran lebih dari sekadar kode pos.",
+          "translatedAt": "2026-11-01T21:34:51.772Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        },
+        "pl": {
+          "text": ". Szyfrowanie kluczami, które sam przechowujesz, zmienia obraz sytuacji bardziej niż kod pocztowy.",
+          "translatedAt": "2026-11-01T21:35:49.765Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        },
+        "th": {
+          "text": ". การเข้ารหัสด้วยคีย์ที่คุณถือครองเปลี่ยนภาพได้มากกว่ารหัสไปรษณีย์",
+          "translatedAt": "2026-11-01T21:36:06.402Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        },
+        "ar": {
+          "text": ". التشفير بمفاتيح تملكها يغيّر الصورة أكثر مما يفعل الرمز البريدي.",
+          "translatedAt": "2026-11-01T21:36:21.140Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        },
+        "sv": {
+          "text": ". Kryptering med nycklar du själv håller förändrar bilden mer än ett postnummer gör.",
+          "translatedAt": "2026-11-01T21:36:27.423Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        },
+        "da": {
+          "text": ". Kryptering med nøgler, du selv har, ændrer billedet mere end et postnummer gør.",
+          "translatedAt": "2026-11-01T21:36:31.975Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        },
+        "no": {
+          "text": ". Kryptering med nøkler du selv holder, endrer bildet mer enn en postkode gjør.",
+          "translatedAt": "2026-11-01T21:36:40.964Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        },
+        "fi": {
+          "text": ". Salaus, jonka avaimet ovat sinulla, muuttaa tilannetta enemmän kuin postinumero.",
+          "translatedAt": "2026-11-01T21:36:49.043Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "bcd3a888401fba8a4b040456cbc53acfab3c7e1de94a1a4d55ba5a8f852a4ea6": {
+      "en": "jurisdiction",
+      "translations": {
+        "de": {
+          "text": "Gerichtsbarkeit",
+          "translatedAt": "2026-11-01T21:32:16.608Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        },
+        "fr": {
+          "text": "juridiction",
+          "translatedAt": "2026-11-01T21:32:19.877Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        },
+        "es": {
+          "text": "jurisdicción de la empresa",
+          "translatedAt": "2026-11-01T21:32:37.058Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        },
+        "zh": {
+          "text": "司法管辖",
+          "translatedAt": "2026-11-01T21:32:39.575Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        },
+        "zh-TW": {
+          "text": "司法管轄權",
+          "translatedAt": "2026-11-01T21:32:43.990Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        },
+        "ja": {
+          "text": "管轄",
+          "translatedAt": "2026-11-01T21:32:55.157Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        },
+        "ko": {
+          "text": "관할권",
+          "translatedAt": "2026-11-01T21:33:12.663Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        },
+        "pt": {
+          "text": "jurisdição",
+          "translatedAt": "2026-11-01T21:33:27.585Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        },
+        "hi": {
+          "text": "jurisdiction",
+          "translatedAt": "2026-11-01T21:33:46.607Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        },
+        "vi": {
+          "text": "thẩm quyền tài phán",
+          "translatedAt": "2026-11-01T21:33:59.942Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        },
+        "nl": {
+          "text": "jurisdictie",
+          "translatedAt": "2026-11-01T21:34:02.877Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        },
+        "it": {
+          "text": "giurisdizione",
+          "translatedAt": "2026-11-01T21:34:05.775Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        },
+        "ru": {
+          "text": "юрисдикция",
+          "translatedAt": "2026-11-01T21:34:17.533Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        },
+        "uk": {
+          "text": "юрисдикції",
+          "translatedAt": "2026-11-01T21:34:37.266Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        },
+        "tr": {
+          "text": "yargı yetkisi",
+          "translatedAt": "2026-11-01T21:34:48.254Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        },
+        "id": {
+          "text": "yurisdiksi",
+          "translatedAt": "2026-11-01T21:34:51.772Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        },
+        "pl": {
+          "text": "jurysdykcji firmy",
+          "translatedAt": "2026-11-01T21:35:49.765Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        },
+        "th": {
+          "text": "เขตอำนาจศาลของบริษัท",
+          "translatedAt": "2026-11-01T21:36:06.402Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        },
+        "ar": {
+          "text": "الاختصاص القضائي",
+          "translatedAt": "2026-11-01T21:36:21.140Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        },
+        "sv": {
+          "text": "jurisdiktion",
+          "translatedAt": "2026-11-01T21:36:27.423Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        },
+        "da": {
+          "text": "jurisdiktion",
+          "translatedAt": "2026-11-01T21:36:31.975Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        },
+        "no": {
+          "text": "jurisdiksjon",
+          "translatedAt": "2026-11-01T21:36:40.964Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        },
+        "fi": {
+          "text": "lainkäyttövalta",
+          "translatedAt": "2026-11-01T21:36:49.043Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "e6eaea18e885e1078829b56df34896be5ab51439e8f0ba00cb1624b2c572c10e": {
+      "en": "location",
+      "translations": {
+        "de": {
+          "text": "Standort",
+          "translatedAt": "2026-11-01T21:32:16.608Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        },
+        "fr": {
+          "text": "localisation",
+          "translatedAt": "2026-11-01T21:32:19.877Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        },
+        "es": {
+          "text": "ubicación del servidor",
+          "translatedAt": "2026-11-01T21:32:37.058Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        },
+        "zh": {
+          "text": "位置",
+          "translatedAt": "2026-11-01T21:32:39.575Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        },
+        "zh-TW": {
+          "text": "位置",
+          "translatedAt": "2026-11-01T21:32:43.990Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        },
+        "ja": {
+          "text": "所在地",
+          "translatedAt": "2026-11-01T21:32:55.157Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        },
+        "ko": {
+          "text": "위치",
+          "translatedAt": "2026-11-01T21:33:12.663Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        },
+        "pt": {
+          "text": "localização",
+          "translatedAt": "2026-11-01T21:33:27.585Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        },
+        "hi": {
+          "text": "location",
+          "translatedAt": "2026-11-01T21:33:46.607Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        },
+        "vi": {
+          "text": "vị trí",
+          "translatedAt": "2026-11-01T21:33:59.942Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        },
+        "nl": {
+          "text": "locatie",
+          "translatedAt": "2026-11-01T21:34:02.877Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        },
+        "it": {
+          "text": "ubicazione",
+          "translatedAt": "2026-11-01T21:34:05.775Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        },
+        "ru": {
+          "text": "местоположение",
+          "translatedAt": "2026-11-01T21:34:17.533Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        },
+        "uk": {
+          "text": "розташування сервера",
+          "translatedAt": "2026-11-01T21:34:37.266Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        },
+        "tr": {
+          "text": "konum",
+          "translatedAt": "2026-11-01T21:34:48.254Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        },
+        "id": {
+          "text": "lokasi",
+          "translatedAt": "2026-11-01T21:34:51.772Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        },
+        "pl": {
+          "text": "lokalizacji serwera",
+          "translatedAt": "2026-11-01T21:35:49.765Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        },
+        "th": {
+          "text": "ที่ตั้งของเซิร์ฟเวอร์",
+          "translatedAt": "2026-11-01T21:36:06.402Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        },
+        "ar": {
+          "text": "الموقع",
+          "translatedAt": "2026-11-01T21:36:21.140Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        },
+        "sv": {
+          "text": "plats",
+          "translatedAt": "2026-11-01T21:36:27.423Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        },
+        "da": {
+          "text": "placering",
+          "translatedAt": "2026-11-01T21:36:31.975Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        },
+        "no": {
+          "text": "plassering",
+          "translatedAt": "2026-11-01T21:36:40.964Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        },
+        "fi": {
+          "text": "sijainti",
+          "translatedAt": "2026-11-01T21:36:49.043Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "cfdd7a809ba95b392694a0c94a9f04b4b81e6d6f0812ddc1fd3d168203259b52": {
+      "en": "Add to Firefox",
+      "translations": {
+        "de": {
+          "text": "Zu Firefox hinzufügen",
+          "translatedAt": "2026-11-01T21:32:16.608Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        },
+        "fr": {
+          "text": "Ajouter à Firefox",
+          "translatedAt": "2026-11-01T21:32:19.877Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        },
+        "es": {
+          "text": "Añadir a Firefox",
+          "translatedAt": "2026-11-01T21:32:37.058Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        },
+        "zh": {
+          "text": "添加到 Firefox",
+          "translatedAt": "2026-11-01T21:32:39.575Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        },
+        "zh-TW": {
+          "text": "加到 Firefox",
+          "translatedAt": "2026-11-01T21:32:43.990Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        },
+        "ja": {
+          "text": "Firefox に追加",
+          "translatedAt": "2026-11-01T21:32:55.157Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        },
+        "ko": {
+          "text": "Firefox에 추가",
+          "translatedAt": "2026-11-01T21:33:12.663Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        },
+        "pt": {
+          "text": "Adicionar ao Firefox",
+          "translatedAt": "2026-11-01T21:33:27.585Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        },
+        "hi": {
+          "text": "Firefox में जोड़ें",
+          "translatedAt": "2026-11-01T21:33:46.607Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        },
+        "vi": {
+          "text": "Thêm vào Firefox",
+          "translatedAt": "2026-11-01T21:33:59.942Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        },
+        "nl": {
+          "text": "Toevoegen aan Firefox",
+          "translatedAt": "2026-11-01T21:34:02.877Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        },
+        "it": {
+          "text": "Aggiungi a Firefox",
+          "translatedAt": "2026-11-01T21:34:05.775Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        },
+        "ru": {
+          "text": "Добавить в Firefox",
+          "translatedAt": "2026-11-01T21:34:17.533Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        },
+        "uk": {
+          "text": "Додати до Firefox",
+          "translatedAt": "2026-11-01T21:34:37.266Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        },
+        "tr": {
+          "text": "Firefox'a Ekle",
+          "translatedAt": "2026-11-01T21:34:48.254Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        },
+        "id": {
+          "text": "Tambahkan ke Firefox",
+          "translatedAt": "2026-11-01T21:34:51.772Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        },
+        "pl": {
+          "text": "Dodaj do Firefoksa",
+          "translatedAt": "2026-11-01T21:35:49.765Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        },
+        "th": {
+          "text": "เพิ่มไปยัง Firefox",
+          "translatedAt": "2026-11-01T21:36:06.402Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        },
+        "ar": {
+          "text": "أضف إلى Firefox",
+          "translatedAt": "2026-11-01T21:36:21.140Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        },
+        "sv": {
+          "text": "Lägg till i Firefox",
+          "translatedAt": "2026-11-01T21:36:27.423Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        },
+        "da": {
+          "text": "Føj til Firefox",
+          "translatedAt": "2026-11-01T21:36:31.975Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        },
+        "no": {
+          "text": "Legg til i Firefox",
+          "translatedAt": "2026-11-01T21:36:40.964Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        },
+        "fi": {
+          "text": "Lisää Firefoxiin",
+          "translatedAt": "2026-11-01T21:36:49.043Z",
+          "model": "deepseek/deepseek-v4.1-flash"
         }
       }
     }
