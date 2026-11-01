@@ -5675,5 +5675,671 @@
   },
   "f_what_s_new_in_9c82": {
     "message": "{v} 新功能"
+  },
+  "f_a_folder_on_this_computer_bbe4": {
+    "message": "這部電腦上的資料夾"
+  },
+  "f_a_simple_web_page_index_html_d002": {
+    "message": "簡單的網頁（index.html），讀取 library.json：可搜尋、標籤、時間軸與標籤圖。需要能顯示 HTML 頁面的伺服器，例如自己的網頁伺服器或公開的儲存桶，Nextcloud 分享則不行。"
+  },
+  "f_ai_135f": {
+    "message": "AI"
+  },
+  "f_ai_highlight_b91f": {
+    "message": "AI 標註"
+  },
+  "f_aws_cloudflare_r2_backblaze__139d": {
+    "message": "AWS、Cloudflare R2、Backblaze、MinIO、Wasabi"
+  },
+  "f_aws_https_s3_region_amazonaw_c68d": {
+    "message": "AWS: https://s3.<region>.amazonaws.com · Cloudflare R2: https://<account>.r2.cloudflarestorage.com · Backblaze: https://s3.<region>.backblazeb2.com"
+  },
+  "f_access_is_allowed_7031": {
+    "message": "已允許存取。"
+  },
+  "f_access_key_id_8d75": {
+    "message": "Access key ID"
+  },
+  "f_add_a_comment_9c08": {
+    "message": "新增留言…"
+  },
+  "f_add_a_place_799c": {
+    "message": "新增位置"
+  },
+  "f_add_note_9108": {
+    "message": "新增筆記"
+  },
+  "f_all_except_a_tag_ca3e": {
+    "message": "排除某個標籤"
+  },
+  "f_all_places_fdbc": {
+    "message": "所有位置"
+  },
+  "f_allow_access_again_cc7c": {
+    "message": "重新允許存取"
+  },
+  "f_allow_access_to_599a": {
+    "message": "允許存取 {name}"
+  },
+  "f_also_publish_a_viewer_page_2d07": {
+    "message": "同時發佈檢視頁面"
+  },
+  "f_an_index_html_that_is_not_ou_889b": {
+    "message": "此資料夾中已有非本程式建立的 index.html，因此未寫入檢視頁面。請改用其他資料夾。"
+  },
+  "f_another_suggestion_09e8": {
+    "message": "換一個建議"
+  },
+  "f_anyone_who_can_open_this_fol_86f7": {
+    "message": "任何能開啟此資料夾的人都能讀取這些檔案。請使用您可控制的資料夾，除非要公開發佈，否則請保持私人。"
+  },
+  "f_app_password_6505": {
+    "message": "應用程式密碼"
+  },
+  "f_at_least_12_characters_it_is_f78b": {
+    "message": "至少 12 個字元，不會儲存在任何地方：遺失後就沒有人能開啟檔案。"
+  },
+  "f_back_up_now_63b3": {
+    "message": "立即備份"
+  },
+  "f_backup_only_e75f": {
+    "message": "僅備份"
+  },
+  "f_bring_everything_in_this_pla_0150": {
+    "message": "要把此位置的所有內容還原到這台裝置嗎？與本機不同之處，以此位置為準，這裡不會刪除任何內容。"
+  },
+  "f_bucket_3557": {
+    "message": "儲存桶"
+  },
+  "f_by_article_5c16": {
+    "message": "依文章"
+  },
+  "f_changes_here_apply_to_every__822d": {
+    "message": "此處的變更會套用到此伺服器上的所有位置。"
+  },
+  "f_checked_the_folder_restored__7f16": {
+    "message": "已檢查資料夾：還原 {r} 項，發現 {o} 個殘留檔案。"
+  },
+  "f_checking_your_library_f467": {
+    "message": "正在檢查您的資料庫…"
+  },
+  "f_choose_6160": {
+    "message": "選擇"
+  },
+  "f_choose_a_passphrase_c9a1": {
+    "message": "設定通關密語"
+  },
+  "f_choose_another_folder_1129": {
+    "message": "選擇其他資料夾"
+  },
+  "f_cloudflare_r2_auto_leave_the_74e0": {
+    "message": "Cloudflare R2：auto。若服務商沒有要求，請保留預設值。"
+  },
+  "f_code_for_the_phone_8494": {
+    "message": "手機用的代碼"
+  },
+  "f_comment_9ffe": {
+    "message": "留言"
+  },
+  "f_connect_and_publish_3387": {
+    "message": "連線並發佈"
+  },
+  "f_connected_the_folder_is_empt_688d": {
+    "message": "已連線。資料夾是空的，將建立新的加密資料庫。"
+  },
+  "f_connected_this_folder_alread_7ea2": {
+    "message": "已連線。此資料夾已有加密資料庫。"
+  },
+  "f_connected_article_matches_b205": {
+    "message": "已連線。符合 {n} 篇文章。"
+  },
+  "f_connected_articles_match_40f2": {
+    "message": "已連線。符合 {n} 篇文章。"
+  },
+  "f_continuing_file_left_4bdc": {
+    "message": "繼續中…剩 {n} 個檔案"
+  },
+  "f_continuing_files_left_7869": {
+    "message": "繼續中…剩 {n} 個檔案"
+  },
+  "f_copied_2cb1": {
+    "message": "已複製。"
+  },
+  "f_copies_of_other_people_s_art_db7e": {
+    "message": "他人文章的副本。請確認您有權分享，檔案會大很多。"
+  },
+  "f_copy_did_not_work_select_the_1dcb": {
+    "message": "複製失敗。請選取文字後手動複製。"
+  },
+  "f_copy_puts_the_words_in_one_p_9b1c": {
+    "message": "複製時會把文字連成一串，以連字號相連，可通用於設定檔、終端機與聊天軟體；用空格或連字號輸入都可以。"
+  },
+  "f_could_not_reach_the_server_aa7e": {
+    "message": "無法連線到伺服器"
+  },
+  "f_could_not_save_this_place_cf23": {
+    "message": "無法儲存此位置。"
+  },
+  "f_created_for_you_use_one_fold_0390": {
+    "message": "已為您建立。每個用途使用一個資料夾，例如 public 作網站清單、backup 作完整備份。"
+  },
+  "f_danger_zone_19b4": {
+    "message": "危險區域"
+  },
+  "f_delete_them_here_too_9d48": {
+    "message": "也在此處刪除"
+  },
+  "f_delete_this_note_3253": {
+    "message": "刪除這則筆記？"
+  },
+  "f_download_bb19": {
+    "message": "下載"
+  },
+  "f_eu_1f4f": {
+    "message": "EU"
+  },
+  "f_eu_company_ef04": {
+    "message": "歐盟公司"
+  },
+  "f_eu_servers_987b": {
+    "message": "歐盟伺服器"
+  },
+  "f_each_article_becomes_one_fil_f81c": {
+    "message": "每篇文章會成為一個檔案，另有給網站用的清單（library.json）。"
+  },
+  "f_edit_comment_f0e4": {
+    "message": "編輯留言"
+  },
+  "f_edit_server_63e0": {
+    "message": "編輯伺服器"
+  },
+  "f_encrypted_e253": {
+    "message": "已加密"
+  },
+  "f_end_with_tags_ctrl_enter_to__83e2": {
+    "message": "以 #標籤 結尾 · ⌘/Ctrl+Enter 新增"
+  },
+  "f_endpoint_address_ce54": {
+    "message": "端點位址"
+  },
+  "f_every_article_you_saved_goes_f744": {
+    "message": "您儲存的每篇文章都會發佈，包括您可能不想讓別人讀的。只有您能讀的備份，應改用加密。"
+  },
+  "f_everything_8340": {
+    "message": "全部"
+  },
+  "f_everything_is_encrypted_on_t_1b86": {
+    "message": "所有內容在上傳前，都會先在這台裝置上加密。筆記、提醒與全文也包含在內，因為只有您能讀取。"
+  },
+  "f_files_go_into_a_subfolder_of_5a98": {
+    "message": "檔案會放進其中的子資料夾。任何能同步該資料夾的工具（Syncthing、iCloud Drive、Dropbox、USB 隨身碟）都會把它們帶到您的其他裝置。"
+  },
+  "f_fine_the_suggested_words_are_36c0": {
+    "message": "沒問題。建議的字詞更安全。"
+  },
+  "f_folder_7afd": {
+    "message": "資料夾"
+  },
+  "f_folder_access_is_waiting_b754": {
+    "message": "資料夾存取等待中"
+  },
+  "f_folder_on_the_server_b74c": {
+    "message": "伺服器上的資料夾"
+  },
+  "f_folder_960e": {
+    "message": "資料夾：{name}"
+  },
+  "f_for_syncing_and_backup_only__f767": {
+    "message": "用於同步與備份。只有您能讀取，網站也不行。服務商看到的是亂碼檔案。"
+  },
+  "f_getting_changes_of_8fbb": {
+    "message": "正在取得變更 {done}/{total}"
+  },
+  "f_grid_66b1": {
+    "message": "格狀"
+  },
+  "f_highlight_05c7": {
+    "message": "標註"
+  },
+  "f_i_made_a_backup_of_this_devi_c05b": {
+    "message": "我已備份這台裝置"
+  },
+  "f_i_saved_the_passphrase_81d0": {
+    "message": "我已儲存通關密語"
+  },
+  "f_in_nextcloud_settings_securi_4fee": {
+    "message": "在 Nextcloud 中：設定 → 安全性 → 建立應用程式密碼。請勿使用主要密碼。"
+  },
+  "f_joining_merges_this_device_w_8048": {
+    "message": "加入會將這台裝置與資料夾中的資料庫合併：兩者不同之處以資料夾為準。請先備份這台裝置。"
+  },
+  "f_keep_your_library_in_step_ac_b5fe": {
+    "message": "讓您的資料庫在各裝置間保持同步、備份，或發佈部分內容給他人。每個位置都是您自己伺服器或這部電腦上的資料夾。在您新增之前，不會有任何內容離開這台裝置。"
+  },
+  "f_looking_at_what_is_in_the_fo_1e05": {
+    "message": "正在查看資料夾內容…"
+  },
+  "f_make_a_backup_now_3046": {
+    "message": "立即備份"
+  },
+  "f_make_an_access_key_just_for__abc9": {
+    "message": "請為此儲存桶建立專用的存取金鑰，授權可讀取、寫入、列出與刪除。請勿使用帳號的主要金鑰。"
+  },
+  "f_meant_for_a_folder_only_you__33c0": {
+    "message": "適用於只有您能開啟的資料夾，例如私人備份或內部清單。任何能開啟資料夾的人都能讀取這一切。"
+  },
+  "f_mine_84d6": {
+    "message": "我的"
+  },
+  "f_models_marked_eu_servers_run_7b00": {
+    "message": "標示「歐盟伺服器」的模型只在歐洲的伺服器上執行，通常是美國雲端公司的伺服器。只有標示「歐盟公司」的模型同時來自歐洲公司。其他模型仍可使用，會標示「非歐盟伺服器」，並照常執行；自動選擇則維持在歐盟伺服器。歐盟伺服器的費用可能稍高，顯示的價格即為歐盟價格。朗讀與語音轉文字沒有歐盟選項。您的文字仍會經過我們的服務（位於德國的伺服器），再傳到美國公司 OpenRouter。"
+  },
+  "f_my_nextcloud_741d": {
+    "message": "我的 Nextcloud"
+  },
+  "f_my_notes_and_comments_099b": {
+    "message": "我的筆記與留言"
+  },
+  "f_new_note_7123": {
+    "message": "新筆記"
+  },
+  "f_new_server_9ee0": {
+    "message": "新伺服器"
+  },
+  "f_nextcloud_webdav_2b5d": {
+    "message": "Nextcloud / WebDAV"
+  },
+  "f_nextcloud_owncloud_synology__5752": {
+    "message": "Nextcloud、ownCloud、Synology、多數 NAS"
+  },
+  "f_no_notes_on_this_article_yet_b876": {
+    "message": "這篇文章還沒有筆記。"
+  },
+  "f_no_notes_yet_68d5": {
+    "message": "還沒有筆記。"
+  },
+  "f_no_tags_yet_end_a_note_with__ae68": {
+    "message": "還沒有標籤。在筆記結尾加上 #標籤。"
+  },
+  "f_not_eu_fb9c": {
+    "message": "非歐盟"
+  },
+  "f_not_here_d910": {
+    "message": "不在此處"
+  },
+  "f_not_on_eu_servers_abcb": {
+    "message": "非歐盟伺服器"
+  },
+  "f_not_published_yet_d0ae": {
+    "message": "尚未發佈"
+  },
+  "f_not_synced_yet_7efe": {
+    "message": "尚未同步"
+  },
+  "f_note_c15d": {
+    "message": "筆記"
+  },
+  "f_notes_1b6a": {
+    "message": "筆記"
+  },
+  "f_notes_and_highlights_0e9c": {
+    "message": "筆記與標註"
+  },
+  "f_notes_without_an_article_5bd7": {
+    "message": "無文章的筆記"
+  },
+  "f_nothing_here_yet_5bfc": {
+    "message": "這裡還沒有內容。"
+  },
+  "f_nothing_matches_03c3": {
+    "message": "沒有符合的項目。"
+  },
+  "f_only_publish_articles_tagged_b789": {
+    "message": "只發佈有此標籤的文章"
+  },
+  "f_open_the_page_ab11": {
+    "message": "開啟頁面"
+  },
+  "f_passphrase_2dc5": {
+    "message": "通關密語"
+  },
+  "f_passphrase_keep_it_somewhere_ca8a": {
+    "message": "通關密語：{k}。請妥善保存。"
+  },
+  "f_paused_1feb": {
+    "message": "已暫停"
+  },
+  "f_pinned_q_a_faa5": {
+    "message": "釘選的問答"
+  },
+  "f_places_d03d": {
+    "message": "位置"
+  },
+  "f_publish_everything_except_ar_74e7": {
+    "message": "發佈所有文章，但排除有此標籤的"
+  },
+  "f_publish_my_library_to_my_own_a71f": {
+    "message": "將我的資料庫發佈到自己的伺服器"
+  },
+  "f_publish_now_ae60": {
+    "message": "立即發佈"
+  },
+  "f_publishing_e1f2": {
+    "message": "發佈中…"
+  },
+  "f_questions_you_pinned_with_an_5f9e": {
+    "message": "您釘選的問題與答案"
+  },
+  "f_readable_00b5": {
+    "message": "可讀"
+  },
+  "f_reading_changes_of_9b27": {
+    "message": "正在讀取變更 {done}/{total}"
+  },
+  "f_region_789d": {
+    "message": "區域"
+  },
+  "f_reminders_b654": {
+    "message": "提醒"
+  },
+  "f_remove_comment_2340": {
+    "message": "移除留言"
+  },
+  "f_remove_them_401d": {
+    "message": "移除"
+  },
+  "f_remove_this_highlight_3cc8": {
+    "message": "要移除此標註嗎？"
+  },
+  "f_remove_this_place_6efc": {
+    "message": "移除此位置"
+  },
+  "f_remove_this_place_the_files__ad9c": {
+    "message": "要移除此位置嗎？伺服器上既有的檔案不會被刪除。"
+  },
+  "f_removing_a_place_stops_publi_caa4": {
+    "message": "移除位置會停止發佈。伺服器上既有的檔案會保留原樣。沒有任何位置使用的伺服器，會連同登入資訊一併移除。"
+  },
+  "f_removing_of_9a27": {
+    "message": "正在移除 {done}/{total}"
+  },
+  "f_repeat_the_passphrase_c2a7": {
+    "message": "再輸入一次通關密語"
+  },
+  "f_restore_from_here_3623": {
+    "message": "從這裡還原"
+  },
+  "f_restored_item_changed_on_thi_f959": {
+    "message": "已還原。這台裝置有 {n} 項變更。"
+  },
+  "f_restored_items_changed_on_th_853c": {
+    "message": "已還原。這台裝置有 {n} 項變更。"
+  },
+  "f_restoring_daec": {
+    "message": "還原中…"
+  },
+  "f_s3_compatible_4144": {
+    "message": "S3 相容"
+  },
+  "f_save_5d68": {
+    "message": "儲存"
+  },
+  "f_save_server_bca3": {
+    "message": "儲存伺服器"
+  },
+  "f_save_your_passphrase_3801": {
+    "message": "儲存您的通關密語"
+  },
+  "f_saving_of_566a": {
+    "message": "正在儲存 {done}/{total}"
+  },
+  "f_scan_it_with_ai_summary_help_572d": {
+    "message": "請用手機上的 AI Summary Helper 掃描：設定 → 資料庫同步 → 掃描代碼。代碼包含您的伺服器登入資訊，請只給自己的手機看。一分鐘後會自動隱藏。"
+  },
+  "f_search_highlights_comments_n_4f81": {
+    "message": "搜尋標註、留言、筆記…"
+  },
+  "f_secret_access_key_d3a2": {
+    "message": "Secret access key"
+  },
+  "f_selected_3294": {
+    "message": "已選取"
+  },
+  "f_server_02f2": {
+    "message": "伺服器"
+  },
+  "f_server_address_025e": {
+    "message": "伺服器位址"
+  },
+  "f_server_name_22f5": {
+    "message": "伺服器名稱"
+  },
+  "f_server_saved_27e1": {
+    "message": "伺服器已儲存。"
+  },
+  "f_show_2e5c": {
+    "message": "顯示"
+  },
+  "f_show_code_for_the_phone_a8c1": {
+    "message": "顯示手機用代碼"
+  },
+  "f_show_passphrase_dda0": {
+    "message": "顯示通關密語"
+  },
+  "f_six_random_words_you_will_ty_e18c": {
+    "message": "六個隨機字詞。您會在其他裝置上輸入，請寫下來或存入密碼管理員。它們不會儲存在其他地方：遺失後就沒有人能開啟您的檔案。"
+  },
+  "f_soon_da12": {
+    "message": "即將推出"
+  },
+  "f_strong_db5c": {
+    "message": "夠強。"
+  },
+  "f_suggest_random_words_instead_a3fb": {
+    "message": "改用建議的隨機字詞"
+  },
+  "f_sync_backup_9786": {
+    "message": "同步與備份"
+  },
+  "f_sync_my_devices_79fb": {
+    "message": "同步我的裝置"
+  },
+  "f_sync_now_d8fe": {
+    "message": "立即同步"
+  },
+  "f_syncthing_icloud_drive_dropb_a87d": {
+    "message": "可用 Syncthing、iCloud Drive、Dropbox 或 USB 隨身碟保持同步。"
+  },
+  "f_test_connection_b6b7": {
+    "message": "測試連線"
+  },
+  "f_the_browser_could_not_rememb_f257": {
+    "message": "瀏覽器無法記住此資料夾。"
+  },
+  "f_the_browser_did_not_allow_ac_5245": {
+    "message": "瀏覽器不允許存取。"
+  },
+  "f_the_browser_takes_back_acces_aaf9": {
+    "message": "瀏覽器在重新啟動時會收回資料夾的存取權，只有您點一下才能再授權。在此之前，資料夾不會同步。"
+  },
+  "f_the_kind_of_a_place_cannot_b_8037": {
+    "message": "位置的類型無法變更。若要使用另一種，請新增其他位置。"
+  },
+  "f_the_login_is_saved_once_for__bcba": {
+    "message": "登入資訊只會為所有位置儲存一次。"
+  },
+  "f_the_restore_did_not_finish_a4b5": {
+    "message": "還原未完成。"
+  },
+  "f_the_save_for_later_time_and__7dff": {
+    "message": "稍後閱讀的時間與您的原因。"
+  },
+  "f_the_service_picks_a_model_fo_a591": {
+    "message": "服務會為每個請求挑選模型：短文用輕量模型，長文用較大的模型。"
+  },
+  "f_the_two_passphrases_are_not__e90b": {
+    "message": "兩次輸入的通關密語不一致。"
+  },
+  "f_these_six_words_are_the_key__f595": {
+    "message": "這六個字詞是「{name}」的金鑰。您要在每台新裝置上輸入。遺失後，包括我們在內都無法讀取檔案。請存入密碼管理員。"
+  },
+  "f_this_device_was_away_for_a_l_46de": {
+    "message": "這台裝置離線了很久。只傳送了之後的變更，沒有刪除任何內容。"
+  },
+  "f_this_device_writes_everythin_1070": {
+    "message": "這台裝置會把所有內容寫入此位置，且不會讀回。需要時再從這裡還原。"
+  },
+  "f_this_folder_already_holds_an_9f1e": {
+    "message": "此資料夾已有加密資料庫。請輸入其通關密語（您儲存的字詞）。"
+  },
+  "f_this_folder_already_holds_an_8e8c": {
+    "message": "此資料夾已有加密資料庫。請在下方輸入其通關密語，然後再按一次連線。"
+  },
+  "f_this_model_does_not_run_on_e_21da": {
+    "message": "此模型不在歐盟伺服器上執行。改用 {name}（歐盟）嗎？"
+  },
+  "f_this_place_publishes_only_th_f3b8": {
+    "message": "此位置僅供發佈：這台裝置會寫入檔案，且不會讀回。"
+  },
+  "f_this_place_uses_your_own_pas_823b": {
+    "message": "此位置使用您自己的通關密語。它不在代碼中，請在手機上輸入。"
+  },
+  "f_this_place_uses_your_own_pas_b61e": {
+    "message": "此位置使用您自己的通關密語。它不會保留在這台裝置上，因此無法顯示。"
+  },
+  "f_to_publish_on_your_own_websi_9caf": {
+    "message": "發佈到您自己的網站：任何有連結的人都能讀取的純檔案。"
+  },
+  "f_turn_on_to_run_models_on_ser_af13": {
+    "message": "開啟後，會在提供的地方使用歐洲伺服器執行模型。其他模型仍可使用並會標示。"
+  },
+  "f_unchanged_e05e": {
+    "message": "未變更"
+  },
+  "f_updating_the_list_d48e": {
+    "message": "正在更新清單…"
+  },
+  "f_uploading_of_c6b9": {
+    "message": "正在上傳 {done}/{total}"
+  },
+  "f_use_my_own_passphrase_c42a": {
+    "message": "使用我自己的通關密語"
+  },
+  "f_use_4021": {
+    "message": "使用 {name}"
+  },
+  "f_username_d4d9": {
+    "message": "使用者名稱"
+  },
+  "f_view_aa18": {
+    "message": "檢視"
+  },
+  "f_weak_use_at_least_12_charact_690f": {
+    "message": "太弱：請至少使用 12 個字元，或使用建議的字詞。"
+  },
+  "f_website_list_be8a": {
+    "message": "網站清單"
+  },
+  "f_what_goes_out_1113": {
+    "message": "發佈內容"
+  },
+  "f_what_it_is_for_84ef": {
+    "message": "用途"
+  },
+  "f_who_can_read_it_ceb4": {
+    "message": "誰能讀取"
+  },
+  "f_with_a_tag_c382": {
+    "message": "有標籤"
+  },
+  "f_works_in_chrome_and_edge_on__f2c7": {
+    "message": "適用於電腦版的 Chrome 與 Edge。"
+  },
+  "f_write_a_note_about_this_arti_e1b4": {
+    "message": "寫下這篇文章的筆記…"
+  },
+  "f_write_a_note_or_a_thought_wo_67b1": {
+    "message": "寫下筆記或值得保留的想法…"
+  },
+  "f_write_a_note_c7c9": {
+    "message": "寫下筆記…"
+  },
+  "f_write_one_below_or_highlight_7627": {
+    "message": "在下方寫一則，或在任何頁面標註文字。您的標註與 AI 的標註也會顯示在這裡。"
+  },
+  "f_your_articles_highlights_not_9c7c": {
+    "message": "您的文章、標註、筆記、收藏集、摘要與全文，會在使用相同通關密語加入的每台裝置上保持同步。"
+  },
+  "f_your_own_index_html_is_in_th_8069": {
+    "message": "此資料夾中有您自己的 index.html，因此未取代檢視頁面。"
+  },
+  "f_your_own_notes_and_the_comme_6ef8": {
+    "message": "您自己的筆記與標註上的留言。"
+  },
+  "f_your_passphrase_2512": {
+    "message": "您的通關密語"
+  },
+  "f_your_yellow_and_ai_highlight_15a0": {
+    "message": "您的黃色標註與 AI 標註"
+  },
+  "f_backed_up_ago_845b": {
+    "message": "{t}前已備份"
+  },
+  "f_picks_a_model_for_each_reque_519c": {
+    "message": "為每個請求挑選模型"
+  },
+  "f_published_ago_0576": {
+    "message": "{t}前已發佈"
+  },
+  "f_synced_ago_174c": {
+    "message": "{t}前已同步"
+  },
+  "f_of_9ced": {
+    "message": "{a}/{b}"
+  },
+  "f_ai_highlight_8f93": {
+    "message": "{n} 個 AI 標註"
+  },
+  "f_ai_highlights_7da0": {
+    "message": "{n} 個 AI 標註"
+  },
+  "f_file_is_no_longer_wanted_her_48c4": {
+    "message": "此處已不需要 {n} 個檔案，將從您的伺服器移除。請確認無誤。"
+  },
+  "f_files_are_no_longer_wanted_h_6975": {
+    "message": "此處已不需要 {n} 個檔案，將從您的伺服器移除。請確認無誤。"
+  },
+  "f_files_had_problems_a60b": {
+    "message": "{n} 個檔案有問題"
+  },
+  "f_highlight_5f43": {
+    "message": "{n} 個標註"
+  },
+  "f_highlights_d890": {
+    "message": "{n} 個標註"
+  },
+  "f_more_article_was_deleted_on__0e7e": {
+    "message": "另有 {n} 篇文章已在其他裝置上刪除。在您確認前仍會保留在這裡。請確認無誤。"
+  },
+  "f_more_articles_were_deleted_o_8348": {
+    "message": "另有 {n} 篇文章已在其他裝置上刪除。在您確認前仍會保留在這裡。請確認無誤。"
+  },
+  "f_note_b2a1": {
+    "message": "{n} 則筆記"
+  },
+  "f_notes_8096": {
+    "message": "{n} 則筆記"
+  },
+  "f_place_b298": {
+    "message": "{n} 個位置"
+  },
+  "f_place_uses_this_server_133b": {
+    "message": "此伺服器有 {n} 個位置在使用。"
+  },
+  "f_places_a7f1": {
+    "message": "{n} 個位置"
+  },
+  "f_places_use_this_server_4df9": {
+    "message": "此伺服器有 {n} 個位置在使用。"
   }
 }

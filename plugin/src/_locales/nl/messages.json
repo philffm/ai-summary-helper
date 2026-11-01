@@ -5958,5 +5958,671 @@
   },
   "f_what_s_new_in_9c82": {
     "message": "Nieuw in {v}"
+  },
+  "f_a_folder_on_this_computer_bbe4": {
+    "message": "Een map op deze computer"
+  },
+  "f_a_simple_web_page_index_html_d002": {
+    "message": "Een eenvoudige webpagina (index.html) die library.json leest: zoeken, tags, tijdlijn en een taggrafiek. Je hebt een server nodig die HTML-pagina's aanbiedt, bijvoorbeeld je eigen webserver of een openbare bucket. Nextcloud-shares doen dat niet."
+  },
+  "f_ai_135f": {
+    "message": "AI"
+  },
+  "f_ai_highlight_b91f": {
+    "message": "AI-markering"
+  },
+  "f_aws_cloudflare_r2_backblaze__139d": {
+    "message": "AWS, Cloudflare R2, Backblaze, MinIO, Wasabi"
+  },
+  "f_aws_https_s3_region_amazonaw_c68d": {
+    "message": "AWS: https://s3.<region>.amazonaws.com · Cloudflare R2: https://<account>.r2.cloudflarestorage.com · Backblaze: https://s3.<region>.backblazeb2.com"
+  },
+  "f_access_is_allowed_7031": {
+    "message": "Toegang is toegestaan."
+  },
+  "f_access_key_id_8d75": {
+    "message": "Toegangssleutel-ID"
+  },
+  "f_add_a_comment_9c08": {
+    "message": "Reactie toevoegen …"
+  },
+  "f_add_a_place_799c": {
+    "message": "Plek toevoegen"
+  },
+  "f_add_note_9108": {
+    "message": "Notitie +"
+  },
+  "f_all_except_a_tag_ca3e": {
+    "message": "Alles behalve één tag"
+  },
+  "f_all_places_fdbc": {
+    "message": "Alle plekken"
+  },
+  "f_allow_access_again_cc7c": {
+    "message": "Toegang opnieuw toestaan"
+  },
+  "f_allow_access_to_599a": {
+    "message": "Toegang tot {name} toestaan"
+  },
+  "f_also_publish_a_viewer_page_2d07": {
+    "message": "Ook een viewerpagina publiceren"
+  },
+  "f_an_index_html_that_is_not_ou_889b": {
+    "message": "In deze map staat al een index.html die niet van ons is, dus de viewer is niet geschreven. Kies een andere map."
+  },
+  "f_another_suggestion_09e8": {
+    "message": "Andere suggestie"
+  },
+  "f_anyone_who_can_open_this_fol_86f7": {
+    "message": "Wie deze map kan openen, kan deze bestanden lezen. Gebruik een map die je zelf beheert en houd hem privé, tenzij je wilt publiceren."
+  },
+  "f_app_password_6505": {
+    "message": "App-wachtwoord"
+  },
+  "f_at_least_12_characters_it_is_f78b": {
+    "message": "Minstens 12 tekens. Het wordt nergens opgeslagen: als je het kwijtraakt, kan niemand de bestanden openen."
+  },
+  "f_back_up_now_63b3": {
+    "message": "Nu back-uppen"
+  },
+  "f_backup_only_e75f": {
+    "message": "Alleen back-up"
+  },
+  "f_bring_everything_in_this_pla_0150": {
+    "message": "Alles uit deze plek terughalen naar dit apparaat? Waar dit apparaat afwijkt, wint de plek. Hier wordt niets verwijderd."
+  },
+  "f_bucket_3557": {
+    "message": "Bucket"
+  },
+  "f_by_article_5c16": {
+    "message": "Per artikel"
+  },
+  "f_changes_here_apply_to_every__822d": {
+    "message": "Wijzigingen hier gelden voor elke plek op deze server."
+  },
+  "f_checked_the_folder_restored__7f16": {
+    "message": "Map gecontroleerd: {r} hersteld, {o} restanten gevonden."
+  },
+  "f_checking_your_library_f467": {
+    "message": "Bibliotheek controleren …"
+  },
+  "f_choose_6160": {
+    "message": "Kies"
+  },
+  "f_choose_a_passphrase_c9a1": {
+    "message": "Kies een wachtwoordzin"
+  },
+  "f_choose_another_folder_1129": {
+    "message": "Kies een andere map"
+  },
+  "f_cloudflare_r2_auto_leave_the_74e0": {
+    "message": "Cloudflare R2: auto. Laat de standaard staan als je provider er niet naar vraagt."
+  },
+  "f_code_for_the_phone_8494": {
+    "message": "Code voor de telefoon"
+  },
+  "f_comment_9ffe": {
+    "message": "Reactie"
+  },
+  "f_connect_and_publish_3387": {
+    "message": "Verbinden en publiceren"
+  },
+  "f_connected_the_folder_is_empt_688d": {
+    "message": "Verbonden. De map is leeg, dus er wordt een nieuwe versleutelde bibliotheek gemaakt."
+  },
+  "f_connected_this_folder_alread_7ea2": {
+    "message": "Verbonden. Deze map bevat al een versleutelde bibliotheek."
+  },
+  "f_connected_article_matches_b205": {
+    "message": "Verbonden. {n} artikel komt overeen."
+  },
+  "f_connected_articles_match_40f2": {
+    "message": "Verbonden. {n} artikelen komen overeen."
+  },
+  "f_continuing_file_left_4bdc": {
+    "message": "Gaat verder … nog {n} bestand"
+  },
+  "f_continuing_files_left_7869": {
+    "message": "Gaat verder … nog {n} bestanden"
+  },
+  "f_copied_2cb1": {
+    "message": "Gekopieerd."
+  },
+  "f_copies_of_other_people_s_art_db7e": {
+    "message": "Kopieën van artikelen van anderen. Controleer of je ze mag delen. Bestanden worden veel groter."
+  },
+  "f_copy_did_not_work_select_the_1dcb": {
+    "message": "Kopiëren is mislukt. Selecteer de woorden en kopieer ze met de hand."
+  },
+  "f_copy_puts_the_words_in_one_p_9b1c": {
+    "message": "Kopiëren geeft de woorden in één stuk, verbonden met streepjes. Dat overleeft configuratiebestanden, shells en chat-apps; bij het intypen werken spaties en streepjes allebei."
+  },
+  "f_could_not_reach_the_server_aa7e": {
+    "message": "Server is niet bereikbaar"
+  },
+  "f_could_not_save_this_place_cf23": {
+    "message": "Plek opslaan mislukt."
+  },
+  "f_created_for_you_use_one_fold_0390": {
+    "message": "Wordt voor je aangemaakt. Gebruik voor elk doel een eigen map, bijvoorbeeld public voor een websitelijst en backup voor een volledige kopie."
+  },
+  "f_danger_zone_19b4": {
+    "message": "Gevarenzone"
+  },
+  "f_delete_them_here_too_9d48": {
+    "message": "Ook hier verwijderen"
+  },
+  "f_delete_this_note_3253": {
+    "message": "Notitie verwijderen?"
+  },
+  "f_download_bb19": {
+    "message": "Downloaden"
+  },
+  "f_eu_1f4f": {
+    "message": "EU"
+  },
+  "f_eu_company_ef04": {
+    "message": "EU-bedrijf"
+  },
+  "f_eu_servers_987b": {
+    "message": "EU-servers"
+  },
+  "f_each_article_becomes_one_fil_f81c": {
+    "message": "Elk artikel wordt één bestand, plus een lijst voor je website (library.json)."
+  },
+  "f_edit_comment_f0e4": {
+    "message": "Reactie bewerken"
+  },
+  "f_edit_server_63e0": {
+    "message": "Server bewerken"
+  },
+  "f_encrypted_e253": {
+    "message": "Versleuteld"
+  },
+  "f_end_with_tags_ctrl_enter_to__83e2": {
+    "message": "Eindig met #tags · ⌘/Ctrl+Enter om toe te voegen"
+  },
+  "f_endpoint_address_ce54": {
+    "message": "Eindpuntadres"
+  },
+  "f_every_article_you_saved_goes_f744": {
+    "message": "Elk opgeslagen artikel wordt gepubliceerd, ook artikelen die anderen misschien niet mogen lezen. Een back-up die alleen jij kunt lezen, kun je beter versleutelen."
+  },
+  "f_everything_8340": {
+    "message": "Alles"
+  },
+  "f_everything_is_encrypted_on_t_1b86": {
+    "message": "Alles wordt op dit apparaat versleuteld voordat het wordt geüpload. Notities, herinneringen en volledige teksten zijn inbegrepen, omdat alleen jij ze kunt lezen."
+  },
+  "f_files_go_into_a_subfolder_of_5a98": {
+    "message": "De bestanden komen in een submap daarvan. Alles wat die map synchroon houdt (Syncthing, iCloud Drive, Dropbox, een USB-stick) brengt ze naar je andere apparaten."
+  },
+  "f_fine_the_suggested_words_are_36c0": {
+    "message": "Prima. De voorgestelde woorden zijn sterker."
+  },
+  "f_folder_7afd": {
+    "message": "Map"
+  },
+  "f_folder_access_is_waiting_b754": {
+    "message": "Maptoegang wacht"
+  },
+  "f_folder_on_the_server_b74c": {
+    "message": "Map op de server"
+  },
+  "f_folder_960e": {
+    "message": "Map: {name}"
+  },
+  "f_for_syncing_and_backup_only__f767": {
+    "message": "Voor synchronisatie en back-up. Alleen jij kunt het lezen, dus geen enkele website. De provider ziet versleutelde bestanden."
+  },
+  "f_getting_changes_of_8fbb": {
+    "message": "Wijzigingen ophalen {done} van {total}"
+  },
+  "f_grid_66b1": {
+    "message": "Raster"
+  },
+  "f_highlight_05c7": {
+    "message": "Markering"
+  },
+  "f_i_made_a_backup_of_this_devi_c05b": {
+    "message": "Ik heb een back-up gemaakt"
+  },
+  "f_i_saved_the_passphrase_81d0": {
+    "message": "Wachtwoordzin opgeslagen"
+  },
+  "f_in_nextcloud_settings_securi_4fee": {
+    "message": "In Nextcloud: Instellingen → Beveiliging → app-wachtwoord aanmaken. Gebruik nooit je hoofdwachtwoord."
+  },
+  "f_joining_merges_this_device_w_8048": {
+    "message": "Bij deelnemen wordt dit apparaat samengevoegd met de bibliotheek in de map: waar beide afwijken, wint de map. Maak eerst een back-up van dit apparaat."
+  },
+  "f_keep_your_library_in_step_ac_b5fe": {
+    "message": "Houd je bibliotheek synchroon op al je apparaten, maak er een back-up van of publiceer een deel ervan voor anderen. Elke plek is een map op je eigen server of op deze computer. Er verlaat niets dit apparaat totdat je er een toevoegt."
+  },
+  "f_looking_at_what_is_in_the_fo_1e05": {
+    "message": "De inhoud van de map wordt bekeken …"
+  },
+  "f_make_a_backup_now_3046": {
+    "message": "Nu een back-up maken"
+  },
+  "f_make_an_access_key_just_for__abc9": {
+    "message": "Maak een toegangssleutel alleen voor deze bucket, met rechten om erin te lezen, schrijven, weergeven en verwijderen. Gebruik nooit de hoofdsleutel."
+  },
+  "f_meant_for_a_folder_only_you__33c0": {
+    "message": "Bedoeld voor een map die alleen jij kunt openen, bijvoorbeeld een privé-back-up of een interne lijst. Wie de map kan openen, kan dit allemaal lezen."
+  },
+  "f_mine_84d6": {
+    "message": "Mijn"
+  },
+  "f_models_marked_eu_servers_run_7b00": {
+    "message": "Modellen met 'EU-servers' draaien alleen op servers in Europa, vaak van Amerikaanse cloudbedrijven. Alleen modellen met 'EU-bedrijf' komen ook van een Europees bedrijf. Elk ander model werkt nog steeds, is gemarkeerd met 'Niet op EU-servers' en draait zoals gewoonlijk; automatische keuzes blijven op EU-servers. EU-servers kunnen iets meer kosten; de getoonde prijzen zijn de EU-prijzen. Voorlezen en spraak-naar-tekst hebben geen EU-optie. Je tekst loopt onderweg nog steeds via onze dienst (een server in Duitsland) en daarna via OpenRouter, een Amerikaans bedrijf."
+  },
+  "f_my_nextcloud_741d": {
+    "message": "Mijn Nextcloud"
+  },
+  "f_my_notes_and_comments_099b": {
+    "message": "Mijn notities en reacties"
+  },
+  "f_new_note_7123": {
+    "message": "Nieuw"
+  },
+  "f_new_server_9ee0": {
+    "message": "Nieuwe server"
+  },
+  "f_nextcloud_webdav_2b5d": {
+    "message": "Nextcloud / WebDAV"
+  },
+  "f_nextcloud_owncloud_synology__5752": {
+    "message": "Nextcloud, ownCloud, Synology, de meeste NAS-systemen"
+  },
+  "f_no_notes_on_this_article_yet_b876": {
+    "message": "Nog geen notities bij dit artikel."
+  },
+  "f_no_notes_yet_68d5": {
+    "message": "Nog geen notities."
+  },
+  "f_no_tags_yet_end_a_note_with__ae68": {
+    "message": "Nog geen tags. Eindig een notitie met #tag."
+  },
+  "f_not_eu_fb9c": {
+    "message": "Niet EU"
+  },
+  "f_not_here_d910": {
+    "message": "Niet hier"
+  },
+  "f_not_on_eu_servers_abcb": {
+    "message": "Niet op EU-servers"
+  },
+  "f_not_published_yet_d0ae": {
+    "message": "Nog niet gepubliceerd"
+  },
+  "f_not_synced_yet_7efe": {
+    "message": "Nog niet gesynct"
+  },
+  "f_note_c15d": {
+    "message": "Notitie"
+  },
+  "f_notes_1b6a": {
+    "message": "Notities"
+  },
+  "f_notes_and_highlights_0e9c": {
+    "message": "Notities en markeringen"
+  },
+  "f_notes_without_an_article_5bd7": {
+    "message": "Notities zonder artikel"
+  },
+  "f_nothing_here_yet_5bfc": {
+    "message": "Hier is nog niets."
+  },
+  "f_nothing_matches_03c3": {
+    "message": "Niets gevonden."
+  },
+  "f_only_publish_articles_tagged_b789": {
+    "message": "Alleen artikelen publiceren met tag"
+  },
+  "f_open_the_page_ab11": {
+    "message": "Pagina openen"
+  },
+  "f_passphrase_2dc5": {
+    "message": "Wachtwoordzin"
+  },
+  "f_passphrase_keep_it_somewhere_ca8a": {
+    "message": "Wachtwoordzin: {k}. Bewaar hem op een veilige plek."
+  },
+  "f_paused_1feb": {
+    "message": "Gepauzeerd"
+  },
+  "f_pinned_q_a_faa5": {
+    "message": "Vastgezet"
+  },
+  "f_places_d03d": {
+    "message": "Plekken"
+  },
+  "f_publish_everything_except_ar_74e7": {
+    "message": "Alles publiceren behalve artikelen met tag"
+  },
+  "f_publish_my_library_to_my_own_a71f": {
+    "message": "Mijn bibliotheek publiceren op mijn eigen server"
+  },
+  "f_publish_now_ae60": {
+    "message": "Nu publiceren"
+  },
+  "f_publishing_e1f2": {
+    "message": "Publiceren …"
+  },
+  "f_questions_you_pinned_with_an_5f9e": {
+    "message": "Vragen die je hebt vastgezet, met antwoorden"
+  },
+  "f_readable_00b5": {
+    "message": "Leesbaar"
+  },
+  "f_reading_changes_of_9b27": {
+    "message": "Wijzigingen lezen {done} van {total}"
+  },
+  "f_region_789d": {
+    "message": "Regio"
+  },
+  "f_reminders_b654": {
+    "message": "Herinneringen"
+  },
+  "f_remove_comment_2340": {
+    "message": "Reactie verwijderen"
+  },
+  "f_remove_them_401d": {
+    "message": "Verwijderen"
+  },
+  "f_remove_this_highlight_3cc8": {
+    "message": "Deze markering verwijderen?"
+  },
+  "f_remove_this_place_6efc": {
+    "message": "Deze plek verwijderen"
+  },
+  "f_remove_this_place_the_files__ad9c": {
+    "message": "Deze plek verwijderen? De bestanden die al op je server staan, worden niet verwijderd."
+  },
+  "f_removing_a_place_stops_publi_caa4": {
+    "message": "Als je een plek verwijdert, stopt het publiceren. De bestanden die al op je server staan, blijven waar ze zijn. Een server die geen enkele plek meer gebruikt, wordt met zijn inloggegevens vergeten."
+  },
+  "f_removing_of_9a27": {
+    "message": "Verwijderen {done} van {total}"
+  },
+  "f_repeat_the_passphrase_c2a7": {
+    "message": "Herhaal de wachtwoordzin"
+  },
+  "f_restore_from_here_3623": {
+    "message": "Vanaf hier herstellen"
+  },
+  "f_restored_item_changed_on_thi_f959": {
+    "message": "Hersteld. {n} item gewijzigd op dit apparaat."
+  },
+  "f_restored_items_changed_on_th_853c": {
+    "message": "Hersteld. {n} items gewijzigd op dit apparaat."
+  },
+  "f_restoring_daec": {
+    "message": "Herstellen …"
+  },
+  "f_s3_compatible_4144": {
+    "message": "S3-compatibel"
+  },
+  "f_save_5d68": {
+    "message": "Opslaan"
+  },
+  "f_save_server_bca3": {
+    "message": "Server opslaan"
+  },
+  "f_save_your_passphrase_3801": {
+    "message": "Sla je wachtwoordzin op"
+  },
+  "f_saving_of_566a": {
+    "message": "Opslaan {done} van {total}"
+  },
+  "f_scan_it_with_ai_summary_help_572d": {
+    "message": "Scan hem met AI Summary Helper op je telefoon: Instellingen → Library sync → Code scannen. De code bevat je serverinloggegevens, dus laat hem alleen aan je eigen telefoon zien. Hij verbergt zichzelf na een minuut."
+  },
+  "f_search_highlights_comments_n_4f81": {
+    "message": "Markeringen, reacties, notities zoeken …"
+  },
+  "f_secret_access_key_d3a2": {
+    "message": "Geheime toegangssleutel"
+  },
+  "f_selected_3294": {
+    "message": "Geselecteerd"
+  },
+  "f_server_02f2": {
+    "message": "Server"
+  },
+  "f_server_address_025e": {
+    "message": "Serveradres"
+  },
+  "f_server_name_22f5": {
+    "message": "Servernaam"
+  },
+  "f_server_saved_27e1": {
+    "message": "Server opgeslagen."
+  },
+  "f_show_2e5c": {
+    "message": "Tonen"
+  },
+  "f_show_code_for_the_phone_a8c1": {
+    "message": "Code voor de telefoon tonen"
+  },
+  "f_show_passphrase_dda0": {
+    "message": "Wachtwoordzin tonen"
+  },
+  "f_six_random_words_you_will_ty_e18c": {
+    "message": "Zes willekeurige woorden. Je typt ze op je andere apparaten in, dus schrijf ze op of bewaar ze in een wachtwoordmanager. Ze worden nergens anders opgeslagen: als je ze kwijtraakt, kan niemand je bestanden openen."
+  },
+  "f_soon_da12": {
+    "message": "Straks"
+  },
+  "f_strong_db5c": {
+    "message": "Sterk."
+  },
+  "f_suggest_random_words_instead_a3fb": {
+    "message": "Stel willekeurige woorden voor"
+  },
+  "f_sync_backup_9786": {
+    "message": "Sync & back-up"
+  },
+  "f_sync_my_devices_79fb": {
+    "message": "Mijn apparaten syncen"
+  },
+  "f_sync_now_d8fe": {
+    "message": "Nu syncen"
+  },
+  "f_syncthing_icloud_drive_dropb_a87d": {
+    "message": "Syncthing, iCloud Drive, Dropbox of een USB-stick houdt hem synchroon."
+  },
+  "f_test_connection_b6b7": {
+    "message": "Verbinding testen"
+  },
+  "f_the_browser_could_not_rememb_f257": {
+    "message": "De browser kon deze map niet onthouden."
+  },
+  "f_the_browser_did_not_allow_ac_5245": {
+    "message": "De browser heeft de toegang niet toegestaan."
+  },
+  "f_the_browser_takes_back_acces_aaf9": {
+    "message": "De browser trekt de toegang tot een map in bij een herstart, en alleen een klik van jou geeft hem terug. Tot die tijd wordt de map niet gesynchroniseerd."
+  },
+  "f_the_kind_of_a_place_cannot_b_8037": {
+    "message": "Het type van een plek kan niet worden gewijzigd. Voeg een andere plek toe voor het andere type."
+  },
+  "f_the_login_is_saved_once_for__bcba": {
+    "message": "De inloggegevens worden één keer voor alle opgeslagen."
+  },
+  "f_the_restore_did_not_finish_a4b5": {
+    "message": "Het herstel is niet voltooid."
+  },
+  "f_the_save_for_later_time_and__7dff": {
+    "message": "Het tijdstip om later te lezen en je reden daarvoor."
+  },
+  "f_the_service_picks_a_model_fo_a591": {
+    "message": "De dienst kiest voor elk verzoek een model: korte teksten krijgen een licht model, lange een groter."
+  },
+  "f_the_two_passphrases_are_not__e90b": {
+    "message": "De twee wachtwoordzinnen komen niet overeen."
+  },
+  "f_these_six_words_are_the_key__f595": {
+    "message": "Deze zes woorden zijn de sleutel tot '{name}'. Je typt ze op elk nieuw apparaat in. Als je ze kwijtraakt, kan niemand de bestanden lezen, ook wij niet. Sla ze op in een wachtwoordmanager."
+  },
+  "f_this_device_was_away_for_a_l_46de": {
+    "message": "Dit apparaat was lang weg. Er is alleen verzonden wat sindsdien is gewijzigd, en er is niets verwijderd."
+  },
+  "f_this_device_writes_everythin_1070": {
+    "message": "Dit apparaat schrijft alles naar de plek en leest nooit terug. Herstel ervan wanneer je het nodig hebt."
+  },
+  "f_this_folder_already_holds_an_9f1e": {
+    "message": "Deze map bevat al een versleutelde bibliotheek. Voer de wachtwoordzin in (de woorden die je hebt opgeslagen)."
+  },
+  "f_this_folder_already_holds_an_8e8c": {
+    "message": "Deze map bevat al een versleutelde bibliotheek. Voer hieronder de wachtwoordzin in en druk nogmaals op Verbinden."
+  },
+  "f_this_model_does_not_run_on_e_21da": {
+    "message": "Dit model draait niet op EU-servers. In plaats daarvan {name} (EU) gebruiken?"
+  },
+  "f_this_place_publishes_only_th_f3b8": {
+    "message": "Deze plek publiceert alleen: dit apparaat schrijft de bestanden en leest ze nooit terug."
+  },
+  "f_this_place_uses_your_own_pas_823b": {
+    "message": "Deze plek gebruikt je eigen wachtwoordzin. Die staat niet in de code: typ hem op de telefoon in."
+  },
+  "f_this_place_uses_your_own_pas_b61e": {
+    "message": "Deze plek gebruikt je eigen wachtwoordzin. Hij wordt niet op dit apparaat bewaard, dus kan niet worden getoond."
+  },
+  "f_to_publish_on_your_own_websi_9caf": {
+    "message": "Om op je eigen website te publiceren: gewone bestanden die iedereen met de link kan lezen."
+  },
+  "f_turn_on_to_run_models_on_ser_af13": {
+    "message": "Zet aan om modellen op servers in Europa te draaien waar dat wordt aangeboden. Alle andere modellen blijven werken en zijn gemarkeerd."
+  },
+  "f_unchanged_e05e": {
+    "message": "Ongewijzigd"
+  },
+  "f_updating_the_list_d48e": {
+    "message": "Lijst bijwerken …"
+  },
+  "f_uploading_of_c6b9": {
+    "message": "Uploaden {done} van {total}"
+  },
+  "f_use_my_own_passphrase_c42a": {
+    "message": "Eigen wachtwoordzin gebruiken"
+  },
+  "f_use_4021": {
+    "message": "{name} nemen"
+  },
+  "f_username_d4d9": {
+    "message": "Gebruiker"
+  },
+  "f_view_aa18": {
+    "message": "Weergave"
+  },
+  "f_weak_use_at_least_12_charact_690f": {
+    "message": "Zwak: gebruik minstens 12 tekens of de voorgestelde woorden."
+  },
+  "f_website_list_be8a": {
+    "message": "Websitelijst"
+  },
+  "f_what_goes_out_1113": {
+    "message": "Wat er uitgaat"
+  },
+  "f_what_it_is_for_84ef": {
+    "message": "Waarvoor de plek is"
+  },
+  "f_who_can_read_it_ceb4": {
+    "message": "Wie het kan lezen"
+  },
+  "f_with_a_tag_c382": {
+    "message": "Met een tag"
+  },
+  "f_works_in_chrome_and_edge_on__f2c7": {
+    "message": "Werkt in Chrome en Edge op een computer."
+  },
+  "f_write_a_note_about_this_arti_e1b4": {
+    "message": "Schrijf een notitie bij dit artikel …"
+  },
+  "f_write_a_note_or_a_thought_wo_67b1": {
+    "message": "Schrijf een notitie of gedachte …"
+  },
+  "f_write_a_note_c7c9": {
+    "message": "Notitie schrijven …"
+  },
+  "f_write_one_below_or_highlight_7627": {
+    "message": "Schrijf er hieronder een of markeer tekst op een pagina. Jouw markeringen en die van de AI verschijnen hier ook."
+  },
+  "f_your_articles_highlights_not_9c7c": {
+    "message": "Je artikelen, markeringen, notities, collecties, samenvattingen en volledige teksten, synchroon gehouden op elk apparaat dat met dezelfde wachtwoordzin meedoet."
+  },
+  "f_your_own_index_html_is_in_th_8069": {
+    "message": "Je eigen index.html staat in deze map, dus de viewer is niet vervangen."
+  },
+  "f_your_own_notes_and_the_comme_6ef8": {
+    "message": "Je eigen notities en de reacties op je markeringen."
+  },
+  "f_your_passphrase_2512": {
+    "message": "Je wachtwoordzin"
+  },
+  "f_your_yellow_and_ai_highlight_15a0": {
+    "message": "Je gele markeringen en de AI-markeringen"
+  },
+  "f_backed_up_ago_845b": {
+    "message": "{t} geleden geback-upt"
+  },
+  "f_picks_a_model_for_each_reque_519c": {
+    "message": "kiest voor elk verzoek een model"
+  },
+  "f_published_ago_0576": {
+    "message": "{t} geleden gepubl."
+  },
+  "f_synced_ago_174c": {
+    "message": "{t} geleden gesynct"
+  },
+  "f_of_9ced": {
+    "message": "{a} van {b}"
+  },
+  "f_ai_highlight_8f93": {
+    "message": "{n} AI-markering"
+  },
+  "f_ai_highlights_7da0": {
+    "message": "{n} AI-markeringen"
+  },
+  "f_file_is_no_longer_wanted_her_48c4": {
+    "message": "{n} bestand is hier niet meer gewenst en zou van je server worden verwijderd. Controleer of dit klopt."
+  },
+  "f_files_are_no_longer_wanted_h_6975": {
+    "message": "{n} bestanden zijn hier niet meer gewenst en zouden van je server worden verwijderd. Controleer of dit klopt."
+  },
+  "f_files_had_problems_a60b": {
+    "message": "{n} bestanden hadden problemen"
+  },
+  "f_highlight_5f43": {
+    "message": "{n} markering"
+  },
+  "f_highlights_d890": {
+    "message": "{n} markeringen"
+  },
+  "f_more_article_was_deleted_on__0e7e": {
+    "message": "{n} ander artikel is op een ander apparaat verwijderd. Het staat hier nog totdat je dat zegt. Controleer of dit klopt."
+  },
+  "f_more_articles_were_deleted_o_8348": {
+    "message": "{n} andere artikelen zijn op andere apparaten verwijderd. Ze staan hier nog totdat je dat zegt. Controleer of dit klopt."
+  },
+  "f_note_b2a1": {
+    "message": "{n} notitie"
+  },
+  "f_notes_8096": {
+    "message": "{n} notities"
+  },
+  "f_place_b298": {
+    "message": "{n} plek"
+  },
+  "f_place_uses_this_server_133b": {
+    "message": "{n} plek gebruikt deze server."
+  },
+  "f_places_a7f1": {
+    "message": "{n} plekken"
+  },
+  "f_places_use_this_server_4df9": {
+    "message": "{n} plekken gebruiken deze server."
   }
 }

@@ -5675,5 +5675,671 @@
   },
   "f_what_s_new_in_9c82": {
     "message": "{v} 新功能"
+  },
+  "f_a_folder_on_this_computer_bbe4": {
+    "message": "这台电脑上的文件夹"
+  },
+  "f_a_simple_web_page_index_html_d002": {
+    "message": "一个简单的网页（index.html），读取 library.json：支持搜索、标签、时间线和标签图。它需要能提供 HTML 页面的服务器，例如你自己的网络服务器或公开存储桶。Nextcloud 分享不支持。"
+  },
+  "f_ai_135f": {
+    "message": "AI"
+  },
+  "f_ai_highlight_b91f": {
+    "message": "AI 高亮"
+  },
+  "f_aws_cloudflare_r2_backblaze__139d": {
+    "message": "AWS, Cloudflare R2, Backblaze, MinIO, Wasabi"
+  },
+  "f_aws_https_s3_region_amazonaw_c68d": {
+    "message": "AWS: https://s3.<region>.amazonaws.com · Cloudflare R2: https://<account>.r2.cloudflarestorage.com · Backblaze: https://s3.<region>.backblazeb2.com"
+  },
+  "f_access_is_allowed_7031": {
+    "message": "已允许访问。"
+  },
+  "f_access_key_id_8d75": {
+    "message": "访问密钥 ID"
+  },
+  "f_add_a_comment_9c08": {
+    "message": "添加评论…"
+  },
+  "f_add_a_place_799c": {
+    "message": "添加位置"
+  },
+  "f_add_note_9108": {
+    "message": "添加笔记"
+  },
+  "f_all_except_a_tag_ca3e": {
+    "message": "除某标签外全部"
+  },
+  "f_all_places_fdbc": {
+    "message": "全部位置"
+  },
+  "f_allow_access_again_cc7c": {
+    "message": "重新允许访问"
+  },
+  "f_allow_access_to_599a": {
+    "message": "允许访问 {name}"
+  },
+  "f_also_publish_a_viewer_page_2d07": {
+    "message": "同时发布查看页"
+  },
+  "f_an_index_html_that_is_not_ou_889b": {
+    "message": "此文件夹中已有并非由本应用创建的 index.html，因此未写入查看页。请换一个文件夹。"
+  },
+  "f_another_suggestion_09e8": {
+    "message": "换一个建议"
+  },
+  "f_anyone_who_can_open_this_fol_86f7": {
+    "message": "任何能打开此文件夹的人都能读取这些文件。请使用你自己掌控的文件夹，除非要公开发布，否则请保持私有。"
+  },
+  "f_app_password_6505": {
+    "message": "应用专用密码"
+  },
+  "f_at_least_12_characters_it_is_f78b": {
+    "message": "至少 12 个字符。它不会保存在任何地方：丢失后，没有人能打开这些文件。"
+  },
+  "f_back_up_now_63b3": {
+    "message": "立即备份"
+  },
+  "f_backup_only_e75f": {
+    "message": "仅备份"
+  },
+  "f_bring_everything_in_this_pla_0150": {
+    "message": "将此位置中的全部内容恢复到本设备？两者不一致时，以该位置为准。此处不会删除任何内容。"
+  },
+  "f_bucket_3557": {
+    "message": "存储桶"
+  },
+  "f_by_article_5c16": {
+    "message": "按文章"
+  },
+  "f_changes_here_apply_to_every__822d": {
+    "message": "此处的更改适用于该服务器上的所有位置。"
+  },
+  "f_checked_the_folder_restored__7f16": {
+    "message": "已检查文件夹：恢复 {r} 项，发现 {o} 个遗留项。"
+  },
+  "f_checking_your_library_f467": {
+    "message": "正在检查你的资料库…"
+  },
+  "f_choose_6160": {
+    "message": "选择"
+  },
+  "f_choose_a_passphrase_c9a1": {
+    "message": "选择口令"
+  },
+  "f_choose_another_folder_1129": {
+    "message": "选择其他文件夹"
+  },
+  "f_cloudflare_r2_auto_leave_the_74e0": {
+    "message": "Cloudflare R2：auto。如果服务商没有要求，保持默认即可。"
+  },
+  "f_code_for_the_phone_8494": {
+    "message": "手机端代码"
+  },
+  "f_comment_9ffe": {
+    "message": "评论"
+  },
+  "f_connect_and_publish_3387": {
+    "message": "连接并发布"
+  },
+  "f_connected_the_folder_is_empt_688d": {
+    "message": "已连接。文件夹为空，将创建一个新的加密资料库。"
+  },
+  "f_connected_this_folder_alread_7ea2": {
+    "message": "已连接。此文件夹中已有加密资料库。"
+  },
+  "f_connected_article_matches_b205": {
+    "message": "已连接。{n} 篇文章匹配。"
+  },
+  "f_connected_articles_match_40f2": {
+    "message": "已连接。{n} 篇文章匹配。"
+  },
+  "f_continuing_file_left_4bdc": {
+    "message": "继续中…还剩 {n} 个文件"
+  },
+  "f_continuing_files_left_7869": {
+    "message": "继续中…还剩 {n} 个文件"
+  },
+  "f_copied_2cb1": {
+    "message": "已复制。"
+  },
+  "f_copies_of_other_people_s_art_db7e": {
+    "message": "他人文章的副本。请确认你有权分享。文件会大得多。"
+  },
+  "f_copy_did_not_work_select_the_1dcb": {
+    "message": "复制失败。请选中这些词并手动复制。"
+  },
+  "f_copy_puts_the_words_in_one_p_9b1c": {
+    "message": "复制会把这些词用连字符连成一串，这样在配置文件、Shell 和聊天应用中都不会出问题；手动输入时用空格或连字符均可。"
+  },
+  "f_could_not_reach_the_server_aa7e": {
+    "message": "无法连接服务器"
+  },
+  "f_could_not_save_this_place_cf23": {
+    "message": "无法保存此位置。"
+  },
+  "f_created_for_you_use_one_fold_0390": {
+    "message": "已为你创建。每种用途用一个文件夹，例如用 public 放网站列表，用 backup 放完整备份。"
+  },
+  "f_danger_zone_19b4": {
+    "message": "危险区域"
+  },
+  "f_delete_them_here_too_9d48": {
+    "message": "在此处也删除"
+  },
+  "f_delete_this_note_3253": {
+    "message": "删除这条笔记？"
+  },
+  "f_download_bb19": {
+    "message": "下载"
+  },
+  "f_eu_1f4f": {
+    "message": "EU"
+  },
+  "f_eu_company_ef04": {
+    "message": "欧盟公司"
+  },
+  "f_eu_servers_987b": {
+    "message": "欧盟服务器"
+  },
+  "f_each_article_becomes_one_fil_f81c": {
+    "message": "每篇文章保存为一个文件，另有一份供网站使用的列表（library.json）。"
+  },
+  "f_edit_comment_f0e4": {
+    "message": "编辑评论"
+  },
+  "f_edit_server_63e0": {
+    "message": "编辑服务器"
+  },
+  "f_encrypted_e253": {
+    "message": "已加密"
+  },
+  "f_end_with_tags_ctrl_enter_to__83e2": {
+    "message": "以 #标签 结尾 · ⌘/Ctrl+Enter 添加"
+  },
+  "f_endpoint_address_ce54": {
+    "message": "端点地址"
+  },
+  "f_every_article_you_saved_goes_f744": {
+    "message": "你保存的每篇文章都会发布出去，包括你可能不想让别人读到的。只有你自己能读的备份，应改用加密。"
+  },
+  "f_everything_8340": {
+    "message": "全部"
+  },
+  "f_everything_is_encrypted_on_t_1b86": {
+    "message": "所有内容在上传前都会在本设备上加密。笔记、提醒和全文也包含在内，因为只有你能读取它们。"
+  },
+  "f_files_go_into_a_subfolder_of_5a98": {
+    "message": "文件会放入其中的一个子文件夹。能让该文件夹保持同步的工具（Syncthing、iCloud Drive、Dropbox、U 盘）会把它们带到你的其他设备。"
+  },
+  "f_fine_the_suggested_words_are_36c0": {
+    "message": "可以。建议的词更强。"
+  },
+  "f_folder_7afd": {
+    "message": "文件夹"
+  },
+  "f_folder_access_is_waiting_b754": {
+    "message": "文件夹访问等待中"
+  },
+  "f_folder_on_the_server_b74c": {
+    "message": "服务器上的文件夹"
+  },
+  "f_folder_960e": {
+    "message": "文件夹：{name}"
+  },
+  "f_for_syncing_and_backup_only__f767": {
+    "message": "用于同步和备份。只有你能读取，因此网站无法读取。服务商看到的是加密后的文件。"
+  },
+  "f_getting_changes_of_8fbb": {
+    "message": "获取更改：{done} / {total}"
+  },
+  "f_grid_66b1": {
+    "message": "网格"
+  },
+  "f_highlight_05c7": {
+    "message": "高亮"
+  },
+  "f_i_made_a_backup_of_this_devi_c05b": {
+    "message": "我已备份此设备"
+  },
+  "f_i_saved_the_passphrase_81d0": {
+    "message": "我已保存口令"
+  },
+  "f_in_nextcloud_settings_securi_4fee": {
+    "message": "在 Nextcloud 中：设置 → 安全 → 创建应用专用密码。切勿使用主密码。"
+  },
+  "f_joining_merges_this_device_w_8048": {
+    "message": "加入时会将本设备与文件夹中的资料库合并：两者不一致时，以文件夹为准。请先备份本设备。"
+  },
+  "f_keep_your_library_in_step_ac_b5fe": {
+    "message": "让你的资料库在各设备间保持同步、备份，或将其中一部分发布给他人。每个位置是你自己服务器上或这台电脑上的一个文件夹。添加位置之前，本设备上的任何内容都不会外传。"
+  },
+  "f_looking_at_what_is_in_the_fo_1e05": {
+    "message": "正在查看文件夹中的内容…"
+  },
+  "f_make_a_backup_now_3046": {
+    "message": "立即创建备份"
+  },
+  "f_make_an_access_key_just_for__abc9": {
+    "message": "请专为此存储桶创建一个访问密钥，允许在其中读取、写入、列出和删除。切勿使用账户的主密钥。"
+  },
+  "f_meant_for_a_folder_only_you__33c0": {
+    "message": "适用于只有你能打开的文件夹，例如私人备份或内部列表。任何能打开该文件夹的人都能读取以上全部内容。"
+  },
+  "f_mine_84d6": {
+    "message": "我的"
+  },
+  "f_models_marked_eu_servers_run_7b00": {
+    "message": "标有“欧盟服务器”的模型仅在欧洲的服务器上运行，通常是美国云公司的服务器。只有标有“欧盟公司”的模型同时也来自欧洲公司。其他所有模型仍可使用，会标为“非欧盟服务器”，并照常运行；“自动”选项会保持在欧盟服务器上。欧盟服务器可能稍贵一些；显示的是欧盟价格。朗读和语音转文字没有欧盟选项。你的文本在传输途中仍会经过我们的服务（位于德国的服务器），再经过美国公司 OpenRouter。"
+  },
+  "f_my_nextcloud_741d": {
+    "message": "我的 Nextcloud"
+  },
+  "f_my_notes_and_comments_099b": {
+    "message": "我的笔记和评论"
+  },
+  "f_new_note_7123": {
+    "message": "新笔记"
+  },
+  "f_new_server_9ee0": {
+    "message": "新服务器"
+  },
+  "f_nextcloud_webdav_2b5d": {
+    "message": "Nextcloud / WebDAV"
+  },
+  "f_nextcloud_owncloud_synology__5752": {
+    "message": "Nextcloud、ownCloud、Synology、大多数 NAS 设备"
+  },
+  "f_no_notes_on_this_article_yet_b876": {
+    "message": "这篇文章还没有笔记。"
+  },
+  "f_no_notes_yet_68d5": {
+    "message": "还没有笔记。"
+  },
+  "f_no_tags_yet_end_a_note_with__ae68": {
+    "message": "还没有标签。以 #标签 结束一条笔记。"
+  },
+  "f_not_eu_fb9c": {
+    "message": "非欧盟"
+  },
+  "f_not_here_d910": {
+    "message": "不在此处"
+  },
+  "f_not_on_eu_servers_abcb": {
+    "message": "非欧盟服务器"
+  },
+  "f_not_published_yet_d0ae": {
+    "message": "尚未发布"
+  },
+  "f_not_synced_yet_7efe": {
+    "message": "尚未同步"
+  },
+  "f_note_c15d": {
+    "message": "笔记"
+  },
+  "f_notes_1b6a": {
+    "message": "笔记"
+  },
+  "f_notes_and_highlights_0e9c": {
+    "message": "笔记和高亮"
+  },
+  "f_notes_without_an_article_5bd7": {
+    "message": "没有文章的笔记"
+  },
+  "f_nothing_here_yet_5bfc": {
+    "message": "这里还没有内容。"
+  },
+  "f_nothing_matches_03c3": {
+    "message": "没有匹配项。"
+  },
+  "f_only_publish_articles_tagged_b789": {
+    "message": "仅发布带有此标签的文章"
+  },
+  "f_open_the_page_ab11": {
+    "message": "打开页面"
+  },
+  "f_passphrase_2dc5": {
+    "message": "口令"
+  },
+  "f_passphrase_keep_it_somewhere_ca8a": {
+    "message": "口令：{k}。请妥善保管。"
+  },
+  "f_paused_1feb": {
+    "message": "已暂停"
+  },
+  "f_pinned_q_a_faa5": {
+    "message": "置顶问答"
+  },
+  "f_places_d03d": {
+    "message": "位置"
+  },
+  "f_publish_everything_except_ar_74e7": {
+    "message": "发布除带有此标签外的全部文章"
+  },
+  "f_publish_my_library_to_my_own_a71f": {
+    "message": "将我的资料库发布到我自己的服务器"
+  },
+  "f_publish_now_ae60": {
+    "message": "立即发布"
+  },
+  "f_publishing_e1f2": {
+    "message": "正在发布…"
+  },
+  "f_questions_you_pinned_with_an_5f9e": {
+    "message": "你置顶的问题及其回答"
+  },
+  "f_readable_00b5": {
+    "message": "可读"
+  },
+  "f_reading_changes_of_9b27": {
+    "message": "读取更改：{done} / {total}"
+  },
+  "f_region_789d": {
+    "message": "区域"
+  },
+  "f_reminders_b654": {
+    "message": "提醒"
+  },
+  "f_remove_comment_2340": {
+    "message": "删除评论"
+  },
+  "f_remove_them_401d": {
+    "message": "移除"
+  },
+  "f_remove_this_highlight_3cc8": {
+    "message": "移除此高亮？"
+  },
+  "f_remove_this_place_6efc": {
+    "message": "移除此位置"
+  },
+  "f_remove_this_place_the_files__ad9c": {
+    "message": "移除此位置？服务器上已有的文件不会被删除。"
+  },
+  "f_removing_a_place_stops_publi_caa4": {
+    "message": "移除位置后将停止发布。服务器上已有的文件会保留原处。没有任何位置再使用的服务器，会连同其登录信息一并被忘记。"
+  },
+  "f_removing_of_9a27": {
+    "message": "移除：{done} / {total}"
+  },
+  "f_repeat_the_passphrase_c2a7": {
+    "message": "再次输入口令"
+  },
+  "f_restore_from_here_3623": {
+    "message": "从此处恢复"
+  },
+  "f_restored_item_changed_on_thi_f959": {
+    "message": "已恢复。本设备上有 {n} 项更改。"
+  },
+  "f_restored_items_changed_on_th_853c": {
+    "message": "已恢复。本设备上有 {n} 项更改。"
+  },
+  "f_restoring_daec": {
+    "message": "正在恢复…"
+  },
+  "f_s3_compatible_4144": {
+    "message": "兼容 S3"
+  },
+  "f_save_5d68": {
+    "message": "保存"
+  },
+  "f_save_server_bca3": {
+    "message": "保存服务器"
+  },
+  "f_save_your_passphrase_3801": {
+    "message": "保存你的口令"
+  },
+  "f_saving_of_566a": {
+    "message": "保存：{done} / {total}"
+  },
+  "f_scan_it_with_ai_summary_help_572d": {
+    "message": "用手机上的 AI Summary Helper 扫描：设置 → Library sync → 扫描代码。代码包含你的服务器登录信息，所以只能给你自己的手机看。它会在一分钟后自动隐藏。"
+  },
+  "f_search_highlights_comments_n_4f81": {
+    "message": "搜索高亮、评论、笔记…"
+  },
+  "f_secret_access_key_d3a2": {
+    "message": "秘密访问密钥"
+  },
+  "f_selected_3294": {
+    "message": "已选择"
+  },
+  "f_server_02f2": {
+    "message": "服务器"
+  },
+  "f_server_address_025e": {
+    "message": "服务器地址"
+  },
+  "f_server_name_22f5": {
+    "message": "服务器名称"
+  },
+  "f_server_saved_27e1": {
+    "message": "服务器已保存。"
+  },
+  "f_show_2e5c": {
+    "message": "显示"
+  },
+  "f_show_code_for_the_phone_a8c1": {
+    "message": "显示手机端代码"
+  },
+  "f_show_passphrase_dda0": {
+    "message": "显示口令"
+  },
+  "f_six_random_words_you_will_ty_e18c": {
+    "message": "六个随机词。你需要在其他设备上输入它们，所以请写下来或存入密码管理器。它们不会保存在其他任何地方：丢失后，没有人能打开你的文件。"
+  },
+  "f_soon_da12": {
+    "message": "即将推出"
+  },
+  "f_strong_db5c": {
+    "message": "强。"
+  },
+  "f_suggest_random_words_instead_a3fb": {
+    "message": "改用随机词建议"
+  },
+  "f_sync_backup_9786": {
+    "message": "同步与备份"
+  },
+  "f_sync_my_devices_79fb": {
+    "message": "同步我的设备"
+  },
+  "f_sync_now_d8fe": {
+    "message": "立即同步"
+  },
+  "f_syncthing_icloud_drive_dropb_a87d": {
+    "message": "Syncthing、iCloud Drive、Dropbox 或 U 盘可使其保持同步。"
+  },
+  "f_test_connection_b6b7": {
+    "message": "测试连接"
+  },
+  "f_the_browser_could_not_rememb_f257": {
+    "message": "浏览器无法记住此文件夹。"
+  },
+  "f_the_browser_did_not_allow_ac_5245": {
+    "message": "浏览器不允许访问。"
+  },
+  "f_the_browser_takes_back_acces_aaf9": {
+    "message": "浏览器在重启时会收回对文件夹的访问权限，只有你点击一下才能重新授予。在此之前，该文件夹不会同步。"
+  },
+  "f_the_kind_of_a_place_cannot_b_8037": {
+    "message": "位置的类型无法更改。如需使用另一种类型，请添加新的位置。"
+  },
+  "f_the_login_is_saved_once_for__bcba": {
+    "message": "登录信息只保存一次，供它们共用。"
+  },
+  "f_the_restore_did_not_finish_a4b5": {
+    "message": "恢复未完成。"
+  },
+  "f_the_save_for_later_time_and__7dff": {
+    "message": "稍后阅读的时间及你的原因。"
+  },
+  "f_the_service_picks_a_model_fo_a591": {
+    "message": "服务会为每个请求选择模型：短文本用轻量模型，长文本用较大的模型。"
+  },
+  "f_the_two_passphrases_are_not__e90b": {
+    "message": "两次输入的口令不一致。"
+  },
+  "f_these_six_words_are_the_key__f595": {
+    "message": "这六个词是“{name}”的密钥。每台新设备上都需要输入它们。丢失后，没有人能读取这些文件，我们也不能。请保存到密码管理器中。"
+  },
+  "f_this_device_was_away_for_a_l_46de": {
+    "message": "本设备离线了很长时间。仅发送了此后的更改，没有删除任何内容。"
+  },
+  "f_this_device_writes_everythin_1070": {
+    "message": "本设备会把所有内容写入该位置，且不会读回。需要时再从中恢复。"
+  },
+  "f_this_folder_already_holds_an_9f1e": {
+    "message": "此文件夹中已有加密资料库。请输入其口令（你保存的那些词）。"
+  },
+  "f_this_folder_already_holds_an_8e8c": {
+    "message": "此文件夹中已有加密资料库。请在下方输入其口令，然后再次点击“连接”。"
+  },
+  "f_this_model_does_not_run_on_e_21da": {
+    "message": "此模型不在欧盟服务器上运行。改用 {name}（欧盟）？"
+  },
+  "f_this_place_publishes_only_th_f3b8": {
+    "message": "此位置仅用于发布：本设备写入文件，不会读回。"
+  },
+  "f_this_place_uses_your_own_pas_823b": {
+    "message": "此位置使用你自己的口令。它不在代码中：请在手机上输入。"
+  },
+  "f_this_place_uses_your_own_pas_b61e": {
+    "message": "此位置使用你自己的口令。它不会保存在本设备上，因此无法显示。"
+  },
+  "f_to_publish_on_your_own_websi_9caf": {
+    "message": "用于发布到你自己的网站：任何拿到链接的人都能读取的普通文件。"
+  },
+  "f_turn_on_to_run_models_on_ser_af13": {
+    "message": "开启后，在提供该选项的情况下，模型会在欧洲的服务器上运行。其他模型仍可使用，并带有标记。"
+  },
+  "f_unchanged_e05e": {
+    "message": "未更改"
+  },
+  "f_updating_the_list_d48e": {
+    "message": "正在更新列表…"
+  },
+  "f_uploading_of_c6b9": {
+    "message": "上传：{done} / {total}"
+  },
+  "f_use_my_own_passphrase_c42a": {
+    "message": "使用我自己的口令"
+  },
+  "f_use_4021": {
+    "message": "使用 {name}"
+  },
+  "f_username_d4d9": {
+    "message": "用户名"
+  },
+  "f_view_aa18": {
+    "message": "视图"
+  },
+  "f_weak_use_at_least_12_charact_690f": {
+    "message": "弱：至少使用 12 个字符，或使用建议的词。"
+  },
+  "f_website_list_be8a": {
+    "message": "网站列表"
+  },
+  "f_what_goes_out_1113": {
+    "message": "发出的内容"
+  },
+  "f_what_it_is_for_84ef": {
+    "message": "此位置的用途"
+  },
+  "f_who_can_read_it_ceb4": {
+    "message": "谁可以读取"
+  },
+  "f_with_a_tag_c382": {
+    "message": "带标签"
+  },
+  "f_works_in_chrome_and_edge_on__f2c7": {
+    "message": "适用于电脑上的 Chrome 和 Edge。"
+  },
+  "f_write_a_note_about_this_arti_e1b4": {
+    "message": "写一条关于这篇文章的笔记…"
+  },
+  "f_write_a_note_or_a_thought_wo_67b1": {
+    "message": "写下笔记，或值得留住的想法…"
+  },
+  "f_write_a_note_c7c9": {
+    "message": "写笔记…"
+  },
+  "f_write_one_below_or_highlight_7627": {
+    "message": "在下方写一条，或在任意页面上高亮文字。你的高亮和 AI 的高亮也会显示在这里。"
+  },
+  "f_your_articles_highlights_not_9c7c": {
+    "message": "你的文章、高亮、笔记、收藏集、摘要和全文，在所有用同一口令加入的设备上保持同步。"
+  },
+  "f_your_own_index_html_is_in_th_8069": {
+    "message": "此文件夹中有你自己的 index.html，因此未替换查看页。"
+  },
+  "f_your_own_notes_and_the_comme_6ef8": {
+    "message": "你自己的笔记，以及对高亮的评论。"
+  },
+  "f_your_passphrase_2512": {
+    "message": "你的口令"
+  },
+  "f_your_yellow_and_ai_highlight_15a0": {
+    "message": "你的黄色高亮和 AI 高亮"
+  },
+  "f_backed_up_ago_845b": {
+    "message": "{t}前已备份"
+  },
+  "f_picks_a_model_for_each_reque_519c": {
+    "message": "为每个请求选择模型"
+  },
+  "f_published_ago_0576": {
+    "message": "{t}前已发布"
+  },
+  "f_synced_ago_174c": {
+    "message": "{t}前已同步"
+  },
+  "f_of_9ced": {
+    "message": "{a} / {b}"
+  },
+  "f_ai_highlight_8f93": {
+    "message": "{n} 条 AI 高亮"
+  },
+  "f_ai_highlights_7da0": {
+    "message": "{n} 条 AI 高亮"
+  },
+  "f_file_is_no_longer_wanted_her_48c4": {
+    "message": "此处不再需要 {n} 个文件，将从你的服务器移除。请确认是否正确。"
+  },
+  "f_files_are_no_longer_wanted_h_6975": {
+    "message": "此处不再需要 {n} 个文件，将从你的服务器移除。请确认是否正确。"
+  },
+  "f_files_had_problems_a60b": {
+    "message": "{n} 个文件有问题"
+  },
+  "f_highlight_5f43": {
+    "message": "{n} 条高亮"
+  },
+  "f_highlights_d890": {
+    "message": "{n} 条高亮"
+  },
+  "f_more_article_was_deleted_on__0e7e": {
+    "message": "另有 {n} 篇文章已在其他设备上删除。在你确认之前，它仍保留在此处。请确认是否正确。"
+  },
+  "f_more_articles_were_deleted_o_8348": {
+    "message": "另有 {n} 篇文章已在其他设备上删除。在你确认之前，它们仍保留在此处。请确认是否正确。"
+  },
+  "f_note_b2a1": {
+    "message": "{n} 条笔记"
+  },
+  "f_notes_8096": {
+    "message": "{n} 条笔记"
+  },
+  "f_place_b298": {
+    "message": "{n} 个位置"
+  },
+  "f_place_uses_this_server_133b": {
+    "message": "{n} 个位置使用此服务器。"
+  },
+  "f_places_a7f1": {
+    "message": "{n} 个位置"
+  },
+  "f_places_use_this_server_4df9": {
+    "message": "{n} 个位置使用此服务器。"
   }
 }

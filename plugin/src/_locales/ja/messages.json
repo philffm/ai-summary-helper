@@ -5675,5 +5675,671 @@
   },
   "f_what_s_new_in_9c82": {
     "message": "{v} の新機能"
+  },
+  "f_a_folder_on_this_computer_bbe4": {
+    "message": "このコンピュータ上のフォルダ"
+  },
+  "f_a_simple_web_page_index_html_d002": {
+    "message": "library.json を読み込むシンプルなウェブページ(index.html)です。検索、タグ、タイムライン、タググラフを備えています。HTMLページを配信できるサーバーが必要です(自前のウェブサーバーや公開バケットなど)。Nextcloud の共有では使えません。"
+  },
+  "f_ai_135f": {
+    "message": "AI"
+  },
+  "f_ai_highlight_b91f": {
+    "message": "AIハイライト"
+  },
+  "f_aws_cloudflare_r2_backblaze__139d": {
+    "message": "AWS、Cloudflare R2、Backblaze、MinIO、Wasabi"
+  },
+  "f_aws_https_s3_region_amazonaw_c68d": {
+    "message": "AWS: https://s3.<region>.amazonaws.com · Cloudflare R2: https://<account>.r2.cloudflarestorage.com · Backblaze: https://s3.<region>.backblazeb2.com"
+  },
+  "f_access_is_allowed_7031": {
+    "message": "アクセス許可済み"
+  },
+  "f_access_key_id_8d75": {
+    "message": "アクセスキーID"
+  },
+  "f_add_a_comment_9c08": {
+    "message": "コメントを追加…"
+  },
+  "f_add_a_place_799c": {
+    "message": "場所を追加"
+  },
+  "f_add_note_9108": {
+    "message": "メモを追加"
+  },
+  "f_all_except_a_tag_ca3e": {
+    "message": "タグ以外すべて"
+  },
+  "f_all_places_fdbc": {
+    "message": "すべての場所"
+  },
+  "f_allow_access_again_cc7c": {
+    "message": "もう一度アクセスを許可"
+  },
+  "f_allow_access_to_599a": {
+    "message": "{name}へのアクセスを許可"
+  },
+  "f_also_publish_a_viewer_page_2d07": {
+    "message": "ビューアページも公開"
+  },
+  "f_an_index_html_that_is_not_ou_889b": {
+    "message": "このフォルダには別の index.html があるため、ビューアは書き込まれませんでした。別のフォルダを使ってください。"
+  },
+  "f_another_suggestion_09e8": {
+    "message": "別の候補"
+  },
+  "f_anyone_who_can_open_this_fol_86f7": {
+    "message": "このフォルダを開ける人は、これらのファイルを読めます。自分で管理しているフォルダを使い、公開したい場合を除き非公開にしてください。"
+  },
+  "f_app_password_6505": {
+    "message": "アプリパスワード"
+  },
+  "f_at_least_12_characters_it_is_f78b": {
+    "message": "12文字以上。どこにも保存されないため、紛失するとファイルを開けなくなります。"
+  },
+  "f_back_up_now_63b3": {
+    "message": "バックアップ実行"
+  },
+  "f_backup_only_e75f": {
+    "message": "バックアップのみ"
+  },
+  "f_bring_everything_in_this_pla_0150": {
+    "message": "この場所の内容をすべてこのデバイスに戻しますか?このデバイスと異なる部分は、場所の内容が優先されます。ここでは何も削除されません。"
+  },
+  "f_bucket_3557": {
+    "message": "バケット"
+  },
+  "f_by_article_5c16": {
+    "message": "記事別"
+  },
+  "f_changes_here_apply_to_every__822d": {
+    "message": "ここでの変更は、このサーバー上のすべての場所に適用されます。"
+  },
+  "f_checked_the_folder_restored__7f16": {
+    "message": "フォルダを確認しました。復元 {r} 件、残り物 {o} 件が見つかりました。"
+  },
+  "f_checking_your_library_f467": {
+    "message": "ライブラリを確認中…"
+  },
+  "f_choose_6160": {
+    "message": "選択"
+  },
+  "f_choose_a_passphrase_c9a1": {
+    "message": "パスフレーズを決める"
+  },
+  "f_choose_another_folder_1129": {
+    "message": "別のフォルダを選択"
+  },
+  "f_cloudflare_r2_auto_leave_the_74e0": {
+    "message": "Cloudflare R2: auto。プロバイダから指定がなければ初期値のままにしてください。"
+  },
+  "f_code_for_the_phone_8494": {
+    "message": "スマホ用コード"
+  },
+  "f_comment_9ffe": {
+    "message": "コメント"
+  },
+  "f_connect_and_publish_3387": {
+    "message": "接続して公開"
+  },
+  "f_connected_the_folder_is_empt_688d": {
+    "message": "接続しました。フォルダが空のため、新しい暗号化ライブラリを作成します。"
+  },
+  "f_connected_this_folder_alread_7ea2": {
+    "message": "接続しました。このフォルダには暗号化ライブラリがあります。"
+  },
+  "f_connected_article_matches_b205": {
+    "message": "接続しました。{n}件の記事が一致します。"
+  },
+  "f_connected_articles_match_40f2": {
+    "message": "接続しました。{n}件の記事が一致します。"
+  },
+  "f_continuing_file_left_4bdc": {
+    "message": "続行中… 残り{n}ファイル"
+  },
+  "f_continuing_files_left_7869": {
+    "message": "続行中… 残り{n}ファイル"
+  },
+  "f_copied_2cb1": {
+    "message": "コピー済み"
+  },
+  "f_copies_of_other_people_s_art_db7e": {
+    "message": "他の人の記事のコピーです。共有してよいか確認してください。ファイルがかなり大きくなります。"
+  },
+  "f_copy_did_not_work_select_the_1dcb": {
+    "message": "コピーできませんでした。言葉を選択して手動でコピーしてください。"
+  },
+  "f_copy_puts_the_words_in_one_p_9b1c": {
+    "message": "コピーすると、言葉がダッシュでつながった1つの文字列になります。設定ファイル、シェル、チャットアプリでも崩れません。スペース区切りでもダッシュ区切りでも入力できます。"
+  },
+  "f_could_not_reach_the_server_aa7e": {
+    "message": "サーバーに接続できません"
+  },
+  "f_could_not_save_this_place_cf23": {
+    "message": "この場所を保存できませんでした。"
+  },
+  "f_created_for_you_use_one_fold_0390": {
+    "message": "自動で作成されました。用途ごとにフォルダを分けてください。例: ウェブサイト用リストは public、完全コピーは backup。"
+  },
+  "f_danger_zone_19b4": {
+    "message": "危険な操作"
+  },
+  "f_delete_them_here_too_9d48": {
+    "message": "こちらでも削除"
+  },
+  "f_delete_this_note_3253": {
+    "message": "このメモを削除しますか?"
+  },
+  "f_download_bb19": {
+    "message": "ダウンロード"
+  },
+  "f_eu_1f4f": {
+    "message": "EU"
+  },
+  "f_eu_company_ef04": {
+    "message": "EU企業"
+  },
+  "f_eu_servers_987b": {
+    "message": "EUサーバー"
+  },
+  "f_each_article_becomes_one_fil_f81c": {
+    "message": "記事ごとに1ファイルになり、ウェブサイト用のリスト(library.json)も作成されます。"
+  },
+  "f_edit_comment_f0e4": {
+    "message": "コメントを編集"
+  },
+  "f_edit_server_63e0": {
+    "message": "サーバーを編集"
+  },
+  "f_encrypted_e253": {
+    "message": "暗号化"
+  },
+  "f_end_with_tags_ctrl_enter_to__83e2": {
+    "message": "末尾に #タグ · ⌘/Ctrl+Enter で追加"
+  },
+  "f_endpoint_address_ce54": {
+    "message": "エンドポイント"
+  },
+  "f_every_article_you_saved_goes_f744": {
+    "message": "保存した記事はすべて公開されます。他の人に読まれたくないものも含まれる可能性があります。自分だけが読めるバックアップは、代わりに暗号化してください。"
+  },
+  "f_everything_8340": {
+    "message": "すべて"
+  },
+  "f_everything_is_encrypted_on_t_1b86": {
+    "message": "すべてこのデバイス上で暗号化してからアップロードします。メモ、リマインダー、全文も含まれます。読めるのは自分だけだからです。"
+  },
+  "f_files_go_into_a_subfolder_of_5a98": {
+    "message": "この中のサブフォルダにファイルが入ります。そのフォルダを同期するもの(Syncthing、iCloud Drive、Dropbox、USBドライブなど)が、他のデバイスへ届けます。"
+  },
+  "f_fine_the_suggested_words_are_36c0": {
+    "message": "了解です。提案された言葉のほうが強力です。"
+  },
+  "f_folder_7afd": {
+    "message": "フォルダ"
+  },
+  "f_folder_access_is_waiting_b754": {
+    "message": "フォルダへのアクセス待ち"
+  },
+  "f_folder_on_the_server_b74c": {
+    "message": "サーバー上のフォルダ"
+  },
+  "f_folder_960e": {
+    "message": "フォルダ: {name}"
+  },
+  "f_for_syncing_and_backup_only__f767": {
+    "message": "同期とバックアップ用です。読めるのは自分だけで、ウェブサイトからは読めません。プロバイダには暗号化されたファイルしか見えません"
+  },
+  "f_getting_changes_of_8fbb": {
+    "message": "変更を取得中 {done}/{total}"
+  },
+  "f_grid_66b1": {
+    "message": "グリッド"
+  },
+  "f_highlight_05c7": {
+    "message": "ハイライト"
+  },
+  "f_i_made_a_backup_of_this_devi_c05b": {
+    "message": "このデバイスのバックアップを作成済み"
+  },
+  "f_i_saved_the_passphrase_81d0": {
+    "message": "パスフレーズを保存しました"
+  },
+  "f_in_nextcloud_settings_securi_4fee": {
+    "message": "Nextcloud で、設定 → セキュリティ → アプリパスワードを作成してください。メインのパスワードは使わないでください。"
+  },
+  "f_joining_merges_this_device_w_8048": {
+    "message": "参加すると、このデバイスとフォルダ内のライブラリが統合されます。両方で異なる部分はフォルダの内容が優先されます。先にこのデバイスのバックアップを作成してください。"
+  },
+  "f_keep_your_library_in_step_ac_b5fe": {
+    "message": "複数のデバイス間でライブラリを同期したり、バックアップしたり、一部を他の人に公開したりできます。各場所は、自分のサーバーまたはこのコンピュータ上のフォルダです。場所を追加するまで、データがこのデバイスから出ることはありません。"
+  },
+  "f_looking_at_what_is_in_the_fo_1e05": {
+    "message": "フォルダの内容を確認中…"
+  },
+  "f_make_a_backup_now_3046": {
+    "message": "今すぐバックアップ"
+  },
+  "f_make_an_access_key_just_for__abc9": {
+    "message": "このバケット専用のアクセスキーを作成し、読み取り・書き込み・一覧・削除を許可してください。アカウントのメインキーは使わないでください。"
+  },
+  "f_meant_for_a_folder_only_you__33c0": {
+    "message": "自分だけが開けるフォルダ向けです。例: 非公開のバックアップや社内用リスト。フォルダを開ける人は、これらすべてを読めます。"
+  },
+  "f_mine_84d6": {
+    "message": "自分"
+  },
+  "f_models_marked_eu_servers_run_7b00": {
+    "message": "「EUサーバー」と表示されたモデルは、ヨーロッパ内のサーバーでのみ動作します。多くは米国クラウド企業のサーバーです。「EU企業」と表示されたモデルだけが、ヨーロッパの企業のモデルでもあります。それ以外のモデルも通常どおり使え、「EUサーバー外」と表示されます。自動選択ではEUサーバーのみが選ばれます。EUサーバーは少し高くなることがあり、表示価格はEUの料金です。読み上げと音声入力にはEUの選択肢がありません。テキストは、当サービス(ドイツのサーバー)を経由した後、米国企業の OpenRouter を通ります。"
+  },
+  "f_my_nextcloud_741d": {
+    "message": "自分の Nextcloud"
+  },
+  "f_my_notes_and_comments_099b": {
+    "message": "自分のメモとコメント"
+  },
+  "f_new_note_7123": {
+    "message": "新規メモ"
+  },
+  "f_new_server_9ee0": {
+    "message": "新規サーバー"
+  },
+  "f_nextcloud_webdav_2b5d": {
+    "message": "Nextcloud / WebDAV"
+  },
+  "f_nextcloud_owncloud_synology__5752": {
+    "message": "Nextcloud、ownCloud、Synology、ほとんどのNAS"
+  },
+  "f_no_notes_on_this_article_yet_b876": {
+    "message": "この記事のメモはまだありません。"
+  },
+  "f_no_notes_yet_68d5": {
+    "message": "メモはありません"
+  },
+  "f_no_tags_yet_end_a_note_with__ae68": {
+    "message": "タグなし。メモの末尾に #タグ を付けます。"
+  },
+  "f_not_eu_fb9c": {
+    "message": "EU外"
+  },
+  "f_not_here_d910": {
+    "message": "ここにはなし"
+  },
+  "f_not_on_eu_servers_abcb": {
+    "message": "EUサーバー外"
+  },
+  "f_not_published_yet_d0ae": {
+    "message": "未公開"
+  },
+  "f_not_synced_yet_7efe": {
+    "message": "未同期"
+  },
+  "f_note_c15d": {
+    "message": "メモ"
+  },
+  "f_notes_1b6a": {
+    "message": "メモ"
+  },
+  "f_notes_and_highlights_0e9c": {
+    "message": "メモとハイライト"
+  },
+  "f_notes_without_an_article_5bd7": {
+    "message": "記事に紐づかないメモ"
+  },
+  "f_nothing_here_yet_5bfc": {
+    "message": "まだ何もありません。"
+  },
+  "f_nothing_matches_03c3": {
+    "message": "一致なし。"
+  },
+  "f_only_publish_articles_tagged_b789": {
+    "message": "次のタグの記事のみ公開"
+  },
+  "f_open_the_page_ab11": {
+    "message": "ページを開く"
+  },
+  "f_passphrase_2dc5": {
+    "message": "パスフレーズ"
+  },
+  "f_passphrase_keep_it_somewhere_ca8a": {
+    "message": "パスフレーズ: {k}。安全な場所に保管してください。"
+  },
+  "f_paused_1feb": {
+    "message": "一時停止中"
+  },
+  "f_pinned_q_a_faa5": {
+    "message": "固定したQ&A"
+  },
+  "f_places_d03d": {
+    "message": "場所"
+  },
+  "f_publish_everything_except_ar_74e7": {
+    "message": "次のタグの記事以外すべて公開"
+  },
+  "f_publish_my_library_to_my_own_a71f": {
+    "message": "自分のライブラリを自分のサーバーに公開"
+  },
+  "f_publish_now_ae60": {
+    "message": "今すぐ公開"
+  },
+  "f_publishing_e1f2": {
+    "message": "公開中…"
+  },
+  "f_questions_you_pinned_with_an_5f9e": {
+    "message": "固定した質問と回答"
+  },
+  "f_readable_00b5": {
+    "message": "読みやすい"
+  },
+  "f_reading_changes_of_9b27": {
+    "message": "変更を読み取り中 {done}/{total}"
+  },
+  "f_region_789d": {
+    "message": "リージョン"
+  },
+  "f_reminders_b654": {
+    "message": "リマインダー"
+  },
+  "f_remove_comment_2340": {
+    "message": "コメントを削除"
+  },
+  "f_remove_them_401d": {
+    "message": "削除する"
+  },
+  "f_remove_this_highlight_3cc8": {
+    "message": "このハイライトを削除しますか?"
+  },
+  "f_remove_this_place_6efc": {
+    "message": "この場所を削除"
+  },
+  "f_remove_this_place_the_files__ad9c": {
+    "message": "この場所を削除しますか?サーバー上のファイルは削除されません。"
+  },
+  "f_removing_a_place_stops_publi_caa4": {
+    "message": "場所を削除すると公開が停止します。サーバー上のファイルはそのまま残ります。どの場所からも使われなくなったサーバーは、ログイン情報とともに削除されます。"
+  },
+  "f_removing_of_9a27": {
+    "message": "削除中 {done}/{total}"
+  },
+  "f_repeat_the_passphrase_c2a7": {
+    "message": "パスフレーズを再入力"
+  },
+  "f_restore_from_here_3623": {
+    "message": "ここから復元"
+  },
+  "f_restored_item_changed_on_thi_f959": {
+    "message": "復元しました。このデバイスで{n}件が変更されました。"
+  },
+  "f_restored_items_changed_on_th_853c": {
+    "message": "復元しました。このデバイスで{n}件が変更されました。"
+  },
+  "f_restoring_daec": {
+    "message": "復元中…"
+  },
+  "f_s3_compatible_4144": {
+    "message": "S3互換"
+  },
+  "f_save_5d68": {
+    "message": "保存"
+  },
+  "f_save_server_bca3": {
+    "message": "サーバーを保存"
+  },
+  "f_save_your_passphrase_3801": {
+    "message": "パスフレーズを保存"
+  },
+  "f_saving_of_566a": {
+    "message": "保存中 {done}/{total}"
+  },
+  "f_scan_it_with_ai_summary_help_572d": {
+    "message": "スマホの AI Summary Helper で、設定 → ライブラリ同期 → コードをスキャン の順に開いて読み取ってください。コードにはサーバーのログイン情報が含まれるため、自分のスマホにだけ見せてください。1分後に自動で隠れます。"
+  },
+  "f_search_highlights_comments_n_4f81": {
+    "message": "ハイライト、コメント、メモを検索…"
+  },
+  "f_secret_access_key_d3a2": {
+    "message": "秘密アクセスキー"
+  },
+  "f_selected_3294": {
+    "message": "選択中"
+  },
+  "f_server_02f2": {
+    "message": "サーバー"
+  },
+  "f_server_address_025e": {
+    "message": "サーバーのアドレス"
+  },
+  "f_server_name_22f5": {
+    "message": "サーバー名"
+  },
+  "f_server_saved_27e1": {
+    "message": "保存しました。"
+  },
+  "f_show_2e5c": {
+    "message": "表示"
+  },
+  "f_show_code_for_the_phone_a8c1": {
+    "message": "スマホ用コードを表示"
+  },
+  "f_show_passphrase_dda0": {
+    "message": "パスフレーズを表示"
+  },
+  "f_six_random_words_you_will_ty_e18c": {
+    "message": "ランダムな6つの言葉です。他のデバイスで入力するため、書き留めるかパスワードマネージャーに保管してください。他にはどこにも保存されないため、紛失するとファイルを開けなくなります。"
+  },
+  "f_soon_da12": {
+    "message": "近日対応"
+  },
+  "f_strong_db5c": {
+    "message": "強力です。"
+  },
+  "f_suggest_random_words_instead_a3fb": {
+    "message": "代わりにランダムな言葉を提案"
+  },
+  "f_sync_backup_9786": {
+    "message": "同期とバックアップ"
+  },
+  "f_sync_my_devices_79fb": {
+    "message": "デバイスを同期"
+  },
+  "f_sync_now_d8fe": {
+    "message": "今すぐ同期"
+  },
+  "f_syncthing_icloud_drive_dropb_a87d": {
+    "message": "Syncthing、iCloud Drive、Dropbox、USBドライブなどで同期します。"
+  },
+  "f_test_connection_b6b7": {
+    "message": "接続をテスト"
+  },
+  "f_the_browser_could_not_rememb_f257": {
+    "message": "ブラウザがこのフォルダを記憶できませんでした。"
+  },
+  "f_the_browser_did_not_allow_ac_5245": {
+    "message": "ブラウザがアクセスを許可しませんでした。"
+  },
+  "f_the_browser_takes_back_acces_aaf9": {
+    "message": "ブラウザは再起動するとフォルダへのアクセス権を取り消し、あなたのクリックでのみ戻せます。それまでこのフォルダは同期されません。"
+  },
+  "f_the_kind_of_a_place_cannot_b_8037": {
+    "message": "場所の種類は変更できません。別の種類を使うには、別の場所を追加してください。"
+  },
+  "f_the_login_is_saved_once_for__bcba": {
+    "message": "ログイン情報は、すべてに対して1回だけ保存されます。"
+  },
+  "f_the_restore_did_not_finish_a4b5": {
+    "message": "復元が完了しませんでした。"
+  },
+  "f_the_save_for_later_time_and__7dff": {
+    "message": "後で読む保存日時と、その理由です。"
+  },
+  "f_the_service_picks_a_model_fo_a591": {
+    "message": "サービスがリクエストごとにモデルを選びます。短いテキストには軽量モデル、長いテキストには大きなモデルが使われます。"
+  },
+  "f_the_two_passphrases_are_not__e90b": {
+    "message": "2つのパスフレーズが一致しません。"
+  },
+  "f_these_six_words_are_the_key__f595": {
+    "message": "この6つの言葉が「{name}」の鍵です。新しいデバイスごとに入力します。紛失すると、当サービスを含め誰もファイルを読めません。パスワードマネージャーに保存してください。"
+  },
+  "f_this_device_was_away_for_a_l_46de": {
+    "message": "このデバイスは長期間オフラインでした。以降に変更された分だけが送信され、削除は行われていません。"
+  },
+  "f_this_device_writes_everythin_1070": {
+    "message": "このデバイスはすべてをこの場所に書き込み、読み戻しません。必要なときにここから復元してください。"
+  },
+  "f_this_folder_already_holds_an_9f1e": {
+    "message": "このフォルダには暗号化ライブラリがあります。パスフレーズ(保存した言葉)を入力してください。"
+  },
+  "f_this_folder_already_holds_an_8e8c": {
+    "message": "このフォルダには暗号化ライブラリがあります。下にパスフレーズを入力し、もう一度「接続」を押してください。"
+  },
+  "f_this_model_does_not_run_on_e_21da": {
+    "message": "このモデルはEUサーバーでは動作しません。代わりに {name}(EU)を使いますか?"
+  },
+  "f_this_place_publishes_only_th_f3b8": {
+    "message": "この場所は公開専用です。このデバイスがファイルを書き込み、読み戻しません。"
+  },
+  "f_this_place_uses_your_own_pas_823b": {
+    "message": "この場所は独自のパスフレーズを使います。コードには含まれないため、スマホで入力してください。"
+  },
+  "f_this_place_uses_your_own_pas_b61e": {
+    "message": "この場所は独自のパスフレーズを使います。このデバイスには保存されないため、表示できません。"
+  },
+  "f_to_publish_on_your_own_websi_9caf": {
+    "message": "自分のウェブサイトで公開する場合: リンクを知っている人なら誰でも読めるプレーンなファイルです。"
+  },
+  "f_turn_on_to_run_models_on_ser_af13": {
+    "message": "提供されている場合に、ヨーロッパのサーバーでモデルを実行します。それ以外のモデルも引き続き使え、表示で区別されます。"
+  },
+  "f_unchanged_e05e": {
+    "message": "変更なし"
+  },
+  "f_updating_the_list_d48e": {
+    "message": "リストを更新中…"
+  },
+  "f_uploading_of_c6b9": {
+    "message": "アップロード中 {done}/{total}"
+  },
+  "f_use_my_own_passphrase_c42a": {
+    "message": "自分のパスフレーズを使う"
+  },
+  "f_use_4021": {
+    "message": "{name}を使う"
+  },
+  "f_username_d4d9": {
+    "message": "ユーザー名"
+  },
+  "f_view_aa18": {
+    "message": "表示"
+  },
+  "f_weak_use_at_least_12_charact_690f": {
+    "message": "弱いです。12文字以上にするか、提案された言葉を使ってください。"
+  },
+  "f_website_list_be8a": {
+    "message": "公開用リスト"
+  },
+  "f_what_goes_out_1113": {
+    "message": "公開する内容"
+  },
+  "f_what_it_is_for_84ef": {
+    "message": "用途"
+  },
+  "f_who_can_read_it_ceb4": {
+    "message": "読める人"
+  },
+  "f_with_a_tag_c382": {
+    "message": "タグ付き"
+  },
+  "f_works_in_chrome_and_edge_on__f2c7": {
+    "message": "パソコンの Chrome と Edge で動作します。"
+  },
+  "f_write_a_note_about_this_arti_e1b4": {
+    "message": "この記事についてメモを書く…"
+  },
+  "f_write_a_note_or_a_thought_wo_67b1": {
+    "message": "メモや、残しておきたい考えを書く…"
+  },
+  "f_write_a_note_c7c9": {
+    "message": "メモを書く…"
+  },
+  "f_write_one_below_or_highlight_7627": {
+    "message": "下に書くか、任意のページでテキストをハイライトしてください。自分のハイライトとAIのハイライトもここに表示されます。"
+  },
+  "f_your_articles_highlights_not_9c7c": {
+    "message": "保存した記事、ハイライト、メモ、コレクション、要約、全文が、同じパスフレーズで参加したすべてのデバイスで同期されます。"
+  },
+  "f_your_own_index_html_is_in_th_8069": {
+    "message": "このフォルダに独自の index.html があるため、ビューアは置き換えられませんでした。"
+  },
+  "f_your_own_notes_and_the_comme_6ef8": {
+    "message": "自分のメモと、ハイライトへのコメントです。"
+  },
+  "f_your_passphrase_2512": {
+    "message": "パスフレーズ"
+  },
+  "f_your_yellow_and_ai_highlight_15a0": {
+    "message": "黄色のハイライトとAIハイライト"
+  },
+  "f_backed_up_ago_845b": {
+    "message": "{t}前にバックアップ"
+  },
+  "f_picks_a_model_for_each_reque_519c": {
+    "message": "リクエストごとにモデルを選択"
+  },
+  "f_published_ago_0576": {
+    "message": "{t}前に公開"
+  },
+  "f_synced_ago_174c": {
+    "message": "{t}前に同期"
+  },
+  "f_of_9ced": {
+    "message": "{a}/{b}"
+  },
+  "f_ai_highlight_8f93": {
+    "message": "AIハイライト {n}件"
+  },
+  "f_ai_highlights_7da0": {
+    "message": "AIハイライト {n}件"
+  },
+  "f_file_is_no_longer_wanted_her_48c4": {
+    "message": "{n}ファイルは不要になり、サーバーから削除されます。内容が正しいか確認してください。"
+  },
+  "f_files_are_no_longer_wanted_h_6975": {
+    "message": "{n}ファイルは不要になり、サーバーから削除されます。内容が正しいか確認してください。"
+  },
+  "f_files_had_problems_a60b": {
+    "message": "{n}ファイルで問題が発生"
+  },
+  "f_highlight_5f43": {
+    "message": "ハイライト {n}件"
+  },
+  "f_highlights_d890": {
+    "message": "ハイライト {n}件"
+  },
+  "f_more_article_was_deleted_on__0e7e": {
+    "message": "他のデバイスで削除された記事が、あと{n}件あります。指示するまでここに残ります。内容が正しいか確認してください。"
+  },
+  "f_more_articles_were_deleted_o_8348": {
+    "message": "他のデバイスで削除された記事が、あと{n}件あります。指示するまでここに残ります。内容が正しいか確認してください。"
+  },
+  "f_note_b2a1": {
+    "message": "メモ {n}件"
+  },
+  "f_notes_8096": {
+    "message": "メモ {n}件"
+  },
+  "f_place_b298": {
+    "message": "{n}か所"
+  },
+  "f_place_uses_this_server_133b": {
+    "message": "このサーバーを使う場所は{n}か所です。"
+  },
+  "f_places_a7f1": {
+    "message": "{n}か所"
+  },
+  "f_places_use_this_server_4df9": {
+    "message": "このサーバーを使う場所は{n}か所です。"
   }
 }

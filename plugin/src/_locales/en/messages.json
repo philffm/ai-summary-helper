@@ -5963,5 +5963,708 @@
   "f_what_s_new_in_9c82": {
     "message": "What's new in {v}",
     "description": "Placeholders: {v} (keep as is)"
+  },
+  "f_a_folder_on_this_computer_bbe4": {
+    "message": "A folder on this computer"
+  },
+  "f_a_simple_web_page_index_html_d002": {
+    "message": "A simple web page (index.html) that reads library.json: search, tags, timeline and a tag graph. It needs a server that shows HTML pages, for example your own web server or a public bucket. Nextcloud shares do not."
+  },
+  "f_ai_135f": {
+    "message": "AI"
+  },
+  "f_ai_highlight_b91f": {
+    "message": "AI highlight"
+  },
+  "f_aws_cloudflare_r2_backblaze__139d": {
+    "message": "AWS, Cloudflare R2, Backblaze, MinIO, Wasabi"
+  },
+  "f_aws_https_s3_region_amazonaw_c68d": {
+    "message": "AWS: https://s3.<region>.amazonaws.com · Cloudflare R2: https://<account>.r2.cloudflarestorage.com · Backblaze: https://s3.<region>.backblazeb2.com"
+  },
+  "f_access_is_allowed_7031": {
+    "message": "Access is allowed."
+  },
+  "f_access_key_id_8d75": {
+    "message": "Access key ID"
+  },
+  "f_add_a_comment_9c08": {
+    "message": "Add a comment…"
+  },
+  "f_add_a_place_799c": {
+    "message": "Add a place"
+  },
+  "f_add_note_9108": {
+    "message": "Add note"
+  },
+  "f_all_except_a_tag_ca3e": {
+    "message": "All except a tag"
+  },
+  "f_all_places_fdbc": {
+    "message": "All places"
+  },
+  "f_allow_access_again_cc7c": {
+    "message": "Allow access again"
+  },
+  "f_allow_access_to_599a": {
+    "message": "Allow access to {name}",
+    "description": "Placeholders: {name} (keep as is)"
+  },
+  "f_also_publish_a_viewer_page_2d07": {
+    "message": "Also publish a viewer page"
+  },
+  "f_an_index_html_that_is_not_ou_889b": {
+    "message": "An index.html that is not ours is already in this folder, so the viewer was not written. Use another folder."
+  },
+  "f_another_suggestion_09e8": {
+    "message": "Another suggestion"
+  },
+  "f_anyone_who_can_open_this_fol_86f7": {
+    "message": "Anyone who can open this folder can read these files. Use a folder you control, and keep it private unless you want to publish it."
+  },
+  "f_app_password_6505": {
+    "message": "App password"
+  },
+  "f_at_least_12_characters_it_is_f78b": {
+    "message": "At least 12 characters. It is not saved anywhere: if you lose it, nobody can open the files."
+  },
+  "f_back_up_now_63b3": {
+    "message": "Back up now"
+  },
+  "f_backup_only_e75f": {
+    "message": "Backup only"
+  },
+  "f_bring_everything_in_this_pla_0150": {
+    "message": "Bring everything in this place back to this device? Where this device differs, the place wins. Nothing here is deleted."
+  },
+  "f_bucket_3557": {
+    "message": "Bucket"
+  },
+  "f_by_article_5c16": {
+    "message": "By article"
+  },
+  "f_changes_here_apply_to_every__822d": {
+    "message": "Changes here apply to every place on this server."
+  },
+  "f_checked_the_folder_restored__7f16": {
+    "message": "Checked the folder: {r} restored, {o} leftovers found.",
+    "description": "Placeholders: {r} {o} (keep as is)"
+  },
+  "f_checking_your_library_f467": {
+    "message": "Checking your library…"
+  },
+  "f_choose_6160": {
+    "message": "Choose"
+  },
+  "f_choose_a_passphrase_c9a1": {
+    "message": "Choose a passphrase"
+  },
+  "f_choose_another_folder_1129": {
+    "message": "Choose another folder"
+  },
+  "f_cloudflare_r2_auto_leave_the_74e0": {
+    "message": "Cloudflare R2: auto. Leave the default if your provider does not ask."
+  },
+  "f_code_for_the_phone_8494": {
+    "message": "Code for the phone"
+  },
+  "f_comment_9ffe": {
+    "message": "Comment"
+  },
+  "f_connect_and_publish_3387": {
+    "message": "Connect and publish"
+  },
+  "f_connected_the_folder_is_empt_688d": {
+    "message": "Connected. The folder is empty, so a new encrypted library will be created."
+  },
+  "f_connected_this_folder_alread_7ea2": {
+    "message": "Connected. This folder already holds an encrypted library."
+  },
+  "f_connected_article_matches_b205": {
+    "message": "Connected. {n} article matches.",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_connected_articles_match_40f2": {
+    "message": "Connected. {n} articles match.",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_continuing_file_left_4bdc": {
+    "message": "Continuing… {n} file left",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_continuing_files_left_7869": {
+    "message": "Continuing… {n} files left",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_copied_2cb1": {
+    "message": "Copied."
+  },
+  "f_copies_of_other_people_s_art_db7e": {
+    "message": "Copies of other people’s articles. Make sure you may share them. Files get much larger."
+  },
+  "f_copy_did_not_work_select_the_1dcb": {
+    "message": "Copy did not work. Select the words and copy them by hand."
+  },
+  "f_copy_puts_the_words_in_one_p_9b1c": {
+    "message": "Copy puts the words in one piece, joined by dashes. That survives config files, shells and chat apps; typing them with spaces or with dashes both work."
+  },
+  "f_could_not_reach_the_server_aa7e": {
+    "message": "Could not reach the server"
+  },
+  "f_could_not_save_this_place_cf23": {
+    "message": "Could not save this place."
+  },
+  "f_created_for_you_use_one_fold_0390": {
+    "message": "Created for you. Use one folder for each purpose, for example public for a website list and backup for a full copy."
+  },
+  "f_danger_zone_19b4": {
+    "message": "Danger zone"
+  },
+  "f_delete_them_here_too_9d48": {
+    "message": "Delete them here too"
+  },
+  "f_delete_this_note_3253": {
+    "message": "Delete this note?"
+  },
+  "f_download_bb19": {
+    "message": "Download"
+  },
+  "f_eu_1f4f": {
+    "message": "EU"
+  },
+  "f_eu_company_ef04": {
+    "message": "EU company"
+  },
+  "f_eu_servers_987b": {
+    "message": "EU servers"
+  },
+  "f_each_article_becomes_one_fil_f81c": {
+    "message": "Each article becomes one file, plus a list for your website (library.json)."
+  },
+  "f_edit_comment_f0e4": {
+    "message": "Edit comment"
+  },
+  "f_edit_server_63e0": {
+    "message": "Edit server"
+  },
+  "f_encrypted_e253": {
+    "message": "Encrypted"
+  },
+  "f_end_with_tags_ctrl_enter_to__83e2": {
+    "message": "End with #tags · ⌘/Ctrl+Enter to add"
+  },
+  "f_endpoint_address_ce54": {
+    "message": "Endpoint address"
+  },
+  "f_every_article_you_saved_goes_f744": {
+    "message": "Every article you saved goes out, including ones you may not want others to read. A backup that only you can read should be encrypted instead."
+  },
+  "f_everything_8340": {
+    "message": "Everything"
+  },
+  "f_everything_is_encrypted_on_t_1b86": {
+    "message": "Everything is encrypted on this device before it is uploaded. Notes, reminders and full texts are included, because only you can read them."
+  },
+  "f_files_go_into_a_subfolder_of_5a98": {
+    "message": "Files go into a subfolder of it. Whatever keeps that folder in step (Syncthing, iCloud Drive, Dropbox, a USB drive) carries them to your other devices."
+  },
+  "f_fine_the_suggested_words_are_36c0": {
+    "message": "Fine. The suggested words are stronger."
+  },
+  "f_folder_7afd": {
+    "message": "Folder"
+  },
+  "f_folder_access_is_waiting_b754": {
+    "message": "Folder access is waiting"
+  },
+  "f_folder_on_the_server_b74c": {
+    "message": "Folder on the server"
+  },
+  "f_folder_960e": {
+    "message": "Folder: {name}",
+    "description": "Placeholders: {name} (keep as is)"
+  },
+  "f_for_syncing_and_backup_only__f767": {
+    "message": "For syncing and backup. Only you can read it, and so no website can. The provider sees scrambled files."
+  },
+  "f_getting_changes_of_8fbb": {
+    "message": "Getting changes {done} of {total}",
+    "description": "Placeholders: {done} {total} (keep as is)"
+  },
+  "f_grid_66b1": {
+    "message": "Grid"
+  },
+  "f_highlight_05c7": {
+    "message": "Highlight"
+  },
+  "f_i_made_a_backup_of_this_devi_c05b": {
+    "message": "I made a backup of this device"
+  },
+  "f_i_saved_the_passphrase_81d0": {
+    "message": "I saved the passphrase"
+  },
+  "f_in_nextcloud_settings_securi_4fee": {
+    "message": "In Nextcloud: Settings → Security → create an app password. Never use your main password."
+  },
+  "f_joining_merges_this_device_w_8048": {
+    "message": "Joining merges this device with the library in the folder: where both differ, the folder wins. Make a backup of this device first."
+  },
+  "f_keep_your_library_in_step_ac_b5fe": {
+    "message": "Keep your library in step across your devices, back it up, or publish part of it for others. Each place is a folder on your own server or on this computer. Nothing leaves this device until you add one."
+  },
+  "f_looking_at_what_is_in_the_fo_1e05": {
+    "message": "Looking at what is in the folder…"
+  },
+  "f_make_a_backup_now_3046": {
+    "message": "Make a backup now"
+  },
+  "f_make_an_access_key_just_for__abc9": {
+    "message": "Make an access key just for this bucket, allowed to read, write, list and delete in it. Never use your account’s main key."
+  },
+  "f_meant_for_a_folder_only_you__33c0": {
+    "message": "Meant for a folder only you can open, for example a private backup or an internal list. Anyone who can open the folder can read all of this."
+  },
+  "f_mine_84d6": {
+    "message": "Mine"
+  },
+  "f_models_marked_eu_servers_run_7b00": {
+    "message": "Models marked “EU servers” run only on servers in Europe, often those of US cloud companies. Only models marked “EU company” are also from a European company. Every other model still works, is marked “Not on EU servers”, and runs as usual; Auto choices stay on EU servers. EU servers can cost a little more; the prices shown are the EU ones. Read-aloud and speech-to-text have no EU option. Your text still passes through our service (a server in Germany) and then OpenRouter, a US company, on the way."
+  },
+  "f_my_nextcloud_741d": {
+    "message": "My Nextcloud"
+  },
+  "f_my_notes_and_comments_099b": {
+    "message": "My notes and comments"
+  },
+  "f_new_note_7123": {
+    "message": "New note"
+  },
+  "f_new_server_9ee0": {
+    "message": "New server"
+  },
+  "f_nextcloud_webdav_2b5d": {
+    "message": "Nextcloud / WebDAV"
+  },
+  "f_nextcloud_owncloud_synology__5752": {
+    "message": "Nextcloud, ownCloud, Synology, most NAS boxes"
+  },
+  "f_no_notes_on_this_article_yet_b876": {
+    "message": "No notes on this article yet."
+  },
+  "f_no_notes_yet_68d5": {
+    "message": "No notes yet."
+  },
+  "f_no_tags_yet_end_a_note_with__ae68": {
+    "message": "No tags yet. End a note with #tag."
+  },
+  "f_not_eu_fb9c": {
+    "message": "Not EU"
+  },
+  "f_not_here_d910": {
+    "message": "Not here"
+  },
+  "f_not_on_eu_servers_abcb": {
+    "message": "Not on EU servers"
+  },
+  "f_not_published_yet_d0ae": {
+    "message": "Not published yet"
+  },
+  "f_not_synced_yet_7efe": {
+    "message": "Not synced yet"
+  },
+  "f_note_c15d": {
+    "message": "Note"
+  },
+  "f_notes_1b6a": {
+    "message": "Notes"
+  },
+  "f_notes_and_highlights_0e9c": {
+    "message": "Notes and highlights"
+  },
+  "f_notes_without_an_article_5bd7": {
+    "message": "Notes without an article"
+  },
+  "f_nothing_here_yet_5bfc": {
+    "message": "Nothing here yet."
+  },
+  "f_nothing_matches_03c3": {
+    "message": "Nothing matches."
+  },
+  "f_only_publish_articles_tagged_b789": {
+    "message": "Only publish articles tagged"
+  },
+  "f_open_the_page_ab11": {
+    "message": "Open the page"
+  },
+  "f_passphrase_2dc5": {
+    "message": "Passphrase"
+  },
+  "f_passphrase_keep_it_somewhere_ca8a": {
+    "message": "Passphrase: {k}. Keep it somewhere safe.",
+    "description": "Placeholders: {k} (keep as is)"
+  },
+  "f_paused_1feb": {
+    "message": "Paused"
+  },
+  "f_pinned_q_a_faa5": {
+    "message": "Pinned Q&A"
+  },
+  "f_places_d03d": {
+    "message": "Places"
+  },
+  "f_publish_everything_except_ar_74e7": {
+    "message": "Publish everything except articles tagged"
+  },
+  "f_publish_my_library_to_my_own_a71f": {
+    "message": "Publish my library to my own server"
+  },
+  "f_publish_now_ae60": {
+    "message": "Publish now"
+  },
+  "f_publishing_e1f2": {
+    "message": "Publishing…"
+  },
+  "f_questions_you_pinned_with_an_5f9e": {
+    "message": "Questions you pinned, with answers"
+  },
+  "f_readable_00b5": {
+    "message": "Readable"
+  },
+  "f_reading_changes_of_9b27": {
+    "message": "Reading changes {done} of {total}",
+    "description": "Placeholders: {done} {total} (keep as is)"
+  },
+  "f_region_789d": {
+    "message": "Region"
+  },
+  "f_reminders_b654": {
+    "message": "Reminders"
+  },
+  "f_remove_comment_2340": {
+    "message": "Remove comment"
+  },
+  "f_remove_them_401d": {
+    "message": "Remove them"
+  },
+  "f_remove_this_highlight_3cc8": {
+    "message": "Remove this highlight?"
+  },
+  "f_remove_this_place_6efc": {
+    "message": "Remove this place"
+  },
+  "f_remove_this_place_the_files__ad9c": {
+    "message": "Remove this place? The files already on your server are not deleted."
+  },
+  "f_removing_a_place_stops_publi_caa4": {
+    "message": "Removing a place stops publishing. The files already on your server stay where they are. A server that no place uses any more is forgotten with its login."
+  },
+  "f_removing_of_9a27": {
+    "message": "Removing {done} of {total}",
+    "description": "Placeholders: {done} {total} (keep as is)"
+  },
+  "f_repeat_the_passphrase_c2a7": {
+    "message": "Repeat the passphrase"
+  },
+  "f_restore_from_here_3623": {
+    "message": "Restore from here"
+  },
+  "f_restored_item_changed_on_thi_f959": {
+    "message": "Restored. {n} item changed on this device.",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_restored_items_changed_on_th_853c": {
+    "message": "Restored. {n} items changed on this device.",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_restoring_daec": {
+    "message": "Restoring…"
+  },
+  "f_s3_compatible_4144": {
+    "message": "S3-compatible"
+  },
+  "f_save_5d68": {
+    "message": "Save"
+  },
+  "f_save_server_bca3": {
+    "message": "Save server"
+  },
+  "f_save_your_passphrase_3801": {
+    "message": "Save your passphrase"
+  },
+  "f_saving_of_566a": {
+    "message": "Saving {done} of {total}",
+    "description": "Placeholders: {done} {total} (keep as is)"
+  },
+  "f_scan_it_with_ai_summary_help_572d": {
+    "message": "Scan it with AI Summary Helper on your phone: Settings → Library sync → Scan code. The code holds your server login, so show it only to your own phone. It hides itself after a minute."
+  },
+  "f_search_highlights_comments_n_4f81": {
+    "message": "Search highlights, comments, notes…"
+  },
+  "f_secret_access_key_d3a2": {
+    "message": "Secret access key"
+  },
+  "f_selected_3294": {
+    "message": "Selected"
+  },
+  "f_server_02f2": {
+    "message": "Server"
+  },
+  "f_server_address_025e": {
+    "message": "Server address"
+  },
+  "f_server_name_22f5": {
+    "message": "Server name"
+  },
+  "f_server_saved_27e1": {
+    "message": "Server saved."
+  },
+  "f_show_2e5c": {
+    "message": "Show"
+  },
+  "f_show_code_for_the_phone_a8c1": {
+    "message": "Show code for the phone"
+  },
+  "f_show_passphrase_dda0": {
+    "message": "Show passphrase"
+  },
+  "f_six_random_words_you_will_ty_e18c": {
+    "message": "Six random words. You will type them on your other devices, so write them down or keep them in a password manager. They are not saved anywhere else: if you lose them, nobody can open your files."
+  },
+  "f_soon_da12": {
+    "message": "Soon"
+  },
+  "f_strong_db5c": {
+    "message": "Strong."
+  },
+  "f_suggest_random_words_instead_a3fb": {
+    "message": "Suggest random words instead"
+  },
+  "f_sync_backup_9786": {
+    "message": "Sync & backup"
+  },
+  "f_sync_my_devices_79fb": {
+    "message": "Sync my devices"
+  },
+  "f_sync_now_d8fe": {
+    "message": "Sync now"
+  },
+  "f_syncthing_icloud_drive_dropb_a87d": {
+    "message": "Syncthing, iCloud Drive, Dropbox or a USB drive keep it in step."
+  },
+  "f_test_connection_b6b7": {
+    "message": "Test connection"
+  },
+  "f_the_browser_could_not_rememb_f257": {
+    "message": "The browser could not remember this folder."
+  },
+  "f_the_browser_did_not_allow_ac_5245": {
+    "message": "The browser did not allow access."
+  },
+  "f_the_browser_takes_back_acces_aaf9": {
+    "message": "The browser takes back access to a folder when it restarts, and only a click of yours can give it back. Until then the folder is not synced."
+  },
+  "f_the_kind_of_a_place_cannot_b_8037": {
+    "message": "The kind of a place cannot be changed. Add another place to use the other kind."
+  },
+  "f_the_login_is_saved_once_for__bcba": {
+    "message": "The login is saved once for all of them."
+  },
+  "f_the_restore_did_not_finish_a4b5": {
+    "message": "The restore did not finish."
+  },
+  "f_the_save_for_later_time_and__7dff": {
+    "message": "The save-for-later time and your reason for it."
+  },
+  "f_the_service_picks_a_model_fo_a591": {
+    "message": "The service picks a model for each request: short texts get a light model, long ones a larger one."
+  },
+  "f_the_two_passphrases_are_not__e90b": {
+    "message": "The two passphrases are not the same."
+  },
+  "f_these_six_words_are_the_key__f595": {
+    "message": "These six words are the key to “{name}”. You type them on each new device. If you lose them, nobody can read the files, not even us. Save them in a password manager.",
+    "description": "Placeholders: {name} (keep as is)"
+  },
+  "f_this_device_was_away_for_a_l_46de": {
+    "message": "This device was away for a long time. Only what changed since was sent, and nothing was deleted."
+  },
+  "f_this_device_writes_everythin_1070": {
+    "message": "This device writes everything to the place and never reads it back. Restore from it when you need it."
+  },
+  "f_this_folder_already_holds_an_9f1e": {
+    "message": "This folder already holds an encrypted library. Enter its passphrase (the words you saved)."
+  },
+  "f_this_folder_already_holds_an_8e8c": {
+    "message": "This folder already holds an encrypted library. Enter its passphrase below, then press Connect again."
+  },
+  "f_this_model_does_not_run_on_e_21da": {
+    "message": "This model does not run on EU servers. Use {name} (EU) instead?",
+    "description": "Placeholders: {name} (keep as is)"
+  },
+  "f_this_place_publishes_only_th_f3b8": {
+    "message": "This place publishes only: this device writes the files and never reads them back."
+  },
+  "f_this_place_uses_your_own_pas_823b": {
+    "message": "This place uses your own passphrase. It is not in the code: type it on the phone."
+  },
+  "f_this_place_uses_your_own_pas_b61e": {
+    "message": "This place uses your own passphrase. It is not kept on this device, so it cannot be shown."
+  },
+  "f_to_publish_on_your_own_websi_9caf": {
+    "message": "To publish on your own website: plain files that anyone with the link can read."
+  },
+  "f_turn_on_to_run_models_on_ser_af13": {
+    "message": "Turn on to run models on servers in Europe where they offer that. All other models keep working and are marked."
+  },
+  "f_unchanged_e05e": {
+    "message": "Unchanged"
+  },
+  "f_updating_the_list_d48e": {
+    "message": "Updating the list…"
+  },
+  "f_uploading_of_c6b9": {
+    "message": "Uploading {done} of {total}",
+    "description": "Placeholders: {done} {total} (keep as is)"
+  },
+  "f_use_my_own_passphrase_c42a": {
+    "message": "Use my own passphrase"
+  },
+  "f_use_4021": {
+    "message": "Use {name}",
+    "description": "Placeholders: {name} (keep as is)"
+  },
+  "f_username_d4d9": {
+    "message": "Username"
+  },
+  "f_view_aa18": {
+    "message": "View"
+  },
+  "f_weak_use_at_least_12_charact_690f": {
+    "message": "Weak: use at least 12 characters, or the suggested words."
+  },
+  "f_website_list_be8a": {
+    "message": "Website list"
+  },
+  "f_what_goes_out_1113": {
+    "message": "What goes out"
+  },
+  "f_what_it_is_for_84ef": {
+    "message": "What it is for"
+  },
+  "f_who_can_read_it_ceb4": {
+    "message": "Who can read it"
+  },
+  "f_with_a_tag_c382": {
+    "message": "With a tag"
+  },
+  "f_works_in_chrome_and_edge_on__f2c7": {
+    "message": "Works in Chrome and Edge on a computer."
+  },
+  "f_write_a_note_about_this_arti_e1b4": {
+    "message": "Write a note about this article…"
+  },
+  "f_write_a_note_or_a_thought_wo_67b1": {
+    "message": "Write a note, or a thought worth keeping…"
+  },
+  "f_write_a_note_c7c9": {
+    "message": "Write a note…"
+  },
+  "f_write_one_below_or_highlight_7627": {
+    "message": "Write one below, or highlight text on any page. Your highlights and the AI’s show up here too."
+  },
+  "f_your_articles_highlights_not_9c7c": {
+    "message": "Your articles, highlights, notes, collections, summaries and full texts, kept in step on every device that joins with the same passphrase."
+  },
+  "f_your_own_index_html_is_in_th_8069": {
+    "message": "Your own index.html is in this folder, so the viewer was not replaced."
+  },
+  "f_your_own_notes_and_the_comme_6ef8": {
+    "message": "Your own notes and the comments on your highlights."
+  },
+  "f_your_passphrase_2512": {
+    "message": "Your passphrase"
+  },
+  "f_your_yellow_and_ai_highlight_15a0": {
+    "message": "Your yellow and AI highlights"
+  },
+  "f_backed_up_ago_845b": {
+    "message": "backed up {t} ago",
+    "description": "Placeholders: {t} (keep as is)"
+  },
+  "f_picks_a_model_for_each_reque_519c": {
+    "message": "picks a model for each request"
+  },
+  "f_published_ago_0576": {
+    "message": "published {t} ago",
+    "description": "Placeholders: {t} (keep as is)"
+  },
+  "f_synced_ago_174c": {
+    "message": "synced {t} ago",
+    "description": "Placeholders: {t} (keep as is)"
+  },
+  "f_of_9ced": {
+    "message": "{a} of {b}",
+    "description": "Placeholders: {a} {b} (keep as is)"
+  },
+  "f_ai_highlight_8f93": {
+    "message": "{n} AI highlight",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_ai_highlights_7da0": {
+    "message": "{n} AI highlights",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_file_is_no_longer_wanted_her_48c4": {
+    "message": "{n} file is no longer wanted here and would be removed from your server. Check that this is right.",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_files_are_no_longer_wanted_h_6975": {
+    "message": "{n} files are no longer wanted here and would be removed from your server. Check that this is right.",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_files_had_problems_a60b": {
+    "message": "{n} files had problems",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_highlight_5f43": {
+    "message": "{n} highlight",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_highlights_d890": {
+    "message": "{n} highlights",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_more_article_was_deleted_on__0e7e": {
+    "message": "{n} more article was deleted on another device. It is still here until you say so. Check that this is right.",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_more_articles_were_deleted_o_8348": {
+    "message": "{n} more articles were deleted on other devices. They are still here until you say so. Check that this is right.",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_note_b2a1": {
+    "message": "{n} note",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_notes_8096": {
+    "message": "{n} notes",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_place_b298": {
+    "message": "{n} place",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_place_uses_this_server_133b": {
+    "message": "{n} place uses this server.",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_places_a7f1": {
+    "message": "{n} places",
+    "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_places_use_this_server_4df9": {
+    "message": "{n} places use this server.",
+    "description": "Placeholders: {n} (keep as is)"
   }
 }

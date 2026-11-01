@@ -1842,7 +1842,7 @@
     "message": "Suite"
   },
   "f_could_not_reach_ollama_make__7fce": {
-    "message": "Ollama est injoignable. Vérifiez qu'il tourne et que l'endpoint est correct."
+    "message": "Ollama est injoignable. Vérifiez qu'il tourne et que l’endpoint est correct."
   },
   "f_deutsche_welle_top_stories_8be6": {
     "message": "Deutsche Welle · à la une"
@@ -2289,10 +2289,10 @@
     "message": "Éducatif"
   },
   "f_endpoint_url_ddad": {
-    "message": "URL du endpoint"
+    "message": "URL de l’endpoint"
   },
   "f_endpoint_url_d4b5": {
-    "message": "URL du endpoint :"
+    "message": "URL de l’endpoint :"
   },
   "f_enter_6_digit_code_9824": {
     "message": "Saisir le code à 6 chiffres"
@@ -5675,5 +5675,671 @@
   },
   "f_what_s_new_in_9c82": {
     "message": "Nouveautés de la {v}"
+  },
+  "f_a_folder_on_this_computer_bbe4": {
+    "message": "Un dossier sur cet ordinateur"
+  },
+  "f_a_simple_web_page_index_html_d002": {
+    "message": "Une page web simple (index.html) qui lit library.json : recherche, tags, chronologie et graphe de tags. Elle nécessite un serveur qui diffuse des pages HTML, par exemple votre propre serveur web ou un bucket public. Les partages Nextcloud n’en font pas partie."
+  },
+  "f_ai_135f": {
+    "message": "IA"
+  },
+  "f_ai_highlight_b91f": {
+    "message": "Surlignage IA"
+  },
+  "f_aws_cloudflare_r2_backblaze__139d": {
+    "message": "AWS, Cloudflare R2, Backblaze, MinIO, Wasabi"
+  },
+  "f_aws_https_s3_region_amazonaw_c68d": {
+    "message": "AWS : https://s3.<region>.amazonaws.com · Cloudflare R2 : https://<account>.r2.cloudflarestorage.com · Backblaze : https://s3.<region>.backblazeb2.com"
+  },
+  "f_access_is_allowed_7031": {
+    "message": "L’accès est autorisé."
+  },
+  "f_access_key_id_8d75": {
+    "message": "ID de clé d’accès"
+  },
+  "f_add_a_comment_9c08": {
+    "message": "Commenter…"
+  },
+  "f_add_a_place_799c": {
+    "message": "Ajouter un lieu"
+  },
+  "f_add_note_9108": {
+    "message": "Ajouter"
+  },
+  "f_all_except_a_tag_ca3e": {
+    "message": "Tous sauf un tag"
+  },
+  "f_all_places_fdbc": {
+    "message": "Tous les lieux"
+  },
+  "f_allow_access_again_cc7c": {
+    "message": "Autoriser à nouveau"
+  },
+  "f_allow_access_to_599a": {
+    "message": "Autoriser l’accès à {name}"
+  },
+  "f_also_publish_a_viewer_page_2d07": {
+    "message": "Publier aussi une page de lecture"
+  },
+  "f_an_index_html_that_is_not_ou_889b": {
+    "message": "Un fichier index.html qui n’est pas le nôtre existe déjà dans ce dossier, la page n’a donc pas été écrite. Choisissez un autre dossier."
+  },
+  "f_another_suggestion_09e8": {
+    "message": "Autre suggestion"
+  },
+  "f_anyone_who_can_open_this_fol_86f7": {
+    "message": "Toute personne pouvant ouvrir ce dossier peut lire ces fichiers. Utilisez un dossier que vous contrôlez et gardez-le privé, sauf si vous voulez le publier."
+  },
+  "f_app_password_6505": {
+    "message": "Mdp d’application"
+  },
+  "f_at_least_12_characters_it_is_f78b": {
+    "message": "12 caractères minimum. Il n’est enregistré nulle part : si vous le perdez, personne ne peut ouvrir les fichiers."
+  },
+  "f_back_up_now_63b3": {
+    "message": "Sauvegarder"
+  },
+  "f_backup_only_e75f": {
+    "message": "Sauvegarde seule"
+  },
+  "f_bring_everything_in_this_pla_0150": {
+    "message": "Rapatrier tout le contenu de ce lieu sur cet appareil ? En cas de différence, le lieu l’emporte. Rien n’est supprimé ici."
+  },
+  "f_bucket_3557": {
+    "message": "Bucket"
+  },
+  "f_by_article_5c16": {
+    "message": "Par article"
+  },
+  "f_changes_here_apply_to_every__822d": {
+    "message": "Les changements s’appliquent à tous les lieux de ce serveur."
+  },
+  "f_checked_the_folder_restored__7f16": {
+    "message": "Dossier vérifié : {r} restauré(s), {o} reste(s) trouvé(s)."
+  },
+  "f_checking_your_library_f467": {
+    "message": "Vérification en cours…"
+  },
+  "f_choose_6160": {
+    "message": "Choisir"
+  },
+  "f_choose_a_passphrase_c9a1": {
+    "message": "Choisir une phrase secrète"
+  },
+  "f_choose_another_folder_1129": {
+    "message": "Choisir un autre dossier"
+  },
+  "f_cloudflare_r2_auto_leave_the_74e0": {
+    "message": "Cloudflare R2 : auto. Gardez la valeur par défaut si votre fournisseur n’en demande pas."
+  },
+  "f_code_for_the_phone_8494": {
+    "message": "Code pour le téléphone"
+  },
+  "f_comment_9ffe": {
+    "message": "Commentaire"
+  },
+  "f_connect_and_publish_3387": {
+    "message": "Connecter et publier"
+  },
+  "f_connected_the_folder_is_empt_688d": {
+    "message": "Connecté. Le dossier est vide, une nouvelle bibliothèque chiffrée sera donc créée."
+  },
+  "f_connected_this_folder_alread_7ea2": {
+    "message": "Connecté. Ce dossier contient déjà une bibliothèque chiffrée."
+  },
+  "f_connected_article_matches_b205": {
+    "message": "Connecté. {n} article correspond."
+  },
+  "f_connected_articles_match_40f2": {
+    "message": "Connecté. {n} articles correspondent."
+  },
+  "f_continuing_file_left_4bdc": {
+    "message": "Suite… {n} fichier restant"
+  },
+  "f_continuing_files_left_7869": {
+    "message": "Suite… {n} fichiers restants"
+  },
+  "f_copied_2cb1": {
+    "message": "Copié."
+  },
+  "f_copies_of_other_people_s_art_db7e": {
+    "message": "Copies d’articles d’autres auteurs. Vérifiez que vous pouvez les partager. Fichiers bien plus lourds."
+  },
+  "f_copy_did_not_work_select_the_1dcb": {
+    "message": "La copie a échoué. Sélectionnez les mots et copiez-les à la main."
+  },
+  "f_copy_puts_the_words_in_one_p_9b1c": {
+    "message": "Copier donne les mots d’un seul bloc, reliés par des tirets. Cela résiste aux fichiers de config, shells et applis de chat ; saisis avec des espaces ou des tirets, les deux fonctionnent."
+  },
+  "f_could_not_reach_the_server_aa7e": {
+    "message": "Serveur injoignable"
+  },
+  "f_could_not_save_this_place_cf23": {
+    "message": "Impossible d’enregistrer ce lieu."
+  },
+  "f_created_for_you_use_one_fold_0390": {
+    "message": "Créé pour vous. Utilisez un dossier par usage, par exemple public pour une liste de site web et backup pour une copie complète."
+  },
+  "f_danger_zone_19b4": {
+    "message": "Zone dangereuse"
+  },
+  "f_delete_them_here_too_9d48": {
+    "message": "Les supprimer ici aussi"
+  },
+  "f_delete_this_note_3253": {
+    "message": "Supprimer cette note ?"
+  },
+  "f_download_bb19": {
+    "message": "Télécharger"
+  },
+  "f_eu_1f4f": {
+    "message": "UE"
+  },
+  "f_eu_company_ef04": {
+    "message": "Société UE"
+  },
+  "f_eu_servers_987b": {
+    "message": "Serveurs UE"
+  },
+  "f_each_article_becomes_one_fil_f81c": {
+    "message": "Chaque article devient un fichier, plus une liste pour votre site web (library.json)."
+  },
+  "f_edit_comment_f0e4": {
+    "message": "Modifier"
+  },
+  "f_edit_server_63e0": {
+    "message": "Modifier"
+  },
+  "f_encrypted_e253": {
+    "message": "Chiffré"
+  },
+  "f_end_with_tags_ctrl_enter_to__83e2": {
+    "message": "Finir par des #tags · ⌘/Ctrl+Entrée pour ajouter"
+  },
+  "f_endpoint_address_ce54": {
+    "message": "Adresse de l’endpoint"
+  },
+  "f_every_article_you_saved_goes_f744": {
+    "message": "Chaque article enregistré est publié, y compris ceux que vous ne voulez peut-être pas voir lus. Une sauvegarde lisible par vous seul devrait plutôt être chiffrée."
+  },
+  "f_everything_8340": {
+    "message": "Tout"
+  },
+  "f_everything_is_encrypted_on_t_1b86": {
+    "message": "Tout est chiffré sur cet appareil avant l’envoi. Notes, rappels et textes complets sont inclus, car vous seul pouvez les lire."
+  },
+  "f_files_go_into_a_subfolder_of_5a98": {
+    "message": "Les fichiers vont dans un sous-dossier. Ce qui synchronise ce dossier (Syncthing, iCloud Drive, Dropbox, une clé USB) les transmet à vos autres appareils."
+  },
+  "f_fine_the_suggested_words_are_36c0": {
+    "message": "D’accord. Les mots suggérés sont plus sûrs."
+  },
+  "f_folder_7afd": {
+    "message": "Dossier"
+  },
+  "f_folder_access_is_waiting_b754": {
+    "message": "L’accès au dossier est en attente"
+  },
+  "f_folder_on_the_server_b74c": {
+    "message": "Dossier sur le serveur"
+  },
+  "f_folder_960e": {
+    "message": "Dossier : {name}"
+  },
+  "f_for_syncing_and_backup_only__f767": {
+    "message": "Pour la synchro et la sauvegarde. Vous seul pouvez le lire, aucun site web ne le peut. Le fournisseur voit des fichiers brouillés."
+  },
+  "f_getting_changes_of_8fbb": {
+    "message": "Réception {done}/{total}"
+  },
+  "f_grid_66b1": {
+    "message": "Grille"
+  },
+  "f_highlight_05c7": {
+    "message": "Surlignage"
+  },
+  "f_i_made_a_backup_of_this_devi_c05b": {
+    "message": "J’ai sauvegardé cet appareil"
+  },
+  "f_i_saved_the_passphrase_81d0": {
+    "message": "J’ai noté la phrase secrète"
+  },
+  "f_in_nextcloud_settings_securi_4fee": {
+    "message": "Dans Nextcloud : Paramètres → Sécurité → créer un mot de passe d’application. Jamais votre mot de passe principal."
+  },
+  "f_joining_merges_this_device_w_8048": {
+    "message": "Rejoindre fusionne cet appareil avec la bibliothèque du dossier : en cas de différence, le dossier l’emporte. Sauvegardez d’abord cet appareil."
+  },
+  "f_keep_your_library_in_step_ac_b5fe": {
+    "message": "Gardez votre bibliothèque synchronisée entre vos appareils, sauvegardez-la ou publiez-en une partie pour d’autres. Chaque lieu est un dossier sur votre propre serveur ou sur cet ordinateur. Rien ne quitte cet appareil tant que vous n’en ajoutez pas."
+  },
+  "f_looking_at_what_is_in_the_fo_1e05": {
+    "message": "Lecture du contenu du dossier…"
+  },
+  "f_make_a_backup_now_3046": {
+    "message": "Sauvegarder maintenant"
+  },
+  "f_make_an_access_key_just_for__abc9": {
+    "message": "Créez une clé d’accès réservée à ce bucket, autorisée à lire, écrire, lister et supprimer. N’utilisez jamais la clé principale de votre compte."
+  },
+  "f_meant_for_a_folder_only_you__33c0": {
+    "message": "Prévu pour un dossier que vous seul pouvez ouvrir, par exemple une sauvegarde privée ou une liste interne. Toute personne pouvant ouvrir le dossier peut tout lire."
+  },
+  "f_mine_84d6": {
+    "message": "Les miens"
+  },
+  "f_models_marked_eu_servers_run_7b00": {
+    "message": "Les modèles marqués « Serveurs UE » tournent uniquement sur des serveurs en Europe, souvent ceux de géants du cloud américains. Seuls les modèles marqués « Société UE » viennent aussi d’une entreprise européenne. Tous les autres modèles fonctionnent toujours, sont marqués « Pas sur serveurs UE » et tournent comme d’habitude ; les choix Auto restent sur des serveurs UE. Les serveurs UE peuvent coûter un peu plus ; les prix affichés sont ceux de l’UE. La lecture à voix haute et la dictée n’ont pas d’option UE. Votre texte passe toujours par notre service (un serveur en Allemagne), puis par OpenRouter, une société américaine."
+  },
+  "f_my_nextcloud_741d": {
+    "message": "Mon Nextcloud"
+  },
+  "f_my_notes_and_comments_099b": {
+    "message": "Mes notes et commentaires"
+  },
+  "f_new_note_7123": {
+    "message": "Nouvelle note"
+  },
+  "f_new_server_9ee0": {
+    "message": "Nouveau serveur"
+  },
+  "f_nextcloud_webdav_2b5d": {
+    "message": "Nextcloud / WebDAV"
+  },
+  "f_nextcloud_owncloud_synology__5752": {
+    "message": "Nextcloud, ownCloud, Synology, la plupart des NAS"
+  },
+  "f_no_notes_on_this_article_yet_b876": {
+    "message": "Aucune note sur cet article."
+  },
+  "f_no_notes_yet_68d5": {
+    "message": "Aucune note."
+  },
+  "f_no_tags_yet_end_a_note_with__ae68": {
+    "message": "Aucun tag. Finissez une note par #tag."
+  },
+  "f_not_eu_fb9c": {
+    "message": "Hors UE"
+  },
+  "f_not_here_d910": {
+    "message": "Pas ici"
+  },
+  "f_not_on_eu_servers_abcb": {
+    "message": "Pas sur serveurs UE"
+  },
+  "f_not_published_yet_d0ae": {
+    "message": "Pas encore publié"
+  },
+  "f_not_synced_yet_7efe": {
+    "message": "Pas encore synchro"
+  },
+  "f_note_c15d": {
+    "message": "Note"
+  },
+  "f_notes_1b6a": {
+    "message": "Notes"
+  },
+  "f_notes_and_highlights_0e9c": {
+    "message": "Notes et surlignages"
+  },
+  "f_notes_without_an_article_5bd7": {
+    "message": "Notes sans article"
+  },
+  "f_nothing_here_yet_5bfc": {
+    "message": "Rien pour l’instant."
+  },
+  "f_nothing_matches_03c3": {
+    "message": "Aucun résultat."
+  },
+  "f_only_publish_articles_tagged_b789": {
+    "message": "Publier seulement les articles du tag"
+  },
+  "f_open_the_page_ab11": {
+    "message": "Ouvrir la page"
+  },
+  "f_passphrase_2dc5": {
+    "message": "Phrase secrète"
+  },
+  "f_passphrase_keep_it_somewhere_ca8a": {
+    "message": "Phrase secrète : {k}. Gardez-la en lieu sûr."
+  },
+  "f_paused_1feb": {
+    "message": "En pause"
+  },
+  "f_pinned_q_a_faa5": {
+    "message": "Q&R épinglées"
+  },
+  "f_places_d03d": {
+    "message": "Lieux"
+  },
+  "f_publish_everything_except_ar_74e7": {
+    "message": "Tout publier sauf les articles avec le tag"
+  },
+  "f_publish_my_library_to_my_own_a71f": {
+    "message": "Publier ma bibliothèque sur mon serveur"
+  },
+  "f_publish_now_ae60": {
+    "message": "Publier"
+  },
+  "f_publishing_e1f2": {
+    "message": "Publication…"
+  },
+  "f_questions_you_pinned_with_an_5f9e": {
+    "message": "Vos questions épinglées, avec réponses"
+  },
+  "f_readable_00b5": {
+    "message": "Lisible"
+  },
+  "f_reading_changes_of_9b27": {
+    "message": "Lecture des changements {done}/{total}"
+  },
+  "f_region_789d": {
+    "message": "Région"
+  },
+  "f_reminders_b654": {
+    "message": "Rappels"
+  },
+  "f_remove_comment_2340": {
+    "message": "Retirer"
+  },
+  "f_remove_them_401d": {
+    "message": "Les supprimer"
+  },
+  "f_remove_this_highlight_3cc8": {
+    "message": "Supprimer ce surlignage ?"
+  },
+  "f_remove_this_place_6efc": {
+    "message": "Retirer ce lieu"
+  },
+  "f_remove_this_place_the_files__ad9c": {
+    "message": "Retirer ce lieu ? Les fichiers déjà sur votre serveur ne sont pas supprimés."
+  },
+  "f_removing_a_place_stops_publi_caa4": {
+    "message": "Retirer un lieu arrête la publication. Les fichiers déjà sur votre serveur restent en place. Un serveur qu’aucun lieu n’utilise plus est oublié avec ses identifiants."
+  },
+  "f_removing_of_9a27": {
+    "message": "Suppression {done}/{total}"
+  },
+  "f_repeat_the_passphrase_c2a7": {
+    "message": "Répétez la phrase secrète"
+  },
+  "f_restore_from_here_3623": {
+    "message": "Restaurer d’ici"
+  },
+  "f_restored_item_changed_on_thi_f959": {
+    "message": "Restauré. {n} élément modifié sur cet appareil."
+  },
+  "f_restored_items_changed_on_th_853c": {
+    "message": "Restauré. {n} éléments modifiés sur cet appareil."
+  },
+  "f_restoring_daec": {
+    "message": "Restauration…"
+  },
+  "f_s3_compatible_4144": {
+    "message": "Compatible S3"
+  },
+  "f_save_5d68": {
+    "message": "Sauver"
+  },
+  "f_save_server_bca3": {
+    "message": "Sauver serveur"
+  },
+  "f_save_your_passphrase_3801": {
+    "message": "Notez votre phrase secrète"
+  },
+  "f_saving_of_566a": {
+    "message": "Enregistrement {done}/{total}"
+  },
+  "f_scan_it_with_ai_summary_help_572d": {
+    "message": "Scannez-le avec AI Summary Helper sur votre téléphone : Paramètres → Library sync → Scanner le code. Le code contient vos identifiants du serveur : montrez-le uniquement à votre propre téléphone. Il se masque seul après une minute."
+  },
+  "f_search_highlights_comments_n_4f81": {
+    "message": "Rechercher surlignages, commentaires, notes…"
+  },
+  "f_secret_access_key_d3a2": {
+    "message": "Clé d’accès secrète"
+  },
+  "f_selected_3294": {
+    "message": "Sélectionné"
+  },
+  "f_server_02f2": {
+    "message": "Serveur"
+  },
+  "f_server_address_025e": {
+    "message": "Adresse du serveur"
+  },
+  "f_server_name_22f5": {
+    "message": "Nom du serveur"
+  },
+  "f_server_saved_27e1": {
+    "message": "Serveur enregistré."
+  },
+  "f_show_2e5c": {
+    "message": "Afficher"
+  },
+  "f_show_code_for_the_phone_a8c1": {
+    "message": "Afficher le code"
+  },
+  "f_show_passphrase_dda0": {
+    "message": "Afficher la phrase"
+  },
+  "f_six_random_words_you_will_ty_e18c": {
+    "message": "Six mots aléatoires. Vous les saisirez sur vos autres appareils : notez-les ou gardez-les dans un gestionnaire de mots de passe. Ils ne sont enregistrés nulle part ailleurs : si vous les perdez, personne ne peut ouvrir vos fichiers."
+  },
+  "f_soon_da12": {
+    "message": "Bientôt"
+  },
+  "f_strong_db5c": {
+    "message": "Solide."
+  },
+  "f_suggest_random_words_instead_a3fb": {
+    "message": "Suggérer plutôt des mots aléatoires"
+  },
+  "f_sync_backup_9786": {
+    "message": "Synchro et backup"
+  },
+  "f_sync_my_devices_79fb": {
+    "message": "Synchro des appareils"
+  },
+  "f_sync_now_d8fe": {
+    "message": "Synchroniser"
+  },
+  "f_syncthing_icloud_drive_dropb_a87d": {
+    "message": "Syncthing, iCloud Drive, Dropbox ou une clé USB le gardent synchronisé."
+  },
+  "f_test_connection_b6b7": {
+    "message": "Tester la connexion"
+  },
+  "f_the_browser_could_not_rememb_f257": {
+    "message": "Le navigateur n’a pas pu mémoriser ce dossier."
+  },
+  "f_the_browser_did_not_allow_ac_5245": {
+    "message": "Le navigateur n’a pas autorisé l’accès."
+  },
+  "f_the_browser_takes_back_acces_aaf9": {
+    "message": "Le navigateur retire l’accès à un dossier au redémarrage, et seul un clic de votre part le rend. D’ici là, le dossier n’est pas synchronisé."
+  },
+  "f_the_kind_of_a_place_cannot_b_8037": {
+    "message": "Le type d’un lieu ne peut pas être modifié. Ajoutez un autre lieu pour utiliser l’autre type."
+  },
+  "f_the_login_is_saved_once_for__bcba": {
+    "message": "Les identifiants sont enregistrés une fois pour tous."
+  },
+  "f_the_restore_did_not_finish_a4b5": {
+    "message": "La restauration n’a pas abouti."
+  },
+  "f_the_save_for_later_time_and__7dff": {
+    "message": "L’heure de mise de côté et votre raison."
+  },
+  "f_the_service_picks_a_model_fo_a591": {
+    "message": "Le service choisit un modèle pour chaque requête : les textes courts reçoivent un modèle léger, les longs un modèle plus grand."
+  },
+  "f_the_two_passphrases_are_not__e90b": {
+    "message": "Les deux phrases secrètes sont différentes."
+  },
+  "f_these_six_words_are_the_key__f595": {
+    "message": "Ces six mots sont la clé de « {name} ». Vous les saisissez sur chaque nouvel appareil. Si vous les perdez, personne ne peut lire les fichiers, nous non plus. Gardez-les dans un gestionnaire de mots de passe."
+  },
+  "f_this_device_was_away_for_a_l_46de": {
+    "message": "Cet appareil est resté absent longtemps. Seul ce qui a changé depuis a été envoyé, et rien n’a été supprimé."
+  },
+  "f_this_device_writes_everythin_1070": {
+    "message": "Cet appareil écrit tout dans le lieu sans jamais le relire. Restaurez-en le contenu au besoin."
+  },
+  "f_this_folder_already_holds_an_9f1e": {
+    "message": "Ce dossier contient déjà une bibliothèque chiffrée. Saisissez sa phrase secrète (les mots notés)."
+  },
+  "f_this_folder_already_holds_an_8e8c": {
+    "message": "Ce dossier contient déjà une bibliothèque chiffrée. Saisissez sa phrase secrète ci-dessous, puis appuyez de nouveau sur Connecter."
+  },
+  "f_this_model_does_not_run_on_e_21da": {
+    "message": "Ce modèle ne tourne pas sur des serveurs UE. Utiliser plutôt {name} (UE) ?"
+  },
+  "f_this_place_publishes_only_th_f3b8": {
+    "message": "Ce lieu publie seulement : cet appareil écrit les fichiers sans jamais les relire."
+  },
+  "f_this_place_uses_your_own_pas_823b": {
+    "message": "Ce lieu utilise votre propre phrase secrète. Elle n’est pas dans le code : saisissez-la sur le téléphone."
+  },
+  "f_this_place_uses_your_own_pas_b61e": {
+    "message": "Ce lieu utilise votre propre phrase secrète. Non conservée sur cet appareil, elle ne peut pas être affichée."
+  },
+  "f_to_publish_on_your_own_websi_9caf": {
+    "message": "Pour publier sur votre site web : des fichiers simples, lisibles par toute personne ayant le lien."
+  },
+  "f_turn_on_to_run_models_on_ser_af13": {
+    "message": "Activez pour exécuter les modèles sur des serveurs en Europe quand c’est proposé. Les autres modèles restent utilisables et sont signalés."
+  },
+  "f_unchanged_e05e": {
+    "message": "Inchangé"
+  },
+  "f_updating_the_list_d48e": {
+    "message": "Mise à jour de la liste…"
+  },
+  "f_uploading_of_c6b9": {
+    "message": "Envoi {done}/{total}"
+  },
+  "f_use_my_own_passphrase_c42a": {
+    "message": "Ma propre phrase secrète"
+  },
+  "f_use_4021": {
+    "message": "Utiliser {name}"
+  },
+  "f_username_d4d9": {
+    "message": "Identifiant"
+  },
+  "f_view_aa18": {
+    "message": "Vue"
+  },
+  "f_weak_use_at_least_12_charact_690f": {
+    "message": "Faible : utilisez au moins 12 caractères, ou les mots suggérés."
+  },
+  "f_website_list_be8a": {
+    "message": "Liste du site"
+  },
+  "f_what_goes_out_1113": {
+    "message": "Ce qui est publié"
+  },
+  "f_what_it_is_for_84ef": {
+    "message": "Son usage"
+  },
+  "f_who_can_read_it_ceb4": {
+    "message": "Qui peut le lire"
+  },
+  "f_with_a_tag_c382": {
+    "message": "Avec un tag"
+  },
+  "f_works_in_chrome_and_edge_on__f2c7": {
+    "message": "Fonctionne dans Chrome et Edge sur ordinateur."
+  },
+  "f_write_a_note_about_this_arti_e1b4": {
+    "message": "Écrire une note sur cet article…"
+  },
+  "f_write_a_note_or_a_thought_wo_67b1": {
+    "message": "Écrivez une note ou une idée à garder…"
+  },
+  "f_write_a_note_c7c9": {
+    "message": "Écrire une note…"
+  },
+  "f_write_one_below_or_highlight_7627": {
+    "message": "Écrivez-en une ci-dessous ou surlignez du texte sur une page. Vos surlignages et ceux de l’IA apparaissent aussi ici."
+  },
+  "f_your_articles_highlights_not_9c7c": {
+    "message": "Vos articles, surlignages, notes, collections, résumés et textes complets, synchronisés sur chaque appareil rejoignant avec la même phrase secrète."
+  },
+  "f_your_own_index_html_is_in_th_8069": {
+    "message": "Votre propre index.html est dans ce dossier, la page de lecture n’a donc pas été remplacée."
+  },
+  "f_your_own_notes_and_the_comme_6ef8": {
+    "message": "Vos propres notes et les commentaires de vos surlignages."
+  },
+  "f_your_passphrase_2512": {
+    "message": "Votre phrase secrète"
+  },
+  "f_your_yellow_and_ai_highlight_15a0": {
+    "message": "Vos surlignages jaunes et ceux de l’IA"
+  },
+  "f_backed_up_ago_845b": {
+    "message": "sauvegardé il y a {t}"
+  },
+  "f_picks_a_model_for_each_reque_519c": {
+    "message": "choisit un modèle pour chaque requête"
+  },
+  "f_published_ago_0576": {
+    "message": "publié il y a {t}"
+  },
+  "f_synced_ago_174c": {
+    "message": "synchro il y a {t}"
+  },
+  "f_of_9ced": {
+    "message": "{a} sur {b}"
+  },
+  "f_ai_highlight_8f93": {
+    "message": "{n} surlignage IA"
+  },
+  "f_ai_highlights_7da0": {
+    "message": "{n} surlignages IA"
+  },
+  "f_file_is_no_longer_wanted_her_48c4": {
+    "message": "{n} fichier n’est plus utile ici et serait supprimé de votre serveur. Vérifiez que c’est bien voulu."
+  },
+  "f_files_are_no_longer_wanted_h_6975": {
+    "message": "{n} fichiers ne sont plus utiles ici et seraient supprimés de votre serveur. Vérifiez que c’est bien voulu."
+  },
+  "f_files_had_problems_a60b": {
+    "message": "{n} fichiers ont posé problème"
+  },
+  "f_highlight_5f43": {
+    "message": "{n} surlignage"
+  },
+  "f_highlights_d890": {
+    "message": "{n} surlignages"
+  },
+  "f_more_article_was_deleted_on__0e7e": {
+    "message": "{n} autre article a été supprimé sur un autre appareil. Il reste ici tant que vous ne confirmez pas. Vérifiez que c’est bien voulu."
+  },
+  "f_more_articles_were_deleted_o_8348": {
+    "message": "{n} autres articles ont été supprimés sur d’autres appareils. Ils restent ici tant que vous ne confirmez pas. Vérifiez que c’est bien voulu."
+  },
+  "f_note_b2a1": {
+    "message": "{n} note"
+  },
+  "f_notes_8096": {
+    "message": "{n} notes"
+  },
+  "f_place_b298": {
+    "message": "{n} lieu"
+  },
+  "f_place_uses_this_server_133b": {
+    "message": "{n} lieu utilise ce serveur."
+  },
+  "f_places_a7f1": {
+    "message": "{n} lieux"
+  },
+  "f_places_use_this_server_4df9": {
+    "message": "{n} lieux utilisent ce serveur."
   }
 }

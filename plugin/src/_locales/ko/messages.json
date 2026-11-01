@@ -5657,5 +5657,671 @@
   },
   "f_what_s_new_in_9c82": {
     "message": "{v}의 새로운 기능"
+  },
+  "f_a_folder_on_this_computer_bbe4": {
+    "message": "이 컴퓨터의 폴더"
+  },
+  "f_a_simple_web_page_index_html_d002": {
+    "message": "index.html과 library.json을 읽는 간단한 웹페이지예요. 검색, 태그, 타임라인, 태그 그래프를 제공합니다. HTML 페이지를 보여 주는 서버가 필요해요(예: 내 웹 서버, 공개 버킷). Nextcloud 공유에서는 쓸 수 없어요."
+  },
+  "f_ai_135f": {
+    "message": "AI"
+  },
+  "f_ai_highlight_b91f": {
+    "message": "AI 하이라이트"
+  },
+  "f_aws_cloudflare_r2_backblaze__139d": {
+    "message": "AWS, Cloudflare R2, Backblaze, MinIO, Wasabi"
+  },
+  "f_aws_https_s3_region_amazonaw_c68d": {
+    "message": "AWS: https://s3.<region>.amazonaws.com · Cloudflare R2: https://<account>.r2.cloudflarestorage.com · Backblaze: https://s3.<region>.backblazeb2.com"
+  },
+  "f_access_is_allowed_7031": {
+    "message": "접근이 허용되었어요."
+  },
+  "f_access_key_id_8d75": {
+    "message": "액세스 키 ID"
+  },
+  "f_add_a_comment_9c08": {
+    "message": "댓글 추가…"
+  },
+  "f_add_a_place_799c": {
+    "message": "위치 추가"
+  },
+  "f_add_note_9108": {
+    "message": "메모 추가"
+  },
+  "f_all_except_a_tag_ca3e": {
+    "message": "태그 제외 모두"
+  },
+  "f_all_places_fdbc": {
+    "message": "모든 위치"
+  },
+  "f_allow_access_again_cc7c": {
+    "message": "다시 접근 허용"
+  },
+  "f_allow_access_to_599a": {
+    "message": "{name} 접근 허용"
+  },
+  "f_also_publish_a_viewer_page_2d07": {
+    "message": "뷰어 페이지도 게시"
+  },
+  "f_an_index_html_that_is_not_ou_889b": {
+    "message": "이 폴더에 우리가 만들지 않은 index.html이 있어 뷰어를 쓰지 않았어요. 다른 폴더를 사용하세요."
+  },
+  "f_another_suggestion_09e8": {
+    "message": "다른 제안"
+  },
+  "f_anyone_who_can_open_this_fol_86f7": {
+    "message": "이 폴더를 열 수 있는 사람은 누구나 파일을 읽을 수 있어요. 직접 관리하는 폴더를 쓰고, 공개할 게 아니면 비공개로 두세요."
+  },
+  "f_app_password_6505": {
+    "message": "앱 비밀번호"
+  },
+  "f_at_least_12_characters_it_is_f78b": {
+    "message": "12자 이상. 어디에도 저장되지 않아요. 잃어버리면 아무도 파일을 열 수 없어요."
+  },
+  "f_back_up_now_63b3": {
+    "message": "지금 백업"
+  },
+  "f_backup_only_e75f": {
+    "message": "백업 전용"
+  },
+  "f_bring_everything_in_this_pla_0150": {
+    "message": "이 위치의 모든 내용을 이 기기로 되돌릴까요? 기기와 다른 부분은 위치의 내용이 우선해요. 삭제되는 항목은 없어요."
+  },
+  "f_bucket_3557": {
+    "message": "버킷"
+  },
+  "f_by_article_5c16": {
+    "message": "글별"
+  },
+  "f_changes_here_apply_to_every__822d": {
+    "message": "여기서 바꾸면 이 서버의 모든 위치에 적용돼요."
+  },
+  "f_checked_the_folder_restored__7f16": {
+    "message": "폴더를 확인했어요. {r}개 복원, 남은 파일 {o}개 발견."
+  },
+  "f_checking_your_library_f467": {
+    "message": "보관함 확인 중…"
+  },
+  "f_choose_6160": {
+    "message": "선택"
+  },
+  "f_choose_a_passphrase_c9a1": {
+    "message": "암호 선택"
+  },
+  "f_choose_another_folder_1129": {
+    "message": "다른 폴더 선택"
+  },
+  "f_cloudflare_r2_auto_leave_the_74e0": {
+    "message": "Cloudflare R2: auto. 제공업체에서 따로 묻지 않으면 기본값을 그대로 두세요."
+  },
+  "f_code_for_the_phone_8494": {
+    "message": "휴대폰용 코드"
+  },
+  "f_comment_9ffe": {
+    "message": "댓글"
+  },
+  "f_connect_and_publish_3387": {
+    "message": "연결 후 게시"
+  },
+  "f_connected_the_folder_is_empt_688d": {
+    "message": "연결됐어요. 폴더가 비어 있어 새 암호화 보관함을 만들어요."
+  },
+  "f_connected_this_folder_alread_7ea2": {
+    "message": "연결됐어요. 이 폴더에 이미 암호화된 보관함이 있어요."
+  },
+  "f_connected_article_matches_b205": {
+    "message": "연결됐어요. 글 {n}개가 일치해요."
+  },
+  "f_connected_articles_match_40f2": {
+    "message": "연결됐어요. 글 {n}개가 일치해요."
+  },
+  "f_continuing_file_left_4bdc": {
+    "message": "계속 중… 파일 {n}개 남음"
+  },
+  "f_continuing_files_left_7869": {
+    "message": "계속 중… 파일 {n}개 남음"
+  },
+  "f_copied_2cb1": {
+    "message": "복사했어요."
+  },
+  "f_copies_of_other_people_s_art_db7e": {
+    "message": "다른 사람의 글을 복사한 것이에요. 공유해도 되는지 확인하세요. 파일이 훨씬 커져요."
+  },
+  "f_copy_did_not_work_select_the_1dcb": {
+    "message": "복사하지 못했어요. 단어를 선택해 직접 복사하세요."
+  },
+  "f_copy_puts_the_words_in_one_p_9b1c": {
+    "message": "복사하면 단어가 대시로 이어진 한 덩어리로 들어가요. 설정 파일, 셸, 채팅 앱에서도 유지돼요. 공백으로 입력하든 대시로 입력하든 모두 인식돼요."
+  },
+  "f_could_not_reach_the_server_aa7e": {
+    "message": "서버에 연결할 수 없어요"
+  },
+  "f_could_not_save_this_place_cf23": {
+    "message": "이 위치를 저장하지 못했어요."
+  },
+  "f_created_for_you_use_one_fold_0390": {
+    "message": "자동으로 만들어졌어요. 용도별로 폴더를 하나씩 쓰세요. 예: 웹사이트 목록용 public, 전체 사본용 backup."
+  },
+  "f_danger_zone_19b4": {
+    "message": "위험 영역"
+  },
+  "f_delete_them_here_too_9d48": {
+    "message": "여기서도 삭제"
+  },
+  "f_delete_this_note_3253": {
+    "message": "이 메모를 삭제할까요?"
+  },
+  "f_download_bb19": {
+    "message": "다운로드"
+  },
+  "f_eu_1f4f": {
+    "message": "EU"
+  },
+  "f_eu_company_ef04": {
+    "message": "EU 기업"
+  },
+  "f_eu_servers_987b": {
+    "message": "EU 서버"
+  },
+  "f_each_article_becomes_one_fil_f81c": {
+    "message": "글마다 파일 하나와 웹사이트용 목록(library.json)이 만들어져요."
+  },
+  "f_edit_comment_f0e4": {
+    "message": "댓글 수정"
+  },
+  "f_edit_server_63e0": {
+    "message": "서버 수정"
+  },
+  "f_encrypted_e253": {
+    "message": "암호화됨"
+  },
+  "f_end_with_tags_ctrl_enter_to__83e2": {
+    "message": "#태그로 끝내기 · ⌘/Ctrl+Enter로 추가"
+  },
+  "f_endpoint_address_ce54": {
+    "message": "엔드포인트 주소"
+  },
+  "f_every_article_you_saved_goes_f744": {
+    "message": "저장한 모든 글이 나가요. 다른 사람이 읽으면 곤란한 글도 포함돼요. 나만 읽는 백업이라면 암호화를 쓰세요."
+  },
+  "f_everything_8340": {
+    "message": "전체"
+  },
+  "f_everything_is_encrypted_on_t_1b86": {
+    "message": "모든 내용은 업로드 전에 이 기기에서 암호화돼요. 나만 읽을 수 있으므로 메모, 알림, 전문도 포함돼요."
+  },
+  "f_files_go_into_a_subfolder_of_5a98": {
+    "message": "이 폴더 안의 하위 폴더에 파일이 저장돼요. 폴더를 동기화하는 도구(Syncthing, iCloud Drive, Dropbox, USB 드라이브)가 다른 기기로 옮겨 줘요."
+  },
+  "f_fine_the_suggested_words_are_36c0": {
+    "message": "좋아요. 추천 단어가 더 안전해요."
+  },
+  "f_folder_7afd": {
+    "message": "폴더"
+  },
+  "f_folder_access_is_waiting_b754": {
+    "message": "폴더 접근 대기 중"
+  },
+  "f_folder_on_the_server_b74c": {
+    "message": "서버의 폴더"
+  },
+  "f_folder_960e": {
+    "message": "폴더: {name}"
+  },
+  "f_for_syncing_and_backup_only__f767": {
+    "message": "동기화와 백업용이에요. 나만 읽을 수 있어 어떤 웹사이트도 읽지 못해요. 제공업체에는 뒤섞인 파일만 보여요."
+  },
+  "f_getting_changes_of_8fbb": {
+    "message": "변경 사항 받는 중 {done}/{total}"
+  },
+  "f_grid_66b1": {
+    "message": "격자"
+  },
+  "f_highlight_05c7": {
+    "message": "하이라이트"
+  },
+  "f_i_made_a_backup_of_this_devi_c05b": {
+    "message": "이 기기를 백업했어요"
+  },
+  "f_i_saved_the_passphrase_81d0": {
+    "message": "암호를 저장했어요"
+  },
+  "f_in_nextcloud_settings_securi_4fee": {
+    "message": "Nextcloud: 설정 → 보안 → 앱 비밀번호 만들기. 주 비밀번호는 절대 쓰지 마세요."
+  },
+  "f_joining_merges_this_device_w_8048": {
+    "message": "가입하면 이 기기가 폴더의 보관함과 병합돼요. 둘이 다른 부분은 폴더가 우선해요. 먼저 이 기기를 백업하세요."
+  },
+  "f_keep_your_library_in_step_ac_b5fe": {
+    "message": "내 기기 간 보관함을 동기화하거나, 백업하거나, 일부를 다른 사람에게 게시하세요. 각 위치는 내 서버나 이 컴퓨터의 폴더예요. 위치를 추가하기 전에는 아무것도 이 기기를 떠나지 않아요."
+  },
+  "f_looking_at_what_is_in_the_fo_1e05": {
+    "message": "폴더 내용 확인 중…"
+  },
+  "f_make_a_backup_now_3046": {
+    "message": "지금 백업하기"
+  },
+  "f_make_an_access_key_just_for__abc9": {
+    "message": "이 버킷 전용 액세스 키를 만들고 읽기, 쓰기, 목록, 삭제를 허용하세요. 계정의 주 키는 절대 쓰지 마세요."
+  },
+  "f_meant_for_a_folder_only_you__33c0": {
+    "message": "나만 열 수 있는 폴더용이에요. 예: 비공개 백업, 내부 목록. 폴더를 열 수 있는 사람은 이 내용을 모두 읽을 수 있어요."
+  },
+  "f_mine_84d6": {
+    "message": "내 것"
+  },
+  "f_models_marked_eu_servers_run_7b00": {
+    "message": "“EU 서버” 표시 모델은 유럽 서버에서만 실행되며, 미국 클라우드 기업의 서버인 경우도 많아요. “EU 기업” 표시 모델만 유럽 기업의 모델이기도 해요. 다른 모델도 모두 평소처럼 작동하며 “EU 서버 아님”으로 표시돼요. 자동 선택은 EU 서버만 써요. EU 서버는 비용이 조금 더 들 수 있고, 표시된 가격은 EU 가격이에요. 읽어 주기와 음성 인식에는 EU 옵션이 없어요. 텍스트는 여전히 우리 서비스(독일의 서버)를 거쳐 미국 기업인 OpenRouter로 전달돼요."
+  },
+  "f_my_nextcloud_741d": {
+    "message": "내 Nextcloud"
+  },
+  "f_my_notes_and_comments_099b": {
+    "message": "내 메모와 댓글"
+  },
+  "f_new_note_7123": {
+    "message": "새 메모"
+  },
+  "f_new_server_9ee0": {
+    "message": "새 서버"
+  },
+  "f_nextcloud_webdav_2b5d": {
+    "message": "Nextcloud / WebDAV"
+  },
+  "f_nextcloud_owncloud_synology__5752": {
+    "message": "Nextcloud, ownCloud, Synology, 대부분의 NAS"
+  },
+  "f_no_notes_on_this_article_yet_b876": {
+    "message": "이 글에는 아직 메모가 없어요."
+  },
+  "f_no_notes_yet_68d5": {
+    "message": "아직 메모가 없어요."
+  },
+  "f_no_tags_yet_end_a_note_with__ae68": {
+    "message": "아직 태그가 없어요. 메모를 #태그로 끝내세요."
+  },
+  "f_not_eu_fb9c": {
+    "message": "EU 아님"
+  },
+  "f_not_here_d910": {
+    "message": "여기 없음"
+  },
+  "f_not_on_eu_servers_abcb": {
+    "message": "EU 서버 아님"
+  },
+  "f_not_published_yet_d0ae": {
+    "message": "아직 게시 안 됨"
+  },
+  "f_not_synced_yet_7efe": {
+    "message": "아직 동기화 안 됨"
+  },
+  "f_note_c15d": {
+    "message": "메모"
+  },
+  "f_notes_1b6a": {
+    "message": "메모"
+  },
+  "f_notes_and_highlights_0e9c": {
+    "message": "메모와 하이라이트"
+  },
+  "f_notes_without_an_article_5bd7": {
+    "message": "글 없는 메모"
+  },
+  "f_nothing_here_yet_5bfc": {
+    "message": "아직 아무것도 없어요."
+  },
+  "f_nothing_matches_03c3": {
+    "message": "일치 항목 없음"
+  },
+  "f_only_publish_articles_tagged_b789": {
+    "message": "다음 태그의 글만 게시"
+  },
+  "f_open_the_page_ab11": {
+    "message": "페이지 열기"
+  },
+  "f_passphrase_2dc5": {
+    "message": "암호"
+  },
+  "f_passphrase_keep_it_somewhere_ca8a": {
+    "message": "암호: {k}. 안전한 곳에 보관하세요."
+  },
+  "f_paused_1feb": {
+    "message": "일시중지"
+  },
+  "f_pinned_q_a_faa5": {
+    "message": "고정한 Q&A"
+  },
+  "f_places_d03d": {
+    "message": "위치"
+  },
+  "f_publish_everything_except_ar_74e7": {
+    "message": "다음 태그의 글 제외하고 모두 게시"
+  },
+  "f_publish_my_library_to_my_own_a71f": {
+    "message": "내 보관함을 내 서버에 게시"
+  },
+  "f_publish_now_ae60": {
+    "message": "지금 게시"
+  },
+  "f_publishing_e1f2": {
+    "message": "게시 중…"
+  },
+  "f_questions_you_pinned_with_an_5f9e": {
+    "message": "고정한 질문과 답변"
+  },
+  "f_readable_00b5": {
+    "message": "읽기 쉬움"
+  },
+  "f_reading_changes_of_9b27": {
+    "message": "변경 사항 읽는 중 {done}/{total}"
+  },
+  "f_region_789d": {
+    "message": "리전"
+  },
+  "f_reminders_b654": {
+    "message": "알림"
+  },
+  "f_remove_comment_2340": {
+    "message": "댓글 삭제"
+  },
+  "f_remove_them_401d": {
+    "message": "삭제하기"
+  },
+  "f_remove_this_highlight_3cc8": {
+    "message": "이 하이라이트를 삭제할까요?"
+  },
+  "f_remove_this_place_6efc": {
+    "message": "이 위치 삭제"
+  },
+  "f_remove_this_place_the_files__ad9c": {
+    "message": "이 위치를 삭제할까요? 서버에 이미 있는 파일은 삭제되지 않아요."
+  },
+  "f_removing_a_place_stops_publi_caa4": {
+    "message": "위치를 삭제하면 게시가 중단돼요. 서버에 이미 있는 파일은 그대로 남아요. 어떤 위치에서도 쓰지 않는 서버는 로그인 정보와 함께 지워져요."
+  },
+  "f_removing_of_9a27": {
+    "message": "{done}/{total} 삭제 중"
+  },
+  "f_repeat_the_passphrase_c2a7": {
+    "message": "암호 다시 입력"
+  },
+  "f_restore_from_here_3623": {
+    "message": "여기서 복원"
+  },
+  "f_restored_item_changed_on_thi_f959": {
+    "message": "복원했어요. 이 기기에서 {n}개 항목이 바뀌었어요."
+  },
+  "f_restored_items_changed_on_th_853c": {
+    "message": "복원했어요. 이 기기에서 {n}개 항목이 바뀌었어요."
+  },
+  "f_restoring_daec": {
+    "message": "복원 중…"
+  },
+  "f_s3_compatible_4144": {
+    "message": "S3 호환"
+  },
+  "f_save_5d68": {
+    "message": "저장"
+  },
+  "f_save_server_bca3": {
+    "message": "서버 저장"
+  },
+  "f_save_your_passphrase_3801": {
+    "message": "암호 저장"
+  },
+  "f_saving_of_566a": {
+    "message": "{done}/{total} 저장 중"
+  },
+  "f_scan_it_with_ai_summary_help_572d": {
+    "message": "휴대폰의 AI Summary Helper에서 스캔하세요: 설정 → 보관함 동기화 → 코드 스캔. 코드에는 서버 로그인 정보가 들어 있으니 내 휴대폰에만 보여 주세요. 1분 뒤 자동으로 숨겨져요."
+  },
+  "f_search_highlights_comments_n_4f81": {
+    "message": "하이라이트, 댓글, 메모 검색…"
+  },
+  "f_secret_access_key_d3a2": {
+    "message": "비밀 액세스 키"
+  },
+  "f_selected_3294": {
+    "message": "선택됨"
+  },
+  "f_server_02f2": {
+    "message": "서버"
+  },
+  "f_server_address_025e": {
+    "message": "서버 주소"
+  },
+  "f_server_name_22f5": {
+    "message": "서버 이름"
+  },
+  "f_server_saved_27e1": {
+    "message": "서버를 저장했어요."
+  },
+  "f_show_2e5c": {
+    "message": "보기"
+  },
+  "f_show_code_for_the_phone_a8c1": {
+    "message": "휴대폰용 코드 보기"
+  },
+  "f_show_passphrase_dda0": {
+    "message": "암호 보기"
+  },
+  "f_six_random_words_you_will_ty_e18c": {
+    "message": "무작위 단어 6개예요. 다른 기기에서 입력해야 하니 적어 두거나 비밀번호 관리자에 보관하세요. 다른 곳에는 저장되지 않아요. 잃어버리면 아무도 파일을 열 수 없어요."
+  },
+  "f_soon_da12": {
+    "message": "곧 지원"
+  },
+  "f_strong_db5c": {
+    "message": "강력해요."
+  },
+  "f_suggest_random_words_instead_a3fb": {
+    "message": "대신 무작위 단어 추천"
+  },
+  "f_sync_backup_9786": {
+    "message": "동기화 및 백업"
+  },
+  "f_sync_my_devices_79fb": {
+    "message": "내 기기 동기화"
+  },
+  "f_sync_now_d8fe": {
+    "message": "지금 동기화"
+  },
+  "f_syncthing_icloud_drive_dropb_a87d": {
+    "message": "Syncthing, iCloud Drive, Dropbox, USB 드라이브가 동기화해 줘요."
+  },
+  "f_test_connection_b6b7": {
+    "message": "연결 테스트"
+  },
+  "f_the_browser_could_not_rememb_f257": {
+    "message": "브라우저가 이 폴더를 기억하지 못했어요."
+  },
+  "f_the_browser_did_not_allow_ac_5245": {
+    "message": "브라우저가 접근을 허용하지 않았어요."
+  },
+  "f_the_browser_takes_back_acces_aaf9": {
+    "message": "브라우저는 다시 시작할 때 폴더 접근 권한을 회수하며, 직접 클릭해야만 되돌릴 수 있어요. 그때까지 이 폴더는 동기화되지 않아요."
+  },
+  "f_the_kind_of_a_place_cannot_b_8037": {
+    "message": "위치의 종류는 바꿀 수 없어요. 다른 종류를 쓰려면 위치를 새로 추가하세요."
+  },
+  "f_the_login_is_saved_once_for__bcba": {
+    "message": "로그인 정보는 모두에 대해 한 번만 저장돼요."
+  },
+  "f_the_restore_did_not_finish_a4b5": {
+    "message": "복원이 끝나지 않았어요."
+  },
+  "f_the_save_for_later_time_and__7dff": {
+    "message": "나중에 읽기 저장 시각과 저장한 이유예요."
+  },
+  "f_the_service_picks_a_model_fo_a591": {
+    "message": "서비스가 요청마다 모델을 골라요. 짧은 글은 가벼운 모델, 긴 글은 더 큰 모델을 써요."
+  },
+  "f_the_two_passphrases_are_not__e90b": {
+    "message": "두 암호가 같지 않아요."
+  },
+  "f_these_six_words_are_the_key__f595": {
+    "message": "이 여섯 단어는 “{name}”의 키예요. 새 기기마다 입력해야 해요. 잃어버리면 우리도 포함해 아무도 파일을 읽을 수 없어요. 비밀번호 관리자에 저장하세요."
+  },
+  "f_this_device_was_away_for_a_l_46de": {
+    "message": "이 기기는 오랫동안 꺼져 있었어요. 그 뒤 바뀐 것만 보냈고 삭제된 것은 없어요."
+  },
+  "f_this_device_writes_everythin_1070": {
+    "message": "이 기기는 모든 내용을 위치에 쓰기만 하고 다시 읽지 않아요. 필요할 때 여기서 복원하세요."
+  },
+  "f_this_folder_already_holds_an_9f1e": {
+    "message": "이 폴더에 이미 암호화된 보관함이 있어요. 암호(저장해 둔 단어)를 입력하세요."
+  },
+  "f_this_folder_already_holds_an_8e8c": {
+    "message": "이 폴더에 이미 암호화된 보관함이 있어요. 아래에 암호를 입력하고 연결을 다시 누르세요."
+  },
+  "f_this_model_does_not_run_on_e_21da": {
+    "message": "이 모델은 EU 서버에서 실행되지 않아요. 대신 {name}(EU)을 쓸까요?"
+  },
+  "f_this_place_publishes_only_th_f3b8": {
+    "message": "이 위치는 게시 전용이에요. 이 기기가 파일을 쓰기만 하고 다시 읽지 않아요."
+  },
+  "f_this_place_uses_your_own_pas_823b": {
+    "message": "이 위치는 내 암호를 써요. 코드에는 들어 있지 않으니 휴대폰에서 입력하세요."
+  },
+  "f_this_place_uses_your_own_pas_b61e": {
+    "message": "이 위치는 내 암호를 써요. 이 기기에는 보관되지 않아 보여 줄 수 없어요."
+  },
+  "f_to_publish_on_your_own_websi_9caf": {
+    "message": "내 웹사이트에 게시하려면: 링크가 있는 누구나 읽을 수 있는 일반 파일이에요."
+  },
+  "f_turn_on_to_run_models_on_ser_af13": {
+    "message": "유럽 서버에서 모델을 실행하려면 켜세요(해당 서버를 제공하는 모델). 다른 모델도 계속 작동하며 표시돼요."
+  },
+  "f_unchanged_e05e": {
+    "message": "변경 없음"
+  },
+  "f_updating_the_list_d48e": {
+    "message": "목록 업데이트 중…"
+  },
+  "f_uploading_of_c6b9": {
+    "message": "{done}/{total} 업로드 중"
+  },
+  "f_use_my_own_passphrase_c42a": {
+    "message": "내 암호 사용"
+  },
+  "f_use_4021": {
+    "message": "{name} 사용"
+  },
+  "f_username_d4d9": {
+    "message": "사용자 이름"
+  },
+  "f_view_aa18": {
+    "message": "보기"
+  },
+  "f_weak_use_at_least_12_charact_690f": {
+    "message": "약함: 12자 이상 또는 추천 단어를 쓰세요."
+  },
+  "f_website_list_be8a": {
+    "message": "웹사이트 목록"
+  },
+  "f_what_goes_out_1113": {
+    "message": "나가는 내용"
+  },
+  "f_what_it_is_for_84ef": {
+    "message": "용도"
+  },
+  "f_who_can_read_it_ceb4": {
+    "message": "읽을 수 있는 사람"
+  },
+  "f_with_a_tag_c382": {
+    "message": "태그 있음"
+  },
+  "f_works_in_chrome_and_edge_on__f2c7": {
+    "message": "Chrome과 Edge(컴퓨터)에서 작동해요."
+  },
+  "f_write_a_note_about_this_arti_e1b4": {
+    "message": "이 글에 대한 메모 쓰기…"
+  },
+  "f_write_a_note_or_a_thought_wo_67b1": {
+    "message": "메모나 간직할 생각을 적어 보세요…"
+  },
+  "f_write_a_note_c7c9": {
+    "message": "메모 쓰기…"
+  },
+  "f_write_one_below_or_highlight_7627": {
+    "message": "아래에 적거나 아무 페이지에서 텍스트를 하이라이트하세요. 내 하이라이트와 AI 하이라이트도 여기에 나타나요."
+  },
+  "f_your_articles_highlights_not_9c7c": {
+    "message": "저장한 글, 하이라이트, 메모, 컬렉션, 요약, 전문이 같은 암호으로 가입한 모든 기기에서 동기화돼요."
+  },
+  "f_your_own_index_html_is_in_th_8069": {
+    "message": "이 폴더에 내 index.html이 있어 뷰어를 교체하지 않았어요."
+  },
+  "f_your_own_notes_and_the_comme_6ef8": {
+    "message": "내 메모와 하이라이트 댓글이에요."
+  },
+  "f_your_passphrase_2512": {
+    "message": "내 암호"
+  },
+  "f_your_yellow_and_ai_highlight_15a0": {
+    "message": "내 노란색·AI 하이라이트"
+  },
+  "f_backed_up_ago_845b": {
+    "message": "{t} 전 백업"
+  },
+  "f_picks_a_model_for_each_reque_519c": {
+    "message": "다음에 요청마다 모델 선택"
+  },
+  "f_published_ago_0576": {
+    "message": "{t} 전 게시"
+  },
+  "f_synced_ago_174c": {
+    "message": "{t} 전 동기화"
+  },
+  "f_of_9ced": {
+    "message": "{a}/{b}"
+  },
+  "f_ai_highlight_8f93": {
+    "message": "AI 하이라이트 {n}개"
+  },
+  "f_ai_highlights_7da0": {
+    "message": "AI 하이라이트 {n}개"
+  },
+  "f_file_is_no_longer_wanted_her_48c4": {
+    "message": "이 파일 {n}개는 더 이상 필요 없어 서버에서 삭제될 거예요. 맞는지 확인하세요."
+  },
+  "f_files_are_no_longer_wanted_h_6975": {
+    "message": "이 파일 {n}개는 더 이상 필요 없어 서버에서 삭제될 거예요. 맞는지 확인하세요."
+  },
+  "f_files_had_problems_a60b": {
+    "message": "파일 {n}개에 문제가 있었어요"
+  },
+  "f_highlight_5f43": {
+    "message": "하이라이트 {n}개"
+  },
+  "f_highlights_d890": {
+    "message": "하이라이트 {n}개"
+  },
+  "f_more_article_was_deleted_on__0e7e": {
+    "message": "다른 기기에서 글 {n}개가 더 삭제됐어요. 직접 지시하기 전까지는 여기에 남아 있어요. 맞는지 확인하세요."
+  },
+  "f_more_articles_were_deleted_o_8348": {
+    "message": "다른 기기에서 글 {n}개가 더 삭제됐어요. 직접 지시하기 전까지는 여기에 남아 있어요. 맞는지 확인하세요."
+  },
+  "f_note_b2a1": {
+    "message": "메모 {n}개"
+  },
+  "f_notes_8096": {
+    "message": "메모 {n}개"
+  },
+  "f_place_b298": {
+    "message": "위치 {n}개"
+  },
+  "f_place_uses_this_server_133b": {
+    "message": "이 서버를 쓰는 위치: {n}개"
+  },
+  "f_places_a7f1": {
+    "message": "위치 {n}개"
+  },
+  "f_places_use_this_server_4df9": {
+    "message": "이 서버를 쓰는 위치: {n}개"
   }
 }
