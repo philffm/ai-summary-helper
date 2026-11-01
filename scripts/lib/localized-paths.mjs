@@ -68,7 +68,10 @@ export function redirectStub({ lang, newRel, newAbs, title }) {
 export const SITE_URL = SITE;
 
 /** Hand-written pages with a different address per language: root path of the English page -> root path per locale folder. */
-const NATIVE_SIBLINGS = { 'education/': { de: 'de/bildung/' } };
+const NATIVE_SIBLINGS = {
+    'education/': { de: 'de/bildung/' },
+    'blog/ai-apps-mcp.html': { de: 'de/blog/ki-apps-mcp.html' },
+};
 
 /**
  * Links to a page that exists natively in this language (e.g. /education/ -> /de/bildung/) point at the native one.
@@ -81,11 +84,10 @@ export function rewriteNativeSiblingLinks($, pageRootPath, code) {
         if (!val || /^(https?:)?\/\/|^(#|mailto:|tel:|javascript:|\/)/.test(val)) return;
         const m = val.match(/^([^#?]*)([#?].*)?$/); const p = m[1], rest = m[2] || '';
         if (!p) return;
-        let t = path.posix.normalize(path.posix.join(dirRoot, p));
-        t = t.replace(/index\.html$/, '');
-        if (t && !t.endsWith('/')) t += '/';
-        const to = NATIVE_SIBLINGS[t] && NATIVE_SIBLINGS[t][code];
+        const t = path.posix.normalize(path.posix.join(dirRoot, p));
+        const target = p.endsWith('/') && t && !t.endsWith('/') ? `${t}/` : t;
+        const to = NATIVE_SIBLINGS[target] && NATIVE_SIBLINGS[target][code];
         if (!to) return;
-        $(el).attr('href', path.posix.relative(dirRoot, to) + '/' + rest);
+        $(el).attr('href', path.posix.relative(dirRoot, to) + rest);
     });
 }
