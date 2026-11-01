@@ -82,6 +82,13 @@ assert.ok(!lt.ok && /Allow access to the folder again/.test(lt.error.message) &&
     assert.ok(!JSON.stringify(local1[SK.syncPlaces]).includes(words), 'never in the place itself (the places list is part of backups)');
     const w2 = await svc2.add({ connection: server, place: { name: 'Words', root: 'words', mode: 'encrypted', direction: 'twoway', passphrase: words.toUpperCase().replace(/ /g, '-  '), ackBackup: true }, secret: { password: 'secret' } });
     assert.ok(!w2.newLibrary); assert.equal(await svc2.passphrase(w2.id), words, 'a joining device keeps them too, in the canonical spelling');
+    const PC = await imp('modules/syncPhoneCode.js');
+    const pc = PC.parsePhoneCode(await svc1.phoneCode(w1.id));
+    assert.deepEqual([pc.kind, pc.url, pc.username, pc.password, pc.root, pc.words], ['webdav', server.url, 'phil', 'secret', 'words', words], 'a phone can join with this code, words included');
+    const own = await svc1.add({ connection: server, place: { name: 'Own', root: 'owncode', mode: 'encrypted', direction: 'twoway', passphrase: 'my own long passphrase' }, secret: { password: 'secret' } });
+    assert.equal(PC.parsePhoneCode(await svc1.phoneCode(own.id)).words, undefined, 'an own passphrase is not in the code');
+    assert.ok(!JSON.stringify(local1[SK.syncPlaces]).includes('aish-library'), 'the code is made on request, never stored');
+    await assert.rejects(() => svc1.phoneCode('pl_missing'), /no longer exists/);
     await svc1.remove(w1.id); await assert.rejects(() => svc1.passphrase(w1.id), /not on this device/);
     assert.ok(!('k:' + w1.id in local1[SK.syncSecrets]), 'removing a place forgets its words with its key');
 }

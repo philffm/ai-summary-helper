@@ -8,12 +8,13 @@
 import { T, TN, TU } from './feedI18n.js';
 import { SK, syncLedgerKey } from './storageKeys.js';
 import { iconEl } from './icons.js';
+import qrcode from '../lib/qrcode.js';
 import { timeAgo } from './feedUtil.js';
 import { createSyncService, cleanPlace } from './syncService.js';
 import { createStampStore } from './syncStampStore.js';
 import { makeStore } from './syncStores.js';
 import { folderSupported } from './syncFolder.js';
-import { suggest, strengthOf } from './syncPassphrase.js';
+import { suggest, strengthOf, inOnePiece } from './syncPassphrase.js';
 import { createHandleVault } from './syncFolderHandles.js';
 
 const $ = (id) => document.getElementById(id);
@@ -33,6 +34,16 @@ let draftSecret = '';
 let editServer = false;       // the fields of the selected server are open for changes
 let busy = false;
 let testMsg = null;           // { ok, text }
+let phoneCode = null;         // { code, withWords }: the code a phone scans to join this place, shown for a minute and never kept
+let phoneCodeTimer = 0;
+function qrBox(payload) {
+    const q = qrcode(0, 'M'); q.addData(payload); q.make();
+    const box = el('div', 'phone-inbox-qr');
+    box.innerHTML = q.createSvgTag({ cellSize: 4, margin: 2, scalable: true });   // made by the library from our own payload, no page content
+    const svg = box.querySelector('svg'); if (svg) { svg.setAttribute('role', 'img'); svg.setAttribute('aria-label', T('Code for the phone')); }
+    return box;
+}
+const hidePhoneCode = () => { clearTimeout(phoneCodeTimer); phoneCode = null; };
 let formError = '';
 let previewToken = 0;
 
@@ -129,6 +140,7 @@ function statusSub(place, st, count) {
 // ── screens ──
 let renderToken = 0;
 async function render() {
+    if (view !== 'form' && phoneCode) hidePhoneCode();   // the code never outlives the screen it was shown on
     const root = $('syncSettings');
     if (!root) return;
     const token = ++renderToken;
@@ -216,9 +228,10 @@ function recoveryScreen() {
     out.push(el('p', 'setting-note', T('These six words are the key to “{name}”. You type them on each new device. If you lose them, nobody can read the files, not even us. Save them in a password manager.', { name: recovery.name })));
     out.push(el('p', 'settings-caption', TU('Your passphrase')));
     const w = el('pre', 'sync-recovery', recovery.words); w.tabIndex = 0; out.push(w);
+    out.push(hint(T('Copy puts the words in one piece, joined by dashes. That survives config files, shells and chat apps; typing them with spaces or with dashes both work.')));
     const row = el('div', 'mcp-actions');
-    row.append(button(T('Copy'), 'button-secondary btn-sm', async () => { try { await navigator.clipboard.writeText(recovery.words); testMsg = { ok: true, text: T('Copied.') }; } catch (_) { testMsg = { ok: false, text: T('Copy did not work. Select the words and copy them by hand.') }; } render(); }),
-        button(T('Download'), 'button-secondary btn-sm', () => { const a = document.createElement('a'); a.href = URL.createObjectURL(new Blob([`AI Summary Helper, place "${recovery.name}"\n\nPassphrase: ${recovery.words}\n`], { type: 'text/plain' })); a.download = 'aish-passphrase.txt'; a.click(); setTimeout(() => URL.revokeObjectURL(a.href), 2000); }));
+    row.append(button(T('Copy'), 'button-secondary btn-sm', async () => { try { await navigator.clipboard.writeText(inOnePiece(recovery.words)); testMsg = { ok: true, text: T('Copied.') }; } catch (_) { testMsg = { ok: false, text: T('Copy did not work. Select the words and copy them by hand.') }; } render(); }),
+        button(T('Download'), 'button-secondary btn-sm', () => { const a = document.createElement('a'); a.href = URL.createObjectURL(new Blob([`AI Summary Helper, place "${recovery.name}"\n\nPassphrase: ${recovery.words}\nIn one piece (for config files): ${inOnePiece(recovery.words)}\n`], { type: 'text/plain' })); a.download = 'aish-passphrase.txt'; a.click(); setTimeout(() => URL.revokeObjectURL(a.href), 2000); }));
     out.push(row);
     if (testMsg) out.push(el('p', 'setting-note' + (testMsg.ok ? '' : ' phone-inbox-error'), testMsg.text));
     let saved = false;
@@ -380,9 +393,10 @@ function formScreen(place, st, count, connections = [], places = []) {
                 const box = el('div', 'sync-words'); box.id = 'syncWords'; box.textContent = draft.passphrase; box.tabIndex = 0;
                 out.push(box);
                 out.push(hint(T('Six random words. You will type them on your other devices, so write them down or keep them in a password manager. They are not saved anywhere else: if you lose them, nobody can open your files.')));
+                out.push(hint(T('Copy puts the words in one piece, joined by dashes. That survives config files, shells and chat apps; typing them with spaces or with dashes both work.')));
                 const row = el('div', 'mcp-actions');
                 row.append(button(T('Another suggestion'), 'button-secondary btn-sm', () => { draft.passphrase = suggest(); draft.passphrase2 = draft.passphrase; render(); }),
-                    button(T('Copy'), 'button-secondary btn-sm', async () => { try { await navigator.clipboard.writeText(draft.passphrase); testMsg = { ok: true, text: T('Copied.') }; } catch (_) { testMsg = { ok: false, text: T('Copy did not work. Select the words and copy them by hand.') }; } render(); }),
+                    button(T('Copy'), 'button-secondary btn-sm', async () => { try { await navigator.clipboard.writeText(inOnePiece(draft.passphrase)); testMsg = { ok: true, text: T('Copied.') }; } catch (_) { testMsg = { ok: false, text: T('Copy did not work. Select the words and copy them by hand.') }; } render(); }),
                     button(T('Use my own passphrase'), 'mcp-link-button', () => { draft.ownPass = true; draft.passphrase = ''; draft.passphrase2 = ''; render(); }));
                 out.push(row);
             } else {
@@ -403,6 +417,14 @@ function formScreen(place, st, count, connections = [], places = []) {
         } else {
             const row = el('div', 'mcp-actions');
             row.append(button(T('Show passphrase'), 'button-secondary btn-sm', async () => { try { const words = await svc.passphrase(editId); testMsg = words ? { ok: true, text: T('Passphrase: {k}. Keep it somewhere safe.', { k: words }) } : { ok: false, text: T('This place uses your own passphrase. It is not kept on this device, so it cannot be shown.') }; } catch (e) { testMsg = { ok: false, text: e.message }; } render(); }),
+                button(T('Show code for the phone'), 'button-secondary btn-sm', async () => {
+                    try {
+                        const code = await svc.phoneCode(editId);
+                        phoneCode = { code, withWords: /[?&]w=/.test(code) }; testMsg = null;
+                        clearTimeout(phoneCodeTimer); phoneCodeTimer = setTimeout(() => { hidePhoneCode(); render(); }, 60000);
+                    } catch (e) { hidePhoneCode(); testMsg = { ok: false, text: e.message }; }
+                    render();
+                }),
                 button(T('Restore from here'), 'button-secondary btn-sm', async () => {
                     if (!window.confirm(T('Bring everything in this place back to this device? Where this device differs, the place wins. Nothing here is deleted.'))) return;
                     testMsg = { ok: true, text: T('Restoring…') }; render();
@@ -410,6 +432,12 @@ function formScreen(place, st, count, connections = [], places = []) {
                     testMsg = r && r.ok ? { ok: true, text: TN((r.result && r.result.applied) || 0, 'Restored. {n} item changed on this device.', 'Restored. {n} items changed on this device.') } : { ok: false, text: (r && r.error) || T('The restore did not finish.') }; render();
                 }));
             out.push(row);
+            if (phoneCode) {
+                out.push(qrBox(phoneCode.code));
+                out.push(el('div', 'explanatory-card sync-warn', T('Scan it with AI Summary Helper on your phone: Settings → Library sync → Scan code. The code holds your server login, so show it only to your own phone. It hides itself after a minute.')));
+                if (!phoneCode.withWords) out.push(hint(T('This place uses your own passphrase. It is not in the code: type it on the phone.')));
+                out.push(button(T('Hide code'), 'button-secondary btn-sm', () => { hidePhoneCode(); render(); }));
+            }
         }
         out.push(el('div', 'explanatory-card', T('Everything is encrypted on this device before it is uploaded. Notes, reminders and full texts are included, because only you can read them.')));
     } else {

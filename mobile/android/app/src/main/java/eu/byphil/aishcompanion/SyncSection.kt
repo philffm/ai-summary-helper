@@ -30,6 +30,7 @@ import androidx.work.WorkManager
 import androidx.work.WorkerParameters
 import eu.byphil.aishcompanion.sync.FileRecordStore
 import eu.byphil.aishcompanion.sync.KeyValue
+import eu.byphil.aishcompanion.sync.LibraryCode
 import eu.byphil.aishcompanion.sync.LibrarySync
 import eu.byphil.aishcompanion.sync.StoreError
 import eu.byphil.aishcompanion.sync.SyncCrypto
@@ -85,7 +86,7 @@ class LibrarySyncWorker(ctx: Context, params: WorkerParameters) : CoroutineWorke
 
 /** Joins the encrypted library the browser made, in a Nextcloud/WebDAV folder or an S3 bucket, and syncs it. */
 @Composable
-fun LibrarySyncCard(model: AppModel) {
+fun LibrarySyncCard(model: AppModel, onScan: ((String?) -> Unit) -> Unit = {}) {
     val context = androidx.compose.ui.platform.LocalContext.current
     val scope = rememberCoroutineScope()
     val lib = model.library
@@ -121,9 +122,21 @@ fun LibrarySyncCard(model: AppModel) {
             "Done. ${s.pulled} received, ${s.pushed} sent." + (if (articles > 0) " $articles article(s) added to your reading list." else "") + if (s.more) " More to come, it continues next time." else ""
     }
 
+    fun join(cfg: LibrarySync.Config, phrase: String) = run { lib.connect(cfg, phrase); passphrase = ""; scheduleLibrarySync(context, true); summary(lib.syncNow()) }
+    fun readCode(text: String?) {
+        val p = LibraryCode.parse(text)
+        if (p == null) { message = "That is not a library code from the browser."; failed = true; return }
+        val c = p.config
+        kind = c.kind; url = c.url; user = c.username; pass = c.password; root = c.root; region = c.region; bucket = c.bucket; keyId = c.accessKeyId; secret = c.secretKey
+        failed = false
+        if (p.words != null) { passphrase = p.words; join(c, p.words) } else message = "Code read. Type your passphrase to finish."
+    }
+
     if (!connected) {
         InfoCard("Join your library", "Set up sync in the browser first (Settings → Sync & backup → Add a place). Then enter the same server and passphrase here. Your library is encrypted before it leaves the browser, and this phone opens it with the passphrase.")
         SettingsGroup {
+            Button(onClick = { onScan { readCode(it) } }, Modifier.fillMaxWidth(), enabled = !busy) { Text("Scan code from the browser") }
+            Text("In the browser: Settings → Sync & backup → your place → Show code for the phone. Or fill in the details below.", style = MaterialTheme.typography.bodySmall, color = MaterialTheme.colorScheme.onSurfaceVariant)
             Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
                 FilterChip(kind == "webdav", { kind = "webdav" }, { Text("Nextcloud / WebDAV") })
                 FilterChip(kind == "s3", { kind = "s3" }, { Text("S3") })
@@ -145,7 +158,7 @@ fun LibrarySyncCard(model: AppModel) {
             val ready = !busy && passphrase.isNotBlank() && url.isNotBlank() && (if (kind == "s3") bucket.isNotBlank() && keyId.isNotBlank() && secret.isNotBlank() else user.isNotBlank() && pass.isNotBlank())
             Button(onClick = {
                 val cfg = LibrarySync.Config(kind, url.trim(), user.trim(), pass, root.trim().ifEmpty { "aish-sync" }, region.trim().ifEmpty { "us-east-1" }, bucket.trim(), keyId.trim(), secret)
-                run { lib.connect(cfg, passphrase); passphrase = ""; scheduleLibrarySync(context, true); summary(lib.syncNow()) }
+                join(cfg, passphrase)
             }, Modifier.fillMaxWidth(), enabled = ready) { Text(if (busy) "Joining…" else "Join library") }
         }
     } else {

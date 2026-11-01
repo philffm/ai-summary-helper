@@ -27,6 +27,15 @@ export function canonicalPassphrase(input) {
     return parts.length >= 4 && parts.every((w) => SET.has(w)) ? parts.join(' ') : text;
 }
 
+/**
+ * The suggested words in one piece, joined by dashes ("orbit-lemon-tunnel-…"): one "word" that a double click selects whole and that survives
+ * .env files, shells, URLs and chat apps. Joining accepts it in every spelling (canonicalPassphrase), so spaces and dashes open the same place.
+ * Anything that is not a list-word phrase (an own passphrase) is returned as typed.
+ */
+export function inOnePiece(input) {
+    return isSuggestedWords(input) ? canonicalPassphrase(input).split(' ').join('-') : String(input == null ? '' : input);
+}
+
 /** True for a phrase made only of list words (four or more): the suggested kind, which this device may keep to show again. */
 export function isSuggestedWords(input) {
     const text = String(input == null ? '' : input);

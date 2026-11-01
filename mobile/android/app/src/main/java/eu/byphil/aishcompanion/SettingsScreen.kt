@@ -174,7 +174,7 @@ fun SettingsScreen(model: AppModel, onScan: ((String?) -> Unit) -> Unit, startPa
                     }
                         }
                         "account" -> AccountCard(model)
-                        "sync" -> LibrarySyncCard(model)
+                        "sync" -> LibrarySyncCard(model, onScan)
                         "ai" -> { ModelCard(model); SummaryCard(model) }
                         "feeds" -> FeedsCard(model)
                         "storage" -> StorageCard(model)

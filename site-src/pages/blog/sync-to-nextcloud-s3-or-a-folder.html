@@ -72,7 +72,7 @@
 
         <h2>Step 2: choose encrypted, and keep the words</h2>
         <p>When you add the place, <em>Encrypted</em> is selected by default and <em>Sync my devices</em> is the purpose. The extension suggests six random words as your passphrase. You can press <em>Another suggestion</em> until you like the combination, or choose your own (at least 12 characters, with a hint if it is weak).</p>
-        <p>After you connect, you see the six words once. Save them in a password manager. With them you can open the place on any device; without them, nobody can read the files, including us. On the computer where you set it up you can look them up again under the place's settings, <em>Show passphrase</em>. If you chose your own passphrase instead, it is not kept anywhere, so the extension cannot show it.</p>
+        <p>After you connect, you see the six words once. Save them in a password manager; the Copy button puts them on the clipboard in one piece, joined by dashes, which survives config files and chat apps. With them you can open the place on any device; without them, nobody can read the files, including us. On the computer where you set it up you can look them up again under the place's settings, <em>Show passphrase</em>. If you chose your own passphrase instead, it is not kept anywhere, so the extension cannot show it.</p>
         <p>What the storage provider sees: scrambled files with scrambled names, how many there are, how big they are, and when they change. It does not see titles, links or text. Your library is encrypted in your browser with AES-256-GCM before it leaves the device.</p>
 
         <h2>Step 3: add your second computer</h2>
@@ -106,7 +106,7 @@
         <h3>Do I need an account with you?</h3>
         <p>No. Sync talks straight from your browser to the storage you entered. We run no sync server.</p>
         <h3>Does it work on my phone?</h3>
-        <p>The Android app already uses the same sync format internally and is tested against the extension; its screens are not finished yet, so it is not offered as a feature today.</p>
+        <p>On Android, yes. The companion app (an APK from <a href="https://github.com/philffm/ai-summary-helper/releases/latest" rel="noopener">the GitHub releases</a>; it is not on Google Play yet) can join your library under <em>Settings → Library sync</em>. The quickest way is the code: in the browser open your place's settings, press <em>Show code for the phone</em> and scan it. It holds your server login, so show it only to your own phone. The phone shows your saved articles with their summaries and highlights, and notes sync both ways. There is no iPhone app yet.</p>
         <h3>Can I use more than one place?</h3>
         <p>Yes. A common setup is one encrypted place for syncing between computers and one backup-only place on a different provider.</p>
         <h3>Is it safe to put my library in the cloud?</h3>

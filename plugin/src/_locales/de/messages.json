@@ -6386,5 +6386,20 @@
   },
   "f_this_place_uses_your_own_pas_b61e": {
     "message": "Dieser Ort nutzt Ihre eigene Passphrase. Sie wird auf diesem Gerät nicht gespeichert und kann deshalb nicht angezeigt werden."
+  },
+  "f_code_for_the_phone_8494": {
+    "message": "Code für das Handy"
+  },
+  "f_scan_it_with_ai_summary_help_572d": {
+    "message": "Scannen Sie ihn mit AI Summary Helper auf Ihrem Handy: Einstellungen → Library sync → Code scannen. Der Code enthält Ihren Server-Zugang, zeigen Sie ihn deshalb nur Ihrem eigenen Handy. Er blendet sich nach einer Minute selbst aus."
+  },
+  "f_show_code_for_the_phone_a8c1": {
+    "message": "Code für das Handy anzeigen"
+  },
+  "f_this_place_uses_your_own_pas_823b": {
+    "message": "Dieser Ort nutzt Ihre eigene Passphrase. Sie steht nicht im Code: Geben Sie sie auf dem Handy ein."
+  },
+  "f_copy_puts_the_words_in_one_p_9b1c": {
+    "message": "Kopieren liefert die Wörter in einem Stück, mit Bindestrichen verbunden. Das übersteht Konfigurationsdateien, Shells und Chat-Apps; beim Eintippen funktionieren Leerzeichen und Bindestriche gleichermaßen."
   }
 }

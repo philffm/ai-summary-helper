@@ -27,6 +27,10 @@ assert.equal(byText('.a11y-seg button', 'Sync my devices').getAttribute('aria-ch
 // a new place starts with six random words: strong and easy to type elsewhere; nothing to repeat
 const WORDS = (await import(new URL('../src/modules/syncWordlist.js', import.meta.url).href)).WORDS;
 const first = $('syncWords').textContent; assert.equal(first.split(' ').length, 6); assert.ok(first.split(' ').every((x) => WORDS.includes(x)), 'words from the list'); assert.ok(!$('syncPassphrase') && !$('syncPassphrase2'));
+// Copy puts the words on the clipboard in one piece, joined by dashes; the screen keeps them readable with spaces
+const copied = []; Object.defineProperty(globalThis, 'navigator', { value: { ...(globalThis.navigator || {}), clipboard: { writeText: async (v) => { copied.push(v); } } }, configurable: true });
+click(byText('button', 'Copy')); await until(() => copied.length); assert.equal(copied[0], first.split(' ').join('-'), 'dashes on the clipboard'); assert.ok(first.includes(' ') && !first.includes('-'), 'spaces on the screen');
+assert.match(text(), /one piece, joined by dashes/);
 click(byText('button', 'Another suggestion')); await until(() => $('syncWords') && $('syncWords').textContent !== first); assert.notEqual($('syncWords').textContent, first, 'another suggestion is another suggestion');
 // your own passphrase: two different ones are refused, a short one too, a weak one is called weak, nothing is saved
 click(byText('button', 'Use my own passphrase')); await until(() => $('syncPassphrase'));

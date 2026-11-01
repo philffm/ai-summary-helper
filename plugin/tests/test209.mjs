@@ -26,4 +26,9 @@ assert.equal(P.strengthOf(P.suggest()), 'strong'); assert.equal(P.strengthOf('a 
 assert.equal(P.isSuggestedWords(P.suggest()), true); assert.equal(P.isSuggestedWords('ORBIT-lemon  tunnel paper river cloud'.toLowerCase()), P.isSuggestedWords('orbit lemon tunnel paper river cloud'));
 assert.equal(P.isSuggestedWords('abandon ability able about above'), true, 'five list words');
 assert.equal(P.isSuggestedWords('my own long passphrase 2026'), false); assert.equal(P.isSuggestedWords('abandon ability able'), false, 'three words are not enough'); assert.equal(P.isSuggestedWords('abandon ability able zzzzzz above'), false, 'one word off the list'); assert.equal(P.isSuggestedWords(''), false);
+// the words in one piece (what Copy puts on the clipboard) open the same place in every spelling
+{ const w = 'orbit lemon tunnel paper river cloud'; const one = P.inOnePiece(w);
+  assert.equal(one, 'orbit-lemon-tunnel-paper-river-cloud'); assert.equal(P.inOnePiece(one), one, 'idempotent'); assert.equal(P.inOnePiece('  ORBIT  Lemon, tunnel paper-river cloud '), one, 'any spelling in, one piece out');
+  for (const spelling of [w, one, w.toUpperCase().replace(/ /g, '-  '), w.replace(/ /g, ', ')]) assert.equal(P.canonicalPassphrase(spelling), w, 'joins as ' + JSON.stringify(spelling));
+  assert.equal(P.inOnePiece('my own long passphrase 2026'), 'my own long passphrase 2026', 'an own passphrase is left exactly as typed'); assert.equal(P.inOnePiece(''), ''); assert.equal(P.inOnePiece(null), ''); }
 console.log('TEST 209 OK'); process.exit(0);

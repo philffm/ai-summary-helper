@@ -760,5 +760,45 @@
         "canonical": "ünïcode Pässwörd 🌍"
       }
     ]
-  }
+  },
+  "phoneCodes": [
+    {
+      "name": "webdav with suggested words",
+      "connection": {
+        "service": "webdav",
+        "url": "https://cloud.example.com/remote.php/dav/files/phil/",
+        "username": "phil"
+      },
+      "password": "abc-DEF/12+&=? ü",
+      "root": "aish-sync",
+      "words": "orbit lemon tunnel paper river cloud",
+      "code": "aish-library://v1?k=webdav&u=https%3A%2F%2Fcloud.example.com%2Fremote.php%2Fdav%2Ffiles%2Fphil%2F&n=phil&p=abc-DEF%2F12%2B%26%3D%3F%20%C3%BC&r=aish-sync&w=orbit%20lemon%20tunnel%20paper%20river%20cloud"
+    },
+    {
+      "name": "webdav with an own passphrase (not in the code)",
+      "connection": {
+        "service": "webdav",
+        "url": "https://cloud.example.com/remote.php/dav/files/phil/",
+        "username": "phil"
+      },
+      "password": "plainpassword",
+      "root": "my folder/sub",
+      "words": "",
+      "code": "aish-library://v1?k=webdav&u=https%3A%2F%2Fcloud.example.com%2Fremote.php%2Fdav%2Ffiles%2Fphil%2F&n=phil&p=plainpassword&r=my%20folder%2Fsub"
+    },
+    {
+      "name": "s3 with suggested words",
+      "connection": {
+        "service": "s3",
+        "url": "https://s3.eu-central-1.amazonaws.com",
+        "username": "AKIATESTKEY",
+        "bucket": "my-bucket",
+        "region": "eu-central-1"
+      },
+      "password": "sEcReT/key+1==",
+      "root": "lib",
+      "words": "orbit lemon tunnel paper river cloud",
+      "code": "aish-library://v1?k=s3&u=https%3A%2F%2Fs3.eu-central-1.amazonaws.com&n=AKIATESTKEY&p=sEcReT%2Fkey%2B1%3D%3D&g=eu-central-1&b=my-bucket&r=lib&w=orbit%20lemon%20tunnel%20paper%20river%20cloud"
+    }
+  ]
 }

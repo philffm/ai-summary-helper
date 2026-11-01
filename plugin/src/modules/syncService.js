@@ -14,6 +14,7 @@ import { pushPlace } from './syncPush.js';
 import { syncEncryptedPlace, loadOrCreateMeta } from './syncEngine.js';
 import { createDataAdapter } from './syncDataAdapter.js';
 import { canonicalPassphrase, passphraseProblem, isSuggestedWords } from './syncPassphrase.js';
+import { buildPhoneCode } from './syncPhoneCode.js';
 import { createMeta, openMeta, openWithMaster, toB64, fromB64 } from './syncCrypto.js';
 import { placeMatches, INCLUDE_DEFAULT } from './syncReadable.js';
 import { TargetError } from './targets/targetError.js';
@@ -247,6 +248,15 @@ export function createSyncService({ storage, makeStore, stampStore, viewerSource
             delete secrets[keyOfPlace(id)];
             await storage.set({ [SK.syncPlaces]: places, [SK.syncStatus]: status, [SK.syncSecrets]: secrets, [SK.syncConnections]: place && !keep ? st.connections.filter((c) => c.id !== place.connectionId) : st.connections });
             await storage.remove(syncLedgerKey(id));
+        },
+
+        /** The code a phone scans to join this encrypted place (server login included, so it is made on request and never stored). */
+        async phoneCode(id) {
+            const st = await load();
+            const place = st.places.find((p) => p.id === id); if (!place) throw new Error('This place no longer exists.');
+            const connection = st.connections.find((c) => c.id === place.connectionId); if (!connection) throw new Error('This server no longer exists.');
+            const held = st.secrets[keyOfPlace(id)] || {};
+            return buildPhoneCode({ connection, secret: st.secrets[connection.id], place, words: held.words || '' });
         },
 
         /** The suggested words of an encrypted place, when this device kept them ('' for an own passphrase). */
