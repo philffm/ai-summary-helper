@@ -5,10 +5,13 @@
 // the Pages deploy so a broken sitemap can never ship.
 import fs from 'node:fs';
 import path from 'node:path';
+import { findMissingLocalLinks } from './lib/sitemap-links.mjs';
+import { localizedPath } from './lib/localized-paths.mjs';
 
 const DOCS = path.resolve(path.dirname(new URL(import.meta.url).pathname), '..', 'docs');
 const FILE = path.join(DOCS, 'sitemap.xml');
 const BASE = 'https://ai-summary-helper.byphil.eu/';
+const I18N = JSON.parse(fs.readFileSync(path.join(DOCS, 'i18n', 'locales.json'), 'utf8'));
 const errors = [];
 
 if (!fs.existsSync(FILE)) {
@@ -45,13 +48,34 @@ if (dupes.length) errors.push(`duplicate <loc>: ${[...new Set(dupes)].slice(0, 5
 for (const loc of locs) {
   let rel = loc.slice(BASE.length);
   if (!rel || rel.endsWith('/')) rel += 'index.html';
-  if (!fs.existsSync(path.join(DOCS, rel))) errors.push(`${loc}: no file at docs/${rel}`);
+  const file = path.join(DOCS, rel);
+  if (!fs.existsSync(file)) {
+    errors.push(`${loc}: no file at docs/${rel}`);
+    continue;
+  }
+  const html = fs.readFileSync(file, 'utf8');
+  const missingLinks = findMissingLocalLinks(html, loc, {
+    siteBase: BASE,
+    docsDir: DOCS,
+    publishedRoots: [{ urlPrefix: '/demo/', directory: path.resolve(DOCS, '../plugin/dist/demo') }],
+  });
+  for (const href of missingLinks) errors.push(`${loc}: link "${href}" points to a missing page`);
 }
 
 // 5. hreflang alternates must point at URLs that are themselves listed (Google drops
 //    the whole alternate set otherwise) and must be reciprocal.
 const listed = new Set(locs);
 const altsByLoc = new Map();
+for (const [code, locale] of Object.entries(I18N.locales)) {
+  for (const source of I18N.content) {
+    const rel = path.posix.join(locale.dir, localizedPath(source, code));
+    const file = path.join(DOCS, rel);
+    if (!fs.existsSync(file)) errors.push(`${locale.dir}/${localizedPath(source, code)}: configured translated page is missing`);
+    const urlPath = rel.replace(/(^|\/)index\.html$/, '$1');
+    const loc = `${BASE}${urlPath}`;
+    if (!listed.has(loc)) errors.push(`${loc}: configured translated page is not in the sitemap`);
+  }
+}
 for (const b of blocks) {
   const loc = b.match(/<loc>([\s\S]*?)<\/loc>/)?.[1];
   const alts = [...b.matchAll(/hreflang="([^"]+)"\s+href="([^"]+)"/g)].map((m) => [m[1], m[2]]);
