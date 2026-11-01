@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#08090C">
+<meta name="aish:landing" content="bildung">
+<title>Quellen prüfen mit KI: Werkzeug für Lehre und Bibliothek</title>
+<meta name="description" content="Belegstelle zu jeder Antwort, Quellen-Check, Modell nach Wahl, auch lokal. Open Source. Kostenloser Pilot für Lehrkräfte und Hochschulen.">
+<script>
+  (function(){
+    try {
+      var saved = localStorage.getItem('aish_theme');
+      var theme = saved === 'light' || saved === 'dark'
+        ? saved
+        : (window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
+      document.documentElement.setAttribute('data-theme', theme);
+    } catch (e) {
+      document.documentElement.setAttribute('data-theme', 'dark');
+    }
+  })();
+</script>
+<link rel="icon" type="image/svg+xml" href="{{base}}assets/icon.svg">
+<link rel="stylesheet" href="{{base}}assets/styles.css">
+<link rel="alternate" hreflang="de" href="https://ai-summary-helper.byphil.eu/de/bildung/">
+<link rel="alternate" hreflang="x-default" href="https://ai-summary-helper.byphil.eu/de/bildung/">
+<meta property="og:title" content="Quellen prüfen mit KI: Werkzeug für Lehre und Bibliothek">
+<meta property="og:description" content="Belegstelle zu jeder Antwort, Quellen-Check, Modell nach Wahl, auch lokal. Kostenloser Pilot.">
+<meta property="og:url" content="https://ai-summary-helper.byphil.eu/de/bildung/">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://ai-summary-helper.byphil.eu/assets/shots/aish-inpage-ask-en.webp">
+<meta name="twitter:card" content="summary_large_image">
+<script src="{{base}}assets/analytics.js"></script>
+</head>
+<body>
+<a href="#main" class="skip-link">Zum Inhalt springen</a>
+
+<!--include:nav-de-->
+
+<main id="main">
+
+  <!-- ── Versprechen ─────────────────────────────────────────────── -->
+  <section class="hero">
+    <div class="wrap">
+      <div class="eyebrow">Für Lehre, Schule und Bibliothek</div>
+      <h1>Quellen prüfen lernen,<br><em>mit einer KI, die Sie kontrollieren.</em></h1>
+      <p class="sub">{{product}} ist eine kostenlose Open-Source-Erweiterung für Chrome und Firefox. Sie fasst Webseiten und Fachartikel zusammen und belegt jede Antwort mit der Textstelle, aus der sie stammt. Sie wählen das Modell: eigener Schlüssel oder lokal mit Ollama, ohne Konto.</p>
+      <div class="hero-cta">
+        <a href="mailto:info@byphil.eu?subject=Pilot%20AI%20Summary%20Helper&body=Guten%20Tag%2C%0A%0Awir%20m%C3%B6chten%20den%20Pilot%20von%20AI%20Summary%20Helper%20ausprobieren.%0A%0ARolle%20%28z.%20B.%20Lehrkraft%2C%20Schulleitung%2C%20IT%2C%20Hochschuldidaktik%2C%20Bibliothek%29%3A%0AEinrichtung%3A%0ABundesland%3A%0AWer%20entscheidet%20bei%20Ihnen%20%C3%BCber%20Software%3A%0AWof%C3%BCr%20m%C3%B6chten%20Sie%20das%20Werkzeug%20einsetzen%3A%0A%0AViele%20Gr%C3%BC%C3%9Fe" class="btn-primary" data-track="bildung-pilot">Pilot anfragen</a>
+        <a href="{{base}}demo/index.html?lang=de" target="_blank" rel="noopener" class="btn-secondary">Demo ausprobieren</a>
+      </div>
+      <p class="hero-proof">Open Source · Kein Konto nötig · Modell nach Wahl · <a href="https://chromewebstore.google.com/detail/ai-summary-helper-openai/hldbejcjaedipeegjcinmhejdndchkmb" target="_blank" rel="noopener" data-desktop-cta>Zur Chrome-Erweiterung</a></p>
+      <p class="hero-meta">Der Pilot ist kostenlos. Anfrage per E-Mail, ohne Formular.</p>
+    </div>
+  </section>
+
+  <!-- ── Video ───────────────────────────────────────────────────── -->
+  <section>
+    <div class="wrap wrap-narrow">
+      <figure class="post-figure post-figure--video" data-blog-video="quellen" style="margin:0 auto;">
+        <video controls playsinline preload="none" width="360" height="520" poster="{{base}}assets/blog/video/quellen-de.jpg">
+          <source src="{{base}}assets/blog/video/quellen-de.mp4" type="video/mp4">
+          <track kind="subtitles" srclang="de" label="Deutsch" src="{{base}}assets/blog/video/quellen-de.vtt" default>
+        </video>
+        <figcaption>Eine Antwort gegen ihre Quelle prüfen: ein Klick führt zur Textstelle.</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <!-- ── Was Lernende tun ────────────────────────────────────────── -->
+  <section>
+    <div class="wrap">
+      <div class="section-head center reveal">
+        <div class="eyebrow">So arbeiten Lernende damit</div>
+        <h2>Zusammenfassung lesen, Beleg prüfen, Quellen vergleichen</h2>
+        <p>Das Werkzeug nimmt keine Urteile ab. Es zeigt, woher eine Aussage kommt, und stellt Fragen, die beim Prüfen helfen.</p>
+      </div>
+      <div class="feature-grid digest-steps reveal">
+        <div class="feature-card">
+          <h3 style="margin-top:0;">1. Zusammenfassung neben dem Text</h3>
+          <p>Ein Klick, und neben dem Artikel erscheint eine kurze Zusammenfassung. Der Originaltext bleibt im Blick.</p>
+        </div>
+        <div class="feature-card">
+          <h3 style="margin-top:0;">2. Zur Belegstelle springen</h3>
+          <p>Folgefragen werden mit den Textstellen beantwortet, auf denen die Antwort beruht. Zitate, die nicht wörtlich im Text stehen, werden verworfen. Ein Klick führt zur Stelle.</p>
+        </div>
+        <div class="feature-card">
+          <h3 style="margin-top:0;">3. Quellen vergleichen</h3>
+          <p>Mehrere Artikel zu einer Frage sammeln, jede Quelle einordnen (Studie, Preprint, Nachricht, Meinung), die Fragen des lateralen Lesens durchgehen und die Zusammenfassungen vergleichen: Wo stimmen sie überein, wo nicht, was fehlt?</p>
+        </div>
+      </div>
+      <p class="hero-meta reveal" style="text-align:center;margin-top:22px;">Für wissenschaftliche Texte gibt es den Forschungsmodus: Studien werden anhand der DOI erkannt und als Studie, Übersicht oder Preprint gekennzeichnet. Die Zitation stammt aus dem DOI-Register, nicht von der KI.</p>
+      <p class="hero-meta reveal" style="text-align:center;margin-top:10px;">Ein Treffer beim Zitat zeigt, dass die Stelle im Text steht. Er zeigt nicht, dass das Modell sie richtig gelesen hat. Deshalb bleibt das Nachlesen der Umgebung Teil der Aufgabe.</p>
+    </div>
+  </section>
+
+  <!-- ── Daten und Modellwahl ────────────────────────────────────── -->
+  <section>
+    <div class="wrap wrap-narrow">
+      <div class="section-head center reveal">
+        <div class="eyebrow">Daten und Modellwahl</div>
+        <h2>Sie entscheiden, wohin Text geht</h2>
+      </div>
+      <dl class="glance reveal">
+        <div><dt>Eigener Schlüssel</dt><dd>Der Text geht direkt vom Browser an den KI-Anbieter, den Sie gewählt haben (zum Beispiel OpenAI, Gemini, Mistral oder ein eigener Endpunkt). Der Schlüssel bleibt auf dem Gerät.</dd></div>
+        <div><dt>Lokal mit Ollama</dt><dd>Das Modell läuft auf Ihrem Rechner. Es verlässt kein Text das Gerät.</dd></div>
+        <div><dt>byphil Cloud (optional)</dt><dd>Ein gehosteter Zugang ohne eigenen Schlüssel. Die Anfrage läuft über unseren Dienst und von dort über OpenRouter (ein US-Unternehmen) zum Modell. Mit der Einstellung „EU-Server bevorzugen“ werden nur Modelle mit Endpunkt in Europa genutzt. Das begrenzt, wo das Modell läuft; der Weg über OpenRouter bleibt.</dd></div>
+        <div><dt>Bibliothek</dt><dd>Gespeicherte Artikel, Markierungen und Notizen liegen im Browser des Geräts. Es gibt kein Konto und keine Kopie auf einem Server.</dd></div>
+        <div><dt>Quellcode</dt><dd>Öffentlich auf <a href="https://github.com/philffm/ai-summary-helper/" target="_blank" rel="noopener">GitHub</a>. Datenschutzbeauftragte können nachlesen, was die Erweiterung tut.</dd></div>
+        <div><dt>Stand</dt><dd>1. November 2026</dd></div>
+      </dl>
+    </div>
+  </section>
+
+  <!-- ── Für wen ─────────────────────────────────────────────────── -->
+  <section>
+    <div class="wrap">
+      <div class="section-head center reveal">
+        <div class="eyebrow">Für wen</div>
+        <h2>Drei Blickwinkel</h2>
+      </div>
+      <div class="feature-grid digest-steps reveal">
+        <div class="feature-card">
+          <h3 style="margin-top:0;">Lehrkräfte</h3>
+          <p>Zeigen Sie im Unterricht, wie man eine KI-Antwort an ihrer Quelle prüft. Die Belegstelle macht das Prüfen konkret.</p>
+        </div>
+        <div class="feature-card">
+          <h3 style="margin-top:0;">Schulleitung und IT</h3>
+          <p>Eine Browser-Erweiterung ohne Serverinstallation. Welches Modell genutzt wird und wohin Text geht, legt die Einrichtung fest. Der Quellcode ist öffentlich.</p>
+        </div>
+        <div class="feature-card">
+          <h3 style="margin-top:0;">Hochschuldidaktik und Bibliothek</h3>
+          <p>Forschungsmodus, DOI-Zitation und Quellenvergleich für Recherche-Schulungen und Lehrveranstaltungen.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Pilot ───────────────────────────────────────────────────── -->
+  <section>
+    <div class="wrap wrap-narrow">
+      <div class="section-head center reveal">
+        <div class="eyebrow">Pilot</div>
+        <h2>Kostenlos ausprobieren, sechs Wochen</h2>
+        <p>Der Pilot ist kostenlos. Plätze vergeben wir bisher von Hand. Schreiben Sie uns kurz, wer Sie sind und wofür Sie das Werkzeug einsetzen möchten. Die E-Mail öffnet sich mit einer Vorlage, die Sie ausfüllen.</p>
+      </div>
+      <div class="hero-cta reveal" style="justify-content:center;">
+        <a href="mailto:info@byphil.eu?subject=Pilot%20AI%20Summary%20Helper&body=Guten%20Tag%2C%0A%0Awir%20m%C3%B6chten%20den%20Pilot%20von%20AI%20Summary%20Helper%20ausprobieren.%0A%0ARolle%20%28z.%20B.%20Lehrkraft%2C%20Schulleitung%2C%20IT%2C%20Hochschuldidaktik%2C%20Bibliothek%29%3A%0AEinrichtung%3A%0ABundesland%3A%0AWer%20entscheidet%20bei%20Ihnen%20%C3%BCber%20Software%3A%0AWof%C3%BCr%20m%C3%B6chten%20Sie%20das%20Werkzeug%20einsetzen%3A%0A%0AViele%20Gr%C3%BC%C3%9Fe" class="btn-primary" data-track="bildung-pilot-2">Pilot anfragen</a>
+      </div>
+      <p class="hero-meta reveal" style="text-align:center;">Ihre Angaben gehen nur per E-Mail an info@byphil.eu.</p>
+    </div>
+  </section>
+
+  <!-- ── Fragen ──────────────────────────────────────────────────── -->
+  <section>
+    <div class="wrap wrap-narrow">
+      <div class="section-head center reveal">
+        <div class="eyebrow">Fragen</div>
+        <h2>Datenschutz und Einsatz</h2>
+      </div>
+      <div class="faq reveal">
+        <details>
+          <summary>Brauchen Lernende ein Konto?</summary>
+          <p>Nein. Die Erweiterung läuft ohne Konto. Ein Konto brauchen Sie nur, wenn Sie byphil Cloud nutzen möchten.</p>
+        </details>
+        <details>
+          <summary>Was verlässt den Browser?</summary>
+          <p>Nur der Text, den jemand zusammenfassen lässt, und zwar an den KI-Anbieter, den die Einrichtung gewählt hat. Mit einem lokalen Modell bleibt alles auf dem Gerät. Die Bibliothek liegt im Browser.</p>
+        </details>
+        <details>
+          <summary>Geht das ganz ohne Cloud?</summary>
+          <p>Ja, mit einem lokalen Modell über Ollama. Dafür braucht der Rechner genug Leistung für das gewählte Modell.</p>
+        </details>
+        <details>
+          <summary>Erfüllt das die Anforderungen meiner Schule oder Hochschule?</summary>
+          <p>Das müssen Ihre Datenschutzbeauftragten beurteilen. Wir geben deshalb offen an, wohin Daten fließen (siehe oben), und der Quellcode ist öffentlich. Eine Freigabe durch eine Behörde behaupten wir nicht.</p>
+        </details>
+        <details>
+          <summary>Was kostet es?</summary>
+          <p>Die Erweiterung ist kostenlos, ebenso der Pilot. Mit eigenem Schlüssel oder lokalem Modell entstehen keine Kosten bei uns. Die Kosten beim KI-Anbieter richten sich nach dessen Preisen.</p>
+        </details>
+        <details>
+          <summary>Ist das Open Source?</summary>
+          <p>Ja. Der Quellcode ist öffentlich auf GitHub.</p>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Mehr ────────────────────────────────────────────────────── -->
+  <section>
+    <div class="wrap wrap-narrow">
+      <p class="tier-once reveal">Mehr dazu: <a href="{{base}}de/index.html">alle Funktionen von {{product}}</a> · <a href="{{base}}blog/verify-ai-summary.html">So prüfen Sie eine KI-Zusammenfassung an der Quelle (Englisch)</a></p>
+    </div>
+  </section>
+
+</main>
+
+<!--include:footer-de-->
+<script src="{{base}}assets/hero-i18n.js"></script>
+<script src="{{base}}assets/main.js"></script>
+</body>
+</html>

@@ -104,7 +104,9 @@ async function buildPage(relPath, partials, config) {
     // the whole hreflang cluster as unconfirmed.
     if (config) {
         const $ = cheerio.load(html, { decodeEntities: false });
-        addHreflangTags($, config, relPath);
+        // Native pages (written in another language, e.g. site-src/pages/de/...) carry their own hreflang tags: the generic
+        // ones below describe an English page and its translations, so they would label a German page as "en".
+        if (($('html').attr('lang') || 'en').toLowerCase().startsWith('en')) addHreflangTags($, config, relPath);
         html = $.html();
     }
 

@@ -151,11 +151,23 @@ function setBilling(period) {
   for (var i = 0; i < langs.length; i++) { var m = map(langs[i]); if (m) { target = m; break; } }
   if (!target || target === current) return;
 
+  // Landing pages (<meta name="aish:landing">) are not mirrored into every locale folder: suggest another language only when the
+  // page itself declares that version with an hreflang link, and send the visitor to that URL (not to a guessed one, which would 404).
+  var altHref = null;
+  if (document.querySelector('meta[name="aish:landing"]')) {
+    var want = target === 'zh' ? 'zh-hans' : target === 'zh-tw' ? 'zh-hant' : target === 'no' ? 'nb' : target;
+    [].forEach.call(document.querySelectorAll('link[rel="alternate"][hreflang]'), function (l) {
+      var h = (l.getAttribute('hreflang') || '').toLowerCase();
+      if (!altHref && (h === want || h.split('-')[0] === want)) { try { altHref = new URL(l.href).pathname; } catch (e) {} }
+    });
+    if (!altHref || altHref === window.location.pathname) return;
+  }
+
   var dismissed = false;
   try { dismissed = localStorage.getItem(DISMISS_KEY) === '1'; } catch (e) {}
   if (dismissed) return;
 
-  var href = '/' + (target === 'en' ? '' : target + '/') + rest;
+  var href = altHref || ('/' + (target === 'en' ? '' : target + '/') + rest);
   var info = LOCALES[target];
   var banner = document.createElement('div');
   banner.className = 'lang-banner';
