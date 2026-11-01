@@ -1411,11 +1411,20 @@
     <xhtml:link rel="alternate" hreflang="fi" href="https://ai-summary-helper.byphil.eu/fi/blog/"/>
   </url>
   <url>
+    <loc>https://ai-summary-helper.byphil.eu/education/</loc>
+    <lastmod>2026-11-01</lastmod>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ai-summary-helper.byphil.eu/education/"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://ai-summary-helper.byphil.eu/de/bildung/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ai-summary-helper.byphil.eu/education/"/>
+  </url>
+  <url>
     <loc>https://ai-summary-helper.byphil.eu/de/bildung/</loc>
     <lastmod>2026-11-01</lastmod>
     <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ai-summary-helper.byphil.eu/education/"/>
     <xhtml:link rel="alternate" hreflang="de" href="https://ai-summary-helper.byphil.eu/de/bildung/"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://ai-summary-helper.byphil.eu/de/bildung/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ai-summary-helper.byphil.eu/education/"/>
   </url>
   <url>
     <loc>https://ai-summary-helper.byphil.eu/zh-tw/blog/</loc>

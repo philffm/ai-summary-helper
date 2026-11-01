@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#08090C">
+<meta name="aish:landing" content="education">
+<title>Source checking with AI for teaching and libraries</title>
+<meta name="description" content="Evidence for every answer, a source check, your choice of model, also local. Open source. Free pilot for educators and universities.">
+<script>
+  (function(){
+    try {
+      var saved = localStorage.getItem('aish_theme');
+      var theme = saved === 'light' || saved === 'dark'
+        ? saved
+        : (window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
+      document.documentElement.setAttribute('data-theme', theme);
+    } catch (e) {
+      document.documentElement.setAttribute('data-theme', 'dark');
+    }
+  })();
+</script>
+<link rel="icon" type="image/svg+xml" href="{{base}}assets/icon.svg">
+<link rel="stylesheet" href="{{base}}assets/styles.css">
+<meta name="aish:hreflang" content="custom">
+<link rel="alternate" hreflang="en" href="https://ai-summary-helper.byphil.eu/education/">
+<link rel="alternate" hreflang="de" href="https://ai-summary-helper.byphil.eu/de/bildung/">
+<link rel="alternate" hreflang="x-default" href="https://ai-summary-helper.byphil.eu/education/">
+<meta property="og:title" content="Source checking with AI for teaching and libraries">
+<meta property="og:description" content="Evidence for every answer, a source check, your choice of model, also local. Free pilot.">
+<meta property="og:url" content="https://ai-summary-helper.byphil.eu/education/">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://ai-summary-helper.byphil.eu/assets/shots/aish-inpage-ask-en.webp">
+<meta name="twitter:card" content="summary_large_image">
+<script src="{{base}}assets/analytics.js"></script>
+</head>
+<body>
+<a href="#main" class="skip-link">Skip to content</a>
+
+<!--include:nav-home-->
+
+<main id="main">
+
+  <!-- ── Versprechen ─────────────────────────────────────────────── -->
+  <section class="hero hero--photo">
+    <img class="hero-bg" src="{{base}}assets/photo/student-library-desk-800.webp" srcset="{{base}}assets/photo/student-library-desk-800.webp 800w, {{base}}assets/photo/student-library-desk-1600.webp 1600w" sizes="100vw" width="1600" height="893" alt="" fetchpriority="high" decoding="async" style="--bgpos:50% 45%">
+    <p class="hero-credit">Illustration, AI-generated</p>
+    <div class="wrap">
+      <div class="eyebrow">For teaching, schools and libraries</div>
+      <h1>Teach source checking,<br><em>with an AI you control.</em></h1>
+      <p class="sub">{{product}} is a free, open-source extension for Chrome and Firefox. It summarizes web pages and papers and backs every answer with the passage it came from. You choose the model: your own key or a local one with Ollama, no account needed.</p>
+      <div class="hero-cta">
+        <a href="mailto:info@byphil.eu?subject=Pilot%20AI%20Summary%20Helper&body=Hello%2C%0A%0Awe%20would%20like%20to%20try%20the%20AI%20Summary%20Helper%20pilot.%0A%0ARole%20%28e.g.%20teacher%2C%20school%20leadership%2C%20IT%2C%20teaching%20support%2C%20librarian%29%3A%0AInstitution%3A%0ACountry%20/%20region%3A%0AWho%20decides%20on%20software%20where%20you%20work%3A%0AWhat%20you%20want%20to%20use%20the%20tool%20for%3A%0A%0ABest%20regards" class="btn-primary" data-track="bildung-pilot">Request a pilot</a>
+        <a href="#pitch-demo" data-slider-goto="pitch-demo" data-fallback-href="{{base}}demo/index.html" class="btn-secondary">Try the demo</a>
+      </div>
+      <p class="hero-proof">Open source · No account needed · Made in the EU · Your choice of model · <a href="https://chromewebstore.google.com/detail/ai-summary-helper-openai/hldbejcjaedipeegjcinmhejdndchkmb" target="_blank" rel="noopener" data-desktop-cta>Add to Chrome</a></p>
+      <p class="hero-meta">The pilot is free. Request it by e-mail, no form.</p>
+    </div>
+  </section>
+
+  <!-- ── Video ───────────────────────────────────────────────────── -->
+  <section>
+    <div class="wrap wrap-narrow" data-vgroup>
+      <figure class="post-figure post-video post-video--center" data-blog-video="quellen">
+          <div class="post-video-in">
+            <button class="fvideo-open post-video-open" type="button"><span class="sr-only">Play the video</span>
+              <video muted playsinline loop preload="none" width="360" height="520" poster="{{base}}assets/blog/video/quellen-en.jpg">
+          <source src="{{base}}assets/blog/video/quellen-en.mp4" type="video/mp4">
+          <track kind="subtitles" srclang="en" label="English" src="{{base}}assets/blog/video/quellen-en.vtt" default>
+        </video>
+              <span class="post-video-play" aria-hidden="true">&#9654;</span>
+            </button>
+            <figcaption>Check an answer against its source: one click takes you to the passage.</figcaption>
+          </div>
+        </figure>
+    </div>
+  </section>
+
+  <!-- ── Pitch ───────────────────────────────────────────────────── -->
+  <section id="pitch">
+    <div class="wrap">
+      <div class="section-head center reveal">
+        <div class="eyebrow">Why now</div>
+        <h2>The pitch in six steps, with sources</h2>
+        <p>Four pieces of evidence, the real interface and, at the end, the demo to try.</p>
+      </div>
+      <div class="cx cx--fit reveal" data-carousel role="region" aria-roledescription="carousel" aria-label="The pitch in six steps">
+        <div class="cx-stage">
+          <ul class="cx-track" tabindex="0">
+          <li class="cx-slide is-active" role="group" aria-roledescription="slide" aria-label="1 / 6">
+            <figure>
+              <div class="cx-card" style="--img:url({{base}}assets/photo/student-library-desk-1600.webp)">
+                <span class="cx-big">95 %</span>
+                <strong class="cx-title">AI is already part of student life</strong>
+                <span class="cx-text">of UK full-time undergraduates use AI in some form, and 94 % use generative AI for assessed work (1,054 students surveyed in December 2025). The numbers describe UK undergraduates, not every country.</span>
+                <small class="cx-src">Source: <a href="https://www.hepi.ac.uk/reports/student-generative-ai-survey-2026/" target="_blank" rel="noopener">HEPI and Kortext, Student Generative Artificial Intelligence Survey 2026 (HEPI Report 199), March 2026</a></small>
+              </div>
+            </figure>
+          </li>
+          <li class="cx-slide" role="group" aria-roledescription="slide" aria-label="2 / 6">
+            <figure>
+              <div class="cx-card" style="--img:url({{base}}assets/photo/teacher-classroom-desk-1600.webp)">
+                <span class="cx-big">81 %</span>
+                <strong class="cx-title">The same picture in Germany and Austria</strong>
+                <span class="cx-text">use AI at least weekly (46.5 % daily), and 70 % want clear guidelines for ethical use and data protection. About 28,600 students were surveyed in winter semester 2025/26, mainly in business and law. The numbers do not apply to every subject.</span>
+                <small class="cx-src">Source: <a href="https://idw-online.de/de/news874925" target="_blank" rel="noopener">CHE Centrum für Hochschulentwicklung, press release (in German), 22 July 2026</a></small>
+              </div>
+            </figure>
+          </li>
+          <li class="cx-slide" role="group" aria-roledescription="slide" aria-label="3 / 6">
+            <figure>
+              <div class="cx-card" style="--img:url({{base}}assets/photo/researcher-desk-notes-1600.webp)">
+                <span class="cx-big cx-big--text">Location over content</span>
+                <strong class="cx-title">People remember where to find it</strong>
+                <span class="cx-text">When people expect to be able to look something up later, they remember the content less and remember where to find it more. With AI summaries the passage in the text should therefore always stay findable.</span>
+                <small class="cx-src">Source: Sparrow, Liu &amp; Wegner (2011), <em>Science</em> 333(6043), 776–778, <a href="https://doi.org/10.1126/science.1207745" target="_blank" rel="noopener">doi.org/10.1126/science.1207745</a></small>
+              </div>
+            </figure>
+          </li>
+          <li class="cx-slide" role="group" aria-roledescription="slide" aria-label="4 / 6">
+            <figure>
+              <div class="cx-card" style="--img:url({{base}}assets/photo/sticky-notes-desk-1600.webp)">
+                <span class="cx-big cx-big--text">Highlighting alone helps little</span>
+                <strong class="cx-title">Ask questions, not just highlight</strong>
+                <span class="cx-text">A review rated ten learning techniques: highlighting and underlining ended up in the group with the lowest utility, practice testing and spaced study at the top. That is why the tool lets you ask questions about your own highlights.</span>
+                <small class="cx-src">Source: Dunlosky et al. (2013), <em>Psychological Science in the Public Interest</em> 14(1), 4–58, <a href="https://doi.org/10.1177/1529100612453266" target="_blank" rel="noopener">doi.org/10.1177/1529100612453266</a></small>
+              </div>
+            </figure>
+          </li>
+          <li class="cx-slide" role="group" aria-roledescription="slide" aria-label="5 / 6">
+            <figure>
+              <div class="cx-card cx-card--shot">
+                <div class="cx-shot-text">
+                  <strong class="cx-title">Check, don’t just believe</strong>
+                  <span class="cx-text">For every answer, the passage it rests on. Four lateral-reading questions per source, as hints. A model chosen by the institution, in the house if wanted. The tool makes no judgement for you, it makes checking concrete.</span>
+                  <small class="cx-src"><a href="https://github.com/philffm/ai-summary-helper/" target="_blank" rel="noopener">Source code on GitHub</a> · <a href="{{base}}blog/verify-ai-summary.html">How to check an AI summary against its source</a></small>
+                </div>
+                <img src="{{base}}assets/shots/aish-inpage-ask-en.webp" width="1440" height="900" loading="lazy" alt="Answer to a follow-up with a source reference and highlighted passages in the article">
+              </div>
+            </figure>
+          </li>
+          <li class="cx-slide cx-slide--demo" id="pitch-demo" data-desktop-only role="group" aria-roledescription="slide" aria-label="6 / 6">
+            <figure>
+              <div class="demo-frame" data-demo data-demo-scale="1180" data-src="{{base}}demo/index.html"><button class="demo-start" type="button"><span class="demo-play" aria-hidden="true">▶</span><span>Start the live demo</span></button><a class="demo-open" href="{{base}}demo/index.html" target="_blank" rel="noopener">Open full screen ↗</a></div>
+              <figcaption><strong>Try it yourself, then book the pilot</strong><span>The real interface with a sample article, nothing is sent. The pilot is free and lasts six weeks.</span><span class="cx-cta"><a href="mailto:info@byphil.eu?subject=Pilot%20AI%20Summary%20Helper&body=Hello%2C%0A%0Awe%20would%20like%20to%20try%20the%20AI%20Summary%20Helper%20pilot.%0A%0ARole%20%28e.g.%20teacher%2C%20school%20leadership%2C%20IT%2C%20teaching%20support%2C%20librarian%29%3A%0AInstitution%3A%0ACountry%20/%20region%3A%0AWho%20decides%20on%20software%20where%20you%20work%3A%0AWhat%20you%20want%20to%20use%20the%20tool%20for%3A%0A%0ABest%20regards" class="btn-primary" data-track="bildung-pilot-pitch">Request a pilot</a><button type="button" class="btn-secondary" data-demo-fullscreen>Demo in full screen</button></span></figcaption>
+            </figure>
+          </li>
+          </ul>
+          <button type="button" class="cx-nav cx-prev" aria-label="Back"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m15 18-6-6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+          <button type="button" class="cx-nav cx-next" aria-label="Next"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m9 18 6-6-6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+        </div>
+        <div class="cx-dots"><button type="button" class="cx-dot is-active" aria-label="Slide 1"></button><button type="button" class="cx-dot" aria-label="Slide 2"></button><button type="button" class="cx-dot" aria-label="Slide 3"></button><button type="button" class="cx-dot" aria-label="Slide 4"></button><button type="button" class="cx-dot" aria-label="Slide 5"></button><button type="button" class="cx-dot cx-dot--demo" aria-label="Slide 6">Demo</button></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Funktionen für die Lehre ────────────────────────────────── -->
+  <section>
+    <div class="wrap">
+      <div class="section-head center reveal">
+        <div class="eyebrow">Features for teaching</div>
+        <h2>What matters most in schools and universities</h2>
+        <p>All of this is in the extension today.</p>
+      </div>
+      <div class="photo-row photo-row--3 reveal">
+        <figure>
+          <img src="{{base}}assets/photo/scene-ghost-highlights-laptop-600.webp" srcset="{{base}}assets/photo/scene-ghost-highlights-laptop-600.webp 600w, {{base}}assets/photo/scene-ghost-highlights-laptop-1200.webp 1200w" sizes="(max-width: 760px) 92vw, 380px" width="1200" height="670" loading="lazy" decoding="async" alt="Illustration: a laptop on a wooden desk next to a printed page with blue-marked sentences, a lamp and shelves in the background">
+          <figcaption>Highlighted passages in the article, the summary beside it.</figcaption>
+        </figure>
+        <figure>
+          <img src="{{base}}assets/photo/scene-research-monitor-carrel-600.webp" srcset="{{base}}assets/photo/scene-research-monitor-carrel-600.webp 600w, {{base}}assets/photo/scene-research-monitor-carrel-1200.webp 1200w" sizes="(max-width: 760px) 92vw, 380px" width="1200" height="896" loading="lazy" decoding="async" alt="Illustration: a monitor in a library carrel next to open books and sticky notes, a lamp beside it">
+          <figcaption>Research mode: recognise and classify studies.</figcaption>
+        </figure>
+        <figure>
+          <img src="{{base}}assets/photo/scene-pdf-report-laptop-600.webp" srcset="{{base}}assets/photo/scene-pdf-report-laptop-600.webp 600w, {{base}}assets/photo/scene-pdf-report-laptop-1200.webp 1200w" sizes="(max-width: 760px) 92vw, 380px" width="1200" height="670" loading="lazy" decoding="async" alt="Illustration: a laptop next to a tall stack of printed report pages and a desk lamp">
+          <figcaption>Long PDFs too: the summary in the side panel.</figcaption>
+        </figure>
+      </div>
+      <div class="feature-grid digest-steps reveal" style="margin-top:28px;">
+        <div class="feature-card">
+          <h3 style="margin-top:0;">Evidence for every answer</h3>
+          <p>Quotes that do not appear word for word in the text are dropped. A match shows that the passage is in the text, not that the model read it correctly. Reading the surrounding text stays part of the task.</p>
+        </div>
+        <div class="feature-card">
+          <h3 style="margin-top:0;">Source check</h3>
+          <p>Four lateral-reading questions accompany every source. They are hints for checking, not ratings.</p>
+        </div>
+        <div class="feature-card">
+          <h3 style="margin-top:0;">Research mode</h3>
+          <p>Studies are recognised by their DOI and labelled as study, review or preprint. The citation comes from the DOI registry, not from the AI.</p>
+        </div>
+        <div class="feature-card">
+          <h3 style="margin-top:0;">Source comparison</h3>
+          <p>Collect several articles on one question, classify each source and compare the summaries: where do they agree, where not, what is missing?</p>
+        </div>
+        <div class="feature-card">
+          <h3 style="margin-top:0;">In the learners’ language</h3>
+          <p>Summaries in the language learners choose. The original text stays visible beside it.</p>
+        </div>
+        <div class="feature-card">
+          <h3 style="margin-top:0;">Read aloud</h3>
+          <p>The summary is read aloud while it is still being written, with pause, mute and speed.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Für wen ─────────────────────────────────────────────────── -->
+  <section>
+    <div class="wrap">
+      <div class="section-head center reveal">
+        <div class="eyebrow">Who it is for</div>
+        <h2>Who works with what, and where the AI runs</h2>
+        <p>A walk through an educational institution. Page through the rooms or jump around in the building.</p>
+      </div>
+      <div class="hw reveal" data-house>
+          <div class="hw-map">
+            <div class="bq3d bq3d--mini">
+              <div class="bq3d-bldg">
+                <div class="bq3d-front">
+                  <div class="bq3d-row"><div class="bq3d-room" data-room="studierende" tabindex="0" role="button" aria-label="University students"><span class="bq3d-tag">University students</span></div><div class="bq3d-room" data-room="bibliothek" tabindex="0" role="button" aria-label="Library"><span class="bq3d-tag">Library</span></div></div>
+                  <div class="bq3d-row"><div class="bq3d-room" data-room="lehrkraefte" tabindex="0" role="button" aria-label="Teachers"><span class="bq3d-tag">Teachers</span></div><div class="bq3d-room" data-room="lernende" tabindex="0" role="button" aria-label="Learners"><span class="bq3d-tag">Learners</span></div></div>
+                  <div class="bq3d-row bq3d-row--one"><div class="bq3d-room" data-room="leitung" tabindex="0" role="button" aria-label="School leadership and IT"><span class="bq3d-tag">School leadership and IT</span></div></div>
+                  <div class="bq3d-row bq3d-row--base"><div class="bq3d-room" data-room="ki" tabindex="0" role="button" aria-label="AI in the house"><span class="bq3d-tag">AI in the house</span></div></div>
+                  <span class="bq3d-riser" aria-hidden="true"></span>
+                </div>
+              </div>
+            </div>
+            <div class="hw-ext">
+              <button type="button" class="hw-extbtn" data-room="cloud">Sovereign cloud</button>
+              <button type="button" class="hw-extbtn" data-room="extern">External provider</button>
+            </div>
+          </div>
+          <div class="hw-view">
+            <div class="hw-track" tabindex="0" role="region" aria-roledescription="carousel" aria-label="Page through the house">
+            <article class="hw-slide" data-room-panel="studierende" role="group" aria-roledescription="slide" aria-label="1 / 8">
+              <figure class="hw-fig"><img src="{{base}}assets/photo/student-library-desk-800.webp" srcset="{{base}}assets/photo/student-library-desk-800.webp 800w, {{base}}assets/photo/student-library-desk-1600.webp 1600w" sizes="(max-width: 820px) 92vw, 640px" width="1600" height="893" loading="lazy" decoding="async" alt="Illustration: a person seen from behind at a library reading desk with laptop, books and notebook"><span class="hw-tag">University students</span></figure>
+              <h3>University students</h3>
+              <p>For coursework and research: the summary beside the text, evidence passages, DOI citation and source comparison. The library stays on your own device.</p>
+            </article>
+            <article class="hw-slide" data-room-panel="bibliothek" role="group" aria-roledescription="slide" aria-label="2 / 8">
+              <figure class="hw-fig"><img src="{{base}}assets/photo/researcher-desk-notes-800.webp" srcset="{{base}}assets/photo/researcher-desk-notes-800.webp 800w, {{base}}assets/photo/researcher-desk-notes-1600.webp 1600w" sizes="(max-width: 820px) 92vw, 640px" width="1600" height="893" loading="lazy" decoding="async" alt="Illustration: a person seen from behind at a desk with laptop, notes and pinboard"><span class="hw-tag">Teaching support and libraries</span></figure>
+              <h3>Teaching support and libraries</h3>
+              <p>For research training and courses: research mode, DOI citation and source comparison to demonstrate and practise.</p>
+            </article>
+            <article class="hw-slide" data-room-panel="lehrkraefte" role="group" aria-roledescription="slide" aria-label="3 / 8">
+              <figure class="hw-fig"><img src="{{base}}assets/photo/teacher-classroom-desk-800.webp" srcset="{{base}}assets/photo/teacher-classroom-desk-800.webp 800w, {{base}}assets/photo/teacher-classroom-desk-1600.webp 1600w" sizes="(max-width: 820px) 92vw, 640px" width="1600" height="893" loading="lazy" decoding="async" alt="Illustration: a teacher seen from behind at a desk in the empty classroom, laptop and a stack of worksheets"><span class="hw-tag">Teachers</span></figure>
+              <h3>Teachers</h3>
+              <p>Show in class how to check an AI answer against its source. The evidence passage makes checking concrete.</p>
+            </article>
+            <article class="hw-slide" data-room-panel="lernende" role="group" aria-roledescription="slide" aria-label="4 / 8">
+              <figure class="hw-fig"><img src="{{base}}assets/photo/hands-keyboard-closeup-800.webp" srcset="{{base}}assets/photo/hands-keyboard-closeup-800.webp 800w, {{base}}assets/photo/hands-keyboard-closeup-1600.webp 1600w" sizes="(max-width: 820px) 92vw, 640px" width="1600" height="893" loading="lazy" decoding="async" alt="Illustration: close-up of hands on a laptop keyboard"><span class="hw-tag">School students</span></figure>
+              <h3>School students</h3>
+              <p>Learners check an answer at its evidence passage instead of taking it over. They need no account, and the institution decides which model is used.</p>
+            </article>
+            <article class="hw-slide" data-room-panel="leitung" role="group" aria-roledescription="slide" aria-label="5 / 8">
+              <figure class="hw-fig"><img src="{{base}}assets/photo/colleagues-laptop-office-800.webp" srcset="{{base}}assets/photo/colleagues-laptop-office-800.webp 800w, {{base}}assets/photo/colleagues-laptop-office-1600.webp 1600w" sizes="(max-width: 820px) 92vw, 640px" width="1600" height="893" loading="lazy" decoding="async" alt="Illustration: two colleagues seen from behind in front of a laptop in a bright office"><span class="hw-tag">School leadership and IT</span></figure>
+              <h3>School leadership and IT</h3>
+              <p>A browser extension without server installation. The institution decides which model is used and where text goes. The source code is public.</p>
+            </article>
+            <article class="hw-slide" data-room-panel="ki" role="group" aria-roledescription="slide" aria-label="6 / 8">
+              <figure class="hw-fig"><div class="hw-art hw-art--ki"><svg viewBox="0 0 320 120" aria-hidden="true"><g><rect x="20" y="14" width="58" height="92" rx="6"/><circle cx="36" cy="32" r="4"/><circle cx="50" cy="32" r="4"/><rect x="30" y="52" width="38" height="5" rx="2.5"/><rect x="30" y="66" width="38" height="5" rx="2.5"/><rect x="30" y="80" width="38" height="5" rx="2.5"/></g><g><rect x="94" y="14" width="58" height="92" rx="6"/><circle cx="110" cy="32" r="4"/><circle cx="124" cy="32" r="4"/><rect x="104" y="52" width="38" height="5" rx="2.5"/><rect x="104" y="66" width="38" height="5" rx="2.5"/><rect x="104" y="80" width="38" height="5" rx="2.5"/></g><g><rect x="168" y="14" width="58" height="92" rx="6"/><circle cx="184" cy="32" r="4"/><circle cx="198" cy="32" r="4"/><rect x="178" y="52" width="38" height="5" rx="2.5"/><rect x="178" y="66" width="38" height="5" rx="2.5"/><rect x="178" y="80" width="38" height="5" rx="2.5"/></g><g><rect x="242" y="14" width="58" height="92" rx="6"/><circle cx="258" cy="32" r="4"/><circle cx="272" cy="32" r="4"/><rect x="252" y="52" width="38" height="5" rx="2.5"/><rect x="252" y="66" width="38" height="5" rx="2.5"/><rect x="252" y="80" width="38" height="5" rx="2.5"/></g></svg></div><span class="hw-tag">AI in the house</span></figure>
+              <h3>AI in the house</h3>
+              <p>The institution can run a model on its own computer or server (for example through Ollama or its own endpoint). Then the text never leaves the house.</p>
+            </article>
+            <article class="hw-slide" data-room-panel="cloud" role="group" aria-roledescription="slide" aria-label="7 / 8">
+              <figure class="hw-fig"><div class="hw-art"><svg viewBox="0 0 320 120" aria-hidden="true"><path class="hw-cloud" d="M96 92 Q70 92 72 68 Q74 50 96 50 Q100 24 134 24 Q158 8 184 30 Q222 26 228 58 Q258 62 250 84 Q246 94 228 94 Z"/><rect class="hw-lock" x="150" y="58" width="26" height="22" rx="4"/><path class="hw-lockarc" d="M156 58 V52 a7 7 0 0 1 14 0 V58"/></svg></div><span class="hw-tag">Sovereign cloud</span></figure>
+              <h3>Sovereign cloud</h3>
+              <p>Instead of a server in the house, the institution can run a model in a cloud it selects and controls itself. We advise on choice, operation and connecting it to the extension.</p>
+            </article>
+            <article class="hw-slide" data-room-panel="extern" role="group" aria-roledescription="slide" aria-label="8 / 8">
+              <figure class="hw-fig"><div class="hw-art"><svg viewBox="0 0 320 120" aria-hidden="true"><path class="hw-cloud hw-cloud--dashed" d="M96 92 Q70 92 72 68 Q74 50 96 50 Q100 24 134 24 Q158 8 184 30 Q222 26 228 58 Q258 62 250 84 Q246 94 228 94 Z"/><path class="hw-arrow" d="M30 100 H72 M64 92 L72 100 L64 108"/></svg></div><span class="hw-tag">External AI provider</span></figure>
+              <h3>External AI provider</h3>
+              <p>If the institution chooses an external provider, the text goes to that provider: with your own key straight from the browser, or via byphil Cloud and OpenRouter. What exactly flows where is in the table below.</p>
+            </article>
+            </div>
+            <div class="hw-ctrl">
+              <button type="button" class="hw-btn hw-prev" aria-label="Back">&#8249;</button>
+              <span class="hw-count" aria-live="polite">1 / 8</span>
+              <button type="button" class="hw-btn hw-next" aria-label="Next">&#8250;</button>
+            </div>
+          </div>
+        </div>
+    </div>
+  </section>
+
+  <!-- ── Daten und Modellwahl ────────────────────────────────────── -->
+  <section>
+    <div class="wrap wrap-narrow">
+      <div class="section-head center reveal">
+        <div class="eyebrow">Data and model choice</div>
+        <h2>You decide where text goes</h2>
+      </div>
+      <dl class="glance reveal">
+        <div><dt>Your own key</dt><dd>The text goes straight from the browser to the AI provider you chose (for example OpenAI, Gemini, Mistral or your own endpoint). The key stays on the device.</dd></div>
+        <div><dt>Local with Ollama</dt><dd>The model runs on your computer. No text leaves the device.</dd></div>
+        <div><dt>byphil Cloud (optional)</dt><dd>A hosted option without your own key. The request goes through our service and from there through OpenRouter (a US company) to the model. With the setting “Prefer EU servers”, only models with an endpoint in Europe are used. That limits where the model runs; the path through OpenRouter remains.</dd></div>
+        <div><dt>Library</dt><dd>Saved articles, highlights and notes are in the browser of the device. There is no account and no copy on a server.</dd></div>
+        <div><dt>Source code</dt><dd>Public on <a href="https://github.com/philffm/ai-summary-helper/" target="_blank" rel="noopener">GitHub</a>. Data protection officers can read what the extension does.</dd></div>
+        <div><dt>As of</dt><dd>1 November 2026</dd></div>
+      </dl>
+    </div>
+  </section>
+
+  <!-- ── Beratung ────────────────────────────────────────────────── -->
+  <section>
+    <div class="wrap wrap-narrow">
+      <div class="section-head center reveal">
+        <div class="eyebrow">Advice</div>
+        <h2>Also for running it in the house and in a sovereign cloud</h2>
+        <p>The tool is free. If your institution would like support around it, we advise, remotely and on site in Germany.</p>
+      </div>
+      <div class="feature-grid digest-steps reveal">
+        <div class="feature-card">
+          <h3 style="margin-top:0;">Model and operation</h3>
+          <p>Which model suits your institution, local or in the cloud, and what does that mean for computers and servers?</p>
+        </div>
+        <div class="feature-card">
+          <h3 style="margin-top:0;">Sovereign cloud</h3>
+          <p>Choosing and connecting a cloud your institution controls itself or runs with a provider of your choice.</p>
+        </div>
+        <div class="feature-card">
+          <h3 style="margin-top:0;">Introduction</h3>
+          <p>Plan a pilot, brief teachers, put together documents for your data protection officers. This does not replace legal advice or approvals.</p>
+        </div>
+      </div>
+      <div class="hero-cta reveal" style="justify-content:center;margin-top:24px;">
+        <a href="mailto:info@byphil.eu?subject=Advice%20on%20AI%20Summary%20Helper%20in%20education&body=Hello%2C%0A%0Awe%20would%20like%20advice%20on%20using%20AI%20tools.%0A%0AInstitution%3A%0ACountry%20/%20region%3A%0AWhat%20it%20is%20about%20%28choice%20of%20model%2C%20running%20it%20in%20the%20house%2C%20sovereign%20cloud%2C%20introduction%29%3A%0A%0ABest%20regards" class="btn-secondary" data-track="bildung-beratung">Request advice</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Roadmap ─────────────────────────────────────────────────── -->
+  <section>
+    <div class="wrap wrap-narrow">
+      <div class="section-head center reveal">
+        <div class="eyebrow">Next</div>
+        <h2>The roadmap for education</h2>
+        <p>On the left what exists today, to the right what is planned and not built yet. We give no date, and your wishes count for the order.</p>
+      </div>
+      <ol class="rm reveal">
+        <li class="rm-step rm-step--now">
+          <span class="rm-node" aria-hidden="true"></span>
+          <div class="rm-card">
+            <span class="rm-badge rm-badge--now">Today</span>
+            <h3>What already exists</h3>
+            <ul><li><strong>Evidence passage and source check</strong> for every answer and every source.</li><li><strong>Research mode and source comparison</strong> for studies and several sources.</li><li><strong>Your choice of model</strong> own key, local or in the cloud.</li><li><strong>Pilot and advice</strong> for institutions.</li></ul>
+          </div>
+        </li>
+        <li class="rm-step">
+          <span class="rm-node" aria-hidden="true"></span>
+          <div class="rm-card">
+            <span class="rm-badge">Planned next</span>
+            <h3>Practise and teach</h3>
+            <ul><li><strong>Quiz and flashcards</strong> from your own highlights and summaries.</li><li><strong>Teaching unit “Is that true?”</strong> about ten minutes, openly licensed.</li></ul>
+          </div>
+        </li>
+        <li class="rm-step">
+          <span class="rm-node" aria-hidden="true"></span>
+          <div class="rm-card">
+            <span class="rm-badge">Planned after that</span>
+            <h3>For whole institutions</h3>
+            <ul><li><strong>Administration</strong> Seats and defaults managed centrally. Until then we hand out pilot seats by hand.</li></ul>
+          </div>
+        </li>
+      </ol>
+      <div class="hero-cta reveal" style="justify-content:center;margin-top:24px;">
+        <a href="mailto:info@byphil.eu?subject=Wish%20for%20the%20education%20roadmap&body=Hello%2C%0A%0Afor%20use%20in%20education%20it%20would%20help%20us%20if%3A%0A%0AInstitution%3A%0A%0ABest%20regards" class="btn-secondary" data-track="bildung-roadmap">Share a wish</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Pilot ───────────────────────────────────────────────────── -->
+  <section>
+    <div class="wrap wrap-narrow">
+      <div class="section-head center reveal">
+        <div class="eyebrow">Pilot</div>
+        <h2>Try it free for six weeks</h2>
+        <p>The pilot is free. We hand out seats by hand for now. Write us briefly who you are and what you want to use the tool for. The e-mail opens with a template for you to fill in.</p>
+      </div>
+      <div class="hero-cta reveal" style="justify-content:center;">
+        <a href="mailto:info@byphil.eu?subject=Pilot%20AI%20Summary%20Helper&body=Hello%2C%0A%0Awe%20would%20like%20to%20try%20the%20AI%20Summary%20Helper%20pilot.%0A%0ARole%20%28e.g.%20teacher%2C%20school%20leadership%2C%20IT%2C%20teaching%20support%2C%20librarian%29%3A%0AInstitution%3A%0ACountry%20/%20region%3A%0AWho%20decides%20on%20software%20where%20you%20work%3A%0AWhat%20you%20want%20to%20use%20the%20tool%20for%3A%0A%0ABest%20regards" class="btn-primary" data-track="bildung-pilot-2">Request a pilot</a>
+      </div>
+      <p class="hero-meta reveal" style="text-align:center;">Your details go only by e-mail to info@byphil.eu.</p>
+    </div>
+  </section>
+
+  <!-- ── Fragen ──────────────────────────────────────────────────── -->
+  <section>
+    <div class="wrap wrap-narrow">
+      <div class="section-head center reveal">
+        <div class="eyebrow">Questions</div>
+        <h2>Data protection and use</h2>
+      </div>
+      <div class="faq reveal">
+        <details>
+          <summary>Do learners need an account?</summary>
+          <p>No. The extension works without an account. You only need an account if you want to use byphil Cloud.</p>
+        </details>
+        <details>
+          <summary>What leaves the browser?</summary>
+          <p>Only the text someone has summarized, and only to the AI provider the institution chose. With a local model everything stays on the device. The library is in the browser.</p>
+        </details>
+        <details>
+          <summary>Does it work with no cloud at all?</summary>
+          <p>Yes, with a local model through Ollama. The computer needs enough power for the chosen model.</p>
+        </details>
+        <details>
+          <summary>Does it meet the requirements of my school or university?</summary>
+          <p>Your data protection officers have to assess that. That is why we state openly where data flows (see above), and the source code is public. We do not claim any approval by an authority.</p>
+        </details>
+        <details>
+          <summary>What does it cost?</summary>
+          <p>The extension is free, and so is the pilot. With your own key or a local model there are no costs with us. Costs at the AI provider follow its prices.</p>
+        </details>
+        <details>
+          <summary>Is it open source?</summary>
+          <p>Yes. The source code is public on GitHub.</p>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Mehr ────────────────────────────────────────────────────── -->
+  <section>
+    <div class="wrap wrap-narrow">
+      <p class="tier-once reveal">More: <a href="{{base}}index.html">all features of {{product}}</a> · <a href="{{base}}blog/verify-ai-summary.html">How to check an AI summary against its source</a></p>
+    </div>
+  </section>
+
+</main>
+
+<!--include:vfeed-labels-->
+<!--include:vfeed-labels-->
+<!--include:footer-home-->
+</body>
+</html>
