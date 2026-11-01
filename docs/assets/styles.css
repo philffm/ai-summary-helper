@@ -1425,3 +1425,18 @@ button.tier-cta[hidden]{ display:none; }
 .section-photo{ margin:26px auto 0; max-width:520px; }
 .section-photo img, .post-figure--photo img{ display:block; width:100%; height:auto; border-radius:14px; border:1px solid var(--border-subtle); background:var(--surface-2); }
 .section-photo figcaption{ margin-top:10px; font-size:13.5px; line-height:1.5; color:var(--paper-dim); text-align:center; }
+
+/* Hero stage: a mood photo behind the hero text on the landing pages. The picture has no readable screen content, so it may be large;
+   the gradient keeps the text readable in both themes (text colours are fixed to light here). */
+.hero--photo{ position:relative; isolation:isolate; overflow:hidden; padding:128px 0 96px; }
+.hero--photo .hero-bg{ position:absolute; inset:0; z-index:-2; width:100%; height:100%; object-fit:cover; object-position:var(--bgpos, 50% 50%); }
+.hero--photo::after{ content:""; position:absolute; inset:0; z-index:-1; background:linear-gradient(180deg, rgba(8,9,12,.80) 0%, rgba(8,9,12,.68) 45%, rgba(8,9,12,.88) 100%); }
+.hero--photo h1{ color:#F5F5F7; }
+.hero--photo p.sub, .hero--photo .hero-meta, .hero--photo .send-note{ color:rgba(245,245,247,.86); }
+.hero--photo .hero-proof, .hero--photo .hero-proof a, .hero--photo .send-note a{ color:#F5F5F7; }
+.hero--photo .btn-secondary{ background:rgba(255,255,255,.12); color:#F5F5F7; border-color:rgba(255,255,255,.38); }
+.hero-credit{ position:absolute; right:14px; bottom:10px; margin:0; font-size:11.5px; color:rgba(245,245,247,.62); }
+.hero--photo h1 em{ background:linear-gradient(90deg, #A9CBFF, #F2D9A6); -webkit-background-clip:text; background-clip:text; -webkit-text-fill-color:transparent; color:transparent; }
+.hero--photo h1, .hero--photo p.sub{ text-shadow:0 1px 14px rgba(0,0,0,.45); }
+.hero--photo .eyebrow{ color:#F2D9A6; }
+.hero--photo .hero-meta{ color:rgba(245,245,247,.82); }
