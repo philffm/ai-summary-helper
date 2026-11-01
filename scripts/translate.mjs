@@ -260,6 +260,19 @@ function rewriteAssetPaths($, locale) {
             }
         }
     });
+    // srcset (responsive images), inline style url(...) and <meta content> image paths are relative too
+    const shift = (v) => (/^(https?:)?\/\//.test(v) || v.startsWith('/') || v.startsWith('data:') || !(v.includes('assets/') || v.startsWith('demo/'))) ? v : extraUps + v;
+    $('[srcset], [imagesrcset]').each((_, el) => {
+        for (const attr of ['srcset', 'imagesrcset']) {
+            const val = $(el).attr(attr);
+            if (!val) continue;
+            $(el).attr(attr, val.split(',').map(x => { const [u, ...r] = x.trim().split(/\s+/); return [shift(u), ...r].join(' '); }).join(', '));
+        }
+    });
+    $('[style*="url("]').each((_, el) => {
+        const v = $(el).attr('style');
+        $(el).attr('style', v.replace(/url\((['"]?)([^)'"]+)\1\)/g, (m, q, u) => `url(${q}${shift(u)}${q})`));
+    });
 }
 
 /** SEO: point search engines at the sibling-locale versions of this page. */
