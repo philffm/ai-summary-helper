@@ -1,15 +1,15 @@
 package eu.byphil.aishcompanion
 
 import androidx.compose.ui.input.nestedscroll.nestedScroll
-import androidx.compose.material.icons.filled.Person
-import androidx.compose.material.icons.filled.Link
-import androidx.compose.material.icons.filled.Sync
-import androidx.compose.material.icons.filled.AutoAwesome
-import androidx.compose.material.icons.filled.RssFeed
-import androidx.compose.material.icons.filled.Accessibility
-import androidx.compose.material.icons.filled.Storage
-import androidx.compose.material.icons.filled.SettingsBackupRestore
-import androidx.compose.material.icons.filled.Alarm
+import androidx.compose.material.icons.outlined.Person
+import androidx.compose.material.icons.outlined.Link
+import androidx.compose.material.icons.outlined.Sync
+import androidx.compose.material.icons.outlined.AutoAwesome
+import androidx.compose.material.icons.outlined.RssFeed
+import androidx.compose.material.icons.outlined.Accessibility
+import androidx.compose.material.icons.outlined.Storage
+import androidx.compose.material.icons.outlined.SettingsBackupRestore
+import androidx.compose.material.icons.outlined.Alarm
 import androidx.compose.foundation.Image
 import androidx.activity.compose.BackHandler
 import androidx.compose.foundation.background
@@ -99,15 +99,15 @@ fun SettingsScreen(model: AppModel, onScan: ((String?) -> Unit) -> Unit, startPa
     val cur = if (wide) (panel ?: "account") else panel
 
     val rows = listOf(
-        SettingsRow("account", "ACCOUNT", Icons.Filled.Person, "Account & Plan", if (model.accountEmail.isNotBlank()) model.accountEmail else "Sign in with an email code", "login log in sign in email code otp plan license pro account"),
-        SettingsRow("link", "ACCOUNT", Icons.Filled.Link, "Browser link", if (p == null) "Not paired" else listOf("Paired", if (p.canSync) "feed sync" else "", if (p.canReceive) "send to phone" else "").filter { it.isNotEmpty() }.joinToString(" · "), "pair pairing qr scan sync send to phone unpair extension browser"),
-        SettingsRow("sync", "ACCOUNT", Icons.Filled.Sync, "Library sync", if (model.library.isConnected()) "Joined · " + model.library.config()?.label().orEmpty() else "Join the library of your browser", "library sync nextcloud webdav s3 notes encrypted passphrase browser articles"),
-        SettingsRow("ai", "SUMMARIZING", Icons.Filled.AutoAwesome, "On-device AI", "Model · summary language · highlights · read aloud", "model gemma download language ghost highlight key passages read aloud tts speak summary"),
-        SettingsRow("feeds", "FEEDS", Icons.Filled.RssFeed, "Feed preferences", if (model.groupSimilar) "Grouping similar items" else "Not grouping", "group similar stories stacks refresh"),
-        SettingsRow("access", "APP", Icons.Filled.Accessibility, "Accessibility", if (model.leftHanded) "Left-handed layout" else "Right-handed layout", "left handed right hand thumb reach text size font large accessibility"),
-        SettingsRow("storage", "APP", Icons.Filled.Storage, "Storage", "Archive, models and cache", "storage space disk archive clear delete models cache free"),
-        SettingsRow("backup", "APP", Icons.Filled.SettingsBackupRestore, "Backup & restore", "Export or import your settings", "backup restore export import settings new phone move transfer file"),
-        SettingsRow("alarm", "APP", Icons.Filled.Alarm, "Morning alarm", "Wake up to your briefing", "alarm morning briefing wake clock extra fun fact cloud pro license"),
+        SettingsRow("account", "ACCOUNT", Icons.Outlined.Person, "Account & Plan", if (model.accountEmail.isNotBlank()) model.accountEmail else "Sign in with an email code", "login log in sign in email code otp plan license pro account"),
+        SettingsRow("link", "ACCOUNT", Icons.Outlined.Link, "Browser link", if (p == null) "Not paired" else listOf("Paired", if (p.canSync) "feed sync" else "", if (p.canReceive) "send to phone" else "").filter { it.isNotEmpty() }.joinToString(" · "), "pair pairing qr scan sync send to phone unpair extension browser"),
+        SettingsRow("sync", "ACCOUNT", Icons.Outlined.Sync, "Library sync", if (model.library.isConnected()) "Joined · " + model.library.config()?.label().orEmpty() else "Join the library of your browser", "library sync nextcloud webdav s3 notes encrypted passphrase browser articles"),
+        SettingsRow("ai", "SUMMARIZING", Icons.Outlined.AutoAwesome, "On-device AI", "Model · summary language · highlights · read aloud", "model gemma download language ghost highlight key passages read aloud tts speak summary"),
+        SettingsRow("feeds", "FEEDS", Icons.Outlined.RssFeed, "Feed preferences", if (model.groupSimilar) "Grouping similar items" else "Not grouping", "group similar stories stacks refresh"),
+        SettingsRow("access", "APP", Icons.Outlined.Accessibility, "Accessibility", if (model.leftHanded) "Left-handed layout" else "Right-handed layout", "left handed right hand thumb reach text size font large accessibility"),
+        SettingsRow("storage", "APP", Icons.Outlined.Storage, "Storage", "Archive, models and cache", "storage space disk archive clear delete models cache free"),
+        SettingsRow("backup", "APP", Icons.Outlined.SettingsBackupRestore, "Backup & restore", "Export or import your settings", "backup restore export import settings new phone move transfer file"),
+        SettingsRow("alarm", "APP", Icons.Outlined.Alarm, "Morning alarm", "Wake up to your briefing", "alarm morning briefing wake clock extra fun fact cloud pro license"),
     )
     val title = if (wide) "Settings" else rows.firstOrNull { it.id == cur }?.title ?: "Settings"
 

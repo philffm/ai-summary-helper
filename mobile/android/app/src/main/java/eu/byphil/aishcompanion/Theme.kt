@@ -61,6 +61,9 @@ private val DarkHigh = Dark.copy(
     secondary = Color(0xFF93C5FD), onSecondary = Color(0xFF0B0E14),
 )
 
+/** The extension's chips and filters are fully rounded pills; one shape for every chip of the app. */
+val PillShape = RoundedCornerShape(percent = 50)
+
 /** True when animations should be skipped: the "Reduce motion" setting, or the system turned animations off. */
 val LocalReduceMotion = androidx.compose.runtime.compositionLocalOf { false }
 

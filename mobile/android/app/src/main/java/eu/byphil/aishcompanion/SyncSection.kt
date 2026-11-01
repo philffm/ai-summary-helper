@@ -140,8 +140,8 @@ fun LibrarySyncCard(model: AppModel, onScan: ((String?) -> Unit) -> Unit = {}) {
             Button(onClick = { onScan { readCode(it) } }, Modifier.fillMaxWidth(), enabled = !busy) { Text("Scan code from the browser") }
             Text("In the browser: Settings → Sync & backup → your place → Show code for the phone. Or fill in the details below.", style = MaterialTheme.typography.bodySmall, color = MaterialTheme.colorScheme.onSurfaceVariant)
             Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
-                FilterChip(kind == "webdav", { kind = "webdav" }, { Text("Nextcloud / WebDAV") })
-                FilterChip(kind == "s3", { kind = "s3" }, { Text("S3") })
+                FilterChip(selected = kind == "webdav", onClick = { kind = "webdav" }, label = { Text("Nextcloud / WebDAV") }, shape = PillShape)
+                FilterChip(selected = kind == "s3", onClick = { kind = "s3" }, label = { Text("S3") }, shape = PillShape)
             }
             if (kind == "webdav") {
                 OutlinedTextField(url, { url = it }, Modifier.fillMaxWidth().keepVisible(), label = { Text("WebDAV address") }, placeholder = { Text("https://cloud.example.com/remote.php/dav/files/you/") }, singleLine = true)

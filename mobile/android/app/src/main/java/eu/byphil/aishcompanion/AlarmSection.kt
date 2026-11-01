@@ -93,7 +93,7 @@ fun AlarmCard(model: AppModel) {
                 Text("Days", style = MaterialTheme.typography.bodyLarge)
                 FlowRow(horizontalArrangement = Arrangement.spacedBy(6.dp)) {
                     for (i in 0..6) {
-                        FilterChip(
+                        FilterChip(shape = PillShape, 
                             selected = (a.days and (1 shl i)) != 0,
                             onClick = { update(a.copy(days = a.days xor (1 shl i))) },
                             label = { Text(DayOfWeek.of(i + 1).getDisplayName(TextStyle.SHORT, Locale.getDefault())) },

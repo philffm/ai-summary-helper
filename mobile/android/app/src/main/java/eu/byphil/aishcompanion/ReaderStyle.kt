@@ -68,7 +68,7 @@ private fun ChipGroup(title: String, options: List<Pair<String, String>>, select
     Column(verticalArrangement = Arrangement.spacedBy(6.dp)) {
         Text(title, style = MaterialTheme.typography.labelLarge, color = MaterialTheme.colorScheme.onSurfaceVariant)
         androidx.compose.foundation.layout.FlowRow(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
-            for ((key, label) in options) FilterChip(selected = key == selected, onClick = { onPick(key) }, label = { Text(label) })
+            for ((key, label) in options) FilterChip(shape = PillShape, selected = key == selected, onClick = { onPick(key) }, label = { Text(label) })
         }
     }
 }

@@ -1,6 +1,20 @@
 package eu.byphil.aishcompanion
 
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.ui.graphics.luminance
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.draw.clip
+import androidx.compose.runtime.CompositionLocalProvider
+import androidx.compose.material3.LocalContentColor
+import androidx.compose.material3.ButtonDefaults
+import androidx.compose.material3.AssistChipDefaults
+import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.fillMaxHeight
+import androidx.compose.foundation.layout.IntrinsicSize
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
@@ -11,7 +25,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Sync
+import androidx.compose.material.icons.outlined.Sync
 import androidx.compose.material3.AssistChip
 import androidx.compose.material3.Button
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -72,7 +86,7 @@ fun NotesScreen(model: AppModel) {
 
     Column(Modifier.fillMaxSize().imePadding()) {
         TopAppBar(title = { Text("Notes") }, actions = {
-            if (connected) IconButton(onClick = { syncNow() }, enabled = !syncing) { Icon(Icons.Filled.Sync, contentDescription = "Sync now") }
+            if (connected) IconButton(onClick = { syncNow() }, enabled = !syncing) { Icon(Icons.Outlined.Sync, contentDescription = "Sync now") }
         })
         val sub = when {
             syncing -> "Syncing…"
@@ -101,26 +115,43 @@ fun NotesScreen(model: AppModel) {
     }
 }
 
+/** The colours of a note's sticky, the same as in the extension (plugin/src/styles.css, --st-note-*). Text on the card is 8:1 or better, the delete link 5.5:1. */
+private class Sticky(val bg: Color, val fg: Color, val bar: Color, val danger: Color)
+
+@Composable
+private fun stickyColors(): Sticky {
+    val dark = MaterialTheme.colorScheme.background.luminance() < 0.5f
+    return if (dark) Sticky(Color(0xFF35182D), Color(0xFFF7D6E8), Color(0xFFF472B6), Color(0xFFFCA5A5))
+    else Sticky(Color(0xFFFCE7F3), Color(0xFF831843), Color(0xFFDB2777), Color(0xFFB91C1C))
+}
+
 @Composable
 private fun NoteCard(
     n: Note, editing: Boolean, editText: String, confirmDelete: Boolean, onEditText: (String) -> Unit,
     onEdit: () -> Unit, onSave: () -> Unit, onCancel: () -> Unit, onDelete: () -> Unit, onKeep: () -> Unit,
 ) {
-    AishCard(Modifier.fillMaxWidth()) {
-        Column(Modifier.padding(14.dp), verticalArrangement = Arrangement.spacedBy(8.dp)) {
-            if (editing) {
-                OutlinedTextField(editText, onEditText, Modifier.fillMaxWidth(), maxLines = 8)
-                Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) { Button(onClick = onSave, enabled = editText.isNotBlank()) { Text("Save") }; OutlinedButton(onClick = onCancel) { Text("Cancel") } }
-            } else {
-                Text(n.text, style = MaterialTheme.typography.bodyLarge)
-                if (n.quote.isNotBlank()) Text("“${n.quote}”", style = MaterialTheme.typography.bodyMedium.copy(fontStyle = androidx.compose.ui.text.font.FontStyle.Italic), color = MaterialTheme.colorScheme.onSurfaceVariant)
-                if (n.title.isNotBlank()) Text(n.title, style = MaterialTheme.typography.bodySmall, color = MaterialTheme.colorScheme.onSurfaceVariant)
-                if (n.tags.isNotEmpty()) Row(horizontalArrangement = Arrangement.spacedBy(6.dp)) { for (t in n.tags) AssistChip(onClick = {}, label = { Text("#$t") }) }
-                Row(Modifier.fillMaxWidth(), verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.SpaceBetween) {
-                    Text(whenOf(n.created), style = MaterialTheme.typography.labelMedium, color = MaterialTheme.colorScheme.onSurfaceVariant)
-                    Row {
-                        if (confirmDelete) { TextButton(onClick = onDelete) { Text("Delete for good", color = MaterialTheme.colorScheme.error) }; TextButton(onClick = onKeep) { Text("Keep") } }
-                        else { TextButton(onClick = onEdit) { Text("Edit") }; TextButton(onClick = onDelete) { Text("Delete") } }
+    val c = stickyColors()
+    val text = ButtonDefaults.textButtonColors(contentColor = c.fg)
+    Row(Modifier.fillMaxWidth().height(IntrinsicSize.Min).clip(RoundedCornerShape(12.dp)).background(c.bg)) {
+        Box(Modifier.width(4.dp).fillMaxHeight().background(c.bar))
+        CompositionLocalProvider(LocalContentColor provides c.fg) {
+            Column(Modifier.weight(1f).padding(14.dp), verticalArrangement = Arrangement.spacedBy(8.dp)) {
+                if (editing) {
+                    OutlinedTextField(editText, onEditText, Modifier.fillMaxWidth(), maxLines = 8)
+                    Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) { Button(onClick = onSave, enabled = editText.isNotBlank()) { Text("Save") }; OutlinedButton(onClick = onCancel) { Text("Cancel") } }
+                } else {
+                    Text(n.text, style = MaterialTheme.typography.bodyLarge)
+                    if (n.quote.isNotBlank()) Text("“${n.quote}”", style = MaterialTheme.typography.bodyMedium.copy(fontStyle = androidx.compose.ui.text.font.FontStyle.Italic), color = c.fg.copy(alpha = 0.85f))
+                    if (n.title.isNotBlank()) Text(n.title, style = MaterialTheme.typography.bodySmall, color = c.fg.copy(alpha = 0.85f))
+                    if (n.tags.isNotEmpty()) Row(horizontalArrangement = Arrangement.spacedBy(6.dp)) {
+                        for (t in n.tags) AssistChip(shape = PillShape, onClick = {}, label = { Text("#$t") }, colors = AssistChipDefaults.assistChipColors(labelColor = c.fg), border = AssistChipDefaults.assistChipBorder(true, borderColor = c.bar))
+                    }
+                    Row(Modifier.fillMaxWidth(), verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.SpaceBetween) {
+                        Text(whenOf(n.created), style = MaterialTheme.typography.labelMedium, color = c.fg.copy(alpha = 0.85f))
+                        Row {
+                            if (confirmDelete) { TextButton(onClick = onDelete) { Text("Delete for good", color = c.danger) }; TextButton(onClick = onKeep, colors = text) { Text("Keep") } }
+                            else { TextButton(onClick = onEdit, colors = text) { Text("Edit") }; TextButton(onClick = onDelete, colors = text) { Text("Delete") } }
+                        }
                     }
                 }
             }

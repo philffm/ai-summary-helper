@@ -177,9 +177,9 @@ fun ReadingScreen(model: AppModel, selected: String, onSelect: (String) -> Unit,
                                 leadingIcon = { Icon(Icons.Filled.Search, null) },
                             )
                             Row(Modifier.fillMaxWidth().padding(horizontal = 16.dp, vertical = 8.dp), horizontalArrangement = Arrangement.spacedBy(8.dp)) {
-                                FilterChip(selected = view == ReadingView.UNREAD, onClick = { view = ReadingView.UNREAD }, label = { Text("Unread") })
-                                FilterChip(selected = view == ReadingView.ALL, onClick = { view = ReadingView.ALL }, label = { Text("All") })
-                                FilterChip(selected = view == ReadingView.ARCHIVED, onClick = { view = ReadingView.ARCHIVED }, label = { Text("Archive") })
+                                FilterChip(shape = PillShape, selected = view == ReadingView.UNREAD, onClick = { view = ReadingView.UNREAD }, label = { Text("Unread") })
+                                FilterChip(shape = PillShape, selected = view == ReadingView.ALL, onClick = { view = ReadingView.ALL }, label = { Text("All") })
+                                FilterChip(shape = PillShape, selected = view == ReadingView.ARCHIVED, onClick = { view = ReadingView.ARCHIVED }, label = { Text("Archive") })
                             }
                             if (query.isNotBlank() && shown.isNotEmpty()) Text(
                                 "${shown.size} ${if (shown.size == 1) "result" else "results"}",
@@ -317,7 +317,7 @@ private fun ArticleReader(model: AppModel, id: String, onDelete: (String) -> Uni
             item {
                 androidx.compose.foundation.layout.FlowRow(horizontalArrangement = Arrangement.spacedBy(8.dp), verticalArrangement = Arrangement.spacedBy(4.dp)) {
                     val playing = voice.state != ReadAloud.State.IDLE
-                    AssistChip(
+                    AssistChip(shape = PillShape, 
                         modifier = Modifier.semantics {
                             stateDescription = when (voice.state) {
                                 ReadAloud.State.PLAYING -> "Playing, sentence ${voice.index + 1} of ${voice.total}"
@@ -332,17 +332,17 @@ private fun ArticleReader(model: AppModel, id: String, onDelete: (String) -> Uni
                         leadingIcon = { Icon(if (voice.state == ReadAloud.State.PLAYING) Icons.Filled.Pause else if (voice.state == ReadAloud.State.PAUSED) Icons.Filled.PlayArrow else Icons.Filled.VolumeUp, null) },
                     )
                     if (playing) {
-                        AssistChip(onClick = { voice.cycleRate() }, label = { Text(if (voice.rate == 1f) "1×" else "${voice.rate}×") }, leadingIcon = { Icon(Icons.Filled.Speed, null) })
-                        AssistChip(onClick = { voice.stop() }, label = { Text("Stop · ${voice.index + 1}/${voice.total}") }, leadingIcon = { Icon(Icons.Filled.Close, null) })
+                        AssistChip(shape = PillShape, onClick = { voice.cycleRate() }, label = { Text(if (voice.rate == 1f) "1×" else "${voice.rate}×") }, leadingIcon = { Icon(Icons.Filled.Speed, null) })
+                        AssistChip(shape = PillShape, onClick = { voice.stop() }, label = { Text("Stop · ${voice.index + 1}/${voice.total}") }, leadingIcon = { Icon(Icons.Filled.Close, null) })
                     }
-                    if (LocalLlm.installed(context)) AssistChip(
+                    if (LocalLlm.installed(context)) AssistChip(shape = PillShape, 
                         onClick = { summarize() },
                         label = { Text(if (summarizing) summaryNote else if (article.summary.isBlank()) "Summarize" else "Summarize again", modifier = Modifier.semantics { liveRegion = LiveRegionMode.Polite }) },
                         leadingIcon = { Icon(Icons.Filled.AutoAwesome, null) },
                     )
                     // Everything else lives behind ⋯ so the top of the article stays calm.
                     Box {
-                        AssistChip(onClick = { moreMenu = true }, label = { Text("More") }, leadingIcon = { Icon(Icons.Filled.MoreVert, null) })
+                        AssistChip(shape = PillShape, onClick = { moreMenu = true }, label = { Text("More") }, leadingIcon = { Icon(Icons.Filled.MoreVert, null) })
                         DropdownMenu(expanded = moreMenu, onDismissRequest = { moreMenu = false; remindMenu = false }) {
                             if (remindMenu) {
                                 for (o in ReminderTimes.options(java.time.ZonedDateTime.now())) DropdownMenuItem(

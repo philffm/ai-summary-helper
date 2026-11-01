@@ -217,14 +217,14 @@ fun FeedsScreen(
                             if (model.rating) androidx.compose.material3.LinearProgressIndicator(Modifier.fillMaxWidth().padding(horizontal = 16.dp))
                             if (!searching && model.feeds.isNotEmpty() && !showOnboarding) {
                             Row(Modifier.fillMaxWidth().horizontalScroll(rememberScrollState()).padding(horizontal = 16.dp, vertical = 4.dp), horizontalArrangement = Arrangement.spacedBy(8.dp)) {
-                                FilterChip(selected = unreadOnly, onClick = { unreadOnly = !unreadOnly }, label = { Text("Unread") })
-                                FilterChip(selected = favOnly, onClick = { favOnly = !favOnly }, label = { Text("Favorites") }, leadingIcon = { Icon(if (favOnly) Icons.Filled.Star else Icons.Filled.StarBorder, null, Modifier.size(18.dp)) })
+                                FilterChip(shape = PillShape, selected = unreadOnly, onClick = { unreadOnly = !unreadOnly }, label = { Text("Unread") })
+                                FilterChip(shape = PillShape, selected = favOnly, onClick = { favOnly = !favOnly }, label = { Text("Favorites") }, leadingIcon = { Icon(if (favOnly) Icons.Filled.Star else Icons.Filled.StarBorder, null, Modifier.size(18.dp)) })
                                 if (anyRated) {
-                                    FilterChip(selected = moodFilter == "pos", onClick = { moodFilter = if (moodFilter == "pos") "any" else "pos" }, label = { Text("😊 Positive only") })
-                                    FilterChip(selected = moodFilter == "nonneg", onClick = { moodFilter = if (moodFilter == "nonneg") "any" else "nonneg" }, label = { Text("Hide 😢") })
+                                    FilterChip(shape = PillShape, selected = moodFilter == "pos", onClick = { moodFilter = if (moodFilter == "pos") "any" else "pos" }, label = { Text("😊 Positive only") })
+                                    FilterChip(shape = PillShape, selected = moodFilter == "nonneg", onClick = { moodFilter = if (moodFilter == "nonneg") "any" else "nonneg" }, label = { Text("Hide 😢") })
                                 }
-                                if (source != "all") FilterChip(selected = false, onClick = { onSource("all") }, label = { Text("All feeds") })
-                                if (visible.any { !it.stored.read }) FilterChip(selected = false, onClick = { scope.launch { model.markAllRead(visible.map { it.feed.url }.distinct()) } }, label = { Text("Mark all read") }, leadingIcon = { Icon(Icons.Filled.DoneAll, null, Modifier.size(18.dp)) })
+                                if (source != "all") FilterChip(shape = PillShape, selected = false, onClick = { onSource("all") }, label = { Text("All feeds") })
+                                if (visible.any { !it.stored.read }) FilterChip(shape = PillShape, selected = false, onClick = { scope.launch { model.markAllRead(visible.map { it.feed.url }.distinct()) } }, label = { Text("Mark all read") }, leadingIcon = { Icon(Icons.Filled.DoneAll, null, Modifier.size(18.dp)) })
                             }
                             }
                             Column(Modifier.weight(1f)) {
@@ -371,14 +371,14 @@ private fun FeedItemDetail(model: AppModel, e: FeedEntryRef, onOpenWeb: (String)
             Text(listOf(e.feed.name, item.author, relativeTime(item.published)).filter { it.isNotBlank() }.joinToString(" · "), style = MaterialTheme.typography.labelLarge, color = MaterialTheme.colorScheme.onSurfaceVariant)
             if (item.body.isNotBlank()) androidx.compose.foundation.layout.FlowRow(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
                 val playing = voice.state != ReadAloud.State.IDLE
-                androidx.compose.material3.AssistChip(
+                androidx.compose.material3.AssistChip(shape = PillShape, 
                     onClick = { if (playing) voice.toggle() else voice.start(ReadAloudUnits.text(item.title, item.body)) },
                     label = { Text(when (voice.state) { ReadAloud.State.PLAYING -> "Pause"; ReadAloud.State.PAUSED -> "Resume"; else -> "Listen" }) },
                     leadingIcon = { androidx.compose.material3.Icon(if (voice.state == ReadAloud.State.PLAYING) Icons.Filled.Pause else if (voice.state == ReadAloud.State.PAUSED) Icons.Filled.PlayArrow else Icons.Filled.VolumeUp, null) },
                 )
                 if (playing) {
-                    androidx.compose.material3.AssistChip(onClick = { voice.cycleRate() }, label = { Text(if (voice.rate == 1f) "1×" else "${voice.rate}×") }, leadingIcon = { androidx.compose.material3.Icon(Icons.Filled.Speed, null) })
-                    androidx.compose.material3.AssistChip(onClick = { voice.stop() }, label = { Text("Stop · ${voice.index + 1}/${voice.total}") }, leadingIcon = { androidx.compose.material3.Icon(Icons.Filled.Close, null) })
+                    androidx.compose.material3.AssistChip(shape = PillShape, onClick = { voice.cycleRate() }, label = { Text(if (voice.rate == 1f) "1×" else "${voice.rate}×") }, leadingIcon = { androidx.compose.material3.Icon(Icons.Filled.Speed, null) })
+                    androidx.compose.material3.AssistChip(shape = PillShape, onClick = { voice.stop() }, label = { Text("Stop · ${voice.index + 1}/${voice.total}") }, leadingIcon = { androidx.compose.material3.Icon(Icons.Filled.Close, null) })
                 }
             }
             HorizontalDivider(color = MaterialTheme.colorScheme.outlineVariant)

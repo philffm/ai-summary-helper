@@ -16,10 +16,10 @@ import androidx.compose.foundation.layout.only
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.safeDrawing
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.automirrored.filled.MenuBook
-import androidx.compose.material.icons.automirrored.filled.Notes
-import androidx.compose.material.icons.filled.RssFeed
-import androidx.compose.material.icons.filled.Settings
+import androidx.compose.material.icons.automirrored.outlined.MenuBook
+import androidx.compose.material.icons.automirrored.outlined.Notes
+import androidx.compose.material.icons.outlined.RssFeed
+import androidx.compose.material.icons.outlined.Settings
 import androidx.compose.material3.Badge
 import androidx.compose.material3.BadgedBox
 import androidx.compose.material3.Icon
@@ -138,10 +138,10 @@ class MainActivity : ComponentActivity() {
 }
 
 private enum class Tab(val label: String, val icon: ImageVector) {
-    Feeds("Feeds", Icons.Filled.RssFeed),
-    Reading("Reading", Icons.AutoMirrored.Filled.MenuBook),
-    Notes("Notes", Icons.AutoMirrored.Filled.Notes),
-    Settings("Settings", Icons.Filled.Settings),
+    Feeds("Feeds", Icons.Outlined.RssFeed),
+    Reading("Reading", Icons.AutoMirrored.Outlined.MenuBook),
+    Notes("Notes", Icons.AutoMirrored.Outlined.Notes),
+    Settings("Settings", Icons.Outlined.Settings),
 }
 
 @Composable
