@@ -1402,3 +1402,11 @@ button.tier-cta[hidden]{ display:none; }
 .slider-btn:disabled{ opacity:.35; cursor:default; }
 .slider-prev{ left:-14px; } .slider-next{ right:-14px; }
 @media (pointer:coarse){ .slider-btn{ display:none; } }
+
+/* Blog teaser: three cards, then every other post as a plain text link (crawlable, no extra visual weight) */
+.blog-more{ list-style:none; margin:26px 0 0; padding:0; display:grid; grid-template-columns:repeat(2, 1fr); gap:8px 32px; }
+.blog-more a{ color:var(--paper-dim); text-decoration:underline; text-decoration-color:var(--border-strong); text-underline-offset:3px; font-size:15px; line-height:1.5; }
+.blog-more a:hover{ color:var(--paper); text-decoration-color:currentColor; }
+.blog-more-links{ margin:18px 0 0; font-size:14.5px; color:var(--paper-dim); }
+.blog-more-links a{ color:var(--paper); text-decoration:underline; text-decoration-color:var(--border-strong); text-underline-offset:3px; }
+@media (max-width:640px){ .blog-more{ grid-template-columns:1fr; } }
