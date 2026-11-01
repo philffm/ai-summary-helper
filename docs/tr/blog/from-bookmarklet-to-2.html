@@ -35,10 +35,11 @@
     </a>
     <nav class="pill" aria-label="Birincil">
       <a href="../index.html#features" data-sec="features">Özellikler</a>
-      <a href="../index.html#try-it" data-sec="try-it">Demo</a>
+      <a href="../index.html#see-it" data-sec="see-it">Demo</a>
       <a href="https://chromewebstore.google.com/detail/ai-summary-helper-openai/hldbejcjaedipeegjcinmhejdndchkmb" class="pill-cta" target="_blank" rel="noopener">Chrome'a ekle</a>
     </nav>
     <div class="nav-tools">
+      <button type="button" class="tool-btn" id="sendBtn" data-send="" hidden="" aria-label="Bu sayfayı bilgisayarıma gönder" title="Bilgisayarıma gönder"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="3" y="4.5" width="18" height="12" rx="2" stroke="currentColor" stroke-width="1.6"></rect><path d="M8 20h8M12 16.5V20M12 13V8m0 0-2.2 2.2M12 8l2.2 2.2" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"></path></svg></button>
       <button type="button" class="tool-btn" id="langBtn" aria-label="Dil" aria-controls="mobileMenu"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.6"></circle><path d="M3 12h18M12 3c2.6 2.7 3.9 5.7 3.9 9s-1.3 6.3-3.9 9c-2.6-2.7-3.9-5.7-3.9-9S9.4 5.7 12 3Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"></path></svg></button>
       <button type="button" class="theme-toggle" id="themeToggle" aria-label="Açık temaya geç">
         <svg class="icon-moon" viewBox="0 0 24 24" fill="none"><path d="M20 14.5A8.5 8.5 0 1 1 9.5 4a6.8 6.8 0 0 0 10.5 10.5Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"></path></svg>
@@ -53,7 +54,7 @@
     <div class="wrap mm-inner">
       <nav class="mm-links" aria-label="Mobil">
         <a href="../index.html#features"><span class="mm-n">01</span>Özellikler</a>
-        <a href="../index.html#try-it"><span class="mm-n">02</span>Demo</a>
+        <a href="../index.html#see-it"><span class="mm-n">02</span>Demo</a>
         <a href="../blog/" aria-current="page"><span class="mm-n">03</span>Blog</a>
           <a href="../blog/pocket-alternative.html" class="mm-sub">Pocket alternatifi: Gerçekten önemli olanlar</a>
           <a href="../blog/bring-your-own-key.html" class="mm-sub">Sizin anahtarınız. Sizin modeliniz. Sizin verileriniz.</a>
@@ -83,7 +84,8 @@
           <a href="../blog/" class="mm-all">Tüm yazılar →</a>
         </div>
       <div class="mm-bottom">
-        <a href="https://chromewebstore.google.com/detail/ai-summary-helper-openai/hldbejcjaedipeegjcinmhejdndchkmb" class="pill-cta mm-cta" target="_blank" rel="noopener">Chrome'a ekle</a>
+        <a href="https://chromewebstore.google.com/detail/ai-summary-helper-openai/hldbejcjaedipeegjcinmhejdndchkmb" class="pill-cta mm-cta" data-desktop-cta="" target="_blank" rel="noopener">Chrome'a ekle</a>
+        <button type="button" class="pill-cta mm-cta" data-send="" hidden="">Bilgisayarıma gönder</button>
         <div class="mm-row">
           <a href="https://addons.mozilla.org/en-US/firefox/addon/ai-summary-helper/" target="_blank" rel="noopener">Firefox</a>
           <a href="../index.html#phone">Android · Beta</a>
@@ -142,7 +144,7 @@
         <p>Reabble aracı üzerinden Send-to-Kindle desteği, bu projenin var olma sebebiydi. Bu özellik hâlâ yerel olarak destekleniyor; ancak tarayıcıdan uzakta okumak artık iPhone veya iPad'e AirDrop ile göndermeyi (doğrudan Apple Books'ta açılır) veya kendi Wi-Fi ağınız üzerinden KOReader gibi uygulamalara LocalSend ile iletmeyi de kapsıyor. Temel amaç — tarayıcıdan uzaklaştırıp okuma için tasarlanmış bir cihaza aktarmak — artık çok daha fazla yola sahip.</p>
 
         <h2>Değişmeyenler</h2>
-        <p>Hâlâ ücretsiz, hâlâ açık kaynaklı (MIT lisanslı, tüm kaynak kodlar GitHub'da) ve temel özelliklerin hiçbiri için hesap oluşturmayı gerektirmiyor. Bu ilkeden asla taviz verilmedi — v1'in ilk etapta bir bookmarklet olarak doğmasının sebebi de buydu: Okuma aracını kiralamak yerine ona gerçekten sahip olmak isteyen biri tarafından geliştirildi.</p>
+        <p>Hâlâ ücretsiz, hâlâ open source (AGPL-3.0, tüm kodlar GitHub'da; farklı koşullara ihtiyaç duyan şirketler ticari lisans edinebilir) ve temel özelliklerin hiçbiri için hâlâ bir hesap oluşturmanız gerekmiyor. Bu konu hiçbir zaman tartışmaya açık olmadı — v1'in en başta bir bookmarklet olarak var olmasının nedeni de tam olarak buydu: Okuma aracını kiralamak yerine ona gerçekten sahip olmak isteyen biri tarafından geliştirildi.</p>
 
         <h2>SSS</h2>
         <p><strong>Bu proje, orijinal bookmarklet ile aynı proje mi?</strong><br>

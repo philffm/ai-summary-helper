@@ -112509,6 +112509,2646 @@
           "model": "google/gemini-3.7-flash"
         }
       }
+    },
+    "cdad6f288e23beb03026ec1bbafb8e83b82d1419b49c377d0e64741f86dabedc": {
+      "en": "Send to my computer",
+      "translations": {
+        "de": {
+          "text": "An meinen Computer senden",
+          "translatedAt": "2026-11-01T07:39:26.465Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fr": {
+          "text": "Envoyer sur mon ordinateur",
+          "translatedAt": "2026-11-01T07:39:30.314Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "es": {
+          "text": "Enviar a mi computadora",
+          "translatedAt": "2026-11-01T07:39:34.772Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh": {
+          "text": "发送至我的电脑",
+          "translatedAt": "2026-11-01T07:39:37.749Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh-TW": {
+          "text": "傳送到我的電腦",
+          "translatedAt": "2026-11-01T07:39:44.196Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ja": {
+          "text": "パソコンに送信",
+          "translatedAt": "2026-11-01T07:39:50.118Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ko": {
+          "text": "내 컴퓨터로 보내기",
+          "translatedAt": "2026-11-01T07:39:54.254Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pt": {
+          "text": "Enviar para o meu computador",
+          "translatedAt": "2026-11-01T07:40:02.016Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "hi": {
+          "text": "मेरे computer पर भेजें",
+          "translatedAt": "2026-11-01T07:40:05.707Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "vi": {
+          "text": "Gửi đến máy tính của tôi",
+          "translatedAt": "2026-11-01T07:40:10.613Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "nl": {
+          "text": "Stuur naar mijn computer",
+          "translatedAt": "2026-11-01T07:40:18.032Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "it": {
+          "text": "Invia al mio computer",
+          "translatedAt": "2026-11-01T07:40:22.443Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ru": {
+          "text": "Отправить на компьютер",
+          "translatedAt": "2026-11-01T07:40:26.494Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "uk": {
+          "text": "Надіслати на мій комп’ютер",
+          "translatedAt": "2026-11-01T07:40:30.949Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "tr": {
+          "text": "Bilgisayarıma gönder",
+          "translatedAt": "2026-11-01T07:40:36.660Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "id": {
+          "text": "Kirim ke komputer saya",
+          "translatedAt": "2026-11-01T07:40:39.846Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pl": {
+          "text": "Wyślij na komputer",
+          "translatedAt": "2026-11-01T07:40:46.072Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "th": {
+          "text": "ส่งไปยังคอมพิวเตอร์",
+          "translatedAt": "2026-11-01T07:40:51.761Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ar": {
+          "text": "إرسال إلى حاسوبي",
+          "translatedAt": "2026-11-01T07:40:55.556Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "sv": {
+          "text": "Skicka till min dator",
+          "translatedAt": "2026-11-01T07:41:01.246Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "da": {
+          "text": "Send til min computer",
+          "translatedAt": "2026-11-01T07:41:06.786Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "no": {
+          "text": "Send til datamaskinen min",
+          "translatedAt": "2026-11-01T07:41:11.736Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fi": {
+          "text": "Lähetä tietokoneelle",
+          "translatedAt": "2026-11-01T07:41:17.477Z",
+          "model": "google/gemini-3.7-flash"
+        }
+      }
+    },
+    "9873ffa789b0d2fa64794aa3270390381ef11e7b6f9206701e5a95573c7535ce": {
+      "en": "Chrome on a phone can't install extensions. Send the link to your computer and add it there.",
+      "translations": {
+        "de": {
+          "text": "Chrome unterstützt auf Smartphones keine Erweiterungen. Senden Sie den Link an Ihren Computer und installieren Sie sie dort.",
+          "translatedAt": "2026-11-01T07:39:26.465Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fr": {
+          "text": "Chrome sur mobile ne permet pas d'installer d'extensions. Envoyez le lien sur votre ordinateur pour l'ajouter.",
+          "translatedAt": "2026-11-01T07:39:30.314Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "es": {
+          "text": "Chrome en un teléfono no puede instalar extensiones. Envía el enlace a tu computadora y agrégala allí.",
+          "translatedAt": "2026-11-01T07:39:34.772Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh": {
+          "text": "手机版 Chrome 无法安装扩展程序。将链接发送到电脑即可完成添加。",
+          "translatedAt": "2026-11-01T07:39:37.749Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh-TW": {
+          "text": "手機版 Chrome 無法安裝擴充功能。請將連結傳送到您的電腦，並在電腦上完成安裝。",
+          "translatedAt": "2026-11-01T07:39:44.196Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ja": {
+          "text": "スマートフォン版 Chrome では拡張機能をインストールできません。リンクをパソコンに送信して、そちらから追加してください。",
+          "translatedAt": "2026-11-01T07:39:50.118Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ko": {
+          "text": "모바일 Chrome에서는 확장 프로그램을 설치할 수 없어요. 내 컴퓨터로 링크를 보내 설치해 보세요.",
+          "translatedAt": "2026-11-01T07:39:54.254Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pt": {
+          "text": "O Chrome no celular não permite instalar extensões. Envie o link para o seu computador e adicione por lá.",
+          "translatedAt": "2026-11-01T07:40:02.016Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "hi": {
+          "text": "Phone पर Chrome extensions install नहीं कर सकता। Link को अपने computer पर भेजें और वहाँ add करें।",
+          "translatedAt": "2026-11-01T07:40:05.707Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "vi": {
+          "text": "Chrome trên điện thoại không thể cài đặt tiện ích mở rộng. Hãy gửi liên kết đến máy tính của bạn để thêm tiện ích tại đó.",
+          "translatedAt": "2026-11-01T07:40:10.613Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "nl": {
+          "text": "In Chrome op een telefoon kun je geen extensies installeren. Stuur de link naar je computer en voeg hem daar toe.",
+          "translatedAt": "2026-11-01T07:40:18.032Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "it": {
+          "text": "Chrome su smartphone non supporta le estensioni. Invia il link al tuo computer e aggiungila da lì.",
+          "translatedAt": "2026-11-01T07:40:22.443Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ru": {
+          "text": "Chrome на телефоне не поддерживает установку расширений. Отправьте ссылку на свой компьютер и установите расширение там.",
+          "translatedAt": "2026-11-01T07:40:26.494Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "uk": {
+          "text": "У мобільному Chrome не можна встановлювати розширення. Надішліть посилання на свій комп’ютер і додайте його там.",
+          "translatedAt": "2026-11-01T07:40:30.949Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "tr": {
+          "text": "Telefondaki Chrome uzantı yükleyemez. Bağlantıyı bilgisayarınıza gönderip oradan ekleyin.",
+          "translatedAt": "2026-11-01T07:40:36.660Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "id": {
+          "text": "Chrome di ponsel tidak bisa menginstal extension. Kirim link ke komputer Anda dan tambahkan di sana.",
+          "translatedAt": "2026-11-01T07:40:39.846Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pl": {
+          "text": "Chrome na telefonie nie pozwala na instalację rozszerzeń. Wyślij link na swój komputer i dodaj je tam.",
+          "translatedAt": "2026-11-01T07:40:46.072Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "th": {
+          "text": "Chrome บนโทรศัพท์ไม่สามารถติดตั้งส่วนขยายได้ ส่งลิงก์ไปยังคอมพิวเตอร์แล้วเพิ่มส่วนขยายที่นั่น",
+          "translatedAt": "2026-11-01T07:40:51.761Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ar": {
+          "text": "لا يمكن تثبيت الإضافات على متصفح Chrome في الهاتف. أرسل الرابط إلى حاسوبك لتثبيتها هناك.",
+          "translatedAt": "2026-11-01T07:40:55.556Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "sv": {
+          "text": "Chrome på mobilen kan inte installera tillägg. Skicka länken till din dator och lägg till det där.",
+          "translatedAt": "2026-11-01T07:41:01.246Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "da": {
+          "text": "Chrome på en telefon kan ikke installere udvidelser. Send linket til din computer, og tilføj den der.",
+          "translatedAt": "2026-11-01T07:41:06.786Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "no": {
+          "text": "Chrome på mobil kan ikke installere utvidelser. Send lenken til datamaskinen din og legg den til der.",
+          "translatedAt": "2026-11-01T07:41:11.736Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fi": {
+          "text": "Puhelimen Chromeen ei voi asentaa laajennuksia. Lähetä linkki tietokoneellesi ja asenna se siellä.",
+          "translatedAt": "2026-11-01T07:41:17.477Z",
+          "model": "google/gemini-3.7-flash"
+        }
+      }
+    },
+    "64bfe4fc13998c74a5a0b553a6c4dd2a4b3067e83c33dbbd328393b1310b6a01": {
+      "en": "Email it to me",
+      "translations": {
+        "de": {
+          "text": "Per E-Mail an mich senden",
+          "translatedAt": "2026-11-01T07:39:26.465Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fr": {
+          "text": "Me l'envoyer par e-mail",
+          "translatedAt": "2026-11-01T07:39:30.314Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "es": {
+          "text": "Enviármelo por correo electrónico",
+          "translatedAt": "2026-11-01T07:39:34.772Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh": {
+          "text": "通过邮件发送给我",
+          "translatedAt": "2026-11-01T07:39:37.749Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh-TW": {
+          "text": "寄到我的電子郵件",
+          "translatedAt": "2026-11-01T07:39:44.196Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ja": {
+          "text": "自分にメールで送信",
+          "translatedAt": "2026-11-01T07:39:50.118Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ko": {
+          "text": "이메일로 받기",
+          "translatedAt": "2026-11-01T07:39:54.254Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pt": {
+          "text": "Enviar para o meu e-mail",
+          "translatedAt": "2026-11-01T07:40:02.016Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "hi": {
+          "text": "मुझे Email करें",
+          "translatedAt": "2026-11-01T07:40:05.707Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "vi": {
+          "text": "Gửi qua email cho tôi",
+          "translatedAt": "2026-11-01T07:40:10.613Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "nl": {
+          "text": "E-mail het naar mij",
+          "translatedAt": "2026-11-01T07:40:18.032Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "it": {
+          "text": "Inviamelo via email",
+          "translatedAt": "2026-11-01T07:40:22.443Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ru": {
+          "text": "Отправить мне на почту",
+          "translatedAt": "2026-11-01T07:40:26.494Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "uk": {
+          "text": "Надіслати мені на пошту",
+          "translatedAt": "2026-11-01T07:40:30.949Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "tr": {
+          "text": "Bana e-posta ile gönder",
+          "translatedAt": "2026-11-01T07:40:36.660Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "id": {
+          "text": "Kirimkan ke email saya",
+          "translatedAt": "2026-11-01T07:40:39.846Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pl": {
+          "text": "Wyślij e-mailem",
+          "translatedAt": "2026-11-01T07:40:46.072Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "th": {
+          "text": "ส่งอีเมลให้ฉัน",
+          "translatedAt": "2026-11-01T07:40:51.761Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ar": {
+          "text": "أرسله إلى بريدي الإلكتروني",
+          "translatedAt": "2026-11-01T07:40:55.556Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "sv": {
+          "text": "Mejla den till mig",
+          "translatedAt": "2026-11-01T07:41:01.246Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "da": {
+          "text": "Send det til mig på e-mail",
+          "translatedAt": "2026-11-01T07:41:06.786Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "no": {
+          "text": "Send på e-post til meg",
+          "translatedAt": "2026-11-01T07:41:11.736Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fi": {
+          "text": "Lähetä sähköpostiini",
+          "translatedAt": "2026-11-01T07:41:17.477Z",
+          "model": "google/gemini-3.7-flash"
+        }
+      }
+    },
+    "dbf362d4f210c780513a9258278d4d07abe8a224f84ba7ad775d819039342e77": {
+      "en": "Copy link",
+      "translations": {
+        "de": {
+          "text": "Link kopieren",
+          "translatedAt": "2026-11-01T07:39:26.465Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fr": {
+          "text": "Copier le lien",
+          "translatedAt": "2026-11-01T07:39:30.314Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "es": {
+          "text": "Copiar enlace",
+          "translatedAt": "2026-11-01T07:39:34.772Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh": {
+          "text": "复制链接",
+          "translatedAt": "2026-11-01T07:39:37.749Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh-TW": {
+          "text": "複製連結",
+          "translatedAt": "2026-11-01T07:39:44.196Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ja": {
+          "text": "リンクをコピー",
+          "translatedAt": "2026-11-01T07:39:50.118Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ko": {
+          "text": "링크 복사",
+          "translatedAt": "2026-11-01T07:39:54.254Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pt": {
+          "text": "Copiar link",
+          "translatedAt": "2026-11-01T07:40:02.016Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "hi": {
+          "text": "Link copy करें",
+          "translatedAt": "2026-11-01T07:40:05.707Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "vi": {
+          "text": "Sao chép liên kết",
+          "translatedAt": "2026-11-01T07:40:10.613Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "nl": {
+          "text": "Kopieer link",
+          "translatedAt": "2026-11-01T07:40:18.032Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "it": {
+          "text": "Copia link",
+          "translatedAt": "2026-11-01T07:40:22.443Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ru": {
+          "text": "Скопировать ссылку",
+          "translatedAt": "2026-11-01T07:40:26.494Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "uk": {
+          "text": "Скопіювати посилання",
+          "translatedAt": "2026-11-01T07:40:30.949Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "tr": {
+          "text": "Bağlantıyı kopyala",
+          "translatedAt": "2026-11-01T07:40:36.660Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "id": {
+          "text": "Salin link",
+          "translatedAt": "2026-11-01T07:40:39.846Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pl": {
+          "text": "Skopiuj link",
+          "translatedAt": "2026-11-01T07:40:46.072Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "th": {
+          "text": "คัดลอกลิงก์",
+          "translatedAt": "2026-11-01T07:40:51.761Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ar": {
+          "text": "نسخ الرابط",
+          "translatedAt": "2026-11-01T07:40:55.556Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "sv": {
+          "text": "Kopiera länk",
+          "translatedAt": "2026-11-01T07:41:01.246Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "da": {
+          "text": "Kopiér link",
+          "translatedAt": "2026-11-01T07:41:06.786Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "no": {
+          "text": "Kopier lenke",
+          "translatedAt": "2026-11-01T07:41:11.736Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fi": {
+          "text": "Kopioi linkki",
+          "translatedAt": "2026-11-01T07:41:17.477Z",
+          "model": "google/gemini-3.7-flash"
+        }
+      }
+    },
+    "c8c8387debfc42468b28814bc82a9aa46042390d7a8b7dd78b0f3cc777994bfd": {
+      "en": "Send this page to my computer",
+      "translations": {
+        "de": {
+          "text": "Diese Seite an meinen Computer senden",
+          "translatedAt": "2026-11-01T07:39:26.465Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fr": {
+          "text": "Envoyer cette page sur mon ordinateur",
+          "translatedAt": "2026-11-01T07:39:30.314Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "es": {
+          "text": "Enviar esta página a mi computadora",
+          "translatedAt": "2026-11-01T07:39:34.772Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh": {
+          "text": "将此页面发送至我的电脑",
+          "translatedAt": "2026-11-01T07:39:37.749Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh-TW": {
+          "text": "將此頁面傳送到我的電腦",
+          "translatedAt": "2026-11-01T07:39:44.196Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ja": {
+          "text": "このページをパソコンに送信",
+          "translatedAt": "2026-11-01T07:39:50.118Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ko": {
+          "text": "이 페이지를 내 컴퓨터로 보내기",
+          "translatedAt": "2026-11-01T07:39:54.254Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pt": {
+          "text": "Enviar esta página para o meu computador",
+          "translatedAt": "2026-11-01T07:40:02.016Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "hi": {
+          "text": "यह page मेरे computer पर भेजें",
+          "translatedAt": "2026-11-01T07:40:05.707Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "vi": {
+          "text": "Gửi trang này đến máy tính của tôi",
+          "translatedAt": "2026-11-01T07:40:10.613Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "nl": {
+          "text": "Stuur deze pagina naar mijn computer",
+          "translatedAt": "2026-11-01T07:40:18.032Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "it": {
+          "text": "Invia questa pagina al mio computer",
+          "translatedAt": "2026-11-01T07:40:22.443Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ru": {
+          "text": "Отправить эту страницу на компьютер",
+          "translatedAt": "2026-11-01T07:40:26.494Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "uk": {
+          "text": "Надіслати цю сторінку на мій комп’ютер",
+          "translatedAt": "2026-11-01T07:40:30.949Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "tr": {
+          "text": "Bu sayfayı bilgisayarıma gönder",
+          "translatedAt": "2026-11-01T07:40:36.660Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "id": {
+          "text": "Kirim halaman ini ke komputer saya",
+          "translatedAt": "2026-11-01T07:40:39.846Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pl": {
+          "text": "Wyślij tę stronę na komputer",
+          "translatedAt": "2026-11-01T07:40:46.072Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "th": {
+          "text": "ส่งหน้านี้ไปยังคอมพิวเตอร์",
+          "translatedAt": "2026-11-01T07:40:51.761Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ar": {
+          "text": "إرسال هذه الصفحة إلى حاسوبي",
+          "translatedAt": "2026-11-01T07:40:55.556Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "sv": {
+          "text": "Skicka den här sidan till min dator",
+          "translatedAt": "2026-11-01T07:41:01.246Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "da": {
+          "text": "Send denne side til min computer",
+          "translatedAt": "2026-11-01T07:41:06.786Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "no": {
+          "text": "Send denne siden til datamaskinen min",
+          "translatedAt": "2026-11-01T07:41:11.736Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fi": {
+          "text": "Lähetä tämä sivu tietokoneelle",
+          "translatedAt": "2026-11-01T07:41:17.477Z",
+          "model": "google/gemini-3.7-flash"
+        }
+      }
+    },
+    "d3d2067b121d43e7dea31fd3cefd97637207be1d7d27a7b1ad96640e11ed38ca": {
+      "en": "One click turns any page into a short summary beside the article. Everything stays in your browser, so you can find it again.",
+      "translations": {
+        "de": {
+          "text": "Ein Klick verwandelt jede Seite in eine kompakte Zusammenfassung direkt neben dem Artikel. Alles bleibt lokal in Ihrem Browser, damit Sie es jederzeit wiederfinden.",
+          "translatedAt": "2026-11-01T08:02:12.710Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fr": {
+          "text": "En un clic, transformez n'importe quelle page en un court résumé à côté de l'article. Tout reste dans votre navigateur pour que vous puissiez facilement le retrouver.",
+          "translatedAt": "2026-11-01T08:02:18.160Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "es": {
+          "text": "Un solo clic convierte cualquier página en un resumen breve junto al artículo. Todo se queda en tu navegador para que puedas encontrarlo de nuevo.",
+          "translatedAt": "2026-11-01T08:02:25.221Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh": {
+          "text": "一键在文章旁生成精炼摘要。所有数据均保存在本地浏览器中，方便随时回顾与查找。",
+          "translatedAt": "2026-11-01T08:02:32.668Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh-TW": {
+          "text": "一鍵將任何網頁轉為文章旁的精簡摘要。所有內容皆保留在您的瀏覽器中，方便隨時再次查閱。",
+          "translatedAt": "2026-11-01T08:02:40.313Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ja": {
+          "text": "ワンクリックで、あらゆるWebページを記事の横にコンパクトに要約。すべてのデータはブラウザ内にのみ保存されるため、後からいつでも簡単に確認できます。",
+          "translatedAt": "2026-11-01T08:02:43.600Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ko": {
+          "text": "클릭 한 번으로 모든 웹페이지를 본문 옆에 핵심 요약으로 정리해 드려요. 모든 데이터는 브라우저에 안전하게 보관되므로 언제든 다시 찾아볼 수 있어요.",
+          "translatedAt": "2026-11-01T08:02:54.136Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pt": {
+          "text": "Com um clique, transforme qualquer página em um resumo prático ao lado do artigo. Tudo fica no seu navegador, para você encontrar sempre que precisar.",
+          "translatedAt": "2026-11-01T08:03:02.086Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "hi": {
+          "text": "बस एक क्लिक में किसी भी पेज की शॉर्ट समरी आर्टिकल के ठीक बगल में पाएं। सब कुछ आपके browser में सुरक्षित रहता है, ताकि आप इसे कभी भी दोबारा ढूंढ सकें।",
+          "translatedAt": "2026-11-01T08:03:06.061Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "vi": {
+          "text": "Chỉ với một cú nhấp chuột, tóm tắt ngắn gọn sẽ hiển thị ngay bên cạnh bài viết. Mọi dữ liệu đều lưu trực tiếp trong trình duyệt để bạn dễ dàng tìm lại bất cứ lúc nào.",
+          "translatedAt": "2026-11-01T08:03:11.126Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "nl": {
+          "text": "Met één klik verander je elke pagina in een korte samenvatting naast het artikel. Alles blijft in je browser, zodat je het altijd weer terugvindt.",
+          "translatedAt": "2026-11-01T08:03:17.315Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "it": {
+          "text": "Basta un clic per trasformare qualsiasi pagina in un breve riassunto accanto all'articolo. Tutto rimane nel tuo browser, così puoi ritrovarlo facilmente.",
+          "translatedAt": "2026-11-01T08:03:22.430Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ru": {
+          "text": "Один клик — и краткое саммари появится прямо рядом со статьёй. Все данные остаются в вашем браузере, так что вы всегда сможете найти их снова.",
+          "translatedAt": "2026-11-01T08:03:28.980Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "uk": {
+          "text": "Один клік перетворює будь-яку сторінку на короткий підсумок поруч зі статтею. Усе залишається у вашому браузері, тож ви завжди зможете знайти це знову.",
+          "translatedAt": "2026-11-01T08:03:36.684Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "tr": {
+          "text": "Tek bir tıkla herhangi bir sayfayı makalenin yanında kısa bir özete dönüştürün. Her şey tarayıcınızda kalır, böylece daha sonra tekrar bulabilirsiniz.",
+          "translatedAt": "2026-11-01T08:03:41.906Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "id": {
+          "text": "Satu klik untuk mengubah halaman apa pun menjadi ringkasan singkat di samping artikel. Semuanya tersimpan di browser Anda, sehingga mudah ditemukan kembali.",
+          "translatedAt": "2026-11-01T08:03:46.940Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pl": {
+          "text": "Jedno kliknięcie zamienia dowolną stronę w krótkie podsumowanie tuż obok artykułu. Wszystko pozostaje w Twojej przeglądarce, więc bez trudu znajdziesz to ponownie.",
+          "translatedAt": "2026-11-01T08:03:52.988Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "th": {
+          "text": "สรุปเนื้อหาทุกหน้าเว็บได้ทันทีในคลิกเดียว พร้อมแสดงผลข้างบทความ ข้อมูลทั้งหมดจะถูกเก็บไว้ในเบราว์เซอร์ของคุณ ให้คุณค้นหากลับมาอ่านได้ตลอดเวลา",
+          "translatedAt": "2026-11-01T08:04:01.605Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ar": {
+          "text": "بنقرة واحدة، حوّل أي صفحة إلى ملخص موجز بجانب المقال. يبقى كل شيء داخل متصفحك لتتمكن من العثور عليه مجدداً.",
+          "translatedAt": "2026-11-01T08:04:10.124Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "sv": {
+          "text": "Ett klick förvandlar vilken sida som helst till en kort sammanfattning bredvid artikeln. Allt stannar i din webbläsare, så att du enkelt hittar det igen.",
+          "translatedAt": "2026-11-01T08:04:17.291Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "da": {
+          "text": "Ét klik forvandler enhver side til et kort resumé ved siden af artiklen. Alt bliver i din browser, så du kan finde det igen.",
+          "translatedAt": "2026-11-01T08:04:23.557Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "no": {
+          "text": "Ett klikk gjør enhver nettside om til et kort sammendrag ved siden av artikkelen. Alt forblir lokalt i nettleseren din, slik at du enkelt finner det igjen.",
+          "translatedAt": "2026-11-01T08:04:29.764Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fi": {
+          "text": "Yhdellä klikkauksella saat sivusta lyhyen tiivistelmän suoraan artikkelin viereen. Kaikki pysyy omassa selaimessasi, joten löydät sen helposti uudelleen.",
+          "translatedAt": "2026-11-01T08:04:36.856Z",
+          "model": "google/gemini-3.7-flash"
+        }
+      }
+    },
+    "edff78ee90fd64a07b1a69db6ea35f06d95ecd8571f9a183cabb649b78a891ff": {
+      "en": "· Made in the EU",
+      "translations": {
+        "de": {
+          "text": "· In der EU entwickelt",
+          "translatedAt": "2026-11-01T08:02:12.710Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fr": {
+          "text": "· Conçu dans l'UE",
+          "translatedAt": "2026-11-01T08:02:18.160Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "es": {
+          "text": "· Hecho en la UE",
+          "translatedAt": "2026-11-01T08:02:25.221Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh": {
+          "text": "· 欧盟出品",
+          "translatedAt": "2026-11-01T08:02:32.668Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh-TW": {
+          "text": "· 歐盟製造",
+          "translatedAt": "2026-11-01T08:02:40.313Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ja": {
+          "text": "· EU製",
+          "translatedAt": "2026-11-01T08:02:43.600Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ko": {
+          "text": "· EU에서 제작됨",
+          "translatedAt": "2026-11-01T08:02:54.136Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pt": {
+          "text": "· Feito na UE",
+          "translatedAt": "2026-11-01T08:03:02.086Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "hi": {
+          "text": "· Made in the EU",
+          "translatedAt": "2026-11-01T08:03:06.061Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "vi": {
+          "text": "· Phát triển tại EU",
+          "translatedAt": "2026-11-01T08:03:11.126Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "nl": {
+          "text": "· Gemaakt in de EU",
+          "translatedAt": "2026-11-01T08:03:17.315Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "it": {
+          "text": "· Sviluppato nell'UE",
+          "translatedAt": "2026-11-01T08:03:22.430Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ru": {
+          "text": "· Сделано в ЕС",
+          "translatedAt": "2026-11-01T08:03:28.980Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "uk": {
+          "text": "· Зроблено в ЄС",
+          "translatedAt": "2026-11-01T08:03:36.684Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "tr": {
+          "text": "· AB'de geliştirildi",
+          "translatedAt": "2026-11-01T08:03:41.906Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "id": {
+          "text": "· Dibuat di Uni Eropa",
+          "translatedAt": "2026-11-01T08:03:46.940Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pl": {
+          "text": "· Stworzono w UE",
+          "translatedAt": "2026-11-01T08:03:52.988Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "th": {
+          "text": "· พัฒนาขึ้นในสหภาพยุโรป",
+          "translatedAt": "2026-11-01T08:04:01.605Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ar": {
+          "text": "· صُنع في الاتحاد الأوروبي",
+          "translatedAt": "2026-11-01T08:04:10.124Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "sv": {
+          "text": "· Utvecklat inom EU",
+          "translatedAt": "2026-11-01T08:04:17.291Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "da": {
+          "text": "· Udviklet i EU",
+          "translatedAt": "2026-11-01T08:04:23.557Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "no": {
+          "text": "· Laget i EU",
+          "translatedAt": "2026-11-01T08:04:29.764Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fi": {
+          "text": "· Tehty EU:ssa",
+          "translatedAt": "2026-11-01T08:04:36.856Z",
+          "model": "google/gemini-3.7-flash"
+        }
+      }
+    },
+    "71f7736ecd9ee5014819e6d4b2973575ebe975e5b31d72cc5a67506ab3d12233": {
+      "en": "139 upvotes on Product Hunt",
+      "translations": {
+        "de": {
+          "text": "139 Upvotes auf Product Hunt",
+          "translatedAt": "2026-11-01T08:02:12.710Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fr": {
+          "text": "139 upvotes sur Product Hunt",
+          "translatedAt": "2026-11-01T08:02:18.160Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "es": {
+          "text": "139 votos positivos en Product Hunt",
+          "translatedAt": "2026-11-01T08:02:25.221Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh": {
+          "text": "Product Hunt 获 139 票支持",
+          "translatedAt": "2026-11-01T08:02:32.668Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh-TW": {
+          "text": "在 Product Hunt 獲得 139 票支持",
+          "translatedAt": "2026-11-01T08:02:40.313Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ja": {
+          "text": "Product Huntで139 Upvotesを獲得",
+          "translatedAt": "2026-11-01T08:02:43.600Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ko": {
+          "text": "Product Hunt 업보트 139개",
+          "translatedAt": "2026-11-01T08:02:54.136Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pt": {
+          "text": "139 upvotes no Product Hunt",
+          "translatedAt": "2026-11-01T08:03:02.086Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "hi": {
+          "text": "Product Hunt पर 139 upvotes",
+          "translatedAt": "2026-11-01T08:03:06.061Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "vi": {
+          "text": "139 lượt upvote trên Product Hunt",
+          "translatedAt": "2026-11-01T08:03:11.126Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "nl": {
+          "text": "139 upvotes op Product Hunt",
+          "translatedAt": "2026-11-01T08:03:17.315Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "it": {
+          "text": "139 upvote su Product Hunt",
+          "translatedAt": "2026-11-01T08:03:22.430Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ru": {
+          "text": "139 голосов на Product Hunt",
+          "translatedAt": "2026-11-01T08:03:28.980Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "uk": {
+          "text": "139 голосів на Product Hunt",
+          "translatedAt": "2026-11-01T08:03:36.684Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "tr": {
+          "text": "Product Hunt'ta 139 upvote",
+          "translatedAt": "2026-11-01T08:03:41.906Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "id": {
+          "text": "139 upvote di Product Hunt",
+          "translatedAt": "2026-11-01T08:03:46.940Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pl": {
+          "text": "139 głosów na Product Hunt",
+          "translatedAt": "2026-11-01T08:03:52.988Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "th": {
+          "text": "139 อัปโหวตบน Product Hunt",
+          "translatedAt": "2026-11-01T08:04:01.605Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ar": {
+          "text": "139 تصويتاً على Product Hunt",
+          "translatedAt": "2026-11-01T08:04:10.124Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "sv": {
+          "text": "139 upvotes på Product Hunt",
+          "translatedAt": "2026-11-01T08:04:17.291Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "da": {
+          "text": "139 upvotes på Product Hunt",
+          "translatedAt": "2026-11-01T08:04:23.557Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "no": {
+          "text": "139 upvotes på Product Hunt",
+          "translatedAt": "2026-11-01T08:04:29.764Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fi": {
+          "text": "139 upvotea Product Huntissa",
+          "translatedAt": "2026-11-01T08:04:36.856Z",
+          "model": "google/gemini-3.7-flash"
+        }
+      }
+    },
+    "67a0d2e0dab41fca184a37454ca4e946011756ec7b74eede7810d7df89904a18": {
+      "en": "Open source",
+      "translations": {
+        "de": {
+          "text": "Open Source",
+          "translatedAt": "2026-11-01T08:02:12.710Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fr": {
+          "text": "Open source",
+          "translatedAt": "2026-11-01T08:02:18.160Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "es": {
+          "text": "Código abierto",
+          "translatedAt": "2026-11-01T08:02:25.221Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh": {
+          "text": "开源",
+          "translatedAt": "2026-11-01T08:02:32.668Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh-TW": {
+          "text": "開源",
+          "translatedAt": "2026-11-01T08:02:40.313Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ja": {
+          "text": "オープンソース",
+          "translatedAt": "2026-11-01T08:02:43.600Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ko": {
+          "text": "오픈 소스",
+          "translatedAt": "2026-11-01T08:02:54.136Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pt": {
+          "text": "Código aberto",
+          "translatedAt": "2026-11-01T08:03:02.086Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "hi": {
+          "text": "Open source",
+          "translatedAt": "2026-11-01T08:03:06.061Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "vi": {
+          "text": "Mã nguồn mở",
+          "translatedAt": "2026-11-01T08:03:11.126Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "nl": {
+          "text": "Open source",
+          "translatedAt": "2026-11-01T08:03:17.315Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "it": {
+          "text": "Open source",
+          "translatedAt": "2026-11-01T08:03:22.430Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ru": {
+          "text": "Открытый исходный код",
+          "translatedAt": "2026-11-01T08:03:28.980Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "uk": {
+          "text": "Відкритий вихідний код",
+          "translatedAt": "2026-11-01T08:03:36.684Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "tr": {
+          "text": "Açık kaynak",
+          "translatedAt": "2026-11-01T08:03:41.906Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "id": {
+          "text": "Open source",
+          "translatedAt": "2026-11-01T08:03:46.940Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pl": {
+          "text": "Open source",
+          "translatedAt": "2026-11-01T08:03:52.988Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "th": {
+          "text": "โอเพนซอร์ส",
+          "translatedAt": "2026-11-01T08:04:01.605Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ar": {
+          "text": "مفتوح المصدر",
+          "translatedAt": "2026-11-01T08:04:10.124Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "sv": {
+          "text": "Öppen källkod",
+          "translatedAt": "2026-11-01T08:04:17.291Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "da": {
+          "text": "Open source",
+          "translatedAt": "2026-11-01T08:04:23.557Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "no": {
+          "text": "Åpen kildekode",
+          "translatedAt": "2026-11-01T08:04:29.764Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fi": {
+          "text": "Avointa lähdekoodia",
+          "translatedAt": "2026-11-01T08:04:36.856Z",
+          "model": "google/gemini-3.7-flash"
+        }
+      }
+    },
+    "c2dcb64d6c8286621cebfcb0422d06c3d13271aee0a2e95199a4e09eda588686": {
+      "en": "No account needed · Use your own AI key, or run fully offline with Ollama",
+      "translations": {
+        "de": {
+          "text": "Kein Account erforderlich · Nutzen Sie Ihren eigenen KI-Schlüssel oder arbeiten Sie komplett offline mit Ollama",
+          "translatedAt": "2026-11-01T08:02:12.710Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fr": {
+          "text": "Aucun compte requis · Utilisez votre propre clé IA, ou exécutez-le entièrement hors ligne avec Ollama",
+          "translatedAt": "2026-11-01T08:02:18.160Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "es": {
+          "text": "No necesitas cuenta · Usa tu propia clave de IA o ejecútalo completamente sin conexión con Ollama",
+          "translatedAt": "2026-11-01T08:02:25.221Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh": {
+          "text": "无需注册账号 · 可配置自有 API key，或通过 Ollama 完全离线运行",
+          "translatedAt": "2026-11-01T08:02:32.668Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh-TW": {
+          "text": "無需註冊帳號 · 可使用自己的 AI Key，或搭配 Ollama 完全離線運行",
+          "translatedAt": "2026-11-01T08:02:40.313Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ja": {
+          "text": "アカウント登録不要 · ご自身のAIキーを使用、またはOllamaで完全オフライン実行が可能",
+          "translatedAt": "2026-11-01T08:02:43.600Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ko": {
+          "text": "계정 가입 불필요 · 보유한 AI 키를 사용하거나 Ollama로 완전한 오프라인 환경에서 실행",
+          "translatedAt": "2026-11-01T08:02:54.136Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pt": {
+          "text": "Não precisa de conta · Use sua própria chave de IA ou rode totalmente offline com o Ollama",
+          "translatedAt": "2026-11-01T08:03:02.086Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "hi": {
+          "text": "किसी account की ज़रूरत नहीं · अपनी AI key इस्तेमाल करें, या Ollama के साथ पूरी तरह offline चलाएं",
+          "translatedAt": "2026-11-01T08:03:06.061Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "vi": {
+          "text": "Không cần tài khoản · Sử dụng API key AI của riêng bạn hoặc chạy hoàn toàn offline với Ollama",
+          "translatedAt": "2026-11-01T08:03:11.126Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "nl": {
+          "text": "Geen account nodig · Gebruik je eigen AI-sleutel of draai volledig offline met Ollama",
+          "translatedAt": "2026-11-01T08:03:17.315Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "it": {
+          "text": "Nessun account richiesto · Usa la tua chiave API o esegui tutto completamente offline con Ollama",
+          "translatedAt": "2026-11-01T08:03:22.430Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ru": {
+          "text": "Регистрация не требуется · Используйте собственный API key или работайте полностью офлайн с Ollama",
+          "translatedAt": "2026-11-01T08:03:28.980Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "uk": {
+          "text": "Без реєстрації · Використовуйте власний AI key або працюйте повністю офлайн із Ollama",
+          "translatedAt": "2026-11-01T08:03:36.684Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "tr": {
+          "text": "Hesap gerektirmez · Kendi AI anahtarınızı kullanın veya Ollama ile tamamen çevrimdışı çalıştırın",
+          "translatedAt": "2026-11-01T08:03:41.906Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "id": {
+          "text": "Tanpa perlu akun · Gunakan AI key Anda sendiri, atau jalankan sepenuhnya offline dengan Ollama",
+          "translatedAt": "2026-11-01T08:03:46.940Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pl": {
+          "text": "Bez konieczności zakładania konta · Korzystaj z własnego klucza AI lub działaj w pełni offline z Ollama",
+          "translatedAt": "2026-11-01T08:03:52.988Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "th": {
+          "text": "ไม่ต้องสร้างบัญชี · ใช้ API key ของคุณเอง หรือรันแบบออฟไลน์ได้เต็มรูปแบบด้วย Ollama",
+          "translatedAt": "2026-11-01T08:04:01.605Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ar": {
+          "text": "لا حاجة لإنشاء حساب · استخدم AI key الخاص بك، أو شغّله بالكامل دون اتصال بالإنترنت مع Ollama",
+          "translatedAt": "2026-11-01T08:04:10.124Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "sv": {
+          "text": "Inget konto krävs · Använd din egen AI-nyckel, eller kör helt offline med Ollama",
+          "translatedAt": "2026-11-01T08:04:17.291Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "da": {
+          "text": "Ingen konto nødvendig · Brug din egen AI-nøgle, eller kør helt offline med Ollama",
+          "translatedAt": "2026-11-01T08:04:23.557Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "no": {
+          "text": "Ingen konto nødvendig · Bruk din egen AI-nøkkel, eller kjør helt offline med Ollama",
+          "translatedAt": "2026-11-01T08:04:29.764Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fi": {
+          "text": "Ei vaadi käyttäjätiliä · Käytä omaa API keytä tai aja täysin offline-tilassa Ollamalla",
+          "translatedAt": "2026-11-01T08:04:36.856Z",
+          "model": "google/gemini-3.7-flash"
+        }
+      }
+    },
+    "e61eb011230ba3b4b90e38396d94e21c17fa4d41ddb86a84f8e4490047ba5f7f": {
+      "en": "Prefer to pay once? A one-time donation of €50 gives you 12 months of full access, everything in the Support Pass.",
+      "translations": {
+        "de": {
+          "text": "Möchten Sie lieber einmalig zahlen? Mit einer einmaligen Spende von 50 € erhalten Sie 12 Monate lang vollen Zugriff – inklusive aller Vorteile des Support Pass.",
+          "translatedAt": "2026-11-01T08:07:44.921Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fr": {
+          "text": "Vous préférez payer en une seule fois ? Un don unique de 50 € vous donne 12 mois d'accès complet, avec tous les avantages du Support Pass.",
+          "translatedAt": "2026-11-01T08:07:52.967Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "es": {
+          "text": "¿Prefieres pagar una sola vez? Una donación única de €50 te da 12 meses de acceso total, con todo lo incluido en el Support Pass.",
+          "translatedAt": "2026-11-01T08:07:57.040Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh": {
+          "text": "更想一次性付费？单次赞助 €50 即可获得 12 个月的完整使用权限，包含 Support Pass 的全部权益。",
+          "translatedAt": "2026-11-01T08:08:02.473Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh-TW": {
+          "text": "偏好單次付款？單筆贊助 €50 即可獲得 12 個月的完整使用權限，享有 Support Pass 的所有權益。",
+          "translatedAt": "2026-11-01T08:08:07.828Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ja": {
+          "text": "1回払いをご希望ですか？50ユーロの1回限りのご寄付で、Support Passの全機能を含む12か月間のフルアクセスをご利用いただけます。",
+          "translatedAt": "2026-11-01T08:08:14.527Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ko": {
+          "text": "한 번만 결제하고 싶으신가요? 50유로 일회성 후원으로 Support Pass의 모든 기능을 12개월 동안 이용하실 수 있어요.",
+          "translatedAt": "2026-11-01T08:08:20.216Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pt": {
+          "text": "Prefere pagar uma única vez? Uma doação única de €50 dá a você 12 meses de acesso total, com tudo o que está incluso no Support Pass.",
+          "translatedAt": "2026-11-01T08:08:27.314Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "hi": {
+          "text": "क्या आप एक ही बार pay करना prefer करते हैं? €50 का one-time donation आपको 12 months का full access देता है, Support Pass में शामिल हर चीज़ के साथ।",
+          "translatedAt": "2026-11-01T08:08:31.682Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "vi": {
+          "text": "Bạn muốn thanh toán một lần? Khoản ủng hộ một lần trị giá €50 sẽ mang lại cho bạn 12 tháng toàn quyền truy cập, bao gồm mọi quyền lợi trong Support Pass.",
+          "translatedAt": "2026-11-01T08:08:35.957Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "nl": {
+          "text": "Betaal je liever in één keer? Met een eenmalige donatie van € 50 krijg je 12 maanden volledige toegang, inclusief alles uit de Support Pass.",
+          "translatedAt": "2026-11-01T08:08:41.054Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "it": {
+          "text": "Preferisci pagare una volta sola? Una donazione una tantum di 50 € ti offre 12 mesi di accesso completo, con tutto ciò che include il Support Pass.",
+          "translatedAt": "2026-11-01T08:08:46.603Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ru": {
+          "text": "Предпочитаете разовую оплату? Разовое пожертвование в размере €50 даёт вам 12 месяцев полного доступа — всё, что входит в Support Pass.",
+          "translatedAt": "2026-11-01T08:08:49.965Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "uk": {
+          "text": "Віддаєте перевагу одноразовій оплаті? Одноразовий донат у €50 надає повний доступ на 12 місяців — усе, що входить у Support Pass.",
+          "translatedAt": "2026-11-01T08:08:54.125Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "tr": {
+          "text": "Tek seferlik ödeme mi tercih edersiniz? 50 € tutarındaki tek seferlik bağış, Support Pass kapsamındaki her şeye 12 ay boyunca tam erişim sağlar.",
+          "translatedAt": "2026-11-01T08:09:00.264Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "id": {
+          "text": "Lebih suka bayar sekali? Donasi satu kali sebesar €50 memberi Anda akses penuh selama 12 bulan, mencakup semua yang ada di Support Pass.",
+          "translatedAt": "2026-11-01T08:09:03.547Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pl": {
+          "text": "Wolisz płatność jednorazową? Jednorazowe wsparcie w wysokości 50 € daje 12 miesięcy pełnego dostępu – wszystko, co obejmuje Support Pass.",
+          "translatedAt": "2026-11-01T08:09:08.339Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "th": {
+          "text": "ต้องการชำระเงินครั้งเดียวใช่ไหม? การสนับสนุนแบบครั้งเดียว €50 ให้สิทธิ์เข้าใช้งานเต็มรูปแบบ 12 เดือน ครอบคลุมทุกอย่างใน Support Pass",
+          "translatedAt": "2026-11-01T08:09:14.668Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ar": {
+          "text": "هل تفضل الدفع لمرة واحدة؟ يمنحك التبرع لمرة واحدة بقيمة €50 وصولاً كاملاً لمدة 12 شهرًا، مع كل ما تتضمنه Support Pass.",
+          "translatedAt": "2026-11-01T08:09:18.657Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "sv": {
+          "text": "Föredrar du att betala en gång? En engångsdonation på 50 € ger dig 12 månaders full tillgång, allt som ingår i Support Pass.",
+          "translatedAt": "2026-11-01T08:09:25.457Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "da": {
+          "text": "Foretrækker du at betale én gang? En engangsdonation på €50 giver dig 12 måneders fuld adgang – alt i Support Pass.",
+          "translatedAt": "2026-11-01T08:09:29.302Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "no": {
+          "text": "Foretrekker du å betale én gang? En engangsdonasjon på €50 gir deg 12 måneders full tilgang, alt i Support Pass.",
+          "translatedAt": "2026-11-01T08:09:34.074Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fi": {
+          "text": "Maksatko mieluummin kerralla? 50 €:n kertalahjoituksella saat täyden pääsyn 12 kuukaudeksi – kaiken, mitä Support Pass sisältää.",
+          "translatedAt": "2026-11-01T08:09:41.076Z",
+          "model": "google/gemini-3.7-flash"
+        }
+      }
+    },
+    "8dacf6bab60a7395e7025502bfba8456f67640af97c2a8e6454b594955d939bc": {
+      "en": "More from byphil",
+      "translations": {
+        "de": {
+          "text": "Mehr von byphil",
+          "translatedAt": "2026-11-01T08:07:44.921Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fr": {
+          "text": "D'autres créations byphil",
+          "translatedAt": "2026-11-01T08:07:52.967Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "es": {
+          "text": "Más de byphil",
+          "translatedAt": "2026-11-01T08:07:57.040Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh": {
+          "text": "来自 byphil 的更多作品",
+          "translatedAt": "2026-11-01T08:08:02.473Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh-TW": {
+          "text": "更多來自 byphil 的作品",
+          "translatedAt": "2026-11-01T08:08:07.828Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ja": {
+          "text": "byphilのその他のツール",
+          "translatedAt": "2026-11-01T08:08:14.527Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ko": {
+          "text": "byphil의 다른 프로젝트",
+          "translatedAt": "2026-11-01T08:08:20.216Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pt": {
+          "text": "Mais do byphil",
+          "translatedAt": "2026-11-01T08:08:27.314Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "hi": {
+          "text": "byphil की तरफ से और भी",
+          "translatedAt": "2026-11-01T08:08:31.682Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "vi": {
+          "text": "Xem thêm từ byphil",
+          "translatedAt": "2026-11-01T08:08:35.957Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "nl": {
+          "text": "Meer van byphil",
+          "translatedAt": "2026-11-01T08:08:41.054Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "it": {
+          "text": "Altro da byphil",
+          "translatedAt": "2026-11-01T08:08:46.603Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ru": {
+          "text": "Другие проекты byphil",
+          "translatedAt": "2026-11-01T08:08:49.965Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "uk": {
+          "text": "Більше від byphil",
+          "translatedAt": "2026-11-01T08:08:54.125Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "tr": {
+          "text": "byphil'den daha fazlası",
+          "translatedAt": "2026-11-01T08:09:00.264Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "id": {
+          "text": "Lainnya dari byphil",
+          "translatedAt": "2026-11-01T08:09:03.547Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pl": {
+          "text": "Więcej od byphil",
+          "translatedAt": "2026-11-01T08:09:08.339Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "th": {
+          "text": "ผลงานอื่น ๆ จาก byphil",
+          "translatedAt": "2026-11-01T08:09:14.668Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ar": {
+          "text": "المزيد من byphil",
+          "translatedAt": "2026-11-01T08:09:18.657Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "sv": {
+          "text": "Mer från byphil",
+          "translatedAt": "2026-11-01T08:09:25.457Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "da": {
+          "text": "Mere fra byphil",
+          "translatedAt": "2026-11-01T08:09:29.302Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "no": {
+          "text": "Mer fra byphil",
+          "translatedAt": "2026-11-01T08:09:34.074Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fi": {
+          "text": "Lisää tekijältä byphil",
+          "translatedAt": "2026-11-01T08:09:41.076Z",
+          "model": "google/gemini-3.7-flash"
+        }
+      }
+    },
+    "dc1004935551af43106b663038b2a5de48ea3ddc9ad56eb5644e086c2b0e740d": {
+      "en": "All byphil tools ↗",
+      "translations": {
+        "de": {
+          "text": "Alle Tools von byphil ↗",
+          "translatedAt": "2026-11-01T08:07:44.921Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fr": {
+          "text": "Tous les outils byphil ↗",
+          "translatedAt": "2026-11-01T08:07:52.967Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "es": {
+          "text": "Todas las herramientas de byphil ↗",
+          "translatedAt": "2026-11-01T08:07:57.040Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh": {
+          "text": "所有 byphil 工具 ↗",
+          "translatedAt": "2026-11-01T08:08:02.473Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh-TW": {
+          "text": "所有 byphil 工具 ↗",
+          "translatedAt": "2026-11-01T08:08:07.828Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ja": {
+          "text": "byphilのすべてのツール ↗",
+          "translatedAt": "2026-11-01T08:08:14.527Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ko": {
+          "text": "모든 byphil 도구 ↗",
+          "translatedAt": "2026-11-01T08:08:20.216Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pt": {
+          "text": "Todas as ferramentas do byphil ↗",
+          "translatedAt": "2026-11-01T08:08:27.314Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "hi": {
+          "text": "सभी byphil tools ↗",
+          "translatedAt": "2026-11-01T08:08:31.682Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "vi": {
+          "text": "Tất cả công cụ byphil ↗",
+          "translatedAt": "2026-11-01T08:08:35.957Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "nl": {
+          "text": "Alle byphil-tools ↗",
+          "translatedAt": "2026-11-01T08:08:41.054Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "it": {
+          "text": "Tutti gli strumenti di byphil ↗",
+          "translatedAt": "2026-11-01T08:08:46.603Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ru": {
+          "text": "Все инструменты byphil ↗",
+          "translatedAt": "2026-11-01T08:08:49.965Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "uk": {
+          "text": "Усі інструменти byphil ↗",
+          "translatedAt": "2026-11-01T08:08:54.125Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "tr": {
+          "text": "Tüm byphil araçları ↗",
+          "translatedAt": "2026-11-01T08:09:00.264Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "id": {
+          "text": "Semua tools byphil ↗",
+          "translatedAt": "2026-11-01T08:09:03.547Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pl": {
+          "text": "Wszystkie narzędzia byphil ↗",
+          "translatedAt": "2026-11-01T08:09:08.339Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "th": {
+          "text": "เครื่องมือทั้งหมดของ byphil ↗",
+          "translatedAt": "2026-11-01T08:09:14.668Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ar": {
+          "text": "جميع أدوات byphil ↗",
+          "translatedAt": "2026-11-01T08:09:18.657Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "sv": {
+          "text": "Alla byphil-verktyg ↗",
+          "translatedAt": "2026-11-01T08:09:25.457Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "da": {
+          "text": "Alle byphil-værktøjer ↗",
+          "translatedAt": "2026-11-01T08:09:29.302Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "no": {
+          "text": "Alle byphil-verktøy ↗",
+          "translatedAt": "2026-11-01T08:09:34.074Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fi": {
+          "text": "Kaikki byphil-työkalut ↗",
+          "translatedAt": "2026-11-01T08:09:41.076Z",
+          "model": "google/gemini-3.7-flash"
+        }
+      }
+    },
+    "8215dff54be78e11d0afbb143f70f3f8899f66a393b30632f17634c7fea40cfa": {
+      "en": "1 / 5",
+      "translations": {
+        "de": {
+          "text": "1 / 5",
+          "translatedAt": "2026-11-01T08:19:38.298Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fr": {
+          "text": "1 / 5",
+          "translatedAt": "2026-11-01T08:19:43.394Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "es": {
+          "text": "1 / 5",
+          "translatedAt": "2026-11-01T08:19:46.540Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh": {
+          "text": "1 / 5",
+          "translatedAt": "2026-11-01T08:19:50.486Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh-TW": {
+          "text": "1 / 5",
+          "translatedAt": "2026-11-01T08:19:53.976Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ja": {
+          "text": "1 / 5",
+          "translatedAt": "2026-11-01T08:19:56.433Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ko": {
+          "text": "1 / 5",
+          "translatedAt": "2026-11-01T08:19:59.030Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pt": {
+          "text": "1 / 5",
+          "translatedAt": "2026-11-01T08:20:03.218Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "hi": {
+          "text": "1 / 5",
+          "translatedAt": "2026-11-01T08:20:08.510Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "vi": {
+          "text": "1 / 5",
+          "translatedAt": "2026-11-01T08:20:11.409Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "nl": {
+          "text": "1 / 5",
+          "translatedAt": "2026-11-01T08:20:16.389Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "it": {
+          "text": "1 / 5",
+          "translatedAt": "2026-11-01T08:20:20.138Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ru": {
+          "text": "1 / 5",
+          "translatedAt": "2026-11-01T08:20:23.889Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "uk": {
+          "text": "1 / 5",
+          "translatedAt": "2026-11-01T08:20:27.218Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "tr": {
+          "text": "1 / 5",
+          "translatedAt": "2026-11-01T08:20:31.097Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "id": {
+          "text": "1 / 5",
+          "translatedAt": "2026-11-01T08:20:34.714Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pl": {
+          "text": "1 / 5",
+          "translatedAt": "2026-11-01T08:20:37.825Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "th": {
+          "text": "1 / 5",
+          "translatedAt": "2026-11-01T08:20:41.443Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ar": {
+          "text": "1 / 5",
+          "translatedAt": "2026-11-01T08:20:44.421Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "sv": {
+          "text": "1 / 5",
+          "translatedAt": "2026-11-01T08:20:49.993Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "da": {
+          "text": "1 / 5",
+          "translatedAt": "2026-11-01T08:20:53.358Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "no": {
+          "text": "1 / 5",
+          "translatedAt": "2026-11-01T08:20:59.171Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fi": {
+          "text": "1 / 5",
+          "translatedAt": "2026-11-01T08:21:03.709Z",
+          "model": "google/gemini-3.7-flash"
+        }
+      }
+    },
+    "7ac43b05688b652d614be0ff1090ab0693829dad482ec346e73224ce5202313f": {
+      "en": "2 / 5",
+      "translations": {
+        "de": {
+          "text": "2 / 5",
+          "translatedAt": "2026-11-01T08:19:38.298Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fr": {
+          "text": "2 / 5",
+          "translatedAt": "2026-11-01T08:19:43.394Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "es": {
+          "text": "2 / 5",
+          "translatedAt": "2026-11-01T08:19:46.540Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh": {
+          "text": "2 / 5",
+          "translatedAt": "2026-11-01T08:19:50.486Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh-TW": {
+          "text": "2 / 5",
+          "translatedAt": "2026-11-01T08:19:53.976Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ja": {
+          "text": "2 / 5",
+          "translatedAt": "2026-11-01T08:19:56.433Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ko": {
+          "text": "2 / 5",
+          "translatedAt": "2026-11-01T08:19:59.030Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pt": {
+          "text": "2 / 5",
+          "translatedAt": "2026-11-01T08:20:03.218Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "hi": {
+          "text": "2 / 5",
+          "translatedAt": "2026-11-01T08:20:08.510Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "vi": {
+          "text": "2 / 5",
+          "translatedAt": "2026-11-01T08:20:11.409Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "nl": {
+          "text": "2 / 5",
+          "translatedAt": "2026-11-01T08:20:16.389Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "it": {
+          "text": "2 / 5",
+          "translatedAt": "2026-11-01T08:20:20.138Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ru": {
+          "text": "2 / 5",
+          "translatedAt": "2026-11-01T08:20:23.889Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "uk": {
+          "text": "2 / 5",
+          "translatedAt": "2026-11-01T08:20:27.218Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "tr": {
+          "text": "2 / 5",
+          "translatedAt": "2026-11-01T08:20:31.097Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "id": {
+          "text": "2 / 5",
+          "translatedAt": "2026-11-01T08:20:34.714Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pl": {
+          "text": "2 / 5",
+          "translatedAt": "2026-11-01T08:20:37.825Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "th": {
+          "text": "2 / 5",
+          "translatedAt": "2026-11-01T08:20:41.443Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ar": {
+          "text": "2 / 5",
+          "translatedAt": "2026-11-01T08:20:44.421Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "sv": {
+          "text": "2 / 5",
+          "translatedAt": "2026-11-01T08:20:49.993Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "da": {
+          "text": "2 / 5",
+          "translatedAt": "2026-11-01T08:20:53.358Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "no": {
+          "text": "2 / 5",
+          "translatedAt": "2026-11-01T08:20:59.171Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fi": {
+          "text": "2 / 5",
+          "translatedAt": "2026-11-01T08:21:03.709Z",
+          "model": "google/gemini-3.7-flash"
+        }
+      }
+    },
+    "2ce60bc7d37329c54948af52c34bcb885a0b90577cdd08479d335a1650170b06": {
+      "en": "3 / 5",
+      "translations": {
+        "de": {
+          "text": "3 / 5",
+          "translatedAt": "2026-11-01T08:19:38.298Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fr": {
+          "text": "3 / 5",
+          "translatedAt": "2026-11-01T08:19:43.394Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "es": {
+          "text": "3 / 5",
+          "translatedAt": "2026-11-01T08:19:46.540Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh": {
+          "text": "3 / 5",
+          "translatedAt": "2026-11-01T08:19:50.486Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh-TW": {
+          "text": "3 / 5",
+          "translatedAt": "2026-11-01T08:19:53.976Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ja": {
+          "text": "3 / 5",
+          "translatedAt": "2026-11-01T08:19:56.433Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ko": {
+          "text": "3 / 5",
+          "translatedAt": "2026-11-01T08:19:59.030Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pt": {
+          "text": "3 / 5",
+          "translatedAt": "2026-11-01T08:20:03.218Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "hi": {
+          "text": "3 / 5",
+          "translatedAt": "2026-11-01T08:20:08.510Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "vi": {
+          "text": "3 / 5",
+          "translatedAt": "2026-11-01T08:20:11.409Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "nl": {
+          "text": "3 / 5",
+          "translatedAt": "2026-11-01T08:20:16.389Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "it": {
+          "text": "3 / 5",
+          "translatedAt": "2026-11-01T08:20:20.138Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ru": {
+          "text": "3 / 5",
+          "translatedAt": "2026-11-01T08:20:23.889Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "uk": {
+          "text": "3 / 5",
+          "translatedAt": "2026-11-01T08:20:27.218Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "tr": {
+          "text": "3 / 5",
+          "translatedAt": "2026-11-01T08:20:31.097Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "id": {
+          "text": "3 / 5",
+          "translatedAt": "2026-11-01T08:20:34.714Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pl": {
+          "text": "3 / 5",
+          "translatedAt": "2026-11-01T08:20:37.825Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "th": {
+          "text": "3 / 5",
+          "translatedAt": "2026-11-01T08:20:41.443Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ar": {
+          "text": "3 / 5",
+          "translatedAt": "2026-11-01T08:20:44.421Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "sv": {
+          "text": "3 / 5",
+          "translatedAt": "2026-11-01T08:20:49.993Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "da": {
+          "text": "3 / 5",
+          "translatedAt": "2026-11-01T08:20:53.358Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "no": {
+          "text": "3 / 5",
+          "translatedAt": "2026-11-01T08:20:59.171Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fi": {
+          "text": "3 / 5",
+          "translatedAt": "2026-11-01T08:21:03.709Z",
+          "model": "google/gemini-3.7-flash"
+        }
+      }
+    },
+    "c752d3c969be1319cfe43edfaefc5d95c9bfa01aa54adffc84bdc878c7e560dd": {
+      "en": "4 / 5",
+      "translations": {
+        "de": {
+          "text": "4 / 5",
+          "translatedAt": "2026-11-01T08:19:38.298Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fr": {
+          "text": "4 / 5",
+          "translatedAt": "2026-11-01T08:19:43.394Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "es": {
+          "text": "4 / 5",
+          "translatedAt": "2026-11-01T08:19:46.540Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh": {
+          "text": "4 / 5",
+          "translatedAt": "2026-11-01T08:19:50.486Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh-TW": {
+          "text": "4 / 5",
+          "translatedAt": "2026-11-01T08:19:53.976Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ja": {
+          "text": "4 / 5",
+          "translatedAt": "2026-11-01T08:19:56.433Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ko": {
+          "text": "4 / 5",
+          "translatedAt": "2026-11-01T08:19:59.030Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pt": {
+          "text": "4 / 5",
+          "translatedAt": "2026-11-01T08:20:03.218Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "hi": {
+          "text": "4 / 5",
+          "translatedAt": "2026-11-01T08:20:08.510Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "vi": {
+          "text": "4 / 5",
+          "translatedAt": "2026-11-01T08:20:11.409Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "nl": {
+          "text": "4 / 5",
+          "translatedAt": "2026-11-01T08:20:16.389Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "it": {
+          "text": "4 / 5",
+          "translatedAt": "2026-11-01T08:20:20.138Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ru": {
+          "text": "4 / 5",
+          "translatedAt": "2026-11-01T08:20:23.889Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "uk": {
+          "text": "4 / 5",
+          "translatedAt": "2026-11-01T08:20:27.218Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "tr": {
+          "text": "4 / 5",
+          "translatedAt": "2026-11-01T08:20:31.097Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "id": {
+          "text": "4 / 5",
+          "translatedAt": "2026-11-01T08:20:34.714Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pl": {
+          "text": "4 / 5",
+          "translatedAt": "2026-11-01T08:20:37.825Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "th": {
+          "text": "4 / 5",
+          "translatedAt": "2026-11-01T08:20:41.443Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ar": {
+          "text": "4 / 5",
+          "translatedAt": "2026-11-01T08:20:44.421Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "sv": {
+          "text": "4 / 5",
+          "translatedAt": "2026-11-01T08:20:49.993Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "da": {
+          "text": "4 / 5",
+          "translatedAt": "2026-11-01T08:20:53.358Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "no": {
+          "text": "4 / 5",
+          "translatedAt": "2026-11-01T08:20:59.171Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fi": {
+          "text": "4 / 5",
+          "translatedAt": "2026-11-01T08:21:03.709Z",
+          "model": "google/gemini-3.7-flash"
+        }
+      }
+    },
+    "570e27af6d911a46547be22a59dd99be3d790071e93fe6b7e7483f01704d17e7": {
+      "en": "5 / 5",
+      "translations": {
+        "de": {
+          "text": "5 / 5",
+          "translatedAt": "2026-11-01T08:19:38.298Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fr": {
+          "text": "5 / 5",
+          "translatedAt": "2026-11-01T08:19:43.394Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "es": {
+          "text": "5 / 5",
+          "translatedAt": "2026-11-01T08:19:46.540Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh": {
+          "text": "5 / 5",
+          "translatedAt": "2026-11-01T08:19:50.486Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh-TW": {
+          "text": "5 / 5",
+          "translatedAt": "2026-11-01T08:19:53.976Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ja": {
+          "text": "5 / 5",
+          "translatedAt": "2026-11-01T08:19:56.433Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ko": {
+          "text": "5 / 5",
+          "translatedAt": "2026-11-01T08:19:59.030Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pt": {
+          "text": "5 / 5",
+          "translatedAt": "2026-11-01T08:20:03.218Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "hi": {
+          "text": "5 / 5",
+          "translatedAt": "2026-11-01T08:20:08.510Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "vi": {
+          "text": "5 / 5",
+          "translatedAt": "2026-11-01T08:20:11.409Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "nl": {
+          "text": "5 / 5",
+          "translatedAt": "2026-11-01T08:20:16.389Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "it": {
+          "text": "5 / 5",
+          "translatedAt": "2026-11-01T08:20:20.138Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ru": {
+          "text": "5 / 5",
+          "translatedAt": "2026-11-01T08:20:23.889Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "uk": {
+          "text": "5 / 5",
+          "translatedAt": "2026-11-01T08:20:27.218Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "tr": {
+          "text": "5 / 5",
+          "translatedAt": "2026-11-01T08:20:31.097Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "id": {
+          "text": "5 / 5",
+          "translatedAt": "2026-11-01T08:20:34.714Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pl": {
+          "text": "5 / 5",
+          "translatedAt": "2026-11-01T08:20:37.825Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "th": {
+          "text": "5 / 5",
+          "translatedAt": "2026-11-01T08:20:41.443Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ar": {
+          "text": "5 / 5",
+          "translatedAt": "2026-11-01T08:20:44.421Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "sv": {
+          "text": "5 / 5",
+          "translatedAt": "2026-11-01T08:20:49.993Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "da": {
+          "text": "5 / 5",
+          "translatedAt": "2026-11-01T08:20:53.358Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "no": {
+          "text": "5 / 5",
+          "translatedAt": "2026-11-01T08:20:59.171Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fi": {
+          "text": "5 / 5",
+          "translatedAt": "2026-11-01T08:21:03.709Z",
+          "model": "google/gemini-3.7-flash"
+        }
+      }
+    },
+    "e77d06a3ae094f5d99cf57f4bceeb1954c858e12eba009ec867b418dd3f5b9f5": {
+      "en": "Slide 5: live demo",
+      "translations": {
+        "de": {
+          "text": "Folie 5: Live-Demo",
+          "translatedAt": "2026-11-01T08:19:38.298Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fr": {
+          "text": "Diapositive 5 : démo en direct",
+          "translatedAt": "2026-11-01T08:19:43.394Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "es": {
+          "text": "Diapositiva 5: demo en vivo",
+          "translatedAt": "2026-11-01T08:19:46.540Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh": {
+          "text": "幻灯片 5：实时演示",
+          "translatedAt": "2026-11-01T08:19:50.486Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh-TW": {
+          "text": "投影片 5：實機展示",
+          "translatedAt": "2026-11-01T08:19:53.976Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ja": {
+          "text": "スライド 5: ライブデモ",
+          "translatedAt": "2026-11-01T08:19:56.433Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ko": {
+          "text": "슬라이드 5: 라이브 데모",
+          "translatedAt": "2026-11-01T08:19:59.030Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pt": {
+          "text": "Slide 5: demonstração ao vivo",
+          "translatedAt": "2026-11-01T08:20:03.218Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "hi": {
+          "text": "Slide 5: Live demo",
+          "translatedAt": "2026-11-01T08:20:08.510Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "vi": {
+          "text": "Slide 5: Demo trực tiếp",
+          "translatedAt": "2026-11-01T08:20:11.409Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "nl": {
+          "text": "Dia 5: live demo",
+          "translatedAt": "2026-11-01T08:20:16.389Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "it": {
+          "text": "Slide 5: demo live",
+          "translatedAt": "2026-11-01T08:20:20.138Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ru": {
+          "text": "Слайд 5: живая демонстрация",
+          "translatedAt": "2026-11-01T08:20:23.889Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "uk": {
+          "text": "Слайд 5: демонстрація наживо",
+          "translatedAt": "2026-11-01T08:20:27.218Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "tr": {
+          "text": "Slayt 5: canlı demo",
+          "translatedAt": "2026-11-01T08:20:31.097Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "id": {
+          "text": "Slide 5: live demo",
+          "translatedAt": "2026-11-01T08:20:34.714Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pl": {
+          "text": "Slajd 5: demo na żywo",
+          "translatedAt": "2026-11-01T08:20:37.825Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "th": {
+          "text": "สไลด์ 5: การสาธิตสด",
+          "translatedAt": "2026-11-01T08:20:41.443Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ar": {
+          "text": "الشريحة 5: عرض توضيحي مباشر",
+          "translatedAt": "2026-11-01T08:20:44.421Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "sv": {
+          "text": "Slide 5: live demo",
+          "translatedAt": "2026-11-01T08:20:49.993Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "da": {
+          "text": "Slide 5: live demo",
+          "translatedAt": "2026-11-01T08:20:53.358Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "no": {
+          "text": "Lysbilde 5: live-demo",
+          "translatedAt": "2026-11-01T08:20:59.171Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fi": {
+          "text": "Dia 5: live-demo",
+          "translatedAt": "2026-11-01T08:21:03.709Z",
+          "model": "google/gemini-3.7-flash"
+        }
+      }
+    },
+    "8c2fc79cb0c2cb8ca70ff552e4173bd5140668a5dbe134d5a4dadc9f58fcf44e": {
+      "en": "The short version: what it does, what it costs, where your data goes.",
+      "translations": {
+        "de": {
+          "text": "Die Kurzfassung: Was es kann, was es kostet und wo Ihre Daten bleiben.",
+          "translatedAt": "2026-11-01T08:33:12.892Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fr": {
+          "text": "En résumé : ce qu'il fait, ce qu'il coûte et où vont vos données.",
+          "translatedAt": "2026-11-01T08:33:18.062Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "es": {
+          "text": "En resumen: qué hace, cuánto cuesta y adónde van tus datos.",
+          "translatedAt": "2026-11-01T08:33:22.930Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh": {
+          "text": "简短概括：核心功能、费用说明以及数据去向。",
+          "translatedAt": "2026-11-01T08:33:28.124Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh-TW": {
+          "text": "重點速覽：核心功能、費用方案與資料流向。",
+          "translatedAt": "2026-11-01T08:33:33.267Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ja": {
+          "text": "要点まとめ：できること、料金、データの保存・送信先について。",
+          "translatedAt": "2026-11-01T08:33:38.253Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ko": {
+          "text": "핵심 요약: 어떤 기능인지, 비용은 얼마인지, 데이터는 어디에 저장되는지 확인해 보세요.",
+          "translatedAt": "2026-11-01T08:33:46.888Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pt": {
+          "text": "A versão resumida: o que ele faz, quanto custa, para onde vão seus dados.",
+          "translatedAt": "2026-11-01T08:33:52.946Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "hi": {
+          "text": "शॉर्ट वर्ज़न: यह क्या करता है, इसकी कॉस्ट क्या है, और आपका डेटा कहाँ जाता है।",
+          "translatedAt": "2026-11-01T08:34:02.933Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "vi": {
+          "text": "Tóm tắt ngắn gọn: cách hoạt động, chi phí và dữ liệu của bạn đi về đâu.",
+          "translatedAt": "2026-11-01T08:34:07.977Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "nl": {
+          "text": "In het kort: wat het doet, wat het kost, waar je data naartoe gaat.",
+          "translatedAt": "2026-11-01T08:34:14.900Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "it": {
+          "text": "In sintesi: cosa fa, quanto costa e dove vanno i tuoi dati.",
+          "translatedAt": "2026-11-01T08:34:20.380Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ru": {
+          "text": "Кратко: что делает, сколько стоит и куда попадают ваши данные.",
+          "translatedAt": "2026-11-01T08:34:25.489Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "uk": {
+          "text": "Коротко: що робить, скільки коштує та куди потрапляють ваші дані.",
+          "translatedAt": "2026-11-01T08:34:31.515Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "tr": {
+          "text": "Özetle: Ne işe yarar, maliyeti nedir, verileriniz nereye gider.",
+          "translatedAt": "2026-11-01T08:34:36.718Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "id": {
+          "text": "Versi singkat: apa fungsinya, berapa biayanya, dan ke mana data Anda pergi.",
+          "translatedAt": "2026-11-01T08:34:45.031Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pl": {
+          "text": "W skrócie: jak to działa, ile kosztuje i gdzie trafiają twoje dane.",
+          "translatedAt": "2026-11-01T08:34:49.521Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "th": {
+          "text": "สรุปสั้น ๆ: ทำอะไรได้บ้าง มีค่าใช้จ่ายเท่าไร และข้อมูลของคุณถูกส่งไปที่ไหน",
+          "translatedAt": "2026-11-01T08:34:55.301Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ar": {
+          "text": "باختصار: ما الذي يقدمه، وتكلفته، وأين تذهب بياناتك.",
+          "translatedAt": "2026-11-01T08:35:00.259Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "sv": {
+          "text": "Kortversionen: vad den gör, vad det kostar och var din data hamnar.",
+          "translatedAt": "2026-11-01T08:35:06.531Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "da": {
+          "text": "Den korte version: hvad den kan, hvad det koster, og hvor dine data ender.",
+          "translatedAt": "2026-11-01T08:35:10.261Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "no": {
+          "text": "Kortversjonen: hva den gjør, hva det koster, og hvor dataene dine havner.",
+          "translatedAt": "2026-11-01T08:35:14.719Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fi": {
+          "text": "Lyhyesti: mitä se tekee, mitä se maksaa ja minne tietosi menevät.",
+          "translatedAt": "2026-11-01T08:35:19.402Z",
+          "model": "google/gemini-3.7-flash"
+        }
+      }
+    },
+    "ad5fc8fd69764b9cbfb5fc29183d969f7d6f35de99ee21e215b1ebdf456eb6b3": {
+      "en": ", under the AGPL-3.0 license. It is free for personal, educational and non-profit use; companies that want to use it outside the AGPL's terms can get a commercial license.",
+      "translations": {
+        "de": {
+          "text": ", unter der AGPL-3.0-Lizenz. Es ist für die private, bildungsbezogene und gemeinnützige Nutzung kostenlos; Unternehmen, die es außerhalb der Bedingungen der AGPL nutzen möchten, können eine kommerzielle Lizenz erwerben.",
+          "translatedAt": "2026-11-01T09:09:05.071Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fr": {
+          "text": ", sous licence AGPL-3.0. Il est gratuit pour un usage personnel, éducatif et à but non lucratif ; les entreprises souhaitant l'utiliser en dehors des conditions de l'AGPL peuvent acquérir une licence commerciale.",
+          "translatedAt": "2026-11-01T09:09:09.520Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "es": {
+          "text": ", bajo la licencia AGPL-3.0. Es gratuito para uso personal, educativo y sin fines de lucro; las empresas que deseen utilizarlo fuera de los términos de la AGPL pueden adquirir una licencia comercial.",
+          "translatedAt": "2026-11-01T09:09:13.703Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh": {
+          "text": "，采用 AGPL-3.0 许可证。个人、教育及非营利用途可免费使用；企业若需在 AGPL 条款范围外使用，可获取商业授权。",
+          "translatedAt": "2026-11-01T09:09:17.165Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh-TW": {
+          "text": "，採用 AGPL-3.0 授權條款。個人、教育與非營利用途完全免費；若企業需要在 AGPL 條款規範之外使用，可取得商業授權。",
+          "translatedAt": "2026-11-01T09:09:22.200Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ja": {
+          "text": "、AGPL-3.0ライセンスの下で提供されています。個人利用、教育目的、非営利目的でのご利用は無料です。AGPLの条項外での利用をご希望の企業向けには、商用ライセンスをご用意しています。",
+          "translatedAt": "2026-11-01T09:09:27.794Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ko": {
+          "text": ", AGPL-3.0 라이선스에 따라 제공돼요. 개인, 교육 및 비영리 목적으로는 무료로 이용할 수 있으며, AGPL 조건 외의 용도로 사용하려는 기업은 상용 라이선스를 취득할 수 있어요.",
+          "translatedAt": "2026-11-01T09:09:32.755Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pt": {
+          "text": ", sob a licença AGPL-3.0. É gratuito para uso pessoal, educacional e sem fins lucrativos; empresas que queiram usá-lo fora dos termos da AGPL podem obter uma licença comercial.",
+          "translatedAt": "2026-11-01T09:09:37.234Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "hi": {
+          "text": ", AGPL-3.0 license के तहत। यह personal, educational और non-profit use के लिए free है; जो companies इसे AGPL की terms के बाहर use करना चाहती हैं, वे commercial license ले सकती हैं।",
+          "translatedAt": "2026-11-01T09:09:40.951Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "vi": {
+          "text": ", theo giấy phép AGPL-3.0. Phần mềm miễn phí cho mục đích cá nhân, giáo dục và phi lợi nhuận; các doanh nghiệp muốn sử dụng ngoài các điều khoản của AGPL có thể mua giấy phép thương mại.",
+          "translatedAt": "2026-11-01T09:09:45.228Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "nl": {
+          "text": ", onder de AGPL-3.0-licentie. Het is gratis voor persoonlijk, educatief en non-profitgebruik; bedrijven die het buiten de voorwaarden van de AGPL willen gebruiken, kunnen een commerciële licentie aanschaffen.",
+          "translatedAt": "2026-11-01T09:09:50.132Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "it": {
+          "text": ", sotto licenza AGPL-3.0. È gratuito per uso personale, didattico e no-profit; le aziende che desiderano utilizzarlo al di fuori dei termini della licenza AGPL possono ottenere una licenza commerciale.",
+          "translatedAt": "2026-11-01T09:09:53.681Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ru": {
+          "text": ", под лицензией AGPL-3.0. Использование бесплатно в личных, образовательных и некоммерческих целях; компании, желающие использовать его вне условий AGPL, могут приобрести коммерческую лицензию.",
+          "translatedAt": "2026-11-01T09:09:58.612Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "uk": {
+          "text": ", за ліцензією AGPL-3.0. Він безкоштовний для особистого, освітнього та некомерційного використання; компанії, які бажають використовувати його поза межами умов AGPL, можуть отримати комерційну ліцензію.",
+          "translatedAt": "2026-11-01T09:10:02.934Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "tr": {
+          "text": ", AGPL-3.0 lisansı kapsamındadır. Kişisel, eğitim amaçlı ve kâr amacı gütmeyen kullanım için ücretsizdir; AGPL koşulları dışında kullanmak isteyen şirketler ticari bir lisans alabilir.",
+          "translatedAt": "2026-11-01T09:10:07.046Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "id": {
+          "text": ", di bawah lisensi AGPL-3.0. Gratis untuk penggunaan pribadi, pendidikan, dan nirlaba; perusahaan yang ingin menggunakannya di luar ketentuan AGPL dapat memperoleh lisensi komersial.",
+          "translatedAt": "2026-11-01T09:10:10.820Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pl": {
+          "text": ", na licencji AGPL-3.0. Jest bezpłatny do użytku osobistego, edukacyjnego oraz non-profit; firmy chcące korzystać z niego poza warunkami licencji AGPL mogą uzyskać licencję komercyjną.",
+          "translatedAt": "2026-11-01T09:10:15.672Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "th": {
+          "text": ", ภายใต้สัญญาอนุญาต AGPL-3.0 โดยเปิดให้ใช้งานได้ฟรีสำหรับการใช้งานส่วนบุคคล ทางการศึกษา และองค์กรไม่แสวงหากำไร สำหรับบริษัทที่ต้องการใช้งานนอกเหนือจากข้อกำหนดของ AGPL สามารถขอรับ commercial license ได้",
+          "translatedAt": "2026-11-01T09:10:21.410Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ar": {
+          "text": "، بموجب ترخيص AGPL-3.0. وهو مجاني للاستخدام الشخصي والتعليمي وغير الربحي؛ ويمكن للشركات التي ترغب في استخدامه خارج شروط ترخيص AGPL الحصول على ترخيص تجاري.",
+          "translatedAt": "2026-11-01T09:10:24.374Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "sv": {
+          "text": ", under AGPL-3.0-licensen. Det är gratis för personlig användning, utbildning och ideell verksamhet; företag som vill använda det utanför villkoren i AGPL kan teckna en kommersiell licens.",
+          "translatedAt": "2026-11-01T09:10:28.692Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "da": {
+          "text": ", under AGPL-3.0-licensen. Det er gratis til personlig, uddannelsesmæssig og non-profit brug; virksomheder, der ønsker at bruge det uden for AGPL-vilkårene, kan få en kommerciel licens.",
+          "translatedAt": "2026-11-01T09:10:33.965Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "no": {
+          "text": ", under AGPL-3.0-lisensen. Den er gratis for personlig, pedagogisk og ideell bruk; bedrifter som ønsker å bruke den utenfor AGPL-vilkårene, kan skaffe en kommersiell lisens.",
+          "translatedAt": "2026-11-01T09:10:39.024Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fi": {
+          "text": ", AGPL-3.0-lisenssillä. Se on ilmainen henkilökohtaiseen, koulutus- ja voittoa tavoittelemattomaan käyttöön; yritykset, jotka haluavat käyttää sitä AGPL-ehtojen ulkopuolella, voivat hankkia kaupallisen lisenssin.",
+          "translatedAt": "2026-11-01T09:10:43.567Z",
+          "model": "google/gemini-3.7-flash"
+        }
+      }
+    },
+    "4a0b0dcd382e71b5064c2c52dc472099aa5d07338ed05df6cefa9a3e738a018b": {
+      "en": "It's still free, still open source (AGPL-3.0, full code on GitHub; companies that need other terms can get a commercial license), and it still doesn't require an account for any core feature. That part was never up for negotiation — it's the same reason v1 existed as a bookmarklet in the first place: built by someone who wanted to own their own reading tool, not rent one.",
+      "translations": {
+        "de": {
+          "text": "Es ist weiterhin kostenlos, Open Source (AGPL-3.0, vollständiger Code auf GitHub; Unternehmen mit abweichenden Anforderungen können eine kommerzielle Lizenz erwerben) und erfordert für keine der Kernfunktionen ein Konto. Dieser Grundsatz stand nie zur Verhandlung – aus genau diesem Grund entstand v1 ursprünglich überhaupt erst als Bookmarklet: Entwickelt von jemandem, der sein eigenes Lese-Werkzeug besitzen und nicht mieten wollte.",
+          "translatedAt": "2026-11-01T09:10:50.052Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fr": {
+          "text": "L'outil reste gratuit, toujours open source (licence AGPL-3.0, code complet disponible sur GitHub ; les entreprises ayant besoin d'autres conditions peuvent acquérir une licence commerciale), et ne requiert aucun compte pour ses fonctionnalités principales. Ce point n'a jamais été négociable — c'est d'ailleurs la raison d'être de la v1 sous forme de bookmarklet à l'origine : un projet conçu par quelqu'un qui souhaitait posséder son propre outil de lecture, plutôt que de le louer.",
+          "translatedAt": "2026-11-01T09:10:54.676Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "es": {
+          "text": "Sigue siendo gratuito, sigue siendo de código abierto (AGPL-3.0, código completo en GitHub; las empresas que necesiten otros términos pueden obtener una licencia comercial) y sigue sin requerir una cuenta para ninguna función principal. Esa parte nunca estuvo en negociación — es la misma razón por la que la v1 existió como un bookmarklet en primer lugar: creada por alguien que quería ser dueño de su propia herramienta de lectura, no alquilar una.",
+          "translatedAt": "2026-11-01T09:10:59.674Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh": {
+          "text": "它依然完全免费、依然开源（采用 AGPL-3.0 协议，完整代码托管于 GitHub；有特殊合规需求的企业可获取商业许可），并且任何核心功能都依然无需注册账号即可使用。这一点绝无妥协余地——这也是 v1 最初作为 bookmarklet 诞生的初衷：由一位希望真正拥有、而非租用自己阅读工具的开发者打造。",
+          "translatedAt": "2026-11-01T09:11:03.408Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "zh-TW": {
+          "text": "它依然免費、依然開源（採 AGPL-3.0 授權，完整程式碼公開於 GitHub；企業如有其他條款需求亦可取得商業授權），而且所有核心功能依然無需註冊帳號。這一點從來沒有任何妥協空間——這正是當初 v1 作為 bookmarklet 誕生的初衷：由一個想要真正「擁有」屬於自己的閱讀工具、而非「租賃」工具的人所打造。",
+          "translatedAt": "2026-11-01T09:11:10.462Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ja": {
+          "text": "これまで通り無料でオープンソース（AGPL-3.0、全コードをGitHubで公開。別条件が必要な企業向けには商用ライセンスも提供）であり、主要機能の利用にアカウント登録は一切不要です。この方針が揺らぐことはありません。そもそもv1がブックマークレットとして誕生したのもまさにそのためです。誰かからツールを借りるのではなく、自分自身の読書ツールとして所有したいという思いから作られました。",
+          "translatedAt": "2026-11-01T09:11:15.709Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ko": {
+          "text": "여전히 무료이며 오픈 소스(AGPL-3.0, GitHub에 전체 코드 공개, 별도 조건이 필요한 기업은 상용 라이선스 이용 가능)이고, 어떤 핵심 기능에도 계정이 필요하지 않아요. 이 원칙은 결코 타협 대상이 아니었습니다. v1이 처음에 북마클릿 형태로 탄생했던 이유도 바로 이 때문이죠. 읽기 도구를 빌려 쓰지 않고 온전히 소유하고 싶었던 사람이 직접 만들었으니까요.",
+          "translatedAt": "2026-11-01T09:11:20.721Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pt": {
+          "text": "Continua gratuito, continua de código aberto (AGPL-3.0, código completo no GitHub; empresas que precisarem de outros termos podem obter uma licença comercial) e continua sem exigir nenhuma conta para os recursos principais. Essa parte nunca esteve em negociação — é o mesmo motivo pelo qual a v1 existiu como um bookmarklet em primeiro lugar: criado por alguém que queria ser dono da sua própria ferramenta de leitura, e não alugar uma.",
+          "translatedAt": "2026-11-01T09:11:26.524Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "hi": {
+          "text": "यह अभी भी free है, अभी भी open source है (AGPL-3.0, पूरा code GitHub पर है; जिन companies को अलग terms चाहिए वे commercial license ले सकती हैं), और इसके किसी भी core feature के लिए account की कोई ज़रूरत नहीं है। यह बात कभी negotiation के लिए थी ही नहीं — और यही वजह है कि v1 की शुरुआत एक bookmarklet के तौर पर हुई थी: इसे किसी ऐसे व्यक्ति ने बनाया जो अपने reading tool का खुद मालिक बनना चाहता था, उसे rent पर लेना नहीं।",
+          "translatedAt": "2026-11-01T09:11:30.718Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "vi": {
+          "text": "Ứng dụng vẫn hoàn toàn miễn phí, vẫn là mã nguồn mở (AGPL-3.0, toàn bộ mã nguồn trên GitHub; các doanh nghiệp có nhu cầu về điều khoản khác có thể mua giấy phép thương mại), và vẫn không yêu cầu tài khoản cho bất kỳ tính năng cốt lõi nào. Điều đó chưa bao giờ là thứ để thương lượng — đây cũng chính là lý do v1 ra đời ban đầu dưới dạng một bookmarklet: được xây dựng bởi một người muốn thực sự làm chủ công cụ đọc của riêng mình, chứ không phải đi thuê nó.",
+          "translatedAt": "2026-11-01T09:11:33.798Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "nl": {
+          "text": "Het is nog steeds gratis, nog steeds open source (AGPL-3.0, volledige broncode op GitHub; bedrijven die andere voorwaarden nodig hebben, kunnen een commerciële licentie krijgen) en je hebt voor geen enkele kernfunctie een account nodig. Dat stond nooit ter discussie — het is precies de reden waarom v1 ooit begon als bookmarklet: gebouwd door iemand die zijn eigen leestool wilde bezitten, niet huren.",
+          "translatedAt": "2026-11-01T09:11:38.436Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "it": {
+          "text": "È ancora gratuito, ancora open source (AGPL-3.0, codice completo su GitHub; le aziende che necessitano di condizioni diverse possono ottenere una licenza commerciale) e continua a non richiedere un account per nessuna funzionalità principale. Questo aspetto non è mai stato negoziabile: è lo stesso motivo per cui la v1 è nata originariamente come bookmarklet, creata da chi voleva possedere il proprio strumento di lettura, non noleggiarne uno.",
+          "translatedAt": "2026-11-01T09:11:44.791Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ru": {
+          "text": "Сервис остаётся бесплатным, с открытым исходным кодом (AGPL-3.0, полный код доступен на GitHub; компаниям, которым требуются иные условия, доступна коммерческая лицензия), и для всех основных функций по-прежнему не требуется аккаунт. Этот принцип никогда не был предметом компромиссов — именно поэтому v1 изначально создавался как букмарклет: проект сделан тем, кто хотел полноценно владеть своим инструментом для чтения, а не брать его в аренду.",
+          "translatedAt": "2026-11-01T09:11:51.057Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "uk": {
+          "text": "Він досі безкоштовний, досі з відкритим вихідним кодом (AGPL-3.0, увесь код на GitHub; компанії, яким потрібні інші умови, можуть отримати комерційну ліцензію), і для жодної базової функції все ще не потрібен обліковий запис. Цей пункт ніколи не підлягав обговоренню — з тієї ж причини v1 взагалі виник як букмарклет: його створила людина, яка хотіла володіти власним інструментом для читання, а не орендувати його.",
+          "translatedAt": "2026-11-01T09:11:55.760Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "tr": {
+          "text": "Hâlâ ücretsiz, hâlâ open source (AGPL-3.0, tüm kodlar GitHub'da; farklı koşullara ihtiyaç duyan şirketler ticari lisans edinebilir) ve temel özelliklerin hiçbiri için hâlâ bir hesap oluşturmanız gerekmiyor. Bu konu hiçbir zaman tartışmaya açık olmadı — v1'in en başta bir bookmarklet olarak var olmasının nedeni de tam olarak buydu: Okuma aracını kiralamak yerine ona gerçekten sahip olmak isteyen biri tarafından geliştirildi.",
+          "translatedAt": "2026-11-01T09:12:01.485Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "id": {
+          "text": "Tetap gratis, tetap open source (AGPL-3.0, kode lengkap di GitHub; perusahaan yang memerlukan ketentuan lain dapat memperoleh lisensi komersial), dan tetap tidak memerlukan akun untuk fitur inti apa pun. Bagian tersebut tidak pernah bisa ditawar — alasan yang sama persis mengapa v1 awalnya hadir sebagai bookmarklet: dibuat oleh seseorang yang ingin memiliki alat bacanya sendiri, bukan menyewanya.",
+          "translatedAt": "2026-11-01T09:12:06.299Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "pl": {
+          "text": "Nadal całkowicie bezpłatny, nadal open source (AGPL-3.0, pełny kod na GitHubie; firmy potrzebujące innych warunków mogą uzyskać licencję komercyjną) i wciąż niewymagający konta do żadnej z kluczowych funkcji. Ta kwestia nigdy nie podlegała negocjacjom — z tego samego powodu v1 powstało pierwotnie jako bookmarklet: stworzone przez kogoś, kto chciał mieć narzędzie do czytania na własność, a nie je wynajmować.",
+          "translatedAt": "2026-11-01T09:12:11.932Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "th": {
+          "text": "ยังคงใช้งานได้ฟรี ยังคงเป็นโอเพนซอร์ส (AGPL-3.0 โค้ดทั้งหมดอยู่บน GitHub ส่วนบริษัทที่ต้องการเงื่อนไขอื่นสามารถขอรับ commercial license ได้) และยังคงไม่จำเป็นต้องมีบัญชีเพื่อใช้งานฟีเจอร์หลักใดๆ จุดยืนนี้ไม่เคยมีข้อต่อรอง — และเป็นเหตุผลเดียวกับที่ v1 ถือกำเนิดขึ้นในรูปแบบ bookmarklet ตั้งแต่แรก: สร้างขึ้นโดยผู้ที่ต้องการเป็นเจ้าของเครื่องมือการอ่านของตัวเองอย่างแท้จริง ไม่ใช่การเช่าใช้",
+          "translatedAt": "2026-11-01T09:12:18.281Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "ar": {
+          "text": "لا يزال مجانيًا ومفتوح المصدر (AGPL-3.0، مع توفر الكود البرمجي بالكامل على GitHub؛ ويمكن للشركات التي تحتاج إلى شروط أخرى الحصول على ترخيص تجاري)، ولا يزال لا يتطلب إنشاء حساب لأي ميزة أساسية. لم يكن هذا الجزء قابلاً للتفاوض أبدًا — وهو السبب نفسه الذي جعل v1 ينطلق كـ bookmarklet في المقام الأول: أداة صُممت على يد شخص أراد امتلاك أداة القراءة الخاصة به، لا استئجارها.",
+          "translatedAt": "2026-11-01T09:12:23.505Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "sv": {
+          "text": "Det är fortfarande gratis, fortfarande öppen källkod (AGPL-3.0, all källkod på GitHub; företag som behöver andra villkor kan teckna en kommersiell licens) och du behöver fortfarande inget konto för någon av kärnfunktionerna. Den delen har aldrig varit förhandlingsbar – det är samma anledning till att v1 skapades som ett bookmarklet från första början: byggt av någon som ville äga sitt eget läsverktyg, inte hyra det.",
+          "translatedAt": "2026-11-01T09:12:30.135Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "da": {
+          "text": "Det er stadig gratis, stadig open source (AGPL-3.0, fuld kildekode på GitHub; virksomheder med behov for andre vilkår kan få en kommerciel licens), og det kræver stadig ikke en konto til nogen kernefunktioner. Den del har aldrig været til forhandling – det er netop grunden til, at v1 overhovedet startede som et bookmarklet: bygget af en, der ville eje sit eget læseværktøj frem for at leje et.",
+          "translatedAt": "2026-11-01T09:12:33.696Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "no": {
+          "text": "Det er fortsatt gratis, fortsatt åpen kildekode (AGPL-3.0, full kode på GitHub; bedrifter som trenger andre vilkår kan få en kommersiell lisens), og det krever fortsatt ingen konto for noen av kjernefunksjonene. Den delen var aldri til forhandling — det er samme grunn til at v1 i sin tid startet som en bookmarklet: laget av noen som ville eie sitt eget leseverktøy, ikke leie et.",
+          "translatedAt": "2026-11-01T09:12:38.508Z",
+          "model": "google/gemini-3.7-flash"
+        },
+        "fi": {
+          "text": "Se on edelleen ilmainen, edelleen avointa lähdekoodia (AGPL-3.0, koko koodi GitHubissa; muita ehtoja tarvitsevat yritykset voivat hankkia kaupallisen lisenssin), eikä minkään ydintoiminnon käyttö vaadi käyttäjätiliä. Tästä ei ole koskaan tingitty — juuri tästä syystä v1 tehtiin alun perinkin bookmarkletina: sen rakensi joku, joka halusi omistaa oman lukutyökalunsa sen vuokraamisen sijaan.",
+          "translatedAt": "2026-11-01T09:12:45.695Z",
+          "model": "google/gemini-3.7-flash"
+        }
+      }
     }
   }
 }
