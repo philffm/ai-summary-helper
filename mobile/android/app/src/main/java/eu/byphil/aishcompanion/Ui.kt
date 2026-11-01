@@ -75,14 +75,36 @@ fun isWide(): Boolean = widthClass() != WidthClass.Compact
  */
 @Composable
 fun ListDetail(hasSelection: Boolean, onBackToList: () -> Unit, list: @Composable () -> Unit, detail: @Composable () -> Unit, empty: @Composable () -> Unit, focus: Boolean = false, onExitFocus: () -> Unit = {}) {
-    if (isWide()) {
+    val wide = isWide()
+    // Folding or unfolding crosses the 600 dp line: one light tick, and the list slides in beside the open item instead of the layout just jumping.
+    // `seenWide` is null on the very first composition (app start on a wide screen): no tick and no animation then.
+    val haptic = androidx.compose.ui.platform.LocalHapticFeedback.current
+    val reduceMotion = LocalReduceMotion.current
+    var seenWide by remember { mutableStateOf<Boolean?>(null) }
+    androidx.compose.runtime.LaunchedEffect(wide) {
+        if (seenWide != null && seenWide != wide) haptic.performHapticFeedback(androidx.compose.ui.hapticfeedback.HapticFeedbackType.TextHandleMove)
+        seenWide = wide
+    }
+    if (wide) {
         // Focus (reading full screen): the list steps aside and the open item gets the whole width; back or the toggle brings the list back.
         val focused = focus && hasSelection
         BackHandler(enabled = focused, onBack = onExitFocus)
+        // The list pane animates in only right after a fold/unfold (seenWide == false), never at start-up or when the user asked for less motion.
+        val listIn = remember { androidx.compose.animation.core.MutableTransitionState(seenWide != false || reduceMotion) }
+        androidx.compose.runtime.SideEffect { listIn.targetState = true }
         Row(Modifier.fillMaxSize()) {
             if (!focused) {
-                Box(Modifier.width(if (widthClass() == WidthClass.Expanded) 400.dp else 340.dp).fillMaxHeight()) { list() }
-                VerticalDivider(color = MaterialTheme.colorScheme.outlineVariant)
+                androidx.compose.animation.AnimatedVisibility(
+                    visibleState = listIn,
+                    enter = androidx.compose.animation.expandHorizontally(androidx.compose.animation.core.tween(260), expandFrom = Alignment.Start) +
+                        androidx.compose.animation.fadeIn(androidx.compose.animation.core.tween(260)),
+                    exit = androidx.compose.animation.ExitTransition.None,
+                ) {
+                    Row(Modifier.fillMaxHeight()) {
+                        Box(Modifier.width(if (widthClass() == WidthClass.Expanded) 400.dp else 340.dp).fillMaxHeight()) { list() }
+                        VerticalDivider(color = MaterialTheme.colorScheme.outlineVariant)
+                    }
+                }
             }
             Box(Modifier.weight(1f).fillMaxHeight()) { if (hasSelection) detail() else empty() }
         }
