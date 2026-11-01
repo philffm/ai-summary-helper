@@ -1,0 +1,222 @@
+<!DOCTYPE html><html lang="fi"><head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#08090C">
+<title>Synkronoi lukukirjastosi salattuna Nextcloudiin, S3:een tai kansioon — AI Summary Helper</title>
+<meta name="description" content="Vaihe vaiheelta: pidä tallennetut artikkelit, korostukset ja muistiinpanot synkronoituina laitteiden välillä omassa Nextcloudissa, S3-bucketissa tai paikallisessa kansiossa selaimessa salattuna.">
+
+<script>
+  (function(){
+    try {
+      var saved = localStorage.getItem('aish_theme');
+      var theme = saved === 'light' || saved === 'dark'
+        ? saved
+        : (window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
+      document.documentElement.setAttribute('data-theme', theme);
+    } catch (e) {
+      document.documentElement.setAttribute('data-theme', 'dark');
+    }
+  })();
+</script>
+
+<link rel="icon" type="image/svg+xml" href="../../assets/icon.svg">
+<link rel="stylesheet" href="../../assets/styles.css">
+<script src="../../assets/analytics.js"></script>
+<link rel="alternate" hreflang="x-default" href="https://ai-summary-helper.byphil.eu/blog/sync-to-nextcloud-s3-or-a-folder.html"><link rel="alternate" hreflang="en" href="https://ai-summary-helper.byphil.eu/blog/sync-to-nextcloud-s3-or-a-folder.html"><link rel="alternate" hreflang="de" href="https://ai-summary-helper.byphil.eu/de/blog/sync-mit-nextcloud-s3-oder-ordner.html"><link rel="alternate" hreflang="fr" href="https://ai-summary-helper.byphil.eu/fr/blog/sync-to-nextcloud-s3-or-a-folder.html"><link rel="alternate" hreflang="es" href="https://ai-summary-helper.byphil.eu/es/blog/sync-to-nextcloud-s3-or-a-folder.html"><link rel="alternate" hreflang="zh-Hans" href="https://ai-summary-helper.byphil.eu/zh/blog/sync-to-nextcloud-s3-or-a-folder.html"><link rel="alternate" hreflang="zh-Hant" href="https://ai-summary-helper.byphil.eu/zh-tw/blog/sync-to-nextcloud-s3-or-a-folder.html"><link rel="alternate" hreflang="ja" href="https://ai-summary-helper.byphil.eu/ja/blog/sync-to-nextcloud-s3-or-a-folder.html"><link rel="alternate" hreflang="ko" href="https://ai-summary-helper.byphil.eu/ko/blog/sync-to-nextcloud-s3-or-a-folder.html"><link rel="alternate" hreflang="pt-BR" href="https://ai-summary-helper.byphil.eu/pt/blog/sync-to-nextcloud-s3-or-a-folder.html"><link rel="alternate" hreflang="hi" href="https://ai-summary-helper.byphil.eu/hi/blog/sync-to-nextcloud-s3-or-a-folder.html"><link rel="alternate" hreflang="vi" href="https://ai-summary-helper.byphil.eu/vi/blog/sync-to-nextcloud-s3-or-a-folder.html"><link rel="alternate" hreflang="nl" href="https://ai-summary-helper.byphil.eu/nl/blog/sync-to-nextcloud-s3-or-a-folder.html"><link rel="alternate" hreflang="it" href="https://ai-summary-helper.byphil.eu/it/blog/sync-to-nextcloud-s3-or-a-folder.html"><link rel="alternate" hreflang="ru" href="https://ai-summary-helper.byphil.eu/ru/blog/sync-to-nextcloud-s3-or-a-folder.html"><link rel="alternate" hreflang="uk" href="https://ai-summary-helper.byphil.eu/uk/blog/sync-to-nextcloud-s3-or-a-folder.html"><link rel="alternate" hreflang="tr" href="https://ai-summary-helper.byphil.eu/tr/blog/sync-to-nextcloud-s3-or-a-folder.html"><link rel="alternate" hreflang="id" href="https://ai-summary-helper.byphil.eu/id/blog/sync-to-nextcloud-s3-or-a-folder.html"><link rel="alternate" hreflang="pl" href="https://ai-summary-helper.byphil.eu/pl/blog/sync-to-nextcloud-s3-or-a-folder.html"><link rel="alternate" hreflang="th" href="https://ai-summary-helper.byphil.eu/th/blog/sync-to-nextcloud-s3-or-a-folder.html"><link rel="alternate" hreflang="ar" href="https://ai-summary-helper.byphil.eu/ar/blog/sync-to-nextcloud-s3-or-a-folder.html"><link rel="alternate" hreflang="sv" href="https://ai-summary-helper.byphil.eu/sv/blog/sync-to-nextcloud-s3-or-a-folder.html"><link rel="alternate" hreflang="da" href="https://ai-summary-helper.byphil.eu/da/blog/sync-to-nextcloud-s3-or-a-folder.html"><link rel="alternate" hreflang="nb" href="https://ai-summary-helper.byphil.eu/no/blog/sync-to-nextcloud-s3-or-a-folder.html"><link rel="alternate" hreflang="fi" href="https://ai-summary-helper.byphil.eu/fi/blog/sync-to-nextcloud-s3-or-a-folder.html"><link rel="canonical" href="https://ai-summary-helper.byphil.eu/fi/blog/sync-to-nextcloud-s3-or-a-folder.html"><meta property="og:site_name" content="AI Summary Helper"><meta property="og:locale" content="fi"><meta property="og:type" content="article"><meta property="og:title" content="Synkronoi lukukirjastosi salattuna Nextcloudiin, S3:een tai kansioon — AI Summary Helper"><meta property="og:description" content="Vaihe vaiheelta: pidä tallennetut artikkelit, korostukset ja muistiinpanot synkronoituina laitteiden välillä omassa Nextcloudissa, S3-bucketissa tai paikallisessa kansiossa selaimessa salattuna."><meta property="og:image" content="https://ai-summary-helper.byphil.eu/assets/shots/aish-hero-en.webp"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="Synkronoi lukukirjastosi salattuna Nextcloudiin, S3:een tai kansioon — AI Summary Helper"><meta name="twitter:description" content="Vaihe vaiheelta: pidä tallennetut artikkelit, korostukset ja muistiinpanot synkronoituina laitteiden välillä omassa Nextcloudissa, S3-bucketissa tai paikallisessa kansiossa selaimessa salattuna."><meta name="twitter:image" content="https://ai-summary-helper.byphil.eu/assets/shots/aish-hero-en.webp"><script type="application/ld+json" data-seo="ld">{"@context":"https://schema.org","@graph":[{"@type":"BlogPosting","@id":"https://ai-summary-helper.byphil.eu/fi/blog/sync-to-nextcloud-s3-or-a-folder.html#post","headline":"Näin synkronoit lukukirjastosi salattuna Nextcloudiin, S3:een tai paikalliseen kansioon","description":"Vaihe vaiheelta: pidä tallennetut artikkelit, korostukset ja muistiinpanot synkronoituina laitteiden välillä omassa Nextcloudissa, S3-bucketissa tai paikallisessa kansiossa selaimessa salattuna.","inLanguage":"fi","image":"https://ai-summary-helper.byphil.eu/assets/shots/aish-hero-en.webp","mainEntityOfPage":"https://ai-summary-helper.byphil.eu/fi/blog/sync-to-nextcloud-s3-or-a-folder.html","author":{"@id":"https://byphil.eu/#org"},"publisher":{"@type":"Organization","@id":"https://byphil.eu/#org","name":"byphil","url":"https://byphil.eu/"}},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"AI Summary Helper","item":"https://ai-summary-helper.byphil.eu/"},{"@type":"ListItem","position":2,"name":"Blog","item":"https://ai-summary-helper.byphil.eu/fi/blog/"},{"@type":"ListItem","position":3,"name":"Näin synkronoit lukukirjastosi salattuna Nextcloudiin, S3:een tai paikalliseen kansioon","item":"https://ai-summary-helper.byphil.eu/fi/blog/sync-to-nextcloud-s3-or-a-folder.html"}]}]}</script></head>
+<body>
+
+<a href="#main" class="skip-link">Siirry sisältöön</a>
+
+<header class="nav nav--pill" id="siteNav">
+  <div class="wrap nav-pill-row">
+    <a href="../index.html" class="wordmark" aria-label="AI Summary Helper">
+      <img src="../../assets/icon.svg" alt="">
+      AI Summary Helper
+    </a>
+    <nav class="pill" aria-label="Ensisijainen">
+      <a href="../index.html#features" data-sec="features">Ominaisuudet</a>
+      <a href="../index.html#see-it" data-sec="see-it">Demo</a>
+      <a href="https://chromewebstore.google.com/detail/ai-summary-helper-openai/hldbejcjaedipeegjcinmhejdndchkmb" class="pill-cta" target="_blank" rel="noopener">Lisää Chromeen</a>
+    </nav>
+    <div class="nav-tools">
+      <button type="button" class="tool-btn" id="sendBtn" data-send="" hidden="" aria-label="Lähetä tämä sivu tietokoneelle" title="Lähetä tietokoneelle"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="3" y="4.5" width="18" height="12" rx="2" stroke="currentColor" stroke-width="1.6"></rect><path d="M8 20h8M12 16.5V20M12 13V8m0 0-2.2 2.2M12 8l2.2 2.2" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"></path></svg></button>
+      <button type="button" class="tool-btn" id="langBtn" aria-label="Kieli" aria-controls="mobileMenu"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.6"></circle><path d="M3 12h18M12 3c2.6 2.7 3.9 5.7 3.9 9s-1.3 6.3-3.9 9c-2.6-2.7-3.9-5.7-3.9-9S9.4 5.7 12 3Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"></path></svg></button>
+      <button type="button" class="theme-toggle" id="themeToggle" aria-label="Vaihda vaaleaan tilaan">
+        <svg class="icon-moon" viewBox="0 0 24 24" fill="none"><path d="M20 14.5A8.5 8.5 0 1 1 9.5 4a6.8 6.8 0 0 0 10.5 10.5Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"></path></svg>
+        <svg class="icon-sun" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="4.2" stroke="currentColor" stroke-width="1.6"></circle><path d="M12 2.5v2.4M12 19.1v2.4M4.4 4.4l1.7 1.7M17.9 17.9l1.7 1.7M2.5 12h2.4M19.1 12h2.4M4.4 19.6l1.7-1.7M17.9 6.1l1.7-1.7" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"></path></svg>
+      </button>
+    </div>
+    <button type="button" class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="mobileMenu" aria-label="Avaa valikko">
+      <svg viewBox="0 0 24 24" fill="none"><path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"></path></svg>
+    </button>
+  </div>
+  <div class="mobile-menu" id="mobileMenu" hidden="">
+    <div class="wrap mm-inner">
+      <nav class="mm-links" aria-label="Mobiili">
+        <a href="../index.html#features"><span class="mm-n">01</span>Ominaisuudet</a>
+        <a href="../index.html#see-it"><span class="mm-n">02</span>Demo</a>
+        <a href="../../education/"><span class="mm-n">03</span>Koulutus</a>
+        <a href="./" aria-current="page"><span class="mm-n">04</span>Blogi</a>
+          <a href="pocket-alternative.html" class="mm-sub">Vaihtoehto Pocketille: mikä ratkaisee</a>
+          <a href="oma-avain-oma-malli.html" class="mm-sub">Oma avain. Oma malli. Omat tiedot.</a>
+          <a href="tarkista-tekoalytiivistelma-lahteesta.html" class="mm-sub">Tarkista tiivistelmä lähteestä</a>
+          <a href="korosta-tai-kysy.html" class="mm-sub">Kysy korostuksistasi</a>
+        <a href="https://github.com/philffm/ai-summary-helper/" target="_blank" rel="noopener"><span class="mm-n">05</span>GitHub</a>
+      </nav>
+      <div class="mm-lang">
+        <button type="button" class="lang-card" id="langCard"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.6"></circle><path d="M3 12h18M12 3c2.6 2.7 3.9 5.7 3.9 9s-1.3 6.3-3.9 9c-2.6-2.7-3.9-5.7-3.9-9S9.4 5.7 12 3Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"></path></svg><span class="lang-card-cur">Englanti</span><small>24 kieltä</small><b aria-hidden="true">→</b></button>
+        <p class="mm-lang-h">Kieli · 24</p>
+        <label class="lang-search"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="11" cy="11" r="6.5" stroke="currentColor" stroke-width="1.7"></circle><path d="m16 16 4 4" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"></path></svg><input type="search" id="langSearch" placeholder="Hae kieltä…" autocomplete="off" aria-label="Hae kieltä" spellcheck="false"></label>
+        <div class="lang-groups" id="langGroups">
+          <div class="lang-group"><p class="lang-group-h">Suositut</p><div class="lang-pills" data-no-translate=""><a href="/" class="lang-pill" data-loc="en" lang="en" hreflang="en" data-q="english english en">English</a><a href="/de/" class="lang-pill" data-loc="de" lang="de" hreflang="de" data-q="deutsch german de">Deutsch</a><a href="/fr/" class="lang-pill" data-loc="fr" lang="fr" hreflang="fr" data-q="français french fr">Français</a><a href="/es/" class="lang-pill" data-loc="es" lang="es" hreflang="es" data-q="español spanish es">Español</a><a href="/zh/" class="lang-pill" data-loc="zh" lang="zh-CN" hreflang="zh-CN" data-q="简体中文 chinese simplified zh">简体中文</a><a href="/ja/" class="lang-pill" data-loc="ja" lang="ja" hreflang="ja" data-q="日本語 japanese ja">日本語</a><a href="/ru/" class="lang-pill" data-loc="ru" lang="ru" hreflang="ru" data-q="русский russian ru">Русский</a></div></div>
+          <div class="lang-group"><p class="lang-group-h">Eurooppa</p><div class="lang-pills" data-no-translate=""><a href="/pt/" class="lang-pill" data-loc="pt" lang="pt" hreflang="pt" data-q="português portuguese pt">Português</a><a href="/nl/" class="lang-pill" data-loc="nl" lang="nl" hreflang="nl" data-q="nederlands dutch nl">Nederlands</a><a href="/it/" class="lang-pill" data-loc="it" lang="it" hreflang="it" data-q="italiano italian it">Italiano</a><a href="/uk/" class="lang-pill" data-loc="uk" lang="uk" hreflang="uk" data-q="українська ukrainian uk">Українська</a><a href="/tr/" class="lang-pill" data-loc="tr" lang="tr" hreflang="tr" data-q="türkçe turkish tr">Türkçe</a><a href="/pl/" class="lang-pill" data-loc="pl" lang="pl" hreflang="pl" data-q="polski polish pl">Polski</a><a href="/sv/" class="lang-pill" data-loc="sv" lang="sv" hreflang="sv" data-q="svenska swedish sv">Svenska</a><a href="/da/" class="lang-pill" data-loc="da" lang="da" hreflang="da" data-q="dansk danish da">Dansk</a><a href="/no/" class="lang-pill" data-loc="no" lang="nb" hreflang="nb" data-q="norsk norwegian no">Norsk</a><a href="/fi/" class="lang-pill" data-loc="fi" lang="fi" hreflang="fi" data-q="suomi finnish fi">Suomi</a></div></div>
+          <div class="lang-group"><p class="lang-group-h">Aasia ja muut</p><div class="lang-pills" data-no-translate=""><a href="/zh-tw/" class="lang-pill" data-loc="zh-tw" lang="zh-TW" hreflang="zh-TW" data-q="繁體中文 chinese traditional zh-tw">繁體中文</a><a href="/ko/" class="lang-pill" data-loc="ko" lang="ko" hreflang="ko" data-q="한국어 korean ko">한국어</a><a href="/hi/" class="lang-pill" data-loc="hi" lang="hi" hreflang="hi" data-q="हिन्दी hindi hi">हिन्दी</a><a href="/vi/" class="lang-pill" data-loc="vi" lang="vi" hreflang="vi" data-q="tiếng việt vietnamese vi">Tiếng Việt</a><a href="/id/" class="lang-pill" data-loc="id" lang="id" hreflang="id" data-q="bahasa indonesia indonesian id">Bahasa Indonesia</a><a href="/th/" class="lang-pill" data-loc="th" lang="th" hreflang="th" data-q="ไทย thai th">ไทย</a><a href="/ar/" class="lang-pill" data-loc="ar" lang="ar" hreflang="ar" data-q="العربية arabic ar">العربية</a></div></div>
+          <p class="lang-empty" hidden="">Ei tuloksia</p>
+        </div>
+      </div>
+      <div class="mm-posts" aria-label="Blogi">
+          <p class="mm-posts-h">Blogista</p>
+          <a href="pocket-alternative.html" class="mm-post"><span class="mega-tag">Vertaa</span><strong>Vaihtoehto Pocketille: Mikä ratkaisee</strong><span>Lue myöhemmin -sovelluksen vaihto ilman arkiston menettämistä</span></a>
+          <a href="oma-avain-oma-malli.html" class="mm-post"><span class="mega-tag">Tietosuoja</span><strong>Oma avain. Oma malli. Omat tiedot.</strong><span>Miksi oma API key voittaa uuden tilauksen</span></a>
+          <a href="tarkista-tekoalytiivistelma-lahteesta.html" class="mm-post"><span class="mega-tag">Luotettavuus</span><strong>Tarkista tekoälytiivistelmä lähteestä</strong><span>Tarkista tekoälyn tulokset alle minuutissa</span></a>
+          <a href="korosta-tai-kysy.html" class="mm-post"><span class="mega-tag">Opas</span><strong>Kysy korostuksistasi</strong><span>Muuta merkintäsi vastauksiksi</span></a>
+          <a href="yksi-yhteenveto-40-syotteen-sijaan.html" class="mm-post"><span class="mega-tag">Syötteet</span><strong>Yksi kooste 40 syötteen sijaan</strong><span>Päivittäinen kooste kaikesta, mitä seuraat</span></a>
+          <a href="haku-ja-tunnisteet-ilman-pilvea.html" class="mm-post"><span class="mega-tag">Pinnan alla</span><strong>Haku ja tunnisteet ilman pilveä</strong><span>Miten kaikki pysyy omalla laitteellasi</span></a>
+          <a href="./" class="mm-all">Kaikki julkaisut →</a>
+        </div>
+      <div class="mm-bottom">
+        <a href="https://chromewebstore.google.com/detail/ai-summary-helper-openai/hldbejcjaedipeegjcinmhejdndchkmb" class="pill-cta mm-cta" data-desktop-cta="" target="_blank" rel="noopener">Lisää Chromeen</a>
+        <button type="button" class="pill-cta mm-cta" data-send="" hidden="">Lähetä tietokoneelle</button>
+        <div class="mm-row">
+          <a href="https://addons.mozilla.org/en-US/firefox/addon/ai-summary-helper/" target="_blank" rel="noopener">Firefox</a>
+          <a href="../index.html#phone">Android · Beta</a>
+          <a href="https://byphil.eu/#account">Oma tili</a>
+        </div>
+        
+        <button type="button" class="theme-toggle-mobile" id="themeToggleMobile">
+          <span id="themeToggleMobileLabel">Vaihda vaaleaan tilaan</span>
+          <svg class="icon-moon" viewBox="0 0 24 24" fill="none"><path d="M20 14.5A8.5 8.5 0 1 1 9.5 4a6.8 6.8 0 0 0 10.5 10.5Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"></path></svg>
+          <svg class="icon-sun" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="4.2" stroke="currentColor" stroke-width="1.6"></circle><path d="M12 2.5v2.4M12 19.1v2.4M4.4 4.4l1.7 1.7M17.9 17.9l1.7 1.7M2.5 12h2.4M19.1 12h2.4M4.4 19.6l1.7-1.7M17.9 6.1l1.7-1.7" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"></path></svg>
+        </button>
+      </div>
+    </div>
+  </div>
+</header>
+
+<main id="main">
+  <section class="hero--photo post-stage">
+    <img class="hero-bg" src="../../assets/photo/nas-shelf-laptop-phone-800.webp" srcset="../../assets/photo/nas-shelf-laptop-phone-800.webp 800w, ../../assets/photo/nas-shelf-laptop-phone-1600.webp 1600w" sizes="100vw" width="1600" height="893" alt="" fetchpriority="high" decoding="async" style="--bgpos:60% 55%">
+    <p class="hero-credit">Kuvitus, tekoälyn luoma</p>
+    <div class="wrap">
+      <div class="post-hero">
+      <span class="blog-date">Opas · Lokakuu 2026</span>
+      <h1>Näin synkronoit lukukirjastosi salattuna Nextcloudiin, S3:een tai paikalliseen kansioon</h1>
+      <p class="post-sub">Tallennetut artikkelit, tiivistelmät, korostukset ja muistiinpanot kaikilla tietokoneillasi – tallennettuna sinne minne haluat, luettavissa vain omalla avaimellasi. Kymmenen minuuttia, ilman käyttäjätiliä meille.</p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <div class="prose">
+        <p><strong>Lyhyesti.</strong> Avaa AI Summary Helperissä <em>Asetukset → Synkronointi ja varmuuskopiointi → Lisää sijainti</em>, valitse Nextcloud/WebDAV, S3-yhteensopiva tallennustila tai kansio tietokoneeltasi, ja pidä ehdotettu salalause. Kaikki salataan selaimessasi ennen palvelimelle lähettämistä. Toisella tietokoneellasi lisäät saman sijainnin ja syötät salalauseen. Siinä koko asennus. Sivun loppuosassa käydään läpi eri tallennustavat, mitä synkronoidaan ja mitä tehdä ongelmatilanteissa.</p>
+        <figure class="post-figure post-figure--photo"><img src="../../assets/photo/commuter-train-reading-800.webp" srcset="../../assets/photo/commuter-train-reading-800.webp 800w, ../../assets/photo/commuter-train-reading-1600.webp 1600w" sizes="(max-width: 720px) 92vw, 680px" width="1600" height="893" loading="lazy" decoding="async" alt="Kuvitus: työmatkalainen lähijunassa lukulaitteen ja puhelimen kanssa"><figcaption>Yksi kirjasto, useita laitteita. Tekoälyllä luotu kuvitus.</figcaption></figure>
+        <p>Miksi tämä kannattaa tehdä? Koska lukukirjasto on säilyttämisen arvoinen, ja työkalu josta olet riippuvainen voi kadota (<a href="digital-sovereignty-for-individuals.html">lisää aiheesta täällä</a>). Synkronoimalla itse hallitsemaasi tallennustilaan varmistat, että kirjastosi säilyy yksittäisistä sovelluksista tai tileistä riippumatta.</p>
+
+        <h2>Mitä synkronoidaan ja mitä ei</h2>
+        <ul>
+          <li><strong>Synkronoidaan:</strong> tallennetut artikkelit kokoteksteineen ja tiivistelmineen, tagit, korostukset, muistiinpanot ja kommentit sekä kokoelmat.</li>
+          <li><strong>Ei synkronoida:</strong> API keyt, kirjautumistiedot, itse synkronoinnin kirjautuminen ja laitekohtaiset asetukset. Varmuuskopiot ja synkronointi jättävät nämä tarkoituksella pois.</li>
+          <li><strong>Yksi artikkeli per sivu:</strong> jos tallensit saman sivun kahdella tietokoneella, tuloksena on yksi artikkeli (tagit ja puuttuvat kentät yhdistetään).</li>
+          <li><strong>Muokkaukset yhdistetään kenttä kentältä:</strong> toisella koneella muutettu otsikko ja toisella lisätty tagi säilyvät molemmat. Jos kumpikin muuttaa samaa kenttää, myöhempi muutos voittaa kaikilla laitteilla.</li>
+        </ul>
+
+        <h2>Vaihe 1: valitse tallennuspaikka</h2>
+        <h3>Nextcloud tai muu WebDAV-palvelin</h3>
+        <p>Paras vaihtoehto, jos käytät jo omaa Nextcloudia tai pilvipalvelua (monet eurooppalaiset palveluntarjoajat tarjoavat sellaista). Tarvitset kolme asiaa:</p>
+        <ol>
+          <li><strong>Tiedostojesi osoite.</strong> Nextcloudissa se näyttää tältä: <code>https://your-server/remote.php/dav/files/your-username/</code>. Avaa Nextcloudissa <em>Tiedostot → Asetukset</em> ja kopioi siellä näkyvä WebDAV-osoite.</li>
+          <li><strong>Käyttäjätunnuksesi.</strong></li>
+          <li><strong>Sovellussalasana, ei pääsalasanasi.</strong> Nextcloudissa: <em>Asetukset → Turvallisuus → Laitteet ja istunnot → luo uusi sovellussalasana</em>. Jos haluat joskus katkaista pääsyn, poistat vain kyseisen merkinnän.</li>
+        </ol>
+        <p>Valitse kansion nimi, esimerkiksi <code>aish-sync</code>. Se luodaan automaattisesti puolestasi. Muut WebDAV-palvelimet (useat NAS-laitteet, ownCloud) toimivat samalla tavalla; osoitemuoto vain vaihtelee.</p>
+
+        <h3>S3-yhteensopiva bucket</h3>
+        <p>Paras vaihtoehto, jos suosit objektitallennusta: AWS S3, Cloudflare R2, Backblaze B2, MinIO ja vastaavat. Luo bucket ja sen jälkeen access key <strong>vain tätä buckettia varten</strong> , jolla on luku-, kirjoitus-, listaus- ja poisto-oikeudet siihen. Älä koskaan käytä tilisi pääavainta. Syötä laajennukseen endpoint-osoite (esimerkiksi <code>https://s3.eu-central-1.amazonaws.com</code>tai palveluntarjoajasi ilmoittama osoite), bucketin nimi, alue (region, jätä oletus jos palveluntarjoaja ei vaadi sitä), access key ID ja secret key.</p>
+
+        <h3>Kansio tietokoneellasi</h3>
+        <p>Paras vaihtoehto, jos jokin muu työkalu siirtää jo kansiota laitteidesi välillä: Syncthing, työpöytäsynkronointiohjelma, iCloud Drive tai USB-tikku. Valitse <em>Kansio tällä tietokoneella</em> ja valitse <strong>uusi, tyhjä oma kansio</strong>, esimerkiksi <code>Documents/AISH-sync</code>. Chrome ei salli Työpöydän, Dokumenttien tai Latausten valitsemista suoraan tällaiseen kansioon, joten valitse alikansio. Tämä toimii Chromessa ja Edgessä tietokoneella. Kaksi huomioitavaa asiaa: selain saattaa pyytää käyttöoikeuden vahvistamista uudelleenkäynnistyksen jälkeen (asetusnäkymässä on painike tähän), ja kansio synkronoituu vain silloin, kun selain on auki.</p>
+
+        <h2>Vaihe 2: valitse salattu ja ota sanat talteen</h2>
+        <p>Kun lisäät sijainnin, <em>Salattu</em> on valittuna oletuksena ja käyttötarkoituksena on <em>Synkronoi laitteeni</em> . Laajennus ehdottaa salalauseeksi kuutta satunnaista sanaa. Voit painaa <em>Toinen ehdotus</em> kunnes löydät mieleisesi yhdistelmän, tai keksiä omasi (vähintään 12 merkkiä, heikosta salasanasta varoitetaan).</p>
+        <p>Yhteyden muodostamisen jälkeen näet nämä kuusi sanaa kerran. Tallenna ne salasananhallintaohjelmaan; Kopioi-painike kopioi ne leikepöydälle väliviivoilla erotettuna yhtenäisenä merkkijonona, mikä toimii hyvin konfiguraatiotiedostoissa ja viestintäsovelluksissa. Näiden sanojen avulla voit avata sijainnin millä tahansa laitteella; ilman niitä kukaan ei voi lukea tiedostoja, emme edes me. Voit katsoa sanat uudelleen sijainnin asetuksista sillä koneella, jolla teit määrityksen: <em>Näytä salalause</em>. Jos sen sijaan valitsit oman salalauseen, sitä ei tallenneta minnekään, eikä laajennus voi näyttää sitä.</p>
+        <p>Mitä tallennuspalveluntarjoaja näkee: sotkettuja tiedostoja sotketuilla nimillä, niiden määrän ja koon sekä sen, milloin ne muuttuvat. Se ei näe otsikoita, linkkejä tai tekstejä. Kirjastosi salataan selaimessasi AES-256-GCM-salauksella ennen kuin se lähtee laitteeltasi.</p>
+
+        <h2>Vaihe 3: lisää toinen tietokone</h2>
+        <ol>
+          <li>Asenna laajennus ja avaa <em>Asetukset → Synkronointi ja varmuuskopiointi → Lisää sijainti</em>.</li>
+          <li>Syötä samat palvelimen tiedot (tai valitse sama kansio).</li>
+          <li>Laajennus huomaa, että kansiossa on jo salattu kirjasto, ja pyytää salalausetta. Sanat voi kirjoittaa millä tahansa kirjainkoolla, välilyönneillä tai väliviivoilla erotettuna.</li>
+          <li>Laajennus pyytää vahvistamaan, että olet ensin ottanut varmuuskopion tältä laitteelta. Liittyminen nimittäin yhdistää tämän koneen kirjaston kansion sisältöön, ja ristiriitatilanteissa kansion versio voittaa. Käytä painiketta <em>Tee varmuuskopio nyt</em>.</li>
+          <li>Paina <em>Yhdistä</em>. Ensimmäinen synkronointi voi kestää jonkin aikaa suuren kirjaston kohdalla; näet edistymisen ruudulla.</li>
+        </ol>
+
+        <h2>Vain varmuuskopiointi, palautus ja julkaisu</h2>
+        <ul>
+          <li><strong>Vain varmuuskopiointi.</strong> Valitse <em>Vain varmuuskopiointi</em> vaihtoehdon <em>Synkronoi laitteeni</em> sijaan, jolloin tietokone vain kirjoittaa kyseiseen sijaintiin eikä koskaan lue sieltä. Voit palauttaa tiedot sijainnin asetuksista tarvittaessa: se palauttaa kaiken, ja erojen kohdalla tallennussijainnin tiedot korvaavat tämän koneen tiedot. Mitään ei poisteta.</li>
+          <li><strong>Julkaise verkkosivustollesi.</strong> Erillinen sijaintityyppi, <em>Luettava</em>, tallentaa selväkielisiä tiedostoja omalle verkkosivustollesi vain merkitsemiesi artikkeleiden osalta sekä valinnaisen katselunäkymän. Muistiinpanot ja kokotekstit jätetään pois, ellet erikseen ota niitä käyttöön, sillä kuka tahansa kansioon pääsevä voi lukea sen sisällön. Älä käytä luettavaa sijaintia yksityisille tiedoille.</li>
+        </ul>
+
+        <h2>Ongelmatilanteissa</h2>
+        <h3>"Salli kansion käyttöoikeus uudelleen"</h3>
+        <p>Selain peruuttaa kansion käyttöoikeuden uudelleenkäynnistyksen jälkeen. Paina painiketta sivun <em>Synkronointi ja varmuuskopiointi</em>yläreunassa. Jos se epäonnistuu toistuvasti, kansio saattaa olla Chromen suojaama (Työpöytä, Dokumentit, Lataukset tai kotihakemisto): valitse itse luomasi alikansio.</p>
+        <h3>"Palvelin ei hyväksynyt käyttäjätunnusta ja salasanaa"</h3>
+        <p>Käytä Nextcloudissa sovellussalasanaa. Varmista, että osoite päättyy käyttäjätunnuskansioosi ja ettei kaksivaiheinen todennus estä sovellussalasanan käyttöä.</p>
+        <h3>"Väärä salalause"</h3>
+        <p>Tarkista sanat: kirjainkoolla, välilyönneillä ja väliviivoilla ei ole väliä, mutta jokaisen sanan on oltava oikein. Avaa jo määritetyllä tietokoneella sijainnin asetukset ja paina <em>Näytä salalause</em>. Jos olet hukannut sen kaikkialta, tiedostoja ei voi avata kukaan: poista sijainti täältä, luo uusi ja aloita alusta tietokoneesi kirjastosta.</p>
+        <h3>Suuri määrä poistoja odottaa käsittelyä</h3>
+        <p>Jos toinen laite poistaa useita artikkeleita kerralla, laajennus suorittaa muutaman ja pyytää vahvistusta ennen loppujen poistamista, jottei yksittäinen virhe tyhjennä kirjastoasi. Tarkista lista ja toteuta poistot painamalla painiketta.</p>
+        <h3>Tietokone oli käyttämättä kuukausia</h3>
+        <p>Noin kolmen kuukauden jälkeen tietokone lähettää vain sen, mikä on muuttunut sen jälkeen, eikä poista mitään itsenäisesti. Näin muualla poistetut vanhat artikkelit eivät palaa vahingossa takaisin.</p>
+
+        <h2>Kysymyksiä</h2>
+        <h3>Tarvitsenko tilin teille?</h3>
+        <p>Et. Synkronointi kommunikoi suoraan selaimestasi määrittämääsi tallennustilaan. Emme ylläpidä synkronointipalvelinta.</p>
+        <h3>Toimiiko se puhelimellani?</h3>
+        <p>Androidilla kyllä. Apusovellus (APK-tiedosto <a href="https://github.com/philffm/ai-summary-helper/releases/latest" rel="noopener">GitHub-julkaisuista</a>-sivulta; ei vielä Google Playssa) voi liittyä kirjastoosi kohdasta <em>Asetukset → Kirjaston synkronointi</em>. Nopein tapa on koodi: avaa selaimessa sijainnin asetukset, paina <em>Näytä koodi puhelimelle</em> ja skannaa se. Se sisältää palvelimesi kirjautumistiedot, joten näytä se vain omalle puhelimellesi. Puhelin näyttää tallennetut artikkelit tiivistelmineen ja korostuksineen, ja muistiinpanot synkronoituvat molempiin suuntiin. Puhelimella tiivistämäsi sivut ja tekemäsi merkinnät siirtyvät myös kirjastoosi, mutta vain sivut, joita siellä ei vielä ole: selaimen omaa tekstiä ei koskaan korvata. iPhone-sovellusta ei ole vielä saatavilla.</p>
+        <h3>Voinko käyttää useampaa kuin yhtä sijaintia?</h3>
+        <p>Kyllä. Tyypillinen kokoonpano on yksi salattu sijainti laitteiden väliseen synkronointiin ja toinen vain varmuuskopiointiin tarkoitettu sijainti toisella palveluntarjoajalla.</p>
+        <h3>Onko turvallista tallentaa kirjasto pilveen?</h3>
+        <p>Turvallisempaa kuin useimmat ratkaisut, sillä palveluntarjoajalla on vain salattuja tiedostoja. Turvallisuus on silti kiinni vain salalauseestasi ja laitteestasi. Lue lisää aiheesta <a href="digital-sovereignty-for-individuals.html">rehelliset rajoitukset</a>, mukaan lukien se, ettei salausta ole auditoitu riippumattomasti.</p>
+
+        <div class="post-cta">
+          <p>AI Summary Helper on ilmainen, avoimen lähdekoodin selainlaajennus. Synkronointi on pois päältä, kunnes lisäät sijainnin.</p>
+          <a href="https://chromewebstore.google.com/detail/ai-summary-helper-openai/hldbejcjaedipeegjcinmhejdndchkmb" target="_blank" rel="noopener" class="btn-primary">Lisää Chromeen</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="footer-inner">
+      <div class="wordmark"><img src="../../assets/icon.svg" alt="">AI Summary Helper</div>
+      <div class="foot-links">
+        <a href="https://github.com/philffm/ai-summary-helper/" target="_blank" rel="noopener">Lähdekoodi GitHubissa</a>
+        <a href="../../education/">Opetukseen</a>
+        <a href="../yksityisyys.html">Tietosuoja</a>
+        <a href="#" data-analytics-settings="">Analytiikka-asetukset</a>
+        <a href="https://byphil.eu/terms.html#impressum" target="_blank" rel="noopener">Impressum</a>
+      </div>
+    </div>
+    <div class="copyright">© 2026 Phil Wornath. Osa <a href="https://byphil.eu/" class="credit-link">byphil.eu ↗</a> — riippumatonta ohjelmistoa, kehitetty Saksassa.<br>
+      Suunnitellut ja kehittänyt <a href="https://philwornath.com/" target="_blank" rel="noopener" class="credit-link">philwornath.com ↗</a>
+    </div>
+  </div>
+</footer>
+
+<script src="../../assets/main.js"></script>
+
+
+</body></html>

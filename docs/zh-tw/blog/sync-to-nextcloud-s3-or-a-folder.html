@@ -1,0 +1,222 @@
+<!DOCTYPE html><html lang="zh-Hant"><head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#08090C">
+<title>加密同步閱讀庫至 Nextcloud、S3 或本地資料夾 — AI Summary Helper</title>
+<meta name="description" content="步驟教學：透過自己的 Nextcloud、S3 儲存桶或本機資料夾，在多部裝置間同步已儲存的文章、重點畫線與筆記，全程在瀏覽器內端對端加密。">
+
+<script>
+  (function(){
+    try {
+      var saved = localStorage.getItem('aish_theme');
+      var theme = saved === 'light' || saved === 'dark'
+        ? saved
+        : (window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
+      document.documentElement.setAttribute('data-theme', theme);
+    } catch (e) {
+      document.documentElement.setAttribute('data-theme', 'dark');
+    }
+  })();
+</script>
+
+<link rel="icon" type="image/svg+xml" href="../../assets/icon.svg">
+<link rel="stylesheet" href="../../assets/styles.css">
+<script src="../../assets/analytics.js"></script>
+<link rel="alternate" hreflang="x-default" href="https://ai-summary-helper.byphil.eu/blog/sync-to-nextcloud-s3-or-a-folder.html"><link rel="alternate" hreflang="en" href="https://ai-summary-helper.byphil.eu/blog/sync-to-nextcloud-s3-or-a-folder.html"><link rel="alternate" hreflang="de" href="https://ai-summary-helper.byphil.eu/de/blog/sync-mit-nextcloud-s3-oder-ordner.html"><link rel="alternate" hreflang="fr" href="https://ai-summary-helper.byphil.eu/fr/blog/sync-to-nextcloud-s3-or-a-folder.html"><link rel="alternate" hreflang="es" href="https://ai-summary-helper.byphil.eu/es/blog/sync-to-nextcloud-s3-or-a-folder.html"><link rel="alternate" hreflang="zh-Hans" href="https://ai-summary-helper.byphil.eu/zh/blog/sync-to-nextcloud-s3-or-a-folder.html"><link rel="alternate" hreflang="zh-Hant" href="https://ai-summary-helper.byphil.eu/zh-tw/blog/sync-to-nextcloud-s3-or-a-folder.html"><link rel="alternate" hreflang="ja" href="https://ai-summary-helper.byphil.eu/ja/blog/sync-to-nextcloud-s3-or-a-folder.html"><link rel="alternate" hreflang="ko" href="https://ai-summary-helper.byphil.eu/ko/blog/sync-to-nextcloud-s3-or-a-folder.html"><link rel="alternate" hreflang="pt-BR" href="https://ai-summary-helper.byphil.eu/pt/blog/sync-to-nextcloud-s3-or-a-folder.html"><link rel="alternate" hreflang="hi" href="https://ai-summary-helper.byphil.eu/hi/blog/sync-to-nextcloud-s3-or-a-folder.html"><link rel="alternate" hreflang="vi" href="https://ai-summary-helper.byphil.eu/vi/blog/sync-to-nextcloud-s3-or-a-folder.html"><link rel="alternate" hreflang="nl" href="https://ai-summary-helper.byphil.eu/nl/blog/sync-to-nextcloud-s3-or-a-folder.html"><link rel="alternate" hreflang="it" href="https://ai-summary-helper.byphil.eu/it/blog/sync-to-nextcloud-s3-or-a-folder.html"><link rel="alternate" hreflang="ru" href="https://ai-summary-helper.byphil.eu/ru/blog/sync-to-nextcloud-s3-or-a-folder.html"><link rel="alternate" hreflang="uk" href="https://ai-summary-helper.byphil.eu/uk/blog/sync-to-nextcloud-s3-or-a-folder.html"><link rel="alternate" hreflang="tr" href="https://ai-summary-helper.byphil.eu/tr/blog/sync-to-nextcloud-s3-or-a-folder.html"><link rel="alternate" hreflang="id" href="https://ai-summary-helper.byphil.eu/id/blog/sync-to-nextcloud-s3-or-a-folder.html"><link rel="alternate" hreflang="pl" href="https://ai-summary-helper.byphil.eu/pl/blog/sync-to-nextcloud-s3-or-a-folder.html"><link rel="alternate" hreflang="th" href="https://ai-summary-helper.byphil.eu/th/blog/sync-to-nextcloud-s3-or-a-folder.html"><link rel="alternate" hreflang="ar" href="https://ai-summary-helper.byphil.eu/ar/blog/sync-to-nextcloud-s3-or-a-folder.html"><link rel="alternate" hreflang="sv" href="https://ai-summary-helper.byphil.eu/sv/blog/sync-to-nextcloud-s3-or-a-folder.html"><link rel="alternate" hreflang="da" href="https://ai-summary-helper.byphil.eu/da/blog/sync-to-nextcloud-s3-or-a-folder.html"><link rel="alternate" hreflang="nb" href="https://ai-summary-helper.byphil.eu/no/blog/sync-to-nextcloud-s3-or-a-folder.html"><link rel="alternate" hreflang="fi" href="https://ai-summary-helper.byphil.eu/fi/blog/sync-to-nextcloud-s3-or-a-folder.html"><link rel="canonical" href="https://ai-summary-helper.byphil.eu/zh-tw/blog/sync-to-nextcloud-s3-or-a-folder.html"><meta property="og:site_name" content="AI Summary Helper"><meta property="og:locale" content="zh_TW"><meta property="og:type" content="article"><meta property="og:title" content="加密同步閱讀庫至 Nextcloud、S3 或本地資料夾 — AI Summary Helper"><meta property="og:description" content="步驟教學：透過自己的 Nextcloud、S3 儲存桶或本機資料夾，在多部裝置間同步已儲存的文章、重點畫線與筆記，全程在瀏覽器內端對端加密。"><meta property="og:image" content="https://ai-summary-helper.byphil.eu/assets/shots/aish-hero-en.webp"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="加密同步閱讀庫至 Nextcloud、S3 或本地資料夾 — AI Summary Helper"><meta name="twitter:description" content="步驟教學：透過自己的 Nextcloud、S3 儲存桶或本機資料夾，在多部裝置間同步已儲存的文章、重點畫線與筆記，全程在瀏覽器內端對端加密。"><meta name="twitter:image" content="https://ai-summary-helper.byphil.eu/assets/shots/aish-hero-en.webp"><script type="application/ld+json" data-seo="ld">{"@context":"https://schema.org","@graph":[{"@type":"BlogPosting","@id":"https://ai-summary-helper.byphil.eu/zh-tw/blog/sync-to-nextcloud-s3-or-a-folder.html#post","headline":"如何將閱讀庫加密同步至 Nextcloud、S3 或本機資料夾","description":"步驟教學：透過自己的 Nextcloud、S3 儲存桶或本機資料夾，在多部裝置間同步已儲存的文章、重點畫線與筆記，全程在瀏覽器內端對端加密。","inLanguage":"zh-Hant","image":"https://ai-summary-helper.byphil.eu/assets/shots/aish-hero-en.webp","mainEntityOfPage":"https://ai-summary-helper.byphil.eu/zh-tw/blog/sync-to-nextcloud-s3-or-a-folder.html","author":{"@id":"https://byphil.eu/#org"},"publisher":{"@type":"Organization","@id":"https://byphil.eu/#org","name":"byphil","url":"https://byphil.eu/"}},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"AI Summary Helper","item":"https://ai-summary-helper.byphil.eu/"},{"@type":"ListItem","position":2,"name":"Blog","item":"https://ai-summary-helper.byphil.eu/zh-tw/blog/"},{"@type":"ListItem","position":3,"name":"如何將閱讀庫加密同步至 Nextcloud、S3 或本機資料夾","item":"https://ai-summary-helper.byphil.eu/zh-tw/blog/sync-to-nextcloud-s3-or-a-folder.html"}]}]}</script></head>
+<body>
+
+<a href="#main" class="skip-link">跳至主要內容</a>
+
+<header class="nav nav--pill" id="siteNav">
+  <div class="wrap nav-pill-row">
+    <a href="../index.html" class="wordmark" aria-label="AI Summary Helper">
+      <img src="../../assets/icon.svg" alt="">
+      AI Summary Helper
+    </a>
+    <nav class="pill" aria-label="主要">
+      <a href="../index.html#features" data-sec="features">功能特色</a>
+      <a href="../index.html#see-it" data-sec="see-it">功能展示</a>
+      <a href="https://chromewebstore.google.com/detail/ai-summary-helper-openai/hldbejcjaedipeegjcinmhejdndchkmb" class="pill-cta" target="_blank" rel="noopener">新增至 Chrome</a>
+    </nav>
+    <div class="nav-tools">
+      <button type="button" class="tool-btn" id="sendBtn" data-send="" hidden="" aria-label="將此頁面傳送到我的電腦" title="傳送到我的電腦"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="3" y="4.5" width="18" height="12" rx="2" stroke="currentColor" stroke-width="1.6"></rect><path d="M8 20h8M12 16.5V20M12 13V8m0 0-2.2 2.2M12 8l2.2 2.2" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"></path></svg></button>
+      <button type="button" class="tool-btn" id="langBtn" aria-label="語言" aria-controls="mobileMenu"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.6"></circle><path d="M3 12h18M12 3c2.6 2.7 3.9 5.7 3.9 9s-1.3 6.3-3.9 9c-2.6-2.7-3.9-5.7-3.9-9S9.4 5.7 12 3Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"></path></svg></button>
+      <button type="button" class="theme-toggle" id="themeToggle" aria-label="切換為淺色模式">
+        <svg class="icon-moon" viewBox="0 0 24 24" fill="none"><path d="M20 14.5A8.5 8.5 0 1 1 9.5 4a6.8 6.8 0 0 0 10.5 10.5Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"></path></svg>
+        <svg class="icon-sun" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="4.2" stroke="currentColor" stroke-width="1.6"></circle><path d="M12 2.5v2.4M12 19.1v2.4M4.4 4.4l1.7 1.7M17.9 17.9l1.7 1.7M2.5 12h2.4M19.1 12h2.4M4.4 19.6l1.7-1.7M17.9 6.1l1.7-1.7" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"></path></svg>
+      </button>
+    </div>
+    <button type="button" class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="mobileMenu" aria-label="開啟選單">
+      <svg viewBox="0 0 24 24" fill="none"><path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"></path></svg>
+    </button>
+  </div>
+  <div class="mobile-menu" id="mobileMenu" hidden="">
+    <div class="wrap mm-inner">
+      <nav class="mm-links" aria-label="行動版">
+        <a href="../index.html#features"><span class="mm-n">01</span>功能特色</a>
+        <a href="../index.html#see-it"><span class="mm-n">02</span>功能展示</a>
+        <a href="../../education/"><span class="mm-n">03</span>教育</a>
+        <a href="./" aria-current="page"><span class="mm-n">04</span>部落格</a>
+          <a href="pocket-alternative.html" class="mm-sub">Pocket 替代方案：挑選重點解析</a>
+          <a href="bring-your-own-key.html" class="mm-sub">你的金鑰。你的模型。你的資料。</a>
+          <a href="verify-ai-summary.html" class="mm-sub">核對摘要與原文出處</a>
+          <a href="highlighting-vs-asking.html" class="mm-sub">向你的劃線重點提問</a>
+        <a href="https://github.com/philffm/ai-summary-helper/" target="_blank" rel="noopener"><span class="mm-n">05</span>GitHub</a>
+      </nav>
+      <div class="mm-lang">
+        <button type="button" class="lang-card" id="langCard"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.6"></circle><path d="M3 12h18M12 3c2.6 2.7 3.9 5.7 3.9 9s-1.3 6.3-3.9 9c-2.6-2.7-3.9-5.7-3.9-9S9.4 5.7 12 3Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"></path></svg><span class="lang-card-cur">英文</span><small>24 種語言</small><b aria-hidden="true">→</b></button>
+        <p class="mm-lang-h">語言 · 24</p>
+        <label class="lang-search"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="11" cy="11" r="6.5" stroke="currentColor" stroke-width="1.7"></circle><path d="m16 16 4 4" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"></path></svg><input type="search" id="langSearch" placeholder="搜尋語言…" autocomplete="off" aria-label="搜尋語言" spellcheck="false"></label>
+        <div class="lang-groups" id="langGroups">
+          <div class="lang-group"><p class="lang-group-h">熱門</p><div class="lang-pills" data-no-translate=""><a href="/" class="lang-pill" data-loc="en" lang="en" hreflang="en" data-q="english english en">English</a><a href="/de/" class="lang-pill" data-loc="de" lang="de" hreflang="de" data-q="deutsch german de">Deutsch</a><a href="/fr/" class="lang-pill" data-loc="fr" lang="fr" hreflang="fr" data-q="français french fr">Français</a><a href="/es/" class="lang-pill" data-loc="es" lang="es" hreflang="es" data-q="español spanish es">Español</a><a href="/zh/" class="lang-pill" data-loc="zh" lang="zh-CN" hreflang="zh-CN" data-q="简体中文 chinese simplified zh">简体中文</a><a href="/ja/" class="lang-pill" data-loc="ja" lang="ja" hreflang="ja" data-q="日本語 japanese ja">日本語</a><a href="/ru/" class="lang-pill" data-loc="ru" lang="ru" hreflang="ru" data-q="русский russian ru">Русский</a></div></div>
+          <div class="lang-group"><p class="lang-group-h">歐洲</p><div class="lang-pills" data-no-translate=""><a href="/pt/" class="lang-pill" data-loc="pt" lang="pt" hreflang="pt" data-q="português portuguese pt">Português</a><a href="/nl/" class="lang-pill" data-loc="nl" lang="nl" hreflang="nl" data-q="nederlands dutch nl">Nederlands</a><a href="/it/" class="lang-pill" data-loc="it" lang="it" hreflang="it" data-q="italiano italian it">Italiano</a><a href="/uk/" class="lang-pill" data-loc="uk" lang="uk" hreflang="uk" data-q="українська ukrainian uk">Українська</a><a href="/tr/" class="lang-pill" data-loc="tr" lang="tr" hreflang="tr" data-q="türkçe turkish tr">Türkçe</a><a href="/pl/" class="lang-pill" data-loc="pl" lang="pl" hreflang="pl" data-q="polski polish pl">Polski</a><a href="/sv/" class="lang-pill" data-loc="sv" lang="sv" hreflang="sv" data-q="svenska swedish sv">Svenska</a><a href="/da/" class="lang-pill" data-loc="da" lang="da" hreflang="da" data-q="dansk danish da">Dansk</a><a href="/no/" class="lang-pill" data-loc="no" lang="nb" hreflang="nb" data-q="norsk norwegian no">Norsk</a><a href="/fi/" class="lang-pill" data-loc="fi" lang="fi" hreflang="fi" data-q="suomi finnish fi">Suomi</a></div></div>
+          <div class="lang-group"><p class="lang-group-h">亞洲及其他</p><div class="lang-pills" data-no-translate=""><a href="/zh-tw/" class="lang-pill" data-loc="zh-tw" lang="zh-TW" hreflang="zh-TW" data-q="繁體中文 chinese traditional zh-tw">繁體中文</a><a href="/ko/" class="lang-pill" data-loc="ko" lang="ko" hreflang="ko" data-q="한국어 korean ko">한국어</a><a href="/hi/" class="lang-pill" data-loc="hi" lang="hi" hreflang="hi" data-q="हिन्दी hindi hi">हिन्दी</a><a href="/vi/" class="lang-pill" data-loc="vi" lang="vi" hreflang="vi" data-q="tiếng việt vietnamese vi">Tiếng Việt</a><a href="/id/" class="lang-pill" data-loc="id" lang="id" hreflang="id" data-q="bahasa indonesia indonesian id">Bahasa Indonesia</a><a href="/th/" class="lang-pill" data-loc="th" lang="th" hreflang="th" data-q="ไทย thai th">ไทย</a><a href="/ar/" class="lang-pill" data-loc="ar" lang="ar" hreflang="ar" data-q="العربية arabic ar">العربية</a></div></div>
+          <p class="lang-empty" hidden="">無相符結果</p>
+        </div>
+      </div>
+      <div class="mm-posts" aria-label="部落格">
+          <p class="mm-posts-h">精選部落格文章</p>
+          <a href="pocket-alternative.html" class="mm-post"><span class="mega-tag">工具比較</span><strong>Pocket 替代方案：What Matters</strong><span>切換稍後讀工具，完整保留過往封存內容</span></a>
+          <a href="bring-your-own-key.html" class="mm-post"><span class="mega-tag">隱私權政策</span><strong>你的 API Key。你的模型。你的資料。— AI Summary Helper</strong><span>為什麼自備 API Key 優於多訂閱一項服務</span></a>
+          <a href="verify-ai-summary.html" class="mm-post"><span class="mega-tag">信任驗證</span><strong>比對 AI 摘要與原文來源</strong><span>在一分鐘內快速查證 AI 產出內容</span></a>
+          <a href="highlighting-vs-asking.html" class="mm-post"><span class="mega-tag">實作教學</span><strong>針對劃線重點提問</strong><span>將劃線標記轉化為即時解答</span></a>
+          <a href="feeds-recap.html" class="mm-post"><span class="mega-tag">訂閱摘要</span><strong>一份重點摘要取代 40 個訂閱源</strong><span>為你追蹤的所有內容整理每日精選</span></a>
+          <a href="on-device-architecture.html" class="mm-post"><span class="mega-tag">技術解析</span><strong>無需雲端的搜尋與標籤</strong><span>資料如何完全留存在你的裝置端</span></a>
+          <a href="./" class="mm-all">所有文章 →</a>
+        </div>
+      <div class="mm-bottom">
+        <a href="https://chromewebstore.google.com/detail/ai-summary-helper-openai/hldbejcjaedipeegjcinmhejdndchkmb" class="pill-cta mm-cta" data-desktop-cta="" target="_blank" rel="noopener">新增至 Chrome</a>
+        <button type="button" class="pill-cta mm-cta" data-send="" hidden="">傳送到我的電腦</button>
+        <div class="mm-row">
+          <a href="https://addons.mozilla.org/en-US/firefox/addon/ai-summary-helper/" target="_blank" rel="noopener">Firefox</a>
+          <a href="../index.html#phone">Android · Beta</a>
+          <a href="https://byphil.eu/#account">我的帳戶</a>
+        </div>
+        
+        <button type="button" class="theme-toggle-mobile" id="themeToggleMobile">
+          <span id="themeToggleMobileLabel">切換為淺色模式</span>
+          <svg class="icon-moon" viewBox="0 0 24 24" fill="none"><path d="M20 14.5A8.5 8.5 0 1 1 9.5 4a6.8 6.8 0 0 0 10.5 10.5Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"></path></svg>
+          <svg class="icon-sun" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="4.2" stroke="currentColor" stroke-width="1.6"></circle><path d="M12 2.5v2.4M12 19.1v2.4M4.4 4.4l1.7 1.7M17.9 17.9l1.7 1.7M2.5 12h2.4M19.1 12h2.4M4.4 19.6l1.7-1.7M17.9 6.1l1.7-1.7" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"></path></svg>
+        </button>
+      </div>
+    </div>
+  </div>
+</header>
+
+<main id="main">
+  <section class="hero--photo post-stage">
+    <img class="hero-bg" src="../../assets/photo/nas-shelf-laptop-phone-800.webp" srcset="../../assets/photo/nas-shelf-laptop-phone-800.webp 800w, ../../assets/photo/nas-shelf-laptop-phone-1600.webp 1600w" sizes="100vw" width="1600" height="893" alt="" fetchpriority="high" decoding="async" style="--bgpos:60% 55%">
+    <p class="hero-credit">插圖，AI 生成</p>
+    <div class="wrap">
+      <div class="post-hero">
+      <span class="blog-date">操作指南 · 2026 年 10 月</span>
+      <h1>如何將閱讀庫加密同步至 Nextcloud、S3 或本機資料夾</h1>
+      <p class="post-sub">在所有電腦上同步已儲存的文章、摘要、重點與筆記。儲存位置由您決定，僅能以您的密鑰讀取。只需 10 分鐘，無需註冊我們的帳號。</p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <div class="prose">
+        <p><strong>簡易速覽。</strong> 在 AI Summary Helper 中開啟 <em>Settings → Sync &amp; backup → Add a place</em>，選擇 Nextcloud/WebDAV、S3 相容儲存空間或電腦上的資料夾，並保留系統建議的密碼短語（passphrase）。所有資料在瀏覽器中加密後才會上傳。在第二部電腦上，只需新增相同儲存位置並輸入密碼短語即可。這就是全部的設定流程。本頁其餘部分將介紹各儲存空間類型、同步內容以及遇到問題時的處理方式。</p>
+        <figure class="post-figure post-figure--photo"><img src="../../assets/photo/commuter-train-reading-800.webp" srcset="../../assets/photo/commuter-train-reading-800.webp 800w, ../../assets/photo/commuter-train-reading-1600.webp 1600w" sizes="(max-width: 720px) 92vw, 680px" width="1600" height="893" loading="lazy" decoding="async" alt="插圖：通勤者在區間列車上，手持電子閱讀器和手機"><figcaption>單一閱讀庫，跨多部裝置。插圖由 AI 生成。</figcaption></figure>
+        <p>為什麼要這樣做？因為閱讀庫值得長久保存，而您依賴的工具隨時可能停止營運（<a href="digital-sovereignty-for-individuals.html">詳情請參閱此處</a>）。同步至您擁有的儲存空間，意味著即使某個應用程式或帳號不再可用，閱讀庫依然完好如初。</p>
+
+        <h2>哪些內容會同步，哪些不會</h2>
+        <ul>
+          <li><strong>會同步：</strong> 已儲存的文章（含全文與摘要）、標籤、重點畫線、您的筆記與註釋，以及收藏夾。</li>
+          <li><strong>不會同步：</strong> 您的 API Key、登入資訊、同步登入憑證本身以及個別裝置的專屬設定。備份與同步會特意排除這些項目。</li>
+          <li><strong>每個頁面保留一篇：</strong> 若在兩部電腦上儲存了相同頁面，最終會合併為單一文章（標籤與缺失欄位將自動合併）。</li>
+          <li><strong>依欄位逐項合併編輯：</strong> 若在一台電腦上修改標題，在另一台電腦上新增標籤，兩項變更都會保留。若同時修改同一個欄位，則以較新的變更為準，各裝置皆維持一致。</li>
+        </ul>
+
+        <h2>步驟 1：選擇儲存位置</h2>
+        <h3>Nextcloud 或其他 WebDAV 伺服器</h3>
+        <p>如果您已經自建 Nextcloud，或使用託管服務（許多歐洲雲端服務商均有提供），這是最佳選擇。您只需要三樣東西：</p>
+        <ol>
+          <li><strong>檔案的存取位址。</strong> Nextcloud 的格式通常如下： <code>https://your-server/remote.php/dav/files/your-username/</code>。在 Nextcloud 中開啟 <em>Files → Settings</em> 並複製該處顯示的 WebDAV 位址。</li>
+          <li><strong>您的使用者名稱。</strong></li>
+          <li><strong>應用程式專用密碼（App Password），而非主要密碼。</strong> 在 Nextcloud 中： <em>Settings → Security → Devices &amp; sessions → create a new app password</em>。若日後想撤銷存取權限，直接刪除該項目即可。</li>
+        </ol>
+        <p>選擇一個資料夾名稱，例如 <code>aish-sync</code>。系統會自動為您建立。其他 WebDAV 伺服器（許多 NAS 裝置、ownCloud）也是同樣的運作方式，僅位址格式略有不同。</p>
+
+        <h3>S3 相容儲存桶（Bucket）</h3>
+        <p>適合偏好物件儲存（Object Storage）的使用者：AWS S3、Cloudflare R2、Backblaze B2、MinIO 等。建立一個 Bucket，然後建立一組存取金鑰（Access Key） <strong>僅限此 Bucket</strong> 並賦予該 Bucket 的讀取、寫入、列出與刪除權限。切勿使用帳號的主要金鑰。在擴充功能中輸入端點位址（Endpoint，例如 <code>https://s3.eu-central-1.amazonaws.com</code>，或您的服務商所提供的位址）、Bucket 名稱、地區（Region，若服務商無要求可保留預設）、Access Key ID 及 Secret Key。</p>
+
+        <h3>電腦上的本機資料夾</h3>
+        <p>適合已經在使用其他工具在裝置間同步資料夾的使用者：例如 Syncthing、桌面同步客戶端、iCloud Drive 或 USB 隨身碟。選擇 <em>本機電腦上的資料夾</em> 並選取一個 <strong>自行建立的全新空白資料夾</strong>，例如 <code>Documents/AISH-sync</code>。Chrome 不允許直接選擇「桌面」、「文件」或「下載」等根目錄，因此請選擇其中的子資料夾。此功能適用於電腦版 Chrome 及 Edge。有兩點需要注意：瀏覽器重新啟動後可能需要再次授權存取（設定畫面會顯示授權按鈕），且資料夾僅在瀏覽器開啟運作時持續同步。</p>
+
+        <h2>步驟 2：選擇加密模式並妥善保存密碼短語</h2>
+        <p>新增儲存位置時， <em>Encrypted</em> 為預設選取，同步用途預設為 <em>Sync my devices</em> 。擴充功能會建議由 6 個隨機單字組成的密碼短語。您可以點擊 <em>Another suggestion</em> 直到產生滿意的組合，也可以自訂密碼（至少 12 個字元，若強度不足會顯示提示）。</p>
+        <p>連線完成後，這 6 個單字只會顯示一次。請將它們儲存至密碼管理器；「複製」按鈕會以連字號連接這組單字並複製到剪貼簿，方便在設定檔或即時通訊軟體中傳遞且不易格式錯亂。有了這組密碼短語，您就能在任何裝置上開啟儲存庫；沒有它，包括我們在內的任何人都無法解密檔案。在完成設定的本機電腦上，您可以隨時在該儲存位置的設定中重新查看： <em>Show passphrase</em>。若您使用的是自訂密碼短語，系統不會儲存在任何地方，因此擴充功能無法再次顯示。</p>
+        <p>儲存服務商能看到的僅有：經過加密混淆的檔案與檔名、檔案數量、檔案大小以及變更時間。他們無法得知文章標題、連結或內文。您的閱讀庫在離開裝置前，已在瀏覽器內透過 AES-256-GCM 完成加密。</p>
+
+        <h2>步驟 3：新增第二部電腦</h2>
+        <ol>
+          <li>安裝擴充功能並開啟 <em>Settings → Sync &amp; backup → Add a place</em>。</li>
+          <li>輸入相同的伺服器資訊（或選取相同的資料夾）。</li>
+          <li>擴充功能偵測到該資料夾已包含加密的閱讀庫，並會要求輸入密碼短語。大小寫不拘，使用空格或連字號分隔皆可辨識。</li>
+          <li>系統會要求確認您已先為此裝置建立備份，因為加入同步會將此電腦的閱讀庫與資料夾中的內容合併，若兩者發生衝突，將以資料夾內容為準。請點選 <em>Make a backup now</em>。</li>
+          <li>點擊 <em>Connect</em>。如果閱讀庫龐大，首次同步可能需要一些時間；畫面上會顯示進度。</li>
+        </ol>
+
+        <h2>僅備份、還原與發佈</h2>
+        <ul>
+          <li><strong>僅備份（Backup only）。</strong> 選擇 <em>Backup only</em> 而非 <em>Sync my devices</em> ，電腦就只會單向寫入該儲存位置，絕不讀取。需要時可從該儲存位置的設定中執行還原：系統會復原所有內容，若此電腦有不同之處則以儲存庫內容為準，且不會刪除任何資料。</li>
+          <li><strong>發佈至個人網站。</strong> 另一種儲存位置模式 <em>Readable</em>，會為您已標籤的文章寫入明文檔案以供個人網站使用，並可選用檢視頁面。除非主動開啟，否則筆記與全文不會匯出，因為任何能存取該資料夾的人都能讀取。請勿將明文可讀位置用於機密或私隱資料。</li>
+        </ul>
+
+        <h2>常見問題排解</h2>
+        <h3>「Allow access to the folder again」（再次允許存取資料夾）</h3>
+        <p>瀏覽器重新啟動後會收回資料夾存取權限。請點擊頂端的按鈕： <em>Sync &amp; backup</em>。如果持續失敗，該資料夾可能是 Chrome 受保護的目錄（桌面、文件、下載或使用者家目錄）：請改選您自行建立的子資料夾。</p>
+        <h3>「The server did not accept the username and password」（伺服器無法接受使用者名稱與密碼）</h3>
+        <p>使用 Nextcloud 時請務必建立應用程式專用密碼。檢查位址結尾是否為您的使用者名稱資料夾，並確認雙重驗證（2FA）未阻擋應用程式密碼。</p>
+        <h3>「Wrong passphrase」（密碼短語錯誤）</h3>
+        <p>檢查單字拼寫：大小寫、空格或連字號均不影響，但每個單字都必須正確。在已完成設定的電腦上，開啟該儲存位置設定並點選 <em>Show passphrase</em>。如果您在所有裝置上都遺失了密碼短語，將無人能夠開啟這些檔案：請在此處移除該儲存位置，建立新位置，並以本機電腦上的閱讀庫重新開始。</p>
+        <h3>出現大量待刪除提示</h3>
+        <p>若另一部裝置同時刪除了大量文章，擴充功能會先套用少數刪除並在處理剩餘項目時彈出詢問，避免因單次誤操作而清空整個閱讀庫。確認無誤後，點擊按鈕即可套用變更。</p>
+        <h3>電腦數月未連線同步</h3>
+        <p>離線約三個月後，電腦只會傳送這段期間新增或修改的內容，不會主動執行刪除，確保在其他裝置上已刪除的舊文章不會意外被復原。</p>
+
+        <h2>常見問題</h2>
+        <h3>我需要註冊你們的帳號嗎？</h3>
+        <p>不需要。同步是直接由您的瀏覽器與輸入的儲存空間通訊。我們沒有營運任何同步伺服器。</p>
+        <h3>可以在手機上使用嗎？</h3>
+        <p>Android 可以。隨附 App（可從 <a href="https://github.com/philffm/ai-summary-helper/releases/latest" rel="noopener">GitHub Releases</a>取得 APK；尚未上架 Google Play）可在 <em>Settings → Library sync</em>中加入您的閱讀庫。最快的方式是透過行動條碼：在瀏覽器中開啟儲存位置設定，點擊 <em>Show code for the phone</em> 並進行掃描。該條碼包含您的伺服器登入憑證，因此請僅供自己的手機掃描。手機端會顯示已儲存的文章、摘要及重點畫線，筆記亦支援雙向同步。在手機上摘要的頁面與標註的段落也會匯入閱讀庫，但僅限於閱讀庫尚未收錄的頁面：瀏覽器現有的內文絕不會被覆蓋。目前尚無 iPhone 專用 App。</p>
+        <h3>我可以設定多個儲存位置嗎？</h3>
+        <p>可以。常見的配置是設定一個加密位置用於多部電腦間同步，並在另一個雲端服務商設定一個「僅備份」位置。</p>
+        <h3>把閱讀庫放到雲端安全嗎？</h3>
+        <p>比大多數方案更安全，因為雲端服務商只持有加密後的檔案。但整體安全性仍取決於您的密碼短語強度與裝置防護。請詳閱 <a href="digital-sovereignty-for-individuals.html">透明局限性說明</a>，包括本加密機制尚未經過獨立第三方審計。</p>
+
+        <div class="post-cta">
+          <p>AI Summary Helper 是一款免費且開源的瀏覽器擴充功能。在您主動新增儲存位置之前，同步功能處於關閉狀態。</p>
+          <a href="https://chromewebstore.google.com/detail/ai-summary-helper-openai/hldbejcjaedipeegjcinmhejdndchkmb" target="_blank" rel="noopener" class="btn-primary">新增至 Chrome</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="footer-inner">
+      <div class="wordmark"><img src="../../assets/icon.svg" alt="">AI Summary Helper</div>
+      <div class="foot-links">
+        <a href="https://github.com/philffm/ai-summary-helper/" target="_blank" rel="noopener">GitHub 原始碼</a>
+        <a href="../../education/">教育方案</a>
+        <a href="../privacy.html">隱私權政策</a>
+        <a href="#" data-analytics-settings="">數據分析設定</a>
+        <a href="https://byphil.eu/terms.html#impressum" target="_blank" rel="noopener">法律資訊 (Impressum)</a>
+      </div>
+    </div>
+    <div class="copyright">© 2026 Phil Wornath. 屬於 <a href="https://byphil.eu/" class="credit-link">byphil.eu ↗</a> — 來自德國的獨立開發軟體。<br>
+      設計與開發： <a href="https://philwornath.com/" target="_blank" rel="noopener" class="credit-link">philwornath.com ↗</a>
+    </div>
+  </div>
+</footer>
+
+<script src="../../assets/main.js"></script>
+
+
+</body></html>

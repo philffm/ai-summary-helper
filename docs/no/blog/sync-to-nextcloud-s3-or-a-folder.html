@@ -1,0 +1,222 @@
+<!DOCTYPE html><html lang="nb"><head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#08090C">
+<title>Synkroniser lesebiblioteket ditt til Nextcloud, S3 eller en mappe, kryptert – AI Summary Helper</title>
+<meta name="description" content="Steg for steg: hold lagrede artikler, markeringer og notater synkronisert mellom enheter på din egen Nextcloud, S3-bøtte eller en lokal mappe, kryptert i nettleseren.">
+
+<script>
+  (function(){
+    try {
+      var saved = localStorage.getItem('aish_theme');
+      var theme = saved === 'light' || saved === 'dark'
+        ? saved
+        : (window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
+      document.documentElement.setAttribute('data-theme', theme);
+    } catch (e) {
+      document.documentElement.setAttribute('data-theme', 'dark');
+    }
+  })();
+</script>
+
+<link rel="icon" type="image/svg+xml" href="../../assets/icon.svg">
+<link rel="stylesheet" href="../../assets/styles.css">
+<script src="../../assets/analytics.js"></script>
+<link rel="alternate" hreflang="x-default" href="https://ai-summary-helper.byphil.eu/blog/sync-to-nextcloud-s3-or-a-folder.html"><link rel="alternate" hreflang="en" href="https://ai-summary-helper.byphil.eu/blog/sync-to-nextcloud-s3-or-a-folder.html"><link rel="alternate" hreflang="de" href="https://ai-summary-helper.byphil.eu/de/blog/sync-mit-nextcloud-s3-oder-ordner.html"><link rel="alternate" hreflang="fr" href="https://ai-summary-helper.byphil.eu/fr/blog/sync-to-nextcloud-s3-or-a-folder.html"><link rel="alternate" hreflang="es" href="https://ai-summary-helper.byphil.eu/es/blog/sync-to-nextcloud-s3-or-a-folder.html"><link rel="alternate" hreflang="zh-Hans" href="https://ai-summary-helper.byphil.eu/zh/blog/sync-to-nextcloud-s3-or-a-folder.html"><link rel="alternate" hreflang="zh-Hant" href="https://ai-summary-helper.byphil.eu/zh-tw/blog/sync-to-nextcloud-s3-or-a-folder.html"><link rel="alternate" hreflang="ja" href="https://ai-summary-helper.byphil.eu/ja/blog/sync-to-nextcloud-s3-or-a-folder.html"><link rel="alternate" hreflang="ko" href="https://ai-summary-helper.byphil.eu/ko/blog/sync-to-nextcloud-s3-or-a-folder.html"><link rel="alternate" hreflang="pt-BR" href="https://ai-summary-helper.byphil.eu/pt/blog/sync-to-nextcloud-s3-or-a-folder.html"><link rel="alternate" hreflang="hi" href="https://ai-summary-helper.byphil.eu/hi/blog/sync-to-nextcloud-s3-or-a-folder.html"><link rel="alternate" hreflang="vi" href="https://ai-summary-helper.byphil.eu/vi/blog/sync-to-nextcloud-s3-or-a-folder.html"><link rel="alternate" hreflang="nl" href="https://ai-summary-helper.byphil.eu/nl/blog/sync-to-nextcloud-s3-or-a-folder.html"><link rel="alternate" hreflang="it" href="https://ai-summary-helper.byphil.eu/it/blog/sync-to-nextcloud-s3-or-a-folder.html"><link rel="alternate" hreflang="ru" href="https://ai-summary-helper.byphil.eu/ru/blog/sync-to-nextcloud-s3-or-a-folder.html"><link rel="alternate" hreflang="uk" href="https://ai-summary-helper.byphil.eu/uk/blog/sync-to-nextcloud-s3-or-a-folder.html"><link rel="alternate" hreflang="tr" href="https://ai-summary-helper.byphil.eu/tr/blog/sync-to-nextcloud-s3-or-a-folder.html"><link rel="alternate" hreflang="id" href="https://ai-summary-helper.byphil.eu/id/blog/sync-to-nextcloud-s3-or-a-folder.html"><link rel="alternate" hreflang="pl" href="https://ai-summary-helper.byphil.eu/pl/blog/sync-to-nextcloud-s3-or-a-folder.html"><link rel="alternate" hreflang="th" href="https://ai-summary-helper.byphil.eu/th/blog/sync-to-nextcloud-s3-or-a-folder.html"><link rel="alternate" hreflang="ar" href="https://ai-summary-helper.byphil.eu/ar/blog/sync-to-nextcloud-s3-or-a-folder.html"><link rel="alternate" hreflang="sv" href="https://ai-summary-helper.byphil.eu/sv/blog/sync-to-nextcloud-s3-or-a-folder.html"><link rel="alternate" hreflang="da" href="https://ai-summary-helper.byphil.eu/da/blog/sync-to-nextcloud-s3-or-a-folder.html"><link rel="alternate" hreflang="nb" href="https://ai-summary-helper.byphil.eu/no/blog/sync-to-nextcloud-s3-or-a-folder.html"><link rel="alternate" hreflang="fi" href="https://ai-summary-helper.byphil.eu/fi/blog/sync-to-nextcloud-s3-or-a-folder.html"><link rel="canonical" href="https://ai-summary-helper.byphil.eu/no/blog/sync-to-nextcloud-s3-or-a-folder.html"><meta property="og:site_name" content="AI Summary Helper"><meta property="og:locale" content="nb"><meta property="og:type" content="article"><meta property="og:title" content="Synkroniser lesebiblioteket ditt til Nextcloud, S3 eller en mappe, kryptert – AI Summary Helper"><meta property="og:description" content="Steg for steg: hold lagrede artikler, markeringer og notater synkronisert mellom enheter på din egen Nextcloud, S3-bøtte eller en lokal mappe, kryptert i nettleseren."><meta property="og:image" content="https://ai-summary-helper.byphil.eu/assets/shots/aish-hero-en.webp"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="Synkroniser lesebiblioteket ditt til Nextcloud, S3 eller en mappe, kryptert – AI Summary Helper"><meta name="twitter:description" content="Steg for steg: hold lagrede artikler, markeringer og notater synkronisert mellom enheter på din egen Nextcloud, S3-bøtte eller en lokal mappe, kryptert i nettleseren."><meta name="twitter:image" content="https://ai-summary-helper.byphil.eu/assets/shots/aish-hero-en.webp"><script type="application/ld+json" data-seo="ld">{"@context":"https://schema.org","@graph":[{"@type":"BlogPosting","@id":"https://ai-summary-helper.byphil.eu/no/blog/sync-to-nextcloud-s3-or-a-folder.html#post","headline":"Slik synkroniserer du lesebiblioteket ditt til Nextcloud, S3 eller en lokal mappe, kryptert","description":"Steg for steg: hold lagrede artikler, markeringer og notater synkronisert mellom enheter på din egen Nextcloud, S3-bøtte eller en lokal mappe, kryptert i nettleseren.","datePublished":"2026-10","inLanguage":"nb","image":"https://ai-summary-helper.byphil.eu/assets/shots/aish-hero-en.webp","mainEntityOfPage":"https://ai-summary-helper.byphil.eu/no/blog/sync-to-nextcloud-s3-or-a-folder.html","author":{"@id":"https://byphil.eu/#org"},"publisher":{"@type":"Organization","@id":"https://byphil.eu/#org","name":"byphil","url":"https://byphil.eu/"}},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"AI Summary Helper","item":"https://ai-summary-helper.byphil.eu/"},{"@type":"ListItem","position":2,"name":"Blog","item":"https://ai-summary-helper.byphil.eu/no/blog/"},{"@type":"ListItem","position":3,"name":"Slik synkroniserer du lesebiblioteket ditt til Nextcloud, S3 eller en lokal mappe, kryptert","item":"https://ai-summary-helper.byphil.eu/no/blog/sync-to-nextcloud-s3-or-a-folder.html"}]}]}</script></head>
+<body>
+
+<a href="#main" class="skip-link">Hopp til innholdet</a>
+
+<header class="nav nav--pill" id="siteNav">
+  <div class="wrap nav-pill-row">
+    <a href="../index.html" class="wordmark" aria-label="AI Summary Helper">
+      <img src="../../assets/icon.svg" alt="">
+      AI Summary Helper
+    </a>
+    <nav class="pill" aria-label="Primær">
+      <a href="../index.html#features" data-sec="features">Funksjoner</a>
+      <a href="../index.html#see-it" data-sec="see-it">Demo</a>
+      <a href="https://chromewebstore.google.com/detail/ai-summary-helper-openai/hldbejcjaedipeegjcinmhejdndchkmb" class="pill-cta" target="_blank" rel="noopener">Legg til i Chrome</a>
+    </nav>
+    <div class="nav-tools">
+      <button type="button" class="tool-btn" id="sendBtn" data-send="" hidden="" aria-label="Send denne siden til datamaskinen min" title="Send til datamaskinen min"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="3" y="4.5" width="18" height="12" rx="2" stroke="currentColor" stroke-width="1.6"></rect><path d="M8 20h8M12 16.5V20M12 13V8m0 0-2.2 2.2M12 8l2.2 2.2" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"></path></svg></button>
+      <button type="button" class="tool-btn" id="langBtn" aria-label="Språk" aria-controls="mobileMenu"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.6"></circle><path d="M3 12h18M12 3c2.6 2.7 3.9 5.7 3.9 9s-1.3 6.3-3.9 9c-2.6-2.7-3.9-5.7-3.9-9S9.4 5.7 12 3Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"></path></svg></button>
+      <button type="button" class="theme-toggle" id="themeToggle" aria-label="Bytt til lys modus">
+        <svg class="icon-moon" viewBox="0 0 24 24" fill="none"><path d="M20 14.5A8.5 8.5 0 1 1 9.5 4a6.8 6.8 0 0 0 10.5 10.5Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"></path></svg>
+        <svg class="icon-sun" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="4.2" stroke="currentColor" stroke-width="1.6"></circle><path d="M12 2.5v2.4M12 19.1v2.4M4.4 4.4l1.7 1.7M17.9 17.9l1.7 1.7M2.5 12h2.4M19.1 12h2.4M4.4 19.6l1.7-1.7M17.9 6.1l1.7-1.7" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"></path></svg>
+      </button>
+    </div>
+    <button type="button" class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="mobileMenu" aria-label="Åpne meny">
+      <svg viewBox="0 0 24 24" fill="none"><path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"></path></svg>
+    </button>
+  </div>
+  <div class="mobile-menu" id="mobileMenu" hidden="">
+    <div class="wrap mm-inner">
+      <nav class="mm-links" aria-label="Mobil">
+        <a href="../index.html#features"><span class="mm-n">01</span>Funksjoner</a>
+        <a href="../index.html#see-it"><span class="mm-n">02</span>Demo</a>
+        <a href="../../education/"><span class="mm-n">03</span>Utdanning</a>
+        <a href="./" aria-current="page"><span class="mm-n">04</span>Blogg</a>
+          <a href="pocket-alternative.html" class="mm-sub">Pocket-alternativ: hva som betyr noe</a>
+          <a href="egen-nokkel-egen-modell.html" class="mm-sub">Din nøkkel. Din modell. Dine data.</a>
+          <a href="sjekk-et-ai-sammendrag-ved-kilden.html" class="mm-sub">Sjekk et sammendrag mot kilden</a>
+          <a href="marker-eller-sporr.html" class="mm-sub">Still spørsmål om markeringene dine</a>
+        <a href="https://github.com/philffm/ai-summary-helper/" target="_blank" rel="noopener"><span class="mm-n">05</span>GitHub</a>
+      </nav>
+      <div class="mm-lang">
+        <button type="button" class="lang-card" id="langCard"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.6"></circle><path d="M3 12h18M12 3c2.6 2.7 3.9 5.7 3.9 9s-1.3 6.3-3.9 9c-2.6-2.7-3.9-5.7-3.9-9S9.4 5.7 12 3Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"></path></svg><span class="lang-card-cur">Engelsk</span><small>24 språk</small><b aria-hidden="true">→</b></button>
+        <p class="mm-lang-h">Språk · 24</p>
+        <label class="lang-search"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="11" cy="11" r="6.5" stroke="currentColor" stroke-width="1.7"></circle><path d="m16 16 4 4" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"></path></svg><input type="search" id="langSearch" placeholder="Søk etter språk…" autocomplete="off" aria-label="Søk etter språk" spellcheck="false"></label>
+        <div class="lang-groups" id="langGroups">
+          <div class="lang-group"><p class="lang-group-h">Populære</p><div class="lang-pills" data-no-translate=""><a href="/" class="lang-pill" data-loc="en" lang="en" hreflang="en" data-q="english english en">English</a><a href="/de/" class="lang-pill" data-loc="de" lang="de" hreflang="de" data-q="deutsch german de">Deutsch</a><a href="/fr/" class="lang-pill" data-loc="fr" lang="fr" hreflang="fr" data-q="français french fr">Français</a><a href="/es/" class="lang-pill" data-loc="es" lang="es" hreflang="es" data-q="español spanish es">Español</a><a href="/zh/" class="lang-pill" data-loc="zh" lang="zh-CN" hreflang="zh-CN" data-q="简体中文 chinese simplified zh">简体中文</a><a href="/ja/" class="lang-pill" data-loc="ja" lang="ja" hreflang="ja" data-q="日本語 japanese ja">日本語</a><a href="/ru/" class="lang-pill" data-loc="ru" lang="ru" hreflang="ru" data-q="русский russian ru">Русский</a></div></div>
+          <div class="lang-group"><p class="lang-group-h">Europa</p><div class="lang-pills" data-no-translate=""><a href="/pt/" class="lang-pill" data-loc="pt" lang="pt" hreflang="pt" data-q="português portuguese pt">Português</a><a href="/nl/" class="lang-pill" data-loc="nl" lang="nl" hreflang="nl" data-q="nederlands dutch nl">Nederlands</a><a href="/it/" class="lang-pill" data-loc="it" lang="it" hreflang="it" data-q="italiano italian it">Italiano</a><a href="/uk/" class="lang-pill" data-loc="uk" lang="uk" hreflang="uk" data-q="українська ukrainian uk">Українська</a><a href="/tr/" class="lang-pill" data-loc="tr" lang="tr" hreflang="tr" data-q="türkçe turkish tr">Türkçe</a><a href="/pl/" class="lang-pill" data-loc="pl" lang="pl" hreflang="pl" data-q="polski polish pl">Polski</a><a href="/sv/" class="lang-pill" data-loc="sv" lang="sv" hreflang="sv" data-q="svenska swedish sv">Svenska</a><a href="/da/" class="lang-pill" data-loc="da" lang="da" hreflang="da" data-q="dansk danish da">Dansk</a><a href="/no/" class="lang-pill" data-loc="no" lang="nb" hreflang="nb" data-q="norsk norwegian no">Norsk</a><a href="/fi/" class="lang-pill" data-loc="fi" lang="fi" hreflang="fi" data-q="suomi finnish fi">Suomi</a></div></div>
+          <div class="lang-group"><p class="lang-group-h">Asia og mer</p><div class="lang-pills" data-no-translate=""><a href="/zh-tw/" class="lang-pill" data-loc="zh-tw" lang="zh-TW" hreflang="zh-TW" data-q="繁體中文 chinese traditional zh-tw">繁體中文</a><a href="/ko/" class="lang-pill" data-loc="ko" lang="ko" hreflang="ko" data-q="한국어 korean ko">한국어</a><a href="/hi/" class="lang-pill" data-loc="hi" lang="hi" hreflang="hi" data-q="हिन्दी hindi hi">हिन्दी</a><a href="/vi/" class="lang-pill" data-loc="vi" lang="vi" hreflang="vi" data-q="tiếng việt vietnamese vi">Tiếng Việt</a><a href="/id/" class="lang-pill" data-loc="id" lang="id" hreflang="id" data-q="bahasa indonesia indonesian id">Bahasa Indonesia</a><a href="/th/" class="lang-pill" data-loc="th" lang="th" hreflang="th" data-q="ไทย thai th">ไทย</a><a href="/ar/" class="lang-pill" data-loc="ar" lang="ar" hreflang="ar" data-q="العربية arabic ar">العربية</a></div></div>
+          <p class="lang-empty" hidden="">Ingen treff</p>
+        </div>
+      </div>
+      <div class="mm-posts" aria-label="Blogg">
+          <p class="mm-posts-h">Fra bloggen</p>
+          <a href="pocket-alternative.html" class="mm-post"><span class="mega-tag">Sammenlign</span><strong>Pocket-alternativer: Hva som faktisk betyr noe</strong><span>Bytt les-senere-verktøy uten å miste arkivet</span></a>
+          <a href="egen-nokkel-egen-modell.html" class="mm-post"><span class="mega-tag">Personvern</span><strong>Din nøkkel. Din modell. Dine data.</strong><span>Hvorfor bring-your-own-key slår nok et abonnement</span></a>
+          <a href="sjekk-et-ai-sammendrag-ved-kilden.html" class="mm-post"><span class="mega-tag">Tillit</span><strong>Sjekk et AI-sammendrag mot kilden</strong><span>Kvalitetssjekk AI-svar på under ett minutt</span></a>
+          <a href="marker-eller-sporr.html" class="mm-post"><span class="mega-tag">Slik gjør du det</span><strong>Still spørsmål til markeringene dine</strong><span>Gjør det du markerte om til svar</span></a>
+          <a href="en-oppsummering-i-stedet-for-40-feeder.html" class="mm-post"><span class="mega-tag">Feeds</span><strong>Én oppsummering i stedet for 40 feeder</strong><span>En daglig oppsummering av alt du følger</span></a>
+          <a href="sok-og-tagger-uten-sky.html" class="mm-post"><span class="mega-tag">Under panseret</span><strong>Søk og emneknagger uten skyen</strong><span>Slik forblir alt på enheten din</span></a>
+          <a href="./" class="mm-all">Alle innlegg →</a>
+        </div>
+      <div class="mm-bottom">
+        <a href="https://chromewebstore.google.com/detail/ai-summary-helper-openai/hldbejcjaedipeegjcinmhejdndchkmb" class="pill-cta mm-cta" data-desktop-cta="" target="_blank" rel="noopener">Legg til i Chrome</a>
+        <button type="button" class="pill-cta mm-cta" data-send="" hidden="">Send til datamaskinen min</button>
+        <div class="mm-row">
+          <a href="https://addons.mozilla.org/en-US/firefox/addon/ai-summary-helper/" target="_blank" rel="noopener">Firefox</a>
+          <a href="../index.html#phone">Android · Beta</a>
+          <a href="https://byphil.eu/#account">Min konto</a>
+        </div>
+        
+        <button type="button" class="theme-toggle-mobile" id="themeToggleMobile">
+          <span id="themeToggleMobileLabel">Bytt til lys modus</span>
+          <svg class="icon-moon" viewBox="0 0 24 24" fill="none"><path d="M20 14.5A8.5 8.5 0 1 1 9.5 4a6.8 6.8 0 0 0 10.5 10.5Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"></path></svg>
+          <svg class="icon-sun" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="4.2" stroke="currentColor" stroke-width="1.6"></circle><path d="M12 2.5v2.4M12 19.1v2.4M4.4 4.4l1.7 1.7M17.9 17.9l1.7 1.7M2.5 12h2.4M19.1 12h2.4M4.4 19.6l1.7-1.7M17.9 6.1l1.7-1.7" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"></path></svg>
+        </button>
+      </div>
+    </div>
+  </div>
+</header>
+
+<main id="main">
+  <section class="hero--photo post-stage">
+    <img class="hero-bg" src="../../assets/photo/nas-shelf-laptop-phone-800.webp" srcset="../../assets/photo/nas-shelf-laptop-phone-800.webp 800w, ../../assets/photo/nas-shelf-laptop-phone-1600.webp 1600w" sizes="100vw" width="1600" height="893" alt="" fetchpriority="high" decoding="async" style="--bgpos:60% 55%">
+    <p class="hero-credit">Illustrasjon, AI-generert</p>
+    <div class="wrap">
+      <div class="post-hero">
+      <span class="blog-date">Veiledning · Oktober 2026</span>
+      <h1>Slik synkroniserer du lesebiblioteket ditt til Nextcloud, S3 eller en lokal mappe, kryptert</h1>
+      <p class="post-sub">De lagrede artiklene, sammendragene, markeringene og notatene dine på alle datamaskinene dine, lagret der du bestemmer, kun lesbare med din nøkkel. Ti minutter, ingen konto hos oss.</p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <div class="prose">
+        <p><strong>Kortversjonen.</strong> I AI Summary Helper åpner du <em>Innstillinger → Synkronisering og sikkerhetskopi → Legg til et sted</em>, velger Nextcloud/WebDAV, S3-kompatibel lagring eller en mappe på datamaskinen din, og beholder den foreslåtte passordfrasen. Alt krypteres i nettleseren din før det lastes opp. På den andre datamaskinen din legger du til samme sted og taster inn passordfrasen. Det er hele oppsettet. Resten av denne siden dekker hver lagringstype, hva som synkroniseres, og hva du gjør hvis noe går galt.</p>
+        <figure class="post-figure post-figure--photo"><img src="../../assets/photo/commuter-train-reading-800.webp" srcset="../../assets/photo/commuter-train-reading-800.webp 800w, ../../assets/photo/commuter-train-reading-1600.webp 1600w" sizes="(max-width: 720px) 92vw, 680px" width="1600" height="893" loading="lazy" decoding="async" alt="Illustrasjon: en pendler på et lokaltog, som holder et lesebrett og en telefon"><figcaption>Ett bibliotek, flere enheter. Illustrasjon, KI-generert.</figcaption></figure>
+        <p>Hvorfor gjøre dette i det hele tatt? Fordi et lesebibliotek er verdt å ta vare på, og et verktøy du er avhengig av kan forsvinne (<a href="digital-sovereignty-for-individuals.html">mer om det her</a>). Ved å synkronisere til lagring du selv eier, overlever biblioteket enhver app eller konto.</p>
+
+        <h2>Hva som synkroniseres, og hva som ikke gjør det</h2>
+        <ul>
+          <li><strong>Synkroniseres:</strong> lagrede artikler med fulltekst og sammendrag, etiketter, markeringer, notater og kommentarer, samt samlinger.</li>
+          <li><strong>Synkroniseres ikke:</strong> API-nøklene dine, innloggingsdetaljer, selve synkroniseringsinnloggingen og innstillinger per enhet. Sikkerhetskopier og synkronisering utelater disse med vilje.</li>
+          <li><strong>Én artikkel per side:</strong> hvis du lagret samme side på to datamaskiner, ender du opp med én artikkel (etiketter og manglende felt slås sammen).</li>
+          <li><strong>Endringer flettes felt for felt:</strong> en tittel endret på én datamaskin og en etikett lagt til på en annen beholdes begge. Hvis begge endrer samme felt, vinner den nyeste endringen, likt på alle enheter.</li>
+        </ul>
+
+        <h2>Steg 1: velg hvor det skal ligge</h2>
+        <h3>Nextcloud eller en annen WebDAV-server</h3>
+        <p>Best hvis du allerede kjører Nextcloud, eller bruker en driftet løsning (mange europeiske leverandører tilbyr dette). Du trenger tre ting:</p>
+        <ol>
+          <li><strong>Adressen til filene dine.</strong> For Nextcloud ser det slik ut: <code>https://din-server/remote.php/dav/files/ditt-brukernavn/</code>. I Nextcloud åpner du <em>Filer → Innstillinger</em> og kopierer WebDAV-adressen som vises der.</li>
+          <li><strong>Brukernavnet ditt.</strong></li>
+          <li><strong>Et app-passord, ikke hovedpassordet ditt.</strong> I Nextcloud: <em>Innstillinger → Sikkerhet → Enheter og økter → opprett et nytt app-passord</em>. Hvis du noen gang vil fjerne tilgangen, sletter du bare denne ene oppføringen.</li>
+        </ol>
+        <p>Velg et mappenavn som for eksempel <code>aish-sync</code>. Den opprettes automatisk for deg. Andre WebDAV-servere (mange NAS-enheter, ownCloud) fungerer på samme måte; adresseformatet varierer.</p>
+
+        <h3>En S3-kompatibel bøtte</h3>
+        <p>Best hvis du foretrekker objektlagring: AWS S3, Cloudflare R2, Backblaze B2, MinIO og lignende. Opprett en bøtte, og opprett deretter en tilgangsnøkkel <strong>kun for denne bøtten</strong> med rettigheter til å lese, skrive, liste opp og slette i den. Bruk aldri kontoens hovednøkkel. I utvidelsen fyller du inn endepunktadressen (for eksempel <code>https://s3.eu-central-1.amazonaws.com</code>, eller adressen leverandøren din oppgir), bøttenavnet, regionen (behold standardverdien hvis leverandøren din ikke ber om det), tilgangsnøkkel-ID og hemmelig nøkkel.</p>
+
+        <h3>En mappe på datamaskinen din</h3>
+        <p>Best hvis noe annet allerede synkroniserer en mappe mellom enhetene dine: Syncthing, skrivebordsklienten din, iCloud Drive, en minnepenn. Velg <em>En mappe på denne datamaskinen</em> og velg en <strong>egen, ny og tom mappe</strong>, for eksempel <code>Dokumenter/AISH-sync</code>. Chrome godtar ikke Skrivebord, Dokumenter eller Nedlastinger direkte som mappe for dette, så velg en undermappe. Dette fungerer i Chrome og Edge på datamaskinen. To ting å være obs på: nettleseren kan be deg om tilgang på nytt etter en omstart (innstillingssiden har en knapp for dette), og mappen synkroniseres bare mens nettleseren kjører.</p>
+
+        <h2>Steg 2: velg kryptert, og ta vare på ordene</h2>
+        <p>Når du legger til stedet, <em>Kryptert</em> er valgt som standard og <em>Synkroniser enhetene mine</em> er formålet. Utvidelsen foreslår seks tilfeldige ord som passordfrase. Du kan trykke på <em>Nytt forslag</em> til du er fornøyd med kombinasjonen, eller velge din egen (minst 12 tegn, med advarsel hvis den er svak).</p>
+        <p>Når du har koblet til, ser du de seks ordene én gang. Lagre dem i en passordbehandler; Kopier-knappen legger dem på utklippstavlen som én streng med bindestreker, som tåler konfigurasjonsfiler og chat-apper. Med disse kan du åpne stedet på hvilken som helst enhet; uten dem kan ingen lese filene, heller ikke vi. På datamaskinen der du satte det opp, kan du finne dem igjen under stedets innstillinger, <em>Vis passordfrase</em>. Hvis du valgte din egen passordfrase i stedet, lagres den ingen steder, så utvidelsen kan ikke vise den.</p>
+        <p>Hva lagringsleverandøren ser: ugjenkjennelige filer med ugjenkjennelige navn, hvor mange det er, hvor store de er, og når de endres. De ser ikke titler, lenker eller tekst. Biblioteket ditt krypteres i nettleseren med AES-256-GCM før det forlater enheten.</p>
+
+        <h2>Steg 3: legg til den andre datamaskinen din</h2>
+        <ol>
+          <li>Installer utvidelsen og åpne <em>Innstillinger → Synkronisering og sikkerhetskopi → Legg til et sted</em>.</li>
+          <li>Fyll inn de samme serverdetaljene (eller velg samme mappe).</li>
+          <li>Utvidelsen oppdager at mappen allerede inneholder et kryptert bibliotek og ber om passordfrasen. Du kan skrive ordene med store eller små bokstaver, og med mellomrom eller bindestreker.</li>
+          <li>Den ber deg bekrefte at du har tatt en sikkerhetskopi av denne enheten først, fordi tilkoblingen fletter denne datamaskinens bibliotek med det som ligger i mappen, og der de er ulike, vinner mappen. Bruk <em>Ta sikkerhetskopi nå</em>.</li>
+          <li>Trykk på <em>Koble til</em>. Den første synkroniseringen kan ta litt tid for et stort bibliotek; fremdriften vises på skjermen.</li>
+        </ol>
+
+        <h2>Kun sikkerhetskopi, gjenoppretting og publisering</h2>
+        <ul>
+          <li><strong>Kun sikkerhetskopi.</strong> Velg <em>Kun sikkerhetskopi</em> i stedet for <em>Synkroniser enhetene mine</em> og datamaskinen vil kun skrive til stedet og aldri lese fra det. Gjenopprett fra stedets innstillinger når du trenger det: det henter alt tilbake, og der denne datamaskinen har avvik, vinner stedet. Ingenting slettes.</li>
+          <li><strong>Publiser til nettsiden din.</strong> En egen type sted, <em>Lesbar</em>, skriver rene filer for din egen nettside, kun for artiklene du merker med etikett, med en valgfri visningsside. Notater og fulltekst holdes unna med mindre du slår dem på, ettersom alle som kan åpne mappen kan lese den. Ikke bruk et lesbart sted for private data.</li>
+        </ul>
+
+        <h2>Når noe går galt</h2>
+        <h3>«Gi tilgang til mappen på nytt»</h3>
+        <p>Nettleseren trekker tilbake mappetilgangen etter en omstart. Trykk på knappen øverst i <em>Synkronisering og sikkerhetskopi</em>. Hvis det fortsatt feiler, kan mappen være en av de Chrome beskytter (Skrivebord, Dokumenter, Nedlastinger eller hjemmemappen din): velg en undermappe du selv har opprettet.</p>
+        <h3>«Serveren godtok ikke brukernavnet og passordet»</h3>
+        <p>For Nextcloud må du bruke et app-passord. Sjekk at adressen slutter med mappen for ditt brukernavn, og at totrinnsbekreftelse ikke blokkerer app-passordet.</p>
+        <h3>«Feil passordfrase»</h3>
+        <p>Sjekk ordene: store/små bokstaver, mellomrom og bindestreker spiller ingen rolle, men hvert ord må være riktig. På en datamaskin som allerede er satt opp, åpner du stedets innstillinger og trykker på <em>Vis passordfrase</em>. Hvis du har mistet den overalt, kan ingen åpne filene: fjern stedet her, opprett et nytt og start på nytt fra biblioteket på datamaskinen din.</p>
+        <h3>Mange slettinger venter</h3>
+        <p>Hvis en annen enhet sletter mange artikler samtidig, utfører utvidelsen noen få og spør før resten tas, slik at en feil ikke tømmer biblioteket ditt. Sjekk over, og trykk på knappen for å bekrefte.</p>
+        <h3>En datamaskin var frakoblet i flere måneder</h3>
+        <p>Etter omtrent tre måneder sender en datamaskin bare det som er endret siden sist, og sletter ingenting på eget initiativ, slik at gamle artikler som ble slettet andre steder ikke dukker opp igjen ved et uhell.</p>
+
+        <h2>Spørsmål</h2>
+        <h3>Må jeg ha en konto hos dere?</h3>
+        <p>Nei. Synkroniseringen kommuniserer direkte fra nettleseren din til lagringen du har oppgitt. Vi drifter ingen synkroniseringsserver.</p>
+        <h3>Fungerer det på telefonen min?</h3>
+        <p>På Android, ja. Følge-appen (en APK fra <a href="https://github.com/philffm/ai-summary-helper/releases/latest" rel="noopener">GitHub-utgivelsene</a>; den er ikke på Google Play ennå) kan koble seg til biblioteket ditt under <em>Innstillinger → Biblioteksynkronisering</em>. Den raskeste måten er koden: åpne stedets innstillinger i nettleseren, trykk på <em>Vis kode for telefonen</em> og skann den. Den inneholder serverinnloggingen din, så vis den bare til din egen telefon. Telefonen viser dine lagrede artikler med sammendrag og markeringer, og notater synkroniseres begge veier. Sider du oppsummerer på telefonen, og avsnitt du markerer der, legges også til i biblioteket ditt, men bare sider det ikke har fra før: nettleserens egen tekst blir aldri overskrevet. Det finnes ingen iPhone-app ennå.</p>
+        <h3>Kan jeg bruke mer enn ett sted?</h3>
+        <p>Ja. Et vanlig oppsett er ett kryptert sted for synkronisering mellom datamaskiner og ett sted kun for sikkerhetskopi hos en annen leverandør.</p>
+        <h3>Er det trygt å lagre biblioteket mitt i skyen?</h3>
+        <p>Tryggere enn de fleste oppsett, fordi leverandøren kun har krypterte filer. Det er likevel bare så sikkert som passordfrasen og enheten din. Les <a href="digital-sovereignty-for-individuals.html">de ærlige begrensningene</a>, inkludert at krypteringen ikke er uavhengig revidert.</p>
+
+        <div class="post-cta">
+          <p>AI Summary Helper er en gratis nettleserutvidelse med åpen kildekode. Synkronisering er avskrudd frem til du legger til et sted.</p>
+          <a href="https://chromewebstore.google.com/detail/ai-summary-helper-openai/hldbejcjaedipeegjcinmhejdndchkmb" target="_blank" rel="noopener" class="btn-primary">Legg til i Chrome</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="footer-inner">
+      <div class="wordmark"><img src="../../assets/icon.svg" alt="">AI Summary Helper</div>
+      <div class="foot-links">
+        <a href="https://github.com/philffm/ai-summary-helper/" target="_blank" rel="noopener">Kildekode på GitHub</a>
+        <a href="../../education/">For utdanning</a>
+        <a href="../personvern.html">Personvern</a>
+        <a href="#" data-analytics-settings="">Analyseinnstillinger</a>
+        <a href="https://byphil.eu/terms.html#impressum" target="_blank" rel="noopener">Impressum</a>
+      </div>
+    </div>
+    <div class="copyright">© 2026 Phil Wornath. En del av <a href="https://byphil.eu/" class="credit-link">byphil.eu ↗</a> — uavhengig programvare utviklet i Tyskland.<br>
+      Designet og utviklet av <a href="https://philwornath.com/" target="_blank" rel="noopener" class="credit-link">philwornath.com ↗</a>
+    </div>
+  </div>
+</footer>
+
+<script src="../../assets/main.js"></script>
+
+
+</body></html>

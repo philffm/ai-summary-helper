@@ -1,0 +1,222 @@
+<!DOCTYPE html><html lang="uk"><head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#08090C">
+<title>Синхронізація вашої бібліотеки для читання з Nextcloud, S3 або папкою із шифруванням — AI Summary Helper</title>
+<meta name="description" content="Покрокова інструкція: тримайте збережені статті, виділення та нотатки синхронізованими між пристроями через власний Nextcloud, бакет S3 або локальну папку із шифруванням просто в браузері.">
+
+<script>
+  (function(){
+    try {
+      var saved = localStorage.getItem('aish_theme');
+      var theme = saved === 'light' || saved === 'dark'
+        ? saved
+        : (window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
+      document.documentElement.setAttribute('data-theme', theme);
+    } catch (e) {
+      document.documentElement.setAttribute('data-theme', 'dark');
+    }
+  })();
+</script>
+
+<link rel="icon" type="image/svg+xml" href="../../assets/icon.svg">
+<link rel="stylesheet" href="../../assets/styles.css">
+<script src="../../assets/analytics.js"></script>
+<link rel="alternate" hreflang="x-default" href="https://ai-summary-helper.byphil.eu/blog/sync-to-nextcloud-s3-or-a-folder.html"><link rel="alternate" hreflang="en" href="https://ai-summary-helper.byphil.eu/blog/sync-to-nextcloud-s3-or-a-folder.html"><link rel="alternate" hreflang="de" href="https://ai-summary-helper.byphil.eu/de/blog/sync-mit-nextcloud-s3-oder-ordner.html"><link rel="alternate" hreflang="fr" href="https://ai-summary-helper.byphil.eu/fr/blog/sync-to-nextcloud-s3-or-a-folder.html"><link rel="alternate" hreflang="es" href="https://ai-summary-helper.byphil.eu/es/blog/sync-to-nextcloud-s3-or-a-folder.html"><link rel="alternate" hreflang="zh-Hans" href="https://ai-summary-helper.byphil.eu/zh/blog/sync-to-nextcloud-s3-or-a-folder.html"><link rel="alternate" hreflang="zh-Hant" href="https://ai-summary-helper.byphil.eu/zh-tw/blog/sync-to-nextcloud-s3-or-a-folder.html"><link rel="alternate" hreflang="ja" href="https://ai-summary-helper.byphil.eu/ja/blog/sync-to-nextcloud-s3-or-a-folder.html"><link rel="alternate" hreflang="ko" href="https://ai-summary-helper.byphil.eu/ko/blog/sync-to-nextcloud-s3-or-a-folder.html"><link rel="alternate" hreflang="pt-BR" href="https://ai-summary-helper.byphil.eu/pt/blog/sync-to-nextcloud-s3-or-a-folder.html"><link rel="alternate" hreflang="hi" href="https://ai-summary-helper.byphil.eu/hi/blog/sync-to-nextcloud-s3-or-a-folder.html"><link rel="alternate" hreflang="vi" href="https://ai-summary-helper.byphil.eu/vi/blog/sync-to-nextcloud-s3-or-a-folder.html"><link rel="alternate" hreflang="nl" href="https://ai-summary-helper.byphil.eu/nl/blog/sync-to-nextcloud-s3-or-a-folder.html"><link rel="alternate" hreflang="it" href="https://ai-summary-helper.byphil.eu/it/blog/sync-to-nextcloud-s3-or-a-folder.html"><link rel="alternate" hreflang="ru" href="https://ai-summary-helper.byphil.eu/ru/blog/sync-to-nextcloud-s3-or-a-folder.html"><link rel="alternate" hreflang="uk" href="https://ai-summary-helper.byphil.eu/uk/blog/sync-to-nextcloud-s3-or-a-folder.html"><link rel="alternate" hreflang="tr" href="https://ai-summary-helper.byphil.eu/tr/blog/sync-to-nextcloud-s3-or-a-folder.html"><link rel="alternate" hreflang="id" href="https://ai-summary-helper.byphil.eu/id/blog/sync-to-nextcloud-s3-or-a-folder.html"><link rel="alternate" hreflang="pl" href="https://ai-summary-helper.byphil.eu/pl/blog/sync-to-nextcloud-s3-or-a-folder.html"><link rel="alternate" hreflang="th" href="https://ai-summary-helper.byphil.eu/th/blog/sync-to-nextcloud-s3-or-a-folder.html"><link rel="alternate" hreflang="ar" href="https://ai-summary-helper.byphil.eu/ar/blog/sync-to-nextcloud-s3-or-a-folder.html"><link rel="alternate" hreflang="sv" href="https://ai-summary-helper.byphil.eu/sv/blog/sync-to-nextcloud-s3-or-a-folder.html"><link rel="alternate" hreflang="da" href="https://ai-summary-helper.byphil.eu/da/blog/sync-to-nextcloud-s3-or-a-folder.html"><link rel="alternate" hreflang="nb" href="https://ai-summary-helper.byphil.eu/no/blog/sync-to-nextcloud-s3-or-a-folder.html"><link rel="alternate" hreflang="fi" href="https://ai-summary-helper.byphil.eu/fi/blog/sync-to-nextcloud-s3-or-a-folder.html"><link rel="canonical" href="https://ai-summary-helper.byphil.eu/uk/blog/sync-to-nextcloud-s3-or-a-folder.html"><meta property="og:site_name" content="AI Summary Helper"><meta property="og:locale" content="uk"><meta property="og:type" content="article"><meta property="og:title" content="Синхронізація вашої бібліотеки для читання з Nextcloud, S3 або папкою із шифруванням — AI Summary Helper"><meta property="og:description" content="Покрокова інструкція: тримайте збережені статті, виділення та нотатки синхронізованими між пристроями через власний Nextcloud, бакет S3 або локальну папку із шифруванням просто в браузері."><meta property="og:image" content="https://ai-summary-helper.byphil.eu/assets/shots/aish-hero-en.webp"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="Синхронізація вашої бібліотеки для читання з Nextcloud, S3 або папкою із шифруванням — AI Summary Helper"><meta name="twitter:description" content="Покрокова інструкція: тримайте збережені статті, виділення та нотатки синхронізованими між пристроями через власний Nextcloud, бакет S3 або локальну папку із шифруванням просто в браузері."><meta name="twitter:image" content="https://ai-summary-helper.byphil.eu/assets/shots/aish-hero-en.webp"><script type="application/ld+json" data-seo="ld">{"@context":"https://schema.org","@graph":[{"@type":"BlogPosting","@id":"https://ai-summary-helper.byphil.eu/uk/blog/sync-to-nextcloud-s3-or-a-folder.html#post","headline":"Як синхронізувати бібліотеку для читання з Nextcloud, S3 або локальною папкою із шифруванням","description":"Покрокова інструкція: тримайте збережені статті, виділення та нотатки синхронізованими між пристроями через власний Nextcloud, бакет S3 або локальну папку із шифруванням просто в браузері.","inLanguage":"uk","image":"https://ai-summary-helper.byphil.eu/assets/shots/aish-hero-en.webp","mainEntityOfPage":"https://ai-summary-helper.byphil.eu/uk/blog/sync-to-nextcloud-s3-or-a-folder.html","author":{"@id":"https://byphil.eu/#org"},"publisher":{"@type":"Organization","@id":"https://byphil.eu/#org","name":"byphil","url":"https://byphil.eu/"}},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"AI Summary Helper","item":"https://ai-summary-helper.byphil.eu/"},{"@type":"ListItem","position":2,"name":"Blog","item":"https://ai-summary-helper.byphil.eu/uk/blog/"},{"@type":"ListItem","position":3,"name":"Як синхронізувати бібліотеку для читання з Nextcloud, S3 або локальною папкою із шифруванням","item":"https://ai-summary-helper.byphil.eu/uk/blog/sync-to-nextcloud-s3-or-a-folder.html"}]}]}</script></head>
+<body>
+
+<a href="#main" class="skip-link">Перейти до вмісту</a>
+
+<header class="nav nav--pill" id="siteNav">
+  <div class="wrap nav-pill-row">
+    <a href="../index.html" class="wordmark" aria-label="AI Summary Helper">
+      <img src="../../assets/icon.svg" alt="">
+      AI Summary Helper
+    </a>
+    <nav class="pill" aria-label="Основне">
+      <a href="../index.html#features" data-sec="features">Можливості</a>
+      <a href="../index.html#see-it" data-sec="see-it">Демо</a>
+      <a href="https://chromewebstore.google.com/detail/ai-summary-helper-openai/hldbejcjaedipeegjcinmhejdndchkmb" class="pill-cta" target="_blank" rel="noopener">Додати в Chrome</a>
+    </nav>
+    <div class="nav-tools">
+      <button type="button" class="tool-btn" id="sendBtn" data-send="" hidden="" aria-label="Надіслати цю сторінку на мій комп’ютер" title="Надіслати на мій комп’ютер"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="3" y="4.5" width="18" height="12" rx="2" stroke="currentColor" stroke-width="1.6"></rect><path d="M8 20h8M12 16.5V20M12 13V8m0 0-2.2 2.2M12 8l2.2 2.2" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"></path></svg></button>
+      <button type="button" class="tool-btn" id="langBtn" aria-label="Мова" aria-controls="mobileMenu"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.6"></circle><path d="M3 12h18M12 3c2.6 2.7 3.9 5.7 3.9 9s-1.3 6.3-3.9 9c-2.6-2.7-3.9-5.7-3.9-9S9.4 5.7 12 3Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"></path></svg></button>
+      <button type="button" class="theme-toggle" id="themeToggle" aria-label="Увімкнути світлу тему">
+        <svg class="icon-moon" viewBox="0 0 24 24" fill="none"><path d="M20 14.5A8.5 8.5 0 1 1 9.5 4a6.8 6.8 0 0 0 10.5 10.5Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"></path></svg>
+        <svg class="icon-sun" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="4.2" stroke="currentColor" stroke-width="1.6"></circle><path d="M12 2.5v2.4M12 19.1v2.4M4.4 4.4l1.7 1.7M17.9 17.9l1.7 1.7M2.5 12h2.4M19.1 12h2.4M4.4 19.6l1.7-1.7M17.9 6.1l1.7-1.7" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"></path></svg>
+      </button>
+    </div>
+    <button type="button" class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="mobileMenu" aria-label="Відкрити меню">
+      <svg viewBox="0 0 24 24" fill="none"><path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"></path></svg>
+    </button>
+  </div>
+  <div class="mobile-menu" id="mobileMenu" hidden="">
+    <div class="wrap mm-inner">
+      <nav class="mm-links" aria-label="Мобільний">
+        <a href="../index.html#features"><span class="mm-n">01</span>Можливості</a>
+        <a href="../index.html#see-it"><span class="mm-n">02</span>Демо</a>
+        <a href="../../education/"><span class="mm-n">03</span>Освіта</a>
+        <a href="./" aria-current="page"><span class="mm-n">04</span>Блог</a>
+          <a href="pocket-alternative.html" class="mm-sub">Альтернатива Pocket: що дійсно важливо</a>
+          <a href="bring-your-own-key.html" class="mm-sub">Ваш ключ. Ваша модель. Ваші дані.</a>
+          <a href="verify-ai-summary.html" class="mm-sub">Звіряйте підсумки з першоджерелом</a>
+          <a href="highlighting-vs-asking.html" class="mm-sub">Ставте запитання до своїх виділень</a>
+        <a href="https://github.com/philffm/ai-summary-helper/" target="_blank" rel="noopener"><span class="mm-n">05</span>GitHub</a>
+      </nav>
+      <div class="mm-lang">
+        <button type="button" class="lang-card" id="langCard"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.6"></circle><path d="M3 12h18M12 3c2.6 2.7 3.9 5.7 3.9 9s-1.3 6.3-3.9 9c-2.6-2.7-3.9-5.7-3.9-9S9.4 5.7 12 3Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"></path></svg><span class="lang-card-cur">Англійська</span><small>24 мови</small><b aria-hidden="true">→</b></button>
+        <p class="mm-lang-h">Мова · 24</p>
+        <label class="lang-search"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="11" cy="11" r="6.5" stroke="currentColor" stroke-width="1.7"></circle><path d="m16 16 4 4" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"></path></svg><input type="search" id="langSearch" placeholder="Пошук мови…" autocomplete="off" aria-label="Пошук мови" spellcheck="false"></label>
+        <div class="lang-groups" id="langGroups">
+          <div class="lang-group"><p class="lang-group-h">Популярні</p><div class="lang-pills" data-no-translate=""><a href="/" class="lang-pill" data-loc="en" lang="en" hreflang="en" data-q="english english en">English</a><a href="/de/" class="lang-pill" data-loc="de" lang="de" hreflang="de" data-q="deutsch german de">Deutsch</a><a href="/fr/" class="lang-pill" data-loc="fr" lang="fr" hreflang="fr" data-q="français french fr">Français</a><a href="/es/" class="lang-pill" data-loc="es" lang="es" hreflang="es" data-q="español spanish es">Español</a><a href="/zh/" class="lang-pill" data-loc="zh" lang="zh-CN" hreflang="zh-CN" data-q="简体中文 chinese simplified zh">简体中文</a><a href="/ja/" class="lang-pill" data-loc="ja" lang="ja" hreflang="ja" data-q="日本語 japanese ja">日本語</a><a href="/ru/" class="lang-pill" data-loc="ru" lang="ru" hreflang="ru" data-q="русский russian ru">Русский</a></div></div>
+          <div class="lang-group"><p class="lang-group-h">Європа</p><div class="lang-pills" data-no-translate=""><a href="/pt/" class="lang-pill" data-loc="pt" lang="pt" hreflang="pt" data-q="português portuguese pt">Português</a><a href="/nl/" class="lang-pill" data-loc="nl" lang="nl" hreflang="nl" data-q="nederlands dutch nl">Nederlands</a><a href="/it/" class="lang-pill" data-loc="it" lang="it" hreflang="it" data-q="italiano italian it">Italiano</a><a href="/uk/" class="lang-pill" data-loc="uk" lang="uk" hreflang="uk" data-q="українська ukrainian uk">Українська</a><a href="/tr/" class="lang-pill" data-loc="tr" lang="tr" hreflang="tr" data-q="türkçe turkish tr">Türkçe</a><a href="/pl/" class="lang-pill" data-loc="pl" lang="pl" hreflang="pl" data-q="polski polish pl">Polski</a><a href="/sv/" class="lang-pill" data-loc="sv" lang="sv" hreflang="sv" data-q="svenska swedish sv">Svenska</a><a href="/da/" class="lang-pill" data-loc="da" lang="da" hreflang="da" data-q="dansk danish da">Dansk</a><a href="/no/" class="lang-pill" data-loc="no" lang="nb" hreflang="nb" data-q="norsk norwegian no">Norsk</a><a href="/fi/" class="lang-pill" data-loc="fi" lang="fi" hreflang="fi" data-q="suomi finnish fi">Suomi</a></div></div>
+          <div class="lang-group"><p class="lang-group-h">Азія та інші</p><div class="lang-pills" data-no-translate=""><a href="/zh-tw/" class="lang-pill" data-loc="zh-tw" lang="zh-TW" hreflang="zh-TW" data-q="繁體中文 chinese traditional zh-tw">繁體中文</a><a href="/ko/" class="lang-pill" data-loc="ko" lang="ko" hreflang="ko" data-q="한국어 korean ko">한국어</a><a href="/hi/" class="lang-pill" data-loc="hi" lang="hi" hreflang="hi" data-q="हिन्दी hindi hi">हिन्दी</a><a href="/vi/" class="lang-pill" data-loc="vi" lang="vi" hreflang="vi" data-q="tiếng việt vietnamese vi">Tiếng Việt</a><a href="/id/" class="lang-pill" data-loc="id" lang="id" hreflang="id" data-q="bahasa indonesia indonesian id">Bahasa Indonesia</a><a href="/th/" class="lang-pill" data-loc="th" lang="th" hreflang="th" data-q="ไทย thai th">ไทย</a><a href="/ar/" class="lang-pill" data-loc="ar" lang="ar" hreflang="ar" data-q="العربية arabic ar">العربية</a></div></div>
+          <p class="lang-empty" hidden="">Немає збігів</p>
+        </div>
+      </div>
+      <div class="mm-posts" aria-label="Блог">
+          <p class="mm-posts-h">Із блогу</p>
+          <a href="pocket-alternative.html" class="mm-post"><span class="mega-tag">Порівняння</span><strong>Альтернатива Pocket: що дійсно має значення</strong><span>Як змінити застосунок для читання без втрати архіву</span></a>
+          <a href="bring-your-own-key.html" class="mm-post"><span class="mega-tag">Конфіденційність</span><strong>Ваш ключ. Ваша модель. Ваші дані.</strong><span>Чому власний API key кращий за чергову підписку</span></a>
+          <a href="verify-ai-summary.html" class="mm-post"><span class="mega-tag">Довіра</span><strong>Перевірка ШІ-підсумків за першоджерелом</strong><span>Швидка перевірка відповідей ШІ менш ніж за хвилину</span></a>
+          <a href="highlighting-vs-asking.html" class="mm-post"><span class="mega-tag">Інструкції</span><strong>Ставте запитання до своїх виділень</strong><span>Перетворюйте виділені фрагменти на відповіді</span></a>
+          <a href="feeds-recap.html" class="mm-post"><span class="mega-tag">Стрічки</span><strong>Один підсумок замість 40 стрічок</strong><span>Щоденний дайджест усього, за чим ви стежите</span></a>
+          <a href="on-device-architecture.html" class="mm-post"><span class="mega-tag">Під капотом</span><strong>Пошук і теги без хмари</strong><span>Як усе залишається на вашому пристрої</span></a>
+          <a href="./" class="mm-all">Усі дописи →</a>
+        </div>
+      <div class="mm-bottom">
+        <a href="https://chromewebstore.google.com/detail/ai-summary-helper-openai/hldbejcjaedipeegjcinmhejdndchkmb" class="pill-cta mm-cta" data-desktop-cta="" target="_blank" rel="noopener">Додати в Chrome</a>
+        <button type="button" class="pill-cta mm-cta" data-send="" hidden="">Надіслати на мій комп’ютер</button>
+        <div class="mm-row">
+          <a href="https://addons.mozilla.org/en-US/firefox/addon/ai-summary-helper/" target="_blank" rel="noopener">Firefox</a>
+          <a href="../index.html#phone">Android · Бета</a>
+          <a href="https://byphil.eu/#account">Мій акаунт</a>
+        </div>
+        
+        <button type="button" class="theme-toggle-mobile" id="themeToggleMobile">
+          <span id="themeToggleMobileLabel">Увімкнути світлу тему</span>
+          <svg class="icon-moon" viewBox="0 0 24 24" fill="none"><path d="M20 14.5A8.5 8.5 0 1 1 9.5 4a6.8 6.8 0 0 0 10.5 10.5Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"></path></svg>
+          <svg class="icon-sun" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="4.2" stroke="currentColor" stroke-width="1.6"></circle><path d="M12 2.5v2.4M12 19.1v2.4M4.4 4.4l1.7 1.7M17.9 17.9l1.7 1.7M2.5 12h2.4M19.1 12h2.4M4.4 19.6l1.7-1.7M17.9 6.1l1.7-1.7" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"></path></svg>
+        </button>
+      </div>
+    </div>
+  </div>
+</header>
+
+<main id="main">
+  <section class="hero--photo post-stage">
+    <img class="hero-bg" src="../../assets/photo/nas-shelf-laptop-phone-800.webp" srcset="../../assets/photo/nas-shelf-laptop-phone-800.webp 800w, ../../assets/photo/nas-shelf-laptop-phone-1600.webp 1600w" sizes="100vw" width="1600" height="893" alt="" fetchpriority="high" decoding="async" style="--bgpos:60% 55%">
+    <p class="hero-credit">Ілюстрація, згенерована ШІ</p>
+    <div class="wrap">
+      <div class="post-hero">
+      <span class="blog-date">Інструкція · Жовтень 2026</span>
+      <h1>Як синхронізувати бібліотеку для читання з Nextcloud, S3 або локальною папкою із шифруванням</h1>
+      <p class="post-sub">Ваші збережені статті, резюме, виділення та нотатки на всіх ваших комп'ютерах, збережені там, де ви вирішите, доступні для читання лише за вашим ключем. Десять хвилин, жодного облікового запису в нас.</p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <div class="prose">
+        <p><strong>Коротка версія.</strong> В AI Summary Helper відкрийте <em>Налаштування → Синхронізація та резервні копії → Додати сховище</em>, виберіть Nextcloud/WebDAV, S3-сумісне сховище або папку на комп'ютері та збережіть запропоновану парольну фразу. Усе шифрується у вашому браузері перед завантаженням. На другому комп'ютері ви додаєте те саме сховище та вводите парольну фразу. Це все налаштування. Далі на цій сторінці описано кожен тип сховища, що саме синхронізується та що робити, якщо щось піде не так.</p>
+        <figure class="post-figure post-figure--photo"><img src="../../assets/photo/commuter-train-reading-800.webp" srcset="../../assets/photo/commuter-train-reading-800.webp 800w, ../../assets/photo/commuter-train-reading-1600.webp 1600w" sizes="(max-width: 720px) 92vw, 680px" width="1600" height="893" loading="lazy" decoding="async" alt="Ілюстрація: пасажир у приміському поїзді з електронною книгою та телефоном"><figcaption>Одна бібліотека, кілька пристроїв. Ілюстрація, згенерована ШІ.</figcaption></figure>
+        <p>Навіщо взагалі це робити? Тому що бібліотеку для читання варто берегти, а інструмент, від якого ви залежите, може зникнути (<a href="digital-sovereignty-for-individuals.html">докладніше про це тут</a>). Синхронізація зі сховищем, яким володієте ви, гарантує, що бібліотека переживе будь-який окремий додаток чи обліковий запис.</p>
+
+        <h2>Що синхронізується, а що ні</h2>
+        <ul>
+          <li><strong>Синхронізується:</strong> збережені статті з повним текстом і резюме, теги, виділення, ваші нотатки й коментарі та колекції.</li>
+          <li><strong>Не синхронізується:</strong> ваші API keys, облікові дані для входу, сам логін синхронізації та налаштування для конкретного пристрою. Резервні копії та синхронізація навмисно не містять цих даних.</li>
+          <li><strong>Одна стаття на сторінку:</strong> якщо ви зберегли одну й ту саму сторінку на двох комп'ютерах, у результаті буде одна стаття (теги та відсутні поля об'єднуються).</li>
+          <li><strong>Редагування об'єднуються по окремих полях:</strong> зміна заголовка на одному комп'ютері та додавання тегу на іншому збережуться обидва. Якщо обидва змінюють одне й те саме поле, застосовується пізніша зміна — однаково на кожному пристрої.</li>
+        </ul>
+
+        <h2>Крок 1: оберіть, де зберігати дані</h2>
+        <h3>Nextcloud або інший сервер WebDAV</h3>
+        <p>Найкраще, якщо ви вже маєте власний Nextcloud або користуєтеся хостингом (багато європейських провайдерів пропонують його). Вам знадобляться три речі:</p>
+        <ol>
+          <li><strong>Адреса ваших файлів.</strong> Для Nextcloud вона виглядає так: <code>https://your-server/remote.php/dav/files/your-username/</code>. У Nextcloud відкрийте <em>Файли → Налаштування</em> і скопіюйте вказану там адресу WebDAV.</li>
+          <li><strong>Ваше ім'я користувача.</strong></li>
+          <li><strong>Пароль додатка, а не ваш основний пароль.</strong> У Nextcloud: <em>Налаштування → Безпека → Пристрої та сеанси → створити новий пароль додатка</em>. Якщо ви коли-небудь захочете закрити доступ, просто видаліть цей запис.</li>
+        </ol>
+        <p>Виберіть назву папки, наприклад <code>aish-sync</code>. Вона створиться автоматично. Інші сервери WebDAV (багато NAS, ownCloud) працюють так само; відрізняється лише формат адреси.</p>
+
+        <h3>S3-сумісний бакет</h3>
+        <p>Найкраще, якщо ви надаєте перевагу об'єктному сховищу: AWS S3, Cloudflare R2, Backblaze B2, MinIO тощо. Створіть бакет, а потім створіть ключ доступу <strong>лише для цього бакета</strong> із дозволами читати, записувати, переглядати список і видаляти в ньому. Ніколи не використовуйте основний ключ вашого облікового запису. У розширенні введіть адресу кінцевої точки (наприклад, <code>https://s3.eu-central-1.amazonaws.com</code>або адресу, яку надає ваш провайдер), назву бакета, регіон (залиште значення за замовчуванням, якщо провайдер його не вимагає), Access Key ID та Secret Key.</p>
+
+        <h3>Папка на вашому комп'ютері</h3>
+        <p>Найкраще, якщо інший інструмент уже синхронізує папку між вашими пристроями: Syncthing, ваш клієнт хмарного сховища, iCloud Drive, USB-накопичувач. Виберіть <em>Папка на цьому комп'ютері</em> та вкажіть <strong>нову, власну порожню папку</strong>, наприклад <code>Documents/AISH-sync</code>. Chrome не дозволяє вибирати самі папки Desktop, Documents або Downloads для цього, тому виберіть вкладену папку. Це працює в Chrome та Edge на комп'ютері. Дві речі, про які варто знати: браузер може знову запитати дозвіл на доступ після перезапуску (на екрані налаштувань є відповідна кнопка), а синхронізація папки триває лише доки браузер працює.</p>
+
+        <h2>Крок 2: виберіть шифрування та збережіть слова</h2>
+        <p>Коли ви додаєте сховище, <em>Зашифровано</em> вибрано за замовчуванням, а призначенням є <em>Синхронізувати мої пристрої</em> . Розширення запропонує шість випадкових слів як вашу парольну фразу. Ви можете натискати <em>Інший варіант</em> , доки вам не сподобається комбінація, або ввести власну (щонайменше 12 символів, із підказкою, якщо вона слабка).</p>
+        <p>Після підключення ви побачите шість слів один раз. Збережіть їх у менеджері паролів; кнопка «Копіювати» поміщає їх у буфер обміну цілком, через дефіс, що не пошкодиться в конфігураційних файлах чи чатах. З ними ви зможете відкрити сховище на будь-якому пристрої; без них ніхто не зможе прочитати файли, включно з нами. На комп'ютері, де ви все налаштували, ви можете переглянути їх знову в налаштуваннях сховища:  <em>Показати парольну фразу</em>. Якщо ви натомість обрали власну парольну фразу, вона ніде не зберігається, тому розширення не зможе її показати.</p>
+        <p>Що бачить провайдер сховища: зашифровані файли із зашифрованими назвами, їхню кількість, розмір і час зміни. Він не бачить заголовків, посилань чи тексту. Ваша бібліотека шифрується у вашому браузері за допомогою AES-256-GCM ще до того, як залишає пристрій.</p>
+
+        <h2>Крок 3: додайте другий комп'ютер</h2>
+        <ol>
+          <li>Встановіть розширення та відкрийте <em>Налаштування → Синхронізація та резервні копії → Додати сховище</em>.</li>
+          <li>Введіть ті самі дані сервера (або виберіть ту саму папку).</li>
+          <li>Розширення побачить, що в папці вже є зашифрована бібліотека, і запитає парольну фразу. Слова можна вводити в будь-якому регістрі, через пробіли або дефіси.</li>
+          <li>Він попросить вас підтвердити, що ви спочатку створили резервну копію цього пристрою, оскільки приєднання об'єднує бібліотеку цього комп'ютера з бібліотекою в папці, і якщо вони відрізняються, пріоритет має версія в папці. Скористайтеся кнопкою <em>Створити резервну копію зараз</em>.</li>
+          <li>Натисніть <em>Підключити</em>. Перша синхронізація для великої бібліотеки може зайняти деякий час; на екрані відображатиметься перебіг.</li>
+        </ol>
+
+        <h2>Тільки резервне копіювання, відновлення та публікація</h2>
+        <ul>
+          <li><strong>Тільки резервне копіювання.</strong> Виберіть <em>Тільки резервне копіювання</em> замість <em>Синхронізувати мої пристрої</em> , і комп'ютер лише записуватиме дані в сховище та ніколи не зчитуватиме їх звідти. Відновлюйте дані з налаштувань сховища, коли це знадобиться: це поверне все, а якщо дані на цьому комп'ютері відрізняються, пріоритет матиме сховище. Нічого не видаляється.</li>
+          <li><strong>Опублікувати на власному сайті.</strong> Окремий тип сховища, <em>Відкрите для читання</em>, записує звичайні файли для вашого власного сайту — лише для статей, які ви позначили тегом, із додатковою сторінкою перегляду. Нотатки та повні тексти туди не потрапляють, якщо ви їх не ввімкнете, оскільки будь-хто, хто відкриє цю папку, зможе їх прочитати. Не використовуйте загальнодоступне сховище для приватних даних.</li>
+        </ul>
+
+        <h2>Коли щось іде не так</h2>
+        <h3>«Дозволити доступ до папки знову»</h3>
+        <p>Браузер відкликає доступ до папки після перезапуску. Натисніть кнопку вгорі розділу <em>Синхронізація та резервні копії</em>. Якщо помилка повторюється, можливо, це папка, яку захищає Chrome (Desktop, Documents, Downloads або ваша домашня папка): виберіть створену вами вкладену папку.</p>
+        <h3>«Сервер не прийняв ім'я користувача та пароль»</h3>
+        <p>Для Nextcloud використовуйте пароль додатка. Переконайтеся, що адреса закінчується папкою вашого імені користувача і що двофакторна автентифікація не блокує пароль додатка.</p>
+        <h3>«Неправильна парольна фраза»</h3>
+        <p>Перевірте слова: регістр, пробіли та дефіси не мають значення, але кожне слово має бути правильним. На вже налаштованому комп'ютері відкрийте налаштування сховища та натисніть <em>Показати парольну фразу</em>. Якщо ви втратили її всюди, відкрити файли не зможе ніхто: видаліть сховище тут, створіть нове та почніть знову з бібліотеки на вашому комп'ютері.</p>
+        <h3>Очікується масове видалення</h3>
+        <p>Якщо інший пристрій видаляє багато статей одночасно, розширення застосовує кілька з них і запитує підтвердження для решти, щоб випадкова помилка не очистила вашу бібліотеку. Перевірте список і натисніть кнопку, щоб застосувати видалення.</p>
+        <h3>Комп'ютер був вимкнений кілька місяців</h3>
+        <p>Приблизно через три місяці комп'ютер надсилає лише те, що змінилося відтоді, і сам нічого не видаляє, тому старі статті, видалені в іншому місці, випадково не відновляться.</p>
+
+        <h2>Запитання</h2>
+        <h3>Чи потрібен мені обліковий запис у вас?</h3>
+        <p>Ні. Синхронізація відбувається безпосередньо з вашого браузера до вказаного сховища. Ми не тримаємо жодного сервера синхронізації.</p>
+        <h3>Чи працює це на телефоні?</h3>
+        <p>На Android — так. Додаток-компаньйон (файл APK із <a href="https://github.com/philffm/ai-summary-helper/releases/latest" rel="noopener">релізів на GitHub</a>; його ще немає в Google Play) може приєднатися до вашої бібліотеки в розділі <em>Налаштування → Синхронізація бібліотеки</em>. Найшвидший спосіб — через код: у браузері відкрийте налаштування вашого сховища, натисніть <em>Показати код для телефона</em> і відскануйте його. Він містить ваші дані для входу на сервер, тому показуйте його лише власному телефону. Телефон відображає збережені статті з резюме та виділеннями, а нотатки синхронізуються в обидва боки. Сторінки, які ви резюмуєте на телефоні, і виділені там фрагменти також потрапляють у вашу бібліотеку, але лише ті, яких там ще немає: текст із браузера ніколи не замінюється. Додатка для iPhone поки що немає.</p>
+        <h3>Чи можу я використовувати більше ніж одне сховище?</h3>
+        <p>Так. Поширений варіант — одне зашифроване сховище для синхронізації між комп'ютерами та одне сховище тільки для резервного копіювання в іншого провайдера.</p>
+        <h3>Чи безпечно зберігати бібліотеку в хмарі?</h3>
+        <p>Безпечніше, ніж у більшості рішень, оскільки провайдер зберігає лише зашифровані файли. Проте захист залишається надійним рівно настільки, наскільки надійні ваша парольна фраза та ваш пристрій. Ознайомтеся з <a href="digital-sovereignty-for-individuals.html">чесними обмеженнями</a>, зокрема про те, що шифрування не проходило незалежний аудит.</p>
+
+        <div class="post-cta">
+          <p>AI Summary Helper — це безкоштовне розширення для браузера з відкритим вихідним кодом. Синхронізація вимкнена, доки ви не додасте сховище.</p>
+          <a href="https://chromewebstore.google.com/detail/ai-summary-helper-openai/hldbejcjaedipeegjcinmhejdndchkmb" target="_blank" rel="noopener" class="btn-primary">Додати в Chrome</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="footer-inner">
+      <div class="wordmark"><img src="../../assets/icon.svg" alt="">AI Summary Helper</div>
+      <div class="foot-links">
+        <a href="https://github.com/philffm/ai-summary-helper/" target="_blank" rel="noopener">Вихідний код на GitHub</a>
+        <a href="../../education/">Для освіти</a>
+        <a href="../privacy.html">Конфіденційність</a>
+        <a href="#" data-analytics-settings="">Налаштування аналітики</a>
+        <a href="https://byphil.eu/terms.html#impressum" target="_blank" rel="noopener">Правова інформація (Impressum)</a>
+      </div>
+    </div>
+    <div class="copyright">© 2026 Phil Wornath. Частина <a href="https://byphil.eu/" class="credit-link">byphil.eu ↗</a> — незалежне програмне забезпечення, створене в Німеччині.<br>
+      Дизайн та розробка: <a href="https://philwornath.com/" target="_blank" rel="noopener" class="credit-link">philwornath.com ↗</a>
+    </div>
+  </div>
+</footer>
+
+<script src="../../assets/main.js"></script>
+
+
+</body></html>

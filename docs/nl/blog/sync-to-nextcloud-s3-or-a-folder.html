@@ -1,0 +1,222 @@
+<!DOCTYPE html><html lang="nl"><head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#08090C">
+<title>Synchroniseer je leesbibliotheek versleuteld naar Nextcloud, S3 of een map — AI Summary Helper</title>
+<meta name="description" content="Stap voor stap: houd je opgeslagen artikelen, markeringen en notities gesynchroniseerd tussen apparaten op je eigen Nextcloud, S3-bucket of lokale map, versleuteld in de browser.">
+
+<script>
+  (function(){
+    try {
+      var saved = localStorage.getItem('aish_theme');
+      var theme = saved === 'light' || saved === 'dark'
+        ? saved
+        : (window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
+      document.documentElement.setAttribute('data-theme', theme);
+    } catch (e) {
+      document.documentElement.setAttribute('data-theme', 'dark');
+    }
+  })();
+</script>
+
+<link rel="icon" type="image/svg+xml" href="../../assets/icon.svg">
+<link rel="stylesheet" href="../../assets/styles.css">
+<script src="../../assets/analytics.js"></script>
+<link rel="alternate" hreflang="x-default" href="https://ai-summary-helper.byphil.eu/blog/sync-to-nextcloud-s3-or-a-folder.html"><link rel="alternate" hreflang="en" href="https://ai-summary-helper.byphil.eu/blog/sync-to-nextcloud-s3-or-a-folder.html"><link rel="alternate" hreflang="de" href="https://ai-summary-helper.byphil.eu/de/blog/sync-mit-nextcloud-s3-oder-ordner.html"><link rel="alternate" hreflang="fr" href="https://ai-summary-helper.byphil.eu/fr/blog/sync-to-nextcloud-s3-or-a-folder.html"><link rel="alternate" hreflang="es" href="https://ai-summary-helper.byphil.eu/es/blog/sync-to-nextcloud-s3-or-a-folder.html"><link rel="alternate" hreflang="zh-Hans" href="https://ai-summary-helper.byphil.eu/zh/blog/sync-to-nextcloud-s3-or-a-folder.html"><link rel="alternate" hreflang="zh-Hant" href="https://ai-summary-helper.byphil.eu/zh-tw/blog/sync-to-nextcloud-s3-or-a-folder.html"><link rel="alternate" hreflang="ja" href="https://ai-summary-helper.byphil.eu/ja/blog/sync-to-nextcloud-s3-or-a-folder.html"><link rel="alternate" hreflang="ko" href="https://ai-summary-helper.byphil.eu/ko/blog/sync-to-nextcloud-s3-or-a-folder.html"><link rel="alternate" hreflang="pt-BR" href="https://ai-summary-helper.byphil.eu/pt/blog/sync-to-nextcloud-s3-or-a-folder.html"><link rel="alternate" hreflang="hi" href="https://ai-summary-helper.byphil.eu/hi/blog/sync-to-nextcloud-s3-or-a-folder.html"><link rel="alternate" hreflang="vi" href="https://ai-summary-helper.byphil.eu/vi/blog/sync-to-nextcloud-s3-or-a-folder.html"><link rel="alternate" hreflang="nl" href="https://ai-summary-helper.byphil.eu/nl/blog/sync-to-nextcloud-s3-or-a-folder.html"><link rel="alternate" hreflang="it" href="https://ai-summary-helper.byphil.eu/it/blog/sync-to-nextcloud-s3-or-a-folder.html"><link rel="alternate" hreflang="ru" href="https://ai-summary-helper.byphil.eu/ru/blog/sync-to-nextcloud-s3-or-a-folder.html"><link rel="alternate" hreflang="uk" href="https://ai-summary-helper.byphil.eu/uk/blog/sync-to-nextcloud-s3-or-a-folder.html"><link rel="alternate" hreflang="tr" href="https://ai-summary-helper.byphil.eu/tr/blog/sync-to-nextcloud-s3-or-a-folder.html"><link rel="alternate" hreflang="id" href="https://ai-summary-helper.byphil.eu/id/blog/sync-to-nextcloud-s3-or-a-folder.html"><link rel="alternate" hreflang="pl" href="https://ai-summary-helper.byphil.eu/pl/blog/sync-to-nextcloud-s3-or-a-folder.html"><link rel="alternate" hreflang="th" href="https://ai-summary-helper.byphil.eu/th/blog/sync-to-nextcloud-s3-or-a-folder.html"><link rel="alternate" hreflang="ar" href="https://ai-summary-helper.byphil.eu/ar/blog/sync-to-nextcloud-s3-or-a-folder.html"><link rel="alternate" hreflang="sv" href="https://ai-summary-helper.byphil.eu/sv/blog/sync-to-nextcloud-s3-or-a-folder.html"><link rel="alternate" hreflang="da" href="https://ai-summary-helper.byphil.eu/da/blog/sync-to-nextcloud-s3-or-a-folder.html"><link rel="alternate" hreflang="nb" href="https://ai-summary-helper.byphil.eu/no/blog/sync-to-nextcloud-s3-or-a-folder.html"><link rel="alternate" hreflang="fi" href="https://ai-summary-helper.byphil.eu/fi/blog/sync-to-nextcloud-s3-or-a-folder.html"><link rel="canonical" href="https://ai-summary-helper.byphil.eu/nl/blog/sync-to-nextcloud-s3-or-a-folder.html"><meta property="og:site_name" content="AI Summary Helper"><meta property="og:locale" content="nl"><meta property="og:type" content="article"><meta property="og:title" content="Synchroniseer je leesbibliotheek versleuteld naar Nextcloud, S3 of een map — AI Summary Helper"><meta property="og:description" content="Stap voor stap: houd je opgeslagen artikelen, markeringen en notities gesynchroniseerd tussen apparaten op je eigen Nextcloud, S3-bucket of lokale map, versleuteld in de browser."><meta property="og:image" content="https://ai-summary-helper.byphil.eu/assets/shots/aish-hero-en.webp"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="Synchroniseer je leesbibliotheek versleuteld naar Nextcloud, S3 of een map — AI Summary Helper"><meta name="twitter:description" content="Stap voor stap: houd je opgeslagen artikelen, markeringen en notities gesynchroniseerd tussen apparaten op je eigen Nextcloud, S3-bucket of lokale map, versleuteld in de browser."><meta name="twitter:image" content="https://ai-summary-helper.byphil.eu/assets/shots/aish-hero-en.webp"><script type="application/ld+json" data-seo="ld">{"@context":"https://schema.org","@graph":[{"@type":"BlogPosting","@id":"https://ai-summary-helper.byphil.eu/nl/blog/sync-to-nextcloud-s3-or-a-folder.html#post","headline":"Zo synchroniseer je je leesbibliotheek versleuteld naar Nextcloud, S3 of een lokale map","description":"Stap voor stap: houd je opgeslagen artikelen, markeringen en notities gesynchroniseerd tussen apparaten op je eigen Nextcloud, S3-bucket of lokale map, versleuteld in de browser.","datePublished":"2026-10","inLanguage":"nl","image":"https://ai-summary-helper.byphil.eu/assets/shots/aish-hero-en.webp","mainEntityOfPage":"https://ai-summary-helper.byphil.eu/nl/blog/sync-to-nextcloud-s3-or-a-folder.html","author":{"@id":"https://byphil.eu/#org"},"publisher":{"@type":"Organization","@id":"https://byphil.eu/#org","name":"byphil","url":"https://byphil.eu/"}},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"AI Summary Helper","item":"https://ai-summary-helper.byphil.eu/"},{"@type":"ListItem","position":2,"name":"Blog","item":"https://ai-summary-helper.byphil.eu/nl/blog/"},{"@type":"ListItem","position":3,"name":"Zo synchroniseer je je leesbibliotheek versleuteld naar Nextcloud, S3 of een lokale map","item":"https://ai-summary-helper.byphil.eu/nl/blog/sync-to-nextcloud-s3-or-a-folder.html"}]}]}</script></head>
+<body>
+
+<a href="#main" class="skip-link">Naar inhoud springen</a>
+
+<header class="nav nav--pill" id="siteNav">
+  <div class="wrap nav-pill-row">
+    <a href="../index.html" class="wordmark" aria-label="AI Summary Helper">
+      <img src="../../assets/icon.svg" alt="">
+      AI Summary Helper
+    </a>
+    <nav class="pill" aria-label="Primair">
+      <a href="../index.html#features" data-sec="features">Functies</a>
+      <a href="../index.html#see-it" data-sec="see-it">Demo</a>
+      <a href="https://chromewebstore.google.com/detail/ai-summary-helper-openai/hldbejcjaedipeegjcinmhejdndchkmb" class="pill-cta" target="_blank" rel="noopener">Toevoegen aan Chrome</a>
+    </nav>
+    <div class="nav-tools">
+      <button type="button" class="tool-btn" id="sendBtn" data-send="" hidden="" aria-label="Stuur deze pagina naar mijn computer" title="Stuur naar mijn computer"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="3" y="4.5" width="18" height="12" rx="2" stroke="currentColor" stroke-width="1.6"></rect><path d="M8 20h8M12 16.5V20M12 13V8m0 0-2.2 2.2M12 8l2.2 2.2" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"></path></svg></button>
+      <button type="button" class="tool-btn" id="langBtn" aria-label="Taal" aria-controls="mobileMenu"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.6"></circle><path d="M3 12h18M12 3c2.6 2.7 3.9 5.7 3.9 9s-1.3 6.3-3.9 9c-2.6-2.7-3.9-5.7-3.9-9S9.4 5.7 12 3Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"></path></svg></button>
+      <button type="button" class="theme-toggle" id="themeToggle" aria-label="Overschakelen naar lichte modus">
+        <svg class="icon-moon" viewBox="0 0 24 24" fill="none"><path d="M20 14.5A8.5 8.5 0 1 1 9.5 4a6.8 6.8 0 0 0 10.5 10.5Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"></path></svg>
+        <svg class="icon-sun" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="4.2" stroke="currentColor" stroke-width="1.6"></circle><path d="M12 2.5v2.4M12 19.1v2.4M4.4 4.4l1.7 1.7M17.9 17.9l1.7 1.7M2.5 12h2.4M19.1 12h2.4M4.4 19.6l1.7-1.7M17.9 6.1l1.7-1.7" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"></path></svg>
+      </button>
+    </div>
+    <button type="button" class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="mobileMenu" aria-label="Menu openen">
+      <svg viewBox="0 0 24 24" fill="none"><path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"></path></svg>
+    </button>
+  </div>
+  <div class="mobile-menu" id="mobileMenu" hidden="">
+    <div class="wrap mm-inner">
+      <nav class="mm-links" aria-label="Mobiel">
+        <a href="../index.html#features"><span class="mm-n">01</span>Functies</a>
+        <a href="../index.html#see-it"><span class="mm-n">02</span>Demo</a>
+        <a href="../../education/"><span class="mm-n">03</span>Onderwijs</a>
+        <a href="./" aria-current="page"><span class="mm-n">04</span>Blog</a>
+          <a href="pocket-alternative.html" class="mm-sub">Pocket-alternatief: wat echt belangrijk is</a>
+          <a href="eigen-sleutel-eigen-model.html" class="mm-sub">Jouw sleutel. Jouw model. Jouw data.</a>
+          <a href="een-ai-samenvatting-bij-de-bron-controleren.html" class="mm-sub">Controleer een samenvatting aan de hand van de bron</a>
+          <a href="markeren-of-vragen.html" class="mm-sub">Stel vragen over je markeringen</a>
+        <a href="https://github.com/philffm/ai-summary-helper/" target="_blank" rel="noopener"><span class="mm-n">05</span>GitHub</a>
+      </nav>
+      <div class="mm-lang">
+        <button type="button" class="lang-card" id="langCard"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.6"></circle><path d="M3 12h18M12 3c2.6 2.7 3.9 5.7 3.9 9s-1.3 6.3-3.9 9c-2.6-2.7-3.9-5.7-3.9-9S9.4 5.7 12 3Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"></path></svg><span class="lang-card-cur">Engels</span><small>24 talen</small><b aria-hidden="true">→</b></button>
+        <p class="mm-lang-h">Taal · 24</p>
+        <label class="lang-search"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="11" cy="11" r="6.5" stroke="currentColor" stroke-width="1.7"></circle><path d="m16 16 4 4" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"></path></svg><input type="search" id="langSearch" placeholder="Zoek een taal…" autocomplete="off" aria-label="Taal zoeken" spellcheck="false"></label>
+        <div class="lang-groups" id="langGroups">
+          <div class="lang-group"><p class="lang-group-h">Populair</p><div class="lang-pills" data-no-translate=""><a href="/" class="lang-pill" data-loc="en" lang="en" hreflang="en" data-q="english english en">English</a><a href="/de/" class="lang-pill" data-loc="de" lang="de" hreflang="de" data-q="deutsch german de">Deutsch</a><a href="/fr/" class="lang-pill" data-loc="fr" lang="fr" hreflang="fr" data-q="français french fr">Français</a><a href="/es/" class="lang-pill" data-loc="es" lang="es" hreflang="es" data-q="español spanish es">Español</a><a href="/zh/" class="lang-pill" data-loc="zh" lang="zh-CN" hreflang="zh-CN" data-q="简体中文 chinese simplified zh">简体中文</a><a href="/ja/" class="lang-pill" data-loc="ja" lang="ja" hreflang="ja" data-q="日本語 japanese ja">日本語</a><a href="/ru/" class="lang-pill" data-loc="ru" lang="ru" hreflang="ru" data-q="русский russian ru">Русский</a></div></div>
+          <div class="lang-group"><p class="lang-group-h">Europa</p><div class="lang-pills" data-no-translate=""><a href="/pt/" class="lang-pill" data-loc="pt" lang="pt" hreflang="pt" data-q="português portuguese pt">Português</a><a href="/nl/" class="lang-pill" data-loc="nl" lang="nl" hreflang="nl" data-q="nederlands dutch nl">Nederlands</a><a href="/it/" class="lang-pill" data-loc="it" lang="it" hreflang="it" data-q="italiano italian it">Italiano</a><a href="/uk/" class="lang-pill" data-loc="uk" lang="uk" hreflang="uk" data-q="українська ukrainian uk">Українська</a><a href="/tr/" class="lang-pill" data-loc="tr" lang="tr" hreflang="tr" data-q="türkçe turkish tr">Türkçe</a><a href="/pl/" class="lang-pill" data-loc="pl" lang="pl" hreflang="pl" data-q="polski polish pl">Polski</a><a href="/sv/" class="lang-pill" data-loc="sv" lang="sv" hreflang="sv" data-q="svenska swedish sv">Svenska</a><a href="/da/" class="lang-pill" data-loc="da" lang="da" hreflang="da" data-q="dansk danish da">Dansk</a><a href="/no/" class="lang-pill" data-loc="no" lang="nb" hreflang="nb" data-q="norsk norwegian no">Norsk</a><a href="/fi/" class="lang-pill" data-loc="fi" lang="fi" hreflang="fi" data-q="suomi finnish fi">Suomi</a></div></div>
+          <div class="lang-group"><p class="lang-group-h">Azië &amp; meer</p><div class="lang-pills" data-no-translate=""><a href="/zh-tw/" class="lang-pill" data-loc="zh-tw" lang="zh-TW" hreflang="zh-TW" data-q="繁體中文 chinese traditional zh-tw">繁體中文</a><a href="/ko/" class="lang-pill" data-loc="ko" lang="ko" hreflang="ko" data-q="한국어 korean ko">한국어</a><a href="/hi/" class="lang-pill" data-loc="hi" lang="hi" hreflang="hi" data-q="हिन्दी hindi hi">हिन्दी</a><a href="/vi/" class="lang-pill" data-loc="vi" lang="vi" hreflang="vi" data-q="tiếng việt vietnamese vi">Tiếng Việt</a><a href="/id/" class="lang-pill" data-loc="id" lang="id" hreflang="id" data-q="bahasa indonesia indonesian id">Bahasa Indonesia</a><a href="/th/" class="lang-pill" data-loc="th" lang="th" hreflang="th" data-q="ไทย thai th">ไทย</a><a href="/ar/" class="lang-pill" data-loc="ar" lang="ar" hreflang="ar" data-q="العربية arabic ar">العربية</a></div></div>
+          <p class="lang-empty" hidden="">Geen resultaten</p>
+        </div>
+      </div>
+      <div class="mm-posts" aria-label="Blog">
+          <p class="mm-posts-h">Uit het blog</p>
+          <a href="pocket-alternative.html" class="mm-post"><span class="mega-tag">Vergelijken</span><strong>Pocket-alternatief: Wat écht telt</strong><span>Overstappen van lees-later-app zonder je archief te verliezen</span></a>
+          <a href="eigen-sleutel-eigen-model.html" class="mm-post"><span class="mega-tag">Privacy</span><strong>Jouw sleutel. Jouw model. Jouw data.</strong><span>Waarom je eigen API-sleutel beter is dan nóg een abonnement</span></a>
+          <a href="een-ai-samenvatting-bij-de-bron-controleren.html" class="mm-post"><span class="mega-tag">Betrouwbaarheid</span><strong>Controleer een AI-samenvatting aan de hand van de bron</strong><span>Controleer AI-uitvoer in minder dan een minuut</span></a>
+          <a href="markeren-of-vragen.html" class="mm-post"><span class="mega-tag">Uitleg</span><strong>Stel vragen over je markeringen</strong><span>Zet je markeringen om in duidelijke antwoorden</span></a>
+          <a href="een-recap-in-plaats-van-40-feeds.html" class="mm-post"><span class="mega-tag">Feeds</span><strong>Eén overzicht in plaats van 40 feeds</strong><span>Een dagelijks overzicht van alles wat je volgt</span></a>
+          <a href="zoeken-en-tags-zonder-cloud.html" class="mm-post"><span class="mega-tag">Onder de motorkap</span><strong>Zoeken en tags zonder de cloud</strong><span>Hoe alles veilig op je eigen apparaat blijft</span></a>
+          <a href="./" class="mm-all">Alle artikelen →</a>
+        </div>
+      <div class="mm-bottom">
+        <a href="https://chromewebstore.google.com/detail/ai-summary-helper-openai/hldbejcjaedipeegjcinmhejdndchkmb" class="pill-cta mm-cta" data-desktop-cta="" target="_blank" rel="noopener">Toevoegen aan Chrome</a>
+        <button type="button" class="pill-cta mm-cta" data-send="" hidden="">Stuur naar mijn computer</button>
+        <div class="mm-row">
+          <a href="https://addons.mozilla.org/en-US/firefox/addon/ai-summary-helper/" target="_blank" rel="noopener">Firefox</a>
+          <a href="../index.html#phone">Android · Bèta</a>
+          <a href="https://byphil.eu/#account">Mijn account</a>
+        </div>
+        
+        <button type="button" class="theme-toggle-mobile" id="themeToggleMobile">
+          <span id="themeToggleMobileLabel">Overschakelen naar lichte modus</span>
+          <svg class="icon-moon" viewBox="0 0 24 24" fill="none"><path d="M20 14.5A8.5 8.5 0 1 1 9.5 4a6.8 6.8 0 0 0 10.5 10.5Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"></path></svg>
+          <svg class="icon-sun" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="4.2" stroke="currentColor" stroke-width="1.6"></circle><path d="M12 2.5v2.4M12 19.1v2.4M4.4 4.4l1.7 1.7M17.9 17.9l1.7 1.7M2.5 12h2.4M19.1 12h2.4M4.4 19.6l1.7-1.7M17.9 6.1l1.7-1.7" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"></path></svg>
+        </button>
+      </div>
+    </div>
+  </div>
+</header>
+
+<main id="main">
+  <section class="hero--photo post-stage">
+    <img class="hero-bg" src="../../assets/photo/nas-shelf-laptop-phone-800.webp" srcset="../../assets/photo/nas-shelf-laptop-phone-800.webp 800w, ../../assets/photo/nas-shelf-laptop-phone-1600.webp 1600w" sizes="100vw" width="1600" height="893" alt="" fetchpriority="high" decoding="async" style="--bgpos:60% 55%">
+    <p class="hero-credit">Illustratie, AI-gegenereerd</p>
+    <div class="wrap">
+      <div class="post-hero">
+      <span class="blog-date">Handleiding · Oktober 2026</span>
+      <h1>Zo synchroniseer je je leesbibliotheek versleuteld naar Nextcloud, S3 of een lokale map</h1>
+      <p class="post-sub">Je opgeslagen artikelen, samenvattingen, markeringen en notities op al je computers, opgeslagen waar jij wilt en alleen leesbaar met jouw sleutel. Binnen tien minuten geregeld, zonder account bij ons.</p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <div class="prose">
+        <p><strong>De korte versie.</strong> Open in AI Summary Helper <em>Instellingen → Synchronisatie &amp; back-up → Locatie toevoegen</em>, kies Nextcloud/WebDAV, S3-compatibele opslag of een map op je computer, en bewaar de voorgestelde wachtwoordzin. Alles wordt in je browser versleuteld voordat het wordt geüpload. Op je tweede computer voeg je dezelfde locatie toe en voer je de wachtwoordzin in. Dat is de hele installatie. De rest van deze pagina behandelt elk type opslag, wat er synchroniseert en wat je kunt doen als er iets misgaat.</p>
+        <figure class="post-figure post-figure--photo"><img src="../../assets/photo/commuter-train-reading-800.webp" srcset="../../assets/photo/commuter-train-reading-800.webp 800w, ../../assets/photo/commuter-train-reading-1600.webp 1600w" sizes="(max-width: 720px) 92vw, 680px" width="1600" height="893" loading="lazy" decoding="async" alt="Illustratie: een forens in een stoptrein, met een e-reader en een telefoon"><figcaption>Eén bibliotheek, meerdere apparaten. Illustratie, gegenereerd door AI.</figcaption></figure>
+        <p>Waarom zou je dit doen? Omdat een leesbibliotheek waardevol is om te bewaren, en een tool waar je van afhankelijk bent kan verdwijnen (<a href="digital-sovereignty-for-individuals.html">lees hier meer</a>). Synchroniseren naar opslag die je zelf beheert betekent dat je bibliotheek langer meegaat dan welke app of welk account dan ook.</p>
+
+        <h2>Wat wel en niet wordt gesynchroniseerd</h2>
+        <ul>
+          <li><strong>Gesynchroniseerd:</strong> opgeslagen artikelen met hun volledige tekst en samenvattingen, tags, markeringen, je notities en opmerkingen, en collecties.</li>
+          <li><strong>Niet gesynchroniseerd:</strong> je API-sleutels, inloggegevens, de synchronisatie-inlog zelf en apparaatspecifieke instellingen. Back-ups en synchronisatie slaan deze bewust over.</li>
+          <li><strong>Eén artikel per pagina:</strong> als je dezelfde pagina op twee computers hebt opgeslagen, houd je één artikel over (tags en ontbrekende velden worden samengevoegd).</li>
+          <li><strong>Bewerkingen worden veld voor veld samengevoegd:</strong> een titel die op de ene computer is gewijzigd en een tag die op de andere is toegevoegd, blijven beide behouden. Als op beide hetzelfde veld wordt gewijzigd, wint de meest recente wijziging, gelijk op elk apparaat.</li>
+        </ul>
+
+        <h2>Stap 1: kies waar het wordt opgeslagen</h2>
+        <h3>Nextcloud of een andere WebDAV-server</h3>
+        <p>Ideaal als je al Nextcloud gebruikt, of een gehoste versie hebt (veel Europese providers bieden dit aan). Je hebt drie dingen nodig:</p>
+        <ol>
+          <li><strong>Het adres van je bestanden.</strong> Voor Nextcloud ziet dit eruit als <code>https://your-server/remote.php/dav/files/your-username/</code>. Open in Nextcloud <em>Bestanden → Instellingen</em> en kopieer het WebDAV-adres dat daar staat.</li>
+          <li><strong>Je gebruikersnaam.</strong></li>
+          <li><strong>Een app-wachtwoord, niet je hoofdwachtwoord.</strong> In Nextcloud: <em>Instellingen → Beveiliging → Apparaten &amp; sessies → nieuw app-wachtwoord aanmaken</em>. Mocht je ooit de toegang willen intrekken, dan verwijder je simpelweg dat ene item.</li>
+        </ol>
+        <p>Kies een mapnaam zoals <code>aish-sync</code>. Deze wordt automatisch voor je aangemaakt. Andere WebDAV-servers (zoals veel NAS-systemen of ownCloud) werken op dezelfde manier; alleen de opbouw van het adres verschilt.</p>
+
+        <h3>Een S3-compatibele bucket</h3>
+        <p>Ideaal als je voorkeur uitgaat naar object storage: AWS S3, Cloudflare R2, Backblaze B2, MinIO en vergelijkbare diensten. Maak een bucket aan en maak vervolgens een toegangssleutel aan <strong>uitsluitend voor deze bucket</strong> met rechten om te lezen, schrijven, overzichten op te vragen en te verwijderen. Gebruik nooit de hoofdsleutel van je account. In de extensie voer je het endpoint-adres in (bijvoorbeeld <code>https://s3.eu-central-1.amazonaws.com</code>, of het adres dat je provider toont), de bucketnaam, de regio (laat de standaardwaarde staan als je provider er niet om vraagt), de access key ID en de secret key.</p>
+
+        <h3>Een map op je computer</h3>
+        <p>Ideaal als iets anders al een map tussen je apparaten synchroniseert: Syncthing, je desktop sync-client, iCloud Drive, of een USB-stick. Kies <em>Een map op deze computer</em> en kies een <strong>nieuwe, lege map van jezelf</strong>, bijvoorbeeld <code>Documents/AISH-sync</code>. Chrome accepteert Bureaublad, Documenten of Downloads zelf niet als map hiervoor, dus kies een submap. Dit werkt in Chrome en Edge op de computer. Twee dingen om rekening mee te houden: de browser kan na een herstart opnieuw om toegang vragen (het instellingenscherm toont hiervoor een knop), en de map synchroniseert alleen zolang de browser geopend is.</p>
+
+        <h2>Stap 2: kies versleuteld en bewaar de woorden</h2>
+        <p>Wanneer je de locatie toevoegt, <em>Versleuteld</em> is standaard geselecteerd en <em>Mijn apparaten synchroniseren</em> is het doel. De extensie stelt zes willekeurige woorden voor als wachtwoordzin. Je kunt op <em>Ander voorstel</em> drukken tot je een combinatie hebt die je bevalt, of zelf een wachtwoordzin kiezen (minimaal 12 tekens, met een waarschuwing als deze te zwak is).</p>
+        <p>Nadat je verbinding hebt gemaakt, zie je de zes woorden één keer. Sla ze op in een wachtwoordmanager; de knop Kopiëren zet ze als één geheel op het klembord, verbonden met streepjes, zodat ze intact blijven in configuratiebestanden en chat-apps. Hiermee kun je de locatie op elk apparaat openen; zonder deze woorden kan niemand de bestanden lezen, wij ook niet. Op de computer waar je dit hebt ingesteld kun je ze later terugvinden in de instellingen van de locatie, <em>Wachtwoordzin tonen</em>. Als je in plaats daarvan zelf een wachtwoordzin hebt gekozen, wordt deze nergens opgeslagen en kan de extensie deze niet tonen.</p>
+        <p>Wat de opslagprovider ziet: versleutelde bestanden met onherkenbare namen, hoeveel het er zijn, hoe groot ze zijn en wanneer ze wijzigen. De provider ziet geen titels, links of tekst. Je bibliotheek wordt in je browser versleuteld met AES-256-GCM voordat deze het apparaat verlaat.</p>
+
+        <h2>Stap 3: voeg je tweede computer toe</h2>
+        <ol>
+          <li>Installeer de extensie en open <em>Instellingen → Synchronisatie &amp; back-up → Locatie toevoegen</em>.</li>
+          <li>Voer dezelfde servergegevens in (of kies dezelfde map).</li>
+          <li>De extensie ziet dat de map al een versleutelde bibliotheek bevat en vraagt om de wachtwoordzin. Het maakt niet uit of je hoofdletters, kleine letters, spaties of streepjes gebruikt.</li>
+          <li>Je wordt gevraagd te bevestigen dat je eerst een back-up van dit apparaat hebt gemaakt. Bij het koppelen wordt de bibliotheek van deze computer namelijk samengevoegd met die in de map, en bij verschillen heeft de map voorrang. Gebruik <em>Nu een back-up maken</em>.</li>
+          <li>Druk op <em>Verbinden</em>. De eerste synchronisatie kan bij een grote bibliotheek even duren; het scherm toont de voortgang.</li>
+        </ol>
+
+        <h2>Alleen back-up, herstellen en publiceren</h2>
+        <ul>
+          <li><strong>Alleen back-up.</strong> Kies <em>Alleen back-up</em> in plaats van <em>Mijn apparaten synchroniseren</em> en de computer schrijft alleen naar de locatie zonder er ooit van te lezen. Herstel via de instellingen van de locatie wanneer dat nodig is: alles wordt teruggezet, en bij verschillen heeft de locatie voorrang op deze computer. Er wordt niets verwijderd.</li>
+          <li><strong>Publiceren naar je website.</strong> Een ander type locatie, <em>Leesbaar</em>, schrijft gewone bestanden voor je eigen website, uitsluitend voor de artikelen die je tagt, met een optionele overzichtspagina. Notities en volledige teksten blijven erbuiten tenzij je ze inschakelt, omdat iedereen die toegang heeft tot die map de bestanden kan lezen. Gebruik een leesbare locatie niet voor privégegevens.</li>
+        </ul>
+
+        <h2>Als er iets misgaat</h2>
+        <h3>"Toegang tot de map opnieuw toestaan"</h3>
+        <p>De browser trekt na een herstart de maptoegang in. Druk op de knop bovenaan <em>Synchronisatie &amp; back-up</em>. Als het blijft mislukken, is de map mogelijk een map die Chrome beveiligt (Bureaublad, Documenten, Downloads of je persoonlijke map): kies een submap die je zelf hebt aangemaakt.</p>
+        <h3>"De server heeft de gebruikersnaam en het wachtwoord niet geaccepteerd"</h3>
+        <p>Gebruik voor Nextcloud een app-wachtwoord. Controleer of het adres eindigt op je gebruikersmap en of tweestapsverificatie het app-wachtwoord niet blokkeert.</p>
+        <h3>"Onjuiste wachtwoordzin"</h3>
+        <p>Controleer de woorden: hoofdletters, spaties en streepjes maken niet uit, maar elk woord moet kloppen. Open op een computer die al is ingesteld de instellingen van de locatie en druk op <em>Wachtwoordzin tonen</em>. Als je de zin overal kwijt bent, kunnen de bestanden door niemand worden geopend: verwijder de locatie hier, maak een nieuwe aan en begin opnieuw vanaf de bibliotheek op je computer.</p>
+        <h3>Er staat een grote hoeveelheid verwijderingen klaar</h3>
+        <p>Als een ander apparaat veel artikelen tegelijk verwijdert, voert de extensie er eerst een paar door en vraagt om bevestiging voor de rest. Zo kan één vergissing niet je hele bibliotheek wissen. Controleer het en druk op de knop om ze door te voeren.</p>
+        <h3>Een computer is maanden offline geweest</h3>
+        <p>Na ongeveer drie maanden verstuurt een computer alleen wat er sindsdien is gewijzigd en verwijdert uit zichzelf niets, zodat oude artikelen die elders zijn verwijderd niet per ongeluk terugkeren.</p>
+
+        <h2>Vragen</h2>
+        <h3>Heb ik een account bij jullie nodig?</h3>
+        <p>Nee. Synchronisatie communiceert rechtstreeks vanuit je browser met de opslag die je hebt ingevoerd. Wij beheren geen synchronisatieserver.</p>
+        <h3>Werkt het op mijn telefoon?</h3>
+        <p>Op Android wel. De bijbehorende app (een APK via <a href="https://github.com/philffm/ai-summary-helper/releases/latest" rel="noopener">de GitHub-releases</a>; deze staat nog niet in Google Play) kan aan je bibliotheek worden gekoppeld onder <em>Instellingen → Bibliotheeksynchronisatie</em>. De snelste manier is via de code: open in de browser de instellingen van je locatie, druk op <em>Code voor de telefoon tonen</em> en scan deze. De code bevat je serverinlog, dus laat deze alleen aan je eigen telefoon zien. De telefoon toont je opgeslagen artikelen met samenvattingen en markeringen, en notities worden in beide richtingen gesynchroniseerd. Pagina's die je op je telefoon samenvat en passages die je daar markeert, worden ook aan je bibliotheek toegevoegd, maar alleen pagina's die er nog niet in staan: de tekst in de browser wordt nooit overschreven. Er is nog geen iPhone-app.</p>
+        <h3>Kan ik meer dan één locatie gebruiken?</h3>
+        <p>Ja. Een veelgebruikte opzet is één versleutelde locatie voor synchronisatie tussen computers en één back-up-locatie bij een andere provider.</p>
+        <h3>Is het veilig om mijn bibliotheek in de cloud op te slaan?</h3>
+        <p>Veiliger dan de meeste oplossingen, omdat de provider uitsluitend versleutelde bestanden heeft. Het blijft echter zo sterk als je wachtwoordzin en je apparaat. Lees <a href="digital-sovereignty-for-individuals.html">de eerlijke beperkingen</a>, inclusief het feit dat de versleuteling niet onafhankelijk is geaudit.</p>
+
+        <div class="post-cta">
+          <p>AI Summary Helper is een gratis, opensource-browserextensie. Synchronisatie staat uit totdat je een locatie toevoegt.</p>
+          <a href="https://chromewebstore.google.com/detail/ai-summary-helper-openai/hldbejcjaedipeegjcinmhejdndchkmb" target="_blank" rel="noopener" class="btn-primary">Toevoegen aan Chrome</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="footer-inner">
+      <div class="wordmark"><img src="../../assets/icon.svg" alt="">AI Summary Helper</div>
+      <div class="foot-links">
+        <a href="https://github.com/philffm/ai-summary-helper/" target="_blank" rel="noopener">Broncode op GitHub</a>
+        <a href="../../education/">Voor het onderwijs</a>
+        <a href="../privacy-en-gegevens.html">Privacy</a>
+        <a href="#" data-analytics-settings="">Analytics-instellingen</a>
+        <a href="https://byphil.eu/terms.html#impressum" target="_blank" rel="noopener">Impressum</a>
+      </div>
+    </div>
+    <div class="copyright">© 2026 Phil Wornath. Onderdeel van <a href="https://byphil.eu/" class="credit-link">byphil.eu ↗</a> — onafhankelijke software gemaakt in Duitsland.<br>
+      Ontworpen &amp; gebouwd door <a href="https://philwornath.com/" target="_blank" rel="noopener" class="credit-link">philwornath.com ↗</a>
+    </div>
+  </div>
+</footer>
+
+<script src="../../assets/main.js"></script>
+
+
+</body></html>
