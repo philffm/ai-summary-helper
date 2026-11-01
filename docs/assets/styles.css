@@ -1353,3 +1353,7 @@ html.vfeed-open, html.vfeed-open body{ overflow:hidden; }
 .hero-proof{ font-size:14px; font-weight:500; color:var(--paper); margin:0 0 10px; }
 .hero-proof a{ color:inherit; text-decoration:underline; text-decoration-color:rgba(128,128,150,.6); text-underline-offset:3px; }
 .hero-proof a:hover{ text-decoration-color:currentColor; }
+
+/* Footer: the byphil ecosystem as its own group, apart from the legal links */
+footer .foot-eco{ display:flex; align-items:baseline; gap:8px 20px; flex-wrap:wrap; margin-top:18px; padding-top:16px; border-top:1px solid var(--border-medium); }
+footer .foot-eco-h{ font-family:var(--font-mono); font-size:11.5px; letter-spacing:.06em; text-transform:uppercase; color:var(--paper-dim); }
