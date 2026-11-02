@@ -1,0 +1,363 @@
+<!DOCTYPE html><html lang="pt-BR"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Extensão de navegador com IA local e Ollama | AI Summary Helper</title><meta name="description" content="Use uma extensão de navegador com IA local e Ollama, ou traga sua própria chave. Seu arquivo de leitura fica no seu dispositivo."><link rel="icon" type="image/svg+xml" href="../../assets/icon.svg"><link rel="stylesheet" href="../../assets/styles.css"><script src="../../assets/analytics.js"></script><link rel="alternate" hreflang="en" href="https://ai-summary-helper.byphil.eu/local-ai/"><link rel="alternate" hreflang="pt-BR" href="https://ai-summary-helper.byphil.eu/pt/local-ai/"><link rel="canonical" href="https://ai-summary-helper.byphil.eu/pt/local-ai/"><meta property="og:site_name" content="AI Summary Helper"><meta property="og:locale" content="pt_BR"><meta property="og:type" content="website"><meta property="og:title" content="Extensão de navegador com IA local e Ollama | AI Summary Helper"><meta property="og:description" content="Use uma extensão de navegador com IA local e Ollama, ou traga sua própria chave. Seu arquivo de leitura fica no seu dispositivo."><meta property="og:image" content="https://ai-summary-helper.byphil.eu/assets/shots/aish-hero-en.webp"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="Extensão de navegador com IA local e Ollama | AI Summary Helper"><meta name="twitter:description" content="Use uma extensão de navegador com IA local e Ollama, ou traga sua própria chave. Seu arquivo de leitura fica no seu dispositivo."><meta name="twitter:image" content="https://ai-summary-helper.byphil.eu/assets/shots/aish-hero-en.webp"><script type="application/ld+json" data-seo-video="">{"@context":"https://schema.org","@graph":[{"@type":"VideoObject","name":"Um leitor de RSS integrado","description":"Acompanhe blogs e sites de notícias, filtre por fonte, tag, data ou humor, importe OPML e resuma qualquer item com um clique. Reproduza feeds de podcast na extensão e receba um resumo opcional por IA; os feeds e favoritos ficam no seu dispositivo.","thumbnailUrl":["https://ai-summary-helper.byphil.eu/assets/blog/video/feeds-pt.jpg"],"uploadDate":"2026-10-21T00:00:00+00:00","duration":"PT0M18S","contentUrl":"https://ai-summary-helper.byphil.eu/assets/blog/video/feeds-pt.mp4","inLanguage":"pt","transcript":"Um leitor de RSS que resume. Assine suas fontes favoritas. Um clique, e você recebe um briefing do dia inteiro.","isFamilyFriendly":true,"publisher":{"@id":"https://byphil.eu/#org"}},{"@type":"VideoObject","name":"Mais de 20 idiomas, multiplataforma","description":"Leia e resuma em mais de 20 idiomas usando a extensão, o painel lateral nativo ou bookmarklet quando a extensão não consegue acessar uma página.","thumbnailUrl":["https://ai-summary-helper.byphil.eu/assets/blog/video/sprache-pt.jpg"],"uploadDate":"2026-10-21T00:00:00+00:00","duration":"PT0M17S","contentUrl":"https://ai-summary-helper.byphil.eu/assets/blog/video/sprache-pt.mp4","inLanguage":"pt","transcript":"Você lê mais devagar em outro idioma. Estudos de rastreamento ocular mostram isso, até em leitores fluentes. Resumos em 41 idiomas: pesquise, toque, pronto.","isFamilyFriendly":true,"publisher":{"@id":"https://byphil.eu/#org"}},{"@type":"VideoObject","name":"Resumos com IA no modelo que você escolher","description":"Escolha OpenAI, Gemini, Mistral, DeepSeek, um endpoint personalizado ou o Ollama local para resumos que nunca precisam sair do seu dispositivo.","thumbnailUrl":["https://ai-summary-helper.byphil.eu/assets/blog/video/privat-pt.jpg"],"uploadDate":"2026-10-21T00:00:00+00:00","duration":"PT0M21S","contentUrl":"https://ai-summary-helper.byphil.eu/assets/blog/video/privat-pt.mp4","inLanguage":"pt","transcript":"Privacidade é uma troca. Quando o risco é claro, as pessoas compartilham menos. Então você escolhe: sua própria chave de API, um modelo local com Ollama ou o byPhil Cloud, sem configuração. Sua biblioteca fica no navegador.","isFamilyFriendly":true,"publisher":{"@id":"https://byphil.eu/#org"}},{"@type":"VideoObject","name":"Pesquisa de verdade, no seu dispositivo","description":"Pesquise títulos, tags e o conteúdo dos artigos com um índice TF-IDF no navegador. A busca em texto completo fica no dispositivo, sem ida e volta.","thumbnailUrl":["https://ai-summary-helper.byphil.eu/assets/blog/video/bibliothek-pt.jpg"],"uploadDate":"2026-10-21T00:00:00+00:00","duration":"PT0M18S","contentUrl":"https://ai-summary-helper.byphil.eu/assets/blog/video/bibliothek-pt.mp4","inLanguage":"pt","transcript":"Suas leituras, finalmente fáceis de achar. Tudo o que você resumiu fica no seu dispositivo. Com etiquetas, pesquisa e estatísticas.","isFamilyFriendly":true,"publisher":{"@id":"https://byphil.eu/#org"}},{"@type":"VideoObject","name":"Sua biblioteca dentro do Claude, LM Studio e Cursor","description":"Claude Desktop, LM Studio, Cursor e outros apps MCP podem pesquisar sua biblioteca, citar destaques e listar o que está pendente. Você controla o acesso; nada passa pelo nosso servidor.","thumbnailUrl":["https://ai-summary-helper.byphil.eu/assets/blog/video/mcp-en.jpg"],"uploadDate":"2026-10-27T00:00:00+00:00","duration":"PT0M27S","contentUrl":"https://ai-summary-helper.byphil.eu/assets/blog/video/mcp-en.mp4","inLanguage":"en","transcript":"Your AI app has never read what you read. Claude Desktop, LM Studio or Cursor can now search your library and quote your highlights. Ask what is due, let it save the best from your feeds, or ask for your year, wrapped. Nothing goes through our server, and you choose what they may read.","isFamilyFriendly":true,"publisher":{"@id":"https://byphil.eu/#org"}}]}</script></head><body><a href="#main" class="skip-link">Ir para o conteúdo</a><header class="nav nav--pill" id="siteNav">
+  <div class="wrap nav-pill-row">
+    <a href="../index.html" class="wordmark" aria-label="AI Summary Helper">
+      <img src="../../assets/icon.svg" alt="">
+      AI Summary Helper
+    </a>
+    <nav class="pill" aria-label="Principal">
+      <a href="../index.html#problem" data-sec="problem" data-slider-goto="problem">Como funciona</a>
+      <a href="../index.html#use-cases" data-sec="use-cases">Casos de uso</a>
+      <a href="../blog/">Blog</a>
+      <a href="https://chromewebstore.google.com/detail/ai-summary-helper-openai/hldbejcjaedipeegjcinmhejdndchkmb" class="pill-cta" target="_blank" rel="noopener">Adicionar ao Chrome</a>
+    </nav>
+    <div class="nav-tools">
+      <button type="button" class="tool-btn" id="sendBtn" data-send="" hidden="" aria-label="Enviar esta página para o meu computador" title="Enviar para o meu computador"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="3" y="4.5" width="18" height="12" rx="2" stroke="currentColor" stroke-width="1.6"></rect><path d="M8 20h8M12 16.5V20M12 13V8m0 0-2.2 2.2M12 8l2.2 2.2" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"></path></svg></button>
+      <button type="button" class="tool-btn" id="langBtn" aria-label="Idioma" aria-controls="mobileMenu"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.6"></circle><path d="M3 12h18M12 3c2.6 2.7 3.9 5.7 3.9 9s-1.3 6.3-3.9 9c-2.6-2.7-3.9-5.7-3.9-9S9.4 5.7 12 3Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"></path></svg></button>
+      <button type="button" class="theme-toggle" id="themeToggle" aria-label="Alternar para modo claro">
+        <svg class="icon-moon" viewBox="0 0 24 24" fill="none"><path d="M20 14.5A8.5 8.5 0 1 1 9.5 4a6.8 6.8 0 0 0 10.5 10.5Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"></path></svg>
+        <svg class="icon-sun" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="4.2" stroke="currentColor" stroke-width="1.6"></circle><path d="M12 2.5v2.4M12 19.1v2.4M4.4 4.4l1.7 1.7M17.9 17.9l1.7 1.7M2.5 12h2.4M19.1 12h2.4M4.4 19.6l1.7-1.7M17.9 6.1l1.7-1.7" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"></path></svg>
+      </button>
+    </div>
+    <button type="button" class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="mobileMenu" aria-label="Abrir menu">
+      <svg viewBox="0 0 24 24" fill="none"><path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"></path></svg>
+    </button>
+  </div>
+  <div class="mobile-menu" id="mobileMenu" hidden="">
+    <div class="wrap mm-inner">
+      <nav class="mm-links" aria-label="Mobile">
+        <a href="../index.html#problem" data-slider-goto="problem"><span class="mm-n">01</span>Como funciona</a>
+        <a href="../index.html#use-cases"><span class="mm-n">02</span>Casos de uso</a>
+        <a href="../../education/"><span class="mm-n">03</span>Educação</a>
+        <a href="../blog/"><span class="mm-n">04</span>Blog</a>
+          <a href="../blog/pocket-alternative.html" class="mm-sub">Alternativa ao Pocket: o que realmente importa</a>
+          <a href="../blog/sua-chave-seu-modelo.html" class="mm-sub">Sua chave. Seu modelo. Seus dados.</a>
+          <a href="../blog/verificar-um-resumo-de-ia-na-fonte.html" class="mm-sub">Verifique o resumo direto na fonte</a>
+          <a href="../blog/destacar-ou-perguntar.html" class="mm-sub">Pergunte sobre seus destaques</a>
+        <a href="https://github.com/philffm/ai-summary-helper/" target="_blank" rel="noopener"><span class="mm-n">05</span>GitHub</a>
+      </nav>
+      <div class="mm-lang">
+        <button type="button" class="lang-card" id="langCard"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.6"></circle><path d="M3 12h18M12 3c2.6 2.7 3.9 5.7 3.9 9s-1.3 6.3-3.9 9c-2.6-2.7-3.9-5.7-3.9-9S9.4 5.7 12 3Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"></path></svg><span class="lang-card-cur">Inglês</span><small>24 idiomas</small><b aria-hidden="true">→</b></button>
+        <p class="mm-lang-h">Idioma · 24</p>
+        <label class="lang-search"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="11" cy="11" r="6.5" stroke="currentColor" stroke-width="1.7"></circle><path d="m16 16 4 4" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"></path></svg><input type="search" id="langSearch" placeholder="Buscar idioma…" autocomplete="off" aria-label="Buscar idioma" spellcheck="false"></label>
+        <div class="lang-groups" id="langGroups">
+          <div class="lang-group"><p class="lang-group-h">Populares</p><div class="lang-pills" data-no-translate=""><a href="/" class="lang-pill" data-loc="en" lang="en" hreflang="en" data-q="english english en">English</a><a href="/de/" class="lang-pill" data-loc="de" lang="de" hreflang="de" data-q="deutsch german de">Deutsch</a><a href="/fr/" class="lang-pill" data-loc="fr" lang="fr" hreflang="fr" data-q="français french fr">Français</a><a href="/es/" class="lang-pill" data-loc="es" lang="es" hreflang="es" data-q="español spanish es">Español</a><a href="/zh/" class="lang-pill" data-loc="zh" lang="zh-CN" hreflang="zh-CN" data-q="简体中文 chinese simplified zh">简体中文</a><a href="/ja/" class="lang-pill" data-loc="ja" lang="ja" hreflang="ja" data-q="日本語 japanese ja">日本語</a><a href="/ru/" class="lang-pill" data-loc="ru" lang="ru" hreflang="ru" data-q="русский russian ru">Русский</a></div></div>
+          <div class="lang-group"><p class="lang-group-h">Europa</p><div class="lang-pills" data-no-translate=""><a href="/pt/" class="lang-pill" data-loc="pt" lang="pt" hreflang="pt" data-q="português portuguese pt">Português</a><a href="/nl/" class="lang-pill" data-loc="nl" lang="nl" hreflang="nl" data-q="nederlands dutch nl">Nederlands</a><a href="/it/" class="lang-pill" data-loc="it" lang="it" hreflang="it" data-q="italiano italian it">Italiano</a><a href="/uk/" class="lang-pill" data-loc="uk" lang="uk" hreflang="uk" data-q="українська ukrainian uk">Українська</a><a href="/tr/" class="lang-pill" data-loc="tr" lang="tr" hreflang="tr" data-q="türkçe turkish tr">Türkçe</a><a href="/pl/" class="lang-pill" data-loc="pl" lang="pl" hreflang="pl" data-q="polski polish pl">Polski</a><a href="/sv/" class="lang-pill" data-loc="sv" lang="sv" hreflang="sv" data-q="svenska swedish sv">Svenska</a><a href="/da/" class="lang-pill" data-loc="da" lang="da" hreflang="da" data-q="dansk danish da">Dansk</a><a href="/no/" class="lang-pill" data-loc="no" lang="nb" hreflang="nb" data-q="norsk norwegian no">Norsk</a><a href="/fi/" class="lang-pill" data-loc="fi" lang="fi" hreflang="fi" data-q="suomi finnish fi">Suomi</a></div></div>
+          <div class="lang-group"><p class="lang-group-h">Ásia e outros</p><div class="lang-pills" data-no-translate=""><a href="/zh-tw/" class="lang-pill" data-loc="zh-tw" lang="zh-TW" hreflang="zh-TW" data-q="繁體中文 chinese traditional zh-tw">繁體中文</a><a href="/ko/" class="lang-pill" data-loc="ko" lang="ko" hreflang="ko" data-q="한국어 korean ko">한국어</a><a href="/hi/" class="lang-pill" data-loc="hi" lang="hi" hreflang="hi" data-q="हिन्दी hindi hi">हिन्दी</a><a href="/vi/" class="lang-pill" data-loc="vi" lang="vi" hreflang="vi" data-q="tiếng việt vietnamese vi">Tiếng Việt</a><a href="/id/" class="lang-pill" data-loc="id" lang="id" hreflang="id" data-q="bahasa indonesia indonesian id">Bahasa Indonesia</a><a href="/th/" class="lang-pill" data-loc="th" lang="th" hreflang="th" data-q="ไทย thai th">ไทย</a><a href="/ar/" class="lang-pill" data-loc="ar" lang="ar" hreflang="ar" data-q="العربية arabic ar">العربية</a></div></div>
+          <p class="lang-empty" hidden="">Nenhum resultado</p>
+        </div>
+      </div>
+      <div class="mm-posts" aria-label="Blog">
+          <p class="mm-posts-h">Do blog</p>
+          <a href="../blog/pocket-alternative.html" class="mm-post"><span class="mega-tag">Comparativo</span><strong>Alternativa ao Pocket: What Matters</strong><span>Trocando de app de leitura posterior sem perder seu acervo</span></a>
+          <a href="../blog/sua-chave-seu-modelo.html" class="mm-post"><span class="mega-tag">Privacidade</span><strong>Sua chave. Seu modelo. Seus dados.</strong><span>Por que usar sua própria chave supera pagar mais uma assinatura</span></a>
+          <a href="../blog/verificar-um-resumo-de-ia-na-fonte.html" class="mm-post"><span class="mega-tag">Confiabilidade</span><strong>Verifique um resumo de IA com a fonte original</strong><span>Valide o conteúdo da IA em menos de um minuto</span></a>
+          <a href="../blog/destacar-ou-perguntar.html" class="mm-post"><span class="mega-tag">Tutorial</span><strong>Faça Perguntas Sobre Seus Destaques</strong><span>Transforme o que você destacou em respostas</span></a>
+          <a href="../blog/um-resumo-em-vez-de-40-feeds.html" class="mm-post"><span class="mega-tag">Feeds</span><strong>Um único resumo em vez de 40 feeds</strong><span>Um resumo diário de tudo o que você acompanha</span></a>
+          <a href="../blog/pesquisa-e-etiquetas-sem-nuvem.html" class="mm-post"><span class="mega-tag">Por trás dos panos</span><strong>Busca e Tags Sem Nuvem</strong><span>Como tudo fica processado direto no seu dispositivo</span></a>
+          <a href="../blog/" class="mm-all">Todos os posts →</a>
+        </div>
+      <div class="mm-bottom">
+        <a href="https://chromewebstore.google.com/detail/ai-summary-helper-openai/hldbejcjaedipeegjcinmhejdndchkmb" class="pill-cta mm-cta" data-desktop-cta="" target="_blank" rel="noopener">Adicionar ao Chrome</a>
+        <button type="button" class="pill-cta mm-cta mm-cta--secondary" data-send="" hidden="">Enviar para o meu computador</button>
+        <div class="mm-row">
+          <a href="https://addons.mozilla.org/en-US/firefox/addon/ai-summary-helper/" target="_blank" rel="noopener">Firefox</a>
+          <a href="../index.html#phone">Android · Beta</a>
+          <a href="https://byphil.eu/#account">Minha conta</a>
+        </div>
+
+        <button type="button" class="theme-toggle-mobile" id="themeToggleMobile">
+          <span id="themeToggleMobileLabel">Alternar para modo claro</span>
+          <svg class="icon-moon" viewBox="0 0 24 24" fill="none"><path d="M20 14.5A8.5 8.5 0 1 1 9.5 4a6.8 6.8 0 0 0 10.5 10.5Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"></path></svg>
+          <svg class="icon-sun" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="4.2" stroke="currentColor" stroke-width="1.6"></circle><path d="M12 2.5v2.4M12 19.1v2.4M4.4 4.4l1.7 1.7M17.9 17.9l1.7 1.7M2.5 12h2.4M19.1 12h2.4M4.4 19.6l1.7-1.7M17.9 6.1l1.7-1.7" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"></path></svg>
+        </button>
+      </div>
+    </div>
+  </div>
+</header><main id="main"><section class="hero"><div class="wrap wrap-narrow"><div class="eyebrow">Privado por padrão</div><h1>IA local para<br><em>o seu jeito de ler.</em></h1><p class="sub">Use o Ollama para um fluxo totalmente local, ou escolha a chave do seu próprio provedor. Não é preciso criar conta e seu arquivo continua no seu dispositivo.</p><div class="hero-cta"><a class="btn-primary" href="https://chromewebstore.google.com/detail/ai-summary-helper-openai/hldbejcjaedipeegjcinmhejdndchkmb" target="_blank" rel="noopener">Experimente gratuitamente</a><a class="btn-secondary" href="../privacidade.html">Leia o modelo de privacidade</a></div><figure class="landing-hero-video" data-blog-video="privat"><video muted="" autoplay="" loop="" playsinline="" controls="" preload="metadata" width="360" height="520" poster="../../assets/blog/video/privat-pt.jpg" aria-label="Veja o que fica no seu dispositivo"><source src="../../assets/blog/video/privat-pt.mp4" type="video/mp4"><track kind="subtitles" srclang="en" label="English" src="../../assets/blog/video/privat-en.vtt"></video><figcaption>Veja o que fica no seu dispositivo</figcaption></figure></div></section><section class="trust-section"><div class="wrap wrap-narrow center"><h2>Seu modelo. Sua chave. Seus dados.</h2><p class="lead">A busca, a detecção de duplicatas e as recomendações rodam no seu navegador. Com o Ollama, a sumarização também fica local.</p><div class="trust-badges"><span>Ollama</span><span>BYOK</span><span>Sem conta</span><span>Código aberto</span></div></div></section><section class="landing-evidence"><div class="wrap"><div class="section-head center reveal"><div class="eyebrow">Por que este fluxo de trabalho</div><h2>Um fluxo de leitura melhor, com base em evidências</h2><p>Um arquivo local é útil quando ajuda você a entender, verificar e revisitar o que lê — não apenas a acumular mais resumos.</p></div><div class="cx cx--fit reveal" data-carousel="" role="region" aria-roledescription="carousel" aria-label="Evidências e demonstração ao vivo deste fluxo de trabalho de leitura"><ul class="cx-track"><li class="cx-slide is-active" aria-roledescription="slide" aria-label="1 / 5"><figure><div class="cx-card" style="--img:url(../../assets/photo/researcher-desk-notes-1600.webp)"><span class="cx-big cx-big--text">Minimize os dados</span><strong class="cx-title">Colete e processe apenas o necessário</strong><span class="cx-text">As diretrizes de privacidade desde a concepção tratam a minimização de dados e os padrões protetivos como requisitos de projeto, não como extras opcionais.</span><small class="cx-src">Fonte: <a href="https://www.edpb.europa.eu/system/files/documents/2026-02/edpb-summary-gdpr-data-protection-design-default_en.pdf" target="_blank" rel="noopener">Comitê Europeu de Proteção de Dados, proteção de dados desde a concepção e por padrão (2026)</a></small></div></figure></li><li class="cx-slide" aria-roledescription="slide" aria-label="2 / 5"><figure><div class="cx-card" style="--img:url(../../assets/photo/student-library-desk-1600.webp)"><span class="cx-big cx-big--text">Local é um limite</span><strong class="cx-title">Menos transmissão, não risco zero</strong><span class="cx-text">A inferência local pode reduzir o que é enviado a um provedor de nuvem, mas a segurança do dispositivo, os backups, os modelos e a sincronização continuam importantes.</span><small class="cx-src">Fonte: <a href="https://www.nist.gov/privacy-framework/nist_privacy_framework_0" target="_blank" rel="noopener">Visão geral do NIST Privacy Framework</a></small></div></figure></li><li class="cx-slide" aria-roledescription="slide" aria-label="3 / 5"><figure><div class="cx-card" style="--img:url(../../assets/photo/teacher-classroom-desk-1600.webp)"><span class="cx-big cx-big--text">BYOK é uma requisição ao provedor</span><strong class="cx-title">Sua chave não torna isso local</strong><span class="cx-text">Com o BYOK, a requisição e qualquer contexto incluído vão para o provedor que você escolheu. O arquivo e a requisição são limites de dados separados.</span><small class="cx-src">Fonte: <a href="https://www.edpb.europa.eu/topics/key-gdpr-concepts/basic-principles_en" target="_blank" rel="noopener">Interpretação sustentada por diretrizes sobre limites do provedor e privacidade desde a concepção</a></small></div></figure></li><li class="cx-slide" aria-roledescription="slide" aria-label="4 / 5"><figure><div class="cx-card" style="--img:url(../../assets/photo/teacher-classroom-desk-1600.webp)"><span class="cx-big cx-big--text">Confira a afirmação</span><strong class="cx-title">Não só a citação</strong><span class="cx-text">Links de fonte tornam uma resposta mais fácil de inspecionar, mas uma citação não é prova de que a fonte sustenta a afirmação.</span><small class="cx-src">Fonte: <a href="https://arxiv.org/html/2412.18004v1" target="_blank" rel="noopener">Correctness is not Faithfulness in RAG Attributions (2024)</a></small></div></figure></li><li class="cx-slide cx-slide--demo" aria-roledescription="slide" aria-label="5 / 5" data-desktop-only=""><figure><div class="demo-frame" data-demo="" data-demo-scale="1180" data-demo-params="panel=models" data-src="../../demo/index.html"><button class="demo-start" type="button"><span class="demo-play" aria-hidden="true">▶</span><span>Iniciar demonstração interativa</span></button><a class="demo-open" href="../../demo/index.html?panel=models" target="_blank" rel="noopener">Abrir em tela cheia ↗</a></div><figcaption><strong>Escolha você mesmo o limite do modelo</strong><span>Abra as configurações de modelo e veja onde as opções local, BYOK e provedor hospedado diferem. Nada é enviado pela demonstração.</span></figcaption></figure></li><li class="cx-slide cx-slide--demo-m" aria-roledescription="slide" aria-label="5 / 5" data-mobile-only=""><figure><div class="demo-frame demo-frame--phone" data-demo="" data-demo-fit="420x800" data-demo-params="panel=models&amp;chrome=0&amp;tour=0&amp;surface=sidepanel" data-src="../../demo/index.html"><button class="demo-start" type="button"><span class="demo-play" aria-hidden="true">▶</span><span>Experimente aqui mesmo</span></button></div><figcaption><strong>Escolha você mesmo o limite do modelo</strong><span>Abra as configurações de modelo e veja onde as opções local, BYOK e provedor hospedado diferem.</span><a class="demo-open-m" href="../../demo/index.html?panel=models&amp;chrome=0&amp;tour=0&amp;surface=sidepanel" target="_blank" rel="noopener">Abrir em tela cheia ↗</a></figcaption></figure></li></ul><button type="button" class="cx-nav cx-prev" aria-label="Voltar"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m15 18-6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg></button><button type="button" class="cx-nav cx-next" aria-label="Próximo"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m9 18 6-6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg></button><div class="cx-dots"><button type="button" class="cx-dot is-active" aria-label="Slide 1"></button><button type="button" class="cx-dot" aria-label="Slide 2"></button><button type="button" class="cx-dot" aria-label="Slide 3"></button><button type="button" class="cx-dot" aria-label="Slide 4"></button><button type="button" class="cx-dot cx-dot--demo" aria-label="Ir para o slide da demonstração ao vivo">Demo</button><button type="button" class="cx-dot cx-dot--demo-m" aria-label="Ir para o slide da demonstração ao vivo">Demo</button></div></div></div></section><section id="features" data-default-persona="privacy">
+    <div class="wrap">
+      <div class="section-head center reveal">
+        <div class="eyebrow">O que ele faz</div>
+        <h2>Tudo o que uma lista de leitura deveria ter feito desde o início</h2>
+        <p>Salve, compreenda, encontre novamente e realmente volte a ler — sem mais uma assinatura fazendo seu arquivo de refém.</p>
+      </div>
+
+      <!-- Audience filter: "All" shows every feature in the order of the headline (save, understand, find, get back to it).
+           An audience hides the cards that are not tagged for it (data-personas). All cards stay in the HTML, so crawlers and
+           visitors without JavaScript see everything; #for=<audience> opens the page filtered. -->
+      <div class="persona-switch reveal" role="group" aria-label="Quem é você? Mostra apenas os recursos correspondentes abaixo">
+        <button type="button" class="persona-btn active" data-persona="all" aria-pressed="true">
+          <svg viewBox="0 0 24 24" fill="none"><rect x="4" y="4" width="6.5" height="6.5" rx="1.6" stroke="currentColor" stroke-width="1.6"></rect><rect x="13.5" y="4" width="6.5" height="6.5" rx="1.6" stroke="currentColor" stroke-width="1.6"></rect><rect x="4" y="13.5" width="6.5" height="6.5" rx="1.6" stroke="currentColor" stroke-width="1.6"></rect><rect x="13.5" y="13.5" width="6.5" height="6.5" rx="1.6" stroke="currentColor" stroke-width="1.6"></rect></svg>
+          Todos
+        </button>
+        <button type="button" class="persona-btn" data-persona="privacy" aria-pressed="false">
+          <svg viewBox="0 0 24 24" fill="none"><path d="M12 3l7 3v6c0 4.5-3 7.5-7 9-4-1.5-7-4.5-7-9V6l7-3Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"></path></svg>
+          Privacidade em primeiro lugar
+        </button>
+        <button type="button" class="persona-btn" data-persona="hoarder" aria-pressed="false">
+          <svg viewBox="0 0 24 24" fill="none"><rect x="4" y="4" width="16" height="16" rx="3" stroke="currentColor" stroke-width="1.6"></rect><path d="M8 9h8M8 13h5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"></path></svg>
+          Acumulador de abas
+        </button>
+        <button type="button" class="persona-btn" data-persona="researcher" aria-pressed="false">
+          <svg viewBox="0 0 24 24" fill="none"><circle cx="5" cy="6" r="1.8" fill="currentColor"></circle><circle cx="19" cy="6" r="1.8" fill="currentColor" opacity="0.85"></circle><circle cx="12" cy="12" r="2.1" fill="currentColor"></circle><circle cx="6" cy="18" r="1.8" fill="currentColor" opacity="0.85"></circle><circle cx="18" cy="18" r="1.8" fill="currentColor" opacity="0.85"></circle><path d="M5 6 12 12M19 6 12 12M12 12 6 18M12 12 18 18" stroke="currentColor" stroke-width="1.1" opacity="0.55"></path></svg>
+          Pesquisador
+        </button>
+        <button type="button" class="persona-btn" data-persona="feeds" aria-pressed="false">
+          <svg viewBox="0 0 24 24" fill="none"><path d="M5 5a14 14 0 0 1 14 14M5 11a8 8 0 0 1 8 8" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"></path><circle cx="6" cy="18" r="1.8" fill="currentColor"></circle></svg>
+          Leitor de feeds
+        </button>
+        <button type="button" class="persona-btn" data-persona="go" aria-pressed="false">
+          <svg viewBox="0 0 24 24" fill="none"><path d="M5 14v-2a7 7 0 0 1 14 0v2" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"></path><rect x="4" y="13" width="4" height="6" rx="1.5" stroke="currentColor" stroke-width="1.6"></rect><rect x="16" y="13" width="4" height="6" rx="1.5" stroke="currentColor" stroke-width="1.6"></rect></svg>
+          Em movimento
+        </button>
+      </div>
+      <p class="persona-blurb reveal" id="personaBlurb" aria-live="polite">Tudo o que uma lista de leitura deveria ter feito desde o começo.</p>
+      <!-- the blurbs live in the HTML (not the script) so the translation pipeline translates them -->
+      <div id="personaTexts" hidden="">
+        <span data-persona-text="all">Tudo o que uma lista de leitura deveria ter feito desde o começo.</span>
+        <span data-persona-text="privacy">Você escolhe o modelo, o servidor e se algo chega a sair da sua máquina.</span>
+        <span data-persona-text="hoarder">O problema nunca foi salvar. É reencontrar o que você salvou — tudo foi feito pensando nisso.</span>
+        <span data-persona-text="researcher">Cada item salvo fica pesquisável, conectado e exportável — um arquivo de verdade, e não uma pilha acumulada.</span>
+        <span data-persona-text="feeds">Acompanhe o que importa para você, veja as boas notícias primeiro e receba o resumo do seu dia.</span>
+        <span data-persona-text="go">Leia, ouça ou envie para o seu Kindle — sempre que tiver um tempinho livre.</span>
+      </div>
+      <p class="persona-count" id="personaCount" aria-live="polite" hidden=""></p>
+
+      <!-- each card's clip peeks out of its bottom corner (tilted like the Watch stack): hover plays it silently, a tap on it or on "Watch the clip" opens the swipeable player (main.js) -->
+      <div class="feature-grid reveal" id="featureGrid" data-vgroup="">
+        <div class="feature-card" data-personas="privacy feeds">
+          <figure class="fvideo" data-blog-video="feeds">
+            <button class="fvideo-open" type="button"><span class="sr-only">Reproduzir o vídeo</span>
+              <video muted="" playsinline="" loop="" preload="none" width="360" height="520" poster="../../assets/blog/video/feeds-pt.jpg">
+                <source src="../../assets/blog/video/feeds-pt.mp4" type="video/mp4">
+              <track data-seo-video="" kind="captions" src="../../assets/blog/video/feeds-pt.vtt" srclang="pt" label="português"></video>
+              <span class="fvideo-play" aria-hidden="true">▶</span>
+            </button>
+          </figure>
+          <div class="f-icon icon-indigo"><svg viewBox="0 0 24 24" fill="none"><circle cx="6" cy="18" r="1.8" fill="#fff"></circle><path d="M5 11a8 8 0 0 1 8 8M5 5a14 14 0 0 1 14 14" stroke="#fff" stroke-width="1.8" stroke-linecap="round"></path></svg></div>
+          <h3>Um leitor de RSS integrado</h3>
+          <p>Acompanhe blogs e sites de notícias, filtre por fonte, tag, data ou humor, importe OPML e resuma qualquer item com um clique. Reproduza feeds de podcast na extensão e receba um resumo opcional por IA; os feeds e favoritos ficam no seu dispositivo.</p>
+          <button class="fvideo-cta" type="button" tabindex="-1" aria-hidden="true"><span class="fvideo-cta-play">▶</span>Assistir ao clipe</button>
+        </div>
+
+
+        <div class="feature-card" data-personas="privacy hoarder researcher feeds go">
+          <figure class="fvideo" data-blog-video="sprache">
+            <button class="fvideo-open" type="button"><span class="sr-only">Reproduzir o vídeo</span>
+              <video muted="" playsinline="" loop="" preload="none" width="360" height="520" poster="../../assets/blog/video/sprache-pt.jpg">
+                <source src="../../assets/blog/video/sprache-pt.mp4" type="video/mp4">
+              <track data-seo-video="" kind="captions" src="../../assets/blog/video/sprache-pt.vtt" srclang="pt" label="português"></video>
+              <span class="fvideo-play" aria-hidden="true">▶</span>
+            </button>
+          </figure>
+          <div class="f-icon icon-violet"><svg viewBox="0 0 24 24" fill="none"><path d="M4 12h16M12 4c2.8 2.6 4.2 5.2 4.2 8s-1.4 5.4-4.2 8c-2.8-2.6-4.2-5.2-4.2-8s1.4-5.4 4.2-8Z" stroke="#fff" stroke-width="1.5"></path></svg></div>
+          <h3>Mais de 20 idiomas, multiplataforma</h3>
+          <p>Leia e resuma em mais de 20 idiomas usando a extensão, o painel lateral nativo ou <a href="../../bookmarklet.html">bookmarklet</a> quando a extensão não consegue acessar uma página.</p>
+          <button class="fvideo-cta" type="button" tabindex="-1" aria-hidden="true"><span class="fvideo-cta-play">▶</span>Assistir ao clipe</button>
+        </div>
+        <div class="feature-card" data-personas="privacy researcher">
+          <figure class="fvideo" data-blog-video="privat">
+            <button class="fvideo-open" type="button"><span class="sr-only">Reproduzir o vídeo</span>
+              <video muted="" playsinline="" loop="" preload="none" width="360" height="520" poster="../../assets/blog/video/privat-pt.jpg">
+                <source src="../../assets/blog/video/privat-pt.mp4" type="video/mp4">
+              <track data-seo-video="" kind="captions" src="../../assets/blog/video/privat-pt.vtt" srclang="pt" label="português"></video>
+              <span class="fvideo-play" aria-hidden="true">▶</span>
+            </button>
+          </figure>
+          <div class="f-icon icon-cyan"><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="6" r="2.6" fill="#fff"></circle><circle cx="6" cy="17" r="2.2" fill="#fff" opacity="0.85"></circle><circle cx="18" cy="17" r="2.2" fill="#fff" opacity="0.85"></circle><path d="M12 8.6 L6.8 14.8 M12 8.6 L17.2 14.8" stroke="#fff" stroke-width="1.4" stroke-linecap="round" opacity="0.7"></path></svg></div>
+          <h3>Resumos com IA no modelo que você escolher</h3>
+          <p>Escolha OpenAI, Gemini, Mistral, DeepSeek, um endpoint personalizado ou o Ollama local para resumos que nunca precisam sair do seu dispositivo.</p>
+          <button class="fvideo-cta" type="button" tabindex="-1" aria-hidden="true"><span class="fvideo-cta-play">▶</span>Assistir ao clipe</button>
+        </div>
+
+
+
+
+        <div class="feature-card" data-personas="privacy hoarder">
+          <figure class="fvideo" data-blog-video="bibliothek">
+            <button class="fvideo-open" type="button"><span class="sr-only">Reproduzir o vídeo</span>
+              <video muted="" playsinline="" loop="" preload="none" width="360" height="520" poster="../../assets/blog/video/bibliothek-pt.jpg">
+                <source src="../../assets/blog/video/bibliothek-pt.mp4" type="video/mp4">
+              <track data-seo-video="" kind="captions" src="../../assets/blog/video/bibliothek-pt.vtt" srclang="pt" label="português"></video>
+              <span class="fvideo-play" aria-hidden="true">▶</span>
+            </button>
+          </figure>
+          <div class="f-icon icon-violet"><svg viewBox="0 0 24 24" fill="none"><path d="M11 4a7 7 0 1 0 4.9 12.1l4.6 4.6" stroke="#fff" stroke-width="1.7" stroke-linecap="round"></path></svg></div>
+          <h3>Pesquisa de verdade, no seu dispositivo</h3>
+          <p>Pesquise títulos, tags e o conteúdo dos artigos com um índice TF-IDF no navegador. A busca em texto completo fica no dispositivo, sem ida e volta.</p>
+          <button class="fvideo-cta" type="button" tabindex="-1" aria-hidden="true"><span class="fvideo-cta-play">▶</span>Assistir ao clipe</button>
+        </div>
+
+
+
+
+        <div class="feature-card" data-personas="privacy researcher hoarder">
+          <figure class="fvideo" data-blog-video="mcp">
+            <button class="fvideo-open" type="button"><span class="sr-only">Reproduzir o vídeo</span>
+              <video muted="" playsinline="" loop="" preload="none" width="360" height="520" poster="../../assets/blog/video/mcp-en.jpg">
+                <source src="../../assets/blog/video/mcp-en.mp4" type="video/mp4">
+              <track data-seo-video="" kind="captions" src="../../assets/blog/video/mcp-en.vtt" srclang="en" label="English"></video>
+              <span class="fvideo-play" aria-hidden="true">▶</span>
+            </button>
+          </figure>
+          <div class="f-icon icon-violet"><svg viewBox="0 0 24 24" fill="none"><rect x="4" y="5" width="16" height="11" rx="2.2" stroke="#fff" stroke-width="1.7"></rect><path d="M9 20h6M12 16v4M8.5 10.5l2 2 3.5-4" stroke="#fff" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"></path></svg></div>
+          <h3>Sua biblioteca dentro do Claude, LM Studio e Cursor</h3>
+          <p>Claude Desktop, LM Studio, Cursor e outros apps MCP podem pesquisar sua biblioteca, citar destaques e listar o que está pendente. Você controla o acesso; nada passa pelo nosso servidor.</p>
+          <button class="fvideo-cta" type="button" tabindex="-1" aria-hidden="true"><span class="fvideo-cta-play">▶</span>Assistir ao clipe</button>
+        </div>
+        <div class="feature-card" data-personas="privacy hoarder researcher">
+          <div class="f-icon icon-teal"><svg viewBox="0 0 24 24" fill="none"><path d="M7 18.5h9.5a3.5 3.5 0 0 0 .6-6.95A5 5 0 0 0 7.4 10.6 4 4 0 0 0 7 18.5Z" stroke="#fff" stroke-width="1.7" stroke-linejoin="round"></path><path d="M12 12.5v3M10.8 13.8h2.4" stroke="#fff" stroke-width="1.7" stroke-linecap="round"></path></svg></div>
+          <h3>Sua biblioteca no seu próprio armazenamento, criptografada</h3>
+          <p>Sincronize uma biblioteca criptografada com seu Nextcloud, servidor WebDAV, bucket S3 ou pasta local. Publique uma lista pesquisável com grafo de tags e mapa 3D; não operamos nenhum servidor de sincronização. <a href="../blog/sync-to-nextcloud-s3-or-a-folder.html">Como configurar</a> · <a href="../../demo/index.html?screen=settings&amp;panel=sync&amp;flow=sync-add" target="_blank" rel="noopener">Experimente a configuração de sincronização</a></p>
+        </div>
+
+
+
+      </div>
+    </div>
+  </section>
+
+  <script>
+    (function(){
+      var buttons = document.querySelectorAll('.persona-btn');
+      var cards = document.querySelectorAll('#featureGrid .feature-card');
+      var blurb = document.getElementById('personaBlurb');
+      var count = document.getElementById('personaCount');
+      var names = {};
+      buttons.forEach(function(b){ names[b.getAttribute('data-persona')] = 1; });
+
+      function text(name) {
+        var el = document.querySelector('#personaTexts [data-persona-text="' + name + '"]');
+        return el ? el.textContent : '';
+      }
+
+      function setPersona(name, fromUser) {
+        if (!names[name]) name = 'all';
+        var shown = 0;
+        buttons.forEach(function(b){
+          var active = b.getAttribute('data-persona') === name;
+          b.classList.toggle('active', active);
+          b.setAttribute('aria-pressed', active ? 'true' : 'false');
+        });
+        cards.forEach(function(c){
+          var match = name === 'all' || (c.getAttribute('data-personas') || '').split(' ').indexOf(name) !== -1;
+          c.hidden = !match;
+          if (match) shown++;
+          if (!match) { var v = c.querySelector('video'); if (v) v.pause(); }   // a hidden clip must not keep playing
+        });
+        if (blurb) blurb.textContent = text(name) || blurb.textContent;
+        if (count) { count.hidden = name === 'all'; count.textContent = shown + ' / ' + cards.length; }
+        try {
+          history.replaceState(null, '', name === 'all' ? location.pathname + location.search : location.pathname + location.search + '#for=' + name);
+        } catch (e) {}
+        if (fromUser) window.aishTrack && window.aishTrack('Persona', 'select', name);
+      }
+
+      buttons.forEach(function(b){
+        b.addEventListener('click', function(){ setPersona(b.getAttribute('data-persona'), true); });
+      });
+
+      // #for=<audience> in a link opens the page filtered
+      var m = /^#for=([a-z]+)$/.exec(location.hash);
+      var initial = document.getElementById('features').getAttribute('data-default-persona') || 'all';
+      setPersona(m && names[m[1]] ? m[1] : initial, false);
+    })();
+  </script>
+
+<section>
+    <div class="wrap">
+      <div class="section-head center reveal">
+        <div class="eyebrow">Dúvidas frequentes</div>
+        <h2>Antes de instalar</h2>
+        <p>Pesquise as respostas por tema, provedor, privacidade, arquivo ou plataforma.</p>
+      </div>
+      <div class="faq-tools reveal">
+        <label class="sr-only" for="faqSearch">Pesquisar perguntas frequentes</label>
+        <input id="faqSearch" type="search" data-faq-search="" placeholder="Pesquisar nas perguntas frequentes…" autocomplete="off" spellcheck="false" aria-controls="faqList">
+        <div class="faq-filters" role="group" aria-label="Filtrar as perguntas frequentes por tema">
+          <button type="button" class="faq-filter is-active" data-faq-filter="all" aria-pressed="true">Todos</button>
+          <button type="button" class="faq-filter" data-faq-filter="basics" aria-pressed="false">Noções básicas</button>
+          <button type="button" class="faq-filter" data-faq-filter="privacy" aria-pressed="false">Privacidade</button>
+          <button type="button" class="faq-filter" data-faq-filter="ai" aria-pressed="false">IA e fontes</button>
+          <button type="button" class="faq-filter" data-faq-filter="archive" aria-pressed="false">Arquivo</button>
+          <button type="button" class="faq-filter" data-faq-filter="platforms" aria-pressed="false">Plataformas</button>
+        </div>
+        <p id="faqSearchStatus" class="faq-search-status" aria-live="polite"></p>
+      </div>
+      <div class="faq reveal" id="faqList">
+        <details data-faq-personas="privacy researcher feeds hoarder" data-faq-category="basics">
+          <summary>Preciso de uma conta para usar?</summary>
+          <p>Não. Instale, use sua própria chave de provedor de IA ou um modelo Ollama local e comece a salvar. Uma conta só é necessária para o acesso opcional ao byphil Cloud ou para envios extras ao Kindle/LocalSend. <a href="../blog/sua-chave-seu-modelo.html">Veja as opções de provedor →</a></p>
+        </details>
+        <details data-faq-personas="privacy researcher feeds hoarder" data-faq-category="privacy">
+          <summary>O que realmente sai do meu navegador?</summary>
+          <p>Somente a solicitação de resumo vai para o provedor de IA que você configurou. O RSS também precisa de requisições aos feeds que você assina; um resumo por IA envia manchetes e trechos curtos apenas quando você solicita. Busca, detecção de duplicatas, tags e recomendações rodam localmente. <a href="../blog/pesquisa-e-etiquetas-sem-nuvem.html">Veja a arquitetura no dispositivo →</a></p>
+        </details>
+        <details data-faq-personas="privacy" data-faq-category="privacy">
+          <summary>Minhas páginas ou destaques são usados para treinar um modelo?</summary>
+          <p>O AI Summary Helper não usa seu conteúdo para treinar o próprio modelo. Com BYOK, aplica-se a política de dados do provedor que você escolher. Com o Ollama, a solicitação de resumo fica na sua máquina. <a href="../privacidade.html">Leia o modelo de privacidade →</a></p>
+        </details>
+        <details data-faq-personas="privacy" data-faq-category="privacy">
+          <summary>Posso usar a extensão sem nenhuma dependência de nuvem?</summary>
+          <p>Sim. Aponte para um modelo Ollama local e a etapa de resumo também fica na sua máquina. Todo o resto já roda localmente. <a href="../blog/sua-chave-seu-modelo.html">Compare BYOK e Ollama →</a></p>
+        </details>
+        <details data-faq-personas="privacy hoarder researcher" data-faq-category="archive">
+          <summary>Onde fica armazenado meu arquivo de leitura?</summary>
+          <p>Por padrão, no seu navegador, no seu dispositivo. Você pode exportá-lo como Markdown ou fazer backup criptografado no seu próprio Nextcloud, servidor WebDAV, bucket S3 ou pasta local. <a href="../blog/sync-to-nextcloud-s3-or-a-folder.html">Leia o guia de sincronização →</a></p>
+        </details>
+        <details data-faq-personas="privacy hoarder researcher" data-faq-category="archive privacy">
+          <summary>O que acontece se eu limpar os dados do navegador?</summary>
+          <p>Os dados locais do navegador podem apagar um arquivo local se você não tiver backup. Exporte sua biblioteca ou configure a sincronização criptografada com seu próprio armazenamento antes de limpar os dados do navegador ou trocar de perfil. <a href="../blog/sync-to-nextcloud-s3-or-a-folder.html">Leia o guia de backup e sincronização →</a></p>
+        </details>
+        <details data-faq-personas="privacy researcher feeds" data-faq-category="ai">
+          <summary>Quais provedores e modelos de IA são compatíveis?</summary>
+          <p>Você pode usar OpenAI, Gemini, Mistral, DeepSeek, um endpoint personalizado compatível ou um modelo Ollama local. Use sua própria chave ou o acesso opcional ao byphil Cloud. <a href="../blog/sua-chave-seu-modelo.html">Entenda como o BYOK funciona →</a></p>
+        </details>
+
+
+        <details data-faq-personas="privacy researcher feeds hoarder" data-faq-category="platforms">
+          <summary>Quais navegadores e plataformas são compatíveis?</summary>
+          <p>Use a extensão do navegador, o painel lateral nativo ou o bookmarklet. Um app complementar para Android adiciona links do seu celular; o iOS ainda não está disponível. <a href="../blog/do-bookmarklet-ao-2-0.html">Veja o fluxo de navegador e captura →</a></p>
+        </details>
+
+
+
+        <details data-faq-personas="privacy researcher feeds hoarder" data-faq-category="basics">
+          <summary>O projeto é de código aberto?</summary>
+          <p>Sim — o código-fonte da extensão é público no <a href="https://github.com/philffm/ai-summary-helper/" target="_blank" rel="noopener">GitHub</a>, sob a licença AGPL-3.0. É gratuito para uso pessoal, educacional e sem fins lucrativos; empresas que queiram usá-lo fora dos termos da AGPL podem obter uma licença comercial. <a href="../blog/pesquisa-e-etiquetas-sem-nuvem.html">Leia sobre a arquitetura local →</a></p>
+        </details>
+      </div>
+    </div>
+  </section>
+
+<section class="related-reading"><div class="wrap"><div class="section-head center"><div class="eyebrow">Leitura complementar</div><h2>Aprofunde-se neste fluxo de trabalho</h2><p>Notas práticas sobre as ideias por trás desta página.</p></div><div class="blog-grid"><a class="blog-card" href="../blog/sua-chave-seu-modelo.html"><span class="blog-date">Privacidade</span><h3>Sua chave. Seu modelo. Seus dados.</h3><p>O que o BYOK protege e onde está o limite do provedor.</p><span class="blog-read">Ler o artigo →</span></a><a class="blog-card" href="../blog/pesquisa-e-etiquetas-sem-nuvem.html"><span class="blog-date">Arquitetura</span><h3>Por que tiramos a busca, as tags e as recomendações da nuvem</h3><p>As decisões local-first por trás do arquivo.</p><span class="blog-read">Ler o artigo →</span></a><a class="blog-card" href="../blog/digital-sovereignty-for-individuals.html"><span class="blog-date">Guia</span><h3>Soberania digital para indivíduos</h3><p>Uma lista prática para manter o controle dos seus dados.</p><span class="blog-read">Ler o artigo →</span></a></div></div></section></main><footer>
+  <div class="wrap">
+    <div class="footer-inner">
+      <div class="wordmark"><img src="../../assets/icon.svg" alt="">AI Summary Helper</div>
+      <div class="foot-links">
+        <a href="https://github.com/philffm/ai-summary-helper/" target="_blank" rel="noopener">Código-fonte no GitHub</a>
+        <a href="../../bookmarklet.html">Bookmarklet (sem instalação)</a>
+        <a href="../../education/">Para educação</a>
+        <a href="../privacidade.html">Privacidade</a>
+        <a href="#" data-analytics-settings="">Configurações de analytics</a>
+        <a href="https://byphil.eu/terms.html#terms-of-service" target="_blank" rel="noopener">Termos de Serviço</a>
+        <a href="https://byphil.eu/terms.html#refunds" target="_blank" rel="noopener">Reembolsos e Devoluções</a>
+        <a href="https://byphil.eu/terms.html#impressum" target="_blank" rel="noopener">Impressum</a>
+      </div>
+    </div>
+    <div class="foot-eco">
+      <span class="foot-eco-h">Mais do byphil</span>
+      <div class="foot-links">
+        <a href="https://petsetlife.byphil.eu/" target="_blank" rel="noopener">PetSetLife</a>
+        <a href="https://matrix.byphil.eu/" target="_blank" rel="noopener">Matrix</a>
+        <a href="https://byphil.eu/" target="_blank" rel="noopener">Todas as ferramentas do byphil ↗</a>
+      </div>
+    </div>
+    <div class="copyright">© 2026 Phil Wornath. Parte de <a href="https://byphil.eu/" class="credit-link">byphil.<span style="color:inherit;">eu</span> ↗</a> — software independente desenvolvido na Alemanha. Pagamentos processados pela Stripe como Merchant of Record.<br>
+      <a href="https://ec.europa.eu/consumers/odr" target="_blank" rel="noopener">Resolução de Litígios de Consumo da UE</a> · Desenvolvido e mantido por <a href="https://philwornath.com/" target="_blank" rel="noopener" class="credit-link">philwornath.com ↗</a>
+    </div>
+  </div>
+</footer>
+
+<script src="../../assets/hero-i18n.js"></script>
+<script src="../../assets/main.js"></script>
+</body></html>
