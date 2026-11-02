@@ -1,5 +1,7 @@
 # LinkedIn-Post: Media Literacy Week
 
+Die **Media Literacy Week** ist gerade vorbei – und sie stellt eine Frage, die durch generative KI noch dringlicher wird: Wie helfen wir Menschen, Informationen nicht nur schneller zu finden, sondern sie auch selbstständig zu verstehen und zu prüfen?
+
 **81 % der Studierenden nutzen KI mindestens wöchentlich – gleichzeitig erreicht rund ein Drittel der 15-Jährigen in Deutschland beim Lesen nicht das grundlegende Kompetenzniveau.**
 
 Wenn generative KI auf sehr unterschiedliche Lesekompetenzen trifft, entsteht ein bildungspolitisches Risiko: Antworten wirken sprachlich überzeugend und können dazu verleiten, das Gegenprüfen ganz einzustellen.

@@ -1,6 +1,6 @@
 # LinkedIn post: Media Literacy Week
 
-Last week was Media Literacy Week. It is a useful moment to think about what media literacy means in the age of generative AI.
+**Media Literacy Week** has just ended, and it leaves us with a question that generative AI makes even more urgent: How do we help people not only find information faster, but also understand and verify it for themselves?
 
 Media literacy is no longer only about spotting fake news. It also means checking a fluent AI answer against the source it came from:
 
