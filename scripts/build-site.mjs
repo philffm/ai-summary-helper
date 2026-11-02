@@ -85,20 +85,52 @@ const RELATED_READING = {
 };
 
 const EVIDENCE_COPY = {
-    researcher: ['Read with the evidence in view', 'Research on memory and learning points to a simple workflow: make the source findable, test your understanding, and return to it later.'],
-    feeds: ['Turn more reading into something you can use', 'The science behind retrieval, source checking and returnable notes applies just as much to videos and feeds as it does to papers.'],
-    hoarder: ['Make saved reading returnable', 'Saving is only the first step. These findings explain why source trails, questions and spaced returns make a reading archive useful.'],
-    privacy: ['A better reading workflow, backed by evidence', 'A local archive is useful when it helps you understand, check and revisit what you read — not merely collect more summaries.']
+    researcher: ['Read with the evidence in view', 'Research on memory and source evaluation points to a simple workflow: make the paper findable, test your understanding, and return to the original passage.'],
+    feeds: ['Turn more video into something you can use', 'Learning research supports meaningful segments, clear signals and active questions rather than passive replay.'],
+    hoarder: ['Make saved reading returnable', 'Saving is only the first step. Retrieval, spacing and source context give an archive a reason to be revisited.'],
+    privacy: ['A better reading workflow, backed by evidence', 'A local archive is useful when it helps you understand, check and revisit what you read — not merely collect more summaries.'],
+    mcp: ['Connect tools without losing the boundary', 'Interoperability is useful when access is explicit, scoped and auditable. A protocol does not remove the need for least privilege or source review.']
 };
 
 function evidenceSection(persona) {
     const [title, intro] = EVIDENCE_COPY[persona] || EVIDENCE_COPY.privacy;
-    const slides = [
-        ['Location over content', 'People remember where to find it', 'When people expect to be able to look something up later, they remember the content less and remember where to find it more. A source-linked archive keeps that location useful.', 'Sparrow, Liu & Wegner (2011), Science 333(6043), 776–778', 'https://doi.org/10.1126/science.1207745', 'researcher-desk-notes-1600.webp'],
-        ['Highlighting alone helps little', 'Ask questions about important passages', 'A review of ten learning techniques rated highlighting and underlining among the least useful approaches, while practice testing and distributed practice ranked much higher.', 'Dunlosky et al. (2013), Psychological Science in the Public Interest 14(1), 4–58', 'https://doi.org/10.1177/1529100612453266', 'sticky-notes-desk-1600.webp'],
-        ['Retrieval beats rereading', 'Return to the idea, not just the tab', 'Testing yourself after reading improves later retention more reliably than simply studying the material again. Questions and short digests give a saved item a reason to be revisited.', 'Roediger & Karpicke (2006), Psychological Science 17(3), 249–255', 'https://doi.org/10.1111/j.1467-9280.2006.01693.x', 'student-library-desk-1600.webp'],
-        ['Check claims at the source', 'Make verification concrete', 'Lateral reading research found that skilled readers leave a page to check who is behind a source and what other reliable sources say. Source jumps make that habit easier to apply to AI answers.', 'Wineburg & McGrew (2017), Stanford History Education Group', 'https://purl.stanford.edu/yk133bt0783', 'teacher-classroom-desk-1600.webp']
-    ];
+    const common = {
+        retrieval: ['Retrieval beats rereading', 'Ask, don’t just reread', 'Testing yourself after reading often supports later retention better than studying the material again. Questions give a saved item a reason to be revisited.', 'Roediger & Karpicke (2006), Psychological Science 17(3), 249–255', 'https://doi.org/10.1111/j.1467-9280.2006.01693.x', 'student-library-desk-1600.webp'],
+        source: ['Check the claim', 'Not just the citation', 'Source links make an answer easier to inspect, but a citation is not proof that the source supports the claim.', 'Correctness is not Faithfulness in RAG Attributions (2024)', 'https://arxiv.org/html/2412.18004v1', 'teacher-classroom-desk-1600.webp']
+    };
+    const slidesByPersona = {
+        researcher: [
+            ['Location over content', 'Keep the paper findable', 'When people expect to look something up later, they remember where to find information more than the information itself. A source-linked archive keeps that location useful.', 'Sparrow, Liu & Wegner (2011), Science 333(6043), 776–778', 'https://doi.org/10.1126/science.1207745', 'researcher-desk-notes-1600.webp'],
+            ['Methods and limitations', 'Read beyond the abstract', 'A summary can help you navigate a paper, but methods, sample, confounders and limitations still need to be inspected in the original.', 'Supported interpretation from research-reading practice', 'https://www.nature.com/articles/d41586-018-01023-5', 'sticky-notes-desk-1600.webp'],
+            common.retrieval,
+            common.source
+        ],
+        feeds: [
+            ['Meaningful segments', 'Pause and process one idea', 'Learner-paced segmentation can improve retention and transfer, although it often increases the time needed to learn.', 'A meta-analysis of the segmenting effect (2019)', 'https://doi.org/10.1007/s10648-018-9456-4', 'student-library-desk-1600.webp'],
+            ['Signal what matters', 'Make the important part visible', 'Signaling — cues that highlight essential content — supports multimedia learning when the cues are well designed.', 'A meta-analysis of signaling principle in multimedia learning (2020)', 'https://doi.org/10.1007/s11423-020-09748-7', 'teacher-classroom-desk-1600.webp'],
+            common.retrieval,
+            ['Return to the exact moment', 'Keep the timestamp with the claim', 'A transcript and timestamp make a video statement easier to find and inspect. They do not establish that the statement is true.', 'Product implication based on video-learning and source-evaluation research', 'https://doi.org/10.1007/s10758-024-09745-2', 'researcher-desk-notes-1600.webp']
+        ],
+        hoarder: [
+            ['Location over content', 'Make saved reading findable', 'When people expect to look something up later, they remember where to find information more than the information itself.', 'Sparrow, Liu & Wegner (2011), Science 333(6043), 776–778', 'https://doi.org/10.1126/science.1207745', 'researcher-desk-notes-1600.webp'],
+            ['Retrieval beats rereading', 'Return to the idea, not just the tab', 'Testing yourself after reading often supports later retention better than simply studying the material again.', 'Roediger & Karpicke (2006), Psychological Science 17(3), 249–255', 'https://doi.org/10.1111/j.1467-9280.2006.01693.x', 'student-library-desk-1600.webp'],
+            ['Space the return', 'A library needs a return path', 'Spaced practice generally supports longer-term retention better than concentrating all study in one session.', 'Cepeda et al. (2006), Psychological Bulletin 132(3), 354–380', 'https://doi.org/10.1037/0033-2909.132.3.354', 'sticky-notes-desk-1600.webp'],
+            common.source
+        ],
+        privacy: [
+            ['Minimise the data', 'Collect and process only what is needed', 'Privacy-by-design guidance treats data minimisation and protective defaults as design requirements, not optional extras.', 'European Data Protection Board, data protection by design and by default (2026)', 'https://www.edpb.europa.eu/system/files/documents/2026-02/edpb-summary-gdpr-data-protection-design-default_en.pdf', 'researcher-desk-notes-1600.webp'],
+            ['Local is a boundary', 'Less transmission, not zero risk', 'Local inference can reduce what is sent to a cloud provider, but device security, backups, models and sync still matter.', 'NIST Privacy Framework overview', 'https://www.nist.gov/privacy-framework/nist_privacy_framework_0', 'student-library-desk-1600.webp'],
+            ['BYOK is a provider request', 'Your key does not make it local', 'With BYOK, the request and any included context go to the provider you chose. The archive and the request are separate data boundaries.', 'Supported interpretation from provider-boundary and privacy-by-design guidance', 'https://www.edpb.europa.eu/topics/key-gdpr-concepts/basic-principles_en', 'teacher-classroom-desk-1600.webp'],
+            common.source
+        ],
+        mcp: [
+            ['Least privilege', 'Give tools only the access they need', 'Security guidance for tool-connected AI systems recommends explicit scope, minimal permissions and careful handling of untrusted content.', 'NSA, MCP Security Guidance', 'https://www.nsa.gov/Portals/75/documents/Cybersecurity/CSI_MCP_SECURITY.pdf', 'researcher-desk-notes-1600.webp'],
+            ['Explicit boundaries', 'Local context is not automatic trust', 'A protocol can make tools interoperable; it does not guarantee that a server, prompt or retrieved document is safe.', 'Model Context Protocol specification', 'https://modelcontextprotocol.io/specification/2025-03-26/server/prompts', 'teacher-classroom-desk-1600.webp'],
+            ['Keep provenance', 'Every answer needs a route back', 'Source passages and clear retrieval boundaries make it easier to inspect what a connected tool used.', 'Correctness is not Faithfulness in RAG Attributions (2024)', 'https://arxiv.org/html/2412.18004v1', 'sticky-notes-desk-1600.webp'],
+            ['Confirm external actions', 'Reading access is not write access', 'A safe integration should separate local retrieval from writes or external actions and ask for confirmation where the consequences change.', 'NSA, MCP Security Guidance', 'https://www.nsa.gov/Portals/75/documents/Cybersecurity/CSI_MCP_SECURITY.pdf', 'student-library-desk-1600.webp']
+        ]
+    };
+    const slides = slidesByPersona[persona] || slidesByPersona.privacy;
     return `<section class="landing-evidence"><div class="wrap"><div class="section-head center reveal"><div class="eyebrow">Why this workflow</div><h2>${title}</h2><p>${intro}</p></div><div class="cx cx--fit reveal" data-carousel role="region" aria-roledescription="carousel" aria-label="Evidence for this reading workflow"><ul class="cx-track">${slides.map(([big, heading, text, source, href, image], i) => `<li class="cx-slide${i === 0 ? ' is-active' : ''}" aria-roledescription="slide" aria-label="${i + 1} / ${slides.length}"><figure><div class="cx-card" style="--img:url({{base}}assets/photo/${image})"><span class="cx-big cx-big--text">${big}</span><strong class="cx-title">${heading}</strong><span class="cx-text">${text}</span><small class="cx-src">Source: <a href="${href}" target="_blank" rel="noopener">${source}</a></small></div></figure></li>`).join('')}</ul><button type="button" class="cx-nav cx-prev" aria-label="Back"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m15 18-6-6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button><button type="button" class="cx-nav cx-next" aria-label="Next"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m9 18 6-6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button></div><div class="cx-dots">${slides.map((_, i) => `<button type="button" class="cx-dot${i === 0 ? ' is-active' : ''}" aria-label="Slide ${i + 1}"></button>`).join('')}</div></div></section>`;
 }
 
