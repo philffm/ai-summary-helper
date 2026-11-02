@@ -54,16 +54,16 @@ function filteredFeatureSection(persona) {
         const personas = ($(card).attr('data-personas') || '').split(/\s+/);
         if (!personas.includes(persona)) $(card).remove();
     });
-    return $('body').html();
+    return $('body').html().replace(/[ \t]+$/gm, '');
 }
 
 function filteredFaqSection(persona) {
     const $ = cheerio.load(SHARED_FAQ, { decodeEntities: false });
     $('#faqList details').each((_, item) => {
         const personas = ($(item).attr('data-faq-personas') || 'all').split(/\s+/);
-        if (!personas.includes('all') && !personas.includes(persona)) $(item).remove();
+        if (!personas.includes('shared') && !personas.includes(persona)) $(item).remove();
     });
-    return $('body').html();
+    return $('body').html().replace(/[ \t]+$/gm, '');
 }
 
 async function loadPartials() {
