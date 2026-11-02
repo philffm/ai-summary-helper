@@ -196,7 +196,7 @@ function landingHeroVideo(persona) {
         export: ['export', 'Keep your reading trail in your notes']
     };
     const [clip, label] = videos[persona] || videos.privacy;
-    return `<figure class="landing-hero-video"><video muted autoplay loop playsinline controls preload="metadata" width="360" height="520" poster="{{base}}assets/blog/video/${clip}-en.jpg" aria-label="${label}"><source src="{{base}}assets/blog/video/${clip}-en.mp4" type="video/mp4"></video><figcaption>${label}</figcaption></figure>`;
+    return `<figure class="landing-hero-video" data-blog-video="${clip}"><video muted autoplay loop playsinline controls preload="metadata" width="360" height="520" poster="{{base}}assets/blog/video/${clip}-en.jpg" aria-label="${label}"><source src="{{base}}assets/blog/video/${clip}-en.mp4" type="video/mp4"><track kind="subtitles" srclang="en" label="English" src="{{base}}assets/blog/video/${clip}-en.vtt"></video><figcaption>${label}</figcaption></figure>`;
 }
 
 function relatedReadingSection(topic) {
