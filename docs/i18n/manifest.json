@@ -169649,6 +169649,306 @@
           "model": "deepseek/deepseek-v4.1-flash"
         }
       }
+    },
+    "72020e4c4e546dbddeb933742e927071474abff7a905b16bd96e3d4ebcb2c669": {
+      "en": "Beyond summaries",
+      "translations": {
+        "de": {
+          "text": "Mehr als Zusammenfassungen",
+          "translatedAt": "2026-11-02T01:39:05.557Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "c449219d42fae4a8033d9fdea4957f429edb6cd3844eccb51676f649b9e04d44": {
+      "en": "Beyond the summary",
+      "translations": {
+        "de": {
+          "text": "Mehr als die Zusammenfassung",
+          "translatedAt": "2026-11-02T01:39:05.557Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "4a59b3b0c42f25645a6cadc2630a58e0730e5fad9c1d7a9c004f4b6ed4c1e8d1": {
+      "en": "A one-off summary ends here",
+      "translations": {
+        "de": {
+          "text": "Eine einmalige Zusammenfassung endet hier",
+          "translatedAt": "2026-11-02T01:39:05.557Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "4a434f72a11d222547e51c2011629cf23a5512e59e4cd4f5f411094eb9c0e836": {
+      "en": "AISH turns an answer into a source you can check, keep and return to.",
+      "translations": {
+        "de": {
+          "text": "AISH macht aus einer Antwort eine Quelle, die Sie prüfen, behalten und wieder aufrufen können.",
+          "translatedAt": "2026-11-02T01:39:05.557Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "08906a335e981e54bdd4835853cc71db4cbd1ffec0452b73f66161b68381be1d": {
+      "en": "AISH",
+      "translations": {
+        "de": {
+          "text": "AISH",
+          "translatedAt": "2026-11-02T01:39:05.557Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "bcfd0c27f42f5c0c8e5bbb2512325d9573d20cbbd5b4d0c9c9db5d28f78359f6": {
+      "en": "Source-linked answers",
+      "translations": {
+        "de": {
+          "text": "Quellenverknüpfte Antworten",
+          "translatedAt": "2026-11-02T01:39:05.557Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "17ccfe174c9ba8f29e41e3f5096433279fdf058e27fe082a5e71cf42009732c0": {
+      "en": "One-off summary",
+      "translations": {
+        "de": {
+          "text": "Einmalige Zusammenfassung",
+          "translatedAt": "2026-11-02T01:39:05.557Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "647c6c7f54f50113237af9b74434bb406d3ce4bbcdb75bec4999e24b738ffa8a": {
+      "en": "Summary without a source trail",
+      "translations": {
+        "de": {
+          "text": "Zusammenfassung ohne Quellennachweis",
+          "translatedAt": "2026-11-02T01:39:05.557Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "c9b3bdab237a3de14f67714f09773e17c5a815e3f4f3759763b186711c476622": {
+      "en": "Local searchable archive",
+      "translations": {
+        "de": {
+          "text": "Lokales durchsuchbares Archiv",
+          "translatedAt": "2026-11-02T01:39:05.557Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "9b26c2c78bb57fcf144e3ed26d600fa50df9bc48472dc492e1292bf5aecb63c5": {
+      "en": "No lasting reading context",
+      "translations": {
+        "de": {
+          "text": "Kein dauerhafter Lesekontext",
+          "translatedAt": "2026-11-02T01:39:05.557Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "6c84825778eea9eff697cc36b95fba15caa9bdaa2100469883dd6097af011f4b": {
+      "en": "DOI-aware research mode",
+      "translations": {
+        "de": {
+          "text": "DOI-fähiger Recherchemodus",
+          "translatedAt": "2026-11-02T01:39:05.557Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "2ff89493c92d6ba29a4d5dceb33aa7aa2da9c765378161f051d3cd4e072996ea": {
+      "en": "Same workflow for every page",
+      "translations": {
+        "de": {
+          "text": "Gleicher Workflow für jede Seite",
+          "translatedAt": "2026-11-02T01:39:05.557Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "ddcd71c309cab7aed933e54fa7f07bb75b00cf1ef5c766ae817cf867427fe405": {
+      "en": "Understand · Verify · Retain",
+      "translations": {
+        "de": {
+          "text": "Verstehen · Prüfen · Behalten",
+          "translatedAt": "2026-11-02T01:39:05.557Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "79461ea0ad8f68cd505355da1fdc15a96c20ae6c5c979a2d42d63d1d82ea78be": {
+      "en": "Not just a shorter page",
+      "translations": {
+        "de": {
+          "text": "Nicht nur eine kürzere Seite",
+          "translatedAt": "2026-11-02T01:39:05.557Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "237a3a949512e8fccd9c999b50a6352be69d44aec609fe78cea395ff3e10e312": {
+      "en": "Keep the source, the context and the next question together.",
+      "translations": {
+        "de": {
+          "text": "Quelle, Kontext und die nächste Frage zusammenhalten.",
+          "translatedAt": "2026-11-02T01:39:05.557Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "0b47b8c434a986c9e5032d15aa100758d1bf205b7d9a4072e54996f85aaaece9": {
+      "en": "Local archive · Your provider · No account required",
+      "translations": {
+        "de": {
+          "text": "Lokales Archiv · Ihr Anbieter · Kein Konto erforderlich",
+          "translatedAt": "2026-11-02T01:39:05.557Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "8fdd2ee8475e29bcb7acc41b731a943957e4dc3d07012c23f8b7b028de620267": {
+      "en": "Basics",
+      "translations": {
+        "de": {
+          "text": "Grundlagen",
+          "translatedAt": "2026-11-02T01:39:05.557Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "c7ff7772d2b46d5e22e24996e3f6a0c9b26a42a0bc485da50ddd14fab87b56ed": {
+      "en": "AI & sources",
+      "translations": {
+        "de": {
+          "text": "KI & Quellen",
+          "translatedAt": "2026-11-02T01:39:05.557Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "66f4804ee23ddc092d1bae43cb88186aa541187fff7c1cc8a4aa17e59a9f4123": {
+      "en": "Archive",
+      "translations": {
+        "de": {
+          "text": "Archiv",
+          "translatedAt": "2026-11-02T01:39:05.557Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "ab9bd7584a6270cdb048e09426138a817819e212d67801014df2cbea0b826faa": {
+      "en": "Platforms",
+      "translations": {
+        "de": {
+          "text": "Plattformen",
+          "translatedAt": "2026-11-02T01:39:05.557Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "b8f229aa8d0bc696fe48c95c0af83d207e1dc8fe4cd00251a55e963a484129ff": {
+      "en": "1 / 8",
+      "translations": {
+        "de": {
+          "text": "1 / 8",
+          "translatedAt": "2026-11-02T01:39:05.557Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "5d287539a8006ff5340caa321dec2329b045067f939eb1423ef7b6616c96958b": {
+      "en": "2 / 8",
+      "translations": {
+        "de": {
+          "text": "2 / 8",
+          "translatedAt": "2026-11-02T01:39:05.557Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "68379b60a994172917eae42fca6fd6edb96856f60d45b929a4b25e24d6771716": {
+      "en": "3 / 8",
+      "translations": {
+        "de": {
+          "text": "3 / 8",
+          "translatedAt": "2026-11-02T01:39:05.557Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "58360abd6412f37a2bac0b7fa9fdcbb9b2aa8711c59989f2c95e790a376ced1c": {
+      "en": "4 / 8",
+      "translations": {
+        "de": {
+          "text": "4 / 8",
+          "translatedAt": "2026-11-02T01:39:05.557Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "cff671dbd41aeae351c3b7df8ef4292abc762bff389757eeecd76c6f8f712507": {
+      "en": "5 / 8",
+      "translations": {
+        "de": {
+          "text": "5 / 8",
+          "translatedAt": "2026-11-02T01:39:05.557Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "a40c8ecbe8e318ffbc819be738eb93b650214b730dc933c1cce63d722e5a54cc": {
+      "en": "6 / 8",
+      "translations": {
+        "de": {
+          "text": "6 / 8",
+          "translatedAt": "2026-11-02T01:39:05.557Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "b02bb924d5c34592a8c54ac54e7fb54c5252774392732660178965b12cdd266a": {
+      "en": "AISH compared with a one-off summary",
+      "translations": {
+        "de": {
+          "text": "AISH im Vergleich zu einer einmaligen Zusammenfassung",
+          "translatedAt": "2026-11-02T01:39:05.557Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "e60ae7205526a03be8ecf8e279519f83daed4c14c8eea1a6e2b05283b6113637": {
+      "en": "7 / 8",
+      "translations": {
+        "de": {
+          "text": "7 / 8",
+          "translatedAt": "2026-11-02T01:39:05.557Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "eadd8ba2adee365547949888fcdf90efa536ce66184644ac90588bac2013c17d": {
+      "en": "8 / 8",
+      "translations": {
+        "de": {
+          "text": "8 / 8",
+          "translatedAt": "2026-11-02T01:39:05.557Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "ecb0cff8111ea22323e25352744cdf78dd887ab8c9eb5f15691e36f8ace04831": {
+      "en": "Filter FAQ by topic",
+      "translations": {
+        "de": {
+          "text": "FAQ nach Thema filtern",
+          "translatedAt": "2026-11-02T01:39:05.557Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
     }
   }
 }
