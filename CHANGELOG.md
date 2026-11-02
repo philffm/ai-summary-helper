@@ -5,6 +5,93 @@ Commit history has the details: <https://github.com/philffm/ai-summary-helper/co
 
 ## Unreleased
 
+## 2.2.40 (2026-11-02)
+
+### All changes
+
+#### Added
+
+- Add feature videos to landing heroes
+- Add transcreation guidance to translations
+- Add deeper reading links to FAQ answers
+- Add local RSS news landing page
+- Add evidence slides and demos to landing pages
+- Add comparison and privacy carousel slides
+- Add category filters to FAQ
+
+#### Changed
+
+- Remove unused 3D viewer code
+- Publish localized landing hero videos
+- Place landing hero videos beside copy
+- Align landing hero videos with homepage layout
+- i18n: update translations for changed content
+- Initial plan
+- i18n: update translations for changed content
+- De-emphasize send-to-computer CTAs
+- i18n: update translations for changed content
+- i18n: update translations for changed content
+- Align landing demos with feature sliders
+- Style FAQ article links
+- Focus choose your path on five routes
+- Style landing outcome cards
+- Tailor landing evidence slides by topic
+- Tighten landing page FAQ filtering
+- Refine landing FAQ filters and trust badges
+- i18n: update translations for changed content
+- Allow staged translations during rollout
+- Regenerate pages for staged translation rollout
+- Link FAQ answers to deeper reading
+- Translate SEO landing pages
+- Link landing pages to related blog posts
+- i18n: update translations for changed content
+- Regenerate merged localized pages
+- i18n: update translations for changed content
+- Filter landing page FAQs by audience
+- Refine homepage and filtered SEO landing pages
+  - consolidate homepage strategy, feature, FAQ, and carousel content\n- reuse filtered feature and FAQ sections across SEO landing pages\n- update generated pages, translations, and translation workflow\n\nCo-authored-by: Copilot <223556219+Copilot@users.noreply.github.com>
+- Apply remaining changes
+- Initial plan
+- Initial plan
+- i18n: update translations for changed content
+- Update sov
+- i18n: update translations for changed content
+- Apply remaining changes
+- Initial plan
+- Apply remaining changes
+- Initial plan
+- Apply remaining changes
+- Initial plan
+- i18n: update translations for changed content
+- Use page inventory for locale links
+- Initial plan
+- Gate PRs on sitemap link checks
+- Initial plan
+- i18n: update translations for changed content
+- Validate translated sitemap links
+- Initial plan
+- i18n: update translations for changed content
+- release workflow: manual runs can rebuild the current version without a bump (keep_version), skip the Android APK (skip_android) and skip the tests (run_tests); build.sh honours KEEP_VERSION
+- store listing: Chrome Web Store descriptions in Italian, Dutch and Polish
+- store listing: Simplified Chinese Chrome Web Store description (terms aligned with the extension's zh_CN UI)
+
+#### Fixed
+
+- Fix localized asset paths for deploy
+- Fix demo paths in localized landing pages
+- Fix landing carousel dot wiring
+- Fix responsive landing carousel dots
+- Fix German PDF demo link
+- Fix demo links in localized landing pages
+- Fix sitemap links and hreflang reciprocity
+  - resolve shared FAQ links relative to each landing page depth\n- keep localized hreflang sets reciprocal\n- normalize generated HTML whitespace\n\nCo-authored-by: Copilot <223556219+Copilot@users.noreply.github.com>
+- Fix carousel list item roles
+- Fix German localized site links
+
+#### Developer experience
+
+- build: bundle sync-worker.js for every platform (the Firefox/iOS manifests list it as a background script; the committed build.js never wrote it, so the release zips failed Mozilla validation)
+
 ## 2.2.39 (2026-11-01)
 
 ### All changes
