@@ -1,0 +1,289 @@
+<!DOCTYPE html><html lang="zh-Hant"><head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>將網頁文章傳送到 Kindle 與電子閱讀器 | AI Summary Helper</title>
+<meta name="description" content="將網頁文章連同壓縮後的圖片存檔，再傳送到你的 Kindle，或透過 LocalSend 傳到 Kobo 及其他 KOReader 電子閱讀器。本機存檔、免帳號、開放原始碼。">
+<link rel="icon" type="image/svg+xml" href="../../assets/icon.svg"><link rel="preload" href="../../assets/fonts/space-grotesk-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin=""><link rel="preload" href="../../assets/fonts/inter-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin=""><link rel="stylesheet" href="../../assets/styles.css">
+<script src="../../assets/analytics.js" defer=""></script><script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "How do I send a web article to my Kindle from Chrome or Firefox?", "acceptedAnswer": {"@type": "Answer", "text": "Install AI Summary Helper, add kindle@byphil.eu to the approved personal document e-mail list in your Amazon account once, then archive an article and choose Send to Kindle. Articles arrive as EPUB, with or without images."}}, {"@type": "Question", "name": "Does it cost anything?", "acceptedAnswer": {"@type": "Answer", "text": "The extension is free and open source. The first three Kindle sends are free; unlimited Kindle sends need the Support Pass. Sending with LocalSend is free and never touches our server."}}, {"@type": "Question", "name": "Can I use it with a Kobo or another e-reader?", "acceptedAnswer": {"@type": "Answer", "text": "Yes, on devices that run KOReader (Kobo, reMarkable, and Kindles with a jailbreak): install KOReader’s LocalSend plugin, start the receiver and send from the extension over your Wi-Fi. Readers without KOReader, such as Tolino and PocketBook, are not supported directly yet."}}, {"@type": "Question", "name": "What is LocalSend?", "acceptedAnswer": {"@type": "Answer", "text": "LocalSend is an open-source app that sends files directly between devices on the same network. The file goes from your browser to the device, with no cloud in between."}}, {"@type": "Question", "name": "Are images kept when I archive an article?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. Images are resized to a maximum width and compressed, so the article stays readable and small."}}, {"@type": "Question", "name": "Does my archive leave my device?", "acceptedAnswer": {"@type": "Answer", "text": "The archive stays in your browser. Sending to Kindle is the exception: Amazon only accepts documents by e-mail from approved senders, so the article goes through our service for that send. LocalSend and AirDrop go directly to your device."}}]}, {"@type": "HowTo", "name": "Send an article to your Kindle in three steps", "step": [{"@type": "HowToStep", "name": "Approve the sender once", "text": "In your Amazon account, add kindle@byphil.eu to the approved personal document e-mail list."}, {"@type": "HowToStep", "name": "Save the article", "text": "Open it in Chrome or Firefox and let AI Summary Helper archive it, with its images compressed."}, {"@type": "HowToStep", "name": "Send it", "text": "Choose Send to Kindle, pick EPUB or EPUB with images, and the article shows up on your Kindle."}]}]}</script><link rel="alternate" hreflang="en" href="https://ai-summary-helper.byphil.eu/e-reader/"><link rel="alternate" hreflang="zh-Hant" href="https://ai-summary-helper.byphil.eu/zh-tw/e-reader/"><link rel="canonical" href="https://ai-summary-helper.byphil.eu/zh-tw/e-reader/"><meta property="og:site_name" content="AI Summary Helper"><meta property="og:locale" content="zh_TW"><meta property="og:type" content="website"><meta property="og:title" content="將網頁文章傳送到 Kindle 與電子閱讀器 | AI Summary Helper"><meta property="og:description" content="將網頁文章連同壓縮後的圖片存檔，再傳送到你的 Kindle，或透過 LocalSend 傳到 Kobo 及其他 KOReader 電子閱讀器。本機存檔、免帳號、開放原始碼。"><meta property="og:image" content="https://ai-summary-helper.byphil.eu/assets/shots/aish-hero-en.webp"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="將網頁文章傳送到 Kindle 與電子閱讀器 | AI Summary Helper"><meta name="twitter:description" content="將網頁文章連同壓縮後的圖片存檔，再傳送到你的 Kindle，或透過 LocalSend 傳到 Kobo 及其他 KOReader 電子閱讀器。本機存檔、免帳號、開放原始碼。"><meta name="twitter:image" content="https://ai-summary-helper.byphil.eu/assets/shots/aish-hero-en.webp"><script type="application/ld+json" data-seo-video="">{"@context":"https://schema.org","@graph":[{"@type":"VideoObject","name":"支援 20 多種語言，跨平台通用","description":"以 20 種以上語言閱讀與摘要，可使用擴充功能、原生側邊面板，或 書籤小工具 在擴充功能無法觸及頁面時使用。","thumbnailUrl":["https://ai-summary-helper.byphil.eu/assets/blog/video/sprache-zh-tw.jpg"],"uploadDate":"2026-10-21T00:00:00+00:00","duration":"PT0M19S","contentUrl":"https://ai-summary-helper.byphil.eu/assets/blog/video/sprache-zh-tw.mp4","inLanguage":"zh-tw","transcript":"讀外語，速度會變慢。眼動追蹤研究證實了這一點，連熟練的讀者也一樣。摘要支持四十一種語言：搜索，點選，完成。","isFamilyFriendly":true,"publisher":{"@id":"https://byphil.eu/#org"}},{"@type":"VideoObject","name":"幽靈高亮標註，直接呈現在網頁上","description":"AI 會標示出 重要的原文段落 讓你能快速瀏覽關鍵洞見，並連同摘要匯出到 Kindle、LocalSend 或 Markdown。","thumbnailUrl":["https://ai-summary-helper.byphil.eu/assets/blog/video/ghost-zh-tw.jpg"],"uploadDate":"2026-10-21T00:00:00+00:00","duration":"PT0M21S","contentUrl":"https://ai-summary-helper.byphil.eu/assets/blog/video/ghost-zh-tw.mp4","inLanguage":"zh-tw","transcript":"AI 替你標出重點。摘要之後，AI 會直接在文章裡標出最關鍵的段落，也就是幽靈高亮。點一下保留它，或者忽略它。瀏覽就這樣變成了有目的的閱讀。","isFamilyFriendly":true,"publisher":{"@id":"https://byphil.eu/#org"}},{"@type":"VideoObject","name":"即時朗讀：邊生成邊聆聽","description":"在摘要撰寫的同時聆聽：先讀標題，再逐句朗讀，並有暫停、靜音與速度控制。可從任何卡片重播。","thumbnailUrl":["https://ai-summary-helper.byphil.eu/assets/blog/video/instant-zh-tw.jpg"],"uploadDate":"2026-10-21T00:00:00+00:00","duration":"PT0M28S","contentUrl":"https://ai-summary-helper.byphil.eu/assets/blog/video/instant-zh-tw.mp4","inLanguage":"zh-tw","transcript":"何必等摘要寫完？打開即時朗讀，摘要還在撰寫的時候，就已經讀給你聽了。","isFamilyFriendly":true,"publisher":{"@id":"https://byphil.eu/#org"}},{"@type":"VideoObject","name":"智慧挑選的專屬文摘","description":"一鍵策展多元的摘要包，而不是同一則新聞的五個版本，再打包給 Kindle 或 LocalSend。","thumbnailUrl":["https://ai-summary-helper.byphil.eu/assets/blog/video/digest-zh-tw.jpg"],"uploadDate":"2026-10-21T00:00:00+00:00","duration":"PT0M20S","contentUrl":"https://ai-summary-helper.byphil.eu/assets/blog/video/digest-zh-tw.mp4","inLanguage":"zh-tw","transcript":"存得多，讀得少。那就把這一堆變成一份合集：選幾篇保存的文章，它們就會像一本雜誌一樣，出現在你的 Kindle 上。","isFamilyFriendly":true,"publisher":{"@id":"https://byphil.eu/#org"}}]}</script></head><body><a href="#main" class="skip-link">跳至主要內容</a><header class="nav nav--pill" id="siteNav">
+  <div class="wrap nav-pill-row">
+    <a href="../index.html" class="wordmark" aria-label="AI Summary Helper">
+      <img src="../../assets/icon.svg" alt="">
+      AI Summary Helper
+    </a>
+    <nav class="pill" aria-label="主要">
+      <a href="../index.html#use-cases" data-sec="use-cases">使用情境</a>
+      <a href="../index.html#problem" data-sec="problem" data-slider-goto="problem">運作方式</a>
+      <a href="../blog/">部落格</a>
+      <a href="https://chromewebstore.google.com/detail/ai-summary-helper-openai/hldbejcjaedipeegjcinmhejdndchkmb" class="pill-cta" target="_blank" rel="noopener">新增至 Chrome</a>
+    </nav>
+    <div class="nav-tools">
+      <button type="button" class="tool-btn" id="sendBtn" data-send="" hidden="" aria-label="將此頁面傳送到我的電腦" title="傳送到我的電腦"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="3" y="4.5" width="18" height="12" rx="2" stroke="currentColor" stroke-width="1.6"></rect><path d="M8 20h8M12 16.5V20M12 13V8m0 0-2.2 2.2M12 8l2.2 2.2" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"></path></svg></button>
+      <button type="button" class="tool-btn" id="langBtn" aria-label="語言" aria-controls="mobileMenu"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.6"></circle><path d="M3 12h18M12 3c2.6 2.7 3.9 5.7 3.9 9s-1.3 6.3-3.9 9c-2.6-2.7-3.9-5.7-3.9-9S9.4 5.7 12 3Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"></path></svg></button>
+      <button type="button" class="theme-toggle" id="themeToggle" aria-label="切換為淺色模式">
+        <svg class="icon-moon" viewBox="0 0 24 24" fill="none"><path d="M20 14.5A8.5 8.5 0 1 1 9.5 4a6.8 6.8 0 0 0 10.5 10.5Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"></path></svg>
+        <svg class="icon-sun" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="4.2" stroke="currentColor" stroke-width="1.6"></circle><path d="M12 2.5v2.4M12 19.1v2.4M4.4 4.4l1.7 1.7M17.9 17.9l1.7 1.7M2.5 12h2.4M19.1 12h2.4M4.4 19.6l1.7-1.7M17.9 6.1l1.7-1.7" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"></path></svg>
+      </button>
+    </div>
+    <button type="button" class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="mobileMenu" aria-label="開啟選單">
+      <svg viewBox="0 0 24 24" fill="none"><path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"></path></svg>
+    </button>
+  </div>
+  <div class="mobile-menu" id="mobileMenu" hidden="">
+    <div class="wrap mm-inner">
+      <nav class="mm-links" aria-label="行動版">
+        <a href="../index.html#use-cases"><span class="mm-n">01</span>使用情境</a>
+        <a href="../index.html#problem" data-slider-goto="problem"><span class="mm-n">02</span>運作方式</a>
+        <a href="../../education/"><span class="mm-n">03</span>教育</a>
+        <a href="../blog/"><span class="mm-n">04</span>部落格</a>
+          <a href="../blog/pocket-alternative.html" class="mm-sub">Pocket 替代方案：挑選重點解析</a>
+          <a href="../blog/bring-your-own-key.html" class="mm-sub">你的金鑰。你的模型。你的資料。</a>
+          <a href="../blog/verify-ai-summary.html" class="mm-sub">核對摘要與原文出處</a>
+          <a href="../blog/highlighting-vs-asking.html" class="mm-sub">向你的劃線重點提問</a>
+        <a href="https://github.com/philffm/ai-summary-helper/" target="_blank" rel="noopener"><span class="mm-n">05</span>GitHub</a>
+      </nav>
+      <div class="mm-lang">
+        <button type="button" class="lang-card" id="langCard"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.6"></circle><path d="M3 12h18M12 3c2.6 2.7 3.9 5.7 3.9 9s-1.3 6.3-3.9 9c-2.6-2.7-3.9-5.7-3.9-9S9.4 5.7 12 3Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"></path></svg><span class="lang-card-cur">英文</span><small>24 種語言</small><b aria-hidden="true">→</b></button>
+        <p class="mm-lang-h">語言 · 24</p>
+        <label class="lang-search"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="11" cy="11" r="6.5" stroke="currentColor" stroke-width="1.7"></circle><path d="m16 16 4 4" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"></path></svg><input type="search" id="langSearch" placeholder="搜尋語言…" autocomplete="off" aria-label="搜尋語言" spellcheck="false"></label>
+        <div class="lang-groups" id="langGroups">
+          <div class="lang-group"><p class="lang-group-h">熱門</p><div class="lang-pills" data-no-translate=""><a href="/" class="lang-pill" data-loc="en" lang="en" hreflang="en" data-q="english english en">English</a><a href="/de/" class="lang-pill" data-loc="de" lang="de" hreflang="de" data-q="deutsch german de">Deutsch</a><a href="/fr/" class="lang-pill" data-loc="fr" lang="fr" hreflang="fr" data-q="français french fr">Français</a><a href="/es/" class="lang-pill" data-loc="es" lang="es" hreflang="es" data-q="español spanish es">Español</a><a href="/zh/" class="lang-pill" data-loc="zh" lang="zh-CN" hreflang="zh-CN" data-q="简体中文 chinese simplified zh">简体中文</a><a href="/ja/" class="lang-pill" data-loc="ja" lang="ja" hreflang="ja" data-q="日本語 japanese ja">日本語</a><a href="/ru/" class="lang-pill" data-loc="ru" lang="ru" hreflang="ru" data-q="русский russian ru">Русский</a></div></div>
+          <div class="lang-group"><p class="lang-group-h">歐洲</p><div class="lang-pills" data-no-translate=""><a href="/pt/" class="lang-pill" data-loc="pt" lang="pt" hreflang="pt" data-q="português portuguese pt">Português</a><a href="/nl/" class="lang-pill" data-loc="nl" lang="nl" hreflang="nl" data-q="nederlands dutch nl">Nederlands</a><a href="/it/" class="lang-pill" data-loc="it" lang="it" hreflang="it" data-q="italiano italian it">Italiano</a><a href="/uk/" class="lang-pill" data-loc="uk" lang="uk" hreflang="uk" data-q="українська ukrainian uk">Українська</a><a href="/tr/" class="lang-pill" data-loc="tr" lang="tr" hreflang="tr" data-q="türkçe turkish tr">Türkçe</a><a href="/pl/" class="lang-pill" data-loc="pl" lang="pl" hreflang="pl" data-q="polski polish pl">Polski</a><a href="/sv/" class="lang-pill" data-loc="sv" lang="sv" hreflang="sv" data-q="svenska swedish sv">Svenska</a><a href="/da/" class="lang-pill" data-loc="da" lang="da" hreflang="da" data-q="dansk danish da">Dansk</a><a href="/no/" class="lang-pill" data-loc="no" lang="nb" hreflang="nb" data-q="norsk norwegian no">Norsk</a><a href="/fi/" class="lang-pill" data-loc="fi" lang="fi" hreflang="fi" data-q="suomi finnish fi">Suomi</a></div></div>
+          <div class="lang-group"><p class="lang-group-h">亞洲及其他</p><div class="lang-pills" data-no-translate=""><a href="/zh-tw/" class="lang-pill" data-loc="zh-tw" lang="zh-TW" hreflang="zh-TW" data-q="繁體中文 chinese traditional zh-tw">繁體中文</a><a href="/ko/" class="lang-pill" data-loc="ko" lang="ko" hreflang="ko" data-q="한국어 korean ko">한국어</a><a href="/hi/" class="lang-pill" data-loc="hi" lang="hi" hreflang="hi" data-q="हिन्दी hindi hi">हिन्दी</a><a href="/vi/" class="lang-pill" data-loc="vi" lang="vi" hreflang="vi" data-q="tiếng việt vietnamese vi">Tiếng Việt</a><a href="/id/" class="lang-pill" data-loc="id" lang="id" hreflang="id" data-q="bahasa indonesia indonesian id">Bahasa Indonesia</a><a href="/th/" class="lang-pill" data-loc="th" lang="th" hreflang="th" data-q="ไทย thai th">ไทย</a><a href="/ar/" class="lang-pill" data-loc="ar" lang="ar" hreflang="ar" data-q="العربية arabic ar">العربية</a></div></div>
+          <p class="lang-empty" hidden="">無相符結果</p>
+        </div>
+      </div>
+      <div class="mm-posts" aria-label="部落格">
+          <p class="mm-posts-h">精選部落格文章</p>
+          <a href="../blog/pocket-alternative.html" class="mm-post"><span class="mega-tag">工具比較</span><strong>Pocket 替代方案：What Matters</strong><span>切換稍後讀工具，完整保留過往封存內容</span></a>
+          <a href="../blog/bring-your-own-key.html" class="mm-post"><span class="mega-tag">隱私權政策</span><strong>你的 API Key。你的模型。你的資料。— AI Summary Helper</strong><span>為什麼自備 API Key 優於多訂閱一項服務</span></a>
+          <a href="../blog/verify-ai-summary.html" class="mm-post"><span class="mega-tag">信任驗證</span><strong>比對 AI 摘要與原文來源</strong><span>在一分鐘內快速查證 AI 產出內容</span></a>
+          <a href="../blog/highlighting-vs-asking.html" class="mm-post"><span class="mega-tag">實作教學</span><strong>針對劃線重點提問</strong><span>將劃線標記轉化為即時解答</span></a>
+          <a href="../blog/feeds-recap.html" class="mm-post"><span class="mega-tag">訂閱摘要</span><strong>一份重點摘要取代 40 個訂閱源</strong><span>為你追蹤的所有內容整理每日精選</span></a>
+          <a href="../blog/on-device-architecture.html" class="mm-post"><span class="mega-tag">技術解析</span><strong>無需雲端的搜尋與標籤</strong><span>資料如何完全留存在你的裝置端</span></a>
+          <a href="../blog/" class="mm-all">所有文章 →</a>
+        </div>
+      <div class="mm-bottom">
+        <a href="https://chromewebstore.google.com/detail/ai-summary-helper-openai/hldbejcjaedipeegjcinmhejdndchkmb" class="pill-cta mm-cta" data-desktop-cta="" target="_blank" rel="noopener">新增至 Chrome</a>
+        <button type="button" class="pill-cta mm-cta mm-cta--secondary" data-send="" hidden="">傳送到我的電腦</button>
+        <div class="mm-row">
+          <a href="https://addons.mozilla.org/en-US/firefox/addon/ai-summary-helper/" target="_blank" rel="noopener">Firefox</a>
+          <a href="../index.html#phone">Android · Beta</a>
+          <a href="https://byphil.eu/#account">我的帳戶</a>
+        </div>
+
+        <button type="button" class="theme-toggle-mobile" id="themeToggleMobile">
+          <span id="themeToggleMobileLabel">切換為淺色模式</span>
+          <svg class="icon-moon" viewBox="0 0 24 24" fill="none"><path d="M20 14.5A8.5 8.5 0 1 1 9.5 4a6.8 6.8 0 0 0 10.5 10.5Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"></path></svg>
+          <svg class="icon-sun" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="4.2" stroke="currentColor" stroke-width="1.6"></circle><path d="M12 2.5v2.4M12 19.1v2.4M4.4 4.4l1.7 1.7M17.9 17.9l1.7 1.7M2.5 12h2.4M19.1 12h2.4M4.4 19.6l1.7-1.7M17.9 6.1l1.7-1.7" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"></path></svg>
+        </button>
+      </div>
+    </div>
+  </div>
+</header><main id="main">
+<section class="hero"><div class="wrap wrap-narrow"><div class="eyebrow">存檔與電子閱讀器</div><h1>存檔一次，<br><em>在電子閱讀器上慢慢讀。</em></h1><p class="sub">儲存文章時一併保留圖片，並經過壓縮，兼顧可讀性與檔案大小，再傳送到你的 Kindle 或任何支援 LocalSend 的裝置。離線閱讀、自選時間，存檔就留在你自己的裝置上。</p><div class="hero-cta"><a class="btn-primary" href="https://chromewebstore.google.com/detail/ai-summary-helper-openai/hldbejcjaedipeegjcinmhejdndchkmb" target="_blank" rel="noopener">免費開始存檔</a><a class="btn-secondary" href="../blog/unread-saves.html">為什麼存下來的文章總是愈積愈多</a></div><figure class="landing-hero-video" data-blog-video="senden"><video muted="" autoplay="" loop="" playsinline="" controls="" preload="metadata" width="360" height="520" poster="../../assets/blog/video/senden-zh-tw.jpg" aria-label="將文章傳送到 Kindle 或其他裝置"><source src="../../assets/blog/video/senden-zh-tw.mp4" type="video/mp4"><track kind="subtitles" srclang="en" label="English" src="../../assets/blog/video/senden-en.vtt"></video><figcaption>將文章傳送到 Kindle 或其他裝置</figcaption></figure></div></section>
+<section class="outcome-section"><div class="wrap"><div class="outcome-grid"><article class="outcome-card"><span class="outcome-kicker">典藏庫</span><h3>留下文章本身，不只是連結</h3><p>儲存的文章會把文字與圖片保存在本機存檔中，即使原網頁改版或消失，內容依然還在。</p></article><article class="outcome-card"><span class="outcome-kicker">壓縮</span><h3>圖片清晰可讀，檔案依然輕巧</h3><p>文章存檔時會重新調整圖片尺寸並加以壓縮，讓檔案維持在易於傳送與同步的輕巧大小。</p></article><article class="outcome-card"><span class="outcome-kicker">傳送</span><h3>Kindle、LocalSend 或任何電子閱讀器</h3><p>把文章或摘要合輯傳到 Kindle，或直接傳到其他裝置，離開螢幕好好閱讀。</p></article></div></div></section>
+<section class="landing-evidence"><div class="wrap"><div class="section-head center reveal"><div class="eyebrow">實際應用</div><h2>從你的存檔到你的電子閱讀器</h2><p>從存下文章到找個安靜角落閱讀，中間發生的四件事。</p></div><div class="cx cx--fit reveal" data-carousel="" role="region" aria-roledescription="carousel" aria-label="這套閱讀流程的研究證據與線上示範"><ul class="cx-track"><li class="cx-slide is-active" aria-roledescription="slide" aria-label="1 / 5"><figure><div class="cx-card" style="--img:url(../../assets/photo/ereader-bedside-table-1600.webp)"><span class="cx-big cx-big--text">存檔，而不只是加書籤</span><strong class="cx-title">留下文章本身，不只是連結</strong><span class="cx-text">儲存的文章會把文字與圖片保存在本機存檔中。儲存時會將圖片調整至最大寬度並壓縮，讓頁面維持可讀又輕巧。</span></div></figure></li><li class="cx-slide" aria-roledescription="slide" aria-label="2 / 5"><figure><div class="cx-card" style="--img:url(../../assets/photo/commuter-train-reading-1600.webp)"><span class="cx-big cx-big--text">直接送到你的 Kindle</span><strong class="cx-title">傳送到 Kindle，可含圖片或不含圖片</strong><span class="cx-text">將文章以 EPUB 格式傳送，或傳送含圖片的 EPUB。只要在 Amazon 帳戶中把 kindle@byphil.eu 加入核准寄件者一次即可。前三次 Kindle 傳送免費。</span></div></figure></li><li class="cx-slide" aria-roledescription="slide" aria-label="3 / 5"><figure><div class="cx-card" style="--img:url(../../assets/photo/evening-sofa-ereader-1600.webp)"><span class="cx-big cx-big--text">中間不經過雲端</span><strong class="cx-title">LocalSend 直接傳到裝置</strong><span class="cx-text">傳送到任何可執行 LocalSend 相容應用程式的裝置，或使用系統分享選單，例如 AirDrop。檔案會從你的瀏覽器直接送到你選擇的裝置，完全不經過我們的伺服器。</span></div></figure></li><li class="cx-slide" aria-roledescription="slide" aria-label="4 / 5"><figure><div class="cx-card" style="--img:url(../../assets/photo/older-man-kitchen-tablet-1600.webp)"><span class="cx-big cx-big--text">為你精選五篇</span><strong class="cx-title">會自己挑選內容的摘要合輯</strong><span class="cx-text">一個點按就能挑出內容多元的合輯，而不是同一則新聞的五個版本，並打包好供 Kindle 或 LocalSend 使用。</span></div></figure></li><li class="cx-slide cx-slide--demo" aria-roledescription="slide" aria-label="5 / 5" data-desktop-only=""><figure><div class="demo-frame" data-demo="" data-demo-scale="1180" data-demo-params="screen=history" data-src="../../demo/index.html"><button class="demo-start" type="button"><span class="demo-play" aria-hidden="true">▶</span><span>開始互動示範</span></button><a class="demo-open" href="../../demo/index.html?screen=history" target="_blank" rel="noopener">全螢幕開啟 ↗</a></div><figcaption><strong>看看存檔裡有什麼</strong><span>開啟本機媒體庫，看看已儲存的文章及其摘要與畫線重點。示範不會傳送任何內容。示範不會傳送任何內容。</span></figcaption></figure></li><li class="cx-slide cx-slide--demo-m" aria-roledescription="slide" aria-label="5 / 5" data-mobile-only=""><figure><div class="demo-frame demo-frame--phone" data-demo="" data-demo-fit="420x800" data-demo-params="screen=history&amp;chrome=0&amp;tour=0&amp;surface=sidepanel" data-src="../../demo/index.html"><button class="demo-start" type="button"><span class="demo-play" aria-hidden="true">▶</span><span>直接在這裡體驗</span></button></div><figcaption><strong>看看存檔裡有什麼</strong><span>開啟本機媒體庫，看看已儲存的文章及其摘要與畫線重點。示範不會傳送任何內容。</span><a class="demo-open-m" href="../../demo/index.html?screen=history&amp;chrome=0&amp;tour=0&amp;surface=sidepanel" target="_blank" rel="noopener">全螢幕開啟 ↗</a></figcaption></figure></li></ul><button type="button" class="cx-nav cx-prev" aria-label="上一步"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m15 18-6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg></button><button type="button" class="cx-nav cx-next" aria-label="下一步"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m9 18 6-6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg></button><div class="cx-dots"><button type="button" class="cx-dot is-active" aria-label="投影片 1"></button><button type="button" class="cx-dot" aria-label="投影片 2"></button><button type="button" class="cx-dot" aria-label="投影片 3"></button><button type="button" class="cx-dot" aria-label="投影片 4"></button><button type="button" class="cx-dot cx-dot--demo" aria-label="前往現場示範投影片">功能展示</button><button type="button" class="cx-dot cx-dot--demo-m" aria-label="前往現場示範投影片">功能展示</button></div></div></div></section><section class="compat-section"><div class="wrap wrap-narrow"><div class="section-head center reveal"><div class="eyebrow">相容性</div><h2>支援哪些電子閱讀器？</h2><p>簡單說：Kindle 可直接傳送，Kobo 及其他 KOReader 裝置透過 LocalSend，手機和平板也都能用。以下是完整說明。</p></div><div class="compat-wrap reveal"><table class="compat-table"><thead><tr><th scope="col">裝置</th><th scope="col">文章如何送達</th><th scope="col">值得留意</th></tr></thead><tbody><tr><th scope="row">Kindle 電子閱讀器與 Kindle 應用程式</th><td>透過電子郵件以 EPUB 傳送到 Kindle，可含圖片或不含圖片</td><td>在 Amazon 帳戶中核准 kindle@byphil.eu 一次即可。前三次傳送免費；購買 Support Pass 後可無限傳送。</td></tr><tr><th scope="row">Kobo、reMarkable 以及已越獄並安裝 KOReader 的 Kindle</th><td>LocalSend：在 KOReader 的 LocalSend 外掛中啟動接收端，透過你的 Wi-Fi 傳送</td><td>該外掛是社群專案。Kindle 需要越獄才能執行 KOReader，這並非 Amazon 支援的做法。檔案會從你的瀏覽器直接送到裝置，絕不經過我們的伺服器。</td></tr><tr><th scope="row">Android 電子閱讀器、平板與手機</th><td>LocalSend 應用程式，或 Android 版 KOReader</td><td>只要 Android 裝置能安裝應用程式即可使用。</td></tr><tr><th scope="row">iPhone 與 iPad</th><td>分享選單，包括 AirDrop</td><td>AirDrop 會以離線文件形式開啟文章。</td></tr><tr><th scope="row">Tolino、PocketBook 及其他閱讀器</th><td>目前尚未直接支援</td><td>這些閱讀器透過 USB 或其雲端服務接收 EPUB 與 PDF。如果你使用這類裝置，歡迎告訴我們，這會決定我們接下來開發什麼。</td></tr></tbody></table></div><div class="hero-cta reveal" style="justify-content:center;margin-top:24px;"><a class="btn-secondary" href="mailto:info@byphil.eu?subject=E-reader%20support%20for%20AI%20Summary%20Helper&amp;body=Hello%2C%0A%0AI%20read%20on%20this%20e-reader%3A%0A%0AIt%20would%20help%20me%20if%20articles%20could%20be%20sent%20to%20it%20directly.%0A%0ABest%20regards">告訴我們你用的電子閱讀器</a></div></div></section><section class="outcome-section"><div class="wrap"><div class="section-head center reveal"><div class="eyebrow">操作方式</div><h2>三個步驟將文章傳送到你的 Kindle</h2></div><div class="outcome-grid"><article class="outcome-card"><span class="outcome-kicker">步驟 1</span><h3>核准寄件者一次</h3><p>在 Amazon 帳戶中，將 kindle@byphil.eu 加入核准的個人文件電子郵件清單。</p></article><article class="outcome-card"><span class="outcome-kicker">步驟 2</span><h3>儲存文章</h3><p>在 Chrome 或 Firefox 中開啟文章，讓 AI Summary Helper 將它存檔，圖片會一併壓縮。</p></article><article class="outcome-card"><span class="outcome-kicker">步驟 3</span><h3>傳送出去</h3><p>選擇「傳送到 Kindle」，挑選 EPUB 或含圖片的 EPUB，文章就會出現在你的 Kindle 上。</p></article></div></div></section><section id="features" data-default-persona="go">
+    <div class="wrap">
+      <div class="section-head center reveal">
+        <div class="eyebrow">功能簡介</div>
+        <h2>閱讀清單本該擁有的理想模樣</h2>
+        <p>隨手儲存、迅速掌握、精準回找，更能真正重溫閱讀 — 不必再被另一個訂閱服務綁架你的知識庫。</p>
+      </div>
+
+      <!-- Audience filter: "All" shows every feature in the order of the headline (save, understand, find, get back to it).
+           An audience hides the cards that are not tagged for it (data-personas). All cards stay in the HTML, so crawlers and
+           visitors without JavaScript see everything; #for=<audience> opens the page filtered. -->
+      <div class="persona-switch reveal" role="group" aria-label="你是哪一類使用者？下方僅顯示符合的功能">
+        <button type="button" class="persona-btn active" data-persona="all" aria-pressed="true">
+          <svg viewBox="0 0 24 24" fill="none"><rect x="4" y="4" width="6.5" height="6.5" rx="1.6" stroke="currentColor" stroke-width="1.6"></rect><rect x="13.5" y="4" width="6.5" height="6.5" rx="1.6" stroke="currentColor" stroke-width="1.6"></rect><rect x="4" y="13.5" width="6.5" height="6.5" rx="1.6" stroke="currentColor" stroke-width="1.6"></rect><rect x="13.5" y="13.5" width="6.5" height="6.5" rx="1.6" stroke="currentColor" stroke-width="1.6"></rect></svg>
+          全部
+        </button>
+        <button type="button" class="persona-btn" data-persona="privacy" aria-pressed="false">
+          <svg viewBox="0 0 24 24" fill="none"><path d="M12 3l7 3v6c0 4.5-3 7.5-7 9-4-1.5-7-4.5-7-9V6l7-3Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"></path></svg>
+          隱私優先
+        </button>
+        <button type="button" class="persona-btn" data-persona="hoarder" aria-pressed="false">
+          <svg viewBox="0 0 24 24" fill="none"><rect x="4" y="4" width="16" height="16" rx="3" stroke="currentColor" stroke-width="1.6"></rect><path d="M8 9h8M8 13h5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"></path></svg>
+          分頁囤積狂
+        </button>
+        <button type="button" class="persona-btn" data-persona="researcher" aria-pressed="false">
+          <svg viewBox="0 0 24 24" fill="none"><circle cx="5" cy="6" r="1.8" fill="currentColor"></circle><circle cx="19" cy="6" r="1.8" fill="currentColor" opacity="0.85"></circle><circle cx="12" cy="12" r="2.1" fill="currentColor"></circle><circle cx="6" cy="18" r="1.8" fill="currentColor" opacity="0.85"></circle><circle cx="18" cy="18" r="1.8" fill="currentColor" opacity="0.85"></circle><path d="M5 6 12 12M19 6 12 12M12 12 6 18M12 12 18 18" stroke="currentColor" stroke-width="1.1" opacity="0.55"></path></svg>
+          研究工作者
+        </button>
+        <button type="button" class="persona-btn" data-persona="feeds" aria-pressed="false">
+          <svg viewBox="0 0 24 24" fill="none"><path d="M5 5a14 14 0 0 1 14 14M5 11a8 8 0 0 1 8 8" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"></path><circle cx="6" cy="18" r="1.8" fill="currentColor"></circle></svg>
+          Feed 追蹤者
+        </button>
+        <button type="button" class="persona-btn" data-persona="go" aria-pressed="false">
+          <svg viewBox="0 0 24 24" fill="none"><path d="M5 14v-2a7 7 0 0 1 14 0v2" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"></path><rect x="4" y="13" width="4" height="6" rx="1.5" stroke="currentColor" stroke-width="1.6"></rect><rect x="16" y="13" width="4" height="6" rx="1.5" stroke="currentColor" stroke-width="1.6"></rect></svg>
+          隨身閱讀
+        </button>
+      </div>
+      <p class="persona-blurb reveal" id="personaBlurb" aria-live="polite">這才是閱讀清單一開始就該有的模樣。</p>
+      <!-- the blurbs live in the HTML (not the script) so the translation pipeline translates them -->
+      <div id="personaTexts" hidden="">
+        <span data-persona-text="all">這才是閱讀清單一開始就該有的模樣。</span>
+        <span data-persona-text="privacy">模型與伺服器完全由你決定，甚至能確保任何資料都不離開你的電腦。</span>
+        <span data-persona-text="hoarder">問題從來不在於儲存，而是如何找回並利用已存的內容——這正是本產品的核心設計初衷。</span>
+        <span data-persona-text="researcher">每一次儲存都能搜尋、建立關聯並匯出——成為真正井然有序的資料庫，而非越堆越多的數位雜物。</span>
+        <span data-persona-text="feeds">追蹤你在意的領域、優先瀏覽優質內容，並快速掌握今日精華摘要。</span>
+        <span data-persona-text="go">利用零碎時間閱讀、聆聽，或傳送至 Kindle。</span>
+      </div>
+      <p class="persona-count" id="personaCount" aria-live="polite" hidden=""></p>
+
+      <!-- each card's clip peeks out of its bottom corner (tilted like the Watch stack): hover plays it silently, a tap on it or on "Watch the clip" opens the swipeable player (main.js) -->
+      <div class="feature-grid reveal" id="featureGrid" data-vgroup="">
+
+
+
+        <div class="feature-card" data-personas="privacy hoarder researcher feeds go">
+          <figure class="fvideo" data-blog-video="sprache">
+            <button class="fvideo-open" type="button"><span class="sr-only">播放影片</span>
+              <video muted="" playsinline="" loop="" preload="none" width="360" height="520" poster="../../assets/blog/video/sprache-zh-tw.jpg">
+                <source src="../../assets/blog/video/sprache-zh-tw.mp4" type="video/mp4">
+              <track data-seo-video="" kind="captions" src="../../assets/blog/video/sprache-zh-tw.vtt" srclang="zh-tw" label="中文（台灣）"></video>
+              <span class="fvideo-play" aria-hidden="true">▶</span>
+            </button>
+          </figure>
+          <div class="f-icon icon-violet"><svg viewBox="0 0 24 24" fill="none"><path d="M4 12h16M12 4c2.8 2.6 4.2 5.2 4.2 8s-1.4 5.4-4.2 8c-2.8-2.6-4.2-5.2-4.2-8s1.4-5.4 4.2-8Z" stroke="#fff" stroke-width="1.5"></path></svg></div>
+          <h3>支援 20 多種語言，跨平台通用</h3>
+          <p>以 20 種以上語言閱讀與摘要，可使用擴充功能、原生側邊面板，或 <a href="../../bookmarklet.html">書籤小工具</a> 在擴充功能無法觸及頁面時使用。</p>
+          <button class="fvideo-cta" type="button" tabindex="-1" aria-hidden="true"><span class="fvideo-cta-play">▶</span>觀看短片</button>
+        </div>
+
+        <div class="feature-card" data-personas="researcher go">
+          <figure class="fvideo" data-blog-video="ghost">
+            <button class="fvideo-open" type="button"><span class="sr-only">播放影片</span>
+              <video muted="" playsinline="" loop="" preload="none" width="360" height="520" poster="../../assets/blog/video/ghost-zh-tw.jpg">
+                <source src="../../assets/blog/video/ghost-zh-tw.mp4" type="video/mp4">
+              <track data-seo-video="" kind="captions" src="../../assets/blog/video/ghost-zh-tw.vtt" srclang="zh-tw" label="中文（台灣）"></video>
+              <span class="fvideo-play" aria-hidden="true">▶</span>
+            </button>
+          </figure>
+          <div class="f-icon icon-gold"><svg viewBox="0 0 24 24" fill="none"><path d="M5 5h14M5 9h14M5 13h14M5 17h14" stroke="#fff" stroke-width="2.2" stroke-linecap="round"></path><path d="M5 5l14 0M5 9l14 0M5 13l14 0M5 17l14 0" stroke="#fff" stroke-width="2.2" stroke-linecap="round" opacity="0.35"></path></svg></div>
+          <h3>幽靈高亮標註，直接呈現在網頁上</h3>
+          <p>AI 會標示出 <mark class="ai-ghost-highlight">重要的原文段落</mark> 讓你能快速瀏覽關鍵洞見，並連同摘要匯出到 Kindle、LocalSend 或 Markdown。</p>
+          <button class="fvideo-cta" type="button" tabindex="-1" aria-hidden="true"><span class="fvideo-cta-play">▶</span>觀看短片</button>
+        </div>
+
+
+        <div class="feature-card" data-personas="feeds go">
+          <figure class="fvideo" data-blog-video="instant">
+            <button class="fvideo-open" type="button"><span class="sr-only">播放影片</span>
+              <video muted="" playsinline="" loop="" preload="none" width="360" height="520" poster="../../assets/blog/video/instant-zh-tw.jpg">
+                <source src="../../assets/blog/video/instant-zh-tw.mp4" type="video/mp4">
+              <track data-seo-video="" kind="captions" src="../../assets/blog/video/instant-zh-tw.vtt" srclang="zh-tw" label="中文（台灣）"></video>
+              <span class="fvideo-play" aria-hidden="true">▶</span>
+            </button>
+          </figure>
+          <div class="f-icon icon-teal"><svg viewBox="0 0 24 24" fill="none"><path d="M5 10v4h3l4.5 3.5v-11L8 10H5Z" fill="#fff"></path><path d="M16 9c1.3 1.7 1.3 4.3 0 6M18.5 6.5c2.5 3 2.5 8 0 11" stroke="#fff" stroke-width="1.6" stroke-linecap="round"></path></svg></div>
+          <h3>即時朗讀：邊生成邊聆聽</h3>
+          <p>在摘要撰寫的同時聆聽：先讀標題，再逐句朗讀，並有暫停、靜音與速度控制。可從任何卡片重播。</p>
+          <button class="fvideo-cta" type="button" tabindex="-1" aria-hidden="true"><span class="fvideo-cta-play">▶</span>觀看短片</button>
+        </div>
+
+
+
+        <div class="feature-card" data-personas="hoarder go">
+          <figure class="fvideo" data-blog-video="digest">
+            <button class="fvideo-open" type="button"><span class="sr-only">播放影片</span>
+              <video muted="" playsinline="" loop="" preload="none" width="360" height="520" poster="../../assets/blog/video/digest-zh-tw.jpg">
+                <source src="../../assets/blog/video/digest-zh-tw.mp4" type="video/mp4">
+              <track data-seo-video="" kind="captions" src="../../assets/blog/video/digest-zh-tw.vtt" srclang="zh-tw" label="中文（台灣）"></video>
+              <span class="fvideo-play" aria-hidden="true">▶</span>
+            </button>
+          </figure>
+          <div class="f-icon icon-gold"><svg viewBox="0 0 24 24" fill="none"><rect x="4" y="4" width="16" height="16" rx="3" stroke="#fff" stroke-width="1.6"></rect><path d="M8 9h8M8 13h5" stroke="#fff" stroke-width="1.6" stroke-linecap="round"></path></svg></div>
+          <h3>智慧挑選的專屬文摘</h3>
+          <p>一鍵策展多元的摘要包，而不是同一則新聞的五個版本，再打包給 Kindle 或 LocalSend。</p>
+          <button class="fvideo-cta" type="button" tabindex="-1" aria-hidden="true"><span class="fvideo-cta-play">▶</span>觀看短片</button>
+        </div>
+
+
+
+
+
+
+      </div>
+    </div>
+  </section>
+
+  <script>
+    (function(){
+      var buttons = document.querySelectorAll('.persona-btn');
+      var cards = document.querySelectorAll('#featureGrid .feature-card');
+      var blurb = document.getElementById('personaBlurb');
+      var count = document.getElementById('personaCount');
+      var names = {};
+      buttons.forEach(function(b){ names[b.getAttribute('data-persona')] = 1; });
+
+      function text(name) {
+        var el = document.querySelector('#personaTexts [data-persona-text="' + name + '"]');
+        return el ? el.textContent : '';
+      }
+
+      function setPersona(name, fromUser) {
+        if (!names[name]) name = 'all';
+        var shown = 0;
+        buttons.forEach(function(b){
+          var active = b.getAttribute('data-persona') === name;
+          b.classList.toggle('active', active);
+          b.setAttribute('aria-pressed', active ? 'true' : 'false');
+        });
+        cards.forEach(function(c){
+          var match = name === 'all' || (c.getAttribute('data-personas') || '').split(' ').indexOf(name) !== -1;
+          c.hidden = !match;
+          if (match) shown++;
+          if (!match) { var v = c.querySelector('video'); if (v) v.pause(); }   // a hidden clip must not keep playing
+        });
+        if (blurb) blurb.textContent = text(name) || blurb.textContent;
+        if (count) { count.hidden = name === 'all'; count.textContent = shown + ' / ' + cards.length; }
+        try {
+          history.replaceState(null, '', name === 'all' ? location.pathname + location.search : location.pathname + location.search + '#for=' + name);
+        } catch (e) {}
+        if (fromUser) window.aishTrack && window.aishTrack('Persona', 'select', name);
+      }
+
+      buttons.forEach(function(b){
+        b.addEventListener('click', function(){ setPersona(b.getAttribute('data-persona'), true); });
+      });
+
+      // #for=<audience> in a link opens the page filtered
+      var m = /^#for=([a-z]+)$/.exec(location.hash);
+      var initial = document.getElementById('features').getAttribute('data-default-persona') || 'all';
+      setPersona(m && names[m[1]] ? m[1] : initial, false);
+    })();
+  </script>
+
+<section><div class="wrap wrap-narrow"><div class="section-head center reveal"><div class="eyebrow">常見問題</div><h2>存檔與電子閱讀器常見問題</h2></div><div class="faq reveal"><details><summary>如何從 Chrome 或 Firefox 把網頁文章傳到我的 Kindle？</summary><p>安裝 AI Summary Helper，在 Amazon 帳戶中把 kindle@byphil.eu 加入核准的個人文件電子郵件清單一次，接著將文章存檔並選擇「傳送到 Kindle」。文章會以 EPUB 格式送達，可含圖片或不含圖片。</p></details><details><summary>需要付費嗎？</summary><p>這款擴充功能免費且開放原始碼。前三次 Kindle 傳送免費；若要無限次傳送到 Kindle，則需要 Support Pass。使用 LocalSend 傳送免費，且絕不經過我們的伺服器。</p></details><details><summary>可以搭配 Kobo 或其他電子閱讀器使用嗎？</summary><p>可以，只要裝置能執行 KOReader（Kobo、reMarkable，以及已越獄的 Kindle）：安裝 KOReader 的 LocalSend 外掛，啟動接收端，再從擴充功能透過你的 Wi-Fi 傳送。沒有 KOReader 的閱讀器，例如 Tolino 與 PocketBook，目前尚未直接支援。</p></details><details><summary>什麼是 LocalSend？</summary><p>LocalSend 是一款開放原始碼應用程式，可在同一網路中的裝置之間直接傳送檔案。檔案會從你的瀏覽器直接送到裝置，中間不經過雲端。</p></details><details><summary>存檔文章時會保留圖片嗎？</summary><p>會。圖片會調整至最大寬度並壓縮，讓文章維持可讀又輕巧。</p></details><details><summary>我的存檔會離開我的裝置嗎？</summary><p>存檔會留在你的瀏覽器中。傳送到 Kindle 是例外：Amazon 只接受來自核准寄件者的電子郵件文件，因此該次傳送會經過我們的服務。LocalSend 與 AirDrop 則直接送到你的裝置。</p></details></div></div></section><section class="related-reading"><div class="wrap"><div class="section-head center"><div class="eyebrow">延伸閱讀</div><h2>深入了解這套流程</h2><p>關於本頁背後想法的實用筆記。</p></div><div class="blog-grid"><a class="blog-card" href="../blog/unread-saves.html"><span class="blog-date">產品故事</span><h3>你存下來的內容，大多不會再讀。真正的解法在這裡。</h3><p>用摘要合輯挑出值得一讀的內容，傳送出去，離開螢幕閱讀。</p><span class="blog-read">閱讀全文 →</span></a><a class="blog-card" href="../blog/sync-to-nextcloud-s3-or-a-folder.html"><span class="blog-date">指南</span><h3>將你的閱讀庫同步到 Nextcloud、S3 或資料夾</h3><p>把存檔放在你自己掌控的儲存空間，與你傳送到電子閱讀器的內容並存。</p><span class="blog-read">閱讀全文 →</span></a><a class="blog-card" href="../blog/pocket-alternative.html"><span class="blog-date">指南</span><h3>Pocket 替代方案：挑選重點解析</h3><p>挑選「稍後閱讀」工具時該注意什麼——尤其是它不該是雲端資料孤島。</p><span class="blog-read">閱讀全文 →</span></a></div></div></section>
+</main><footer>
+  <div class="wrap">
+    <div class="footer-inner">
+      <div class="wordmark"><img src="../../assets/icon.svg" alt="">AI Summary Helper</div>
+      <div class="foot-links">
+        <a href="https://github.com/philffm/ai-summary-helper/" target="_blank" rel="noopener">GitHub 原始碼</a>
+        <a href="../../bookmarklet.html">Bookmarklet（免安裝）</a>
+        <a href="../../education/">教育方案</a>
+        <a href="../privacy.html">隱私權政策</a>
+        <a href="#" data-analytics-settings="">數據分析設定</a>
+        <a href="https://byphil.eu/terms.html#terms-of-service" target="_blank" rel="noopener">服務條款</a>
+        <a href="https://byphil.eu/terms.html#refunds" target="_blank" rel="noopener">退款與退換政策</a>
+        <a href="https://byphil.eu/terms.html#impressum" target="_blank" rel="noopener">法律資訊 (Impressum)</a>
+      </div>
+    </div>
+    <div class="foot-eco">
+      <span class="foot-eco-h">更多來自 byphil 的作品</span>
+      <div class="foot-links">
+        <a href="https://petsetlife.byphil.eu/" target="_blank" rel="noopener">PetSetLife</a>
+        <a href="https://matrix.byphil.eu/" target="_blank" rel="noopener">Matrix</a>
+        <a href="https://byphil.eu/" target="_blank" rel="noopener">所有 byphil 工具 ↗</a>
+      </div>
+    </div>
+    <div class="copyright">© 2026 Phil Wornath. 屬於 <a href="https://byphil.eu/" class="credit-link">byphil.<span style="color:inherit;">eu</span> ↗</a> — 於德國開發的獨立軟體。付款服務由 Stripe 作為紀錄商家 (Merchant of Record) 處理。<br>
+      <a href="https://ec.europa.eu/consumers/odr" target="_blank" rel="noopener">歐盟消費者線上爭議解決平台</a> · 設計與開發者： <a href="https://philwornath.com/" target="_blank" rel="noopener" class="credit-link">philwornath.com ↗</a>
+    </div>
+  </div>
+</footer>
+
+<script src="../../assets/hero-i18n.js"></script>
+<script src="../../assets/main.js"></script>
+</body></html>

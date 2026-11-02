@@ -5731,6 +5731,45 @@
     </video:video>
   </url>
   <url>
+    <loc>https://ai-summary-helper.byphil.eu/es/e-reader/</loc>
+    <video:video>
+      <video:thumbnail_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/sprache-es.jpg</video:thumbnail_loc>
+      <video:title>Más de 20 idiomas, multiplataforma</video:title>
+      <video:description>Lee y resume en más de 20 idiomas con la extensión, el panel lateral nativo o bookmarklet cuando la extensión no puede acceder a una página.</video:description>
+      <video:content_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/sprache-es.mp4</video:content_loc>
+      <video:duration>18</video:duration>
+      <video:publication_date>2026-10-20T00:00:00+00:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+    <video:video>
+      <video:thumbnail_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/ghost-es.jpg</video:thumbnail_loc>
+      <video:title>Resaltados sutiles, directamente en la página</video:title>
+      <video:description>La IA resalta pasajes textuales importantes para que puedas revisar las ideas clave y exportarlas junto con el resumen a Kindle, LocalSend o Markdown.</video:description>
+      <video:content_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/ghost-es.mp4</video:content_loc>
+      <video:duration>21</video:duration>
+      <video:publication_date>2026-10-21T00:00:00+00:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+    <video:video>
+      <video:thumbnail_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/instant-es.jpg</video:thumbnail_loc>
+      <video:title>Lectura instantánea: escucha mientras escribe</video:title>
+      <video:description>Escucha mientras se escribe el resumen: primero el título y luego frase a frase, con controles de pausa, silencio y velocidad. Vuelve a reproducirlo desde cualquier tarjeta.</video:description>
+      <video:content_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/instant-es.mp4</video:content_loc>
+      <video:duration>27</video:duration>
+      <video:publication_date>2026-10-21T00:00:00+00:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+    <video:video>
+      <video:thumbnail_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/digest-es.jpg</video:thumbnail_loc>
+      <video:title>Un resumen que se organiza solo</video:title>
+      <video:description>Con un toque consigues un digest variado en lugar de cinco versiones de la misma noticia, y lo preparas para Kindle o LocalSend.</video:description>
+      <video:content_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/digest-es.mp4</video:content_loc>
+      <video:duration>20</video:duration>
+      <video:publication_date>2026-10-20T00:00:00+00:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+  </url>
+  <url>
     <loc>https://ai-summary-helper.byphil.eu/es/local-ai/</loc>
     <video:video>
       <video:thumbnail_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/feeds-es.jpg</video:thumbnail_loc>
@@ -5832,6 +5871,45 @@
       <video:content_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/analytics-es.mp4</video:content_loc>
       <video:duration>20</video:duration>
       <video:publication_date>2026-10-27T00:00:00+00:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+  </url>
+  <url>
+    <loc>https://ai-summary-helper.byphil.eu/fr/e-reader/</loc>
+    <video:video>
+      <video:thumbnail_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/sprache-fr.jpg</video:thumbnail_loc>
+      <video:title>Plus de 20 langues, multiplateforme</video:title>
+      <video:description>Lisez et résumez dans plus de 20 langues avec l'extension, le panneau latéral natif ou bookmarklet lorsque l'extension ne peut pas accéder à une page.</video:description>
+      <video:content_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/sprache-fr.mp4</video:content_loc>
+      <video:duration>19</video:duration>
+      <video:publication_date>2026-10-21T00:00:00+00:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+    <video:video>
+      <video:thumbnail_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/ghost-fr.jpg</video:thumbnail_loc>
+      <video:title>Surlignages subtils, directement sur la page</video:title>
+      <video:description>L'IA met en évidence les passages importants mot pour mot pour que vous puissiez parcourir les points clés et les exporter avec le résumé vers Kindle, LocalSend ou Markdown.</video:description>
+      <video:content_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/ghost-fr.mp4</video:content_loc>
+      <video:duration>21</video:duration>
+      <video:publication_date>2026-10-21T00:00:00+00:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+    <video:video>
+      <video:thumbnail_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/instant-fr.jpg</video:thumbnail_loc>
+      <video:title>Lecture instantanée : écoutez pendant la rédaction</video:title>
+      <video:description>Écoutez pendant que le résumé s'écrit : d'abord le titre, puis phrase par phrase, avec des commandes de pause, de sourdine et de vitesse. Réécoutez-le depuis n'importe quelle fiche.</video:description>
+      <video:content_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/instant-fr.mp4</video:content_loc>
+      <video:duration>28</video:duration>
+      <video:publication_date>2026-10-21T00:00:00+00:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+    <video:video>
+      <video:thumbnail_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/digest-fr.jpg</video:thumbnail_loc>
+      <video:title>Un digest qui se compose tout seul</video:title>
+      <video:description>Un seul geste compose une sélection variée plutôt que cinq versions d'une même histoire, puis la prépare pour Kindle ou LocalSend.</video:description>
+      <video:content_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/digest-fr.mp4</video:content_loc>
+      <video:duration>20</video:duration>
+      <video:publication_date>2026-10-21T00:00:00+00:00</video:publication_date>
       <video:family_friendly>yes</video:family_friendly>
     </video:video>
   </url>
@@ -5938,6 +6016,49 @@
       <video:duration>20</video:duration>
       <video:publication_date>2026-10-27T00:00:00+00:00</video:publication_date>
       <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+  </url>
+  <url>
+    <loc>https://ai-summary-helper.byphil.eu/it/e-reader/</loc>
+    <video:video>
+      <video:thumbnail_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/sprache-en.jpg</video:thumbnail_loc>
+      <video:title>Oltre 20 lingue, multipiattaforma</video:title>
+      <video:description>Leggi e riassumi in oltre 20 lingue usando l'estensione, il pannello laterale nativo o bookmarklet quando l'estensione non riesce a raggiungere una pagina.</video:description>
+      <video:content_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/sprache-en.mp4</video:content_loc>
+      <video:duration>16</video:duration>
+      <video:publication_date>2026-10-20T00:00:00+00:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+      <video:tag>English original</video:tag>
+    </video:video>
+    <video:video>
+      <video:thumbnail_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/ghost-en.jpg</video:thumbnail_loc>
+      <video:title>Evidenziazioni contestuali, direttamente sulla pagina</video:title>
+      <video:description>L'IA evidenzia passaggi importanti riportati alla lettera così puoi scorrere rapidamente gli spunti chiave ed esportarli con il riassunto su Kindle, LocalSend o Markdown.</video:description>
+      <video:content_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/ghost-en.mp4</video:content_loc>
+      <video:duration>20</video:duration>
+      <video:publication_date>2026-10-21T00:00:00+00:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+      <video:tag>English original</video:tag>
+    </video:video>
+    <video:video>
+      <video:thumbnail_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/instant-en.jpg</video:thumbnail_loc>
+      <video:title>Lettura istantanea: ascolta mentre scrive</video:title>
+      <video:description>Ascolta mentre il riassunto viene scritto: prima il titolo, poi frase per frase, con controlli di pausa, mute e velocità. Riascoltalo da qualsiasi scheda.</video:description>
+      <video:content_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/instant-en.mp4</video:content_loc>
+      <video:duration>28</video:duration>
+      <video:publication_date>2026-10-21T00:00:00+00:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+      <video:tag>English original</video:tag>
+    </video:video>
+    <video:video>
+      <video:thumbnail_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/digest-en.jpg</video:thumbnail_loc>
+      <video:title>Un digest che si compone da solo</video:title>
+      <video:description>Un tocco crea un digest vario invece di cinque versioni della stessa storia, poi lo prepara per Kindle o LocalSend.</video:description>
+      <video:content_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/digest-en.mp4</video:content_loc>
+      <video:duration>20</video:duration>
+      <video:publication_date>2026-10-20T00:00:00+00:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+      <video:tag>English original</video:tag>
     </video:video>
   </url>
   <url>
@@ -6057,6 +6178,45 @@
     </video:video>
   </url>
   <url>
+    <loc>https://ai-summary-helper.byphil.eu/ja/e-reader/</loc>
+    <video:video>
+      <video:thumbnail_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/sprache-ja.jpg</video:thumbnail_loc>
+      <video:title>20以上の言語に対応、クロスプラットフォーム</video:title>
+      <video:description>拡張機能やネイティブのサイドパネル、または ブックマークレット 拡張機能がページにアクセスできない場合に使えるブックマークレットで、20以上の言語の読み取りと要約ができます。</video:description>
+      <video:content_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/sprache-ja.mp4</video:content_loc>
+      <video:duration>19</video:duration>
+      <video:publication_date>2026-10-20T00:00:00+00:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+    <video:video>
+      <video:thumbnail_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/ghost-ja.jpg</video:thumbnail_loc>
+      <video:title>ページ上に直接、さりげなくハイライト</video:title>
+      <video:description>AIがハイライト表示するのは 重要な原文そのままの箇所 なので、重要なポイントをざっと確認し、要約と一緒にKindle、LocalSend、Markdownへエクスポートできます。</video:description>
+      <video:content_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/ghost-ja.mp4</video:content_loc>
+      <video:duration>23</video:duration>
+      <video:publication_date>2026-10-21T00:00:00+00:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+    <video:video>
+      <video:thumbnail_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/instant-ja.jpg</video:thumbnail_loc>
+      <video:title>インスタント読み上げ：生成しながら同時に音声再生</video:title>
+      <video:description>要約が書かれる様子を聞けます。まずタイトル、次に一文ずつ。一時停止、ミュート、速度調整も可能です。どのカードからでも再生できます。</video:description>
+      <video:content_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/instant-ja.mp4</video:content_loc>
+      <video:duration>26</video:duration>
+      <video:publication_date>2026-10-21T00:00:00+00:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+    <video:video>
+      <video:thumbnail_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/digest-ja.jpg</video:thumbnail_loc>
+      <video:title>自動キュレーション型ダイジェスト</video:title>
+      <video:description>ワンタップで、同じ話題の5つの記事ではなく、変化に富んだダイジェストを編集し、KindleやLocalSend用にまとめます。</video:description>
+      <video:content_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/digest-ja.mp4</video:content_loc>
+      <video:duration>20</video:duration>
+      <video:publication_date>2026-10-20T00:00:00+00:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+  </url>
+  <url>
     <loc>https://ai-summary-helper.byphil.eu/ja/local-ai/</loc>
     <video:video>
       <video:thumbnail_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/feeds-ja.jpg</video:thumbnail_loc>
@@ -6158,6 +6318,46 @@
       <video:content_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/analytics-ja.mp4</video:content_loc>
       <video:duration>21</video:duration>
       <video:publication_date>2026-10-27T00:00:00+00:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+  </url>
+  <url>
+    <loc>https://ai-summary-helper.byphil.eu/ko/e-reader/</loc>
+    <video:video>
+      <video:thumbnail_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/sprache-en.jpg</video:thumbnail_loc>
+      <video:title>20개 이상의 언어 지원 및 크로스 플랫폼</video:title>
+      <video:description>확장 프로그램, 네이티브 사이드 패널, 또는 북마클릿 확장 프로그램이 페이지에 접근할 수 없을 때 쓰는 북마클릿으로 20개 이상의 언어를 읽고 요약하세요.</video:description>
+      <video:content_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/sprache-en.mp4</video:content_loc>
+      <video:duration>16</video:duration>
+      <video:publication_date>2026-10-20T00:00:00+00:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+      <video:tag>English original</video:tag>
+    </video:video>
+    <video:video>
+      <video:thumbnail_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/ghost-ko.jpg</video:thumbnail_loc>
+      <video:title>웹페이지에서 바로 확인하는 고스트 하이라이트</video:title>
+      <video:description>AI가 중요한 원문 구절을 표시해 주므로, 핵심 인사이트를 훑어보고 요약과 함께 Kindle, LocalSend, Markdown으로 내보낼 수 있어요.</video:description>
+      <video:content_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/ghost-ko.mp4</video:content_loc>
+      <video:duration>20</video:duration>
+      <video:publication_date>2026-10-21T00:00:00+00:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+    <video:video>
+      <video:thumbnail_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/instant-ko.jpg</video:thumbnail_loc>
+      <video:title>실시간 오디오: 작성과 동시에 듣기</video:title>
+      <video:description>요약이 작성되는 동안 들어 보세요. 제목부터 시작해 문장 단위로 읽어 주고, 일시정지·음소거·속도 조절도 할 수 있어요. 어떤 카드에서든 다시 들을 수 있어요.</video:description>
+      <video:content_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/instant-ko.mp4</video:content_loc>
+      <video:duration>28</video:duration>
+      <video:publication_date>2026-10-21T00:00:00+00:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+    <video:video>
+      <video:thumbnail_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/digest-ko.jpg</video:thumbnail_loc>
+      <video:title>자동으로 선별되는 다이제스트</video:title>
+      <video:description>탭 한 번으로 같은 사안의 다섯 가지 버전 대신 다양한 다이제스트를 큐레이션하고, Kindle이나 LocalSend로 보낼 수 있게 묶어 줘요.</video:description>
+      <video:content_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/digest-ko.mp4</video:content_loc>
+      <video:duration>21</video:duration>
+      <video:publication_date>2026-10-20T00:00:00+00:00</video:publication_date>
       <video:family_friendly>yes</video:family_friendly>
     </video:video>
   </url>
@@ -6272,6 +6472,45 @@
     </video:video>
   </url>
   <url>
+    <loc>https://ai-summary-helper.byphil.eu/nl/e-reader/</loc>
+    <video:video>
+      <video:thumbnail_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/sprache-nl.jpg</video:thumbnail_loc>
+      <video:title>20+ talen, platformonafhankelijk</video:title>
+      <video:description>Lees en vat samen in meer dan 20 talen met de extensie, het native zijpaneel of bookmarklet wanneer de extensie geen toegang krijgt tot een pagina.</video:description>
+      <video:content_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/sprache-nl.mp4</video:content_loc>
+      <video:duration>17</video:duration>
+      <video:publication_date>2026-10-21T00:00:00+00:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+    <video:video>
+      <video:thumbnail_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/ghost-nl.jpg</video:thumbnail_loc>
+      <video:title>Subtiele markeringen, direct op de pagina</video:title>
+      <video:description>De AI markeert belangrijke letterlijke passages zodat je de belangrijkste inzichten snel kunt doornemen en ze samen met de samenvatting kunt exporteren naar Kindle, LocalSend of Markdown.</video:description>
+      <video:content_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/ghost-nl.mp4</video:content_loc>
+      <video:duration>20</video:duration>
+      <video:publication_date>2026-10-21T00:00:00+00:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+    <video:video>
+      <video:thumbnail_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/instant-nl.jpg</video:thumbnail_loc>
+      <video:title>Direct voorlezen: luister terwijl het geschreven wordt</video:title>
+      <video:description>Luister terwijl de samenvatting wordt geschreven: eerst de titel, dan zin voor zin, met bediening voor pauzeren, dempen en snelheid. Speel het opnieuw af vanaf elke kaart.</video:description>
+      <video:content_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/instant-nl.mp4</video:content_loc>
+      <video:duration>27</video:duration>
+      <video:publication_date>2026-10-21T00:00:00+00:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+    <video:video>
+      <video:thumbnail_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/digest-nl.jpg</video:thumbnail_loc>
+      <video:title>Een digest die zichzelf samenstelt</video:title>
+      <video:description>Met één tik stel je een gevarieerde digest samen in plaats van vijf versies van hetzelfde verhaal, en bundel je die voor Kindle of LocalSend.</video:description>
+      <video:content_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/digest-nl.mp4</video:content_loc>
+      <video:duration>20</video:duration>
+      <video:publication_date>2026-10-21T00:00:00+00:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+  </url>
+  <url>
     <loc>https://ai-summary-helper.byphil.eu/nl/local-ai/</loc>
     <video:video>
       <video:thumbnail_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/feeds-nl.jpg</video:thumbnail_loc>
@@ -6379,6 +6618,45 @@
     </video:video>
   </url>
   <url>
+    <loc>https://ai-summary-helper.byphil.eu/pt/e-reader/</loc>
+    <video:video>
+      <video:thumbnail_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/sprache-pt.jpg</video:thumbnail_loc>
+      <video:title>Mais de 20 idiomas, multiplataforma</video:title>
+      <video:description>Leia e resuma em mais de 20 idiomas usando a extensão, o painel lateral nativo ou bookmarklet quando a extensão não consegue acessar uma página.</video:description>
+      <video:content_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/sprache-pt.mp4</video:content_loc>
+      <video:duration>17</video:duration>
+      <video:publication_date>2026-10-21T00:00:00+00:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+    <video:video>
+      <video:thumbnail_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/ghost-pt.jpg</video:thumbnail_loc>
+      <video:title>Destaques sutis, direto na página</video:title>
+      <video:description>A IA destaca trechos importantes na íntegra para você passar os olhos pelos principais insights e exportá-los com o resumo para Kindle, LocalSend ou Markdown.</video:description>
+      <video:content_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/ghost-pt.mp4</video:content_loc>
+      <video:duration>21</video:duration>
+      <video:publication_date>2026-10-21T00:00:00+00:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+    <video:video>
+      <video:thumbnail_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/instant-pt.jpg</video:thumbnail_loc>
+      <video:title>Leitura instantânea: ouça enquanto a IA escreve</video:title>
+      <video:description>Ouça enquanto o resumo é escrito: primeiro o título, depois frase por frase, com controles de pausa, mudo e velocidade. Reproduza de novo a partir de qualquer card.</video:description>
+      <video:content_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/instant-pt.mp4</video:content_loc>
+      <video:duration>28</video:duration>
+      <video:publication_date>2026-10-21T00:00:00+00:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+    <video:video>
+      <video:thumbnail_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/digest-pt.jpg</video:thumbnail_loc>
+      <video:title>Um compilado que se organiza sozinho</video:title>
+      <video:description>Com um toque, monte um digest variado em vez de cinco versões da mesma notícia e empacote tudo para Kindle ou LocalSend.</video:description>
+      <video:content_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/digest-pt.mp4</video:content_loc>
+      <video:duration>20</video:duration>
+      <video:publication_date>2026-10-21T00:00:00+00:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+  </url>
+  <url>
     <loc>https://ai-summary-helper.byphil.eu/pt/local-ai/</loc>
     <video:video>
       <video:thumbnail_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/feeds-pt.jpg</video:thumbnail_loc>
@@ -6483,6 +6761,45 @@
       <video:publication_date>2026-10-27T00:00:00+00:00</video:publication_date>
       <video:family_friendly>yes</video:family_friendly>
       <video:tag>English original</video:tag>
+    </video:video>
+  </url>
+  <url>
+    <loc>https://ai-summary-helper.byphil.eu/zh/e-reader/</loc>
+    <video:video>
+      <video:thumbnail_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/sprache-zh.jpg</video:thumbnail_loc>
+      <video:title>支持 20 多种语言与跨平台</video:title>
+      <video:description>使用扩展、原生侧边栏，或 Bookmarklet 在扩展无法访问页面时使用，以 20 多种语言阅读和摘要。</video:description>
+      <video:content_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/sprache-zh.mp4</video:content_loc>
+      <video:duration>19</video:duration>
+      <video:publication_date>2026-10-21T00:00:00+00:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+    <video:video>
+      <video:thumbnail_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/ghost-zh.jpg</video:thumbnail_loc>
+      <video:title>原位幽灵高亮，直接呈现在页面上</video:title>
+      <video:description>AI 会高亮 重要的原文段落 让你快速浏览关键见解，并随摘要一起导出到 Kindle、LocalSend 或 Markdown。</video:description>
+      <video:content_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/ghost-zh.mp4</video:content_loc>
+      <video:duration>21</video:duration>
+      <video:publication_date>2026-10-21T00:00:00+00:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+    <video:video>
+      <video:thumbnail_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/instant-zh.jpg</video:thumbnail_loc>
+      <video:title>即时朗读：生成即开播</video:title>
+      <video:description>在摘要生成时同步收听：先读标题，再逐句朗读，支持暂停、静音和语速控制。可从任意卡片重新播放。</video:description>
+      <video:content_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/instant-zh.mp4</video:content_loc>
+      <video:duration>28</video:duration>
+      <video:publication_date>2026-10-21T00:00:00+00:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+    <video:video>
+      <video:thumbnail_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/digest-zh.jpg</video:thumbnail_loc>
+      <video:title>智能精选文摘</video:title>
+      <video:description>一键整理出内容多样的摘要合集，而不是同一新闻的五个版本，然后打包发送到 Kindle 或 LocalSend。</video:description>
+      <video:content_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/digest-zh.mp4</video:content_loc>
+      <video:duration>20</video:duration>
+      <video:publication_date>2026-10-21T00:00:00+00:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
     </video:video>
   </url>
   <url>
@@ -6671,6 +6988,45 @@
       <video:content_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/export-en.mp4</video:content_loc>
       <video:duration>23</video:duration>
       <video:publication_date>2026-10-27T00:00:00+00:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+  </url>
+  <url>
+    <loc>https://ai-summary-helper.byphil.eu/zh-tw/e-reader/</loc>
+    <video:video>
+      <video:thumbnail_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/sprache-zh-tw.jpg</video:thumbnail_loc>
+      <video:title>支援 20 多種語言，跨平台通用</video:title>
+      <video:description>以 20 種以上語言閱讀與摘要，可使用擴充功能、原生側邊面板，或 書籤小工具 在擴充功能無法觸及頁面時使用。</video:description>
+      <video:content_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/sprache-zh-tw.mp4</video:content_loc>
+      <video:duration>19</video:duration>
+      <video:publication_date>2026-10-21T00:00:00+00:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+    <video:video>
+      <video:thumbnail_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/ghost-zh-tw.jpg</video:thumbnail_loc>
+      <video:title>幽靈高亮標註，直接呈現在網頁上</video:title>
+      <video:description>AI 會標示出 重要的原文段落 讓你能快速瀏覽關鍵洞見，並連同摘要匯出到 Kindle、LocalSend 或 Markdown。</video:description>
+      <video:content_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/ghost-zh-tw.mp4</video:content_loc>
+      <video:duration>21</video:duration>
+      <video:publication_date>2026-10-21T00:00:00+00:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+    <video:video>
+      <video:thumbnail_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/instant-zh-tw.jpg</video:thumbnail_loc>
+      <video:title>即時朗讀：邊生成邊聆聽</video:title>
+      <video:description>在摘要撰寫的同時聆聽：先讀標題，再逐句朗讀，並有暫停、靜音與速度控制。可從任何卡片重播。</video:description>
+      <video:content_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/instant-zh-tw.mp4</video:content_loc>
+      <video:duration>28</video:duration>
+      <video:publication_date>2026-10-21T00:00:00+00:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+    <video:video>
+      <video:thumbnail_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/digest-zh-tw.jpg</video:thumbnail_loc>
+      <video:title>智慧挑選的專屬文摘</video:title>
+      <video:description>一鍵策展多元的摘要包，而不是同一則新聞的五個版本，再打包給 Kindle 或 LocalSend。</video:description>
+      <video:content_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/digest-zh-tw.mp4</video:content_loc>
+      <video:duration>20</video:duration>
+      <video:publication_date>2026-10-21T00:00:00+00:00</video:publication_date>
       <video:family_friendly>yes</video:family_friendly>
     </video:video>
   </url>
