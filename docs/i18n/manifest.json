@@ -6944,7 +6944,7 @@
           "model": "google/gemini-3.7-flash"
         },
         "ja": {
-          "text": "Kindle送信 3回分付属",
+          "text": "Kindleへの送信：月3回まで",
           "translatedAt": "2026-08-18T17:53:49.170Z",
           "model": "google/gemini-3.7-flash"
         },
@@ -59759,7 +59759,7 @@
           "model": "google/gemini-3.7-flash"
         },
         "ja": {
-          "text": "3. 「Summarize」をタップ",
+          "text": "3. 「要約」をタップ",
           "translatedAt": "2026-10-11T17:05:15.046Z",
           "model": "google/gemini-3.7-flash"
         },
@@ -59879,7 +59879,7 @@
           "model": "google/gemini-3.7-flash"
         },
         "ja": {
-          "text": "共有したリンクは「History → From phone」に表示されます。「Summarize」をタップすれば、設定したAIプロバイダーを使って拡張機能が自動で要約します。",
+          "text": "共有したリンクは「History → From phone」に表示されます。「要約」をタップすれば、設定したAIプロバイダーを使って拡張機能が自動で要約します。",
           "translatedAt": "2026-10-11T17:05:15.046Z",
           "model": "google/gemini-3.7-flash"
         },
@@ -170944,7 +170944,7 @@
           "model": "deepseek/deepseek-v4.1-flash"
         },
         "ja": {
-          "text": "DOIと引用メタデータで研究論文を識別し、治験、レビュー、プレプリントのステータスを示し、デザイン、サンプル、限界、DOIレジストリの引用を抽出します。",
+          "text": "DOIと引用メタデータで研究論文を識別し、研究デザイン、レビュー、プレプリントの区別を示し、研究デザイン、対象集団、限界、DOIレジストリの引用を抽出します。",
           "translatedAt": "2026-11-02T11:18:09.273Z",
           "model": "deepseek/deepseek-v4.1-flash"
         },
@@ -170999,7 +170999,7 @@
           "model": "deepseek/deepseek-v4.1-flash"
         },
         "ja": {
-          "text": "記事をまとめてバンドルし、出典を査読済み、プレプリント、ニュース、意見としてラベル付けし、横読みチェックを実行。要約が一致する点、異なる点、文脈を欠く点を比較できます。",
+          "text": "記事をまとめてバンドルし、出典を査読済み、プレプリント、ニュース、意見としてラベル付けし、複数の情報源によるクロスチェックを実行。要約が一致する点、異なる点、文脈を欠く点を比較できます。",
           "translatedAt": "2026-11-02T11:18:09.273Z",
           "model": "deepseek/deepseek-v4.1-flash"
         },
@@ -171329,7 +171329,7 @@
           "model": "deepseek/deepseek-v4.1-flash"
         },
         "ja": {
-          "text": "見出しを「重い」から「良い」まで評価し、良いニュースだけを絞り込み、日別、週別、月別に読書の気分を追跡できます。",
+          "text": "見出しを「重い」から「良い」まで評価し、良いニュースだけを絞り込み、日別、週別、月別に記事のトーンを追跡できます。",
           "translatedAt": "2026-11-02T11:18:09.273Z",
           "model": "deepseek/deepseek-v4.1-flash"
         },
@@ -172924,7 +172924,7 @@
           "model": "deepseek/deepseek-v4.1-flash"
         },
         "ja": {
-          "text": "その後、設定 → Phone inbox のQRコードをスキャンしてペアリングします。Google Playではまだ配信されていません。",
+          "text": "その後、設定 → スマホ受信トレイのQRコードをスキャンしてペアリングします。Google Playではまだ配信されていません。",
           "translatedAt": "2026-11-02T11:18:09.273Z",
           "model": "deepseek/deepseek-v4.1-flash"
         },
