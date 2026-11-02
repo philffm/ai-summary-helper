@@ -171279,6 +171279,1326 @@
           "model": "deepseek/deepseek-v4.1-flash"
         }
       }
+    },
+    "3332310d2cd94d9db469bf7dd0a98221952654aa82e31a217bb7ae3a5c06debf": {
+      "en": "Why this workflow",
+      "translations": {
+        "de": {
+          "text": "Warum dieser Workflow",
+          "translatedAt": "2026-11-02T08:46:23.891Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "2a1a5c150ea203f578bfbe8afca4b8c0b9fba04fde80017762cda0ee8e3bd755": {
+      "en": "Make saved reading returnable",
+      "translations": {
+        "de": {
+          "text": "Gespeicherte Lektüre wieder aufrufbar machen",
+          "translatedAt": "2026-11-02T08:46:23.891Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "db6b95fec3c14c6d9e92129a87c8d3718be5a2389ca7d894ffd693525f95f0b1": {
+      "en": "Saving is only the first step. These findings explain why source trails, questions and spaced returns make a reading archive useful.",
+      "translations": {
+        "de": {
+          "text": "Speichern ist nur der erste Schritt. Diese Befunde erklären, warum Quellenpfade, Fragen und zeitversetzte Wiederkehr ein Lesearchiv nützlich machen.",
+          "translatedAt": "2026-11-02T08:46:23.891Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "848fcd0280e076cdbfc99865e7680f2114b05a938312dffac8c9a0c9634a586b": {
+      "en": "Location over content",
+      "translations": {
+        "de": {
+          "text": "Fundort vor Inhalt",
+          "translatedAt": "2026-11-02T08:46:23.891Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "ff065f8d0897b4511ebd2f3bb8657cb007cd376a1da9e95e761b27917d0efd5c": {
+      "en": "People remember where to find it",
+      "translations": {
+        "de": {
+          "text": "Menschen erinnern sich daran, wo sie es finden",
+          "translatedAt": "2026-11-02T08:46:23.891Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "8701cfe07751bc1ff493f18311eb61778af314fdae79bdd2e4423fe5652b5215": {
+      "en": "When people expect to be able to look something up later, they remember the content less and remember where to find it more. A source-linked archive keeps that location useful.",
+      "translations": {
+        "de": {
+          "text": "Wenn Menschen erwarten, etwas später nachschlagen zu können, erinnern sie sich weniger an den Inhalt und mehr daran, wo sie ihn finden. Ein quellenverknüpftes Archiv hält diesen Fundort nutzbar.",
+          "translatedAt": "2026-11-02T08:46:23.891Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "c707ee4ecc24044266322a90cf1a23752824f57a628facc169ddbe215ada4adb": {
+      "en": "Source:",
+      "translations": {
+        "de": {
+          "text": "Quelle:",
+          "translatedAt": "2026-11-02T08:46:23.891Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "9528c22f389f5dbc6b8c26ddbdffecca038d434142807fa11c2b674c6a32a6f6": {
+      "en": "Sparrow, Liu & Wegner (2011), Science 333(6043), 776–778",
+      "translations": {
+        "de": {
+          "text": "Sparrow, Liu & Wegner (2011), Science 333(6043), 776–778",
+          "translatedAt": "2026-11-02T08:46:23.891Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "de5b7e671830645acf9d5e065f3fe632874ee747552e57b62d8654f030787dd8": {
+      "en": "Highlighting alone helps little",
+      "translations": {
+        "de": {
+          "text": "Markieren allein hilft wenig",
+          "translatedAt": "2026-11-02T08:46:23.891Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "cb12fde7b3e7adc6be321c0519a27af4e11406e74f4d532992a8c12b53fcc8d8": {
+      "en": "Ask questions about important passages",
+      "translations": {
+        "de": {
+          "text": "Fragen zu wichtigen Passagen stellen",
+          "translatedAt": "2026-11-02T08:46:23.891Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "cac3f4956ad7a9932779021ad166fd538fe697e3e529065175bdf9bced443bd7": {
+      "en": "A review of ten learning techniques rated highlighting and underlining among the least useful approaches, while practice testing and distributed practice ranked much higher.",
+      "translations": {
+        "de": {
+          "text": "Eine Übersicht über zehn Lerntechniken stufte Markieren und Unterstreichen als am wenigsten nützlich ein, während Übungstests und verteiltes Üben deutlich höher rangierten.",
+          "translatedAt": "2026-11-02T08:46:23.891Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "6c5175208839b874ab5667c30d91f78341420bb5d4833aba64b339ebfa33d70c": {
+      "en": "Dunlosky et al. (2013), Psychological Science in the Public Interest 14(1), 4–58",
+      "translations": {
+        "de": {
+          "text": "Dunlosky et al. (2013), Psychological Science in the Public Interest 14(1), 4–58",
+          "translatedAt": "2026-11-02T08:46:23.891Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "75bdc9629e5b4ce382c6ecb105068c8d0789557c19d8344855d670e1fb75bf44": {
+      "en": "Retrieval beats rereading",
+      "translations": {
+        "de": {
+          "text": "Abrufen schlägt Wiederlesen",
+          "translatedAt": "2026-11-02T08:46:23.891Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "dd1db1ad48ca4705382a41191ef3a09020a1bee32764027deed3d77c9d7427e8": {
+      "en": "Return to the idea, not just the tab",
+      "translations": {
+        "de": {
+          "text": "Zur Idee zurückkehren, nicht nur zum Tab",
+          "translatedAt": "2026-11-02T08:46:23.891Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "fd5811b2e4dd0fb6280d409276ca7a43b80ecd011f466f1223c8434224d1ecad": {
+      "en": "Testing yourself after reading improves later retention more reliably than simply studying the material again. Questions and short digests give a saved item a reason to be revisited.",
+      "translations": {
+        "de": {
+          "text": "Sich nach dem Lesen selbst zu testen, verbessert die spätere Behaltensleistung zuverlässiger als das Material einfach erneut zu lernen. Fragen und kurze Digests geben einem gespeicherten Eintrag einen Grund, erneut aufgerufen zu werden.",
+          "translatedAt": "2026-11-02T08:46:23.891Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "395eab34d4c19eebaebe1e054eb04bd6de49e844d85ab37ec33f4848bcab3e53": {
+      "en": "Roediger & Karpicke (2006), Psychological Science 17(3), 249–255",
+      "translations": {
+        "de": {
+          "text": "Roediger & Karpicke (2006), Psychological Science 17(3), 249–255",
+          "translatedAt": "2026-11-02T08:46:23.891Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "b27cd90b593d3db304eafd7073f5b53bb006de8ebeb76953ec3de656b6303223": {
+      "en": "Check claims at the source",
+      "translations": {
+        "de": {
+          "text": "Behauptungen an der Quelle prüfen",
+          "translatedAt": "2026-11-02T08:46:23.891Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "ce91d58c10619b106adec76bc1f2e4a62213e6bb7ee06a4a4ebec13368e55467": {
+      "en": "Make verification concrete",
+      "translations": {
+        "de": {
+          "text": "Überprüfung konkret machen",
+          "translatedAt": "2026-11-02T08:46:23.891Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "924d2695c33755a1ba35dc3de67516ba7d7c5cfbee1ea19091ebf81c206ff6b4": {
+      "en": "Lateral reading research found that skilled readers leave a page to check who is behind a source and what other reliable sources say. Source jumps make that habit easier to apply to AI answers.",
+      "translations": {
+        "de": {
+          "text": "Die Forschung zum lateralen Lesen zeigt, dass geübte Leser eine Seite verlassen, um zu prüfen, wer hinter einer Quelle steht und was andere verlässliche Quellen sagen. Quellensprünge machen es leichter, diese Gewohnheit auf KI-Antworten anzuwenden.",
+          "translatedAt": "2026-11-02T08:46:23.891Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "218a0a7337fab81433b900991b46d8b281e77becb972bdcccc41b87f75a0e2d4": {
+      "en": "Wineburg & McGrew (2017), Stanford History Education Group",
+      "translations": {
+        "de": {
+          "text": "Wineburg & McGrew (2017), Stanford History Education Group",
+          "translatedAt": "2026-11-02T08:46:23.891Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "4ddaece08b737c914407ec9447a626757f73d99e78cf5e5b622e884ba2763499": {
+      "en": "Try it yourself",
+      "translations": {
+        "de": {
+          "text": "Selbst ausprobieren",
+          "translatedAt": "2026-11-02T08:46:23.891Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "6f5d7d6ffd85e64236991d59a50f9f16cc4c5c2717481abb5815874bfee36a2e": {
+      "en": "See the workflow in the real interface",
+      "translations": {
+        "de": {
+          "text": "Den Workflow in der echten Oberfläche ansehen",
+          "translatedAt": "2026-11-02T08:46:23.891Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "ce2b1616db9d28a5602ef5e4a12ce3de70ed3c0f058f5a95150cf7bdf971c371": {
+      "en": "Open a sample article, ask a question and follow the answer back to its source. Nothing is sent from the demo.",
+      "translations": {
+        "de": {
+          "text": "Öffnen Sie einen Beispielartikel, stellen Sie eine Frage und verfolgen Sie die Antwort zurück zu ihrer Quelle. Aus der Demo wird nichts gesendet.",
+          "translatedAt": "2026-11-02T08:46:23.891Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "51693dc79e0222aaeb947ca8df4f7e8cade4c7c31562181aac5606dd51d50c57": {
+      "en": "Evidence for this reading workflow",
+      "translations": {
+        "de": {
+          "text": "Belege für diesen Lese-Workflow",
+          "translatedAt": "2026-11-02T08:46:23.891Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "76900f1bfd16c8d4dd3d25e6f46638d7165aee23883ccea6bfe071c514421769": {
+      "en": "Back",
+      "translations": {
+        "de": {
+          "text": "Zurück",
+          "translatedAt": "2026-11-02T08:46:23.891Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "1ff57a29d7c9d11bdf61c1b80f2b289b44c1ea844824d4b94a0d52b6ba5fc858": {
+      "en": "Next",
+      "translations": {
+        "de": {
+          "text": "Weiter",
+          "translatedAt": "2026-11-02T08:46:23.891Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "c709451471f5f2b64692a36ee695ca690b3fe961b0ef04aa093065bca5c953e4": {
+      "en": "A better reading workflow, backed by evidence",
+      "translations": {
+        "de": {
+          "text": "Ein besserer Leseworkflow – mit Belegen untermauert",
+          "translatedAt": "2026-11-02T08:46:25.189Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "4379ddcc766a2d9df6a6ec378226d6d07ea449e00857d9fb1a38dc2be782bb6e": {
+      "en": "A local archive is useful when it helps you understand, check and revisit what you read — not merely collect more summaries.",
+      "translations": {
+        "de": {
+          "text": "Ein lokales Archiv ist dann nützlich, wenn es Ihnen hilft, das Gelesene zu verstehen, zu überprüfen und erneut aufzurufen – und nicht nur, um mehr Zusammenfassungen zu sammeln.",
+          "translatedAt": "2026-11-02T08:46:25.189Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "7cfbc755f7cc57c8e58859cae9fdc4d5d0b3ea895b4122ca3bed343de7583714": {
+      "en": "Read with the evidence in view",
+      "translations": {
+        "de": {
+          "text": "Mit den Belegen im Blick lesen",
+          "translatedAt": "2026-11-02T08:46:27.062Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "c3c5cd86a2a82e3121ef35636a9f7ab69f2bcf8ec06dfff0c5a9cddcf71bec10": {
+      "en": "Research on memory and learning points to a simple workflow: make the source findable, test your understanding, and return to it later.",
+      "translations": {
+        "de": {
+          "text": "Die Forschung zu Gedächtnis und Lernen verweist auf einen einfachen Ablauf: die Quelle auffindbar machen, Ihr Verständnis prüfen und später zu ihr zurückkehren.",
+          "translatedAt": "2026-11-02T08:46:27.062Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "54c00abe269d83dc697e526168ad0f55c1aea9a4c715584538f6ac31bc17c351": {
+      "en": "Turn more reading into something you can use",
+      "translations": {
+        "de": {
+          "text": "Machen Sie aus mehr Lektüre etwas, das Sie nutzen können",
+          "translatedAt": "2026-11-02T08:46:30.344Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "6fcc2346a8fb89ed4f77ed3012e1638d14516fc8d8abafc4b560be042579002f": {
+      "en": "The science behind retrieval, source checking and returnable notes applies just as much to videos and feeds as it does to papers.",
+      "translations": {
+        "de": {
+          "text": "Die Wissenschaft hinter Abruf, Quellenprüfung und Notizen, zu denen Sie zurückkehren können, gilt für Videos und Feeds genauso wie für Fachaufsätze.",
+          "translatedAt": "2026-11-02T08:46:30.344Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "66013b66b0339305754ff68d3d347c7f66d9bff4e06846233f7dd245ad944a28": {
+      "en": "For personal news research",
+      "translations": {
+        "de": {
+          "text": "Für die persönliche Nachrichtenrecherche",
+          "translatedAt": "2026-11-02T08:57:20.432Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "b31110c2c5b92accf71907ca4c4af0cc557240c615f47fa61ad309f9ff23b034": {
+      "en": "Curate your own",
+      "translations": {
+        "de": {
+          "text": "Kuratieren Sie Ihre eigenen",
+          "translatedAt": "2026-11-02T08:57:20.432Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "1b0b97442c8033c40454f934f63927383599fbc45024c42d715b341eb4f77fff": {
+      "en": "current events",
+      "translations": {
+        "de": {
+          "text": "aktuellen Ereignisse",
+          "translatedAt": "2026-11-02T08:57:20.432Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "29dd0b7f6282838c235736f5113105c247a5bc3a82b8c532a874dc167ae7f86b": {
+      "en": "Explore local RSS →",
+      "translations": {
+        "de": {
+          "text": "Lokales RSS entdecken →",
+          "translatedAt": "2026-11-02T08:57:20.432Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "ae86da6790f84cb710d968dc471e0517dad89e93553d549d798974b8626c541b": {
+      "en": "See the provider options →",
+      "translations": {
+        "de": {
+          "text": "Anbieteroptionen ansehen →",
+          "translatedAt": "2026-11-02T08:57:20.432Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "28c188f38c108b6cf22300db6766d7cad4845dbd4a365480aec761cd6142c27c": {
+      "en": "Read the backup and sync guide →",
+      "translations": {
+        "de": {
+          "text": "Backup- und Sync-Anleitung lesen →",
+          "translatedAt": "2026-11-02T08:57:20.432Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "2219cf7cd86b807bb9b6a78af95e172569c13a5719d80f390e761c17f6feca9f": {
+      "en": "Read about feed digests →",
+      "translations": {
+        "de": {
+          "text": "Mehr über Feed-Digests lesen →",
+          "translatedAt": "2026-11-02T08:57:20.432Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "dc29ae8a7e9bb9d0e3097cbda014c5cee70ec8091d9fb7e6f44852ff544b8f2b": {
+      "en": "See the browser and capture workflow →",
+      "translations": {
+        "de": {
+          "text": "Browser- und Capture-Workflow ansehen →",
+          "translatedAt": "2026-11-02T08:57:20.432Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "c387298baa27f66f46f0c3468cc9444ae4e8da44d99abae6032837aba11d64bc": {
+      "en": "Read how capture fits the workflow →",
+      "translations": {
+        "de": {
+          "text": "Lesen Sie, wie Capture in den Workflow passt →",
+          "translatedAt": "2026-11-02T08:57:20.432Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "5f4e7487d217f43ee9f0a164d3b03fcb6935213834d87adeb8447672aab30ac1": {
+      "en": "Understand the optional cloud boundary →",
+      "translations": {
+        "de": {
+          "text": "Die optionale Cloud-Grenze verstehen →",
+          "translatedAt": "2026-11-02T08:57:20.432Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "d39e22cf096e3afb8a2a32a3e6b37f1372fc766053f3fccb41e3ce015a1c421d": {
+      "en": "Read about the local architecture →",
+      "translations": {
+        "de": {
+          "text": "Mehr über die lokale Architektur lesen →",
+          "translatedAt": "2026-11-02T08:57:20.432Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "249d5fa4af544cf29866d7f255de1c4ceaa77da8f33012ef13700e4c50f075a3": {
+      "en": "Saving is only the first step. Retrieval, spacing and source context give an archive a reason to be revisited.",
+      "translations": {
+        "de": {
+          "text": "Speichern ist nur der erste Schritt. Abruf, zeitliche Abstände und Quellkontext geben einem Archiv einen Grund, wieder aufgesucht zu werden.",
+          "translatedAt": "2026-11-02T08:57:28.105Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "f1c9738e409fae920dfb1d88fd0f6671a4dbe7917e6e85982d84d6045fbcb98e": {
+      "en": "Make saved reading findable",
+      "translations": {
+        "de": {
+          "text": "Gespeicherte Lektüre auffindbar machen",
+          "translatedAt": "2026-11-02T08:57:28.105Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "69a9aa3b0dce7635e9b91ecfd1270082937371feb3e6e120ac1e0ec293fc719a": {
+      "en": "When people expect to look something up later, they remember where to find information more than the information itself.",
+      "translations": {
+        "de": {
+          "text": "Wenn Menschen erwarten, etwas später nachzuschlagen, erinnern sie sich eher daran, wo sie eine Information finden, als an die Information selbst.",
+          "translatedAt": "2026-11-02T08:57:28.105Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "6c08bc40fdea2d0c0e5b928cd38d8268f6e4079f7830857a58cb7f501aedb601": {
+      "en": "Testing yourself after reading often supports later retention better than simply studying the material again.",
+      "translations": {
+        "de": {
+          "text": "Sich nach dem Lesen selbst zu testen, unterstützt das spätere Behalten oft besser, als das Material einfach erneut durchzugehen.",
+          "translatedAt": "2026-11-02T08:57:28.105Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "25d6ac192d80a036a13d5e1c78211a9ebd26a8fd4493a94d9ab17c03481381db": {
+      "en": "Space the return",
+      "translations": {
+        "de": {
+          "text": "Die Rückkehr mit Abstand einplanen",
+          "translatedAt": "2026-11-02T08:57:28.105Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "140e0b2cc44b6e233ea466dcef34c84c1fc69a7cf789c95dc3396198eab82e57": {
+      "en": "A library needs a return path",
+      "translations": {
+        "de": {
+          "text": "Eine Bibliothek braucht einen Rückweg",
+          "translatedAt": "2026-11-02T08:57:28.105Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "60800a4f0d702b58ab2ad9da63464d5b171b0e87d4e37895fc96b3a82939ba27": {
+      "en": "Spaced practice generally supports longer-term retention better than concentrating all study in one session.",
+      "translations": {
+        "de": {
+          "text": "Verteiltes Üben unterstützt das langfristige Behalten in der Regel besser, als das gesamte Lernen in einer einzigen Sitzung zu bündeln.",
+          "translatedAt": "2026-11-02T08:57:28.105Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "d82c483ace9fd0f6b7820a4e4ebf4104bf71b27d50666f7d3c04b178bd5d3c0b": {
+      "en": "Cepeda et al. (2006), Psychological Bulletin 132(3), 354–380",
+      "translations": {
+        "de": {
+          "text": "Cepeda et al. (2006), Psychological Bulletin 132(3), 354–380",
+          "translatedAt": "2026-11-02T08:57:28.105Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "c085bc65c19adad1428e00be287131318f806dd95d44c3aee2dee1a411c47ccb": {
+      "en": "Check the claim",
+      "translations": {
+        "de": {
+          "text": "Die Aussage prüfen",
+          "translatedAt": "2026-11-02T08:57:28.105Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "f931cf68070d29db16bdf9d6cd76f3306636fb8dd901fd487a82bb269c11d894": {
+      "en": "Not just the citation",
+      "translations": {
+        "de": {
+          "text": "Nicht nur das Zitat",
+          "translatedAt": "2026-11-02T08:57:28.105Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "774c6680e571e092d47a8f0b3cefead5cf415396a0dc6bf8d25ce064c5639e63": {
+      "en": "Source links make an answer easier to inspect, but a citation is not proof that the source supports the claim.",
+      "translations": {
+        "de": {
+          "text": "Quellenlinks machen eine Antwort leichter überprüfbar, aber ein Zitat ist kein Beweis dafür, dass die Quelle die Aussage stützt.",
+          "translatedAt": "2026-11-02T08:57:28.105Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "66f5096b3d030cbb5431507cad8cc4b5566daa817d525bd2ab6fb410bc40e990": {
+      "en": "Correctness is not Faithfulness in RAG Attributions (2024)",
+      "translations": {
+        "de": {
+          "text": "Correctness is not Faithfulness in RAG Attributions (2024)",
+          "translatedAt": "2026-11-02T08:57:28.105Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "d751a4281e9cba3d33966b75a9c7814d0aecf136ca1e2f16070ee717b73d43cd": {
+      "en": "Minimise the data",
+      "translations": {
+        "de": {
+          "text": "Daten minimieren",
+          "translatedAt": "2026-11-02T08:57:31.089Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "a9dc49cd3a6d5c316904293d68f43265cfaee28d89c666823d6f7221b4ca574a": {
+      "en": "Collect and process only what is needed",
+      "translations": {
+        "de": {
+          "text": "Nur erheben und verarbeiten, was nötig ist",
+          "translatedAt": "2026-11-02T08:57:31.089Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "756f670876af588a37be21bc7e5b41e46395c6c4d3516a8f57ceda7f7e1804c6": {
+      "en": "Privacy-by-design guidance treats data minimisation and protective defaults as design requirements, not optional extras.",
+      "translations": {
+        "de": {
+          "text": "Leitlinien zu Privacy by Design behandeln Datenminimierung und schützende Voreinstellungen als Designanforderungen, nicht als optionale Zusätze.",
+          "translatedAt": "2026-11-02T08:57:31.089Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "9af5c3dce98660a1b4ccb50c68f0b6edfc839a2f6014f5e1cc6569002d43f3f7": {
+      "en": "European Data Protection Board, data protection by design and by default (2026)",
+      "translations": {
+        "de": {
+          "text": "Europäischer Datenschutzausschuss, Datenschutz durch Technikgestaltung und durch datenschutzfreundliche Voreinstellungen (2026)",
+          "translatedAt": "2026-11-02T08:57:31.089Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "f4d240f34191b3e26188f3b393f13118e58d1d944cf3afa99ee26efe19c6aab8": {
+      "en": "Local is a boundary",
+      "translations": {
+        "de": {
+          "text": "Lokal ist eine Grenze",
+          "translatedAt": "2026-11-02T08:57:31.089Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "db2a056908914d257763f1cd9d1271c81d7c38de01ecb7853983162ee759d44e": {
+      "en": "Less transmission, not zero risk",
+      "translations": {
+        "de": {
+          "text": "Weniger Übertragung, aber kein Nullrisiko",
+          "translatedAt": "2026-11-02T08:57:31.089Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "fb3e7898826f8f164fab39f92d94b96d34402377171aedc14a42877c2f119bf1": {
+      "en": "Local inference can reduce what is sent to a cloud provider, but device security, backups, models and sync still matter.",
+      "translations": {
+        "de": {
+          "text": "Lokale Inferenz kann reduzieren, was an einen Cloud-Anbieter gesendet wird, doch Gerätesicherheit, Backups, Modelle und Synchronisierung bleiben wichtig.",
+          "translatedAt": "2026-11-02T08:57:31.089Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "c42cd9ab4d301e17b65495c863fea6515903356cb429b7bb0fccaa728b7c2002": {
+      "en": "NIST Privacy Framework overview",
+      "translations": {
+        "de": {
+          "text": "Überblick über das NIST Privacy Framework",
+          "translatedAt": "2026-11-02T08:57:31.089Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "4dac07e96464d1edc489a7a8850ea2b4ab56694a3c61cb4b6100f93b2489b44b": {
+      "en": "BYOK is a provider request",
+      "translations": {
+        "de": {
+          "text": "BYOK ist eine Anfrage an den Anbieter",
+          "translatedAt": "2026-11-02T08:57:31.089Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "4aed8ceff95ae802aa5f08e9d59b4a3a04737c7c30e50701f43a89595de7c57d": {
+      "en": "Your key does not make it local",
+      "translations": {
+        "de": {
+          "text": "Ihr Schlüssel macht es nicht lokal",
+          "translatedAt": "2026-11-02T08:57:31.089Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "4d281439fc21377b5998e6810f66b254ee407a59b68ca84660c46a0df413cccf": {
+      "en": "With BYOK, the request and any included context go to the provider you chose. The archive and the request are separate data boundaries.",
+      "translations": {
+        "de": {
+          "text": "Bei BYOK gehen die Anfrage und jeglicher mitgesendete Kontext an den von Ihnen gewählten Anbieter. Archiv und Anfrage sind getrennte Datengrenzen.",
+          "translatedAt": "2026-11-02T08:57:31.089Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "6c3a5d5d1b500236b9d16791b67b3e5065976658594ccbd18f530f10ce4b156e": {
+      "en": "Supported interpretation from provider-boundary and privacy-by-design guidance",
+      "translations": {
+        "de": {
+          "text": "Belegte Auslegung anhand von Leitlinien zu Anbietergrenzen und Privacy by Design",
+          "translatedAt": "2026-11-02T08:57:31.089Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "1c1a2af90f8a00e7997464183c90d96a0f6cf477459904e888a5eaa2b37cb81c": {
+      "en": "Connect tools without losing the boundary",
+      "translations": {
+        "de": {
+          "text": "Tools verbinden, ohne die Grenze zu verlieren",
+          "translatedAt": "2026-11-02T08:57:45.358Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "8a58ccda1e679c5618b84335c32d739aca92c251fbd61d5b8a687b5012fb2c3b": {
+      "en": "Interoperability is useful when access is explicit, scoped and auditable. A protocol does not remove the need for least privilege or source review.",
+      "translations": {
+        "de": {
+          "text": "Interoperabilität ist nützlich, wenn der Zugriff explizit, begrenzt und auditierbar ist. Ein Protokoll ersetzt nicht die Notwendigkeit minimaler Rechte oder einer Quellenprüfung.",
+          "translatedAt": "2026-11-02T08:57:45.358Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "bdec4748d632b0c4f9849989a1b95f7c511a8f50b7c267c39edecaf2fe881032": {
+      "en": "Least privilege",
+      "translations": {
+        "de": {
+          "text": "Minimale Rechte",
+          "translatedAt": "2026-11-02T08:57:45.358Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "f505044e4d7e9e62ed99523097a7e53b8a9156a3cf12e3910648c0818689bd8c": {
+      "en": "Give tools only the access they need",
+      "translations": {
+        "de": {
+          "text": "Geben Sie Tools nur den Zugriff, den sie brauchen",
+          "translatedAt": "2026-11-02T08:57:45.358Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "1e4fb973fe82aca0b635c7db59c51ee3412d65168b2fb502c8faf1f310bf48a6": {
+      "en": "Security guidance for tool-connected AI systems recommends explicit scope, minimal permissions and careful handling of untrusted content.",
+      "translations": {
+        "de": {
+          "text": "Sicherheitsleitlinien für KI-Systeme mit angebundenen Tools empfehlen einen expliziten Umfang, minimale Berechtigungen und einen sorgfältigen Umgang mit nicht vertrauenswürdigen Inhalten.",
+          "translatedAt": "2026-11-02T08:57:45.358Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "1b4afcbbf2bbec8e654db53c877531d4c2e204411820310396df1a311a901087": {
+      "en": "NSA, MCP Security Guidance",
+      "translations": {
+        "de": {
+          "text": "NSA, MCP-Sicherheitsleitfaden",
+          "translatedAt": "2026-11-02T08:57:45.358Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "a020397b27e26574c42b6a7cb3ea4533393a4d52d6cbe43da19eb21acaa8a0a1": {
+      "en": "Explicit boundaries",
+      "translations": {
+        "de": {
+          "text": "Explizite Grenzen",
+          "translatedAt": "2026-11-02T08:57:45.358Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "014f6eb13768df0f5ab63b4914409aa2a017358f9addcb98f45b7c8473e149c6": {
+      "en": "Local context is not automatic trust",
+      "translations": {
+        "de": {
+          "text": "Lokaler Kontext ist nicht automatisch vertrauenswürdig",
+          "translatedAt": "2026-11-02T08:57:45.358Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "4e9013dee7bf54e802b16d7964abb210665c742163353a9388f5604fc008a37c": {
+      "en": "A protocol can make tools interoperable; it does not guarantee that a server, prompt or retrieved document is safe.",
+      "translations": {
+        "de": {
+          "text": "Ein Protokoll kann Tools interoperabel machen; es garantiert nicht, dass ein Server, ein Prompt oder ein abgerufenes Dokument sicher ist.",
+          "translatedAt": "2026-11-02T08:57:45.358Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "530a8364a883fb10e75bf739ceb1bf4cb584955ca2fbefb03ee9350c14a58315": {
+      "en": "Model Context Protocol specification",
+      "translations": {
+        "de": {
+          "text": "Spezifikation des Model Context Protocol",
+          "translatedAt": "2026-11-02T08:57:45.358Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "425ba7ec515df0d2557c4120d13b68491705b5794daf9338472851eacafd69ee": {
+      "en": "Keep provenance",
+      "translations": {
+        "de": {
+          "text": "Herkunft bewahren",
+          "translatedAt": "2026-11-02T08:57:45.358Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "69e331340f0d7a56394b9a4ce6ca40bf3100df5cd866480eddb0aa73e9cf850b": {
+      "en": "Every answer needs a route back",
+      "translations": {
+        "de": {
+          "text": "Jede Antwort braucht einen Weg zurück",
+          "translatedAt": "2026-11-02T08:57:45.358Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "f9b694e842225dc6ae7fd6d21f455f19bbef6a8af8eb51c12422ac4e629cb0f5": {
+      "en": "Source passages and clear retrieval boundaries make it easier to inspect what a connected tool used.",
+      "translations": {
+        "de": {
+          "text": "Passagen aus den Quellen und klare Abrufgrenzen machen es leichter zu prüfen, was ein verbundenes Tool verwendet hat.",
+          "translatedAt": "2026-11-02T08:57:45.358Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "ca45e1dfdf1ad7249dc3574b3edabcf01e3c8a2d4c054a231fcccfbb574eb2f7": {
+      "en": "Confirm external actions",
+      "translations": {
+        "de": {
+          "text": "Externe Aktionen bestätigen",
+          "translatedAt": "2026-11-02T08:57:45.358Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "33a4773496b4f4cfeaaa06a953a71860bbe1e27058a90df520d25b2fec67bca0": {
+      "en": "Reading access is not write access",
+      "translations": {
+        "de": {
+          "text": "Lesezugriff ist nicht Schreibzugriff",
+          "translatedAt": "2026-11-02T08:57:45.358Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "7c8bca9f65c5aacde698fa49bd169d50a867efb828a91ae4fc56cd829761a097": {
+      "en": "A safe integration should separate local retrieval from writes or external actions and ask for confirmation where the consequences change.",
+      "translations": {
+        "de": {
+          "text": "Eine sichere Integration sollte den lokalen Abruf von Schreibvorgängen oder externen Aktionen trennen und eine Bestätigung verlangen, wenn sich die Konsequenzen ändern.",
+          "translatedAt": "2026-11-02T08:57:45.358Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "b60887853b6643acec8202e24b974daac095520bf670f6c766193338b0f75158": {
+      "en": "Research on memory and source evaluation points to a simple workflow: make the paper findable, test your understanding, and return to the original passage.",
+      "translations": {
+        "de": {
+          "text": "Die Forschung zu Gedächtnis und Quellenbewertung verweist auf einen einfachen Arbeitsablauf: Sorgen Sie dafür, dass der Artikel auffindbar bleibt, prüfen Sie Ihr Verständnis und kehren Sie zur Originalpassage zurück.",
+          "translatedAt": "2026-11-02T08:57:48.304Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "c23bb02bd815af4ff3ce738a9d4bf00dd5a8a3940084a8b3fa7553f828b9d644": {
+      "en": "Keep the paper findable",
+      "translations": {
+        "de": {
+          "text": "Halten Sie den Artikel auffindbar",
+          "translatedAt": "2026-11-02T08:57:48.304Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "08359467b3fcdd2fa481e77fd127447feb675d9e4fd87ce07e927b37214356a0": {
+      "en": "When people expect to look something up later, they remember where to find information more than the information itself. A source-linked archive keeps that location useful.",
+      "translations": {
+        "de": {
+          "text": "Wenn Menschen erwarten, etwas später nachzuschlagen, erinnern sie sich eher daran, wo sie die Information finden, als an die Information selbst. Ein quellenverlinktes Archiv hält diesen Ort nutzbar.",
+          "translatedAt": "2026-11-02T08:57:48.304Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "e60183f5460df7af4ede382e9a64e73e5badc5ef9afb49883bfc5eb9123738ec": {
+      "en": "Methods and limitations",
+      "translations": {
+        "de": {
+          "text": "Methoden und Einschränkungen",
+          "translatedAt": "2026-11-02T08:57:48.304Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "f2b0238771cfb0e5eedda0ad6a1874e2a87baea6a0f8c90d2c819fe992e44064": {
+      "en": "Read beyond the abstract",
+      "translations": {
+        "de": {
+          "text": "Lesen Sie über das Abstract hinaus",
+          "translatedAt": "2026-11-02T08:57:48.304Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "a008f1fd679beedc31444de7bc6b6f92ee2443edd9716f0a241aa4ab03307264": {
+      "en": "A summary can help you navigate a paper, but methods, sample, confounders and limitations still need to be inspected in the original.",
+      "translations": {
+        "de": {
+          "text": "Eine Zusammenfassung kann Ihnen helfen, sich in einem Artikel zurechtzufinden, doch Methoden, Stichprobe, Störvariablen und Einschränkungen müssen weiterhin im Original geprüft werden.",
+          "translatedAt": "2026-11-02T08:57:48.304Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "2ff1036f6af5b611398a026b1901b3735a98525c05917fdff22a93d9f5150a71": {
+      "en": "Supported interpretation from research-reading practice",
+      "translations": {
+        "de": {
+          "text": "Gestützte Interpretation aus der Praxis des Lesens von Forschungsliteratur",
+          "translatedAt": "2026-11-02T08:57:48.304Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "8e5b2f2e23aa491e5a5f614dc0ba5f7615ce2962bc6ff5e366a7366576b581c2": {
+      "en": "Ask, don’t just reread",
+      "translations": {
+        "de": {
+          "text": "Fragen statt nur erneut lesen",
+          "translatedAt": "2026-11-02T08:57:48.304Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "809e2cdff06460e2cbe18ddf8ca3db4d711977ac93ea4c872ec92ab2623b6b50": {
+      "en": "Testing yourself after reading often supports later retention better than studying the material again. Questions give a saved item a reason to be revisited.",
+      "translations": {
+        "de": {
+          "text": "Sich nach dem Lesen selbst zu testen, unterstützt das spätere Behalten oft besser, als das Material erneut zu lernen. Fragen geben einem gespeicherten Element einen Grund, erneut aufgerufen zu werden.",
+          "translatedAt": "2026-11-02T08:57:48.304Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "1c3fe61347ad51b7b574104f48640f562daf086fd1396d031fbbc6e393e84f52": {
+      "en": "Turn more video into something you can use",
+      "translations": {
+        "de": {
+          "text": "Mehr Video in etwas verwandeln, das Sie nutzen können",
+          "translatedAt": "2026-11-02T08:57:50.543Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "73fbe4903a399eed534baa7a209770345d6098f20797ad6757428c344fd49439": {
+      "en": "Learning research supports meaningful segments, clear signals and active questions rather than passive replay.",
+      "translations": {
+        "de": {
+          "text": "Die Lernforschung spricht für sinnvolle Abschnitte, klare Signale und aktive Fragen statt passivem Wiederabspielen.",
+          "translatedAt": "2026-11-02T08:57:50.543Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "a1f685861d05292364e3fb19ef0420df50965a59ab4fb3493f4990d8b7a4e4e9": {
+      "en": "Meaningful segments",
+      "translations": {
+        "de": {
+          "text": "Sinnvolle Abschnitte",
+          "translatedAt": "2026-11-02T08:57:50.543Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "6c5d3f374a9750c940dad24acc44dc56949084212f2371f56e0defab35604868": {
+      "en": "Pause and process one idea",
+      "translations": {
+        "de": {
+          "text": "Anhalten und einen Gedanken verarbeiten",
+          "translatedAt": "2026-11-02T08:57:50.543Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "b47a79fcaace7ea20dd8d9d62e9fa0f004e10415b9dc2dbe1e9a300850cee61d": {
+      "en": "Learner-paced segmentation can improve retention and transfer, although it often increases the time needed to learn.",
+      "translations": {
+        "de": {
+          "text": "Lernergesteuerte Segmentierung kann Behalten und Transfer verbessern, auch wenn sie häufig mehr Lernzeit erfordert.",
+          "translatedAt": "2026-11-02T08:57:50.543Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "6732d0ce52e160698138aeb01190d37e2ddd5085b006f2f756d210dc6180d83c": {
+      "en": "A meta-analysis of the segmenting effect (2019)",
+      "translations": {
+        "de": {
+          "text": "Eine Metaanalyse zum Segmentierungseffekt (2019)",
+          "translatedAt": "2026-11-02T08:57:50.543Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "8b27a72f49bc0ba22691b8a03050f9a430bae67559e72a428d3b02e7f286624c": {
+      "en": "Signal what matters",
+      "translations": {
+        "de": {
+          "text": "Signalisieren, worauf es ankommt",
+          "translatedAt": "2026-11-02T08:57:50.543Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "2fd017070fd508087d3566a19e7a5420663d37ecd2fa3b778aba64e29e6ab14b": {
+      "en": "Make the important part visible",
+      "translations": {
+        "de": {
+          "text": "Das Wichtige sichtbar machen",
+          "translatedAt": "2026-11-02T08:57:50.543Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "50aeea055c45830a056953ada3b358639da6e7588792b5c476f4c41a4314a414": {
+      "en": "Signaling — cues that highlight essential content — supports multimedia learning when the cues are well designed.",
+      "translations": {
+        "de": {
+          "text": "Signalisierung – Hinweise, die wesentliche Inhalte hervorheben – unterstützt multimediales Lernen, wenn die Hinweise gut gestaltet sind.",
+          "translatedAt": "2026-11-02T08:57:50.543Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "ad2d09f5db5e73df187acea0f48c02ee489b72154580917ed2641d7e1b041edf": {
+      "en": "A meta-analysis of signaling principle in multimedia learning (2020)",
+      "translations": {
+        "de": {
+          "text": "Eine Metaanalyse zum Signalisierungsprinzip beim multimedialen Lernen (2020)",
+          "translatedAt": "2026-11-02T08:57:50.543Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "79923226a81e91245e78ef601121fda3d10292db6239b9a39f46b5ed64ee9223": {
+      "en": "Return to the exact moment",
+      "translations": {
+        "de": {
+          "text": "Zum genauen Moment zurückkehren",
+          "translatedAt": "2026-11-02T08:57:50.543Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "7a11edc13436ac2a98bef150d944a79307a67f4df2b27ccd1e82ce27a35c9f7a": {
+      "en": "Keep the timestamp with the claim",
+      "translations": {
+        "de": {
+          "text": "Den Zeitstempel bei der Aussage behalten",
+          "translatedAt": "2026-11-02T08:57:50.543Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "d6f38836d97e062a210c6d133fd639b48174490a26a2768fa749b2f447dba898": {
+      "en": "A transcript and timestamp make a video statement easier to find and inspect. They do not establish that the statement is true.",
+      "translations": {
+        "de": {
+          "text": "Ein Transkript und ein Zeitstempel machen eine Aussage im Video leichter auffindbar und überprüfbar. Sie belegen nicht, dass die Aussage zutrifft.",
+          "translatedAt": "2026-11-02T08:57:50.543Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "3c89c6351a889b13070be4f5adba10d13d71e4176afc02dc829d719ea50dca52": {
+      "en": "Product implication based on video-learning and source-evaluation research",
+      "translations": {
+        "de": {
+          "text": "Produktimplikation auf Basis von Forschung zum Lernen mit Videos und zur Bewertung von Quellen",
+          "translatedAt": "2026-11-02T08:57:50.543Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "55f5133355aaf47d240b178f3ab245986cccba9f84a721f98103beacbc4d19a4": {
+      "en": "Private RSS reader and local AI news digest | AI Summary Helper",
+      "translations": {
+        "de": {
+          "text": "Privater RSS-Reader und lokaler KI-Nachrichten-Digest | AI Summary Helper",
+          "translatedAt": "2026-11-02T08:57:53.790Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "755894173d3c47e4a790ca3e5f82ede52c6d85a8b5246eb301f8b58b089feb7d": {
+      "en": "Curate your own RSS news sources locally, build source-linked digests and connect current reading to MCP tools for research and analysis.",
+      "translations": {
+        "de": {
+          "text": "Stellen Sie Ihre eigenen RSS-Nachrichtenquellen lokal zusammen, erstellen Sie quellenverknüpfte Digests und verbinden Sie Ihre aktuelle Lektüre mit MCP-Tools für Recherche und Analyse.",
+          "translatedAt": "2026-11-02T08:57:53.790Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "96cf5b53fb836a63f9cb855716cf0673186a37051132908ad9138fb1bb32f1af": {
+      "en": "Your news, your sources",
+      "translations": {
+        "de": {
+          "text": "Ihre Nachrichten, Ihre Quellen",
+          "translatedAt": "2026-11-02T08:57:53.790Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "e7ff1a01e6497081c177c159918ee9e4da3f824eeb38f42fe872a625178f845a": {
+      "en": "Curate current events",
+      "translations": {
+        "de": {
+          "text": "Aktuelles gezielt zusammenstellen",
+          "translatedAt": "2026-11-02T08:57:53.790Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "c379b27142435b6075f29de66769d1a0fa0a0f299ed6c201af0ef78082f13517": {
+      "en": "without giving up your archive.",
+      "translations": {
+        "de": {
+          "text": "ohne auf Ihr Archiv zu verzichten.",
+          "translatedAt": "2026-11-02T08:57:53.790Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "7757cc61b71daa23fb8162e6d363a10b7a596e0a57ca469b682878ed2ca1c8f5": {
+      "en": "Follow the RSS sources you trust, keep the reading history local and turn current articles into source-linked briefings. Connect the archive to MCP tools when you want to ask a larger question.",
+      "translations": {
+        "de": {
+          "text": "Folgen Sie den RSS-Quellen, denen Sie vertrauen, behalten Sie den Leseverlauf lokal und machen Sie aus aktuellen Artikeln quellenverknüpfte Briefings. Verbinden Sie das Archiv mit MCP-Tools, wenn Sie eine größere Frage stellen möchten.",
+          "translatedAt": "2026-11-02T08:57:53.790Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "6eab3b4a82d812ed05b97c16bab091076e29d2043d735a186cec82648d6ee8d7": {
+      "en": "Start curating for free",
+      "translations": {
+        "de": {
+          "text": "Kostenlos starten",
+          "translatedAt": "2026-11-02T08:57:53.790Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "796edc98d404f0aa23bb4da38cf2f1b3b4265b68dc98234d770ebbac8640c61b": {
+      "en": "See MCP integration",
+      "translations": {
+        "de": {
+          "text": "MCP-Integration ansehen",
+          "translatedAt": "2026-11-02T08:57:53.790Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "b7c6ee3cd0d438d9cd332395fdf262e929c3925d7df33ea0ff86e1f8080cb603": {
+      "en": "Curate",
+      "translations": {
+        "de": {
+          "text": "Zusammenstellen",
+          "translatedAt": "2026-11-02T08:57:53.790Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "9ff8cbd5d387fe1a97569e33b739be395fca09cbf0654654ec38b566b27a5e0f": {
+      "en": "Choose the sources",
+      "translations": {
+        "de": {
+          "text": "Die Quellen auswählen",
+          "translatedAt": "2026-11-02T08:57:53.790Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "7fc576bc82b4688866ed02b1c416d1ebc693f63351fe3b51eed61d6e992d464a": {
+      "en": "Build a focused RSS reading list from publishers, analysts, research groups and feeds you actually trust.",
+      "translations": {
+        "de": {
+          "text": "Erstellen Sie eine fokussierte RSS-Leseliste aus Verlagen, Analysten, Forschungsgruppen und Feeds, denen Sie tatsächlich vertrauen.",
+          "translatedAt": "2026-11-02T08:57:53.790Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "50cca02f668a4d9ca1e3005e628eafb325acaf9469058d7ac9440a2afe705f25": {
+      "en": "Turn feeds into briefings",
+      "translations": {
+        "de": {
+          "text": "Feeds in Briefings verwandeln",
+          "translatedAt": "2026-11-02T08:57:53.790Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "a8e0336f9e55c98a135ccffa1528a814e0764700f65ed3173ebf9a80f9c3a7a5": {
+      "en": "Summarize a set of current articles without losing the links, timestamps or original context.",
+      "translations": {
+        "de": {
+          "text": "Fassen Sie eine Reihe aktueller Artikel zusammen, ohne Links, Zeitstempel oder den ursprünglichen Kontext zu verlieren.",
+          "translatedAt": "2026-11-02T08:57:53.790Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "135a6da43c2ed1ca2366a992efe9a4540b2f79851d1a75783e723970dcbea01d": {
+      "en": "Ask across your archive",
+      "translations": {
+        "de": {
+          "text": "Ihr Archiv übergreifend befragen",
+          "translatedAt": "2026-11-02T08:57:53.790Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "bdc8e7e05b9d9834cca1b2533b0fecfe0d016940ee7ed267fa3202fbc289532b": {
+      "en": "Use MCP with compatible local AI tools to compare recent coverage and investigate a question across sources.",
+      "translations": {
+        "de": {
+          "text": "Nutzen Sie MCP mit kompatiblen lokalen KI-Tools, um die aktuelle Berichterstattung zu vergleichen und eine Frage quellenübergreifend zu untersuchen.",
+          "translatedAt": "2026-11-02T08:57:53.790Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "f8c2e76de321501f9589583315ffc2f91c27d07f90c380c2e938b06ac85e4bed": {
+      "en": "Turn your own RSS sources into a focused daily briefing.",
+      "translations": {
+        "de": {
+          "text": "Machen Sie aus Ihren eigenen RSS-Quellen ein fokussiertes tägliches Briefing.",
+          "translatedAt": "2026-11-02T08:57:53.790Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "9586efe87583b31d9026514fcbf3aa420d32df7f83a44ce81380aa9e22e2dde8": {
+      "en": "Keep your curated news archive on your own device.",
+      "translations": {
+        "de": {
+          "text": "Behalten Sie Ihr kuratiertes Nachrichtenarchiv auf Ihrem eigenen Gerät.",
+          "translatedAt": "2026-11-02T08:57:53.790Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "602acfc86de0e012521563b89d290e47f113314c1604f570cfd7b60d93001d69": {
+      "en": "Connect current reading context to the tools you choose.",
+      "translations": {
+        "de": {
+          "text": "Verbinden Sie den Kontext Ihrer aktuellen Lektüre mit den Tools Ihrer Wahl.",
+          "translatedAt": "2026-11-02T08:57:53.790Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "227fd9bef23c03cd77c1442edd6d723863f1c638fa6ffe6ae5a58fc1fc3eedb9": {
+      "en": "Research & PDFs",
+      "translations": {
+        "de": {
+          "text": "Recherche & PDFs",
+          "translatedAt": "2026-11-02T09:05:40.206Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "863aeebf082d06cf885f6745e77090fa2474033a7c26faa69e711273f245f9ba": {
+      "en": "For video learners",
+      "translations": {
+        "de": {
+          "text": "Für Video-Lernende",
+          "translatedAt": "2026-11-02T09:05:40.206Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "805200d90a3ffd3beba1cbfdfb8787c631a42b564235671387b7c8f44555d1ad": {
+      "en": "knowledge you can use",
+      "translations": {
+        "de": {
+          "text": "Wissen, das Sie nutzen können",
+          "translatedAt": "2026-11-02T09:05:40.206Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "dafa6cf2807deead1a07cc3f96ba5bedbe55fb1115f3b4fed75614ca92848632": {
+      "en": "Explore video reading →",
+      "translations": {
+        "de": {
+          "text": "Video-Lesen entdecken →",
+          "translatedAt": "2026-11-02T09:05:40.206Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "0ffd2d9acf59573ddc3315d2d9eeb9cb8e9316ec4a497bfcf74c655883c29714": {
+      "en": "For connected AI workflows",
+      "translations": {
+        "de": {
+          "text": "Für vernetzte KI-Workflows",
+          "translatedAt": "2026-11-02T09:05:40.206Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "426f2194fa4468d6b8be4aa7cd3abe045481aa0b8f6d75d7fd5de9cfac4d71fd": {
+      "en": "Connect your",
+      "translations": {
+        "de": {
+          "text": "Verbinden Sie Ihr",
+          "translatedAt": "2026-11-02T09:05:40.206Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "e0f895872d65b2528feec97350a3a212b3d4ab88748e25d022a34641d338216b": {
+      "en": "knowledge",
+      "translations": {
+        "de": {
+          "text": "Wissen",
+          "translatedAt": "2026-11-02T09:05:40.206Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "0b5aa05a69a8eb0f02433930a79a7cfc34845ed38c5f7850e954412a422d90f5": {
+      "en": "Explore MCP →",
+      "translations": {
+        "de": {
+          "text": "MCP entdecken →",
+          "translatedAt": "2026-11-02T09:05:40.206Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
     }
   }
 }
