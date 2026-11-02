@@ -46,6 +46,43 @@ const FAQ_START = HOMEPAGE_SOURCE.indexOf('<!-- ── FAQ');
 const FAQ_END = HOMEPAGE_SOURCE.indexOf('<!-- ── Blog teaser', FAQ_START);
 if (FAQ_START < 0 || FAQ_END < 0) throw new Error('Could not locate the shared FAQ section in the homepage.');
 const SHARED_FAQ = HOMEPAGE_SOURCE.slice(FAQ_START, FAQ_END);
+const RELATED_READING = {
+    pdf: [
+        ['Guide', 'Check an AI summary against its source', 'blog/verify-ai-summary.html', 'A quick source-checking habit for any AI answer.'],
+        ['Workflow', 'Highlighting alone barely works. Ask about it instead.', 'blog/highlighting-vs-asking.html', 'Turn important passages into questions you can revisit.'],
+        ['Privacy', 'Your key. Your model. Your data.', 'blog/bring-your-own-key.html', 'Understand BYOK, provider boundaries and local models.']
+    ],
+    youtube: [
+        ['Guide', 'Turn videos into notes without losing the source', 'blog/videos.html', 'See the video workflow and the extension in action.'],
+        ['Workflow', 'Highlighting alone barely works. Ask about it instead.', 'blog/highlighting-vs-asking.html', 'Keep the useful idea, not just a timestamp.'],
+        ['Product', 'You won’t read most of what you save. Here’s the actual fix.', 'blog/unread-saves.html', 'Make saved video reading returnable instead of forgotten.']
+    ],
+    research: [
+        ['Guide', 'Check an AI summary against its source', 'blog/verify-ai-summary.html', 'Keep claims tied to the paper they came from.'],
+        ['Research', 'Search and tags without the cloud', 'blog/on-device-architecture.html', 'See why the research library runs on your device.'],
+        ['Privacy', 'Your key. Your model. Your data.', 'blog/bring-your-own-key.html', 'Choose the model and provider behind your workflow.']
+    ],
+    obsidian: [
+        ['Workflow', 'Search and tags without the cloud', 'blog/on-device-architecture.html', 'Build a searchable knowledge base without uploading it.'],
+        ['Guide', 'Sync your reading library to Nextcloud, S3 or a folder', 'blog/sync-to-nextcloud-s3-or-a-folder.html', 'Back up and reuse your archive on your own storage.'],
+        ['Product', 'From a bookmarklet to 2.0: what AI Summary Helper actually is now', 'blog/from-bookmarklet-to-2.html', 'See how saving became a connected reading workflow.']
+    ],
+    privacy: [
+        ['Privacy', 'Your key. Your model. Your data.', 'blog/bring-your-own-key.html', 'What BYOK protects, and where the provider boundary is.'],
+        ['Architecture', 'Why we moved search, tagging and recommendations out of the cloud', 'blog/on-device-architecture.html', 'The local-first decisions behind the archive.'],
+        ['Guide', 'Digital sovereignty for individuals', 'blog/digital-sovereignty-for-individuals.html', 'A practical checklist for keeping control of your data.']
+    ],
+    graph: [
+        ['Architecture', 'Why we moved search, tagging and recommendations out of the cloud', 'blog/on-device-architecture.html', 'How local search and recommendations make the graph useful.'],
+        ['Product', 'You won’t read most of what you save. Here’s the actual fix.', 'blog/unread-saves.html', 'Use digests to return to the knowledge you already collected.'],
+        ['Guide', 'Sync your reading library to Nextcloud, S3 or a folder', 'blog/sync-to-nextcloud-s3-or-a-folder.html', 'Keep the connected archive on storage you control.']
+    ],
+    mcp: [
+        ['MCP', 'Use your library in Claude, LM Studio and Cursor', 'blog/ai-apps-mcp.html', 'Give compatible AI apps controlled access to your local library.'],
+        ['Privacy', 'Digital sovereignty for individuals', 'blog/digital-sovereignty-for-individuals.html', 'Understand local context, permissions and ownership.'],
+        ['Privacy', 'Your key. Your model. Your data.', 'blog/bring-your-own-key.html', 'Choose which provider handles a request and which does not.']
+    ]
+};
 
 function filteredFeatureSection(persona) {
     const $ = cheerio.load(WHAT_IT_DOES, { decodeEntities: false });
@@ -64,6 +101,12 @@ function filteredFaqSection(persona) {
         if (!personas.includes('shared') && !personas.includes(persona)) $(item).remove();
     });
     return $('body').html().replace(/[ \t]+$/gm, '');
+}
+
+function relatedReadingSection(topic) {
+    const cards = RELATED_READING[topic];
+    if (!cards) throw new Error(`Unknown related-reading topic "${topic}".`);
+    return `<section class="related-reading"><div class="wrap"><div class="section-head center"><div class="eyebrow">Further reading</div><h2>Go deeper on this workflow</h2><p>Practical notes on the ideas behind this page.</p></div><div class="blog-grid">${cards.map(([label, title, href, text]) => `<a class="blog-card" href="{{base}}${href}"><span class="blog-date">${label}</span><h3>${title}</h3><p>${text}</p><span class="blog-read">Read the post →</span></a>`).join('')}</div></div></section>`;
 }
 
 async function loadPartials() {
@@ -119,6 +162,7 @@ async function buildPage(relPath, partials, config) {
     // substitute per-page, not once globally.
     html = html.replace(/<!--include:what-it-does:([a-z]+)-->/g, (_, persona) => filteredFeatureSection(persona));
     html = html.replace(/<!--include:faq:([a-z]+)-->/g, (_, persona) => filteredFaqSection(persona));
+    html = html.replace(/<!--include:related:([a-z]+)-->/g, (_, topic) => relatedReadingSection(topic));
     html = html.replace(INCLUDE_RE, (match, name) => {
         if (!(name in partials)) {
             throw new Error(`${relPath}: unknown partial "${name}" (looked in site-src/partials/${name}.html)`);
