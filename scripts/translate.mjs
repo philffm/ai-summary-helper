@@ -32,6 +32,7 @@
 //   node scripts/translate.mjs                 # real run, needs OPENROUTER_API_KEY
 //   node scripts/translate.mjs --dry-run        # no API calls, mock translations
 //   node scripts/translate.mjs --locale=fr      # only this locale
+//   node scripts/translate.mjs --priority=2    # selected translation priority (default: 1)
 //   node scripts/translate.mjs --file=index.html  # only this source file
 
 import { readFile, writeFile, mkdir } from 'node:fs/promises';
@@ -53,6 +54,7 @@ const args = process.argv.slice(2);
 const DRY_RUN = args.includes('--dry-run');
 const ONLY_LOCALE = (args.find(a => a.startsWith('--locale=')) || '').split('=')[1] || null;
 const ONLY_FILE = (args.find(a => a.startsWith('--file=')) || '').split('=')[1] || null;
+const PRIORITY_ARG = (args.find(a => a.startsWith('--priority=')) || '').split('=')[1] || null;
 
 // ── Utilities ────────────────────────────────────────────────────────
 
@@ -555,9 +557,25 @@ async function main() {
     const untracked = untrackedPages(ROOT, config);
     for (const p of untracked) console.warn(`warning: ${p} is not in locales.json "content" or "exempt" - translating it anyway, please add it.`);
     const targetFiles = ONLY_FILE ? [ONLY_FILE] : [...config.content, ...untracked];
+    const priority = PRIORITY_ARG === null ? '1' : PRIORITY_ARG;
+    if (ONLY_LOCALE && !config.locales[ONLY_LOCALE]) {
+        console.error(`Unknown locale "${ONLY_LOCALE}". Check docs/i18n/locales.json.`);
+        process.exit(1);
+    }
+    if (!ONLY_LOCALE && !config.translationPriorities?.[priority]) {
+        console.error(`Unknown translation priority "${priority}". Use 1, 2, or 3.`);
+        process.exit(1);
+    }
+    const priorityLocales = ONLY_LOCALE
+        ? config.locales
+        : Object.fromEntries((config.translationPriorities[priority] || []).filter(code => config.locales[code]).map(code => [code, config.locales[code]]));
     const targetLocales = ONLY_LOCALE
         ? { [ONLY_LOCALE]: config.locales[ONLY_LOCALE] }
-        : config.locales;
+        : priorityLocales;
+    if (!ONLY_LOCALE && Object.keys(targetLocales).length === 0) {
+        console.error(`Translation priority "${priority}" does not contain any configured locales.`);
+        process.exit(1);
+    }
 
     // A cancelled workflow run sends SIGINT/SIGTERM: save the cache and report changes before exiting.
     let filesWithApiCalls = 0;
@@ -589,7 +607,7 @@ async function main() {
     if (!DRY_RUN) {
         await saveJson(MANIFEST_PATH, manifest);
     }
-    console.log(`\nDone. ${filesWithApiCalls}/${targetFiles.length} file(s) needed new translation calls. ${Object.keys(manifest.strings).length} unique string(s) cached total.`);
+    console.log(`\nDone. Priority ${priority}: ${Object.keys(targetLocales).join(', ')}. ${filesWithApiCalls}/${targetFiles.length} file(s) needed new translation calls. ${Object.keys(manifest.strings).length} unique string(s) cached total.`);
     // Signal to the Action whether there's anything to commit/PR.
     if (process.env.GITHUB_OUTPUT) {
         await writeFile(process.env.GITHUB_OUTPUT, `changed=${filesWithApiCalls > 0}\n`, { flag: 'a' });

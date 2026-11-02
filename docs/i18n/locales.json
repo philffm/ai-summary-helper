@@ -22,8 +22,20 @@
     "bookmarklet.html",
     "goodbye.html",
     "education/index.html",
-    "pocket-alternative/index.html"
+    "pocket-alternative/index.html",
+    "knowledge-graph/index.html",
+    "local-ai/index.html",
+    "mcp/index.html",
+    "obsidian-integration/index.html",
+    "pdf-summarizer/index.html",
+    "research-papers/index.html",
+    "youtube-summarizer/index.html"
   ],
+  "translationPriorities": {
+    "1": ["de"],
+    "2": ["fr", "es", "pt", "it", "nl", "ja", "zh", "zh-TW", "ko"],
+    "3": ["hi", "vi", "ru", "uk", "tr", "id", "pl", "th", "ar", "sv", "da", "no", "fi"]
+  },
   "locales": {
     "de": {
       "name": "German",

@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <meta name="theme-color" content="#08090C">
-<title>AI Summary Helper: summarize, save, search the web</title>
+<title>AI Summary Helper: your private AI reading and knowledge companion</title>
 <script>
 // Old language links were /?lang=xx. GitHub Pages cannot 301 a query string, so send them to the language folder (canonical already points to /).
 (function () {
@@ -16,7 +16,7 @@
   location.replace('/' + (dir ? dir + '/' : '') + location.hash);
 })();
 </script>
-<meta name="description" content="Chrome extension that summarizes pages with AI, reads your RSS feeds and keeps a searchable archive. Search and recommendations run on your device.">
+<meta name="description" content="Turn reading into knowledge you keep. AI Summary Helper is a private, local-first reading companion for articles, PDFs and videos with source-linked answers and a searchable archive.">
 
 <script>
   (function(){
@@ -36,7 +36,7 @@
 <link rel="stylesheet" href="{{base}}assets/styles.css">
 
 <meta property="og:title" content="AI Summary Helper">
-<meta property="og:description" content="Summarize, save, and search the web on-device. A Chrome extension built for people who don't want to lose their reading list again.">
+<meta property="og:description" content="Turn reading into knowledge you keep with source-linked answers, a private searchable archive and local-first AI.">
 <meta property="og:url" content="https://ai-summary-helper.byphil.eu/">
 <meta property="og:type" content="website">
 <meta property="og:image" content="https://ai-summary-helper.byphil.eu/assets/shots/aish-hero-en.webp">
@@ -59,8 +59,8 @@
   <div class="hs-grid">
     <div class="hs-text"><div class="hs-text-in">
       <div class="eyebrow"><span class="dash"></span> Chrome Extension · Part of byphil. <span class="dash"></span></div>
-      <h1>Summarize the web.<br><em>Keep what matters.</em></h1>
-      <p class="sub">One click turns any page into a short summary beside the article. Everything stays in your browser, so you can find it again.</p>
+      <h1>Turn reading into<br><em>knowledge you keep.</em></h1>
+      <p class="sub">Understand articles, PDFs and videos faster. Check answers against their sources. Build a private, searchable knowledge base on your own device.</p>
       <div class="hero-pane" id="heroPaneBrowser">
         <div class="hero-cta">
           <a href="https://chromewebstore.google.com/detail/ai-summary-helper-openai/hldbejcjaedipeegjcinmhejdndchkmb" target="_blank" rel="noopener" class="btn-primary" data-desktop-cta>Add to Chrome — it's free</a>
@@ -68,7 +68,7 @@
         </div>
         <p class="send-note" data-send-note hidden>Chrome on a phone can't install extensions. Send the link to your computer and add it there. <a href="#" data-send-mail>Email it to me</a> · <a href="#" data-send-copy>Copy link</a></p>
         <p class="hero-proof"><a href="https://www.producthunt.com/products/ai-summary-helper/launches/ai-summary-helper-summarize-articles" target="_blank" rel="noopener" data-track="hero-producthunt">139 upvotes on Product Hunt</a> · <a href="https://github.com/philffm/ai-summary-helper/" target="_blank" rel="noopener">Open source</a> · Made in the EU</p>
-        <p class="hero-meta">No account needed · Use your own AI key, or run fully offline with Ollama</p>
+        <p class="hero-meta">No account · Your key or local Ollama · Open source · Made in the EU</p>
       </div>
       <ol class="hs-steps" data-stage-pane="browser">
   <li class="is-on" data-step="0" role="button" tabindex="0"><b>Read any page.</b><span>Open an article as usual. AISH sits quietly in the browser.</span></li>
@@ -127,6 +127,17 @@
   </div>
 </section>
 
+<section id="use-cases" class="use-case-section">
+  <div class="wrap">
+    <div class="section-head center reveal"><div class="eyebrow">Built for how you read</div><h2>Choose your path</h2></div>
+    <div class="use-case-grid blog-grid reveal">
+      <a href="{{base}}research-papers/" class="use-case-card blog-card"><span class="blog-date">For researchers &amp; students</span><h3>Read papers faster—<br>without losing the source</h3><span class="blog-read">Explore research mode →</span></a>
+      <a href="{{base}}obsidian-integration/" class="use-case-card blog-card"><span class="blog-date">For PKM &amp; Obsidian users</span><h3>Turn articles into<br>connected notes</h3><span class="blog-read">Build your knowledge base →</span></a>
+      <a href="{{base}}local-ai/" class="use-case-card blog-card"><span class="blog-date">For privacy-first readers</span><h3>Your reading stays<br>yours</h3><span class="blog-read">See the local workflow →</span></a>
+    </div>
+  </div>
+</section>
+
   <!-- ── See it ──────────────────────────────────────────────────── -->
   <!-- Screenshots are localized by scripts/translate.mjs: "-en.webp" is swapped for
        "-<locale>.webp" when docs/assets/shots/ has that file, else it stays English. -->
@@ -136,35 +147,48 @@
         <div class="eyebrow">See it</div>
         <h2>The summary sits next to the article</h2>
         <p>Read the overview, ask a follow-up, and see which passage the answer comes from. Real interface, version 2.2.</p>
+        <nav class="slide-jumps" aria-label="How it works">
+          <a href="#problem" data-slider-goto="problem">Problem</a>
+          <a href="#understand" data-slider-goto="understand">Understand</a>
+          <a href="#verify" data-slider-goto="verify">Verify</a>
+          <a href="#retain" data-slider-goto="retain">Retain</a>
+          <a href="#privacy" data-slider-goto="privacy">Privacy</a>
+        </nav>
       </div>
       <div class="cx cx--fit reveal" data-carousel role="region" aria-roledescription="carousel" aria-label="Product screenshots">
         <div class="cx-stage">
           <ul class="cx-track" tabindex="0">
-          <li class="cx-slide is-active" aria-roledescription="slide" aria-label="1 / 5">
+          <li class="cx-slide is-active" aria-roledescription="slide" aria-label="1 / 7" id="problem">
+            <figure><div class="cx-card" style="--img:url(photo/evening-sofa-ereader-1600.webp)"><span class="cx-big cx-big--text">The read-later pile</span><strong class="cx-title">You save more than you will ever read</strong><span class="cx-text">Much of what we save is rarely opened again. Digest picks five saves for you and sends them to read offline.</span><small class="cx-src">1. Tap Digest · 2. Set the mood · 3. Send it offline</small><a class="cx-slide-link" href="{{base}}blog/unread-saves.html">Read the guide →</a></div><figcaption><strong>Read it in the evening, not in twelve tabs</strong><span>Digest turns a pile of saved links into one purposeful bundle for your evening, Kindle or commute.</span></figcaption></figure>
+          </li>
+          <li class="cx-slide" aria-roledescription="slide" aria-label="2 / 7" id="understand">
             <figure>
               <img src="{{base}}assets/shots/aish-inpage-detail-en.webp" width="1440" height="900" loading="lazy" alt="Summary in the side panel next to the article">
               <figcaption><strong>The summary beside the article</strong><span>Read the overview without leaving the page.</span></figcaption>
             </figure>
           </li>
-          <li class="cx-slide" aria-roledescription="slide" aria-label="2 / 5">
+          <li class="cx-slide" aria-roledescription="slide" aria-label="3 / 7" id="verify">
             <figure>
               <img src="{{base}}assets/shots/aish-inpage-ask-en.webp" width="1440" height="900" loading="lazy" alt="Follow-up answer with a source marker and highlighted sentences in the article">
               <figcaption><strong>Ask the page</strong><span>Answers point to the passage they come from.</span></figcaption>
             </figure>
           </li>
-          <li class="cx-slide" aria-roledescription="slide" aria-label="3 / 5">
+          <li class="cx-slide" aria-roledescription="slide" aria-label="4 / 7">
             <figure>
               <img src="{{base}}assets/shots/aish-split-wide-en.webp" width="1280" height="800" loading="lazy" alt="Split view with the list, knowledge graph and analytics side by side">
               <figcaption><strong>New in 2.2: split view</strong><span>List, knowledge graph and analytics side by side on large screens.</span></figcaption>
             </figure>
           </li>
-          <li class="cx-slide" aria-roledescription="slide" aria-label="4 / 5">
+          <li class="cx-slide" aria-roledescription="slide" aria-label="5 / 7" id="retain">
             <figure>
               <img src="{{base}}assets/shots/aish-research-dark-en.webp" width="1280" height="800" loading="lazy" alt="Research mode with a collection of papers, in dark mode">
               <figcaption><strong>New in 2.2: research mode</strong><span>Study details, DOI citations and collections for scientific papers.</span></figcaption>
             </figure>
           </li>
-          <li class="cx-slide cx-slide--demo" aria-roledescription="slide" aria-label="5 / 5" data-desktop-only>
+          <li class="cx-slide" aria-roledescription="slide" aria-label="6 / 7" id="privacy">
+            <figure><div class="cx-card" style="--img:url(photo/nas-shelf-laptop-phone-1600.webp)"><span class="cx-big cx-big--text">Built the byphil way</span><strong class="cx-title">Your archive stays yours</strong><span class="cx-text">Search, duplicate detection, tag cleanup and similar-article suggestions run in your browser, with no server and no account. Only the summary request leaves it, and only to the AI provider you chose. With a local Ollama model, even that stays home.</span><small class="cx-src">No account · BYOK or Ollama · Open source · Made in the EU</small><a class="cx-slide-link" href="{{base}}privacy.html">Read the privacy model →</a></div><figcaption><strong>Your library lives on your device</strong><span>Choose your key, your model and where your reading archive lives.</span></figcaption></figure>
+          </li>
+          <li class="cx-slide cx-slide--demo" aria-roledescription="slide" aria-label="7 / 7" data-desktop-only>
             <figure>
               <div class="demo-frame" data-demo data-demo-scale="1180" data-src="{{base}}demo/index.html">
                 <button class="demo-start" type="button"><span class="demo-play" aria-hidden="true">▶</span><span>Start the live demo</span></button>
@@ -173,7 +197,7 @@
               <figcaption><strong>Press Summarize on a real page</strong><span>This is the actual extension interface running in your browser, on a sample article. Nothing is sent anywhere.</span></figcaption>
             </figure>
           </li>
-          <li class="cx-slide cx-slide--demo-m" aria-roledescription="slide" aria-label="5 / 5" data-mobile-only>
+          <li class="cx-slide cx-slide--demo-m" aria-roledescription="slide" aria-label="7 / 7" data-mobile-only>
             <figure>
               <div class="demo-frame demo-frame--phone" data-demo data-demo-fit="420x800" data-demo-params="chrome=0&amp;tour=0&amp;surface=sidepanel" data-src="{{base}}demo/index.html">
                 <button class="demo-start" type="button"><span class="demo-play" aria-hidden="true">▶</span><span>Try the side panel</span></button>
@@ -185,7 +209,7 @@
           <button type="button" class="cx-nav cx-prev" aria-label="Previous slide"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m15 18-6-6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
           <button type="button" class="cx-nav cx-next" aria-label="Next slide"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m9 18 6-6-6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
         </div>
-        <div class="cx-dots"><button type="button" class="cx-dot is-active" aria-label="Slide 1"></button><button type="button" class="cx-dot" aria-label="Slide 2"></button><button type="button" class="cx-dot" aria-label="Slide 3"></button><button type="button" class="cx-dot" aria-label="Slide 4"></button><button type="button" class="cx-dot cx-dot--demo" aria-label="Slide 5: live demo">Demo</button><button type="button" class="cx-dot cx-dot--demo-m" aria-label="Slide 5: live demo">Demo</button></div>
+        <div class="cx-dots"><button type="button" class="cx-dot is-active" aria-label="Go to reading list problem slide"></button><button type="button" class="cx-dot" aria-label="Go to understand slide"></button><button type="button" class="cx-dot" aria-label="Go to verify slide"></button><button type="button" class="cx-dot" aria-label="Go to knowledge graph slide"></button><button type="button" class="cx-dot" aria-label="Go to retain slide"></button><button type="button" class="cx-dot" aria-label="Go to privacy slide"></button><button type="button" class="cx-dot cx-dot--demo" aria-label="Go to live demo slide">Demo</button><button type="button" class="cx-dot cx-dot--demo-m" aria-label="Go to live demo slide">Demo</button></div>
       </div>
     </div>
   </section>
@@ -467,7 +491,7 @@
   </section>
 
   <!-- ── Features ────────────────────────────────────────────────── -->
-  <section id="features">
+  <section id="features" data-default-persona="all">
     <div class="wrap">
       <div class="section-head center reveal">
         <div class="eyebrow">What it does</div>
@@ -529,7 +553,7 @@
           </figure>
           <div class="f-icon icon-indigo"><svg viewBox="0 0 24 24" fill="none"><circle cx="6" cy="18" r="1.8" fill="#fff"></circle><path d="M5 11a8 8 0 0 1 8 8M5 5a14 14 0 0 1 14 14" stroke="#fff" stroke-width="1.8" stroke-linecap="round"></path></svg></div>
           <h3>A built-in RSS reader</h3>
-          <p>Follow blogs and news sites, filter by source, tag, date or mood, import your OPML, and open or summarize any item in one click. Play podcast feeds right in the extension, and get an optional AI recap of each day from the headlines. Favorites land in your archive, and feeds are stored on your device.</p>
+          <p>Follow blogs and news sites, filter by source, tag, date or mood, import OPML, and summarize any item in one click. Play podcast feeds in the extension and get an optional AI recap; feeds and favorites stay on your device.</p>
           <button class="fvideo-cta" type="button" tabindex="-1" aria-hidden="true"><span class="fvideo-cta-play">▶</span>Watch the clip</button>
         </div>
         <div class="feature-card" data-personas="feeds">
@@ -543,7 +567,7 @@
           </figure>
           <div class="f-icon icon-gold"><svg viewBox="0 0 24 24" fill="none"><rect x="3" y="5" width="18" height="14" rx="3" stroke="#fff" stroke-width="1.7"></rect><path d="M10 9.5v5l4.5-2.5L10 9.5Z" fill="#fff"></path></svg></div>
           <h3>YouTube videos, from their captions</h3>
-          <p>Open a video and summarize it. The extension reads the captions, writes the key points in your language, and follow-up answers cite the passage they come from.</p>
+          <p>Summarize YouTube videos from their captions, get key points in your language, and ask follow-up questions with source citations.</p>
           <button class="fvideo-cta" type="button" tabindex="-1" aria-hidden="true"><span class="fvideo-cta-play">▶</span>Watch the clip</button>
         </div>
         <div class="feature-card" data-personas="researcher">
@@ -557,7 +581,7 @@
           </figure>
           <div class="f-icon icon-cyan"><svg viewBox="0 0 24 24" fill="none"><path d="M7 3h7l4 4v14H7V3Z" stroke="#fff" stroke-width="1.7" stroke-linejoin="round"></path><path d="M14 3v4h4M9.5 12h5M9.5 15.5h5" stroke="#fff" stroke-width="1.6" stroke-linecap="round"></path></svg></div>
           <h3>PDFs, like any other page</h3>
-          <p>Open a PDF in the browser, or attach one from disk, and summarize it like any page. “What I used” shows what the model read: words, tokens and model.</p>
+          <p>Summarize browser PDFs or files from disk like any page. “What I used” shows the words, tokens and model the AI read.</p>
           <button class="fvideo-cta" type="button" tabindex="-1" aria-hidden="true"><span class="fvideo-cta-play">▶</span>Watch the clip</button>
         </div>
         <div class="feature-card" data-personas="privacy hoarder researcher feeds go">
@@ -571,7 +595,7 @@
           </figure>
           <div class="f-icon icon-violet"><svg viewBox="0 0 24 24" fill="none"><path d="M4 12h16M12 4c2.8 2.6 4.2 5.2 4.2 8s-1.4 5.4-4.2 8c-2.8-2.6-4.2-5.2-4.2-8s1.4-5.4 4.2-8Z" stroke="#fff" stroke-width="1.5"></path></svg></div>
           <h3>20+ languages, cross-platform</h3>
-          <p>Read and summarize in your language of choice. Extension, native side panel, or <a href="{{base}}bookmarklet.html">bookmarklet</a> — for wherever the browser extension can't reach.</p>
+          <p>Read and summarize in 20+ languages using the extension, native side panel, or <a href="{{base}}bookmarklet.html">bookmarklet</a> when the extension cannot reach a page.</p>
           <button class="fvideo-cta" type="button" tabindex="-1" aria-hidden="true"><span class="fvideo-cta-play">▶</span>Watch the clip</button>
         </div>
         <div class="feature-card" data-personas="privacy researcher">
@@ -585,7 +609,7 @@
           </figure>
           <div class="f-icon icon-cyan"><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="6" r="2.6" fill="#fff"></circle><circle cx="6" cy="17" r="2.2" fill="#fff" opacity="0.85"></circle><circle cx="18" cy="17" r="2.2" fill="#fff" opacity="0.85"></circle><path d="M12 8.6 L6.8 14.8 M12 8.6 L17.2 14.8" stroke="#fff" stroke-width="1.4" stroke-linecap="round" opacity="0.7"></path></svg></div>
           <h3>AI summaries, your choice of model</h3>
-          <p>OpenAI, Gemini, Mistral, DeepSeek, or a custom endpoint — or point it at a local Ollama model and never touch the network for this step at all.</p>
+          <p>Choose OpenAI, Gemini, Mistral, DeepSeek, a custom endpoint, or local Ollama for summaries that never need to leave your device.</p>
           <button class="fvideo-cta" type="button" tabindex="-1" aria-hidden="true"><span class="fvideo-cta-play">▶</span>Watch the clip</button>
         </div>
         <div class="feature-card" data-personas="researcher go">
@@ -599,7 +623,7 @@
           </figure>
           <div class="f-icon icon-gold"><svg viewBox="0 0 24 24" fill="none"><path d="M5 5h14M5 9h14M5 13h14M5 17h14" stroke="#fff" stroke-width="2.2" stroke-linecap="round"></path><path d="M5 5l14 0M5 9l14 0M5 13l14 0M5 17l14 0" stroke="#fff" stroke-width="2.2" stroke-linecap="round" opacity="0.35"></path></svg></div>
           <h3>Ghost highlights, right on the page</h3>
-          <p>The AI lightly highlights the <mark class="ai-ghost-highlight">most important verbatim passages</mark> in the article — so you can <mark class="ai-ghost-highlight">skim the key insights at a glance</mark>, and they travel with the summary to Kindle, LocalSend, or Markdown.</p>
+          <p>The AI highlights <mark class="ai-ghost-highlight">important verbatim passages</mark> so you can skim key insights and export them with the summary to Kindle, LocalSend or Markdown.</p>
           <button class="fvideo-cta" type="button" tabindex="-1" aria-hidden="true"><span class="fvideo-cta-play">▶</span>Watch the clip</button>
         </div>
         <div class="feature-card" data-personas="researcher">
@@ -613,7 +637,7 @@
           </figure>
           <div class="f-icon icon-indigo"><svg viewBox="0 0 24 24" fill="none"><path d="M4 6c3-1.4 5.5-1.4 8 0v13c-2.5-1.4-5-1.4-8 0V6ZM20 6c-3-1.4-5.5-1.4-8 0v13c2.5-1.4 5-1.4 8 0V6Z" stroke="#fff" stroke-width="1.6" stroke-linejoin="round"></path></svg></div>
           <h3>Research mode: papers recognised by their DOI</h3>
-          <p>Scientific papers are recognised from their DOI and citation metadata and flagged as trial, review or preprint. Design, sample and limitations are pulled out, and the citation is built from the DOI registry, not by the AI.</p>
+          <p>Recognise research papers by DOI and citation metadata, flag trial, review or preprint status, and extract design, sample, limitations and DOI registry citations.</p>
           <button class="fvideo-cta" type="button" tabindex="-1" aria-hidden="true"><span class="fvideo-cta-play">▶</span>Watch the clip</button>
         </div>
         <div class="feature-card" data-personas="researcher">
@@ -627,7 +651,7 @@
           </figure>
           <div class="f-icon icon-violet"><svg viewBox="0 0 24 24" fill="none"><rect x="4" y="4" width="10" height="10" rx="2" stroke="#fff" stroke-width="1.7"></rect><rect x="10" y="10" width="10" height="10" rx="2" stroke="#fff" stroke-width="1.7"></rect></svg></div>
           <h3>Compare sources on one question</h3>
-          <p>Bundle saved articles in a collection, type each source (peer-reviewed, preprint, news, opinion), run the lateral-reading check, and let the AI compare the summaries: where they agree, disagree and what is missing.</p>
+          <p>Bundle articles, label sources as peer-reviewed, preprint, news or opinion, run a lateral-reading check, and compare where summaries agree, disagree or miss context.</p>
           <button class="fvideo-cta" type="button" tabindex="-1" aria-hidden="true"><span class="fvideo-cta-play">▶</span>Watch the clip</button>
         </div>
         <div class="feature-card" data-personas="feeds go">
@@ -641,7 +665,7 @@
           </figure>
           <div class="f-icon icon-teal"><svg viewBox="0 0 24 24" fill="none"><path d="M5 10v4h3l4.5 3.5v-11L8 10H5Z" fill="#fff"></path><path d="M16 9c1.3 1.7 1.3 4.3 0 6M18.5 6.5c2.5 3 2.5 8 0 11" stroke="#fff" stroke-width="1.6" stroke-linecap="round"></path></svg></div>
           <h3>Instant read: listen while it writes</h3>
-          <p>The summary is spoken while it is still being written: the title first, then sentence by sentence, with pause, mute and speed. Read it again from any card.</p>
+          <p>Listen while the summary is written: title first, then sentence by sentence, with pause, mute and speed controls. Replay it from any card.</p>
           <button class="fvideo-cta" type="button" tabindex="-1" aria-hidden="true"><span class="fvideo-cta-play">▶</span>Watch the clip</button>
         </div>
         <div class="feature-card" data-personas="privacy hoarder">
@@ -655,7 +679,7 @@
           </figure>
           <div class="f-icon icon-violet"><svg viewBox="0 0 24 24" fill="none"><path d="M11 4a7 7 0 1 0 4.9 12.1l4.6 4.6" stroke="#fff" stroke-width="1.7" stroke-linecap="round"></path></svg></div>
           <h3>Real search, on-device</h3>
-          <p>Full-text search across titles, tags, and article content — powered by a TF-IDF index built in your browser. No round-trip, no lag, nothing sent anywhere.</p>
+          <p>Search titles, tags and article content with a browser-based TF-IDF index. Full-text search stays on-device with no round-trip.</p>
           <button class="fvideo-cta" type="button" tabindex="-1" aria-hidden="true"><span class="fvideo-cta-play">▶</span>Watch the clip</button>
         </div>
         <div class="feature-card" data-personas="hoarder researcher">
@@ -669,7 +693,7 @@
           </figure>
           <div class="f-icon icon-cyan"><svg viewBox="0 0 24 24" fill="none"><circle cx="5" cy="6" r="1.8" fill="#fff"></circle><circle cx="19" cy="6" r="1.8" fill="#fff" opacity="0.85"></circle><circle cx="12" cy="12" r="2.1" fill="#fff"></circle><circle cx="6" cy="18" r="1.8" fill="#fff" opacity="0.85"></circle><circle cx="18" cy="18" r="1.8" fill="#fff" opacity="0.85"></circle><path d="M5 6 12 12M19 6 12 12M12 12 6 18M12 12 18 18" stroke="#fff" stroke-width="1.1" opacity="0.55"></path></svg></div>
           <h3>A knowledge graph, not just a list</h3>
-          <p>See how your saved articles connect — by shared tags, and by topic similarity even when they don't share a tag at all.</p>
+          <p>See how saved articles connect through shared tags and topic similarity, even when they have no tag in common.</p>
           <button class="fvideo-cta" type="button" tabindex="-1" aria-hidden="true"><span class="fvideo-cta-play">▶</span>Watch the clip</button>
         </div>
         <div class="feature-card" data-personas="hoarder">
@@ -683,7 +707,7 @@
           </figure>
           <div class="f-icon icon-indigo"><svg viewBox="0 0 24 24" fill="none"><path d="M6 3h12v18l-6-4-6 4V3Z" stroke="#fff" stroke-width="1.6" stroke-linejoin="round"></path></svg></div>
           <h3>Save for later, on purpose</h3>
-          <p>Mark a "decision" with a reason and a timeframe, and get reminded — instead of watching it disappear into a pile you'll never open again.</p>
+          <p>Save a decision with its reason and timeframe, then get reminded before it disappears into an unread pile.</p>
           <button class="fvideo-cta" type="button" tabindex="-1" aria-hidden="true"><span class="fvideo-cta-play">▶</span>Watch the clip</button>
         </div>
         <div class="feature-card" data-personas="hoarder go">
@@ -697,7 +721,7 @@
           </figure>
           <div class="f-icon icon-gold"><svg viewBox="0 0 24 24" fill="none"><rect x="4" y="4" width="16" height="16" rx="3" stroke="#fff" stroke-width="1.6"></rect><path d="M8 9h8M8 13h5" stroke="#fff" stroke-width="1.6" stroke-linecap="round"></path></svg></div>
           <h3>A digest that picks itself</h3>
-          <p>One tap curates a small, varied set of your saves — not five versions of the same story — bundled into one file for Kindle or LocalSend.</p>
+          <p>One tap curates a varied digest instead of five versions of one story, then bundles it for Kindle or LocalSend.</p>
           <button class="fvideo-cta" type="button" tabindex="-1" aria-hidden="true"><span class="fvideo-cta-play">▶</span>Watch the clip</button>
         </div>
         <div class="feature-card" data-personas="feeds">
@@ -711,7 +735,7 @@
           </figure>
           <div class="f-icon icon-amber"><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="8.5" stroke="#fff" stroke-width="1.7"></circle><path d="M8.5 14c1 1.6 2.2 2.3 3.5 2.3s2.5-.7 3.5-2.3M9 9.5h.01M15 9.5h.01" stroke="#fff" stroke-width="1.8" stroke-linecap="round"></path></svg></div>
           <h3>Mood filter and mood over time</h3>
-          <p>The AI rates headlines from heavy to good. Show only the good news with one tap, and follow the mood of your reading by day, week and month.</p>
+          <p>Rate headlines from heavy to good, filter for good news, and track your reading mood by day, week or month.</p>
           <button class="fvideo-cta" type="button" tabindex="-1" aria-hidden="true"><span class="fvideo-cta-play">▶</span>Watch the clip</button>
         </div>
         <div class="feature-card" data-personas="privacy researcher hoarder">
@@ -725,18 +749,18 @@
           </figure>
           <div class="f-icon icon-violet"><svg viewBox="0 0 24 24" fill="none"><rect x="4" y="5" width="16" height="11" rx="2.2" stroke="#fff" stroke-width="1.7"></rect><path d="M9 20h6M12 16v4M8.5 10.5l2 2 3.5-4" stroke="#fff" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"></path></svg></div>
           <h3>Your library inside Claude, LM Studio and Cursor</h3>
-          <p>Switch on AI apps in Settings, and Claude Desktop, LM Studio, Cursor and other MCP apps on your computer can search your library, quote your highlights and list what is due. If you allow it, they can also save links for you. Nothing goes through our server, and you choose what they may read.</p>
+          <p>Claude Desktop, LM Studio, Cursor and other MCP apps can search your library, quote highlights and list what is due. You control access; nothing goes through our server.</p>
           <button class="fvideo-cta" type="button" tabindex="-1" aria-hidden="true"><span class="fvideo-cta-play">▶</span>Watch the clip</button>
         </div>
         <div class="feature-card" data-personas="privacy hoarder researcher">
           <div class="f-icon icon-teal"><svg viewBox="0 0 24 24" fill="none"><path d="M7 18.5h9.5a3.5 3.5 0 0 0 .6-6.95A5 5 0 0 0 7.4 10.6 4 4 0 0 0 7 18.5Z" stroke="#fff" stroke-width="1.7" stroke-linejoin="round"></path><path d="M12 12.5v3M10.8 13.8h2.4" stroke="#fff" stroke-width="1.7" stroke-linecap="round"></path></svg></div>
           <h3>Your library on your own storage, encrypted</h3>
-          <p>Sync and back up your library to your own Nextcloud, WebDAV server, S3 bucket or a folder on your computer. Everything is encrypted in your browser first, so the server only sees scrambled files. You can also publish a list to your own website, with search, a tag graph and a 3D map. Off until you add a place; we run no sync server and see nothing. <a href="blog/sync-to-nextcloud-s3-or-a-folder.html">How to set it up</a> · <a href="blog/digital-sovereignty-for-individuals.html">Why it matters</a></p>
+          <p>Sync an encrypted library to your Nextcloud, WebDAV server, S3 bucket or local folder. Publish a searchable list with a tag graph and 3D map; we run no sync server. <a href="blog/sync-to-nextcloud-s3-or-a-folder.html">How to set it up</a> · <a href="blog/digital-sovereignty-for-individuals.html">Why it matters</a></p>
         </div>
         <div class="feature-card" data-personas="hoarder researcher">
           <div class="f-icon icon-amber"><svg viewBox="0 0 24 24" fill="none"><path d="M6 4.5h9l3 3V19a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V5.5a1 1 0 0 1 1-1Z" stroke="#fff" stroke-width="1.7" stroke-linejoin="round"></path><path d="M8.5 11h7M8.5 14.5h4.5" stroke="#fff" stroke-width="1.7" stroke-linecap="round"></path></svg></div>
           <h3>Notes and comments on any page</h3>
-          <p>Select text and choose: highlight it, comment on it, or save a note with the quote. Everything lands in a Notes tab, as a list or a grid of sticky notes, by article or by tag, and syncs with the rest of your library.</p>
+          <p>Highlight text, comment on it, or save a quoted note. Organise Notes as a list or sticky-note grid by article or tag, alongside your library.</p>
         </div>
         <div class="feature-card" data-personas="hoarder researcher">
           <figure class="fvideo" data-blog-video="export">
@@ -749,7 +773,7 @@
           </figure>
           <div class="f-icon icon-teal"><svg viewBox="0 0 24 24" fill="none"><path d="M12 4v11M7.5 10.5 12 15l4.5-4.5M5 19h14" stroke="#fff" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"></path></svg></div>
           <h3>Export to Obsidian, Markdown, Word and PDF</h3>
-          <p>Send a summary straight to your Obsidian vault, or export it as Markdown, Word (DOCX), OpenDocument or PDF, with the title, source, tags and your highlights in one note.</p>
+          <p>Export summaries to Obsidian, Markdown, Word (DOCX), OpenDocument or PDF with the title, source, tags and highlights in one note.</p>
           <button class="fvideo-cta" type="button" tabindex="-1" aria-hidden="true"><span class="fvideo-cta-play">▶</span>Watch the clip</button>
         </div>
         <div class="feature-card" data-personas="hoarder feeds">
@@ -763,7 +787,7 @@
           </figure>
           <div class="f-icon icon-cyan"><svg viewBox="0 0 24 24" fill="none"><path d="M5 19V11M12 19V5M19 19v-6" stroke="#fff" stroke-width="2.2" stroke-linecap="round"></path></svg></div>
           <h3>An analytics report of your reading</h3>
-          <p>Reading streak, time saved by summaries, activity, topics over the weeks and a word cloud, computed from your own library.</p>
+          <p>See reading streaks, time saved by summaries, activity, weekly topics and a word cloud computed from your own library.</p>
           <button class="fvideo-cta" type="button" tabindex="-1" aria-hidden="true"><span class="fvideo-cta-play">▶</span>Watch the clip</button>
         </div>
       </div>
@@ -812,38 +836,10 @@
 
       // #for=<audience> in a link opens the page filtered
       var m = /^#for=([a-z]+)$/.exec(location.hash);
-      if (m && names[m[1]]) setPersona(m[1], false);
+      var initial = document.getElementById('features').getAttribute('data-default-persona') || 'all';
+      setPersona(m && names[m[1]] ? m[1] : initial, false);
     })();
   </script>
-
-  <!-- ── Digest spotlight ────────────────────────────────────────── -->
-  <section id="digest">
-    <div class="wrap">
-      <div class="section-head center reveal">
-        <div class="eyebrow">The read-later pile</div>
-        <h2>You save more than you will ever read</h2>
-        <p>Much of what we save is rarely opened again. Digest picks five saves for you and sends them to read offline.</p>
-      </div>
-      <figure class="section-photo reveal">
-        <img src="{{base}}assets/photo/evening-sofa-ereader-600.webp" srcset="{{base}}assets/photo/evening-sofa-ereader-600.webp 600w, {{base}}assets/photo/evening-sofa-ereader-1200.webp 1200w" sizes="(max-width: 640px) 92vw, 520px" width="1600" height="1195" loading="lazy" decoding="async" alt="Illustration: a person on a sofa in the evening, reading on an e-reader under a blanket">
-        <figcaption>Read it in the evening, not in twelve tabs. Illustration, AI-generated.</figcaption>
-      </figure>
-      <div class="feature-grid digest-steps reveal">
-        <div class="feature-card">
-          <h3 style="margin-top:0;">1. Tap Digest</h3>
-          <p>Five of your saves, chosen for recency and variety.</p>
-        </div>
-        <div class="feature-card">
-          <h3 style="margin-top:0;">2. Set the mood, if you want</h3>
-          <p>Upbeat, neutral or deep: the pick follows your mood.</p>
-        </div>
-        <div class="feature-card">
-          <h3 style="margin-top:0;">3. Send it offline</h3>
-          <p>One bundle to your Kindle or a device on your network, ready for a flight or a commute.</p>
-        </div>
-      </div>
-    </div>
-  </section>
 
   <!-- ── Phone companion ────────────────────────────────────────── -->
   <section id="phone">
@@ -874,28 +870,13 @@
     </div>
   </section>
 
-  <!-- ── Why on-device ──────────────────────────────────────────── -->
-  <section>
-    <div class="wrap wrap-narrow">
-      <div class="section-head center reveal">
-        <div class="eyebrow">Built the byphil way</div>
-        <h2>Your archive stays yours</h2>
-        <p>Search, duplicate detection, tag cleanup and similar-article suggestions run in your browser, with no server and no account. Only the summary request leaves it, and only to the AI provider you chose. With a local Ollama model, even that stays home.</p>
-      </div>
-      <figure class="section-photo reveal">
-        <img src="{{base}}assets/photo/scene-library-laptop-600.webp" srcset="{{base}}assets/photo/scene-library-laptop-600.webp 600w, {{base}}assets/photo/scene-library-laptop-1200.webp 1200w" sizes="(max-width: 640px) 92vw, 520px" width="1200" height="670" loading="lazy" decoding="async" alt="Illustration: a laptop on a tidy wooden desk next to a plant and a stack of notebooks">
-        <figcaption>Your library lives on your device. Illustration, AI-generated.</figcaption>
-      </figure>
-    </div>
-  </section>
-
   <!-- ── Pricing ─────────────────────────────────────────────────── -->
   <section id="pricing">
     <div class="wrap wrap-narrow">
       <div class="section-head center reveal">
         <div class="eyebrow">Free for everyone</div>
-        <h2>Free. Donations unlock the AI models.</h2>
-        <p>Everything works for free with your own AI key or a local model. If you like it, a donation is how you say thanks. It also gives you byphil Cloud: many AI models in one place, no key and no setup, and it supports every tool byphil builds.</p>
+        <h2>Support the project. Get effortless AI.</h2>
+        <p>Everything works for free with your own AI key or a local model. The Support Pass funds independent, local-first software and adds effortless AI plus unlimited offline reading—without holding your archive hostage.</p>
       </div>
 
       <div style="text-align:center;">
@@ -931,7 +912,7 @@
           <ul>
             <li>byphil Cloud: many AI models, no API key needed</li>
             <li>Unlimited Kindle &amp; LocalSend sends, including digests</li>
-            <li>Supports every byphil tool</li>
+            <li>Supports independent, open-source development</li>
           </ul>
           <a href="https://byphil.eu/#pass" class="tier-cta">Support the project</a>
         </div>
@@ -948,29 +929,67 @@
       <div class="section-head center reveal">
         <div class="eyebrow">Questions</div>
         <h2>Before you install</h2>
+        <p>Search the answers by topic, provider, privacy, archive or platform.</p>
       </div>
-      <div class="faq reveal">
-        <details>
+      <div class="faq-tools reveal">
+        <label class="sr-only" for="faqSearch">Search frequently asked questions</label>
+        <input id="faqSearch" type="search" data-faq-search placeholder="Search the FAQ…" autocomplete="off" spellcheck="false" aria-controls="faqList">
+        <p id="faqSearchStatus" class="faq-search-status" aria-live="polite"></p>
+      </div>
+      <div class="faq reveal" id="faqList">
+        <details data-faq-personas="all privacy feeds researcher hoarder">
           <summary>Do I need an account to use it?</summary>
-          <p>No. Install it, bring your own AI provider key (or use a local Ollama model), and start saving. An account only matters if you want byphil Cloud (many AI models without a key) or more Kindle/LocalSend sends, which a donation unlocks.</p>
+          <p>No. Install it, bring your own AI provider key or use a local Ollama model, and start saving. An account is only needed for optional byphil Cloud access or extra Kindle/LocalSend sends.</p>
         </details>
-        <details>
+        <details data-faq-personas="all privacy feeds researcher hoarder">
           <summary>What actually leaves my browser?</summary>
-          <p>Only the summarization request — sent to whichever AI provider you configured — plus, if you use the RSS reader, requests to the feeds you subscribed to, and, only when you click an AI recap, the headlines and short snippets of that day. Search, duplicate detection, tag cleanup, reading-level and sentiment scoring, and "similar articles" recommendations all run locally against your own saved archive.</p>
+          <p>Only the summarization request goes to the AI provider you configured. RSS also needs requests to your subscribed feeds; an AI recap sends headlines and short snippets only when you request it. Search, duplicate detection, tags and recommendations run locally.</p>
         </details>
-        <details>
+        <details data-faq-personas="all privacy">
+          <summary>Are my pages or highlights used to train a model?</summary>
+          <p>AI Summary Helper does not use your content to train its own model. With BYOK, the data policy of your chosen provider applies. With Ollama, the summarization request stays on your machine.</p>
+        </details>
+        <details data-faq-personas="all privacy hoarder">
           <summary>Can I run this with zero cloud dependency?</summary>
-          <p>Yes — point it at a local Ollama model and the summarization step stays on your machine too. Everything else already does.</p>
+          <p>Yes. Point it at a local Ollama model and the summarization step stays on your machine too. Everything else already runs locally.</p>
         </details>
-        <details>
+        <details data-faq-personas="all privacy feeds researcher hoarder">
+          <summary>Where is my reading archive stored?</summary>
+          <p>By default, in your browser on your device. You can export it as Markdown or back it up encrypted to your own Nextcloud, WebDAV server, S3 bucket or local folder.</p>
+        </details>
+        <details data-faq-personas="all privacy hoarder researcher">
+          <summary>What happens if I clear my browser data?</summary>
+          <p>Local browser data can remove a local archive if you have no backup. Export your library or configure encrypted sync to your own storage before clearing browser data or changing profiles.</p>
+        </details>
+        <details data-faq-personas="all privacy researcher feeds">
+          <summary>Which AI providers and models are supported?</summary>
+          <p>You can use OpenAI, Gemini, Mistral, DeepSeek, a compatible custom endpoint, or a local Ollama model. Bring your own key, or use optional byphil Cloud access.</p>
+        </details>
+        <details data-faq-personas="all researcher feeds">
+          <summary>Can I summarize PDFs, YouTube videos and RSS items?</summary>
+          <p>Yes. Summarize PDFs opened in the browser or attached from disk, YouTube videos through their captions, and articles from the built-in RSS reader.</p>
+        </details>
+        <details data-faq-personas="all">
+          <summary>How reliable are the AI summaries?</summary>
+          <p>AI output can be wrong and does not replace checking the source. Follow-up answers show the passage they rely on, so you can compare the summary with the original page.</p>
+        </details>
+        <details data-faq-personas="all">
+          <summary>Which browsers and platforms are supported?</summary>
+          <p>Use the browser extension, native side panel or bookmarklet. An Android companion adds links from your phone; iOS is not available yet.</p>
+        </details>
+        <details data-faq-personas="all privacy">
+          <summary>How do I install the Android companion?</summary>
+          <p>Download the APK from the <a href="https://github.com/philffm/ai-summary-helper/releases/latest" target="_blank" rel="noopener">latest release</a>, then pair it by scanning the QR code under Settings → Phone inbox. It is not on Google Play yet.</p>
+        </details>
+        <details data-faq-personas="all privacy">
+          <summary>What does the Support Pass unlock?</summary>
+          <p>The Support Pass funds independent open-source development and can unlock optional byphil Cloud AI access or additional Kindle/LocalSend sends. Your local archive and local use are not locked behind it.</p>
+        </details>
+        <details data-faq-personas="all">
           <summary>What happens to my saves if I stop supporting the project?</summary>
           <p>Your archive stays exactly where it's always been — in your browser's local storage on your device. The Support Pass only gates cloud-dependent extras (byphil Cloud AI access, unlimited Kindle/LocalSend sends), never access to what you've already saved.</p>
         </details>
-        <details>
-          <summary>How do I install the Android companion?</summary>
-          <p>Download the APK from the link above (or from the <a href="https://github.com/philffm/ai-summary-helper/releases/latest" target="_blank" rel="noopener">latest release</a>), open it, and allow installs from your browser when Android asks. Then pair it by scanning the QR code in the extension under Settings → Phone inbox. It is not on Google Play yet.</p>
-        </details>
-        <details>
+        <details data-faq-personas="all">
           <summary>Is this open source?</summary>
           <p>Yes — the extension's source is public on <a href="https://github.com/philffm/ai-summary-helper/" target="_blank" rel="noopener">GitHub</a>, under the AGPL-3.0 license. It is free for personal, educational and non-profit use; companies that want to use it outside the AGPL's terms can get a commercial license.</p>
         </details>

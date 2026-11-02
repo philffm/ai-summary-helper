@@ -13,9 +13,18 @@ on:
   workflow_dispatch:
     inputs:
       locale:
-        description: 'Only translate this locale (leave blank for all)'
+        description: 'Only translate this locale (overrides priority; leave blank for priority)'
         required: false
         default: ''
+      priority:
+        description: 'Translation priority: 1=German, 2=main markets, 3=remaining markets'
+        type: choice
+        required: false
+        default: '1'
+        options:
+          - '1'
+          - '2'
+          - '3'
 
 permissions:
   contents: write
@@ -90,13 +99,15 @@ jobs:
         run: |
           if [ -n "${{ github.event.inputs.locale }}" ]; then
             node scripts/translate.mjs --locale="${{ github.event.inputs.locale }}"
+          elif [ -n "${{ github.event.inputs.priority }}" ]; then
+            node scripts/translate.mjs --priority="${{ github.event.inputs.priority }}"
           else
             node scripts/translate.mjs
           fi
 
       # Every English page must exist in every locale (besides the "exempt" pages in locales.json).
       - name: Check translations are structurally in sync with English
-        if: ${{ github.event.inputs.locale == '' }}
+        if: ${{ github.event.inputs.locale == '' && github.event.inputs.priority == '' }}
         run: node scripts/check-translations.mjs
 
       # Translation adds/removes locale pages, so the sitemap, hreflang alternates,

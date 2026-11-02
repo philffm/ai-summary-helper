@@ -13,11 +13,18 @@
 - Maker: byphil (https://byphil.eu/)
 
 ## Pages
-- [AI Summary Helper: summarize, save, search the web](https://ai-summary-helper.byphil.eu/): Chrome extension that summarizes pages with AI, reads your RSS feeds and keeps a searchable archive. Search and recommendations run on your device.
+- [AI Summary Helper: your private AI reading and knowledge companion](https://ai-summary-helper.byphil.eu/): Turn reading into knowledge you keep. AI Summary Helper is a private, local-first reading companion for articles, PDFs and videos with source-linked answers and a searchable archive.
+- [MCP browser extension for your local knowledge base | AI Summary Helper](https://ai-summary-helper.byphil.eu/mcp/): Connect Claude, LM Studio or Cursor to your local reading archive with the AI Summary Helper MCP server.
+- [Local AI browser extension with Ollama | AI Summary Helper](https://ai-summary-helper.byphil.eu/local-ai/): Use a local AI browser extension with Ollama, or bring your own key. Your reading archive stays on your device.
 - [Source checking with AI for teaching and libraries](https://ai-summary-helper.byphil.eu/education/): Evidence for every answer, a source check, your choice of model, also local. Open source. Free pilot for educators and universities.
 - [Privacy Policy](https://ai-summary-helper.byphil.eu/privacy.html): How AI Summary Helper handles data: API keys and history stay on your device, and page text goes only to the AI provider you choose.
+- [PDF summarizer with source-linked answers | AI Summary Helper](https://ai-summary-helper.byphil.eu/pdf-summarizer/): Read PDFs faster with a private AI PDF summarizer. Ask questions, verify answers against passages and keep your research searchable.
 - [Create your bookmarklet](https://ai-summary-helper.byphil.eu/bookmarklet.html): One-click AI summary bookmarklet for any browser, including iOS. Use byPhil Cloud without a key, or bring OpenAI, Gemini, Mistral, DeepSeek or Ollama.
+- [Personal knowledge graph for your reading | AI Summary Helper](https://ai-summary-helper.byphil.eu/knowledge-graph/): Connect saved articles by topic with a local personal knowledge graph, search and reusable notes.
+- [AI research paper reader with DOI mode | AI Summary Helper](https://ai-summary-helper.byphil.eu/research-papers/): Read research papers with source-linked AI answers, DOI metadata and a private searchable archive for your literature review.
 - [Pocket alternative with AI summaries and Kindle digest](https://ai-summary-helper.byphil.eu/pocket-alternative/): Free, open-source Chrome extension: save articles, get an AI summary, send a digest to your Kindle. Own AI key or fully offline.
+- [YouTube summarizer and video notes | AI Summary Helper](https://ai-summary-helper.byphil.eu/youtube-summarizer/): Summarize YouTube videos from their captions, ask questions and turn useful moments into searchable notes.
+- [Obsidian integration and AI web clipper | AI Summary Helper](https://ai-summary-helper.byphil.eu/obsidian-integration/): Save articles to an Obsidian-friendly local knowledge base with source-linked notes, Markdown export and connected topics.
 
 ## Blog
 - [Blog](https://ai-summary-helper.byphil.eu/blog/): Notes on reading, search, and building on-device — from the team behind AI Summary Helper.

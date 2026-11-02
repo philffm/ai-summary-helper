@@ -691,6 +691,13 @@
     <xhtml:link rel="alternate" hreflang="fi" href="https://ai-summary-helper.byphil.eu/fi/"/>
   </url>
   <url>
+    <loc>https://ai-summary-helper.byphil.eu/mcp/</loc>
+    <lastmod>2026-11-02</lastmod>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ai-summary-helper.byphil.eu/mcp/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ai-summary-helper.byphil.eu/mcp/"/>
+  </url>
+  <url>
     <loc>https://ai-summary-helper.byphil.eu/blog/</loc>
     <lastmod>2026-11-01</lastmod>
     <priority>0.7</priority>
@@ -1411,6 +1418,13 @@
     <xhtml:link rel="alternate" hreflang="fi" href="https://ai-summary-helper.byphil.eu/fi/blog/"/>
   </url>
   <url>
+    <loc>https://ai-summary-helper.byphil.eu/local-ai/</loc>
+    <lastmod>2026-11-02</lastmod>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ai-summary-helper.byphil.eu/local-ai/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ai-summary-helper.byphil.eu/local-ai/"/>
+  </url>
+  <url>
     <loc>https://ai-summary-helper.byphil.eu/education/</loc>
     <lastmod>2026-11-01</lastmod>
     <priority>0.8</priority>
@@ -1637,6 +1651,13 @@
     <xhtml:link rel="alternate" hreflang="fi" href="https://ai-summary-helper.byphil.eu/fi/yksityisyys.html"/>
   </url>
   <url>
+    <loc>https://ai-summary-helper.byphil.eu/pdf-summarizer/</loc>
+    <lastmod>2026-11-02</lastmod>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ai-summary-helper.byphil.eu/pdf-summarizer/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ai-summary-helper.byphil.eu/pdf-summarizer/"/>
+  </url>
+  <url>
     <loc>https://ai-summary-helper.byphil.eu/ru/privacy.html</loc>
     <lastmod>2026-11-01</lastmod>
     <priority>0.5</priority>
@@ -1792,6 +1813,20 @@
     <priority>0.8</priority>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://ai-summary-helper.byphil.eu/bookmarklet.html"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://ai-summary-helper.byphil.eu/bookmarklet.html"/>
+  </url>
+  <url>
+    <loc>https://ai-summary-helper.byphil.eu/knowledge-graph/</loc>
+    <lastmod>2026-11-02</lastmod>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ai-summary-helper.byphil.eu/knowledge-graph/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ai-summary-helper.byphil.eu/knowledge-graph/"/>
+  </url>
+  <url>
+    <loc>https://ai-summary-helper.byphil.eu/research-papers/</loc>
+    <lastmod>2026-11-02</lastmod>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ai-summary-helper.byphil.eu/research-papers/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ai-summary-helper.byphil.eu/research-papers/"/>
   </url>
   <url>
     <loc>https://ai-summary-helper.byphil.eu/tr/gizlilik.html</loc>
@@ -2731,6 +2766,13 @@
     <xhtml:link rel="alternate" hreflang="fi" href="https://ai-summary-helper.byphil.eu/fi/blog/videos.html"/>
   </url>
   <url>
+    <loc>https://ai-summary-helper.byphil.eu/youtube-summarizer/</loc>
+    <lastmod>2026-11-02</lastmod>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ai-summary-helper.byphil.eu/youtube-summarizer/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ai-summary-helper.byphil.eu/youtube-summarizer/"/>
+  </url>
+  <url>
     <loc>https://ai-summary-helper.byphil.eu/zh/blog/videos.html</loc>
     <lastmod>2026-11-01</lastmod>
     <priority>0.5</priority>
@@ -2819,6 +2861,13 @@
     <xhtml:link rel="alternate" hreflang="da" href="https://ai-summary-helper.byphil.eu/da/blog/et-resume-i-stedet-for-40-feeds.html"/>
     <xhtml:link rel="alternate" hreflang="nb" href="https://ai-summary-helper.byphil.eu/no/blog/en-oppsummering-i-stedet-for-40-feeder.html"/>
     <xhtml:link rel="alternate" hreflang="fi" href="https://ai-summary-helper.byphil.eu/fi/blog/yksi-yhteenveto-40-syotteen-sijaan.html"/>
+  </url>
+  <url>
+    <loc>https://ai-summary-helper.byphil.eu/obsidian-integration/</loc>
+    <lastmod>2026-11-02</lastmod>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ai-summary-helper.byphil.eu/obsidian-integration/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ai-summary-helper.byphil.eu/obsidian-integration/"/>
   </url>
   <url>
     <loc>https://ai-summary-helper.byphil.eu/blog/unread-saves.html</loc>
@@ -3067,28 +3116,6 @@
     <xhtml:link rel="alternate" hreflang="x-default" href="https://ai-summary-helper.byphil.eu/blog/ai-apps-mcp.html"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://ai-summary-helper.byphil.eu/blog/ai-apps-mcp.html"/>
     <xhtml:link rel="alternate" hreflang="de" href="https://ai-summary-helper.byphil.eu/de/blog/ki-apps-mcp.html"/>
-    <xhtml:link rel="alternate" hreflang="fr" href="https://ai-summary-helper.byphil.eu/fr/blog/ai-apps-mcp.html"/>
-    <xhtml:link rel="alternate" hreflang="es" href="https://ai-summary-helper.byphil.eu/es/blog/ai-apps-mcp.html"/>
-    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://ai-summary-helper.byphil.eu/zh/blog/ai-apps-mcp.html"/>
-    <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://ai-summary-helper.byphil.eu/zh-tw/blog/ai-apps-mcp.html"/>
-    <xhtml:link rel="alternate" hreflang="ja" href="https://ai-summary-helper.byphil.eu/ja/blog/ai-apps-mcp.html"/>
-    <xhtml:link rel="alternate" hreflang="ko" href="https://ai-summary-helper.byphil.eu/ko/blog/ai-apps-mcp.html"/>
-    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://ai-summary-helper.byphil.eu/pt/blog/ai-apps-mcp.html"/>
-    <xhtml:link rel="alternate" hreflang="hi" href="https://ai-summary-helper.byphil.eu/hi/blog/ai-apps-mcp.html"/>
-    <xhtml:link rel="alternate" hreflang="vi" href="https://ai-summary-helper.byphil.eu/vi/blog/ai-apps-mcp.html"/>
-    <xhtml:link rel="alternate" hreflang="nl" href="https://ai-summary-helper.byphil.eu/nl/blog/ai-apps-mcp.html"/>
-    <xhtml:link rel="alternate" hreflang="it" href="https://ai-summary-helper.byphil.eu/it/blog/ai-apps-mcp.html"/>
-    <xhtml:link rel="alternate" hreflang="ru" href="https://ai-summary-helper.byphil.eu/ru/blog/ai-apps-mcp.html"/>
-    <xhtml:link rel="alternate" hreflang="uk" href="https://ai-summary-helper.byphil.eu/uk/blog/ai-apps-mcp.html"/>
-    <xhtml:link rel="alternate" hreflang="tr" href="https://ai-summary-helper.byphil.eu/tr/blog/ai-apps-mcp.html"/>
-    <xhtml:link rel="alternate" hreflang="id" href="https://ai-summary-helper.byphil.eu/id/blog/ai-apps-mcp.html"/>
-    <xhtml:link rel="alternate" hreflang="pl" href="https://ai-summary-helper.byphil.eu/pl/blog/ai-apps-mcp.html"/>
-    <xhtml:link rel="alternate" hreflang="th" href="https://ai-summary-helper.byphil.eu/th/blog/ai-apps-mcp.html"/>
-    <xhtml:link rel="alternate" hreflang="ar" href="https://ai-summary-helper.byphil.eu/ar/blog/ai-apps-mcp.html"/>
-    <xhtml:link rel="alternate" hreflang="sv" href="https://ai-summary-helper.byphil.eu/sv/blog/ai-apps-mcp.html"/>
-    <xhtml:link rel="alternate" hreflang="da" href="https://ai-summary-helper.byphil.eu/da/blog/ai-apps-mcp.html"/>
-    <xhtml:link rel="alternate" hreflang="nb" href="https://ai-summary-helper.byphil.eu/no/blog/ai-apps-mcp.html"/>
-    <xhtml:link rel="alternate" hreflang="fi" href="https://ai-summary-helper.byphil.eu/fi/blog/ai-apps-mcp.html"/>
   </url>
   <url>
     <loc>https://ai-summary-helper.byphil.eu/es/blog/ai-apps-mcp.html</loc>

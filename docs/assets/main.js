@@ -894,6 +894,7 @@ function setBilling(period) {
   }
   var slides = [].slice.call(track.children);
   var dots = [].slice.call(root.querySelectorAll('.cx-dot'));
+  var jumpLinks = [].slice.call(document.querySelectorAll('.slide-jumps [data-slider-goto]'));
   var prev = root.querySelector('.cx-prev'), next = root.querySelector('.cx-next');
   var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   var active = 0, raf = 0;
@@ -909,6 +910,11 @@ function setBilling(period) {
     active = i;
     slides.forEach(function (el, k) { el.classList.toggle('is-active', k === i); el.setAttribute('aria-current', k === i ? 'true' : 'false'); });
     dots.forEach(function (d, k) { d.classList.toggle('is-active', k === i); if (k === i) d.setAttribute('aria-current', 'true'); else d.removeAttribute('aria-current'); });
+    jumpLinks.forEach(function (link) {
+      var on = link.getAttribute('data-slider-goto') === slides[i].id;
+      link.classList.toggle('is-active', on);
+      if (on) link.setAttribute('aria-current', 'true'); else link.removeAttribute('aria-current');
+    });
     if (prev) prev.disabled = i === 0;
     if (next) next.disabled = i === slides.length - 1;
     fit();
@@ -941,6 +947,29 @@ function setBilling(period) {
   window.addEventListener('resize', function () { go(active); });
   root.slideGo = function (id) { var i = slides.findIndex(function (x) { return x.id === id; }); if (i < 0) return false; go(i); return true; };
   go(0); sync(0);
+})();
+
+/* ── FAQ search ──────────────────────────────────────────────────── */
+(function () {
+  var input = document.querySelector('[data-faq-search]');
+  var list = document.getElementById('faqList');
+  var status = document.getElementById('faqSearchStatus');
+  if (!input || !list) return;
+  var items = [].slice.call(list.querySelectorAll('details'));
+  function filter() {
+    var query = input.value.trim().toLowerCase();
+    var visible = 0;
+    items.forEach(function (item) {
+      var match = !query || item.textContent.toLowerCase().indexOf(query) !== -1;
+      item.hidden = !match;
+      if (match) {
+        visible++;
+        if (query) item.open = true;
+      }
+    });
+    if (status) status.textContent = query ? visible + ' answer' + (visible === 1 ? '' : 's') + ' found' : '';
+  }
+  input.addEventListener('input', filter);
 })();
 
 // Live demo: the iframe is created on click, so the page stays light until someone wants it.

@@ -37,6 +37,34 @@ const SITE_BASE = 'https://ai-summary-helper.byphil.eu';
 const PRODUCT = JSON.parse(await readFile(path.join(SITE_SRC, 'site.json'), 'utf8')).product;
 
 const INCLUDE_RE = /<!--include:([a-zA-Z0-9_-]+)-->/g;
+const HOMEPAGE_SOURCE = await readFile(path.join(PAGES_DIR, 'index.html'), 'utf8');
+const FEATURES_START = HOMEPAGE_SOURCE.indexOf('<!-- ── Features');
+const FEATURES_END = HOMEPAGE_SOURCE.indexOf('<!-- ── Phone companion', FEATURES_START);
+if (FEATURES_START < 0 || FEATURES_END < 0) throw new Error('Could not locate the shared What it does section in the homepage.');
+const WHAT_IT_DOES = HOMEPAGE_SOURCE.slice(FEATURES_START, FEATURES_END);
+const FAQ_START = HOMEPAGE_SOURCE.indexOf('<!-- ── FAQ');
+const FAQ_END = HOMEPAGE_SOURCE.indexOf('<!-- ── Blog teaser', FAQ_START);
+if (FAQ_START < 0 || FAQ_END < 0) throw new Error('Could not locate the shared FAQ section in the homepage.');
+const SHARED_FAQ = HOMEPAGE_SOURCE.slice(FAQ_START, FAQ_END);
+
+function filteredFeatureSection(persona) {
+    const $ = cheerio.load(WHAT_IT_DOES, { decodeEntities: false });
+    $('#features').attr('data-default-persona', persona);
+    $('#featureGrid .feature-card').each((_, card) => {
+        const personas = ($(card).attr('data-personas') || '').split(/\s+/);
+        if (!personas.includes(persona)) $(card).remove();
+    });
+    return $('body').html();
+}
+
+function filteredFaqSection(persona) {
+    const $ = cheerio.load(SHARED_FAQ, { decodeEntities: false });
+    $('#faqList details').each((_, item) => {
+        const personas = ($(item).attr('data-faq-personas') || 'all').split(/\s+/);
+        if (!personas.includes('all') && !personas.includes(persona)) $(item).remove();
+    });
+    return $('body').html();
+}
 
 async function loadPartials() {
     const files = await readdir(PARTIALS_DIR);
@@ -89,6 +117,8 @@ async function buildPage(relPath, partials, config) {
 
     // Resolve includes. A partial can itself reference {{base}}, so we
     // substitute per-page, not once globally.
+    html = html.replace(/<!--include:what-it-does:([a-z]+)-->/g, (_, persona) => filteredFeatureSection(persona));
+    html = html.replace(/<!--include:faq:([a-z]+)-->/g, (_, persona) => filteredFaqSection(persona));
     html = html.replace(INCLUDE_RE, (match, name) => {
         if (!(name in partials)) {
             throw new Error(`${relPath}: unknown partial "${name}" (looked in site-src/partials/${name}.html)`);
