@@ -425,6 +425,8 @@ section{ padding:76px 0; }
 .faq summary::after{ content:"+"; font-size:20px; color:var(--paper-dim); flex-shrink:0; transition:transform 0.2s ease; }
 .faq details[open] summary::after{ transform:rotate(45deg); }
 .faq p{ font-size:14.5px; line-height:1.65; color:var(--paper-dim); margin:12px 0 0; }
+.faq p a{ color:var(--signal-light); text-decoration:underline; text-decoration-color:var(--signal); text-underline-offset:3px; }
+.faq p a:hover{ color:var(--paper); }
 .faq-tools{max-width:680px;margin:0 auto 18px}
 .faq-tools input{width:100%;padding:13px 16px;border:1px solid var(--border-medium);border-radius:12px;background:var(--surface-1);color:var(--paper);font:inherit}
 .faq-tools input::placeholder{color:var(--paper-dim)}
