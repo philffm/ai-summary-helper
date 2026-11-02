@@ -120,7 +120,7 @@ function filteredFaqSection(persona) {
     const $ = cheerio.load(SHARED_FAQ, { decodeEntities: false });
     $('#faqList details').each((_, item) => {
         const personas = ($(item).attr('data-faq-personas') || 'all').split(/\s+/);
-        if (!personas.includes('shared') && !personas.includes(persona)) $(item).remove();
+        if (!personas.includes(persona)) $(item).remove();
     });
     return $('body').html().replace(/[ \t]+$/gm, '');
 }
