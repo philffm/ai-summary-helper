@@ -31,6 +31,16 @@
     "education/index.html",
     "pocket-alternative/index.html"
   ],
+  "stagedTranslationPages": [
+    "knowledge-graph/index.html",
+    "local-ai/index.html",
+    "mcp/index.html",
+    "obsidian-integration/index.html",
+    "pdf-summarizer/index.html",
+    "research-papers/index.html",
+    "youtube-summarizer/index.html"
+  ],
+  "translationRolloutLocales": ["de"],
   "translationPriorities": {
     "1": ["de"],
     "2": ["fr", "es", "pt", "it", "nl", "ja", "zh", "zh-TW", "ko"],

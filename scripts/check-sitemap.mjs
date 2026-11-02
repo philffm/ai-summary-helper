@@ -68,6 +68,8 @@ const listed = new Set(locs);
 const altsByLoc = new Map();
 for (const [code, locale] of Object.entries(I18N.locales)) {
   for (const source of I18N.content) {
+    if ((I18N.stagedTranslationPages || []).includes(source)
+      && !(I18N.translationRolloutLocales || Object.keys(I18N.locales)).includes(code)) continue;
     const rel = path.posix.join(locale.dir, localizedPath(source, code));
     const file = path.join(DOCS, rel);
     if (!fs.existsSync(file)) errors.push(`${locale.dir}/${localizedPath(source, code)}: configured translated page is missing`);

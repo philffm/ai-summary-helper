@@ -15,7 +15,7 @@ test('translation priorities cover every configured locale exactly once', () => 
     assert.deepEqual(groups['1'], ['de']);
 });
 
-test('new SEO landing pages remain exempt from staged translation coverage', () => {
+test('SEO landing pages are included in staged translation coverage', () => {
     for (const page of [
         'knowledge-graph/index.html',
         'local-ai/index.html',
@@ -25,6 +25,8 @@ test('new SEO landing pages remain exempt from staged translation coverage', () 
         'research-papers/index.html',
         'youtube-summarizer/index.html'
     ]) {
-        assert.ok(config.exempt.includes(page), `${page} should remain English-only until rollout`);
+        assert.ok(config.content.includes(page), `${page} should be translated through the regular pipeline`);
+        assert.ok(!config.exempt.includes(page), `${page} should not remain exempt after rollout`);
+        assert.ok(config.stagedTranslationPages.includes(page), `${page} should be marked as staged during rollout`);
     }
 });
