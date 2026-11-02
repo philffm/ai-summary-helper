@@ -47,6 +47,7 @@ const REPO_ROOT = process.cwd();
 const ROOT = path.join(REPO_ROOT, 'docs'); // docs/ is assembled by build-site.mjs and is the canonical English source
 const CONFIG_PATH = path.join(ROOT, 'i18n', 'locales.json');
 const MANIFEST_PATH = path.join(ROOT, 'i18n', 'manifest.json');
+const TRANSCREATION_BRIEF_PATH = path.join(ROOT, 'i18n', 'transcreation-brief.md');
 const OPENROUTER_MODEL = process.env.OPENROUTER_MODEL || 'deepseek/deepseek-v4.1-flash';
 const OPENROUTER_URL = 'https://openrouter.ai/api/v1/chat/completions';
 
@@ -340,7 +341,7 @@ function parseModelJson(raw, units) {
     return Object.keys(out).length ? out : null;
 }
 
-async function translateUnits(units, locale, apiKey) {
+async function translateUnits(units, locale, apiKey, transcreationBrief) {
     if (DRY_RUN) {
         // Mock: wrap each string so a dry run is visibly distinguishable
         // from a real translation, without needing network access.
@@ -349,10 +350,13 @@ async function translateUnits(units, locale, apiKey) {
         return out;
     }
 
-    const system = `You are a professional translator and market localizer. Translate the given UI/content strings from English into ${locale.name}. This is not just literal translation — adapt tone, examples, and framing for the target market using the notes below. Preserve any HTML entities, emoji, and inline formatting markers exactly. Do not translate proper nouns, product/feature names given in backticks, or URLs. Never add or strengthen claims that are not in the source text: in particular no claims of legal compliance, certification or approval (GDPR, DSGVO, ISO and similar), no statements about where data is hosted, and no performance or security guarantees. Translate such statements exactly as the source makes them. Return ONLY a JSON object mapping each input id to its translated string — no other text, no markdown fences.
+    const system = `You are a professional translator and market localizer. Translate the given UI/content strings from English into ${locale.name}. This is not just literal translation — adapt tone, examples, and framing for the target market using the notes and transcreation brief below. Preserve any HTML entities, emoji, and inline formatting markers exactly. Do not translate proper nouns, product/feature names given in backticks, or URLs. Never add or strengthen claims that are not in the source text: in particular no claims of legal compliance, certification or approval (GDPR, DSGVO, ISO and similar), no statements about where data is hosted, and no performance or security guarantees. Translate such statements exactly as the source makes them. Return ONLY a JSON object mapping each input id to its translated string — no other text, no markdown fences.
 
 Market adaptation notes for ${locale.name}:
-${locale.marketNotes}`;
+${locale.marketNotes}
+
+Global transcreation brief:
+${transcreationBrief}`;
 
     const user = JSON.stringify(
         units.map(u => ({ id: u.id, text: u.text, kind: u.kind })),
@@ -432,7 +436,7 @@ function stringKey(text) {
     return sha256(text);
 }
 
-async function translateFile(relPath, config, targetLocales, manifest, apiKey, pageInventory) {
+async function translateFile(relPath, config, targetLocales, manifest, apiKey, pageInventory, transcreationBrief) {
     const srcPath = path.join(ROOT, relPath);
     const srcContent = await readFile(srcPath, 'utf8');
 
@@ -462,7 +466,7 @@ async function translateFile(relPath, config, targetLocales, manifest, apiKey, p
         let fresh = {};
         if (missing.length > 0) {
             console.log(`translate  ${relPath} [${code}] — ${missing.length}/${units.length} new string(s)${DRY_RUN ? ' (dry run)' : ''}`);
-            fresh = await translateUnits(missing, locale, apiKey);
+            fresh = await translateUnits(missing, locale, apiKey, transcreationBrief);
             anyApiCallsThisFile = true;
 
             const now = new Date().toISOString();
@@ -548,6 +552,7 @@ async function syncNavPostTitles(config, targetLocales, files) {
 
 async function main() {
     const config = await loadJson(CONFIG_PATH);
+    const transcreationBrief = await readFile(TRANSCREATION_BRIEF_PATH, 'utf8');
     const pageInventory = buildLocalizedPageInventory(config, ROOT);
     const manifest = existsSync(MANIFEST_PATH) ? await loadJson(MANIFEST_PATH) : { strings: {} };
     manifest.strings = manifest.strings || {};
@@ -599,7 +604,7 @@ async function main() {
         });
     }
     for (const relPath of targetFiles) {
-        const called = await translateFile(relPath, config, targetLocales, manifest, apiKey, pageInventory);
+        const called = await translateFile(relPath, config, targetLocales, manifest, apiKey, pageInventory, transcreationBrief);
         if (called) filesWithApiCalls++;
         // Persist progress after every file so an aborted run keeps what was already paid for.
         if (called && !DRY_RUN) await saveJson(MANIFEST_PATH, manifest);
