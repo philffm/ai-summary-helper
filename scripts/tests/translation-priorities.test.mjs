@@ -23,7 +23,8 @@ test('SEO landing pages are included in staged translation coverage', () => {
         'obsidian-integration/index.html',
         'pdf-summarizer/index.html',
         'research-papers/index.html',
-        'youtube-summarizer/index.html'
+        'youtube-summarizer/index.html',
+        'e-reader/index.html'
     ]) {
         assert.ok(config.content.includes(page), `${page} should be translated through the regular pipeline`);
         assert.ok(!config.exempt.includes(page), `${page} should not remain exempt after rollout`);

@@ -47,6 +47,11 @@ const FAQ_END = HOMEPAGE_SOURCE.indexOf('<!-- ── Blog teaser', FAQ_START);
 if (FAQ_START < 0 || FAQ_END < 0) throw new Error('Could not locate the shared FAQ section in the homepage.');
 const SHARED_FAQ = HOMEPAGE_SOURCE.slice(FAQ_START, FAQ_END);
 const RELATED_READING = {
+    ereader: [
+        ['Product', 'You won’t read most of what you save. Here’s the actual fix.', 'blog/unread-saves.html', 'Use a digest to pick what is worth reading and send it away from the screen.'],
+        ['Guide', 'Sync your reading library to Nextcloud, S3 or a folder', 'blog/sync-to-nextcloud-s3-or-a-folder.html', 'Keep the archive on storage you control, next to what you send to your e-reader.'],
+        ['Guide', 'Pocket alternative: what matters', 'blog/pocket-alternative.html', 'What to look for in a read-it-later tool that is not a cloud silo.']
+    ],
     pdf: [
         ['Guide', 'Check an AI summary against its source', 'blog/verify-ai-summary.html', 'A quick source-checking habit for any AI answer.'],
         ['Workflow', 'Highlighting alone barely works. Ask about it instead.', 'blog/highlighting-vs-asking.html', 'Turn important passages into questions you can revisit.'],
@@ -95,6 +100,7 @@ const EVIDENCE_COPY = {
     video: ['Watch less, understand more', 'Four ways to get to the point of a video and back to the proof.'],
     hoarder: ['Make your saved reading come back', 'Four ways an archive can earn its place instead of piling up.'],
     privacy: ['You choose where it runs', 'Four things you control when the AI reads for you.'],
+    ereader: ['From your archive to your e-reader', 'Four things that happen between saving an article and reading it somewhere quiet.'],
     mcp: ['What your AI app can and cannot do', 'The limits are built in and you set them. The details are in the open-source relay documentation.']
 };
 
@@ -132,6 +138,12 @@ function evidenceSection(persona) {
             ['Your storage', 'Sync an encrypted library to your own server', 'Sync to Nextcloud, WebDAV, S3 or a local folder. The library is encrypted and we run no sync server.', '', ''],
             ['Honest about keys', 'Your key does not make it local', 'With your own key, the request and any context in it go to the provider you chose. Only a local model keeps it on your device.', '', '']
         ],
+        ereader: [
+            ['Archive, don’t bookmark', 'The article itself, not just a link', 'Saved articles keep their text and their images in a local archive. Images are resized to a maximum width and compressed when you save, so a page stays readable and small.', '', ''],
+            ['Straight to your Kindle', 'Send to Kindle, with or without images', 'Send an article as EPUB, or EPUB with images. Add kindle@byphil.eu to your approved senders in your Amazon account once. The first three Kindle sends are free.', '', ''],
+            ['No cloud in between', 'LocalSend goes straight to the device', 'Send to any device that runs a LocalSend-compatible app, or use the system share sheet, for example AirDrop. The file goes from your browser to the device you pick and never touches our server.', '', ''],
+            ['Five picked for you', 'A digest that curates itself', 'One tap picks a varied digest instead of five versions of one story and bundles it for Kindle or LocalSend.', '', '']
+        ],
         mcp: [
             ['Read-only', 'Your AI app can read, not edit', 'Connected apps can search your saved articles, summaries, highlights, collections and feeds. They cannot edit or delete anything, and nothing works while the browser is closed. The one write is saving a link to your inbox, marked “added by AI app”, and only if you allow it.', 'aish-mcp documentation, What it can and can’t do', 'https://github.com/philffm/ai-summary-helper/blob/main/mcp/README.md'],
             ['Off by default', 'You switch each permission on', 'The feature is off until you turn it on in AISH settings. Full article text, feeds and saving links are separate switches, and anything you have not enabled is refused inside the extension. Articles tagged private never appear in a result.', 'aish-mcp documentation, Security notes', 'https://github.com/philffm/ai-summary-helper/blob/main/mcp/README.md'],
@@ -146,6 +158,7 @@ function evidenceSection(persona) {
         video: ['scene-student-teacher-evidence', 'students-studying-together', 'teacher-grading-papers', 'students-classroom-reading'],
         hoarder: ['woman-cafe-knowledge-graph', 'student-wheelchair-library', 'latina-woman-document-stack', 'evening-sofa-ereader'],
         privacy: ['older-woman-home-nas-desk', 'it-specialist-server-room', 'nas-shelf-laptop-phone', 'offline-laptop-cable'],
+        ereader: ['ereader-bedside-table', 'commuter-train-reading', 'evening-sofa-ereader', 'older-man-kitchen-tablet'],
         mcp: ['older-woman-home-nas-desk', 'it-specialist-server-room', 'offline-laptop-cable', 'woman-cafe-knowledge-graph']
     };
     const pics = IMAGES[persona] || IMAGES.privacy;
@@ -161,6 +174,7 @@ function demoConfig(persona) {
         youtube: ['Turn a long video into a return path', 'Open a long lecture, inspect its transcript-backed summary and jump back to the moment behind an answer.', 'scenario=youtube'],
         hoarder: ['Turn saved reading into a return path', 'Open the local library, search what you saved and follow the source back to the article.', 'screen=history'],
         privacy: ['Choose the model boundary yourself', 'Open the model settings and see where local, BYOK and hosted-provider choices differ.', 'panel=models'],
+        ereader: ['Look at what an archive holds', 'Open the local library and see saved articles with their summaries and highlights. Nothing is sent from the demo.', 'screen=history'],
         mcp: ['Connect a local archive with explicit scope', 'Open the MCP settings and inspect the connected tools and access boundary.', 'scenario=mcp&panel=mcp']
     };
     return demos[persona] || demos.privacy;
@@ -199,6 +213,7 @@ function landingHeroVideo(persona) {
         researcher: ['recherche', 'Read a paper without losing the source'],
         video: ['ytvideo', 'Summarize a video and return to the passage'],
         graph: ['graph', 'Connect what you read'],
+        ereader: ['senden', 'Send an article to your Kindle or another device'],
         mcp: ['mcp', 'Connect your library to an AI app'],
         export: ['export', 'Keep your reading trail in your notes']
     };

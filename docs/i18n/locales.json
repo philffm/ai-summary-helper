@@ -24,7 +24,8 @@
     "pdf-summarizer/index.html",
     "research-papers/index.html",
     "youtube-summarizer/index.html",
-    "rss-news/index.html"
+    "rss-news/index.html",
+    "e-reader/index.html"
   ],
   "exempt": [
     "bookmarklet.html",
@@ -40,7 +41,8 @@
     "pdf-summarizer/index.html",
     "research-papers/index.html",
     "youtube-summarizer/index.html",
-    "rss-news/index.html"
+    "rss-news/index.html",
+    "e-reader/index.html"
   ],
   "translationPriorities": {
     "1": ["de"],

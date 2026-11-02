@@ -5394,6 +5394,45 @@
     </video:video>
   </url>
   <url>
+    <loc>https://ai-summary-helper.byphil.eu/e-reader/</loc>
+    <video:video>
+      <video:thumbnail_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/sprache-en.jpg</video:thumbnail_loc>
+      <video:title>20+ languages, cross-platform</video:title>
+      <video:description>Read and summarize in 20+ languages using the extension, native side panel, or bookmarklet when the extension cannot reach a page.</video:description>
+      <video:content_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/sprache-en.mp4</video:content_loc>
+      <video:duration>16</video:duration>
+      <video:publication_date>2026-10-20T00:00:00+00:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+    <video:video>
+      <video:thumbnail_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/ghost-en.jpg</video:thumbnail_loc>
+      <video:title>Ghost highlights, right on the page</video:title>
+      <video:description>The AI highlights important verbatim passages so you can skim key insights and export them with the summary to Kindle, LocalSend or Markdown.</video:description>
+      <video:content_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/ghost-en.mp4</video:content_loc>
+      <video:duration>20</video:duration>
+      <video:publication_date>2026-10-21T00:00:00+00:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+    <video:video>
+      <video:thumbnail_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/instant-en.jpg</video:thumbnail_loc>
+      <video:title>Instant read: listen while it writes</video:title>
+      <video:description>Listen while the summary is written: title first, then sentence by sentence, with pause, mute and speed controls. Replay it from any card.</video:description>
+      <video:content_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/instant-en.mp4</video:content_loc>
+      <video:duration>28</video:duration>
+      <video:publication_date>2026-10-21T00:00:00+00:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+    <video:video>
+      <video:thumbnail_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/digest-en.jpg</video:thumbnail_loc>
+      <video:title>A digest that picks itself</video:title>
+      <video:description>One tap curates a varied digest instead of five versions of one story, then bundles it for Kindle or LocalSend.</video:description>
+      <video:content_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/digest-en.mp4</video:content_loc>
+      <video:duration>20</video:duration>
+      <video:publication_date>2026-10-20T00:00:00+00:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+  </url>
+  <url>
     <loc>https://ai-summary-helper.byphil.eu/local-ai/</loc>
     <video:video>
       <video:thumbnail_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/feeds-en.jpg</video:thumbnail_loc>
