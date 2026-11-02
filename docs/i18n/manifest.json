@@ -191244,6 +191244,26 @@
           "model": "deepseek/deepseek-v4.1-flash"
         }
       }
+    },
+    "b3ab5315908236af2bad6d21355dbe7e2da85b634237c1a0b2e3348f890e4b13": {
+      "en": "Connect Nextcloud, S3 or a local folder — encrypted in the browser.",
+      "translations": {
+        "de": {
+          "text": "Verbinden Sie Nextcloud, S3 oder einen lokalen Ordner — verschlüsselt im Browser.",
+          "translatedAt": "2026-11-02T15:14:29.771Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "9227f7434375ebcd98438960693327e8fa062789c5c5fca32e38bcea4999453c": {
+      "en": "Connect your reading library to Nextcloud, S3 or a folder and keep it encrypted.",
+      "translations": {
+        "de": {
+          "text": "Verbinden Sie Ihre Lesebibliothek mit Nextcloud, S3 oder einem Ordner und halten Sie sie verschlüsselt.",
+          "translatedAt": "2026-11-02T15:14:29.771Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
     }
   }
 }
