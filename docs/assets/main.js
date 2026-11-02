@@ -1908,9 +1908,11 @@ function setBilling(period) {
     nb: ['KI', 'AI-generert', 'Bildene på dette nettstedet er AI-genererte og viser ikke virkelige personer.'],
     fi: ['AI', 'Tekoälyllä luotu', 'Sivuston kuvat on luotu tekoälyllä, eivätkä ne esitä oikeita ihmisiä.']
   };
+  var IMG = { en: 'Image', de: 'Bild', fr: 'Image', es: 'Imagen', zh: '图片', 'zh-tw': '圖片', ja: '画像', ko: '이미지', pt: 'Imagem', hi: 'चित्र', vi: 'Hình ảnh', nl: 'Beeld', it: 'Immagine', ru: 'Изображение', uk: 'Зображення', tr: 'Görsel', id: 'Gambar', pl: 'Obraz', th: 'ภาพ', ar: 'الصورة', sv: 'Bild', da: 'Billede', no: 'Bilde', nb: 'Bilde', fi: 'Kuva' };
   function init() {
     var lang = (document.documentElement.lang || 'en').toLowerCase();
     var t = L[lang] || L[lang.split('-')[0]] || L.en;
+    var imgWord = IMG[lang] || IMG[lang.split('-')[0]] || IMG.en;
     var imgs = document.querySelectorAll('img[src*="assets/photo/"], img[src*="/photo/"]');
     var cards = document.querySelectorAll('[style*="assets/photo/"], [style*="url(photo/"]');
     if (!imgs.length && !cards.length) return;
@@ -1961,7 +1963,7 @@ function setBilling(period) {
       if (card.dataset.aiLabelled) return;
       card.dataset.aiLabelled = '1';
       var src = card.querySelector('.cx-src');
-      if (src) src.appendChild(badge('ai-badge--inline'));
+      if (src) { var b = badge('ai-badge--inline'); b.textContent = imgWord + ': ' + t[0]; src.appendChild(b); }
       else host(card).appendChild(badge('ai-badge--top'));
     });
 
