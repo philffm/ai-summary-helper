@@ -1875,3 +1875,101 @@ function setBilling(period) {
     a.addEventListener('click', function (e) { if (document.fullscreenEnabled || document.webkitFullscreenEnabled) { e.preventDefault(); full(a.closest('.demo-frame')); } });
   });
 })();
+
+/* ── AI-image labelling ──────────────────────────────────────────────
+   Every picture from assets/photo/ is AI-generated. Mark each one with a
+   small visible badge (EU AI Act, Art. 50), put the same words in front of
+   the alt text, and add one note to the footer. Works for all languages. */
+(function () {
+  var L = {
+    en: ['AI-generated', 'Images on this site are AI-generated and do not show real people.'],
+    de: ['KI-generiert', 'Die Bilder auf dieser Seite sind KI-generiert und zeigen keine realen Personen.'],
+    fr: ['Généré par IA', 'Les images de ce site sont générées par IA et ne montrent pas de personnes réelles.'],
+    es: ['Generado con IA', 'Las imágenes de este sitio están generadas con IA y no muestran personas reales.'],
+    zh: ['AI 生成', '本网站的图片均由 AI 生成，并非真实人物。'],
+    'zh-tw': ['AI 生成', '本網站的圖片皆由 AI 生成，並非真實人物。'],
+    ja: ['AI生成', 'このサイトの画像はAIで生成されたもので、実在の人物ではありません。'],
+    ko: ['AI 생성', '이 사이트의 이미지는 AI로 생성되었으며 실제 인물이 아닙니다.'],
+    pt: ['Gerado por IA', 'As imagens deste site são geradas por IA e não mostram pessoas reais.'],
+    hi: ['एआई-निर्मित', 'इस साइट की छवियाँ एआई से बनाई गई हैं और वास्तविक लोगों को नहीं दिखातीं।'],
+    vi: ['Tạo bởi AI', 'Hình ảnh trên trang này do AI tạo ra và không phải người thật.'],
+    nl: ['AI-gegenereerd', 'De beelden op deze site zijn door AI gegenereerd en tonen geen echte mensen.'],
+    it: ['Generato con IA', 'Le immagini di questo sito sono generate con IA e non mostrano persone reali.'],
+    ru: ['Создано ИИ', 'Изображения на сайте созданы ИИ и не показывают реальных людей.'],
+    uk: ['Створено ШІ', 'Зображення на цьому сайті створені ШІ й не зображують реальних людей.'],
+    tr: ['Yapay zekâ ürünü', 'Bu sitedeki görseller yapay zekâ ile üretilmiştir ve gerçek kişileri göstermez.'],
+    id: ['Dibuat dengan AI', 'Gambar di situs ini dibuat dengan AI dan tidak menampilkan orang sungguhan.'],
+    pl: ['Wygenerowano przez AI', 'Obrazy na tej stronie wygenerowała sztuczna inteligencja i nie przedstawiają prawdziwych osób.'],
+    th: ['สร้างโดย AI', 'ภาพบนเว็บไซต์นี้สร้างโดย AI และไม่ใช่บุคคลจริง'],
+    ar: ['مُنشأ بالذكاء الاصطناعي', 'صور هذا الموقع مُنشأة بالذكاء الاصطناعي ولا تُظهر أشخاصًا حقيقيين.'],
+    sv: ['AI-genererad', 'Bilderna på den här webbplatsen är AI-genererade och visar inga verkliga personer.'],
+    da: ['AI-genereret', 'Billederne på dette websted er AI-genererede og viser ikke rigtige personer.'],
+    no: ['AI-generert', 'Bildene på dette nettstedet er AI-genererte og viser ikke virkelige personer.'],
+    nb: ['AI-generert', 'Bildene på dette nettstedet er AI-genererte og viser ikke virkelige personer.'],
+    fi: ['Tekoälyllä luotu', 'Sivuston kuvat on luotu tekoälyllä, eivätkä ne esitä oikeita ihmisiä.']
+  };
+  function init() {
+    var lang = (document.documentElement.lang || 'en').toLowerCase();
+    var t = L[lang] || L[lang.split('-')[0]] || L.en;
+    var imgs = document.querySelectorAll('img[src*="assets/photo/"], img[src*="/photo/"]');
+    var cards = document.querySelectorAll('[style*="assets/photo/"], [style*="url(photo/"]');
+    if (!imgs.length && !cards.length) return;
+
+    function badge(cls) {
+      var s = document.createElement('span');
+      s.className = 'ai-badge ' + cls;
+      s.setAttribute('aria-hidden', 'true');
+      s.textContent = t[0];
+      return s;
+    }
+    function host(el) {
+      if (getComputedStyle(el).position === 'static') el.style.position = 'relative';
+      return el;
+    }
+
+    // Remove the old English-only credit; the badge replaces it.
+    Array.prototype.forEach.call(document.querySelectorAll('.hero-credit'), function (c) { c.remove(); });
+
+    Array.prototype.forEach.call(imgs, function (img) {
+      if (img.dataset.aiLabelled) return;
+      img.dataset.aiLabelled = '1';
+      // alt text: "<label>: <description>" (drop a leading "Illustration:" style prefix)
+      var alt = img.getAttribute('alt');
+      if (alt) {
+        var m = alt.match(/^[^:]{3,30}:\s*/);
+        img.setAttribute('alt', t[0] + ': ' + (m ? alt.slice(m[0].length) : alt));
+      }
+      if (img.classList.contains('hero-bg')) {
+        var hero = img.closest('section') || img.parentElement;
+        host(hero).appendChild(badge('ai-badge--end'));
+        return;
+      }
+      var p = img.parentElement;
+      if (p.classList.contains('hw-fig') || p.children.length === 1) {
+        host(p).appendChild(badge('ai-badge--start'));
+      } else {
+        var w = document.createElement('div');
+        w.className = 'ai-wrap';
+        p.insertBefore(w, img);
+        w.appendChild(img);
+        w.appendChild(badge('ai-badge--start'));
+      }
+    });
+
+    Array.prototype.forEach.call(cards, function (card) {
+      if (card.dataset.aiLabelled) return;
+      card.dataset.aiLabelled = '1';
+      host(card).appendChild(badge('ai-badge--top'));
+    });
+
+    var f = document.querySelector('footer .copyright');
+    if (f) {
+      var n = document.createElement('p');
+      n.className = 'ai-note';
+      n.textContent = t[1];
+      f.parentNode.insertBefore(n, f);
+    }
+  }
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init);
+  else init();
+})();
