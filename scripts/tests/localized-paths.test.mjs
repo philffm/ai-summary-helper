@@ -5,6 +5,14 @@ import path from 'node:path';
 import test from 'node:test';
 import * as cheerio from 'cheerio';
 import { buildLocalizedPageInventory, localizedPath, rewriteAvailablePageLinks, rewriteLocalizedLinks } from '../lib/localized-paths.mjs';
+import { localizedAssetPrefix } from '../lib/localized-asset-paths.mjs';
+
+test('calculates the shared-asset prefix from the translated page depth', () => {
+    assert.equal(localizedAssetPrefix('de/index.html'), '../');
+    assert.equal(localizedAssetPrefix('de/mcp/index.html'), '../../');
+    assert.equal(localizedAssetPrefix('lang/fr/blog/post.html'), '../../../');
+    assert.equal(localizedAssetPrefix('index.html'), '');
+});
 
 test('rewrites links to pages present in the locale inventory', () => {
     const docs = fs.mkdtempSync(path.join(os.tmpdir(), 'localized-pages-'));

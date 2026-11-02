@@ -42,6 +42,7 @@ import crypto from 'node:crypto';
 import * as cheerio from 'cheerio';
 import { untrackedPages } from './lib/translation-coverage.mjs';
 import { localizedPath, englishPath, rewriteLocalizedLinks, buildLocalizedPageInventory, rewriteAvailablePageLinks, redirectStub, SITE_URL } from './lib/localized-paths.mjs';
+import { localizedAssetPrefix } from './lib/localized-asset-paths.mjs';
 
 const REPO_ROOT = process.cwd();
 const ROOT = path.join(REPO_ROOT, 'docs'); // docs/ is assembled by build-site.mjs and is the canonical English source
@@ -250,8 +251,8 @@ function localizeBlogVideos($, locale) {
     $('figure[data-blog-video] source').each((_, el) => { const $el = $(el); $el.attr('src', swap($el.attr('src'))); });
 }
 
-function rewriteAssetPaths($, locale) {
-    const extraUps = '../'.repeat(locale.dir.split('/').length);
+function rewriteAssetPaths($, pagePath) {
+    const extraUps = localizedAssetPrefix(pagePath);
     const rootRelative = (value) => value.replace(/^(?:\.\.\/)+/, '');
     $('[href], [src], [data-src], [poster]').each((_, el) => {
         const $el = $(el);
@@ -491,7 +492,7 @@ async function translateFile(relPath, config, targetLocales, manifest, apiKey, p
         injectUnits($, units, translations);
         localizeShots($, locale);
         localizeBlogVideos($, locale);
-        rewriteAssetPaths($, locale);
+        rewriteAssetPaths($, path.posix.join(locale.dir, localizedPath(relPath, code)));
         setHtmlLang($, locale);
         rewriteLocalizedLinks($, relPath, code, pageInventory);
         rewriteAvailablePageLinks($, `${locale.dir}/${localizedPath(relPath, code)}`, code, pageInventory, locale.dir);

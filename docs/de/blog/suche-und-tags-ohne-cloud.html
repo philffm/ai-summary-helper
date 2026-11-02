@@ -19,9 +19,9 @@
   })();
 </script>
 
-<link rel="icon" type="image/svg+xml" href="../assets/icon.svg">
-<link rel="stylesheet" href="../assets/styles.css">
-<script src="../assets/analytics.js"></script>
+<link rel="icon" type="image/svg+xml" href="../../assets/icon.svg">
+<link rel="stylesheet" href="../../assets/styles.css">
+<script src="../../assets/analytics.js"></script>
 <link rel="alternate" hreflang="en" href="https://ai-summary-helper.byphil.eu/blog/on-device-architecture.html"><link rel="alternate" hreflang="de" href="https://ai-summary-helper.byphil.eu/de/blog/suche-und-tags-ohne-cloud.html"><link rel="canonical" href="https://ai-summary-helper.byphil.eu/de/blog/suche-und-tags-ohne-cloud.html"><meta property="og:site_name" content="AI Summary Helper"><meta property="og:locale" content="de_DE"><meta property="og:type" content="article"><meta property="og:title" content="Suche und Tags ohne Cloud – AI Summary Helper"><meta property="og:description" content="Der TF-IDF-Index hinter der Suche, Duplikaterkennung und den Digest-Funktionen von AI Summary Helper – und warum das meiste davon nie einen Server brauchte."><meta property="og:image" content="https://ai-summary-helper.byphil.eu/assets/shots/aish-hero-en.webp"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="Suche und Tags ohne Cloud – AI Summary Helper"><meta name="twitter:description" content="Der TF-IDF-Index hinter der Suche, Duplikaterkennung und den Digest-Funktionen von AI Summary Helper – und warum das meiste davon nie einen Server brauchte."><meta name="twitter:image" content="https://ai-summary-helper.byphil.eu/assets/shots/aish-hero-en.webp"><script type="application/ld+json" data-seo="ld">{"@context":"https://schema.org","@graph":[{"@type":"BlogPosting","@id":"https://ai-summary-helper.byphil.eu/de/blog/suche-und-tags-ohne-cloud.html#post","headline":"Warum wir Suche, Tagging und Empfehlungen aus der Cloud verlagert haben","description":"Der TF-IDF-Index hinter der Suche, Duplikaterkennung und den Digest-Funktionen von AI Summary Helper – und warum das meiste davon nie einen Server brauchte.","datePublished":"2026-08","inLanguage":"de","image":"https://ai-summary-helper.byphil.eu/assets/shots/aish-hero-en.webp","mainEntityOfPage":"https://ai-summary-helper.byphil.eu/de/blog/suche-und-tags-ohne-cloud.html","author":{"@id":"https://byphil.eu/#org"},"publisher":{"@type":"Organization","@id":"https://byphil.eu/#org","name":"byphil","url":"https://byphil.eu/"}},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"AI Summary Helper","item":"https://ai-summary-helper.byphil.eu/"},{"@type":"ListItem","position":2,"name":"Blog","item":"https://ai-summary-helper.byphil.eu/de/blog/"},{"@type":"ListItem","position":3,"name":"Warum wir Suche, Tagging und Empfehlungen aus der Cloud verlagert haben","item":"https://ai-summary-helper.byphil.eu/de/blog/suche-und-tags-ohne-cloud.html"}]}]}</script></head>
 <body>
 
@@ -30,7 +30,7 @@
 <header class="nav nav--pill" id="siteNav">
   <div class="wrap nav-pill-row">
     <a href="../index.html" class="wordmark" aria-label="AI Summary Helper">
-      <img src="../assets/icon.svg" alt="">
+      <img src="../../assets/icon.svg" alt="">
       AI Summary Helper
     </a>
     <nav class="pill" aria-label="Primär">
@@ -105,7 +105,7 @@
 
 <main id="main">
   <section class="hero--photo post-stage">
-    <img class="hero-bg" src="../assets/photo/offline-laptop-cable-800.webp" srcset="../assets/photo/offline-laptop-cable-800.webp 800w, ../assets/photo/offline-laptop-cable-1600.webp 1600w" sizes="100vw" width="1600" height="893" alt="" fetchpriority="high" decoding="async" style="--bgpos:40% 55%">
+    <img class="hero-bg" src="../../assets/photo/offline-laptop-cable-800.webp" srcset="../../assets/photo/offline-laptop-cable-800.webp 800w, ../../assets/photo/offline-laptop-cable-1600.webp 1600w" sizes="100vw" width="1600" height="893" alt="" fetchpriority="high" decoding="async" style="--bgpos:40% 55%">
     <p class="hero-credit">Illustration, KI-generiert</p>
     <div class="wrap">
       <div class="post-hero">
@@ -123,9 +123,9 @@
         <figure class="post-figure post-video" data-blog-video="graph">
           <div class="post-video-in">
             <button class="fvideo-open post-video-open" type="button"><span class="sr-only">Video abspielen</span>
-              <video muted="" playsinline="" loop="" preload="none" width="360" height="520" poster="../assets/blog/video/graph-de.jpg">
-            <source src="../assets/blog/video/graph-de.mp4" type="video/mp4">
-          <track data-seo-video="" kind="captions" src="../assets/blog/video/graph-de.vtt" srclang="de" label="Deutsch"></video>
+              <video muted="" playsinline="" loop="" preload="none" width="360" height="520" poster="../../assets/blog/video/graph-de.jpg">
+            <source src="../../assets/blog/video/graph-de.mp4" type="video/mp4">
+          <track data-seo-video="" kind="captions" src="../../assets/blog/video/graph-de.vtt" srclang="de" label="Deutsch"></video>
               <span class="post-video-play" aria-hidden="true">▶</span>
             </button>
             <figcaption>Video: Der Knowledge Graph verknüpft Ihre Artikel anhand ihrer Themen – direkt auf Ihrem Gerät erstellt.</figcaption>
@@ -133,7 +133,7 @@
         </figure>
         <p>Die meisten davon brauchten sie nicht.</p>
 
-        <figure class="post-figure post-figure--portrait"><img src="../assets/blog/knowledge-graph.webp" alt="Folie: Eine Übersicht verknüpfter Themen mit der Aussage „Informationen, die mit Bedeutung und Zusammenhängen verknüpft sind, überdauern flüchtig überflogene Inhalte“" width="800" height="1000" loading="lazy"><figcaption>Suche, Tagging und ähnliche Artikel basieren alle auf demselben lokalen Index auf Ihrem Gerät – Verknüpfungen zwischen gespeicherten Inhalten kosten Sie also nichts.</figcaption></figure>
+        <figure class="post-figure post-figure--portrait"><img src="../../assets/blog/knowledge-graph.webp" alt="Folie: Eine Übersicht verknüpfter Themen mit der Aussage „Informationen, die mit Bedeutung und Zusammenhängen verknüpft sind, überdauern flüchtig überflogene Inhalte“" width="800" height="1000" loading="lazy"><figcaption>Suche, Tagging und ähnliche Artikel basieren alle auf demselben lokalen Index auf Ihrem Gerät – Verknüpfungen zwischen gespeicherten Inhalten kosten Sie also nichts.</figcaption></figure>
         <h2>Was tatsächlich lokal auf das Gerät verlagert wurde</h2>
         <p><strong>Suche.</strong> Ursprünglich glich die Erweiterung nur Artikeltitel und Tags ab – schnell, aber blind für den eigentlichen Artikeltext. Anstatt bei jedem Tastenanschlag den gesamten Text per Brute-Force zu durchsuchen oder jede Anfrage an einen Server zu schicken, haben wir einen kompakten TF-IDF-Index aus dem lokal gespeicherten Archiv der Nutzer aufgebaut. Günstige Felder wie Titel und Tags werden weiterhin sofort und ohne Mehraufwand geprüft. Längere Suchanfragen werden über den Index erweitert, der einmal pro Sitzung erstellt und inkrementell aktualisiert wird – ohne Neuscan bei jedem Tastendruck.</p>
         <p><strong>Duplikaterkennung.</strong> Bevor ein Speichervorgang abgeschlossen wird, durchläuft er eine mehrstufige Prüfung: Zuerst ein exakter, normalisierter URL-Abgleich (effizient, O(1)), danach eine Titel-Ähnlichkeitsprüfung für die wenigen verbleibenden Treffer und erst dann – für die allerletzten Kandidaten – ein vollständiger TF-IDF-Kosinus-Ähnlichkeitsvergleich. Die meisten Speichervorgänge erreichen die rechenintensivste Stufe gar nicht erst, da sie bereits in den vorgeschalteten Schritten aufgelöst werden.</p>
@@ -141,7 +141,7 @@
         <p><strong>Lesbarkeit und Tonalität.</strong> Der Flesch-Kincaid-Lesbarkeitsindex basiert auf reiner Arithmetik von Satz- und Silbenzahlen – ganz ohne Modell. Die Sentiment-Analyse nutzt eine integrierte AFINN-Wortliste mit einer einfachen Negationsprüfung für die zwei vorangegangenen Tokens. Nichts davon muss jemals Ihren Browser verlassen.</p>
         <p><strong>„Ähnliche Artikel“ und Digest.</strong> Beide Funktionen greifen auf exakt dieselben TF-IDF-Vektoren zurück, die bereits für die Suche erstellt wurden. Es wäre ein Leichtes gewesen, drei separate Ähnlichkeitssysteme für drei verschiedene Funktionen zu entwickeln. Durch die Nutzung eines einzigen gemeinsamen Index für Suche, Empfehlungen und Digest-Kuration bleibt das Gesamtsystem schlank – und jede Optimierung des Index kommt sofort allen drei Funktionen gleichzeitig zugute.</p>
 
-        <figure class="post-figure"><img src="../assets/blog/runtime-parts.webp" alt="Diagramm: Die Webseite, der Background-Worker und das Popup der Erweiterung, lokaler Speicher sowie der Modellanbieter" width="1760" height="620" loading="lazy"><figcaption>Nur ein einziger Pfeil verlässt den Browser: der Aufruf an den von Ihnen gewählten Modellanbieter.</figcaption></figure>
+        <figure class="post-figure"><img src="../../assets/blog/runtime-parts.webp" alt="Diagramm: Die Webseite, der Background-Worker und das Popup der Erweiterung, lokaler Speicher sowie der Modellanbieter" width="1760" height="620" loading="lazy"><figcaption>Nur ein einziger Pfeil verlässt den Browser: der Aufruf an den von Ihnen gewählten Modellanbieter.</figcaption></figure>
         <h2>Was wir bewusst in der Cloud belassen haben</h2>
         <p>Die eigentliche Zusammenfassung – jener Schritt, der tatsächlich ein großes Sprachmodell erfordert – benötigt weiterhin einen Netzwerkaufruf. Bei den aktuellen Größen lokaler Modelle führt daran kein Weg vorbei, wenn man die Ausgabequalität führender Cloud-Modelle erreichen möchte. Nutzer hinterlegen für diesen Schritt ihren eigenen API-Schlüssel (OpenAI, Gemini, Mistral, DeepSeek) oder verknüpfen die Erweiterung mit einer lokalen Ollama-Instanz, um auch hier vollständig netzwerkunabhängig zu bleiben. Dies ist der einzige Bereich, in dem „On-Device“ nicht der Standard ist, sondern optional aktiviert werden kann – denn der Kompromiss ist real: Ein lokales Modell arbeitet langsamer und liefert geringere Qualität als ein gehostetes Modell, und wir möchten Ihnen hier nichts vormachen.</p>
 
@@ -167,7 +167,7 @@
 <footer>
   <div class="wrap">
     <div class="footer-inner">
-      <div class="wordmark"><img src="../assets/icon.svg" alt="">AI Summary Helper</div>
+      <div class="wordmark"><img src="../../assets/icon.svg" alt="">AI Summary Helper</div>
       <div class="foot-links">
         <a href="https://github.com/philffm/ai-summary-helper/" target="_blank" rel="noopener">Quellcode auf GitHub</a>
         <a href="../bildung/">Für Bildungseinrichtungen</a>
@@ -182,7 +182,7 @@
   </div>
 </footer>
 
-<script src="../assets/main.js"></script>
+<script src="../../assets/main.js"></script>
 
 
 </body></html>
