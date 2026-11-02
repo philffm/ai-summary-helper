@@ -1873,7 +1873,7 @@ body:has(.hero--photo){ padding-top:0; }
 .cx-card .cx-slide-link:focus-visible{outline-color:#fff}
 /* AI-image labels (see main.js): small, always visible, same in both themes */
 .ai-wrap{ position:relative; }
-.ai-badge{ position:absolute; z-index:3; padding:4px 8px; border-radius:999px; font:600 10.5px/1.1 var(--font-body, inherit); letter-spacing:.02em; color:#F5F5F7; background:rgba(8,9,12,.62); -webkit-backdrop-filter:blur(4px); backdrop-filter:blur(4px); pointer-events:none; white-space:nowrap; }
+.ai-badge{ position:absolute; z-index:3; padding:3px 7px; border-radius:999px; font:700 10px/1.1 var(--font-body, inherit); letter-spacing:.02em; color:#F5F5F7; background:rgba(8,9,12,.62); -webkit-backdrop-filter:blur(4px); backdrop-filter:blur(4px); white-space:nowrap; cursor:help; }
 .ai-badge--start{ inset-inline-start:10px; bottom:10px; }
 .ai-badge--end{ inset-inline-end:14px; bottom:10px; }
 .ai-badge--top{ inset-inline-end:12px; top:12px; }

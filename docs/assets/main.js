@@ -125,19 +125,19 @@ function setBilling(period) {
   // Suggests the page in the browser's preferred language (written in that language). Never redirects on its own,
   // so every locale URL stays independently reachable and indexable. Works from English and from any /xx/ page.
   var LOCALES = {
-    en: ['English', 'This page is also available in {l}.'], de: ['Deutsch', 'Diese Seite gibt es auch auf {l}.'],
-    fr: ['Français', 'Cette page existe aussi en {l}.'], es: ['Español', 'Esta página también está disponible en {l}.'],
-    pt: ['Português', 'Esta página também está disponível em {l}.'], zh: ['简体中文', '本页面也提供{l}版本。'],
-    'zh-tw': ['繁體中文', '本頁面也提供{l}版本。'], ja: ['日本語', 'このページは{l}でもご覧いただけます。'],
-    ko: ['한국어', '이 페이지는 {l}로도 제공됩니다.'], hi: ['हिन्दी', 'यह पेज {l} में भी उपलब्ध है।'],
-    vi: ['Tiếng Việt', 'Trang này cũng có bản {l}.'],
-    nl: ['Nederlands', 'Deze pagina is ook beschikbaar in het {l}.'], it: ['Italiano', 'Questa pagina è disponibile anche in {l}.'],
-    ru: ['Русский', 'Эта страница доступна и на языке: {l}.'], uk: ['Українська', 'Ця сторінка доступна також українською: {l}.'],
-    tr: ['Türkçe', 'Bu sayfa {l} dilinde de mevcut.'], id: ['Bahasa Indonesia', 'Halaman ini juga tersedia dalam {l}.'],
-    pl: ['Polski', 'Ta strona jest dostępna także po polsku: {l}.'], th: ['ไทย', 'หน้านี้มีให้บริการเป็นภาษา{l}ด้วย'],
-    sv: ['Svenska', 'Den här sidan finns även på {l}.'], da: ['Dansk', 'Denne side findes også på {l}.'],
-    no: ['Norsk', 'Denne siden er også tilgjengelig på {l}.'], fi: ['Suomi', 'Tämä sivu on saatavilla myös kielellä {l}.'],
-    ar: ['العربية', 'هذه الصفحة متاحة أيضًا بـ{l}.']
+    en: ['AI', 'English', 'This page is also available in {l}.'], de: ['Deutsch', 'Diese Seite gibt es auch auf {l}.'],
+    fr: ['IA', 'Français', 'Cette page existe aussi en {l}.'], es: ['Español', 'Esta página también está disponible en {l}.'],
+    pt: ['IA', 'Português', 'Esta página também está disponível em {l}.'], zh: ['简体中文', '本页面也提供{l}版本。'],
+    'zh-tw': ['AI', '繁體中文', '本頁面也提供{l}版本。'], ja: ['日本語', 'このページは{l}でもご覧いただけます。'],
+    ko: ['AI', '한국어', '이 페이지는 {l}로도 제공됩니다.'], hi: ['हिन्दी', 'यह पेज {l} में भी उपलब्ध है।'],
+    vi: ['AI', 'Tiếng Việt', 'Trang này cũng có bản {l}.'],
+    nl: ['AI', 'Nederlands', 'Deze pagina is ook beschikbaar in het {l}.'], it: ['Italiano', 'Questa pagina è disponibile anche in {l}.'],
+    ru: ['ИИ', 'Русский', 'Эта страница доступна и на языке: {l}.'], uk: ['Українська', 'Ця сторінка доступна також українською: {l}.'],
+    tr: ['YZ', 'Türkçe', 'Bu sayfa {l} dilinde de mevcut.'], id: ['Bahasa Indonesia', 'Halaman ini juga tersedia dalam {l}.'],
+    pl: ['AI', 'Polski', 'Ta strona jest dostępna także po polsku: {l}.'], th: ['ไทย', 'หน้านี้มีให้บริการเป็นภาษา{l}ด้วย'],
+    sv: ['AI', 'Svenska', 'Den här sidan finns även på {l}.'], da: ['Dansk', 'Denne side findes også på {l}.'],
+    no: ['KI', 'Norsk', 'Denne siden er også tilgjengelig på {l}.'], fi: ['Suomi', 'Tämä sivu on saatavilla myös kielellä {l}.'],
+    ar: ['AI', 'العربية', 'هذه الصفحة متاحة أيضًا بـ{l}.']
   };
   var DISMISS_KEY = 'aish_lang_banner_dismissed';
   function map(code) {
@@ -1877,36 +1877,36 @@ function setBilling(period) {
 })();
 
 /* ── AI-image labelling ──────────────────────────────────────────────
-   Every picture from assets/photo/ is AI-generated. Mark each one with a
+   Every picture from assets/photo/ is AI-generated. Mark each one with a short "AI" chip (full text on hover),
    small visible badge (EU AI Act, Art. 50), put the same words in front of
    the alt text, and add one note to the footer. Works for all languages. */
 (function () {
   var L = {
     en: ['AI-generated', 'Images on this site are AI-generated and do not show real people.'],
-    de: ['KI-generiert', 'Die Bilder auf dieser Seite sind KI-generiert und zeigen keine realen Personen.'],
+    de: ['KI', 'KI-generiert', 'Die Bilder auf dieser Seite sind KI-generiert und zeigen keine realen Personen.'],
     fr: ['Généré par IA', 'Les images de ce site sont générées par IA et ne montrent pas de personnes réelles.'],
-    es: ['Generado con IA', 'Las imágenes de este sitio están generadas con IA y no muestran personas reales.'],
-    zh: ['AI 生成', '本网站的图片均由 AI 生成，并非真实人物。'],
+    es: ['IA', 'Generado con IA', 'Las imágenes de este sitio están generadas con IA y no muestran personas reales.'],
+    zh: ['AI', 'AI 生成', '本网站的图片均由 AI 生成，并非真实人物。'],
     'zh-tw': ['AI 生成', '本網站的圖片皆由 AI 生成，並非真實人物。'],
-    ja: ['AI生成', 'このサイトの画像はAIで生成されたもので、実在の人物ではありません。'],
+    ja: ['AI', 'AI生成', 'このサイトの画像はAIで生成されたもので、実在の人物ではありません。'],
     ko: ['AI 생성', '이 사이트의 이미지는 AI로 생성되었으며 실제 인물이 아닙니다.'],
     pt: ['Gerado por IA', 'As imagens deste site são geradas por IA e não mostram pessoas reais.'],
-    hi: ['एआई-निर्मित', 'इस साइट की छवियाँ एआई से बनाई गई हैं और वास्तविक लोगों को नहीं दिखातीं।'],
+    hi: ['AI', 'एआई-निर्मित', 'इस साइट की छवियाँ एआई से बनाई गई हैं और वास्तविक लोगों को नहीं दिखातीं।'],
     vi: ['Tạo bởi AI', 'Hình ảnh trên trang này do AI tạo ra và không phải người thật.'],
     nl: ['AI-gegenereerd', 'De beelden op deze site zijn door AI gegenereerd en tonen geen echte mensen.'],
-    it: ['Generato con IA', 'Le immagini di questo sito sono generate con IA e non mostrano persone reali.'],
+    it: ['IA', 'Generato con IA', 'Le immagini di questo sito sono generate con IA e non mostrano persone reali.'],
     ru: ['Создано ИИ', 'Изображения на сайте созданы ИИ и не показывают реальных людей.'],
-    uk: ['Створено ШІ', 'Зображення на цьому сайті створені ШІ й не зображують реальних людей.'],
+    uk: ['ШІ', 'Створено ШІ', 'Зображення на цьому сайті створені ШІ й не зображують реальних людей.'],
     tr: ['Yapay zekâ ürünü', 'Bu sitedeki görseller yapay zekâ ile üretilmiştir ve gerçek kişileri göstermez.'],
-    id: ['Dibuat dengan AI', 'Gambar di situs ini dibuat dengan AI dan tidak menampilkan orang sungguhan.'],
+    id: ['AI', 'Dibuat dengan AI', 'Gambar di situs ini dibuat dengan AI dan tidak menampilkan orang sungguhan.'],
     pl: ['Wygenerowano przez AI', 'Obrazy na tej stronie wygenerowała sztuczna inteligencja i nie przedstawiają prawdziwych osób.'],
-    th: ['สร้างโดย AI', 'ภาพบนเว็บไซต์นี้สร้างโดย AI และไม่ใช่บุคคลจริง'],
+    th: ['AI', 'สร้างโดย AI', 'ภาพบนเว็บไซต์นี้สร้างโดย AI และไม่ใช่บุคคลจริง'],
     ar: ['مُنشأ بالذكاء الاصطناعي', 'صور هذا الموقع مُنشأة بالذكاء الاصطناعي ولا تُظهر أشخاصًا حقيقيين.'],
     sv: ['AI-genererad', 'Bilderna på den här webbplatsen är AI-genererade och visar inga verkliga personer.'],
-    da: ['AI-genereret', 'Billederne på dette websted er AI-genererede og viser ikke rigtige personer.'],
+    da: ['AI', 'AI-genereret', 'Billederne på dette websted er AI-genererede og viser ikke rigtige personer.'],
     no: ['AI-generert', 'Bildene på dette nettstedet er AI-genererte og viser ikke virkelige personer.'],
-    nb: ['AI-generert', 'Bildene på dette nettstedet er AI-genererte og viser ikke virkelige personer.'],
-    fi: ['Tekoälyllä luotu', 'Sivuston kuvat on luotu tekoälyllä, eivätkä ne esitä oikeita ihmisiä.']
+    nb: ['KI', 'AI-generert', 'Bildene på dette nettstedet er AI-genererte og viser ikke virkelige personer.'],
+    fi: ['AI', 'Tekoälyllä luotu', 'Sivuston kuvat on luotu tekoälyllä, eivätkä ne esitä oikeita ihmisiä.']
   };
   function init() {
     var lang = (document.documentElement.lang || 'en').toLowerCase();
@@ -1920,6 +1920,7 @@ function setBilling(period) {
       s.className = 'ai-badge ' + cls;
       s.setAttribute('aria-hidden', 'true');
       s.textContent = t[0];
+      s.title = t[1];
       return s;
     }
     function host(el) {
@@ -1937,7 +1938,7 @@ function setBilling(period) {
       var alt = img.getAttribute('alt');
       if (alt) {
         var m = alt.match(/^[^:]{3,30}:\s*/);
-        img.setAttribute('alt', t[0] + ': ' + (m ? alt.slice(m[0].length) : alt));
+        img.setAttribute('alt', t[1] + ': ' + (m ? alt.slice(m[0].length) : alt));
       }
       if (img.classList.contains('hero-bg')) {
         var hero = img.closest('section') || img.parentElement;
@@ -1966,7 +1967,7 @@ function setBilling(period) {
     if (f) {
       var n = document.createElement('p');
       n.className = 'ai-note';
-      n.textContent = t[1];
+      n.textContent = t[2];
       f.parentNode.insertBefore(n, f);
     }
   }
