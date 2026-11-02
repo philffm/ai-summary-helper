@@ -420,6 +420,12 @@ section{ padding:76px 0; }
 .faq-filter:hover,.faq-filter.is-active{border-color:var(--signal);background:var(--signal);color:var(--ink)}
 .faq-filter:focus-visible{outline:2px solid var(--signal);outline-offset:3px}
 .faq-search-status{min-height:1.4em;margin:8px 2px 0;color:var(--paper-dim);font-size:13px}
+.cx-compare{display:grid;gap:5px;margin:12px 0 0;max-width:560px}
+.cx-compare-row{display:grid;grid-template-columns:104px 1fr;gap:10px;align-items:baseline;padding:5px 8px;border-left:2px solid var(--signal);background:rgba(255,255,255,.07);font-size:11.5px}
+.cx-compare-row span{color:var(--signal-light);font-family:var(--font-mono);font-size:10px;letter-spacing:.04em;text-transform:uppercase}
+.cx-compare-row strong{font-weight:600;color:var(--paper)}
+.cx-compare-row.is-muted{border-left-color:rgba(255,255,255,.3);background:rgba(0,0,0,.16)}
+.cx-compare-row.is-muted span,.cx-compare-row.is-muted strong{color:var(--paper-dim)}
 
 /* ── Blog cards + prose ──────────────────────────────────────────── */
 .blog-grid{ display:grid; grid-template-columns:repeat(3, 1fr); gap:16px; }
