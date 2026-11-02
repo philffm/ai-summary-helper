@@ -172599,6 +172599,336 @@
           "model": "deepseek/deepseek-v4.1-flash"
         }
       }
+    },
+    "5c2f8dd3d62137ee7a8af47eeab9cb1769b7e5004f384bcd2e32ec61d282874c": {
+      "en": "Try the sync setup",
+      "translations": {
+        "de": {
+          "text": "Probieren Sie die Sync-Einrichtung aus",
+          "translatedAt": "2026-11-02T09:32:25.273Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "bda2404af17e9b6a4ca4ca96952080a549893a53c2a9d8bca31b105737376a89": {
+      "en": "Turn saved reading into a return path",
+      "translations": {
+        "de": {
+          "text": "Verwandeln Sie gespeicherte Lektüre in einen Rückweg",
+          "translatedAt": "2026-11-02T09:32:32.118Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "cc27d35d274e524044217cb9d83cee452aac6521ab326569a863fb3b7ef3a78e": {
+      "en": "Open the local library, search what you saved and follow the source back to the article. Nothing is sent from the demo.",
+      "translations": {
+        "de": {
+          "text": "Öffnen Sie die lokale Bibliothek, suchen Sie in Ihren gespeicherten Inhalten und folgen Sie der Quelle zurück zum Artikel. Aus der Demo wird nichts gesendet.",
+          "translatedAt": "2026-11-02T09:32:32.118Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "099e79f6bde5b4efd17fe0a5f2ff1f323546b43d3e819b383c36e980094b7d02": {
+      "en": "Open the local library, search what you saved and follow the source back to the article.",
+      "translations": {
+        "de": {
+          "text": "Öffnen Sie die lokale Bibliothek, suchen Sie in Ihren gespeicherten Inhalten und folgen Sie der Quelle zurück zum Artikel.",
+          "translatedAt": "2026-11-02T09:32:32.118Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "dc9ac7c092dd6906c42092abd4f334fc2ed268309d34f837e17d4b3da01f8d0c": {
+      "en": "Evidence and live demo for this reading workflow",
+      "translations": {
+        "de": {
+          "text": "Belege und Live-Demo für diesen Leseworkflow",
+          "translatedAt": "2026-11-02T09:32:32.118Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "c0208a933cb6f97bbee42a53f80434fbd03ecb8c7df6259b7d4b348745438ef8": {
+      "en": "Choose the model boundary yourself",
+      "translations": {
+        "de": {
+          "text": "Bestimmen Sie die Modellgrenze selbst",
+          "translatedAt": "2026-11-02T09:32:33.599Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "59cd845b486eea19f34cdad3b054a8553175fd7973e04ff45b2bdf8020cb51ce": {
+      "en": "Open the model settings and see where local, BYOK and hosted-provider choices differ. Nothing is sent from the demo.",
+      "translations": {
+        "de": {
+          "text": "Öffnen Sie die Modelleinstellungen und sehen Sie, worin sich lokale Optionen, BYOK und gehostete Anbieter unterscheiden. Aus der Demo wird nichts gesendet.",
+          "translatedAt": "2026-11-02T09:32:33.599Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "c0a16046383d62128930736076d4a10c267177c7cb5275edbe7700d5822a1786": {
+      "en": "Open the model settings and see where local, BYOK and hosted-provider choices differ.",
+      "translations": {
+        "de": {
+          "text": "Öffnen Sie die Modelleinstellungen und sehen Sie, worin sich lokale Optionen, BYOK und gehostete Anbieter unterscheiden.",
+          "translatedAt": "2026-11-02T09:32:33.599Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "2e8358040ae8d823a5995401c2a28cb5a19bce7dbc37b92716ccd907a3bf3116": {
+      "en": "Connect a local archive with explicit scope",
+      "translations": {
+        "de": {
+          "text": "Ein lokales Archiv mit explizitem Geltungsbereich verbinden",
+          "translatedAt": "2026-11-02T09:32:34.313Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "7f58c0319cf40438f862db5ec7af5001561acefb25dd918556028a134f626f7d": {
+      "en": "Open the MCP settings and inspect the connected tools and access boundary. Nothing is sent from the demo.",
+      "translations": {
+        "de": {
+          "text": "Öffnen Sie die MCP-Einstellungen und prüfen Sie die verbundenen Tools und die Zugriffsgrenze. Aus der Demo wird nichts gesendet.",
+          "translatedAt": "2026-11-02T09:32:34.313Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "54888bc042f482d0f5ef4a227c8a15a9ffd814d2227f365d453dd2aaf0cfdd94": {
+      "en": "Open the MCP settings and inspect the connected tools and access boundary.",
+      "translations": {
+        "de": {
+          "text": "Öffnen Sie die MCP-Einstellungen und prüfen Sie die verbundenen Tools und die Zugriffsgrenze.",
+          "translatedAt": "2026-11-02T09:32:34.313Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "e48b7c5a89f15d64bf940e9ecfec774abd7f8782362b407f8678726b2f1dda71": {
+      "en": "See a paper in the real interface",
+      "translations": {
+        "de": {
+          "text": "Ein Paper in der echten Oberfläche ansehen",
+          "translatedAt": "2026-11-02T09:32:36.156Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "a14eca6f40c7197424e9612bff4fe415cce52497136ab2f89ac97beb0a684b57": {
+      "en": "Open a research paper, inspect its summary and return to the saved reading context. Nothing is sent from the demo.",
+      "translations": {
+        "de": {
+          "text": "Öffnen Sie ein wissenschaftliches Paper, sehen Sie sich die Zusammenfassung an und kehren Sie zum gespeicherten Lesekontext zurück. Aus der Demo wird nichts gesendet.",
+          "translatedAt": "2026-11-02T09:32:36.156Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "560d146bd7b6f84d258d6e0b3c4f51caca07af62f7cb222382166173f6b727d3": {
+      "en": "Open a research paper, inspect its summary and return to the saved reading context.",
+      "translations": {
+        "de": {
+          "text": "Öffnen Sie ein wissenschaftliches Paper, sehen Sie sich die Zusammenfassung an und kehren Sie zum gespeicherten Lesekontext zurück.",
+          "translatedAt": "2026-11-02T09:32:36.156Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "bd9337273ee3f020f201fe60e3943a6b956072ace3fd6a3ce37dcf6b9b62b2c3": {
+      "en": "Curate current information without losing the trail",
+      "translations": {
+        "de": {
+          "text": "Aktuelle Informationen kuratieren, ohne die Spur zu verlieren",
+          "translatedAt": "2026-11-02T09:32:39.829Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "3eb9374526d442d9ff1dcf7673d0f0c0ac4add3fa2fa8bf4305566f6686569af": {
+      "en": "A focused feed helps you choose what to read; source links, timestamps and a local archive keep the briefing inspectable.",
+      "translations": {
+        "de": {
+          "text": "Ein fokussierter Feed hilft Ihnen bei der Auswahl, was Sie lesen; Quellenlinks, Zeitstempel und ein lokales Archiv halten das Briefing nachvollziehbar.",
+          "translatedAt": "2026-11-02T09:32:39.829Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "8d7fe5a18d68fa3bf9d57a0e513b44b4d9433875eef8341d22aef5dd6afa4bba": {
+      "en": "A smaller reading list is easier to inspect",
+      "translations": {
+        "de": {
+          "text": "Eine kleinere Leseliste ist leichter zu überprüfen",
+          "translatedAt": "2026-11-02T09:32:39.829Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "e6f1b65e31f56e6d5b3c4e21c811222fb78dd4f6e82a3369ea1fcb99dcefb799": {
+      "en": "A focused set of sources makes it easier to compare reporting instead of treating every headline as equally useful.",
+      "translations": {
+        "de": {
+          "text": "Eine fokussierte Auswahl an Quellen erleichtert den Vergleich von Berichten, statt jede Schlagzeile als gleich nützlich zu behandeln.",
+          "translatedAt": "2026-11-02T09:32:39.829Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "e3343f85897bb12d5795df746e7cdf30ddf079d5235526427b201cdb5733552f": {
+      "en": "Wineburg & McGrew (2019), lateral reading and source evaluation",
+      "translations": {
+        "de": {
+          "text": "Wineburg & McGrew (2019), laterales Lesen und Quellenbewertung",
+          "translatedAt": "2026-11-02T09:32:39.829Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "bdc5fb5a6ecc3867e1b67f68640f00921eb545ee0ff3347ed7ebe998c05f7397": {
+      "en": "Keep the trail",
+      "translations": {
+        "de": {
+          "text": "Die Spur behalten",
+          "translatedAt": "2026-11-02T09:32:39.829Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "3761a00a5bcb64c0fe5b0151add728ead29700b0ad4d6a797f267e0d5af86900": {
+      "en": "A briefing is not the original article",
+      "translations": {
+        "de": {
+          "text": "Ein Briefing ist nicht der Originalartikel",
+          "translatedAt": "2026-11-02T09:32:39.829Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "81621ffa4c7a0d4bf7fd553fb8533fe0f70e3defe2ba2793369760516e1f89fa": {
+      "en": "Source links and publication times let you return to the reporting behind a current summary. They do not prove that every claim is true.",
+      "translations": {
+        "de": {
+          "text": "Quellenlinks und Veröffentlichungszeiten ermöglichen es Ihnen, zu den Berichten hinter einer aktuellen Zusammenfassung zurückzukehren. Sie beweisen nicht, dass jede Aussage wahr ist.",
+          "translatedAt": "2026-11-02T09:32:39.829Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "1d5f7d0da6b774e14913fd904661afc918f117c1f959047bfdd6ca90dd9c815b": {
+      "en": "Product implication based on source-evaluation research",
+      "translations": {
+        "de": {
+          "text": "Produktimplikation auf Basis der Forschung zur Quellenbewertung",
+          "translatedAt": "2026-11-02T09:32:39.829Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "86cc1332366a25a71587ea87c8644aeabbcb957b29e99bba36990f863e573694": {
+      "en": "Compare before concluding",
+      "translations": {
+        "de": {
+          "text": "Vergleichen, bevor Sie schlussfolgern",
+          "translatedAt": "2026-11-02T09:32:39.829Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "febdce607f1ec0efb7d69da31eee82a0d5de0f36d02bb0c5a8475c367ee7da26": {
+      "en": "Agreement and disagreement both matter",
+      "translations": {
+        "de": {
+          "text": "Übereinstimmung und Abweichung sind beide wichtig",
+          "translatedAt": "2026-11-02T09:32:39.829Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "bc5b56a54ce44afb3236a57ced9354ee6a3f2e86ca23526bf6b0ecdbeb5c37a5": {
+      "en": "Reading laterally means checking who is behind a claim and comparing it with other sources before drawing a conclusion.",
+      "translations": {
+        "de": {
+          "text": "Laterales Lesen bedeutet zu prüfen, wer hinter einer Aussage steht, und sie mit anderen Quellen zu vergleichen, bevor Sie eine Schlussfolgerung ziehen.",
+          "translatedAt": "2026-11-02T09:32:39.829Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "8031b2d72ce8b01d7d14ff560f7d8e9d00d0de4b3b5061ff87e0d1c045b15e68": {
+      "en": "Keep current reading returnable",
+      "translations": {
+        "de": {
+          "text": "Aktuelle Lektüre nachvollziehbar halten",
+          "translatedAt": "2026-11-02T09:32:39.829Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "aa4f246cc88057657489d52ca5c39b7d68ac88dbf882a64c431d4c90d5260f3b": {
+      "en": "Local history adds context",
+      "translations": {
+        "de": {
+          "text": "Lokaler Verlauf liefert Kontext",
+          "translatedAt": "2026-11-02T09:32:39.829Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "270219f71afc8df1f69ddf12de6827bc9d8efe0cc70d56f0b478fd7d24dd414d": {
+      "en": "A local archive preserves the articles you chose to read. Optional encrypted sync can keep that archive available across your devices without making the storage provider the owner of the content.",
+      "translations": {
+        "de": {
+          "text": "Ein lokales Archiv bewahrt die Artikel auf, die Sie zum Lesen ausgewählt haben. Eine optionale verschlüsselte Synchronisierung kann dieses Archiv auf Ihren Geräten verfügbar halten, ohne dass der Speicheranbieter Eigentümer der Inhalte wird.",
+          "translatedAt": "2026-11-02T09:32:39.829Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "ab20c697af9e8cf1e3f6ae83962f6bcfd5140763a65968e5103bbdb4fef0ffc9": {
+      "en": "Product implication based on privacy-by-design guidance",
+      "translations": {
+        "de": {
+          "text": "Produktimplikation auf Grundlage von Privacy-by-Design-Leitlinien",
+          "translatedAt": "2026-11-02T09:32:39.829Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "827124b38de92f4e38eaa9ca020e6815ecb61781b4680bbd140b1f9510c7e980": {
+      "en": "Build a briefing from your own feeds",
+      "translations": {
+        "de": {
+          "text": "Erstellen Sie ein Briefing aus Ihren eigenen Feeds",
+          "translatedAt": "2026-11-02T09:32:39.829Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "585cc1fa38333c9df46e31db09f27850e0d917453a1d3914a2e3bc894bda36a9": {
+      "en": "Open the feed reader, review current items and keep the sources behind the briefing visible. Nothing is sent from the demo.",
+      "translations": {
+        "de": {
+          "text": "Öffnen Sie den Feed-Reader, prüfen Sie aktuelle Einträge und halten Sie die Quellen hinter dem Briefing sichtbar. Von der Demo wird nichts gesendet.",
+          "translatedAt": "2026-11-02T09:32:39.829Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "21b3d26bbd8ec7b537bb76155bd148722a659766fa513172653605880a94d3b3": {
+      "en": "Open the feed reader, review current items and keep the sources behind the briefing visible.",
+      "translations": {
+        "de": {
+          "text": "Öffnen Sie den Feed-Reader, prüfen Sie aktuelle Einträge und halten Sie die Quellen hinter dem Briefing sichtbar.",
+          "translatedAt": "2026-11-02T09:32:39.829Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
     }
   }
 }
