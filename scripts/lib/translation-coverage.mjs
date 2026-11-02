@@ -39,8 +39,7 @@ export function missingTranslations(docsRoot, config, pages = config.content || 
     for (const [code, locale] of Object.entries(config.locales)) {
         if (!locale) continue;
         for (const page of pages) {
-            if ((config.stagedTranslationPages || []).includes(page)
-                && !(config.translationRolloutLocales || Object.keys(config.locales)).includes(code)) continue;
+            if ((config.stagedTranslationPages || []).includes(page)) continue;
             const file = path.posix.join(locale.dir, localizedPath(page, code));
             if (!existsSync(path.join(docsRoot, file))) out.push({ locale: code, page, file });
         }
