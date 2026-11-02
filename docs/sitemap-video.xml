@@ -794,7 +794,7 @@
     <video:video>
       <video:thumbnail_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/sprache-de.jpg</video:thumbnail_loc>
       <video:title>Über 20 Sprachen, plattformübergreifend</video:title>
-      <video:description>Lesen und zusammenfassen in der Sprache Ihrer Wahl. Als Erweiterung, natives Seitenpanel oder Bookmarklet – für alle Bereiche, die die Browser-Erweiterung nicht erreicht.</video:description>
+      <video:description>Lesen und zusammenfassen in über 20 Sprachen – mit der Erweiterung, dem nativen Seitenbereich oder Bookmarklet wenn die Erweiterung eine Seite nicht erreichen kann.</video:description>
       <video:content_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/sprache-de.mp4</video:content_loc>
       <video:duration>17</video:duration>
       <video:publication_date>2026-10-20T00:00:00+00:00</video:publication_date>
@@ -803,7 +803,7 @@
     <video:video>
       <video:thumbnail_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/bibliothek-de.jpg</video:thumbnail_loc>
       <video:title>Echte Volltextsuche, direkt auf Ihrem Gerät</video:title>
-      <video:description>Durchsuchen Sie Titel, Tags und Artikelinhalte mit einem im Browser erstellten TF-IDF-Index. Ohne Server-Roundtrip, ohne Verzögerung und ohne Datenweitergabe.</video:description>
+      <video:description>Durchsuchen Sie Titel, Tags und Artikelinhalte mit einem browserbasierten TF-IDF-Index. Die Volltextsuche bleibt auf dem Gerät, ohne Round-Trip.</video:description>
       <video:content_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/bibliothek-de.mp4</video:content_loc>
       <video:duration>18</video:duration>
       <video:publication_date>2026-10-20T00:00:00+00:00</video:publication_date>

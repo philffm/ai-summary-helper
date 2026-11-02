@@ -168669,6 +168669,986 @@
           "model": "deepseek/deepseek-v4.1-flash"
         }
       }
+    },
+    "f4d25956f94dbcbd34be461274db35e5170e984f92b11c90db7164658125d43b": {
+      "en": "AI Summary Helper: your private AI reading and knowledge companion",
+      "translations": {
+        "de": {
+          "text": "AI Summary Helper: Ihr privater KI-Begleiter für Lesen und Wissen",
+          "translatedAt": "2026-11-02T01:21:47.043Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "1572344f240bf8838a0b4b6bfcb64018519ed334f4dbeaf48657bdfbd639dd2b": {
+      "en": "Turn reading into knowledge you keep. AI Summary Helper is a private, local-first reading companion for articles, PDFs and videos with source-linked answers and a searchable archive.",
+      "translations": {
+        "de": {
+          "text": "Machen Sie aus Lesen Wissen, das bleibt. AI Summary Helper ist ein privater, local-first ausgerichteter Lesebegleiter für Artikel, PDFs und Videos – mit quellenverlinkten Antworten und einem durchsuchbaren Archiv.",
+          "translatedAt": "2026-11-02T01:21:47.043Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "22663e7857c61d290b3103a6d11b31ecbb4a84e3b02b5b3bebde2e6fa62480e5": {
+      "en": "Turn reading into knowledge you keep with source-linked answers, a private searchable archive and local-first AI.",
+      "translations": {
+        "de": {
+          "text": "Machen Sie aus Lesen Wissen, das bleibt – mit quellenverlinkten Antworten, einem privaten durchsuchbaren Archiv und local-first KI.",
+          "translatedAt": "2026-11-02T01:21:47.043Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "9c870aa6e5e93270170d5a81277ad3e623afe8d4efd186d3e28f3d2b646d52e6": {
+      "en": "How it works",
+      "translations": {
+        "de": {
+          "text": "So funktioniert es",
+          "translatedAt": "2026-11-02T01:21:47.043Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "ff27a991e8559d6a53024fb888d0b9f062f31154593bf4db2c6431ace2d7d05a": {
+      "en": "Use cases",
+      "translations": {
+        "de": {
+          "text": "Anwendungsfälle",
+          "translatedAt": "2026-11-02T01:21:47.043Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "670fdd9c601754d174473ffe6de442e81d020393385a06a8f9aeb898569126fb": {
+      "en": "Turn reading into",
+      "translations": {
+        "de": {
+          "text": "Machen Sie aus Lesen",
+          "translatedAt": "2026-11-02T01:21:47.043Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "7d232f41a794ef14054204cb5310ecf71c844cd352b6a743cf27986c09b5a288": {
+      "en": "knowledge you keep.",
+      "translations": {
+        "de": {
+          "text": "Wissen, das bleibt.",
+          "translatedAt": "2026-11-02T01:21:47.043Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "c88e2f09962fbd5b498b0ee0184254b4b4676e9e30e3a6ece0e45a02f8319d07": {
+      "en": "Understand articles, PDFs and videos faster. Check answers against their sources. Build a private, searchable knowledge base on your own device.",
+      "translations": {
+        "de": {
+          "text": "Verstehen Sie Artikel, PDFs und Videos schneller. Prüfen Sie Antworten anhand ihrer Quellen. Bauen Sie eine private, durchsuchbare Wissensbasis auf Ihrem eigenen Gerät auf.",
+          "translatedAt": "2026-11-02T01:21:47.043Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "e639bbe799f0a2c7ed2bab5eb40c15c3242449a4f6c84f1f692c2faeba7f62c1": {
+      "en": "No account · Your key or local Ollama · Open source · Made in the EU",
+      "translations": {
+        "de": {
+          "text": "Kein Konto · Ihr eigener Schlüssel oder lokales Ollama · Open Source · Made in the EU",
+          "translatedAt": "2026-11-02T01:21:47.043Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "81f10f07f445f566e08994ff86e8808ed5cb69c6d68c9bcb9a45eaa37b63f972": {
+      "en": "Built for how you read",
+      "translations": {
+        "de": {
+          "text": "Gemacht für Ihre Art zu lesen",
+          "translatedAt": "2026-11-02T01:21:47.043Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "8f1ddb640b144992b36589871df3695e96bff98a1cb90301140d6f3f50c7fb5b": {
+      "en": "Choose your path",
+      "translations": {
+        "de": {
+          "text": "Wählen Sie Ihren Weg",
+          "translatedAt": "2026-11-02T01:21:47.043Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "8d4f0d66ff13a742e63d47502c6003fab017cd2f2fd28e60f6f05b1fa39ea0ca": {
+      "en": "For researchers & students",
+      "translations": {
+        "de": {
+          "text": "Für Forschende & Studierende",
+          "translatedAt": "2026-11-02T01:21:47.043Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "0fc1ea114fb26c0b4e54b2453434ed420dddbf49798efa1a95a4ffef266874c1": {
+      "en": "Read papers faster—",
+      "translations": {
+        "de": {
+          "text": "Lesen Sie Papers schneller –",
+          "translatedAt": "2026-11-02T01:21:47.043Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "38ae4179c2225b0dc903681204b4a5da86ee1fcbb3b5d7caad076cb02dabc987": {
+      "en": "without losing the source",
+      "translations": {
+        "de": {
+          "text": "ohne die Quelle zu verlieren",
+          "translatedAt": "2026-11-02T01:21:47.043Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "319b9366b5fb7fce5c837e8ef1fa55aad4579bd45657ffc9e40829e6f297f22d": {
+      "en": "Explore research mode →",
+      "translations": {
+        "de": {
+          "text": "Forschungsmodus entdecken →",
+          "translatedAt": "2026-11-02T01:21:47.043Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "74a2ad11bf27a59e06aa2689901705147d94bd24d036b4b25549b10be7e7129b": {
+      "en": "For PKM & Obsidian users",
+      "translations": {
+        "de": {
+          "text": "Für PKM- & Obsidian-Nutzer",
+          "translatedAt": "2026-11-02T01:21:47.043Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "9dea3784c9e7bb3fa11fd2464194a17d6218dcd1f85b6d1b0b761e29496b2473": {
+      "en": "Turn articles into",
+      "translations": {
+        "de": {
+          "text": "Machen Sie aus Artikeln",
+          "translatedAt": "2026-11-02T01:21:47.043Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "cab5332fb4cbfee488aa0662273888bafebfc60337839ed3327ea72b5254223a": {
+      "en": "connected notes",
+      "translations": {
+        "de": {
+          "text": "verknüpfte Notizen",
+          "translatedAt": "2026-11-02T01:21:47.043Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "a1ae13094c42897070235e2a5d7bbd8a4b64394689019fc269b43b9b7e5deea6": {
+      "en": "Build your knowledge base →",
+      "translations": {
+        "de": {
+          "text": "Wissensbasis aufbauen →",
+          "translatedAt": "2026-11-02T01:21:47.043Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "d3c76f7ec9db0a274654bc15d31040f8559f5349c12873e09ccafc878e4e34f9": {
+      "en": "For privacy-first readers",
+      "translations": {
+        "de": {
+          "text": "Für Leser, die Datenschutz an erste Stelle setzen",
+          "translatedAt": "2026-11-02T01:21:47.043Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "e166b817da4be0963e11b6aec48ec925790fb454a415068ffea96155e5fb9119": {
+      "en": "Your reading stays",
+      "translations": {
+        "de": {
+          "text": "Ihr Lesen bleibt",
+          "translatedAt": "2026-11-02T01:21:47.043Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "5eb2da9c26b65531549c8863fa023f9b48c1d3f0e17e01d7c4978876c724b21f": {
+      "en": "yours",
+      "translations": {
+        "de": {
+          "text": "Ihres",
+          "translatedAt": "2026-11-02T01:21:47.043Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "2c172216ebdbb52c115ceb87a97a3f4f7fb5b058ad75d73fd08c517b78905fb3": {
+      "en": "See the local workflow →",
+      "translations": {
+        "de": {
+          "text": "Lokalen Workflow ansehen →",
+          "translatedAt": "2026-11-02T01:21:47.043Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "a1c5ae7bcb34bbf48104488eff8deede31b059aceceab562a6aace384f7fd64f": {
+      "en": "Problem",
+      "translations": {
+        "de": {
+          "text": "Problem",
+          "translatedAt": "2026-11-02T01:21:47.043Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "bc1004406cf915f545a2e261b1f84f3576686e07906211231a2115b28cc2ae0c": {
+      "en": "Understand",
+      "translations": {
+        "de": {
+          "text": "Verstehen",
+          "translatedAt": "2026-11-02T01:21:47.043Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "eea2745e2867a6772adc3e813211e6ce7b6ebd312d7e84a7c1b1aa2f8c75fd4b": {
+      "en": "Verify",
+      "translations": {
+        "de": {
+          "text": "Prüfen",
+          "translatedAt": "2026-11-02T01:21:47.043Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "c06255fb377a9cb0e7e3548ffcaecbc235a41e89f5e46abcd5e203f3d6f38e10": {
+      "en": "Retain",
+      "translations": {
+        "de": {
+          "text": "Behalten",
+          "translatedAt": "2026-11-02T01:21:47.043Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "21c2be090a9d673c0d642873792549c06b3f5008b1bf212eb6f6904159f14fc7": {
+      "en": "1. Tap Digest · 2. Set the mood · 3. Send it offline",
+      "translations": {
+        "de": {
+          "text": "1. Digest antippen · 2. Stimmung festlegen · 3. Offline senden",
+          "translatedAt": "2026-11-02T01:21:47.043Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "ca30938da4069420f832215d1fa96185a4769796a2d1e1cea48aeb150ec5f022": {
+      "en": "Read the guide →",
+      "translations": {
+        "de": {
+          "text": "Anleitung lesen →",
+          "translatedAt": "2026-11-02T01:21:47.043Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "a60072a7c09232805c5fad8b939667636ea4bffce9266f38bf3d0b0cdb751ad2": {
+      "en": "Read it in the evening, not in twelve tabs",
+      "translations": {
+        "de": {
+          "text": "Lesen Sie es abends, nicht in zwölf Tabs",
+          "translatedAt": "2026-11-02T01:21:47.043Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "2f54017c67300042fda3bb357450266109ee2e43e6da31dc9182fe363aa90d83": {
+      "en": "Digest turns a pile of saved links into one purposeful bundle for your evening, Kindle or commute.",
+      "translations": {
+        "de": {
+          "text": "Digest macht aus einem Stapel gespeicherter Links ein gezieltes Bündel für Ihren Abend, Ihren Kindle oder den Arbeitsweg.",
+          "translatedAt": "2026-11-02T01:21:47.043Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "ce6e265a767458390dbd11d7a816d87367fdfa525d1fa897b6424f7b2e314645": {
+      "en": "No account · BYOK or Ollama · Open source · Made in the EU",
+      "translations": {
+        "de": {
+          "text": "Kein Konto · BYOK oder Ollama · Open Source · Made in the EU",
+          "translatedAt": "2026-11-02T01:21:47.043Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "b02b1812cef4f310fed1ad9f6c4e7ffb15015a8463ab7a53ab4f43606fdf481c": {
+      "en": "Read the privacy model →",
+      "translations": {
+        "de": {
+          "text": "Datenschutzmodell lesen →",
+          "translatedAt": "2026-11-02T01:21:47.043Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "46fa3c21e3397050f89c5850ca0b8e31d784316bb42f6e545ed26c0119e43911": {
+      "en": "Your library lives on your device",
+      "translations": {
+        "de": {
+          "text": "Ihre Bibliothek lebt auf Ihrem Gerät",
+          "translatedAt": "2026-11-02T01:21:47.043Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "bd2f4a2350c2b504ac6674a39d5993df307c81fef0f182297cc16071062a52be": {
+      "en": "Choose your key, your model and where your reading archive lives.",
+      "translations": {
+        "de": {
+          "text": "Wählen Sie Ihren Schlüssel, Ihr Modell und wo Ihr Lesearchiv liegt.",
+          "translatedAt": "2026-11-02T01:21:47.043Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "c988e71287352429bb8a12777b4a34fc230b14aa5fbbac1f268491121ceb5633": {
+      "en": "Follow blogs and news sites, filter by source, tag, date or mood, import OPML, and summarize any item in one click. Play podcast feeds in the extension and get an optional AI recap; feeds and favorites stay on your device.",
+      "translations": {
+        "de": {
+          "text": "Folgen Sie Blogs und Nachrichtenseiten, filtern Sie nach Quelle, Tag, Datum oder Stimmung, importieren Sie OPML und fassen Sie jeden Eintrag mit einem Klick zusammen. Spielen Sie Podcast-Feeds in der Erweiterung ab und erhalten Sie optional eine KI-Zusammenfassung; Feeds und Favoriten bleiben auf Ihrem Gerät.",
+          "translatedAt": "2026-11-02T01:21:47.043Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "0d68e5d4887c4c64cc6bf7a58957eb0876764c94cf83051b45f38d56b483d8d9": {
+      "en": "Summarize YouTube videos from their captions, get key points in your language, and ask follow-up questions with source citations.",
+      "translations": {
+        "de": {
+          "text": "Fassen Sie YouTube-Videos anhand ihrer Untertitel zusammen, erhalten Sie Kernpunkte in Ihrer Sprache und stellen Sie Rückfragen mit Quellenangaben.",
+          "translatedAt": "2026-11-02T01:21:47.043Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "1214c7d648e1370bbbd59a66a342d111cf666b6bf16efd48862ba16fb4d710ed": {
+      "en": "Summarize browser PDFs or files from disk like any page. “What I used” shows the words, tokens and model the AI read.",
+      "translations": {
+        "de": {
+          "text": "Fassen Sie PDFs im Browser oder Dateien von der Festplatte zusammen wie jede andere Seite. „Was ich verwendet habe“ zeigt die Wörter, Tokens und das Modell, die die KI gelesen hat.",
+          "translatedAt": "2026-11-02T01:21:47.043Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "65daa84c2bb374845949414f59899505285d3e18ebc9af8048a9adde0ef7371a": {
+      "en": "Read and summarize in 20+ languages using the extension, native side panel, or",
+      "translations": {
+        "de": {
+          "text": "Lesen und zusammenfassen in über 20 Sprachen – mit der Erweiterung, dem nativen Seitenbereich oder",
+          "translatedAt": "2026-11-02T01:21:47.043Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "7b3276b593dafe20e65b6ffd6861768e36cd4bc939e634505fd76e81a94144ee": {
+      "en": "when the extension cannot reach a page.",
+      "translations": {
+        "de": {
+          "text": "wenn die Erweiterung eine Seite nicht erreichen kann.",
+          "translatedAt": "2026-11-02T01:21:47.043Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "d376dddc8b248bd6a7715fc4e4ec302d326889700cf8bdcc5125119408782564": {
+      "en": "Choose OpenAI, Gemini, Mistral, DeepSeek, a custom endpoint, or local Ollama for summaries that never need to leave your device.",
+      "translations": {
+        "de": {
+          "text": "Wählen Sie OpenAI, Gemini, Mistral, DeepSeek, einen eigenen Endpoint oder lokales Ollama für Zusammenfassungen, die Ihr Gerät nie verlassen müssen.",
+          "translatedAt": "2026-11-02T01:21:47.043Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "674294fee0156e4b3bba5252cdc5217b99ed0108ad6797cc475568b5f0a0c96f": {
+      "en": "The AI highlights",
+      "translations": {
+        "de": {
+          "text": "Die KI hebt",
+          "translatedAt": "2026-11-02T01:21:47.043Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "407e06dc91b46069f189f887aa3ead1876572768e5ba34ce93d4972f52b4790d": {
+      "en": "so you can skim key insights and export them with the summary to Kindle, LocalSend or Markdown.",
+      "translations": {
+        "de": {
+          "text": "hervor, sodass Sie zentrale Erkenntnisse überfliegen und zusammen mit der Zusammenfassung nach Kindle, LocalSend oder Markdown exportieren können.",
+          "translatedAt": "2026-11-02T01:21:47.043Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "2fd8cbd84b24356266fe4f26a794bdf647135dae904bb76d873bbde246777b5c": {
+      "en": "important verbatim passages",
+      "translations": {
+        "de": {
+          "text": "wichtige wörtliche Passagen",
+          "translatedAt": "2026-11-02T01:21:47.043Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "52416dd873fbb107903c6c97b107ec2ab22fc544e3b9c46c192d83d94c0a945f": {
+      "en": "Recognise research papers by DOI and citation metadata, flag trial, review or preprint status, and extract design, sample, limitations and DOI registry citations.",
+      "translations": {
+        "de": {
+          "text": "Erkennt Forschungsarbeiten anhand von DOI und Zitationsmetadaten, kennzeichnet Studien-, Review- oder Preprint-Status und extrahiert Design, Stichprobe, Einschränkungen und DOI-Register-Zitationen.",
+          "translatedAt": "2026-11-02T01:21:47.043Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "fcb53326844b3d5345383904528ed439729a37e7fab001e03040b5a65057cf95": {
+      "en": "Bundle articles, label sources as peer-reviewed, preprint, news or opinion, run a lateral-reading check, and compare where summaries agree, disagree or miss context.",
+      "translations": {
+        "de": {
+          "text": "Bündeln Sie Artikel, kennzeichnen Sie Quellen als peer-reviewed, Preprint, Nachricht oder Meinung, führen Sie eine Lateral-Reading-Prüfung durch und vergleichen Sie, wo Zusammenfassungen übereinstimmen, sich widersprechen oder Kontext auslassen.",
+          "translatedAt": "2026-11-02T01:21:47.043Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "adfe3cd1f82294684e7547603ada6881f74c8311fc2a049d70227801114e0225": {
+      "en": "Listen while the summary is written: title first, then sentence by sentence, with pause, mute and speed controls. Replay it from any card.",
+      "translations": {
+        "de": {
+          "text": "Hören Sie mit, während die Zusammenfassung geschrieben wird: zuerst der Titel, dann Satz für Satz, mit Steuerung für Pause, Stummschaltung und Geschwindigkeit. Von jeder Karte aus erneut abspielen.",
+          "translatedAt": "2026-11-02T01:21:47.043Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "969bef2546b9b91cbc420788bf5b907860a793acba1b183bd192b07281693fa0": {
+      "en": "Search titles, tags and article content with a browser-based TF-IDF index. Full-text search stays on-device with no round-trip.",
+      "translations": {
+        "de": {
+          "text": "Durchsuchen Sie Titel, Tags und Artikelinhalte mit einem browserbasierten TF-IDF-Index. Die Volltextsuche bleibt auf dem Gerät, ohne Round-Trip.",
+          "translatedAt": "2026-11-02T01:21:47.043Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "220612341ef44dc4870c12d993274273c58124281f5f437a9cf68bcacfdbd4e4": {
+      "en": "See how saved articles connect through shared tags and topic similarity, even when they have no tag in common.",
+      "translations": {
+        "de": {
+          "text": "Sehen Sie, wie gespeicherte Artikel über gemeinsame Tags und Themenähnlichkeit verbunden sind – selbst wenn sie kein Tag gemeinsam haben.",
+          "translatedAt": "2026-11-02T01:21:47.043Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "a32422ef89a7984a2a8c67a7c7d71d9068685ef8d6f56226c5246144b00c4390": {
+      "en": "Save a decision with its reason and timeframe, then get reminded before it disappears into an unread pile.",
+      "translations": {
+        "de": {
+          "text": "Speichern Sie eine Entscheidung mit Begründung und Zeitrahmen und lassen Sie sich erinnern, bevor sie in einem ungelesenen Stapel verschwindet.",
+          "translatedAt": "2026-11-02T01:21:47.043Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "0f3d3459ca8b637afadd65b272038af4d046f9f93ae8abe4f8e544fbfd07bd71": {
+      "en": "One tap curates a varied digest instead of five versions of one story, then bundles it for Kindle or LocalSend.",
+      "translations": {
+        "de": {
+          "text": "Ein Tippen stellt einen abwechslungsreichen Digest zusammen statt fünf Versionen einer Geschichte, und bündelt ihn für Kindle oder LocalSend.",
+          "translatedAt": "2026-11-02T01:21:47.043Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "6c70299cda9539d63e8330ed7dae010f67febd696529ef7cff7b8f0cbe7b6855": {
+      "en": "Rate headlines from heavy to good, filter for good news, and track your reading mood by day, week or month.",
+      "translations": {
+        "de": {
+          "text": "Bewerten Sie Schlagzeilen von schwer bis gut, filtern Sie nach guten Nachrichten und verfolgen Sie Ihre Lesestimmung nach Tag, Woche oder Monat.",
+          "translatedAt": "2026-11-02T01:21:47.043Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "aa7deb4d777420202d17a6b2117ea420c547123e8f75a51632678853dd815503": {
+      "en": "Claude Desktop, LM Studio, Cursor and other MCP apps can search your library, quote highlights and list what is due. You control access; nothing goes through our server.",
+      "translations": {
+        "de": {
+          "text": "Claude Desktop, LM Studio, Cursor und andere MCP-Apps können Ihre Bibliothek durchsuchen, Highlights zitieren und auflisten, was ansteht. Sie kontrollieren den Zugriff; nichts läuft über unseren Server.",
+          "translatedAt": "2026-11-02T01:21:47.043Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "0fa04d8353a3a9a9127152366f36dcd2cee2415d39fb8ef8f038702a65334342": {
+      "en": "Sync an encrypted library to your Nextcloud, WebDAV server, S3 bucket or local folder. Publish a searchable list with a tag graph and 3D map; we run no sync server.",
+      "translations": {
+        "de": {
+          "text": "Synchronisieren Sie eine verschlüsselte Bibliothek mit Ihrer Nextcloud, Ihrem WebDAV-Server, S3-Bucket oder lokalen Ordner. Veröffentlichen Sie eine durchsuchbare Liste mit Tag-Graph und 3D-Karte; wir betreiben keinen Sync-Server.",
+          "translatedAt": "2026-11-02T01:21:47.043Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "7f1caf1e7dd3b92402aef74a92827233d08a8fcf6a38661d15e7df5e5c04a3e8": {
+      "en": "Highlight text, comment on it, or save a quoted note. Organise Notes as a list or sticky-note grid by article or tag, alongside your library.",
+      "translations": {
+        "de": {
+          "text": "Markieren Sie Text, kommentieren Sie ihn oder speichern Sie eine zitierte Notiz. Organisieren Sie Notizen als Liste oder Haftnotiz-Raster nach Artikel oder Tag, neben Ihrer Bibliothek.",
+          "translatedAt": "2026-11-02T01:21:47.043Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "50120f7aea6821446166791c093101848eb1c8a13c0ba8ff33c3d7a551707c83": {
+      "en": "Export summaries to Obsidian, Markdown, Word (DOCX), OpenDocument or PDF with the title, source, tags and highlights in one note.",
+      "translations": {
+        "de": {
+          "text": "Exportieren Sie Zusammenfassungen nach Obsidian, Markdown, Word (DOCX), OpenDocument oder PDF – mit Titel, Quelle, Tags und Highlights in einer Notiz.",
+          "translatedAt": "2026-11-02T01:21:47.043Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "1a0d0f5617dd400eb590abd4a8ab8a1caa00ac329134b93a0a53b59b907c1d6f": {
+      "en": "See reading streaks, time saved by summaries, activity, weekly topics and a word cloud computed from your own library.",
+      "translations": {
+        "de": {
+          "text": "Sehen Sie Leseserien, durch Zusammenfassungen gesparte Zeit, Aktivität, wöchentliche Themen und eine Wortwolke, berechnet aus Ihrer eigenen Bibliothek.",
+          "translatedAt": "2026-11-02T01:21:47.043Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "b2728ba1cf4dcc42561e6a1c9e2f6f8fc82282314252c686cf64a97e31961be3": {
+      "en": "Support the project. Get effortless AI.",
+      "translations": {
+        "de": {
+          "text": "Unterstützen Sie das Projekt. Erhalten Sie mühelose KI.",
+          "translatedAt": "2026-11-02T01:21:47.043Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "353c75bd160de281c2d530b3d8c0765c456621c1deb6595f09c722d3dc681978": {
+      "en": "Everything works for free with your own AI key or a local model. The Support Pass funds independent, local-first software and adds effortless AI plus unlimited offline reading—without holding your archive hostage.",
+      "translations": {
+        "de": {
+          "text": "Alles funktioniert kostenlos mit Ihrem eigenen KI-Schlüssel oder einem lokalen Modell. Der Support Pass finanziert unabhängige, local-first Software und ergänzt mühelose KI sowie unbegrenztes Offline-Lesen – ohne Ihr Archiv als Geisel zu halten.",
+          "translatedAt": "2026-11-02T01:21:47.043Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "219212a4b61dfe5e3b614a8497202dd94b710a2b4c62c143f78675681dea20ea": {
+      "en": "Supports independent, open-source development",
+      "translations": {
+        "de": {
+          "text": "Unterstützt unabhängige Open-Source-Entwicklung",
+          "translatedAt": "2026-11-02T01:21:47.043Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "2bcb70f73b8802a49fbd25210f646e3c721a3619df14073d04a1f150c5c8c87d": {
+      "en": "Search the answers by topic, provider, privacy, archive or platform.",
+      "translations": {
+        "de": {
+          "text": "Durchsuchen Sie die Antworten nach Thema, Anbieter, Datenschutz, Archiv oder Plattform.",
+          "translatedAt": "2026-11-02T01:21:47.043Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "e2c95aba6cca1c0e14dbe4bbf43c17b1e13e2bf6d9763d8405d69112d905aab3": {
+      "en": "Search frequently asked questions",
+      "translations": {
+        "de": {
+          "text": "Häufig gestellte Fragen durchsuchen",
+          "translatedAt": "2026-11-02T01:21:47.043Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "358bad6a84f0862b8fa4ece233bbee95d7c0793a7aaac1aaabbe74e1820590d6": {
+      "en": "No. Install it, bring your own AI provider key or use a local Ollama model, and start saving. An account is only needed for optional byphil Cloud access or extra Kindle/LocalSend sends.",
+      "translations": {
+        "de": {
+          "text": "Nein. Installieren Sie es, verwenden Sie Ihren eigenen Schlüssel eines KI-Anbieters oder ein lokales Ollama-Modell und legen Sie los. Ein Konto ist nur für den optionalen byphil Cloud-Zugang oder zusätzliche Kindle/LocalSend-Sendungen nötig.",
+          "translatedAt": "2026-11-02T01:21:47.043Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "f8fca156ceabd4503065cc5d268526e751b1328d7564fe51b85263c378042b50": {
+      "en": "Only the summarization request goes to the AI provider you configured. RSS also needs requests to your subscribed feeds; an AI recap sends headlines and short snippets only when you request it. Search, duplicate detection, tags and recommendations run locally.",
+      "translations": {
+        "de": {
+          "text": "Nur die Zusammenfassungsanfrage geht an den von Ihnen konfigurierten KI-Anbieter. RSS erfordert außerdem Anfragen an Ihre abonnierten Feeds; eine KI-Zusammenfassung sendet Schlagzeilen und kurze Ausschnitte nur, wenn Sie sie anfordern. Suche, Duplikaterkennung, Tags und Empfehlungen laufen lokal.",
+          "translatedAt": "2026-11-02T01:21:47.043Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "0785d7a772ee0116d5e491c470551e966f36693e72ce6eba9b9d5e55a6adc5d7": {
+      "en": "Are my pages or highlights used to train a model?",
+      "translations": {
+        "de": {
+          "text": "Werden meine Seiten oder Highlights zum Trainieren eines Modells verwendet?",
+          "translatedAt": "2026-11-02T01:21:47.043Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "f069db737af0dba0ba45c7dbd9cfc72a4c26c5e500336018888e1ec9f9f66ad6": {
+      "en": "AI Summary Helper does not use your content to train its own model. With BYOK, the data policy of your chosen provider applies. With Ollama, the summarization request stays on your machine.",
+      "translations": {
+        "de": {
+          "text": "AI Summary Helper verwendet Ihre Inhalte nicht, um ein eigenes Modell zu trainieren. Bei BYOK gilt die Datenrichtlinie Ihres gewählten Anbieters. Bei Ollama bleibt die Zusammenfassungsanfrage auf Ihrem Rechner.",
+          "translatedAt": "2026-11-02T01:21:47.043Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "4eb54a1f8b580fc6cf01f58dce65d4d8458a465cafdd3c77e1d89a044535b5dd": {
+      "en": "Yes. Point it at a local Ollama model and the summarization step stays on your machine too. Everything else already runs locally.",
+      "translations": {
+        "de": {
+          "text": "Ja. Richten Sie es auf ein lokales Ollama-Modell, und auch der Zusammenfassungsschritt bleibt auf Ihrem Rechner. Alles andere läuft bereits lokal.",
+          "translatedAt": "2026-11-02T01:21:47.043Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "354c4f4019a655e86ac91d209ec7bf14e406016eb391039fe0da37431a241647": {
+      "en": "Where is my reading archive stored?",
+      "translations": {
+        "de": {
+          "text": "Wo wird mein Lesearchiv gespeichert?",
+          "translatedAt": "2026-11-02T01:21:47.043Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "4073c8de3e7eb4a42f4e070a105471dda3b4b28de1a798bd434b2d6a5cad746d": {
+      "en": "By default, in your browser on your device. You can export it as Markdown or back it up encrypted to your own Nextcloud, WebDAV server, S3 bucket or local folder.",
+      "translations": {
+        "de": {
+          "text": "Standardmäßig in Ihrem Browser auf Ihrem Gerät. Sie können es als Markdown exportieren oder verschlüsselt in Ihrer eigenen Nextcloud, Ihrem WebDAV-Server, S3-Bucket oder lokalen Ordner sichern.",
+          "translatedAt": "2026-11-02T01:21:47.043Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "faa3b964e47fc53a0042b1bd6fa7f47a97accfb79e51d2c131e9b6d9c27ac71b": {
+      "en": "What happens if I clear my browser data?",
+      "translations": {
+        "de": {
+          "text": "Was passiert, wenn ich meine Browserdaten lösche?",
+          "translatedAt": "2026-11-02T01:21:47.043Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "13248a2582da03e5f2c92c7555df306a14fea6743e4ab12318a139c30d1f4387": {
+      "en": "Local browser data can remove a local archive if you have no backup. Export your library or configure encrypted sync to your own storage before clearing browser data or changing profiles.",
+      "translations": {
+        "de": {
+          "text": "Lokale Browserdaten können ein lokales Archiv entfernen, wenn Sie kein Backup haben. Exportieren Sie Ihre Bibliothek oder richten Sie eine verschlüsselte Synchronisierung mit Ihrem eigenen Speicher ein, bevor Sie Browserdaten löschen oder Profile wechseln.",
+          "translatedAt": "2026-11-02T01:21:47.043Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "9259a9c6c64fde5674123afe7184d37fc24d1e3fda2fec5004f09a2893c0cba0": {
+      "en": "Which AI providers and models are supported?",
+      "translations": {
+        "de": {
+          "text": "Welche KI-Anbieter und Modelle werden unterstützt?",
+          "translatedAt": "2026-11-02T01:21:47.043Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "2dce8d5ba33c3f61e07e030adafc78053e0cf8023da486d6ff534f04bc57ad85": {
+      "en": "You can use OpenAI, Gemini, Mistral, DeepSeek, a compatible custom endpoint, or a local Ollama model. Bring your own key, or use optional byphil Cloud access.",
+      "translations": {
+        "de": {
+          "text": "Sie können OpenAI, Gemini, Mistral, DeepSeek, einen kompatiblen eigenen Endpoint oder ein lokales Ollama-Modell verwenden. Nutzen Sie Ihren eigenen Schlüssel oder den optionalen byphil Cloud-Zugang.",
+          "translatedAt": "2026-11-02T01:21:47.043Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "3fe9f407849b246a84db7f448a7a081cfd48275f23a8d862fbac166ff1039449": {
+      "en": "Can I summarize PDFs, YouTube videos and RSS items?",
+      "translations": {
+        "de": {
+          "text": "Kann ich PDFs, YouTube-Videos und RSS-Einträge zusammenfassen?",
+          "translatedAt": "2026-11-02T01:21:47.043Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "4909e77a64551e2d21acee3e53147b2e065ccc93944eef09f29dc45694ea5042": {
+      "en": "Yes. Summarize PDFs opened in the browser or attached from disk, YouTube videos through their captions, and articles from the built-in RSS reader.",
+      "translations": {
+        "de": {
+          "text": "Ja. Fassen Sie PDFs zusammen, die im Browser geöffnet oder von der Festplatte angehängt werden, YouTube-Videos über ihre Untertitel und Artikel aus dem integrierten RSS-Reader.",
+          "translatedAt": "2026-11-02T01:21:47.043Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "16b4071e165b5e763b39b70043126f4e1c52b881bd9d0a9d76040196756903f0": {
+      "en": "How reliable are the AI summaries?",
+      "translations": {
+        "de": {
+          "text": "Wie zuverlässig sind die KI-Zusammenfassungen?",
+          "translatedAt": "2026-11-02T01:21:47.043Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "b27091125aa945370c39675e5ff13181081e9459a3f0351ee053dafedbd48042": {
+      "en": "AI output can be wrong and does not replace checking the source. Follow-up answers show the passage they rely on, so you can compare the summary with the original page.",
+      "translations": {
+        "de": {
+          "text": "KI-Ausgaben können falsch sein und ersetzen nicht die Prüfung der Quelle. Rückfrage-Antworten zeigen die Passage, auf die sie sich stützen, sodass Sie die Zusammenfassung mit der Originalseite vergleichen können.",
+          "translatedAt": "2026-11-02T01:21:47.043Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "ce550037e94a2ead4d8ef5a62aee6ac634e0dbbc23887ff7f7a3b36f5ec9d036": {
+      "en": "Which browsers and platforms are supported?",
+      "translations": {
+        "de": {
+          "text": "Welche Browser und Plattformen werden unterstützt?",
+          "translatedAt": "2026-11-02T01:21:47.043Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "bd34615f874ee130e41a986d8aa78a80a48ca7019318cfd39cf04fd2ea490860": {
+      "en": "Use the browser extension, native side panel or bookmarklet. An Android companion adds links from your phone; iOS is not available yet.",
+      "translations": {
+        "de": {
+          "text": "Nutzen Sie die Browser-Erweiterung, den nativen Seitenbereich oder ein Bookmarklet. Eine Android-Begleit-App fügt Links von Ihrem Smartphone hinzu; iOS ist noch nicht verfügbar.",
+          "translatedAt": "2026-11-02T01:21:47.043Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "0ae8e1884c2003d4048e04545d564d7f15ead1cf75b783137a473908908374d1": {
+      "en": "Download the APK from the",
+      "translations": {
+        "de": {
+          "text": "Laden Sie die APK herunter von",
+          "translatedAt": "2026-11-02T01:21:47.043Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "d110ccf4ed8e7e92e29439a96378e691f291e1fc4f90c6d97c8a5cf1c4920c3f": {
+      "en": ", then pair it by scanning the QR code under Settings → Phone inbox. It is not on Google Play yet.",
+      "translations": {
+        "de": {
+          "text": ", und koppeln Sie sie dann, indem Sie den QR-Code unter Einstellungen → Telefon-Posteingang scannen. Sie ist noch nicht bei Google Play verfügbar.",
+          "translatedAt": "2026-11-02T01:21:47.043Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "5032e7c6d2ccace5f3dc0ef2af103337b163a871c0f4ab892ecc5751e0a58d4e": {
+      "en": "What does the Support Pass unlock?",
+      "translations": {
+        "de": {
+          "text": "Was schaltet der Support Pass frei?",
+          "translatedAt": "2026-11-02T01:21:47.043Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "16127f5c4fc4b611ecc6ef39ed03b21a8510802b9194c7d2f657e92200acac91": {
+      "en": "The Support Pass funds independent open-source development and can unlock optional byphil Cloud AI access or additional Kindle/LocalSend sends. Your local archive and local use are not locked behind it.",
+      "translations": {
+        "de": {
+          "text": "Der Support Pass finanziert unabhängige Open-Source-Entwicklung und kann optionalen byphil Cloud-KI-Zugang oder zusätzliche Kindle/LocalSend-Sendungen freischalten. Ihr lokales Archiv und die lokale Nutzung sind nicht dahinter verschlossen.",
+          "translatedAt": "2026-11-02T01:21:47.043Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "1495998a375b19961632a5f108da106e818e633dd52efc9b7f1a7e1835ea024f": {
+      "en": "1 / 7",
+      "translations": {
+        "de": {
+          "text": "1 / 7",
+          "translatedAt": "2026-11-02T01:21:47.043Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "a949551bac23229375308fe41c63856924b496643804677df90cd247af39b1ca": {
+      "en": "2 / 7",
+      "translations": {
+        "de": {
+          "text": "2 / 7",
+          "translatedAt": "2026-11-02T01:21:47.043Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "f3e871ce7418a9acfa575e14f589ecfe4f7028611154fc728e1a917b8ab7e721": {
+      "en": "3 / 7",
+      "translations": {
+        "de": {
+          "text": "3 / 7",
+          "translatedAt": "2026-11-02T01:21:47.043Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "eb238fab748fde25fb0cc08c571c1f76e434f59ab970dbd1575e4e62df0c15d8": {
+      "en": "4 / 7",
+      "translations": {
+        "de": {
+          "text": "4 / 7",
+          "translatedAt": "2026-11-02T01:21:47.043Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "e2dfa29eebfa2baf2eb8ea95a78c596d3b0fad5dd03d6c5fa2827837250553e9": {
+      "en": "5 / 7",
+      "translations": {
+        "de": {
+          "text": "5 / 7",
+          "translatedAt": "2026-11-02T01:21:47.043Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "d7ebf426a61523ad728a4fde276b59b4d1a5cdea5769206cce5202ba756e2cf4": {
+      "en": "6 / 7",
+      "translations": {
+        "de": {
+          "text": "6 / 7",
+          "translatedAt": "2026-11-02T01:21:47.043Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "ee73a022ba7e47f77f5ace51accf2687c7b94801848cdd3db302f836d9cd8d8c": {
+      "en": "7 / 7",
+      "translations": {
+        "de": {
+          "text": "7 / 7",
+          "translatedAt": "2026-11-02T01:21:47.043Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "8628f6804432e0c6dae03457e23da48675628df2505419d0aba74c63ab390c38": {
+      "en": "Go to reading list problem slide",
+      "translations": {
+        "de": {
+          "text": "Zur Folie „Problem der Leseliste“",
+          "translatedAt": "2026-11-02T01:21:47.043Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "a6613ace13c2f02e664810a4e259f4c5ef39675c48588e2af6551ac40695380b": {
+      "en": "Go to understand slide",
+      "translations": {
+        "de": {
+          "text": "Zur Folie „Verstehen“",
+          "translatedAt": "2026-11-02T01:21:47.043Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "776291cc9a422c787925a7c87b0a14595d732f6f2a53e45e0343458a40244a1b": {
+      "en": "Go to verify slide",
+      "translations": {
+        "de": {
+          "text": "Zur Folie „Prüfen“",
+          "translatedAt": "2026-11-02T01:21:47.043Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "506eefd6f0402da4cc27d62ab3e511dca03b5a9c3341d057c1947f5cd299ff83": {
+      "en": "Go to knowledge graph slide",
+      "translations": {
+        "de": {
+          "text": "Zur Folie „Wissensgraph“",
+          "translatedAt": "2026-11-02T01:21:47.043Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "0097f6d3ca100fc988cd6774dcb8e62aa17d10fe7c992ce5a954bc8dd5ffbe63": {
+      "en": "Go to retain slide",
+      "translations": {
+        "de": {
+          "text": "Zur Folie „Behalten“",
+          "translatedAt": "2026-11-02T01:21:47.043Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "53f8f2e0483acbae56675135d2bf02b2f7eefd53a9cdac26d2932febea22052d": {
+      "en": "Go to privacy slide",
+      "translations": {
+        "de": {
+          "text": "Zur Folie „Datenschutz“",
+          "translatedAt": "2026-11-02T01:21:47.043Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "0b9c77a6b6b356bd7fa9a59f924069074ccd35a1d45f32b8766e7f49d1db6d49": {
+      "en": "Go to live demo slide",
+      "translations": {
+        "de": {
+          "text": "Zur Folie „Live-Demo“",
+          "translatedAt": "2026-11-02T01:21:47.043Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "4411e018444c27e0e9d66fbde40145f5164ba8636c12fdfca248c505acdd89bb": {
+      "en": "Search the FAQ…",
+      "translations": {
+        "de": {
+          "text": "FAQ durchsuchen…",
+          "translatedAt": "2026-11-02T01:21:47.043Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
     }
   }
 }
