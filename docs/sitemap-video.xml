@@ -2343,7 +2343,7 @@
     <video:video>
       <video:thumbnail_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/paper-ko.jpg</video:thumbnail_loc>
       <video:title>DOI로 논문 자동 인식</video:title>
-      <video:description>임상시험, 리뷰, 프리프린트를 한눈에 파악하고, 핵심 내용과 DOI 기반 인용 정보까지 확인하세요.</video:description>
+      <video:description>연구 설계·리뷰·프리프린트를 한눈에 파악하고, 핵심 내용과 DOI 기반 인용 정보까지 확인하세요.</video:description>
       <video:content_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/paper-ko.mp4</video:content_loc>
       <video:duration>25</video:duration>
       <video:publication_date>2026-10-21T00:00:00+00:00</video:publication_date>
@@ -5220,7 +5220,7 @@
     <video:video>
       <video:thumbnail_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/privat-ko.jpg</video:thumbnail_loc>
       <video:title>원하는 모델로 생성하는 AI 요약</video:title>
-      <video:description>OpenAI, Gemini, Mistral, DeepSeek, 사용자 지정 엔드포인트, 또는 로컬 Ollama 중에서 선택하세요. 기기를 벗어날 필요가 없는 요약을 만들 수 있어요.</video:description>
+      <video:description>OpenAI, Gemini, Mistral, DeepSeek, 사용자 지정 엔드포인트, 또는 로컬 Ollama 중에서 선택하세요. 기기 밖으로 나가지 않는 요약을 만들 수 있어요.</video:description>
       <video:content_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/privat-ko.mp4</video:content_loc>
       <video:duration>23</video:duration>
       <video:publication_date>2026-10-20T00:00:00+00:00</video:publication_date>
@@ -6067,7 +6067,7 @@
     <video:video>
       <video:thumbnail_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/stimmung-ja.jpg</video:thumbnail_loc>
       <video:title>ムードフィルターと感情の推移</video:title>
-      <video:description>見出しを「重い」から「良い」まで評価し、良いニュースだけを絞り込み、日別、週別、月別に読書の気分を追跡できます。</video:description>
+      <video:description>見出しを「重い」から「良い」まで評価し、良いニュースだけを絞り込み、日別、週別、月別に記事のトーンを追跡できます。</video:description>
       <video:content_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/stimmung-ja.mp4</video:content_loc>
       <video:duration>23</video:duration>
       <video:publication_date>2026-10-21T00:00:00+00:00</video:publication_date>
@@ -6107,7 +6107,7 @@
     <video:video>
       <video:thumbnail_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/privat-ko.jpg</video:thumbnail_loc>
       <video:title>원하는 모델로 생성하는 AI 요약</video:title>
-      <video:description>OpenAI, Gemini, Mistral, DeepSeek, 사용자 지정 엔드포인트, 또는 로컬 Ollama 중에서 선택하세요. 기기를 벗어날 필요가 없는 요약을 만들 수 있어요.</video:description>
+      <video:description>OpenAI, Gemini, Mistral, DeepSeek, 사용자 지정 엔드포인트, 또는 로컬 Ollama 중에서 선택하세요. 기기 밖으로 나가지 않는 요약을 만들 수 있어요.</video:description>
       <video:content_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/privat-ko.mp4</video:content_loc>
       <video:duration>23</video:duration>
       <video:publication_date>2026-10-20T00:00:00+00:00</video:publication_date>
@@ -7422,7 +7422,7 @@
     <video:video>
       <video:thumbnail_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/paper-ja.jpg</video:thumbnail_loc>
       <video:title>リサーチモード：DOIから学術論文を自動識別</video:title>
-      <video:description>DOIと引用メタデータで研究論文を識別し、治験、レビュー、プレプリントのステータスを示し、デザイン、サンプル、限界、DOIレジストリの引用を抽出します。</video:description>
+      <video:description>DOIと引用メタデータで研究論文を識別し、研究デザイン、レビュー、プレプリントの区別を示し、研究デザイン、対象集団、限界、DOIレジストリの引用を抽出します。</video:description>
       <video:content_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/paper-ja.mp4</video:content_loc>
       <video:duration>25</video:duration>
       <video:publication_date>2026-10-21T00:00:00+00:00</video:publication_date>
@@ -7431,7 +7431,7 @@
     <video:video>
       <video:thumbnail_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/recherche-ja.jpg</video:thumbnail_loc>
       <video:title>1つの問いに対して複数ソースを比較</video:title>
-      <video:description>記事をまとめてバンドルし、出典を査読済み、プレプリント、ニュース、意見としてラベル付けし、横読みチェックを実行。要約が一致する点、異なる点、文脈を欠く点を比較できます。</video:description>
+      <video:description>記事をまとめてバンドルし、出典を査読済み、プレプリント、ニュース、意見としてラベル付けし、複数の情報源によるクロスチェックを実行。要約が一致する点、異なる点、文脈を欠く点を比較できます。</video:description>
       <video:content_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/recherche-ja.mp4</video:content_loc>
       <video:duration>23</video:duration>
       <video:publication_date>2026-10-21T00:00:00+00:00</video:publication_date>
@@ -7489,7 +7489,7 @@
     <video:video>
       <video:thumbnail_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/privat-ko.jpg</video:thumbnail_loc>
       <video:title>원하는 모델로 생성하는 AI 요약</video:title>
-      <video:description>OpenAI, Gemini, Mistral, DeepSeek, 사용자 지정 엔드포인트, 또는 로컬 Ollama 중에서 선택하세요. 기기를 벗어날 필요가 없는 요약을 만들 수 있어요.</video:description>
+      <video:description>OpenAI, Gemini, Mistral, DeepSeek, 사용자 지정 엔드포인트, 또는 로컬 Ollama 중에서 선택하세요. 기기 밖으로 나가지 않는 요약을 만들 수 있어요.</video:description>
       <video:content_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/privat-ko.mp4</video:content_loc>
       <video:duration>23</video:duration>
       <video:publication_date>2026-10-20T00:00:00+00:00</video:publication_date>
@@ -7507,7 +7507,7 @@
     <video:video>
       <video:thumbnail_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/paper-ko.jpg</video:thumbnail_loc>
       <video:title>연구 모드: DOI 기반 논문 자동 인식</video:title>
-      <video:description>DOI와 인용 메타데이터로 연구 논문을 인식하고, 임상시험·리뷰·프리프린트 여부를 표시하고, 설계, 표본, 한계, DOI 레지스트리 인용을 추출해요.</video:description>
+      <video:description>DOI와 인용 메타데이터로 연구 논문을 인식하고, 연구 설계·리뷰·프리프린트 여부를 표시하고, 연구 설계, 대상 집단, 한계, DOI 레지스트리 인용을 추출해요.</video:description>
       <video:content_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/paper-ko.mp4</video:content_loc>
       <video:duration>25</video:duration>
       <video:publication_date>2026-10-21T00:00:00+00:00</video:publication_date>
@@ -7516,7 +7516,7 @@
     <video:video>
       <video:thumbnail_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/recherche-ko.jpg</video:thumbnail_loc>
       <video:title>하나의 주제로 여러 출처 비교하기</video:title>
-      <video:description>아티클을 묶고, 출처를 동료 심사, 프리프린트, 뉴스, 의견으로 표시하고, 측면 읽기 점검을 실행하고, 요약이 일치하거나 어긋나거나 맥락을 놓친 부분을 비교해요.</video:description>
+      <video:description>아티클을 묶고, 출처를 동료 심사, 프리프린트, 뉴스, 의견으로 표시하고, 여러 출처 교차 검증을 실행하고, 요약이 일치하거나 어긋나거나 맥락을 놓친 부분을 비교해요.</video:description>
       <video:content_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/recherche-ko.mp4</video:content_loc>
       <video:duration>27</video:duration>
       <video:publication_date>2026-10-21T00:00:00+00:00</video:publication_date>
@@ -10431,7 +10431,7 @@
     <video:video>
       <video:thumbnail_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/paper-ja.jpg</video:thumbnail_loc>
       <video:title>リサーチモード：DOIから学術論文を自動識別</video:title>
-      <video:description>DOIと引用メタデータで研究論文を識別し、治験、レビュー、プレプリントのステータスを示し、デザイン、サンプル、限界、DOIレジストリの引用を抽出します。</video:description>
+      <video:description>DOIと引用メタデータで研究論文を識別し、研究デザイン、レビュー、プレプリントの区別を示し、研究デザイン、対象集団、限界、DOIレジストリの引用を抽出します。</video:description>
       <video:content_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/paper-ja.mp4</video:content_loc>
       <video:duration>25</video:duration>
       <video:publication_date>2026-10-21T00:00:00+00:00</video:publication_date>
@@ -10440,7 +10440,7 @@
     <video:video>
       <video:thumbnail_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/recherche-ja.jpg</video:thumbnail_loc>
       <video:title>1つの問いに対して複数ソースを比較</video:title>
-      <video:description>記事をまとめてバンドルし、出典を査読済み、プレプリント、ニュース、意見としてラベル付けし、横読みチェックを実行。要約が一致する点、異なる点、文脈を欠く点を比較できます。</video:description>
+      <video:description>記事をまとめてバンドルし、出典を査読済み、プレプリント、ニュース、意見としてラベル付けし、複数の情報源によるクロスチェックを実行。要約が一致する点、異なる点、文脈を欠く点を比較できます。</video:description>
       <video:content_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/recherche-ja.mp4</video:content_loc>
       <video:duration>23</video:duration>
       <video:publication_date>2026-10-21T00:00:00+00:00</video:publication_date>
@@ -10579,7 +10579,7 @@
     <video:video>
       <video:thumbnail_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/paper-ko.jpg</video:thumbnail_loc>
       <video:title>DOI로 논문 자동 인식</video:title>
-      <video:description>임상시험, 리뷰, 프리프린트를 한눈에 파악하고, 핵심 내용과 DOI 기반 인용 정보까지 확인하세요.</video:description>
+      <video:description>연구 설계·리뷰·프리프린트를 한눈에 파악하고, 핵심 내용과 DOI 기반 인용 정보까지 확인하세요.</video:description>
       <video:content_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/paper-ko.mp4</video:content_loc>
       <video:duration>25</video:duration>
       <video:publication_date>2026-10-21T00:00:00+00:00</video:publication_date>
@@ -10756,7 +10756,7 @@
     <video:video>
       <video:thumbnail_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/privat-ko.jpg</video:thumbnail_loc>
       <video:title>원하는 모델로 생성하는 AI 요약</video:title>
-      <video:description>OpenAI, Gemini, Mistral, DeepSeek, 사용자 지정 엔드포인트, 또는 로컬 Ollama 중에서 선택하세요. 기기를 벗어날 필요가 없는 요약을 만들 수 있어요.</video:description>
+      <video:description>OpenAI, Gemini, Mistral, DeepSeek, 사용자 지정 엔드포인트, 또는 로컬 Ollama 중에서 선택하세요. 기기 밖으로 나가지 않는 요약을 만들 수 있어요.</video:description>
       <video:content_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/privat-ko.mp4</video:content_loc>
       <video:duration>23</video:duration>
       <video:publication_date>2026-10-20T00:00:00+00:00</video:publication_date>
@@ -10774,7 +10774,7 @@
     <video:video>
       <video:thumbnail_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/paper-ko.jpg</video:thumbnail_loc>
       <video:title>연구 모드: DOI 기반 논문 자동 인식</video:title>
-      <video:description>DOI와 인용 메타데이터로 연구 논문을 인식하고, 임상시험·리뷰·프리프린트 여부를 표시하고, 설계, 표본, 한계, DOI 레지스트리 인용을 추출해요.</video:description>
+      <video:description>DOI와 인용 메타데이터로 연구 논문을 인식하고, 연구 설계·리뷰·프리프린트 여부를 표시하고, 연구 설계, 대상 집단, 한계, DOI 레지스트리 인용을 추출해요.</video:description>
       <video:content_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/paper-ko.mp4</video:content_loc>
       <video:duration>25</video:duration>
       <video:publication_date>2026-10-21T00:00:00+00:00</video:publication_date>
@@ -10783,7 +10783,7 @@
     <video:video>
       <video:thumbnail_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/recherche-ko.jpg</video:thumbnail_loc>
       <video:title>하나의 주제로 여러 출처 비교하기</video:title>
-      <video:description>아티클을 묶고, 출처를 동료 심사, 프리프린트, 뉴스, 의견으로 표시하고, 측면 읽기 점검을 실행하고, 요약이 일치하거나 어긋나거나 맥락을 놓친 부분을 비교해요.</video:description>
+      <video:description>아티클을 묶고, 출처를 동료 심사, 프리프린트, 뉴스, 의견으로 표시하고, 여러 출처 교차 검증을 실행하고, 요약이 일치하거나 어긋나거나 맥락을 놓친 부분을 비교해요.</video:description>
       <video:content_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/recherche-ko.mp4</video:content_loc>
       <video:duration>27</video:duration>
       <video:publication_date>2026-10-21T00:00:00+00:00</video:publication_date>
@@ -13858,7 +13858,7 @@
     <video:video>
       <video:thumbnail_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/stimmung-ja.jpg</video:thumbnail_loc>
       <video:title>ムードフィルターと感情の推移</video:title>
-      <video:description>見出しを「重い」から「良い」まで評価し、良いニュースだけを絞り込み、日別、週別、月別に読書の気分を追跡できます。</video:description>
+      <video:description>見出しを「重い」から「良い」まで評価し、良いニュースだけを絞り込み、日別、週別、月別に記事のトーンを追跡できます。</video:description>
       <video:content_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/stimmung-ja.mp4</video:content_loc>
       <video:duration>23</video:duration>
       <video:publication_date>2026-10-21T00:00:00+00:00</video:publication_date>
