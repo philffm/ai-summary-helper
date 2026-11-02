@@ -191384,6 +191384,1726 @@
           "model": "deepseek/deepseek-v4.1-flash"
         }
       }
+    },
+    "73ca270f8167627f89e476fcbee6eb7068cdfdcd94c585f705155c72d2479898": {
+      "en": "For e-reader readers",
+      "translations": {
+        "de": {
+          "text": "Für E-Reader-Leser",
+          "translatedAt": "2026-11-02T20:43:34.958Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "bec6172f73fe2a5ccb0536fcd22705d421535f612f7492167badfda10c35647b": {
+      "en": "Archive it once,",
+      "translations": {
+        "de": {
+          "text": "Einmal archiviert,",
+          "translatedAt": "2026-11-02T20:43:34.958Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "af6aca786b5c3ca829783af3ab3b7cbcd95440939d8acf56e089bdb1490e9fa5": {
+      "en": "read it on your Kindle",
+      "translations": {
+        "de": {
+          "text": "liest du es auf deinem Kindle",
+          "translatedAt": "2026-11-02T20:43:34.958Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "4da2d8a5c9fbd42acf630456b859507c2687045a38d0399fc055cd7f73bee96a": {
+      "en": "Explore the e-reader workflow →",
+      "translations": {
+        "de": {
+          "text": "Entdecke den E-Reader-Workflow →",
+          "translatedAt": "2026-11-02T20:43:34.958Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "f96309c81ad7d65971e4c52aae30fd62ab1404efcc23f17d64bacd662ff313bc": {
+      "en": "Your reading, kept and portable",
+      "translations": {
+        "de": {
+          "text": "Deine Lektüre, gespeichert und portabel",
+          "translatedAt": "2026-11-02T20:43:34.958Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "3605c79fc4395c3689c3c92d66c9b47cfd7a6895239bbac79d01c7e242eb3447": {
+      "en": "Saving is the core of AI Summary Helper. Everything you archive stays on your device and can travel with you.",
+      "translations": {
+        "de": {
+          "text": "Das Speichern ist der Kern von AI Summary Helper. Alles, was du archivierst, bleibt auf deinem Gerät und kann mit dir reisen.",
+          "translatedAt": "2026-11-02T20:43:34.958Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "f5a071604744b9d4e4f2dd186f28a6a1909ffd8f9b448be5c7de40cdf1b40419": {
+      "en": "Articles with their images",
+      "translations": {
+        "de": {
+          "text": "Artikel mit ihren Bildern",
+          "translatedAt": "2026-11-02T20:43:34.958Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "39e61c7ac5dd7b12d67793b347c8c046bde462ca3646493fae95733b497e7497": {
+      "en": "Save the whole article, not just a link. Images are resized and compressed, so a page stays readable and small.",
+      "translations": {
+        "de": {
+          "text": "Speichere den ganzen Artikel, nicht nur einen Link. Bilder werden in der Größe angepasst und komprimiert, damit eine Seite lesbar und klein bleibt.",
+          "translatedAt": "2026-11-02T20:43:34.958Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "822b2ae4542bc74b8fccf9ec3e08408d33d35b919101760dc27e1ea7822f1818": {
+      "en": "Find",
+      "translations": {
+        "de": {
+          "text": "Finde",
+          "translatedAt": "2026-11-02T20:43:34.958Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "b54d1af65d6d0115741e0534e7c74c776384c78669db6989cb37239d4dc7648e": {
+      "en": "Search and connect on your device",
+      "translations": {
+        "de": {
+          "text": "Suche und verbinde auf deinem Gerät",
+          "translatedAt": "2026-11-02T20:43:34.958Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "b4b37d1c4f11781528a5ea5dd48924708857de967c3ab39c8a9d2e96da360e96": {
+      "en": "Full-text search, tags and a knowledge graph run in your browser, without uploading your library.",
+      "translations": {
+        "de": {
+          "text": "Volltextsuche, Tags und ein Wissensgraph laufen in deinem Browser, ohne dass du deine Bibliothek hochladen musst.",
+          "translatedAt": "2026-11-02T20:43:34.958Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "8b862ba45dceddf7e186fa48c1bb76f09730a23fc67f870c015d9649dab27a27": {
+      "en": "Take",
+      "translations": {
+        "de": {
+          "text": "Nimm",
+          "translatedAt": "2026-11-02T20:43:34.958Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "4c266b9ca5c2c6b6a7eb42bbaa5baf6b3467b2479e42d852ff81614884b26af0": {
+      "en": "Send it to Kindle or LocalSend",
+      "translations": {
+        "de": {
+          "text": "Sende es an Kindle oder LocalSend",
+          "translatedAt": "2026-11-02T20:43:34.958Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "a18bca8a48611117f700d89560b07a4874db161d0cc3a6edec8b38ddcbbabfd1": {
+      "en": "Send an article or a digest to your Kindle, or straight to a KOReader or LocalSend device, and read away from the screen.",
+      "translations": {
+        "de": {
+          "text": "Sende einen Artikel oder einen Digest an deinen Kindle oder direkt an ein KOReader- oder LocalSend-Gerät und lies abseits des Bildschirms.",
+          "translatedAt": "2026-11-02T20:43:34.958Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "a2f014abf30ebe1b2e7fe036b1d5e9ac794b9c82a06becfae415197ef8c0d350": {
+      "en": "Archive and e-reader →",
+      "translations": {
+        "de": {
+          "text": "Archivieren und E-Reader →",
+          "translatedAt": "2026-11-02T20:43:34.958Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "5816b52d3ac482ce9700a5534c74eb55c13e288efbd6977aa2276b36c1605b75": {
+      "en": "In practice",
+      "translations": {
+        "de": {
+          "text": "In der Praxis",
+          "translatedAt": "2026-11-02T20:43:49.615Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "925efefe906a6d97585019a03f5630550a3e9c5136b169b7a0ef6a30d9c3b782": {
+      "en": "Make your saved reading come back",
+      "translations": {
+        "de": {
+          "text": "Lass deine gespeicherte Lektüre wieder aufleben",
+          "translatedAt": "2026-11-02T20:43:49.615Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "2605718e614a20964c1b752842dc4f574d1228472fad071b50b26e9651d68a9a": {
+      "en": "Four ways an archive can earn its place instead of piling up.",
+      "translations": {
+        "de": {
+          "text": "Vier Wege, wie ein Archiv sich seinen Platz verdient, statt sich anzuhäufen.",
+          "translatedAt": "2026-11-02T20:43:49.615Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "1cb4c597790f5f5521a1edb7577ccc6f3f7e94d5112a90a96610cea654fac816": {
+      "en": "Save on purpose",
+      "translations": {
+        "de": {
+          "text": "Bewusst speichern",
+          "translatedAt": "2026-11-02T20:43:49.615Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "37710e8afb819a5587e2663b52ff1a791464a8837a1f29627d912d0e3ac3422f": {
+      "en": "A reason and a date, not just a bookmark",
+      "translations": {
+        "de": {
+          "text": "Ein Grund und ein Datum, nicht nur ein Lesezeichen",
+          "translatedAt": "2026-11-02T20:43:49.615Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "ad3a38d1997c98d632f3f239c8eb7e3fb543ebabec5f36dc19baf8db38ee287d": {
+      "en": "One note, everything",
+      "translations": {
+        "de": {
+          "text": "Eine Notiz, alles drin",
+          "translatedAt": "2026-11-02T20:43:49.615Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "c583bcb2e9961ac3735b5bad75cfe788daedf3d2fc7003fdbdea838691a10b12": {
+      "en": "Export to Obsidian or Markdown",
+      "translations": {
+        "de": {
+          "text": "Export nach Obsidian oder Markdown",
+          "translatedAt": "2026-11-02T20:43:49.615Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "ef2021ee7b6b474665f5b956e5bd7c1eb7d2bd42e79b69319de40bff19481ea8": {
+      "en": "Send summaries to Obsidian, Markdown, Word, OpenDocument or PDF with the title, source, tags and highlights in one note.",
+      "translations": {
+        "de": {
+          "text": "Schicke Zusammenfassungen nach Obsidian, Markdown, Word, OpenDocument oder PDF – mit Titel, Quelle, Tags und Highlights in einer Notiz.",
+          "translatedAt": "2026-11-02T20:43:49.615Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "3b0dfb4e4eda8aebc5ca6d34f0192383c78bc6c7a26d9e896b91b41171ff4450": {
+      "en": "See the connections",
+      "translations": {
+        "de": {
+          "text": "Erkenne die Zusammenhänge",
+          "translatedAt": "2026-11-02T20:43:49.615Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "db2b349847ea1af4b1d0c7f09a8ce4503d2789cf842f80d8e7e9f35c702e5094": {
+      "en": "A graph, not just a list",
+      "translations": {
+        "de": {
+          "text": "Ein Graph, nicht nur eine Liste",
+          "translatedAt": "2026-11-02T20:43:49.615Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "7a08faf47af453e2e79f72380925b9eea5867408726bbab05d2a324a1df60cd1": {
+      "en": "Roediger & Karpicke (2006), Psychological Science",
+      "translations": {
+        "de": {
+          "text": "Roediger & Karpicke (2006), Psychological Science",
+          "translatedAt": "2026-11-02T20:43:49.615Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "289d27707272cdaf27be7b158d33de168827184caa8138a9ef3545d2181ece75": {
+      "en": "You choose where it runs",
+      "translations": {
+        "de": {
+          "text": "Du entscheidest, wo es läuft",
+          "translatedAt": "2026-11-02T20:43:52.268Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "76253b3c248919bfec826c0b088b465f4eb74b740b5fed2dde9df49fb9d64aea": {
+      "en": "Four things you control when the AI reads for you.",
+      "translations": {
+        "de": {
+          "text": "Vier Dinge, die du steuerst, wenn die KI für dich liest.",
+          "translatedAt": "2026-11-02T20:43:52.268Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "941e131019dd8e8aa528ff9aee46f526f9fcf3b26f3e44498e442fc83b488dfc": {
+      "en": "Your model",
+      "translations": {
+        "de": {
+          "text": "Dein Modell",
+          "translatedAt": "2026-11-02T20:43:52.268Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "881ecf20d28b8f91d0490731e42c4567c9f2e1c678bc9b14b02af90fd88a4c6d": {
+      "en": "Ollama, your own key, or a custom endpoint",
+      "translations": {
+        "de": {
+          "text": "Ollama, dein eigener Schlüssel oder ein eigener Endpunkt",
+          "translatedAt": "2026-11-02T20:43:52.268Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "14a4a80c2be3fe5f0caba0e7bf2849cbb1de235d087fa2af747b72f4d244d648": {
+      "en": "Choose OpenAI, Gemini, Mistral, DeepSeek, a custom endpoint or local Ollama. With Ollama the summary never leaves your device.",
+      "translations": {
+        "de": {
+          "text": "Wähle OpenAI, Gemini, Mistral, DeepSeek, einen eigenen Endpunkt oder lokales Ollama. Mit Ollama verlässt die Zusammenfassung nie dein Gerät.",
+          "translatedAt": "2026-11-02T20:43:52.268Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "ba492c4de835aeca039d00e2b95750e3c73061556feb6f5e42bd1b8f2df6de33": {
+      "en": "What I used",
+      "translations": {
+        "de": {
+          "text": "Was ich verwendet habe",
+          "translatedAt": "2026-11-02T20:43:52.268Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "7789374f93b15688111f187c632354b6235902006720ead0b4fa37bbe99850b0": {
+      "en": "See exactly what the AI read",
+      "translations": {
+        "de": {
+          "text": "Sieh genau, was die KI gelesen hat",
+          "translatedAt": "2026-11-02T20:43:52.268Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "dd3a6c8d117629312957fdb2be84fcdb2b54a40eaf2f298d2ff9b36b4a667027": {
+      "en": "“What I used” shows the words, tokens and model behind each summary.",
+      "translations": {
+        "de": {
+          "text": "„Was ich verwendet habe“ zeigt die Wörter, Tokens und das Modell hinter jeder Zusammenfassung.",
+          "translatedAt": "2026-11-02T20:43:52.268Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "1bd61bf09e7f92ac475bd1e333f8e8727c0700776379b2c7390a70102450f780": {
+      "en": "Your storage",
+      "translations": {
+        "de": {
+          "text": "Dein Speicher",
+          "translatedAt": "2026-11-02T20:43:52.268Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "2d90816b44d90138e06f9dd37143eaa1a18b5e5d3720f3990ef89e0b2f9789a0": {
+      "en": "Sync an encrypted library to your own server",
+      "translations": {
+        "de": {
+          "text": "Synchronisiere eine verschlüsselte Bibliothek mit deinem eigenen Server",
+          "translatedAt": "2026-11-02T20:43:52.268Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "3915c86821a6393a0ef2eccf93c8f43bb5f9b5b5cffd02590b353b98654c09c8": {
+      "en": "Sync to Nextcloud, WebDAV, S3 or a local folder. The library is encrypted and we run no sync server.",
+      "translations": {
+        "de": {
+          "text": "Synchronisiere mit Nextcloud, WebDAV, S3 oder einem lokalen Ordner. Die Bibliothek ist verschlüsselt und wir betreiben keinen Sync-Server.",
+          "translatedAt": "2026-11-02T20:43:52.268Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "415a3d563175f694e514ba178124e36075c6bbe5233f5b5a09c76695a36f1420": {
+      "en": "Honest about keys",
+      "translations": {
+        "de": {
+          "text": "Ehrlich, was Schlüssel angeht",
+          "translatedAt": "2026-11-02T20:43:52.268Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "fd1ece6c77e3839c945703d1749679daf0d2c2e4d46d7e4dc56a9a0c89f9603d": {
+      "en": "With your own key, the request and any context in it go to the provider you chose. Only a local model keeps it on your device.",
+      "translations": {
+        "de": {
+          "text": "Mit deinem eigenen Schlüssel gehen die Anfrage und jeglicher Kontext darin an den Anbieter, den du gewählt hast. Nur ein lokales Modell behält sie auf deinem Gerät.",
+          "translatedAt": "2026-11-02T20:43:52.268Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "a65333a21314524317b0e879487ade12f42a896d71b889806688d1259190e67a": {
+      "en": "What your AI app can and cannot do",
+      "translations": {
+        "de": {
+          "text": "Was deine KI-App kann – und was nicht",
+          "translatedAt": "2026-11-02T20:44:00.088Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "85c65f05fffaa65f21aebf29d673237b20854374a178a54d2cc07dfb988b9cc6": {
+      "en": "The limits are built in and you set them. The details are in the open-source relay documentation.",
+      "translations": {
+        "de": {
+          "text": "Die Grenzen sind eingebaut, und du legst sie fest. Die Details findest du in der Open-Source-Dokumentation zum Relay.",
+          "translatedAt": "2026-11-02T20:44:00.088Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "72bb90897ab1eadc924fa1358773c5949372c1f06d8dd53d730bbfa3b0c5b695": {
+      "en": "Read-only",
+      "translations": {
+        "de": {
+          "text": "Nur Lesen",
+          "translatedAt": "2026-11-02T20:44:00.088Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "b9000f706fb355915514a2d6f1cdb3bb58a01b5ad97a0293a800ffba05113ab0": {
+      "en": "Your AI app can read, not edit",
+      "translations": {
+        "de": {
+          "text": "Deine KI-App kann lesen, aber nicht bearbeiten",
+          "translatedAt": "2026-11-02T20:44:00.088Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "4ccba4682284ea91940b71f9f8629724f505a70975c9f51e2fe6c85d9098c2d7": {
+      "en": "Connected apps can search your saved articles, summaries, highlights, collections and feeds. They cannot edit or delete anything, and nothing works while the browser is closed. The one write is saving a link to your inbox, marked “added by AI app”, and only if you allow it.",
+      "translations": {
+        "de": {
+          "text": "Verbundene Apps können deine gespeicherten Artikel, Zusammenfassungen, Markierungen, Sammlungen und Feeds durchsuchen. Sie können nichts bearbeiten oder löschen, und nichts funktioniert, solange der Browser geschlossen ist. Die einzige Schreibaktion ist das Speichern eines Links in deinem Posteingang, gekennzeichnet mit „hinzugefügt von KI-App“ – und nur, wenn du es erlaubst.",
+          "translatedAt": "2026-11-02T20:44:00.088Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "769ba7d47af09a4ad70dd498a2aad560895398302dda5b7285b459cf2ec715aa": {
+      "en": "aish-mcp documentation, What it can and can’t do",
+      "translations": {
+        "de": {
+          "text": "aish-mcp-Dokumentation, Was es kann und was nicht",
+          "translatedAt": "2026-11-02T20:44:00.088Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "54fa0e9699f76a0bac048252200239d1defb49167ca64fad873a651484266109": {
+      "en": "Off by default",
+      "translations": {
+        "de": {
+          "text": "Standardmäßig aus",
+          "translatedAt": "2026-11-02T20:44:00.088Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "bf08af6698fcc54b10696204b893069052036baa50617599b1004f00626efda0": {
+      "en": "You switch each permission on",
+      "translations": {
+        "de": {
+          "text": "Jede Berechtigung schaltest du selbst ein",
+          "translatedAt": "2026-11-02T20:44:00.088Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "1419da911cc32e968e124ea3293ed6d2fb9a69e82ece31359732f3d4bb144415": {
+      "en": "The feature is off until you turn it on in AISH settings. Full article text, feeds and saving links are separate switches, and anything you have not enabled is refused inside the extension. Articles tagged private never appear in a result.",
+      "translations": {
+        "de": {
+          "text": "Die Funktion ist aus, bis du sie in den AISH-Einstellungen einschaltest. Vollständiger Artikeltext, Feeds und das Speichern von Links sind separate Schalter, und alles, was du nicht aktiviert hast, wird in der Erweiterung abgelehnt. Als privat markierte Artikel erscheinen nie in einem Ergebnis.",
+          "translatedAt": "2026-11-02T20:44:00.088Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "7ae294dece7c03fec4213878817a84832a095c7de45a0058949fc7f755d263b8": {
+      "en": "aish-mcp documentation, Security notes",
+      "translations": {
+        "de": {
+          "text": "aish-mcp-Dokumentation, Sicherheitshinweise",
+          "translatedAt": "2026-11-02T20:44:00.088Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "c905013aab298856be9d5fb2d1eafccb5ba2d10f28086c45e0b46816b7711676": {
+      "en": "Local only",
+      "translations": {
+        "de": {
+          "text": "Nur lokal",
+          "translatedAt": "2026-11-02T20:44:00.088Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "6329c12358224bda957806db2d53619c49503730a189c0096e2ef50c71c65906": {
+      "en": "Paired, checked, not reachable from the web",
+      "translations": {
+        "de": {
+          "text": "Gekoppelt, geprüft, aus dem Web nicht erreichbar",
+          "translatedAt": "2026-11-02T20:44:00.088Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "b3d23eb9a60e53f0b999642ca46dd68e7b51f0048f08b7867caae64c319f91bb": {
+      "en": "The relay listens on 127.0.0.1 only. The extension connects to it with a pairing token, and a web page cannot drive it. One command, aish-mcp reset, makes the old token stop working immediately.",
+      "translations": {
+        "de": {
+          "text": "Das Relay lauscht nur auf 127.0.0.1. Die Erweiterung verbindet sich über ein Kopplungs-Token damit, und eine Webseite kann es nicht steuern. Ein einziger Befehl, aish-mcp reset, lässt den alten Token sofort ungültig werden.",
+          "translatedAt": "2026-11-02T20:44:00.088Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "53788e7d9f8a10acf5385563a6abce947bc9fd1012ef54fb894231d02148ed6c": {
+      "en": "Ask your library",
+      "translations": {
+        "de": {
+          "text": "Frag deine Bibliothek",
+          "translatedAt": "2026-11-02T20:44:00.088Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "74cdb81cbcc27322b0c686e873b8da97f6c182df74167ddb389139ffe4448216": {
+      "en": "What you can ask once it is connected",
+      "translations": {
+        "de": {
+          "text": "Was du fragen kannst, wenn es verbunden ist",
+          "translatedAt": "2026-11-02T20:44:00.088Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "842a406f543db24d84fa84c423ec410f6d4d09b9388aa3cafd660be06b901c2a": {
+      "en": "For example: “Do any of my saved articles on this topic disagree? Show both sides with sources.” Your AI app sends only what it needs to its own model; the relay keeps no library data.",
+      "translations": {
+        "de": {
+          "text": "Zum Beispiel: „Widersprechen sich meine gespeicherten Artikel zu diesem Thema? Zeig beide Seiten mit Quellen.“ Deine KI-App sendet nur, was sie braucht, an ihr eigenes Modell; das Relay speichert keine Bibliotheksdaten.",
+          "translatedAt": "2026-11-02T20:44:00.088Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "1d2adf847edd70ef6674e06be4b4c9ac2dd0b9889af70de09b3e0cd1c03a19df": {
+      "en": "aish-mcp documentation, Try asking",
+      "translations": {
+        "de": {
+          "text": "aish-mcp-Dokumentation, Frag mal",
+          "translatedAt": "2026-11-02T20:44:00.088Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "f732497e43ed47b98357f5215ede33e5d4d2cca20df027da6701c25524133b30": {
+      "en": "Read a paper like you mean it",
+      "translations": {
+        "de": {
+          "text": "Lies ein Paper, als meintest du es ernst",
+          "translatedAt": "2026-11-02T20:44:13.604Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "bf2733941c666e62057e0803d6549a1bd41462b91b5df361dc26636e266e8c6d": {
+      "en": "Four things that happen between the PDF and your notes.",
+      "translations": {
+        "de": {
+          "text": "Vier Dinge, die zwischen dem PDF und deinen Notizen passieren.",
+          "translatedAt": "2026-11-02T20:44:13.604Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "764b6591b96f2318eb6e1f84abd542a818951e94ebacf9be05d79468239d2177": {
+      "en": "Trust, but jump",
+      "translations": {
+        "de": {
+          "text": "Vertrauen, aber springen",
+          "translatedAt": "2026-11-02T20:44:13.604Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "78041226a22db6376bbd5db565735ac2cc62d9a80e8995d3f7a9bd2caff2c463": {
+      "en": "Every answer leads back to its passage",
+      "translations": {
+        "de": {
+          "text": "Jede Antwort führt zurück zu ihrer Textstelle",
+          "translatedAt": "2026-11-02T20:44:13.604Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "1aed0eb03289bd69421420b35e5b325563de02112852c3ea9e2cc994cd06318c": {
+      "en": "Ask a question and the answer points to the sentence in the paper. A quote that does not appear word for word in the text is dropped. A match shows the passage exists; reading around it stays your job.",
+      "translations": {
+        "de": {
+          "text": "Stell eine Frage, und die Antwort zeigt auf den Satz im Paper. Ein Zitat, das nicht Wort für Wort im Text vorkommt, wird verworfen. Ein Treffer zeigt, dass die Textstelle existiert; das Drumherumlesen bleibt deine Aufgabe.",
+          "translatedAt": "2026-11-02T20:44:13.604Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "30b34e9a5a66f88f2ffec958ec4819d2d079ed09e6950fcbf80d169fbe178555": {
+      "en": "DOI in, citation out",
+      "translations": {
+        "de": {
+          "text": "DOI rein, Zitat raus",
+          "translatedAt": "2026-11-02T20:44:13.604Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "3c3ecbfd0b8acb4ceda1b80d8b0b82a2301e4b9ab71cb816ab642b12b0d24c17": {
+      "en": "Papers are recognised by their DOI",
+      "translations": {
+        "de": {
+          "text": "Papers werden an ihrer DOI erkannt",
+          "translatedAt": "2026-11-02T20:44:13.604Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "ca420065ee9017a9535be2ef4d4286f1e1d44797ed3d304587aa01c4059ef0f2": {
+      "en": "Trial, review or preprint, plus design, sample and limitations. The citation comes from the DOI registry, not from the AI.",
+      "translations": {
+        "de": {
+          "text": "Studie, Review oder Preprint, plus Design, Stichprobe und Limitationen. Das Zitat stammt aus dem DOI-Register, nicht von der KI.",
+          "translatedAt": "2026-11-02T20:44:13.604Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "eeffe43f55723e7005f32aefccc00b4c74580c0cc07c45171a4bc65fde5df552": {
+      "en": "Five papers, one question",
+      "translations": {
+        "de": {
+          "text": "Fünf Papers, eine Frage",
+          "translatedAt": "2026-11-02T20:44:13.604Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "9f359c605870d5976ad547c9cd38bba357c359ef009437ab303a48609810f19e": {
+      "en": "Compare before you conclude",
+      "translations": {
+        "de": {
+          "text": "Vergleiche, bevor du schlussfolgerst",
+          "translatedAt": "2026-11-02T20:44:13.604Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "14b492b7513ae5c021f6d605c8659217c65231474ea984690545fe7b0b7577c7": {
+      "en": "Bundle articles on one question, label each as peer-reviewed, preprint, news or opinion, and see where the summaries agree, disagree or miss context.",
+      "translations": {
+        "de": {
+          "text": "Bündle Artikel zu einer Frage, kennzeichne jeden als peer-reviewed, Preprint, News oder Meinung und sieh, wo die Zusammenfassungen übereinstimmen, sich widersprechen oder Kontext vermissen lassen.",
+          "translatedAt": "2026-11-02T20:44:13.604Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "0bbee13dd983fcd220e00c6ad21d48e71f493060e6543f8e0f9964a3cfccec48": {
+      "en": "When people expect to look something up later, they remember where to find it more than the content itself. A source-linked archive keeps that location useful.",
+      "translations": {
+        "de": {
+          "text": "Wenn Menschen erwarten, etwas später nachzuschlagen, erinnern sie sich eher daran, wo sie es finden, als an den Inhalt selbst. Ein quellenverlinktes Archiv hält diesen Ort nutzbar.",
+          "translatedAt": "2026-11-02T20:44:13.604Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "2ed6b53abcf4f8751ffc8c5590dd8f512f600072c6fbd646109655fbe0e9cf96": {
+      "en": "Sparrow, Liu & Wegner (2011), Science",
+      "translations": {
+        "de": {
+          "text": "Sparrow, Liu & Wegner (2011), Science",
+          "translatedAt": "2026-11-02T20:44:13.604Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "169c8473ba30167fc304d42cc6c2cc55ed822c0211c2e96e49fbf718f980759e": {
+      "en": "Watch less, understand more",
+      "translations": {
+        "de": {
+          "text": "Weniger schauen, mehr verstehen",
+          "translatedAt": "2026-11-02T20:44:15.486Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "d47dd9b76c78ff76797a9d6110f5a43099aa86074e4691956e982329b994511b": {
+      "en": "Four ways to get to the point of a video and back to the proof.",
+      "translations": {
+        "de": {
+          "text": "Vier Wege, auf den Punkt eines Videos zu kommen – und zurück zum Beleg.",
+          "translatedAt": "2026-11-02T20:44:15.486Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "8baa9672318d184f938331bf0d6a866732aafa9324c57c0f14e10a20638fc1e2": {
+      "en": "From the captions",
+      "translations": {
+        "de": {
+          "text": "Aus den Untertiteln",
+          "translatedAt": "2026-11-02T20:44:15.486Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "06c17ffab182cdde1670a34858f418c68f67b663105456013719f5c2583f1454": {
+      "en": "Summarize a video without watching all of it",
+      "translations": {
+        "de": {
+          "text": "Fasse ein Video zusammen, ohne es ganz anzusehen",
+          "translatedAt": "2026-11-02T20:44:15.486Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "6c1f1d88aded3d3d20806adc5482ce6c3a5322c4afdc69ab7f8c007256791602": {
+      "en": "Key points from the YouTube captions, in your language, with follow-up questions answered with source citations.",
+      "translations": {
+        "de": {
+          "text": "Die Kernpunkte aus den YouTube-Untertiteln, in deiner Sprache, mit Rückfragen, die mit Quellenangaben beantwortet werden.",
+          "translatedAt": "2026-11-02T20:44:15.486Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "787d25ff63ccdea3b436c70f51f55274a1650607d86c0c1acebb83e1a333aac2": {
+      "en": "Back to the moment",
+      "translations": {
+        "de": {
+          "text": "Zurück zum Moment",
+          "translatedAt": "2026-11-02T20:44:15.486Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "1a3f28e0045bceabf4f830f2d3a19d8b9d3fd548997f7ccf8c887d8f622c8efe": {
+      "en": "Answers cite where they come from in the transcript, so you can go back to that moment and check it yourself.",
+      "translations": {
+        "de": {
+          "text": "Antworten geben an, woher sie im Transkript stammen, sodass du zu dieser Stelle zurückgehen und es selbst nachprüfen kannst.",
+          "translatedAt": "2026-11-02T20:44:15.486Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "27aeee0467a8cdee8c53f4d394881cb13742465be40dd18ce9236c7369372584": {
+      "en": "20+ languages",
+      "translations": {
+        "de": {
+          "text": "Über 20 Sprachen",
+          "translatedAt": "2026-11-02T20:44:15.486Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "b0324b8e3ba476cbaba4638131328b79245b9500f2e13fc3650e91d7327f276e": {
+      "en": "A lecture in any language, summarized in yours",
+      "translations": {
+        "de": {
+          "text": "Eine Vorlesung in jeder Sprache, zusammengefasst in deiner",
+          "translatedAt": "2026-11-02T20:44:15.486Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "d4e9eb78e3878c4447192a1e635417972f3aefaf40547fc8566d3d5a47ba8d44": {
+      "en": "Read and summarize in 20+ languages, with the extension, the native side panel or the bookmarklet when the extension cannot reach a page.",
+      "translations": {
+        "de": {
+          "text": "Lies und fasse in über 20 Sprachen zusammen – mit der Erweiterung, dem nativen Seitenpanel oder dem Bookmarklet, wenn die Erweiterung eine Seite nicht erreichen kann.",
+          "translatedAt": "2026-11-02T20:44:15.486Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "8bb71a639607842938b66b3550744176a379afd467c7cdea106b295fdafd922b": {
+      "en": "Learner-paced segments help",
+      "translations": {
+        "de": {
+          "text": "Abschnitte im eigenen Lerntempo helfen",
+          "translatedAt": "2026-11-02T20:44:15.486Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "3be60a3cdf7e97b5ee43cc8baa3b70003cdf62348b073b2c9fa7ad3f0a0a8685": {
+      "en": "Less scrolling, more reading",
+      "translations": {
+        "de": {
+          "text": "Weniger scrollen, mehr lesen",
+          "translatedAt": "2026-11-02T20:44:18.220Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "b16af873acdf0532a83a71c8b031573da9db0d980742113d6bcd28e49a621617": {
+      "en": "Four ways to turn a pile of feeds into something you actually finish.",
+      "translations": {
+        "de": {
+          "text": "Vier Wege, aus einem Haufen Feeds etwas zu machen, das du wirklich zu Ende liest.",
+          "translatedAt": "2026-11-02T20:44:18.220Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "0952cdfa459f3d75763aafa2e77d90c13c2a1b7fc87458f2dc9a678bba66c27d": {
+      "en": "40 tabs, one briefing",
+      "translations": {
+        "de": {
+          "text": "40 Tabs, ein Briefing",
+          "translatedAt": "2026-11-02T20:44:18.220Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "9ef02a987fb67e632ca6fdeb3280a55c67ee374548ee878253031b91983ee944": {
+      "en": "Follow the sources you trust",
+      "translations": {
+        "de": {
+          "text": "Folge den Quellen, denen du vertraust",
+          "translatedAt": "2026-11-02T20:44:18.220Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "69709d9a13a0a08e0a747e69b35cf67c2ba52ba1ca0aa7b69bf7ba7cd5f1d746": {
+      "en": "A built-in RSS reader: filter by source, tag, date or mood, import OPML and summarize any item in one click. Podcast feeds play inside the extension, with an optional AI recap.",
+      "translations": {
+        "de": {
+          "text": "Ein integrierter RSS-Reader: filtere nach Quelle, Tag, Datum oder Stimmung, importiere OPML und fasse jeden Beitrag mit einem Klick zusammen. Podcast-Feeds laufen direkt in der Extension, mit optionalem KI-Recap.",
+          "translatedAt": "2026-11-02T20:44:18.220Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "86193e92ead3269dbb6961f9257e9ccb0595366078b846e8cf9006e92d90bbfd": {
+      "en": "Listen while it writes",
+      "translations": {
+        "de": {
+          "text": "Hör zu, während es schreibt",
+          "translatedAt": "2026-11-02T20:44:18.220Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "aadf22c4e45743159d3fac7025ad9e8bbb3ccccab7ca873d777e506c0df868e5": {
+      "en": "The summary is read aloud while it is still being written, title first, then sentence by sentence, with pause, mute and speed controls.",
+      "translations": {
+        "de": {
+          "text": "Die Zusammenfassung wird vorgelesen, während sie noch geschrieben wird – erst der Titel, dann Satz für Satz, mit Pause-, Stumm- und Geschwindigkeitsreglern.",
+          "translatedAt": "2026-11-02T20:44:18.220Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "97ee6b46c6e488edf61cb92ba9e09abcaaae5575cec58d8ac72e661fa5b1d829": {
+      "en": "Heavy news? Filter for good.",
+      "translations": {
+        "de": {
+          "text": "Schwere Kost? Filter auf Gutes.",
+          "translatedAt": "2026-11-02T20:44:18.220Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "b933a8ff3b2ff8ef1effb2f7088777db9165c47ecdc5024116aacb915ea6976b": {
+      "en": "Rate headlines from heavy to good, filter for the good ones and track your reading mood by day, week or month.",
+      "translations": {
+        "de": {
+          "text": "Bewerte Schlagzeilen von schwer bis gut, filtere die guten heraus und verfolge deine Lesestimmung nach Tag, Woche oder Monat.",
+          "translatedAt": "2026-11-02T20:44:18.220Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "7964134857c27737ed151c7528866f6f317f5f379d6232c22437470a626ff4de": {
+      "en": "Check who is behind it",
+      "translations": {
+        "de": {
+          "text": "Prüf, wer dahintersteckt",
+          "translatedAt": "2026-11-02T20:44:18.220Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "d94d8b260e21911226d0280757985ffcc861ef0f0035c52776e229536cbe8cc2": {
+      "en": "Reading laterally means checking who is behind a claim and comparing it with other sources before you draw a conclusion.",
+      "translations": {
+        "de": {
+          "text": "Lateral lesen heißt, zu prüfen, wer hinter einer Behauptung steckt, und sie mit anderen Quellen zu vergleichen, bevor du ein Fazit ziehst.",
+          "translatedAt": "2026-11-02T20:44:18.220Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "17a8fc3596e46aa7f97e36a07c6adf5e0cf2b036d19906168f011a33e4668383": {
+      "en": "Wineburg & McGrew (2019)",
+      "translations": {
+        "de": {
+          "text": "Wineburg & McGrew (2019)",
+          "translatedAt": "2026-11-02T20:44:18.220Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "fab136040c825c7336966383cd3f17a744b7828857d6f862f17fcbb6c99f77b9": {
+      "en": "Send web articles to Kindle and e-readers | AI Summary Helper",
+      "translations": {
+        "de": {
+          "text": "Webartikel an Kindle und E-Reader senden | AI Summary Helper",
+          "translatedAt": "2026-11-02T20:45:02.346Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "326ce290faa40ed68afa2a0d98615a90780e2abcc789cdb6e0c70b3314b38416": {
+      "en": "Archive web articles with compressed images and send them to your Kindle, or to Kobo and other KOReader e-readers with LocalSend. Local archive, no account, open source.",
+      "translations": {
+        "de": {
+          "text": "Archiviere Webartikel mit komprimierten Bildern und sende sie an deinen Kindle oder mit LocalSend an Kobo und andere KOReader-E-Reader. Lokales Archiv, kein Konto, Open Source.",
+          "translatedAt": "2026-11-02T20:45:02.346Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "95fb3359b318a2919b76417cf68fce8afa745f7de192ee1514a793ee3040825a": {
+      "en": "Archive and e-reader",
+      "translations": {
+        "de": {
+          "text": "Archiv und E-Reader",
+          "translatedAt": "2026-11-02T20:45:02.346Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "3eb380ecba42eb070529e398280325c73ecccffa50d2932668a0573c392d22c5": {
+      "en": "Archive it once.",
+      "translations": {
+        "de": {
+          "text": "Archiviere ihn einmal.",
+          "translatedAt": "2026-11-02T20:45:02.346Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "ff857f24dbf42766f3c0809524997af56db9614a599fee4b6c86be30c4d4c409": {
+      "en": "Read it on your e-reader.",
+      "translations": {
+        "de": {
+          "text": "Lies ihn auf deinem E-Reader.",
+          "translatedAt": "2026-11-02T20:45:02.346Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "59322aba84ca5a7c4ae26d95b5557087c9853183abc472901b138d3e61feb884": {
+      "en": "Save articles with their images, compressed so they stay readable and small, then send them to your Kindle or any device with LocalSend. Offline, in your own time, with the archive on your own device.",
+      "translations": {
+        "de": {
+          "text": "Speichere Artikel mit ihren Bildern, komprimiert, damit sie lesbar und klein bleiben, und sende sie dann an deinen Kindle oder mit LocalSend an ein beliebiges Gerät. Offline, in deinem eigenen Tempo, mit dem Archiv auf deinem eigenen Gerät.",
+          "translatedAt": "2026-11-02T20:45:02.346Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "643624c84bdfa85a3bb28445fc5c9df6fdfe11fc189bdf66958e5f56731f007f": {
+      "en": "Start archiving for free",
+      "translations": {
+        "de": {
+          "text": "Starte kostenlos mit dem Archivieren",
+          "translatedAt": "2026-11-02T20:45:02.346Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "80e5f6b32b453a5bd43fb7c4d08fe6558798fe86c35ab0b7b8796208621d38eb": {
+      "en": "Why saved articles pile up",
+      "translations": {
+        "de": {
+          "text": "Warum sich gespeicherte Artikel anhäufen",
+          "translatedAt": "2026-11-02T20:45:02.346Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "0068f8e8d4c87b175a53457c66f128ca7619dc08187e9ffe5d8777e2ab268b8f": {
+      "en": "Send an article to your Kindle or another device",
+      "translations": {
+        "de": {
+          "text": "Artikel an deinen Kindle oder ein anderes Gerät senden",
+          "translatedAt": "2026-11-02T20:45:02.346Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "d2a278f77614cbec03dccf0b18d83073de397b71ccded1af088ec4c79ac87c3e": {
+      "en": "Keep the article, not just the link",
+      "translations": {
+        "de": {
+          "text": "Behalte den Artikel, nicht nur den Link",
+          "translatedAt": "2026-11-02T20:45:02.346Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "4cd776255f3feee053382cf1f34350f36c7f678a560bd5b9b4283c991932ec38": {
+      "en": "Saved articles keep their text and their images in a local archive, so they are still there when the page changes or disappears.",
+      "translations": {
+        "de": {
+          "text": "Gespeicherte Artikel behalten ihren Text und ihre Bilder in einem lokalen Archiv, sodass sie weiterhin vorhanden sind, wenn sich die Seite ändert oder verschwindet.",
+          "translatedAt": "2026-11-02T20:45:02.346Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "033fc0445b90d3a75ee334a47b9e562140d17793611b82511afce6c6ee4c79a9": {
+      "en": "Compress",
+      "translations": {
+        "de": {
+          "text": "Komprimieren",
+          "translatedAt": "2026-11-02T20:45:02.346Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "9f68640f5b8431ea8252d7b4484347f7d642373495f0dedd4b33c1a1847a61d2": {
+      "en": "Images stay readable, files stay small",
+      "translations": {
+        "de": {
+          "text": "Bilder bleiben lesbar, Dateien bleiben klein",
+          "translatedAt": "2026-11-02T20:45:02.346Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "cc0f7be388a22be995b996cc89cea659cb7f082976235d7e19a4216cec34c2c4": {
+      "en": "Images are resized and compressed when an article is archived, so it stays light enough to send and sync.",
+      "translations": {
+        "de": {
+          "text": "Beim Archivieren eines Artikels werden Bilder skaliert und komprimiert, damit er leicht genug zum Senden und Synchronisieren bleibt.",
+          "translatedAt": "2026-11-02T20:45:02.346Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "f6f4688ff23d50c67053963c251fa0ce64a925cf283537cf066b1f362cb9b778": {
+      "en": "Send",
+      "translations": {
+        "de": {
+          "text": "Senden",
+          "translatedAt": "2026-11-02T20:45:02.346Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "df3f6013adc6dbf3fdc39d15e42c3e29e6eb47c7b69c460469e3ec6154699bf3": {
+      "en": "Kindle, LocalSend or any e-reader",
+      "translations": {
+        "de": {
+          "text": "Kindle, LocalSend oder ein beliebiger E-Reader",
+          "translatedAt": "2026-11-02T20:45:02.346Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "8e4799335104f7426654c540f25fb193d45a5d4e11cc9fdd525cb43b620a50bf": {
+      "en": "Send an article or a digest to your Kindle, or straight to another device, and read it away from the screen.",
+      "translations": {
+        "de": {
+          "text": "Sende einen Artikel oder ein Digest an deinen Kindle oder direkt an ein anderes Gerät und lies ihn abseits vom Bildschirm.",
+          "translatedAt": "2026-11-02T20:45:02.346Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "8d71a0af18ec0372a0ba3ee7097f41686b287f8427d6e197cc3e725c3b54041c": {
+      "en": "From your archive to your e-reader",
+      "translations": {
+        "de": {
+          "text": "Von deinem Archiv auf deinen E-Reader",
+          "translatedAt": "2026-11-02T20:45:02.346Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "1f29e89c910a5e020fdec936bb1ff38d8fd6d079dfe974cc3ab3e1546224c701": {
+      "en": "Four things that happen between saving an article and reading it somewhere quiet.",
+      "translations": {
+        "de": {
+          "text": "Vier Dinge, die zwischen dem Speichern eines Artikels und dem Lesen an einem ruhigen Ort passieren.",
+          "translatedAt": "2026-11-02T20:45:02.346Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "8fa6c7d7bfe5a3d93e0c964b81b53c1b4b2ab2a2e6e93e033a3774a695720d30": {
+      "en": "Archive, don’t bookmark",
+      "translations": {
+        "de": {
+          "text": "Archivieren statt nur Lesezeichen setzen",
+          "translatedAt": "2026-11-02T20:45:02.346Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "2ac03460f8b5b97c6990f1582216475563a877c7d1db85acea1ef92edebee693": {
+      "en": "The article itself, not just a link",
+      "translations": {
+        "de": {
+          "text": "Der Artikel selbst, nicht nur ein Link",
+          "translatedAt": "2026-11-02T20:45:02.346Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "22e7a20fd8d2a541a99f7e69c328483977f81d782cca6356a86af187e9142e1c": {
+      "en": "Saved articles keep their text and their images in a local archive. Images are resized to a maximum width and compressed when you save, so a page stays readable and small.",
+      "translations": {
+        "de": {
+          "text": "Gespeicherte Artikel behalten ihren Text und ihre Bilder in einem lokalen Archiv. Bilder werden beim Speichern auf eine maximale Breite skaliert und komprimiert, damit eine Seite lesbar und klein bleibt.",
+          "translatedAt": "2026-11-02T20:45:02.346Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "51e1fdfaf674879fc3d566c34edefb9df8f5de1e3c82267119120b7bc65bfb08": {
+      "en": "Straight to your Kindle",
+      "translations": {
+        "de": {
+          "text": "Direkt auf deinen Kindle",
+          "translatedAt": "2026-11-02T20:45:02.346Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "f8350c738d74eb1678cc699a7dfa6e4ff095c6cf532326dbc88d1142f12ccb71": {
+      "en": "Send to Kindle, with or without images",
+      "translations": {
+        "de": {
+          "text": "An Kindle senden, mit oder ohne Bilder",
+          "translatedAt": "2026-11-02T20:45:02.346Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "ef5fd601eda0e01118ce088c75bbf86a3b9df65774826d0a3f0b1641bfbe6b12": {
+      "en": "Send an article as EPUB, or EPUB with images. Add kindle@byphil.eu to your approved senders in your Amazon account once. The first three Kindle sends are free.",
+      "translations": {
+        "de": {
+          "text": "Sende einen Artikel als EPUB oder als EPUB mit Bildern. Füge kindle@byphil.eu einmal in deinem Amazon-Konto zu den genehmigten Absendern hinzu. Die ersten drei Kindle-Sendungen sind kostenlos.",
+          "translatedAt": "2026-11-02T20:45:02.346Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "0ad0adb9f0f56e3f202ca0c24674a2dc051260b182a89f6d797e7adebffe0ff6": {
+      "en": "No cloud in between",
+      "translations": {
+        "de": {
+          "text": "Keine Cloud dazwischen",
+          "translatedAt": "2026-11-02T20:45:02.346Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "1d6fb9d48883409725fc9c97c85b9026d2849e8909197435af404c73bed63e6f": {
+      "en": "LocalSend goes straight to the device",
+      "translations": {
+        "de": {
+          "text": "LocalSend geht direkt auf das Gerät",
+          "translatedAt": "2026-11-02T20:45:02.346Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "9ea07489c0bb913732c97f5dd06f36c866ba4d3899ecb03aed77e9ac726e9967": {
+      "en": "Send to any device that runs a LocalSend-compatible app, or use the system share sheet, for example AirDrop. The file goes from your browser to the device you pick and never touches our server.",
+      "translations": {
+        "de": {
+          "text": "Sende an jedes Gerät, auf dem eine LocalSend-kompatible App läuft, oder nutze das Teilen-Menü des Systems, zum Beispiel AirDrop. Die Datei geht von deinem Browser direkt auf das von dir gewählte Gerät und berührt nie unseren Server.",
+          "translatedAt": "2026-11-02T20:45:02.346Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "81e312a38519e283313d0d94228c8ed951e8d42070fde3b4ce59dbdcc25d0b73": {
+      "en": "Five picked for you",
+      "translations": {
+        "de": {
+          "text": "Fünf für dich ausgewählt",
+          "translatedAt": "2026-11-02T20:45:02.346Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "515a06f3624d144c0789feb3874c2092641db0547a04fd95905cf3934a66594e": {
+      "en": "A digest that curates itself",
+      "translations": {
+        "de": {
+          "text": "Ein Digest, das sich selbst kuratiert",
+          "translatedAt": "2026-11-02T20:45:02.346Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "87837126d0068b757592cea7e75a6a1ea010705c7f6533724a594e2176975c14": {
+      "en": "One tap picks a varied digest instead of five versions of one story and bundles it for Kindle or LocalSend.",
+      "translations": {
+        "de": {
+          "text": "Ein Tippen wählt ein abwechslungsreiches Digest statt fünf Versionen einer Geschichte und bündelt es für Kindle oder LocalSend.",
+          "translatedAt": "2026-11-02T20:45:02.346Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "d974ec3979159bb120b41d722b8d4466b563f2b51233470572639d8dc0191ff0": {
+      "en": "Look at what an archive holds",
+      "translations": {
+        "de": {
+          "text": "Schau dir an, was ein Archiv enthält",
+          "translatedAt": "2026-11-02T20:45:02.346Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "ca06180d93b94d1b087f9e308189f6fb180431578498a884e404bdb40306ff6f": {
+      "en": "Open the local library and see saved articles with their summaries and highlights. Nothing is sent from the demo. Nothing is sent from the demo.",
+      "translations": {
+        "de": {
+          "text": "Öffne die lokale Bibliothek und sieh dir gespeicherte Artikel mit ihren Zusammenfassungen und Markierungen an. Aus der Demo wird nichts gesendet. Aus der Demo wird nichts gesendet.",
+          "translatedAt": "2026-11-02T20:45:02.346Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "7612c775ccac53814ca182a28d3a05a586ad575bf088bb4bf1907efef92c7634": {
+      "en": "Open the local library and see saved articles with their summaries and highlights. Nothing is sent from the demo.",
+      "translations": {
+        "de": {
+          "text": "Öffne die lokale Bibliothek und sieh dir gespeicherte Artikel mit ihren Zusammenfassungen und Markierungen an. Aus der Demo wird nichts gesendet.",
+          "translatedAt": "2026-11-02T20:45:02.346Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "b37ddf1f6e0fac69414c5ed7f6e65f8f0a7ea1922afd602483392d695ee92065": {
+      "en": "Compatibility",
+      "translations": {
+        "de": {
+          "text": "Kompatibilität",
+          "translatedAt": "2026-11-02T20:45:02.346Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "bd1a96b609f062fbd379315889c30f52a30a9469d98b4b873c6e6b27a9e184b8": {
+      "en": "Which e-readers does it work with?",
+      "translations": {
+        "de": {
+          "text": "Mit welchen E-Readern funktioniert es?",
+          "translatedAt": "2026-11-02T20:45:02.346Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "a36319eb205877237350dbd3f7f16089abf628830732a465dc422be9c4f4c884": {
+      "en": "Short answer: Kindle directly, Kobo and other KOReader devices through LocalSend, and any phone or tablet. Here is the full picture.",
+      "translations": {
+        "de": {
+          "text": "Kurze Antwort: direkt mit Kindle, Kobo und andere KOReader-Geräte über LocalSend sowie jedes Smartphone oder Tablet. Hier ist die vollständige Übersicht.",
+          "translatedAt": "2026-11-02T20:45:02.346Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "6ba0bdeccb426d7b2ccb601c4e07015f50b6b427ec52c93a3b95f2245b67bdd4": {
+      "en": "Device",
+      "translations": {
+        "de": {
+          "text": "Gerät",
+          "translatedAt": "2026-11-02T20:45:02.346Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "24d9ed153d73e54140fe499ef14847178046e31594385460ec2ddfbdab4df9cd": {
+      "en": "How the article gets there",
+      "translations": {
+        "de": {
+          "text": "Wie der Artikel dorthin kommt",
+          "translatedAt": "2026-11-02T20:45:02.346Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "aab7685123cf4b021c62a41c905fdc381aaa3ae8e944299e4cdf58955258f445": {
+      "en": "Good to know",
+      "translations": {
+        "de": {
+          "text": "Gut zu wissen",
+          "translatedAt": "2026-11-02T20:45:02.346Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "d43303fde2189af3d6cd48bc1a02cdacc2bb88be9b890592de4aec5f5b87c107": {
+      "en": "Kindle e-readers and the Kindle app",
+      "translations": {
+        "de": {
+          "text": "Kindle-E-Reader und die Kindle-App",
+          "translatedAt": "2026-11-02T20:45:02.346Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "f89116fa9faeb9a8dfc2aee79ce7bd5d18d3ade57acfa3fa158c93d8ae6154ac": {
+      "en": "Send to Kindle by e-mail, as EPUB with or without images",
+      "translations": {
+        "de": {
+          "text": "An Kindle per E-Mail senden, als EPUB mit oder ohne Bilder",
+          "translatedAt": "2026-11-02T20:45:02.346Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "dc95898c5953c91d2aca887c679aa166a39dd9a6e08689d364a5d12d3c343a31": {
+      "en": "Approve kindle@byphil.eu once in your Amazon account. The first three sends are free; unlimited with the Support Pass.",
+      "translations": {
+        "de": {
+          "text": "Genehmige kindle@byphil.eu einmal in deinem Amazon-Konto. Die ersten drei Sendungen sind kostenlos; unbegrenzt mit dem Support Pass.",
+          "translatedAt": "2026-11-02T20:45:02.346Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "0076fde29fbdec52a593374756629b702920256bc95e8ac2fb58703d655ed877": {
+      "en": "Kobo, reMarkable and jailbroken Kindles with KOReader",
+      "translations": {
+        "de": {
+          "text": "Kobo, reMarkable und gejailbreakte Kindles mit KOReader",
+          "translatedAt": "2026-11-02T20:45:02.346Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "88e505af67280221e147c915fc01826a0e49a06d2901804fe81acd74c9566b32": {
+      "en": "LocalSend: start the receiver in KOReader’s LocalSend plugin and send over your Wi-Fi",
+      "translations": {
+        "de": {
+          "text": "LocalSend: Starte den Empfänger im LocalSend-Plugin von KOReader und sende über dein WLAN",
+          "translatedAt": "2026-11-02T20:45:02.346Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "55b9d405e27a01eb22704fb7bf20b0bf9e1ac797cfe0fd6e6c0fd0f509d48a84": {
+      "en": "The plugin is a community project. Kindles need a jailbreak to run KOReader, which Amazon does not support. The file goes straight from your browser to the device, never through our server.",
+      "translations": {
+        "de": {
+          "text": "Das Plugin ist ein Community-Projekt. Kindles benötigen einen Jailbreak, um KOReader auszuführen, was Amazon nicht unterstützt. Die Datei geht direkt von deinem Browser auf das Gerät, niemals über unseren Server.",
+          "translatedAt": "2026-11-02T20:45:02.346Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "433e5cdc47cf0ac7603410c5bc34313c9699fe4606e88b5a04f5a2b97d038664": {
+      "en": "Android e-readers, tablets and phones",
+      "translations": {
+        "de": {
+          "text": "Android-E-Reader, Tablets und Smartphones",
+          "translatedAt": "2026-11-02T20:45:02.346Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "25cdf4c12a82c77d312dc9aaf76de9fa2a0537c83009d639612e540048ee12b4": {
+      "en": "The LocalSend app, or KOReader for Android",
+      "translations": {
+        "de": {
+          "text": "Die LocalSend-App oder KOReader für Android",
+          "translatedAt": "2026-11-02T20:45:02.346Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "00d616acf6c432defc0e4acd4bbf7d61b646e61cccc0465f409025523bfe54b4": {
+      "en": "Works on any Android device that can install the app.",
+      "translations": {
+        "de": {
+          "text": "Funktioniert auf jedem Android-Gerät, auf dem die App installiert werden kann.",
+          "translatedAt": "2026-11-02T20:45:02.346Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "0c567ac76e894b48753d1045c273c31c90f2e4843db622ef1a74680db86d4717": {
+      "en": "iPhone and iPad",
+      "translations": {
+        "de": {
+          "text": "iPhone und iPad",
+          "translatedAt": "2026-11-02T20:45:02.346Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "654bb877a225de085010d9a7842cfb1be71e75ed412ce2d2ec4c93c23cd2552f": {
+      "en": "The share sheet, including AirDrop",
+      "translations": {
+        "de": {
+          "text": "Das Teilen-Menü, einschließlich AirDrop",
+          "translatedAt": "2026-11-02T20:45:02.346Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "66f32ac3e2aaefa5af0e5fb9dcbcd9a3935dede418f5c14a709b8ad3f264d26b": {
+      "en": "AirDrop opens the article as an offline document.",
+      "translations": {
+        "de": {
+          "text": "AirDrop öffnet den Artikel als Offline-Dokument.",
+          "translatedAt": "2026-11-02T20:45:02.346Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "4c2ff06881458246439512f16397b3e9b4901ac91bc3823e01728ddb02e3bae0": {
+      "en": "Tolino, PocketBook and other readers",
+      "translations": {
+        "de": {
+          "text": "Tolino, PocketBook und andere Reader",
+          "translatedAt": "2026-11-02T20:45:02.346Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "a4a8ee47b275822230e69280a8caf37a554f027d9ebda9e9b1c3bde481c69ce9": {
+      "en": "Not supported directly yet",
+      "translations": {
+        "de": {
+          "text": "Noch nicht direkt unterstützt",
+          "translatedAt": "2026-11-02T20:45:02.346Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "9d5a97e075a5b29b1cde62d01825e5eefef777c55e9fb46c510f2615f0f47a03": {
+      "en": "These readers take EPUB and PDF by USB or through their cloud. If you use one, tell us. It decides what we build next.",
+      "translations": {
+        "de": {
+          "text": "Diese Reader nehmen EPUB und PDF per USB oder über ihre Cloud entgegen. Wenn du einen nutzt, sag es uns. Das entscheidet, was wir als Nächstes bauen.",
+          "translatedAt": "2026-11-02T20:45:02.346Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "310da392948a622f4d1bca843279e3048e2abce86c53a56aff5715b4b686cf05": {
+      "en": "Tell us your e-reader",
+      "translations": {
+        "de": {
+          "text": "Sag uns, welchen E-Reader du hast",
+          "translatedAt": "2026-11-02T20:45:02.346Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "ee0ad3b555735df247ba444c85b9df3b4a993e0911536cf5e5efbccdd65f9bf2": {
+      "en": "How to",
+      "translations": {
+        "de": {
+          "text": "Anleitung",
+          "translatedAt": "2026-11-02T20:45:02.346Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "872880c140d9adc7e6fe45029a2b6eab749d5fc6a4d9f86a110ca47fa08a7fe4": {
+      "en": "Send an article to your Kindle in three steps",
+      "translations": {
+        "de": {
+          "text": "In drei Schritten einen Artikel an deinen Kindle senden",
+          "translatedAt": "2026-11-02T20:45:02.346Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "819f895421f87a3f1b7daa4f2b09594f282ac1b7c9ac4048960c6e901edc9d5f": {
+      "en": "Approve the sender once",
+      "translations": {
+        "de": {
+          "text": "Genehmige den Absender einmal",
+          "translatedAt": "2026-11-02T20:45:02.346Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "3d52bee087b23a24fe0d4308e137e72aadd4c8e7fc1a76d00ccab002a506157d": {
+      "en": "In your Amazon account, add kindle@byphil.eu to the approved personal document e-mail list.",
+      "translations": {
+        "de": {
+          "text": "Füge in deinem Amazon-Konto kindle@byphil.eu zur Liste der genehmigten E-Mail-Adressen für persönliche Dokumente hinzu.",
+          "translatedAt": "2026-11-02T20:45:02.346Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "b99e74afccf3f86170d6a39b75033d5f7db9ab95b6944f8390d5a83b3b18362e": {
+      "en": "Save the article",
+      "translations": {
+        "de": {
+          "text": "Speichere den Artikel",
+          "translatedAt": "2026-11-02T20:45:02.346Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "96d5ab3d170a82e4124fe90b9386a9542e94190140db48aaec16b3d4a10a4f37": {
+      "en": "Open it in Chrome or Firefox and let AI Summary Helper archive it, with its images compressed.",
+      "translations": {
+        "de": {
+          "text": "Öffne ihn in Chrome oder Firefox und lass AI Summary Helper ihn archivieren, mit komprimierten Bildern.",
+          "translatedAt": "2026-11-02T20:45:02.346Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "957ad0708f889f82e0554cab3442c3852e41d49f9e0c8845befaaff01c686271": {
+      "en": "Send it",
+      "translations": {
+        "de": {
+          "text": "Sende ihn",
+          "translatedAt": "2026-11-02T20:45:02.346Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "6d137ceb9ce099363e3e3f23e7fecee6f6017b3d16ba81fa1d8152eb12595066": {
+      "en": "Choose Send to Kindle, pick EPUB or EPUB with images, and the article shows up on your Kindle.",
+      "translations": {
+        "de": {
+          "text": "Wähle An Kindle senden, entscheide dich für EPUB oder EPUB mit Bildern, und der Artikel erscheint auf deinem Kindle.",
+          "translatedAt": "2026-11-02T20:45:02.346Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "a78a509dabef902c42285ae033e9819e11c6c070bdb3f271e4aaa89332665991": {
+      "en": "Archive and e-reader questions",
+      "translations": {
+        "de": {
+          "text": "Fragen zu Archiv und E-Reader",
+          "translatedAt": "2026-11-02T20:45:02.346Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "e101a459bfef80a6204c5680b1be318b8fd2be907bbfaf4b5008b19e2b2272c1": {
+      "en": "How do I send a web article to my Kindle from Chrome or Firefox?",
+      "translations": {
+        "de": {
+          "text": "Wie sende ich einen Webartikel aus Chrome oder Firefox an meinen Kindle?",
+          "translatedAt": "2026-11-02T20:45:02.346Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "cb4fcd11c7ba7ec9ecbc83c9b97f2c31f3d06c2750054b92d5abb7ab70eaaf8c": {
+      "en": "Install AI Summary Helper, add kindle@byphil.eu to the approved personal document e-mail list in your Amazon account once, then archive an article and choose Send to Kindle. Articles arrive as EPUB, with or without images.",
+      "translations": {
+        "de": {
+          "text": "Installiere AI Summary Helper, füge kindle@byphil.eu einmal in deinem Amazon-Konto zur Liste der genehmigten E-Mail-Adressen für persönliche Dokumente hinzu, archiviere dann einen Artikel und wähle An Kindle senden. Artikel kommen als EPUB an, mit oder ohne Bilder.",
+          "translatedAt": "2026-11-02T20:45:02.346Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "0637276487c9fe624447f5882aa821d82b467c48b7fca67445ce4abff5b3c239": {
+      "en": "Does it cost anything?",
+      "translations": {
+        "de": {
+          "text": "Kostet es etwas?",
+          "translatedAt": "2026-11-02T20:45:02.346Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "5f6f710c7b938c9df5d49c8bc7d02c1fa2c8973b79737c14e03e1772858a8316": {
+      "en": "The extension is free and open source. The first three Kindle sends are free; unlimited Kindle sends need the Support Pass. Sending with LocalSend is free and never touches our server.",
+      "translations": {
+        "de": {
+          "text": "Die Erweiterung ist kostenlos und Open Source. Die ersten drei Kindle-Sendungen sind kostenlos; unbegrenzte Kindle-Sendungen erfordern den Support Pass. Das Senden mit LocalSend ist kostenlos und berührt nie unseren Server.",
+          "translatedAt": "2026-11-02T20:45:02.346Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "4b6e688a9cf2613db1d533293c66f7a9539345b648f99d4293d48f3ac3b28c92": {
+      "en": "Can I use it with a Kobo or another e-reader?",
+      "translations": {
+        "de": {
+          "text": "Kann ich es mit einem Kobo oder einem anderen E-Reader verwenden?",
+          "translatedAt": "2026-11-02T20:45:02.346Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "2ed0d5bcc83babd467ef54c372fbf614458a3aca0371c95d77728d9158ff5338": {
+      "en": "Yes, on devices that run KOReader (Kobo, reMarkable, and Kindles with a jailbreak): install KOReader’s LocalSend plugin, start the receiver and send from the extension over your Wi-Fi. Readers without KOReader, such as Tolino and PocketBook, are not supported directly yet.",
+      "translations": {
+        "de": {
+          "text": "Ja, auf Geräten, auf denen KOReader läuft (Kobo, reMarkable und Kindles mit Jailbreak): Installiere das LocalSend-Plugin von KOReader, starte den Empfänger und sende aus der Erweiterung über dein WLAN. Reader ohne KOReader, etwa Tolino und PocketBook, werden noch nicht direkt unterstützt.",
+          "translatedAt": "2026-11-02T20:45:02.346Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "6c8df211d0ac9e54bc7aed224c1783aad0b0d7c76ff6b8ad574ba793d0997853": {
+      "en": "What is LocalSend?",
+      "translations": {
+        "de": {
+          "text": "Was ist LocalSend?",
+          "translatedAt": "2026-11-02T20:45:02.346Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "c1ae110d7adc6d7f1dd0e5c83a37d8c2e6c6401ddc0e88d34888ef5d6b3e5a5e": {
+      "en": "LocalSend is an open-source app that sends files directly between devices on the same network. The file goes from your browser to the device, with no cloud in between.",
+      "translations": {
+        "de": {
+          "text": "LocalSend ist eine Open-Source-App, die Dateien direkt zwischen Geräten im selben Netzwerk sendet. Die Datei geht von deinem Browser auf das Gerät, ohne Cloud dazwischen.",
+          "translatedAt": "2026-11-02T20:45:02.346Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "51d87e9dff825887c15f42f1d313717a13746a8428bc8f9fd11d9972f9211ed1": {
+      "en": "Are images kept when I archive an article?",
+      "translations": {
+        "de": {
+          "text": "Bleiben Bilder erhalten, wenn ich einen Artikel archiviere?",
+          "translatedAt": "2026-11-02T20:45:02.346Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "6afc941ae5e2efc7300ea3359573f1a1cf8f0856b10fdfa114e5f78f6a396f00": {
+      "en": "Yes. Images are resized to a maximum width and compressed, so the article stays readable and small.",
+      "translations": {
+        "de": {
+          "text": "Ja. Bilder werden auf eine maximale Breite skaliert und komprimiert, damit der Artikel lesbar und klein bleibt.",
+          "translatedAt": "2026-11-02T20:45:02.346Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "fad76d2c466c374619d3e45479be1596e6b1cf50e6ec550f361cdd6dc4725c0b": {
+      "en": "Does my archive leave my device?",
+      "translations": {
+        "de": {
+          "text": "Verlässt mein Archiv mein Gerät?",
+          "translatedAt": "2026-11-02T20:45:02.346Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "db89e25ad3b7fd3b13766a01dda0f4928cf1d142f34bcf0ddda5d6f9976d0020": {
+      "en": "The archive stays in your browser. Sending to Kindle is the exception: Amazon only accepts documents by e-mail from approved senders, so the article goes through our service for that send. LocalSend and AirDrop go directly to your device.",
+      "translations": {
+        "de": {
+          "text": "Das Archiv bleibt in deinem Browser. Das Senden an Kindle ist die Ausnahme: Amazon akzeptiert Dokumente per E-Mail nur von genehmigten Absendern, daher geht der Artikel für diese Sendung über unseren Dienst. LocalSend und AirDrop gehen direkt auf dein Gerät.",
+          "translatedAt": "2026-11-02T20:45:02.346Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "ab3cec7dcae042066ad8be8bd37fada3ce9bbc5ffa79dcd09fa1da58a1f35257": {
+      "en": "Use a digest to pick what is worth reading and send it away from the screen.",
+      "translations": {
+        "de": {
+          "text": "Nutze ein Digest, um auszuwählen, was sich zu lesen lohnt, und sende es abseits des Bildschirms.",
+          "translatedAt": "2026-11-02T20:45:02.346Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "9ed8676112b726a8ff7335ae6fbfaf8bed0208680bc05f4c5b840e8d99eda51f": {
+      "en": "Keep the archive on storage you control, next to what you send to your e-reader.",
+      "translations": {
+        "de": {
+          "text": "Behalte das Archiv auf einem Speicher, den du kontrollierst, neben dem, was du an deinen E-Reader sendest.",
+          "translatedAt": "2026-11-02T20:45:02.346Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "ff56b36fb166d04b0a5eeb2dc99b25f9b6c6f8cfcbe08a6011c0a720f24029de": {
+      "en": "What to look for in a read-it-later tool that is not a cloud silo.",
+      "translations": {
+        "de": {
+          "text": "Worauf du bei einem Read-it-later-Tool achten solltest, das kein Cloud-Silo ist.",
+          "translatedAt": "2026-11-02T20:45:02.346Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
     }
   }
 }
