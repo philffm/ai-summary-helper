@@ -37,6 +37,10 @@ test('rewrites links to pages present in the locale inventory', () => {
         assert.equal($('a').eq(3).attr('href'), './');
         assert.equal(localizedPath('blog/ai-apps-mcp.html', 'de'), 'blog/ki-apps-mcp.html');
 
+        const demo = cheerio.load('<a href="../demo/index.html">Demo</a>');
+        rewriteAvailablePageLinks(demo, 'de/pdf-summarizer/index.html', 'de', inventory, 'de');
+        assert.equal(demo('a').attr('href'), '../../demo/index.html');
+
         const source = cheerio.load(
             '<a href="../education/">Bildung</a>' +
             '<a href="ai-apps-mcp.html">MCP</a>' +

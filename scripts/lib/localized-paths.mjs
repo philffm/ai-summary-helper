@@ -146,9 +146,16 @@ export function rewriteAvailablePageLinks($, pageRootPath, code, inventory, loca
         if (!p) return;
         const physicalTarget = path.posix.normalize(path.posix.join(localePageDir, p));
         const localeTarget = path.posix.relative(localeDir, physicalTarget);
+        const englishTarget = pagePath(path.posix.join(sourceDir, p));
+        if (englishTarget === 'demo/index.html' || englishTarget.startsWith('demo/')) {
+            let href = path.posix.relative(localePageDir, englishTarget);
+            if (p.endsWith('/')) href = href ? `${href.replace(/\/$/, '')}/` : './';
+            $(el).attr('href', href + rest);
+            return;
+        }
         const localSource = englishPathForLocale.get(pagePath(localeTarget));
         const sourceTargets = [
-            pagePath(path.posix.join(sourceDir, p)),
+            englishTarget,
             ...(localeTarget.startsWith('../') ? [pagePath(physicalTarget)] : [localSource || pagePath(localeTarget)]),
         ];
         const sourceTarget = sourceTargets.find((target) => localePages[target]);
