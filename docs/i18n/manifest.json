@@ -172929,6 +172929,76 @@
           "model": "deepseek/deepseek-v4.1-flash"
         }
       }
+    },
+    "3a0a951056b66e7fbf28dc0102405b7f91cf16c7d345f8f06097554dde6a1c37": {
+      "en": "Connect what you read",
+      "translations": {
+        "de": {
+          "text": "Verbinden Sie, was Sie lesen",
+          "translatedAt": "2026-11-02T10:51:59.325Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "ecab53405623048ed70a27b289f508f008ddb7581a9b5f65beb63e27a6bd7ae0": {
+      "en": "See what stays on your device",
+      "translations": {
+        "de": {
+          "text": "Sehen Sie, was auf Ihrem Gerät bleibt",
+          "translatedAt": "2026-11-02T10:52:00.245Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "8db1732c81092d47858fc0a681582fb3f5ea5488f57c81a38394b90cf251ec5d": {
+      "en": "Connect your library to an AI app",
+      "translations": {
+        "de": {
+          "text": "Verbinden Sie Ihre Bibliothek mit einer KI-App",
+          "translatedAt": "2026-11-02T10:52:01.140Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "b0af47745b7a1e10de6db946b51ee9608bfe9130a8412b46ec96568710645dc5": {
+      "en": "Keep your reading trail in your notes",
+      "translations": {
+        "de": {
+          "text": "Halten Sie Ihren Leseverlauf in Ihren Notizen fest",
+          "translatedAt": "2026-11-02T10:52:04.648Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "2a58bbf78f34ffa67e760e0685fe03cc2581627f3d93220ccf1a56217d99d0e2": {
+      "en": "Read a paper without losing the source",
+      "translations": {
+        "de": {
+          "text": "Ein Paper lesen, ohne die Quelle zu verlieren",
+          "translatedAt": "2026-11-02T10:52:06.138Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "12f724188a9a03d1e2a8d93c85abaa2e451388cac6537d8d38b83451a257fcb4": {
+      "en": "Summarize a video and return to the passage",
+      "translations": {
+        "de": {
+          "text": "Ein Video zusammenfassen und zur Passage zurückkehren",
+          "translatedAt": "2026-11-02T10:52:08.456Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "6eb3a42e360a4f668e8be6fdcd5da221a83ce7554537449eab1d39420c5df472": {
+      "en": "Turn your feeds into a focused briefing",
+      "translations": {
+        "de": {
+          "text": "Machen Sie aus Ihren Feeds ein fokussiertes Briefing",
+          "translatedAt": "2026-11-02T10:52:09.234Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
     }
   }
 }
