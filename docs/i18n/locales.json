@@ -52,7 +52,14 @@
       "name": "German",
       "dir": "de",
       "hreflang": "de",
-      "marketNotes": "Germany, Austria, Switzerland. Use standard formal 'Sie' register throughout — this is a productivity tool for knowledge workers and researchers. Emphasize local-first processing and control over your own data ('nothing leaves your machine' with a local Ollama model or your own key). Do not claim EU or German hosting, GDPR/DSGVO compliance or any certification. Keep product terms (e.g. 'Digest', 'LocalSend', 'Kindle', 'Markdown') in their standard technical forms."
+      "marketNotes": "Germany, Austria, Switzerland. Use the page register supplied by the translation pipeline: 'Du' for public marketing, feature landing pages, education and consumer-facing guides; 'Sie' for business-facing, legal, privacy and compliance content. Never mix registers within one page. Emphasize local-first processing and control over your own data ('nothing leaves your machine' with a local Ollama model or your own key). Do not claim EU or German hosting, GDPR/DSGVO compliance or any certification. Keep product terms (e.g. 'Digest', 'LocalSend', 'Kindle', 'Markdown') in their standard technical forms.",
+      "registerPolicy": {
+        "default": "du",
+        "business": "sie",
+        "legal": "sie",
+        "education": "du",
+        "public": "du"
+      }
     },
     "fr": {
       "name": "French",

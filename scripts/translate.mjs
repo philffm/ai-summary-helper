@@ -342,7 +342,15 @@ function parseModelJson(raw, units) {
     return Object.keys(out).length ? out : null;
 }
 
-async function translateUnits(units, locale, apiKey, transcreationBrief) {
+function pageRegister(relPath, locale) {
+    if (locale.hreflang !== 'de') return null;
+    if (/^(privacy|datenschutz)\.html$/.test(relPath) || /(^|\/)(privacy|datenschutz)(\/|\.html$)/.test(relPath)) return locale.registerPolicy?.legal || 'sie';
+    if (/^(blog\/)?(bring-your-own-key|sync-to-nextcloud-s3-or-a-folder|sync-mit-nextcloud-s3-oder-ordner)\.html$/.test(relPath)) return locale.registerPolicy?.business || 'sie';
+    if (/^(education|bildung)\//.test(relPath)) return locale.registerPolicy?.education || 'du';
+    return locale.registerPolicy?.public || 'du';
+}
+
+async function translateUnits(units, locale, apiKey, transcreationBrief, register) {
     if (DRY_RUN) {
         // Mock: wrap each string so a dry run is visibly distinguishable
         // from a real translation, without needing network access.
@@ -355,6 +363,9 @@ async function translateUnits(units, locale, apiKey, transcreationBrief) {
 
 Market adaptation notes for ${locale.name}:
 ${locale.marketNotes}
+
+Page register:
+${register ? `Use the German ${register === 'du' ? 'informal “Du”' : 'formal “Sie”'} register consistently for this page. Adapt pronouns, possessives, imperatives and references to the reader; do not mix the other register.` : 'Use the locale-wide register rules.'}
 
 Global transcreation brief:
 ${transcreationBrief}`;
@@ -467,7 +478,7 @@ async function translateFile(relPath, config, targetLocales, manifest, apiKey, p
         let fresh = {};
         if (missing.length > 0) {
             console.log(`translate  ${relPath} [${code}] — ${missing.length}/${units.length} new string(s)${DRY_RUN ? ' (dry run)' : ''}`);
-            fresh = await translateUnits(missing, locale, apiKey, transcreationBrief);
+            fresh = await translateUnits(missing, locale, apiKey, transcreationBrief, pageRegister(relPath, locale));
             anyApiCallsThisFile = true;
 
             const now = new Date().toISOString();

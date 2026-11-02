@@ -31,3 +31,15 @@ the individual words.
 6. Keep evidence-based claims conservative.
 7. Preserve the hierarchy between primary and secondary CTAs.
 8. When a cultural adaptation is uncertain, choose clear neutral phrasing.
+
+## German page register
+
+The German register is selected per page, not globally:
+
+- Public marketing, feature landing pages, education and consumer guides use
+  informal **Du**.
+- Business-facing, privacy, legal and compliance pages use formal **Sie**.
+- Keep one register consistent within a page, including pronouns, possessives,
+  imperatives, navigation labels and calls to action.
+- If a page serves both audiences, prefer neutral phrasing over switching
+  between **Du** and **Sie**.
