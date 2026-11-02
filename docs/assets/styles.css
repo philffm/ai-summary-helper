@@ -1750,7 +1750,7 @@ body:has(.hero--photo){ padding-top:0; }
 @media (max-width:820px){ .pitch-slide--demo{ display:none; } }
 
 /* Pitch in the "See it" style: a photo card with a big claim, caption (claim text and source) below the active slide */
-.cx-card{ position:relative; display:flex; flex-direction:column; justify-content:flex-end; gap:6px; aspect-ratio:16/10; padding:clamp(18px,3vw,36px); border-radius:14px; border:1px solid var(--border-medium); box-shadow:0 24px 48px -24px var(--card-shadow); background:linear-gradient(180deg, rgba(8,9,12,.25), rgba(8,9,12,.78)), var(--img) center/cover; color:#F5F5F7; overflow:hidden; }
+.cx-card{ position:relative; display:flex; flex-direction:column; justify-content:flex-end; gap:6px; aspect-ratio:16/10; padding:clamp(18px,3vw,36px); border-radius:14px; box-shadow:0 24px 48px -24px var(--card-shadow); background:linear-gradient(180deg, rgba(8,9,12,.25), rgba(8,9,12,.78)), var(--img) center/cover; color:#F5F5F7; overflow:hidden; }
 .cx-big{ font-family:var(--font-display); font-weight:600; font-size:clamp(54px, 11vw, 132px); line-height:1; letter-spacing:-.02em; text-shadow:0 2px 24px rgba(0,0,0,.4); }
 .cx-big--text{ font-size:clamp(30px, 5.4vw, 64px); line-height:1.08; max-width:14ch; }
 .cx-lead{ font-size:clamp(14px, 1.7vw, 20px); color:rgba(245,245,247,.9); }
