@@ -23,7 +23,8 @@
     "obsidian-integration/index.html",
     "pdf-summarizer/index.html",
     "research-papers/index.html",
-    "youtube-summarizer/index.html"
+    "youtube-summarizer/index.html",
+    "rss-news/index.html"
   ],
   "exempt": [
     "bookmarklet.html",
@@ -38,7 +39,8 @@
     "obsidian-integration/index.html",
     "pdf-summarizer/index.html",
     "research-papers/index.html",
-    "youtube-summarizer/index.html"
+    "youtube-summarizer/index.html",
+    "rss-news/index.html"
   ],
   "translationPriorities": {
     "1": ["de"],

@@ -399,6 +399,13 @@
     <xhtml:link rel="alternate" hreflang="de" href="https://ai-summary-helper.byphil.eu/de/local-ai/"/>
   </url>
   <url>
+    <loc>https://ai-summary-helper.byphil.eu/rss-news/</loc>
+    <lastmod>2026-11-02</lastmod>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ai-summary-helper.byphil.eu/rss-news/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ai-summary-helper.byphil.eu/rss-news/"/>
+  </url>
+  <url>
     <loc>https://ai-summary-helper.byphil.eu/education/</loc>
     <lastmod>2026-11-02</lastmod>
     <priority>0.8</priority>

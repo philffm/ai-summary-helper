@@ -57,6 +57,11 @@ const RELATED_READING = {
         ['Workflow', 'Highlighting alone barely works. Ask about it instead.', 'blog/highlighting-vs-asking.html', 'Keep the useful idea, not just a timestamp.'],
         ['Product', 'You won’t read most of what you save. Here’s the actual fix.', 'blog/unread-saves.html', 'Make saved video reading returnable instead of forgotten.']
     ],
+    rss: [
+        ['Workflow', 'One recap instead of 40 feeds', 'blog/feeds-recap.html', 'Turn your own RSS sources into a focused daily briefing.'],
+        ['Architecture', 'Why we moved search, tagging and recommendations out of the cloud', 'blog/on-device-architecture.html', 'Keep your curated news archive on your own device.'],
+        ['MCP', 'Use your library in Claude, LM Studio and Cursor', 'blog/ai-apps-mcp.html', 'Connect current reading context to the tools you choose.']
+    ],
     research: [
         ['Guide', 'Check an AI summary against its source', 'blog/verify-ai-summary.html', 'Keep claims tied to the paper they came from.'],
         ['Research', 'Search and tags without the cloud', 'blog/on-device-architecture.html', 'See why the research library runs on your device.'],

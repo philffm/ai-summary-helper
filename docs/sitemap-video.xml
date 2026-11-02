@@ -5048,6 +5048,63 @@
     </video:video>
   </url>
   <url>
+    <loc>https://ai-summary-helper.byphil.eu/rss-news/</loc>
+    <video:video>
+      <video:thumbnail_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/feeds-en.jpg</video:thumbnail_loc>
+      <video:title>A built-in RSS reader</video:title>
+      <video:description>Follow blogs and news sites, filter by source, tag, date or mood, import OPML, and summarize any item in one click. Play podcast feeds in the extension and get an optional AI recap; feeds and favorites stay on your device.</video:description>
+      <video:content_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/feeds-en.mp4</video:content_loc>
+      <video:duration>18</video:duration>
+      <video:publication_date>2026-10-20T00:00:00+00:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+    <video:video>
+      <video:thumbnail_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/ytvideo-en.jpg</video:thumbnail_loc>
+      <video:title>YouTube videos, from their captions</video:title>
+      <video:description>Summarize YouTube videos from their captions, get key points in your language, and ask follow-up questions with source citations.</video:description>
+      <video:content_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/ytvideo-en.mp4</video:content_loc>
+      <video:duration>20</video:duration>
+      <video:publication_date>2026-10-21T00:00:00+00:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+    <video:video>
+      <video:thumbnail_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/sprache-en.jpg</video:thumbnail_loc>
+      <video:title>20+ languages, cross-platform</video:title>
+      <video:description>Read and summarize in 20+ languages using the extension, native side panel, or bookmarklet when the extension cannot reach a page.</video:description>
+      <video:content_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/sprache-en.mp4</video:content_loc>
+      <video:duration>16</video:duration>
+      <video:publication_date>2026-10-20T00:00:00+00:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+    <video:video>
+      <video:thumbnail_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/instant-en.jpg</video:thumbnail_loc>
+      <video:title>Instant read: listen while it writes</video:title>
+      <video:description>Listen while the summary is written: title first, then sentence by sentence, with pause, mute and speed controls. Replay it from any card.</video:description>
+      <video:content_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/instant-en.mp4</video:content_loc>
+      <video:duration>28</video:duration>
+      <video:publication_date>2026-10-21T00:00:00+00:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+    <video:video>
+      <video:thumbnail_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/stimmung-en.jpg</video:thumbnail_loc>
+      <video:title>Mood filter and mood over time</video:title>
+      <video:description>Rate headlines from heavy to good, filter for good news, and track your reading mood by day, week or month.</video:description>
+      <video:content_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/stimmung-en.mp4</video:content_loc>
+      <video:duration>22</video:duration>
+      <video:publication_date>2026-10-21T00:00:00+00:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+    <video:video>
+      <video:thumbnail_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/analytics-en.jpg</video:thumbnail_loc>
+      <video:title>An analytics report of your reading</video:title>
+      <video:description>See reading streaks, time saved by summaries, activity, weekly topics and a word cloud computed from your own library.</video:description>
+      <video:content_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/analytics-en.mp4</video:content_loc>
+      <video:duration>20</video:duration>
+      <video:publication_date>2026-10-27T00:00:00+00:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+  </url>
+  <url>
     <loc>https://ai-summary-helper.byphil.eu/de/local-ai/</loc>
     <video:video>
       <video:thumbnail_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/feeds-de.jpg</video:thumbnail_loc>
