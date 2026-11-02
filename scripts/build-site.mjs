@@ -185,6 +185,20 @@ function filteredFaqSection(persona) {
     return $('body').html().replace(/[ \t]+$/gm, '');
 }
 
+function landingHeroVideo(persona) {
+    const videos = {
+        privacy: ['privat', 'See what stays on your device'],
+        feeds: ['feeds', 'Turn your feeds into a focused briefing'],
+        researcher: ['recherche', 'Read a paper without losing the source'],
+        video: ['ytvideo', 'Summarize a video and return to the passage'],
+        graph: ['graph', 'Connect what you read'],
+        mcp: ['mcp', 'Connect your library to an AI app'],
+        export: ['export', 'Keep your reading trail in your notes']
+    };
+    const [clip, label] = videos[persona] || videos.privacy;
+    return `<figure class="landing-hero-video"><video muted autoplay loop playsinline controls preload="metadata" width="360" height="520" poster="{{base}}assets/blog/video/${clip}-en.jpg" aria-label="${label}"><source src="{{base}}assets/blog/video/${clip}-en.mp4" type="video/mp4"></video><figcaption>${label}</figcaption></figure>`;
+}
+
 function relatedReadingSection(topic) {
     const cards = RELATED_READING[topic];
     if (!cards) throw new Error(`Unknown related-reading topic "${topic}".`);
@@ -244,6 +258,7 @@ async function buildPage(relPath, partials, config) {
     // substitute per-page, not once globally.
     html = html.replace(/<!--include:what-it-does:([a-z]+)-->/g, (_, persona) => filteredFeatureSection(persona));
     html = html.replace(/<!--include:evidence:([a-z]+)-->/g, (_, persona) => evidenceSection(persona));
+    html = html.replace(/<!--include:hero-video:([a-z]+)-->/g, (_, persona) => landingHeroVideo(persona));
     html = html.replace(/<!--include:landing-demo:([a-z]+)-->/g, '');
     html = html.replaceAll('<!--include:landing-demo-->', '');
     html = html.replace(/<!--include:faq:([a-z]+)-->/g, (_, persona) => filteredFaqSection(persona));
