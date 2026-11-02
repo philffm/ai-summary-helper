@@ -15,6 +15,7 @@
 ## Pages
 - [AI Summary Helper: your private AI reading and knowledge companion](https://ai-summary-helper.byphil.eu/): Turn reading into knowledge you keep. AI Summary Helper is a private, local-first reading companion for articles, PDFs and videos with source-linked answers and a searchable archive.
 - [MCP browser extension for your local knowledge base | AI Summary Helper](https://ai-summary-helper.byphil.eu/mcp/): Connect Claude, LM Studio or Cursor to your local reading archive with the AI Summary Helper MCP server.
+- [Send web articles to Kindle and e-readers | AI Summary Helper](https://ai-summary-helper.byphil.eu/e-reader/): Archive web articles with compressed images and send them to your Kindle, or to Kobo and other KOReader e-readers with LocalSend. Local archive, no account, open source.
 - [Local AI browser extension with Ollama | AI Summary Helper](https://ai-summary-helper.byphil.eu/local-ai/): Use a local AI browser extension with Ollama, or bring your own key. Your reading archive stays on your device.
 - [Private RSS reader and local AI news digest | AI Summary Helper](https://ai-summary-helper.byphil.eu/rss-news/): Curate your own RSS news sources locally, build source-linked digests and connect current reading to MCP tools for research and analysis.
 - [Source checking with AI for teaching and libraries](https://ai-summary-helper.byphil.eu/education/): Evidence for every answer, a source check, your choice of model, also local. Open source. Free pilot for educators and universities.
