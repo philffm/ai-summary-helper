@@ -1947,20 +1947,22 @@ function setBilling(period) {
       }
       var p = img.parentElement;
       if (p.classList.contains('hw-fig') || p.children.length === 1) {
-        host(p).appendChild(badge('ai-badge--start'));
+        host(p).appendChild(badge('ai-badge--end'));
       } else {
         var w = document.createElement('div');
         w.className = 'ai-wrap';
         p.insertBefore(w, img);
         w.appendChild(img);
-        w.appendChild(badge('ai-badge--start'));
+        w.appendChild(badge('ai-badge--end'));
       }
     });
 
     Array.prototype.forEach.call(cards, function (card) {
       if (card.dataset.aiLabelled) return;
       card.dataset.aiLabelled = '1';
-      host(card).appendChild(badge('ai-badge--top'));
+      var src = card.querySelector('.cx-src');
+      if (src) src.appendChild(badge('ai-badge--inline'));
+      else host(card).appendChild(badge('ai-badge--top'));
     });
 
     var f = document.querySelector('footer .copyright');

@@ -1874,8 +1874,8 @@ body:has(.hero--photo){ padding-top:0; }
 /* AI-image labels (see main.js): small, always visible, same in both themes */
 .ai-wrap{ position:relative; }
 .ai-badge{ position:absolute; z-index:3; padding:3px 7px; border-radius:999px; font:700 10px/1.1 var(--font-body, inherit); letter-spacing:.02em; color:#F5F5F7; background:rgba(8,9,12,.62); -webkit-backdrop-filter:blur(4px); backdrop-filter:blur(4px); white-space:nowrap; cursor:help; }
-.ai-badge--start{ inset-inline-start:10px; bottom:10px; }
-.ai-badge--end{ inset-inline-end:14px; bottom:10px; }
+.ai-badge--inline{ position:static; display:inline-block; margin-inline-start:8px; padding:2px 6px; vertical-align:baseline; font-size:9.5px; }
+.ai-badge--end{ inset-inline-end:10px; bottom:10px; }
 .ai-badge--top{ inset-inline-end:12px; top:12px; }
 .photo-row .ai-wrap img{ display:block; }
 .ai-note{ margin:14px 0 0; font-size:12.5px; line-height:1.5; color:var(--paper-dim); }
