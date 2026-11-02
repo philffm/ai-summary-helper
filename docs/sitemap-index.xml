@@ -191,6 +191,15 @@
     <xhtml:link rel="alternate" hreflang="x-default" href="https://ai-summary-helper.byphil.eu/mcp/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://ai-summary-helper.byphil.eu/mcp/"/>
     <xhtml:link rel="alternate" hreflang="de" href="https://ai-summary-helper.byphil.eu/de/mcp/"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://ai-summary-helper.byphil.eu/fr/mcp/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://ai-summary-helper.byphil.eu/es/mcp/"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://ai-summary-helper.byphil.eu/zh/mcp/"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://ai-summary-helper.byphil.eu/zh-tw/mcp/"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://ai-summary-helper.byphil.eu/ja/mcp/"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://ai-summary-helper.byphil.eu/ko/mcp/"/>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://ai-summary-helper.byphil.eu/pt/mcp/"/>
+    <xhtml:link rel="alternate" hreflang="nl" href="https://ai-summary-helper.byphil.eu/nl/mcp/"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://ai-summary-helper.byphil.eu/it/mcp/"/>
   </url>
   <url>
     <loc>https://ai-summary-helper.byphil.eu/blog/</loc>
@@ -235,6 +244,62 @@
     <priority>0.5</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://ai-summary-helper.byphil.eu/mcp/"/>
     <xhtml:link rel="alternate" hreflang="de" href="https://ai-summary-helper.byphil.eu/de/mcp/"/>
+  </url>
+  <url>
+    <loc>https://ai-summary-helper.byphil.eu/es/mcp/</loc>
+    <lastmod>2026-11-02</lastmod>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ai-summary-helper.byphil.eu/mcp/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://ai-summary-helper.byphil.eu/es/mcp/"/>
+  </url>
+  <url>
+    <loc>https://ai-summary-helper.byphil.eu/fr/mcp/</loc>
+    <lastmod>2026-11-02</lastmod>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ai-summary-helper.byphil.eu/mcp/"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://ai-summary-helper.byphil.eu/fr/mcp/"/>
+  </url>
+  <url>
+    <loc>https://ai-summary-helper.byphil.eu/it/mcp/</loc>
+    <lastmod>2026-11-02</lastmod>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ai-summary-helper.byphil.eu/mcp/"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://ai-summary-helper.byphil.eu/it/mcp/"/>
+  </url>
+  <url>
+    <loc>https://ai-summary-helper.byphil.eu/ja/mcp/</loc>
+    <lastmod>2026-11-02</lastmod>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ai-summary-helper.byphil.eu/mcp/"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://ai-summary-helper.byphil.eu/ja/mcp/"/>
+  </url>
+  <url>
+    <loc>https://ai-summary-helper.byphil.eu/ko/mcp/</loc>
+    <lastmod>2026-11-02</lastmod>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ai-summary-helper.byphil.eu/mcp/"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://ai-summary-helper.byphil.eu/ko/mcp/"/>
+  </url>
+  <url>
+    <loc>https://ai-summary-helper.byphil.eu/nl/mcp/</loc>
+    <lastmod>2026-11-02</lastmod>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ai-summary-helper.byphil.eu/mcp/"/>
+    <xhtml:link rel="alternate" hreflang="nl" href="https://ai-summary-helper.byphil.eu/nl/mcp/"/>
+  </url>
+  <url>
+    <loc>https://ai-summary-helper.byphil.eu/pt/mcp/</loc>
+    <lastmod>2026-11-02</lastmod>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ai-summary-helper.byphil.eu/mcp/"/>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://ai-summary-helper.byphil.eu/pt/mcp/"/>
+  </url>
+  <url>
+    <loc>https://ai-summary-helper.byphil.eu/zh/mcp/</loc>
+    <lastmod>2026-11-02</lastmod>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ai-summary-helper.byphil.eu/mcp/"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://ai-summary-helper.byphil.eu/zh/mcp/"/>
   </url>
   <url>
     <loc>https://ai-summary-helper.byphil.eu/ar/blog/</loc>
@@ -397,6 +462,15 @@
     <xhtml:link rel="alternate" hreflang="x-default" href="https://ai-summary-helper.byphil.eu/local-ai/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://ai-summary-helper.byphil.eu/local-ai/"/>
     <xhtml:link rel="alternate" hreflang="de" href="https://ai-summary-helper.byphil.eu/de/local-ai/"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://ai-summary-helper.byphil.eu/fr/local-ai/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://ai-summary-helper.byphil.eu/es/local-ai/"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://ai-summary-helper.byphil.eu/zh/local-ai/"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://ai-summary-helper.byphil.eu/zh-tw/local-ai/"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://ai-summary-helper.byphil.eu/ja/local-ai/"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://ai-summary-helper.byphil.eu/ko/local-ai/"/>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://ai-summary-helper.byphil.eu/pt/local-ai/"/>
+    <xhtml:link rel="alternate" hreflang="nl" href="https://ai-summary-helper.byphil.eu/nl/local-ai/"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://ai-summary-helper.byphil.eu/it/local-ai/"/>
   </url>
   <url>
     <loc>https://ai-summary-helper.byphil.eu/rss-news/</loc>
@@ -405,6 +479,15 @@
     <xhtml:link rel="alternate" hreflang="x-default" href="https://ai-summary-helper.byphil.eu/rss-news/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://ai-summary-helper.byphil.eu/rss-news/"/>
     <xhtml:link rel="alternate" hreflang="de" href="https://ai-summary-helper.byphil.eu/de/rss-news/"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://ai-summary-helper.byphil.eu/fr/rss-news/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://ai-summary-helper.byphil.eu/es/rss-news/"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://ai-summary-helper.byphil.eu/zh/rss-news/"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://ai-summary-helper.byphil.eu/zh-tw/rss-news/"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://ai-summary-helper.byphil.eu/ja/rss-news/"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://ai-summary-helper.byphil.eu/ko/rss-news/"/>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://ai-summary-helper.byphil.eu/pt/rss-news/"/>
+    <xhtml:link rel="alternate" hreflang="nl" href="https://ai-summary-helper.byphil.eu/nl/rss-news/"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://ai-summary-helper.byphil.eu/it/rss-news/"/>
   </url>
   <url>
     <loc>https://ai-summary-helper.byphil.eu/education/</loc>
@@ -413,6 +496,13 @@
     <xhtml:link rel="alternate" hreflang="en" href="https://ai-summary-helper.byphil.eu/education/"/>
     <xhtml:link rel="alternate" hreflang="de" href="https://ai-summary-helper.byphil.eu/de/bildung/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://ai-summary-helper.byphil.eu/education/"/>
+  </url>
+  <url>
+    <loc>https://ai-summary-helper.byphil.eu/zh-tw/mcp/</loc>
+    <lastmod>2026-11-02</lastmod>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ai-summary-helper.byphil.eu/mcp/"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://ai-summary-helper.byphil.eu/zh-tw/mcp/"/>
   </url>
   <url>
     <loc>https://ai-summary-helper.byphil.eu/de/bildung/</loc>
@@ -443,6 +533,90 @@
     <xhtml:link rel="alternate" hreflang="de" href="https://ai-summary-helper.byphil.eu/de/rss-news/"/>
   </url>
   <url>
+    <loc>https://ai-summary-helper.byphil.eu/es/local-ai/</loc>
+    <lastmod>2026-11-02</lastmod>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ai-summary-helper.byphil.eu/local-ai/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://ai-summary-helper.byphil.eu/es/local-ai/"/>
+  </url>
+  <url>
+    <loc>https://ai-summary-helper.byphil.eu/es/rss-news/</loc>
+    <lastmod>2026-11-02</lastmod>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ai-summary-helper.byphil.eu/rss-news/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://ai-summary-helper.byphil.eu/es/rss-news/"/>
+  </url>
+  <url>
+    <loc>https://ai-summary-helper.byphil.eu/fr/local-ai/</loc>
+    <lastmod>2026-11-02</lastmod>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ai-summary-helper.byphil.eu/local-ai/"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://ai-summary-helper.byphil.eu/fr/local-ai/"/>
+  </url>
+  <url>
+    <loc>https://ai-summary-helper.byphil.eu/fr/rss-news/</loc>
+    <lastmod>2026-11-02</lastmod>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ai-summary-helper.byphil.eu/rss-news/"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://ai-summary-helper.byphil.eu/fr/rss-news/"/>
+  </url>
+  <url>
+    <loc>https://ai-summary-helper.byphil.eu/it/local-ai/</loc>
+    <lastmod>2026-11-02</lastmod>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ai-summary-helper.byphil.eu/local-ai/"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://ai-summary-helper.byphil.eu/it/local-ai/"/>
+  </url>
+  <url>
+    <loc>https://ai-summary-helper.byphil.eu/it/rss-news/</loc>
+    <lastmod>2026-11-02</lastmod>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ai-summary-helper.byphil.eu/rss-news/"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://ai-summary-helper.byphil.eu/it/rss-news/"/>
+  </url>
+  <url>
+    <loc>https://ai-summary-helper.byphil.eu/ja/local-ai/</loc>
+    <lastmod>2026-11-02</lastmod>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ai-summary-helper.byphil.eu/local-ai/"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://ai-summary-helper.byphil.eu/ja/local-ai/"/>
+  </url>
+  <url>
+    <loc>https://ai-summary-helper.byphil.eu/ja/rss-news/</loc>
+    <lastmod>2026-11-02</lastmod>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ai-summary-helper.byphil.eu/rss-news/"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://ai-summary-helper.byphil.eu/ja/rss-news/"/>
+  </url>
+  <url>
+    <loc>https://ai-summary-helper.byphil.eu/ko/local-ai/</loc>
+    <lastmod>2026-11-02</lastmod>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ai-summary-helper.byphil.eu/local-ai/"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://ai-summary-helper.byphil.eu/ko/local-ai/"/>
+  </url>
+  <url>
+    <loc>https://ai-summary-helper.byphil.eu/ko/rss-news/</loc>
+    <lastmod>2026-11-02</lastmod>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ai-summary-helper.byphil.eu/rss-news/"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://ai-summary-helper.byphil.eu/ko/rss-news/"/>
+  </url>
+  <url>
+    <loc>https://ai-summary-helper.byphil.eu/nl/local-ai/</loc>
+    <lastmod>2026-11-02</lastmod>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ai-summary-helper.byphil.eu/local-ai/"/>
+    <xhtml:link rel="alternate" hreflang="nl" href="https://ai-summary-helper.byphil.eu/nl/local-ai/"/>
+  </url>
+  <url>
+    <loc>https://ai-summary-helper.byphil.eu/nl/rss-news/</loc>
+    <lastmod>2026-11-02</lastmod>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ai-summary-helper.byphil.eu/rss-news/"/>
+    <xhtml:link rel="alternate" hreflang="nl" href="https://ai-summary-helper.byphil.eu/nl/rss-news/"/>
+  </url>
+  <url>
     <loc>https://ai-summary-helper.byphil.eu/privacy.html</loc>
     <lastmod>2026-11-02</lastmod>
     <priority>0.8</priority>
@@ -471,6 +645,34 @@
     <xhtml:link rel="alternate" hreflang="da" href="https://ai-summary-helper.byphil.eu/da/privatliv.html"/>
     <xhtml:link rel="alternate" hreflang="nb" href="https://ai-summary-helper.byphil.eu/no/personvern.html"/>
     <xhtml:link rel="alternate" hreflang="fi" href="https://ai-summary-helper.byphil.eu/fi/yksityisyys.html"/>
+  </url>
+  <url>
+    <loc>https://ai-summary-helper.byphil.eu/pt/local-ai/</loc>
+    <lastmod>2026-11-02</lastmod>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ai-summary-helper.byphil.eu/local-ai/"/>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://ai-summary-helper.byphil.eu/pt/local-ai/"/>
+  </url>
+  <url>
+    <loc>https://ai-summary-helper.byphil.eu/pt/rss-news/</loc>
+    <lastmod>2026-11-02</lastmod>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ai-summary-helper.byphil.eu/rss-news/"/>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://ai-summary-helper.byphil.eu/pt/rss-news/"/>
+  </url>
+  <url>
+    <loc>https://ai-summary-helper.byphil.eu/zh/local-ai/</loc>
+    <lastmod>2026-11-02</lastmod>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ai-summary-helper.byphil.eu/local-ai/"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://ai-summary-helper.byphil.eu/zh/local-ai/"/>
+  </url>
+  <url>
+    <loc>https://ai-summary-helper.byphil.eu/zh/rss-news/</loc>
+    <lastmod>2026-11-02</lastmod>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ai-summary-helper.byphil.eu/rss-news/"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://ai-summary-helper.byphil.eu/zh/rss-news/"/>
   </url>
   <url>
     <loc>https://ai-summary-helper.byphil.eu/ar/privacy.html</loc>
@@ -514,6 +716,15 @@
     <xhtml:link rel="alternate" hreflang="x-default" href="https://ai-summary-helper.byphil.eu/pdf-summarizer/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://ai-summary-helper.byphil.eu/pdf-summarizer/"/>
     <xhtml:link rel="alternate" hreflang="de" href="https://ai-summary-helper.byphil.eu/de/pdf-summarizer/"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://ai-summary-helper.byphil.eu/fr/pdf-summarizer/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://ai-summary-helper.byphil.eu/es/pdf-summarizer/"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://ai-summary-helper.byphil.eu/zh/pdf-summarizer/"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://ai-summary-helper.byphil.eu/zh-tw/pdf-summarizer/"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://ai-summary-helper.byphil.eu/ja/pdf-summarizer/"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://ai-summary-helper.byphil.eu/ko/pdf-summarizer/"/>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://ai-summary-helper.byphil.eu/pt/pdf-summarizer/"/>
+    <xhtml:link rel="alternate" hreflang="nl" href="https://ai-summary-helper.byphil.eu/nl/pdf-summarizer/"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://ai-summary-helper.byphil.eu/it/pdf-summarizer/"/>
   </url>
   <url>
     <loc>https://ai-summary-helper.byphil.eu/ru/privacy.html</loc>
@@ -535,6 +746,20 @@
     <priority>0.5</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://ai-summary-helper.byphil.eu/privacy.html"/>
     <xhtml:link rel="alternate" hreflang="uk" href="https://ai-summary-helper.byphil.eu/uk/privacy.html"/>
+  </url>
+  <url>
+    <loc>https://ai-summary-helper.byphil.eu/zh-tw/local-ai/</loc>
+    <lastmod>2026-11-02</lastmod>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ai-summary-helper.byphil.eu/local-ai/"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://ai-summary-helper.byphil.eu/zh-tw/local-ai/"/>
+  </url>
+  <url>
+    <loc>https://ai-summary-helper.byphil.eu/zh-tw/rss-news/</loc>
+    <lastmod>2026-11-02</lastmod>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ai-summary-helper.byphil.eu/rss-news/"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://ai-summary-helper.byphil.eu/zh-tw/rss-news/"/>
   </url>
   <url>
     <loc>https://ai-summary-helper.byphil.eu/zh/privacy.html</loc>
@@ -587,6 +812,15 @@
     <xhtml:link rel="alternate" hreflang="x-default" href="https://ai-summary-helper.byphil.eu/knowledge-graph/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://ai-summary-helper.byphil.eu/knowledge-graph/"/>
     <xhtml:link rel="alternate" hreflang="de" href="https://ai-summary-helper.byphil.eu/de/knowledge-graph/"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://ai-summary-helper.byphil.eu/fr/knowledge-graph/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://ai-summary-helper.byphil.eu/es/knowledge-graph/"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://ai-summary-helper.byphil.eu/zh/knowledge-graph/"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://ai-summary-helper.byphil.eu/zh-tw/knowledge-graph/"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://ai-summary-helper.byphil.eu/ja/knowledge-graph/"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://ai-summary-helper.byphil.eu/ko/knowledge-graph/"/>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://ai-summary-helper.byphil.eu/pt/knowledge-graph/"/>
+    <xhtml:link rel="alternate" hreflang="nl" href="https://ai-summary-helper.byphil.eu/nl/knowledge-graph/"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://ai-summary-helper.byphil.eu/it/knowledge-graph/"/>
   </url>
   <url>
     <loc>https://ai-summary-helper.byphil.eu/research-papers/</loc>
@@ -595,6 +829,15 @@
     <xhtml:link rel="alternate" hreflang="x-default" href="https://ai-summary-helper.byphil.eu/research-papers/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://ai-summary-helper.byphil.eu/research-papers/"/>
     <xhtml:link rel="alternate" hreflang="de" href="https://ai-summary-helper.byphil.eu/de/research-papers/"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://ai-summary-helper.byphil.eu/fr/research-papers/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://ai-summary-helper.byphil.eu/es/research-papers/"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://ai-summary-helper.byphil.eu/zh/research-papers/"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://ai-summary-helper.byphil.eu/zh-tw/research-papers/"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://ai-summary-helper.byphil.eu/ja/research-papers/"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://ai-summary-helper.byphil.eu/ko/research-papers/"/>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://ai-summary-helper.byphil.eu/pt/research-papers/"/>
+    <xhtml:link rel="alternate" hreflang="nl" href="https://ai-summary-helper.byphil.eu/nl/research-papers/"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://ai-summary-helper.byphil.eu/it/research-papers/"/>
   </url>
   <url>
     <loc>https://ai-summary-helper.byphil.eu/tr/gizlilik.html</loc>
@@ -618,11 +861,53 @@
     <xhtml:link rel="alternate" hreflang="de" href="https://ai-summary-helper.byphil.eu/de/pdf-summarizer/"/>
   </url>
   <url>
+    <loc>https://ai-summary-helper.byphil.eu/es/pdf-summarizer/</loc>
+    <lastmod>2026-11-02</lastmod>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ai-summary-helper.byphil.eu/pdf-summarizer/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://ai-summary-helper.byphil.eu/es/pdf-summarizer/"/>
+  </url>
+  <url>
     <loc>https://ai-summary-helper.byphil.eu/es/privacidad.html</loc>
     <lastmod>2026-11-02</lastmod>
     <priority>0.5</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://ai-summary-helper.byphil.eu/privacy.html"/>
     <xhtml:link rel="alternate" hreflang="es" href="https://ai-summary-helper.byphil.eu/es/privacidad.html"/>
+  </url>
+  <url>
+    <loc>https://ai-summary-helper.byphil.eu/fr/pdf-summarizer/</loc>
+    <lastmod>2026-11-02</lastmod>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ai-summary-helper.byphil.eu/pdf-summarizer/"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://ai-summary-helper.byphil.eu/fr/pdf-summarizer/"/>
+  </url>
+  <url>
+    <loc>https://ai-summary-helper.byphil.eu/it/pdf-summarizer/</loc>
+    <lastmod>2026-11-02</lastmod>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ai-summary-helper.byphil.eu/pdf-summarizer/"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://ai-summary-helper.byphil.eu/it/pdf-summarizer/"/>
+  </url>
+  <url>
+    <loc>https://ai-summary-helper.byphil.eu/ja/pdf-summarizer/</loc>
+    <lastmod>2026-11-02</lastmod>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ai-summary-helper.byphil.eu/pdf-summarizer/"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://ai-summary-helper.byphil.eu/ja/pdf-summarizer/"/>
+  </url>
+  <url>
+    <loc>https://ai-summary-helper.byphil.eu/ko/pdf-summarizer/</loc>
+    <lastmod>2026-11-02</lastmod>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ai-summary-helper.byphil.eu/pdf-summarizer/"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://ai-summary-helper.byphil.eu/ko/pdf-summarizer/"/>
+  </url>
+  <url>
+    <loc>https://ai-summary-helper.byphil.eu/nl/pdf-summarizer/</loc>
+    <lastmod>2026-11-02</lastmod>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ai-summary-helper.byphil.eu/pdf-summarizer/"/>
+    <xhtml:link rel="alternate" hreflang="nl" href="https://ai-summary-helper.byphil.eu/nl/pdf-summarizer/"/>
   </url>
   <url>
     <loc>https://ai-summary-helper.byphil.eu/no/personvern.html</loc>
@@ -639,6 +924,13 @@
     <xhtml:link rel="alternate" hreflang="pl" href="https://ai-summary-helper.byphil.eu/pl/prywatnosc.html"/>
   </url>
   <url>
+    <loc>https://ai-summary-helper.byphil.eu/pt/pdf-summarizer/</loc>
+    <lastmod>2026-11-02</lastmod>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ai-summary-helper.byphil.eu/pdf-summarizer/"/>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://ai-summary-helper.byphil.eu/pt/pdf-summarizer/"/>
+  </url>
+  <url>
     <loc>https://ai-summary-helper.byphil.eu/sv/integritet.html</loc>
     <lastmod>2026-11-02</lastmod>
     <priority>0.5</priority>
@@ -651,6 +943,13 @@
     <priority>0.5</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://ai-summary-helper.byphil.eu/privacy.html"/>
     <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://ai-summary-helper.byphil.eu/zh-tw/privacy.html"/>
+  </url>
+  <url>
+    <loc>https://ai-summary-helper.byphil.eu/zh/pdf-summarizer/</loc>
+    <lastmod>2026-11-02</lastmod>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ai-summary-helper.byphil.eu/pdf-summarizer/"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://ai-summary-helper.byphil.eu/zh/pdf-summarizer/"/>
   </url>
   <url>
     <loc>https://ai-summary-helper.byphil.eu/ar/blog/videos.html</loc>
@@ -702,6 +1001,20 @@
     <xhtml:link rel="alternate" hreflang="es" href="https://ai-summary-helper.byphil.eu/es/blog/videos.html"/>
   </url>
   <url>
+    <loc>https://ai-summary-helper.byphil.eu/es/knowledge-graph/</loc>
+    <lastmod>2026-11-02</lastmod>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ai-summary-helper.byphil.eu/knowledge-graph/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://ai-summary-helper.byphil.eu/es/knowledge-graph/"/>
+  </url>
+  <url>
+    <loc>https://ai-summary-helper.byphil.eu/es/research-papers/</loc>
+    <lastmod>2026-11-02</lastmod>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ai-summary-helper.byphil.eu/research-papers/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://ai-summary-helper.byphil.eu/es/research-papers/"/>
+  </url>
+  <url>
     <loc>https://ai-summary-helper.byphil.eu/fi/blog/videos.html</loc>
     <lastmod>2026-11-02</lastmod>
     <priority>0.5</priority>
@@ -721,6 +1034,20 @@
     <priority>0.5</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://ai-summary-helper.byphil.eu/blog/videos.html"/>
     <xhtml:link rel="alternate" hreflang="fr" href="https://ai-summary-helper.byphil.eu/fr/blog/videos.html"/>
+  </url>
+  <url>
+    <loc>https://ai-summary-helper.byphil.eu/fr/knowledge-graph/</loc>
+    <lastmod>2026-11-02</lastmod>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ai-summary-helper.byphil.eu/knowledge-graph/"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://ai-summary-helper.byphil.eu/fr/knowledge-graph/"/>
+  </url>
+  <url>
+    <loc>https://ai-summary-helper.byphil.eu/fr/research-papers/</loc>
+    <lastmod>2026-11-02</lastmod>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ai-summary-helper.byphil.eu/research-papers/"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://ai-summary-helper.byphil.eu/fr/research-papers/"/>
   </url>
   <url>
     <loc>https://ai-summary-helper.byphil.eu/hi/blog/videos.html</loc>
@@ -744,11 +1071,39 @@
     <xhtml:link rel="alternate" hreflang="it" href="https://ai-summary-helper.byphil.eu/it/blog/videos.html"/>
   </url>
   <url>
+    <loc>https://ai-summary-helper.byphil.eu/it/knowledge-graph/</loc>
+    <lastmod>2026-11-02</lastmod>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ai-summary-helper.byphil.eu/knowledge-graph/"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://ai-summary-helper.byphil.eu/it/knowledge-graph/"/>
+  </url>
+  <url>
+    <loc>https://ai-summary-helper.byphil.eu/it/research-papers/</loc>
+    <lastmod>2026-11-02</lastmod>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ai-summary-helper.byphil.eu/research-papers/"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://ai-summary-helper.byphil.eu/it/research-papers/"/>
+  </url>
+  <url>
     <loc>https://ai-summary-helper.byphil.eu/ja/blog/videos.html</loc>
     <lastmod>2026-11-02</lastmod>
     <priority>0.5</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://ai-summary-helper.byphil.eu/blog/videos.html"/>
     <xhtml:link rel="alternate" hreflang="ja" href="https://ai-summary-helper.byphil.eu/ja/blog/videos.html"/>
+  </url>
+  <url>
+    <loc>https://ai-summary-helper.byphil.eu/ja/knowledge-graph/</loc>
+    <lastmod>2026-11-02</lastmod>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ai-summary-helper.byphil.eu/knowledge-graph/"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://ai-summary-helper.byphil.eu/ja/knowledge-graph/"/>
+  </url>
+  <url>
+    <loc>https://ai-summary-helper.byphil.eu/ja/research-papers/</loc>
+    <lastmod>2026-11-02</lastmod>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ai-summary-helper.byphil.eu/research-papers/"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://ai-summary-helper.byphil.eu/ja/research-papers/"/>
   </url>
   <url>
     <loc>https://ai-summary-helper.byphil.eu/ko/blog/videos.html</loc>
@@ -758,11 +1113,39 @@
     <xhtml:link rel="alternate" hreflang="ko" href="https://ai-summary-helper.byphil.eu/ko/blog/videos.html"/>
   </url>
   <url>
+    <loc>https://ai-summary-helper.byphil.eu/ko/knowledge-graph/</loc>
+    <lastmod>2026-11-02</lastmod>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ai-summary-helper.byphil.eu/knowledge-graph/"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://ai-summary-helper.byphil.eu/ko/knowledge-graph/"/>
+  </url>
+  <url>
+    <loc>https://ai-summary-helper.byphil.eu/ko/research-papers/</loc>
+    <lastmod>2026-11-02</lastmod>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ai-summary-helper.byphil.eu/research-papers/"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://ai-summary-helper.byphil.eu/ko/research-papers/"/>
+  </url>
+  <url>
     <loc>https://ai-summary-helper.byphil.eu/nl/blog/videos.html</loc>
     <lastmod>2026-11-02</lastmod>
     <priority>0.5</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://ai-summary-helper.byphil.eu/blog/videos.html"/>
     <xhtml:link rel="alternate" hreflang="nl" href="https://ai-summary-helper.byphil.eu/nl/blog/videos.html"/>
+  </url>
+  <url>
+    <loc>https://ai-summary-helper.byphil.eu/nl/knowledge-graph/</loc>
+    <lastmod>2026-11-02</lastmod>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ai-summary-helper.byphil.eu/knowledge-graph/"/>
+    <xhtml:link rel="alternate" hreflang="nl" href="https://ai-summary-helper.byphil.eu/nl/knowledge-graph/"/>
+  </url>
+  <url>
+    <loc>https://ai-summary-helper.byphil.eu/nl/research-papers/</loc>
+    <lastmod>2026-11-02</lastmod>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ai-summary-helper.byphil.eu/research-papers/"/>
+    <xhtml:link rel="alternate" hreflang="nl" href="https://ai-summary-helper.byphil.eu/nl/research-papers/"/>
   </url>
   <url>
     <loc>https://ai-summary-helper.byphil.eu/no/blog/videos.html</loc>
@@ -793,11 +1176,25 @@
     <xhtml:link rel="alternate" hreflang="pt-BR" href="https://ai-summary-helper.byphil.eu/pt/blog/videos.html"/>
   </url>
   <url>
+    <loc>https://ai-summary-helper.byphil.eu/pt/knowledge-graph/</loc>
+    <lastmod>2026-11-02</lastmod>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ai-summary-helper.byphil.eu/knowledge-graph/"/>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://ai-summary-helper.byphil.eu/pt/knowledge-graph/"/>
+  </url>
+  <url>
     <loc>https://ai-summary-helper.byphil.eu/pt/privacidade.html</loc>
     <lastmod>2026-11-02</lastmod>
     <priority>0.5</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://ai-summary-helper.byphil.eu/privacy.html"/>
     <xhtml:link rel="alternate" hreflang="pt-BR" href="https://ai-summary-helper.byphil.eu/pt/privacidade.html"/>
+  </url>
+  <url>
+    <loc>https://ai-summary-helper.byphil.eu/pt/research-papers/</loc>
+    <lastmod>2026-11-02</lastmod>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ai-summary-helper.byphil.eu/research-papers/"/>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://ai-summary-helper.byphil.eu/pt/research-papers/"/>
   </url>
   <url>
     <loc>https://ai-summary-helper.byphil.eu/ru/blog/videos.html</loc>
@@ -848,6 +1245,15 @@
     <xhtml:link rel="alternate" hreflang="x-default" href="https://ai-summary-helper.byphil.eu/youtube-summarizer/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://ai-summary-helper.byphil.eu/youtube-summarizer/"/>
     <xhtml:link rel="alternate" hreflang="de" href="https://ai-summary-helper.byphil.eu/de/youtube-summarizer/"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://ai-summary-helper.byphil.eu/fr/youtube-summarizer/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://ai-summary-helper.byphil.eu/es/youtube-summarizer/"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://ai-summary-helper.byphil.eu/zh/youtube-summarizer/"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://ai-summary-helper.byphil.eu/zh-tw/youtube-summarizer/"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://ai-summary-helper.byphil.eu/ja/youtube-summarizer/"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://ai-summary-helper.byphil.eu/ko/youtube-summarizer/"/>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://ai-summary-helper.byphil.eu/pt/youtube-summarizer/"/>
+    <xhtml:link rel="alternate" hreflang="nl" href="https://ai-summary-helper.byphil.eu/nl/youtube-summarizer/"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://ai-summary-helper.byphil.eu/it/youtube-summarizer/"/>
   </url>
   <url>
     <loc>https://ai-summary-helper.byphil.eu/zh/blog/videos.html</loc>
@@ -855,6 +1261,20 @@
     <priority>0.5</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://ai-summary-helper.byphil.eu/blog/videos.html"/>
     <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://ai-summary-helper.byphil.eu/zh/blog/videos.html"/>
+  </url>
+  <url>
+    <loc>https://ai-summary-helper.byphil.eu/zh/knowledge-graph/</loc>
+    <lastmod>2026-11-02</lastmod>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ai-summary-helper.byphil.eu/knowledge-graph/"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://ai-summary-helper.byphil.eu/zh/knowledge-graph/"/>
+  </url>
+  <url>
+    <loc>https://ai-summary-helper.byphil.eu/zh/research-papers/</loc>
+    <lastmod>2026-11-02</lastmod>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ai-summary-helper.byphil.eu/research-papers/"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://ai-summary-helper.byphil.eu/zh/research-papers/"/>
   </url>
   <url>
     <loc>https://ai-summary-helper.byphil.eu/blog/ai-apps-mcp.html</loc>
@@ -923,6 +1343,22 @@
     <xhtml:link rel="alternate" hreflang="x-default" href="https://ai-summary-helper.byphil.eu/obsidian-integration/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://ai-summary-helper.byphil.eu/obsidian-integration/"/>
     <xhtml:link rel="alternate" hreflang="de" href="https://ai-summary-helper.byphil.eu/de/obsidian-integration/"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://ai-summary-helper.byphil.eu/fr/obsidian-integration/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://ai-summary-helper.byphil.eu/es/obsidian-integration/"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://ai-summary-helper.byphil.eu/zh/obsidian-integration/"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://ai-summary-helper.byphil.eu/zh-tw/obsidian-integration/"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://ai-summary-helper.byphil.eu/ja/obsidian-integration/"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://ai-summary-helper.byphil.eu/ko/obsidian-integration/"/>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://ai-summary-helper.byphil.eu/pt/obsidian-integration/"/>
+    <xhtml:link rel="alternate" hreflang="nl" href="https://ai-summary-helper.byphil.eu/nl/obsidian-integration/"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://ai-summary-helper.byphil.eu/it/obsidian-integration/"/>
+  </url>
+  <url>
+    <loc>https://ai-summary-helper.byphil.eu/zh-tw/pdf-summarizer/</loc>
+    <lastmod>2026-11-02</lastmod>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ai-summary-helper.byphil.eu/pdf-summarizer/"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://ai-summary-helper.byphil.eu/zh-tw/pdf-summarizer/"/>
   </url>
   <url>
     <loc>https://ai-summary-helper.byphil.eu/blog/unread-saves.html</loc>
@@ -962,11 +1398,60 @@
     <xhtml:link rel="alternate" hreflang="de" href="https://ai-summary-helper.byphil.eu/de/youtube-summarizer/"/>
   </url>
   <url>
+    <loc>https://ai-summary-helper.byphil.eu/es/youtube-summarizer/</loc>
+    <lastmod>2026-11-02</lastmod>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ai-summary-helper.byphil.eu/youtube-summarizer/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://ai-summary-helper.byphil.eu/es/youtube-summarizer/"/>
+  </url>
+  <url>
+    <loc>https://ai-summary-helper.byphil.eu/fr/youtube-summarizer/</loc>
+    <lastmod>2026-11-02</lastmod>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ai-summary-helper.byphil.eu/youtube-summarizer/"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://ai-summary-helper.byphil.eu/fr/youtube-summarizer/"/>
+  </url>
+  <url>
     <loc>https://ai-summary-helper.byphil.eu/it/privacy-e-dati.html</loc>
     <lastmod>2026-11-02</lastmod>
     <priority>0.5</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://ai-summary-helper.byphil.eu/privacy.html"/>
     <xhtml:link rel="alternate" hreflang="it" href="https://ai-summary-helper.byphil.eu/it/privacy-e-dati.html"/>
+  </url>
+  <url>
+    <loc>https://ai-summary-helper.byphil.eu/it/youtube-summarizer/</loc>
+    <lastmod>2026-11-02</lastmod>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ai-summary-helper.byphil.eu/youtube-summarizer/"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://ai-summary-helper.byphil.eu/it/youtube-summarizer/"/>
+  </url>
+  <url>
+    <loc>https://ai-summary-helper.byphil.eu/ja/youtube-summarizer/</loc>
+    <lastmod>2026-11-02</lastmod>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ai-summary-helper.byphil.eu/youtube-summarizer/"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://ai-summary-helper.byphil.eu/ja/youtube-summarizer/"/>
+  </url>
+  <url>
+    <loc>https://ai-summary-helper.byphil.eu/ko/youtube-summarizer/</loc>
+    <lastmod>2026-11-02</lastmod>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ai-summary-helper.byphil.eu/youtube-summarizer/"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://ai-summary-helper.byphil.eu/ko/youtube-summarizer/"/>
+  </url>
+  <url>
+    <loc>https://ai-summary-helper.byphil.eu/nl/youtube-summarizer/</loc>
+    <lastmod>2026-11-02</lastmod>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ai-summary-helper.byphil.eu/youtube-summarizer/"/>
+    <xhtml:link rel="alternate" hreflang="nl" href="https://ai-summary-helper.byphil.eu/nl/youtube-summarizer/"/>
+  </url>
+  <url>
+    <loc>https://ai-summary-helper.byphil.eu/pt/youtube-summarizer/</loc>
+    <lastmod>2026-11-02</lastmod>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ai-summary-helper.byphil.eu/youtube-summarizer/"/>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://ai-summary-helper.byphil.eu/pt/youtube-summarizer/"/>
   </url>
   <url>
     <loc>https://ai-summary-helper.byphil.eu/vi/quyen-rieng-tu.html</loc>
@@ -981,6 +1466,27 @@
     <priority>0.5</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://ai-summary-helper.byphil.eu/blog/videos.html"/>
     <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://ai-summary-helper.byphil.eu/zh-tw/blog/videos.html"/>
+  </url>
+  <url>
+    <loc>https://ai-summary-helper.byphil.eu/zh-tw/knowledge-graph/</loc>
+    <lastmod>2026-11-02</lastmod>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ai-summary-helper.byphil.eu/knowledge-graph/"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://ai-summary-helper.byphil.eu/zh-tw/knowledge-graph/"/>
+  </url>
+  <url>
+    <loc>https://ai-summary-helper.byphil.eu/zh-tw/research-papers/</loc>
+    <lastmod>2026-11-02</lastmod>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ai-summary-helper.byphil.eu/research-papers/"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://ai-summary-helper.byphil.eu/zh-tw/research-papers/"/>
+  </url>
+  <url>
+    <loc>https://ai-summary-helper.byphil.eu/zh/youtube-summarizer/</loc>
+    <lastmod>2026-11-02</lastmod>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ai-summary-helper.byphil.eu/youtube-summarizer/"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://ai-summary-helper.byphil.eu/zh/youtube-summarizer/"/>
   </url>
   <url>
     <loc>https://ai-summary-helper.byphil.eu/fr/confidentialite.html</loc>
@@ -1032,6 +1538,13 @@
     <xhtml:link rel="alternate" hreflang="es" href="https://ai-summary-helper.byphil.eu/es/blog/ai-apps-mcp.html"/>
   </url>
   <url>
+    <loc>https://ai-summary-helper.byphil.eu/es/obsidian-integration/</loc>
+    <lastmod>2026-11-02</lastmod>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ai-summary-helper.byphil.eu/obsidian-integration/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://ai-summary-helper.byphil.eu/es/obsidian-integration/"/>
+  </url>
+  <url>
     <loc>https://ai-summary-helper.byphil.eu/fi/blog/ai-apps-mcp.html</loc>
     <lastmod>2026-11-02</lastmod>
     <priority>0.5</priority>
@@ -1044,6 +1557,13 @@
     <priority>0.5</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://ai-summary-helper.byphil.eu/blog/ai-apps-mcp.html"/>
     <xhtml:link rel="alternate" hreflang="fr" href="https://ai-summary-helper.byphil.eu/fr/blog/ai-apps-mcp.html"/>
+  </url>
+  <url>
+    <loc>https://ai-summary-helper.byphil.eu/fr/obsidian-integration/</loc>
+    <lastmod>2026-11-02</lastmod>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ai-summary-helper.byphil.eu/obsidian-integration/"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://ai-summary-helper.byphil.eu/fr/obsidian-integration/"/>
   </url>
   <url>
     <loc>https://ai-summary-helper.byphil.eu/hi/blog/ai-apps-mcp.html</loc>
@@ -1074,6 +1594,13 @@
     <xhtml:link rel="alternate" hreflang="it" href="https://ai-summary-helper.byphil.eu/it/blog/ai-apps-mcp.html"/>
   </url>
   <url>
+    <loc>https://ai-summary-helper.byphil.eu/it/obsidian-integration/</loc>
+    <lastmod>2026-11-02</lastmod>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ai-summary-helper.byphil.eu/obsidian-integration/"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://ai-summary-helper.byphil.eu/it/obsidian-integration/"/>
+  </url>
+  <url>
     <loc>https://ai-summary-helper.byphil.eu/ja/blog/ai-apps-mcp.html</loc>
     <lastmod>2026-11-02</lastmod>
     <priority>0.5</priority>
@@ -1086,6 +1613,13 @@
     <priority>0.5</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://ai-summary-helper.byphil.eu/blog/feeds-recap.html"/>
     <xhtml:link rel="alternate" hreflang="ja" href="https://ai-summary-helper.byphil.eu/ja/blog/feeds-recap.html"/>
+  </url>
+  <url>
+    <loc>https://ai-summary-helper.byphil.eu/ja/obsidian-integration/</loc>
+    <lastmod>2026-11-02</lastmod>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ai-summary-helper.byphil.eu/obsidian-integration/"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://ai-summary-helper.byphil.eu/ja/obsidian-integration/"/>
   </url>
   <url>
     <loc>https://ai-summary-helper.byphil.eu/ko/blog/ai-apps-mcp.html</loc>
@@ -1102,11 +1636,25 @@
     <xhtml:link rel="alternate" hreflang="ko" href="https://ai-summary-helper.byphil.eu/ko/blog/feeds-recap.html"/>
   </url>
   <url>
+    <loc>https://ai-summary-helper.byphil.eu/ko/obsidian-integration/</loc>
+    <lastmod>2026-11-02</lastmod>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ai-summary-helper.byphil.eu/obsidian-integration/"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://ai-summary-helper.byphil.eu/ko/obsidian-integration/"/>
+  </url>
+  <url>
     <loc>https://ai-summary-helper.byphil.eu/nl/blog/ai-apps-mcp.html</loc>
     <lastmod>2026-11-02</lastmod>
     <priority>0.5</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://ai-summary-helper.byphil.eu/blog/ai-apps-mcp.html"/>
     <xhtml:link rel="alternate" hreflang="nl" href="https://ai-summary-helper.byphil.eu/nl/blog/ai-apps-mcp.html"/>
+  </url>
+  <url>
+    <loc>https://ai-summary-helper.byphil.eu/nl/obsidian-integration/</loc>
+    <lastmod>2026-11-02</lastmod>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ai-summary-helper.byphil.eu/obsidian-integration/"/>
+    <xhtml:link rel="alternate" hreflang="nl" href="https://ai-summary-helper.byphil.eu/nl/obsidian-integration/"/>
   </url>
   <url>
     <loc>https://ai-summary-helper.byphil.eu/no/blog/ai-apps-mcp.html</loc>
@@ -1128,6 +1676,13 @@
     <priority>0.5</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://ai-summary-helper.byphil.eu/blog/ai-apps-mcp.html"/>
     <xhtml:link rel="alternate" hreflang="pt-BR" href="https://ai-summary-helper.byphil.eu/pt/blog/ai-apps-mcp.html"/>
+  </url>
+  <url>
+    <loc>https://ai-summary-helper.byphil.eu/pt/obsidian-integration/</loc>
+    <lastmod>2026-11-02</lastmod>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ai-summary-helper.byphil.eu/obsidian-integration/"/>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://ai-summary-helper.byphil.eu/pt/obsidian-integration/"/>
   </url>
   <url>
     <loc>https://ai-summary-helper.byphil.eu/ru/blog/ai-apps-mcp.html</loc>
@@ -1207,6 +1762,13 @@
     <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://ai-summary-helper.byphil.eu/zh/blog/feeds-recap.html"/>
   </url>
   <url>
+    <loc>https://ai-summary-helper.byphil.eu/zh/obsidian-integration/</loc>
+    <lastmod>2026-11-02</lastmod>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ai-summary-helper.byphil.eu/obsidian-integration/"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://ai-summary-helper.byphil.eu/zh/obsidian-integration/"/>
+  </url>
+  <url>
     <loc>https://ai-summary-helper.byphil.eu/ar/blog/unread-saves.html</loc>
     <lastmod>2026-11-02</lastmod>
     <priority>0.5</priority>
@@ -1254,6 +1816,13 @@
     <priority>0.5</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://ai-summary-helper.byphil.eu/blog/unread-saves.html"/>
     <xhtml:link rel="alternate" hreflang="uk" href="https://ai-summary-helper.byphil.eu/uk/blog/unread-saves.html"/>
+  </url>
+  <url>
+    <loc>https://ai-summary-helper.byphil.eu/zh-tw/youtube-summarizer/</loc>
+    <lastmod>2026-11-02</lastmod>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ai-summary-helper.byphil.eu/youtube-summarizer/"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://ai-summary-helper.byphil.eu/zh-tw/youtube-summarizer/"/>
   </url>
   <url>
     <loc>https://ai-summary-helper.byphil.eu/zh/blog/unread-saves.html</loc>
@@ -1312,6 +1881,13 @@
     <priority>0.5</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://ai-summary-helper.byphil.eu/blog/feeds-recap.html"/>
     <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://ai-summary-helper.byphil.eu/zh-tw/blog/feeds-recap.html"/>
+  </url>
+  <url>
+    <loc>https://ai-summary-helper.byphil.eu/zh-tw/obsidian-integration/</loc>
+    <lastmod>2026-11-02</lastmod>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ai-summary-helper.byphil.eu/obsidian-integration/"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://ai-summary-helper.byphil.eu/zh-tw/obsidian-integration/"/>
   </url>
   <url>
     <loc>https://ai-summary-helper.byphil.eu/blog/bring-your-own-key.html</loc>

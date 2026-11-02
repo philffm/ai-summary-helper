@@ -2,7 +2,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <meta name="theme-color" content="#08090C">
-<title>AI Summary Helper: Webページの要約・保存・検索をこれひとつで</title>
+<title>AI Summary Helper：あなたのプライベートなAI読書・知識コンパニオン</title>
 <script>
 // Old language links were /?lang=xx. GitHub Pages cannot 301 a query string, so send them to the language folder (canonical already points to /).
 (function () {
@@ -14,7 +14,7 @@
   location.replace('/' + (dir ? dir + '/' : '') + location.hash);
 })();
 </script>
-<meta name="description" content="WebページをAIで要約し、RSSフィードの購読や検索可能なアーカイブ管理ができるChrome拡張機能です。検索やレコメンド機能はすべてオンデバイス（ローカル）で動作します。">
+<meta name="description" content="読書を、手元に残る知識に。AI Summary Helperは、記事、PDF、動画に対応したプライベートでローカルファーストな読書コンパニオンです。出典リンク付きの回答と、検索できるアーカイブを備えています。">
 
 <script>
   (function(){
@@ -34,7 +34,7 @@
 <link rel="stylesheet" href="../assets/styles.css">
 
 <meta property="og:title" content="AI Summary Helper">
-<meta property="og:description" content="オンデバイスでWebを要約、保存、検索。リーディングリストを二度と埋もれさせないためのChrome拡張機能。">
+<meta property="og:description" content="出典リンク付きの回答、プライベートで検索できるアーカイブ、ローカルファーストのAIで、読書を手元に残る知識に。">
 <meta property="og:url" content="https://ai-summary-helper.byphil.eu/ja/">
 <meta property="og:type" content="website">
 <meta property="og:image" content="https://ai-summary-helper.byphil.eu/assets/shots/aish-hero-en.webp">
@@ -43,7 +43,7 @@
 <meta name="twitter:card" content="summary_large_image">
 
 <script src="../assets/analytics.js"></script>
-<link rel="alternate" hreflang="en" href="https://ai-summary-helper.byphil.eu/"><link rel="alternate" hreflang="ja" href="https://ai-summary-helper.byphil.eu/ja/"><meta property="og:site_name" content="AI Summary Helper"><meta property="og:locale" content="ja_JP"><meta name="twitter:title" content="AI Summary Helper"><meta name="twitter:description" content="オンデバイスでWebを要約、保存、検索。リーディングリストを二度と埋もれさせないためのChrome拡張機能。"><meta name="twitter:image" content="https://ai-summary-helper.byphil.eu/assets/shots/aish-hero-en.webp"><link rel="canonical" href="https://ai-summary-helper.byphil.eu/ja/"><script type="application/ld+json" data-seo="ld">{"@context":"https://schema.org","@graph":[{"@type":"WebSite","@id":"https://ai-summary-helper.byphil.eu/#website","url":"https://ai-summary-helper.byphil.eu/","name":"AI Summary Helper","inLanguage":"ja","publisher":{"@id":"https://byphil.eu/#org"}},{"@type":"SoftwareApplication","@id":"https://ai-summary-helper.byphil.eu/#app","name":"AI Summary Helper","url":"https://ai-summary-helper.byphil.eu/ja/","description":"WebページをAIで要約し、RSSフィードの購読や検索可能なアーカイブ管理ができるChrome拡張機能です。検索やレコメンド機能はすべてオンデバイス（ローカル）で動作します。","applicationCategory":"BrowserApplication","operatingSystem":"Chrome, Chromium browsers, Firefox, Android (beta companion app)","installUrl":"https://chromewebstore.google.com/detail/ai-summary-helper-openai/hldbejcjaedipeegjcinmhejdndchkmb","downloadUrl":"https://chromewebstore.google.com/detail/ai-summary-helper-openai/hldbejcjaedipeegjcinmhejdndchkmb","image":"https://ai-summary-helper.byphil.eu/assets/shots/aish-hero-en.webp","inLanguage":"ja","offers":{"@type":"Offer","price":"0","priceCurrency":"EUR","description":"Free; a donation (Support Pass) unlocks byphil Cloud with many AI models"},"author":{"@id":"https://byphil.eu/#org"},"publisher":{"@type":"Organization","@id":"https://byphil.eu/#org","name":"byphil","url":"https://byphil.eu/"}},{"@type":"FAQPage","@id":"https://ai-summary-helper.byphil.eu/ja/#faq","inLanguage":"ja","mainEntity":[{"@type":"Question","name":"利用にあたってアカウント登録は必要ですか？","acceptedAnswer":{"@type":"Answer","text":"いいえ、不要です。インストール後、ご自身のAIプロバイダーのAPIキーを設定する（またはローカルのOllamaモデルを使用する）だけで、すぐに保存を始められます。アカウント登録が必要になるのは、キー不要で多彩なAIモデルが使える「byphil Cloud」を利用する場合や、ご寄付によってアンロックされるKindle／LocalSendへの送信枠を追加したい場合のみです。"}},{"@type":"Question","name":"ブラウザから外部へ送信されるデータは何ですか？","acceptedAnswer":{"@type":"Answer","text":"外部へ送信されるのは、設定したAIプロバイダーへの要約リクエストのみです（RSSリーダー使用時の購読フィードへのリクエスト、およびAIダイジェストをクリックした際のその日のヘッドラインと短いスニペットを含みます）。検索、重複検出、タグの整理、読解レベルや感情分析のスコアリング、「関連記事」のレコメンドは、すべて保存されたアーカイブに対してローカル環境で実行されます。"}},{"@type":"Question","name":"クラウドに一切依存せずに運用することは可能ですか？","acceptedAnswer":{"@type":"Answer","text":"可能です。ローカルのOllamaモデルを指定すれば、要約処理も含めてすべて端末内で完結します。その他の機能はすでに完全にオンデバイスで動作しています。"}},{"@type":"Question","name":"プロジェクトへの支援を停止した場合、保存したデータはどうなりますか？","acceptedAnswer":{"@type":"Answer","text":"アーカイブはお使いの端末のブラウザローカルストレージ内にそのまま保持されます。Support Passはクラウド依存の追加機能（byphil Cloud AIアクセス、無制限のKindle/LocalSend送信）のみを制限するものであり、保存済みのデータへのアクセスが制限されることはありません。"}},{"@type":"Question","name":"Androidコンパニオンアプリのインストール方法は？","acceptedAnswer":{"@type":"Answer","text":"上記のリンク（または 最新リリース）からAPKをダウンロードして開き、Androidの確認画面でブラウザからのインストールを許可してください。その後、拡張機能の「Settings → Phone inbox」にあるQRコードをスキャンしてペアリングします。※現在Google Playでは未配信です。"}},{"@type":"Question","name":"オープンソースですか？","acceptedAnswer":{"@type":"Answer","text":"はい。拡張機能のソースコードは GitHub、AGPL-3.0ライセンスの下で提供されています。個人利用、教育目的、非営利目的でのご利用は無料です。AGPLの条項外での利用をご希望の企業向けには、商用ライセンスをご用意しています。"}}]}]}</script><script type="application/ld+json" data-seo-video="">{"@context":"https://schema.org","@graph":[{"@type":"VideoObject","name":"1分でわかるAI Summary Helper","description":"要約、情報源、リサーチモード、ライブラリ、フィード、AIアプリなど、すべての機能をスピーディーにご紹介します。","thumbnailUrl":["https://ai-summary-helper.byphil.eu/assets/blog/video/komplett-ja.jpg"],"uploadDate":"2026-10-27T00:00:00+00:00","duration":"PT0M48S","contentUrl":"https://ai-summary-helper.byphil.eu/assets/blog/video/komplett-ja.mp4","inLanguage":"ja","transcript":"1分以内で、できること全部！どんなページも要約！YouTube動画も、おまかせ！PDFも、おまかせ！どの回答にも出典！AIが重要な箇所にマーク！論文はDOIで自動認識！複数の情報源を、ひとつの問いで比較！41言語に対応！書きながら読み上げ！検索と統計つきのライブラリ！あなたの読書を、レポートに！読書がナレッジグラフに！RSSと毎日のまとめ！良いニュースだけ、も選べる！Kindleにそのまま送信！Obsidian、Word、PDFへ書き出し！AIアプリの中に、あなたのライブラリ！自分のキー、ローカル、クラウドから選べる！","isFamilyFriendly":true,"publisher":{"@id":"https://byphil.eu/#org"}},{"@type":"VideoObject","name":"回答を出典と照らし合わせて確認","description":"追加の質問をして、回答の根拠となった該当箇所へ直接ジャンプ。","thumbnailUrl":["https://ai-summary-helper.byphil.eu/assets/blog/video/quellen-ja.jpg"],"uploadDate":"2026-10-20T00:00:00+00:00","duration":"PT0M18S","contentUrl":"https://ai-summary-helper.byphil.eu/assets/blog/video/quellen-ja.mp4","inLanguage":"ja","transcript":"AIの回答に、根拠を。続けて質問しよう。どの回答も、根拠となる本文の箇所を示します。","isFamilyFriendly":true,"publisher":{"@id":"https://byphil.eu/#org"}},{"@type":"VideoObject","name":"ハイライトした内容について質問する","description":"文章をハイライトして質問すると、引用元を明記した回答が得られます。","thumbnailUrl":["https://ai-summary-helper.byphil.eu/assets/blog/video/highlights-ja.jpg"],"uploadDate":"2026-10-20T00:00:00+00:00","duration":"PT0M22S","contentUrl":"https://ai-summary-helper.byphil.eu/assets/blog/video/highlights-ja.mp4","inLanguage":"ja","transcript":"マーカーを引くだけでは、ほとんど身につかない。学習法の大規模なレビューがそう示しています。だからマーカーで終わらせず、質問してみましょう。答えには根拠の箇所が示されます。","isFamilyFriendly":true,"publisher":{"@id":"https://byphil.eu/#org"}},{"@type":"VideoObject","name":"40本のフィードを追う代わりに、1つのダイジェストを","description":"1日分のフィードをひとつのブリーフィングに。","thumbnailUrl":["https://ai-summary-helper.byphil.eu/assets/blog/video/feeds-ja.jpg"],"uploadDate":"2026-10-20T00:00:00+00:00","duration":"PT0M18S","contentUrl":"https://ai-summary-helper.byphil.eu/assets/blog/video/feeds-ja.mp4","inLanguage":"ja","transcript":"要約してくれるRSSリーダー。お気に入りのサイトを購読。ワンクリックで、その日のニュースをまとめて要約します。","isFamilyFriendly":true,"publisher":{"@id":"https://byphil.eu/#org"}},{"@type":"VideoObject","name":"読んだ記事をナレッジグラフに","description":"トピックごとに関連記事を紐付け、あらゆるトピックの要点をすぐに確認できます。","thumbnailUrl":["https://ai-summary-helper.byphil.eu/assets/blog/video/graph-ja.jpg"],"uploadDate":"2026-10-20T00:00:00+00:00","duration":"PT0M19S","contentUrl":"https://ai-summary-helper.byphil.eu/assets/blog/video/graph-ja.mp4","inLanguage":"ja","transcript":"読んだものは、つながっている。ナレッジグラフは、記事をテーマでつなぎます。テーマをタップすると、そのテーマについて読んだ内容をまとめて要約します。","isFamilyFriendly":true,"publisher":{"@id":"https://byphil.eu/#org"}},{"@type":"VideoObject","name":"溜まった記事をひとつのダイジェストに","description":"保存した3本の記事が、Kindleで読める1冊のマガジンに。","thumbnailUrl":["https://ai-summary-helper.byphil.eu/assets/blog/video/digest-ja.jpg"],"uploadDate":"2026-10-20T00:00:00+00:00","duration":"PT0M20S","contentUrl":"https://ai-summary-helper.byphil.eu/assets/blog/video/digest-ja.mp4","inLanguage":"ja","transcript":"保存する量は、読む量よりずっと多い。積み上がった記事は、ひとつのダイジェストに。いくつか選べば、1冊の雑誌としてKindleに届きます。","isFamilyFriendly":true,"publisher":{"@id":"https://byphil.eu/#org"}},{"@type":"VideoObject","name":"あなたのAPIキー。あなたのモデル。あなたのデータ。","description":"ご自身のAPIキー、Ollamaを使ったローカルモデル、またはbyPhil Cloudを利用できます。","thumbnailUrl":["https://ai-summary-helper.byphil.eu/assets/blog/video/privat-ja.jpg"],"uploadDate":"2026-10-20T00:00:00+00:00","duration":"PT0M24S","contentUrl":"https://ai-summary-helper.byphil.eu/assets/blog/video/privat-ja.mp4","inLanguage":"ja","transcript":"プライバシーはトレードオフ。リスクが見えると、人は共有を控えます。だから選べます。自分のAPIキー、Ollamaのローカルモデル、または設定不要のbyPhil Cloud。ライブラリはブラウザの中に残ります。","isFamilyFriendly":true,"publisher":{"@id":"https://byphil.eu/#org"}},{"@type":"VideoObject","name":"Pocketの代替として","description":"保存、要約、そしてKindleへ送信。","thumbnailUrl":["https://ai-summary-helper.byphil.eu/assets/blog/video/pocket-ja.jpg"],"uploadDate":"2026-10-20T00:00:00+00:00","duration":"PT0M20S","contentUrl":"https://ai-summary-helper.byphil.eu/assets/blog/video/pocket-ja.mp4","inLanguage":"ja","transcript":"Pocketが終了。次はどうする？どんなページもワンクリックで保存、要約つき。ライブラリにはタグと検索があり、Kindleにも送れます。無料で、データはすべてあなたの端末に。","isFamilyFriendly":true,"publisher":{"@id":"https://byphil.eu/#org"}},{"@type":"VideoObject","name":"要約からKindleへ","description":"このプロジェクトの原点となった読書習慣。","thumbnailUrl":["https://ai-summary-helper.byphil.eu/assets/blog/video/senden-ja.jpg"],"uploadDate":"2026-10-20T00:00:00+00:00","duration":"PT0M19S","contentUrl":"https://ai-summary-helper.byphil.eu/assets/blog/video/senden-ja.mp4","inLanguage":"ja","transcript":"要約をそのままKindleへ。ページを要約して、メニューからKindleへ。数秒後には電子書籍リーダーに届き、ソファでゆっくり読めます。","isFamilyFriendly":true,"publisher":{"@id":"https://byphil.eu/#org"}},{"@type":"VideoObject","name":"72分の講義も、瞬時に要約","description":"動画の字幕から要約を作成。該当箇所を引用しながら追加の質問にも回答します。","thumbnailUrl":["https://ai-summary-helper.byphil.eu/assets/blog/video/ytvideo-ja.jpg"],"uploadDate":"2026-10-21T00:00:00+00:00","duration":"PT0M23S","contentUrl":"https://ai-summary-helper.byphil.eu/assets/blog/video/ytvideo-ja.mp4","inLanguage":"ja","transcript":"72分の講義。見る時間、ありますか？動画を開いて、要約をタップ。拡張機能が字幕を読み取り、要点をあなたの言語で届けます。続けて質問すれば、どの回答も文字起こしの該当箇所を示します。","isFamilyFriendly":true,"publisher":{"@id":"https://byphil.eu/#org"}},{"@type":"VideoObject","name":"84ページのPDFも、わずか数秒で","description":"ブラウザでPDFを開いて、お好みの言語ですぐに要約できます。","thumbnailUrl":["https://ai-summary-helper.byphil.eu/assets/blog/video/pdf-ja.jpg"],"uploadDate":"2026-10-21T00:00:00+00:00","duration":"PT0M21S","contentUrl":"https://ai-summary-helper.byphil.eu/assets/blog/video/pdf-ja.mp4","inLanguage":"ja","transcript":"84ページのPDF。誰が読む？ブラウザでPDFを開いて、要約をタップ。レポート、論文、マニュアル。要点が数秒で、あなたの言語で手に入ります。モデルが何を読んだかも確認できます。","isFamilyFriendly":true,"publisher":{"@id":"https://byphil.eu/#org"}},{"@type":"VideoObject","name":"DOIから論文を自動認識","description":"臨床試験、総説、プレプリントを一目で見分け、主要なファクトとDOIに基づく正確な引用を抽出します。","thumbnailUrl":["https://ai-summary-helper.byphil.eu/assets/blog/video/paper-ja.jpg"],"uploadDate":"2026-10-21T00:00:00+00:00","duration":"PT0M25S","contentUrl":"https://ai-summary-helper.byphil.eu/assets/blog/video/paper-ja.mp4","inLanguage":"ja","transcript":"プレプリントか、査読済みか。引用する前に知ろう。論文を要約すると、DOIから論文だと認識されます。試験、レビュー、プレプリントがひと目でわかります。研究デザイン、サンプル、限界が抜き出され、引用はDOIレジストリから直接作られます。","isFamilyFriendly":true,"publisher":{"@id":"https://byphil.eu/#org"}},{"@type":"VideoObject","name":"1つの問いに、5つの情報源","description":"複数の情報源における共通点、相違点、抜け落ちている視点を比較・整理します。","thumbnailUrl":["https://ai-summary-helper.byphil.eu/assets/blog/video/recherche-ja.jpg"],"uploadDate":"2026-10-21T00:00:00+00:00","duration":"PT0M23S","contentUrl":"https://ai-summary-helper.byphil.eu/assets/blog/video/recherche-ja.mp4","inLanguage":"ja","transcript":"1つの問い、5つの情報源。矛盾はどこ？保存した記事を、ひとつの問いのもとにまとめます。各ソースには種類がつきます。査読済み、プレプリント、ニュース、意見。ワンクリックで比較。一致する点、食い違う点、足りない点がわかります。","isFamilyFriendly":true,"publisher":{"@id":"https://byphil.eu/#org"}},{"@type":"VideoObject","name":"ゴーストハイライト","description":"AIが記事内の重要箇所を自動でハイライト。残すか消すかも自由に選択できます。","thumbnailUrl":["https://ai-summary-helper.byphil.eu/assets/blog/video/ghost-ja.jpg"],"uploadDate":"2026-10-21T00:00:00+00:00","duration":"PT0M23S","contentUrl":"https://ai-summary-helper.byphil.eu/assets/blog/video/ghost-ja.mp4","inLanguage":"ja","transcript":"AIが、読むべき箇所に印をつける。要約のあと、AIが重要な箇所を記事の中に直接マークします。ゴースト・ハイライトです。タップして残すか、消すか。流し読みが、狙いを定めた読書に変わります。","isFamilyFriendly":true,"publisher":{"@id":"https://byphil.eu/#org"}},{"@type":"VideoObject","name":"ニュースの傾向とムードを可視化","description":"ポジティブなニュースだけのフィルターや、週間ごとのムード推移チャート。","thumbnailUrl":["https://ai-summary-helper.byphil.eu/assets/blog/video/stimmung-ja.jpg"],"uploadDate":"2026-10-21T00:00:00+00:00","duration":"PT0M23S","contentUrl":"https://ai-summary-helper.byphil.eu/assets/blog/video/stimmung-ja.mp4","inLanguage":"ja","transcript":"あなたのニュースにも、気分がある。AIが見出しをひとつずつ、重い話題から良い話題まで評価します。スマイルをタップすれば、良いニュースだけが残ります。そして気分のグラフが、数週間の読書がどんな気分だったかを見せてくれます。","isFamilyFriendly":true,"publisher":{"@id":"https://byphil.eu/#org"}},{"@type":"VideoObject","name":"インスタント読み上げ","description":"AIが要約を生成している最中から、リアルタイムで音声読み上げを開始します。","thumbnailUrl":["https://ai-summary-helper.byphil.eu/assets/blog/video/instant-ja.jpg"],"uploadDate":"2026-10-21T00:00:00+00:00","duration":"PT0M26S","contentUrl":"https://ai-summary-helper.byphil.eu/assets/blog/video/instant-ja.mp4","inLanguage":"ja","transcript":"要約が終わるまで、待つ必要ある？即時読み上げをオンにすると、要約は書かれている途中から読み上げられます。","isFamilyFriendly":true,"publisher":{"@id":"https://byphil.eu/#org"}},{"@type":"VideoObject","name":"お使いのAIアプリからライブラリにアクセス","description":"Claude Desktop、LM Studio、Cursorからライブラリの検索、ハイライトの引用、出典の参照が可能です。","thumbnailUrl":["https://ai-summary-helper.byphil.eu/assets/blog/video/mcp-ja.jpg"],"uploadDate":"2026-10-27T00:00:00+00:00","duration":"PT0M29S","contentUrl":"https://ai-summary-helper.byphil.eu/assets/blog/video/mcp-ja.mp4","inLanguage":"ja","transcript":"あなたのAIアプリは、あなたが読んだものを読んでいない。Claude Desktop、LM Studio、Cursorが、あなたのライブラリを検索し、ハイライトを引用できるようになりました。期限が近いものを聞いたり、フィードの良い記事を保存させたり、一年のまとめを頼んだり。こちらのサーバーは経由せず、読ませる範囲もあなたが決めます。","isFamilyFriendly":true,"publisher":{"@id":"https://byphil.eu/#org"}},{"@type":"VideoObject","name":"Obsidianなどへのエクスポート","description":"すべての要約をすっきりとしたノートとして出力：Obsidian、Markdown、Word、ODT、PDFに対応。","thumbnailUrl":["https://ai-summary-helper.byphil.eu/assets/blog/video/export-ja.jpg"],"uploadDate":"2026-10-27T00:00:00+00:00","duration":"PT0M24S","contentUrl":"https://ai-summary-helper.byphil.eu/assets/blog/video/export-ja.mp4","inLanguage":"ja","transcript":"要約は、あなたのノートにあるべき。すべての要約が、きれいなノートとして出ていきます。Obsidianへ直接、またはMarkdown、Word、OpenDocument、PDFで。タイトル、出典、タグ、ハイライト付きで、そのまま保管できます。","isFamilyFriendly":true,"publisher":{"@id":"https://byphil.eu/#org"}},{"@type":"VideoObject","name":"読書ログをレポートとして可視化","description":"継続日数、節約できた時間、アクティビティ、週ごとのトピックを確認できます。","thumbnailUrl":["https://ai-summary-helper.byphil.eu/assets/blog/video/analytics-ja.jpg"],"uploadDate":"2026-10-27T00:00:00+00:00","duration":"PT0M21S","contentUrl":"https://ai-summary-helper.byphil.eu/assets/blog/video/analytics-ja.mp4","inLanguage":"ja","transcript":"読書の時間、どこへ行った？分析を開くと、ライブラリがレポートになります。連続記録、要約で節約できた時間、週ごとのテーマの移り変わり、そしてよく戻ってくる言葉。","isFamilyFriendly":true,"publisher":{"@id":"https://byphil.eu/#org"}},{"@type":"VideoObject","name":"20以上の言語に対応、クロスプラットフォーム","description":"お好みの言語で閲覧・要約。拡張機能、ネイティブサイドパネル、または ブックマークレット — 拡張機能が使えない環境でもご利用いただけます。","thumbnailUrl":["https://ai-summary-helper.byphil.eu/assets/blog/video/sprache-ja.jpg"],"uploadDate":"2026-10-20T00:00:00+00:00","duration":"PT0M19S","contentUrl":"https://ai-summary-helper.byphil.eu/assets/blog/video/sprache-ja.mp4","inLanguage":"ja","transcript":"外国語だと、読むのが遅くなる。視線計測の研究が示しています。流暢な人でさえも。要約は41言語に対応。探して、タップするだけ。","isFamilyFriendly":true,"publisher":{"@id":"https://byphil.eu/#org"}},{"@type":"VideoObject","name":"オンデバイスでの本格的な全文検索","description":"タイトル、タグ、本文を対象とした全文検索。ブラウザ内で構築されるTF-IDFインデックスにより駆動します。サーバーとの通信遅延はなく、外部へのデータ送信も一切発生しません。","thumbnailUrl":["https://ai-summary-helper.byphil.eu/assets/blog/video/bibliothek-ja.jpg"],"uploadDate":"2026-10-20T00:00:00+00:00","duration":"PT0M18S","contentUrl":"https://ai-summary-helper.byphil.eu/assets/blog/video/bibliothek-ja.mp4","inLanguage":"ja","transcript":"読んだ記事が、すぐ見つかる。要約したものはすべて、あなたの端末に保存。タグ、検索、統計つき。","isFamilyFriendly":true,"publisher":{"@id":"https://byphil.eu/#org"}}]}</script></head>
+<link rel="alternate" hreflang="en" href="https://ai-summary-helper.byphil.eu/"><link rel="alternate" hreflang="ja" href="https://ai-summary-helper.byphil.eu/ja/"><link rel="canonical" href="https://ai-summary-helper.byphil.eu/ja/"><meta property="og:site_name" content="AI Summary Helper"><meta property="og:locale" content="ja_JP"><meta name="twitter:title" content="AI Summary Helper"><meta name="twitter:description" content="出典リンク付きの回答、プライベートで検索できるアーカイブ、ローカルファーストのAIで、読書を手元に残る知識に。"><meta name="twitter:image" content="https://ai-summary-helper.byphil.eu/assets/shots/aish-hero-en.webp"><script type="application/ld+json" data-seo="ld">{"@context":"https://schema.org","@graph":[{"@type":"WebSite","@id":"https://ai-summary-helper.byphil.eu/#website","url":"https://ai-summary-helper.byphil.eu/","name":"AI Summary Helper","inLanguage":"ja","publisher":{"@id":"https://byphil.eu/#org"}},{"@type":"SoftwareApplication","@id":"https://ai-summary-helper.byphil.eu/#app","name":"AI Summary Helper","url":"https://ai-summary-helper.byphil.eu/ja/","description":"読書を、手元に残る知識に。AI Summary Helperは、記事、PDF、動画に対応したプライベートでローカルファーストな読書コンパニオンです。出典リンク付きの回答と、検索できるアーカイブを備えています。","applicationCategory":"BrowserApplication","operatingSystem":"Chrome, Chromium browsers, Firefox, Android (beta companion app)","installUrl":"https://chromewebstore.google.com/detail/ai-summary-helper-openai/hldbejcjaedipeegjcinmhejdndchkmb","downloadUrl":"https://chromewebstore.google.com/detail/ai-summary-helper-openai/hldbejcjaedipeegjcinmhejdndchkmb","image":"https://ai-summary-helper.byphil.eu/assets/shots/aish-hero-en.webp","inLanguage":"ja","offers":{"@type":"Offer","price":"0","priceCurrency":"EUR","description":"Free; a donation (Support Pass) unlocks byphil Cloud with many AI models"},"author":{"@id":"https://byphil.eu/#org"},"publisher":{"@type":"Organization","@id":"https://byphil.eu/#org","name":"byphil","url":"https://byphil.eu/"}},{"@type":"FAQPage","@id":"https://ai-summary-helper.byphil.eu/ja/#faq","inLanguage":"ja","mainEntity":[{"@type":"Question","name":"利用にあたってアカウント登録は必要ですか？","acceptedAnswer":{"@type":"Answer","text":"いいえ。インストールし、ご自身のAIプロバイダーのキーを持ち込むか、ローカルのOllamaモデルを使えば、すぐに保存を始められます。アカウントが必要なのは、任意のbyphil Cloudアクセスや、追加のKindle/LocalSend送信を利用する場合だけです。 プロバイダーの選択肢を見る →"}},{"@type":"Question","name":"ブラウザから外部へ送信されるデータは何ですか？","acceptedAnswer":{"@type":"Answer","text":"AIプロバイダーに送信されるのは、要約リクエストのみです。RSSも購読フィードへのリクエストが必要です。AIまとめは、あなたが要求したときにのみ見出しと短い抜粋を送信します。検索、重複検出、タグ、レコメンドはローカルで実行されます。 オンデバイスアーキテクチャを見る →"}},{"@type":"Question","name":"自分のページやハイライトはモデルの学習に使われますか？","acceptedAnswer":{"@type":"Answer","text":"AI Summary Helperは、あなたのコンテンツを自社モデルの学習に使用しません。BYOKの場合、選択したプロバイダーのデータポリシーが適用されます。Ollamaの場合、要約リクエストはお使いのマシン上にとどまります。 プライバシーモデルを読む →"}},{"@type":"Question","name":"クラウドに一切依存せずに運用することは可能ですか？","acceptedAnswer":{"@type":"Answer","text":"はい。ローカルのOllamaモデルを指定すれば、要約ステップもお使いのマシン上にとどまります。それ以外はすでにすべてローカルで動作しています。 BYOKとOllamaを比較 →"}},{"@type":"Question","name":"読書アーカイブはどこに保存されますか？","acceptedAnswer":{"@type":"Answer","text":"デフォルトでは、お使いのデバイスのブラウザ内です。Markdownとしてエクスポートしたり、ご自身のNextcloud、WebDAVサーバー、S3バケット、ローカルフォルダに暗号化してバックアップできます。 同期ガイドを読む →"}},{"@type":"Question","name":"ブラウザのデータを消去するとどうなりますか？","acceptedAnswer":{"@type":"Answer","text":"バックアップがない場合、ローカルのブラウザデータを消去するとローカルアーカイブが失われる可能性があります。ブラウザデータの消去やプロファイルの変更の前に、ライブラリをエクスポートするか、ご自身のストレージへの暗号化同期を設定してください。 バックアップと同期のガイドを読む →"}},{"@type":"Question","name":"対応しているAIプロバイダーとモデルは？","acceptedAnswer":{"@type":"Answer","text":"OpenAI、Gemini、Mistral、DeepSeek、互換性のあるカスタムエンドポイント、またはローカルのOllamaモデルを使用できます。ご自身のキーを持ち込むか、任意のbyphil Cloudアクセスを利用できます。 BYOKの仕組みを見る →"}},{"@type":"Question","name":"PDF、YouTube動画、RSSの項目も要約できますか？","acceptedAnswer":{"@type":"Answer","text":"はい。ブラウザで開いたPDFやディスクから添付したPDF、字幕を使ったYouTube動画、内蔵RSSリーダーの記事を要約できます。 ワークフロー動画を見る → フィードダイジェストについて読む →"}},{"@type":"Question","name":"AIの要約はどの程度信頼できますか？","acceptedAnswer":{"@type":"Answer","text":"AIの出力は誤ることがあり、出典の確認に代わるものではありません。追加の回答には、根拠とした箇所が表示されるので、要約と元のページを比較できます。 10秒でできる出典チェックを見る →"}},{"@type":"Question","name":"対応しているブラウザとプラットフォームは？","acceptedAnswer":{"@type":"Answer","text":"ブラウザ拡張機能、ネイティブのサイドパネル、ブックマークレットを使用できます。Androidコンパニオンアプリでスマートフォンからリンクを追加できます。iOSはまだ利用できません。 ブラウザとキャプチャのワークフローを見る →"}},{"@type":"Question","name":"Androidコンパニオンアプリのインストール方法は？","acceptedAnswer":{"@type":"Answer","text":"APKは次からダウンロードできます： 最新リリースその後、設定 → Phone inbox のQRコードをスキャンしてペアリングします。Google Playではまだ配信されていません。 キャプチャがワークフローにどう組み込まれるか読む →"}},{"@type":"Question","name":"Support Passで何が使えるようになりますか？","acceptedAnswer":{"@type":"Answer","text":"Support Passは独立したオープンソース開発を支え、任意のbyphil Cloud AIアクセスや追加のKindle/LocalSend送信を利用できるようにします。ローカルアーカイブとローカルでの利用がこれによってロックされることはありません。 任意のクラウドの境界について理解する →"}},{"@type":"Question","name":"プロジェクトへの支援を停止した場合、保存したデータはどうなりますか？","acceptedAnswer":{"@type":"Answer","text":"アーカイブはお使いの端末のブラウザローカルストレージ内にそのまま保持されます。Support Passはクラウド依存の追加機能（byphil Cloud AIアクセス、無制限のKindle/LocalSend送信）のみを制限するものであり、保存済みのデータへのアクセスが制限されることはありません。 Digestが保存した記事を再び役立つものにする方法を見る →"}},{"@type":"Question","name":"オープンソースですか？","acceptedAnswer":{"@type":"Answer","text":"はい。拡張機能のソースコードは GitHub、AGPL-3.0ライセンスの下で提供されています。個人利用、教育目的、非営利目的でのご利用は無料です。AGPLの条項外での利用をご希望の企業向けには、商用ライセンスをご用意しています。 ローカルアーキテクチャについて読む →"}}]}]}</script><script type="application/ld+json" data-seo-video="">{"@context":"https://schema.org","@graph":[{"@type":"VideoObject","name":"1分でわかるAI Summary Helper","description":"要約、情報源、リサーチモード、ライブラリ、フィード、AIアプリなど、すべての機能をスピーディーにご紹介します。","thumbnailUrl":["https://ai-summary-helper.byphil.eu/assets/blog/video/komplett-ja.jpg"],"uploadDate":"2026-10-27T00:00:00+00:00","duration":"PT0M48S","contentUrl":"https://ai-summary-helper.byphil.eu/assets/blog/video/komplett-ja.mp4","inLanguage":"ja","transcript":"1分以内で、できること全部！どんなページも要約！YouTube動画も、おまかせ！PDFも、おまかせ！どの回答にも出典！AIが重要な箇所にマーク！論文はDOIで自動認識！複数の情報源を、ひとつの問いで比較！41言語に対応！書きながら読み上げ！検索と統計つきのライブラリ！あなたの読書を、レポートに！読書がナレッジグラフに！RSSと毎日のまとめ！良いニュースだけ、も選べる！Kindleにそのまま送信！Obsidian、Word、PDFへ書き出し！AIアプリの中に、あなたのライブラリ！自分のキー、ローカル、クラウドから選べる！","isFamilyFriendly":true,"publisher":{"@id":"https://byphil.eu/#org"}},{"@type":"VideoObject","name":"回答を出典と照らし合わせて確認","description":"追加の質問をして、回答の根拠となった該当箇所へ直接ジャンプ。","thumbnailUrl":["https://ai-summary-helper.byphil.eu/assets/blog/video/quellen-ja.jpg"],"uploadDate":"2026-10-20T00:00:00+00:00","duration":"PT0M18S","contentUrl":"https://ai-summary-helper.byphil.eu/assets/blog/video/quellen-ja.mp4","inLanguage":"ja","transcript":"AIの回答に、根拠を。続けて質問しよう。どの回答も、根拠となる本文の箇所を示します。","isFamilyFriendly":true,"publisher":{"@id":"https://byphil.eu/#org"}},{"@type":"VideoObject","name":"ハイライトした内容について質問する","description":"文章をハイライトして質問すると、引用元を明記した回答が得られます。","thumbnailUrl":["https://ai-summary-helper.byphil.eu/assets/blog/video/highlights-ja.jpg"],"uploadDate":"2026-10-20T00:00:00+00:00","duration":"PT0M22S","contentUrl":"https://ai-summary-helper.byphil.eu/assets/blog/video/highlights-ja.mp4","inLanguage":"ja","transcript":"マーカーを引くだけでは、ほとんど身につかない。学習法の大規模なレビューがそう示しています。だからマーカーで終わらせず、質問してみましょう。答えには根拠の箇所が示されます。","isFamilyFriendly":true,"publisher":{"@id":"https://byphil.eu/#org"}},{"@type":"VideoObject","name":"40本のフィードを追う代わりに、1つのダイジェストを","description":"1日分のフィードをひとつのブリーフィングに。","thumbnailUrl":["https://ai-summary-helper.byphil.eu/assets/blog/video/feeds-ja.jpg"],"uploadDate":"2026-10-20T00:00:00+00:00","duration":"PT0M18S","contentUrl":"https://ai-summary-helper.byphil.eu/assets/blog/video/feeds-ja.mp4","inLanguage":"ja","transcript":"要約してくれるRSSリーダー。お気に入りのサイトを購読。ワンクリックで、その日のニュースをまとめて要約します。","isFamilyFriendly":true,"publisher":{"@id":"https://byphil.eu/#org"}},{"@type":"VideoObject","name":"読んだ記事をナレッジグラフに","description":"トピックごとに関連記事を紐付け、あらゆるトピックの要点をすぐに確認できます。","thumbnailUrl":["https://ai-summary-helper.byphil.eu/assets/blog/video/graph-ja.jpg"],"uploadDate":"2026-10-20T00:00:00+00:00","duration":"PT0M19S","contentUrl":"https://ai-summary-helper.byphil.eu/assets/blog/video/graph-ja.mp4","inLanguage":"ja","transcript":"読んだものは、つながっている。ナレッジグラフは、記事をテーマでつなぎます。テーマをタップすると、そのテーマについて読んだ内容をまとめて要約します。","isFamilyFriendly":true,"publisher":{"@id":"https://byphil.eu/#org"}},{"@type":"VideoObject","name":"溜まった記事をひとつのダイジェストに","description":"保存した3本の記事が、Kindleで読める1冊のマガジンに。","thumbnailUrl":["https://ai-summary-helper.byphil.eu/assets/blog/video/digest-ja.jpg"],"uploadDate":"2026-10-20T00:00:00+00:00","duration":"PT0M20S","contentUrl":"https://ai-summary-helper.byphil.eu/assets/blog/video/digest-ja.mp4","inLanguage":"ja","transcript":"保存する量は、読む量よりずっと多い。積み上がった記事は、ひとつのダイジェストに。いくつか選べば、1冊の雑誌としてKindleに届きます。","isFamilyFriendly":true,"publisher":{"@id":"https://byphil.eu/#org"}},{"@type":"VideoObject","name":"あなたのAPIキー。あなたのモデル。あなたのデータ。","description":"ご自身のAPIキー、Ollamaを使ったローカルモデル、またはbyPhil Cloudを利用できます。","thumbnailUrl":["https://ai-summary-helper.byphil.eu/assets/blog/video/privat-ja.jpg"],"uploadDate":"2026-10-20T00:00:00+00:00","duration":"PT0M24S","contentUrl":"https://ai-summary-helper.byphil.eu/assets/blog/video/privat-ja.mp4","inLanguage":"ja","transcript":"プライバシーはトレードオフ。リスクが見えると、人は共有を控えます。だから選べます。自分のAPIキー、Ollamaのローカルモデル、または設定不要のbyPhil Cloud。ライブラリはブラウザの中に残ります。","isFamilyFriendly":true,"publisher":{"@id":"https://byphil.eu/#org"}},{"@type":"VideoObject","name":"Pocketの代替として","description":"保存、要約、そしてKindleへ送信。","thumbnailUrl":["https://ai-summary-helper.byphil.eu/assets/blog/video/pocket-ja.jpg"],"uploadDate":"2026-10-20T00:00:00+00:00","duration":"PT0M20S","contentUrl":"https://ai-summary-helper.byphil.eu/assets/blog/video/pocket-ja.mp4","inLanguage":"ja","transcript":"Pocketが終了。次はどうする？どんなページもワンクリックで保存、要約つき。ライブラリにはタグと検索があり、Kindleにも送れます。無料で、データはすべてあなたの端末に。","isFamilyFriendly":true,"publisher":{"@id":"https://byphil.eu/#org"}},{"@type":"VideoObject","name":"要約からKindleへ","description":"このプロジェクトの原点となった読書習慣。","thumbnailUrl":["https://ai-summary-helper.byphil.eu/assets/blog/video/senden-ja.jpg"],"uploadDate":"2026-10-20T00:00:00+00:00","duration":"PT0M19S","contentUrl":"https://ai-summary-helper.byphil.eu/assets/blog/video/senden-ja.mp4","inLanguage":"ja","transcript":"要約をそのままKindleへ。ページを要約して、メニューからKindleへ。数秒後には電子書籍リーダーに届き、ソファでゆっくり読めます。","isFamilyFriendly":true,"publisher":{"@id":"https://byphil.eu/#org"}},{"@type":"VideoObject","name":"72分の講義も、瞬時に要約","description":"動画の字幕から要約を作成。該当箇所を引用しながら追加の質問にも回答します。","thumbnailUrl":["https://ai-summary-helper.byphil.eu/assets/blog/video/ytvideo-ja.jpg"],"uploadDate":"2026-10-21T00:00:00+00:00","duration":"PT0M23S","contentUrl":"https://ai-summary-helper.byphil.eu/assets/blog/video/ytvideo-ja.mp4","inLanguage":"ja","transcript":"72分の講義。見る時間、ありますか？動画を開いて、要約をタップ。拡張機能が字幕を読み取り、要点をあなたの言語で届けます。続けて質問すれば、どの回答も文字起こしの該当箇所を示します。","isFamilyFriendly":true,"publisher":{"@id":"https://byphil.eu/#org"}},{"@type":"VideoObject","name":"84ページのPDFも、わずか数秒で","description":"ブラウザでPDFを開いて、お好みの言語ですぐに要約できます。","thumbnailUrl":["https://ai-summary-helper.byphil.eu/assets/blog/video/pdf-ja.jpg"],"uploadDate":"2026-10-21T00:00:00+00:00","duration":"PT0M21S","contentUrl":"https://ai-summary-helper.byphil.eu/assets/blog/video/pdf-ja.mp4","inLanguage":"ja","transcript":"84ページのPDF。誰が読む？ブラウザでPDFを開いて、要約をタップ。レポート、論文、マニュアル。要点が数秒で、あなたの言語で手に入ります。モデルが何を読んだかも確認できます。","isFamilyFriendly":true,"publisher":{"@id":"https://byphil.eu/#org"}},{"@type":"VideoObject","name":"DOIから論文を自動認識","description":"臨床試験、総説、プレプリントを一目で見分け、主要なファクトとDOIに基づく正確な引用を抽出します。","thumbnailUrl":["https://ai-summary-helper.byphil.eu/assets/blog/video/paper-ja.jpg"],"uploadDate":"2026-10-21T00:00:00+00:00","duration":"PT0M25S","contentUrl":"https://ai-summary-helper.byphil.eu/assets/blog/video/paper-ja.mp4","inLanguage":"ja","transcript":"プレプリントか、査読済みか。引用する前に知ろう。論文を要約すると、DOIから論文だと認識されます。試験、レビュー、プレプリントがひと目でわかります。研究デザイン、サンプル、限界が抜き出され、引用はDOIレジストリから直接作られます。","isFamilyFriendly":true,"publisher":{"@id":"https://byphil.eu/#org"}},{"@type":"VideoObject","name":"1つの問いに、5つの情報源","description":"複数の情報源における共通点、相違点、抜け落ちている視点を比較・整理します。","thumbnailUrl":["https://ai-summary-helper.byphil.eu/assets/blog/video/recherche-ja.jpg"],"uploadDate":"2026-10-21T00:00:00+00:00","duration":"PT0M23S","contentUrl":"https://ai-summary-helper.byphil.eu/assets/blog/video/recherche-ja.mp4","inLanguage":"ja","transcript":"1つの問い、5つの情報源。矛盾はどこ？保存した記事を、ひとつの問いのもとにまとめます。各ソースには種類がつきます。査読済み、プレプリント、ニュース、意見。ワンクリックで比較。一致する点、食い違う点、足りない点がわかります。","isFamilyFriendly":true,"publisher":{"@id":"https://byphil.eu/#org"}},{"@type":"VideoObject","name":"ゴーストハイライト","description":"AIが記事内の重要箇所を自動でハイライト。残すか消すかも自由に選択できます。","thumbnailUrl":["https://ai-summary-helper.byphil.eu/assets/blog/video/ghost-ja.jpg"],"uploadDate":"2026-10-21T00:00:00+00:00","duration":"PT0M23S","contentUrl":"https://ai-summary-helper.byphil.eu/assets/blog/video/ghost-ja.mp4","inLanguage":"ja","transcript":"AIが、読むべき箇所に印をつける。要約のあと、AIが重要な箇所を記事の中に直接マークします。ゴースト・ハイライトです。タップして残すか、消すか。流し読みが、狙いを定めた読書に変わります。","isFamilyFriendly":true,"publisher":{"@id":"https://byphil.eu/#org"}},{"@type":"VideoObject","name":"ニュースの傾向とムードを可視化","description":"ポジティブなニュースだけのフィルターや、週間ごとのムード推移チャート。","thumbnailUrl":["https://ai-summary-helper.byphil.eu/assets/blog/video/stimmung-ja.jpg"],"uploadDate":"2026-10-21T00:00:00+00:00","duration":"PT0M23S","contentUrl":"https://ai-summary-helper.byphil.eu/assets/blog/video/stimmung-ja.mp4","inLanguage":"ja","transcript":"あなたのニュースにも、気分がある。AIが見出しをひとつずつ、重い話題から良い話題まで評価します。スマイルをタップすれば、良いニュースだけが残ります。そして気分のグラフが、数週間の読書がどんな気分だったかを見せてくれます。","isFamilyFriendly":true,"publisher":{"@id":"https://byphil.eu/#org"}},{"@type":"VideoObject","name":"インスタント読み上げ","description":"AIが要約を生成している最中から、リアルタイムで音声読み上げを開始します。","thumbnailUrl":["https://ai-summary-helper.byphil.eu/assets/blog/video/instant-ja.jpg"],"uploadDate":"2026-10-21T00:00:00+00:00","duration":"PT0M26S","contentUrl":"https://ai-summary-helper.byphil.eu/assets/blog/video/instant-ja.mp4","inLanguage":"ja","transcript":"要約が終わるまで、待つ必要ある？即時読み上げをオンにすると、要約は書かれている途中から読み上げられます。","isFamilyFriendly":true,"publisher":{"@id":"https://byphil.eu/#org"}},{"@type":"VideoObject","name":"お使いのAIアプリからライブラリにアクセス","description":"Claude Desktop、LM Studio、Cursorからライブラリの検索、ハイライトの引用、出典の参照が可能です。","thumbnailUrl":["https://ai-summary-helper.byphil.eu/assets/blog/video/mcp-ja.jpg"],"uploadDate":"2026-10-27T00:00:00+00:00","duration":"PT0M29S","contentUrl":"https://ai-summary-helper.byphil.eu/assets/blog/video/mcp-ja.mp4","inLanguage":"ja","transcript":"あなたのAIアプリは、あなたが読んだものを読んでいない。Claude Desktop、LM Studio、Cursorが、あなたのライブラリを検索し、ハイライトを引用できるようになりました。期限が近いものを聞いたり、フィードの良い記事を保存させたり、一年のまとめを頼んだり。こちらのサーバーは経由せず、読ませる範囲もあなたが決めます。","isFamilyFriendly":true,"publisher":{"@id":"https://byphil.eu/#org"}},{"@type":"VideoObject","name":"Obsidianなどへのエクスポート","description":"すべての要約をすっきりとしたノートとして出力：Obsidian、Markdown、Word、ODT、PDFに対応。","thumbnailUrl":["https://ai-summary-helper.byphil.eu/assets/blog/video/export-ja.jpg"],"uploadDate":"2026-10-27T00:00:00+00:00","duration":"PT0M24S","contentUrl":"https://ai-summary-helper.byphil.eu/assets/blog/video/export-ja.mp4","inLanguage":"ja","transcript":"要約は、あなたのノートにあるべき。すべての要約が、きれいなノートとして出ていきます。Obsidianへ直接、またはMarkdown、Word、OpenDocument、PDFで。タイトル、出典、タグ、ハイライト付きで、そのまま保管できます。","isFamilyFriendly":true,"publisher":{"@id":"https://byphil.eu/#org"}},{"@type":"VideoObject","name":"読書ログをレポートとして可視化","description":"継続日数、節約できた時間、アクティビティ、週ごとのトピックを確認できます。","thumbnailUrl":["https://ai-summary-helper.byphil.eu/assets/blog/video/analytics-ja.jpg"],"uploadDate":"2026-10-27T00:00:00+00:00","duration":"PT0M21S","contentUrl":"https://ai-summary-helper.byphil.eu/assets/blog/video/analytics-ja.mp4","inLanguage":"ja","transcript":"読書の時間、どこへ行った？分析を開くと、ライブラリがレポートになります。連続記録、要約で節約できた時間、週ごとのテーマの移り変わり、そしてよく戻ってくる言葉。","isFamilyFriendly":true,"publisher":{"@id":"https://byphil.eu/#org"}},{"@type":"VideoObject","name":"20以上の言語に対応、クロスプラットフォーム","description":"拡張機能やネイティブのサイドパネル、または ブックマークレット 拡張機能がページにアクセスできない場合に使えるブックマークレットで、20以上の言語の読み取りと要約ができます。","thumbnailUrl":["https://ai-summary-helper.byphil.eu/assets/blog/video/sprache-ja.jpg"],"uploadDate":"2026-10-20T00:00:00+00:00","duration":"PT0M19S","contentUrl":"https://ai-summary-helper.byphil.eu/assets/blog/video/sprache-ja.mp4","inLanguage":"ja","transcript":"外国語だと、読むのが遅くなる。視線計測の研究が示しています。流暢な人でさえも。要約は41言語に対応。探して、タップするだけ。","isFamilyFriendly":true,"publisher":{"@id":"https://byphil.eu/#org"}},{"@type":"VideoObject","name":"オンデバイスでの本格的な全文検索","description":"タイトル、タグ、記事本文をブラウザベースのTF-IDFインデックスで検索。全文検索はオンデバイスで完結し、外部への往復通信はありません。","thumbnailUrl":["https://ai-summary-helper.byphil.eu/assets/blog/video/bibliothek-ja.jpg"],"uploadDate":"2026-10-20T00:00:00+00:00","duration":"PT0M18S","contentUrl":"https://ai-summary-helper.byphil.eu/assets/blog/video/bibliothek-ja.mp4","inLanguage":"ja","transcript":"読んだ記事が、すぐ見つかる。要約したものはすべて、あなたの端末に保存。タグ、検索、統計つき。","isFamilyFriendly":true,"publisher":{"@id":"https://byphil.eu/#org"}}]}</script></head>
 <body>
 
 <a href="#main" class="skip-link">コンテンツへスキップ</a>
@@ -55,8 +55,9 @@
       AI Summary Helper
     </a>
     <nav class="pill" aria-label="プライマリ">
-      <a href="index.html#features" data-sec="features">機能</a>
-      <a href="index.html#see-it" data-sec="see-it">デモ</a>
+      <a href="index.html#problem" data-sec="problem" data-slider-goto="problem">使い方</a>
+      <a href="index.html#use-cases" data-sec="use-cases">活用例</a>
+      <a href="blog/">ブログ</a>
       <a href="https://chromewebstore.google.com/detail/ai-summary-helper-openai/hldbejcjaedipeegjcinmhejdndchkmb" class="pill-cta" target="_blank" rel="noopener">Chromeに追加</a>
     </nav>
     <div class="nav-tools">
@@ -74,8 +75,8 @@
   <div class="mobile-menu" id="mobileMenu" hidden="">
     <div class="wrap mm-inner">
       <nav class="mm-links" aria-label="モバイル">
-        <a href="index.html#features"><span class="mm-n">01</span>機能</a>
-        <a href="index.html#see-it"><span class="mm-n">02</span>デモ</a>
+        <a href="index.html#problem" data-slider-goto="problem"><span class="mm-n">01</span>使い方</a>
+        <a href="index.html#use-cases"><span class="mm-n">02</span>活用例</a>
         <a href="../education/"><span class="mm-n">03</span>教育</a>
         <a href="blog/"><span class="mm-n">04</span>ブログ</a>
           <a href="blog/pocket-alternative.html" class="mm-sub">Pocket代替ツール：重視すべきポイント</a>
@@ -131,8 +132,8 @@
   <div class="hs-grid">
     <div class="hs-text"><div class="hs-text-in">
       <div class="eyebrow"><span class="dash"></span> Chrome拡張機能 · byphil. プロジェクト <span class="dash"></span></div>
-      <h1>Webを要約する。<br><em>重要な情報を、確実に手元に。</em></h1>
-      <p class="sub">ワンクリックで、あらゆるWebページを記事の横にコンパクトに要約。すべてのデータはブラウザ内にのみ保存されるため、後からいつでも簡単に確認できます。</p>
+      <h1>読書を、<br><em>手元に残る知識に。</em></h1>
+      <p class="sub">記事、PDF、動画をより速く理解。答えは出典と照らし合わせて確認。プライベートで検索できる知識ベースを、ご自身のデバイス上に構築できます。</p>
       <div class="hero-pane" id="heroPaneBrowser">
         <div class="hero-cta">
           <a href="https://chromewebstore.google.com/detail/ai-summary-helper-openai/hldbejcjaedipeegjcinmhejdndchkmb" target="_blank" rel="noopener" class="btn-primary" data-desktop-cta="">Chromeに追加（無料）</a>
@@ -140,7 +141,7 @@
         </div>
         <p class="send-note" data-send-note="" hidden="">スマートフォン版 Chrome では拡張機能をインストールできません。リンクをパソコンに送信して、そちらから追加してください。 <a href="#" data-send-mail="">自分にメールで送信</a> · <a href="#" data-send-copy="">リンクをコピー</a></p>
         <p class="hero-proof"><a href="https://www.producthunt.com/products/ai-summary-helper/launches/ai-summary-helper-summarize-articles" target="_blank" rel="noopener" data-track="hero-producthunt">Product Huntで139 Upvotesを獲得</a> · <a href="https://github.com/philffm/ai-summary-helper/" target="_blank" rel="noopener">オープンソース</a> · EU製</p>
-        <p class="hero-meta">アカウント登録不要 · ご自身のAIキーを使用、またはOllamaで完全オフライン実行が可能</p>
+        <p class="hero-meta">アカウント不要 · ご自身のキーまたはローカルOllama · オープンソース · Made in the EU</p>
       </div>
       <ol class="hs-steps" data-stage-pane="browser">
   <li class="is-on" data-step="0" role="button" tabindex="0"><b>あらゆるページを閲覧</b><span>いつも通り記事を開くだけ。AISH はブラウザ内で静かに待機します。</span></li>
@@ -199,6 +200,19 @@
   </div>
 </section>
 
+<section id="use-cases" class="use-case-section">
+  <div class="wrap">
+    <div class="section-head center reveal"><div class="eyebrow">あなたの読み方に合わせた設計</div><h2>目的から選ぶ</h2></div>
+    <div class="use-case-grid blog-grid reveal">
+      <a href="research-papers/" class="use-case-card blog-card"><span class="blog-date">研究者・学生の方に</span><h3>リサーチとPDFを<br>出典を見失わずに</h3><span class="blog-read">リサーチモードを見る →</span></a>
+      <a href="youtube-summarizer/" class="use-case-card blog-card"><span class="blog-date">動画で学ぶ方に</span><h3>長い動画を<br>使える知識に</h3><span class="blog-read">動画リーディングを見る →</span></a>
+      <a href="rss-news/" class="use-case-card blog-card"><span class="blog-date">ニュースを自分で調べたい方に</span><h3>自分だけの<br>ニュースを編集</h3><span class="blog-read">ローカルRSSを見る →</span></a>
+      <a href="local-ai/" class="use-case-card blog-card"><span class="blog-date">プライバシーを重視する読書家に</span><h3>あなたの読書は<br>あなたのもの</h3><span class="blog-read">ローカルなワークフローを見る →</span></a>
+      <a href="mcp/" class="use-case-card blog-card"><span class="blog-date">AIワークフローを連携したい方に</span><h3>あなたの<br>知識をつなぐ</h3><span class="blog-read">MCPを見る →</span></a>
+    </div>
+  </div>
+</section>
+
   <!-- ── See it ──────────────────────────────────────────────────── -->
   <!-- Screenshots are localized by scripts/translate.mjs: "-en.webp" is swapped for
        "-<locale>.webp" when docs/assets/shots/ has that file, else it stays English. -->
@@ -208,35 +222,52 @@
         <div class="eyebrow">実際の画面を見る</div>
         <h2>記事のすぐ横に要約を表示</h2>
         <p>概要を把握し、追加の質問をして、回答の引用箇所をすぐに確認できます。バージョン 2.2 の実際のインターフェースです。</p>
+        <nav class="slide-jumps" aria-label="使い方">
+          <a href="#problem" data-slider-goto="problem">課題</a>
+          <a href="#understand" data-slider-goto="understand">理解</a>
+          <a href="#verify" data-slider-goto="verify">検証</a>
+          <a href="#retain" data-slider-goto="retain">定着</a>
+          <a href="#difference" data-slider-goto="difference">要約の先へ</a>
+          <a href="#privacy" data-slider-goto="privacy">プライバシー</a>
+        </nav>
       </div>
       <div class="cx cx--fit reveal" data-carousel="" role="region" aria-roledescription="carousel" aria-label="製品のスクリーンショット">
         <div class="cx-stage">
           <ul class="cx-track" tabindex="0">
-          <li class="cx-slide is-active" aria-roledescription="slide" aria-label="1 / 5">
+          <li class="cx-slide is-active" aria-roledescription="slide" aria-label="1 / 8" id="problem">
+            <figure><div class="cx-card" style="--img:url(photo/evening-sofa-ereader-1600.webp)"><span class="cx-big cx-big--text">積み上がる「あとで読む」</span><strong class="cx-title">読み切れないほど、次々と保存してしまう</strong><span class="cx-text">保存した記事の多くは、二度と開かれないままになりがちです。ダイジェスト機能は保存した中から5件を厳選し、オフラインでも読めるようにお届けします。</span><small class="cx-src">1. Digestをタップ · 2. 気分を設定 · 3. オフラインへ送信</small><a class="cx-slide-link" href="blog/unread-saves.html">ガイドを読む →</a></div><figcaption><strong>12個のタブではなく、夜にじっくり読む</strong><span>Digestは、溜まった保存リンクを、夜の時間やKindle、通勤にぴったりの一つのまとまりに変えます。</span></figcaption></figure>
+          </li>
+          <li class="cx-slide" aria-roledescription="slide" aria-label="2 / 8" id="understand">
             <figure>
               <img src="../assets/shots/aish-inpage-detail-ja.webp" width="1440" height="900" loading="lazy" alt="記事の横のサイドパネルに表示された要約">
               <figcaption><strong>記事の横に要約を表示</strong><span>ページから離れることなく概要を把握できます。</span></figcaption>
             </figure>
           </li>
-          <li class="cx-slide" aria-roledescription="slide" aria-label="2 / 5">
+          <li class="cx-slide" aria-roledescription="slide" aria-label="3 / 8" id="verify">
             <figure>
               <img src="../assets/shots/aish-inpage-ask-ja.webp" width="1440" height="900" loading="lazy" alt="ソースマーカーと記事内のハイライト表示が付いた追加質問の回答画面">
               <figcaption><strong>ページの内容について質問する</strong><span>回答の根拠となった該当箇所をハイライトして表示します。</span></figcaption>
             </figure>
           </li>
-          <li class="cx-slide" aria-roledescription="slide" aria-label="3 / 5">
+          <li class="cx-slide" aria-roledescription="slide" aria-label="4 / 8">
             <figure>
               <img src="../assets/shots/aish-split-wide-en.webp" width="1280" height="800" loading="lazy" alt="リスト、ナレッジグラフ、分析データが並んで表示されたスプリットビュー">
               <figcaption><strong>バージョン 2.2 の新機能: スプリットビュー</strong><span>大画面では、リスト、ナレッジグラフ、分析データを並べて同時に確認できます。</span></figcaption>
             </figure>
           </li>
-          <li class="cx-slide" aria-roledescription="slide" aria-label="4 / 5">
+          <li class="cx-slide" aria-roledescription="slide" aria-label="5 / 8" id="retain">
             <figure>
               <img src="../assets/shots/aish-research-dark-en.webp" width="1280" height="800" loading="lazy" alt="論文コレクションを表示したダークモードのリサーチモード画面">
               <figcaption><strong>バージョン 2.2 の新機能: リサーチモード</strong><span>学術論文の研究詳細、DOI引用、コレクション整理に対応しています。</span></figcaption>
             </figure>
           </li>
-          <li class="cx-slide cx-slide--demo" aria-roledescription="slide" aria-label="5 / 5" data-desktop-only="">
+          <li class="cx-slide" aria-roledescription="slide" aria-label="6 / 8" id="difference">
+            <figure><div class="cx-card" style="--img:url(photo/scene-library-laptop-1600.webp)"><span class="cx-big cx-big--text">要約のその先</span><strong class="cx-title">単発の要約はここで終わり</strong><span class="cx-text">AISHは、答えを、確認でき、残せて、また戻ってこられる出典に変えます。</span><div class="cx-compare" aria-label="AISHと単発の要約の比較"><div class="cx-compare-row"><span>AISH</span><strong>出典リンク付きの回答</strong></div><div class="cx-compare-row is-muted"><span>単発の要約</span><strong>出典をたどれない要約</strong></div><div class="cx-compare-row"><span>AISH</span><strong>ローカルの検索可能アーカイブ</strong></div><div class="cx-compare-row is-muted"><span>単発の要約</span><strong>残らない読書コンテキスト</strong></div><div class="cx-compare-row"><span>AISH</span><strong>DOI対応のリサーチモード</strong></div><div class="cx-compare-row is-muted"><span>単発の要約</span><strong>どのページも同じワークフロー</strong></div></div><small class="cx-src">理解 · 検証 · 定着</small></div><figcaption><strong>ただ短くしたページではない</strong><span>出典、文脈、そして次の疑問を、ひとつにまとめて残せます。</span></figcaption></figure>
+          </li>
+          <li class="cx-slide" aria-roledescription="slide" aria-label="7 / 8" id="privacy">
+            <figure><div class="cx-card" style="--img:url(photo/nas-shelf-laptop-phone-1600.webp)"><span class="cx-big cx-big--text">byphilの開発哲学</span><strong class="cx-title">アーカイブは常にあなた自身のもの</strong><span class="cx-text">検索、重複検出、タグの整理、類似記事の提案はすべてブラウザ上で完結し、サーバーやアカウントは一切不要です。外部と通信するのは要約リクエスト時のみで、指定したAIプロバイダーだけに送信されます。ローカルの Ollama モデルを使用すれば、データが外部に出ることも一切ありません。</span><small class="cx-src">ローカルアーカイブ · ご自身のプロバイダー · アカウント不要</small><a class="cx-slide-link" href="privacy.html">プライバシーモデルを読む →</a></div><figcaption><strong>ライブラリはあなたのデバイス上に</strong><span>キー、モデル、そして読書アーカイブの保存先を自分で選べます。</span></figcaption></figure>
+          </li>
+          <li class="cx-slide cx-slide--demo" aria-roledescription="slide" aria-label="8 / 8" data-desktop-only="">
             <figure>
               <div class="demo-frame" data-demo="" data-demo-scale="1180" data-src="../demo/index.html">
                 <button class="demo-start" type="button"><span class="demo-play" aria-hidden="true">▶</span><span>ライブデモを開始</span></button>
@@ -245,7 +276,7 @@
               <figcaption><strong>実際のページで「要約」をクリックしてみてください</strong><span>これはブラウザ上でサンプル記事を使って動作する、実際の拡張機能の画面です。データが外部サーバーへ送信されることはありません。</span></figcaption>
             </figure>
           </li>
-          <li class="cx-slide cx-slide--demo-m" aria-roledescription="slide" aria-label="5 / 5" data-mobile-only="">
+          <li class="cx-slide cx-slide--demo-m" aria-roledescription="slide" aria-label="8 / 8" data-mobile-only="">
             <figure>
               <div class="demo-frame demo-frame--phone" data-demo="" data-demo-fit="420x800" data-demo-params="chrome=0&amp;tour=0&amp;surface=sidepanel" data-src="../demo/index.html">
                 <button class="demo-start" type="button"><span class="demo-play" aria-hidden="true">▶</span><span>サイドパネルをお試しください</span></button>
@@ -257,12 +288,12 @@
           <button type="button" class="cx-nav cx-prev" aria-label="前のスライド"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m15 18-6-6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg></button>
           <button type="button" class="cx-nav cx-next" aria-label="次のスライド"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m9 18 6-6-6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg></button>
         </div>
-        <div class="cx-dots"><button type="button" class="cx-dot is-active" aria-label="スライド 1"></button><button type="button" class="cx-dot" aria-label="スライド 2"></button><button type="button" class="cx-dot" aria-label="スライド 3"></button><button type="button" class="cx-dot" aria-label="スライド 4"></button><button type="button" class="cx-dot cx-dot--demo" aria-label="スライド 5: ライブデモ">デモ</button><button type="button" class="cx-dot cx-dot--demo-m" aria-label="スライド 5: ライブデモ">デモ</button></div>
+        <div class="cx-dots"><button type="button" class="cx-dot is-active" aria-label="読書リストの課題スライドへ移動"></button><button type="button" class="cx-dot" aria-label="理解スライドへ移動"></button><button type="button" class="cx-dot" aria-label="検証スライドへ移動"></button><button type="button" class="cx-dot" aria-label="ナレッジグラフスライドへ移動"></button><button type="button" class="cx-dot" aria-label="定着スライドへ移動"></button><button type="button" class="cx-dot" aria-label="プライバシースライドへ移動"></button><button type="button" class="cx-dot cx-dot--demo" aria-label="ライブデモスライドへ移動">デモ</button><button type="button" class="cx-dot cx-dot--demo-m" aria-label="ライブデモスライドへ移動">デモ</button></div>
       </div>
     </div>
   </section>
 
-  <!-- ── Videos: a stack of short clips; tapping one opens a swipeable full-screen player (../assets/main.js) ──
+  <!-- ── Videos: a stack of short clips; tapping one opens a swipeable full-screen player (assets/main.js) ──
        Videos are localized by scripts/translate.mjs like the blog ones: "<clip>-en.mp4" becomes "<clip>-<locale>.mp4"
        when docs/assets/blog/video/ has it, else it stays English. -->
   <section id="videos">
@@ -539,7 +570,7 @@
   </section>
 
   <!-- ── Features ────────────────────────────────────────────────── -->
-  <section id="features">
+  <section id="features" data-default-persona="all">
     <div class="wrap">
       <div class="section-head center reveal">
         <div class="eyebrow">主な機能</div>
@@ -601,7 +632,7 @@
           </figure>
           <div class="f-icon icon-indigo"><svg viewBox="0 0 24 24" fill="none"><circle cx="6" cy="18" r="1.8" fill="#fff"></circle><path d="M5 11a8 8 0 0 1 8 8M5 5a14 14 0 0 1 14 14" stroke="#fff" stroke-width="1.8" stroke-linecap="round"></path></svg></div>
           <h3>内蔵RSSリーダー</h3>
-          <p>ブログやニュースサイトをフォローし、ソース、タグ、日付、ムード別に絞り込んだり、OPMLをインポートしてワンクリックで記事を開いたり要約したりできます。拡張機能内でポッドキャストを直接再生できるほか、日々のヘッドラインからAIダイジェストを受け取ることも可能です。お気に入りはアーカイブに保存され、フィードデータはお使いのデバイス内に安全に保存されます。</p>
+          <p>ブログやニュースサイトをフォローし、ソース、タグ、日付、気分で絞り込み、OPMLをインポートして、どの記事もワンクリックで要約できます。拡張機能内でポッドキャストのフィードを再生し、任意でAIによるまとめも取得できます。フィードとお気に入りはデバイス上に保存されます。</p>
           <button class="fvideo-cta" type="button" tabindex="-1" aria-hidden="true"><span class="fvideo-cta-play">▶</span>クリップを見る</button>
         </div>
         <div class="feature-card" data-personas="feeds">
@@ -615,7 +646,7 @@
           </figure>
           <div class="f-icon icon-gold"><svg viewBox="0 0 24 24" fill="none"><rect x="3" y="5" width="18" height="14" rx="3" stroke="#fff" stroke-width="1.7"></rect><path d="M10 9.5v5l4.5-2.5L10 9.5Z" fill="#fff"></path></svg></div>
           <h3>YouTube動画も、字幕からすばやく要約</h3>
-          <p>動画を開いて要約を実行。拡張機能が字幕を読み取り、お好みの言語で要点をまとめます。追加の質問にも該当箇所を引用して回答します。</p>
+          <p>YouTube動画を字幕から要約し、要点をお使いの言語で取得。出典の引用付きで追加の質問もできます。</p>
           <button class="fvideo-cta" type="button" tabindex="-1" aria-hidden="true"><span class="fvideo-cta-play">▶</span>クリップを見る</button>
         </div>
         <div class="feature-card" data-personas="researcher">
@@ -629,7 +660,7 @@
           </figure>
           <div class="f-icon icon-cyan"><svg viewBox="0 0 24 24" fill="none"><path d="M7 3h7l4 4v14H7V3Z" stroke="#fff" stroke-width="1.7" stroke-linejoin="round"></path><path d="M14 3v4h4M9.5 12h5M9.5 15.5h5" stroke="#fff" stroke-width="1.6" stroke-linecap="round"></path></svg></div>
           <h3>Webページと同じ感覚でPDFを要約</h3>
-          <p>ブラウザでPDFを開くか、ローカルファイルを指定するだけで、通常のWebページと同様に要約できます。「使用情報」で使用したモデル、読み取った単語数やトークン数を確認できます。</p>
+          <p>ブラウザで開いたPDFやディスク上のファイルも、通常のページと同じように要約できます。「What I used」には、AIが読んだ単語、トークン、モデルが表示されます。</p>
           <button class="fvideo-cta" type="button" tabindex="-1" aria-hidden="true"><span class="fvideo-cta-play">▶</span>クリップを見る</button>
         </div>
         <div class="feature-card" data-personas="privacy hoarder researcher feeds go">
@@ -643,7 +674,7 @@
           </figure>
           <div class="f-icon icon-violet"><svg viewBox="0 0 24 24" fill="none"><path d="M4 12h16M12 4c2.8 2.6 4.2 5.2 4.2 8s-1.4 5.4-4.2 8c-2.8-2.6-4.2-5.2-4.2-8s1.4-5.4 4.2-8Z" stroke="#fff" stroke-width="1.5"></path></svg></div>
           <h3>20以上の言語に対応、クロスプラットフォーム</h3>
-          <p>お好みの言語で閲覧・要約。拡張機能、ネイティブサイドパネル、または <a href="../bookmarklet.html">ブックマークレット</a> — 拡張機能が使えない環境でもご利用いただけます。</p>
+          <p>拡張機能やネイティブのサイドパネル、または <a href="../bookmarklet.html">ブックマークレット</a> 拡張機能がページにアクセスできない場合に使えるブックマークレットで、20以上の言語の読み取りと要約ができます。</p>
           <button class="fvideo-cta" type="button" tabindex="-1" aria-hidden="true"><span class="fvideo-cta-play">▶</span>クリップを見る</button>
         </div>
         <div class="feature-card" data-personas="privacy researcher">
@@ -657,7 +688,7 @@
           </figure>
           <div class="f-icon icon-cyan"><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="6" r="2.6" fill="#fff"></circle><circle cx="6" cy="17" r="2.2" fill="#fff" opacity="0.85"></circle><circle cx="18" cy="17" r="2.2" fill="#fff" opacity="0.85"></circle><path d="M12 8.6 L6.8 14.8 M12 8.6 L17.2 14.8" stroke="#fff" stroke-width="1.4" stroke-linecap="round" opacity="0.7"></path></svg></div>
           <h3>AI要約、モデルは自由に選択可能</h3>
-          <p>OpenAI、Gemini、Mistral、DeepSeek、カスタムエンドポイントに対応。ローカルのOllamaモデルを指定すれば、このステップでネットワーク通信を一切行わずに処理することも可能です。</p>
+          <p>OpenAI、Gemini、Mistral、DeepSeek、カスタムエンドポイント、またはローカルOllamaを選べます。ローカルOllamaなら、要約がデバイスの外に出ることはありません。</p>
           <button class="fvideo-cta" type="button" tabindex="-1" aria-hidden="true"><span class="fvideo-cta-play">▶</span>クリップを見る</button>
         </div>
         <div class="feature-card" data-personas="researcher go">
@@ -671,7 +702,7 @@
           </figure>
           <div class="f-icon icon-gold"><svg viewBox="0 0 24 24" fill="none"><path d="M5 5h14M5 9h14M5 13h14M5 17h14" stroke="#fff" stroke-width="2.2" stroke-linecap="round"></path><path d="M5 5l14 0M5 9l14 0M5 13l14 0M5 17l14 0" stroke="#fff" stroke-width="2.2" stroke-linecap="round" opacity="0.35"></path></svg></div>
           <h3>ページ上に直接、さりげなくハイライト</h3>
-          <p>AIが <mark class="ai-ghost-highlight">最も重要な原文の抜粋</mark> を記事内で自然にハイライトするため、 <mark class="ai-ghost-highlight">重要なポイントを一目で把握でき</mark>、要約と一緒に Kindle、LocalSend、Markdown にも引き継がれます。</p>
+          <p>AIがハイライト表示するのは <mark class="ai-ghost-highlight">重要な原文そのままの箇所</mark> なので、重要なポイントをざっと確認し、要約と一緒にKindle、LocalSend、Markdownへエクスポートできます。</p>
           <button class="fvideo-cta" type="button" tabindex="-1" aria-hidden="true"><span class="fvideo-cta-play">▶</span>クリップを見る</button>
         </div>
         <div class="feature-card" data-personas="researcher">
@@ -685,7 +716,7 @@
           </figure>
           <div class="f-icon icon-indigo"><svg viewBox="0 0 24 24" fill="none"><path d="M4 6c3-1.4 5.5-1.4 8 0v13c-2.5-1.4-5-1.4-8 0V6ZM20 6c-3-1.4-5.5-1.4-8 0v13c2.5-1.4 5-1.4 8 0V6Z" stroke="#fff" stroke-width="1.6" stroke-linejoin="round"></path></svg></div>
           <h3>リサーチモード：DOIから学術論文を自動識別</h3>
-          <p>学術論文のDOIやメタデータを識別し、臨床試験・総説・プレプリントなどの種別を判定。研究デザイン、サンプル、制約事項を抽出し、AIによる創作ではなくDOIレジストリに基づいた正確な引用情報を生成します。</p>
+          <p>DOIと引用メタデータで研究論文を識別し、治験、レビュー、プレプリントのステータスを示し、デザイン、サンプル、限界、DOIレジストリの引用を抽出します。</p>
           <button class="fvideo-cta" type="button" tabindex="-1" aria-hidden="true"><span class="fvideo-cta-play">▶</span>クリップを見る</button>
         </div>
         <div class="feature-card" data-personas="researcher">
@@ -699,7 +730,7 @@
           </figure>
           <div class="f-icon icon-violet"><svg viewBox="0 0 24 24" fill="none"><rect x="4" y="4" width="10" height="10" rx="2" stroke="#fff" stroke-width="1.7"></rect><rect x="10" y="10" width="10" height="10" rx="2" stroke="#fff" stroke-width="1.7"></rect></svg></div>
           <h3>1つの問いに対して複数ソースを比較</h3>
-          <p>保存した記事をコレクションにまとめ、情報源の種類（査読付き論文、プレプリント、ニュース、オピニオンなど）を分類。多角的な検証を行い、各要約の一致点、相違点、不足している観点をAIが比較分析します。</p>
+          <p>記事をまとめてバンドルし、出典を査読済み、プレプリント、ニュース、意見としてラベル付けし、横読みチェックを実行。要約が一致する点、異なる点、文脈を欠く点を比較できます。</p>
           <button class="fvideo-cta" type="button" tabindex="-1" aria-hidden="true"><span class="fvideo-cta-play">▶</span>クリップを見る</button>
         </div>
         <div class="feature-card" data-personas="feeds go">
@@ -713,7 +744,7 @@
           </figure>
           <div class="f-icon icon-teal"><svg viewBox="0 0 24 24" fill="none"><path d="M5 10v4h3l4.5 3.5v-11L8 10H5Z" fill="#fff"></path><path d="M16 9c1.3 1.7 1.3 4.3 0 6M18.5 6.5c2.5 3 2.5 8 0 11" stroke="#fff" stroke-width="1.6" stroke-linecap="round"></path></svg></div>
           <h3>インスタント読み上げ：生成しながら同時に音声再生</h3>
-          <p>要約の生成中からリアルタイムで音声読み上げを開始。タイトルから一文ずつ順に再生され、一時停止、ミュート、速度調整が可能です。各カードからいつでも再読み上げできます。</p>
+          <p>要約が書かれる様子を聞けます。まずタイトル、次に一文ずつ。一時停止、ミュート、速度調整も可能です。どのカードからでも再生できます。</p>
           <button class="fvideo-cta" type="button" tabindex="-1" aria-hidden="true"><span class="fvideo-cta-play">▶</span>クリップを見る</button>
         </div>
         <div class="feature-card" data-personas="privacy hoarder">
@@ -727,7 +758,7 @@
           </figure>
           <div class="f-icon icon-violet"><svg viewBox="0 0 24 24" fill="none"><path d="M11 4a7 7 0 1 0 4.9 12.1l4.6 4.6" stroke="#fff" stroke-width="1.7" stroke-linecap="round"></path></svg></div>
           <h3>オンデバイスでの本格的な全文検索</h3>
-          <p>タイトル、タグ、本文を対象とした全文検索。ブラウザ内で構築されるTF-IDFインデックスにより駆動します。サーバーとの通信遅延はなく、外部へのデータ送信も一切発生しません。</p>
+          <p>タイトル、タグ、記事本文をブラウザベースのTF-IDFインデックスで検索。全文検索はオンデバイスで完結し、外部への往復通信はありません。</p>
           <button class="fvideo-cta" type="button" tabindex="-1" aria-hidden="true"><span class="fvideo-cta-play">▶</span>クリップを見る</button>
         </div>
         <div class="feature-card" data-personas="hoarder researcher">
@@ -741,7 +772,7 @@
           </figure>
           <div class="f-icon icon-cyan"><svg viewBox="0 0 24 24" fill="none"><circle cx="5" cy="6" r="1.8" fill="#fff"></circle><circle cx="19" cy="6" r="1.8" fill="#fff" opacity="0.85"></circle><circle cx="12" cy="12" r="2.1" fill="#fff"></circle><circle cx="6" cy="18" r="1.8" fill="#fff" opacity="0.85"></circle><circle cx="18" cy="18" r="1.8" fill="#fff" opacity="0.85"></circle><path d="M5 6 12 12M19 6 12 12M12 12 6 18M12 12 18 18" stroke="#fff" stroke-width="1.1" opacity="0.55"></path></svg></div>
           <h3>単なるリストを超えたナレッジグラフ</h3>
-          <p>共有タグによる関連性だけでなく、タグが付いていなくても内容の類似度に基づいて保存記事間のつながりを可視化します。</p>
+          <p>保存した記事が、共通のタグやトピックの類似性を通じてどうつながっているかを確認できます。共通のタグが一つもない場合でも表示されます。</p>
           <button class="fvideo-cta" type="button" tabindex="-1" aria-hidden="true"><span class="fvideo-cta-play">▶</span>クリップを見る</button>
         </div>
         <div class="feature-card" data-personas="hoarder">
@@ -755,7 +786,7 @@
           </figure>
           <div class="f-icon icon-indigo"><svg viewBox="0 0 24 24" fill="none"><path d="M6 3h12v18l-6-4-6 4V3Z" stroke="#fff" stroke-width="1.6" stroke-linejoin="round"></path></svg></div>
           <h3>意図を持った「後で読む」</h3>
-          <p>理由や期限を設定して「アクション/判断」としてフラグを立てることで、リマインドを受け取ることができます。二度と開かれないリストの山に埋もれさせることはありません。</p>
+          <p>決定事項を理由と期限とともに保存すると、未読の山に埋もれる前にリマインドされます。</p>
           <button class="fvideo-cta" type="button" tabindex="-1" aria-hidden="true"><span class="fvideo-cta-play">▶</span>クリップを見る</button>
         </div>
         <div class="feature-card" data-personas="hoarder go">
@@ -769,7 +800,7 @@
           </figure>
           <div class="f-icon icon-gold"><svg viewBox="0 0 24 24" fill="none"><rect x="4" y="4" width="16" height="16" rx="3" stroke="#fff" stroke-width="1.6"></rect><path d="M8 9h8M8 13h5" stroke="#fff" stroke-width="1.6" stroke-linecap="round"></path></svg></div>
           <h3>自動キュレーション型ダイジェスト</h3>
-          <p>ワンクリックで保存記事から小規模かつ多様なセットを自動選定。同じ話題ばかりが重なるのを防ぎ、1つのファイルにまとめてKindleやLocalSendへ転送します。</p>
+          <p>ワンタップで、同じ話題の5つの記事ではなく、変化に富んだダイジェストを編集し、KindleやLocalSend用にまとめます。</p>
           <button class="fvideo-cta" type="button" tabindex="-1" aria-hidden="true"><span class="fvideo-cta-play">▶</span>クリップを見る</button>
         </div>
         <div class="feature-card" data-personas="feeds">
@@ -783,7 +814,7 @@
           </figure>
           <div class="f-icon icon-amber"><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="8.5" stroke="#fff" stroke-width="1.7"></circle><path d="M8.5 14c1 1.6 2.2 2.3 3.5 2.3s2.5-.7 3.5-2.3M9 9.5h.01M15 9.5h.01" stroke="#fff" stroke-width="1.8" stroke-linecap="round"></path></svg></div>
           <h3>ムードフィルターと感情の推移</h3>
-          <p>AIが見出しのトーン（重い話題〜ポジティブな話題）を判定。ワンタップで明るいニュースのみを表示し、日・週・月ごとの閲覧ムードの推移を把握できます。</p>
+          <p>見出しを「重い」から「良い」まで評価し、良いニュースだけを絞り込み、日別、週別、月別に読書の気分を追跡できます。</p>
           <button class="fvideo-cta" type="button" tabindex="-1" aria-hidden="true"><span class="fvideo-cta-play">▶</span>クリップを見る</button>
         </div>
         <div class="feature-card" data-personas="privacy researcher hoarder">
@@ -797,18 +828,18 @@
           </figure>
           <div class="f-icon icon-violet"><svg viewBox="0 0 24 24" fill="none"><rect x="4" y="5" width="16" height="11" rx="2.2" stroke="#fff" stroke-width="1.7"></rect><path d="M9 20h6M12 16v4M8.5 10.5l2 2 3.5-4" stroke="#fff" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"></path></svg></div>
           <h3>Claude、LM Studio、Cursor内でライブラリを活用</h3>
-          <p>設定でAIアプリを有効にすると、お使いのPC上のClaude Desktop、LM Studio、CursorなどのMCP対応アプリから、ライブラリの検索、ハイライトの引用、未読・期限の確認が可能になります。許可すればリンクの保存も行えます。データがサーバーを経由することは一切なく、どの情報を読み取らせるかも自由に選択できます。</p>
+          <p>Claude Desktop、LM Studio、CursorなどのMCPアプリから、ライブラリを検索し、ハイライトを引用し、期限が来たものを一覧表示できます。アクセスはあなたが管理し、当社のサーバーを経由することはありません。</p>
           <button class="fvideo-cta" type="button" tabindex="-1" aria-hidden="true"><span class="fvideo-cta-play">▶</span>クリップを見る</button>
         </div>
         <div class="feature-card" data-personas="privacy hoarder researcher">
           <div class="f-icon icon-teal"><svg viewBox="0 0 24 24" fill="none"><path d="M7 18.5h9.5a3.5 3.5 0 0 0 .6-6.95A5 5 0 0 0 7.4 10.6 4 4 0 0 0 7 18.5Z" stroke="#fff" stroke-width="1.7" stroke-linejoin="round"></path><path d="M12 12.5v3M10.8 13.8h2.4" stroke="#fff" stroke-width="1.7" stroke-linecap="round"></path></svg></div>
           <h3>ご自身のストレージに、暗号化してライブラリを保管</h3>
-          <p>ライブラリをご自身の Nextcloud、WebDAV サーバー、S3 バケット、または PC 上のフォルダーに同期・バックアップできます。データはすべてブラウザ上で暗号化されてから送信されるため、サーバー側には暗号化されたファイルしか見えません。検索機能、タググラフ、3Dマップを備えたリストをご自身のウェブサイトに公開することも可能です。保存先を追加するまでこの機能はオフになっており、同期サーバーの運用やデータの閲覧は一切行っていません。 <a href="blog/sync-to-nextcloud-s3-or-a-folder.html">設定方法</a> · <a href="blog/digital-sovereignty-for-individuals.html">なぜ重要なのか</a></p>
+          <p>暗号化されたライブラリを、ご自身のNextcloud、WebDAVサーバー、S3バケット、ローカルフォルダに同期できます。タググラフと3Dマップ付きの検索可能なリストを公開できます。当社は同期サーバーを運営していません。 <a href="blog/sync-to-nextcloud-s3-or-a-folder.html">設定方法</a> · <a href="../demo/index.html?screen=settings&amp;panel=sync&amp;flow=sync-add" target="_blank" rel="noopener">同期の設定を試す</a></p>
         </div>
         <div class="feature-card" data-personas="hoarder researcher">
           <div class="f-icon icon-amber"><svg viewBox="0 0 24 24" fill="none"><path d="M6 4.5h9l3 3V19a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V5.5a1 1 0 0 1 1-1Z" stroke="#fff" stroke-width="1.7" stroke-linejoin="round"></path><path d="M8.5 11h7M8.5 14.5h4.5" stroke="#fff" stroke-width="1.7" stroke-linecap="round"></path></svg></div>
           <h3>あらゆるページにノートやコメントを追加</h3>
-          <p>テキストを選択するだけで、ハイライト、コメント、引用付きノートの保存が簡単に行えます。作成した内容はすべて「ノート」タブに集約され、記事別やタグ別にリストや付箋形式のグリッドで閲覧でき、ライブラリ全体と同期されます。</p>
+          <p>テキストをハイライトし、コメントを付け、引用ノートを保存できます。ノートは記事別またはタグ別に、リストまたは付箋グリッドでライブラリと並べて整理できます。</p>
         </div>
         <div class="feature-card" data-personas="hoarder researcher">
           <figure class="fvideo" data-blog-video="export">
@@ -821,7 +852,7 @@
           </figure>
           <div class="f-icon icon-teal"><svg viewBox="0 0 24 24" fill="none"><path d="M12 4v11M7.5 10.5 12 15l4.5-4.5M5 19h14" stroke="#fff" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"></path></svg></div>
           <h3>Obsidian、Markdown、Word、PDFへエクスポート</h3>
-          <p>要約をObsidianのVault（保管庫）へ直接送信したり、Markdown、Word（DOCX）、OpenDocument、PDFとしてエクスポートしたりできます。タイトル、出典、タグ、ハイライトが1つのノートに綺麗にまとまります。</p>
+          <p>要約をObsidian、Markdown、Word（DOCX）、OpenDocument、PDFへエクスポート。タイトル、出典、タグ、ハイライトを1つのノートにまとめます。</p>
           <button class="fvideo-cta" type="button" tabindex="-1" aria-hidden="true"><span class="fvideo-cta-play">▶</span>クリップを見る</button>
         </div>
         <div class="feature-card" data-personas="hoarder feeds">
@@ -835,7 +866,7 @@
           </figure>
           <div class="f-icon icon-cyan"><svg viewBox="0 0 24 24" fill="none"><path d="M5 19V11M12 19V5M19 19v-6" stroke="#fff" stroke-width="2.2" stroke-linecap="round"></path></svg></div>
           <h3>読書状況を分析するアナリティクスレポート</h3>
-          <p>読書の継続日数、要約によって節約された時間、アクティビティ、週ごとのトピック、ワードクラウドを、すべてローカルのライブラリから集計・表示します。</p>
+          <p>読書の連続記録、要約で節約した時間、アクティビティ、週ごとのトピック、ご自身のライブラリから生成されたワードクラウドを確認できます。</p>
           <button class="fvideo-cta" type="button" tabindex="-1" aria-hidden="true"><span class="fvideo-cta-play">▶</span>クリップを見る</button>
         </div>
       </div>
@@ -884,38 +915,10 @@
 
       // #for=<audience> in a link opens the page filtered
       var m = /^#for=([a-z]+)$/.exec(location.hash);
-      if (m && names[m[1]]) setPersona(m[1], false);
+      var initial = document.getElementById('features').getAttribute('data-default-persona') || 'all';
+      setPersona(m && names[m[1]] ? m[1] : initial, false);
     })();
   </script>
-
-  <!-- ── Digest spotlight ────────────────────────────────────────── -->
-  <section id="digest">
-    <div class="wrap">
-      <div class="section-head center reveal">
-        <div class="eyebrow">積み上がる「あとで読む」</div>
-        <h2>読み切れないほど、次々と保存してしまう</h2>
-        <p>保存した記事の多くは、二度と開かれないままになりがちです。ダイジェスト機能は保存した中から5件を厳選し、オフラインでも読めるようにお届けします。</p>
-      </div>
-      <figure class="section-photo reveal">
-        <img src="../assets/photo/evening-sofa-ereader-600.webp" srcset="../assets/photo/evening-sofa-ereader-600.webp 600w, ../assets/photo/evening-sofa-ereader-1200.webp 1200w" sizes="(max-width: 640px) 92vw, 520px" width="1600" height="1195" loading="lazy" decoding="async" alt="イラスト：夜、ソファでブランケットにくるまりながら電子書籍リーダーを読む人">
-        <figcaption>12個のタブを開きっぱなしにするのではなく、夜にまとめて読みましょう。イラスト：AI生成</figcaption>
-      </figure>
-      <div class="feature-grid digest-steps reveal">
-        <div class="feature-card">
-          <h3 style="margin-top:0;">1. 「ダイジェスト」をクリック</h3>
-          <p>新しさや多様性を考慮して、保存済みリストから5件をピックアップします。</p>
-        </div>
-        <div class="feature-card">
-          <h3 style="margin-top:0;">2. 必要に応じてトーンを設定</h3>
-          <p>気分に合わせて「軽快」「ニュートラル」「じっくり」から選択できます。</p>
-        </div>
-        <div class="feature-card">
-          <h3 style="margin-top:0;">3. オフライン端末へ送信</h3>
-          <p>ひとまとめにして Kindle やネットワーク内のデバイスへ送信。フライトや通勤中のお供に最適です。</p>
-        </div>
-      </div>
-    </div>
-  </section>
 
   <!-- ── Phone companion ────────────────────────────────────────── -->
   <section id="phone">
@@ -946,28 +949,13 @@
     </div>
   </section>
 
-  <!-- ── Why on-device ──────────────────────────────────────────── -->
-  <section>
-    <div class="wrap wrap-narrow">
-      <div class="section-head center reveal">
-        <div class="eyebrow">byphilの開発哲学</div>
-        <h2>アーカイブは常にあなた自身のもの</h2>
-        <p>検索、重複検出、タグの整理、類似記事の提案はすべてブラウザ上で完結し、サーバーやアカウントは一切不要です。外部と通信するのは要約リクエスト時のみで、指定したAIプロバイダーだけに送信されます。ローカルの Ollama モデルを使用すれば、データが外部に出ることも一切ありません。</p>
-      </div>
-      <figure class="section-photo reveal">
-        <img src="../assets/photo/scene-library-laptop-600.webp" srcset="../assets/photo/scene-library-laptop-600.webp 600w, ../assets/photo/scene-library-laptop-1200.webp 1200w" sizes="(max-width: 640px) 92vw, 520px" width="1200" height="670" loading="lazy" decoding="async" alt="イラスト：観葉植物と積み重ねられたノートの横に置かれた、すっきりと片付いた木製デスクの上のノートPC">
-        <figcaption>ライブラリのデータはお使いのデバイス内にのみ保存されます。イラスト：AI生成</figcaption>
-      </figure>
-    </div>
-  </section>
-
   <!-- ── Pricing ─────────────────────────────────────────────────── -->
   <section id="pricing">
     <div class="wrap wrap-narrow">
       <div class="section-head center reveal">
         <div class="eyebrow">どなたでも無料で利用可能</div>
-        <h2>基本無料。ご寄付いただくことで、各種AIモデルをご利用いただけます。</h2>
-        <p>ご自身のAPIキーまたはローカルモデルを使用すれば、すべての機能を無料で利用できます。気に入っていただけましたら、応援としてご寄付をご検討ください。ご寄付により、キーの設定不要で多彩なAIモデルをまとめて利用できる「byphil Cloud」へのアクセスが可能になるほか、byphilが開発するすべてのツールの支援にもつながります。</p>
+        <h2>プロジェクトを応援。AIをもっと手軽に。</h2>
+        <p>すべての機能は、ご自身のAIキーまたはローカルモデルで無料で使えます。Support Passは、独立したローカルファーストのソフトウェア開発を支え、手間いらずのAIと無制限のオフライン閲覧を追加します。アーカイブを人質に取ることはありません。</p>
       </div>
 
       <div style="text-align:center;">
@@ -1003,7 +991,7 @@
           <ul>
             <li>byphil Cloud：APIキー不要で多彩なAIモデルを利用可能</li>
             <li>KindleおよびLocalSendへの送信（ダイジェスト含む）が無制限</li>
-            <li>byphilのすべてのツールをサポート</li>
+            <li>独立したオープンソース開発を支援します</li>
           </ul>
           <a href="https://byphil.eu/#pass" class="tier-cta">プロジェクトを支援する</a>
         </div>
@@ -1020,31 +1008,77 @@
       <div class="section-head center reveal">
         <div class="eyebrow">よくある質問</div>
         <h2>インストール前の確認事項</h2>
+        <p>トピック、プロバイダー、プライバシー、アーカイブ、プラットフォームから回答を検索できます。</p>
       </div>
-      <div class="faq reveal">
-        <details>
+      <div class="faq-tools reveal">
+        <label class="sr-only" for="faqSearch">よくある質問を検索</label>
+        <input id="faqSearch" type="search" data-faq-search="" placeholder="FAQを検索…" autocomplete="off" spellcheck="false" aria-controls="faqList">
+        <div class="faq-filters" role="group" aria-label="トピックでFAQを絞り込む">
+          <button type="button" class="faq-filter is-active" data-faq-filter="all" aria-pressed="true">すべて</button>
+          <button type="button" class="faq-filter" data-faq-filter="basics" aria-pressed="false">基本</button>
+          <button type="button" class="faq-filter" data-faq-filter="privacy" aria-pressed="false">プライバシー</button>
+          <button type="button" class="faq-filter" data-faq-filter="ai" aria-pressed="false">AIと出典</button>
+          <button type="button" class="faq-filter" data-faq-filter="archive" aria-pressed="false">アーカイブ</button>
+          <button type="button" class="faq-filter" data-faq-filter="platforms" aria-pressed="false">プラットフォーム</button>
+        </div>
+        <p id="faqSearchStatus" class="faq-search-status" aria-live="polite"></p>
+      </div>
+      <div class="faq reveal" id="faqList">
+        <details data-faq-personas="privacy researcher feeds hoarder" data-faq-category="basics">
           <summary>利用にあたってアカウント登録は必要ですか？</summary>
-          <p>いいえ、不要です。インストール後、ご自身のAIプロバイダーのAPIキーを設定する（またはローカルのOllamaモデルを使用する）だけで、すぐに保存を始められます。アカウント登録が必要になるのは、キー不要で多彩なAIモデルが使える「byphil Cloud」を利用する場合や、ご寄付によってアンロックされるKindle／LocalSendへの送信枠を追加したい場合のみです。</p>
+          <p>いいえ。インストールし、ご自身のAIプロバイダーのキーを持ち込むか、ローカルのOllamaモデルを使えば、すぐに保存を始められます。アカウントが必要なのは、任意のbyphil Cloudアクセスや、追加のKindle/LocalSend送信を利用する場合だけです。 <a href="blog/bring-your-own-key.html">プロバイダーの選択肢を見る →</a></p>
         </details>
-        <details>
+        <details data-faq-personas="privacy researcher feeds hoarder" data-faq-category="privacy">
           <summary>ブラウザから外部へ送信されるデータは何ですか？</summary>
-          <p>外部へ送信されるのは、設定したAIプロバイダーへの要約リクエストのみです（RSSリーダー使用時の購読フィードへのリクエスト、およびAIダイジェストをクリックした際のその日のヘッドラインと短いスニペットを含みます）。検索、重複検出、タグの整理、読解レベルや感情分析のスコアリング、「関連記事」のレコメンドは、すべて保存されたアーカイブに対してローカル環境で実行されます。</p>
+          <p>AIプロバイダーに送信されるのは、要約リクエストのみです。RSSも購読フィードへのリクエストが必要です。AIまとめは、あなたが要求したときにのみ見出しと短い抜粋を送信します。検索、重複検出、タグ、レコメンドはローカルで実行されます。 <a href="blog/on-device-architecture.html">オンデバイスアーキテクチャを見る →</a></p>
         </details>
-        <details>
+        <details data-faq-personas="privacy" data-faq-category="privacy">
+          <summary>自分のページやハイライトはモデルの学習に使われますか？</summary>
+          <p>AI Summary Helperは、あなたのコンテンツを自社モデルの学習に使用しません。BYOKの場合、選択したプロバイダーのデータポリシーが適用されます。Ollamaの場合、要約リクエストはお使いのマシン上にとどまります。 <a href="privacy.html">プライバシーモデルを読む →</a></p>
+        </details>
+        <details data-faq-personas="privacy" data-faq-category="privacy">
           <summary>クラウドに一切依存せずに運用することは可能ですか？</summary>
-          <p>可能です。ローカルのOllamaモデルを指定すれば、要約処理も含めてすべて端末内で完結します。その他の機能はすでに完全にオンデバイスで動作しています。</p>
+          <p>はい。ローカルのOllamaモデルを指定すれば、要約ステップもお使いのマシン上にとどまります。それ以外はすでにすべてローカルで動作しています。 <a href="blog/bring-your-own-key.html">BYOKとOllamaを比較 →</a></p>
         </details>
-        <details>
-          <summary>プロジェクトへの支援を停止した場合、保存したデータはどうなりますか？</summary>
-          <p>アーカイブはお使いの端末のブラウザローカルストレージ内にそのまま保持されます。Support Passはクラウド依存の追加機能（byphil Cloud AIアクセス、無制限のKindle/LocalSend送信）のみを制限するものであり、保存済みのデータへのアクセスが制限されることはありません。</p>
+        <details data-faq-personas="privacy hoarder researcher" data-faq-category="archive">
+          <summary>読書アーカイブはどこに保存されますか？</summary>
+          <p>デフォルトでは、お使いのデバイスのブラウザ内です。Markdownとしてエクスポートしたり、ご自身のNextcloud、WebDAVサーバー、S3バケット、ローカルフォルダに暗号化してバックアップできます。 <a href="blog/sync-to-nextcloud-s3-or-a-folder.html">同期ガイドを読む →</a></p>
         </details>
-        <details>
+        <details data-faq-personas="privacy hoarder researcher" data-faq-category="archive privacy">
+          <summary>ブラウザのデータを消去するとどうなりますか？</summary>
+          <p>バックアップがない場合、ローカルのブラウザデータを消去するとローカルアーカイブが失われる可能性があります。ブラウザデータの消去やプロファイルの変更の前に、ライブラリをエクスポートするか、ご自身のストレージへの暗号化同期を設定してください。 <a href="blog/sync-to-nextcloud-s3-or-a-folder.html">バックアップと同期のガイドを読む →</a></p>
+        </details>
+        <details data-faq-personas="privacy researcher feeds" data-faq-category="ai">
+          <summary>対応しているAIプロバイダーとモデルは？</summary>
+          <p>OpenAI、Gemini、Mistral、DeepSeek、互換性のあるカスタムエンドポイント、またはローカルのOllamaモデルを使用できます。ご自身のキーを持ち込むか、任意のbyphil Cloudアクセスを利用できます。 <a href="blog/bring-your-own-key.html">BYOKの仕組みを見る →</a></p>
+        </details>
+        <details data-faq-personas="researcher feeds" data-faq-category="ai">
+          <summary>PDF、YouTube動画、RSSの項目も要約できますか？</summary>
+          <p>はい。ブラウザで開いたPDFやディスクから添付したPDF、字幕を使ったYouTube動画、内蔵RSSリーダーの記事を要約できます。 <a href="blog/videos.html">ワークフロー動画を見る →</a> <a href="blog/feeds-recap.html">フィードダイジェストについて読む →</a></p>
+        </details>
+        <details data-faq-personas="researcher feeds" data-faq-category="ai">
+          <summary>AIの要約はどの程度信頼できますか？</summary>
+          <p>AIの出力は誤ることがあり、出典の確認に代わるものではありません。追加の回答には、根拠とした箇所が表示されるので、要約と元のページを比較できます。 <a href="blog/verify-ai-summary.html">10秒でできる出典チェックを見る →</a></p>
+        </details>
+        <details data-faq-personas="privacy researcher feeds hoarder" data-faq-category="platforms">
+          <summary>対応しているブラウザとプラットフォームは？</summary>
+          <p>ブラウザ拡張機能、ネイティブのサイドパネル、ブックマークレットを使用できます。Androidコンパニオンアプリでスマートフォンからリンクを追加できます。iOSはまだ利用できません。 <a href="blog/from-bookmarklet-to-2.html">ブラウザとキャプチャのワークフローを見る →</a></p>
+        </details>
+        <details data-faq-personas="shared" data-faq-category="platforms">
           <summary>Androidコンパニオンアプリのインストール方法は？</summary>
-          <p>上記のリンク（または <a href="https://github.com/philffm/ai-summary-helper/releases/latest" target="_blank" rel="noopener">最新リリース</a>）からAPKをダウンロードして開き、Androidの確認画面でブラウザからのインストールを許可してください。その後、拡張機能の「Settings → Phone inbox」にあるQRコードをスキャンしてペアリングします。※現在Google Playでは未配信です。</p>
+          <p>APKは次からダウンロードできます： <a href="https://github.com/philffm/ai-summary-helper/releases/latest" target="_blank" rel="noopener">最新リリース</a>その後、設定 → Phone inbox のQRコードをスキャンしてペアリングします。Google Playではまだ配信されていません。 <a href="blog/from-bookmarklet-to-2.html">キャプチャがワークフローにどう組み込まれるか読む →</a></p>
         </details>
-        <details>
+        <details data-faq-personas="shared" data-faq-category="basics">
+          <summary>Support Passで何が使えるようになりますか？</summary>
+          <p>Support Passは独立したオープンソース開発を支え、任意のbyphil Cloud AIアクセスや追加のKindle/LocalSend送信を利用できるようにします。ローカルアーカイブとローカルでの利用がこれによってロックされることはありません。 <a href="blog/bring-your-own-key.html">任意のクラウドの境界について理解する →</a></p>
+        </details>
+        <details data-faq-personas="hoarder" data-faq-category="basics">
+          <summary>プロジェクトへの支援を停止した場合、保存したデータはどうなりますか？</summary>
+          <p>アーカイブはお使いの端末のブラウザローカルストレージ内にそのまま保持されます。Support Passはクラウド依存の追加機能（byphil Cloud AIアクセス、無制限のKindle/LocalSend送信）のみを制限するものであり、保存済みのデータへのアクセスが制限されることはありません。 <a href="blog/unread-saves.html">Digestが保存した記事を再び役立つものにする方法を見る →</a></p>
+        </details>
+        <details data-faq-personas="privacy researcher feeds hoarder" data-faq-category="basics">
           <summary>オープンソースですか？</summary>
-          <p>はい。拡張機能のソースコードは <a href="https://github.com/philffm/ai-summary-helper/" target="_blank" rel="noopener">GitHub</a>、AGPL-3.0ライセンスの下で提供されています。個人利用、教育目的、非営利目的でのご利用は無料です。AGPLの条項外での利用をご希望の企業向けには、商用ライセンスをご用意しています。</p>
+          <p>はい。拡張機能のソースコードは <a href="https://github.com/philffm/ai-summary-helper/" target="_blank" rel="noopener">GitHub</a>、AGPL-3.0ライセンスの下で提供されています。個人利用、教育目的、非営利目的でのご利用は無料です。AGPLの条項外での利用をご希望の企業向けには、商用ライセンスをご用意しています。 <a href="blog/on-device-architecture.html">ローカルアーキテクチャについて読む →</a></p>
         </details>
       </div>
     </div>

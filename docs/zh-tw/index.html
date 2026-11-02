@@ -2,7 +2,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <meta name="theme-color" content="#08090C">
-<title>AI Summary Helper：網頁摘要、儲存與搜尋一鍵搞定</title>
+<title>AI Summary Helper：你的私人 AI 閱讀與知識夥伴</title>
 <script>
 // Old language links were /?lang=xx. GitHub Pages cannot 301 a query string, so send them to the language folder (canonical already points to /).
 (function () {
@@ -14,7 +14,7 @@
   location.replace('/' + (dir ? dir + '/' : '') + location.hash);
 })();
 </script>
-<meta name="description" content="運用 AI 自動產生網頁摘要的 Chrome 擴充功能，支援 RSS 訂閱並建立可搜尋的個人知識庫。搜尋與推薦皆在您的本機裝置端完成，兼顧隱私與效率。">
+<meta name="description" content="把閱讀化為真正留下的知識。AI Summary Helper 是注重隱私、以本機為優先的閱讀夥伴，支援文章、PDF 與影片，提供附來源連結的答案與可搜尋的典藏庫。">
 
 <script>
   (function(){
@@ -34,7 +34,7 @@
 <link rel="stylesheet" href="../assets/styles.css">
 
 <meta property="og:title" content="AI Summary Helper">
-<meta property="og:description" content="在本機端摘要、儲存並搜尋網頁。專為不想再讓閱讀清單石沉大海的人所打造的 Chrome 擴充功能。">
+<meta property="og:description" content="透過附來源連結的答案、私人可搜尋典藏庫與本機優先的 AI，把閱讀化為真正留下的知識。">
 <meta property="og:url" content="https://ai-summary-helper.byphil.eu/zh-tw/">
 <meta property="og:type" content="website">
 <meta property="og:image" content="https://ai-summary-helper.byphil.eu/assets/shots/aish-hero-en.webp">
@@ -43,7 +43,7 @@
 <meta name="twitter:card" content="summary_large_image">
 
 <script src="../assets/analytics.js"></script>
-<link rel="alternate" hreflang="en" href="https://ai-summary-helper.byphil.eu/"><link rel="alternate" hreflang="zh-Hant" href="https://ai-summary-helper.byphil.eu/zh-tw/"><meta property="og:site_name" content="AI Summary Helper"><meta property="og:locale" content="zh_TW"><meta name="twitter:title" content="AI Summary Helper"><meta name="twitter:description" content="在本機端摘要、儲存並搜尋網頁。專為不想再讓閱讀清單石沉大海的人所打造的 Chrome 擴充功能。"><meta name="twitter:image" content="https://ai-summary-helper.byphil.eu/assets/shots/aish-hero-en.webp"><link rel="canonical" href="https://ai-summary-helper.byphil.eu/zh-tw/"><script type="application/ld+json" data-seo="ld">{"@context":"https://schema.org","@graph":[{"@type":"WebSite","@id":"https://ai-summary-helper.byphil.eu/#website","url":"https://ai-summary-helper.byphil.eu/","name":"AI Summary Helper","inLanguage":"zh-Hant","publisher":{"@id":"https://byphil.eu/#org"}},{"@type":"SoftwareApplication","@id":"https://ai-summary-helper.byphil.eu/#app","name":"AI Summary Helper","url":"https://ai-summary-helper.byphil.eu/zh-tw/","description":"運用 AI 自動產生網頁摘要的 Chrome 擴充功能，支援 RSS 訂閱並建立可搜尋的個人知識庫。搜尋與推薦皆在您的本機裝置端完成，兼顧隱私與效率。","applicationCategory":"BrowserApplication","operatingSystem":"Chrome, Chromium browsers, Firefox, Android (beta companion app)","installUrl":"https://chromewebstore.google.com/detail/ai-summary-helper-openai/hldbejcjaedipeegjcinmhejdndchkmb","downloadUrl":"https://chromewebstore.google.com/detail/ai-summary-helper-openai/hldbejcjaedipeegjcinmhejdndchkmb","image":"https://ai-summary-helper.byphil.eu/assets/shots/aish-hero-en.webp","inLanguage":"zh-Hant","offers":{"@type":"Offer","price":"0","priceCurrency":"EUR","description":"Free; a donation (Support Pass) unlocks byphil Cloud with many AI models"},"author":{"@id":"https://byphil.eu/#org"},"publisher":{"@type":"Organization","@id":"https://byphil.eu/#org","name":"byphil","url":"https://byphil.eu/"}},{"@type":"FAQPage","@id":"https://ai-summary-helper.byphil.eu/zh-tw/#faq","inLanguage":"zh-Hant","mainEntity":[{"@type":"Question","name":"使用前需要先註冊帳號嗎？","acceptedAnswer":{"@type":"Answer","text":"不需要。安裝後只要填入你自己的 AI 服務商 API Key（或直接使用本機 Ollama 模型），就能立即開始儲存。只有當你想使用 byphil Cloud（免 Key 即可使用多款 AI 模型），或是想解鎖贊助專屬的更多 Kindle／LocalSend 傳送額度時，才需要註冊帳號。"}},{"@type":"Question","name":"究竟有哪些資料會離開我的瀏覽器？","acceptedAnswer":{"@type":"Answer","text":"系統只會發送摘要請求至你所設定的 AI 提供商；若使用 RSS 閱讀器，則會向你訂閱的 Feed 發出連線請求；且僅在點擊 AI 重點回顧時，才會傳送當日的頭條與簡短摘要。搜尋、重複內容偵測、標籤清理、閱讀難度與情緒分析，以及「相關文章」推薦等功能，皆完全在本機端針對你已儲存的封存庫進行運算。"}},{"@type":"Question","name":"可以完全不依賴雲端執行嗎？","acceptedAnswer":{"@type":"Answer","text":"可以 — 只要設定連接本機 Ollama 模型，就連摘要步驟也能完全在你的電腦上完成。其餘功能本來就完全在本機運行。"}},{"@type":"Question","name":"如果我停止贊助專案，已儲存的內容會受到影響嗎？","acceptedAnswer":{"@type":"Answer","text":"你的檔案庫依然安全儲存在原處 — 即你裝置上的瀏覽器本機儲存空間（Local Storage）。Support Pass 僅限制依賴雲端的額外功能（byphil Cloud AI 存取、無限次 Kindle/LocalSend 傳送），絕不會鎖定或限制你已儲存的內容。"}},{"@type":"Question","name":"如何安裝 Android Companion？","acceptedAnswer":{"@type":"Answer","text":"從上方連結下載 APK（或前往 最新版本），開啟檔案並在 Android 系統提示時允許從瀏覽器安裝。接著在擴充功能的「設定」→「手機收件匣」中掃描 QR Code 進行配對。目前尚未在 Google Play 上架。"}},{"@type":"Question","name":"這是開源專案嗎？","acceptedAnswer":{"@type":"Answer","text":"是的 — 擴充功能原始碼已公開於 GitHub，採用 AGPL-3.0 授權條款。個人、教育與非營利用途完全免費；若企業需要在 AGPL 條款規範之外使用，可取得商業授權。"}}]}]}</script><script type="application/ld+json" data-seo-video="">{"@context":"https://schema.org","@graph":[{"@type":"VideoObject","name":"一分鐘快速掌握 AI Summary Helper","description":"一次快速瀏覽所有核心功能：內容摘要、引用來源、研究模式、收藏庫、訂閱源、AI 應用以及更多功能。","thumbnailUrl":["https://ai-summary-helper.byphil.eu/assets/blog/video/komplett-en.jpg"],"uploadDate":"2026-10-27T00:00:00+00:00","duration":"PT0M45S","contentUrl":"https://ai-summary-helper.byphil.eu/assets/blog/video/komplett-en.mp4","inLanguage":"en","transcript":"Everything it can do in under a minute! Summarize any page! YouTube videos? Done! PDFs? Done! Every answer shows its source! The AI marks the key passages! Papers recognised by their DOI! Compare sources on one question! Forty-one languages! Read aloud while it writes! A library with search and stats! Your reading, as a report! Your reading as a knowledge graph! RSS feeds with a daily recap! Only the good news, if you like! Send it to your Kindle! Export to Obsidian, Word, PDF! Your library inside your AI apps! Your key, a local model, or cloud!","isFamilyFriendly":true,"publisher":{"@id":"https://byphil.eu/#org"}},{"@type":"VideoObject","name":"對照答案與原文出處","description":"隨時延伸提問，一鍵直接跳轉至答案引用的原文段落。","thumbnailUrl":["https://ai-summary-helper.byphil.eu/assets/blog/video/quellen-zh-tw.jpg"],"uploadDate":"2026-10-21T00:00:00+00:00","duration":"PT0M18S","contentUrl":"https://ai-summary-helper.byphil.eu/assets/blog/video/quellen-zh-tw.mp4","inLanguage":"zh-tw","transcript":"AI 回答，有據可查。可以接著追問。每個回答都會告訴你，它出自原文的哪一段。","isFamilyFriendly":true,"publisher":{"@id":"https://byphil.eu/#org"}},{"@type":"VideoObject","name":"向你的劃線重點提問","description":"選取重點段落並隨時提問，獲得精準標註出處的解答。","thumbnailUrl":["https://ai-summary-helper.byphil.eu/assets/blog/video/highlights-zh-tw.jpg"],"uploadDate":"2026-10-21T00:00:00+00:00","duration":"PT0M22S","contentUrl":"https://ai-summary-helper.byphil.eu/assets/blog/video/highlights-zh-tw.mp4","inLanguage":"zh-tw","transcript":"光劃重點，幾乎沒用。這是一項大型學習方法綜述得出的結論。所以別停在高亮這一步，去問一問，答案會告訴你它出自哪裡。","isFamilyFriendly":true,"publisher":{"@id":"https://byphil.eu/#org"}},{"@type":"VideoObject","name":"一份精華彙整，取代 40 個資訊來源","description":"一鍵將全日訂閱動態濃縮為精準簡報。","thumbnailUrl":["https://ai-summary-helper.byphil.eu/assets/blog/video/feeds-zh-tw.jpg"],"uploadDate":"2026-10-21T00:00:00+00:00","duration":"PT0M18S","contentUrl":"https://ai-summary-helper.byphil.eu/assets/blog/video/feeds-zh-tw.mp4","inLanguage":"zh-tw","transcript":"會做摘要的 RSS 閱讀器。訂閱你喜歡的來源。點一下，就能得到整天內容的簡報。","isFamilyFriendly":true,"publisher":{"@id":"https://byphil.eu/#org"}},{"@type":"VideoObject","name":"將閱讀歷程化為知識圖譜","description":"依主題串聯相關文章，隨時掌握任一主題的重點摘要。","thumbnailUrl":["https://ai-summary-helper.byphil.eu/assets/blog/video/graph-zh-tw.jpg"],"uploadDate":"2026-10-21T00:00:00+00:00","duration":"PT0M19S","contentUrl":"https://ai-summary-helper.byphil.eu/assets/blog/video/graph-zh-tw.mp4","inLanguage":"zh-tw","transcript":"讀過的內容，彼此相連。你的知識圖譜會通過主題，把文章連在一起。點一個主題，就能得到你讀過的所有相關內容的簡報。","isFamilyFriendly":true,"publisher":{"@id":"https://byphil.eu/#org"}},{"@type":"VideoObject","name":"告別待讀堆積，濃縮成一份精選摘要","description":"將儲存的 3 篇文章打包成專屬雜誌，直接送到 Kindle 閱讀。","thumbnailUrl":["https://ai-summary-helper.byphil.eu/assets/blog/video/digest-zh-tw.jpg"],"uploadDate":"2026-10-21T00:00:00+00:00","duration":"PT0M20S","contentUrl":"https://ai-summary-helper.byphil.eu/assets/blog/video/digest-zh-tw.mp4","inLanguage":"zh-tw","transcript":"存得多，讀得少。那就把這一堆變成一份合集：選幾篇保存的文章，它們就會像一本雜誌一樣，出現在你的 Kindle 上。","isFamilyFriendly":true,"publisher":{"@id":"https://byphil.eu/#org"}},{"@type":"VideoObject","name":"你的金鑰。你的模型。你的資料。","description":"使用你自己的 API Key、透過 Ollama 運行本機模型，或選用 byPhil Cloud。","thumbnailUrl":["https://ai-summary-helper.byphil.eu/assets/blog/video/privat-zh-tw.jpg"],"uploadDate":"2026-10-21T00:00:00+00:00","duration":"PT0M23S","contentUrl":"https://ai-summary-helper.byphil.eu/assets/blog/video/privat-zh-tw.mp4","inLanguage":"zh-tw","transcript":"隱私是一種權衡。風險一清楚，人們就會少分享。所以由你來選：用自己的 API 密鑰，用 Ollama 跑本地模型，或者免設置的 byPhil Cloud。你的資料庫留在瀏覽器裡。","isFamilyFriendly":true,"publisher":{"@id":"https://byphil.eu/#org"}},{"@type":"VideoObject","name":"更強大的 Pocket 替代方案","description":"儲存內容、快速摘要，並直接傳送至 Kindle。","thumbnailUrl":["https://ai-summary-helper.byphil.eu/assets/blog/video/pocket-zh-tw.jpg"],"uploadDate":"2026-10-21T00:00:00+00:00","duration":"PT0M19S","contentUrl":"https://ai-summary-helper.byphil.eu/assets/blog/video/pocket-zh-tw.mp4","inLanguage":"zh-tw","transcript":"Pocket 沒了，怎麼辦？一鍵保存任何頁面，頂部還附帶摘要。資料庫有標籤和搜索，還能發送到你的 Kindle。免費，而且一切都留在你的設備上。","isFamilyFriendly":true,"publisher":{"@id":"https://byphil.eu/#org"}},{"@type":"VideoObject","name":"從摘要速讀到 Kindle 深度閱讀","description":"這個專案最初誕生的閱讀習慣。","thumbnailUrl":["https://ai-summary-helper.byphil.eu/assets/blog/video/senden-zh-tw.jpg"],"uploadDate":"2026-10-21T00:00:00+00:00","duration":"PT0M19S","contentUrl":"https://ai-summary-helper.byphil.eu/assets/blog/video/senden-zh-tw.mp4","inLanguage":"zh-tw","transcript":"從摘要直達 Kindle。摘要這個頁面，打開選單，發送到 Kindle。幾秒鐘後，它就出現在你的電子書閱讀器上，躺在沙發上就能讀。","isFamilyFriendly":true,"publisher":{"@id":"https://byphil.eu/#org"}},{"@type":"VideoObject","name":"72 分鐘的演講，重點一目了然","description":"根據影片字幕產生摘要，延伸提問還能精準引述對應段落。","thumbnailUrl":["https://ai-summary-helper.byphil.eu/assets/blog/video/ytvideo-zh-tw.jpg"],"uploadDate":"2026-10-21T00:00:00+00:00","duration":"PT0M19S","contentUrl":"https://ai-summary-helper.byphil.eu/assets/blog/video/ytvideo-zh-tw.mp4","inLanguage":"zh-tw","transcript":"七十二分鐘的講座，誰有空看？打開視頻，點一下摘要。擴展會讀取字幕，你就能用自己的語言拿到要點。接著追問，每個回答都會指出文字記錄裡的對應段落。","isFamilyFriendly":true,"publisher":{"@id":"https://byphil.eu/#org"}},{"@type":"VideoObject","name":"84 頁的 PDF，數秒內讀完","description":"直接在瀏覽器開啟 PDF，就能以你的慣用語言產生重點摘要。","thumbnailUrl":["https://ai-summary-helper.byphil.eu/assets/blog/video/pdf-zh-tw.jpg"],"uploadDate":"2026-10-21T00:00:00+00:00","duration":"PT0M22S","contentUrl":"https://ai-summary-helper.byphil.eu/assets/blog/video/pdf-zh-tw.mp4","inLanguage":"zh-tw","transcript":"八十四頁的 PDF，誰會讀？在瀏覽器裡打開 PDF，點一下摘要。報告、研究、手冊：幾秒鐘拿到要點，還是用你的語言。而且你能看到模型讀了什麼。","isFamilyFriendly":true,"publisher":{"@id":"https://byphil.eu/#org"}},{"@type":"VideoObject","name":"透過 DOI 自動辨識學術論文","description":"一眼看清臨床試驗、綜述或預印本；自動擷取關鍵事實，並由 DOI 直接產生引用格式。","thumbnailUrl":["https://ai-summary-helper.byphil.eu/assets/blog/video/paper-zh-tw.jpg"],"uploadDate":"2026-10-21T00:00:00+00:00","duration":"PT0M25S","contentUrl":"https://ai-summary-helper.byphil.eu/assets/blog/video/paper-zh-tw.mp4","inLanguage":"zh-tw","transcript":"預印本還是同行評審？引用前先弄清。摘要一篇論文，它會憑 DOI 被識別出來。試驗、綜述還是預印本，一眼就能看出。研究設計、樣本和局限會被提取出來，引用信息直接來自 DOI 註冊庫。","isFamilyFriendly":true,"publisher":{"@id":"https://byphil.eu/#org"}},{"@type":"VideoObject","name":"一個問題，比對五個資料來源","description":"建立主題集合，比對不同來源的共識、分歧與各自忽略的盲點。","thumbnailUrl":["https://ai-summary-helper.byphil.eu/assets/blog/video/recherche-zh-tw.jpg"],"uploadDate":"2026-10-21T00:00:00+00:00","duration":"PT0M23S","contentUrl":"https://ai-summary-helper.byphil.eu/assets/blog/video/recherche-zh-tw.mp4","inLanguage":"zh-tw","transcript":"一個問題，五個來源，分歧在哪？把保存的文章歸到一個問題下。每個來源都有類型：同行評審、預印本、新聞或評論。點一下就能對比：哪裡一致，哪裡有分歧，還缺什麼。","isFamilyFriendly":true,"publisher":{"@id":"https://byphil.eu/#org"}},{"@type":"VideoObject","name":"AI 預覽畫重點","description":"AI 自動標註文章核心段落。你可以選擇保留畫線，或隨手關閉。","thumbnailUrl":["https://ai-summary-helper.byphil.eu/assets/blog/video/ghost-zh-tw.jpg"],"uploadDate":"2026-10-21T00:00:00+00:00","duration":"PT0M21S","contentUrl":"https://ai-summary-helper.byphil.eu/assets/blog/video/ghost-zh-tw.mp4","inLanguage":"zh-tw","transcript":"AI 替你標出重點。摘要之後，AI 會直接在文章裡標出最關鍵的段落，也就是幽靈高亮。點一下保留它，或者忽略它。瀏覽就這樣變成了有目的的閱讀。","isFamilyFriendly":true,"publisher":{"@id":"https://byphil.eu/#org"}},{"@type":"VideoObject","name":"你的新聞閱讀，也有情緒曲線","description":"一鍵切換好消息模式，視覺化追蹤數週以來的資訊情緒變化。","thumbnailUrl":["https://ai-summary-helper.byphil.eu/assets/blog/video/stimmung-zh-tw.jpg"],"uploadDate":"2026-10-21T00:00:00+00:00","duration":"PT0M22S","contentUrl":"https://ai-summary-helper.byphil.eu/assets/blog/video/stimmung-zh-tw.mp4","inLanguage":"zh-tw","transcript":"你的新聞有情緒。AI 會給每條標題評分，從負面到正面。點一下笑臉，只剩下好消息。情緒走勢圖還會告訴你，這幾周的閱讀心情如何。","isFamilyFriendly":true,"publisher":{"@id":"https://byphil.eu/#org"}},{"@type":"VideoObject","name":"即時朗讀","description":"AI 一邊生成摘要，一邊同步語音朗讀，零等待。","thumbnailUrl":["https://ai-summary-helper.byphil.eu/assets/blog/video/instant-zh-tw.jpg"],"uploadDate":"2026-10-21T00:00:00+00:00","duration":"PT0M28S","contentUrl":"https://ai-summary-helper.byphil.eu/assets/blog/video/instant-zh-tw.mp4","inLanguage":"zh-tw","transcript":"何必等摘要寫完？打開即時朗讀，摘要還在撰寫的時候，就已經讀給你聽了。","isFamilyFriendly":true,"publisher":{"@id":"https://byphil.eu/#org"}},{"@type":"VideoObject","name":"在 AI 應用中取用你的個人庫藏","description":"Claude Desktop、LM Studio 與 Cursor 能直接搜尋你的庫藏、引用劃線重點並註明資料來源。","thumbnailUrl":["https://ai-summary-helper.byphil.eu/assets/blog/video/mcp-en.jpg"],"uploadDate":"2026-10-27T00:00:00+00:00","duration":"PT0M27S","contentUrl":"https://ai-summary-helper.byphil.eu/assets/blog/video/mcp-en.mp4","inLanguage":"en","transcript":"Your AI app has never read what you read. Claude Desktop, LM Studio or Cursor can now search your library and quote your highlights. Ask what is due, let it save the best from your feeds, or ask for your year, wrapped. Nothing goes through our server, and you choose what they may read.","isFamilyFriendly":true,"publisher":{"@id":"https://byphil.eu/#org"}},{"@type":"VideoObject","name":"匯出至 Obsidian 及更多平台","description":"每篇摘要都能整理成乾淨俐落的筆記匯出：Obsidian、Markdown、Word、ODT 或 PDF。","thumbnailUrl":["https://ai-summary-helper.byphil.eu/assets/blog/video/export-en.jpg"],"uploadDate":"2026-10-27T00:00:00+00:00","duration":"PT0M23S","contentUrl":"https://ai-summary-helper.byphil.eu/assets/blog/video/export-en.mp4","inLanguage":"en","transcript":"Your summaries belong in your notes. Every summary leaves as a clean note: to Obsidian, as Markdown, Word, OpenDocument or PDF. With the title, the source, your tags and your highlights, ready to keep.","isFamilyFriendly":true,"publisher":{"@id":"https://byphil.eu/#org"}},{"@type":"VideoObject","name":"你的閱讀歷程分析報告","description":"連續閱讀天數、節省的時間、活躍度以及每週閱讀主題。","thumbnailUrl":["https://ai-summary-helper.byphil.eu/assets/blog/video/analytics-en.jpg"],"uploadDate":"2026-10-27T00:00:00+00:00","duration":"PT0M20S","contentUrl":"https://ai-summary-helper.byphil.eu/assets/blog/video/analytics-en.mp4","inLanguage":"en","transcript":"Where did your reading time go? Open Analytics and your library becomes a report: your streak, the time summaries saved you, your topics over the weeks and the words you keep coming back to.","isFamilyFriendly":true,"publisher":{"@id":"https://byphil.eu/#org"}},{"@type":"VideoObject","name":"支援 20 多種語言，跨平台通用","description":"以您偏好的語言閱讀並生成摘要。無論是擴充功能、原生側邊欄，還是 書籤小工具 —— 專為瀏覽器擴充功能無法涵蓋的場景而生。","thumbnailUrl":["https://ai-summary-helper.byphil.eu/assets/blog/video/sprache-zh-tw.jpg"],"uploadDate":"2026-10-21T00:00:00+00:00","duration":"PT0M19S","contentUrl":"https://ai-summary-helper.byphil.eu/assets/blog/video/sprache-zh-tw.mp4","inLanguage":"zh-tw","transcript":"讀外語，速度會變慢。眼動追蹤研究證實了這一點，連熟練的讀者也一樣。摘要支持四十一種語言：搜索，點選，完成。","isFamilyFriendly":true,"publisher":{"@id":"https://byphil.eu/#org"}},{"@type":"VideoObject","name":"真正的本機端全文搜尋","description":"涵蓋標題、標籤與文章內容的全文搜尋 — 由瀏覽器內建的 TF-IDF 索引驅動。零延遲、無網路往返，資料絕不上傳。","thumbnailUrl":["https://ai-summary-helper.byphil.eu/assets/blog/video/bibliothek-zh-tw.jpg"],"uploadDate":"2026-10-21T00:00:00+00:00","duration":"PT0M18S","contentUrl":"https://ai-summary-helper.byphil.eu/assets/blog/video/bibliothek-zh-tw.mp4","inLanguage":"zh-tw","transcript":"讀過的內容，一搜就到。你做過摘要的所有內容，都留在你的設備上。有標籤，有搜索，還有統計。","isFamilyFriendly":true,"publisher":{"@id":"https://byphil.eu/#org"}}]}</script></head>
+<link rel="alternate" hreflang="en" href="https://ai-summary-helper.byphil.eu/"><link rel="alternate" hreflang="zh-Hant" href="https://ai-summary-helper.byphil.eu/zh-tw/"><link rel="canonical" href="https://ai-summary-helper.byphil.eu/zh-tw/"><meta property="og:site_name" content="AI Summary Helper"><meta property="og:locale" content="zh_TW"><meta name="twitter:title" content="AI Summary Helper"><meta name="twitter:description" content="透過附來源連結的答案、私人可搜尋典藏庫與本機優先的 AI，把閱讀化為真正留下的知識。"><meta name="twitter:image" content="https://ai-summary-helper.byphil.eu/assets/shots/aish-hero-en.webp"><script type="application/ld+json" data-seo="ld">{"@context":"https://schema.org","@graph":[{"@type":"WebSite","@id":"https://ai-summary-helper.byphil.eu/#website","url":"https://ai-summary-helper.byphil.eu/","name":"AI Summary Helper","inLanguage":"zh-Hant","publisher":{"@id":"https://byphil.eu/#org"}},{"@type":"SoftwareApplication","@id":"https://ai-summary-helper.byphil.eu/#app","name":"AI Summary Helper","url":"https://ai-summary-helper.byphil.eu/zh-tw/","description":"把閱讀化為真正留下的知識。AI Summary Helper 是注重隱私、以本機為優先的閱讀夥伴，支援文章、PDF 與影片，提供附來源連結的答案與可搜尋的典藏庫。","applicationCategory":"BrowserApplication","operatingSystem":"Chrome, Chromium browsers, Firefox, Android (beta companion app)","installUrl":"https://chromewebstore.google.com/detail/ai-summary-helper-openai/hldbejcjaedipeegjcinmhejdndchkmb","downloadUrl":"https://chromewebstore.google.com/detail/ai-summary-helper-openai/hldbejcjaedipeegjcinmhejdndchkmb","image":"https://ai-summary-helper.byphil.eu/assets/shots/aish-hero-en.webp","inLanguage":"zh-Hant","offers":{"@type":"Offer","price":"0","priceCurrency":"EUR","description":"Free; a donation (Support Pass) unlocks byphil Cloud with many AI models"},"author":{"@id":"https://byphil.eu/#org"},"publisher":{"@type":"Organization","@id":"https://byphil.eu/#org","name":"byphil","url":"https://byphil.eu/"}},{"@type":"FAQPage","@id":"https://ai-summary-helper.byphil.eu/zh-tw/#faq","inLanguage":"zh-Hant","mainEntity":[{"@type":"Question","name":"使用前需要先註冊帳號嗎？","acceptedAnswer":{"@type":"Answer","text":"不用。安裝後，帶上你自己的 AI 供應商金鑰，或使用本機 Ollama 模型，就能開始儲存。只有選用的 byphil Cloud 存取或額外的 Kindle/LocalSend 傳送才需要帳號。 查看供應商選項 →"}},{"@type":"Question","name":"究竟有哪些資料會離開我的瀏覽器？","acceptedAnswer":{"@type":"Answer","text":"只有摘要請求會送到你設定的 AI 供應商。RSS 也需要向你的訂閱來源發出請求；AI 摘要回顧只在你要求時傳送標題與簡短片段。搜尋、重複偵測、標籤與推薦都在本機執行。 查看裝置端架構 →"}},{"@type":"Question","name":"我的頁面或標示內容會被用來訓練模型嗎？","acceptedAnswer":{"@type":"Answer","text":"AI Summary Helper 不會使用你的內容訓練自家模型。使用 BYOK 時，適用你所選供應商的資料政策。使用 Ollama 時，摘要請求會留在你的機器上。 閱讀隱私模式 →"}},{"@type":"Question","name":"可以完全不依賴雲端執行嗎？","acceptedAnswer":{"@type":"Answer","text":"可以。指向本機 Ollama 模型，摘要步驟也會留在你的機器上。其他一切本來就在本機執行。 比較 BYOK 與 Ollama →"}},{"@type":"Question","name":"我的閱讀典藏庫存放在哪裡？","acceptedAnswer":{"@type":"Answer","text":"預設存放在你裝置上的瀏覽器中。你可以將它匯出為 Markdown，或加密備份到你自己的 Nextcloud、WebDAV 伺服器、S3 儲存桶或本機資料夾。 閱讀同步指南 →"}},{"@type":"Question","name":"如果我清除瀏覽器資料會怎樣？","acceptedAnswer":{"@type":"Answer","text":"若沒有備份，清除本機瀏覽器資料可能會移除本機典藏庫。在清除瀏覽器資料或更換設定檔之前，請先匯出你的藏書庫，或設定加密同步到你自己的儲存空間。 閱讀備份與同步指南 →"}},{"@type":"Question","name":"支援哪些 AI 供應商與模型？","acceptedAnswer":{"@type":"Answer","text":"你可以使用 OpenAI、Gemini、Mistral、DeepSeek、相容的自訂端點，或本機 Ollama 模型。帶上你自己的金鑰，或使用選用的 byphil Cloud 存取。 了解 BYOK 如何運作 →"}},{"@type":"Question","name":"我可以摘要 PDF、YouTube 影片與 RSS 項目嗎？","acceptedAnswer":{"@type":"Answer","text":"可以。可摘要瀏覽器中開啟或從磁碟附加的 PDF、透過字幕的 YouTube 影片，以及內建 RSS 閱讀器中的文章。 觀看工作流程影片 → 了解訂閱摘要包 →"}},{"@type":"Question","name":"AI 摘要有多可靠？","acceptedAnswer":{"@type":"Answer","text":"AI 輸出可能有誤，無法取代查核來源。追問的答案會顯示所依據的段落，讓你能將摘要與原始頁面相互對照。 學會 10 秒來源查核 →"}},{"@type":"Question","name":"支援哪些瀏覽器與平台？","acceptedAnswer":{"@type":"Answer","text":"可使用瀏覽器擴充功能、原生側邊面板或書籤小工具。Android 版應用程式可從手機加入連結；iOS 尚未提供。 查看瀏覽器與擷取工作流程 →"}},{"@type":"Question","name":"如何安裝 Android Companion？","acceptedAnswer":{"@type":"Answer","text":"從 最新版本下載 APK，接著在「設定 → 手機收件匣」掃描 QR 碼進行配對。目前尚未在 Google Play 上架。 了解擷取如何融入工作流程 →"}},{"@type":"Question","name":"Support Pass 能解鎖什麼？","acceptedAnswer":{"@type":"Answer","text":"Support Pass 資助獨立開放原始碼開發，並可解鎖選用的 byphil Cloud AI 存取或額外的 Kindle/LocalSend 傳送。你的本機典藏庫與本機使用不會被它鎖住。 了解選用雲端服務的界線 →"}},{"@type":"Question","name":"如果我停止贊助專案，已儲存的內容會受到影響嗎？","acceptedAnswer":{"@type":"Answer","text":"你的檔案庫依然安全儲存在原處 — 即你裝置上的瀏覽器本機儲存空間（Local Storage）。Support Pass 僅限制依賴雲端的額外功能（byphil Cloud AI 存取、無限次 Kindle/LocalSend 傳送），絕不會鎖定或限制你已儲存的內容。 看看 Digest 如何讓儲存的內容再次有用 →"}},{"@type":"Question","name":"這是開源專案嗎？","acceptedAnswer":{"@type":"Answer","text":"是的 — 擴充功能原始碼已公開於 GitHub，採用 AGPL-3.0 授權條款。個人、教育與非營利用途完全免費；若企業需要在 AGPL 條款規範之外使用，可取得商業授權。 了解本機架構 →"}}]}]}</script><script type="application/ld+json" data-seo-video="">{"@context":"https://schema.org","@graph":[{"@type":"VideoObject","name":"一分鐘快速掌握 AI Summary Helper","description":"一次快速瀏覽所有核心功能：內容摘要、引用來源、研究模式、收藏庫、訂閱源、AI 應用以及更多功能。","thumbnailUrl":["https://ai-summary-helper.byphil.eu/assets/blog/video/komplett-en.jpg"],"uploadDate":"2026-10-27T00:00:00+00:00","duration":"PT0M45S","contentUrl":"https://ai-summary-helper.byphil.eu/assets/blog/video/komplett-en.mp4","inLanguage":"en","transcript":"Everything it can do in under a minute! Summarize any page! YouTube videos? Done! PDFs? Done! Every answer shows its source! The AI marks the key passages! Papers recognised by their DOI! Compare sources on one question! Forty-one languages! Read aloud while it writes! A library with search and stats! Your reading, as a report! Your reading as a knowledge graph! RSS feeds with a daily recap! Only the good news, if you like! Send it to your Kindle! Export to Obsidian, Word, PDF! Your library inside your AI apps! Your key, a local model, or cloud!","isFamilyFriendly":true,"publisher":{"@id":"https://byphil.eu/#org"}},{"@type":"VideoObject","name":"對照答案與原文出處","description":"隨時延伸提問，一鍵直接跳轉至答案引用的原文段落。","thumbnailUrl":["https://ai-summary-helper.byphil.eu/assets/blog/video/quellen-zh-tw.jpg"],"uploadDate":"2026-10-21T00:00:00+00:00","duration":"PT0M18S","contentUrl":"https://ai-summary-helper.byphil.eu/assets/blog/video/quellen-zh-tw.mp4","inLanguage":"zh-tw","transcript":"AI 回答，有據可查。可以接著追問。每個回答都會告訴你，它出自原文的哪一段。","isFamilyFriendly":true,"publisher":{"@id":"https://byphil.eu/#org"}},{"@type":"VideoObject","name":"向你的劃線重點提問","description":"選取重點段落並隨時提問，獲得精準標註出處的解答。","thumbnailUrl":["https://ai-summary-helper.byphil.eu/assets/blog/video/highlights-zh-tw.jpg"],"uploadDate":"2026-10-21T00:00:00+00:00","duration":"PT0M22S","contentUrl":"https://ai-summary-helper.byphil.eu/assets/blog/video/highlights-zh-tw.mp4","inLanguage":"zh-tw","transcript":"光劃重點，幾乎沒用。這是一項大型學習方法綜述得出的結論。所以別停在高亮這一步，去問一問，答案會告訴你它出自哪裡。","isFamilyFriendly":true,"publisher":{"@id":"https://byphil.eu/#org"}},{"@type":"VideoObject","name":"一份精華彙整，取代 40 個資訊來源","description":"一鍵將全日訂閱動態濃縮為精準簡報。","thumbnailUrl":["https://ai-summary-helper.byphil.eu/assets/blog/video/feeds-zh-tw.jpg"],"uploadDate":"2026-10-21T00:00:00+00:00","duration":"PT0M18S","contentUrl":"https://ai-summary-helper.byphil.eu/assets/blog/video/feeds-zh-tw.mp4","inLanguage":"zh-tw","transcript":"會做摘要的 RSS 閱讀器。訂閱你喜歡的來源。點一下，就能得到整天內容的簡報。","isFamilyFriendly":true,"publisher":{"@id":"https://byphil.eu/#org"}},{"@type":"VideoObject","name":"將閱讀歷程化為知識圖譜","description":"依主題串聯相關文章，隨時掌握任一主題的重點摘要。","thumbnailUrl":["https://ai-summary-helper.byphil.eu/assets/blog/video/graph-zh-tw.jpg"],"uploadDate":"2026-10-21T00:00:00+00:00","duration":"PT0M19S","contentUrl":"https://ai-summary-helper.byphil.eu/assets/blog/video/graph-zh-tw.mp4","inLanguage":"zh-tw","transcript":"讀過的內容，彼此相連。你的知識圖譜會通過主題，把文章連在一起。點一個主題，就能得到你讀過的所有相關內容的簡報。","isFamilyFriendly":true,"publisher":{"@id":"https://byphil.eu/#org"}},{"@type":"VideoObject","name":"告別待讀堆積，濃縮成一份精選摘要","description":"將儲存的 3 篇文章打包成專屬雜誌，直接送到 Kindle 閱讀。","thumbnailUrl":["https://ai-summary-helper.byphil.eu/assets/blog/video/digest-zh-tw.jpg"],"uploadDate":"2026-10-21T00:00:00+00:00","duration":"PT0M20S","contentUrl":"https://ai-summary-helper.byphil.eu/assets/blog/video/digest-zh-tw.mp4","inLanguage":"zh-tw","transcript":"存得多，讀得少。那就把這一堆變成一份合集：選幾篇保存的文章，它們就會像一本雜誌一樣，出現在你的 Kindle 上。","isFamilyFriendly":true,"publisher":{"@id":"https://byphil.eu/#org"}},{"@type":"VideoObject","name":"你的金鑰。你的模型。你的資料。","description":"使用你自己的 API Key、透過 Ollama 運行本機模型，或選用 byPhil Cloud。","thumbnailUrl":["https://ai-summary-helper.byphil.eu/assets/blog/video/privat-zh-tw.jpg"],"uploadDate":"2026-10-21T00:00:00+00:00","duration":"PT0M23S","contentUrl":"https://ai-summary-helper.byphil.eu/assets/blog/video/privat-zh-tw.mp4","inLanguage":"zh-tw","transcript":"隱私是一種權衡。風險一清楚，人們就會少分享。所以由你來選：用自己的 API 密鑰，用 Ollama 跑本地模型，或者免設置的 byPhil Cloud。你的資料庫留在瀏覽器裡。","isFamilyFriendly":true,"publisher":{"@id":"https://byphil.eu/#org"}},{"@type":"VideoObject","name":"更強大的 Pocket 替代方案","description":"儲存內容、快速摘要，並直接傳送至 Kindle。","thumbnailUrl":["https://ai-summary-helper.byphil.eu/assets/blog/video/pocket-zh-tw.jpg"],"uploadDate":"2026-10-21T00:00:00+00:00","duration":"PT0M19S","contentUrl":"https://ai-summary-helper.byphil.eu/assets/blog/video/pocket-zh-tw.mp4","inLanguage":"zh-tw","transcript":"Pocket 沒了，怎麼辦？一鍵保存任何頁面，頂部還附帶摘要。資料庫有標籤和搜索，還能發送到你的 Kindle。免費，而且一切都留在你的設備上。","isFamilyFriendly":true,"publisher":{"@id":"https://byphil.eu/#org"}},{"@type":"VideoObject","name":"從摘要速讀到 Kindle 深度閱讀","description":"這個專案最初誕生的閱讀習慣。","thumbnailUrl":["https://ai-summary-helper.byphil.eu/assets/blog/video/senden-zh-tw.jpg"],"uploadDate":"2026-10-21T00:00:00+00:00","duration":"PT0M19S","contentUrl":"https://ai-summary-helper.byphil.eu/assets/blog/video/senden-zh-tw.mp4","inLanguage":"zh-tw","transcript":"從摘要直達 Kindle。摘要這個頁面，打開選單，發送到 Kindle。幾秒鐘後，它就出現在你的電子書閱讀器上，躺在沙發上就能讀。","isFamilyFriendly":true,"publisher":{"@id":"https://byphil.eu/#org"}},{"@type":"VideoObject","name":"72 分鐘的演講，重點一目了然","description":"根據影片字幕產生摘要，延伸提問還能精準引述對應段落。","thumbnailUrl":["https://ai-summary-helper.byphil.eu/assets/blog/video/ytvideo-zh-tw.jpg"],"uploadDate":"2026-10-21T00:00:00+00:00","duration":"PT0M19S","contentUrl":"https://ai-summary-helper.byphil.eu/assets/blog/video/ytvideo-zh-tw.mp4","inLanguage":"zh-tw","transcript":"七十二分鐘的講座，誰有空看？打開視頻，點一下摘要。擴展會讀取字幕，你就能用自己的語言拿到要點。接著追問，每個回答都會指出文字記錄裡的對應段落。","isFamilyFriendly":true,"publisher":{"@id":"https://byphil.eu/#org"}},{"@type":"VideoObject","name":"84 頁的 PDF，數秒內讀完","description":"直接在瀏覽器開啟 PDF，就能以你的慣用語言產生重點摘要。","thumbnailUrl":["https://ai-summary-helper.byphil.eu/assets/blog/video/pdf-zh-tw.jpg"],"uploadDate":"2026-10-21T00:00:00+00:00","duration":"PT0M22S","contentUrl":"https://ai-summary-helper.byphil.eu/assets/blog/video/pdf-zh-tw.mp4","inLanguage":"zh-tw","transcript":"八十四頁的 PDF，誰會讀？在瀏覽器裡打開 PDF，點一下摘要。報告、研究、手冊：幾秒鐘拿到要點，還是用你的語言。而且你能看到模型讀了什麼。","isFamilyFriendly":true,"publisher":{"@id":"https://byphil.eu/#org"}},{"@type":"VideoObject","name":"透過 DOI 自動辨識學術論文","description":"一眼看清臨床試驗、綜述或預印本；自動擷取關鍵事實，並由 DOI 直接產生引用格式。","thumbnailUrl":["https://ai-summary-helper.byphil.eu/assets/blog/video/paper-zh-tw.jpg"],"uploadDate":"2026-10-21T00:00:00+00:00","duration":"PT0M25S","contentUrl":"https://ai-summary-helper.byphil.eu/assets/blog/video/paper-zh-tw.mp4","inLanguage":"zh-tw","transcript":"預印本還是同行評審？引用前先弄清。摘要一篇論文，它會憑 DOI 被識別出來。試驗、綜述還是預印本，一眼就能看出。研究設計、樣本和局限會被提取出來，引用信息直接來自 DOI 註冊庫。","isFamilyFriendly":true,"publisher":{"@id":"https://byphil.eu/#org"}},{"@type":"VideoObject","name":"一個問題，比對五個資料來源","description":"建立主題集合，比對不同來源的共識、分歧與各自忽略的盲點。","thumbnailUrl":["https://ai-summary-helper.byphil.eu/assets/blog/video/recherche-zh-tw.jpg"],"uploadDate":"2026-10-21T00:00:00+00:00","duration":"PT0M23S","contentUrl":"https://ai-summary-helper.byphil.eu/assets/blog/video/recherche-zh-tw.mp4","inLanguage":"zh-tw","transcript":"一個問題，五個來源，分歧在哪？把保存的文章歸到一個問題下。每個來源都有類型：同行評審、預印本、新聞或評論。點一下就能對比：哪裡一致，哪裡有分歧，還缺什麼。","isFamilyFriendly":true,"publisher":{"@id":"https://byphil.eu/#org"}},{"@type":"VideoObject","name":"AI 預覽畫重點","description":"AI 自動標註文章核心段落。你可以選擇保留畫線，或隨手關閉。","thumbnailUrl":["https://ai-summary-helper.byphil.eu/assets/blog/video/ghost-zh-tw.jpg"],"uploadDate":"2026-10-21T00:00:00+00:00","duration":"PT0M21S","contentUrl":"https://ai-summary-helper.byphil.eu/assets/blog/video/ghost-zh-tw.mp4","inLanguage":"zh-tw","transcript":"AI 替你標出重點。摘要之後，AI 會直接在文章裡標出最關鍵的段落，也就是幽靈高亮。點一下保留它，或者忽略它。瀏覽就這樣變成了有目的的閱讀。","isFamilyFriendly":true,"publisher":{"@id":"https://byphil.eu/#org"}},{"@type":"VideoObject","name":"你的新聞閱讀，也有情緒曲線","description":"一鍵切換好消息模式，視覺化追蹤數週以來的資訊情緒變化。","thumbnailUrl":["https://ai-summary-helper.byphil.eu/assets/blog/video/stimmung-zh-tw.jpg"],"uploadDate":"2026-10-21T00:00:00+00:00","duration":"PT0M22S","contentUrl":"https://ai-summary-helper.byphil.eu/assets/blog/video/stimmung-zh-tw.mp4","inLanguage":"zh-tw","transcript":"你的新聞有情緒。AI 會給每條標題評分，從負面到正面。點一下笑臉，只剩下好消息。情緒走勢圖還會告訴你，這幾周的閱讀心情如何。","isFamilyFriendly":true,"publisher":{"@id":"https://byphil.eu/#org"}},{"@type":"VideoObject","name":"即時朗讀","description":"AI 一邊生成摘要，一邊同步語音朗讀，零等待。","thumbnailUrl":["https://ai-summary-helper.byphil.eu/assets/blog/video/instant-zh-tw.jpg"],"uploadDate":"2026-10-21T00:00:00+00:00","duration":"PT0M28S","contentUrl":"https://ai-summary-helper.byphil.eu/assets/blog/video/instant-zh-tw.mp4","inLanguage":"zh-tw","transcript":"何必等摘要寫完？打開即時朗讀，摘要還在撰寫的時候，就已經讀給你聽了。","isFamilyFriendly":true,"publisher":{"@id":"https://byphil.eu/#org"}},{"@type":"VideoObject","name":"在 AI 應用中取用你的個人庫藏","description":"Claude Desktop、LM Studio 與 Cursor 能直接搜尋你的庫藏、引用劃線重點並註明資料來源。","thumbnailUrl":["https://ai-summary-helper.byphil.eu/assets/blog/video/mcp-en.jpg"],"uploadDate":"2026-10-27T00:00:00+00:00","duration":"PT0M27S","contentUrl":"https://ai-summary-helper.byphil.eu/assets/blog/video/mcp-en.mp4","inLanguage":"en","transcript":"Your AI app has never read what you read. Claude Desktop, LM Studio or Cursor can now search your library and quote your highlights. Ask what is due, let it save the best from your feeds, or ask for your year, wrapped. Nothing goes through our server, and you choose what they may read.","isFamilyFriendly":true,"publisher":{"@id":"https://byphil.eu/#org"}},{"@type":"VideoObject","name":"匯出至 Obsidian 及更多平台","description":"每篇摘要都能整理成乾淨俐落的筆記匯出：Obsidian、Markdown、Word、ODT 或 PDF。","thumbnailUrl":["https://ai-summary-helper.byphil.eu/assets/blog/video/export-en.jpg"],"uploadDate":"2026-10-27T00:00:00+00:00","duration":"PT0M23S","contentUrl":"https://ai-summary-helper.byphil.eu/assets/blog/video/export-en.mp4","inLanguage":"en","transcript":"Your summaries belong in your notes. Every summary leaves as a clean note: to Obsidian, as Markdown, Word, OpenDocument or PDF. With the title, the source, your tags and your highlights, ready to keep.","isFamilyFriendly":true,"publisher":{"@id":"https://byphil.eu/#org"}},{"@type":"VideoObject","name":"你的閱讀歷程分析報告","description":"連續閱讀天數、節省的時間、活躍度以及每週閱讀主題。","thumbnailUrl":["https://ai-summary-helper.byphil.eu/assets/blog/video/analytics-en.jpg"],"uploadDate":"2026-10-27T00:00:00+00:00","duration":"PT0M20S","contentUrl":"https://ai-summary-helper.byphil.eu/assets/blog/video/analytics-en.mp4","inLanguage":"en","transcript":"Where did your reading time go? Open Analytics and your library becomes a report: your streak, the time summaries saved you, your topics over the weeks and the words you keep coming back to.","isFamilyFriendly":true,"publisher":{"@id":"https://byphil.eu/#org"}},{"@type":"VideoObject","name":"支援 20 多種語言，跨平台通用","description":"以 20 種以上語言閱讀與摘要，可使用擴充功能、原生側邊面板，或 書籤小工具 在擴充功能無法觸及頁面時使用。","thumbnailUrl":["https://ai-summary-helper.byphil.eu/assets/blog/video/sprache-zh-tw.jpg"],"uploadDate":"2026-10-21T00:00:00+00:00","duration":"PT0M19S","contentUrl":"https://ai-summary-helper.byphil.eu/assets/blog/video/sprache-zh-tw.mp4","inLanguage":"zh-tw","transcript":"讀外語，速度會變慢。眼動追蹤研究證實了這一點，連熟練的讀者也一樣。摘要支持四十一種語言：搜索，點選，完成。","isFamilyFriendly":true,"publisher":{"@id":"https://byphil.eu/#org"}},{"@type":"VideoObject","name":"真正的本機端全文搜尋","description":"以瀏覽器端的 TF-IDF 索引搜尋標題、標籤與文章內容。全文搜尋留在裝置上，不需往返伺服器。","thumbnailUrl":["https://ai-summary-helper.byphil.eu/assets/blog/video/bibliothek-zh-tw.jpg"],"uploadDate":"2026-10-21T00:00:00+00:00","duration":"PT0M18S","contentUrl":"https://ai-summary-helper.byphil.eu/assets/blog/video/bibliothek-zh-tw.mp4","inLanguage":"zh-tw","transcript":"讀過的內容，一搜就到。你做過摘要的所有內容，都留在你的設備上。有標籤，有搜索，還有統計。","isFamilyFriendly":true,"publisher":{"@id":"https://byphil.eu/#org"}}]}</script></head>
 <body>
 
 <a href="#main" class="skip-link">跳至主要內容</a>
@@ -55,8 +55,9 @@
       AI Summary Helper
     </a>
     <nav class="pill" aria-label="主要">
-      <a href="index.html#features" data-sec="features">功能特色</a>
-      <a href="index.html#see-it" data-sec="see-it">功能展示</a>
+      <a href="index.html#problem" data-sec="problem" data-slider-goto="problem">運作方式</a>
+      <a href="index.html#use-cases" data-sec="use-cases">使用情境</a>
+      <a href="blog/">部落格</a>
       <a href="https://chromewebstore.google.com/detail/ai-summary-helper-openai/hldbejcjaedipeegjcinmhejdndchkmb" class="pill-cta" target="_blank" rel="noopener">新增至 Chrome</a>
     </nav>
     <div class="nav-tools">
@@ -74,8 +75,8 @@
   <div class="mobile-menu" id="mobileMenu" hidden="">
     <div class="wrap mm-inner">
       <nav class="mm-links" aria-label="行動版">
-        <a href="index.html#features"><span class="mm-n">01</span>功能特色</a>
-        <a href="index.html#see-it"><span class="mm-n">02</span>功能展示</a>
+        <a href="index.html#problem" data-slider-goto="problem"><span class="mm-n">01</span>運作方式</a>
+        <a href="index.html#use-cases"><span class="mm-n">02</span>使用情境</a>
         <a href="../education/"><span class="mm-n">03</span>教育</a>
         <a href="blog/"><span class="mm-n">04</span>部落格</a>
           <a href="blog/pocket-alternative.html" class="mm-sub">Pocket 替代方案：挑選重點解析</a>
@@ -131,8 +132,8 @@
   <div class="hs-grid">
     <div class="hs-text"><div class="hs-text-in">
       <div class="eyebrow"><span class="dash"></span> Chrome 擴充功能 · byphil. 旗下產品 <span class="dash"></span></div>
-      <h1>摘要網頁精華。<br><em>留下真正重要的內容。</em></h1>
-      <p class="sub">一鍵將任何網頁轉為文章旁的精簡摘要。所有內容皆保留在您的瀏覽器中，方便隨時再次查閱。</p>
+      <h1>把閱讀化為<br><em>真正留下的知識。</em></h1>
+      <p class="sub">更快讀懂文章、PDF 與影片。對照來源查核答案。在自己的裝置上建立私人、可搜尋的知識庫。</p>
       <div class="hero-pane" id="heroPaneBrowser">
         <div class="hero-cta">
           <a href="https://chromewebstore.google.com/detail/ai-summary-helper-openai/hldbejcjaedipeegjcinmhejdndchkmb" target="_blank" rel="noopener" class="btn-primary" data-desktop-cta="">免費新增至 Chrome</a>
@@ -140,7 +141,7 @@
         </div>
         <p class="send-note" data-send-note="" hidden="">手機版 Chrome 無法安裝擴充功能。請將連結傳送到您的電腦，並在電腦上完成安裝。 <a href="#" data-send-mail="">寄到我的電子郵件</a> · <a href="#" data-send-copy="">複製連結</a></p>
         <p class="hero-proof"><a href="https://www.producthunt.com/products/ai-summary-helper/launches/ai-summary-helper-summarize-articles" target="_blank" rel="noopener" data-track="hero-producthunt">在 Product Hunt 獲得 139 票支持</a> · <a href="https://github.com/philffm/ai-summary-helper/" target="_blank" rel="noopener">開源</a> · 歐盟製造</p>
-        <p class="hero-meta">無需註冊帳號 · 可使用自己的 AI Key，或搭配 Ollama 完全離線運行</p>
+        <p class="hero-meta">免帳號 · 使用你的金鑰或本機 Ollama · 開放原始碼 · 歐盟製造</p>
       </div>
       <ol class="hs-steps" data-stage-pane="browser">
   <li class="is-on" data-step="0" role="button" tabindex="0"><b>閱讀任何網頁。</b><span>照常打開文章閱讀，AISH 在瀏覽器中安靜待命。</span></li>
@@ -199,6 +200,19 @@
   </div>
 </section>
 
+<section id="use-cases" class="use-case-section">
+  <div class="wrap">
+    <div class="section-head center reveal"><div class="eyebrow">為你的閱讀方式而打造</div><h2>選擇你的路徑</h2></div>
+    <div class="use-case-grid blog-grid reveal">
+      <a href="research-papers/" class="use-case-card blog-card"><span class="blog-date">給研究人員與學生</span><h3>研究與 PDF<br>不再遺失來源</h3><span class="blog-read">探索研究模式 →</span></a>
+      <a href="youtube-summarizer/" class="use-case-card blog-card"><span class="blog-date">給影片學習者</span><h3>把長影片化為<br>可派上用場的知識</h3><span class="blog-read">探索影片閱讀 →</span></a>
+      <a href="rss-news/" class="use-case-card blog-card"><span class="blog-date">給個人新聞研究</span><h3>策展你自己的<br>時事</h3><span class="blog-read">探索本機 RSS →</span></a>
+      <a href="local-ai/" class="use-case-card blog-card"><span class="blog-date">給隱私優先的讀者</span><h3>你的閱讀<br>始終屬於你</h3><span class="blog-read">看看本機工作流程 →</span></a>
+      <a href="mcp/" class="use-case-card blog-card"><span class="blog-date">給串接式 AI 工作流程</span><h3>串接你的<br>知識</h3><span class="blog-read">探索 MCP →</span></a>
+    </div>
+  </div>
+</section>
+
   <!-- ── See it ──────────────────────────────────────────────────── -->
   <!-- Screenshots are localized by scripts/translate.mjs: "-en.webp" is swapped for
        "-<locale>.webp" when docs/assets/shots/ has that file, else it stays English. -->
@@ -208,35 +222,52 @@
         <div class="eyebrow">介面預覽</div>
         <h2>摘要與文章並排顯示</h2>
         <p>快速瀏覽重點概覽、隨時追問細節，並精準定位答案出處。2.2 版真實介面展示。</p>
+        <nav class="slide-jumps" aria-label="運作方式">
+          <a href="#problem" data-slider-goto="problem">問題</a>
+          <a href="#understand" data-slider-goto="understand">理解</a>
+          <a href="#verify" data-slider-goto="verify">查核</a>
+          <a href="#retain" data-slider-goto="retain">留存</a>
+          <a href="#difference" data-slider-goto="difference">不只是摘要</a>
+          <a href="#privacy" data-slider-goto="privacy">隱私權政策</a>
+        </nav>
       </div>
       <div class="cx cx--fit reveal" data-carousel="" role="region" aria-roledescription="carousel" aria-label="產品截圖">
         <div class="cx-stage">
           <ul class="cx-track" tabindex="0">
-          <li class="cx-slide is-active" aria-roledescription="slide" aria-label="1 / 5">
+          <li class="cx-slide is-active" aria-roledescription="slide" aria-label="1 / 8" id="problem">
+            <figure><div class="cx-card" style="--img:url(photo/evening-sofa-ereader-1600.webp)"><span class="cx-big cx-big--text">堆積如山的「稍後閱讀」</span><strong class="cx-title">你存下來的內容，永遠比讀得完的還要多</strong><span class="cx-text">我們儲存的內容大多很少再次翻閱。「摘要精選（Digest）」為你挑選 5 篇典藏內容，並傳送至裝置供離線閱讀。</span><small class="cx-src">1. 點選 Digest · 2. 設定心情 · 3. 離線傳送</small><a class="cx-slide-link" href="blog/unread-saves.html">閱讀指南 →</a></div><figcaption><strong>留到晚上好好讀，而不是開十二個分頁</strong><span>Digest 把一堆儲存的連結，變成一份為你的夜晚、Kindle 或通勤時光準備的精心組合。</span></figcaption></figure>
+          </li>
+          <li class="cx-slide" aria-roledescription="slide" aria-label="2 / 8" id="understand">
             <figure>
               <img src="../assets/shots/aish-inpage-detail-en.webp" width="1440" height="900" loading="lazy" alt="文章旁側邊欄中的摘要介面">
               <figcaption><strong>文章旁的即時摘要</strong><span>無需跳出目前頁面，即可快速掌握重點。</span></figcaption>
             </figure>
           </li>
-          <li class="cx-slide" aria-roledescription="slide" aria-label="2 / 5">
+          <li class="cx-slide" aria-roledescription="slide" aria-label="3 / 8" id="verify">
             <figure>
               <img src="../assets/shots/aish-inpage-ask-en.webp" width="1440" height="900" loading="lazy" alt="包含來源標記與原文重點標註的追問回答介面">
               <figcaption><strong>向網頁直接提問</strong><span>回答自動標註引用的原文段落出處。</span></figcaption>
             </figure>
           </li>
-          <li class="cx-slide" aria-roledescription="slide" aria-label="3 / 5">
+          <li class="cx-slide" aria-roledescription="slide" aria-label="4 / 8">
             <figure>
               <img src="../assets/shots/aish-split-wide-en.webp" width="1280" height="800" loading="lazy" alt="並排顯示清單、知識圖譜與分析數據的分割檢視畫面">
               <figcaption><strong>2.2 新功能：分割檢視模式</strong><span>在大螢幕上同時並排顯示清單、知識圖譜與分析數據。</span></figcaption>
             </figure>
           </li>
-          <li class="cx-slide" aria-roledescription="slide" aria-label="4 / 5">
+          <li class="cx-slide" aria-roledescription="slide" aria-label="5 / 8" id="retain">
             <figure>
               <img src="../assets/shots/aish-research-dark-en.webp" width="1280" height="800" loading="lazy" alt="深色模式下的論文收藏與研究模式介面">
               <figcaption><strong>2.2 新功能：學術研究模式</strong><span>專為學術論文打造：研究細節、DOI 引用與文獻收藏管理。</span></figcaption>
             </figure>
           </li>
-          <li class="cx-slide cx-slide--demo" aria-roledescription="slide" aria-label="5 / 5" data-desktop-only="">
+          <li class="cx-slide" aria-roledescription="slide" aria-label="6 / 8" id="difference">
+            <figure><div class="cx-card" style="--img:url(photo/scene-library-laptop-1600.webp)"><span class="cx-big cx-big--text">超越摘要</span><strong class="cx-title">一次性的摘要到此為止</strong><span class="cx-text">AISH 把一個答案變成你能查核、保存、日後再回訪的來源。</span><div class="cx-compare" aria-label="AISH 與一次性摘要的比較"><div class="cx-compare-row"><span>AISH</span><strong>附來源連結的答案</strong></div><div class="cx-compare-row is-muted"><span>一次性摘要</span><strong>沒有來源脈絡的摘要</strong></div><div class="cx-compare-row"><span>AISH</span><strong>本機可搜尋典藏庫</strong></div><div class="cx-compare-row is-muted"><span>一次性摘要</span><strong>沒有長久保留的閱讀脈絡</strong></div><div class="cx-compare-row"><span>AISH</span><strong>支援 DOI 的研究模式</strong></div><div class="cx-compare-row is-muted"><span>一次性摘要</span><strong>每個頁面都用同一套流程</strong></div></div><small class="cx-src">理解 · 查核 · 留存</small></div><figcaption><strong>不只是把頁面變短</strong><span>把來源、脈絡與下一個問題放在一起。</span></figcaption></figure>
+          </li>
+          <li class="cx-slide" aria-roledescription="slide" aria-label="7 / 8" id="privacy">
+            <figure><div class="cx-card" style="--img:url(photo/nas-shelf-laptop-phone-1600.webp)"><span class="cx-big cx-big--text">貫徹 byphil 的設計哲學</span><strong class="cx-title">你的資料庫，永遠屬於你</strong><span class="cx-text">搜尋、重複偵測、標籤整理與相似文章推薦皆完全在瀏覽器本機端執行，無需伺服器也無需帳號。只有摘要請求會發送出去，且僅限於你自行選擇的 AI 服務商。若搭配本機 Ollama 模型，所有資料更可 100% 留在本機。</span><small class="cx-src">本機典藏庫 · 你的供應商 · 免帳號</small><a class="cx-slide-link" href="privacy.html">閱讀隱私模式 →</a></div><figcaption><strong>你的藏書庫就在你的裝置上</strong><span>選擇你的金鑰、你的模型，以及閱讀典藏庫的存放位置。</span></figcaption></figure>
+          </li>
+          <li class="cx-slide cx-slide--demo" aria-roledescription="slide" aria-label="8 / 8" data-desktop-only="">
             <figure>
               <div class="demo-frame" data-demo="" data-demo-scale="1180" data-src="../demo/index.html">
                 <button class="demo-start" type="button"><span class="demo-play" aria-hidden="true">▶</span><span>開始互動示範</span></button>
@@ -245,7 +276,7 @@
               <figcaption><strong>在真實網頁上點擊「Summarize」</strong><span>此為擴充功能在瀏覽器中運行的範例文章真實介面。完全於本機處理，無任何資料外傳。</span></figcaption>
             </figure>
           </li>
-          <li class="cx-slide cx-slide--demo-m" aria-roledescription="slide" aria-label="5 / 5" data-mobile-only="">
+          <li class="cx-slide cx-slide--demo-m" aria-roledescription="slide" aria-label="8 / 8" data-mobile-only="">
             <figure>
               <div class="demo-frame demo-frame--phone" data-demo="" data-demo-fit="420x800" data-demo-params="chrome=0&amp;tour=0&amp;surface=sidepanel" data-src="../demo/index.html">
                 <button class="demo-start" type="button"><span class="demo-play" aria-hidden="true">▶</span><span>試用側邊欄</span></button>
@@ -257,12 +288,12 @@
           <button type="button" class="cx-nav cx-prev" aria-label="上一張"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m15 18-6-6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg></button>
           <button type="button" class="cx-nav cx-next" aria-label="下一張"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m9 18 6-6-6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg></button>
         </div>
-        <div class="cx-dots"><button type="button" class="cx-dot is-active" aria-label="投影片 1"></button><button type="button" class="cx-dot" aria-label="投影片 2"></button><button type="button" class="cx-dot" aria-label="投影片 3"></button><button type="button" class="cx-dot" aria-label="投影片 4"></button><button type="button" class="cx-dot cx-dot--demo" aria-label="投影片 5：實機展示">功能展示</button><button type="button" class="cx-dot cx-dot--demo-m" aria-label="投影片 5：實機展示">功能展示</button></div>
+        <div class="cx-dots"><button type="button" class="cx-dot is-active" aria-label="前往閱讀清單問題投影片"></button><button type="button" class="cx-dot" aria-label="前往理解投影片"></button><button type="button" class="cx-dot" aria-label="前往查核投影片"></button><button type="button" class="cx-dot" aria-label="前往知識圖譜投影片"></button><button type="button" class="cx-dot" aria-label="前往留存投影片"></button><button type="button" class="cx-dot" aria-label="前往隱私投影片"></button><button type="button" class="cx-dot cx-dot--demo" aria-label="前往現場示範投影片">功能展示</button><button type="button" class="cx-dot cx-dot--demo-m" aria-label="前往現場示範投影片">功能展示</button></div>
       </div>
     </div>
   </section>
 
-  <!-- ── Videos: a stack of short clips; tapping one opens a swipeable full-screen player (../assets/main.js) ──
+  <!-- ── Videos: a stack of short clips; tapping one opens a swipeable full-screen player (assets/main.js) ──
        Videos are localized by scripts/translate.mjs like the blog ones: "<clip>-en.mp4" becomes "<clip>-<locale>.mp4"
        when docs/assets/blog/video/ has it, else it stays English. -->
   <section id="videos">
@@ -539,7 +570,7 @@
   </section>
 
   <!-- ── Features ────────────────────────────────────────────────── -->
-  <section id="features">
+  <section id="features" data-default-persona="all">
     <div class="wrap">
       <div class="section-head center reveal">
         <div class="eyebrow">功能簡介</div>
@@ -601,7 +632,7 @@
           </figure>
           <div class="f-icon icon-indigo"><svg viewBox="0 0 24 24" fill="none"><circle cx="6" cy="18" r="1.8" fill="#fff"></circle><path d="M5 11a8 8 0 0 1 8 8M5 5a14 14 0 0 1 14 14" stroke="#fff" stroke-width="1.8" stroke-linecap="round"></path></svg></div>
           <h3>內建 RSS 閱讀器</h3>
-          <p>追蹤各大部落格與新聞網站，依來源、標籤、日期或情緒進行篩選，支援匯入 OPML，並能一鍵開啟或產生任何內容的摘要。直接在擴充功能內播放 Podcast，還可自由選擇由 AI 為你彙整每日頭條摘要。收藏的內容將自動歸檔，所有訂閱資料皆安全儲存於你的本機裝置。</p>
+          <p>追蹤部落格與新聞網站，依來源、標籤、日期或心情篩選，匯入 OPML，一鍵摘要任何項目。在擴充功能中播放 Podcast 訂閱來源，並取得選用的 AI 摘要回顧；訂閱來源與我的最愛都留在你的裝置上。</p>
           <button class="fvideo-cta" type="button" tabindex="-1" aria-hidden="true"><span class="fvideo-cta-play">▶</span>觀看短片</button>
         </div>
         <div class="feature-card" data-personas="feeds">
@@ -615,7 +646,7 @@
           </figure>
           <div class="f-icon icon-gold"><svg viewBox="0 0 24 24" fill="none"><rect x="3" y="5" width="18" height="14" rx="3" stroke="#fff" stroke-width="1.7"></rect><path d="M10 9.5v5l4.5-2.5L10 9.5Z" fill="#fff"></path></svg></div>
           <h3>YouTube 影片：直接解析字幕</h3>
-          <p>打開影片即可產生摘要。擴充功能會自動讀取字幕、以你的語言整理核心要點，後續追問也能標註出處段落。</p>
+          <p>從字幕摘要 YouTube 影片，以你的語言取得重點，並提出附來源引用的追問。</p>
           <button class="fvideo-cta" type="button" tabindex="-1" aria-hidden="true"><span class="fvideo-cta-play">▶</span>觀看短片</button>
         </div>
         <div class="feature-card" data-personas="researcher">
@@ -629,7 +660,7 @@
           </figure>
           <div class="f-icon icon-cyan"><svg viewBox="0 0 24 24" fill="none"><path d="M7 3h7l4 4v14H7V3Z" stroke="#fff" stroke-width="1.7" stroke-linejoin="round"></path><path d="M14 3v4h4M9.5 12h5M9.5 15.5h5" stroke="#fff" stroke-width="1.6" stroke-linecap="round"></path></svg></div>
           <h3>PDF 檔案，就像普通網頁一樣輕鬆閱讀</h3>
-          <p>在瀏覽器中直接開啟或由本機上傳 PDF，就能像一般網頁般快速摘要。「使用明細」清晰顯示讀取的字數、Token 數與使用模型。</p>
+          <p>像處理任何頁面一樣，摘要瀏覽器中的 PDF 或磁碟上的檔案。「What I used」會顯示 AI 讀過的字詞、token 與模型。</p>
           <button class="fvideo-cta" type="button" tabindex="-1" aria-hidden="true"><span class="fvideo-cta-play">▶</span>觀看短片</button>
         </div>
         <div class="feature-card" data-personas="privacy hoarder researcher feeds go">
@@ -643,7 +674,7 @@
           </figure>
           <div class="f-icon icon-violet"><svg viewBox="0 0 24 24" fill="none"><path d="M4 12h16M12 4c2.8 2.6 4.2 5.2 4.2 8s-1.4 5.4-4.2 8c-2.8-2.6-4.2-5.2-4.2-8s1.4-5.4 4.2-8Z" stroke="#fff" stroke-width="1.5"></path></svg></div>
           <h3>支援 20 多種語言，跨平台通用</h3>
-          <p>以您偏好的語言閱讀並生成摘要。無論是擴充功能、原生側邊欄，還是 <a href="../bookmarklet.html">書籤小工具</a> —— 專為瀏覽器擴充功能無法涵蓋的場景而生。</p>
+          <p>以 20 種以上語言閱讀與摘要，可使用擴充功能、原生側邊面板，或 <a href="../bookmarklet.html">書籤小工具</a> 在擴充功能無法觸及頁面時使用。</p>
           <button class="fvideo-cta" type="button" tabindex="-1" aria-hidden="true"><span class="fvideo-cta-play">▶</span>觀看短片</button>
         </div>
         <div class="feature-card" data-personas="privacy researcher">
@@ -657,7 +688,7 @@
           </figure>
           <div class="f-icon icon-cyan"><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="6" r="2.6" fill="#fff"></circle><circle cx="6" cy="17" r="2.2" fill="#fff" opacity="0.85"></circle><circle cx="18" cy="17" r="2.2" fill="#fff" opacity="0.85"></circle><path d="M12 8.6 L6.8 14.8 M12 8.6 L17.2 14.8" stroke="#fff" stroke-width="1.4" stroke-linecap="round" opacity="0.7"></path></svg></div>
           <h3>AI 智慧摘要，自由選擇模型</h3>
-          <p>支援 OpenAI、Gemini、Mistral、DeepSeek 或自訂端點——或是直接指定本機 Ollama 模型，整個過程完全無需透過外網連線。</p>
+          <p>選擇 OpenAI、Gemini、Mistral、DeepSeek、自訂端點，或本機 Ollama，讓摘要永遠不必離開你的裝置。</p>
           <button class="fvideo-cta" type="button" tabindex="-1" aria-hidden="true"><span class="fvideo-cta-play">▶</span>觀看短片</button>
         </div>
         <div class="feature-card" data-personas="researcher go">
@@ -671,7 +702,7 @@
           </figure>
           <div class="f-icon icon-gold"><svg viewBox="0 0 24 24" fill="none"><path d="M5 5h14M5 9h14M5 13h14M5 17h14" stroke="#fff" stroke-width="2.2" stroke-linecap="round"></path><path d="M5 5l14 0M5 9l14 0M5 13l14 0M5 17l14 0" stroke="#fff" stroke-width="2.2" stroke-linecap="round" opacity="0.35"></path></svg></div>
           <h3>幽靈高亮標註，直接呈現在網頁上</h3>
-          <p>AI 會高亮標註文章中的 <mark class="ai-ghost-highlight">最關鍵的原文段落</mark> —— 讓你能 <mark class="ai-ghost-highlight">一眼掌握核心重點</mark>，並隨摘要一同匯出至 Kindle、LocalSend 或 Markdown。</p>
+          <p>AI 會標示出 <mark class="ai-ghost-highlight">重要的原文段落</mark> 讓你能快速瀏覽關鍵洞見，並連同摘要匯出到 Kindle、LocalSend 或 Markdown。</p>
           <button class="fvideo-cta" type="button" tabindex="-1" aria-hidden="true"><span class="fvideo-cta-play">▶</span>觀看短片</button>
         </div>
         <div class="feature-card" data-personas="researcher">
@@ -685,7 +716,7 @@
           </figure>
           <div class="f-icon icon-indigo"><svg viewBox="0 0 24 24" fill="none"><path d="M4 6c3-1.4 5.5-1.4 8 0v13c-2.5-1.4-5-1.4-8 0V6ZM20 6c-3-1.4-5.5-1.4-8 0v13c2.5-1.4 5-1.4 8 0V6Z" stroke="#fff" stroke-width="1.6" stroke-linejoin="round"></path></svg></div>
           <h3>研究模式：透過 DOI 自動辨識論文</h3>
-          <p>根據 DOI 與引用中繼資料精準辨識學術論文，並標示為臨床試驗、綜述或預印本。研究架構、樣本與限制一併條列，引用資料更直接來自 DOI 官方登記庫，而非 AI 憑空生成。</p>
+          <p>透過 DOI 與引用中繼資料辨識研究論文，標示試驗、回顧或預印本狀態，並擷取研究設計、樣本、限制與 DOI 註冊庫引用。</p>
           <button class="fvideo-cta" type="button" tabindex="-1" aria-hidden="true"><span class="fvideo-cta-play">▶</span>觀看短片</button>
         </div>
         <div class="feature-card" data-personas="researcher">
@@ -699,7 +730,7 @@
           </figure>
           <div class="f-icon icon-violet"><svg viewBox="0 0 24 24" fill="none"><rect x="4" y="4" width="10" height="10" rx="2" stroke="#fff" stroke-width="1.7"></rect><rect x="10" y="10" width="10" height="10" rx="2" stroke="#fff" stroke-width="1.7"></rect></svg></div>
           <h3>針對同一問題，跨來源比對</h3>
-          <p>將儲存的文章彙整為集合，自訂來源類型（同儕審查、預印本、新聞、評論），啟動側向閱讀檢驗，讓 AI 自動比對摘要：抓出共識、衝突與被遺漏的觀點。</p>
+          <p>將文章打包成組，把來源標記為同儕審查、預印本、新聞或評論，執行橫向閱讀查核，並比較各摘要之間一致、分歧或遺漏脈絡之處。</p>
           <button class="fvideo-cta" type="button" tabindex="-1" aria-hidden="true"><span class="fvideo-cta-play">▶</span>觀看短片</button>
         </div>
         <div class="feature-card" data-personas="feeds go">
@@ -713,7 +744,7 @@
           </figure>
           <div class="f-icon icon-teal"><svg viewBox="0 0 24 24" fill="none"><path d="M5 10v4h3l4.5 3.5v-11L8 10H5Z" fill="#fff"></path><path d="M16 9c1.3 1.7 1.3 4.3 0 6M18.5 6.5c2.5 3 2.5 8 0 11" stroke="#fff" stroke-width="1.6" stroke-linecap="round"></path></svg></div>
           <h3>即時朗讀：邊生成邊聆聽</h3>
-          <p>摘要生成的同時立即語音朗讀：先讀標題，接著逐句播放，支援暫停、靜音與語速調節。日後也能隨時在任一卡片重新收聽。</p>
+          <p>在摘要撰寫的同時聆聽：先讀標題，再逐句朗讀，並有暫停、靜音與速度控制。可從任何卡片重播。</p>
           <button class="fvideo-cta" type="button" tabindex="-1" aria-hidden="true"><span class="fvideo-cta-play">▶</span>觀看短片</button>
         </div>
         <div class="feature-card" data-personas="privacy hoarder">
@@ -727,7 +758,7 @@
           </figure>
           <div class="f-icon icon-violet"><svg viewBox="0 0 24 24" fill="none"><path d="M11 4a7 7 0 1 0 4.9 12.1l4.6 4.6" stroke="#fff" stroke-width="1.7" stroke-linecap="round"></path></svg></div>
           <h3>真正的本機端全文搜尋</h3>
-          <p>涵蓋標題、標籤與文章內容的全文搜尋 — 由瀏覽器內建的 TF-IDF 索引驅動。零延遲、無網路往返，資料絕不上傳。</p>
+          <p>以瀏覽器端的 TF-IDF 索引搜尋標題、標籤與文章內容。全文搜尋留在裝置上，不需往返伺服器。</p>
           <button class="fvideo-cta" type="button" tabindex="-1" aria-hidden="true"><span class="fvideo-cta-play">▶</span>觀看短片</button>
         </div>
         <div class="feature-card" data-personas="hoarder researcher">
@@ -741,7 +772,7 @@
           </figure>
           <div class="f-icon icon-cyan"><svg viewBox="0 0 24 24" fill="none"><circle cx="5" cy="6" r="1.8" fill="#fff"></circle><circle cx="19" cy="6" r="1.8" fill="#fff" opacity="0.85"></circle><circle cx="12" cy="12" r="2.1" fill="#fff"></circle><circle cx="6" cy="18" r="1.8" fill="#fff" opacity="0.85"></circle><circle cx="18" cy="18" r="1.8" fill="#fff" opacity="0.85"></circle><path d="M5 6 12 12M19 6 12 12M12 12 6 18M12 12 18 18" stroke="#fff" stroke-width="1.1" opacity="0.55"></path></svg></div>
           <h3>超越清單的知識圖譜</h3>
-          <p>視覺化呈現已存文章之間的關聯 — 透過共同標籤，甚至在沒有相同標籤時根據主題相似度建立連結。</p>
+          <p>看看儲存的文章如何透過共同標籤與主題相似度彼此連結，即使它們沒有任何共同標籤。</p>
           <button class="fvideo-cta" type="button" tabindex="-1" aria-hidden="true"><span class="fvideo-cta-play">▶</span>觀看短片</button>
         </div>
         <div class="feature-card" data-personas="hoarder">
@@ -755,7 +786,7 @@
           </figure>
           <div class="f-icon icon-indigo"><svg viewBox="0 0 24 24" fill="none"><path d="M6 3h12v18l-6-4-6 4V3Z" stroke="#fff" stroke-width="1.6" stroke-linejoin="round"></path></svg></div>
           <h3>有目標地稍後閱讀</h3>
-          <p>為「決策」標記原因與時限並接收提醒 — 告別塞進收藏夾後就再也沒打開過的窘境。</p>
+          <p>連同理由與時間範圍一起記下決定，在它淹沒於未讀堆之前收到提醒。</p>
           <button class="fvideo-cta" type="button" tabindex="-1" aria-hidden="true"><span class="fvideo-cta-play">▶</span>觀看短片</button>
         </div>
         <div class="feature-card" data-personas="hoarder go">
@@ -769,7 +800,7 @@
           </figure>
           <div class="f-icon icon-gold"><svg viewBox="0 0 24 24" fill="none"><rect x="4" y="4" width="16" height="16" rx="3" stroke="#fff" stroke-width="1.6"></rect><path d="M8 9h8M8 13h5" stroke="#fff" stroke-width="1.6" stroke-linecap="round"></path></svg></div>
           <h3>智慧挑選的專屬文摘</h3>
-          <p>一鍵為你精選多樣化且不重複的已存內容 — 避免連續讀到同個話題的五個版本 — 並打包成單一檔案傳送至 Kindle 或 LocalSend。</p>
+          <p>一鍵策展多元的摘要包，而不是同一則新聞的五個版本，再打包給 Kindle 或 LocalSend。</p>
           <button class="fvideo-cta" type="button" tabindex="-1" aria-hidden="true"><span class="fvideo-cta-play">▶</span>觀看短片</button>
         </div>
         <div class="feature-card" data-personas="feeds">
@@ -783,7 +814,7 @@
           </figure>
           <div class="f-icon icon-amber"><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="8.5" stroke="#fff" stroke-width="1.7"></circle><path d="M8.5 14c1 1.6 2.2 2.3 3.5 2.3s2.5-.7 3.5-2.3M9 9.5h.01M15 9.5h.01" stroke="#fff" stroke-width="1.8" stroke-linecap="round"></path></svg></div>
           <h3>新聞情緒過濾與長期趨勢</h3>
-          <p>AI 會將新聞標題從沉重到正面進行評級。一鍵篩選只看正向消息，並以日、週、月為單位追蹤自己的閱讀情緒光譜。</p>
+          <p>把標題從沉重到正面評分，篩選好消息，並依日、週或月追蹤你的閱讀心情。</p>
           <button class="fvideo-cta" type="button" tabindex="-1" aria-hidden="true"><span class="fvideo-cta-play">▶</span>觀看短片</button>
         </div>
         <div class="feature-card" data-personas="privacy researcher hoarder">
@@ -797,18 +828,18 @@
           </figure>
           <div class="f-icon icon-violet"><svg viewBox="0 0 24 24" fill="none"><rect x="4" y="5" width="16" height="11" rx="2.2" stroke="#fff" stroke-width="1.7"></rect><path d="M9 20h6M12 16v4M8.5 10.5l2 2 3.5-4" stroke="#fff" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"></path></svg></div>
           <h3>在 Claude、LM Studio 與 Cursor 中直接取用你的庫藏</h3>
-          <p>在「設定」中啟用 AI 應用程式，即可讓電腦上的 Claude Desktop、LM Studio、Cursor 及其他 MCP 應用程式搜尋你的庫藏、引用劃線重點並列出待讀清單。經你授權後，它們還能為你儲存連結。資料全程不經過我們的伺服器，且由你完全掌控它們能讀取的內容。</p>
+          <p>Claude Desktop、LM Studio、Cursor 及其他 MCP 應用程式可以搜尋你的藏書庫、引用標示內容並列出待辦項目。存取權由你掌控；不會經過我們的伺服器。</p>
           <button class="fvideo-cta" type="button" tabindex="-1" aria-hidden="true"><span class="fvideo-cta-play">▶</span>觀看短片</button>
         </div>
         <div class="feature-card" data-personas="privacy hoarder researcher">
           <div class="f-icon icon-teal"><svg viewBox="0 0 24 24" fill="none"><path d="M7 18.5h9.5a3.5 3.5 0 0 0 .6-6.95A5 5 0 0 0 7.4 10.6 4 4 0 0 0 7 18.5Z" stroke="#fff" stroke-width="1.7" stroke-linejoin="round"></path><path d="M12 12.5v3M10.8 13.8h2.4" stroke="#fff" stroke-width="1.7" stroke-linecap="round"></path></svg></div>
           <h3>你的知識庫儲存在專屬儲存空間，全程加密</h3>
-          <p>將資料庫同步並備份至你自己的 Nextcloud、WebDAV 伺服器、S3 bucket 或電腦上的資料夾。所有內容皆在瀏覽器端預先加密，伺服器端只能看到加密後的亂碼檔案。你也可以將清單發布到自己的網站，並附帶搜尋、標籤圖譜與 3D 地圖。在手動設定前此功能完全關閉；我們不架設任何同步伺服器，也無法窺探你的任何資料。 <a href="blog/sync-to-nextcloud-s3-or-a-folder.html">如何設定</a> · <a href="blog/digital-sovereignty-for-individuals.html">為何重要</a></p>
+          <p>將加密的藏書庫同步到你的 Nextcloud、WebDAV 伺服器、S3 儲存桶或本機資料夾。發布可搜尋的清單，附標籤關聯圖與 3D 地圖；我們不營運任何同步伺服器。 <a href="blog/sync-to-nextcloud-s3-or-a-folder.html">如何設定</a> · <a href="../demo/index.html?screen=settings&amp;panel=sync&amp;flow=sync-add" target="_blank" rel="noopener">試試同步設定</a></p>
         </div>
         <div class="feature-card" data-personas="hoarder researcher">
           <div class="f-icon icon-amber"><svg viewBox="0 0 24 24" fill="none"><path d="M6 4.5h9l3 3V19a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V5.5a1 1 0 0 1 1-1Z" stroke="#fff" stroke-width="1.7" stroke-linejoin="round"></path><path d="M8.5 11h7M8.5 14.5h4.5" stroke="#fff" stroke-width="1.7" stroke-linecap="round"></path></svg></div>
           <h3>在任何網頁上新增筆記與評論</h3>
-          <p>選取文字即可自由選擇：畫重點標記、留下評論，或連同引文儲存為筆記。所有內容都會彙整至「筆記」分頁，能以清單或便利貼網格檢視，依文章或標籤整理，並與知識庫的其他內容即時同步。</p>
+          <p>標示文字、加上註解，或儲存引用筆記。可依文章或標籤，以清單或便利貼格狀排列整理筆記，與你的藏書庫並列。</p>
         </div>
         <div class="feature-card" data-personas="hoarder researcher">
           <figure class="fvideo" data-blog-video="export">
@@ -821,7 +852,7 @@
           </figure>
           <div class="f-icon icon-teal"><svg viewBox="0 0 24 24" fill="none"><path d="M12 4v11M7.5 10.5 12 15l4.5-4.5M5 19h14" stroke="#fff" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"></path></svg></div>
           <h3>匯出至 Obsidian、Markdown、Word 與 PDF</h3>
-          <p>直接將摘要傳送至你的 Obsidian 庫（vault），或匯出為 Markdown、Word (DOCX)、OpenDocument 或 PDF 格式，將標題、來源、標籤與劃線重點整合在同一篇筆記中。</p>
+          <p>將摘要匯出到 Obsidian、Markdown、Word (DOCX)、OpenDocument 或 PDF，標題、來源、標籤與標示內容都在同一則筆記中。</p>
           <button class="fvideo-cta" type="button" tabindex="-1" aria-hidden="true"><span class="fvideo-cta-play">▶</span>觀看短片</button>
         </div>
         <div class="feature-card" data-personas="hoarder feeds">
@@ -835,7 +866,7 @@
           </figure>
           <div class="f-icon icon-cyan"><svg viewBox="0 0 24 24" fill="none"><path d="M5 19V11M12 19V5M19 19v-6" stroke="#fff" stroke-width="2.2" stroke-linecap="round"></path></svg></div>
           <h3>專屬的閱讀分析報告</h3>
-          <p>根據你的個人庫藏資料，統計連續閱讀天數、摘要節省的時間、活躍度、每週主題分佈以及文字雲。</p>
+          <p>查看閱讀連續紀錄、摘要省下的時間、活動情形、每週主題，以及依你自己的藏書庫運算出的文字雲。</p>
           <button class="fvideo-cta" type="button" tabindex="-1" aria-hidden="true"><span class="fvideo-cta-play">▶</span>觀看短片</button>
         </div>
       </div>
@@ -884,38 +915,10 @@
 
       // #for=<audience> in a link opens the page filtered
       var m = /^#for=([a-z]+)$/.exec(location.hash);
-      if (m && names[m[1]]) setPersona(m[1], false);
+      var initial = document.getElementById('features').getAttribute('data-default-persona') || 'all';
+      setPersona(m && names[m[1]] ? m[1] : initial, false);
     })();
   </script>
-
-  <!-- ── Digest spotlight ────────────────────────────────────────── -->
-  <section id="digest">
-    <div class="wrap">
-      <div class="section-head center reveal">
-        <div class="eyebrow">堆積如山的「稍後閱讀」</div>
-        <h2>你存下來的內容，永遠比讀得完的還要多</h2>
-        <p>我們儲存的內容大多很少再次翻閱。「摘要精選（Digest）」為你挑選 5 篇典藏內容，並傳送至裝置供離線閱讀。</p>
-      </div>
-      <figure class="section-photo reveal">
-        <img src="../assets/photo/evening-sofa-ereader-600.webp" srcset="../assets/photo/evening-sofa-ereader-600.webp 600w, ../assets/photo/evening-sofa-ereader-1200.webp 1200w" sizes="(max-width: 640px) 92vw, 520px" width="1600" height="1195" loading="lazy" decoding="async" alt="插圖：夜晚時分，一人蓋著毯子坐在沙發上，使用電子閱讀器閱讀">
-        <figcaption>留到晚上靜心閱讀，別堆在 12 個分頁裡。插圖由 AI 生成。</figcaption>
-      </figure>
-      <div class="feature-grid digest-steps reveal">
-        <div class="feature-card">
-          <h3 style="margin-top:0;">1. 點擊文摘（Digest）</h3>
-          <p>精選 5 篇典藏，兼顧時效性與內容多元度。</p>
-        </div>
-        <div class="feature-card">
-          <h3 style="margin-top:0;">2. 隨心設定閱讀氛圍</h3>
-          <p>輕鬆、客觀或深入：依照你的心情隨心挑選。</p>
-        </div>
-        <div class="feature-card">
-          <h3 style="margin-top:0;">3. 傳送至離線裝置</h3>
-          <p>一鍵打包傳送至 Kindle 或同區域網路內的裝置，通勤或搭機隨時離線閱讀。</p>
-        </div>
-      </div>
-    </div>
-  </section>
 
   <!-- ── Phone companion ────────────────────────────────────────── -->
   <section id="phone">
@@ -946,28 +949,13 @@
     </div>
   </section>
 
-  <!-- ── Why on-device ──────────────────────────────────────────── -->
-  <section>
-    <div class="wrap wrap-narrow">
-      <div class="section-head center reveal">
-        <div class="eyebrow">貫徹 byphil 的設計哲學</div>
-        <h2>你的資料庫，永遠屬於你</h2>
-        <p>搜尋、重複偵測、標籤整理與相似文章推薦皆完全在瀏覽器本機端執行，無需伺服器也無需帳號。只有摘要請求會發送出去，且僅限於你自行選擇的 AI 服務商。若搭配本機 Ollama 模型，所有資料更可 100% 留在本機。</p>
-      </div>
-      <figure class="section-photo reveal">
-        <img src="../assets/photo/scene-library-laptop-600.webp" srcset="../assets/photo/scene-library-laptop-600.webp 600w, ../assets/photo/scene-library-laptop-1200.webp 1200w" sizes="(max-width: 640px) 92vw, 520px" width="1200" height="670" loading="lazy" decoding="async" alt="插圖：整潔的木質桌面上擺放著筆記型電腦，旁邊有一盆植栽與一疊筆記本">
-        <figcaption>你的個人書庫完全儲存在本機裝置。插圖由 AI 生成。</figcaption>
-      </figure>
-    </div>
-  </section>
-
   <!-- ── Pricing ─────────────────────────────────────────────────── -->
   <section id="pricing">
     <div class="wrap wrap-narrow">
       <div class="section-head center reveal">
         <div class="eyebrow">所有人皆可免費使用</div>
-        <h2>完全免費。贊助即可解鎖各款 AI 模型。</h2>
-        <p>只要使用自己的 AI API Key 或本機模型，所有功能皆可免費使用。若你喜歡這款工具，歡迎透過贊助表達支持！贊助還能讓你享有 byphil Cloud：一站整合眾多 AI 模型，免填 Key 亦無需繁瑣設定，同時還能支持 byphil 開發的所有工具。</p>
+        <h2>支持這個專案。享受輕鬆的 AI。</h2>
+        <p>使用你自己的 AI 金鑰或本機模型，一切都能免費運作。Support Pass 資助獨立、本機優先的軟體開發，並帶來輕鬆的 AI 與無限的離線閱讀——不會挾持你的典藏庫。</p>
       </div>
 
       <div style="text-align:center;">
@@ -1003,7 +991,7 @@
           <ul>
             <li>byphil Cloud：整合多款 AI 模型，無需 API Key</li>
             <li>無限次 Kindle 與 LocalSend 傳送（含文摘打包）</li>
-            <li>支持所有 byphil 開發的工具</li>
+            <li>支持獨立開放原始碼開發</li>
           </ul>
           <a href="https://byphil.eu/#pass" class="tier-cta">支持此專案</a>
         </div>
@@ -1020,31 +1008,77 @@
       <div class="section-head center reveal">
         <div class="eyebrow">常見問題</div>
         <h2>安裝前須知</h2>
+        <p>依主題、供應商、隱私、典藏庫或平台搜尋解答。</p>
       </div>
-      <div class="faq reveal">
-        <details>
+      <div class="faq-tools reveal">
+        <label class="sr-only" for="faqSearch">搜尋常見問題</label>
+        <input id="faqSearch" type="search" data-faq-search="" placeholder="搜尋常見問題…" autocomplete="off" spellcheck="false" aria-controls="faqList">
+        <div class="faq-filters" role="group" aria-label="依主題篩選常見問題">
+          <button type="button" class="faq-filter is-active" data-faq-filter="all" aria-pressed="true">全部</button>
+          <button type="button" class="faq-filter" data-faq-filter="basics" aria-pressed="false">基礎</button>
+          <button type="button" class="faq-filter" data-faq-filter="privacy" aria-pressed="false">隱私權政策</button>
+          <button type="button" class="faq-filter" data-faq-filter="ai" aria-pressed="false">AI 與來源</button>
+          <button type="button" class="faq-filter" data-faq-filter="archive" aria-pressed="false">典藏庫</button>
+          <button type="button" class="faq-filter" data-faq-filter="platforms" aria-pressed="false">平台</button>
+        </div>
+        <p id="faqSearchStatus" class="faq-search-status" aria-live="polite"></p>
+      </div>
+      <div class="faq reveal" id="faqList">
+        <details data-faq-personas="privacy researcher feeds hoarder" data-faq-category="basics">
           <summary>使用前需要先註冊帳號嗎？</summary>
-          <p>不需要。安裝後只要填入你自己的 AI 服務商 API Key（或直接使用本機 Ollama 模型），就能立即開始儲存。只有當你想使用 byphil Cloud（免 Key 即可使用多款 AI 模型），或是想解鎖贊助專屬的更多 Kindle／LocalSend 傳送額度時，才需要註冊帳號。</p>
+          <p>不用。安裝後，帶上你自己的 AI 供應商金鑰，或使用本機 Ollama 模型，就能開始儲存。只有選用的 byphil Cloud 存取或額外的 Kindle/LocalSend 傳送才需要帳號。 <a href="blog/bring-your-own-key.html">查看供應商選項 →</a></p>
         </details>
-        <details>
+        <details data-faq-personas="privacy researcher feeds hoarder" data-faq-category="privacy">
           <summary>究竟有哪些資料會離開我的瀏覽器？</summary>
-          <p>系統只會發送摘要請求至你所設定的 AI 提供商；若使用 RSS 閱讀器，則會向你訂閱的 Feed 發出連線請求；且僅在點擊 AI 重點回顧時，才會傳送當日的頭條與簡短摘要。搜尋、重複內容偵測、標籤清理、閱讀難度與情緒分析，以及「相關文章」推薦等功能，皆完全在本機端針對你已儲存的封存庫進行運算。</p>
+          <p>只有摘要請求會送到你設定的 AI 供應商。RSS 也需要向你的訂閱來源發出請求；AI 摘要回顧只在你要求時傳送標題與簡短片段。搜尋、重複偵測、標籤與推薦都在本機執行。 <a href="blog/on-device-architecture.html">查看裝置端架構 →</a></p>
         </details>
-        <details>
+        <details data-faq-personas="privacy" data-faq-category="privacy">
+          <summary>我的頁面或標示內容會被用來訓練模型嗎？</summary>
+          <p>AI Summary Helper 不會使用你的內容訓練自家模型。使用 BYOK 時，適用你所選供應商的資料政策。使用 Ollama 時，摘要請求會留在你的機器上。 <a href="privacy.html">閱讀隱私模式 →</a></p>
+        </details>
+        <details data-faq-personas="privacy" data-faq-category="privacy">
           <summary>可以完全不依賴雲端執行嗎？</summary>
-          <p>可以 — 只要設定連接本機 Ollama 模型，就連摘要步驟也能完全在你的電腦上完成。其餘功能本來就完全在本機運行。</p>
+          <p>可以。指向本機 Ollama 模型，摘要步驟也會留在你的機器上。其他一切本來就在本機執行。 <a href="blog/bring-your-own-key.html">比較 BYOK 與 Ollama →</a></p>
         </details>
-        <details>
-          <summary>如果我停止贊助專案，已儲存的內容會受到影響嗎？</summary>
-          <p>你的檔案庫依然安全儲存在原處 — 即你裝置上的瀏覽器本機儲存空間（Local Storage）。Support Pass 僅限制依賴雲端的額外功能（byphil Cloud AI 存取、無限次 Kindle/LocalSend 傳送），絕不會鎖定或限制你已儲存的內容。</p>
+        <details data-faq-personas="privacy hoarder researcher" data-faq-category="archive">
+          <summary>我的閱讀典藏庫存放在哪裡？</summary>
+          <p>預設存放在你裝置上的瀏覽器中。你可以將它匯出為 Markdown，或加密備份到你自己的 Nextcloud、WebDAV 伺服器、S3 儲存桶或本機資料夾。 <a href="blog/sync-to-nextcloud-s3-or-a-folder.html">閱讀同步指南 →</a></p>
         </details>
-        <details>
+        <details data-faq-personas="privacy hoarder researcher" data-faq-category="archive privacy">
+          <summary>如果我清除瀏覽器資料會怎樣？</summary>
+          <p>若沒有備份，清除本機瀏覽器資料可能會移除本機典藏庫。在清除瀏覽器資料或更換設定檔之前，請先匯出你的藏書庫，或設定加密同步到你自己的儲存空間。 <a href="blog/sync-to-nextcloud-s3-or-a-folder.html">閱讀備份與同步指南 →</a></p>
+        </details>
+        <details data-faq-personas="privacy researcher feeds" data-faq-category="ai">
+          <summary>支援哪些 AI 供應商與模型？</summary>
+          <p>你可以使用 OpenAI、Gemini、Mistral、DeepSeek、相容的自訂端點，或本機 Ollama 模型。帶上你自己的金鑰，或使用選用的 byphil Cloud 存取。 <a href="blog/bring-your-own-key.html">了解 BYOK 如何運作 →</a></p>
+        </details>
+        <details data-faq-personas="researcher feeds" data-faq-category="ai">
+          <summary>我可以摘要 PDF、YouTube 影片與 RSS 項目嗎？</summary>
+          <p>可以。可摘要瀏覽器中開啟或從磁碟附加的 PDF、透過字幕的 YouTube 影片，以及內建 RSS 閱讀器中的文章。 <a href="blog/videos.html">觀看工作流程影片 →</a> <a href="blog/feeds-recap.html">了解訂閱摘要包 →</a></p>
+        </details>
+        <details data-faq-personas="researcher feeds" data-faq-category="ai">
+          <summary>AI 摘要有多可靠？</summary>
+          <p>AI 輸出可能有誤，無法取代查核來源。追問的答案會顯示所依據的段落，讓你能將摘要與原始頁面相互對照。 <a href="blog/verify-ai-summary.html">學會 10 秒來源查核 →</a></p>
+        </details>
+        <details data-faq-personas="privacy researcher feeds hoarder" data-faq-category="platforms">
+          <summary>支援哪些瀏覽器與平台？</summary>
+          <p>可使用瀏覽器擴充功能、原生側邊面板或書籤小工具。Android 版應用程式可從手機加入連結；iOS 尚未提供。 <a href="blog/from-bookmarklet-to-2.html">查看瀏覽器與擷取工作流程 →</a></p>
+        </details>
+        <details data-faq-personas="shared" data-faq-category="platforms">
           <summary>如何安裝 Android Companion？</summary>
-          <p>從上方連結下載 APK（或前往 <a href="https://github.com/philffm/ai-summary-helper/releases/latest" target="_blank" rel="noopener">最新版本</a>），開啟檔案並在 Android 系統提示時允許從瀏覽器安裝。接著在擴充功能的「設定」→「手機收件匣」中掃描 QR Code 進行配對。目前尚未在 Google Play 上架。</p>
+          <p>從 <a href="https://github.com/philffm/ai-summary-helper/releases/latest" target="_blank" rel="noopener">最新版本</a>下載 APK，接著在「設定 → 手機收件匣」掃描 QR 碼進行配對。目前尚未在 Google Play 上架。 <a href="blog/from-bookmarklet-to-2.html">了解擷取如何融入工作流程 →</a></p>
         </details>
-        <details>
+        <details data-faq-personas="shared" data-faq-category="basics">
+          <summary>Support Pass 能解鎖什麼？</summary>
+          <p>Support Pass 資助獨立開放原始碼開發，並可解鎖選用的 byphil Cloud AI 存取或額外的 Kindle/LocalSend 傳送。你的本機典藏庫與本機使用不會被它鎖住。 <a href="blog/bring-your-own-key.html">了解選用雲端服務的界線 →</a></p>
+        </details>
+        <details data-faq-personas="hoarder" data-faq-category="basics">
+          <summary>如果我停止贊助專案，已儲存的內容會受到影響嗎？</summary>
+          <p>你的檔案庫依然安全儲存在原處 — 即你裝置上的瀏覽器本機儲存空間（Local Storage）。Support Pass 僅限制依賴雲端的額外功能（byphil Cloud AI 存取、無限次 Kindle/LocalSend 傳送），絕不會鎖定或限制你已儲存的內容。 <a href="blog/unread-saves.html">看看 Digest 如何讓儲存的內容再次有用 →</a></p>
+        </details>
+        <details data-faq-personas="privacy researcher feeds hoarder" data-faq-category="basics">
           <summary>這是開源專案嗎？</summary>
-          <p>是的 — 擴充功能原始碼已公開於 <a href="https://github.com/philffm/ai-summary-helper/" target="_blank" rel="noopener">GitHub</a>，採用 AGPL-3.0 授權條款。個人、教育與非營利用途完全免費；若企業需要在 AGPL 條款規範之外使用，可取得商業授權。</p>
+          <p>是的 — 擴充功能原始碼已公開於 <a href="https://github.com/philffm/ai-summary-helper/" target="_blank" rel="noopener">GitHub</a>，採用 AGPL-3.0 授權條款。個人、教育與非營利用途完全免費；若企業需要在 AGPL 條款規範之外使用，可取得商業授權。 <a href="blog/on-device-architecture.html">了解本機架構 →</a></p>
         </details>
       </div>
     </div>
