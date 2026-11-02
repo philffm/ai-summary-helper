@@ -400,6 +400,13 @@ section{ padding:76px 0; }
 .tiers.yearly .price-yearly{ display:inline; }
 @media (max-width: 760px){ .tiers{ grid-template-columns:1fr; } }
 
+/* ── Landing-page trust badges ──────────────────────────────────── */
+.trust-section{padding:clamp(42px,6vw,78px) 0;background:var(--surface-1);border-top:1px solid var(--border-subtle);border-bottom:1px solid var(--border-subtle)}
+.trust-section .lead{max-width:640px;margin:12px auto 0;color:var(--paper-dim)}
+.trust-badges{display:flex;flex-wrap:wrap;justify-content:center;gap:10px;margin:24px auto 0}
+.trust-badges span{display:inline-flex;align-items:center;min-height:34px;padding:7px 13px;border:1px solid var(--border-medium);border-radius:999px;background:var(--surface-2);color:var(--paper);font-family:var(--font-mono);font-size:11px;letter-spacing:.04em;text-transform:uppercase}
+.trust-badges span::before{content:"";width:6px;height:6px;margin-right:8px;border-radius:50%;background:var(--signal-light);box-shadow:0 0 0 3px color-mix(in srgb,var(--signal-light) 15%,transparent)}
+
 /* ── FAQ ─────────────────────────────────────────────────────────── */
 .faq{ max-width:760px; margin:0 auto; }
 .faq details{
