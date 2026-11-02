@@ -956,20 +956,35 @@ function setBilling(period) {
   var status = document.getElementById('faqSearchStatus');
   if (!input || !list) return;
   var items = [].slice.call(list.querySelectorAll('details'));
+  var filters = [].slice.call(document.querySelectorAll('[data-faq-filter]'));
+  var activeFilter = 'all';
   function filter() {
     var query = input.value.trim().toLowerCase();
     var visible = 0;
     items.forEach(function (item) {
-      var match = !query || item.textContent.toLowerCase().indexOf(query) !== -1;
+      var categories = (item.getAttribute('data-faq-category') || '').split(/\s+/);
+      var inCategory = activeFilter === 'all' || categories.indexOf(activeFilter) !== -1;
+      var match = inCategory && (!query || item.textContent.toLowerCase().indexOf(query) !== -1);
       item.hidden = !match;
       if (match) {
         visible++;
         if (query) item.open = true;
       }
     });
-    if (status) status.textContent = query ? visible + ' answer' + (visible === 1 ? '' : 's') + ' found' : '';
+    if (status) status.textContent = (query || activeFilter !== 'all') ? visible + ' answer' + (visible === 1 ? '' : 's') + ' found' : '';
   }
   input.addEventListener('input', filter);
+  filters.forEach(function (button) {
+    button.addEventListener('click', function () {
+      activeFilter = button.getAttribute('data-faq-filter') || 'all';
+      filters.forEach(function (item) {
+        var active = item === button;
+        item.classList.toggle('is-active', active);
+        item.setAttribute('aria-pressed', active ? 'true' : 'false');
+      });
+      filter();
+    });
+  });
 })();
 
 // Live demo: the iframe is created on click, so the page stays light until someone wants it.
