@@ -1867,3 +1867,7 @@ body:has(.hero--photo){ padding-top:0; }
 .cx-slide-link:hover{border-color:var(--signal);background:var(--surface-2-strong);transform:translateY(-1px)}
 .cx-slide-link:focus-visible{outline:2px solid var(--signal);outline-offset:3px}
 @media (prefers-reduced-motion:reduce){.cx-slide-link{transition:none}.cx-slide-link:hover{transform:none}}
+/* The slide link sits on an always-dark photo card: use fixed light colours so it stays visible in light theme */
+.cx-card .cx-slide-link{color:#F5F5F7;background:rgba(255,255,255,.12);border-color:rgba(255,255,255,.45)}
+.cx-card .cx-slide-link:hover{color:#fff;background:rgba(255,255,255,.22);border-color:#fff}
+.cx-card .cx-slide-link:focus-visible{outline-color:#fff}
