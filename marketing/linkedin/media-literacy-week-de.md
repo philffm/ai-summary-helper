@@ -1,24 +1,40 @@
 # LinkedIn-Post: Media Literacy Week
 
-Letzte Woche war Media Literacy Week. Für mich ist das eine gute Gelegenheit, über Medienkompetenz im Zeitalter generativer KI nachzudenken.
+**81 % der Studierenden nutzen KI mindestens wöchentlich – gleichzeitig erreicht rund ein Drittel der 15-Jährigen in Deutschland beim Lesen nicht das grundlegende Kompetenzniveau.**
 
-Medienkompetenz bedeutet heute nicht nur, Fake News zu erkennen. Sie bedeutet auch, eine sprachlich überzeugende KI-Antwort gegen ihre ursprüngliche Quelle zu prüfen:
+Wenn generative KI auf sehr unterschiedliche Lesekompetenzen trifft, entsteht ein bildungspolitisches Risiko: Antworten wirken sprachlich überzeugend und können dazu verleiten, das Gegenprüfen ganz einzustellen.
 
-- Woher stammt diese Aussage?
-- Welche Textstelle belegt sie?
-- Was sagt die Quelle tatsächlich – und was ergänzt die KI?
-- Welche Perspektiven oder Widersprüche fehlen?
+Die aktuelle Evidenz beschreibt mehrere Seiten dieses Problems:
 
-Genau diesen Schritt sollte Software nicht unsichtbar machen, sondern erleichtern.
+📊 **KI ist Alltag, nicht Ausnahme:** 81 % der befragten Studierenden nutzten KI im Wintersemester 2025/26 mindestens wöchentlich, 46,5 % täglich. Rund 70 % wünschen sich klare Regeln für den ethischen Umgang und den Schutz persönlicher Daten. Die CHE-Erhebung umfasste rund 28.600 Studierende, vor allem aus Wirtschafts- und Rechtswissenschaften in Deutschland und Österreich – die Zahlen gelten daher nicht automatisch für jedes Fach.
 
-AI Summary Helper fasst Webseiten und Fachartikel zusammen und führt jede Antwort zurück zu der Passage, auf der sie beruht. Lernende, Lehrende und Institutionen können dadurch schneller Orientierung gewinnen, ohne die Quelle aus dem Blick zu verlieren.
+📉 **Lesekompetenz bleibt eine Voraussetzung:** Laut [OECD/PISA 2025, Ländernotiz Deutschland](https://www.oecd.org/content/dam/oecd/de/publications/reports/2026/09/pisa-2025-results-volume-i-country-notes_88d1164e/germany_20677961/8a1ce578-de.pdf) erreicht rund ein Drittel der 15-Jährigen beim Lesen nicht das grundlegende Kompetenzniveau.
 
-Für Bildungseinrichtungen ist das besonders wichtig: KI darf nicht nur fertige Antworten liefern. Sie sollte dazu anregen, genauer zu lesen, Belege zu prüfen und Wissen dauerhaft aufzubauen.
+🧠 **Der Fundort-Effekt:** Sparrow, Liu und Wegner zeigten in *Science*, dass Menschen bei erwartbarem späterem Zugriff eher erinnern, **wo** Informationen zu finden sind, als den Inhalt selbst. Bei KI-Antworten sollte die Originalpassage deshalb auffindbar bleiben.
 
-Der Bildungs-Pitch zeigt den Ablauf in zehn Schritten – vom Verstehen über das Überprüfen bis zum Verknüpfen von Themen und Quellen im Wissensgraphen:
+✏️ **Markieren allein reicht nicht:** Dunlosky und Kollegen ordneten Markieren und Unterstreichen in einer Übersicht zu Lerntechniken in die Gruppe mit dem geringsten Nutzen ein. Aktives Abrufen und verteiltes Lernen schnitten deutlich besser ab.
 
-https://ai-summary-helper.byphil.eu/education/
+Wer KI in Schulen, Hochschulen und Verwaltungen nur als Antwortgenerator einsetzt, riskiert passive Wissensaufnahme. Wir brauchen Software, die Informationskompetenz nicht ersetzt, sondern trainiert.
 
-Open Source, ohne verpflichtendes Konto und mit freier Wahl des Modells – inklusive lokaler Nutzung mit Ollama.
+Mit **AI Summary Helper** verfolge ich einen evidenzorientierten Gegenentwurf:
 
-#Medienkompetenz #MediaLiteracy #Bildung #Schule #Hochschule #DigitalSovereignty #KünstlicheIntelligenz
+1. **Understand:** Komplexe Webseiten, Fachaufsätze und PDFs strukturiert erfassen.
+2. **Verify:** Kernaussagen mit einem Klick an der markierten Originalpassage prüfen.
+3. **Retain:** Fragen an eigene Markierungen stellen und Zusammenhänge im Wissensgraphen sichtbar machen.
+
+Das funktioniert wahlweise vollständig lokal mit Ollama oder mit einem eigenen API-Key – ohne verpflichtendes Konto und mit freier Wahl des Modells.
+
+💬 **Frage an Lehrende, Schulträger, Bibliotheken und Hochschuldidaktiker:**
+Wie begegnet ihr der Lücke zwischen rasanter KI-Adaption und der Notwendigkeit, Quellen weiterhin selbst zu verstehen? Fördert ihr aktive Prüf-Workflows – oder dominiert an eurer Einrichtung noch das Verbot beziehungsweise die passive Übernahme?
+
+🧪 **Kostenloser Pilot und interaktive Demo für Bildungseinrichtungen:**
+👉 https://ai-summary-helper.byphil.eu/education/
+
+Quellen:
+
+- [CHE-Erhebung zur KI-Nutzung unter Studierenden](https://idw-online.de/de/news874925)
+- [OECD/PISA 2025: Ländernotiz Deutschland](https://www.oecd.org/content/dam/oecd/de/publications/reports/2026/09/pisa-2025-results-volume-i-country-notes_88d1164e/germany_20677961/8a1ce578-de.pdf)
+- [Sparrow, Liu & Wegner (2011), *Science*](https://doi.org/10.1126/science.1207745)
+- [Dunlosky et al. (2013), *Psychological Science in the Public Interest*](https://doi.org/10.1177/1529100612453266)
+
+#Medienkompetenz #MediaLiteracy #PISA #Informationskompetenz #KIinBildung #DigitaleSouveränität #EdTech #OpenSource
