@@ -97,7 +97,12 @@
         }
       });
     }, { threshold: 0, rootMargin: '0px 0px -80px 0px' });
-    reveals.forEach(function (el) { (el.offsetHeight > window.innerHeight * 0.9 ? tallObserver : observer).observe(el); });
+    // read layout once, after first paint, so the initial script run does not force a synchronous reflow
+    requestAnimationFrame(function () {
+      var vh = window.innerHeight * 0.9;
+      var tall = Array.prototype.map.call(reveals, function (el) { return el.offsetHeight > vh; });
+      reveals.forEach(function (el, i) { (tall[i] ? tallObserver : observer).observe(el); });
+    });
   } else {
     reveals.forEach(function (el) { el.classList.add('is-visible'); });
   }

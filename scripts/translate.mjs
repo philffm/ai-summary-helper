@@ -231,7 +231,12 @@ function localizeShots($, locale) {
         const m = src.match(/^(.*assets\/shots\/)([^/]+)-en\.webp$/);
         if (!m) return;
         const file = `${m[2]}-${code}.webp`;
-        if (existsSync(path.join(ROOT, 'assets', 'shots', file))) $el.attr('src', `${m[1]}${file}`);
+        if (existsSync(path.join(ROOT, 'assets', 'shots', file))) {
+            $el.attr('src', `${m[1]}${file}`);
+            // keep responsive variants (…-en-720.webp) in sync with the localized src
+            const ss = $el.attr('srcset');
+            if (ss) $el.attr('srcset', ss.replaceAll(`${m[2]}-en`, `${m[2]}-${code}`));
+        }
     });
 }
 

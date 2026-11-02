@@ -947,8 +947,8 @@ footer .copyright a:hover, .foot-links a:hover{ text-decoration-color:currentCol
 .hs-pp, .hs-dot{ border:0; cursor:pointer; }
 .hs-pp{ width:30px; height:30px; border-radius:50%; display:grid; place-items:center; background:var(--surface-1-strong); color:var(--paper); border:1px solid var(--border-medium); }
 .hs-pp .pp-play{ display:none; } .hs-pp.is-paused .pp-play{ display:block; } .hs-pp.is-paused .pp-pause{ display:none; }
-.hs-dot{ width:9px; height:9px; padding:0; border-radius:5px; background:var(--border-strong); transition:width .25s, background .25s; }
-.hs-dot.is-on{ width:30px; background:var(--signal); }
+.hs-dot{ box-sizing:content-box; width:9px; height:9px; padding:8px 4px; border-radius:12px; background:var(--border-strong); background-clip:content-box; transition:width .25s, background .25s; }
+.hs-dot.is-on{ width:30px; background:var(--signal); background-clip:content-box; }
 .hs-pp:focus-visible, .hs-dot:focus-visible, .hs-steps li:focus-visible{ outline:2px solid var(--signal); outline-offset:3px; }
 .hs-steps li{ cursor:pointer; }
 
