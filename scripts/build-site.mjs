@@ -142,7 +142,17 @@ function evidenceSection(persona) {
             ['Confirm external actions', 'Reading access is not write access', 'A safe integration should separate local retrieval from writes or external actions and ask for confirmation where the consequences change.', 'NSA, MCP Security Guidance', 'https://www.nsa.gov/Portals/75/documents/Cybersecurity/CSI_MCP_SECURITY.pdf', 'student-library-desk-1600.webp']
         ]
     };
-    const slides = slidesByPersona[persona] || slidesByPersona.privacy;
+    // One photo per evidence slide, chosen per persona so the landing pages do not all repeat the same four pictures.
+    const IMAGES = {
+        researcher: ['scene-student-research-carrel', 'latina-woman-document-stack', 'older-man-highlights-monitor', 'student-wheelchair-library'],
+        feeds: ['older-man-kitchen-tablet', 'commuter-train-reading', 'students-classroom-reading', 'older-man-highlights-monitor'],
+        video: ['scene-student-teacher-evidence', 'students-studying-together', 'teacher-grading-papers', 'students-classroom-reading'],
+        hoarder: ['woman-cafe-knowledge-graph', 'student-wheelchair-library', 'latina-woman-document-stack', 'evening-sofa-ereader'],
+        privacy: ['older-woman-home-nas-desk', 'it-specialist-server-room', 'nas-shelf-laptop-phone', 'offline-laptop-cable'],
+        mcp: ['it-specialist-server-room', 'woman-cafe-knowledge-graph', 'colleagues-laptop-office', 'older-woman-home-nas-desk']
+    };
+    const pics = IMAGES[persona] || IMAGES.privacy;
+    const slides = (slidesByPersona[persona] || slidesByPersona.privacy).map((s, i) => [...s.slice(0, 5), `${pics[i]}-1600.webp`]);
     const total = slides.length + 1;
     return `<section class="landing-evidence"><div class="wrap"><div class="section-head center reveal"><div class="eyebrow">Why this workflow</div><h2>${title}</h2><p>${intro}</p></div><div class="cx cx--fit reveal" data-carousel role="region" aria-roledescription="carousel" aria-label="Evidence and live demo for this reading workflow"><ul class="cx-track">${slides.map(([big, heading, text, source, href, image], i) => `<li class="cx-slide${i === 0 ? ' is-active' : ''}" aria-roledescription="slide" aria-label="${i + 1} / ${total}"><figure><div class="cx-card" style="--img:url({{base}}assets/photo/${image})"><span class="cx-big cx-big--text">${big}</span><strong class="cx-title">${heading}</strong><span class="cx-text">${text}</span><small class="cx-src">Source: <a href="${href}" target="_blank" rel="noopener">${source}</a></small></div></figure></li>`).join('')}${landingDemoSlide(persona, slides.length)}</ul><button type="button" class="cx-nav cx-prev" aria-label="Back"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m15 18-6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button><button type="button" class="cx-nav cx-next" aria-label="Next"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m9 18 6-6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button><div class="cx-dots">${slides.map((_, i) => `<button type="button" class="cx-dot${i === 0 ? ' is-active' : ''}" aria-label="Slide ${i + 1}"></button>`).join('')}<button type="button" class="cx-dot cx-dot--demo" aria-label="Go to live demo slide">Demo</button><button type="button" class="cx-dot cx-dot--demo-m" aria-label="Go to live demo slide">Demo</button></div></div></div></section>`;
 }
