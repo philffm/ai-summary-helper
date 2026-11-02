@@ -95,7 +95,7 @@ const EVIDENCE_COPY = {
     video: ['Turn more video into something you can use', 'Learning research supports meaningful segments, clear signals and active questions rather than passive replay.'],
     hoarder: ['Make saved reading returnable', 'Saving is only the first step. Retrieval, spacing and source context give an archive a reason to be revisited.'],
     privacy: ['A better reading workflow, backed by evidence', 'A local archive is useful when it helps you understand, check and revisit what you read — not merely collect more summaries.'],
-    mcp: ['Connect tools without losing the boundary', 'Interoperability is useful when access is explicit, scoped and auditable. A protocol does not remove the need for least privilege or source review.']
+    mcp: ['What your AI app can and cannot do', 'The limits are built in and you set them. The details are in the open-source relay documentation.']
 };
 
 function evidenceSection(persona) {
@@ -136,10 +136,10 @@ function evidenceSection(persona) {
             common.source
         ],
         mcp: [
-            ['Least privilege', 'Give tools only the access they need', 'Security guidance for tool-connected AI systems recommends explicit scope, minimal permissions and careful handling of untrusted content.', 'NSA, MCP Security Guidance', 'https://www.nsa.gov/Portals/75/documents/Cybersecurity/CSI_MCP_SECURITY.pdf', 'researcher-desk-notes-1600.webp'],
-            ['Explicit boundaries', 'Local context is not automatic trust', 'A protocol can make tools interoperable; it does not guarantee that a server, prompt or retrieved document is safe.', 'Model Context Protocol specification', 'https://modelcontextprotocol.io/specification/2025-03-26/server/prompts', 'teacher-classroom-desk-1600.webp'],
-            ['Keep provenance', 'Every answer needs a route back', 'Source passages and clear retrieval boundaries make it easier to inspect what a connected tool used.', 'Correctness is not Faithfulness in RAG Attributions (2024)', 'https://arxiv.org/html/2412.18004v1', 'sticky-notes-desk-1600.webp'],
-            ['Confirm external actions', 'Reading access is not write access', 'A safe integration should separate local retrieval from writes or external actions and ask for confirmation where the consequences change.', 'NSA, MCP Security Guidance', 'https://www.nsa.gov/Portals/75/documents/Cybersecurity/CSI_MCP_SECURITY.pdf', 'student-library-desk-1600.webp']
+            ['Read-only', 'Your AI app can read, not edit', 'Connected apps can search your saved articles, summaries, highlights, collections and feeds. They cannot edit or delete anything, and nothing works while the browser is closed. The one write is saving a link to your inbox, marked “added by AI app”, and only if you allow it.', 'aish-mcp documentation, What it can and can’t do', 'https://github.com/philffm/ai-summary-helper/blob/main/mcp/README.md'],
+            ['Off by default', 'You switch each permission on', 'The feature is off until you turn it on in AISH settings. Full article text, feeds and saving links are separate switches, and anything you have not enabled is refused inside the extension. Articles tagged private never appear in a result.', 'aish-mcp documentation, Security notes', 'https://github.com/philffm/ai-summary-helper/blob/main/mcp/README.md'],
+            ['Local only', 'Paired, checked, not reachable from the web', 'The relay listens on 127.0.0.1 only. The extension connects to it with a pairing token, and a web page cannot drive it. One command, aish-mcp reset, makes the old token stop working immediately.', 'aish-mcp documentation, Security notes', 'https://github.com/philffm/ai-summary-helper/blob/main/mcp/README.md'],
+            ['Ask your library', 'What you can ask once it is connected', 'For example: “Do any of my saved articles on this topic disagree? Show both sides with sources.” Your AI app sends only what it needs to its own model; the relay keeps no library data.', 'aish-mcp documentation, Try asking', 'https://github.com/philffm/ai-summary-helper/blob/main/mcp/README.md']
         ]
     };
     // One photo per evidence slide, chosen per persona so the landing pages do not all repeat the same four pictures.
@@ -149,7 +149,7 @@ function evidenceSection(persona) {
         video: ['scene-student-teacher-evidence', 'students-studying-together', 'teacher-grading-papers', 'students-classroom-reading'],
         hoarder: ['woman-cafe-knowledge-graph', 'student-wheelchair-library', 'latina-woman-document-stack', 'evening-sofa-ereader'],
         privacy: ['older-woman-home-nas-desk', 'it-specialist-server-room', 'nas-shelf-laptop-phone', 'offline-laptop-cable'],
-        mcp: ['it-specialist-server-room', 'woman-cafe-knowledge-graph', 'colleagues-laptop-office', 'older-woman-home-nas-desk']
+        mcp: ['older-woman-home-nas-desk', 'it-specialist-server-room', 'offline-laptop-cable', 'woman-cafe-knowledge-graph']
     };
     const pics = IMAGES[persona] || IMAGES.privacy;
     const slides = (slidesByPersona[persona] || slidesByPersona.privacy).map((s, i) => [...s.slice(0, 5), `${pics[i]}-1600.webp`]);
