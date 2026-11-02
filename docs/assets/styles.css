@@ -1077,6 +1077,8 @@ footer .copyright a:hover, .foot-links a:hover{ text-decoration-color:currentCol
 .nav--pill .mm-links a.mm-sub{font-size:16px;font-weight:400;padding:9px 0 9px 34px;color:var(--paper-dim);border-bottom:0}
 .nav--pill .mm-bottom{margin-top:28px;display:grid;gap:16px}
 .nav--pill .mm-cta{justify-content:center;padding:15px;border-radius:999px;background:var(--cta-sky-2);color:var(--on-accent);font-weight:600;text-decoration:none;display:flex}
+.nav--pill .mm-cta--secondary{background:var(--surface-2);color:var(--paper);border:1px solid var(--border-medium)}
+.nav--pill .mm-cta--secondary:hover{background:var(--surface-1-strong);color:var(--paper)}
 .nav--pill .mm-row{display:flex;flex-wrap:wrap;gap:8px 18px}
 .nav--pill .mm-row a,.nav--pill .mm-lang summary,.nav--pill .theme-toggle-mobile{color:var(--paper-dim);font-size:14px;text-decoration:none}
 .nav--pill .mm-lang summary{cursor:pointer;display:flex;gap:8px;align-items:center}
