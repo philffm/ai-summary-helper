@@ -4,8 +4,8 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="aish-viewer" content="{{VERSION}}">
-<!-- Everything shown comes from library.json and is inserted as text, never as HTML. d3 is loaded only when the Timeline or Graph view is opened. -->
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' file: https://cdn.jsdelivr.net; style-src 'unsafe-inline'; img-src data:; connect-src 'self'; base-uri 'none'; form-action 'none'">
+<!-- Everything shown comes from library.json and is inserted as text, never as HTML. -->
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' file:; style-src 'unsafe-inline'; img-src data:; connect-src 'self'; base-uri 'none'; form-action 'none'">
 <title>{{TITLE}}</title>
 <style>
 :root { --bg:#faf8ff; --card:#ffffff; --text:#0f172a; --text2:#334155; --muted:#566274; --accent:#2563eb; --outline:rgba(100,116,139,.28); --mark:#fef08a; --ghost:#dbeafe; --chip:#eef2ff; }
@@ -80,8 +80,6 @@ a { color:var(--accent); }
     <select id="sort" aria-label="Sort"><option value="new">Newest first</option><option value="old">Oldest first</option><option value="title">Title A to Z</option></select>
     <div class="seg" id="views" role="group" aria-label="View">
       <button type="button" data-view="list" aria-pressed="true">List</button>
-      <button type="button" data-view="timeline" aria-pressed="false">Timeline</button>
-      <button type="button" data-view="graph" aria-pressed="false">Graph</button>
       <button type="button" data-view="sky" aria-pressed="false">Sky</button>
       <button type="button" data-view="notes" aria-pressed="false" hidden>Notes</button>
     </div>

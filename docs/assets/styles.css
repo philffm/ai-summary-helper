@@ -294,6 +294,8 @@ a.ecosystem-card:hover{ border-color:var(--border-strong); transform:translateY(
 
 /* ── Section shell ───────────────────────────────────────────────── */
 section{ padding:76px 0; }
+.landing-note{margin:28px 0 0;color:var(--paper-dim);font-size:14px;text-align:center}
+.landing-note a{color:var(--signal-light);text-decoration:underline;text-underline-offset:3px}
 .landing-hero-video{max-width:420px;margin:32px auto 0}
 .landing-hero-video video{display:block;width:100%;height:auto;max-height:520px;object-fit:cover;border:1px solid var(--border-medium);border-radius:18px;background:var(--surface-1);box-shadow:0 18px 50px -28px rgba(0,0,0,.7)}
 .landing-hero-video figcaption{margin-top:10px;color:var(--paper-dim);font-size:13px;text-align:center}

@@ -15,7 +15,7 @@ const { SK, articleRecKey, syncLedgerKey } = K;
 const real = { 'index.html': fs.readFileSync(path.join(process.env.AISH_SRC, 'viewer/index.html'), 'utf8'), 'aish-viewer.js': fs.readFileSync(path.join(process.env.AISH_SRC, 'viewer/aish-viewer.js'), 'utf8'), 'aish-sky.js': fs.readFileSync(path.join(process.env.AISH_SRC, 'viewer/aish-sky.js'), 'utf8') };
 assert.ok(real['index.html'].includes('{{TITLE}}') && real['index.html'].includes('{{VERSION}}') && V.isOurs(real['index.html']), 'index.html has its placeholders and marker');
 assert.ok(/Content-Security-Policy/.test(real['index.html']) && !/innerHTML/.test(real['aish-viewer.js']) && !/innerHTML/.test(real['aish-sky.js']), 'a CSP, and no innerHTML anywhere in the viewer scripts');
-assert.ok(/integrity/.test(real['aish-sky.js']) && /sha384-/.test(real['aish-sky.js']), 'three.js is loaded with an integrity hash');
+assert.ok(!/cdn\.jsdelivr\.net|unpkg\.com/.test(real['index.html'] + real['aish-viewer.js'] + real['aish-sky.js']), 'viewer has no remotely hosted libraries');
 assert.deepEqual(Object.keys(V.renderViewer(real, { title: 't' }).files), Object.keys(V.VIEWER_FILES), 'every viewer file is published');
 const v1 = V.renderViewer(real, { title: '<img src=x onerror=1> & "co"' });
 assert.ok(!v1.files['index.html'].includes('<img src=x') && v1.files['index.html'].includes('&lt;img src=x onerror=1&gt; &amp; &quot;co&quot;'), 'the place name is escaped into the page');

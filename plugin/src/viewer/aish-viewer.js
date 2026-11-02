@@ -2,8 +2,6 @@
 // Safety: every value from library.json is inserted with textContent or createTextNode, never as HTML. Links are http(s) only.
 (function () {
   'use strict';
-  var D3_URL = 'https://cdn.jsdelivr.net/npm/d3@7.9.0/dist/d3.min.js';
-  var D3_SRI = 'sha384-CjloA8y00+1SDAUkjs099PVfnY2KmDC2BZnws9kh8D/lX1s46w6EPhpXdqMfjK6i';
   var state = { all: [], notes: [], q: '', tags: {}, sort: 'new', view: 'list', month: '' };
   var $ = function (id) { return document.getElementById(id); };
 
@@ -125,16 +123,6 @@
   }
   function toggleTag(t) { if (state.tags[t]) delete state.tags[t]; else state.tags[t] = true; render(); }
 
-  var d3Promise = null;
-  function loadD3() {
-    if (window.d3) return Promise.resolve(window.d3);
-    if (!d3Promise) d3Promise = new Promise(function (res, rej) {
-      var s = document.createElement('script'); s.src = D3_URL; s.integrity = D3_SRI; s.crossOrigin = 'anonymous';
-      s.onload = function () { res(window.d3); }; s.onerror = function () { d3Promise = null; rej(new Error('d3 could not be loaded (offline or blocked).')); };
-      document.head.appendChild(s);
-    });
-    return d3Promise;
-  }
   function note(text, cls) { var n = h('div', { class: 'note' + (cls ? ' ' + cls : ''), text: text }); $('extra').textContent = ''; $('extra').appendChild(n); }
 
   // the Sky: every article a star (aish-sky.js, loaded only here). The list below stays, as the accessible version of the same stars.
@@ -215,13 +203,13 @@
     if (state.view !== 'sky') leaveSky();
     if (state.view === 'list') { $('extra').textContent = ''; }
     else if (state.view === 'sky') showSky();
-    else loadD3().then(function (d3) { if (state.view === 'timeline') drawTimeline(d3); else drawGraph(d3); }).catch(function (e) { note(e.message, 'err'); });
+    else note('Timeline and Graph views are temporarily unavailable in the self-contained viewer.', 'err');
   }
 
   function init(lib) {
     if (!lib || !Array.isArray(lib.articles)) throw new Error('library.json has no articles.');
     state.all = lib.articles.filter(function (a) { return a && typeof a === 'object'; }); state.generated = lib.generatedAt; state.notes = Array.isArray(lib.notes) ? lib.notes : [];
-    var hv = (location.hash || '').slice(1); if (hv === 'timeline' || hv === 'graph' || hv === 'notes' || hv === 'sky') state.view = hv;   // a link can open a view directly
+    var hv = (location.hash || '').slice(1);     if (hv === 'notes' || hv === 'sky') state.view = hv;   // a link can open a view directly
     $('q').addEventListener('input', function () { state.q = this.value; render(); });
     $('sort').addEventListener('change', function () { state.sort = this.value; render(); });
     $('views').addEventListener('click', function (e) { var b = e.target.closest('button'); if (!b) return; state.view = b.dataset.view; if (state.view === 'list') state.month = ''; try { history.replaceState(null, '', state.view === 'list' ? location.pathname + location.search : '#' + state.view); } catch (_) { /* file or sandbox */ } render(); });
