@@ -169949,6 +169949,1336 @@
           "model": "deepseek/deepseek-v4.1-flash"
         }
       }
+    },
+    "14065e0637a55a5c4b33d0e91a9afeaf9387b6d2e597c4ba93d55335ecf89f8c": {
+      "en": "See the on-device architecture →",
+      "translations": {
+        "de": {
+          "text": "Sehen Sie sich die Architektur auf dem Gerät an →",
+          "translatedAt": "2026-11-02T01:58:09.319Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "8e710e90e25033d1ba28c245e2f7301eadcd630f0da7b270ec753778fd296ab8": {
+      "en": "Compare BYOK and Ollama →",
+      "translations": {
+        "de": {
+          "text": "BYOK und Ollama im Vergleich →",
+          "translatedAt": "2026-11-02T01:58:09.319Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "cb9644add09bfb53babcabdddd4207d878f8fcb9bcac5dc0b6ec28203cf287a9": {
+      "en": "Read the sync guide →",
+      "translations": {
+        "de": {
+          "text": "Lesen Sie die Sync-Anleitung →",
+          "translatedAt": "2026-11-02T01:58:09.319Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "53f8d8a5d974faf0378f46554009d79fb37e3abf09882b9ec6354b44c9b7f936": {
+      "en": "Learn how BYOK works →",
+      "translations": {
+        "de": {
+          "text": "Erfahren Sie, wie BYOK funktioniert →",
+          "translatedAt": "2026-11-02T01:58:09.319Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "b64ac7ee4f0e8923224fb153563cc0514039e9e5a5159bf9e4c012b474528adc": {
+      "en": "Watch the workflow videos →",
+      "translations": {
+        "de": {
+          "text": "Sehen Sie sich die Workflow-Videos an →",
+          "translatedAt": "2026-11-02T01:58:09.319Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "ce4a394565999688075d012f7017878408820c58b6d9939bc34fe3439a4e183d": {
+      "en": "Learn the 10-second source check →",
+      "translations": {
+        "de": {
+          "text": "Lernen Sie den 10-Sekunden-Quellencheck kennen →",
+          "translatedAt": "2026-11-02T01:58:09.319Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "4d3b92848c31f3544b876170efcbc2e82486d72bd1ac9d0bb1eb87b23f8ac9b7": {
+      "en": "See how Digest makes saves useful again →",
+      "translations": {
+        "de": {
+          "text": "So macht Digest gespeicherte Inhalte wieder nützlich →",
+          "translatedAt": "2026-11-02T01:58:09.319Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "5bf9abf87d67723bdb140106cd011661265655464e71d9467dfea4d9960ff4fe": {
+      "en": "Personal knowledge graph for your reading | AI Summary Helper",
+      "translations": {
+        "de": {
+          "text": "Persönlicher Wissensgraph für Ihre Lektüre | AI Summary Helper",
+          "translatedAt": "2026-11-02T01:58:18.086Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "9773fa773a3dee4b5f6cd72c556cbc257b4596857d7b6e9afae21743950584e4": {
+      "en": "Connect saved articles by topic with a local personal knowledge graph, search and reusable notes.",
+      "translations": {
+        "de": {
+          "text": "Verbinden Sie gespeicherte Artikel nach Thema mit einem lokalen persönlichen Wissensgraphen, einer Suche und wiederverwendbaren Notizen.",
+          "translatedAt": "2026-11-02T01:58:18.086Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "103a49d841077319bce3b3514b72a84d47835275fa1754b262c6540a3d7b1f75": {
+      "en": "Your reading, connected",
+      "translations": {
+        "de": {
+          "text": "Ihre Lektüre, vernetzt",
+          "translatedAt": "2026-11-02T01:58:18.086Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "682348fddf7414124273a59c8f8b9d79789b993847991d7a1cbd3640bc354672": {
+      "en": "Stop collecting links.",
+      "translations": {
+        "de": {
+          "text": "Hören Sie auf, Links zu sammeln.",
+          "translatedAt": "2026-11-02T01:58:18.086Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "d6d5d43233b3b25c449db9ae07ba834d2c3fe2e87684cc59e82bffbc79d43625": {
+      "en": "Start connecting ideas.",
+      "translations": {
+        "de": {
+          "text": "Beginnen Sie, Ideen zu verknüpfen.",
+          "translatedAt": "2026-11-02T01:58:18.086Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "b1da19e619ee9e2545022ab7e4ebda7e2a9212fda23dfa8435625dd8edc2095c": {
+      "en": "A local knowledge graph shows how your saved articles relate, so old reading can become the starting point for the next question.",
+      "translations": {
+        "de": {
+          "text": "Ein lokaler Wissensgraph zeigt, wie Ihre gespeicherten Artikel zusammenhängen, sodass alte Lektüre zum Ausgangspunkt für die nächste Frage werden kann.",
+          "translatedAt": "2026-11-02T01:58:18.086Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "2b5b32ae6b92577f8c8d6de3e2484ee5d91d35221bf066dba7489191254246a8": {
+      "en": "Build your archive",
+      "translations": {
+        "de": {
+          "text": "Bauen Sie Ihr Archiv auf",
+          "translatedAt": "2026-11-02T01:58:18.086Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "2c1473f90655341f7813e5cefdccbc6ea3e4768dadc736f9605c6f9a2bbb891f": {
+      "en": "See topics emerge",
+      "translations": {
+        "de": {
+          "text": "Sehen Sie, wie Themen entstehen",
+          "translatedAt": "2026-11-02T01:58:18.086Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "16059bc9457eb60f23c1ea23b209996f65581b79196b464a3ca42c29af47ccd1": {
+      "en": "Tags and related articles turn a flat reading list into a map.",
+      "translations": {
+        "de": {
+          "text": "Tags und verwandte Artikel verwandeln eine flache Leseliste in eine Landkarte.",
+          "translatedAt": "2026-11-02T01:58:18.086Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "302343df2e627ed4d5bc10857dc544d2c71bc73a6b8db125265bebbf3292cb50": {
+      "en": "Search on your device",
+      "translations": {
+        "de": {
+          "text": "Suche auf Ihrem Gerät",
+          "translatedAt": "2026-11-02T01:58:18.086Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "6ddc031637748022d89450c2e00d1b1f3b3cc3a8248d9ed244f807850eb50897": {
+      "en": "Find the passage or idea you remember without uploading your library.",
+      "translations": {
+        "de": {
+          "text": "Finden Sie die Passage oder Idee, an die Sie sich erinnern, ohne Ihre Bibliothek hochzuladen.",
+          "translatedAt": "2026-11-02T01:58:18.086Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "6086db84f9eae3b7af362fde055dd93c7eeb0023f927314b3a8508d45d7bdd23": {
+      "en": "Return with purpose",
+      "translations": {
+        "de": {
+          "text": "Gezielt zurückkehren",
+          "translatedAt": "2026-11-02T01:58:18.086Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "d76d7817b9f7d337f1b03a57514e3e2e72389643b0904272eae8097e782b9526": {
+      "en": "Use digests and topic briefings to make old saves useful again.",
+      "translations": {
+        "de": {
+          "text": "Nutzen Sie Digests und Themenbriefings, um alte gespeicherte Inhalte wieder nützlich zu machen.",
+          "translatedAt": "2026-11-02T01:58:18.086Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "4082f515b2f4929c139af2b1d23605e462c614bd888cf0dc12952d0d9cdeb1c7": {
+      "en": "Further reading",
+      "translations": {
+        "de": {
+          "text": "Weiterführende Literatur",
+          "translatedAt": "2026-11-02T01:58:18.086Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "cd02951c184f62ba96b2745e568d50d38a104d4e4201a3644aeaf46d249fc466": {
+      "en": "Go deeper on this workflow",
+      "translations": {
+        "de": {
+          "text": "Tiefer in diesen Workflow eintauchen",
+          "translatedAt": "2026-11-02T01:58:18.086Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "852a7048b413ecf6dd74cb3b0e9e0829e087a04889463c50d717d7c68def154c": {
+      "en": "Practical notes on the ideas behind this page.",
+      "translations": {
+        "de": {
+          "text": "Praktische Hinweise zu den Ideen hinter dieser Seite.",
+          "translatedAt": "2026-11-02T01:58:18.086Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "cd74053c54816e473883dede0ad3b152f38a41995409eade6b42704919bb1359": {
+      "en": "Architecture",
+      "translations": {
+        "de": {
+          "text": "Architektur",
+          "translatedAt": "2026-11-02T01:58:18.086Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "c9b1c1c3642dbd47812353a638d4e6e73f8c578bb1d2ffd311a653009dd72a3f": {
+      "en": "Why we moved search, tagging and recommendations out of the cloud",
+      "translations": {
+        "de": {
+          "text": "Warum wir Suche, Tagging und Empfehlungen aus der Cloud verlagert haben",
+          "translatedAt": "2026-11-02T01:58:18.086Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "cdbd4341409f470155a8913e7855f5475605cc17d54c6886546c18cd5ccd5209": {
+      "en": "How local search and recommendations make the graph useful.",
+      "translations": {
+        "de": {
+          "text": "Wie lokale Suche und Empfehlungen den Graphen nützlich machen.",
+          "translatedAt": "2026-11-02T01:58:18.086Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "7d774eb325817665bcce0596cf77ab45c1a4339718f59e1e9aa943d82335add2": {
+      "en": "You won’t read most of what you save. Here’s the actual fix.",
+      "translations": {
+        "de": {
+          "text": "Sie werden das meiste, was Sie speichern, nicht lesen. Hier ist die eigentliche Lösung.",
+          "translatedAt": "2026-11-02T01:58:18.086Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "d1f507680955f751404bb131f7c4068bf630b7fd282ce0580b263cb60cd4b173": {
+      "en": "Use digests to return to the knowledge you already collected.",
+      "translations": {
+        "de": {
+          "text": "Nutzen Sie Digests, um zu dem Wissen zurückzukehren, das Sie bereits gesammelt haben.",
+          "translatedAt": "2026-11-02T01:58:18.086Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "311f6d0c95aa6089e6cc6d2b510f8b1ee1e3a7b04be01f9b1ab6075f597b73bc": {
+      "en": "Sync your reading library to Nextcloud, S3 or a folder",
+      "translations": {
+        "de": {
+          "text": "Synchronisieren Sie Ihre Lesebibliothek mit Nextcloud, S3 oder einem Ordner",
+          "translatedAt": "2026-11-02T01:58:18.086Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "edfc68262a5c71ef417c64370bb8c13b919d396d26b4c92778615c6cd3234454": {
+      "en": "Keep the connected archive on storage you control.",
+      "translations": {
+        "de": {
+          "text": "Bewahren Sie das vernetzte Archiv auf einem Speicher auf, den Sie kontrollieren.",
+          "translatedAt": "2026-11-02T01:58:18.086Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "140268df39ccf1a2ec7ea882c109780fd869c41980e9560ff17857037aafa7b9": {
+      "en": "Local AI browser extension with Ollama | AI Summary Helper",
+      "translations": {
+        "de": {
+          "text": "Lokale KI-Browsererweiterung mit Ollama | AI Summary Helper",
+          "translatedAt": "2026-11-02T01:58:22.369Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "bcce265e0050badbe23a3d604e642bdb551ce31959cf96c8d9b3cdba30ddf393": {
+      "en": "Use a local AI browser extension with Ollama, or bring your own key. Your reading archive stays on your device.",
+      "translations": {
+        "de": {
+          "text": "Nutzen Sie eine lokale KI-Browsererweiterung mit Ollama oder bringen Sie Ihren eigenen Schlüssel mit. Ihr Lesearchiv bleibt auf Ihrem Gerät.",
+          "translatedAt": "2026-11-02T01:58:22.369Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "f52e06762e6a77b33fb2b491194778b84885b2ce590ebe9c0223d6d4f682d15e": {
+      "en": "Private by default",
+      "translations": {
+        "de": {
+          "text": "Standardmäßig privat",
+          "translatedAt": "2026-11-02T01:58:22.369Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "5c92f49defc655b9c57d4cefd023de2fade00c4ccab6bddda7ad0976a0df6dd5": {
+      "en": "Local AI for",
+      "translations": {
+        "de": {
+          "text": "Lokale KI für",
+          "translatedAt": "2026-11-02T01:58:22.369Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "b3d7e2f03e4f5fbcea2cc8d37e90a4b1f18290ffb40bbb366f52600113d9d741": {
+      "en": "the way you read.",
+      "translations": {
+        "de": {
+          "text": "die Art, wie Sie lesen.",
+          "translatedAt": "2026-11-02T01:58:22.369Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "f9206898942a7c3e5281669711d3fd67188c988a7475b991205c19fadd099dc1": {
+      "en": "Use Ollama for a fully local workflow, or choose your own provider key. No account is required and your archive remains on your device.",
+      "translations": {
+        "de": {
+          "text": "Nutzen Sie Ollama für einen vollständig lokalen Workflow oder wählen Sie Ihren eigenen Anbieter-Schlüssel. Es ist kein Konto erforderlich und Ihr Archiv bleibt auf Ihrem Gerät.",
+          "translatedAt": "2026-11-02T01:58:22.369Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "d12b1a85bf6bb74eab0873b2498452dc7c6acd5e82819b30a57241dd84462104": {
+      "en": "Try it for free",
+      "translations": {
+        "de": {
+          "text": "Kostenlos testen",
+          "translatedAt": "2026-11-02T01:58:22.369Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "3f62fac9bc225c2998636536c5f45c4bbc7343099f64f05e790c89120a821f95": {
+      "en": "Read the privacy model",
+      "translations": {
+        "de": {
+          "text": "Datenschutzmodell lesen",
+          "translatedAt": "2026-11-02T01:58:22.369Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "978792649b80798a053e6329dacfb55efddfa7084912e154ba09091c11ac0afe": {
+      "en": "Your model. Your key. Your data.",
+      "translations": {
+        "de": {
+          "text": "Ihr Modell. Ihr Schlüssel. Ihre Daten.",
+          "translatedAt": "2026-11-02T01:58:22.369Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "dfbb307904721bf705fdae3d025c0e511a30620e07e9d3fd4ccd69748d7423fd": {
+      "en": "Search, duplicate detection and recommendations run in your browser. With Ollama, summarization stays local too.",
+      "translations": {
+        "de": {
+          "text": "Suche, Duplikaterkennung und Empfehlungen laufen in Ihrem Browser. Mit Ollama bleibt auch die Zusammenfassung lokal.",
+          "translatedAt": "2026-11-02T01:58:22.369Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "eb82ef89769382466eef9958817a8a28907e4a4c91d6ff8282af25cefdd1da58": {
+      "en": "Ollama",
+      "translations": {
+        "de": {
+          "text": "Ollama",
+          "translatedAt": "2026-11-02T01:58:22.369Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "5f3435ac78a09eb50e241f6c62d861d4d4e85f2f9b0c515ed52220543fc8663f": {
+      "en": "BYOK",
+      "translations": {
+        "de": {
+          "text": "BYOK",
+          "translatedAt": "2026-11-02T01:58:22.369Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "79eb5c21a49f5f2643ac75543a7431347cab3799af98fdbeddb099ac3ec2775c": {
+      "en": "No account",
+      "translations": {
+        "de": {
+          "text": "Kein Konto",
+          "translatedAt": "2026-11-02T01:58:22.369Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "ca2dea3e0cb86d8c082b6b6c5b0b6c5d0cfe2f9a2973b4c6c482cb8a86ba19b1": {
+      "en": "What BYOK protects, and where the provider boundary is.",
+      "translations": {
+        "de": {
+          "text": "Was BYOK schützt und wo die Anbietergrenze liegt.",
+          "translatedAt": "2026-11-02T01:58:22.369Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "3ccc809b0e07201cf5292487a45ba6dbf19999cccbe93cec02768a5be11b5f88": {
+      "en": "The local-first decisions behind the archive.",
+      "translations": {
+        "de": {
+          "text": "Die Local-First-Entscheidungen hinter dem Archiv.",
+          "translatedAt": "2026-11-02T01:58:22.369Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "765774e7a2a3e74595d254e7c4a2c3d93eea7d0b7e9bab85e03038d0ba3ffa06": {
+      "en": "A practical checklist for keeping control of your data.",
+      "translations": {
+        "de": {
+          "text": "Eine praktische Checkliste, um die Kontrolle über Ihre Daten zu behalten.",
+          "translatedAt": "2026-11-02T01:58:22.369Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "3b63de4e5ba2361f5df5b57701dfb3396e29efee180321be84b5a5fe16339074": {
+      "en": "MCP browser extension for your local knowledge base | AI Summary Helper",
+      "translations": {
+        "de": {
+          "text": "MCP-Browsererweiterung für Ihre lokale Wissensdatenbank | AI Summary Helper",
+          "translatedAt": "2026-11-02T01:58:32.261Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "248491d0102e62246f9980f38c8fea945366b4a5e9cd09a996aae804e4abeb6c": {
+      "en": "Connect Claude, LM Studio or Cursor to your local reading archive with the AI Summary Helper MCP server.",
+      "translations": {
+        "de": {
+          "text": "Verbinden Sie Claude, LM Studio oder Cursor über den MCP-Server von AI Summary Helper mit Ihrem lokalen Lesearchiv.",
+          "translatedAt": "2026-11-02T01:58:32.261Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "1f8aed3621526727e7803d4d17d7df261126117d22735cbb838921e76dc59ef5": {
+      "en": "For local AI apps",
+      "translations": {
+        "de": {
+          "text": "Für lokale KI-Apps",
+          "translatedAt": "2026-11-02T01:58:32.261Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "73de61c8ac224c86a5d01d7dbe974cae09628dcb200c2e0eb37a490dd94a423e": {
+      "en": "Bring your reading",
+      "translations": {
+        "de": {
+          "text": "Bringen Sie Ihre Lektüre",
+          "translatedAt": "2026-11-02T01:58:32.261Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "ab3b4c9a48666e22450c859529a057ccd32176afc82d23afebc3f7d04926957f": {
+      "en": "to the tools you use.",
+      "translations": {
+        "de": {
+          "text": "in die Tools, die Sie nutzen.",
+          "translatedAt": "2026-11-02T01:58:32.261Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "952e3993e5bd4fde81dc39ca698c0323a156caca2fe1aadef8e778d048c32ff6": {
+      "en": "Use MCP to let Claude, LM Studio or Cursor search and work with your local AISH knowledge base without handing your archive to another cloud.",
+      "translations": {
+        "de": {
+          "text": "Nutzen Sie MCP, damit Claude, LM Studio oder Cursor Ihre lokale AISH-Wissensdatenbank durchsuchen und mit ihr arbeiten können, ohne Ihr Archiv an eine andere Cloud zu übergeben.",
+          "translatedAt": "2026-11-02T01:58:32.261Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "fbad14411fd943749470ac0424e2e23c004c0fa127be213e44c5c483510b8569": {
+      "en": "Explore MCP",
+      "translations": {
+        "de": {
+          "text": "MCP entdecken",
+          "translatedAt": "2026-11-02T01:58:32.261Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "5932b4628c522c2bc860454067dbae728cee07b86414aa2f65cc5ebde7ed4cb2": {
+      "en": "View the source",
+      "translations": {
+        "de": {
+          "text": "Quellcode ansehen",
+          "translatedAt": "2026-11-02T01:58:32.261Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "ae500c3fd9ba94766cd523e6d7f8152385ec700f8a549d827f084b970cc98140": {
+      "en": "Local context, reusable everywhere.",
+      "translations": {
+        "de": {
+          "text": "Lokaler Kontext, überall wiederverwendbar.",
+          "translatedAt": "2026-11-02T01:58:32.261Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "dbec257f836b7cb4b3325e0a7b924401398743166bcd47a65c173556b6c04a84": {
+      "en": "AISH keeps the reading archive local; MCP gives compatible AI tools a controlled way to query it.",
+      "translations": {
+        "de": {
+          "text": "AISH hält das Lesearchiv lokal; MCP gibt kompatiblen KI-Tools eine kontrollierte Möglichkeit, es abzufragen.",
+          "translatedAt": "2026-11-02T01:58:32.261Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "0615570f9ea136946c5dc08a250010320707646f57f72cedab1dfb73d95eade6": {
+      "en": "Claude",
+      "translations": {
+        "de": {
+          "text": "Claude",
+          "translatedAt": "2026-11-02T01:58:32.261Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "6b9727908e373676862e2de697aea360927c3ae8f98d85ebcd16eccfc32ce91e": {
+      "en": "LM Studio",
+      "translations": {
+        "de": {
+          "text": "LM Studio",
+          "translatedAt": "2026-11-02T01:58:32.261Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "53f13ae99ed53bd346eb8e1c8cefb7ef8260683b50401caf101360967ea052aa": {
+      "en": "MCP",
+      "translations": {
+        "de": {
+          "text": "MCP",
+          "translatedAt": "2026-11-02T01:58:32.261Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "b3097764d9d280ad004088580036026e94c47adc1268295a2c7c8d3a6fea70a9": {
+      "en": "Give compatible AI apps controlled access to your local library.",
+      "translations": {
+        "de": {
+          "text": "Geben Sie kompatiblen KI-Apps kontrollierten Zugriff auf Ihre lokale Bibliothek.",
+          "translatedAt": "2026-11-02T01:58:32.261Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "06424b8837df7542eb06172e1e4482bd2ec8e3807ddf501382bfac1874f3a6b0": {
+      "en": "Understand local context, permissions and ownership.",
+      "translations": {
+        "de": {
+          "text": "Verstehen Sie lokalen Kontext, Berechtigungen und Eigentümerschaft.",
+          "translatedAt": "2026-11-02T01:58:32.261Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "460d4c83b8387e651a0af886310607b0fd272876666597b11d3b5c7833b89b6b": {
+      "en": "Choose which provider handles a request and which does not.",
+      "translations": {
+        "de": {
+          "text": "Wählen Sie, welcher Anbieter eine Anfrage bearbeitet und welcher nicht.",
+          "translatedAt": "2026-11-02T01:58:32.261Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "48357182b626e8ae07b066b05c01ae1891c1bcaf39ab28f270bf38f459d0ba50": {
+      "en": "Obsidian integration and AI web clipper | AI Summary Helper",
+      "translations": {
+        "de": {
+          "text": "Obsidian-Integration und KI-Web-Clipper | AI Summary Helper",
+          "translatedAt": "2026-11-02T01:58:52.221Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "4baee60aa5906a2a3f0e9bbd9fa52b91d6aa917bddbe77982e639cd97ce9c275": {
+      "en": "Save articles to an Obsidian-friendly local knowledge base with source-linked notes, Markdown export and connected topics.",
+      "translations": {
+        "de": {
+          "text": "Speichern Sie Artikel in einer Obsidian-freundlichen lokalen Wissensdatenbank mit quellenverknüpften Notizen, Markdown-Export und verbundenen Themen.",
+          "translatedAt": "2026-11-02T01:58:52.221Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "1b9be448042bd04471e7ffa2cb43aabf42bf1c3bb4414fa76c3c09ef90a1193a": {
+      "en": "For PKM and Obsidian users",
+      "translations": {
+        "de": {
+          "text": "Für PKM- und Obsidian-Nutzer",
+          "translatedAt": "2026-11-02T01:58:52.221Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "accd86ace5d8760a73a15e603bf55b481c9aed69a6d659f19e27b560913fd255": {
+      "en": "connected notes.",
+      "translations": {
+        "de": {
+          "text": "verknüpfte Notizen.",
+          "translatedAt": "2026-11-02T01:58:52.221Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "731dd7ca68951ee56af615deabb69184c6338f215ede8dbcfa210d332ef09935": {
+      "en": "Capture the source, understand it, and export a clean Markdown trail into the knowledge base you already own.",
+      "translations": {
+        "de": {
+          "text": "Erfassen Sie die Quelle, verstehen Sie sie und exportieren Sie eine saubere Markdown-Spur in die Wissensdatenbank, die Sie bereits besitzen.",
+          "translatedAt": "2026-11-02T01:58:52.221Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "bcccf041191ac73388a7363fd82e2bcbfa5d567398aaa795b6bc7b214b0d85ac": {
+      "en": "Capture with context",
+      "translations": {
+        "de": {
+          "text": "Mit Kontext erfassen",
+          "translatedAt": "2026-11-02T01:58:52.221Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "a25d34588f9f76a4f1b8490dbe151d38afa916b6bb4d854fda4fc5eb74a30558": {
+      "en": "Save the URL, title, highlights and your own note—not just a bookmark.",
+      "translations": {
+        "de": {
+          "text": "Speichern Sie URL, Titel, Highlights und Ihre eigene Notiz – nicht nur ein Lesezeichen.",
+          "translatedAt": "2026-11-02T01:58:52.221Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "23e7d2148cbcce33eede4be165640fe81e7592bd0c2b9c1011d8abec496750d5": {
+      "en": "Connect ideas locally",
+      "translations": {
+        "de": {
+          "text": "Ideen lokal verknüpfen",
+          "translatedAt": "2026-11-02T01:58:52.221Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "f6d5e6c79046a28b9eddabe57acca10a0e373759a25c1192b1ed3caa7f3d2383": {
+      "en": "Search and browse a knowledge graph without sending your archive to a vendor.",
+      "translations": {
+        "de": {
+          "text": "Durchsuchen Sie einen Wissensgraphen, ohne Ihr Archiv an einen Anbieter zu senden.",
+          "translatedAt": "2026-11-02T01:58:52.221Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "7248228e5e31d3d66a207d75421122e025845328c31223816c0226398de25276": {
+      "en": "Export as Markdown",
+      "translations": {
+        "de": {
+          "text": "Als Markdown exportieren",
+          "translatedAt": "2026-11-02T01:58:52.221Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "47cc35542a990dff7c547be679f2239134f8a0571e48834e1ab30abd9cd9dc7b": {
+      "en": "Move useful reading into Obsidian or any plain-text workflow.",
+      "translations": {
+        "de": {
+          "text": "Überführen Sie nützliche Lektüre in Obsidian oder in jeden Plain-Text-Workflow.",
+          "translatedAt": "2026-11-02T01:58:52.221Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "2e2d5c5649b718b542fae80e72768b9cfcfea9bcfa51ecc25bf6f3ce532eb5b3": {
+      "en": "Workflow",
+      "translations": {
+        "de": {
+          "text": "Workflow",
+          "translatedAt": "2026-11-02T01:58:52.221Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "b5f6c638cc6c0c355e788d375e158fce9eb863515738b94643ef07ddbd5640ad": {
+      "en": "Build a searchable knowledge base without uploading it.",
+      "translations": {
+        "de": {
+          "text": "Erstellen Sie eine durchsuchbare Wissensdatenbank, ohne sie hochzuladen.",
+          "translatedAt": "2026-11-02T01:58:52.221Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "1d14a28e8655901aecd5706a3aa0efb2fd4729c675ad6dc1d11789a3e2b11880": {
+      "en": "Back up and reuse your archive on your own storage.",
+      "translations": {
+        "de": {
+          "text": "Sichern Sie Ihr Archiv auf Ihrem eigenen Speicher und verwenden Sie es wieder.",
+          "translatedAt": "2026-11-02T01:58:52.221Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "61420b5ab0baf2b84fcc61ae5d086ee7578e74f6bc6c77d7c6050d6165d537ca": {
+      "en": "See how saving became a connected reading workflow.",
+      "translations": {
+        "de": {
+          "text": "Sehen Sie, wie aus dem Speichern ein vernetzter Leseworkflow wurde.",
+          "translatedAt": "2026-11-02T01:58:52.221Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "af2a1353725e23c28d447b6c707e269b24bc3ae8f4e37242361e40bb5f1db486": {
+      "en": "PDF summarizer with source-linked answers | AI Summary Helper",
+      "translations": {
+        "de": {
+          "text": "PDF-Zusammenfassung mit quellenverlinkten Antworten | AI Summary Helper",
+          "translatedAt": "2026-11-02T01:59:07.528Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "235b4d088f25d461b1e0fdea54a5c61f0b036f5ad3e1cd8a05a350b53ffc4fa5": {
+      "en": "Read PDFs faster with a private AI PDF summarizer. Ask questions, verify answers against passages and keep your research searchable.",
+      "translations": {
+        "de": {
+          "text": "Lesen Sie PDFs schneller mit einem privaten KI-PDF-Zusammenfasser. Stellen Sie Fragen, prüfen Sie Antworten anhand von Textstellen und halten Sie Ihre Recherche durchsuchbar.",
+          "translatedAt": "2026-11-02T01:59:07.528Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "a584048cb0fedb01cdbaf517aec2175fa293408a49c300bbb6d2ea65af3f6c06": {
+      "en": "PDF summarizer with source-linked answers",
+      "translations": {
+        "de": {
+          "text": "PDF-Zusammenfassung mit quellenverlinkten Antworten",
+          "translatedAt": "2026-11-02T01:59:07.528Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "d5338a5088041bb574906ab4ef4dbf47b9f05164ff81a03f1d895eb5db5217b9": {
+      "en": "A private PDF reading workflow for summaries, questions and research notes.",
+      "translations": {
+        "de": {
+          "text": "Ein privater PDF-Leseworkflow für Zusammenfassungen, Fragen und Recherchenotizen.",
+          "translatedAt": "2026-11-02T01:59:07.528Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "6a39494a88e2c933dc2c1b60d90bdfa01fe2878bc8b7419d8a20e748dbc4f7aa": {
+      "en": "PDF reading",
+      "translations": {
+        "de": {
+          "text": "PDF-Lesen",
+          "translatedAt": "2026-11-02T01:59:07.528Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "dd9df0c3f4ec2e8973dbcf2de9efd2c74d776ddc64e7824fbb55b71ffd519dd7": {
+      "en": "Summarize PDFs.",
+      "translations": {
+        "de": {
+          "text": "PDFs zusammenfassen.",
+          "translatedAt": "2026-11-02T01:59:07.528Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "0525647d91ef5eae4a96886d0ea1146e4b588cf460980fce4200222ef3eae281": {
+      "en": "Keep the evidence.",
+      "translations": {
+        "de": {
+          "text": "Behalten Sie die Belege.",
+          "translatedAt": "2026-11-02T01:59:07.528Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "195a01830913f402164aa9a0608e185bdec139608e0841db2f661dd31db0bbe9": {
+      "en": "Read papers and long documents faster, then jump from every answer back to the passage that supports it.",
+      "translations": {
+        "de": {
+          "text": "Lesen Sie Papers und lange Dokumente schneller und springen Sie von jeder Antwort zurück zu der Textstelle, die sie stützt.",
+          "translatedAt": "2026-11-02T01:59:07.528Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "6e5fe4ca7c07142fa81eef400c342dea7f8ba0422aa331c3880e6604db8d52a7": {
+      "en": "Try the demo",
+      "translations": {
+        "de": {
+          "text": "Demo ausprobieren",
+          "translatedAt": "2026-11-02T01:59:07.528Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "89cd923e503654545712775ad26d83e42abc873b30b12700c6e38dd42f7ad943": {
+      "en": "A PDF workflow you can trust",
+      "translations": {
+        "de": {
+          "text": "Ein PDF-Workflow, dem Sie vertrauen können",
+          "translatedAt": "2026-11-02T01:59:07.528Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "2ad6476db4f069be6925edc516843c5545618bb104fc29d5d28b55affdc1112a": {
+      "en": "Get the shape of the paper",
+      "translations": {
+        "de": {
+          "text": "Erfassen Sie die Struktur des Papers",
+          "translatedAt": "2026-11-02T01:59:07.528Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "0883acfa48af7acd35999053b91b20a073dc9f99d6da7cae7ca81f0cb7cc9226": {
+      "en": "Summaries and key points help you decide what deserves a close read.",
+      "translations": {
+        "de": {
+          "text": "Zusammenfassungen und Kernpunkte helfen Ihnen zu entscheiden, was ein genaues Lesen verdient.",
+          "translatedAt": "2026-11-02T01:59:07.528Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "2ee745e7e3aa3ccedd9ed6808ab266ae8013f7c51e831abed02e570d6445bdaa": {
+      "en": "Ask and jump to the source",
+      "translations": {
+        "de": {
+          "text": "Fragen stellen und zur Quelle springen",
+          "translatedAt": "2026-11-02T01:59:07.528Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "5d297f25c7c85c4a0204d277e83e2d237259b2cd03001b759a6b5f3ede38ffad": {
+      "en": "Answers point to the exact passage instead of asking you to trust a black box.",
+      "translations": {
+        "de": {
+          "text": "Antworten verweisen auf die genaue Textstelle, statt dass Sie einer Blackbox vertrauen müssen.",
+          "translatedAt": "2026-11-02T01:59:07.528Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "183f00f483d3844e875d26eac74c676054383aef38ed5a8e4d1505ef21008585": {
+      "en": "Keep",
+      "translations": {
+        "de": {
+          "text": "Behalten",
+          "translatedAt": "2026-11-02T01:59:07.528Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "9fab298a9492b24bf2f901c6804fde683bef43c2b3a0ebef3c7d1f0ffa54afd0": {
+      "en": "Build your research archive",
+      "translations": {
+        "de": {
+          "text": "Ihr Recherchearchiv aufbauen",
+          "translatedAt": "2026-11-02T01:59:07.528Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "531adfa47138fa9ce01db5964773eea41a360a4247a9d6d2381bead28cb31bf3": {
+      "en": "Save notes, metadata and citations locally, then export them to your workflow.",
+      "translations": {
+        "de": {
+          "text": "Speichern Sie Notizen, Metadaten und Zitate lokal und exportieren Sie sie dann in Ihren Workflow.",
+          "translatedAt": "2026-11-02T01:59:07.528Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "d8f387b813ea4ff44f83bf7f36f7eb6ecd6d6a46f82c3cccecb2802fa5a1cda8": {
+      "en": "A quick source-checking habit for any AI answer.",
+      "translations": {
+        "de": {
+          "text": "Eine schnelle Routine zur Quellenprüfung für jede KI-Antwort.",
+          "translatedAt": "2026-11-02T01:59:07.528Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "fcda9fe2f897cb076ccb4c5d0eb4a8a952bc04770c31bbea12e2801ee224ebb9": {
+      "en": "Turn important passages into questions you can revisit.",
+      "translations": {
+        "de": {
+          "text": "Verwandeln Sie wichtige Textstellen in Fragen, auf die Sie zurückkommen können.",
+          "translatedAt": "2026-11-02T01:59:07.528Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "1d167612247df7def358a045fd0f7379c029522feb1eb4fe6bdd7c1932234f94": {
+      "en": "Understand BYOK, provider boundaries and local models.",
+      "translations": {
+        "de": {
+          "text": "Verstehen Sie BYOK, Anbietergrenzen und lokale Modelle.",
+          "translatedAt": "2026-11-02T01:59:07.528Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "bd9d1492b5ddb007c28298d9bbba3e2ec4dfc8ae319846dc8fe4828a4b897be9": {
+      "en": "AI research paper reader with DOI mode | AI Summary Helper",
+      "translations": {
+        "de": {
+          "text": "KI-Reader für wissenschaftliche Paper mit DOI-Modus | AI Summary Helper",
+          "translatedAt": "2026-11-02T01:59:16.079Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "465fdd7378f42ed47885b37fbda3216a84c812bb216543484f9eb7118f17e10c": {
+      "en": "Read research papers with source-linked AI answers, DOI metadata and a private searchable archive for your literature review.",
+      "translations": {
+        "de": {
+          "text": "Lesen Sie wissenschaftliche Paper mit quellenverknüpften KI-Antworten, DOI-Metadaten und einem privaten, durchsuchbaren Archiv für Ihren Literaturüberblick.",
+          "translatedAt": "2026-11-02T01:59:16.079Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "b9df435f2d31094e7ad9fc75021ddaa44078a08f03fbd47e43bca3c625f841cb": {
+      "en": "For researchers and students",
+      "translations": {
+        "de": {
+          "text": "Für Forschende und Studierende",
+          "translatedAt": "2026-11-02T01:59:16.079Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "3cf44dd13820fb78fa1e85a278a5d8bb00ec339ac4d3ab1489c80d3e4b1da04b": {
+      "en": "without losing the source.",
+      "translations": {
+        "de": {
+          "text": "ohne die Quelle zu verlieren.",
+          "translatedAt": "2026-11-02T01:59:16.079Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "1999027b96017a6807b6600ac2c8526bb359480464acb80d0ee4c9d1cad490db": {
+      "en": "Recognize papers by DOI, extract study details and limitations, and ask questions that lead back to the text.",
+      "translations": {
+        "de": {
+          "text": "Erkennen Sie Paper anhand der DOI, extrahieren Sie Studiendetails und Limitationen und stellen Sie Fragen, die zurück zum Text führen.",
+          "translatedAt": "2026-11-02T01:59:16.079Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "9c324f38611b1330cf241a3113579b529b45e11c7e70ad243fcb2515131edf28": {
+      "en": "Start reading for free",
+      "translations": {
+        "de": {
+          "text": "Kostenlos lesen starten",
+          "translatedAt": "2026-11-02T01:59:16.079Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "0309e240cc9f3e4cb616c8909bf82b87572fa65d94713c9345d7d004448cb9fa": {
+      "en": "Research mode",
+      "translations": {
+        "de": {
+          "text": "Forschungsmodus",
+          "translatedAt": "2026-11-02T01:59:16.079Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "53575e3c467a23a2ad7290612cd82dc163c909a2b9eaa042f64f9531b66b9a21": {
+      "en": "Find methods and limitations",
+      "translations": {
+        "de": {
+          "text": "Methoden und Limitationen finden",
+          "translatedAt": "2026-11-02T01:59:16.079Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "d5f7899bec304920e6ffd31ae9fd1965a4c88c1fd45fc707ebd216e680efdf28": {
+      "en": "Structure a paper before you decide how deeply to read it.",
+      "translations": {
+        "de": {
+          "text": "Strukturieren Sie ein Paper, bevor Sie entscheiden, wie tief Sie es lesen.",
+          "translatedAt": "2026-11-02T01:59:16.079Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "03867aea70acaf4c5dce37a76cf5a04dab1716d6ff70bf03761c439daa8be984": {
+      "en": "Evidence",
+      "translations": {
+        "de": {
+          "text": "Evidenz",
+          "translatedAt": "2026-11-02T01:59:16.079Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "2b3d5a217d2e4bf25fb3598a4a5f502ab025dd2636a7a77838402367fd1a0bd1": {
+      "en": "Keep answers accountable",
+      "translations": {
+        "de": {
+          "text": "Antworten nachvollziehbar halten",
+          "translatedAt": "2026-11-02T01:59:16.079Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "af567929117e3744daf4b30bef9b07e443f50996072296acdffaa50131a96d1a": {
+      "en": "Source jumps make it easier to check a claim instead of copying a hallucination.",
+      "translations": {
+        "de": {
+          "text": "Quellensprünge erleichtern es, eine Aussage zu überprüfen, anstatt eine Halluzination zu übernehmen.",
+          "translatedAt": "2026-11-02T01:59:16.079Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "7c975f73751622c709ca95e4cce946a70167c4b04d8c8d8418e2619d9af498ee": {
+      "en": "Reuse",
+      "translations": {
+        "de": {
+          "text": "Wiederverwendung",
+          "translatedAt": "2026-11-02T01:59:16.079Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "407dd8c84443a09367cc6eced43e53454ff5a20b3df3a388751c9d250dcd0891": {
+      "en": "Export a useful trail",
+      "translations": {
+        "de": {
+          "text": "Eine nützliche Spur exportieren",
+          "translatedAt": "2026-11-02T01:59:16.079Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "78a88ebbd70535df2bdfea655c38638d7d3b39320f40b1254968db3967159847": {
+      "en": "Keep notes and DOI citations ready for your literature review.",
+      "translations": {
+        "de": {
+          "text": "Halten Sie Notizen und DOI-Zitate bereit für Ihren Literaturüberblick.",
+          "translatedAt": "2026-11-02T01:59:16.079Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "bda77a880eb419f8bcedf01fea6ba3363ce1ddbeeb95a85bda73dc53cc58f4b5": {
+      "en": "Keep claims tied to the paper they came from.",
+      "translations": {
+        "de": {
+          "text": "Halten Sie Aussagen an das Paper gebunden, aus dem sie stammen.",
+          "translatedAt": "2026-11-02T01:59:16.079Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "979d6300fd9884ff8d8e03391d524fed8e88cd5560788f065ba2444db3b7b20c": {
+      "en": "Research",
+      "translations": {
+        "de": {
+          "text": "Forschung",
+          "translatedAt": "2026-11-02T01:59:16.079Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "26564e115cb32dad1f44487abee8c62d0d820096a63c80225a0454938747f959": {
+      "en": "See why the research library runs on your device.",
+      "translations": {
+        "de": {
+          "text": "Sehen Sie, warum die Forschungsbibliothek auf Ihrem Gerät läuft.",
+          "translatedAt": "2026-11-02T01:59:16.079Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "60142dafc2d39ee8c300fba612060d8b342422a8a81b479fd7f7fd1372b5621d": {
+      "en": "Choose the model and provider behind your workflow.",
+      "translations": {
+        "de": {
+          "text": "Wählen Sie das Modell und den Anbieter hinter Ihrem Workflow.",
+          "translatedAt": "2026-11-02T01:59:16.079Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "613616a3991a914a87b46099c094a2b30980f72a40417cb76d9206783958c28d": {
+      "en": "YouTube summarizer and video notes | AI Summary Helper",
+      "translations": {
+        "de": {
+          "text": "YouTube-Zusammenfassung und Videonotizen | AI Summary Helper",
+          "translatedAt": "2026-11-02T01:59:20.613Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "a3a31d2242df478525e50aa53cee7c18b89aeb700ca7d7149c6bc321114162b2": {
+      "en": "Summarize YouTube videos from their captions, ask questions and turn useful moments into searchable notes.",
+      "translations": {
+        "de": {
+          "text": "Fassen Sie YouTube-Videos anhand ihrer Untertitel zusammen, stellen Sie Fragen und verwandeln Sie nützliche Momente in durchsuchbare Notizen.",
+          "translatedAt": "2026-11-02T01:59:20.613Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "d5944ac56275281a390883a17609c5599cdedd738961a93e1df0692ef970b28d": {
+      "en": "Video reading",
+      "translations": {
+        "de": {
+          "text": "Video-Lesen",
+          "translatedAt": "2026-11-02T01:59:20.613Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "39032038c51dbafaa38de197becc43f9363056fb49e2b392fd91cf463c7616f2": {
+      "en": "Turn long videos into",
+      "translations": {
+        "de": {
+          "text": "Verwandeln Sie lange Videos in",
+          "translatedAt": "2026-11-02T01:59:20.613Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "8e4d5b67a49ac51309cd2b0a103cd7acb4a506c933737d0aa25e96a32df5e661": {
+      "en": "knowledge you can use.",
+      "translations": {
+        "de": {
+          "text": "nutzbares Wissen.",
+          "translatedAt": "2026-11-02T01:59:20.613Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "bbd97dd2c7ffd50a0d60964589b86c8631ab3a47b613b5e43fb46492e1d073a4": {
+      "en": "Summarize YouTube captions, find the important moment and ask follow-up questions without losing the context.",
+      "translations": {
+        "de": {
+          "text": "Fassen Sie YouTube-Untertitel zusammen, finden Sie den wichtigen Moment und stellen Sie Rückfragen, ohne den Kontext zu verlieren.",
+          "translatedAt": "2026-11-02T01:59:20.613Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "da1a20bf3114d31f85290d8657336dc6fe7783db761ef27ac4831463e56a2dcb": {
+      "en": "From watch later to return later",
+      "translations": {
+        "de": {
+          "text": "Von „Später ansehen“ zu „später zurückkehren“",
+          "translatedAt": "2026-11-02T01:59:20.613Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "bf2e73ed23f0aa39e534300e8dbe300d1e26437de1b8a4b768d49e7066a9fea1": {
+      "en": "See the point quickly",
+      "translations": {
+        "de": {
+          "text": "Den Kern schnell erfassen",
+          "translatedAt": "2026-11-02T01:59:20.613Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "bfc7bf2852ab836b86559b1bd794e070eacb6d7adee8b737b81d1d708dfa31ac": {
+      "en": "Get a concise overview before spending an hour on a lecture or interview.",
+      "translations": {
+        "de": {
+          "text": "Erhalten Sie einen prägnanten Überblick, bevor Sie eine Stunde mit einer Vorlesung oder einem Interview verbringen.",
+          "translatedAt": "2026-11-02T01:59:20.613Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "035051ce4e0497e160942f33ab9c7ff8c68f2b01de428dcf4f070ee78aa0c601": {
+      "en": "Ask the transcript",
+      "translations": {
+        "de": {
+          "text": "Das Transkript befragen",
+          "translatedAt": "2026-11-02T01:59:20.613Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "237e2ea9db9cdb57c7cd422f64a590ba86408f103a8e8f8d9c1f4b20d2fb580d": {
+      "en": "Use captions as a searchable source and follow a question where it is answered.",
+      "translations": {
+        "de": {
+          "text": "Nutzen Sie Untertitel als durchsuchbare Quelle und folgen Sie einer Frage bis zu der Stelle, an der sie beantwortet wird.",
+          "translatedAt": "2026-11-02T01:59:20.613Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "9e034ac8c3314e0efdd8bd4c0caa0c5ef2477678bed2aff0a8dbbad75265e313": {
+      "en": "Save what matters",
+      "translations": {
+        "de": {
+          "text": "Speichern, was zählt",
+          "translatedAt": "2026-11-02T01:59:20.613Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "cb8d15572751f06e6a5193126d2ad0b49abc560f9fa50fa06b8f8083764cc59e": {
+      "en": "Keep the useful ideas in your local archive alongside the rest of your reading.",
+      "translations": {
+        "de": {
+          "text": "Bewahren Sie die nützlichen Ideen in Ihrem lokalen Archiv neben dem Rest Ihrer Lektüre auf.",
+          "translatedAt": "2026-11-02T01:59:20.613Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "cc048ac83f079078e5afb88548041822ba7bdbd3ccffbe970a639624e7d7d098": {
+      "en": "Turn videos into notes without losing the source",
+      "translations": {
+        "de": {
+          "text": "Verwandeln Sie Videos in Notizen, ohne die Quelle zu verlieren",
+          "translatedAt": "2026-11-02T01:59:20.613Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "85fac348805d0f444d17ab690cf6835059ebf879def61295bb433cebda7fed4f": {
+      "en": "See the video workflow and the extension in action.",
+      "translations": {
+        "de": {
+          "text": "Sehen Sie den Video-Workflow und die Erweiterung in Aktion.",
+          "translatedAt": "2026-11-02T01:59:20.613Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "3fac5dae5d97ba4c5f2be2824750886da08320dfb6790f15ce44a3472b7b81b2": {
+      "en": "Keep the useful idea, not just a timestamp.",
+      "translations": {
+        "de": {
+          "text": "Behalten Sie die nützliche Idee, nicht nur einen Zeitstempel.",
+          "translatedAt": "2026-11-02T01:59:20.613Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "2e657230fda2beef07e3e4fe6a090eefdb03ee7bf520dbe81facaef1179d4b08": {
+      "en": "Make saved video reading returnable instead of forgotten.",
+      "translations": {
+        "de": {
+          "text": "Machen Sie gespeichertes Video-Lesen wieder auffindbar, statt es zu vergessen.",
+          "translatedAt": "2026-11-02T01:59:20.613Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
     }
   }
 }

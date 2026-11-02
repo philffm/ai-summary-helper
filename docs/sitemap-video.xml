@@ -4952,6 +4952,54 @@
     </video:video>
   </url>
   <url>
+    <loc>https://ai-summary-helper.byphil.eu/de/mcp/</loc>
+    <video:video>
+      <video:thumbnail_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/feeds-de.jpg</video:thumbnail_loc>
+      <video:title>Ein integrierter RSS-Reader</video:title>
+      <video:description>Folgen Sie Blogs und Nachrichtenseiten, filtern Sie nach Quelle, Tag, Datum oder Stimmung, importieren Sie OPML und fassen Sie jeden Eintrag mit einem Klick zusammen. Spielen Sie Podcast-Feeds in der Erweiterung ab und erhalten Sie optional eine KI-Zusammenfassung; Feeds und Favoriten bleiben auf I…</video:description>
+      <video:content_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/feeds-de.mp4</video:content_loc>
+      <video:duration>18</video:duration>
+      <video:publication_date>2026-10-20T00:00:00+00:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+    <video:video>
+      <video:thumbnail_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/sprache-de.jpg</video:thumbnail_loc>
+      <video:title>Über 20 Sprachen, plattformübergreifend</video:title>
+      <video:description>Lesen und zusammenfassen in über 20 Sprachen – mit der Erweiterung, dem nativen Seitenbereich oder Bookmarklet wenn die Erweiterung eine Seite nicht erreichen kann.</video:description>
+      <video:content_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/sprache-de.mp4</video:content_loc>
+      <video:duration>17</video:duration>
+      <video:publication_date>2026-10-20T00:00:00+00:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+    <video:video>
+      <video:thumbnail_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/privat-de.jpg</video:thumbnail_loc>
+      <video:title>KI-Zusammenfassungen mit Ihrem Wunschmodell</video:title>
+      <video:description>Wählen Sie OpenAI, Gemini, Mistral, DeepSeek, einen eigenen Endpoint oder lokales Ollama für Zusammenfassungen, die Ihr Gerät nie verlassen müssen.</video:description>
+      <video:content_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/privat-de.mp4</video:content_loc>
+      <video:duration>22</video:duration>
+      <video:publication_date>2026-10-20T00:00:00+00:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+    <video:video>
+      <video:thumbnail_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/bibliothek-de.jpg</video:thumbnail_loc>
+      <video:title>Echte Volltextsuche, direkt auf Ihrem Gerät</video:title>
+      <video:description>Durchsuchen Sie Titel, Tags und Artikelinhalte mit einem browserbasierten TF-IDF-Index. Die Volltextsuche bleibt auf dem Gerät, ohne Round-Trip.</video:description>
+      <video:content_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/bibliothek-de.mp4</video:content_loc>
+      <video:duration>18</video:duration>
+      <video:publication_date>2026-10-20T00:00:00+00:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+    <video:video>
+      <video:thumbnail_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/mcp-de.jpg</video:thumbnail_loc>
+      <video:title>Ihre Bibliothek direkt in Claude, LM Studio und Cursor</video:title>
+      <video:description>Claude Desktop, LM Studio, Cursor und andere MCP-Apps können Ihre Bibliothek durchsuchen, Highlights zitieren und auflisten, was ansteht. Sie kontrollieren den Zugriff; nichts läuft über unseren Server.</video:description>
+      <video:content_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/mcp-de.mp4</video:content_loc>
+      <video:duration>27</video:duration>
+      <video:publication_date>2026-10-27T00:00:00+00:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+  </url>
+  <url>
     <loc>https://ai-summary-helper.byphil.eu/local-ai/</loc>
     <video:video>
       <video:thumbnail_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/feeds-en.jpg</video:thumbnail_loc>
@@ -4994,6 +5042,54 @@
       <video:title>Your library inside Claude, LM Studio and Cursor</video:title>
       <video:description>Claude Desktop, LM Studio, Cursor and other MCP apps can search your library, quote highlights and list what is due. You control access; nothing goes through our server.</video:description>
       <video:content_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/mcp-en.mp4</video:content_loc>
+      <video:duration>27</video:duration>
+      <video:publication_date>2026-10-27T00:00:00+00:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+  </url>
+  <url>
+    <loc>https://ai-summary-helper.byphil.eu/de/local-ai/</loc>
+    <video:video>
+      <video:thumbnail_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/feeds-de.jpg</video:thumbnail_loc>
+      <video:title>Ein integrierter RSS-Reader</video:title>
+      <video:description>Folgen Sie Blogs und Nachrichtenseiten, filtern Sie nach Quelle, Tag, Datum oder Stimmung, importieren Sie OPML und fassen Sie jeden Eintrag mit einem Klick zusammen. Spielen Sie Podcast-Feeds in der Erweiterung ab und erhalten Sie optional eine KI-Zusammenfassung; Feeds und Favoriten bleiben auf I…</video:description>
+      <video:content_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/feeds-de.mp4</video:content_loc>
+      <video:duration>18</video:duration>
+      <video:publication_date>2026-10-20T00:00:00+00:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+    <video:video>
+      <video:thumbnail_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/sprache-de.jpg</video:thumbnail_loc>
+      <video:title>Über 20 Sprachen, plattformübergreifend</video:title>
+      <video:description>Lesen und zusammenfassen in über 20 Sprachen – mit der Erweiterung, dem nativen Seitenbereich oder Bookmarklet wenn die Erweiterung eine Seite nicht erreichen kann.</video:description>
+      <video:content_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/sprache-de.mp4</video:content_loc>
+      <video:duration>17</video:duration>
+      <video:publication_date>2026-10-20T00:00:00+00:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+    <video:video>
+      <video:thumbnail_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/privat-de.jpg</video:thumbnail_loc>
+      <video:title>KI-Zusammenfassungen mit Ihrem Wunschmodell</video:title>
+      <video:description>Wählen Sie OpenAI, Gemini, Mistral, DeepSeek, einen eigenen Endpoint oder lokales Ollama für Zusammenfassungen, die Ihr Gerät nie verlassen müssen.</video:description>
+      <video:content_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/privat-de.mp4</video:content_loc>
+      <video:duration>22</video:duration>
+      <video:publication_date>2026-10-20T00:00:00+00:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+    <video:video>
+      <video:thumbnail_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/bibliothek-de.jpg</video:thumbnail_loc>
+      <video:title>Echte Volltextsuche, direkt auf Ihrem Gerät</video:title>
+      <video:description>Durchsuchen Sie Titel, Tags und Artikelinhalte mit einem browserbasierten TF-IDF-Index. Die Volltextsuche bleibt auf dem Gerät, ohne Round-Trip.</video:description>
+      <video:content_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/bibliothek-de.mp4</video:content_loc>
+      <video:duration>18</video:duration>
+      <video:publication_date>2026-10-20T00:00:00+00:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+    <video:video>
+      <video:thumbnail_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/mcp-de.jpg</video:thumbnail_loc>
+      <video:title>Ihre Bibliothek direkt in Claude, LM Studio und Cursor</video:title>
+      <video:description>Claude Desktop, LM Studio, Cursor und andere MCP-Apps können Ihre Bibliothek durchsuchen, Highlights zitieren und auflisten, was ansteht. Sie kontrollieren den Zugriff; nichts läuft über unseren Server.</video:description>
+      <video:content_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/mcp-de.mp4</video:content_loc>
       <video:duration>27</video:duration>
       <video:publication_date>2026-10-27T00:00:00+00:00</video:publication_date>
       <video:family_friendly>yes</video:family_friendly>
@@ -5411,6 +5507,90 @@
       <video:title>Export to Obsidian, Markdown, Word and PDF</video:title>
       <video:description>Export summaries to Obsidian, Markdown, Word (DOCX), OpenDocument or PDF with the title, source, tags and highlights in one note.</video:description>
       <video:content_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/export-en.mp4</video:content_loc>
+      <video:duration>23</video:duration>
+      <video:publication_date>2026-10-27T00:00:00+00:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+  </url>
+  <url>
+    <loc>https://ai-summary-helper.byphil.eu/de/pdf-summarizer/</loc>
+    <video:video>
+      <video:thumbnail_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/pdf-de.jpg</video:thumbnail_loc>
+      <video:title>PDFs analysieren wie jede Webseite</video:title>
+      <video:description>Fassen Sie PDFs im Browser oder Dateien von der Festplatte zusammen wie jede andere Seite. „Was ich verwendet habe“ zeigt die Wörter, Tokens und das Modell, die die KI gelesen hat.</video:description>
+      <video:content_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/pdf-de.mp4</video:content_loc>
+      <video:duration>21</video:duration>
+      <video:publication_date>2026-10-21T00:00:00+00:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+    <video:video>
+      <video:thumbnail_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/sprache-de.jpg</video:thumbnail_loc>
+      <video:title>Über 20 Sprachen, plattformübergreifend</video:title>
+      <video:description>Lesen und zusammenfassen in über 20 Sprachen – mit der Erweiterung, dem nativen Seitenbereich oder Bookmarklet wenn die Erweiterung eine Seite nicht erreichen kann.</video:description>
+      <video:content_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/sprache-de.mp4</video:content_loc>
+      <video:duration>17</video:duration>
+      <video:publication_date>2026-10-20T00:00:00+00:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+    <video:video>
+      <video:thumbnail_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/privat-de.jpg</video:thumbnail_loc>
+      <video:title>KI-Zusammenfassungen mit Ihrem Wunschmodell</video:title>
+      <video:description>Wählen Sie OpenAI, Gemini, Mistral, DeepSeek, einen eigenen Endpoint oder lokales Ollama für Zusammenfassungen, die Ihr Gerät nie verlassen müssen.</video:description>
+      <video:content_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/privat-de.mp4</video:content_loc>
+      <video:duration>22</video:duration>
+      <video:publication_date>2026-10-20T00:00:00+00:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+    <video:video>
+      <video:thumbnail_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/ghost-de.jpg</video:thumbnail_loc>
+      <video:title>Ghost-Highlights direkt auf der Seite</video:title>
+      <video:description>Die KI hebt wichtige wörtliche Passagen hervor, sodass Sie zentrale Erkenntnisse überfliegen und zusammen mit der Zusammenfassung nach Kindle, LocalSend oder Markdown exportieren können.</video:description>
+      <video:content_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/ghost-de.mp4</video:content_loc>
+      <video:duration>20</video:duration>
+      <video:publication_date>2026-10-21T00:00:00+00:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+    <video:video>
+      <video:thumbnail_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/paper-de.jpg</video:thumbnail_loc>
+      <video:title>Recherche-Modus: Papers anhand ihrer DOI identifizieren</video:title>
+      <video:description>Erkennt Forschungsarbeiten anhand von DOI und Zitationsmetadaten, kennzeichnet Studien-, Review- oder Preprint-Status und extrahiert Design, Stichprobe, Einschränkungen und DOI-Register-Zitationen.</video:description>
+      <video:content_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/paper-de.mp4</video:content_loc>
+      <video:duration>23</video:duration>
+      <video:publication_date>2026-10-21T00:00:00+00:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+    <video:video>
+      <video:thumbnail_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/recherche-de.jpg</video:thumbnail_loc>
+      <video:title>Quellenvergleich zu einer zentralen Frage</video:title>
+      <video:description>Bündeln Sie Artikel, kennzeichnen Sie Quellen als peer-reviewed, Preprint, Nachricht oder Meinung, führen Sie eine Lateral-Reading-Prüfung durch und vergleichen Sie, wo Zusammenfassungen übereinstimmen, sich widersprechen oder Kontext auslassen.</video:description>
+      <video:content_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/recherche-de.mp4</video:content_loc>
+      <video:duration>24</video:duration>
+      <video:publication_date>2026-10-21T00:00:00+00:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+    <video:video>
+      <video:thumbnail_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/graph-de.jpg</video:thumbnail_loc>
+      <video:title>Ein Wissensgraph statt einer simplen Liste</video:title>
+      <video:description>Sehen Sie, wie gespeicherte Artikel über gemeinsame Tags und Themenähnlichkeit verbunden sind – selbst wenn sie kein Tag gemeinsam haben.</video:description>
+      <video:content_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/graph-de.mp4</video:content_loc>
+      <video:duration>19</video:duration>
+      <video:publication_date>2026-10-20T00:00:00+00:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+    <video:video>
+      <video:thumbnail_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/mcp-de.jpg</video:thumbnail_loc>
+      <video:title>Ihre Bibliothek direkt in Claude, LM Studio und Cursor</video:title>
+      <video:description>Claude Desktop, LM Studio, Cursor und andere MCP-Apps können Ihre Bibliothek durchsuchen, Highlights zitieren und auflisten, was ansteht. Sie kontrollieren den Zugriff; nichts läuft über unseren Server.</video:description>
+      <video:content_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/mcp-de.mp4</video:content_loc>
+      <video:duration>27</video:duration>
+      <video:publication_date>2026-10-27T00:00:00+00:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+    <video:video>
+      <video:thumbnail_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/export-de.jpg</video:thumbnail_loc>
+      <video:title>Export nach Obsidian, Markdown, Word und PDF</video:title>
+      <video:description>Exportieren Sie Zusammenfassungen nach Obsidian, Markdown, Word (DOCX), OpenDocument oder PDF – mit Titel, Quelle, Tags und Highlights in einer Notiz.</video:description>
+      <video:content_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/export-de.mp4</video:content_loc>
       <video:duration>23</video:duration>
       <video:publication_date>2026-10-27T00:00:00+00:00</video:publication_date>
       <video:family_friendly>yes</video:family_friendly>
@@ -5972,6 +6152,165 @@
       <video:description>Leseserie, Zeitersparnis, Aktivität und Themen im Zeitverlauf.</video:description>
       <video:content_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/analytics-de.mp4</video:content_loc>
       <video:duration>21</video:duration>
+      <video:publication_date>2026-10-27T00:00:00+00:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+  </url>
+  <url>
+    <loc>https://ai-summary-helper.byphil.eu/de/knowledge-graph/</loc>
+    <video:video>
+      <video:thumbnail_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/sprache-de.jpg</video:thumbnail_loc>
+      <video:title>Über 20 Sprachen, plattformübergreifend</video:title>
+      <video:description>Lesen und zusammenfassen in über 20 Sprachen – mit der Erweiterung, dem nativen Seitenbereich oder Bookmarklet wenn die Erweiterung eine Seite nicht erreichen kann.</video:description>
+      <video:content_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/sprache-de.mp4</video:content_loc>
+      <video:duration>17</video:duration>
+      <video:publication_date>2026-10-20T00:00:00+00:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+    <video:video>
+      <video:thumbnail_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/bibliothek-de.jpg</video:thumbnail_loc>
+      <video:title>Echte Volltextsuche, direkt auf Ihrem Gerät</video:title>
+      <video:description>Durchsuchen Sie Titel, Tags und Artikelinhalte mit einem browserbasierten TF-IDF-Index. Die Volltextsuche bleibt auf dem Gerät, ohne Round-Trip.</video:description>
+      <video:content_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/bibliothek-de.mp4</video:content_loc>
+      <video:duration>18</video:duration>
+      <video:publication_date>2026-10-20T00:00:00+00:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+    <video:video>
+      <video:thumbnail_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/graph-de.jpg</video:thumbnail_loc>
+      <video:title>Ein Wissensgraph statt einer simplen Liste</video:title>
+      <video:description>Sehen Sie, wie gespeicherte Artikel über gemeinsame Tags und Themenähnlichkeit verbunden sind – selbst wenn sie kein Tag gemeinsam haben.</video:description>
+      <video:content_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/graph-de.mp4</video:content_loc>
+      <video:duration>19</video:duration>
+      <video:publication_date>2026-10-20T00:00:00+00:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+    <video:video>
+      <video:thumbnail_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/pocket-de.jpg</video:thumbnail_loc>
+      <video:title>Gezielt für später merken</video:title>
+      <video:description>Speichern Sie eine Entscheidung mit Begründung und Zeitrahmen und lassen Sie sich erinnern, bevor sie in einem ungelesenen Stapel verschwindet.</video:description>
+      <video:content_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/pocket-de.mp4</video:content_loc>
+      <video:duration>19</video:duration>
+      <video:publication_date>2026-10-20T00:00:00+00:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+    <video:video>
+      <video:thumbnail_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/digest-de.jpg</video:thumbnail_loc>
+      <video:title>Ein Digest, der sich intelligent zusammenstellt</video:title>
+      <video:description>Ein Tippen stellt einen abwechslungsreichen Digest zusammen statt fünf Versionen einer Geschichte, und bündelt ihn für Kindle oder LocalSend.</video:description>
+      <video:content_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/digest-de.mp4</video:content_loc>
+      <video:duration>20</video:duration>
+      <video:publication_date>2026-10-20T00:00:00+00:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+    <video:video>
+      <video:thumbnail_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/mcp-de.jpg</video:thumbnail_loc>
+      <video:title>Ihre Bibliothek direkt in Claude, LM Studio und Cursor</video:title>
+      <video:description>Claude Desktop, LM Studio, Cursor und andere MCP-Apps können Ihre Bibliothek durchsuchen, Highlights zitieren und auflisten, was ansteht. Sie kontrollieren den Zugriff; nichts läuft über unseren Server.</video:description>
+      <video:content_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/mcp-de.mp4</video:content_loc>
+      <video:duration>27</video:duration>
+      <video:publication_date>2026-10-27T00:00:00+00:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+    <video:video>
+      <video:thumbnail_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/export-de.jpg</video:thumbnail_loc>
+      <video:title>Export nach Obsidian, Markdown, Word und PDF</video:title>
+      <video:description>Exportieren Sie Zusammenfassungen nach Obsidian, Markdown, Word (DOCX), OpenDocument oder PDF – mit Titel, Quelle, Tags und Highlights in einer Notiz.</video:description>
+      <video:content_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/export-de.mp4</video:content_loc>
+      <video:duration>23</video:duration>
+      <video:publication_date>2026-10-27T00:00:00+00:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+    <video:video>
+      <video:thumbnail_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/analytics-de.jpg</video:thumbnail_loc>
+      <video:title>Detaillierte Auswertungen Ihres Leseverhaltens</video:title>
+      <video:description>Sehen Sie Leseserien, durch Zusammenfassungen gesparte Zeit, Aktivität, wöchentliche Themen und eine Wortwolke, berechnet aus Ihrer eigenen Bibliothek.</video:description>
+      <video:content_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/analytics-de.mp4</video:content_loc>
+      <video:duration>21</video:duration>
+      <video:publication_date>2026-10-27T00:00:00+00:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+  </url>
+  <url>
+    <loc>https://ai-summary-helper.byphil.eu/de/research-papers/</loc>
+    <video:video>
+      <video:thumbnail_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/pdf-de.jpg</video:thumbnail_loc>
+      <video:title>PDFs analysieren wie jede Webseite</video:title>
+      <video:description>Fassen Sie PDFs im Browser oder Dateien von der Festplatte zusammen wie jede andere Seite. „Was ich verwendet habe“ zeigt die Wörter, Tokens und das Modell, die die KI gelesen hat.</video:description>
+      <video:content_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/pdf-de.mp4</video:content_loc>
+      <video:duration>21</video:duration>
+      <video:publication_date>2026-10-21T00:00:00+00:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+    <video:video>
+      <video:thumbnail_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/sprache-de.jpg</video:thumbnail_loc>
+      <video:title>Über 20 Sprachen, plattformübergreifend</video:title>
+      <video:description>Lesen und zusammenfassen in über 20 Sprachen – mit der Erweiterung, dem nativen Seitenbereich oder Bookmarklet wenn die Erweiterung eine Seite nicht erreichen kann.</video:description>
+      <video:content_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/sprache-de.mp4</video:content_loc>
+      <video:duration>17</video:duration>
+      <video:publication_date>2026-10-20T00:00:00+00:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+    <video:video>
+      <video:thumbnail_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/privat-de.jpg</video:thumbnail_loc>
+      <video:title>KI-Zusammenfassungen mit Ihrem Wunschmodell</video:title>
+      <video:description>Wählen Sie OpenAI, Gemini, Mistral, DeepSeek, einen eigenen Endpoint oder lokales Ollama für Zusammenfassungen, die Ihr Gerät nie verlassen müssen.</video:description>
+      <video:content_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/privat-de.mp4</video:content_loc>
+      <video:duration>22</video:duration>
+      <video:publication_date>2026-10-20T00:00:00+00:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+    <video:video>
+      <video:thumbnail_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/ghost-de.jpg</video:thumbnail_loc>
+      <video:title>Ghost-Highlights direkt auf der Seite</video:title>
+      <video:description>Die KI hebt wichtige wörtliche Passagen hervor, sodass Sie zentrale Erkenntnisse überfliegen und zusammen mit der Zusammenfassung nach Kindle, LocalSend oder Markdown exportieren können.</video:description>
+      <video:content_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/ghost-de.mp4</video:content_loc>
+      <video:duration>20</video:duration>
+      <video:publication_date>2026-10-21T00:00:00+00:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+    <video:video>
+      <video:thumbnail_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/paper-de.jpg</video:thumbnail_loc>
+      <video:title>Recherche-Modus: Papers anhand ihrer DOI identifizieren</video:title>
+      <video:description>Erkennt Forschungsarbeiten anhand von DOI und Zitationsmetadaten, kennzeichnet Studien-, Review- oder Preprint-Status und extrahiert Design, Stichprobe, Einschränkungen und DOI-Register-Zitationen.</video:description>
+      <video:content_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/paper-de.mp4</video:content_loc>
+      <video:duration>23</video:duration>
+      <video:publication_date>2026-10-21T00:00:00+00:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+    <video:video>
+      <video:thumbnail_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/recherche-de.jpg</video:thumbnail_loc>
+      <video:title>Quellenvergleich zu einer zentralen Frage</video:title>
+      <video:description>Bündeln Sie Artikel, kennzeichnen Sie Quellen als peer-reviewed, Preprint, Nachricht oder Meinung, führen Sie eine Lateral-Reading-Prüfung durch und vergleichen Sie, wo Zusammenfassungen übereinstimmen, sich widersprechen oder Kontext auslassen.</video:description>
+      <video:content_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/recherche-de.mp4</video:content_loc>
+      <video:duration>24</video:duration>
+      <video:publication_date>2026-10-21T00:00:00+00:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+    <video:video>
+      <video:thumbnail_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/graph-de.jpg</video:thumbnail_loc>
+      <video:title>Ein Wissensgraph statt einer simplen Liste</video:title>
+      <video:description>Sehen Sie, wie gespeicherte Artikel über gemeinsame Tags und Themenähnlichkeit verbunden sind – selbst wenn sie kein Tag gemeinsam haben.</video:description>
+      <video:content_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/graph-de.mp4</video:content_loc>
+      <video:duration>19</video:duration>
+      <video:publication_date>2026-10-20T00:00:00+00:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+    <video:video>
+      <video:thumbnail_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/mcp-de.jpg</video:thumbnail_loc>
+      <video:title>Ihre Bibliothek direkt in Claude, LM Studio und Cursor</video:title>
+      <video:description>Claude Desktop, LM Studio, Cursor und andere MCP-Apps können Ihre Bibliothek durchsuchen, Highlights zitieren und auflisten, was ansteht. Sie kontrollieren den Zugriff; nichts läuft über unseren Server.</video:description>
+      <video:content_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/mcp-de.mp4</video:content_loc>
+      <video:duration>27</video:duration>
+      <video:publication_date>2026-10-27T00:00:00+00:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+    <video:video>
+      <video:thumbnail_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/export-de.jpg</video:thumbnail_loc>
+      <video:title>Export nach Obsidian, Markdown, Word und PDF</video:title>
+      <video:description>Exportieren Sie Zusammenfassungen nach Obsidian, Markdown, Word (DOCX), OpenDocument oder PDF – mit Titel, Quelle, Tags und Highlights in einer Notiz.</video:description>
+      <video:content_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/export-de.mp4</video:content_loc>
+      <video:duration>23</video:duration>
       <video:publication_date>2026-10-27T00:00:00+00:00</video:publication_date>
       <video:family_friendly>yes</video:family_friendly>
     </video:video>
@@ -9640,6 +9979,63 @@
     </video:video>
   </url>
   <url>
+    <loc>https://ai-summary-helper.byphil.eu/de/youtube-summarizer/</loc>
+    <video:video>
+      <video:thumbnail_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/feeds-de.jpg</video:thumbnail_loc>
+      <video:title>Ein integrierter RSS-Reader</video:title>
+      <video:description>Folgen Sie Blogs und Nachrichtenseiten, filtern Sie nach Quelle, Tag, Datum oder Stimmung, importieren Sie OPML und fassen Sie jeden Eintrag mit einem Klick zusammen. Spielen Sie Podcast-Feeds in der Erweiterung ab und erhalten Sie optional eine KI-Zusammenfassung; Feeds und Favoriten bleiben auf I…</video:description>
+      <video:content_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/feeds-de.mp4</video:content_loc>
+      <video:duration>18</video:duration>
+      <video:publication_date>2026-10-20T00:00:00+00:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+    <video:video>
+      <video:thumbnail_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/ytvideo-de.jpg</video:thumbnail_loc>
+      <video:title>YouTube-Videos anhand ihrer Untertitel</video:title>
+      <video:description>Fassen Sie YouTube-Videos anhand ihrer Untertitel zusammen, erhalten Sie Kernpunkte in Ihrer Sprache und stellen Sie Rückfragen mit Quellenangaben.</video:description>
+      <video:content_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/ytvideo-de.mp4</video:content_loc>
+      <video:duration>21</video:duration>
+      <video:publication_date>2026-10-21T00:00:00+00:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+    <video:video>
+      <video:thumbnail_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/sprache-de.jpg</video:thumbnail_loc>
+      <video:title>Über 20 Sprachen, plattformübergreifend</video:title>
+      <video:description>Lesen und zusammenfassen in über 20 Sprachen – mit der Erweiterung, dem nativen Seitenbereich oder Bookmarklet wenn die Erweiterung eine Seite nicht erreichen kann.</video:description>
+      <video:content_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/sprache-de.mp4</video:content_loc>
+      <video:duration>17</video:duration>
+      <video:publication_date>2026-10-20T00:00:00+00:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+    <video:video>
+      <video:thumbnail_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/instant-de.jpg</video:thumbnail_loc>
+      <video:title>Instant Read: Zuhören, während der Text entsteht</video:title>
+      <video:description>Hören Sie mit, während die Zusammenfassung geschrieben wird: zuerst der Titel, dann Satz für Satz, mit Steuerung für Pause, Stummschaltung und Geschwindigkeit. Von jeder Karte aus erneut abspielen.</video:description>
+      <video:content_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/instant-de.mp4</video:content_loc>
+      <video:duration>27</video:duration>
+      <video:publication_date>2026-10-21T00:00:00+00:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+    <video:video>
+      <video:thumbnail_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/stimmung-de.jpg</video:thumbnail_loc>
+      <video:title>Stimmungsfilter und Verlaufsanalyse</video:title>
+      <video:description>Bewerten Sie Schlagzeilen von schwer bis gut, filtern Sie nach guten Nachrichten und verfolgen Sie Ihre Lesestimmung nach Tag, Woche oder Monat.</video:description>
+      <video:content_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/stimmung-de.mp4</video:content_loc>
+      <video:duration>22</video:duration>
+      <video:publication_date>2026-10-21T00:00:00+00:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+    <video:video>
+      <video:thumbnail_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/analytics-de.jpg</video:thumbnail_loc>
+      <video:title>Detaillierte Auswertungen Ihres Leseverhaltens</video:title>
+      <video:description>Sehen Sie Leseserien, durch Zusammenfassungen gesparte Zeit, Aktivität, wöchentliche Themen und eine Wortwolke, berechnet aus Ihrer eigenen Bibliothek.</video:description>
+      <video:content_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/analytics-de.mp4</video:content_loc>
+      <video:duration>21</video:duration>
+      <video:publication_date>2026-10-27T00:00:00+00:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+  </url>
+  <url>
     <loc>https://ai-summary-helper.byphil.eu/zh-tw/blog/videos.html</loc>
     <video:video>
       <video:thumbnail_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/komplett-en.jpg</video:thumbnail_loc>
@@ -9815,6 +10211,81 @@
       <video:publication_date>2026-10-27T00:00:00+00:00</video:publication_date>
       <video:family_friendly>yes</video:family_friendly>
       <video:tag>English original</video:tag>
+    </video:video>
+  </url>
+  <url>
+    <loc>https://ai-summary-helper.byphil.eu/de/obsidian-integration/</loc>
+    <video:video>
+      <video:thumbnail_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/sprache-de.jpg</video:thumbnail_loc>
+      <video:title>Über 20 Sprachen, plattformübergreifend</video:title>
+      <video:description>Lesen und zusammenfassen in über 20 Sprachen – mit der Erweiterung, dem nativen Seitenbereich oder Bookmarklet wenn die Erweiterung eine Seite nicht erreichen kann.</video:description>
+      <video:content_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/sprache-de.mp4</video:content_loc>
+      <video:duration>17</video:duration>
+      <video:publication_date>2026-10-20T00:00:00+00:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+    <video:video>
+      <video:thumbnail_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/bibliothek-de.jpg</video:thumbnail_loc>
+      <video:title>Echte Volltextsuche, direkt auf Ihrem Gerät</video:title>
+      <video:description>Durchsuchen Sie Titel, Tags und Artikelinhalte mit einem browserbasierten TF-IDF-Index. Die Volltextsuche bleibt auf dem Gerät, ohne Round-Trip.</video:description>
+      <video:content_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/bibliothek-de.mp4</video:content_loc>
+      <video:duration>18</video:duration>
+      <video:publication_date>2026-10-20T00:00:00+00:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+    <video:video>
+      <video:thumbnail_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/graph-de.jpg</video:thumbnail_loc>
+      <video:title>Ein Wissensgraph statt einer simplen Liste</video:title>
+      <video:description>Sehen Sie, wie gespeicherte Artikel über gemeinsame Tags und Themenähnlichkeit verbunden sind – selbst wenn sie kein Tag gemeinsam haben.</video:description>
+      <video:content_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/graph-de.mp4</video:content_loc>
+      <video:duration>19</video:duration>
+      <video:publication_date>2026-10-20T00:00:00+00:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+    <video:video>
+      <video:thumbnail_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/pocket-de.jpg</video:thumbnail_loc>
+      <video:title>Gezielt für später merken</video:title>
+      <video:description>Speichern Sie eine Entscheidung mit Begründung und Zeitrahmen und lassen Sie sich erinnern, bevor sie in einem ungelesenen Stapel verschwindet.</video:description>
+      <video:content_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/pocket-de.mp4</video:content_loc>
+      <video:duration>19</video:duration>
+      <video:publication_date>2026-10-20T00:00:00+00:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+    <video:video>
+      <video:thumbnail_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/digest-de.jpg</video:thumbnail_loc>
+      <video:title>Ein Digest, der sich intelligent zusammenstellt</video:title>
+      <video:description>Ein Tippen stellt einen abwechslungsreichen Digest zusammen statt fünf Versionen einer Geschichte, und bündelt ihn für Kindle oder LocalSend.</video:description>
+      <video:content_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/digest-de.mp4</video:content_loc>
+      <video:duration>20</video:duration>
+      <video:publication_date>2026-10-20T00:00:00+00:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+    <video:video>
+      <video:thumbnail_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/mcp-de.jpg</video:thumbnail_loc>
+      <video:title>Ihre Bibliothek direkt in Claude, LM Studio und Cursor</video:title>
+      <video:description>Claude Desktop, LM Studio, Cursor und andere MCP-Apps können Ihre Bibliothek durchsuchen, Highlights zitieren und auflisten, was ansteht. Sie kontrollieren den Zugriff; nichts läuft über unseren Server.</video:description>
+      <video:content_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/mcp-de.mp4</video:content_loc>
+      <video:duration>27</video:duration>
+      <video:publication_date>2026-10-27T00:00:00+00:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+    <video:video>
+      <video:thumbnail_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/export-de.jpg</video:thumbnail_loc>
+      <video:title>Export nach Obsidian, Markdown, Word und PDF</video:title>
+      <video:description>Exportieren Sie Zusammenfassungen nach Obsidian, Markdown, Word (DOCX), OpenDocument oder PDF – mit Titel, Quelle, Tags und Highlights in einer Notiz.</video:description>
+      <video:content_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/export-de.mp4</video:content_loc>
+      <video:duration>23</video:duration>
+      <video:publication_date>2026-10-27T00:00:00+00:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+    <video:video>
+      <video:thumbnail_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/analytics-de.jpg</video:thumbnail_loc>
+      <video:title>Detaillierte Auswertungen Ihres Leseverhaltens</video:title>
+      <video:description>Sehen Sie Leseserien, durch Zusammenfassungen gesparte Zeit, Aktivität, wöchentliche Themen und eine Wortwolke, berechnet aus Ihrer eigenen Bibliothek.</video:description>
+      <video:content_loc>https://ai-summary-helper.byphil.eu/assets/blog/video/analytics-de.mp4</video:content_loc>
+      <video:duration>21</video:duration>
+      <video:publication_date>2026-10-27T00:00:00+00:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
     </video:video>
   </url>
 </urlset>
