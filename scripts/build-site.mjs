@@ -84,6 +84,28 @@ const RELATED_READING = {
     ]
 };
 
+const EVIDENCE_COPY = {
+    researcher: ['Read with the evidence in view', 'Research on memory and learning points to a simple workflow: make the source findable, test your understanding, and return to it later.'],
+    feeds: ['Turn more reading into something you can use', 'The science behind retrieval, source checking and returnable notes applies just as much to videos and feeds as it does to papers.'],
+    hoarder: ['Make saved reading returnable', 'Saving is only the first step. These findings explain why source trails, questions and spaced returns make a reading archive useful.'],
+    privacy: ['A better reading workflow, backed by evidence', 'A local archive is useful when it helps you understand, check and revisit what you read — not merely collect more summaries.']
+};
+
+function evidenceSection(persona) {
+    const [title, intro] = EVIDENCE_COPY[persona] || EVIDENCE_COPY.privacy;
+    const slides = [
+        ['Location over content', 'People remember where to find it', 'When people expect to be able to look something up later, they remember the content less and remember where to find it more. A source-linked archive keeps that location useful.', 'Sparrow, Liu & Wegner (2011), Science 333(6043), 776–778', 'https://doi.org/10.1126/science.1207745', 'researcher-desk-notes-1600.webp'],
+        ['Highlighting alone helps little', 'Ask questions about important passages', 'A review of ten learning techniques rated highlighting and underlining among the least useful approaches, while practice testing and distributed practice ranked much higher.', 'Dunlosky et al. (2013), Psychological Science in the Public Interest 14(1), 4–58', 'https://doi.org/10.1177/1529100612453266', 'sticky-notes-desk-1600.webp'],
+        ['Retrieval beats rereading', 'Return to the idea, not just the tab', 'Testing yourself after reading improves later retention more reliably than simply studying the material again. Questions and short digests give a saved item a reason to be revisited.', 'Roediger & Karpicke (2006), Psychological Science 17(3), 249–255', 'https://doi.org/10.1111/j.1467-9280.2006.01693.x', 'student-library-desk-1600.webp'],
+        ['Check claims at the source', 'Make verification concrete', 'Lateral reading research found that skilled readers leave a page to check who is behind a source and what other reliable sources say. Source jumps make that habit easier to apply to AI answers.', 'Wineburg & McGrew (2017), Stanford History Education Group', 'https://purl.stanford.edu/yk133bt0783', 'teacher-classroom-desk-1600.webp']
+    ];
+    return `<section class="landing-evidence"><div class="wrap"><div class="section-head center reveal"><div class="eyebrow">Why this workflow</div><h2>${title}</h2><p>${intro}</p></div><div class="cx cx--fit reveal" data-carousel role="region" aria-roledescription="carousel" aria-label="Evidence for this reading workflow"><ul class="cx-track">${slides.map(([big, heading, text, source, href, image], i) => `<li class="cx-slide${i === 0 ? ' is-active' : ''}" aria-roledescription="slide" aria-label="${i + 1} / ${slides.length}"><figure><div class="cx-card" style="--img:url({{base}}assets/photo/${image})"><span class="cx-big cx-big--text">${big}</span><strong class="cx-title">${heading}</strong><span class="cx-text">${text}</span><small class="cx-src">Source: <a href="${href}" target="_blank" rel="noopener">${source}</a></small></div></figure></li>`).join('')}</ul><button type="button" class="cx-nav cx-prev" aria-label="Back"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m15 18-6-6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button><button type="button" class="cx-nav cx-next" aria-label="Next"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m9 18 6-6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button></div><div class="cx-dots">${slides.map((_, i) => `<button type="button" class="cx-dot${i === 0 ? ' is-active' : ''}" aria-label="Slide ${i + 1}"></button>`).join('')}</div></div></section>`;
+}
+
+function landingDemoSection() {
+    return `<section class="landing-demo"><div class="wrap"><div class="section-head center reveal"><div class="eyebrow">Try it yourself</div><h2>See the workflow in the real interface</h2><p>Open a sample article, ask a question and follow the answer back to its source. Nothing is sent from the demo.</p></div><div class="demo-frame reveal" data-demo data-demo-scale="1180" data-src="{{base}}demo/index.html"><button class="demo-start" type="button"><span class="demo-play" aria-hidden="true">▶</span><span>Start the live demo</span></button><a class="demo-open" href="{{base}}demo/index.html" target="_blank" rel="noopener">Open full screen ↗</a></div></div></section>`;
+}
+
 function filteredFeatureSection(persona) {
     const $ = cheerio.load(WHAT_IT_DOES, { decodeEntities: false });
     $('#features').attr('data-default-persona', persona);
@@ -161,6 +183,8 @@ async function buildPage(relPath, partials, config) {
     // Resolve includes. A partial can itself reference {{base}}, so we
     // substitute per-page, not once globally.
     html = html.replace(/<!--include:what-it-does:([a-z]+)-->/g, (_, persona) => filteredFeatureSection(persona));
+    html = html.replace(/<!--include:evidence:([a-z]+)-->/g, (_, persona) => evidenceSection(persona));
+    html = html.replaceAll('<!--include:landing-demo-->', landingDemoSection());
     html = html.replace(/<!--include:faq:([a-z]+)-->/g, (_, persona) => filteredFaqSection(persona));
     html = html.replace(/<!--include:related:([a-z]+)-->/g, (_, topic) => relatedReadingSection(topic));
     html = html.replace(INCLUDE_RE, (match, name) => {
