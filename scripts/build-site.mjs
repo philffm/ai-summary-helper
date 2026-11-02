@@ -91,7 +91,8 @@ const RELATED_READING = {
 
 const EVIDENCE_COPY = {
     researcher: ['Read with the evidence in view', 'Research on memory and source evaluation points to a simple workflow: make the paper findable, test your understanding, and return to the original passage.'],
-    feeds: ['Turn more video into something you can use', 'Learning research supports meaningful segments, clear signals and active questions rather than passive replay.'],
+    feeds: ['Curate current information without losing the trail', 'A focused feed helps you choose what to read; source links, timestamps and a local archive keep the briefing inspectable.'],
+    video: ['Turn more video into something you can use', 'Learning research supports meaningful segments, clear signals and active questions rather than passive replay.'],
     hoarder: ['Make saved reading returnable', 'Saving is only the first step. Retrieval, spacing and source context give an archive a reason to be revisited.'],
     privacy: ['A better reading workflow, backed by evidence', 'A local archive is useful when it helps you understand, check and revisit what you read — not merely collect more summaries.'],
     mcp: ['Connect tools without losing the boundary', 'Interoperability is useful when access is explicit, scoped and auditable. A protocol does not remove the need for least privilege or source review.']
@@ -111,6 +112,12 @@ function evidenceSection(persona) {
             common.source
         ],
         feeds: [
+            ['Choose the sources', 'A smaller reading list is easier to inspect', 'A focused set of sources makes it easier to compare reporting instead of treating every headline as equally useful.', 'Wineburg & McGrew (2019), lateral reading and source evaluation', 'https://doi.org/10.1177/016146811912101102', 'researcher-desk-notes-1600.webp'],
+            ['Keep the trail', 'A briefing is not the original article', 'Source links and publication times let you return to the reporting behind a current summary. They do not prove that every claim is true.', 'Product implication based on source-evaluation research', 'https://doi.org/10.1177/016146811912101102', 'teacher-classroom-desk-1600.webp'],
+            ['Compare before concluding', 'Agreement and disagreement both matter', 'Reading laterally means checking who is behind a claim and comparing it with other sources before drawing a conclusion.', 'Wineburg & McGrew (2019), lateral reading and source evaluation', 'https://doi.org/10.1177/016146811912101102', 'student-library-desk-1600.webp'],
+            ['Keep current reading returnable', 'Local history adds context', 'A local archive preserves the articles you chose to read. Optional encrypted sync can keep that archive available across your devices without making the storage provider the owner of the content.', 'Product implication based on privacy-by-design guidance', 'https://www.nist.gov/privacy-framework/nist_privacy_framework_0', 'sticky-notes-desk-1600.webp']
+        ],
+        video: [
             ['Meaningful segments', 'Pause and process one idea', 'Learner-paced segmentation can improve retention and transfer, although it often increases the time needed to learn.', 'A meta-analysis of the segmenting effect (2019)', 'https://doi.org/10.1007/s10648-018-9456-4', 'student-library-desk-1600.webp'],
             ['Signal what matters', 'Make the important part visible', 'Signaling — cues that highlight essential content — supports multimedia learning when the cues are well designed.', 'A meta-analysis of signaling principle in multimedia learning (2020)', 'https://doi.org/10.1007/s11423-020-09748-7', 'teacher-classroom-desk-1600.webp'],
             common.retrieval,
@@ -136,11 +143,27 @@ function evidenceSection(persona) {
         ]
     };
     const slides = slidesByPersona[persona] || slidesByPersona.privacy;
-    return `<section class="landing-evidence"><div class="wrap"><div class="section-head center reveal"><div class="eyebrow">Why this workflow</div><h2>${title}</h2><p>${intro}</p></div><div class="cx cx--fit reveal" data-carousel role="region" aria-roledescription="carousel" aria-label="Evidence for this reading workflow"><ul class="cx-track">${slides.map(([big, heading, text, source, href, image], i) => `<li class="cx-slide${i === 0 ? ' is-active' : ''}" aria-roledescription="slide" aria-label="${i + 1} / ${slides.length}"><figure><div class="cx-card" style="--img:url({{base}}assets/photo/${image})"><span class="cx-big cx-big--text">${big}</span><strong class="cx-title">${heading}</strong><span class="cx-text">${text}</span><small class="cx-src">Source: <a href="${href}" target="_blank" rel="noopener">${source}</a></small></div></figure></li>`).join('')}</ul><button type="button" class="cx-nav cx-prev" aria-label="Back"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m15 18-6-6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button><button type="button" class="cx-nav cx-next" aria-label="Next"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m9 18 6-6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button></div><div class="cx-dots">${slides.map((_, i) => `<button type="button" class="cx-dot${i === 0 ? ' is-active' : ''}" aria-label="Slide ${i + 1}"></button>`).join('')}</div></div></section>`;
+    const total = slides.length + 1;
+    return `<section class="landing-evidence"><div class="wrap"><div class="section-head center reveal"><div class="eyebrow">Why this workflow</div><h2>${title}</h2><p>${intro}</p></div><div class="cx cx--fit reveal" data-carousel role="region" aria-roledescription="carousel" aria-label="Evidence and live demo for this reading workflow"><ul class="cx-track">${slides.map(([big, heading, text, source, href, image], i) => `<li class="cx-slide${i === 0 ? ' is-active' : ''}" aria-roledescription="slide" aria-label="${i + 1} / ${total}"><figure><div class="cx-card" style="--img:url({{base}}assets/photo/${image})"><span class="cx-big cx-big--text">${big}</span><strong class="cx-title">${heading}</strong><span class="cx-text">${text}</span><small class="cx-src">Source: <a href="${href}" target="_blank" rel="noopener">${source}</a></small></div></figure></li>`).join('')}${landingDemoSlide(persona, slides.length)}</ul><button type="button" class="cx-nav cx-prev" aria-label="Back"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m15 18-6-6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button><button type="button" class="cx-nav cx-next" aria-label="Next"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m9 18 6-6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button></div><div class="cx-dots">${slides.map((_, i) => `<button type="button" class="cx-dot${i === 0 ? ' is-active' : ''}" aria-label="Slide ${i + 1}"></button>`).join('')}<button type="button" class="cx-dot cx-dot--demo" aria-label="Go to live demo slide">Demo</button></div></div></section>`;
 }
 
-function landingDemoSection() {
-    return `<section class="landing-demo"><div class="wrap"><div class="section-head center reveal"><div class="eyebrow">Try it yourself</div><h2>See the workflow in the real interface</h2><p>Open a sample article, ask a question and follow the answer back to its source. Nothing is sent from the demo.</p></div><div class="demo-frame reveal" data-demo data-demo-scale="1180" data-src="{{base}}demo/index.html"><button class="demo-start" type="button"><span class="demo-play" aria-hidden="true">▶</span><span>Start the live demo</span></button><a class="demo-open" href="{{base}}demo/index.html" target="_blank" rel="noopener">Open full screen ↗</a></div></div></section>`;
+function demoConfig(persona) {
+    const demos = {
+        researcher: ['See a paper in the real interface', 'Open a research paper, inspect its summary and return to the saved reading context.', 'scenario=paper&screen=history'],
+        feeds: ['Build a briefing from your own feeds', 'Open the feed reader, review current items and keep the sources behind the briefing visible.', 'screen=feeds'],
+        youtube: ['Turn a long video into a return path', 'Open a long lecture, inspect its transcript-backed summary and jump back to the moment behind an answer.', 'scenario=youtube'],
+        hoarder: ['Turn saved reading into a return path', 'Open the local library, search what you saved and follow the source back to the article.', 'screen=history'],
+        privacy: ['Choose the model boundary yourself', 'Open the model settings and see where local, BYOK and hosted-provider choices differ.', 'panel=models'],
+        mcp: ['Connect a local archive with explicit scope', 'Open the MCP settings and inspect the connected tools and access boundary.', 'scenario=mcp&panel=mcp']
+    };
+    return demos[persona] || demos.privacy;
+}
+
+function landingDemoSlide(persona, index) {
+    const [title, intro, params] = demoConfig(persona);
+    const query = `?${params}`;
+    const mobileParams = `${params}&chrome=0&tour=0&surface=sidepanel`;
+    return `<li class="cx-slide cx-slide--demo" aria-roledescription="slide" aria-label="${index + 1} / ${index + 1}" data-desktop-only><figure><div class="demo-frame" data-demo data-demo-scale="1180" data-demo-params="${params.replace(/&/g, '&amp;')}" data-src="{{base}}demo/index.html"><button class="demo-start" type="button"><span class="demo-play" aria-hidden="true">▶</span><span>Start the live demo</span></button><a class="demo-open" href="{{base}}demo/index.html${query}" target="_blank" rel="noopener">Open full screen ↗</a></div><figcaption><strong>${title}</strong><span>${intro} Nothing is sent from the demo.</span></figcaption></figure></li><li class="cx-slide cx-slide--demo-m" aria-roledescription="slide" aria-label="${index + 1} / ${index + 1}" data-mobile-only><figure><div class="demo-frame demo-frame--phone" data-demo data-demo-fit="420x800" data-demo-params="${mobileParams.replace(/&/g, '&amp;')}" data-src="{{base}}demo/index.html"><button class="demo-start" type="button"><span class="demo-play" aria-hidden="true">▶</span><span>Try it right here</span></button></div><figcaption><strong>${title}</strong><span>${intro}</span><a class="demo-open-m" href="{{base}}demo/index.html?${mobileParams}" target="_blank" rel="noopener">Open full screen ↗</a></figcaption></figure></li>`;
 }
 
 function filteredFeatureSection(persona) {
@@ -221,7 +244,8 @@ async function buildPage(relPath, partials, config) {
     // substitute per-page, not once globally.
     html = html.replace(/<!--include:what-it-does:([a-z]+)-->/g, (_, persona) => filteredFeatureSection(persona));
     html = html.replace(/<!--include:evidence:([a-z]+)-->/g, (_, persona) => evidenceSection(persona));
-    html = html.replaceAll('<!--include:landing-demo-->', landingDemoSection());
+    html = html.replace(/<!--include:landing-demo:([a-z]+)-->/g, '');
+    html = html.replaceAll('<!--include:landing-demo-->', '');
     html = html.replace(/<!--include:faq:([a-z]+)-->/g, (_, persona) => filteredFaqSection(persona));
     html = html.replace(/<!--include:related:([a-z]+)-->/g, (_, topic) => relatedReadingSection(topic));
     html = html.replace(INCLUDE_RE, (match, name) => {

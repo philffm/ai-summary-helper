@@ -66,8 +66,9 @@ const P = new URLSearchParams(location.search), LOC = window.AISH_DEMO.locale, a
 //   clock=manual     virtual clock for frame-exact capture (see AISH_CLOCK in demo-shim.js)
 //   surface=popup    render the popup surface instead of the side panel
 //   screen=main|history|feeds|settings   open that screen on load
-//   panel=language|length|mode|model|account|models|prompts|feeds|feedprefs|reading|send|phoneinbox|appearance|accessibility|library|mcp|about
+//   panel=language|length|mode|model|account|models|prompts|feeds|feedprefs|reading|send|phoneinbox|appearance|accessibility|library|sync|mcp|about
 //                    open a settings panel (implies screen=settings)
+//   flow=sync-add     open Sync & backup and then the Add a place chooser
 const flag = (k) => P.get(k) === '0' ? '0' : P.get(k) === '1' ? '1' : null;
 if (flag('chrome') === '0') document.documentElement.setAttribute('data-chrome', '0');
 if (flag('article') === '0') document.documentElement.setAttribute('data-article', '0');
@@ -81,18 +82,27 @@ appFrame.src = 'app/popup.html?surface=' + (P.get('surface') === 'popup' ? 'popu
 // The popup is same-origin, so we click its real nav items and settings rows rather than
 // reaching into module internals: the demo then behaves exactly like a user's click.
 const SCREENS = ['main', 'history', 'feeds', 'settings'];
-const PANELS = ['account', 'models', 'prompts', 'feeds', 'feedprefs', 'reading', 'send', 'phoneinbox', 'appearance', 'accessibility', 'library', 'mcp', 'about'];
+const PANELS = ['account', 'models', 'prompts', 'feeds', 'feedprefs', 'reading', 'send', 'phoneinbox', 'appearance', 'accessibility', 'library', 'sync', 'mcp', 'about'];
 const wantScreen = SCREENS.includes(P.get('screen')) ? P.get('screen') : null;
 const wantPanel = PANELS.includes(P.get('panel')) ? P.get('panel') : null;
 if (wantScreen || wantPanel) {
   const click = (d, sel) => { const el = d.querySelector(sel); if (el) { el.click(); return true; } return false; };
+  const clickWhen = (d, sel, limit = 12000) => {
+    const started = Date.now();
+    const timer = setInterval(() => {
+      if (click(d, sel) || Date.now() - started > limit) clearInterval(timer);
+    }, 100);
+  };
   const apply = () => {
     let d; try { d = appFrame.contentDocument; } catch (_) { return false; }
     if (!d || d.readyState !== 'complete' || !d.querySelector('.nav-item[data-screen=main]')) return false;
     if (wantPanel) {
       // Settings is a header button; the panel is a row inside the settings home.
       click(d, '#settingsButton');
-      setTimeout(() => click(d, '.settings-row[data-panel="' + wantPanel + '"]'), 120);
+      setTimeout(() => {
+        click(d, '.settings-row[data-panel="' + wantPanel + '"]');
+        if (P.get('flow') === 'sync-add' && wantPanel === 'sync') clickWhen(d, 'button.w-full:not(#generateBookmarkletBtn)');
+      }, 120);
     } else if (wantScreen) {
       click(d, '.nav-item[data-screen="' + wantScreen + '"]');
     }
