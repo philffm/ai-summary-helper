@@ -16,13 +16,7 @@
     "blog/verify-ai-summary.html",
     "blog/ai-apps-mcp.html",
     "blog/digital-sovereignty-for-individuals.html",
-    "blog/sync-to-nextcloud-s3-or-a-folder.html"
-  ],
-  "exempt": [
-    "bookmarklet.html",
-    "goodbye.html",
-    "education/index.html",
-    "pocket-alternative/index.html",
+    "blog/sync-to-nextcloud-s3-or-a-folder.html",
     "knowledge-graph/index.html",
     "local-ai/index.html",
     "mcp/index.html",
@@ -30,6 +24,12 @@
     "pdf-summarizer/index.html",
     "research-papers/index.html",
     "youtube-summarizer/index.html"
+  ],
+  "exempt": [
+    "bookmarklet.html",
+    "goodbye.html",
+    "education/index.html",
+    "pocket-alternative/index.html"
   ],
   "translationPriorities": {
     "1": ["de"],
