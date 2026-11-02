@@ -15,7 +15,9 @@ import * as cheerio from 'cheerio';
 
 const BASE = 'https://ai-summary-helper.byphil.eu';
 // Locale folders (docs/de/, docs/fr/ …) come from the translation config, so renaming them needs no change here.
-const LOCALE_DIRS = Object.values(JSON.parse(fs.readFileSync(path.resolve(path.dirname(new URL(import.meta.url).pathname), '..', 'docs', 'i18n', 'locales.json'), 'utf8')).locales).map((l) => l.dir);
+const LOCALES = Object.values(JSON.parse(fs.readFileSync(path.resolve(path.dirname(new URL(import.meta.url).pathname), '..', 'docs', 'i18n', 'locales.json'), 'utf8')).locales);
+const LOCALE_DIRS = LOCALES.map((l) => l.dir);
+const LOCALE_HREFLANG = new Map(LOCALES.map((l) => [l.dir, l.hreflang]));
 const isLocalized = (rel) => LOCALE_DIRS.some((d) => rel === d || rel.startsWith(d + '/'));
 const DOCS = path.resolve(path.dirname(new URL(import.meta.url).pathname), '..', 'docs');
 const clean = (rel) => BASE + '/' + rel.replace(/(^|\/)index\.html$/, '$1');
@@ -156,7 +158,13 @@ for (const file of walk(DOCS)) {
   $('head').append(`<link rel="canonical" href="${self}">`);
   if ($('meta[property="og:url"]').length) $('meta[property="og:url"]').attr('content', self);
   const alts = [];
+  const ownLocaleDir = LOCALE_DIRS.find((d) => rel === d || rel.startsWith(d + '/'));
+  const ownHreflang = ownLocaleDir ? LOCALE_HREFLANG.get(ownLocaleDir) : null;
   $('link[rel="alternate"][hreflang]').each((_, el) => {
+    if (ownHreflang && !['en', ownHreflang].includes($(el).attr('hreflang'))) {
+      $(el).remove();
+      return;
+    }
     const h = toUrl($(el).attr('href') || '');
     if (!targetExists(h)) { $(el).remove(); return; }   // untranslated page: an alternate that 404s invalidates the whole hreflang set
     $(el).attr('href', h);
@@ -198,7 +206,7 @@ for (const file of walk(DOCS)) {
   setMeta($, 'name', 'twitter:image', ogImg);
   if (!noindex) jsonLd($, rel, self, lang, title, desc, ogImg);
   if (!noindex) videoPass($, file, self, lang);
-  fs.writeFileSync(file, $.html());
+  fs.writeFileSync(file, $.html().replace(/[ \t]+$/gm, ''));
   if (!noindex) {
     if (rel === 'goodbye.html' || rel.endsWith('/goodbye.html')) continue;
     entries.push({ rel, self, alts, mtime: fs.statSync(file).mtime, git: lastmod(path.join('docs', rel)), title, desc });
