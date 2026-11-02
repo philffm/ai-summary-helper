@@ -251,6 +251,7 @@ function localizeBlogVideos($, locale) {
 
 function rewriteAssetPaths($, locale) {
     const extraUps = '../'.repeat(locale.dir.split('/').length);
+    const rootRelative = (value) => value.replace(/^(?:\.\.\/)+/, '');
     $('[href], [src], [data-src], [poster]').each((_, el) => {
         const $el = $(el);
         for (const attr of ['href', 'src', 'data-src', 'poster']) {
@@ -258,13 +259,17 @@ function rewriteAssetPaths($, locale) {
             if (!val) continue;
             if (/^(https?:)?\/\//.test(val) || val.startsWith('#') || val.startsWith('mailto:')) continue;
             // shared, un-duplicated folders at the web root: assets/ and the live demo (demo/)
-            if (val.includes('assets/') || val.startsWith('demo/')) {
-                $el.attr(attr, extraUps + val);
+            const rootPath = rootRelative(val);
+            if (rootPath.includes('assets/') || rootPath.startsWith('demo/')) {
+                $el.attr(attr, extraUps + rootPath);
             }
         }
     });
     // srcset (responsive images), inline style url(...) and <meta content> image paths are relative too
-    const shift = (v) => (/^(https?:)?\/\//.test(v) || v.startsWith('/') || v.startsWith('data:') || !(v.includes('assets/') || v.startsWith('demo/'))) ? v : extraUps + v;
+    const shift = (v) => {
+        const rootPath = rootRelative(v);
+        return /^(https?:)?\/\//.test(v) || v.startsWith('/') || v.startsWith('data:') || !(rootPath.includes('assets/') || rootPath.startsWith('demo/')) ? v : extraUps + rootPath;
+    };
     $('[srcset], [imagesrcset]').each((_, el) => {
         for (const attr of ['srcset', 'imagesrcset']) {
             const val = $(el).attr(attr);
