@@ -160,7 +160,17 @@ export function rewriteAvailablePageLinks($, pageRootPath, code, inventory, loca
         ];
         const sourceTarget = sourceTargets.find((target) => localePages[target]);
         const localizedTarget = sourceTarget && localePages[sourceTarget];
-        if (!localizedTarget) return;
+        if (!localizedTarget) {
+            // A page this locale does not have (bookmarklet.html, pocket-alternative/): the link was written for the English page, so
+            // it points at the English page at the site root, not at a missing copy inside the locale folder.
+            if (!localeTarget.startsWith('../') && !englishTarget.startsWith('../')) {
+                const englishFile = p.endsWith('/') && englishTarget.endsWith('/index.html') ? path.posix.dirname(englishTarget) : englishTarget;
+                let href = path.posix.relative(localePageDir, englishFile);
+                if (p.endsWith('/')) href = href ? `${href.replace(/\/$/, '')}/` : './';
+                $(el).attr('href', href + rest);
+            }
+            return;
+        }
         const targetFile = path.posix.join(localeDir, localizedTarget);
         const targetPath = p.endsWith('/') && targetFile.endsWith('/index.html')
             ? path.posix.dirname(targetFile)
