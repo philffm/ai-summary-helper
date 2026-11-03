@@ -83,6 +83,42 @@ const withRest = [...papers, { id: 'odd1', tags: ['science', 'oddity'] }, { id: 
 const wr = build(withRest);
 const sci3 = science(gs.topicClusters(wr.nodes, wr.links));
 assert.ok(sci3.children.some(c => c.other && c.label === 'Other' && c.size === 2), 'articles that fit no group are collected under "Other"');
+// ── 7. the tags cannot divide a big cluster, the text can ──
+{
+    const n = 200, groups = 4;
+    const flatPapers = Array.from({ length: n }, (_, i) => ({ id: 'w' + i, tags: ['Wirtschaft'] }));       // one tag on everything
+    const vectors = {}, terms = {};
+    flatPapers.forEach((p, i) => { const g = i % groups; vectors[p.id] = { t: [['g' + g + 'a', 3], ['g' + g + 'b', 3], ['g' + g + 'c', 2], ['common', 3], ['noise' + (i % 7), 1]] }; terms[p.id] = ['g' + g + 'a', 'g' + g + 'b', 'common']; });
+    const f2 = build(flatPapers);
+    const none = gs.topicClusters(f2.nodes, f2.links);
+    assert.deepEqual(none.clusters[0].children, [], 'without the text there is nothing to divide it by');
+    const byText = gs.topicClusters(f2.nodes, f2.links, { terms, vectors });
+    const kids = byText.clusters[0].children;
+    assert.ok(kids.length >= groups, 'the text divides the clump into ' + kids.length + ' subtopics');
+    assert.ok(kids.every(k => k.size <= n * 0.4), 'no group keeps a big part of it: ' + kids.map(k => k.size));
+    const purity = kids.map(k => { const count = {}; [...k.articleIds].forEach(id => { const g = Number(id.replace('article-w', '')) % groups; count[g] = (count[g] || 0) + 1; }); return Math.max(...Object.values(count)) / k.size; });
+    assert.ok(purity.every(p => p >= 0.9), 'each subtopic is (almost) one of the real groups: ' + purity.map(p => p.toFixed(2)));
+    assert.ok(kids.every(k => /^g\d[abc]/.test(k.label)), 'named after the terms typical of the group: ' + kids.map(k => k.label));
+    assert.deepEqual(gs.topicClusters(f2.nodes, f2.links, { terms, vectors }).clusters[0].children.map(k => [k.label, k.size]), kids.map(k => [k.label, k.size]), 'same input, same split');
+    // no real difference in the text: no invented subtopics
+    const same = {}, sameTerms = {}; flatPapers.forEach(p => { same[p.id] = { t: [['common', 3], ['alike', 2], ['same', 2]] }; sameTerms[p.id] = ['common', 'alike', 'same']; });
+    assert.deepEqual(gs.topicClusters(f2.nodes, f2.links, { terms: sameTerms, vectors: same }).clusters[0].children, [], 'identical texts are not cut up');
+    // a small cluster is left alone
+    const small = build(flatPapers.slice(0, 30)); const sv = Object.fromEntries(Object.entries(vectors).slice(0, 30));
+    assert.deepEqual(gs.topicClusters(small.nodes, small.links, { vectors: sv }).clusters[0].children, [], 'under 40 articles the text is not used to split (the fallback; the shared terms of `terms` are a separate signal)');
+    assert.ok(gs.topicClusters(f2.nodes, f2.links, { vectors }).clusters[0].children.length >= groups, 'the vectors alone are enough when the cluster is big');
+}
+
+// ── 8. ties that are not stronger inside the groups than between them are no subtopics ──
+{
+    const noise = Array.from({ length: 60 }, (_, i) => ({ id: 'n' + i, tags: ['topic', 'x' + (i % 6), 'y' + ((i * 7 + 3) % 10)] }));   // tags that overlap across the board
+    const nb = build(noise);
+    const kids = gs.topicClusters(nb.nodes, nb.links).clusters.flatMap(c => c.children);
+    assert.ok(kids.every(k => k.size < 60), 'nothing odd');
+    const r8 = gs.topicClusters(nb.nodes, nb.links);
+    assert.ok(r8.clusters.every(c => c.children.length === 0 || c.children.filter(k => !k.other).length >= 2), 'a split is either real (2+ groups) or absent');
+}
+
 // ── 6. nothing in the logic is about a particular topic: renaming the tags (other words, other language) changes nothing but the names ──
 import fs from 'fs';
 const shape = (r) => r.clusters.map(c => [c.size, c.children.map(k => k.size).sort((a, b) => b - a)]).sort((a, b) => b[0] - a[0] || String(b[1]).localeCompare(String(a[1])));

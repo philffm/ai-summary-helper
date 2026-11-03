@@ -19,6 +19,8 @@ Commit history has the details: <https://github.com/philffm/ai-summary-helper/co
 
 #### Fixed
 
+- Archive graph: articles saved in the same moment (an import, "save all tabs") were merged into one node, which gave wrong counts and piled dots; every article is now its own node
+- Archive graph: a big cluster the tags cannot divide is divided by what the articles say (when their text has been read); a split must also hold together better than a random cut, so homogeneous clusters are not cut up
 - Archive graph: the List and Gaps views start below the chips however many rows they take, and the chips that only change the picture (layout, colour, unread, path, save image, legend) are hidden there
 - Language tags ("🌐 de", "🌐 en") are no longer sent to the AI as topics, so they stop turning into "Deutschland" / "Germany"; a lexicon an older run already polluted heals itself on load. Language tags are also left out of the graph (no node, link, cluster or gap), of the similarity, of `related_articles`' shared tags and of the Markdown export's "Related" and hub topics
 

@@ -248,6 +248,10 @@ function buildGraphData(articles, minTagDegree = MIN_TAG_DEGREE_DEFAULT, similar
     const nodes = [];
     const links = [];
     const nodeById = new Map();
+    // A node id is derived from the saved time, and several articles can share one (an import, "save all tabs"). Two articles must never
+    // become one node: every article gets a unique id, and "is it in the graph yet" is asked of the article, not of its id.
+    const taken = new Set(), idOfArticle = new Map();
+    const uniqueId = (base) => { let id = base, n = 2; while (taken.has(id)) id = base + '#' + n++; taken.add(id); return id; };
 
     articles.forEach(article => {
         const articleTags = (article.tags || []).filter(tag => {
@@ -258,7 +262,8 @@ function buildGraphData(articles, minTagDegree = MIN_TAG_DEGREE_DEFAULT, similar
         if (articleTags.length === 0) return;
 
         const title = article.title || article.content?.split('\n')[0] || T('Untitled');
-        const id = 'article-' + (article.timestamp || Math.random());
+        const id = uniqueId('article-' + (article.timestamp || Math.random()));
+        idOfArticle.set(article, id);
         const articleNode = { id, label: title, group: 'article', data: article };
         nodeById.set(id, articleNode);
         nodes.push(articleNode);
@@ -296,8 +301,9 @@ function buildGraphData(articles, minTagDegree = MIN_TAG_DEGREE_DEFAULT, similar
 
     articles.forEach(article => {
         if (!article.timestamp) { stillOrphanCount++; return; }
-        const id = 'article-' + article.timestamp;
-        if (includedArticleIds.has(id)) return; // already has a tag link
+        if (idOfArticle.has(article)) return; // already has a tag link
+        const id = uniqueId('article-' + article.timestamp);
+        idOfArticle.set(article, id);
 
         const best = mostSimilarIncluded(similarityIndex, article, articles, includedArticleIds) || cacheBest(article);
         if (best) {
@@ -639,7 +645,7 @@ function renderGraph(container, allArticles, highlightTimestamp, minTagDegree, s
     const neglectedCount = Array.from(neglectDays.values()).filter(d => d >= NEGLECT_THRESHOLD_DAYS).length;
 
     // Structure, worked out here from the tags alone (graphStructure.js): clusters, bridge articles, source types.
-    const struct = topicClusters(nodes, links, { otherLabel: T('Everything else'), subOtherLabel: T('Other'), groupLabel: T('Group'), terms: simNow && simNow.terms });
+    const struct = topicClusters(nodes, links, { otherLabel: T('Everything else'), subOtherLabel: T('Other'), groupLabel: T('Group'), terms: simNow && simNow.terms, vectors: simNow && simNow.items });
     const bridges = bridgeArticles(nodes, links, struct);
     const clusterIndex = new Map(struct.clusters.map((c, i) => [c.id, i]));
     const clusterColor = (id) => {
@@ -1290,7 +1296,7 @@ function followSimilarity(container, rerender) {
         if (!container.isConnected) return;
         container.__graphSimStop = m.watchSimilarity((u) => {
             if (!container.isConnected) return;
-            container.__graphSim = { links: u.links, sig: u.sig, terms: u.terms };
+            container.__graphSim = { links: u.links, sig: u.sig, terms: u.terms, items: u.items };
             const fresh = u.sig !== container.__graphSimUsed;
             if (fresh && !container.__graphTouched && container.dataset.graphMode !== 'list') { rerender(); return; }
             showSimilarityChip(container, { fresh, running: !u.complete, done: u.done, total: u.total }, rerender);

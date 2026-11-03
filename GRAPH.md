@@ -3,7 +3,7 @@
 How the graph in the History tab decides what to show, why it opens as topic clusters, and what is still open.
 Code: `plugin/src/modules/archiveGraph.js` (drawing, interaction), `plugin/src/modules/graphStructure.js` (the structure, pure functions),
 `plugin/src/modules/graphClusters.js` and `graphBrief.js` (the topic page and briefings), `plugin/src/modules/graphSimilarity.js` and `graphSimilarityCache.js` (content similarity, background run, cache).
-Tests: `test128` (gaps, time window, views), `test217` (clusters, bridges, focus, path, source type, maturity), `test218` (similarity and its incremental cache), `test219` (hub note), `test220` (MCP `related_articles`), `test221` (replay), `test222` (Anki file), `test223` (subtopics), `test224` (every background worker bundle is a valid script), all in `plugin/tests/`.
+Tests: `test128` (gaps, time window, views), `test217` (clusters, bridges, focus, path, source type, maturity), `test218` (similarity and its incremental cache), `test219` (hub note), `test220` (MCP `related_articles`), `test221` (replay), `test222` (Anki file), `test223` (subtopics), `test224` (every background worker bundle is a valid script), `test225` (language marks), `test226` (articles saved at the same time), all in `plugin/tests/`.
 
 ## Why it opens as clusters
 
@@ -41,6 +41,12 @@ The language tags (`🌐 de`: the page's language, plus `🌐 en` when the summa
 ### Archive-wide umbrella tags
 
 A tag on 35 % or more of **all** articles (in an archive of 30+) says "this archive is about X" ("Technik" on three of four saves), not which part of it. It would tie every topic together into one blob, so it stays out of the co-occurrence graph; its articles are placed by their other tags and it is never a cluster name. (A tag on most of *one cluster* is handled separately, see subtopics below.)
+
+### What stops a clump
+
+Four things work together, in this order: archive-wide umbrella tags are ignored when topics are formed; a cluster of 12+ articles is divided by tags, shared typical terms and similar content; a division only counts when at least 55 % of all ties lie inside the groups (a clump cut at random scores about 1/k); and when that fails for a cluster of 40+ articles whose saved text is known, **the text divides it** (spherical k-means on each article's strongest terms, started from the articles furthest apart, so the result never depends on a random draw; up to 6 groups). A cluster whose articles say the same thing is left alone.
+
+Every article is its own node even when several were saved in the same millisecond (an import, "save all tabs"): the node id is made from the saved time, and two articles used to become one node, with wrong counts in the labels and dots piled on one spot (found with a test archive of 420 articles that shared 70 timestamps).
 
 ### Subtopics (a second level)
 
@@ -93,15 +99,15 @@ The rules know no topics, only numbers (shares of articles, counts, similarity);
 
 | Archive | Tags only | Tags + text (background run done) |
 | --- | --- | --- |
-| 7 real areas, umbrella tag on 85 %, 25 % cross-tagged | 18 % | 16 % |
-| Two umbrella tags (90 % and 60 %) + 8 areas | 15 % | 15 % |
-| Zipf-distributed tags (a few common, many rare) | 18 % | 21 % |
-| Umbrella on everything + 20 random sub-tags | 28 % | 11 % |
-| Random tags, no structure at all | 49 % | 12 % |
-| **Only one tag on everything** | **100 %** | 21 % |
-| **No tags at all** | **100 %** | 25 % |
+| 7 real areas, umbrella tag on 85 %, 25 % cross-tagged | 18 % | 12 % |
+| Two umbrella tags (90 % and 60 %) + 8 areas | 15 % | 10 % |
+| Zipf-distributed tags (a few common, many rare) | 33 % | 15 % |
+| Umbrella on everything + 20 random sub-tags | 28 % | 10 % |
+| Random tags, no structure at all | 49 % | 10 % |
+| **Only one tag on everything** | **100 %** | 14 % |
+| **No tags at all** | **100 %** | 13 % |
 
-So: with tags or with text there is structure to find; with neither (every article tagged the same and no text read yet, or no tags and no text) nothing can separate the articles, and they stay one circle. The text signal needs the background run (deep stage) to have read the saved articles. The "Everything else" cluster is split like any other.
+So: with tags or with text there is structure to find; with neither (every article tagged the same and no text read yet, or no tags and no text) nothing can separate the articles, and they stay one circle. (Synthetic text with clearly separate vocabularies is the best case; real articles overlap more, so expect less clean groups.) The text signal needs the background run (deep stage) to have read the saved articles. The "Everything else" cluster is split like any other.
 
 ## How articles are matched with each other
 

@@ -25,7 +25,7 @@ const SPLIT_MIN_TAGS = 12;              // … when it has at least this many ta
 
 // Subtopics: a cluster this big is looked at once more, article by article (see subdivide()).
 export const SUB_MIN_ARTICLES = 12;     // smaller clusters stay as they are
-export const SUB_MAX = 6;               // subtopics shown per cluster (the rest is folded into "other")
+export const SUB_MAX = 8;               // subtopics shown per cluster (the rest is folded into "other")
 export const SUB_MIN_SIZE = 4;          // a group of fewer articles is not a subtopic
 const UMBRELLA_SHARE = 0.6;             // a tag on more than this share of the cluster's articles describes the cluster, not a part of it
 const MERGE_FACTOR = 0.3;              // two groups merge when their ties to each other are at least this fraction as dense as the looser group's own inside
@@ -34,6 +34,9 @@ const TERM_TIE = 0.5;                  // weight of the typical terms two articl
 const SIM_WITH_TAGS = 0.4;             // weight of a similarity tie between two articles that both have tags of their own
 const TOP_UMBRELLA_SHARE = 0.35;        // a tag on more than this share of ALL articles (a big archive's "tech") joins nothing: the topics are what is left
 const TOP_UMBRELLA_MIN_ARTICLES = 30;   // … in an archive of at least this many articles
+const SPLIT_QUALITY = 0.55;             // a split only counts when this share of all ties lies inside the groups (a clump cut at random has about 1/k)
+const TEXT_SPLIT_MIN = 40;              // a cluster this big that the tags cannot divide is divided by what the articles say (see splitByText)
+const TEXT_SPLIT_MAX_GROUPS = 6;
 const GIANT_SHARE = 0.8;                // one group holding more than this share says nothing: tried once more with stricter links
 
 /** Tag → set of article ids, from the tag links only (similarity links do not make an article part of a topic). */
@@ -96,13 +99,61 @@ function propagate(tags, adj) {
 }
 
 /**
+ * Divides articles by what they say, for a cluster the tags cannot divide: spherical k-means on each article's strongest terms
+ * (weighted by how unusual a term is inside this cluster), started from the articles furthest apart so the result never depends on a random draw.
+ * `vecOf(id)` = [[term, count], …] or null. Returns groups of ids (biggest first), or null when too few articles have text.
+ */
+function splitByText(arts, vecOf, wanted) {
+    const raw = new Map(), df = new Map();
+    arts.forEach(a => { const t = vecOf(a); if (t && t.length) { raw.set(a, t); new Set(t.map(x => x[0])).forEach(w => df.set(w, (df.get(w) || 0) + 1)); } });
+    const n = raw.size;
+    const k = Math.max(2, Math.min(wanted, Math.round(Math.sqrt(n / 10))));
+    if (n < TEXT_SPLIT_MIN || n < arts.length * 0.6) return null;
+    const vec = new Map();
+    raw.forEach((t, a) => {
+        const v = t.filter(([w]) => { const d = df.get(w); return d >= 2 && d <= 0.5 * n; })
+            .map(([w, c]) => [w, (1 + Math.log(c)) * Math.log((n + 1) / (df.get(w) + 1))])
+            .sort((x, y) => y[1] - x[1] || byText(x[0], y[0])).slice(0, 30);
+        const norm = Math.sqrt(v.reduce((sum, [, x]) => sum + x * x, 0)) || 1;
+        vec.set(a, new Map(v.map(([w, x]) => [w, x / norm])));
+    });
+    const ids = [...vec.keys()].sort(byText);
+    const dot = (x, y) => { const [small, big] = x.size <= y.size ? [x, y] : [y, x]; let sum = 0; small.forEach((w, t) => { const o = big.get(t); if (o) sum += w * o; }); return sum; };
+    let centers = [vec.get(ids[0])];
+    while (centers.length < k) {   // farthest-first
+        let best = null, bestGap = -1;
+        for (const a of ids) { const gap = 1 - Math.max(...centers.map(c => dot(c, vec.get(a)))); if (gap > bestGap + 1e-9) { bestGap = gap; best = a; } }
+        if (bestGap <= 0.05) break;
+        centers.push(vec.get(best));
+    }
+    if (centers.length < 2) return null;
+    let assign = new Map();
+    for (let round = 0; round < 10; round++) {
+        const next = new Map();
+        ids.forEach(a => { let bi = 0, bs = -1; centers.forEach((c, i) => { const sc = dot(c, vec.get(a)); if (sc > bs + 1e-12) { bs = sc; bi = i; } }); next.set(a, bi); });
+        const changed = ids.some(a => next.get(a) !== assign.get(a));
+        assign = next;
+        centers = centers.map((old, i) => {
+            const sum = new Map();
+            ids.forEach(a => { if (assign.get(a) === i) vec.get(a).forEach((w, t) => sum.set(t, (sum.get(t) || 0) + w)); });
+            if (!sum.size) return old;
+            const norm = Math.sqrt([...sum.values()].reduce((x, y) => x + y * y, 0)) || 1;
+            return new Map([...sum].map(([t, w]) => [t, w / norm]));
+        });
+        if (!changed) break;
+    }
+    const groups = centers.map((_, i) => ids.filter(a => assign.get(a) === i)).filter(g => g.length);
+    return groups.length >= 2 ? groups.sort((x, y) => y.length - x.length || byText(x[0], y[0])) : null;
+}
+
+/**
  * Subtopics of one cluster, found article by article. Two things tie articles together: tags they share (not counting the tags that
  * describe the whole cluster, an umbrella like "science" would glue everything) and similar content (the similarity links, which also
  * work when the articles carry nothing but the umbrella tag). Label propagation over those ties, in a fixed order.
  * A subtopic is named after the tag that is most specific to it, else after the two terms that are most typical of it.
  * Returns [] when the cluster does not fall apart into at least two groups of SUB_MIN_SIZE.
  */
-function subdivide(cluster, { members, tagNode, links, subOtherLabel, groupLabel, termsOf }) {
+function subdivide(cluster, { members, tagNode, links, subOtherLabel, groupLabel, termsOf, vecOf }) {
     const arts = [...cluster.articleIds].sort(byText);
     const inC = new Set(arts);
     const total = arts.length;
@@ -191,7 +242,20 @@ function subdivide(cluster, { members, tagNode, links, subOtherLabel, groupLabel
     let groups = agglomerate(communities(0));
     if (groups[0].length / total > GIANT_SHARE) groups = agglomerate(communities(0.35));
     let real = groups.filter(g => g.length >= SUB_MIN_SIZE).slice(0, SUB_MAX);
-    if (real.length < 2 || real[0].length / total > GIANT_SHARE) return [];
+    // Do the groups hold together? Share of all ties that lies inside a group; a clump cut into pieces at random has about 1/k of it.
+    const holdsTogether = (list) => {
+        const gid = new Map(); list.forEach((g, i) => g.forEach(a => gid.set(a, i)));
+        let inside = 0, all = 0;
+        arts.forEach(a => tie.get(a).forEach((w, o) => { if (!(a < o)) return; all += w; if (gid.has(a) && gid.get(a) === gid.get(o)) inside += w; }));
+        return all > 0 && inside / all >= SPLIT_QUALITY;
+    };
+    if (real.length < 2 || real[0].length / total > GIANT_SHARE || !holdsTogether(real)) {
+        real = [];
+        // The tags (and the ties made from them) do not divide this cluster. If it is big and the text is there, the text does.
+        const byText_ = total >= TEXT_SPLIT_MIN && vecOf ? splitByText(arts, vecOf, TEXT_SPLIT_MAX_GROUPS) : null;
+        if (byText_) real = byText_.filter(g => g.length >= SUB_MIN_SIZE).slice(0, SUB_MAX);
+        if (real.length < 2 || real[0].length / total > GIANT_SHARE) return [];
+    }
 
     // names
     const used = new Set();
@@ -230,7 +294,7 @@ function subdivide(cluster, { members, tagNode, links, subOtherLabel, groupLabel
  * @returns {{ clusters: Array<{ id, label, tagIds, articleIds, size }>, clusterOfTag: Map, clusterOfArticle: Map, otherId: string|null }}
  *   `clusters` is biggest first; the folded-away rest is one cluster with `other: true` (label from `otherLabel`) at the end.
  */
-export function topicClusters(nodes, links, { otherLabel = 'Everything else', subOtherLabel = 'Other', groupLabel = 'Group', terms = null, subclusters = true, max = CLUSTER_MAX, minArticles = CLUSTER_MIN_ARTICLES } = {}) {
+export function topicClusters(nodes, links, { otherLabel = 'Everything else', subOtherLabel = 'Other', groupLabel = 'Group', terms = null, vectors = null, subclusters = true, max = CLUSTER_MAX, minArticles = CLUSTER_MIN_ARTICLES } = {}) {
     const members = tagMembers(nodes, links);
     const tagNode = new Map(nodes.filter(n => n.group === 'tag').map(n => [n.id, n]));
     const articleIds = nodes.filter(n => n.group === 'article').map(n => n.id);
@@ -299,7 +363,7 @@ export function topicClusters(nodes, links, { otherLabel = 'Everything else', su
         const dataId = new Map(nodes.filter(n => n.group === 'article').map(n => [n.id, n.data && n.data.id]));
         kept.forEach(c => {
             // The "everything else" cluster is looked at too: it is where articles with no usable tag pile up, and text is all that can tell them apart.
-            c.children = c.size < SUB_MIN_ARTICLES ? [] : subdivide(c, { members, tagNode, links, subOtherLabel, groupLabel, termsOf: terms ? (aid) => terms[dataId.get(aid)] || [] : null });
+            c.children = c.size < SUB_MIN_ARTICLES ? [] : subdivide(c, { members, tagNode, links, subOtherLabel, groupLabel, termsOf: terms ? (aid) => terms[dataId.get(aid)] || [] : null, vecOf: vectors ? (aid) => (vectors[dataId.get(aid)] || {}).t || null : null });
             c.children.forEach(ch => ch.articleIds.forEach(a => subOfArticle.set(a, ch.id)));
         });
     } else kept.forEach(c => { c.children = []; });
