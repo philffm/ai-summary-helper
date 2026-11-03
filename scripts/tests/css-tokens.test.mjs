@@ -69,11 +69,11 @@ test('!important only where it must beat an inline style or the hidden attribute
     assert.deepEqual(bad.map((r) => r.selector), []);
 });
 
-test('the old colour-named tokens are gone from the stylesheet, the pages and the scripts', () => {
+test('the old colour-named tokens are gone from the stylesheet, the pages, their sources (site-src) and the scripts', () => {
     const old = /var\(\s*--(paper|paper-dim|signal|signal-light|ink-\d+|steel-\d+|cta-sky-\d|cta-amber-\d|brass|brass-light|sky|sky-light|amber|amber-light)\)/;
     const files = [];
     const walk = (d) => fs.readdirSync(d, { withFileTypes: true }).forEach((e) => { const f = path.join(d, e.name); if (e.isDirectory()) walk(f); else if (/\.(html|js|css)$/.test(e.name)) files.push(f); });
-    walk('docs');
+    walk('docs'); walk('site-src');   // site-src: a site build writes these pages over docs/
     assert.deepEqual(files.filter((f) => old.test(fs.readFileSync(f, 'utf8'))), []);
 });
 
