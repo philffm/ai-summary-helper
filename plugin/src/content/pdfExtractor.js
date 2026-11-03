@@ -46,9 +46,10 @@ function findEmbeddedPdfUrl() {
 
 /**
  * Lazy-load pdf.js via dynamic import(). Requires lib/pdf.mjs +
- * lib/pdf.worker.mjs (the ESM build, not the classic/UMD build) listed in
- * manifest.json's web_accessible_resources. Subsequent calls return the
- * same cached module promise.
+ * lib/pdf.worker.mjs (pdf.js's minified *legacy* ESM build, see
+ * lib/THIRD_PARTY_LICENSES.md; the modern build uses syntax Safari and older
+ * Chromium can't parse) listed in manifest.json's web_accessible_resources.
+ * Subsequent calls return the same cached module promise.
  *
  * @returns {Promise<object>} the pdfjsLib module namespace
  */
@@ -104,14 +105,19 @@ export async function extractPdfBytes(input) {
   //   1. call page.cleanup() after each page to release per-page caches,
   //   2. call pdf.cleanup() after the loop to drop the document's font
   //      cache, and
-  //   3. call pdf.destroy() in a finally block to terminate the worker
+  //   3. call loadingTask.destroy() in a finally block to terminate the worker
   //      transport and free the whole document graph.
   // The worker itself is shared/refcounted by pdf.js, so destroy() only
   // tears it down once no other loading task references it.
   let pdf = null;
+  let loadingTask = null;
   try {
     try {
-      pdf = await pdfjsLib.getDocument({ data: bytes }).promise;
+      // JBIG2 (common in scans) and JPEG 2000 images are decoded by pdf.js's separate decoder modules.
+      // The extension CSP has no 'wasm-unsafe-eval', so skip the .wasm attempt and load the plain-JS
+      // fallbacks (lib/*_nowasm_fallback.js) from wasmUrl directly.
+      loadingTask = pdfjsLib.getDocument({ data: bytes, useWasm: false, wasmUrl: chrome.runtime.getURL('lib/') });
+      pdf = await loadingTask.promise;
     } catch (e) {
       if (e && (e.name === 'PasswordException' || e.code === 1 || e.code === 2)) throw pdfError('PASSWORD', 'Password protected');
       throw e;
@@ -145,9 +151,10 @@ export async function extractPdfBytes(input) {
     // Drop the document-level font cache before returning.
     try { pdf.cleanup(); } catch (e) { /* best-effort */ }
   } finally {
-    // Always tear down the document + worker transport, even on error.
-    if (pdf) {
-      try { await pdf.destroy(); } catch (e) { /* best-effort */ }
+    // Always tear down the document + worker transport, even on error (also when opening failed).
+    // pdf.js 6 removed PDFDocumentProxy.destroy(); the loading task's destroy() works in every version.
+    if (loadingTask) {
+      try { await loadingTask.destroy(); } catch (e) { /* best-effort */ }
     }
   }
 
@@ -250,7 +257,6 @@ async function extractPageImage(page, pdfjsLib, maxWidth = 600, quality = 0.6) {
   const opList = await page.getOperatorList();
   const hasImage = opList.fnArray.some(fn =>
     fn === pdfjsLib.OPS.paintImageXObject ||
-    fn === pdfjsLib.OPS.paintJpegXObject ||
     fn === pdfjsLib.OPS.paintImageMaskXObject
   );
   if (!hasImage) return null;
