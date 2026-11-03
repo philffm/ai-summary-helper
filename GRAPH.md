@@ -84,7 +84,7 @@ Groups are the personas the site already uses. MoSCoW is a judgement from the co
 ## Not done
 
 - **Content similarity between all articles** (kNN links and a vote on the cluster). Needs a decision on the text cap and on cost: the index is built over the whole archive on every change.
-- **Obsidian export with `[[wikilinks]]`** for a cluster (the topic page already exports Markdown).
+- **A hub note per cluster for Obsidian** (a map of content that links every article of the cluster). The Markdown export already writes `[[wikilinks]]` (a `Related` section per article, briefings link their citations to the article notes) and can export just a cluster; only the hub note is missing.
 - **MCP tool** for a subgraph or related items (separate package in `mcp/`).
 - **Mood colour**, **time replay**, **flashcards from a topic**, **"unread only" filter**.
 - **AI names for clusters.** Names come from the tags on purpose (local, free, stable). An opt-in AI title is possible later.
