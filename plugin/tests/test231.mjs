@@ -43,11 +43,18 @@ let system = '', user = '';
 ai.setAiTransport(async (r) => { system = r.system; user = r.user; return '1:Content pollution (broader: Media) | 2:-'; });
 const r = await ai.nameTags(['ContentPollution', 'Other'], { broaderVocab: ['Media', 'Policy'], english: new Set(['ContentPollution']) });
 assert.ok(/translated literally/.test(system) && /NEVER replace a tag by a broader topic/.test(system), 'the prompt asks for the tag itself');
-assert.ok(/for these broader topics only, prefer words from this list: Media, Policy/.test(system), 'the list is for the broader topics only');
+assert.ok(/for these broader topics only, prefer words from this list when one fits; otherwise use your own: Media, Policy/.test(system), 'the list is for the broader topics only');
 assert.ok(/\[1\] Content Pollution/.test(user), 'the tag is sent as words, so it is read as words');
 assert.deepEqual(r.names[0], { en: 'content pollution', ui: null, broader: ['Media'] });
 assert.equal(r.names[1], null, '"2:-" means no topic, nothing is learned for it');
 ai.setAiTransport(null);
+
+// ── long names are not cut, a dash is no name ──
+const long = ai.parseTagNames('1:Covert influence operations (broader: Geopolitics) | 2:Rick Rescorla = - (broader: -) | 3:Climate feedback loops in the arctic', 3);
+assert.equal(long[0].en, 'covert influence operations', 'not cut at 24 characters');
+assert.deepEqual([long[1].en, long[1].ui, long[1].broader], ['rick rescorla', null, undefined], 'a dash is neither a translation nor a broader topic');
+assert.equal(long[2].en, 'climate feedback loops in the arctic', 'up to the 40 the lexicon keeps');
+assert.ok(/a second one only if it fits just as clearly, one is often enough/.test(system), 'the prompt does not push for a second broader topic');
 
 // ── codes are not sent, English tags are known by their articles' language ──
 const arts = [

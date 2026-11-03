@@ -39,7 +39,7 @@ let lastSystem = '';
 ai.setAiTransport(async ({ system, user }) => { lastSystem = system; return user.split('\n').map((l, k) => { const t = l.replace(/^\[\d+\]\s*/, ''); return t === 'Krebsforschung' ? `${k + 1}:Cancer research (broader: Medicine)` : `${k + 1}:${t}`; }).join(' | '); });
 tc.setLexicon({});
 await ai.learnTagNames(['Krebsforschung', 'Plain'], { broaderVocab: ['Medicine', 'Software'] });
-assert.ok(/broader: A, B/.test(lastSystem) && /Medicine, Software/.test(lastSystem), 'the prompt asks for broader topics, from the archive\'s own topics');
+assert.ok(/\(broader: A\)/.test(lastSystem) && /Medicine, Software/.test(lastSystem), 'the prompt asks for broader topics, from the archive\'s own topics');
 assert.deepEqual(tc.broaderKeysOf('Krebsforschung'), [tc.conceptKey('medicine')]);
 assert.equal(tc.needsBroader('Plain'), false, 'a tag with no broader topics is remembered as asked');
 

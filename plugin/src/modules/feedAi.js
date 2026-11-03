@@ -149,10 +149,12 @@ export function itemsForPrompt(list, subTitleFn, mark, snippetMax = titlesOnly ?
     }).join('\n');
 }
 
-export function cleanLabel(v) {
-    const t = String(v || '').replace(/["'`*#]/g, '').replace(/\s+/g, ' ').trim().slice(0, 24);
+export function cleanLabel(v, max = 24) {
+    const t = String(v || '').replace(/["'`*#]/g, '').replace(/\s+/g, ' ').trim().slice(0, max);
     return t || null;
 }
+// Tag names: as long as the lexicon keeps (40). The 24 of the feed labels cut "covert influence operations" to "covert influence operati".
+const cleanName = (v) => { const t = cleanLabel(v, 40); return t && !/^[-–—]+$/.test(t) ? t : null; };
 
 /**
  * Reply of the topic prompt ("Fußball = Football, Wirtschaft = Economy") -> up to 3 distinct { label, en }.
@@ -205,7 +207,7 @@ export async function translateFeedTopics(keys, { signal, onStage, onProgress, s
     const todo = keys.filter((_, n) => tags[n] === null);
     if (todo.length) {
         const system = `Translate these topic names into ${name}. Each stays a short tag of one or two words. Reply with ONLY the translations, in the same order, separated by commas.`;
-        const parts = String(await aiComplete(system, todo.join(', '), onStage, signal, onProgress, { service, feature: 'tags' })).split(/[,;|\n]/).map(cleanLabel).filter(Boolean);
+        const parts = String(await aiComplete(system, todo.join(', '), onStage, signal, onProgress, { service, feature: 'tags' })).split(/[,;|\n]/).map(v => cleanLabel(v)).filter(Boolean);
         if (parts.length !== todo.length) throw new Error(T('The AI reply could not be read'));
         let k = 0; keys.forEach((_, n) => { if (tags[n] === null) { tags[n] = parts[k++]; lexiconLearn(keys[n], code, tags[n]); } });
     }
@@ -218,11 +220,11 @@ export function parseTagNames(text, n) {
     String(text || '').split(/[|;\n]/).forEach(part => {
         // "(broader: A, B)" anywhere in the part: the broader topics (only set when given, so older replies read the same as before)
         const bm = part.match(/\(\s*broader\s*:\s*([^)]*)\)/i);
-        const broader = bm ? bm[1].split(/\s*,\s*/).map(cleanLabel).filter(Boolean).slice(0, 2) : null;
+        const broader = bm ? bm[1].split(/\s*,\s*/).map(cleanName).filter(Boolean).slice(0, 2) : null;
         const rest = bm ? part.replace(bm[0], ' ') : part;
         const m = rest.match(/(\d+)\s*[:=]\s*([^=]+?)(?:\s*=\s*(.+))?\s*$/);
         const k = m ? Number(m[1]) - 1 : -1;
-        if (k >= 0 && k < n && cleanLabel(m[2]) && !/^[-–—]+$/.test(cleanLabel(m[2]))) out[k] = { en: normalizeTopic(cleanLabel(m[2])), ui: m[3] ? cleanLabel(m[3]) : null, ...(broader ? { broader } : {}) };   // "3:-" = no topic
+        if (k >= 0 && k < n && cleanName(m[2])) out[k] = { en: normalizeTopic(cleanName(m[2])), ui: m[3] ? cleanName(m[3]) : null, ...(broader && broader.length ? { broader } : {}) };   // "3:-" = no topic, "= -" = no translation
     });
     return out;
 }
@@ -283,8 +285,8 @@ export async function nameTags(tags, { signal, onStage, onProgress, service, bro
         + 'For each numbered tag reply with its ENGLISH NAME: the same tag translated literally or written normally, keeping its meaning and how specific it is '
         + '(Germany stays Germany, Food policy stays Food policy, Geldwäsche becomes Money laundering). NEVER replace a tag by a broader topic or a category'
         + (code === 'en' ? '' : `. Then " = " and the same tag written in ${name}`)
-        + '. Then, only if the tag is specific, " (broader: A, B)" with at most 2 broader English topics it belongs to'
-        + (vocab.length ? ` (for these broader topics only, prefer words from this list: ${vocab.join(', ')})` : '')
+        + '. Then, only if the tag is specific, " (broader: A)" with the broader English topic it clearly belongs to (a second one only if it fits just as clearly, one is often enough; leave it out when none fits)'
+        + (vocab.length ? ` (for these broader topics only, prefer words from this list when one fits; otherwise use your own: ${vocab.join(', ')})` : '')
         + '. If a tag is no topic at all (a code, a colour value, an id), reply with its number and a dash. '
         + 'Format exactly, one line: 1:Germany' + (code === 'en' ? '' : ' = Deutschland') + ' (broader: Geopolitics) | 2:AI in medicine' + (code === 'en' ? '' : ' = KI in der Medizin') + ' (broader: Artificial intelligence, Medicine) | 3:- | … for EVERY tag, nothing else.';
     const text = await aiComplete(system, tags.map((t, k) => `[${k + 1}] ${clip(humanizeTag(t), 40)}`).join('\n'), onStage, signal, onProgress, { service, feature: 'tags' });
