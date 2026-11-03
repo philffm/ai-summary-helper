@@ -635,7 +635,7 @@ function renderGraph(container, allArticles, highlightTimestamp, minTagDegree, s
     const neglectedCount = Array.from(neglectDays.values()).filter(d => d >= NEGLECT_THRESHOLD_DAYS).length;
 
     // Structure, worked out here from the tags alone (graphStructure.js): clusters, bridge articles, source types.
-    const struct = topicClusters(nodes, links, { otherLabel: T('Everything else') });
+    const struct = topicClusters(nodes, links, { otherLabel: T('Everything else'), subOtherLabel: T('Other'), groupLabel: T('Group'), terms: simNow && simNow.terms });
     const bridges = bridgeArticles(nodes, links, struct);
     const clusterIndex = new Map(struct.clusters.map((c, i) => [c.id, i]));
     const clusterColor = (id) => {
@@ -643,7 +643,7 @@ function renderGraph(container, allArticles, highlightTimestamp, minTagDegree, s
         return !c ? 'var(--accent)' : c.other ? 'var(--text-muted)' : TAG_PALETTE[clusterIndex.get(id) % TAG_PALETTE.length];
     };
     const clusterOfNode = (d) => (d.group === 'article' ? struct.clusterOfArticle.get(d.id) : struct.clusterOfTag.get(d.id));
-    nodes.forEach(n => { n.cluster = clusterOfNode(n) || null; });
+    nodes.forEach(n => { n.cluster = clusterOfNode(n) || null; n.sub = (n.group === 'article' && struct.subOfArticle.get(n.id)) || null; });
     const articleTotal = nodes.filter(n => n.group === 'article').length;
     const canOverview = struct.clusters.length >= 2;
     const overview = canOverview && (container.__graphLayout ? container.__graphLayout === 'overview' : articleTotal >= OVERVIEW_MIN_ARTICLES);
@@ -712,6 +712,7 @@ function renderGraph(container, allArticles, highlightTimestamp, minTagDegree, s
             // Quiet titles keep their on-screen size while you zoom in, so a focused cluster reads instead of piling up.
             if (quietLabels) mainContainer.selectAll('text.graph-node-label.is-article').attr('font-size', `${10 / Math.max(1, event.transform.k)}px`);
             mainContainer.selectAll('text.graph-cluster-label').attr('font-size', c => `${clusterFont(c) / Math.max(1, event.transform.k) ** 0.7}px`);
+            mainContainer.selectAll('text.graph-sub-label').attr('font-size', `${12 / Math.max(1, event.transform.k)}px`);   // subtopic names keep their on-screen size
         });
 
     svg.call(zoom);
@@ -952,8 +953,20 @@ function renderGraph(container, allArticles, highlightTimestamp, minTagDegree, s
     // instead of removing them.
     container.__archiveGraphSelections = { node, link, label };
 
+    let drilled = null, subLayer = null;   // subtopics of the cluster in focus (see drillDown)
     // Tick function
     simulation.on('tick', () => {
+        if (drilled) {
+            drilled.kids.forEach((k, i) => {
+                const ms = drilled.members.get(k.id);
+                if (!ms.length) return;
+                let cx = 0, cy = 0; ms.forEach(m => { cx += m.x || 0; cy += m.y || 0; }); cx /= ms.length; cy /= ms.length;
+                let sq = 0; ms.forEach(m => { sq += ((m.x || 0) - cx) ** 2 + ((m.y || 0) - cy) ** 2; });
+                drilled.pos.set(k.id, { cx, cy, r: Math.sqrt(sq / ms.length) * 1.3 + 10 });
+            });
+            drilled.sb.attr('cx', k => (drilled.pos.get(k.id) || {}).cx).attr('cy', k => (drilled.pos.get(k.id) || {}).cy).attr('r', k => (drilled.pos.get(k.id) || { r: 0 }).r);
+            drilled.sl.attr('x', k => (drilled.pos.get(k.id) || {}).cx).attr('y', k => ((drilled.pos.get(k.id) || {}).cy || 0) - ((drilled.pos.get(k.id) || { r: 0 }).r) - 4);
+        }
         if (overview) {
             const blobFor = new Map();
             clusterMembers.forEach((ms, id) => {
@@ -1014,6 +1027,7 @@ function renderGraph(container, allArticles, highlightTimestamp, minTagDegree, s
     function clearAll() {
         pathFrom = null;
         node.classed(PATH_CLASS, false); link.classed(PATH_CLASS, false);
+        clearDrill();
         setFocus(null);
         if (zoomedByFocus) { zoomedByFocus = false; (calm() ? svg : svg.transition().duration(350)).call(zoom.transform, savedView || d3.zoomIdentity); }
     }
@@ -1042,16 +1056,73 @@ function renderGraph(container, allArticles, highlightTimestamp, minTagDegree, s
         announce(T('Connected in {n} steps: {chain}', { n: path.length - 1, chain }));
     }
     container.__graphPathMode = (on) => { container.__graphPathOn = !!on; clearAll(); announce(on ? T('Path mode on: pick two items to see how they connect.') : T('Path mode off.')); };
+    // Drill-down: a cluster that falls apart into subtopics is pulled apart into them; each gets its own area and name.
+    function clearDrill() {
+        if (!drilled) return;
+        drilled = null;
+        nodes.forEach(n => { n.subFocus = false; });
+        if (subLayer) { subLayer.remove(); subLayer = null; }
+        if (clusterLabels) clusterLabels.style('display', null);
+        if (overview) {
+            simulation.force('subx', null).force('suby', null);
+            simulation.force('x').strength(0.16); simulation.force('y').strength(0.16);
+            simulation.alpha(0.5).restart();
+        }
+    }
+    function drillDown(c) {
+        clearDrill();
+        const kids = c.children || [];
+        if (!overview || kids.length < 2) return null;
+        const ms = clusterMembers.get(c.id) || [];
+        if (!ms.length) return null;
+        let cx = 0, cy = 0; ms.forEach(m => { cx += m.x || 0; cy += m.y || 0; }); cx /= ms.length; cy /= ms.length;
+        let sq = 0; ms.forEach(m => { sq += ((m.x || 0) - cx) ** 2 + ((m.y || 0) - cy) ** 2; });
+        const R = Math.max(60, Math.sqrt(sq / ms.length) * 1.3 + 12);
+        const ring = R * 0.7 * Math.max(1, Math.sqrt(kids.length / 3));
+        const centers = new Map(kids.map((k, i) => { const a = i / kids.length * Math.PI * 2 - Math.PI / 2; return [k.id, { x: cx + Math.cos(a) * ring, y: cy + Math.sin(a) * ring }]; }));
+        nodes.forEach(n => { n.subFocus = n.group === 'article' && n.cluster === c.id; });
+        simulation.force('subx', d3.forceX(d => (centers.get(d.sub) || { x: d.x }).x).strength(d => (d.subFocus ? 0.35 : 0)))
+            .force('suby', d3.forceY(d => (centers.get(d.sub) || { y: d.y }).y).strength(d => (d.subFocus ? 0.35 : 0)));
+        simulation.force('x').strength(d => (d.subFocus ? 0.01 : 0.16)); simulation.force('y').strength(d => (d.subFocus ? 0.01 : 0.16));
+        simulation.alpha(0.8).restart();
+        const color = clusterColor(c.id);
+        subLayer = mainContainer.append('g').attr('class', 'graph-sublayer');
+        const open = (event, k) => { event.stopPropagation(); focusSub(c, k); };
+        const sb = subLayer.selectAll('circle').data(kids).join('circle').attr('class', 'graph-subblob')
+            .attr('fill', color).attr('fill-opacity', 0.14).attr('stroke', color).attr('stroke-opacity', 0.45).style('cursor', 'pointer').on('click', open);
+        const sl = subLayer.selectAll('text').data(kids).join('text').attr('class', 'graph-sub-label')
+            .attr('text-anchor', 'middle').attr('fill', color).attr('font-size', '12px')
+            .text(k => (k.label.length > 26 ? k.label.slice(0, 26) + '…' : k.label) + ' · ' + k.size)
+            .style('cursor', 'pointer').attr('role', 'button').attr('tabindex', 0)
+            .attr('aria-label', k => T('{topic}, subtopic of {parent}: {n} articles', { topic: k.label, parent: c.label, n: k.size }))
+            .on('click', open).on('keydown', (event, k) => { if (event.key === 'Enter' || event.key === ' ') { event.preventDefault(); open(event, k); } });
+        drilled = { c, kids, sb, sl, centers, pos: new Map(), members: new Map(kids.map(k => [k.id, nodes.filter(n => n.sub === k.id && n.group === 'article')])) };
+        clusterLabels.style('display', d => (d.id === c.id ? 'none' : null));   // the subtopic names take over inside this cluster
+        return [...centers.values()].flatMap(p => [{ x: p.x - R * 0.7, y: p.y - R * 0.7 }, { x: p.x + R * 0.7, y: p.y + R * 0.7 }]);
+    }
+    function focusSub(c, kid) {
+        const members = [...kid.articleIds].map(id => nodeOf.get(id) && nodeOf.get(id).data).filter(Boolean);
+        setFocus(new Set(kid.articleIds), {
+            caption: c.label + ' › ' + kid.label + ' · ' + TN(kid.size, '{n} article', '{n} articles'),
+            openLabel: T('Open topic'),
+            onOpen: () => import('./graphClusters.js').then(m => m.showClusterCard(container, { label: kid.label, articles: members }))
+        });
+        if (drilled) { drilled.sb.classed(FOCUS_CLASS, k => k !== kid); drilled.sl.classed(FOCUS_CLASS, k => k !== kid); }
+        zoomToNodes(nodes.filter(n => n.sub === kid.id && n.group === 'article'));
+        announce(c.label + ' › ' + kid.label + ': ' + TN(kid.size, '{n} article', '{n} articles'));
+    }
     const focusCluster = (c) => {
         const ids = new Set([...c.articleIds, ...c.tagIds]);
         const members = [...c.articleIds].map(id => nodeOf.get(id) && nodeOf.get(id).data).filter(Boolean);
         setFocus(ids, {
-            caption: c.label + ' · ' + TN(c.size, '{n} article', '{n} articles'),
+            caption: c.label + ' · ' + TN(c.size, '{n} article', '{n} articles') + (overview && (c.children || []).length >= 2 ? ' · ' + TN(c.children.length, '{n} subtopic', '{n} subtopics') : ''),
             openLabel: T('Open topic'),
-            onOpen: () => import('./graphClusters.js').then(m => m.showClusterCard(container, { label: c.label, articles: members }))
+            onOpen: () => import('./graphClusters.js').then(m => m.showClusterCard(container, { label: c.label, articles: members, subtopics: (c.children || []).filter(k => !k.other).map(k => ({ label: k.label, articles: [...k.articleIds].map(id => nodeOf.get(id) && nodeOf.get(id).data).filter(Boolean) })) }))
         });
-        zoomToNodes(nodes.filter(n => n.cluster === c.id && n.group === 'article'));
-        announce(c.label + ': ' + TN(c.size, '{n} article', '{n} articles'));
+        const region = drillDown(c);
+        if (region) { labelSet = new Set(); label.classed('graph-label-on', false); }   // the subtopic names say it; titles come with the next click
+        zoomToNodes(region || nodes.filter(n => n.cluster === c.id && n.group === 'article'));
+        announce(c.label + ': ' + TN(c.size, '{n} article', '{n} articles') + (region ? ', ' + TN(c.children.length, '{n} subtopic', '{n} subtopics') : ''));
     };
     if (overview) {
         const pick = (event, c) => { event.stopPropagation(); if (!container.__graphPathOn) focusCluster(c); };
@@ -1211,7 +1282,7 @@ function followSimilarity(container, rerender) {
         if (!container.isConnected) return;
         container.__graphSimStop = m.watchSimilarity((u) => {
             if (!container.isConnected) return;
-            container.__graphSim = { links: u.links, sig: u.sig };
+            container.__graphSim = { links: u.links, sig: u.sig, terms: u.terms };
             const fresh = u.sig !== container.__graphSimUsed;
             if (fresh && !container.__graphTouched && container.dataset.graphMode !== 'list') { rerender(); return; }
             showSimilarityChip(container, { fresh, running: !u.complete, done: u.done, total: u.total }, rerender);

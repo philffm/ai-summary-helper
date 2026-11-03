@@ -3,7 +3,7 @@ import { pageKeyForUrl } from './pageKey.js';
 import { qaMarkdown } from './conversation.js';
 import { T } from './feedI18n.js';
 import { toArticleJson, assignFileBases, frontMatter, htmlToMarkdown, safeFileName } from './articleFormat.js';
-import { maturityOf } from './graphStructure.js';
+import { maturityOf } from './graphMaturity.js';
 
 export { htmlToMarkdown, safeFileName };
 // markdownArchive.js
@@ -97,7 +97,7 @@ export function briefingToMarkdown({ title, results, nameOf }) {
  * them, with the unread ones marked. In Obsidian it becomes the hub of the topic, and its graph shows the same island as ours.
  * `items` = [{ article, notes }] (notes = your highlights on it); `nameOf(article)` = file base name, as the article notes are named.
  */
-export function hubToMarkdown({ title, items, nameOf, briefingName = '', date = new Date() }) {
+export function hubToMarkdown({ title, items, nameOf, briefingName = '', subtopics = [], date = new Date() }) {
     const day = date.toISOString().split('T')[0];
     const link = (a) => (nameOf(a) ? `[[${nameOf(a)}]]` : (a.title || T('Untitled')));
     const host = (u) => { try { return new URL(u).hostname.replace(/^www\./, ''); } catch (_) { return ''; } };
@@ -114,6 +114,12 @@ export function hubToMarkdown({ title, items, nameOf, briefingName = '', date = 
         `# ${title}`, '', `*${day} · AI Summary Helper* — ${T('{n} articles, {u} not read yet', { n: items.length, u: unread })}`, ''
     ];
     if (briefingName) out.push(`${T('Briefing')}: [[${briefingName}]]`, '');
+    // Subtopics the graph found inside this topic: each one a heading with its articles.
+    const subs = subtopics.filter(sub => sub && sub.articles && sub.articles.length);
+    if (subs.length) {
+        out.push(`## ${T('Subtopics')}`, '');
+        subs.forEach(sub => out.push(`### ${sub.label} (${sub.articles.length})`, '', ...sub.articles.map(a => `- ${link(a)}`), ''));
+    }
     out.push(...section(T('Worked on: opened, summarised and annotated'), groups.evergreen), ...section(T('In progress: opened or annotated'), groups.growing), ...section(T('Saved, not worked on yet'), groups.seed));
     if (tags.size) out.push(`## ${T('Topics inside')}`, '', [...tags.entries()].sort((x, y) => y[1] - x[1] || (x[0] < y[0] ? -1 : 1)).slice(0, 15).map(([t, n]) => `${t} (${n})`).join(' · '), '');
     return out.join('\n').replace(/\n{3,}/g, '\n\n').trimEnd() + '\n';
@@ -162,14 +168,16 @@ export async function buildArchiveFiles({ onProgress, ids = null, briefing = nul
     // Opt-in: one hub note that links every exported article (a topic's map of content).
     if (hub && hub.title && list.length) {
         const items = list.map(a => ({ article: a, notes: (hlByUrl.get(a.url ? pageKeyForUrl(a.url) : '') || []).length }));
-        files.unshift({ name: `ai-summary-helper/Hub – ${safeFileName(hub.title)}.md`, text: hubToMarkdown({ title: hub.title, items, nameOf: (a) => names.get(a.id), briefingName }), briefing: true });
+        const byId = new Map(list.map(a => [a.id, a]));
+        const subtopics = (hub.subtopics || []).map(sub => ({ label: sub.label, articles: (sub.ids || []).map(id => byId.get(id)).filter(Boolean) }));
+        files.unshift({ name: `ai-summary-helper/Hub – ${safeFileName(hub.title)}.md`, text: hubToMarkdown({ title: hub.title, items, nameOf: (a) => names.get(a.id), briefingName, subtopics }), briefing: true });
     }
     return files;
 }
 
 /** Builds the zip and triggers the download. Resolves with the number of exported articles. */
 export async function exportHistoryMarkdown({ onProgress, ids = null, name = 'history', briefing = null, hub = false } = {}) {
-    const files = await buildArchiveFiles({ onProgress, ids, briefing, hub: hub ? { title: name } : null });
+    const files = await buildArchiveFiles({ onProgress, ids, briefing, hub: hub ? { title: name, subtopics: hub.subtopics } : null });
     const count = files.filter(f => !f.briefing).length;
     const blob = await buildZip(files);
     const url = URL.createObjectURL(blob);

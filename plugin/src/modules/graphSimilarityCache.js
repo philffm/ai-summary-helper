@@ -42,8 +42,10 @@ export async function refreshSimilarity(io, { deep = true, signal = null, onUpda
         if (!cache.nn || cache.nn.sig !== sig) { cache.nn = { sig, links: await neighbours(cache.items, {}, io.pause) }; dirty = true; }
         if (dirty) { try { await io.save(cache); } catch (_) { /* a full disk only costs the cache */ } dirty = false; }   // an unchanged archive writes nothing
         const complete = total === 0 || (stage === 'deep' && done >= total);   // nothing left to read counts as finished
-        onUpdate({ stage, links: cache.nn.links, sig, done, total, complete });
-        return { links: cache.nn.links, sig, complete };
+        // The strongest few terms per article: the graph names its subtopics with them (graphStructure.js).
+        const terms = Object.fromEntries(Object.entries(cache.items).map(([id, it]) => [id, it.t.slice(0, 8).map(x => x[0])]));
+        onUpdate({ stage, links: cache.nn.links, sig, done, total, complete, terms });
+        return { links: cache.nn.links, sig, complete, terms };
     };
 
     const todo = entries.filter(a => cache.items[a.id].full === 0 && (a.contentWordCount || 0) > 0);

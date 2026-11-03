@@ -152,7 +152,7 @@ export async function fillAnswer(out, r, openArticle) {
 }
 
 /** The cluster page. */
-export function openClusterPage(container, { label, articles }) {
+export function openClusterPage(container, { label, articles, subtopics = [] }) {
     container.querySelectorAll('.graph-preview-card').forEach(c => c.remove());
     const list = dedupeArticles(articles || []).sort((a, b) => new Date(a.lastOpened || a.timestamp) - new Date(b.lastOpened || b.timestamp));
     const st = clusterStats(list);
@@ -223,7 +223,7 @@ export function openClusterPage(container, { label, articles }) {
             e.stopPropagation(); exp.disabled = true;
             try {
                 const m = await import('./markdownArchive.js');
-                await m.exportHistoryMarkdown({ ids: list.filter(a => a.id && !a.feedStub).map(a => a.id), name: label, briefing: { title: label, results: out.__results || [] }, hub: true });
+                await m.exportHistoryMarkdown({ ids: list.filter(a => a.id && !a.feedStub).map(a => a.id), name: label, briefing: { title: label, results: out.__results || [] }, hub: subtopics.length ? { subtopics: subtopics.map(sub => ({ label: sub.label, ids: (sub.articles || []).filter(a => a && a.id).map(a => a.id) })) } : true });
             } finally { exp.disabled = false; }
         });
         actions.append(exp);

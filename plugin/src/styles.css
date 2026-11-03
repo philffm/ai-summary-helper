@@ -4693,3 +4693,8 @@ circle.graph-path { stroke: var(--accent); stroke-width: 3px; }
 circle.graph-read-dim, text.graph-read-dim, .graph-blob.graph-read-dim { opacity: 0.1; }
 .graph-legend-color { gap: 5px; }
 .graph-legend-grad { display: inline-block; width: 54px; height: 8px; border-radius: 4px; }
+.graph-sub-label { font-weight: 600; paint-order: stroke; stroke: var(--bg-page); stroke-width: 3px; stroke-linejoin: round; }
+.graph-sub-label:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.graph-subblob { transition: fill-opacity .2s; }
+.graph-subblob:hover { fill-opacity: .24; }
+.graph-subblob.graph-focus-dim, .graph-sub-label.graph-focus-dim { opacity: 0.15; }

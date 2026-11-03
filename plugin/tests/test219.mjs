@@ -33,6 +33,13 @@ assert.ok(!md.includes('## Worked on (0)'), 'empty groups are left out');
 assert.equal(M.hubToMarkdown({ title: 'T', items: [{ article: A(3), notes: 0 }], nameOf: () => '', date: day }).includes('[[ '), false);
 assert.ok(M.hubToMarkdown({ title: 'T', items: [{ article: A(3), notes: 0 }], nameOf: () => '', date: day }).includes('Title 3'), 'no file name → plain title, no empty wikilink');
 
+// subtopics: a heading per subtopic with its articles
+const sub = M.hubToMarkdown({ title: 'Science', items, nameOf: (a) => names[a.id], subtopics: [{ label: 'crispr · dna', articles: [items[0].article, items[1].article] }, { label: 'empty', articles: [] }], date: day });
+assert.ok(sub.includes('## Subtopics\n\n### crispr · dna (2)\n\n- [[Title 1]]\n- [[Title 2]]'), 'a heading per subtopic with its links');
+assert.ok(!sub.includes('### empty'), 'a subtopic without articles is left out');
+assert.ok(sub.indexOf('## Subtopics') < sub.indexOf('## Worked on'), 'subtopics come before the maturity groups');
+assert.ok(!md.includes('## Subtopics'), 'no subtopics, no section');
+
 // in the export: only with the option, named "Hub – …", first in the zip, not counted as an article
 const idx = [1, 2, 3].map(i => ({ ...A(i), id: 'article_17000000000' + i + '_abcdef', timestamp: 1700000000000 + i }));
 globalThis.chrome = { storage: { local: { get(k, cb) {
@@ -49,4 +56,7 @@ assert.ok(two[0].text.includes('Briefing: [[Briefing – My topic]]'), 'links to
 const noteNames = two.filter(f => !f.briefing).map(f => f.name.replace(/^ai-summary-helper\//, '').replace(/\.md$/, ''));
 noteNames.forEach(n => assert.ok(two[0].text.includes(`[[${n}]]`), 'the hub links ' + n));
 assert.ok(!two[0].text.includes('Title 3'), 'an article outside the topic is not in the hub');
+const withSubs = await M.buildArchiveFiles({ ids: [idx[0].id, idx[1].id], hub: { title: 'Mixed', subtopics: [{ label: 'Part A', ids: [idx[0].id, 'unknown-id'] }, { label: 'Part B', ids: [idx[1].id, idx[2].id] }] } });
+const hubText = withSubs[0].text;
+assert.ok(hubText.includes('### Part A (1)') && hubText.includes('### Part B (1)'), 'unknown ids and articles outside the export are dropped from the subtopics');
 console.log('hub note ok');

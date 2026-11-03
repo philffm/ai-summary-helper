@@ -3,7 +3,7 @@
 How the graph in the History tab decides what to show, why it opens as topic clusters, and what is still open.
 Code: `plugin/src/modules/archiveGraph.js` (drawing, interaction), `plugin/src/modules/graphStructure.js` (the structure, pure functions),
 `plugin/src/modules/graphClusters.js` and `graphBrief.js` (the topic page and briefings), `plugin/src/modules/graphSimilarity.js` and `graphSimilarityCache.js` (content similarity, background run, cache).
-Tests: `plugin/tests/test128.mjs` (gaps, time window, views), `plugin/tests/test217.mjs` (clusters, bridges, focus, path, source type, maturity), `plugin/tests/test218.mjs` (similarity and its incremental cache).
+Tests: `test128` (gaps, time window, views), `test217` (clusters, bridges, focus, path, source type, maturity), `test218` (similarity and its incremental cache), `test219` (hub note), `test220` (MCP `related_articles`), `test221` (replay), `test222` (Anki file), `test223` (subtopics), `test224` (every background worker bundle is a valid script), all in `plugin/tests/`.
 
 ## Why it opens as clusters
 
@@ -30,7 +30,21 @@ No AI, no network, no extra storage. Clusters are worked out from the tags every
 5. **Name:** the most used tag in the cluster (shown in the UI language, one node per topic across spellings, see `topicConcepts.js`).
 6. **An article belongs to the cluster most of its tags are in.** An article that is only attached by a similar-content link follows the article it is similar to.
 
-Tags are the only input, so better tags mean better clusters. Tag intelligence (`tagIntelligence.js`) and the topic lexicon feed into that already.
+### Subtopics (a second level)
+
+A big cluster is looked at once more (`subdivide()` in `graphStructure.js`, 12+ articles), because one tag can hide several areas: papers that all sit under "science" but are about genetics, astronomy and materials.
+
+1. **Umbrella tags drop out.** A tag on 60 % or more of the cluster's articles describes the cluster, not a part of it, and would glue everything together.
+2. **Articles are tied to each other** by the tags they still share (cosine of their tag sets) and by similar content (the similarity links of the background run, counted less between articles that both have tags of their own: the tags are what you said, similarity is for the articles that said little). So it also works when the papers carry nothing but the umbrella tag, once the background run has read them.
+3. **Label propagation** over those ties, then **tight groups that are almost as tied to each other as they are inside are merged**, best pair first (articles with the same two tags form tight groups, neighbours share one tag, and together they are one subtopic).
+4. **At most 6 subtopics** of 3+ articles; the rest is "Other". If one group would hold more than 80 % of the cluster (or only one group is left), the cluster is **not** split: no structure, no subtopics.
+5. **Names:** the tag most specific to the group (two when both fit: "crispr · dna"), otherwise the two terms most typical of it (from the similarity cache), otherwise "Group 1". Same input, same names.
+
+In Topics, clicking a cluster that has subtopics pulls it apart into them: each gets its own area and a name with its count, the cluster zooms in, and clicking a subtopic focuses it ("Science › crispr · dna"). The topic page's Markdown export then carries a `## Subtopics` section in the hub note.
+
+Good to know: when the tags already tell the areas apart, the top level separates them itself and there is nothing left to split. Subtopics matter where the top level glues areas together. The graph draws at most 300 nodes (see `NODE_CAP`), so in a very big archive a cluster shows only its best-connected part.
+
+Tags are the main input, so better tags mean better clusters. Tag intelligence (`tagIntelligence.js`) and the topic lexicon feed into that already.
 
 ## What the picture says
 
@@ -52,6 +66,7 @@ The legend at the bottom right lists the ring styles that are actually present.
 - **Anki cards.** The topic page's "🃏 Anki cards" saves a text file Anki imports (File ▸ Import): one card per **question you asked** and **answer you kept**, namely the answers pinned under the articles of the topic and the questions asked on the topic page. A briefing without a question is not a card, and highlights are not either (a quote without a question teaches little). Nothing is generated at export and nothing leaves the device. Cards carry a stable id, so importing again updates them. With no questions yet it says so instead of saving an empty file.
 - **Replay.** In the 🕐 Time panel, "▶ Replay" lets the window grow from the first month to the last (about 15 seconds for any archive), so you watch the archive and its topics build up. Touching a slider, Pause or Reset stops it. With reduced motion there is no animation: the button becomes "Next month →" and steps by hand. Start and end are announced.
 - **Color by.** One chip cycles what the dot colours mean, without a redraw: **Topic** (the cluster, default), **Age** (when it was saved; by rank, so a few big import days do not wash out the scale; purple = old, yellow = recent) or **Mood** (the AI's score for the article, orange = negative, blue = positive, grey = not scored; offered only when some articles have a score, and scores are only set on demand). The legend shows the scale. Both scales avoid red/green.
+- **Subtopics.** Click a cluster that falls apart into subtopics and they separate; click one to focus it (see above).
 - **Unread.** A chip with the count ("Unread · 200"). Everything marked read (`readAt`: the Inbox / Read tabs and the 🆕 badge use the same) steps back, and in Topics every cluster label shows how many of its articles are still unread ("trade · 34"). A class toggle, no redraw.
 - **Obsidian hub note.** The topic page's "⬇ Markdown" export (and the one on briefings) now adds `Hub – <topic>.md`: a map of content that links every exported article note with `[[wikilinks]]`, grouped as worked on / in progress / saved only, unread ones marked 🆕, with the tags inside the topic and a link to the briefing note. The article notes already carried `[[Related]]` links; the hub is what makes the topic one island in Obsidian's own graph too.
 - **MCP: `related_articles`.** AI apps paired with the local relay can ask for the saved articles closest to one article (same similarity as the graph, from its cache where current, otherwise from title, tags and summary). Scope "Your library", exclude tag respected (an excluded article is "not found"), metadata and snippet only. The cluster list and a path tool are not built.
