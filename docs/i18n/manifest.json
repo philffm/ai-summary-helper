@@ -201474,6 +201474,756 @@
           "model": "deepseek/deepseek-v4.1-flash"
         }
       }
+    },
+    "bb311e990b751b6aa1706cedd8dd1bd80b41b677ae509d211758326011591862": {
+      "en": "The use of information received from Google APIs will adhere to the",
+      "translations": {
+        "de": {
+          "text": "Die Verwendung von Informationen, die über Google APIs empfangen werden, richtet sich nach der",
+          "translatedAt": "2026-11-03T14:31:46.644Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "8341d10d5e431436246f2042bbe21ccfb4f7c020c0f4f82e0d41fa1624f173e8": {
+      "en": ", including the Limited Use requirements.",
+      "translations": {
+        "de": {
+          "text": ", einschließlich der Limited Use-Anforderungen.",
+          "translatedAt": "2026-11-03T14:31:46.644Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "9974b8194c97742cc8d6f590b65094f29898faba0e67e236ff501791fc5c0b95": {
+      "en": "Chrome Web Store User Data Policy",
+      "translations": {
+        "de": {
+          "text": "Chrome Web Store User Data Policy",
+          "translatedAt": "2026-11-03T14:31:46.644Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "2ec64a8eac3c59cf0f75ee04c39801c8d5c800e7e6364996a46974b3ced053a9": {
+      "en": "Product · Nov 2026",
+      "translations": {
+        "de": {
+          "text": "Produkt · Nov. 2026",
+          "translatedAt": "2026-11-03T14:42:57.084Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "c21d60f86591c7d04eeda7fbd6c13b471679c21f2173c02a5ea7c2de0573d489": {
+      "en": "byPhil Cloud now speaks EU: one switch, honest labels",
+      "translations": {
+        "de": {
+          "text": "byPhil Cloud spricht jetzt EU: ein Schalter, ehrliche Labels",
+          "translatedAt": "2026-11-03T14:42:57.084Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "be3208a46a17b25b96021c5350fc7335d9116b113f207988755aabcc62b95355": {
+      "en": "An EU mode for the hosted service, Auto presets per provider, and the difference between an EU company and EU servers.",
+      "translations": {
+        "de": {
+          "text": "Ein EU-Modus für den gehosteten Dienst, Auto-Presets je Anbieter – und der Unterschied zwischen einem EU-Unternehmen und EU-Servern.",
+          "translatedAt": "2026-11-03T14:42:57.084Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "caf3a5fe99e97c1bdc0c7576e4e040e81b6146e980b5751ed864204cb4c94d5e": {
+      "en": "If you use the optional hosted service instead of your own key, it has an EU mode:",
+      "translations": {
+        "de": {
+          "text": "Wenn Sie den optionalen gehosteten Dienst anstelle Ihres eigenen Schlüssels nutzen, bietet er einen EU-Modus:",
+          "translatedAt": "2026-11-03T14:43:03.525Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "995cc8d056fe802aef791b80225f8ff42c775f1577a72bfd9d94bf95487f288a": {
+      "en": "byPhil Cloud now speaks EU",
+      "translations": {
+        "de": {
+          "text": "byPhil Cloud spricht jetzt EU",
+          "translatedAt": "2026-11-03T14:43:03.525Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "5188c2fa4c086ce3c97773938cc7c3ebc082f85120f62dd7e6746231ac2e835c": {
+      "en": "choice never picks them while the switch is on (",
+      "translations": {
+        "de": {
+          "text": "Die Auswahl berücksichtigt sie nie, solange der Schalter aktiv ist (",
+          "translatedAt": "2026-11-03T14:43:05.676Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "41ffd8b76afc92a65758fd9a080ae80421c196f251263b87cbfb6e567dda0879": {
+      "en": "details",
+      "translations": {
+        "de": {
+          "text": "Details",
+          "translatedAt": "2026-11-03T14:43:05.676Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "b309230ec2f322514d06b436b0c4531d9d7299fe64e4275915a74f834ae73343": {
+      "en": "byPhil Cloud now routes to EU servers — AI Summary Helper",
+      "translations": {
+        "de": {
+          "text": "byPhil Cloud leitet jetzt auf EU-Server um — AI Summary Helper",
+          "translatedAt": "2026-11-03T14:43:38.945Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "654074429cfd64dbb3bd09197133a44d2f42180c91b25bc4335323fa8d12b267": {
+      "en": "byPhil Cloud now has an EU mode: one switch, Auto presets per provider, and clear labels for EU company versus EU servers. What it gives you, and what it does not.",
+      "translations": {
+        "de": {
+          "text": "byPhil Cloud hat jetzt einen EU-Modus: ein Schalter, Auto-Presets pro Anbieter und klare Kennzeichnungen für EU-Unternehmen versus EU-Server. Was er dir bietet – und was nicht.",
+          "translatedAt": "2026-11-03T14:43:38.945Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "dcfa77070323fb180581e3a1b9d916b62caf0d5a2b2bd1304f79421bb62c8539": {
+      "en": "Product · November 2026",
+      "translations": {
+        "de": {
+          "text": "Produkt · November 2026",
+          "translatedAt": "2026-11-03T14:43:38.945Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "b1b389e62ec6f545124a03352fec45856d6e1a3f158a0435645d451abb46f4ab": {
+      "en": "The optional hosted service can now send your requests only to EU endpoints, and the model picker tells you which models are from an EU company and which just run in an EU region.",
+      "translations": {
+        "de": {
+          "text": "Der optionale gehostete Dienst kann deine Anfragen jetzt nur an EU-Endpunkte senden, und die Modellauswahl zeigt dir, welche Modelle von einem EU-Unternehmen stammen und welche nur in einer EU-Region laufen.",
+          "translatedAt": "2026-11-03T14:43:38.945Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "5d2366ed7b646d0628b4d87860e2a6c64cef21ff6a6838f5d319b0e688d2f83c": {
+      "en": "If you use byPhil Cloud, you can now turn on",
+      "translations": {
+        "de": {
+          "text": "Wenn du byPhil Cloud nutzt, kannst du jetzt",
+          "translatedAt": "2026-11-03T14:43:38.945Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "8fe08f1c1b677b23decd295ed9558dbe5e44e06dd4a634a12562bbe027c6e3bf": {
+      "en": ". Requests then go only to EU endpoints of the model provider, with no fallback elsewhere. The model picker marks every model as",
+      "translations": {
+        "de": {
+          "text": ". Anfragen gehen dann nur an EU-Endpunkte des Modellanbieters, ohne Ausweichmöglichkeit woanders. Die Modellauswahl kennzeichnet jedes Modell als",
+          "translatedAt": "2026-11-03T14:43:38.945Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "a77f9df63ad9d81e48eff906502bf6d6e50ae027abc159772501210207f2dc6d": {
+      "en": ", and there are one-click",
+      "translations": {
+        "de": {
+          "text": ", und es gibt Ein-Klick-",
+          "translatedAt": "2026-11-03T14:43:38.945Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "5e368efa17be567de2aa1b294ba650bb2ad5ce2bcdab9ef3b567d8155576e4bb": {
+      "en": "presets per provider. It is a convenience with an EU option, not a claim that the service is fully sovereign. This post explains the difference.",
+      "translations": {
+        "de": {
+          "text": "Presets pro Anbieter. Es ist eine Komfortfunktion mit einer EU-Option, keine Behauptung, dass der Dienst vollständig souverän ist. Dieser Beitrag erklärt den Unterschied.",
+          "translatedAt": "2026-11-03T14:43:38.945Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "864aa08a16f70a72df1cc91c9c372dc9dc7faea6110846ed943ebf3027fbb33e": {
+      "en": "Prefer EU servers",
+      "translations": {
+        "de": {
+          "text": "EU-Server bevorzugen",
+          "translatedAt": "2026-11-03T14:43:38.945Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "1bcbf1dcad4ffe4950cdae6b868f8a81fabe5f9da2d92abc3cef577e25fee639": {
+      "en": "What changed",
+      "translations": {
+        "de": {
+          "text": "Was sich geändert hat",
+          "translatedAt": "2026-11-03T14:43:38.945Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "850c6a36d89c2fd46858c2564ddb32e90790028a58d1dd87831c5e5c3ae4bb81": {
+      "en": "byPhil Cloud is the optional hosted way to use AI Summary Helper: it is included in your byPhil account, so you need no API key. Until now you picked a model and the routing was whatever was cheapest and fastest. Now the model picker has an EU mode and a clearer layout:",
+      "translations": {
+        "de": {
+          "text": "byPhil Cloud ist der optionale gehostete Weg, AI Summary Helper zu nutzen: Es ist in deinem byPhil-Konto enthalten, du brauchst also keinen API-Schlüssel. Bisher hast du ein Modell ausgewählt und das Routing war, was am günstigsten und schnellsten war. Jetzt hat die Modellauswahl einen EU-Modus und ein klareres Layout:",
+          "translatedAt": "2026-11-03T14:43:38.945Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "b708724a23bf11c2a5095adfe16cd12cda8c74437093bb2a33ea32850521f691": {
+      "en": "With",
+      "translations": {
+        "de": {
+          "text": "Mit",
+          "translatedAt": "2026-11-03T14:43:38.945Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "63282684eeb0a48e6244688eac23e2630439d193f8132d94130d805f4161538c": {
+      "en": "on, requests are pinned to EU endpoints of the model provider. If a model has no EU route, the request is not quietly sent somewhere else.",
+      "translations": {
+        "de": {
+          "text": "an, werden Anfragen an EU-Endpunkte des Modellanbieters gebunden. Wenn ein Modell keine EU-Route hat, wird die Anfrage nicht stillschweigend woanders hingesendet.",
+          "translatedAt": "2026-11-03T14:43:38.945Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "7f61bc16886fb635b6c90fb917713b95ba1e84460ca2bbf03dc5fcc06bef08da": {
+      "en": "One switch.",
+      "translations": {
+        "de": {
+          "text": "Ein Schalter.",
+          "translatedAt": "2026-11-03T14:43:38.945Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "5f4d8260a5d3a1b764119dc69bf07624c3adcbcb104e45f215564eefbb8e7b8c": {
+      "en": "choose a suitable model for you. With the EU switch on, they only pick models that have an EU route.",
+      "translations": {
+        "de": {
+          "text": "wählen ein passendes Modell für dich. Mit dem EU-Schalter an wählen sie nur Modelle, die eine EU-Route haben.",
+          "translatedAt": "2026-11-03T14:43:38.945Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "34fe8ac6495d228a3e4f30089eb84677907de3eaa394ce50b65a5cd1c782c60c": {
+      "en": "Auto presets.",
+      "translations": {
+        "de": {
+          "text": "Auto-Presets.",
+          "translatedAt": "2026-11-03T14:43:38.945Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "6abdc9c6d997b80351b0b681660a06a24e6ece8cae13ae27533ef59401b52c12": {
+      "en": "Auto · Mistral",
+      "translations": {
+        "de": {
+          "text": "Auto · Mistral",
+          "translatedAt": "2026-11-03T14:43:38.945Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "4efb57724ee7b77630e4c1b433b91160ff4be84b5221516da7a84af892504e4f": {
+      "en": "Auto · Google",
+      "translations": {
+        "de": {
+          "text": "Auto · Google",
+          "translatedAt": "2026-11-03T14:43:38.945Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "17d4ed43e1d92603de324ceaf6e3e105a80a2d65fd3a56f9a99ec1cd00c8a202": {
+      "en": "Auto · DeepSeek",
+      "translations": {
+        "de": {
+          "text": "Auto · DeepSeek",
+          "translatedAt": "2026-11-03T14:43:38.945Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "d9972293ccf35d78c0a62c0bb30ded3e2ef790ca40912aa82125ee676c4cac3f": {
+      "en": "Auto · Anthropic",
+      "translations": {
+        "de": {
+          "text": "Auto · Anthropic",
+          "translatedAt": "2026-11-03T14:43:38.945Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "4f97558f46e89a0f68c6b3ea69cfb88f14ff73f818a955a95ae5987801267cd9": {
+      "en": "Auto · OpenAI",
+      "translations": {
+        "de": {
+          "text": "Auto · OpenAI",
+          "translatedAt": "2026-11-03T14:43:38.945Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "12616f36d9cec4279fec852fcb8c21284e963133329f383e7ca15d162973cad3": {
+      "en": "means the provider is based in Europe (Mistral, in Paris).",
+      "translations": {
+        "de": {
+          "text": "bedeutet, der Anbieter hat seinen Sitz in Europa (Mistral, in Paris).",
+          "translatedAt": "2026-11-03T14:43:38.945Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "7d0f345d508f24d636487ffe4377aaf9d247df8f48de1f94621e4ee7e56efd8d": {
+      "en": "means a company elsewhere runs the model in an EU region.",
+      "translations": {
+        "de": {
+          "text": "bedeutet, ein Unternehmen woanders betreibt das Modell in einer EU-Region.",
+          "translatedAt": "2026-11-03T14:43:38.945Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "998b0743f89c455c8debdda12ae805c22bc5d9c1fec33fcdb12e77f67ab93c34": {
+      "en": "Two kinds of badge.",
+      "translations": {
+        "de": {
+          "text": "Zwei Arten von Badges.",
+          "translatedAt": "2026-11-03T14:43:38.945Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "64671d1873fd9a208c8964fa26772a6187a74eb0f5563688c61b1e511d1aba78": {
+      "en": "Your recently used models sit at the top, and a search box finds any cloud model. Models without an EU route stay selectable, but they are marked, so you never switch by accident.",
+      "translations": {
+        "de": {
+          "text": "Deine zuletzt verwendeten Modelle stehen oben, und ein Suchfeld findet jedes Cloud-Modell. Modelle ohne EU-Route bleiben auswählbar, sind aber gekennzeichnet, damit du nie versehentlich wechselst.",
+          "translatedAt": "2026-11-03T14:43:38.945Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "943dff682405814b46d4b74b53fd18f30defc6d8d076fd12b4ff178d5b6cd78e": {
+      "en": "Search and recents.",
+      "translations": {
+        "de": {
+          "text": "Suche und zuletzt verwendet.",
+          "translatedAt": "2026-11-03T14:43:38.945Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "9ad181373e6e7f8877a38e78fdafe8af88f1ad7e0e56ccca65e8f4f6204bfe0c": {
+      "en": "The picker sits in the same place as the other two ways to reach a model, your own key and a local Ollama model, so changing your mind takes one click (",
+      "translations": {
+        "de": {
+          "text": "Die Modellauswahl befindet sich am selben Ort wie die anderen beiden Wege zu einem Modell, dein eigener Schlüssel und ein lokales Ollama-Modell, sodass du mit einem Klick deine Meinung ändern kannst (",
+          "translatedAt": "2026-11-03T14:43:38.945Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "155039d958c67acb552774749f33bcbb541dc0758466c21538220978807c4a3f": {
+      "en": "how the three compare",
+      "translations": {
+        "de": {
+          "text": "wie die drei im Vergleich abschneiden",
+          "translatedAt": "2026-11-03T14:43:38.945Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "d0f9a6502da73db21e1cdd11755586144d9c90cbe3bb3cbef7811c9175e5d644": {
+      "en": "EU company and EU servers are not the same thing",
+      "translations": {
+        "de": {
+          "text": "EU-Unternehmen und EU-Server sind nicht dasselbe",
+          "translatedAt": "2026-11-03T14:43:38.945Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "acdd16eb7b281549f96a3ae849fe86b73c1e292799bf6495f413870674f7d7ad": {
+      "en": "This is the part most product pages blur. A model can be",
+      "translations": {
+        "de": {
+          "text": "Das ist der Teil, den die meisten Produktseiten verwischen. Ein Modell kann",
+          "translatedAt": "2026-11-03T14:43:38.945Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "c599f37ed49e965852a664a266badef467a64c73faef8cedf0c7378cec79a657": {
+      "en": "in Europe and still belong to a company under US law. The US CLOUD Act lets US authorities require US-based providers to hand over data they control, wherever it is stored; how that squares with the GDPR is disputed (",
+      "translations": {
+        "de": {
+          "text": "in Europa sein und trotzdem zu einem Unternehmen nach US-Recht gehören. Der US CLOUD Act erlaubt es US-Behörden, von US-Anbietern die Herausgabe von Daten zu verlangen, die sie kontrollieren, wo auch immer sie gespeichert sind; wie das mit der DSGVO vereinbar ist, ist umstritten (",
+          "translatedAt": "2026-11-03T14:43:38.945Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "ab7632b5de1995bf0e0bc3d922fa359062f7ee0475266a0bfa8e3cbde75470f2": {
+      "en": "). So we label the two cases separately, and you decide which one matters for what you read.",
+      "translations": {
+        "de": {
+          "text": "). Deshalb kennzeichnen wir die beiden Fälle getrennt, und du entscheidest, welcher für das, was du liest, wichtig ist.",
+          "translatedAt": "2026-11-03T14:43:38.945Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "7a455fe1ffe5bb7577cece4510819fd376f9437eb1924500d71ed6ddc14d83f1": {
+      "en": "physically",
+      "translations": {
+        "de": {
+          "text": "physisch",
+          "translatedAt": "2026-11-03T14:43:38.945Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "30abdabec45ee124989581479ff13b1799677e53e08ebbcf5ae59a522ca457e0": {
+      "en": "the legal background, with sources",
+      "translations": {
+        "de": {
+          "text": "den rechtlichen Hintergrund, mit Quellen",
+          "translatedAt": "2026-11-03T14:43:38.945Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "0f2f48cc382360819d28dcc8eb35a67421c608923b28c7293d51ff5d8c679a9e": {
+      "en": "subject to EU and national law. Good if jurisdiction is your concern.",
+      "translations": {
+        "de": {
+          "text": "unterliegt EU- und nationalem Recht. Gut, wenn die Gerichtsbarkeit dein Anliegen ist.",
+          "translatedAt": "2026-11-03T14:43:38.945Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "504c909ebaef0c512ca38c75d726b61a4ea9379ded7690f27836f8f52d5bed33": {
+      "en": "EU company:",
+      "translations": {
+        "de": {
+          "text": "EU-Unternehmen:",
+          "translatedAt": "2026-11-03T14:43:38.945Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "7407bc79465bbb6fabc2ffaa1c6a66c60df9c0fc58bcd1b5d9bf5cab2e004664": {
+      "en": "your text stays in the EU while it is processed. Good if the data location is your concern, and it lets you use stronger models that are not European.",
+      "translations": {
+        "de": {
+          "text": "dein Text bleibt in der EU, während er verarbeitet wird. Gut, wenn der Datenstandort dein Anliegen ist, und es ermöglicht dir, stärkere Modelle zu nutzen, die nicht europäisch sind.",
+          "translatedAt": "2026-11-03T14:43:38.945Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "4e3190251539165353f6468ea61ed1dc15a94fa6ca11ce63a384fca0a3781525": {
+      "en": "EU servers:",
+      "translations": {
+        "de": {
+          "text": "EU-Server:",
+          "translatedAt": "2026-11-03T14:43:38.945Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "eb0dfc7d1dcc9cb1862c10782f6a8892c119614054c31ea79db6a6ecd174e813": {
+      "en": "Neither is a guarantee. Providers, partnerships and investors change, so check the provider’s current terms.",
+      "translations": {
+        "de": {
+          "text": "Keines von beiden ist eine Garantie. Anbieter, Partnerschaften und Investoren ändern sich, also prüfe die aktuellen Bedingungen des Anbieters.",
+          "translatedAt": "2026-11-03T14:43:38.945Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "57557703f80479b1bae76f1a02c5288f2259e18fdacb5f37adecfb8a2e9ab92b": {
+      "en": "What this does not do",
+      "translations": {
+        "de": {
+          "text": "Was das nicht tut",
+          "translatedAt": "2026-11-03T14:43:38.945Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "bc4a73c73157a3e4f7d2c0f5f4c6ebf7d4d4783fd47bfddb70923533cc8d665a": {
+      "en": "Being clear about the limits matters more than a tidy story:",
+      "translations": {
+        "de": {
+          "text": "Klarheit über die Grenzen ist wichtiger als eine saubere Geschichte:",
+          "translatedAt": "2026-11-03T14:43:38.945Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "f56af37714b6312cdbd2f8f85478ca3bfb78124a89a0847d767faf44a9202d37": {
+      "en": "The hosted service runs its server and its database at IONOS in Germany. Your text then goes on to the model provider through OpenRouter, a US company. The EU switch pins where the model runs. It does not change who the companies are.",
+      "translations": {
+        "de": {
+          "text": "Der gehostete Dienst betreibt seinen Server und seine Datenbank bei IONOS in Deutschland. Dein Text geht dann über OpenRouter, ein US-Unternehmen, weiter an den Modellanbieter. Der EU-Schalter legt fest, wo das Modell läuft. Er ändert nicht, wer die Unternehmen sind.",
+          "translatedAt": "2026-11-03T14:43:38.945Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "33843209adf05c42879c40ce5d5d7595f36e70f8ddf6c499b29b9773cbf0abf2": {
+      "en": "If you need the strongest setup, use your own key with a provider you trust, or a local model with Ollama, where the page text never leaves your computer.",
+      "translations": {
+        "de": {
+          "text": "Wenn du die stärkste Einrichtung brauchst, nutze deinen eigenen Schlüssel bei einem Anbieter, dem du vertraust, oder ein lokales Modell mit Ollama, bei dem der Seitentext deinen Computer nie verlässt.",
+          "translatedAt": "2026-11-03T14:43:38.945Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "c0a5565eae3be3863c2fcced59413614b590cecc6a89428cb0f692203e7c8a0f": {
+      "en": "Models are not equal. European models are a reasonable choice for everyday reading, but if you need the best available quality, a US model with EU routing may do the job better. That trade-off is yours to make, which is the point of the picker.",
+      "translations": {
+        "de": {
+          "text": "Modelle sind nicht gleich. Europäische Modelle sind eine vernünftige Wahl für den Alltag, aber wenn du die bestmögliche Qualität brauchst, kann ein US-Modell mit EU-Routing die Aufgabe besser erledigen. Diesen Kompromiss musst du eingehen, und genau das ist der Sinn der Modellauswahl.",
+          "translatedAt": "2026-11-03T14:43:38.945Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "06ac7441b92d184ecf91abc5cf1c6782805d4a7765e98a81033ba7535f02c656": {
+      "en": "Why we built it this way",
+      "translations": {
+        "de": {
+          "text": "Warum wir es so gebaut haben",
+          "translatedAt": "2026-11-03T14:43:38.945Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "5a4067e81e60f2764e51b43a532523331599ee34691034ab3be0f6f45f1554bc": {
+      "en": "Sovereignty is not about owning the best model. Models improve and change owners, prices and terms. What protects you is being able to switch: from one model to another, from the cloud to your own key, from your own key to a local model, without losing your library or relearning the tool. Your articles, summaries and highlights stay on your device in any case (",
+      "translations": {
+        "de": {
+          "text": "Souveränität bedeutet nicht, das beste Modell zu besitzen. Modelle verbessern sich und wechseln Besitzer, Preise und Bedingungen. Was dich schützt, ist die Möglichkeit zu wechseln: von einem Modell zum anderen, von der Cloud zu deinem eigenen Schlüssel, von deinem eigenen Schlüssel zu einem lokalen Modell, ohne deine Bibliothek zu verlieren oder das Tool neu zu lernen. Deine Artikel, Zusammenfassungen und Highlights bleiben in jedem Fall auf deinem Gerät (",
+          "translatedAt": "2026-11-03T14:43:38.945Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "2bb90ad4710d519a4216b830dcfa928711c95cbd9f31e186a05c29d16f5e5d0d": {
+      "en": "); the picker only decides who reads the text of the page you ask about.",
+      "translations": {
+        "de": {
+          "text": "); die Modellauswahl entscheidet nur, wer den Text der Seite liest, nach der du fragst.",
+          "translatedAt": "2026-11-03T14:43:38.945Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "4227f36ad462b35486b5427c938e6f3ed194029f8312aeed3741f4e0575404a5": {
+      "en": "So the EU mode is one more rung on that ladder, not a destination. It makes the lowest-effort option, no key and no setup, a little more careful about where your text goes.",
+      "translations": {
+        "de": {
+          "text": "Der EU-Modus ist also eine weitere Sprosse auf dieser Leiter, kein Ziel. Er macht die Option mit dem geringsten Aufwand, kein Schlüssel und keine Einrichtung, etwas vorsichtiger damit, wohin dein Text geht.",
+          "translatedAt": "2026-11-03T14:43:38.945Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "ca0dd2a4ba3a48c168df3fc2cd130d12f3305a03d225501a020e8443bc1ef6b1": {
+      "en": "How to turn it on",
+      "translations": {
+        "de": {
+          "text": "So schaltest du es ein",
+          "translatedAt": "2026-11-03T14:43:38.945Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "2e2911dfd0755c2efe6ae6e745f1812d0bfbdde61a49e7393ec310d2e342454e": {
+      "en": "Open the model picker in AI Summary Helper and choose",
+      "translations": {
+        "de": {
+          "text": "Öffne die Modellauswahl in AI Summary Helper und wähle",
+          "translatedAt": "2026-11-03T14:43:38.945Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "6d30f572772294ac5b38930a9b1e28f5e62687b063c205e5d210c10899e92b55": {
+      "en": "Switch on",
+      "translations": {
+        "de": {
+          "text": "Schalte",
+          "translatedAt": "2026-11-03T14:43:38.945Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "1a0ff525f6be444fc407def19d7051677688ffea5aad00f3ab896a05663760c7": {
+      "en": "in the settings.",
+      "translations": {
+        "de": {
+          "text": "in den Einstellungen ein.",
+          "translatedAt": "2026-11-03T14:43:38.945Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "37ac7f96eb0074d760e9808cf510cfa6b295841e3c142d0033a860d958b849c6": {
+      "en": "Pick a model with an",
+      "translations": {
+        "de": {
+          "text": "Wähle ein Modell mit einem",
+          "translatedAt": "2026-11-03T14:43:38.945Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "f143e16e09a000ffcd8b92b6d5a950a8d86a03dd54f1ef2d1305b69f98e2aaa2": {
+      "en": "badge, or choose an",
+      "translations": {
+        "de": {
+          "text": "Badge, oder wähle ein",
+          "translatedAt": "2026-11-03T14:43:38.945Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "b0b4990875132206e22784a51305d68b969473d47b48a16dbecd8d553cf753ed": {
+      "en": "preset.",
+      "translations": {
+        "de": {
+          "text": "Preset.",
+          "translatedAt": "2026-11-03T14:43:38.945Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "a79d5a81bd930ede5bd2838ed9c4414e4dc4eb361c51c1b8c3c8638c56696a91": {
+      "en": "Do I need an API key for byPhil Cloud?",
+      "translations": {
+        "de": {
+          "text": "Brauche ich einen API-Schlüssel für byPhil Cloud?",
+          "translatedAt": "2026-11-03T14:43:38.945Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "371d460bc03b0142f463391435683da879164f5328cd64803d2746dcfbb02259": {
+      "en": "No. It is included in your byPhil account. If you prefer, you can still use your own key or a local model instead.",
+      "translations": {
+        "de": {
+          "text": "Nein. Es ist in deinem byPhil-Konto enthalten. Wenn du möchtest, kannst du stattdessen weiterhin deinen eigenen Schlüssel oder ein lokales Modell verwenden.",
+          "translatedAt": "2026-11-03T14:43:38.945Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "4f9878ebab549e2e81f3edb6d9f71e6baa7f662ad55a3d99a7797f26f73f0d80": {
+      "en": "Is byPhil Cloud the sovereign choice?",
+      "translations": {
+        "de": {
+          "text": "Ist byPhil Cloud die souveräne Wahl?",
+          "translatedAt": "2026-11-03T14:43:38.945Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "55ae9dbe28a813d8d9844fb2cce20767b6f7f5c65ca57cd9868b2a324c3cef53": {
+      "en": "No, and we do not describe it that way. It runs in Germany but reaches models through OpenRouter, a US company. For the most control, use your own key or a local model.",
+      "translations": {
+        "de": {
+          "text": "Nein, und wir beschreiben es nicht so. Es läuft in Deutschland, erreicht aber Modelle über OpenRouter, ein US-Unternehmen. Für die meiste Kontrolle nutze deinen eigenen Schlüssel oder ein lokales Modell.",
+          "translatedAt": "2026-11-03T14:43:38.945Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "57d794fce28001c355bef6b9e9b1772c9bd295c46c3d32753160aaec26800265": {
+      "en": "What happens if a model has no EU route?",
+      "translations": {
+        "de": {
+          "text": "Was passiert, wenn ein Modell keine EU-Route hat?",
+          "translatedAt": "2026-11-03T14:43:38.945Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "6930598375283ea342b2227c17f380b02dcccbc319bbe25a0f1dd63f372796f3": {
+      "en": "It stays selectable but is marked. With the EU switch on,",
+      "translations": {
+        "de": {
+          "text": "Es bleibt auswählbar, ist aber gekennzeichnet. Mit dem EU-Schalter an,",
+          "translatedAt": "2026-11-03T14:43:38.945Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "8589d12d9cfe16cfda17bf0b722608c29150becb34269a250c360eef1ffa9d91": {
+      "en": "never picks it and requests are not rerouted outside the EU.",
+      "translations": {
+        "de": {
+          "text": "wählt es nie aus und Anfragen werden nicht außerhalb der EU umgeleitet.",
+          "translatedAt": "2026-11-03T14:43:38.945Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "47e2dda9af2b61d2fe6376566fd8f1eda79899a56187f2626cbf1e0b6e3bdcff": {
+      "en": "Which should I choose, EU company or EU servers?",
+      "translations": {
+        "de": {
+          "text": "Was sollte ich wählen, EU-Unternehmen oder EU-Server?",
+          "translatedAt": "2026-11-03T14:43:38.945Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "ec54f9cec2544e403bbb81252e4726203560899a273bab62e3c3d5d1edf28bc6": {
+      "en": "Choose an EU company if jurisdiction matters most to you. Choose EU servers if you want the data to stay in the EU but need a stronger model.",
+      "translations": {
+        "de": {
+          "text": "Wähle ein EU-Unternehmen, wenn dir die Gerichtsbarkeit am wichtigsten ist. Wähle EU-Server, wenn du möchtest, dass die Daten in der EU bleiben, aber ein stärkeres Modell brauchst.",
+          "translatedAt": "2026-11-03T14:43:38.945Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "a05d92fd78524fea27b2efdff20570fc52bc36be1aac335fcf0cd4d570d33424": {
+      "en": "AI Summary Helper is a free, open-source browser extension. Bring your own key, run a local model, or use byPhil Cloud.",
+      "translations": {
+        "de": {
+          "text": "AI Summary Helper ist eine kostenlose, quelloffene Browser-Erweiterung. Nutze deinen eigenen Schlüssel, führe ein lokales Modell aus oder verwende byPhil Cloud.",
+          "translatedAt": "2026-11-03T14:43:38.945Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
     }
   }
 }
