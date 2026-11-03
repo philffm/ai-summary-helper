@@ -3,7 +3,7 @@
 How the graph in the History tab decides what to show, why it opens as topic clusters, and what is still open.
 Code: `plugin/src/modules/archiveGraph.js` (drawing, interaction), `plugin/src/modules/graphStructure.js` (the structure, pure functions),
 `plugin/src/modules/graphClusters.js` and `graphBrief.js` (the topic page and briefings), `plugin/src/modules/graphSimilarity.js` and `graphSimilarityCache.js` (content similarity, background run, cache).
-Tests: `test128` (gaps, time window, views), `test217` (clusters, bridges, focus, path, source type, maturity), `test218` (similarity and its incremental cache), `test219` (hub note), `test220` (MCP `related_articles`), `test221` (replay), `test222` (Anki file), `test223` (subtopics), `test224` (every background worker bundle is a valid script), `test225` (language marks), `test226` (articles saved at the same time), `test227` (Topics layout in a real d3), `test228` (tags at the source: category, English names, no attached tags), `test229` (naming tags from the graph: only tag words, local first, preview, stop), all in `plugin/tests/`.
+Tests: `test128` (gaps, time window, views), `test217` (clusters, bridges, focus, path, source type, maturity), `test218` (similarity and its incremental cache), `test219` (hub note), `test220` (MCP `related_articles`), `test221` (replay), `test222` (Anki file), `test223` (subtopics), `test224` (every background worker bundle is a valid script), `test225` (language marks), `test226` (articles saved at the same time), `test227` (Topics layout in a real d3), `test228` (tags at the source: category, English names, no attached tags), `test229` (naming tags from the graph: only tag words, local first, preview, stop), `test230` (broader topics), all in `plugin/tests/`.
 
 ## Why it opens as clusters
 
@@ -58,6 +58,17 @@ Only new summaries get English names. For the tags already in the archive there 
 - Nothing on the articles changes; only the topic lexicon (part of the settings: backed up and deleted with them) learns.
 
 `learnTagNames()` is now `nameTags()` (ask, learn nothing) + `applyTagNames()` (learn); its behaviour for the existing callers is unchanged.
+
+#### Broader topics
+
+A name merges the same topic across languages ("KI in der Medizin" = "AI in medicine"), but a specific tag used on one or two articles still has almost nothing to connect to: in the graph, tags are tied only by the articles they share. So the same naming request also asks, per tag, for **up to two broader topics** ("AI in medicine (broader: Artificial intelligence, Medicine)"), preferably from the archive's own most used topics (`broaderVocabOf()`), so they meet tags that exist.
+
+- **Stored apart:** in the lexicon entry under `'>'` (`lexiconBroader()` in `topicConcepts.js`), never as a tag and never as a spelling: the tag is not merged with its broader topics, counts in charts and search stay as they are. Fixed categories, language marks and the topic itself are dropped; at most two. An empty answer is stored as `[]` (asked), so a tag is not sent again for it. Built-in topics need none.
+- **Named tags too:** tags that already had a name but were never asked for broader topics are included (`tagsToBroaden()`); for them only the broader topics are saved (`applyBroader()`), their name stays ("(name kept)" in the preview).
+- **In the graph** (`addBroaderTies()` in `graphStructure.js`): a weak tie between a specific tag and the tag that is its broader topic (0.35), and between tags that share a broader topic (0.25), never lowering a stronger co-occurrence. A broader topic shared by more than 25 tags ties none of them to each other, so a broad term does not glue a crowd together. Umbrella tags and categories are left out before, so they take no part either.
+- **Result:** a rare, specific tag lands in the cluster of what it belongs to (`test230`: six one-off tags each, with no article in common, join their topic; without the broader topics they stay apart).
+
+A broader topic that is itself an archive-wide umbrella tag (on 35 %+ of all articles) ties nothing, because umbrella tags take no part in forming topics. Then the specific tags with the same broader topic still find each other (as long as there are at most 25 of them).
 
 Bundling note: `topicCategories.js` has no imports and unique top-level names, because the content-script bundler puts every module into one scope (a second `clean` broke the bundle once; `test224` now checks the content and finalize bundles too).
 

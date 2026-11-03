@@ -39,13 +39,17 @@ const LOOKUP = new Map();
 Object.entries(CONCEPTS).forEach(([id, byLocale]) => Object.values(byLocale).forEach((names) => names.forEach((n) => { const k = normalizeTopic(n); if (!LOOKUP.has(k)) LOOKUP.set(k, id); })));
 
 // ── learned lexicon (in memory; topicLexicon.js loads and saves it) ──
+// Entry: { en: 'AI in medicine', de: 'KI in der Medizin', '*': [spellings seen], '>': ['artificial intelligence', 'medicine'] }.
+// '>' = broader topics (at most 2, English, normalized): what the topic belongs to. Not spellings, never shown as a tag; the graph
+// uses them as weak ties so a rare, specific tag sits next to the broader topics it is part of.
+const BROADER = '>';
 let LEX = {};                    // englishKey -> { locale: label }
 let LEX_REV = new Map();         // normalized label (any language) / englishKey -> englishKey
 const buildRev = () => {
     LEX_REV = new Map();
     for (const [key, labels] of Object.entries(LEX)) {
         if (!LEX_REV.has(key)) LEX_REV.set(key, key);
-        Object.values(labels).flat().forEach((l) => { const n = normalizeTopic(l); if (n && !isLanguageTag(l) && !LEX_REV.has(n)) LEX_REV.set(n, key); });   // '*' holds the spellings seen so far
+        Object.entries(labels).filter(([k]) => k !== BROADER).flatMap(([, v]) => [].concat(v)).forEach((l) => { const n = normalizeTopic(l); if (n && !isLanguageTag(l) && !LEX_REV.has(n)) LEX_REV.set(n, key); });   // '*' holds the spellings seen so far
     }
 };
 export function setLexicon(obj) {
@@ -88,6 +92,44 @@ export function learnTagPairs(entries) {
         }
     }
     return changed;
+}
+
+/**
+ * Remember what a learned topic belongs to: up to 2 broader topics (English). An empty list marks it as asked (so it is not sent again).
+ * Built-in topics need none (they are broad already). A broader topic that is the topic itself, a language mark or a fixed category
+ * (too broad to say anything) is dropped. Returns true when the lexicon changed.
+ */
+export function lexiconBroader(en, list) {
+    const key = normalizeTopic(en);
+    if (!key || key.length > 40 || LOOKUP.has(key) || isLanguageTag(en)) return false;
+    const seen = new Set();
+    const out = [];
+    for (const b of Array.isArray(list) ? list : []) {
+        const k = normalizeTopic(b);
+        if (!k || k.length > 40 || k === key || isLanguageTag(b) || NOT_BROADER.has(k) || seen.has(k)) continue;
+        seen.add(k); out.push(k);
+        if (out.length === 2) break;
+    }
+    const cur = LEX[key] || (LEX[key] = {});
+    if (Array.isArray(cur[BROADER]) && cur[BROADER].join('|') === out.join('|')) return false;
+    cur[BROADER] = out;
+    return true;
+}
+// the fixed categories (topicCategories.js) and the old catch-all: as broader topics they would tie everything in a category together
+const NOT_BROADER = new Set(['technology', 'business', 'science', 'health', 'politics', 'environment', 'society', 'lifestyle', 'general', 'news', 'other', 'misc']);
+
+/** Comparison keys (as conceptKey) of the broader topics of a tag; [] when there are none or it was never asked. */
+export function broaderKeysOf(tag) {
+    const k = lexKey(tag);
+    const list = k && LEX[k] && LEX[k][BROADER];
+    return Array.isArray(list) ? list.map(b => conceptKey(b)) : [];
+}
+
+/** A learned topic whose broader topics were never asked for (built-in topics never need them). */
+export function needsBroader(tag) {
+    if (conceptId(tag)) return false;
+    const k = lexKey(tag);
+    return !!k && !LOOKUP.has(k) && !(LEX[k] && Array.isArray(LEX[k][BROADER]));
 }
 
 const lexKey = (tag) => (isLanguageTag(tag) ? null : LEX_REV.get(normalizeTopic(tag)) || null);

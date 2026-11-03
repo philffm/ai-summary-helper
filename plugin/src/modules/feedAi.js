@@ -10,7 +10,7 @@ import { languageEnglishName, languageRule } from './languages.js';
 import { T } from './feedI18n.js';
 import { dedupeArticles } from './textUtils.js';
 import { resolveLocale } from './i18n.js';
-import { conceptKey, conceptList, topicLabel, hasLabel, lexiconLearn, normalizeTopic } from './topicConcepts.js';
+import { conceptKey, conceptList, topicLabel, hasLabel, lexiconLearn, lexiconBroader, normalizeTopic } from './topicConcepts.js';
 import { resolveFeedStyle, styleSuffix } from './promptBuilder.js';
 export const MAX_RECAP_ITEMS = 40;   // batch size for scoring requests
 let recapLimit = Infinity;            // items per recap request (user setting); 0 / Infinity = no limit
@@ -216,9 +216,13 @@ export async function translateFeedTopics(keys, { signal, onStage, onProgress, s
 export function parseTagNames(text, n) {
     const out = new Array(n).fill(null);
     String(text || '').split(/[|;\n]/).forEach(part => {
-        const m = part.match(/(\d+)\s*[:=]\s*([^=]+?)(?:\s*=\s*(.+))?\s*$/);
+        // "(broader: A, B)" anywhere in the part: the broader topics (only set when given, so older replies read the same as before)
+        const bm = part.match(/\(\s*broader\s*:\s*([^)]*)\)/i);
+        const broader = bm ? bm[1].split(/\s*,\s*/).map(cleanLabel).filter(Boolean).slice(0, 2) : null;
+        const rest = bm ? part.replace(bm[0], ' ') : part;
+        const m = rest.match(/(\d+)\s*[:=]\s*([^=]+?)(?:\s*=\s*(.+))?\s*$/);
         const k = m ? Number(m[1]) - 1 : -1;
-        if (k >= 0 && k < n && cleanLabel(m[2])) out[k] = { en: normalizeTopic(cleanLabel(m[2])), ui: m[3] ? cleanLabel(m[3]) : null };
+        if (k >= 0 && k < n && cleanLabel(m[2])) out[k] = { en: normalizeTopic(cleanLabel(m[2])), ui: m[3] ? cleanLabel(m[3]) : null, ...(broader ? { broader } : {}) };
     });
     return out;
 }
@@ -238,12 +242,16 @@ export async function learnTagNames(tags, opts = {}) {
  * Ask for the names only, learn nothing (a preview can show them first). Returns { names: [{ en, ui } | null aligned to tags], code }.
  * Throws when the reply cannot be read at all.
  */
-export async function nameTags(tags, { signal, onStage, onProgress, service } = {}) {
+export async function nameTags(tags, { signal, onStage, onProgress, service, broaderVocab = [] } = {}) {
     const { code, name } = await uiLanguage();
+    const vocab = broaderVocab.filter(Boolean).slice(0, 60);
     const system = 'You normalize topic tags of saved articles that are written in various languages. '
         + 'For each numbered tag reply with its English name (one or two words, singular, e.g. Football, Climate, Economy)'
         + (code === 'en' ? '' : ` followed by " = " and the same topic written in ${name}`)
-        + '. Format exactly, one line: 1:Football' + (code === 'en' ? '' : ' = Fußball') + ' | 2:Economy' + (code === 'en' ? '' : ' = Wirtschaft') + ' | … for EVERY tag, nothing else.';
+        // broader topics: what a specific or combined tag belongs to, so it can sit next to them (stored apart, never added as tags)
+        + '. If the tag is specific or combines topics, add " (broader: A, B)" with at most 2 broader English topics it belongs to'
+        + (vocab.length ? `, preferably from this list: ${vocab.join(', ')}` : '') + '; leave it out for a tag that is already broad'
+        + '. Format exactly, one line: 1:Football' + (code === 'en' ? '' : ' = Fußball') + ' | 2:AI in medicine' + (code === 'en' ? '' : ' = KI in der Medizin') + ' (broader: Artificial intelligence, Medicine) | … for EVERY tag, nothing else.';
     const text = await aiComplete(system, tags.map((t, k) => `[${k + 1}] ${clip(t, 40)}`).join('\n'), onStage, signal, onProgress, { service, feature: 'tags' });
     const names = parseTagNames(text, tags.length);
     if (!names.some(Boolean)) throw new Error(T('The AI reply could not be read'));
@@ -259,9 +267,23 @@ export function applyTagNames(tags, names, code) {
         lexiconLearn(r.en, null, t);
         if (code === 'en') lexiconLearn(r.en, 'en', r.en.replace(/^./, c => c.toUpperCase()));
         else { lexiconLearn(r.en, 'en', r.en.replace(/^./, c => c.toUpperCase())); if (r.ui) lexiconLearn(r.en, code, r.ui); }
+        lexiconBroader(r.en, r.broader || []);   // none given: remembered as asked, so the tag is not sent again for it
         named++;
     });
     return named;
+}
+
+/** Only the broader topics, for tags that already have a name (their name stays as it is). Returns how many got any. */
+export function applyBroader(tags, names) {
+    let n = 0;
+    tags.forEach((t, k) => {
+        const key = conceptKey(t);
+        if (!key || String(key).startsWith('c:')) return;   // built-in topics are broad already
+        const list = (names[k] && names[k].broader) || [];
+        lexiconBroader(key, list);
+        if (list.length) n++;
+    });
+    return n;
 }
 
 /** "1:Tech | 2:Politics" -> array aligned to n items (null where missing). */

@@ -4,7 +4,7 @@
 // is saved.
 import { T, TN } from './feedI18n.js';
 import { el } from './dom.js';
-import { unknownTags, isLanguageTag } from './topicConcepts.js';
+import { unknownTags, isLanguageTag, needsBroader, conceptKey, labelOfKey } from './topicConcepts.js';
 import { isCategory } from './topicCategories.js';
 
 export const NAMING_BATCH = 40;
@@ -14,6 +14,34 @@ export function tagsToName(articles) {
     const all = [];
     (articles || []).forEach(a => (a && a.tags || []).forEach(t => { if (!isCategory(t) && !isLanguageTag(t) && String(t).toLowerCase() !== 'general') all.push(t); }));
     return unknownTags(all, Infinity, 1);
+}
+
+const isMark = (t) => isCategory(t) || isLanguageTag(t) || String(t).toLowerCase() === 'general';
+
+/** Tags that have a name but were never asked for their broader topics (once per topic, most used first). */
+export function tagsToBroaden(articles) {
+    const n = new Map();
+    (articles || []).forEach(a => (a && a.tags || []).forEach(t => {
+        if (isMark(t) || !needsBroader(t)) return;
+        const k = conceptKey(t), e = n.get(k) || { tag: t, c: 0 };
+        e.c++; n.set(k, e);
+    }));
+    return [...n.values()].sort((x, y) => y.c - x.c).map(e => e.tag);
+}
+
+/** What is left to do: tags with no name, and named ones with no broader topics yet. */
+export function namingWork(articles) {
+    const unnamed = tagsToName(articles);
+    const seen = new Set(unnamed);
+    return { unnamed, broaden: tagsToBroaden(articles).filter(t => !seen.has(t)) };
+}
+
+/** The archive's most used topics in English: the model picks broader topics from these, so they meet the tags that exist. */
+export function broaderVocabOf(articles, max = 60) {
+    const n = new Map();
+    (articles || []).forEach(a => (a && a.tags || []).forEach(t => { if (!isMark(t)) { const k = conceptKey(t); n.set(k, (n.get(k) || 0) + 1); } }));
+    return [...n.entries()].sort((x, y) => y[1] - x[1]).slice(0, max)
+        .map(([k]) => labelOfKey(k, 'en') || (String(k).startsWith('c:') ? '' : k)).filter(Boolean);
 }
 
 /**
@@ -46,17 +74,26 @@ export async function openTagNamingPage(container, { articles, onDone = () => {}
     const save = deps.saveLexicon || (await import('./topicLexicon.js')).saveLexicon;
     const mountPage = deps.mountPage || (await import('./graphClusters.js')).mountGraphPage;
     const route = deps.route || await namingRoute();
-    const todo = tagsToName(articles);
+    const { unnamed, broaden } = namingWork(articles);
+    const todo = [...unnamed, ...broaden];
+    const isNew = new Set(unnamed);
+    const vocab = broaderVocabOf(articles);
+    // a tag with no name is named (and gets broader topics); a named one only gets broader topics, its name stays
+    const applyBatch = (batch, names, code) => {
+        const a = [], an = [], b = [], bn = [];
+        batch.forEach((t, k) => { if (isNew.has(t)) { a.push(t); an.push(names[k]); } else { b.push(t); bn.push(names[k]); } });
+        return (a.length ? ai.applyTagNames(a, an, code) : 0) + (b.length ? ai.applyBroader(b, bn) : 0);
+    };
 
     const page = el('div', 'graph-cluster-page graph-naming-page');
     const bar = el('div', 'graph-cluster-bar');
     const back = el('button', 'graph-cluster-back', '←'); back.type = 'button'; back.setAttribute('aria-label', T('Back'));
     const ttl = el('div', 'graph-cluster-ttl');
-    ttl.append(el('strong', 'graph-cluster-title', T('Name tags with AI')), el('div', 'graph-preview-date', TN(todo.length, '{n} tag has no English name yet', '{n} tags have no English name yet')));
+    ttl.append(el('strong', 'graph-cluster-title', T('Name tags with AI')), el('div', 'graph-preview-date', [unnamed.length ? TN(unnamed.length, '{n} tag has no English name yet', '{n} tags have no English name yet') : '', broaden.length ? TN(broaden.length, '{n} named tag has no broader topics yet', '{n} named tags have no broader topics yet') : ''].filter(Boolean).join(' · ') || T('Every tag already has a name.')));
     bar.append(back, ttl);
     const body = el('div', 'graph-cluster-scroll');
     const what = el('p', 'graph-naming-what', T('Only the tag words are sent, no article text. They go to {where}.', { where: route.label }));
-    const why = el('p', 'graph-preview-date', T('Each tag gets its English name, so the same topic in two languages, or written two ways, becomes one tag in the graph, search and charts. Nothing on your articles changes.'));
+    const why = el('p', 'graph-preview-date', T('Each tag gets its English name, so the same topic in two languages, or written two ways, becomes one tag in the graph, search and charts. A specific tag also gets up to two broader topics ("AI in medicine": AI, medicine), so it sits next to them in the graph. Nothing on your articles changes.'));
     const status = el('div', 'graph-cluster-answer'); status.setAttribute('aria-live', 'polite');
     const preview = el('ol', 'graph-naming-preview');
     const actions = el('div', 'graph-cluster-actions');
@@ -85,14 +122,15 @@ export async function openTagNamingPage(container, { articles, onDone = () => {}
         e.stopPropagation(); tryBtn.disabled = true; ctl = new AbortController();
         say(TN(first.length, 'Naming {n} tag…', 'Naming {n} tags…'), 'busy');
         try {
-            const r = await ai.nameTags(first, { signal: ctl.signal, service: route.service });
+            const r = await ai.nameTags(first, { signal: ctl.signal, service: route.service, broaderVocab: vocab });
             firstNames = r.names; firstCode = r.code;
             preview.textContent = '';
             first.forEach((t, k) => {
                 const n = firstNames[k];
                 const li = el('li', 'graph-naming-row' + (n && n.en ? '' : ' is-skipped'));
                 li.append(el('span', 'graph-naming-tag', t), el('span', 'graph-naming-arrow', '→'),
-                    el('span', 'graph-naming-en', n && n.en ? n.en : T('(no name)')), ...(n && n.ui ? [el('span', 'graph-naming-ui', n.ui)] : []));
+                    el('span', 'graph-naming-en', n && n.en ? (isNew.has(t) ? n.en : T('(name kept)')) : T('(no name)')), ...(n && n.ui && isNew.has(t) ? [el('span', 'graph-naming-ui', n.ui)] : []),
+                    ...(n && n.broader && n.broader.length ? [el('span', 'graph-naming-broader', T('broader: {list}', { list: n.broader.join(', ') }))] : []));
                 preview.append(li);
             });
             const ok = firstNames.filter(n => n && n.en).length;
@@ -104,7 +142,7 @@ export async function openTagNamingPage(container, { articles, onDone = () => {}
         } catch (err) { tryBtn.disabled = false; fail(err); }
     });
 
-    const saveFirstBatch = async () => { const n = ai.applyTagNames(first, firstNames, firstCode); await save(); return n; };
+    const saveFirstBatch = async () => { const n = applyBatch(first, firstNames, firstCode); await save(); return n; };
     saveFirst.addEventListener('click', async (e) => {
         e.stopPropagation(); saveFirst.disabled = true; saveAll.hidden = true;
         const n = await saveFirstBatch();
@@ -120,8 +158,8 @@ export async function openTagNamingPage(container, { articles, onDone = () => {}
             for (let i = 0; i < rest.length; i += NAMING_BATCH) {
                 const batch = rest.slice(i, i + NAMING_BATCH);
                 say(T('Naming tags… {a} of {b}', { a: done, b: todo.length }), 'busy');
-                const r = await ai.nameTags(batch, { signal: ctl.signal, service: route.service });
-                named += ai.applyTagNames(batch, r.names, r.code);
+                const r = await ai.nameTags(batch, { signal: ctl.signal, service: route.service, broaderVocab: vocab });
+                named += applyBatch(batch, r.names, r.code);
                 await save();   // after each batch: stopping keeps what is done
                 done += batch.length;
             }

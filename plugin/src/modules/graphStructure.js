@@ -32,6 +32,9 @@ const UMBRELLA_SHARE = 0.6;             // a tag on more than this share of the 
 const MERGE_FACTOR = 0.3;              // two groups merge when their ties to each other are at least this fraction as dense as the looser group's own inside
 const TERM_NEIGHBOURS = 4;            // …each article is tied to this many others per shared term
 const TERM_TIE = 0.5;                  // weight of the typical terms two articles share (from the similarity cache): the signal when tags are rare or missing
+const BROADER_PARENT_TIE = 0.35;       // a specific tag and the tag that is its broader topic ("AI in medicine" → "medicine")
+const BROADER_SIBLING_TIE = 0.25;      // two tags with the same broader topic
+const BROADER_SIBLING_MAX = 25;        // a broader topic shared by more tags than this ties none of them to each other (it would glue a crowd)
 const SIM_WITH_TAGS = 0.4;             // weight of a similarity tie between two articles that both have tags of their own
 const TOP_UMBRELLA_SHARE = 0.35;        // a tag on more than this share of ALL articles (a big archive's "tech") joins nothing: the topics are what is left
 const TOP_UMBRELLA_MIN_ARTICLES = 30;   // … in an archive of at least this many articles
@@ -73,6 +76,32 @@ function coOccurrence(members, min) {
         const w = n / Math.sqrt(members.get(x).size * members.get(y).size);
         if (w < min) return;
         adj.get(x).set(y, w); adj.get(y).set(x, w);
+    });
+    return adj;
+}
+
+/**
+ * Weak ties from the broader topics the lexicon knows (topicConcepts.js lexiconBroader): a rare, specific tag that shares no article with
+ * anything still sits next to what it belongs to. `rel` = { broader: Map(tagId → [keys]), key: Map(tagId → key) }. Only tags already in
+ * `adj` take part, so umbrella tags and categories (left out before) stay out. A tie never lowers a stronger co-occurrence.
+ */
+function addBroaderTies(adj, rel) {
+    if (!rel || !rel.broader || !rel.key) return adj;
+    const tags = [...adj.keys()];
+    const byKey = new Map(), byBroader = new Map();
+    tags.forEach(t => {
+        const k = rel.key.get(t); if (k) (byKey.get(k) || byKey.set(k, []).get(k)).push(t);
+        (rel.broader.get(t) || []).forEach(b => (byBroader.get(b) || byBroader.set(b, []).get(b)).push(t));
+    });
+    const tie = (x, y, w) => {
+        if (x === y) return;
+        if ((adj.get(x).get(y) || 0) < w) adj.get(x).set(y, w);
+        if ((adj.get(y).get(x) || 0) < w) adj.get(y).set(x, w);
+    };
+    [...byBroader.keys()].sort(byText).forEach(b => {
+        const kids = byBroader.get(b).slice().sort(byText);
+        (byKey.get(b) || []).forEach(parent => kids.forEach(k => tie(k, parent, BROADER_PARENT_TIE)));
+        if (kids.length > 1 && kids.length <= BROADER_SIBLING_MAX) for (let i = 0; i < kids.length; i++) for (let j = i + 1; j < kids.length; j++) tie(kids[i], kids[j], BROADER_SIBLING_TIE);
     });
     return adj;
 }
@@ -337,7 +366,7 @@ function subdivide(cluster, { members, tagNode, links, subOtherLabel, groupLabel
  * @returns {{ clusters: Array<{ id, label, tagIds, articleIds, size }>, clusterOfTag: Map, clusterOfArticle: Map, otherId: string|null }}
  *   `clusters` is biggest first; the folded-away rest is one cluster with `other: true` (label from `otherLabel`) at the end.
  */
-export function topicClusters(nodes, links, { otherLabel = 'Everything else', subOtherLabel = 'Other', groupLabel = 'Group', terms = null, vectors = null, categories = null, subclusters = true, max = CLUSTER_MAX, minArticles = CLUSTER_MIN_ARTICLES } = {}) {
+export function topicClusters(nodes, links, { otherLabel = 'Everything else', subOtherLabel = 'Other', groupLabel = 'Group', terms = null, vectors = null, categories = null, related = null, subclusters = true, max = CLUSTER_MAX, minArticles = CLUSTER_MIN_ARTICLES } = {}) {
     const members = tagMembers(nodes, links);
     const tagNode = new Map(nodes.filter(n => n.group === 'tag').map(n => [n.id, n]));
     const articleIds = nodes.filter(n => n.group === 'article').map(n => n.id);
@@ -348,13 +377,13 @@ export function topicClusters(nodes, links, { otherLabel = 'Everything else', su
     // The fixed categories (topicCategories.js: every article has one) are categories, not topics: they never form or name a topic, whatever their share.
     if (categories) members.forEach((_, t) => { if (categories.has(t)) topUmbrella.add(t); });
     const graphMembers = topUmbrella.size ? new Map([...members].filter(([t]) => !topUmbrella.has(t))) : members;
-    let groups = propagate([...graphMembers.keys()], coOccurrence(graphMembers, EDGE_MIN));
+    let groups = propagate([...graphMembers.keys()], addBroaderTies(coOccurrence(graphMembers, EDGE_MIN), related));
 
     // One giant cluster says nothing: split it once with a stricter co-occurrence threshold.
     const share = (g) => { const s = new Set(); g.forEach(t => members.get(t).forEach(a => s.add(a))); return s.size; };   // (articles, counted over all tags)
     const total = Math.max(1, articleIds.length);
     groups = groups.flatMap(g => (g.length >= SPLIT_MIN_TAGS && share(g) / total > SPLIT_SHARE)
-        ? propagate(g, coOccurrence(new Map(g.map(t => [t, graphMembers.get(t)])), EDGE_MIN * 2))
+        ? propagate(g, addBroaderTies(coOccurrence(new Map(g.map(t => [t, graphMembers.get(t)])), EDGE_MIN * 2), related))
         : [g]);
 
     const draft = groups.map((g) => {

@@ -37,14 +37,14 @@
 
 import { cosineSim } from './localSearch.js';
 import { T, TN, uiLocale } from './feedI18n.js';
-import { conceptKey, isKnownTopic, isLanguageTag, topicLabel } from './topicConcepts.js';
+import { conceptKey, isKnownTopic, isLanguageTag, topicLabel, broaderKeysOf } from './topicConcepts.js';
 import { fetchAnnotationsForArticle, escapeHtml } from './annotationExporter.js';
 import { setIconLabel } from './icons.js';
 import { paperState } from './paperInfo.js';
 
 import { topicClusters, bridgeArticles, neighborhood, shortestPath, sourceType, maturityOf } from './graphStructure.js';
 import { CATEGORIES } from './topicCategories.js';
-import { tagsToName } from './graphTagNaming.js';
+import { namingWork } from './graphTagNaming.js';
 
 // v5 (structure layer, see GRAPH.md): with enough articles the graph opens as an OVERVIEW — topic clusters worked out locally
 // from the tags (graphStructure.js), one label per cluster, small unlabeled dots, no links — and the old node-and-link picture is
@@ -274,7 +274,7 @@ function buildGraphData(articles, minTagDegree = MIN_TAG_DEGREE_DEFAULT, similar
         articleTags.forEach(tag => {
             const tagId = tagIdOf(tag);
             if (!nodeById.has(tagId)) {
-                const tagNode = { id: tagId, label: tagLabelOf(tag), group: 'tag', degree: tagDegree.get(tagId) };
+                const tagNode = { id: tagId, label: tagLabelOf(tag), group: 'tag', degree: tagDegree.get(tagId), raw: tag };
                 nodeById.set(tagId, tagNode);
                 nodes.push(tagNode);
             }
@@ -655,7 +655,13 @@ function renderGraph(container, allArticles, highlightTimestamp, minTagDegree, s
     let raw = buildGraphData(articles, wantsOverview ? 1 : minTagDegree, similarityIndex, simNow && simNow.links, { keepOrphans: wantsOverview });
     // the fixed categories (and the old catch-all "General") as tag ids, so the structure treats them as categories
     const categories = new Set([...CATEGORIES, 'General'].map(tagIdOf));
-    const structFor = (d) => topicClusters(d.nodes, d.links, { otherLabel: T('Everything else'), subOtherLabel: T('Other'), groupLabel: T('Group'), terms: simNow && simNow.terms, vectors: simNow && simNow.items, categories });
+    // the broader topics the lexicon knows, per tag node (weak ties in the structure, see graphStructure.js addBroaderTies)
+    const relatedFor = (d) => {
+        const broader = new Map(), key = new Map();
+        d.nodes.forEach(n => { if (n.group !== 'tag' || !n.raw) return; key.set(n.id, conceptKey(n.raw)); const b = broaderKeysOf(n.raw); if (b.length) broader.set(n.id, b); });
+        return { broader, key };
+    };
+    const structFor = (d) => topicClusters(d.nodes, d.links, { otherLabel: T('Everything else'), subOtherLabel: T('Other'), groupLabel: T('Group'), terms: simNow && simNow.terms, vectors: simNow && simNow.items, categories, related: relatedFor(d) });
     let data = capGraphData(raw, wantsOverview ? OVERVIEW_NODE_CAP : NODE_CAP);
     let struct = structFor(data);
     if (wantsOverview && struct.clusters.length < 2) {   // nothing to pack: the usual picture, with its rules and its cap
@@ -1282,7 +1288,7 @@ function renderGraph(container, allArticles, highlightTimestamp, minTagDegree, s
         canOverview, overview,
         color: { mode: colorMode, modes: colorModes, onChange: (m) => applyColor(m, true) },
         // tags with no English name yet: one tap names them (graphTagNaming.js), and the graph is drawn again with the merged topics
-        naming: (() => { const n = tagsToName(allArticles).length; return n ? { count: n, onOpen: () => import('./graphTagNaming.js').then(m => m.openTagNamingPage(container, { articles: allArticles, onDone: () => { simulation.stop(); renderGraph(container, allArticles, highlightTimestamp, minTagDegree, similarityIndex); } })) } : null; })(),
+        naming: (() => { const w = namingWork(allArticles), n = w.unnamed.length + w.broaden.length; return n ? { count: n, unnamed: w.unnamed.length, onOpen: () => import('./graphTagNaming.js').then(m => m.openTagNamingPage(container, { articles: allArticles, onDone: () => { simulation.stop(); renderGraph(container, allArticles, highlightTimestamp, minTagDegree, similarityIndex); } })) } : null; })(),
         unread: unreadIds.size ? { count: unreadIds.size, on: !!container.__graphUnreadOnly, onToggle: (on) => { container.__graphUnreadOnly = on; applyUnread(on, true); } } : null,
         onLayout: (mode) => {
             container.__graphLayout = mode;
@@ -1479,7 +1485,7 @@ function renderStructureChips(container, { canOverview, overview, onLayout, unre
     if (naming) {
         const chip = document.createElement('button');
         chip.type = 'button'; chip.className = 'graph-naming-chip';
-        chip.textContent = '🏷 ' + TN(naming.count, '{n} tag without a name', '{n} tags without a name');
+        chip.textContent = '🏷 ' + (naming.unnamed ? TN(naming.unnamed, '{n} tag without a name', '{n} tags without a name') : TN(naming.count, '{n} tag without broader topics', '{n} tags without broader topics'));
         chip.title = T('Give these tags their English names, so the same topic in two languages becomes one');
         chip.addEventListener('click', () => naming.onOpen());
         bar.append(chip);

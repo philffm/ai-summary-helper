@@ -7,6 +7,7 @@ Commit history has the details: <https://github.com/philffm/ai-summary-helper/co
 
 #### Added
 
+- Tag naming also asks for up to two broader topics per tag ("AI in medicine": AI, medicine), kept in the topic lexicon, not as tags; the graph uses them as weak ties, so a rare, specific tag sits next to what it belongs to. Named tags without broader topics can be asked again without changing their name
 - Archive graph: "🏷 n tags without a name" gives the archive's tags their English names with AI (only the tag words are sent; a local model when one is set up; a preview of the first 40 before anything is saved), so the same topic in two languages becomes one
 - Archive graph links articles by their text too: a background run builds a small per-article cache (title, tags, summary, saved text), only new or changed articles are processed again. Details in `GRAPH.md`
 - Archive graph (Topics): clusters, subtopics and articles are packed as nested circles, so a big cluster is a group of named subtopics instead of one clump; a tag on a third or more of the whole archive no longer ties all topics together; the Obsidian hub note lists the subtopics

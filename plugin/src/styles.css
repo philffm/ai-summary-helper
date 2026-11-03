@@ -4712,3 +4712,4 @@ circle.graph-read-dim, text.graph-read-dim, .graph-blob.graph-read-dim { opacity
 .graph-naming-tag { font-weight: 600; }
 .graph-naming-arrow, .graph-naming-ui { color: var(--text-muted); }
 .graph-naming-ui::before { content: "· "; }
+.graph-naming-broader { flex-basis: 100%; font-size: var(--fs-xs); color: var(--text-muted); }
