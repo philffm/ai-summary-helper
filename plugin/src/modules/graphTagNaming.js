@@ -1,7 +1,8 @@
 // graphTagNaming.js — give the archive's tags their English names from the graph, so the same topic in two languages (or two
 // spellings) becomes one tag. Uses the existing tag naming (feedAi.js nameTags/applyTagNames → topic lexicon). Only the tag words
 // are sent, never article text. A local model is used when one is set up; the result of the first batch is shown before anything
-// is saved.
+// is saved. Every batch is listed as it comes in, with a progress bar over all of them; rows can be changed or skipped while their
+// batch waits, and "check the next 40" asks one batch at a time instead of naming the rest unchecked.
 import { T, TN } from './feedI18n.js';
 import { el } from './dom.js';
 import { unknownTags, isLanguageTag, needsBroader, conceptKey, labelOfKey, humanizeTag, isJunkTag, getLexicon, setLexicon, filterBroader, normalizeTopic } from './topicConcepts.js';
@@ -92,13 +93,6 @@ export async function openTagNamingPage(container, { articles, onDone = () => {}
     const isNew = new Set(unnamed);
     const vocab = broaderVocabOf(articles);
     const english = englishTagsOf(articles);   // their English name must be themselves (keepLiteral in feedAi.js)
-    // a tag with no name is named (and gets broader topics); a named one only gets broader topics, its name stays
-    const applyBatch = (batch, names, code) => {
-        const a = [], an = [], b = [], bn = [];
-        batch.forEach((t, k) => { if (isNew.has(t)) { a.push(t); an.push(names[k]); } else { b.push(t); bn.push(names[k]); } });
-        return (a.length ? ai.applyTagNames(a, an, code) : 0) + (b.length ? ai.applyBroader(b, bn) : 0);
-    };
-
     const page = el('div', 'graph-cluster-page graph-naming-page');
     const bar = el('div', 'graph-cluster-bar');
     const back = el('button', 'graph-cluster-back', '←'); back.type = 'button'; back.setAttribute('aria-label', T('Back'));
@@ -109,17 +103,25 @@ export async function openTagNamingPage(container, { articles, onDone = () => {}
     const what = el('p', 'graph-naming-what', T('Only the tag words are sent, no article text. They go to {where}.', { where: route.label }));
     const why = el('p', 'graph-preview-date', T('Each tag gets its English name, so the same topic in two languages, or written two ways, becomes one tag in the graph, search and charts. A specific tag also gets up to two broader topics ("AI in medicine": AI, medicine), so it sits next to them in the graph. Nothing on your articles changes.'));
     const status = el('div', 'graph-cluster-answer'); status.setAttribute('aria-live', 'polite');
+    // progress over the whole run: every batch counts, not only the first
+    const prog = el('div', 'graph-naming-progress'); prog.hidden = true;
+    const meter = el('progress', 'graph-naming-meter'); meter.max = Math.max(1, todo.length); meter.value = 0;
+    const count = el('span', 'graph-naming-count');
+    prog.append(meter, count);
     const preview = el('ol', 'graph-naming-preview');
     const actions = el('div', 'graph-cluster-actions');
     const mk = (cls, text) => { const b = el('button', cls, text); b.type = 'button'; return b; };
     const tryBtn = mk('button-primary graph-naming-try', TN(Math.min(NAMING_BATCH, todo.length), 'Try {n} tag', 'Try {n} tags'));
     const saveAll = mk('button-primary graph-naming-save-all', '');
+    const saveNext = mk('button-secondary graph-naming-save-next', '');
     const saveFirst = mk('button-secondary graph-naming-save-first', T('Save these only'));
     const stop = mk('button-secondary graph-naming-stop', T('Stop'));
     const undo = mk('button-secondary graph-naming-undo', T('Undo'));
-    [saveAll, saveFirst, stop, undo].forEach(b => { b.hidden = true; });
-    actions.append(tryBtn, saveAll, saveFirst, stop, undo);
-    body.append(what, why, actions, status, preview);
+    [saveAll, saveNext, saveFirst, stop, undo].forEach(b => { b.hidden = true; });
+    actions.append(tryBtn, saveAll, saveNext, saveFirst, stop, undo);
+    const editHint = el('p', 'graph-preview-date graph-naming-edit-hint', T('You can change a name or its broader topics in the row, or skip a row: a skipped tag is not saved and is asked again next time. After saving, the names stay editable in Settings → On-device tools → Learned tag names.'));
+    editHint.hidden = true;
+    body.append(what, why, actions, prog, status, editHint, preview);
     page.append(bar, body);
     let close = () => {};
     let ctl = null;
@@ -128,80 +130,162 @@ export async function openTagNamingPage(container, { articles, onDone = () => {}
 
     if (!todo.length) { status.textContent = T('Every tag already has a name.'); tryBtn.hidden = true; return { page, close }; }
 
-    const first = todo.slice(0, NAMING_BATCH), rest = todo.slice(NAMING_BATCH);
-    let firstNames = null, firstCode = 'en';
+    const batches = [];
+    for (let i = 0; i < todo.length; i += NAMING_BATCH) batches.push(todo.slice(i, i + NAMING_BATCH));
+    let next = 0, done = 0, named = 0;   // next batch to ask, tags handled so far, tags saved with a name
+    let current = null;                  // the batch on screen waiting to be checked: { batch, rows, code }
     const say = (t, kind = '') => { status.className = 'graph-cluster-answer' + (kind ? ' is-' + kind : ''); status.textContent = t; };
     const fail = (e) => { if (e && (e.cancelled || e.name === 'AbortError')) { say(T('Stopped.')); return; } say((e && e.message) || T('AI request failed'), 'error'); };
-
-    tryBtn.addEventListener('click', async (e) => {
-        e.stopPropagation(); tryBtn.disabled = true; ctl = new AbortController();
-        say(TN(first.length, 'Naming {n} tag…', 'Naming {n} tags…'), 'busy');
-        try {
-            const r = await ai.nameTags(first, { signal: ctl.signal, service: route.service, broaderVocab: vocab, english });
-            firstNames = r.names; firstCode = r.code;
-            preview.textContent = '';
-            first.forEach((t, k) => {
-                const n = firstNames[k];
-                const li = el('li', 'graph-naming-row' + (n && n.en ? '' : ' is-skipped'));
-                li.append(el('span', 'graph-naming-tag', t), el('span', 'graph-naming-arrow', '→'),
-                    el('span', 'graph-naming-en', n && n.en ? (isNew.has(t) ? n.en + (n.kept ? ' ' + T('(literal; the model had a broader word)') : '') : T('(name kept)')) : T('(no name)')), ...(n && n.ui && isNew.has(t) ? [el('span', 'graph-naming-ui', n.ui)] : []),
-                    ...shownBroader(n));
-                preview.append(li);
-            });
-            const ok = firstNames.filter(n => n && n.en).length;
-            say(T('{a} of {b} tags got a name. Check them, then save.', { a: ok, b: first.length }));
-            tryBtn.hidden = true;
-            saveFirst.hidden = false;
-            if (rest.length) { saveAll.hidden = false; saveAll.textContent = TN(rest.length, 'Save and name the other {n}', 'Save and name the other {n}'); }
-            else { saveFirst.textContent = T('Save'); }
-        } catch (err) { tryBtn.disabled = false; fail(err); }
-    });
+    const showProgress = () => { prog.hidden = false; meter.value = done; count.textContent = T('{a} of {b} tags', { a: done, b: todo.length }); };
+    const left = () => todo.length - done - (current ? current.batch.length : 0);
 
     // the broader topics as they will be saved (categories, catch-alls and the tag itself dropped), in the model's spelling
     const shownBroader = (n) => {
         if (!n || !n.en) return [];
         const keep = new Set(filterBroader(n.en, n.broader));
-        const list = (n.broader || []).filter((b, i, all) => keep.has(normalizeTopic(b)) && all.findIndex(x => normalizeTopic(x) === normalizeTopic(b)) === i);
-        return list.length ? [el('span', 'graph-naming-broader', T('broader: {list}', { list: list.join(', ') }))] : [];
+        return (n.broader || []).filter((b, i, all) => keep.has(normalizeTopic(b)) && all.findIndex(x => normalizeTopic(x) === normalizeTopic(b)) === i);
     };
-    // Undo: the lexicon as it was before the first save comes back (this page only; once it is closed, the names stay).
-    let before = null;
+    const splitList = (v) => String(v || '').split(/\s*,\s*/).map(x => x.trim()).filter(Boolean);
+    // one row: editable while its batch waits to be checked, plain text once saved
+    const makeRow = (t, n, code) => {
+        const fresh = isNew.has(t);
+        const li = el('li', 'graph-naming-row' + (n && n.en ? '' : ' is-skipped'));
+        const tag = el('span', 'graph-naming-tag', t);
+        const enIn = el('input', 'graph-naming-en-input'); enIn.type = 'text'; enIn.maxLength = 40; enIn.value = n && n.en ? n.en : ''; enIn.placeholder = T('(no name)'); enIn.setAttribute('aria-label', T('English name of {tag}', { tag: t }));
+        const uiIn = el('input', 'graph-naming-ui-input'); uiIn.type = 'text'; uiIn.maxLength = 40; uiIn.value = n && n.ui ? n.ui : ''; uiIn.placeholder = T('in your language'); uiIn.setAttribute('aria-label', T('Name of {tag} in your language', { tag: t }));
+        const brIn = el('input', 'graph-naming-broader-input'); brIn.type = 'text'; brIn.value = shownBroader(n).join(', '); brIn.placeholder = T('broader topics, comma separated'); brIn.setAttribute('aria-label', T('Broader topics of {tag}', { tag: t }));
+        const skipLbl = el('label', 'graph-naming-skip'); const skip = el('input'); skip.type = 'checkbox'; skip.className = 'graph-naming-skip-box';
+        skip.checked = fresh && !(n && n.en);   // nothing to save: skipped until a name is typed
+        skipLbl.append(skip, document.createTextNode(' ' + T('Skip')));
+        enIn.addEventListener('input', () => { if (enIn.value.trim()) skip.checked = false; li.classList.toggle('is-skipped', skip.checked); });
+        skip.addEventListener('change', () => li.classList.toggle('is-skipped', skip.checked));
+        li.append(tag, el('span', 'graph-naming-arrow', '→'));
+        if (fresh) { li.append(enIn); if (code !== 'en') li.append(uiIn); if (n && n.kept) li.append(el('span', 'graph-naming-note', T('(literal; the model had a broader word)'))); }
+        else li.append(el('span', 'graph-naming-en', T('(name kept)')));
+        const brWrap = el('span', 'graph-naming-broader-wrap'); brWrap.append(el('span', 'graph-naming-broader-lbl', T('broader:')), brIn);
+        li.append(skipLbl, brWrap);
+        // what is saved for this row: null = skipped (nothing learned, asked again next time)
+        const read = () => {
+            if (skip.checked) return null;
+            const en = fresh ? normalizeTopic(enIn.value) : (n && n.en) || '';
+            if (fresh && !en) return null;
+            return { en, ui: uiIn.value.trim() || null, broader: splitList(brIn.value) };
+        };
+        // after saving: the same row as text
+        const freeze = () => {
+            const r = read();
+            li.textContent = '';
+            li.className = 'graph-naming-row' + (r ? '' : ' is-skipped');
+            const br = r ? filterBroader(r.en, r.broader) : [];
+            li.append(el('span', 'graph-naming-tag', t), el('span', 'graph-naming-arrow', '→'),
+                el('span', 'graph-naming-en', !r ? T('(skipped)') : fresh ? r.en : T('(name kept)')),
+                ...(r && fresh && r.ui ? [el('span', 'graph-naming-ui', r.ui)] : []),
+                ...(br.length ? [el('span', 'graph-naming-broader', T('broader: {list}', { list: br.join(', ') }))] : []));
+        };
+        return { li, read, freeze };
+    };
+    const ask = async (batch) => {
+        const r = await ai.nameTags(batch, { signal: ctl.signal, service: route.service, broaderVocab: vocab, english });
+        return { batch, code: r.code, names: r.names };
+    };
+    // a named tag only gets broader topics, a new one its name too; skipped rows are left out entirely
+    const applyRows = (batch, names, code) => {
+        const a = [], an = [], b = [], bn = [];
+        batch.forEach((t, k) => { if (!names[k]) return; if (isNew.has(t)) { a.push(t); an.push(names[k]); } else { b.push(t); bn.push(names[k]); } });
+        return (a.length ? ai.applyTagNames(a, an, code) : 0) + (b.length ? ai.applyBroader(b, bn) : 0);
+    };
+    let before = null;   // the lexicon before the first save, for Undo
+    const saveRows = async (batch, names, code) => {
+        if (before === null) before = JSON.stringify(getLexicon());
+        named += applyRows(batch, names, code);
+        await save();   // after each batch: stopping keeps what is done
+        done += batch.length;
+        showProgress();
+    };
+    // the batch on screen, checked by the user: saved with their changes
+    const saveCurrent = async () => {
+        const c = current; current = null;
+        await saveRows(c.batch, c.rows.map(r => r.read()), c.code);
+        c.rows.forEach(r => r.freeze());
+    };
+    const showBatch = (res) => {
+        const rows = res.batch.map((t, k) => makeRow(t, res.names[k], res.code));
+        rows.forEach(r => preview.append(r.li));
+        current = { batch: res.batch, rows, code: res.code };
+        editHint.hidden = false;
+        if (next > 1 && rows[0] && rows[0].li.scrollIntoView) rows[0].li.scrollIntoView({ block: 'nearest' });
+        return rows;
+    };
+    // the choices while a batch waits: save and go on blind, save and check the next one, or save only this one
+    const offerChoices = () => {
+        const rest = left();
+        const ok = current.rows.filter(r => r.read()).length;
+        say(T('{a} of {b} tags got a name. Check them, change what is wrong, then save.', { a: ok, b: current.batch.length }));
+        saveFirst.hidden = false; saveFirst.disabled = false;
+        saveFirst.textContent = rest ? T('Save these only') : T('Save');
+        saveAll.hidden = !rest; saveAll.disabled = false;
+        saveNext.hidden = !rest; saveNext.disabled = false;
+        if (rest) {
+            saveAll.textContent = TN(rest, 'Save and name the other {n}', 'Save and name the other {n}');
+            saveNext.textContent = TN(Math.min(NAMING_BATCH, rest), 'Save and check the next {n}', 'Save and check the next {n}');
+        }
+    };
+    const hideChoices = () => { [saveAll, saveNext, saveFirst].forEach(b => { b.hidden = true; }); };
     const offerUndo = () => {
         undo.hidden = false;
         undo.onclick = async (ev) => {
             ev.stopPropagation(); if (ctl) ctl.abort();
             setLexicon(JSON.parse(before)); await save();
-            undo.hidden = true; stop.hidden = true;
+            undo.hidden = true; stop.hidden = true; hideChoices();
             say(T('Undone: the tag names are as they were before.'));
             onDone(0);
         };
     };
-    const saveFirstBatch = async () => { if (before === null) before = JSON.stringify(getLexicon()); const n = applyBatch(first, firstNames, firstCode); await save(); return n; };
-    saveFirst.addEventListener('click', async (e) => {
-        e.stopPropagation(); saveFirst.disabled = true; saveAll.hidden = true;
-        const n = await saveFirstBatch();
-        say(TN(n, '{n} tag named and saved.', '{n} tags named and saved.'));
-        offerUndo();
-        onDone(n);
-    });
-    saveAll.addEventListener('click', async (e) => {
-        e.stopPropagation(); saveAll.disabled = true; saveFirst.hidden = true; stop.hidden = false;
-        let named = await saveFirstBatch(), done = first.length;
+    const askNext = async () => {
         ctl = new AbortController();
+        const batch = batches[next++];
+        say(done ? T('Naming tags… {a} of {b}', { a: done, b: todo.length }) : TN(batch.length, 'Naming {n} tag…', 'Naming {n} tags…'), 'busy');
+        return ask(batch);
+    };
+
+    tryBtn.addEventListener('click', async (e) => {
+        e.stopPropagation(); tryBtn.disabled = true;
+        showProgress();
+        try { showBatch(await askNext()); tryBtn.hidden = true; offerChoices(); }
+        catch (err) { next--; tryBtn.disabled = false; fail(err); }
+    });
+    saveFirst.addEventListener('click', async (e) => {
+        e.stopPropagation(); hideChoices();
+        const n0 = named; await saveCurrent();
+        say(TN(named - n0, '{n} tag named and saved.', '{n} tags named and saved.'));
+        offerUndo();
+        onDone(named);
+    });
+    // check every batch: save this one, ask the next and wait again
+    saveNext.addEventListener('click', async (e) => {
+        e.stopPropagation(); hideChoices();
+        await saveCurrent(); offerUndo(); onDone(named); stop.hidden = false;
+        stop.onclick = (ev) => { ev.stopPropagation(); if (ctl) ctl.abort(); };
+        try { showBatch(await askNext()); offerChoices(); }
+        catch (err) { fail(err); say(T('{a} of {b} tags named and saved before it stopped.', { a: named, b: todo.length }), 'error'); }
+        stop.hidden = true;
+    });
+    // the rest without checking: each batch is listed as it is saved, the bar shows how far it got
+    saveAll.addEventListener('click', async (e) => {
+        e.stopPropagation(); hideChoices(); stop.hidden = false;
+        await saveCurrent(); offerUndo();
         stop.onclick = (ev) => { ev.stopPropagation(); if (ctl) ctl.abort(); };
         try {
-            for (let i = 0; i < rest.length; i += NAMING_BATCH) {
-                const batch = rest.slice(i, i + NAMING_BATCH);
+            while (next < batches.length) {
+                const res = await askNext();
+                const rows = res.batch.map((t, k) => makeRow(t, res.names[k], res.code));
+                await saveRows(res.batch, rows.map(r => r.read()), res.code);
+                rows.forEach(r => { r.freeze(); preview.append(r.li); });
                 say(T('Naming tags… {a} of {b}', { a: done, b: todo.length }), 'busy');
-                const r = await ai.nameTags(batch, { signal: ctl.signal, service: route.service, broaderVocab: vocab, english });
-                named += applyBatch(batch, r.names, r.code);
-                await save();   // after each batch: stopping keeps what is done
-                done += batch.length;
             }
             say(T('{a} of {b} tags named and saved.', { a: named, b: todo.length }));
         } catch (err) { fail(err); say(T('{a} of {b} tags named and saved before it stopped.', { a: named, b: todo.length }), 'error'); }
         stop.hidden = true;
-        offerUndo();
         onDone(named);
     });
     return { page, close };

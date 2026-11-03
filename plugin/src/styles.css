@@ -4713,3 +4713,29 @@ circle.graph-read-dim, text.graph-read-dim, .graph-blob.graph-read-dim { opacity
 .graph-naming-arrow, .graph-naming-ui { color: var(--text-muted); }
 .graph-naming-ui::before { content: "· "; }
 .graph-naming-broader { flex-basis: 100%; font-size: var(--fs-xs); color: var(--text-muted); }
+.graph-naming-progress { display: flex; align-items: center; gap: 8px; font-size: var(--fs-xs); color: var(--text-muted); position: sticky; top: 0; z-index: 1; padding: 4px 0; background: var(--bg-primary, var(--glass-base)); }
+.graph-naming-progress[hidden] { display: none; }
+.graph-naming-meter { flex: 1; height: 6px; accent-color: var(--accent, currentColor); }
+.graph-naming-en-input, .graph-naming-ui-input, .graph-naming-broader-input { font: inherit; font-size: var(--fs-sm); color: var(--text-primary); background: transparent; border: 1px solid var(--outline); border-radius: var(--radius-sm, 6px); padding: 2px 6px; min-width: 0; }
+.graph-naming-en-input { flex: 1 1 12em; }
+.graph-naming-ui-input { flex: 0 1 10em; }
+.graph-naming-broader-wrap { flex-basis: 100%; display: flex; align-items: baseline; gap: 6px; font-size: var(--fs-xs); color: var(--text-muted); }
+.graph-naming-broader-input { flex: 1; font-size: var(--fs-xs); }
+.graph-naming-skip { margin-left: auto; font-size: var(--fs-xs); color: var(--text-muted); cursor: pointer; white-space: nowrap; }
+.graph-naming-note { flex-basis: 100%; font-size: var(--fs-xs); color: var(--text-muted); }
+.graph-naming-row.is-skipped :is(.graph-naming-en-input, .graph-naming-ui-input, .graph-naming-broader-input) { text-decoration: line-through; }
+.graph-naming-edit-hint[hidden] { display: none; }
+
+/* Settings: learned tag names (lexiconEditor.js) */
+.lexicon-editor { display: flex; flex-direction: column; gap: 6px; margin-top: 8px; }
+.lexicon-editor[hidden] { display: none; }
+.lexicon-search { font: inherit; font-size: var(--fs-sm); padding: 4px 8px; border: 1px solid var(--outline); border-radius: var(--radius-sm, 6px); background: transparent; color: var(--text-primary); }
+.lexicon-list { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 4px; max-height: 420px; overflow: auto; }
+.lexicon-row { display: flex; flex-wrap: wrap; align-items: baseline; gap: 6px; padding: 6px 8px; border: 1px solid var(--outline); border-radius: var(--radius-md); font-size: var(--fs-sm); }
+.lexicon-tags { font-weight: 600; overflow-wrap: anywhere; }
+.lexicon-arrow { color: var(--text-muted); }
+.lexicon-en, .lexicon-broader { font: inherit; font-size: var(--fs-sm); padding: 2px 6px; border: 1px solid var(--outline); border-radius: var(--radius-sm, 6px); background: transparent; color: var(--text-primary); min-width: 0; }
+.lexicon-en { flex: 1 1 10em; }
+.lexicon-broader { flex-basis: 100%; font-size: var(--fs-xs); }
+.lexicon-more { align-self: flex-start; }
+.lexicon-more[hidden] { display: none; }

@@ -87,6 +87,6 @@ assert.ok(!undo.hidden, 'Undo is offered after saving');
 undo.click();
 for (let i = 0; i < 50 && dones.length < 2; i++) await tick(5);
 assert.equal(JSON.stringify(tc.getLexicon()), before, 'the lexicon is back to what it was');
-assert.deepEqual(dones, [2, 0], 'and the graph is told to redraw both times');
+assert.deepEqual(dones, [1, 0], 'and the graph is told to redraw both times (Society is a category, so Kirche got no broader topic and only Gemeinde counts)');
 ai.setAiTransport(null);
 console.log('literal names ok');

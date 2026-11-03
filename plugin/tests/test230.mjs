@@ -90,7 +90,7 @@ const page = box.querySelector('.graph-naming-page');
 assert.ok(/1 tag has no English name yet · 1 named tag has no broader topics yet/.test(page.textContent), 'both counts: ' + page.querySelector('.graph-preview-date').textContent);
 page.querySelector('.graph-naming-try').click();
 for (let i = 0; i < 50 && !page.querySelector('.graph-naming-row'); i++) await tick(5);
-assert.ok(/broader: Religion/.test(page.textContent), 'the preview shows the broader topics');
+assert.ok([...page.querySelectorAll('.graph-naming-broader-input')].every(i => i.value === 'Religion'), 'the preview shows the broader topics (editable)');
 assert.ok(/\(name kept\)/.test(page.textContent), 'and that a named tag keeps its name');
 page.querySelector('.graph-naming-save-first').click();
 for (let i = 0; i < 50 && done === null; i++) await tick(5);

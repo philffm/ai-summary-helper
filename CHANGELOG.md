@@ -7,6 +7,8 @@ Commit history has the details: <https://github.com/philffm/ai-summary-helper/co
 
 #### Added
 
+- Tag naming (graph): a progress bar over all batches, every batch listed as it is saved, editable rows (name, translation, broader topics) with Skip, and "Save and check the next 40" to check each batch instead of naming the rest unchecked
+- Settings → On-device tools → Learned tag names: search, rename, change broader topics or forget a learned name after saving
 - Tag naming also asks for up to two broader topics per tag ("AI in medicine": AI, medicine), kept in the topic lexicon, not as tags; the graph uses them as weak ties, so a rare, specific tag sits next to what it belongs to. Named tags without broader topics can be asked again without changing their name
 - Archive graph: "🏷 n tags without a name" gives the archive's tags their English names with AI (only the tag words are sent; a local model when one is set up; a preview of the first 40 before anything is saved), so the same topic in two languages becomes one
 - Archive graph links articles by their text too: a background run builds a small per-article cache (title, tags, summary, saved text), only new or changed articles are processed again. Details in `GRAPH.md`
@@ -20,6 +22,8 @@ Commit history has the details: <https://github.com/philffm/ai-summary-helper/co
 - Archive graph opens as topic clusters (worked out locally from the tags), with focus mode, path between two items, source-type rings, maturity fill, bridge articles, "Brief me on this" for gaps and Save image. Details in `GRAPH.md`
 
 #### Fixed
+
+- Tag naming: names longer than 24 characters were cut ("covert influence operati"); a dash in a reply is no longer taken as a name
 
 - Tag naming: the English name is the tag itself, never a broader word ("Germany" was named "geopolitics"); the model's broader word becomes a broader topic instead. Hashtag-style tags are written as words, colour codes are not sent, and a saved run can be undone
 - Archive graph: big, varied subtopics get a name again instead of "Group n": names use all the strongest terms of the articles and a looser pass, and a word only counts when it is over-represented by more than chance
