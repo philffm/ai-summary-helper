@@ -4,19 +4,19 @@
 // is saved.
 import { T, TN } from './feedI18n.js';
 import { el } from './dom.js';
-import { unknownTags, isLanguageTag, needsBroader, conceptKey, labelOfKey } from './topicConcepts.js';
+import { unknownTags, isLanguageTag, needsBroader, conceptKey, labelOfKey, humanizeTag, isJunkTag, getLexicon, setLexicon, filterBroader, normalizeTopic } from './topicConcepts.js';
 import { isCategory } from './topicCategories.js';
 
 export const NAMING_BATCH = 40;
+const isMark = (t) => isCategory(t) || isLanguageTag(t) || isJunkTag(t) || String(t).toLowerCase() === 'general';   // never sent to be named
 
 /** Tags of these articles that have no English name yet (not built in, not learned), most used first; no categories, no language marks. */
 export function tagsToName(articles) {
     const all = [];
-    (articles || []).forEach(a => (a && a.tags || []).forEach(t => { if (!isCategory(t) && !isLanguageTag(t) && String(t).toLowerCase() !== 'general') all.push(t); }));
+    (articles || []).forEach(a => (a && a.tags || []).forEach(t => { if (!isMark(t)) all.push(t); }));
     return unknownTags(all, Infinity, 1);
 }
 
-const isMark = (t) => isCategory(t) || isLanguageTag(t) || String(t).toLowerCase() === 'general';
 
 /** Tags that have a name but were never asked for their broader topics (once per topic, most used first). */
 export function tagsToBroaden(articles) {
@@ -36,12 +36,25 @@ export function namingWork(articles) {
     return { unnamed, broaden: tagsToBroaden(articles).filter(t => !seen.has(t)) };
 }
 
+/** Tags written in English: most of their articles have an English summary (the last language mark, see content/finalize.js). */
+export function englishTagsOf(articles) {
+    const votes = new Map();
+    (articles || []).forEach(a => {
+        const marks = (a && a.tags || []).filter(isLanguageTag);
+        if (!marks.length) return;   // older articles without language marks: unknown
+        const en = /\ben$/i.test(String(marks[marks.length - 1]).trim());
+        (a.tags || []).forEach(t => { if (isMark(t)) return; const v = votes.get(t) || [0, 0]; v[en ? 0 : 1]++; votes.set(t, v); });
+    });
+    return new Set([...votes].filter(([, [en, other]]) => en > other).map(([t]) => t));
+}
+
 /** The archive's most used topics in English: the model picks broader topics from these, so they meet the tags that exist. */
 export function broaderVocabOf(articles, max = 60) {
     const n = new Map();
-    (articles || []).forEach(a => (a && a.tags || []).forEach(t => { if (!isMark(t)) { const k = conceptKey(t); n.set(k, (n.get(k) || 0) + 1); } }));
+    const sample = new Map();   // a spelling per topic, to write "ProductDesign" as "Product Design" when no English label is known
+    (articles || []).forEach(a => (a && a.tags || []).forEach(t => { if (!isMark(t)) { const k = conceptKey(t); n.set(k, (n.get(k) || 0) + 1); if (!sample.has(k)) sample.set(k, t); } }));
     return [...n.entries()].sort((x, y) => y[1] - x[1]).slice(0, max)
-        .map(([k]) => labelOfKey(k, 'en') || (String(k).startsWith('c:') ? '' : k)).filter(Boolean);
+        .map(([k]) => labelOfKey(k, 'en') || (String(k).startsWith('c:') ? '' : (sample.get(k) ? humanizeTag(sample.get(k)) : k))).filter(Boolean);
 }
 
 /**
@@ -78,6 +91,7 @@ export async function openTagNamingPage(container, { articles, onDone = () => {}
     const todo = [...unnamed, ...broaden];
     const isNew = new Set(unnamed);
     const vocab = broaderVocabOf(articles);
+    const english = englishTagsOf(articles);   // their English name must be themselves (keepLiteral in feedAi.js)
     // a tag with no name is named (and gets broader topics); a named one only gets broader topics, its name stays
     const applyBatch = (batch, names, code) => {
         const a = [], an = [], b = [], bn = [];
@@ -102,8 +116,9 @@ export async function openTagNamingPage(container, { articles, onDone = () => {}
     const saveAll = mk('button-primary graph-naming-save-all', '');
     const saveFirst = mk('button-secondary graph-naming-save-first', T('Save these only'));
     const stop = mk('button-secondary graph-naming-stop', T('Stop'));
-    [saveAll, saveFirst, stop].forEach(b => { b.hidden = true; });
-    actions.append(tryBtn, saveAll, saveFirst, stop);
+    const undo = mk('button-secondary graph-naming-undo', T('Undo'));
+    [saveAll, saveFirst, stop, undo].forEach(b => { b.hidden = true; });
+    actions.append(tryBtn, saveAll, saveFirst, stop, undo);
     body.append(what, why, actions, status, preview);
     page.append(bar, body);
     let close = () => {};
@@ -122,15 +137,15 @@ export async function openTagNamingPage(container, { articles, onDone = () => {}
         e.stopPropagation(); tryBtn.disabled = true; ctl = new AbortController();
         say(TN(first.length, 'Naming {n} tag…', 'Naming {n} tags…'), 'busy');
         try {
-            const r = await ai.nameTags(first, { signal: ctl.signal, service: route.service, broaderVocab: vocab });
+            const r = await ai.nameTags(first, { signal: ctl.signal, service: route.service, broaderVocab: vocab, english });
             firstNames = r.names; firstCode = r.code;
             preview.textContent = '';
             first.forEach((t, k) => {
                 const n = firstNames[k];
                 const li = el('li', 'graph-naming-row' + (n && n.en ? '' : ' is-skipped'));
                 li.append(el('span', 'graph-naming-tag', t), el('span', 'graph-naming-arrow', '→'),
-                    el('span', 'graph-naming-en', n && n.en ? (isNew.has(t) ? n.en : T('(name kept)')) : T('(no name)')), ...(n && n.ui && isNew.has(t) ? [el('span', 'graph-naming-ui', n.ui)] : []),
-                    ...(n && n.broader && n.broader.length ? [el('span', 'graph-naming-broader', T('broader: {list}', { list: n.broader.join(', ') }))] : []));
+                    el('span', 'graph-naming-en', n && n.en ? (isNew.has(t) ? n.en + (n.kept ? ' ' + T('(literal; the model had a broader word)') : '') : T('(name kept)')) : T('(no name)')), ...(n && n.ui && isNew.has(t) ? [el('span', 'graph-naming-ui', n.ui)] : []),
+                    ...shownBroader(n));
                 preview.append(li);
             });
             const ok = firstNames.filter(n => n && n.en).length;
@@ -142,11 +157,31 @@ export async function openTagNamingPage(container, { articles, onDone = () => {}
         } catch (err) { tryBtn.disabled = false; fail(err); }
     });
 
-    const saveFirstBatch = async () => { const n = applyBatch(first, firstNames, firstCode); await save(); return n; };
+    // the broader topics as they will be saved (categories, catch-alls and the tag itself dropped), in the model's spelling
+    const shownBroader = (n) => {
+        if (!n || !n.en) return [];
+        const keep = new Set(filterBroader(n.en, n.broader));
+        const list = (n.broader || []).filter((b, i, all) => keep.has(normalizeTopic(b)) && all.findIndex(x => normalizeTopic(x) === normalizeTopic(b)) === i);
+        return list.length ? [el('span', 'graph-naming-broader', T('broader: {list}', { list: list.join(', ') }))] : [];
+    };
+    // Undo: the lexicon as it was before the first save comes back (this page only; once it is closed, the names stay).
+    let before = null;
+    const offerUndo = () => {
+        undo.hidden = false;
+        undo.onclick = async (ev) => {
+            ev.stopPropagation(); if (ctl) ctl.abort();
+            setLexicon(JSON.parse(before)); await save();
+            undo.hidden = true; stop.hidden = true;
+            say(T('Undone: the tag names are as they were before.'));
+            onDone(0);
+        };
+    };
+    const saveFirstBatch = async () => { if (before === null) before = JSON.stringify(getLexicon()); const n = applyBatch(first, firstNames, firstCode); await save(); return n; };
     saveFirst.addEventListener('click', async (e) => {
         e.stopPropagation(); saveFirst.disabled = true; saveAll.hidden = true;
         const n = await saveFirstBatch();
         say(TN(n, '{n} tag named and saved.', '{n} tags named and saved.'));
+        offerUndo();
         onDone(n);
     });
     saveAll.addEventListener('click', async (e) => {
@@ -158,7 +193,7 @@ export async function openTagNamingPage(container, { articles, onDone = () => {}
             for (let i = 0; i < rest.length; i += NAMING_BATCH) {
                 const batch = rest.slice(i, i + NAMING_BATCH);
                 say(T('Naming tags… {a} of {b}', { a: done, b: todo.length }), 'busy');
-                const r = await ai.nameTags(batch, { signal: ctl.signal, service: route.service, broaderVocab: vocab });
+                const r = await ai.nameTags(batch, { signal: ctl.signal, service: route.service, broaderVocab: vocab, english });
                 named += applyBatch(batch, r.names, r.code);
                 await save();   // after each batch: stopping keeps what is done
                 done += batch.length;
@@ -166,6 +201,7 @@ export async function openTagNamingPage(container, { articles, onDone = () => {}
             say(T('{a} of {b} tags named and saved.', { a: named, b: todo.length }));
         } catch (err) { fail(err); say(T('{a} of {b} tags named and saved before it stopped.', { a: named, b: todo.length }), 'error'); }
         stop.hidden = true;
+        offerUndo();
         onDone(named);
     });
     return { page, close };

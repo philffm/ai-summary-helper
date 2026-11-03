@@ -33,6 +33,17 @@ export const CONCEPTS = {
  *  The AI must not be asked what topic it is (it answers "Germany"), and no topic may ever be learned for it. */
 export const isLanguageTag = (t) => /^🌐\s*[a-z]{2,3}(?:-[a-z0-9]{2,8})?$/i.test(String(t == null ? '' : t).trim());
 
+/** "ContentPollution" → "Content Pollution", "UXForAll" → "UX For All": a hashtag-style tag written as words. */
+export function humanizeTag(t) {
+    return String(t || '').replace(/[_#]+/g, ' ').replace(/([a-z\d])([A-Z])/g, '$1 $2').replace(/([A-Z]+)([A-Z][a-z])/g, '$1 $2').replace(/\s+/g, ' ').trim();
+}
+
+/** Not a topic at all: a colour value ("7f8c8d"), an id, a number. Such a tag is never sent to be named. */
+export const isJunkTag = (t) => {
+    const s = String(t == null ? '' : t).trim().replace(/^#/, '');
+    return s.length < 2 || !/\p{L}/u.test(s) || (/^[0-9a-f]{3,8}$/i.test(s) && /\d/.test(s));
+};
+
 export const normalizeTopic = (t) => String(t || '').normalize('NFD').replace(/[̀-ͯ]/g, '').replace(/[#]/g, '').replace(/\s+/g, ' ').trim().toLowerCase();
 
 const LOOKUP = new Map();
@@ -102,21 +113,26 @@ export function learnTagPairs(entries) {
 export function lexiconBroader(en, list) {
     const key = normalizeTopic(en);
     if (!key || key.length > 40 || LOOKUP.has(key) || isLanguageTag(en)) return false;
-    const seen = new Set();
-    const out = [];
+    const out = filterBroader(key, list);
+    const cur = LEX[key] || (LEX[key] = {});
+    if (Array.isArray(cur[BROADER]) && cur[BROADER].join('|') === out.join('|')) return false;
+    cur[BROADER] = out;
+    return true;
+}
+// the fixed categories (topicCategories.js) and catch-alls: as broader topics they would tie everything in a category together
+const NOT_BROADER = new Set(['technology', 'business', 'science', 'health', 'politics', 'environment', 'society', 'lifestyle', 'general', 'news', 'other', 'misc', 'miscellaneous', 'uncategorized', 'uncategorised', 'various', 'none', 'n/a']);
+/** The broader topics that would be kept for `en` (normalized, at most 2): what a preview shows is what is saved. */
+export function filterBroader(en, list) {
+    const key = normalizeTopic(en);
+    const seen = new Set(), out = [];
     for (const b of Array.isArray(list) ? list : []) {
         const k = normalizeTopic(b);
         if (!k || k.length > 40 || k === key || isLanguageTag(b) || NOT_BROADER.has(k) || seen.has(k)) continue;
         seen.add(k); out.push(k);
         if (out.length === 2) break;
     }
-    const cur = LEX[key] || (LEX[key] = {});
-    if (Array.isArray(cur[BROADER]) && cur[BROADER].join('|') === out.join('|')) return false;
-    cur[BROADER] = out;
-    return true;
+    return out;
 }
-// the fixed categories (topicCategories.js) and the old catch-all: as broader topics they would tie everything in a category together
-const NOT_BROADER = new Set(['technology', 'business', 'science', 'health', 'politics', 'environment', 'society', 'lifestyle', 'general', 'news', 'other', 'misc']);
 
 /** Comparison keys (as conceptKey) of the broader topics of a tag; [] when there are none or it was never asked. */
 export function broaderKeysOf(tag) {

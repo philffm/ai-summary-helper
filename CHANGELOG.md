@@ -21,6 +21,7 @@ Commit history has the details: <https://github.com/philffm/ai-summary-helper/co
 
 #### Fixed
 
+- Tag naming: the English name is the tag itself, never a broader word ("Germany" was named "geopolitics"); the model's broader word becomes a broader topic instead. Hashtag-style tags are written as words, colour codes are not sent, and a saved run can be undone
 - Archive graph: big, varied subtopics get a name again instead of "Group n": names use all the strongest terms of the articles and a looser pass, and a word only counts when it is over-represented by more than chance
 - Archive graph (Topics): the dots left their circles once every tag was shown, because the hidden tag nodes pushed them away; they no longer collide
 - Archive graph: function words of German, French, Spanish, Italian, Dutch and Portuguese are no terms, so groups are no longer named "die" or "und · der"
