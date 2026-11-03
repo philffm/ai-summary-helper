@@ -1651,7 +1651,12 @@ export function renderGraphList(container, nodes, links, gaps = []) {
     document.addEventListener('keydown', container.__graphKeyDoc);
     toggle.append(gBtn, lBtn, ...(pBtn ? [pBtn] : []));
     set('graph', false);
-    graphTopbar(container).prepend(toggle);
+    const topbar = graphTopbar(container);
+    topbar.prepend(toggle);
+    // The chips on top wrap onto a second row in a narrow panel; the list and the gaps start below however tall the bar is.
+    const fitTopbar = () => container.style.setProperty('--graph-topbar-h', topbar.offsetHeight + 'px');
+    fitTopbar();
+    if (typeof ResizeObserver === 'function') new ResizeObserver(fitTopbar).observe(topbar);
     container.append(list, gapList, live);
 }
 
