@@ -651,6 +651,27 @@ function renderGraph(container, allArticles, highlightTimestamp, minTagDegree, s
     nodes.forEach(n => { if (n.group === 'article') typeOf.set(n.id, sourceType(n.data)); });
     const typesPresent = new Set([...typeOf.values()].filter(t => t !== 'article'));
 
+    // Colour by: Topic (the cluster), Age (when it was saved) or Mood (the AI's score for the article, where there is one).
+    const savedAt = (a) => { const t = new Date(a && a.timestamp).getTime(); return Number.isFinite(t) ? t : 0; };
+    const stampsSorted = nodes.filter(n => n.group === 'article').map(n => savedAt(n.data)).sort((x, y) => x - y);
+    const ageQ = (d) => {   // 0 = oldest … 1 = newest, by rank (a few big import days must not wash out the scale)
+        if (stampsSorted.length < 2) return 1;
+        let lo = 0, hi = stampsSorted.length - 1; const t = savedAt(d.data);
+        while (lo < hi) { const mid = (lo + hi) >> 1; if (stampsSorted[mid] < t) lo = mid + 1; else hi = mid; }
+        return lo / (stampsSorted.length - 1);
+    };
+    const moodOf = (d) => (d.data && typeof d.data.moodScore === 'number' ? Math.max(-1, Math.min(1, d.data.moodScore)) : null);
+    const moodScored = nodes.filter(n => n.group === 'article' && moodOf(n) !== null).length;
+    const colorModes = ['topic', 'age', ...(moodScored ? ['mood'] : [])];
+    let colorMode = colorModes.includes(container.__graphColorBy) ? container.__graphColorBy : 'topic';
+    const moodColor = (m) => (m < 0 ? d3.interpolateRgb('#94a3b8', '#d9480f')(-m) : d3.interpolateRgb('#94a3b8', '#2563eb')(m));   // orange ← slate → blue (safe for red-green colour blindness)
+    const ageColor = (q) => d3.interpolateViridis(0.08 + 0.84 * q);                                                                   // old: purple … new: yellow
+    const colorFor = (d, mode) => (mode === 'age' ? ageColor(ageQ(d)) : mode === 'mood' ? (moodOf(d) === null ? 'var(--text-muted)' : moodColor(moodOf(d))) : clusterColor(d.cluster));
+    let notesOf = new Map();   // article id → your highlights and notes (read from storage after the first paint)
+    const fillStrength = (d) => (d.group !== 'article' ? 1
+        : colorMode === 'mood' && moodOf(d) === null ? 0.3
+        : MATURITY_FILL[maturityOf(d.data, (notesOf.get(d.data && d.data.id) || 0))]);
+
     if (typeof d3 === 'undefined') {
         container.innerHTML = `<div class="graph-empty">${T('D3 library failed to load.')}</div>`;
         return;
@@ -832,11 +853,11 @@ function renderGraph(container, allArticles, highlightTimestamp, minTagDegree, s
         .attr('r', nodeRadius)
         .attr('fill', d => {
             // Articles take their cluster's colour (the topic they sit in); tags keep their own.
-            if (d.group === 'article') return clusterColor(d.cluster);
+            if (d.group === 'article') return colorFor(d, colorMode);
             return tagColor(d.label);
         })
         // How far you got with an article: saved (faint) → worked on (solid). Separate from `opacity`, which carries the neglect fade.
-        .attr('fill-opacity', d => (d.group === 'article' ? MATURITY_FILL[maturityOf(d.data, 0)] : 1))
+        .attr('fill-opacity', fillStrength)
         .attr('stroke', d => {
             if (highlightTimestamp && d.group === 'article' && d.data?.timestamp === highlightTimestamp) {
                 return '#fbbf24'; // amber highlight ring
@@ -1126,9 +1147,18 @@ function renderGraph(container, allArticles, highlightTimestamp, minTagDegree, s
         if (clusterLabels) clusterLabels.text(c => (on ? clusterName(c) + ' · ' + (unreadIn.get(c.id) || 0) : clusterName(c)));
         if (say) announce(on ? TN(unreadIds.size, '{n} unread article stands out', '{n} unread articles stand out') : T('Showing all articles'));
     }
+    // Colour by: recolour the dots in place, no redraw.
+    function applyColor(mode, say) {
+        colorMode = mode; container.__graphColorBy = mode;
+        node.filter(d => d.group === 'article').attr('fill', d => colorFor(d, mode)).attr('fill-opacity', fillStrength);
+        renderColorLegend(container, mode, { ageColor, moodColor });
+        if (say) announce(mode === 'age' ? T('Dots coloured by age: purple is old, yellow is recent') : mode === 'mood' ? T('Dots coloured by mood: orange is negative, blue is positive, grey is not scored') : T('Dots coloured by topic'));
+    }
+    applyColor(colorMode, false);
     applyUnread(!!container.__graphUnreadOnly, false);
     renderStructureChips(container, {
         canOverview, overview,
+        color: { mode: colorMode, modes: colorModes, onChange: (m) => applyColor(m, true) },
         unread: unreadIds.size ? { count: unreadIds.size, on: !!container.__graphUnreadOnly, onToggle: (on) => { container.__graphUnreadOnly = on; applyUnread(on, true); } } : null,
         onLayout: (mode) => {
             container.__graphLayout = mode;
@@ -1140,7 +1170,8 @@ function renderGraph(container, allArticles, highlightTimestamp, minTagDegree, s
     // Maturity also counts your own highlights and notes; they live in storage, so the fill is refined once they are read.
     import('./notesView.js').then((m) => m.noteCountsByArticle()).then((counts) => {
         if (container.__archiveGraphSelections?.node !== node || !counts || !counts.size) return;
-        node.attr('fill-opacity', d => (d.group === 'article' ? MATURITY_FILL[maturityOf(d.data, (counts.get(d.data && d.data.id) || {}).mine + (counts.get(d.data && d.data.id) || {}).notes || 0)] : 1));
+        counts.forEach((c, id) => notesOf.set(id, (c.mine || 0) + (c.notes || 0)));
+        node.attr('fill-opacity', fillStrength);
     }).catch(() => { /* the fill stays at what the record alone tells */ });
     import('./graphBrief.js').then((m) => {
         if (container.__archiveGraphSelections?.node !== node) return;   // re-rendered meanwhile
@@ -1168,6 +1199,7 @@ function renderGraph(container, allArticles, highlightTimestamp, minTagDegree, s
             renderGraph(container, allArticles, highlightTimestamp, nextMinDegree, similarityIndex);
         },
     });
+    renderColorLegend(container, colorMode, { ageColor, moodColor });   // the legend only exists now
     followSimilarity(container, () => { simulation.stop(); renderGraph(container, allArticles, highlightTimestamp, minTagDegree, similarityIndex); });
 }
 
@@ -1249,9 +1281,39 @@ function exportGraphSvg(container) {
 }
 
 /** Topics | Detail switch, "Path" chip and "Save image" in the same row as the other chips. */
-function renderStructureChips(container, { canOverview, overview, onLayout, unread }) {
+const COLOR_LABEL = { topic: () => T('Topic'), age: () => T('Age'), mood: () => T('Mood') };
+
+/** A colour bar in the legend for Age and Mood (Topic needs none: the labels say it). */
+function renderColorLegend(container, mode, { ageColor, moodColor }) {
+    const legend = container.querySelector('.graph-legend');
+    if (!legend) return;
+    legend.querySelectorAll('.graph-legend-color').forEach(n => n.remove());
+    if (mode === 'topic') return;
+    const stops = (fn, n) => Array.from({ length: n }, (_, i) => fn(i / (n - 1))).join(', ');
+    const item = document.createElement('span');
+    item.className = 'graph-legend-item graph-legend-color';
+    const bar = document.createElement('span'); bar.className = 'graph-legend-grad';
+    bar.style.background = 'linear-gradient(90deg, ' + (mode === 'age' ? stops(ageColor, 6) : stops((q) => moodColor(q * 2 - 1), 7)) + ')';
+    const a = document.createElement('span'); a.textContent = mode === 'age' ? T('older') : T('negative');
+    const b = document.createElement('span'); b.textContent = mode === 'age' ? T('newer') : T('positive');
+    item.append(a, bar, b);
+    if (mode === 'mood') { const none = document.createElement('span'); none.textContent = '· ' + T('grey: not scored'); item.append(none); }
+    legend.append(item);
+}
+
+function renderStructureChips(container, { canOverview, overview, onLayout, unread, color }) {
     const bar = filterBar(container);
-    bar.querySelectorAll('.graph-layout-toggle, .graph-path-chip, .graph-save-chip, .graph-unread-chip').forEach(n => n.remove());
+    bar.querySelectorAll('.graph-layout-toggle, .graph-path-chip, .graph-save-chip, .graph-unread-chip, .graph-color-chip').forEach(n => n.remove());
+    if (color && color.modes.length > 1) {
+        const chip = document.createElement('button');
+        chip.type = 'button'; chip.className = 'graph-color-chip';
+        let mode = color.mode;
+        const paint = () => { chip.textContent = T('Color: {mode}', { mode: COLOR_LABEL[mode]() }); };
+        chip.title = T('Change what the dot colours mean');
+        paint();
+        chip.addEventListener('click', () => { mode = color.modes[(color.modes.indexOf(mode) + 1) % color.modes.length]; paint(); color.onChange(mode); });
+        bar.append(chip);
+    }
     if (canOverview) {
         const g = document.createElement('div');
         g.className = 'segmented-control segmented-control-buttons graph-layout-toggle'; g.setAttribute('role', 'group'); g.setAttribute('aria-label', T('Graph layout'));

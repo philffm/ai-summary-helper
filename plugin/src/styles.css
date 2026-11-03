@@ -4676,7 +4676,7 @@ circle.graph-path { stroke: var(--accent); stroke-width: 3px; }
 .graph-focusbar-open { padding: 4px 10px; background: var(--accent); color: #fff; }
 .graph-focusbar-clear { width: 24px; height: 24px; background: transparent; color: var(--text-muted); }
 .graph-focusbar-clear:hover, .graph-focusbar-clear:focus-visible { background: var(--accent-a12); outline: none; }
-.graph-path-chip, .graph-save-chip, .graph-unread-chip { padding: 4px 10px; font: inherit; font-size: var(--fs-xs); color: var(--text-primary); background: var(--glass-base); border: 1px solid var(--outline); border-radius: 999px; cursor: pointer; }
+.graph-path-chip, .graph-save-chip, .graph-unread-chip, .graph-color-chip { padding: 4px 10px; font: inherit; font-size: var(--fs-xs); color: var(--text-primary); background: var(--glass-base); border: 1px solid var(--outline); border-radius: 999px; cursor: pointer; }
 .graph-path-chip.on, .graph-unread-chip.on { background: var(--accent); border-color: var(--accent); color: #fff; }
 .graph-layout-toggle { flex: none; }
 .graph-gap-brief { align-self: flex-start; margin: 4px 0; padding: 4px 12px; font: inherit; font-size: var(--fs-xs); color: var(--accent); background: transparent; border: 1px solid var(--accent); border-radius: 999px; cursor: pointer; }
@@ -4691,3 +4691,5 @@ circle.graph-path { stroke: var(--accent); stroke-width: 3px; }
 .graph-sim-chip { padding: 4px 10px; font: inherit; font-size: var(--fs-xs); color: var(--text-muted); background: var(--glass-base); border: 1px dashed var(--outline); border-radius: 999px; cursor: default; }
 .graph-sim-chip:not(:disabled) { color: var(--accent); border: 1px solid var(--accent); cursor: pointer; }
 circle.graph-read-dim, text.graph-read-dim, .graph-blob.graph-read-dim { opacity: 0.1; }
+.graph-legend-color { gap: 5px; }
+.graph-legend-grad { display: inline-block; width: 54px; height: 8px; border-radius: 4px; }
