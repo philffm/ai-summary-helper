@@ -24,7 +24,8 @@
     "test": "node plugin/tests/run.mjs",
     "test:all": "node plugin/tests/run.mjs --all",
     "test:release": "node plugin/tests/run.mjs --release && node scripts/feed-i18n.mjs check",
-    "lint": "eslint plugin/src"
+    "lint": "eslint plugin/src",
+    "libs:check": "node scripts/check-vendored-libs.mjs"
   },
   "dependencies": {
     "cheerio": "^1.2.0"

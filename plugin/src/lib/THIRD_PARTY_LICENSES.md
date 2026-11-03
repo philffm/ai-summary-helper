@@ -15,12 +15,15 @@ is identical for pdf.js and AFINN-111); the D3 and Lucide ISC texts follow.
 | D3.js | 7.9.0 | ISC | https://github.com/d3/d3 |
 | Lucide (inline icon sprite in popup.html, subset) | 0.468.0 | ISC | https://github.com/lucide-icons/lucide |
 | AFINN-111 | — | Apache-2.0 | https://github.com/fnielsen/afinn |
+| qrcode-generator (`qrcode.js`, phone-inbox pairing code) | 1.4.4 | MIT | https://github.com/kazuhikoarase/qrcode-generator |
 
 > **Version note (manual vendoring):** these libraries are vendored by hand
 > (not via npm), so there's no automatic drift detection. When any
 > `lib/*.mjs` / `lib/*.js` file is replaced, update the version number in
 > the table above AND in the root `readme.md`'s third-party section — the
 > table is the only record of what's actually vendored.
+> `scripts/check-vendored-libs.mjs` checks the table against the files on every
+> pull request, and against npm releases and advisories every night.
 
 > **pdf.js build choice:** `lib/pdf.mjs` and `lib/pdf.worker.mjs` are `legacy/build/pdf.min.mjs` and
 > `legacy/build/pdf.worker.min.mjs` from the `pdfjs-dist` npm package, renamed. The modern build uses syntax

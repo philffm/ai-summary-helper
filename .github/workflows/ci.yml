@@ -2,6 +2,7 @@ name: CI
 
 # Pull requests: lint + the tests a change can reach (import graph, `npm test -- --deep`). Missing translations do not fail a pull request.
 # main, tags and a nightly run: every test, the audits and the translation check (`npm run test:release`), the gate before a release.
+# Nightly also checks the hand-vendored libraries in plugin/src/lib against npm advisories (scripts/check-vendored-libs.mjs).
 
 on:
   pull_request:
@@ -40,6 +41,8 @@ jobs:
         run: npm run demo:check
       - name: Validate sitemap and internal links
         run: node --test scripts/tests/sitemap-links.test.mjs scripts/tests/carousel-accessibility.test.mjs && node scripts/check-sitemap.mjs
+      - name: Vendored libraries match their documented versions
+        run: node scripts/check-vendored-libs.mjs --offline
       - name: Tests the change can reach
         run: npm test -- --deep
 
@@ -66,5 +69,12 @@ jobs:
       - name: Report flaky tests as issues
         if: always()
         run: node scripts/report-flaky.mjs "$RUNNER_TEMP/flaky-tests.json"
+        env:
+          GH_TOKEN: ${{ github.token }}
+      # npm audit can't see plugin/src/lib (vendored by hand): check it against npm releases and advisories.
+      # Nightly only; keeps one issue up to date and closes it once everything is clean. Never fails the run.
+      - name: Vendored libraries - advisories and updates
+        if: always() && github.event_name == 'schedule'
+        run: node scripts/check-vendored-libs.mjs --issue
         env:
           GH_TOKEN: ${{ github.token }}

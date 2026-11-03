@@ -154,7 +154,7 @@
 * [x] **Intellectual Property & Licensing**
   * ✅ AGPL-3.0 `LICENSE` plus `COMMERCIAL-LICENSE.md` (dual license). `LICENSE-MIT` covers releases up to 2.2.38, as stated in the readme.
   * ⚠️ `mcp/package.json` still declares `"license": "MIT"`. Check whether `aish-mcp` is meant to stay MIT or move to AGPL with the rest.
-  * ✅ `plugin/src/lib/THIRD_PARTY_LICENSES.md` covers pdf.js (Apache-2.0), D3 (ISC), Lucide (ISC), AFINN (Apache-2.0) and qrcode-generator (MIT). It's vendored by hand, so nothing flags outdated versions (see the pdf.js CVE).
+  * ✅ `plugin/src/lib/THIRD_PARTY_LICENSES.md` covers pdf.js (Apache-2.0), D3 (ISC), Lucide (ISC), AFINN (Apache-2.0) and qrcode-generator (MIT). They're vendored by hand, so `npm audit` can't see them. Since 2026-11-03, `scripts/check-vendored-libs.mjs` checks the table against the files on every PR, and against npm releases and advisories nightly, keeping one issue up to date.
 
 ---
 
