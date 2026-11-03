@@ -45,6 +45,14 @@ test('rewrites links to pages present in the locale inventory', () => {
         assert.equal($('a').eq(3).attr('href'), './');
         assert.equal(localizedPath('blog/ai-apps-mcp.html', 'de'), 'blog/ki-apps-mcp.html');
 
+        // links written for the English page to a page this locale does not have go to the English page at the root
+        const missing = cheerio.load('<a href="bookmarklet.html#try">Try</a><a href="pocket-alternative/">Pocket</a><a href="../bookmarklet.html">Already right</a>');
+        rewriteAvailablePageLinks(missing, 'de/index.html', 'de', inventory, 'de');
+        assert.deepEqual(missing('a').map((_, a) => missing(a).attr('href')).get(), ['../bookmarklet.html#try', '../pocket-alternative/', '../bookmarklet.html']);
+        const deep = cheerio.load('<a href="../bookmarklet.html">Try</a>');
+        rewriteAvailablePageLinks(deep, 'de/blog/ki-apps-mcp.html', 'de', inventory, 'de');
+        assert.equal(deep('a').attr('href'), '../../bookmarklet.html', 'from a page one folder down');
+
         const demo = cheerio.load('<a href="../demo/index.html">Demo</a>');
         rewriteAvailablePageLinks(demo, 'de/pdf-summarizer/index.html', 'de', inventory, 'de');
         assert.equal(demo('a').attr('href'), '../../demo/index.html');
