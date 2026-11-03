@@ -579,6 +579,7 @@ export function destroyArchiveGraph(container) {
     if (container.__graphKeyDoc) { document.removeEventListener('keydown', container.__graphKeyDoc); container.__graphKeyDoc = null; }
     if (container.__graphFocusKey) { document.removeEventListener('keydown', container.__graphFocusKey); container.__graphFocusKey = null; }
     container.__graphClear = null;
+    if (container.__graphReplayTimer) { clearInterval(container.__graphReplayTimer); container.__graphReplayTimer = null; }
     if (container.__graphSimStop) { container.__graphSimStop(); container.__graphSimStop = null; }
     container.classList.remove('graph-overview', 'graph-quiet');
 
@@ -1428,10 +1429,40 @@ function renderTimeRange(container, nodes, links, articles) {
         chip.classList.toggle('on', !full);
         container.dispatchEvent(new CustomEvent('graph-time-range', { detail: { from: lo, to: hi, full }, bubbles: true }));
     };
+    // Replay: the window grows from the first month to the last, so you watch the archive (and its topics) build up.
+    // Under reduced motion there is no animation: the same button steps one month per press.
+    const calmMotion = typeof matchMedia === 'function' && matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const stepMs = Math.max(150, Math.min(700, Math.round(15000 / (span.max - span.min + 1))));   // about 15 s for any archive
+    const play = document.createElement('button');
+    play.type = 'button'; play.className = 'graph-time-play';
+    let timer = null;
+    const say = (t) => { const live = container.querySelector('.graph-live'); if (live) live.textContent = t; };
+    const paintPlay = () => { play.textContent = calmMotion ? T('Next month →') : timer ? T('⏸ Pause') : T('▶ Replay'); play.setAttribute('aria-pressed', String(!!timer)); };
+    const stopReplay = (finished) => {
+        if (timer) { clearInterval(timer); timer = null; container.__graphReplayTimer = null; }
+        paintPlay();
+        if (finished) say(T('Replay finished: all {n} articles in view', { n: total }));
+    };
+    const advance = () => {
+        const hi = Number(to.value);
+        if (hi >= span.max) { stopReplay(true); return; }
+        to.value = String(hi + 1); paint();
+        if (hi + 1 >= span.max) stopReplay(true);
+    };
+    const restart = () => { from.value = String(span.min); to.value = String(span.min); paint(); };
+    play.addEventListener('click', () => {
+        if (timer) { stopReplay(false); return; }
+        if (calmMotion) { if (Number(to.value) >= span.max) restart(); else advance(); return; }
+        restart(); say(T('Replay started: {a}', { a: monthLabel(span.min) }));
+        timer = setInterval(advance, stepMs); container.__graphReplayTimer = timer; paintPlay();
+    });
+    paintPlay();
+    from.addEventListener('input', () => stopReplay(false)); to.addEventListener('input', () => stopReplay(false));
     from.addEventListener('input', paint); to.addEventListener('input', paint);
-    reset.addEventListener('click', () => { from.value = String(span.min); to.value = String(span.max); paint(); });
+    reset.addEventListener('click', () => { stopReplay(false); from.value = String(span.min); to.value = String(span.max); paint(); });
     chip.addEventListener('click', () => { panel.hidden = !panel.hidden; chip.setAttribute('aria-expanded', String(!panel.hidden)); });
-    panel.append(text, track, ends, reset);
+    const actions = document.createElement('div'); actions.className = 'graph-time-actions'; actions.append(play, reset);
+    panel.append(text, track, ends, actions);
     wrap.append(chip, panel);
     filterBar(container).append(wrap);
     paint();
@@ -1730,6 +1761,7 @@ async function renderPreviewHighlights(card, article) {
  * Card can be dismissed by clicking its close button or clicking outside it.
  */
 export const __test_showPreviewCard = (container, article) => showPreviewCard(container, article);
+export const __test_renderTimeRange = (container, nodes, links, articles) => renderTimeRange(container, nodes, links, articles);
 function showPreviewCard(container, article) {
     const containerEl = container;
     // Remove any existing preview card

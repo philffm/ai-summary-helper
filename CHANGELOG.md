@@ -8,6 +8,7 @@ Commit history has the details: <https://github.com/philffm/ai-summary-helper/co
 #### Added
 
 - Archive graph links articles by their text too: a background run builds a small per-article cache (title, tags, summary, saved text), only new or changed articles are processed again. Details in `GRAPH.md`
+- Archive graph: "Replay" in the Time panel lets the window grow month by month
 - Archive graph: "Color" chip switches the dot colours between topic, age and mood
 - MCP: new tool `related_articles` (the saved articles closest to one article, with the tags they share)
 - Markdown export of a graph topic adds a hub note (`Hub – <topic>.md`) that links all exported notes with wikilinks, grouped by how far you got
