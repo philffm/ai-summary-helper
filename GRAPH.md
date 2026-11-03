@@ -49,6 +49,7 @@ The legend at the bottom right lists the ring styles that are actually present.
 - **Focus.** Click a cluster (Topics) or an article (either layout) and the rest steps back. Clusters also zoom in. The bar at the top says what is in focus, offers **Open topic** (the topic page: briefing, questions, never-opened list, Markdown export) and resets. Esc or a tap on the background resets too.
 - **Path.** Turn on "Path", pick two items: the shortest chain of shared tags and similar-content links is highlighted and read out ("3 steps: A → tag → B"). "Not connected" is an answer too.
 - **Gaps.** Topics with one or two saved articles you have not opened for 30 days. Each has a **Brief me on this** button that opens the topic page for it.
+- **Anki cards.** The topic page's "🃏 Anki cards" saves a text file Anki imports (File ▸ Import): one card per **question you asked** and **answer you kept**, namely the answers pinned under the articles of the topic and the questions asked on the topic page. A briefing without a question is not a card, and highlights are not either (a quote without a question teaches little). Nothing is generated at export and nothing leaves the device. Cards carry a stable id, so importing again updates them. With no questions yet it says so instead of saving an empty file.
 - **Replay.** In the 🕐 Time panel, "▶ Replay" lets the window grow from the first month to the last (about 15 seconds for any archive), so you watch the archive and its topics build up. Touching a slider, Pause or Reset stops it. With reduced motion there is no animation: the button becomes "Next month →" and steps by hand. Start and end are announced.
 - **Color by.** One chip cycles what the dot colours mean, without a redraw: **Topic** (the cluster, default), **Age** (when it was saved; by rank, so a few big import days do not wash out the scale; purple = old, yellow = recent) or **Mood** (the AI's score for the article, orange = negative, blue = positive, grey = not scored; offered only when some articles have a score, and scores are only set on demand). The legend shows the scale. Both scales avoid red/green.
 - **Unread.** A chip with the count ("Unread · 200"). Everything marked read (`readAt`: the Inbox / Read tabs and the 🆕 badge use the same) steps back, and in Topics every cluster label shows how many of its articles are still unread ("trade · 34"). A class toggle, no redraw.
@@ -110,7 +111,7 @@ Groups are the personas the site already uses. MoSCoW is a judgement from the co
 | **Video** | Learning paths across videos and articles | video ring ✅ | jump to the transcript moment | playlist clusters | – |
 | **Privacy** | Be sure nothing leaves the device | local only ✅ (all of the above runs on the device) | save as image ✅ | – | cloud sync |
 | **E-reader** | Pick what goes to the device | topic page export ✅ (existing) | "unread only" filter ✅ | – | device sync |
-| **Education** | Make understanding visible | maturity ✅, questions per topic ✅ (existing) | flashcards from a topic | share with a teacher | accounts |
+| **Education** | Make understanding visible | maturity ✅, questions per topic ✅ (existing) | flashcards from a topic ✅ (Anki file) | share with a teacher | accounts |
 | **MCP** | Give AI apps the archive as context | – | related items as a tool ✅ (`related_articles`); topic list / subgraph | – | write access |
 
 ✅ = in this version. Everything without a mark is not built.
@@ -118,6 +119,6 @@ Groups are the personas the site already uses. MoSCoW is a judgement from the co
 ## Not done
 
 - **MCP tools** for the topic list and for the path between two articles (`related_articles` exists).
-- **Flashcards from a topic.**
+- **Flashcards inside the extension** (spaced repetition, a review screen). The Anki file is the cheap start; a review screen of our own would be a separate product.
 - **AI names for clusters.** Names come from the tags on purpose (local, free, stable). An opt-in AI title is possible later.
 - **Translations** of the new strings: they fall back to English until `node scripts/feed-i18n.mjs extract` / `merge` has run (release gate).

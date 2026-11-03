@@ -228,6 +228,22 @@ export function openClusterPage(container, { label, articles }) {
         });
         actions.append(exp);
     }
+    // Flashcards: the questions you asked and the answers you kept, as a file Anki imports. No AI call, nothing leaves the device.
+    if (st.exportable) {
+        const ank = el('button', 'button-secondary graph-cluster-anki'); ank.type = 'button';
+        ank.textContent = '🃏 ' + T('Anki cards');
+        ank.title = T('Export the questions you asked on this topic, and the answers you pinned, as flashcards for Anki');
+        ank.addEventListener('click', async (e) => {
+            e.stopPropagation(); ank.disabled = true;
+            try {
+                const m = await import('./ankiExport.js');
+                const n = await m.exportAnki({ articles: list, results: out.__results || [], topic: label });
+                if (!n) { out.className = 'graph-cluster-answer is-error'; out.textContent = T('No cards yet. Ask a question about this topic, or pin an answer under an article, and they become cards.'); }
+                else { out.className = 'graph-cluster-answer'; out.textContent = TN(n, '{n} card saved. In Anki: File ▸ Import.', '{n} cards saved. In Anki: File ▸ Import.'); }
+            } finally { ank.disabled = false; }
+        });
+        actions.append(ank);
+    }
     const savable = list.filter(a => a.id && !a.feedStub);
     if (savable.length >= 2) {
         const sv = el('button', 'button-secondary graph-cluster-coll'); sv.type = 'button';
