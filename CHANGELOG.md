@@ -5,6 +5,14 @@ Commit history has the details: <https://github.com/philffm/ai-summary-helper/co
 
 ## Unreleased
 
+#### Added
+
+- Archive graph opens as topic clusters (worked out locally from the tags), with focus mode, path between two items, source-type rings, maturity fill, bridge articles, "Brief me on this" for gaps and Save image. Details in `GRAPH.md`
+
+#### Changed
+
+- Archive graph: article titles show on hover, focus and search matches instead of all at once
+
 ## 2.2.40 (2026-11-02)
 
 ### All changes
