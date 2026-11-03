@@ -947,8 +947,14 @@ footer .copyright a:hover, .foot-links a:hover{ text-decoration-color:currentCol
 .hs-pp, .hs-dot{ border:0; cursor:pointer; }
 .hs-pp{ width:30px; height:30px; border-radius:50%; display:grid; place-items:center; background:var(--surface-1-strong); color:var(--paper); border:1px solid var(--border-medium); }
 .hs-pp .pp-play{ display:none; } .hs-pp.is-paused .pp-play{ display:block; } .hs-pp.is-paused .pp-pause{ display:none; }
-.hs-dot{ box-sizing:content-box; width:9px; height:9px; padding:8px 4px; border-radius:12px; background:var(--border-strong); background-clip:content-box; transition:width .25s, background .25s; }
-.hs-dot.is-on{ width:30px; background:var(--signal); background-clip:content-box; }
+/* Same look as the carousel dots (.cx-dot): an 8px dot, a 28px pill when active. The button keeps a bigger tap area (padding);
+   the visible dot is ::before, so its rounding follows the dot and not the padded box (clipping the background to the content
+   box left square dots: border-radius rounds the outer edge only). */
+.hs-dot{ position:relative; box-sizing:content-box; width:8px; height:8px; padding:8px 4px; border-radius:0; background:none; transition:width .25s ease; }
+.hs-dot::before{ content:""; position:absolute; inset:8px 4px; border-radius:4px; background:var(--border-strong); transition:background .25s ease; }
+.hs-dot.is-on{ width:28px; background:none; }
+.hs-dot.is-on::before{ background:var(--signal); }
+@media (prefers-reduced-motion:reduce){ .hs-dot, .hs-dot::before{ transition:none; } }
 .hs-pp:focus-visible, .hs-dot:focus-visible, .hs-steps li:focus-visible{ outline:2px solid var(--signal); outline-offset:3px; }
 .hs-steps li{ cursor:pointer; }
 
