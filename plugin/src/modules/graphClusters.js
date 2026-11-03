@@ -223,7 +223,7 @@ export function openClusterPage(container, { label, articles }) {
             e.stopPropagation(); exp.disabled = true;
             try {
                 const m = await import('./markdownArchive.js');
-                await m.exportHistoryMarkdown({ ids: list.filter(a => a.id && !a.feedStub).map(a => a.id), name: label, briefing: { title: label, results: out.__results || [] } });
+                await m.exportHistoryMarkdown({ ids: list.filter(a => a.id && !a.feedStub).map(a => a.id), name: label, briefing: { title: label, results: out.__results || [] }, hub: true });
             } finally { exp.disabled = false; }
         });
         actions.append(exp);

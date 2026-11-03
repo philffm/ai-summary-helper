@@ -50,6 +50,7 @@ The legend at the bottom right lists the ring styles that are actually present.
 - **Path.** Turn on "Path", pick two items: the shortest chain of shared tags and similar-content links is highlighted and read out ("3 steps: A → tag → B"). "Not connected" is an answer too.
 - **Gaps.** Topics with one or two saved articles you have not opened for 30 days. Each has a **Brief me on this** button that opens the topic page for it.
 - **Unread.** A chip with the count ("Unread · 200"). Everything marked read (`readAt`: the Inbox / Read tabs and the 🆕 badge use the same) steps back, and in Topics every cluster label shows how many of its articles are still unread ("trade · 34"). A class toggle, no redraw.
+- **Obsidian hub note.** The topic page's "⬇ Markdown" export (and the one on briefings) now adds `Hub – <topic>.md`: a map of content that links every exported article note with `[[wikilinks]]`, grouped as worked on / in progress / saved only, unread ones marked 🆕, with the tags inside the topic and a link to the briefing note. The article notes already carried `[[Related]]` links; the hub is what makes the topic one island in Obsidian's own graph too.
 - **Save image.** Downloads the current picture as an SVG on your device (colours resolved, no stylesheet needed). Nothing is uploaded.
 - Existing: search dims or filters, time window, 🎓 Research filter, list view (the screen-reader twin: press `L`), long-press / ⇧ / ⌘ to select topics for a briefing.
 
@@ -100,7 +101,7 @@ Groups are the personas the site already uses. MoSCoW is a judgement from the co
 
 | Group | Goal with the graph | Must | Should | Could | Won't (now) |
 | --- | --- | --- | --- | --- | --- |
-| **Hoarder** | Make old saves come back | Topics overview ✅, focus ✅, gaps as action ✅ | cluster names ✅, maturity ✅ | time replay | 3D |
+| **Hoarder** | Make old saves come back | Topics overview ✅, focus ✅, gaps as action ✅ | cluster names ✅, maturity ✅, Obsidian hub note ✅ | time replay | 3D |
 | **Researcher** | Compare sources, see gaps in the literature | source type ✅, path between papers ✅ | bridge articles ✅ | co-citation links | external databases |
 | **Feeds** | See what keeps recurring | clusters per topic ✅ | mood colour | trend pulse | graph from the live feed |
 | **Video** | Learning paths across videos and articles | video ring ✅ | jump to the transcript moment | playlist clusters | – |
@@ -113,7 +114,6 @@ Groups are the personas the site already uses. MoSCoW is a judgement from the co
 
 ## Not done
 
-- **A hub note per cluster for Obsidian** (a map of content that links every article of the cluster). The Markdown export already writes `[[wikilinks]]` (a `Related` section per article, briefings link their citations to the article notes) and can export just a cluster; only the hub note is missing.
 - **MCP tool** for a subgraph or related items (separate package in `mcp/`).
 - **Mood colour**, **time replay**, **flashcards from a topic**.
 - **AI names for clusters.** Names come from the tags on purpose (local, free, stable). An opt-in AI title is possible later.

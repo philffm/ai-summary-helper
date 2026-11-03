@@ -97,7 +97,7 @@ export function openBriefPage(container, { heading, subtitle, articles, layout =
         exp.disabled = true;
         try {
             const m = await import('./markdownArchive.js');
-            await m.exportHistoryMarkdown({ ids: articles.filter(a => a.id && !a.feedStub).map(a => a.id), name: heading, briefing: { title: heading, results: out.__results || [] } });
+            await m.exportHistoryMarkdown({ ids: articles.filter(a => a.id && !a.feedStub).map(a => a.id), name: heading, briefing: { title: heading, results: out.__results || [] }, hub: true });
         } finally { exp.disabled = false; }
     });
     const actions = el('div', 'graph-cluster-actions'); actions.append(exp);
