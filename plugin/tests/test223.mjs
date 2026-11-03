@@ -22,6 +22,10 @@ const papers = [];
 Object.entries(areas).forEach(([area, tags]) => { for (let i = 0; i < 12; i++) papers.push({ id: `${area}${i}`, tags: ['science', 'research', 'paper', tags[i % 3], tags[(i + 1) % 3]] }); });
 // the other cluster, so there is more than one top-level topic
 for (let i = 0; i < 10; i++) papers.push({ id: 'bread' + i, tags: ['baking', ['sourdough', 'crumb', 'flour'][i % 3]] });
+// … and more other topics, so the umbrella tags stay below a third of the archive (above that they would not glue anything: see test 5)
+for (let i = 0; i < 30; i++) papers.push({ id: 'rail' + i, tags: ['transit', ['tram', 'bus', 'metro'][i % 3], ['ticket', 'fare', 'route'][i % 3]] });
+for (let i = 0; i < 30; i++) papers.push({ id: 'garden' + i, tags: ['gardening', ['soil', 'compost', 'seed'][i % 3], ['bed', 'shade', 'water'][i % 3]] });
+for (let i = 0; i < 30; i++) papers.push({ id: 'chess' + i, tags: ['chess', ['opening', 'endgame', 'tactic'][i % 3], ['rook', 'pawn', 'bishop'][i % 3]] });
 const { nodes, links } = build(papers);
 const res = gs.topicClusters(nodes, links);
 const sci = science(res);
@@ -37,7 +41,7 @@ assert.equal(new Set(all).size, all.length, 'an article is in one subtopic only'
 assert.equal(all.length, sci.size, 'every article of the cluster is in some subtopic');
 assert.equal(res.subOfArticle.get('article-genetics0'), byArea('genetics').id, 'article → subtopic');
 assert.deepEqual(gs.topicClusters(nodes, links).clusters.map(c => c.children.map(k => k.label)), res.clusters.map(c => c.children.map(k => k.label)), 'same input, same subtopics');
-assert.ok(!res.clusters.find(c => c.size === 10).children.length, 'a small cluster is not split');
+assert.ok(!res.clusters.find(c => c.size === 10) || !res.clusters.find(c => c.size === 10).children.length, 'a small cluster is not split');
 assert.deepEqual(gs.topicClusters(nodes, links, { subclusters: false }).clusters.flatMap(c => c.children), [], 'can be switched off');
 
 // ── 2. nothing but the umbrella tag: content similarity separates them, terms name them ──
@@ -56,6 +60,18 @@ assert.deepEqual(names, ['alloy · polymer', 'crispr · genome', 'galaxy · tele
 const noTerms = gs.topicClusters(f.nodes, f.links);
 assert.ok(science(noTerms).children.every(c => /^Group \d$/.test(c.label)), 'without terms the groups are numbered, never empty names');
 
+// ── 5. an umbrella tag on a big share of the whole archive does not glue the topics (a "Technik" on 3 of 4 articles) ──
+const big = [];
+['ai', 'chips', 'web', 'robots'].forEach((sub, g) => { for (let i = 0; i < 20; i++) big.push({ id: sub + i, tags: ['tech', sub, sub + '-' + (i % 3)] }); });
+for (let i = 0; i < 10; i++) big.push({ id: 'food' + i, tags: ['cooking', 'recipe', 'oven'] });
+const bg = build(big);
+const rBig = gs.topicClusters(bg.nodes, bg.links);
+assert.ok(rBig.clusters.filter(c => !c.other).length >= 4, 'tech (80 % of the archive) does not merge ai, chips, web and robots into one blob: ' + rBig.clusters.map(c => c.label + ':' + c.size));
+assert.ok(rBig.clusters.every(c => c.size <= 25), 'no cluster swallows the archive');
+assert.ok(!rBig.clusters.some(c => c.label === 'tech'), 'the umbrella is not a cluster name');
+const aiCluster = rBig.clusterOfArticle.get('article-ai0');
+assert.ok(['ai1', 'ai2', 'ai3'].every(id => rBig.clusterOfArticle.get('article-' + id) === aiCluster), 'the articles of one sub-area stay together');
+
 // ── 3. no structure → no subtopics ──
 const blob = Array.from({ length: 30 }, (_, i) => ({ id: 'b' + i, tags: ['science'] }));
 assert.deepEqual(science(gs.topicClusters(...Object.values(build(blob)))).children, [], 'one undifferentiated group stays one topic');
@@ -63,7 +79,7 @@ const lopsided = [...Array.from({ length: 28 }, (_, i) => ({ id: 'l' + i, tags: 
 assert.ok(science(gs.topicClusters(...Object.values(build(lopsided)))).children.length === 0, 'one giant group plus a sliver is not a split');
 
 // ── 4. leftovers go to "Other" ──
-const withRest = [...papers.slice(0, 36), { id: 'odd1', tags: ['science', 'oddity'] }, { id: 'odd2', tags: ['science', 'curio'] }];
+const withRest = [...papers, { id: 'odd1', tags: ['science', 'oddity'] }, { id: 'odd2', tags: ['science', 'curio'] }];
 const wr = build(withRest);
 const sci3 = science(gs.topicClusters(wr.nodes, wr.links));
 assert.ok(sci3.children.some(c => c.other && c.label === 'Other' && c.size === 2), 'articles that fit no group are collected under "Other"');

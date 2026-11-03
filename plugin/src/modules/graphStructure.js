@@ -25,10 +25,13 @@ const SPLIT_MIN_TAGS = 12;              // … when it has at least this many ta
 // Subtopics: a cluster this big is looked at once more, article by article (see subdivide()).
 export const SUB_MIN_ARTICLES = 12;     // smaller clusters stay as they are
 export const SUB_MAX = 6;               // subtopics shown per cluster (the rest is folded into "other")
-export const SUB_MIN_SIZE = 3;          // a group of fewer articles is not a subtopic
+export const SUB_MIN_SIZE = 4;          // a group of fewer articles is not a subtopic
 const UMBRELLA_SHARE = 0.6;             // a tag on more than this share of the cluster's articles describes the cluster, not a part of it
 const MERGE_FACTOR = 0.3;              // two groups merge when their ties to each other are at least this fraction as dense as the looser group's own inside
+const TERM_TIE = 0.5;                  // weight of the typical terms two articles share (from the similarity cache): the signal when tags are rare or missing
 const SIM_WITH_TAGS = 0.4;             // weight of a similarity tie between two articles that both have tags of their own
+const TOP_UMBRELLA_SHARE = 0.35;        // a tag on more than this share of ALL articles (a big archive's "tech") joins nothing: the topics are what is left
+const TOP_UMBRELLA_MIN_ARTICLES = 30;   // … in an archive of at least this many articles
 const GIANT_SHARE = 0.8;                // one group holding more than this share says nothing: tried once more with stricter links
 
 /** Tag → set of article ids, from the tag links only (similarity links do not make an article part of a topic). */
@@ -124,6 +127,18 @@ function subdivide(cluster, { members, tagNode, links, subOtherLabel, groupLabel
         if (inC.has(x) && inC.has(y)) add(x, y, (l.score || 0.3) * (own.get(x).length && own.get(y).length ? SIM_WITH_TAGS : 1));
     });
 
+    // Typical terms two articles share: only terms that set some articles apart (in 2 or more, but not in a big part of the cluster).
+    if (termsOf) {
+        const df = new Map(), list = new Map();
+        arts.forEach(a => { const t = [...new Set(termsOf(a))]; list.set(a, t); t.forEach(w => df.set(w, (df.get(w) || 0) + 1)); });
+        const cap = Math.min(Math.floor(total * 0.4), 40);
+        const tpost = new Map();
+        arts.forEach(a => list.get(a).forEach(w => { const n = df.get(w); if (n >= 2 && n <= cap) (tpost.get(w) || tpost.set(w, []).get(w)).push(a); }));
+        const tshared = new Map();
+        tpost.forEach(group => { for (let i = 0; i < group.length; i++) for (let j = i + 1; j < group.length; j++) { const k = group[i] + '\u0000' + group[j]; tshared.set(k, (tshared.get(k) || 0) + 1); } });
+        tshared.forEach((n, k) => { const [x, y] = k.split('\u0000'); add(x, y, TERM_TIE * n / Math.sqrt(list.get(x).length * list.get(y).length)); });
+    }
+
     const communities = (minTie) => {
         const label = new Map(arts.map(a => [a, a]));
         for (let round = 0; round < 15; round++) {
@@ -215,13 +230,18 @@ export function topicClusters(nodes, links, { otherLabel = 'Everything else', su
     const members = tagMembers(nodes, links);
     const tagNode = new Map(nodes.filter(n => n.group === 'tag').map(n => [n.id, n]));
     const articleIds = nodes.filter(n => n.group === 'article').map(n => n.id);
-    let groups = propagate([...members.keys()], coOccurrence(members, EDGE_MIN));
+    // A tag on a big share of the whole archive says "this archive is about X", not which part of it. It would tie every topic together,
+    // so it stays out of the co-occurrence graph; its articles are placed by their other tags.
+    const topUmbrella = new Set();
+    if (articleIds.length >= TOP_UMBRELLA_MIN_ARTICLES && members.size >= 8) members.forEach((set, t) => { if (set.size / articleIds.length >= TOP_UMBRELLA_SHARE) topUmbrella.add(t); });
+    const graphMembers = topUmbrella.size ? new Map([...members].filter(([t]) => !topUmbrella.has(t))) : members;
+    let groups = propagate([...graphMembers.keys()], coOccurrence(graphMembers, EDGE_MIN));
 
     // One giant cluster says nothing: split it once with a stricter co-occurrence threshold.
-    const share = (g) => { const s = new Set(); g.forEach(t => members.get(t).forEach(a => s.add(a))); return s.size; };
+    const share = (g) => { const s = new Set(); g.forEach(t => members.get(t).forEach(a => s.add(a))); return s.size; };   // (articles, counted over all tags)
     const total = Math.max(1, articleIds.length);
     groups = groups.flatMap(g => (g.length >= SPLIT_MIN_TAGS && share(g) / total > SPLIT_SHARE)
-        ? propagate(g, coOccurrence(new Map(g.map(t => [t, members.get(t)])), EDGE_MIN * 2))
+        ? propagate(g, coOccurrence(new Map(g.map(t => [t, graphMembers.get(t)])), EDGE_MIN * 2))
         : [g]);
 
     const draft = groups.map((g) => {

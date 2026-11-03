@@ -53,6 +53,7 @@ const FOCUS_CLASS = 'graph-focus-dim';
 const PATH_CLASS = 'graph-path';
 const GRAPH_SIM_MIN = 0.25;         // content-similarity links drawn between articles (graphSimilarity.js), best ones only
 const GRAPH_SIM_PER_ARTICLE = 2;
+const SUB_LABEL_MIN_R = 22;       // on-screen radius (px) a subtopic area needs before its name is shown
 const FOCUS_LABELS = 8;             // article labels shown when a cluster or neighbourhood is in focus
 const MATURITY_FILL = { seed: 0.45, growing: 0.75, evergreen: 1 };   // fill strength by how far an article was worked
 const RING_DASH = { paper: null, video: '3 2', pdf: '1 2' };         // ring style by source type (plain articles: no ring)
@@ -713,6 +714,7 @@ function renderGraph(container, allArticles, highlightTimestamp, minTagDegree, s
             if (quietLabels) mainContainer.selectAll('text.graph-node-label.is-article').attr('font-size', `${10 / Math.max(1, event.transform.k)}px`);
             mainContainer.selectAll('text.graph-cluster-label').attr('font-size', c => `${clusterFont(c) / Math.max(1, event.transform.k) ** 0.7}px`);
             mainContainer.selectAll('text.graph-sub-label').attr('font-size', `${12 / Math.max(1, event.transform.k)}px`);   // subtopic names keep their on-screen size
+            if (typeof fitSubLabels === 'function') fitSubLabels(event.transform.k);
         });
 
     svg.call(zoom);
@@ -738,11 +740,14 @@ function renderGraph(container, allArticles, highlightTimestamp, minTagDegree, s
 
         viewW = newWidth; viewH = newHeight;
         svg.attr('width', newWidth).attr('height', newHeight);
-        if (overview) {   // the cluster centres follow the size; the pull toward them reads viewW/viewH live
-            simulation.force('x', d3.forceX(d => clusterCenter(d).x).strength(0.16));
-            simulation.force('y', d3.forceY(d => clusterCenter(d).y).strength(0.16));
+        if (overview) {   // pack again for the new size, the dots follow
+            layoutPack();
+            simulation.force('x', d3.forceX(d => homeOf(d).x).strength(0.45));
+            simulation.force('y', d3.forceY(d => homeOf(d).y).strength(0.45));
+            node.attr('r', nodeRadius);
+            placeShapes();
         } else simulation.force('center', d3.forceCenter(newWidth / 2, newHeight / 2));
-        simulation.alpha(0.3).restart();
+        simulation.alpha(0.5).restart();
     };
     const scheduleResize = () => {
         clearTimeout(resizeDebounce);
@@ -783,7 +788,7 @@ function renderGraph(container, allArticles, highlightTimestamp, minTagDegree, s
     function nodeRadius(d) {
         if (d.group === 'article') {
             const isHi = highlightTimestamp && d.data?.timestamp === highlightTimestamp;
-            const base = isHi ? (overview ? 8 : 12) : (overview ? 4 : 8) + (bridges.has(d.id) ? (overview ? 1.5 : 2) : 0);
+            const base = isHi ? (overview ? 8 : 12) : (overview ? packR(d) : 8) + (bridges.has(d.id) ? (overview ? 1.2 : 2) : 0);
             // Neglected articles shrink slightly on top of fading, so the
             // stale ones read as smaller/quieter at a glance.
             return (neglectDays.get(d.id) || 0) >= NEGLECT_THRESHOLD_DAYS ? base * NEGLECT_SHRINK : base;
@@ -791,27 +796,52 @@ function renderGraph(container, allArticles, highlightTimestamp, minTagDegree, s
         return tagRadiusScale(d.degree || 1);
     }
 
-    // Overview: every cluster gets a home. Biggest in the middle, the rest spread around it (phyllotaxis, so any count looks even).
-    const clusterCenter = (d) => {
-        const i = clusterIndex.get(d.cluster);
-        const n = struct.clusters.length;
-        if (i === undefined || n < 2) return { x: viewW / 2, y: viewH / 2 };
-        const R = 0.42 * Math.min(viewW, viewH);
-        const r = i === 0 ? 0 : R * Math.sqrt(i / Math.max(1, n - 1)) * 1.05;
-        const a = i * 2.399963 + 0.6;   // golden angle
-        return { x: viewW / 2 + Math.cos(a) * r * (viewW / Math.min(viewW, viewH)) * 0.9, y: viewH / 2 + Math.sin(a) * r };
-    };
+    // Overview layout: circle packing (d3.pack). Clusters, their subtopics and the articles are nested circles, sized by how many
+    // articles they hold, packed without overlap: a big cluster is a big island made of named smaller islands, not a clump.
+    const clusterMembers = new Map(struct.clusters.map(c => [c.id, nodes.filter(n => n.cluster === c.id && n.group === 'article')]));
+    const subClusters = overview ? struct.clusters.filter(c => (c.children || []).length >= 2) : [];
+    subClusters.forEach(c => c.children.forEach(k => { k.parentCluster = c; }));
+    const subKids = subClusters.flatMap(c => c.children);
+    const subMembers = new Map(subKids.map(k => [k.id, nodes.filter(n => n.sub === k.id && n.group === 'article')]));
+    const pack = { leaf: new Map(), cluster: new Map(), sub: new Map() };
+    function layoutPack() {
+        if (!overview) return;
+        const roomy = viewH >= 420, topPad = roomy ? 100 : 36, botPad = roomy ? 92 : 16, side = 8;   // the chips sit on top, the controls at the bottom
+        const leaf = (n) => ({ id: n.id, v: 1 });
+        const root = { id: 'root', children: struct.clusters.filter(c => clusterMembers.get(c.id).length).map(c => {
+            const split = (c.children || []).length >= 2;
+            return { id: c.id, children: split
+                ? c.children.filter(k => subMembers.get(k.id).length).map(k => ({ id: k.id, children: subMembers.get(k.id).map(leaf) }))
+                : clusterMembers.get(c.id).map(leaf) };
+        }) };
+        const h = d3.hierarchy(root).sum(d => d.v || 0).sort((a, b) => b.value - a.value || (a.data.id < b.data.id ? -1 : 1));
+        d3.pack().size([Math.max(120, viewW - 2 * side), Math.max(120, viewH - topPad - botPad)])
+            .padding(d => (d.depth === 0 ? 14 : (d.children && d.children[0].children ? 8 : 1.2)))(h);
+        pack.leaf.clear(); pack.cluster.clear(); pack.sub.clear();
+        const clusterIds = new Set(struct.clusters.map(c => c.id)), subIds = new Set(subKids.map(k => k.id));
+        h.descendants().forEach(d => {
+            const circle = { x: d.x + side, y: d.y + topPad, r: d.r };
+            if (d.depth === 0) return;
+            if (subIds.has(d.data.id)) pack.sub.set(d.data.id, circle);
+            else if (clusterIds.has(d.data.id)) pack.cluster.set(d.data.id, circle);
+            else pack.leaf.set(d.data.id, circle);
+        });
+    }
+    layoutPack();
+    // where a node belongs: its own spot in the packing; tags (not drawn here) sit at the middle of their cluster
+    const homeOf = (d) => pack.leaf.get(d.id) || pack.cluster.get(d.cluster) || { x: viewW / 2, y: viewH / 2 };
+    const packR = (d) => Math.max(2, Math.min(7, ((pack.leaf.get(d.id) || {}).r || 4.5) * 0.9));   // dots shrink as the archive grows, so they never overlap
 
     // Create force simulation
     const linkForce = d3.forceLink(links).id(d => d.id).distance(overview ? 30 : 100);
-    if (overview) linkForce.strength(0.04);   // detail keeps d3's default strength, as before
+    if (overview) linkForce.strength(0);   // detail keeps d3's default strength, as before; in Topics the packing decides, links are not drawn
     const simulation = d3.forceSimulation(nodes)
         .force('link', linkForce)
-        .force('charge', d3.forceManyBody().strength(overview ? -14 : -250))
-        .force('collision', d3.forceCollide().radius(d => nodeRadius(d) + (overview ? 1.5 : 6)));
+        .force('charge', d3.forceManyBody().strength(overview ? 0 : -250))
+        .force('collision', d3.forceCollide().radius(d => nodeRadius(d) + (overview ? 0.4 : 6)));
     if (overview) {
-        simulation.force('x', d3.forceX(d => clusterCenter(d).x).strength(0.16))
-            .force('y', d3.forceY(d => clusterCenter(d).y).strength(0.16));
+        simulation.force('x', d3.forceX(d => homeOf(d).x).strength(0.45))
+            .force('y', d3.forceY(d => homeOf(d).y).strength(0.45));
     } else {
         simulation.force('center', d3.forceCenter(width / 2, height / 2));
     }
@@ -824,10 +854,16 @@ function renderGraph(container, allArticles, highlightTimestamp, minTagDegree, s
     // Draw links into mainContainer — color lookup via Map (O(1)) instead of
     // the old nodes.find() (O(n) per link).
     // Overview only: one soft blob per cluster behind everything, sized from where its members ended up (updated on tick).
-    const clusterMembers = new Map(struct.clusters.map(c => [c.id, nodes.filter(n => n.cluster === c.id && n.group === 'article')]));
     const blobs = overview
         ? mainContainer.append('g').attr('class', 'graph-blobs').selectAll('circle').data(struct.clusters.filter(c => clusterMembers.get(c.id).length)).join('circle')
             .attr('class', 'graph-blob').attr('fill', c => clusterColor(c.id)).attr('fill-opacity', 0.1).style('cursor', 'pointer')
+        : null;
+
+    // Subtopic areas (Topics only): one soft area per subtopic of every cluster that has any, drawn under the dots.
+    const subBlobs = subKids.length
+        ? mainContainer.append('g').attr('class', 'graph-subblobs').selectAll('circle').data(subKids).join('circle')
+            .attr('class', 'graph-subblob').attr('fill', k => clusterColor(k.parentCluster.id)).attr('fill-opacity', 0.12)
+            .attr('stroke', k => clusterColor(k.parentCluster.id)).attr('stroke-opacity', 0.4).style('cursor', 'pointer')
         : null;
 
     const link = mainContainer.append('g')
@@ -947,36 +983,42 @@ function renderGraph(container, allArticles, highlightTimestamp, minTagDegree, s
             .attr('aria-label', c => T('{topic}: {n} articles, {u} unread', { topic: c.label, n: c.size, u: unreadIn.get(c.id) || 0 }))
         : null;
 
+    const subLabels = subKids.length
+        ? mainContainer.append('g').attr('class', 'graph-sub-labels').selectAll('text').data(subKids).join('text')
+            .attr('class', 'graph-sub-label').attr('text-anchor', 'middle').attr('fill', k => clusterColor(k.parentCluster.id)).attr('font-size', '12px')
+            .text(k => (k.label.length > 26 ? k.label.slice(0, 26) + '…' : k.label) + ' · ' + k.size)
+            .style('cursor', 'pointer').attr('role', 'button').attr('tabindex', 0)
+            .attr('aria-label', k => T('{topic}, subtopic of {parent}: {n} articles', { topic: k.label, parent: k.parentCluster.label, n: k.size }))
+        : null;
+
+    // Cluster and subtopic areas and their names sit where the packing put them (and move with a resize).
+    function placeShapes() {
+        if (!overview) return;
+        const at = (map, id) => map.get(id) || { x: -9999, y: -9999, r: 0 };
+        blobs.attr('cx', c => at(pack.cluster, c.id).x).attr('cy', c => at(pack.cluster, c.id).y).attr('r', c => at(pack.cluster, c.id).r);
+        clusterLabels.attr('x', c => at(pack.cluster, c.id).x)
+            .attr('y', c => { const o = at(pack.cluster, c.id); return (c.children || []).length >= 2 ? o.y - o.r - 6 : o.y + 4; });   // above a cluster made of subtopics, in the middle of one that is not
+        if (subBlobs) {
+            subBlobs.attr('cx', k => at(pack.sub, k.id).x).attr('cy', k => at(pack.sub, k.id).y).attr('r', k => at(pack.sub, k.id).r);
+            subLabels.attr('x', k => at(pack.sub, k.id).x).attr('y', k => at(pack.sub, k.id).y - at(pack.sub, k.id).r - 3);
+            fitSubLabels(d3.zoomTransform(svg.node()).k);
+        }
+    }
+    // A subtopic name is only worth drawing once its area is big enough on screen to carry it; zooming in brings the rest.
+    function fitSubLabels(k) {
+        if (!subLabels) return;
+        subLabels.style('display', s => ((pack.sub.get(s.id) || { r: 0 }).r * k >= SUB_LABEL_MIN_R ? null : 'none'));
+    }
+    placeShapes();
+
     // Kept on the container so applyGraphSearchDim() can restyle the
     // already-rendered graph (no rebuild, no simulation restart) when the
     // 'all' scope wants to dim non-matches against the archive search box
     // instead of removing them.
     container.__archiveGraphSelections = { node, link, label };
 
-    let drilled = null, subLayer = null;   // subtopics of the cluster in focus (see drillDown)
     // Tick function
     simulation.on('tick', () => {
-        if (drilled) {
-            drilled.kids.forEach((k, i) => {
-                const ms = drilled.members.get(k.id);
-                if (!ms.length) return;
-                let cx = 0, cy = 0; ms.forEach(m => { cx += m.x || 0; cy += m.y || 0; }); cx /= ms.length; cy /= ms.length;
-                let sq = 0; ms.forEach(m => { sq += ((m.x || 0) - cx) ** 2 + ((m.y || 0) - cy) ** 2; });
-                drilled.pos.set(k.id, { cx, cy, r: Math.sqrt(sq / ms.length) * 1.3 + 10 });
-            });
-            drilled.sb.attr('cx', k => (drilled.pos.get(k.id) || {}).cx).attr('cy', k => (drilled.pos.get(k.id) || {}).cy).attr('r', k => (drilled.pos.get(k.id) || { r: 0 }).r);
-            drilled.sl.attr('x', k => (drilled.pos.get(k.id) || {}).cx).attr('y', k => ((drilled.pos.get(k.id) || {}).cy || 0) - ((drilled.pos.get(k.id) || { r: 0 }).r) - 4);
-        }
-        if (overview) {
-            const blobFor = new Map();
-            clusterMembers.forEach((ms, id) => {
-                let cx = 0, cy = 0; ms.forEach(m => { cx += m.x || 0; cy += m.y || 0; }); cx /= ms.length; cy /= ms.length;
-                let sq = 0; ms.forEach(m => { sq += ((m.x || 0) - cx) ** 2 + ((m.y || 0) - cy) ** 2; });
-                blobFor.set(id, { cx, cy, r: Math.sqrt(sq / ms.length) * 1.3 + 12 });
-            });
-            blobs.attr('cx', c => blobFor.get(c.id).cx).attr('cy', c => blobFor.get(c.id).cy).attr('r', c => blobFor.get(c.id).r);
-            clusterLabels.attr('x', c => blobFor.get(c.id).cx).attr('y', c => blobFor.get(c.id).cy + 4);
-        }
         link
             .attr('x1', d => d.source.x)
             .attr('y1', d => d.source.y)
@@ -1027,7 +1069,7 @@ function renderGraph(container, allArticles, highlightTimestamp, minTagDegree, s
     function clearAll() {
         pathFrom = null;
         node.classed(PATH_CLASS, false); link.classed(PATH_CLASS, false);
-        clearDrill();
+        if (subBlobs) { subBlobs.classed(FOCUS_CLASS, false); subLabels.classed(FOCUS_CLASS, false); }
         setFocus(null);
         if (zoomedByFocus) { zoomedByFocus = false; (calm() ? svg : svg.transition().duration(350)).call(zoom.transform, savedView || d3.zoomIdentity); }
     }
@@ -1056,50 +1098,7 @@ function renderGraph(container, allArticles, highlightTimestamp, minTagDegree, s
         announce(T('Connected in {n} steps: {chain}', { n: path.length - 1, chain }));
     }
     container.__graphPathMode = (on) => { container.__graphPathOn = !!on; clearAll(); announce(on ? T('Path mode on: pick two items to see how they connect.') : T('Path mode off.')); };
-    // Drill-down: a cluster that falls apart into subtopics is pulled apart into them; each gets its own area and name.
-    function clearDrill() {
-        if (!drilled) return;
-        drilled = null;
-        nodes.forEach(n => { n.subFocus = false; });
-        if (subLayer) { subLayer.remove(); subLayer = null; }
-        if (clusterLabels) clusterLabels.style('display', null);
-        if (overview) {
-            simulation.force('subx', null).force('suby', null);
-            simulation.force('x').strength(0.16); simulation.force('y').strength(0.16);
-            simulation.alpha(0.5).restart();
-        }
-    }
-    function drillDown(c) {
-        clearDrill();
-        const kids = c.children || [];
-        if (!overview || kids.length < 2) return null;
-        const ms = clusterMembers.get(c.id) || [];
-        if (!ms.length) return null;
-        let cx = 0, cy = 0; ms.forEach(m => { cx += m.x || 0; cy += m.y || 0; }); cx /= ms.length; cy /= ms.length;
-        let sq = 0; ms.forEach(m => { sq += ((m.x || 0) - cx) ** 2 + ((m.y || 0) - cy) ** 2; });
-        const R = Math.max(60, Math.sqrt(sq / ms.length) * 1.3 + 12);
-        const ring = R * 0.7 * Math.max(1, Math.sqrt(kids.length / 3));
-        const centers = new Map(kids.map((k, i) => { const a = i / kids.length * Math.PI * 2 - Math.PI / 2; return [k.id, { x: cx + Math.cos(a) * ring, y: cy + Math.sin(a) * ring }]; }));
-        nodes.forEach(n => { n.subFocus = n.group === 'article' && n.cluster === c.id; });
-        simulation.force('subx', d3.forceX(d => (centers.get(d.sub) || { x: d.x }).x).strength(d => (d.subFocus ? 0.35 : 0)))
-            .force('suby', d3.forceY(d => (centers.get(d.sub) || { y: d.y }).y).strength(d => (d.subFocus ? 0.35 : 0)));
-        simulation.force('x').strength(d => (d.subFocus ? 0.01 : 0.16)); simulation.force('y').strength(d => (d.subFocus ? 0.01 : 0.16));
-        simulation.alpha(0.8).restart();
-        const color = clusterColor(c.id);
-        subLayer = mainContainer.append('g').attr('class', 'graph-sublayer');
-        const open = (event, k) => { event.stopPropagation(); focusSub(c, k); };
-        const sb = subLayer.selectAll('circle').data(kids).join('circle').attr('class', 'graph-subblob')
-            .attr('fill', color).attr('fill-opacity', 0.14).attr('stroke', color).attr('stroke-opacity', 0.45).style('cursor', 'pointer').on('click', open);
-        const sl = subLayer.selectAll('text').data(kids).join('text').attr('class', 'graph-sub-label')
-            .attr('text-anchor', 'middle').attr('fill', color).attr('font-size', '12px')
-            .text(k => (k.label.length > 26 ? k.label.slice(0, 26) + '…' : k.label) + ' · ' + k.size)
-            .style('cursor', 'pointer').attr('role', 'button').attr('tabindex', 0)
-            .attr('aria-label', k => T('{topic}, subtopic of {parent}: {n} articles', { topic: k.label, parent: c.label, n: k.size }))
-            .on('click', open).on('keydown', (event, k) => { if (event.key === 'Enter' || event.key === ' ') { event.preventDefault(); open(event, k); } });
-        drilled = { c, kids, sb, sl, centers, pos: new Map(), members: new Map(kids.map(k => [k.id, nodes.filter(n => n.sub === k.id && n.group === 'article')])) };
-        clusterLabels.style('display', d => (d.id === c.id ? 'none' : null));   // the subtopic names take over inside this cluster
-        return [...centers.values()].flatMap(p => [{ x: p.x - R * 0.7, y: p.y - R * 0.7 }, { x: p.x + R * 0.7, y: p.y + R * 0.7 }]);
-    }
+    // Subtopics are always drawn (see subBlobs); focusing one dims its siblings and zooms in.
     function focusSub(c, kid) {
         const members = [...kid.articleIds].map(id => nodeOf.get(id) && nodeOf.get(id).data).filter(Boolean);
         setFocus(new Set(kid.articleIds), {
@@ -1107,25 +1106,31 @@ function renderGraph(container, allArticles, highlightTimestamp, minTagDegree, s
             openLabel: T('Open topic'),
             onOpen: () => import('./graphClusters.js').then(m => m.showClusterCard(container, { label: kid.label, articles: members }))
         });
-        if (drilled) { drilled.sb.classed(FOCUS_CLASS, k => k !== kid); drilled.sl.classed(FOCUS_CLASS, k => k !== kid); }
-        zoomToNodes(nodes.filter(n => n.sub === kid.id && n.group === 'article'));
+        if (subBlobs) { subBlobs.classed(FOCUS_CLASS, k => k !== kid); subLabels.classed(FOCUS_CLASS, k => k !== kid); }
+        zoomToNodes(subMembers.get(kid.id) || []);
         announce(c.label + ' › ' + kid.label + ': ' + TN(kid.size, '{n} article', '{n} articles'));
     }
     const focusCluster = (c) => {
         const ids = new Set([...c.articleIds, ...c.tagIds]);
         const members = [...c.articleIds].map(id => nodeOf.get(id) && nodeOf.get(id).data).filter(Boolean);
+        const hasSubs = overview && (c.children || []).length >= 2;
         setFocus(ids, {
-            caption: c.label + ' · ' + TN(c.size, '{n} article', '{n} articles') + (overview && (c.children || []).length >= 2 ? ' · ' + TN(c.children.length, '{n} subtopic', '{n} subtopics') : ''),
+            caption: c.label + ' · ' + TN(c.size, '{n} article', '{n} articles') + (hasSubs ? ' · ' + TN(c.children.length, '{n} subtopic', '{n} subtopics') : ''),
             openLabel: T('Open topic'),
             onOpen: () => import('./graphClusters.js').then(m => m.showClusterCard(container, { label: c.label, articles: members, subtopics: (c.children || []).filter(k => !k.other).map(k => ({ label: k.label, articles: [...k.articleIds].map(id => nodeOf.get(id) && nodeOf.get(id).data).filter(Boolean) })) }))
         });
-        const region = drillDown(c);
-        if (region) { labelSet = new Set(); label.classed('graph-label-on', false); }   // the subtopic names say it; titles come with the next click
-        zoomToNodes(region || nodes.filter(n => n.cluster === c.id && n.group === 'article'));
-        announce(c.label + ': ' + TN(c.size, '{n} article', '{n} articles') + (region ? ', ' + TN(c.children.length, '{n} subtopic', '{n} subtopics') : ''));
+        if (subBlobs) { subBlobs.classed(FOCUS_CLASS, k => k.parentCluster !== c); subLabels.classed(FOCUS_CLASS, k => k.parentCluster !== c); }
+        if (hasSubs) { labelSet = new Set(); label.classed('graph-label-on', false); }   // the subtopic names say it; titles come with the next click
+        zoomToNodes(nodes.filter(n => n.cluster === c.id && n.group === 'article'));
+        announce(c.label + ': ' + TN(c.size, '{n} article', '{n} articles') + (hasSubs ? ', ' + TN(c.children.length, '{n} subtopic', '{n} subtopics') : ''));
     };
     if (overview) {
         const pick = (event, c) => { event.stopPropagation(); if (!container.__graphPathOn) focusCluster(c); };
+        if (subBlobs) {
+            const openSub = (event, k) => { event.stopPropagation(); if (!container.__graphPathOn) focusSub(k.parentCluster, k); };
+            subBlobs.on('click', openSub);
+            subLabels.on('click', openSub).on('keydown', (event, k) => { if (event.key === 'Enter' || event.key === ' ') { event.preventDefault(); openSub(event, k); } });
+        }
         blobs.on('click', pick);
         clusterLabels.on('click', pick).on('keydown', (event, c) => { if (event.key === 'Enter' || event.key === ' ') { event.preventDefault(); pick(event, c); } });
     }
