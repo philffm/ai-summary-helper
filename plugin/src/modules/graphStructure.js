@@ -11,6 +11,7 @@
 // Nodes and links are the ones archiveGraph.js builds: { id, group: 'tag'|'article', label, degree?, data? } and
 // { source, target, kind?: 'similarity' }, where source/target are ids or (after d3 ran) objects with an id.
 import { paperState } from './paperInfo.js';
+import { isLanguageTag } from './topicConcepts.js';
 import { maturityOf as maturity } from './graphMaturity.js';
 
 const idOf = (x) => (x && typeof x === 'object' ? x.id : x);
@@ -39,7 +40,7 @@ const GIANT_SHARE = 0.8;                // one group holding more than this shar
 function tagMembers(nodes, links) {
     const group = new Map(nodes.map(n => [n.id, n.group]));
     const members = new Map();
-    nodes.forEach(n => { if (n.group === 'tag') members.set(n.id, new Set()); });
+    nodes.forEach(n => { if (n.group === 'tag' && !isLanguageTag(n.label)) members.set(n.id, new Set()); });   // a language mark ("🌐 de") says nothing about the topic
     links.forEach(l => {
         if (l.kind === 'similarity') return;
         const a = idOf(l.source), b = idOf(l.target);

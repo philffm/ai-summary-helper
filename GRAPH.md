@@ -34,6 +34,10 @@ No AI, no network, no extra storage. Clusters are worked out from the tags every
 
 Topics uses `d3.pack`: clusters, their subtopics and the articles are nested circles, sized by how many articles they hold and packed without overlap. A big cluster is a big island made of named smaller islands; nothing piles up. The dots shrink as the archive grows (so they never overlap), the cluster and subtopic areas are exactly the enclosing circles, and a resize packs again. A subtopic's name is shown once its area is big enough on screen (about 22 px radius); zooming in brings the rest. The graph sits in the space between the chips on top and the controls at the bottom.
 
+### Language marks are not topics
+
+The language tags (`🌐 de`: the page's language, plus `🌐 en` when the summary is in another one) are marks, not topics. They take no part in clustering (a German article about chips belongs with the other chip articles, not with the German ones), they are never sent to the AI to be "named", and nothing can be learned for them: `isLanguageTag()` in `topicConcepts.js` guards the lexicon, `unknownTags()` and the graph. A lexicon an older run polluted (where "🌐 de" had become a spelling of Germany) is cleaned when it is loaded.
+
 ### Archive-wide umbrella tags
 
 A tag on 35 % or more of **all** articles (in an archive of 30+) says "this archive is about X" ("Technik" on three of four saves), not which part of it. It would tie every topic together into one blob, so it stays out of the co-occurrence graph; its articles are placed by their other tags and it is never a cluster name. (A tag on most of *one cluster* is handled separately, see subtopics below.)

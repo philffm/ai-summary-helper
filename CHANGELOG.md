@@ -17,6 +17,10 @@ Commit history has the details: <https://github.com/philffm/ai-summary-helper/co
 - Archive graph: "Unread" chip that lets read articles step back and shows the unread count in each cluster label
 - Archive graph opens as topic clusters (worked out locally from the tags), with focus mode, path between two items, source-type rings, maturity fill, bridge articles, "Brief me on this" for gaps and Save image. Details in `GRAPH.md`
 
+#### Fixed
+
+- Language tags ("🌐 de", "🌐 en") are no longer sent to the AI as topics, so they stop turning into "Deutschland" / "Germany"; a lexicon an older run already polluted heals itself on load. Language tags also no longer form graph clusters
+
 #### Changed
 
 - Archive graph: article titles show on hover, focus and search matches instead of all at once
