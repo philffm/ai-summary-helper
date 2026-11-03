@@ -345,7 +345,7 @@ function setBilling(period) {
 
   function setCloudStatus(msg, isError) {
     els.cloudStatus.textContent = msg || '';
-    els.cloudStatus.style.color = isError ? 'var(--danger, #e74c3c)' : '';
+    els.cloudStatus.style.color = isError ? 'var(--danger)' : '';
   }
 
   // Fetch the available byPhil Cloud models and populate the dropdown.
