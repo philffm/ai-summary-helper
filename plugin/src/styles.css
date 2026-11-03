@@ -4702,3 +4702,4 @@ circle.graph-read-dim, text.graph-read-dim, .graph-blob.graph-read-dim { opacity
 [data-graph-mode="list"] :is(.graph-layout-toggle, .graph-color-chip, .graph-unread-chip, .graph-path-chip, .graph-save-chip, .graph-sim-chip),
 [data-graph-mode="gaps"] :is(.graph-layout-toggle, .graph-color-chip, .graph-unread-chip, .graph-path-chip, .graph-save-chip, .graph-sim-chip) { display: none; }
 [data-graph-mode="list"] .graph-controls-bottom-right, [data-graph-mode="gaps"] .graph-controls-bottom-right { display: none; }   /* the legend explains the picture, not the list */
+.graph-overview .graph-toggle-large { display: none; }   /* Well-connected | All filters tags in the force layout; Topics shows everything */

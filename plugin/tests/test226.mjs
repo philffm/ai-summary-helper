@@ -26,4 +26,16 @@ assert.ok(r.clusters.every(c => c.children.reduce((n, k) => n + k.size, 0) === (
 const gWithSim = ag.__test_buildGraphData(arts, 1, null, { bare0: [['imp1', 0.6]] });
 assert.ok(gWithSim.nodes.some(n => n.data && n.data.id === 'bare0'), 'a similar untagged article joins as its own node, next to the import it resembles');
 assert.equal(new Set(gWithSim.nodes.filter(n => n.group === 'article').map(n => n.id)).size, gWithSim.nodes.filter(n => n.group === 'article').length, 'still unique');
+// Topics keeps every article: one that nothing connects is a dot of its own, and lands in "everything else"
+const loose = ag.__test_buildGraphData(arts, 1, null, null, { keepOrphans: true });
+assert.equal(loose.stillOrphanCount, 0, 'nothing is left out in Topics');
+assert.equal(loose.nodes.filter(n => n.group === 'article').length, 19, 'the untagged ones are drawn too');
+assert.equal(new Set(loose.nodes.filter(n => n.group === 'article').map(n => n.id)).size, 19, 'with their own ids');
+assert.ok(!loose.links.some(l => /bare/.test(String(l.source))), 'and without a link');
+const rl = gs.topicClusters(loose.nodes, loose.links);
+assert.equal(rl.clusters.reduce((n, c) => n + c.size, 0), 19, 'every article belongs to some cluster');
+assert.equal(rl.clusterOfArticle.get(loose.nodes.find(n => n.data && n.data.id === 'bare1').id), rl.otherId, 'a loose article sits in "everything else"');
+const noStamp = ag.__test_buildGraphData([{ id: 'x1', title: 'No time', tags: [] }, { id: 'x2', title: 'Also none', tags: [] }], 1, null, null, { keepOrphans: true });
+assert.equal(noStamp.nodes.length, 2, 'also an article without a saved time');
+assert.equal(ag.__test_buildGraphData([{ id: 'x1', title: 'No time', tags: [] }], 1, null).nodes.length, 0, 'Detail still leaves it out');
 console.log('same-time articles ok');

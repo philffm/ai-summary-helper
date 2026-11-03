@@ -12,6 +12,7 @@
 // { source, target, kind?: 'similarity' }, where source/target are ids or (after d3 ran) objects with an id.
 import { paperState } from './paperInfo.js';
 import { isLanguageTag } from './topicConcepts.js';
+import { tokenize } from './graphSimilarity.js';
 import { maturityOf as maturity } from './graphMaturity.js';
 
 const idOf = (x) => (x && typeof x === 'object' ? x.id : x);
@@ -153,7 +154,7 @@ function splitByText(arts, vecOf, wanted) {
  * A subtopic is named after the tag that is most specific to it, else after the two terms that are most typical of it.
  * Returns [] when the cluster does not fall apart into at least two groups of SUB_MIN_SIZE.
  */
-function subdivide(cluster, { members, tagNode, links, subOtherLabel, groupLabel, termsOf, vecOf }) {
+function subdivide(cluster, { members, tagNode, links, subOtherLabel, groupLabel, termsOf, vecOf, metaOf }) {
     const arts = [...cluster.articleIds].sort(byText);
     const inC = new Set(arts);
     const total = arts.length;
@@ -257,29 +258,57 @@ function subdivide(cluster, { members, tagNode, links, subOtherLabel, groupLabel
         if (real.length < 2 || real[0].length / total > GIANT_SHARE) return [];
     }
 
-    // names
-    const used = new Set();
+    // names: what is typical of a group and sets it apart from the rest of the cluster. Tags, typical terms and words of the titles are
+    // weighed together (share of the group that has it × how much more often the group has it than the cluster as a whole); the
+    // cluster's own name and its umbrella tags never name a part of it; siblings get different names.
+    const parentName = new Set([String(cluster.label || '').toLowerCase(), ...[...umbrella].map(t => String(tagNode.get(t) ? tagNode.get(t).label : '').toLowerCase())]);
+    const wordsOf = (a) => {
+        const out = new Set();
+        if (termsOf) termsOf(a).forEach(w => out.add(w));
+        if (metaOf) tokenize((metaOf(a) || {}).title || '').forEach(w => out.add(w));
+        return out;
+    };
+    const wordDf = new Map();
+    arts.forEach(a => wordsOf(a).forEach(w => wordDf.set(w, (wordDf.get(w) || 0) + 1)));
+    const taken = new Set();
     const nameOf = (g, idx) => {
-        const k = g.length, inG = new Set(g);
-        const tagCands = [];
+        const k = g.length;
+        const cands = new Map();   // label → score
+        const offer = (label, c, df, bonus) => {
+            const p = c / k, lift = p / (df / total);
+            if (c < 2 || p < 0.25 || lift < 1.4 || parentName.has(label.toLowerCase())) return;
+            const score = p * Math.log(1 + lift) * bonus;
+            if (!(cands.get(label) >= score)) cands.set(label, score);
+        };
         const inGroup = new Map();
         g.forEach(a => own.get(a).forEach(t => inGroup.set(t, (inGroup.get(t) || 0) + 1)));
-        inGroup.forEach((c, t) => { if (c >= 2 && c / k >= 0.4) tagCands.push({ label: String(tagNode.get(t).label), score: (c / k) * (c / count.get(t)) }); });
-        // the most specific tag; a second one joins when it is nearly as specific ("crispr · dna" says more than "crispr")
-        tagCands.sort((x, y) => y.score - x.score || byText(x.label, y.label));
-        let pick = tagCands.length ? { label: tagCands.filter((c, i) => i === 0 || (i === 1 && c.score >= 0.7 * tagCands[0].score)).map(c => c.label).join(' · ') } : null;
-        if (!pick && termsOf) {
-            const inCluster = new Map(), inGrp = new Map();
-            arts.forEach(a => new Set(termsOf(a)).forEach(w => { inCluster.set(w, (inCluster.get(w) || 0) + 1); if (inG.has(a)) inGrp.set(w, (inGrp.get(w) || 0) + 1); }));
-            const cands = [];
-            inGrp.forEach((c, w) => { if (c >= 2 && c / k >= 0.35 && c / inCluster.get(w) >= 0.4) cands.push({ label: w, score: (c / k) * (c / inCluster.get(w)) }); });
-            cands.sort((x, y) => y.score - x.score || byText(x.label, y.label));
-            if (cands.length) pick = { label: cands.slice(0, 2).map(c => c.label).join(' · ') };
+        inGroup.forEach((c, t) => offer(String(tagNode.get(t).label), c, count.get(t), 1.25));   // an explicit tag is the best name there is
+        const inWords = new Map();
+        g.forEach(a => wordsOf(a).forEach(w => inWords.set(w, (inWords.get(w) || 0) + 1)));
+        inWords.forEach((c, w) => offer(w, c, wordDf.get(w), 1));
+        const ranked = [...cands.entries()].sort((x, y) => y[1] - x[1] || byText(x[0], y[0]));
+        const options = [];
+        if (ranked.length) {
+            const first = ranked[0][0];
+            const second = ranked.find(([l], i) => i > 0 && !first.toLowerCase().includes(l.toLowerCase()) && !l.toLowerCase().includes(first.toLowerCase()) && ranked[i][1] >= 0.6 * ranked[0][1]);
+            if (second) options.push(first + ' · ' + second[0]);
+            ranked.forEach(([l]) => options.push(l));
         }
-        let label = pick ? pick.label : groupLabel + ' ' + (idx + 1);
-        let unique = label, n = 2;
-        while (used.has(unique.toLowerCase())) unique = label + ' (' + n++ + ')';
-        label = unique; used.add(label.toLowerCase());
+        // nothing typical in the words: where the articles come from, or when they were saved
+        if (!options.length && metaOf) {
+            const hosts = new Map();
+            g.forEach(a => { try { const h = new URL((metaOf(a) || {}).url).hostname.replace(/^www\./, ''); hosts.set(h, (hosts.get(h) || 0) + 1); } catch (_) { /* no url */ } });
+            const top = [...hosts.entries()].sort((x, y) => y[1] - x[1] || byText(x[0], y[0]))[0];
+            if (top && top[1] / k >= 0.4) options.push(top[0]);
+            const times = g.map(a => new Date((metaOf(a) || {}).timestamp).getTime()).filter(Number.isFinite).sort((x, y) => x - y);
+            if (times.length && (times[times.length - 1] - times[0]) <= 120 * 86400000) {
+                const m = (t) => new Date(t).toLocaleDateString(undefined, { month: 'short', year: 'numeric' });
+                options.push(m(times[0]) === m(times[times.length - 1]) ? m(times[0]) : m(times[0]) + ' – ' + m(times[times.length - 1]));
+            }
+        }
+        let label = options.find(o => !taken.has(o.toLowerCase()));
+        if (!label) { label = groupLabel + ' ' + (idx + 1); let n = 2; const base = label; while (taken.has(label.toLowerCase())) label = base + ' (' + n++ + ')'; }
+        taken.add(label.toLowerCase());
         return label;
     };
     const children = real.map((g, i) => ({ id: cluster.id + '/sub-' + i, label: nameOf(g, i), articleIds: new Set(g), size: g.length }));
@@ -361,9 +390,10 @@ export function topicClusters(nodes, links, { otherLabel = 'Everything else', su
     const subOfArticle = new Map();
     if (subclusters) {
         const dataId = new Map(nodes.filter(n => n.group === 'article').map(n => [n.id, n.data && n.data.id]));
+        const byNode = new Map(nodes.filter(n => n.group === 'article').map(n => [n.id, n]));
         kept.forEach(c => {
             // The "everything else" cluster is looked at too: it is where articles with no usable tag pile up, and text is all that can tell them apart.
-            c.children = c.size < SUB_MIN_ARTICLES ? [] : subdivide(c, { members, tagNode, links, subOtherLabel, groupLabel, termsOf: terms ? (aid) => terms[dataId.get(aid)] || [] : null, vecOf: vectors ? (aid) => (vectors[dataId.get(aid)] || {}).t || null : null });
+            c.children = c.size < SUB_MIN_ARTICLES ? [] : subdivide(c, { members, tagNode, links, subOtherLabel, groupLabel, termsOf: terms ? (aid) => terms[dataId.get(aid)] || [] : null, vecOf: vectors ? (aid) => (vectors[dataId.get(aid)] || {}).t || null : null, metaOf: (aid) => { const n = byNode.get(aid); return n ? { title: n.label, url: n.data && n.data.url, timestamp: n.data && n.data.timestamp } : null; } });
             c.children.forEach(ch => ch.articleIds.forEach(a => subOfArticle.set(a, ch.id)));
         });
     } else kept.forEach(c => { c.children = []; });

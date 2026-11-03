@@ -119,6 +119,60 @@ assert.ok(sci3.children.some(c => c.other && c.label === 'Other' && c.size === 2
     assert.ok(r8.clusters.every(c => c.children.length === 0 || c.children.filter(k => !k.other).length >= 2), 'a split is either real (2+ groups) or absent');
 }
 
+// ── 9. names: what is typical of a group, never the parent's own name, different for siblings, and always something ──
+{
+    const mk = (list, sim = []) => { const nodes = [], links = [], seen = new Set();
+        list.forEach(p => { nodes.push({ id: 'article-' + p.id, group: 'article', label: p.title, data: { id: p.id, url: p.url, timestamp: p.timestamp } });
+            (p.tags || ['Economy']).forEach(t => { if (!seen.has(t)) { seen.add(t); nodes.push({ id: 'tag-' + t, group: 'tag', label: t }); } links.push({ source: 'article-' + p.id, target: 'tag-' + t }); }); });
+        sim.forEach(([x, y]) => links.push({ source: 'article-' + x, target: 'article-' + y, kind: 'similarity', score: 0.5 }));
+        return { nodes, links }; };
+    const words = [['inflation', 'prices', 'eurozone'], ['housing', 'mortgage', 'rents'], ['startup', 'funding', 'venture']];
+    const toks = (t) => t.toLowerCase().split(/\s+/).filter(w => w.length > 3);
+
+    // A) groups that differ only in the words of their titles
+    const A = Array.from({ length: 60 }, (_, i) => ({ id: 'p' + i, title: `${words[i % 3].join(' ')} report ${i}`, tags: ['Economy'] }));
+    const aTerms = Object.fromEntries(A.map(p => [p.id, toks(p.title).filter(w => w !== 'report')]));
+    const ra = gs.topicClusters(...Object.values(mk(A)), { terms: aTerms });
+    const kidsA = ra.clusters[0].children;
+    assert.equal(kidsA.length, 3, 'three groups');
+    assert.ok(kidsA.every(k => !/economy/i.test(k.label)), 'the parent name is not a subtopic name: ' + kidsA.map(k => k.label));
+    assert.ok(kidsA.every(k => words.some(w => w.some(x => k.label.includes(x)))), 'named after words of the group: ' + kidsA.map(k => k.label));
+    assert.equal(new Set(kidsA.map(k => k.label)).size, 3, 'different names for siblings');
+    assert.ok(kidsA.every(k => !/\(\d\)|^Group/.test(k.label)), 'no numbering when there is something to say');
+
+    // B) a tag that is the parent's own name is no subtopic name, even where it is typical of one group
+    const B = [];
+    for (let i = 0; i < 30; i++) B.push({ id: 'b' + i, title: `bank rates ${i}`, tags: ['Economy', 'banks', 'rates'] });
+    for (let i = 0; i < 20; i++) B.push({ id: 'c' + i, title: `crypto coin ${i}`, tags: ['crypto', 'coins'] });
+    for (let i = 0; i < 20; i++) B.push({ id: 'd' + i, title: `retail shop ${i}`, tags: ['retail', 'shops'] });
+    for (let i = 0; i < 20; i++) B.push({ id: 'o' + i, title: `other ${i}`, tags: ['filler' + (i % 4)] });
+    const rb = gs.topicClusters(...Object.values(mk(B)));
+    const allNames = rb.clusters.flatMap(c => [c.label, ...c.children.map(k => k.label)]);
+    rb.clusters.forEach(c => c.children.forEach(k => assert.notEqual(k.label.toLowerCase(), c.label.toLowerCase(), 'a subtopic is not called like its cluster (' + c.label + ')')));
+    assert.ok(allNames.length > 0);
+
+    // C) nothing typical in the words: where the articles come from
+    const C = Array.from({ length: 45 }, (_, i) => ({ id: 'h' + i, title: `Note ${i}`, url: `https://${['blog', 'news', 'wiki'][i % 3]}.example/p${i}`, timestamp: new Date(Date.UTC(2026, 0, 1 + i)).toISOString(), tags: ['Economy'] }));
+    const simC = []; C.forEach((p, i) => C.forEach((q, j) => { if (j > i && j % 3 === i % 3 && j - i <= 12) simC.push([p.id, q.id]); }));
+    const rc = gs.topicClusters(...Object.values(mk(C, simC)));
+    const kidsC = rc.clusters[0].children;
+    assert.ok(kidsC.length === 3, 'three groups from similarity alone: ' + kidsC.map(k => k.label));
+    assert.deepEqual(kidsC.map(k => k.label).sort(), ['blog.example', 'news.example', 'wiki.example'], 'named after where they come from');
+
+    // D) no words, no source: when they were saved
+    const D = Array.from({ length: 45 }, (_, i) => ({ id: 'd' + i, title: `Note ${i}`, timestamp: new Date(Date.UTC(2026, (i % 3) * 4, 1 + Math.floor(i / 3))).toISOString(), tags: ['Economy'] }));
+    const simD = []; D.forEach((p, i) => D.forEach((q, j) => { if (j > i && j % 3 === i % 3 && j - i <= 12) simD.push([p.id, q.id]); }));
+    const kidsD = gs.topicClusters(...Object.values(mk(D, simD))).clusters[0].children;
+    assert.ok(kidsD.length === 3 && kidsD.every(k => /20\d\d/.test(k.label)), 'named after the time they were saved: ' + kidsD.map(k => k.label));
+    assert.equal(new Set(kidsD.map(k => k.label)).size, 3);
+
+    // E) nothing at all to go on: numbered, never empty
+    const E = Array.from({ length: 45 }, (_, i) => ({ id: 'e' + i, title: `Note ${i}`, tags: ['Economy'] }));
+    const simE = []; E.forEach((p, i) => E.forEach((q, j) => { if (j > i && j % 3 === i % 3 && j - i <= 12) simE.push([p.id, q.id]); }));
+    const kidsE = gs.topicClusters(...Object.values(mk(E, simE))).clusters[0].children;
+    assert.ok(kidsE.length === 3 && kidsE.every(k => /^Group \d$/.test(k.label)), 'only then "Group n": ' + kidsE.map(k => k.label));
+}
+
 // ── 6. nothing in the logic is about a particular topic: renaming the tags (other words, other language) changes nothing but the names ──
 import fs from 'fs';
 const shape = (r) => r.clusters.map(c => [c.size, c.children.map(k => k.size).sort((a, b) => b - a)]).sort((a, b) => b[0] - a[0] || String(b[1]).localeCompare(String(a[1])));

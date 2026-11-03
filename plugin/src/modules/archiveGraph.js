@@ -78,6 +78,7 @@ const TAG_PALETTE = [
 
 const MIN_TAG_DEGREE_DEFAULT = 2; // default: hide tags used on fewer than 2 articles
 const NODE_CAP = 300;             // hard safety cap even when "show all" is on
+const OVERVIEW_NODE_CAP = 6000;   // Topics draws no links and packs instead of simulating forces, so it can show (nearly) everything
 
 // Neglected-article surfacing: an article is "neglected" once it has sat
 // unopened for this many days. We fade/shrink it and shift its ring toward
@@ -221,7 +222,7 @@ export function visibleInRange(nodes, links, fromIdx, toIdx) {
     return visible;
 }
 
-function buildGraphData(articles, minTagDegree = MIN_TAG_DEGREE_DEFAULT, similarityIndex = null, simLinks = null) {
+function buildGraphData(articles, minTagDegree = MIN_TAG_DEGREE_DEFAULT, similarityIndex = null, simLinks = null, { keepOrphans = false } = {}) {
     // 1. Count tag degree first, so we can filter before building nodes/links.
     const tagDegree = new Map(); // tagId -> count
     const tagLabelById = new Map();
@@ -299,9 +300,22 @@ function buildGraphData(articles, minTagDegree = MIN_TAG_DEGREE_DEFAULT, similar
         return null;
     };
 
+    // keepOrphans (Topics): an article nothing connects is still drawn, as a dot of its own; the structure puts it into "everything else"
+    // and the text sorts it from there. Detail leaves it out (a dot with no line says nothing in a force layout).
+    const addLoose = (article, id) => {
+        const title = article.title || article.content?.split('\n')[0] || T('Untitled');
+        const node = { id, label: title, group: 'article', data: article };
+        nodeById.set(id, node);
+        nodes.push(node);
+        includedArticleIds.add(id);
+        if (article.id) nodeOfArticleId.set(article.id, id);
+    };
     articles.forEach(article => {
-        if (!article.timestamp) { stillOrphanCount++; return; }
         if (idOfArticle.has(article)) return; // already has a tag link
+        if (!article.timestamp) {
+            if (keepOrphans) { const lid = uniqueId('article-loose'); idOfArticle.set(article, lid); addLoose(article, lid); } else stillOrphanCount++;
+            return;
+        }
         const id = uniqueId('article-' + article.timestamp);
         idOfArticle.set(article, id);
 
@@ -315,6 +329,8 @@ function buildGraphData(articles, minTagDegree = MIN_TAG_DEGREE_DEFAULT, similar
             includedArticleIds.add(id);
             if (article.id) nodeOfArticleId.set(article.id, id);
             reconnectedCount++;
+        } else if (keepOrphans) {
+            addLoose(article, id);
         } else {
             stillOrphanCount++;
         }
@@ -344,14 +360,14 @@ function buildGraphData(articles, minTagDegree = MIN_TAG_DEGREE_DEFAULT, similar
  * Enforces NODE_CAP by keeping the highest-degree tag nodes and their
  * connected articles, dropping the rest. Cheap safety net for huge archives.
  */
-function capGraphData({ nodes, links, nodeById }) {
-    if (nodes.length <= NODE_CAP) return { nodes, links, nodeById };
+function capGraphData({ nodes, links, nodeById }, cap = NODE_CAP) {
+    if (nodes.length <= cap) return { nodes, links, nodeById };
 
     const tagNodesSorted = nodes
         .filter(n => n.group === 'tag')
         .sort((a, b) => (b.degree || 0) - (a.degree || 0));
 
-    const keptTagIds = new Set(tagNodesSorted.slice(0, Math.floor(NODE_CAP * 0.4)).map(n => n.id));
+    const keptTagIds = new Set(tagNodesSorted.slice(0, Math.floor(cap * 0.4)).map(n => n.id));
     const tagLinks = links.filter(l => l.kind !== 'similarity' && keptTagIds.has(typeof l.target === 'object' ? l.target.id : l.target));
     const keptArticleIds = new Set(tagLinks.map(l => typeof l.source === 'object' ? l.source.id : l.source));
 
@@ -629,8 +645,18 @@ function renderGraph(container, allArticles, highlightTimestamp, minTagDegree, s
     const articles = researchOnly ? allArticles.filter(a => paperState(a)) : allArticles;
     const simNow = container.__graphSim || null;           // latest result of the background similarity run (graphSimilarityCache.js)
     container.__graphSimUsed = simNow ? simNow.sig : null; // which result this picture was drawn from
-    const raw = buildGraphData(articles, minTagDegree, similarityIndex, simNow && simNow.links);
-    const { nodes, links, nodeById, capped } = capGraphData(raw);
+    // Topics is wanted when asked for, or by default for an archive of enough articles. It needs far fewer resources than the force layout
+    // (no links drawn, nothing to simulate: the packing decides), so it shows every tag and every article and is not held to Detail's node cap.
+    const wantsOverview = container.__graphLayout ? container.__graphLayout === 'overview' : articles.length >= OVERVIEW_MIN_ARTICLES;
+    let raw = buildGraphData(articles, wantsOverview ? 1 : minTagDegree, similarityIndex, simNow && simNow.links, { keepOrphans: wantsOverview });
+    const structFor = (d) => topicClusters(d.nodes, d.links, { otherLabel: T('Everything else'), subOtherLabel: T('Other'), groupLabel: T('Group'), terms: simNow && simNow.terms, vectors: simNow && simNow.items });
+    let data = capGraphData(raw, wantsOverview ? OVERVIEW_NODE_CAP : NODE_CAP);
+    let struct = structFor(data);
+    if (wantsOverview && struct.clusters.length < 2) {   // nothing to pack: the usual picture, with its rules and its cap
+        raw = buildGraphData(articles, minTagDegree, similarityIndex, simNow && simNow.links);
+        data = capGraphData(raw); struct = structFor(data);
+    }
+    const { nodes, links, nodeById, capped } = data;
     const { hiddenTagCount, stillOrphanCount } = raw;
 
     // Neglect info: how long each article has sat unopened (0 = opened
@@ -645,7 +671,6 @@ function renderGraph(container, allArticles, highlightTimestamp, minTagDegree, s
     const neglectedCount = Array.from(neglectDays.values()).filter(d => d >= NEGLECT_THRESHOLD_DAYS).length;
 
     // Structure, worked out here from the tags alone (graphStructure.js): clusters, bridge articles, source types.
-    const struct = topicClusters(nodes, links, { otherLabel: T('Everything else'), subOtherLabel: T('Other'), groupLabel: T('Group'), terms: simNow && simNow.terms, vectors: simNow && simNow.items });
     const bridges = bridgeArticles(nodes, links, struct);
     const clusterIndex = new Map(struct.clusters.map((c, i) => [c.id, i]));
     const clusterColor = (id) => {
@@ -656,7 +681,7 @@ function renderGraph(container, allArticles, highlightTimestamp, minTagDegree, s
     nodes.forEach(n => { n.cluster = clusterOfNode(n) || null; n.sub = (n.group === 'article' && struct.subOfArticle.get(n.id)) || null; });
     const articleTotal = nodes.filter(n => n.group === 'article').length;
     const canOverview = struct.clusters.length >= 2;
-    const overview = canOverview && (container.__graphLayout ? container.__graphLayout === 'overview' : articleTotal >= OVERVIEW_MIN_ARTICLES);
+    const overview = canOverview && wantsOverview;
     const quietLabels = overview || articleTotal > 40;   // article titles on hover/focus only; all at once is the hairball
     const typeOf = new Map();
     nodes.forEach(n => { if (n.group === 'article') typeOf.set(n.id, sourceType(n.data)); });
@@ -1027,21 +1052,25 @@ function renderGraph(container, allArticles, highlightTimestamp, minTagDegree, s
     container.__archiveGraphSelections = { node, link, label };
 
     // Tick function
+    let ticks = 0;
+    const placeLabels = () => label.attr('x', d => d.x).attr('y', d => d.y);
     simulation.on('tick', () => {
-        link
-            .attr('x1', d => d.source.x)
-            .attr('y1', d => d.source.y)
-            .attr('x2', d => d.target.x)
-            .attr('y2', d => d.target.y);
-
+        // Topics: the links are not drawn and the titles are hidden until hover/focus, so only the dots move every frame and the
+        // titles catch up every few frames and when the layout settles. That is what keeps a big archive smooth.
+        if (!overview) {
+            link
+                .attr('x1', d => d.source.x)
+                .attr('y1', d => d.source.y)
+                .attr('x2', d => d.target.x)
+                .attr('y2', d => d.target.y);
+        }
         node
             .attr('cx', d => d.x)
             .attr('cy', d => d.y);
-
-        label
-            .attr('x', d => d.x)
-            .attr('y', d => d.y);
+        if (!overview || ++ticks % 6 === 0) placeLabels();
     });
+    simulation.on('end', () => { if (overview) { link.attr('x1', d => d.source.x).attr('y1', d => d.source.y).attr('x2', d => d.target.x).attr('y2', d => d.target.y); placeLabels(); } });
+    if (overview) simulation.alphaDecay(0.06);   // the targets are fixed by the packing; no need for the long cool-down of the force layout
 
     // ── Focus and path ───────────────────────────────────────────────────
     // Focus: one cluster, or an article with what hangs on it, stays bright; the rest steps back and its titles stay quiet.

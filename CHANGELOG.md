@@ -19,6 +19,8 @@ Commit history has the details: <https://github.com/philffm/ai-summary-helper/co
 
 #### Fixed
 
+- Archive graph (Topics): shows every article and tag, no 300-node cap and no hidden rare tags; articles with no tag at all appear in "everything else"
+- Archive graph: subtopics are named after what is typical of them (tags, terms and title words, never the cluster's own name), then by source or time; "Group n" only as the last resort
 - Archive graph: articles saved in the same moment (an import, "save all tabs") were merged into one node, which gave wrong counts and piled dots; every article is now its own node
 - Archive graph: a big cluster the tags cannot divide is divided by what the articles say (when their text has been read); a split must also hold together better than a random cut, so homogeneous clusters are not cut up
 - Archive graph: the List and Gaps views start below the chips however many rows they take, and the chips that only change the picture (layout, colour, unread, path, save image, legend) are hidden there
