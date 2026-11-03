@@ -141,6 +141,8 @@ You can export your account data and delete your account at any time at [byphil.
 
 We do not use these permissions to track your browsing, build an advertising profile, or collect data beyond providing the features described above.
 
+The use of information received from Google APIs will adhere to the [Chrome Web Store User Data Policy](https://developer.chrome.com/docs/webstore/program-policies/user-data-faq), including the Limited Use requirements.
+
 ## What We Don't Do
 
 - We don't run or serve ads, and we don't sell, rent, or trade your data to advertisers or data brokers.

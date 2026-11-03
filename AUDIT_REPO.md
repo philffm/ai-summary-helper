@@ -6,7 +6,7 @@
 
 **Extension Version:** `2.2.40` | **Web Version / SHA:** static site in `docs/` @ `5285298` (`main`)
 
-**Status Verdict:** 🟡 Attention Needed. The codebase is in good shape. Lint and tests pass, the BYOK keys stay on the device, and messages are origin-gated. It still has one dependency with a known code-execution CVE (pdf.js), broad host permissions, and gaps in automated security scanning and web hardening.
+**Status Verdict:** 🟡 Attention Needed. The codebase is in good shape. Lint and tests pass, the BYOK keys stay on the device, and messages are origin-gated. The pdf.js CVE and the missing Limited Use statement were fixed on 2026-11-03. Still open: gaps in automated security scanning and web hardening, and broad host permissions (low priority).
 
 > **About the template.** The template assumes a pnpm monorepo with `apps/extension`, `apps/web` and `packages/shared`. This repo has a different layout:
 >
@@ -34,7 +34,7 @@
 ## 1. Extension Core & Manifest V3 Compliance
 
 * [ ] **Permission Minimization** (partial)
-  * ❌ `host_permissions: ["<all_urls>", "file:///*"]` plus a content script on `<all_urls>` in all four manifests. This drives the CWS "in-depth review" flag and the broad install warning. With `activeTab` + `scripting` already declared, a plain summarize doesn't need it. Background feed fetching, highlight re-drawing and arbitrary custom endpoints do. Consider `optional_host_permissions` requested at the moment a feature is turned on.
+  * ⚠️ (low priority) `host_permissions: ["<all_urls>", "file:///*"]` plus a content script on `<all_urls>` in all four manifests. This drives the CWS "in-depth review" flag and the broad install warning. With `activeTab` + `scripting` already declared, a plain summarize doesn't need it. Background feed fetching, highlight re-drawing and arbitrary custom endpoints do. `optional_host_permissions` would be one prompt when a feature is turned on, not one per page. But highlight re-drawing and feed fetching need broad access anyway, so the gain is mostly a softer install warning. Low priority.
   * ✅ Every Chrome permission has a written justification in `store-listing/chrome-web-store/permission-justifications.md` (`offscreen`, `sidePanel`, `tts`, `tabs`, `scripting`, `storage`/`unlimitedStorage`, …).
   * ✅ No remote code. `script-src 'self'; object-src 'self'` on extension pages. Dynamic `<script>` loads only pull packaged files (`chrome.runtime.getURL('lib/d3.min.js')` in `modules/archiveGraph.js:326`; the `viewer/` export loads sibling files only).
   * ⚠️ `web_accessible_resources` exposes `popup.html`, `modules/*`, `lib/*` to `<all_urls>`. Any site can detect the extension (fingerprinting). The sidebar's iframe channel is token-protected (`modules/sidebarChannel.js`). Consider `use_dynamic_url: true` on Chrome.
@@ -77,11 +77,11 @@
 * [ ] **API Keys & Secret Storage** (partial)
   * ✅ `servicesConfig` (API keys and endpoints), license key, tokens, `mcpSecret` and `syncSecrets` are in `LOCAL_KEYS` → `chrome.storage.local`. `migrateSensitiveToLocal()` moves legacy copies out of `storage.sync`. Only preferences use `storage.sync` (language, mood flag, panel dock).
   * ✅ Backup export leaves out `SECRET_KEYS` by default. Including them, or importing a file that contains them, asks for explicit `confirm()` (`settingsManager.js:1378`, `:1461`).
-  * ❌ No automated secret scanning in CI. Add `gitleaks` with an allowlist for the public YouTube key in `content/youtube.js`, otherwise it fails on the first run.
+  * ❌ No automated secret scanning in CI. Add `gitleaks` with an allowlist for `content/youtube.js:6`. That key is YouTube's public web-player key, built into every watch page; the code prefers the page's own key and only falls back to it. It isn't a secret, but scanners will flag it.
 
 * [ ] **Content Security Policy & Injection Defense** (partial)
   * ✅ The extension CSP is `'self'` only.
-  * 🔴 **pdf.js 4.0.379 is vulnerable to CVE-2024-4367** (arbitrary JS via crafted font, fixed in 4.2.67). `content/pdfExtractor.js:114` calls `getDocument({ data: bytes })` without `isEvalSupported: false`. MV3's CSP should block the `eval` path in Chrome. Still, this is the top fix: pass `isEvalSupported: false` now and update `lib/pdf.mjs` and `lib/pdf.worker.mjs` plus `THIRD_PARTY_LICENSES.md`.
+  * ✅ **Fixed 2026-11-03: pdf.js 4.0.379 was vulnerable to CVE-2024-4367** (arbitrary JS via crafted font, fixed upstream in 4.2.67; the extractor renders image pages, so the path was reachable). Now on the minified legacy build of 6.5.438, which removed the eval font path entirely. The modern build was rejected because it uses syntax Safari can't parse. JBIG2/JPEG 2000 decoders ship as plain-JS fallbacks (`useWasm: false`, since the CSP has no `'wasm-unsafe-eval'`). Teardown now uses `loadingTask.destroy()`, because 6.x removed `PDFDocumentProxy.destroy()`. Verified in Chromium under a `script-src 'self'` CSP: text extraction, page rendering, JPEG 2000 decode, invalid-PDF rejection. Size: 2.4 MB → 2.3 MB.
   * ⚠️ 99 `innerHTML =` assignments remain in `plugin/src`. Stored page content goes through `escapeHtml` / `cleanUntrustedHtml` (`textUtils.js`), but nothing enforces it. An ESLint rule (`no-unsanitized`) would lock that in.
   * ⚠️ The site (GitHub Pages) has no CSP. Pages can't send headers, so `frame-ancestors` isn't possible there. A `<meta http-equiv="Content-Security-Policy">` with `script-src 'self' analytics.philwornath.de` is still worth adding.
   * ⚠️ Indirect prompt injection: extracted page text goes straight into prompts. That's normal for the category, but it isn't disclosed in-product or covered by tests.
@@ -132,7 +132,7 @@
   * **Weaknesses:** One maintainer. Wide scope (RSS, podcasts, graph, Kindle, sync, MCP) is growing faster than module boundaries. `<all_urls>` triggers slower CWS reviews. Large monolith modules.
   * **Opportunities:** Chrome built-in AI (Gemini Nano / Summarizer API) as a zero-setup local default. MCP as a moat. Education and research landing pages already exist.
   * **Threats:** CWS policy changes on broad host permissions. Provider price/API changes. Built-in browser summarizers making the basic feature a commodity.
-  * **MoSCoW:** Must: pdf.js fix and secret scanning. Should: optional host permissions, `no-unsanitized`. Could: extension detection on site, opt-in error counter. Won't (now): monorepo/workspaces migration.
+  * **MoSCoW:** Must: secret scanning (pdf.js fix done). Should: optional host permissions, `no-unsanitized`. Could: extension detection on site, opt-in error counter. Won't (now): monorepo/workspaces migration.
 
 * [ ] **Conversion & Feedback Loops**
   * ⚠️ Matomo (self-hosted, cookieless) is on the site, but CWS links carry no UTM or campaign parameters. The landing → install funnel isn't attributable.
@@ -144,7 +144,7 @@
 
 * [ ] **Chrome Web Store Policy Compliance**
   * ✅ A single-purpose statement is written down (`permission-justifications.md`). The feature breadth is the main risk under "Single Purpose" if a reviewer reads it strictly.
-  * ⚠️ `site-src/pages/privacy.html` doesn't include the CWS **Limited Use** affirmation. Add the standard sentence.
+  * ✅ Fixed 2026-11-03: the CWS **Limited Use** sentence was added to `site-src/pages/privacy.html`, and its copies (`docs/privacy.html`, `privacy.md`, `plugin/src/privacy.md`) were regenerated. Locale pages follow via the translate workflow.
   * ✅ The Firefox `data_collection_permissions` are declared as `required: none` with optional categories.
 
 * [x] **Privacy & Regulatory Governance (GDPR / DSGVO)**
@@ -162,10 +162,10 @@
 
 | Domain | Score (1–5) | Key Blocker / Observation | Immediate Remediation | Assigned Workspace | Target Date |
 | --- | --- | --- | --- | --- | --- |
-| **1. Extension MV3** | 4 | `<all_urls>` host and content-script match; WAR exposed to all sites | Move background-fetch hosts to `optional_host_permissions`; `use_dynamic_url` on WAR | `plugin/platforms/*` | 2026-12-15 |
+| **1. Extension MV3** | 4 | WAR exposed to all sites; `<all_urls>` (low priority) | `use_dynamic_url` on WAR (Chrome); optional host permissions only if store reviews become a problem | `plugin/platforms/*` | 2026-12-15 |
 | **2. Monorepo / Code** | 3 | No dead-code check; 2k+ line modules; 300 MB of media in Git | Add `knip` to CI; move blog MP4s out of `docs/` | root, `plugin/src` | 2027-01-31 |
-| **3. Security & BYOK** | 3 | pdf.js 4.0.379 (CVE-2024-4367); no secret scan; 99 `innerHTML` | `isEvalSupported:false` + upgrade pdf.js; `gitleaks` job with YouTube-key allowlist; `eslint-plugin-no-unsanitized` | `plugin/src`, `.github` | 2026-11-10 |
+| **3. Security & BYOK** | 4 | No secret scan; 99 `innerHTML` (pdf.js CVE fixed 2026-11-03) | `gitleaks` job with YouTube-key allowlist; `eslint-plugin-no-unsanitized` | `plugin/src`, `.github` | 2026-11-10 |
 | **4. UX / Accessibility** | 4 | No extension detection on site; popup width not bounded; CWV/contrast unmeasured | Add `data-aish` handshake; Lighthouse + axe run in Playwright | Both | 2026-12-31 |
 | **5. Ops / Infra** | 3 | No uptime check for `api.byphil.eu`; extension errors invisible | External uptime monitor; optional opt-in error counter | `docs/` + backend (external) | 2027-01-31 |
 | **6. Business & Store** | 4 | Install funnel not attributable | UTM/`mtm_campaign` on CWS links; quarterly review triage | Store Listing / Web | 2026-12-15 |
-| **7. Legal & Policies** | 4 | Missing Limited Use statement; `mcp/` still declares MIT | Add Limited Use sentence; confirm the `aish-mcp` license | `site-src/pages/privacy.html`, `plugin/src/lib` | 2026-11-17 |
+| **7. Legal & Policies** | 4 | `mcp/` still declares MIT (Limited Use added 2026-11-03) | Confirm the `aish-mcp` license | `site-src/pages/privacy.html`, `plugin/src/lib` | 2026-11-17 |
