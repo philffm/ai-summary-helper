@@ -906,6 +906,10 @@ function renderGraph(container, allArticles, highlightTimestamp, minTagDegree, s
         .style('pointer-events', 'none')
         .style('text-shadow', '0 1px 2px var(--bg-primary)');
 
+    // Unread = not marked read (`readAt`: set when opened or marked Read, removed by "Unread"; the Inbox tab and the 🆕 badge use the same).
+    const unreadIds = new Set(nodes.filter(n => n.group === 'article' && !(n.data && n.data.readAt)).map(n => n.id));
+    const unreadIn = new Map(struct.clusters.map(c => [c.id, (clusterMembers.get(c.id) || []).filter(m => unreadIds.has(m.id)).length]));
+    const clusterName = (c) => (c.label.length > 22 ? c.label.slice(0, 22) + '…' : c.label);
     const clusterFont = (c) => Math.round(12 + 6 * Math.sqrt(c.size / Math.max(1, articleTotal)));
     // Overview: one label per cluster, named after its most used tag, drawn above the dots. Click = focus that cluster.
     const clusterLabels = overview
@@ -914,10 +918,10 @@ function renderGraph(container, allArticles, highlightTimestamp, minTagDegree, s
             .attr('class', 'graph-cluster-label')
             .attr('text-anchor', 'middle').attr('fill', c => clusterColor(c.id))
             .attr('font-size', c => `${clusterFont(c)}px`)
-            .text(c => (c.label.length > 22 ? c.label.slice(0, 22) + '…' : c.label))
+            .text(c => clusterName(c))
             .style('cursor', 'pointer')
             .attr('role', 'button').attr('tabindex', 0)
-            .attr('aria-label', c => T('{topic}: {n} articles', { topic: c.label, n: c.size }))
+            .attr('aria-label', c => T('{topic}: {n} articles, {u} unread', { topic: c.label, n: c.size, u: unreadIn.get(c.id) || 0 }))
         : null;
 
     // Kept on the container so applyGraphSearchDim() can restyle the
@@ -1114,8 +1118,18 @@ function renderGraph(container, allArticles, highlightTimestamp, minTagDegree, s
         const again = container.querySelector('.graph-research-chip'); if (again) again.focus();
     });
     renderTimeRange(container, nodes, links, articles);
+    // "Unread": everything you have read steps back; in Topics each cluster label shows how many are still unread.
+    function applyUnread(on, say) {
+        node.classed('graph-read-dim', d => on && d.group === 'article' && !unreadIds.has(d.id));
+        label.classed('graph-read-dim', d => on && d.group === 'article' && !unreadIds.has(d.id));
+        if (blobs) blobs.classed('graph-read-dim', c => on && !(unreadIn.get(c.id) > 0));
+        if (clusterLabels) clusterLabels.text(c => (on ? clusterName(c) + ' · ' + (unreadIn.get(c.id) || 0) : clusterName(c)));
+        if (say) announce(on ? TN(unreadIds.size, '{n} unread article stands out', '{n} unread articles stand out') : T('Showing all articles'));
+    }
+    applyUnread(!!container.__graphUnreadOnly, false);
     renderStructureChips(container, {
         canOverview, overview,
+        unread: unreadIds.size ? { count: unreadIds.size, on: !!container.__graphUnreadOnly, onToggle: (on) => { container.__graphUnreadOnly = on; applyUnread(on, true); } } : null,
         onLayout: (mode) => {
             container.__graphLayout = mode;
             simulation.stop();
@@ -1235,9 +1249,9 @@ function exportGraphSvg(container) {
 }
 
 /** Topics | Detail switch, "Path" chip and "Save image" in the same row as the other chips. */
-function renderStructureChips(container, { canOverview, overview, onLayout }) {
+function renderStructureChips(container, { canOverview, overview, onLayout, unread }) {
     const bar = filterBar(container);
-    bar.querySelectorAll('.graph-layout-toggle, .graph-path-chip, .graph-save-chip').forEach(n => n.remove());
+    bar.querySelectorAll('.graph-layout-toggle, .graph-path-chip, .graph-save-chip, .graph-unread-chip').forEach(n => n.remove());
     if (canOverview) {
         const g = document.createElement('div');
         g.className = 'segmented-control segmented-control-buttons graph-layout-toggle'; g.setAttribute('role', 'group'); g.setAttribute('aria-label', T('Graph layout'));
@@ -1263,6 +1277,19 @@ function renderStructureChips(container, { canOverview, overview, onLayout }) {
     save.type = 'button'; save.className = 'graph-save-chip'; save.textContent = T('Save image');
     save.title = T('Save this picture as an SVG file on your device');
     save.addEventListener('click', () => exportGraphSvg(container));
+    if (unread) {
+        const chip = document.createElement('button');
+        chip.type = 'button'; chip.className = 'graph-unread-chip' + (unread.on ? ' on' : '');
+        chip.setAttribute('aria-pressed', String(unread.on));
+        chip.textContent = T('Unread') + ' · ' + unread.count;
+        chip.title = T('Show only what you have not read yet');
+        chip.addEventListener('click', () => {
+            const on = chip.getAttribute('aria-pressed') !== 'true';
+            chip.classList.toggle('on', on); chip.setAttribute('aria-pressed', String(on));
+            unread.onToggle(on);
+        });
+        bar.append(chip);
+    }
     bar.append(path, save);
 }
 
