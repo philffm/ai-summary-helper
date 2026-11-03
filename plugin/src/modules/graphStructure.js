@@ -123,11 +123,15 @@ export function topicClusters(nodes, links, { otherLabel = 'Everything else', ma
         clusterOfArticle.set(a, best);
     });
     // Articles that only hang on by a similarity link follow the article they are similar to.
-    links.forEach(l => {
-        if (l.kind !== 'similarity') return;
-        const s = idOf(l.source), t = idOf(l.target);
-        if (!clusterOfArticle.has(s) && clusterOfArticle.has(t)) clusterOfArticle.set(s, clusterOfArticle.get(t));
-    });
+    // Strongest first, two passes, so a chain of similar articles is settled the same way every time.
+    const sim = links.filter(l => l.kind === 'similarity').sort((a, b) => (b.score || 0) - (a.score || 0) || byText(String(idOf(a.source)) + idOf(a.target), String(idOf(b.source)) + idOf(b.target)));
+    for (let pass = 0; pass < 2; pass++) {
+        sim.forEach(l => {
+            const s = idOf(l.source), t = idOf(l.target);
+            if (!clusterOfArticle.has(s) && clusterOfArticle.has(t)) clusterOfArticle.set(s, clusterOfArticle.get(t));
+            else if (!clusterOfArticle.has(t) && clusterOfArticle.has(s)) clusterOfArticle.set(t, clusterOfArticle.get(s));
+        });
+    }
 
     let otherId = null;
     const stray = articleIds.filter(a => !clusterOfArticle.has(a));

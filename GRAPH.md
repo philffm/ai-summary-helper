@@ -2,8 +2,8 @@
 
 How the graph in the History tab decides what to show, why it opens as topic clusters, and what is still open.
 Code: `plugin/src/modules/archiveGraph.js` (drawing, interaction), `plugin/src/modules/graphStructure.js` (the structure, pure functions),
-`plugin/src/modules/graphClusters.js` and `graphBrief.js` (the topic page and briefings), `plugin/src/modules/localSearch.js` (content similarity).
-Tests: `plugin/tests/test128.mjs` (gaps, time window, views), `plugin/tests/test217.mjs` (clusters, bridges, focus, path, source type, maturity).
+`plugin/src/modules/graphClusters.js` and `graphBrief.js` (the topic page and briefings), `plugin/src/modules/graphSimilarity.js` and `graphSimilarityCache.js` (content similarity, background run, cache).
+Tests: `plugin/tests/test128.mjs` (gaps, time window, views), `plugin/tests/test217.mjs` (clusters, bridges, focus, path, source type, maturity), `plugin/tests/test218.mjs` (similarity and its incremental cache).
 
 ## Why it opens as clusters
 
@@ -56,13 +56,42 @@ Accessibility: cluster labels are buttons (Enter / Space), every state change is
 
 ## How articles are matched with each other
 
-Two separate things, and only one of them looks at the text:
+Two separate things:
 
-- **Clusters, bridges, focus and path use tag links.** Titles and text play no part.
-- **Content similarity** (`localSearch.js`, TF-IDF with cosine) weights `title ×4`, `tags ×3`, `description ×2`, `summary ×1` and the **first 4,000 characters** of the content `×1`. It is built once per archive change and shared with search and "similar articles". It is not the full article.
-- In the graph, similarity is **only a fallback**: an article that has no usable tag gets one dashed link to its most similar article (score ≥ 0.15). Articles with tags are never compared with each other by content.
+- **Clusters, bridges, focus and path start from tag links.** Titles and text play no part there.
+- **Content similarity** (`graphSimilarity.js`, `graphSimilarityCache.js`) finds each article's closest neighbours from its text and adds them as dashed links (best 2 per article, score ≥ 0.25). It also decides where an article with no usable tag goes: it follows its closest neighbour into that topic.
 
-Open: use similarity for every article (see "Not done").
+What the similarity is built from:
+
+| Stage | Input | Where it runs | Cost |
+| --- | --- | --- | --- |
+| **Quick** | title (×3), tags (×3), summary (×1), from the lean index entry | on open, in slices of 100 articles | a few hundred ms for 1,500 articles, once per new or changed article |
+| **Deep** | the saved text (first 30,000 characters) added to the same vector | in the background, 25 texts per storage read, idle time between batches, checkpoint every 100 articles | reading the texts from storage is the real cost, tokenising is cheap |
+
+The picture is drawn at once from the tags. When a better result is ready it is swapped in only if you have not touched the graph yet; otherwise a chip says "Better connections ready" and redraws on tap. While the deep stage runs a quiet chip shows its progress.
+
+Good to know:
+
+- **The search index (`localSearch.js`) never saw the saved text.** It runs on the lean `articlesIndex` (title, tags, summary), and the text lives in one record per article. That is why the graph has its own similarity instead of reusing it. `localSearch.js` also only knows `a–z` words (umlauts and non-Latin scripts fall apart there); `graphSimilarity.js` uses Unicode words, and Han/Kana runs become character pairs.
+- **Stop words are dropped by frequency, not by list:** a term in more than 25 % of the articles says nothing, in any language.
+- **Each article keeps only its 100 strongest terms** (40 are compared). That is what makes comparing the whole archive fast and the cache small.
+- **The cache** is one storage key (`graph:sim`): vectors, fingerprints and the neighbours with the signature they belong to. An article is only worked on again when its fingerprint changes (title, tags, summary length, text length); deleted articles leave the cache. It is derived data: deleted with the history, never part of a backup. With nothing changed, opening the graph reads it once and writes nothing.
+- A pair of articles is never compared by an AI and nothing leaves the device.
+
+## Performance
+
+Measured in Node on 1,500 synthetic articles (average text 19 KB, 28 MB in total; a real archive is usually lighter). This is a server CPU, not a phone, and the storage reads were not measured, so treat the numbers as proportions:
+
+| Step | Time |
+| --- | --- |
+| Search index as it is today (title, tags, summary), rebuilt on every archive change | ~300 ms |
+| … plus the first 4,000 characters of the text | ~850 ms |
+| Tokenising the **full** text of all 1,500 articles | ~1,200 ms |
+| Neighbours for all articles, full vectors, inverted index | ~11,000 ms |
+| Neighbours for all articles, naive pairwise | ~55,000 ms |
+| **Neighbours for all articles, 40 strongest terms per article** | **~180 ms** |
+
+So the expensive part is not the text but comparing everything with everything; cutting each article down to its strongest terms makes that about 60× cheaper. Synthetic text cannot tell how good the neighbours are; that needs a look at a real archive.
 
 ## Prioritisation by user group
 
@@ -83,7 +112,6 @@ Groups are the personas the site already uses. MoSCoW is a judgement from the co
 
 ## Not done
 
-- **Content similarity between all articles** (kNN links and a vote on the cluster). Needs a decision on the text cap and on cost: the index is built over the whole archive on every change.
 - **A hub note per cluster for Obsidian** (a map of content that links every article of the cluster). The Markdown export already writes `[[wikilinks]]` (a `Related` section per article, briefings link their citations to the article notes) and can export just a cluster; only the hub note is missing.
 - **MCP tool** for a subgraph or related items (separate package in `mcp/`).
 - **Mood colour**, **time replay**, **flashcards from a topic**, **"unread only" filter**.

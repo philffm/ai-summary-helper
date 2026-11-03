@@ -51,6 +51,8 @@ import { topicClusters, bridgeArticles, neighborhood, shortestPath, sourceType, 
 const OVERVIEW_MIN_ARTICLES = 25;   // below this the plain graph is readable as it is
 const FOCUS_CLASS = 'graph-focus-dim';
 const PATH_CLASS = 'graph-path';
+const GRAPH_SIM_MIN = 0.25;         // content-similarity links drawn between articles (graphSimilarity.js), best ones only
+const GRAPH_SIM_PER_ARTICLE = 2;
 const FOCUS_LABELS = 8;             // article labels shown when a cluster or neighbourhood is in focus
 const MATURITY_FILL = { seed: 0.45, growing: 0.75, evergreen: 1 };   // fill strength by how far an article was worked
 const RING_DASH = { paper: null, video: '3 2', pdf: '1 2' };         // ring style by source type (plain articles: no ring)
@@ -217,7 +219,7 @@ export function visibleInRange(nodes, links, fromIdx, toIdx) {
     return visible;
 }
 
-function buildGraphData(articles, minTagDegree = MIN_TAG_DEGREE_DEFAULT, similarityIndex = null) {
+function buildGraphData(articles, minTagDegree = MIN_TAG_DEGREE_DEFAULT, similarityIndex = null, simLinks = null) {
     // 1. Count tag degree first, so we can filter before building nodes/links.
     const tagDegree = new Map(); // tagId -> count
     const tagLabelById = new Map();
@@ -277,12 +279,23 @@ function buildGraphData(articles, minTagDegree = MIN_TAG_DEGREE_DEFAULT, similar
     let reconnectedCount = 0;
     let stillOrphanCount = 0;
 
+    // Content neighbours from the background similarity cache (graphSimilarity.js), keyed by article id.
+    const nodeOfArticleId = new Map();
+    nodes.forEach(n => { if (n.group === 'article' && n.data && n.data.id) nodeOfArticleId.set(n.data.id, n.id); });
+    const cacheBest = (article) => {
+        for (const [oid, score] of (simLinks && simLinks[article.id]) || []) {
+            const nid = nodeOfArticleId.get(oid);
+            if (nid && score >= GRAPH_SIM_MIN) return { id: nid, score };
+        }
+        return null;
+    };
+
     articles.forEach(article => {
         if (!article.timestamp) { stillOrphanCount++; return; }
         const id = 'article-' + article.timestamp;
         if (includedArticleIds.has(id)) return; // already has a tag link
 
-        const best = mostSimilarIncluded(similarityIndex, article, articles, includedArticleIds);
+        const best = mostSimilarIncluded(similarityIndex, article, articles, includedArticleIds) || cacheBest(article);
         if (best) {
             const title = article.title || article.content?.split('\n')[0] || T('Untitled');
             const orphanNode = { id, label: title, group: 'article', data: article };
@@ -290,11 +303,29 @@ function buildGraphData(articles, minTagDegree = MIN_TAG_DEGREE_DEFAULT, similar
             nodes.push(orphanNode);
             links.push({ source: id, target: best.id, kind: 'similarity', score: best.score });
             includedArticleIds.add(id);
+            if (article.id) nodeOfArticleId.set(article.id, id);
             reconnectedCount++;
         } else {
             stillOrphanCount++;
         }
     });
+
+    // 4. Content similarity between articles that already have tags too: a few dashed links to their closest neighbours. They make
+    //    focus and path find more, and tag-poor articles follow them into a topic (graphStructure.js).
+    if (simLinks) {
+        const pairKey = (x, y) => (x < y ? x + '|' + y : y + '|' + x);
+        const seen = new Set(links.filter(l => l.kind === 'similarity').map(l => pairKey(l.source, l.target)));
+        nodeOfArticleId.forEach((nid, aid) => {
+            (simLinks[aid] || []).slice(0, GRAPH_SIM_PER_ARTICLE).forEach(([oid, score]) => {
+                const other = nodeOfArticleId.get(oid);
+                if (!other || score < GRAPH_SIM_MIN) return;
+                const k = pairKey(nid, other);
+                if (seen.has(k)) return;
+                seen.add(k);
+                links.push({ source: nid, target: other, kind: 'similarity', score });
+            });
+        });
+    }
 
     return { nodes, links, nodeById, hiddenTagCount, reconnectedCount, stillOrphanCount };
 }
@@ -377,6 +408,13 @@ export function initArchiveGraph(container, articles, highlightTimestamp, simila
     // Height comes from CSS (fills what is left below the top bar, above the bottom nav).
     container.style.removeProperty('height');
     container.style.overflow = 'hidden';
+
+    // Has the person started using this picture? Then a better result from the background run is offered, not swapped in.
+    container.__graphTouched = false;
+    if (!container.__graphTouchListeners) {
+        container.__graphTouchListeners = true;
+        ['pointerdown', 'wheel', 'keydown', 'focusin'].forEach(ev => container.addEventListener(ev, () => { container.__graphTouched = true; }, { passive: true }));
+    }
 
     return loadD3()
         .then(() => waitForLayout(container))
@@ -541,6 +579,7 @@ export function destroyArchiveGraph(container) {
     if (container.__graphKeyDoc) { document.removeEventListener('keydown', container.__graphKeyDoc); container.__graphKeyDoc = null; }
     if (container.__graphFocusKey) { document.removeEventListener('keydown', container.__graphFocusKey); container.__graphFocusKey = null; }
     container.__graphClear = null;
+    if (container.__graphSimStop) { container.__graphSimStop(); container.__graphSimStop = null; }
     container.classList.remove('graph-overview', 'graph-quiet');
 
     // Cancel any in-flight pulse transition on the highlighted node.
@@ -577,7 +616,9 @@ function renderGraph(container, allArticles, highlightTimestamp, minTagDegree, s
     if (!paperCount) container.__graphResearchOnly = false;
     const researchOnly = !!container.__graphResearchOnly;
     const articles = researchOnly ? allArticles.filter(a => paperState(a)) : allArticles;
-    const raw = buildGraphData(articles, minTagDegree, similarityIndex);
+    const simNow = container.__graphSim || null;           // latest result of the background similarity run (graphSimilarityCache.js)
+    container.__graphSimUsed = simNow ? simNow.sig : null; // which result this picture was drawn from
+    const raw = buildGraphData(articles, minTagDegree, similarityIndex, simNow && simNow.links);
     const { nodes, links, nodeById, capped } = capGraphData(raw);
     const { hiddenTagCount, stillOrphanCount } = raw;
 
@@ -1113,6 +1154,33 @@ function renderGraph(container, allArticles, highlightTimestamp, minTagDegree, s
             renderGraph(container, allArticles, highlightTimestamp, nextMinDegree, similarityIndex);
         },
     });
+    followSimilarity(container, () => { simulation.stop(); renderGraph(container, allArticles, highlightTimestamp, minTagDegree, similarityIndex); });
+}
+
+/** Joins the background similarity run: swaps in a new result while the picture is untouched, otherwise offers it in a chip. */
+function followSimilarity(container, rerender) {
+    if (container.__graphSimStop) { container.__graphSimStop(); container.__graphSimStop = null; }
+    import('./graphSimilarityCache.js').then((m) => {
+        if (!container.isConnected) return;
+        container.__graphSimStop = m.watchSimilarity((u) => {
+            if (!container.isConnected) return;
+            container.__graphSim = { links: u.links, sig: u.sig };
+            const fresh = u.sig !== container.__graphSimUsed;
+            if (fresh && !container.__graphTouched && container.dataset.graphMode !== 'list') { rerender(); return; }
+            showSimilarityChip(container, { fresh, running: !u.complete, done: u.done, total: u.total }, rerender);
+        });
+    }).catch(() => { /* no similarity run: the graph stays on tags */ });
+}
+
+function showSimilarityChip(container, { fresh, running, done, total }, rerender) {
+    const bar = filterBar(container);
+    let chip = bar.querySelector('.graph-sim-chip');
+    if (!fresh && !running) { if (chip) chip.remove(); return; }
+    if (!chip) { chip = document.createElement('button'); chip.type = 'button'; chip.className = 'graph-sim-chip'; bar.append(chip); }
+    chip.disabled = !fresh;
+    chip.textContent = fresh ? T('Better connections ready') : T('Matching articles…') + (total ? ' ' + Math.round(100 * done / total) + '%' : '');
+    chip.title = fresh ? T('Redraw the graph with the new matches') : T('Reading your saved articles in the background');
+    chip.onclick = fresh ? () => { chip.remove(); rerender(); } : null;
 }
 
 

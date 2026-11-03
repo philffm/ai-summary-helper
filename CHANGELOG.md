@@ -7,6 +7,7 @@ Commit history has the details: <https://github.com/philffm/ai-summary-helper/co
 
 #### Added
 
+- Archive graph links articles by their text too: a background run builds a small per-article cache (title, tags, summary, saved text), only new or changed articles are processed again. Details in `GRAPH.md`
 - Archive graph opens as topic clusters (worked out locally from the tags), with focus mode, path between two items, source-type rings, maturity fill, bridge articles, "Brief me on this" for gaps and Save image. Details in `GRAPH.md`
 
 #### Changed

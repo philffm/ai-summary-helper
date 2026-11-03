@@ -14,13 +14,13 @@ export const SECRET_KEYS = [
 ];
 
 /** Never part of a backup, in either direction: restoring them on another device would repeat what was already done there. */
-export const TRANSIENT_KEYS = [SK.targetOutbox, SK.mcpLog, SK.syncDeviceId, SK.syncPlaces, SK.syncConnections, SK.syncStatus, SK.syncClock, SK.cloudRoute];
+export const TRANSIENT_KEYS = [SK.graphSim, SK.targetOutbox, SK.mcpLog, SK.syncDeviceId, SK.syncPlaces, SK.syncConnections, SK.syncStatus, SK.syncClock, SK.cloudRoute];
 /** Key prefixes that are per device and never leave it (sync stamps describe this device's view of the library). */
 export const TRANSIENT_PREFIXES = [SYNC_STAMPS, SYNC_LEDGER];
 
 export const CATEGORIES = {
     // the summaries and everything attached to them
-    articles: { keys: [SK.articlesIndex, SK.articlesSchema, SK.collIndex], prefixes: [ARTICLE_REC, ARTICLE_REC_LEGACY, COLL_REC, SYNC_STAMPS, SYNC_LEDGER], extra: ['articles', 'articleHistory'] },
+    articles: { keys: [SK.articlesIndex, SK.articlesSchema, SK.collIndex, SK.graphSim], prefixes: [ARTICLE_REC, ARTICLE_REC_LEGACY, COLL_REC, SYNC_STAMPS, SYNC_LEDGER], extra: ['articles', 'articleHistory'] },
     // yellow highlights and AI ghost highlights, all pages
     highlights: { keys: [SK.annotations], extra: [...SK_DEAD.filter((k) => k !== 'articleHistory'), 'annotations'] },
     // RSS: subscriptions, fetched items, recaps, mood snapshots, listening position, background processing state

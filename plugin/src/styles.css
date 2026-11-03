@@ -4687,3 +4687,6 @@ circle.graph-path { stroke: var(--accent); stroke-width: 3px; }
 .graph-legend-ring--pdf { border-style: dotted; }
 .graph-legend-fill { display: inline-block; width: 9px; height: 9px; border-radius: 50%; background: var(--accent); opacity: .45; }
 @media (prefers-reduced-motion: reduce) { .graph-blob { transition: none; } }
+
+.graph-sim-chip { padding: 4px 10px; font: inherit; font-size: var(--fs-xs); color: var(--text-muted); background: var(--glass-base); border: 1px dashed var(--outline); border-radius: 999px; cursor: default; }
+.graph-sim-chip:not(:disabled) { color: var(--accent); border: 1px solid var(--accent); cursor: pointer; }
