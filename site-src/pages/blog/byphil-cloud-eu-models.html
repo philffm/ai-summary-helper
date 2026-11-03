@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#08090C">
+<title>byPhil Cloud now routes to EU servers — AI Summary Helper</title>
+<meta name="description" content="byPhil Cloud now has an EU mode: one switch, Auto presets per provider, and clear labels for EU company versus EU servers. What it gives you, and what it does not.">
+
+<script>
+  (function(){
+    try {
+      var saved = localStorage.getItem('aish_theme');
+      var theme = saved === 'light' || saved === 'dark'
+        ? saved
+        : (window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
+      document.documentElement.setAttribute('data-theme', theme);
+    } catch (e) {
+      document.documentElement.setAttribute('data-theme', 'dark');
+    }
+  })();
+</script>
+
+<link rel="icon" type="image/svg+xml" href="../assets/icon.svg">
+<link rel="preload" href="../assets/fonts/space-grotesk-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin><link rel="preload" href="../assets/fonts/inter-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin><link rel="stylesheet" href="../assets/styles.css">
+<script src="../assets/analytics.js" defer></script>
+</head>
+<body>
+
+<a href="#main" class="skip-link">Skip to content</a>
+
+<!--include:nav-blog-->
+
+<main id="main">
+  <section class="hero--photo post-stage">
+    <img class="hero-bg" src="../assets/photo/it-specialist-server-room-800.webp" srcset="../assets/photo/it-specialist-server-room-800.webp 800w, ../assets/photo/it-specialist-server-room-1600.webp 1600w" sizes="100vw" width="1600" height="893" alt="" fetchpriority="high" decoding="async" style="--bgpos:50% 50%">
+    <p class="hero-credit">Illustration, AI-generated</p>
+    <div class="wrap">
+      <div class="post-hero">
+      <span class="blog-date">Product · November 2026</span>
+      <h1>byPhil Cloud now speaks EU: one switch, honest labels</h1>
+      <p class="post-sub">The optional hosted service can now send your requests only to EU endpoints, and the model picker tells you which models are from an EU company and which just run in an EU region.</p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <div class="prose">
+        <p><strong>The short answer.</strong> If you use byPhil Cloud, you can now turn on <em>Prefer EU servers</em>. Requests then go only to EU endpoints of the model provider, with no fallback elsewhere. The model picker marks every model as <em>EU company</em> or <em>EU servers</em>, and there are one-click <em>Auto</em> presets per provider. It is a convenience with an EU option, not a claim that the service is fully sovereign. This post explains the difference.</p>
+
+        <h2>What changed</h2>
+        <p>byPhil Cloud is the optional hosted way to use AI Summary Helper: it is included in your byPhil account, so you need no API key. Until now you picked a model and the routing was whatever was cheapest and fastest. Now the model picker has an EU mode and a clearer layout:</p>
+        <ul>
+          <li><strong>One switch.</strong> With <em>Prefer EU servers</em> on, requests are pinned to EU endpoints of the model provider. If a model has no EU route, the request is not quietly sent somewhere else.</li>
+          <li><strong>Auto presets.</strong> <em>Auto</em>, <em>Auto · Mistral</em>, <em>Auto · Google</em>, <em>Auto · DeepSeek</em>, <em>Auto · Anthropic</em> and <em>Auto · OpenAI</em> choose a suitable model for you. With the EU switch on, they only pick models that have an EU route.</li>
+          <li><strong>Two kinds of badge.</strong> <em>EU company</em> means the provider is based in Europe (Mistral, in Paris). <em>EU servers</em> means a company elsewhere runs the model in an EU region.</li>
+          <li><strong>Search and recents.</strong> Your recently used models sit at the top, and a search box finds any cloud model. Models without an EU route stay selectable, but they are marked, so you never switch by accident.</li>
+        </ul>
+        <p>The picker sits in the same place as the other two ways to reach a model, your own key and a local Ollama model, so changing your mind takes one click (<a href="bring-your-own-key.html">how the three compare</a>).</p>
+
+        <h2>EU company and EU servers are not the same thing</h2>
+        <p>This is the part most product pages blur. A model can be <em>physically</em> in Europe and still belong to a company under US law. The US CLOUD Act lets US authorities require US-based providers to hand over data they control, wherever it is stored; how that squares with the GDPR is disputed (<a href="digital-sovereignty-for-individuals.html">the legal background, with sources</a>). So we label the two cases separately, and you decide which one matters for what you read.</p>
+        <ul>
+          <li><strong>EU company:</strong> subject to EU and national law. Good if jurisdiction is your concern.</li>
+          <li><strong>EU servers:</strong> your text stays in the EU while it is processed. Good if the data location is your concern, and it lets you use stronger models that are not European.</li>
+        </ul>
+        <p>Neither is a guarantee. Providers, partnerships and investors change, so check the provider’s current terms.</p>
+
+        <h2>What this does not do</h2>
+        <p>Being clear about the limits matters more than a tidy story:</p>
+        <ul>
+          <li>The hosted service runs its server and its database at IONOS in Germany. Your text then goes on to the model provider through OpenRouter, a US company. The EU switch pins where the model runs. It does not change who the companies are.</li>
+          <li>If you need the strongest setup, use your own key with a provider you trust, or a local model with Ollama, where the page text never leaves your computer.</li>
+          <li>Models are not equal. European models are a reasonable choice for everyday reading, but if you need the best available quality, a US model with EU routing may do the job better. That trade-off is yours to make, which is the point of the picker.</li>
+        </ul>
+
+        <h2>Why we built it this way</h2>
+        <p>Sovereignty is not about owning the best model. Models improve and change owners, prices and terms. What protects you is being able to switch: from one model to another, from the cloud to your own key, from your own key to a local model, without losing your library or relearning the tool. Your articles, summaries and highlights stay on your device in any case (<a href="../privacy.html">privacy policy</a>); the picker only decides who reads the text of the page you ask about.</p>
+        <p>So the EU mode is one more rung on that ladder, not a destination. It makes the lowest-effort option, no key and no setup, a little more careful about where your text goes.</p>
+
+        <h2>How to turn it on</h2>
+        <ol>
+          <li>Open the model picker in AI Summary Helper and choose <strong>byPhil Cloud</strong>.</li>
+          <li>Switch on <strong>Prefer EU servers</strong> in the settings.</li>
+          <li>Pick a model with an <em>EU company</em> or <em>EU servers</em> badge, or choose an <em>Auto</em> preset.</li>
+        </ol>
+        <p><em>Related: <a href="digital-sovereignty-for-individuals.html">Digital sovereignty for individuals</a> and <a href="bring-your-own-key.html">Your key. Your model. Your data.</a></em></p>
+
+        <h2>Questions people ask</h2>
+        <h3>Do I need an API key for byPhil Cloud?</h3>
+        <p>No. It is included in your byPhil account. If you prefer, you can still use your own key or a local model instead.</p>
+        <h3>Is byPhil Cloud the sovereign choice?</h3>
+        <p>No, and we do not describe it that way. It runs in Germany but reaches models through OpenRouter, a US company. For the most control, use your own key or a local model.</p>
+        <h3>What happens if a model has no EU route?</h3>
+        <p>It stays selectable but is marked. With the EU switch on, <em>Auto</em> never picks it and requests are not rerouted outside the EU.</p>
+        <h3>Which should I choose, EU company or EU servers?</h3>
+        <p>Choose an EU company if jurisdiction matters most to you. Choose EU servers if you want the data to stay in the EU but need a stronger model.</p>
+
+        <div class="post-cta">
+          <p>AI Summary Helper is a free, open-source browser extension. Bring your own key, run a local model, or use byPhil Cloud.</p>
+          <div style="display: flex; gap: 1rem; flex-wrap: wrap; margin-top: 1rem;">
+            <a href="https://chromewebstore.google.com/detail/ai-summary-helper-openai/hldbejcjaedipeegjcinmhejdndchkmb" target="_blank" rel="noopener" class="btn-primary">Add to Chrome</a>
+            <a href="https://addons.mozilla.org/en-US/firefox/addon/ai-summary-helper/" target="_blank" rel="noopener" class="btn-primary">Add to Firefox</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<!--include:footer-blog-->
+</body>
+</html>
