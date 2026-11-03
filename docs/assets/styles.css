@@ -67,6 +67,7 @@
   --card-bg-1:#1C1D24;
   --card-bg-2:#08090C;
   --best-tint: rgba(228,168,62,0.08);
+  --best-border: rgba(228,168,62,0.5);
   --surface-2-strong: rgba(0,0,0,0.14);
   --danger-tint: rgba(248,113,113,0.12);
 }
@@ -112,6 +113,7 @@
   --card-bg-1:#FFFFFF;
   --card-bg-2:#F1F0EB;
   --best-tint: rgba(154,107,20,0.07);
+  --best-border: rgba(154,107,20,0.5);
   --surface-2-strong: rgba(20,21,26,0.04);
   --danger-tint: rgba(192,35,30,0.08);
 }
@@ -446,9 +448,12 @@ section{ padding:76px 0; }
 .faq-tools input::placeholder{color:var(--paper-dim)}
 .faq-tools input:focus-visible{outline:2px solid var(--signal);outline-offset:3px}
 .faq-filters{display:flex;flex-wrap:wrap;justify-content:center;gap:8px;margin:14px 0 0}
-.faq-filter{border:1px solid var(--border-subtle);border-radius:999px;padding:8px 13px;background:var(--surface-2);color:var(--paper-dim);font:inherit;font-size:12px;cursor:pointer}
-.faq-filter:hover,.faq-filter.is-active{border-color:var(--signal);background:var(--signal);color:var(--ink)}
+.faq-filter{min-height:36px;border:1px solid var(--border-medium);border-radius:999px;padding:8px 14px;background:var(--surface-2);color:var(--paper-dim);font:inherit;font-size:13px;line-height:1.2;cursor:pointer}
+.faq-filter:hover{border-color:var(--signal);color:var(--paper)}
+/* selected: the same blue fill and label colour as the other toggles (white on #1D4ED8 6.7:1 light, #08101F on #6FA3FF 7.6:1 dark) */
+.faq-filter[aria-pressed="true"],.faq-filter.is-active{border-color:var(--cta-sky-2);background:var(--cta-sky-2);color:var(--on-accent);font-weight:600}
 .faq-filter:focus-visible{outline:2px solid var(--signal);outline-offset:3px}
+@media (forced-colors:active){.faq-filter[aria-pressed="true"]{border:2px solid Highlight;color:Highlight}}
 .faq-search-status{min-height:1.4em;margin:8px 2px 0;color:var(--paper-dim);font-size:13px}
 .cx-compare{display:grid;gap:5px;margin:12px 0 0;max-width:560px}
 .cx-compare-row{display:grid;grid-template-columns:104px 1fr;gap:10px;align-items:baseline;padding:5px 8px;border-left:2px solid var(--signal);background:rgba(255,255,255,.07);font-size:11.5px}
@@ -726,7 +731,7 @@ footer .copyright a:hover, .foot-links a:hover{ text-decoration-color:currentCol
 
 /* blog figures */
 .post-figure{ margin:36px 0; }
-.post-figure img{ display:block; width:100%; height:auto; border-radius:14px; border:1px solid var(--border); background:var(--surface,transparent); }
+.post-figure img{ display:block; width:100%; height:auto; border-radius:14px; border:1px solid var(--border-subtle); background:var(--surface,transparent); }
 .post-figure--portrait img{ max-width:400px; margin:0 auto; }
 .post-figure figcaption{ margin-top:12px; font-size:13.5px; line-height:1.5; color:var(--paper-dim); text-align:center; }
 

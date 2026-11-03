@@ -40,7 +40,7 @@ jobs:
       - name: Live demo still builds and its mock covers every popup action
         run: npm run demo:check
       - name: Validate sitemap and internal links
-        run: node --test scripts/tests/sitemap-links.test.mjs scripts/tests/carousel-accessibility.test.mjs && node scripts/check-sitemap.mjs
+        run: node --test scripts/tests/sitemap-links.test.mjs scripts/tests/carousel-accessibility.test.mjs scripts/tests/css-tokens.test.mjs && node scripts/check-sitemap.mjs
       - name: Vendored libraries match their documented versions
         run: node scripts/check-vendored-libs.mjs --offline
       - name: Tests the change can reach
