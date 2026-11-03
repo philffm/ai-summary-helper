@@ -5,6 +5,26 @@ Commit history has the details: <https://github.com/philffm/ai-summary-helper/co
 
 ## Unreleased
 
+#### Added
+
+- Archive graph links articles by their text too: a background run builds a small per-article cache (title, tags, summary, saved text), only new or changed articles are processed again. Details in `GRAPH.md`
+- Archive graph (Topics): clusters, subtopics and articles are packed as nested circles, so a big cluster is a group of named subtopics instead of one clump; a tag on a third or more of the whole archive no longer ties all topics together; the Obsidian hub note lists the subtopics
+- Topic page: "Anki cards" exports the questions you asked and the answers you kept as a file Anki imports
+- Archive graph: "Replay" in the Time panel lets the window grow month by month
+- Archive graph: "Color" chip switches the dot colours between topic, age and mood
+- MCP: new tool `related_articles` (the saved articles closest to one article, with the tags they share)
+- Markdown export of a graph topic adds a hub note (`Hub – <topic>.md`) that links all exported notes with wikilinks, grouped by how far you got
+- Archive graph: "Unread" chip that lets read articles step back and shows the unread count in each cluster label
+- Archive graph opens as topic clusters (worked out locally from the tags), with focus mode, path between two items, source-type rings, maturity fill, bridge articles, "Brief me on this" for gaps and Save image. Details in `GRAPH.md`
+
+#### Fixed
+
+- Language tags ("🌐 de", "🌐 en") are no longer sent to the AI as topics, so they stop turning into "Deutschland" / "Germany"; a lexicon an older run already polluted heals itself on load. Language tags are also left out of the graph (no node, link, cluster or gap), of the similarity, of `related_articles`' shared tags and of the Markdown export's "Related" and hub topics
+
+#### Changed
+
+- Archive graph: article titles show on hover, focus and search matches instead of all at once
+
 ## 2.2.40 (2026-11-02)
 
 ### All changes

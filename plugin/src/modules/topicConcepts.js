@@ -29,6 +29,10 @@ export const CONCEPTS = {
     education: L(['Education'], ['Bildung', 'Ausbildung'], ['Educación'], ['Éducation', 'Education'], ['Istruzione', 'Educazione'], ['Educação'], ['Образование'], ['शिक्षा'], ['교육'], ['教育'], ['教育'], ['教育'], ['تعليم', 'التعليم'])
 };
 
+/** "🌐 de" / "🌐en" / "🌐 pt-br": a language mark (content/finalize.js writes "🌐 <page language>" and "🌐 <summary language>"), never a topic.
+ *  The AI must not be asked what topic it is (it answers "Germany"), and no topic may ever be learned for it. */
+export const isLanguageTag = (t) => /^🌐\s*[a-z]{2,3}(?:-[a-z0-9]{2,8})?$/i.test(String(t == null ? '' : t).trim());
+
 export const normalizeTopic = (t) => String(t || '').normalize('NFD').replace(/[̀-ͯ]/g, '').replace(/[#]/g, '').replace(/\s+/g, ' ').trim().toLowerCase();
 
 const LOOKUP = new Map();
@@ -41,10 +45,15 @@ const buildRev = () => {
     LEX_REV = new Map();
     for (const [key, labels] of Object.entries(LEX)) {
         if (!LEX_REV.has(key)) LEX_REV.set(key, key);
-        Object.values(labels).flat().forEach((l) => { const n = normalizeTopic(l); if (n && !LEX_REV.has(n)) LEX_REV.set(n, key); });   // '*' holds the spellings seen so far
+        Object.values(labels).flat().forEach((l) => { const n = normalizeTopic(l); if (n && !isLanguageTag(l) && !LEX_REV.has(n)) LEX_REV.set(n, key); });   // '*' holds the spellings seen so far
     }
 };
-export function setLexicon(obj) { LEX = obj && typeof obj === 'object' ? obj : {}; buildRev(); }
+export function setLexicon(obj) {
+    LEX = obj && typeof obj === 'object' ? obj : {};
+    // An older run may have taught the lexicon that "🌐 de" means a country; forget that for good (language marks are not topics).
+    for (const labels of Object.values(LEX)) if (labels && Array.isArray(labels['*'])) labels['*'] = labels['*'].filter((l) => !isLanguageTag(l));
+    buildRev();
+}
 export const getLexicon = () => LEX;
 /**
  * Remember that `label` names the topic `en` (its English name). `locale` = the language the label is written in, or
@@ -54,6 +63,7 @@ export const getLexicon = () => LEX;
 export function lexiconLearn(en, locale, label) {
     const key = normalizeTopic(en), shown = String(label || '').replace(/\s+/g, ' ').trim();
     if (!key || !shown || key.length > 40 || shown.length > 40) return false;
+    if (isLanguageTag(en) || isLanguageTag(label)) return false;   // a language mark is never a spelling of a topic, whatever the AI says
     if (locale && LOOKUP.has(key)) return false;        // built-in topics have their labels; only extra spellings (locale = null) are worth keeping
     const cur = LEX[key] || (LEX[key] = {});
     if (locale) { if (cur[locale] === shown) return false; cur[locale] = shown; }
@@ -61,10 +71,10 @@ export function lexiconLearn(en, locale, label) {
     buildRev();
     return true;
 }
-const lexKey = (tag) => LEX_REV.get(normalizeTopic(tag)) || null;
+const lexKey = (tag) => (isLanguageTag(tag) ? null : LEX_REV.get(normalizeTopic(tag)) || null);
 
 /** Known topic id for a tag in any language (null when it is not a built-in topic). A learned tag whose English name is a built-in topic counts too. */
-export const conceptId = (tag) => LOOKUP.get(normalizeTopic(tag)) || LOOKUP.get(lexKey(tag)) || null;
+export const conceptId = (tag) => (isLanguageTag(tag) ? null : LOOKUP.get(normalizeTopic(tag)) || LOOKUP.get(lexKey(tag)) || null);
 
 /** Built-in or learned topic (as opposed to free text)? */
 export const isKnownTopic = (tag) => !!(conceptId(tag) || lexKey(tag));
@@ -94,7 +104,7 @@ export function hasLabel(tag, locale) {
 /** The tags of a list that are neither built-in nor learned yet (deduped, most frequent first) — what the AI still has to name. `minCount` leaves out tags that occur fewer times. */
 export function unknownTags(list, max = 200, minCount = 1) {
     const n = new Map();
-    for (const t of list) { const k = normalizeTopic(t); if (k && k.length <= 40 && !conceptId(t) && !lexKey(t)) { const e = n.get(k) || { tag: String(t).trim(), c: 0 }; e.c++; n.set(k, e); } }
+    for (const t of list) { const k = normalizeTopic(t); if (k && k.length <= 40 && !isLanguageTag(t) && !conceptId(t) && !lexKey(t)) { const e = n.get(k) || { tag: String(t).trim(), c: 0 }; e.c++; n.set(k, e); } }
     return [...n.values()].filter((e) => e.c >= minCount).sort((a, b) => b.c - a.c).slice(0, max).map((e) => e.tag);
 }
 

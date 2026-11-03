@@ -13,13 +13,15 @@ import { buildIndex, search as rankedSearch } from '../localSearch.js';
 import { toArticleJson } from '../articleFormat.js';
 import { pageKeyForUrl } from '../pageKey.js';
 import { BRAND_GUIDE } from './brand.js';
+import { SIM_VERSION, buildEntry, fingerprintOf, similarTo } from '../graphSimilarity.js';
+import { isLanguageTag } from '../topicConcepts.js';
 
 export class ToolError extends Error {
     constructor(code, message) { super(message); this.code = code; }
 }
 
-const MAX_LIMIT = { search_library: 25, list_highlights: 200, list_feed_items: 100 };
-const DEFAULT_LIMIT = { search_library: 10, list_highlights: 50, list_feed_items: 30 };
+const MAX_LIMIT = { search_library: 25, list_highlights: 200, list_feed_items: 100, related_articles: 25 };
+const DEFAULT_LIMIT = { search_library: 10, list_highlights: 50, list_feed_items: 30, related_articles: 8 };
 
 const clip = (s, n) => String(s == null ? '' : s).slice(0, n);
 const snippetOf = (article) => {
@@ -118,6 +120,31 @@ export async function search_library(args, { storage, excludeTag } = {}) {
     const index = buildIndex(articles);
     const ranked = rankedSearch(index, articles, query, { limit });
     return ranked.map((a, i) => ({ ...toResultRow(a), score: Math.max(0, 1 - i / Math.max(1, ranked.length)) }));
+}
+
+// ── related_articles ────────────────────────────────────────────────────────
+// The articles most like one saved article, by what they are about (title, tags, summary and, once the graph's background run has
+// read it, the saved text: the same cache as the graph, see graphSimilarityCache.js). Rows carry metadata and the snippet only.
+export async function related_articles(args, { storage, excludeTag } = {}) {
+    const id = String((args && args.id) || '');
+    if (!id) throw new ToolError('invalid_params', 'id is required');
+    const limit = Math.min(Number(args.limit) || DEFAULT_LIMIT.related_articles, MAX_LIMIT.related_articles);
+    const index = await visibleIndex(storage, excludeTag);
+    const meta = index.find((a) => a.id === id);
+    if (!meta) throw new ToolError('not_found', `No article with id ${id}`);   // an excluded article is "not found", like in get_article
+    const d = await storage.get({ [SK.graphSim]: null });
+    const cache = d[SK.graphSim] && d[SK.graphSim].v === SIM_VERSION && d[SK.graphSim].items || {};
+    const items = {};
+    for (const a of index) {   // the cache where it is current, a quick vector from the index entry where it is not
+        const it = cache[a.id];
+        items[a.id] = it && it.f === fingerprintOf(a) ? it : buildEntry({ title: a.title, tags: a.tags, summary: a.summary }, a, false);
+    }
+    const byId = new Map(index.map((a) => [a.id, a]));
+    const mine = new Set((meta.tags || []).filter((t) => !isLanguageTag(t)).map((t) => String(t).toLowerCase()));   // sharing a language is not sharing a topic
+    return (await similarTo(items, id, { k: limit })).map(([oid, score]) => {
+        const a = byId.get(oid);
+        return { ...toResultRow(a), score, shared_tags: (a.tags || []).filter((t) => mine.has(String(t).toLowerCase())) };
+    });
 }
 
 // ── get_article ──────────────────────────────────────────────────────────────
@@ -350,11 +377,11 @@ export async function get_brand() {
     return { guide: BRAND_GUIDE };
 }
 
-export const TOOLS = { search_library, get_article, list_highlights, list_due, list_collections, get_collection, list_feed_items, save_url, library_stats, get_brand };
+export const TOOLS = { search_library, related_articles, get_article, list_highlights, list_due, list_collections, get_collection, list_feed_items, save_url, library_stats, get_brand };
 
 /** Which scope (PRD §4.1/§5 S5) a tool needs. */
 export const TOOL_SCOPE = {
-    search_library: 'library', get_article: 'library', list_highlights: 'library', list_due: 'library',
+    search_library: 'library', related_articles: 'library', get_article: 'library', list_highlights: 'library', list_due: 'library',
     list_collections: 'library', get_collection: 'library', list_feed_items: 'feeds', save_url: 'write', library_stats: 'library',
     get_brand: null,   // no library data, always allowed
 };

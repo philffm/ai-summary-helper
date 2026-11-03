@@ -24,6 +24,8 @@ export const SK = {
     // articles (schema v2: lean index + one heavy record per article)
     articlesIndex: 'articles:index',
     articlesSchema: 'articles:schema',
+    // derived: per-article term vectors and nearest neighbours for the graph (graphSimilarityCache.js); rebuilt on demand, never backed up
+    graphSim: 'graph:sim',
     // highlights / annotations (one array for all pages; per-page keys are a later step)
     annotations: 'hl:all',
     // feeds

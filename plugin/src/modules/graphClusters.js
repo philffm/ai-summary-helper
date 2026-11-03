@@ -152,7 +152,7 @@ export async function fillAnswer(out, r, openArticle) {
 }
 
 /** The cluster page. */
-export function openClusterPage(container, { label, articles }) {
+export function openClusterPage(container, { label, articles, subtopics = [] }) {
     container.querySelectorAll('.graph-preview-card').forEach(c => c.remove());
     const list = dedupeArticles(articles || []).sort((a, b) => new Date(a.lastOpened || a.timestamp) - new Date(b.lastOpened || b.timestamp));
     const st = clusterStats(list);
@@ -223,10 +223,26 @@ export function openClusterPage(container, { label, articles }) {
             e.stopPropagation(); exp.disabled = true;
             try {
                 const m = await import('./markdownArchive.js');
-                await m.exportHistoryMarkdown({ ids: list.filter(a => a.id && !a.feedStub).map(a => a.id), name: label, briefing: { title: label, results: out.__results || [] } });
+                await m.exportHistoryMarkdown({ ids: list.filter(a => a.id && !a.feedStub).map(a => a.id), name: label, briefing: { title: label, results: out.__results || [] }, hub: subtopics.length ? { subtopics: subtopics.map(sub => ({ label: sub.label, ids: (sub.articles || []).filter(a => a && a.id).map(a => a.id) })) } : true });
             } finally { exp.disabled = false; }
         });
         actions.append(exp);
+    }
+    // Flashcards: the questions you asked and the answers you kept, as a file Anki imports. No AI call, nothing leaves the device.
+    if (st.exportable) {
+        const ank = el('button', 'button-secondary graph-cluster-anki'); ank.type = 'button';
+        ank.textContent = '🃏 ' + T('Anki cards');
+        ank.title = T('Export the questions you asked on this topic, and the answers you pinned, as flashcards for Anki');
+        ank.addEventListener('click', async (e) => {
+            e.stopPropagation(); ank.disabled = true;
+            try {
+                const m = await import('./ankiExport.js');
+                const n = await m.exportAnki({ articles: list, results: out.__results || [], topic: label });
+                if (!n) { out.className = 'graph-cluster-answer is-error'; out.textContent = T('No cards yet. Ask a question about this topic, or pin an answer under an article, and they become cards.'); }
+                else { out.className = 'graph-cluster-answer'; out.textContent = TN(n, '{n} card saved. In Anki: File ▸ Import.', '{n} cards saved. In Anki: File ▸ Import.'); }
+            } finally { ank.disabled = false; }
+        });
+        actions.append(ank);
     }
     const savable = list.filter(a => a.id && !a.feedStub);
     if (savable.length >= 2) {

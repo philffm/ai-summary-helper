@@ -37,10 +37,28 @@
 
 import { cosineSim } from './localSearch.js';
 import { T, TN, uiLocale } from './feedI18n.js';
-import { conceptKey, isKnownTopic, topicLabel } from './topicConcepts.js';
+import { conceptKey, isKnownTopic, isLanguageTag, topicLabel } from './topicConcepts.js';
 import { fetchAnnotationsForArticle, escapeHtml } from './annotationExporter.js';
 import { setIconLabel } from './icons.js';
 import { paperState } from './paperInfo.js';
+
+import { topicClusters, bridgeArticles, neighborhood, shortestPath, sourceType, maturityOf } from './graphStructure.js';
+
+// v5 (structure layer, see GRAPH.md): with enough articles the graph opens as an OVERVIEW — topic clusters worked out locally
+// from the tags (graphStructure.js), one label per cluster, small unlabeled dots, no links — and the old node-and-link picture is
+// one tap away as DETAIL. Article labels in DETAIL show on hover/focus instead of all at once. Focus mode, path mode, source-type
+// rings, maturity fill and bridge articles sit on top of both.
+const OVERVIEW_MIN_ARTICLES = 25;   // below this the plain graph is readable as it is
+const FOCUS_CLASS = 'graph-focus-dim';
+const PATH_CLASS = 'graph-path';
+const GRAPH_SIM_MIN = 0.25;         // content-similarity links drawn between articles (graphSimilarity.js), best ones only
+const GRAPH_SIM_PER_ARTICLE = 2;
+const SUB_LABEL_MIN_R = 22;       // on-screen radius (px) a subtopic area needs before its name is shown
+const FOCUS_LABELS = 8;             // article labels shown when a cluster or neighbourhood is in focus
+const MATURITY_FILL = { seed: 0.45, growing: 0.75, evergreen: 1 };   // fill strength by how far an article was worked
+const RING_DASH = { paper: null, video: '3 2', pdf: '1 2' };         // ring style by source type (plain articles: no ring)
+// literal T('…') calls so the string extractor (scripts/feed-i18n.mjs) finds them
+const sourceName = (k) => (k === 'paper' ? T('Paper') : k === 'video' ? T('Video') : k === 'pdf' ? T('PDF') : '');
 
 let d3LoadPromise = null;
 
@@ -134,6 +152,7 @@ const stamp = (a) => { const t = new Date(a.lastOpened || a.timestamp).getTime()
 export function findGaps(articles, { now = Date.now(), days = GAP_DAYS, maxArticles = GAP_MAX_ARTICLES, cap = GAP_CAP } = {}) {
     const byTag = new Map();
     (articles || []).forEach(a => (a.tags || []).forEach(tag => {
+        if (isLanguageTag(tag)) return;   // "🌐 de" marks the language, it is not a topic
         const id = tagIdOf(tag);
         let e = byTag.get(id);
         if (!e) byTag.set(id, e = { id, label: tagLabelOf(tag), articles: [] });
@@ -202,13 +221,14 @@ export function visibleInRange(nodes, links, fromIdx, toIdx) {
     return visible;
 }
 
-function buildGraphData(articles, minTagDegree = MIN_TAG_DEGREE_DEFAULT, similarityIndex = null) {
+function buildGraphData(articles, minTagDegree = MIN_TAG_DEGREE_DEFAULT, similarityIndex = null, simLinks = null) {
     // 1. Count tag degree first, so we can filter before building nodes/links.
     const tagDegree = new Map(); // tagId -> count
     const tagLabelById = new Map();
 
     articles.forEach(article => {
         (article.tags || []).forEach(tag => {
+            if (isLanguageTag(tag)) return;   // language marks are no nodes, no links, no criterion
             const tagId = tagIdOf(tag);
             tagDegree.set(tagId, (tagDegree.get(tagId) || 0) + 1);
             tagLabelById.set(tagId, tagLabelOf(tag));
@@ -231,6 +251,7 @@ function buildGraphData(articles, minTagDegree = MIN_TAG_DEGREE_DEFAULT, similar
 
     articles.forEach(article => {
         const articleTags = (article.tags || []).filter(tag => {
+            if (isLanguageTag(tag)) return false;
             const tagId = tagIdOf(tag);
             return allowedTagIds.has(tagId);
         });
@@ -262,12 +283,23 @@ function buildGraphData(articles, minTagDegree = MIN_TAG_DEGREE_DEFAULT, similar
     let reconnectedCount = 0;
     let stillOrphanCount = 0;
 
+    // Content neighbours from the background similarity cache (graphSimilarity.js), keyed by article id.
+    const nodeOfArticleId = new Map();
+    nodes.forEach(n => { if (n.group === 'article' && n.data && n.data.id) nodeOfArticleId.set(n.data.id, n.id); });
+    const cacheBest = (article) => {
+        for (const [oid, score] of (simLinks && simLinks[article.id]) || []) {
+            const nid = nodeOfArticleId.get(oid);
+            if (nid && score >= GRAPH_SIM_MIN) return { id: nid, score };
+        }
+        return null;
+    };
+
     articles.forEach(article => {
         if (!article.timestamp) { stillOrphanCount++; return; }
         const id = 'article-' + article.timestamp;
         if (includedArticleIds.has(id)) return; // already has a tag link
 
-        const best = mostSimilarIncluded(similarityIndex, article, articles, includedArticleIds);
+        const best = mostSimilarIncluded(similarityIndex, article, articles, includedArticleIds) || cacheBest(article);
         if (best) {
             const title = article.title || article.content?.split('\n')[0] || T('Untitled');
             const orphanNode = { id, label: title, group: 'article', data: article };
@@ -275,11 +307,29 @@ function buildGraphData(articles, minTagDegree = MIN_TAG_DEGREE_DEFAULT, similar
             nodes.push(orphanNode);
             links.push({ source: id, target: best.id, kind: 'similarity', score: best.score });
             includedArticleIds.add(id);
+            if (article.id) nodeOfArticleId.set(article.id, id);
             reconnectedCount++;
         } else {
             stillOrphanCount++;
         }
     });
+
+    // 4. Content similarity between articles that already have tags too: a few dashed links to their closest neighbours. They make
+    //    focus and path find more, and tag-poor articles follow them into a topic (graphStructure.js).
+    if (simLinks) {
+        const pairKey = (x, y) => (x < y ? x + '|' + y : y + '|' + x);
+        const seen = new Set(links.filter(l => l.kind === 'similarity').map(l => pairKey(l.source, l.target)));
+        nodeOfArticleId.forEach((nid, aid) => {
+            (simLinks[aid] || []).slice(0, GRAPH_SIM_PER_ARTICLE).forEach(([oid, score]) => {
+                const other = nodeOfArticleId.get(oid);
+                if (!other || score < GRAPH_SIM_MIN) return;
+                const k = pairKey(nid, other);
+                if (seen.has(k)) return;
+                seen.add(k);
+                links.push({ source: nid, target: other, kind: 'similarity', score });
+            });
+        });
+    }
 
     return { nodes, links, nodeById, hiddenTagCount, reconnectedCount, stillOrphanCount };
 }
@@ -362,6 +412,13 @@ export function initArchiveGraph(container, articles, highlightTimestamp, simila
     // Height comes from CSS (fills what is left below the top bar, above the bottom nav).
     container.style.removeProperty('height');
     container.style.overflow = 'hidden';
+
+    // Has the person started using this picture? Then a better result from the background run is offered, not swapped in.
+    container.__graphTouched = false;
+    if (!container.__graphTouchListeners) {
+        container.__graphTouchListeners = true;
+        ['pointerdown', 'wheel', 'keydown', 'focusin'].forEach(ev => container.addEventListener(ev, () => { container.__graphTouched = true; }, { passive: true }));
+    }
 
     return loadD3()
         .then(() => waitForLayout(container))
@@ -451,7 +508,10 @@ function applyGraphSearchDimNow(selections, query) {
     // not O(graph size).
     const prevNeighborIds = selections.__prevNeighborIds || null;
 
+    // Quiet titles (overview / large graphs) come back for the articles that match the search, as long as there are few enough to read.
+    const matchLabels = (ids) => label.each(function(d) { this.classList.toggle('graph-label-match', !!ids && ids.has(d.id) && ids.size <= 40); });
     if (!q) {
+        matchLabels(null);
         if (prevNeighborIds) {
             node.each(function(d) { if (!prevNeighborIds.has(d.id)) this.classList.remove(DIM_CLASS); });
             label.each(function(d) { if (!prevNeighborIds.has(d.id)) this.classList.remove(DIM_CLASS); });
@@ -468,6 +528,7 @@ function applyGraphSearchDimNow(selections, query) {
     const matchedIds = new Set(
         node.data().filter(d => d.label.toLowerCase().includes(q)).map(d => d.id)
     );
+    matchLabels(matchedIds);
     // Pull in direct neighbors so matches don't look disconnected from
     // their context — a match with its cluster dimmed is confusing.
     const neighborIds = new Set(matchedIds);
@@ -520,6 +581,11 @@ export function destroyArchiveGraph(container) {
     }
 
     if (container.__graphKeyDoc) { document.removeEventListener('keydown', container.__graphKeyDoc); container.__graphKeyDoc = null; }
+    if (container.__graphFocusKey) { document.removeEventListener('keydown', container.__graphFocusKey); container.__graphFocusKey = null; }
+    container.__graphClear = null;
+    if (container.__graphReplayTimer) { clearInterval(container.__graphReplayTimer); container.__graphReplayTimer = null; }
+    if (container.__graphSimStop) { container.__graphSimStop(); container.__graphSimStop = null; }
+    container.classList.remove('graph-overview', 'graph-quiet');
 
     // Cancel any in-flight pulse transition on the highlighted node.
     if (container.__archiveGraphPulse) {
@@ -555,7 +621,9 @@ function renderGraph(container, allArticles, highlightTimestamp, minTagDegree, s
     if (!paperCount) container.__graphResearchOnly = false;
     const researchOnly = !!container.__graphResearchOnly;
     const articles = researchOnly ? allArticles.filter(a => paperState(a)) : allArticles;
-    const raw = buildGraphData(articles, minTagDegree, similarityIndex);
+    const simNow = container.__graphSim || null;           // latest result of the background similarity run (graphSimilarityCache.js)
+    container.__graphSimUsed = simNow ? simNow.sig : null; // which result this picture was drawn from
+    const raw = buildGraphData(articles, minTagDegree, similarityIndex, simNow && simNow.links);
     const { nodes, links, nodeById, capped } = capGraphData(raw);
     const { hiddenTagCount, stillOrphanCount } = raw;
 
@@ -569,6 +637,45 @@ function renderGraph(container, allArticles, highlightTimestamp, minTagDegree, s
         neglectDays.set(n.id, Math.max(0, (now - new Date(lastOpened).getTime()) / 86400000));
     });
     const neglectedCount = Array.from(neglectDays.values()).filter(d => d >= NEGLECT_THRESHOLD_DAYS).length;
+
+    // Structure, worked out here from the tags alone (graphStructure.js): clusters, bridge articles, source types.
+    const struct = topicClusters(nodes, links, { otherLabel: T('Everything else'), subOtherLabel: T('Other'), groupLabel: T('Group'), terms: simNow && simNow.terms });
+    const bridges = bridgeArticles(nodes, links, struct);
+    const clusterIndex = new Map(struct.clusters.map((c, i) => [c.id, i]));
+    const clusterColor = (id) => {
+        const c = struct.clusters[clusterIndex.get(id)];
+        return !c ? 'var(--accent)' : c.other ? 'var(--text-muted)' : TAG_PALETTE[clusterIndex.get(id) % TAG_PALETTE.length];
+    };
+    const clusterOfNode = (d) => (d.group === 'article' ? struct.clusterOfArticle.get(d.id) : struct.clusterOfTag.get(d.id));
+    nodes.forEach(n => { n.cluster = clusterOfNode(n) || null; n.sub = (n.group === 'article' && struct.subOfArticle.get(n.id)) || null; });
+    const articleTotal = nodes.filter(n => n.group === 'article').length;
+    const canOverview = struct.clusters.length >= 2;
+    const overview = canOverview && (container.__graphLayout ? container.__graphLayout === 'overview' : articleTotal >= OVERVIEW_MIN_ARTICLES);
+    const quietLabels = overview || articleTotal > 40;   // article titles on hover/focus only; all at once is the hairball
+    const typeOf = new Map();
+    nodes.forEach(n => { if (n.group === 'article') typeOf.set(n.id, sourceType(n.data)); });
+    const typesPresent = new Set([...typeOf.values()].filter(t => t !== 'article'));
+
+    // Colour by: Topic (the cluster), Age (when it was saved) or Mood (the AI's score for the article, where there is one).
+    const savedAt = (a) => { const t = new Date(a && a.timestamp).getTime(); return Number.isFinite(t) ? t : 0; };
+    const stampsSorted = nodes.filter(n => n.group === 'article').map(n => savedAt(n.data)).sort((x, y) => x - y);
+    const ageQ = (d) => {   // 0 = oldest … 1 = newest, by rank (a few big import days must not wash out the scale)
+        if (stampsSorted.length < 2) return 1;
+        let lo = 0, hi = stampsSorted.length - 1; const t = savedAt(d.data);
+        while (lo < hi) { const mid = (lo + hi) >> 1; if (stampsSorted[mid] < t) lo = mid + 1; else hi = mid; }
+        return lo / (stampsSorted.length - 1);
+    };
+    const moodOf = (d) => (d.data && typeof d.data.moodScore === 'number' ? Math.max(-1, Math.min(1, d.data.moodScore)) : null);
+    const moodScored = nodes.filter(n => n.group === 'article' && moodOf(n) !== null).length;
+    const colorModes = ['topic', 'age', ...(moodScored ? ['mood'] : [])];
+    let colorMode = colorModes.includes(container.__graphColorBy) ? container.__graphColorBy : 'topic';
+    const moodColor = (m) => (m < 0 ? d3.interpolateRgb('#94a3b8', '#d9480f')(-m) : d3.interpolateRgb('#94a3b8', '#2563eb')(m));   // orange ← slate → blue (safe for red-green colour blindness)
+    const ageColor = (q) => d3.interpolateViridis(0.08 + 0.84 * q);                                                                   // old: purple … new: yellow
+    const colorFor = (d, mode) => (mode === 'age' ? ageColor(ageQ(d)) : mode === 'mood' ? (moodOf(d) === null ? 'var(--text-muted)' : moodColor(moodOf(d))) : clusterColor(d.cluster));
+    let notesOf = new Map();   // article id → your highlights and notes (read from storage after the first paint)
+    const fillStrength = (d) => (d.group !== 'article' ? 1
+        : colorMode === 'mood' && moodOf(d) === null ? 0.3
+        : MATURITY_FILL[maturityOf(d.data, (notesOf.get(d.data && d.data.id) || 0))]);
 
     if (typeof d3 === 'undefined') {
         container.innerHTML = `<div class="graph-empty">${T('D3 library failed to load.')}</div>`;
@@ -586,6 +693,8 @@ function renderGraph(container, allArticles, highlightTimestamp, minTagDegree, s
 
     // Clear and set up SVG
     container.innerHTML = '';
+    container.classList.toggle('graph-overview', overview);
+    container.classList.toggle('graph-quiet', quietLabels);
     const svg = d3.select(container)
         .append('svg')
         .attr('width', width)
@@ -604,6 +713,11 @@ function renderGraph(container, allArticles, highlightTimestamp, minTagDegree, s
         .scaleExtent([0.3, 5]) // Min/Max zoom levels
         .on('zoom', (event) => {
             mainContainer.attr('transform', event.transform);
+            // Quiet titles keep their on-screen size while you zoom in, so a focused cluster reads instead of piling up.
+            if (quietLabels) mainContainer.selectAll('text.graph-node-label.is-article').attr('font-size', `${10 / Math.max(1, event.transform.k)}px`);
+            mainContainer.selectAll('text.graph-cluster-label').attr('font-size', c => `${clusterFont(c) / Math.max(1, event.transform.k) ** 0.7}px`);
+            mainContainer.selectAll('text.graph-sub-label').attr('font-size', `${12 / Math.max(1, event.transform.k)}px`);   // subtopic names keep their on-screen size
+            if (typeof fitSubLabels === 'function') fitSubLabels(event.transform.k);
         });
 
     svg.call(zoom);
@@ -621,14 +735,22 @@ function renderGraph(container, allArticles, highlightTimestamp, minTagDegree, s
     // extension popped out into its own resizable window). Both paths are
     // debounced and funnel into the same live-measurement function.
     let resizeDebounce = null;
+    let viewW = width, viewH = height;
     const measureAndResize = () => {
         const newWidth = container.clientWidth;
         const newHeight = container.clientHeight;
         if (newWidth <= 0 || newHeight <= 0) return;
 
+        viewW = newWidth; viewH = newHeight;
         svg.attr('width', newWidth).attr('height', newHeight);
-        simulation.force('center', d3.forceCenter(newWidth / 2, newHeight / 2));
-        simulation.alpha(0.3).restart();
+        if (overview) {   // pack again for the new size, the dots follow
+            layoutPack();
+            simulation.force('x', d3.forceX(d => homeOf(d).x).strength(0.45));
+            simulation.force('y', d3.forceY(d => homeOf(d).y).strength(0.45));
+            node.attr('r', nodeRadius);
+            placeShapes();
+        } else simulation.force('center', d3.forceCenter(newWidth / 2, newHeight / 2));
+        simulation.alpha(0.5).restart();
     };
     const scheduleResize = () => {
         clearTimeout(resizeDebounce);
@@ -668,7 +790,8 @@ function renderGraph(container, allArticles, highlightTimestamp, minTagDegree, s
 
     function nodeRadius(d) {
         if (d.group === 'article') {
-            const base = highlightTimestamp && d.data?.timestamp === highlightTimestamp ? 12 : 8;
+            const isHi = highlightTimestamp && d.data?.timestamp === highlightTimestamp;
+            const base = isHi ? (overview ? 8 : 12) : (overview ? packR(d) : 8) + (bridges.has(d.id) ? (overview ? 1.2 : 2) : 0);
             // Neglected articles shrink slightly on top of fading, so the
             // stale ones read as smaller/quieter at a glance.
             return (neglectDays.get(d.id) || 0) >= NEGLECT_THRESHOLD_DAYS ? base * NEGLECT_SHRINK : base;
@@ -676,12 +799,55 @@ function renderGraph(container, allArticles, highlightTimestamp, minTagDegree, s
         return tagRadiusScale(d.degree || 1);
     }
 
+    // Overview layout: circle packing (d3.pack). Clusters, their subtopics and the articles are nested circles, sized by how many
+    // articles they hold, packed without overlap: a big cluster is a big island made of named smaller islands, not a clump.
+    const clusterMembers = new Map(struct.clusters.map(c => [c.id, nodes.filter(n => n.cluster === c.id && n.group === 'article')]));
+    const subClusters = overview ? struct.clusters.filter(c => (c.children || []).length >= 2) : [];
+    subClusters.forEach(c => c.children.forEach(k => { k.parentCluster = c; }));
+    const subKids = subClusters.flatMap(c => c.children);
+    const subMembers = new Map(subKids.map(k => [k.id, nodes.filter(n => n.sub === k.id && n.group === 'article')]));
+    const pack = { leaf: new Map(), cluster: new Map(), sub: new Map() };
+    function layoutPack() {
+        if (!overview) return;
+        const roomy = viewH >= 420, topPad = roomy ? 100 : 36, botPad = roomy ? 92 : 16, side = 8;   // the chips sit on top, the controls at the bottom
+        const leaf = (n) => ({ id: n.id, v: 1 });
+        const root = { id: 'root', children: struct.clusters.filter(c => clusterMembers.get(c.id).length).map(c => {
+            const split = (c.children || []).length >= 2;
+            return { id: c.id, children: split
+                ? c.children.filter(k => subMembers.get(k.id).length).map(k => ({ id: k.id, children: subMembers.get(k.id).map(leaf) }))
+                : clusterMembers.get(c.id).map(leaf) };
+        }) };
+        const h = d3.hierarchy(root).sum(d => d.v || 0).sort((a, b) => b.value - a.value || (a.data.id < b.data.id ? -1 : 1));
+        d3.pack().size([Math.max(120, viewW - 2 * side), Math.max(120, viewH - topPad - botPad)])
+            .padding(d => (d.depth === 0 ? 14 : (d.children && d.children[0].children ? 8 : 1.2)))(h);
+        pack.leaf.clear(); pack.cluster.clear(); pack.sub.clear();
+        const clusterIds = new Set(struct.clusters.map(c => c.id)), subIds = new Set(subKids.map(k => k.id));
+        h.descendants().forEach(d => {
+            const circle = { x: d.x + side, y: d.y + topPad, r: d.r };
+            if (d.depth === 0) return;
+            if (subIds.has(d.data.id)) pack.sub.set(d.data.id, circle);
+            else if (clusterIds.has(d.data.id)) pack.cluster.set(d.data.id, circle);
+            else pack.leaf.set(d.data.id, circle);
+        });
+    }
+    layoutPack();
+    // where a node belongs: its own spot in the packing; tags (not drawn here) sit at the middle of their cluster
+    const homeOf = (d) => pack.leaf.get(d.id) || pack.cluster.get(d.cluster) || { x: viewW / 2, y: viewH / 2 };
+    const packR = (d) => Math.max(2, Math.min(7, ((pack.leaf.get(d.id) || {}).r || 4.5) * 0.9));   // dots shrink as the archive grows, so they never overlap
+
     // Create force simulation
+    const linkForce = d3.forceLink(links).id(d => d.id).distance(overview ? 30 : 100);
+    if (overview) linkForce.strength(0);   // detail keeps d3's default strength, as before; in Topics the packing decides, links are not drawn
     const simulation = d3.forceSimulation(nodes)
-        .force('link', d3.forceLink(links).id(d => d.id).distance(100))
-        .force('charge', d3.forceManyBody().strength(-250))
-        .force('center', d3.forceCenter(width / 2, height / 2))
-        .force('collision', d3.forceCollide().radius(d => nodeRadius(d) + 6));
+        .force('link', linkForce)
+        .force('charge', d3.forceManyBody().strength(overview ? 0 : -250))
+        .force('collision', d3.forceCollide().radius(d => nodeRadius(d) + (overview ? 0.4 : 6)));
+    if (overview) {
+        simulation.force('x', d3.forceX(d => homeOf(d).x).strength(0.45))
+            .force('y', d3.forceY(d => homeOf(d).y).strength(0.45));
+    } else {
+        simulation.force('center', d3.forceCenter(width / 2, height / 2));
+    }
 
     // Keep a handle on the container so destroyArchiveGraph() (and the
     // next initArchiveGraph call) can stop this simulation and release its
@@ -690,6 +856,19 @@ function renderGraph(container, allArticles, highlightTimestamp, minTagDegree, s
 
     // Draw links into mainContainer — color lookup via Map (O(1)) instead of
     // the old nodes.find() (O(n) per link).
+    // Overview only: one soft blob per cluster behind everything, sized from where its members ended up (updated on tick).
+    const blobs = overview
+        ? mainContainer.append('g').attr('class', 'graph-blobs').selectAll('circle').data(struct.clusters.filter(c => clusterMembers.get(c.id).length)).join('circle')
+            .attr('class', 'graph-blob').attr('fill', c => clusterColor(c.id)).attr('fill-opacity', 0.1).style('cursor', 'pointer')
+        : null;
+
+    // Subtopic areas (Topics only): one soft area per subtopic of every cluster that has any, drawn under the dots.
+    const subBlobs = subKids.length
+        ? mainContainer.append('g').attr('class', 'graph-subblobs').selectAll('circle').data(subKids).join('circle')
+            .attr('class', 'graph-subblob').attr('fill', k => clusterColor(k.parentCluster.id)).attr('fill-opacity', 0.12)
+            .attr('stroke', k => clusterColor(k.parentCluster.id)).attr('stroke-opacity', 0.4).style('cursor', 'pointer')
+        : null;
+
     const link = mainContainer.append('g')
         .selectAll('line')
         .data(links)
@@ -711,25 +890,33 @@ function renderGraph(container, allArticles, highlightTimestamp, minTagDegree, s
         .selectAll('circle')
         .data(nodes)
         .join('circle')
+        .attr('class', d => 'graph-node ' + (d.group === 'tag' ? 'is-tag' : 'is-article'))
         .attr('r', nodeRadius)
         .attr('fill', d => {
-            if (d.group === 'article') return 'var(--accent)';
+            // Articles take their cluster's colour (the topic they sit in); tags keep their own.
+            if (d.group === 'article') return colorFor(d, colorMode);
             return tagColor(d.label);
         })
+        // How far you got with an article: saved (faint) → worked on (solid). Separate from `opacity`, which carries the neglect fade.
+        .attr('fill-opacity', fillStrength)
         .attr('stroke', d => {
             if (highlightTimestamp && d.group === 'article' && d.data?.timestamp === highlightTimestamp) {
                 return '#fbbf24'; // amber highlight ring
             }
             // Neglected articles shift their ring toward the danger end of
             // the palette — a quiet "this one's gone stale" cue.
-            if (d.group === 'article' && (neglectDays.get(d.id) || 0) >= NEGLECT_THRESHOLD_DAYS) {
+            if (!overview && d.group === 'article' && (neglectDays.get(d.id) || 0) >= NEGLECT_THRESHOLD_DAYS) {
                 return 'var(--danger)';
             }
+            // Source type reads from the ring: solid dark = paper, dashed = video, dotted = PDF (no ring for plain articles).
+            if (d.group === 'article' && typeOf.get(d.id) !== 'article') return 'var(--text-primary, #111)';
             return 'var(--bg-primary, #fff)';
         })
+        .attr('stroke-dasharray', d => (d.group === 'article' ? RING_DASH[typeOf.get(d.id)] || null : null))
         .attr('stroke-width', d => {
             if (highlightTimestamp && d.group === 'article' && d.data?.timestamp === highlightTimestamp) return 3;
-            return 1.5;
+            if (d.group === 'article' && typeOf.get(d.id) !== 'article') return overview ? 1.6 : 2.2;
+            return overview && d.group === 'article' ? 0.8 : 1.5;
         })
         .attr('opacity', d => {
             // Set as the SVG attr, not a style — applyGraphSearchDim() dims
@@ -741,6 +928,13 @@ function renderGraph(container, allArticles, highlightTimestamp, minTagDegree, s
         })
         .style('cursor', 'pointer')
         .call(drag(simulation));
+    // Native tooltip = the title on hover, plus what kind of source it is and which topics it bridges.
+    node.append('title').text(d => {
+        if (d.group !== 'article') return d.label;
+        const kind = typeOf.get(d.id);
+        const reach = (bridges.get(d.id) || []).map(id => struct.clusters[clusterIndex.get(id)].label);
+        return [d.label, kind !== 'article' ? sourceName(kind) : '', reach.length ? T('Connects: {topics}', { topics: reach.join(' · ') }) : ''].filter(Boolean).join(' — ');
+    });
 
     // Pulse animation for highlighted node
     if (highlightTimestamp) {
@@ -764,6 +958,7 @@ function renderGraph(container, allArticles, highlightTimestamp, minTagDegree, s
         .selectAll('text')
         .data(nodes)
         .join('text')
+        .attr('class', d => 'graph-node-label ' + (d.group === 'tag' ? 'is-tag' : 'is-article graph-label-quietable'))
         .text(d => d.label.length > 20 ? d.label.slice(0, 20) + '…' : d.label)
         .attr('font-size', d => d.group === 'tag' ? `${tagFontScale(d.degree || 1)}px` : '10px')
         .attr('font-weight', d => d.group === 'tag' ? '700' : 'normal')
@@ -772,6 +967,52 @@ function renderGraph(container, allArticles, highlightTimestamp, minTagDegree, s
         .attr('dy', d => -(nodeRadius(d) + 4))
         .style('pointer-events', 'none')
         .style('text-shadow', '0 1px 2px var(--bg-primary)');
+
+    // Unread = not marked read (`readAt`: set when opened or marked Read, removed by "Unread"; the Inbox tab and the 🆕 badge use the same).
+    const unreadIds = new Set(nodes.filter(n => n.group === 'article' && !(n.data && n.data.readAt)).map(n => n.id));
+    const unreadIn = new Map(struct.clusters.map(c => [c.id, (clusterMembers.get(c.id) || []).filter(m => unreadIds.has(m.id)).length]));
+    const clusterName = (c) => (c.label.length > 22 ? c.label.slice(0, 22) + '…' : c.label);
+    const clusterFont = (c) => Math.round(12 + 6 * Math.sqrt(c.size / Math.max(1, articleTotal)));
+    // Overview: one label per cluster, named after its most used tag, drawn above the dots. Click = focus that cluster.
+    const clusterLabels = overview
+        ? mainContainer.append('g').attr('class', 'graph-cluster-labels').selectAll('text')
+            .data(struct.clusters.filter(c => clusterMembers.get(c.id).length)).join('text')
+            .attr('class', 'graph-cluster-label')
+            .attr('text-anchor', 'middle').attr('fill', c => clusterColor(c.id))
+            .attr('font-size', c => `${clusterFont(c)}px`)
+            .text(c => clusterName(c))
+            .style('cursor', 'pointer')
+            .attr('role', 'button').attr('tabindex', 0)
+            .attr('aria-label', c => T('{topic}: {n} articles, {u} unread', { topic: c.label, n: c.size, u: unreadIn.get(c.id) || 0 }))
+        : null;
+
+    const subLabels = subKids.length
+        ? mainContainer.append('g').attr('class', 'graph-sub-labels').selectAll('text').data(subKids).join('text')
+            .attr('class', 'graph-sub-label').attr('text-anchor', 'middle').attr('fill', k => clusterColor(k.parentCluster.id)).attr('font-size', '12px')
+            .text(k => (k.label.length > 26 ? k.label.slice(0, 26) + '…' : k.label) + ' · ' + k.size)
+            .style('cursor', 'pointer').attr('role', 'button').attr('tabindex', 0)
+            .attr('aria-label', k => T('{topic}, subtopic of {parent}: {n} articles', { topic: k.label, parent: k.parentCluster.label, n: k.size }))
+        : null;
+
+    // Cluster and subtopic areas and their names sit where the packing put them (and move with a resize).
+    function placeShapes() {
+        if (!overview) return;
+        const at = (map, id) => map.get(id) || { x: -9999, y: -9999, r: 0 };
+        blobs.attr('cx', c => at(pack.cluster, c.id).x).attr('cy', c => at(pack.cluster, c.id).y).attr('r', c => at(pack.cluster, c.id).r);
+        clusterLabels.attr('x', c => at(pack.cluster, c.id).x)
+            .attr('y', c => { const o = at(pack.cluster, c.id); return (c.children || []).length >= 2 ? o.y - o.r - 6 : o.y + 4; });   // above a cluster made of subtopics, in the middle of one that is not
+        if (subBlobs) {
+            subBlobs.attr('cx', k => at(pack.sub, k.id).x).attr('cy', k => at(pack.sub, k.id).y).attr('r', k => at(pack.sub, k.id).r);
+            subLabels.attr('x', k => at(pack.sub, k.id).x).attr('y', k => at(pack.sub, k.id).y - at(pack.sub, k.id).r - 3);
+            fitSubLabels(d3.zoomTransform(svg.node()).k);
+        }
+    }
+    // A subtopic name is only worth drawing once its area is big enough on screen to carry it; zooming in brings the rest.
+    function fitSubLabels(k) {
+        if (!subLabels) return;
+        subLabels.style('display', s => ((pack.sub.get(s.id) || { r: 0 }).r * k >= SUB_LABEL_MIN_R ? null : 'none'));
+    }
+    placeShapes();
 
     // Kept on the container so applyGraphSearchDim() can restyle the
     // already-rendered graph (no rebuild, no simulation restart) when the
@@ -796,6 +1037,112 @@ function renderGraph(container, allArticles, highlightTimestamp, minTagDegree, s
             .attr('y', d => d.y);
     });
 
+    // ── Focus and path ───────────────────────────────────────────────────
+    // Focus: one cluster, or an article with what hangs on it, stays bright; the rest steps back and its titles stay quiet.
+    // Path: pick two items and see how they connect (through shared tags or similar content). Esc or a tap on the background resets.
+    const linkId = (x) => (typeof x === 'object' ? x.id : x);
+    const nodeOf = new Map(nodes.map(n => [n.id, n]));
+    let focusSet = null, labelSet = new Set(), pathFrom = null;
+    const announce = (text) => { const live = container.querySelector('.graph-live'); if (live) live.textContent = text; };
+    function setFocus(ids, bar, extraLabels) {
+        focusSet = ids && ids.size ? ids : null;
+        const dim = (d) => !!focusSet && !focusSet.has(d.id);
+        node.classed(FOCUS_CLASS, dim); label.classed(FOCUS_CLASS, dim);
+        link.classed(FOCUS_CLASS, l => !!focusSet && !(focusSet.has(linkId(l.source)) && focusSet.has(linkId(l.target))));
+        labelSet = new Set(extraLabels || []);
+        if (focusSet) nodes.filter(n => n.group === 'article' && focusSet.has(n.id)).sort((a, b) => stamp(b.data) - stamp(a.data)).slice(0, FOCUS_LABELS).forEach(n => labelSet.add(n.id));
+        label.classed('graph-label-on', d => labelSet.has(d.id));
+        container.querySelectorAll(':scope > .graph-focusbar').forEach(b => b.remove());
+        if (focusSet && bar) container.appendChild(buildFocusBar({ ...bar, onClear: clearAll }));
+    }
+    // Bring a group of nodes into view (focus on a cluster); the next reset returns to where you were.
+    const calm = () => typeof matchMedia === 'function' && matchMedia('(prefers-reduced-motion: reduce)').matches;
+    let zoomedByFocus = false, savedView = null;
+    function zoomToNodes(list) {
+        const pts = list.filter(n => Number.isFinite(n.x) && Number.isFinite(n.y));
+        if (!pts.length) return;
+        const xs = pts.map(n => n.x), ys = pts.map(n => n.y);
+        const x0 = Math.min(...xs), x1 = Math.max(...xs), y0 = Math.min(...ys), y1 = Math.max(...ys);
+        const k = Math.max(0.6, Math.min(3, 0.8 * Math.min(viewW / Math.max(60, x1 - x0), viewH / Math.max(60, y1 - y0))));
+        if (!zoomedByFocus) savedView = d3.zoomTransform(svg.node());
+        zoomedByFocus = true;
+        const t = d3.zoomIdentity.translate(viewW / 2 - k * (x0 + x1) / 2, viewH / 2 - k * (y0 + y1) / 2).scale(k);
+        (calm() ? svg : svg.transition().duration(450)).call(zoom.transform, t);
+    }
+    function clearAll() {
+        pathFrom = null;
+        node.classed(PATH_CLASS, false); link.classed(PATH_CLASS, false);
+        if (subBlobs) { subBlobs.classed(FOCUS_CLASS, false); subLabels.classed(FOCUS_CLASS, false); }
+        setFocus(null);
+        if (zoomedByFocus) { zoomedByFocus = false; (calm() ? svg : svg.transition().duration(350)).call(zoom.transform, savedView || d3.zoomIdentity); }
+    }
+    container.__graphClear = clearAll;
+    function pathPick(d) {
+        if (!pathFrom || pathFrom === d.id) {
+            pathFrom = d.id; node.classed(PATH_CLASS, false); link.classed(PATH_CLASS, false);
+            setFocus(new Set([d.id]), { caption: T('Path from “{a}”: pick a second item', { a: d.label }) });
+            announce(T('Path mode: first item {a} chosen. Pick a second one.', { a: d.label }));
+            return;
+        }
+        const path = shortestPath(nodes, links, pathFrom, d.id);
+        pathFrom = null;
+        if (!path) {
+            node.classed(PATH_CLASS, false); link.classed(PATH_CLASS, false);
+            setFocus(new Set([d.id]), { caption: T('Not connected: no shared tag or similar content links these two') });
+            announce(T('These two are not connected.'));
+            return;
+        }
+        const inPath = new Set(path);
+        const edges = new Set(); path.forEach((id, i) => { if (i) { edges.add(path[i - 1] + '|' + id); edges.add(id + '|' + path[i - 1]); } });
+        node.classed(PATH_CLASS, n => inPath.has(n.id));
+        link.classed(PATH_CLASS, l => edges.has(linkId(l.source) + '|' + linkId(l.target)));
+        const chain = path.map(id => { const t = nodeOf.get(id).label; return t.length > 28 ? t.slice(0, 28) + '…' : t; }).join(' → ');
+        setFocus(inPath, { caption: TN(path.length - 1, '{n} step: {chain}', '{n} steps: {chain}', { chain }) }, path);
+        announce(T('Connected in {n} steps: {chain}', { n: path.length - 1, chain }));
+    }
+    container.__graphPathMode = (on) => { container.__graphPathOn = !!on; clearAll(); announce(on ? T('Path mode on: pick two items to see how they connect.') : T('Path mode off.')); };
+    // Subtopics are always drawn (see subBlobs); focusing one dims its siblings and zooms in.
+    function focusSub(c, kid) {
+        const members = [...kid.articleIds].map(id => nodeOf.get(id) && nodeOf.get(id).data).filter(Boolean);
+        setFocus(new Set(kid.articleIds), {
+            caption: c.label + ' › ' + kid.label + ' · ' + TN(kid.size, '{n} article', '{n} articles'),
+            openLabel: T('Open topic'),
+            onOpen: () => import('./graphClusters.js').then(m => m.showClusterCard(container, { label: kid.label, articles: members }))
+        });
+        if (subBlobs) { subBlobs.classed(FOCUS_CLASS, k => k !== kid); subLabels.classed(FOCUS_CLASS, k => k !== kid); }
+        zoomToNodes(subMembers.get(kid.id) || []);
+        announce(c.label + ' › ' + kid.label + ': ' + TN(kid.size, '{n} article', '{n} articles'));
+    }
+    const focusCluster = (c) => {
+        const ids = new Set([...c.articleIds, ...c.tagIds]);
+        const members = [...c.articleIds].map(id => nodeOf.get(id) && nodeOf.get(id).data).filter(Boolean);
+        const hasSubs = overview && (c.children || []).length >= 2;
+        setFocus(ids, {
+            caption: c.label + ' · ' + TN(c.size, '{n} article', '{n} articles') + (hasSubs ? ' · ' + TN(c.children.length, '{n} subtopic', '{n} subtopics') : ''),
+            openLabel: T('Open topic'),
+            onOpen: () => import('./graphClusters.js').then(m => m.showClusterCard(container, { label: c.label, articles: members, subtopics: (c.children || []).filter(k => !k.other).map(k => ({ label: k.label, articles: [...k.articleIds].map(id => nodeOf.get(id) && nodeOf.get(id).data).filter(Boolean) })) }))
+        });
+        if (subBlobs) { subBlobs.classed(FOCUS_CLASS, k => k.parentCluster !== c); subLabels.classed(FOCUS_CLASS, k => k.parentCluster !== c); }
+        if (hasSubs) { labelSet = new Set(); label.classed('graph-label-on', false); }   // the subtopic names say it; titles come with the next click
+        zoomToNodes(nodes.filter(n => n.cluster === c.id && n.group === 'article'));
+        announce(c.label + ': ' + TN(c.size, '{n} article', '{n} articles') + (hasSubs ? ', ' + TN(c.children.length, '{n} subtopic', '{n} subtopics') : ''));
+    };
+    if (overview) {
+        const pick = (event, c) => { event.stopPropagation(); if (!container.__graphPathOn) focusCluster(c); };
+        if (subBlobs) {
+            const openSub = (event, k) => { event.stopPropagation(); if (!container.__graphPathOn) focusSub(k.parentCluster, k); };
+            subBlobs.on('click', openSub);
+            subLabels.on('click', openSub).on('keydown', (event, k) => { if (event.key === 'Enter' || event.key === ' ') { event.preventDefault(); openSub(event, k); } });
+        }
+        blobs.on('click', pick);
+        clusterLabels.on('click', pick).on('keydown', (event, c) => { if (event.key === 'Enter' || event.key === ' ') { event.preventDefault(); pick(event, c); } });
+    }
+    node.on('mouseenter.label', (e, d) => label.filter(l => l === d).classed('graph-label-on', true))
+        .on('mouseleave.label', (e, d) => label.filter(l => l === d).classed('graph-label-on', labelSet.has(d.id)));
+    svg.on('click.clear', () => { if (focusSet) clearAll(); });
+    container.__graphFocusKey = (e) => { if (e.key === 'Escape' && focusSet && !container.querySelector('.graph-cluster-page')) clearAll(); };
+    document.addEventListener('keydown', container.__graphFocusKey);
+
     // Click handler for article nodes — show a preview card. Tag nodes
     // dispatch a `filter-by-tag` event so the archive list can filter to
     // that tag, turning the graph into a navigation surface.
@@ -810,9 +1157,13 @@ function renderGraph(container, allArticles, highlightTimestamp, minTagDegree, s
     node.on('pointermove.lp', (event) => { if (lpTimer && lpStart && Math.hypot(event.clientX - lpStart[0], event.clientY - lpStart[1]) > 8) lpCancel(); });
     node.on('pointerup.lp pointerleave.lp pointercancel.lp', lpCancel);
     node.on('click', (event, d) => {
+        if (container.__graphPathOn) { event.stopPropagation(); pathPick(d); return; }
         if (d.group === 'article' && d.data) {
             event.stopPropagation();
             showPreviewCard(container, d.data);
+            // Focus on this article and what hangs on it (its topics and the articles that share them).
+            const near = neighborhood(nodes, links, d.id, 2);
+            setFocus(near, { caption: T('Around this article') + ' · ' + TN(near.size - 1, '{n} connected item', '{n} connected items') });
         } else if (d.group === 'tag') {
             event.stopPropagation();
             if (lpFired) { lpFired = false; return; }
@@ -868,6 +1219,40 @@ function renderGraph(container, allArticles, highlightTimestamp, minTagDegree, s
         const again = container.querySelector('.graph-research-chip'); if (again) again.focus();
     });
     renderTimeRange(container, nodes, links, articles);
+    // "Unread": everything you have read steps back; in Topics each cluster label shows how many are still unread.
+    function applyUnread(on, say) {
+        node.classed('graph-read-dim', d => on && d.group === 'article' && !unreadIds.has(d.id));
+        label.classed('graph-read-dim', d => on && d.group === 'article' && !unreadIds.has(d.id));
+        if (blobs) blobs.classed('graph-read-dim', c => on && !(unreadIn.get(c.id) > 0));
+        if (clusterLabels) clusterLabels.text(c => (on ? clusterName(c) + ' · ' + (unreadIn.get(c.id) || 0) : clusterName(c)));
+        if (say) announce(on ? TN(unreadIds.size, '{n} unread article stands out', '{n} unread articles stand out') : T('Showing all articles'));
+    }
+    // Colour by: recolour the dots in place, no redraw.
+    function applyColor(mode, say) {
+        colorMode = mode; container.__graphColorBy = mode;
+        node.filter(d => d.group === 'article').attr('fill', d => colorFor(d, mode)).attr('fill-opacity', fillStrength);
+        renderColorLegend(container, mode, { ageColor, moodColor });
+        if (say) announce(mode === 'age' ? T('Dots coloured by age: purple is old, yellow is recent') : mode === 'mood' ? T('Dots coloured by mood: orange is negative, blue is positive, grey is not scored') : T('Dots coloured by topic'));
+    }
+    applyColor(colorMode, false);
+    applyUnread(!!container.__graphUnreadOnly, false);
+    renderStructureChips(container, {
+        canOverview, overview,
+        color: { mode: colorMode, modes: colorModes, onChange: (m) => applyColor(m, true) },
+        unread: unreadIds.size ? { count: unreadIds.size, on: !!container.__graphUnreadOnly, onToggle: (on) => { container.__graphUnreadOnly = on; applyUnread(on, true); } } : null,
+        onLayout: (mode) => {
+            container.__graphLayout = mode;
+            simulation.stop();
+            renderGraph(container, allArticles, highlightTimestamp, minTagDegree, similarityIndex);
+            const again = container.querySelector('.graph-layout-toggle button.active'); if (again) again.focus();
+        }
+    });
+    // Maturity also counts your own highlights and notes; they live in storage, so the fill is refined once they are read.
+    import('./notesView.js').then((m) => m.noteCountsByArticle()).then((counts) => {
+        if (container.__archiveGraphSelections?.node !== node || !counts || !counts.size) return;
+        counts.forEach((c, id) => notesOf.set(id, (c.mine || 0) + (c.notes || 0)));
+        node.attr('fill-opacity', fillStrength);
+    }).catch(() => { /* the fill stays at what the record alone tells */ });
     import('./graphBrief.js').then((m) => {
         if (container.__archiveGraphSelections?.node !== node) return;   // re-rendered meanwhile
         if (container.__graphBrief) container.__graphBrief.destroy();
@@ -887,14 +1272,168 @@ function renderGraph(container, allArticles, highlightTimestamp, minTagDegree, s
         currentlyFiltered: minTagDegree > 1,
         stillOrphanCount,
         neglectedCount,
+        typesPresent,
         onToggleDegree: () => {
             const nextMinDegree = minTagDegree > 1 ? 1 : MIN_TAG_DEGREE_DEFAULT;
             simulation.stop();
             renderGraph(container, allArticles, highlightTimestamp, nextMinDegree, similarityIndex);
         },
     });
+    renderColorLegend(container, colorMode, { ageColor, moodColor });   // the legend only exists now
+    followSimilarity(container, () => { simulation.stop(); renderGraph(container, allArticles, highlightTimestamp, minTagDegree, similarityIndex); });
 }
 
+/** Joins the background similarity run: swaps in a new result while the picture is untouched, otherwise offers it in a chip. */
+function followSimilarity(container, rerender) {
+    if (container.__graphSimStop) { container.__graphSimStop(); container.__graphSimStop = null; }
+    import('./graphSimilarityCache.js').then((m) => {
+        if (!container.isConnected) return;
+        container.__graphSimStop = m.watchSimilarity((u) => {
+            if (!container.isConnected) return;
+            container.__graphSim = { links: u.links, sig: u.sig, terms: u.terms };
+            const fresh = u.sig !== container.__graphSimUsed;
+            if (fresh && !container.__graphTouched && container.dataset.graphMode !== 'list') { rerender(); return; }
+            showSimilarityChip(container, { fresh, running: !u.complete, done: u.done, total: u.total }, rerender);
+        });
+    }).catch(() => { /* no similarity run: the graph stays on tags */ });
+}
+
+function showSimilarityChip(container, { fresh, running, done, total }, rerender) {
+    const bar = filterBar(container);
+    let chip = bar.querySelector('.graph-sim-chip');
+    if (!fresh && !running) { if (chip) chip.remove(); return; }
+    if (!chip) { chip = document.createElement('button'); chip.type = 'button'; chip.className = 'graph-sim-chip'; bar.append(chip); }
+    chip.disabled = !fresh;
+    chip.textContent = fresh ? T('Better connections ready') : T('Matching articles…') + (total ? ' ' + Math.round(100 * done / total) + '%' : '');
+    chip.title = fresh ? T('Redraw the graph with the new matches') : T('Reading your saved articles in the background');
+    chip.onclick = fresh ? () => { chip.remove(); rerender(); } : null;
+}
+
+
+/** The bar that says what is in focus: caption, optional "Open topic", and a reset. */
+function buildFocusBar({ caption, openLabel, onOpen, onClear }) {
+    const bar = document.createElement('div');
+    bar.className = 'graph-focusbar'; bar.setAttribute('role', 'group'); bar.setAttribute('aria-label', T('Focus'));
+    const text = document.createElement('span'); text.className = 'graph-focusbar-text'; text.textContent = caption; text.title = caption;
+    bar.append(text);
+    if (onOpen) {
+        const open = document.createElement('button'); open.type = 'button'; open.className = 'graph-focusbar-open'; open.textContent = openLabel;
+        open.addEventListener('click', (e) => { e.stopPropagation(); onOpen(); });
+        bar.append(open);
+    }
+    const clear = document.createElement('button'); clear.type = 'button'; clear.className = 'graph-focusbar-clear';
+    clear.textContent = '✕'; clear.title = T('Show everything again'); clear.setAttribute('aria-label', T('Show everything again'));
+    clear.addEventListener('click', (e) => { e.stopPropagation(); onClear(); });
+    bar.append(clear);
+    return bar;
+}
+
+/** The graph as an SVG file with its colours resolved (the stylesheet's variables do not exist outside the extension). */
+export function graphSvgMarkup(container) {
+    const svg = container.querySelector('svg');
+    if (!svg) return '';
+    const cs = getComputedStyle(container);
+    const resolve = (v) => String(v).replace(/var\((--[\w-]+)(?:,\s*([^)]+))?\)/g, (_, name, fb) => cs.getPropertyValue(name).trim() || (fb || '#888').trim());
+    const copy = svg.cloneNode(true);
+    copy.setAttribute('xmlns', 'http://www.w3.org/2000/svg');
+    copy.querySelectorAll('*').forEach(n => ['fill', 'stroke', 'style'].forEach(a => { const v = n.getAttribute(a); if (v && v.includes('var(')) n.setAttribute(a, resolve(v)); }));
+    copy.querySelectorAll('.is-tag').forEach(n => { if (container.classList.contains('graph-overview')) n.remove(); });
+    copy.querySelectorAll('.graph-link').forEach(n => { if (container.classList.contains('graph-overview')) n.remove(); });
+    copy.querySelectorAll('title').forEach(n => n.remove());
+    const bg = cs.getPropertyValue('--bg-page').trim() || '#ffffff';
+    const rect = document.createElementNS('http://www.w3.org/2000/svg', 'rect');
+    rect.setAttribute('width', '100%'); rect.setAttribute('height', '100%'); rect.setAttribute('fill', bg);
+    copy.insertBefore(rect, copy.firstChild);
+    // Titles on quiet nodes stay out of the file; the picture is for sharing, not for hovering.
+    copy.querySelectorAll('text').forEach(n => n.setAttribute('font-family', 'sans-serif'));
+    if (container.classList.contains('graph-quiet')) copy.querySelectorAll('text.is-article').forEach(n => n.remove());
+    return new XMLSerializer().serializeToString(copy);
+}
+
+/** Saves the current picture as a local .svg file (nothing is uploaded). */
+function exportGraphSvg(container) {
+    const markup = graphSvgMarkup(container);
+    if (!markup) return;
+    const url = URL.createObjectURL(new Blob([markup], { type: 'image/svg+xml' }));
+    const a = document.createElement('a'); a.href = url; a.download = 'archive-graph.svg';
+    document.body.appendChild(a); a.click(); a.remove();
+    setTimeout(() => URL.revokeObjectURL(url), 1000);
+}
+
+/** Topics | Detail switch, "Path" chip and "Save image" in the same row as the other chips. */
+const COLOR_LABEL = { topic: () => T('Topic'), age: () => T('Age'), mood: () => T('Mood') };
+
+/** A colour bar in the legend for Age and Mood (Topic needs none: the labels say it). */
+function renderColorLegend(container, mode, { ageColor, moodColor }) {
+    const legend = container.querySelector('.graph-legend');
+    if (!legend) return;
+    legend.querySelectorAll('.graph-legend-color').forEach(n => n.remove());
+    if (mode === 'topic') return;
+    const stops = (fn, n) => Array.from({ length: n }, (_, i) => fn(i / (n - 1))).join(', ');
+    const item = document.createElement('span');
+    item.className = 'graph-legend-item graph-legend-color';
+    const bar = document.createElement('span'); bar.className = 'graph-legend-grad';
+    bar.style.background = 'linear-gradient(90deg, ' + (mode === 'age' ? stops(ageColor, 6) : stops((q) => moodColor(q * 2 - 1), 7)) + ')';
+    const a = document.createElement('span'); a.textContent = mode === 'age' ? T('older') : T('negative');
+    const b = document.createElement('span'); b.textContent = mode === 'age' ? T('newer') : T('positive');
+    item.append(a, bar, b);
+    if (mode === 'mood') { const none = document.createElement('span'); none.textContent = '· ' + T('grey: not scored'); item.append(none); }
+    legend.append(item);
+}
+
+function renderStructureChips(container, { canOverview, overview, onLayout, unread, color }) {
+    const bar = filterBar(container);
+    bar.querySelectorAll('.graph-layout-toggle, .graph-path-chip, .graph-save-chip, .graph-unread-chip, .graph-color-chip').forEach(n => n.remove());
+    if (color && color.modes.length > 1) {
+        const chip = document.createElement('button');
+        chip.type = 'button'; chip.className = 'graph-color-chip';
+        let mode = color.mode;
+        const paint = () => { chip.textContent = T('Color: {mode}', { mode: COLOR_LABEL[mode]() }); };
+        chip.title = T('Change what the dot colours mean');
+        paint();
+        chip.addEventListener('click', () => { mode = color.modes[(color.modes.indexOf(mode) + 1) % color.modes.length]; paint(); color.onChange(mode); });
+        bar.append(chip);
+    }
+    if (canOverview) {
+        const g = document.createElement('div');
+        g.className = 'segmented-control segmented-control-buttons graph-layout-toggle'; g.setAttribute('role', 'group'); g.setAttribute('aria-label', T('Graph layout'));
+        [['overview', T('Topics')], ['detail', T('Detail')]].forEach(([mode, text]) => {
+            const b = document.createElement('button'); b.type = 'button'; b.textContent = text;
+            const on = (mode === 'overview') === overview;
+            b.className = on ? 'active' : ''; b.setAttribute('aria-pressed', String(on));
+            b.addEventListener('click', () => { if (!on) onLayout(mode); });
+            g.append(b);
+        });
+        bar.prepend(g);
+    }
+    const path = document.createElement('button');
+    path.type = 'button'; path.className = 'graph-path-chip' + (container.__graphPathOn ? ' on' : '');
+    path.setAttribute('aria-pressed', String(!!container.__graphPathOn));
+    path.textContent = T('Path'); path.title = T('Pick two items to see how they connect');
+    path.addEventListener('click', () => {
+        const on = !container.__graphPathOn;
+        path.classList.toggle('on', on); path.setAttribute('aria-pressed', String(on));
+        if (container.__graphPathMode) container.__graphPathMode(on);
+    });
+    const save = document.createElement('button');
+    save.type = 'button'; save.className = 'graph-save-chip'; save.textContent = T('Save image');
+    save.title = T('Save this picture as an SVG file on your device');
+    save.addEventListener('click', () => exportGraphSvg(container));
+    if (unread) {
+        const chip = document.createElement('button');
+        chip.type = 'button'; chip.className = 'graph-unread-chip' + (unread.on ? ' on' : '');
+        chip.setAttribute('aria-pressed', String(unread.on));
+        chip.textContent = T('Unread') + ' · ' + unread.count;
+        chip.title = T('Show only what you have not read yet');
+        chip.addEventListener('click', () => {
+            const on = chip.getAttribute('aria-pressed') !== 'true';
+            chip.classList.toggle('on', on); chip.setAttribute('aria-pressed', String(on));
+            unread.onToggle(on);
+        });
+        bar.append(chip);
+    }
+    bar.append(path, save);
+}
 
 /** Row (top-left, under the Graph|List switch) that holds the filter chips side by side. */
 function filterBar(container) {
@@ -969,10 +1508,40 @@ function renderTimeRange(container, nodes, links, articles) {
         chip.classList.toggle('on', !full);
         container.dispatchEvent(new CustomEvent('graph-time-range', { detail: { from: lo, to: hi, full }, bubbles: true }));
     };
+    // Replay: the window grows from the first month to the last, so you watch the archive (and its topics) build up.
+    // Under reduced motion there is no animation: the same button steps one month per press.
+    const calmMotion = typeof matchMedia === 'function' && matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const stepMs = Math.max(150, Math.min(700, Math.round(15000 / (span.max - span.min + 1))));   // about 15 s for any archive
+    const play = document.createElement('button');
+    play.type = 'button'; play.className = 'graph-time-play';
+    let timer = null;
+    const say = (t) => { const live = container.querySelector('.graph-live'); if (live) live.textContent = t; };
+    const paintPlay = () => { play.textContent = calmMotion ? T('Next month →') : timer ? T('⏸ Pause') : T('▶ Replay'); play.setAttribute('aria-pressed', String(!!timer)); };
+    const stopReplay = (finished) => {
+        if (timer) { clearInterval(timer); timer = null; container.__graphReplayTimer = null; }
+        paintPlay();
+        if (finished) say(T('Replay finished: all {n} articles in view', { n: total }));
+    };
+    const advance = () => {
+        const hi = Number(to.value);
+        if (hi >= span.max) { stopReplay(true); return; }
+        to.value = String(hi + 1); paint();
+        if (hi + 1 >= span.max) stopReplay(true);
+    };
+    const restart = () => { from.value = String(span.min); to.value = String(span.min); paint(); };
+    play.addEventListener('click', () => {
+        if (timer) { stopReplay(false); return; }
+        if (calmMotion) { if (Number(to.value) >= span.max) restart(); else advance(); return; }
+        restart(); say(T('Replay started: {a}', { a: monthLabel(span.min) }));
+        timer = setInterval(advance, stepMs); container.__graphReplayTimer = timer; paintPlay();
+    });
+    paintPlay();
+    from.addEventListener('input', () => stopReplay(false)); to.addEventListener('input', () => stopReplay(false));
     from.addEventListener('input', paint); to.addEventListener('input', paint);
-    reset.addEventListener('click', () => { from.value = String(span.min); to.value = String(span.max); paint(); });
+    reset.addEventListener('click', () => { stopReplay(false); from.value = String(span.min); to.value = String(span.max); paint(); });
     chip.addEventListener('click', () => { panel.hidden = !panel.hidden; chip.setAttribute('aria-expanded', String(!panel.hidden)); });
-    panel.append(text, track, ends, reset);
+    const actions = document.createElement('div'); actions.className = 'graph-time-actions'; actions.append(play, reset);
+    panel.append(text, track, ends, actions);
     wrap.append(chip, panel);
     filterBar(container).append(wrap);
     paint();
@@ -1038,6 +1607,11 @@ export function renderGraphList(container, nodes, links, gaps = []) {
         const sub = document.createElement('div'); sub.className = 'graph-list-s';
         sub.textContent = g.never ? T('never opened') : T('last opened {d}', { d: new Date(g.last).toLocaleDateString() });
         li.append(head, sub);
+        // A gap is a to-do, not just a list: one tap opens the topic page (briefing of what you saved, questions, export).
+        const act = document.createElement('button'); act.type = 'button'; act.className = 'graph-gap-brief';
+        act.textContent = T('Brief me on this'); act.title = T('Open the topic page: a short briefing from the {n} saved summaries', { n: g.articles.length });
+        act.addEventListener('click', () => import('./graphClusters.js').then(m => m.showClusterCard(container, { label: g.label, articles: g.articles })));
+        li.append(act);
         g.articles.forEach((a) => {
             const b = document.createElement('button'); b.type = 'button'; b.className = 'graph-list-item';
             b.textContent = a.title || (a.content && String(a.content).split('\n')[0]) || T('Untitled');
@@ -1089,7 +1663,7 @@ export function renderGraphList(container, nodes, links, gaps = []) {
  * filtered/highlight search scope switch lives in the archive search box
  * itself now, not here — see articleManager.js.)
  */
-function renderGraphControls(container, { hiddenTagCount, capped, currentlyFiltered, stillOrphanCount, neglectedCount, onToggleDegree }) {
+function renderGraphControls(container, { hiddenTagCount, capped, currentlyFiltered, stillOrphanCount, neglectedCount, onToggleDegree, typesPresent = new Set() }) {
     container.querySelectorAll('.graph-controls, .graph-controls-bottom-center, .graph-controls-bottom-right').forEach(el => el.remove());
 
     // ── Bottom-center: stats readout + well-connected/all toggle ─────────
@@ -1204,6 +1778,8 @@ function renderGraphControls(container, { hiddenTagCount, capped, currentlyFilte
     legendRow.innerHTML = `
         <span class="graph-legend-item"><span class="graph-legend-line graph-legend-line--tag"></span> ${T('shared tag')}</span>
         <span class="graph-legend-item"><span class="graph-legend-line graph-legend-line--similar"></span> ${T('similar content')}</span>
+        ${['paper', 'video', 'pdf'].filter(k => typesPresent.has(k)).map(k => `<span class="graph-legend-item"><span class="graph-legend-ring graph-legend-ring--${k}"></span> ${sourceName(k)}</span>`).join('')}
+        <span class="graph-legend-item"><span class="graph-legend-fill"></span> ${T('fainter = only saved')}</span>
     `;
     rightBar.appendChild(legendRow);
 
@@ -1264,6 +1840,7 @@ async function renderPreviewHighlights(card, article) {
  * Card can be dismissed by clicking its close button or clicking outside it.
  */
 export const __test_showPreviewCard = (container, article) => showPreviewCard(container, article);
+export const __test_renderTimeRange = (container, nodes, links, articles) => renderTimeRange(container, nodes, links, articles);
 function showPreviewCard(container, article) {
     const containerEl = container;
     // Remove any existing preview card
@@ -1273,7 +1850,7 @@ function showPreviewCard(container, article) {
     const title = article.title || (article.content && article.content.split('\n')[0]) || T('Untitled');
     const summaryPlain = (new DOMParser().parseFromString(article.summary || '', 'text/html').body.textContent || '').trim();
     const date = article.timestamp ? new Date(article.timestamp).toLocaleDateString() : '';
-    const tags = (article.tags || []).map(t => `<span class="tag-chip">${escapeHtml(t)}</span>`).join('');
+    const tags = (article.tags || []).filter(t => !isLanguageTag(t)).map(t => `<span class="tag-chip">${escapeHtml(t)}</span>`).join('');
     const clip = (str, n) => str.length > n ? str.slice(0, n) + '…' : str;
 
     const card = document.createElement('div');
@@ -1315,3 +1892,4 @@ function showPreviewCard(container, article) {
     containerEl.appendChild(card);
     renderPreviewHighlights(card, article);
 }
+export const __test_buildGraphData = (...args) => buildGraphData(...args);

@@ -37,7 +37,7 @@ const hist = ag.monthHistogram(arts, span);
 assert.equal(hist.length, span.max - span.min + 1, 'one bar per month');
 assert.equal(hist.reduce((a, b) => a + b, 0), arts.length, 'every article lands in exactly one bar');
 assert.deepEqual(ag.monthHistogram([], null), [], 'no span, no bars');
-const lo = ag.monthIndex(now - 10 * DAY), hi = span.max;
+const lo = ag.monthIndex(now - 10 * DAY), hi = ag.monthIndex(now);   // up to the current month (span.max can be the month before in the first days of a month)
 const vis = ag.visibleInRange(nodes.map(n => n.group === 'article' ? { ...n, data: { ...n.data, timestamp: n.id === 'article-1' ? new Date(now - 200 * DAY).toISOString() : new Date(now - 2 * DAY).toISOString() } } : n), links, lo, hi);
 assert.ok(!vis.has('article-1') && vis.has('article-2'), 'old article fades, recent stays');
 assert.ok(vis.has('tag-x'), 'a topic with one visible article stays');
