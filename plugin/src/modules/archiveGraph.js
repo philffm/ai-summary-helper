@@ -445,7 +445,9 @@ export function initArchiveGraph(container, articles, highlightTimestamp, simila
     return loadD3()
         .then(() => waitForLayout(container))
         .then(() => renderGraph(container, articles, highlightTimestamp, MIN_TAG_DEGREE_DEFAULT, similarityIndex))
-        .catch(() => {
+        .catch((e) => {
+            // Any failure while drawing ends up here, not only a missing d3: say what it was, so a real bug is not hidden behind this message.
+            console.warn('Archive graph could not be drawn:', e);
             container.innerHTML = `<div class="graph-empty">${T('D3 library failed to load.')}</div>`;
         });
 }
@@ -862,6 +864,7 @@ function renderGraph(container, allArticles, highlightTimestamp, minTagDegree, s
         });
     }
     layoutPack();
+    container.__archiveGraphPack = pack;   // (read by the tests: where every dot should sit)
     // where a node belongs: its own spot in the packing; tags (not drawn here) sit at the middle of their cluster
     const homeOf = (d) => pack.leaf.get(d.id) || pack.cluster.get(d.cluster) || { x: viewW / 2, y: viewH / 2 };
     const packR = (d) => Math.max(2, Math.min(7, ((pack.leaf.get(d.id) || {}).r || 4.5) * 0.9));   // dots shrink as the archive grows, so they never overlap
@@ -872,7 +875,7 @@ function renderGraph(container, allArticles, highlightTimestamp, minTagDegree, s
     const simulation = d3.forceSimulation(nodes)
         .force('link', linkForce)
         .force('charge', d3.forceManyBody().strength(overview ? 0 : -250))
-        .force('collision', d3.forceCollide().radius(d => nodeRadius(d) + (overview ? 0.4 : 6)));
+        .force('collision', d3.forceCollide().radius(d => (overview && d.group === 'tag' ? 0 : nodeRadius(d) + (overview ? 0.4 : 6))));   // Topics: the tags are not drawn, so they must not push the dots around
     if (overview) {
         simulation.force('x', d3.forceX(d => homeOf(d).x).strength(0.45))
             .force('y', d3.forceY(d => homeOf(d).y).strength(0.45));
@@ -1031,7 +1034,7 @@ function renderGraph(container, allArticles, highlightTimestamp, minTagDegree, s
         const at = (map, id) => map.get(id) || { x: -9999, y: -9999, r: 0 };
         blobs.attr('cx', c => at(pack.cluster, c.id).x).attr('cy', c => at(pack.cluster, c.id).y).attr('r', c => at(pack.cluster, c.id).r);
         clusterLabels.attr('x', c => at(pack.cluster, c.id).x)
-            .attr('y', c => { const o = at(pack.cluster, c.id); return (c.children || []).length >= 2 ? o.y - o.r - 6 : o.y + 4; });   // above a cluster made of subtopics, in the middle of one that is not
+            .attr('y', c => { const o = at(pack.cluster, c.id); return (c.children || []).length >= 2 ? o.y - o.r - 22 : o.y + 4; });   // above a cluster made of subtopics, in the middle of one that is not
         if (subBlobs) {
             subBlobs.attr('cx', k => at(pack.sub, k.id).x).attr('cy', k => at(pack.sub, k.id).y).attr('r', k => at(pack.sub, k.id).r);
             subLabels.attr('x', k => at(pack.sub, k.id).x).attr('y', k => at(pack.sub, k.id).y - at(pack.sub, k.id).r - 3);

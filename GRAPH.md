@@ -3,7 +3,7 @@
 How the graph in the History tab decides what to show, why it opens as topic clusters, and what is still open.
 Code: `plugin/src/modules/archiveGraph.js` (drawing, interaction), `plugin/src/modules/graphStructure.js` (the structure, pure functions),
 `plugin/src/modules/graphClusters.js` and `graphBrief.js` (the topic page and briefings), `plugin/src/modules/graphSimilarity.js` and `graphSimilarityCache.js` (content similarity, background run, cache).
-Tests: `test128` (gaps, time window, views), `test217` (clusters, bridges, focus, path, source type, maturity), `test218` (similarity and its incremental cache), `test219` (hub note), `test220` (MCP `related_articles`), `test221` (replay), `test222` (Anki file), `test223` (subtopics), `test224` (every background worker bundle is a valid script), `test225` (language marks), `test226` (articles saved at the same time), all in `plugin/tests/`.
+Tests: `test128` (gaps, time window, views), `test217` (clusters, bridges, focus, path, source type, maturity), `test218` (similarity and its incremental cache), `test219` (hub note), `test220` (MCP `related_articles`), `test221` (replay), `test222` (Anki file), `test223` (subtopics), `test224` (every background worker bundle is a valid script), `test225` (language marks), `test226` (articles saved at the same time), `test227` (Topics layout in a real d3), all in `plugin/tests/`.
 
 ## Why it opens as clusters
 
@@ -45,6 +45,14 @@ A tag on 35 % or more of **all** articles (in an archive of 30+) says "this arch
 ### How many articles can Topics show?
 
 All of them. The 300-node cap (`NODE_CAP`) belongs to Detail, where a force simulation and every link have to be computed and drawn. Topics draws no links and does not simulate its positions (the packing decides, the forces only settle the dots), so it shows every tag and every article, also those whose tags are rare and those with no tag at all (they sit in "everything else" and the text sorts them). `OVERVIEW_NODE_CAP` (6,000) is only a safety. Measured in Chromium with synthetic archives: 600 articles paint in about 0.2 s, 1,500 in 0.4 s, 3,000 in 0.9 s, with one stall of about that length while the first picture is built and a few dozen slow frames while the dots settle (Detail with 1,500 had more of them than Topics). The titles of the dots are moved every few frames only, and links are not touched at all. Past a few thousand articles the first picture will take over a second; the structure could then be cached.
+
+### Why the dots might not sit in their circles (a bug we had)
+
+In Topics the tags are not drawn, but they are still nodes of the simulation. Once Topics showed every tag, hundreds of rare tags sat as solid discs in the middle of their clusters and pushed the article dots out of their circles (a hole in the middle, dots scattered outside). Tag nodes no longer collide with anything in Topics. `test227` draws 600 articles with many rare tags and some without any, lets the layout settle and checks that every dot sits at its place in the packing (without the fix, 148 of 600 are far off).
+
+### Function words
+
+Words like "the", "die", "und", "les", "los" are no terms (`graphSimilarity.js`, six languages beyond English). Without them a group of German articles is "typical" for "die" and "und" and gets named after them. Words that no list knows are still dropped by frequency. Text grouping works within a language: a German and an English article about the same topic share no words, so they are only joined by tags (which the topic lexicon already unifies across languages), not by text.
 
 ### What stops a clump
 

@@ -5,14 +5,18 @@ const gs = await imp('modules/graphSimilarity.js');
 const gc = await imp('modules/graphSimilarityCache.js');
 
 // ── tokens: umlauts and other scripts are words, not noise ──
-assert.deepEqual(gs.tokenize('Größe der Städte <b>und</b> Münchner Verkehrswende'), ['größe', 'der', 'städte', 'und', 'münchner', 'verkehrswende'], 'umlauts survive and markup goes; non-English stop words stay here …');
-// … and are dropped later, by frequency: a word in more than MAX_DF of the articles says nothing, in any language
-const de = {}; for (let i = 0; i < 20; i++) de['d' + i] = gs.buildEntry({ title: 'der und die ' + ['wald', 'meer', 'berg', 'stadt'][i % 4] + ' thema' + i, summary: '' }, { timestamp: i }, false);
+assert.deepEqual(gs.tokenize('Größe der Städte <b>und</b> Münchner Verkehrswende'), ['größe', 'städte', 'münchner', 'verkehrswende'], 'umlauts survive, markup and the function words of the common languages go …');
+// … and whatever list does not cover is dropped later, by frequency: a word in more than MAX_DF of the articles says nothing, in any language
+const de = {}; for (let i = 0; i < 20; i++) de['d' + i] = gs.buildEntry({ title: 'ganz sonst allerdings ' + ['wald', 'meer', 'berg', 'stadt'][i % 4] + ' thema' + i, summary: '' }, { timestamp: i }, false);
 const deNn = await gs.neighbours(de);
-assert.ok(Object.entries(deNn).every(([id, list]) => list.every(([o]) => (Number(id.slice(1)) % 4) === (Number(o.slice(1)) % 4))), 'common German words do not link unrelated articles');
+assert.ok(Object.entries(deNn).every(([id, list]) => list.every(([o]) => (Number(id.slice(1)) % 4) === (Number(o.slice(1)) % 4))), 'common words that no list knows do not link unrelated articles');
 assert.ok(gs.tokenize('Москва и климат').includes('москва'), 'cyrillic is tokenised');
 assert.deepEqual(gs.tokenize('気候変動'), ['気候', '候変', '変動'], 'han/kana runs become character pairs');
 assert.deepEqual(gs.tokenize('2024 and 12345'), [], 'numbers alone are not terms');
+
+// function words of other languages are no terms either (a German group must not be "typical" for die/und/der)
+assert.deepEqual(gs.tokenize('Die Stadt und der Wald ist schön, mais les arbres sont grands'), ['stadt', 'wald', 'schön', 'arbres', 'grands']);
+assert.ok(gs.SIM_VERSION >= 2, 'the cache from before the function words is rebuilt');
 
 // ── entries: the text adds terms the index entry does not have ──
 const meta = { id: 'x', timestamp: 't1', contentWordCount: 900, summary: 'short summary about solar power', tags: ['energy'], title: 'Solar roofs' };

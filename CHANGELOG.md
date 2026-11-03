@@ -19,6 +19,9 @@ Commit history has the details: <https://github.com/philffm/ai-summary-helper/co
 
 #### Fixed
 
+- Archive graph (Topics): the dots left their circles once every tag was shown, because the hidden tag nodes pushed them away; they no longer collide
+- Archive graph: function words of German, French, Spanish, Italian, Dutch and Portuguese are no terms, so groups are no longer named "die" or "und · der"
+- Archive graph: an error while drawing is logged instead of always reading "D3 library failed to load"
 - Archive graph (Topics): shows every article and tag, no 300-node cap and no hidden rare tags; articles with no tag at all appear in "everything else"
 - Archive graph: subtopics are named after what is typical of them (tags, terms and title words, never the cluster's own name), then by source or time; "Group n" only as the last resort
 - Archive graph: articles saved in the same moment (an import, "save all tabs") were merged into one node, which gave wrong counts and piled dots; every article is now its own node
