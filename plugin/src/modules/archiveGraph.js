@@ -43,6 +43,7 @@ import { setIconLabel } from './icons.js';
 import { paperState } from './paperInfo.js';
 
 import { topicClusters, bridgeArticles, neighborhood, shortestPath, sourceType, maturityOf } from './graphStructure.js';
+import { CATEGORIES } from './topicCategories.js';
 
 // v5 (structure layer, see GRAPH.md): with enough articles the graph opens as an OVERVIEW — topic clusters worked out locally
 // from the tags (graphStructure.js), one label per cluster, small unlabeled dots, no links — and the old node-and-link picture is
@@ -651,7 +652,9 @@ function renderGraph(container, allArticles, highlightTimestamp, minTagDegree, s
     // (no links drawn, nothing to simulate: the packing decides), so it shows every tag and every article and is not held to Detail's node cap.
     const wantsOverview = container.__graphLayout ? container.__graphLayout === 'overview' : articles.length >= OVERVIEW_MIN_ARTICLES;
     let raw = buildGraphData(articles, wantsOverview ? 1 : minTagDegree, similarityIndex, simNow && simNow.links, { keepOrphans: wantsOverview });
-    const structFor = (d) => topicClusters(d.nodes, d.links, { otherLabel: T('Everything else'), subOtherLabel: T('Other'), groupLabel: T('Group'), terms: simNow && simNow.terms, vectors: simNow && simNow.items });
+    // the fixed categories (and the old catch-all "General") as tag ids, so the structure treats them as categories
+    const categories = new Set([...CATEGORIES, 'General'].map(tagIdOf));
+    const structFor = (d) => topicClusters(d.nodes, d.links, { otherLabel: T('Everything else'), subOtherLabel: T('Other'), groupLabel: T('Group'), terms: simNow && simNow.terms, vectors: simNow && simNow.items, categories });
     let data = capGraphData(raw, wantsOverview ? OVERVIEW_NODE_CAP : NODE_CAP);
     let struct = structFor(data);
     if (wantsOverview && struct.clusters.length < 2) {   // nothing to pack: the usual picture, with its rules and its cap

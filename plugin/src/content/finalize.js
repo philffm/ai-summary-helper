@@ -3,6 +3,7 @@ import { applyScholarly, paperIndexFields } from './paper.js';
 import { ensureGeneralTag, normalizeGhostQuotes, extractSummaryTitle, saveToLocalStorage } from './core.js';
 import { markdownToHtml, stripReasoning } from './markdown.js';
 import { parseSuggestionList } from '../modules/suggestions.js';
+import { parseTagLine } from '../modules/topicCategories.js';
 // content/finalize.js
 // Everything that happens AFTER the model has finished writing: pull the metadata comments out of the raw text,
 // build the HTML, tags, language tags, title. It needs no page DOM, so it runs in the content script (normal case)
@@ -57,20 +58,22 @@ export function detectContentLang(text, htmlLang) {
  *   pageMeta (base metadata, may be {}), ghostMax, fixedTitle ('' = derive), attachedTitle (string when a PDF was attached, else null)
  * @returns {Promise<{error:string}|{cleanHtml,tags,ghostQuotes,moodScore,questions,quick,pageMeta,title}>}
  */
+/** The index fields to save, plus tagEn when there is any (older or unknown replies have none). */
+export const withTagEn = (extra, tagEn) => (tagEn && Object.keys(tagEn).length ? { ...(extra || {}), tagEn } : extra);
+
 export async function finalizeSummary(o) {
   let summary = stripReasoning(o.raw || '');
   if (!summary.trim() && (o.thinking || '').trim()) summary = stripReasoning(o.thinking);
   if (!summary.trim()) return { error: 'The model wrote its own notes instead of a summary. Try again or pick another model.' };
 
-  let tags = [];
+  // "category: Technology, KI-Regulierung = AI regulation, …": the category, the specific tags, and each tag's English name.
   const tagMatch = summary.match(/<!--\s*TAGS?\s*:\s*([\s\S]*?)\s*-->/i);
-  if (tagMatch) {
-    const seen = new Set();
-    tags = tagMatch[1].replace(/^\s*\[|\]\s*$/g, '').split(/[,;\n]+/)
-      .map(t => t.trim().replace(/^["'#]+|["']+$/g, '')).filter(Boolean)
-      .filter(t => { const key = t.toLowerCase(); if (seen.has(key)) return false; seen.add(key); return true; });
-  }
-  tags = await ensureGeneralTag(tags, o.contentText || '', o.pageTitle || '');
+  const parsedTags = parseTagLine(tagMatch ? tagMatch[1] : '');
+  let tags = await ensureGeneralTag(parsedTags.tags, o.contentText || '', o.pageTitle || '', 7, { category: parsedTags.category });
+  // The English names go with the article (index field tagEn); the History teaches them to the topic lexicon, so the same topic in
+  // another language becomes one tag (topicConcepts.js). Only for tags that were kept.
+  const tagEn = {};
+  tags.forEach(t => { if (parsedTags.tagEn[t]) tagEn[t] = parsedTags.tagEn[t]; });
   // Language tags: "🌐 de" for the text the page is written in, plus "🌐 en" when the summary is in another language.
   const sumLang = langBase(ttsLang(o.selectedLanguage));
   const srcLang = await detectContentLang(o.contentText || '', o.htmlLang || '');
@@ -114,13 +117,13 @@ export async function finalizeSummary(o) {
   const title = o.attachedTitle !== null && o.attachedTitle !== undefined
     ? (extractSummaryTitle(cleanHtml) || o.attachedTitle || 'Untitled')
     : (o.fixedTitle || extractSummaryTitle(cleanHtml) || 'Untitled');
-  return { cleanHtml, tags, ghostQuotes, moodScore, questions, quick, pageMeta, title };
+  return { cleanHtml, tags, tagEn, ghostQuotes, moodScore, questions, quick, pageMeta, title };
 }
 
 /** Same as the in-page path: store the finished summary. `ctx` is what the page handed to the background when the run started. */
 export function saveFinished(ctx, f, contentHtml) {
   const extra = { ...(ctx.feedUrl && ctx.feedUrl !== ctx.sourceUrl ? { feedUrl: ctx.feedUrl } : {}), ...paperIndexFields(f.pageMeta && f.pageMeta.paper) };
-  return saveToLocalStorage(contentHtml, f.cleanHtml, ctx.sourceUrl, f.title, '', f.tags, ctx.modelIdentifier, ctx.summaryLength, f.moodScore, extra, f.pageMeta);
+  return saveToLocalStorage(contentHtml, f.cleanHtml, ctx.sourceUrl, f.title, '', f.tags, ctx.modelIdentifier, ctx.summaryLength, f.moodScore, withTagEn(extra, f.tagEn), f.pageMeta);
 }
 
 /** Background: a run whose page went away is finished here. */

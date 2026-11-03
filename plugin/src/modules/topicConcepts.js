@@ -71,6 +71,25 @@ export function lexiconLearn(en, locale, label) {
     buildRev();
     return true;
 }
+/**
+ * Teach the lexicon the English names the summaries gave their tags (index field `tagEn`: { tag: English name }, written by
+ * content/finalize.js). "KI-Regulierung" with "AI regulation" and "AI regulation" from another article become one topic.
+ * The tag is learned as a spelling (its language is not known here), the English name as the English label. Returns true when the lexicon changed.
+ */
+export function learnTagPairs(entries) {
+    let changed = false;
+    for (const a of entries || []) {
+        const m = a && a.tagEn;
+        if (!m || typeof m !== 'object') continue;
+        for (const [label, en] of Object.entries(m)) {
+            if (!en || isLanguageTag(label) || isLanguageTag(en)) continue;
+            if (lexiconLearn(en, null, label)) changed = true;
+            if (lexiconLearn(en, 'en', String(en).replace(/^./, c => c.toUpperCase()))) changed = true;
+        }
+    }
+    return changed;
+}
+
 const lexKey = (tag) => (isLanguageTag(tag) ? null : LEX_REV.get(normalizeTopic(tag)) || null);
 
 /** Known topic id for a tag in any language (null when it is not a built-in topic). A learned tag whose English name is a built-in topic counts too. */

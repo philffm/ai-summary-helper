@@ -32,6 +32,8 @@ Commit history has the details: <https://github.com/philffm/ai-summary-helper/co
 
 #### Changed
 
+- Tags of new summaries: one category from a fixed list chosen by the model (the text only as a fallback, no more "General"), then 2–4 specific tags with their English names, so the same topic in two languages becomes one tag. The library's most used tags are no longer attached to new articles by word match
+
 - Archive graph: article titles show on hover, focus and search matches instead of all at once
 
 ## 2.2.40 (2026-11-02)

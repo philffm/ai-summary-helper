@@ -2,36 +2,10 @@ import { SK, articleRecKey } from '../modules/storageKeys.js';
 import { unwrapArchiveUrl } from '../modules/archiveUrl.js';
 import { debug } from '../modules/log.js';
 import { detectPaper } from './paper.js';
+import { asCategory, categoryFromText } from '../modules/topicCategories.js';
 // content/core.js
 // Core helpers for the content script: tag generation, ghost-quote parsing,
 // storage saving, and the Safari-safe streaming port connection.
-
-/**
- * Get the most-used tags from the user's saved articles.
- */
-export function getTopUserTags(limit = 10) {
-  return new Promise((resolve) => {
-    chrome.storage.local.get({ [SK.articlesIndex]: [] }, (data) => {
-      const tagCounts = {};
-      const articles = data[SK.articlesIndex] || [];
-      articles.forEach(art => {
-        if (Array.isArray(art.tags)) {
-          art.tags.forEach(t => {
-            const clean = (t || '').toString().trim();
-            if (!clean) return;
-            const key = clean.toLowerCase();
-            tagCounts[key] = {
-              original: clean,
-              count: (tagCounts[key]?.count || 0) + 1
-            };
-          });
-        }
-      });
-      const sorted = Object.values(tagCounts).sort((a, b) => b.count - a.count);
-      resolve(sorted.slice(0, limit).map(item => item.original));
-    });
-  });
-}
 
 // Japanese and Chinese (and Thai) are written without spaces: splitting on whitespace counts a whole paragraph as
 // one word. Count those scripts by characters instead (about 2 CJK / 5 Thai characters per English-word equivalent),
@@ -150,85 +124,26 @@ export function normalizeGhostQuotes(quotes, maxCount = 3) {
 }
 
 /**
- * Ensure a general/broad tag is present, combining AI tags with historical
- * user tags and a broad fallback catalog.
+ * The tags an article is saved with: one category from the fixed list (topicCategories.js) first, then the specific tags.
+ * The category is the one the model chose; only when it chose none is it taken from the text (the category whose words occur most).
+ * Nothing else is added: tags used often elsewhere are NOT attached by word match any more (that made the most used tags spread
+ * to ever more articles), and there is no "General" (it said nothing). Async for the callers that await it.
  */
-export async function ensureGeneralTag(tags, contentText = '', pageTitle = '', maxTags = 7) {
-  const inputTags = Array.isArray(tags) ? tags : [];
-  const normalized = [];
+export async function ensureGeneralTag(tags, contentText = '', pageTitle = '', maxTags = 7, { category = '' } = {}) {
+  const specific = [];
   const seen = new Set();
-
-  for (const raw of inputTags) {
+  let chosen = asCategory(category);
+  for (const raw of Array.isArray(tags) ? tags : []) {
     const clean = (raw || '').toString().trim();
     if (!clean) continue;
     const key = clean.toLowerCase();
+    if (asCategory(clean) || key === 'general') { if (!chosen) chosen = asCategory(clean); continue; }   // a category among the tags is the category
     if (seen.has(key)) continue;
     seen.add(key);
-    normalized.push(clean);
+    specific.push(clean);
   }
-
-  // Fetch top 10 most used tags from storage library
-  const topUserTags = await getTopUserTags(10);
-  const corpus = `${pageTitle || ''}\n${contentText || ''}\n${normalized.join(' ')}`.toLowerCase();
-
-  // Check if any of your top historical tags match the current article content
-  const matchedHistoricalTags = topUserTags.filter(ut => {
-    const term = ut.toLowerCase();
-    // Match whole-word occurrences to avoid false positives
-    const rx = new RegExp(`\\b${term.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}\\b`, 'i');
-    return rx.test(corpus) && !seen.has(term);
-  });
-
-  // Broad fallback catalog if no specific match occurs
-  const broadCatalog = [
-    { tag: 'Technology', patterns: [/\bai\b/i, /\bartificial intelligence\b/i, /\bsoftware\b/i, /\btech\b/i, /\btechnology\b/i, /\bcyber\b/i, /\bstartup\b/i, /\bsemiconductor\b/i, /\bcloud\b/i] },
-    { tag: 'Business', patterns: [/\bfinance\b/i, /\beconomy\b/i, /\beconomic\b/i, /\bcorporate\b/i, /\bmarket\b/i, /\bhiring\b/i, /\bprofit\b/i, /\brevenue\b/i, /\bindustry\b/i] },
-    { tag: 'Science', patterns: [/\bscience\b/i, /\bresearch\b/i, /\bstudy\b/i, /\banalysis\b/i, /\bevidence\b/i, /\bexperiment\b/i, /\bjournal\b/i] },
-    { tag: 'Health', patterns: [/\bhealth\b/i, /\bmedical\b/i, /\bdisease\b/i, /\bdoctor\b/i, /\bhospital\b/i, /\bphysiology\b/i, /\bnutrition\b/i] },
-    { tag: 'Politics', patterns: [/\bgovernment\b/i, /\belection\b/i, /\bgeopolitics?\b/i, /\bregulations?\b/i] },
-    { tag: 'Environment', patterns: [/\bclimate\b/i, /\bemissions?\b/i, /\bsustainab(le|ility)\b/i, /\benvironment\b/i, /\brenewable\b/i, /\bbiodiversity\b/i, /\bweather\b/i] },
-    { tag: 'Society', patterns: [/\bculture\b/i, /\bcommunity\b/i, /\beducation\b/i, /\bdemographics?\b/i] },
-    { tag: 'Lifestyle', patterns: [/\blifestyle\b/i, /\bcreativity\b/i, /\bmindset\b/i, /\bhabits?\b/i, /\bwellbeing\b/i] }
-  ];
-
-  let broadTag = normalized.find(tag => broadCatalog.some(b => b.tag.toLowerCase() === tag.toLowerCase())) || '';
-
-  if (!broadTag) {
-    for (const broad of broadCatalog) {
-      if (broad.patterns.some(rx => rx.test(corpus))) {
-        broadTag = broad.tag;
-        break;
-      }
-    }
-  }
-
-  if (!broadTag) broadTag = 'General';
-
-  // Combine broad tag, matched historical tags, and AI-generated tags up to maxTags limit
-  const combinedSpecific = [...matchedHistoricalTags, ...normalized.filter(tag => tag.toLowerCase() !== broadTag.toLowerCase())];
-  const uniqueSpecific = [];
-  const specificSeen = new Set();
-  for (const t of combinedSpecific) {
-    const k = t.toLowerCase();
-    if (!specificSeen.has(k)) {
-      specificSeen.add(k);
-      uniqueSpecific.push(t);
-    }
-  }
-
-  const cappedSpecific = uniqueSpecific.slice(0, Math.max(0, maxTags - 1));
-
-  // Final dedup: ensure broadTag isn't duplicated in the result
-  const finalTags = [broadTag];
-  const finalSeen = new Set([broadTag.toLowerCase()]);
-  for (const t of cappedSpecific) {
-    const k = t.toLowerCase();
-    if (!finalSeen.has(k)) {
-      finalSeen.add(k);
-      finalTags.push(t);
-    }
-  }
-  return finalTags;
+  if (!chosen) chosen = categoryFromText(`${pageTitle || ''}\n${contentText || ''}\n${specific.join(' ')}`);
+  return (chosen ? [chosen] : []).concat(specific).slice(0, maxTags);
 }
 
 /**

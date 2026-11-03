@@ -3,7 +3,7 @@
 How the graph in the History tab decides what to show, why it opens as topic clusters, and what is still open.
 Code: `plugin/src/modules/archiveGraph.js` (drawing, interaction), `plugin/src/modules/graphStructure.js` (the structure, pure functions),
 `plugin/src/modules/graphClusters.js` and `graphBrief.js` (the topic page and briefings), `plugin/src/modules/graphSimilarity.js` and `graphSimilarityCache.js` (content similarity, background run, cache).
-Tests: `test128` (gaps, time window, views), `test217` (clusters, bridges, focus, path, source type, maturity), `test218` (similarity and its incremental cache), `test219` (hub note), `test220` (MCP `related_articles`), `test221` (replay), `test222` (Anki file), `test223` (subtopics), `test224` (every background worker bundle is a valid script), `test225` (language marks), `test226` (articles saved at the same time), `test227` (Topics layout in a real d3), all in `plugin/tests/`.
+Tests: `test128` (gaps, time window, views), `test217` (clusters, bridges, focus, path, source type, maturity), `test218` (similarity and its incremental cache), `test219` (hub note), `test220` (MCP `related_articles`), `test221` (replay), `test222` (Anki file), `test223` (subtopics), `test224` (every background worker bundle is a valid script), `test225` (language marks), `test226` (articles saved at the same time), `test227` (Topics layout in a real d3), `test228` (tags at the source: category, English names, no attached tags), all in `plugin/tests/`.
 
 ## Why it opens as clusters
 
@@ -33,6 +33,24 @@ No AI, no network, no extra storage. Clusters are worked out from the tags every
 ### Layout: circle packing
 
 Topics uses `d3.pack`: clusters, their subtopics and the articles are nested circles, sized by how many articles they hold and packed without overlap. A big cluster is a big island made of named smaller islands; nothing piles up. The dots shrink as the archive grows (so they never overlap), the cluster and subtopic areas are exactly the enclosing circles, and a resize packs again. A subtopic's name is shown once its area is big enough on screen (about 22 px radius); zooming in brings the rest. The graph sits in the space between the chips on top and the controls at the bottom.
+
+### Where the tags come from (and why that matters for the graph)
+
+The graph is only as good as the tags. They are made when an article is summarised:
+
+1. **The summary prompt** (`content.js`, wording in `modules/topicCategories.js`: `TAG_INSTRUCTION`, `TAG_EXAMPLE`) asks the model to end its reply with a comment like
+   `<!-- TAGS: category: Politics, KI-Regulierung = AI regulation, EU-Recht = EU law -->`:
+   first **one category** from a fixed list (Technology, Business, Science, Health, Politics, Environment, Society, Lifestyle), then **2–4 specific tags** in the language of the summary, each with its **English name**. This costs no extra request: it is part of the summary.
+2. **`parseTagLine()`** (`topicCategories.js`) reads that comment: the category (only if it is on the list; "General" is none), the tags (deduped, a category given as a plain tag counts as the category) and `tagEn` (tag → English name). Older replies ("eins, zwei") still read, as plain tags.
+3. **`ensureGeneralTag()`** (`content/core.js`) builds the final list: the category first (the model's choice; only if it named none, the category whose words occur most in the text, `categoryFromText()`; if nothing matches, no category), then the specific tags, at most 7.
+   It no longer attaches the library's most used tags by word match. That made the most used tags spread to ever more articles (any article mentioning "AI" got "AI"), which is how one tag ended up on most of the archive. And there is no "General" any more.
+4. **Saving** (`content/finalize.js` `withTagEn()`, used by the normal path in `content.js` and by `finishDetached` in the background): `tagEn` is stored on the article's index entry, only when the model gave English names.
+5. **Learning** (`learnTagPairs()` in `topicConcepts.js`, called by `articleManager.js` when the History loads): every tag becomes a known spelling of its English name in the topic lexicon. "KI-Regulierung", "AI regulation" and "Régulation de l'IA" then share one `conceptKey`, so search, charts and the graph see one topic. This happens in the History page, not in the content script, so no page writes the lexicon while another one does. Language marks are never learned (see below).
+6. **In the graph**, the fixed categories (and the old "General") are passed as `categories` to `topicClusters()`: they are treated like archive-wide umbrella tags. They never form a cluster, never name one and never name a subtopic; the specific tags do that.
+
+Only new summaries get English names. For tags already in the archive, the existing tag naming (`learnTagNames()` in `feedAi.js`, "Name my tags" in Settings) gives them their English names; tags it has named are unified the same way.
+
+Bundling note: `topicCategories.js` has no imports and unique top-level names, because the content-script bundler puts every module into one scope (a second `clean` broke the bundle once; `test224` now checks the content and finalize bundles too).
 
 ### Language marks are not topics
 

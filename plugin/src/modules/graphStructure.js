@@ -154,14 +154,14 @@ function splitByText(arts, vecOf, wanted) {
  * A subtopic is named after the tag that is most specific to it, else after the two terms that are most typical of it.
  * Returns [] when the cluster does not fall apart into at least two groups of SUB_MIN_SIZE.
  */
-function subdivide(cluster, { members, tagNode, links, subOtherLabel, groupLabel, termsOf, vecOf, metaOf }) {
+function subdivide(cluster, { members, tagNode, links, subOtherLabel, groupLabel, termsOf, vecOf, metaOf, categories }) {
     const arts = [...cluster.articleIds].sort(byText);
     const inC = new Set(arts);
     const total = arts.length;
     const tagsOf = new Map(arts.map(a => [a, []]));
     const count = new Map();
     members.forEach((set, tag) => set.forEach(a => { if (inC.has(a)) { tagsOf.get(a).push(tag); count.set(tag, (count.get(tag) || 0) + 1); } }));
-    const umbrella = new Set([...count].filter(([, n]) => n / total >= UMBRELLA_SHARE).map(([t]) => t));
+    const umbrella = new Set([...count].filter(([t, n]) => n / total >= UMBRELLA_SHARE || (categories && categories.has(t))).map(([t]) => t));
     const useTag = (t) => !umbrella.has(t) && count.get(t) >= 2;
     const own = new Map(arts.map(a => [a, tagsOf.get(a).filter(useTag)]));
 
@@ -337,7 +337,7 @@ function subdivide(cluster, { members, tagNode, links, subOtherLabel, groupLabel
  * @returns {{ clusters: Array<{ id, label, tagIds, articleIds, size }>, clusterOfTag: Map, clusterOfArticle: Map, otherId: string|null }}
  *   `clusters` is biggest first; the folded-away rest is one cluster with `other: true` (label from `otherLabel`) at the end.
  */
-export function topicClusters(nodes, links, { otherLabel = 'Everything else', subOtherLabel = 'Other', groupLabel = 'Group', terms = null, vectors = null, subclusters = true, max = CLUSTER_MAX, minArticles = CLUSTER_MIN_ARTICLES } = {}) {
+export function topicClusters(nodes, links, { otherLabel = 'Everything else', subOtherLabel = 'Other', groupLabel = 'Group', terms = null, vectors = null, categories = null, subclusters = true, max = CLUSTER_MAX, minArticles = CLUSTER_MIN_ARTICLES } = {}) {
     const members = tagMembers(nodes, links);
     const tagNode = new Map(nodes.filter(n => n.group === 'tag').map(n => [n.id, n]));
     const articleIds = nodes.filter(n => n.group === 'article').map(n => n.id);
@@ -345,6 +345,8 @@ export function topicClusters(nodes, links, { otherLabel = 'Everything else', su
     // so it stays out of the co-occurrence graph; its articles are placed by their other tags.
     const topUmbrella = new Set();
     if (articleIds.length >= TOP_UMBRELLA_MIN_ARTICLES && members.size >= 8) members.forEach((set, t) => { if (set.size / articleIds.length >= TOP_UMBRELLA_SHARE) topUmbrella.add(t); });
+    // The fixed categories (topicCategories.js: every article has one) are categories, not topics: they never form or name a topic, whatever their share.
+    if (categories) members.forEach((_, t) => { if (categories.has(t)) topUmbrella.add(t); });
     const graphMembers = topUmbrella.size ? new Map([...members].filter(([t]) => !topUmbrella.has(t))) : members;
     let groups = propagate([...graphMembers.keys()], coOccurrence(graphMembers, EDGE_MIN));
 
@@ -407,7 +409,7 @@ export function topicClusters(nodes, links, { otherLabel = 'Everything else', su
         const byNode = new Map(nodes.filter(n => n.group === 'article').map(n => [n.id, n]));
         kept.forEach(c => {
             // The "everything else" cluster is looked at too: it is where articles with no usable tag pile up, and text is all that can tell them apart.
-            c.children = c.size < SUB_MIN_ARTICLES ? [] : subdivide(c, { members, tagNode, links, subOtherLabel, groupLabel, termsOf: terms ? (aid) => terms[dataId.get(aid)] || [] : null, vecOf: vectors ? (aid) => (vectors[dataId.get(aid)] || {}).t || null : null, metaOf: (aid) => { const n = byNode.get(aid); return n ? { title: n.label, url: n.data && n.data.url, timestamp: n.data && n.data.timestamp } : null; } });
+            c.children = c.size < SUB_MIN_ARTICLES ? [] : subdivide(c, { members, tagNode, links, subOtherLabel, groupLabel, termsOf: terms ? (aid) => terms[dataId.get(aid)] || [] : null, vecOf: vectors ? (aid) => (vectors[dataId.get(aid)] || {}).t || null : null, metaOf: (aid) => { const n = byNode.get(aid); return n ? { title: n.label, url: n.data && n.data.url, timestamp: n.data && n.data.timestamp } : null; }, categories });
             c.children.forEach(ch => ch.articleIds.forEach(a => subOfArticle.set(a, ch.id)));
         });
     } else kept.forEach(c => { c.children = []; });
