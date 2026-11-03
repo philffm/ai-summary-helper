@@ -3,7 +3,7 @@
 How the graph in the History tab decides what to show, why it opens as topic clusters, and what is still open.
 Code: `plugin/src/modules/archiveGraph.js` (drawing, interaction), `plugin/src/modules/graphStructure.js` (the structure, pure functions),
 `plugin/src/modules/graphClusters.js` and `graphBrief.js` (the topic page and briefings), `plugin/src/modules/graphSimilarity.js` and `graphSimilarityCache.js` (content similarity, background run, cache).
-Tests: `test128` (gaps, time window, views), `test217` (clusters, bridges, focus, path, source type, maturity), `test218` (similarity and its incremental cache), `test219` (hub note), `test220` (MCP `related_articles`), `test221` (replay), `test222` (Anki file), `test223` (subtopics), `test224` (every background worker bundle is a valid script), `test225` (language marks), `test226` (articles saved at the same time), `test227` (Topics layout in a real d3), `test228` (tags at the source: category, English names, no attached tags), all in `plugin/tests/`.
+Tests: `test128` (gaps, time window, views), `test217` (clusters, bridges, focus, path, source type, maturity), `test218` (similarity and its incremental cache), `test219` (hub note), `test220` (MCP `related_articles`), `test221` (replay), `test222` (Anki file), `test223` (subtopics), `test224` (every background worker bundle is a valid script), `test225` (language marks), `test226` (articles saved at the same time), `test227` (Topics layout in a real d3), `test228` (tags at the source: category, English names, no attached tags), `test229` (naming tags from the graph: only tag words, local first, preview, stop), all in `plugin/tests/`.
 
 ## Why it opens as clusters
 
@@ -48,7 +48,16 @@ The graph is only as good as the tags. They are made when an article is summaris
 5. **Learning** (`learnTagPairs()` in `topicConcepts.js`, called by `articleManager.js` when the History loads): every tag becomes a known spelling of its English name in the topic lexicon. "KI-Regulierung", "AI regulation" and "Régulation de l'IA" then share one `conceptKey`, so search, charts and the graph see one topic. This happens in the History page, not in the content script, so no page writes the lexicon while another one does. Language marks are never learned (see below).
 6. **In the graph**, the fixed categories (and the old "General") are passed as `categories` to `topicClusters()`: they are treated like archive-wide umbrella tags. They never form a cluster, never name one and never name a subtopic; the specific tags do that.
 
-Only new summaries get English names. For tags already in the archive, the existing tag naming (`learnTagNames()` in `feedAi.js`, "Name my tags" in Settings) gives them their English names; tags it has named are unified the same way.
+Only new summaries get English names. For the tags already in the archive there is **"🏷 n tags without a name"** in the graph (`graphTagNaming.js`):
+
+- **Which tags:** `tagsToName()`: every tag of the archive that is neither a built-in topic nor learned yet, most used first. Categories, "General" and language marks are left out.
+- **Where it goes:** `namingRoute()`: if summaries run on a local connection, that one; otherwise Ollama when it has been set up (the same rule the feeds' library run uses); otherwise the connection used for summaries. The page says which, before anything is sent.
+- **What is sent:** only the tag words, numbered (`nameTags()` in `feedAi.js`, the same prompt as Settings › "Name my tags"). No titles, no article text.
+- **Preview first:** "Try 40 tags" asks for one batch and shows each tag with its English name (and the word in the UI language). Nothing is learned yet. "Save these only" or "Save and name the other n" learns them (`applyTagNames()`), then names the rest in batches of 40, saving after each batch, so "Stop" keeps what is done.
+- **Afterwards** the graph is drawn again: tags that now share an English name are one topic.
+- Nothing on the articles changes; only the topic lexicon (part of the settings: backed up and deleted with them) learns.
+
+`learnTagNames()` is now `nameTags()` (ask, learn nothing) + `applyTagNames()` (learn); its behaviour for the existing callers is unchanged.
 
 Bundling note: `topicCategories.js` has no imports and unique top-level names, because the content-script bundler puts every module into one scope (a second `clean` broke the bundle once; `test224` now checks the content and finalize bundles too).
 

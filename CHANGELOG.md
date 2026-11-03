@@ -7,6 +7,7 @@ Commit history has the details: <https://github.com/philffm/ai-summary-helper/co
 
 #### Added
 
+- Archive graph: "🏷 n tags without a name" gives the archive's tags their English names with AI (only the tag words are sent; a local model when one is set up; a preview of the first 40 before anything is saved), so the same topic in two languages becomes one
 - Archive graph links articles by their text too: a background run builds a small per-article cache (title, tags, summary, saved text), only new or changed articles are processed again. Details in `GRAPH.md`
 - Archive graph (Topics): clusters, subtopics and articles are packed as nested circles, so a big cluster is a group of named subtopics instead of one clump; a tag on a third or more of the whole archive no longer ties all topics together; the Obsidian hub note lists the subtopics
 - Topic page: "Anki cards" exports the questions you asked and the answers you kept as a file Anki imports

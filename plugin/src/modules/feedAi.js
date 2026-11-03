@@ -229,7 +229,16 @@ export function parseTagNames(text, n) {
  * lexicon only — nothing is stored on the articles. A tag the model skips is marked as seen, so it is never asked twice.
  * Returns how many tags were named.
  */
-export async function learnTagNames(tags, { signal, onStage, onProgress, service } = {}) {
+export async function learnTagNames(tags, opts = {}) {
+    const { names, code } = await nameTags(tags, opts);
+    return applyTagNames(tags, names, code);
+}
+
+/**
+ * Ask for the names only, learn nothing (a preview can show them first). Returns { names: [{ en, ui } | null aligned to tags], code }.
+ * Throws when the reply cannot be read at all.
+ */
+export async function nameTags(tags, { signal, onStage, onProgress, service } = {}) {
     const { code, name } = await uiLanguage();
     const system = 'You normalize topic tags of saved articles that are written in various languages. '
         + 'For each numbered tag reply with its English name (one or two words, singular, e.g. Football, Climate, Economy)'
@@ -238,6 +247,11 @@ export async function learnTagNames(tags, { signal, onStage, onProgress, service
     const text = await aiComplete(system, tags.map((t, k) => `[${k + 1}] ${clip(t, 40)}`).join('\n'), onStage, signal, onProgress, { service, feature: 'tags' });
     const names = parseTagNames(text, tags.length);
     if (!names.some(Boolean)) throw new Error(T('The AI reply could not be read'));
+    return { names, code };
+}
+
+/** Learn what nameTags() returned (into the lexicon only, nothing on the articles). Returns how many tags were named. */
+export function applyTagNames(tags, names, code) {
     let named = 0;
     tags.forEach((t, k) => {
         const r = names[k];

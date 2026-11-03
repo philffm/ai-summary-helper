@@ -44,6 +44,7 @@ import { paperState } from './paperInfo.js';
 
 import { topicClusters, bridgeArticles, neighborhood, shortestPath, sourceType, maturityOf } from './graphStructure.js';
 import { CATEGORIES } from './topicCategories.js';
+import { tagsToName } from './graphTagNaming.js';
 
 // v5 (structure layer, see GRAPH.md): with enough articles the graph opens as an OVERVIEW — topic clusters worked out locally
 // from the tags (graphStructure.js), one label per cluster, small unlabeled dots, no links — and the old node-and-link picture is
@@ -1280,6 +1281,8 @@ function renderGraph(container, allArticles, highlightTimestamp, minTagDegree, s
     renderStructureChips(container, {
         canOverview, overview,
         color: { mode: colorMode, modes: colorModes, onChange: (m) => applyColor(m, true) },
+        // tags with no English name yet: one tap names them (graphTagNaming.js), and the graph is drawn again with the merged topics
+        naming: (() => { const n = tagsToName(allArticles).length; return n ? { count: n, onOpen: () => import('./graphTagNaming.js').then(m => m.openTagNamingPage(container, { articles: allArticles, onDone: () => { simulation.stop(); renderGraph(container, allArticles, highlightTimestamp, minTagDegree, similarityIndex); } })) } : null; })(),
         unread: unreadIds.size ? { count: unreadIds.size, on: !!container.__graphUnreadOnly, onToggle: (on) => { container.__graphUnreadOnly = on; applyUnread(on, true); } } : null,
         onLayout: (mode) => {
             container.__graphLayout = mode;
@@ -1422,9 +1425,9 @@ function renderColorLegend(container, mode, { ageColor, moodColor }) {
     legend.append(item);
 }
 
-function renderStructureChips(container, { canOverview, overview, onLayout, unread, color }) {
+function renderStructureChips(container, { canOverview, overview, onLayout, unread, color, naming }) {
     const bar = filterBar(container);
-    bar.querySelectorAll('.graph-layout-toggle, .graph-path-chip, .graph-save-chip, .graph-unread-chip, .graph-color-chip').forEach(n => n.remove());
+    bar.querySelectorAll('.graph-layout-toggle, .graph-path-chip, .graph-save-chip, .graph-unread-chip, .graph-color-chip, .graph-naming-chip').forEach(n => n.remove());
     if (color && color.modes.length > 1) {
         const chip = document.createElement('button');
         chip.type = 'button'; chip.className = 'graph-color-chip';
@@ -1471,6 +1474,14 @@ function renderStructureChips(container, { canOverview, overview, onLayout, unre
             chip.classList.toggle('on', on); chip.setAttribute('aria-pressed', String(on));
             unread.onToggle(on);
         });
+        bar.append(chip);
+    }
+    if (naming) {
+        const chip = document.createElement('button');
+        chip.type = 'button'; chip.className = 'graph-naming-chip';
+        chip.textContent = '🏷 ' + TN(naming.count, '{n} tag without a name', '{n} tags without a name');
+        chip.title = T('Give these tags their English names, so the same topic in two languages becomes one');
+        chip.addEventListener('click', () => naming.onOpen());
         bar.append(chip);
     }
     bar.append(path, save);

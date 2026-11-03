@@ -4676,7 +4676,7 @@ circle.graph-path { stroke: var(--accent); stroke-width: 3px; }
 .graph-focusbar-open { padding: 4px 10px; background: var(--accent); color: #fff; }
 .graph-focusbar-clear { width: 24px; height: 24px; background: transparent; color: var(--text-muted); }
 .graph-focusbar-clear:hover, .graph-focusbar-clear:focus-visible { background: var(--accent-a12); outline: none; }
-.graph-path-chip, .graph-save-chip, .graph-unread-chip, .graph-color-chip { padding: 4px 10px; font: inherit; font-size: var(--fs-xs); color: var(--text-primary); background: var(--glass-base); border: 1px solid var(--outline); border-radius: 999px; cursor: pointer; }
+.graph-path-chip, .graph-save-chip, .graph-unread-chip, .graph-color-chip, .graph-naming-chip { padding: 4px 10px; font: inherit; font-size: var(--fs-xs); color: var(--text-primary); background: var(--glass-base); border: 1px solid var(--outline); border-radius: 999px; cursor: pointer; }
 .graph-path-chip.on, .graph-unread-chip.on { background: var(--accent); border-color: var(--accent); color: #fff; }
 .graph-layout-toggle { flex: none; }
 .graph-gap-brief { align-self: flex-start; margin: 4px 0; padding: 4px 12px; font: inherit; font-size: var(--fs-xs); color: var(--accent); background: transparent; border: 1px solid var(--accent); border-radius: 999px; cursor: pointer; }
@@ -4699,7 +4699,16 @@ circle.graph-read-dim, text.graph-read-dim, .graph-blob.graph-read-dim { opacity
 .graph-subblob:hover { fill-opacity: .24; }
 .graph-subblob.graph-focus-dim, .graph-sub-label.graph-focus-dim { opacity: 0.15; }
 /* List and Gaps are not the picture: the chips that change the picture (layout, colour, unread, path, save, similarity progress) are out of the way there. */
-[data-graph-mode="list"] :is(.graph-layout-toggle, .graph-color-chip, .graph-unread-chip, .graph-path-chip, .graph-save-chip, .graph-sim-chip),
-[data-graph-mode="gaps"] :is(.graph-layout-toggle, .graph-color-chip, .graph-unread-chip, .graph-path-chip, .graph-save-chip, .graph-sim-chip) { display: none; }
+[data-graph-mode="list"] :is(.graph-layout-toggle, .graph-color-chip, .graph-unread-chip, .graph-path-chip, .graph-save-chip, .graph-sim-chip, .graph-naming-chip),
+[data-graph-mode="gaps"] :is(.graph-layout-toggle, .graph-color-chip, .graph-unread-chip, .graph-path-chip, .graph-save-chip, .graph-sim-chip, .graph-naming-chip) { display: none; }
 [data-graph-mode="list"] .graph-controls-bottom-right, [data-graph-mode="gaps"] .graph-controls-bottom-right { display: none; }   /* the legend explains the picture, not the list */
 .graph-overview .graph-toggle-large { display: none; }   /* Well-connected | All filters tags in the force layout; Topics shows everything */
+/* Name tags with AI (graphTagNaming.js): what is sent, where it goes, a preview of the first batch before anything is saved */
+.graph-naming-chip { border-style: dashed; }
+.graph-naming-what { margin: 0; font-size: var(--fs-sm); color: var(--text-primary); }
+.graph-naming-preview { margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 4px; font-size: var(--fs-sm); }
+.graph-naming-row { display: flex; flex-wrap: wrap; align-items: baseline; gap: 6px; padding: 6px 10px; border: 1px solid var(--outline); border-radius: var(--radius-md); }
+.graph-naming-row.is-skipped { opacity: .6; }
+.graph-naming-tag { font-weight: 600; }
+.graph-naming-arrow, .graph-naming-ui { color: var(--text-muted); }
+.graph-naming-ui::before { content: "· "; }
