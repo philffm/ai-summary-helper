@@ -103,6 +103,7 @@ browser still sees the AISH tools. When the browser connects later, the app is t
 | Tool | What it does | Permission in AISH |
 |---|---|---|
 | `search_library` | Search saved articles (optionally by tag, date, collection) | Your library |
+| `related_articles` | The saved articles most like one article (same topic), with the tags they share | Your library |
 | `get_article` | One article: summary, highlights | Your library |
 | `get_article` with `include: ["fulltext"]` | The saved text as plain text (max 40,000 characters) | Full article text |
 | `list_highlights` | Highlights, newest first | Your library |
@@ -140,6 +141,7 @@ Once an app is connected, these work well. Swap the topics for your own.
 
 **Research and writing**
 - "Search my library for `topic`, read the top 5 articles in full, and write a brief that says which article each claim came from." (needs *Full article text*)
+- "What else do I have that is close to this article?" (via `related_articles`)
 - "Do any of my saved articles on `topic` disagree? Show both sides with sources."
 - "Write a blog post outline on `topic` using only what's in my library."
 - "Turn my `Collection` collection into an annotated bibliography or a reading order."

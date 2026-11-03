@@ -26,6 +26,7 @@ export function toolDefinitions() {
     const def = (description, properties, required = [], brand = true) => ({ description: description + DESC_NOTE + (brand ? BRAND_NOTE : ''), inputSchema: { type: 'object', properties, required } });
     return {
         search_library: def('Search the user\'s saved-article library by relevance.', { query: str, tags: strArr, since: str, until: str, collection: str, limit: num }, ['query']),
+        related_articles: def('Find the saved articles most like one saved article (same topic, by title, tags, summary and saved text). Use it to see what else the user has on a subject, or what connects to something they just read.', { id: str, limit: num }, ['id']),
         get_article: def('Fetch one saved article by id, with its summary and/or highlights.', { id: str, include: strArr }, ['id']),
         list_highlights: def('List the user\'s highlights, newest first.', { since: str, tag: str, article: str, limit: num }),
         list_due: def('List saved-for-later items due for review soon.', { within_days: num }),

@@ -62,22 +62,14 @@ export function signature(items) {
     return (h >>> 0).toString(36) + ':' + Object.keys(items).length;
 }
 
-/**
- * Most similar articles for every article.
- * @param {Object<string,{t:Array}>} items id → entry
- * @param {{k?, minScore?, maxDf?, topTerms?}} opts
- * @param {() => Promise<void>} [pause] awaited every 100 articles, so a long run can hand the thread back
- * @returns {Promise<Object<string, Array<[string, number]>>>} id → [[otherId, score], …] best first
- */
-export async function neighbours(items, { k = NEIGHBOURS, minScore = MIN_SCORE, maxDf = MAX_DF, topTerms = TOP_TERMS } = {}, pause = null) {
+/** Pruned, normalised vectors (the `topTerms` strongest after idf) and the inverted index over them. Shared by neighbours() and similarTo(). */
+async function vectorsOf(items, { maxDf = MAX_DF, topTerms = TOP_TERMS } = {}, pause = null) {
     const ids = Object.keys(items).sort();
     const N = ids.length;
     const df = new Map();
     for (const id of ids) for (const [t] of items[id].t) df.set(t, (df.get(t) || 0) + 1);
     const idf = new Map();
     df.forEach((n, t) => { if (n / N <= maxDf || N < 8) idf.set(t, Math.log((N + 1) / (n + 1)) + 1); });
-
-    // pruned, normalised vectors + inverted index
     const vec = new Map(), post = new Map();
     let n = 0;
     for (const id of ids) {
@@ -89,15 +81,38 @@ export async function neighbours(items, { k = NEIGHBOURS, minScore = MIN_SCORE, 
         for (const [t, w] of v) { let p = post.get(t); if (!p) post.set(t, p = []); p.push([id, w]); }
         if (pause && ++n % 100 === 0) await pause();
     }
+    return { ids, vec, post };
+}
+
+const rank = (acc, k, minScore) => [...acc.entries()].filter(([, s]) => s >= minScore).sort((a, b) => b[1] - a[1] || (a[0] < b[0] ? -1 : 1)).slice(0, k)
+    .map(([o, s]) => [o, Math.round(s * 1000) / 1000]);
+
+/**
+ * Most similar articles for every article.
+ * @param {Object<string,{t:Array}>} items id → entry
+ * @param {{k?, minScore?, maxDf?, topTerms?}} opts
+ * @param {() => Promise<void>} [pause] awaited every 100 articles, so a long run can hand the thread back
+ * @returns {Promise<Object<string, Array<[string, number]>>>} id → [[otherId, score], …] best first
+ */
+export async function neighbours(items, { k = NEIGHBOURS, minScore = MIN_SCORE, maxDf = MAX_DF, topTerms = TOP_TERMS } = {}, pause = null) {
+    const { ids, vec, post } = await vectorsOf(items, { maxDf, topTerms }, pause);
     const out = {};
-    n = 0;
+    let n = 0;
     for (const id of ids) {
         const acc = new Map();
         for (const [t, w] of vec.get(id)) for (const [o, w2] of post.get(t)) if (o !== id) acc.set(o, (acc.get(o) || 0) + w * w2);
-        const best = [...acc.entries()].filter(([, s]) => s >= minScore).sort((a, b) => b[1] - a[1] || (a[0] < b[0] ? -1 : 1)).slice(0, k)
-            .map(([o, s]) => [o, Math.round(s * 1000) / 1000]);
+        const best = rank(acc, k, minScore);
         if (best.length) out[id] = best;
         if (pause && ++n % 100 === 0) await pause();
     }
     return out;
+}
+
+/** The articles most like ONE article (for a tool call: no need to compute everybody's neighbours). [[otherId, score], …] best first. */
+export async function similarTo(items, id, { k = 8, minScore = 0.12, maxDf = MAX_DF, topTerms = TOP_TERMS } = {}) {
+    if (!items[id]) return [];
+    const { vec, post } = await vectorsOf(items, { maxDf, topTerms });
+    const acc = new Map();
+    for (const [t, w] of vec.get(id) || []) for (const [o, w2] of post.get(t) || []) if (o !== id) acc.set(o, (acc.get(o) || 0) + w * w2);
+    return rank(acc, k, minScore);
 }

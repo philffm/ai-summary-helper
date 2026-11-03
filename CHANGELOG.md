@@ -8,6 +8,7 @@ Commit history has the details: <https://github.com/philffm/ai-summary-helper/co
 #### Added
 
 - Archive graph links articles by their text too: a background run builds a small per-article cache (title, tags, summary, saved text), only new or changed articles are processed again. Details in `GRAPH.md`
+- MCP: new tool `related_articles` (the saved articles closest to one article, with the tags they share)
 - Markdown export of a graph topic adds a hub note (`Hub – <topic>.md`) that links all exported notes with wikilinks, grouped by how far you got
 - Archive graph: "Unread" chip that lets read articles step back and shows the unread count in each cluster label
 - Archive graph opens as topic clusters (worked out locally from the tags), with focus mode, path between two items, source-type rings, maturity fill, bridge articles, "Brief me on this" for gaps and Save image. Details in `GRAPH.md`

@@ -51,6 +51,7 @@ The legend at the bottom right lists the ring styles that are actually present.
 - **Gaps.** Topics with one or two saved articles you have not opened for 30 days. Each has a **Brief me on this** button that opens the topic page for it.
 - **Unread.** A chip with the count ("Unread · 200"). Everything marked read (`readAt`: the Inbox / Read tabs and the 🆕 badge use the same) steps back, and in Topics every cluster label shows how many of its articles are still unread ("trade · 34"). A class toggle, no redraw.
 - **Obsidian hub note.** The topic page's "⬇ Markdown" export (and the one on briefings) now adds `Hub – <topic>.md`: a map of content that links every exported article note with `[[wikilinks]]`, grouped as worked on / in progress / saved only, unread ones marked 🆕, with the tags inside the topic and a link to the briefing note. The article notes already carried `[[Related]]` links; the hub is what makes the topic one island in Obsidian's own graph too.
+- **MCP: `related_articles`.** AI apps paired with the local relay can ask for the saved articles closest to one article (same similarity as the graph, from its cache where current, otherwise from title, tags and summary). Scope "Your library", exclude tag respected (an excluded article is "not found"), metadata and snippet only. The cluster list and a path tool are not built.
 - **Save image.** Downloads the current picture as an SVG on your device (colours resolved, no stylesheet needed). Nothing is uploaded.
 - Existing: search dims or filters, time window, 🎓 Research filter, list view (the screen-reader twin: press `L`), long-press / ⇧ / ⌘ to select topics for a briefing.
 
@@ -108,13 +109,13 @@ Groups are the personas the site already uses. MoSCoW is a judgement from the co
 | **Privacy** | Be sure nothing leaves the device | local only ✅ (all of the above runs on the device) | save as image ✅ | – | cloud sync |
 | **E-reader** | Pick what goes to the device | topic page export ✅ (existing) | "unread only" filter ✅ | – | device sync |
 | **Education** | Make understanding visible | maturity ✅, questions per topic ✅ (existing) | flashcards from a topic | share with a teacher | accounts |
-| **MCP** | Give AI apps the archive as context | – | subgraph / related items as a tool (`mcp/`) | – | write access |
+| **MCP** | Give AI apps the archive as context | – | related items as a tool ✅ (`related_articles`); topic list / subgraph | – | write access |
 
 ✅ = in this version. Everything without a mark is not built.
 
 ## Not done
 
-- **MCP tool** for a subgraph or related items (separate package in `mcp/`).
+- **MCP tools** for the topic list and for the path between two articles (`related_articles` exists).
 - **Mood colour**, **time replay**, **flashcards from a topic**.
 - **AI names for clusters.** Names come from the tags on purpose (local, free, stable). An opt-in AI title is possible later.
 - **Translations** of the new strings: they fall back to English until `node scripts/feed-i18n.mjs extract` / `merge` has run (release gate).
