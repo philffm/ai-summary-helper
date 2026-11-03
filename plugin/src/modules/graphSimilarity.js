@@ -11,7 +11,7 @@
 import { STOPWORDS } from './textUtils.js';
 import { isLanguageTag } from './topicConcepts.js';
 
-export const SIM_VERSION = 1;
+export const SIM_VERSION = 2;   // 2: function words of more languages are no terms (cached vectors are rebuilt)
 export const TERMS_KEPT = 100;      // strongest terms stored per article
 export const TOP_TERMS = 40;        // strongest terms compared (after idf)
 export const MAX_DF = 0.25;         // a term that is in more than this share of the articles says nothing (also drops stop words of any language)
@@ -19,6 +19,17 @@ export const NEIGHBOURS = 3;        // per article
 export const MIN_SCORE = 0.22;
 export const CONTENT_CAP = 30000;   // characters of saved text read per article
 const W = { title: 3, tags: 3, summary: 1, content: 1 };
+
+// Function words ("the" and its relatives) of the languages the extension is used in, three letters or more (shorter ones are dropped anyway).
+// Without them a German article is "typical" for "die" and "und", and a group of German articles gets named after them.
+const FUNCTION_WORDS = new Set((
+    'der die das den dem des ein eine einer einen einem eines und oder aber nicht mit von für auf ist sind war waren wird werden wurde wurden auch als bei nach aus über wie noch nur sich dass zum zur vom beim hat haben kann können sein ihre ihr seine wir sie ich er es kein keine mehr sehr schon wenn dann doch diese dieser dieses diesen ' +
+    'les des une dans pour que qui sur par avec est sont pas plus mais ont aux ces cette cet ses son leur leurs elle ils elles nous vous comme tout tous très être avoir fait sans sous aussi entre depuis donc alors ' +
+    'los las una unos unas para por con que del como más pero sus este esta estos estas son está han ser fue era muy también entre sobre hasta desde cuando donde sin ese esa ' +
+    'gli una uno per con che del della delle dei degli nel nella nei sono non più come anche tra fra alla alle agli questo questa questi queste dal dalla suo sua loro essere stato hanno molto ' +
+    'een het van voor met dat dit deze die niet zijn wordt worden werd naar bij ook als maar nog aan door over uit tot zich meer wel kan hebben heeft ' +
+    'uma uns umas para por com que dos das como mais mas sua seu suas seus são não foi ser está muito também entre sobre até quando onde sem esse essa este esta nos nas'
+).split(/\s+/));
 
 const HAN_KANA = /[぀-ヿ㐀-䶿一-鿿]/;
 const stripTags = (s) => String(s || '').replace(/<[^>]+>/g, ' ').replace(/&nbsp;/g, ' ');
@@ -30,7 +41,7 @@ export function tokenize(text) {
     for (const raw of words) {
         const w = raw.replace(/^[-'’]+|[-'’]+$/g, '');
         if (HAN_KANA.test(w)) { for (let i = 0; i + 1 < w.length; i++) out.push(w.slice(i, i + 2)); continue; }
-        if (w.length < 3 || STOPWORDS.has(w) || /^\d+$/.test(w)) continue;
+        if (w.length < 3 || STOPWORDS.has(w) || FUNCTION_WORDS.has(w) || /^\d+$/.test(w)) continue;
         out.push(w);
     }
     return out;

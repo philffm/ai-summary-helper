@@ -44,8 +44,8 @@ export async function refreshSimilarity(io, { deep = true, signal = null, onUpda
         const complete = total === 0 || (stage === 'deep' && done >= total);   // nothing left to read counts as finished
         // The strongest few terms per article: the graph names its subtopics with them (graphStructure.js).
         const terms = Object.fromEntries(Object.entries(cache.items).map(([id, it]) => [id, it.t.slice(0, 8).map(x => x[0])]));
-        onUpdate({ stage, links: cache.nn.links, sig, done, total, complete, terms });
-        return { links: cache.nn.links, sig, complete, terms };
+        onUpdate({ stage, links: cache.nn.links, sig, done, total, complete, terms, items: cache.items });
+        return { links: cache.nn.links, sig, complete, terms, items: cache.items };
     };
 
     const todo = entries.filter(a => cache.items[a.id].full === 0 && (a.contentWordCount || 0) > 0);

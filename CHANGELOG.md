@@ -7,6 +7,12 @@ Commit history has the details: <https://github.com/philffm/ai-summary-helper/co
 
 #### Added
 
+- Tag naming sends each tag's language and asks once more when a name comes back untranslated; a tag in the UI language is its own UI name. Learned names can be tidied up (duplicates merged, untranslated ones named again) or all forgotten
+- Topic page: "Brief me" shows the live status card (steps, model, seconds waited, the text as it is written, Cancel) and, under the answer, how many summaries, which model and how long it took
+- Tag naming (graph): a progress bar over all batches, every batch listed as it is saved, editable rows (name, translation, broader topics) with Skip, and "Save and check the next 40" to check each batch instead of naming the rest unchecked
+- Settings → On-device tools → Learned tag names: search, rename, change broader topics or forget a learned name after saving
+- Tag naming also asks for up to two broader topics per tag ("AI in medicine": AI, medicine), kept in the topic lexicon, not as tags; the graph uses them as weak ties, so a rare, specific tag sits next to what it belongs to. Named tags without broader topics can be asked again without changing their name
+- Archive graph: "🏷 n tags without a name" gives the archive's tags their English names with AI (only the tag words are sent; a local model when one is set up; a preview of the first 40 before anything is saved), so the same topic in two languages becomes one
 - Archive graph links articles by their text too: a background run builds a small per-article cache (title, tags, summary, saved text), only new or changed articles are processed again. Details in `GRAPH.md`
 - Archive graph (Topics): clusters, subtopics and articles are packed as nested circles, so a big cluster is a group of named subtopics instead of one clump; a tag on a third or more of the whole archive no longer ties all topics together; the Obsidian hub note lists the subtopics
 - Topic page: "Anki cards" exports the questions you asked and the answers you kept as a file Anki imports
@@ -19,9 +25,22 @@ Commit history has the details: <https://github.com/philffm/ai-summary-helper/co
 
 #### Fixed
 
+- Tag naming: names longer than 24 characters were cut ("covert influence operati"); a dash in a reply is no longer taken as a name
+- Tag naming: the English name is the tag itself, never a broader word ("Germany" was named "geopolitics"); the model's broader word becomes a broader topic instead. Hashtag-style tags are written as words, colour codes are not sent, and a saved run can be undone
+- Archive graph: big, varied subtopics get a name again instead of "Group n": names use all the strongest terms of the articles and a looser pass, and a word only counts when it is over-represented by more than chance
+- Archive graph (Topics): the dots left their circles once every tag was shown, because the hidden tag nodes pushed them away; they no longer collide
+- Archive graph: function words of German, French, Spanish, Italian, Dutch and Portuguese are no terms, so groups are no longer named "die" or "und · der"
+- Archive graph: an error while drawing is logged instead of always reading "D3 library failed to load"
+- Archive graph (Topics): shows every article and tag, no 300-node cap and no hidden rare tags; articles with no tag at all appear in "everything else"
+- Archive graph: subtopics are named after what is typical of them (tags, terms and title words, never the cluster's own name), then by source or time; "Group n" only as the last resort
+- Archive graph: articles saved in the same moment (an import, "save all tabs") were merged into one node, which gave wrong counts and piled dots; every article is now its own node
+- Archive graph: a big cluster the tags cannot divide is divided by what the articles say (when their text has been read); a split must also hold together better than a random cut, so homogeneous clusters are not cut up
+- Archive graph: the List and Gaps views start below the chips however many rows they take, and the chips that only change the picture (layout, colour, unread, path, save image, legend) are hidden there
 - Language tags ("🌐 de", "🌐 en") are no longer sent to the AI as topics, so they stop turning into "Deutschland" / "Germany"; a lexicon an older run already polluted heals itself on load. Language tags are also left out of the graph (no node, link, cluster or gap), of the similarity, of `related_articles`' shared tags and of the Markdown export's "Related" and hub topics
 
 #### Changed
+
+- Tags of new summaries: one category from a fixed list chosen by the model (the text only as a fallback, no more "General"), then 2–4 specific tags with their English names, so the same topic in two languages becomes one tag. The library's most used tags are no longer attached to new articles by word match
 
 - Archive graph: article titles show on hover, focus and search matches instead of all at once
 

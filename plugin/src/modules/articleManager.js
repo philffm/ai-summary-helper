@@ -19,8 +19,8 @@ import { initSelection, registerCard, toggleCard, selectionActive, canSelect, st
 import { attachCardMenu } from './cardMenu.js';
 import { T, TN, locale, uiLocale } from './feedI18n.js';
 import { topicLabel } from './topicConcepts.js';
-import { tagMatches } from './topicConcepts.js';
-import { loadLexicon } from './topicLexicon.js';
+import { tagMatches, learnTagPairs } from './topicConcepts.js';
+import { loadLexicon, saveLexicon } from './topicLexicon.js';
 import { withQuestions, qaMarkdown } from './conversation.js';
 import { qaSection } from './qaView.js';
 import { normalizeDoi } from '../content/paper.js';
@@ -1383,6 +1383,9 @@ export function loadHistory({ since = 0 } = {}) {
             cachedArticles = articles.filter(a => !a.archived);
             archivedCache = articles.filter(a => a.archived);
             invalidateSearchIndex();
+            // New summaries carry the English name of each tag: teach them to the lexicon here (not in the content script, so no page races the others), so the same
+            // topic in two languages is one tag in search, graph and charts.
+            loadLexicon().then(() => { if (learnTagPairs(articles)) return saveLexicon(); }).catch(() => {});
             // the phone links are read before the first paint, so they appear together with the archive
             return loadPhoneEntries().catch(() => {}).then(() => {
                 historyLoaded = true; renderTab();

@@ -3571,7 +3571,7 @@ html[data-motion='reduce'] *, html[data-motion='reduce'] *::before, html[data-mo
 .graph-topbar { position: absolute; top: 10px; left: 10px; right: 10px; z-index: 6; display: flex; flex-wrap: wrap; align-items: flex-start; gap: 8px; pointer-events: none; }
 .graph-topbar > * { pointer-events: auto; }
 .graph-view-toggle { position: static; flex: none; }
-.graph-list { position: absolute; inset: 0; z-index: 5; margin: 0; padding: 56px 16px calc(var(--nav-clearance) + 8px); list-style: none; overflow-y: auto; display: flex; flex-direction: column; gap: 8px; background: var(--bg-page); border-radius: var(--radius-lg); }
+.graph-list { position: absolute; inset: 0; z-index: 5; margin: 0; padding: calc(var(--graph-topbar-h, 46px) + 32px) 16px calc(var(--nav-clearance) + 8px); list-style: none; overflow-y: auto; display: flex; flex-direction: column; gap: 8px; background: var(--bg-page); border-radius: var(--radius-lg); }
 .graph-list[hidden] { display: none; }
 .graph-list-item { display: flex; flex-direction: column; align-items: flex-start; gap: 2px; width: 100%; padding: 10px 12px; text-align: left; border: 1px solid var(--outline); border-radius: var(--radius-md); background: var(--glass-base); color: var(--text-primary); font: inherit; cursor: pointer; }
 .graph-list-item:hover { border-color: var(--accent); }
@@ -4676,7 +4676,7 @@ circle.graph-path { stroke: var(--accent); stroke-width: 3px; }
 .graph-focusbar-open { padding: 4px 10px; background: var(--accent); color: #fff; }
 .graph-focusbar-clear { width: 24px; height: 24px; background: transparent; color: var(--text-muted); }
 .graph-focusbar-clear:hover, .graph-focusbar-clear:focus-visible { background: var(--accent-a12); outline: none; }
-.graph-path-chip, .graph-save-chip, .graph-unread-chip, .graph-color-chip { padding: 4px 10px; font: inherit; font-size: var(--fs-xs); color: var(--text-primary); background: var(--glass-base); border: 1px solid var(--outline); border-radius: 999px; cursor: pointer; }
+.graph-path-chip, .graph-save-chip, .graph-unread-chip, .graph-color-chip, .graph-naming-chip { padding: 4px 10px; font: inherit; font-size: var(--fs-xs); color: var(--text-primary); background: var(--glass-base); border: 1px solid var(--outline); border-radius: 999px; cursor: pointer; }
 .graph-path-chip.on, .graph-unread-chip.on { background: var(--accent); border-color: var(--accent); color: #fff; }
 .graph-layout-toggle { flex: none; }
 .graph-gap-brief { align-self: flex-start; margin: 4px 0; padding: 4px 12px; font: inherit; font-size: var(--fs-xs); color: var(--accent); background: transparent; border: 1px solid var(--accent); border-radius: 999px; cursor: pointer; }
@@ -4698,3 +4698,48 @@ circle.graph-read-dim, text.graph-read-dim, .graph-blob.graph-read-dim { opacity
 .graph-subblob { transition: fill-opacity .2s; }
 .graph-subblob:hover { fill-opacity: .24; }
 .graph-subblob.graph-focus-dim, .graph-sub-label.graph-focus-dim { opacity: 0.15; }
+/* List and Gaps are not the picture: the chips that change the picture (layout, colour, unread, path, save, similarity progress) are out of the way there. */
+[data-graph-mode="list"] :is(.graph-layout-toggle, .graph-color-chip, .graph-unread-chip, .graph-path-chip, .graph-save-chip, .graph-sim-chip, .graph-naming-chip),
+[data-graph-mode="gaps"] :is(.graph-layout-toggle, .graph-color-chip, .graph-unread-chip, .graph-path-chip, .graph-save-chip, .graph-sim-chip, .graph-naming-chip) { display: none; }
+[data-graph-mode="list"] .graph-controls-bottom-right, [data-graph-mode="gaps"] .graph-controls-bottom-right { display: none; }   /* the legend explains the picture, not the list */
+.graph-overview .graph-toggle-large { display: none; }   /* Well-connected | All filters tags in the force layout; Topics shows everything */
+/* Name tags with AI (graphTagNaming.js): what is sent, where it goes, a preview of the first batch before anything is saved */
+.graph-naming-chip { border-style: dashed; }
+.graph-naming-what { margin: 0; font-size: var(--fs-sm); color: var(--text-primary); }
+.graph-naming-preview { margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 4px; font-size: var(--fs-sm); }
+.graph-naming-row { display: flex; flex-wrap: wrap; align-items: baseline; gap: 6px; padding: 6px 10px; border: 1px solid var(--outline); border-radius: var(--radius-md); }
+.graph-naming-row.is-skipped { opacity: .6; }
+.graph-naming-tag { font-weight: 600; }
+.graph-naming-arrow, .graph-naming-ui { color: var(--text-muted); }
+.graph-naming-ui::before { content: "· "; }
+.graph-naming-broader { flex-basis: 100%; font-size: var(--fs-xs); color: var(--text-muted); }
+.graph-naming-progress { display: flex; align-items: center; gap: 8px; font-size: var(--fs-xs); color: var(--text-muted); position: sticky; top: 0; z-index: 1; padding: 4px 0; background: var(--bg-primary, var(--glass-base)); }
+.graph-naming-progress[hidden] { display: none; }
+.graph-naming-meter { flex: 1; height: 6px; accent-color: var(--accent, currentColor); }
+.graph-naming-en-input, .graph-naming-ui-input, .graph-naming-broader-input { font: inherit; font-size: var(--fs-sm); color: var(--text-primary); background: transparent; border: 1px solid var(--outline); border-radius: var(--radius-sm, 6px); padding: 2px 6px; min-width: 0; }
+.graph-naming-en-input { flex: 1 1 12em; }
+.graph-naming-ui-input { flex: 0 1 10em; }
+.graph-naming-broader-wrap { flex-basis: 100%; display: flex; align-items: baseline; gap: 6px; font-size: var(--fs-xs); color: var(--text-muted); }
+.graph-naming-broader-input { flex: 1; font-size: var(--fs-xs); }
+.graph-naming-skip { margin-left: auto; font-size: var(--fs-xs); color: var(--text-muted); cursor: pointer; white-space: nowrap; }
+.graph-naming-note { flex-basis: 100%; font-size: var(--fs-xs); color: var(--text-muted); }
+.graph-naming-row.is-skipped :is(.graph-naming-en-input, .graph-naming-ui-input, .graph-naming-broader-input) { text-decoration: line-through; }
+.graph-naming-edit-hint[hidden] { display: none; }
+
+/* Settings: learned tag names (lexiconEditor.js) */
+.lexicon-editor { display: flex; flex-direction: column; gap: 6px; margin-top: 8px; }
+.lexicon-editor[hidden] { display: none; }
+.lexicon-search { font: inherit; font-size: var(--fs-sm); padding: 4px 8px; border: 1px solid var(--outline); border-radius: var(--radius-sm, 6px); background: transparent; color: var(--text-primary); }
+.lexicon-list { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 4px; max-height: 420px; overflow: auto; }
+.lexicon-row { display: flex; flex-wrap: wrap; align-items: baseline; gap: 6px; padding: 6px 8px; border: 1px solid var(--outline); border-radius: var(--radius-md); font-size: var(--fs-sm); }
+.lexicon-tags { font-weight: 600; overflow-wrap: anywhere; }
+.lexicon-arrow { color: var(--text-muted); }
+.lexicon-en, .lexicon-broader { font: inherit; font-size: var(--fs-sm); padding: 2px 6px; border: 1px solid var(--outline); border-radius: var(--radius-sm, 6px); background: transparent; color: var(--text-primary); min-width: 0; }
+.lexicon-en { flex: 1 1 10em; }
+.lexicon-broader { flex-basis: 100%; font-size: var(--fs-xs); }
+.lexicon-more { align-self: flex-start; }
+.lexicon-more[hidden] { display: none; }
+.graph-naming-tidy { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; }
+.graph-naming-tidy[hidden] { display: none; }
+.graph-naming-row.is-same .graph-naming-en-input { border-color: var(--warning, #c98a00); }
+.lexicon-tools { display: flex; gap: 6px; flex-wrap: wrap; }

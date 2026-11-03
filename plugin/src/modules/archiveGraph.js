@@ -37,12 +37,14 @@
 
 import { cosineSim } from './localSearch.js';
 import { T, TN, uiLocale } from './feedI18n.js';
-import { conceptKey, isKnownTopic, isLanguageTag, topicLabel } from './topicConcepts.js';
+import { conceptKey, isKnownTopic, isLanguageTag, topicLabel, broaderKeysOf } from './topicConcepts.js';
 import { fetchAnnotationsForArticle, escapeHtml } from './annotationExporter.js';
 import { setIconLabel } from './icons.js';
 import { paperState } from './paperInfo.js';
 
 import { topicClusters, bridgeArticles, neighborhood, shortestPath, sourceType, maturityOf } from './graphStructure.js';
+import { CATEGORIES } from './topicCategories.js';
+import { namingWork } from './graphTagNaming.js';
 
 // v5 (structure layer, see GRAPH.md): with enough articles the graph opens as an OVERVIEW — topic clusters worked out locally
 // from the tags (graphStructure.js), one label per cluster, small unlabeled dots, no links — and the old node-and-link picture is
@@ -78,6 +80,7 @@ const TAG_PALETTE = [
 
 const MIN_TAG_DEGREE_DEFAULT = 2; // default: hide tags used on fewer than 2 articles
 const NODE_CAP = 300;             // hard safety cap even when "show all" is on
+const OVERVIEW_NODE_CAP = 6000;   // Topics draws no links and packs instead of simulating forces, so it can show (nearly) everything
 
 // Neglected-article surfacing: an article is "neglected" once it has sat
 // unopened for this many days. We fade/shrink it and shift its ring toward
@@ -221,7 +224,7 @@ export function visibleInRange(nodes, links, fromIdx, toIdx) {
     return visible;
 }
 
-function buildGraphData(articles, minTagDegree = MIN_TAG_DEGREE_DEFAULT, similarityIndex = null, simLinks = null) {
+function buildGraphData(articles, minTagDegree = MIN_TAG_DEGREE_DEFAULT, similarityIndex = null, simLinks = null, { keepOrphans = false } = {}) {
     // 1. Count tag degree first, so we can filter before building nodes/links.
     const tagDegree = new Map(); // tagId -> count
     const tagLabelById = new Map();
@@ -248,6 +251,10 @@ function buildGraphData(articles, minTagDegree = MIN_TAG_DEGREE_DEFAULT, similar
     const nodes = [];
     const links = [];
     const nodeById = new Map();
+    // A node id is derived from the saved time, and several articles can share one (an import, "save all tabs"). Two articles must never
+    // become one node: every article gets a unique id, and "is it in the graph yet" is asked of the article, not of its id.
+    const taken = new Set(), idOfArticle = new Map();
+    const uniqueId = (base) => { let id = base, n = 2; while (taken.has(id)) id = base + '#' + n++; taken.add(id); return id; };
 
     articles.forEach(article => {
         const articleTags = (article.tags || []).filter(tag => {
@@ -258,7 +265,8 @@ function buildGraphData(articles, minTagDegree = MIN_TAG_DEGREE_DEFAULT, similar
         if (articleTags.length === 0) return;
 
         const title = article.title || article.content?.split('\n')[0] || T('Untitled');
-        const id = 'article-' + (article.timestamp || Math.random());
+        const id = uniqueId('article-' + (article.timestamp || Math.random()));
+        idOfArticle.set(article, id);
         const articleNode = { id, label: title, group: 'article', data: article };
         nodeById.set(id, articleNode);
         nodes.push(articleNode);
@@ -266,7 +274,7 @@ function buildGraphData(articles, minTagDegree = MIN_TAG_DEGREE_DEFAULT, similar
         articleTags.forEach(tag => {
             const tagId = tagIdOf(tag);
             if (!nodeById.has(tagId)) {
-                const tagNode = { id: tagId, label: tagLabelOf(tag), group: 'tag', degree: tagDegree.get(tagId) };
+                const tagNode = { id: tagId, label: tagLabelOf(tag), group: 'tag', degree: tagDegree.get(tagId), raw: tag };
                 nodeById.set(tagId, tagNode);
                 nodes.push(tagNode);
             }
@@ -294,10 +302,24 @@ function buildGraphData(articles, minTagDegree = MIN_TAG_DEGREE_DEFAULT, similar
         return null;
     };
 
+    // keepOrphans (Topics): an article nothing connects is still drawn, as a dot of its own; the structure puts it into "everything else"
+    // and the text sorts it from there. Detail leaves it out (a dot with no line says nothing in a force layout).
+    const addLoose = (article, id) => {
+        const title = article.title || article.content?.split('\n')[0] || T('Untitled');
+        const node = { id, label: title, group: 'article', data: article };
+        nodeById.set(id, node);
+        nodes.push(node);
+        includedArticleIds.add(id);
+        if (article.id) nodeOfArticleId.set(article.id, id);
+    };
     articles.forEach(article => {
-        if (!article.timestamp) { stillOrphanCount++; return; }
-        const id = 'article-' + article.timestamp;
-        if (includedArticleIds.has(id)) return; // already has a tag link
+        if (idOfArticle.has(article)) return; // already has a tag link
+        if (!article.timestamp) {
+            if (keepOrphans) { const lid = uniqueId('article-loose'); idOfArticle.set(article, lid); addLoose(article, lid); } else stillOrphanCount++;
+            return;
+        }
+        const id = uniqueId('article-' + article.timestamp);
+        idOfArticle.set(article, id);
 
         const best = mostSimilarIncluded(similarityIndex, article, articles, includedArticleIds) || cacheBest(article);
         if (best) {
@@ -309,6 +331,8 @@ function buildGraphData(articles, minTagDegree = MIN_TAG_DEGREE_DEFAULT, similar
             includedArticleIds.add(id);
             if (article.id) nodeOfArticleId.set(article.id, id);
             reconnectedCount++;
+        } else if (keepOrphans) {
+            addLoose(article, id);
         } else {
             stillOrphanCount++;
         }
@@ -338,14 +362,14 @@ function buildGraphData(articles, minTagDegree = MIN_TAG_DEGREE_DEFAULT, similar
  * Enforces NODE_CAP by keeping the highest-degree tag nodes and their
  * connected articles, dropping the rest. Cheap safety net for huge archives.
  */
-function capGraphData({ nodes, links, nodeById }) {
-    if (nodes.length <= NODE_CAP) return { nodes, links, nodeById };
+function capGraphData({ nodes, links, nodeById }, cap = NODE_CAP) {
+    if (nodes.length <= cap) return { nodes, links, nodeById };
 
     const tagNodesSorted = nodes
         .filter(n => n.group === 'tag')
         .sort((a, b) => (b.degree || 0) - (a.degree || 0));
 
-    const keptTagIds = new Set(tagNodesSorted.slice(0, Math.floor(NODE_CAP * 0.4)).map(n => n.id));
+    const keptTagIds = new Set(tagNodesSorted.slice(0, Math.floor(cap * 0.4)).map(n => n.id));
     const tagLinks = links.filter(l => l.kind !== 'similarity' && keptTagIds.has(typeof l.target === 'object' ? l.target.id : l.target));
     const keptArticleIds = new Set(tagLinks.map(l => typeof l.source === 'object' ? l.source.id : l.source));
 
@@ -423,7 +447,9 @@ export function initArchiveGraph(container, articles, highlightTimestamp, simila
     return loadD3()
         .then(() => waitForLayout(container))
         .then(() => renderGraph(container, articles, highlightTimestamp, MIN_TAG_DEGREE_DEFAULT, similarityIndex))
-        .catch(() => {
+        .catch((e) => {
+            // Any failure while drawing ends up here, not only a missing d3: say what it was, so a real bug is not hidden behind this message.
+            console.warn('Archive graph could not be drawn:', e);
             container.innerHTML = `<div class="graph-empty">${T('D3 library failed to load.')}</div>`;
         });
 }
@@ -623,8 +649,26 @@ function renderGraph(container, allArticles, highlightTimestamp, minTagDegree, s
     const articles = researchOnly ? allArticles.filter(a => paperState(a)) : allArticles;
     const simNow = container.__graphSim || null;           // latest result of the background similarity run (graphSimilarityCache.js)
     container.__graphSimUsed = simNow ? simNow.sig : null; // which result this picture was drawn from
-    const raw = buildGraphData(articles, minTagDegree, similarityIndex, simNow && simNow.links);
-    const { nodes, links, nodeById, capped } = capGraphData(raw);
+    // Topics is wanted when asked for, or by default for an archive of enough articles. It needs far fewer resources than the force layout
+    // (no links drawn, nothing to simulate: the packing decides), so it shows every tag and every article and is not held to Detail's node cap.
+    const wantsOverview = container.__graphLayout ? container.__graphLayout === 'overview' : articles.length >= OVERVIEW_MIN_ARTICLES;
+    let raw = buildGraphData(articles, wantsOverview ? 1 : minTagDegree, similarityIndex, simNow && simNow.links, { keepOrphans: wantsOverview });
+    // the fixed categories (and the old catch-all "General") as tag ids, so the structure treats them as categories
+    const categories = new Set([...CATEGORIES, 'General'].map(tagIdOf));
+    // the broader topics the lexicon knows, per tag node (weak ties in the structure, see graphStructure.js addBroaderTies)
+    const relatedFor = (d) => {
+        const broader = new Map(), key = new Map();
+        d.nodes.forEach(n => { if (n.group !== 'tag' || !n.raw) return; key.set(n.id, conceptKey(n.raw)); const b = broaderKeysOf(n.raw); if (b.length) broader.set(n.id, b); });
+        return { broader, key };
+    };
+    const structFor = (d) => topicClusters(d.nodes, d.links, { otherLabel: T('Everything else'), subOtherLabel: T('Other'), groupLabel: T('Group'), terms: simNow && simNow.terms, vectors: simNow && simNow.items, categories, related: relatedFor(d) });
+    let data = capGraphData(raw, wantsOverview ? OVERVIEW_NODE_CAP : NODE_CAP);
+    let struct = structFor(data);
+    if (wantsOverview && struct.clusters.length < 2) {   // nothing to pack: the usual picture, with its rules and its cap
+        raw = buildGraphData(articles, minTagDegree, similarityIndex, simNow && simNow.links);
+        data = capGraphData(raw); struct = structFor(data);
+    }
+    const { nodes, links, nodeById, capped } = data;
     const { hiddenTagCount, stillOrphanCount } = raw;
 
     // Neglect info: how long each article has sat unopened (0 = opened
@@ -639,7 +683,6 @@ function renderGraph(container, allArticles, highlightTimestamp, minTagDegree, s
     const neglectedCount = Array.from(neglectDays.values()).filter(d => d >= NEGLECT_THRESHOLD_DAYS).length;
 
     // Structure, worked out here from the tags alone (graphStructure.js): clusters, bridge articles, source types.
-    const struct = topicClusters(nodes, links, { otherLabel: T('Everything else'), subOtherLabel: T('Other'), groupLabel: T('Group'), terms: simNow && simNow.terms });
     const bridges = bridgeArticles(nodes, links, struct);
     const clusterIndex = new Map(struct.clusters.map((c, i) => [c.id, i]));
     const clusterColor = (id) => {
@@ -650,7 +693,7 @@ function renderGraph(container, allArticles, highlightTimestamp, minTagDegree, s
     nodes.forEach(n => { n.cluster = clusterOfNode(n) || null; n.sub = (n.group === 'article' && struct.subOfArticle.get(n.id)) || null; });
     const articleTotal = nodes.filter(n => n.group === 'article').length;
     const canOverview = struct.clusters.length >= 2;
-    const overview = canOverview && (container.__graphLayout ? container.__graphLayout === 'overview' : articleTotal >= OVERVIEW_MIN_ARTICLES);
+    const overview = canOverview && wantsOverview;
     const quietLabels = overview || articleTotal > 40;   // article titles on hover/focus only; all at once is the hairball
     const typeOf = new Map();
     nodes.forEach(n => { if (n.group === 'article') typeOf.set(n.id, sourceType(n.data)); });
@@ -831,6 +874,7 @@ function renderGraph(container, allArticles, highlightTimestamp, minTagDegree, s
         });
     }
     layoutPack();
+    container.__archiveGraphPack = pack;   // (read by the tests: where every dot should sit)
     // where a node belongs: its own spot in the packing; tags (not drawn here) sit at the middle of their cluster
     const homeOf = (d) => pack.leaf.get(d.id) || pack.cluster.get(d.cluster) || { x: viewW / 2, y: viewH / 2 };
     const packR = (d) => Math.max(2, Math.min(7, ((pack.leaf.get(d.id) || {}).r || 4.5) * 0.9));   // dots shrink as the archive grows, so they never overlap
@@ -841,7 +885,7 @@ function renderGraph(container, allArticles, highlightTimestamp, minTagDegree, s
     const simulation = d3.forceSimulation(nodes)
         .force('link', linkForce)
         .force('charge', d3.forceManyBody().strength(overview ? 0 : -250))
-        .force('collision', d3.forceCollide().radius(d => nodeRadius(d) + (overview ? 0.4 : 6)));
+        .force('collision', d3.forceCollide().radius(d => (overview && d.group === 'tag' ? 0 : nodeRadius(d) + (overview ? 0.4 : 6))));   // Topics: the tags are not drawn, so they must not push the dots around
     if (overview) {
         simulation.force('x', d3.forceX(d => homeOf(d).x).strength(0.45))
             .force('y', d3.forceY(d => homeOf(d).y).strength(0.45));
@@ -1000,7 +1044,7 @@ function renderGraph(container, allArticles, highlightTimestamp, minTagDegree, s
         const at = (map, id) => map.get(id) || { x: -9999, y: -9999, r: 0 };
         blobs.attr('cx', c => at(pack.cluster, c.id).x).attr('cy', c => at(pack.cluster, c.id).y).attr('r', c => at(pack.cluster, c.id).r);
         clusterLabels.attr('x', c => at(pack.cluster, c.id).x)
-            .attr('y', c => { const o = at(pack.cluster, c.id); return (c.children || []).length >= 2 ? o.y - o.r - 6 : o.y + 4; });   // above a cluster made of subtopics, in the middle of one that is not
+            .attr('y', c => { const o = at(pack.cluster, c.id); return (c.children || []).length >= 2 ? o.y - o.r - 22 : o.y + 4; });   // above a cluster made of subtopics, in the middle of one that is not
         if (subBlobs) {
             subBlobs.attr('cx', k => at(pack.sub, k.id).x).attr('cy', k => at(pack.sub, k.id).y).attr('r', k => at(pack.sub, k.id).r);
             subLabels.attr('x', k => at(pack.sub, k.id).x).attr('y', k => at(pack.sub, k.id).y - at(pack.sub, k.id).r - 3);
@@ -1021,21 +1065,25 @@ function renderGraph(container, allArticles, highlightTimestamp, minTagDegree, s
     container.__archiveGraphSelections = { node, link, label };
 
     // Tick function
+    let ticks = 0;
+    const placeLabels = () => label.attr('x', d => d.x).attr('y', d => d.y);
     simulation.on('tick', () => {
-        link
-            .attr('x1', d => d.source.x)
-            .attr('y1', d => d.source.y)
-            .attr('x2', d => d.target.x)
-            .attr('y2', d => d.target.y);
-
+        // Topics: the links are not drawn and the titles are hidden until hover/focus, so only the dots move every frame and the
+        // titles catch up every few frames and when the layout settles. That is what keeps a big archive smooth.
+        if (!overview) {
+            link
+                .attr('x1', d => d.source.x)
+                .attr('y1', d => d.source.y)
+                .attr('x2', d => d.target.x)
+                .attr('y2', d => d.target.y);
+        }
         node
             .attr('cx', d => d.x)
             .attr('cy', d => d.y);
-
-        label
-            .attr('x', d => d.x)
-            .attr('y', d => d.y);
+        if (!overview || ++ticks % 6 === 0) placeLabels();
     });
+    simulation.on('end', () => { if (overview) { link.attr('x1', d => d.source.x).attr('y1', d => d.source.y).attr('x2', d => d.target.x).attr('y2', d => d.target.y); placeLabels(); } });
+    if (overview) simulation.alphaDecay(0.06);   // the targets are fixed by the packing; no need for the long cool-down of the force layout
 
     // ── Focus and path ───────────────────────────────────────────────────
     // Focus: one cluster, or an article with what hangs on it, stays bright; the rest steps back and its titles stay quiet.
@@ -1239,6 +1287,8 @@ function renderGraph(container, allArticles, highlightTimestamp, minTagDegree, s
     renderStructureChips(container, {
         canOverview, overview,
         color: { mode: colorMode, modes: colorModes, onChange: (m) => applyColor(m, true) },
+        // tags with no English name yet: one tap names them (graphTagNaming.js), and the graph is drawn again with the merged topics
+        naming: (() => { const w = namingWork(allArticles), n = w.unnamed.length + w.broaden.length; return n ? { count: n, unnamed: w.unnamed.length, onOpen: () => import('./graphTagNaming.js').then(m => m.openTagNamingPage(container, { articles: allArticles, onDone: () => { simulation.stop(); renderGraph(container, allArticles, highlightTimestamp, minTagDegree, similarityIndex); } })) } : null; })(),
         unread: unreadIds.size ? { count: unreadIds.size, on: !!container.__graphUnreadOnly, onToggle: (on) => { container.__graphUnreadOnly = on; applyUnread(on, true); } } : null,
         onLayout: (mode) => {
             container.__graphLayout = mode;
@@ -1290,7 +1340,7 @@ function followSimilarity(container, rerender) {
         if (!container.isConnected) return;
         container.__graphSimStop = m.watchSimilarity((u) => {
             if (!container.isConnected) return;
-            container.__graphSim = { links: u.links, sig: u.sig, terms: u.terms };
+            container.__graphSim = { links: u.links, sig: u.sig, terms: u.terms, items: u.items };
             const fresh = u.sig !== container.__graphSimUsed;
             if (fresh && !container.__graphTouched && container.dataset.graphMode !== 'list') { rerender(); return; }
             showSimilarityChip(container, { fresh, running: !u.complete, done: u.done, total: u.total }, rerender);
@@ -1381,9 +1431,9 @@ function renderColorLegend(container, mode, { ageColor, moodColor }) {
     legend.append(item);
 }
 
-function renderStructureChips(container, { canOverview, overview, onLayout, unread, color }) {
+function renderStructureChips(container, { canOverview, overview, onLayout, unread, color, naming }) {
     const bar = filterBar(container);
-    bar.querySelectorAll('.graph-layout-toggle, .graph-path-chip, .graph-save-chip, .graph-unread-chip, .graph-color-chip').forEach(n => n.remove());
+    bar.querySelectorAll('.graph-layout-toggle, .graph-path-chip, .graph-save-chip, .graph-unread-chip, .graph-color-chip, .graph-naming-chip').forEach(n => n.remove());
     if (color && color.modes.length > 1) {
         const chip = document.createElement('button');
         chip.type = 'button'; chip.className = 'graph-color-chip';
@@ -1430,6 +1480,14 @@ function renderStructureChips(container, { canOverview, overview, onLayout, unre
             chip.classList.toggle('on', on); chip.setAttribute('aria-pressed', String(on));
             unread.onToggle(on);
         });
+        bar.append(chip);
+    }
+    if (naming) {
+        const chip = document.createElement('button');
+        chip.type = 'button'; chip.className = 'graph-naming-chip';
+        chip.textContent = '🏷 ' + (naming.unnamed ? TN(naming.unnamed, '{n} tag without a name', '{n} tags without a name') : TN(naming.count, '{n} tag without broader topics', '{n} tags without broader topics'));
+        chip.title = T('Give these tags their English names, so the same topic in two languages becomes one');
+        chip.addEventListener('click', () => naming.onOpen());
         bar.append(chip);
     }
     bar.append(path, save);
@@ -1651,7 +1709,12 @@ export function renderGraphList(container, nodes, links, gaps = []) {
     document.addEventListener('keydown', container.__graphKeyDoc);
     toggle.append(gBtn, lBtn, ...(pBtn ? [pBtn] : []));
     set('graph', false);
-    graphTopbar(container).prepend(toggle);
+    const topbar = graphTopbar(container);
+    topbar.prepend(toggle);
+    // The chips on top wrap onto a second row in a narrow panel; the list and the gaps start below however tall the bar is.
+    const fitTopbar = () => container.style.setProperty('--graph-topbar-h', topbar.offsetHeight + 'px');
+    fitTopbar();
+    if (typeof ResizeObserver === 'function') new ResizeObserver(fitTopbar).observe(topbar);
     container.append(list, gapList, live);
 }
 

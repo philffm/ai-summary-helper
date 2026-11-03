@@ -184,17 +184,43 @@ export function openClusterPage(container, { label, articles, subtopics = [] }) 
         const readN = (question ? list : focusNow()).filter(hasText).length;
         out.textContent = T('Reading {n} summaries…', { n: readN });
         if (trigger) trigger.disabled = true;
+        // the same live status as the recaps: steps, model, seconds waited, the text as it is written, and Cancel
+        let status = null;
+        try {
+            const rs = await import('./recapStatus.js');
+            status = rs.createRecapStatus({ title: question ? T('✨ Answering from {n} summaries…', { n: readN }) : T('✨ Briefing from {n} summaries…', { n: readN }),
+                detail: T('Only the saved summaries of these articles are sent, no full text.'), onCancel: () => mine.abort() });
+            if (mine === ctl) { out.textContent = ''; out.append(status.node); }
+        } catch (_) { status = null; }   // no status card here: the plain line above stays
+        const head = status && status.node.querySelector('.feed-recap-loading');
+        const t0 = Date.now();
         try {
             const { askCluster } = await import('./feedAi.js');
-            const r = await askCluster(question ? list : focusNow(), { topic: label, question }, { signal: mine.signal, onPart: ({ done, total }) => { if (mine === ctl && out.classList.contains('is-busy')) out.textContent = T('Reading {n} summaries · step {a} of {b}…', { n: readN, a: Math.min(done + 1, total), b: total }); } });
+            const r = await askCluster(question ? list : focusNow(), { topic: label, question }, {
+                signal: mine.signal,
+                onStage: status ? status.onStage : undefined,
+                onProgress: status ? status.onProgress : undefined,
+                onPart: ({ done, total }) => {
+                    if (mine !== ctl || !out.classList.contains('is-busy')) return;
+                    const step = T('Reading {n} summaries · step {a} of {b}…', { n: readN, a: Math.min(done + 1, total), b: total });
+                    if (head) head.textContent = step; else out.textContent = step;
+                }
+            });
             if (!page.isConnected || mine !== ctl) return;
             r.question = question || '';
+            if (status) status.stop();
+            out.textContent = '';
             await fillAnswer(out, r, openArticle);
+            // what made it, and how long it took
+            const model = await import('./recapStatus.js').then(m => m.activeModelLabel()).catch(() => '');
+            const secs = Math.max(1, Math.round((Date.now() - t0) / 1000));
+            out.append(el('p', 'graph-preview-date graph-cluster-answer-meta', [TN(readN, 'from {n} summary', 'from {n} summaries'), model, T('{s}s', { s: secs })].filter(Boolean).join(' · ')));
         } catch (e) {
-            if (!page.isConnected || mine !== ctl || (e && e.cancelled)) return;
+            if (!page.isConnected || mine !== ctl) return;
+            if (e && e.cancelled) { out.className = 'graph-cluster-answer'; out.textContent = T('Stopped.'); return; }
             out.className = 'graph-cluster-answer is-error';
             out.textContent = (e && e.message) || T('AI request failed');
-        } finally { if (trigger) trigger.disabled = false; }
+        } finally { if (status) status.stop(); if (trigger) trigger.disabled = false; }
     };
 
     let brief = null;

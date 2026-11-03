@@ -10,7 +10,7 @@ import { languageEnglishName, languageRule } from './languages.js';
 import { T } from './feedI18n.js';
 import { dedupeArticles } from './textUtils.js';
 import { resolveLocale } from './i18n.js';
-import { conceptKey, conceptList, topicLabel, hasLabel, lexiconLearn, normalizeTopic } from './topicConcepts.js';
+import { conceptKey, conceptId, conceptList, topicLabel, hasLabel, lexiconLearn, lexiconBroader, lexiconMarkName, normalizeTopic, humanizeTag } from './topicConcepts.js';
 import { resolveFeedStyle, styleSuffix } from './promptBuilder.js';
 export const MAX_RECAP_ITEMS = 40;   // batch size for scoring requests
 let recapLimit = Infinity;            // items per recap request (user setting); 0 / Infinity = no limit
@@ -149,10 +149,12 @@ export function itemsForPrompt(list, subTitleFn, mark, snippetMax = titlesOnly ?
     }).join('\n');
 }
 
-export function cleanLabel(v) {
-    const t = String(v || '').replace(/["'`*#]/g, '').replace(/\s+/g, ' ').trim().slice(0, 24);
+export function cleanLabel(v, max = 24) {
+    const t = String(v || '').replace(/["'`*#]/g, '').replace(/\s+/g, ' ').trim().slice(0, max);
     return t || null;
 }
+// Tag names: as long as the lexicon keeps (40). The 24 of the feed labels cut "covert influence operations" to "covert influence operati".
+const cleanName = (v) => { const t = cleanLabel(v, 40); return t && !/^[-–—]+$/.test(t) ? t : null; };
 
 /**
  * Reply of the topic prompt ("Fußball = Football, Wirtschaft = Economy") -> up to 3 distinct { label, en }.
@@ -205,20 +207,34 @@ export async function translateFeedTopics(keys, { signal, onStage, onProgress, s
     const todo = keys.filter((_, n) => tags[n] === null);
     if (todo.length) {
         const system = `Translate these topic names into ${name}. Each stays a short tag of one or two words. Reply with ONLY the translations, in the same order, separated by commas.`;
-        const parts = String(await aiComplete(system, todo.join(', '), onStage, signal, onProgress, { service, feature: 'tags' })).split(/[,;|\n]/).map(cleanLabel).filter(Boolean);
+        const parts = String(await aiComplete(system, todo.join(', '), onStage, signal, onProgress, { service, feature: 'tags' })).split(/[,;|\n]/).map(v => cleanLabel(v)).filter(Boolean);
         if (parts.length !== todo.length) throw new Error(T('The AI reply could not be read'));
         let k = 0; keys.forEach((_, n) => { if (tags[n] === null) { tags[n] = parts[k++]; lexiconLearn(keys[n], code, tags[n]); } });
     }
     return { tags, lang: code };
 }
 
+const LANG_ECHO = new RegExp('\\(\\s*(?:' + ['English', 'German', 'Spanish', 'French', 'Italian', 'Portuguese', 'Russian', 'Hindi', 'Korean', 'Japanese', 'Chinese', 'Arabic', 'Dutch', 'Polish', 'Turkish', 'Indonesian', 'Thai', 'Ukrainian', 'Swedish', 'Danish', 'Norwegian', 'Finnish'].join('|') + ')\\s*\\)', 'gi');
+/** English name of a language code ("de" → "German"), '' when unknown. */
+export function languageOfCode(code) {
+    const c = String(code || '').trim();
+    if (!c) return '';
+    if (UI_LANGUAGE_NAMES[c]) return UI_LANGUAGE_NAMES[c].replace(/\s*\(.*$/, '');
+    try { return new Intl.DisplayNames(['en'], { type: 'language' }).of(c.split(/[-_]/)[0]) || ''; } catch (e) { return ''; }
+}
+const sameLang = (a, b) => String(a || '').split(/[-_]/)[0].toLowerCase() === String(b || '').split(/[-_]/)[0].toLowerCase();
+
 /** "1:Football = Fußball | 2:Economy" -> [{ en, ui }] aligned to n tags (null where missing). */
 export function parseTagNames(text, n) {
     const out = new Array(n).fill(null);
     String(text || '').split(/[|;\n]/).forEach(part => {
-        const m = part.match(/(\d+)\s*[:=]\s*([^=]+?)(?:\s*=\s*(.+))?\s*$/);
+        // "(broader: A, B)" anywhere in the part: the broader topics (only set when given, so older replies read the same as before)
+        const bm = part.match(/\(\s*broader\s*:\s*([^)]*)\)/i);
+        const broader = bm ? bm[1].split(/\s*,\s*/).map(cleanName).filter(Boolean).slice(0, 2) : null;
+        const rest = (bm ? part.replace(bm[0], ' ') : part).replace(LANG_ECHO, ' ');   // "(German)": the language hint sent with the tag, echoed back
+        const m = rest.match(/(\d+)\s*[:=]\s*([^=]+?)(?:\s*=\s*(.+))?\s*$/);
         const k = m ? Number(m[1]) - 1 : -1;
-        if (k >= 0 && k < n && cleanLabel(m[2])) out[k] = { en: normalizeTopic(cleanLabel(m[2])), ui: m[3] ? cleanLabel(m[3]) : null };
+        if (k >= 0 && k < n && cleanName(m[2])) out[k] = { en: normalizeTopic(cleanName(m[2])), ui: m[3] ? cleanName(m[3]) : null, ...(broader && broader.length ? { broader } : {}) };   // "3:-" = no topic, "= -" = no translation
     });
     return out;
 }
@@ -229,15 +245,120 @@ export function parseTagNames(text, n) {
  * lexicon only — nothing is stored on the articles. A tag the model skips is marked as seen, so it is never asked twice.
  * Returns how many tags were named.
  */
-export async function learnTagNames(tags, { signal, onStage, onProgress, service } = {}) {
+export async function learnTagNames(tags, opts = {}) {
+    const { names, code } = await nameTags(tags, opts);
+    return applyTagNames(tags, names, code);
+}
+
+/**
+ * Ask for the names only, learn nothing (a preview can show them first). Returns { names: [{ en, ui } | null aligned to tags], code }.
+ * Throws when the reply cannot be read at all.
+ */
+const bigrams = (s) => { const x = s.replace(/\s+/g, ''); const out = new Map(); for (let i = 0; i + 1 < x.length; i++) { const g = x.slice(i, i + 2); out.set(g, (out.get(g) || 0) + 1); } return out; };
+const dice = (a, b) => { const A = bigrams(a), B = bigrams(b); let both = 0, n = 0; A.forEach((c, g) => { both += Math.min(c, B.get(g) || 0); n += c; }); B.forEach(c => { n += c; }); return n ? 2 * both / n : 0; };
+
+/**
+ * The name must be the tag itself in English, not a broader topic. A model shown a list of topics tends to answer "Germany" with
+ * "geopolitics" and "Food policy" with "policy"; learning that would merge many specific tags into a few broad ones (a clump again).
+ * A name counts as such a broader word when
+ *   - it drops words of the tag ("food policy" → "policy"), or
+ *   - it is a built-in broad topic the tag is not (and is not spelled like it), or
+ *   - the tag is English (`english`: tags whose articles are summarised in English) and the name is something else: an English tag's
+ *     English name is the tag itself (a small spelling change or an abbreviation written out is fine, "corporate communication" →
+ *     "corporate culture" is not).
+ * Then the name is kept literal (the tag as words) and the broader word becomes a broader topic. A translation ("KI-Regulierung" →
+ * "AI regulation", "Soziologie" → "sociology") is left alone. Returns new names; `kept: true` marks the ones changed.
+ */
+export function keepLiteral(tags, names, { english = null } = {}) {
+    return names.map((r, k) => {
+        if (!r || !r.en) return r;
+        const literal = normalizeTopic(humanizeTag(tags[k]));
+        if (!literal || r.en === literal) return r;
+        const tagWords = literal.split(' '), enWords = r.en.split(' ');
+        const narrower = tagWords.length > enWords.length && enWords.every(w => tagWords.includes(w));
+        const similar = dice(literal, r.en) >= 0.6;
+        const broadBuiltIn = !!conceptId(r.en) && conceptId(r.en) !== conceptId(tags[k]) && !similar;
+        // an English tag's English name is the tag itself: only a small spelling change (plural, spelling) or an abbreviation written
+        // out ("ai" → "artificial intelligence") is accepted; anything else is a different, usually broader, word
+        const acronym = !literal.includes(' ') && literal.length <= 5 && enWords.length === literal.length && enWords.map(w => w[0]).join('') === literal;
+        const englishChanged = !!(english && english.has(tags[k])) && dice(literal, r.en) < 0.75 && !acronym;
+        if (!narrower && !broadBuiltIn && !englishChanged) return r;
+        const broader = [r.en, ...(r.broader || [])].filter((b, i, all) => normalizeTopic(b) !== literal && all.findIndex(x => normalizeTopic(x) === normalizeTopic(b)) === i).slice(0, 2);
+        return { en: literal, ui: null, broader, kept: true };
+    });
+}
+
+export async function nameTags(tags, { signal, onStage, onProgress, service, broaderVocab = [], english = null, langs = null } = {}) {
     const { code, name } = await uiLanguage();
+    const vocab = broaderVocab.filter(Boolean).slice(0, 60);
+    const langOf = (t) => (langs && langs.get(t)) || (english && english.has(t) ? 'en' : '');
+    const hint = (t) => { const l = languageOfCode(langOf(t)); return l ? ` (${l})` : ''; };
     const system = 'You normalize topic tags of saved articles that are written in various languages. '
-        + 'For each numbered tag reply with its English name (one or two words, singular, e.g. Football, Climate, Economy)'
-        + (code === 'en' ? '' : ` followed by " = " and the same topic written in ${name}`)
-        + '. Format exactly, one line: 1:Football' + (code === 'en' ? '' : ' = Fußball') + ' | 2:Economy' + (code === 'en' ? '' : ' = Wirtschaft') + ' | … for EVERY tag, nothing else.';
-    const text = await aiComplete(system, tags.map((t, k) => `[${k + 1}] ${clip(t, 40)}`).join('\n'), onStage, signal, onProgress, { service, feature: 'tags' });
-    const names = parseTagNames(text, tags.length);
-    if (!names.some(Boolean)) throw new Error(T('The AI reply could not be read'));
+        + 'For each numbered tag reply with its ENGLISH NAME: the same tag translated literally or written normally, keeping its meaning and how specific it is '
+        + '(Germany stays Germany, Food policy stays Food policy, Geldwäsche becomes Money laundering). NEVER replace a tag by a broader topic or a category. '
+        + 'A tag marked with its language, e.g. "(German)", is written in that language: its English name is its English translation; only a name (a person, place, brand, event, product) stays as it is'
+        + (code === 'en' ? '' : `. Then " = " and the same tag written in ${name} (a tag already in ${name} stays as it is)`)
+        + '. Then, only if the tag is specific, " (broader: A)" with the broader English topic it clearly belongs to (a second one only if it fits just as clearly, one is often enough; leave it out when none fits)'
+        + (vocab.length ? ` (for these broader topics only, prefer words from this list when one fits; otherwise use your own: ${vocab.join(', ')})` : '')
+        + '. If a tag is no topic at all (a code, a colour value, an id), reply with its number and a dash. '
+        + 'Format exactly, one line: 1:Germany' + (code === 'en' ? '' : ' = Deutschland') + ' (broader: Geopolitics) | 2:AI in medicine' + (code === 'en' ? '' : ' = KI in der Medizin') + ' (broader: Artificial intelligence, Medicine) | 3:- | … for EVERY tag, nothing else.';
+    const text = await aiComplete(system, tags.map((t, k) => `[${k + 1}] ${clip(humanizeTag(t), 40)}${hint(t)}`).join('\n'), onStage, signal, onProgress, { service, feature: 'tags' });
+    const parsed = parseTagNames(text, tags.length);
+    if (!parsed.some(Boolean) && !/\d+\s*[:=]\s*-/.test(String(text))) throw new Error(T('The AI reply could not be read'));
+    const names = keepLiteral(tags, parsed, { english });
+    await retranslate(tags, names, { langOf, code, name, signal, onStage, onProgress, service });
+    return { names, code };
+}
+
+/**
+ * Small local models often "translate" into the same language: "Wohnkosten" → "Wohnkosten", or "cancer prevention = cancer prevention"
+ * for a German UI. A tag in the UI language simply keeps itself as its UI name; the rest is asked once more, in one short request each
+ * way. What comes back unchanged again is taken as a name (Nasdaq, Georgia) and marked `same` so the preview can point at it.
+ */
+export function untranslated(tags, names, { langOf = () => '', code = 'en' } = {}) {
+    const en = [], ui = [];
+    tags.forEach((t, k) => {
+        const r = names[k];
+        if (!r || !r.en || r.kept) return;
+        const lang = langOf(t), literal = normalizeTopic(humanizeTag(t));
+        const inUi = code !== 'en' && lang && sameLang(lang, code);
+        if (inUi) r.ui = humanizeTag(t);   // already in the UI language: its own word is its UI name
+        if (lang && !sameLang(lang, 'en') && r.en === literal) en.push(k);
+        else if (inUi) return;
+        else if (code !== 'en' && lang && (!r.ui || normalizeTopic(r.ui) === r.en)) ui.push(k);   // only where the language is known: an unknown one may well be the UI language
+    });
+    return { en, ui };
+}
+/** "1:Krebsvorsorge | 2:Nasdaq" -> names as written (no case change), aligned to n (null where missing or a dash). */
+function parseRawNames(text, n) {
+    const out = new Array(n).fill(null);
+    String(text || '').split(/[|;\n]/).forEach(part => {
+        const m = part.replace(LANG_ECHO, ' ').match(/(\d+)\s*[:=]\s*(.+?)\s*$/);
+        const k = m ? Number(m[1]) - 1 : -1;
+        if (k >= 0 && k < n) out[k] = cleanName(m[2]);
+    });
+    return out;
+}
+async function retranslate(tags, names, { langOf, code, name, signal, onStage, onProgress, service }) {
+    const { en, ui } = untranslated(tags, names, { langOf, code });
+    const ask = async (system, lines) => {
+        try { return parseRawNames(await aiComplete(system, lines.map((l, i) => `[${i + 1}] ${l}`).join('\n'), onStage, signal, onProgress, { service, feature: 'tags' }), lines.length); }
+        catch (e) { if (e && (e.name === 'AbortError' || e.cancelled)) throw e; return lines.map(() => null); }   // a failed second try keeps the first answer
+    };
+    const fmt = ' If it is a name (a person, place, brand, event, product, organisation) or the very same word is used in that language too, repeat it unchanged. Format exactly, one line: 1:… | 2:… for EVERY item, nothing else.';
+    if (en.length) {
+        const got = await ask('Translate each numbered topic tag into English, keeping how specific it is. The language of each is given in brackets.' + fmt,
+            en.map(k => `${clip(humanizeTag(tags[k]), 40)}${languageOfCode(langOf(tags[k])) ? ` (${languageOfCode(langOf(tags[k]))})` : ''}`));
+        en.forEach((k, i) => { const g = normalizeTopic(got[i]); if (g && g !== names[k].en) { names[k].en = g; if (names[k].ui && normalizeTopic(names[k].ui) === normalizeTopic(humanizeTag(tags[k])) && !sameLang(langOf(tags[k]), code)) names[k].ui = null; } else names[k].same = 'en'; });
+    }
+    if (ui.length) {
+        const got = await ask(`Write each numbered English topic in ${name}, keeping how specific it is.` + fmt, ui.map(k => names[k].en));
+        ui.forEach((k, i) => { const g = got[i]; if (g && normalizeTopic(g) !== names[k].en) names[k].ui = g; else { names[k].ui = names[k].ui || null; names[k].same = names[k].same || 'ui'; } });
+    }
+}
+
+/** Learn what nameTags() returned (into the lexicon only, nothing on the articles). Returns how many tags were named. */
+export function applyTagNames(tags, names, code) {
     let named = 0;
     tags.forEach((t, k) => {
         const r = names[k];
@@ -245,9 +366,24 @@ export async function learnTagNames(tags, { signal, onStage, onProgress, service
         lexiconLearn(r.en, null, t);
         if (code === 'en') lexiconLearn(r.en, 'en', r.en.replace(/^./, c => c.toUpperCase()));
         else { lexiconLearn(r.en, 'en', r.en.replace(/^./, c => c.toUpperCase())); if (r.ui) lexiconLearn(r.en, code, r.ui); }
+        if (r.same === 'en') lexiconMarkName(r.en);   // kept as it is when asked twice: a name, not asked again by a tidy-up
+        lexiconBroader(r.en, r.broader || []);   // none given: remembered as asked, so the tag is not sent again for it
         named++;
     });
     return named;
+}
+
+/** Only the broader topics, for tags that already have a name (their name stays as it is). Returns how many got any. */
+export function applyBroader(tags, names) {
+    let n = 0;
+    tags.forEach((t, k) => {
+        const key = conceptKey(t);
+        if (!key || String(key).startsWith('c:')) return;   // built-in topics are broad already
+        const list = (names[k] && names[k].broader) || [];
+        lexiconBroader(key, list);
+        if (list.length) n++;
+    });
+    return n;
 }
 
 /** "1:Tech | 2:Politics" -> array aligned to n items (null where missing). */

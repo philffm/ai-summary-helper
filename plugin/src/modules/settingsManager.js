@@ -1139,6 +1139,7 @@ function initLocalIntelligence() {
         libBtn.addEventListener('click', () => { import('./settingsNav.js').then(m => m.openSettingsPanel('feedprefs', 'feedPrefsLibrary')).catch(() => {}); });
     }
     initNameTags();
+    initLearnedNames();
     const btn = document.getElementById('cleanupTagsButton');
     const resultEl = document.getElementById('cleanupTagsResult');
     if (!btn) return;
@@ -1251,6 +1252,27 @@ function initNameTags() {
             document.dispatchEvent(new CustomEvent('aish:lexiconChanged'));
             say(T('Something went wrong — please try again.') + (err && err.message ? ' (' + err.message + ')' : ''));
         } finally { btn.disabled = false; }
+    });
+}
+
+/** The learned tag names as an editable list (lexiconEditor.js): fix a name or its broader topics after saving, or forget one. */
+function initLearnedNames() {
+    const btn = document.getElementById('learnedNamesButton'), box = document.getElementById('learnedNamesBox');
+    if (!btn || !box) return;
+    document.getElementById('learnedNamesTitle').textContent = T('Learned tag names');
+    document.getElementById('learnedNamesHint').textContent = T('The English names and broader topics your tags got. Change one, or forget it so it can be named again. Your articles keep their tags.');
+    btn.textContent = T('Show');
+    let editor = null;
+    btn.addEventListener('click', async () => {
+        const open = box.hidden;
+        box.hidden = !open; btn.setAttribute('aria-expanded', String(open)); btn.textContent = open ? T('Hide') : T('Show');
+        if (!open) return;
+        await loadLexicon();
+        const { mountLexiconEditor } = await import('./lexiconEditor.js');
+        const langs = async () => { const { tagLanguagesOf } = await import('./graphTagNaming.js'); return tagLanguagesOf(await StorageManager.getArticlesIndex({ includeArchived: true })); };
+        const confirm = (body) => confirmDestructive({ title: T('Forget all learned names?'), body, confirmLabel: T('Forget all') });
+        if (!editor) editor = mountLexiconEditor(box, { save: saveLexicon, langs, confirm, onChange: () => document.dispatchEvent(new CustomEvent('aish:lexiconChanged')) });
+        else editor.render();
     });
 }
 

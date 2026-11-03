@@ -33,19 +33,43 @@ export const CONCEPTS = {
  *  The AI must not be asked what topic it is (it answers "Germany"), and no topic may ever be learned for it. */
 export const isLanguageTag = (t) => /^🌐\s*[a-z]{2,3}(?:-[a-z0-9]{2,8})?$/i.test(String(t == null ? '' : t).trim());
 
+/** "ContentPollution" → "Content Pollution", "UXForAll" → "UX For All": a hashtag-style tag written as words. */
+export function humanizeTag(t) {
+    return String(t || '').replace(/[_#]+/g, ' ').replace(/([a-z\d])([A-Z])/g, '$1 $2').replace(/([A-Z]+)([A-Z][a-z])/g, '$1 $2').replace(/\s+/g, ' ').trim();
+}
+
+/** Not a topic at all: a colour value ("7f8c8d"), an id, a number. Such a tag is never sent to be named. */
+export const isJunkTag = (t) => {
+    const s = String(t == null ? '' : t).trim().replace(/^#/, '');
+    return s.length < 2 || !/\p{L}/u.test(s) || (/^[0-9a-f]{3,8}$/i.test(s) && /\d/.test(s));
+};
+
 export const normalizeTopic = (t) => String(t || '').normalize('NFD').replace(/[̀-ͯ]/g, '').replace(/[#]/g, '').replace(/\s+/g, ' ').trim().toLowerCase();
 
 const LOOKUP = new Map();
 Object.entries(CONCEPTS).forEach(([id, byLocale]) => Object.values(byLocale).forEach((names) => names.forEach((n) => { const k = normalizeTopic(n); if (!LOOKUP.has(k)) LOOKUP.set(k, id); })));
 
 // ── learned lexicon (in memory; topicLexicon.js loads and saves it) ──
+// Entry: { en: 'AI in medicine', de: 'KI in der Medizin', '*': [spellings seen], '>': ['artificial intelligence', 'medicine'] }.
+// '>' = broader topics (at most 2, English, normalized): what the topic belongs to. Not spellings, never shown as a tag; the graph
+// uses them as weak ties so a rare, specific tag sits next to the broader topics it is part of.
+const BROADER = '>';
+// '!' = checked as a name: the model kept the tag as it is twice ("Nasdaq" in a German article), so a tidy-up does not ask again
+const NAME_MARK = '!';
+/** Remember that a learned topic is a name that stays as it is in every language. */
+export function lexiconMarkName(en) {
+    const key = normalizeTopic(en), cur = LEX[key];
+    if (!cur || cur[NAME_MARK]) return false;
+    cur[NAME_MARK] = true; return true;
+}
+export const isMarkedName = (key) => !!(LEX[key] && LEX[key][NAME_MARK]);
 let LEX = {};                    // englishKey -> { locale: label }
 let LEX_REV = new Map();         // normalized label (any language) / englishKey -> englishKey
 const buildRev = () => {
     LEX_REV = new Map();
     for (const [key, labels] of Object.entries(LEX)) {
         if (!LEX_REV.has(key)) LEX_REV.set(key, key);
-        Object.values(labels).flat().forEach((l) => { const n = normalizeTopic(l); if (n && !isLanguageTag(l) && !LEX_REV.has(n)) LEX_REV.set(n, key); });   // '*' holds the spellings seen so far
+        Object.entries(labels).filter(([k]) => k !== BROADER && k !== NAME_MARK).flatMap(([, v]) => [].concat(v)).forEach((l) => { const n = normalizeTopic(l); if (n && !isLanguageTag(l) && !LEX_REV.has(n)) LEX_REV.set(n, key); });   // '*' holds the spellings seen so far
     }
 };
 export function setLexicon(obj) {
@@ -71,6 +95,68 @@ export function lexiconLearn(en, locale, label) {
     buildRev();
     return true;
 }
+/**
+ * Teach the lexicon the English names the summaries gave their tags (index field `tagEn`: { tag: English name }, written by
+ * content/finalize.js). "KI-Regulierung" with "AI regulation" and "AI regulation" from another article become one topic.
+ * The tag is learned as a spelling (its language is not known here), the English name as the English label. Returns true when the lexicon changed.
+ */
+export function learnTagPairs(entries) {
+    let changed = false;
+    for (const a of entries || []) {
+        const m = a && a.tagEn;
+        if (!m || typeof m !== 'object') continue;
+        for (const [label, en] of Object.entries(m)) {
+            if (!en || isLanguageTag(label) || isLanguageTag(en)) continue;
+            if (lexiconLearn(en, null, label)) changed = true;
+            if (lexiconLearn(en, 'en', String(en).replace(/^./, c => c.toUpperCase()))) changed = true;
+        }
+    }
+    return changed;
+}
+
+/**
+ * Remember what a learned topic belongs to: up to 2 broader topics (English). An empty list marks it as asked (so it is not sent again).
+ * Built-in topics need none (they are broad already). A broader topic that is the topic itself, a language mark or a fixed category
+ * (too broad to say anything) is dropped. Returns true when the lexicon changed.
+ */
+export function lexiconBroader(en, list) {
+    const key = normalizeTopic(en);
+    if (!key || key.length > 40 || LOOKUP.has(key) || isLanguageTag(en)) return false;
+    const out = filterBroader(key, list);
+    const cur = LEX[key] || (LEX[key] = {});
+    if (Array.isArray(cur[BROADER]) && cur[BROADER].join('|') === out.join('|')) return false;
+    cur[BROADER] = out;
+    return true;
+}
+// the fixed categories (topicCategories.js) and catch-alls: as broader topics they would tie everything in a category together
+const NOT_BROADER = new Set(['technology', 'business', 'science', 'health', 'politics', 'environment', 'society', 'lifestyle', 'general', 'news', 'other', 'misc', 'miscellaneous', 'uncategorized', 'uncategorised', 'various', 'none', 'n/a']);
+/** The broader topics that would be kept for `en` (normalized, at most 2): what a preview shows is what is saved. */
+export function filterBroader(en, list) {
+    const key = normalizeTopic(en);
+    const seen = new Set(), out = [];
+    for (const b of Array.isArray(list) ? list : []) {
+        const k = normalizeTopic(b);
+        if (!k || k.length > 40 || k === key || isLanguageTag(b) || NOT_BROADER.has(k) || seen.has(k)) continue;
+        seen.add(k); out.push(k);
+        if (out.length === 2) break;
+    }
+    return out;
+}
+
+/** Comparison keys (as conceptKey) of the broader topics of a tag; [] when there are none or it was never asked. */
+export function broaderKeysOf(tag) {
+    const k = lexKey(tag);
+    const list = k && LEX[k] && LEX[k][BROADER];
+    return Array.isArray(list) ? list.map(b => conceptKey(b)) : [];
+}
+
+/** A learned topic whose broader topics were never asked for (built-in topics never need them). */
+export function needsBroader(tag) {
+    if (conceptId(tag)) return false;
+    const k = lexKey(tag);
+    return !!k && !LOOKUP.has(k) && !(LEX[k] && Array.isArray(LEX[k][BROADER]));
+}
+
 const lexKey = (tag) => (isLanguageTag(tag) ? null : LEX_REV.get(normalizeTopic(tag)) || null);
 
 /** Known topic id for a tag in any language (null when it is not a built-in topic). A learned tag whose English name is a built-in topic counts too. */
