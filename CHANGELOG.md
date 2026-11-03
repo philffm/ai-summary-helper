@@ -5,6 +5,8 @@ Commit history has the details: <https://github.com/philffm/ai-summary-helper/co
 
 ## Unreleased
 
+## 2.2.41 (2026-11-03)
+
 #### Added
 
 - Tag naming sends each tag's language and asks once more when a name comes back untranslated; a tag in the UI language is its own UI name. Learned names can be tidied up (duplicates merged, untranslated ones named again) or all forgotten
@@ -43,6 +45,118 @@ Commit history has the details: <https://github.com/philffm/ai-summary-helper/co
 - Tags of new summaries: one category from a fixed list chosen by the model (the text only as a fallback, no more "General"), then 2–4 specific tags with their English names, so the same topic in two languages becomes one tag. The library's most used tags are no longer attached to new articles by word match
 
 - Archive graph: article titles show on hover, focus and search matches instead of all at once
+
+### All changes
+
+#### Added
+
+- Add blog post: byPhil Cloud EU mode and honest EU labels
+- Add repository audit (AUDIT_REPO.md)
+- Add /e-reader/ landing page (archive, compressed images, Send to Kindle, LocalSend) and home use-case card
+- MCP landing: add 'how it connects' diagram (app -> relay -> extension)
+- Add the PISA reading-skills slide with classroom photo to the EN education page
+- Add more diverse photos to the education pages (EN and DE)
+- Add homepage social metadata
+- Add sync feature videos and literacy posts
+- Add English education hero video
+- Add education hero video with knowledge graph
+- Add PISA evidence slide to education page
+- Add German page-specific register policy
+
+#### Changed
+
+- Site stylesheet: palette, roles and component roles instead of colour-named tokens and per-theme overrides
+  - Palette (raw values) -> theme roles (--bg, --text, --text-muted, --accent, --accent-text, --accent-fill, --on-accent, --gold*, --danger) -> components. The old names (--paper, --ink-950, --signal, --cta-sky-2 ...) described a colour and flipped meaning in the light theme; every use is renamed.
+  - Theme-independent roles for colours over photos and video, shadows and brand tints (--media-*, --on-media, --shadow-ink, --tint-*); alpha steps are color-mix() of those roles, so the values are unchanged.
+  - The hero mock (--mock-*) and the photo stage (--photo-*) set their own roles, light first and dark below: 45 per-theme component overrides are gone.
+  - Size scales: every font size and radius outside the hero mock is a --fs-* / --radius-* token. Rare in-between values moved by at most 0.5px (font) or 2px (radius); the frequent half steps are kept.
+  - color-scheme per theme (native controls follow the theme); --danger defined (was a fallback, 2.9:1 in light); the video transcript used white text in the light theme.
+  - Removed: unused tokens, fallbacks to undefined tokens, 22 unneeded !important, about 110 rules for markup that no longer exists (bookmarklet mock, pitch slider, old nav variants).
+  - scripts/tests/css-tokens.test.mjs guards it: tokens defined and read, no hex/rgb or palette in components, theme selectors only set tokens, sizes from the scales, !important only for [hidden]/fullscreen.
+- Site: readable selected FAQ filter; define the two other missing tokens; test that every token read is defined
+- Site i18n: links to pages a locale does not have point at the English page
+- Tag naming: send each tag's language, ask again when untranslated, tidy up or forget learned names; live status for topic briefings
+- Changelog: drop a blank line
+- Tag naming: progress over all batches, every batch listed, editable rows with Skip, check each batch; learned names editable in settings
+- Tag naming: names up to 40 characters, a dash is no name, one broader topic is often enough
+- Tag naming: the English name is the tag itself, the model's broader word becomes a broader topic
+- Tag naming asks for broader topics; the graph uses them as weak ties
+- Graph: name the archive's tags with AI (tag words only, local first, preview before saving)
+- Tags at the source: model-chosen category, specific tags with English names, no attached tags
+- Site: hero slider dots (hs-dot) round like the carousel dots
+- Graph: name big varied subtopics from over-represented words instead of 'Group n'
+- Graph: Topics shows everything (no node cap, no hidden rare tags); better subtopic names
+- Graph: unique node per article, text splits big clusters the tags cannot, splits must hold together
+- Graph: List and Gaps start below the chip rows; hide picture-only chips and legend there
+- Language marks (🌐 de/en) are left out of the graph and every tag-based criterion
+- Graph: split the 'everything else' cluster too; keep big groups connected by text; topic-agnostic test
+- Graph: nested circle packing, archive-wide umbrella tags, always-visible subtopics
+- Graph: subtopics inside big clusters; fix worker bundle import; test guard
+- Topic page: Anki cards export (questions asked and answers kept)
+- Graph: time replay (the window grows month by month)
+- Graph: Color chip (topic / age / mood)
+- MCP: related_articles tool (closest saved articles to one article)
+- Obsidian export: hub note per graph topic; fix date-dependent graph test
+- Graph: Unread chip, unread count in cluster labels
+- Graph: content similarity from a small per-article cache, built in the background
+- GRAPH.md: Obsidian wikilinks already exist, only the cluster hub note is open
+- Archive graph: topic clusters from tags, focus, path, source rings, maturity
+- i18n: update translations for changed content
+- Check hand-vendored libraries against npm releases and advisories
+  - offline: the version embedded in each file matches the table and the readme (catches a replaced file with stale docs, or mixed builds),
+  - npm's advisory database (the endpoint npm audit uses) for the vendored versions,
+  - newer releases on npm (Lucide reported but not tracked).
+- Bump undici
+  - [Release notes](https://github.com/nodejs/undici/releases)
+  - [Commits](https://github.com/nodejs/undici/compare/v7.29.0...v7.30.1)
+  - [Release notes](https://github.com/nodejs/undici/releases)
+  - [Commits](https://github.com/nodejs/undici/compare/v7.29.0...v7.30.1)
+  - dependency-name: undici dependency-version: 7.30.1 dependency-type: indirect
+  - dependency-name: undici dependency-version: 8.12.3 dependency-type: indirect
+- Update pdf.js to 6.5.438 (CVE-2024-4367) and add CWS Limited Use statement
+  - lib/pdf.mjs, lib/pdf.worker.mjs: minified legacy build of 6.5.438. The modern build uses syntax Safari and older Chromium can't parse.
+  - JBIG2 / JPEG 2000 decoders now live outside the worker in 6.x. Ship their plain-JS fallbacks and pass useWasm: false, since the extension CSP has no 'wasm-unsafe-eval'.
+  - Tear down via loadingTask.destroy(); 6.x removed PDFDocumentProxy.destroy(), which the old try/catch would have silently skipped (leaking the document).
+  - Drop OPS.paintJpegXObject, which no longer exists.
+  - THIRD_PARTY_LICENSES.md and readme: new version, decoder licenses.
+- i18n: update translations for changed content
+- i18n: update translations for changed content
+- E-reader page: mention KOReader on jailbroken Kindles
+- E-reader page: compatibility table, how-to, FAQ with schema, German version; archive section on the home page (EN/DE)
+- Landing pages: product-first evidence slides for all personas, sources only where they earn it (EN/DE)
+- MCP landing: replace abstract security slides with concrete, README-backed ones (EN/DE)
+- Landing pages: remove duplicate hero video on rss-news and pdf-summarizer (keep the one in the header)
+- i18n: update translations for changed content
+- Landing pages: per-persona evidence photos, 5 new diverse photos (older adults, café, home office)
+- Nav: put Use cases before How it works to match the page order
+- Spell out 'Image: AI' in the slide source line, localized
+- Move AI chip to bottom-right on images and into the source line on slide cards
+- Shorten the AI image badge to a language-specific KI/AI chip with full text on hover
+- Label all AI-generated site images: badge, alt prefix, footer note, XMP metadata
+- Replace the three feature photos on the education pages (EN/DE)
+- i18n: update translations for changed content
+- Use classroom reading photo on the 'Ein Drittel' slide (DE education)
+- Revert "Translation update (automated)"
+- i18n: update translations for changed content
+- Refine German education SEO and copy
+- Improve German education page metadata
+- Ignore local marketing drafts
+- Keep marketing drafts local
+- Clarify Media Literacy Week context
+- i18n: update translations for changed content
+- Refine literacy post and sync setup visuals
+- Update border
+- i18n: update translations for changed content
+- Improve Korean localization tone and terminology
+- Improve Japanese localization tone and terminology
+- i18n: update translations for changed content
+
+#### Fixed
+
+- Fix Topics layout: hidden tag nodes no longer push the dots out of their circles
+- Fix: language tags (🌐 de) are not topics; they no longer become 'Deutschland'
+- Performance audit fixes: 404 image, touch targets, preload fonts, defer analytics, responsive screenshot, fewer forced reflows
+- Fix cx-slide-link contrast on dark slide cards in light theme
 
 ## 2.2.40 (2026-11-02)
 
