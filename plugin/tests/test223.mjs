@@ -173,6 +173,30 @@ assert.ok(sci3.children.some(c => c.other && c.label === 'Other' && c.size === 2
     assert.ok(kidsE.length === 3 && kidsE.every(k => /^Group \d$/.test(k.label)), 'only then "Group n": ' + kidsE.map(k => k.label));
 }
 
+// ── 10. big, varied groups: no single word is in a quarter of the articles, the group still gets a name from what is over-represented ──
+{
+    let seed = 21; const rnd = () => (seed = (seed * 16807) % 2147483647) / 2147483647;
+    const nGroups = 4, per = 60, n = nGroups * per;
+    const pool = Array.from({ length: 300 }, (_, i) => 'bg' + i);                         // words every article draws from, in every group
+    const papers = Array.from({ length: n }, (_, i) => ({ id: 'v' + i, tags: ['Wirtschaft'] }));
+    const vectors = {};
+    papers.forEach((p, i) => {
+        const g = i % nGroups, own = Array.from({ length: 90 }, (_, k) => `g${g}w${k}`);   // 90 words typical of the group, each article has ~12 of them
+        const t = new Set();
+        while (t.size < 12) t.add(own[Math.floor(rnd() * own.length)]);
+        while (t.size < 60) t.add(pool[Math.floor(rnd() * pool.length)]);
+        vectors[p.id] = { t: [...t].map(w => [w, 2]) };
+    });
+    const f = build(papers);
+    const kids = gs.topicClusters(f.nodes, f.links, { vectors }).clusters[0].children;
+    assert.ok(kids.length >= 3, 'the text divides it: ' + kids.map(k => k.label));
+    const strict = kids.map(k => Math.max(...Object.values([...k.articleIds].reduce((m, id) => { const g = Number(id.replace('article-v', '')) % nGroups; m[g] = (m[g] || 0) + 1; return m; }, {}))) / k.size);
+    assert.ok(strict.every(x => x >= 0.85), 'groups are the real ones');
+    assert.ok(kids.every(k => !/^Group/.test(k.label)), 'no "Group n" where the words say something: ' + kids.map(k => k.label));
+    assert.ok(kids.every(k => k.label.split(' · ').every(w => /^g\dw\d+$/.test(w))), 'named after words of the group, not after the background words: ' + kids.map(k => k.label));
+    assert.equal(new Set(kids.map(k => k.label)).size, kids.length, 'different names');
+}
+
 // ── 6. nothing in the logic is about a particular topic: renaming the tags (other words, other language) changes nothing but the names ──
 import fs from 'fs';
 const shape = (r) => r.clusters.map(c => [c.size, c.children.map(k => k.size).sort((a, b) => b - a)]).sort((a, b) => b[0] - a[0] || String(b[1]).localeCompare(String(a[1])));

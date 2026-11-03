@@ -264,6 +264,7 @@ function subdivide(cluster, { members, tagNode, links, subOtherLabel, groupLabel
     const parentName = new Set([String(cluster.label || '').toLowerCase(), ...[...umbrella].map(t => String(tagNode.get(t) ? tagNode.get(t).label : '').toLowerCase())]);
     const wordsOf = (a) => {
         const out = new Set();
+        if (vecOf) (vecOf(a) || []).forEach(([w]) => out.add(w));   // all the strongest terms of the article, not only its top few
         if (termsOf) termsOf(a).forEach(w => out.add(w));
         if (metaOf) tokenize((metaOf(a) || {}).title || '').forEach(w => out.add(w));
         return out;
@@ -273,20 +274,33 @@ function subdivide(cluster, { members, tagNode, links, subOtherLabel, groupLabel
     const taken = new Set();
     const nameOf = (g, idx) => {
         const k = g.length;
-        const cands = new Map();   // label → score
-        const offer = (label, c, df, bonus) => {
-            const p = c / k, lift = p / (df / total);
-            if (c < 2 || p < 0.25 || lift < 1.4 || parentName.has(label.toLowerCase())) return;
-            const score = p * Math.log(1 + lift) * bonus;
-            if (!(cands.get(label) >= score)) cands.set(label, score);
+        // A name must be typical of the group (share of its articles that have it) and set it apart (how much more often than in the cluster
+        // as a whole). In a big, varied group no single word is in a quarter of the articles, so if nothing passes the strict test, a looser one
+        // takes the words that are at least clearly over-represented: better than "Group 3".
+        const rankWith = (minShare, minLift, minZ) => {
+            const cands = new Map();   // label → score
+            const minCount = Math.max(2, Math.ceil(minShare * k));
+            const share = k / total;
+            const offer = (label, c, df, bonus) => {
+                const p = c / k, lift = p / (df / total);
+                // more often than chance would give a group of this size, by enough to be no accident (a rare word is in a group by luck now and then)
+                const expected = df * share, z = (c - expected) / Math.sqrt(Math.max(expected * (1 - share), 0.25));
+                if (c < minCount || p < minShare || lift < minLift || z < minZ || parentName.has(label.toLowerCase())) return;
+                const score = z * bonus;   // the most surely over-represented word first (not the most common one)
+                if (!(cands.get(label) >= score)) cands.set(label, score);
+            };
+            const inGroup = new Map();
+            g.forEach(a => own.get(a).forEach(t => inGroup.set(t, (inGroup.get(t) || 0) + 1)));
+            inGroup.forEach((c, t) => offer(String(tagNode.get(t).label), c, count.get(t), 1.25));   // an explicit tag is the best name there is
+            const inWords = new Map();
+            g.forEach(a => wordsOf(a).forEach(w => inWords.set(w, (inWords.get(w) || 0) + 1)));
+            inWords.forEach((c, w) => offer(w, c, wordDf.get(w), 1));
+            return [...cands.entries()].sort((x, y) => y[1] - x[1] || byText(x[0], y[0]));
         };
-        const inGroup = new Map();
-        g.forEach(a => own.get(a).forEach(t => inGroup.set(t, (inGroup.get(t) || 0) + 1)));
-        inGroup.forEach((c, t) => offer(String(tagNode.get(t).label), c, count.get(t), 1.25));   // an explicit tag is the best name there is
-        const inWords = new Map();
-        g.forEach(a => wordsOf(a).forEach(w => inWords.set(w, (inWords.get(w) || 0) + 1)));
-        inWords.forEach((c, w) => offer(w, c, wordDf.get(w), 1));
-        const ranked = [...cands.entries()].sort((x, y) => y[1] - x[1] || byText(x[0], y[0]));
+        // z ≥ 3.5 throughout: with hundreds of words to choose from, some pass a lower bar by luck (that is how a background word got a name)
+        let ranked = rankWith(0.25, 1.4, 3.5);
+        if (!ranked.length) ranked = rankWith(0.08, 1.5, 3.5);
+        if (!ranked.length) ranked = rankWith(0.04, 1.3, 3.5);
         const options = [];
         if (ranked.length) {
             const first = ranked[0][0];
