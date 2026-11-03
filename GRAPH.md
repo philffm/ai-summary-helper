@@ -83,6 +83,22 @@ The legend at the bottom right lists the ring styles that are actually present.
 
 Accessibility: cluster labels are buttons (Enter / Space), every state change is announced in the live region, reduced-motion turns the zoom transition off, and the list view stays the equivalent of the graph.
 
+## Does it clump, whatever the topic?
+
+The rules know no topics, only numbers (shares of articles, counts, similarity); a test renames the tags (other words, other script) and checks that the structure stays the same, and that no topic word appears in the logic. What the layout guarantees is that nothing piles up: circles never overlap. What it cannot guarantee is structure where there is **no signal**. Measured on 600 synthetic articles (largest circle = the biggest single group drawn, as a share of all articles; `scratchpad` stress script, not part of the test suite):
+
+| Archive | Tags only | Tags + text (background run done) |
+| --- | --- | --- |
+| 7 real areas, umbrella tag on 85 %, 25 % cross-tagged | 18 % | 16 % |
+| Two umbrella tags (90 % and 60 %) + 8 areas | 15 % | 15 % |
+| Zipf-distributed tags (a few common, many rare) | 18 % | 21 % |
+| Umbrella on everything + 20 random sub-tags | 28 % | 11 % |
+| Random tags, no structure at all | 49 % | 12 % |
+| **Only one tag on everything** | **100 %** | 21 % |
+| **No tags at all** | **100 %** | 25 % |
+
+So: with tags or with text there is structure to find; with neither (every article tagged the same and no text read yet, or no tags and no text) nothing can separate the articles, and they stay one circle. The text signal needs the background run (deep stage) to have read the saved articles. The "Everything else" cluster is split like any other.
+
 ## How articles are matched with each other
 
 Two separate things:

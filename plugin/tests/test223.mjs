@@ -83,4 +83,19 @@ const withRest = [...papers, { id: 'odd1', tags: ['science', 'oddity'] }, { id: 
 const wr = build(withRest);
 const sci3 = science(gs.topicClusters(wr.nodes, wr.links));
 assert.ok(sci3.children.some(c => c.other && c.label === 'Other' && c.size === 2), 'articles that fit no group are collected under "Other"');
+// ── 6. nothing in the logic is about a particular topic: renaming the tags (other words, other language) changes nothing but the names ──
+import fs from 'fs';
+const shape = (r) => r.clusters.map(c => [c.size, c.children.map(k => k.size).sort((a, b) => b - a)]).sort((a, b) => b[0] - a[0] || String(b[1]).localeCompare(String(a[1])));
+const rename = (list, prefix) => list.map(p => ({ ...p, tags: p.tags.map(t => prefix + t) }));
+for (const [label, set] of [['areas (science)', papers], ['archive-wide umbrella', big]]) {
+    const a = gs.topicClusters(...Object.values(build(set)));
+    for (const prefix of ['Kochen_', 'ご_', 'zzz_', '']) {
+        const b = gs.topicClusters(...Object.values(build(rename(set, prefix))));
+        assert.deepEqual(shape(b), shape(a), `${label}: the same structure whatever the tags are called (${prefix || 'unchanged'})`);
+    }
+}
+for (const f of ['graphStructure.js', 'graphSimilarity.js', 'graphSimilarityCache.js', 'graphMaturity.js']) {
+    const code = fs.readFileSync(new URL('../src/modules/' + f, import.meta.url), 'utf8').replace(/\/\/.*$|\/\*[\s\S]*?\*\//gm, '');
+    assert.ok(!/technik|technolog|\btech\b|science|wissenschaft|politik|klima|gesundheit/i.test(code), f + ' has no topic words in its logic');
+}
 console.log('subclusters ok');

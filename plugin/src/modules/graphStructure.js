@@ -28,6 +28,7 @@ export const SUB_MAX = 6;               // subtopics shown per cluster (the rest
 export const SUB_MIN_SIZE = 4;          // a group of fewer articles is not a subtopic
 const UMBRELLA_SHARE = 0.6;             // a tag on more than this share of the cluster's articles describes the cluster, not a part of it
 const MERGE_FACTOR = 0.3;              // two groups merge when their ties to each other are at least this fraction as dense as the looser group's own inside
+const TERM_NEIGHBOURS = 4;            // …each article is tied to this many others per shared term
 const TERM_TIE = 0.5;                  // weight of the typical terms two articles share (from the similarity cache): the signal when tags are rare or missing
 const SIM_WITH_TAGS = 0.4;             // weight of a similarity tie between two articles that both have tags of their own
 const TOP_UMBRELLA_SHARE = 0.35;        // a tag on more than this share of ALL articles (a big archive's "tech") joins nothing: the topics are what is left
@@ -131,11 +132,13 @@ function subdivide(cluster, { members, tagNode, links, subOtherLabel, groupLabel
     if (termsOf) {
         const df = new Map(), list = new Map();
         arts.forEach(a => { const t = [...new Set(termsOf(a))]; list.set(a, t); t.forEach(w => df.set(w, (df.get(w) || 0) + 1)); });
-        const cap = Math.min(Math.floor(total * 0.4), 40);
+        const cap = Math.floor(total * 0.4);
         const tpost = new Map();
         arts.forEach(a => list.get(a).forEach(w => { const n = df.get(w); if (n >= 2 && n <= cap) (tpost.get(w) || tpost.set(w, []).get(w)).push(a); }));
+        // Every article is tied to the next few that share a term (not to all of them: a term in 200 articles would mean 20,000 pairs). That keeps
+        // a big group connected, which is all label propagation needs, at a cost that grows with the number of articles, not its square.
         const tshared = new Map();
-        tpost.forEach(group => { for (let i = 0; i < group.length; i++) for (let j = i + 1; j < group.length; j++) { const k = group[i] + '\u0000' + group[j]; tshared.set(k, (tshared.get(k) || 0) + 1); } });
+        tpost.forEach(group => { for (let i = 0; i < group.length; i++) for (let step = 1; step <= TERM_NEIGHBOURS && step < group.length; step++) { const j = (i + step) % group.length; const [x, y] = group[i] < group[j] ? [group[i], group[j]] : [group[j], group[i]]; const k = x + '\u0000' + y; tshared.set(k, (tshared.get(k) || 0) + 1); } });
         tshared.forEach((n, k) => { const [x, y] = k.split('\u0000'); add(x, y, TERM_TIE * n / Math.sqrt(list.get(x).length * list.get(y).length)); });
     }
 
@@ -294,7 +297,8 @@ export function topicClusters(nodes, links, { otherLabel = 'Everything else', su
     if (subclusters) {
         const dataId = new Map(nodes.filter(n => n.group === 'article').map(n => [n.id, n.data && n.data.id]));
         kept.forEach(c => {
-            c.children = c.other || c.size < SUB_MIN_ARTICLES ? [] : subdivide(c, { members, tagNode, links, subOtherLabel, groupLabel, termsOf: terms ? (aid) => terms[dataId.get(aid)] || [] : null });
+            // The "everything else" cluster is looked at too: it is where articles with no usable tag pile up, and text is all that can tell them apart.
+            c.children = c.size < SUB_MIN_ARTICLES ? [] : subdivide(c, { members, tagNode, links, subOtherLabel, groupLabel, termsOf: terms ? (aid) => terms[dataId.get(aid)] || [] : null });
             c.children.forEach(ch => ch.articleIds.forEach(a => subOfArticle.set(a, ch.id)));
         });
     } else kept.forEach(c => { c.children = []; });
