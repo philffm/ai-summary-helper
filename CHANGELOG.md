@@ -7,6 +7,8 @@ Commit history has the details: <https://github.com/philffm/ai-summary-helper/co
 
 #### Added
 
+- Tag naming sends each tag's language and asks once more when a name comes back untranslated; a tag in the UI language is its own UI name. Learned names can be tidied up (duplicates merged, untranslated ones named again) or all forgotten
+- Topic page: "Brief me" shows the live status card (steps, model, seconds waited, the text as it is written, Cancel) and, under the answer, how many summaries, which model and how long it took
 - Tag naming (graph): a progress bar over all batches, every batch listed as it is saved, editable rows (name, translation, broader topics) with Skip, and "Save and check the next 40" to check each batch instead of naming the rest unchecked
 - Settings → On-device tools → Learned tag names: search, rename, change broader topics or forget a learned name after saving
 - Tag naming also asks for up to two broader topics per tag ("AI in medicine": AI, medicine), kept in the topic lexicon, not as tags; the graph uses them as weak ties, so a rare, specific tag sits next to what it belongs to. Named tags without broader topics can be asked again without changing their name

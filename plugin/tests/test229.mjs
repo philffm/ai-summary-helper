@@ -34,7 +34,7 @@ const sent = [];
 ai.setAiTransport(async ({ user, service }) => {
     sent.push({ user, service });
     const lines = user.split('\n');
-    return lines.map((l, k) => { const t = l.replace(/^\[\d+\]\s*/, ''); return `${k + 1}:${t === 'KI-Regulierung' ? 'AI regulation' : t.replace(/^Topic /, 'subject ')}${t === 'Chipfertigung' ? ' = Chipfertigung' : ''}`; }).join(' | ');
+    return lines.map((l, k) => { const t = l.replace(/^\[\d+\]\s*/, '').replace(/\s*\((?:German|English)\)$/, ''); return `${k + 1}:${t === 'KI-Regulierung' ? 'AI regulation' : t.replace(/^Topic /, 'subject ')}${t === 'Chipfertigung' ? ' = Chipfertigung' : ''}`; }).join(' | ');
 });
 const box = d.createElement('div'); d.body.append(box);
 let saves = 0, doneWith = null;

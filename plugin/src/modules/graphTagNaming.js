@@ -37,6 +37,23 @@ export function namingWork(articles) {
     return { unnamed, broaden: tagsToBroaden(articles).filter(t => !seen.has(t)) };
 }
 
+/**
+ * The language each tag is written in: the summary language of most of its articles (the last language mark, "🌐 de"). Tags are
+ * written in the summary language, so this tells the model which way to translate. Older articles without marks say nothing.
+ */
+export function tagLanguagesOf(articles) {
+    const votes = new Map();
+    (articles || []).forEach(a => {
+        const marks = (a && a.tags || []).filter(isLanguageTag);
+        if (!marks.length) return;
+        const lang = String(marks[marks.length - 1]).replace(/^🌐\s*/, '').trim().toLowerCase();
+        (a.tags || []).forEach(t => { if (isMark(t)) return; const v = votes.get(t) || new Map(); v.set(lang, (v.get(lang) || 0) + 1); votes.set(t, v); });
+    });
+    const out = new Map();
+    votes.forEach((v, t) => { const all = [...v.values()].reduce((x, y) => x + y, 0); const [lang, c] = [...v].sort((x, y) => y[1] - x[1])[0]; if (c * 2 > all) out.set(t, lang); });
+    return out;
+}
+
 /** Tags written in English: most of their articles have an English summary (the last language mark, see content/finalize.js). */
 export function englishTagsOf(articles) {
     const votes = new Map();
@@ -93,6 +110,7 @@ export async function openTagNamingPage(container, { articles, onDone = () => {}
     const isNew = new Set(unnamed);
     const vocab = broaderVocabOf(articles);
     const english = englishTagsOf(articles);   // their English name must be themselves (keepLiteral in feedAi.js)
+    const langs = tagLanguagesOf(articles);    // sent with each tag, so a German tag is translated, not repeated
     const page = el('div', 'graph-cluster-page graph-naming-page');
     const bar = el('div', 'graph-cluster-bar');
     const back = el('button', 'graph-cluster-back', '←'); back.type = 'button'; back.setAttribute('aria-label', T('Back'));
@@ -121,7 +139,25 @@ export async function openTagNamingPage(container, { articles, onDone = () => {}
     actions.append(tryBtn, saveAll, saveNext, saveFirst, stop, undo);
     const editHint = el('p', 'graph-preview-date graph-naming-edit-hint', T('You can change a name or its broader topics in the row, or skip a row: a skipped tag is not saved and is asked again next time. After saving, the names stay editable in Settings → On-device tools → Learned tag names.'));
     editHint.hidden = true;
-    body.append(what, why, actions, prog, status, editHint, preview);
+    // names learned earlier that look wrong: one topic under two names, or a tag just repeated in its own language
+    const tidyMod = deps.tidy || await import('./lexiconEditor.js');
+    const plan = tidyMod.tidyPlan(langs);
+    const tidyRow = el('div', 'graph-naming-tidy');
+    if (plan.duplicates.length || plan.untranslated.length) {
+        const txt = [plan.duplicates.length ? TN(plan.duplicates.length, '{n} learned name is a duplicate', '{n} learned names are duplicates') : '',
+            plan.untranslated.length ? TN(plan.untranslated.length, '{n} is not translated', '{n} are not translated') : ''].filter(Boolean).join(' · ');
+        const tidyBtn = mk('button-secondary graph-naming-tidy-btn', T('Tidy up first'));
+        tidyBtn.title = T('Merge the duplicates and forget the untranslated names, so they are named again here');
+        tidyRow.append(el('span', 'graph-preview-date', txt), tidyBtn);
+        tidyBtn.addEventListener('click', async (e) => {
+            e.stopPropagation(); tidyBtn.disabled = true;
+            tidyMod.tidyLexicon(langs); await save();
+            onDone(0);
+            close();
+            await openTagNamingPage(container, { articles, onDone }, deps);   // the counts change: start over with what is left
+        });
+    } else tidyRow.hidden = true;
+    body.append(what, why, tidyRow, actions, prog, status, editHint, preview);
     page.append(bar, body);
     let close = () => {};
     let ctl = null;
@@ -160,7 +196,11 @@ export async function openTagNamingPage(container, { articles, onDone = () => {}
         enIn.addEventListener('input', () => { if (enIn.value.trim()) skip.checked = false; li.classList.toggle('is-skipped', skip.checked); });
         skip.addEventListener('change', () => li.classList.toggle('is-skipped', skip.checked));
         li.append(tag, el('span', 'graph-naming-arrow', '→'));
-        if (fresh) { li.append(enIn); if (code !== 'en') li.append(uiIn); if (n && n.kept) li.append(el('span', 'graph-naming-note', T('(literal; the model had a broader word)'))); }
+        if (fresh) {
+            li.append(enIn); if (code !== 'en') li.append(uiIn);
+            if (n && n.kept) li.append(el('span', 'graph-naming-note', T('(literal; the model had a broader word)')));
+            if (n && n.same) { li.classList.add('is-same'); li.append(el('span', 'graph-naming-note', n.same === 'en' ? T('(not translated, even when asked again: a name? Change it if not)') : T('(no translation in your language: change it if there is one)'))); }
+        }
         else li.append(el('span', 'graph-naming-en', T('(name kept)')));
         const brWrap = el('span', 'graph-naming-broader-wrap'); brWrap.append(el('span', 'graph-naming-broader-lbl', T('broader:')), brIn);
         li.append(skipLbl, brWrap);
@@ -185,7 +225,7 @@ export async function openTagNamingPage(container, { articles, onDone = () => {}
         return { li, read, freeze };
     };
     const ask = async (batch) => {
-        const r = await ai.nameTags(batch, { signal: ctl.signal, service: route.service, broaderVocab: vocab, english });
+        const r = await ai.nameTags(batch, { signal: ctl.signal, service: route.service, broaderVocab: vocab, english, langs });
         return { batch, code: r.code, names: r.names };
     };
     // a named tag only gets broader topics, a new one its name too; skipped rows are left out entirely

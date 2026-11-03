@@ -54,13 +54,22 @@ Object.entries(CONCEPTS).forEach(([id, byLocale]) => Object.values(byLocale).for
 // '>' = broader topics (at most 2, English, normalized): what the topic belongs to. Not spellings, never shown as a tag; the graph
 // uses them as weak ties so a rare, specific tag sits next to the broader topics it is part of.
 const BROADER = '>';
+// '!' = checked as a name: the model kept the tag as it is twice ("Nasdaq" in a German article), so a tidy-up does not ask again
+const NAME_MARK = '!';
+/** Remember that a learned topic is a name that stays as it is in every language. */
+export function lexiconMarkName(en) {
+    const key = normalizeTopic(en), cur = LEX[key];
+    if (!cur || cur[NAME_MARK]) return false;
+    cur[NAME_MARK] = true; return true;
+}
+export const isMarkedName = (key) => !!(LEX[key] && LEX[key][NAME_MARK]);
 let LEX = {};                    // englishKey -> { locale: label }
 let LEX_REV = new Map();         // normalized label (any language) / englishKey -> englishKey
 const buildRev = () => {
     LEX_REV = new Map();
     for (const [key, labels] of Object.entries(LEX)) {
         if (!LEX_REV.has(key)) LEX_REV.set(key, key);
-        Object.entries(labels).filter(([k]) => k !== BROADER).flatMap(([, v]) => [].concat(v)).forEach((l) => { const n = normalizeTopic(l); if (n && !isLanguageTag(l) && !LEX_REV.has(n)) LEX_REV.set(n, key); });   // '*' holds the spellings seen so far
+        Object.entries(labels).filter(([k]) => k !== BROADER && k !== NAME_MARK).flatMap(([, v]) => [].concat(v)).forEach((l) => { const n = normalizeTopic(l); if (n && !isLanguageTag(l) && !LEX_REV.has(n)) LEX_REV.set(n, key); });   // '*' holds the spellings seen so far
     }
 };
 export function setLexicon(obj) {

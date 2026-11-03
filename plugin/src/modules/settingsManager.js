@@ -1269,7 +1269,9 @@ function initLearnedNames() {
         if (!open) return;
         await loadLexicon();
         const { mountLexiconEditor } = await import('./lexiconEditor.js');
-        if (!editor) editor = mountLexiconEditor(box, { save: saveLexicon, onChange: () => document.dispatchEvent(new CustomEvent('aish:lexiconChanged')) });
+        const langs = async () => { const { tagLanguagesOf } = await import('./graphTagNaming.js'); return tagLanguagesOf(await StorageManager.getArticlesIndex({ includeArchived: true })); };
+        const confirm = (body) => confirmDestructive({ title: T('Forget all learned names?'), body, confirmLabel: T('Forget all') });
+        if (!editor) editor = mountLexiconEditor(box, { save: saveLexicon, langs, confirm, onChange: () => document.dispatchEvent(new CustomEvent('aish:lexiconChanged')) });
         else editor.render();
     });
 }

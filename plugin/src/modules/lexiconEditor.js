@@ -2,7 +2,7 @@
 // its broader topics after saving, or forget an entry (its tags then count as unnamed again and can be named anew).
 // Only the lexicon changes; articles keep their tags.
 import { T, TN } from './feedI18n.js';
-import { getLexicon, setLexicon, normalizeTopic, filterBroader } from './topicConcepts.js';
+import { getLexicon, setLexicon, normalizeTopic, filterBroader, humanizeTag, isMarkedName } from './topicConcepts.js';
 
 const SHOW = 60;   // rows shown at once; more on request (an archive can have well over a thousand)
 
@@ -60,16 +60,88 @@ export function forgetLearned(key) {
     return true;
 }
 
+const base = (k) => String(k).split(/[-_]/)[0].toLowerCase();
+/**
+ * What a tidy-up would do, without changing anything (`langs`: tag → language code, see graphTagNaming.js tagLanguagesOf):
+ *  - duplicates: [from, into] pairs of entries that are one topic: a name cut at 24 characters by an older version
+ *    ("covert influence operati" → "covert influence operations"), singular and plural, or written with and without hyphens/spaces;
+ *  - untranslated: entries whose English name is just a non-English tag repeated ("wohnkosten" for the German "Wohnkosten").
+ *    Forgetting them lets the naming ask again, with the tag's language. An entry the model kept twice is a name and stays.
+ */
+export function tidyPlan(langs = new Map(), lex = getLexicon()) {
+    const keys = Object.keys(lex || {});
+    const set = new Set(keys);
+    const squash = (k) => k.replace(/[-\s]+/g, '');
+    const bySquash = new Map();
+    keys.forEach(k => { const q = squash(k); if (!bySquash.has(q)) bySquash.set(q, []); bySquash.get(q).push(k); });
+    const size = (k) => ((lex[k] && lex[k]['*']) || []).length;
+    const duplicates = [], gone = new Set();
+    const pair = (from, into) => { if (from === into || gone.has(from) || gone.has(into)) return; duplicates.push([from, into]); gone.add(from); };
+    keys.forEach(k => {
+        if (k.length === 24) { const longer = keys.filter(o => o.length > 24 && o.startsWith(k)); if (longer.length === 1) pair(k, longer[0]); }
+    });
+    keys.forEach(k => {
+        for (const p of [k + 's', k + 'es']) if (set.has(p)) pair(size(p) > size(k) ? k : p, size(p) > size(k) ? p : k);   // into the one with more spellings, else the singular
+    });
+    bySquash.forEach(list => { if (list.length < 2) return; const into = list.slice().sort((a, b) => size(b) - size(a) || b.length - a.length)[0]; list.forEach(k => pair(k, into)); });
+    const untranslated = keys.filter(k => {
+        if (gone.has(k) || isMarkedName(k)) return false;
+        const spellings = (lex[k] && lex[k]['*']) || [];
+        return spellings.some(sp => { const l = langs.get(sp); return l && base(l) !== 'en' && normalizeTopic(humanizeTag(sp)) === k; });
+    });
+    return { duplicates, untranslated };
+}
+
+/** Do the tidy-up: merge the duplicates, forget the untranslated entries (asked again by the naming). Returns the counts. */
+export function tidyLexicon(langs = new Map()) {
+    const { duplicates, untranslated } = tidyPlan(langs);
+    let merged = 0, reasked = 0;
+    duplicates.forEach(([from, into]) => { const lex = getLexicon(); if (lex[from] && lex[into] && renameLearned(from, lex[into].en || into)) merged++; });
+    untranslated.forEach(k => { if (forgetLearned(k)) reasked++; });
+    return { merged, reasked };
+}
+
+/** Forget every learned name: all tags are unnamed again and can be named anew. Returns how many were forgotten. */
+export function resetLexicon() {
+    const n = Object.keys(getLexicon() || {}).length;
+    setLexicon({});
+    return n;
+}
+
 /** The list in the settings. deps: { save, onChange } (save writes the lexicon, onChange tells the open pages). */
-export function mountLexiconEditor(box, { save = async () => {}, onChange = () => {} } = {}) {
+export function mountLexiconEditor(box, { save = async () => {}, onChange = () => {}, langs = async () => new Map(), confirm = (m) => window.confirm(m) } = {}) {
     box.textContent = '';
+    const tools = document.createElement('div'); tools.className = 'lexicon-tools';
+    const tidy = document.createElement('button'); tidy.type = 'button'; tidy.className = 'button-secondary btn-sm lexicon-tidy'; tidy.textContent = T('Tidy up');
+    tidy.title = T('Merge names that are one topic (cut, singular/plural, hyphens) and forget untranslated ones, so they are named again');
+    const reset = document.createElement('button'); reset.type = 'button'; reset.className = 'button-secondary btn-sm lexicon-reset'; reset.textContent = T('Forget all');
+    const said = document.createElement('p'); said.className = 'settings-card-note lexicon-said'; said.setAttribute('aria-live', 'polite');
+    tools.append(tidy, reset);
+    tidy.addEventListener('click', async () => {
+        tidy.disabled = true;
+        try {
+            const r = tidyLexicon(await langs());
+            if (r.merged || r.reasked) await changed();
+            said.textContent = r.merged || r.reasked
+                ? T('{a} merged, {b} forgotten to be named again (Graph → Name tags with AI).', { a: r.merged, b: r.reasked })
+                : T('Nothing to tidy up.');
+            render();
+        } finally { tidy.disabled = false; }
+    });
+    reset.addEventListener('click', async () => {
+        const n = Object.keys(getLexicon() || {}).length;
+        if (!n || !(await confirm(TN(n, 'Forget {n} learned name? Your tags stay on your articles; they can be named again in the graph.', 'Forget all {n} learned names? Your tags stay on your articles; they can be named again in the graph.')))) return;
+        resetLexicon(); await changed();
+        said.textContent = TN(n, '{n} name forgotten.', '{n} names forgotten.');
+        render();
+    });
     const search = document.createElement('input');
     search.type = 'search'; search.className = 'lexicon-search'; search.placeholder = T('Search learned names');
     search.setAttribute('aria-label', T('Search learned names'));
     const info = document.createElement('p'); info.className = 'settings-card-note lexicon-info';
     const list = document.createElement('ul'); list.className = 'lexicon-list';
     const more = document.createElement('button'); more.type = 'button'; more.className = 'button-secondary btn-sm lexicon-more';
-    box.append(search, info, list, more);
+    box.append(tools, said, search, info, list, more);
     let shown = SHOW;
     const changed = async () => { await save(); onChange(); };
     const row = (e) => {

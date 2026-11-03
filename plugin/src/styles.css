@@ -4739,3 +4739,7 @@ circle.graph-read-dim, text.graph-read-dim, .graph-blob.graph-read-dim { opacity
 .lexicon-broader { flex-basis: 100%; font-size: var(--fs-xs); }
 .lexicon-more { align-self: flex-start; }
 .lexicon-more[hidden] { display: none; }
+.graph-naming-tidy { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; }
+.graph-naming-tidy[hidden] { display: none; }
+.graph-naming-row.is-same .graph-naming-en-input { border-color: var(--warning, #c98a00); }
+.lexicon-tools { display: flex; gap: 6px; flex-wrap: wrap; }
