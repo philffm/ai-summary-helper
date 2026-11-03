@@ -37,7 +37,7 @@
 
 import { cosineSim } from './localSearch.js';
 import { T, TN, uiLocale } from './feedI18n.js';
-import { conceptKey, isKnownTopic, topicLabel } from './topicConcepts.js';
+import { conceptKey, isKnownTopic, isLanguageTag, topicLabel } from './topicConcepts.js';
 import { fetchAnnotationsForArticle, escapeHtml } from './annotationExporter.js';
 import { setIconLabel } from './icons.js';
 import { paperState } from './paperInfo.js';
@@ -152,6 +152,7 @@ const stamp = (a) => { const t = new Date(a.lastOpened || a.timestamp).getTime()
 export function findGaps(articles, { now = Date.now(), days = GAP_DAYS, maxArticles = GAP_MAX_ARTICLES, cap = GAP_CAP } = {}) {
     const byTag = new Map();
     (articles || []).forEach(a => (a.tags || []).forEach(tag => {
+        if (isLanguageTag(tag)) return;   // "🌐 de" marks the language, it is not a topic
         const id = tagIdOf(tag);
         let e = byTag.get(id);
         if (!e) byTag.set(id, e = { id, label: tagLabelOf(tag), articles: [] });
@@ -227,6 +228,7 @@ function buildGraphData(articles, minTagDegree = MIN_TAG_DEGREE_DEFAULT, similar
 
     articles.forEach(article => {
         (article.tags || []).forEach(tag => {
+            if (isLanguageTag(tag)) return;   // language marks are no nodes, no links, no criterion
             const tagId = tagIdOf(tag);
             tagDegree.set(tagId, (tagDegree.get(tagId) || 0) + 1);
             tagLabelById.set(tagId, tagLabelOf(tag));
@@ -249,6 +251,7 @@ function buildGraphData(articles, minTagDegree = MIN_TAG_DEGREE_DEFAULT, similar
 
     articles.forEach(article => {
         const articleTags = (article.tags || []).filter(tag => {
+            if (isLanguageTag(tag)) return false;
             const tagId = tagIdOf(tag);
             return allowedTagIds.has(tagId);
         });
@@ -1847,7 +1850,7 @@ function showPreviewCard(container, article) {
     const title = article.title || (article.content && article.content.split('\n')[0]) || T('Untitled');
     const summaryPlain = (new DOMParser().parseFromString(article.summary || '', 'text/html').body.textContent || '').trim();
     const date = article.timestamp ? new Date(article.timestamp).toLocaleDateString() : '';
-    const tags = (article.tags || []).map(t => `<span class="tag-chip">${escapeHtml(t)}</span>`).join('');
+    const tags = (article.tags || []).filter(t => !isLanguageTag(t)).map(t => `<span class="tag-chip">${escapeHtml(t)}</span>`).join('');
     const clip = (str, n) => str.length > n ? str.slice(0, n) + '…' : str;
 
     const card = document.createElement('div');
@@ -1889,3 +1892,4 @@ function showPreviewCard(container, article) {
     containerEl.appendChild(card);
     renderPreviewHighlights(card, article);
 }
+export const __test_buildGraphData = (...args) => buildGraphData(...args);

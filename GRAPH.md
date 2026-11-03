@@ -36,7 +36,7 @@ Topics uses `d3.pack`: clusters, their subtopics and the articles are nested cir
 
 ### Language marks are not topics
 
-The language tags (`🌐 de`: the page's language, plus `🌐 en` when the summary is in another one) are marks, not topics. They take no part in clustering (a German article about chips belongs with the other chip articles, not with the German ones), they are never sent to the AI to be "named", and nothing can be learned for them: `isLanguageTag()` in `topicConcepts.js` guards the lexicon, `unknownTags()` and the graph. A lexicon an older run polluted (where "🌐 de" had become a spelling of Germany) is cleaned when it is loaded.
+The language tags (`🌐 de`: the page's language, plus `🌐 en` when the summary is in another one) are marks, not topics. They are not in the graph at all: no tag node, no link, no cluster, no gap, no criterion for subtopics or for similarity, not in the preview card's tag chips, not in the hub note's topics and not a reason for two notes to be "related" in the Markdown export, and `related_articles` does not count them as shared tags (a German article about chips belongs with the other chip articles, not with the German ones). They are never sent to the AI to be "named", and nothing can be learned for them: `isLanguageTag()` in `topicConcepts.js` guards the lexicon, `unknownTags()` and the graph. A lexicon an older run polluted (where "🌐 de" had become a spelling of Germany) is cleaned when it is loaded.
 
 ### Archive-wide umbrella tags
 

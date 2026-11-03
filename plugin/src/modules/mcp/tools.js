@@ -14,6 +14,7 @@ import { toArticleJson } from '../articleFormat.js';
 import { pageKeyForUrl } from '../pageKey.js';
 import { BRAND_GUIDE } from './brand.js';
 import { SIM_VERSION, buildEntry, fingerprintOf, similarTo } from '../graphSimilarity.js';
+import { isLanguageTag } from '../topicConcepts.js';
 
 export class ToolError extends Error {
     constructor(code, message) { super(message); this.code = code; }
@@ -139,7 +140,7 @@ export async function related_articles(args, { storage, excludeTag } = {}) {
         items[a.id] = it && it.f === fingerprintOf(a) ? it : buildEntry({ title: a.title, tags: a.tags, summary: a.summary }, a, false);
     }
     const byId = new Map(index.map((a) => [a.id, a]));
-    const mine = new Set((meta.tags || []).map((t) => String(t).toLowerCase()));
+    const mine = new Set((meta.tags || []).filter((t) => !isLanguageTag(t)).map((t) => String(t).toLowerCase()));   // sharing a language is not sharing a topic
     return (await similarTo(items, id, { k: limit })).map(([oid, score]) => {
         const a = byId.get(oid);
         return { ...toResultRow(a), score, shared_tags: (a.tags || []).filter((t) => mine.has(String(t).toLowerCase())) };

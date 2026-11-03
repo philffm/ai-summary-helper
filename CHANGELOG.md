@@ -19,7 +19,7 @@ Commit history has the details: <https://github.com/philffm/ai-summary-helper/co
 
 #### Fixed
 
-- Language tags ("🌐 de", "🌐 en") are no longer sent to the AI as topics, so they stop turning into "Deutschland" / "Germany"; a lexicon an older run already polluted heals itself on load. Language tags also no longer form graph clusters
+- Language tags ("🌐 de", "🌐 en") are no longer sent to the AI as topics, so they stop turning into "Deutschland" / "Germany"; a lexicon an older run already polluted heals itself on load. Language tags are also left out of the graph (no node, link, cluster or gap), of the similarity, of `related_articles`' shared tags and of the Markdown export's "Related" and hub topics
 
 #### Changed
 

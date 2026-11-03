@@ -4,6 +4,7 @@ import { qaMarkdown } from './conversation.js';
 import { T } from './feedI18n.js';
 import { toArticleJson, assignFileBases, frontMatter, htmlToMarkdown, safeFileName } from './articleFormat.js';
 import { maturityOf } from './graphMaturity.js';
+import { isLanguageTag } from './topicConcepts.js';
 
 export { htmlToMarkdown, safeFileName };
 // markdownArchive.js
@@ -106,7 +107,7 @@ export function hubToMarkdown({ title, items, nameOf, briefingName = '', subtopi
     items.forEach(it => groups[maturityOf(it.article, it.notes || 0)].push(it.article));
     const unread = items.filter(it => !it.article.readAt).length;
     const tags = new Map();
-    items.forEach(it => new Set((it.article.tags || []).map(t => String(t))).forEach(t => tags.set(t, (tags.get(t) || 0) + 1)));
+    items.forEach(it => new Set((it.article.tags || []).filter(t => !isLanguageTag(t)).map(t => String(t))).forEach(t => tags.set(t, (tags.get(t) || 0) + 1)));
     const line = (a) => `- ${link(a)}${[host(a.url), when(a)].filter(Boolean).length ? ' · ' + [host(a.url), when(a)].filter(Boolean).join(' · ') : ''}${a.readAt ? '' : ' 🆕'}`;
     const section = (heading, list) => (list.length ? [`## ${heading} (${list.length})`, '', ...list.sort((x, y) => String(y.timestamp).localeCompare(String(x.timestamp))).map(line), ''] : []);
     const out = [
@@ -137,7 +138,7 @@ export async function buildArchiveFiles({ onProgress, ids = null, briefing = nul
 
     const names = assignFileBases(everything);   // stable: the same article keeps its file name when others are added
     const byTag = new Map();
-    for (const a of everything) for (const t of new Set((a.tags || []).map(x => String(x).toLowerCase()))) { if (!byTag.has(t)) byTag.set(t, []); byTag.get(t).push(a.id); }
+    for (const a of everything) for (const t of new Set((a.tags || []).filter(x => !isLanguageTag(x)).map(x => String(x).toLowerCase()))) { if (!byTag.has(t)) byTag.set(t, []); byTag.get(t).push(a.id); }
 
     const files = [];
     for (let i = 0; i < list.length; i += BATCH) {
@@ -147,7 +148,7 @@ export async function buildArchiveFiles({ onProgress, ids = null, briefing = nul
             const rec = recs[articleRecKey(a.id)] || {};
             const full = { ...a, ...rec };
             const score = new Map();
-            for (const t of new Set((a.tags || []).map(x => String(x).toLowerCase()))) for (const id of byTag.get(t) || []) if (id !== a.id) score.set(id, (score.get(id) || 0) + 1);
+            for (const t of new Set((a.tags || []).filter(x => !isLanguageTag(x)).map(x => String(x).toLowerCase()))) for (const id of byTag.get(t) || []) if (id !== a.id) score.set(id, (score.get(id) || 0) + 1);
             const related = [...score.entries()].sort((x, y) => y[1] - x[1]).slice(0, 5).map(([id]) => names.get(id));
             const text = articleToMarkdown(full, {
                 highlights: hlByUrl.get(a.url ? pageKeyForUrl(a.url) : '') || [],

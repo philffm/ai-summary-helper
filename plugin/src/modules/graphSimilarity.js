@@ -9,6 +9,7 @@
 //   neighbours()   all entries → each article's most similar others (inverted index, pruned vectors)
 //   signature()    short hash of the entries; tells the cache whether its neighbours are still current
 import { STOPWORDS } from './textUtils.js';
+import { isLanguageTag } from './topicConcepts.js';
 
 export const SIM_VERSION = 1;
 export const TERMS_KEPT = 100;      // strongest terms stored per article
@@ -37,7 +38,7 @@ export function tokenize(text) {
 
 /** Changes whenever what the vector is built from changes (title, tags, summary, text length). Cheap: no text needed. */
 export function fingerprintOf(a) {
-    return [a.timestamp || '', a.contentWordCount || 0, String(a.summary || '').length, String(a.title || '').length, (a.tags || []).join('|')].join(':');
+    return [a.timestamp || '', a.contentWordCount || 0, String(a.summary || '').length, String(a.title || '').length, (a.tags || []).filter(t => !isLanguageTag(t)).join('|')].join(':');
 }
 
 /** @param {{title?, tags?, summary?, content?}} fields  @param {object} meta the index entry (for the fingerprint) @param {boolean} full text included */
@@ -45,7 +46,7 @@ export function buildEntry(fields, meta, full) {
     const tf = new Map();
     const add = (text, weight) => { for (const t of tokenize(text)) tf.set(t, (tf.get(t) || 0) + weight); };
     add(fields.title, W.title);
-    add((fields.tags || []).join(' '), W.tags);
+    add((fields.tags || []).filter(t => !isLanguageTag(t)).join(' '), W.tags);   // a language mark says nothing about what an article is about
     add(fields.summary, W.summary);
     if (full && fields.content) add(String(fields.content).slice(0, CONTENT_CAP), W.content);
     const t = [...tf.entries()].sort((a, b) => b[1] - a[1] || (a[0] < b[0] ? -1 : 1)).slice(0, TERMS_KEPT);
