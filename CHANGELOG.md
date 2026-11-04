@@ -5,6 +5,10 @@ Commit history has the details: <https://github.com/philffm/ai-summary-helper/co
 
 ## Unreleased
 
+#### Changed
+
+- Feeds graph groups items by what they are about, not by source: each item gets topic words from its headline and teaser (plus its AI category), shared with other items, instead of its feed's name and tags. Words of a feed's own name are no topic, so the same story from different feeds lands in one cluster
+
 ## 2.2.41 (2026-11-03)
 
 #### Added

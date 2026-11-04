@@ -45,6 +45,7 @@ import { subTitle, hash, safeHttpUrl, normalizeInputUrl, timeAgo } from './feedU
 import { parseFeed, opmlXml } from './feedParse.js';
 import { saveFeedBodies, pruneFeedBodies } from './feedBodies.js';
 import { stackItems } from './feedStacks.js';
+import { topicWords } from './feedTopics.js';
 import { conceptKey, topicLabel } from './topicConcepts.js';
 import { loadLexicon, saveLexicon } from './topicLexicon.js';
 import { icon, setLabel, stripEmoji } from './icons.js';
@@ -897,6 +898,15 @@ function feedIndex() {
     searchCache = { ref: items, len: items.length, rated, idx: buildIndex(arts), arts, stampOf };
     return searchCache;
 }
+// The graph's own view of the items: what each is ABOUT (AI category + words of its headline and teaser), not where it comes from.
+// The source's name and tags stay out, so the graph does not fall into one cluster per feed; the search index above keeps them.
+function graphInput() {
+    const c = feedIndex();
+    if (c.graph) return c.graph;
+    const words = topicWords(c.arts, { skip: subs.map(subTitle) });
+    const arts = c.arts.map(a => ({ ...a, tags: [...(a._item.cat ? [a._item.cat] : []), ...(words.get(a.timestamp) || [])] }));
+    return (c.graph = { arts, idx: buildIndex(arts) });
+}
 function applySearch(list) {
     const q = searchQuery.trim();
     if (!q || !list.length) return list;
@@ -1091,7 +1101,7 @@ async function renderGraphView() {
     if (sig === graphSig && box.childElementCount) return;
     graphSig = sig;
     if (!all.length) { box.replaceChildren(el('p', 'feed-muted feed-ins-empty', T('Nothing matches these filters.'))); return; }
-    const c = feedIndex(); const byId = new Map(c.arts.map(a => [a._item.id, a]));
+    const c = graphInput(); const byId = new Map(c.arts.map(a => [a._item.id, a]));
     const arts = all.slice(0, GRAPH_MAX).map(i => byId.get(i.id)).filter(Boolean);
     const token = ++graphToken;
     box.replaceChildren(el('p', 'feed-muted feed-ins-empty', T('Loading…')));
