@@ -230,6 +230,106 @@
      "tier": "semantic",
      "value": "#ffffff"
     },
+    "--focus-ring": {
+     "tier": "semantic",
+     "value": "#2563eb"
+    },
+    "--focus-ring-width": {
+     "tier": "semantic",
+     "value": "2px"
+    },
+    "--focus-ring-offset": {
+     "tier": "semantic",
+     "value": "2px"
+    },
+    "--focus-ring-inset": {
+     "tier": "semantic",
+     "value": "-2px"
+    },
+    "--duration-fast": {
+     "tier": "semantic",
+     "value": "150ms"
+    },
+    "--duration-base": {
+     "tier": "semantic",
+     "value": "200ms"
+    },
+    "--duration-slow": {
+     "tier": "semantic",
+     "value": "300ms"
+    },
+    "--duration-slower": {
+     "tier": "semantic",
+     "value": "400ms"
+    },
+    "--duration-screen": {
+     "tier": "semantic",
+     "value": "350ms"
+    },
+    "--duration-reveal": {
+     "tier": "semantic",
+     "value": "500ms"
+    },
+    "--easing-standard": {
+     "tier": "semantic",
+     "value": "cubic-bezier(0.25, 0.1, 0.25, 1)"
+    },
+    "--easing-decelerate": {
+     "tier": "semantic",
+     "value": "cubic-bezier(0, 0, 0.58, 1)"
+    },
+    "--easing-accelerate": {
+     "tier": "semantic",
+     "value": "cubic-bezier(0.42, 0, 1, 1)"
+    },
+    "--easing-in-out": {
+     "tier": "semantic",
+     "value": "cubic-bezier(0.42, 0, 0.58, 1)"
+    },
+    "--easing-emphasized": {
+     "tier": "semantic",
+     "value": "cubic-bezier(0.2, 0.8, 0.2, 1)"
+    },
+    "--easing-spring": {
+     "tier": "semantic",
+     "value": "cubic-bezier(0.34, 1.56, 0.64, 1)"
+    },
+    "--easing-screen": {
+     "tier": "semantic",
+     "value": "cubic-bezier(0.4, 0, 0.2, 1)"
+    },
+    "--bp-narrow": {
+     "tier": "semantic",
+     "value": "420px"
+    },
+    "--bp-toolbar-compact": {
+     "tier": "semantic",
+     "value": "440px"
+    },
+    "--bp-popup": {
+     "tier": "semantic",
+     "value": "480px"
+    },
+    "--bp-split": {
+     "tier": "semantic",
+     "value": "720px"
+    },
+    "--bp-card-wide": {
+     "tier": "semantic",
+     "value": "760px"
+    },
+    "--bp-toolbar-labels": {
+     "tier": "semantic",
+     "value": "780px"
+    },
+    "--bp-settings-wide": {
+     "tier": "semantic",
+     "value": "900px"
+    },
+    "--bp-split-3": {
+     "tier": "semantic",
+     "value": "1100px"
+    },
     "--player-cover-from": {
      "tier": "component",
      "value": "#6366f1"
@@ -484,7 +584,7 @@
     },
     "--saved-note-danger": {
      "tier": "component",
-     "value": "#dc2626"
+     "value": "#b91c1c"
     },
     "--row-bg": {
      "tier": "component",
@@ -644,7 +744,7 @@
     },
     "--danger-text": {
      "tier": "semantic",
-     "value": "#dc2626"
+     "value": "#b91c1c"
     },
     "--bg-page": {
      "tier": "semantic",
@@ -1147,6 +1247,106 @@
     "--surface-paper": {
      "tier": "semantic",
      "value": "#ffffff"
+    },
+    "--focus-ring": {
+     "tier": "semantic",
+     "value": "#60a5fa"
+    },
+    "--focus-ring-width": {
+     "tier": "semantic",
+     "value": "2px"
+    },
+    "--focus-ring-offset": {
+     "tier": "semantic",
+     "value": "2px"
+    },
+    "--focus-ring-inset": {
+     "tier": "semantic",
+     "value": "-2px"
+    },
+    "--duration-fast": {
+     "tier": "semantic",
+     "value": "150ms"
+    },
+    "--duration-base": {
+     "tier": "semantic",
+     "value": "200ms"
+    },
+    "--duration-slow": {
+     "tier": "semantic",
+     "value": "300ms"
+    },
+    "--duration-slower": {
+     "tier": "semantic",
+     "value": "400ms"
+    },
+    "--duration-screen": {
+     "tier": "semantic",
+     "value": "350ms"
+    },
+    "--duration-reveal": {
+     "tier": "semantic",
+     "value": "500ms"
+    },
+    "--easing-standard": {
+     "tier": "semantic",
+     "value": "cubic-bezier(0.25, 0.1, 0.25, 1)"
+    },
+    "--easing-decelerate": {
+     "tier": "semantic",
+     "value": "cubic-bezier(0, 0, 0.58, 1)"
+    },
+    "--easing-accelerate": {
+     "tier": "semantic",
+     "value": "cubic-bezier(0.42, 0, 1, 1)"
+    },
+    "--easing-in-out": {
+     "tier": "semantic",
+     "value": "cubic-bezier(0.42, 0, 0.58, 1)"
+    },
+    "--easing-emphasized": {
+     "tier": "semantic",
+     "value": "cubic-bezier(0.2, 0.8, 0.2, 1)"
+    },
+    "--easing-spring": {
+     "tier": "semantic",
+     "value": "cubic-bezier(0.34, 1.56, 0.64, 1)"
+    },
+    "--easing-screen": {
+     "tier": "semantic",
+     "value": "cubic-bezier(0.4, 0, 0.2, 1)"
+    },
+    "--bp-narrow": {
+     "tier": "semantic",
+     "value": "420px"
+    },
+    "--bp-toolbar-compact": {
+     "tier": "semantic",
+     "value": "440px"
+    },
+    "--bp-popup": {
+     "tier": "semantic",
+     "value": "480px"
+    },
+    "--bp-split": {
+     "tier": "semantic",
+     "value": "720px"
+    },
+    "--bp-card-wide": {
+     "tier": "semantic",
+     "value": "760px"
+    },
+    "--bp-toolbar-labels": {
+     "tier": "semantic",
+     "value": "780px"
+    },
+    "--bp-settings-wide": {
+     "tier": "semantic",
+     "value": "900px"
+    },
+    "--bp-split-3": {
+     "tier": "semantic",
+     "value": "1100px"
     },
     "--player-cover-from": {
      "tier": "component",
@@ -2066,6 +2266,106 @@
      "tier": "semantic",
      "value": "#ffffff"
     },
+    "--focus-ring": {
+     "tier": "semantic",
+     "value": "#000000"
+    },
+    "--focus-ring-width": {
+     "tier": "semantic",
+     "value": "3px"
+    },
+    "--focus-ring-offset": {
+     "tier": "semantic",
+     "value": "2px"
+    },
+    "--focus-ring-inset": {
+     "tier": "semantic",
+     "value": "-2px"
+    },
+    "--duration-fast": {
+     "tier": "semantic",
+     "value": "150ms"
+    },
+    "--duration-base": {
+     "tier": "semantic",
+     "value": "200ms"
+    },
+    "--duration-slow": {
+     "tier": "semantic",
+     "value": "300ms"
+    },
+    "--duration-slower": {
+     "tier": "semantic",
+     "value": "400ms"
+    },
+    "--duration-screen": {
+     "tier": "semantic",
+     "value": "350ms"
+    },
+    "--duration-reveal": {
+     "tier": "semantic",
+     "value": "500ms"
+    },
+    "--easing-standard": {
+     "tier": "semantic",
+     "value": "cubic-bezier(0.25, 0.1, 0.25, 1)"
+    },
+    "--easing-decelerate": {
+     "tier": "semantic",
+     "value": "cubic-bezier(0, 0, 0.58, 1)"
+    },
+    "--easing-accelerate": {
+     "tier": "semantic",
+     "value": "cubic-bezier(0.42, 0, 1, 1)"
+    },
+    "--easing-in-out": {
+     "tier": "semantic",
+     "value": "cubic-bezier(0.42, 0, 0.58, 1)"
+    },
+    "--easing-emphasized": {
+     "tier": "semantic",
+     "value": "cubic-bezier(0.2, 0.8, 0.2, 1)"
+    },
+    "--easing-spring": {
+     "tier": "semantic",
+     "value": "cubic-bezier(0.34, 1.56, 0.64, 1)"
+    },
+    "--easing-screen": {
+     "tier": "semantic",
+     "value": "cubic-bezier(0.4, 0, 0.2, 1)"
+    },
+    "--bp-narrow": {
+     "tier": "semantic",
+     "value": "420px"
+    },
+    "--bp-toolbar-compact": {
+     "tier": "semantic",
+     "value": "440px"
+    },
+    "--bp-popup": {
+     "tier": "semantic",
+     "value": "480px"
+    },
+    "--bp-split": {
+     "tier": "semantic",
+     "value": "720px"
+    },
+    "--bp-card-wide": {
+     "tier": "semantic",
+     "value": "760px"
+    },
+    "--bp-toolbar-labels": {
+     "tier": "semantic",
+     "value": "780px"
+    },
+    "--bp-settings-wide": {
+     "tier": "semantic",
+     "value": "900px"
+    },
+    "--bp-split-3": {
+     "tier": "semantic",
+     "value": "1100px"
+    },
     "--player-cover-from": {
      "tier": "component",
      "value": "#6366f1"
@@ -2320,7 +2620,7 @@
     },
     "--saved-note-danger": {
      "tier": "component",
-     "value": "#dc2626"
+     "value": "#b91c1c"
     },
     "--row-bg": {
      "tier": "component",
@@ -2480,7 +2780,7 @@
     },
     "--danger-text": {
      "tier": "semantic",
-     "value": "#dc2626"
+     "value": "#b91c1c"
     },
     "--bg-page": {
      "tier": "semantic",
@@ -3001,6 +3301,94 @@
     "--shadow-ink": {
      "tier": "semantic",
      "value": "#000000"
+    },
+    "--duration-fast": {
+     "tier": "semantic",
+     "value": "150ms"
+    },
+    "--duration-base": {
+     "tier": "semantic",
+     "value": "200ms"
+    },
+    "--duration-slow": {
+     "tier": "semantic",
+     "value": "300ms"
+    },
+    "--duration-slower": {
+     "tier": "semantic",
+     "value": "400ms"
+    },
+    "--duration-screen": {
+     "tier": "semantic",
+     "value": "350ms"
+    },
+    "--duration-reveal": {
+     "tier": "semantic",
+     "value": "500ms"
+    },
+    "--easing-standard": {
+     "tier": "semantic",
+     "value": "cubic-bezier(0.25, 0.1, 0.25, 1)"
+    },
+    "--easing-decelerate": {
+     "tier": "semantic",
+     "value": "cubic-bezier(0, 0, 0.58, 1)"
+    },
+    "--easing-accelerate": {
+     "tier": "semantic",
+     "value": "cubic-bezier(0.42, 0, 1, 1)"
+    },
+    "--easing-in-out": {
+     "tier": "semantic",
+     "value": "cubic-bezier(0.42, 0, 0.58, 1)"
+    },
+    "--easing-emphasized": {
+     "tier": "semantic",
+     "value": "cubic-bezier(0.2, 0.8, 0.2, 1)"
+    },
+    "--easing-spring": {
+     "tier": "semantic",
+     "value": "cubic-bezier(0.34, 1.56, 0.64, 1)"
+    },
+    "--easing-screen": {
+     "tier": "semantic",
+     "value": "cubic-bezier(0.4, 0, 0.2, 1)"
+    },
+    "--bp-xs": {
+     "tier": "semantic",
+     "value": "420px"
+    },
+    "--bp-sm": {
+     "tier": "semantic",
+     "value": "560px"
+    },
+    "--bp-md": {
+     "tier": "semantic",
+     "value": "640px"
+    },
+    "--bp-ml": {
+     "tier": "semantic",
+     "value": "720px"
+    },
+    "--bp-lg": {
+     "tier": "semantic",
+     "value": "760px"
+    },
+    "--bp-xl": {
+     "tier": "semantic",
+     "value": "860px"
+    },
+    "--bp-2xl": {
+     "tier": "semantic",
+     "value": "900px"
+    },
+    "--bp-desktop": {
+     "tier": "semantic",
+     "value": "1024px"
+    },
+    "--bp-wide": {
+     "tier": "semantic",
+     "value": "1280px"
     },
     "--media-veil": {
      "tier": "component",
@@ -3528,6 +3916,94 @@
      "tier": "semantic",
      "value": "#000000"
     },
+    "--duration-fast": {
+     "tier": "semantic",
+     "value": "150ms"
+    },
+    "--duration-base": {
+     "tier": "semantic",
+     "value": "200ms"
+    },
+    "--duration-slow": {
+     "tier": "semantic",
+     "value": "300ms"
+    },
+    "--duration-slower": {
+     "tier": "semantic",
+     "value": "400ms"
+    },
+    "--duration-screen": {
+     "tier": "semantic",
+     "value": "350ms"
+    },
+    "--duration-reveal": {
+     "tier": "semantic",
+     "value": "500ms"
+    },
+    "--easing-standard": {
+     "tier": "semantic",
+     "value": "cubic-bezier(0.25, 0.1, 0.25, 1)"
+    },
+    "--easing-decelerate": {
+     "tier": "semantic",
+     "value": "cubic-bezier(0, 0, 0.58, 1)"
+    },
+    "--easing-accelerate": {
+     "tier": "semantic",
+     "value": "cubic-bezier(0.42, 0, 1, 1)"
+    },
+    "--easing-in-out": {
+     "tier": "semantic",
+     "value": "cubic-bezier(0.42, 0, 0.58, 1)"
+    },
+    "--easing-emphasized": {
+     "tier": "semantic",
+     "value": "cubic-bezier(0.2, 0.8, 0.2, 1)"
+    },
+    "--easing-spring": {
+     "tier": "semantic",
+     "value": "cubic-bezier(0.34, 1.56, 0.64, 1)"
+    },
+    "--easing-screen": {
+     "tier": "semantic",
+     "value": "cubic-bezier(0.4, 0, 0.2, 1)"
+    },
+    "--bp-xs": {
+     "tier": "semantic",
+     "value": "420px"
+    },
+    "--bp-sm": {
+     "tier": "semantic",
+     "value": "560px"
+    },
+    "--bp-md": {
+     "tier": "semantic",
+     "value": "640px"
+    },
+    "--bp-ml": {
+     "tier": "semantic",
+     "value": "720px"
+    },
+    "--bp-lg": {
+     "tier": "semantic",
+     "value": "760px"
+    },
+    "--bp-xl": {
+     "tier": "semantic",
+     "value": "860px"
+    },
+    "--bp-2xl": {
+     "tier": "semantic",
+     "value": "900px"
+    },
+    "--bp-desktop": {
+     "tier": "semantic",
+     "value": "1024px"
+    },
+    "--bp-wide": {
+     "tier": "semantic",
+     "value": "1280px"
+    },
     "--media-veil": {
      "tier": "component",
      "value": "#08090C"
@@ -4053,6 +4529,94 @@
     "--shadow-ink": {
      "tier": "semantic",
      "value": "#000000"
+    },
+    "--duration-fast": {
+     "tier": "semantic",
+     "value": "150ms"
+    },
+    "--duration-base": {
+     "tier": "semantic",
+     "value": "200ms"
+    },
+    "--duration-slow": {
+     "tier": "semantic",
+     "value": "300ms"
+    },
+    "--duration-slower": {
+     "tier": "semantic",
+     "value": "400ms"
+    },
+    "--duration-screen": {
+     "tier": "semantic",
+     "value": "350ms"
+    },
+    "--duration-reveal": {
+     "tier": "semantic",
+     "value": "500ms"
+    },
+    "--easing-standard": {
+     "tier": "semantic",
+     "value": "cubic-bezier(0.25, 0.1, 0.25, 1)"
+    },
+    "--easing-decelerate": {
+     "tier": "semantic",
+     "value": "cubic-bezier(0, 0, 0.58, 1)"
+    },
+    "--easing-accelerate": {
+     "tier": "semantic",
+     "value": "cubic-bezier(0.42, 0, 1, 1)"
+    },
+    "--easing-in-out": {
+     "tier": "semantic",
+     "value": "cubic-bezier(0.42, 0, 0.58, 1)"
+    },
+    "--easing-emphasized": {
+     "tier": "semantic",
+     "value": "cubic-bezier(0.2, 0.8, 0.2, 1)"
+    },
+    "--easing-spring": {
+     "tier": "semantic",
+     "value": "cubic-bezier(0.34, 1.56, 0.64, 1)"
+    },
+    "--easing-screen": {
+     "tier": "semantic",
+     "value": "cubic-bezier(0.4, 0, 0.2, 1)"
+    },
+    "--bp-xs": {
+     "tier": "semantic",
+     "value": "420px"
+    },
+    "--bp-sm": {
+     "tier": "semantic",
+     "value": "560px"
+    },
+    "--bp-md": {
+     "tier": "semantic",
+     "value": "640px"
+    },
+    "--bp-ml": {
+     "tier": "semantic",
+     "value": "720px"
+    },
+    "--bp-lg": {
+     "tier": "semantic",
+     "value": "760px"
+    },
+    "--bp-xl": {
+     "tier": "semantic",
+     "value": "860px"
+    },
+    "--bp-2xl": {
+     "tier": "semantic",
+     "value": "900px"
+    },
+    "--bp-desktop": {
+     "tier": "semantic",
+     "value": "1024px"
+    },
+    "--bp-wide": {
+     "tier": "semantic",
+     "value": "1280px"
     },
     "--media-veil": {
      "tier": "component",
@@ -4744,6 +5308,94 @@
      "tier": "semantic",
      "value": "#000000"
     },
+    "--duration-fast": {
+     "tier": "semantic",
+     "value": "150ms"
+    },
+    "--duration-base": {
+     "tier": "semantic",
+     "value": "200ms"
+    },
+    "--duration-slow": {
+     "tier": "semantic",
+     "value": "300ms"
+    },
+    "--duration-slower": {
+     "tier": "semantic",
+     "value": "400ms"
+    },
+    "--duration-screen": {
+     "tier": "semantic",
+     "value": "350ms"
+    },
+    "--duration-reveal": {
+     "tier": "semantic",
+     "value": "500ms"
+    },
+    "--easing-standard": {
+     "tier": "semantic",
+     "value": "cubic-bezier(0.25, 0.1, 0.25, 1)"
+    },
+    "--easing-decelerate": {
+     "tier": "semantic",
+     "value": "cubic-bezier(0, 0, 0.58, 1)"
+    },
+    "--easing-accelerate": {
+     "tier": "semantic",
+     "value": "cubic-bezier(0.42, 0, 1, 1)"
+    },
+    "--easing-in-out": {
+     "tier": "semantic",
+     "value": "cubic-bezier(0.42, 0, 0.58, 1)"
+    },
+    "--easing-emphasized": {
+     "tier": "semantic",
+     "value": "cubic-bezier(0.2, 0.8, 0.2, 1)"
+    },
+    "--easing-spring": {
+     "tier": "semantic",
+     "value": "cubic-bezier(0.34, 1.56, 0.64, 1)"
+    },
+    "--easing-screen": {
+     "tier": "semantic",
+     "value": "cubic-bezier(0.4, 0, 0.2, 1)"
+    },
+    "--bp-xs": {
+     "tier": "semantic",
+     "value": "420px"
+    },
+    "--bp-sm": {
+     "tier": "semantic",
+     "value": "560px"
+    },
+    "--bp-md": {
+     "tier": "semantic",
+     "value": "640px"
+    },
+    "--bp-ml": {
+     "tier": "semantic",
+     "value": "720px"
+    },
+    "--bp-lg": {
+     "tier": "semantic",
+     "value": "760px"
+    },
+    "--bp-xl": {
+     "tier": "semantic",
+     "value": "860px"
+    },
+    "--bp-2xl": {
+     "tier": "semantic",
+     "value": "900px"
+    },
+    "--bp-desktop": {
+     "tier": "semantic",
+     "value": "1024px"
+    },
+    "--bp-wide": {
+     "tier": "semantic",
+     "value": "1280px"
+    },
     "--media-veil": {
      "tier": "component",
      "value": "#08090C"
@@ -5434,6 +6086,94 @@
      "tier": "semantic",
      "value": "#000000"
     },
+    "--duration-fast": {
+     "tier": "semantic",
+     "value": "150ms"
+    },
+    "--duration-base": {
+     "tier": "semantic",
+     "value": "200ms"
+    },
+    "--duration-slow": {
+     "tier": "semantic",
+     "value": "300ms"
+    },
+    "--duration-slower": {
+     "tier": "semantic",
+     "value": "400ms"
+    },
+    "--duration-screen": {
+     "tier": "semantic",
+     "value": "350ms"
+    },
+    "--duration-reveal": {
+     "tier": "semantic",
+     "value": "500ms"
+    },
+    "--easing-standard": {
+     "tier": "semantic",
+     "value": "cubic-bezier(0.25, 0.1, 0.25, 1)"
+    },
+    "--easing-decelerate": {
+     "tier": "semantic",
+     "value": "cubic-bezier(0, 0, 0.58, 1)"
+    },
+    "--easing-accelerate": {
+     "tier": "semantic",
+     "value": "cubic-bezier(0.42, 0, 1, 1)"
+    },
+    "--easing-in-out": {
+     "tier": "semantic",
+     "value": "cubic-bezier(0.42, 0, 0.58, 1)"
+    },
+    "--easing-emphasized": {
+     "tier": "semantic",
+     "value": "cubic-bezier(0.2, 0.8, 0.2, 1)"
+    },
+    "--easing-spring": {
+     "tier": "semantic",
+     "value": "cubic-bezier(0.34, 1.56, 0.64, 1)"
+    },
+    "--easing-screen": {
+     "tier": "semantic",
+     "value": "cubic-bezier(0.4, 0, 0.2, 1)"
+    },
+    "--bp-xs": {
+     "tier": "semantic",
+     "value": "420px"
+    },
+    "--bp-sm": {
+     "tier": "semantic",
+     "value": "560px"
+    },
+    "--bp-md": {
+     "tier": "semantic",
+     "value": "640px"
+    },
+    "--bp-ml": {
+     "tier": "semantic",
+     "value": "720px"
+    },
+    "--bp-lg": {
+     "tier": "semantic",
+     "value": "760px"
+    },
+    "--bp-xl": {
+     "tier": "semantic",
+     "value": "860px"
+    },
+    "--bp-2xl": {
+     "tier": "semantic",
+     "value": "900px"
+    },
+    "--bp-desktop": {
+     "tier": "semantic",
+     "value": "1024px"
+    },
+    "--bp-wide": {
+     "tier": "semantic",
+     "value": "1280px"
+    },
     "--media-veil": {
      "tier": "component",
      "value": "#08090C"
@@ -6012,6 +6752,94 @@
      "tier": "semantic",
      "value": "#000000"
     },
+    "--duration-fast": {
+     "tier": "semantic",
+     "value": "150ms"
+    },
+    "--duration-base": {
+     "tier": "semantic",
+     "value": "200ms"
+    },
+    "--duration-slow": {
+     "tier": "semantic",
+     "value": "300ms"
+    },
+    "--duration-slower": {
+     "tier": "semantic",
+     "value": "400ms"
+    },
+    "--duration-screen": {
+     "tier": "semantic",
+     "value": "350ms"
+    },
+    "--duration-reveal": {
+     "tier": "semantic",
+     "value": "500ms"
+    },
+    "--easing-standard": {
+     "tier": "semantic",
+     "value": "cubic-bezier(0.25, 0.1, 0.25, 1)"
+    },
+    "--easing-decelerate": {
+     "tier": "semantic",
+     "value": "cubic-bezier(0, 0, 0.58, 1)"
+    },
+    "--easing-accelerate": {
+     "tier": "semantic",
+     "value": "cubic-bezier(0.42, 0, 1, 1)"
+    },
+    "--easing-in-out": {
+     "tier": "semantic",
+     "value": "cubic-bezier(0.42, 0, 0.58, 1)"
+    },
+    "--easing-emphasized": {
+     "tier": "semantic",
+     "value": "cubic-bezier(0.2, 0.8, 0.2, 1)"
+    },
+    "--easing-spring": {
+     "tier": "semantic",
+     "value": "cubic-bezier(0.34, 1.56, 0.64, 1)"
+    },
+    "--easing-screen": {
+     "tier": "semantic",
+     "value": "cubic-bezier(0.4, 0, 0.2, 1)"
+    },
+    "--bp-xs": {
+     "tier": "semantic",
+     "value": "420px"
+    },
+    "--bp-sm": {
+     "tier": "semantic",
+     "value": "560px"
+    },
+    "--bp-md": {
+     "tier": "semantic",
+     "value": "640px"
+    },
+    "--bp-ml": {
+     "tier": "semantic",
+     "value": "720px"
+    },
+    "--bp-lg": {
+     "tier": "semantic",
+     "value": "760px"
+    },
+    "--bp-xl": {
+     "tier": "semantic",
+     "value": "860px"
+    },
+    "--bp-2xl": {
+     "tier": "semantic",
+     "value": "900px"
+    },
+    "--bp-desktop": {
+     "tier": "semantic",
+     "value": "1024px"
+    },
+    "--bp-wide": {
+     "tier": "semantic",
+     "value": "1280px"
+    },
     "--media-veil": {
      "tier": "component",
      "value": "#08090C"
@@ -6578,6 +7406,106 @@
      "tier": "semantic",
      "value": "#ffffff"
     },
+    "--focus-ring": {
+     "tier": "semantic",
+     "value": "#1F7A5A"
+    },
+    "--focus-ring-width": {
+     "tier": "semantic",
+     "value": "2px"
+    },
+    "--focus-ring-offset": {
+     "tier": "semantic",
+     "value": "2px"
+    },
+    "--focus-ring-inset": {
+     "tier": "semantic",
+     "value": "-2px"
+    },
+    "--duration-fast": {
+     "tier": "semantic",
+     "value": "150ms"
+    },
+    "--duration-base": {
+     "tier": "semantic",
+     "value": "200ms"
+    },
+    "--duration-slow": {
+     "tier": "semantic",
+     "value": "300ms"
+    },
+    "--duration-slower": {
+     "tier": "semantic",
+     "value": "400ms"
+    },
+    "--duration-screen": {
+     "tier": "semantic",
+     "value": "350ms"
+    },
+    "--duration-reveal": {
+     "tier": "semantic",
+     "value": "500ms"
+    },
+    "--easing-standard": {
+     "tier": "semantic",
+     "value": "cubic-bezier(0.25, 0.1, 0.25, 1)"
+    },
+    "--easing-decelerate": {
+     "tier": "semantic",
+     "value": "cubic-bezier(0, 0, 0.58, 1)"
+    },
+    "--easing-accelerate": {
+     "tier": "semantic",
+     "value": "cubic-bezier(0.42, 0, 1, 1)"
+    },
+    "--easing-in-out": {
+     "tier": "semantic",
+     "value": "cubic-bezier(0.42, 0, 0.58, 1)"
+    },
+    "--easing-emphasized": {
+     "tier": "semantic",
+     "value": "cubic-bezier(0.2, 0.8, 0.2, 1)"
+    },
+    "--easing-spring": {
+     "tier": "semantic",
+     "value": "cubic-bezier(0.34, 1.56, 0.64, 1)"
+    },
+    "--easing-screen": {
+     "tier": "semantic",
+     "value": "cubic-bezier(0.4, 0, 0.2, 1)"
+    },
+    "--bp-narrow": {
+     "tier": "semantic",
+     "value": "420px"
+    },
+    "--bp-toolbar-compact": {
+     "tier": "semantic",
+     "value": "440px"
+    },
+    "--bp-popup": {
+     "tier": "semantic",
+     "value": "480px"
+    },
+    "--bp-split": {
+     "tier": "semantic",
+     "value": "720px"
+    },
+    "--bp-card-wide": {
+     "tier": "semantic",
+     "value": "760px"
+    },
+    "--bp-toolbar-labels": {
+     "tier": "semantic",
+     "value": "780px"
+    },
+    "--bp-settings-wide": {
+     "tier": "semantic",
+     "value": "900px"
+    },
+    "--bp-split-3": {
+     "tier": "semantic",
+     "value": "1100px"
+    },
     "--player-cover-from": {
      "tier": "component",
      "value": "#6366f1"
@@ -6832,7 +7760,7 @@
     },
     "--saved-note-danger": {
      "tier": "component",
-     "value": "#dc2626"
+     "value": "#b91c1c"
     },
     "--row-bg": {
      "tier": "component",
@@ -6992,7 +7920,7 @@
     },
     "--danger-text": {
      "tier": "semantic",
-     "value": "#dc2626"
+     "value": "#b91c1c"
     },
     "--bg-page": {
      "tier": "semantic",
@@ -7495,6 +8423,106 @@
     "--surface-paper": {
      "tier": "semantic",
      "value": "#ffffff"
+    },
+    "--focus-ring": {
+     "tier": "semantic",
+     "value": "#5CC9A0"
+    },
+    "--focus-ring-width": {
+     "tier": "semantic",
+     "value": "2px"
+    },
+    "--focus-ring-offset": {
+     "tier": "semantic",
+     "value": "2px"
+    },
+    "--focus-ring-inset": {
+     "tier": "semantic",
+     "value": "-2px"
+    },
+    "--duration-fast": {
+     "tier": "semantic",
+     "value": "150ms"
+    },
+    "--duration-base": {
+     "tier": "semantic",
+     "value": "200ms"
+    },
+    "--duration-slow": {
+     "tier": "semantic",
+     "value": "300ms"
+    },
+    "--duration-slower": {
+     "tier": "semantic",
+     "value": "400ms"
+    },
+    "--duration-screen": {
+     "tier": "semantic",
+     "value": "350ms"
+    },
+    "--duration-reveal": {
+     "tier": "semantic",
+     "value": "500ms"
+    },
+    "--easing-standard": {
+     "tier": "semantic",
+     "value": "cubic-bezier(0.25, 0.1, 0.25, 1)"
+    },
+    "--easing-decelerate": {
+     "tier": "semantic",
+     "value": "cubic-bezier(0, 0, 0.58, 1)"
+    },
+    "--easing-accelerate": {
+     "tier": "semantic",
+     "value": "cubic-bezier(0.42, 0, 1, 1)"
+    },
+    "--easing-in-out": {
+     "tier": "semantic",
+     "value": "cubic-bezier(0.42, 0, 0.58, 1)"
+    },
+    "--easing-emphasized": {
+     "tier": "semantic",
+     "value": "cubic-bezier(0.2, 0.8, 0.2, 1)"
+    },
+    "--easing-spring": {
+     "tier": "semantic",
+     "value": "cubic-bezier(0.34, 1.56, 0.64, 1)"
+    },
+    "--easing-screen": {
+     "tier": "semantic",
+     "value": "cubic-bezier(0.4, 0, 0.2, 1)"
+    },
+    "--bp-narrow": {
+     "tier": "semantic",
+     "value": "420px"
+    },
+    "--bp-toolbar-compact": {
+     "tier": "semantic",
+     "value": "440px"
+    },
+    "--bp-popup": {
+     "tier": "semantic",
+     "value": "480px"
+    },
+    "--bp-split": {
+     "tier": "semantic",
+     "value": "720px"
+    },
+    "--bp-card-wide": {
+     "tier": "semantic",
+     "value": "760px"
+    },
+    "--bp-toolbar-labels": {
+     "tier": "semantic",
+     "value": "780px"
+    },
+    "--bp-settings-wide": {
+     "tier": "semantic",
+     "value": "900px"
+    },
+    "--bp-split-3": {
+     "tier": "semantic",
+     "value": "1100px"
     },
     "--player-cover-from": {
      "tier": "component",
@@ -8414,6 +9442,106 @@
      "tier": "semantic",
      "value": "#ffffff"
     },
+    "--focus-ring": {
+     "tier": "semantic",
+     "value": "#000000"
+    },
+    "--focus-ring-width": {
+     "tier": "semantic",
+     "value": "3px"
+    },
+    "--focus-ring-offset": {
+     "tier": "semantic",
+     "value": "2px"
+    },
+    "--focus-ring-inset": {
+     "tier": "semantic",
+     "value": "-2px"
+    },
+    "--duration-fast": {
+     "tier": "semantic",
+     "value": "150ms"
+    },
+    "--duration-base": {
+     "tier": "semantic",
+     "value": "200ms"
+    },
+    "--duration-slow": {
+     "tier": "semantic",
+     "value": "300ms"
+    },
+    "--duration-slower": {
+     "tier": "semantic",
+     "value": "400ms"
+    },
+    "--duration-screen": {
+     "tier": "semantic",
+     "value": "350ms"
+    },
+    "--duration-reveal": {
+     "tier": "semantic",
+     "value": "500ms"
+    },
+    "--easing-standard": {
+     "tier": "semantic",
+     "value": "cubic-bezier(0.25, 0.1, 0.25, 1)"
+    },
+    "--easing-decelerate": {
+     "tier": "semantic",
+     "value": "cubic-bezier(0, 0, 0.58, 1)"
+    },
+    "--easing-accelerate": {
+     "tier": "semantic",
+     "value": "cubic-bezier(0.42, 0, 1, 1)"
+    },
+    "--easing-in-out": {
+     "tier": "semantic",
+     "value": "cubic-bezier(0.42, 0, 0.58, 1)"
+    },
+    "--easing-emphasized": {
+     "tier": "semantic",
+     "value": "cubic-bezier(0.2, 0.8, 0.2, 1)"
+    },
+    "--easing-spring": {
+     "tier": "semantic",
+     "value": "cubic-bezier(0.34, 1.56, 0.64, 1)"
+    },
+    "--easing-screen": {
+     "tier": "semantic",
+     "value": "cubic-bezier(0.4, 0, 0.2, 1)"
+    },
+    "--bp-narrow": {
+     "tier": "semantic",
+     "value": "420px"
+    },
+    "--bp-toolbar-compact": {
+     "tier": "semantic",
+     "value": "440px"
+    },
+    "--bp-popup": {
+     "tier": "semantic",
+     "value": "480px"
+    },
+    "--bp-split": {
+     "tier": "semantic",
+     "value": "720px"
+    },
+    "--bp-card-wide": {
+     "tier": "semantic",
+     "value": "760px"
+    },
+    "--bp-toolbar-labels": {
+     "tier": "semantic",
+     "value": "780px"
+    },
+    "--bp-settings-wide": {
+     "tier": "semantic",
+     "value": "900px"
+    },
+    "--bp-split-3": {
+     "tier": "semantic",
+     "value": "1100px"
+    },
     "--player-cover-from": {
      "tier": "component",
      "value": "#6366f1"
@@ -8668,7 +9796,7 @@
     },
     "--saved-note-danger": {
      "tier": "component",
-     "value": "#dc2626"
+     "value": "#b91c1c"
     },
     "--row-bg": {
      "tier": "component",
@@ -8828,7 +9956,7 @@
     },
     "--danger-text": {
      "tier": "semantic",
-     "value": "#dc2626"
+     "value": "#b91c1c"
     },
     "--bg-page": {
      "tier": "semantic",
@@ -9349,6 +10477,94 @@
     "--shadow-ink": {
      "tier": "semantic",
      "value": "#000000"
+    },
+    "--duration-fast": {
+     "tier": "semantic",
+     "value": "150ms"
+    },
+    "--duration-base": {
+     "tier": "semantic",
+     "value": "200ms"
+    },
+    "--duration-slow": {
+     "tier": "semantic",
+     "value": "300ms"
+    },
+    "--duration-slower": {
+     "tier": "semantic",
+     "value": "400ms"
+    },
+    "--duration-screen": {
+     "tier": "semantic",
+     "value": "350ms"
+    },
+    "--duration-reveal": {
+     "tier": "semantic",
+     "value": "500ms"
+    },
+    "--easing-standard": {
+     "tier": "semantic",
+     "value": "cubic-bezier(0.25, 0.1, 0.25, 1)"
+    },
+    "--easing-decelerate": {
+     "tier": "semantic",
+     "value": "cubic-bezier(0, 0, 0.58, 1)"
+    },
+    "--easing-accelerate": {
+     "tier": "semantic",
+     "value": "cubic-bezier(0.42, 0, 1, 1)"
+    },
+    "--easing-in-out": {
+     "tier": "semantic",
+     "value": "cubic-bezier(0.42, 0, 0.58, 1)"
+    },
+    "--easing-emphasized": {
+     "tier": "semantic",
+     "value": "cubic-bezier(0.2, 0.8, 0.2, 1)"
+    },
+    "--easing-spring": {
+     "tier": "semantic",
+     "value": "cubic-bezier(0.34, 1.56, 0.64, 1)"
+    },
+    "--easing-screen": {
+     "tier": "semantic",
+     "value": "cubic-bezier(0.4, 0, 0.2, 1)"
+    },
+    "--bp-xs": {
+     "tier": "semantic",
+     "value": "420px"
+    },
+    "--bp-sm": {
+     "tier": "semantic",
+     "value": "560px"
+    },
+    "--bp-md": {
+     "tier": "semantic",
+     "value": "640px"
+    },
+    "--bp-ml": {
+     "tier": "semantic",
+     "value": "720px"
+    },
+    "--bp-lg": {
+     "tier": "semantic",
+     "value": "760px"
+    },
+    "--bp-xl": {
+     "tier": "semantic",
+     "value": "860px"
+    },
+    "--bp-2xl": {
+     "tier": "semantic",
+     "value": "900px"
+    },
+    "--bp-desktop": {
+     "tier": "semantic",
+     "value": "1024px"
+    },
+    "--bp-wide": {
+     "tier": "semantic",
+     "value": "1280px"
     },
     "--media-veil": {
      "tier": "component",
@@ -9876,6 +11092,94 @@
      "tier": "semantic",
      "value": "#000000"
     },
+    "--duration-fast": {
+     "tier": "semantic",
+     "value": "150ms"
+    },
+    "--duration-base": {
+     "tier": "semantic",
+     "value": "200ms"
+    },
+    "--duration-slow": {
+     "tier": "semantic",
+     "value": "300ms"
+    },
+    "--duration-slower": {
+     "tier": "semantic",
+     "value": "400ms"
+    },
+    "--duration-screen": {
+     "tier": "semantic",
+     "value": "350ms"
+    },
+    "--duration-reveal": {
+     "tier": "semantic",
+     "value": "500ms"
+    },
+    "--easing-standard": {
+     "tier": "semantic",
+     "value": "cubic-bezier(0.25, 0.1, 0.25, 1)"
+    },
+    "--easing-decelerate": {
+     "tier": "semantic",
+     "value": "cubic-bezier(0, 0, 0.58, 1)"
+    },
+    "--easing-accelerate": {
+     "tier": "semantic",
+     "value": "cubic-bezier(0.42, 0, 1, 1)"
+    },
+    "--easing-in-out": {
+     "tier": "semantic",
+     "value": "cubic-bezier(0.42, 0, 0.58, 1)"
+    },
+    "--easing-emphasized": {
+     "tier": "semantic",
+     "value": "cubic-bezier(0.2, 0.8, 0.2, 1)"
+    },
+    "--easing-spring": {
+     "tier": "semantic",
+     "value": "cubic-bezier(0.34, 1.56, 0.64, 1)"
+    },
+    "--easing-screen": {
+     "tier": "semantic",
+     "value": "cubic-bezier(0.4, 0, 0.2, 1)"
+    },
+    "--bp-xs": {
+     "tier": "semantic",
+     "value": "420px"
+    },
+    "--bp-sm": {
+     "tier": "semantic",
+     "value": "560px"
+    },
+    "--bp-md": {
+     "tier": "semantic",
+     "value": "640px"
+    },
+    "--bp-ml": {
+     "tier": "semantic",
+     "value": "720px"
+    },
+    "--bp-lg": {
+     "tier": "semantic",
+     "value": "760px"
+    },
+    "--bp-xl": {
+     "tier": "semantic",
+     "value": "860px"
+    },
+    "--bp-2xl": {
+     "tier": "semantic",
+     "value": "900px"
+    },
+    "--bp-desktop": {
+     "tier": "semantic",
+     "value": "1024px"
+    },
+    "--bp-wide": {
+     "tier": "semantic",
+     "value": "1280px"
+    },
     "--media-veil": {
      "tier": "component",
      "value": "#08090C"
@@ -10401,6 +11705,94 @@
     "--shadow-ink": {
      "tier": "semantic",
      "value": "#000000"
+    },
+    "--duration-fast": {
+     "tier": "semantic",
+     "value": "150ms"
+    },
+    "--duration-base": {
+     "tier": "semantic",
+     "value": "200ms"
+    },
+    "--duration-slow": {
+     "tier": "semantic",
+     "value": "300ms"
+    },
+    "--duration-slower": {
+     "tier": "semantic",
+     "value": "400ms"
+    },
+    "--duration-screen": {
+     "tier": "semantic",
+     "value": "350ms"
+    },
+    "--duration-reveal": {
+     "tier": "semantic",
+     "value": "500ms"
+    },
+    "--easing-standard": {
+     "tier": "semantic",
+     "value": "cubic-bezier(0.25, 0.1, 0.25, 1)"
+    },
+    "--easing-decelerate": {
+     "tier": "semantic",
+     "value": "cubic-bezier(0, 0, 0.58, 1)"
+    },
+    "--easing-accelerate": {
+     "tier": "semantic",
+     "value": "cubic-bezier(0.42, 0, 1, 1)"
+    },
+    "--easing-in-out": {
+     "tier": "semantic",
+     "value": "cubic-bezier(0.42, 0, 0.58, 1)"
+    },
+    "--easing-emphasized": {
+     "tier": "semantic",
+     "value": "cubic-bezier(0.2, 0.8, 0.2, 1)"
+    },
+    "--easing-spring": {
+     "tier": "semantic",
+     "value": "cubic-bezier(0.34, 1.56, 0.64, 1)"
+    },
+    "--easing-screen": {
+     "tier": "semantic",
+     "value": "cubic-bezier(0.4, 0, 0.2, 1)"
+    },
+    "--bp-xs": {
+     "tier": "semantic",
+     "value": "420px"
+    },
+    "--bp-sm": {
+     "tier": "semantic",
+     "value": "560px"
+    },
+    "--bp-md": {
+     "tier": "semantic",
+     "value": "640px"
+    },
+    "--bp-ml": {
+     "tier": "semantic",
+     "value": "720px"
+    },
+    "--bp-lg": {
+     "tier": "semantic",
+     "value": "760px"
+    },
+    "--bp-xl": {
+     "tier": "semantic",
+     "value": "860px"
+    },
+    "--bp-2xl": {
+     "tier": "semantic",
+     "value": "900px"
+    },
+    "--bp-desktop": {
+     "tier": "semantic",
+     "value": "1024px"
+    },
+    "--bp-wide": {
+     "tier": "semantic",
+     "value": "1280px"
     },
     "--media-veil": {
      "tier": "component",
@@ -11092,6 +12484,94 @@
      "tier": "semantic",
      "value": "#000000"
     },
+    "--duration-fast": {
+     "tier": "semantic",
+     "value": "150ms"
+    },
+    "--duration-base": {
+     "tier": "semantic",
+     "value": "200ms"
+    },
+    "--duration-slow": {
+     "tier": "semantic",
+     "value": "300ms"
+    },
+    "--duration-slower": {
+     "tier": "semantic",
+     "value": "400ms"
+    },
+    "--duration-screen": {
+     "tier": "semantic",
+     "value": "350ms"
+    },
+    "--duration-reveal": {
+     "tier": "semantic",
+     "value": "500ms"
+    },
+    "--easing-standard": {
+     "tier": "semantic",
+     "value": "cubic-bezier(0.25, 0.1, 0.25, 1)"
+    },
+    "--easing-decelerate": {
+     "tier": "semantic",
+     "value": "cubic-bezier(0, 0, 0.58, 1)"
+    },
+    "--easing-accelerate": {
+     "tier": "semantic",
+     "value": "cubic-bezier(0.42, 0, 1, 1)"
+    },
+    "--easing-in-out": {
+     "tier": "semantic",
+     "value": "cubic-bezier(0.42, 0, 0.58, 1)"
+    },
+    "--easing-emphasized": {
+     "tier": "semantic",
+     "value": "cubic-bezier(0.2, 0.8, 0.2, 1)"
+    },
+    "--easing-spring": {
+     "tier": "semantic",
+     "value": "cubic-bezier(0.34, 1.56, 0.64, 1)"
+    },
+    "--easing-screen": {
+     "tier": "semantic",
+     "value": "cubic-bezier(0.4, 0, 0.2, 1)"
+    },
+    "--bp-xs": {
+     "tier": "semantic",
+     "value": "420px"
+    },
+    "--bp-sm": {
+     "tier": "semantic",
+     "value": "560px"
+    },
+    "--bp-md": {
+     "tier": "semantic",
+     "value": "640px"
+    },
+    "--bp-ml": {
+     "tier": "semantic",
+     "value": "720px"
+    },
+    "--bp-lg": {
+     "tier": "semantic",
+     "value": "760px"
+    },
+    "--bp-xl": {
+     "tier": "semantic",
+     "value": "860px"
+    },
+    "--bp-2xl": {
+     "tier": "semantic",
+     "value": "900px"
+    },
+    "--bp-desktop": {
+     "tier": "semantic",
+     "value": "1024px"
+    },
+    "--bp-wide": {
+     "tier": "semantic",
+     "value": "1280px"
+    },
     "--media-veil": {
      "tier": "component",
      "value": "#08090C"
@@ -11782,6 +13262,94 @@
      "tier": "semantic",
      "value": "#000000"
     },
+    "--duration-fast": {
+     "tier": "semantic",
+     "value": "150ms"
+    },
+    "--duration-base": {
+     "tier": "semantic",
+     "value": "200ms"
+    },
+    "--duration-slow": {
+     "tier": "semantic",
+     "value": "300ms"
+    },
+    "--duration-slower": {
+     "tier": "semantic",
+     "value": "400ms"
+    },
+    "--duration-screen": {
+     "tier": "semantic",
+     "value": "350ms"
+    },
+    "--duration-reveal": {
+     "tier": "semantic",
+     "value": "500ms"
+    },
+    "--easing-standard": {
+     "tier": "semantic",
+     "value": "cubic-bezier(0.25, 0.1, 0.25, 1)"
+    },
+    "--easing-decelerate": {
+     "tier": "semantic",
+     "value": "cubic-bezier(0, 0, 0.58, 1)"
+    },
+    "--easing-accelerate": {
+     "tier": "semantic",
+     "value": "cubic-bezier(0.42, 0, 1, 1)"
+    },
+    "--easing-in-out": {
+     "tier": "semantic",
+     "value": "cubic-bezier(0.42, 0, 0.58, 1)"
+    },
+    "--easing-emphasized": {
+     "tier": "semantic",
+     "value": "cubic-bezier(0.2, 0.8, 0.2, 1)"
+    },
+    "--easing-spring": {
+     "tier": "semantic",
+     "value": "cubic-bezier(0.34, 1.56, 0.64, 1)"
+    },
+    "--easing-screen": {
+     "tier": "semantic",
+     "value": "cubic-bezier(0.4, 0, 0.2, 1)"
+    },
+    "--bp-xs": {
+     "tier": "semantic",
+     "value": "420px"
+    },
+    "--bp-sm": {
+     "tier": "semantic",
+     "value": "560px"
+    },
+    "--bp-md": {
+     "tier": "semantic",
+     "value": "640px"
+    },
+    "--bp-ml": {
+     "tier": "semantic",
+     "value": "720px"
+    },
+    "--bp-lg": {
+     "tier": "semantic",
+     "value": "760px"
+    },
+    "--bp-xl": {
+     "tier": "semantic",
+     "value": "860px"
+    },
+    "--bp-2xl": {
+     "tier": "semantic",
+     "value": "900px"
+    },
+    "--bp-desktop": {
+     "tier": "semantic",
+     "value": "1024px"
+    },
+    "--bp-wide": {
+     "tier": "semantic",
+     "value": "1280px"
+    },
     "--media-veil": {
      "tier": "component",
      "value": "#08090C"
@@ -12359,6 +13927,94 @@
     "--shadow-ink": {
      "tier": "semantic",
      "value": "#000000"
+    },
+    "--duration-fast": {
+     "tier": "semantic",
+     "value": "150ms"
+    },
+    "--duration-base": {
+     "tier": "semantic",
+     "value": "200ms"
+    },
+    "--duration-slow": {
+     "tier": "semantic",
+     "value": "300ms"
+    },
+    "--duration-slower": {
+     "tier": "semantic",
+     "value": "400ms"
+    },
+    "--duration-screen": {
+     "tier": "semantic",
+     "value": "350ms"
+    },
+    "--duration-reveal": {
+     "tier": "semantic",
+     "value": "500ms"
+    },
+    "--easing-standard": {
+     "tier": "semantic",
+     "value": "cubic-bezier(0.25, 0.1, 0.25, 1)"
+    },
+    "--easing-decelerate": {
+     "tier": "semantic",
+     "value": "cubic-bezier(0, 0, 0.58, 1)"
+    },
+    "--easing-accelerate": {
+     "tier": "semantic",
+     "value": "cubic-bezier(0.42, 0, 1, 1)"
+    },
+    "--easing-in-out": {
+     "tier": "semantic",
+     "value": "cubic-bezier(0.42, 0, 0.58, 1)"
+    },
+    "--easing-emphasized": {
+     "tier": "semantic",
+     "value": "cubic-bezier(0.2, 0.8, 0.2, 1)"
+    },
+    "--easing-spring": {
+     "tier": "semantic",
+     "value": "cubic-bezier(0.34, 1.56, 0.64, 1)"
+    },
+    "--easing-screen": {
+     "tier": "semantic",
+     "value": "cubic-bezier(0.4, 0, 0.2, 1)"
+    },
+    "--bp-xs": {
+     "tier": "semantic",
+     "value": "420px"
+    },
+    "--bp-sm": {
+     "tier": "semantic",
+     "value": "560px"
+    },
+    "--bp-md": {
+     "tier": "semantic",
+     "value": "640px"
+    },
+    "--bp-ml": {
+     "tier": "semantic",
+     "value": "720px"
+    },
+    "--bp-lg": {
+     "tier": "semantic",
+     "value": "760px"
+    },
+    "--bp-xl": {
+     "tier": "semantic",
+     "value": "860px"
+    },
+    "--bp-2xl": {
+     "tier": "semantic",
+     "value": "900px"
+    },
+    "--bp-desktop": {
+     "tier": "semantic",
+     "value": "1024px"
+    },
+    "--bp-wide": {
+     "tier": "semantic",
+     "value": "1280px"
     },
     "--media-veil": {
      "tier": "component",

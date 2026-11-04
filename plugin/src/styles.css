@@ -10,49 +10,49 @@
 :root,
 :root[data-theme='light'] {
   /* semantic · scale */
-  --radius-xs: 6px;
-  --radius-sheet: 20px;
-  --text-scale: 1;
-  --fs-2xs: calc(10px * var(--text-scale));
-  --fs-xs: calc(11px * var(--text-scale));
-  --fs-sm: calc(12px * var(--text-scale));
-  --fs-md: calc(13px * var(--text-scale));
-  --fs-base: calc(14px * var(--text-scale));
-  --fs-lg: calc(16px * var(--text-scale));
-  --fs-xl: calc(18px * var(--text-scale));
-  --fs-2xl: calc(20px * var(--text-scale));
-  --spacing-s-0: 0;
-  --spacing-s-05: 2px;
-  --spacing-s-1: 4px;
-  --spacing-s-2: 8px;
-  --spacing-s-3: 12px;
-  --spacing-s-4: 16px;
-  --spacing-s-5: 20px;
-  --spacing-s-6: 24px;
-  --spacing-s-7: 28px;
-  --spacing-s-8: 32px;
-  --radius-sm: 8px;
-  --radius-md: 12px;
-  --radius-lg: 16px;
-  --icon-sm: 14px;
-  --icon-md: 16px;
-  --icon-lg: 20px;
-  --icon-xl: 24px;
-  --radius-xl: 24px;
-  --radius-full: 9999px;
+  --radius-xs: 6px; /* Corner radius 6px: tags, small chips */
+  --radius-sheet: 20px; /* Corner radius 20px: top corners of bottom sheets */
+  --text-scale: 1; /* Multiplier set by Settings › Accessibility › Text size; every fs-* token follows it (WCAG 1.4.4). */
+  --fs-2xs: calc(10px * var(--text-scale)); /* Type size 10px × text-scale: labels, bottom nav, badges. */
+  --fs-xs: calc(11px * var(--text-scale)); /* Type size 11px × text-scale: captions, chips, section captions. */
+  --fs-sm: calc(12px * var(--text-scale)); /* Type size 12px × text-scale: small buttons, meta lines. */
+  --fs-md: calc(13px * var(--text-scale)); /* Type size 13px × text-scale: UI body: menus, rows, toasts. */
+  --fs-base: calc(14px * var(--text-scale)); /* Type size 14px × text-scale: default body text. */
+  --fs-lg: calc(16px * var(--text-scale)); /* Type size 16px × text-scale: card titles, primary button. */
+  --fs-xl: calc(18px * var(--text-scale)); /* Type size 18px × text-scale: section titles. */
+  --fs-2xl: calc(20px * var(--text-scale)); /* Type size 20px × text-scale: screen titles. */
+  --spacing-s-0: 0; /* Spacing step 0 (0) on the 4px grid. Kept for JS inline styles; component CSS uses the same steps. */
+  --spacing-s-05: 2px; /* Spacing step 05 (2px) on the 4px grid. Kept for JS inline styles; component CSS uses the same steps. */
+  --spacing-s-1: 4px; /* Spacing step 1 (4px) on the 4px grid. Kept for JS inline styles; component CSS uses the same steps. */
+  --spacing-s-2: 8px; /* Spacing step 2 (8px) on the 4px grid. Kept for JS inline styles; component CSS uses the same steps. */
+  --spacing-s-3: 12px; /* Spacing step 3 (12px) on the 4px grid. Kept for JS inline styles; component CSS uses the same steps. */
+  --spacing-s-4: 16px; /* Spacing step 4 (16px) on the 4px grid. Kept for JS inline styles; component CSS uses the same steps. */
+  --spacing-s-5: 20px; /* Spacing step 5 (20px) on the 4px grid. Kept for JS inline styles; component CSS uses the same steps. */
+  --spacing-s-6: 24px; /* Spacing step 6 (24px) on the 4px grid. Kept for JS inline styles; component CSS uses the same steps. */
+  --spacing-s-7: 28px; /* Spacing step 7 (28px) on the 4px grid. Kept for JS inline styles; component CSS uses the same steps. */
+  --spacing-s-8: 32px; /* Spacing step 8 (32px) on the 4px grid. Kept for JS inline styles; component CSS uses the same steps. */
+  --radius-sm: 8px; /* Corner radius 8px: icon tiles, menu items, fields */
+  --radius-md: 12px; /* Corner radius 12px: buttons, chips, rows, segmented controls */
+  --radius-lg: 16px; /* Corner radius 16px: cards */
+  --icon-sm: 14px; /* Icon size 14px (inline with small text). */
+  --icon-md: 16px; /* Icon size 16px (default UI icon). */
+  --icon-lg: 20px; /* Icon size 20px (settings rows, nav). */
+  --icon-xl: 24px; /* Icon size 24px (empty states, tiles). */
+  --radius-xl: 24px; /* Corner radius 24px: input card, large panels */
+  --radius-full: 9999px; /* Corner radius 9999px: pills and dots */
   /* semantic · layer */
-  --z-raised: 20;
-  --z-bar: 25;
-  --z-popover: 50;
-  --z-header: 100;
-  --z-nav: 101;
-  --z-fab: 102;
-  --z-float: 240;
-  --z-player: 250;
-  --z-sheet: 300;
-  --z-modal: 1000;
-  --z-toast: 1001;
-  --z-toast-top: 1100;
+  --z-raised: 20; /* Stacking layer 20 for raised. Order: raised < bar < popover < header < nav < fab < float < player < sheet < modal < toast. */
+  --z-bar: 25; /* Stacking layer 25 for bar. Order: raised < bar < popover < header < nav < fab < float < player < sheet < modal < toast. */
+  --z-popover: 50; /* Stacking layer 50 for popover. Order: raised < bar < popover < header < nav < fab < float < player < sheet < modal < toast. */
+  --z-header: 100; /* Stacking layer 100 for header. Order: raised < bar < popover < header < nav < fab < float < player < sheet < modal < toast. */
+  --z-nav: 101; /* Stacking layer 101 for nav. Order: raised < bar < popover < header < nav < fab < float < player < sheet < modal < toast. */
+  --z-fab: 102; /* Stacking layer 102 for fab. Order: raised < bar < popover < header < nav < fab < float < player < sheet < modal < toast. */
+  --z-float: 240; /* Stacking layer 240 for float. Order: raised < bar < popover < header < nav < fab < float < player < sheet < modal < toast. */
+  --z-player: 250; /* Stacking layer 250 for player. Order: raised < bar < popover < header < nav < fab < float < player < sheet < modal < toast. */
+  --z-sheet: 300; /* Stacking layer 300 for sheet. Order: raised < bar < popover < header < nav < fab < float < player < sheet < modal < toast. */
+  --z-modal: 1000; /* Stacking layer 1000 for modal. Order: raised < bar < popover < header < nav < fab < float < player < sheet < modal < toast. */
+  --z-toast: 1001; /* Stacking layer 1001 for toast. Order: raised < bar < popover < header < nav < fab < float < player < sheet < modal < toast. */
+  --z-toast-top: 1100; /* Stacking layer 1100 for toast top. Order: raised < bar < popover < header < nav < fab < float < player < sheet < modal < toast. */
   /* semantic · base */
   --on-solid: #ffffff; /* Text/icons on a fill that is coloured in every theme (badges, media, the green saved button). */
   --shade: #000000; /* Black for scrims and shadows; always used with an alpha (color-mix). */
@@ -62,123 +62,151 @@
   --ok-bright: #22c55e; /* Bright success green for savings, feed badges and progress fills. */
   --ok-strong: color-mix(in srgb, var(--ok) 85%, var(--on-solid)); /* Second stop of the success gradient (podcast button). */
   --on-warn: #422006; /* Text on a --mood-warn fill. */
-  --danger-strong: #e24646;
-  --ok: #15803d;
-  --warn: #ca8a04;
-  --danger: #dc2626;
-  --danger-light: #fef2f2;
-  --mood-pos: hsl(142,55%,42%);
-  --mood-neg: hsl(0,70%,55%);
-  --mood-warn: hsl(45,90%,50%);
-  --mood-pos-text: #15803d;
-  --mood-neg-text: #b91c1c;
-  --mood-warn-text: #b45309;
+  --danger-strong: #e24646; /* Second stop of the danger gradient (destructive buttons). */
+  --ok: #15803d; /* Success: saved, synced, signed in (fills and dots; text ≥ 4.5:1 on cards). */
+  --warn: #ca8a04; /* Warning fills, borders and dots; as text use caution-fg. */
+  --danger: #dc2626; /* Destructive fills, bars and dots. As text use danger-text (danger is 3.5:1 on dark cards). */
+  --danger-light: #fef2f2; /* Light danger tint behind error messages. */
+  --mood-pos: hsl(142,55%,42%); /* Positive mood in charts and dots (graphic, ≥ 3:1). */
+  --mood-neg: hsl(0,70%,55%); /* Negative mood in charts and dots (graphic, ≥ 3:1). */
+  --mood-warn: hsl(45,90%,50%); /* Mixed mood in charts and dots (graphic). */
+  --mood-pos-text: #15803d; /* Positive mood as text (≥ 4.5:1). */
+  --mood-neg-text: #b91c1c; /* Negative mood as text (≥ 4.5:1). */
+  --mood-warn-text: #b45309; /* Mixed mood as text (≥ 4.5:1). */
   --caution-bg: #fef3c7; /* "Different page" note: background. */
   --caution-fg: #78350f; /* "Different page" note: text. */
   --caution-border: #fde68a; /* "Different page" note: border. */
   --caution-muted: #92400e; /* "Different page" note: secondary text. */
-  --danger-text: var(--danger); /* Delete action on a saved-note card. */
+  --danger-text: #b91c1c; /* Error and delete text, Danger outline buttons: ≥ 4.5:1 on cards, sheets and every sticky note (red 600 was 4.1:1 on AI and Note stickies). ADR 0005. */
   /* semantic · elevation */
   --elevation-1: 0 2px 8px rgba(0,0,0,0.1); /* Subtle lift: images, small cards. */
   --elevation-2: 0 2px 8px rgba(0,0,0,0.2); /* Thumbs, floating buttons (second shadow layer). */
   --elevation-3: 0 4px 14px rgba(0,0,0,0.2); /* Raised cards, covers, play button. */
   --elevation-4: 0 8px 24px rgba(0,0,0,0.2); /* Popover menus. */
   --elevation-up: 0 -4px 20px rgba(0,0,0,0.15); /* Panels anchored to the bottom edge. */
-  --shadow-card: 0 4px 16px rgba(15,23,42,0.08);
-  --shadow-raised: 0 8px 28px rgba(15,23,42,0.12);
-  --shadow-modal: 0 12px 40px rgba(15,23,42,0.16);
-  --elevation-sheet: 0 -8px 30px rgba(15,23,42,0.2);
+  --shadow-card: 0 4px 16px rgba(15,23,42,0.08); /* Shadow of the input card and raised cards. */
+  --shadow-raised: 0 8px 28px rgba(15,23,42,0.12); /* Shadow of screens and panels that float over others. */
+  --shadow-modal: 0 12px 40px rgba(15,23,42,0.16); /* Shadow of dialogs, menus and toasts. */
+  --elevation-sheet: 0 -8px 30px rgba(15,23,42,0.2); /* Upward shadow of bottom sheets. */
   /* semantic · font */
   --font-ui: 'Hanken Grotesk', 'Inter', 'Segoe UI', system-ui, -apple-system, sans-serif; /* UI typeface of the extension (brand). */
   /* semantic · surface */
   --surface-busy: #111827; /* Summarise button while a request runs. */
   --surface-paper: #ffffff; /* QR codes need a white quiet zone in every theme. */
-  --bg-page: #faf8ff;
-  --bg-page-gradient: radial-gradient(at 0% 0%, hsla(217,100%,95%,1) 0, transparent 50%), radial-gradient(at 100% 100%, hsla(217,100%,92%,1) 0, transparent 50%);
-  --glass-base: rgba(241,241,241,0.92);
-  --glass-card: rgba(255,255,255,0.55);
-  --glass-input: rgba(0,0,0,0.04);
-  --glass-border: rgba(255,255,255,0.55);
-  --glass-border-strong: rgba(255,255,255,0.45);
-  --glass-inner-glow: inset 0 1px 0 rgba(255,255,255,0.45);
-  --surface-bar: #ffffff;
-  --surface-sheet: #f1f1f1;
-  --scrim: rgba(15,23,42,0.45);
-  --surface-floating: color-mix(in srgb, var(--surface-sheet) 96%, transparent);
-  --surface-track: #e2e8f0;
-  --surface-row: #fafafa;
-  --surface-field: #e9eaee;
-  --surface-selected: #ffffff;
-  --surface-control: #ffffff;
+  --bg-page: #faf8ff; /* Page background of every screen; the base all translucent surfaces are composited over. */
+  --bg-page-gradient: radial-gradient(at 0% 0%, hsla(217,100%,95%,1) 0, transparent 50%), radial-gradient(at 100% 100%, hsla(217,100%,92%,1) 0, transparent 50%); /* Soft accent glow painted over bg-page at the edges of the window. */
+  --glass-base: rgba(241,241,241,0.92); /* Background of a screen that slides over another (settings, detail); nearly opaque. */
+  --glass-card: rgba(255,255,255,0.55); /* Card surface (article cards, settings rows, input card); translucent over bg-page. */
+  --glass-input: rgba(0,0,0,0.04); /* Field surface: inputs, chips, search fields, icon tiles. */
+  --glass-border: rgba(255,255,255,0.55); /* Edge of glass cards and the input card. */
+  --glass-border-strong: rgba(255,255,255,0.45); /* Stronger glass edge for floating panels and toasts. */
+  --glass-inner-glow: inset 0 1px 0 rgba(255,255,255,0.45); /* 1px inner highlight at the top of glass surfaces. */
+  --surface-bar: #ffffff; /* Background of fixed bars (pane headers, toolbars) above scrolling content. */
+  --surface-sheet: #f1f1f1; /* Bottom sheets and dialogs: opaque so text behind does not show through. */
+  --scrim: rgba(15,23,42,0.45); /* Dims the page behind a sheet or dialog. */
+  --surface-floating: color-mix(in srgb, var(--surface-sheet) 96%, transparent); /* Floating player, popovers and menus that sit above content. */
+  --surface-track: #e2e8f0; /* Unfilled part of progress bars, sliders and meters. */
+  --surface-row: #fafafa; /* Rows inside a sheet or list (send targets, list items). */
+  --surface-field: #e9eaee; /* Track of segmented controls and filled fields inside sheets. */
+  --surface-selected: #ffffff; /* Background of a selected row. */
+  --surface-control: #ffffff; /* Selected segment of a segmented control (raised look). */
+  /* semantic · focus */
+  --focus-ring: var(--accent); /* Keyboard focus ring. Sits outside the element (offset), so it is always drawn on the surrounding surface: ≥ 3:1 there in every brand × theme (gate). ADR 0005. */
+  --focus-ring-width: 2px; /* Focus ring thickness (WCAG 2.4.13 asks for ≥ 2px). */
+  --focus-ring-offset: 2px; /* Gap between element and ring: the page colour in the gap is the second colour of the ring (technique C40). */
+  --focus-ring-inset: -2px; /* Offset for elements inside a clipped container (menus, toolbars, list rows): the ring is drawn just inside the element. */
+  /* semantic · motion */
+  --duration-fast: 150ms; /* Hover, focus, colour and toggle changes (WCAG: never the only cue). */
+  --duration-base: 200ms; /* Small movements: chips, tab indicator, panels opening in place. */
+  --duration-slow: 300ms; /* Larger movements: sheets, cards entering, accordions. */
+  --duration-slower: 400ms; /* Travelling elements: nav blob, toasts, flyouts. */
+  --duration-screen: 350ms; /* Screen slide between main screen, settings and detail. */
+  --duration-reveal: 500ms; /* Content revealed on scroll and hero entrances. */
+  --easing-standard: cubic-bezier(0.25, 0.1, 0.25, 1); /* Default curve (same as CSS ease). */
+  --easing-decelerate: cubic-bezier(0, 0, 0.58, 1); /* Things coming to rest: entering elements (CSS ease-out). */
+  --easing-accelerate: cubic-bezier(0.42, 0, 1, 1); /* Things leaving the screen (CSS ease-in). */
+  --easing-in-out: cubic-bezier(0.42, 0, 0.58, 1); /* Back-and-forth and looping movement (CSS ease-in-out). */
+  --easing-emphasized: cubic-bezier(0.2, 0.8, 0.2, 1); /* Appearances that should feel quick and settle softly (sheets, panes). */
+  --easing-spring: cubic-bezier(0.34, 1.56, 0.64, 1); /* Slight overshoot for the nav blob and selection indicators. */
+  --easing-screen: cubic-bezier(0.4, 0, 0.2, 1); /* Screen slides. */
+  /* semantic · breakpoint */
+  --bp-narrow: 420px; /* Narrow popup: rows stack (max-width). */
+  --bp-toolbar-compact: 440px; /* Article toolbar: back button shows only its icon below this width (JS). */
+  --bp-popup: 480px; /* Wider than the standard popup: button labels show (min-width 481px). */
+  --bp-split: 720px; /* Split view: two panes from here (JS, workspaceManager). */
+  --bp-card-wide: 760px; /* Container query: wide article and source cards. */
+  --bp-toolbar-labels: 780px; /* Article toolbar shows labels next to icons (JS). */
+  --bp-settings-wide: 900px; /* Settings master–detail: list and panel side by side (JS). */
+  --bp-split-3: 1100px; /* Split view: three panes from here (JS). */
   /* semantic · accent */
-  --accent-a05: color-mix(in srgb, var(--accent) 5%, transparent);
-  --accent-a08: color-mix(in srgb, var(--accent) 8%, transparent);
-  --accent-a10: color-mix(in srgb, var(--accent) 10%, transparent);
-  --accent-a12: color-mix(in srgb, var(--accent) 12%, transparent);
-  --accent-a15: color-mix(in srgb, var(--accent) 15%, transparent);
-  --accent-a25: color-mix(in srgb, var(--accent) 25%, transparent);
-  --accent-a30: color-mix(in srgb, var(--accent) 30%, transparent);
-  --accent: #2563eb;
-  --accent-light: #3b82f6;
-  --accent-glow: color-mix(in srgb, var(--accent) 25%, transparent);
-  --on-accent: #ffffff;
-  --accent-soft: color-mix(in srgb, var(--accent) 10%, transparent);
-  --accent-soft-strong: color-mix(in srgb, var(--accent) 18%, transparent);
-  --accent-subtle: #eff6ff;
-  --accent-selected: color-mix(in srgb, var(--accent) 8%, transparent);
+  --accent-a05: color-mix(in srgb, var(--accent) 5%, transparent); /* Accent at 5%: tints for hover, selection and soft borders. Never as text. */
+  --accent-a08: color-mix(in srgb, var(--accent) 8%, transparent); /* Accent at 8%: tints for hover, selection and soft borders. Never as text. */
+  --accent-a10: color-mix(in srgb, var(--accent) 10%, transparent); /* Accent at 10%: tints for hover, selection and soft borders. Never as text. */
+  --accent-a12: color-mix(in srgb, var(--accent) 12%, transparent); /* Accent at 12%: tints for hover, selection and soft borders. Never as text. */
+  --accent-a15: color-mix(in srgb, var(--accent) 15%, transparent); /* Accent at 15%: tints for hover, selection and soft borders. Never as text. */
+  --accent-a25: color-mix(in srgb, var(--accent) 25%, transparent); /* Accent at 25%: tints for hover, selection and soft borders. Never as text. */
+  --accent-a30: color-mix(in srgb, var(--accent) 30%, transparent); /* Accent at 30%: tints for hover, selection and soft borders. Never as text. */
+  --accent: #2563eb; /* Brand action colour: primary buttons, selected states, links on controls, focus ring, progress. */
+  --accent-light: #3b82f6; /* Second stop of the accent gradient (primary button, nav blob, switch on). */
+  --accent-glow: color-mix(in srgb, var(--accent) 25%, transparent); /* Coloured glow under primary buttons. */
+  --on-accent: #ffffff; /* Text and icons on an accent fill (primary button, selected pill, active nav item). */
+  --accent-soft: color-mix(in srgb, var(--accent) 10%, transparent); /* Light accent tint for selected or hovered rows. */
+  --accent-soft-strong: color-mix(in srgb, var(--accent) 18%, transparent); /* Stronger accent tint for pressed or highlighted rows. */
+  --accent-subtle: #eff6ff; /* Faint accent tint behind accent-coloured text (chips, badges). */
+  --accent-selected: color-mix(in srgb, var(--accent) 8%, transparent); /* Accent tint of a selected card or row. */
   /* semantic · text */
-  --text-primary: #0f172a;
-  --text-secondary: #334155;
-  --text-muted: #566274;
-  --text-link: #1d4ed8;
+  --text-primary: #0f172a; /* Body text, titles and icons: the strongest text colour (≥ 14:1 on cards). */
+  --text-secondary: #334155; /* Supporting text: labels, descriptions, inactive controls with text. */
+  --text-muted: #566274; /* Least important readable text: hints, meta lines, timestamps, placeholders (≥ 4.5:1). */
+  --text-link: #1d4ed8; /* Links inside text. */
   /* semantic · outline */
-  --outline: rgba(100,116,139,0.25);
-  --outline-soft: rgba(255,255,255,0.55);
-  --outline-strong: #d5d8de;
+  --outline: rgba(100,116,139,0.25); /* Default 1px border of cards, fields, bars and dividers. Decorative (about 1.35:1); a field edge that must be found needs outline-strong (ADR 0005). */
+  --outline-soft: rgba(255,255,255,0.55); /* Very subtle border inside glass surfaces. */
+  --outline-strong: #d5d8de; /* Border that must be seen: focused groups, dashed drop zones, high-contrast theme. */
   /* semantic · status */
-  --tone-read-bg: #e5e7eb;
-  --tone-read-fg: #475569;
-  --tone-sent-bg: #dbeafe;
-  --tone-sent-fg: #1d4ed8;
-  --tone-new-bg: #dcfce7;
-  --tone-new-fg: #166534;
-  --tone-arch-bg: #fef3c7;
-  --tone-arch-fg: #92400e;
+  --tone-read-bg: #e5e7eb; /* Status “Read” badge background. */
+  --tone-read-fg: #475569; /* Status “Read” badge text (≥ 5.4:1 on its background). */
+  --tone-sent-bg: #dbeafe; /* Status “Sent” badge background. */
+  --tone-sent-fg: #1d4ed8; /* Status “Sent” badge text (≥ 5.4:1 on its background). */
+  --tone-new-bg: #dcfce7; /* Status “New” badge background. */
+  --tone-new-fg: #166534; /* Status “New” badge text (≥ 5.4:1 on its background). */
+  --tone-arch-bg: #fef3c7; /* Status “Archived” badge background. */
+  --tone-arch-fg: #92400e; /* Status “Archived” badge text (≥ 5.4:1 on its background). */
   /* semantic · control */
-  --control-track: #cbd5e1;
-  --control-thumb: rgba(100,116,139,0.42);
-  --control-thumb-hover: rgba(100,116,139,0.66);
-  --control-grip: #cbd5e1;
-  --control-off: #cbd5e1;
-  --control-knob: #ffffff;
-  --control-border: #94a3b8;
+  --control-track: #cbd5e1; /* Slider track. */
+  --control-thumb: rgba(100,116,139,0.42); /* Slider thumb. */
+  --control-thumb-hover: rgba(100,116,139,0.66); /* Slider thumb on hover. */
+  --control-grip: #cbd5e1; /* Drag handle (grip dots) in editable lists. */
+  --control-off: #cbd5e1; /* Switch track when off. */
+  --control-knob: #ffffff; /* Switch knob. */
+  --control-border: #94a3b8; /* Border of checkboxes and radios. */
   /* semantic · inverse */
-  --surface-inverse: #0f172a;
-  --text-inverse: #ffffff;
-  --link-inverse: #93c5fd;
+  --surface-inverse: #0f172a; /* Inverse surface (toasts, tooltips): dark in light mode, light in dark mode. */
+  --text-inverse: #ffffff; /* Text on surface-inverse. */
+  --link-inverse: #93c5fd; /* Action or link on surface-inverse (toast Undo). */
   /* semantic · overlay */
-  --overlay-strong: color-mix(in srgb, var(--text-primary) 18%, transparent);
-  --overlay: color-mix(in srgb, var(--text-primary) 10%, transparent);
+  --overlay-strong: color-mix(in srgb, var(--text-primary) 18%, transparent); /* Stronger media overlay for text on images. */
+  --overlay: color-mix(in srgb, var(--text-primary) 10%, transparent); /* Dark overlay on media (video poster, image captions). */
   /* semantic · data */
-  --data-0: #2a78d6;
-  --data-1: #eb6834;
-  --data-2: #1baf7a;
-  --data-3: #eda100;
-  --data-4: #e87ba4;
-  --data-5: #008300;
-  --data-6: #4a3aa7;
-  --data-7: #e34948;
-  --data-other: #9ca3af;
+  --data-0: #2a78d6; /* Chart series 1 of 8: categorical, the same in every brand; pair with labels or symbols (WCAG 1.4.1). */
+  --data-1: #eb6834; /* Chart series 2 of 8: categorical, the same in every brand; pair with labels or symbols (WCAG 1.4.1). */
+  --data-2: #1baf7a; /* Chart series 3 of 8: categorical, the same in every brand; pair with labels or symbols (WCAG 1.4.1). */
+  --data-3: #eda100; /* Chart series 4 of 8: categorical, the same in every brand; pair with labels or symbols (WCAG 1.4.1). */
+  --data-4: #e87ba4; /* Chart series 5 of 8: categorical, the same in every brand; pair with labels or symbols (WCAG 1.4.1). */
+  --data-5: #008300; /* Chart series 6 of 8: categorical, the same in every brand; pair with labels or symbols (WCAG 1.4.1). */
+  --data-6: #4a3aa7; /* Chart series 7 of 8: categorical, the same in every brand; pair with labels or symbols (WCAG 1.4.1). */
+  --data-7: #e34948; /* Chart series 8 of 8: categorical, the same in every brand; pair with labels or symbols (WCAG 1.4.1). */
+  --data-other: #9ca3af; /* Chart series “other”: neutral grey after the eight categorical colours. */
   /* semantic · annotation */
-  --annotation-user-bg: #fef9c3;
-  --annotation-user-fg: #713f12;
-  --annotation-user-bar: #eab308;
-  --annotation-ai-bg: #e0f2fe;
-  --annotation-ai-fg: #0c4a6e;
-  --annotation-ai-bar: #0284C7;
-  --annotation-note-bg: #fce7f3;
-  --annotation-note-fg: #831843;
-  --annotation-note-bar: #db2777;
+  --annotation-user-bg: #fef9c3; /* Your highlight: sticky and mark background (yellow). */
+  --annotation-user-fg: #713f12; /* Your highlight: kind label text. */
+  --annotation-user-bar: #eab308; /* Your highlight: side bar and mark underline. */
+  --annotation-ai-bg: #e0f2fe; /* AI highlight: sticky and mark background (blue). */
+  --annotation-ai-fg: #0c4a6e; /* AI highlight: kind label text. */
+  --annotation-ai-bar: #0284C7; /* AI highlight: side bar and mark underline. */
+  --annotation-note-bg: #fce7f3; /* Free note: sticky background (pink). */
+  --annotation-note-fg: #831843; /* Free note: kind label text. */
+  --annotation-note-bar: #db2777; /* Free note: side bar. */
   --annotation-quote-bg: rgba(255,255,255,0.55); /* Quote box inside a saved-note card. */
   --annotation-edge: none; /* Hairline around saved-note cards (dark only). */
   /* component · player */
@@ -281,225 +309,250 @@
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme='light']):not([data-theme='contrast']) {
     /* semantic · surface */
-    --bg-page: #0b0e14;
-    --bg-page-gradient: radial-gradient(at 0% 0%, color-mix(in srgb, var(--accent) 8%, transparent) 0, transparent 50%), radial-gradient(at 100% 100%, rgba(173,198,255,0.05) 0, transparent 50%);
-    --glass-base: rgba(11,14,20,0.92);
-    --glass-card: rgba(255,255,255,0.06);
-    --glass-input: rgba(255,255,255,0.05);
-    --glass-border: rgba(255,255,255,0.1);
-    --glass-border-strong: rgba(255,255,255,0.14);
-    --glass-inner-glow: inset 0 1px 0 rgba(255,255,255,0.06);
-    --surface-bar: #0b0e14;
-    --surface-sheet: #141923;
-    --scrim: rgba(0,0,0,0.6);
-    --surface-row: rgba(255,255,255,0.06);
-    --surface-field: rgba(255,255,255,0.08);
-    --surface-selected: rgba(255,255,255,0.16);
-    --surface-control: rgba(255,255,255,0.06);
-    --surface-track: rgba(255,255,255,0.12);
+    --bg-page: #0b0e14; /* Page background of every screen; the base all translucent surfaces are composited over. */
+    --bg-page-gradient: radial-gradient(at 0% 0%, color-mix(in srgb, var(--accent) 8%, transparent) 0, transparent 50%), radial-gradient(at 100% 100%, rgba(173,198,255,0.05) 0, transparent 50%); /* Soft accent glow painted over bg-page at the edges of the window. */
+    --glass-base: rgba(11,14,20,0.92); /* Background of a screen that slides over another (settings, detail); nearly opaque. */
+    --glass-card: rgba(255,255,255,0.06); /* Card surface (article cards, settings rows, input card); translucent over bg-page. */
+    --glass-input: rgba(255,255,255,0.05); /* Field surface: inputs, chips, search fields, icon tiles. */
+    --glass-border: rgba(255,255,255,0.1); /* Edge of glass cards and the input card. */
+    --glass-border-strong: rgba(255,255,255,0.14); /* Stronger glass edge for floating panels and toasts. */
+    --glass-inner-glow: inset 0 1px 0 rgba(255,255,255,0.06); /* 1px inner highlight at the top of glass surfaces. */
+    --surface-bar: #0b0e14; /* Background of fixed bars (pane headers, toolbars) above scrolling content. */
+    --surface-sheet: #141923; /* Bottom sheets and dialogs: opaque so text behind does not show through. */
+    --scrim: rgba(0,0,0,0.6); /* Dims the page behind a sheet or dialog. */
+    --surface-row: rgba(255,255,255,0.06); /* Rows inside a sheet or list (send targets, list items). */
+    --surface-field: rgba(255,255,255,0.08); /* Track of segmented controls and filled fields inside sheets. */
+    --surface-selected: rgba(255,255,255,0.16); /* Background of a selected row. */
+    --surface-control: rgba(255,255,255,0.06); /* Selected segment of a segmented control (raised look). */
+    --surface-track: rgba(255,255,255,0.12); /* Unfilled part of progress bars, sliders and meters. */
     /* semantic · text */
-    --text-primary: #e8edf5;
-    --text-secondary: #b8c4d4;
-    --text-muted: #94a3b8;
-    --text-link: #93c5fd;
+    --text-primary: #e8edf5; /* Body text, titles and icons: the strongest text colour (≥ 14:1 on cards). */
+    --text-secondary: #b8c4d4; /* Supporting text: labels, descriptions, inactive controls with text. */
+    --text-muted: #94a3b8; /* Least important readable text: hints, meta lines, timestamps, placeholders (≥ 4.5:1). */
+    --text-link: #93c5fd; /* Links inside text. */
     /* semantic · accent */
-    --accent: #60a5fa;
-    --accent-light: #3b82f6;
-    --accent-glow: rgba(96,165,250,0.18);
-    --on-accent: #001a3d;
-    --accent-soft: rgba(96,165,250,0.14);
-    --accent-soft-strong: rgba(96,165,250,0.26);
-    --accent-subtle: rgba(96,165,250,0.14);
-    --accent-selected: rgba(96,165,250,0.14);
+    --accent: #60a5fa; /* Brand action colour: primary buttons, selected states, links on controls, focus ring, progress. */
+    --accent-light: #3b82f6; /* Second stop of the accent gradient (primary button, nav blob, switch on). */
+    --accent-glow: rgba(96,165,250,0.18); /* Coloured glow under primary buttons. */
+    --on-accent: #001a3d; /* Text and icons on an accent fill (primary button, selected pill, active nav item). */
+    --accent-soft: rgba(96,165,250,0.14); /* Light accent tint for selected or hovered rows. */
+    --accent-soft-strong: rgba(96,165,250,0.26); /* Stronger accent tint for pressed or highlighted rows. */
+    --accent-subtle: rgba(96,165,250,0.14); /* Faint accent tint behind accent-coloured text (chips, badges). */
+    --accent-selected: rgba(96,165,250,0.14); /* Accent tint of a selected card or row. */
     /* semantic · outline */
-    --outline: rgba(255,255,255,0.1);
-    --outline-soft: rgba(255,255,255,0.05);
-    --outline-strong: rgba(255,255,255,0.12);
+    --outline: rgba(255,255,255,0.1); /* Default 1px border of cards, fields, bars and dividers. Decorative (about 1.35:1); a field edge that must be found needs outline-strong (ADR 0005). */
+    --outline-soft: rgba(255,255,255,0.05); /* Very subtle border inside glass surfaces. */
+    --outline-strong: rgba(255,255,255,0.12); /* Border that must be seen: focused groups, dashed drop zones, high-contrast theme. */
     /* semantic · elevation */
-    --shadow-card: 0 4px 16px rgba(0,0,0,0.35);
-    --shadow-raised: 0 8px 28px rgba(0,0,0,0.45);
-    --shadow-modal: 0 12px 40px rgba(0,0,0,0.55);
-    --elevation-sheet: 0 -8px 30px rgba(0,0,0,0.55);
+    --shadow-card: 0 4px 16px rgba(0,0,0,0.35); /* Shadow of the input card and raised cards. */
+    --shadow-raised: 0 8px 28px rgba(0,0,0,0.45); /* Shadow of screens and panels that float over others. */
+    --shadow-modal: 0 12px 40px rgba(0,0,0,0.55); /* Shadow of dialogs, menus and toasts. */
+    --elevation-sheet: 0 -8px 30px rgba(0,0,0,0.55); /* Upward shadow of bottom sheets. */
     /* semantic · status */
-    --tone-read-bg: rgba(255,255,255,0.1);
-    --tone-read-fg: #cbd5e1;
-    --tone-sent-bg: rgba(96,165,250,0.18);
-    --tone-sent-fg: #93c5fd;
-    --tone-new-bg: rgba(74,222,128,0.16);
-    --tone-new-fg: #86efac;
-    --tone-arch-bg: rgba(251,191,36,0.16);
-    --tone-arch-fg: #fcd34d;
+    --tone-read-bg: rgba(255,255,255,0.1); /* Status “Read” badge background. */
+    --tone-read-fg: #cbd5e1; /* Status “Read” badge text (≥ 5.4:1 on its background). */
+    --tone-sent-bg: rgba(96,165,250,0.18); /* Status “Sent” badge background. */
+    --tone-sent-fg: #93c5fd; /* Status “Sent” badge text (≥ 5.4:1 on its background). */
+    --tone-new-bg: rgba(74,222,128,0.16); /* Status “New” badge background. */
+    --tone-new-fg: #86efac; /* Status “New” badge text (≥ 5.4:1 on its background). */
+    --tone-arch-bg: rgba(251,191,36,0.16); /* Status “Archived” badge background. */
+    --tone-arch-fg: #fcd34d; /* Status “Archived” badge text (≥ 5.4:1 on its background). */
     /* semantic · feedback */
-    --mood-pos: hsl(142,55%,52%);
-    --mood-neg: hsl(0,75%,65%);
-    --mood-warn: hsl(45,90%,58%);
-    --mood-pos-text: #86efac;
-    --mood-neg-text: #fca5a5;
-    --mood-warn-text: #fcd34d;
+    --mood-pos: hsl(142,55%,52%); /* Positive mood in charts and dots (graphic, ≥ 3:1). */
+    --mood-neg: hsl(0,75%,65%); /* Negative mood in charts and dots (graphic, ≥ 3:1). */
+    --mood-warn: hsl(45,90%,58%); /* Mixed mood in charts and dots (graphic). */
+    --mood-pos-text: #86efac; /* Positive mood as text (≥ 4.5:1). */
+    --mood-neg-text: #fca5a5; /* Negative mood as text (≥ 4.5:1). */
+    --mood-warn-text: #fcd34d; /* Mixed mood as text (≥ 4.5:1). */
     --caution-bg: rgba(251,191,36,0.16); /* "Different page" note: background. */
     --caution-fg: #fcd34d; /* "Different page" note: text. */
     --caution-border: rgba(251,191,36,0.35); /* "Different page" note: border. */
     --caution-muted: #fde68a; /* "Different page" note: secondary text. */
-    --danger-text: #fca5a5; /* Delete action on a saved-note card. */
+    --danger-text: #fca5a5; /* Error and delete text, Danger outline buttons: ≥ 4.5:1 on dark cards (--danger is 3.5:1 there). ADR 0005. */
     /* semantic · control */
-    --control-track: #334155;
-    --control-thumb: rgba(226,232,240,0.28);
-    --control-thumb-hover: rgba(226,232,240,0.46);
-    --control-grip: rgba(255,255,255,0.25);
-    --control-off: rgba(255,255,255,0.22);
-    --control-knob: #ffffff;
-    --control-border: #64748b;
+    --control-track: #334155; /* Slider track. */
+    --control-thumb: rgba(226,232,240,0.28); /* Slider thumb. */
+    --control-thumb-hover: rgba(226,232,240,0.46); /* Slider thumb on hover. */
+    --control-grip: rgba(255,255,255,0.25); /* Drag handle (grip dots) in editable lists. */
+    --control-off: rgba(255,255,255,0.22); /* Switch track when off. */
+    --control-knob: #ffffff; /* Switch knob. */
+    --control-border: #64748b; /* Border of checkboxes and radios. */
     /* semantic · inverse */
-    --surface-inverse: #e8edf5;
-    --text-inverse: #0b0e14;
-    --link-inverse: #1d4ed8;
+    --surface-inverse: #e8edf5; /* Inverse surface (toasts, tooltips): dark in light mode, light in dark mode. */
+    --text-inverse: #0b0e14; /* Text on surface-inverse. */
+    --link-inverse: #1d4ed8; /* Action or link on surface-inverse (toast Undo). */
     /* semantic · data */
-    --data-0: #3987e5;
-    --data-1: #d95926;
-    --data-2: #199e70;
-    --data-3: #c98500;
-    --data-4: #d55181;
-    --data-5: #008300;
-    --data-6: #9085e9;
-    --data-7: #e66767;
-    --data-other: #6b7280;
+    --data-0: #3987e5; /* Chart series 1 of 8: categorical, the same in every brand; pair with labels or symbols (WCAG 1.4.1). */
+    --data-1: #d95926; /* Chart series 2 of 8: categorical, the same in every brand; pair with labels or symbols (WCAG 1.4.1). */
+    --data-2: #199e70; /* Chart series 3 of 8: categorical, the same in every brand; pair with labels or symbols (WCAG 1.4.1). */
+    --data-3: #c98500; /* Chart series 4 of 8: categorical, the same in every brand; pair with labels or symbols (WCAG 1.4.1). */
+    --data-4: #d55181; /* Chart series 5 of 8: categorical, the same in every brand; pair with labels or symbols (WCAG 1.4.1). */
+    --data-5: #008300; /* Chart series 6 of 8: categorical, the same in every brand; pair with labels or symbols (WCAG 1.4.1). */
+    --data-6: #9085e9; /* Chart series 7 of 8: categorical, the same in every brand; pair with labels or symbols (WCAG 1.4.1). */
+    --data-7: #e66767; /* Chart series 8 of 8: categorical, the same in every brand; pair with labels or symbols (WCAG 1.4.1). */
+    --data-other: #6b7280; /* Chart series “other”: neutral grey after the eight categorical colours. */
     /* semantic · annotation */
-    --annotation-user-bg: #2f2a15;
-    --annotation-user-fg: #f4e6a8;
-    --annotation-user-bar: #d4a514;
-    --annotation-ai-bg: #10293a;
-    --annotation-ai-fg: #c9e7f8;
-    --annotation-ai-bar: #38bdf8;
-    --annotation-note-bg: #35182d;
-    --annotation-note-fg: #f7d6e8;
-    --annotation-note-bar: #f472b6;
+    --annotation-user-bg: #2f2a15; /* Your highlight: sticky and mark background (yellow). */
+    --annotation-user-fg: #f4e6a8; /* Your highlight: kind label text. */
+    --annotation-user-bar: #d4a514; /* Your highlight: side bar and mark underline. */
+    --annotation-ai-bg: #10293a; /* AI highlight: sticky and mark background (blue). */
+    --annotation-ai-fg: #c9e7f8; /* AI highlight: kind label text. */
+    --annotation-ai-bar: #38bdf8; /* AI highlight: side bar and mark underline. */
+    --annotation-note-bg: #35182d; /* Free note: sticky background (pink). */
+    --annotation-note-fg: #f7d6e8; /* Free note: kind label text. */
+    --annotation-note-bar: #f472b6; /* Free note: side bar. */
     --annotation-quote-bg: rgba(0,0,0,0.25); /* Quote box inside a saved-note card. */
     --annotation-edge: inset 0 0 0 1px rgba(255,255,255,0.06); /* Hairline around saved-note cards (dark only). */
   }
 }
 :root[data-theme='dark'] {
   /* semantic · surface */
-  --bg-page: #0b0e14;
-  --bg-page-gradient: radial-gradient(at 0% 0%, color-mix(in srgb, var(--accent) 8%, transparent) 0, transparent 50%), radial-gradient(at 100% 100%, rgba(173,198,255,0.05) 0, transparent 50%);
-  --glass-base: rgba(11,14,20,0.82);
-  --glass-card: rgba(255,255,255,0.06);
-  --glass-input: rgba(255,255,255,0.05);
-  --glass-border: rgba(255,255,255,0.1);
-  --glass-border-strong: rgba(255,255,255,0.14);
-  --glass-inner-glow: inset 0 1px 0 rgba(255,255,255,0.06);
-  --surface-bar: #0b0e14;
-  --surface-sheet: #141923;
-  --scrim: rgba(0,0,0,0.6);
-  --surface-row: rgba(255,255,255,0.06);
-  --surface-field: rgba(255,255,255,0.08);
-  --surface-selected: rgba(255,255,255,0.16);
-  --surface-control: rgba(255,255,255,0.06);
-  --surface-track: rgba(255,255,255,0.12);
+  --bg-page: #0b0e14; /* Page background of every screen; the base all translucent surfaces are composited over. */
+  --bg-page-gradient: radial-gradient(at 0% 0%, color-mix(in srgb, var(--accent) 8%, transparent) 0, transparent 50%), radial-gradient(at 100% 100%, rgba(173,198,255,0.05) 0, transparent 50%); /* Soft accent glow painted over bg-page at the edges of the window. */
+  --glass-base: rgba(11,14,20,0.82); /* Background of a screen that slides over another (settings, detail); nearly opaque. */
+  --glass-card: rgba(255,255,255,0.06); /* Card surface (article cards, settings rows, input card); translucent over bg-page. */
+  --glass-input: rgba(255,255,255,0.05); /* Field surface: inputs, chips, search fields, icon tiles. */
+  --glass-border: rgba(255,255,255,0.1); /* Edge of glass cards and the input card. */
+  --glass-border-strong: rgba(255,255,255,0.14); /* Stronger glass edge for floating panels and toasts. */
+  --glass-inner-glow: inset 0 1px 0 rgba(255,255,255,0.06); /* 1px inner highlight at the top of glass surfaces. */
+  --surface-bar: #0b0e14; /* Background of fixed bars (pane headers, toolbars) above scrolling content. */
+  --surface-sheet: #141923; /* Bottom sheets and dialogs: opaque so text behind does not show through. */
+  --scrim: rgba(0,0,0,0.6); /* Dims the page behind a sheet or dialog. */
+  --surface-row: rgba(255,255,255,0.06); /* Rows inside a sheet or list (send targets, list items). */
+  --surface-field: rgba(255,255,255,0.08); /* Track of segmented controls and filled fields inside sheets. */
+  --surface-selected: rgba(255,255,255,0.16); /* Background of a selected row. */
+  --surface-control: rgba(255,255,255,0.06); /* Selected segment of a segmented control (raised look). */
+  --surface-track: rgba(255,255,255,0.12); /* Unfilled part of progress bars, sliders and meters. */
   /* semantic · text */
-  --text-primary: #e8edf5;
-  --text-secondary: #b8c4d4;
-  --text-muted: #94a3b8;
-  --text-link: #93c5fd;
+  --text-primary: #e8edf5; /* Body text, titles and icons: the strongest text colour (≥ 14:1 on cards). */
+  --text-secondary: #b8c4d4; /* Supporting text: labels, descriptions, inactive controls with text. */
+  --text-muted: #94a3b8; /* Least important readable text: hints, meta lines, timestamps, placeholders (≥ 4.5:1). */
+  --text-link: #93c5fd; /* Links inside text. */
   /* semantic · accent */
-  --accent: #60a5fa;
-  --accent-light: #3b82f6;
-  --accent-glow: rgba(96,165,250,0.18);
-  --on-accent: #001a3d;
-  --accent-soft: rgba(96,165,250,0.14);
-  --accent-soft-strong: rgba(96,165,250,0.26);
-  --accent-subtle: rgba(96,165,250,0.14);
-  --accent-selected: rgba(96,165,250,0.14);
+  --accent: #60a5fa; /* Brand action colour: primary buttons, selected states, links on controls, focus ring, progress. */
+  --accent-light: #3b82f6; /* Second stop of the accent gradient (primary button, nav blob, switch on). */
+  --accent-glow: rgba(96,165,250,0.18); /* Coloured glow under primary buttons. */
+  --on-accent: #001a3d; /* Text and icons on an accent fill (primary button, selected pill, active nav item). */
+  --accent-soft: rgba(96,165,250,0.14); /* Light accent tint for selected or hovered rows. */
+  --accent-soft-strong: rgba(96,165,250,0.26); /* Stronger accent tint for pressed or highlighted rows. */
+  --accent-subtle: rgba(96,165,250,0.14); /* Faint accent tint behind accent-coloured text (chips, badges). */
+  --accent-selected: rgba(96,165,250,0.14); /* Accent tint of a selected card or row. */
   /* semantic · outline */
-  --outline: rgba(255,255,255,0.1);
-  --outline-soft: rgba(255,255,255,0.05);
-  --outline-strong: rgba(255,255,255,0.12);
+  --outline: rgba(255,255,255,0.1); /* Default 1px border of cards, fields, bars and dividers. Decorative (about 1.35:1); a field edge that must be found needs outline-strong (ADR 0005). */
+  --outline-soft: rgba(255,255,255,0.05); /* Very subtle border inside glass surfaces. */
+  --outline-strong: rgba(255,255,255,0.12); /* Border that must be seen: focused groups, dashed drop zones, high-contrast theme. */
   /* semantic · elevation */
-  --shadow-card: 0 4px 16px rgba(0,0,0,0.35);
-  --shadow-raised: 0 8px 28px rgba(0,0,0,0.45);
-  --shadow-modal: 0 12px 40px rgba(0,0,0,0.55);
-  --elevation-sheet: 0 -8px 30px rgba(0,0,0,0.55);
+  --shadow-card: 0 4px 16px rgba(0,0,0,0.35); /* Shadow of the input card and raised cards. */
+  --shadow-raised: 0 8px 28px rgba(0,0,0,0.45); /* Shadow of screens and panels that float over others. */
+  --shadow-modal: 0 12px 40px rgba(0,0,0,0.55); /* Shadow of dialogs, menus and toasts. */
+  --elevation-sheet: 0 -8px 30px rgba(0,0,0,0.55); /* Upward shadow of bottom sheets. */
   /* semantic · status */
-  --tone-read-bg: rgba(255,255,255,0.1);
-  --tone-read-fg: #cbd5e1;
-  --tone-sent-bg: rgba(96,165,250,0.18);
-  --tone-sent-fg: #93c5fd;
-  --tone-new-bg: rgba(74,222,128,0.16);
-  --tone-new-fg: #86efac;
-  --tone-arch-bg: rgba(251,191,36,0.16);
-  --tone-arch-fg: #fcd34d;
+  --tone-read-bg: rgba(255,255,255,0.1); /* Status “Read” badge background. */
+  --tone-read-fg: #cbd5e1; /* Status “Read” badge text (≥ 5.4:1 on its background). */
+  --tone-sent-bg: rgba(96,165,250,0.18); /* Status “Sent” badge background. */
+  --tone-sent-fg: #93c5fd; /* Status “Sent” badge text (≥ 5.4:1 on its background). */
+  --tone-new-bg: rgba(74,222,128,0.16); /* Status “New” badge background. */
+  --tone-new-fg: #86efac; /* Status “New” badge text (≥ 5.4:1 on its background). */
+  --tone-arch-bg: rgba(251,191,36,0.16); /* Status “Archived” badge background. */
+  --tone-arch-fg: #fcd34d; /* Status “Archived” badge text (≥ 5.4:1 on its background). */
   /* semantic · feedback */
-  --mood-pos: hsl(142,55%,52%);
-  --mood-neg: hsl(0,75%,65%);
-  --mood-warn: hsl(45,90%,58%);
-  --mood-pos-text: #86efac;
-  --mood-neg-text: #fca5a5;
-  --mood-warn-text: #fcd34d;
+  --mood-pos: hsl(142,55%,52%); /* Positive mood in charts and dots (graphic, ≥ 3:1). */
+  --mood-neg: hsl(0,75%,65%); /* Negative mood in charts and dots (graphic, ≥ 3:1). */
+  --mood-warn: hsl(45,90%,58%); /* Mixed mood in charts and dots (graphic). */
+  --mood-pos-text: #86efac; /* Positive mood as text (≥ 4.5:1). */
+  --mood-neg-text: #fca5a5; /* Negative mood as text (≥ 4.5:1). */
+  --mood-warn-text: #fcd34d; /* Mixed mood as text (≥ 4.5:1). */
   --caution-bg: rgba(251,191,36,0.16); /* "Different page" note: background. */
   --caution-fg: #fcd34d; /* "Different page" note: text. */
   --caution-border: rgba(251,191,36,0.35); /* "Different page" note: border. */
   --caution-muted: #fde68a; /* "Different page" note: secondary text. */
-  --danger-text: #fca5a5; /* Delete action on a saved-note card. */
+  --danger-text: #fca5a5; /* Error and delete text, Danger outline buttons: ≥ 4.5:1 on dark cards (--danger is 3.5:1 there). ADR 0005. */
   /* semantic · control */
-  --control-track: #334155;
-  --control-thumb: rgba(226,232,240,0.28);
-  --control-thumb-hover: rgba(226,232,240,0.46);
-  --control-grip: rgba(255,255,255,0.25);
-  --control-off: rgba(255,255,255,0.22);
-  --control-knob: #ffffff;
-  --control-border: #64748b;
+  --control-track: #334155; /* Slider track. */
+  --control-thumb: rgba(226,232,240,0.28); /* Slider thumb. */
+  --control-thumb-hover: rgba(226,232,240,0.46); /* Slider thumb on hover. */
+  --control-grip: rgba(255,255,255,0.25); /* Drag handle (grip dots) in editable lists. */
+  --control-off: rgba(255,255,255,0.22); /* Switch track when off. */
+  --control-knob: #ffffff; /* Switch knob. */
+  --control-border: #64748b; /* Border of checkboxes and radios. */
   /* semantic · inverse */
-  --surface-inverse: #e8edf5;
-  --text-inverse: #0b0e14;
-  --link-inverse: #1d4ed8;
+  --surface-inverse: #e8edf5; /* Inverse surface (toasts, tooltips): dark in light mode, light in dark mode. */
+  --text-inverse: #0b0e14; /* Text on surface-inverse. */
+  --link-inverse: #1d4ed8; /* Action or link on surface-inverse (toast Undo). */
   /* semantic · data */
-  --data-0: #3987e5;
-  --data-1: #d95926;
-  --data-2: #199e70;
-  --data-3: #c98500;
-  --data-4: #d55181;
-  --data-5: #008300;
-  --data-6: #9085e9;
-  --data-7: #e66767;
-  --data-other: #6b7280;
+  --data-0: #3987e5; /* Chart series 1 of 8: categorical, the same in every brand; pair with labels or symbols (WCAG 1.4.1). */
+  --data-1: #d95926; /* Chart series 2 of 8: categorical, the same in every brand; pair with labels or symbols (WCAG 1.4.1). */
+  --data-2: #199e70; /* Chart series 3 of 8: categorical, the same in every brand; pair with labels or symbols (WCAG 1.4.1). */
+  --data-3: #c98500; /* Chart series 4 of 8: categorical, the same in every brand; pair with labels or symbols (WCAG 1.4.1). */
+  --data-4: #d55181; /* Chart series 5 of 8: categorical, the same in every brand; pair with labels or symbols (WCAG 1.4.1). */
+  --data-5: #008300; /* Chart series 6 of 8: categorical, the same in every brand; pair with labels or symbols (WCAG 1.4.1). */
+  --data-6: #9085e9; /* Chart series 7 of 8: categorical, the same in every brand; pair with labels or symbols (WCAG 1.4.1). */
+  --data-7: #e66767; /* Chart series 8 of 8: categorical, the same in every brand; pair with labels or symbols (WCAG 1.4.1). */
+  --data-other: #6b7280; /* Chart series “other”: neutral grey after the eight categorical colours. */
   /* semantic · annotation */
-  --annotation-user-bg: #2f2a15;
-  --annotation-user-fg: #f4e6a8;
-  --annotation-user-bar: #d4a514;
-  --annotation-ai-bg: #10293a;
-  --annotation-ai-fg: #c9e7f8;
-  --annotation-ai-bar: #38bdf8;
-  --annotation-note-bg: #35182d;
-  --annotation-note-fg: #f7d6e8;
-  --annotation-note-bar: #f472b6;
+  --annotation-user-bg: #2f2a15; /* Your highlight: sticky and mark background (yellow). */
+  --annotation-user-fg: #f4e6a8; /* Your highlight: kind label text. */
+  --annotation-user-bar: #d4a514; /* Your highlight: side bar and mark underline. */
+  --annotation-ai-bg: #10293a; /* AI highlight: sticky and mark background (blue). */
+  --annotation-ai-fg: #c9e7f8; /* AI highlight: kind label text. */
+  --annotation-ai-bar: #38bdf8; /* AI highlight: side bar and mark underline. */
+  --annotation-note-bg: #35182d; /* Free note: sticky background (pink). */
+  --annotation-note-fg: #f7d6e8; /* Free note: kind label text. */
+  --annotation-note-bar: #f472b6; /* Free note: side bar. */
   --annotation-quote-bg: rgba(0,0,0,0.25); /* Quote box inside a saved-note card. */
   --annotation-edge: inset 0 0 0 1px rgba(255,255,255,0.06); /* Hairline around saved-note cards (dark only). */
 }
 :root[data-theme='contrast'] {
   /* semantic · surface */
-  --bg-page: #ffffff;
-  --bg-page-gradient: #ffffff;
-  --glass-base: #ffffff;
-  --glass-card: #ffffff;
-  --glass-input: #ffffff;
-  --glass-border: #000000;
-  --glass-border-strong: #000000;
-  --glass-inner-glow: transparent;
-  --surface-bar: #ffffff;
+  --bg-page: #ffffff; /* Page background of every screen; the base all translucent surfaces are composited over. */
+  --bg-page-gradient: #ffffff; /* Soft accent glow painted over bg-page at the edges of the window. */
+  --glass-base: #ffffff; /* Background of a screen that slides over another (settings, detail); nearly opaque. */
+  --glass-card: #ffffff; /* Card surface (article cards, settings rows, input card); translucent over bg-page. */
+  --glass-input: #ffffff; /* Field surface: inputs, chips, search fields, icon tiles. */
+  --glass-border: #000000; /* Edge of glass cards and the input card. */
+  --glass-border-strong: #000000; /* Stronger glass edge for floating panels and toasts. */
+  --glass-inner-glow: transparent; /* 1px inner highlight at the top of glass surfaces. */
+  --surface-bar: #ffffff; /* Background of fixed bars (pane headers, toolbars) above scrolling content. */
   /* semantic · outline */
-  --outline: #000000;
+  --outline: #000000; /* Default 1px border of cards, fields, bars and dividers. Decorative (about 1.35:1); a field edge that must be found needs outline-strong (ADR 0005). */
   /* semantic · text */
-  --text-primary: #000000;
-  --text-secondary: #000000;
-  --text-muted: #1f2933;
-  --text-link: #0033cc;
+  --text-primary: #000000; /* Body text, titles and icons: the strongest text colour (≥ 14:1 on cards). */
+  --text-secondary: #000000; /* Supporting text: labels, descriptions, inactive controls with text. */
+  --text-muted: #1f2933; /* Least important readable text: hints, meta lines, timestamps, placeholders (≥ 4.5:1). */
+  --text-link: #0033cc; /* Links inside text. */
   /* semantic · accent */
-  --accent: #0033cc;
-  --accent-light: #0033cc;
-  --accent-glow: #0033cc;
-  --on-accent: #ffffff;
-  --accent-a05: #eef2ff;
-  --accent-a08: #e0e7ff;
+  --accent: #0033cc; /* Brand action colour: primary buttons, selected states, links on controls, focus ring, progress. */
+  --accent-light: #0033cc; /* Second stop of the accent gradient (primary button, nav blob, switch on). */
+  --accent-glow: #0033cc; /* Coloured glow under primary buttons. */
+  --on-accent: #ffffff; /* Text and icons on an accent fill (primary button, selected pill, active nav item). */
+  --accent-a05: #eef2ff; /* Accent at 5%: tints for hover, selection and soft borders. Never as text. */
+  --accent-a08: #e0e7ff; /* Accent at 8%: tints for hover, selection and soft borders. Never as text. */
+  /* semantic · focus */
+  --focus-ring: var(--text-primary); /* High-contrast theme: black ring. */
+  --focus-ring-width: 3px; /* Focus ring thickness (WCAG 2.4.13 asks for ≥ 2px). */
   color-scheme: light;
+}
+/* reduced motion: system setting */
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    /* semantic · motion */
+    --duration-fast: 0.01ms; /* Reduced motion: no movement (system setting or Settings › Accessibility › Reduce motion). */
+    --duration-base: 0.01ms; /* Reduced motion: no movement (system setting or Settings › Accessibility › Reduce motion). */
+    --duration-slow: 0.01ms; /* Reduced motion: no movement (system setting or Settings › Accessibility › Reduce motion). */
+    --duration-slower: 0.01ms; /* Reduced motion: no movement (system setting or Settings › Accessibility › Reduce motion). */
+    --duration-screen: 0.01ms; /* Reduced motion: no movement (system setting or Settings › Accessibility › Reduce motion). */
+    --duration-reveal: 0.01ms; /* Reduced motion: no movement (system setting or Settings › Accessibility › Reduce motion). */
+  }
+}
+/* reduced motion: Settings › Accessibility */
+html[data-motion='reduce'] {
+  /* semantic · motion */
+  --duration-fast: 0.01ms; /* Reduced motion: no movement (system setting or Settings › Accessibility › Reduce motion). */
+  --duration-base: 0.01ms; /* Reduced motion: no movement (system setting or Settings › Accessibility › Reduce motion). */
+  --duration-slow: 0.01ms; /* Reduced motion: no movement (system setting or Settings › Accessibility › Reduce motion). */
+  --duration-slower: 0.01ms; /* Reduced motion: no movement (system setting or Settings › Accessibility › Reduce motion). */
+  --duration-screen: 0.01ms; /* Reduced motion: no movement (system setting or Settings › Accessibility › Reduce motion). */
+  --duration-reveal: 0.01ms; /* Reduced motion: no movement (system setting or Settings › Accessibility › Reduce motion). */
 }
 /* @tokens:end theme */
 
@@ -629,7 +682,7 @@ button {
   font-size: var(--fs-base);
   font-weight: 500;
   border-radius: var(--radius-md);
-  transition: transform 0.15s ease, filter 0.15s ease, box-shadow 0.15s ease;
+  transition: transform var(--duration-fast) var(--easing-standard), filter var(--duration-fast) var(--easing-standard), box-shadow var(--duration-fast) var(--easing-standard);
 }
 
 button:active { transform: scale(0.97); }
@@ -689,7 +742,7 @@ button:disabled { opacity: 0.5; cursor: not-allowed; }
 }
 .button-tertiary {
   background: transparent; border: none; color: var(--text-secondary); text-decoration: underline;
-  font-size: var(--fs-md); cursor: pointer; padding: 0.5rem; transition: color 0.2s;
+  font-size: var(--fs-md); cursor: pointer; padding: 0.5rem; transition: color var(--duration-base);
 }
 .button-tertiary:hover { color: var(--text-primary); }
 
@@ -698,7 +751,7 @@ button:disabled { opacity: 0.5; cursor: not-allowed; }
   width: auto; flex: 0 0 auto; display: inline-flex; align-items: center; gap: 6px;
   min-height: 30px; padding: 5px 12px; font-size: var(--fs-sm); font-weight: 600; white-space: nowrap;
   border-radius: var(--radius-full); border: 1px solid var(--outline); background: var(--glass-input);
-  color: var(--text-primary); box-shadow: none; cursor: pointer; transition: background 0.15s ease, color 0.15s ease, border-color 0.15s ease;
+  color: var(--text-primary); box-shadow: none; cursor: pointer; transition: background var(--duration-fast) var(--easing-standard), color var(--duration-fast) var(--easing-standard), border-color var(--duration-fast) var(--easing-standard);
 }
 .pill:hover { background: var(--accent-a10); }
 .pill.active, .pill.on { background: var(--accent); border-color: var(--accent); color: var(--on-accent); }
@@ -777,7 +830,7 @@ button:disabled { opacity: 0.5; cursor: not-allowed; }
   backdrop-filter: blur(32px);
   -webkit-backdrop-filter: blur(32px);
   box-shadow: var(--glass-inner-glow), var(--shadow-raised);
-  transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: transform var(--duration-screen) var(--easing-screen);
   transform: translateX(100%);
 }
 
@@ -851,7 +904,7 @@ select {
   color: var(--text-primary);
   font-family: inherit;
   font-size: var(--fs-base);
-  transition: border-color 0.2s ease, background 0.2s ease;
+  transition: border-color var(--duration-base) var(--easing-standard), background var(--duration-base) var(--easing-standard);
 }
 
 input:focus,
@@ -910,7 +963,7 @@ input[type="range"]::-webkit-slider-thumb {
   border: 1px solid var(--accent-a25);
   box-shadow: var(--elevation-1);
   cursor: pointer;
-  transition: transform 0.15s ease;
+  transition: transform var(--duration-fast) var(--easing-standard);
 }
 
 input[type="range"]:active::-webkit-slider-thumb {
@@ -960,7 +1013,7 @@ ul#articleList {
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
   border: 1px solid var(--outline);
-  transition: border-color 0.2s ease;
+  transition: border-color var(--duration-base) var(--easing-standard);
 }
 
 .article-card {
@@ -1108,7 +1161,7 @@ ul#articleList {
   font-size: var(--fs-sm);
   font-weight: 600;
   text-decoration: none;
-  transition: filter 0.15s ease;
+  transition: filter var(--duration-fast) var(--easing-standard);
 }
 
 #appsScreen .discover-button:hover {
@@ -1166,7 +1219,7 @@ ul#articleList {
     font-size: var(--fs-xs);
     font-weight: 600;
     color: var(--text-secondary);
-    transition: all 0.2s ease;
+    transition: all var(--duration-base) var(--easing-standard);
 }
 
 .segmented-control input[type="radio"]:checked + label {
@@ -1194,7 +1247,7 @@ ul#articleList {
     font-size: var(--fs-xs);
     font-weight: 600;
     color: var(--text-secondary);
-    transition: all 0.2s ease;
+    transition: all var(--duration-base) var(--easing-standard);
     white-space: nowrap;
 }
 
@@ -1266,7 +1319,7 @@ ul#articleList {
   max-height: 0;
   overflow: hidden;
   padding: 0 14px;
-  transition: max-height 0.25s ease;
+  transition: max-height var(--duration-base) var(--easing-standard);
 }
 
 .accordion-content p {
@@ -1398,7 +1451,7 @@ ul#articleList {
   color: var(--text-primary);
   box-shadow: var(--shadow-modal);
   font-size: var(--fs-md);
-  animation: slideIn 0.3s ease-out;
+  animation: slideIn var(--duration-slow) var(--easing-decelerate);
 }
 
 @keyframes slideIn {
@@ -1426,7 +1479,7 @@ ul#articleList {
   inset: 0;
   border-radius: var(--radius-full);
   background: var(--outline);
-  transition: 0.2s ease;
+  transition: var(--duration-base) var(--easing-standard);
 }
 
 .slider-toggle::before {
@@ -1438,7 +1491,7 @@ ul#articleList {
   height: 18px;
   border-radius: 50%;
   background: var(--switch-knob);
-  transition: 0.2s ease;
+  transition: var(--duration-base) var(--easing-standard);
   box-shadow: var(--elevation-1);
 }
 
@@ -1553,7 +1606,7 @@ circle.graph-time-dim, text.graph-time-dim { opacity: 0.08; }
   font-size: var(--fs-2xs);
   font-weight: 500;
   cursor: pointer;
-  transition: color 0.25s ease;
+  transition: color var(--duration-base) var(--easing-standard);
   min-width: 56px;
   flex: 1;
   max-width: 140px;
@@ -1562,7 +1615,7 @@ circle.graph-time-dim, text.graph-time-dim { opacity: 0.08; }
 .nav-item .nav-icon {
   font-size: var(--fs-2xl);
   line-height: 1;
-  transition: transform 0.25s ease;
+  transition: transform var(--duration-base) var(--easing-standard);
 }
 
 .nav-item .nav-label {
@@ -1570,7 +1623,7 @@ circle.graph-time-dim, text.graph-time-dim { opacity: 0.08; }
   font-weight: 600;
   letter-spacing: 0.02em;
   height: auto;
-  transition: opacity 0.25s ease, color 0.25s ease;
+  transition: opacity var(--duration-base) var(--easing-standard), color var(--duration-base) var(--easing-standard);
 }
 
 .nav-item:hover {
@@ -1600,7 +1653,7 @@ circle.graph-time-dim, text.graph-time-dim { opacity: 0.08; }
   background: var(--nav-blob-bg);
   z-index: 1;
   pointer-events: none;
-  transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1), width 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+  transition: transform var(--duration-slower) var(--easing-spring), width var(--duration-slower) var(--easing-spring);
   will-change: transform, width;
 }
 
@@ -1625,7 +1678,7 @@ circle.graph-time-dim, text.graph-time-dim { opacity: 0.08; }
   -webkit-backdrop-filter: blur(8px);
   color: var(--text-secondary);
   cursor: pointer;
-  transition: all 0.2s ease;
+  transition: all var(--duration-base) var(--easing-standard);
   text-align: left;
 }
 
@@ -1725,7 +1778,7 @@ circle.graph-time-dim, text.graph-time-dim { opacity: 0.08; }
   font-size: var(--fs-2xs);
   font-weight: 600;
   cursor: pointer;
-  transition: all 0.15s ease;
+  transition: all var(--duration-fast) var(--easing-standard);
   min-width: 0;
 }
 
@@ -1765,7 +1818,7 @@ circle.graph-time-dim, text.graph-time-dim { opacity: 0.08; }
   border: 1px solid var(--glass-border-strong);
   box-shadow: var(--shadow-modal);
   z-index: var(--z-popover);
-  animation: chipPanelIn 0.2s ease;
+  animation: chipPanelIn var(--duration-base) var(--easing-standard);
 }
 
 @keyframes chipPanelIn {
@@ -1835,7 +1888,7 @@ circle.graph-time-dim, text.graph-time-dim { opacity: 0.08; }
 
 .model-id-tag .remove-model-tag:hover {
   opacity: 1;
-  color: var(--danger);
+  color: var(--danger-text);
 }
 
 /* ── Ollama Setup Tutorial (settings) ────────────────────────────────── */
@@ -2152,7 +2205,7 @@ circle.graph-time-dim, text.graph-time-dim { opacity: 0.08; }
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
   border: 1px solid var(--outline);
-  animation: flyIn 0.3s ease-out;
+  animation: flyIn var(--duration-slow) var(--easing-decelerate);
 }
 
 .summary-bubble-header {
@@ -2251,7 +2304,7 @@ circle.graph-time-dim, text.graph-time-dim { opacity: 0.08; }
   border-radius: 50%;
   background: var(--accent);
   margin-right: 8px;
-  animation: pulse 1.2s ease-in-out infinite;
+  animation: pulse 1.2s var(--easing-in-out) infinite;
 }
 
 @keyframes pulse {
@@ -2274,7 +2327,7 @@ circle.graph-time-dim, text.graph-time-dim { opacity: 0.08; }
   color: var(--text-primary);
   font-size: var(--fs-xl);
   cursor: pointer;
-  transition: all 0.15s ease;
+  transition: all var(--duration-fast) var(--easing-standard);
 }
 
 .button-icon:hover {
@@ -2293,7 +2346,7 @@ circle.graph-time-dim, text.graph-time-dim { opacity: 0.08; }
 }
 
 .shake {
-  animation: shake 0.28s ease-in-out;
+  animation: shake var(--duration-slow) var(--easing-in-out);
 }
 
 @keyframes shake {
@@ -2407,7 +2460,7 @@ circle.graph-time-dim, text.graph-time-dim { opacity: 0.08; }
   padding: 3px 10px;
   border-radius: var(--radius-full);
   cursor: pointer;
-  transition: background 0.15s, color 0.15s;
+  transition: background var(--duration-fast), color var(--duration-fast);
 }
 
 .ar-view-btn:hover {
@@ -2445,7 +2498,7 @@ circle.graph-time-dim, text.graph-time-dim { opacity: 0.08; }
   border-radius: 2px 2px 0 0;
   background: var(--accent);
   opacity: 0.7;
-  transition: opacity 0.15s;
+  transition: opacity var(--duration-fast);
 }
 
 .ar-bar-wrap:hover .ar-bar {
@@ -2471,7 +2524,7 @@ circle.graph-time-dim, text.graph-time-dim { opacity: 0.08; }
   gap: 8px;
   border-radius: var(--radius-sm);
   padding: 3px 2px;
-  transition: background 0.12s;
+  transition: background var(--duration-fast);
 }
 
 .ar-cat-row[data-tag] {
@@ -2532,7 +2585,7 @@ circle.graph-time-dim, text.graph-time-dim { opacity: 0.08; }
   color: var(--accent);
   font-weight: 600;
   cursor: default;
-  transition: opacity 0.15s;
+  transition: opacity var(--duration-fast);
 }
 
 .ar-word:hover {
@@ -2641,7 +2694,7 @@ circle.graph-time-dim, text.graph-time-dim { opacity: 0.08; }
 .feed-snippet { margin: 6px 0 0; font-size: var(--fs-sm); color: var(--text-secondary); display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
 .feed-actions { display: flex; gap: 6px; margin-top: 8px; flex-wrap: nowrap; align-items: center; }
 
-.feed-sub-error { font-size: var(--fs-xs); color: var(--danger); }
+.feed-sub-error { font-size: var(--fs-xs); color: var(--danger-text); }
 .feed-icon-btn { background: transparent; border: none; cursor: pointer; color: var(--text-muted); font-size: var(--fs-base); }
 
 /* Header settings gear: highlighted while the settings screen is open */
@@ -2671,7 +2724,7 @@ circle.graph-time-dim, text.graph-time-dim { opacity: 0.08; }
 .settings-panel-head { margin-bottom: 12px; }
 .settings-panel-head h2 { margin: 4px 0 0; }
 .settings-back { background: transparent; padding: 4px 0; font-size: var(--fs-base); font-weight: 600; color: var(--accent); }
-.settings-flash { animation: settings-flash 1.8s ease-out; border-radius: var(--radius-sm); }
+.settings-flash { animation: settings-flash 1.8s var(--easing-decelerate); border-radius: var(--radius-sm); }
 @keyframes settings-flash { 0%, 40% { box-shadow: 0 0 0 3px var(--accent-glow); background: var(--accent-glow); } 100% { box-shadow: 0 0 0 3px transparent; background: transparent; } }
 
 /* Global action button (use with .button-secondary): icon-only by default, icon + label from 481px. Sizes: default 44px, .action-btn--sm 36px. Used in History, Feeds, article detail. */
@@ -2704,7 +2757,7 @@ circle.graph-time-dim, text.graph-time-dim { opacity: 0.08; }
 .feed-day-label { flex: 1; font-size: var(--fs-sm); font-weight: 700; color: var(--text-secondary); }
 .feed-day-action { background: transparent; border: none; padding: 2px 4px; width: auto; font-size: var(--fs-sm); font-weight: 700; color: var(--accent); cursor: pointer; box-shadow: none; }
 .feed-mood { font-size: var(--fs-sm); }
-.feed-scoring { font-size: var(--fs-sm); animation: recapPulse 1.2s ease-in-out infinite; }
+.feed-scoring { font-size: var(--fs-sm); animation: recapPulse 1.2s var(--easing-in-out) infinite; }
 .feed-muted { margin: 4px 0; font-size: var(--fs-sm); color: var(--text-muted); }
 .feed-list[hidden] { display: none; }
 .feed-emptycard { text-align: center; }
@@ -2808,7 +2861,7 @@ circle.graph-time-dim, text.graph-time-dim { opacity: 0.08; }
 .recap-step { padding: 2px 0 2px 22px; position: relative; color: var(--text-muted); }
 .recap-step::before { content: '○'; position: absolute; left: 4px; }
 .recap-step.active { color: inherit; font-weight: 600; }
-.recap-step.active::before { content: '◐'; animation: recapPulse 1s ease-in-out infinite; }
+.recap-step.active::before { content: '◐'; animation: recapPulse 1s var(--easing-in-out) infinite; }
 .recap-step.done::before { content: '✓'; color: var(--mood-pos-text); }
 @keyframes recapPulse { 50% { opacity: .35; } }
 @media (prefers-reduced-motion: reduce) { .recap-step.active::before { animation: none; } }
@@ -2833,7 +2886,7 @@ circle.graph-time-dim, text.graph-time-dim { opacity: 0.08; }
 .feed-player .fp-info { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 2px; }
 .feed-player .fp-title { font-size: var(--fs-md); font-weight: 700; line-height: 1.25; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
 .feed-player .fp-source { font-size: var(--fs-xs); opacity: .65; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-.feed-player .fp-icon { display: inline-flex; align-items: center; justify-content: center; width: 40px; height: 40px; padding: 0; border-radius: 50%; opacity: .9; transition: background .15s, opacity .15s; }
+.feed-player .fp-icon { display: inline-flex; align-items: center; justify-content: center; width: 40px; height: 40px; padding: 0; border-radius: 50%; opacity: .9; transition: background var(--duration-fast), opacity var(--duration-fast); }
 .feed-player .fp-icon:hover { background: var(--player-hover); opacity: 1; }
 .feed-player .fp-close { align-self: flex-start; width: 28px; height: 28px; font-size: var(--fs-md); opacity: .6; }
 .feed-player .fp-seekrow { display: flex; align-items: center; gap: 8px; margin-top: 10px; }
@@ -2849,7 +2902,7 @@ circle.graph-time-dim, text.graph-time-dim { opacity: 0.08; }
 .feed-player .fp-spacer { width: 44px; }
 .feed-player .fp-pill { min-width: 44px; padding: 4px 8px !important; border-radius: 999px !important; background: var(--player-pill) !important; font-size: var(--fs-sm); font-weight: 700; }
 .feed-player .fp-pill:hover { background: var(--player-pill-hover) !important; }
-.feed-player .fp-play { display: inline-flex; align-items: center; justify-content: center; width: 54px; height: 54px; padding: 0 !important; border-radius: 50% !important; background: var(--player-play-bg) !important; color: var(--player-play-fg) !important; box-shadow: var(--elevation-3); transition: transform .12s; }
+.feed-player .fp-play { display: inline-flex; align-items: center; justify-content: center; width: 54px; height: 54px; padding: 0 !important; border-radius: 50% !important; background: var(--player-play-bg) !important; color: var(--player-play-fg) !important; box-shadow: var(--elevation-3); transition: transform var(--duration-fast); }
 .feed-player .fp-play:hover { transform: scale(1.06); }
 .feed-player .fp-play:active { transform: scale(.95); }
 .feed-player .fp-play .i-play { margin-left: 2px; }
@@ -3079,10 +3132,10 @@ body.has-player .feed-undo { bottom: calc(var(--bottom-nav-height) + 190px); }
   position: relative; width: 100%; max-width: 560px; margin-inline: auto; max-height: 90%; overflow-y: auto; padding: 8px 16px calc(20px + env(safe-area-inset-bottom, 0px)); box-sizing: border-box;   /* the sheet covers the nav (z-modal > z-nav), so no nav clearance */
   border-radius: var(--radius-sheet) var(--radius-sheet) 0 0; background: var(--sheet-bg); border: 1px solid var(--sheet-border); box-shadow: var(--sheet-shadow); color: var(--text-primary);
 }
-.sendsheet-scrim { animation: sheetScrimIn .2s ease-out; }
-.sendsheet-panel { animation: sheetUp .26s cubic-bezier(0.2, 0.8, 0.2, 1); }
-.sendsheet.is-closing .sendsheet-scrim { animation: sheetScrimOut .18s ease-in forwards; }
-.sendsheet.is-closing .sendsheet-panel { animation: sheetDown .18s ease-in forwards; }
+.sendsheet-scrim { animation: sheetScrimIn var(--duration-base) var(--easing-decelerate); }
+.sendsheet-panel { animation: sheetUp var(--duration-base) var(--easing-emphasized); }
+.sendsheet.is-closing .sendsheet-scrim { animation: sheetScrimOut var(--duration-fast) var(--easing-accelerate) forwards; }
+.sendsheet.is-closing .sendsheet-panel { animation: sheetDown var(--duration-fast) var(--easing-accelerate) forwards; }
 @keyframes sheetUp { from { transform: translateY(100%); } to { transform: translateY(0); } }
 @keyframes sheetDown { from { transform: translateY(0); } to { transform: translateY(100%); } }
 @keyframes sheetScrimIn { from { opacity: 0; } to { opacity: 1; } }
@@ -3107,7 +3160,7 @@ body.has-player .feed-undo { bottom: calc(var(--bottom-nav-height) + 190px); }
 .sendsheet-row-go { color: var(--text-muted); font-size: var(--fs-lg); }
 .sendsheet-note { padding: 10px 12px; border-radius: var(--radius-md); background: var(--note-bg); color: var(--note-fg); font-size: var(--fs-sm); }
 .sendsheet-track { height: 8px; border-radius: 4px; background: var(--track-bg); overflow: hidden; }
-.sendsheet-fill { height: 100%; width: 4%; background: var(--accent); border-radius: 4px; transition: width 0.3s ease; }
+.sendsheet-fill { height: 100%; width: 4%; background: var(--accent); border-radius: 4px; transition: width var(--duration-slow) var(--easing-standard); }
 .sendsheet-steps { display: flex; flex-direction: column; gap: 6px; font-size: var(--fs-md); color: var(--text-primary); }
 .sendsheet-step { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .sendsheet-done { display: flex; flex-direction: column; align-items: center; gap: 6px; padding-top: 8px; text-align: center; }
@@ -3133,8 +3186,8 @@ body.has-player .feed-undo { bottom: calc(var(--bottom-nav-height) + 190px); }
 .status-restore { margin-top: 8px; font-size: var(--fs-sm); padding: 6px 12px; }
 .sel-bar .sel-more { width: 36px; height: 36px; padding: 0; flex: none; font-size: var(--fs-xl); line-height: 1; }
 .sel-bar .sel-more:disabled { opacity: 0.4; }
-.sendsheet-toggle .sendsheet-switch { position: relative; width: 44px; height: 26px; border-radius: var(--radius-full); background: var(--switch-off); flex: none; transition: background 0.15s; }
-.sendsheet-toggle .sendsheet-knob { position: absolute; top: 2px; left: 2px; width: 22px; height: 22px; border-radius: 50%; background: var(--switch-knob); transition: transform 0.15s; }
+.sendsheet-toggle .sendsheet-switch { position: relative; width: 44px; height: 26px; border-radius: var(--radius-full); background: var(--switch-off); flex: none; transition: background var(--duration-fast); }
+.sendsheet-toggle .sendsheet-knob { position: absolute; top: 2px; left: 2px; width: 22px; height: 22px; border-radius: 50%; background: var(--switch-knob); transition: transform var(--duration-fast); }
 .sendsheet-toggle.on .sendsheet-switch { background: var(--accent); }
 .sendsheet-toggle.on .sendsheet-knob { transform: translateX(18px); }
 .undo-toast { position: fixed; left: 12px; right: 12px; bottom: 76px; z-index: var(--z-toast-top); display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 10px 14px; border-radius: var(--radius-md); background: var(--toast-bg); color: var(--toast-fg); font-size: var(--fs-md); box-shadow: var(--shadow-raised); }
@@ -3179,8 +3232,8 @@ body.has-player .feed-undo { bottom: calc(var(--bottom-nav-height) + 190px); }
 .ps-note.warn { background: var(--tone-arch-bg); color: var(--tone-arch-fg); }
 .ps-actions { display: flex; gap: 8px; }
 .ps-test { padding: 10px 12px; border-radius: var(--radius-md); background: var(--field-bg); color: var(--text-primary); font-size: var(--fs-sm); line-height: 1.45; white-space: pre-wrap; max-height: 260px; overflow-y: auto; }
-.ps-switch { position: relative; width: 44px; height: 26px; border-radius: var(--radius-full); background: var(--switch-off); flex: none; transition: background 0.15s; }
-.ps-knob { position: absolute; top: 2px; left: 2px; width: 22px; height: 22px; border-radius: 50%; background: var(--switch-knob); transition: transform 0.15s; }
+.ps-switch { position: relative; width: 44px; height: 26px; border-radius: var(--radius-full); background: var(--switch-off); flex: none; transition: background var(--duration-fast); }
+.ps-knob { position: absolute; top: 2px; left: 2px; width: 22px; height: 22px; border-radius: 50%; background: var(--switch-knob); transition: transform var(--duration-fast); }
 .ps-row.toggle.on .ps-switch { background: var(--accent); }
 .ps-row.toggle.on .ps-knob { transform: translateX(18px); }
 
@@ -3199,7 +3252,7 @@ body.has-player .feed-undo { bottom: calc(var(--bottom-nav-height) + 190px); }
 .tabbar-btn {
   position: relative; flex: 1 0 auto; min-width: 0; display: flex; align-items: center; justify-content: center; gap: 4px; width: auto;
   padding: 9px 6px; border: 0; border-radius: 0; background: transparent; box-shadow: none; color: var(--text-muted);
-  font-size: var(--fs-md); font-weight: 500; white-space: nowrap; cursor: pointer; transition: color 0.2s ease;
+  font-size: var(--fs-md); font-weight: 500; white-space: nowrap; cursor: pointer; transition: color var(--duration-base) var(--easing-standard);
 }
 .tabbar-btn:hover { color: var(--text-secondary); }
 .tabbar-btn.on, .tabbar-btn.active { color: var(--text-primary); font-weight: 600; }
@@ -3207,7 +3260,7 @@ body.has-player .feed-undo { bottom: calc(var(--bottom-nav-height) + 190px); }
 .tabbar-ind {
   position: absolute; left: 0; bottom: 0; height: 3px; width: var(--tb-w, 0); transform: translateX(var(--tb-x, 0));
   border-radius: 2px; background: var(--nav-blob-bg); opacity: 0; z-index: 1; pointer-events: none; will-change: transform, width;
-  transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1), width 0.4s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.15s ease;
+  transition: transform var(--duration-slower) var(--easing-spring), width var(--duration-slower) var(--easing-spring), opacity var(--duration-fast) var(--easing-standard);
 }
 .tabbar.tb-ready > .tabbar-ind { opacity: 1; }
 .tabbar.tb-nomove > .tabbar-ind { transition: none; }
@@ -3227,7 +3280,7 @@ body.has-player .feed-undo { bottom: calc(var(--bottom-nav-height) + 190px); }
   background: var(--glass-base);
   backdrop-filter: blur(32px); -webkit-backdrop-filter: blur(32px);
   border-bottom: 1px solid var(--glass-border);
-  transition: transform 0.22s ease, opacity 0.22s ease; will-change: transform, opacity;
+  transition: transform var(--duration-base) var(--easing-standard), opacity var(--duration-base) var(--easing-standard); will-change: transform, opacity;
 }
 .topbar--row { display: flex; gap: 8px; align-items: center; }
 .topbar--stack { flex-direction: column; align-items: stretch; }
@@ -3350,7 +3403,7 @@ i.tp-s3 { background: var(--chart-3); } i.tp-s4 { background: var(--chart-4); } 
 .settings-action-row > button { flex-shrink: 0; width: auto; }
 .settings-divider { height: 1px; background: color-mix(in srgb, var(--danger) 22%, transparent); }
 .settings-card--danger { background: color-mix(in srgb, var(--danger) 5%, var(--glass-card)); border-color: color-mix(in srgb, var(--danger) 38%, transparent); }
-.settings-card--danger h3 { color: var(--danger); }
+.settings-card--danger h3 { color: var(--danger-text); }
 .button-danger-outline { background: transparent; color: var(--danger-text); border: 1px solid var(--danger-text); box-shadow: none; }   /* --danger-text: 4.5:1 on light and dark cards (--danger was 3.5:1 on dark) */
 .button-danger-outline:hover { background: color-mix(in srgb, var(--danger) 10%, transparent); }
 .button-danger { background: var(--danger); color: var(--on-solid); border: 0; }
@@ -3374,7 +3427,7 @@ i.tp-s3 { background: var(--chart-3); } i.tp-s4 { background: var(--chart-4); } 
 .sd-list .feed-sub-card:last-child { border-bottom: 0; }
 .sd-list .feed-sub-card.is-open { box-shadow: inset 0 0 0 2px var(--accent); border-radius: var(--radius-md); }
 .sd-head { display: flex; align-items: center; gap: 10px; padding: 12px; cursor: pointer; }
-.sd-head:focus-visible { outline: 2px solid var(--accent); outline-offset: -2px; }
+.sd-head:focus-visible { outline: var(--focus-ring-width) solid var(--focus-ring); outline-offset: var(--focus-ring-inset); }
 .feed-sub-card.is-muted .sd-head { opacity: .6; }
 .sd-avatar { flex: none; width: 34px; height: 34px; border-radius: 50%; display: grid; place-items: center; font-weight: 700; font-size: var(--fs-md); background: var(--accent-a10); color: var(--accent); }
 .sd-main { flex: 1; min-width: 0; }
@@ -3382,7 +3435,7 @@ i.tp-s3 { background: var(--chart-3); } i.tp-s4 { background: var(--chart-4); } 
 .sd-tags { display: flex; flex-wrap: wrap; gap: 4px; margin-top: 3px; }
 .sd-tag, .sd-flag { font-size: var(--fs-xs); padding: 1px 8px; border-radius: var(--radius-full); background: var(--accent-a10); color: var(--text-secondary); }
 .sd-flag-noisy { background: color-mix(in srgb, var(--warn) 22%, transparent); color: var(--text-primary); font-weight: 600; }
-.sd-flag-err { background: color-mix(in srgb, var(--danger) 14%, transparent); color: var(--danger); }
+.sd-flag-err { background: color-mix(in srgb, var(--danger) 14%, transparent); color: var(--danger-text); }
 .sd-diet { flex: none; width: 112px; text-align: right; }
 .sd-mood-row { display: flex; align-items: center; gap: 6px; justify-content: flex-end; }
 .sd-mood { position: relative; width: 64px; height: 8px; border-radius: 4px; background: var(--outline); flex: none; }
@@ -3393,7 +3446,7 @@ i.tp-s3 { background: var(--chart-3); } i.tp-s4 { background: var(--chart-4); } 
 .sd-mood-fill.pos { background: var(--ok); }
 .sd-mood.is-empty { opacity: .5; }
 .sd-mood-val { font-size: var(--fs-sm); font-weight: 600; min-width: 24px; color: var(--text-muted); }
-.sd-mood-val.neg { color: var(--danger); }
+.sd-mood-val.neg { color: var(--danger-text); }
 .sd-mood-val.pos { color: var(--ok); }
 .sd-use { font-size: var(--fs-xs); color: var(--text-muted); margin-top: 4px; }
 .sd-edit { display: none; padding: 4px 12px 14px; border-top: 1px solid var(--outline); }
@@ -3437,7 +3490,7 @@ html[data-mood="off"] .feed-item.has-mood { background-image: none; box-shadow: 
 .sc-model { font-size: 11px; opacity: 0.5; margin-bottom: 4px; }
 .sc-progress { margin-bottom: 6px; }
 .sc-progress-track { height: 4px; background: var(--outline); border-radius: 999px; overflow: hidden; }
-.sc-progress-bar { height: 100%; background: var(--accent); border-radius: 999px; transition: width 0.4s ease; }
+.sc-progress-bar { height: 100%; background: var(--accent); border-radius: 999px; transition: width var(--duration-slower) var(--easing-standard); }
 /* Live preview of the text being written. Fixed height, newest text at the bottom, older lines fade out at the top:
    the card keeps its size while words stream in instead of jumping between one and four lines with every update. */
 .sc-preview {
@@ -3494,7 +3547,7 @@ html[data-mood="off"] .feed-item.has-mood { background-image: none; box-shadow: 
 .ask-btn { border: 1px solid transparent; background: var(--accent); color: var(--on-accent); border-radius: var(--radius-full); padding: 5px 12px; font-size: var(--fs-xs); font-weight: 600; cursor: pointer; }
 .ask-btn[aria-expanded="true"] { background: var(--accent-a12); color: var(--accent); border-color: var(--accent-a30); }
 .ask-count { border: 1px solid var(--outline); background: var(--glass-input); color: var(--text-muted); border-radius: var(--radius-full); padding: 4px 10px; font-size: var(--fs-2xs); cursor: pointer; }
-.ask-btn:focus-visible, .ask-count:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.ask-btn:focus-visible, .ask-count:focus-visible { outline: var(--focus-ring-width) solid var(--focus-ring); outline-offset: var(--focus-ring-offset); }
 .summary-bubble.ask-open { border-color: var(--accent); }
 .ask-thread { display: flex; flex-direction: column; gap: 8px; padding: 0 4px; }
 
@@ -3553,12 +3606,12 @@ html[data-mood="off"] .feed-item.has-mood { background-image: none; box-shadow: 
 .page-chip-txt { display: flex; align-items: baseline; gap: 8px; flex: 1; min-width: 0; }
 .page-chip-title { flex: 1; min-width: 0; }
 .page-chip-meta { flex: none; white-space: nowrap; }
-.controls-bar, .controls-bar .composer-pill { transition: padding 0.2s ease; }
+.controls-bar, .controls-bar .composer-pill { transition: padding var(--duration-base) var(--easing-standard); }
 @media (prefers-reduced-motion: reduce) { .controls-bar, .controls-bar .composer-pill { transition: none; } }
 
 /* Accessibility pass for the docked composer */
 .controls-bar .chip { color: var(--text-secondary); padding: 6px 8px 6px 2px; }
-.controls-bar .chip:focus-visible, .composer-pill #fetchSummary:focus-visible, .chat-suggest-chip:focus-visible, .new-summary-btn:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.controls-bar .chip:focus-visible, .composer-pill #fetchSummary:focus-visible, .chat-suggest-chip:focus-visible, .new-summary-btn:focus-visible { outline: var(--focus-ring-width) solid var(--focus-ring); outline-offset: var(--focus-ring-offset); }
 .composer-pill:focus-within { border-color: var(--accent); box-shadow: none; }
 .page-chip { background: var(--glass-input); }
 .page-chip-title { color: var(--text-primary); }
@@ -3595,7 +3648,7 @@ html[data-mood="off"] .feed-item.has-mood { background-image: none; box-shadow: 
 .conv-back { flex: none; display: inline-flex; align-items: center; gap: 4px; min-height: 28px; padding: 0 10px 0 8px; border-radius: var(--radius-full); border: 1px solid var(--accent-a30); background: transparent; color: var(--accent); font-size: var(--fs-xs); font-weight: 600; line-height: 1; cursor: pointer; white-space: nowrap; }
 .conv-back span { font-size: 16px; line-height: 1; }
 .conv-back:hover { background: var(--accent-a30); }
-.conv-back:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.conv-back:focus-visible { outline: var(--focus-ring-width) solid var(--focus-ring); outline-offset: var(--focus-ring-offset); }
 
 .feed-recap-missing { margin: 8px 0; padding: 8px 10px; border-radius: var(--radius-md); background: var(--glass-input); border: 1px solid var(--outline); }
 .feed-recap-missing .feed-recap-stale { margin: 0 0 6px; }
@@ -3635,7 +3688,7 @@ html[data-mood="off"] .feed-item.has-mood { background-image: none; box-shadow: 
 .model-panel-head{ display:flex; align-items:center; justify-content:space-between; margin-bottom:8px; }
 .model-panel-close{ background:transparent; border:0; color:var(--text-muted); font-size:14px; line-height:1; padding:6px 8px; border-radius:8px; cursor:pointer; }
 .model-panel-close:hover{ background:var(--accent-a15); color:var(--text-primary); }
-.model-panel-close:focus-visible{ outline:2px solid var(--accent); outline-offset:1px; }
+.model-panel-close:focus-visible{ outline: var(--focus-ring-width) solid var(--focus-ring); outline-offset:1px; }
 
 .research-filters { display: flex; gap: 6px; flex-wrap: wrap; margin: 8px 0 0; }
 .research-filter { border: 1px solid var(--outline); background: transparent; color: var(--text-secondary); border-radius: 999px; padding: 3px 10px; font-size: var(--fs-xs); cursor: pointer; }
@@ -3716,20 +3769,20 @@ html[data-line='compact'] body { line-height: 1.3; }
 html[data-line='relaxed'] body, html[data-line='relaxed'] .summary-box, html[data-line='relaxed'] .summary-box * { line-height: 1.75; }
 html[data-motion='reduce'] *, html[data-motion='reduce'] *::before, html[data-motion='reduce'] *::after { animation-duration: 0.001ms !important; animation-iteration-count: 1 !important; transition-duration: 0.001ms !important; scroll-behavior: auto !important; }
 :root[data-theme='contrast'] .button-secondary, :root[data-theme='contrast'] .tag-chip, :root[data-theme='contrast'] .source-card, :root[data-theme='contrast'] .paper-card { border: 2px solid var(--outline); box-shadow: none; }
-:root[data-theme='contrast'] :focus-visible { outline: 3px solid var(--outline); outline-offset: 2px; }
+:root[data-theme='contrast'] :focus-visible { outline: var(--focus-ring-width) solid var(--focus-ring); outline-offset: var(--focus-ring-offset); }
 .a11y-block { display: flex; flex-direction: column; gap: 8px; margin-bottom: 14px; }
 .a11y-block h3 { margin: 6px 0 0; font-size: var(--fs-xs); letter-spacing: .06em; text-transform: uppercase; color: var(--text-muted); }
 .a11y-hint { font-size: var(--fs-xs); color: var(--text-muted); margin: 0; }
 .a11y-slider { display: flex; align-items: center; gap: 10px; }
 .a11y-slider input[type=range] { flex: 1; width: auto; margin: 0; cursor: pointer; }
-.a11y-slider input[type=range]:focus-visible { outline: 2px solid var(--accent); outline-offset: 4px; }
+.a11y-slider input[type=range]:focus-visible { outline: var(--focus-ring-width) solid var(--focus-ring); outline-offset: 4px; }
 .a11y-preview { padding: 10px 12px; border: 1px solid var(--outline); border-radius: 12px; font-size: var(--fs-base); }
 
 .a11y-label { font-size: var(--fs-md); font-weight: 600; color: var(--text-primary); }
 .a11y-seg { display: flex; gap: 2px; padding: 2px; border-radius: 999px; background: var(--glass-input); border: 1px solid var(--outline); }
 .a11y-seg button { flex: 1; min-width: 0; border: 0; background: transparent; color: var(--text-secondary); font: inherit; font-size: var(--fs-sm); font-weight: 600; padding: 7px 6px; border-radius: 999px; cursor: pointer; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .a11y-seg button.on { background: var(--accent); color: var(--on-accent); }
-.a11y-seg button:focus-visible { outline: 2px solid var(--accent); outline-offset: 1px; }
+.a11y-seg button:focus-visible { outline: var(--focus-ring-width) solid var(--focus-ring); outline-offset: 1px; }
 
 .a11y-status { padding: 8px 12px; margin-bottom: 12px; border: 1px solid var(--outline); border-radius: 10px; font-size: var(--fs-sm); font-weight: 500; color: var(--text-secondary); }
 .a11y-profiles { display: flex; flex-direction: column; gap: 8px; }
@@ -3740,7 +3793,7 @@ html[data-motion='reduce'] *, html[data-motion='reduce'] *::before, html[data-mo
 .a11y-profiles .pf-dot { width: 16px; height: 16px; border-radius: 50%; border: 1.5px solid var(--outline); box-sizing: border-box; }
 .a11y-profiles button.on { border: 2px solid var(--accent); padding: 9px 11px; }
 .a11y-profiles button.on .pf-dot { border: 5px solid var(--accent); }
-.a11y-profiles button:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.a11y-profiles button:focus-visible { outline: var(--focus-ring-width) solid var(--focus-ring); outline-offset: var(--focus-ring-offset); }
 .a11y-custom { margin-bottom: 14px; border: 1px solid var(--outline); border-radius: 12px; padding: 0 12px; }
 .a11y-custom > summary { cursor: pointer; padding: 10px 0; font-size: var(--fs-md); font-weight: 600; color: var(--accent); list-style: none; }
 .a11y-custom > summary::-webkit-details-marker { display: none; }
@@ -3748,7 +3801,7 @@ html[data-motion='reduce'] *, html[data-motion='reduce'] *::before, html[data-mo
 .a11y-custom[open] > summary::after { content: ' ‹'; }
 
 /* Keyboard focus: every control gets a clear blue border-style ring (low specificity so component rules still win) */
-:where(button, a[href], summary, select, [role='radio'], [role='button'], [tabindex]):focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+:where(button, a[href], summary, select, [role='radio'], [role='button'], [tabindex]):focus-visible { outline: var(--focus-ring-width) solid var(--focus-ring); outline-offset: var(--focus-ring-offset); }
 
 /* Keyboard: keycap on the composer button, shortcut help sheet */
 #fetchSummary[data-kbd]:not([data-state="working"])::after { content: attr(data-kbd); margin-left: 8px; padding: 1px 6px; border-radius: 5px; background: color-mix(in srgb, var(--on-solid) 22%, transparent); color: inherit; font-size: var(--fs-xs); font-weight: 600; letter-spacing: .02em; vertical-align: 1px; }
@@ -3794,7 +3847,7 @@ body[data-screen="history"]:has(#detailTopBar:not(.scroll-hidden):not([style*="d
 body[data-screen="feeds"]:has(#feedControls:not(.scroll-hidden)) .header::before,
 body[data-screen="history"]:has(#historyTopBar:not(.scroll-hidden):not([style*="display: none"])) .header::before,
 body[data-screen="history"]:has(#detailTopBar:not(.scroll-hidden):not([style*="display: none"])) .header::before { display: none; }
-.header, .header::before { transition: background-color .2s ease, opacity .2s ease; }
+.header, .header::before { transition: background-color var(--duration-base) var(--easing-standard), opacity var(--duration-base) var(--easing-standard); }
 
 .sc-cut { margin: 0 0 8px; padding: 10px 12px; border: 1px solid var(--warn); border-radius: var(--radius-md); background: color-mix(in srgb, var(--warn) 12%, transparent); color: var(--text-primary); font-size: var(--fs-sm); line-height: 1.45; }
 .sc-cut strong { font-weight: 600; }
@@ -3813,7 +3866,7 @@ body[data-screen="history"]:has(#detailTopBar:not(.scroll-hidden):not([style*="d
 :where(input, textarea, [contenteditable="true"], .cite-text, .ref-preview, pre, code) { -webkit-user-select: text; user-select: text; }
 
 /* Long texts: "Scroll to top" pill + progress ring (opens the contents). Appears after ~2 screens, only while scrolling up. */
-.reading-tools { position: fixed; right: 16px; bottom: calc(var(--bottom-nav-height) + var(--controls-bottom-gap) + 14px); z-index: 40; display: flex; align-items: center; gap: 8px; visibility: hidden; opacity: 0; transform: translateY(8px); transition: opacity .18s ease, transform .18s ease, visibility 0s linear .18s; }
+.reading-tools { position: fixed; right: 16px; bottom: calc(var(--bottom-nav-height) + var(--controls-bottom-gap) + 14px); z-index: 40; display: flex; align-items: center; gap: 8px; visibility: hidden; opacity: 0; transform: translateY(8px); transition: opacity var(--duration-fast) var(--easing-standard), transform var(--duration-fast) var(--easing-standard), visibility 0s linear var(--duration-fast); }
 .reading-tools.is-on { visibility: visible; opacity: 1; transform: none; transition-delay: 0s; }
 body:not([data-screen="history"]) .reading-tools { display: none; }
 .rt-pill { display: inline-flex; align-items: center; gap: 6px; height: 40px; padding: 0 14px; border-radius: 999px; border: 1px solid var(--outline); background: var(--glass-base); color: var(--text-primary); font: inherit; font-size: var(--fs-sm); font-weight: 600; cursor: pointer; -webkit-backdrop-filter: blur(14px); backdrop-filter: blur(14px); }
@@ -3830,11 +3883,11 @@ body:not([data-screen="history"]) .reading-tools { display: none; }
 .rt-row.is-cur { background: var(--accent-a10); color: var(--accent); font-weight: 600; }
 @media (prefers-reduced-motion: reduce) { .reading-tools { transition: none; transform: none; } }
 /* Back to top: Feeds and History lists. Same glass pill look as the reading tools; lifts above the podcast player and the selection bar. */
-.back-to-top { position: fixed; right: 16px; bottom: calc(var(--bottom-nav-height) + var(--controls-bottom-gap) + 14px); z-index: 40; width: 44px; height: 44px; padding: 0; display: grid; place-items: center; border-radius: 50%; border: 1px solid var(--outline); background: var(--glass-base); color: var(--accent); cursor: pointer; -webkit-backdrop-filter: blur(14px); backdrop-filter: blur(14px); box-shadow: var(--shadow-raised); visibility: hidden; opacity: 0; transform: translateY(8px); transition: opacity .18s ease, transform .18s ease, visibility 0s linear .18s; }
+.back-to-top { position: fixed; right: 16px; bottom: calc(var(--bottom-nav-height) + var(--controls-bottom-gap) + 14px); z-index: 40; width: 44px; height: 44px; padding: 0; display: grid; place-items: center; border-radius: 50%; border: 1px solid var(--outline); background: var(--glass-base); color: var(--accent); cursor: pointer; -webkit-backdrop-filter: blur(14px); backdrop-filter: blur(14px); box-shadow: var(--shadow-raised); visibility: hidden; opacity: 0; transform: translateY(8px); transition: opacity var(--duration-fast) var(--easing-standard), transform var(--duration-fast) var(--easing-standard), visibility 0s linear var(--duration-fast); }
 .back-to-top.is-on { visibility: visible; opacity: 1; transform: none; transition-delay: 0s; }
 .back-to-top-ic { font-size: 20px; font-weight: 700; line-height: 1; }
 .back-to-top:hover { border-color: var(--accent); }
-.back-to-top:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.back-to-top:focus-visible { outline: var(--focus-ring-width) solid var(--focus-ring); outline-offset: var(--focus-ring-offset); }
 body.has-player .back-to-top { bottom: calc(var(--bottom-nav-height) + var(--controls-bottom-gap) + 14px + 104px); }
 body:has(#historyScreen.selecting) .back-to-top { bottom: calc(var(--bottom-nav-height) + var(--controls-bottom-gap) + 14px + 64px); }
 body:not([data-screen="feeds"]):not([data-screen="history"]) .back-to-top { display: none; }
@@ -3874,7 +3927,7 @@ body[data-surface="tab"] { min-width: 0; }
 .chip-sound.is-on { background: var(--accent-a12); border-color: var(--accent-a30); color: var(--accent); }
 .chip-sound.is-on .chip-icon { opacity: 1; }
 .chip-sound:not(.is-on) .chip-icon { opacity: .6; }
-.chip-sound.is-speaking .chip-icon { animation: sr-pulse 1.1s ease-in-out infinite; }
+.chip-sound.is-speaking .chip-icon { animation: sr-pulse 1.1s var(--easing-in-out) infinite; }
 @keyframes sr-pulse { 50% { transform: scale(1.18); } }
 @media (prefers-reduced-motion: reduce) { .chip-sound.is-speaking .chip-icon { animation: none; } }
 .sr-bar { display: flex; align-items: center; gap: 8px; padding: 6px 10px; margin: 0 0 8px; border: 1px solid var(--outline); border-radius: 999px; background: transparent; font-size: 12px; user-select: none; }
@@ -3889,7 +3942,7 @@ body[data-surface="tab"] { min-width: 0; }
 /* Read again: secondary button in a summary card's action row, next to Ask / replies */
 .read-btn { border: 1px solid var(--outline); background: var(--glass-input); color: var(--text-muted); border-radius: var(--radius-full); padding: 4px 10px; font-size: var(--fs-2xs); cursor: pointer; white-space: nowrap; }
 .read-btn:hover { color: var(--text-primary); }
-.read-btn:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.read-btn:focus-visible { outline: var(--focus-ring-width) solid var(--focus-ring); outline-offset: var(--focus-ring-offset); }
 .read-btn.is-speaking { border-color: var(--accent); color: var(--accent); }
 .read-btn[hidden] { display: none; }
 
@@ -3903,7 +3956,7 @@ body[data-surface="tab"] { min-width: 0; }
 .chat-dig button:hover { border-color: var(--accent); color: var(--text-primary); }
 .chat-more-stop { margin-left: auto; background: none; border: 1px solid var(--outline); border-radius: var(--radius-sm); color: var(--text-secondary); font-size: var(--fs-2xs); padding: 2px 8px; cursor: pointer; }
 .chat-more-stop:hover { border-color: var(--accent); color: var(--text-primary); }
-.chat-more i { width: 3px; height: 3px; border-radius: 50%; background: currentColor; opacity: .35; animation: chat-more-dot 1.2s infinite ease-in-out; }
+.chat-more i { width: 3px; height: 3px; border-radius: 50%; background: currentColor; opacity: .35; animation: chat-more-dot 1.2s infinite var(--easing-in-out); }
 .chat-more i:nth-of-type(1) { margin-left: 4px; }
 .chat-more i:nth-of-type(2) { animation-delay: .2s; }
 .chat-more i:nth-of-type(3) { animation-delay: .4s; }
@@ -3988,11 +4041,11 @@ body[data-surface="tab"] { min-width: 0; }
 .graph-cluster-opened > summary { display: flex; align-items: center; gap: 8px; }
 .graph-cluster-switch { margin-left: auto; display: none; align-items: center; gap: 8px; padding: 2px 0; border: none; background: none; color: var(--text-muted); font: inherit; font-size: var(--fs-xs); font-weight: 400; cursor: pointer; }
 .graph-cluster-opened[open] .graph-cluster-switch { display: inline-flex; }
-.graph-cluster-switch-k { position: relative; width: 40px; height: 22px; border-radius: 11px; background: var(--outline); transition: background .15s; }
-.graph-cluster-switch-k::after { content: ''; position: absolute; top: 3px; left: 3px; width: 16px; height: 16px; border-radius: 50%; background: var(--switch-knob); transition: transform .15s; }
+.graph-cluster-switch-k { position: relative; width: 40px; height: 22px; border-radius: 11px; background: var(--outline); transition: background var(--duration-fast); }
+.graph-cluster-switch-k::after { content: ''; position: absolute; top: 3px; left: 3px; width: 16px; height: 16px; border-radius: 50%; background: var(--switch-knob); transition: transform var(--duration-fast); }
 .graph-cluster-switch[aria-checked="true"] .graph-cluster-switch-k { background: var(--accent); }
 .graph-cluster-switch[aria-checked="true"] .graph-cluster-switch-k::after { transform: translateX(18px); }
-.graph-cluster-switch:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-radius: 6px; }
+.graph-cluster-switch:focus-visible { outline: var(--focus-ring-width) solid var(--focus-ring); outline-offset: var(--focus-ring-offset); border-radius: 6px; }
 @media (prefers-reduced-motion: reduce) { .graph-cluster-switch-k, .graph-cluster-switch-k::after { transition: none; } }
 .graph-cluster-open.is-opened .graph-cluster-open-t { font-weight: 500; color: var(--text-secondary); }
 .graph-cluster-opened > summary { cursor: pointer; font-size: var(--fs-xs); font-weight: 600; color: var(--text-muted); padding: 6px 0; }
@@ -4000,7 +4053,7 @@ body[data-surface="tab"] { min-width: 0; }
 .graph-cluster-answer { font-size: var(--fs-sm); overflow-wrap: anywhere; }
 .graph-cluster-answer:empty { display: none; }
 .graph-cluster-answer.is-busy { color: var(--text-muted); }
-.graph-cluster-answer.is-error { color: var(--danger); }
+.graph-cluster-answer.is-error { color: var(--danger-text); }
 .graph-cluster-answer.md-body { padding: 12px; border: 1px solid var(--outline); border-radius: 14px; background: var(--glass-card); }
 .graph-cluster-sources { margin: 4px 0 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 4px; }
 .graph-cluster-src { width: 100%; display: flex; align-items: center; gap: 8px; text-align: left; padding: 6px 8px; border: 1px solid var(--outline); border-radius: 10px; background: transparent; color: var(--text-primary); font: inherit; font-size: var(--fs-sm); cursor: pointer; }
@@ -4024,7 +4077,7 @@ body[data-surface="tab"] { min-width: 0; }
 .graph-time-panel { min-width: 260px; }
 .graph-time-track { position: relative; height: 72px; margin: 2px 0 0; --lo: 0%; --hi: 100%; }
 .graph-time-bars { position: absolute; inset: 0 8px 14px; display: flex; align-items: flex-end; gap: 2px; }
-.graph-time-bars span { flex: 1; min-width: 2px; border-radius: 3px 3px 0 0; background: var(--outline); transition: background .15s; }
+.graph-time-bars span { flex: 1; min-width: 2px; border-radius: 3px 3px 0 0; background: var(--outline); transition: background var(--duration-fast); }
 .graph-time-bars span.in { background: var(--accent); }
 .graph-time-bars span.is-empty { opacity: .5; }
 .graph-time-track input[type=range] { position: absolute; left: 0; right: 0; bottom: 0; width: 100%; height: 22px; margin: 0; background: transparent; pointer-events: none; -webkit-appearance: none; appearance: none; accent-color: var(--accent); }
@@ -4034,8 +4087,8 @@ body[data-surface="tab"] { min-width: 0; }
 .graph-time-track input[type=range]:last-of-type::-moz-range-track { background: transparent; }
 .graph-time-track input[type=range]::-webkit-slider-thumb { -webkit-appearance: none; pointer-events: auto; width: 18px; height: 18px; margin-top: -7px; border-radius: 50%; background: var(--switch-knob); border: 2px solid var(--accent); cursor: grab; }
 .graph-time-track input[type=range]::-moz-range-thumb { pointer-events: auto; width: 14px; height: 14px; border-radius: 50%; background: var(--switch-knob); border: 2px solid var(--accent); cursor: grab; }
-.graph-time-track input[type=range]:focus-visible::-webkit-slider-thumb { outline: 2px solid var(--accent); outline-offset: 2px; }
-.graph-time-track input[type=range]:focus-visible::-moz-range-thumb { outline: 2px solid var(--accent); outline-offset: 2px; }
+.graph-time-track input[type=range]:focus-visible::-webkit-slider-thumb { outline: var(--focus-ring-width) solid var(--focus-ring); outline-offset: var(--focus-ring-offset); }
+.graph-time-track input[type=range]:focus-visible::-moz-range-thumb { outline: var(--focus-ring-width) solid var(--focus-ring); outline-offset: var(--focus-ring-offset); }
 .graph-time-ends { display: flex; justify-content: space-between; font-size: var(--fs-xs); color: var(--text-muted); margin-top: -2px; }
 .graph-time-actions { display: flex; justify-content: flex-end; gap: 6px; }
 #graphContainer[data-graph-mode="list"] .graph-time, #graphContainer[data-graph-mode="gaps"] .graph-time,
@@ -4048,13 +4101,13 @@ body[data-surface="tab"] { min-width: 0; }
 .card-side { display: flex; align-items: flex-start; gap: 2px; flex: none; align-self: flex-start; }
 .card-menu-btn { flex: none; align-self: flex-start; background: none; border: none; border-radius: var(--radius-full); min-width: 28px; height: 28px; padding: 0 6px; font-size: var(--fs-xl); font-weight: 700; line-height: 1; letter-spacing: 1px; cursor: pointer; color: var(--text-muted); }
 .card-menu-btn:hover, .card-menu-btn[aria-expanded="true"] { background: var(--accent-a12); color: var(--accent); }
-.card-menu-btn:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.card-menu-btn:focus-visible { outline: var(--focus-ring-width) solid var(--focus-ring); outline-offset: var(--focus-ring-offset); }
 .summary-bubble-header .card-menu-btn { margin: -4px -6px -4px 0; }
-.card-menu { overflow-y: auto; overscroll-behavior: contain; position: fixed; z-index: var(--z-popover); display: flex; flex-direction: column; min-width: 200px; max-width: calc(100vw - 16px); padding: 6px; border: 1px solid var(--outline); border-radius: 12px; background: var(--bg-page); box-shadow: var(--elevation-4); animation: flyIn .12s ease-out; }
+.card-menu { overflow-y: auto; overscroll-behavior: contain; position: fixed; z-index: var(--z-popover); display: flex; flex-direction: column; min-width: 200px; max-width: calc(100vw - 16px); padding: 6px; border: 1px solid var(--outline); border-radius: 12px; background: var(--bg-page); box-shadow: var(--elevation-4); animation: flyIn var(--duration-fast) var(--easing-decelerate); }
 .card-menu-item { display: flex; align-items: center; gap: 10px; width: 100%; min-height: 40px; padding: 0 12px; border: none; border-radius: 8px; background: none; color: var(--text-primary); font-size: var(--fs-md); font-weight: 500; text-align: left; cursor: pointer; }
 .card-menu-item[hidden] { display: none; }
 .card-menu-item:hover, .card-menu-item:focus-visible { background: var(--accent-a12); outline: none; }
-.card-menu-item.is-danger { color: var(--danger); }
+.card-menu-item.is-danger { color: var(--danger-text); }
 .card-menu-item.is-danger:hover, .card-menu-item.is-danger:focus-visible { background: color-mix(in srgb, var(--danger) 12%, transparent); }
 .card-menu-ic { width: 20px; text-align: center; flex: none; }
 .card-menu-sep { height: 1px; margin: 4px 6px; background: var(--outline); }
@@ -4071,7 +4124,7 @@ body[data-surface="tab"] { min-width: 0; }
 .composer-pill .save-split { display: none; flex: none; align-items: center; justify-content: center; width: 38px !important; min-width: 38px; align-self: stretch; height: var(--composer-btn-h, 44px) !important; min-height: var(--composer-btn-h, 44px) !important; margin: 0 !important; padding: 0 !important; border-radius: 0 var(--radius-full) var(--radius-full) 0 !important; cursor: pointer; box-shadow: none; }
 .controls-bar[data-state="fetch"] .composer-pill .save-split { display: inline-flex; }
 .controls-bar[data-state="fetch"] .composer-pill #fetchSummary { border-top-right-radius: 0 !important; border-bottom-right-radius: 0 !important; }
-.composer-pill .save-split:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.composer-pill .save-split:focus-visible { outline: var(--focus-ring-width) solid var(--focus-ring); outline-offset: var(--focus-ring-offset); }
 .save-menu .save-menu-txt { display: flex; flex-direction: column; align-items: flex-start; line-height: 1.25; }
 .save-menu .save-menu-txt small { font-size: var(--fs-xs); font-weight: 400; color: var(--text-secondary); }
 .save-menu .card-menu-item { min-height: 48px; }
@@ -4081,7 +4134,7 @@ body[data-surface="tab"] { min-width: 0; }
 .podcast-pick-list { display: flex; gap: 12px; overflow-x: auto; padding: 8px 0; }
 .podcast-pick { flex: none; min-width: 220px; max-width: 260px; display: flex; flex-direction: column; gap: 6px; padding: 14px; text-align: left; font: inherit; color: var(--text-primary); background: var(--glass-card); border: 1px solid var(--outline); border-radius: var(--radius-sm); cursor: pointer; }
 .podcast-pick:hover { border-color: var(--accent-a30); }
-.podcast-pick:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.podcast-pick:focus-visible { outline: var(--focus-ring-width) solid var(--focus-ring); outline-offset: var(--focus-ring-offset); }
 .podcast-pick[aria-pressed="true"] { border: 2px solid var(--accent); padding: 13px; background: var(--accent-a10); }
 .podcast-pick-title { font-weight: 700; }
 .podcast-pick-summary { font-size: var(--fs-md); color: var(--text-secondary); }
@@ -4092,7 +4145,7 @@ body[data-surface="tab"] { min-width: 0; }
 .podcast-style-chips { display: flex; flex-wrap: wrap; gap: 8px; }
 .podcast-style-chip { padding: 5px 13px; border-radius: var(--radius-full); border: 1px solid var(--accent-a30); background: var(--glass-input); color: var(--text-primary); font: inherit; cursor: pointer; }
 .podcast-style-chip:hover { border-color: var(--accent); }
-.podcast-style-chip:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.podcast-style-chip:focus-visible { outline: var(--focus-ring-width) solid var(--focus-ring); outline-offset: var(--focus-ring-offset); }
 .podcast-style-chip[aria-pressed="true"] { background: var(--accent-a15); border-color: var(--accent); color: var(--accent); }
 .podcast-custom-style { margin-bottom: 8px; }
 
@@ -4109,7 +4162,7 @@ body[data-surface="tab"] { min-width: 0; }
 .device-label { font-size: var(--fs-sm); font-weight: 600; }
 .device-address { font-size: var(--fs-xs); color: var(--text-muted); }
 #localSendStatus[data-tone="ok"] { color: var(--tone-new-fg); }
-#localSendStatus[data-tone="error"] { color: var(--danger); }
+#localSendStatus[data-tone="error"] { color: var(--danger-text); }
 .export-choice { display: flex; flex-direction: column; gap: 6px; margin-top: 8px; padding: 10px; background: var(--glass-card); border: 1px solid var(--glass-border); border-radius: var(--radius-md); }
 .export-choice[hidden] { display: none; }
 .export-choice-title { margin: 0 0 4px; font-size: var(--fs-xs); font-weight: 600; color: var(--text-secondary); }
@@ -4156,7 +4209,7 @@ body[data-surface="tab"] { min-width: 0; }
 .bookmarklet-result { margin-top: 10px; }
 .bookmarklet-drag-hint { margin: 0 0 6px; font-size: var(--fs-sm); font-weight: 600; color: var(--text-secondary); }
 .bookmarklet-link { display: inline-block; padding: 8px 12px; border-radius: 8px; background: var(--accent); color: var(--on-accent); text-decoration: none; font-size: var(--fs-md); font-weight: 600; }
-.bookmarklet-warning { margin: 8px 0 0; font-size: var(--fs-xs); line-height: 1.4; color: var(--danger); }
+.bookmarklet-warning { margin: 8px 0 0; font-size: var(--fs-xs); line-height: 1.4; color: var(--danger-text); }
 .a11y-a-small { font-size: 11px; }
 .a11y-a-large { font-size: 18px; }
 .setting-label-grow { flex: 1; margin: 0; font-weight: normal; }
@@ -4183,7 +4236,7 @@ body[data-surface="tab"] { min-width: 0; }
 .remove-recent:hover, .remove-tag:hover { opacity: 1; }
 .tag-grid > .model-grid-note { flex: 0 0 100%; margin-top: 4px; }   /* a caption between pill groups sits on its own line */
 .model-grid-note { padding: 4px 0; font-size: var(--fs-xs); color: var(--text-muted); }
-.model-grid-note.is-error { color: var(--danger); }
+.model-grid-note.is-error { color: var(--danger-text); }
 
 .ollama-status {
   display: flex;
@@ -4248,7 +4301,7 @@ body[data-surface="tab"] { min-width: 0; }
 .chip-panel:not(#panelModel) { padding-right: 36px; }
 .chip-panel-close { position: absolute; top: 6px; right: 6px; background: transparent; border: 0; color: var(--text-muted); font-size: 14px; line-height: 1; padding: 6px 8px; border-radius: 8px; cursor: pointer; }
 .chip-panel-close:hover { background: var(--accent-a15); color: var(--text-primary); }
-.chip-panel-close:focus-visible { outline: 2px solid var(--accent); outline-offset: 1px; }
+.chip-panel-close:focus-visible { outline: var(--focus-ring-width) solid var(--focus-ring); outline-offset: 1px; }
 
 /* ── Onboarding: three equal ways to start ─────────────────────────────── */
 .onboarding-container { overflow-y: auto; justify-content: flex-start; padding-top: calc(var(--header-h) + 8px); padding-bottom: calc(var(--nav-clearance) + 48px); }   /* last card clears the floating bottom nav and the floating Continue pill */
@@ -4267,7 +4320,7 @@ body[data-surface="tab"] { min-width: 0; }
 .onboarding-option--action strong { font-size: var(--fs-base); }
 .onboarding-option--action span { font-size: var(--fs-sm); color: var(--text-secondary); }
 .onboarding-option--action:hover { border-color: var(--accent); }
-.onboarding-option--action:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.onboarding-option--action:focus-visible { outline: var(--focus-ring-width) solid var(--focus-ring); outline-offset: var(--focus-ring-offset); }
 .onboarding-skip {
   position: fixed; right: var(--spacing-s-4); bottom: calc(var(--bottom-nav-height) + var(--controls-bottom-gap) + var(--spacing-s-3)); z-index: 5;
   width: auto; margin: 0; padding: 8px 16px; border-radius: var(--radius-full);
@@ -4317,7 +4370,7 @@ body[data-surface="tab"] { min-width: 0; }
   height: 12px; margin: 8px 0; border-radius: 6px;
   background: linear-gradient(90deg, var(--outline) 25%, color-mix(in srgb, var(--outline) 45%, transparent) 50%, var(--outline) 75%);
   background-size: 200% 100%;
-  animation: skeletonShimmer 1.4s ease-in-out infinite;
+  animation: skeletonShimmer 1.4s var(--easing-in-out) infinite;
 }
 .skeleton-title { height: 16px; width: 70%; }
 .skeleton-short { width: 45%; }
@@ -4374,7 +4427,7 @@ circle.graph-sel { stroke: var(--accent) !important; stroke-width: 4px !importan
 .graph-brief-head { flex: 1; min-width: 0; display: flex; flex-direction: column; align-items: flex-start; gap: 2px; padding: 2px 0; border: none; background: none; color: var(--text-primary); font: inherit; text-align: left; cursor: pointer; }
 .graph-brief-head strong { font-size: var(--fs-md); }
 .graph-brief-head .graph-preview-date { margin: 0; }
-.graph-brief-head:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-radius: 8px; }
+.graph-brief-head:focus-visible { outline: var(--focus-ring-width) solid var(--focus-ring); outline-offset: var(--focus-ring-offset); border-radius: 8px; }
 .graph-brief-go { width: auto; padding: 8px 18px; border-radius: 999px; font-weight: 600; font-size: var(--fs-sm); }
 .graph-brief-go:disabled { opacity: .5; }
 .graph-brief-panel { display: flex; flex-direction: column; gap: 8px; max-height: 45vh; overflow-y: auto; }
@@ -4384,7 +4437,7 @@ circle.graph-sel { stroke: var(--accent) !important; stroke-width: 4px !importan
 .graph-brief-seg { display: flex; gap: 2px; padding: 3px; border: 1px solid var(--outline); border-radius: 999px; background: var(--glass-card); }
 .graph-brief-seg > button { flex: 1; padding: 6px 10px; border: none; border-radius: 999px; background: transparent; color: var(--text-secondary); font: inherit; font-size: var(--fs-xs); font-weight: 600; cursor: pointer; }
 .graph-brief-seg > button.on { background: var(--accent); color: var(--on-accent); }
-.graph-brief-seg > button:focus-visible { outline: 2px solid var(--accent); outline-offset: 1px; }
+.graph-brief-seg > button:focus-visible { outline: var(--focus-ring-width) solid var(--focus-ring); outline-offset: 1px; }
 .graph-brief-info { font-size: var(--fs-xs); color: var(--text-muted); }
 .graph-brief-page .graph-brief-seg { flex-shrink: 0; }
 @media (forced-colors: active) { .graph-brief-bar, .graph-brief-chip { border: 1px solid CanvasText; } }
@@ -4429,7 +4482,7 @@ a.phone-inbox-link:hover strong { text-decoration: underline; }
 .mcp-chip.is-ok { color: var(--ok); }
 .mcp-chip.is-selected { background: var(--accent); color: var(--on-accent); }
 button.mcp-chip { cursor: pointer; }
-button.mcp-chip:focus-visible, .mcp-link-button:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+button.mcp-chip:focus-visible, .mcp-link-button:focus-visible { outline: var(--focus-ring-width) solid var(--focus-ring); outline-offset: var(--focus-ring-offset); }
 .mcp-apps { display: flex; flex-wrap: wrap; gap: 6px; }
 .mcp-code { display: flex; align-items: center; gap: 8px; padding: 10px 12px; border-radius: 12px; background: var(--glass-input); }
 .mcp-code code, .mcp-config { font-family: ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace; font-size: 12px; color: var(--text-primary); }
@@ -4444,7 +4497,7 @@ button.mcp-chip:focus-visible, .mcp-link-button:focus-visible { outline: 2px sol
 .mcp-dot { flex: none; width: 8px; height: 8px; border-radius: 50%; background: var(--ok); }
 .mcp-dot.is-wait { background: var(--accent); }
 .mcp-wait { display: flex; align-items: center; gap: 8px; padding: 10px 12px; border-radius: 12px; background: var(--accent-a08); font-size: var(--fs-xs); color: var(--text-secondary); }
-@media (prefers-reduced-motion: no-preference) { .mcp-dot.is-wait { animation: mcp-pulse 1.6s ease-in-out infinite; } }
+@media (prefers-reduced-motion: no-preference) { .mcp-dot.is-wait { animation: mcp-pulse 1.6s var(--easing-in-out) infinite; } }
 @keyframes mcp-pulse { 50% { opacity: .35; } }
 .mcp-hero-status { display: flex; align-items: center; gap: 8px; font-size: var(--fs-lg); font-weight: 600; color: var(--text-primary); }
 .mcp-stats { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; }
@@ -4455,9 +4508,9 @@ button.mcp-chip:focus-visible, .mcp-link-button:focus-visible { outline: 2px sol
 .mcp-actions .button-secondary { background: var(--glass-input); border-color: var(--outline); }
 .mcp-tiles { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
 .mcp-tile { display: flex; flex-direction: column; align-items: stretch; gap: 4px; min-width: 0; padding: 12px; border-radius: 14px; background: var(--glass-card); border: 1px solid var(--glass-border); color: var(--text-primary); text-align: left; font: inherit; }
-button.mcp-tile { cursor: pointer; transition: border-color .15s, background .15s; }
+button.mcp-tile { cursor: pointer; transition: border-color var(--duration-fast), background var(--duration-fast); }
 button.mcp-tile:hover { border-color: var(--accent-a30); }
-button.mcp-tile:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+button.mcp-tile:focus-visible { outline: var(--focus-ring-width) solid var(--focus-ring); outline-offset: var(--focus-ring-offset); }
 .mcp-tile.is-on { border-color: var(--accent-a30); }
 .mcp-tile-head { display: flex; align-items: center; justify-content: space-between; gap: 6px; margin-bottom: 4px; }
 .mcp-tile-head .ic { color: var(--text-muted); }
@@ -4465,16 +4518,16 @@ button.mcp-tile:focus-visible { outline: 2px solid var(--accent); outline-offset
 .mcp-tile-title { font-size: var(--fs-base); font-weight: 600; }
 .mcp-tile-hint { font-size: var(--fs-xs); color: var(--text-muted); line-height: 1.35; }
 .mcp-prompts { display: flex; flex-direction: column; gap: 6px; }
-button.mcp-prompt { display: flex; flex-direction: column; gap: 4px; align-items: flex-start; width: 100%; padding: 10px 12px; border: 1px solid var(--glass-border); border-radius: 12px; background: var(--glass-card); font: inherit; font-size: var(--fs-sm); line-height: 1.4; text-align: left; color: var(--text-primary); cursor: pointer; transition: border-color .15s; }
+button.mcp-prompt { display: flex; flex-direction: column; gap: 4px; align-items: flex-start; width: 100%; padding: 10px 12px; border: 1px solid var(--glass-border); border-radius: 12px; background: var(--glass-card); font: inherit; font-size: var(--fs-sm); line-height: 1.4; text-align: left; color: var(--text-primary); cursor: pointer; transition: border-color var(--duration-fast); }
 button.mcp-prompt:hover { border-color: var(--accent-a30); }
-button.mcp-prompt:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+button.mcp-prompt:focus-visible { outline: var(--focus-ring-width) solid var(--focus-ring); outline-offset: var(--focus-ring-offset); }
 .mcp-section-head { display: flex; align-items: baseline; justify-content: space-between; gap: 8px; }
 .mcp-activity-log { display: flex; flex-direction: column; padding: 4px 14px; border-radius: 16px; background: var(--glass-card); border: 1px solid var(--glass-border); font-size: var(--fs-xs); }
 .mcp-activity-row { display: flex; align-items: center; gap: 10px; padding: 8px 0; border-bottom: 1px solid var(--outline); }
 .mcp-activity-row:last-child { border-bottom: 0; }
 .mcp-activity-tool { flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; font-family: ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace; color: var(--text-primary); }
 .mcp-activity-ok { color: var(--ok); }
-.mcp-activity-err { color: var(--danger); }
+.mcp-activity-err { color: var(--danger-text); }
 .mcp-activity-time { color: var(--text-muted); white-space: nowrap; font-variant-numeric: tabular-nums; }
 
 /* Monthly AI allowance (account settings) */
@@ -4633,7 +4686,7 @@ body.is-resizing, body.is-resizing *, body.is-resizing *::before, body.is-resizi
 .detail-toolbar > button { flex: 1 1 0; min-width: 0; height: 100%; display: inline-flex; align-items: center; justify-content: center; gap: 6px; padding: 0 10px; border: 0; border-radius: 0; background: transparent; color: var(--text-primary); font: inherit; font-size: var(--fs-md); font-weight: 600; cursor: pointer; white-space: nowrap; }
 .detail-toolbar > button + button { border-left: 1px solid var(--outline); }
 .detail-toolbar > button:hover { background: var(--accent-a08); }
-.detail-toolbar > button:focus-visible { outline: 2px solid var(--accent); outline-offset: -2px; }
+.detail-toolbar > button:focus-visible { outline: var(--focus-ring-width) solid var(--focus-ring); outline-offset: var(--focus-ring-inset); }
 .detail-toolbar:not(.with-labels) .act-label { display: none; }
 .detail-toolbar > .card-menu-btn { flex: 0 0 52px; min-width: 52px; }
 .detail-toolbar > .detail-tool .act-label { overflow: hidden; text-overflow: ellipsis; }
@@ -4687,7 +4740,7 @@ body.is-resizing, body.is-resizing *, body.is-resizing *::before, body.is-resizi
 .detail-toolbar > .detail-split > .detail-split-more { flex: 0 0 44px; font-size: inherit; }
 .detail-toolbar > .detail-split > .detail-split-more .icon { width: 18px; height: 18px; }
 .detail-toolbar:not(.with-labels) > .detail-split { flex: 1.6 1 0; }
-.detail-split-more .icon { transition: transform .15s ease; }
+.detail-split-more .icon { transition: transform var(--duration-fast) var(--easing-standard); }
 .detail-split-more[aria-expanded="true"] .icon { transform: rotate(180deg); }
 html[data-motion="reduce"] .detail-split-more .icon { transition: none; }
 
@@ -4723,24 +4776,24 @@ html[data-motion="reduce"] .detail-split-more .icon { transition: none; }
 .about-link { color: var(--text-link); text-decoration: none; font-size: var(--fs-sm); font-weight: 500; }
 .about-link:hover { text-decoration: underline; }
 .about-footer { margin: 0; font-size: var(--fs-sm); color: var(--text-muted); }
-.about-view a.button-primary, .about-view a.button-secondary { box-sizing: border-box; border-radius: var(--radius-md); font-weight: 500; transition: transform 0.15s ease, filter 0.15s ease; }
+.about-view a.button-primary, .about-view a.button-secondary { box-sizing: border-box; border-radius: var(--radius-md); font-weight: 500; transition: transform var(--duration-fast) var(--easing-standard), filter var(--duration-fast) var(--easing-standard); }
 .about-view a.button-primary { font-weight: 600; }
 .about-view a.button-primary:active, .about-view a.button-secondary:active { transform: scale(0.97); }
 
 /* ── Article view: fades and rises in instead of replacing the list with a jump ── */
 @keyframes detailIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
 @keyframes listIn { from { opacity: 0; } to { opacity: 1; } }
-#articleDetail.is-entering { animation: detailIn .22s ease-out; }
-#articleList.is-entering { animation: listIn .18s ease-out; }
+#articleDetail.is-entering { animation: detailIn var(--duration-base) var(--easing-decelerate); }
+#articleList.is-entering { animation: listIn var(--duration-fast) var(--easing-decelerate); }
 @media (prefers-reduced-motion: reduce) { #articleDetail.is-entering, #articleList.is-entering { animation: none; } }
 
 /* ── Settings: a panel slides in from the right, the home list back from the left (a quick fade in the wide master–detail layout) ── */
 @keyframes stInFwd { from { opacity: 0; transform: translateX(28px); } to { opacity: 1; transform: translateX(0); } }
 @keyframes stInBack { from { opacity: 0; transform: translateX(-28px); } to { opacity: 1; transform: translateX(0); } }
 @keyframes stInFade { from { opacity: 0; } to { opacity: 1; } }
-.st-in-fwd { animation: stInFwd .24s cubic-bezier(0.2, 0.8, 0.2, 1); }
-.st-in-back { animation: stInBack .24s cubic-bezier(0.2, 0.8, 0.2, 1); }
-.st-in-fade { animation: stInFade .16s ease-out; }
+.st-in-fwd { animation: stInFwd var(--duration-base) var(--easing-emphasized); }
+.st-in-back { animation: stInBack var(--duration-base) var(--easing-emphasized); }
+.st-in-fade { animation: stInFade var(--duration-fast) var(--easing-decelerate); }
 @media (prefers-reduced-motion: reduce) { .st-in-fwd, .st-in-back, .st-in-fade { animation: none; } }
 
 /* ── While a summary is written the composer pill breathes a faint accent glow, so "something is running" reads without shouting ── */
@@ -4748,7 +4801,7 @@ html[data-motion="reduce"] .detail-split-more .icon { transition: none; }
   0%, 100% { box-shadow: 0 0 0 0 transparent, 0 0 6px 0 var(--accent-a10); border-color: var(--outline); }
   50%      { box-shadow: 0 0 0 1px var(--accent-a30), 0 0 16px 2px var(--accent-a10); border-color: var(--accent-a30); }
 }
-.controls-bar[data-state="working"] .composer-pill { animation: pillGlow 2.6s ease-in-out infinite; }
+.controls-bar[data-state="working"] .composer-pill { animation: pillGlow 2.6s var(--easing-in-out) infinite; }
 @media (prefers-reduced-motion: reduce) { .controls-bar[data-state="working"] .composer-pill { animation: none; box-shadow: 0 0 0 1px var(--accent-a30), 0 0 12px 1px var(--accent-a10); border-color: var(--accent-a30); } }
 
 /* Sync & backup settings panel (syncView.js): notice for readable places */
@@ -4757,7 +4810,7 @@ html[data-motion="reduce"] .detail-split-more .icon { transition: none; }
 /* a suggested passphrase and the recovery key: large, selectable, wraps instead of scrolling sideways */
 .sync-words, .sync-recovery { margin: 4px 0 8px; padding: 12px 14px; border-radius: 12px; border: 1px solid var(--outline); background: var(--glass-input); font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 1.05rem; line-height: 1.5; letter-spacing: .02em; white-space: pre-wrap; overflow-wrap: anywhere; user-select: all; }
 .sync-recovery { font-size: .92rem; }
-#syncStrength[data-level="weak"] { color: var(--danger); } #syncStrength[data-level="strong"] { color: var(--ok); }
+#syncStrength[data-level="weak"] { color: var(--danger-text); } #syncStrength[data-level="strong"] { color: var(--ok); }
 
 /* Notes tab (notesView.js): notes, highlights and comments as stickies, in a list or a grid, with a composer docked at the bottom */
 /* Theme "System": no data-theme attribute, the browser's dark setting decides (the same colours as above) */
@@ -4844,10 +4897,10 @@ html[data-motion="reduce"] .detail-split-more .icon { transition: none; }
 .graph-overview circle.is-tag:not(.graph-path), .graph-overview text.is-tag:not(.graph-label-on) { display: none; }
 .graph-quiet text.graph-label-quietable:not(.graph-label-on):not(.graph-label-match) { opacity: 0; }
 text.graph-label-on { opacity: 1; font-weight: 600; paint-order: stroke; stroke: var(--bg-page); stroke-width: 3px; }
-.graph-blob { transition: fill-opacity .2s; }
+.graph-blob { transition: fill-opacity var(--duration-base); }
 .graph-blob:hover { fill-opacity: .18; }
 .graph-cluster-label { font-weight: 700; paint-order: stroke; stroke: var(--bg-page); stroke-width: 4px; stroke-linejoin: round; }
-.graph-cluster-label:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.graph-cluster-label:focus-visible { outline: var(--focus-ring-width) solid var(--focus-ring); outline-offset: var(--focus-ring-offset); }
 /* focus and path: what is not part of it steps back */
 circle.graph-focus-dim, text.graph-focus-dim { opacity: 0.08; }
 .graph-link.graph-focus-dim { opacity: 0.03; }
@@ -4877,8 +4930,8 @@ circle.graph-read-dim, text.graph-read-dim, .graph-blob.graph-read-dim { opacity
 .graph-legend-color { gap: 5px; }
 .graph-legend-grad { display: inline-block; width: 54px; height: 8px; border-radius: 4px; }
 .graph-sub-label { font-weight: 600; paint-order: stroke; stroke: var(--bg-page); stroke-width: 3px; stroke-linejoin: round; }
-.graph-sub-label:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
-.graph-subblob { transition: fill-opacity .2s; }
+.graph-sub-label:focus-visible { outline: var(--focus-ring-width) solid var(--focus-ring); outline-offset: var(--focus-ring-offset); }
+.graph-subblob { transition: fill-opacity var(--duration-base); }
 .graph-subblob:hover { fill-opacity: .24; }
 .graph-subblob.graph-focus-dim, .graph-sub-label.graph-focus-dim { opacity: 0.15; }
 /* List and Gaps are not the picture: the chips that change the picture (layout, colour, unread, path, save, similarity progress) are out of the way there. */
@@ -4969,9 +5022,9 @@ circle.graph-read-dim, text.graph-read-dim, .graph-blob.graph-read-dim { opacity
 .sync-fold { margin: 0 0 8px; border: 1px solid var(--sync-border); border-radius: var(--radius-md); background: var(--glass-card); }
 .sync-fold > summary { display: flex; align-items: center; gap: 8px; padding: 12px; cursor: pointer; list-style: none; border-radius: var(--radius-md); }
 .sync-fold > summary::-webkit-details-marker { display: none; }
-.sync-fold > summary::after { content: '›'; margin-left: auto; font-size: 20px; line-height: 1; color: var(--text-muted); transition: transform .15s; }
+.sync-fold > summary::after { content: '›'; margin-left: auto; font-size: 20px; line-height: 1; color: var(--text-muted); transition: transform var(--duration-fast); }
 .sync-fold[open] > summary::after { transform: rotate(90deg); }
-.sync-fold > summary:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.sync-fold > summary:focus-visible { outline: var(--focus-ring-width) solid var(--focus-ring); outline-offset: var(--focus-ring-offset); }
 .sync-fold-text { display: flex; flex-direction: column; gap: 2px; min-width: 0; }
 .sync-fold-title { font-weight: 600; color: var(--text-primary); }
 .sync-fold-sub { font-size: var(--fs-sm); color: var(--text-muted); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
@@ -4987,5 +5040,14 @@ circle.graph-read-dim, text.graph-read-dim, .graph-blob.graph-read-dim { opacity
 .sync-review-meta { font-size: var(--fs-xs); color: var(--text-muted); }
 .sync-review-choice { flex: none; display: flex; gap: 8px; }
 .sync-review-btn { min-height: 28px; padding: 0 10px; border-radius: 999px; border: 1px solid var(--sync-border); background: transparent; color: var(--text-primary); font-weight: 600; cursor: pointer; }
-.sync-review-btn[aria-pressed="true"] { background: var(--accent); border-color: var(--accent); color: var(--on-accent, #fff); }
+.sync-review-btn[aria-pressed="true"] { background: var(--accent); border-color: var(--accent); color: var(--on-accent); }
 .sync-review-btn.is-delete[aria-pressed="true"] { background: color-mix(in srgb, var(--danger) 14%, transparent); border-color: var(--danger-text); color: var(--danger-text); }
+
+/* ── Focus and scroll padding (ADR 0005) ────────────────────────────────────
+   These had only a hover-like tint on focus; they get the same ring as everything else. */
+.graph-cluster-back:focus-visible, .graph-cluster-open:focus-visible, .graph-cluster-src:focus-visible,
+.graph-focusbar-clear:focus-visible, .graph-gap-brief:focus-visible { outline: var(--focus-ring-width) solid var(--focus-ring); outline-offset: var(--focus-ring-offset); }
+.card-menu-item:focus-visible { outline: var(--focus-ring-width) solid var(--focus-ring); outline-offset: var(--focus-ring-inset); }
+/* Focus not obscured (WCAG 2.4.11): keyboard focus and scrollIntoView stop clear of the fixed header, the bottom nav and the composer. */
+.screen { scroll-padding-top: calc(var(--header-h) + 8px); scroll-padding-bottom: var(--nav-clearance); }
+.feed-scroll { scroll-padding-top: calc(var(--header-h) + 8px); scroll-padding-bottom: calc(var(--floating-stack-height) + 8px); }

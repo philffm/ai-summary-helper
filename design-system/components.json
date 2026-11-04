@@ -1,0 +1,1267 @@
+{
+  "$description": "Component manifest source (ADR 0005). Hand-edited: purpose, selectors, sources, a11y, do/dont. Generated from it by design-system/components.mjs: dist/components.json (+ tokens each component reads, from the CSS) and dist/components.md. Variants and properties mirror the Figma Library v3 component (figma.node).",
+  "components": [
+    {
+      "name": "Button",
+      "status": "stable",
+      "purpose": "Start an action. Primary for the one main action on a screen (Summarize, Connect), Secondary for the rest, Ghost for low-emphasis, Danger for destructive confirmations, Danger outline for destructive actions in lists and settings.",
+      "selectors": [
+        ".button-primary",
+        ".button-secondary",
+        ".button-danger",
+        ".button-danger-outline",
+        ".btn-sm",
+        ".btn-md"
+      ],
+      "source": [
+        "plugin/src/popup.html"
+      ],
+      "figma": {
+        "node": "1257:183",
+        "key": "fcce72c22a09fc21ce8aef550d31dabd9c281339"
+      },
+      "variants": {
+        "Variant": [
+          "Primary",
+          "Secondary",
+          "Ghost",
+          "Danger",
+          "Danger outline"
+        ],
+        "Size": [
+          "L",
+          "M",
+          "S"
+        ],
+        "State": [
+          "Default",
+          "Hover",
+          "Disabled",
+          "Focus"
+        ]
+      },
+      "props": {
+        "Label": {
+          "type": "TEXT",
+          "default": "Summarize"
+        },
+        "Icon": {
+          "type": "TEXT",
+          "default": "✨"
+        },
+        "Show icon": {
+          "type": "BOOLEAN",
+          "default": true
+        }
+      },
+      "a11y": [
+        "<button> (never a div); disabled is the native attribute, not only opacity",
+        "Focus: --focus-ring, offset 2px",
+        "Size S is 30px min height, keep 8px apart (WCAG 2.5.8)",
+        "Danger outline text and border use --danger-text"
+      ],
+      "do": [
+        "One Primary per view",
+        "Verb first: “Summarize”, “Send to Kindle”"
+      ],
+      "dont": [
+        "Two Primary buttons side by side",
+        "Danger fill for something that can be undone"
+      ]
+    },
+    {
+      "name": "Icon button",
+      "status": "stable",
+      "purpose": "A square button with only an icon: header settings, graph and analytics toggles.",
+      "selectors": [
+        ".button-icon"
+      ],
+      "source": [
+        "plugin/src/popup.html"
+      ],
+      "figma": {
+        "node": "1257:202",
+        "key": "7ec837767e09532bb7def0e644e1c05083148e48"
+      },
+      "variants": {
+        "Style": [
+          "Glass",
+          "Accent",
+          "Plain"
+        ],
+        "State": [
+          "Default",
+          "Hover",
+          "Active",
+          "Focus",
+          "Disabled"
+        ]
+      },
+      "props": {
+        "Icon": {
+          "type": "TEXT",
+          "default": "⚙️"
+        }
+      },
+      "a11y": [
+        "aria-label is required (WCAG 4.1.2)",
+        "36px target",
+        "aria-pressed when it toggles a view"
+      ],
+      "do": [
+        "Icons that are understood without text"
+      ],
+      "dont": [
+        "Actions that need a word to be understood"
+      ]
+    },
+    {
+      "name": "Chip",
+      "status": "stable",
+      "purpose": "Small toggle or picker in the composer chip row (language, length, mode, model, PDF).",
+      "selectors": [
+        ".chip",
+        ".chip.active"
+      ],
+      "source": [
+        "plugin/src/popup.html",
+        "plugin/src/modules/composerState.js"
+      ],
+      "figma": {
+        "node": "1257:212",
+        "key": "e7434d5a464f004db0a7996c2938418bcc5ee723"
+      },
+      "variants": {
+        "Selected": [
+          "False",
+          "True"
+        ],
+        "State": [
+          "Default",
+          "Hover",
+          "Focus",
+          "Disabled"
+        ]
+      },
+      "props": {
+        "Label": {
+          "type": "TEXT",
+          "default": "EN"
+        },
+        "Icon": {
+          "type": "TEXT",
+          "default": "🌐"
+        },
+        "Show icon": {
+          "type": "BOOLEAN",
+          "default": true
+        }
+      },
+      "a11y": [
+        "aria-pressed for toggles, role=radio inside a group of exclusive options",
+        "Selected is told by fill + border + text colour"
+      ],
+      "do": [
+        "Short labels, an icon if it helps"
+      ],
+      "dont": [
+        "Long text: use a select or a sheet"
+      ]
+    },
+    {
+      "name": "Tag",
+      "status": "stable",
+      "purpose": "Topic tag on cards and in the article view; Suggestion for suggested follow-up questions; Removable in the editor.",
+      "selectors": [
+        ".tag-chip",
+        ".chat-suggest-chip"
+      ],
+      "source": [
+        "plugin/src/modules/articleManager.js",
+        "plugin/src/modules/mainScreen.js"
+      ],
+      "figma": {
+        "node": "1257:222",
+        "key": "4e6cd1dbccbc393b8a77edacb63c381b27edee0c"
+      },
+      "variants": {
+        "Style": [
+          "Accent",
+          "Suggestion",
+          "Removable",
+          "Removable focus"
+        ]
+      },
+      "props": {
+        "Label": {
+          "type": "TEXT",
+          "default": "Software"
+        }
+      },
+      "a11y": [
+        "Removable: the ✕ is its own button with aria-label “Remove tag X”"
+      ],
+      "do": [
+        "Lowercase or title case consistently"
+      ],
+      "dont": [
+        "Tags as the only way to filter"
+      ]
+    },
+    {
+      "name": "Status badge",
+      "status": "stable",
+      "purpose": "Shows an article status: New, Read, Sent, Archived, Saved (no AI), Signed in.",
+      "selectors": [
+        ".status-badge"
+      ],
+      "source": [
+        "plugin/src/modules/articleManager.js",
+        "plugin/src/modules/inboxView.js"
+      ],
+      "figma": {
+        "node": "1257:235",
+        "key": "0999490af44cb73c98192f69984c0ced6620f0d8"
+      },
+      "variants": {
+        "Tone": [
+          "New",
+          "Read",
+          "Sent",
+          "Archived",
+          "Saved",
+          "Signed in"
+        ]
+      },
+      "props": {
+        "Label": {
+          "type": "TEXT",
+          "default": "New"
+        }
+      },
+      "a11y": [
+        "The word carries the status, colour only supports it",
+        "tone-*-fg on tone-*-bg ≥ 5.4:1"
+      ],
+      "do": [
+        "One badge per card"
+      ],
+      "dont": [
+        "Badges as buttons"
+      ]
+    },
+    {
+      "name": "Switch",
+      "status": "stable",
+      "purpose": "On/off setting that takes effect at once.",
+      "selectors": [
+        ".switch",
+        ".slider-toggle"
+      ],
+      "source": [
+        "plugin/src/popup.html",
+        "plugin/src/modules/accordion.js"
+      ],
+      "figma": {
+        "node": "1257:244",
+        "key": "bbeaf372a247beb5cb1aea59809c87c2b9ad75e9"
+      },
+      "variants": {
+        "On": [
+          "true",
+          "false"
+        ],
+        "State": [
+          "Default",
+          "Disabled",
+          "Focus"
+        ]
+      },
+      "props": {},
+      "a11y": [
+        "<input type=checkbox role=switch> inside the row <label>",
+        "Knob vs track ≥ 3:1"
+      ],
+      "do": [
+        "Settings that apply immediately"
+      ],
+      "dont": [
+        "Choices that need a Save: use a checkbox"
+      ]
+    },
+    {
+      "name": "Segmented item",
+      "status": "stable",
+      "purpose": "One option of a segmented control.",
+      "selectors": [
+        ".sendsheet-seg button",
+        ".ps-seg button"
+      ],
+      "source": [
+        "plugin/src/modules/sendSheet.js",
+        "plugin/src/modules/promptSettings.js"
+      ],
+      "figma": {
+        "node": "1258:60",
+        "key": "7f28d57e2ec552bc10ef26febba0aea406043027"
+      },
+      "variants": {
+        "Selected": [
+          "True",
+          "False"
+        ],
+        "State": [
+          "Default",
+          "Hover",
+          "Focus"
+        ]
+      },
+      "props": {
+        "Label": {
+          "type": "TEXT",
+          "default": "Short"
+        }
+      },
+      "a11y": [
+        "role=radio + aria-checked, arrow keys move"
+      ],
+      "do": [],
+      "dont": []
+    },
+    {
+      "name": "Segmented control",
+      "status": "stable",
+      "purpose": "2–4 mutually exclusive options shown at once (summary length, send format).",
+      "selectors": [
+        ".sendsheet-seg",
+        ".ps-seg"
+      ],
+      "source": [
+        "plugin/src/modules/sendSheet.js",
+        "plugin/src/modules/promptSettings.js"
+      ],
+      "figma": {
+        "node": "1258:61",
+        "key": "35431a361eb31d21ee374f5f0385d5e47fc56ceb"
+      },
+      "variants": {},
+      "props": {},
+      "a11y": [
+        "role=radiogroup with aria-label"
+      ],
+      "do": [
+        "Up to 4 short options"
+      ],
+      "dont": [
+        "More than 4 options: use a select"
+      ]
+    },
+    {
+      "name": "Tab",
+      "status": "stable",
+      "purpose": "One tab of the shared underline tab bar.",
+      "selectors": [
+        ".tabbar-btn",
+        ".tabbar-ind"
+      ],
+      "source": [
+        "plugin/src/modules/tabbar.js"
+      ],
+      "figma": {
+        "node": "1258:78",
+        "key": "a2667b523c4f21838e2c95628e83f234a814a29c"
+      },
+      "variants": {
+        "Selected": [
+          "True",
+          "False"
+        ],
+        "State": [
+          "Default",
+          "Hover",
+          "Focus"
+        ]
+      },
+      "props": {
+        "Label": {
+          "type": "TEXT",
+          "default": "Inbox"
+        },
+        "Count": {
+          "type": "TEXT",
+          "default": "37"
+        },
+        "Show count": {
+          "type": "BOOLEAN",
+          "default": true
+        }
+      },
+      "a11y": [
+        "role=tab, aria-selected, roving tabindex, ←/→ move",
+        "Selected label is 600 and primary, not only the indicator"
+      ],
+      "do": [],
+      "dont": []
+    },
+    {
+      "name": "Tab bar",
+      "status": "stable",
+      "purpose": "Switches views inside History (Inbox, Read, Sent, Research, Collections, Archive) and Feeds (Feed, Day, Week, Month).",
+      "selectors": [
+        ".tabbar"
+      ],
+      "source": [
+        "plugin/src/modules/tabbar.js"
+      ],
+      "figma": {
+        "node": "1258:79",
+        "key": "d2baac742271f434b0414e394318b839b75f4c7b"
+      },
+      "variants": {},
+      "props": {},
+      "a11y": [
+        "role=tablist with aria-label"
+      ],
+      "do": [
+        "Up to 6 tabs, counts optional"
+      ],
+      "dont": [
+        "Tabs for actions"
+      ]
+    },
+    {
+      "name": "Nav item",
+      "status": "stable",
+      "purpose": "One destination in the bottom nav.",
+      "selectors": [
+        ".nav-item",
+        ".nav-blob"
+      ],
+      "source": [
+        "plugin/src/popup.html",
+        "plugin/src/modules/uiManager.js"
+      ],
+      "figma": {
+        "node": "1258:111",
+        "key": "92cc2a02db8c6c881ea6dbbcf56703374bfac11f"
+      },
+      "variants": {
+        "Selected": [
+          "True",
+          "False"
+        ],
+        "State": [
+          "Default",
+          "Hover",
+          "Focus"
+        ]
+      },
+      "props": {
+        "Label": {
+          "type": "TEXT",
+          "default": "Summarize"
+        },
+        "Icon": {
+          "type": "TEXT",
+          "default": "✨"
+        }
+      },
+      "a11y": [
+        "aria-current=\"page\" on the selected item",
+        "Label always visible"
+      ],
+      "do": [],
+      "dont": []
+    },
+    {
+      "name": "Bottom nav",
+      "status": "stable",
+      "purpose": "Main navigation: Feeds, Summarize, History, Notes.",
+      "selectors": [
+        ".bottom-nav"
+      ],
+      "source": [
+        "plugin/src/popup.html",
+        "plugin/src/modules/tabbar.js"
+      ],
+      "figma": {
+        "node": "1258:112",
+        "key": "f9aacf17a2622100976b748d108f14d68a0713d6"
+      },
+      "variants": {},
+      "props": {},
+      "a11y": [
+        "<nav aria-label=\"Main\">",
+        "≥ 44px targets"
+      ],
+      "do": [
+        "Four destinations"
+      ],
+      "dont": [
+        "Actions in the nav"
+      ]
+    },
+    {
+      "name": "Search field",
+      "status": "stable",
+      "purpose": "Search in History, Feeds, Notes and Settings.",
+      "selectors": [
+        "#searchInput",
+        ".notes-search",
+        ".chip-panel-search"
+      ],
+      "source": [
+        "plugin/src/popup.html",
+        "plugin/src/modules/notesView.js"
+      ],
+      "figma": {
+        "node": "1258:134",
+        "key": "871be1576250e33f6c0022c17dfa3257b2c8971f"
+      },
+      "variants": {
+        "State": [
+          "Default",
+          "Focus",
+          "Filled",
+          "Disabled"
+        ]
+      },
+      "props": {
+        "Placeholder": {
+          "type": "TEXT",
+          "default": "Search articles... (Ctrl + F)"
+        }
+      },
+      "a11y": [
+        "<input type=search> with an accessible name",
+        "Clear button with aria-label"
+      ],
+      "do": [
+        "Shortcut in the placeholder where one exists"
+      ],
+      "dont": []
+    },
+    {
+      "name": "Settings row",
+      "status": "stable",
+      "purpose": "A row that opens a settings panel or an item (Settings home, Send & Share targets, AI apps).",
+      "selectors": [
+        ".settings-row",
+        ".settings-row-icon",
+        ".settings-row-title",
+        ".settings-row-sub"
+      ],
+      "source": [
+        "plugin/src/popup.html",
+        "plugin/src/modules/settingsNav.js",
+        "plugin/src/modules/sendTargets.js"
+      ],
+      "figma": {
+        "node": "1258:149",
+        "key": "61140bfca14c9d9052ec91fbc1850da9d97ff6c0"
+      },
+      "variants": {
+        "State": [
+          "Default",
+          "Hover",
+          "Focus",
+          "Disabled"
+        ]
+      },
+      "props": {
+        "Title": {
+          "type": "TEXT",
+          "default": "Reading & Highlighting"
+        },
+        "Subtitle": {
+          "type": "TEXT",
+          "default": "Highlighting on · ghost on"
+        },
+        "Icon": {
+          "type": "TEXT",
+          "default": "✏️"
+        },
+        "Show subtitle": {
+          "type": "BOOLEAN",
+          "default": true
+        }
+      },
+      "a11y": [
+        "One <button> per row, the whole row is the target",
+        "The subtitle states the current value"
+      ],
+      "do": [
+        "Subtitle shows the state (“3 places · synced 2m ago”)"
+      ],
+      "dont": [
+        "Two actions in one row"
+      ]
+    },
+    {
+      "name": "Article card",
+      "status": "stable",
+      "purpose": "A saved article in History and Feeds: title, meta, status, tags, ⋯ menu.",
+      "selectors": [
+        ".article-card"
+      ],
+      "source": [
+        "plugin/src/modules/articleManager.js",
+        "plugin/src/modules/inboxView.js",
+        "plugin/src/modules/feedManager.js"
+      ],
+      "figma": {
+        "node": "1258:204",
+        "key": "5089798383d59656eb4292728181c1cf51c85b7f"
+      },
+      "variants": {
+        "State": [
+          "Default",
+          "Focus",
+          "Selected",
+          "Hover"
+        ]
+      },
+      "props": {
+        "Title": {
+          "type": "TEXT",
+          "default": "Why local-first software keeps coming back"
+        },
+        "Meta": {
+          "type": "TEXT",
+          "default": "💾 Nov 4, 2026 from blog.localfirst.dev ↗"
+        },
+        "Show tags": {
+          "type": "BOOLEAN",
+          "default": true
+        }
+      },
+      "a11y": [
+        "The card is one link/button named by its title",
+        "⋯ is a separate button (aria-haspopup=menu)",
+        "Select mode: checkbox state is announced"
+      ],
+      "do": [],
+      "dont": [
+        "Nested interactive elements without their own names"
+      ]
+    },
+    {
+      "name": "Card menu item",
+      "status": "stable",
+      "purpose": "One action in the card ⋯ menu.",
+      "selectors": [
+        ".card-menu-item",
+        ".card-menu-item.is-danger"
+      ],
+      "source": [
+        "plugin/src/modules/cardMenu.js"
+      ],
+      "figma": {
+        "node": "1258:214",
+        "key": "c826e38cbde36c461c7b928e54e809d1068a0806"
+      },
+      "variants": {
+        "Type": [
+          "Default",
+          "Danger"
+        ],
+        "State": [
+          "Default",
+          "Hover",
+          "Focus"
+        ]
+      },
+      "props": {
+        "Label": {
+          "type": "TEXT",
+          "default": "Open original"
+        },
+        "Icon": {
+          "type": "TEXT",
+          "default": "↗"
+        }
+      },
+      "a11y": [
+        "role=menuitem; ↑/↓ move; Esc closes and returns focus",
+        "Focus ring inside the item (--focus-ring-inset)",
+        "Danger uses --danger-text plus the trash icon"
+      ],
+      "do": [],
+      "dont": []
+    },
+    {
+      "name": "Card menu",
+      "status": "stable",
+      "purpose": "All actions for one article (open, copy, send, export, collection, select, archive, delete).",
+      "selectors": [
+        ".card-menu"
+      ],
+      "source": [
+        "plugin/src/modules/cardMenu.js"
+      ],
+      "figma": {
+        "node": "1258:215",
+        "key": "69e930439380532fbbf25006646d48b84fa02cfc"
+      },
+      "variants": {},
+      "props": {},
+      "a11y": [
+        "role=menu from a button with aria-haspopup=menu + aria-expanded"
+      ],
+      "do": [
+        "Destructive action last, separated"
+      ],
+      "dont": [
+        "More than ~10 items (see AISH-004.3)"
+      ]
+    },
+    {
+      "name": "Toast",
+      "status": "stable",
+      "purpose": "Short confirmation after an action, optionally with Undo.",
+      "selectors": [
+        "#toastStack",
+        ".toast-message"
+      ],
+      "source": [
+        "plugin/src/modules/uiManager.js"
+      ],
+      "figma": {
+        "node": "1258:249",
+        "key": "9d408dfef08d2dfa6d9c075cd370235be1e75a76"
+      },
+      "variants": {
+        "Type": [
+          "Default",
+          "With action"
+        ]
+      },
+      "props": {
+        "Message": {
+          "type": "TEXT",
+          "default": "Sent to Kindle"
+        },
+        "Action": {
+          "type": "TEXT",
+          "default": "Undo"
+        }
+      },
+      "a11y": [
+        "role=status (polite)",
+        "The action is a real button",
+        "Stays ≥ 5 s and pauses on hover and focus (2.2.1)"
+      ],
+      "do": [
+        "Past tense: “Sent to Kindle”"
+      ],
+      "dont": [
+        "Errors that need a decision: use a callout or dialog"
+      ]
+    },
+    {
+      "name": "Header",
+      "status": "stable",
+      "purpose": "Top bar of the popup: logo, title, settings.",
+      "selectors": [
+        ".header",
+        ".logoheader",
+        ".header-buttons"
+      ],
+      "source": [
+        "plugin/src/popup.html"
+      ],
+      "figma": {
+        "node": "1258:250",
+        "key": "c44b67ebf12df6632a6d1bd7b120e01f3a8f4e67"
+      },
+      "variants": {},
+      "props": {
+        "Title": {
+          "type": "TEXT",
+          "default": "AI Summary Helper"
+        }
+      },
+      "a11y": [
+        "Logo has alt text",
+        "Settings button has aria-label"
+      ],
+      "do": [],
+      "dont": []
+    },
+    {
+      "name": "Composer",
+      "status": "stable",
+      "purpose": "The Summarize input: chip row, page context, focus field, Summarize split button.",
+      "selectors": [
+        ".input-card",
+        ".chip-row",
+        ".controls-bar"
+      ],
+      "source": [
+        "plugin/src/popup.html",
+        "plugin/src/modules/composerState.js",
+        "plugin/src/modules/mainScreen.js"
+      ],
+      "figma": {
+        "node": "1258:257",
+        "key": "65401760e9e2d9e9709a3c0d7642a7258f78be00"
+      },
+      "variants": {},
+      "props": {
+        "Page": {
+          "type": "TEXT",
+          "default": "The quiet comeback of the long read · example.com"
+        }
+      },
+      "a11y": [
+        "The field has a visible label or aria-label",
+        "Chips are reachable before the button"
+      ],
+      "do": [],
+      "dont": []
+    },
+    {
+      "name": "Text field",
+      "status": "stable",
+      "purpose": "Labelled input with hint and error message (Sync & backup, AI apps).",
+      "selectors": [
+        ".mcp-field"
+      ],
+      "source": [
+        "plugin/src/modules/syncView.js",
+        "plugin/src/modules/mcpView.js"
+      ],
+      "figma": {
+        "node": "1264:176",
+        "key": "b08094b3217cb89a06353f88332cce7c3d9f5d89"
+      },
+      "variants": {
+        "State": [
+          "Default",
+          "Focus",
+          "Filled",
+          "Error",
+          "Disabled"
+        ]
+      },
+      "props": {
+        "Label": {
+          "type": "TEXT",
+          "default": "Server address"
+        },
+        "Hint": {
+          "type": "TEXT",
+          "default": "In Nextcloud: Settings → Security → create an app password."
+        },
+        "Show hint": {
+          "type": "BOOLEAN",
+          "default": true
+        },
+        "Error text": {
+          "type": "TEXT",
+          "default": "⚠ The server said no: wrong app password (401)."
+        },
+        "Value": {
+          "type": "TEXT",
+          "default": "https://cloud.example.com/remote.php/dav/files/phil/"
+        }
+      },
+      "a11y": [
+        "<label for>, hint and error linked with aria-describedby",
+        "aria-invalid on error; the message names the fix (3.3.3)"
+      ],
+      "do": [
+        "Say what goes in and where to find it"
+      ],
+      "dont": [
+        "Placeholder as the only label"
+      ]
+    },
+    {
+      "name": "Selection tile",
+      "status": "stable",
+      "purpose": "Choose one of a few options with a sentence each (Encrypted vs Readable).",
+      "selectors": [
+        ".mcp-tile",
+        ".mcp-tile.is-on"
+      ],
+      "source": [
+        "plugin/src/modules/syncView.js",
+        "plugin/src/modules/mcpView.js"
+      ],
+      "figma": {
+        "node": "1264:233",
+        "key": "2fd4e4e6dca60d321d716d521b1edc5f55c66737"
+      },
+      "variants": {
+        "Selected": [
+          "True",
+          "False"
+        ],
+        "State": [
+          "Default",
+          "Hover",
+          "Focus",
+          "Disabled"
+        ]
+      },
+      "props": {
+        "Title": {
+          "type": "TEXT",
+          "default": "Encrypted"
+        },
+        "Hint": {
+          "type": "TEXT",
+          "default": "For syncing and backup. Only you can read it."
+        },
+        "Icon": {
+          "type": "TEXT",
+          "default": "🔒"
+        }
+      },
+      "a11y": [
+        "As built: aria-pressed; better role=radio in a radiogroup",
+        "“Selected” chip text carries the state"
+      ],
+      "do": [
+        "2–4 options with one-line explanations"
+      ],
+      "dont": [
+        "Options without consequences"
+      ]
+    },
+    {
+      "name": "Status line",
+      "status": "stable",
+      "purpose": "Dot + text that tells the state of a running thing (sync place, AI app connection).",
+      "selectors": [
+        ".mcp-hero-status",
+        ".mcp-dot"
+      ],
+      "source": [
+        "plugin/src/modules/mcpView.js",
+        "plugin/src/modules/syncView.js"
+      ],
+      "figma": {
+        "node": "1264:254",
+        "key": "d5df0de0990f76335a5ba898dc10fc8f05692a78"
+      },
+      "variants": {
+        "Tone": [
+          "OK",
+          "Running",
+          "Error",
+          "Paused",
+          "Attention"
+        ]
+      },
+      "props": {
+        "Message": {
+          "type": "TEXT",
+          "default": "synced 3m ago"
+        },
+        "Show glyph": {
+          "type": "BOOLEAN",
+          "default": false
+        }
+      },
+      "a11y": [
+        "role=status aria-live=polite while running",
+        "Error must not share the “working” colour; add a glyph (1.4.1)"
+      ],
+      "do": [],
+      "dont": []
+    },
+    {
+      "name": "Callout",
+      "status": "stable",
+      "purpose": "Explains or warns inside a panel: Info, Warning, Danger, Alert.",
+      "selectors": [
+        ".explanatory-card",
+        ".sync-warn",
+        ".sync-danger",
+        ".mcp-card[role=alert]"
+      ],
+      "source": [
+        "plugin/src/modules/syncView.js",
+        "plugin/src/modules/settingsNav.js"
+      ],
+      "figma": {
+        "node": "1264:267",
+        "key": "2462dcbee286c639b70f95b14d202c144b42001a"
+      },
+      "variants": {
+        "Tone": [
+          "Info",
+          "Warning",
+          "Danger",
+          "Alert"
+        ]
+      },
+      "props": {
+        "Text": {
+          "type": "TEXT",
+          "default": "Everything is encrypted on this device before it is uploaded."
+        },
+        "Show icon": {
+          "type": "BOOLEAN",
+          "default": true
+        }
+      },
+      "a11y": [
+        "Alert uses role=alert; others are plain text",
+        "Icon repeats the meaning in shape"
+      ],
+      "do": [
+        "One callout per decision"
+      ],
+      "dont": [
+        "Stacking several callouts"
+      ]
+    },
+    {
+      "name": "Progress bar",
+      "status": "stable",
+      "purpose": "Progress of a long run (sync, upload).",
+      "selectors": [
+        "progress.sync-progress"
+      ],
+      "source": [
+        "plugin/src/modules/syncView.js"
+      ],
+      "figma": {
+        "node": "1264:274",
+        "key": "3195020cd58aca280d56a54bf94fde2ba91be4dc"
+      },
+      "variants": {
+        "Type": [
+          "Determinate",
+          "Done",
+          "Indeterminate"
+        ]
+      },
+      "props": {},
+      "a11y": [
+        "Native <progress> with max/value and aria-label = phase text"
+      ],
+      "do": [],
+      "dont": []
+    },
+    {
+      "name": "Toggle row",
+      "status": "stable",
+      "purpose": "A setting row with title, hint and a switch.",
+      "selectors": [
+        ".mcp-row"
+      ],
+      "source": [
+        "plugin/src/modules/syncView.js",
+        "plugin/src/modules/mcpView.js",
+        "plugin/src/modules/notesView.js"
+      ],
+      "figma": {
+        "node": "1264:287",
+        "key": "1e6784e7426e1ae0e9ffa0e782a6b1d03b4a0e49"
+      },
+      "variants": {
+        "On": [
+          "true",
+          "false"
+        ]
+      },
+      "props": {
+        "Title": {
+          "type": "TEXT",
+          "default": "Highlights"
+        },
+        "Hint": {
+          "type": "TEXT",
+          "default": "Your yellow and AI highlights"
+        },
+        "Show hint": {
+          "type": "BOOLEAN",
+          "default": true
+        }
+      },
+      "a11y": [
+        "The whole row is the <label> of the switch"
+      ],
+      "do": [],
+      "dont": []
+    },
+    {
+      "name": "Section caption",
+      "status": "stable",
+      "purpose": "Uppercase caption above a group of rows or fields.",
+      "selectors": [
+        ".settings-caption"
+      ],
+      "source": [
+        "plugin/src/modules/settingsNav.js",
+        "plugin/src/modules/syncView.js"
+      ],
+      "figma": {
+        "node": "1264:288",
+        "key": "7e0192c382d703c05ca746bbc14685222580a20e"
+      },
+      "variants": {},
+      "props": {
+        "Text": {
+          "type": "TEXT",
+          "default": "WHO CAN READ IT"
+        }
+      },
+      "a11y": [
+        "Should be a heading (<h3>) so screen readers can jump between groups"
+      ],
+      "do": [],
+      "dont": []
+    },
+    {
+      "name": "Passphrase box",
+      "status": "stable",
+      "purpose": "Shows the six recovery words, selectable in one go.",
+      "selectors": [
+        ".sync-words",
+        ".sync-recovery"
+      ],
+      "source": [
+        "plugin/src/modules/syncView.js"
+      ],
+      "figma": {
+        "node": "1264:290",
+        "key": "3cf647560357a4a4795e570e13f99d02b01af481"
+      },
+      "variants": {},
+      "props": {
+        "Words": {
+          "type": "TEXT",
+          "default": "acoustic use can raccoon kind machine"
+        }
+      },
+      "a11y": [
+        "tabindex=0, user-select all, Copy and Download next to it"
+      ],
+      "do": [],
+      "dont": []
+    },
+    {
+      "name": "Pill segmented item",
+      "status": "stable",
+      "purpose": "One option of the pill segmented control.",
+      "selectors": [
+        ".a11y-seg button"
+      ],
+      "source": [
+        "plugin/src/popup.html"
+      ],
+      "figma": {
+        "node": "1264:300",
+        "key": "c5cca79fccb0d8c10c8b98f7921a14f14661c855"
+      },
+      "variants": {
+        "Selected": [
+          "True",
+          "False"
+        ],
+        "State": [
+          "Default",
+          "Focus"
+        ]
+      },
+      "props": {
+        "Label": {
+          "type": "TEXT",
+          "default": "Sync my devices"
+        }
+      },
+      "a11y": [
+        "role=radio, aria-checked"
+      ],
+      "do": [],
+      "dont": []
+    },
+    {
+      "name": "Pill segmented",
+      "status": "stable",
+      "purpose": "Rounded segmented control for 2–3 options in settings and Notes (List | Grid).",
+      "selectors": [
+        ".a11y-seg"
+      ],
+      "source": [
+        "plugin/src/popup.html",
+        "plugin/src/modules/notesView.js",
+        "plugin/src/modules/syncView.js"
+      ],
+      "figma": {
+        "node": "1264:301",
+        "key": "5f703333d91d06515d75be4eab062e51dded930f"
+      },
+      "variants": {},
+      "props": {},
+      "a11y": [
+        "role=radiogroup with aria-label"
+      ],
+      "do": [],
+      "dont": []
+    },
+    {
+      "name": "Note card",
+      "status": "stable",
+      "purpose": "A note, a highlight or an AI highlight in Notes (sticky), with comment, source, tags and actions.",
+      "selectors": [
+        ".st",
+        ".st-user",
+        ".st-ghost",
+        ".st-note",
+        ".st-c",
+        ".st-act"
+      ],
+      "source": [
+        "plugin/src/modules/notesView.js"
+      ],
+      "figma": {
+        "node": "1289:334",
+        "key": "7310c955191d3dcb5e89a6bf577c6c6fd435c739"
+      },
+      "variants": {
+        "Kind": [
+          "Highlight",
+          "AI highlight",
+          "Note"
+        ],
+        "State": [
+          "Default",
+          "Hover",
+          "Focus",
+          "Editing"
+        ]
+      },
+      "props": {
+        "Text": {
+          "type": "TEXT",
+          "default": "…"
+        },
+        "Source": {
+          "type": "TEXT",
+          "default": "Inflation 2021–2023 · economist.example"
+        },
+        "Tags": {
+          "type": "TEXT",
+          "default": "#inflation"
+        },
+        "Show comment": {
+          "type": "BOOLEAN",
+          "default": true
+        }
+      },
+      "a11y": [
+        "<article> labelled with its kind",
+        "Actions are buttons; Remove asks first",
+        "Remove text --saved-note-danger ≥ 5.5:1 on every sticky"
+      ],
+      "do": [],
+      "dont": []
+    }
+  ]
+}

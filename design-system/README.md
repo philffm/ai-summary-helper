@@ -109,6 +109,22 @@ plan. Collections, in the order a value flows:
 Every variable carries its CSS name as WEB code syntax. A frame picks the theme on the Semantic collection and the brand on
 Brand. Direction is one-way, code → Figma: a value changed in Figma goes back into the JSON by a pull request.
 
+## Motion and breakpoints
+
+`--duration-*` and `--easing-*` (semantic, both contexts) drive every transition under 600 ms; `reduced-motion.json` sets the
+durations to 0.01ms for `prefers-reduced-motion` and the app's own Reduce motion setting. Breakpoints are `--bp-*` tokens; CSS
+media queries cannot read them, so `lint.mjs` keeps every query width on the scale and JS reads them via
+`plugin/src/modules/breakpoints.js`. ADR 0005.
+
+## Components
+
+`components.json` is the component manifest source: one entry per Figma Library v3 component with its purpose, CSS selectors,
+source files, Figma node, variants, properties, accessibility notes and do/don't. `components.mjs` (part of `npm run tokens`)
+adds the tokens each component reads, taken from the CSS rules of its selectors, and writes `dist/components.json` and
+`dist/components.md` (one section per component, for people and AI tools). `npm run tokens:check` fails when a selector has no
+CSS rule, a source file is missing, a semantic token has no `$description`, or the generated files are stale. Figma links each
+component to its manifest entry with Code Connect (label Markdown, source `design-system/dist/components.md`). ADR 0005.
+
 ## Android
 
 `dist/android/DesignTokens.kt` holds the app colours per brand × theme as Compose `Color`s. The Android app does not read it

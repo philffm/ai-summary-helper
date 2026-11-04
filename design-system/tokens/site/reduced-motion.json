@@ -1,0 +1,39 @@
+{
+  "$description": "Durations when motion is reduced: system setting (prefers-reduced-motion) or Settings › Accessibility › Reduce motion (html[data-motion=reduce]). ADR 0005.",
+  "site": {
+    "semantic": {
+      "motion": {
+        "duration-fast": {
+          "$type": "duration",
+          "$value": "0.01ms",
+          "$description": "Reduced motion: no movement (system setting or Settings › Accessibility › Reduce motion)."
+        },
+        "duration-base": {
+          "$type": "duration",
+          "$value": "0.01ms",
+          "$description": "Reduced motion: no movement (system setting or Settings › Accessibility › Reduce motion)."
+        },
+        "duration-slow": {
+          "$type": "duration",
+          "$value": "0.01ms",
+          "$description": "Reduced motion: no movement (system setting or Settings › Accessibility › Reduce motion)."
+        },
+        "duration-slower": {
+          "$type": "duration",
+          "$value": "0.01ms",
+          "$description": "Reduced motion: no movement (system setting or Settings › Accessibility › Reduce motion)."
+        },
+        "duration-screen": {
+          "$type": "duration",
+          "$value": "0.01ms",
+          "$description": "Reduced motion: no movement (system setting or Settings › Accessibility › Reduce motion)."
+        },
+        "duration-reveal": {
+          "$type": "duration",
+          "$value": "0.01ms",
+          "$description": "Reduced motion: no movement (system setting or Settings › Accessibility › Reduce motion)."
+        }
+      }
+    }
+  }
+}

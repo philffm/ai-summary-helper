@@ -33,6 +33,7 @@ import { assignFileBases, safeFileName } from './articleFormat.js';
 import { obsidianUri } from './obsidianUri.js';
 import { CITE_STYLES, formatCitation, ensureCsl, copyText, getCiteStyle, loadCiteStyle, setCiteStyle } from './citation.js';
 import { buildAnnotationsSection, fetchAnnotationsForArticle, buildAnnotationsPlainText, markHighlights } from './annotationExporter.js';
+import { bp } from './breakpoints.js';
 
 // Escapes translated text for use inside double-quoted HTML attributes.
 const escAttr = escapeHtml;
@@ -2348,7 +2349,6 @@ export async function showArticleDetail(article) {
 // Wide enough: a single segmented bar next to Back — Read / Copy / Share first, more of the user's configured actions as the
 // pane gets wider, ⋯ as its last segment (it always carries everything). Narrow (the popup): the buttons stay in the row below
 // the title, as before.
-const TOP_LABELS_MIN = 780;
 let topActions = false;
 let toolbarPrefs = { items: DEFAULT_TOOLBAR.slice(), delivery: 'kindle', sendTarget: 'kindle' };
 const loadToolbarPrefs = () => StorageManager.getAll().then((cfg) => {
@@ -2587,11 +2587,11 @@ function layoutDetailActions() {
     if (!topBar || !bar) return;
     const width = topBar.getBoundingClientRect().width;
     const want = true;   // the joined toolbar is used at every width; narrow panes just show fewer actions, icons only
-    const labels = width >= TOP_LABELS_MIN;
+    const labels = width >= bp('toolbar-labels');
     const more = document.getElementById('detailMoreBtn');
     const back = document.getElementById('detailBackButton');
     let holder = document.getElementById('detailTopActions');
-    shortenBackLabel(back, width < 440 ? 'icon' : 'short');
+    shortenBackLabel(back, width < bp('toolbar-compact') ? 'icon' : 'short');
     if (want) {
         if (!holder) {
             holder = document.createElement('div'); holder.id = 'detailTopActions'; holder.className = 'detail-toolbar';

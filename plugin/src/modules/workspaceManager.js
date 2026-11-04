@@ -1,5 +1,6 @@
 import { T, N_ } from './feedI18n.js';
 import { SK } from './storageKeys.js';
+import { bp } from './breakpoints.js';
 // workspaceManager.js — split-screen workspace for wide windows.
 // Shows up to three views side by side inside the History, Feeds and Notes screens (layout switcher lives in the app header).
 // History and Feeds choose from List / Graph / Analytics / Notes; the Notes screen from Notes / By article / Tags.
@@ -15,7 +16,7 @@ const STORE_KEY = SK.workspace;
 let layout = 1;                                       // user's wish (1..3), the same on every screen
 const views = { main: SETS.main.views.slice(), notes: SETS.notes.views.slice() };   // view per pane slot, per set
 
-export const maxPanes = () => (window.innerWidth >= 1100 ? 3 : window.innerWidth >= 720 ? 2 : 1);
+export const maxPanes = () => (window.innerWidth >= bp('split-3') ? 3 : window.innerWidth >= bp('split') ? 2 : 1);
 const effective = () => Math.min(layout, maxPanes());
 
 const SCREENS = [

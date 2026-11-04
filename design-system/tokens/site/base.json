@@ -92,169 +92,323 @@
       "font": {
         "font-display": {
           "$type": "fontFamily",
-          "$value": "{brand.font.display}"
+          "$value": "{brand.font.display}",
+          "$description": "Display face: headlines and big numbers."
         },
         "font-body": {
           "$type": "fontFamily",
-          "$value": "{brand.font.body}"
+          "$value": "{brand.font.body}",
+          "$description": "Body text face."
         },
         "font-mono": {
           "$type": "fontFamily",
-          "$value": "{brand.font.mono}"
+          "$value": "{brand.font.mono}",
+          "$description": "Monospace: labels, code, kickers."
         }
       },
       "tint": {
         "tint-accent": {
           "$type": "color",
-          "$value": "{site.primitive.palette.brand-accent-400}"
+          "$value": "{site.primitive.palette.brand-accent-400}",
+          "$description": "Accent tint behind badges and soft buttons."
         },
         "tint-highlight": {
           "$type": "color",
-          "$value": "{brand.highlight.200}"
+          "$value": "{brand.highlight.200}",
+          "$description": "Highlight tint behind highlight badges."
         },
         "tint-neutral": {
           "$type": "color",
-          "$value": "{color.grey.500}"
+          "$value": "{color.grey.500}",
+          "$description": "Neutral tint for chips and pills."
         },
         "tint-neutral-cool": {
           "$type": "color",
-          "$value": "{color.grey.500-cool}"
+          "$value": "{color.grey.500-cool}",
+          "$description": "Cooler neutral tint for alternate rows and chips."
         }
       },
       "scale": {
         "fs-3xs": {
           "$type": "dimension",
-          "$value": "10px"
+          "$value": "10px",
+          "$description": "Type size 10px on the website; step 3xs of the scale."
         },
         "fs-3xs-plus": {
           "$type": "dimension",
-          "$value": "10.5px"
+          "$value": "10.5px",
+          "$description": "Type size 10.5px on the website; step 3xs-plus of the scale."
         },
         "fs-2xs": {
           "$type": "dimension",
-          "$value": "11px"
+          "$value": "11px",
+          "$description": "Type size 11px on the website; step 2xs of the scale."
         },
         "fs-2xs-plus": {
           "$type": "dimension",
-          "$value": "11.5px"
+          "$value": "11.5px",
+          "$description": "Type size 11.5px on the website; step 2xs-plus of the scale."
         },
         "fs-xs": {
           "$type": "dimension",
-          "$value": "12px"
+          "$value": "12px",
+          "$description": "Type size 12px on the website; step xs of the scale."
         },
         "fs-xs-plus": {
           "$type": "dimension",
-          "$value": "12.5px"
+          "$value": "12.5px",
+          "$description": "Type size 12.5px on the website; step xs-plus of the scale."
         },
         "fs-sm": {
           "$type": "dimension",
-          "$value": "13px"
+          "$value": "13px",
+          "$description": "Type size 13px on the website; step sm of the scale."
         },
         "fs-sm-plus": {
           "$type": "dimension",
-          "$value": "13.5px"
+          "$value": "13.5px",
+          "$description": "Type size 13.5px on the website; step sm-plus of the scale."
         },
         "fs-md": {
           "$type": "dimension",
-          "$value": "14px"
+          "$value": "14px",
+          "$description": "Type size 14px on the website; step md of the scale."
         },
         "fs-md-plus": {
           "$type": "dimension",
-          "$value": "14.5px"
+          "$value": "14.5px",
+          "$description": "Type size 14.5px on the website; step md-plus of the scale."
         },
         "fs-base": {
           "$type": "dimension",
-          "$value": "15px"
+          "$value": "15px",
+          "$description": "Type size 15px on the website; step base of the scale."
         },
         "fs-lg": {
           "$type": "dimension",
-          "$value": "16px"
+          "$value": "16px",
+          "$description": "Type size 16px on the website; step lg of the scale."
         },
         "fs-prose": {
           "$type": "dimension",
-          "$value": "16.5px"
+          "$value": "16.5px",
+          "$description": "Type size 16.5px on the website; step prose of the scale."
         },
         "fs-xl": {
           "$type": "dimension",
-          "$value": "17px"
+          "$value": "17px",
+          "$description": "Type size 17px on the website; step xl of the scale."
         },
         "fs-2xl": {
           "$type": "dimension",
-          "$value": "18px"
+          "$value": "18px",
+          "$description": "Type size 18px on the website; step 2xl of the scale."
         },
         "fs-2xl-plus": {
           "$type": "dimension",
-          "$value": "19px"
+          "$value": "19px",
+          "$description": "Type size 19px on the website; step 2xl-plus of the scale."
         },
         "fs-3xl": {
           "$type": "dimension",
-          "$value": "20px"
+          "$value": "20px",
+          "$description": "Type size 20px on the website; step 3xl of the scale."
         },
         "fs-4xl": {
           "$type": "dimension",
-          "$value": "22px"
+          "$value": "22px",
+          "$description": "Type size 22px on the website; step 4xl of the scale."
         },
         "fs-5xl": {
           "$type": "dimension",
-          "$value": "24px"
+          "$value": "24px",
+          "$description": "Type size 24px on the website; step 5xl of the scale."
         },
         "fs-6xl": {
           "$type": "dimension",
-          "$value": "26px"
+          "$value": "26px",
+          "$description": "Type size 26px on the website; step 6xl of the scale."
         },
         "fs-7xl": {
           "$type": "dimension",
-          "$value": "28px"
+          "$value": "28px",
+          "$description": "Type size 28px on the website; step 7xl of the scale."
         },
         "fs-8xl": {
           "$type": "dimension",
-          "$value": "34px"
+          "$value": "34px",
+          "$description": "Type size 34px on the website; step 8xl of the scale."
         },
         "radius-xs": {
           "$type": "dimension",
-          "$value": "4px"
+          "$value": "4px",
+          "$description": "Corner radius 4px: tags, small chips"
         },
         "radius-sm": {
           "$type": "dimension",
-          "$value": "6px"
+          "$value": "6px",
+          "$description": "Corner radius 6px: icon tiles, menu items, fields"
         },
         "radius-md": {
           "$type": "dimension",
-          "$value": "10px"
+          "$value": "10px",
+          "$description": "Corner radius 10px: buttons, chips, rows, segmented controls"
         },
         "radius-lg": {
           "$type": "dimension",
-          "$value": "12px"
+          "$value": "12px",
+          "$description": "Corner radius 12px: cards"
         },
         "radius-xl": {
           "$type": "dimension",
-          "$value": "14px"
+          "$value": "14px",
+          "$description": "Corner radius 14px: input card, large panels"
         },
         "radius-2xl": {
           "$type": "dimension",
-          "$value": "16px"
+          "$value": "16px",
+          "$description": "Corner radius 16px."
         },
         "radius-3xl": {
           "$type": "dimension",
-          "$value": "18px"
+          "$value": "18px",
+          "$description": "Corner radius 18px."
         },
         "radius-4xl": {
           "$type": "dimension",
-          "$value": "24px"
+          "$value": "24px",
+          "$description": "Corner radius 24px."
         },
         "radius-device": {
           "$type": "dimension",
-          "$value": "28px"
+          "$value": "28px",
+          "$description": "Corner radius 28px: device frames in mocks"
         },
         "radius-pill": {
           "$type": "dimension",
-          "$value": "999px"
+          "$value": "999px",
+          "$description": "Corner radius 999px: pills"
         }
       },
       "elevation": {
         "shadow-ink": {
           "$type": "shadow",
-          "$value": "{color.black}"
+          "$value": "{color.black}",
+          "$description": "Ink colour for shadows (used with an alpha)."
+        }
+      },
+      "motion": {
+        "duration-fast": {
+          "$type": "duration",
+          "$value": "150ms",
+          "$description": "Hover, focus, colour and toggle changes (WCAG: never the only cue)."
+        },
+        "duration-base": {
+          "$type": "duration",
+          "$value": "200ms",
+          "$description": "Small movements: chips, tab indicator, panels opening in place."
+        },
+        "duration-slow": {
+          "$type": "duration",
+          "$value": "300ms",
+          "$description": "Larger movements: sheets, cards entering, accordions."
+        },
+        "duration-slower": {
+          "$type": "duration",
+          "$value": "400ms",
+          "$description": "Travelling elements: nav blob, toasts, flyouts."
+        },
+        "duration-screen": {
+          "$type": "duration",
+          "$value": "350ms",
+          "$description": "Screen slide between main screen, settings and detail."
+        },
+        "duration-reveal": {
+          "$type": "duration",
+          "$value": "500ms",
+          "$description": "Content revealed on scroll and hero entrances."
+        },
+        "easing-standard": {
+          "$type": "cubicBezier",
+          "$value": "cubic-bezier(0.25, 0.1, 0.25, 1)",
+          "$description": "Default curve (same as CSS ease)."
+        },
+        "easing-decelerate": {
+          "$type": "cubicBezier",
+          "$value": "cubic-bezier(0, 0, 0.58, 1)",
+          "$description": "Things coming to rest: entering elements (CSS ease-out)."
+        },
+        "easing-accelerate": {
+          "$type": "cubicBezier",
+          "$value": "cubic-bezier(0.42, 0, 1, 1)",
+          "$description": "Things leaving the screen (CSS ease-in)."
+        },
+        "easing-in-out": {
+          "$type": "cubicBezier",
+          "$value": "cubic-bezier(0.42, 0, 0.58, 1)",
+          "$description": "Back-and-forth and looping movement (CSS ease-in-out)."
+        },
+        "easing-emphasized": {
+          "$type": "cubicBezier",
+          "$value": "cubic-bezier(0.2, 0.8, 0.2, 1)",
+          "$description": "Appearances that should feel quick and settle softly (sheets, panes)."
+        },
+        "easing-spring": {
+          "$type": "cubicBezier",
+          "$value": "cubic-bezier(0.34, 1.56, 0.64, 1)",
+          "$description": "Slight overshoot for the nav blob and selection indicators."
+        },
+        "easing-screen": {
+          "$type": "cubicBezier",
+          "$value": "cubic-bezier(0.4, 0, 0.2, 1)",
+          "$description": "Screen slides."
+        }
+      },
+      "breakpoint": {
+        "bp-xs": {
+          "$type": "dimension",
+          "$value": "420px",
+          "$description": "Small phones."
+        },
+        "bp-sm": {
+          "$type": "dimension",
+          "$value": "560px",
+          "$description": "Phones: one column below."
+        },
+        "bp-md": {
+          "$type": "dimension",
+          "$value": "640px",
+          "$description": "Large phones / small tablets."
+        },
+        "bp-ml": {
+          "$type": "dimension",
+          "$value": "720px",
+          "$description": "Tablets portrait."
+        },
+        "bp-lg": {
+          "$type": "dimension",
+          "$value": "760px",
+          "$description": "Tablets: two-column layouts start."
+        },
+        "bp-xl": {
+          "$type": "dimension",
+          "$value": "860px",
+          "$description": "Nav switches from the menu button to the pill bar."
+        },
+        "bp-2xl": {
+          "$type": "dimension",
+          "$value": "900px",
+          "$description": "Hero and feature grids go wide; hero mock narrow below."
+        },
+        "bp-desktop": {
+          "$type": "dimension",
+          "$value": "1024px",
+          "$description": "Desktop: blog video floats beside the text."
+        },
+        "bp-wide": {
+          "$type": "dimension",
+          "$value": "1280px",
+          "$description": "Wide desktop: margins and focus fan."
         }
       }
     },

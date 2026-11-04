@@ -4,7 +4,8 @@
       "surface": {
         "bg-page": {
           "$type": "color",
-          "$value": "{color.night.950}"
+          "$value": "{color.night.950}",
+          "$description": "Page background of every screen; the base all translucent surfaces are composited over."
         },
         "bg-page-gradient": {
           "$type": "gradient",
@@ -13,7 +14,8 @@
             "eu.byphil.ds": {
               "template": true
             }
-          }
+          },
+          "$description": "Soft accent glow painted over bg-page at the edges of the window."
         },
         "glass-base": {
           "$type": "color",
@@ -22,7 +24,8 @@
             "eu.byphil.ds": {
               "alpha": 0.92
             }
-          }
+          },
+          "$description": "Background of a screen that slides over another (settings, detail); nearly opaque."
         },
         "glass-card": {
           "$type": "color",
@@ -31,7 +34,8 @@
             "eu.byphil.ds": {
               "alpha": 0.06
             }
-          }
+          },
+          "$description": "Card surface (article cards, settings rows, input card); translucent over bg-page."
         },
         "glass-input": {
           "$type": "color",
@@ -40,7 +44,8 @@
             "eu.byphil.ds": {
               "alpha": 0.05
             }
-          }
+          },
+          "$description": "Field surface: inputs, chips, search fields, icon tiles."
         },
         "glass-border": {
           "$type": "color",
@@ -49,7 +54,8 @@
             "eu.byphil.ds": {
               "alpha": 0.1
             }
-          }
+          },
+          "$description": "Edge of glass cards and the input card."
         },
         "glass-border-strong": {
           "$type": "color",
@@ -58,7 +64,8 @@
             "eu.byphil.ds": {
               "alpha": 0.14
             }
-          }
+          },
+          "$description": "Stronger glass edge for floating panels and toasts."
         },
         "glass-inner-glow": {
           "$type": "shadow",
@@ -67,15 +74,18 @@
             "eu.byphil.ds": {
               "template": true
             }
-          }
+          },
+          "$description": "1px inner highlight at the top of glass surfaces."
         },
         "surface-bar": {
           "$type": "color",
-          "$value": "{color.night.950}"
+          "$value": "{color.night.950}",
+          "$description": "Background of fixed bars (pane headers, toolbars) above scrolling content."
         },
         "surface-sheet": {
           "$type": "color",
-          "$value": "{brand.surface.sheet-dark}"
+          "$value": "{brand.surface.sheet-dark}",
+          "$description": "Bottom sheets and dialogs: opaque so text behind does not show through."
         },
         "scrim": {
           "$type": "color",
@@ -84,7 +94,8 @@
             "eu.byphil.ds": {
               "alpha": 0.6
             }
-          }
+          },
+          "$description": "Dims the page behind a sheet or dialog."
         },
         "surface-row": {
           "$type": "color",
@@ -93,7 +104,8 @@
             "eu.byphil.ds": {
               "alpha": 0.06
             }
-          }
+          },
+          "$description": "Rows inside a sheet or list (send targets, list items)."
         },
         "surface-field": {
           "$type": "color",
@@ -102,7 +114,8 @@
             "eu.byphil.ds": {
               "alpha": 0.08
             }
-          }
+          },
+          "$description": "Track of segmented controls and filled fields inside sheets."
         },
         "surface-selected": {
           "$type": "color",
@@ -111,7 +124,8 @@
             "eu.byphil.ds": {
               "alpha": 0.16
             }
-          }
+          },
+          "$description": "Background of a selected row."
         },
         "surface-control": {
           "$type": "color",
@@ -120,7 +134,8 @@
             "eu.byphil.ds": {
               "alpha": 0.06
             }
-          }
+          },
+          "$description": "Selected segment of a segmented control (raised look)."
         },
         "surface-track": {
           "$type": "color",
@@ -129,35 +144,42 @@
             "eu.byphil.ds": {
               "alpha": 0.12
             }
-          }
+          },
+          "$description": "Unfilled part of progress bars, sliders and meters."
         }
       },
       "text": {
         "text-primary": {
           "$type": "color",
-          "$value": "{color.slate.150}"
+          "$value": "{color.slate.150}",
+          "$description": "Body text, titles and icons: the strongest text colour (≥ 14:1 on cards)."
         },
         "text-secondary": {
           "$type": "color",
-          "$value": "{color.slate.350}"
+          "$value": "{color.slate.350}",
+          "$description": "Supporting text: labels, descriptions, inactive controls with text."
         },
         "text-muted": {
           "$type": "color",
-          "$value": "{color.slate.400}"
+          "$value": "{color.slate.400}",
+          "$description": "Least important readable text: hints, meta lines, timestamps, placeholders (≥ 4.5:1)."
         },
         "text-link": {
           "$type": "color",
-          "$value": "{brand.accent.300}"
+          "$value": "{brand.accent.300}",
+          "$description": "Links inside text."
         }
       },
       "accent": {
         "accent": {
           "$type": "color",
-          "$value": "{brand.accent.400}"
+          "$value": "{brand.accent.400}",
+          "$description": "Brand action colour: primary buttons, selected states, links on controls, focus ring, progress."
         },
         "accent-light": {
           "$type": "color",
-          "$value": "{brand.accent.500}"
+          "$value": "{brand.accent.500}",
+          "$description": "Second stop of the accent gradient (primary button, nav blob, switch on)."
         },
         "accent-glow": {
           "$type": "color",
@@ -166,11 +188,13 @@
             "eu.byphil.ds": {
               "alpha": 0.18
             }
-          }
+          },
+          "$description": "Coloured glow under primary buttons."
         },
         "on-accent": {
           "$type": "color",
-          "$value": "{brand.accent.950}"
+          "$value": "{brand.accent.950}",
+          "$description": "Text and icons on an accent fill (primary button, selected pill, active nav item)."
         },
         "accent-soft": {
           "$type": "color",
@@ -179,7 +203,8 @@
             "eu.byphil.ds": {
               "alpha": 0.14
             }
-          }
+          },
+          "$description": "Light accent tint for selected or hovered rows."
         },
         "accent-soft-strong": {
           "$type": "color",
@@ -188,7 +213,8 @@
             "eu.byphil.ds": {
               "alpha": 0.26
             }
-          }
+          },
+          "$description": "Stronger accent tint for pressed or highlighted rows."
         },
         "accent-subtle": {
           "$type": "color",
@@ -197,7 +223,8 @@
             "eu.byphil.ds": {
               "alpha": 0.14
             }
-          }
+          },
+          "$description": "Faint accent tint behind accent-coloured text (chips, badges)."
         },
         "accent-selected": {
           "$type": "color",
@@ -206,7 +233,8 @@
             "eu.byphil.ds": {
               "alpha": 0.14
             }
-          }
+          },
+          "$description": "Accent tint of a selected card or row."
         }
       },
       "outline": {
@@ -217,7 +245,8 @@
             "eu.byphil.ds": {
               "alpha": 0.1
             }
-          }
+          },
+          "$description": "Default 1px border of cards, fields, bars and dividers. Decorative (about 1.35:1); a field edge that must be found needs outline-strong (ADR 0005)."
         },
         "outline-soft": {
           "$type": "color",
@@ -226,7 +255,8 @@
             "eu.byphil.ds": {
               "alpha": 0.05
             }
-          }
+          },
+          "$description": "Very subtle border inside glass surfaces."
         },
         "outline-strong": {
           "$type": "color",
@@ -235,7 +265,8 @@
             "eu.byphil.ds": {
               "alpha": 0.12
             }
-          }
+          },
+          "$description": "Border that must be seen: focused groups, dashed drop zones, high-contrast theme."
         }
       },
       "elevation": {
@@ -246,7 +277,8 @@
             "eu.byphil.ds": {
               "template": true
             }
-          }
+          },
+          "$description": "Shadow of the input card and raised cards."
         },
         "shadow-raised": {
           "$type": "shadow",
@@ -255,7 +287,8 @@
             "eu.byphil.ds": {
               "template": true
             }
-          }
+          },
+          "$description": "Shadow of screens and panels that float over others."
         },
         "shadow-modal": {
           "$type": "shadow",
@@ -264,7 +297,8 @@
             "eu.byphil.ds": {
               "template": true
             }
-          }
+          },
+          "$description": "Shadow of dialogs, menus and toasts."
         },
         "elevation-sheet": {
           "$type": "shadow",
@@ -273,7 +307,8 @@
             "eu.byphil.ds": {
               "template": true
             }
-          }
+          },
+          "$description": "Upward shadow of bottom sheets."
         }
       },
       "status": {
@@ -284,11 +319,13 @@
             "eu.byphil.ds": {
               "alpha": 0.1
             }
-          }
+          },
+          "$description": "Status “Read” badge background."
         },
         "tone-read-fg": {
           "$type": "color",
-          "$value": "{color.slate.300}"
+          "$value": "{color.slate.300}",
+          "$description": "Status “Read” badge text (≥ 5.4:1 on its background)."
         },
         "tone-sent-bg": {
           "$type": "color",
@@ -297,11 +334,13 @@
             "eu.byphil.ds": {
               "alpha": 0.18
             }
-          }
+          },
+          "$description": "Status “Sent” badge background."
         },
         "tone-sent-fg": {
           "$type": "color",
-          "$value": "{brand.accent.300}"
+          "$value": "{brand.accent.300}",
+          "$description": "Status “Sent” badge text (≥ 5.4:1 on its background)."
         },
         "tone-new-bg": {
           "$type": "color",
@@ -310,11 +349,13 @@
             "eu.byphil.ds": {
               "alpha": 0.16
             }
-          }
+          },
+          "$description": "Status “New” badge background."
         },
         "tone-new-fg": {
           "$type": "color",
-          "$value": "{color.green.300}"
+          "$value": "{color.green.300}",
+          "$description": "Status “New” badge text (≥ 5.4:1 on its background)."
         },
         "tone-arch-bg": {
           "$type": "color",
@@ -323,37 +364,45 @@
             "eu.byphil.ds": {
               "alpha": 0.16
             }
-          }
+          },
+          "$description": "Status “Archived” badge background."
         },
         "tone-arch-fg": {
           "$type": "color",
-          "$value": "{color.amber.300}"
+          "$value": "{color.amber.300}",
+          "$description": "Status “Archived” badge text (≥ 5.4:1 on its background)."
         }
       },
       "feedback": {
         "mood-pos": {
           "$type": "color",
-          "$value": "{color.signal.positive-dark}"
+          "$value": "{color.signal.positive-dark}",
+          "$description": "Positive mood in charts and dots (graphic, ≥ 3:1)."
         },
         "mood-neg": {
           "$type": "color",
-          "$value": "{color.signal.negative-dark}"
+          "$value": "{color.signal.negative-dark}",
+          "$description": "Negative mood in charts and dots (graphic, ≥ 3:1)."
         },
         "mood-warn": {
           "$type": "color",
-          "$value": "{color.signal.warning-dark}"
+          "$value": "{color.signal.warning-dark}",
+          "$description": "Mixed mood in charts and dots (graphic)."
         },
         "mood-pos-text": {
           "$type": "color",
-          "$value": "{color.green.300}"
+          "$value": "{color.green.300}",
+          "$description": "Positive mood as text (≥ 4.5:1)."
         },
         "mood-neg-text": {
           "$type": "color",
-          "$value": "{color.red.300}"
+          "$value": "{color.red.300}",
+          "$description": "Negative mood as text (≥ 4.5:1)."
         },
         "mood-warn-text": {
           "$type": "color",
-          "$value": "{color.amber.300}"
+          "$value": "{color.amber.300}",
+          "$description": "Mixed mood as text (≥ 4.5:1)."
         },
         "caution-bg": {
           "$type": "color",
@@ -388,13 +437,14 @@
         "danger-text": {
           "$type": "color",
           "$value": "{color.red.300}",
-          "$description": "Delete action on a saved-note card."
+          "$description": "Error and delete text, Danger outline buttons: ≥ 4.5:1 on dark cards (--danger is 3.5:1 there). ADR 0005."
         }
       },
       "control": {
         "control-track": {
           "$type": "color",
-          "$value": "{color.slate.700}"
+          "$value": "{color.slate.700}",
+          "$description": "Slider track."
         },
         "control-thumb": {
           "$type": "color",
@@ -403,7 +453,8 @@
             "eu.byphil.ds": {
               "alpha": 0.28
             }
-          }
+          },
+          "$description": "Slider thumb."
         },
         "control-thumb-hover": {
           "$type": "color",
@@ -412,7 +463,8 @@
             "eu.byphil.ds": {
               "alpha": 0.46
             }
-          }
+          },
+          "$description": "Slider thumb on hover."
         },
         "control-grip": {
           "$type": "color",
@@ -421,7 +473,8 @@
             "eu.byphil.ds": {
               "alpha": 0.25
             }
-          }
+          },
+          "$description": "Drag handle (grip dots) in editable lists."
         },
         "control-off": {
           "$type": "color",
@@ -430,105 +483,129 @@
             "eu.byphil.ds": {
               "alpha": 0.22
             }
-          }
+          },
+          "$description": "Switch track when off."
         },
         "control-knob": {
           "$type": "color",
-          "$value": "{color.white}"
+          "$value": "{color.white}",
+          "$description": "Switch knob."
         },
         "control-border": {
           "$type": "color",
-          "$value": "{color.slate.500}"
+          "$value": "{color.slate.500}",
+          "$description": "Border of checkboxes and radios."
         }
       },
       "inverse": {
         "surface-inverse": {
           "$type": "color",
-          "$value": "{color.slate.150}"
+          "$value": "{color.slate.150}",
+          "$description": "Inverse surface (toasts, tooltips): dark in light mode, light in dark mode."
         },
         "text-inverse": {
           "$type": "color",
-          "$value": "{color.night.950}"
+          "$value": "{color.night.950}",
+          "$description": "Text on surface-inverse."
         },
         "link-inverse": {
           "$type": "color",
-          "$value": "{brand.accent.700}"
+          "$value": "{brand.accent.700}",
+          "$description": "Action or link on surface-inverse (toast Undo)."
         }
       },
       "data": {
         "data-0": {
           "$type": "color",
-          "$value": "{color.chart.dark-0}"
+          "$value": "{color.chart.dark-0}",
+          "$description": "Chart series 1 of 8: categorical, the same in every brand; pair with labels or symbols (WCAG 1.4.1)."
         },
         "data-1": {
           "$type": "color",
-          "$value": "{color.chart.dark-1}"
+          "$value": "{color.chart.dark-1}",
+          "$description": "Chart series 2 of 8: categorical, the same in every brand; pair with labels or symbols (WCAG 1.4.1)."
         },
         "data-2": {
           "$type": "color",
-          "$value": "{color.chart.dark-2}"
+          "$value": "{color.chart.dark-2}",
+          "$description": "Chart series 3 of 8: categorical, the same in every brand; pair with labels or symbols (WCAG 1.4.1)."
         },
         "data-3": {
           "$type": "color",
-          "$value": "{color.chart.dark-3}"
+          "$value": "{color.chart.dark-3}",
+          "$description": "Chart series 4 of 8: categorical, the same in every brand; pair with labels or symbols (WCAG 1.4.1)."
         },
         "data-4": {
           "$type": "color",
-          "$value": "{color.chart.dark-4}"
+          "$value": "{color.chart.dark-4}",
+          "$description": "Chart series 5 of 8: categorical, the same in every brand; pair with labels or symbols (WCAG 1.4.1)."
         },
         "data-5": {
           "$type": "color",
-          "$value": "{color.chart.light-5}"
+          "$value": "{color.chart.light-5}",
+          "$description": "Chart series 6 of 8: categorical, the same in every brand; pair with labels or symbols (WCAG 1.4.1)."
         },
         "data-6": {
           "$type": "color",
-          "$value": "{color.chart.dark-6}"
+          "$value": "{color.chart.dark-6}",
+          "$description": "Chart series 7 of 8: categorical, the same in every brand; pair with labels or symbols (WCAG 1.4.1)."
         },
         "data-7": {
           "$type": "color",
-          "$value": "{color.chart.dark-7}"
+          "$value": "{color.chart.dark-7}",
+          "$description": "Chart series 8 of 8: categorical, the same in every brand; pair with labels or symbols (WCAG 1.4.1)."
         },
         "data-other": {
           "$type": "color",
-          "$value": "{color.chart.dark-other}"
+          "$value": "{color.chart.dark-other}",
+          "$description": "Chart series “other”: neutral grey after the eight categorical colours."
         }
       },
       "annotation": {
         "annotation-user-bg": {
           "$type": "color",
-          "$value": "{color.annotation.user-bg}"
+          "$value": "{color.annotation.user-bg}",
+          "$description": "Your highlight: sticky and mark background (yellow)."
         },
         "annotation-user-fg": {
           "$type": "color",
-          "$value": "{color.annotation.user-fg}"
+          "$value": "{color.annotation.user-fg}",
+          "$description": "Your highlight: kind label text."
         },
         "annotation-user-bar": {
           "$type": "color",
-          "$value": "{color.annotation.user-bar}"
+          "$value": "{color.annotation.user-bar}",
+          "$description": "Your highlight: side bar and mark underline."
         },
         "annotation-ai-bg": {
           "$type": "color",
-          "$value": "{color.annotation.ghost-bg}"
+          "$value": "{color.annotation.ghost-bg}",
+          "$description": "AI highlight: sticky and mark background (blue)."
         },
         "annotation-ai-fg": {
           "$type": "color",
-          "$value": "{color.annotation.ghost-fg}"
+          "$value": "{color.annotation.ghost-fg}",
+          "$description": "AI highlight: kind label text."
         },
         "annotation-ai-bar": {
           "$type": "color",
-          "$value": "{color.sky.400}"
+          "$value": "{color.sky.400}",
+          "$description": "AI highlight: side bar and mark underline."
         },
         "annotation-note-bg": {
           "$type": "color",
-          "$value": "{color.annotation.note-bg}"
+          "$value": "{color.annotation.note-bg}",
+          "$description": "Free note: sticky background (pink)."
         },
         "annotation-note-fg": {
           "$type": "color",
-          "$value": "{color.annotation.note-fg}"
+          "$value": "{color.annotation.note-fg}",
+          "$description": "Free note: kind label text."
         },
         "annotation-note-bar": {
           "$type": "color",
-          "$value": "{color.pink.400}"
+          "$value": "{color.pink.400}",
+          "$description": "Free note: side bar."
         },
         "annotation-quote-bg": {
           "$type": "color",

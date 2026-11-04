@@ -1,6 +1,7 @@
 import { SK } from './storageKeys.js';
 import { T, N_ } from './feedI18n.js';
 import { initSendTargets } from './sendTargets.js';
+import { bp } from './breakpoints.js';
 // settingsNav.js
 // Settings home (grouped list) → panel navigation, live row subtitles, and
 // search. All controls keep their original ids (settingsManager.js / authManager.js
@@ -71,7 +72,7 @@ let screenEl = null;
 let currentPanel = 'account';
 
 // Large windows: master–detail (list stays visible, one panel open beside it).
-export const settingsIsWide = () => window.innerWidth >= 900;
+export const settingsIsWide = () => window.innerWidth >= bp('settings-wide');
 function syncWide() {
     if (!screenEl) return;
     const wide = settingsIsWide();

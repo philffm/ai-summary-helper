@@ -9,7 +9,8 @@
             "eu.byphil.ds": {
               "alpha": 0.82
             }
-          }
+          },
+          "$description": "Background of a screen that slides over another (settings, detail); nearly opaque."
         }
       }
     }

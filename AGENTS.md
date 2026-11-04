@@ -10,4 +10,8 @@
 - Component tokens are named after their component (`--player-bg`, `--saved-note-user-bg`), semantic tokens after a role (`--text-muted`, `--elevation-2`); no tier abbreviations.
 - A new colour goes primitive → semantic (→ component only if one component needs its own role), with light and dark values.
 - Brand (AISH, Koru) is a token file, never a condition in CSS or JS.
-- Before finishing: `npm run tokens:check` (tier rules, token-clean CSS, WCAG AA for every brand × theme).
+- Focus: use `outline: var(--focus-ring-width) solid var(--focus-ring); outline-offset: var(--focus-ring-offset)` (`--focus-ring-inset` inside clipped containers); never `outline: none` on `:focus-visible` without a ring. Error and delete text use `--danger-text`, not `--danger`.
+- Motion: `transition`/`animation` durations under 600 ms use `var(--duration-*)`, curves `var(--easing-*)`; they drop to 0.01ms when motion is reduced. Breakpoints: media/container widths must be a `--bp-*` value (lint), JS uses `bp('split')` from `modules/breakpoints.js`.
+- Every new semantic token gets a `$description` (what it is for, not its value).
+- UI components: look them up in `design-system/dist/components.md` (purpose, selectors, states, tokens, a11y) before building a new one; a new or changed component gets an entry in `design-system/components.json`.
+- Before finishing: `npm run tokens:check` (tier rules, token-clean CSS, WCAG AA for every brand × theme, component manifest).

@@ -93,6 +93,21 @@
           "extra": [
             "color-scheme: light"
           ]
+        },
+        {
+          "comment": "reduced motion: system setting",
+          "media": "(prefers-reduced-motion: reduce)",
+          "selector": ":root",
+          "sets": [
+            "app/reduced-motion"
+          ]
+        },
+        {
+          "comment": "reduced motion: Settings › Accessibility",
+          "selector": "html[data-motion='reduce']",
+          "sets": [
+            "app/reduced-motion"
+          ]
         }
       ]
     },
@@ -125,6 +140,14 @@
           ],
           "extra": [
             "color-scheme:light"
+          ]
+        },
+        {
+          "comment": "reduced motion: system setting",
+          "media": "(prefers-reduced-motion: reduce)",
+          "selector": ":root",
+          "sets": [
+            "site/reduced-motion"
           ]
         }
       ]
@@ -300,6 +323,32 @@
         ],
         "over": "bg-page",
         "min": 3
+      },
+      {
+        "fg": [
+          "danger-text"
+        ],
+        "bg": [
+          "bg-page",
+          "glass-card",
+          "sheet-bg",
+          "saved-note-user-bg",
+          "saved-note-ghost-bg",
+          "saved-note-note-bg"
+        ],
+        "over": "bg-page"
+      },
+      {
+        "fg": [
+          "focus-ring"
+        ],
+        "bg": [
+          "bg-page",
+          "glass-card",
+          "sheet-bg"
+        ],
+        "over": "bg-page",
+        "min": 3
       }
     ],
     "site": [
@@ -369,6 +418,18 @@
       "--fh",
       "--bgpos",
       "--dw"
+    ]
+  },
+  "offScaleBreakpoints": {
+    "$description": "Media/container widths not (yet) on the breakpoint scale; lint.mjs fails on any new one. Shrink this list when a layout is moved to a token value (a visible change). ADR 0005.",
+    "app": [],
+    "site": [
+      520,
+      600,
+      700,
+      820,
+      960,
+      1180
     ]
   }
 }

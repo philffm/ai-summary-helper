@@ -4,15 +4,18 @@
       "surface": {
         "bg": {
           "$type": "color",
-          "$value": "{site.primitive.palette.gray-990}"
+          "$value": "{site.primitive.palette.gray-990}",
+          "$description": "Page background (dark by default)."
         },
         "bg-raised": {
           "$type": "color",
-          "$value": "{site.primitive.palette.gray-950}"
+          "$value": "{site.primitive.palette.gray-950}",
+          "$description": "Raised band or section above bg."
         },
         "bg-sunken": {
           "$type": "color",
-          "$value": "{site.primitive.palette.gray-900}"
+          "$value": "{site.primitive.palette.gray-900}",
+          "$description": "Sunken band or section below bg."
         },
         "surface-1": {
           "$type": "color",
@@ -21,7 +24,8 @@
             "eu.byphil.ds": {
               "alpha": 0.05
             }
-          }
+          },
+          "$description": "Card surface, level 1."
         },
         "surface-1-strong": {
           "$type": "color",
@@ -30,7 +34,8 @@
             "eu.byphil.ds": {
               "alpha": 0.08
             }
-          }
+          },
+          "$description": "Card surface, level 1, more opaque (on busy backgrounds)."
         },
         "surface-2": {
           "$type": "color",
@@ -39,7 +44,8 @@
             "eu.byphil.ds": {
               "alpha": 0.025
             }
-          }
+          },
+          "$description": "Card surface, level 2 (card inside a card)."
         },
         "surface-2-strong": {
           "$type": "color",
@@ -48,7 +54,8 @@
             "eu.byphil.ds": {
               "alpha": 0.14
             }
-          }
+          },
+          "$description": "Card surface, level 2, more opaque."
         },
         "input-bg": {
           "$type": "color",
@@ -57,7 +64,8 @@
             "eu.byphil.ds": {
               "alpha": 0.25
             }
-          }
+          },
+          "$description": "Field background."
         },
         "card-shadow": {
           "$type": "shadow",
@@ -66,7 +74,8 @@
             "eu.byphil.ds": {
               "alpha": 0.6
             }
-          }
+          },
+          "$description": "Shadow of cards."
         },
         "sheen-strong": {
           "$type": "color",
@@ -75,7 +84,8 @@
             "eu.byphil.ds": {
               "alpha": 0.35
             }
-          }
+          },
+          "$description": "White sheen on icons and glossy tiles."
         },
         "glow-accent": {
           "$type": "color",
@@ -84,7 +94,8 @@
             "eu.byphil.ds": {
               "alpha": 0.16
             }
-          }
+          },
+          "$description": "Accent glow behind the hero."
         },
         "glow-highlight": {
           "$type": "color",
@@ -93,7 +104,8 @@
             "eu.byphil.ds": {
               "alpha": 0.12
             }
-          }
+          },
+          "$description": "Highlight glow behind the hero."
         },
         "grain-dot": {
           "$type": "color",
@@ -102,7 +114,8 @@
             "eu.byphil.ds": {
               "alpha": 0.035
             }
-          }
+          },
+          "$description": "Dot colour of the grain texture."
         },
         "surface-bar": {
           "$type": "color",
@@ -111,7 +124,8 @@
             "eu.byphil.ds": {
               "alpha": 0.72
             }
-          }
+          },
+          "$description": "Background of fixed bars (pane headers, toolbars) above scrolling content."
         },
         "surface-bar-solid": {
           "$type": "color",
@@ -120,59 +134,72 @@
             "eu.byphil.ds": {
               "alpha": 0.97
             }
-          }
+          },
+          "$description": "Opaque header bar (menu open, reduced transparency)."
         }
       },
       "text": {
         "text": {
           "$type": "color",
-          "$value": "{site.primitive.palette.gray-50}"
+          "$value": "{site.primitive.palette.gray-50}",
+          "$description": "Body text and headlines."
         },
         "text-muted": {
           "$type": "color",
-          "$value": "{site.primitive.palette.gray-300}"
+          "$value": "{site.primitive.palette.gray-300}",
+          "$description": "Least important readable text: hints, meta lines, timestamps, placeholders (≥ 4.5:1)."
         }
       },
       "accent": {
         "accent": {
           "$type": "color",
-          "$value": "{site.primitive.palette.brand-accent-400}"
+          "$value": "{site.primitive.palette.brand-accent-400}",
+          "$description": "Brand action colour: primary buttons, selected states, links on controls, focus ring, progress."
         },
         "accent-text": {
           "$type": "color",
-          "$value": "{site.primitive.palette.brand-accent-300}"
+          "$value": "{site.primitive.palette.brand-accent-300}",
+          "$description": "Accent as text (links, kickers) at ≥ 4.5:1."
         },
         "accent-fill": {
           "$type": "color",
-          "$value": "{site.primitive.palette.brand-accent-350}"
+          "$value": "{site.primitive.palette.brand-accent-350}",
+          "$description": "Accent button fill."
         },
         "accent-fill-hi": {
           "$type": "color",
-          "$value": "{site.primitive.palette.brand-accent-300}"
+          "$value": "{site.primitive.palette.brand-accent-300}",
+          "$description": "Accent button fill on hover."
         },
         "on-accent": {
           "$type": "color",
-          "$value": "{site.primitive.palette.navy-950}"
+          "$value": "{site.primitive.palette.navy-950}",
+          "$description": "Text and icons on an accent fill (primary button, selected pill, active nav item)."
         },
         "highlight": {
           "$type": "color",
-          "$value": "{site.primitive.palette.brand-highlight-400}"
+          "$value": "{site.primitive.palette.brand-highlight-400}",
+          "$description": "Highlight brand colour (second brand colour)."
         },
         "highlight-text": {
           "$type": "color",
-          "$value": "{site.primitive.palette.brand-highlight-300}"
+          "$value": "{site.primitive.palette.brand-highlight-300}",
+          "$description": "Highlight as text at ≥ 4.5:1."
         },
         "highlight-fill": {
           "$type": "color",
-          "$value": "{site.primitive.palette.brand-highlight-300}"
+          "$value": "{site.primitive.palette.brand-highlight-300}",
+          "$description": "Highlight button fill."
         },
         "highlight-fill-hover": {
           "$type": "color",
-          "$value": "{site.primitive.palette.brand-highlight-400}"
+          "$value": "{site.primitive.palette.brand-highlight-400}",
+          "$description": "Highlight button fill on hover."
         },
         "on-highlight": {
           "$type": "color",
-          "$value": "{site.primitive.palette.navy-950}"
+          "$value": "{site.primitive.palette.navy-950}",
+          "$description": "Text on highlight fills."
         },
         "highlight-subtle": {
           "$type": "color",
@@ -181,7 +208,8 @@
             "eu.byphil.ds": {
               "alpha": 0.08
             }
-          }
+          },
+          "$description": "Faint highlight tint."
         },
         "highlight-border": {
           "$type": "color",
@@ -190,13 +218,15 @@
             "eu.byphil.ds": {
               "alpha": 0.5
             }
-          }
+          },
+          "$description": "Border in highlight colour."
         }
       },
       "feedback": {
         "danger": {
           "$type": "color",
-          "$value": "{site.primitive.palette.red-400}"
+          "$value": "{site.primitive.palette.red-400}",
+          "$description": "Errors and destructive actions on the website."
         }
       },
       "outline": {
@@ -207,7 +237,8 @@
             "eu.byphil.ds": {
               "alpha": 0.07
             }
-          }
+          },
+          "$description": "Hairline borders and dividers."
         },
         "border-medium": {
           "$type": "color",
@@ -216,7 +247,8 @@
             "eu.byphil.ds": {
               "alpha": 0.13
             }
-          }
+          },
+          "$description": "Borders of chips, pills and fields."
         },
         "border-strong": {
           "$type": "color",
@@ -225,7 +257,8 @@
             "eu.byphil.ds": {
               "alpha": 0.2
             }
-          }
+          },
+          "$description": "Borders that must be seen (focus groups, outlined buttons)."
         }
       },
       "elevation": {
@@ -236,7 +269,8 @@
             "eu.byphil.ds": {
               "alpha": 0.5
             }
-          }
+          },
+          "$description": "Shadow of video posters and device mocks."
         }
       }
     },

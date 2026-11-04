@@ -4,15 +4,18 @@
       "scale": {
         "radius-xs": {
           "$type": "dimension",
-          "$value": "6px"
+          "$value": "6px",
+          "$description": "Corner radius 6px: tags, small chips"
         },
         "radius-sheet": {
           "$type": "dimension",
-          "$value": "20px"
+          "$value": "20px",
+          "$description": "Corner radius 20px: top corners of bottom sheets"
         },
         "text-scale": {
           "$type": "number",
-          "$value": "1"
+          "$value": "1",
+          "$description": "Multiplier set by Settings › Accessibility › Text size; every fs-* token follows it (WCAG 1.4.4)."
         },
         "fs-2xs": {
           "$type": "dimension",
@@ -21,7 +24,8 @@
             "eu.byphil.ds": {
               "template": true
             }
-          }
+          },
+          "$description": "Type size 10px × text-scale: labels, bottom nav, badges."
         },
         "fs-xs": {
           "$type": "dimension",
@@ -30,7 +34,8 @@
             "eu.byphil.ds": {
               "template": true
             }
-          }
+          },
+          "$description": "Type size 11px × text-scale: captions, chips, section captions."
         },
         "fs-sm": {
           "$type": "dimension",
@@ -39,7 +44,8 @@
             "eu.byphil.ds": {
               "template": true
             }
-          }
+          },
+          "$description": "Type size 12px × text-scale: small buttons, meta lines."
         },
         "fs-md": {
           "$type": "dimension",
@@ -48,7 +54,8 @@
             "eu.byphil.ds": {
               "template": true
             }
-          }
+          },
+          "$description": "Type size 13px × text-scale: UI body: menus, rows, toasts."
         },
         "fs-base": {
           "$type": "dimension",
@@ -57,7 +64,8 @@
             "eu.byphil.ds": {
               "template": true
             }
-          }
+          },
+          "$description": "Type size 14px × text-scale: default body text."
         },
         "fs-lg": {
           "$type": "dimension",
@@ -66,7 +74,8 @@
             "eu.byphil.ds": {
               "template": true
             }
-          }
+          },
+          "$description": "Type size 16px × text-scale: card titles, primary button."
         },
         "fs-xl": {
           "$type": "dimension",
@@ -75,7 +84,8 @@
             "eu.byphil.ds": {
               "template": true
             }
-          }
+          },
+          "$description": "Type size 18px × text-scale: section titles."
         },
         "fs-2xl": {
           "$type": "dimension",
@@ -84,133 +94,165 @@
             "eu.byphil.ds": {
               "template": true
             }
-          }
+          },
+          "$description": "Type size 20px × text-scale: screen titles."
         },
         "spacing-s-0": {
           "$type": "dimension",
-          "$value": "0"
+          "$value": "0",
+          "$description": "Spacing step 0 (0) on the 4px grid. Kept for JS inline styles; component CSS uses the same steps."
         },
         "spacing-s-05": {
           "$type": "dimension",
-          "$value": "2px"
+          "$value": "2px",
+          "$description": "Spacing step 05 (2px) on the 4px grid. Kept for JS inline styles; component CSS uses the same steps."
         },
         "spacing-s-1": {
           "$type": "dimension",
-          "$value": "4px"
+          "$value": "4px",
+          "$description": "Spacing step 1 (4px) on the 4px grid. Kept for JS inline styles; component CSS uses the same steps."
         },
         "spacing-s-2": {
           "$type": "dimension",
-          "$value": "8px"
+          "$value": "8px",
+          "$description": "Spacing step 2 (8px) on the 4px grid. Kept for JS inline styles; component CSS uses the same steps."
         },
         "spacing-s-3": {
           "$type": "dimension",
-          "$value": "12px"
+          "$value": "12px",
+          "$description": "Spacing step 3 (12px) on the 4px grid. Kept for JS inline styles; component CSS uses the same steps."
         },
         "spacing-s-4": {
           "$type": "dimension",
-          "$value": "16px"
+          "$value": "16px",
+          "$description": "Spacing step 4 (16px) on the 4px grid. Kept for JS inline styles; component CSS uses the same steps."
         },
         "spacing-s-5": {
           "$type": "dimension",
-          "$value": "20px"
+          "$value": "20px",
+          "$description": "Spacing step 5 (20px) on the 4px grid. Kept for JS inline styles; component CSS uses the same steps."
         },
         "spacing-s-6": {
           "$type": "dimension",
-          "$value": "24px"
+          "$value": "24px",
+          "$description": "Spacing step 6 (24px) on the 4px grid. Kept for JS inline styles; component CSS uses the same steps."
         },
         "spacing-s-7": {
           "$type": "dimension",
-          "$value": "28px"
+          "$value": "28px",
+          "$description": "Spacing step 7 (28px) on the 4px grid. Kept for JS inline styles; component CSS uses the same steps."
         },
         "spacing-s-8": {
           "$type": "dimension",
-          "$value": "32px"
+          "$value": "32px",
+          "$description": "Spacing step 8 (32px) on the 4px grid. Kept for JS inline styles; component CSS uses the same steps."
         },
         "radius-sm": {
           "$type": "dimension",
-          "$value": "8px"
+          "$value": "8px",
+          "$description": "Corner radius 8px: icon tiles, menu items, fields"
         },
         "radius-md": {
           "$type": "dimension",
-          "$value": "12px"
+          "$value": "12px",
+          "$description": "Corner radius 12px: buttons, chips, rows, segmented controls"
         },
         "radius-lg": {
           "$type": "dimension",
-          "$value": "16px"
+          "$value": "16px",
+          "$description": "Corner radius 16px: cards"
         },
         "icon-sm": {
           "$type": "dimension",
-          "$value": "14px"
+          "$value": "14px",
+          "$description": "Icon size 14px (inline with small text)."
         },
         "icon-md": {
           "$type": "dimension",
-          "$value": "16px"
+          "$value": "16px",
+          "$description": "Icon size 16px (default UI icon)."
         },
         "icon-lg": {
           "$type": "dimension",
-          "$value": "20px"
+          "$value": "20px",
+          "$description": "Icon size 20px (settings rows, nav)."
         },
         "icon-xl": {
           "$type": "dimension",
-          "$value": "24px"
+          "$value": "24px",
+          "$description": "Icon size 24px (empty states, tiles)."
         },
         "radius-xl": {
           "$type": "dimension",
-          "$value": "24px"
+          "$value": "24px",
+          "$description": "Corner radius 24px: input card, large panels"
         },
         "radius-full": {
           "$type": "dimension",
-          "$value": "9999px"
+          "$value": "9999px",
+          "$description": "Corner radius 9999px: pills and dots"
         }
       },
       "layer": {
         "z-raised": {
           "$type": "number",
-          "$value": "20"
+          "$value": "20",
+          "$description": "Stacking layer 20 for raised. Order: raised < bar < popover < header < nav < fab < float < player < sheet < modal < toast."
         },
         "z-bar": {
           "$type": "number",
-          "$value": "25"
+          "$value": "25",
+          "$description": "Stacking layer 25 for bar. Order: raised < bar < popover < header < nav < fab < float < player < sheet < modal < toast."
         },
         "z-popover": {
           "$type": "number",
-          "$value": "50"
+          "$value": "50",
+          "$description": "Stacking layer 50 for popover. Order: raised < bar < popover < header < nav < fab < float < player < sheet < modal < toast."
         },
         "z-header": {
           "$type": "number",
-          "$value": "100"
+          "$value": "100",
+          "$description": "Stacking layer 100 for header. Order: raised < bar < popover < header < nav < fab < float < player < sheet < modal < toast."
         },
         "z-nav": {
           "$type": "number",
-          "$value": "101"
+          "$value": "101",
+          "$description": "Stacking layer 101 for nav. Order: raised < bar < popover < header < nav < fab < float < player < sheet < modal < toast."
         },
         "z-fab": {
           "$type": "number",
-          "$value": "102"
+          "$value": "102",
+          "$description": "Stacking layer 102 for fab. Order: raised < bar < popover < header < nav < fab < float < player < sheet < modal < toast."
         },
         "z-float": {
           "$type": "number",
-          "$value": "240"
+          "$value": "240",
+          "$description": "Stacking layer 240 for float. Order: raised < bar < popover < header < nav < fab < float < player < sheet < modal < toast."
         },
         "z-player": {
           "$type": "number",
-          "$value": "250"
+          "$value": "250",
+          "$description": "Stacking layer 250 for player. Order: raised < bar < popover < header < nav < fab < float < player < sheet < modal < toast."
         },
         "z-sheet": {
           "$type": "number",
-          "$value": "300"
+          "$value": "300",
+          "$description": "Stacking layer 300 for sheet. Order: raised < bar < popover < header < nav < fab < float < player < sheet < modal < toast."
         },
         "z-modal": {
           "$type": "number",
-          "$value": "1000"
+          "$value": "1000",
+          "$description": "Stacking layer 1000 for modal. Order: raised < bar < popover < header < nav < fab < float < player < sheet < modal < toast."
         },
         "z-toast": {
           "$type": "number",
-          "$value": "1001"
+          "$value": "1001",
+          "$description": "Stacking layer 1001 for toast. Order: raised < bar < popover < header < nav < fab < float < player < sheet < modal < toast."
         },
         "z-toast-top": {
           "$type": "number",
-          "$value": "1100"
+          "$value": "1100",
+          "$description": "Stacking layer 1100 for toast top. Order: raised < bar < popover < header < nav < fab < float < player < sheet < modal < toast."
         }
       },
       "base": {
@@ -326,6 +368,137 @@
           "$type": "color",
           "$value": "{color.white}",
           "$description": "QR codes need a white quiet zone in every theme."
+        }
+      },
+      "focus": {
+        "focus-ring": {
+          "$type": "color",
+          "$value": "{app.semantic.accent.accent}",
+          "$description": "Keyboard focus ring. Sits outside the element (offset), so it is always drawn on the surrounding surface: ≥ 3:1 there in every brand × theme (gate). ADR 0005."
+        },
+        "focus-ring-width": {
+          "$type": "dimension",
+          "$value": "2px",
+          "$description": "Focus ring thickness (WCAG 2.4.13 asks for ≥ 2px)."
+        },
+        "focus-ring-offset": {
+          "$type": "dimension",
+          "$value": "2px",
+          "$description": "Gap between element and ring: the page colour in the gap is the second colour of the ring (technique C40)."
+        },
+        "focus-ring-inset": {
+          "$type": "dimension",
+          "$value": "-2px",
+          "$description": "Offset for elements inside a clipped container (menus, toolbars, list rows): the ring is drawn just inside the element."
+        }
+      },
+      "motion": {
+        "duration-fast": {
+          "$type": "duration",
+          "$value": "150ms",
+          "$description": "Hover, focus, colour and toggle changes (WCAG: never the only cue)."
+        },
+        "duration-base": {
+          "$type": "duration",
+          "$value": "200ms",
+          "$description": "Small movements: chips, tab indicator, panels opening in place."
+        },
+        "duration-slow": {
+          "$type": "duration",
+          "$value": "300ms",
+          "$description": "Larger movements: sheets, cards entering, accordions."
+        },
+        "duration-slower": {
+          "$type": "duration",
+          "$value": "400ms",
+          "$description": "Travelling elements: nav blob, toasts, flyouts."
+        },
+        "duration-screen": {
+          "$type": "duration",
+          "$value": "350ms",
+          "$description": "Screen slide between main screen, settings and detail."
+        },
+        "duration-reveal": {
+          "$type": "duration",
+          "$value": "500ms",
+          "$description": "Content revealed on scroll and hero entrances."
+        },
+        "easing-standard": {
+          "$type": "cubicBezier",
+          "$value": "cubic-bezier(0.25, 0.1, 0.25, 1)",
+          "$description": "Default curve (same as CSS ease)."
+        },
+        "easing-decelerate": {
+          "$type": "cubicBezier",
+          "$value": "cubic-bezier(0, 0, 0.58, 1)",
+          "$description": "Things coming to rest: entering elements (CSS ease-out)."
+        },
+        "easing-accelerate": {
+          "$type": "cubicBezier",
+          "$value": "cubic-bezier(0.42, 0, 1, 1)",
+          "$description": "Things leaving the screen (CSS ease-in)."
+        },
+        "easing-in-out": {
+          "$type": "cubicBezier",
+          "$value": "cubic-bezier(0.42, 0, 0.58, 1)",
+          "$description": "Back-and-forth and looping movement (CSS ease-in-out)."
+        },
+        "easing-emphasized": {
+          "$type": "cubicBezier",
+          "$value": "cubic-bezier(0.2, 0.8, 0.2, 1)",
+          "$description": "Appearances that should feel quick and settle softly (sheets, panes)."
+        },
+        "easing-spring": {
+          "$type": "cubicBezier",
+          "$value": "cubic-bezier(0.34, 1.56, 0.64, 1)",
+          "$description": "Slight overshoot for the nav blob and selection indicators."
+        },
+        "easing-screen": {
+          "$type": "cubicBezier",
+          "$value": "cubic-bezier(0.4, 0, 0.2, 1)",
+          "$description": "Screen slides."
+        }
+      },
+      "breakpoint": {
+        "bp-narrow": {
+          "$type": "dimension",
+          "$value": "420px",
+          "$description": "Narrow popup: rows stack (max-width)."
+        },
+        "bp-toolbar-compact": {
+          "$type": "dimension",
+          "$value": "440px",
+          "$description": "Article toolbar: back button shows only its icon below this width (JS)."
+        },
+        "bp-popup": {
+          "$type": "dimension",
+          "$value": "480px",
+          "$description": "Wider than the standard popup: button labels show (min-width 481px)."
+        },
+        "bp-split": {
+          "$type": "dimension",
+          "$value": "720px",
+          "$description": "Split view: two panes from here (JS, workspaceManager)."
+        },
+        "bp-card-wide": {
+          "$type": "dimension",
+          "$value": "760px",
+          "$description": "Container query: wide article and source cards."
+        },
+        "bp-toolbar-labels": {
+          "$type": "dimension",
+          "$value": "780px",
+          "$description": "Article toolbar shows labels next to icons (JS)."
+        },
+        "bp-settings-wide": {
+          "$type": "dimension",
+          "$value": "900px",
+          "$description": "Settings master–detail: list and panel side by side (JS)."
+        },
+        "bp-split-3": {
+          "$type": "dimension",
+          "$value": "1100px",
+          "$description": "Split view: three panes from here (JS)."
         }
       }
     },

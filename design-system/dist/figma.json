@@ -1830,8 +1830,23 @@
       }
      }
     },
+    "focus/focus-ring": {
+     "codeSyntax": "var(--focus-ring)",
+     "description": "Keyboard focus ring. Sits outside the element (offset), so it is always drawn on the surrounding surface: ≥ 3:1 there in every brand × theme (gate). ADR 0005.",
+     "modes": {
+      "light": {
+       "alias": "Brand",
+       "name": "accent/600"
+      },
+      "dark": {
+       "alias": "Brand",
+       "name": "accent/400"
+      }
+     }
+    },
     "accent/accent-a05": {
      "codeSyntax": "var(--accent-a05)",
+     "description": "Accent at 5%: tints for hover, selection and soft borders. Never as text.",
      "modes": {
       "light": {
        "alias": "Brand",
@@ -1845,6 +1860,7 @@
     },
     "accent/accent-a08": {
      "codeSyntax": "var(--accent-a08)",
+     "description": "Accent at 8%: tints for hover, selection and soft borders. Never as text.",
      "modes": {
       "light": {
        "alias": "Brand",
@@ -1858,6 +1874,7 @@
     },
     "accent/accent-a10": {
      "codeSyntax": "var(--accent-a10)",
+     "description": "Accent at 10%: tints for hover, selection and soft borders. Never as text.",
      "modes": {
       "light": {
        "alias": "Brand",
@@ -1871,6 +1888,7 @@
     },
     "accent/accent-a12": {
      "codeSyntax": "var(--accent-a12)",
+     "description": "Accent at 12%: tints for hover, selection and soft borders. Never as text.",
      "modes": {
       "light": {
        "alias": "Brand",
@@ -1884,6 +1902,7 @@
     },
     "accent/accent-a15": {
      "codeSyntax": "var(--accent-a15)",
+     "description": "Accent at 15%: tints for hover, selection and soft borders. Never as text.",
      "modes": {
       "light": {
        "alias": "Brand",
@@ -1897,6 +1916,7 @@
     },
     "accent/accent-a25": {
      "codeSyntax": "var(--accent-a25)",
+     "description": "Accent at 25%: tints for hover, selection and soft borders. Never as text.",
      "modes": {
       "light": {
        "alias": "Brand",
@@ -1910,6 +1930,7 @@
     },
     "accent/accent-a30": {
      "codeSyntax": "var(--accent-a30)",
+     "description": "Accent at 30%: tints for hover, selection and soft borders. Never as text.",
      "modes": {
       "light": {
        "alias": "Brand",
@@ -1923,6 +1944,7 @@
     },
     "accent/accent": {
      "codeSyntax": "var(--accent)",
+     "description": "Brand action colour: primary buttons, selected states, links on controls, focus ring, progress.",
      "modes": {
       "light": {
        "alias": "Brand",
@@ -1936,6 +1958,7 @@
     },
     "accent/accent-light": {
      "codeSyntax": "var(--accent-light)",
+     "description": "Second stop of the accent gradient (primary button, nav blob, switch on).",
      "modes": {
       "light": {
        "alias": "Brand",
@@ -1949,6 +1972,7 @@
     },
     "accent/accent-glow": {
      "codeSyntax": "var(--accent-glow)",
+     "description": "Coloured glow under primary buttons.",
      "modes": {
       "light": {
        "alias": "Brand",
@@ -1962,6 +1986,7 @@
     },
     "accent/on-accent": {
      "codeSyntax": "var(--on-accent)",
+     "description": "Text and icons on an accent fill (primary button, selected pill, active nav item).",
      "modes": {
       "light": {
        "alias": "Primitives",
@@ -1975,6 +2000,7 @@
     },
     "accent/accent-soft": {
      "codeSyntax": "var(--accent-soft)",
+     "description": "Light accent tint for selected or hovered rows.",
      "modes": {
       "light": {
        "alias": "Brand",
@@ -1988,6 +2014,7 @@
     },
     "accent/accent-soft-strong": {
      "codeSyntax": "var(--accent-soft-strong)",
+     "description": "Stronger accent tint for pressed or highlighted rows.",
      "modes": {
       "light": {
        "alias": "Brand",
@@ -2001,6 +2028,7 @@
     },
     "accent/accent-subtle": {
      "codeSyntax": "var(--accent-subtle)",
+     "description": "Faint accent tint behind accent-coloured text (chips, badges).",
      "modes": {
       "light": {
        "alias": "Brand",
@@ -2014,6 +2042,7 @@
     },
     "accent/accent-selected": {
      "codeSyntax": "var(--accent-selected)",
+     "description": "Accent tint of a selected card or row.",
      "modes": {
       "light": {
        "alias": "Brand",
@@ -2027,6 +2056,7 @@
     },
     "feedback/danger-strong": {
      "codeSyntax": "var(--danger-strong)",
+     "description": "Second stop of the danger gradient (destructive buttons).",
      "modes": {
       "light": {
        "alias": "Primitives",
@@ -2040,6 +2070,7 @@
     },
     "feedback/ok": {
      "codeSyntax": "var(--ok)",
+     "description": "Success: saved, synced, signed in (fills and dots; text ≥ 4.5:1 on cards).",
      "modes": {
       "light": {
        "alias": "Primitives",
@@ -2053,6 +2084,7 @@
     },
     "feedback/warn": {
      "codeSyntax": "var(--warn)",
+     "description": "Warning fills, borders and dots; as text use caution-fg.",
      "modes": {
       "light": {
        "alias": "Primitives",
@@ -2066,6 +2098,7 @@
     },
     "feedback/danger": {
      "codeSyntax": "var(--danger)",
+     "description": "Destructive fills, bars and dots. As text use danger-text (danger is 3.5:1 on dark cards).",
      "modes": {
       "light": {
        "alias": "Primitives",
@@ -2079,6 +2112,7 @@
     },
     "feedback/danger-light": {
      "codeSyntax": "var(--danger-light)",
+     "description": "Light danger tint behind error messages.",
      "modes": {
       "light": {
        "alias": "Primitives",
@@ -2092,6 +2126,7 @@
     },
     "feedback/mood-pos": {
      "codeSyntax": "var(--mood-pos)",
+     "description": "Positive mood in charts and dots (graphic, ≥ 3:1).",
      "modes": {
       "light": {
        "alias": "Primitives",
@@ -2105,6 +2140,7 @@
     },
     "feedback/mood-neg": {
      "codeSyntax": "var(--mood-neg)",
+     "description": "Negative mood in charts and dots (graphic, ≥ 3:1).",
      "modes": {
       "light": {
        "alias": "Primitives",
@@ -2118,6 +2154,7 @@
     },
     "feedback/mood-warn": {
      "codeSyntax": "var(--mood-warn)",
+     "description": "Mixed mood in charts and dots (graphic).",
      "modes": {
       "light": {
        "alias": "Primitives",
@@ -2131,6 +2168,7 @@
     },
     "feedback/mood-pos-text": {
      "codeSyntax": "var(--mood-pos-text)",
+     "description": "Positive mood as text (≥ 4.5:1).",
      "modes": {
       "light": {
        "alias": "Primitives",
@@ -2144,6 +2182,7 @@
     },
     "feedback/mood-neg-text": {
      "codeSyntax": "var(--mood-neg-text)",
+     "description": "Negative mood as text (≥ 4.5:1).",
      "modes": {
       "light": {
        "alias": "Primitives",
@@ -2157,6 +2196,7 @@
     },
     "feedback/mood-warn-text": {
      "codeSyntax": "var(--mood-warn-text)",
+     "description": "Mixed mood as text (≥ 4.5:1).",
      "modes": {
       "light": {
        "alias": "Primitives",
@@ -2234,11 +2274,11 @@
     },
     "feedback/danger-text": {
      "codeSyntax": "var(--danger-text)",
-     "description": "Delete action on a saved-note card.",
+     "description": "Error and delete text, Danger outline buttons: ≥ 4.5:1 on cards, sheets and every sticky note (red 600 was 4.1:1 on AI and Note stickies). ADR 0005.",
      "modes": {
       "light": {
        "alias": "Primitives",
-       "name": "red/600"
+       "name": "red/700"
       },
       "dark": {
        "alias": "Primitives",
@@ -2248,6 +2288,7 @@
     },
     "surface/bg-page": {
      "codeSyntax": "var(--bg-page)",
+     "description": "Page background of every screen; the base all translucent surfaces are composited over.",
      "modes": {
       "light": {
        "alias": "Brand",
@@ -2261,6 +2302,7 @@
     },
     "surface/glass-base": {
      "codeSyntax": "var(--glass-base)",
+     "description": "Background of a screen that slides over another (settings, detail); nearly opaque.",
      "modes": {
       "light": {
        "alias": "Brand",
@@ -2278,6 +2320,7 @@
     },
     "surface/glass-card": {
      "codeSyntax": "var(--glass-card)",
+     "description": "Card surface (article cards, settings rows, input card); translucent over bg-page.",
      "modes": {
       "light": {
        "value": {
@@ -2299,6 +2342,7 @@
     },
     "surface/glass-input": {
      "codeSyntax": "var(--glass-input)",
+     "description": "Field surface: inputs, chips, search fields, icon tiles.",
      "modes": {
       "light": {
        "value": {
@@ -2320,6 +2364,7 @@
     },
     "surface/glass-border": {
      "codeSyntax": "var(--glass-border)",
+     "description": "Edge of glass cards and the input card.",
      "modes": {
       "light": {
        "value": {
@@ -2341,6 +2386,7 @@
     },
     "surface/glass-border-strong": {
      "codeSyntax": "var(--glass-border-strong)",
+     "description": "Stronger glass edge for floating panels and toasts.",
      "modes": {
       "light": {
        "value": {
@@ -2362,6 +2408,7 @@
     },
     "surface/surface-bar": {
      "codeSyntax": "var(--surface-bar)",
+     "description": "Background of fixed bars (pane headers, toolbars) above scrolling content.",
      "modes": {
       "light": {
        "alias": "Primitives",
@@ -2375,6 +2422,7 @@
     },
     "surface/surface-sheet": {
      "codeSyntax": "var(--surface-sheet)",
+     "description": "Bottom sheets and dialogs: opaque so text behind does not show through.",
      "modes": {
       "light": {
        "alias": "Brand",
@@ -2388,6 +2436,7 @@
     },
     "surface/scrim": {
      "codeSyntax": "var(--scrim)",
+     "description": "Dims the page behind a sheet or dialog.",
      "modes": {
       "light": {
        "value": {
@@ -2409,6 +2458,7 @@
     },
     "surface/surface-floating": {
      "codeSyntax": "var(--surface-floating)",
+     "description": "Floating player, popovers and menus that sit above content.",
      "modes": {
       "light": {
        "alias": "Brand",
@@ -2422,6 +2472,7 @@
     },
     "surface/surface-track": {
      "codeSyntax": "var(--surface-track)",
+     "description": "Unfilled part of progress bars, sliders and meters.",
      "modes": {
       "light": {
        "alias": "Primitives",
@@ -2439,6 +2490,7 @@
     },
     "surface/surface-row": {
      "codeSyntax": "var(--surface-row)",
+     "description": "Rows inside a sheet or list (send targets, list items).",
      "modes": {
       "light": {
        "alias": "Primitives",
@@ -2456,6 +2508,7 @@
     },
     "surface/surface-field": {
      "codeSyntax": "var(--surface-field)",
+     "description": "Track of segmented controls and filled fields inside sheets.",
      "modes": {
       "light": {
        "alias": "Primitives",
@@ -2473,6 +2526,7 @@
     },
     "surface/surface-selected": {
      "codeSyntax": "var(--surface-selected)",
+     "description": "Background of a selected row.",
      "modes": {
       "light": {
        "alias": "Primitives",
@@ -2490,6 +2544,7 @@
     },
     "surface/surface-control": {
      "codeSyntax": "var(--surface-control)",
+     "description": "Selected segment of a segmented control (raised look).",
      "modes": {
       "light": {
        "alias": "Primitives",
@@ -2507,6 +2562,7 @@
     },
     "text/text-primary": {
      "codeSyntax": "var(--text-primary)",
+     "description": "Body text, titles and icons: the strongest text colour (≥ 14:1 on cards).",
      "modes": {
       "light": {
        "alias": "Primitives",
@@ -2520,6 +2576,7 @@
     },
     "text/text-secondary": {
      "codeSyntax": "var(--text-secondary)",
+     "description": "Supporting text: labels, descriptions, inactive controls with text.",
      "modes": {
       "light": {
        "alias": "Primitives",
@@ -2533,6 +2590,7 @@
     },
     "text/text-muted": {
      "codeSyntax": "var(--text-muted)",
+     "description": "Least important readable text: hints, meta lines, timestamps, placeholders (≥ 4.5:1).",
      "modes": {
       "light": {
        "alias": "Primitives",
@@ -2546,6 +2604,7 @@
     },
     "text/text-link": {
      "codeSyntax": "var(--text-link)",
+     "description": "Links inside text.",
      "modes": {
       "light": {
        "alias": "Brand",
@@ -2559,6 +2618,7 @@
     },
     "outline/outline": {
      "codeSyntax": "var(--outline)",
+     "description": "Default 1px border of cards, fields, bars and dividers. Decorative (about 1.35:1); a field edge that must be found needs outline-strong (ADR 0005).",
      "modes": {
       "light": {
        "value": {
@@ -2580,6 +2640,7 @@
     },
     "outline/outline-soft": {
      "codeSyntax": "var(--outline-soft)",
+     "description": "Very subtle border inside glass surfaces.",
      "modes": {
       "light": {
        "value": {
@@ -2601,6 +2662,7 @@
     },
     "outline/outline-strong": {
      "codeSyntax": "var(--outline-strong)",
+     "description": "Border that must be seen: focused groups, dashed drop zones, high-contrast theme.",
      "modes": {
       "light": {
        "alias": "Primitives",
@@ -2618,6 +2680,7 @@
     },
     "status/tone-read-bg": {
      "codeSyntax": "var(--tone-read-bg)",
+     "description": "Status “Read” badge background.",
      "modes": {
       "light": {
        "alias": "Primitives",
@@ -2635,6 +2698,7 @@
     },
     "status/tone-read-fg": {
      "codeSyntax": "var(--tone-read-fg)",
+     "description": "Status “Read” badge text (≥ 5.4:1 on its background).",
      "modes": {
       "light": {
        "alias": "Primitives",
@@ -2648,6 +2712,7 @@
     },
     "status/tone-sent-bg": {
      "codeSyntax": "var(--tone-sent-bg)",
+     "description": "Status “Sent” badge background.",
      "modes": {
       "light": {
        "alias": "Brand",
@@ -2661,6 +2726,7 @@
     },
     "status/tone-sent-fg": {
      "codeSyntax": "var(--tone-sent-fg)",
+     "description": "Status “Sent” badge text (≥ 5.4:1 on its background).",
      "modes": {
       "light": {
        "alias": "Brand",
@@ -2674,6 +2740,7 @@
     },
     "status/tone-new-bg": {
      "codeSyntax": "var(--tone-new-bg)",
+     "description": "Status “New” badge background.",
      "modes": {
       "light": {
        "alias": "Primitives",
@@ -2691,6 +2758,7 @@
     },
     "status/tone-new-fg": {
      "codeSyntax": "var(--tone-new-fg)",
+     "description": "Status “New” badge text (≥ 5.4:1 on its background).",
      "modes": {
       "light": {
        "alias": "Primitives",
@@ -2704,6 +2772,7 @@
     },
     "status/tone-arch-bg": {
      "codeSyntax": "var(--tone-arch-bg)",
+     "description": "Status “Archived” badge background.",
      "modes": {
       "light": {
        "alias": "Primitives",
@@ -2721,6 +2790,7 @@
     },
     "status/tone-arch-fg": {
      "codeSyntax": "var(--tone-arch-fg)",
+     "description": "Status “Archived” badge text (≥ 5.4:1 on its background).",
      "modes": {
       "light": {
        "alias": "Primitives",
@@ -2734,6 +2804,7 @@
     },
     "control/control-track": {
      "codeSyntax": "var(--control-track)",
+     "description": "Slider track.",
      "modes": {
       "light": {
        "alias": "Primitives",
@@ -2747,6 +2818,7 @@
     },
     "control/control-thumb": {
      "codeSyntax": "var(--control-thumb)",
+     "description": "Slider thumb.",
      "modes": {
       "light": {
        "value": {
@@ -2768,6 +2840,7 @@
     },
     "control/control-thumb-hover": {
      "codeSyntax": "var(--control-thumb-hover)",
+     "description": "Slider thumb on hover.",
      "modes": {
       "light": {
        "value": {
@@ -2789,6 +2862,7 @@
     },
     "control/control-grip": {
      "codeSyntax": "var(--control-grip)",
+     "description": "Drag handle (grip dots) in editable lists.",
      "modes": {
       "light": {
        "alias": "Primitives",
@@ -2806,6 +2880,7 @@
     },
     "control/control-off": {
      "codeSyntax": "var(--control-off)",
+     "description": "Switch track when off.",
      "modes": {
       "light": {
        "alias": "Primitives",
@@ -2823,6 +2898,7 @@
     },
     "control/control-knob": {
      "codeSyntax": "var(--control-knob)",
+     "description": "Switch knob.",
      "modes": {
       "light": {
        "alias": "Primitives",
@@ -2836,6 +2912,7 @@
     },
     "control/control-border": {
      "codeSyntax": "var(--control-border)",
+     "description": "Border of checkboxes and radios.",
      "modes": {
       "light": {
        "alias": "Primitives",
@@ -2849,6 +2926,7 @@
     },
     "inverse/surface-inverse": {
      "codeSyntax": "var(--surface-inverse)",
+     "description": "Inverse surface (toasts, tooltips): dark in light mode, light in dark mode.",
      "modes": {
       "light": {
        "alias": "Primitives",
@@ -2862,6 +2940,7 @@
     },
     "inverse/text-inverse": {
      "codeSyntax": "var(--text-inverse)",
+     "description": "Text on surface-inverse.",
      "modes": {
       "light": {
        "alias": "Primitives",
@@ -2875,6 +2954,7 @@
     },
     "inverse/link-inverse": {
      "codeSyntax": "var(--link-inverse)",
+     "description": "Action or link on surface-inverse (toast Undo).",
      "modes": {
       "light": {
        "alias": "Brand",
@@ -2888,6 +2968,7 @@
     },
     "overlay/overlay-strong": {
      "codeSyntax": "var(--overlay-strong)",
+     "description": "Stronger media overlay for text on images.",
      "modes": {
       "light": {
        "value": {
@@ -2909,6 +2990,7 @@
     },
     "overlay/overlay": {
      "codeSyntax": "var(--overlay)",
+     "description": "Dark overlay on media (video poster, image captions).",
      "modes": {
       "light": {
        "value": {
@@ -2930,6 +3012,7 @@
     },
     "data/data-0": {
      "codeSyntax": "var(--data-0)",
+     "description": "Chart series 1 of 8: categorical, the same in every brand; pair with labels or symbols (WCAG 1.4.1).",
      "modes": {
       "light": {
        "alias": "Primitives",
@@ -2943,6 +3026,7 @@
     },
     "data/data-1": {
      "codeSyntax": "var(--data-1)",
+     "description": "Chart series 2 of 8: categorical, the same in every brand; pair with labels or symbols (WCAG 1.4.1).",
      "modes": {
       "light": {
        "alias": "Primitives",
@@ -2956,6 +3040,7 @@
     },
     "data/data-2": {
      "codeSyntax": "var(--data-2)",
+     "description": "Chart series 3 of 8: categorical, the same in every brand; pair with labels or symbols (WCAG 1.4.1).",
      "modes": {
       "light": {
        "alias": "Primitives",
@@ -2969,6 +3054,7 @@
     },
     "data/data-3": {
      "codeSyntax": "var(--data-3)",
+     "description": "Chart series 4 of 8: categorical, the same in every brand; pair with labels or symbols (WCAG 1.4.1).",
      "modes": {
       "light": {
        "alias": "Primitives",
@@ -2982,6 +3068,7 @@
     },
     "data/data-4": {
      "codeSyntax": "var(--data-4)",
+     "description": "Chart series 5 of 8: categorical, the same in every brand; pair with labels or symbols (WCAG 1.4.1).",
      "modes": {
       "light": {
        "alias": "Primitives",
@@ -2995,6 +3082,7 @@
     },
     "data/data-5": {
      "codeSyntax": "var(--data-5)",
+     "description": "Chart series 6 of 8: categorical, the same in every brand; pair with labels or symbols (WCAG 1.4.1).",
      "modes": {
       "light": {
        "alias": "Primitives",
@@ -3008,6 +3096,7 @@
     },
     "data/data-6": {
      "codeSyntax": "var(--data-6)",
+     "description": "Chart series 7 of 8: categorical, the same in every brand; pair with labels or symbols (WCAG 1.4.1).",
      "modes": {
       "light": {
        "alias": "Primitives",
@@ -3021,6 +3110,7 @@
     },
     "data/data-7": {
      "codeSyntax": "var(--data-7)",
+     "description": "Chart series 8 of 8: categorical, the same in every brand; pair with labels or symbols (WCAG 1.4.1).",
      "modes": {
       "light": {
        "alias": "Primitives",
@@ -3034,6 +3124,7 @@
     },
     "data/data-other": {
      "codeSyntax": "var(--data-other)",
+     "description": "Chart series “other”: neutral grey after the eight categorical colours.",
      "modes": {
       "light": {
        "alias": "Primitives",
@@ -3047,6 +3138,7 @@
     },
     "annotation/annotation-user-bg": {
      "codeSyntax": "var(--annotation-user-bg)",
+     "description": "Your highlight: sticky and mark background (yellow).",
      "modes": {
       "light": {
        "alias": "Primitives",
@@ -3060,6 +3152,7 @@
     },
     "annotation/annotation-user-fg": {
      "codeSyntax": "var(--annotation-user-fg)",
+     "description": "Your highlight: kind label text.",
      "modes": {
       "light": {
        "alias": "Primitives",
@@ -3073,6 +3166,7 @@
     },
     "annotation/annotation-user-bar": {
      "codeSyntax": "var(--annotation-user-bar)",
+     "description": "Your highlight: side bar and mark underline.",
      "modes": {
       "light": {
        "alias": "Primitives",
@@ -3086,6 +3180,7 @@
     },
     "annotation/annotation-ai-bg": {
      "codeSyntax": "var(--annotation-ai-bg)",
+     "description": "AI highlight: sticky and mark background (blue).",
      "modes": {
       "light": {
        "alias": "Primitives",
@@ -3099,6 +3194,7 @@
     },
     "annotation/annotation-ai-fg": {
      "codeSyntax": "var(--annotation-ai-fg)",
+     "description": "AI highlight: kind label text.",
      "modes": {
       "light": {
        "alias": "Primitives",
@@ -3112,6 +3208,7 @@
     },
     "annotation/annotation-ai-bar": {
      "codeSyntax": "var(--annotation-ai-bar)",
+     "description": "AI highlight: side bar and mark underline.",
      "modes": {
       "light": {
        "alias": "Primitives",
@@ -3125,6 +3222,7 @@
     },
     "annotation/annotation-note-bg": {
      "codeSyntax": "var(--annotation-note-bg)",
+     "description": "Free note: sticky background (pink).",
      "modes": {
       "light": {
        "alias": "Primitives",
@@ -3138,6 +3236,7 @@
     },
     "annotation/annotation-note-fg": {
      "codeSyntax": "var(--annotation-note-fg)",
+     "description": "Free note: kind label text.",
      "modes": {
       "light": {
        "alias": "Primitives",
@@ -3151,6 +3250,7 @@
     },
     "annotation/annotation-note-bar": {
      "codeSyntax": "var(--annotation-note-bar)",
+     "description": "Free note: side bar.",
      "modes": {
       "light": {
        "alias": "Primitives",
@@ -3771,6 +3871,7 @@
    "vars": {
     "tint/tint-accent": {
      "codeSyntax": "var(--tint-accent)",
+     "description": "Accent tint behind badges and soft buttons.",
      "modes": {
       "dark": {
        "alias": "Brand",
@@ -3784,6 +3885,7 @@
     },
     "tint/tint-highlight": {
      "codeSyntax": "var(--tint-highlight)",
+     "description": "Highlight tint behind highlight badges.",
      "modes": {
       "dark": {
        "alias": "Brand",
@@ -3797,6 +3899,7 @@
     },
     "tint/tint-neutral": {
      "codeSyntax": "var(--tint-neutral)",
+     "description": "Neutral tint for chips and pills.",
      "modes": {
       "dark": {
        "alias": "Primitives",
@@ -3810,6 +3913,7 @@
     },
     "tint/tint-neutral-cool": {
      "codeSyntax": "var(--tint-neutral-cool)",
+     "description": "Cooler neutral tint for alternate rows and chips.",
      "modes": {
       "dark": {
        "alias": "Primitives",
@@ -3823,6 +3927,7 @@
     },
     "surface/bg": {
      "codeSyntax": "var(--bg)",
+     "description": "Page background (dark by default).",
      "modes": {
       "dark": {
        "alias": "Primitives",
@@ -3836,6 +3941,7 @@
     },
     "surface/bg-raised": {
      "codeSyntax": "var(--bg-raised)",
+     "description": "Raised band or section above bg.",
      "modes": {
       "dark": {
        "alias": "Primitives",
@@ -3849,6 +3955,7 @@
     },
     "surface/bg-sunken": {
      "codeSyntax": "var(--bg-sunken)",
+     "description": "Sunken band or section below bg.",
      "modes": {
       "dark": {
        "alias": "Primitives",
@@ -3862,6 +3969,7 @@
     },
     "surface/surface-1": {
      "codeSyntax": "var(--surface-1)",
+     "description": "Card surface, level 1.",
      "modes": {
       "dark": {
        "value": {
@@ -3883,6 +3991,7 @@
     },
     "surface/surface-1-strong": {
      "codeSyntax": "var(--surface-1-strong)",
+     "description": "Card surface, level 1, more opaque (on busy backgrounds).",
      "modes": {
       "dark": {
        "value": {
@@ -3904,6 +4013,7 @@
     },
     "surface/surface-2": {
      "codeSyntax": "var(--surface-2)",
+     "description": "Card surface, level 2 (card inside a card).",
      "modes": {
       "dark": {
        "value": {
@@ -3925,6 +4035,7 @@
     },
     "surface/surface-2-strong": {
      "codeSyntax": "var(--surface-2-strong)",
+     "description": "Card surface, level 2, more opaque.",
      "modes": {
       "dark": {
        "value": {
@@ -3946,6 +4057,7 @@
     },
     "surface/input-bg": {
      "codeSyntax": "var(--input-bg)",
+     "description": "Field background.",
      "modes": {
       "dark": {
        "value": {
@@ -3963,6 +4075,7 @@
     },
     "surface/sheen-strong": {
      "codeSyntax": "var(--sheen-strong)",
+     "description": "White sheen on icons and glossy tiles.",
      "modes": {
       "dark": {
        "value": {
@@ -3984,6 +4097,7 @@
     },
     "surface/glow-accent": {
      "codeSyntax": "var(--glow-accent)",
+     "description": "Accent glow behind the hero.",
      "modes": {
       "dark": {
        "alias": "Brand",
@@ -3997,6 +4111,7 @@
     },
     "surface/glow-highlight": {
      "codeSyntax": "var(--glow-highlight)",
+     "description": "Highlight glow behind the hero.",
      "modes": {
       "dark": {
        "alias": "Brand",
@@ -4010,6 +4125,7 @@
     },
     "surface/grain-dot": {
      "codeSyntax": "var(--grain-dot)",
+     "description": "Dot colour of the grain texture.",
      "modes": {
       "dark": {
        "value": {
@@ -4031,6 +4147,7 @@
     },
     "surface/surface-bar": {
      "codeSyntax": "var(--surface-bar)",
+     "description": "Background of fixed bars (pane headers, toolbars) above scrolling content.",
      "modes": {
       "dark": {
        "value": {
@@ -4052,6 +4169,7 @@
     },
     "surface/surface-bar-solid": {
      "codeSyntax": "var(--surface-bar-solid)",
+     "description": "Opaque header bar (menu open, reduced transparency).",
      "modes": {
       "dark": {
        "value": {
@@ -4073,6 +4191,7 @@
     },
     "text/text": {
      "codeSyntax": "var(--text)",
+     "description": "Body text and headlines.",
      "modes": {
       "dark": {
        "alias": "Primitives",
@@ -4086,6 +4205,7 @@
     },
     "text/text-muted": {
      "codeSyntax": "var(--text-muted)",
+     "description": "Least important readable text: hints, meta lines, timestamps, placeholders (≥ 4.5:1).",
      "modes": {
       "dark": {
        "alias": "Primitives",
@@ -4099,6 +4219,7 @@
     },
     "accent/accent": {
      "codeSyntax": "var(--accent)",
+     "description": "Brand action colour: primary buttons, selected states, links on controls, focus ring, progress.",
      "modes": {
       "dark": {
        "alias": "Brand",
@@ -4112,6 +4233,7 @@
     },
     "accent/accent-text": {
      "codeSyntax": "var(--accent-text)",
+     "description": "Accent as text (links, kickers) at ≥ 4.5:1.",
      "modes": {
       "dark": {
        "alias": "Brand",
@@ -4125,6 +4247,7 @@
     },
     "accent/accent-fill": {
      "codeSyntax": "var(--accent-fill)",
+     "description": "Accent button fill.",
      "modes": {
       "dark": {
        "alias": "Brand",
@@ -4138,6 +4261,7 @@
     },
     "accent/accent-fill-hi": {
      "codeSyntax": "var(--accent-fill-hi)",
+     "description": "Accent button fill on hover.",
      "modes": {
       "dark": {
        "alias": "Brand",
@@ -4151,6 +4275,7 @@
     },
     "accent/on-accent": {
      "codeSyntax": "var(--on-accent)",
+     "description": "Text and icons on an accent fill (primary button, selected pill, active nav item).",
      "modes": {
       "dark": {
        "alias": "Primitives",
@@ -4164,6 +4289,7 @@
     },
     "accent/highlight": {
      "codeSyntax": "var(--highlight)",
+     "description": "Highlight brand colour (second brand colour).",
      "modes": {
       "dark": {
        "alias": "Brand",
@@ -4177,6 +4303,7 @@
     },
     "accent/highlight-text": {
      "codeSyntax": "var(--highlight-text)",
+     "description": "Highlight as text at ≥ 4.5:1.",
      "modes": {
       "dark": {
        "alias": "Brand",
@@ -4190,6 +4317,7 @@
     },
     "accent/highlight-fill": {
      "codeSyntax": "var(--highlight-fill)",
+     "description": "Highlight button fill.",
      "modes": {
       "dark": {
        "alias": "Brand",
@@ -4203,6 +4331,7 @@
     },
     "accent/highlight-fill-hover": {
      "codeSyntax": "var(--highlight-fill-hover)",
+     "description": "Highlight button fill on hover.",
      "modes": {
       "dark": {
        "alias": "Brand",
@@ -4216,6 +4345,7 @@
     },
     "accent/on-highlight": {
      "codeSyntax": "var(--on-highlight)",
+     "description": "Text on highlight fills.",
      "modes": {
       "dark": {
        "alias": "Primitives",
@@ -4229,6 +4359,7 @@
     },
     "accent/highlight-subtle": {
      "codeSyntax": "var(--highlight-subtle)",
+     "description": "Faint highlight tint.",
      "modes": {
       "dark": {
        "alias": "Brand",
@@ -4242,6 +4373,7 @@
     },
     "accent/highlight-border": {
      "codeSyntax": "var(--highlight-border)",
+     "description": "Border in highlight colour.",
      "modes": {
       "dark": {
        "alias": "Brand",
@@ -4255,6 +4387,7 @@
     },
     "feedback/danger": {
      "codeSyntax": "var(--danger)",
+     "description": "Errors and destructive actions on the website.",
      "modes": {
       "dark": {
        "alias": "Primitives",
@@ -4268,6 +4401,7 @@
     },
     "outline/border-subtle": {
      "codeSyntax": "var(--border-subtle)",
+     "description": "Hairline borders and dividers.",
      "modes": {
       "dark": {
        "value": {
@@ -4289,6 +4423,7 @@
     },
     "outline/border-medium": {
      "codeSyntax": "var(--border-medium)",
+     "description": "Borders of chips, pills and fields.",
      "modes": {
       "dark": {
        "value": {
@@ -4310,6 +4445,7 @@
     },
     "outline/border-strong": {
      "codeSyntax": "var(--border-strong)",
+     "description": "Borders that must be seen (focus groups, outlined buttons).",
      "modes": {
       "dark": {
        "value": {
