@@ -130,19 +130,19 @@ function setBilling(period) {
   // Suggests the page in the browser's preferred language (written in that language). Never redirects on its own,
   // so every locale URL stays independently reachable and indexable. Works from English and from any /xx/ page.
   var LOCALES = {
-    en: ['AI', 'English', 'This page is also available in {l}.'], de: ['Deutsch', 'Diese Seite gibt es auch auf {l}.'],
-    fr: ['IA', 'Français', 'Cette page existe aussi en {l}.'], es: ['Español', 'Esta página también está disponible en {l}.'],
-    pt: ['IA', 'Português', 'Esta página também está disponível em {l}.'], zh: ['简体中文', '本页面也提供{l}版本。'],
-    'zh-tw': ['AI', '繁體中文', '本頁面也提供{l}版本。'], ja: ['日本語', 'このページは{l}でもご覧いただけます。'],
-    ko: ['AI', '한국어', '이 페이지는 {l}로도 제공됩니다.'], hi: ['हिन्दी', 'यह पेज {l} में भी उपलब्ध है।'],
-    vi: ['AI', 'Tiếng Việt', 'Trang này cũng có bản {l}.'],
-    nl: ['AI', 'Nederlands', 'Deze pagina is ook beschikbaar in het {l}.'], it: ['Italiano', 'Questa pagina è disponibile anche in {l}.'],
-    ru: ['ИИ', 'Русский', 'Эта страница доступна и на языке: {l}.'], uk: ['Українська', 'Ця сторінка доступна також українською: {l}.'],
-    tr: ['YZ', 'Türkçe', 'Bu sayfa {l} dilinde de mevcut.'], id: ['Bahasa Indonesia', 'Halaman ini juga tersedia dalam {l}.'],
-    pl: ['AI', 'Polski', 'Ta strona jest dostępna także po polsku: {l}.'], th: ['ไทย', 'หน้านี้มีให้บริการเป็นภาษา{l}ด้วย'],
-    sv: ['AI', 'Svenska', 'Den här sidan finns även på {l}.'], da: ['Dansk', 'Denne side findes også på {l}.'],
-    no: ['KI', 'Norsk', 'Denne siden er også tilgjengelig på {l}.'], fi: ['Suomi', 'Tämä sivu on saatavilla myös kielellä {l}.'],
-    ar: ['AI', 'العربية', 'هذه الصفحة متاحة أيضًا بـ{l}.']
+    en: ['English', 'This page is also available in {l}.'], de: ['Deutsch', 'Diese Seite gibt es auch auf {l}.'],
+    fr: ['Français', 'Cette page existe aussi en {l}.'], es: ['Español', 'Esta página también está disponible en {l}.'],
+    pt: ['Português', 'Esta página também está disponível em {l}.'], zh: ['简体中文', '本页面也提供{l}版本。'],
+    'zh-tw': ['繁體中文', '本頁面也提供{l}版本。'], ja: ['日本語', 'このページは{l}でもご覧いただけます。'],
+    ko: ['한국어', '이 페이지는 {l}로도 제공됩니다.'], hi: ['हिन्दी', 'यह पेज {l} में भी उपलब्ध है।'],
+    vi: ['Tiếng Việt', 'Trang này cũng có bản {l}.'],
+    nl: ['Nederlands', 'Deze pagina is ook beschikbaar in het {l}.'], it: ['Italiano', 'Questa pagina è disponibile anche in {l}.'],
+    ru: ['Русский', 'Эта страница доступна и на языке: {l}.'], uk: ['Українська', 'Ця сторінка доступна також українською: {l}.'],
+    tr: ['Türkçe', 'Bu sayfa {l} dilinde de mevcut.'], id: ['Bahasa Indonesia', 'Halaman ini juga tersedia dalam {l}.'],
+    pl: ['Polski', 'Ta strona jest dostępna także po polsku: {l}.'], th: ['ไทย', 'หน้านี้มีให้บริการเป็นภาษา{l}ด้วย'],
+    sv: ['Svenska', 'Den här sidan finns även på {l}.'], da: ['Dansk', 'Denne side findes også på {l}.'],
+    no: ['Norsk', 'Denne siden er også tilgjengelig på {l}.'], fi: ['Suomi', 'Tämä sivu on saatavilla myös kielellä {l}.'],
+    ar: ['العربية', 'هذه الصفحة متاحة أيضًا بـ{l}.']
   };
   var DISMISS_KEY = 'aish_lang_banner_dismissed';
   function map(code) {
