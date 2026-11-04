@@ -25,6 +25,7 @@ Commit history has the details: <https://github.com/philffm/ai-summary-helper/co
 
 #### Fixed
 
+- Archive graph: "Save image" saved a toolbar icon instead of the graph, and without the extension's stylesheet the shapes lost their colours. It now saves the whole graph (not just the zoomed-in part) with every colour and label style written into the file, on the page background of the current theme
 - Tag naming: names longer than 24 characters were cut ("covert influence operati"); a dash in a reply is no longer taken as a name
 - Tag naming: the English name is the tag itself, never a broader word ("Germany" was named "geopolitics"); the model's broader word becomes a broader topic instead. Hashtag-style tags are written as words, colour codes are not sent, and a saved run can be undone
 - Archive graph: big, varied subtopics get a name again instead of "Group n": names use all the strongest terms of the articles and a looser pass, and a word only counts when it is over-represented by more than chance

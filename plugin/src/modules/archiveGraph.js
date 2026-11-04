@@ -740,6 +740,7 @@ function renderGraph(container, allArticles, highlightTimestamp, minTagDegree, s
     container.classList.toggle('graph-quiet', quietLabels);
     const svg = d3.select(container)
         .append('svg')
+        .attr('class', 'graph-svg')
         .attr('width', width)
         .attr('height', height)
         .style('background', 'transparent')
@@ -1378,25 +1379,55 @@ function buildFocusBar({ caption, openLabel, onOpen, onClear }) {
     return bar;
 }
 
-/** The graph as an SVG file with its colours resolved (the stylesheet's variables do not exist outside the extension). */
+/** The graph's own <svg> (the container also holds toolbar icons, which are <svg> elements too). */
+function graphSvgOf(container) {
+    return container.querySelector('svg.graph-svg') || [...container.querySelectorAll('svg')].find(s => s.querySelector('.graph-content')) || null;
+}
+
+// What the stylesheet sets on the graph's shapes and labels: written onto each element of the copy, because the extension's
+// stylesheet (and its variables) do not exist where the file is opened.
+const EXPORT_STYLE = ['fill', 'fill-opacity', 'stroke', 'stroke-width', 'stroke-opacity', 'stroke-dasharray', 'stroke-linejoin', 'stroke-linecap', 'opacity', 'paint-order', 'font-size', 'font-weight', 'text-anchor', 'dominant-baseline'];
+
+/** The graph as a standalone SVG file: the current view, with every colour and style written into the file. */
 export function graphSvgMarkup(container) {
-    const svg = container.querySelector('svg');
+    const svg = graphSvgOf(container);
     if (!svg) return '';
     const cs = getComputedStyle(container);
-    const resolve = (v) => String(v).replace(/var\((--[\w-]+)(?:,\s*([^)]+))?\)/g, (_, name, fb) => cs.getPropertyValue(name).trim() || (fb || '#888').trim());
+    const resolve = (v) => String(v || '').replace(/var\((--[\w-]+)(?:,\s*([^)]+))?\)/g, (_, name, fb) => cs.getPropertyValue(name).trim() || (fb || '#888').trim());
     const copy = svg.cloneNode(true);
-    copy.setAttribute('xmlns', 'http://www.w3.org/2000/svg');
-    copy.querySelectorAll('*').forEach(n => ['fill', 'stroke', 'style'].forEach(a => { const v = n.getAttribute(a); if (v && v.includes('var(')) n.setAttribute(a, resolve(v)); }));
-    copy.querySelectorAll('.is-tag').forEach(n => { if (container.classList.contains('graph-overview')) n.remove(); });
-    copy.querySelectorAll('.graph-link').forEach(n => { if (container.classList.contains('graph-overview')) n.remove(); });
-    copy.querySelectorAll('title').forEach(n => n.remove());
-    const bg = cs.getPropertyValue('--bg-page').trim() || '#ffffff';
+    copy.setAttributeNS('http://www.w3.org/2000/xmlns/', 'xmlns', 'http://www.w3.org/2000/svg');
+    // the whole graph, whatever is zoomed in on screen: the frame is the box around all of it (in the graph's own coordinates)
+    let box = null;
+    const content = svg.querySelector('.graph-content');
+    try { const b = content && content.getBBox(); if (b && b.width > 0 && b.height > 0) box = b; } catch (e) { /* no layout (tests) */ }
+    const pad = 24;
+    const view = box ? { x: box.x - pad, y: box.y - pad, w: box.width + 2 * pad, h: box.height + 2 * pad }
+        : { x: 0, y: 0, w: Number(svg.getAttribute('width')) || svg.clientWidth || 800, h: Number(svg.getAttribute('height')) || svg.clientHeight || 600 };
+    copy.setAttribute('viewBox', `${view.x} ${view.y} ${view.w} ${view.h}`);
+    copy.setAttribute('width', Math.round(view.w)); copy.setAttribute('height', Math.round(view.h));
+    copy.removeAttribute('style');
+    if (box) { const g = copy.querySelector('.graph-content'); if (g) g.removeAttribute('transform'); }
+    // the original and the copy have the same elements in the same order
+    const from = [...svg.querySelectorAll('*')], to = [...copy.querySelectorAll('*')];
+    const drop = [];
+    from.forEach((el, i) => {
+        const out = to[i];
+        if (!out || el.tagName.toLowerCase() === 'title') { if (out) drop.push(out); return; }
+        const st = getComputedStyle(el);
+        if (st.display === 'none' || st.visibility === 'hidden' || Number(st.opacity) === 0) { drop.push(out); return; }   // hidden tags, quiet titles
+        // colours d3 wrote as attributes ("var(--tag-color)") resolve against the page; the stylesheet's ones come from the computed style
+        ['fill', 'stroke'].forEach(a => { const v = out.getAttribute(a); if (v && v.includes('var(')) out.setAttribute(a, resolve(v)); });
+        const decl = EXPORT_STYLE.map(prop => [prop, resolve(st.getPropertyValue(prop))]).filter(([, v]) => v && v !== 'normal' && v !== 'auto' && !v.includes('var('));
+        out.removeAttribute('class');
+        if (decl.length) out.setAttribute('style', decl.map(([k, v]) => `${k}:${v}`).join(';'));
+    });
+    drop.forEach(n => n.remove());
+    copy.querySelectorAll('text').forEach(n => n.setAttribute('font-family', 'system-ui, -apple-system, Segoe UI, sans-serif'));
+    // the page background behind it, so the light labels of the dark theme stay readable
     const rect = document.createElementNS('http://www.w3.org/2000/svg', 'rect');
-    rect.setAttribute('width', '100%'); rect.setAttribute('height', '100%'); rect.setAttribute('fill', bg);
+    rect.setAttribute('x', view.x); rect.setAttribute('y', view.y); rect.setAttribute('width', view.w); rect.setAttribute('height', view.h);
+    rect.setAttribute('fill', cs.getPropertyValue('--bg-page').trim() || '#ffffff');
     copy.insertBefore(rect, copy.firstChild);
-    // Titles on quiet nodes stay out of the file; the picture is for sharing, not for hovering.
-    copy.querySelectorAll('text').forEach(n => n.setAttribute('font-family', 'sans-serif'));
-    if (container.classList.contains('graph-quiet')) copy.querySelectorAll('text.is-article').forEach(n => n.remove());
     return new XMLSerializer().serializeToString(copy);
 }
 
@@ -1405,7 +1436,7 @@ function exportGraphSvg(container) {
     const markup = graphSvgMarkup(container);
     if (!markup) return;
     const url = URL.createObjectURL(new Blob([markup], { type: 'image/svg+xml' }));
-    const a = document.createElement('a'); a.href = url; a.download = 'archive-graph.svg';
+    const a = document.createElement('a'); a.href = url; a.download = `archive-graph-${new Date().toISOString().slice(0, 10)}.svg`;
     document.body.appendChild(a); a.click(); a.remove();
     setTimeout(() => URL.revokeObjectURL(url), 1000);
 }
