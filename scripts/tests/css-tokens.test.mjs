@@ -9,6 +9,8 @@ const CSS = fs.readFileSync('docs/assets/styles.css', 'utf8');
 const STRIPPED = CSS.replace(/\/\*[\s\S]*?\*\//g, '');
 // set per element by the HTML (style attribute) or by script (style.setProperty)
 const RUNTIME = new Set(['--img', '--s', '--cw', '--ch', '--p-a', '--p-sugg', '--p-panel', '--p-hl', '--p-qa', '--p-graph', '--i', '--ds', '--fw', '--fh', '--bgpos', '--dw']);
+// generated scales that are complete on purpose: media queries cannot read --bp-*, and the site only uses some of the easing curves
+const SCALE = /^--(bp|easing)-/;
 const PALETTE = /^--(gray|stone|navy|red|brand-accent|brand-highlight)-/;   // the primitive tier the site exposes (generated from design-system/tokens)
 
 /** Every rule as { selector, decls: [[prop, value]], tokenBlock } (at-rule wrappers are skipped, their rules are kept). */
@@ -32,7 +34,7 @@ test('every token read is defined (a fallback does not count)', () => {
 test('every token defined is read somewhere', () => {
     const scripts = ['docs/assets/main.js', 'docs/index.html'].map((f) => fs.readFileSync(f, 'utf8')).join('\n');
     const read = new Set([...STRIPPED.matchAll(/var\(\s*(--[\w-]+)/g)].map((m) => m[1]));
-    assert.deepEqual([...defined].filter((d) => !read.has(d) && !RUNTIME.has(d) && !scripts.includes(d)), []);
+    assert.deepEqual([...defined].filter((d) => !read.has(d) && !RUNTIME.has(d) && !SCALE.test(d) && !scripts.includes(d)), []);
 });
 
 test('components read roles: no hex or rgb() and no palette value outside a token', () => {
