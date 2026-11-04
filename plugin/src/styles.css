@@ -3351,7 +3351,7 @@ i.tp-s3 { background: var(--chart-3); } i.tp-s4 { background: var(--chart-4); } 
 .settings-divider { height: 1px; background: color-mix(in srgb, var(--danger) 22%, transparent); }
 .settings-card--danger { background: color-mix(in srgb, var(--danger) 5%, var(--glass-card)); border-color: color-mix(in srgb, var(--danger) 38%, transparent); }
 .settings-card--danger h3 { color: var(--danger); }
-.button-danger-outline { background: transparent; color: var(--danger); border: 1px solid var(--danger); box-shadow: none; }
+.button-danger-outline { background: transparent; color: var(--danger-text); border: 1px solid var(--danger-text); box-shadow: none; }   /* --danger-text: 4.5:1 on light and dark cards (--danger was 3.5:1 on dark) */
 .button-danger-outline:hover { background: color-mix(in srgb, var(--danger) 10%, transparent); }
 .button-danger { background: var(--danger); color: var(--on-solid); border: 0; }
 .button-danger:disabled { opacity: .45; cursor: not-allowed; }
@@ -4405,7 +4405,7 @@ a.phone-inbox-link:hover strong { text-decoration: underline; }
 .phone-card-actions { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 8px; }
 .phone-card .phone-inbox-error { margin: 8px 0 0; font-size: 12px; }
 .phone-inbox-actions { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; }
-.phone-inbox-error { color: var(--danger); }
+.phone-inbox-error { color: var(--danger-text); }
 
 /* AI apps (MCP) settings panel (mcpView.js): guided setup → connected status, permissions, activity */
 .mcp-panel { display: flex; flex-direction: column; gap: 12px; }
@@ -4799,7 +4799,7 @@ html[data-motion="reduce"] .detail-split-more .icon { transition: none; }
 @media (prefers-reduced-motion: reduce) { .notes-composer { transition: none; } }
 
 .sync-danger { border: 1px solid color-mix(in srgb, var(--danger) 55%, transparent); background: color-mix(in srgb, var(--danger) 7%, transparent); border-radius: 12px; padding: 4px 12px 8px; display: flex; flex-direction: column; gap: 4px; }
-.sync-danger .settings-caption { color: var(--danger); }
+.sync-danger .settings-caption { color: var(--danger-text); }
 
 /* Notes in a split view (notesView.js): a pane in History or Feeds, and the Notes screen's own panes */
 .ws-notes-pane { display: none; }
@@ -4926,3 +4926,66 @@ circle.graph-read-dim, text.graph-read-dim, .graph-blob.graph-read-dim { opacity
 .graph-naming-tidy[hidden] { display: none; }
 .graph-naming-row.is-same .graph-naming-en-input { border-color: var(--warn); }
 .lexicon-tools { display: flex; gap: 6px; flex-wrap: wrap; }
+
+/* ── Sync & backup (Figma AISH-029 variant A): status lines, place rows, field errors, folded settings, deletion review ── */
+#syncSettings { --sync-ok: color-mix(in srgb, var(--ok) 80%, var(--text-primary)); --sync-warn: color-mix(in srgb, var(--warn) 72%, var(--text-primary)); --sync-border: color-mix(in srgb, var(--text-muted) 70%, transparent); }
+#syncSettings h3.settings-caption, #syncSettings h4.settings-caption { margin: 14px 0 6px; }
+.sync-status { display: flex; align-items: flex-start; gap: 6px; margin: 0; font-size: var(--fs-sm); line-height: 1.4; color: var(--text-secondary); min-width: 0; }
+.sync-status-glyph { flex: none; display: inline-flex; width: 16px; height: 16px; margin-top: 1px; color: var(--sync-ok); }
+.sync-status-glyph .icon { width: 16px; height: 16px; }
+.sync-status-text { min-width: 0; overflow-wrap: anywhere; }
+.sync-status--row .sync-status-text { display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+.sync-status--hero { font-size: var(--fs-lg); font-weight: 600; color: var(--text-primary); }
+.sync-status--hero .sync-status-glyph, .sync-status--hero .sync-status-glyph .icon { width: 20px; height: 20px; }
+.sync-status[data-tone="run"] .sync-status-glyph { color: var(--accent); }
+.sync-status[data-tone="error"] .sync-status-glyph, .sync-status[data-tone="error"] .sync-status-text { color: var(--danger-text); }
+.sync-status[data-tone="error"] .sync-status-text { font-weight: 600; }
+.sync-status[data-tone="attention"] .sync-status-glyph { color: var(--sync-warn); }
+.sync-status[data-tone="paused"] .sync-status-glyph, .sync-status[data-tone="idle"] .sync-status-glyph { color: var(--text-muted); }
+@media (prefers-reduced-motion: no-preference) { .sync-status[data-tone="run"] .sync-status-glyph .icon { animation: sync-spin 1.4s linear infinite; } }
+@keyframes sync-spin { to { transform: rotate(360deg); } }
+.sync-summary { margin-bottom: 4px; }
+.sync-place { position: relative; }
+.sync-place .settings-row { border-color: var(--sync-border); align-items: flex-start; }
+.sync-place .settings-row .sync-progress { margin-top: 4px; }
+.sync-place:has(.sync-place-action) .settings-row { padding-right: 96px; }
+.sync-place.is-error .settings-row { border-color: var(--danger-text); }
+.sync-place.is-attention .settings-row { border-color: var(--sync-warn); }
+.sync-place-action { position: absolute; right: 12px; top: 12px; min-height: 28px; }
+.sync-place-action.is-danger { color: var(--danger-text); border-color: var(--danger-text); }
+.mcp-hero[data-tone="error"] { border-color: var(--danger-text); }
+.mcp-hero[data-tone="attention"] { border-color: var(--sync-warn); }
+#syncSettings .mcp-field input { border: 1px solid var(--sync-border); }   /* 3:1 against the page (WCAG 1.4.11); --outline was 1.4:1 */
+#syncSettings .mcp-field.is-invalid input { border-color: var(--danger-text); box-shadow: 0 0 0 1px var(--danger-text); }
+.sync-field-error { display: flex; align-items: flex-start; gap: 4px; margin: 0; font-size: var(--fs-xs); line-height: 1.4; font-weight: 600; color: var(--danger-text); }
+.sync-field-error .icon { width: 14px; height: 14px; flex: none; margin-top: 1px; }
+.sync-callout { display: flex; gap: 10px; align-items: flex-start; margin: 8px 0; padding: 10px 12px; border-radius: 12px; border: 1px solid var(--sync-border); background: var(--glass-card); font-size: var(--fs-sm); line-height: 1.45; color: var(--text-primary); }
+.sync-callout > .ic { flex: none; margin-top: 2px; color: var(--accent); }
+.sync-callout-text { display: flex; flex-direction: column; gap: 2px; min-width: 0; }
+.sync-callout[data-tone="warn"] { border-color: var(--sync-warn); background: color-mix(in srgb, var(--warn) 9%, transparent); }
+.sync-callout[data-tone="warn"] > .ic { color: var(--sync-warn); }
+.sync-callout[data-tone="danger"] { border-color: var(--danger-text); background: color-mix(in srgb, var(--danger) 8%, transparent); }
+.sync-callout[data-tone="danger"] > .ic, .sync-callout[data-tone="danger"] strong { color: var(--danger-text); }
+.sync-fold { margin: 0 0 8px; border: 1px solid var(--sync-border); border-radius: var(--radius-md); background: var(--glass-card); }
+.sync-fold > summary { display: flex; align-items: center; gap: 8px; padding: 12px; cursor: pointer; list-style: none; border-radius: var(--radius-md); }
+.sync-fold > summary::-webkit-details-marker { display: none; }
+.sync-fold > summary::after { content: '›'; margin-left: auto; font-size: 20px; line-height: 1; color: var(--text-muted); transition: transform .15s; }
+.sync-fold[open] > summary::after { transform: rotate(90deg); }
+.sync-fold > summary:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.sync-fold-text { display: flex; flex-direction: column; gap: 2px; min-width: 0; }
+.sync-fold-title { font-weight: 600; color: var(--text-primary); }
+.sync-fold-sub { font-size: var(--fs-sm); color: var(--text-muted); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.sync-fold[open] { padding-bottom: 8px; }
+.sync-fold[open] > :not(summary) { margin-left: 12px; margin-right: 12px; }
+.sync-review { display: flex; flex-direction: column; gap: 8px; margin-top: 4px; padding-top: 12px; border-top: 1px solid var(--sync-border); }
+.sync-review-title { margin: 0; font-size: var(--fs-base); font-weight: 600; letter-spacing: 0; }
+.sync-review-list { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; }
+.sync-review-item { display: flex; align-items: center; gap: 10px; min-height: 56px; padding: 6px 0; border-bottom: 1px solid var(--outline); }
+.sync-review-item:last-child { border-bottom: 0; }
+.sync-review-text { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 2px; }
+.sync-review-name { font-size: var(--fs-sm); font-weight: 600; color: var(--text-primary); overflow-wrap: anywhere; }
+.sync-review-meta { font-size: var(--fs-xs); color: var(--text-muted); }
+.sync-review-choice { flex: none; display: flex; gap: 8px; }
+.sync-review-btn { min-height: 28px; padding: 0 10px; border-radius: 999px; border: 1px solid var(--sync-border); background: transparent; color: var(--text-primary); font-weight: 600; cursor: pointer; }
+.sync-review-btn[aria-pressed="true"] { background: var(--accent); border-color: var(--accent); color: var(--on-accent, #fff); }
+.sync-review-btn.is-delete[aria-pressed="true"] { background: color-mix(in srgb, var(--danger) 14%, transparent); border-color: var(--danger-text); color: var(--danger-text); }

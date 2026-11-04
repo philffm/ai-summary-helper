@@ -282,7 +282,7 @@ export function createSyncService({ storage, makeStore, stampStore, viewerSource
         },
 
         /** Runs one place or all of them. Never throws: the outcome of each is stored as its status. */
-        async syncNow(id, { confirmRemovals = false } = {}) {
+        async syncNow(id, { confirmRemovals = false, decide = null } = {}) {
             const st = await load();
             const places = st.places.filter((p) => p.enabled !== false && (!id || p.id === id));
             if (!places.length) return {};
@@ -308,9 +308,10 @@ export function createSyncService({ storage, makeStore, stampStore, viewerSource
                     const connection = st.connections.find((c) => c.id === place.connectionId);
                     if (!connection) throw new Error('The server of this place was removed.');
                     if (place.mode === 'encrypted') {
-                        const r = await runEncrypted(place, connection, st, { onProgress, confirmDeletes: confirmRemovals });
+                        const answers = decide && id ? { keep: decide.keep || [], remove: decide.remove || [] } : {};   // per-article answers only for the one place asked about
+                        const r = await runEncrypted(place, connection, st, { onProgress, confirmDeletes: confirmRemovals, ...answers });
                         await writing; results[place.id] = r;
-                        await setStatus(place.id, { at, ok: true, pushed: r.pushed, pulled: r.pulled, applied: r.applied, merged: r.merged, purged: r.purged, needsConfirm: r.needsConfirm, stale: r.stale, errors: r.errors.length, ...(r.errors.length ? { firstError: r.errors[0] } : {}), more: r.more });
+                        await setStatus(place.id, { at, ok: true, pushed: r.pushed, pulled: r.pulled, applied: r.applied, merged: r.merged, purged: r.purged, needsConfirm: r.needsConfirm, ...(r.needsConfirm && r.pending && r.pending.length ? { pending: r.pending } : {}), stale: r.stale, errors: r.errors.length, ...(r.errors.length ? { firstError: r.errors[0] } : {}), more: r.more });
                         if (r.more) scheduleSoon(1);
                         continue;
                     }

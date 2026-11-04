@@ -1,7 +1,10 @@
-// modules/syncView.js — Settings → "Sync & backup" (design: variant B "List of places", .briefs/prd-library-sync.md).
-//   list   the places (each with its status), Add a place, Sync now
+// modules/syncView.js — Settings → "Sync & backup" (design: variant B "List of places", .briefs/prd-library-sync.md;
+// status and review as in Figma AISH-029 variant A, deletions reviewed one by one from variant C, the phone step from variant B).
+//   list   a summary (what needs you, Sync all now), the places with a status line each; empty: start from the goal
 //   add    choose the kind of place
-//   form   one place: address and login, who can read it, which articles, what goes out; test and save
+//   form   one place: address and login, who can read it, which articles, what goes out; test and save. Editing leads with the
+//          status card (and deletions to review); the settings fold into sections
+//   phone  right after a sync place was set up: the code for the phone
 // Built from the same pieces as the AI apps panel (mcp-* classes) and Send & Share (settings-row list).
 // Places: readable (publish only) or encrypted (sync between devices, or a backup that only this device writes), on WebDAV or a folder on this computer.
 // The run itself happens in the background worker (message syncNow); this file only edits places and shows their status.
@@ -45,6 +48,13 @@ function qrBox(payload) {
 }
 const hidePhoneCode = () => { clearTimeout(phoneCodeTimer); phoneCode = null; };
 let formError = '';
+let fieldErr = null;          // { id, text }: the field a test or save error belongs to (shown at the field, with a summary on top)
+let focusField = '';          // after the next render, move the focus here (the field with the error)
+let goal = null;              // empty state: what the person wants ({ mode, direction }), carried into the new place
+let nextPlace = '';           // a sync place that was just set up: offer the phone next
+let ask = '';                 // an action waiting for its yes in the page: 'restore' | 'remove' | 'removeAll'
+let review = { placeId: '', choice: {} };   // answers to deletions from other devices: key → 'keep' | 'delete', sent on Apply
+const openFolds = new Set();  // editing: which setting sections are open
 let previewToken = 0;
 
 const blankDraft = (connectionId = '') => ({ name: '', root: 'aish-sync', connectionId, mode: 'encrypted', direction: 'twoway', passphrase: '', passphrase2: '', recoveryKey: '', ackBackup: false, scope: 'tag', filter: { tag: 'public' }, include: { highlights: true, qa: false, notes: false, reminders: false, fulltext: false }, viewer: false });
@@ -61,10 +71,53 @@ function field(id, label, value, { type = 'text', placeholder = '', onInput, hel
     const l = el('label', null, label); l.htmlFor = id;
     const input = document.createElement('input');
     Object.assign(input, { type, id, value: value || '', placeholder, autocomplete: type === 'password' ? 'new-password' : 'off', spellcheck: false });
-    input.addEventListener('input', () => onInput && onInput(input.value));
+    input.addEventListener('input', () => {
+        if (fieldErr && fieldErr.id === id) { fieldErr = null; wrap.classList.remove('is-invalid'); input.removeAttribute('aria-invalid'); const e = $(id + '-err'); if (e) e.remove(); input.setAttribute('aria-describedby', help ? id + '-help' : ''); }
+        if (onInput) onInput(input.value);
+    });
     wrap.append(l, input);
-    if (help) wrap.append(hint(help));
+    const described = [];
+    if (fieldErr && fieldErr.id === id) {   // the error sits at the field that caused it (WCAG 3.3.1), named by the input (aria-describedby)
+        wrap.classList.add('is-invalid'); input.setAttribute('aria-invalid', 'true');
+        const e = el('p', 'sync-field-error'); e.id = id + '-err';
+        const g = iconEl('circle-alert'); e.append(g, document.createTextNode(' ' + fieldErr.text));
+        wrap.append(e); described.push(e.id);
+    }
+    if (help) { const h = hint(help); h.id = id + '-help'; wrap.append(h); described.push(h.id); }
+    if (described.length) input.setAttribute('aria-describedby', described.join(' '));
     return wrap;
+}
+/** Section caption: a real heading, so the panel has an outline (WCAG 1.3.1 / 2.4.6). */
+function caption(text) { return el('h3', 'settings-caption', text); }
+/** A callout: tone info | warn | danger; role alert for errors that just happened. */
+function callout(tone, text, { alert = false, title = '' } = {}) {
+    const c = el('div', 'sync-callout'); c.dataset.tone = tone;
+    if (alert) c.setAttribute('role', 'alert');
+    c.append(iconEl(tone === 'danger' ? 'circle-alert' : tone === 'warn' ? 'circle-alert' : 'info'));
+    const t = el('div', 'sync-callout-text');
+    if (title) t.append(el('strong', null, title));
+    t.append(el('span', null, text));
+    c.append(t);
+    return c;
+}
+/** Which field an error message is about ('' when none of them): used to put it there. Pure, tested. */
+export function fieldOfError(message) {
+    const m = String(message || '');
+    if (/passphrases are not the same/i.test(m)) return 'syncPassphrase2';
+    if (/passphrase/i.test(m)) return 'syncPassphrase';
+    if (/bucket/i.test(m)) return 'syncBucket';
+    if (/access key ID/i.test(m)) return 'syncUser';
+    if (/username|password|did not accept|sign(ed)? ?in|login|\b40[13]\b/i.test(m)) return 'syncPass';
+    if (/address|https:\/\/|\b404\b|not found|endpoint|reach|certificate/i.test(m)) return 'syncUrl';
+    if (/tag of the articles/i.test(m)) return 'syncTag';
+    return '';
+}
+/** An error from test or save: at its field when the form shows that field, else as a message on top. */
+function setFormError(message) {
+    const id = fieldOfError(message);
+    fieldErr = id ? { id, text: message } : null;
+    focusField = id;
+    formError = message;
 }
 function switchRow(title, hintText, checked, onChange) {
     const row = el('label', 'mcp-row');
@@ -126,36 +179,63 @@ export function phaseText(r) {
         default: return T('Starting…');
     }
 }
-function statusSub(place, st, count) {
-    if (place.enabled === false) return T('Paused');
-    const run = runningOf(st);
-    if (run) return phaseText(run);
-    if (!st) return place.mode === 'encrypted' ? T('Not synced yet') : T('Not published yet');
-    if (st.ok && st.more) return TN(st.remaining || 0, 'Continuing… {n} file left', 'Continuing… {n} files left');
-    if (!st.ok) return (st.error && st.error.message) || T('Could not reach the server');
-    if (place.mode === 'encrypted') return (st.errors ? T('{n} files had problems', { n: st.errors }) + ' · ' : '') + (place.direction === 'push' ? T('backed up {t} ago', { t: timeAgo(Date.parse(st.at)) }) : T('synced {t} ago', { t: timeAgo(Date.parse(st.at)) }));
-    return TN(count, '{n} article', '{n} articles') + ' · ' + T('published {t} ago', { t: timeAgo(Date.parse(st.at)) });
+/**
+ * One status for a place, used by the list row and the place card: a tone (ok | run | error | paused | attention | idle), the words,
+ * and the one action that fixes it (fix | resume | review). Never colour alone: the line shows a glyph and these words (WCAG 1.4.1).
+ */
+export function placeStatus(place, st, count = 0, now = Date.now()) {
+    const enc = place.mode === 'encrypted';
+    if (place.enabled === false) return { tone: 'paused', text: T('Paused'), action: 'resume' };
+    const run = runningOf(st, now);
+    if (run) return { tone: 'run', text: phaseText(run), run };
+    if (!st) return { tone: 'idle', text: enc ? T('Not synced yet') : T('Not published yet') };
+    if (!st.ok) return { tone: 'error', text: (st.error && st.error.message) || T('Could not reach the server'), action: 'fix' };
+    if (st.needsConfirm) return { tone: 'attention', text: enc ? TN(st.needsConfirm, '{n} deletion waits for you', '{n} deletions wait for you') : TN(st.needsConfirm, '{n} file waits to be removed', '{n} files wait to be removed'), action: 'review' };
+    if (st.more) return { tone: 'run', text: TN(st.remaining || 0, 'Continuing… {n} file left', 'Continuing… {n} files left') };
+    const ago = timeAgo(Date.parse(st.at));
+    const when = enc ? (place.direction === 'push' ? T('backed up {t} ago', { t: ago }) : T('synced {t} ago', { t: ago })) : TN(count, '{n} article', '{n} articles') + ' · ' + T('published {t} ago', { t: ago });
+    if (st.errors) return { tone: 'attention', text: T('{n} files had problems', { n: st.errors }) + ' · ' + when };
+    return { tone: 'ok', text: when };
+}
+const TONE_ICON = { ok: 'check', run: 'refresh-cw', error: 'circle-x', paused: 'pause', attention: 'circle-alert', idle: 'clock' };
+const TONE_WORD = { error: 'Error:', attention: 'Needs you:', paused: '' };
+/** The status line: glyph + words; `live` announces changes politely (running). */
+function statusLine(s, { live = false } = {}) {
+    const p = el('p', 'sync-status'); p.dataset.tone = s.tone;
+    const g = el('span', 'sync-status-glyph'); g.append(iconEl(TONE_ICON[s.tone] || 'clock'));
+    p.append(g);
+    if (TONE_WORD[s.tone]) p.append(el('span', 'sr-only', T(TONE_WORD[s.tone]) + ' '));
+    p.append(el('span', 'sync-status-text', s.text));
+    if (live) { p.setAttribute('role', 'status'); p.setAttribute('aria-live', 'polite'); }
+    return p;
 }
 
 // ── screens ──
 let renderToken = 0;
 async function render() {
-    if (view !== 'form' && phoneCode) hidePhoneCode();   // the code never outlives the screen it was shown on
+    if (view !== 'form' && view !== 'phone' && phoneCode) hidePhoneCode();   // the code never outlives the screen it was shown on
     const root = $('syncSettings');
     if (!root) return;
     const token = ++renderToken;
-    const [places, status, connections] = await Promise.all([svc.placesNow(), svc.statusNow(), svc.connectionsNow()]);
+    const [places, status, connections, idx] = await Promise.all([svc.placesNow(), svc.statusNow(), svc.connectionsNow(), getL({ [SK.articlesIndex]: [] })]);
     const counts = {};
     for (const p of places) counts[p.id] = await ledgerCount(p.id);
     if (token !== renderToken) return;
+    articleTitles = new Map((idx[SK.articlesIndex] || []).map((a) => [a.id, a]));
     const frag = document.createDocumentFragment();
     if (view === 'recovery' && recovery) frag.append(...recoveryScreen());
+    else if (view === 'phone' && places.some((p) => p.id === nextPlace)) frag.append(...phoneScreen(places.find((p) => p.id === nextPlace), status[nextPlace], connections));
     else if (view === 'add') frag.append(...addScreen());
     else if (view === 'form') frag.append(...formScreen(places.find((p) => p.id === editId), status[editId], counts[editId], connections, places));
-    else frag.append(...listScreen(places, status, counts, connections, await lapsedFolders(connections).catch(() => [])));
+    else { view = 'list'; frag.append(...listScreen(places, status, counts, connections, await lapsedFolders(connections).catch(() => []))); }
     root.replaceChildren(frag);
+    // one header per screen (WCAG 2.4.6): the panel's own "‹ Settings / Sync & backup" only on the list, the others bring theirs
+    const panelHead = root.closest('.settings-panel') && root.closest('.settings-panel').querySelector(':scope > .settings-panel-head');
+    if (panelHead) panelHead.hidden = view !== 'list';
+    if (focusField && $(focusField)) { $(focusField).focus(); focusField = ''; }
     updateRowSub(places, status);
 }
+let articleTitles = new Map();
 
 function updateRowSub(places, status) {
     const sub = document.querySelector('.settings-row-sub[data-sub="sync"]');
@@ -183,28 +263,74 @@ function listScreen(places, status, counts, connections, lapsed = []) {
         for (const c of lapsed) row.append(button(T('Allow access to {name}', { name: c.name }), 'button-primary btn-sm', async () => { await ensureFolderAccess(c.id); await sendToWorker({ action: 'syncNow' }); render(); }));
         card.append(row); out.push(card);
     }
-    out.push(el('p', 'setting-note', T('Keep your library in step across your devices, back it up, or publish part of it for others. Each place is a folder on your own server or on this computer. Nothing leaves this device until you add one.')));
-    if (places.length) {
-        out.push(el('p', 'settings-caption', TU('Places')));
-        for (const p of places) { const c = connections.find((x) => x.id === p.connectionId); out.push(listRow(p.mode === 'encrypted' ? 'lock' : 'globe', p.name, (c ? c.name + ' / ' + p.root + ' · ' : '') + statusSub(p, status[p.id], counts[p.id] || 0), () => openForm(p.id))); }
-    }
-    const add = button('', 'button-secondary w-full', () => { view = 'add'; render(); });
+    if (!places.length) return out.concat(emptyScreen());
+    const states = places.map((p) => placeStatus(p, status[p.id], counts[p.id] || 0));
+    // the summary: what needs you, then one button for all of them
+    const need = states.filter((s) => s.tone === 'error' || s.tone === 'attention').length;
+    const running = states.some((s) => s.tone === 'run');
+    const times = Object.values(status || {}).filter((s) => s && s.ok && s.at).map((s) => Date.parse(s.at));
+    const last = times.length ? T('last sync {t} ago', { t: timeAgo(Math.max(...times)) }) : '';
+    const sum = el('section', 'mcp-card sync-summary');
+    sum.append(statusLine(need
+        ? { tone: states.some((s) => s.tone === 'error') ? 'error' : 'attention', text: TN(need, '{n} place needs you', '{n} places need you') + (last ? ' · ' + last : '') }
+        : running ? { tone: 'run', text: T('Syncing…') }
+            : { tone: last ? 'ok' : 'idle', text: last ? T('All places are up to date') + ' · ' + last : T('Nothing synced yet') }, { live: true }));
+    const actions = el('div', 'mcp-actions');
+    const now = button(running ? T('Syncing…') : T('Sync all now'), 'button-primary btn-sm', async () => { now.disabled = true; now.textContent = T('Syncing…'); await sendToWorker({ action: 'syncNow' }); render(); });
+    now.disabled = running;
+    const add = button('', 'button-secondary btn-sm', () => { goal = null; view = 'add'; render(); });
     add.append(iconEl('plus'), document.createTextNode(' ' + T('Add a place')));
-    out.push(add);
-    if (places.length) {
-        out.push(el('p', 'settings-caption', TU('All places')));
-        const actions = el('div', 'mcp-actions');
-        const running = places.some((p) => runningOf(status[p.id]));
-        const now = button(running ? T('Syncing…') : T('Sync now'), 'button-secondary btn-sm', async () => { now.disabled = true; now.textContent = T('Syncing…'); await sendToWorker({ action: 'syncNow' }); render(); });
-        now.disabled = running;
-        actions.append(now);
-        out.push(actions);
+    actions.append(now, add);
+    sum.append(actions);
+    out.push(sum);
+    out.push(caption(TU('Places')));
+    places.forEach((p, i) => out.push(placeRow(p, states[i], connections.find((x) => x.id === p.connectionId))));
+    return out;
+}
+
+/** One place in the list: the row opens it; an error, a pause or deletions to review bring their own button (Fix / Resume / Review). */
+function placeRow(p, s, c) {
+    const wrap = el('div', 'sync-place' + (s.tone === 'error' ? ' is-error' : s.tone === 'attention' ? ' is-attention' : ''));
+    const b = el('button', 'settings-row'); b.type = 'button';
+    const ic = el('span', 'settings-row-icon'); ic.append(iconEl(p.mode === 'encrypted' ? 'lock' : 'globe', 'icon--lg'));
+    const text = el('span', 'settings-row-text');
+    text.append(el('span', 'settings-row-title', p.name), el('span', 'settings-row-sub', c ? c.name + ' / ' + p.root : p.root));
+    const line = statusLine(s); line.classList.add('sync-status--row'); text.append(line);
+    if (s.run) {
+        const bar = document.createElement('progress'); bar.className = 'sync-progress';
+        if (s.run.total > 0) { bar.max = s.run.total; bar.value = Math.min(s.run.done, s.run.total); }
+        bar.setAttribute('aria-label', s.text); text.append(bar);
     }
+    b.append(ic, text);
+    b.addEventListener('click', () => openForm(p.id));
+    wrap.append(b);
+    const label = s.action === 'fix' ? T('Fix') : s.action === 'resume' ? T('Resume') : s.action === 'review' ? T('Review') : '';
+    if (label) {
+        const a = button(label, 'button-secondary btn-sm sync-place-action', async () => {
+            if (s.action === 'resume') { await svc.update(p.id, { enabled: true }); await sendToWorker({ action: 'syncNow', placeId: p.id }); render(); return; }
+            openForm(p.id, null, { fix: s.action === 'fix' ? s.text : '' });
+        });
+        a.setAttribute('aria-label', label + ': ' + p.name);
+        if (s.tone === 'error') a.classList.add('is-danger');
+        wrap.append(a);
+    } else { const ch = el('span', 'settings-row-chev'); ch.append(iconEl('chevron-right')); b.append(ch); }
+    return wrap;
+}
+
+/** No place yet: start from what the person wants, not from the kind of server (Figma A4). */
+function emptyScreen() {
+    const out = [el('p', 'setting-note', T('Keep your library in step across your devices, back it up, or publish part of it for others. Nothing leaves this device until you add one. Pick what you want to do:'))];
+    const pick = (g) => () => { goal = g; view = 'add'; render(); };
+    out.push(listRow('lock', T('Sync my devices'), T('The same library on laptop and phone. Encrypted.'), pick({ mode: 'encrypted', direction: 'twoway' })),
+        listRow('archive', T('Back up'), T('A copy only this device writes. Encrypted.'), pick({ mode: 'encrypted', direction: 'push' })),
+        listRow('globe', T('Publish a reading list'), T('Plain files for your website. Readable.'), pick({ mode: 'readable', direction: 'publish' })));
+    out.push(callout('info', T('Works with Nextcloud / WebDAV, S3-compatible storage or a folder on this computer.')));
     return out;
 }
 
 function addScreen() {
     const out = [head(T('Add a place'), { label: '‹ ' + T('Sync & backup'), fn: () => { view = 'list'; render(); } })];
+    if (goal) out.push(el('p', 'setting-note', goal.mode === 'readable' ? T('Where should the reading list live?') : goal.direction === 'push' ? T('Where should the backup live?') : T('Where should your library live?')));
     out.push(listRow('server', T('Nextcloud / WebDAV'), T('Nextcloud, ownCloud, Synology, most NAS boxes'), () => openForm('')));
     out.push(listRow('cloud', T('S3-compatible'), T('AWS, Cloudflare R2, Backblaze, MinIO, Wasabi'), () => openForm('', { service: 's3' })));
     out.push(folderSupported()
@@ -226,7 +352,7 @@ async function chooseFolder() {
 function recoveryScreen() {
     const out = [head(T('Save your passphrase'), null)];
     out.push(el('p', 'setting-note', T('These six words are the key to “{name}”. You type them on each new device. If you lose them, nobody can read the files, not even us. Save them in a password manager.', { name: recovery.name })));
-    out.push(el('p', 'settings-caption', TU('Your passphrase')));
+    out.push(caption(TU('Your passphrase')));
     const w = el('pre', 'sync-recovery', recovery.words); w.tabIndex = 0; out.push(w);
     out.push(hint(T('Copy puts the words in one piece, joined by dashes. That survives config files, shells and chat apps; typing them with spaces or with dashes both work.')));
     const row = el('div', 'mcp-actions');
@@ -235,7 +361,7 @@ function recoveryScreen() {
     out.push(row);
     if (testMsg) out.push(el('p', 'setting-note' + (testMsg.ok ? '' : ' phone-inbox-error'), testMsg.text));
     let saved = false;
-    const done = button(T('Done'), 'button-primary btn-sm', () => { recovery = null; testMsg = null; view = 'list'; render(); }); done.disabled = true;
+    const done = button(T('Done'), 'button-primary btn-sm', () => { recovery = null; testMsg = null; view = nextPlace ? 'phone' : 'list'; render(); }); done.disabled = true;
     out.push(switchRow(T('I saved the passphrase'), '', false, (on) => { saved = on; done.disabled = !saved; }));
     out.push(done);
     return out;
@@ -248,14 +374,21 @@ async function ensureFolderAccess(connId) {
     try { const h = await vault.load(connId); if (h) await vault.allow(h); } catch (_) { /* the store reports it */ }
 }
 
-function openForm(id, folder) {
-    editId = id; view = 'form'; testMsg = null; formError = ''; draftSecret = ''; editServer = false; serverDraft = blankServer(folder && folder.service); existingFlag = null; folderName = (folder && folder.folderName) || '';
+function openForm(id, folder, { fix = '' } = {}) {
+    editId = id; view = 'form'; testMsg = null; formError = ''; fieldErr = null; ask = ''; draftSecret = ''; editServer = false; serverDraft = blankServer(folder && folder.service); existingFlag = null; folderName = (folder && folder.folderName) || '';
+    openFolds.clear();
     Promise.all([getL({ [SK.syncPlaces]: [] }), svc.connectionsNow()]).then(([d, conns]) => {
         const p = id ? (d[SK.syncPlaces] || []).find((x) => x.id === id) : null;
         draft = p ? JSON.parse(JSON.stringify(p)) : blankDraft(folder ? '' : (conns.filter((c) => c.service !== 'folder').pop() || {}).id || '');
+        if (!p && goal) { draft.mode = goal.mode; draft.direction = goal.direction; if (goal.mode === 'readable') draft.root = 'public'; else if (goal.direction === 'push') draft.root = 'backup'; }
         if (folder && folder.folderId) { draft.folderId = folder.folderId; draft.root = 'aish-sync'; serverDraft = { name: folder.folderName, url: '', username: '', service: 'folder' }; }
         const c = conns.find((x) => x.id === draft.connectionId);
         if (c) serverDraft = serverOf(c);
+        if (fix && p) {   // "Fix" from the list: open the server section, with the server's fields when the login or the address is the problem
+            const f = fieldOfError(fix);
+            openFolds.add('server');
+            if (f && c && c.service !== 'folder') { editServer = true; fieldErr = { id: f, text: fix }; focusField = f; }
+        }
         render().then(refreshPreview);
     });
 }
@@ -263,35 +396,123 @@ function openForm(id, folder) {
 function heroNode(place, st, count) {
     const hero = el('section', 'mcp-card mcp-hero'); hero.id = 'syncHero';
     const run = runningOf(st);
-    const s = el('div', 'mcp-hero-status');
-    s.append(el('span', 'mcp-dot' + (run ? ' is-wait' : st && st.ok === false ? ' is-wait' : '')), el('span', null, statusSub(place, st, count)));
-    hero.append(s);
+    const s = placeStatus(place, st, count);
+    hero.dataset.tone = s.tone;
+    const line = statusLine(s, { live: true }); line.classList.add('sync-status--hero');
+    hero.append(line);
     if (run) {
         const bar = document.createElement('progress'); bar.className = 'sync-progress';
         if (run.total > 0) { bar.max = run.total; bar.value = Math.min(run.done, run.total); }
         bar.setAttribute('aria-label', phaseText(run));
         hero.append(bar);
-        s.setAttribute('role', 'status'); s.setAttribute('aria-live', 'polite');
     }
+    if (st && st.at && !run) hero.append(hint(T('Last run: {t} ago', { t: timeAgo(Date.parse(st.at)) }) + (st.ok ? '' : ' · ' + T('did not finish'))));
     if (st && !run && (st.repaired || st.orphans)) hero.append(hint(T('Checked the folder: {r} restored, {o} leftovers found.', { r: st.repaired || 0, o: st.orphans || 0 })));
     if (st && st.viewer === 'customized') hero.append(hint(T('Your own index.html is in this folder, so the viewer was not replaced.')));
     if (st && st.viewer === 'blocked') hero.append(hint(T('An index.html that is not ours is already in this folder, so the viewer was not written. Use another folder.')));
-    if (st && st.needsConfirm && !run) {
-        const enc = place.mode === 'encrypted';
-        hero.append(hint(enc
-            ? TN(st.needsConfirm, '{n} more article was deleted on another device. It is still here until you say so. Check that this is right.', '{n} more articles were deleted on other devices. They are still here until you say so. Check that this is right.')
-            : TN(st.needsConfirm, '{n} file is no longer wanted here and would be removed from your server. Check that this is right.', '{n} files are no longer wanted here and would be removed from your server. Check that this is right.')));
-        const a = el('div', 'mcp-actions');
-        a.append(button(enc ? T('Delete them here too') : T('Remove them'), 'button-danger-outline btn-sm', async () => { await sendToWorker({ action: 'syncNow', placeId: place.id, confirmRemovals: true }); }));
-        hero.append(a);
-    }
     if (st && st.stale && st.ok) hero.append(hint(T('This device was away for a long time. Only what changed since was sent, and nothing was deleted.')));
     const a = el('div', 'mcp-actions');
-    const pub = button(run ? (place.mode === 'encrypted' ? T('Syncing…') : T('Publishing…')) : place.mode === 'encrypted' ? (place.direction === 'push' ? T('Back up now') : T('Sync now')) : T('Publish now'), 'button-secondary btn-sm', async () => { pub.disabled = true; pub.textContent = place.mode === 'encrypted' ? T('Syncing…') : T('Publishing…'); await sendToWorker({ action: 'syncNow', placeId: place.id }); refreshHero(); });
-    pub.disabled = !!run;
-    a.append(pub);
+    const paused = place.enabled === false;
+    const pub = button(run ? (place.mode === 'encrypted' ? T('Syncing…') : T('Publishing…')) : place.mode === 'encrypted' ? (place.direction === 'push' ? T('Back up now') : T('Sync now')) : T('Publish now'), 'button-primary btn-sm', async () => { pub.disabled = true; pub.textContent = place.mode === 'encrypted' ? T('Syncing…') : T('Publishing…'); await sendToWorker({ action: 'syncNow', placeId: place.id }); refreshHero(); });
+    pub.disabled = !!run || paused;
+    const pause = button(paused ? T('Resume') : T('Pause'), 'button-secondary btn-sm', async () => {
+        pause.disabled = true;
+        await svc.update(place.id, { enabled: paused });
+        if (draft) draft.enabled = paused;
+        if (paused) await sendToWorker({ action: 'syncNow', placeId: place.id });
+        refreshHero();
+    });
+    pause.disabled = !!run;
+    a.append(pub, pause);
     hero.append(a);
+    if (st && st.needsConfirm && !run) hero.append(reviewNode(place, st));
     return hero;
+}
+
+/**
+ * Deletions waiting for a yes. Encrypted: one by one (Keep brings the article back on the other devices too, Delete removes it here),
+ * nothing happens until Apply, so every choice can be taken back first (WCAG 3.3.4). Readable, or an older status without the list:
+ * one question for all of them, asked in the page instead of a browser dialog.
+ */
+function reviewNode(place, st) {
+    const enc = place.mode === 'encrypted';
+    const box = el('section', 'sync-review'); box.setAttribute('aria-labelledby', 'syncReviewTitle');
+    const h = el('h3', 'sync-review-title', enc ? T('Deleted on another device') : T('Files to remove from your server')); h.id = 'syncReviewTitle';
+    box.append(h);
+    const pending = enc && Array.isArray(st.pending) ? st.pending : [];
+    if (!pending.length) {
+        box.append(hint(enc
+            ? TN(st.needsConfirm, '{n} more article was deleted on another device. It is still here until you say so. Check that this is right.', '{n} more articles were deleted on other devices. They are still here until you say so. Check that this is right.')
+            : TN(st.needsConfirm, '{n} file is no longer wanted here and would be removed from your server. Check that this is right.', '{n} files are no longer wanted here and would be removed from your server. Check that this is right.')));
+        const row = el('div', 'mcp-actions');
+        if (ask === 'removeAll') {
+            box.append(callout('warn', enc ? TN(st.needsConfirm, 'Delete {n} article on this device too?', 'Delete {n} articles on this device too?') : TN(st.needsConfirm, 'Remove {n} file from your server?', 'Remove {n} files from your server?')));
+            row.append(button(enc ? T('Delete them here too') : T('Remove them'), 'button-danger-outline btn-sm', async () => { ask = ''; await sendToWorker({ action: 'syncNow', placeId: place.id, confirmRemovals: true }); refreshHero(); }),
+                button(T('Cancel'), 'button-secondary btn-sm', () => { ask = ''; refreshHero(); }));
+        } else row.append(button(enc ? T('Delete them here too…') : T('Remove them…'), 'button-danger-outline btn-sm', () => { ask = 'removeAll'; refreshHero(); }));
+        box.append(row);
+        return box;
+    }
+    if (review.placeId !== place.id) review = { placeId: place.id, choice: {} };
+    const live = new Set(pending.map((p) => p.key));
+    for (const k of Object.keys(review.choice)) if (!live.has(k)) delete review.choice[k];   // answered, or gone
+    box.append(hint(T('Nothing is deleted here until you say so. Keep brings it back on your other devices too.')));
+    const list = el('ul', 'sync-review-list');
+    const articles = pending.filter((p) => p.key.startsWith('article:'));
+    const others = pending.filter((p) => !p.key.startsWith('article:'));
+    const choiceButtons = (label, keys) => {
+        const g = el('div', 'sync-review-choice'); g.setAttribute('role', 'group'); g.setAttribute('aria-label', label);
+        const cur = keys.every((k) => review.choice[k] === 'keep') ? 'keep' : keys.every((k) => review.choice[k] === 'delete') ? 'delete' : '';
+        for (const [v, text] of [['keep', T('Keep')], ['delete', T('Delete')]]) {
+            const b = button(text, 'btn-sm sync-review-btn' + (v === 'delete' ? ' is-delete' : ''), () => {
+                for (const k of keys) { if (review.choice[k] === v) delete review.choice[k]; else review.choice[k] = v; }
+                refreshHero();
+            });
+            b.setAttribute('aria-pressed', String(cur === v));
+            b.setAttribute('aria-label', text + ': ' + label);
+            g.append(b);
+        }
+        return g;
+    };
+    for (const p of articles) {
+        const a = articleTitles.get(p.key.slice('article:'.length)) || {};
+        const li = el('li', 'sync-review-item');
+        const t = el('div', 'sync-review-text');
+        let site = ''; try { site = new URL(a.url).hostname.replace(/^www\./, ''); } catch (_) { /* no address */ }
+        t.append(el('span', 'sync-review-name', a.title || T('Untitled')), el('span', 'sync-review-meta', [site, p.at ? T('deleted {t} ago', { t: timeAgo(p.at) }) : ''].filter(Boolean).join(' · ')));
+        li.append(t, choiceButtons(a.title || T('Untitled'), [p.key]));
+        list.append(li);
+    }
+    if (others.length) {
+        const li = el('li', 'sync-review-item');
+        const t = el('div', 'sync-review-text');
+        const label = TN(others.length, '{n} highlight, note or collection', '{n} highlights, notes or collections');
+        t.append(el('span', 'sync-review-name', label), el('span', 'sync-review-meta', T('Deleted with the articles above, or on their own')));
+        li.append(t, choiceButtons(label, others.map((p) => p.key)));
+        list.append(li);
+    }
+    box.append(list);
+    if (st.needsConfirm > pending.length) box.append(hint(TN(st.needsConfirm - pending.length, '{n} more waits after these.', '{n} more wait after these.')));
+    const keep = Object.keys(review.choice).filter((k) => review.choice[k] === 'keep');
+    const remove = Object.keys(review.choice).filter((k) => review.choice[k] === 'delete');
+    const row = el('div', 'mcp-actions');
+    const apply = button(keep.length + remove.length ? T('Apply ({n})', { n: keep.length + remove.length }) : T('Apply'), 'button-primary btn-sm', async () => {
+        apply.disabled = true;
+        const decide = { keep, remove };
+        review = { placeId: place.id, choice: {} };
+        await sendToWorker({ action: 'syncNow', placeId: place.id, decide });
+        refreshHero();
+    });
+    apply.disabled = !(keep.length + remove.length);
+    row.append(apply,
+        button(T('Keep all'), 'button-secondary btn-sm', () => { for (const p of pending) review.choice[p.key] = 'keep'; refreshHero(); }),
+        button(T('Delete all'), 'button-secondary btn-sm', () => { for (const p of pending) review.choice[p.key] = 'delete'; refreshHero(); }));
+    box.append(row);
+    if (keep.length || remove.length) {
+        const s = el('p', 'mcp-row-hint', [keep.length ? TN(keep.length, '{n} to keep', '{n} to keep') : '', remove.length ? TN(remove.length, '{n} to delete', '{n} to delete') : ''].filter(Boolean).join(' · ') + ' · ' + T('nothing changes until you press Apply'));
+        s.setAttribute('role', 'status'); box.append(s);
+    }
+    return box;
 }
 
 /** Replaces only the status card while someone edits the form: nothing they typed is touched. */
@@ -301,7 +522,42 @@ async function refreshHero() {
     const [places, status] = await Promise.all([svc.placesNow(), svc.statusNow()]);
     const place = places.find((p) => p.id === editId);
     if (!place || !$('syncHero')) return;
+    const focused = document.activeElement && document.activeElement.closest && document.activeElement.closest('#syncHero') ? document.activeElement.getAttribute('aria-label') || document.activeElement.textContent : '';
     $('syncHero').replaceWith(heroNode(place, status[editId], await ledgerCount(editId)));
+    if (focused) { const b = [...$('syncHero').querySelectorAll('button')].find((x) => (x.getAttribute('aria-label') || x.textContent) === focused); if (b) b.focus(); }   // a choice in the review keeps the focus where it was
+}
+
+/** Right after a sync place was set up: the next useful thing is the phone (Figma B5). The code holds the login, so it is shown on request, for a minute. */
+function phoneScreen(place, st, connections) {
+    const out = [head(T('“{name}” is set up', { name: place.name }), null)];
+    const s = placeStatus(place, st);
+    const card = el('section', 'mcp-card');
+    card.append(statusLine(s, { live: true }));
+    const c = connections.find((x) => x.id === place.connectionId);
+    card.append(hint([c && c.name, place.root, T('encrypted'), place.direction === 'push' ? T('backup only') : T('two-way')].filter(Boolean).join(' · ')));
+    out.push(card);
+    out.push(caption(TU('Add your phone')));
+    out.push(el('p', 'setting-note', T('Scan the code in AI Summary Helper on Android: Settings → Library sync → Scan code. It holds your server login, so show it only to your own phone. It hides itself after a minute.')));
+    if (phoneCode) {
+        out.push(qrBox(phoneCode.code));
+        if (!phoneCode.withWords) out.push(hint(T('This place uses your own passphrase. It is not in the code: type it on the phone.')));
+        out.push(button(T('Hide code'), 'button-secondary btn-sm', () => { hidePhoneCode(); render(); }));
+    } else {
+        out.push(button(T('Show code for the phone'), 'button-secondary btn-sm', async () => {
+            try {
+                const code = await svc.phoneCode(place.id);
+                phoneCode = { code, withWords: /[?&]w=/.test(code) }; testMsg = null;
+                clearTimeout(phoneCodeTimer); phoneCodeTimer = setTimeout(() => { hidePhoneCode(); render(); }, 60000);
+            } catch (e) { hidePhoneCode(); testMsg = { ok: false, text: e.message }; }
+            render();
+        }));
+    }
+    if (testMsg && !testMsg.ok) out.push(callout('danger', testMsg.text, { alert: true }));
+    const row = el('div', 'mcp-actions');
+    row.append(button(T('Done'), 'button-primary btn-sm', () => { hidePhoneCode(); nextPlace = ''; testMsg = null; view = 'list'; render(); }),
+        button(T('Not now'), 'mcp-link-button', () => { hidePhoneCode(); nextPlace = ''; testMsg = null; view = 'list'; render(); }));
+    out.push(row);
+    return out;
 }
 
 function formScreen(place, st, count, connections = [], places = []) {
@@ -313,9 +569,13 @@ function formScreen(place, st, count, connections = [], places = []) {
     const isS3 = (connNow ? connNow.service : serverDraft.service) === 's3';
     const out = [head(editing ? draft.name : isFolder ? T('A folder on this computer') : isS3 ? T('S3-compatible') : T('Nextcloud / WebDAV'), { label: '‹ ' + T('Sync & backup'), fn: () => { view = 'list'; render(); } })];
     if (editing) out.push(heroNode(place, st, count));
+    // editing: the settings fold into sections (title + current value), so the place leads with its status and stays short
+    const secs = [];
+    const sec = (key, label, summary) => { secs.push({ key, label, summary, start: out.length }); out.push(caption(TU(label))); };
+    const hostOf = (u) => { try { return new URL(u).host; } catch (_) { return ''; } };
 
     // the server: pick one you already set up, or add a new one
-    out.push(el('p', 'settings-caption', TU(isFolder ? 'Folder' : 'Server')));
+    sec('server', isFolder ? 'Folder' : 'Server', isFolder ? (connNow ? connNow.name : folderName || serverDraft.name) : connNow ? [connNow.name, hostOf(connNow.url)].filter(Boolean).join(' · ') : '');
     const isNew = !draft.connectionId;
     if (isFolder) {
         out.push(hint(T('Folder: {name}', { name: connNow ? connNow.name : folderName || serverDraft.name })));
@@ -362,28 +622,31 @@ function formScreen(place, st, count, connections = [], places = []) {
     }
 
     // the folder on that server: one folder per purpose, for example public/ and backup/
-    out.push(el('p', 'settings-caption', TU('Folder')));
+    sec('folder', 'Name and folder', [draft.name, '/' + (draft.root || '')].filter(Boolean).join(' · '));
     out.push(field('syncName', T('Name'), draft.name, { placeholder: T('Website list'), onInput: (v) => { draft.name = v; } }));
     out.push(field('syncRoot', T('Folder on the server'), draft.root, { placeholder: 'public', onInput: (v) => { draft.root = v; }, help: T('Created for you. Use one folder for each purpose, for example public for a website list and backup for a full copy.') }));
 
-    out.push(el('p', 'settings-caption', TU('Who can read it')));
+    if (editing) sec('kind', 'What it is for', (encrypted ? T('Encrypted') : T('Readable')) + ' · ' + (encrypted ? (draft.direction === 'push' ? T('Backup only') : T('Sync my devices')) : T('Publish only')));
+    else out.push(caption(TU('Who can read it')));
     const tiles = el('div', 'mcp-tiles');
     const pickMode = (mode) => { if (draft.mode === mode || editing) return; draft.mode = mode; draft.direction = mode === 'encrypted' ? 'twoway' : 'publish'; if (mode === 'readable' && draft.root === 'aish-sync') draft.root = 'public'; if (mode === 'encrypted' && draft.root === 'public') draft.root = 'aish-sync'; existingFlag = null; render().then(refreshPreview); };
     tiles.append(tile('lock', T('Encrypted'), T('For syncing and backup. Only you can read it, and so no website can. The provider sees scrambled files.'), encrypted ? 'on' : 'off', { onClick: () => pickMode('encrypted') }),
         tile('globe', T('Readable'), T('To publish on your own website: plain files that anyone with the link can read.'), encrypted ? 'off' : 'on', { onClick: () => pickMode('readable') }));
-    out.push(tiles);
+    if (!editing) out.push(tiles);   // the kind is chosen once; editing shows it as the section above, not as choices that do nothing
     if (editing) out.push(hint(T('The kind of a place cannot be changed. Add another place to use the other kind.')));
     if (encrypted) {
-        out.push(el('p', 'settings-caption', TU('What it is for')));
-        const seg = el('div', 'a11y-seg'); seg.setAttribute('role', 'radiogroup'); seg.setAttribute('aria-label', T('What it is for'));
-        for (const [id, label] of [['twoway', T('Sync my devices')], ['push', T('Backup only')]]) {
-            const b = button(label, id === draft.direction ? 'on' : '', () => { if (editing || id === draft.direction) return; draft.direction = id; render(); });
-            b.setAttribute('role', 'radio'); b.setAttribute('aria-checked', String(id === draft.direction)); seg.append(b);
+        if (!editing) {
+            out.push(caption(TU('What it is for')));
+            const seg = el('div', 'a11y-seg'); seg.setAttribute('role', 'radiogroup'); seg.setAttribute('aria-label', T('What it is for'));
+            for (const [id, label] of [['twoway', T('Sync my devices')], ['push', T('Backup only')]]) {
+                const b = button(label, id === draft.direction ? 'on' : '', () => { if (id === draft.direction) return; draft.direction = id; render(); });
+                b.setAttribute('role', 'radio'); b.setAttribute('aria-checked', String(id === draft.direction)); seg.append(b);
+            }
+            out.push(seg);
         }
-        out.push(seg);
         out.push(hint(draft.direction === 'push' ? T('This device writes everything to the place and never reads it back. Restore from it when you need it.') : T('Your articles, highlights, notes, collections, summaries and full texts, kept in step on every device that joins with the same passphrase.')));
         if (!editing) {
-            out.push(el('p', 'settings-caption', TU('Passphrase')));
+            out.push(caption(TU('Passphrase')));
             if (existingFlag) out.push(el('div', 'explanatory-card', T('This folder already holds an encrypted library. Enter its passphrase (the words you saved).')));
             if (existingFlag) {
                 out.push(field('syncPassphrase', T('Passphrase'), draft.passphrase, { type: 'password', onInput: (v) => { draft.passphrase = v; } }));
@@ -415,6 +678,7 @@ function formScreen(place, st, count, connections = [], places = []) {
                 }
             }
         } else {
+            sec('keys', 'Passphrase, phone and restore', T('Show the words · code for the phone · restore'));
             const row = el('div', 'mcp-actions');
             row.append(button(T('Show passphrase'), 'button-secondary btn-sm', async () => { try { const words = await svc.passphrase(editId); testMsg = words ? { ok: true, text: T('Passphrase: {k}. Keep it somewhere safe.', { k: words }) } : { ok: false, text: T('This place uses your own passphrase. It is not kept on this device, so it cannot be shown.') }; } catch (e) { testMsg = { ok: false, text: e.message }; } render(); }),
                 button(T('Show code for the phone'), 'button-secondary btn-sm', async () => {
@@ -425,13 +689,18 @@ function formScreen(place, st, count, connections = [], places = []) {
                     } catch (e) { hidePhoneCode(); testMsg = { ok: false, text: e.message }; }
                     render();
                 }),
-                button(T('Restore from here'), 'button-secondary btn-sm', async () => {
-                    if (!window.confirm(T('Bring everything in this place back to this device? Where this device differs, the place wins. Nothing here is deleted.'))) return;
-                    testMsg = { ok: true, text: T('Restoring…') }; render();
+                button(T('Restore from here…'), 'button-secondary btn-sm', () => { ask = ask === 'restore' ? '' : 'restore'; openFolds.add('keys'); render(); }));
+            out.push(row);
+            if (ask === 'restore') {   // asked in the page, with what it does, instead of a browser dialog (WCAG 3.3.4)
+                out.push(callout('warn', T('Where this device differs, the place wins. Nothing here is deleted. This can take a while for a large library.'), { title: T('Bring everything in this place back to this device?') }));
+                const yes = el('div', 'mcp-actions');
+                yes.append(button(T('Restore now'), 'button-primary btn-sm', async () => {
+                    ask = ''; testMsg = { ok: true, text: T('Restoring…') }; render();
                     const r = await sendToWorker({ action: 'syncRestore', placeId: editId });
                     testMsg = r && r.ok ? { ok: true, text: TN((r.result && r.result.applied) || 0, 'Restored. {n} item changed on this device.', 'Restored. {n} items changed on this device.') } : { ok: false, text: (r && r.error) || T('The restore did not finish.') }; render();
-                }));
-            out.push(row);
+                }), button(T('Cancel'), 'button-secondary btn-sm', () => { ask = ''; render(); }));
+                out.push(yes);
+            }
             if (phoneCode) {
                 out.push(qrBox(phoneCode.code));
                 out.push(el('div', 'explanatory-card sync-warn', T('Scan it with AI Summary Helper on your phone: Settings → Library sync → Scan code. The code holds your server login, so show it only to your own phone. It hides itself after a minute.')));
@@ -444,8 +713,8 @@ function formScreen(place, st, count, connections = [], places = []) {
         out.push(el('div', 'explanatory-card sync-warn', T('Anyone who can open this folder can read these files. Use a folder you control, and keep it private unless you want to publish it.')));
         out.push(hint(T('This place publishes only: this device writes the files and never reads them back.')));
 
-        out.push(el('p', 'settings-caption', TU('Which articles')));
         const scope = draft.scope || 'tag';
+        sec('articles', 'Which articles', scope === 'all' ? T('All') : scope === 'except' ? T('All except {tag}', { tag: (draft.filter && draft.filter.excludeTag) || '' }) : T('Tagged {tag}', { tag: (draft.filter && draft.filter.tag) || '' }));
         const seg = el('div', 'a11y-seg'); seg.setAttribute('role', 'radiogroup'); seg.setAttribute('aria-label', T('Which articles'));
         for (const [id, label] of [['tag', T('With a tag')], ['except', T('All except a tag')], ['all', T('All')]]) {
             const b = button(label, id === scope ? 'on' : '', () => {
@@ -461,12 +730,12 @@ function formScreen(place, st, count, connections = [], places = []) {
         if (scope === 'tag') out.push(field('syncTag', T('Only publish articles tagged'), (draft.filter && draft.filter.tag) || '', { placeholder: 'public', onInput: (v) => { draft.filter = { tag: v }; draft.lastTag = v; refreshPreview(); } }));
         if (scope === 'except') out.push(field('syncTag', T('Publish everything except articles tagged'), (draft.filter && draft.filter.excludeTag) || '', { placeholder: 'private', onInput: (v) => { draft.filter = { excludeTag: v }; draft.lastExcl = v; refreshPreview(); } }));
         if (scope === 'all') out.push(el('div', 'explanatory-card sync-warn', T('Every article you saved goes out, including ones you may not want others to read. A backup that only you can read should be encrypted instead.')));
-        out.push(el('p', 'settings-caption', TU('What goes out')));
+        sec('out', 'What goes out', [draft.include.highlights && T('Highlights'), draft.include.qa && T('Pinned Q&A'), draft.include.notes && T('Notes'), draft.include.reminders && T('Reminders'), draft.include.fulltext && T('Full texts'), draft.viewer && T('Viewer page')].filter(Boolean).join(' · ') || T('Summaries only'));
         out.push(switchRow(T('Highlights'), T('Your yellow and AI highlights'), draft.include.highlights, (on) => { draft.include.highlights = on; }));
         out.push(switchRow(T('Pinned Q&A'), T('Questions you pinned, with answers'), draft.include.qa, (on) => { draft.include.qa = on; }));
         // danger zone: off by default, each one says what it puts where anyone with access to the folder can read it
         const dz = el('section', 'sync-danger');
-        dz.append(el('p', 'settings-caption', TU('Danger zone')), hint(T('Meant for a folder only you can open, for example a private backup or an internal list. Anyone who can open the folder can read all of this.')));
+        dz.append(el('h4', 'settings-caption', TU('Danger zone')), hint(T('Meant for a folder only you can open, for example a private backup or an internal list. Anyone who can open the folder can read all of this.')));
         dz.append(switchRow(T('My notes and comments'), T('Your own notes and the comments on your highlights.'), draft.include.notes, (on) => { draft.include.notes = on; }));
         dz.append(switchRow(T('Reminders'), T('The save-for-later time and your reason for it.'), draft.include.reminders, (on) => { draft.include.reminders = on; }));
         dz.append(switchRow(T('Full article text'), T('Copies of other people’s articles. Make sure you may share them. Files get much larger.'), draft.include.fulltext, (on) => { draft.include.fulltext = on; }));
@@ -479,7 +748,27 @@ function formScreen(place, st, count, connections = [], places = []) {
         out.push(pv);
     }
 
-    if (formError) { const e = el('p', 'setting-note phone-inbox-error', formError); e.setAttribute('role', 'alert'); out.push(e); }
+    if (editing && secs.length) {
+        const top = out.slice(0, secs[0].start);
+        const folded = secs.map((s, i) => {
+            const nodes = out.slice(s.start + 1, i + 1 < secs.length ? secs[i + 1].start : out.length);
+            const d = document.createElement('details'); d.className = 'sync-fold'; d.dataset.fold = s.key;
+            const invalid = !!(fieldErr && nodes.some((n) => n.id === fieldErr.id || (n.querySelector && n.querySelector('#' + fieldErr.id))));
+            d.open = openFolds.has(s.key) || invalid || (s.key === 'server' && editServer);
+            d.addEventListener('toggle', () => { if (d.open) openFolds.add(s.key); else openFolds.delete(s.key); });
+            const sum = document.createElement('summary');
+            const t = el('span', 'sync-fold-text');
+            t.append(el('span', 'sync-fold-title', T(s.label)));
+            if (s.summary) t.append(el('span', 'sync-fold-sub', s.summary));
+            sum.append(t);
+            d.append(sum, ...nodes);
+            return d;
+        });
+        out.length = 0;
+        out.push(...top, caption(TU('Settings')), ...folded);
+    }
+    // an error: a summary on top (role=alert) and, when the form shows it, at the field that caused it
+    if (formError) out.splice(editing ? 2 : 1, 0, callout('danger', formError, { alert: true, title: fieldErr ? T('Check the field marked below.') : '' }));
     if (testMsg) { const m = el('p', 'setting-note' + (testMsg.ok ? '' : ' phone-inbox-error'), testMsg.text); m.setAttribute('role', 'status'); out.push(m); }
 
     const actions = el('div', 'mcp-actions');
@@ -490,15 +779,16 @@ function formScreen(place, st, count, connections = [], places = []) {
         secret: { password: draftSecret },
     });
     const test = button(T('Test connection'), 'button-secondary btn-sm', async () => {
-        test.disabled = true; testMsg = null; formError = '';
+        test.disabled = true; test.textContent = T('Testing…'); testMsg = null; formError = ''; fieldErr = null;
         if (isFolder) await ensureFolderAccess(draft.folderId || draft.connectionId);
         const r = await svc.test(request());
         if (r.ok && encrypted) { existingFlag = !!r.existing; if (r.existing && !draft.ownPass) { draft.passphrase = ''; draft.passphrase2 = ''; } }
-        testMsg = r.ok ? { ok: true, text: encrypted ? (r.existing ? T('Connected. This folder already holds an encrypted library.') : T('Connected. The folder is empty, so a new encrypted library will be created.')) : TN(r.count, 'Connected. {n} article matches.', 'Connected. {n} articles match.') } : { ok: false, text: r.error.message };
+        if (r.ok) { fieldErr = null; testMsg = { ok: true, text: encrypted ? (r.existing ? T('Connected. This folder already holds an encrypted library.') : T('Connected. The folder is empty, so a new encrypted library will be created.')) : TN(r.count, 'Connected. {n} article matches.', 'Connected. {n} articles match.') }; }
+        else { setFormError(r.error.message); if (fieldErr && conn && !editServer && !isFolder && /^syncPass|^syncUser|^syncUrl|^syncBucket/.test(fieldErr.id)) editServer = true; }   // the login of a saved server is the problem: open its fields
         render();
     });
     const save = button(editing ? T('Save') : encrypted ? T('Connect') : T('Connect and publish'), 'button-primary btn-sm', async () => {
-        if (busy) return; busy = true; save.disabled = true; formError = ''; testMsg = null;
+        if (busy) return; busy = true; save.disabled = true; formError = ''; fieldErr = null; testMsg = null;
         if (isFolder) await ensureFolderAccess(draft.folderId || draft.connectionId);
         try {
             if (!editing && encrypted) {   // look at the folder first: a new library needs a passphrase twice, an existing one is joined
@@ -515,23 +805,27 @@ function formScreen(place, st, count, connections = [], places = []) {
                 await svc.update(editId, draft); await sendToWorker({ action: 'syncNow', placeId: editId });
             } else {
                 const p = await svc.add(request()); await sendToWorker({ action: 'syncNow', placeId: p.id });
-                if (p.newLibrary && !draft.ownPass) { recovery = { name: p.name, words: draft.passphrase }; view = 'recovery'; } else view = 'list';   // the suggested words are the one key to save; an own passphrase is already known to the person who typed it
+                nextPlace = p.newLibrary && p.mode === 'encrypted' && p.direction === 'twoway' && !isFolder ? p.id : '';   // a new sync library on a server: the phone is the next useful thing
+                goal = null;
+                if (p.newLibrary && !draft.ownPass) { recovery = { name: p.name, words: draft.passphrase }; view = 'recovery'; } else view = nextPlace ? 'phone' : 'list';   // the suggested words are the one key to save; an own passphrase is already known to the person who typed it
             }
             if (view === 'form') view = 'list';
             draft = null; draftSecret = ''; editServer = false;
-        } catch (e) { formError = e.message || T('Could not save this place.'); }
+        } catch (e) { setFormError(e.message || T('Could not save this place.')); if (fieldErr && conn && !editServer && !isFolder && /^syncPass|^syncUser|^syncUrl|^syncBucket/.test(fieldErr.id)) editServer = true; }
         busy = false; render();
     });
     actions.append(test, save);
     out.push(actions);
 
     if (editing) {
+        out.push(el('h3', 'settings-caption', TU('Danger zone')));
         out.push(hint(T('Removing a place stops publishing. The files already on your server stay where they are. A server that no place uses any more is forgotten with its login.')));
         const rm = el('div', 'mcp-actions');
-        rm.append(button(T('Remove this place'), 'button-danger-outline btn-sm', async () => {
-            if (!window.confirm(T('Remove this place? The files already on your server are not deleted.'))) return;
-            await svc.remove(editId); view = 'list'; draft = null; render();
-        }));
+        if (ask === 'remove') {   // asked in the page instead of a browser dialog (WCAG 3.3.4)
+            out.push(callout('danger', T('The files already on your server are not deleted.'), { title: T('Remove “{name}” from this device?', { name: place.name }) }));
+            rm.append(button(T('Remove this place'), 'button-danger-outline btn-sm', async () => { ask = ''; await svc.remove(editId); view = 'list'; draft = null; render(); }),
+                button(T('Cancel'), 'button-secondary btn-sm', () => { ask = ''; render(); }));
+        } else rm.append(button(T('Remove this place…'), 'button-danger-outline btn-sm', () => { ask = 'remove'; render().then(() => { const b = [...document.querySelectorAll('#syncSettings button')].find((x) => x.textContent === T('Cancel')); if (b) b.focus(); }); }));
         out.push(rm);
     }
     return out;

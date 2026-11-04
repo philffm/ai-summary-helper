@@ -1205,7 +1205,10 @@ async function untrackFeedTab(tabId, closeNow = false, delay = 0) {
 //   { id, kind: 'tab', tabId, url, title, message }   → summarize an already open tab
 //   { id, kind: 'feed', url, title, msg }              → open a feed link (or reuse its tab), then summarize it
 const SUM_JOB_TIMEOUT = 10 * 60 * 1000;   // safety net if no completion message ever arrives
-const sumJobs = { running: null, queue: [], seq: 0, timer: null, ready: null };
+// A job counts as started-up for this long before a dead one may be cleared (a feed tab still has to load).
+const SUM_JOB_GRACE = { tab: 20 * 1000, feed: 90 * 1000 };
+const SUM_JOB_PROBE = 30 * 1000;           // while something waits, check this often that the running job is still alive
+const sumJobs = { running: null, queue: [], seq: 0, timer: null, probe: null, reaping: null, ready: null };
 const sumJobInfo = (j) => j ? { id: j.id, url: j.url || '', title: j.title || '', kind: j.kind, tabId: j.tabId == null ? null : j.tabId } : null;
 function sumJobKey(u) {
     try {
@@ -1290,21 +1293,52 @@ function sumJobsReady() {
 function armSumJobTimer(id) {
     clearTimeout(sumJobs.timer);
     sumJobs.timer = setTimeout(() => sumJobDone(id), SUM_JOB_TIMEOUT);
+    clearInterval(sumJobs.probe);
+    sumJobs.probe = setInterval(() => { if (sumJobs.queue.length) reapSumJob(); }, SUM_JOB_PROBE);
 }
 function sumJobStart(job) {
+    job.startedAt = Date.now();
     sumJobs.running = job; armSumJobTimer(job.id); publishSumJobs();
     Promise.resolve().then(() => runSumJob(job)).catch(() => sumJobDone(job.id));
+}
+/**
+ * Is the running job still working? The finish message can get lost (the page navigated and the background finished the
+ * summary, the content script bailed out early, the worker was restarted and lost its timers), and then the queue would
+ * wait forever. Ask the background's own stream list and the tab itself.
+ */
+async function sumJobAlive(job) {
+    const age = Date.now() - (job.startedAt || 0);
+    if (!job.startedAt || age > SUM_JOB_TIMEOUT) return false;   // a job from before this fix, or the 10-minute net
+    if (age < (SUM_JOB_GRACE[job.kind] || SUM_JOB_GRACE.tab)) return true;
+    if (job.tabId == null) return false;
+    try { for (const r of runs.values()) if (r.tabId === job.tabId && !r.saved) return true; } catch (_) { /* no streams yet */ }
+    try {
+        const st = await chrome.tabs.sendMessage(job.tabId, { action: 'getSummaryState' });
+        return !!(st && (st.running || st.busy));
+    } catch (_) { return false; }   // tab gone or no content script: nothing runs there
+}
+/** Clear a running job that is no longer alive, so the next one starts. Resolves once checked. */
+function reapSumJob() {
+    if (sumJobs.reaping) return sumJobs.reaping;
+    const job = sumJobs.running;
+    if (!job) return Promise.resolve();
+    sumJobs.reaping = sumJobAlive(job)
+        .then(alive => { if (!alive && sumJobs.running && sumJobs.running.id === job.id) sumJobDone(job.id); })
+        .catch(() => {})
+        .finally(() => { sumJobs.reaping = null; });
+    return sumJobs.reaping;
 }
 function sumJobDone(id, ok) {
     if (!sumJobs.running || sumJobs.running.id !== id) return;
     const finished = sumJobs.running;
-    clearTimeout(sumJobs.timer); sumJobs.running = null;
+    clearTimeout(sumJobs.timer); clearInterval(sumJobs.probe); sumJobs.running = null;
     const next = sumJobs.queue.shift();
     if (next) sumJobStart(next); else { publishSumJobs(); if (ok) notifySumDone(finished); }
 }
 /** Add a job; it starts right away when nothing is running. */
 async function enqueueSumJob(job) {
     await sumJobsReady();
+    await reapSumJob();
     const key = sumJobKey(job.url);
     const dup = [sumJobs.running, ...sumJobs.queue].find(j => j && sumJobKey(j.url) === key);
     if (dup) return { ok: true, queued: dup !== sumJobs.running, duplicate: true, id: dup.id };
@@ -1475,7 +1509,10 @@ chrome.runtime.onMessage.addListener((msg, sender, sendResponse) => {
     }
     if (msg && msg.action === 'syncNow') {        // from the settings screen: run one place or all, keep running after the popup closes
         if (!syncSvc) { sendResponse({ ok: false, error: 'unavailable' }); return false; }
-        syncSvc.syncNow(msg.placeId ? String(msg.placeId) : undefined, { confirmRemovals: !!msg.confirmRemovals })
+        // decide: { keep: [record key], remove: [record key] }, the answers to deletions from other devices, one place at a time
+        const keyList = (v) => (Array.isArray(v) ? v : []).map(String).filter((k) => /^(article|hl|coll|note):[A-Za-z0-9_.:-]{1,200}$/.test(k)).slice(0, 500);
+        const decide = msg.placeId && msg.decide && typeof msg.decide === 'object' ? { keep: keyList(msg.decide.keep), remove: keyList(msg.decide.remove) } : null;
+        syncSvc.syncNow(msg.placeId ? String(msg.placeId) : undefined, { confirmRemovals: !!msg.confirmRemovals, decide })
             .then((results) => sendResponse({ ok: true, results })).catch((e) => sendResponse({ ok: false, error: String((e && e.message) || e) }));
         return true;
     }
@@ -1632,7 +1669,7 @@ chrome.runtime.onMessage.addListener((msg, sender, sendResponse) => {
     }
     if (msg.action === 'cancelQueuedSummary') { cancelSumJob(msg.id).then(ok => sendResponse({ ok })); return true; }
     if (msg.action === 'summaryJobs') {
-        sumJobsReady().then(() => sendResponse({ ok: true, running: sumJobInfo(sumJobs.running), queue: sumJobs.queue.map(sumJobInfo) }));
+        sumJobsReady().then(reapSumJob).then(() => sendResponse({ ok: true, running: sumJobInfo(sumJobs.running), queue: sumJobs.queue.map(sumJobInfo) }));
         return true;
     }
 
@@ -1911,13 +1948,17 @@ async function finishRun(r) {
         r.parser.end();
         const out = await FIN.finishDetached(r.ctx, r.parser.summary, r.parser.thinking);
         if (out.error) { if (r.ctx.summaryMode === 'extension') broadcast({ action: 'summaryError', error: out.error }); return; }
+        r.ok = true;
         if (r.ctx.summaryMode === 'extension') {
             broadcast({ action: 'summaryComplete', summary: out.cleanHtml, title: out.title, url: r.ctx.sourceUrl, timestamp: new Date().toISOString(), tags: out.tags, modelId: r.ctx.modelIdentifier, moodScore: out.moodScore, questions: out.questions, quick: out.quick, meta: out.pageMeta, content: r.ctx.contentHtml });
         }
         if (out.article && out.article.id) broadcast({ action: 'summarySaved', id: out.article.id, url: r.ctx.sourceUrl });
     } catch (e) {
         console.error('[AISH Background] Could not finish the summary of a closed page:', e);
-    } finally { r.saved = true; runs.delete(r.id); }
+    } finally {
+        r.saved = true; runs.delete(r.id);
+        sumJobsReady().then(() => sumJobTabFinished(r.tabId, !!r.ok));   // its own broadcast never reaches this listener
+    }
 }
 try {
     chrome.tabs.onUpdated.addListener((tabId, info) => {
@@ -2029,7 +2070,11 @@ async function handleStreamFetch(msg, tabId) {
             ? `Request timed out after ${IDLE_TIMEOUT_MS / 1000}s of inactivity`
             : err.message;
         push({ error: errorMessage });
-        if (run) { if (run.detached && run.ctx.summaryMode === 'extension') broadcast({ action: 'summaryError', error: errorMessage }); runs.delete(requestId); }
+        if (run) {
+            if (run.detached && run.ctx.summaryMode === 'extension') broadcast({ action: 'summaryError', error: errorMessage });
+            if (run.detached) sumJobsReady().then(() => sumJobTabFinished(run.tabId, false));   // the page is gone, nobody else reports it
+            runs.delete(requestId);
+        }
     } finally {
         activeStreams.delete(requestId);
     }

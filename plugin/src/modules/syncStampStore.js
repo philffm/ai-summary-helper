@@ -8,7 +8,7 @@
 //
 // Ids in the sidecar are namespaced: article:<id>, hl:<id>, coll:<id>.
 import { SK, ARTICLE_REC, SYNC_STAMPS, isArticleRecKey, isCollRecKey, isNoteRecKey, articleRecKey, collRecKey, noteRecKey, syncStampsKey } from './storageKeys.js';
-import { hashValue, stampRecord, tombstone, syncFields, unknownFields, RECORD_SIDE } from './syncStamps.js';
+import { hashValue, stampRecord, tombstone, syncFields, unknownFields, RECORD_SIDE, tick, observe } from './syncStamps.js';
 
 export const shardOf = (key) => hashValue(key).slice(-2).padStart(2, '0');
 
@@ -118,6 +118,24 @@ export function createStampStore({ storage, now = Date.now, lock = withStampLock
     }
 
     /** Explicit deletion markers. type: 'article' | 'hl' | 'coll'. The only way a tombstone is made. */
+    /**
+     * Keeps records another device deleted: each gets a fresh stamp above the marker it must beat ([{ key, above }]), with every
+     * field stamped again, so the record wins the merge and goes back out. A record that is gone here, or a tombstone, is left alone.
+     */
+    async function keep(list) {
+        try {
+            const want = (Array.isArray(list) ? list : []).filter((x) => x && typeof x.key === 'string');
+            if (!want.length || !(await enabled())) return 0;
+            return await commit(want.map(({ key, above }) => ({ key, apply: (prev, ctx) => {
+                if (!prev || prev.deleted || !prev.f) return { entry: prev, changed: false };
+                observe(ctx.clock, Number(above) || 0);
+                const t = tick(ctx.clock, ctx.now), f = {};
+                for (const [name, s] of Object.entries(prev.f)) f[name] = { ...s, t };
+                return { entry: { rev: { t, d: ctx.device }, f }, changed: true };
+            } })));
+        } catch (_) { return 0; }
+    }
+
     async function markDeleted(type, ids) {
         try {
             if (!(await enabled())) return 0;
@@ -245,5 +263,5 @@ export function createStampStore({ storage, now = Date.now, lock = withStampLock
         return out;
     }
 
-    return { onChanged, markDeleted, scan, all, adopt, release, purge, backfillHighlightIds, enabled };
+    return { onChanged, markDeleted, keep, scan, all, adopt, release, purge, backfillHighlightIds, enabled };
 }

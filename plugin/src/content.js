@@ -236,6 +236,7 @@ import {
   // The summary that is running right now (context + latest progress), so a panel that opens
   // after it started — e.g. when it was started from the on-page tool — can show it.
   let liveRun = null;
+  let summaryBusy = 0;   // panel summaries between the request and their end (liveRun only starts once the page is read)
 
   chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
     // Normalize casing so both 'PING' and 'ping' work.
@@ -246,7 +247,7 @@ import {
     }
 
     if (request.action === 'getSummaryState') {
-      sendResponse({ running: !!liveRun, context: liveRun && liveRun.context, progress: liveRun && liveRun.progress });
+      sendResponse({ running: !!liveRun, busy: summaryBusy > 0, context: liveRun && liveRun.context, progress: liveRun && liveRun.progress });
       return false;
     }
 
@@ -412,7 +413,8 @@ import {
             const hiddenTarget = document.createElement('div');
             hiddenTarget.style.cssText = 'position:fixed;left:-9999px;top:0;width:1px;height:1px;overflow:hidden;';
             document.body.appendChild(hiddenTarget);
-            fetchSummary(
+            summaryBusy++;
+            Promise.resolve(fetchSummary(
               popupQuestions,
               selectedLanguage,
               promptToUse,
@@ -421,7 +423,7 @@ import {
               data.debugEnabled || false,
               summaryMode,
               attachment
-            );
+            )).catch(() => {}).finally(() => { summaryBusy = Math.max(0, summaryBusy - 1); });
           });
           return;
         }

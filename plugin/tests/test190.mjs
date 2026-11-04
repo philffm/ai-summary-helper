@@ -12,6 +12,7 @@ const V = await imp('modules/syncView.js');
 const { SK, articleRecKey } = K;
 
 const wait = (ms = 40) => new Promise((r) => setTimeout(r, ms));
+const until = async (fn, ms = 4000) => { const t0 = Date.now(); while (!fn() && Date.now() - t0 < ms) await wait(10); };   // the suite runs timers 8x faster: wait for the state, not a fixed time
 const $ = (id) => document.getElementById(id);
 const root = () => $('syncSettings');
 const text = () => root().textContent.replace(/\s+/g, ' ');
@@ -30,15 +31,18 @@ assert.match(V.phaseText({ phase: 'uploading', done: 2, total: 5, local: true })
 // folders the browser took the permission back from are found (and only those)
 const vault = { load: async (id) => ({ queryPermission: async () => (id === 'a' ? 'prompt' : 'granted') }) };
 assert.deepEqual((await V.lapsedFolders([{ id: 'a', service: 'folder', name: 'A' }, { id: 'b', service: 'folder', name: 'B' }, { id: 'c', service: 'webdav', name: 'C' }], vault)).map((c) => c.id), ['a']);
-// start: explains itself, offers one thing, the Settings row says Off
+// start: explains itself and starts from the goal (sync, back up, publish), the Settings row says Off
 V.initSyncView(); await wait();
 assert.match(text(), /Nothing leaves this device until you add one/);
-assert.ok(byText('button', 'Add a place'));
-assert.ok(!root().querySelector('.settings-row'), 'no places yet');
+assert.deepEqual([...root().querySelectorAll('.settings-row-title')].map((e) => e.textContent), ['Sync my devices', 'Back up', 'Publish a reading list']);
+assert.ok(!root().querySelector('.sync-place'), 'no places yet');
+assert.ok(document.querySelector('#settingsPanel-sync .settings-panel-head') && !document.querySelector('#settingsPanel-sync .settings-panel-head').hidden, 'the list keeps the panel header');
 assert.equal(document.querySelector('.settings-row-sub[data-sub="sync"]').textContent, 'Off');
 
 // add: WebDAV and S3 are available, the folder only where the browser can pick one
-click(byText('button', 'Add a place')); await wait();
+click(byText('button', 'Sync my devices')); await wait();
+assert.match(text(), /Where should your library live/);
+assert.ok(document.querySelector('#settingsPanel-sync .settings-panel-head').hidden, 'one header per screen: the add screen brings its own');
 let rows = [...root().querySelectorAll('.settings-row')];
 assert.equal(rows.length, 3);
 assert.ok(!rows[0].disabled && !rows[1].disabled && rows[2].disabled, 'WebDAV and S3 are available; the folder needs a browser that can pick one');
@@ -46,7 +50,7 @@ assert.match(rows[1].textContent, /S3-compatible/);
 // the S3 row opens a form with bucket, region and access key (not a folder form)
 click(rows[1]); await wait(100);
 assert.ok($('syncBucket') && $('syncRegion') && $('syncUser') && $('syncUrl'), 'S3 fields'); assert.match(root().textContent, /Access key ID/); assert.match(root().textContent, /Secret access key/);
-click(byText('button', 'Sync & backup')); await wait(60); click(byText('button', 'Add a place')); await wait(60); rows = [...root().querySelectorAll('.settings-row')];
+click(byText('button', 'Sync & backup')); await wait(60); click(byText('button', 'Sync my devices')); await wait(60); rows = [...root().querySelectorAll('.settings-row')];
 click(rows[0]); await wait(80);
 
 // form: a new place starts encrypted (the safe choice) and asks for a passphrase twice; Readable is one tap away
@@ -108,7 +112,7 @@ assert.ok(!(SK.syncPlaces in store));
 
 // save: the place is stored (password apart), the list shows it
 type('syncPass', 'secret');
-click(byText('button', 'Connect and publish')); await wait(200);
+click(byText('button', 'Connect and publish')); await until(() => /Website list/.test((root().querySelector('.settings-row') || {}).textContent || ''));
 assert.equal(store[SK.syncPlaces].length, 1); assert.equal(store[SK.syncConnections].length, 1);
 assert.equal(store[SK.syncPlaces][0].filter.tag, 'public'); assert.equal(store[SK.syncPlaces][0].root, 'site'); assert.equal(store[SK.syncPlaces][0].viewer, false); assert.deepEqual(store[SK.syncPlaces][0].include, { highlights: true, qa: false, notes: false, reminders: false, fulltext: false });
 assert.ok(!JSON.stringify([store[SK.syncPlaces], store[SK.syncConnections]]).includes('secret'));
@@ -117,7 +121,9 @@ assert.equal(store[SK.syncSecrets][connId].password, 'secret');
 const row = root().querySelector('.settings-row');
 assert.ok(row && /Website list/.test(row.textContent) && /My site \/ site/.test(row.textContent) && /Not published yet/.test(row.textContent));
 assert.match(document.querySelector('.settings-row-sub[data-sub="sync"]').textContent, /^1 place/);
-assert.ok(byText('button', 'Sync now'));
+assert.ok(byText('button', 'Sync all now'));
+assert.match(root().querySelector('.sync-summary').textContent, /Nothing synced yet/);
+assert.equal(root().querySelector('.sync-place .sync-status').dataset.tone, 'idle');
 
 // open it: status, publish now, remove; the saved password is not shown
 click(row); await wait(100);
@@ -125,6 +131,8 @@ assert.match(text(), /Not published yet/);
 assert.ok(byText('button', 'Publish now'));
 assert.ok(!$('syncPass'), 'the server login is not open while you edit the folder');
 assert.match(text(), /1 place uses this server/);
+assert.ok([...root().querySelectorAll('details.sync-fold')].every((d) => !d.open), 'editing: the settings are folded');
+assert.ok(!root().querySelector('.mcp-tile'), 'the kind is not offered again when it cannot change');
 click(byText('button', 'Edit server')); await wait(80);
 assert.equal($('syncPass').value, '', 'a saved password is never shown again');
 assert.equal($('syncPass').placeholder, 'Unchanged');
@@ -148,10 +156,19 @@ assert.deepEqual(store[SK.syncPlaces].map((p) => p.root), ['site', 'backup']); a
 const idsNow = () => store[SK.syncPlaces].map((p) => p.id);
 const id = store[SK.syncPlaces][0].id;
 
-// an error from the last run is shown on the place
+// an error from the last run is shown on the place: red, with a glyph and the words, and a Fix button
 store[SK.syncStatus] = { [id]: { at: new Date().toISOString(), ok: false, error: { kind: 'auth', message: 'The server did not accept the username and password.' } } };
 V.initSyncView(); await wait();
 assert.match(root().querySelector('.settings-row').textContent, /did not accept/);
+assert.equal(root().querySelector('.sync-place .sync-status').dataset.tone, 'error', 'an error is not shown as "working"');
+assert.ok(root().querySelector('.sync-place').classList.contains('is-error'));
+assert.match(root().querySelector('.sync-summary').textContent, /1 place needs you/);
+const fixBtn = root().querySelector('.sync-place-action'); assert.equal(fixBtn.textContent, 'Fix');
+click(fixBtn); await wait(120);
+assert.ok($('syncPass') && $('syncPass').getAttribute('aria-invalid') === 'true', 'Fix opens the server login with the error at the password field');
+assert.match($($('syncPass').getAttribute('aria-describedby').split(' ')[0]).textContent, /did not accept/);
+assert.ok(root().querySelector('details.sync-fold[data-fold="server"]').open);
+click(byText('button', '‹ Sync')); await wait(80);
 
 // live progress: the row says what it is doing, the form's status card follows without touching what is typed
 store[SK.syncStatus] = { [id]: { at: new Date().toISOString(), ok: true, pushed: 1, running: { phase: 'uploading', done: 12, total: 340, since: Date.now(), at: Date.now() } } };
@@ -175,15 +192,22 @@ await wait(80);
 assert.ok(!$('syncHero').querySelector('progress'), 'a stale run is not shown as running');
 click(byText('button', '‹ Sync')); await wait(80);
 
-// remove
+// remove: asked in the page (no browser dialog), Cancel keeps it
+const exact = (t) => [...root().querySelectorAll('button')].find((b) => b.textContent === t);
+w.confirm = () => { throw new Error('no window.confirm'); };
 click(root().querySelector('.settings-row')); await wait(100);
-click(byText('button', 'Remove this place')); await wait(150);
+click(exact('Remove this place…')); await wait(80);
+assert.match(text(), /Remove “Renamed site” from this device\?/);
+click(exact('Cancel')); await wait(80);
+assert.equal(store[SK.syncPlaces].length, 2, 'cancel keeps it');
+click(exact('Remove this place…')); await wait(80);
+click(exact('Remove this place')); await wait(150);
 assert.equal(store[SK.syncPlaces].length, 1); assert.equal(store[SK.syncConnections].length, 1, 'the server stays while another folder uses it');
 click(root().querySelector('.settings-row')); await wait(100);
-click(byText('button', 'Remove this place')); await wait(150);
+click(exact('Remove this place…')); await wait(80); click(exact('Remove this place')); await wait(150);
 assert.deepEqual(store[SK.syncPlaces], []); assert.deepEqual(store[SK.syncConnections], []);
 assert.ok(!(connId in store[SK.syncSecrets]), 'the last place takes the server and its login with it');
-assert.ok(!root().querySelector('.settings-row'));
+assert.ok(!root().querySelector('.sync-place'));
 void idsNow;
 
 console.log('TEST 190 OK');

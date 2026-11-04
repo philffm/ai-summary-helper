@@ -23,7 +23,8 @@ import { canonicalOrder, IDENTITY_FIELDS } from './syncIdentity.js';
 
 const TYPES = new Set(['article', 'hl', 'coll', 'note']);
 export const TOMBSTONE_TTL_MS = 90 * 24 * 3600 * 1000;   // a deletion marker is kept this long; a device away for longer rejoins instead of pushing old records back
-export const DELETE_GUARD_MIN = 10, DELETE_GUARD_SHARE = 0.25;   // deletions from other devices applied without asking: the larger of 10 and a quarter of what is here
+export const DELETE_GUARD_MIN = 10, DELETE_GUARD_SHARE = 0.25;
+export const PENDING_MAX = 500;   // deletions listed for review in one status (the count stays exact beyond it)   // deletions from other devices applied without asking: the larger of 10 and a quarter of what is here
 const REAL_CLOCK = 1.5e12;   // stamps from a real clock only: a made-up small time says nothing about age
 const KEY_RX = /^(article|hl|coll|note):[A-Za-z0-9_.:-]{1,200}$/;
 export const RECORD_DIR = 'r';
@@ -33,13 +34,17 @@ const clone = (x) => JSON.parse(JSON.stringify(x));
 const status = (e) => (e && e.status) || 0;
 
 /**
- * @param {{ place, storage, store, keys, meta, stampStore, adapter, backup?, now?, budgetMs?, chunk?, concurrency?, onProgress? }} o
- * @returns {Promise<{ pulled, applied, pushed, removed, errors: string[], more: boolean, joined: boolean }>}
+ * @param {{ place, storage, store, keys, meta, stampStore, adapter, backup?, now?, budgetMs?, chunk?, concurrency?, onProgress?, keep?, remove? }} o
+ *   keep / remove: answers to deletions that were asked about (record keys). `remove` applies those deletions now, beyond the
+ *   guard; `keep` refuses them: the record is stamped again here, so it wins over the marker and comes back on the other devices.
+ * @returns {Promise<{ pulled, applied, pushed, removed, errors: string[], more: boolean, joined: boolean, needsConfirm: number, pending: { key, at }[] }>}
  */
 export async function syncEncryptedPlace(o) {
     const { place, storage, store, keys, meta, stampStore, adapter, backup, now = Date.now, budgetMs = 150000, chunk = 25, concurrency = 4, onProgress = () => {}, pullOnly = false, pushOnly = false, forceFirst = false, confirmDeletes = false, tombstoneTtlMs = TOMBSTONE_TTL_MS } = o;
     const started = now();
-    const out = { pulled: 0, applied: 0, pushed: 0, removed: 0, merged: 0, purged: 0, needsConfirm: 0, stale: false, errors: [], more: false, joined: false };
+    const out = { pulled: 0, applied: 0, pushed: 0, removed: 0, merged: 0, purged: 0, needsConfirm: 0, pending: [], kept: 0, stale: false, errors: [], more: false, joined: false };
+    const keepSet = new Set(Array.isArray(o.keep) ? o.keep : []), removeSet = new Set(Array.isArray(o.remove) ? o.remove : []);
+    const toKeep = new Map();   // key → the time of the marker it must beat
     const became = new Set();   // articles that got live data in this run (new here, or brought back): the only ones that can have a twin from another device
     const lk = syncLedgerKey(place.id);
     const L = (await get(storage, { [lk]: {} }))[lk] || {};
@@ -98,8 +103,13 @@ export async function syncEncryptedPlace(o) {
                 local = { rev: st.rev, f, values };
             }
             const r = mergeRecord(local, rec);
-            if (r.merged.deleted && d && r.changedLocal && !confirmDeletes) {   // another device deleted something that is here: a few are normal, a lot is asked about first
-                if (deletesApplied >= deleteBudget) { out.needsConfirm++; continue; }   // left alone: not adopted, not in the ledger, seen again next run
+            if (r.merged.deleted && d && r.changedLocal && !confirmDeletes && !removeSet.has(key)) {   // another device deleted something that is here: a few are normal, a lot is asked about first
+                if (keepSet.has(key)) { toKeep.set(key, (rec.rev && rec.rev.t) || 0); continue; }   // the person said keep it: not adopted, stamped again below
+                if (deletesApplied >= deleteBudget) {   // left alone: not adopted, not in the ledger, seen again next run
+                    out.needsConfirm++;
+                    if (out.pending.length < PENDING_MAX) out.pending.push({ key, at: (rec.rev && rec.rev.t) || 0 });
+                    continue;
+                }
                 deletesApplied++;
             }
             if (r.changedLocal) {
@@ -135,6 +145,12 @@ export async function syncEncryptedPlace(o) {
         await save();
     }
     if (out.more || pullOnly) { out.joined = !out.more; await save(); return out; }
+    // kept despite a deletion elsewhere: a newer stamp here wins over the marker, so the push below brings it back everywhere
+    if (toKeep.size && stampStore.keep) {
+        out.kept = await stampStore.keep([...toKeep].map(([key, above]) => ({ key, above })));
+        stamps = await stampStore.all();
+        for (const key of toKeep.keys()) dirty.add(key);
+    }
     await dedupe();
 
     /**

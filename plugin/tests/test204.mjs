@@ -17,8 +17,9 @@ const byText = (sel, t) => [...root().querySelectorAll(sel)].find((e) => e.textC
 const type = (id, v) => { const i = $(id); i.value = v; i.dispatchEvent(new w.Event('input', { bubbles: true })); };
 store[SK.articlesIndex] = [{ id: 'a1', url: 'https://x.test/a1', title: 'One', timestamp: '2026-03-01T00:00:00Z', tags: [], summary: 's' }];
 store[articleRecKey('a1')] = { content: 'c', summary: 's' };
-V.initSyncView(); await until(() => byText('button', 'Add a place'));
-click(byText('button', 'Add a place')); await until(() => root().querySelectorAll('.settings-row').length); click(root().querySelectorAll('.settings-row')[0]); await until(() => $('syncServerName'));
+document.getElementById('settingsPanel-sync').hidden = false;   // shown, as when it is open (focus moves only inside what is shown)
+V.initSyncView(); await until(() => byText('button', 'Sync my devices'));
+click(byText('button', 'Sync my devices')); await until(() => /Where should your library live/.test(text())); click(root().querySelectorAll('.settings-row')[0]); await until(() => $('syncServerName'));
 
 // the server, then the choices: encrypted is on, "Sync my devices" is the default
 type('syncServerName', 'Cloud'); type('syncUrl', 'https://cloud.test/dav/'); type('syncUser', 'phil'); type('syncPass', 'secret');
@@ -47,7 +48,11 @@ const shown = [...root().querySelectorAll('.sync-recovery')]; assert.equal(shown
 assert.ok(!/recovery key/i.test(text()), 'no second key to explain');
 const done = byText('button', 'Done'); assert.ok(done.disabled, 'Done waits for the box');
 const box = root().querySelector('input[type=checkbox]'); box.checked = true; box.dispatchEvent(new w.Event('change', { bubbles: true }));
-assert.ok(!done.disabled); click(done); await until(() => root().querySelector('.settings-row'));
+assert.ok(!done.disabled); click(done); await until(() => /is set up/.test(text()));
+// a new sync library: the phone is offered next; its code (it holds the login) only on request
+assert.match(text(), /“My devices” is set up/); assert.match(text(), /Add your phone/i);
+assert.ok(byText('button', 'Show code for the phone')); assert.ok(!root().querySelector('.phone-inbox-qr'), 'no code until asked');
+click(byText('button', 'Not now')); await until(() => root().querySelector('.settings-row'));
 assert.equal(store[SK.syncPlaces].length, 1); assert.equal(store[SK.syncPlaces][0].mode, 'encrypted');
 assert.ok(!JSON.stringify(store[SK.syncPlaces]).includes(words), 'the passphrase does not sit with the place');
 assert.ok(root().querySelector('.settings-row'), 'back at the list');
@@ -59,11 +64,14 @@ click(byText('button', 'Test connection')); await until(() => /already holds/.te
 assert.match(text(), /already holds an encrypted library/);
 assert.ok($('syncPassphrase') && !$('syncRecovery') && !$('syncPassphrase2'), 'one field for the passphrase or the recovery key, asked once');
 assert.match(text(), /Make a backup of this device first/);
-type('syncPassphrase', 'not the passphrase'); click(byText('button', 'Connect')); await until(() => root().querySelector('.phone-inbox-error'));
-assert.match(root().querySelector('.phone-inbox-error').textContent, /backup of this device first/, 'the backup box is required');
+const err = () => root().querySelector('.sync-callout[data-tone="danger"][role="alert"]');
+type('syncPassphrase', 'not the passphrase'); click(byText('button', 'Connect')); await until(() => err());
+assert.match(err().textContent, /backup of this device first/, 'the backup box is required');
 const ack = [...root().querySelectorAll('label.mcp-row')].find((l) => /I made a backup/.test(l.textContent)).querySelector('input'); ack.checked = true; ack.dispatchEvent(new w.Event('change', { bubbles: true }));
 click(byText('button', 'Connect')); await until(() => /Wrong passphrase/.test(text()));
-assert.match(root().querySelector('.phone-inbox-error').textContent, /Wrong passphrase/); assert.equal(store[SK.syncPlaces].length, 1, 'a wrong passphrase saves nothing');
+assert.match(err().textContent, /Wrong passphrase/); assert.equal(store[SK.syncPlaces].length, 1, 'a wrong passphrase saves nothing');
+assert.equal($('syncPassphrase').getAttribute('aria-invalid'), 'true', 'and it sits at the passphrase field');
+assert.equal(document.activeElement, $('syncPassphrase'), 'with the focus on it');
 type('syncPassphrase', words.toUpperCase().replace(/ /g, '-  ')); click(byText('button', 'Connect')); await until(() => store[SK.syncPlaces].length === 2);
 assert.equal(store[SK.syncPlaces].length, 2, 'the words in capitals with dashes and double spaces still join it'); assert.ok(!/Save your recovery key/.test(text()), 'a joined place shows no new key');
 // the list shows both as encrypted
