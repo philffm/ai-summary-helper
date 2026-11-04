@@ -24,3 +24,5 @@ gradle-wrapper.jar
 gradle-wrapper.properties_site/
 videos/
 marketing/
+# Claude Code local state
+.claude/
