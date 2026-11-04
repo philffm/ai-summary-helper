@@ -1,0 +1,245 @@
+{
+  "site": {
+    "semantic": {
+      "surface": {
+        "bg": {
+          "$type": "color",
+          "$value": "{site.primitive.palette.gray-990}"
+        },
+        "bg-raised": {
+          "$type": "color",
+          "$value": "{site.primitive.palette.gray-950}"
+        },
+        "bg-sunken": {
+          "$type": "color",
+          "$value": "{site.primitive.palette.gray-900}"
+        },
+        "surface-1": {
+          "$type": "color",
+          "$value": "{color.white}",
+          "$extensions": {
+            "eu.byphil.ds": {
+              "alpha": 0.05
+            }
+          }
+        },
+        "surface-1-strong": {
+          "$type": "color",
+          "$value": "{color.white}",
+          "$extensions": {
+            "eu.byphil.ds": {
+              "alpha": 0.08
+            }
+          }
+        },
+        "surface-2": {
+          "$type": "color",
+          "$value": "{color.white}",
+          "$extensions": {
+            "eu.byphil.ds": {
+              "alpha": 0.025
+            }
+          }
+        },
+        "surface-2-strong": {
+          "$type": "color",
+          "$value": "{color.black}",
+          "$extensions": {
+            "eu.byphil.ds": {
+              "alpha": 0.14
+            }
+          }
+        },
+        "input-bg": {
+          "$type": "color",
+          "$value": "{color.black}",
+          "$extensions": {
+            "eu.byphil.ds": {
+              "alpha": 0.25
+            }
+          }
+        },
+        "card-shadow": {
+          "$type": "shadow",
+          "$value": "{color.black}",
+          "$extensions": {
+            "eu.byphil.ds": {
+              "alpha": 0.6
+            }
+          }
+        },
+        "sheen-strong": {
+          "$type": "color",
+          "$value": "{color.white}",
+          "$extensions": {
+            "eu.byphil.ds": {
+              "alpha": 0.35
+            }
+          }
+        },
+        "glow-accent": {
+          "$type": "color",
+          "$value": "{brand.accent.450}",
+          "$extensions": {
+            "eu.byphil.ds": {
+              "alpha": 0.16
+            }
+          }
+        },
+        "glow-highlight": {
+          "$type": "color",
+          "$value": "{brand.highlight.400}",
+          "$extensions": {
+            "eu.byphil.ds": {
+              "alpha": 0.12
+            }
+          }
+        },
+        "grain-dot": {
+          "$type": "color",
+          "$value": "{color.white}",
+          "$extensions": {
+            "eu.byphil.ds": {
+              "alpha": 0.035
+            }
+          }
+        },
+        "surface-bar": {
+          "$type": "color",
+          "$value": "{color.ink.nav}",
+          "$extensions": {
+            "eu.byphil.ds": {
+              "alpha": 0.72
+            }
+          }
+        },
+        "surface-bar-solid": {
+          "$type": "color",
+          "$value": "{color.ink.nav}",
+          "$extensions": {
+            "eu.byphil.ds": {
+              "alpha": 0.97
+            }
+          }
+        }
+      },
+      "text": {
+        "text": {
+          "$type": "color",
+          "$value": "{site.primitive.palette.gray-50}"
+        },
+        "text-muted": {
+          "$type": "color",
+          "$value": "{site.primitive.palette.gray-300}"
+        }
+      },
+      "accent": {
+        "accent": {
+          "$type": "color",
+          "$value": "{site.primitive.palette.brand-accent-400}"
+        },
+        "accent-text": {
+          "$type": "color",
+          "$value": "{site.primitive.palette.brand-accent-300}"
+        },
+        "accent-fill": {
+          "$type": "color",
+          "$value": "{site.primitive.palette.brand-accent-350}"
+        },
+        "accent-fill-hi": {
+          "$type": "color",
+          "$value": "{site.primitive.palette.brand-accent-300}"
+        },
+        "on-accent": {
+          "$type": "color",
+          "$value": "{site.primitive.palette.navy-950}"
+        },
+        "highlight": {
+          "$type": "color",
+          "$value": "{site.primitive.palette.brand-highlight-400}"
+        },
+        "highlight-text": {
+          "$type": "color",
+          "$value": "{site.primitive.palette.brand-highlight-300}"
+        },
+        "highlight-fill": {
+          "$type": "color",
+          "$value": "{site.primitive.palette.brand-highlight-300}"
+        },
+        "highlight-fill-hover": {
+          "$type": "color",
+          "$value": "{site.primitive.palette.brand-highlight-400}"
+        },
+        "on-highlight": {
+          "$type": "color",
+          "$value": "{site.primitive.palette.navy-950}"
+        },
+        "highlight-subtle": {
+          "$type": "color",
+          "$value": "{brand.highlight.400}",
+          "$extensions": {
+            "eu.byphil.ds": {
+              "alpha": 0.08
+            }
+          }
+        },
+        "highlight-border": {
+          "$type": "color",
+          "$value": "{brand.highlight.400}",
+          "$extensions": {
+            "eu.byphil.ds": {
+              "alpha": 0.5
+            }
+          }
+        }
+      },
+      "feedback": {
+        "danger": {
+          "$type": "color",
+          "$value": "{site.primitive.palette.red-400}"
+        }
+      },
+      "outline": {
+        "border-subtle": {
+          "$type": "color",
+          "$value": "{color.white}",
+          "$extensions": {
+            "eu.byphil.ds": {
+              "alpha": 0.07
+            }
+          }
+        },
+        "border-medium": {
+          "$type": "color",
+          "$value": "{color.white}",
+          "$extensions": {
+            "eu.byphil.ds": {
+              "alpha": 0.13
+            }
+          }
+        },
+        "border-strong": {
+          "$type": "color",
+          "$value": "{color.white}",
+          "$extensions": {
+            "eu.byphil.ds": {
+              "alpha": 0.2
+            }
+          }
+        }
+      },
+      "elevation": {
+        "shadow-poster": {
+          "$type": "shadow",
+          "$value": "{color.black}",
+          "$extensions": {
+            "eu.byphil.ds": {
+              "alpha": 0.5
+            }
+          }
+        }
+      }
+    },
+    "component": {}
+  }
+}

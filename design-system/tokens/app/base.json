@@ -1,0 +1,704 @@
+{
+  "app": {
+    "semantic": {
+      "scale": {
+        "radius-xs": {
+          "$type": "dimension",
+          "$value": "6px"
+        },
+        "radius-sheet": {
+          "$type": "dimension",
+          "$value": "20px"
+        },
+        "text-scale": {
+          "$type": "number",
+          "$value": "1"
+        },
+        "fs-2xs": {
+          "$type": "dimension",
+          "$value": "calc(10px * {app.semantic.scale.text-scale})",
+          "$extensions": {
+            "eu.byphil.ds": {
+              "template": true
+            }
+          }
+        },
+        "fs-xs": {
+          "$type": "dimension",
+          "$value": "calc(11px * {app.semantic.scale.text-scale})",
+          "$extensions": {
+            "eu.byphil.ds": {
+              "template": true
+            }
+          }
+        },
+        "fs-sm": {
+          "$type": "dimension",
+          "$value": "calc(12px * {app.semantic.scale.text-scale})",
+          "$extensions": {
+            "eu.byphil.ds": {
+              "template": true
+            }
+          }
+        },
+        "fs-md": {
+          "$type": "dimension",
+          "$value": "calc(13px * {app.semantic.scale.text-scale})",
+          "$extensions": {
+            "eu.byphil.ds": {
+              "template": true
+            }
+          }
+        },
+        "fs-base": {
+          "$type": "dimension",
+          "$value": "calc(14px * {app.semantic.scale.text-scale})",
+          "$extensions": {
+            "eu.byphil.ds": {
+              "template": true
+            }
+          }
+        },
+        "fs-lg": {
+          "$type": "dimension",
+          "$value": "calc(16px * {app.semantic.scale.text-scale})",
+          "$extensions": {
+            "eu.byphil.ds": {
+              "template": true
+            }
+          }
+        },
+        "fs-xl": {
+          "$type": "dimension",
+          "$value": "calc(18px * {app.semantic.scale.text-scale})",
+          "$extensions": {
+            "eu.byphil.ds": {
+              "template": true
+            }
+          }
+        },
+        "fs-2xl": {
+          "$type": "dimension",
+          "$value": "calc(20px * {app.semantic.scale.text-scale})",
+          "$extensions": {
+            "eu.byphil.ds": {
+              "template": true
+            }
+          }
+        },
+        "spacing-s-0": {
+          "$type": "dimension",
+          "$value": "0"
+        },
+        "spacing-s-05": {
+          "$type": "dimension",
+          "$value": "2px"
+        },
+        "spacing-s-1": {
+          "$type": "dimension",
+          "$value": "4px"
+        },
+        "spacing-s-2": {
+          "$type": "dimension",
+          "$value": "8px"
+        },
+        "spacing-s-3": {
+          "$type": "dimension",
+          "$value": "12px"
+        },
+        "spacing-s-4": {
+          "$type": "dimension",
+          "$value": "16px"
+        },
+        "spacing-s-5": {
+          "$type": "dimension",
+          "$value": "20px"
+        },
+        "spacing-s-6": {
+          "$type": "dimension",
+          "$value": "24px"
+        },
+        "spacing-s-7": {
+          "$type": "dimension",
+          "$value": "28px"
+        },
+        "spacing-s-8": {
+          "$type": "dimension",
+          "$value": "32px"
+        },
+        "radius-sm": {
+          "$type": "dimension",
+          "$value": "8px"
+        },
+        "radius-md": {
+          "$type": "dimension",
+          "$value": "12px"
+        },
+        "radius-lg": {
+          "$type": "dimension",
+          "$value": "16px"
+        },
+        "icon-sm": {
+          "$type": "dimension",
+          "$value": "14px"
+        },
+        "icon-md": {
+          "$type": "dimension",
+          "$value": "16px"
+        },
+        "icon-lg": {
+          "$type": "dimension",
+          "$value": "20px"
+        },
+        "icon-xl": {
+          "$type": "dimension",
+          "$value": "24px"
+        },
+        "radius-xl": {
+          "$type": "dimension",
+          "$value": "24px"
+        },
+        "radius-full": {
+          "$type": "dimension",
+          "$value": "9999px"
+        }
+      },
+      "layer": {
+        "z-raised": {
+          "$type": "number",
+          "$value": "20"
+        },
+        "z-bar": {
+          "$type": "number",
+          "$value": "25"
+        },
+        "z-popover": {
+          "$type": "number",
+          "$value": "50"
+        },
+        "z-header": {
+          "$type": "number",
+          "$value": "100"
+        },
+        "z-nav": {
+          "$type": "number",
+          "$value": "101"
+        },
+        "z-fab": {
+          "$type": "number",
+          "$value": "102"
+        },
+        "z-float": {
+          "$type": "number",
+          "$value": "240"
+        },
+        "z-player": {
+          "$type": "number",
+          "$value": "250"
+        },
+        "z-sheet": {
+          "$type": "number",
+          "$value": "300"
+        },
+        "z-modal": {
+          "$type": "number",
+          "$value": "1000"
+        },
+        "z-toast": {
+          "$type": "number",
+          "$value": "1001"
+        },
+        "z-toast-top": {
+          "$type": "number",
+          "$value": "1100"
+        }
+      },
+      "base": {
+        "on-solid": {
+          "$type": "color",
+          "$value": "{color.white}",
+          "$description": "Text/icons on a fill that is coloured in every theme (badges, media, the green saved button)."
+        },
+        "shade": {
+          "$type": "color",
+          "$value": "{color.black}",
+          "$description": "Black for scrims and shadows; always used with an alpha (color-mix)."
+        },
+        "neutral-tint": {
+          "$type": "color",
+          "$value": "{color.grey.mid}",
+          "$description": "Mid grey, readable as a tint on light and dark surfaces; used with an alpha."
+        }
+      },
+      "feedback": {
+        "favorite": {
+          "$type": "color",
+          "$value": "{color.yellow.400}",
+          "$description": "Star / favourite yellow."
+        },
+        "ok-bright": {
+          "$type": "color",
+          "$value": "{color.green.500}",
+          "$description": "Bright success green for savings, feed badges and progress fills."
+        },
+        "ok-strong": {
+          "$type": "color",
+          "$value": "color-mix(in srgb, {app.semantic.feedback.ok} 85%, {app.semantic.base.on-solid})",
+          "$description": "Second stop of the success gradient (podcast button).",
+          "$extensions": {
+            "eu.byphil.ds": {
+              "template": true
+            }
+          }
+        },
+        "on-warn": {
+          "$type": "color",
+          "$value": "{color.amber.950}",
+          "$description": "Text on a --mood-warn fill."
+        }
+      },
+      "elevation": {
+        "elevation-1": {
+          "$type": "shadow",
+          "$value": "0 2px 8px {color.black@0.1}",
+          "$description": "Subtle lift: images, small cards.",
+          "$extensions": {
+            "eu.byphil.ds": {
+              "template": true
+            }
+          }
+        },
+        "elevation-2": {
+          "$type": "shadow",
+          "$value": "0 2px 8px {color.black@0.2}",
+          "$description": "Thumbs, floating buttons (second shadow layer).",
+          "$extensions": {
+            "eu.byphil.ds": {
+              "template": true
+            }
+          }
+        },
+        "elevation-3": {
+          "$type": "shadow",
+          "$value": "0 4px 14px {color.black@0.2}",
+          "$description": "Raised cards, covers, play button.",
+          "$extensions": {
+            "eu.byphil.ds": {
+              "template": true
+            }
+          }
+        },
+        "elevation-4": {
+          "$type": "shadow",
+          "$value": "0 8px 24px {color.black@0.2}",
+          "$description": "Popover menus.",
+          "$extensions": {
+            "eu.byphil.ds": {
+              "template": true
+            }
+          }
+        },
+        "elevation-up": {
+          "$type": "shadow",
+          "$value": "0 -4px 20px {color.black@0.15}",
+          "$description": "Panels anchored to the bottom edge.",
+          "$extensions": {
+            "eu.byphil.ds": {
+              "template": true
+            }
+          }
+        }
+      },
+      "font": {
+        "font-ui": {
+          "$type": "fontFamily",
+          "$value": "{brand.font.app}",
+          "$description": "UI typeface of the extension (brand)."
+        }
+      },
+      "surface": {
+        "surface-busy": {
+          "$type": "color",
+          "$value": "{color.neutral.900}",
+          "$description": "Summarise button while a request runs."
+        },
+        "surface-paper": {
+          "$type": "color",
+          "$value": "{color.white}",
+          "$description": "QR codes need a white quiet zone in every theme."
+        }
+      }
+    },
+    "component": {
+      "player": {
+        "player-cover-from": {
+          "$type": "color",
+          "$value": "{color.indigo.500}",
+          "$extensions": {
+            "eu.byphil.ds": {
+              "fixed": "decorative placeholder cover, same in every theme"
+            }
+          }
+        },
+        "player-cover-to": {
+          "$type": "color",
+          "$value": "{color.pink.500}",
+          "$extensions": {
+            "eu.byphil.ds": {
+              "fixed": "decorative placeholder cover, same in every theme"
+            }
+          }
+        },
+        "player-bg": {
+          "$type": "color",
+          "$value": "{app.semantic.surface.surface-floating}"
+        },
+        "player-border": {
+          "$type": "color",
+          "$value": "{app.semantic.outline.outline-strong}"
+        },
+        "player-shadow": {
+          "$type": "shadow",
+          "$value": "{app.semantic.elevation.elevation-sheet}"
+        },
+        "player-fg": {
+          "$type": "color",
+          "$value": "{app.semantic.text.text-primary}"
+        },
+        "player-track": {
+          "$type": "color",
+          "$value": "{app.semantic.overlay.overlay-strong}"
+        },
+        "player-fill": {
+          "$type": "color",
+          "$value": "{app.semantic.accent.accent}"
+        },
+        "player-hover": {
+          "$type": "color",
+          "$value": "{app.semantic.overlay.overlay}"
+        },
+        "player-pill": {
+          "$type": "color",
+          "$value": "{app.semantic.overlay.overlay}"
+        },
+        "player-pill-hover": {
+          "$type": "color",
+          "$value": "{app.semantic.overlay.overlay-strong}"
+        },
+        "player-play-bg": {
+          "$type": "color",
+          "$value": "{app.semantic.accent.accent}"
+        },
+        "player-play-fg": {
+          "$type": "color",
+          "$value": "{app.semantic.accent.on-accent}"
+        },
+        "player-cover-bg": {
+          "$type": "color",
+          "$value": "{app.semantic.surface.surface-track}"
+        },
+        "player-err": {
+          "$type": "color",
+          "$value": "{app.semantic.feedback.mood-neg-text}"
+        }
+      },
+      "header": {
+        "header-h": {
+          "$type": "dimension",
+          "$value": "62px"
+        }
+      },
+      "bottom-nav": {
+        "bottom-nav-height": {
+          "$type": "dimension",
+          "$value": "60px"
+        }
+      },
+      "controls": {
+        "controls-bottom-gap": {
+          "$type": "dimension",
+          "$value": "16px"
+        },
+        "controls-overlay-height": {
+          "$type": "dimension",
+          "$value": "250px"
+        }
+      },
+      "nav": {
+        "nav-clearance": {
+          "$type": "dimension",
+          "$value": "calc({app.component.bottom-nav.bottom-nav-height} + {app.component.controls.controls-bottom-gap} + {app.semantic.scale.spacing-s-4})",
+          "$extensions": {
+            "eu.byphil.ds": {
+              "template": true
+            }
+          }
+        },
+        "nav-bg": {
+          "$type": "color",
+          "$value": "{app.semantic.surface.surface-bar}"
+        },
+        "nav-active-text": {
+          "$type": "color",
+          "$value": "{app.semantic.accent.on-accent}"
+        },
+        "nav-blob-bg": {
+          "$type": "gradient",
+          "$value": "linear-gradient(135deg, {app.semantic.accent.accent}, {app.semantic.accent.accent-light})",
+          "$extensions": {
+            "eu.byphil.ds": {
+              "template": true
+            }
+          }
+        }
+      },
+      "floating": {
+        "floating-stack-height": {
+          "$type": "dimension",
+          "$value": "calc({app.component.bottom-nav.bottom-nav-height} + {app.component.controls.controls-bottom-gap} + {app.component.controls.controls-overlay-height})",
+          "$extensions": {
+            "eu.byphil.ds": {
+              "template": true
+            }
+          }
+        }
+      },
+      "localsend": {
+        "localsend-bg": {
+          "$type": "color",
+          "$value": "{color.sky.600}",
+          "$description": "LocalSend brand blue (third-party mark).",
+          "$extensions": {
+            "eu.byphil.ds": {
+              "fixed": "LocalSend brand colour (third-party mark)"
+            }
+          }
+        }
+      },
+      "button": {
+        "button-working-bg": {
+          "$type": "color",
+          "$value": "{app.semantic.surface.surface-busy}"
+        }
+      },
+      "qr": {
+        "qr-bg": {
+          "$type": "color",
+          "$value": "{app.semantic.surface.surface-paper}"
+        }
+      },
+      "slider": {
+        "slider-track": {
+          "$type": "color",
+          "$value": "{app.semantic.control.control-track}"
+        },
+        "slider-fill": {
+          "$type": "color",
+          "$value": "{app.semantic.accent.accent}"
+        }
+      },
+      "scrollbar": {
+        "scrollbar-thumb": {
+          "$type": "color",
+          "$value": "{app.semantic.control.control-thumb}"
+        },
+        "scrollbar-thumb-hover": {
+          "$type": "color",
+          "$value": "{app.semantic.control.control-thumb-hover}"
+        }
+      },
+      "sheet": {
+        "sheet-bg": {
+          "$type": "color",
+          "$value": "{app.semantic.surface.surface-sheet}"
+        },
+        "sheet-border": {
+          "$type": "color",
+          "$value": "{app.semantic.outline.outline-strong}"
+        },
+        "sheet-scrim": {
+          "$type": "color",
+          "$value": "{app.semantic.surface.scrim}"
+        },
+        "sheet-shadow": {
+          "$type": "shadow",
+          "$value": "{app.semantic.elevation.elevation-sheet}"
+        },
+        "sheet-grab": {
+          "$type": "color",
+          "$value": "{app.semantic.control.control-grip}"
+        }
+      },
+      "note": {
+        "note-bg": {
+          "$type": "color",
+          "$value": "{app.semantic.accent.accent-subtle}"
+        },
+        "note-fg": {
+          "$type": "color",
+          "$value": "{app.semantic.text.text-link}"
+        }
+      },
+      "toast": {
+        "toast-bg": {
+          "$type": "color",
+          "$value": "{app.semantic.inverse.surface-inverse}"
+        },
+        "toast-fg": {
+          "$type": "color",
+          "$value": "{app.semantic.inverse.text-inverse}"
+        },
+        "toast-action": {
+          "$type": "color",
+          "$value": "{app.semantic.inverse.link-inverse}"
+        }
+      },
+      "track": {
+        "track-bg": {
+          "$type": "color",
+          "$value": "{app.semantic.surface.surface-track}"
+        }
+      },
+      "chart": {
+        "chart-0": {
+          "$type": "color",
+          "$value": "{app.semantic.data.data-0}"
+        },
+        "chart-1": {
+          "$type": "color",
+          "$value": "{app.semantic.data.data-1}"
+        },
+        "chart-2": {
+          "$type": "color",
+          "$value": "{app.semantic.data.data-2}"
+        },
+        "chart-3": {
+          "$type": "color",
+          "$value": "{app.semantic.data.data-3}"
+        },
+        "chart-4": {
+          "$type": "color",
+          "$value": "{app.semantic.data.data-4}"
+        },
+        "chart-5": {
+          "$type": "color",
+          "$value": "{app.semantic.data.data-5}"
+        },
+        "chart-6": {
+          "$type": "color",
+          "$value": "{app.semantic.data.data-6}"
+        },
+        "chart-7": {
+          "$type": "color",
+          "$value": "{app.semantic.data.data-7}"
+        },
+        "chart-other": {
+          "$type": "color",
+          "$value": "{app.semantic.data.data-other}"
+        },
+        "chart-gap": {
+          "$type": "color",
+          "$value": "{app.semantic.surface.glass-base}"
+        }
+      },
+      "saved-note": {
+        "saved-note-user-bg": {
+          "$type": "color",
+          "$value": "{app.semantic.annotation.annotation-user-bg}"
+        },
+        "saved-note-user-fg": {
+          "$type": "color",
+          "$value": "{app.semantic.annotation.annotation-user-fg}"
+        },
+        "saved-note-user-bar": {
+          "$type": "color",
+          "$value": "{app.semantic.annotation.annotation-user-bar}"
+        },
+        "saved-note-ghost-bg": {
+          "$type": "color",
+          "$value": "{app.semantic.annotation.annotation-ai-bg}"
+        },
+        "saved-note-ghost-fg": {
+          "$type": "color",
+          "$value": "{app.semantic.annotation.annotation-ai-fg}"
+        },
+        "saved-note-ghost-bar": {
+          "$type": "color",
+          "$value": "{app.semantic.annotation.annotation-ai-bar}"
+        },
+        "saved-note-note-bg": {
+          "$type": "color",
+          "$value": "{app.semantic.annotation.annotation-note-bg}"
+        },
+        "saved-note-note-fg": {
+          "$type": "color",
+          "$value": "{app.semantic.annotation.annotation-note-fg}"
+        },
+        "saved-note-note-bar": {
+          "$type": "color",
+          "$value": "{app.semantic.annotation.annotation-note-bar}"
+        },
+        "saved-note-quote-bg": {
+          "$type": "color",
+          "$value": "{app.semantic.annotation.annotation-quote-bg}"
+        },
+        "saved-note-edge": {
+          "$type": "shadow",
+          "$value": "{app.semantic.annotation.annotation-edge}"
+        },
+        "saved-note-danger": {
+          "$type": "color",
+          "$value": "{app.semantic.feedback.danger-text}"
+        }
+      },
+      "row": {
+        "row-bg": {
+          "$type": "color",
+          "$value": "{app.semantic.surface.surface-row}"
+        },
+        "row-on-bg": {
+          "$type": "color",
+          "$value": "{app.semantic.accent.accent-subtle}"
+        }
+      },
+      "field": {
+        "field-bg": {
+          "$type": "color",
+          "$value": "{app.semantic.surface.surface-field}"
+        }
+      },
+      "seg": {
+        "seg-on-bg": {
+          "$type": "color",
+          "$value": "{app.semantic.surface.surface-selected}"
+        }
+      },
+      "switch": {
+        "switch-off": {
+          "$type": "color",
+          "$value": "{app.semantic.control.control-off}"
+        },
+        "switch-knob": {
+          "$type": "color",
+          "$value": "{app.semantic.control.control-knob}"
+        }
+      },
+      "check": {
+        "check-border": {
+          "$type": "color",
+          "$value": "{app.semantic.control.control-border}"
+        },
+        "check-bg": {
+          "$type": "color",
+          "$value": "{app.semantic.surface.surface-control}"
+        }
+      },
+      "sel-card": {
+        "sel-card-bg": {
+          "$type": "color",
+          "$value": "{app.semantic.accent.accent-selected}"
+        }
+      }
+    }
+  }
+}

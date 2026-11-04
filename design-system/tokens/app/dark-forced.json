@@ -1,0 +1,17 @@
+{
+  "app": {
+    "semantic": {
+      "surface": {
+        "glass-base": {
+          "$type": "color",
+          "$value": "{color.night.950}",
+          "$extensions": {
+            "eu.byphil.ds": {
+              "alpha": 0.82
+            }
+          }
+        }
+      }
+    }
+  }
+}

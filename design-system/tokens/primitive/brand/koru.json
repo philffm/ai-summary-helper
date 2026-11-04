@@ -1,0 +1,119 @@
+{
+  "$description": "Koru (rebrand candidate). Ramp 50/100/300/400/500/600/700 and the surfaces come from brands/koru.json (Brand exploration Oct 2026); the in-between steps, 950, highlight and glows are derived proposals.",
+  "brand": {
+    "accent": {
+      "$type": "color",
+      "$description": "Brand primary ramp. Light theme reads 600/700, dark theme 300–450, tints 50–200. 950 = text on a bright accent fill.",
+      "50": {
+        "$value": "#E6F4EE"
+      },
+      "100": {
+        "$value": "#CDEBDD"
+      },
+      "200": {
+        "$value": "#C3EBDB"
+      },
+      "300": {
+        "$value": "#A6E3CB"
+      },
+      "325": {
+        "$value": "#90DBBE"
+      },
+      "330": {
+        "$value": "#8CDABC"
+      },
+      "375": {
+        "$value": "#72D1AD"
+      },
+      "400": {
+        "$value": "#5CC9A0"
+      },
+      "450": {
+        "$value": "#47B18A"
+      },
+      "500": {
+        "$value": "#2E9470"
+      },
+      "600": {
+        "$value": "#1F7A5A"
+      },
+      "700": {
+        "$value": "#14624A"
+      },
+      "950": {
+        "$value": "#0F3D33"
+      }
+    },
+    "highlight": {
+      "$type": "color",
+      "$description": "Secondary brand colour (website 'gold' highlights, best-plan border, warm glows).",
+      "200": {
+        "$value": "#FBE3B0"
+      },
+      "300": {
+        "$value": "#F8CC72"
+      },
+      "400": {
+        "$value": "#F5B83D"
+      },
+      "700": {
+        "$value": "#86580A"
+      },
+      "750": {
+        "$value": "#9A6A12"
+      },
+      "800": {
+        "$value": "#7A4F08"
+      }
+    },
+    "surface": {
+      "$type": "color",
+      "$description": "Brand-tinted neutral surfaces.",
+      "sheet-light": {
+        "$value": "#EEF3F0"
+      },
+      "sheet-dark": {
+        "$value": "#14211D"
+      },
+      "page-light": {
+        "$value": "#F7FAF6"
+      }
+    },
+    "glow": {
+      "$type": "color",
+      "$description": "Page background glows (light theme), CSS colour strings.",
+      "light-1": {
+        "$value": "hsla(152,45%,94%,1)"
+      },
+      "light-2": {
+        "$value": "hsla(152,45%,90%,1)"
+      }
+    },
+    "font": {
+      "$type": "fontFamily",
+      "app": {
+        "$value": "'Hanken Grotesk', 'Inter', 'Segoe UI', system-ui, -apple-system, sans-serif"
+      },
+      "display": {
+        "$value": "'Space Grotesk', sans-serif"
+      },
+      "body": {
+        "$value": "'Inter', sans-serif"
+      },
+      "mono": {
+        "$value": "'JetBrains Mono', monospace"
+      }
+    }
+  },
+  "$extensions": {
+    "eu.byphil.ds": {
+      "provisional": [
+        "accent 200/325/330/375/450 interpolated from the Koru ramp",
+        "accent 950 = palette 'deep' #0F3D33",
+        "highlight ramp derived around 'sun' #F5B83D",
+        "glows derived from 'mist' hue",
+        "fonts: same as AISH until the rebrand picks a typeface"
+      ]
+    }
+  }
+}

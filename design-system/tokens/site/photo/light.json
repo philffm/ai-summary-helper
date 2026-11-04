@@ -1,0 +1,118 @@
+{
+  "site": {
+    "component": {
+      "photo": {
+        "photo-scrim": {
+          "$type": "gradient",
+          "$value": "linear-gradient(180deg, {color.stone.50@0.92} 0%, {color.stone.50@0.8} 50%, {color.stone.50@0.93} 100%)",
+          "$extensions": {
+            "eu.byphil.ds": {
+              "template": true,
+              "scene": true
+            }
+          }
+        },
+        "photo-text": {
+          "$type": "color",
+          "$value": "{site.semantic.text.text}",
+          "$extensions": {
+            "eu.byphil.ds": {
+              "scene": true
+            }
+          }
+        },
+        "photo-text-soft": {
+          "$type": "color",
+          "$value": "{site.semantic.text.text-muted}",
+          "$extensions": {
+            "eu.byphil.ds": {
+              "scene": true
+            }
+          }
+        },
+        "photo-meta": {
+          "$type": "color",
+          "$value": "{site.semantic.text.text-muted}",
+          "$extensions": {
+            "eu.byphil.ds": {
+              "scene": true
+            }
+          }
+        },
+        "photo-sub": {
+          "$type": "color",
+          "$value": "{site.semantic.text.text-muted}",
+          "$extensions": {
+            "eu.byphil.ds": {
+              "scene": true
+            }
+          }
+        },
+        "photo-credit": {
+          "$type": "color",
+          "$value": "{site.semantic.text.text-muted}",
+          "$extensions": {
+            "eu.byphil.ds": {
+              "scene": true
+            }
+          }
+        },
+        "photo-shadow": {
+          "$type": "shadow",
+          "$value": "none",
+          "$extensions": {
+            "eu.byphil.ds": {
+              "scene": true
+            }
+          }
+        },
+        "photo-em": {
+          "$type": "gradient",
+          "$value": "linear-gradient(100deg, {site.semantic.accent.accent-text}, {site.semantic.accent.highlight-text})",
+          "$extensions": {
+            "eu.byphil.ds": {
+              "template": true,
+              "scene": true
+            }
+          }
+        },
+        "photo-kicker": {
+          "$type": "color",
+          "$value": "{site.semantic.text.text-muted}",
+          "$extensions": {
+            "eu.byphil.ds": {
+              "scene": true
+            }
+          }
+        },
+        "photo-btn-bg": {
+          "$type": "color",
+          "$value": "{color.white}",
+          "$extensions": {
+            "eu.byphil.ds": {
+              "scene": true
+            }
+          }
+        },
+        "photo-btn-text": {
+          "$type": "color",
+          "$value": "{site.semantic.text.text}",
+          "$extensions": {
+            "eu.byphil.ds": {
+              "scene": true
+            }
+          }
+        },
+        "photo-btn-edge": {
+          "$type": "color",
+          "$value": "{site.semantic.outline.border-strong}",
+          "$extensions": {
+            "eu.byphil.ds": {
+              "scene": true
+            }
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,530 @@
+{
+  "$description": "Core palette: raw, brand-neutral colour values. Never read by a component; only brand and context (app/site) tokens point here. Steps follow a 0–990 lightness scale; in-between steps (150, 350, 550 …) exist where the shipped UI already uses a value between two standard steps.",
+  "color": {
+    "$type": "color",
+    "white": {
+      "$value": "#ffffff"
+    },
+    "black": {
+      "$value": "#000000"
+    },
+    "slate": {
+      "$description": "Cool neutral for app text, outlines and controls (Tailwind slate plus three in-between steps the app already uses).",
+      "150": {
+        "$value": "#e8edf5"
+      },
+      "200": {
+        "$value": "#e2e8f0"
+      },
+      "300": {
+        "$value": "#cbd5e1"
+      },
+      "350": {
+        "$value": "#b8c4d4"
+      },
+      "400": {
+        "$value": "#94a3b8"
+      },
+      "500": {
+        "$value": "#64748b"
+      },
+      "550": {
+        "$value": "#566274",
+        "$description": "App light muted text, darker than 500 for 4.5:1 on glass."
+      },
+      "600": {
+        "$value": "#475569"
+      },
+      "700": {
+        "$value": "#334155"
+      },
+      "800": {
+        "$value": "#1e293b"
+      },
+      "850": {
+        "$value": "#1f2933"
+      },
+      "900": {
+        "$value": "#0f172a"
+      }
+    },
+    "neutral": {
+      "$description": "Grey for app surfaces in light theme.",
+      "50": {
+        "$value": "#fafafa"
+      },
+      "100": {
+        "$value": "#f1f1f1"
+      },
+      "150": {
+        "$value": "#e9eaee"
+      },
+      "200": {
+        "$value": "#e5e7eb"
+      },
+      "250": {
+        "$value": "#d5d8de"
+      },
+      "900": {
+        "$value": "#111827"
+      }
+    },
+    "night": {
+      "$description": "App dark-theme base.",
+      "950": {
+        "$value": "#0b0e14"
+      }
+    },
+    "graphite": {
+      "$description": "Website neutrals (dark end and text).",
+      "50": {
+        "$value": "#F5F5F7"
+      },
+      "300": {
+        "$value": "#A9A9B3"
+      },
+      "600": {
+        "$value": "#54545D"
+      },
+      "900": {
+        "$value": "#1D1E24"
+      },
+      "950": {
+        "$value": "#141519"
+      },
+      "990": {
+        "$value": "#08090C"
+      },
+      "toast": {
+        "$value": "#15161B"
+      },
+      "ink": {
+        "$value": "#14151A",
+        "$description": "Website light-theme translucent overlays (rgba of this)."
+      },
+      "995": {
+        "$value": "#0C0D11"
+      }
+    },
+    "stone": {
+      "$description": "Website warm neutrals (light end).",
+      "0": {
+        "$value": "#FFFFFF"
+      },
+      "50": {
+        "$value": "#F6F5F1"
+      },
+      "150": {
+        "$value": "#EDECE6"
+      }
+    },
+    "ink": {
+      "$description": "Near-black blue used for text on light accent fills and for media overlays.",
+      "950": {
+        "$value": "#08101F"
+      },
+      "media-glass": {
+        "$value": "#14161E"
+      },
+      "media-night": {
+        "$value": "#0A0E1E"
+      },
+      "media-ink": {
+        "$value": "#050812"
+      },
+      "media-panel": {
+        "$value": "#0C1220"
+      },
+      "media-panel-2": {
+        "$value": "#131A2E"
+      },
+      "media-video": {
+        "$value": "#0B1020"
+      },
+      "media-night-soft": {
+        "$value": "#0A0E18"
+      },
+      "nav": {
+        "$value": "#0A0F1C"
+      }
+    },
+    "green": {
+      "100": {
+        "$value": "#dcfce7"
+      },
+      "300": {
+        "$value": "#86efac"
+      },
+      "400": {
+        "$value": "#4ade80"
+      },
+      "700": {
+        "$value": "#15803d"
+      },
+      "800": {
+        "$value": "#166534"
+      },
+      "500": {
+        "$value": "#22c55e"
+      }
+    },
+    "amber": {
+      "100": {
+        "$value": "#fef3c7"
+      },
+      "300": {
+        "$value": "#fcd34d"
+      },
+      "400": {
+        "$value": "#fbbf24"
+      },
+      "600": {
+        "$value": "#ca8a04"
+      },
+      "700": {
+        "$value": "#b45309"
+      },
+      "800": {
+        "$value": "#92400e"
+      },
+      "beta": {
+        "$value": "#F5C451"
+      },
+      "beta-ink": {
+        "$value": "#3B2A00"
+      },
+      "200": {
+        "$value": "#fde68a"
+      },
+      "900": {
+        "$value": "#78350f"
+      },
+      "950": {
+        "$value": "#422006"
+      }
+    },
+    "red": {
+      "50": {
+        "$value": "#fef2f2"
+      },
+      "300": {
+        "$value": "#fca5a5"
+      },
+      "400": {
+        "$value": "#F87171"
+      },
+      "550": {
+        "$value": "#e24646"
+      },
+      "600": {
+        "$value": "#dc2626"
+      },
+      "700": {
+        "$value": "#b91c1c"
+      },
+      "750": {
+        "$value": "#C0231E",
+        "$description": "Website light error text."
+      }
+    },
+    "sky": {
+      "200": {
+        "$value": "#BAE6FD"
+      },
+      "600": {
+        "$value": "#0284C7"
+      },
+      "800": {
+        "$value": "#075985"
+      },
+      "100": {
+        "$value": "#e0f2fe"
+      },
+      "400": {
+        "$value": "#38bdf8"
+      },
+      "900": {
+        "$value": "#0c4a6e"
+      }
+    },
+    "cobalt": {
+      "$description": "High-contrast theme accent and its tints.",
+      "50": {
+        "$value": "#eef2ff"
+      },
+      "100": {
+        "$value": "#e0e7ff"
+      },
+      "700": {
+        "$value": "#0033cc"
+      }
+    },
+    "signal": {
+      "$description": "Mood/sentiment dots. Kept as HSL because the code computes hues around them.",
+      "positive": {
+        "$value": "hsl(142,55%,42%)"
+      },
+      "positive-dark": {
+        "$value": "hsl(142,55%,52%)"
+      },
+      "negative": {
+        "$value": "hsl(0,70%,55%)"
+      },
+      "negative-dark": {
+        "$value": "hsl(0,75%,65%)"
+      },
+      "warning": {
+        "$value": "hsl(45,90%,50%)"
+      },
+      "warning-dark": {
+        "$value": "hsl(45,90%,58%)"
+      }
+    },
+    "grey": {
+      "$description": "Mid greys used only as translucent tints on the website.",
+      "500": {
+        "$value": "#808080"
+      },
+      "500-cool": {
+        "$value": "#808096"
+      },
+      "mid": {
+        "$value": "#7f7f7f"
+      }
+    },
+    "illustration": {
+      "$description": "Website feature-icon tiles (two-stop gradients). Brand-neutral for now; revisit with the rebrand artwork.",
+      "cyan-1": {
+        "$value": "#5B8CFF"
+      },
+      "cyan-2": {
+        "$value": "#2C4FD1"
+      },
+      "indigo-1": {
+        "$value": "#8AA6FF"
+      },
+      "indigo-2": {
+        "$value": "#4C5FD9"
+      },
+      "violet-1": {
+        "$value": "#A98AE8"
+      },
+      "violet-2": {
+        "$value": "#6B4CC4"
+      },
+      "gold-1": {
+        "$value": "#E4C88E"
+      },
+      "gold-2": {
+        "$value": "#B4863B"
+      },
+      "amber-1": {
+        "$value": "#FFB070"
+      },
+      "amber-2": {
+        "$value": "#D9622B"
+      },
+      "teal-1": {
+        "$value": "#5FCFC4"
+      },
+      "teal-2": {
+        "$value": "#23898F"
+      }
+    },
+    "yellow": {
+      "100": {
+        "$value": "#fef9c3"
+      },
+      "400": {
+        "$value": "#facc15"
+      },
+      "500": {
+        "$value": "#eab308"
+      },
+      "900": {
+        "$value": "#713f12"
+      }
+    },
+    "indigo": {
+      "500": {
+        "$value": "#6366f1"
+      }
+    },
+    "pink": {
+      "100": {
+        "$value": "#fce7f3"
+      },
+      "400": {
+        "$value": "#f472b6"
+      },
+      "500": {
+        "$value": "#ec4899"
+      },
+      "600": {
+        "$value": "#db2777"
+      },
+      "900": {
+        "$value": "#831843"
+      }
+    },
+    "chart": {
+      "$description": "Categorical palette for charts (topics over time). Index, not meaning.",
+      "light-0": {
+        "$value": "#2a78d6"
+      },
+      "light-1": {
+        "$value": "#eb6834"
+      },
+      "light-2": {
+        "$value": "#1baf7a"
+      },
+      "light-3": {
+        "$value": "#eda100"
+      },
+      "light-4": {
+        "$value": "#e87ba4"
+      },
+      "light-5": {
+        "$value": "#008300"
+      },
+      "light-6": {
+        "$value": "#4a3aa7"
+      },
+      "light-7": {
+        "$value": "#e34948"
+      },
+      "light-other": {
+        "$value": "#9ca3af"
+      },
+      "dark-0": {
+        "$value": "#3987e5"
+      },
+      "dark-1": {
+        "$value": "#d95926"
+      },
+      "dark-2": {
+        "$value": "#199e70"
+      },
+      "dark-3": {
+        "$value": "#c98500"
+      },
+      "dark-4": {
+        "$value": "#d55181"
+      },
+      "dark-5": {
+        "$value": "#008300"
+      },
+      "dark-6": {
+        "$value": "#9085e9"
+      },
+      "dark-7": {
+        "$value": "#e66767"
+      },
+      "dark-other": {
+        "$value": "#6b7280"
+      }
+    },
+    "annotation": {
+      "$description": "Saved-note cards (your highlight, ghost highlight, note): dark-theme variants.",
+      "user-bg": {
+        "$value": "#2f2a15"
+      },
+      "user-fg": {
+        "$value": "#f4e6a8"
+      },
+      "user-bar": {
+        "$value": "#d4a514"
+      },
+      "ghost-bg": {
+        "$value": "#10293a"
+      },
+      "ghost-fg": {
+        "$value": "#c9e7f8"
+      },
+      "note-bg": {
+        "$value": "#35182d"
+      },
+      "note-fg": {
+        "$value": "#f7d6e8"
+      }
+    },
+    "mockup": {
+      "$description": "Website hero mock of the extension (a picture of the product, own neutrals).",
+      "ink": {
+        "$value": "#14161f"
+      },
+      "muted": {
+        "$value": "#6a7183"
+      },
+      "muted-strong": {
+        "$value": "#4a5060"
+      },
+      "faint": {
+        "$value": "#8a93a8"
+      },
+      "chrome": {
+        "$value": "#eef1f7"
+      },
+      "panel": {
+        "$value": "#f7f9ff"
+      },
+      "line": {
+        "$value": "#d6dcea"
+      },
+      "line-soft": {
+        "$value": "#e3e7f0"
+      },
+      "kick": {
+        "$value": "#c8102e"
+      },
+      "live": {
+        "$value": "#16a37f"
+      },
+      "dot-close": {
+        "$value": "#ff5f57"
+      },
+      "dot-min": {
+        "$value": "#febc2e"
+      },
+      "dot-max": {
+        "$value": "#28c840"
+      },
+      "shadow": {
+        "$value": "#141E3C"
+      },
+      "dark-text": {
+        "$value": "#e8ebf5"
+      },
+      "dark-muted": {
+        "$value": "#98a1b8"
+      },
+      "dark-faint": {
+        "$value": "#7d869c"
+      },
+      "dark-window": {
+        "$value": "#141824"
+      },
+      "dark-chrome": {
+        "$value": "#1c2132"
+      },
+      "dark-field": {
+        "$value": "#10131d"
+      },
+      "dark-panel": {
+        "$value": "#171c2b"
+      },
+      "dark-raised": {
+        "$value": "#1b2030"
+      },
+      "dark-line": {
+        "$value": "#2e3548"
+      },
+      "dark-line-soft": {
+        "$value": "#2a3045"
+      },
+      "dark-kick": {
+        "$value": "#ff6b81"
+      }
+    }
+  }
+}

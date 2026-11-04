@@ -1,0 +1,95 @@
+{
+  "app": {
+    "component": {},
+    "semantic": {
+      "surface": {
+        "bg-page": {
+          "$type": "color",
+          "$value": "{color.white}"
+        },
+        "bg-page-gradient": {
+          "$type": "color",
+          "$value": "{color.white}"
+        },
+        "glass-base": {
+          "$type": "color",
+          "$value": "{color.white}"
+        },
+        "glass-card": {
+          "$type": "color",
+          "$value": "{color.white}"
+        },
+        "glass-input": {
+          "$type": "color",
+          "$value": "{color.white}"
+        },
+        "glass-border": {
+          "$type": "color",
+          "$value": "{color.black}"
+        },
+        "glass-border-strong": {
+          "$type": "color",
+          "$value": "{color.black}"
+        },
+        "glass-inner-glow": {
+          "$type": "shadow",
+          "$value": "transparent"
+        },
+        "surface-bar": {
+          "$type": "color",
+          "$value": "{color.white}"
+        }
+      },
+      "outline": {
+        "outline": {
+          "$type": "color",
+          "$value": "{color.black}"
+        }
+      },
+      "text": {
+        "text-primary": {
+          "$type": "color",
+          "$value": "{color.black}"
+        },
+        "text-secondary": {
+          "$type": "color",
+          "$value": "{color.black}"
+        },
+        "text-muted": {
+          "$type": "color",
+          "$value": "{color.slate.850}"
+        },
+        "text-link": {
+          "$type": "color",
+          "$value": "{color.cobalt.700}"
+        }
+      },
+      "accent": {
+        "accent": {
+          "$type": "color",
+          "$value": "{color.cobalt.700}"
+        },
+        "accent-light": {
+          "$type": "color",
+          "$value": "{color.cobalt.700}"
+        },
+        "accent-glow": {
+          "$type": "color",
+          "$value": "{color.cobalt.700}"
+        },
+        "on-accent": {
+          "$type": "color",
+          "$value": "{color.white}"
+        },
+        "accent-a05": {
+          "$type": "color",
+          "$value": "{color.cobalt.50}"
+        },
+        "accent-a08": {
+          "$type": "color",
+          "$value": "{color.cobalt.100}"
+        }
+      }
+    }
+  }
+}

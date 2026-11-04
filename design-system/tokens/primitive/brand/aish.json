@@ -1,0 +1,108 @@
+{
+  "$description": "AI Summary Helper (default brand). Values are the shipped ones, unchanged.",
+  "brand": {
+    "accent": {
+      "$type": "color",
+      "$description": "Brand primary ramp. Light theme reads 600/700, dark theme 300–450, tints 50–200. 950 = text on a bright accent fill.",
+      "50": {
+        "$value": "#eff6ff"
+      },
+      "100": {
+        "$value": "#dbeafe"
+      },
+      "200": {
+        "$value": "#ADC6FF"
+      },
+      "300": {
+        "$value": "#93c5fd"
+      },
+      "325": {
+        "$value": "#8FBBFF"
+      },
+      "330": {
+        "$value": "#8AB8FF"
+      },
+      "375": {
+        "$value": "#6FA3FF"
+      },
+      "400": {
+        "$value": "#60a5fa"
+      },
+      "450": {
+        "$value": "#4C8DFF"
+      },
+      "500": {
+        "$value": "#3b82f6"
+      },
+      "600": {
+        "$value": "#2563eb"
+      },
+      "700": {
+        "$value": "#1d4ed8"
+      },
+      "950": {
+        "$value": "#001a3d"
+      }
+    },
+    "highlight": {
+      "$type": "color",
+      "$description": "Secondary brand colour (website 'gold' highlights, best-plan border, warm glows).",
+      "200": {
+        "$value": "#F2D9A6"
+      },
+      "300": {
+        "$value": "#F0C36B"
+      },
+      "400": {
+        "$value": "#E4A83E"
+      },
+      "700": {
+        "$value": "#85580C"
+      },
+      "750": {
+        "$value": "#9A6B14"
+      },
+      "800": {
+        "$value": "#7C5209"
+      }
+    },
+    "surface": {
+      "$type": "color",
+      "$description": "Brand-tinted neutral surfaces.",
+      "sheet-light": {
+        "$value": "#f1f1f1"
+      },
+      "sheet-dark": {
+        "$value": "#141923"
+      },
+      "page-light": {
+        "$value": "#faf8ff"
+      }
+    },
+    "glow": {
+      "$type": "color",
+      "$description": "Page background glows (light theme), CSS colour strings.",
+      "light-1": {
+        "$value": "hsla(217,100%,95%,1)"
+      },
+      "light-2": {
+        "$value": "hsla(217,100%,92%,1)"
+      }
+    },
+    "font": {
+      "$type": "fontFamily",
+      "app": {
+        "$value": "'Hanken Grotesk', 'Inter', 'Segoe UI', system-ui, -apple-system, sans-serif"
+      },
+      "display": {
+        "$value": "'Space Grotesk', sans-serif"
+      },
+      "body": {
+        "$value": "'Inter', sans-serif"
+      },
+      "mono": {
+        "$value": "'JetBrains Mono', monospace"
+      }
+    }
+  }
+}

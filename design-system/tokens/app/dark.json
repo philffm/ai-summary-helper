@@ -1,0 +1,556 @@
+{
+  "app": {
+    "semantic": {
+      "surface": {
+        "bg-page": {
+          "$type": "color",
+          "$value": "{color.night.950}"
+        },
+        "bg-page-gradient": {
+          "$type": "gradient",
+          "$value": "radial-gradient(at 0% 0%, color-mix(in srgb, {app.semantic.accent.accent} 8%, transparent) 0, transparent 50%), radial-gradient(at 100% 100%, {brand.accent.200@0.05} 0, transparent 50%)",
+          "$extensions": {
+            "eu.byphil.ds": {
+              "template": true
+            }
+          }
+        },
+        "glass-base": {
+          "$type": "color",
+          "$value": "{color.night.950}",
+          "$extensions": {
+            "eu.byphil.ds": {
+              "alpha": 0.92
+            }
+          }
+        },
+        "glass-card": {
+          "$type": "color",
+          "$value": "{color.white}",
+          "$extensions": {
+            "eu.byphil.ds": {
+              "alpha": 0.06
+            }
+          }
+        },
+        "glass-input": {
+          "$type": "color",
+          "$value": "{color.white}",
+          "$extensions": {
+            "eu.byphil.ds": {
+              "alpha": 0.05
+            }
+          }
+        },
+        "glass-border": {
+          "$type": "color",
+          "$value": "{color.white}",
+          "$extensions": {
+            "eu.byphil.ds": {
+              "alpha": 0.1
+            }
+          }
+        },
+        "glass-border-strong": {
+          "$type": "color",
+          "$value": "{color.white}",
+          "$extensions": {
+            "eu.byphil.ds": {
+              "alpha": 0.14
+            }
+          }
+        },
+        "glass-inner-glow": {
+          "$type": "shadow",
+          "$value": "inset 0 1px 0 {color.white@0.06}",
+          "$extensions": {
+            "eu.byphil.ds": {
+              "template": true
+            }
+          }
+        },
+        "surface-bar": {
+          "$type": "color",
+          "$value": "{color.night.950}"
+        },
+        "surface-sheet": {
+          "$type": "color",
+          "$value": "{brand.surface.sheet-dark}"
+        },
+        "scrim": {
+          "$type": "color",
+          "$value": "{color.black}",
+          "$extensions": {
+            "eu.byphil.ds": {
+              "alpha": 0.6
+            }
+          }
+        },
+        "surface-row": {
+          "$type": "color",
+          "$value": "{color.white}",
+          "$extensions": {
+            "eu.byphil.ds": {
+              "alpha": 0.06
+            }
+          }
+        },
+        "surface-field": {
+          "$type": "color",
+          "$value": "{color.white}",
+          "$extensions": {
+            "eu.byphil.ds": {
+              "alpha": 0.08
+            }
+          }
+        },
+        "surface-selected": {
+          "$type": "color",
+          "$value": "{color.white}",
+          "$extensions": {
+            "eu.byphil.ds": {
+              "alpha": 0.16
+            }
+          }
+        },
+        "surface-control": {
+          "$type": "color",
+          "$value": "{color.white}",
+          "$extensions": {
+            "eu.byphil.ds": {
+              "alpha": 0.06
+            }
+          }
+        },
+        "surface-track": {
+          "$type": "color",
+          "$value": "{color.white}",
+          "$extensions": {
+            "eu.byphil.ds": {
+              "alpha": 0.12
+            }
+          }
+        }
+      },
+      "text": {
+        "text-primary": {
+          "$type": "color",
+          "$value": "{color.slate.150}"
+        },
+        "text-secondary": {
+          "$type": "color",
+          "$value": "{color.slate.350}"
+        },
+        "text-muted": {
+          "$type": "color",
+          "$value": "{color.slate.400}"
+        },
+        "text-link": {
+          "$type": "color",
+          "$value": "{brand.accent.300}"
+        }
+      },
+      "accent": {
+        "accent": {
+          "$type": "color",
+          "$value": "{brand.accent.400}"
+        },
+        "accent-light": {
+          "$type": "color",
+          "$value": "{brand.accent.500}"
+        },
+        "accent-glow": {
+          "$type": "color",
+          "$value": "{brand.accent.400}",
+          "$extensions": {
+            "eu.byphil.ds": {
+              "alpha": 0.18
+            }
+          }
+        },
+        "on-accent": {
+          "$type": "color",
+          "$value": "{brand.accent.950}"
+        },
+        "accent-soft": {
+          "$type": "color",
+          "$value": "{brand.accent.400}",
+          "$extensions": {
+            "eu.byphil.ds": {
+              "alpha": 0.14
+            }
+          }
+        },
+        "accent-soft-strong": {
+          "$type": "color",
+          "$value": "{brand.accent.400}",
+          "$extensions": {
+            "eu.byphil.ds": {
+              "alpha": 0.26
+            }
+          }
+        },
+        "accent-subtle": {
+          "$type": "color",
+          "$value": "{brand.accent.400}",
+          "$extensions": {
+            "eu.byphil.ds": {
+              "alpha": 0.14
+            }
+          }
+        },
+        "accent-selected": {
+          "$type": "color",
+          "$value": "{brand.accent.400}",
+          "$extensions": {
+            "eu.byphil.ds": {
+              "alpha": 0.14
+            }
+          }
+        }
+      },
+      "outline": {
+        "outline": {
+          "$type": "color",
+          "$value": "{color.white}",
+          "$extensions": {
+            "eu.byphil.ds": {
+              "alpha": 0.1
+            }
+          }
+        },
+        "outline-soft": {
+          "$type": "color",
+          "$value": "{color.white}",
+          "$extensions": {
+            "eu.byphil.ds": {
+              "alpha": 0.05
+            }
+          }
+        },
+        "outline-strong": {
+          "$type": "color",
+          "$value": "{color.white}",
+          "$extensions": {
+            "eu.byphil.ds": {
+              "alpha": 0.12
+            }
+          }
+        }
+      },
+      "elevation": {
+        "shadow-card": {
+          "$type": "shadow",
+          "$value": "0 4px 16px {color.black@0.35}",
+          "$extensions": {
+            "eu.byphil.ds": {
+              "template": true
+            }
+          }
+        },
+        "shadow-raised": {
+          "$type": "shadow",
+          "$value": "0 8px 28px {color.black@0.45}",
+          "$extensions": {
+            "eu.byphil.ds": {
+              "template": true
+            }
+          }
+        },
+        "shadow-modal": {
+          "$type": "shadow",
+          "$value": "0 12px 40px {color.black@0.55}",
+          "$extensions": {
+            "eu.byphil.ds": {
+              "template": true
+            }
+          }
+        },
+        "elevation-sheet": {
+          "$type": "shadow",
+          "$value": "0 -8px 30px {color.black@0.55}",
+          "$extensions": {
+            "eu.byphil.ds": {
+              "template": true
+            }
+          }
+        }
+      },
+      "status": {
+        "tone-read-bg": {
+          "$type": "color",
+          "$value": "{color.white}",
+          "$extensions": {
+            "eu.byphil.ds": {
+              "alpha": 0.1
+            }
+          }
+        },
+        "tone-read-fg": {
+          "$type": "color",
+          "$value": "{color.slate.300}"
+        },
+        "tone-sent-bg": {
+          "$type": "color",
+          "$value": "{brand.accent.400}",
+          "$extensions": {
+            "eu.byphil.ds": {
+              "alpha": 0.18
+            }
+          }
+        },
+        "tone-sent-fg": {
+          "$type": "color",
+          "$value": "{brand.accent.300}"
+        },
+        "tone-new-bg": {
+          "$type": "color",
+          "$value": "{color.green.400}",
+          "$extensions": {
+            "eu.byphil.ds": {
+              "alpha": 0.16
+            }
+          }
+        },
+        "tone-new-fg": {
+          "$type": "color",
+          "$value": "{color.green.300}"
+        },
+        "tone-arch-bg": {
+          "$type": "color",
+          "$value": "{color.amber.400}",
+          "$extensions": {
+            "eu.byphil.ds": {
+              "alpha": 0.16
+            }
+          }
+        },
+        "tone-arch-fg": {
+          "$type": "color",
+          "$value": "{color.amber.300}"
+        }
+      },
+      "feedback": {
+        "mood-pos": {
+          "$type": "color",
+          "$value": "{color.signal.positive-dark}"
+        },
+        "mood-neg": {
+          "$type": "color",
+          "$value": "{color.signal.negative-dark}"
+        },
+        "mood-warn": {
+          "$type": "color",
+          "$value": "{color.signal.warning-dark}"
+        },
+        "mood-pos-text": {
+          "$type": "color",
+          "$value": "{color.green.300}"
+        },
+        "mood-neg-text": {
+          "$type": "color",
+          "$value": "{color.red.300}"
+        },
+        "mood-warn-text": {
+          "$type": "color",
+          "$value": "{color.amber.300}"
+        },
+        "caution-bg": {
+          "$type": "color",
+          "$value": "{color.amber.400}",
+          "$description": "\"Different page\" note: background.",
+          "$extensions": {
+            "eu.byphil.ds": {
+              "alpha": 0.16
+            }
+          }
+        },
+        "caution-fg": {
+          "$type": "color",
+          "$value": "{color.amber.300}",
+          "$description": "\"Different page\" note: text."
+        },
+        "caution-border": {
+          "$type": "color",
+          "$value": "{color.amber.400}",
+          "$description": "\"Different page\" note: border.",
+          "$extensions": {
+            "eu.byphil.ds": {
+              "alpha": 0.35
+            }
+          }
+        },
+        "caution-muted": {
+          "$type": "color",
+          "$value": "{color.amber.200}",
+          "$description": "\"Different page\" note: secondary text."
+        },
+        "danger-text": {
+          "$type": "color",
+          "$value": "{color.red.300}",
+          "$description": "Delete action on a saved-note card."
+        }
+      },
+      "control": {
+        "control-track": {
+          "$type": "color",
+          "$value": "{color.slate.700}"
+        },
+        "control-thumb": {
+          "$type": "color",
+          "$value": "{color.slate.200}",
+          "$extensions": {
+            "eu.byphil.ds": {
+              "alpha": 0.28
+            }
+          }
+        },
+        "control-thumb-hover": {
+          "$type": "color",
+          "$value": "{color.slate.200}",
+          "$extensions": {
+            "eu.byphil.ds": {
+              "alpha": 0.46
+            }
+          }
+        },
+        "control-grip": {
+          "$type": "color",
+          "$value": "{color.white}",
+          "$extensions": {
+            "eu.byphil.ds": {
+              "alpha": 0.25
+            }
+          }
+        },
+        "control-off": {
+          "$type": "color",
+          "$value": "{color.white}",
+          "$extensions": {
+            "eu.byphil.ds": {
+              "alpha": 0.22
+            }
+          }
+        },
+        "control-knob": {
+          "$type": "color",
+          "$value": "{color.white}"
+        },
+        "control-border": {
+          "$type": "color",
+          "$value": "{color.slate.500}"
+        }
+      },
+      "inverse": {
+        "surface-inverse": {
+          "$type": "color",
+          "$value": "{color.slate.150}"
+        },
+        "text-inverse": {
+          "$type": "color",
+          "$value": "{color.night.950}"
+        },
+        "link-inverse": {
+          "$type": "color",
+          "$value": "{brand.accent.700}"
+        }
+      },
+      "data": {
+        "data-0": {
+          "$type": "color",
+          "$value": "{color.chart.dark-0}"
+        },
+        "data-1": {
+          "$type": "color",
+          "$value": "{color.chart.dark-1}"
+        },
+        "data-2": {
+          "$type": "color",
+          "$value": "{color.chart.dark-2}"
+        },
+        "data-3": {
+          "$type": "color",
+          "$value": "{color.chart.dark-3}"
+        },
+        "data-4": {
+          "$type": "color",
+          "$value": "{color.chart.dark-4}"
+        },
+        "data-5": {
+          "$type": "color",
+          "$value": "{color.chart.light-5}"
+        },
+        "data-6": {
+          "$type": "color",
+          "$value": "{color.chart.dark-6}"
+        },
+        "data-7": {
+          "$type": "color",
+          "$value": "{color.chart.dark-7}"
+        },
+        "data-other": {
+          "$type": "color",
+          "$value": "{color.chart.dark-other}"
+        }
+      },
+      "annotation": {
+        "annotation-user-bg": {
+          "$type": "color",
+          "$value": "{color.annotation.user-bg}"
+        },
+        "annotation-user-fg": {
+          "$type": "color",
+          "$value": "{color.annotation.user-fg}"
+        },
+        "annotation-user-bar": {
+          "$type": "color",
+          "$value": "{color.annotation.user-bar}"
+        },
+        "annotation-ai-bg": {
+          "$type": "color",
+          "$value": "{color.annotation.ghost-bg}"
+        },
+        "annotation-ai-fg": {
+          "$type": "color",
+          "$value": "{color.annotation.ghost-fg}"
+        },
+        "annotation-ai-bar": {
+          "$type": "color",
+          "$value": "{color.sky.400}"
+        },
+        "annotation-note-bg": {
+          "$type": "color",
+          "$value": "{color.annotation.note-bg}"
+        },
+        "annotation-note-fg": {
+          "$type": "color",
+          "$value": "{color.annotation.note-fg}"
+        },
+        "annotation-note-bar": {
+          "$type": "color",
+          "$value": "{color.pink.400}"
+        },
+        "annotation-quote-bg": {
+          "$type": "color",
+          "$value": "{color.black}",
+          "$description": "Quote box inside a saved-note card.",
+          "$extensions": {
+            "eu.byphil.ds": {
+              "alpha": 0.25
+            }
+          }
+        },
+        "annotation-edge": {
+          "$type": "shadow",
+          "$value": "inset 0 0 0 1px {color.white@0.06}",
+          "$description": "Hairline around saved-note cards (dark only).",
+          "$extensions": {
+            "eu.byphil.ds": {
+              "template": true
+            }
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "site": {
+    "component": {
+      "mock": {
+        "mock-shadow-panel": {
+          "$type": "shadow",
+          "$value": "-12px 0 30px {color.mockup.shadow@0.12}",
+          "$extensions": {
+            "eu.byphil.ds": {
+              "template": true,
+              "scene": true
+            }
+          }
+        }
+      }
+    }
+  }
+}

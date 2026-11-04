@@ -1,0 +1,132 @@
+{
+  "site": {
+    "component": {
+      "photo": {
+        "photo-scrim": {
+          "$type": "gradient",
+          "$value": "linear-gradient(180deg, {color.graphite.990@0.8} 0%, {color.graphite.990@0.68} 45%, {color.graphite.990@0.88} 100%)",
+          "$extensions": {
+            "eu.byphil.ds": {
+              "template": true,
+              "scene": true
+            }
+          }
+        },
+        "photo-text": {
+          "$type": "color",
+          "$value": "{color.graphite.50}",
+          "$extensions": {
+            "eu.byphil.ds": {
+              "scene": true
+            }
+          }
+        },
+        "photo-text-soft": {
+          "$type": "color",
+          "$value": "{color.graphite.50}",
+          "$extensions": {
+            "eu.byphil.ds": {
+              "alpha": 0.86,
+              "scene": true
+            }
+          }
+        },
+        "photo-meta": {
+          "$type": "color",
+          "$value": "{color.graphite.50}",
+          "$extensions": {
+            "eu.byphil.ds": {
+              "alpha": 0.82,
+              "scene": true
+            }
+          }
+        },
+        "photo-sub": {
+          "$type": "color",
+          "$value": "{color.graphite.50}",
+          "$extensions": {
+            "eu.byphil.ds": {
+              "alpha": 0.88,
+              "scene": true
+            }
+          }
+        },
+        "photo-credit": {
+          "$type": "color",
+          "$value": "{color.graphite.50}",
+          "$extensions": {
+            "eu.byphil.ds": {
+              "alpha": 0.62,
+              "scene": true
+            }
+          }
+        },
+        "photo-shadow": {
+          "$type": "shadow",
+          "$value": "0 1px 14px {color.black@0.45}",
+          "$extensions": {
+            "eu.byphil.ds": {
+              "template": true,
+              "scene": true
+            }
+          }
+        },
+        "photo-em": {
+          "$type": "gradient",
+          "$value": "linear-gradient(90deg, {brand.accent.200}, {brand.highlight.200})",
+          "$extensions": {
+            "eu.byphil.ds": {
+              "template": true,
+              "scene": true
+            }
+          }
+        },
+        "photo-kicker": {
+          "$type": "color",
+          "$value": "{brand.highlight.200}",
+          "$extensions": {
+            "eu.byphil.ds": {
+              "scene": true
+            }
+          }
+        },
+        "photo-btn-bg": {
+          "$type": "color",
+          "$value": "{color.graphite.50}",
+          "$extensions": {
+            "eu.byphil.ds": {
+              "scene": true
+            }
+          }
+        },
+        "photo-btn-text": {
+          "$type": "color",
+          "$value": "{color.graphite.995}",
+          "$extensions": {
+            "eu.byphil.ds": {
+              "scene": true
+            }
+          }
+        },
+        "photo-btn-edge": {
+          "$type": "color",
+          "$value": "transparent",
+          "$extensions": {
+            "eu.byphil.ds": {
+              "scene": true
+            }
+          }
+        },
+        "photo-btn-hover": {
+          "$type": "color",
+          "$value": "{color.white}",
+          "$extensions": {
+            "eu.byphil.ds": {
+              "scene": true
+            }
+          }
+        }
+      }
+    }
+  }
+}

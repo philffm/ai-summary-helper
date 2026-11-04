@@ -1,0 +1,394 @@
+{
+  "site": {
+    "component": {
+      "mock": {
+        "mock-text": {
+          "$type": "color",
+          "$value": "{color.mockup.ink}",
+          "$extensions": {
+            "eu.byphil.ds": {
+              "scene": true
+            }
+          }
+        },
+        "mock-muted": {
+          "$type": "color",
+          "$value": "{color.mockup.muted}",
+          "$extensions": {
+            "eu.byphil.ds": {
+              "scene": true
+            }
+          }
+        },
+        "mock-muted-strong": {
+          "$type": "color",
+          "$value": "{color.mockup.muted-strong}",
+          "$extensions": {
+            "eu.byphil.ds": {
+              "scene": true
+            }
+          }
+        },
+        "mock-faint": {
+          "$type": "color",
+          "$value": "{color.mockup.faint}",
+          "$extensions": {
+            "eu.byphil.ds": {
+              "scene": true
+            }
+          }
+        },
+        "mock-window": {
+          "$type": "color",
+          "$value": "{color.white}",
+          "$extensions": {
+            "eu.byphil.ds": {
+              "scene": true
+            }
+          }
+        },
+        "mock-chrome": {
+          "$type": "color",
+          "$value": "{color.mockup.chrome}",
+          "$extensions": {
+            "eu.byphil.ds": {
+              "scene": true
+            }
+          }
+        },
+        "mock-field": {
+          "$type": "color",
+          "$value": "{color.white}",
+          "$extensions": {
+            "eu.byphil.ds": {
+              "scene": true
+            }
+          }
+        },
+        "mock-panel": {
+          "$type": "color",
+          "$value": "{color.mockup.panel}",
+          "$extensions": {
+            "eu.byphil.ds": {
+              "scene": true
+            }
+          }
+        },
+        "mock-raised": {
+          "$type": "color",
+          "$value": "{color.white}",
+          "$extensions": {
+            "eu.byphil.ds": {
+              "scene": true
+            }
+          }
+        },
+        "mock-chip": {
+          "$type": "color",
+          "$value": "{color.white}",
+          "$extensions": {
+            "eu.byphil.ds": {
+              "scene": true
+            }
+          }
+        },
+        "mock-line": {
+          "$type": "color",
+          "$value": "{color.mockup.line}",
+          "$extensions": {
+            "eu.byphil.ds": {
+              "scene": true
+            }
+          }
+        },
+        "mock-line-soft": {
+          "$type": "color",
+          "$value": "{color.mockup.line-soft}",
+          "$extensions": {
+            "eu.byphil.ds": {
+              "scene": true
+            }
+          }
+        },
+        "mock-accent": {
+          "$type": "color",
+          "$value": "{brand.accent.600}",
+          "$extensions": {
+            "eu.byphil.ds": {
+              "scene": true
+            }
+          }
+        },
+        "mock-accent-text": {
+          "$type": "color",
+          "$value": "{brand.accent.600}",
+          "$extensions": {
+            "eu.byphil.ds": {
+              "scene": true
+            }
+          }
+        },
+        "mock-accent-edge": {
+          "$type": "color",
+          "$value": "{brand.accent.600}",
+          "$extensions": {
+            "eu.byphil.ds": {
+              "scene": true
+            }
+          }
+        },
+        "mock-accent-tint": {
+          "$type": "color",
+          "$value": "color-mix(in srgb, {brand.accent.600} 9%, {color.white})",
+          "$extensions": {
+            "eu.byphil.ds": {
+              "template": true,
+              "scene": true
+            }
+          }
+        },
+        "mock-accent-wash": {
+          "$type": "color",
+          "$value": "color-mix(in srgb, {brand.accent.600} 11%, {color.white})",
+          "$extensions": {
+            "eu.byphil.ds": {
+              "template": true,
+              "scene": true
+            }
+          }
+        },
+        "mock-hl": {
+          "$type": "color",
+          "$value": "color-mix(in srgb, {brand.accent.600} 16%, {color.white})",
+          "$extensions": {
+            "eu.byphil.ds": {
+              "template": true,
+              "scene": true
+            }
+          }
+        },
+        "mock-pressed": {
+          "$type": "color",
+          "$value": "color-mix(in srgb, {brand.accent.600} 16%, {color.white})",
+          "$extensions": {
+            "eu.byphil.ds": {
+              "template": true,
+              "scene": true
+            }
+          }
+        },
+        "mock-pressed-ring": {
+          "$type": "color",
+          "$value": "{brand.accent.600}",
+          "$extensions": {
+            "eu.byphil.ds": {
+              "alpha": 0.35,
+              "scene": true
+            }
+          }
+        },
+        "mock-sugg-edge": {
+          "$type": "color",
+          "$value": "color-mix(in srgb, {brand.accent.600} 46%, {color.white})",
+          "$extensions": {
+            "eu.byphil.ds": {
+              "template": true,
+              "scene": true
+            }
+          }
+        },
+        "mock-kick": {
+          "$type": "color",
+          "$value": "{color.mockup.kick}",
+          "$extensions": {
+            "eu.byphil.ds": {
+              "scene": true
+            }
+          }
+        },
+        "mock-on-accent": {
+          "$type": "color",
+          "$value": "{color.white}",
+          "$extensions": {
+            "eu.byphil.ds": {
+              "scene": true
+            }
+          }
+        },
+        "mock-cursor-fill": {
+          "$type": "color",
+          "$value": "{color.mockup.ink}",
+          "$extensions": {
+            "eu.byphil.ds": {
+              "scene": true
+            }
+          }
+        },
+        "mock-cursor-stroke": {
+          "$type": "color",
+          "$value": "{color.white}",
+          "$extensions": {
+            "eu.byphil.ds": {
+              "scene": true
+            }
+          }
+        },
+        "mock-ripple": {
+          "$type": "color",
+          "$value": "{brand.accent.600}",
+          "$extensions": {
+            "eu.byphil.ds": {
+              "alpha": 0.28,
+              "scene": true
+            }
+          }
+        },
+        "mock-ripple-edge": {
+          "$type": "color",
+          "$value": "{brand.accent.600}",
+          "$extensions": {
+            "eu.byphil.ds": {
+              "alpha": 0.55,
+              "scene": true
+            }
+          }
+        },
+        "mock-shadow-badge": {
+          "$type": "shadow",
+          "$value": "0 8px 24px {color.mockup.shadow@0.16}",
+          "$extensions": {
+            "eu.byphil.ds": {
+              "template": true,
+              "scene": true
+            }
+          }
+        },
+        "mock-shadow-win": {
+          "$type": "shadow",
+          "$value": "0 30px 70px -20px {color.mockup.shadow@0.35}",
+          "$extensions": {
+            "eu.byphil.ds": {
+              "template": true,
+              "scene": true
+            }
+          }
+        },
+        "mock-shadow-graph": {
+          "$type": "shadow",
+          "$value": "0 14px 40px {color.mockup.shadow@0.25}",
+          "$extensions": {
+            "eu.byphil.ds": {
+              "template": true,
+              "scene": true
+            }
+          }
+        },
+        "mock-shadow-panel": {
+          "$type": "shadow",
+          "$value": "none",
+          "$extensions": {
+            "eu.byphil.ds": {
+              "scene": true
+            }
+          }
+        },
+        "mock-brand": {
+          "$type": "gradient",
+          "$value": "linear-gradient(135deg, {brand.accent.600}, {brand.accent.375})",
+          "$extensions": {
+            "eu.byphil.ds": {
+              "template": true,
+              "scene": true
+            }
+          }
+        },
+        "mock-live": {
+          "$type": "color",
+          "$value": "{color.mockup.live}",
+          "$extensions": {
+            "eu.byphil.ds": {
+              "scene": true
+            }
+          }
+        },
+        "mock-dot-close": {
+          "$type": "color",
+          "$value": "{color.mockup.dot-close}",
+          "$extensions": {
+            "eu.byphil.ds": {
+              "scene": true
+            }
+          }
+        },
+        "mock-dot-min": {
+          "$type": "color",
+          "$value": "{color.mockup.dot-min}",
+          "$extensions": {
+            "eu.byphil.ds": {
+              "scene": true
+            }
+          }
+        },
+        "mock-dot-max": {
+          "$type": "color",
+          "$value": "{color.mockup.dot-max}",
+          "$extensions": {
+            "eu.byphil.ds": {
+              "scene": true
+            }
+          }
+        },
+        "mock-example-bg": {
+          "$type": "color",
+          "$value": "{color.grey.500-cool}",
+          "$extensions": {
+            "eu.byphil.ds": {
+              "alpha": 0.22,
+              "scene": true
+            }
+          }
+        },
+        "mock-overlay": {
+          "$type": "color",
+          "$value": "{color.ink.media-night}",
+          "$extensions": {
+            "eu.byphil.ds": {
+              "alpha": 0.82,
+              "scene": true
+            }
+          }
+        },
+        "mock-overlay-hover": {
+          "$type": "color",
+          "$value": "{color.ink.media-night}",
+          "$extensions": {
+            "eu.byphil.ds": {
+              "alpha": 0.94,
+              "scene": true
+            }
+          }
+        },
+        "mock-overlay-edge": {
+          "$type": "color",
+          "$value": "{color.white}",
+          "$extensions": {
+            "eu.byphil.ds": {
+              "alpha": 0.22,
+              "scene": true
+            }
+          }
+        },
+        "mock-overlay-muted": {
+          "$type": "color",
+          "$value": "{color.white}",
+          "$extensions": {
+            "eu.byphil.ds": {
+              "alpha": 0.75,
+              "scene": true
+            }
+          }
+        }
+      }
+    }
+  }
+}

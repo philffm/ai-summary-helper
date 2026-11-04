@@ -9,7 +9,7 @@ const CSS = fs.readFileSync('docs/assets/styles.css', 'utf8');
 const STRIPPED = CSS.replace(/\/\*[\s\S]*?\*\//g, '');
 // set per element by the HTML (style attribute) or by script (style.setProperty)
 const RUNTIME = new Set(['--img', '--s', '--cw', '--ch', '--p-a', '--p-sugg', '--p-panel', '--p-hl', '--p-qa', '--p-graph', '--i', '--ds', '--fw', '--fh', '--bgpos', '--dw']);
-const PALETTE = /^--(gray|stone|blue|navy|amber|red)-/;
+const PALETTE = /^--(gray|stone|navy|red|brand-accent|brand-highlight)-/;   // the primitive tier the site exposes (generated from design-system/tokens)
 
 /** Every rule as { selector, decls: [[prop, value]], tokenBlock } (at-rule wrappers are skipped, their rules are kept). */
 function rules(css = STRIPPED) {
@@ -70,7 +70,7 @@ test('!important only where it must beat an inline style or the hidden attribute
 });
 
 test('the old colour-named tokens are gone from the stylesheet, the pages and the scripts', () => {
-    const old = /var\(\s*--(paper|paper-dim|signal|signal-light|ink-\d+|steel-\d+|cta-sky-\d|cta-amber-\d|brass|brass-light|sky|sky-light|amber|amber-light)\)/;
+    const old = /var\(\s*--(paper|paper-dim|signal|signal-light|ink-\d+|steel-\d+|cta-sky-\d|cta-amber-\d|brass|brass-light|sky|sky-light|amber|amber-light|gold|gold-text|gold-fill|gold-fill-hover|on-gold|glow-sky|glow-amber|tint-gold|blue-\d+|amber-\d+|icon-(cyan|indigo|violet|gold|amber|teal)-\d)\)/;
     const files = [];
     const walk = (d) => fs.readdirSync(d, { withFileTypes: true }).forEach((e) => { const f = path.join(d, e.name); if (e.isDirectory()) walk(f); else if (/\.(html|js|css)$/.test(e.name)) files.push(f); });
     walk('docs');

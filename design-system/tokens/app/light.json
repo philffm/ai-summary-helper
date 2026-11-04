@@ -1,0 +1,588 @@
+{
+  "app": {
+    "semantic": {
+      "accent": {
+        "accent-a05": {
+          "$type": "color",
+          "$value": "{app.semantic.accent.accent}",
+          "$extensions": {
+            "eu.byphil.ds": {
+              "alpha": 0.05
+            }
+          }
+        },
+        "accent-a08": {
+          "$type": "color",
+          "$value": "{app.semantic.accent.accent}",
+          "$extensions": {
+            "eu.byphil.ds": {
+              "alpha": 0.08
+            }
+          }
+        },
+        "accent-a10": {
+          "$type": "color",
+          "$value": "{app.semantic.accent.accent}",
+          "$extensions": {
+            "eu.byphil.ds": {
+              "alpha": 0.1
+            }
+          }
+        },
+        "accent-a12": {
+          "$type": "color",
+          "$value": "{app.semantic.accent.accent}",
+          "$extensions": {
+            "eu.byphil.ds": {
+              "alpha": 0.12
+            }
+          }
+        },
+        "accent-a15": {
+          "$type": "color",
+          "$value": "{app.semantic.accent.accent}",
+          "$extensions": {
+            "eu.byphil.ds": {
+              "alpha": 0.15
+            }
+          }
+        },
+        "accent-a25": {
+          "$type": "color",
+          "$value": "{app.semantic.accent.accent}",
+          "$extensions": {
+            "eu.byphil.ds": {
+              "alpha": 0.25
+            }
+          }
+        },
+        "accent-a30": {
+          "$type": "color",
+          "$value": "{app.semantic.accent.accent}",
+          "$extensions": {
+            "eu.byphil.ds": {
+              "alpha": 0.3
+            }
+          }
+        },
+        "accent": {
+          "$type": "color",
+          "$value": "{brand.accent.600}"
+        },
+        "accent-light": {
+          "$type": "color",
+          "$value": "{brand.accent.500}"
+        },
+        "accent-glow": {
+          "$type": "color",
+          "$value": "{app.semantic.accent.accent}",
+          "$extensions": {
+            "eu.byphil.ds": {
+              "alpha": 0.25
+            }
+          }
+        },
+        "on-accent": {
+          "$type": "color",
+          "$value": "{color.white}"
+        },
+        "accent-soft": {
+          "$type": "color",
+          "$value": "{app.semantic.accent.accent}",
+          "$extensions": {
+            "eu.byphil.ds": {
+              "alpha": 0.1
+            }
+          }
+        },
+        "accent-soft-strong": {
+          "$type": "color",
+          "$value": "{app.semantic.accent.accent}",
+          "$extensions": {
+            "eu.byphil.ds": {
+              "alpha": 0.18
+            }
+          }
+        },
+        "accent-subtle": {
+          "$type": "color",
+          "$value": "{brand.accent.50}"
+        },
+        "accent-selected": {
+          "$type": "color",
+          "$value": "{app.semantic.accent.accent}",
+          "$extensions": {
+            "eu.byphil.ds": {
+              "alpha": 0.08
+            }
+          }
+        }
+      },
+      "feedback": {
+        "danger-strong": {
+          "$type": "color",
+          "$value": "{color.red.550}"
+        },
+        "ok": {
+          "$type": "color",
+          "$value": "{color.green.700}"
+        },
+        "warn": {
+          "$type": "color",
+          "$value": "{color.amber.600}"
+        },
+        "danger": {
+          "$type": "color",
+          "$value": "{color.red.600}"
+        },
+        "danger-light": {
+          "$type": "color",
+          "$value": "{color.red.50}"
+        },
+        "mood-pos": {
+          "$type": "color",
+          "$value": "{color.signal.positive}"
+        },
+        "mood-neg": {
+          "$type": "color",
+          "$value": "{color.signal.negative}"
+        },
+        "mood-warn": {
+          "$type": "color",
+          "$value": "{color.signal.warning}"
+        },
+        "mood-pos-text": {
+          "$type": "color",
+          "$value": "{color.green.700}"
+        },
+        "mood-neg-text": {
+          "$type": "color",
+          "$value": "{color.red.700}"
+        },
+        "mood-warn-text": {
+          "$type": "color",
+          "$value": "{color.amber.700}"
+        },
+        "caution-bg": {
+          "$type": "color",
+          "$value": "{color.amber.100}",
+          "$description": "\"Different page\" note: background."
+        },
+        "caution-fg": {
+          "$type": "color",
+          "$value": "{color.amber.900}",
+          "$description": "\"Different page\" note: text."
+        },
+        "caution-border": {
+          "$type": "color",
+          "$value": "{color.amber.200}",
+          "$description": "\"Different page\" note: border."
+        },
+        "caution-muted": {
+          "$type": "color",
+          "$value": "{color.amber.800}",
+          "$description": "\"Different page\" note: secondary text."
+        },
+        "danger-text": {
+          "$type": "color",
+          "$value": "{app.semantic.feedback.danger}",
+          "$description": "Delete action on a saved-note card."
+        }
+      },
+      "surface": {
+        "bg-page": {
+          "$type": "color",
+          "$value": "{brand.surface.page-light}"
+        },
+        "bg-page-gradient": {
+          "$type": "gradient",
+          "$value": "radial-gradient(at 0% 0%, {brand.glow.light-1} 0, transparent 50%), radial-gradient(at 100% 100%, {brand.glow.light-2} 0, transparent 50%)",
+          "$extensions": {
+            "eu.byphil.ds": {
+              "template": true
+            }
+          }
+        },
+        "glass-base": {
+          "$type": "color",
+          "$value": "{brand.surface.sheet-light}",
+          "$extensions": {
+            "eu.byphil.ds": {
+              "alpha": 0.92
+            }
+          }
+        },
+        "glass-card": {
+          "$type": "color",
+          "$value": "{color.white}",
+          "$extensions": {
+            "eu.byphil.ds": {
+              "alpha": 0.55
+            }
+          }
+        },
+        "glass-input": {
+          "$type": "color",
+          "$value": "{color.black}",
+          "$extensions": {
+            "eu.byphil.ds": {
+              "alpha": 0.04
+            }
+          }
+        },
+        "glass-border": {
+          "$type": "color",
+          "$value": "{color.white}",
+          "$extensions": {
+            "eu.byphil.ds": {
+              "alpha": 0.55
+            }
+          }
+        },
+        "glass-border-strong": {
+          "$type": "color",
+          "$value": "{color.white}",
+          "$extensions": {
+            "eu.byphil.ds": {
+              "alpha": 0.45
+            }
+          }
+        },
+        "glass-inner-glow": {
+          "$type": "shadow",
+          "$value": "inset 0 1px 0 {color.white@0.45}",
+          "$extensions": {
+            "eu.byphil.ds": {
+              "template": true
+            }
+          }
+        },
+        "surface-bar": {
+          "$type": "color",
+          "$value": "{color.white}"
+        },
+        "surface-sheet": {
+          "$type": "color",
+          "$value": "{brand.surface.sheet-light}"
+        },
+        "scrim": {
+          "$type": "color",
+          "$value": "{color.slate.900}",
+          "$extensions": {
+            "eu.byphil.ds": {
+              "alpha": 0.45
+            }
+          }
+        },
+        "surface-floating": {
+          "$type": "color",
+          "$value": "{app.semantic.surface.surface-sheet}",
+          "$extensions": {
+            "eu.byphil.ds": {
+              "alpha": 0.96
+            }
+          }
+        },
+        "surface-track": {
+          "$type": "color",
+          "$value": "{color.slate.200}"
+        },
+        "surface-row": {
+          "$type": "color",
+          "$value": "{color.neutral.50}"
+        },
+        "surface-field": {
+          "$type": "color",
+          "$value": "{color.neutral.150}"
+        },
+        "surface-selected": {
+          "$type": "color",
+          "$value": "{color.white}"
+        },
+        "surface-control": {
+          "$type": "color",
+          "$value": "{color.white}"
+        }
+      },
+      "text": {
+        "text-primary": {
+          "$type": "color",
+          "$value": "{color.slate.900}"
+        },
+        "text-secondary": {
+          "$type": "color",
+          "$value": "{color.slate.700}"
+        },
+        "text-muted": {
+          "$type": "color",
+          "$value": "{color.slate.550}"
+        },
+        "text-link": {
+          "$type": "color",
+          "$value": "{brand.accent.700}"
+        }
+      },
+      "outline": {
+        "outline": {
+          "$type": "color",
+          "$value": "{color.slate.500}",
+          "$extensions": {
+            "eu.byphil.ds": {
+              "alpha": 0.25
+            }
+          }
+        },
+        "outline-soft": {
+          "$type": "color",
+          "$value": "{color.white}",
+          "$extensions": {
+            "eu.byphil.ds": {
+              "alpha": 0.55
+            }
+          }
+        },
+        "outline-strong": {
+          "$type": "color",
+          "$value": "{color.neutral.250}"
+        }
+      },
+      "elevation": {
+        "shadow-card": {
+          "$type": "shadow",
+          "$value": "0 4px 16px {color.slate.900@0.08}",
+          "$extensions": {
+            "eu.byphil.ds": {
+              "template": true
+            }
+          }
+        },
+        "shadow-raised": {
+          "$type": "shadow",
+          "$value": "0 8px 28px {color.slate.900@0.12}",
+          "$extensions": {
+            "eu.byphil.ds": {
+              "template": true
+            }
+          }
+        },
+        "shadow-modal": {
+          "$type": "shadow",
+          "$value": "0 12px 40px {color.slate.900@0.16}",
+          "$extensions": {
+            "eu.byphil.ds": {
+              "template": true
+            }
+          }
+        },
+        "elevation-sheet": {
+          "$type": "shadow",
+          "$value": "0 -8px 30px {color.slate.900@0.2}",
+          "$extensions": {
+            "eu.byphil.ds": {
+              "template": true
+            }
+          }
+        }
+      },
+      "status": {
+        "tone-read-bg": {
+          "$type": "color",
+          "$value": "{color.neutral.200}"
+        },
+        "tone-read-fg": {
+          "$type": "color",
+          "$value": "{color.slate.600}"
+        },
+        "tone-sent-bg": {
+          "$type": "color",
+          "$value": "{brand.accent.100}"
+        },
+        "tone-sent-fg": {
+          "$type": "color",
+          "$value": "{brand.accent.700}"
+        },
+        "tone-new-bg": {
+          "$type": "color",
+          "$value": "{color.green.100}"
+        },
+        "tone-new-fg": {
+          "$type": "color",
+          "$value": "{color.green.800}"
+        },
+        "tone-arch-bg": {
+          "$type": "color",
+          "$value": "{color.amber.100}"
+        },
+        "tone-arch-fg": {
+          "$type": "color",
+          "$value": "{color.amber.800}"
+        }
+      },
+      "control": {
+        "control-track": {
+          "$type": "color",
+          "$value": "{color.slate.300}"
+        },
+        "control-thumb": {
+          "$type": "color",
+          "$value": "{color.slate.500}",
+          "$extensions": {
+            "eu.byphil.ds": {
+              "alpha": 0.42
+            }
+          }
+        },
+        "control-thumb-hover": {
+          "$type": "color",
+          "$value": "{color.slate.500}",
+          "$extensions": {
+            "eu.byphil.ds": {
+              "alpha": 0.66
+            }
+          }
+        },
+        "control-grip": {
+          "$type": "color",
+          "$value": "{color.slate.300}"
+        },
+        "control-off": {
+          "$type": "color",
+          "$value": "{color.slate.300}"
+        },
+        "control-knob": {
+          "$type": "color",
+          "$value": "{color.white}"
+        },
+        "control-border": {
+          "$type": "color",
+          "$value": "{color.slate.400}"
+        }
+      },
+      "inverse": {
+        "surface-inverse": {
+          "$type": "color",
+          "$value": "{color.slate.900}"
+        },
+        "text-inverse": {
+          "$type": "color",
+          "$value": "{color.white}"
+        },
+        "link-inverse": {
+          "$type": "color",
+          "$value": "{brand.accent.300}"
+        }
+      },
+      "overlay": {
+        "overlay-strong": {
+          "$type": "color",
+          "$value": "{app.semantic.text.text-primary}",
+          "$extensions": {
+            "eu.byphil.ds": {
+              "alpha": 0.18
+            }
+          }
+        },
+        "overlay": {
+          "$type": "color",
+          "$value": "{app.semantic.text.text-primary}",
+          "$extensions": {
+            "eu.byphil.ds": {
+              "alpha": 0.1
+            }
+          }
+        }
+      },
+      "data": {
+        "data-0": {
+          "$type": "color",
+          "$value": "{color.chart.light-0}"
+        },
+        "data-1": {
+          "$type": "color",
+          "$value": "{color.chart.light-1}"
+        },
+        "data-2": {
+          "$type": "color",
+          "$value": "{color.chart.light-2}"
+        },
+        "data-3": {
+          "$type": "color",
+          "$value": "{color.chart.light-3}"
+        },
+        "data-4": {
+          "$type": "color",
+          "$value": "{color.chart.light-4}"
+        },
+        "data-5": {
+          "$type": "color",
+          "$value": "{color.chart.light-5}"
+        },
+        "data-6": {
+          "$type": "color",
+          "$value": "{color.chart.light-6}"
+        },
+        "data-7": {
+          "$type": "color",
+          "$value": "{color.chart.light-7}"
+        },
+        "data-other": {
+          "$type": "color",
+          "$value": "{color.chart.light-other}"
+        }
+      },
+      "annotation": {
+        "annotation-user-bg": {
+          "$type": "color",
+          "$value": "{color.yellow.100}"
+        },
+        "annotation-user-fg": {
+          "$type": "color",
+          "$value": "{color.yellow.900}"
+        },
+        "annotation-user-bar": {
+          "$type": "color",
+          "$value": "{color.yellow.500}"
+        },
+        "annotation-ai-bg": {
+          "$type": "color",
+          "$value": "{color.sky.100}"
+        },
+        "annotation-ai-fg": {
+          "$type": "color",
+          "$value": "{color.sky.900}"
+        },
+        "annotation-ai-bar": {
+          "$type": "color",
+          "$value": "{color.sky.600}"
+        },
+        "annotation-note-bg": {
+          "$type": "color",
+          "$value": "{color.pink.100}"
+        },
+        "annotation-note-fg": {
+          "$type": "color",
+          "$value": "{color.pink.900}"
+        },
+        "annotation-note-bar": {
+          "$type": "color",
+          "$value": "{color.pink.600}"
+        },
+        "annotation-quote-bg": {
+          "$type": "color",
+          "$value": "{color.white}",
+          "$description": "Quote box inside a saved-note card.",
+          "$extensions": {
+            "eu.byphil.ds": {
+              "alpha": 0.55
+            }
+          }
+        },
+        "annotation-edge": {
+          "$type": "shadow",
+          "$value": "none",
+          "$description": "Hairline around saved-note cards (dark only)."
+        }
+      }
+    }
+  }
+}

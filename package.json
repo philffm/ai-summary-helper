@@ -25,6 +25,9 @@
     "test:all": "node plugin/tests/run.mjs --all",
     "test:release": "node plugin/tests/run.mjs --release && node scripts/feed-i18n.mjs check",
     "lint": "eslint plugin/src",
+    "tokens": "node design-system/build.mjs",
+    "tokens:check": "node design-system/build.mjs --check",
+    "tokens:report": "node design-system/build.mjs --check --report",
     "libs:check": "node scripts/check-vendored-libs.mjs"
   },
   "dependencies": {

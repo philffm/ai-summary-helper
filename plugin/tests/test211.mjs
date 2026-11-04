@@ -30,11 +30,10 @@ ok('light edge (yours)', /\.item\.user \{ border-left-color: (#[0-9a-f]{6})/i.ex
 ok('light edge (AI)', /\.item\.ghost \{ border-left-color: (#[0-9a-f]{6})/i.exec(panel)[1], light, 3);
 
 // the sticky notes (Notes tab, article view): text on each card colour, light and dark, and the dark delete link
-{ const css = fs.readFileSync(path.resolve(process.env.AISH_SRC, 'styles.css'), 'utf8');
-  const vars = (block) => Object.fromEntries([...block.matchAll(/--st-([a-z]+-[a-z]+):\s*(#[0-9a-fA-F]{6})/g)].map((m) => [m[1], m[2]]));
-  const light = vars(/^:root \{ (--st-user-bg[^}]*)\}/m.exec(css)[1]), dark = vars(/^:root\[data-theme='dark'\] \{ (--st-user-bg[^}]*)\}/m.exec(css)[1]);
-  const system = vars(/@media \(prefers-color-scheme: dark\) \{\s*:root:not\(\[data-theme='light'\]\):not\(\[data-theme='contrast'\]\) \{ (--st-user-bg[^}]*)\}/.exec(css)[1]);
-  assert.deepEqual(system, dark, 'the System theme (no data-theme attribute) uses the same dark card colours');
+{ const resolved = JSON.parse(fs.readFileSync(path.resolve(process.env.AISH_SRC, '..', '..', 'design-system/dist/tokens.resolved.json'), 'utf8')).aish.app;
+  // the component tokens of the note cards (design-system/tokens/app/*.json › component.saved-note), as generated
+  const vars = (mode) => Object.fromEntries(Object.entries(resolved[mode]).filter(([k]) => k.startsWith('--saved-note-')).map(([k, v]) => [k.slice(13), v.value.toLowerCase()]));
+  const light = vars('light'), dark = vars('dark');
   for (const [name, v] of [['light', light], ['dark', dark]]) for (const k of ['user', 'ghost', 'note']) ok(`${name} ${k} card text`, v[k + '-fg'], v[k + '-bg']);
-  const del = /\.st-del \{ color: (#[0-9a-f]{6}); \}/.exec(css); assert.ok(del, 'the dark delete colour'); ok('dark delete link', del[1], dark['note-bg']); }
+  ok('dark delete link', dark['danger'], dark['note-bg']); }
 console.log('TEST 211 OK');

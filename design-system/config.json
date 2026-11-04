@@ -1,0 +1,374 @@
+{
+  "$description": "Where the generated tokens go. Each output is a marked region in a stylesheet (/* @tokens:start <name> */ … /* @tokens:end <name> */); each block lists the token files whose tokens it declares, in cascade order. `stacks` say which files are in effect in a theme, for the contrast gate, Figma and Android.",
+  "defaultBrand": "aish",
+  "contexts": {
+    "app": {
+      "label": "Extension (popup, side panel, reader)",
+      "stacks": {
+        "light": [
+          "app/base",
+          "app/light"
+        ],
+        "dark": [
+          "app/base",
+          "app/light",
+          "app/dark",
+          "app/dark-forced"
+        ],
+        "contrast": [
+          "app/base",
+          "app/light",
+          "app/contrast"
+        ]
+      }
+    },
+    "site": {
+      "label": "Website",
+      "stacks": {
+        "dark": [
+          "site/base",
+          "site/dark"
+        ],
+        "light": [
+          "site/base",
+          "site/dark",
+          "site/light"
+        ]
+      },
+      "scopedStacks": {
+        "mock": {
+          "light": [
+            "site/mock/light"
+          ],
+          "dark": [
+            "site/mock/light",
+            "site/mock/dark"
+          ]
+        },
+        "photo": {
+          "dark": [
+            "site/photo/dark"
+          ],
+          "light": [
+            "site/photo/dark",
+            "site/photo/light"
+          ]
+        }
+      }
+    }
+  },
+  "outputs": [
+    {
+      "file": "plugin/src/styles.css",
+      "brandBuildPath": "styles.css",
+      "region": "theme",
+      "context": "app",
+      "blocks": [
+        {
+          "selector": ":root,\n:root[data-theme='light']",
+          "sets": [
+            "app/base",
+            "app/light"
+          ]
+        },
+        {
+          "media": "(prefers-color-scheme: dark)",
+          "selector": ":root:not([data-theme='light']):not([data-theme='contrast'])",
+          "sets": [
+            "app/dark"
+          ]
+        },
+        {
+          "selector": ":root[data-theme='dark']",
+          "sets": [
+            "app/dark",
+            "app/dark-forced"
+          ]
+        },
+        {
+          "selector": ":root[data-theme='contrast']",
+          "sets": [
+            "app/contrast"
+          ],
+          "extra": [
+            "color-scheme: light"
+          ]
+        }
+      ]
+    },
+    {
+      "file": "docs/assets/styles.css",
+      "brandBuildPath": "assets/styles.css",
+      "region": "theme",
+      "context": "site",
+      "blocks": [
+        {
+          "selector": ":root",
+          "sets": [
+            "site/base"
+          ]
+        },
+        {
+          "comment": "roles: dark (also the default before the theme script has run)",
+          "selector": ":root,\n:root[data-theme=\"dark\"]",
+          "sets": [
+            "site/dark"
+          ],
+          "extra": [
+            "color-scheme:dark"
+          ]
+        },
+        {
+          "selector": ":root[data-theme=\"light\"]",
+          "sets": [
+            "site/light"
+          ],
+          "extra": [
+            "color-scheme:light"
+          ]
+        }
+      ]
+    },
+    {
+      "file": "docs/assets/styles.css",
+      "brandBuildPath": "assets/styles.css",
+      "region": "mock",
+      "context": "site",
+      "blocks": [
+        {
+          "comment": "Hero mock of the extension: its own small palette as component tokens on the scene, light first, dark below. The mock rules read only these.",
+          "selector": ":is(.hero-scene, .hscene)",
+          "sets": [
+            "site/mock/light"
+          ]
+        },
+        {
+          "media": "(max-width:900px)",
+          "selector": ":is(.hero-scene, .hscene)",
+          "sets": [
+            "site/mock/narrow"
+          ]
+        },
+        {
+          "selector": ":root[data-theme=\"dark\"] :is(.hero-scene, .hscene)",
+          "sets": [
+            "site/mock/dark"
+          ]
+        }
+      ]
+    },
+    {
+      "file": "docs/assets/styles.css",
+      "brandBuildPath": "assets/styles.css",
+      "region": "photo",
+      "context": "site",
+      "blocks": [
+        {
+          "comment": "Photo stage (home hero, blog post header): dark veil and light text by default, light veil and role colours in the light theme.",
+          "selector": ".hero--photo",
+          "sets": [
+            "site/photo/dark"
+          ]
+        },
+        {
+          "selector": ":root[data-theme=\"light\"] .hero--photo",
+          "sets": [
+            "site/photo/light"
+          ]
+        }
+      ]
+    }
+  ],
+  "contrast": {
+    "$description": "Text/background pairs checked for WCAG 2.2 AA (4.5:1; 3:1 where marked large) in every brand × theme. A translucent background is composited over `over` first.",
+    "app": [
+      {
+        "fg": [
+          "text-primary",
+          "text-secondary",
+          "text-muted"
+        ],
+        "bg": [
+          "bg-page",
+          "glass-base",
+          "glass-card",
+          "sheet-bg"
+        ],
+        "over": "bg-page"
+      },
+      {
+        "fg": [
+          "text-link"
+        ],
+        "bg": [
+          "bg-page",
+          "glass-card"
+        ],
+        "over": "bg-page"
+      },
+      {
+        "fg": [
+          "on-accent"
+        ],
+        "bg": [
+          "accent"
+        ],
+        "over": "bg-page"
+      },
+      {
+        "fg": [
+          "on-solid"
+        ],
+        "bg": [
+          "ok",
+          "localsend-bg",
+          "button-working-bg"
+        ],
+        "over": "bg-page",
+        "min": 3
+      },
+      {
+        "fg": [
+          "note-fg"
+        ],
+        "bg": [
+          "note-bg"
+        ],
+        "over": "bg-page"
+      },
+      {
+        "fg": [
+          "caution-fg",
+          "caution-muted"
+        ],
+        "bg": [
+          "caution-bg"
+        ],
+        "over": "bg-page"
+      },
+      {
+        "fg": [
+          "tone-read-fg"
+        ],
+        "bg": [
+          "tone-read-bg"
+        ],
+        "over": "bg-page"
+      },
+      {
+        "fg": [
+          "tone-sent-fg"
+        ],
+        "bg": [
+          "tone-sent-bg"
+        ],
+        "over": "bg-page"
+      },
+      {
+        "fg": [
+          "tone-new-fg"
+        ],
+        "bg": [
+          "tone-new-bg"
+        ],
+        "over": "bg-page"
+      },
+      {
+        "fg": [
+          "tone-arch-fg"
+        ],
+        "bg": [
+          "tone-arch-bg"
+        ],
+        "over": "bg-page"
+      },
+      {
+        "fg": [
+          "toast-fg"
+        ],
+        "bg": [
+          "toast-bg"
+        ],
+        "over": "bg-page"
+      },
+      {
+        "fg": [
+          "nav-active-text"
+        ],
+        "bg": [
+          "accent"
+        ],
+        "over": "bg-page",
+        "min": 3
+      }
+    ],
+    "site": [
+      {
+        "fg": [
+          "text",
+          "text-muted"
+        ],
+        "bg": [
+          "bg",
+          "bg-raised"
+        ],
+        "over": "bg"
+      },
+      {
+        "fg": [
+          "accent-text",
+          "highlight-text",
+          "danger"
+        ],
+        "bg": [
+          "bg",
+          "bg-raised"
+        ],
+        "over": "bg"
+      },
+      {
+        "fg": [
+          "on-accent"
+        ],
+        "bg": [
+          "accent-fill"
+        ],
+        "over": "bg"
+      },
+      {
+        "fg": [
+          "mark-text"
+        ],
+        "bg": [
+          "mark-bg"
+        ],
+        "over": "bg"
+      }
+    ]
+  },
+  "runtimeTokens": {
+    "$description": "Set per element by script or style attribute, so the stylesheet reads them without defining them.",
+    "app": [
+      "--mood-tint",
+      "--mood-bar"
+    ],
+    "site": [
+      "--img",
+      "--s",
+      "--cw",
+      "--ch",
+      "--p-a",
+      "--p-sugg",
+      "--p-panel",
+      "--p-hl",
+      "--p-qa",
+      "--p-graph",
+      "--i",
+      "--ds",
+      "--fw",
+      "--fh",
+      "--bgpos",
+      "--dw"
+    ]
+  }
+}
