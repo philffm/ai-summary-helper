@@ -11,6 +11,7 @@
     "blog/on-device-architecture.html",
     "blog/from-bookmarklet-to-2.html",
     "blog/bring-your-own-key.html",
+    "blog/byphil-cloud-eu-models.html",
     "blog/feeds-recap.html",
     "blog/highlighting-vs-asking.html",
     "blog/verify-ai-summary.html",
@@ -42,7 +43,8 @@
     "research-papers/index.html",
     "youtube-summarizer/index.html",
     "rss-news/index.html",
-    "e-reader/index.html"
+    "e-reader/index.html",
+    "blog/byphil-cloud-eu-models.html"
   ],
   "translationPriorities": {
     "1": ["de"],
