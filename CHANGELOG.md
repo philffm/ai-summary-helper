@@ -5,6 +5,49 @@ Commit history has the details: <https://github.com/philffm/ai-summary-helper/co
 
 ## Unreleased
 
+## 2.2.42 (2026-11-05)
+
+### All changes
+
+#### Changed
+
+- Pages: the live demo follows releases, not every commit
+- Topic briefing: a visible Unopened / All choice instead of a switch hidden in the folded Opened group
+- Models: no flicker of the other tab's fields when switching Cloud / Own key / Local
+- pdf.js: vendor the readable legacy build, not the minified one (Chrome Web Store 'Red Titanium')
+- locales.json: track blog/byphil-cloud-eu-models.html (content, staged until translated)
+- Education pages: demo 'open' link as a pill button at the top right of the demo frame
+- i18n: translate the new strings (local models, sync review, dock, confirm sheet) into all 22 languages
+- Manifests: declarativeNetRequestWithHostAccess (local model Origin rules), Firefox trialML + builtinAi.js
+- eslint: AishBuiltin is a global of the classic script builtinAi.js
+- Local models in one list, built-in Chrome model, app-wide confirm sheet/undo, reorderable dock and toolbars
+  - Local models: localModels/localServers/nanoModel/builtinAi. Chrome's Prompt API (Gemini Nano) as chrome-builtin, Firefox ML, LM Studio/llama.cpp/Jan via /v1/models, apfel; one recommendation with reason, saved fallback order, long pages read in parts for small context windows, wait while a model is still loading (AISH-033).
+  - confirmSheet replaces window.confirm app-wide; deletes happen after a 6 s Undo (AISH-032 A4).
+  - dockPrefs, reorder, actionBar: reorder/hide dock tabs and toolbar actions (AISH-006.3).
+  - Component manifest (36), breakpoint token, German strings, feed-i18n script.
+  - Tests 238-248 added; test5/72/97/177 and the harness adapted to the new code.
+- Language banner: restore the link (stray 'AI' chip entries had shifted the locale arrays)
+- css-tokens test: --bp-* and --easing-* are complete generated scales, not required to be read
+- Design system: component manifest, motion and breakpoint tokens, lint (ADR 0005)
+  - components.mjs builds design-system/dist/components.{json,md} (31 components).
+  - lint.mjs: durations from --duration-*, media-query widths from --bp-*, breakpoints.js FALLBACK in sync with the tokens.
+  - reduced-motion and focus-ring tokens; layout JS reads bp() instead of literals.
+  - tokens:check now also runs the component manifest and the lint.
+- Education pages: say the aim is to guide with AI, not warn against it (EN, DE)
+- Sync: review deletions one by one, redesigned Sync & backup settings; summary queue no longer stalls
+  - Deletions from other devices beyond the guard are listed (pending) and answered per article: Delete applies it, Keep re-stamps the record so it wins over the marker and returns on the deleting device.
+  - Settings → Sync & backup: one status model (tone, words, fixing action), errors at their field, folded settings, in-page remove confirm (Figma AISH-029). Danger text uses --danger-text for contrast.
+  - Summary queue: a running job whose finish message is lost is detected (stream list + tab state, 30s probe) and cleared so queued summaries start.
+  - Tests 190, 204 updated; 235-237 added.
+- gitignore: ignore .claude/
+- Design tokens: DTCG token pipeline (primitive → semantic → component) for extension and site
+
+#### Developer experience
+
+- Release: a manual run skips the test gate when CI already passed on this exact commit
+- docs: regenerate pages (education copy, DE head tags, sitemap lastmod)
+- docs: regenerate pages (video transcripts and captions, sitemap)
+
 ## 2.2.41 (2026-11-03)
 
 #### Added
