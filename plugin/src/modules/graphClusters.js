@@ -230,6 +230,23 @@ export function openClusterPage(container, { label, articles, subtopics = [] }) 
         setIconLabel(brief, 'sparkles', !unopened.length ? T('✨ Brief me on this topic') : includeOpened ? T('✨ Brief me on all {n}', { n: list.length }) : T('✨ Brief me on the {n} unopened', { n: unopened.length }));
         page.querySelectorAll('.graph-cluster-open').forEach(b => b.classList.toggle('is-included', includeOpened && !!b.dataset.sel));
     };
+    // What the briefing covers: by default what was never opened; a visible choice widens it to every article of the topic,
+    // opened ones included (it used to hide in the folded "Opened" group).
+    if (st.withSummary && unopened.length && opened.length) {
+        const scope = el('div', 'segmented-control segmented-control-buttons graph-cluster-scope');
+        scope.setAttribute('role', 'group'); scope.setAttribute('aria-label', T('Briefing scope'));
+        const opts = [[false, T('Unopened · {n}', { n: unopened.length })], [true, T('All · {n}', { n: list.length })]].map(([all, text]) => {
+            const b = el('button', null, text); b.type = 'button'; b.dataset.scope = all ? 'all' : 'unopened';
+            b.addEventListener('click', (e) => { e.stopPropagation(); includeOpened = all; paintScope(); });
+            scope.append(b); return [all, b];
+        });
+        const paintScope = () => {
+            opts.forEach(([all, b]) => { const on = all === includeOpened; b.classList.toggle('active', on); b.setAttribute('aria-pressed', String(on)); });
+            page.classList.toggle('is-including', includeOpened); paintBrief();
+        };
+        scroll.append(scope);
+        paintScope();
+    }
     if (st.withSummary) {
         brief = el('button', 'graph-preview-open graph-cluster-brief');
         brief.type = 'button';
@@ -292,16 +309,6 @@ export function openClusterPage(container, { label, articles, subtopics = [] }) 
     if (opened.length) {
         const det = el('details', 'graph-cluster-opened');
         const sum = el('summary', null, T('Opened ({n})', { n: opened.length }));
-        if (unopened.length && st.withSummary) {
-            const sw = el('button', 'graph-cluster-switch'); sw.type = 'button'; sw.setAttribute('role', 'switch'); sw.setAttribute('aria-checked', 'false');
-            sw.append(el('span', 'graph-cluster-switch-l', T('Include in briefing')), el('span', 'graph-cluster-switch-k'));
-            sw.addEventListener('click', (e) => {
-                e.preventDefault(); e.stopPropagation();
-                includeOpened = !includeOpened; sw.setAttribute('aria-checked', String(includeOpened));
-                page.classList.toggle('is-including', includeOpened); paintBrief();
-            });
-            sum.append(sw);
-        }
         det.append(sum);
         const ul = el('ul', 'graph-cluster-list'); opened.slice(0, 20).forEach(a => ul.append(row(a, true))); det.append(ul);
         scroll.append(det);
