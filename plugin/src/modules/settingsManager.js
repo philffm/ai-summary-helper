@@ -574,23 +574,35 @@ async function initModelSettings(storageData) {
     };
     toggleConnectionContainers(currentTab);
 
+    // Own key and Local share one container (provider, key, endpoint, the local-model tutorial). Its content is rebuilt for the tab
+    // that is chosen, which takes a few async steps: until it is ready the container stays invisible (it keeps its room, so nothing
+    // jumps), and only then is it shown. The old tab's fields are never on screen under the new tab. A newer click wins.
+    let switchSeq = 0;
     const handleModeChange = async (e) => {
         const tab = e.target.value; // cloud | local | ollama
-        await autoSave('connectionMode', tab === 'cloud' ? 'cloud' : 'local');
+        const seq = ++switchSeq;
+        const own = tab !== 'cloud';
+        if (own) developerModeContainer.classList.add('is-switching');
         toggleConnectionContainers(tab);
-        if (tab === 'cloud') return;
+        try {
+            await autoSave('connectionMode', own ? 'local' : 'cloud');
+            if (!own || seq !== switchSeq) return;
 
-        // Restore the provider that belongs to this tab so the panel doesn't fall back to a stale selection.
-        const latest = await StorageManager.getAll();
-        let target = 'ollama';
-        if (tab === 'local') {
-            const ownKey = (id) => id && id !== 'ollama' && Array.from(modelSelect.options).some(o => o.value === id);
-            target = [lastOwnKeyService, latest.activeService, modelSelect.value, 'openai'].find(ownKey) || modelSelect.options[0]?.value;
-            modelSelect.value = target;
-        }
-        if (target) {
-            await autoSave('activeService', target);
-            await updateFields(target);
+            // Restore the provider that belongs to this tab so the panel doesn't fall back to a stale selection.
+            const latest = await StorageManager.getAll();
+            if (seq !== switchSeq) return;
+            let target = 'ollama';
+            if (tab === 'local') {
+                const ownKey = (id) => id && id !== 'ollama' && Array.from(modelSelect.options).some(o => o.value === id);
+                target = [lastOwnKeyService, latest.activeService, modelSelect.value, 'openai'].find(ownKey) || modelSelect.options[0]?.value;
+                modelSelect.value = target;
+            }
+            if (target) {
+                await autoSave('activeService', target);
+                await updateFields(target);
+            }
+        } finally {
+            if (seq === switchSeq) developerModeContainer.classList.remove('is-switching');
         }
     };
 
@@ -761,10 +773,13 @@ async function initModelSettings(storageData) {
     if (activeService !== 'ollama') modelSelect.value = activeService;
 
     let shownService = activeService; // provider whose fields are on screen (the select is hidden on the Ollama tab)
+    let fieldsSeq = 0;   // a slower, older updateFields must not paint over a newer one (quick tab switching)
     const updateFields = async (serviceId) => {
         shownService = serviceId;
+        const mine = ++fieldsSeq;
         const service = services.find(s => s.id === serviceId);
         const latest = await StorageManager.getAll();
+        if (mine !== fieldsSeq) return;
         const cfg = latest[SK.servicesConfig]?.[serviceId] || {};
 
         const apiKeyLink = document.getElementById('apiKeyLink');

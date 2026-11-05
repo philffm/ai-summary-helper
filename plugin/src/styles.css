@@ -1199,6 +1199,8 @@ ul#articleList {
 
 /* ── Connection Mode Switch (Segmented Control) ────────────────────────── */
 
+/* Models › Own key / Local share one container: invisible (but keeping its room) while its fields are rebuilt for the chosen tab. */
+#developerModeContainer.is-switching { visibility: hidden; }
 .segmented-control {
     display: flex;
     background: var(--glass-input);
