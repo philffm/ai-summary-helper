@@ -6341,5 +6341,875 @@
   },
   "f_places_use_this_server_4df9": {
     "message": "{n} luoghi usano questo server."
+  },
+  "f_a_copy_only_this_device_writ_6789": {
+    "message": "Una copia che scrive solo questo dispositivo. Cifrata."
+  },
+  "f_a_local_model_on_this_comput_cb32": {
+    "message": "Un modello locale su questo computer"
+  },
+  "f_a_small_model_that_comes_wit_dbb4": {
+    "message": "Un piccolo modello incluso in Chrome: nessuna installazione, niente lascia il tuo computer, zero token. Valutazioni, categorie e riepiloghi sono nettamente più deboli che con un modello più grande."
+  },
+  "f_a_task_sheet_to_check_each_s_715b": {
+    "message": "Una scheda di lavoro per controllare ogni fonte a mano"
+  },
+  "f_add_your_phone_57ff": {
+    "message": "Aggiungi il tuo telefono"
+  },
+  "f_add_your_question_9bd5": {
+    "message": "Aggiungi la tua domanda"
+  },
+  "f_age_e13c": {
+    "message": "Età"
+  },
+  "f_all_except_fe8b": {
+    "message": "Tutto tranne {tag}"
+  },
+  "f_all_local_models_c59b": {
+    "message": "Tutti i modelli locali"
+  },
+  "f_all_places_are_up_to_date_0e60": {
+    "message": "Tutte le destinazioni sono aggiornate"
+  },
+  "f_allow_firefox_ai_c2bb": {
+    "message": "Consenti l’IA di Firefox"
+  },
+  "f_also_found_e4c8": {
+    "message": "Trovati anche: {list}"
+  },
+  "f_anki_cards_0b3d": {
+    "message": "Schede Anki"
+  },
+  "f_apple_s_model_on_this_mac_re_ce75": {
+    "message": "Il modello di Apple su questo Mac, pronto subito."
+  },
+  "f_apply_bbdb": {
+    "message": "Applica"
+  },
+  "f_apply_6e04": {
+    "message": "Applica ({n})"
+  },
+  "f_around_this_article_c58a": {
+    "message": "Intorno a questo articolo"
+  },
+  "f_at_least_two_tabs_stay_in_th_f869": {
+    "message": "Almeno due schede restano nel dock."
+  },
+  "f_available_when_a_local_model_667c": {
+    "message": "Disponibile quando è configurato un modello locale (Impostazioni › Modelli › Locale). Valuta, categorizza e riassume tutta la tua libreria Feed a piccoli lotti sulla tua macchina. Può richiedere ore ma non consuma token."
+  },
+  "f_back_up_123b": {
+    "message": "Backup"
+  },
+  "f_better_connections_ready_f4f9": {
+    "message": "Collegamenti migliori pronti"
+  },
+  "f_better_results_ollama_with_a_1cba": {
+    "message": "Risultati migliori: Ollama con un modello da 7–8B (GPU o Apple Silicon), oppure un modello cloud o la tua chiave API per i riassunti."
+  },
+  "f_blocked_ac53": {
+    "message": "Bloccato"
+  },
+  "f_bottom_dock_5a41": {
+    "message": "Dock in basso"
+  },
+  "f_brief_me_on_this_277c": {
+    "message": "Fammi un riepilogo"
+  },
+  "f_bring_everything_in_this_pla_40e5": {
+    "message": "Riportare tutto di questa destinazione su questo dispositivo?"
+  },
+  "f_built_into_the_browser_ready_4b02": {
+    "message": "Integrato nel browser, pronto subito. Niente da installare."
+  },
+  "f_built_in_chrome_model_gemini_2f37": {
+    "message": "Modello integrato di Chrome (Gemini Nano) · riserva"
+  },
+  "f_built_in_chrome_model_fallba_0e75": {
+    "message": "Modello integrato di Chrome (riserva)"
+  },
+  "f_change_the_question_4676": {
+    "message": "Cambia la domanda"
+  },
+  "f_change_what_the_dot_colours__8ffd": {
+    "message": "Cambia il significato dei colori dei punti"
+  },
+  "f_check_the_field_marked_below_9291": {
+    "message": "Controlla il campo evidenziato sotto."
+  },
+  "f_check_c1c4": {
+    "message": "Controlla “{title}”"
+  },
+  "f_chrome_can_download_a_small__897b": {
+    "message": "Chrome può scaricare una volta un piccolo modello (Gemini Nano) ed eseguire la libreria sul tuo computer. Funziona come riserva; i risultati sono più deboli che con un modello più grande."
+  },
+  "f_citations_of_all_sources_wit_2ee3": {
+    "message": "Citazioni di tutte le fonti con DOI. Viene inviato solo il DOI."
+  },
+  "f_collection_actions_47e6": {
+    "message": "Azioni della raccolta"
+  },
+  "f_collection_deleted_784c": {
+    "message": "Raccolta eliminata"
+  },
+  "f_color_e44b": {
+    "message": "Colore: {mode}"
+  },
+  "f_compare_first_a472": {
+    "message": "Prima confronta"
+  },
+  "f_connected_in_steps_3a37": {
+    "message": "Collegati in {n} passi: {chain}"
+  },
+  "f_connects_f920": {
+    "message": "Collega: {topics}"
+  },
+  "f_continue_the_download_5741": {
+    "message": "Continua il download"
+  },
+  "f_delete_all_adcd": {
+    "message": "Elimina tutto"
+  },
+  "f_delete_article_6a74": {
+    "message": "Elimina articolo"
+  },
+  "f_delete_them_here_too_342a": {
+    "message": "Elimina anche qui…"
+  },
+  "f_delete_this_article_85f5": {
+    "message": "Eliminare questo articolo?"
+  },
+  "f_delete_article_on_this_devic_4f26": {
+    "message": "Eliminare {n} articolo anche su questo dispositivo?"
+  },
+  "f_delete_articles_bc95": {
+    "message": "Elimina {n} articoli"
+  },
+  "f_delete_articles_on_this_devi_6223": {
+    "message": "Eliminare {n} articoli anche su questo dispositivo?"
+  },
+  "f_delete_articles_ff9e": {
+    "message": "Eliminare {n} articoli?"
+  },
+  "f_delete_4457": {
+    "message": "Eliminare “{name}”?"
+  },
+  "f_deleted_on_another_device_82c6": {
+    "message": "Eliminato su un altro dispositivo"
+  },
+  "f_deleted_with_the_articles_ab_2f89": {
+    "message": "Eliminata insieme agli articoli sopra, o da sola"
+  },
+  "f_detail_73b4": {
+    "message": "Dettaglio"
+  },
+  "f_dots_coloured_by_age_purple__9066": {
+    "message": "Punti colorati per età: viola è vecchio, giallo è recente"
+  },
+  "f_dots_coloured_by_mood_orange_7f40": {
+    "message": "Punti colorati per umore: arancione è negativo, blu è positivo, grigio non valutato"
+  },
+  "f_dots_coloured_by_topic_e504": {
+    "message": "Punti colorati per argomento"
+  },
+  "f_download_and_use_a7af": {
+    "message": "Scarica e usa"
+  },
+  "f_download_failed_78b7": {
+    "message": "Download non riuscito: {e}"
+  },
+  "f_download_the_built_in_model_55af": {
+    "message": "Scarica il modello integrato"
+  },
+  "f_downloading_chrome_keeps_goi_6ce9": {
+    "message": "Download in corso… Chrome continua se chiudi questo pannello."
+  },
+  "f_downloading_keeps_going_if_y_9c1b": {
+    "message": "Download in corso… {browser} continua se chiudi questo pannello."
+  },
+  "f_drag_to_reorder_or_use_the_a_fda1": {
+    "message": "Trascina per riordinare, o usa le frecce"
+  },
+  "f_drag_to_change_the_order_scr_0493": {
+    "message": "Trascina ⋮⋮ per cambiare l’ordine. Le schermate scorrono nello stesso ordine."
+  },
+  "f_everything_else_3ef1": {
+    "message": "Tutto il resto"
+  },
+  "f_export_with_secrets_8f81": {
+    "message": "Esportare con i segreti?"
+  },
+  "f_fallback_chrome_has_a_built__7c2d": {
+    "message": "Riserva: Chrome ha un modello integrato (Gemini Nano). Ollama resta il tuo predefinito."
+  },
+  "f_fastest_here_in_the_quick_te_eaf5": {
+    "message": "Il più veloce qui nel test rapido: {s} s per {n} titoli, tutti valutati."
+  },
+  "f_fetches_and_processes_new_it_7491": {
+    "message": "Recupera ed elabora nuovi elementi in background con il tuo modello locale mentre il browser è aperto. I modelli cloud e con chiave propria restano manuali."
+  },
+  "f_files_to_remove_from_your_se_b6f7": {
+    "message": "File da rimuovere dal tuo server"
+  },
+  "f_firefox_ai_is_turned_off_in__07f7": {
+    "message": "L’IA di Firefox è disattivata. In Firefox Beta o Release apri about:config e imposta browser.ml.enable ed extensions.ml.enabled su true, poi ricarica l’estensione."
+  },
+  "f_firefox_can_summarize_pages__2ea3": {
+    "message": "Firefox può riassumere le pagine con un piccolo modello su questo computer. Riassume soltanto (niente feed, domande o tag) e funziona meglio con testo inglese."
+  },
+  "f_firefox_built_in_e829": {
+    "message": "Firefox · integrato"
+  },
+  "f_fix_1a18": {
+    "message": "Correggi"
+  },
+  "f_focus_b1b3": {
+    "message": "Focus"
+  },
+  "f_forget_all_c09f": {
+    "message": "Dimentica tutto"
+  },
+  "f_forget_all_learned_names_4b29": {
+    "message": "Dimenticare tutti i nomi imparati?"
+  },
+  "f_found_on_but_it_does_not_acc_032a": {
+    "message": "Trovato su {origin}, ma non accetta ancora questa estensione. Avvialo con: apfel --serve --allowed-origins {ext}"
+  },
+  "f_found_on_but_it_refuses_requ_d766": {
+    "message": "Trovato su {origin}, ma rifiuta le richieste di questa estensione. Consenti altre origini (CORS) nelle sue impostazioni, poi cerca di nuovo."
+  },
+  "f_full_texts_2af0": {
+    "message": "Testi completi"
+  },
+  "f_give_these_tags_their_englis_fe72": {
+    "message": "Dai a questi tag i loro nomi inglesi, così lo stesso argomento in due lingue diventa uno solo"
+  },
+  "f_graph_layout_e97f": {
+    "message": "Disposizione del grafo"
+  },
+  "f_group_902c": {
+    "message": "Gruppo"
+  },
+  "f_hide_7bcd": {
+    "message": "Nascondi"
+  },
+  "f_highlight_removed_b93b": {
+    "message": "Evidenziazione rimossa"
+  },
+  "f_import_0af4": {
+    "message": "Importa"
+  },
+  "f_import_secrets_ab02": {
+    "message": "Importare i segreti?"
+  },
+  "f_in_firefox_built_in_ai_exper_4366": {
+    "message": "In Firefox: IA integrata (sperimentale)"
+  },
+  "f_in_progress_opened_or_annota_d57b": {
+    "message": "In corso: aperto o annotato"
+  },
+  "f_in_use_e11d": {
+    "message": "In uso"
+  },
+  "f_in_built_in_model_699b": {
+    "message": "In {browser}: modello integrato"
+  },
+  "f_installed_and_ready_usually__a5a2": {
+    "message": "Installato e pronto. Di solito l’opzione locale più forte."
+  },
+  "f_it_also_leaves_the_collectio_6fdf": {
+    "message": "Esce anche dalle raccolte in cui si trova."
+  },
+  "f_keep_be68": {
+    "message": "Tieni"
+  },
+  "f_keep_all_775b": {
+    "message": "Tieni tutto"
+  },
+  "f_keep_your_library_in_step_ac_3d5f": {
+    "message": "Mantieni la tua libreria allineata tra i tuoi dispositivi, fanne un backup o pubblicane una parte per altri. Niente lascia questo dispositivo finché non ne aggiungi una. Scegli cosa vuoi fare:"
+  },
+  "f_last_run_ago_9b65": {
+    "message": "Ultima esecuzione: {t} fa"
+  },
+  "f_learned_tag_names_b494": {
+    "message": "Nomi dei tag imparati"
+  },
+  "f_link_removed_from_your_inbox_19ce": {
+    "message": "Link rimosso dalla tua inbox"
+  },
+  "f_local_23a8": {
+    "message": "Locale"
+  },
+  "f_looking_for_local_models_not_e5e8": {
+    "message": "Cerco modelli locali… non viene installato né inviato nulla."
+  },
+  "f_manual_setup_endpoint_and_mo_25d9": {
+    "message": "Configurazione manuale: endpoint e nomi dei modelli"
+  },
+  "f_matching_articles_2869": {
+    "message": "Articoli corrispondenti…"
+  },
+  "f_move_ab88": {
+    "message": "Sposta “{name}”"
+  },
+  "f_next_month_1650": {
+    "message": "Mese successivo →"
+  },
+  "f_no_ollama_use_the_model_buil_21a4": {
+    "message": "Niente Ollama? Usa il modello integrato di Chrome"
+  },
+  "f_no_cards_yet_ask_a_question__0c72": {
+    "message": "Ancora nessuna scheda. Fai una domanda su questo argomento, o fissa una risposta sotto un articolo, e diventano schede."
+  },
+  "f_no_local_model_on_this_compu_27e9": {
+    "message": "Ancora nessun modello locale su questo computer. Scarica qui sotto il modello integrato del browser, se offerto, oppure configura Ollama (passi sotto)."
+  },
+  "f_no_model_yet_48f9": {
+    "message": "Ancora nessun modello"
+  },
+  "f_no_sources_yet_9cfa": {
+    "message": "Ancora nessuna fonte"
+  },
+  "f_not_connected_no_shared_tag__c496": {
+    "message": "Non collegati: nessun tag in comune né contenuto simile unisce questi due"
+  },
+  "f_not_found_on_this_computer_u_1f3a": {
+    "message": "Non trovato su questo computer. Di solito l’opzione locale più forte: gratis, tanti modelli."
+  },
+  "f_not_measured_yet_the_test_se_48f1": {
+    "message": "Non ancora misurato. Il test invia due piccoli lotti di valutazione al modello integrato di Chrome e niente lascia il tuo computer."
+  },
+  "f_not_measured_yet_the_test_se_ae15": {
+    "message": "Non ancora misurato. Il test invia due piccoli lotti di valutazione al tuo modello locale (circa un minuto su una macchina lenta) e niente lascia il tuo computer."
+  },
+  "f_not_ready_233d": {
+    "message": "Non pronto"
+  },
+  "f_not_running_415d": {
+    "message": "Non in esecuzione"
+  },
+  "f_note_deleted_de30": {
+    "message": "Nota eliminata"
+  },
+  "f_nothing_is_deleted_here_unti_c0c4": {
+    "message": "Qui non viene eliminato nulla finché non lo dici tu. Tieni lo riporta anche sugli altri tuoi dispositivi."
+  },
+  "f_nothing_synced_yet_54fe": {
+    "message": "Ancora nulla sincronizzato"
+  },
+  "f_ollama_recommended_4bf5": {
+    "message": "Ollama (consigliato)"
+  },
+  "f_ollama_chrome_s_built_in_mod_312f": {
+    "message": "Ollama, il modello integrato di Chrome, LM Studio e altro. Nessun account, nessuna chiave."
+  },
+  "f_only_the_saved_summaries_of__bad5": {
+    "message": "Vengono inviati solo i riassunti salvati di questi articoli, senza testo completo."
+  },
+  "f_open_the_topic_page_a_short__6eeb": {
+    "message": "Apri la pagina dell’argomento: un breve riepilogo dei {n} riassunti salvati"
+  },
+  "f_open_topic_0216": {
+    "message": "Apri argomento"
+  },
+  "f_opera_s_built_in_model_is_no_c9d0": {
+    "message": "Il modello integrato di Opera non è ancora pronto. Attiva Impostazioni › Opera AI › Enable Web AI API, aspetta che il modello sia scaricato (barra laterale di Opera), poi ricontrolla. Non ancora su Mac Intel, Linux o Windows su ARM."
+  },
+  "f_paper_bfd9": {
+    "message": "Paper"
+  },
+  "f_path_e456": {
+    "message": "Percorso"
+  },
+  "f_path_from_pick_a_second_item_99f7": {
+    "message": "Percorso da “{a}”: scegli un secondo elemento"
+  },
+  "f_path_mode_off_6af2": {
+    "message": "Modalità percorso disattivata."
+  },
+  "f_path_mode_on_pick_two_items__dfb3": {
+    "message": "Modalità percorso attiva: scegli due elementi per vedere come si collegano."
+  },
+  "f_path_mode_first_item_chosen__68ab": {
+    "message": "Modalità percorso: primo elemento {a} scelto. Scegline un secondo."
+  },
+  "f_pick_two_items_to_see_how_th_7bb2": {
+    "message": "Scegli due elementi per vedere come si collegano"
+  },
+  "f_plain_files_for_your_website_5a09": {
+    "message": "File semplici per il tuo sito. Leggibili."
+  },
+  "f_publish_a_reading_list_c489": {
+    "message": "Pubblica una lista di lettura"
+  },
+  "f_publish_only_bc8a": {
+    "message": "Solo pubblica"
+  },
+  "f_quick_test_on_this_computer_4504": {
+    "message": "Test rapido su questo computer"
+  },
+  "f_reading_your_saved_articles__c628": {
+    "message": "Leggo in background i tuoi articoli salvati"
+  },
+  "f_ready_3294": {
+    "message": "Pronto"
+  },
+  "f_ready_dace": {
+    "message": "Pronto."
+  },
+  "f_recaps_are_written_by_your_l_d85f": {
+    "message": "I riepiloghi li scrive il tuo modello locale, anche quando i riassunti usano il cloud"
+  },
+  "f_recommended_for_this_compute_49ee": {
+    "message": "Consigliato per questo computer"
+  },
+  "f_redraw_the_graph_with_the_ne_1477": {
+    "message": "Ridisegna il grafo con le nuove corrispondenze"
+  },
+  "f_references_6beb": {
+    "message": "Riferimenti"
+  },
+  "f_remove_all_saved_images_ce5e": {
+    "message": "Rimuovere tutte le immagini salvate?"
+  },
+  "f_remove_saved_page_text_185d": {
+    "message": "Rimuovere il testo salvato della pagina?"
+  },
+  "f_remove_text_2ec0": {
+    "message": "Rimuovi testo"
+  },
+  "f_remove_them_7ce1": {
+    "message": "Rimuovili…"
+  },
+  "f_remove_this_place_212e": {
+    "message": "Rimuovi questa destinazione…"
+  },
+  "f_remove_file_from_your_server_52c6": {
+    "message": "Rimuovere {n} file dal tuo server?"
+  },
+  "f_remove_files_from_your_serve_fe5d": {
+    "message": "Rimuovere {n} file dal tuo server?"
+  },
+  "f_remove_from_this_device_d01c": {
+    "message": "Rimuovere “{name}” da questo dispositivo?"
+  },
+  "f_remove_from_the_collection_697b": {
+    "message": "Rimuovi “{title}” dalla raccolta"
+  },
+  "f_removed_from_922b": {
+    "message": "Rimosso da “{name}”"
+  },
+  "f_rename_collection_565d": {
+    "message": "Rinomina raccolta"
+  },
+  "f_replay_finished_all_articles_bf34": {
+    "message": "Replay finito: tutti i {n} articoli in vista"
+  },
+  "f_replay_started_fde4": {
+    "message": "Replay avviato: {a}"
+  },
+  "f_reset_dock_c35f": {
+    "message": "Reimposta dock"
+  },
+  "f_restore_from_here_a9df": {
+    "message": "Ripristina da qui…"
+  },
+  "f_restore_now_8f4d": {
+    "message": "Ripristina ora"
+  },
+  "f_runs_in_chrome_on_your_own_m_5cbf": {
+    "message": "Gira in Chrome sulla tua macchina e non consuma token. Tieni aperto questo pannello: chiuderlo mette in pausa l’esecuzione e, riavviando, riprende da dove si era fermata. Le esecuzioni automatiche a pannello chiuso richiedono Ollama."
+  },
+  "f_runs_inside_the_browser_on_t_a77b": {
+    "message": "Gira dentro il browser su questo computer. Download una tantum, poi funziona offline."
+  },
+  "f_runs_inside_on_this_computer_060a": {
+    "message": "Gira dentro {browser} su questo computer. Nessuna installazione, niente lascia il computer."
+  },
+  "f_save_image_4805": {
+    "message": "Salva immagine"
+  },
+  "f_save_this_picture_as_an_svg__7d9f": {
+    "message": "Salva questa immagine come file SVG sul tuo dispositivo"
+  },
+  "f_saved_not_worked_on_yet_a3ba": {
+    "message": "Salvato, non ancora lavorato"
+  },
+  "f_scan_the_code_in_ai_summary__57b0": {
+    "message": "Scansiona il codice in AI Summary Helper su Android: Impostazioni → Sincronizzazione libreria → Scansiona codice. Contiene il login al tuo server, quindi mostralo solo al tuo telefono. Si nasconde da solo dopo un minuto."
+  },
+  "f_see_the_recommendation_f58a": {
+    "message": "Vedi il consiglio"
+  },
+  "f_sending_the_batch_to_the_bui_0d29": {
+    "message": "Invio del lotto al modello integrato…"
+  },
+  "f_sending_the_batch_to_the_loc_551c": {
+    "message": "Invio del lotto al modello locale…"
+  },
+  "f_set_up_ollama_instead_3c9c": {
+    "message": "Configura invece Ollama"
+  },
+  "f_settings_8728": {
+    "message": "Impostazioni"
+  },
+  "f_show_everything_again_71fd": {
+    "message": "Mostra di nuovo tutto"
+  },
+  "f_show_only_what_you_have_not__fa38": {
+    "message": "Mostra solo ciò che non hai ancora letto"
+  },
+  "f_show_the_words_code_for_the__5677": {
+    "message": "Mostra le parole · codice per il telefono · ripristino"
+  },
+  "f_show_all_to_change_the_order_a1cc": {
+    "message": "Mostra “Tutto” per cambiare l’ordine."
+  },
+  "f_show_in_the_dock_11ab": {
+    "message": "Mostra “{name}” nel dock"
+  },
+  "f_showing_all_articles_3396": {
+    "message": "Mostro tutti gli articoli"
+  },
+  "f_small_model_fast_to_start_fo_6def": {
+    "message": "Modello piccolo, veloce da avviare. Per riassunti migliori scegli un modello Ollama più grande."
+  },
+  "f_sort_your_order_0238": {
+    "message": "Ordine: il tuo"
+  },
+  "f_sources_checked_8cec": {
+    "message": "Fonti controllate"
+  },
+  "f_sources_checks_and_overview__1f6e": {
+    "message": "Fonti, controlli e panoramica in un unico file .md"
+  },
+  "f_sources_in_export_order_1c20": {
+    "message": "Fonti, nell’ordine di esportazione"
+  },
+  "f_stopped_8940": {
+    "message": "Fermato."
+  },
+  "f_subtopics_7f65": {
+    "message": "Sottoargomenti"
+  },
+  "f_summaries_only_ff23": {
+    "message": "Solo riassunti"
+  },
+  "f_summaries_only_best_with_eng_1c13": {
+    "message": "Solo riassunti, meglio con testo inglese. Per feed, domande e riassunti migliori scegli Ollama o un altro modello locale."
+  },
+  "f_summaries_only_best_with_eng_3324": {
+    "message": "Solo riassunti, meglio con testo inglese. Il primo riassunto scarica il modello."
+  },
+  "f_summarize_is_always_in_the_d_7c1a": {
+    "message": "Riassumi è sempre nel dock."
+  },
+  "f_sync_all_now_2e41": {
+    "message": "Sincronizza tutto ora"
+  },
+  "f_tagged_be03": {
+    "message": "Con tag {tag}"
+  },
+  "f_text_summaries_highlights_an_2b62": {
+    "message": "Testo, riassunti, evidenziazioni e note restano."
+  },
+  "f_the_english_names_and_broade_599c": {
+    "message": "I nomi inglesi e gli argomenti più ampi che i tuoi tag hanno ricevuto. Cambiane uno, o dimenticalo perché possa essere ribattezzato. I tuoi articoli mantengono i tag."
+  },
+  "f_the_article_is_deleted_with__9abb": {
+    "message": "L’articolo viene eliminato con il suo riassunto e il testo salvato della pagina."
+  },
+  "f_the_articles_are_deleted_wit_3e46": {
+    "message": "Gli articoli vengono eliminati con i loro riassunti e il testo salvato della pagina."
+  },
+  "f_the_built_in_model_does_not__43cb": {
+    "message": "Il modello integrato non supporta questa lingua o questo input."
+  },
+  "f_the_built_in_model_is_turned_532f": {
+    "message": "Il modello integrato è disattivato in questo browser."
+  },
+  "f_the_collection_and_its_quest_ca0c": {
+    "message": "La raccolta e la sua domanda vengono eliminate."
+  },
+  "f_the_collection_its_question__fa4f": {
+    "message": "La raccolta, la sua domanda e la sua panoramica vengono eliminate."
+  },
+  "f_the_files_already_on_your_se_3a7e": {
+    "message": "I file già presenti sul tuo server non vengono eliminati."
+  },
+  "f_the_local_server_refused_thi_142b": {
+    "message": "Il server locale ha rifiutato questa estensione. Avvialo con: apfel --serve --allowed-origins {origin}"
+  },
+  "f_the_order_here_is_the_order__1a1b": {
+    "message": "L’ordine qui è l’ordine dell’esportazione e della scheda di lavoro. Trascina ⋮⋮ per cambiarlo."
+  },
+  "f_the_overview_compares_at_lea_9f33": {
+    "message": "La panoramica confronta almeno due fonti."
+  },
+  "f_the_same_library_on_laptop_a_d4ab": {
+    "message": "La stessa libreria su portatile e telefono. Cifrata."
+  },
+  "f_the_same_headlines_go_to_eac_db67": {
+    "message": "Gli stessi {n} titoli vanno a ogni modello, uno dopo l’altro. Niente lascia questo computer."
+  },
+  "f_the_articles_stay_in_your_li_dcd2": {
+    "message": "I {n} articoli restano nella tua libreria con i loro controlli."
+  },
+  "f_these_two_are_not_connected_3328": {
+    "message": "Questi due non sono collegati."
+  },
+  "f_they_also_leave_the_collecti_b97e": {
+    "message": "Escono anche dalle raccolte in cui si trovano."
+  },
+  "f_this_browser_has_no_built_in_fa45": {
+    "message": "Questo browser non ha un modello integrato."
+  },
+  "f_title_summary_tags_highlight_f24c": {
+    "message": "Titolo, riassunto, tag, evidenziazioni e statistiche restano."
+  },
+  "f_too_much_text_for_the_built__d7e9": {
+    "message": "Troppo testo in una volta per il modello integrato. Scegli meno elementi per lotto."
+  },
+  "f_topic_1b64": {
+    "message": "Argomento"
+  },
+  "f_topic_actions_8957": {
+    "message": "Azioni dell’argomento"
+  },
+  "f_topics_a535": {
+    "message": "Argomenti"
+  },
+  "f_topics_inside_c9df": {
+    "message": "Argomenti inclusi"
+  },
+  "f_use_ollama_again_bf46": {
+    "message": "Usa di nuovo Ollama"
+  },
+  "f_use_another_email_dd18": {
+    "message": "Usare un’altra email?"
+  },
+  "f_use_it_da81": {
+    "message": "Usalo"
+  },
+  "f_video_c80c": {
+    "message": "Video"
+  },
+  "f_viewer_page_746e": {
+    "message": "Pagina di visualizzazione"
+  },
+  "f_when_the_chosen_model_is_not_e746": {
+    "message": "Quando il modello scelto non è pronto, lascia rispondere il modello locale successivo"
+  },
+  "f_where_should_the_backup_live_3365": {
+    "message": "Dove deve stare il backup?"
+  },
+  "f_where_should_the_reading_lis_3ba3": {
+    "message": "Dove deve stare la lista di lettura?"
+  },
+  "f_where_should_your_library_li_cf56": {
+    "message": "Dove deve stare la tua libreria?"
+  },
+  "f_where_this_device_differs_th_b5c9": {
+    "message": "Dove questo dispositivo differisce, vince la destinazione. Non viene eliminato nulla. Con una libreria grande può richiedere un po’."
+  },
+  "f_whole_library_local_model_0a98": {
+    "message": "Intera libreria · modello locale"
+  },
+  "f_worked_on_opened_summarised__2bfc": {
+    "message": "Lavorato: aperto, riassunto e annotato"
+  },
+  "f_works_with_nextcloud_webdav__8a29": {
+    "message": "Funziona con Nextcloud / WebDAV, storage compatibile S3 o una cartella su questo computer."
+  },
+  "f_you_can_undo_this_for_a_few__09e3": {
+    "message": "Puoi annullare per qualche secondo."
+  },
+  "f_your_highlights_and_notes_st_00a0": {
+    "message": "Le tue evidenziazioni e note restano in Note."
+  },
+  "f_backup_only_d3bf": {
+    "message": "solo backup"
+  },
+  "f_deleted_ago_046d": {
+    "message": "eliminato {t} fa"
+  },
+  "f_did_not_answer_4111": {
+    "message": "non ha risposto ({e})"
+  },
+  "f_did_not_finish_2912": {
+    "message": "non finito"
+  },
+  "f_download_first_800f": {
+    "message": "prima scarica"
+  },
+  "f_encrypted_f1b3": {
+    "message": "cifrato"
+  },
+  "f_fainter_only_saved_6692": {
+    "message": "più tenue = solo salvato"
+  },
+  "f_from_summaries_1db1": {
+    "message": "da {n} riassunti"
+  },
+  "f_from_summary_45fd": {
+    "message": "da {n} riassunto"
+  },
+  "f_grey_not_scored_4a8d": {
+    "message": "grigio: non valutato"
+  },
+  "f_last_sync_ago_57bb": {
+    "message": "ultima sincronizzazione {t} fa"
+  },
+  "f_negative_863a": {
+    "message": "negativo"
+  },
+  "f_newer_7eaa": {
+    "message": "più recente"
+  },
+  "f_nothing_changes_until_you_pr_9bc3": {
+    "message": "non cambia nulla finché non premi Applica"
+  },
+  "f_older_1461": {
+    "message": "più vecchio"
+  },
+  "f_positive_fa7a": {
+    "message": "positivo"
+  },
+  "f_reorder_handle_e8ae": {
+    "message": "maniglia di riordino"
+  },
+  "f_testing_7487": {
+    "message": "test in corso…"
+  },
+  "f_two_way_78fb": {
+    "message": "bidirezionale"
+  },
+  "f_of_sources_checked_0746": {
+    "message": "{a} di {n} fonti controllate"
+  },
+  "f_can_download_a_small_model_o_bd4d": {
+    "message": "{browser} può scaricare una volta un piccolo modello ed eseguirlo su questo computer. Per riassunti migliori usa un modello Ollama più grande."
+  },
+  "f_has_a_built_in_model_but_not_65ab": {
+    "message": "{browser} ha un modello integrato, ma non su questo computer al momento (spesso: poco spazio libero su disco). Dettagli: {url}"
+  },
+  "f_built_in_e090": {
+    "message": "{browser} · integrato"
+  },
+  "f_moved_to_position_of_3df9": {
+    "message": "{name} spostato in posizione {i} di {n}"
+  },
+  "f_articles_not_read_yet_0f6a": {
+    "message": "{n} articoli, {u} da leggere"
+  },
+  "f_card_saved_in_anki_file_impo_8a5d": {
+    "message": "{n} scheda salvata. In Anki: File ▸ Importa."
+  },
+  "f_cards_saved_in_anki_file_imp_e2b8": {
+    "message": "{n} schede salvate. In Anki: File ▸ Importa."
+  },
+  "f_connected_item_14c3": {
+    "message": "{n} elemento collegato"
+  },
+  "f_connected_items_9110": {
+    "message": "{n} elementi collegati"
+  },
+  "f_deletion_waits_for_you_e389": {
+    "message": "{n} eliminazione ti aspetta"
+  },
+  "f_deletions_wait_for_you_3715": {
+    "message": "{n} eliminazioni ti aspettano"
+  },
+  "f_file_waits_to_be_removed_faeb": {
+    "message": "{n} file in attesa di rimozione"
+  },
+  "f_files_wait_to_be_removed_eaef": {
+    "message": "{n} file in attesa di rimozione"
+  },
+  "f_highlight_note_or_collection_aca0": {
+    "message": "{n} evidenziazione, nota o raccolta"
+  },
+  "f_highlights_notes_or_collecti_d087": {
+    "message": "{n} evidenziazioni, note o raccolte"
+  },
+  "f_more_wait_after_these_7ac2": {
+    "message": "Ne resta {n} dopo questi."
+  },
+  "f_more_waits_after_these_3cbf": {
+    "message": "Ne restano {n} dopo questi."
+  },
+  "f_place_needs_you_6fae": {
+    "message": "{n} destinazione ha bisogno di te"
+  },
+  "f_places_need_you_8bac": {
+    "message": "{n} destinazioni hanno bisogno di te"
+  },
+  "f_step_cf02": {
+    "message": "{n} passo: {chain}"
+  },
+  "f_steps_1b8f": {
+    "message": "{n} passi: {chain}"
+  },
+  "f_subtopic_5270": {
+    "message": "{n} sottoargomento"
+  },
+  "f_subtopics_1ab9": {
+    "message": "{n} sottoargomenti"
+  },
+  "f_tag_without_a_name_45a3": {
+    "message": "{n} tag senza nome"
+  },
+  "f_tag_without_broader_topics_6820": {
+    "message": "{n} tag senza argomenti più ampi"
+  },
+  "f_tags_without_a_name_d3aa": {
+    "message": "{n} tag senza nome"
+  },
+  "f_tags_without_broader_topics_2531": {
+    "message": "{n} tag senza argomenti più ampi"
+  },
+  "f_to_delete_3233": {
+    "message": "{n} da eliminare"
+  },
+  "f_to_keep_db29": {
+    "message": "{n} da tenere"
+  },
+  "f_unread_article_stands_out_c185": {
+    "message": "{n} articolo da leggere spicca"
+  },
+  "f_unread_articles_stand_out_0499": {
+    "message": "{n} articoli da leggere spiccano"
+  },
+  "f_s_of_rated_f50c": {
+    "message": "{s} s · {a} di {n} valutati"
+  },
+  "f_s_33e3": {
+    "message": "{s}s"
+  },
+  "f_subtopic_of_articles_6833": {
+    "message": "{topic}, sottoargomento di {parent}: {n} articoli"
+  },
+  "f_articles_unread_a7ef": {
+    "message": "{topic}: {n} articoli, {u} da leggere"
+  },
+  "f_is_set_up_7618": {
+    "message": "“{name}” è configurato"
+  },
+  "f__ec59": {
+    "message": "…"
+  },
+  "f_replay_1a24": {
+    "message": "▶ Replay"
+  },
+  "f_answering_from_summaries_a77b": {
+    "message": "✨ Risposta da {n} riassunti…"
+  },
+  "f_briefing_from_summaries_83db": {
+    "message": "✨ Riepilogo da {n} riassunti…"
+  },
+  "f_local_model_dc21": {
+    "message": "🧠 Modello locale"
   }
 }

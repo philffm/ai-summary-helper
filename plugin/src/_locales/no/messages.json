@@ -6624,5 +6624,875 @@
   },
   "f_places_use_this_server_4df9": {
     "message": "{n} steder bruker denne serveren."
+  },
+  "f_a_copy_only_this_device_writ_6789": {
+    "message": "En kopi som bare denne enheten skriver. Kryptert."
+  },
+  "f_a_local_model_on_this_comput_cb32": {
+    "message": "En lokal modell på denne datamaskinen"
+  },
+  "f_a_small_model_that_comes_wit_dbb4": {
+    "message": "En liten modell som følger med Chrome: ingen installasjon, ingenting forlater datamaskinen, ingen tokens. Vurderinger, kategorier og recaps blir merkbart svakere enn med en større modell."
+  },
+  "f_a_task_sheet_to_check_each_s_715b": {
+    "message": "Et arbeidsark for å sjekke hver kilde for hånd"
+  },
+  "f_add_your_phone_57ff": {
+    "message": "Legg til telefonen din"
+  },
+  "f_add_your_question_9bd5": {
+    "message": "Legg til spørsmålet ditt"
+  },
+  "f_age_e13c": {
+    "message": "Alder"
+  },
+  "f_all_except_fe8b": {
+    "message": "Alle unntatt {tag}"
+  },
+  "f_all_local_models_c59b": {
+    "message": "Alle lokale modeller"
+  },
+  "f_all_places_are_up_to_date_0e60": {
+    "message": "Alle steder er oppdatert"
+  },
+  "f_allow_firefox_ai_c2bb": {
+    "message": "Tillat Firefox AI"
+  },
+  "f_also_found_e4c8": {
+    "message": "Fant også: {list}"
+  },
+  "f_anki_cards_0b3d": {
+    "message": "Anki-kort"
+  },
+  "f_apple_s_model_on_this_mac_re_ce75": {
+    "message": "Apples modell på denne Macen, klar nå."
+  },
+  "f_apply_bbdb": {
+    "message": "Bruk"
+  },
+  "f_apply_6e04": {
+    "message": "Bruk ({n})"
+  },
+  "f_around_this_article_c58a": {
+    "message": "Rundt denne artikkelen"
+  },
+  "f_at_least_two_tabs_stay_in_th_f869": {
+    "message": "Minst to faner blir værende i dokken."
+  },
+  "f_available_when_a_local_model_667c": {
+    "message": "Tilgjengelig når en lokal modell er satt opp (Innstillinger › Modeller › Lokal). Den vurderer, kategoriserer og lager recap av hele feedbiblioteket ditt i små porsjoner på din egen maskin. Det kan ta timer, men koster ingen tokens."
+  },
+  "f_back_up_123b": {
+    "message": "Ta sikkerhetskopi"
+  },
+  "f_better_connections_ready_f4f9": {
+    "message": "Bedre koblinger klare"
+  },
+  "f_better_results_ollama_with_a_1cba": {
+    "message": "Bedre resultater: Ollama med en 7–8B-modell (GPU eller Apple Silicon), eller en skymodell eller din egen API-nøkkel for sammendrag."
+  },
+  "f_blocked_ac53": {
+    "message": "Blokkert"
+  },
+  "f_bottom_dock_5a41": {
+    "message": "Dokk nederst"
+  },
+  "f_brief_me_on_this_277c": {
+    "message": "Gi meg en briefing om dette"
+  },
+  "f_bring_everything_in_this_pla_40e5": {
+    "message": "Hente alt på dette stedet tilbake til denne enheten?"
+  },
+  "f_built_into_the_browser_ready_4b02": {
+    "message": "Innebygd i nettleseren, klar nå. Ingenting å installere."
+  },
+  "f_built_in_chrome_model_gemini_2f37": {
+    "message": "Innebygd Chrome-modell (Gemini Nano) · reserve"
+  },
+  "f_built_in_chrome_model_fallba_0e75": {
+    "message": "Innebygd Chrome-modell (reserve)"
+  },
+  "f_change_the_question_4676": {
+    "message": "Endre spørsmålet"
+  },
+  "f_change_what_the_dot_colours__8ffd": {
+    "message": "Endre hva prikkfargene betyr"
+  },
+  "f_check_the_field_marked_below_9291": {
+    "message": "Sjekk feltet som er markert nedenfor."
+  },
+  "f_check_c1c4": {
+    "message": "Sjekk «{title}»"
+  },
+  "f_chrome_can_download_a_small__897b": {
+    "message": "Chrome kan laste ned en liten modell (Gemini Nano) én gang og kjøre biblioteket på din egen datamaskin. Den fungerer som reserve; resultatene er svakere enn med en større modell."
+  },
+  "f_citations_of_all_sources_wit_2ee3": {
+    "message": "Siteringer fra alle kilder med DOI. Bare DOI-en sendes."
+  },
+  "f_collection_actions_47e6": {
+    "message": "Samlingshandlinger"
+  },
+  "f_collection_deleted_784c": {
+    "message": "Samling slettet"
+  },
+  "f_color_e44b": {
+    "message": "Farge: {mode}"
+  },
+  "f_compare_first_a472": {
+    "message": "Sammenlign først"
+  },
+  "f_connected_in_steps_3a37": {
+    "message": "Koblet i {n} steg: {chain}"
+  },
+  "f_connects_f920": {
+    "message": "Kobler: {topics}"
+  },
+  "f_continue_the_download_5741": {
+    "message": "Fortsett nedlastingen"
+  },
+  "f_delete_all_adcd": {
+    "message": "Slett alle"
+  },
+  "f_delete_article_6a74": {
+    "message": "Slett artikkel"
+  },
+  "f_delete_them_here_too_342a": {
+    "message": "Slett dem her også…"
+  },
+  "f_delete_this_article_85f5": {
+    "message": "Slette denne artikkelen?"
+  },
+  "f_delete_article_on_this_devic_4f26": {
+    "message": "Slette {n} artikkel på denne enheten også?"
+  },
+  "f_delete_articles_bc95": {
+    "message": "Slett {n} artikler"
+  },
+  "f_delete_articles_on_this_devi_6223": {
+    "message": "Slette {n} artikler på denne enheten også?"
+  },
+  "f_delete_articles_ff9e": {
+    "message": "Slette {n} artikler?"
+  },
+  "f_delete_4457": {
+    "message": "Slette «{name}»?"
+  },
+  "f_deleted_on_another_device_82c6": {
+    "message": "Slettet på en annen enhet"
+  },
+  "f_deleted_with_the_articles_ab_2f89": {
+    "message": "Slettes sammen med artiklene ovenfor, eller alene"
+  },
+  "f_detail_73b4": {
+    "message": "Detalj"
+  },
+  "f_dots_coloured_by_age_purple__9066": {
+    "message": "Prikker farget etter alder: lilla er gammel, gul er ny"
+  },
+  "f_dots_coloured_by_mood_orange_7f40": {
+    "message": "Prikker farget etter stemning: oransje er negativ, blå er positiv, grå er ikke vurdert"
+  },
+  "f_dots_coloured_by_topic_e504": {
+    "message": "Prikker farget etter emne"
+  },
+  "f_download_and_use_a7af": {
+    "message": "Last ned og bruk"
+  },
+  "f_download_failed_78b7": {
+    "message": "Nedlastingen mislyktes: {e}"
+  },
+  "f_download_the_built_in_model_55af": {
+    "message": "Last ned den innebygde modellen"
+  },
+  "f_downloading_chrome_keeps_goi_6ce9": {
+    "message": "Laster ned… Chrome fortsetter hvis du lukker dette panelet."
+  },
+  "f_downloading_keeps_going_if_y_9c1b": {
+    "message": "Laster ned… {browser} fortsetter hvis du lukker dette panelet."
+  },
+  "f_drag_to_reorder_or_use_the_a_fda1": {
+    "message": "Dra for å endre rekkefølge, eller bruk piltastene"
+  },
+  "f_drag_to_change_the_order_scr_0493": {
+    "message": "Dra ⋮⋮ for å endre rekkefølgen. Skjermene glir i samme rekkefølge."
+  },
+  "f_everything_else_3ef1": {
+    "message": "Alt annet"
+  },
+  "f_export_with_secrets_8f81": {
+    "message": "Eksportere med hemmeligheter?"
+  },
+  "f_fallback_chrome_has_a_built__7c2d": {
+    "message": "Reserve: Chrome har en innebygd modell (Gemini Nano). Ollama forblir standard."
+  },
+  "f_fastest_here_in_the_quick_te_eaf5": {
+    "message": "Raskest her i hurtigtesten: {s} s for {n} overskrifter, alle vurdert."
+  },
+  "f_fetches_and_processes_new_it_7491": {
+    "message": "Henter og behandler nye elementer i bakgrunnen med din lokale modell mens nettleseren kjører. Sky- og BYOK-modeller forblir manuelle."
+  },
+  "f_files_to_remove_from_your_se_b6f7": {
+    "message": "Filer som skal fjernes fra serveren din"
+  },
+  "f_firefox_ai_is_turned_off_in__07f7": {
+    "message": "Firefox AI er slått av. Åpne about:config i Firefox Beta eller Release og sett browser.ml.enable og extensions.ml.enabled til true, og last deretter utvidelsen på nytt."
+  },
+  "f_firefox_can_summarize_pages__2ea3": {
+    "message": "Firefox kan lage sammendrag av sider med en liten modell på denne datamaskinen. Den lager bare sammendrag (ingen feeder, spørsmål eller tagger) og fungerer best med engelsk tekst."
+  },
+  "f_firefox_built_in_e829": {
+    "message": "Firefox · innebygd"
+  },
+  "f_fix_1a18": {
+    "message": "Fiks"
+  },
+  "f_focus_b1b3": {
+    "message": "Fokus"
+  },
+  "f_forget_all_c09f": {
+    "message": "Glem alle"
+  },
+  "f_forget_all_learned_names_4b29": {
+    "message": "Glemme alle lærte navn?"
+  },
+  "f_found_on_but_it_does_not_acc_032a": {
+    "message": "Funnet på {origin}, men den godtar ikke denne utvidelsen ennå. Start den med: apfel --serve --allowed-origins {ext}"
+  },
+  "f_found_on_but_it_refuses_requ_d766": {
+    "message": "Funnet på {origin}, men den avviser forespørsler fra denne utvidelsen. Tillat andre origins (CORS) i innstillingene, og let på nytt."
+  },
+  "f_full_texts_2af0": {
+    "message": "Fulltekster"
+  },
+  "f_give_these_tags_their_englis_fe72": {
+    "message": "Gi disse taggene de engelske navnene sine, så samme emne på to språk blir ett"
+  },
+  "f_graph_layout_e97f": {
+    "message": "Grafoppsett"
+  },
+  "f_group_902c": {
+    "message": "Gruppe"
+  },
+  "f_hide_7bcd": {
+    "message": "Skjul"
+  },
+  "f_highlight_removed_b93b": {
+    "message": "Markering fjernet"
+  },
+  "f_import_0af4": {
+    "message": "Importer"
+  },
+  "f_import_secrets_ab02": {
+    "message": "Importere hemmeligheter?"
+  },
+  "f_in_firefox_built_in_ai_exper_4366": {
+    "message": "I Firefox: innebygd AI (eksperimentell)"
+  },
+  "f_in_progress_opened_or_annota_d57b": {
+    "message": "Pågår: åpnet eller annotert"
+  },
+  "f_in_use_e11d": {
+    "message": "I bruk"
+  },
+  "f_in_built_in_model_699b": {
+    "message": "I {browser}: innebygd modell"
+  },
+  "f_installed_and_ready_usually__a5a2": {
+    "message": "Installert og klar. Som regel det sterkeste lokale alternativet."
+  },
+  "f_it_also_leaves_the_collectio_6fdf": {
+    "message": "Den forlater også samlingene den er i."
+  },
+  "f_keep_be68": {
+    "message": "Behold"
+  },
+  "f_keep_all_775b": {
+    "message": "Behold alle"
+  },
+  "f_keep_your_library_in_step_ac_3d5f": {
+    "message": "Hold biblioteket ditt synkronisert mellom enhetene dine, ta sikkerhetskopi, eller publiser en del av det for andre. Ingenting forlater denne enheten før du legger til et sted. Velg hva du vil gjøre:"
+  },
+  "f_last_run_ago_9b65": {
+    "message": "Siste kjøring: {t} siden"
+  },
+  "f_learned_tag_names_b494": {
+    "message": "Lærte tagg-navn"
+  },
+  "f_link_removed_from_your_inbox_19ce": {
+    "message": "Lenken fjernet fra innboksen din"
+  },
+  "f_local_23a8": {
+    "message": "Lokal"
+  },
+  "f_looking_for_local_models_not_e5e8": {
+    "message": "Ser etter lokale modeller… ingenting installeres eller sendes."
+  },
+  "f_manual_setup_endpoint_and_mo_25d9": {
+    "message": "Manuelt oppsett: endepunkt og modellnavn"
+  },
+  "f_matching_articles_2869": {
+    "message": "Finner passende artikler…"
+  },
+  "f_move_ab88": {
+    "message": "Flytt «{name}»"
+  },
+  "f_next_month_1650": {
+    "message": "Neste måned →"
+  },
+  "f_no_ollama_use_the_model_buil_21a4": {
+    "message": "Ingen Ollama? Bruk modellen som er innebygd i Chrome"
+  },
+  "f_no_cards_yet_ask_a_question__0c72": {
+    "message": "Ingen kort ennå. Still et spørsmål om dette emnet, eller fest et svar under en artikkel, så blir de til kort."
+  },
+  "f_no_local_model_on_this_compu_27e9": {
+    "message": "Ingen lokal modell på denne datamaskinen ennå. Last ned nettleserens innebygde modell nedenfor hvis den tilbys, eller sett opp Ollama (steg nedenfor)."
+  },
+  "f_no_model_yet_48f9": {
+    "message": "Ingen modell ennå"
+  },
+  "f_no_sources_yet_9cfa": {
+    "message": "Ingen kilder ennå"
+  },
+  "f_not_connected_no_shared_tag__c496": {
+    "message": "Ikke koblet: ingen felles tagg eller lignende innhold knytter disse to sammen"
+  },
+  "f_not_found_on_this_computer_u_1f3a": {
+    "message": "Ikke funnet på denne datamaskinen. Som regel det sterkeste lokale alternativet: gratis, mange modeller."
+  },
+  "f_not_measured_yet_the_test_se_48f1": {
+    "message": "Ikke målt ennå. Testen sender to små vurderingsporsjoner til den innebygde Chrome-modellen, og ingenting forlater datamaskinen."
+  },
+  "f_not_measured_yet_the_test_se_ae15": {
+    "message": "Ikke målt ennå. Testen sender to små vurderingsporsjoner til den lokale modellen din (omtrent ett minutt på en treg maskin), og ingenting forlater datamaskinen."
+  },
+  "f_not_ready_233d": {
+    "message": "Ikke klar"
+  },
+  "f_not_running_415d": {
+    "message": "Kjører ikke"
+  },
+  "f_note_deleted_de30": {
+    "message": "Notat slettet"
+  },
+  "f_nothing_is_deleted_here_unti_c0c4": {
+    "message": "Ingenting slettes her før du sier fra. Behold henter det tilbake også på de andre enhetene dine."
+  },
+  "f_nothing_synced_yet_54fe": {
+    "message": "Ingenting synkronisert ennå"
+  },
+  "f_ollama_recommended_4bf5": {
+    "message": "Ollama (anbefalt)"
+  },
+  "f_ollama_chrome_s_built_in_mod_312f": {
+    "message": "Ollama, Chromes innebygde modell, LM Studio og mer. Ingen konto, ingen nøkkel."
+  },
+  "f_only_the_saved_summaries_of__bad5": {
+    "message": "Bare de lagrede sammendragene av disse artiklene sendes, ingen fulltekst."
+  },
+  "f_open_the_topic_page_a_short__6eeb": {
+    "message": "Åpne emnesiden: en kort briefing fra de {n} lagrede sammendragene"
+  },
+  "f_open_topic_0216": {
+    "message": "Åpne emne"
+  },
+  "f_opera_s_built_in_model_is_no_c9d0": {
+    "message": "Operas innebygde modell er ikke klar ennå. Slå på Innstillinger › Opera AI › Enable Web AI API, vent til modellen er lastet ned (Operas sidefelt), og sjekk på nytt. Ikke på Intel-Mac, Linux eller Windows på Arm ennå."
+  },
+  "f_paper_bfd9": {
+    "message": "Papir"
+  },
+  "f_path_e456": {
+    "message": "Sti"
+  },
+  "f_path_from_pick_a_second_item_99f7": {
+    "message": "Sti fra «{a}»: velg et andre element"
+  },
+  "f_path_mode_off_6af2": {
+    "message": "Stimodus av."
+  },
+  "f_path_mode_on_pick_two_items__dfb3": {
+    "message": "Stimodus på: velg to elementer for å se hvordan de henger sammen."
+  },
+  "f_path_mode_first_item_chosen__68ab": {
+    "message": "Stimodus: første element {a} valgt. Velg et andre."
+  },
+  "f_pick_two_items_to_see_how_th_7bb2": {
+    "message": "Velg to elementer for å se hvordan de henger sammen"
+  },
+  "f_plain_files_for_your_website_5a09": {
+    "message": "Vanlige filer til nettstedet ditt. Lesbare."
+  },
+  "f_publish_a_reading_list_c489": {
+    "message": "Publiser en leseliste"
+  },
+  "f_publish_only_bc8a": {
+    "message": "Bare publiser"
+  },
+  "f_quick_test_on_this_computer_4504": {
+    "message": "Hurtigtest på denne datamaskinen"
+  },
+  "f_reading_your_saved_articles__c628": {
+    "message": "Leser de lagrede artiklene dine i bakgrunnen"
+  },
+  "f_ready_3294": {
+    "message": "Klar"
+  },
+  "f_ready_dace": {
+    "message": "Klar."
+  },
+  "f_recaps_are_written_by_your_l_d85f": {
+    "message": "Recaps skrives av din lokale modell, selv når sammendrag bruker skyen"
+  },
+  "f_recommended_for_this_compute_49ee": {
+    "message": "Anbefalt for denne datamaskinen"
+  },
+  "f_redraw_the_graph_with_the_ne_1477": {
+    "message": "Tegn grafen på nytt med de nye treffene"
+  },
+  "f_references_6beb": {
+    "message": "Referanser"
+  },
+  "f_remove_all_saved_images_ce5e": {
+    "message": "Fjerne alle lagrede bilder?"
+  },
+  "f_remove_saved_page_text_185d": {
+    "message": "Fjerne lagret sidetekst?"
+  },
+  "f_remove_text_2ec0": {
+    "message": "Fjern tekst"
+  },
+  "f_remove_them_7ce1": {
+    "message": "Fjern dem…"
+  },
+  "f_remove_this_place_212e": {
+    "message": "Fjern dette stedet…"
+  },
+  "f_remove_file_from_your_server_52c6": {
+    "message": "Fjerne {n} fil fra serveren din?"
+  },
+  "f_remove_files_from_your_serve_fe5d": {
+    "message": "Fjerne {n} filer fra serveren din?"
+  },
+  "f_remove_from_this_device_d01c": {
+    "message": "Fjerne «{name}» fra denne enheten?"
+  },
+  "f_remove_from_the_collection_697b": {
+    "message": "Fjern «{title}» fra samlingen"
+  },
+  "f_removed_from_922b": {
+    "message": "Fjernet fra «{name}»"
+  },
+  "f_rename_collection_565d": {
+    "message": "Gi samlingen nytt navn"
+  },
+  "f_replay_finished_all_articles_bf34": {
+    "message": "Avspilling ferdig: alle {n} artikler i visning"
+  },
+  "f_replay_started_fde4": {
+    "message": "Avspilling startet: {a}"
+  },
+  "f_reset_dock_c35f": {
+    "message": "Tilbakestill dokken"
+  },
+  "f_restore_from_here_a9df": {
+    "message": "Gjenopprett herfra…"
+  },
+  "f_restore_now_8f4d": {
+    "message": "Gjenopprett nå"
+  },
+  "f_runs_in_chrome_on_your_own_m_5cbf": {
+    "message": "Kjører i Chrome på din egen maskin og koster ingen tokens. Hold panelet åpent: lukker du det, settes kjøringen på pause, og starter du igjen, fortsetter den der den stoppet. Automatiske kjøringer med lukket panel krever Ollama."
+  },
+  "f_runs_inside_the_browser_on_t_a77b": {
+    "message": "Kjører i nettleseren på denne datamaskinen. Engangsnedlasting, så fungerer den offline."
+  },
+  "f_runs_inside_on_this_computer_060a": {
+    "message": "Kjører i {browser} på denne datamaskinen. Ingen installasjon, ingenting forlater datamaskinen."
+  },
+  "f_save_image_4805": {
+    "message": "Lagre bilde"
+  },
+  "f_save_this_picture_as_an_svg__7d9f": {
+    "message": "Lagre dette bildet som SVG-fil på enheten din"
+  },
+  "f_saved_not_worked_on_yet_a3ba": {
+    "message": "Lagret, ikke behandlet ennå"
+  },
+  "f_scan_the_code_in_ai_summary__57b0": {
+    "message": "Skann koden i AI Summary Helper på Android: Innstillinger → Bibliotekssynk → Skann kode. Den inneholder serverpålogging din, så vis den bare til din egen telefon. Den skjuler seg selv etter ett minutt."
+  },
+  "f_see_the_recommendation_f58a": {
+    "message": "Se anbefalingen"
+  },
+  "f_sending_the_batch_to_the_bui_0d29": {
+    "message": "Sender porsjonen til den innebygde modellen…"
+  },
+  "f_sending_the_batch_to_the_loc_551c": {
+    "message": "Sender porsjonen til den lokale modellen…"
+  },
+  "f_set_up_ollama_instead_3c9c": {
+    "message": "Sett opp Ollama i stedet"
+  },
+  "f_settings_8728": {
+    "message": "Innstillinger"
+  },
+  "f_show_everything_again_71fd": {
+    "message": "Vis alt igjen"
+  },
+  "f_show_only_what_you_have_not__fa38": {
+    "message": "Vis bare det du ikke har lest ennå"
+  },
+  "f_show_the_words_code_for_the__5677": {
+    "message": "Vis ordene · kode til telefonen · gjenopprett"
+  },
+  "f_show_all_to_change_the_order_a1cc": {
+    "message": "Vis «Alle» for å endre rekkefølgen."
+  },
+  "f_show_in_the_dock_11ab": {
+    "message": "Vis «{name}» i dokken"
+  },
+  "f_showing_all_articles_3396": {
+    "message": "Viser alle artikler"
+  },
+  "f_small_model_fast_to_start_fo_6def": {
+    "message": "Liten modell, rask å starte. For bedre sammendrag velg en større Ollama-modell."
+  },
+  "f_sort_your_order_0238": {
+    "message": "Sortering: Din rekkefølge"
+  },
+  "f_sources_checked_8cec": {
+    "message": "Kontrollerte kilder"
+  },
+  "f_sources_checks_and_overview__1f6e": {
+    "message": "Kilder, kontroller og oversikt i én .md-fil"
+  },
+  "f_sources_in_export_order_1c20": {
+    "message": "Kilder, i eksportrekkefølge"
+  },
+  "f_stopped_8940": {
+    "message": "Stoppet."
+  },
+  "f_subtopics_7f65": {
+    "message": "Underemner"
+  },
+  "f_summaries_only_ff23": {
+    "message": "Bare sammendrag"
+  },
+  "f_summaries_only_best_with_eng_1c13": {
+    "message": "Bare sammendrag, best med engelsk tekst. For feeder, spørsmål og bedre sammendrag velg Ollama eller en annen lokal modell."
+  },
+  "f_summaries_only_best_with_eng_3324": {
+    "message": "Bare sammendrag, best med engelsk tekst. Det første sammendraget laster ned modellen."
+  },
+  "f_summarize_is_always_in_the_d_7c1a": {
+    "message": "Oppsummer er alltid i dokken."
+  },
+  "f_sync_all_now_2e41": {
+    "message": "Synkroniser alle nå"
+  },
+  "f_tagged_be03": {
+    "message": "Tagget {tag}"
+  },
+  "f_text_summaries_highlights_an_2b62": {
+    "message": "Tekst, sammendrag, markeringer og notater blir værende."
+  },
+  "f_the_english_names_and_broade_599c": {
+    "message": "De engelske navnene og bredere emnene taggene dine fikk. Endre ett, eller glem det så det kan navngis på nytt. Artiklene dine beholder taggene sine."
+  },
+  "f_the_article_is_deleted_with__9abb": {
+    "message": "Artikkelen slettes sammen med sammendraget og lagret sidetekst."
+  },
+  "f_the_articles_are_deleted_wit_3e46": {
+    "message": "Artiklene slettes sammen med sammendragene og lagret sidetekst."
+  },
+  "f_the_built_in_model_does_not__43cb": {
+    "message": "Den innebygde modellen støtter ikke dette språket eller denne inndataen."
+  },
+  "f_the_built_in_model_is_turned_532f": {
+    "message": "Den innebygde modellen er slått av i denne nettleseren."
+  },
+  "f_the_collection_and_its_quest_ca0c": {
+    "message": "Samlingen og spørsmålet slettes."
+  },
+  "f_the_collection_its_question__fa4f": {
+    "message": "Samlingen, spørsmålet og oversikten slettes."
+  },
+  "f_the_files_already_on_your_se_3a7e": {
+    "message": "Filene som allerede ligger på serveren din, slettes ikke."
+  },
+  "f_the_local_server_refused_thi_142b": {
+    "message": "Den lokale serveren avviste denne utvidelsen. Start den med: apfel --serve --allowed-origins {origin}"
+  },
+  "f_the_order_here_is_the_order__1a1b": {
+    "message": "Rekkefølgen her er rekkefølgen i eksporten og arbeidsarket. Dra ⋮⋮ for å endre den."
+  },
+  "f_the_overview_compares_at_lea_9f33": {
+    "message": "Oversikten sammenligner minst to kilder."
+  },
+  "f_the_same_library_on_laptop_a_d4ab": {
+    "message": "Samme bibliotek på laptop og telefon. Kryptert."
+  },
+  "f_the_same_headlines_go_to_eac_db67": {
+    "message": "De samme {n} overskriftene går til hver modell, etter hverandre. Ingenting forlater denne datamaskinen."
+  },
+  "f_the_articles_stay_in_your_li_dcd2": {
+    "message": "De {n} artiklene blir værende i biblioteket ditt med kontrollene sine."
+  },
+  "f_these_two_are_not_connected_3328": {
+    "message": "Disse to er ikke koblet."
+  },
+  "f_they_also_leave_the_collecti_b97e": {
+    "message": "De forlater også samlingene de er i."
+  },
+  "f_this_browser_has_no_built_in_fa45": {
+    "message": "Denne nettleseren har ingen innebygd modell."
+  },
+  "f_title_summary_tags_highlight_f24c": {
+    "message": "Tittel, sammendrag, tagger, markeringer og statistikk blir værende."
+  },
+  "f_too_much_text_for_the_built__d7e9": {
+    "message": "For mye tekst på én gang for den innebygde modellen. Velg færre elementer per porsjon."
+  },
+  "f_topic_1b64": {
+    "message": "Emne"
+  },
+  "f_topic_actions_8957": {
+    "message": "Emnehandlinger"
+  },
+  "f_topics_a535": {
+    "message": "Emner"
+  },
+  "f_topics_inside_c9df": {
+    "message": "Emner innenfor"
+  },
+  "f_use_ollama_again_bf46": {
+    "message": "Bruk Ollama igjen"
+  },
+  "f_use_another_email_dd18": {
+    "message": "Bruke en annen e-postadresse?"
+  },
+  "f_use_it_da81": {
+    "message": "Bruk den"
+  },
+  "f_video_c80c": {
+    "message": "Video"
+  },
+  "f_viewer_page_746e": {
+    "message": "Visningsside"
+  },
+  "f_when_the_chosen_model_is_not_e746": {
+    "message": "Når den valgte modellen ikke er klar, la neste lokale modell svare"
+  },
+  "f_where_should_the_backup_live_3365": {
+    "message": "Hvor skal sikkerhetskopien ligge?"
+  },
+  "f_where_should_the_reading_lis_3ba3": {
+    "message": "Hvor skal leselisten ligge?"
+  },
+  "f_where_should_your_library_li_cf56": {
+    "message": "Hvor skal biblioteket ditt ligge?"
+  },
+  "f_where_this_device_differs_th_b5c9": {
+    "message": "Der denne enheten avviker, vinner stedet. Ingenting slettes her. Det kan ta en stund for et stort bibliotek."
+  },
+  "f_whole_library_local_model_0a98": {
+    "message": "Hele biblioteket · lokal modell"
+  },
+  "f_worked_on_opened_summarised__2bfc": {
+    "message": "Behandlet: åpnet, oppsummert og annotert"
+  },
+  "f_works_with_nextcloud_webdav__8a29": {
+    "message": "Fungerer med Nextcloud / WebDAV, S3-kompatibel lagring eller en mappe på denne datamaskinen."
+  },
+  "f_you_can_undo_this_for_a_few__09e3": {
+    "message": "Du kan angre dette i noen sekunder."
+  },
+  "f_your_highlights_and_notes_st_00a0": {
+    "message": "Markeringene og notatene dine blir værende i Notater."
+  },
+  "f_backup_only_d3bf": {
+    "message": "bare sikkerhetskopi"
+  },
+  "f_deleted_ago_046d": {
+    "message": "slettet {t} siden"
+  },
+  "f_did_not_answer_4111": {
+    "message": "svarte ikke ({e})"
+  },
+  "f_did_not_finish_2912": {
+    "message": "ble ikke ferdig"
+  },
+  "f_download_first_800f": {
+    "message": "last ned først"
+  },
+  "f_encrypted_f1b3": {
+    "message": "kryptert"
+  },
+  "f_fainter_only_saved_6692": {
+    "message": "svakere = bare lagret"
+  },
+  "f_from_summaries_1db1": {
+    "message": "fra {n} sammendrag"
+  },
+  "f_from_summary_45fd": {
+    "message": "fra {n} sammendrag"
+  },
+  "f_grey_not_scored_4a8d": {
+    "message": "grå: ikke vurdert"
+  },
+  "f_last_sync_ago_57bb": {
+    "message": "siste synk {t} siden"
+  },
+  "f_negative_863a": {
+    "message": "negativ"
+  },
+  "f_newer_7eaa": {
+    "message": "nyere"
+  },
+  "f_nothing_changes_until_you_pr_9bc3": {
+    "message": "ingenting endres før du trykker på Bruk"
+  },
+  "f_older_1461": {
+    "message": "eldre"
+  },
+  "f_positive_fa7a": {
+    "message": "positiv"
+  },
+  "f_reorder_handle_e8ae": {
+    "message": "håndtak for omsortering"
+  },
+  "f_testing_7487": {
+    "message": "tester…"
+  },
+  "f_two_way_78fb": {
+    "message": "toveis"
+  },
+  "f_of_sources_checked_0746": {
+    "message": "{a} av {n} kilder kontrollert"
+  },
+  "f_can_download_a_small_model_o_bd4d": {
+    "message": "{browser} kan laste ned en liten modell én gang og kjøre den på denne datamaskinen. For bedre sammendrag bruk en større Ollama-modell."
+  },
+  "f_has_a_built_in_model_but_not_65ab": {
+    "message": "{browser} har en innebygd modell, men ikke på denne datamaskinen akkurat nå (ofte: for lite ledig diskplass). Detaljer: {url}"
+  },
+  "f_built_in_e090": {
+    "message": "{browser} · innebygd"
+  },
+  "f_moved_to_position_of_3df9": {
+    "message": "{name} flyttet til plass {i} av {n}"
+  },
+  "f_articles_not_read_yet_0f6a": {
+    "message": "{n} artikler, {u} ulest"
+  },
+  "f_card_saved_in_anki_file_impo_8a5d": {
+    "message": "{n} kort lagret. I Anki: Fil ▸ Importer."
+  },
+  "f_cards_saved_in_anki_file_imp_e2b8": {
+    "message": "{n} kort lagret. I Anki: Fil ▸ Importer."
+  },
+  "f_connected_item_14c3": {
+    "message": "{n} koblet element"
+  },
+  "f_connected_items_9110": {
+    "message": "{n} koblede elementer"
+  },
+  "f_deletion_waits_for_you_e389": {
+    "message": "{n} sletting venter på deg"
+  },
+  "f_deletions_wait_for_you_3715": {
+    "message": "{n} slettinger venter på deg"
+  },
+  "f_file_waits_to_be_removed_faeb": {
+    "message": "{n} fil venter på å bli fjernet"
+  },
+  "f_files_wait_to_be_removed_eaef": {
+    "message": "{n} filer venter på å bli fjernet"
+  },
+  "f_highlight_note_or_collection_aca0": {
+    "message": "{n} markering, notat eller samling"
+  },
+  "f_highlights_notes_or_collecti_d087": {
+    "message": "{n} markeringer, notater eller samlinger"
+  },
+  "f_more_wait_after_these_7ac2": {
+    "message": "{n} til venter etter disse."
+  },
+  "f_more_waits_after_these_3cbf": {
+    "message": "{n} til venter etter disse."
+  },
+  "f_place_needs_you_6fae": {
+    "message": "{n} sted trenger deg"
+  },
+  "f_places_need_you_8bac": {
+    "message": "{n} steder trenger deg"
+  },
+  "f_step_cf02": {
+    "message": "{n} steg: {chain}"
+  },
+  "f_steps_1b8f": {
+    "message": "{n} steg: {chain}"
+  },
+  "f_subtopic_5270": {
+    "message": "{n} underemne"
+  },
+  "f_subtopics_1ab9": {
+    "message": "{n} underemner"
+  },
+  "f_tag_without_a_name_45a3": {
+    "message": "{n} tagg uten navn"
+  },
+  "f_tag_without_broader_topics_6820": {
+    "message": "{n} tagg uten bredere emner"
+  },
+  "f_tags_without_a_name_d3aa": {
+    "message": "{n} tagger uten navn"
+  },
+  "f_tags_without_broader_topics_2531": {
+    "message": "{n} tagger uten bredere emner"
+  },
+  "f_to_delete_3233": {
+    "message": "{n} å slette"
+  },
+  "f_to_keep_db29": {
+    "message": "{n} å beholde"
+  },
+  "f_unread_article_stands_out_c185": {
+    "message": "{n} ulest artikkel skiller seg ut"
+  },
+  "f_unread_articles_stand_out_0499": {
+    "message": "{n} uleste artikler skiller seg ut"
+  },
+  "f_s_of_rated_f50c": {
+    "message": "{s} s · {a} av {n} vurdert"
+  },
+  "f_s_33e3": {
+    "message": "{s} s"
+  },
+  "f_subtopic_of_articles_6833": {
+    "message": "{topic}, underemne av {parent}: {n} artikler"
+  },
+  "f_articles_unread_a7ef": {
+    "message": "{topic}: {n} artikler, {u} uleste"
+  },
+  "f_is_set_up_7618": {
+    "message": "«{name}» er satt opp"
+  },
+  "f__ec59": {
+    "message": "…"
+  },
+  "f_replay_1a24": {
+    "message": "▶ Spill av igjen"
+  },
+  "f_answering_from_summaries_a77b": {
+    "message": "✨ Svarer ut fra {n} sammendrag…"
+  },
+  "f_briefing_from_summaries_83db": {
+    "message": "✨ Briefing ut fra {n} sammendrag…"
+  },
+  "f_local_model_dc21": {
+    "message": "🧠 Lokal modell"
   }
 }

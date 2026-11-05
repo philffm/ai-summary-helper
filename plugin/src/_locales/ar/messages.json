@@ -6341,5 +6341,875 @@
   },
   "f_places_use_this_server_4df9": {
     "message": "تستخدم {n} أماكن هذا الخادم."
+  },
+  "f_a_copy_only_this_device_writ_6789": {
+    "message": "نسخة يكتبها هذا الجهاز وحده. مشفّرة."
+  },
+  "f_a_local_model_on_this_comput_cb32": {
+    "message": "نموذج محلي على هذا الكمبيوتر"
+  },
+  "f_a_small_model_that_comes_wit_dbb4": {
+    "message": "نموذج صغير يأتي مع Chrome: بلا تثبيت، ولا يغادر شيء جهازك، ولا رموز (tokens). التقييمات والتصنيفات والموجزات أضعف بوضوح من نموذج أكبر."
+  },
+  "f_a_task_sheet_to_check_each_s_715b": {
+    "message": "ورقة مهام لفحص كل مصدر يدويًا"
+  },
+  "f_add_your_phone_57ff": {
+    "message": "أضف هاتفك"
+  },
+  "f_add_your_question_9bd5": {
+    "message": "أضف سؤالك"
+  },
+  "f_age_e13c": {
+    "message": "العمر"
+  },
+  "f_all_except_fe8b": {
+    "message": "الكل عدا {tag}"
+  },
+  "f_all_local_models_c59b": {
+    "message": "كل النماذج المحلية"
+  },
+  "f_all_places_are_up_to_date_0e60": {
+    "message": "كل الأماكن محدّثة"
+  },
+  "f_allow_firefox_ai_c2bb": {
+    "message": "السماح بـ Firefox AI"
+  },
+  "f_also_found_e4c8": {
+    "message": "وُجد أيضًا: {list}"
+  },
+  "f_anki_cards_0b3d": {
+    "message": "بطاقات Anki"
+  },
+  "f_apple_s_model_on_this_mac_re_ce75": {
+    "message": "نموذج Apple على هذا الـ Mac، جاهز الآن."
+  },
+  "f_apply_bbdb": {
+    "message": "تطبيق"
+  },
+  "f_apply_6e04": {
+    "message": "تطبيق ({n})"
+  },
+  "f_around_this_article_c58a": {
+    "message": "حول هذه المقالة"
+  },
+  "f_at_least_two_tabs_stay_in_th_f869": {
+    "message": "يبقى تبويبان على الأقل في الشريط."
+  },
+  "f_available_when_a_local_model_667c": {
+    "message": "متاح عند إعداد نموذج محلي (الإعدادات › النماذج › محلي). يقيّم مكتبة الخلاصة كلها ويصنّفها ويوجزها على دفعات صغيرة على جهازك. قد يستغرق ساعات لكنه لا يستهلك رموزًا."
+  },
+  "f_back_up_123b": {
+    "message": "نسخ احتياطي"
+  },
+  "f_better_connections_ready_f4f9": {
+    "message": "اتصالات أفضل جاهزة"
+  },
+  "f_better_results_ollama_with_a_1cba": {
+    "message": "نتائج أفضل: Ollama مع نموذج 7–8B (GPU أو Apple Silicon)، أو نموذج سحابي أو مفتاح API الخاص بك للملخصات."
+  },
+  "f_blocked_ac53": {
+    "message": "محظور"
+  },
+  "f_bottom_dock_5a41": {
+    "message": "الشريط السفلي"
+  },
+  "f_brief_me_on_this_277c": {
+    "message": "أعطني موجزًا"
+  },
+  "f_bring_everything_in_this_pla_40e5": {
+    "message": "إعادة كل ما في هذا المكان إلى هذا الجهاز؟"
+  },
+  "f_built_into_the_browser_ready_4b02": {
+    "message": "مدمج في المتصفح وجاهز الآن. بلا تثبيت."
+  },
+  "f_built_in_chrome_model_gemini_2f37": {
+    "message": "نموذج Chrome المدمج (Gemini Nano) · احتياطي"
+  },
+  "f_built_in_chrome_model_fallba_0e75": {
+    "message": "نموذج Chrome المدمج (احتياطي)"
+  },
+  "f_change_the_question_4676": {
+    "message": "غيّر السؤال"
+  },
+  "f_change_what_the_dot_colours__8ffd": {
+    "message": "غيّر معنى ألوان النقاط"
+  },
+  "f_check_the_field_marked_below_9291": {
+    "message": "تحقق من الحقل المحدد أدناه."
+  },
+  "f_check_c1c4": {
+    "message": "تحقق من «{title}»"
+  },
+  "f_chrome_can_download_a_small__897b": {
+    "message": "يستطيع Chrome تنزيل نموذج صغير (Gemini Nano) مرة واحدة وتشغيل المكتبة على حاسوبك. يعمل كاحتياطي؛ والنتائج أضعف من نموذج أكبر."
+  },
+  "f_citations_of_all_sources_wit_2ee3": {
+    "message": "اقتباسات كل المصادر التي لها DOI. يُرسل DOI فقط."
+  },
+  "f_collection_actions_47e6": {
+    "message": "إجراءات المجموعة"
+  },
+  "f_collection_deleted_784c": {
+    "message": "حُذفت المجموعة"
+  },
+  "f_color_e44b": {
+    "message": "اللون: {mode}"
+  },
+  "f_compare_first_a472": {
+    "message": "قارن أولًا"
+  },
+  "f_connected_in_steps_3a37": {
+    "message": "متصلة في {n} خطوات: {chain}"
+  },
+  "f_connects_f920": {
+    "message": "تربط: {topics}"
+  },
+  "f_continue_the_download_5741": {
+    "message": "تابع التنزيل"
+  },
+  "f_delete_all_adcd": {
+    "message": "حذف الكل"
+  },
+  "f_delete_article_6a74": {
+    "message": "حذف المقالة"
+  },
+  "f_delete_them_here_too_342a": {
+    "message": "احذفها هنا أيضًا…"
+  },
+  "f_delete_this_article_85f5": {
+    "message": "حذف هذه المقالة؟"
+  },
+  "f_delete_article_on_this_devic_4f26": {
+    "message": "حذف {n} مقالة من هذا الجهاز أيضًا؟"
+  },
+  "f_delete_articles_bc95": {
+    "message": "حذف {n} مقالة"
+  },
+  "f_delete_articles_on_this_devi_6223": {
+    "message": "حذف {n} مقالة من هذا الجهاز أيضًا؟"
+  },
+  "f_delete_articles_ff9e": {
+    "message": "حذف {n} مقالة؟"
+  },
+  "f_delete_4457": {
+    "message": "حذف «{name}»؟"
+  },
+  "f_deleted_on_another_device_82c6": {
+    "message": "حُذف على جهاز آخر"
+  },
+  "f_deleted_with_the_articles_ab_2f89": {
+    "message": "يُحذف مع المقالات أعلاه أو بمفرده"
+  },
+  "f_detail_73b4": {
+    "message": "التفاصيل"
+  },
+  "f_dots_coloured_by_age_purple__9066": {
+    "message": "نقاط ملوّنة حسب العمر: البنفسجي قديم، والأصفر حديث"
+  },
+  "f_dots_coloured_by_mood_orange_7f40": {
+    "message": "نقاط ملوّنة حسب المزاج: البرتقالي سلبي، والأزرق إيجابي، والرمادي بلا تقييم"
+  },
+  "f_dots_coloured_by_topic_e504": {
+    "message": "نقاط ملوّنة حسب الموضوع"
+  },
+  "f_download_and_use_a7af": {
+    "message": "نزّل واستخدم"
+  },
+  "f_download_failed_78b7": {
+    "message": "فشل التنزيل: {e}"
+  },
+  "f_download_the_built_in_model_55af": {
+    "message": "نزّل النموذج المدمج"
+  },
+  "f_downloading_chrome_keeps_goi_6ce9": {
+    "message": "جارٍ التنزيل… يواصل Chrome إن أغلقت هذه اللوحة."
+  },
+  "f_downloading_keeps_going_if_y_9c1b": {
+    "message": "جارٍ التنزيل… يواصل {browser} إن أغلقت هذه اللوحة."
+  },
+  "f_drag_to_reorder_or_use_the_a_fda1": {
+    "message": "اسحب لإعادة الترتيب، أو استخدم مفاتيح الأسهم"
+  },
+  "f_drag_to_change_the_order_scr_0493": {
+    "message": "اسحب ⋮⋮ لتغيير الترتيب. تنزلق الشاشات بالترتيب نفسه."
+  },
+  "f_everything_else_3ef1": {
+    "message": "كل ما عدا ذلك"
+  },
+  "f_export_with_secrets_8f81": {
+    "message": "تصدير مع الأسرار؟"
+  },
+  "f_fallback_chrome_has_a_built__7c2d": {
+    "message": "احتياطي: لدى Chrome نموذج مدمج (Gemini Nano). يبقى Ollama افتراضيك."
+  },
+  "f_fastest_here_in_the_quick_te_eaf5": {
+    "message": "الأسرع هنا في الاختبار السريع: {s} ث لـ {n} عنوانًا، كلها قُيّمت."
+  },
+  "f_fetches_and_processes_new_it_7491": {
+    "message": "يجلب العناصر الجديدة ويعالجها في الخلفية بنموذجك المحلي ما دام المتصفح يعمل. تبقى النماذج السحابية وBYOK يدوية."
+  },
+  "f_files_to_remove_from_your_se_b6f7": {
+    "message": "ملفات لحذفها من خادمك"
+  },
+  "f_firefox_ai_is_turned_off_in__07f7": {
+    "message": "Firefox AI متوقف. في Firefox Beta أو Release افتح about:config واضبط browser.ml.enable وextensions.ml.enabled على true، ثم أعد تحميل الإضافة."
+  },
+  "f_firefox_can_summarize_pages__2ea3": {
+    "message": "يستطيع Firefox تلخيص الصفحات بنموذج صغير على هذا الحاسوب. يلخّص فقط (بلا خلاصات أو أسئلة أو وسوم) ويعمل أفضل مع النص الإنجليزي."
+  },
+  "f_firefox_built_in_e829": {
+    "message": "Firefox · مدمج"
+  },
+  "f_fix_1a18": {
+    "message": "إصلاح"
+  },
+  "f_focus_b1b3": {
+    "message": "تركيز"
+  },
+  "f_forget_all_c09f": {
+    "message": "انسَ الكل"
+  },
+  "f_forget_all_learned_names_4b29": {
+    "message": "نسيان كل الأسماء المتعلَّمة؟"
+  },
+  "f_found_on_but_it_does_not_acc_032a": {
+    "message": "وُجد على {origin} لكنه لا يقبل هذه الإضافة بعد. شغّله بـ: apfel --serve --allowed-origins {ext}"
+  },
+  "f_found_on_but_it_refuses_requ_d766": {
+    "message": "وُجد على {origin} لكنه يرفض طلبات هذه الإضافة. اسمح بمصادر أخرى (CORS) في إعداداته ثم ابحث مجددًا."
+  },
+  "f_full_texts_2af0": {
+    "message": "النصوص الكاملة"
+  },
+  "f_give_these_tags_their_englis_fe72": {
+    "message": "امنح هذه الوسوم أسماءها الإنجليزية ليصير الموضوع نفسه بلغتين موضوعًا واحدًا"
+  },
+  "f_graph_layout_e97f": {
+    "message": "مخطط الرسم"
+  },
+  "f_group_902c": {
+    "message": "مجموعة"
+  },
+  "f_hide_7bcd": {
+    "message": "إخفاء"
+  },
+  "f_highlight_removed_b93b": {
+    "message": "أُزيل التظليل"
+  },
+  "f_import_0af4": {
+    "message": "استيراد"
+  },
+  "f_import_secrets_ab02": {
+    "message": "استيراد الأسرار؟"
+  },
+  "f_in_firefox_built_in_ai_exper_4366": {
+    "message": "في Firefox: ذكاء اصطناعي مدمج (تجريبي)"
+  },
+  "f_in_progress_opened_or_annota_d57b": {
+    "message": "قيد العمل: فُتحت أو عُلّق عليها"
+  },
+  "f_in_use_e11d": {
+    "message": "قيد الاستخدام"
+  },
+  "f_in_built_in_model_699b": {
+    "message": "في {browser}: نموذج مدمج"
+  },
+  "f_installed_and_ready_usually__a5a2": {
+    "message": "مثبّت وجاهز. غالبًا أقوى خيار محلي."
+  },
+  "f_it_also_leaves_the_collectio_6fdf": {
+    "message": "وتُزال أيضًا من المجموعات التي هي فيها."
+  },
+  "f_keep_be68": {
+    "message": "إبقاء"
+  },
+  "f_keep_all_775b": {
+    "message": "إبقاء الكل"
+  },
+  "f_keep_your_library_in_step_ac_3d5f": {
+    "message": "أبقِ مكتبتك متزامنة عبر أجهزتك، أو انسخها احتياطيًا، أو انشر جزءًا منها للآخرين. لا يغادر شيء هذا الجهاز حتى تضيف وجهة. اختر ما تريد فعله:"
+  },
+  "f_last_run_ago_9b65": {
+    "message": "آخر تشغيل: قبل {t}"
+  },
+  "f_learned_tag_names_b494": {
+    "message": "أسماء الوسوم المتعلَّمة"
+  },
+  "f_link_removed_from_your_inbox_19ce": {
+    "message": "أُزيل الرابط من صندوق الوارد"
+  },
+  "f_local_23a8": {
+    "message": "محلي"
+  },
+  "f_looking_for_local_models_not_e5e8": {
+    "message": "جارٍ البحث عن نماذج محلية… لا يُثبَّت ولا يُرسَل شيء."
+  },
+  "f_manual_setup_endpoint_and_mo_25d9": {
+    "message": "إعداد يدوي: نقطة النهاية وأسماء النماذج"
+  },
+  "f_matching_articles_2869": {
+    "message": "جارٍ مطابقة المقالات…"
+  },
+  "f_move_ab88": {
+    "message": "نقل «{name}»"
+  },
+  "f_next_month_1650": {
+    "message": "الشهر التالي ←"
+  },
+  "f_no_ollama_use_the_model_buil_21a4": {
+    "message": "لا يوجد Ollama؟ استخدم نموذج Chrome المدمج"
+  },
+  "f_no_cards_yet_ask_a_question__0c72": {
+    "message": "لا بطاقات بعد. اسأل سؤالًا عن هذا الموضوع، أو ثبّت إجابة أسفل مقالة، فتصير بطاقات."
+  },
+  "f_no_local_model_on_this_compu_27e9": {
+    "message": "لا نموذج محلي على هذا الحاسوب بعد. نزّل نموذج المتصفح المدمج أدناه إن توفر، أو أعدّ Ollama (الخطوات أدناه)."
+  },
+  "f_no_model_yet_48f9": {
+    "message": "لا نموذج بعد"
+  },
+  "f_no_sources_yet_9cfa": {
+    "message": "لا مصادر بعد"
+  },
+  "f_not_connected_no_shared_tag__c496": {
+    "message": "غير متصلين: لا وسم مشترك ولا محتوى مشابه يربط بينهما"
+  },
+  "f_not_found_on_this_computer_u_1f3a": {
+    "message": "لم يُعثر عليه على هذا الحاسوب. غالبًا أقوى خيار محلي: مجاني وبنماذج كثيرة."
+  },
+  "f_not_measured_yet_the_test_se_48f1": {
+    "message": "لم يُقَس بعد. يرسل الاختبار دفعتي تقييم صغيرتين إلى نموذج Chrome المدمج ولا يغادر شيء حاسوبك."
+  },
+  "f_not_measured_yet_the_test_se_ae15": {
+    "message": "لم يُقَس بعد. يرسل الاختبار دفعتي تقييم صغيرتين إلى نموذجك المحلي (نحو دقيقة على جهاز بطيء) ولا يغادر شيء حاسوبك."
+  },
+  "f_not_ready_233d": {
+    "message": "غير جاهز"
+  },
+  "f_not_running_415d": {
+    "message": "لا يعمل"
+  },
+  "f_note_deleted_de30": {
+    "message": "حُذفت الملاحظة"
+  },
+  "f_nothing_is_deleted_here_unti_c0c4": {
+    "message": "لا يُحذف شيء هنا حتى تقول. الإبقاء يعيده على أجهزتك الأخرى أيضًا."
+  },
+  "f_nothing_synced_yet_54fe": {
+    "message": "لا مزامنة بعد"
+  },
+  "f_ollama_recommended_4bf5": {
+    "message": "Ollama (موصى به)"
+  },
+  "f_ollama_chrome_s_built_in_mod_312f": {
+    "message": "Ollama ونموذج Chrome المدمج وLM Studio وغيرها. بلا حساب ولا مفتاح."
+  },
+  "f_only_the_saved_summaries_of__bad5": {
+    "message": "تُرسل الملخصات المحفوظة لهذه المقالات فقط، بلا نص كامل."
+  },
+  "f_open_the_topic_page_a_short__6eeb": {
+    "message": "افتح صفحة الموضوع: موجز قصير من {n} ملخصات محفوظة"
+  },
+  "f_open_topic_0216": {
+    "message": "افتح الموضوع"
+  },
+  "f_opera_s_built_in_model_is_no_c9d0": {
+    "message": "نموذج Opera المدمج غير جاهز بعد. فعّل الإعدادات › Opera AI › Enable Web AI API، وانتظر اكتمال تنزيل النموذج (الشريط الجانبي لـ Opera)، ثم تحقق مجددًا. غير متاح بعد على Mac بمعالج Intel أو Linux أو Windows على Arm."
+  },
+  "f_paper_bfd9": {
+    "message": "ورقة بحثية"
+  },
+  "f_path_e456": {
+    "message": "مسار"
+  },
+  "f_path_from_pick_a_second_item_99f7": {
+    "message": "مسار من «{a}»: اختر عنصرًا ثانيًا"
+  },
+  "f_path_mode_off_6af2": {
+    "message": "وضع المسار متوقف."
+  },
+  "f_path_mode_on_pick_two_items__dfb3": {
+    "message": "وضع المسار قيد التشغيل: اختر عنصرين لترى كيف يرتبطان."
+  },
+  "f_path_mode_first_item_chosen__68ab": {
+    "message": "وضع المسار: اختير العنصر الأول {a}. اختر ثانيًا."
+  },
+  "f_pick_two_items_to_see_how_th_7bb2": {
+    "message": "اختر عنصرين لترى كيف يرتبطان"
+  },
+  "f_plain_files_for_your_website_5a09": {
+    "message": "ملفات عادية لموقعك. قابلة للقراءة."
+  },
+  "f_publish_a_reading_list_c489": {
+    "message": "انشر قائمة قراءة"
+  },
+  "f_publish_only_bc8a": {
+    "message": "نشر فقط"
+  },
+  "f_quick_test_on_this_computer_4504": {
+    "message": "اختبار سريع على هذا الحاسوب"
+  },
+  "f_reading_your_saved_articles__c628": {
+    "message": "قراءة مقالاتك المحفوظة في الخلفية"
+  },
+  "f_ready_3294": {
+    "message": "جاهز"
+  },
+  "f_ready_dace": {
+    "message": "جاهز."
+  },
+  "f_recaps_are_written_by_your_l_d85f": {
+    "message": "يكتب نموذجك المحلي الموجزات، حتى لو استخدمت الملخصات السحابة"
+  },
+  "f_recommended_for_this_compute_49ee": {
+    "message": "موصى به لهذا الحاسوب"
+  },
+  "f_redraw_the_graph_with_the_ne_1477": {
+    "message": "أعد رسم المخطط بالتطابقات الجديدة"
+  },
+  "f_references_6beb": {
+    "message": "المراجع"
+  },
+  "f_remove_all_saved_images_ce5e": {
+    "message": "إزالة كل الصور المحفوظة؟"
+  },
+  "f_remove_saved_page_text_185d": {
+    "message": "إزالة نص الصفحة المحفوظ؟"
+  },
+  "f_remove_text_2ec0": {
+    "message": "إزالة النص"
+  },
+  "f_remove_them_7ce1": {
+    "message": "أزِلها…"
+  },
+  "f_remove_this_place_212e": {
+    "message": "أزِل هذا المكان…"
+  },
+  "f_remove_file_from_your_server_52c6": {
+    "message": "إزالة {n} ملف من خادمك؟"
+  },
+  "f_remove_files_from_your_serve_fe5d": {
+    "message": "إزالة {n} ملفات من خادمك؟"
+  },
+  "f_remove_from_this_device_d01c": {
+    "message": "إزالة «{name}» من هذا الجهاز؟"
+  },
+  "f_remove_from_the_collection_697b": {
+    "message": "أزِل «{title}» من المجموعة"
+  },
+  "f_removed_from_922b": {
+    "message": "أُزيل من «{name}»"
+  },
+  "f_rename_collection_565d": {
+    "message": "إعادة تسمية المجموعة"
+  },
+  "f_replay_finished_all_articles_bf34": {
+    "message": "انتهت الإعادة: كل المقالات الـ {n} ظاهرة"
+  },
+  "f_replay_started_fde4": {
+    "message": "بدأت الإعادة: {a}"
+  },
+  "f_reset_dock_c35f": {
+    "message": "إعادة ضبط الشريط"
+  },
+  "f_restore_from_here_a9df": {
+    "message": "استعادة من هنا…"
+  },
+  "f_restore_now_8f4d": {
+    "message": "استعد الآن"
+  },
+  "f_runs_in_chrome_on_your_own_m_5cbf": {
+    "message": "يعمل في Chrome على جهازك ولا يستهلك رموزًا. أبقِ هذه اللوحة مفتوحة: إغلاقها يوقف التشغيل مؤقتًا، والبدء مجددًا يكمل من حيث توقف. التشغيل التلقائي مع إغلاق اللوحة يحتاج Ollama."
+  },
+  "f_runs_inside_the_browser_on_t_a77b": {
+    "message": "يعمل داخل المتصفح على هذا الحاسوب. تنزيل لمرة واحدة ثم يعمل دون اتصال."
+  },
+  "f_runs_inside_on_this_computer_060a": {
+    "message": "يعمل داخل {browser} على هذا الحاسوب. بلا تثبيت، ولا يغادر شيء الحاسوب."
+  },
+  "f_save_image_4805": {
+    "message": "حفظ الصورة"
+  },
+  "f_save_this_picture_as_an_svg__7d9f": {
+    "message": "احفظ هذه الصورة كملف SVG على جهازك"
+  },
+  "f_saved_not_worked_on_yet_a3ba": {
+    "message": "محفوظ، لم يُعمل عليه بعد"
+  },
+  "f_scan_the_code_in_ai_summary__57b0": {
+    "message": "امسح الرمز في AI Summary Helper على Android: الإعدادات ← مزامنة المكتبة ← مسح الرمز. يحمل بيانات دخول خادمك، فأظهره لهاتفك فقط. يختفي تلقائيًا بعد دقيقة."
+  },
+  "f_see_the_recommendation_f58a": {
+    "message": "اطلع على التوصية"
+  },
+  "f_sending_the_batch_to_the_bui_0d29": {
+    "message": "جارٍ إرسال الدفعة إلى النموذج المدمج…"
+  },
+  "f_sending_the_batch_to_the_loc_551c": {
+    "message": "جارٍ إرسال الدفعة إلى النموذج المحلي…"
+  },
+  "f_set_up_ollama_instead_3c9c": {
+    "message": "أعدّ Ollama بدلًا من ذلك"
+  },
+  "f_settings_8728": {
+    "message": "الإعدادات"
+  },
+  "f_show_everything_again_71fd": {
+    "message": "أظهر الكل مجددًا"
+  },
+  "f_show_only_what_you_have_not__fa38": {
+    "message": "أظهر ما لم تقرأه فقط"
+  },
+  "f_show_the_words_code_for_the__5677": {
+    "message": "أظهر الكلمات · رمز للهاتف · استعادة"
+  },
+  "f_show_all_to_change_the_order_a1cc": {
+    "message": "اعرض «الكل» لتغيير الترتيب."
+  },
+  "f_show_in_the_dock_11ab": {
+    "message": "أظهر «{name}» في الشريط"
+  },
+  "f_showing_all_articles_3396": {
+    "message": "عرض كل المقالات"
+  },
+  "f_small_model_fast_to_start_fo_6def": {
+    "message": "نموذج صغير يبدأ بسرعة. لملخصات أفضل اختر نموذج Ollama أكبر."
+  },
+  "f_sort_your_order_0238": {
+    "message": "الترتيب: ترتيبك"
+  },
+  "f_sources_checked_8cec": {
+    "message": "المصادر المفحوصة"
+  },
+  "f_sources_checks_and_overview__1f6e": {
+    "message": "المصادر والفحوص والنظرة العامة في ملف .md واحد"
+  },
+  "f_sources_in_export_order_1c20": {
+    "message": "المصادر بترتيب التصدير"
+  },
+  "f_stopped_8940": {
+    "message": "توقّف."
+  },
+  "f_subtopics_7f65": {
+    "message": "مواضيع فرعية"
+  },
+  "f_summaries_only_ff23": {
+    "message": "ملخصات فقط"
+  },
+  "f_summaries_only_best_with_eng_1c13": {
+    "message": "ملخصات فقط، الأفضل مع النص الإنجليزي. للخلاصات والأسئلة وملخصات أفضل اختر Ollama أو نموذجًا محليًا آخر."
+  },
+  "f_summaries_only_best_with_eng_3324": {
+    "message": "ملخصات فقط، الأفضل مع النص الإنجليزي. أول ملخص ينزّل النموذج."
+  },
+  "f_summarize_is_always_in_the_d_7c1a": {
+    "message": "«لخّص» دائمًا في الشريط."
+  },
+  "f_sync_all_now_2e41": {
+    "message": "زامن الكل الآن"
+  },
+  "f_tagged_be03": {
+    "message": "وسمها {tag}"
+  },
+  "f_text_summaries_highlights_an_2b62": {
+    "message": "يبقى النص والملخصات والتظليلات والملاحظات."
+  },
+  "f_the_english_names_and_broade_599c": {
+    "message": "الأسماء الإنجليزية والمواضيع الأوسع التي نالتها وسومك. غيّر اسمًا أو انسَه ليُسمّى من جديد. تحتفظ مقالاتك بوسومها."
+  },
+  "f_the_article_is_deleted_with__9abb": {
+    "message": "تُحذف المقالة مع ملخصها ونص صفحتها المحفوظ."
+  },
+  "f_the_articles_are_deleted_wit_3e46": {
+    "message": "تُحذف المقالات مع ملخصاتها ونص صفحاتها المحفوظ."
+  },
+  "f_the_built_in_model_does_not__43cb": {
+    "message": "النموذج المدمج لا يدعم هذه اللغة أو هذا الإدخال."
+  },
+  "f_the_built_in_model_is_turned_532f": {
+    "message": "النموذج المدمج متوقف في هذا المتصفح."
+  },
+  "f_the_collection_and_its_quest_ca0c": {
+    "message": "تُحذف المجموعة وسؤالها."
+  },
+  "f_the_collection_its_question__fa4f": {
+    "message": "تُحذف المجموعة وسؤالها ونظرتها العامة."
+  },
+  "f_the_files_already_on_your_se_3a7e": {
+    "message": "لا تُحذف الملفات الموجودة على خادمك."
+  },
+  "f_the_local_server_refused_thi_142b": {
+    "message": "رفض الخادم المحلي هذه الإضافة. شغّله بـ: apfel --serve --allowed-origins {origin}"
+  },
+  "f_the_order_here_is_the_order__1a1b": {
+    "message": "الترتيب هنا هو ترتيب التصدير وورقة العمل. اسحب ⋮⋮ لتغييره."
+  },
+  "f_the_overview_compares_at_lea_9f33": {
+    "message": "تقارن النظرة العامة مصدرين على الأقل."
+  },
+  "f_the_same_library_on_laptop_a_d4ab": {
+    "message": "المكتبة نفسها على الحاسوب المحمول والهاتف. مشفّرة."
+  },
+  "f_the_same_headlines_go_to_eac_db67": {
+    "message": "العناوين الـ {n} نفسها تُرسل إلى كل نموذج، واحدًا تلو الآخر. لا يغادر شيء هذا الحاسوب."
+  },
+  "f_the_articles_stay_in_your_li_dcd2": {
+    "message": "تبقى المقالات الـ {n} في مكتبتك مع فحوصها."
+  },
+  "f_these_two_are_not_connected_3328": {
+    "message": "هذان غير متصلين."
+  },
+  "f_they_also_leave_the_collecti_b97e": {
+    "message": "وتُزال أيضًا من المجموعات التي هي فيها."
+  },
+  "f_this_browser_has_no_built_in_fa45": {
+    "message": "لا يحتوي هذا المتصفح على نموذج مدمج."
+  },
+  "f_title_summary_tags_highlight_f24c": {
+    "message": "يبقى العنوان والملخص والوسوم والتظليلات والإحصاءات."
+  },
+  "f_too_much_text_for_the_built__d7e9": {
+    "message": "نص كثير جدًا للنموذج المدمج دفعة واحدة. اختر عناصر أقل لكل دفعة."
+  },
+  "f_topic_1b64": {
+    "message": "موضوع"
+  },
+  "f_topic_actions_8957": {
+    "message": "إجراءات الموضوع"
+  },
+  "f_topics_a535": {
+    "message": "المواضيع"
+  },
+  "f_topics_inside_c9df": {
+    "message": "مواضيع بداخله"
+  },
+  "f_use_ollama_again_bf46": {
+    "message": "استخدم Ollama مجددًا"
+  },
+  "f_use_another_email_dd18": {
+    "message": "استخدام بريد آخر؟"
+  },
+  "f_use_it_da81": {
+    "message": "استخدمه"
+  },
+  "f_video_c80c": {
+    "message": "فيديو"
+  },
+  "f_viewer_page_746e": {
+    "message": "صفحة العرض"
+  },
+  "f_when_the_chosen_model_is_not_e746": {
+    "message": "عندما لا يكون النموذج المختار جاهزًا، دع النموذج المحلي التالي يجيب"
+  },
+  "f_where_should_the_backup_live_3365": {
+    "message": "أين تريد حفظ النسخة الاحتياطية؟"
+  },
+  "f_where_should_the_reading_lis_3ba3": {
+    "message": "أين تريد حفظ قائمة القراءة؟"
+  },
+  "f_where_should_your_library_li_cf56": {
+    "message": "أين تريد حفظ مكتبتك؟"
+  },
+  "f_where_this_device_differs_th_b5c9": {
+    "message": "حيث يختلف هذا الجهاز، يغلب المكان. لا يُحذف شيء هنا. قد يستغرق هذا وقتًا مع مكتبة كبيرة."
+  },
+  "f_whole_library_local_model_0a98": {
+    "message": "المكتبة كلها · نموذج محلي"
+  },
+  "f_worked_on_opened_summarised__2bfc": {
+    "message": "تم العمل عليها: فُتحت ولُخّصت وعُلّق عليها"
+  },
+  "f_works_with_nextcloud_webdav__8a29": {
+    "message": "يعمل مع Nextcloud / WebDAV أو تخزين متوافق مع S3 أو مجلد على هذا الحاسوب."
+  },
+  "f_you_can_undo_this_for_a_few__09e3": {
+    "message": "يمكنك التراجع عن هذا لبضع ثوانٍ."
+  },
+  "f_your_highlights_and_notes_st_00a0": {
+    "message": "تظليلاتك وملاحظاتك تبقى في الملاحظات."
+  },
+  "f_backup_only_d3bf": {
+    "message": "نسخ احتياطي فقط"
+  },
+  "f_deleted_ago_046d": {
+    "message": "حُذف قبل {t}"
+  },
+  "f_did_not_answer_4111": {
+    "message": "لم يردّ ({e})"
+  },
+  "f_did_not_finish_2912": {
+    "message": "لم ينتهِ"
+  },
+  "f_download_first_800f": {
+    "message": "نزّل أولًا"
+  },
+  "f_encrypted_f1b3": {
+    "message": "مشفّر"
+  },
+  "f_fainter_only_saved_6692": {
+    "message": "أخفت = محفوظ فقط"
+  },
+  "f_from_summaries_1db1": {
+    "message": "من {n} ملخصات"
+  },
+  "f_from_summary_45fd": {
+    "message": "من ملخص {n}"
+  },
+  "f_grey_not_scored_4a8d": {
+    "message": "رمادي: بلا تقييم"
+  },
+  "f_last_sync_ago_57bb": {
+    "message": "آخر مزامنة قبل {t}"
+  },
+  "f_negative_863a": {
+    "message": "سلبي"
+  },
+  "f_newer_7eaa": {
+    "message": "أحدث"
+  },
+  "f_nothing_changes_until_you_pr_9bc3": {
+    "message": "لا يتغير شيء حتى تضغط تطبيق"
+  },
+  "f_older_1461": {
+    "message": "أقدم"
+  },
+  "f_positive_fa7a": {
+    "message": "إيجابي"
+  },
+  "f_reorder_handle_e8ae": {
+    "message": "مقبض إعادة الترتيب"
+  },
+  "f_testing_7487": {
+    "message": "جارٍ الاختبار…"
+  },
+  "f_two_way_78fb": {
+    "message": "في الاتجاهين"
+  },
+  "f_of_sources_checked_0746": {
+    "message": "فُحص {a} من {n} مصادر"
+  },
+  "f_can_download_a_small_model_o_bd4d": {
+    "message": "يستطيع {browser} تنزيل نموذج صغير مرة واحدة وتشغيله على هذا الحاسوب. لملخصات أفضل استخدم نموذج Ollama أكبر."
+  },
+  "f_has_a_built_in_model_but_not_65ab": {
+    "message": "لدى {browser} نموذج مدمج، لكن ليس على هذا الحاسوب الآن (غالبًا لا توجد مساحة قرص كافية). التفاصيل: {url}"
+  },
+  "f_built_in_e090": {
+    "message": "{browser} · مدمج"
+  },
+  "f_moved_to_position_of_3df9": {
+    "message": "نُقل {name} إلى الموضع {i} من {n}"
+  },
+  "f_articles_not_read_yet_0f6a": {
+    "message": "{n} مقالات، {u} لم تُقرأ"
+  },
+  "f_card_saved_in_anki_file_impo_8a5d": {
+    "message": "حُفظت {n} بطاقات. في Anki: File ▸ Import."
+  },
+  "f_cards_saved_in_anki_file_imp_e2b8": {
+    "message": "حُفظت {n} بطاقة. في Anki: File ▸ Import."
+  },
+  "f_connected_item_14c3": {
+    "message": "{n} عنصر متصل"
+  },
+  "f_connected_items_9110": {
+    "message": "{n} عناصر متصلة"
+  },
+  "f_deletion_waits_for_you_e389": {
+    "message": "{n} حذف ينتظرك"
+  },
+  "f_deletions_wait_for_you_3715": {
+    "message": "{n} عمليات حذف تنتظرك"
+  },
+  "f_file_waits_to_be_removed_faeb": {
+    "message": "{n} ملف ينتظر الإزالة"
+  },
+  "f_files_wait_to_be_removed_eaef": {
+    "message": "{n} ملفات تنتظر الإزالة"
+  },
+  "f_highlight_note_or_collection_aca0": {
+    "message": "{n} تظليل أو ملاحظة أو مجموعة"
+  },
+  "f_highlights_notes_or_collecti_d087": {
+    "message": "{n} تظليلات أو ملاحظات أو مجموعات"
+  },
+  "f_more_wait_after_these_7ac2": {
+    "message": "{n} آخر ينتظر بعد هذه."
+  },
+  "f_more_waits_after_these_3cbf": {
+    "message": "{n} أخرى تنتظر بعد هذه."
+  },
+  "f_place_needs_you_6fae": {
+    "message": "{n} مكان يحتاجك"
+  },
+  "f_places_need_you_8bac": {
+    "message": "{n} أماكن تحتاجك"
+  },
+  "f_step_cf02": {
+    "message": "{n} خطوة: {chain}"
+  },
+  "f_steps_1b8f": {
+    "message": "{n} خطوات: {chain}"
+  },
+  "f_subtopic_5270": {
+    "message": "{n} موضوع فرعي"
+  },
+  "f_subtopics_1ab9": {
+    "message": "{n} مواضيع فرعية"
+  },
+  "f_tag_without_a_name_45a3": {
+    "message": "{n} وسم بلا اسم"
+  },
+  "f_tag_without_broader_topics_6820": {
+    "message": "{n} وسم بلا مواضيع أوسع"
+  },
+  "f_tags_without_a_name_d3aa": {
+    "message": "{n} وسوم بلا أسماء"
+  },
+  "f_tags_without_broader_topics_2531": {
+    "message": "{n} وسوم بلا مواضيع أوسع"
+  },
+  "f_to_delete_3233": {
+    "message": "{n} للحذف"
+  },
+  "f_to_keep_db29": {
+    "message": "{n} للإبقاء"
+  },
+  "f_unread_article_stands_out_c185": {
+    "message": "{n} مقالة غير مقروءة بارزة"
+  },
+  "f_unread_articles_stand_out_0499": {
+    "message": "{n} مقالات غير مقروءة بارزة"
+  },
+  "f_s_of_rated_f50c": {
+    "message": "{s} ث · قُيّم {a} من {n}"
+  },
+  "f_s_33e3": {
+    "message": "{s} ث"
+  },
+  "f_subtopic_of_articles_6833": {
+    "message": "{topic}، موضوع فرعي من {parent}: {n} مقالات"
+  },
+  "f_articles_unread_a7ef": {
+    "message": "{topic}: {n} مقالات، {u} غير مقروءة"
+  },
+  "f_is_set_up_7618": {
+    "message": "«{name}» جاهز"
+  },
+  "f__ec59": {
+    "message": "…"
+  },
+  "f_replay_1a24": {
+    "message": "▶ إعادة"
+  },
+  "f_answering_from_summaries_a77b": {
+    "message": "✨ جارٍ الإجابة من {n} ملخصات…"
+  },
+  "f_briefing_from_summaries_83db": {
+    "message": "✨ جارٍ إعداد موجز من {n} ملخصات…"
+  },
+  "f_local_model_dc21": {
+    "message": "🧠 نموذج محلي"
   }
 }

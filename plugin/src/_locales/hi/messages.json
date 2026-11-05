@@ -6341,5 +6341,875 @@
   },
   "f_places_use_this_server_4df9": {
     "message": "{n} जगहें यह सर्वर लेती हैं।"
+  },
+  "f_a_copy_only_this_device_writ_6789": {
+    "message": "सिर्फ़ यही डिवाइस लिखता है, ऐसी एक कॉपी। एन्क्रिप्टेड।"
+  },
+  "f_a_local_model_on_this_comput_cb32": {
+    "message": "इस कंप्यूटर पर एक लोकल मॉडल"
+  },
+  "f_a_small_model_that_comes_wit_dbb4": {
+    "message": "Chrome के साथ आने वाला छोटा मॉडल: इंस्टॉल नहीं करना, कुछ भी कंप्यूटर से बाहर नहीं जाता, टोकन नहीं लगते। रेटिंग, श्रेणियाँ और रीकैप बड़े मॉडल से साफ़ कमज़ोर होते हैं।"
+  },
+  "f_a_task_sheet_to_check_each_s_715b": {
+    "message": "हर स्रोत को हाथ से जाँचने की टास्क शीट"
+  },
+  "f_add_your_phone_57ff": {
+    "message": "अपना फ़ोन जोड़ें"
+  },
+  "f_add_your_question_9bd5": {
+    "message": "अपना सवाल जोड़ें"
+  },
+  "f_age_e13c": {
+    "message": "उम्र"
+  },
+  "f_all_except_fe8b": {
+    "message": "{tag} को छोड़कर सब"
+  },
+  "f_all_local_models_c59b": {
+    "message": "सभी लोकल मॉडल"
+  },
+  "f_all_places_are_up_to_date_0e60": {
+    "message": "सभी जगहें अप टू डेट हैं"
+  },
+  "f_allow_firefox_ai_c2bb": {
+    "message": "Firefox AI की अनुमति दें"
+  },
+  "f_also_found_e4c8": {
+    "message": "ये भी मिले: {list}"
+  },
+  "f_anki_cards_0b3d": {
+    "message": "Anki कार्ड"
+  },
+  "f_apple_s_model_on_this_mac_re_ce75": {
+    "message": "इस Mac पर Apple का मॉडल, अभी तैयार।"
+  },
+  "f_apply_bbdb": {
+    "message": "लागू करें"
+  },
+  "f_apply_6e04": {
+    "message": "लागू करें ({n})"
+  },
+  "f_around_this_article_c58a": {
+    "message": "इस लेख के आसपास"
+  },
+  "f_at_least_two_tabs_stay_in_th_f869": {
+    "message": "डॉक में कम से कम दो टैब रहते हैं।"
+  },
+  "f_available_when_a_local_model_667c": {
+    "message": "लोकल मॉडल सेट होने पर उपलब्ध (सेटिंग्स › मॉडल › लोकल)। यह आपकी पूरी फ़ीड लाइब्रेरी को छोटे बैच में आपकी अपनी मशीन पर रेट, वर्गीकृत और रीकैप करता है। घंटों लग सकते हैं, पर टोकन खर्च नहीं होते।"
+  },
+  "f_back_up_123b": {
+    "message": "बैकअप"
+  },
+  "f_better_connections_ready_f4f9": {
+    "message": "बेहतर कनेक्शन तैयार"
+  },
+  "f_better_results_ollama_with_a_1cba": {
+    "message": "बेहतर नतीजे: 7–8B मॉडल के साथ Ollama (GPU या Apple Silicon), या सारांश के लिए क्लाउड मॉडल या अपनी API कुंजी।"
+  },
+  "f_blocked_ac53": {
+    "message": "ब्लॉक"
+  },
+  "f_bottom_dock_5a41": {
+    "message": "नीचे का डॉक"
+  },
+  "f_brief_me_on_this_277c": {
+    "message": "इस पर ब्रीफ़ करें"
+  },
+  "f_bring_everything_in_this_pla_40e5": {
+    "message": "इस जगह की सब चीज़ें इस डिवाइस पर वापस लाएँ?"
+  },
+  "f_built_into_the_browser_ready_4b02": {
+    "message": "ब्राउज़र में बना हुआ, अभी तैयार। कुछ इंस्टॉल नहीं करना।"
+  },
+  "f_built_in_chrome_model_gemini_2f37": {
+    "message": "Chrome का बिल्ट-इन मॉडल (Gemini Nano) · फ़ॉलबैक"
+  },
+  "f_built_in_chrome_model_fallba_0e75": {
+    "message": "Chrome का बिल्ट-इन मॉडल (फ़ॉलबैक)"
+  },
+  "f_change_the_question_4676": {
+    "message": "सवाल बदलें"
+  },
+  "f_change_what_the_dot_colours__8ffd": {
+    "message": "डॉट के रंगों का मतलब बदलें"
+  },
+  "f_check_the_field_marked_below_9291": {
+    "message": "नीचे चिह्नित फ़ील्ड जाँचें।"
+  },
+  "f_check_c1c4": {
+    "message": "“{title}” जाँचें"
+  },
+  "f_chrome_can_download_a_small__897b": {
+    "message": "Chrome एक छोटा मॉडल (Gemini Nano) एक बार डाउनलोड करके लाइब्रेरी आपके अपने कंप्यूटर पर चला सकता है। यह फ़ॉलबैक की तरह काम करता है; नतीजे बड़े मॉडल से कमज़ोर होते हैं।"
+  },
+  "f_citations_of_all_sources_wit_2ee3": {
+    "message": "DOI वाले सभी स्रोतों के उद्धरण। सिर्फ़ DOI भेजा जाता है।"
+  },
+  "f_collection_actions_47e6": {
+    "message": "संग्रह की कार्रवाइयाँ"
+  },
+  "f_collection_deleted_784c": {
+    "message": "संग्रह हटाया गया"
+  },
+  "f_color_e44b": {
+    "message": "रंग: {mode}"
+  },
+  "f_compare_first_a472": {
+    "message": "पहले तुलना करें"
+  },
+  "f_connected_in_steps_3a37": {
+    "message": "{n} चरणों में जुड़ा: {chain}"
+  },
+  "f_connects_f920": {
+    "message": "जोड़ता है: {topics}"
+  },
+  "f_continue_the_download_5741": {
+    "message": "डाउनलोड जारी रखें"
+  },
+  "f_delete_all_adcd": {
+    "message": "सब हटाएँ"
+  },
+  "f_delete_article_6a74": {
+    "message": "लेख हटाएँ"
+  },
+  "f_delete_them_here_too_342a": {
+    "message": "यहाँ से भी हटाएँ…"
+  },
+  "f_delete_this_article_85f5": {
+    "message": "यह लेख हटाएँ?"
+  },
+  "f_delete_article_on_this_devic_4f26": {
+    "message": "इस डिवाइस से भी {n} लेख हटाएँ?"
+  },
+  "f_delete_articles_bc95": {
+    "message": "{n} लेख हटाएँ"
+  },
+  "f_delete_articles_on_this_devi_6223": {
+    "message": "इस डिवाइस से भी {n} लेख हटाएँ?"
+  },
+  "f_delete_articles_ff9e": {
+    "message": "{n} लेख हटाएँ?"
+  },
+  "f_delete_4457": {
+    "message": "“{name}” हटाएँ?"
+  },
+  "f_deleted_on_another_device_82c6": {
+    "message": "दूसरे डिवाइस पर हटाया गया"
+  },
+  "f_deleted_with_the_articles_ab_2f89": {
+    "message": "ऊपर के लेखों के साथ हटाया जाता है, या अकेले"
+  },
+  "f_detail_73b4": {
+    "message": "ब्योरा"
+  },
+  "f_dots_coloured_by_age_purple__9066": {
+    "message": "उम्र से रंगे डॉट: बैंगनी पुराना, पीला हाल का"
+  },
+  "f_dots_coloured_by_mood_orange_7f40": {
+    "message": "मूड से रंगे डॉट: नारंगी नकारात्मक, नीला सकारात्मक, स्लेटी बिना स्कोर"
+  },
+  "f_dots_coloured_by_topic_e504": {
+    "message": "विषय से रंगे डॉट"
+  },
+  "f_download_and_use_a7af": {
+    "message": "डाउनलोड करें और इस्तेमाल करें"
+  },
+  "f_download_failed_78b7": {
+    "message": "डाउनलोड नहीं हुआ: {e}"
+  },
+  "f_download_the_built_in_model_55af": {
+    "message": "बिल्ट-इन मॉडल डाउनलोड करें"
+  },
+  "f_downloading_chrome_keeps_goi_6ce9": {
+    "message": "डाउनलोड हो रहा है… यह पैनल बंद करने पर भी Chrome जारी रखता है।"
+  },
+  "f_downloading_keeps_going_if_y_9c1b": {
+    "message": "डाउनलोड हो रहा है… यह पैनल बंद करने पर भी {browser} जारी रखता है।"
+  },
+  "f_drag_to_reorder_or_use_the_a_fda1": {
+    "message": "क्रम बदलने के लिए खींचें, या ऐरो कुंजियाँ इस्तेमाल करें"
+  },
+  "f_drag_to_change_the_order_scr_0493": {
+    "message": "क्रम बदलने के लिए ⋮⋮ खींचें। स्क्रीन भी इसी क्रम में खिसकती हैं।"
+  },
+  "f_everything_else_3ef1": {
+    "message": "बाकी सब"
+  },
+  "f_export_with_secrets_8f81": {
+    "message": "सीक्रेट के साथ एक्सपोर्ट करें?"
+  },
+  "f_fallback_chrome_has_a_built__7c2d": {
+    "message": "फ़ॉलबैक: Chrome में बिल्ट-इन मॉडल (Gemini Nano) है। Ollama ही आपका डिफ़ॉल्ट रहता है।"
+  },
+  "f_fastest_here_in_the_quick_te_eaf5": {
+    "message": "यहाँ क्विक टेस्ट में सबसे तेज़: {n} हेडलाइन के लिए {s} सेकंड, सब रेट हुईं।"
+  },
+  "f_fetches_and_processes_new_it_7491": {
+    "message": "आपका ब्राउज़र चलते समय लोकल मॉडल से नई चीज़ें बैकग्राउंड में लाता और प्रोसेस करता है। क्लाउड और BYOK मॉडल मैन्युअल रहते हैं।"
+  },
+  "f_files_to_remove_from_your_se_b6f7": {
+    "message": "आपके सर्वर से हटाई जाने वाली फ़ाइलें"
+  },
+  "f_firefox_ai_is_turned_off_in__07f7": {
+    "message": "Firefox AI बंद है। Firefox Beta या Release में about:config खोलें, browser.ml.enable और extensions.ml.enabled को true करें, फिर एक्सटेंशन रीलोड करें।"
+  },
+  "f_firefox_can_summarize_pages__2ea3": {
+    "message": "Firefox इस कंप्यूटर पर छोटे मॉडल से पेज का सारांश बना सकता है। यह सिर्फ़ सारांश बनाता है (फ़ीड, सवाल या टैग नहीं) और अंग्रेज़ी टेक्स्ट पर सबसे अच्छा चलता है।"
+  },
+  "f_firefox_built_in_e829": {
+    "message": "Firefox · बिल्ट-इन"
+  },
+  "f_fix_1a18": {
+    "message": "ठीक करें"
+  },
+  "f_focus_b1b3": {
+    "message": "फ़ोकस"
+  },
+  "f_forget_all_c09f": {
+    "message": "सब भूलें"
+  },
+  "f_forget_all_learned_names_4b29": {
+    "message": "सीखे हुए सारे नाम भूलें?"
+  },
+  "f_found_on_but_it_does_not_acc_032a": {
+    "message": "{origin} पर मिला, पर यह अभी इस एक्सटेंशन को स्वीकार नहीं करता। इसे ऐसे शुरू करें: apfel --serve --allowed-origins {ext}"
+  },
+  "f_found_on_but_it_refuses_requ_d766": {
+    "message": "{origin} पर मिला, पर यह इस एक्सटेंशन के अनुरोध ठुकराता है। इसकी सेटिंग्स में दूसरे ऑरिजिन (CORS) की अनुमति दें, फिर दोबारा खोजें।"
+  },
+  "f_full_texts_2af0": {
+    "message": "पूरे टेक्स्ट"
+  },
+  "f_give_these_tags_their_englis_fe72": {
+    "message": "इन टैग को अंग्रेज़ी नाम दें, ताकि दो भाषाओं में एक ही विषय एक बन जाए"
+  },
+  "f_graph_layout_e97f": {
+    "message": "ग्राफ़ लेआउट"
+  },
+  "f_group_902c": {
+    "message": "समूह"
+  },
+  "f_hide_7bcd": {
+    "message": "छिपाएँ"
+  },
+  "f_highlight_removed_b93b": {
+    "message": "हाइलाइट हटाया गया"
+  },
+  "f_import_0af4": {
+    "message": "इंपोर्ट"
+  },
+  "f_import_secrets_ab02": {
+    "message": "सीक्रेट इंपोर्ट करें?"
+  },
+  "f_in_firefox_built_in_ai_exper_4366": {
+    "message": "Firefox में: बिल्ट-इन AI (प्रायोगिक)"
+  },
+  "f_in_progress_opened_or_annota_d57b": {
+    "message": "जारी: खोला या एनोटेट किया"
+  },
+  "f_in_use_e11d": {
+    "message": "इस्तेमाल में"
+  },
+  "f_in_built_in_model_699b": {
+    "message": "{browser} में: बिल्ट-इन मॉडल"
+  },
+  "f_installed_and_ready_usually__a5a2": {
+    "message": "इंस्टॉल और तैयार। आम तौर पर सबसे मज़बूत लोकल विकल्प।"
+  },
+  "f_it_also_leaves_the_collectio_6fdf": {
+    "message": "यह जिन संग्रहों में है, उनसे भी हट जाता है।"
+  },
+  "f_keep_be68": {
+    "message": "रखें"
+  },
+  "f_keep_all_775b": {
+    "message": "सब रखें"
+  },
+  "f_keep_your_library_in_step_ac_3d5f": {
+    "message": "अपनी लाइब्रेरी डिवाइसों में एक जैसी रखें, उसका बैकअप लें, या उसका कुछ हिस्सा दूसरों के लिए प्रकाशित करें। आप कुछ जोड़ें, उससे पहले कुछ भी इस डिवाइस से बाहर नहीं जाता। चुनें कि क्या करना है:"
+  },
+  "f_last_run_ago_9b65": {
+    "message": "पिछला रन: {t} पहले"
+  },
+  "f_learned_tag_names_b494": {
+    "message": "सीखे हुए टैग नाम"
+  },
+  "f_link_removed_from_your_inbox_19ce": {
+    "message": "लिंक इनबॉक्स से हटाया गया"
+  },
+  "f_local_23a8": {
+    "message": "लोकल"
+  },
+  "f_looking_for_local_models_not_e5e8": {
+    "message": "लोकल मॉडल खोज रहे हैं… कुछ इंस्टॉल या भेजा नहीं जाता।"
+  },
+  "f_manual_setup_endpoint_and_mo_25d9": {
+    "message": "मैन्युअल सेटअप: एंडपॉइंट और मॉडल के नाम"
+  },
+  "f_matching_articles_2869": {
+    "message": "मिलते-जुलते लेख…"
+  },
+  "f_move_ab88": {
+    "message": "“{name}” को ले जाएँ"
+  },
+  "f_next_month_1650": {
+    "message": "अगला महीना →"
+  },
+  "f_no_ollama_use_the_model_buil_21a4": {
+    "message": "Ollama नहीं है? Chrome का बिल्ट-इन मॉडल इस्तेमाल करें"
+  },
+  "f_no_cards_yet_ask_a_question__0c72": {
+    "message": "अभी कोई कार्ड नहीं। इस विषय पर सवाल पूछें, या लेख के नीचे कोई जवाब पिन करें, तो वे कार्ड बन जाते हैं।"
+  },
+  "f_no_local_model_on_this_compu_27e9": {
+    "message": "इस कंप्यूटर पर अभी कोई लोकल मॉडल नहीं। अगर मिल रहा हो तो नीचे ब्राउज़र का बिल्ट-इन मॉडल डाउनलोड करें, या Ollama सेट करें (नीचे के चरण)।"
+  },
+  "f_no_model_yet_48f9": {
+    "message": "अभी कोई मॉडल नहीं"
+  },
+  "f_no_sources_yet_9cfa": {
+    "message": "अभी कोई स्रोत नहीं"
+  },
+  "f_not_connected_no_shared_tag__c496": {
+    "message": "जुड़े नहीं: कोई साझा टैग या मिलती-जुलती सामग्री इन दोनों को नहीं जोड़ती"
+  },
+  "f_not_found_on_this_computer_u_1f3a": {
+    "message": "इस कंप्यूटर पर नहीं मिला। आम तौर पर सबसे मज़बूत लोकल विकल्प: मुफ़्त, कई मॉडल।"
+  },
+  "f_not_measured_yet_the_test_se_48f1": {
+    "message": "अभी मापा नहीं गया। टेस्ट Chrome के बिल्ट-इन मॉडल को दो छोटे रेटिंग बैच भेजता है और कुछ भी कंप्यूटर से बाहर नहीं जाता।"
+  },
+  "f_not_measured_yet_the_test_se_ae15": {
+    "message": "अभी मापा नहीं गया। टेस्ट आपके लोकल मॉडल को दो छोटे रेटिंग बैच भेजता है (धीमी मशीन पर करीब एक मिनट) और कुछ भी कंप्यूटर से बाहर नहीं जाता।"
+  },
+  "f_not_ready_233d": {
+    "message": "तैयार नहीं"
+  },
+  "f_not_running_415d": {
+    "message": "चल नहीं रहा"
+  },
+  "f_note_deleted_de30": {
+    "message": "नोट हटाया गया"
+  },
+  "f_nothing_is_deleted_here_unti_c0c4": {
+    "message": "आप कहें, तभी यहाँ कुछ हटता है। रखें चुनने पर वह आपके दूसरे डिवाइसों पर भी लौट आता है।"
+  },
+  "f_nothing_synced_yet_54fe": {
+    "message": "अभी कुछ सिंक नहीं हुआ"
+  },
+  "f_ollama_recommended_4bf5": {
+    "message": "Ollama (सुझाया गया)"
+  },
+  "f_ollama_chrome_s_built_in_mod_312f": {
+    "message": "Ollama, Chrome का बिल्ट-इन मॉडल, LM Studio और भी। न खाता, न कुंजी।"
+  },
+  "f_only_the_saved_summaries_of__bad5": {
+    "message": "इन लेखों के सिर्फ़ सहेजे सारांश भेजे जाते हैं, पूरा टेक्स्ट नहीं।"
+  },
+  "f_open_the_topic_page_a_short__6eeb": {
+    "message": "विषय पेज खोलें: {n} सहेजे सारांशों से एक छोटी ब्रीफ़िंग"
+  },
+  "f_open_topic_0216": {
+    "message": "विषय खोलें"
+  },
+  "f_opera_s_built_in_model_is_no_c9d0": {
+    "message": "Opera का बिल्ट-इन मॉडल अभी तैयार नहीं है। सेटिंग्स › Opera AI › Web AI API सक्षम करें चालू करें, मॉडल डाउनलोड होने तक रुकें (Opera साइडबार), फिर दोबारा जाँचें। Intel Mac, Linux या Arm पर Windows में अभी नहीं।"
+  },
+  "f_paper_bfd9": {
+    "message": "पेपर"
+  },
+  "f_path_e456": {
+    "message": "पाथ"
+  },
+  "f_path_from_pick_a_second_item_99f7": {
+    "message": "“{a}” से पाथ: दूसरा आइटम चुनें"
+  },
+  "f_path_mode_off_6af2": {
+    "message": "पाथ मोड बंद।"
+  },
+  "f_path_mode_on_pick_two_items__dfb3": {
+    "message": "पाथ मोड चालू: दो आइटम चुनें और देखें कि वे कैसे जुड़ते हैं।"
+  },
+  "f_path_mode_first_item_chosen__68ab": {
+    "message": "पाथ मोड: पहला आइटम {a} चुना गया। दूसरा चुनें।"
+  },
+  "f_pick_two_items_to_see_how_th_7bb2": {
+    "message": "दो आइटम चुनें और देखें कि वे कैसे जुड़ते हैं"
+  },
+  "f_plain_files_for_your_website_5a09": {
+    "message": "आपकी वेबसाइट के लिए सादी फ़ाइलें। पढ़ने लायक।"
+  },
+  "f_publish_a_reading_list_c489": {
+    "message": "रीडिंग लिस्ट प्रकाशित करें"
+  },
+  "f_publish_only_bc8a": {
+    "message": "सिर्फ़ प्रकाशित करें"
+  },
+  "f_quick_test_on_this_computer_4504": {
+    "message": "इस कंप्यूटर पर क्विक टेस्ट"
+  },
+  "f_reading_your_saved_articles__c628": {
+    "message": "आपके सहेजे लेख बैकग्राउंड में पढ़े जा रहे हैं"
+  },
+  "f_ready_3294": {
+    "message": "तैयार"
+  },
+  "f_ready_dace": {
+    "message": "तैयार।"
+  },
+  "f_recaps_are_written_by_your_l_d85f": {
+    "message": "रीकैप आपका लोकल मॉडल लिखता है, सारांश क्लाउड से बनें तब भी"
+  },
+  "f_recommended_for_this_compute_49ee": {
+    "message": "इस कंप्यूटर के लिए सुझाया गया"
+  },
+  "f_redraw_the_graph_with_the_ne_1477": {
+    "message": "नए मिलानों के साथ ग्राफ़ दोबारा बनाएँ"
+  },
+  "f_references_6beb": {
+    "message": "संदर्भ"
+  },
+  "f_remove_all_saved_images_ce5e": {
+    "message": "सहेजी सारी इमेज हटाएँ?"
+  },
+  "f_remove_saved_page_text_185d": {
+    "message": "सहेजा पेज टेक्स्ट हटाएँ?"
+  },
+  "f_remove_text_2ec0": {
+    "message": "टेक्स्ट हटाएँ"
+  },
+  "f_remove_them_7ce1": {
+    "message": "इन्हें हटाएँ…"
+  },
+  "f_remove_this_place_212e": {
+    "message": "यह जगह हटाएँ…"
+  },
+  "f_remove_file_from_your_server_52c6": {
+    "message": "आपके सर्वर से {n} फ़ाइल हटाएँ?"
+  },
+  "f_remove_files_from_your_serve_fe5d": {
+    "message": "आपके सर्वर से {n} फ़ाइलें हटाएँ?"
+  },
+  "f_remove_from_this_device_d01c": {
+    "message": "“{name}” को इस डिवाइस से हटाएँ?"
+  },
+  "f_remove_from_the_collection_697b": {
+    "message": "संग्रह से “{title}” हटाएँ"
+  },
+  "f_removed_from_922b": {
+    "message": "“{name}” से हटाया गया"
+  },
+  "f_rename_collection_565d": {
+    "message": "संग्रह का नाम बदलें"
+  },
+  "f_replay_finished_all_articles_bf34": {
+    "message": "रीप्ले पूरा: सभी {n} लेख दिख रहे हैं"
+  },
+  "f_replay_started_fde4": {
+    "message": "रीप्ले शुरू: {a}"
+  },
+  "f_reset_dock_c35f": {
+    "message": "डॉक रीसेट करें"
+  },
+  "f_restore_from_here_a9df": {
+    "message": "यहाँ से रीस्टोर करें…"
+  },
+  "f_restore_now_8f4d": {
+    "message": "अभी रीस्टोर करें"
+  },
+  "f_runs_in_chrome_on_your_own_m_5cbf": {
+    "message": "आपकी अपनी मशीन पर Chrome में चलता है और टोकन खर्च नहीं करता। यह पैनल खुला रखें: बंद करने पर रन रुक जाता है, और दोबारा शुरू करने पर वहीं से आगे बढ़ता है। पैनल बंद होने पर अपने आप चलाने के लिए Ollama चाहिए।"
+  },
+  "f_runs_inside_the_browser_on_t_a77b": {
+    "message": "इस कंप्यूटर पर ब्राउज़र के अंदर चलता है। एक बार डाउनलोड, फिर ऑफ़लाइन भी चलता है।"
+  },
+  "f_runs_inside_on_this_computer_060a": {
+    "message": "इस कंप्यूटर पर {browser} के अंदर चलता है। इंस्टॉल नहीं करना, कुछ भी कंप्यूटर से बाहर नहीं जाता।"
+  },
+  "f_save_image_4805": {
+    "message": "इमेज सहेजें"
+  },
+  "f_save_this_picture_as_an_svg__7d9f": {
+    "message": "इस तस्वीर को SVG फ़ाइल के रूप में अपने डिवाइस पर सहेजें"
+  },
+  "f_saved_not_worked_on_yet_a3ba": {
+    "message": "सहेजा, अभी काम नहीं हुआ"
+  },
+  "f_scan_the_code_in_ai_summary__57b0": {
+    "message": "Android पर AI Summary Helper में कोड स्कैन करें: सेटिंग्स → लाइब्रेरी सिंक → कोड स्कैन करें। इसमें आपके सर्वर का लॉगिन है, इसलिए इसे सिर्फ़ अपने फ़ोन को दिखाएँ। यह एक मिनट बाद खुद छिप जाता है।"
+  },
+  "f_see_the_recommendation_f58a": {
+    "message": "सुझाव देखें"
+  },
+  "f_sending_the_batch_to_the_bui_0d29": {
+    "message": "बैच बिल्ट-इन मॉडल को भेजा जा रहा है…"
+  },
+  "f_sending_the_batch_to_the_loc_551c": {
+    "message": "बैच लोकल मॉडल को भेजा जा रहा है…"
+  },
+  "f_set_up_ollama_instead_3c9c": {
+    "message": "इसके बजाय Ollama सेट करें"
+  },
+  "f_settings_8728": {
+    "message": "सेटिंग्स"
+  },
+  "f_show_everything_again_71fd": {
+    "message": "फिर से सब दिखाएँ"
+  },
+  "f_show_only_what_you_have_not__fa38": {
+    "message": "सिर्फ़ वही दिखाएँ जो अभी नहीं पढ़ा"
+  },
+  "f_show_the_words_code_for_the__5677": {
+    "message": "शब्द दिखाएँ · फ़ोन के लिए कोड · रीस्टोर"
+  },
+  "f_show_all_to_change_the_order_a1cc": {
+    "message": "क्रम बदलने के लिए “सभी” दिखाएँ।"
+  },
+  "f_show_in_the_dock_11ab": {
+    "message": "डॉक में “{name}” दिखाएँ"
+  },
+  "f_showing_all_articles_3396": {
+    "message": "सभी लेख दिख रहे हैं"
+  },
+  "f_small_model_fast_to_start_fo_6def": {
+    "message": "छोटा मॉडल, जल्दी शुरू होता है। बेहतर सारांश के लिए बड़ा Ollama मॉडल चुनें।"
+  },
+  "f_sort_your_order_0238": {
+    "message": "क्रम: आपका क्रम"
+  },
+  "f_sources_checked_8cec": {
+    "message": "जाँचे गए स्रोत"
+  },
+  "f_sources_checks_and_overview__1f6e": {
+    "message": "स्रोत, जाँच और ओवरव्यू एक .md फ़ाइल में"
+  },
+  "f_sources_in_export_order_1c20": {
+    "message": "स्रोत, एक्सपोर्ट के क्रम में"
+  },
+  "f_stopped_8940": {
+    "message": "रुका।"
+  },
+  "f_subtopics_7f65": {
+    "message": "उप-विषय"
+  },
+  "f_summaries_only_ff23": {
+    "message": "सिर्फ़ सारांश"
+  },
+  "f_summaries_only_best_with_eng_1c13": {
+    "message": "सिर्फ़ सारांश, अंग्रेज़ी टेक्स्ट पर सबसे अच्छा। फ़ीड, सवाल और बेहतर सारांश के लिए Ollama या कोई और लोकल मॉडल चुनें।"
+  },
+  "f_summaries_only_best_with_eng_3324": {
+    "message": "सिर्फ़ सारांश, अंग्रेज़ी टेक्स्ट पर सबसे अच्छा। पहला सारांश मॉडल डाउनलोड करता है।"
+  },
+  "f_summarize_is_always_in_the_d_7c1a": {
+    "message": "सारांश हमेशा डॉक में रहता है।"
+  },
+  "f_sync_all_now_2e41": {
+    "message": "अभी सब सिंक करें"
+  },
+  "f_tagged_be03": {
+    "message": "{tag} टैग वाले"
+  },
+  "f_text_summaries_highlights_an_2b62": {
+    "message": "टेक्स्ट, सारांश, हाइलाइट और नोट रहते हैं।"
+  },
+  "f_the_english_names_and_broade_599c": {
+    "message": "आपके टैग को मिले अंग्रेज़ी नाम और व्यापक विषय। किसी को बदलें, या भुला दें ताकि उसे फिर नाम मिल सके। आपके लेखों के टैग वैसे ही रहते हैं।"
+  },
+  "f_the_article_is_deleted_with__9abb": {
+    "message": "लेख उसके सारांश और सहेजे पेज टेक्स्ट के साथ हट जाता है।"
+  },
+  "f_the_articles_are_deleted_wit_3e46": {
+    "message": "लेख उनके सारांश और सहेजे पेज टेक्स्ट के साथ हट जाते हैं।"
+  },
+  "f_the_built_in_model_does_not__43cb": {
+    "message": "बिल्ट-इन मॉडल इस भाषा या इनपुट को सपोर्ट नहीं करता।"
+  },
+  "f_the_built_in_model_is_turned_532f": {
+    "message": "इस ब्राउज़र में बिल्ट-इन मॉडल बंद है।"
+  },
+  "f_the_collection_and_its_quest_ca0c": {
+    "message": "संग्रह और उसका सवाल हट जाते हैं।"
+  },
+  "f_the_collection_its_question__fa4f": {
+    "message": "संग्रह, उसका सवाल और उसका ओवरव्यू हट जाते हैं।"
+  },
+  "f_the_files_already_on_your_se_3a7e": {
+    "message": "आपके सर्वर पर पहले से मौजूद फ़ाइलें नहीं हटतीं।"
+  },
+  "f_the_local_server_refused_thi_142b": {
+    "message": "लोकल सर्वर ने इस एक्सटेंशन को ठुकरा दिया। इसे ऐसे शुरू करें: apfel --serve --allowed-origins {origin}"
+  },
+  "f_the_order_here_is_the_order__1a1b": {
+    "message": "यहाँ का क्रम ही एक्सपोर्ट और वर्कशीट का क्रम है। बदलने के लिए ⋮⋮ खींचें।"
+  },
+  "f_the_overview_compares_at_lea_9f33": {
+    "message": "ओवरव्यू कम से कम दो स्रोतों की तुलना करता है।"
+  },
+  "f_the_same_library_on_laptop_a_d4ab": {
+    "message": "लैपटॉप और फ़ोन पर एक ही लाइब्रेरी। एन्क्रिप्टेड।"
+  },
+  "f_the_same_headlines_go_to_eac_db67": {
+    "message": "हर मॉडल को एक के बाद एक वही {n} हेडलाइन जाती हैं। कुछ भी इस कंप्यूटर से बाहर नहीं जाता।"
+  },
+  "f_the_articles_stay_in_your_li_dcd2": {
+    "message": "{n} लेख अपनी जाँचों के साथ आपकी लाइब्रेरी में रहते हैं।"
+  },
+  "f_these_two_are_not_connected_3328": {
+    "message": "ये दोनों जुड़े नहीं हैं।"
+  },
+  "f_they_also_leave_the_collecti_b97e": {
+    "message": "ये जिन संग्रहों में हैं, उनसे भी हट जाते हैं।"
+  },
+  "f_this_browser_has_no_built_in_fa45": {
+    "message": "इस ब्राउज़र में बिल्ट-इन मॉडल नहीं है।"
+  },
+  "f_title_summary_tags_highlight_f24c": {
+    "message": "शीर्षक, सारांश, टैग, हाइलाइट और आँकड़े रहते हैं।"
+  },
+  "f_too_much_text_for_the_built__d7e9": {
+    "message": "बिल्ट-इन मॉडल के लिए एक बार में बहुत ज़्यादा टेक्स्ट है। प्रति बैच कम आइटम चुनें।"
+  },
+  "f_topic_1b64": {
+    "message": "विषय"
+  },
+  "f_topic_actions_8957": {
+    "message": "विषय की कार्रवाइयाँ"
+  },
+  "f_topics_a535": {
+    "message": "विषय"
+  },
+  "f_topics_inside_c9df": {
+    "message": "अंदर के विषय"
+  },
+  "f_use_ollama_again_bf46": {
+    "message": "फिर से Ollama इस्तेमाल करें"
+  },
+  "f_use_another_email_dd18": {
+    "message": "कोई दूसरा ईमेल इस्तेमाल करें?"
+  },
+  "f_use_it_da81": {
+    "message": "इस्तेमाल करें"
+  },
+  "f_video_c80c": {
+    "message": "वीडियो"
+  },
+  "f_viewer_page_746e": {
+    "message": "व्यूअर पेज"
+  },
+  "f_when_the_chosen_model_is_not_e746": {
+    "message": "चुना मॉडल तैयार न हो तो अगला लोकल मॉडल जवाब दे"
+  },
+  "f_where_should_the_backup_live_3365": {
+    "message": "बैकअप कहाँ रहे?"
+  },
+  "f_where_should_the_reading_lis_3ba3": {
+    "message": "रीडिंग लिस्ट कहाँ रहे?"
+  },
+  "f_where_should_your_library_li_cf56": {
+    "message": "आपकी लाइब्रेरी कहाँ रहे?"
+  },
+  "f_where_this_device_differs_th_b5c9": {
+    "message": "जहाँ यह डिवाइस अलग है, वहाँ जगह की बात मानी जाती है। यहाँ कुछ नहीं हटता। बड़ी लाइब्रेरी में समय लग सकता है।"
+  },
+  "f_whole_library_local_model_0a98": {
+    "message": "पूरी लाइब्रेरी · लोकल मॉडल"
+  },
+  "f_worked_on_opened_summarised__2bfc": {
+    "message": "काम हुआ: खोला, सारांश बना, एनोटेट किया"
+  },
+  "f_works_with_nextcloud_webdav__8a29": {
+    "message": "Nextcloud / WebDAV, S3-संगत स्टोरेज या इस कंप्यूटर के फ़ोल्डर के साथ चलता है।"
+  },
+  "f_you_can_undo_this_for_a_few__09e3": {
+    "message": "इसे कुछ सेकंड तक पूर्ववत कर सकते हैं।"
+  },
+  "f_your_highlights_and_notes_st_00a0": {
+    "message": "आपके हाइलाइट और नोट, नोट्स में रहते हैं।"
+  },
+  "f_backup_only_d3bf": {
+    "message": "सिर्फ़ बैकअप"
+  },
+  "f_deleted_ago_046d": {
+    "message": "{t} पहले हटाया"
+  },
+  "f_did_not_answer_4111": {
+    "message": "जवाब नहीं आया ({e})"
+  },
+  "f_did_not_finish_2912": {
+    "message": "पूरा नहीं हुआ"
+  },
+  "f_download_first_800f": {
+    "message": "पहले डाउनलोड करें"
+  },
+  "f_encrypted_f1b3": {
+    "message": "एन्क्रिप्टेड"
+  },
+  "f_fainter_only_saved_6692": {
+    "message": "हल्का = सिर्फ़ सहेजा"
+  },
+  "f_from_summaries_1db1": {
+    "message": "{n} सारांशों से"
+  },
+  "f_from_summary_45fd": {
+    "message": "{n} सारांश से"
+  },
+  "f_grey_not_scored_4a8d": {
+    "message": "स्लेटी: बिना स्कोर"
+  },
+  "f_last_sync_ago_57bb": {
+    "message": "पिछला सिंक {t} पहले"
+  },
+  "f_negative_863a": {
+    "message": "नकारात्मक"
+  },
+  "f_newer_7eaa": {
+    "message": "नया"
+  },
+  "f_nothing_changes_until_you_pr_9bc3": {
+    "message": "लागू करें दबाने तक कुछ नहीं बदलता"
+  },
+  "f_older_1461": {
+    "message": "पुराना"
+  },
+  "f_positive_fa7a": {
+    "message": "सकारात्मक"
+  },
+  "f_reorder_handle_e8ae": {
+    "message": "क्रम बदलने का हैंडल"
+  },
+  "f_testing_7487": {
+    "message": "टेस्ट हो रहा है…"
+  },
+  "f_two_way_78fb": {
+    "message": "दोतरफ़ा"
+  },
+  "f_of_sources_checked_0746": {
+    "message": "{n} में से {a} स्रोत जाँचे गए"
+  },
+  "f_can_download_a_small_model_o_bd4d": {
+    "message": "{browser} एक बार छोटा मॉडल डाउनलोड करके इस कंप्यूटर पर चला सकता है। बेहतर सारांश के लिए बड़ा Ollama मॉडल इस्तेमाल करें।"
+  },
+  "f_has_a_built_in_model_but_not_65ab": {
+    "message": "{browser} में बिल्ट-इन मॉडल है, पर इस कंप्यूटर पर अभी नहीं (अक्सर: खाली डिस्क जगह कम)। ब्योरा: {url}"
+  },
+  "f_built_in_e090": {
+    "message": "{browser} · बिल्ट-इन"
+  },
+  "f_moved_to_position_of_3df9": {
+    "message": "{name} को {n} में से स्थान {i} पर ले जाया गया"
+  },
+  "f_articles_not_read_yet_0f6a": {
+    "message": "{n} लेख, {u} अभी नहीं पढ़े"
+  },
+  "f_card_saved_in_anki_file_impo_8a5d": {
+    "message": "{n} कार्ड सहेजा। Anki में: File ▸ Import।"
+  },
+  "f_cards_saved_in_anki_file_imp_e2b8": {
+    "message": "{n} कार्ड सहेजे। Anki में: File ▸ Import।"
+  },
+  "f_connected_item_14c3": {
+    "message": "{n} जुड़ा आइटम"
+  },
+  "f_connected_items_9110": {
+    "message": "{n} जुड़े आइटम"
+  },
+  "f_deletion_waits_for_you_e389": {
+    "message": "{n} हटाव आपका इंतज़ार कर रहा है"
+  },
+  "f_deletions_wait_for_you_3715": {
+    "message": "{n} हटाव आपका इंतज़ार कर रहे हैं"
+  },
+  "f_file_waits_to_be_removed_faeb": {
+    "message": "{n} फ़ाइल हटने का इंतज़ार कर रही है"
+  },
+  "f_files_wait_to_be_removed_eaef": {
+    "message": "{n} फ़ाइलें हटने का इंतज़ार कर रही हैं"
+  },
+  "f_highlight_note_or_collection_aca0": {
+    "message": "{n} हाइलाइट, नोट या संग्रह"
+  },
+  "f_highlights_notes_or_collecti_d087": {
+    "message": "{n} हाइलाइट, नोट या संग्रह"
+  },
+  "f_more_wait_after_these_7ac2": {
+    "message": "इनके बाद {n} और इंतज़ार में है।"
+  },
+  "f_more_waits_after_these_3cbf": {
+    "message": "इनके बाद {n} और इंतज़ार में हैं।"
+  },
+  "f_place_needs_you_6fae": {
+    "message": "{n} जगह को आपकी ज़रूरत है"
+  },
+  "f_places_need_you_8bac": {
+    "message": "{n} जगहों को आपकी ज़रूरत है"
+  },
+  "f_step_cf02": {
+    "message": "{n} चरण: {chain}"
+  },
+  "f_steps_1b8f": {
+    "message": "{n} चरण: {chain}"
+  },
+  "f_subtopic_5270": {
+    "message": "{n} उप-विषय"
+  },
+  "f_subtopics_1ab9": {
+    "message": "{n} उप-विषय"
+  },
+  "f_tag_without_a_name_45a3": {
+    "message": "{n} टैग बिना नाम का"
+  },
+  "f_tag_without_broader_topics_6820": {
+    "message": "{n} टैग बिना व्यापक विषय का"
+  },
+  "f_tags_without_a_name_d3aa": {
+    "message": "{n} टैग बिना नाम के"
+  },
+  "f_tags_without_broader_topics_2531": {
+    "message": "{n} टैग बिना व्यापक विषयों के"
+  },
+  "f_to_delete_3233": {
+    "message": "{n} हटाने को"
+  },
+  "f_to_keep_db29": {
+    "message": "{n} रखने को"
+  },
+  "f_unread_article_stands_out_c185": {
+    "message": "{n} अनपढ़ा लेख अलग दिखता है"
+  },
+  "f_unread_articles_stand_out_0499": {
+    "message": "{n} अनपढ़े लेख अलग दिखते हैं"
+  },
+  "f_s_of_rated_f50c": {
+    "message": "{s} सेकंड · {n} में से {a} रेट हुए"
+  },
+  "f_s_33e3": {
+    "message": "{s} से."
+  },
+  "f_subtopic_of_articles_6833": {
+    "message": "{topic}, {parent} का उप-विषय: {n} लेख"
+  },
+  "f_articles_unread_a7ef": {
+    "message": "{topic}: {n} लेख, {u} अनपढ़े"
+  },
+  "f_is_set_up_7618": {
+    "message": "“{name}” सेट हो गया"
+  },
+  "f__ec59": {
+    "message": "…"
+  },
+  "f_replay_1a24": {
+    "message": "▶ रीप्ले"
+  },
+  "f_answering_from_summaries_a77b": {
+    "message": "✨ {n} सारांशों से जवाब दे रहे हैं…"
+  },
+  "f_briefing_from_summaries_83db": {
+    "message": "✨ {n} सारांशों से ब्रीफ़ बन रहा है…"
+  },
+  "f_local_model_dc21": {
+    "message": "🧠 लोकल मॉडल"
   }
 }

@@ -6624,5 +6624,875 @@
   },
   "f_places_use_this_server_4df9": {
     "message": "{n} ที่เก็บใช้เซิร์ฟเวอร์นี้"
+  },
+  "f_a_copy_only_this_device_writ_6789": {
+    "message": "สำเนาที่เขียนโดยอุปกรณ์เครื่องนี้เท่านั้น เข้ารหัสแล้ว"
+  },
+  "f_a_local_model_on_this_comput_cb32": {
+    "message": "โมเดลในเครื่องบนคอมพิวเตอร์นี้"
+  },
+  "f_a_small_model_that_comes_wit_dbb4": {
+    "message": "โมเดลขนาดเล็กที่มาพร้อม Chrome: ไม่ต้องติดตั้ง ไม่มีอะไรออกจากคอมพิวเตอร์ และไม่ใช้โทเค็น คะแนน หมวดหมู่ และบทสรุปด้อยกว่าโมเดลใหญ่เห็นได้ชัด"
+  },
+  "f_a_task_sheet_to_check_each_s_715b": {
+    "message": "ใบงานสำหรับตรวจแต่ละแหล่งด้วยตัวเอง"
+  },
+  "f_add_your_phone_57ff": {
+    "message": "เพิ่มโทรศัพท์ของคุณ"
+  },
+  "f_add_your_question_9bd5": {
+    "message": "เพิ่มคำถามของคุณ"
+  },
+  "f_age_e13c": {
+    "message": "อายุ"
+  },
+  "f_all_except_fe8b": {
+    "message": "ทั้งหมดยกเว้น {tag}"
+  },
+  "f_all_local_models_c59b": {
+    "message": "โมเดลในเครื่องทั้งหมด"
+  },
+  "f_all_places_are_up_to_date_0e60": {
+    "message": "ทุกที่เป็นปัจจุบัน"
+  },
+  "f_allow_firefox_ai_c2bb": {
+    "message": "อนุญาต Firefox AI"
+  },
+  "f_also_found_e4c8": {
+    "message": "พบเพิ่มเติม: {list}"
+  },
+  "f_anki_cards_0b3d": {
+    "message": "การ์ด Anki"
+  },
+  "f_apple_s_model_on_this_mac_re_ce75": {
+    "message": "โมเดลของ Apple บน Mac เครื่องนี้ พร้อมใช้งานแล้ว"
+  },
+  "f_apply_bbdb": {
+    "message": "ใช้"
+  },
+  "f_apply_6e04": {
+    "message": "ใช้ ({n})"
+  },
+  "f_around_this_article_c58a": {
+    "message": "รอบบทความนี้"
+  },
+  "f_at_least_two_tabs_stay_in_th_f869": {
+    "message": "แท็บอย่างน้อยสองแท็บจะอยู่ในแถบ"
+  },
+  "f_available_when_a_local_model_667c": {
+    "message": "ใช้ได้เมื่อตั้งโมเดลในเครื่องแล้ว (ตั้งค่า › โมเดล › ในเครื่อง) ระบบจะให้คะแนน จัดหมวด และสรุปทั้งไลบรารีฟีดเป็นชุดเล็กๆ บนเครื่องคุณเอง อาจใช้เวลาหลายชั่วโมงแต่ไม่เสียโทเค็น"
+  },
+  "f_back_up_123b": {
+    "message": "สำรอง"
+  },
+  "f_better_connections_ready_f4f9": {
+    "message": "การเชื่อมโยงที่ดีขึ้นพร้อมแล้ว"
+  },
+  "f_better_results_ollama_with_a_1cba": {
+    "message": "ผลลัพธ์ที่ดีกว่า: Ollama กับโมเดล 7–8B (GPU หรือ Apple Silicon) หรือโมเดลคลาวด์หรือคีย์ API ของคุณเองสำหรับการสรุป"
+  },
+  "f_blocked_ac53": {
+    "message": "ถูกบล็อก"
+  },
+  "f_bottom_dock_5a41": {
+    "message": "แถบด้านล่าง"
+  },
+  "f_brief_me_on_this_277c": {
+    "message": "สรุปเรื่องนี้ให้ฉัน"
+  },
+  "f_bring_everything_in_this_pla_40e5": {
+    "message": "นำทุกอย่างในที่นี้กลับมายังอุปกรณ์นี้ไหม"
+  },
+  "f_built_into_the_browser_ready_4b02": {
+    "message": "มีในเบราว์เซอร์ พร้อมใช้งานทันที ไม่ต้องติดตั้ง"
+  },
+  "f_built_in_chrome_model_gemini_2f37": {
+    "message": "โมเดลในตัวของ Chrome (Gemini Nano) · สำรอง"
+  },
+  "f_built_in_chrome_model_fallba_0e75": {
+    "message": "โมเดลในตัวของ Chrome (สำรอง)"
+  },
+  "f_change_the_question_4676": {
+    "message": "เปลี่ยนคำถาม"
+  },
+  "f_change_what_the_dot_colours__8ffd": {
+    "message": "เปลี่ยนความหมายของสีจุด"
+  },
+  "f_check_the_field_marked_below_9291": {
+    "message": "ตรวจช่องที่ทำเครื่องหมายด้านล่าง"
+  },
+  "f_check_c1c4": {
+    "message": "ตรวจ “{title}”"
+  },
+  "f_chrome_can_download_a_small__897b": {
+    "message": "Chrome ดาวน์โหลดโมเดลเล็ก (Gemini Nano) ครั้งเดียวแล้วรันไลบรารีบนคอมพิวเตอร์ของคุณเองได้ ใช้เป็นตัวสำรอง ผลลัพธ์ด้อยกว่าโมเดลใหญ่"
+  },
+  "f_citations_of_all_sources_wit_2ee3": {
+    "message": "การอ้างอิงของทุกแหล่งที่มี DOI ส่งเฉพาะ DOI"
+  },
+  "f_collection_actions_47e6": {
+    "message": "การทำงานของคอลเลกชัน"
+  },
+  "f_collection_deleted_784c": {
+    "message": "ลบคอลเลกชันแล้ว"
+  },
+  "f_color_e44b": {
+    "message": "สี: {mode}"
+  },
+  "f_compare_first_a472": {
+    "message": "เปรียบเทียบก่อน"
+  },
+  "f_connected_in_steps_3a37": {
+    "message": "เชื่อมกันใน {n} ขั้น: {chain}"
+  },
+  "f_connects_f920": {
+    "message": "เชื่อม: {topics}"
+  },
+  "f_continue_the_download_5741": {
+    "message": "ดาวน์โหลดต่อ"
+  },
+  "f_delete_all_adcd": {
+    "message": "ลบทั้งหมด"
+  },
+  "f_delete_article_6a74": {
+    "message": "ลบบทความ"
+  },
+  "f_delete_them_here_too_342a": {
+    "message": "ลบที่นี่ด้วย…"
+  },
+  "f_delete_this_article_85f5": {
+    "message": "ลบบทความนี้ไหม"
+  },
+  "f_delete_article_on_this_devic_4f26": {
+    "message": "ลบ {n} บทความบนอุปกรณ์นี้ด้วยไหม"
+  },
+  "f_delete_articles_bc95": {
+    "message": "ลบ {n} บทความ"
+  },
+  "f_delete_articles_on_this_devi_6223": {
+    "message": "ลบ {n} บทความบนอุปกรณ์นี้ด้วยไหม"
+  },
+  "f_delete_articles_ff9e": {
+    "message": "ลบ {n} บทความไหม"
+  },
+  "f_delete_4457": {
+    "message": "ลบ “{name}” ไหม"
+  },
+  "f_deleted_on_another_device_82c6": {
+    "message": "ลบบนอุปกรณ์อื่นแล้ว"
+  },
+  "f_deleted_with_the_articles_ab_2f89": {
+    "message": "ลบพร้อมบทความข้างบน หรือลบแยก"
+  },
+  "f_detail_73b4": {
+    "message": "รายละเอียด"
+  },
+  "f_dots_coloured_by_age_purple__9066": {
+    "message": "จุดสีตามอายุ: ม่วงคือเก่า เหลืองคือใหม่"
+  },
+  "f_dots_coloured_by_mood_orange_7f40": {
+    "message": "จุดสีตามอารมณ์: ส้มคือลบ น้ำเงินคือบวก เทาคือไม่มีคะแนน"
+  },
+  "f_dots_coloured_by_topic_e504": {
+    "message": "จุดสีตามหัวข้อ"
+  },
+  "f_download_and_use_a7af": {
+    "message": "ดาวน์โหลดและใช้"
+  },
+  "f_download_failed_78b7": {
+    "message": "ดาวน์โหลดไม่สำเร็จ: {e}"
+  },
+  "f_download_the_built_in_model_55af": {
+    "message": "ดาวน์โหลดโมเดลในตัว"
+  },
+  "f_downloading_chrome_keeps_goi_6ce9": {
+    "message": "กำลังดาวน์โหลด… Chrome ทำต่อแม้ปิดแผงนี้"
+  },
+  "f_downloading_keeps_going_if_y_9c1b": {
+    "message": "กำลังดาวน์โหลด… {browser} ทำต่อแม้ปิดแผงนี้"
+  },
+  "f_drag_to_reorder_or_use_the_a_fda1": {
+    "message": "ลากเพื่อเรียงใหม่ หรือใช้ปุ่มลูกศร"
+  },
+  "f_drag_to_change_the_order_scr_0493": {
+    "message": "ลาก ⋮⋮ เพื่อเปลี่ยนลำดับ หน้าจอเลื่อนตามลำดับเดียวกัน"
+  },
+  "f_everything_else_3ef1": {
+    "message": "ที่เหลือทั้งหมด"
+  },
+  "f_export_with_secrets_8f81": {
+    "message": "ส่งออกพร้อมความลับไหม"
+  },
+  "f_fallback_chrome_has_a_built__7c2d": {
+    "message": "สำรอง: Chrome มีโมเดลในตัว (Gemini Nano) Ollama ยังเป็นค่าเริ่มต้นของคุณ"
+  },
+  "f_fastest_here_in_the_quick_te_eaf5": {
+    "message": "เร็วที่สุดที่นี่ในการทดสอบด่วน: {s} วินาทีสำหรับ {n} พาดหัว ให้คะแนนครบ"
+  },
+  "f_fetches_and_processes_new_it_7491": {
+    "message": "ดึงและประมวลผลรายการใหม่เบื้องหลังด้วยโมเดลในเครื่องขณะเบราว์เซอร์ทำงาน โมเดลคลาวด์และ BYOK ยังเป็นแบบแมนนวล"
+  },
+  "f_files_to_remove_from_your_se_b6f7": {
+    "message": "ไฟล์ที่ต้องลบจากเซิร์ฟเวอร์ของคุณ"
+  },
+  "f_firefox_ai_is_turned_off_in__07f7": {
+    "message": "Firefox AI ปิดอยู่ ใน Firefox Beta หรือ Release เปิด about:config แล้วตั้ง browser.ml.enable และ extensions.ml.enabled เป็น true จากนั้นโหลดส่วนขยายใหม่"
+  },
+  "f_firefox_can_summarize_pages__2ea3": {
+    "message": "Firefox สรุปหน้าเว็บด้วยโมเดลเล็กบนคอมพิวเตอร์เครื่องนี้ได้ สรุปได้อย่างเดียว (ไม่มีฟีด คำถาม หรือแท็ก) และทำงานดีที่สุดกับข้อความภาษาอังกฤษ"
+  },
+  "f_firefox_built_in_e829": {
+    "message": "Firefox · ในตัว"
+  },
+  "f_fix_1a18": {
+    "message": "แก้ไข"
+  },
+  "f_focus_b1b3": {
+    "message": "โฟกัส"
+  },
+  "f_forget_all_c09f": {
+    "message": "ลืมทั้งหมด"
+  },
+  "f_forget_all_learned_names_4b29": {
+    "message": "ลืมชื่อที่เรียนรู้ทั้งหมดไหม"
+  },
+  "f_found_on_but_it_does_not_acc_032a": {
+    "message": "พบที่ {origin} แต่ยังไม่รับส่วนขยายนี้ เริ่มด้วย: apfel --serve --allowed-origins {ext}"
+  },
+  "f_found_on_but_it_refuses_requ_d766": {
+    "message": "พบที่ {origin} แต่ปฏิเสธคำขอจากส่วนขยายนี้ อนุญาตต้นทางอื่น (CORS) ในการตั้งค่า แล้วค้นหาอีกครั้ง"
+  },
+  "f_full_texts_2af0": {
+    "message": "ข้อความเต็ม"
+  },
+  "f_give_these_tags_their_englis_fe72": {
+    "message": "ตั้งชื่อภาษาอังกฤษให้แท็กเหล่านี้ เพื่อให้หัวข้อเดียวกันในสองภาษากลายเป็นหนึ่งเดียว"
+  },
+  "f_graph_layout_e97f": {
+    "message": "เลย์เอาต์กราฟ"
+  },
+  "f_group_902c": {
+    "message": "กลุ่ม"
+  },
+  "f_hide_7bcd": {
+    "message": "ซ่อน"
+  },
+  "f_highlight_removed_b93b": {
+    "message": "ลบไฮไลต์แล้ว"
+  },
+  "f_import_0af4": {
+    "message": "นำเข้า"
+  },
+  "f_import_secrets_ab02": {
+    "message": "นำเข้าความลับไหม"
+  },
+  "f_in_firefox_built_in_ai_exper_4366": {
+    "message": "ใน Firefox: AI ในตัว (ทดลอง)"
+  },
+  "f_in_progress_opened_or_annota_d57b": {
+    "message": "กำลังทำ: เปิดหรือใส่คำอธิบายแล้ว"
+  },
+  "f_in_use_e11d": {
+    "message": "กำลังใช้"
+  },
+  "f_in_built_in_model_699b": {
+    "message": "ใน {browser}: โมเดลในตัว"
+  },
+  "f_installed_and_ready_usually__a5a2": {
+    "message": "ติดตั้งและพร้อมใช้ มักเป็นตัวเลือกในเครื่องที่แรงที่สุด"
+  },
+  "f_it_also_leaves_the_collectio_6fdf": {
+    "message": "ออกจากคอลเลกชันที่อยู่ด้วย"
+  },
+  "f_keep_be68": {
+    "message": "เก็บไว้"
+  },
+  "f_keep_all_775b": {
+    "message": "เก็บทั้งหมด"
+  },
+  "f_keep_your_library_in_step_ac_3d5f": {
+    "message": "ให้ไลบรารีตรงกันทุกอุปกรณ์ สำรอง หรือเผยแพร่บางส่วนให้คนอื่น ไม่มีอะไรออกจากอุปกรณ์นี้จนกว่าคุณจะเพิ่ม เลือกสิ่งที่อยากทำ:"
+  },
+  "f_last_run_ago_9b65": {
+    "message": "รันล่าสุด: {t} ที่แล้ว"
+  },
+  "f_learned_tag_names_b494": {
+    "message": "ชื่อแท็กที่เรียนรู้"
+  },
+  "f_link_removed_from_your_inbox_19ce": {
+    "message": "ลบลิงก์จากกล่องจดหมายแล้ว"
+  },
+  "f_local_23a8": {
+    "message": "ในเครื่อง"
+  },
+  "f_looking_for_local_models_not_e5e8": {
+    "message": "กำลังหาโมเดลในเครื่อง… ไม่มีการติดตั้งหรือส่งอะไร"
+  },
+  "f_manual_setup_endpoint_and_mo_25d9": {
+    "message": "ตั้งค่าเอง: เอ็นด์พอยต์และชื่อโมเดล"
+  },
+  "f_matching_articles_2869": {
+    "message": "กำลังจับคู่บทความ…"
+  },
+  "f_move_ab88": {
+    "message": "ย้าย “{name}”"
+  },
+  "f_next_month_1650": {
+    "message": "เดือนถัดไป →"
+  },
+  "f_no_ollama_use_the_model_buil_21a4": {
+    "message": "ไม่มี Ollama? ใช้โมเดลในตัว Chrome"
+  },
+  "f_no_cards_yet_ask_a_question__0c72": {
+    "message": "ยังไม่มีการ์ด ถามคำถามเกี่ยวกับหัวข้อนี้ หรือปักหมุดคำตอบใต้บทความ แล้วจะกลายเป็นการ์ด"
+  },
+  "f_no_local_model_on_this_compu_27e9": {
+    "message": "ยังไม่มีโมเดลในเครื่องบนคอมพิวเตอร์นี้ ดาวน์โหลดโมเดลในตัวของเบราว์เซอร์ด้านล่างหากมีให้ หรือตั้งค่า Ollama (ขั้นตอนด้านล่าง)"
+  },
+  "f_no_model_yet_48f9": {
+    "message": "ยังไม่มีโมเดล"
+  },
+  "f_no_sources_yet_9cfa": {
+    "message": "ยังไม่มีแหล่งที่มา"
+  },
+  "f_not_connected_no_shared_tag__c496": {
+    "message": "ไม่เชื่อมกัน: ไม่มีแท็กร่วมหรือเนื้อหาคล้ายกันที่เชื่อมสองรายการนี้"
+  },
+  "f_not_found_on_this_computer_u_1f3a": {
+    "message": "ไม่พบบนคอมพิวเตอร์นี้ มักเป็นตัวเลือกในเครื่องที่แรงที่สุด: ฟรี มีหลายโมเดล"
+  },
+  "f_not_measured_yet_the_test_se_48f1": {
+    "message": "ยังไม่ได้วัด การทดสอบส่งชุดให้คะแนนเล็กสองชุดไปยังโมเดลในตัวของ Chrome และไม่มีอะไรออกจากคอมพิวเตอร์"
+  },
+  "f_not_measured_yet_the_test_se_ae15": {
+    "message": "ยังไม่ได้วัด การทดสอบส่งชุดให้คะแนนเล็กสองชุดไปยังโมเดลในเครื่องของคุณ (ราวหนึ่งนาทีบนเครื่องช้า) และไม่มีอะไรออกจากคอมพิวเตอร์"
+  },
+  "f_not_ready_233d": {
+    "message": "ยังไม่พร้อม"
+  },
+  "f_not_running_415d": {
+    "message": "ไม่ทำงาน"
+  },
+  "f_note_deleted_de30": {
+    "message": "ลบโน้ตแล้ว"
+  },
+  "f_nothing_is_deleted_here_unti_c0c4": {
+    "message": "ไม่มีอะไรถูกลบที่นี่จนกว่าคุณจะสั่ง เก็บไว้จะนำกลับมาบนอุปกรณ์อื่นด้วย"
+  },
+  "f_nothing_synced_yet_54fe": {
+    "message": "ยังไม่ซิงก์"
+  },
+  "f_ollama_recommended_4bf5": {
+    "message": "Ollama (แนะนำ)"
+  },
+  "f_ollama_chrome_s_built_in_mod_312f": {
+    "message": "Ollama โมเดลในตัวของ Chrome LM Studio และอื่นๆ ไม่ต้องมีบัญชี ไม่ต้องมีคีย์"
+  },
+  "f_only_the_saved_summaries_of__bad5": {
+    "message": "ส่งเฉพาะสรุปที่บันทึกไว้ของบทความเหล่านี้ ไม่ส่งข้อความเต็ม"
+  },
+  "f_open_the_topic_page_a_short__6eeb": {
+    "message": "เปิดหน้าหัวข้อ: บทสรุปสั้นจาก {n} สรุปที่บันทึกไว้"
+  },
+  "f_open_topic_0216": {
+    "message": "เปิดหัวข้อ"
+  },
+  "f_opera_s_built_in_model_is_no_c9d0": {
+    "message": "โมเดลในตัวของ Opera ยังไม่พร้อม เปิด ตั้งค่า › Opera AI › Enable Web AI API รอจนดาวน์โหลดโมเดลเสร็จ (แถบข้าง Opera) แล้วตรวจอีกครั้ง ยังไม่รองรับ Mac Intel, Linux หรือ Windows บน Arm"
+  },
+  "f_paper_bfd9": {
+    "message": "เปเปอร์"
+  },
+  "f_path_e456": {
+    "message": "เส้นทาง"
+  },
+  "f_path_from_pick_a_second_item_99f7": {
+    "message": "เส้นทางจาก “{a}”: เลือกรายการที่สอง"
+  },
+  "f_path_mode_off_6af2": {
+    "message": "ปิดโหมดเส้นทางแล้ว"
+  },
+  "f_path_mode_on_pick_two_items__dfb3": {
+    "message": "เปิดโหมดเส้นทางแล้ว: เลือกสองรายการเพื่อดูว่าเชื่อมกันอย่างไร"
+  },
+  "f_path_mode_first_item_chosen__68ab": {
+    "message": "โหมดเส้นทาง: เลือกรายการแรก {a} แล้ว เลือกรายการที่สอง"
+  },
+  "f_pick_two_items_to_see_how_th_7bb2": {
+    "message": "เลือกสองรายการเพื่อดูว่าเชื่อมกันอย่างไร"
+  },
+  "f_plain_files_for_your_website_5a09": {
+    "message": "ไฟล์ธรรมดาสำหรับเว็บไซต์ของคุณ อ่านได้"
+  },
+  "f_publish_a_reading_list_c489": {
+    "message": "เผยแพร่รายการอ่าน"
+  },
+  "f_publish_only_bc8a": {
+    "message": "เผยแพร่อย่างเดียว"
+  },
+  "f_quick_test_on_this_computer_4504": {
+    "message": "ทดสอบด่วนบนคอมพิวเตอร์นี้"
+  },
+  "f_reading_your_saved_articles__c628": {
+    "message": "กำลังอ่านบทความที่บันทึกไว้เบื้องหลัง"
+  },
+  "f_ready_3294": {
+    "message": "พร้อม"
+  },
+  "f_ready_dace": {
+    "message": "พร้อมแล้ว"
+  },
+  "f_recaps_are_written_by_your_l_d85f": {
+    "message": "บทสรุปเขียนโดยโมเดลในเครื่องของคุณ แม้ตอนสรุปใช้คลาวด์"
+  },
+  "f_recommended_for_this_compute_49ee": {
+    "message": "แนะนำสำหรับคอมพิวเตอร์นี้"
+  },
+  "f_redraw_the_graph_with_the_ne_1477": {
+    "message": "วาดกราฟใหม่ด้วยรายการที่ตรงกันใหม่"
+  },
+  "f_references_6beb": {
+    "message": "เอกสารอ้างอิง"
+  },
+  "f_remove_all_saved_images_ce5e": {
+    "message": "ลบรูปที่บันทึกทั้งหมดไหม"
+  },
+  "f_remove_saved_page_text_185d": {
+    "message": "ลบข้อความหน้าเว็บที่บันทึกไหม"
+  },
+  "f_remove_text_2ec0": {
+    "message": "ลบข้อความ"
+  },
+  "f_remove_them_7ce1": {
+    "message": "ลบรายการเหล่านี้…"
+  },
+  "f_remove_this_place_212e": {
+    "message": "ลบที่เก็บนี้…"
+  },
+  "f_remove_file_from_your_server_52c6": {
+    "message": "ลบ {n} ไฟล์จากเซิร์ฟเวอร์ไหม"
+  },
+  "f_remove_files_from_your_serve_fe5d": {
+    "message": "ลบ {n} ไฟล์จากเซิร์ฟเวอร์ไหม"
+  },
+  "f_remove_from_this_device_d01c": {
+    "message": "ลบ “{name}” จากอุปกรณ์นี้ไหม"
+  },
+  "f_remove_from_the_collection_697b": {
+    "message": "เอา “{title}” ออกจากคอลเลกชัน"
+  },
+  "f_removed_from_922b": {
+    "message": "เอาออกจาก “{name}” แล้ว"
+  },
+  "f_rename_collection_565d": {
+    "message": "เปลี่ยนชื่อคอลเลกชัน"
+  },
+  "f_replay_finished_all_articles_bf34": {
+    "message": "เล่นซ้ำจบแล้ว: เห็นครบทั้ง {n} บทความ"
+  },
+  "f_replay_started_fde4": {
+    "message": "เริ่มเล่นซ้ำ: {a}"
+  },
+  "f_reset_dock_c35f": {
+    "message": "รีเซ็ตแถบ"
+  },
+  "f_restore_from_here_a9df": {
+    "message": "กู้คืนจากที่นี่…"
+  },
+  "f_restore_now_8f4d": {
+    "message": "กู้คืนตอนนี้"
+  },
+  "f_runs_in_chrome_on_your_own_m_5cbf": {
+    "message": "ทำงานใน Chrome บนเครื่องของคุณเองและไม่เสียโทเค็น เปิดแผงนี้ไว้: ปิดแล้วจะหยุดชั่วคราว เริ่มใหม่จะต่อจากจุดเดิม การรันอัตโนมัติขณะปิดแผงต้องใช้ Ollama"
+  },
+  "f_runs_inside_the_browser_on_t_a77b": {
+    "message": "ทำงานในเบราว์เซอร์บนคอมพิวเตอร์นี้ ดาวน์โหลดครั้งเดียวแล้วใช้ออฟไลน์ได้"
+  },
+  "f_runs_inside_on_this_computer_060a": {
+    "message": "ทำงานใน {browser} บนคอมพิวเตอร์นี้ ไม่ต้องติดตั้ง ไม่มีอะไรออกจากคอมพิวเตอร์"
+  },
+  "f_save_image_4805": {
+    "message": "บันทึกรูป"
+  },
+  "f_save_this_picture_as_an_svg__7d9f": {
+    "message": "บันทึกรูปนี้เป็นไฟล์ SVG บนอุปกรณ์ของคุณ"
+  },
+  "f_saved_not_worked_on_yet_a3ba": {
+    "message": "บันทึกแล้ว ยังไม่ได้ทำอะไร"
+  },
+  "f_scan_the_code_in_ai_summary__57b0": {
+    "message": "สแกนโค้ดใน AI Summary Helper บน Android: ตั้งค่า → ซิงก์ไลบรารี → สแกนโค้ด มีข้อมูลล็อกอินเซิร์ฟเวอร์ของคุณ แสดงให้โทรศัพท์ของคุณเองเท่านั้น ซ่อนเองหลังหนึ่งนาที"
+  },
+  "f_see_the_recommendation_f58a": {
+    "message": "ดูคำแนะนำ"
+  },
+  "f_sending_the_batch_to_the_bui_0d29": {
+    "message": "กำลังส่งชุดไปยังโมเดลในตัว…"
+  },
+  "f_sending_the_batch_to_the_loc_551c": {
+    "message": "กำลังส่งชุดไปยังโมเดลในเครื่อง…"
+  },
+  "f_set_up_ollama_instead_3c9c": {
+    "message": "ตั้งค่า Ollama แทน"
+  },
+  "f_settings_8728": {
+    "message": "ตั้งค่า"
+  },
+  "f_show_everything_again_71fd": {
+    "message": "แสดงทั้งหมดอีกครั้ง"
+  },
+  "f_show_only_what_you_have_not__fa38": {
+    "message": "แสดงเฉพาะที่ยังไม่ได้อ่าน"
+  },
+  "f_show_the_words_code_for_the__5677": {
+    "message": "แสดงคำ · โค้ดสำหรับโทรศัพท์ · กู้คืน"
+  },
+  "f_show_all_to_change_the_order_a1cc": {
+    "message": "แสดง “ทั้งหมด” เพื่อเปลี่ยนลำดับ"
+  },
+  "f_show_in_the_dock_11ab": {
+    "message": "แสดง “{name}” ในแถบ"
+  },
+  "f_showing_all_articles_3396": {
+    "message": "แสดงทุกบทความ"
+  },
+  "f_small_model_fast_to_start_fo_6def": {
+    "message": "โมเดลเล็ก เริ่มเร็ว สรุปให้ดีขึ้นเลือกโมเดล Ollama ที่ใหญ่กว่า"
+  },
+  "f_sort_your_order_0238": {
+    "message": "เรียง: ลำดับของคุณ"
+  },
+  "f_sources_checked_8cec": {
+    "message": "แหล่งที่ตรวจแล้ว"
+  },
+  "f_sources_checks_and_overview__1f6e": {
+    "message": "แหล่งที่มา การตรวจ และภาพรวมในไฟล์ .md เดียว"
+  },
+  "f_sources_in_export_order_1c20": {
+    "message": "แหล่งที่มา ตามลำดับการส่งออก"
+  },
+  "f_stopped_8940": {
+    "message": "หยุดแล้ว"
+  },
+  "f_subtopics_7f65": {
+    "message": "หัวข้อย่อย"
+  },
+  "f_summaries_only_ff23": {
+    "message": "สรุปอย่างเดียว"
+  },
+  "f_summaries_only_best_with_eng_1c13": {
+    "message": "สรุปอย่างเดียว ดีที่สุดกับข้อความภาษาอังกฤษ สำหรับฟีด คำถาม และสรุปที่ดีกว่า เลือก Ollama หรือโมเดลในเครื่องอื่น"
+  },
+  "f_summaries_only_best_with_eng_3324": {
+    "message": "สรุปอย่างเดียว ดีที่สุดกับข้อความภาษาอังกฤษ การสรุปครั้งแรกจะดาวน์โหลดโมเดล"
+  },
+  "f_summarize_is_always_in_the_d_7c1a": {
+    "message": "สรุปอยู่ในแถบเสมอ"
+  },
+  "f_sync_all_now_2e41": {
+    "message": "ซิงก์ทั้งหมดเดี๋ยวนี้"
+  },
+  "f_tagged_be03": {
+    "message": "แท็ก {tag}"
+  },
+  "f_text_summaries_highlights_an_2b62": {
+    "message": "ข้อความ สรุป ไฮไลต์ และโน้ตยังอยู่"
+  },
+  "f_the_english_names_and_broade_599c": {
+    "message": "ชื่อภาษาอังกฤษและหัวข้อกว้างที่แท็กของคุณได้รับ แก้ไขอันหนึ่ง หรือให้ลืมเพื่อตั้งชื่อใหม่ได้ บทความยังมีแท็กเหมือนเดิม"
+  },
+  "f_the_article_is_deleted_with__9abb": {
+    "message": "บทความจะถูกลบพร้อมสรุปและข้อความหน้าเว็บที่บันทึกไว้"
+  },
+  "f_the_articles_are_deleted_wit_3e46": {
+    "message": "บทความจะถูกลบพร้อมสรุปและข้อความหน้าเว็บที่บันทึกไว้"
+  },
+  "f_the_built_in_model_does_not__43cb": {
+    "message": "โมเดลในตัวไม่รองรับภาษาหรืออินพุตนี้"
+  },
+  "f_the_built_in_model_is_turned_532f": {
+    "message": "โมเดลในตัวถูกปิดในเบราว์เซอร์นี้"
+  },
+  "f_the_collection_and_its_quest_ca0c": {
+    "message": "คอลเลกชันและคำถามจะถูกลบ"
+  },
+  "f_the_collection_its_question__fa4f": {
+    "message": "คอลเลกชัน คำถาม และภาพรวมจะถูกลบ"
+  },
+  "f_the_files_already_on_your_se_3a7e": {
+    "message": "ไฟล์ที่อยู่บนเซิร์ฟเวอร์แล้วจะไม่ถูกลบ"
+  },
+  "f_the_local_server_refused_thi_142b": {
+    "message": "เซิร์ฟเวอร์ในเครื่องปฏิเสธส่วนขยายนี้ เริ่มด้วย: apfel --serve --allowed-origins {origin}"
+  },
+  "f_the_order_here_is_the_order__1a1b": {
+    "message": "ลำดับตรงนี้คือลำดับของการส่งออกและใบงาน ลาก ⋮⋮ เพื่อเปลี่ยน"
+  },
+  "f_the_overview_compares_at_lea_9f33": {
+    "message": "ภาพรวมเปรียบเทียบอย่างน้อยสองแหล่ง"
+  },
+  "f_the_same_library_on_laptop_a_d4ab": {
+    "message": "ไลบรารีเดียวกันบนแล็ปท็อปและโทรศัพท์ เข้ารหัสแล้ว"
+  },
+  "f_the_same_headlines_go_to_eac_db67": {
+    "message": "พาดหัวเดียวกัน {n} รายการส่งไปยังแต่ละโมเดลทีละตัว ไม่มีอะไรออกจากคอมพิวเตอร์นี้"
+  },
+  "f_the_articles_stay_in_your_li_dcd2": {
+    "message": "{n} บทความยังอยู่ในไลบรารีพร้อมผลตรวจ"
+  },
+  "f_these_two_are_not_connected_3328": {
+    "message": "สองรายการนี้ไม่เชื่อมกัน"
+  },
+  "f_they_also_leave_the_collecti_b97e": {
+    "message": "ออกจากคอลเลกชันที่อยู่ด้วย"
+  },
+  "f_this_browser_has_no_built_in_fa45": {
+    "message": "เบราว์เซอร์นี้ไม่มีโมเดลในตัว"
+  },
+  "f_title_summary_tags_highlight_f24c": {
+    "message": "ชื่อเรื่อง สรุป แท็ก ไฮไลต์ และสถิติยังอยู่"
+  },
+  "f_too_much_text_for_the_built__d7e9": {
+    "message": "ข้อความมากเกินไปสำหรับโมเดลในตัวในคราวเดียว เลือกรายการต่อชุดให้น้อยลง"
+  },
+  "f_topic_1b64": {
+    "message": "หัวข้อ"
+  },
+  "f_topic_actions_8957": {
+    "message": "การทำงานของหัวข้อ"
+  },
+  "f_topics_a535": {
+    "message": "หัวข้อ"
+  },
+  "f_topics_inside_c9df": {
+    "message": "หัวข้อย่อย"
+  },
+  "f_use_ollama_again_bf46": {
+    "message": "ใช้ Ollama อีกครั้ง"
+  },
+  "f_use_another_email_dd18": {
+    "message": "ใช้อีเมลอื่นไหม"
+  },
+  "f_use_it_da81": {
+    "message": "ใช้เลย"
+  },
+  "f_video_c80c": {
+    "message": "วิดีโอ"
+  },
+  "f_viewer_page_746e": {
+    "message": "หน้าผู้ชม"
+  },
+  "f_when_the_chosen_model_is_not_e746": {
+    "message": "เมื่อโมเดลที่เลือกไม่พร้อม ให้โมเดลในเครื่องตัวถัดไปตอบ"
+  },
+  "f_where_should_the_backup_live_3365": {
+    "message": "จะเก็บการสำรองไว้ที่ไหน"
+  },
+  "f_where_should_the_reading_lis_3ba3": {
+    "message": "จะเก็บรายการอ่านไว้ที่ไหน"
+  },
+  "f_where_should_your_library_li_cf56": {
+    "message": "จะเก็บไลบรารีไว้ที่ไหน"
+  },
+  "f_where_this_device_differs_th_b5c9": {
+    "message": "ตรงที่อุปกรณ์นี้ต่างออกไป ให้ยึดที่เก็บเป็นหลัก ไม่มีอะไรถูกลบ ไลบรารีใหญ่อาจใช้เวลาสักพัก"
+  },
+  "f_whole_library_local_model_0a98": {
+    "message": "ทั้งไลบรารี · โมเดลในเครื่อง"
+  },
+  "f_worked_on_opened_summarised__2bfc": {
+    "message": "ทำแล้ว: เปิด สรุป และใส่คำอธิบาย"
+  },
+  "f_works_with_nextcloud_webdav__8a29": {
+    "message": "ใช้ได้กับ Nextcloud / WebDAV ที่เก็บข้อมูลที่เข้ากันได้กับ S3 หรือโฟลเดอร์บนคอมพิวเตอร์นี้"
+  },
+  "f_you_can_undo_this_for_a_few__09e3": {
+    "message": "เลิกทำได้ภายในไม่กี่วินาที"
+  },
+  "f_your_highlights_and_notes_st_00a0": {
+    "message": "ไฮไลต์และโน้ตของคุณยังอยู่ในบันทึก"
+  },
+  "f_backup_only_d3bf": {
+    "message": "สำรองอย่างเดียว"
+  },
+  "f_deleted_ago_046d": {
+    "message": "ลบเมื่อ {t} ที่แล้ว"
+  },
+  "f_did_not_answer_4111": {
+    "message": "ไม่ตอบ ({e})"
+  },
+  "f_did_not_finish_2912": {
+    "message": "ไม่เสร็จ"
+  },
+  "f_download_first_800f": {
+    "message": "ดาวน์โหลดก่อน"
+  },
+  "f_encrypted_f1b3": {
+    "message": "เข้ารหัสแล้ว"
+  },
+  "f_fainter_only_saved_6692": {
+    "message": "จางลง = บันทึกเท่านั้น"
+  },
+  "f_from_summaries_1db1": {
+    "message": "จาก {n} สรุป"
+  },
+  "f_from_summary_45fd": {
+    "message": "จาก {n} สรุป"
+  },
+  "f_grey_not_scored_4a8d": {
+    "message": "เทา: ไม่มีคะแนน"
+  },
+  "f_last_sync_ago_57bb": {
+    "message": "ซิงก์ล่าสุด {t} ที่แล้ว"
+  },
+  "f_negative_863a": {
+    "message": "ลบ"
+  },
+  "f_newer_7eaa": {
+    "message": "ใหม่กว่า"
+  },
+  "f_nothing_changes_until_you_pr_9bc3": {
+    "message": "ไม่มีอะไรเปลี่ยนจนกว่าจะกดใช้"
+  },
+  "f_older_1461": {
+    "message": "เก่ากว่า"
+  },
+  "f_positive_fa7a": {
+    "message": "บวก"
+  },
+  "f_reorder_handle_e8ae": {
+    "message": "ที่จับเรียงลำดับ"
+  },
+  "f_testing_7487": {
+    "message": "กำลังทดสอบ…"
+  },
+  "f_two_way_78fb": {
+    "message": "สองทาง"
+  },
+  "f_of_sources_checked_0746": {
+    "message": "ตรวจแล้ว {a} จาก {n} แหล่ง"
+  },
+  "f_can_download_a_small_model_o_bd4d": {
+    "message": "{browser} ดาวน์โหลดโมเดลเล็กครั้งเดียวแล้วรันบนคอมพิวเตอร์นี้ได้ สรุปให้ดีขึ้นใช้โมเดล Ollama ที่ใหญ่กว่า"
+  },
+  "f_has_a_built_in_model_but_not_65ab": {
+    "message": "{browser} มีโมเดลในตัว แต่ตอนนี้ใช้บนคอมพิวเตอร์นี้ไม่ได้ (มักเพราะพื้นที่ดิสก์ว่างไม่พอ) รายละเอียด: {url}"
+  },
+  "f_built_in_e090": {
+    "message": "{browser} · ในตัว"
+  },
+  "f_moved_to_position_of_3df9": {
+    "message": "ย้าย {name} ไปตำแหน่ง {i} จาก {n}"
+  },
+  "f_articles_not_read_yet_0f6a": {
+    "message": "{n} บทความ ยังไม่อ่าน {u}"
+  },
+  "f_card_saved_in_anki_file_impo_8a5d": {
+    "message": "บันทึก {n} การ์ดแล้ว ใน Anki: File ▸ Import"
+  },
+  "f_cards_saved_in_anki_file_imp_e2b8": {
+    "message": "บันทึก {n} การ์ดแล้ว ใน Anki: File ▸ Import"
+  },
+  "f_connected_item_14c3": {
+    "message": "{n} รายการที่เชื่อมกัน"
+  },
+  "f_connected_items_9110": {
+    "message": "{n} รายการที่เชื่อมกัน"
+  },
+  "f_deletion_waits_for_you_e389": {
+    "message": "{n} การลบรอคุณอยู่"
+  },
+  "f_deletions_wait_for_you_3715": {
+    "message": "{n} การลบรอคุณอยู่"
+  },
+  "f_file_waits_to_be_removed_faeb": {
+    "message": "{n} ไฟล์รอการลบ"
+  },
+  "f_files_wait_to_be_removed_eaef": {
+    "message": "{n} ไฟล์รอการลบ"
+  },
+  "f_highlight_note_or_collection_aca0": {
+    "message": "{n} ไฮไลต์ โน้ต หรือคอลเลกชัน"
+  },
+  "f_highlights_notes_or_collecti_d087": {
+    "message": "{n} ไฮไลต์ โน้ต หรือคอลเลกชัน"
+  },
+  "f_more_wait_after_these_7ac2": {
+    "message": "ยังรออีก {n} รายการต่อจากนี้"
+  },
+  "f_more_waits_after_these_3cbf": {
+    "message": "ยังรออีก {n} รายการต่อจากนี้"
+  },
+  "f_place_needs_you_6fae": {
+    "message": "{n} ที่ต้องการให้คุณดู"
+  },
+  "f_places_need_you_8bac": {
+    "message": "{n} ที่ต้องการให้คุณดู"
+  },
+  "f_step_cf02": {
+    "message": "{n} ขั้น: {chain}"
+  },
+  "f_steps_1b8f": {
+    "message": "{n} ขั้น: {chain}"
+  },
+  "f_subtopic_5270": {
+    "message": "{n} หัวข้อย่อย"
+  },
+  "f_subtopics_1ab9": {
+    "message": "{n} หัวข้อย่อย"
+  },
+  "f_tag_without_a_name_45a3": {
+    "message": "{n} แท็กที่ไม่มีชื่อ"
+  },
+  "f_tag_without_broader_topics_6820": {
+    "message": "{n} แท็กที่ไม่มีหัวข้อกว้าง"
+  },
+  "f_tags_without_a_name_d3aa": {
+    "message": "{n} แท็กที่ไม่มีชื่อ"
+  },
+  "f_tags_without_broader_topics_2531": {
+    "message": "{n} แท็กที่ไม่มีหัวข้อกว้าง"
+  },
+  "f_to_delete_3233": {
+    "message": "{n} ที่จะลบ"
+  },
+  "f_to_keep_db29": {
+    "message": "{n} ที่จะเก็บ"
+  },
+  "f_unread_article_stands_out_c185": {
+    "message": "{n} บทความที่ยังไม่อ่านโดดเด่น"
+  },
+  "f_unread_articles_stand_out_0499": {
+    "message": "{n} บทความที่ยังไม่อ่านโดดเด่น"
+  },
+  "f_s_of_rated_f50c": {
+    "message": "{s} วิ · ให้คะแนน {a} จาก {n}"
+  },
+  "f_s_33e3": {
+    "message": "{s} วิ"
+  },
+  "f_subtopic_of_articles_6833": {
+    "message": "{topic} หัวข้อย่อยของ {parent}: {n} บทความ"
+  },
+  "f_articles_unread_a7ef": {
+    "message": "{topic}: {n} บทความ ยังไม่อ่าน {u}"
+  },
+  "f_is_set_up_7618": {
+    "message": "ตั้งค่า “{name}” แล้ว"
+  },
+  "f__ec59": {
+    "message": "…"
+  },
+  "f_replay_1a24": {
+    "message": "▶ เล่นซ้ำ"
+  },
+  "f_answering_from_summaries_a77b": {
+    "message": "✨ กำลังตอบจาก {n} สรุป…"
+  },
+  "f_briefing_from_summaries_83db": {
+    "message": "✨ กำลังสรุปย่อจาก {n} สรุป…"
+  },
+  "f_local_model_dc21": {
+    "message": "🧠 โมเดลในเครื่อง"
   }
 }

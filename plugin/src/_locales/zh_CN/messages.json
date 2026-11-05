@@ -6341,5 +6341,875 @@
   },
   "f_places_use_this_server_4df9": {
     "message": "{n} 个位置使用此服务器。"
+  },
+  "f_a_copy_only_this_device_writ_6789": {
+    "message": "仅本设备写入的副本。已加密。"
+  },
+  "f_a_local_model_on_this_comput_cb32": {
+    "message": "本机上的本地模型"
+  },
+  "f_a_small_model_that_comes_wit_dbb4": {
+    "message": "Chrome 自带的小型模型：无需安装，数据不出本机，不消耗 token。评分、分类和摘要明显不如大型模型。"
+  },
+  "f_a_task_sheet_to_check_each_s_715b": {
+    "message": "逐个手动核查来源的任务清单"
+  },
+  "f_add_your_phone_57ff": {
+    "message": "添加手机"
+  },
+  "f_add_your_question_9bd5": {
+    "message": "添加问题"
+  },
+  "f_age_e13c": {
+    "message": "时间"
+  },
+  "f_all_except_fe8b": {
+    "message": "除 {tag} 外全部"
+  },
+  "f_all_local_models_c59b": {
+    "message": "所有本地模型"
+  },
+  "f_all_places_are_up_to_date_0e60": {
+    "message": "所有位置均已是最新"
+  },
+  "f_allow_firefox_ai_c2bb": {
+    "message": "允许 Firefox AI"
+  },
+  "f_also_found_e4c8": {
+    "message": "另外找到：{list}"
+  },
+  "f_anki_cards_0b3d": {
+    "message": "Anki 卡片"
+  },
+  "f_apple_s_model_on_this_mac_re_ce75": {
+    "message": "本机 Mac 上的 Apple 模型，随时可用。"
+  },
+  "f_apply_bbdb": {
+    "message": "应用"
+  },
+  "f_apply_6e04": {
+    "message": "应用 ({n})"
+  },
+  "f_around_this_article_c58a": {
+    "message": "这篇文章周边"
+  },
+  "f_at_least_two_tabs_stay_in_th_f869": {
+    "message": "底栏至少保留两个标签页。"
+  },
+  "f_available_when_a_local_model_667c": {
+    "message": "设置本地模型后可用（设置 › 模型 › 本地）。在你自己的电脑上分批对整个订阅源资料库评分、分类并摘要。可能要几小时，但不消耗 token。"
+  },
+  "f_back_up_123b": {
+    "message": "备份"
+  },
+  "f_better_connections_ready_f4f9": {
+    "message": "有更好的连接方式可用"
+  },
+  "f_better_results_ollama_with_a_1cba": {
+    "message": "效果更好：用 Ollama 搭配 7–8B 模型（GPU 或 Apple Silicon），或用云端模型、自己的 API 密钥生成摘要。"
+  },
+  "f_blocked_ac53": {
+    "message": "已拦截"
+  },
+  "f_bottom_dock_5a41": {
+    "message": "底栏"
+  },
+  "f_brief_me_on_this_277c": {
+    "message": "为我做简报"
+  },
+  "f_bring_everything_in_this_pla_40e5": {
+    "message": "把此位置的全部内容恢复到本设备？"
+  },
+  "f_built_into_the_browser_ready_4b02": {
+    "message": "浏览器自带，随时可用，无需安装。"
+  },
+  "f_built_in_chrome_model_gemini_2f37": {
+    "message": "Chrome 内置模型（Gemini Nano）· 备用"
+  },
+  "f_built_in_chrome_model_fallba_0e75": {
+    "message": "Chrome 内置模型（备用）"
+  },
+  "f_change_the_question_4676": {
+    "message": "修改问题"
+  },
+  "f_change_what_the_dot_colours__8ffd": {
+    "message": "更改圆点颜色的含义"
+  },
+  "f_check_the_field_marked_below_9291": {
+    "message": "请检查下方标记的字段。"
+  },
+  "f_check_c1c4": {
+    "message": "核查“{title}”"
+  },
+  "f_chrome_can_download_a_small__897b": {
+    "message": "Chrome 可一次性下载小型模型（Gemini Nano），在你自己的电脑上处理资料库。可作备用，但效果不如大型模型。"
+  },
+  "f_citations_of_all_sources_wit_2ee3": {
+    "message": "所有带 DOI 的来源的引用。只发送 DOI。"
+  },
+  "f_collection_actions_47e6": {
+    "message": "合集操作"
+  },
+  "f_collection_deleted_784c": {
+    "message": "合集已删除"
+  },
+  "f_color_e44b": {
+    "message": "颜色：{mode}"
+  },
+  "f_compare_first_a472": {
+    "message": "先比较"
+  },
+  "f_connected_in_steps_3a37": {
+    "message": "经 {n} 步相连：{chain}"
+  },
+  "f_connects_f920": {
+    "message": "连接：{topics}"
+  },
+  "f_continue_the_download_5741": {
+    "message": "继续下载"
+  },
+  "f_delete_all_adcd": {
+    "message": "全部删除"
+  },
+  "f_delete_article_6a74": {
+    "message": "删除文章"
+  },
+  "f_delete_them_here_too_342a": {
+    "message": "在此处也删除…"
+  },
+  "f_delete_this_article_85f5": {
+    "message": "删除这篇文章？"
+  },
+  "f_delete_article_on_this_devic_4f26": {
+    "message": "同时删除本设备上的 {n} 篇文章？"
+  },
+  "f_delete_articles_bc95": {
+    "message": "删除 {n} 篇文章"
+  },
+  "f_delete_articles_on_this_devi_6223": {
+    "message": "同时删除本设备上的 {n} 篇文章？"
+  },
+  "f_delete_articles_ff9e": {
+    "message": "删除 {n} 篇文章？"
+  },
+  "f_delete_4457": {
+    "message": "删除“{name}”？"
+  },
+  "f_deleted_on_another_device_82c6": {
+    "message": "已在其他设备删除"
+  },
+  "f_deleted_with_the_articles_ab_2f89": {
+    "message": "随上方文章一起删除，或单独删除"
+  },
+  "f_detail_73b4": {
+    "message": "详情"
+  },
+  "f_dots_coloured_by_age_purple__9066": {
+    "message": "圆点按时间着色：紫色较旧，黄色较新"
+  },
+  "f_dots_coloured_by_mood_orange_7f40": {
+    "message": "圆点按情绪着色：橙色为负面，蓝色为正面，灰色为未评分"
+  },
+  "f_dots_coloured_by_topic_e504": {
+    "message": "圆点按主题着色"
+  },
+  "f_download_and_use_a7af": {
+    "message": "下载并使用"
+  },
+  "f_download_failed_78b7": {
+    "message": "下载失败：{e}"
+  },
+  "f_download_the_built_in_model_55af": {
+    "message": "下载内置模型"
+  },
+  "f_downloading_chrome_keeps_goi_6ce9": {
+    "message": "下载中… 关闭此面板后 Chrome 仍会继续。"
+  },
+  "f_downloading_keeps_going_if_y_9c1b": {
+    "message": "下载中… 关闭此面板后 {browser} 仍会继续。"
+  },
+  "f_drag_to_reorder_or_use_the_a_fda1": {
+    "message": "拖动或用方向键重新排序"
+  },
+  "f_drag_to_change_the_order_scr_0493": {
+    "message": "拖动 ⋮⋮ 调整顺序。屏幕按相同顺序滑动。"
+  },
+  "f_everything_else_3ef1": {
+    "message": "其他全部"
+  },
+  "f_export_with_secrets_8f81": {
+    "message": "导出时包含密钥？"
+  },
+  "f_fallback_chrome_has_a_built__7c2d": {
+    "message": "备用：Chrome 自带内置模型（Gemini Nano）。默认仍是 Ollama。"
+  },
+  "f_fastest_here_in_the_quick_te_eaf5": {
+    "message": "快速测试中此处最快：{n} 条标题用时 {s} 秒，全部已评分。"
+  },
+  "f_fetches_and_processes_new_it_7491": {
+    "message": "浏览器运行期间，用本地模型在后台获取并处理新条目。云端和 BYOK 模型仍需手动。"
+  },
+  "f_files_to_remove_from_your_se_b6f7": {
+    "message": "要从服务器删除的文件"
+  },
+  "f_firefox_ai_is_turned_off_in__07f7": {
+    "message": "Firefox AI 已关闭。在 Firefox Beta 或正式版中打开 about:config，将 browser.ml.enable 和 extensions.ml.enabled 设为 true，然后重新加载扩展。"
+  },
+  "f_firefox_can_summarize_pages__2ea3": {
+    "message": "Firefox 可用本机的小型模型为页面生成摘要。仅支持摘要（不含订阅源、提问、标签），英文文本效果最好。"
+  },
+  "f_firefox_built_in_e829": {
+    "message": "Firefox · 内置"
+  },
+  "f_fix_1a18": {
+    "message": "修复"
+  },
+  "f_focus_b1b3": {
+    "message": "聚焦"
+  },
+  "f_forget_all_c09f": {
+    "message": "全部清除"
+  },
+  "f_forget_all_learned_names_4b29": {
+    "message": "清除所有已学习的名称？"
+  },
+  "f_found_on_but_it_does_not_acc_032a": {
+    "message": "在 {origin} 上找到，但它尚不接受此扩展。请这样启动：apfel --serve --allowed-origins {ext}"
+  },
+  "f_found_on_but_it_refuses_requ_d766": {
+    "message": "在 {origin} 上找到，但它拒绝此扩展的请求。请在其设置中允许其他来源（CORS），然后重新查找。"
+  },
+  "f_full_texts_2af0": {
+    "message": "全文"
+  },
+  "f_give_these_tags_their_englis_fe72": {
+    "message": "为这些标签加上英文名称，让同一主题的两种语言合并为一个"
+  },
+  "f_graph_layout_e97f": {
+    "message": "关系图布局"
+  },
+  "f_group_902c": {
+    "message": "分组"
+  },
+  "f_hide_7bcd": {
+    "message": "隐藏"
+  },
+  "f_highlight_removed_b93b": {
+    "message": "已移除高亮"
+  },
+  "f_import_0af4": {
+    "message": "导入"
+  },
+  "f_import_secrets_ab02": {
+    "message": "导入密钥？"
+  },
+  "f_in_firefox_built_in_ai_exper_4366": {
+    "message": "在 Firefox 中：内置 AI（实验性）"
+  },
+  "f_in_progress_opened_or_annota_d57b": {
+    "message": "进行中：已打开或已批注"
+  },
+  "f_in_use_e11d": {
+    "message": "使用中"
+  },
+  "f_in_built_in_model_699b": {
+    "message": "在 {browser}：内置模型"
+  },
+  "f_installed_and_ready_usually__a5a2": {
+    "message": "已安装，可立即使用。通常是最强的本地选项。"
+  },
+  "f_it_also_leaves_the_collectio_6fdf": {
+    "message": "它也会从所在的合集中移除。"
+  },
+  "f_keep_be68": {
+    "message": "保留"
+  },
+  "f_keep_all_775b": {
+    "message": "全部保留"
+  },
+  "f_keep_your_library_in_step_ac_3d5f": {
+    "message": "在多台设备间同步资料库、备份，或把一部分公开给他人。添加之前，数据不会离开本设备。选择你想做的："
+  },
+  "f_last_run_ago_9b65": {
+    "message": "上次运行：{t}前"
+  },
+  "f_learned_tag_names_b494": {
+    "message": "已学习的标签名称"
+  },
+  "f_link_removed_from_your_inbox_19ce": {
+    "message": "链接已从收件箱移除"
+  },
+  "f_local_23a8": {
+    "message": "本地"
+  },
+  "f_looking_for_local_models_not_e5e8": {
+    "message": "正在查找本地模型…不会安装或发送任何内容。"
+  },
+  "f_manual_setup_endpoint_and_mo_25d9": {
+    "message": "手动设置：端点和模型名称"
+  },
+  "f_matching_articles_2869": {
+    "message": "匹配的文章…"
+  },
+  "f_move_ab88": {
+    "message": "移动“{name}”"
+  },
+  "f_next_month_1650": {
+    "message": "下个月 →"
+  },
+  "f_no_ollama_use_the_model_buil_21a4": {
+    "message": "没有 Ollama？用 Chrome 内置模型"
+  },
+  "f_no_cards_yet_ask_a_question__0c72": {
+    "message": "还没有卡片。就此主题提问，或在文章下固定一个回答，就会变成卡片。"
+  },
+  "f_no_local_model_on_this_compu_27e9": {
+    "message": "本机还没有本地模型。如有提供，请下载下方的浏览器内置模型，或设置 Ollama（步骤见下）。"
+  },
+  "f_no_model_yet_48f9": {
+    "message": "暂无模型"
+  },
+  "f_no_sources_yet_9cfa": {
+    "message": "暂无来源"
+  },
+  "f_not_connected_no_shared_tag__c496": {
+    "message": "无关联：两者没有共同标签或相似内容"
+  },
+  "f_not_found_on_this_computer_u_1f3a": {
+    "message": "本机未找到。通常是最强的本地选项：免费，模型众多。"
+  },
+  "f_not_measured_yet_the_test_se_48f1": {
+    "message": "尚未测量。测试会向 Chrome 内置模型发送两个小型评分批次，数据不会离开你的电脑。"
+  },
+  "f_not_measured_yet_the_test_se_ae15": {
+    "message": "尚未测量。测试会向本地模型发送两个小型评分批次（慢速电脑约需一分钟），数据不会离开你的电脑。"
+  },
+  "f_not_ready_233d": {
+    "message": "未就绪"
+  },
+  "f_not_running_415d": {
+    "message": "未运行"
+  },
+  "f_note_deleted_de30": {
+    "message": "笔记已删除"
+  },
+  "f_nothing_is_deleted_here_unti_c0c4": {
+    "message": "在你确认之前，这里不会删除任何内容。选择“保留”会在你的其他设备上也恢复。"
+  },
+  "f_nothing_synced_yet_54fe": {
+    "message": "尚未同步"
+  },
+  "f_ollama_recommended_4bf5": {
+    "message": "Ollama（推荐）"
+  },
+  "f_ollama_chrome_s_built_in_mod_312f": {
+    "message": "Ollama、Chrome 内置模型、LM Studio 等。无需账户，无需密钥。"
+  },
+  "f_only_the_saved_summaries_of__bad5": {
+    "message": "只发送这些文章已保存的摘要，不发送全文。"
+  },
+  "f_open_the_topic_page_a_short__6eeb": {
+    "message": "打开主题页：基于 {n} 条已存摘要的简短简报"
+  },
+  "f_open_topic_0216": {
+    "message": "打开主题"
+  },
+  "f_opera_s_built_in_model_is_no_c9d0": {
+    "message": "Opera 的内置模型尚未就绪。请开启 设置 › Opera AI › 启用 Web AI API，等模型下载完成（Opera 侧边栏）后再检查。暂不支持 Intel Mac、Linux 和 Windows on Arm。"
+  },
+  "f_paper_bfd9": {
+    "message": "论文"
+  },
+  "f_path_e456": {
+    "message": "路径"
+  },
+  "f_path_from_pick_a_second_item_99f7": {
+    "message": "从“{a}”出发的路径：请选第二项"
+  },
+  "f_path_mode_off_6af2": {
+    "message": "路径模式已关闭。"
+  },
+  "f_path_mode_on_pick_two_items__dfb3": {
+    "message": "路径模式已开启：选两项查看它们如何相连。"
+  },
+  "f_path_mode_first_item_chosen__68ab": {
+    "message": "路径模式：已选第一项 {a}。请选第二项。"
+  },
+  "f_pick_two_items_to_see_how_th_7bb2": {
+    "message": "选两项查看它们如何相连"
+  },
+  "f_plain_files_for_your_website_5a09": {
+    "message": "用于你网站的纯文件，可直接阅读。"
+  },
+  "f_publish_a_reading_list_c489": {
+    "message": "发布阅读清单"
+  },
+  "f_publish_only_bc8a": {
+    "message": "仅发布"
+  },
+  "f_quick_test_on_this_computer_4504": {
+    "message": "在本机快速测试"
+  },
+  "f_reading_your_saved_articles__c628": {
+    "message": "正在后台读取已保存的文章"
+  },
+  "f_ready_3294": {
+    "message": "就绪"
+  },
+  "f_ready_dace": {
+    "message": "就绪。"
+  },
+  "f_recaps_are_written_by_your_l_d85f": {
+    "message": "即使摘要使用云端，回顾也由本地模型撰写"
+  },
+  "f_recommended_for_this_compute_49ee": {
+    "message": "推荐用于本机"
+  },
+  "f_redraw_the_graph_with_the_ne_1477": {
+    "message": "用新的匹配重绘关系图"
+  },
+  "f_references_6beb": {
+    "message": "参考文献"
+  },
+  "f_remove_all_saved_images_ce5e": {
+    "message": "移除所有已保存的图片？"
+  },
+  "f_remove_saved_page_text_185d": {
+    "message": "移除已保存的页面文本？"
+  },
+  "f_remove_text_2ec0": {
+    "message": "移除文本"
+  },
+  "f_remove_them_7ce1": {
+    "message": "移除…"
+  },
+  "f_remove_this_place_212e": {
+    "message": "移除此位置…"
+  },
+  "f_remove_file_from_your_server_52c6": {
+    "message": "从服务器删除 {n} 个文件？"
+  },
+  "f_remove_files_from_your_serve_fe5d": {
+    "message": "从服务器删除 {n} 个文件？"
+  },
+  "f_remove_from_this_device_d01c": {
+    "message": "从本设备移除“{name}”？"
+  },
+  "f_remove_from_the_collection_697b": {
+    "message": "从合集中移除“{title}”"
+  },
+  "f_removed_from_922b": {
+    "message": "已从“{name}”移除"
+  },
+  "f_rename_collection_565d": {
+    "message": "重命名合集"
+  },
+  "f_replay_finished_all_articles_bf34": {
+    "message": "回放完成：已显示全部 {n} 篇文章"
+  },
+  "f_replay_started_fde4": {
+    "message": "回放开始：{a}"
+  },
+  "f_reset_dock_c35f": {
+    "message": "重置底栏"
+  },
+  "f_restore_from_here_a9df": {
+    "message": "从此处恢复…"
+  },
+  "f_restore_now_8f4d": {
+    "message": "立即恢复"
+  },
+  "f_runs_in_chrome_on_your_own_m_5cbf": {
+    "message": "在你自己的电脑上通过 Chrome 运行，不消耗 token。请保持此面板打开：关闭会暂停，再次启动会从中断处继续。面板关闭时的自动运行需要 Ollama。"
+  },
+  "f_runs_inside_the_browser_on_t_a77b": {
+    "message": "在本机浏览器内运行。仅需下载一次，之后可离线使用。"
+  },
+  "f_runs_inside_on_this_computer_060a": {
+    "message": "在本机的 {browser} 内运行。无需安装，数据不出本机。"
+  },
+  "f_save_image_4805": {
+    "message": "保存图片"
+  },
+  "f_save_this_picture_as_an_svg__7d9f": {
+    "message": "把这张图保存为设备上的 SVG 文件"
+  },
+  "f_saved_not_worked_on_yet_a3ba": {
+    "message": "已保存，尚未处理"
+  },
+  "f_scan_the_code_in_ai_summary__57b0": {
+    "message": "在 Android 版 AI Summary Helper 中扫描此码：设置 → 资料库同步 → 扫描二维码。其中含有你的服务器登录信息，只给自己的手机看。一分钟后自动隐藏。"
+  },
+  "f_see_the_recommendation_f58a": {
+    "message": "查看推荐"
+  },
+  "f_sending_the_batch_to_the_bui_0d29": {
+    "message": "正在把批次发送给内置模型…"
+  },
+  "f_sending_the_batch_to_the_loc_551c": {
+    "message": "正在把批次发送给本地模型…"
+  },
+  "f_set_up_ollama_instead_3c9c": {
+    "message": "改为设置 Ollama"
+  },
+  "f_settings_8728": {
+    "message": "设置"
+  },
+  "f_show_everything_again_71fd": {
+    "message": "重新显示全部"
+  },
+  "f_show_only_what_you_have_not__fa38": {
+    "message": "只显示未读"
+  },
+  "f_show_the_words_code_for_the__5677": {
+    "message": "显示助记词 · 手机用二维码 · 恢复"
+  },
+  "f_show_all_to_change_the_order_a1cc": {
+    "message": "显示“全部”以更改顺序。"
+  },
+  "f_show_in_the_dock_11ab": {
+    "message": "在底栏显示“{name}”"
+  },
+  "f_showing_all_articles_3396": {
+    "message": "正在显示全部文章"
+  },
+  "f_small_model_fast_to_start_fo_6def": {
+    "message": "小型模型，启动快。想要更好的摘要，请选更大的 Ollama 模型。"
+  },
+  "f_sort_your_order_0238": {
+    "message": "排序：自定义顺序"
+  },
+  "f_sources_checked_8cec": {
+    "message": "已核查的来源"
+  },
+  "f_sources_checks_and_overview__1f6e": {
+    "message": "来源、核查和概览合并为一个 .md 文件"
+  },
+  "f_sources_in_export_order_1c20": {
+    "message": "来源（按导出顺序）"
+  },
+  "f_stopped_8940": {
+    "message": "已停止。"
+  },
+  "f_subtopics_7f65": {
+    "message": "子主题"
+  },
+  "f_summaries_only_ff23": {
+    "message": "仅摘要"
+  },
+  "f_summaries_only_best_with_eng_1c13": {
+    "message": "仅摘要，英文文本效果最好。要用订阅源、提问和更好的摘要，请选 Ollama 或其他本地模型。"
+  },
+  "f_summaries_only_best_with_eng_3324": {
+    "message": "仅摘要，英文文本效果最好。首次摘要时会下载模型。"
+  },
+  "f_summarize_is_always_in_the_d_7c1a": {
+    "message": "“摘要”始终在底栏中。"
+  },
+  "f_sync_all_now_2e41": {
+    "message": "立即全部同步"
+  },
+  "f_tagged_be03": {
+    "message": "标签：{tag}"
+  },
+  "f_text_summaries_highlights_an_2b62": {
+    "message": "文本、摘要、高亮和笔记会保留。"
+  },
+  "f_the_english_names_and_broade_599c": {
+    "message": "你的标签获得的英文名称和上级主题。可修改，或清除后重新命名。文章的标签保持不变。"
+  },
+  "f_the_article_is_deleted_with__9abb": {
+    "message": "文章会连同其摘要和已保存的页面文本一起删除。"
+  },
+  "f_the_articles_are_deleted_wit_3e46": {
+    "message": "这些文章会连同其摘要和已保存的页面文本一起删除。"
+  },
+  "f_the_built_in_model_does_not__43cb": {
+    "message": "内置模型不支持此语言或输入。"
+  },
+  "f_the_built_in_model_is_turned_532f": {
+    "message": "此浏览器中的内置模型已关闭。"
+  },
+  "f_the_collection_and_its_quest_ca0c": {
+    "message": "合集及其问题会被删除。"
+  },
+  "f_the_collection_its_question__fa4f": {
+    "message": "合集、其问题和概览会被删除。"
+  },
+  "f_the_files_already_on_your_se_3a7e": {
+    "message": "服务器上已有的文件不会被删除。"
+  },
+  "f_the_local_server_refused_thi_142b": {
+    "message": "本地服务器拒绝了此扩展。请这样启动：apfel --serve --allowed-origins {origin}"
+  },
+  "f_the_order_here_is_the_order__1a1b": {
+    "message": "这里的顺序就是导出和任务表的顺序。拖动 ⋮⋮ 可调整。"
+  },
+  "f_the_overview_compares_at_lea_9f33": {
+    "message": "概览至少对比两个来源。"
+  },
+  "f_the_same_library_on_laptop_a_d4ab": {
+    "message": "笔记本和手机共用同一个资料库。已加密。"
+  },
+  "f_the_same_headlines_go_to_eac_db67": {
+    "message": "同样的 {n} 条标题会依次发给每个模型。数据不会离开这台电脑。"
+  },
+  "f_the_articles_stay_in_your_li_dcd2": {
+    "message": "这 {n} 篇文章及其核查结果会保留在资料库中。"
+  },
+  "f_these_two_are_not_connected_3328": {
+    "message": "这两项没有关联。"
+  },
+  "f_they_also_leave_the_collecti_b97e": {
+    "message": "它们也会从所在的合集中移除。"
+  },
+  "f_this_browser_has_no_built_in_fa45": {
+    "message": "此浏览器没有内置模型。"
+  },
+  "f_title_summary_tags_highlight_f24c": {
+    "message": "标题、摘要、标签、高亮和统计会保留。"
+  },
+  "f_too_much_text_for_the_built__d7e9": {
+    "message": "文本太多，内置模型一次处理不了。请减少每批的条目数。"
+  },
+  "f_topic_1b64": {
+    "message": "主题"
+  },
+  "f_topic_actions_8957": {
+    "message": "主题操作"
+  },
+  "f_topics_a535": {
+    "message": "主题"
+  },
+  "f_topics_inside_c9df": {
+    "message": "包含的主题"
+  },
+  "f_use_ollama_again_bf46": {
+    "message": "重新使用 Ollama"
+  },
+  "f_use_another_email_dd18": {
+    "message": "使用其他邮箱？"
+  },
+  "f_use_it_da81": {
+    "message": "使用它"
+  },
+  "f_video_c80c": {
+    "message": "视频"
+  },
+  "f_viewer_page_746e": {
+    "message": "查看页面"
+  },
+  "f_when_the_chosen_model_is_not_e746": {
+    "message": "所选模型未就绪时，交给下一个本地模型回答"
+  },
+  "f_where_should_the_backup_live_3365": {
+    "message": "备份要存放在哪里？"
+  },
+  "f_where_should_the_reading_lis_3ba3": {
+    "message": "阅读清单要放在哪里？"
+  },
+  "f_where_should_your_library_li_cf56": {
+    "message": "资料库要放在哪里？"
+  },
+  "f_where_this_device_differs_th_b5c9": {
+    "message": "此设备与位置内容不同的部分，以位置为准。不会删除任何内容。资料库较大时可能需要一段时间。"
+  },
+  "f_whole_library_local_model_0a98": {
+    "message": "整个资料库 · 本地模型"
+  },
+  "f_worked_on_opened_summarised__2bfc": {
+    "message": "已处理：已打开、已摘要、已批注"
+  },
+  "f_works_with_nextcloud_webdav__8a29": {
+    "message": "支持 Nextcloud / WebDAV、兼容 S3 的存储，或本机上的文件夹。"
+  },
+  "f_you_can_undo_this_for_a_few__09e3": {
+    "message": "几秒内可以撤销。"
+  },
+  "f_your_highlights_and_notes_st_00a0": {
+    "message": "你的高亮和笔记会保留在“笔记”中。"
+  },
+  "f_backup_only_d3bf": {
+    "message": "仅备份"
+  },
+  "f_deleted_ago_046d": {
+    "message": "{t}前已删除"
+  },
+  "f_did_not_answer_4111": {
+    "message": "无响应（{e}）"
+  },
+  "f_did_not_finish_2912": {
+    "message": "未完成"
+  },
+  "f_download_first_800f": {
+    "message": "请先下载"
+  },
+  "f_encrypted_f1b3": {
+    "message": "已加密"
+  },
+  "f_fainter_only_saved_6692": {
+    "message": "颜色较淡 = 仅保存"
+  },
+  "f_from_summaries_1db1": {
+    "message": "基于 {n} 条摘要"
+  },
+  "f_from_summary_45fd": {
+    "message": "基于 {n} 条摘要"
+  },
+  "f_grey_not_scored_4a8d": {
+    "message": "灰色：未评分"
+  },
+  "f_last_sync_ago_57bb": {
+    "message": "上次同步：{t}前"
+  },
+  "f_negative_863a": {
+    "message": "负面"
+  },
+  "f_newer_7eaa": {
+    "message": "较新"
+  },
+  "f_nothing_changes_until_you_pr_9bc3": {
+    "message": "点击“应用”前不会有任何改动"
+  },
+  "f_older_1461": {
+    "message": "较旧"
+  },
+  "f_positive_fa7a": {
+    "message": "正面"
+  },
+  "f_reorder_handle_e8ae": {
+    "message": "排序手柄"
+  },
+  "f_testing_7487": {
+    "message": "测试中…"
+  },
+  "f_two_way_78fb": {
+    "message": "双向"
+  },
+  "f_of_sources_checked_0746": {
+    "message": "已核查 {a}/{n} 个来源"
+  },
+  "f_can_download_a_small_model_o_bd4d": {
+    "message": "{browser} 可一次性下载小型模型并在本机运行。想要更好的摘要，请使用更大的 Ollama 模型。"
+  },
+  "f_has_a_built_in_model_but_not_65ab": {
+    "message": "{browser} 有内置模型，但目前本机无法使用（常见原因：可用磁盘空间不足）。详情：{url}"
+  },
+  "f_built_in_e090": {
+    "message": "{browser} · 内置"
+  },
+  "f_moved_to_position_of_3df9": {
+    "message": "{name} 已移到第 {i} 位（共 {n} 个）"
+  },
+  "f_articles_not_read_yet_0f6a": {
+    "message": "{n} 篇文章，{u} 篇未读"
+  },
+  "f_card_saved_in_anki_file_impo_8a5d": {
+    "message": "已保存 {n} 张卡片。在 Anki 中：文件 ▸ 导入。"
+  },
+  "f_cards_saved_in_anki_file_imp_e2b8": {
+    "message": "已保存 {n} 张卡片。在 Anki 中：文件 ▸ 导入。"
+  },
+  "f_connected_item_14c3": {
+    "message": "{n} 个相连项目"
+  },
+  "f_connected_items_9110": {
+    "message": "{n} 个相连项目"
+  },
+  "f_deletion_waits_for_you_e389": {
+    "message": "{n} 项删除待确认"
+  },
+  "f_deletions_wait_for_you_3715": {
+    "message": "{n} 项删除待确认"
+  },
+  "f_file_waits_to_be_removed_faeb": {
+    "message": "{n} 个文件待删除"
+  },
+  "f_files_wait_to_be_removed_eaef": {
+    "message": "{n} 个文件待删除"
+  },
+  "f_highlight_note_or_collection_aca0": {
+    "message": "{n} 条高亮、笔记或合集"
+  },
+  "f_highlights_notes_or_collecti_d087": {
+    "message": "{n} 条高亮、笔记或合集"
+  },
+  "f_more_wait_after_these_7ac2": {
+    "message": "此后还有 {n} 项。"
+  },
+  "f_more_waits_after_these_3cbf": {
+    "message": "此后还有 {n} 项。"
+  },
+  "f_place_needs_you_6fae": {
+    "message": "{n} 个位置需要处理"
+  },
+  "f_places_need_you_8bac": {
+    "message": "{n} 个位置需要处理"
+  },
+  "f_step_cf02": {
+    "message": "{n} 步：{chain}"
+  },
+  "f_steps_1b8f": {
+    "message": "{n} 步：{chain}"
+  },
+  "f_subtopic_5270": {
+    "message": "{n} 个子主题"
+  },
+  "f_subtopics_1ab9": {
+    "message": "{n} 个子主题"
+  },
+  "f_tag_without_a_name_45a3": {
+    "message": "{n} 个标签没有名称"
+  },
+  "f_tag_without_broader_topics_6820": {
+    "message": "{n} 个标签没有上级主题"
+  },
+  "f_tags_without_a_name_d3aa": {
+    "message": "{n} 个标签没有名称"
+  },
+  "f_tags_without_broader_topics_2531": {
+    "message": "{n} 个标签没有上级主题"
+  },
+  "f_to_delete_3233": {
+    "message": "{n} 项要删除"
+  },
+  "f_to_keep_db29": {
+    "message": "{n} 项要保留"
+  },
+  "f_unread_article_stands_out_c185": {
+    "message": "{n} 篇未读文章较醒目"
+  },
+  "f_unread_articles_stand_out_0499": {
+    "message": "{n} 篇未读文章较醒目"
+  },
+  "f_s_of_rated_f50c": {
+    "message": "{s} 秒 · 已评分 {a}/{n}"
+  },
+  "f_s_33e3": {
+    "message": "{s} 秒"
+  },
+  "f_subtopic_of_articles_6833": {
+    "message": "{topic}，{parent}的子主题：{n} 篇文章"
+  },
+  "f_articles_unread_a7ef": {
+    "message": "{topic}：{n} 篇文章，{u} 篇未读"
+  },
+  "f_is_set_up_7618": {
+    "message": "“{name}”已设置好"
+  },
+  "f__ec59": {
+    "message": "…"
+  },
+  "f_replay_1a24": {
+    "message": "▶ 回放"
+  },
+  "f_answering_from_summaries_a77b": {
+    "message": "✨ 正在根据 {n} 条摘要回答…"
+  },
+  "f_briefing_from_summaries_83db": {
+    "message": "✨ 正在根据 {n} 条摘要生成简报…"
+  },
+  "f_local_model_dc21": {
+    "message": "🧠 本地模型"
   }
 }

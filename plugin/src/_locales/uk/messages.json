@@ -6624,5 +6624,875 @@
   },
   "f_places_use_this_server_4df9": {
     "message": "Цей сервер використовує місць: {n}."
+  },
+  "f_a_copy_only_this_device_writ_6789": {
+    "message": "Копію пише лише цей пристрій. Зашифрована."
+  },
+  "f_a_local_model_on_this_comput_cb32": {
+    "message": "Локальна модель на цьому комп’ютері"
+  },
+  "f_a_small_model_that_comes_wit_dbb4": {
+    "message": "Невелика модель, вбудована в Chrome: без встановлення, нічого не залишає комп’ютер, без токенів. Оцінки, категорії та огляди помітно слабші, ніж з більшою моделлю."
+  },
+  "f_a_task_sheet_to_check_each_s_715b": {
+    "message": "Аркуш завдань для ручної перевірки кожного джерела"
+  },
+  "f_add_your_phone_57ff": {
+    "message": "Додати телефон"
+  },
+  "f_add_your_question_9bd5": {
+    "message": "Додати запитання"
+  },
+  "f_age_e13c": {
+    "message": "Вік"
+  },
+  "f_all_except_fe8b": {
+    "message": "Усе, крім {tag}"
+  },
+  "f_all_local_models_c59b": {
+    "message": "Усі локальні моделі"
+  },
+  "f_all_places_are_up_to_date_0e60": {
+    "message": "Усі місця актуальні"
+  },
+  "f_allow_firefox_ai_c2bb": {
+    "message": "Дозволити Firefox AI"
+  },
+  "f_also_found_e4c8": {
+    "message": "Також знайдено: {list}"
+  },
+  "f_anki_cards_0b3d": {
+    "message": "Картки Anki"
+  },
+  "f_apple_s_model_on_this_mac_re_ce75": {
+    "message": "Модель Apple на цьому Mac, готова."
+  },
+  "f_apply_bbdb": {
+    "message": "Застосувати"
+  },
+  "f_apply_6e04": {
+    "message": "Застосувати ({n})"
+  },
+  "f_around_this_article_c58a": {
+    "message": "Навколо цієї статті"
+  },
+  "f_at_least_two_tabs_stay_in_th_f869": {
+    "message": "У панелі лишаються щонайменше дві вкладки."
+  },
+  "f_available_when_a_local_model_667c": {
+    "message": "Доступно, коли налаштовано локальну модель (Налаштування › Моделі › Локальні). Оцінює, розкладає за категоріями й пише огляди всієї бібліотеки Стрічки невеликими порціями на вашому комп’ютері. Може тривати години, але не витрачає токени."
+  },
+  "f_back_up_123b": {
+    "message": "Резервна копія"
+  },
+  "f_better_connections_ready_f4f9": {
+    "message": "Кращі зв’язки готові"
+  },
+  "f_better_results_ollama_with_a_1cba": {
+    "message": "Кращий результат: Ollama з моделлю 7–8B (GPU або Apple Silicon), або хмарна модель чи власний API-ключ для підсумків."
+  },
+  "f_blocked_ac53": {
+    "message": "Заблоковано"
+  },
+  "f_bottom_dock_5a41": {
+    "message": "Нижня панель"
+  },
+  "f_brief_me_on_this_277c": {
+    "message": "Дай зведення з цього"
+  },
+  "f_bring_everything_in_this_pla_40e5": {
+    "message": "Повернути все з цього місця на цей пристрій?"
+  },
+  "f_built_into_the_browser_ready_4b02": {
+    "message": "Вбудована в браузер, готова. Нічого встановлювати."
+  },
+  "f_built_in_chrome_model_gemini_2f37": {
+    "message": "Вбудована модель Chrome (Gemini Nano) · запасна"
+  },
+  "f_built_in_chrome_model_fallba_0e75": {
+    "message": "Вбудована модель Chrome (запасна)"
+  },
+  "f_change_the_question_4676": {
+    "message": "Змінити запитання"
+  },
+  "f_change_what_the_dot_colours__8ffd": {
+    "message": "Змінити значення кольорів крапок"
+  },
+  "f_check_the_field_marked_below_9291": {
+    "message": "Перевірте поле, позначене нижче."
+  },
+  "f_check_c1c4": {
+    "message": "Перевірити «{title}»"
+  },
+  "f_chrome_can_download_a_small__897b": {
+    "message": "Chrome може один раз завантажити невелику модель (Gemini Nano) і запускати бібліотеку на вашому комп’ютері. Працює як запасний варіант; результати слабші, ніж з більшою моделлю."
+  },
+  "f_citations_of_all_sources_wit_2ee3": {
+    "message": "Цитати всіх джерел із DOI. Надсилається лише DOI."
+  },
+  "f_collection_actions_47e6": {
+    "message": "Дії з колекцією"
+  },
+  "f_collection_deleted_784c": {
+    "message": "Колекцію видалено"
+  },
+  "f_color_e44b": {
+    "message": "Колір: {mode}"
+  },
+  "f_compare_first_a472": {
+    "message": "Спершу порівняти"
+  },
+  "f_connected_in_steps_3a37": {
+    "message": "Пов’язано за {n} кроків: {chain}"
+  },
+  "f_connects_f920": {
+    "message": "Пов’язує: {topics}"
+  },
+  "f_continue_the_download_5741": {
+    "message": "Продовжити завантаження"
+  },
+  "f_delete_all_adcd": {
+    "message": "Видалити все"
+  },
+  "f_delete_article_6a74": {
+    "message": "Видалити статтю"
+  },
+  "f_delete_them_here_too_342a": {
+    "message": "Видалити й тут…"
+  },
+  "f_delete_this_article_85f5": {
+    "message": "Видалити цю статтю?"
+  },
+  "f_delete_article_on_this_devic_4f26": {
+    "message": "Видалити {n} статтю також на цьому пристрої?"
+  },
+  "f_delete_articles_bc95": {
+    "message": "Видалити статті: {n}"
+  },
+  "f_delete_articles_on_this_devi_6223": {
+    "message": "Видалити статті ({n}) також на цьому пристрої?"
+  },
+  "f_delete_articles_ff9e": {
+    "message": "Видалити статті ({n})?"
+  },
+  "f_delete_4457": {
+    "message": "Видалити «{name}»?"
+  },
+  "f_deleted_on_another_device_82c6": {
+    "message": "Видалено на іншому пристрої"
+  },
+  "f_deleted_with_the_articles_ab_2f89": {
+    "message": "Видаляється разом зі статтями вище або окремо"
+  },
+  "f_detail_73b4": {
+    "message": "Деталі"
+  },
+  "f_dots_coloured_by_age_purple__9066": {
+    "message": "Крапки за віком: фіолетові старі, жовті свіжі"
+  },
+  "f_dots_coloured_by_mood_orange_7f40": {
+    "message": "Крапки за тоном: помаранчеві негативні, сині позитивні, сірі без оцінки"
+  },
+  "f_dots_coloured_by_topic_e504": {
+    "message": "Крапки за темами"
+  },
+  "f_download_and_use_a7af": {
+    "message": "Завантажити й використати"
+  },
+  "f_download_failed_78b7": {
+    "message": "Не вдалося завантажити: {e}"
+  },
+  "f_download_the_built_in_model_55af": {
+    "message": "Завантажити вбудовану модель"
+  },
+  "f_downloading_chrome_keeps_goi_6ce9": {
+    "message": "Завантаження… Chrome продовжить, якщо закрити цю панель."
+  },
+  "f_downloading_keeps_going_if_y_9c1b": {
+    "message": "Завантаження… {browser} продовжить, якщо закрити цю панель."
+  },
+  "f_drag_to_reorder_or_use_the_a_fda1": {
+    "message": "Перетягніть або скористайтеся стрілками, щоб змінити порядок"
+  },
+  "f_drag_to_change_the_order_scr_0493": {
+    "message": "Перетягніть ⋮⋮, щоб змінити порядок. Екрани висуваються в тому ж порядку."
+  },
+  "f_everything_else_3ef1": {
+    "message": "Усе інше"
+  },
+  "f_export_with_secrets_8f81": {
+    "message": "Експортувати з секретами?"
+  },
+  "f_fallback_chrome_has_a_built__7c2d": {
+    "message": "Запасний варіант: у Chrome є вбудована модель (Gemini Nano). Ollama лишається основною."
+  },
+  "f_fastest_here_in_the_quick_te_eaf5": {
+    "message": "Найшвидша в швидкому тесті: {s} с на {n} заголовків, усі оцінено."
+  },
+  "f_fetches_and_processes_new_it_7491": {
+    "message": "Завантажує й обробляє нове у фоні вашою локальною моделлю, поки браузер відкритий. Хмарні моделі та BYOK лишаються ручними."
+  },
+  "f_files_to_remove_from_your_se_b6f7": {
+    "message": "Файли для видалення з сервера"
+  },
+  "f_firefox_ai_is_turned_off_in__07f7": {
+    "message": "Firefox AI вимкнено. У Firefox Beta або Release відкрийте about:config, поставте browser.ml.enable і extensions.ml.enabled у true та перезавантажте розширення."
+  },
+  "f_firefox_can_summarize_pages__2ea3": {
+    "message": "Firefox може підсумовувати сторінки невеликою моделлю на цьому комп’ютері. Лише підсумки (без стрічок, запитань і тегів), найкраще з англійським текстом."
+  },
+  "f_firefox_built_in_e829": {
+    "message": "Firefox · вбудована"
+  },
+  "f_fix_1a18": {
+    "message": "Виправити"
+  },
+  "f_focus_b1b3": {
+    "message": "Фокус"
+  },
+  "f_forget_all_c09f": {
+    "message": "Забути все"
+  },
+  "f_forget_all_learned_names_4b29": {
+    "message": "Забути всі вивчені назви?"
+  },
+  "f_found_on_but_it_does_not_acc_032a": {
+    "message": "Знайдено на {origin}, але він ще не приймає це розширення. Запустіть: apfel --serve --allowed-origins {ext}"
+  },
+  "f_found_on_but_it_refuses_requ_d766": {
+    "message": "Знайдено на {origin}, але він відхиляє запити цього розширення. Дозвольте інші джерела (CORS) у його налаштуваннях і шукайте знову."
+  },
+  "f_full_texts_2af0": {
+    "message": "Повні тексти"
+  },
+  "f_give_these_tags_their_englis_fe72": {
+    "message": "Дайте цим тегам англійські назви, щоб одна тема двома мовами стала однією"
+  },
+  "f_graph_layout_e97f": {
+    "message": "Розкладка графа"
+  },
+  "f_group_902c": {
+    "message": "Група"
+  },
+  "f_hide_7bcd": {
+    "message": "Сховати"
+  },
+  "f_highlight_removed_b93b": {
+    "message": "Виділення вилучено"
+  },
+  "f_import_0af4": {
+    "message": "Імпорт"
+  },
+  "f_import_secrets_ab02": {
+    "message": "Імпортувати секрети?"
+  },
+  "f_in_firefox_built_in_ai_exper_4366": {
+    "message": "У Firefox: вбудований ШІ (експериментально)"
+  },
+  "f_in_progress_opened_or_annota_d57b": {
+    "message": "У роботі: відкрито або з позначками"
+  },
+  "f_in_use_e11d": {
+    "message": "Використовується"
+  },
+  "f_in_built_in_model_699b": {
+    "message": "У {browser}: вбудована модель"
+  },
+  "f_installed_and_ready_usually__a5a2": {
+    "message": "Встановлена й готова. Зазвичай найсильніший локальний варіант."
+  },
+  "f_it_also_leaves_the_collectio_6fdf": {
+    "message": "Вона також полишає колекції, де перебуває."
+  },
+  "f_keep_be68": {
+    "message": "Залишити"
+  },
+  "f_keep_all_775b": {
+    "message": "Залишити все"
+  },
+  "f_keep_your_library_in_step_ac_3d5f": {
+    "message": "Тримайте бібліотеку синхронною на всіх пристроях, робіть резервні копії або публікуйте частину для інших. Ніщо не залишає цей пристрій, доки ви не додасте місце. Виберіть, що хочете зробити:"
+  },
+  "f_last_run_ago_9b65": {
+    "message": "Останній запуск: {t} тому"
+  },
+  "f_learned_tag_names_b494": {
+    "message": "Вивчені назви тегів"
+  },
+  "f_link_removed_from_your_inbox_19ce": {
+    "message": "Посилання вилучено зі скриньки"
+  },
+  "f_local_23a8": {
+    "message": "Локальні"
+  },
+  "f_looking_for_local_models_not_e5e8": {
+    "message": "Шукаю локальні моделі… нічого не встановлюється й не надсилається."
+  },
+  "f_manual_setup_endpoint_and_mo_25d9": {
+    "message": "Ручне налаштування: endpoint і назви моделей"
+  },
+  "f_matching_articles_2869": {
+    "message": "Добираю статті…"
+  },
+  "f_move_ab88": {
+    "message": "Перемістити «{name}»"
+  },
+  "f_next_month_1650": {
+    "message": "Наступний місяць →"
+  },
+  "f_no_ollama_use_the_model_buil_21a4": {
+    "message": "Немає Ollama? Скористайтеся моделлю, вбудованою в Chrome"
+  },
+  "f_no_cards_yet_ask_a_question__0c72": {
+    "message": "Карток ще немає. Поставте запитання з цієї теми або закріпіть відповідь під статтею, і вони стануть картками."
+  },
+  "f_no_local_model_on_this_compu_27e9": {
+    "message": "Локальної моделі на цьому комп’ютері ще немає. Завантажте нижче вбудовану модель браузера, якщо вона пропонується, або налаштуйте Ollama (кроки нижче)."
+  },
+  "f_no_model_yet_48f9": {
+    "message": "Моделі ще немає"
+  },
+  "f_no_sources_yet_9cfa": {
+    "message": "Джерел ще немає"
+  },
+  "f_not_connected_no_shared_tag__c496": {
+    "message": "Не пов’язані: ні спільного тега, ні схожого вмісту між ними"
+  },
+  "f_not_found_on_this_computer_u_1f3a": {
+    "message": "На цьому комп’ютері не знайдено. Зазвичай найсильніший локальний варіант: безкоштовно, багато моделей."
+  },
+  "f_not_measured_yet_the_test_se_48f1": {
+    "message": "Ще не виміряно. Тест надсилає дві невеликі порції оцінок до вбудованої моделі Chrome, нічого не залишає комп’ютер."
+  },
+  "f_not_measured_yet_the_test_se_ae15": {
+    "message": "Ще не виміряно. Тест надсилає дві невеликі порції оцінок до вашої локальної моделі (близько хвилини на повільному комп’ютері), нічого не залишає комп’ютер."
+  },
+  "f_not_ready_233d": {
+    "message": "Не готова"
+  },
+  "f_not_running_415d": {
+    "message": "Не запущена"
+  },
+  "f_note_deleted_de30": {
+    "message": "Нотатку видалено"
+  },
+  "f_nothing_is_deleted_here_unti_c0c4": {
+    "message": "Тут нічого не видаляється, доки ви не скажете. «Залишити» повертає це й на інших пристроях."
+  },
+  "f_nothing_synced_yet_54fe": {
+    "message": "Ще нічого не синхронізовано"
+  },
+  "f_ollama_recommended_4bf5": {
+    "message": "Ollama (рекомендовано)"
+  },
+  "f_ollama_chrome_s_built_in_mod_312f": {
+    "message": "Ollama, вбудована модель Chrome, LM Studio та інші. Без облікового запису, без ключа."
+  },
+  "f_only_the_saved_summaries_of__bad5": {
+    "message": "Надсилаються лише збережені підсумки цих статей, без повних текстів."
+  },
+  "f_open_the_topic_page_a_short__6eeb": {
+    "message": "Відкрити сторінку теми: короткий огляд із {n} збережених підсумків"
+  },
+  "f_open_topic_0216": {
+    "message": "Відкрити тему"
+  },
+  "f_opera_s_built_in_model_is_no_c9d0": {
+    "message": "Вбудована модель Opera ще не готова. Увімкніть Налаштування › Opera AI › Enable Web AI API, дочекайтеся завантаження моделі (бічна панель Opera) і перевірте знову. Поки не на Mac з Intel, Linux і Windows на ARM."
+  },
+  "f_paper_bfd9": {
+    "message": "Наукова праця"
+  },
+  "f_path_e456": {
+    "message": "Шлях"
+  },
+  "f_path_from_pick_a_second_item_99f7": {
+    "message": "Шлях від «{a}»: виберіть другий елемент"
+  },
+  "f_path_mode_off_6af2": {
+    "message": "Режим шляху вимкнено."
+  },
+  "f_path_mode_on_pick_two_items__dfb3": {
+    "message": "Режим шляху ввімкнено: виберіть два елементи, щоб побачити зв’язок."
+  },
+  "f_path_mode_first_item_chosen__68ab": {
+    "message": "Режим шляху: вибрано перший елемент {a}. Виберіть другий."
+  },
+  "f_pick_two_items_to_see_how_th_7bb2": {
+    "message": "Виберіть два елементи, щоб побачити зв’язок"
+  },
+  "f_plain_files_for_your_website_5a09": {
+    "message": "Звичайні файли для вашого сайту. Читабельні."
+  },
+  "f_publish_a_reading_list_c489": {
+    "message": "Опублікувати список для читання"
+  },
+  "f_publish_only_bc8a": {
+    "message": "Лише публікація"
+  },
+  "f_quick_test_on_this_computer_4504": {
+    "message": "Швидкий тест на цьому комп’ютері"
+  },
+  "f_reading_your_saved_articles__c628": {
+    "message": "Читання збережених статей у фоні"
+  },
+  "f_ready_3294": {
+    "message": "Готово"
+  },
+  "f_ready_dace": {
+    "message": "Готово."
+  },
+  "f_recaps_are_written_by_your_l_d85f": {
+    "message": "Огляди пише ваша локальна модель, навіть коли підсумки йдуть через хмару"
+  },
+  "f_recommended_for_this_compute_49ee": {
+    "message": "Рекомендовано для цього комп’ютера"
+  },
+  "f_redraw_the_graph_with_the_ne_1477": {
+    "message": "Перемалювати граф із новими збігами"
+  },
+  "f_references_6beb": {
+    "message": "Література"
+  },
+  "f_remove_all_saved_images_ce5e": {
+    "message": "Видалити всі збережені зображення?"
+  },
+  "f_remove_saved_page_text_185d": {
+    "message": "Видалити збережений текст сторінок?"
+  },
+  "f_remove_text_2ec0": {
+    "message": "Видалити текст"
+  },
+  "f_remove_them_7ce1": {
+    "message": "Вилучити їх…"
+  },
+  "f_remove_this_place_212e": {
+    "message": "Вилучити це місце…"
+  },
+  "f_remove_file_from_your_server_52c6": {
+    "message": "Вилучити {n} файл із сервера?"
+  },
+  "f_remove_files_from_your_serve_fe5d": {
+    "message": "Вилучити файли ({n}) із сервера?"
+  },
+  "f_remove_from_this_device_d01c": {
+    "message": "Вилучити «{name}» із цього пристрою?"
+  },
+  "f_remove_from_the_collection_697b": {
+    "message": "Вилучити «{title}» з колекції"
+  },
+  "f_removed_from_922b": {
+    "message": "Вилучено з «{name}»"
+  },
+  "f_rename_collection_565d": {
+    "message": "Перейменувати колекцію"
+  },
+  "f_replay_finished_all_articles_bf34": {
+    "message": "Повтор завершено: усі статті ({n}) у вікні"
+  },
+  "f_replay_started_fde4": {
+    "message": "Повтор розпочато: {a}"
+  },
+  "f_reset_dock_c35f": {
+    "message": "Скинути панель"
+  },
+  "f_restore_from_here_a9df": {
+    "message": "Відновити звідси…"
+  },
+  "f_restore_now_8f4d": {
+    "message": "Відновити зараз"
+  },
+  "f_runs_in_chrome_on_your_own_m_5cbf": {
+    "message": "Працює в Chrome на вашому комп’ютері й не витрачає токени. Тримайте цю панель відкритою: закриття ставить запуск на паузу, а новий старт продовжує з місця зупинки. Автозапуск із закритою панеллю потребує Ollama."
+  },
+  "f_runs_inside_the_browser_on_t_a77b": {
+    "message": "Працює в браузері на цьому комп’ютері. Одноразове завантаження, далі працює офлайн."
+  },
+  "f_runs_inside_on_this_computer_060a": {
+    "message": "Працює в {browser} на цьому комп’ютері. Без встановлення, нічого не залишає комп’ютер."
+  },
+  "f_save_image_4805": {
+    "message": "Зберегти зображення"
+  },
+  "f_save_this_picture_as_an_svg__7d9f": {
+    "message": "Зберегти цю картинку як SVG-файл на пристрої"
+  },
+  "f_saved_not_worked_on_yet_a3ba": {
+    "message": "Збережено, ще не опрацьовано"
+  },
+  "f_scan_the_code_in_ai_summary__57b0": {
+    "message": "Скануйте код у AI Summary Helper на Android: Налаштування → Синхронізація бібліотеки → Сканувати код. У ньому логін до вашого сервера, тому показуйте його лише власному телефону. Ховається за хвилину."
+  },
+  "f_see_the_recommendation_f58a": {
+    "message": "Переглянути рекомендацію"
+  },
+  "f_sending_the_batch_to_the_bui_0d29": {
+    "message": "Надсилаю порцію до вбудованої моделі…"
+  },
+  "f_sending_the_batch_to_the_loc_551c": {
+    "message": "Надсилаю порцію до локальної моделі…"
+  },
+  "f_set_up_ollama_instead_3c9c": {
+    "message": "Краще налаштувати Ollama"
+  },
+  "f_settings_8728": {
+    "message": "Налаштування"
+  },
+  "f_show_everything_again_71fd": {
+    "message": "Показати все знову"
+  },
+  "f_show_only_what_you_have_not__fa38": {
+    "message": "Показати лише непрочитане"
+  },
+  "f_show_the_words_code_for_the__5677": {
+    "message": "Показати слова · код для телефона · відновлення"
+  },
+  "f_show_all_to_change_the_order_a1cc": {
+    "message": "Виберіть «Усі», щоб змінити порядок."
+  },
+  "f_show_in_the_dock_11ab": {
+    "message": "Показати «{name}» у панелі"
+  },
+  "f_showing_all_articles_3396": {
+    "message": "Показано всі статті"
+  },
+  "f_small_model_fast_to_start_fo_6def": {
+    "message": "Невелика модель, швидко стартує. Для кращих підсумків виберіть більшу модель Ollama."
+  },
+  "f_sort_your_order_0238": {
+    "message": "Сортування: ваш порядок"
+  },
+  "f_sources_checked_8cec": {
+    "message": "Перевірені джерела"
+  },
+  "f_sources_checks_and_overview__1f6e": {
+    "message": "Джерела, перевірки й огляд в одному файлі .md"
+  },
+  "f_sources_in_export_order_1c20": {
+    "message": "Джерела в порядку експорту"
+  },
+  "f_stopped_8940": {
+    "message": "Зупинено."
+  },
+  "f_subtopics_7f65": {
+    "message": "Підтеми"
+  },
+  "f_summaries_only_ff23": {
+    "message": "Лише підсумки"
+  },
+  "f_summaries_only_best_with_eng_1c13": {
+    "message": "Лише підсумки, найкраще з англійським текстом. Для стрічок, запитань і кращих підсумків виберіть Ollama чи іншу локальну модель."
+  },
+  "f_summaries_only_best_with_eng_3324": {
+    "message": "Лише підсумки, найкраще з англійським текстом. Перший підсумок завантажує модель."
+  },
+  "f_summarize_is_always_in_the_d_7c1a": {
+    "message": "«Підсумок» завжди в панелі."
+  },
+  "f_sync_all_now_2e41": {
+    "message": "Синхронізувати все"
+  },
+  "f_tagged_be03": {
+    "message": "З тегом {tag}"
+  },
+  "f_text_summaries_highlights_an_2b62": {
+    "message": "Текст, підсумки, виділення та нотатки лишаються."
+  },
+  "f_the_english_names_and_broade_599c": {
+    "message": "Англійські назви й ширші теми ваших тегів. Змініть одну або забудьте, щоб її назвали заново. Статті зберігають свої теги."
+  },
+  "f_the_article_is_deleted_with__9abb": {
+    "message": "Статтю видаляють разом із підсумком і збереженим текстом сторінки."
+  },
+  "f_the_articles_are_deleted_wit_3e46": {
+    "message": "Статті видаляють разом із підсумками й збереженим текстом сторінок."
+  },
+  "f_the_built_in_model_does_not__43cb": {
+    "message": "Вбудована модель не підтримує цю мову чи вхідні дані."
+  },
+  "f_the_built_in_model_is_turned_532f": {
+    "message": "Вбудовану модель вимкнено в цьому браузері."
+  },
+  "f_the_collection_and_its_quest_ca0c": {
+    "message": "Колекцію та її запитання видаляють."
+  },
+  "f_the_collection_its_question__fa4f": {
+    "message": "Колекцію, її запитання та огляд видаляють."
+  },
+  "f_the_files_already_on_your_se_3a7e": {
+    "message": "Файли, що вже лежать на сервері, не видаляються."
+  },
+  "f_the_local_server_refused_thi_142b": {
+    "message": "Локальний сервер відхилив це розширення. Запустіть: apfel --serve --allowed-origins {origin}"
+  },
+  "f_the_order_here_is_the_order__1a1b": {
+    "message": "Порядок тут — порядок експорту й аркуша завдань. Перетягніть ⋮⋮, щоб змінити."
+  },
+  "f_the_overview_compares_at_lea_9f33": {
+    "message": "Огляд порівнює щонайменше два джерела."
+  },
+  "f_the_same_library_on_laptop_a_d4ab": {
+    "message": "Та сама бібліотека на ноутбуці й телефоні. Зашифрована."
+  },
+  "f_the_same_headlines_go_to_eac_db67": {
+    "message": "Одні й ті самі заголовки ({n}) йдуть до кожної моделі по черзі. Нічого не залишає комп’ютер."
+  },
+  "f_the_articles_stay_in_your_li_dcd2": {
+    "message": "Статті ({n}) лишаються в бібліотеці разом із перевірками."
+  },
+  "f_these_two_are_not_connected_3328": {
+    "message": "Ці дві не пов’язані."
+  },
+  "f_they_also_leave_the_collecti_b97e": {
+    "message": "Вони також полишають колекції, де перебувають."
+  },
+  "f_this_browser_has_no_built_in_fa45": {
+    "message": "У цьому браузері немає вбудованої моделі."
+  },
+  "f_title_summary_tags_highlight_f24c": {
+    "message": "Заголовок, підсумок, теги, виділення та статистика лишаються."
+  },
+  "f_too_much_text_for_the_built__d7e9": {
+    "message": "Забагато тексту для вбудованої моделі за раз. Виберіть менше елементів на порцію."
+  },
+  "f_topic_1b64": {
+    "message": "Тема"
+  },
+  "f_topic_actions_8957": {
+    "message": "Дії з темою"
+  },
+  "f_topics_a535": {
+    "message": "Теми"
+  },
+  "f_topics_inside_c9df": {
+    "message": "Теми всередині"
+  },
+  "f_use_ollama_again_bf46": {
+    "message": "Знову використати Ollama"
+  },
+  "f_use_another_email_dd18": {
+    "message": "Використати іншу пошту?"
+  },
+  "f_use_it_da81": {
+    "message": "Використати"
+  },
+  "f_video_c80c": {
+    "message": "Відео"
+  },
+  "f_viewer_page_746e": {
+    "message": "Сторінка перегляду"
+  },
+  "f_when_the_chosen_model_is_not_e746": {
+    "message": "Якщо вибрана модель не готова, нехай відповість наступна локальна"
+  },
+  "f_where_should_the_backup_live_3365": {
+    "message": "Де зберігати резервну копію?"
+  },
+  "f_where_should_the_reading_lis_3ba3": {
+    "message": "Де зберігати список для читання?"
+  },
+  "f_where_should_your_library_li_cf56": {
+    "message": "Де зберігати вашу бібліотеку?"
+  },
+  "f_where_this_device_differs_th_b5c9": {
+    "message": "Де цей пристрій відрізняється, перемагає місце. Нічого не видаляється. Для великої бібліотеки може тривати певний час."
+  },
+  "f_whole_library_local_model_0a98": {
+    "message": "Уся бібліотека · локальна модель"
+  },
+  "f_worked_on_opened_summarised__2bfc": {
+    "message": "Опрацьовано: відкрито, з підсумками й позначками"
+  },
+  "f_works_with_nextcloud_webdav__8a29": {
+    "message": "Працює з Nextcloud / WebDAV, сховищем, сумісним з S3, або текою на цьому комп’ютері."
+  },
+  "f_you_can_undo_this_for_a_few__09e3": {
+    "message": "Це можна скасувати протягом кількох секунд."
+  },
+  "f_your_highlights_and_notes_st_00a0": {
+    "message": "Виділення й нотатки лишаються в Нотатках."
+  },
+  "f_backup_only_d3bf": {
+    "message": "лише копія"
+  },
+  "f_deleted_ago_046d": {
+    "message": "видалено {t} тому"
+  },
+  "f_did_not_answer_4111": {
+    "message": "немає відповіді ({e})"
+  },
+  "f_did_not_finish_2912": {
+    "message": "не завершено"
+  },
+  "f_download_first_800f": {
+    "message": "спершу завантажте"
+  },
+  "f_encrypted_f1b3": {
+    "message": "зашифровано"
+  },
+  "f_fainter_only_saved_6692": {
+    "message": "блідіше = лише збережено"
+  },
+  "f_from_summaries_1db1": {
+    "message": "з {n} підсумків"
+  },
+  "f_from_summary_45fd": {
+    "message": "з {n} підсумку"
+  },
+  "f_grey_not_scored_4a8d": {
+    "message": "сірий: без оцінки"
+  },
+  "f_last_sync_ago_57bb": {
+    "message": "синхронізація {t} тому"
+  },
+  "f_negative_863a": {
+    "message": "негативні"
+  },
+  "f_newer_7eaa": {
+    "message": "новіше"
+  },
+  "f_nothing_changes_until_you_pr_9bc3": {
+    "message": "нічого не зміниться, доки не натиснете «Застосувати»"
+  },
+  "f_older_1461": {
+    "message": "старіше"
+  },
+  "f_positive_fa7a": {
+    "message": "позитивні"
+  },
+  "f_reorder_handle_e8ae": {
+    "message": "ручка перетягування"
+  },
+  "f_testing_7487": {
+    "message": "тестую…"
+  },
+  "f_two_way_78fb": {
+    "message": "двостороння"
+  },
+  "f_of_sources_checked_0746": {
+    "message": "Перевірено джерел: {a} із {n}"
+  },
+  "f_can_download_a_small_model_o_bd4d": {
+    "message": "{browser} може один раз завантажити невелику модель і запускати її на цьому комп’ютері. Для кращих підсумків беріть більшу модель Ollama."
+  },
+  "f_has_a_built_in_model_but_not_65ab": {
+    "message": "У {browser} є вбудована модель, але не на цьому комп’ютері (часто: мало вільного місця на диску). Деталі: {url}"
+  },
+  "f_built_in_e090": {
+    "message": "{browser} · вбудована"
+  },
+  "f_moved_to_position_of_3df9": {
+    "message": "{name} переміщено на позицію {i} з {n}"
+  },
+  "f_articles_not_read_yet_0f6a": {
+    "message": "Статей: {n}, непрочитаних: {u}"
+  },
+  "f_card_saved_in_anki_file_impo_8a5d": {
+    "message": "Збережено {n} картку. В Anki: Файл ▸ Імпорт."
+  },
+  "f_cards_saved_in_anki_file_imp_e2b8": {
+    "message": "Збережено карток: {n}. В Anki: Файл ▸ Імпорт."
+  },
+  "f_connected_item_14c3": {
+    "message": "{n} пов’язаний елемент"
+  },
+  "f_connected_items_9110": {
+    "message": "Пов’язаних елементів: {n}"
+  },
+  "f_deletion_waits_for_you_e389": {
+    "message": "{n} видалення чекає на вас"
+  },
+  "f_deletions_wait_for_you_3715": {
+    "message": "Видалень чекає на вас: {n}"
+  },
+  "f_file_waits_to_be_removed_faeb": {
+    "message": "{n} файл чекає на вилучення"
+  },
+  "f_files_wait_to_be_removed_eaef": {
+    "message": "Файлів чекає на вилучення: {n}"
+  },
+  "f_highlight_note_or_collection_aca0": {
+    "message": "{n} виділення, нотатка або колекція"
+  },
+  "f_highlights_notes_or_collecti_d087": {
+    "message": "Виділень, нотаток або колекцій: {n}"
+  },
+  "f_more_wait_after_these_7ac2": {
+    "message": "Ще {n} чекає після цих."
+  },
+  "f_more_waits_after_these_3cbf": {
+    "message": "Ще чекають після цих: {n}."
+  },
+  "f_place_needs_you_6fae": {
+    "message": "{n} місце потребує уваги"
+  },
+  "f_places_need_you_8bac": {
+    "message": "Місць, що потребують уваги: {n}"
+  },
+  "f_step_cf02": {
+    "message": "{n} крок: {chain}"
+  },
+  "f_steps_1b8f": {
+    "message": "Кроків: {n}: {chain}"
+  },
+  "f_subtopic_5270": {
+    "message": "{n} підтема"
+  },
+  "f_subtopics_1ab9": {
+    "message": "Підтем: {n}"
+  },
+  "f_tag_without_a_name_45a3": {
+    "message": "{n} тег без назви"
+  },
+  "f_tag_without_broader_topics_6820": {
+    "message": "{n} тег без ширших тем"
+  },
+  "f_tags_without_a_name_d3aa": {
+    "message": "Тегів без назви: {n}"
+  },
+  "f_tags_without_broader_topics_2531": {
+    "message": "Тегів без ширших тем: {n}"
+  },
+  "f_to_delete_3233": {
+    "message": "До видалення: {n}"
+  },
+  "f_to_keep_db29": {
+    "message": "Залишити: {n}"
+  },
+  "f_unread_article_stands_out_c185": {
+    "message": "{n} непрочитана стаття виділяється"
+  },
+  "f_unread_articles_stand_out_0499": {
+    "message": "Непрочитаних статей виділяється: {n}"
+  },
+  "f_s_of_rated_f50c": {
+    "message": "{s} с · оцінено {a} із {n}"
+  },
+  "f_s_33e3": {
+    "message": "{s} с"
+  },
+  "f_subtopic_of_articles_6833": {
+    "message": "{topic}, підтема «{parent}»: статей {n}"
+  },
+  "f_articles_unread_a7ef": {
+    "message": "{topic}: статей {n}, непрочитаних {u}"
+  },
+  "f_is_set_up_7618": {
+    "message": "«{name}» налаштовано"
+  },
+  "f__ec59": {
+    "message": "…"
+  },
+  "f_replay_1a24": {
+    "message": "▶ Повтор"
+  },
+  "f_answering_from_summaries_a77b": {
+    "message": "✨ Відповідаю за {n} підсумками…"
+  },
+  "f_briefing_from_summaries_83db": {
+    "message": "✨ Зведення з {n} підсумків…"
+  },
+  "f_local_model_dc21": {
+    "message": "🧠 Локальна модель"
   }
 }

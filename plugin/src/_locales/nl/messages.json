@@ -6624,5 +6624,875 @@
   },
   "f_places_use_this_server_4df9": {
     "message": "{n} plekken gebruiken deze server."
+  },
+  "f_a_copy_only_this_device_writ_6789": {
+    "message": "Een kopie die alleen dit apparaat schrijft. Versleuteld."
+  },
+  "f_a_local_model_on_this_comput_cb32": {
+    "message": "Een lokaal model op deze computer"
+  },
+  "f_a_small_model_that_comes_wit_dbb4": {
+    "message": "Een klein model dat bij Chrome zit: niets te installeren, niets verlaat je computer, geen tokens. Beoordelingen, categorieën en recaps zijn merkbaar zwakker dan met een groter model."
+  },
+  "f_a_task_sheet_to_check_each_s_715b": {
+    "message": "Een takenlijst om elke bron met de hand te controleren"
+  },
+  "f_add_your_phone_57ff": {
+    "message": "Je telefoon toevoegen"
+  },
+  "f_add_your_question_9bd5": {
+    "message": "Voeg je vraag toe"
+  },
+  "f_age_e13c": {
+    "message": "Leeftijd"
+  },
+  "f_all_except_fe8b": {
+    "message": "Alles behalve {tag}"
+  },
+  "f_all_local_models_c59b": {
+    "message": "Alle lokale modellen"
+  },
+  "f_all_places_are_up_to_date_0e60": {
+    "message": "Alle locaties zijn up-to-date"
+  },
+  "f_allow_firefox_ai_c2bb": {
+    "message": "Firefox AI toestaan"
+  },
+  "f_also_found_e4c8": {
+    "message": "Ook gevonden: {list}"
+  },
+  "f_anki_cards_0b3d": {
+    "message": "Anki-kaarten"
+  },
+  "f_apple_s_model_on_this_mac_re_ce75": {
+    "message": "Het model van Apple op deze Mac, nu klaar."
+  },
+  "f_apply_bbdb": {
+    "message": "Toepassen"
+  },
+  "f_apply_6e04": {
+    "message": "Toepassen ({n})"
+  },
+  "f_around_this_article_c58a": {
+    "message": "Rond dit artikel"
+  },
+  "f_at_least_two_tabs_stay_in_th_f869": {
+    "message": "Minstens twee tabs blijven in de dock."
+  },
+  "f_available_when_a_local_model_667c": {
+    "message": "Beschikbaar als een lokaal model is ingesteld (Instellingen › Modellen › Lokaal). Het beoordeelt, categoriseert en vat je hele feedbibliotheek samen in kleine batches op je eigen machine. Dat kan uren duren, maar kost geen tokens."
+  },
+  "f_back_up_123b": {
+    "message": "Back-up maken"
+  },
+  "f_better_connections_ready_f4f9": {
+    "message": "Betere verbindingen klaar"
+  },
+  "f_better_results_ollama_with_a_1cba": {
+    "message": "Betere resultaten: Ollama met een 7–8B-model (GPU of Apple Silicon), of een cloudmodel of je eigen API-sleutel voor samenvattingen."
+  },
+  "f_blocked_ac53": {
+    "message": "Geblokkeerd"
+  },
+  "f_bottom_dock_5a41": {
+    "message": "Dock onderaan"
+  },
+  "f_brief_me_on_this_277c": {
+    "message": "Geef me een briefing hierover"
+  },
+  "f_bring_everything_in_this_pla_40e5": {
+    "message": "Alles op deze locatie terughalen naar dit apparaat?"
+  },
+  "f_built_into_the_browser_ready_4b02": {
+    "message": "In de browser ingebouwd, nu klaar. Niets te installeren."
+  },
+  "f_built_in_chrome_model_gemini_2f37": {
+    "message": "Ingebouwd Chrome-model (Gemini Nano) · reserve"
+  },
+  "f_built_in_chrome_model_fallba_0e75": {
+    "message": "Ingebouwd Chrome-model (reserve)"
+  },
+  "f_change_the_question_4676": {
+    "message": "Vraag wijzigen"
+  },
+  "f_change_what_the_dot_colours__8ffd": {
+    "message": "Betekenis van de puntkleuren wijzigen"
+  },
+  "f_check_the_field_marked_below_9291": {
+    "message": "Controleer het hieronder gemarkeerde veld."
+  },
+  "f_check_c1c4": {
+    "message": "“{title}” controleren"
+  },
+  "f_chrome_can_download_a_small__897b": {
+    "message": "Chrome kan eenmalig een klein model (Gemini Nano) downloaden en de bibliotheek op je eigen computer draaien. Het werkt als reserve; de resultaten zijn zwakker dan met een groter model."
+  },
+  "f_citations_of_all_sources_wit_2ee3": {
+    "message": "Citaten van alle bronnen met een DOI. Alleen de DOI wordt verstuurd."
+  },
+  "f_collection_actions_47e6": {
+    "message": "Collectieacties"
+  },
+  "f_collection_deleted_784c": {
+    "message": "Collectie verwijderd"
+  },
+  "f_color_e44b": {
+    "message": "Kleur: {mode}"
+  },
+  "f_compare_first_a472": {
+    "message": "Eerst vergelijken"
+  },
+  "f_connected_in_steps_3a37": {
+    "message": "Verbonden in {n} stappen: {chain}"
+  },
+  "f_connects_f920": {
+    "message": "Verbindt: {topics}"
+  },
+  "f_continue_the_download_5741": {
+    "message": "Download hervatten"
+  },
+  "f_delete_all_adcd": {
+    "message": "Alles verwijderen"
+  },
+  "f_delete_article_6a74": {
+    "message": "Artikel verwijderen"
+  },
+  "f_delete_them_here_too_342a": {
+    "message": "Hier ook verwijderen…"
+  },
+  "f_delete_this_article_85f5": {
+    "message": "Dit artikel verwijderen?"
+  },
+  "f_delete_article_on_this_devic_4f26": {
+    "message": "{n} artikel ook op dit apparaat verwijderen?"
+  },
+  "f_delete_articles_bc95": {
+    "message": "{n} artikelen verwijderen"
+  },
+  "f_delete_articles_on_this_devi_6223": {
+    "message": "{n} artikelen ook op dit apparaat verwijderen?"
+  },
+  "f_delete_articles_ff9e": {
+    "message": "{n} artikelen verwijderen?"
+  },
+  "f_delete_4457": {
+    "message": "“{name}” verwijderen?"
+  },
+  "f_deleted_on_another_device_82c6": {
+    "message": "Op een ander apparaat verwijderd"
+  },
+  "f_deleted_with_the_articles_ab_2f89": {
+    "message": "Verwijderd met de artikelen hierboven, of los"
+  },
+  "f_detail_73b4": {
+    "message": "Detail"
+  },
+  "f_dots_coloured_by_age_purple__9066": {
+    "message": "Stippen gekleurd naar leeftijd: paars is oud, geel is recent"
+  },
+  "f_dots_coloured_by_mood_orange_7f40": {
+    "message": "Stippen gekleurd naar stemming: oranje is negatief, blauw is positief, grijs is niet beoordeeld"
+  },
+  "f_dots_coloured_by_topic_e504": {
+    "message": "Stippen gekleurd naar onderwerp"
+  },
+  "f_download_and_use_a7af": {
+    "message": "Downloaden en gebruiken"
+  },
+  "f_download_failed_78b7": {
+    "message": "Download mislukt: {e}"
+  },
+  "f_download_the_built_in_model_55af": {
+    "message": "Ingebouwd model downloaden"
+  },
+  "f_downloading_chrome_keeps_goi_6ce9": {
+    "message": "Downloaden… Chrome gaat door als je dit paneel sluit."
+  },
+  "f_downloading_keeps_going_if_y_9c1b": {
+    "message": "Downloaden… {browser} gaat door als je dit paneel sluit."
+  },
+  "f_drag_to_reorder_or_use_the_a_fda1": {
+    "message": "Sleep om te herordenen, of gebruik de pijltjestoetsen"
+  },
+  "f_drag_to_change_the_order_scr_0493": {
+    "message": "Sleep ⋮⋮ om de volgorde te wijzigen. Schermen schuiven in dezelfde volgorde."
+  },
+  "f_everything_else_3ef1": {
+    "message": "Al het andere"
+  },
+  "f_export_with_secrets_8f81": {
+    "message": "Exporteren met geheimen?"
+  },
+  "f_fallback_chrome_has_a_built__7c2d": {
+    "message": "Reserve: Chrome heeft een ingebouwd model (Gemini Nano). Ollama blijft je standaard."
+  },
+  "f_fastest_here_in_the_quick_te_eaf5": {
+    "message": "Het snelst hier in de snelle test: {s} s voor {n} koppen, allemaal beoordeeld."
+  },
+  "f_fetches_and_processes_new_it_7491": {
+    "message": "Haalt nieuwe items op en verwerkt ze op de achtergrond met je lokale model zolang je browser draait. Cloud- en BYOK-modellen blijven handmatig."
+  },
+  "f_files_to_remove_from_your_se_b6f7": {
+    "message": "Bestanden om van je server te verwijderen"
+  },
+  "f_firefox_ai_is_turned_off_in__07f7": {
+    "message": "Firefox AI staat uit. Open in Firefox Beta of Release about:config en zet browser.ml.enable en extensions.ml.enabled op true, laad de extensie daarna opnieuw."
+  },
+  "f_firefox_can_summarize_pages__2ea3": {
+    "message": "Firefox kan pagina’s samenvatten met een klein model op deze computer. Het vat alleen samen (geen feeds, vragen of tags) en werkt het best met Engelse tekst."
+  },
+  "f_firefox_built_in_e829": {
+    "message": "Firefox · ingebouwd"
+  },
+  "f_fix_1a18": {
+    "message": "Herstellen"
+  },
+  "f_focus_b1b3": {
+    "message": "Focus"
+  },
+  "f_forget_all_c09f": {
+    "message": "Alles vergeten"
+  },
+  "f_forget_all_learned_names_4b29": {
+    "message": "Alle geleerde namen vergeten?"
+  },
+  "f_found_on_but_it_does_not_acc_032a": {
+    "message": "Gevonden op {origin}, maar het accepteert deze extensie nog niet. Start het met: apfel --serve --allowed-origins {ext}"
+  },
+  "f_found_on_but_it_refuses_requ_d766": {
+    "message": "Gevonden op {origin}, maar het weigert verzoeken van deze extensie. Sta andere origins (CORS) toe in de instellingen en zoek opnieuw."
+  },
+  "f_full_texts_2af0": {
+    "message": "Volledige teksten"
+  },
+  "f_give_these_tags_their_englis_fe72": {
+    "message": "Geef deze tags hun Engelse namen, zodat hetzelfde onderwerp in twee talen er één wordt"
+  },
+  "f_graph_layout_e97f": {
+    "message": "Grafiekindeling"
+  },
+  "f_group_902c": {
+    "message": "Groep"
+  },
+  "f_hide_7bcd": {
+    "message": "Verbergen"
+  },
+  "f_highlight_removed_b93b": {
+    "message": "Markering verwijderd"
+  },
+  "f_import_0af4": {
+    "message": "Importeren"
+  },
+  "f_import_secrets_ab02": {
+    "message": "Geheimen importeren?"
+  },
+  "f_in_firefox_built_in_ai_exper_4366": {
+    "message": "In Firefox: ingebouwde AI (experimenteel)"
+  },
+  "f_in_progress_opened_or_annota_d57b": {
+    "message": "Bezig: geopend of geannoteerd"
+  },
+  "f_in_use_e11d": {
+    "message": "In gebruik"
+  },
+  "f_in_built_in_model_699b": {
+    "message": "In {browser}: ingebouwd model"
+  },
+  "f_installed_and_ready_usually__a5a2": {
+    "message": "Geïnstalleerd en klaar. Meestal de sterkste lokale optie."
+  },
+  "f_it_also_leaves_the_collectio_6fdf": {
+    "message": "Het verdwijnt ook uit de collecties waarin het zit."
+  },
+  "f_keep_be68": {
+    "message": "Bewaren"
+  },
+  "f_keep_all_775b": {
+    "message": "Alles bewaren"
+  },
+  "f_keep_your_library_in_step_ac_3d5f": {
+    "message": "Houd je bibliotheek gelijk op al je apparaten, maak een back-up of publiceer een deel voor anderen. Er verlaat niets dit apparaat tot je er een toevoegt. Kies wat je wilt doen:"
+  },
+  "f_last_run_ago_9b65": {
+    "message": "Laatste run: {t} geleden"
+  },
+  "f_learned_tag_names_b494": {
+    "message": "Geleerde tagnamen"
+  },
+  "f_link_removed_from_your_inbox_19ce": {
+    "message": "Link uit je inbox verwijderd"
+  },
+  "f_local_23a8": {
+    "message": "Lokaal"
+  },
+  "f_looking_for_local_models_not_e5e8": {
+    "message": "Zoeken naar lokale modellen… er wordt niets geïnstalleerd of verstuurd."
+  },
+  "f_manual_setup_endpoint_and_mo_25d9": {
+    "message": "Handmatige instelling: endpoint en modelnamen"
+  },
+  "f_matching_articles_2869": {
+    "message": "Passende artikelen zoeken…"
+  },
+  "f_move_ab88": {
+    "message": "“{name}” verplaatsen"
+  },
+  "f_next_month_1650": {
+    "message": "Volgende maand →"
+  },
+  "f_no_ollama_use_the_model_buil_21a4": {
+    "message": "Geen Ollama? Gebruik het model dat in Chrome zit"
+  },
+  "f_no_cards_yet_ask_a_question__0c72": {
+    "message": "Nog geen kaarten. Stel een vraag over dit onderwerp, of pin een antwoord onder een artikel, dan worden het kaarten."
+  },
+  "f_no_local_model_on_this_compu_27e9": {
+    "message": "Nog geen lokaal model op deze computer. Download hieronder het ingebouwde browsermodel als dat wordt aangeboden, of stel Ollama in (stappen hieronder)."
+  },
+  "f_no_model_yet_48f9": {
+    "message": "Nog geen model"
+  },
+  "f_no_sources_yet_9cfa": {
+    "message": "Nog geen bronnen"
+  },
+  "f_not_connected_no_shared_tag__c496": {
+    "message": "Niet verbonden: geen gedeelde tag of vergelijkbare inhoud koppelt deze twee"
+  },
+  "f_not_found_on_this_computer_u_1f3a": {
+    "message": "Niet gevonden op deze computer. Meestal de sterkste lokale optie: gratis, veel modellen."
+  },
+  "f_not_measured_yet_the_test_se_48f1": {
+    "message": "Nog niet gemeten. De test stuurt twee kleine beoordelingsbatches naar het ingebouwde Chrome-model en er verlaat niets je computer."
+  },
+  "f_not_measured_yet_the_test_se_ae15": {
+    "message": "Nog niet gemeten. De test stuurt twee kleine beoordelingsbatches naar je lokale model (ongeveer een minuut op een trage machine) en er verlaat niets je computer."
+  },
+  "f_not_ready_233d": {
+    "message": "Niet klaar"
+  },
+  "f_not_running_415d": {
+    "message": "Draait niet"
+  },
+  "f_note_deleted_de30": {
+    "message": "Notitie verwijderd"
+  },
+  "f_nothing_is_deleted_here_unti_c0c4": {
+    "message": "Hier wordt niets verwijderd tot jij het zegt. Bewaren haalt het ook terug op je andere apparaten."
+  },
+  "f_nothing_synced_yet_54fe": {
+    "message": "Nog niets gesynchroniseerd"
+  },
+  "f_ollama_recommended_4bf5": {
+    "message": "Ollama (aanbevolen)"
+  },
+  "f_ollama_chrome_s_built_in_mod_312f": {
+    "message": "Ollama, het ingebouwde Chrome-model, LM Studio en meer. Geen account, geen sleutel."
+  },
+  "f_only_the_saved_summaries_of__bad5": {
+    "message": "Alleen de opgeslagen samenvattingen van deze artikelen worden verstuurd, geen volledige tekst."
+  },
+  "f_open_the_topic_page_a_short__6eeb": {
+    "message": "Open de onderwerppagina: een korte briefing uit de {n} opgeslagen samenvattingen"
+  },
+  "f_open_topic_0216": {
+    "message": "Onderwerp openen"
+  },
+  "f_opera_s_built_in_model_is_no_c9d0": {
+    "message": "Het ingebouwde model van Opera is nog niet klaar. Zet Instellingen › Opera AI › Enable Web AI API aan, wacht tot het model is gedownload (Opera-zijbalk) en controleer opnieuw. Nog niet op Intel-Macs, Linux of Windows op Arm."
+  },
+  "f_paper_bfd9": {
+    "message": "Papier"
+  },
+  "f_path_e456": {
+    "message": "Pad"
+  },
+  "f_path_from_pick_a_second_item_99f7": {
+    "message": "Pad vanaf “{a}”: kies een tweede item"
+  },
+  "f_path_mode_off_6af2": {
+    "message": "Padmodus uit."
+  },
+  "f_path_mode_on_pick_two_items__dfb3": {
+    "message": "Padmodus aan: kies twee items om te zien hoe ze verbonden zijn."
+  },
+  "f_path_mode_first_item_chosen__68ab": {
+    "message": "Padmodus: eerste item {a} gekozen. Kies een tweede."
+  },
+  "f_pick_two_items_to_see_how_th_7bb2": {
+    "message": "Kies twee items om te zien hoe ze verbonden zijn"
+  },
+  "f_plain_files_for_your_website_5a09": {
+    "message": "Gewone bestanden voor je website. Leesbaar."
+  },
+  "f_publish_a_reading_list_c489": {
+    "message": "Leeslijst publiceren"
+  },
+  "f_publish_only_bc8a": {
+    "message": "Alleen publiceren"
+  },
+  "f_quick_test_on_this_computer_4504": {
+    "message": "Snelle test op deze computer"
+  },
+  "f_reading_your_saved_articles__c628": {
+    "message": "Je opgeslagen artikelen op de achtergrond lezen"
+  },
+  "f_ready_3294": {
+    "message": "Klaar"
+  },
+  "f_ready_dace": {
+    "message": "Klaar."
+  },
+  "f_recaps_are_written_by_your_l_d85f": {
+    "message": "Recaps worden geschreven door je lokale model, ook als samenvattingen de cloud gebruiken"
+  },
+  "f_recommended_for_this_compute_49ee": {
+    "message": "Aanbevolen voor deze computer"
+  },
+  "f_redraw_the_graph_with_the_ne_1477": {
+    "message": "Grafiek opnieuw tekenen met de nieuwe treffers"
+  },
+  "f_references_6beb": {
+    "message": "Referenties"
+  },
+  "f_remove_all_saved_images_ce5e": {
+    "message": "Alle opgeslagen afbeeldingen verwijderen?"
+  },
+  "f_remove_saved_page_text_185d": {
+    "message": "Opgeslagen paginatekst verwijderen?"
+  },
+  "f_remove_text_2ec0": {
+    "message": "Tekst verwijderen"
+  },
+  "f_remove_them_7ce1": {
+    "message": "Verwijderen…"
+  },
+  "f_remove_this_place_212e": {
+    "message": "Deze locatie verwijderen…"
+  },
+  "f_remove_file_from_your_server_52c6": {
+    "message": "{n} bestand van je server verwijderen?"
+  },
+  "f_remove_files_from_your_serve_fe5d": {
+    "message": "{n} bestanden van je server verwijderen?"
+  },
+  "f_remove_from_this_device_d01c": {
+    "message": "“{name}” van dit apparaat verwijderen?"
+  },
+  "f_remove_from_the_collection_697b": {
+    "message": "“{title}” uit de collectie halen"
+  },
+  "f_removed_from_922b": {
+    "message": "Uit “{name}” gehaald"
+  },
+  "f_rename_collection_565d": {
+    "message": "Collectie hernoemen"
+  },
+  "f_replay_finished_all_articles_bf34": {
+    "message": "Replay klaar: alle {n} artikelen in beeld"
+  },
+  "f_replay_started_fde4": {
+    "message": "Replay gestart: {a}"
+  },
+  "f_reset_dock_c35f": {
+    "message": "Dock resetten"
+  },
+  "f_restore_from_here_a9df": {
+    "message": "Hiervandaan herstellen…"
+  },
+  "f_restore_now_8f4d": {
+    "message": "Nu herstellen"
+  },
+  "f_runs_in_chrome_on_your_own_m_5cbf": {
+    "message": "Draait in Chrome op je eigen machine en kost geen tokens. Houd dit paneel open: sluiten pauzeert de run en opnieuw starten gaat verder waar het stopte. Automatische runs bij gesloten paneel vragen Ollama."
+  },
+  "f_runs_inside_the_browser_on_t_a77b": {
+    "message": "Draait in de browser op deze computer. Eenmalige download, daarna werkt het offline."
+  },
+  "f_runs_inside_on_this_computer_060a": {
+    "message": "Draait in {browser} op deze computer. Niets te installeren, niets verlaat de computer."
+  },
+  "f_save_image_4805": {
+    "message": "Afbeelding opslaan"
+  },
+  "f_save_this_picture_as_an_svg__7d9f": {
+    "message": "Deze afbeelding als SVG-bestand op je apparaat opslaan"
+  },
+  "f_saved_not_worked_on_yet_a3ba": {
+    "message": "Opgeslagen, nog niet bewerkt"
+  },
+  "f_scan_the_code_in_ai_summary__57b0": {
+    "message": "Scan de code in AI Summary Helper op Android: Instellingen → Bibliotheeksync → Code scannen. Hij bevat je serverlogin, toon hem dus alleen aan je eigen telefoon. Hij verbergt zichzelf na een minuut."
+  },
+  "f_see_the_recommendation_f58a": {
+    "message": "Aanbeveling bekijken"
+  },
+  "f_sending_the_batch_to_the_bui_0d29": {
+    "message": "Batch naar het ingebouwde model sturen…"
+  },
+  "f_sending_the_batch_to_the_loc_551c": {
+    "message": "Batch naar het lokale model sturen…"
+  },
+  "f_set_up_ollama_instead_3c9c": {
+    "message": "In plaats daarvan Ollama instellen"
+  },
+  "f_settings_8728": {
+    "message": "Instellingen"
+  },
+  "f_show_everything_again_71fd": {
+    "message": "Alles weer tonen"
+  },
+  "f_show_only_what_you_have_not__fa38": {
+    "message": "Alleen tonen wat je nog niet hebt gelezen"
+  },
+  "f_show_the_words_code_for_the__5677": {
+    "message": "Woorden tonen · code voor de telefoon · herstellen"
+  },
+  "f_show_all_to_change_the_order_a1cc": {
+    "message": "Toon “Alles” om de volgorde te wijzigen."
+  },
+  "f_show_in_the_dock_11ab": {
+    "message": "“{name}” in de dock tonen"
+  },
+  "f_showing_all_articles_3396": {
+    "message": "Alle artikelen worden getoond"
+  },
+  "f_small_model_fast_to_start_fo_6def": {
+    "message": "Klein model, snel gestart. Kies voor betere samenvattingen een groter Ollama-model."
+  },
+  "f_sort_your_order_0238": {
+    "message": "Sorteren: jouw volgorde"
+  },
+  "f_sources_checked_8cec": {
+    "message": "Gecontroleerde bronnen"
+  },
+  "f_sources_checks_and_overview__1f6e": {
+    "message": "Bronnen, controles en overzicht in één .md-bestand"
+  },
+  "f_sources_in_export_order_1c20": {
+    "message": "Bronnen, in exportvolgorde"
+  },
+  "f_stopped_8940": {
+    "message": "Gestopt."
+  },
+  "f_subtopics_7f65": {
+    "message": "Subonderwerpen"
+  },
+  "f_summaries_only_ff23": {
+    "message": "Alleen samenvattingen"
+  },
+  "f_summaries_only_best_with_eng_1c13": {
+    "message": "Alleen samenvattingen, het best met Engelse tekst. Kies voor feeds, vragen en betere samenvattingen Ollama of een ander lokaal model."
+  },
+  "f_summaries_only_best_with_eng_3324": {
+    "message": "Alleen samenvattingen, het best met Engelse tekst. De eerste samenvatting downloadt het model."
+  },
+  "f_summarize_is_always_in_the_d_7c1a": {
+    "message": "Samenvatten staat altijd in de dock."
+  },
+  "f_sync_all_now_2e41": {
+    "message": "Nu alles synchroniseren"
+  },
+  "f_tagged_be03": {
+    "message": "Getagd {tag}"
+  },
+  "f_text_summaries_highlights_an_2b62": {
+    "message": "Tekst, samenvattingen, markeringen en notities blijven."
+  },
+  "f_the_english_names_and_broade_599c": {
+    "message": "De Engelse namen en bredere onderwerpen die je tags kregen. Wijzig er een, of vergeet hem zodat hij opnieuw kan worden benoemd. Je artikelen houden hun tags."
+  },
+  "f_the_article_is_deleted_with__9abb": {
+    "message": "Het artikel wordt verwijderd met zijn samenvatting en opgeslagen paginatekst."
+  },
+  "f_the_articles_are_deleted_wit_3e46": {
+    "message": "De artikelen worden verwijderd met hun samenvattingen en opgeslagen paginatekst."
+  },
+  "f_the_built_in_model_does_not__43cb": {
+    "message": "Het ingebouwde model ondersteunt deze taal of invoer niet."
+  },
+  "f_the_built_in_model_is_turned_532f": {
+    "message": "Het ingebouwde model staat uit in deze browser."
+  },
+  "f_the_collection_and_its_quest_ca0c": {
+    "message": "De collectie en haar vraag worden verwijderd."
+  },
+  "f_the_collection_its_question__fa4f": {
+    "message": "De collectie, haar vraag en haar overzicht worden verwijderd."
+  },
+  "f_the_files_already_on_your_se_3a7e": {
+    "message": "De bestanden die al op je server staan, worden niet verwijderd."
+  },
+  "f_the_local_server_refused_thi_142b": {
+    "message": "De lokale server weigerde deze extensie. Start hem met: apfel --serve --allowed-origins {origin}"
+  },
+  "f_the_order_here_is_the_order__1a1b": {
+    "message": "De volgorde hier is de volgorde van de export en het takenblad. Sleep ⋮⋮ om haar te wijzigen."
+  },
+  "f_the_overview_compares_at_lea_9f33": {
+    "message": "Het overzicht vergelijkt minstens twee bronnen."
+  },
+  "f_the_same_library_on_laptop_a_d4ab": {
+    "message": "Dezelfde bibliotheek op laptop en telefoon. Versleuteld."
+  },
+  "f_the_same_headlines_go_to_eac_db67": {
+    "message": "Dezelfde {n} koppen gaan naar elk model, na elkaar. Er verlaat niets deze computer."
+  },
+  "f_the_articles_stay_in_your_li_dcd2": {
+    "message": "De {n} artikelen blijven in je bibliotheek met hun controles."
+  },
+  "f_these_two_are_not_connected_3328": {
+    "message": "Deze twee zijn niet verbonden."
+  },
+  "f_they_also_leave_the_collecti_b97e": {
+    "message": "Ze verdwijnen ook uit de collecties waarin ze zitten."
+  },
+  "f_this_browser_has_no_built_in_fa45": {
+    "message": "Deze browser heeft geen ingebouwd model."
+  },
+  "f_title_summary_tags_highlight_f24c": {
+    "message": "Titel, samenvatting, tags, markeringen en statistieken blijven."
+  },
+  "f_too_much_text_for_the_built__d7e9": {
+    "message": "Te veel tekst in één keer voor het ingebouwde model. Kies minder items per batch."
+  },
+  "f_topic_1b64": {
+    "message": "Onderwerp"
+  },
+  "f_topic_actions_8957": {
+    "message": "Onderwerpacties"
+  },
+  "f_topics_a535": {
+    "message": "Onderwerpen"
+  },
+  "f_topics_inside_c9df": {
+    "message": "Onderwerpen erin"
+  },
+  "f_use_ollama_again_bf46": {
+    "message": "Ollama weer gebruiken"
+  },
+  "f_use_another_email_dd18": {
+    "message": "Een ander e-mailadres gebruiken?"
+  },
+  "f_use_it_da81": {
+    "message": "Gebruiken"
+  },
+  "f_video_c80c": {
+    "message": "Video"
+  },
+  "f_viewer_page_746e": {
+    "message": "Weergavepagina"
+  },
+  "f_when_the_chosen_model_is_not_e746": {
+    "message": "Laat het volgende lokale model antwoorden als het gekozen model niet klaar is"
+  },
+  "f_where_should_the_backup_live_3365": {
+    "message": "Waar moet de back-up staan?"
+  },
+  "f_where_should_the_reading_lis_3ba3": {
+    "message": "Waar moet de leeslijst staan?"
+  },
+  "f_where_should_your_library_li_cf56": {
+    "message": "Waar moet je bibliotheek staan?"
+  },
+  "f_where_this_device_differs_th_b5c9": {
+    "message": "Waar dit apparaat afwijkt, wint de locatie. Er wordt hier niets verwijderd. Bij een grote bibliotheek kan dit even duren."
+  },
+  "f_whole_library_local_model_0a98": {
+    "message": "Hele bibliotheek · lokaal model"
+  },
+  "f_worked_on_opened_summarised__2bfc": {
+    "message": "Bewerkt: geopend, samengevat en geannoteerd"
+  },
+  "f_works_with_nextcloud_webdav__8a29": {
+    "message": "Werkt met Nextcloud / WebDAV, S3-compatibele opslag of een map op deze computer."
+  },
+  "f_you_can_undo_this_for_a_few__09e3": {
+    "message": "Je kunt dit een paar seconden ongedaan maken."
+  },
+  "f_your_highlights_and_notes_st_00a0": {
+    "message": "Je markeringen en notities blijven in Notities."
+  },
+  "f_backup_only_d3bf": {
+    "message": "alleen back-up"
+  },
+  "f_deleted_ago_046d": {
+    "message": "{t} geleden verwijderd"
+  },
+  "f_did_not_answer_4111": {
+    "message": "reageerde niet ({e})"
+  },
+  "f_did_not_finish_2912": {
+    "message": "niet afgerond"
+  },
+  "f_download_first_800f": {
+    "message": "eerst downloaden"
+  },
+  "f_encrypted_f1b3": {
+    "message": "versleuteld"
+  },
+  "f_fainter_only_saved_6692": {
+    "message": "vager = alleen opgeslagen"
+  },
+  "f_from_summaries_1db1": {
+    "message": "uit {n} samenvattingen"
+  },
+  "f_from_summary_45fd": {
+    "message": "uit {n} samenvatting"
+  },
+  "f_grey_not_scored_4a8d": {
+    "message": "grijs: niet beoordeeld"
+  },
+  "f_last_sync_ago_57bb": {
+    "message": "laatste sync {t} geleden"
+  },
+  "f_negative_863a": {
+    "message": "negatief"
+  },
+  "f_newer_7eaa": {
+    "message": "nieuwer"
+  },
+  "f_nothing_changes_until_you_pr_9bc3": {
+    "message": "er verandert niets tot je op Toepassen drukt"
+  },
+  "f_older_1461": {
+    "message": "ouder"
+  },
+  "f_positive_fa7a": {
+    "message": "positief"
+  },
+  "f_reorder_handle_e8ae": {
+    "message": "herordeningshandvat"
+  },
+  "f_testing_7487": {
+    "message": "testen…"
+  },
+  "f_two_way_78fb": {
+    "message": "tweerichting"
+  },
+  "f_of_sources_checked_0746": {
+    "message": "{a} van {n} bronnen gecontroleerd"
+  },
+  "f_can_download_a_small_model_o_bd4d": {
+    "message": "{browser} kan eenmalig een klein model downloaden en op deze computer draaien. Gebruik voor betere samenvattingen een groter Ollama-model."
+  },
+  "f_has_a_built_in_model_but_not_65ab": {
+    "message": "{browser} heeft een ingebouwd model, maar nu niet op deze computer (vaak: te weinig vrije schijfruimte). Details: {url}"
+  },
+  "f_built_in_e090": {
+    "message": "{browser} · ingebouwd"
+  },
+  "f_moved_to_position_of_3df9": {
+    "message": "{name} verplaatst naar positie {i} van {n}"
+  },
+  "f_articles_not_read_yet_0f6a": {
+    "message": "{n} artikelen, {u} nog niet gelezen"
+  },
+  "f_card_saved_in_anki_file_impo_8a5d": {
+    "message": "{n} kaart opgeslagen. In Anki: Bestand ▸ Importeren."
+  },
+  "f_cards_saved_in_anki_file_imp_e2b8": {
+    "message": "{n} kaarten opgeslagen. In Anki: Bestand ▸ Importeren."
+  },
+  "f_connected_item_14c3": {
+    "message": "{n} verbonden item"
+  },
+  "f_connected_items_9110": {
+    "message": "{n} verbonden items"
+  },
+  "f_deletion_waits_for_you_e389": {
+    "message": "{n} verwijdering wacht op je"
+  },
+  "f_deletions_wait_for_you_3715": {
+    "message": "{n} verwijderingen wachten op je"
+  },
+  "f_file_waits_to_be_removed_faeb": {
+    "message": "{n} bestand wacht op verwijdering"
+  },
+  "f_files_wait_to_be_removed_eaef": {
+    "message": "{n} bestanden wachten op verwijdering"
+  },
+  "f_highlight_note_or_collection_aca0": {
+    "message": "{n} markering, notitie of collectie"
+  },
+  "f_highlights_notes_or_collecti_d087": {
+    "message": "{n} markeringen, notities of collecties"
+  },
+  "f_more_wait_after_these_7ac2": {
+    "message": "{n} wacht er nog na deze."
+  },
+  "f_more_waits_after_these_3cbf": {
+    "message": "{n} wachten er nog na deze."
+  },
+  "f_place_needs_you_6fae": {
+    "message": "{n} locatie heeft je nodig"
+  },
+  "f_places_need_you_8bac": {
+    "message": "{n} locaties hebben je nodig"
+  },
+  "f_step_cf02": {
+    "message": "{n} stap: {chain}"
+  },
+  "f_steps_1b8f": {
+    "message": "{n} stappen: {chain}"
+  },
+  "f_subtopic_5270": {
+    "message": "{n} subonderwerp"
+  },
+  "f_subtopics_1ab9": {
+    "message": "{n} subonderwerpen"
+  },
+  "f_tag_without_a_name_45a3": {
+    "message": "{n} tag zonder naam"
+  },
+  "f_tag_without_broader_topics_6820": {
+    "message": "{n} tag zonder bredere onderwerpen"
+  },
+  "f_tags_without_a_name_d3aa": {
+    "message": "{n} tags zonder naam"
+  },
+  "f_tags_without_broader_topics_2531": {
+    "message": "{n} tags zonder bredere onderwerpen"
+  },
+  "f_to_delete_3233": {
+    "message": "{n} te verwijderen"
+  },
+  "f_to_keep_db29": {
+    "message": "{n} te bewaren"
+  },
+  "f_unread_article_stands_out_c185": {
+    "message": "{n} ongelezen artikel valt op"
+  },
+  "f_unread_articles_stand_out_0499": {
+    "message": "{n} ongelezen artikelen vallen op"
+  },
+  "f_s_of_rated_f50c": {
+    "message": "{s} s · {a} van {n} beoordeeld"
+  },
+  "f_s_33e3": {
+    "message": "{s}s"
+  },
+  "f_subtopic_of_articles_6833": {
+    "message": "{topic}, subonderwerp van {parent}: {n} artikelen"
+  },
+  "f_articles_unread_a7ef": {
+    "message": "{topic}: {n} artikelen, {u} ongelezen"
+  },
+  "f_is_set_up_7618": {
+    "message": "“{name}” is ingesteld"
+  },
+  "f__ec59": {
+    "message": "…"
+  },
+  "f_replay_1a24": {
+    "message": "▶ Replay"
+  },
+  "f_answering_from_summaries_a77b": {
+    "message": "✨ Antwoord uit {n} samenvattingen…"
+  },
+  "f_briefing_from_summaries_83db": {
+    "message": "✨ Briefing uit {n} samenvattingen…"
+  },
+  "f_local_model_dc21": {
+    "message": "🧠 Lokaal model"
   }
 }
