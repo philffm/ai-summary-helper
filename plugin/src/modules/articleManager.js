@@ -1971,14 +1971,14 @@ function renderDetailTags(article, host) {
         input.addEventListener('keydown', (ev) => { if (ev.key === 'Enter' && !ev.isComposing) { ev.preventDefault(); commit(); } else if (ev.key === 'Escape') { ev.stopPropagation(); refresh(); } });
         input.addEventListener('blur', () => setTimeout(() => { if (input.isConnected) commit(); }, 120));
         add.replaceWith(input);
-        // Suggestions: 🎓 Research paper (unless already one), built-in categories, then the user's most used tags.
+        // Suggestions: 🎓 Research paper (unless already one), then the tags already known (most used first, archive included; plus the tags
+        // the sync places and the MCP server filter on, e.g. "private"), then the built-in categories.
         const have = new Set((article.tags || []).map(t => t.toLowerCase()));
         const freq = new Map();
-        (cachedArticles || []).forEach(a => (a.tags || []).forEach(t => freq.set(t, (freq.get(t) || 0) + 1)));
-        const used = [...freq.entries()].sort((x, y) => y[1] - x[1]).map(e => e[0]);
+        [...(cachedArticles || []), ...(archivedCache || [])].forEach(a => (a.tags || []).forEach(t => freq.set(t, (freq.get(t) || 0) + 1)));
         const cats = [T('News'), T('Tutorial'), T('Opinion'), T('Reference'), T('Interview')];
-        const names = [...new Set([...cats, ...used].filter(t => !have.has(t.toLowerCase())))].slice(0, 10);
         const sugg = [];
+        const nameBtns = [];
         const mkSugg = (label, onPick, isPaper) => {
             const b = document.createElement('button');
             b.type = 'button'; b.className = 'tag-chip tag-add tag-suggest' + (isPaper ? ' tag-suggest-paper' : ''); b.textContent = label;
@@ -1986,9 +1986,25 @@ function renderDetailTags(article, host) {
             b.addEventListener('click', onPick);
             sugg.push(b); return b;
         };
-        if (!paperState(article)) mkSugg(T('🎓 Research paper'), async () => { await applyStatus([article.id], { paperOverride: 'yes' }); article.paperOverride = 'yes'; refresh(); }, true);
-        names.forEach(n => mkSugg(n, () => saveTags([...(article.tags || []), n])));
-        input.after(...sugg);
+        let anchor = input;
+        if (!paperState(article)) anchor = (() => { const b = mkSugg(T('🎓 Research paper'), async () => { await applyStatus([article.id], { paperOverride: 'yes' }); article.paperOverride = 'yes'; refresh(); }, true); input.after(b); return b; })();
+        const fillNames = (extra) => {
+            nameBtns.forEach(b => { sugg.splice(sugg.indexOf(b), 1); b.remove(); });
+            nameBtns.length = 0;
+            const used = [...freq.entries()].sort((x, y) => y[1] - x[1]).map(e => e[0]);
+            const names = [...new Set([...extra, ...used, ...cats].filter(t => t && !have.has(t.toLowerCase())))].slice(0, 16);
+            const btns = names.map(n => mkSugg(n, () => saveTags([...(article.tags || []), n])));
+            nameBtns.push(...btns);
+            anchor.after(...btns);
+            if (input.value && typeof Event === 'function') input.dispatchEvent(new Event('input'));   // keep the typed filter applied
+        };
+        fillNames([]);
+        StorageManager.getLocal({ [SK.syncPlaces]: [] }).then((r) => {
+            if (!input.isConnected) return;
+            const extra = [];
+            (r[SK.syncPlaces] || []).forEach(pl => { const f = (pl && pl.filter) || {}; if (f.tag) extra.push(f.tag); if (f.excludeTag) extra.push(f.excludeTag); });
+            if (extra.length) fillNames(extra);
+        }).catch(() => {});
         const doiSugg = mkSugg('', () => { const d = normalizeDoi(input.value); if (d) assignDoi(d); }, true);
         doiSugg.hidden = true;
         input.after(doiSugg);
