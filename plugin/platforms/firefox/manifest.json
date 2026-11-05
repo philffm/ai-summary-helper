@@ -24,7 +24,11 @@
     "storage",
     "contextMenus",
     "notifications",
-    "alarms"
+    "alarms",
+    "declarativeNetRequestWithHostAccess"
+  ],
+  "optional_permissions": [
+    "trialML"
   ],
   "host_permissions": [
     "<all_urls>",
@@ -35,6 +39,7 @@
       "audioEngine.js",
       "ttsEngine.js",
       "finalize.js",
+      "builtinAi.js",
       "feed-worker.js",
       "inbox-worker.js",
       "targets-worker.js",

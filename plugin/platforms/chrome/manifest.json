@@ -15,7 +15,8 @@
     "alarms",
     "offscreen",
     "tts",
-    "unlimitedStorage"
+    "unlimitedStorage",
+    "declarativeNetRequestWithHostAccess"
   ],
   "host_permissions": [
     "<all_urls>",
