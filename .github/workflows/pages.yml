@@ -3,6 +3,8 @@ name: Deploy website
 # Publishes docs/ (the hand-written site) plus the live demo (built from plugin/src, never committed) to GitHub Pages.
 # One-time setup: repository Settings → Pages → Build and deployment → Source: "GitHub Actions".
 
+# The demo follows the RELEASES, not every commit: it is built from the latest v* tag (see the step below) and redeployed when
+# a release has finished. Pushes to docs/ (the site itself) deploy as before, with the demo of the last release.
 on:
   push:
     branches: [main]
@@ -10,10 +12,10 @@ on:
       - 'docs/**'
       - 'scripts/legacy-lang-stubs.mjs'
       - 'scripts/indexnow.mjs'
-      - 'plugin/src/**'
-      - 'plugin/demo/**'
-      - 'plugin/scripts/build-demo.mjs'
       - '.github/workflows/pages.yml'
+  workflow_run:
+    workflows: ['Build and Release Extension']
+    types: [completed]
   workflow_dispatch:
 
 permissions:
@@ -31,8 +33,24 @@ jobs:
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
+    # a release that failed publishes nothing new
+    if: ${{ github.event_name != 'workflow_run' || github.event.workflow_run.conclusion == 'success' }}
     steps:
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      # The demo is the extension of the latest release, not of whatever is on main right now. Falls back to main when there is no
+      # tag yet or the tag predates the demo.
+      - name: Use the demo sources of the latest release
+        run: |
+          TAG=$(git tag --list 'v*' --sort=-v:refname | head -n1)
+          if [ -n "$TAG" ] && git cat-file -e "$TAG:plugin/scripts/build-demo.mjs" 2>/dev/null; then
+            rm -rf plugin/src plugin/demo plugin/scripts/build-demo.mjs
+            git checkout "$TAG" -- plugin/src plugin/demo plugin/scripts/build-demo.mjs
+            echo "Demo built from $TAG"
+          else
+            echo "Demo built from main (no usable release tag: '$TAG')"
+          fi
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
