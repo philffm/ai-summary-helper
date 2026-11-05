@@ -4,7 +4,7 @@ export default [
   { ignores: ['node_modules/**', 'plugin/dev/**', 'plugin/dist/**', 'plugin/prod/**', 'plugin/src/lib/**', 'docs/**', 'site-src/**', 'plugin/tests/**', 'plugin/platforms/**'] },
   {
     files: ['plugin/src/**/*.js', 'plugin/scripts/**/*.js', 'scripts/**/*.mjs'],
-    languageOptions: { ecmaVersion: 2023, sourceType: 'module', globals: { ...globals.browser, ...globals.serviceworker, ...globals.node, chrome: 'readonly', browser: 'readonly', d3: 'readonly', AishAudio: 'readonly' } },
+    languageOptions: { ecmaVersion: 2023, sourceType: 'module', globals: { ...globals.browser, ...globals.serviceworker, ...globals.node, chrome: 'readonly', browser: 'readonly', d3: 'readonly', AishAudio: 'readonly', AishBuiltin: 'readonly' } },
     rules: {
       'no-undef': 'error',
       'no-unused-vars': ['warn', { args: 'none', caughtErrors: 'none', varsIgnorePattern: '^_' }],
