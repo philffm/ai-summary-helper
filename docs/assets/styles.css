@@ -857,7 +857,8 @@ footer .copyright a:hover, .foot-links a:hover{ text-decoration-color:currentCol
 .demo-start{ display:inline-flex; align-items:center; gap:12px; padding:14px 24px; border-radius:var(--radius-pill); border:1px solid var(--border-strong); background:var(--surface-1-strong); color:var(--text); font:600 var(--fs-lg) var(--font-display); cursor:pointer; }
 .demo-start:hover{ border-color:var(--accent); }
 .demo-play{ display:grid; place-items:center; width:28px; height:28px; border-radius:50%; background:var(--accent); color:var(--on-media-strong); font-size:var(--fs-2xs); padding-left:2px; }
-.demo-open{ position:absolute; right:14px; bottom:12px; font-size:var(--fs-sm); color:var(--text-muted); }
+.demo-open{ position:absolute; z-index:2; top:12px; right:14px; padding:6px 14px; border-radius:var(--radius-pill); border:1px solid var(--border-medium); background:var(--bg-raised); color:var(--text); font-size:var(--fs-sm); font-weight:600; text-decoration:none; }
+.demo-open:hover{ border-color:var(--accent); }
 .demo-frame.is-live .demo-start{ display:none; }
 @media (max-width:820px){ .demo-frame{ --dw:calc(100vw - 24px); height:min(560px, 76vh); } }
 
@@ -1100,7 +1101,6 @@ footer .copyright a:hover, .foot-links a:hover{ text-decoration-color:currentCol
 .demo-frame:not(.is-live)::before{ content:""; position:absolute; inset:0; background:linear-gradient(180deg, color-mix(in srgb, var(--media-night-soft) 10%, transparent), color-mix(in srgb, var(--media-night-soft) 45%, transparent)); pointer-events:none; }
 .demo-frame:not(.is-live) .demo-start{ position:relative; z-index:1; padding:18px 30px; font-size:var(--fs-2xl); box-shadow:0 12px 40px color-mix(in srgb, var(--shadow-ink) 35%, transparent); }
 .demo-frame:not(.is-live) .demo-play{ width:36px; height:36px; font-size:var(--fs-sm); }
-.demo-frame:not(.is-live) .demo-open{ z-index:1; color:var(--on-media-strong); }
 .demo-frame:not(.is-live) .demo-start{ background:var(--bg-raised); color:var(--text); border-color:transparent; }
 /* Poster stays undimmed; the button carries its own backdrop */
 .demo-frame:not(.is-live)::before{ display:none; }
