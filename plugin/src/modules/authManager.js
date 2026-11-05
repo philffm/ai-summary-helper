@@ -1,4 +1,5 @@
 import { SK } from './storageKeys.js';
+import { confirmSheet } from './confirmSheet.js';
 import { escapeHtml } from './textUtils.js';
 // authManager.js - Handles Authentication flow via api.byphil.eu proxy
 //
@@ -604,7 +605,7 @@ async function logout() {
 }
 
 async function goBackToEmail(view) {
-    if (!confirm(T('This will invalidate the current code. Continue?'))) return;
+    if (!(await confirmSheet({ title: T('Use another email?'), text: T('This will invalidate the current code. Continue?'), confirmLabel: T('Continue'), danger: false }))) return;
     await clearPendingOtpState();
     if (view.codeStage) view.codeStage.style.display = 'none';
     if (view.emailStage) view.emailStage.style.display = 'block';

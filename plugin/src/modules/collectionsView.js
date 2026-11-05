@@ -3,11 +3,16 @@
 // an article. Data lives in collections.js; nothing here calls a model.
 import { T } from './feedI18n.js';
 import { trapFocus } from './sheet.js';
+import { iconEl } from './icons.js';
+import { syncTabbar } from './tabbar.js';
+import { makeReorderable, reorderGrip } from './reorder.js';
+import { confirmSheet, undoToast, flushUndo } from './confirmSheet.js';
+import { createActionBar } from './actionBar.js';
 import StorageManager from './storageManager.js';
 import { paperDoi, doiUrl } from './paperInfo.js';
 import {
     MAX_SOURCES, SOURCE_TYPES, CHECK_QUESTIONS, listCollections, getCollection, createCollection, updateCollection, deleteCollection,
-    addSource, removeSource, collectionsOfArticle, lastCollectionId, collectionArticles, effectiveProfile, profileHints, checkProgress,
+    addSource, removeSource, restoreSource, moveSource, collectionsOfArticle, lastCollectionId, collectionArticles, effectiveProfile, profileHints, checkProgress,
     saveSourceProfile, saveSourceCheck, otherSourcesQuery, collectionMarkdown, saveOverview, parseOverview, rankCandidates, bumpStat, collectionWorksheet, displayTitle, profileFromCsl, mergeDoiProfile
 } from './collections.js';
 
@@ -426,7 +431,7 @@ let openId = '';
 /** Renders the tab into `host` (the history list element). `onCount(n)` lets the tab bar show the number. */
 export async function renderCollectionsTab(host, { onCount = () => {} } = {}) {
     host.textContent = '';
-    const list = await listCollections();
+    const list = (await listCollections()).filter(c => !pendingDeletes.has(c.id));   // a deleted one waits for its Undo window
     onCount(list.length);
     if (openId && list.some(c => c.id === openId)) return renderDetail(host, openId, onCount);
     openId = '';
@@ -453,18 +458,20 @@ export async function renderCollectionsTab(host, { onCount = () => {} } = {}) {
         top2.append(el('strong', 'coll-card-t', c.name), el('span', 'coll-card-go', '›'));
         card.append(top2);
         if (c.question) card.append(el('span', 'coll-card-q', c.question));
+        const prog = el('span', 'coll-prog');
         const pills = el('span', 'coll-card-pills');
         const upd = c.updated ? new Date(c.updated).toLocaleDateString() : '';
         const cnt = el('span', 'coll-card-n', [T('{n} sources', { n: c.n }), upd && T('updated {d}', { d: upd })].filter(Boolean).join(' · '));
-        card.append(pills, cnt);
-        getCollection(c.id).then(r => r && collectionArticles(r)).then(arts => {
+        if (c.n) prog.hidden = true; else paintProgress(prog, 0, 0);
+        card.append(prog, pills, cnt);
+        if (c.n) getCollection(c.id).then(r => r && collectionArticles(r)).then(arts => {
             if (!arts || !card.isConnected) return;
             const types = [...new Set(arts.map(a => effectiveProfile(a).type).filter(Boolean))].slice(0, 3);
             types.forEach(t => pills.append(el('span', 'coll-pill', typeLabel(t))));
-            const done = arts.filter(a => checkProgress(a.sourceCheck).done).length;
-            if (arts.length) pills.append(el('span', 'coll-pill' + (done === arts.length ? ' is-done' : ' is-open'), T('{a} of {n} checked', { a: done, n: arts.length })));
+            paintProgress(prog, arts.filter(a => checkProgress(a.sourceCheck).done).length, arts.length);
+            prog.hidden = false;
         }).catch(() => {});
-        card.addEventListener('click', () => { openId = c.id; renderCollectionsTab(host, { onCount }); });
+        card.addEventListener('click', () => { openId = c.id; detailTab = 'sources'; renderCollectionsTab(host, { onCount }); });
         card.dataset.q = (c.name + ' ' + (c.question || '')).toLowerCase();
         wrap.append(card);
     });
@@ -479,110 +486,281 @@ function openCreate(host, onCount) {
     openAddSheet(null, { onDone: (id) => { openId = id; renderCollectionsTab(host, { onCount }); } });
 }
 
+// ── Variant A · Research board (AISH-032): progress, ⋯ menu, tabs, check sheet, undoable delete ──────────────
+
+let detailTab = 'sources';
+const pendingDeletes = new Set();   // collection ids hidden while their Undo toast runs (deleted when it runs out)
+
+/** Deletes every collection still waiting in its Undo window now (when the page goes away, and for tests). */
+export const flushCollectionsUndo = () => flushUndo();
+
+/** Status line + bar: "{a} of {n} sources checked". No sources → "No sources yet" and no bar. */
+function paintProgress(box, done, total) {
+    box.textContent = '';
+    const ok = total > 0 && done === total;
+    const line = el('span', 'coll-status ' + (total === 0 ? 'is-empty' : ok ? 'is-done' : 'is-open'));
+    const glyph = el('span', 'coll-status-glyph', total === 0 ? '○' : ok ? '✓' : '●'); glyph.setAttribute('aria-hidden', 'true');
+    line.append(glyph, el('span', '', total === 0 ? T('No sources yet') : T('{a} of {n} sources checked', { a: done, n: total })));
+    box.append(line);
+    if (!total) return;
+    const bar = el('span', 'coll-bar');
+    bar.setAttribute('role', 'progressbar'); bar.setAttribute('aria-label', T('Sources checked'));
+    bar.setAttribute('aria-valuemin', '0'); bar.setAttribute('aria-valuemax', String(total)); bar.setAttribute('aria-valuenow', String(done));
+    const fill = el('span', 'coll-bar-fill'); fill.style.setProperty('--p', Math.round(done / total * 100) + '%');
+    bar.append(fill); box.append(bar);
+}
+
+const download = (text, file) => {
+    const a = document.createElement('a');
+    a.href = URL.createObjectURL(new Blob([text], { type: 'text/markdown' }));
+    a.download = file;
+    document.body.appendChild(a); a.click(); document.body.removeChild(a);
+    setTimeout(() => URL.revokeObjectURL(a.href), 1000);
+};
+const fileBase = (rec) => (rec.name || 'collection').replace(/[^\p{L}\p{N}]+/gu, '_').toLowerCase();
+
+/** The sheet frame (scrim, panel, grab, body) used by the check, rename, question and delete sheets. */
+function openShell(label, onDismiss = () => {}) {
+    closeSheet();
+    sheet = el('div', 'sendsheet');
+    const scrim = el('div', 'sendsheet-scrim');
+    const panel = el('div', 'sendsheet-panel');
+    const body = el('div', 'sendsheet-body');
+    panel.append(el('div', 'sendsheet-grab'), body);
+    sheet.append(scrim, panel);
+    document.body.append(sheet);
+    const dismiss = () => { closeSheet(); onDismiss(); };
+    scrim.addEventListener('click', dismiss);
+    sheetTrap = trapFocus(panel, { label, onEscape: dismiss });
+    return { body, dismiss };
+}
+const sheetHead = (title, sub) => {
+    const head = el('div', 'sendsheet-head');
+    head.append(el('div', 'sendsheet-title', title));
+    if (sub) head.append(el('div', 'sendsheet-sub', sub));
+    return head;
+};
+
+/** A3: the source check in a sheet. It saves as you type; Done closes it and the board repaints. */
+function openCheckSheet(a, rec, onClosed) {
+    let closed = false;
+    const finish = () => { if (!closed) { closed = true; onClosed(); } };
+    const { body } = openShell(T('Source check'), finish);
+    body.append(sheetHead(T('Source check'), displayTitle(a) || T('Untitled')));
+    // a late save (typing, then Done within the debounce) repaints once more after the sheet has closed
+    body.append(sourceCheckPanel(a, { question: rec.question, origin: 'collection', bare: true, onChange: () => { if (closed) onClosed(); } }));
+    const actions = el('div', 'coll-actions');
+    actions.append(btn(T('Done'), 'button-primary', () => {
+        const f = document.activeElement; if (f && body.contains(f) && f.blur) f.blur();
+        closeSheet(); finish();
+    }));
+    body.append(actions);
+}
+
+/** Rename / change the question: one field, Cancel and Save. */
+function openFieldSheet({ title, label, value = '', maxLength = 80, multiline = false, required = false, onSave }) {
+    const { body, dismiss } = openShell(title);
+    body.append(sheetHead(title));
+    const field = el('label', 'coll-field');
+    field.append(el('span', '', label));
+    const input = multiline ? Object.assign(el('textarea', 'coll-question'), { rows: 3 }) : Object.assign(el('input', 'coll-name'), { type: 'text' });
+    input.value = value; input.maxLength = maxLength;
+    field.append(input);
+    const actions = el('div', 'coll-actions');
+    const save = btn(T('Save'), 'button-primary', async () => {
+        save.disabled = true;
+        try { await onSave(input.value.trim()); closeSheet(); } catch (e) { toast(String((e && e.message) || e)); save.disabled = false; }
+    });
+    const check = () => { save.disabled = required && !input.value.trim(); };
+    input.addEventListener('input', check); check();
+    if (!multiline) input.addEventListener('keydown', (e) => { if (e.key === 'Enter' && !save.disabled) { e.preventDefault(); save.click(); } });
+    actions.append(btn(T('Cancel'), 'button-secondary', dismiss), save);
+    body.append(field, actions);
+    setTimeout(() => { input.focus(); if (input.select) input.select(); }, 0);
+}
+
 async function renderDetail(host, id, onCount) {
     const rec = await getCollection(id);
     if (!rec) { openId = ''; return renderCollectionsTab(host, { onCount }); }
     const articles = await collectionArticles(rec);
+    const repaint = () => renderCollectionsTab(host, { onCount });
     host.textContent = '';
     const wrap = el('div', 'coll-detail');
+
+    const act = {
+        add: () => openPickSheet(rec, { onDone: repaint }),
+        markdown: () => {
+            const md = collectionMarkdown(rec, articles, {
+                label: (k) => k.startsWith('type_') ? typeLabel(k.slice(5)) : k.startsWith('hint_') ? hintLabel(k.slice(5)) : k.startsWith('q_') ? questionLabel(k.slice(2))
+                    : ({ Collection: T('Collection'), Overview: T('Overview'), ov_agree: T('Agree'), ov_disagree: T('Disagree'), ov_missing: T('Missing'), 'From summaries, not checked against the full texts.': T('From summaries, not checked against the full texts.'), sources: T('sources'), Untitled: T('Untitled'), Type: T('Type'), Author: T('Author'), Date: T('Date'), Publisher: T('Publisher'), 'Source check': T('Source check') }[k] || k),
+            });
+            download(md, fileBase(rec) + '.md');
+        },
+        refs: async (b) => {
+            if (b) b.disabled = true;
+            try {
+                const { ensureCsl, formatList, getCiteStyle, loadCiteStyle, copyText } = await import('./citation.js');
+                await loadCiteStyle();
+                const items = []; let skipped = 0;
+                for (const a of articles) {
+                    const doi = paperDoi(a);
+                    if (!doi) { skipped++; continue; }
+                    try { items.push({ csl: await ensureCsl(a, doi) }); } catch (_) { skipped++; }
+                }
+                if (!items.length) { toast(T('Citation unavailable — no DOI found')); return; }
+                await copyText(formatList(items, getCiteStyle()));
+                bumpStat('refs_copied').catch(() => {});
+                toast(skipped ? T('{n} references copied, {m} without DOI skipped', { n: items.length, m: skipped }) : T('{n} references copied', { n: items.length }));
+            } catch (e) { toast(T('Citation lookup failed — try again')); } finally { if (b) b.disabled = false; }
+        },
+        worksheet: () => {
+            const md = collectionWorksheet(rec, articles, { label: (k) => k.startsWith('q_') ? questionLabel(k.slice(2)) : ({ Worksheet: T('Worksheet'), Collection: T('Collection'), Task: T('Task'), Type: T('Type'), Author: T('Author'), Date: T('Date'), Publisher: T('Publisher'), Untitled: T('Untitled'),
+                'Check each source before you trust it. Do not stay on the page: search for who is behind it and what others say.': T('Check each source before you trust it. Do not stay on the page: search for who is behind it and what others say.'),
+                'Hints, not ratings: you decide how far to trust this source.': T('Hints, not ratings: you decide how far to trust this source.') }[k] || k) });
+            download(md, fileBase(rec) + '_worksheet.md');
+            bumpStat('worksheet').catch(() => {});
+        },
+        rename: () => openFieldSheet({ title: T('Rename collection'), label: T('Name of the collection'), value: rec.name, maxLength: 80, required: true,
+            onSave: async (v) => { await updateCollection(id, { name: v }); repaint(); } }),
+        question: () => openFieldSheet({ title: T('Change the question'), label: T('Your question (optional)'), value: rec.question, maxLength: 300, multiline: true,
+            onSave: async (v) => { await updateCollection(id, { question: v }); repaint(); } }),
+        del: async () => {
+            const n = articles.length;
+            const ok = await confirmSheet({
+                title: T('Delete “{name}”?', { name: rec.name }),
+                text: n ? T('The collection, its question and its overview are deleted.') : T('The collection and its question are deleted.'),
+                keeps: n ? T('The {n} articles stay in your library with their checks.', { n }) : '',
+                confirmLabel: T('Delete collection'), undo: true,
+            });
+            if (!ok) return;
+            pendingDeletes.add(id); openId = ''; repaint();
+            undoToast(T('Collection deleted'), {
+                commit: async () => { await deleteCollection(id); pendingDeletes.delete(id); },
+                undo: () => { pendingDeletes.delete(id); openId = id; repaint(); },
+            });
+        },
+    };
+
+    // top: back link; then title + question; then the action bar (A+: the article toolbar pattern, AISH-006.3) —
+    // Add / Markdown / References in the bar by default, the rest in ⋯; Rename, Question and Delete always in ⋯.
     const top = el('div', 'coll-toolbar coll-toolbar--sub');
-    top.append(btn('← ' + T('Collections'), 'button-secondary btn-sm', () => { openId = ''; renderCollectionsTab(host, { onCount }); }));
-    top.append(btn('＋ ' + T('Add sources'), 'button-primary btn-sm', () => openPickSheet(rec, { onDone: () => renderCollectionsTab(host, { onCount }) })));
-    top.append(btn(T('Export Markdown'), 'button-secondary btn-sm', async () => {
-        const md = collectionMarkdown(rec, articles, {
-            label: (k) => k.startsWith('type_') ? typeLabel(k.slice(5)) : k.startsWith('hint_') ? hintLabel(k.slice(5)) : k.startsWith('q_') ? questionLabel(k.slice(2))
-                : ({ Collection: T('Collection'), Overview: T('Overview'), ov_agree: T('Agree'), ov_disagree: T('Disagree'), ov_missing: T('Missing'), 'From summaries, not checked against the full texts.': T('From summaries, not checked against the full texts.'), sources: T('sources'), Untitled: T('Untitled'), Type: T('Type'), Author: T('Author'), Date: T('Date'), Publisher: T('Publisher'), 'Source check': T('Source check') }[k] || k),
-        });
-        const a = document.createElement('a');
-        a.href = URL.createObjectURL(new Blob([md], { type: 'text/markdown' }));
-        a.download = (rec.name || 'collection').replace(/[^\p{L}\p{N}]+/gu, '_').toLowerCase() + '.md';
-        document.body.appendChild(a); a.click(); document.body.removeChild(a);
-        setTimeout(() => URL.revokeObjectURL(a.href), 1000);
-    }));
-    top.append(btn(T('Copy references'), 'button-secondary btn-sm', async function () {
-        const b = this; b.disabled = true; b.title = T('Looks the citation up at doi.org. Only the DOI is sent.');
-        try {
-            const { ensureCsl, formatList, getCiteStyle, loadCiteStyle, copyText } = await import('./citation.js');
-            await loadCiteStyle();
-            const items = []; let skipped = 0;
-            for (const a of articles) {
-                const doi = paperDoi(a);
-                if (!doi) { skipped++; continue; }
-                try { items.push({ csl: await ensureCsl(a, doi) }); } catch (_) { skipped++; }
-            }
-            if (!items.length) { toast(T('Citation unavailable — no DOI found')); return; }
-            await copyText(formatList(items, getCiteStyle()));
-            bumpStat('refs_copied').catch(() => {});
-            toast(skipped ? T('{n} references copied, {m} without DOI skipped', { n: items.length, m: skipped }) : T('{n} references copied', { n: items.length }));
-        } catch (e) { toast(T('Citation lookup failed — try again')); } finally { b.disabled = false; }
-    }));
-    top.append(btn(T('Worksheet'), 'button-secondary btn-sm', () => {
-        const md = collectionWorksheet(rec, articles, { label: (k) => k.startsWith('q_') ? questionLabel(k.slice(2)) : ({ Worksheet: T('Worksheet'), Collection: T('Collection'), Task: T('Task'), Type: T('Type'), Author: T('Author'), Date: T('Date'), Publisher: T('Publisher'), Untitled: T('Untitled'),
-            'Check each source before you trust it. Do not stay on the page: search for who is behind it and what others say.': T('Check each source before you trust it. Do not stay on the page: search for who is behind it and what others say.'),
-            'Hints, not ratings: you decide how far to trust this source.': T('Hints, not ratings: you decide how far to trust this source.') }[k] || k) });
-        const a = document.createElement('a');
-        a.href = URL.createObjectURL(new Blob([md], { type: 'text/markdown' }));
-        a.download = (rec.name || 'collection').replace(/[^\p{L}\p{N}]+/gu, '_').toLowerCase() + '_worksheet.md';
-        document.body.appendChild(a); a.click(); document.body.removeChild(a);
-        setTimeout(() => URL.revokeObjectURL(a.href), 1000);
-        bumpStat('worksheet').catch(() => {});
-    }));
-    top.append(btn(T('Delete collection'), 'button-secondary btn-sm coll-danger', async () => {
-        if (!window.confirm(T('Delete the collection “{name}”? The articles stay in your history.', { name: rec.name }))) return;
-        await deleteCollection(id); openId = ''; renderCollectionsTab(host, { onCount });
-    }));
-    wrap.append(top);
+    top.append(btn('‹ ' + T('Collections'), 'coll-back', () => { openId = ''; repaint(); }));
+    const head = el('div', 'coll-head');
+    head.append(el('h3', 'coll-title', rec.name));
+    head.append(rec.question ? el('p', 'coll-q-text', rec.question) : btn('＋ ' + T('Add your question'), 'coll-q-add', act.question));
+    const catalog = {
+        add: { icon: 'plus', label: () => T('Add sources'), short: () => T('Add'), run: act.add, available: () => articles.length < MAX_SOURCES },
+        markdown: { icon: 'download', label: () => T('Export Markdown'), short: () => T('Markdown'), run: act.markdown },
+        refs: { icon: 'copy', label: () => T('Copy references'), short: () => T('References'), run: (b) => act.refs(b) },
+        worksheet: { icon: 'clipboard-list', label: () => T('Worksheet'), run: act.worksheet },
+    };
+    const bar = createActionBar({ pref: 'collectionToolbarItems', label: T('Collection actions'), catalog, defaults: ['add', 'markdown', 'refs'],
+        menuOnly: () => [
+            { icon: 'pencil', label: T('Rename'), run: act.rename },
+            { icon: 'message-square', label: T('Change the question'), run: act.question },
+            { icon: 'trash-2', label: T('Delete collection'), run: act.del, danger: true, sep: true },
+        ] });
+    bar.el.classList.add('coll-bar-actions');
+    wrap.append(top, head, bar.el);
 
-    const name = Object.assign(el('input', 'coll-name'), { type: 'text', value: rec.name, maxLength: 80 });
-    name.setAttribute('aria-label', T('Name of the collection'));
-    const q = Object.assign(el('textarea', 'coll-question'), { rows: 2, value: rec.question, maxLength: 300, placeholder: T('Your question (optional)') });
-    q.setAttribute('aria-label', T('Your question (optional)'));
-    name.addEventListener('change', async () => { if (name.value.trim()) await updateCollection(id, { name: name.value }); else name.value = rec.name; });
-    q.addEventListener('change', async () => { await updateCollection(id, { question: q.value }); });
-    const qcard = el('div', 'coll-qcard');
-    qcard.append(el('span', 'coll-qcard-l', T('Your question')), q);
-    wrap.append(name, qcard, el('p', 'coll-note', T('{n} of {max} sources', { n: articles.length, max: MAX_SOURCES })));
-    if (articles.length >= 2 || rec.overview) wrap.append(overviewCard(rec, articles, () => renderCollectionsTab(host, { onCount })));
-    if (articles.length) {
-        const open = articles.filter(x => !checkProgress(x.sourceCheck).done).length;
-        wrap.append(el('p', 'coll-next', open
-            ? T('Next: check your sources ({n} still open), then export the collection.', { n: open })
-            : T('All sources checked. Export the collection as Markdown to write it up or share it.')));
-    }
-
-    if (!articles.length) {
-        const e = el('div', 'coll-empty coll-empty--card');
-        e.append(el('strong', '', T('No sources yet. Use “Add to collection” in an article’s ⋯ menu.')), btn('＋ ' + T('Add sources'), 'button-primary', () => openPickSheet(rec, { onDone: () => renderCollectionsTab(host, { onCount }) })));
-        wrap.append(e);
-    }
-    articles.forEach(a => {
-        const item = el('div', 'coll-source');
-        const row = el('div', 'coll-source-row');
-        const title = btn(displayTitle(a) || T('Untitled'), 'coll-source-title', () => openArticle(a));
-        const p = effectiveProfile(a);
-        const facts = [p.type && typeLabel(p.type), p.author, p.date, p.publisher].filter(Boolean).join(' · ');
-        const prog = checkProgress(a.sourceCheck);
-        const meta = el('span', 'coll-source-meta', facts || T('No source details yet'));
-        const status = el('span', 'coll-source-status coll-pill' + (prog.done ? ' is-done' : ' is-open'), T('{a}/{n} checked', { a: prog.answered, n: prog.total }));
-        const tx = el('div', 'coll-source-tx'); tx.append(title, meta, status);
-        const toggle = btn(T('Check'), 'button-secondary btn-sm', () => {
-            const open = item.querySelector('.coll-check');
-            if (open) { open.remove(); toggle.setAttribute('aria-expanded', 'false'); return; }
-            item.append(sourceCheckPanel(a, { question: rec.question, origin: 'collection', onChange: async () => {
-                const fresh = (await collectionArticles({ sources: [{ articleId: a.id }] }))[0];
-                if (fresh) { title.textContent = displayTitle(fresh) || T('Untitled'); const pr = checkProgress(fresh.sourceCheck); status.textContent = T('{a}/{n} checked', { a: pr.answered, n: pr.total }); status.classList.toggle('is-done', pr.done); status.classList.toggle('is-open', !pr.done); meta.textContent = [effectiveProfile(fresh).type && typeLabel(effectiveProfile(fresh).type), effectiveProfile(fresh).author, effectiveProfile(fresh).date, effectiveProfile(fresh).publisher].filter(Boolean).join(' · ') || T('No source details yet'); }
-            } }));
-            toggle.setAttribute('aria-expanded', 'true');
-        });
-        toggle.setAttribute('aria-expanded', 'false');
-        const rm = btn('✕', 'button-secondary btn-sm coll-remove', async () => { await removeSource(id, a.id); renderCollectionsTab(host, { onCount }); });
-        rm.title = T('Remove from collection'); rm.setAttribute('aria-label', T('Remove from collection'));
-        row.append(tx, toggle, rm);
-        item.append(row);
-        wrap.append(item);
+    // tabs: Sources · Overview · Export
+    const tabsEl = el('div', 'tabbar coll-tabs'); tabsEl.dataset.tabbar = 'coll-detail';
+    const panel = el('div', 'coll-panel'); panel.id = 'coll-panel'; panel.setAttribute('role', 'tabpanel');
+    const tabs = [['sources', T('Sources'), articles.length], ['overview', T('Overview')], ['export', T('Export')]];
+    tabs.forEach(([k, label, n]) => {
+        const b = btn('', 'tabbar-btn', () => { detailTab = k; paintTab(); });
+        b.id = 'coll-tab-' + k; b.dataset.tab = k; b.setAttribute('aria-controls', 'coll-panel');
+        b.append(label);
+        if (n !== undefined) b.append(' ', el('span', 'tabbar-n', String(n)));
+        tabsEl.append(b);
     });
+
+    const paintSources = () => {
+        if (!articles.length) {
+            const e = el('div', 'coll-empty coll-empty--card');
+            e.append(el('strong', '', T('No sources yet. Use “Add to collection” in an article’s ⋯ menu.')), btn('＋ ' + T('Add sources'), 'button-primary', act.add));
+            panel.append(e);
+            return;
+        }
+        const done = articles.filter(x => checkProgress(x.sourceCheck).done).length;
+        const card = el('div', 'coll-progress-card');
+        const prog = el('div', 'coll-prog'); paintProgress(prog, done, articles.length);
+        card.append(prog, el('p', 'coll-note', done < articles.length
+            ? T('Next: check your sources ({n} still open), then export the collection.', { n: articles.length - done })
+            : T('All sources checked. Export the collection as Markdown to write it up or share it.')));
+        panel.append(card);
+        const list = el('div', 'coll-sources'); list.setAttribute('role', 'list'); list.setAttribute('aria-label', T('Sources, in export order'));
+        if (articles.length > 1) panel.append(el('p', 'coll-note coll-order-hint', T('The order here is the order of the export and the worksheet. Drag ⋮⋮ to change it.')));
+        panel.append(list);
+        articles.forEach(a => {
+            const item = el('div', 'coll-source');
+            item.setAttribute('role', 'listitem');
+            const row = el('div', 'coll-source-row');
+            const name = displayTitle(a) || T('Untitled');
+            item.dataset.reorderId = a.id; item.dataset.reorderName = name;
+            if (articles.length > 1) row.append(reorderGrip(name));
+            const title = btn(name, 'coll-source-title', () => openArticle(a));
+            const p = effectiveProfile(a);
+            const facts = [p.type && typeLabel(p.type), p.author, p.date, p.publisher].filter(Boolean).join(' · ');
+            const pr = checkProgress(a.sourceCheck);
+            const sub = el('span', 'coll-source-sub');
+            sub.append(el('span', 'coll-source-meta', facts || T('No source details yet')),
+                el('span', 'coll-source-status ' + (pr.done ? 'is-done' : 'is-open'), (pr.done ? '✓ ' : '') + T('{a}/{n} checked', { a: pr.answered, n: pr.total })));
+            const tx = el('div', 'coll-source-tx'); tx.append(title, sub);
+            const check = btn(pr.done ? T('Review') : T('Check'), 'button-secondary btn-sm coll-check-btn', () => openCheckSheet(a, rec, repaint));
+            check.setAttribute('aria-haspopup', 'dialog');
+            check.setAttribute('aria-label', T('Check “{title}”', { title: name }));
+            const rm = el('button', 'coll-remove'); rm.type = 'button'; rm.append(iconEl('x'));
+            const rmLabel = T('Remove “{title}” from the collection', { title: name });
+            rm.title = rmLabel; rm.setAttribute('aria-label', rmLabel);
+            rm.addEventListener('click', async () => {
+                const idx = rec.sources.findIndex(s => s.articleId === a.id);
+                const src = rec.sources[idx];
+                await removeSource(id, a.id); repaint();
+                undoToast(T('Removed from “{name}”', { name: rec.name }), { commit: () => {}, undo: async () => { await restoreSource(id, src, idx); repaint(); } });
+            });
+            const acts = el('div', 'coll-source-act'); acts.append(check, rm);
+            row.append(tx, acts);
+            item.append(row);
+            list.append(item);
+        });
+        if (articles.length > 1) makeReorderable(list, { scope: 'coll-sources', onMove: async (aid, i) => { await moveSource(id, aid, i); await repaint(); } });
+        if (articles.length < MAX_SOURCES) panel.append(btn('＋ ' + T('Add sources'), 'button-primary coll-add', act.add));
+        else panel.append(el('p', 'coll-note', T('This collection is full ({n} sources).', { n: MAX_SOURCES })));
+    };
+    const paintOverview = () => {
+        if (articles.length >= 2 || rec.overview) { panel.append(overviewCard(rec, articles, repaint)); return; }
+        const e = el('div', 'coll-empty coll-empty--card');
+        e.append(el('strong', '', T('The overview compares at least two sources.')), btn('＋ ' + T('Add sources'), 'button-primary', act.add));
+        panel.append(e);
+    };
+    const paintExport = () => {
+        const rows = el('div', 'coll-export');
+        [['download', T('Export Markdown'), T('Sources, checks and overview in one .md file'), act.markdown],
+            ['copy', T('Copy references'), T('Citations of all sources with a DOI. Only the DOI is sent.'), act.refs],
+            ['clipboard-list', T('Worksheet'), T('A task sheet to check each source by hand'), act.worksheet]].forEach(([ic, label, desc, run]) => {
+            const b = el('button', 'coll-export-row'); b.type = 'button';
+            const i = el('span', 'coll-export-ic'); i.setAttribute('aria-hidden', 'true'); i.append(iconEl(ic));
+            const tx = el('span', 'coll-export-tx'); tx.append(el('strong', '', label), el('small', '', desc));
+            b.append(i, tx);
+            b.addEventListener('click', () => run(b));
+            rows.append(b);
+        });
+        panel.append(rows);
+    };
+    const paintTab = () => {
+        if (!tabs.some(t => t[0] === detailTab)) detailTab = 'sources';
+        tabsEl.querySelectorAll('.tabbar-btn').forEach(b => b.classList.toggle('on', b.dataset.tab === detailTab));
+        panel.setAttribute('aria-labelledby', 'coll-tab-' + detailTab);
+        panel.textContent = '';
+        ({ sources: paintSources, overview: paintOverview, export: paintExport })[detailTab]();
+        try { syncTabbar(tabsEl); } catch (_) { /* no layout (tests) */ }
+    };
+    wrap.append(tabsEl, panel);
     host.append(wrap);
+    paintTab();
+    bar.refresh();
 }
 
 /** Forget which collection was open (after a language change or reset). */
-export function resetCollectionsView() { openId = ''; }
+export function resetCollectionsView() { openId = ''; detailTab = 'sources'; }

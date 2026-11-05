@@ -1,6 +1,6 @@
 // Phone inbox "Save only": asks the background to save the page without AI; success resolves the link (deleted on the
 // server), failure keeps it and says so. The background action is extension-page only.
-import { setup, imp, tick } from './harness.mjs'; import assert from 'assert'; import fs from 'fs';
+import { setup, imp, tick, flushUndo, pressUndo } from './harness.mjs'; import assert from 'assert'; import fs from 'fs';
 const { store, w } = setup({});
 const { SK } = await imp('../src/modules/storageKeys.js');
 const { newInboxSecrets } = await imp('../src/modules/inboxCrypto.js');
@@ -63,14 +63,15 @@ const bg = fs.readFileSync(new URL('../src/background.js', import.meta.url), 'ut
 assert(/EXTENSION_PAGE_ACTIONS = new Set\([^)]*'saveFeedItem'/.test(bg), 'only extension pages may ask for it');
 assert(d.querySelector('#articleList li.article-card.phone-card .article-header h4'), 'a native History card');
 assert(!d.getElementById('phoneInbox'), 'no separate From-phone box any more');
-// Dismiss: asks first, nothing is removed on "Cancel"
+// Dismiss: no question; the card goes at once, Undo brings it back, the delete happens when the Undo window ends
 const dismissBtn = (id) => [...d.querySelectorAll(`#articleList .phone-card[data-phone-id="${id}"] button`)].find(b => /Dismiss/.test(b.textContent));
-let asked = 0, answer = false;
-w.confirm = () => { asked++; return answer; };
-dismissBtn('s2').click(); await tick(60);
-assert.equal(asked, 1, 'asks before removing');
-assert.deepEqual(store[SK.inboxPending].map(p => p.id), ['s2'], 'cancelled: still there');
-answer = true;
+w.confirm = () => { throw new Error('no window.confirm'); };
 dismissBtn('s2').click(); await tick(80);
-assert.deepEqual(store[SK.inboxPending], [], 'confirmed: gone');
+assert.ok(!d.querySelector('#articleList .phone-card[data-phone-id="s2"]'), 'hidden at once');
+assert.deepEqual(store[SK.inboxPending].map(p => p.id), ['s2'], 'not deleted yet');
+pressUndo(d); await tick(80);
+assert.ok(d.querySelector('#articleList .phone-card[data-phone-id="s2"]'), 'Undo brings it back');
+dismissBtn('s2').click(); await tick(80);
+await flushUndo(); await tick(40);
+assert.deepEqual(store[SK.inboxPending], [], 'gone after the Undo window');
 console.log('TEST 138 OK');

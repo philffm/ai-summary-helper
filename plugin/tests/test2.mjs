@@ -38,6 +38,18 @@ const nameIn = alphaCard.querySelector('.feed-sub-input'); nameIn.value = 'Alpha
 assert.equal(store['feeds:subs'].find(s => s.id === 's1').customTitle, 'Alpha ✱');
 assert.ok($('.feed-item .article-date').textContent.includes('Alpha ✱'));
 console.log('rename OK');
+// "Your order": Sort → manual shows grips; ↓ on Alpha's grip puts Beta first, stored, and remembered
+{
+    const sortSel = $('#feedSettingsRoot .sd-sort'); sortSel.value = 'manual'; change(sortSel); await tick(30);
+    const ids = () => $$('#feedSettingsRoot [data-reorder-id]').map(x => x.dataset.reorderId);
+    assert.deepEqual(ids(), ['s1', 's2'], 'stored order, with grips');
+    const g = $('#feedSettingsRoot [data-reorder-id="s1"] .reorder-grip');
+    g.dispatchEvent(new w.KeyboardEvent('keydown', { key: 'ArrowDown', bubbles: true })); await tick(60);
+    assert.deepEqual(store['feeds:subs'].map(x => x.id), ['s2', 's1'], 'subscriptions stored in the new order');
+    assert.deepEqual(ids(), ['s2', 's1']);
+    assert.equal(store['feeds:settings'] ? store['feeds:settings'].subsOrdered : true, true, 'remembered');
+    console.log('feed order OK');
+}
 // explicit selection of muted sub shows its items
 click($('#feedSourcePill')); await tick();
 const betaRow = $$('#feedSheetBody .feed-pick-row').find(r => r.textContent.includes('Beta'));

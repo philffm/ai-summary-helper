@@ -25,7 +25,7 @@ const open = async () => { w.document.dispatchEvent(new w.CustomEvent('aish:sett
 await open();
 assert($('#feedPrefsLibrary'), 'card exists');
 assert(!$('#feedPrefsLibrary button'), 'no start button without Ollama');
-assert(/Ollama/.test($('#feedPrefsLibrary').textContent));
+assert(/local model/i.test($('#feedPrefsLibrary').textContent), 'the card points to Settings › Models › Local');
 
 // Ollama: plan text, batch size select, start
 store.connectionMode = 'local'; store.activeService = 'ollama';

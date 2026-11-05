@@ -740,6 +740,7 @@ function renderGraph(container, allArticles, highlightTimestamp, minTagDegree, s
     container.classList.toggle('graph-quiet', quietLabels);
     const svg = d3.select(container)
         .append('svg')
+        .attr('class', 'graph-svg')   // the graph itself (chips in the filter bar carry icon SVGs too)
         .attr('width', width)
         .attr('height', height)
         .style('background', 'transparent')
@@ -1380,7 +1381,7 @@ function buildFocusBar({ caption, openLabel, onOpen, onClear }) {
 
 /** The graph as an SVG file with its colours resolved (the stylesheet's variables do not exist outside the extension). */
 export function graphSvgMarkup(container) {
-    const svg = container.querySelector('svg');
+    const svg = container.querySelector('svg.graph-svg') || container.querySelector(':scope > svg');   // not the first icon of a chip
     if (!svg) return '';
     const cs = getComputedStyle(container);
     const resolve = (v) => String(v).replace(/var\((--[\w-]+)(?:,\s*([^)]+))?\)/g, (_, name, fb) => cs.getPropertyValue(name).trim() || (fb || '#888').trim());
@@ -1597,7 +1598,20 @@ function renderTimeRange(container, nodes, links, articles) {
     from.addEventListener('input', () => stopReplay(false)); to.addEventListener('input', () => stopReplay(false));
     from.addEventListener('input', paint); to.addEventListener('input', paint);
     reset.addEventListener('click', () => { stopReplay(false); from.value = String(span.min); to.value = String(span.max); paint(); });
-    chip.addEventListener('click', () => { panel.hidden = !panel.hidden; chip.setAttribute('aria-expanded', String(!panel.hidden)); });
+    // The panel opens under the chip but never past the graph's edge: shift it left as far as needed, and never wider than the room.
+    const place = () => {
+        if (panel.hidden) return;
+        panel.style.left = '0px'; panel.style.maxWidth = '';
+        const box = container.getBoundingClientRect(), cr = wrap.getBoundingClientRect();
+        if (!box.width) return;
+        const room = box.width - 16;
+        panel.style.maxWidth = room + 'px'; panel.style.minWidth = Math.min(260, room) + 'px';
+        const pr = panel.getBoundingClientRect();
+        const over = pr.right - (box.right - 8);
+        if (over > 0) panel.style.left = Math.max(box.left + 8 - cr.left, -over) + 'px';
+    };
+    chip.addEventListener('click', () => { panel.hidden = !panel.hidden; chip.setAttribute('aria-expanded', String(!panel.hidden)); place(); });
+    window.addEventListener('resize', place);
     const actions = document.createElement('div'); actions.className = 'graph-time-actions'; actions.append(play, reset);
     panel.append(text, track, ends, actions);
     wrap.append(chip, panel);
@@ -1627,7 +1641,7 @@ export function renderGraphList(container, nodes, links, gaps = []) {
     });
     const related = (tag) => { const out = new Set(); (articlesOf.get(tag.id) || []).forEach(a => (tagsOf.get(a) || []).forEach(t => { if (t !== tag.id) out.add(t); })); return [...out].map(t => byId.get(t).label); };
     const summary = T('Graph of your archive. {tags} tags, {articles} articles. Press L for the list view.', { tags: tags.length, articles: articleCount });
-    const svgEl = container.querySelector('svg');
+    const svgEl = container.querySelector('svg.graph-svg');
     if (svgEl) { svgEl.setAttribute('role', 'img'); svgEl.setAttribute('aria-label', summary); }
 
     const live = document.createElement('div');

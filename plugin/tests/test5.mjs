@@ -8,7 +8,8 @@ let store = { sync: {}, local: {} }, calls = [], reply;
 globalThis.chrome = { storage: { sync: { get: async () => store.sync }, local: { get: async () => store.local } }, runtime: { getURL: (p) => 'x://' + p } };
 globalThis.fetch = async (url, o) => {
   if (String(url).startsWith('x://')) return { json: async () => [{ id: 'openai', endpointUrl: 'https://api.openai.com/v1/chat/completions', defaultModel: 'gpt-x' }, { id: 'ollama', endpointUrl: 'http://localhost:11434/api/chat', defaultModel: 'llama', apiKeyOptional: true }] };
-  calls.push({ url, o }); return reply();
+  calls.push({ url, o }); const r = await reply(); if (r && !r.clone) r.clone = () => r;   // a real Response has clone()
+  return r;
 };
 const { aiComplete, parseAiResponseText } = new Function(code)();
 const ok = (t) => ({ ok: true, status: 200, text: async () => t });

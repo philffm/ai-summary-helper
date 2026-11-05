@@ -1,5 +1,5 @@
 // Storage hint: which big, long-unopened articles could go (pure helpers) and the sheet.
-import { setup, imp, tick } from './harness.mjs'; import assert from 'assert';
+import { setup, imp, tick, answerSheets } from './harness.mjs'; import assert from 'assert';
 const { w } = setup({});
 globalThis.document = w.document; globalThis.window = w;
 const H = await imp('modules/storageHealth.js');
@@ -34,8 +34,9 @@ const action = [...sheet.querySelectorAll('button')].find(b => b.classList.conta
 assert.ok(action.disabled, 'delete is disabled until something is ticked');
 rows[1].click();
 assert.ok(!action.disabled);
-w.confirm = () => true; globalThis.window.confirm = () => true;
-action.click(); await tick(40);
+const sheets = answerSheets(w, true);
+action.click(); await tick(80);
+assert.equal(sheets.asked, 1, 'asks in a sheet, not window.confirm');
 assert.deepEqual(deleted, ['old-big'], 'only the ticked article is deleted');
 assert.ok(!w.document.querySelector('.storage-sheet'), 'sheet closes');
 console.log('ok');

@@ -10,14 +10,15 @@ import { getReader } from './reader.js';
 
 export async function activeModelLabel(forceLocal = false) {
     try {
-        if (forceLocal) { const m = await StorageManager.getActiveModel('ollama'); return `Ollama${m && m.id ? ' · ' + m.id : ''}`; }
+        const pretty = (id) => (id === 'chrome-builtin' ? T('{browser} · built-in', { browser: /\bEdg\//.test(navigator.userAgent || '') ? 'Edge' : /\bOPR\//.test(navigator.userAgent || '') ? 'Opera' : 'Chrome' }) : id === 'firefox-ml' ? T('Firefox · built-in') : id);
+        if (forceLocal) { const m = await StorageManager.getActiveModel('ollama'); return m && m.id === 'chrome-builtin' ? pretty(m.id) : `Ollama${m && m.id ? ' · ' + m.id : ''}`; }
         const s = await chrome.storage.sync.get(['connectionMode', 'activeService', 'preferredCloudModel']);
         if (s.connectionMode !== 'local') {
             const cloud = String(s.preferredCloudModel || '').split('/').pop();   // "google/gemini-3.6-flash" → "gemini-3.6-flash"
             return cloud ? `${T('AISH cloud')} · ${cloud}` : T('AISH cloud');
         }
         const m = await StorageManager.getActiveModel(s.activeService);
-        return m && m.id ? m.id : s.activeService;
+        return m && m.id ? pretty(m.id) : s.activeService;
     } catch (e) { return ''; }
 }
 

@@ -4,6 +4,7 @@
 // Highlights live in hl:all and are only read here. A comment on a highlight is its own record in the notes store (see notesStore.js),
 // so nothing on this tab rewrites the highlight array that page scripts write.
 import { T, TN, TU } from './feedI18n.js';
+import { undoToast } from './confirmSheet.js';
 import { SK, isNoteRecKey } from './storageKeys.js';
 import { iconEl } from './icons.js';
 import { createNotesStore } from './notesStore.js';
@@ -88,10 +89,10 @@ function sticky(item, inst) {
     if (!editing) {
         if (item.kind === 'note') {
             actions.append(button(T('Edit'), 'st-act', () => { inst.editing = item.id; render(inst); }));
-            actions.append(button(T('Delete'), 'st-act st-del', async () => { if (!window.confirm(T('Delete this note?'))) return; await store.remove(item.id); renderAll(); }));
+            actions.append(button(T('Delete'), 'st-act st-del', () => removeWithUndo(item, T('Note deleted'), () => store.remove(item.id))));
         } else {
             actions.append(button(item.comment ? T('Edit comment') : T('Comment'), 'st-act', () => { inst.editing = item.id; render(inst); }));
-            actions.append(button(T('Remove'), 'st-act st-del', async () => { if (!window.confirm(T('Remove this highlight?'))) return; await removeHighlight(item); renderAll(); }));
+            actions.append(button(T('Remove'), 'st-act st-del', () => removeWithUndo(item, T('Highlight removed'), () => removeHighlight(item))));
         }
     }
     foot.append(actions);
@@ -103,6 +104,16 @@ function sticky(item, inst) {
  * Removes a highlight the way the page itself does: your own is taken out of the list and gets a deletion marker for sync; an AI highlight is kept
  * as dismissed (so it never comes back) and needs no marker. Its comment goes with it. Pages that show it follow the storage change on their own.
  */
+// Delete without asking first: the card disappears at once, the delete runs when the Undo toast runs out.
+const hiddenItems = new Set();
+function removeWithUndo(item, message, commit) {
+    hiddenItems.add(item.id); renderAll();
+    undoToast(message, {
+        commit: async () => { await commit(); hiddenItems.delete(item.id); },
+        undo: () => { hiddenItems.delete(item.id); renderAll(); },
+    });
+}
+
 async function removeHighlight(item) {
     const d = await getL({ [SK.annotations]: [] });
     const list = d[SK.annotations];
@@ -165,7 +176,7 @@ async function render(inst) {
     const token = ++inst.token;
     const data = await load();
     if (token !== inst.token) return;
-    const all = buildStream(data);
+    const all = buildStream(data).filter((i) => !hiddenItems.has(i.id));
     if (inst.mode === 'article') return renderOfArticle(inst, all);
     if (inst.mode === 'articles') return renderArticles(inst, all);
     if (inst.mode === 'tags') return renderTags(inst, all);

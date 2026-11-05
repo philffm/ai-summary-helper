@@ -43,7 +43,8 @@ const lbl = (key) => escapeHtml(stripEmoji(T(key)));
 let uiManagerRef = null;
 let currentDetailArticle = null;
 let cachedArticles = [];          // not archived: graph, search and the Inbox/Read/Sent tabs read from here
-let archivedCache = [];           // archived entries (Archive tab)
+let archivedCache = [];
+const pendingArticleDeletes = new Set();   // hidden while their Undo toast runs; deleted from storage when it runs out           // archived entries (Archive tab)
 let historyTab = 'inbox';         // 'inbox' | 'read' | 'sent' | 'archive'
 let pendingRender = false;
 let historyLoaded = false;        // the archive has been read once: before that a phone-inbox event must not paint a half list
@@ -148,8 +149,8 @@ function collapseCards(ids) {
 export async function applyStatus(ids, patch) {
     await StorageManager.patchArticleStatus(ids, patch);
     const all = await StorageManager.getArticlesIndex({ includeArchived: true });
-    cachedArticles = all.filter(a => !a.archived);
-    archivedCache = all.filter(a => a.archived);
+    cachedArticles = all.filter(a => !a.archived && !pendingArticleDeletes.has(a.id));
+    archivedCache = all.filter(a => a.archived && !pendingArticleDeletes.has(a.id));
     invalidateSearchIndex();
     const list = document.getElementById('articleList');
     if (list && list.style.display !== 'none') {
@@ -566,7 +567,7 @@ export async function sendToKindle(article) {
 
     const isPro = config[SK.user]?.subscription_status === 'active';
     if (!isPro) {
-        const confirmation = confirm(T('📚 Send to Kindle\n\nFree tier: 3 Kindle sends included.\nUpgrade to Pro for unlimited.\n\nMake sure kindle@byphil.eu is in your Kindle approved senders list (see Amazon help).\n\nSend this article to Kindle?'));
+        const confirmation = await (await import('./confirmSheet.js')).confirmSheet({ title: T('Send to Kindle'), confirmLabel: T('Send'), danger: false, text: T('📚 Send to Kindle\n\nFree tier: 3 Kindle sends included.\nUpgrade to Pro for unlimited.\n\nMake sure kindle@byphil.eu is in your Kindle approved senders list (see Amazon help).\n\nSend this article to Kindle?') });
         if (!confirmation) return;
     }
 
@@ -894,32 +895,59 @@ export async function exportManyMarkdown(list) {
     return true;
 }
 
-/** Bulk delete after one confirmation; keeps the History caches in sync. */
-export async function removeMany(ids) {
-    if (!ids || !ids.length) return false;
-    if (!confirm(T('Delete {n} selected articles? This cannot be undone.', { n: ids.length }))) return false;
-    for (const id of ids) await StorageManager.deleteArticle(id);
+/**
+ * Delete flow (AISH-032 · A4, instead of window.confirm): a sheet says what is deleted and what stays; the articles
+ * disappear at once and are deleted from storage only when the Undo toast runs out.
+ */
+async function confirmArticleDelete(ids) {
+    const { confirmSheet } = await import('./confirmSheet.js');
+    let inColl = 0;
+    try { const C = await import('./collections.js'); for (const id of ids) if ((await C.collectionsOfArticle(id)).length) inColl++; } catch (_) { /* no collections */ }
+    const n = ids.length, one = n === 1;
+    return confirmSheet({
+        title: one ? T('Delete this article?') : T('Delete {n} articles?', { n }),
+        text: (one ? T('The article is deleted with its summary and saved page text.') : T('The articles are deleted with their summaries and saved page text.'))
+            + (inColl ? ' ' + (one ? T('It also leaves the collections it is in.') : T('They also leave the collections they are in.')) : ''),
+        keeps: T('Your highlights and notes stay in Notes.'),
+        confirmLabel: one ? T('Delete article') : T('Delete {n} articles', { n }),
+        undo: true,
+    });
+}
+async function deleteArticlesWithUndo(ids) {
     const gone = new Set(ids);
+    ids.forEach(id => pendingArticleDeletes.add(id));
     await collapseCards(ids);
     cachedArticles = cachedArticles.filter(i => !gone.has(i.id));
     archivedCache = archivedCache.filter(i => !gone.has(i.id));
     invalidateSearchIndex();
     if (document.getElementById('articleList')) renderTab();
-    if (uiManagerRef) uiManagerRef.showToast(T('{n} articles deleted', { n: ids.length }));
+    const { undoToast } = await import('./confirmSheet.js');
+    undoToast(ids.length === 1 ? T('Article deleted') : T('{n} articles deleted', { n: ids.length }), {
+        commit: async () => { await StorageManager.deleteArticles(ids); ids.forEach(id => pendingArticleDeletes.delete(id)); },
+        undo: async () => {
+            ids.forEach(id => pendingArticleDeletes.delete(id));
+            const all = await StorageManager.getArticlesIndex({ includeArchived: true });
+            cachedArticles = all.filter(a => !a.archived && !pendingArticleDeletes.has(a.id));
+            archivedCache = all.filter(a => a.archived && !pendingArticleDeletes.has(a.id));
+            invalidateSearchIndex();
+            if (document.getElementById('articleList')) renderTab();
+        },
+    });
+}
+
+/** Bulk delete (History selection): one sheet, then Undo. */
+export async function removeMany(ids) {
+    if (!ids || !ids.length) return false;
+    if (!(await confirmArticleDelete(ids))) return false;
+    await deleteArticlesWithUndo(ids);
     return true;
 }
 
-/** Delete an article after confirming (used by the card ⋯ menu); keeps the History caches in sync. */
+/** Delete one article (card ⋯ menu): sheet, then Undo. */
 export async function removeArticle(article) {
     if (!article || !article.id) return false;
-    if (!confirm(T('Are you sure you want to delete this article?'))) return false;
-    await StorageManager.deleteArticle(article.id);
-    await collapseCards([article.id]);
-    cachedArticles = cachedArticles.filter(i => i.id !== article.id);
-    archivedCache = archivedCache.filter(i => i.id !== article.id);
-    invalidateSearchIndex();
-    if (document.getElementById('articleList')) renderTab();
-    if (uiManagerRef) uiManagerRef.showToast(T('Article deleted'));
+    if (!(await confirmArticleDelete([article.id]))) return false;
+    await deleteArticlesWithUndo([article.id]);
     return true;
 }
 
@@ -932,7 +960,7 @@ export function bindUiManager(ui) { uiManagerRef = ui; }
 export function initArticleManager(uiManager) {
     loadLexicon();   // learned tag names (History search, graph and charts group tags across languages with them)
     uiManagerRef = uiManager;
-    import('./collectionsView.js').then(m => m.initCollectionsView({ toast: (msg) => uiManager.showToast(msg), openArticle: (a) => showArticleDetail(a) })).catch(() => {});
+    import('./collectionsView.js').then(m => m.initCollectionsView({ toast: (msg, o = {}) => uiManager.showToast(msg, o.duration || 3000, o.action || null), openArticle: (a) => showArticleDetail(a) })).catch(() => {});
     // The lexicon grew (tag naming in Settings or a background run): tag chips change language, so redraw the list.
     // Waiting phone links changed. Before the first load the archive is empty here: painting now would show the phone
     // cards alone and the rest a moment later. loadHistory() mounts both together, so wait for it.
@@ -948,8 +976,8 @@ export function initArticleManager(uiManager) {
                 if (!historyLoaded) return;   // the first load reads it anyway
                 try {
                     const all = await StorageManager.getArticlesIndex({ includeArchived: true });
-                    cachedArticles = all.filter(a => !a.archived);
-                    archivedCache = all.filter(a => a.archived);
+                    cachedArticles = all.filter(a => !a.archived && !pendingArticleDeletes.has(a.id));
+                    archivedCache = all.filter(a => a.archived && !pendingArticleDeletes.has(a.id));
                     invalidateSearchIndex();
                     const list = document.getElementById('articleList');
                     if (list && list.style.display !== 'none') {
@@ -1042,18 +1070,13 @@ export function initArticleManager(uiManager) {
         });
     }
 
-    const deleteCurrentDetailArticle = () => {
+    const deleteCurrentDetailArticle = async () => {
         if (!currentDetailArticle) return;
-        if (!confirm(T('Are you sure you want to delete this article?'))) return;
-
-        StorageManager.deleteArticle(currentDetailArticle.id).then(() => {
-            const deletedId = currentDetailArticle.id;
-            const updated = cachedArticles.filter(item => item.id !== deletedId);
-            currentDetailArticle = null;
-            cachedArticles = updated;
-            archivedCache = archivedCache.filter(item => item.id !== deletedId);
-            invalidateSearchIndex();
-            renderTab();
+        const deletedId = currentDetailArticle.id;
+        if (!(await confirmArticleDelete([deletedId]))) return;
+        currentDetailArticle = null;
+        await deleteArticlesWithUndo([deletedId]);
+        {
 
             const articleDetail = document.getElementById('articleDetail');
             const articleList = document.getElementById('articleList');
@@ -1065,7 +1088,7 @@ export function initArticleManager(uiManager) {
             if (articleList) articleList.style.display = 'block';
             if (historyTopBar) historyTopBar.style.display = 'flex';
             if (detailTopBar) detailTopBar.style.display = 'none';
-        });
+        }
     };
 
     // ── Handle Detail Back Button ───────────────────────────────────────
@@ -1381,8 +1404,8 @@ export function loadHistory({ since = 0 } = {}) {
         .catch(() => {})
         .then(() => StorageManager.getArticlesIndex({ includeArchived: true }))
         .then(articles => {
-            cachedArticles = articles.filter(a => !a.archived);
-            archivedCache = articles.filter(a => a.archived);
+            cachedArticles = articles.filter(a => !a.archived && !pendingArticleDeletes.has(a.id));
+            archivedCache = articles.filter(a => a.archived && !pendingArticleDeletes.has(a.id));
             invalidateSearchIndex();
             // New summaries carry the English name of each tag: teach them to the lexicon here (not in the content script, so no page races the others), so the same
             // topic in two languages is one tag in search, graph and charts.
@@ -1801,7 +1824,9 @@ export function filterArticles() {
     const cards = document.querySelectorAll('.article-card');
     cards.forEach(card => {
         if (!filterText) { card.style.display = 'block'; return; }
-        const headerText = card.querySelector('.article-header h4').textContent.toLowerCase();
+        const heading = card.querySelector('.article-header h4');
+        if (!heading) return; // a loading skeleton card has no title yet: nothing to filter, and it must not throw while the list is being built
+        const headerText = heading.textContent.toLowerCase();
         const tagText = Array.from(card.querySelectorAll('.tag-chip'))
             .map(chip => chip.textContent.toLowerCase()).join(' ');
         const art = cachedArticles.find(x => String(x.timestamp) === card.dataset.ts) || archivedCache.find(x => String(x.timestamp) === card.dataset.ts);

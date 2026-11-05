@@ -203,7 +203,7 @@ Main navigation: Feeds, Summarize, History, Notes.
 
 - CSS: `.bottom-nav`
 - Source: `plugin/src/popup.html`, `plugin/src/modules/tabbar.js`
-- Tokens: `--bottom-nav-height`, `--nav-bg`, `--outline`, `--z-nav`
+- Tokens: `--bottom-nav-gap`, `--bottom-nav-height`, `--nav-bg`, `--outline`, `--z-nav`
 - Accessibility:
   - <nav aria-label="Main">
   - ≥ 44px targets
@@ -341,7 +341,7 @@ The Summarize input: chip row, page context, focus field, Summarize split button
 - CSS: `.input-card`, `.chip-row`, `.controls-bar`
 - Source: `plugin/src/popup.html`, `plugin/src/modules/composerState.js`, `plugin/src/modules/mainScreen.js`
 - Properties: Page (text)
-- Tokens: `--accent-a10`, `--accent-a30`, `--bg-page`, `--bottom-nav-height`, `--button-working-bg`, `--controls-bottom-gap`, `--duration-base`, `--easing-in-out`, `--easing-standard`, `--focus-ring`, `--focus-ring-offset`, `--focus-ring-width`, `--glass-border`, `--glass-card`, `--glass-inner-glow`, `--nav-clearance`, `--on-solid`, `--outline`, `--radius-xl`, `--shadow-card`, `--spacing-s-1`, `--spacing-s-3`, `--spacing-s-4`, `--spacing-s-5`, `--text-secondary`, `--z-header`, `--z-raised`
+- Tokens: `--accent-a10`, `--accent-a30`, `--bg-page`, `--bottom-nav-space`, `--button-working-bg`, `--controls-bottom-gap`, `--duration-base`, `--easing-in-out`, `--easing-standard`, `--focus-ring`, `--focus-ring-offset`, `--focus-ring-width`, `--glass-border`, `--glass-card`, `--glass-inner-glow`, `--nav-clearance`, `--on-solid`, `--outline`, `--radius-xl`, `--shadow-card`, `--spacing-s-1`, `--spacing-s-3`, `--spacing-s-4`, `--spacing-s-5`, `--text-secondary`, `--z-header`, `--z-raised`
 - Accessibility:
   - The field has a visible label or aria-label
   - Chips are reachable before the button
@@ -511,3 +511,95 @@ A note, a highlight or an AI highlight in Notes (sticky), with comment, source, 
   - <article> labelled with its kind
   - Actions are buttons; Remove asks first
   - Remove text --saved-note-danger ≥ 5.5:1 on every sticky
+
+## Reorder grip
+
+Status: beta · Figma node 1320:156
+
+The AISH-006.3 drag pattern outside the article toolbar: a ⋮⋮ handle that reorders items in a list or bar (collection sources, dock tabs, feed subscriptions).
+
+- CSS: `.reorder-grip`
+- Source: `plugin/src/modules/reorder.js`
+- Variants: State (Default / Hover / Focus)
+- Tokens: `--accent-soft`, `--focus-ring`, `--focus-ring-inset`, `--focus-ring-width`, `--fs-sm`, `--radius-sm`, `--text-muted`, `--text-primary`
+- Accessibility:
+  - Real <button> named “Move “{name}””
+  - ↑/↓ (←/→ in a bar), Home/End on the grip; Alt+arrows anywhere in the item
+  - Every move is announced in a polite live region
+  - Pointer events, so touch and pen work (no HTML drag and drop)
+- Do:
+  - Say what the order changes (export order, dock order)
+  - Restore focus to the moved item’s grip
+- Don't:
+  - Put the grip inside another button
+  - Offer reordering while a filter hides items
+
+## Collection progress
+
+Status: beta · Figma node 1310:151
+
+Status line + bar “{a} of {n} sources checked” on collection cards and in the Sources tab (AISH-032 · A).
+
+- CSS: `.coll-prog`, `.coll-status`, `.coll-bar`, `.coll-bar-fill`
+- Source: `plugin/src/modules/collectionsView.js`
+- Variants: Tone (Running / OK / Empty)
+- Tokens: `--accent`, `--duration-slow`, `--easing-standard`, `--fs-sm`, `--mood-pos`, `--mood-pos-text`, `--outline`, `--radius-full`, `--text-muted`, `--text-secondary`
+- Accessibility:
+  - Bar is role=progressbar with valuenow/valuemax and a label
+  - Text carries the meaning; glyph is aria-hidden
+  - Done uses --mood-pos-text (≥ 4.5:1)
+- Don't:
+  - Show a bar for an empty collection
+
+## Dock editor
+
+Status: beta · Figma node 1320:178
+
+Settings › Appearance › Bottom dock: reorder and show/hide the dock tabs (Summarize stays, at least two tabs).
+
+- CSS: `.dock-ed-list`, `.dock-ed-row`, `.dock-ed-name`
+- Source: `plugin/src/modules/dockPrefs.js`
+- Variants: State (On / Off / Locked)
+- Tokens: `--fs-md`, `--glass-card`, `--outline`, `--outline-soft`, `--radius-md`, `--text-primary`
+- Accessibility:
+  - Each switch is named “Show “{tab}” in the dock”
+  - Locked switches are disabled with a reason in the row title
+
+## Action bar
+
+Status: beta · Figma node 1323:197
+
+The article toolbar (AISH-006.3) as a building block for other views: actions in a joined bar, the rest in ⋯, “Customize toolbar…” turns the bar into its own editor. Used in Collections (A+) and graph topics.
+
+- CSS: `.action-bar-wrap`, `.action-bar`
+- Source: `plugin/src/modules/actionBar.js`
+- Variants: State (Default / Editing)
+- Accessibility:
+  - role=toolbar with a name; ←/→ move along the bar
+  - Editing: Alt+←/→ reorder, Delete moves to ⋯, tray chips add on click/Enter
+  - ⋯ is a menu button (aria-haspopup=menu)
+- Do:
+  - Destructive and rare actions go in menuOnly (never in the bar)
+  - One preference per view (chrome.storage.sync)
+- Don't:
+  - Put the primary call to action of a view in the bar (e.g. the topic briefing stays its own button)
+
+## Confirm sheet
+
+Status: beta · Figma node 1323:198
+
+Replaces window.confirm app-wide (AISH-032 · A4): what is deleted, what stays (✓), Undo hint; with undoToast() the delete runs when the Undo toast runs out.
+
+- CSS: `.confirm-sheet`, `.confirm-text`, `.confirm-keeps`, `.confirm-undo`
+- Source: `plugin/src/modules/confirmSheet.js`
+- Properties: Title (text), Text (text), Stays (text), Show stays (boolean), Show undo hint (boolean)
+- Tokens: `--fs-md`, `--fs-sm`, `--fs-xs`, `--radius-md`, `--text-muted`, `--text-secondary`, `--tone-new-bg`, `--tone-new-fg`
+- Accessibility:
+  - role=dialog, aria-modal, labelled by its title
+  - Focus starts on Cancel; Escape and the scrim cancel
+  - Stays text uses --tone-new-fg on --tone-new-bg (AA)
+- Do:
+  - Three levels: small items → Undo only; articles/collections → sheet + Undo; everything → type-to-confirm (confirmDialog.js)
+  - Say what stays, not only what goes
+- Don't:
+  - Use window.confirm or alert for decisions

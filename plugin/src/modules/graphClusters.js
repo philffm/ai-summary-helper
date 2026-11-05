@@ -1,6 +1,7 @@
 // graphClusters.js — what you can DO with a topic in the graph: tap a tag node → the cluster page
 // (mini map, one-tap briefing, never-opened list, docked question box; briefing and questions use only the saved summaries)
 // and a Markdown export of just that cluster. Everything shown is set as text; AI output goes through the safe renderer.
+import { createActionBar } from './actionBar.js';
 import { T, TN } from './feedI18n.js';
 import { el } from './dom.js';
 import { setIconLabel } from './icons.js';
@@ -235,59 +236,42 @@ export function openClusterPage(container, { label, articles, subtopics = [] }) 
         brief.addEventListener('click', (e) => { e.stopPropagation(); run('', brief); });
         scroll.append(brief);
     }
-    const actions = el('div', 'graph-cluster-actions');
-    const show = el('button', 'button-secondary graph-cluster-show', T('Show list')); show.type = 'button';
-    show.addEventListener('click', (e) => {
-        e.stopPropagation(); close();
-        container.dispatchEvent(new CustomEvent('filter-by-tag', { detail: { tag: label }, bubbles: true, composed: true }));
-    });
-    actions.append(show);
-    if (st.exportable) {
-        const exp = el('button', 'button-secondary graph-cluster-md'); setIconLabel(exp, 'download', T('⬇ Markdown'));
-        exp.type = 'button'; exp.title = T('Export these articles (and the briefing, if you made one) as a .zip of Markdown files');
-        exp.addEventListener('click', async (e) => {
-            e.stopPropagation(); exp.disabled = true;
-            try {
+    // Topic actions as an action bar (AISH-006.3 pattern): List / Markdown / Collection by default, Anki in ⋯; customizable.
+    const savable = list.filter(a => a.id && !a.feedStub);
+    const say = (text, err) => { out.className = 'graph-cluster-answer' + (err ? ' is-error' : ''); out.textContent = text; };
+    const busy = async (b, fn) => { if (b) b.disabled = true; try { await fn(); } finally { if (b) b.disabled = false; } };
+    const catalog = {
+        list: { icon: 'clipboard-list', label: () => T('Show list'), short: () => T('List'), cls: 'graph-cluster-show', run: () => {
+            close(); container.dispatchEvent(new CustomEvent('filter-by-tag', { detail: { tag: label }, bubbles: true, composed: true }));
+        } },
+        markdown: { icon: 'download', label: () => T('Export as Markdown'), short: () => T('Markdown'), cls: 'graph-cluster-md',
+            available: () => st.exportable, run: (b) => busy(b, async () => {
                 const m = await import('./markdownArchive.js');
                 await m.exportHistoryMarkdown({ ids: list.filter(a => a.id && !a.feedStub).map(a => a.id), name: label, briefing: { title: label, results: out.__results || [] }, hub: subtopics.length ? { subtopics: subtopics.map(sub => ({ label: sub.label, ids: (sub.articles || []).filter(a => a && a.id).map(a => a.id) })) } : true });
-            } finally { exp.disabled = false; }
-        });
-        actions.append(exp);
-    }
-    // Flashcards: the questions you asked and the answers you kept, as a file Anki imports. No AI call, nothing leaves the device.
-    if (st.exportable) {
-        const ank = el('button', 'button-secondary graph-cluster-anki'); ank.type = 'button';
-        ank.textContent = '🃏 ' + T('Anki cards');
-        ank.title = T('Export the questions you asked on this topic, and the answers you pinned, as flashcards for Anki');
-        ank.addEventListener('click', async (e) => {
-            e.stopPropagation(); ank.disabled = true;
-            try {
-                const m = await import('./ankiExport.js');
-                const n = await m.exportAnki({ articles: list, results: out.__results || [], topic: label });
-                if (!n) { out.className = 'graph-cluster-answer is-error'; out.textContent = T('No cards yet. Ask a question about this topic, or pin an answer under an article, and they become cards.'); }
-                else { out.className = 'graph-cluster-answer'; out.textContent = TN(n, '{n} card saved. In Anki: File ▸ Import.', '{n} cards saved. In Anki: File ▸ Import.'); }
-            } finally { ank.disabled = false; }
-        });
-        actions.append(ank);
-    }
-    const savable = list.filter(a => a.id && !a.feedStub);
-    if (savable.length >= 2) {
-        const sv = el('button', 'button-secondary graph-cluster-coll'); sv.type = 'button';
-        sv.textContent = '🗂 ' + T('Save as collection');
-        sv.title = T('Start a collection from the newest articles of this topic (up to 15). Nothing is sent anywhere.');
-        sv.addEventListener('click', async (e) => {
-            e.stopPropagation(); sv.disabled = true;
-            try {
+            }) },
+        collection: { icon: 'layers', label: () => T('Save as collection'), short: () => T('Collection'), cls: 'graph-cluster-coll',
+            available: () => savable.length >= 2, run: (b) => busy(b, async () => {
+                // Start a collection from the newest articles of this topic (up to 15). Nothing is sent anywhere.
                 const C = await import('./collections.js');
-                const pick = savable.slice().sort((a, b) => (hasText(b) - hasText(a)) || (new Date(b.timestamp) - new Date(a.timestamp))).slice(0, C.MAX_SOURCES);
+                const pick = savable.slice().sort((a, b2) => (hasText(b2) - hasText(a)) || (new Date(b2.timestamp) - new Date(a.timestamp))).slice(0, C.MAX_SOURCES);
                 const c = await C.createCollection({ name: label, question: '' });
                 for (const a of pick) { const r = await C.addSource(c.id, a.id); if (!r.ok) break; }
                 C.bumpStat('cluster_saved').catch(() => {});
-                sv.textContent = '✓ ' + T('Saved as collection ({n} sources)', { n: pick.length });
-            } catch (_) { sv.disabled = false; sv.textContent = '🗂 ' + T('Save as collection'); }
-        });
-        actions.append(sv);
-    }
+                say('✓ ' + T('Saved as collection ({n} sources)', { n: pick.length }));
+            }) },
+        anki: { icon: 'brain', label: () => T('Anki cards'), cls: 'graph-cluster-anki',
+            available: () => st.exportable, run: (b) => busy(b, async () => {
+                // Flashcards: the questions you asked and the answers you kept, as a file Anki imports. No AI call.
+                const m = await import('./ankiExport.js');
+                const n = await m.exportAnki({ articles: list, results: out.__results || [], topic: label });
+                if (!n) say(T('No cards yet. Ask a question about this topic, or pin an answer under an article, and they become cards.'), true);
+                else say(TN(n, '{n} card saved. In Anki: File ▸ Import.', '{n} cards saved. In Anki: File ▸ Import.'));
+            }) },
+    };
+    const topicBar = createActionBar({ pref: 'topicToolbarItems', label: T('Topic actions'), catalog, defaults: ['list', 'markdown', 'collection'] });
+    topicBar.el.classList.add('graph-cluster-actions');
+    topicBar.refresh();
+    const actions = topicBar.el;
     scroll.append(actions, out);
 
     const row = (a, dim) => {

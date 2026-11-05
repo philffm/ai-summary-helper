@@ -229,16 +229,18 @@
   --header-h: 62px;
   /* component · bottom-nav */
   --bottom-nav-height: 60px;
+  --bottom-nav-gap: 0px; /* Distance between the bottom dock and the bottom edge of the panel: 0, the dock sits flush (only its top corners are rounded). */
+  --bottom-nav-space: calc(var(--bottom-nav-height) + var(--bottom-nav-gap)); /* Room the floating dock takes from the bottom (height + gap); use it to place things above the dock. */
   /* component · controls */
   --controls-bottom-gap: 16px;
   --controls-overlay-height: 250px;
   /* component · nav */
-  --nav-clearance: calc(var(--bottom-nav-height) + var(--controls-bottom-gap) + var(--spacing-s-4));
+  --nav-clearance: calc(var(--bottom-nav-space) + var(--controls-bottom-gap) + var(--spacing-s-4));
   --nav-bg: var(--surface-bar);
   --nav-active-text: var(--on-accent);
   --nav-blob-bg: linear-gradient(135deg, var(--accent), var(--accent-light));
   /* component · floating */
-  --floating-stack-height: calc(var(--bottom-nav-height) + var(--controls-bottom-gap) + var(--controls-overlay-height));
+  --floating-stack-height: calc(var(--bottom-nav-space) + var(--controls-bottom-gap) + var(--controls-overlay-height));
   /* component · localsend */
   --localsend-bg: #0284C7; /* LocalSend brand blue (third-party mark). */
   /* component · button */
@@ -764,7 +766,7 @@ button:disabled { opacity: 0.5; cursor: not-allowed; }
   position: fixed;
   left: 50%;
   transform: translateX(-50%);
-  bottom: calc(var(--bottom-nav-height) + var(--controls-bottom-gap) + 8px);
+  bottom: calc(var(--bottom-nav-space) + var(--controls-bottom-gap) + 8px);
   z-index: var(--z-fab);
   width: auto;
   min-width: 180px;
@@ -869,7 +871,7 @@ button:disabled { opacity: 0.5; cursor: not-allowed; }
   position: fixed;
   left: 0;
   right: 0;
-  bottom: calc(var(--bottom-nav-height) + var(--controls-bottom-gap));
+  bottom: calc(var(--bottom-nav-space) + var(--controls-bottom-gap));
   padding: 0 var(--spacing-s-4);   /* same inset as the feed (.screen padding) */
   z-index: var(--z-header);
   box-sizing: border-box;
@@ -1575,7 +1577,7 @@ circle.graph-time-dim, text.graph-time-dim { opacity: 0.08; }
 
 .bottom-nav {
   position: fixed;
-  bottom: 0;
+  bottom: var(--bottom-nav-gap);   /* 0: the dock sits flush on the bottom edge, only the top corners are rounded */
   border-radius: 1rem 1rem 0 0;
   left: 12px;
   right: 12px;
@@ -1589,6 +1591,7 @@ circle.graph-time-dim, text.graph-time-dim { opacity: 0.08; }
   padding: 8px 16px;
   background: var(--nav-bg);
   border: 1px solid var(--outline);
+  border-bottom: 0;
 }
 
 .nav-item {
@@ -2818,7 +2821,7 @@ circle.graph-time-dim, text.graph-time-dim { opacity: 0.08; }
 
 /* Undo bar */
 .feed-undo {
-  position: fixed; left: 16px; right: 16px; bottom: calc(var(--bottom-nav-height) + 24px); z-index: var(--z-player);
+  position: fixed; left: 16px; right: 16px; bottom: calc(var(--bottom-nav-space) + 24px); z-index: var(--z-player);
   display: flex; align-items: center; gap: 12px; padding: 10px 14px; border-radius: var(--radius-md);
   background: var(--toast-bg); color: var(--toast-fg); font-size: var(--fs-md); box-shadow: var(--shadow-raised);
 }
@@ -2869,7 +2872,7 @@ circle.graph-time-dim, text.graph-time-dim { opacity: 0.08; }
 
 /* ── Feeds: podcast player ───────────────────────────────────────────── */
 .feed-player {
-  position: fixed; left: 12px; right: 12px; bottom: calc(var(--bottom-nav-height) + 14px); z-index: var(--z-float);
+  position: fixed; left: 12px; right: 12px; bottom: calc(var(--bottom-nav-space) + 14px); z-index: var(--z-float);
   padding: 12px 14px 10px; border-radius: 22px; color: var(--player-fg); font-size: var(--fs-sm);
   background: var(--player-bg);
   -webkit-backdrop-filter: blur(18px); backdrop-filter: blur(18px);
@@ -2910,7 +2913,7 @@ circle.graph-time-dim, text.graph-time-dim { opacity: 0.08; }
 .feed-player .fp-err { margin-top: 6px; text-align: center; font-size: var(--fs-xs); color: var(--player-err); }
 .feed-play-btn.is-playing { background: var(--accent); color: var(--on-accent); }
 .feed-dur { opacity: .75; }
-body.has-player .feed-undo { bottom: calc(var(--bottom-nav-height) + 190px); }
+body.has-player .feed-undo { bottom: calc(var(--bottom-nav-space) + 190px); }
 .has-player #feedItemList { padding-bottom: 190px; }
 
 /* Feeds: AI category label + sentiment tint */
@@ -3117,7 +3120,7 @@ body.has-player .feed-undo { bottom: calc(var(--bottom-nav-height) + 190px); }
   border-radius: 16px; background: var(--glass-base); border: 1px solid var(--glass-border-strong); box-shadow: var(--shadow-raised);
   backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
 }
-.screen.ws-active .sel-bar { bottom: calc(var(--bottom-nav-height) + var(--controls-bottom-gap) + 8px); }   /* split view: lift above the floating nav */
+.screen.ws-active .sel-bar { bottom: calc(var(--bottom-nav-space) + var(--controls-bottom-gap) + 8px); }   /* split view: lift above the floating nav */
 .sel-bar .sel-x { width: 36px; height: 36px; padding: 0; flex: none; }
 .sel-bar .sel-info { min-width: 0; }
 .sel-bar .sel-count { font-size: var(--fs-md); font-weight: 600; color: var(--text-primary); }
@@ -3628,7 +3631,7 @@ html[data-mood="off"] .feed-item.has-mood { background-image: none; box-shadow: 
 .controls-bar::before {
   content: ''; position: absolute; z-index: -1; pointer-events: none;
   left: 50%; width: 100vw; transform: translateX(-50%);
-  top: -40px; bottom: calc(-1 * (var(--bottom-nav-height) + var(--controls-bottom-gap)));
+  top: -40px; bottom: calc(-1 * (var(--bottom-nav-space) + var(--controls-bottom-gap)));
   background: linear-gradient(to bottom, transparent 0, color-mix(in srgb, var(--bg-page) 78%, transparent) 40px, var(--bg-page) 72px);
 }
 /* Larger, easier targets */
@@ -3812,7 +3815,7 @@ html[data-motion='reduce'] *, html[data-motion='reduce'] *::before, html[data-mo
 .kbd-keys { display: flex; gap: 4px; flex: none; }
 .kbd-key { min-width: 22px; padding: 2px 7px; text-align: center; border: 1px solid var(--outline); border-bottom-width: 2px; border-radius: 6px; background: var(--field-bg); color: var(--text-primary); font: 600 var(--fs-sm) / 1.3 inherit; font-family: inherit; }
 .kbd-tip { margin-top: 12px; font-size: var(--fs-sm); color: var(--text-muted); }
-.kbd-hintbar { position: fixed; left: 50%; transform: translateX(-50%); bottom: calc(var(--bottom-nav-height) + var(--controls-bottom-gap) + 8px); z-index: var(--z-float); display: flex; gap: 12px; padding: 6px 12px; border: 1px solid var(--outline); border-radius: 999px; background: var(--nav-bg); color: var(--text-muted); font-size: var(--fs-xs); white-space: nowrap; }
+.kbd-hintbar { position: fixed; left: 50%; transform: translateX(-50%); bottom: calc(var(--bottom-nav-space) + var(--controls-bottom-gap) + 8px); z-index: var(--z-float); display: flex; gap: 12px; padding: 6px 12px; border: 1px solid var(--outline); border-radius: 999px; background: var(--nav-bg); color: var(--text-muted); font-size: var(--fs-xs); white-space: nowrap; }
 .kbd-hint-g { display: inline-flex; align-items: center; gap: 4px; }
 .kbd-hintbar[hidden] { display: none; }
 .graph-topbar { position: absolute; top: 10px; left: 10px; right: 10px; z-index: 6; display: flex; flex-wrap: wrap; align-items: flex-start; gap: 8px; pointer-events: none; }
@@ -3866,7 +3869,7 @@ body[data-screen="history"]:has(#detailTopBar:not(.scroll-hidden):not([style*="d
 :where(input, textarea, [contenteditable="true"], .cite-text, .ref-preview, pre, code) { -webkit-user-select: text; user-select: text; }
 
 /* Long texts: "Scroll to top" pill + progress ring (opens the contents). Appears after ~2 screens, only while scrolling up. */
-.reading-tools { position: fixed; right: 16px; bottom: calc(var(--bottom-nav-height) + var(--controls-bottom-gap) + 14px); z-index: 40; display: flex; align-items: center; gap: 8px; visibility: hidden; opacity: 0; transform: translateY(8px); transition: opacity var(--duration-fast) var(--easing-standard), transform var(--duration-fast) var(--easing-standard), visibility 0s linear var(--duration-fast); }
+.reading-tools { position: fixed; right: 16px; bottom: calc(var(--bottom-nav-space) + var(--controls-bottom-gap) + 14px); z-index: 40; display: flex; align-items: center; gap: 8px; visibility: hidden; opacity: 0; transform: translateY(8px); transition: opacity var(--duration-fast) var(--easing-standard), transform var(--duration-fast) var(--easing-standard), visibility 0s linear var(--duration-fast); }
 .reading-tools.is-on { visibility: visible; opacity: 1; transform: none; transition-delay: 0s; }
 body:not([data-screen="history"]) .reading-tools { display: none; }
 .rt-pill { display: inline-flex; align-items: center; gap: 6px; height: 40px; padding: 0 14px; border-radius: 999px; border: 1px solid var(--outline); background: var(--glass-base); color: var(--text-primary); font: inherit; font-size: var(--fs-sm); font-weight: 600; cursor: pointer; -webkit-backdrop-filter: blur(14px); backdrop-filter: blur(14px); }
@@ -3883,13 +3886,13 @@ body:not([data-screen="history"]) .reading-tools { display: none; }
 .rt-row.is-cur { background: var(--accent-a10); color: var(--accent); font-weight: 600; }
 @media (prefers-reduced-motion: reduce) { .reading-tools { transition: none; transform: none; } }
 /* Back to top: Feeds and History lists. Same glass pill look as the reading tools; lifts above the podcast player and the selection bar. */
-.back-to-top { position: fixed; right: 16px; bottom: calc(var(--bottom-nav-height) + var(--controls-bottom-gap) + 14px); z-index: 40; width: 44px; height: 44px; padding: 0; display: grid; place-items: center; border-radius: 50%; border: 1px solid var(--outline); background: var(--glass-base); color: var(--accent); cursor: pointer; -webkit-backdrop-filter: blur(14px); backdrop-filter: blur(14px); box-shadow: var(--shadow-raised); visibility: hidden; opacity: 0; transform: translateY(8px); transition: opacity var(--duration-fast) var(--easing-standard), transform var(--duration-fast) var(--easing-standard), visibility 0s linear var(--duration-fast); }
+.back-to-top { position: fixed; right: 16px; bottom: calc(var(--bottom-nav-space) + var(--controls-bottom-gap) + 14px); z-index: 40; width: 44px; height: 44px; padding: 0; display: grid; place-items: center; border-radius: 50%; border: 1px solid var(--outline); background: var(--glass-base); color: var(--accent); cursor: pointer; -webkit-backdrop-filter: blur(14px); backdrop-filter: blur(14px); box-shadow: var(--shadow-raised); visibility: hidden; opacity: 0; transform: translateY(8px); transition: opacity var(--duration-fast) var(--easing-standard), transform var(--duration-fast) var(--easing-standard), visibility 0s linear var(--duration-fast); }
 .back-to-top.is-on { visibility: visible; opacity: 1; transform: none; transition-delay: 0s; }
 .back-to-top-ic { font-size: 20px; font-weight: 700; line-height: 1; }
 .back-to-top:hover { border-color: var(--accent); }
 .back-to-top:focus-visible { outline: var(--focus-ring-width) solid var(--focus-ring); outline-offset: var(--focus-ring-offset); }
-body.has-player .back-to-top { bottom: calc(var(--bottom-nav-height) + var(--controls-bottom-gap) + 14px + 104px); }
-body:has(#historyScreen.selecting) .back-to-top { bottom: calc(var(--bottom-nav-height) + var(--controls-bottom-gap) + 14px + 64px); }
+body.has-player .back-to-top { bottom: calc(var(--bottom-nav-space) + var(--controls-bottom-gap) + 14px + 104px); }
+body:has(#historyScreen.selecting) .back-to-top { bottom: calc(var(--bottom-nav-space) + var(--controls-bottom-gap) + 14px + 64px); }
 body:not([data-screen="feeds"]):not([data-screen="history"]) .back-to-top { display: none; }
 @media (prefers-reduced-motion: reduce) { .back-to-top { transition: none; transform: none; } }
 #articleDetail h1, #articleDetail h2, #articleDetail h3, #articleDetail h4 { scroll-margin-top: calc(var(--header-h) + 64px); }
@@ -4027,8 +4030,7 @@ body[data-surface="tab"] { min-width: 0; }
 .gcm-label { fill: var(--text-primary); font-size: 11px; font-weight: 600; }
 .graph-cluster-brief { width: 100%; min-height: 44px; border-radius: 999px; font-size: var(--fs-md); font-weight: 600; }
 .graph-cluster-brief:disabled { opacity: .6; cursor: progress; }
-.graph-cluster-actions { display: flex; gap: 8px; }
-.graph-cluster-actions > button { flex: 1; width: auto; min-height: 36px; border-radius: 999px; font-size: var(--fs-sm); }
+.graph-cluster-actions { margin: 0; }   /* an action bar (actionBar.js) since the topic actions became customizable */
 .graph-cluster-h { margin-top: 6px; font-size: var(--fs-xs); font-weight: 600; color: var(--text-muted); }
 .graph-cluster-list { margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 6px; }
 .graph-cluster-open { width: 100%; display: flex; flex-direction: column; gap: 2px; text-align: left; padding: 8px 12px; border: 1px solid var(--outline); border-radius: 12px; background: var(--glass-card); color: var(--text-primary); font: inherit; font-size: var(--fs-sm); cursor: pointer; }
@@ -4322,7 +4324,7 @@ body[data-surface="tab"] { min-width: 0; }
 .onboarding-option--action:hover { border-color: var(--accent); }
 .onboarding-option--action:focus-visible { outline: var(--focus-ring-width) solid var(--focus-ring); outline-offset: var(--focus-ring-offset); }
 .onboarding-skip {
-  position: fixed; right: var(--spacing-s-4); bottom: calc(var(--bottom-nav-height) + var(--controls-bottom-gap) + var(--spacing-s-3)); z-index: 5;
+  position: fixed; right: var(--spacing-s-4); bottom: calc(var(--bottom-nav-space) + var(--controls-bottom-gap) + var(--spacing-s-3)); z-index: 5;
   width: auto; margin: 0; padding: 8px 16px; border-radius: var(--radius-full);
   background: var(--glass-card); border: 1px solid var(--glass-border); box-shadow: var(--glass-inner-glow), var(--elevation-3);
 }
@@ -4881,7 +4883,7 @@ html[data-motion="reduce"] .detail-split-more .icon { transition: none; }
 
 /* The Notes composer is the Summarize screen's own pill (.composer-pill: field and primary button), docked above the nav the same way */
 /* sticky offsets are measured from the scroller's content area, which the screen's bottom padding (nav-clearance) shrinks: take it off again, and let the dock use the last 16px of it, so the pill ends where Summarize's does */
-.controls-bar.notes-dock { position: sticky; left: auto; right: auto; bottom: calc(var(--bottom-nav-height) + var(--controls-bottom-gap) - var(--nav-clearance) - 6px); max-width: none; margin: auto 0 calc(-1 * var(--spacing-s-4) - 6px); padding: 0; z-index: var(--z-raised); }
+.controls-bar.notes-dock { position: sticky; left: auto; right: auto; bottom: calc(var(--bottom-nav-space) + var(--controls-bottom-gap) - var(--nav-clearance) - 6px); max-width: none; margin: auto 0 calc(-1 * var(--spacing-s-4) - 6px); padding: 0; z-index: var(--z-raised); }
 .notes-dock .composer-pill .notes-add { flex: none; width: auto; margin: 0; white-space: nowrap; min-width: 44px; }
 .notes-dock .notes-hint { color: var(--text-muted); font-size: var(--fs-xs); }
 
@@ -5051,3 +5053,135 @@ circle.graph-read-dim, text.graph-read-dim, .graph-blob.graph-read-dim { opacity
 /* Focus not obscured (WCAG 2.4.11): keyboard focus and scrollIntoView stop clear of the fixed header, the bottom nav and the composer. */
 .screen { scroll-padding-top: calc(var(--header-h) + 8px); scroll-padding-bottom: var(--nav-clearance); }
 .feed-scroll { scroll-padding-top: calc(var(--header-h) + 8px); scroll-padding-bottom: calc(var(--floating-stack-height) + 8px); }
+
+/* Collections · Variant A "Research board" (AISH-032, decided): progress line + bar, back link and ⋯ menu,
+   title/question as text, tabs Sources · Overview · Export, source cards with the check state, export rows. */
+.coll-prog { display: flex; flex-direction: column; gap: 6px; margin-top: 2px; }
+.coll-prog[hidden] { display: none; }
+.coll-status { display: inline-flex; align-items: center; gap: 6px; font-size: var(--fs-sm); font-weight: 600; color: var(--text-secondary); }
+.coll-status.is-done { color: var(--mood-pos-text); }
+.coll-status.is-empty { font-weight: 400; color: var(--text-muted); }
+.coll-status-glyph { flex: none; width: 1em; text-align: center; }
+.coll-bar { display: block; height: 6px; border-radius: var(--radius-full); background: var(--outline); overflow: hidden; }
+.coll-bar-fill { display: block; height: 100%; width: var(--p, 0%); border-radius: inherit; background: var(--accent); transition: width var(--duration-slow) var(--easing-standard); }
+.coll-status.is-done + .coll-bar > .coll-bar-fill { background: var(--mood-pos); }
+.coll-toolbar.coll-toolbar--sub { justify-content: space-between; flex-wrap: nowrap; padding-bottom: 4px; }
+.coll-back { display: inline-flex; align-items: center; gap: 4px; min-height: 32px; padding: 0 6px 0 0; border: 0; background: transparent; box-shadow: none; color: var(--text-secondary); font: inherit; font-size: var(--fs-sm); font-weight: 600; cursor: pointer; }
+.coll-back:hover { color: var(--text-primary); }
+.coll-more { align-self: center; }
+.coll-head { margin: 0 0 10px; }
+.coll-title { margin: 0; font-size: var(--fs-xl); line-height: 1.25; color: var(--text-primary); overflow-wrap: anywhere; }
+.coll-q-text { margin: 4px 0 0; font-size: var(--fs-sm); color: var(--text-secondary); overflow-wrap: anywhere; }
+.coll-q-add { margin-top: 4px; padding: 0; border: 0; background: transparent; box-shadow: none; color: var(--accent); font: inherit; font-size: var(--fs-sm); font-weight: 600; cursor: pointer; }
+.coll-tabs { margin-bottom: 12px; }
+.coll-progress-card { margin-bottom: 10px; padding: 12px 14px; border: 1px solid var(--outline); border-radius: var(--radius-md); background: var(--glass-card); }
+.coll-progress-card > .coll-note { margin: 8px 0 0; }
+.coll-source-sub { display: flex; flex-wrap: wrap; gap: 0 8px; font-size: var(--fs-xs); color: var(--text-muted); }
+.coll-source-sub > .coll-source-status { font-weight: 600; }
+.coll-source-sub > .coll-source-status.is-open { color: var(--text-secondary); }
+.coll-source-act { display: flex; align-items: center; gap: 4px; flex: none; }
+.coll-remove { display: inline-flex; align-items: center; justify-content: center; width: 32px; height: 32px; padding: 0; border: 0; border-radius: var(--radius-full); background: transparent; box-shadow: none; color: var(--text-muted); cursor: pointer; }
+.coll-remove:hover { color: var(--danger-text); background: color-mix(in srgb, var(--danger) 10%, transparent); }
+.coll-add { width: 100%; margin-top: 4px; }
+.coll-export { display: flex; flex-direction: column; gap: 8px; }
+.coll-export-row { display: flex; align-items: center; gap: 12px; width: 100%; padding: 12px 14px; text-align: start; border: 1px solid var(--outline); border-radius: var(--radius-md); background: var(--glass-card); box-shadow: none; color: var(--text-primary); font: inherit; cursor: pointer; }
+.coll-export-row:hover { border-color: var(--accent); }
+.coll-export-row:disabled { opacity: .55; cursor: progress; }
+.coll-export-ic { flex: none; display: inline-flex; align-items: center; justify-content: center; width: 32px; height: 32px; border-radius: var(--radius-md); background: var(--accent-soft); }
+.coll-export-tx { display: flex; flex-direction: column; gap: 2px; min-width: 0; }
+.coll-export-tx > small { font-size: var(--fs-xs); color: var(--text-muted); }
+.coll-delete-what { color: var(--text-secondary); }
+.coll-actions--split > * { flex: 1; }
+.coll-back:focus-visible, .coll-q-add:focus-visible, .coll-remove:focus-visible, .coll-export-row:focus-visible, .coll-card:focus-visible {
+  outline: var(--focus-ring-width) solid var(--focus-ring); outline-offset: var(--focus-ring-offset); }
+
+/* Reorder (reorder.js): the AISH-006.3 drag pattern for lists and bars — grip, lifted item, drop line. */
+.reorder-grip { flex: none; display: inline-flex; align-items: center; justify-content: center; width: 24px; min-height: 32px; padding: 0; border: 0; border-radius: var(--radius-sm); background: transparent; box-shadow: none; color: var(--text-muted); font-size: var(--fs-sm); letter-spacing: -2px; cursor: grab; touch-action: none; user-select: none; }
+.reorder-grip:hover { color: var(--text-primary); background: var(--accent-soft); }
+.reorder-grip:active { cursor: grabbing; }
+.reorder-grip:focus-visible { outline: var(--focus-ring-width) solid var(--focus-ring); outline-offset: var(--focus-ring-inset); }
+[data-reorder-id] { position: relative; }
+[data-reorder-id].is-dragging { z-index: 2; box-shadow: var(--shadow-raised); opacity: .96; transition: none; }
+.is-reordering [data-reorder-id]:not(.is-dragging) { transition: box-shadow var(--duration-fast) var(--easing-standard); }
+[data-reorder-id].is-drop-before { box-shadow: 0 -3px 0 0 var(--accent); }
+[data-reorder-id].is-drop-after { box-shadow: 0 3px 0 0 var(--accent); }
+.coll-order-hint { margin: 0 0 6px; }
+
+/* Bottom dock: tabs can be hidden and reordered (Settings › Appearance › Bottom dock, dockPrefs.js) */
+.nav-item[hidden] { display: none; }
+.dock-ed-head { margin-bottom: 6px; }
+.dock-ed-list { display: flex; flex-direction: column; border: 1px solid var(--outline); border-radius: var(--radius-md); background: var(--glass-card); }
+.dock-ed-row { display: flex; align-items: center; gap: 8px; padding: 6px 10px 6px 4px; border-bottom: 1px solid var(--outline-soft); background: var(--glass-card); }
+.dock-ed-row:first-child { border-radius: var(--radius-md) var(--radius-md) 0 0; }
+.dock-ed-row:last-child { border-bottom: 0; border-radius: 0 0 var(--radius-md) var(--radius-md); }
+.dock-ed-row.is-off .dock-ed-name, .dock-ed-row.is-off .dock-ed-ic { opacity: .55; }
+.dock-ed-ic { display: inline-flex; width: 24px; justify-content: center; }
+.dock-ed-ic .nav-icon { display: inline-flex; transform: scale(.8); }
+.dock-ed-name { flex: 1; min-width: 0; font-size: var(--fs-md); color: var(--text-primary); }
+.dock-ed-reset { margin-top: 8px; }
+.feed-sub-card.is-sortable { display: grid; grid-template-columns: auto minmax(0, 1fr); column-gap: 4px; background: var(--glass-card); }
+.feed-sub-card.is-sortable > .reorder-grip { grid-column: 1; grid-row: 1; align-self: center; }
+.feed-sub-card.is-sortable > :not(.reorder-grip) { grid-column: 2; }
+.sd-order-note { margin: 0 0 6px; }
+.dock-ed-row input:disabled + .slider-toggle { opacity: .45; cursor: not-allowed; }
+.coll-status.is-open > .coll-status-glyph { color: var(--accent); font-size: .7em; }
+
+/* Confirm sheet (confirmSheet.js, AISH-032 · A4): replaces window.confirm — what is deleted, what stays (✓), Undo hint. */
+.confirm-text { margin: 0 0 8px; font-size: var(--fs-md); color: var(--text-secondary); white-space: pre-line; }
+.confirm-keeps { display: flex; gap: 8px; align-items: baseline; margin: 0 0 8px; padding: 8px 10px; border-radius: var(--radius-md); background: var(--tone-new-bg); color: var(--tone-new-fg); font-size: var(--fs-sm); }
+.confirm-keeps-ic { flex: none; font-weight: 700; }
+.confirm-undo { margin: 0 0 12px; font-size: var(--fs-xs); color: var(--text-muted); }
+.confirm-sheet .coll-actions { margin-top: 4px; }
+
+/* Action bar (actionBar.js): the article toolbar pattern in other views (collections, graph topics) */
+.action-bar-wrap { margin: 0 0 12px; }
+.action-bar-wrap > .detail-toolbar, .action-bar { max-width: none; margin-left: 0; width: 100%; box-sizing: border-box; }
+.action-bar-wrap > .toolbar-tray { margin: 8px 0 0; }
+
+/* Feed library: Chrome's built-in model (Gemini Nano) as the local fallback — always says what is better */
+.library-nano-note { display: flex; flex-direction: column; gap: 6px; margin: 0 0 12px; padding: 12px 14px; border: 1px solid var(--outline); border-left: 3px solid var(--accent); border-radius: var(--radius-md); background: var(--accent-soft); font-size: var(--fs-sm); color: var(--text-secondary); }
+.library-nano-note > strong { color: var(--text-primary); font-size: var(--fs-md); }
+.library-nano-note > p { margin: 0; }
+.library-nano-actions { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 4px; }
+.library-nano-offer { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; margin: 0 0 12px; }
+.library-nano-offer > .library-progress { flex-basis: 100%; }
+
+/* Models › Ollama / local: Chrome's built-in model as a pickable local model (builtinAi.js) */
+/* “All local models”: every source is one row with the same head (name + state pill) */
+.local-src { display: flex; flex-direction: column; gap: 6px; margin: 0 0 8px; padding: 10px 12px; border: 1px solid var(--outline); border-radius: var(--radius-md); background: var(--glass-card); }
+.local-src-head { display: flex; align-items: center; justify-content: space-between; gap: 8px; }
+.local-src-name { min-width: 0; font-size: var(--fs-sm); font-weight: 600; color: var(--text-primary); }
+.local-src-state { flex: none; display: inline-flex; align-items: center; gap: 6px; font-size: var(--fs-xs); color: var(--text-secondary); white-space: nowrap; }
+.local-src-state::before { content: ''; width: 8px; height: 8px; border-radius: var(--radius-full); background: var(--outline); }
+.local-src-state[data-state="ok"] { color: var(--mood-pos-text); }
+.local-src-state[data-state="ok"]::before { background: var(--ok); }
+.local-src-state[data-state="warn"] { color: var(--mood-warn-text); }
+.local-src-state[data-state="warn"]::before { background: var(--warn); }
+.local-src-state[data-state="todo"]::before { background: var(--accent); }
+.local-src .setting-note, .local-src .ollama-status { margin: 0; }
+.local-src .model-id-list { margin: 0; }
+.builtin-model:empty { display: none; }
+.local-guide > summary, .local-manual > summary { cursor: pointer; font-size: var(--fs-sm); font-weight: 600; color: var(--accent); }
+.local-guide > div { margin-top: 8px; }
+.local-guide .ollama-tutorial-header { display: none; }
+.local-manual { margin-top: 12px; padding-top: 10px; border-top: 1px solid var(--outline); }
+.local-manual[open] > summary { margin-bottom: 8px; }
+.builtin-model-progress { width: 100%; }
+.local-source-head { margin: 10px 0 4px; font-size: var(--fs-sm); font-weight: 600; color: var(--text-primary); }
+.local-all-head .local-source-head { margin: 0; }
+.local-others:empty { display: none; }
+
+/* Models › Local: the recommendation (AISH-033 · A) and the fallback switch (parts of D) */
+.local-reco { display: flex; flex-direction: column; gap: 6px; margin: 0 0 14px; }
+.local-reco-card { display: flex; flex-direction: column; gap: 6px; padding: 12px 14px; border: 2px solid var(--accent); border-radius: var(--radius-md); background: var(--glass-card); }
+.local-reco-title { font-size: var(--fs-md); font-weight: 700; color: var(--text-primary); }
+.local-reco-card .setting-note { margin: 0; }
+.local-reco-actions { display: flex; flex-wrap: wrap; gap: 8px; }
+.local-reco-actions:empty { display: none; }
+.local-reco-inuse { margin: 0; font-size: var(--fs-sm); font-weight: 600; color: var(--mood-pos-text); }
+.local-test-row { margin: 0; font-size: var(--fs-sm); color: var(--text-secondary); }
+.local-fallback { display: flex; align-items: flex-start; gap: 8px; font-size: var(--fs-sm); color: var(--text-secondary); cursor: pointer; }
+.local-fallback input { flex: none; width: auto; margin: 2px 0 0; accent-color: var(--accent); }
+.local-fallback > span { flex: 1; min-width: 0; }
+.local-all-head { display: flex; align-items: center; justify-content: space-between; gap: 8px; margin: 4px 0 8px; padding-top: 10px; border-top: 1px solid var(--outline); }
+.local-fallback { padding-top: 6px; border-top: 1px solid var(--outline); }

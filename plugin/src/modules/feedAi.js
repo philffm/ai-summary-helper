@@ -25,8 +25,10 @@ let aiSeq = 0;
 let aiTransport = null;
 export function setAiTransport(transport) { aiTransport = typeof transport === 'function' ? transport : null; }
 /** `signal` (AbortSignal) cancels the request in the background worker too — there is no timeout, slow local models may take minutes. */
-export function aiComplete(system, user, onStage, signal, onProgress, { partial = false, service = '', feature = '' } = {}) {   // `feature` tells the hosted service what the request is for (tags, recap, qa) so its Auto models can choose
-    if (aiTransport) return aiTransport({ system, user, signal, partial, service, feature, onStage, onProgress });
+export function aiComplete(system, user, onStage, signal, onProgress, { partial = false, service = '', feature = '', target = null } = {}) {   // `feature` tells the hosted service what the request is for (tags, recap, qa) so its Auto models can choose
+    // Chrome's built-in model runs right here in the page (it is not reachable from the service worker's request path).
+    if (service === 'nano') return import('./nanoModel.js').then(m => m.nanoComplete({ system, user, signal, onStage, onProgress }));
+    if (aiTransport) return aiTransport({ system, user, signal, partial, service, feature, target, onStage, onProgress });
     return new Promise((resolve, reject) => {
         const id = `ai${Date.now()}_${++aiSeq}`;
         let settled = false;
@@ -62,7 +64,7 @@ export function aiComplete(system, user, onStage, signal, onProgress, { partial 
         const done = () => { try { chrome.runtime.onMessage.removeListener(onMsg); } catch (e) { /* no listener API */ } };
         try { chrome.runtime.onMessage.addListener(onMsg); } catch (e) { /* tests */ }
         if (onStage) { onStage('send'); setTimeout(() => onStage('wait'), 350); }
-        chrome.runtime.sendMessage({ action: 'aiComplete', system, user, id, partial, ...(service ? { service } : {}), ...(feature ? { feature } : {}) }, (res) => {
+        chrome.runtime.sendMessage({ action: 'aiComplete', system, user, id, partial, ...(service ? { service } : {}), ...(feature ? { feature } : {}), ...(target ? { target } : {}) }, (res) => {
             if (settled) { void chrome.runtime.lastError; return; }
             settled = true; done();
             if (onStage) onStage('parse');
@@ -584,7 +586,7 @@ const isCancel = (e, signal) => !!(e && (e.cancelled || e.name === 'AbortError')
  * never costs the scores. labels = false stops after the first request (cheapest). knownCats = categories already in use.
  * onTiming({ scoreSec, catSec, retried }) reports where the time went.
  */
-export async function scoreItems(list, subTitleFn, { labels = true, onStage, signal, onProgress, service, knownCats = [], onTiming } = {}) {
+export async function scoreItems(list, subTitleFn, { labels = true, onStage, signal, onProgress, service, knownCats = [], onTiming, target = null } = {}) {
     const chunk = list.slice(0, MAX_RECAP_ITEMS);
     const n = chunk.length;
     const rule = (m) => `For each numbered item return a number from -${m} `
@@ -596,11 +598,11 @@ export async function scoreItems(list, subTitleFn, { labels = true, onStage, sig
     const read = (text) => { const a = parseScoreLine(text, n); return usable(a) ? a : parseScores(text, n); };
 
     const t0 = Date.now();
-    let scores = read(await aiComplete(system, items + AFTER.scores, onStage, signal, onProgress, { service, feature: 'tags' }));
+    let scores = read(await aiComplete(system, items + AFTER.scores, onStage, signal, onProgress, { service, feature: 'tags', target }));
     let retried = false;
     if (!usable(scores)) {   // small local models sometimes ignore the format: one more try
         retried = true;
-        scores = read(await aiComplete(system, items + AFTER.scores, onStage, signal, onProgress, { service, feature: 'tags' }));
+        scores = read(await aiComplete(system, items + AFTER.scores, onStage, signal, onProgress, { service, feature: 'tags', target }));
     }
     if (!usable(scores)) throw new Error(T('The AI reply could not be read'));
     const t1 = Date.now();
@@ -613,7 +615,7 @@ export async function scoreItems(list, subTitleFn, { labels = true, onStage, sig
             + `If none fits, you may use a NEW category of one or two words, but at most ${MAX_NEW_CATS} different new categories in total and only when really needed. `
             + 'Reply with ONLY the item number and its category, one pair per item, nothing else, like: 1:Tech | 2:Politics | 3:Science';
         try {
-            out = parseCategoryLines(await aiComplete(catSystem, items + AFTER.cats, onStage, signal, onProgress, { service, feature: 'tags' }), n, vocab);
+            out = parseCategoryLines(await aiComplete(catSystem, items + AFTER.cats, onStage, signal, onProgress, { service, feature: 'tags', target }), n, vocab);
         } catch (e) {
             if (isCancel(e, signal)) throw e;   // anything else: keep the scores, the caller marks the items as "category tried"
         }

@@ -58,3 +58,23 @@ export async function enterSelection(d) {
   }
   throw new Error('no card offers Select');
 }
+
+/** Answers every confirm sheet (confirmSheet.js) that opens: st.answer true → confirm, false → Cancel. st.asked counts them. */
+export function answerSheets(w, answer = true) {
+  const st = { answer, asked: 0 };
+  const obs = new w.MutationObserver(() => {
+    for (const s of w.document.querySelectorAll('.confirm-sheet:not([data-answered])')) {
+      s.dataset.answered = '1'; st.asked++;
+      setTimeout(() => { const b = s.querySelector(st.answer ? '.button-danger, .button-primary' : '.button-secondary'); if (b) b.click(); }, 0);
+    }
+  });
+  obs.observe(w.document.body, { childList: true });
+  return st;
+}
+/** Runs the deletes still waiting for their Undo window (the app's own confirmSheet.js instance). */
+export async function flushUndo() {
+  const m = await import(pathToFileURL(path.join(SRC, 'modules/confirmSheet.js')).href);
+  await m.flushUndo();
+}
+/** Presses Undo on the newest toast. */
+export function pressUndo(d) { const b = [...d.querySelectorAll('#toastStack .toast-action')].at(-1); if (!b) throw new Error('no Undo toast'); b.click(); }

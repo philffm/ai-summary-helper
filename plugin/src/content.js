@@ -19,6 +19,9 @@ import {
   needsChunking,
   splitForContext,
   modelContextFromShow,
+  knownContextWindow,
+  contextFromServerInfo,
+  replyText,
   inlineAndCompressImages
 } from './content/extractor.js';
 
@@ -470,30 +473,48 @@ import {
   }
 
   /**
+   * Context window of a local model (tokens): known ones (apfel, the browser's model) directly; Ollama from /api/show (its
+   * /api/chat asks for up to 32k via num_ctx, its OpenAI-style /v1 endpoint stays at the 4k default); llama.cpp and LM Studio
+   * from their info endpoints (through the background, which may talk to localhost). Unknown: 8k, a safe middle.
+   */
+  async function localContextWindow(apiUrl, headers, model) {
+    const known = knownContextWindow(model);
+    if (known) return known;
+    let origin = ''; try { origin = new URL(apiUrl).origin; } catch (_) { return 8192; }
+    let show = 0;
+    try { show = modelContextFromShow(JSON.parse(await callOnce(origin + '/api/show', headers, { model }))); } catch (e) { if (e && e.cancelled) throw e; }
+    if (show) return /\/api\/chat\b/.test(apiUrl) ? Math.min(show, 32768) : Math.min(show, 4096);
+    if (/\/api\/chat\b/.test(apiUrl)) return 32768;   // Ollama without model info: as before
+    const get = (path) => chrome.runtime.sendMessage({ action: 'localGetJson', url: origin + path }).then(r => (r && r.ok ? r.json : null)).catch(() => null);
+    const [props, lmstudio] = await Promise.all([get('/props'), get('/api/v0/models/' + encodeURIComponent(model))]);
+    return contextFromServerInfo({ props, lmstudio }) || 8192;
+  }
+
+  /**
    * The page does not fit the model's context window: read it in parts, ask for compact notes on each part
    * (names, numbers, claims, two verbatim sentences) and hand the notes to the final summary instead of the full text.
+   * Speaks Ollama (/api/chat, with num_ctx) or the OpenAI format (every other local server); replyText() reads either answer.
    */
-  async function condenseForOllama({ apiUrl, headers, model, text, windowTokens, overheadTokens, outputWords, tick }) {
+  async function condenseInParts({ apiUrl, headers, model, text, windowTokens, overheadTokens, outputWords, tick }) {
     const partTokens = Math.max(1200, windowTokens - 1500 - 700);
     const parts = splitForContext(text, partTokens);
     if (parts.length < 2) return { text, parts: 1 };
     const budgetTokens = Math.max(600, windowTokens - overheadTokens - Math.ceil(outputWords * 2.2) - 600);
     const perPartWords = Math.max(60, Math.min(400, Math.floor(budgetTokens / parts.length / 1.6)));
+    const ollama = /\/api\/chat\b/.test(apiUrl);
     const notes = [];
     for (let i = 0; i < parts.length; i++) {
       tick(i, parts.length);
       const body = {
         model, stream: false,
-        options: { num_ctx: ollamaNumCtx(estimateTokens(parts[i]), perPartWords) },
+        ...(ollama ? { options: { num_ctx: ollamaNumCtx(estimateTokens(parts[i]), perPartWords) } } : { max_tokens: Math.ceil(perPartWords * 2.2) + 200 }),
         messages: [
           { role: 'system', content: `You condense ONE PART (${i + 1} of ${parts.length}) of a longer text into notes for a later summary. Keep names, numbers, claims and conclusions. Write in the language of the text. Include 2 sentences copied word for word that carry the main points. At most ${perPartWords} words. Output only the notes: no preamble, no reasoning.` },
           { role: 'user', content: parts[i] }
         ]
       };
       const raw = await callOnce(apiUrl, headers, body);
-      let note = '';
-      try { note = JSON.parse(raw).message?.content || ''; } catch (_) { note = raw; }
-      note = stripReasoning(note).trim();
+      const note = stripReasoning(replyText(raw) || '').trim();
       if (note) notes.push(`[Part ${i + 1} of ${parts.length}]\n${note}`);
     }
     return { text: notes.join('\n\n') || text, parts: parts.length };
@@ -781,19 +802,16 @@ import {
 
             // Local model whose context window cannot hold the page: read it in parts instead of letting Ollama cut it.
             let pageText = truncatedContent;
-            if (activeService === 'ollama' && /\/api\/chat\b/.test(finalApiUrl)) {
+            // Every local model with a small context window reads a long page in parts (Ollama, Apple's model via apfel, LM Studio,
+            // llama.cpp, Jan, the browser's model). Firefox's summarization model is left out: it only takes the page itself.
+            if ((activeService === 'ollama' || isLocalEndpoint(finalApiUrl)) && modelIdentifier !== 'firefox-ml') {
               try {
                 const overhead = estimateTokens(systemPrompt + finalReminder + (prompt || '') + (additionalQuestions || ''));
                 const total = overhead + estimateTokens(truncatedContent);
-                if (total > 3500) {
-                  let win = 0;
-                  try {
-                    const showRaw = await callOnce(finalApiUrl.replace(/\/api\/chat\b.*$/, '/api/show'), headers, { model: modelIdentifier });
-                    win = modelContextFromShow(JSON.parse(showRaw));
-                  } catch (e) { if (e && e.cancelled) throw e; }
-                  const ctxWindow = Math.min(win || 32768, 32768);
+                if (total > 2500) {
+                  const ctxWindow = await localContextWindow(finalApiUrl, headers, modelIdentifier);
                   if (needsChunking(total, ctxWindow, summaryLength)) {
-                    const r = await condenseForOllama({
+                    const r = await condenseInParts({
                       apiUrl: finalApiUrl, headers, model: modelIdentifier, text: truncatedContent, windowTokens: ctxWindow, overheadTokens: overhead, outputWords: Number(summaryLength) || 200,
                       tick: (i, n) => relay('summaryProgress', { chunk: `Reading part ${i + 1} of ${n}…`, progress: 20 + Math.round((i / n) * 8) })
                     });
@@ -886,6 +904,8 @@ import {
           let usedModel = '';   // the model the hosted service says really answered (Auto picks one per request): history and stats record this, not "auto"
           streamHandlers.set(requestId, async (msg) => {
             if (msg.meta === 'response' && typeof msg.modelUsed === 'string' && msg.modelUsed) usedModel = msg.modelUsed;
+            // The chosen local model was not ready: another local model answers, and the summary says so (AISH-033).
+            if (msg.meta === 'fallback' && msg.to) relay('summaryProgress', { chunk: `${msg.from || 'Your model'} is not ready · ${msg.to} answers instead` });
             if (msg.stopped) {
               // The user pressed Stop in the popup: nothing is saved.
               if (waitingRampInterval) { clearInterval(waitingRampInterval); waitingRampInterval = null; }
@@ -1018,7 +1038,8 @@ import {
                     contentPiece = json.candidates?.[0]?.content?.parts?.[0]?.text || '';
                   } else if (activeService === 'ollama') {
                     // Ollama: content may be in message.content OR message.thinking
-                    contentPiece = json.message?.content || json.response || '';
+                    // (or the OpenAI format: Ollama's /v1 endpoint, LM Studio, llama.cpp, Jan under “Local”)
+                    contentPiece = json.message?.content || json.response || json.choices?.[0]?.delta?.content || json.choices?.[0]?.message?.content || '';
                     if (!contentPiece && json.message?.thinking) thinkingText += json.message.thinking;
                   } else {
                     contentPiece = json.choices?.[0]?.delta?.content || json.choices?.[0]?.message?.content || json.message?.content || json.response || '';

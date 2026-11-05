@@ -47,6 +47,7 @@ const INDEX = [
     ['accessibility', N_('Line spacing'), 'lineSeg', 'text size font dyslexia reading spacing'],
     ['accessibility', N_('Easy-read font'), 'readableFontToggle', 'dyslexia font atkinson readable low vision'],
     ['accessibility', N_('Reduce motion'), 'reduceMotionToggle', 'animation motion vestibular calm'],
+    ['appearance', N_('Bottom dock'), 'dockEditor', 'dock tabs bottom navigation order hide reorder feeds notes history'],
     ['appearance', N_('Native Chrome side panel'), 'nativeSidePanelToggle', 'sidebar side panel popup window'],
     ['library', N_('Export settings'), 'exportSettingsButton', 'backup export download json'],
     ['library', N_('Import settings'), 'importSettingsButton', 'restore import backup json'],

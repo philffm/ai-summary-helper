@@ -1,6 +1,6 @@
 // Worker feed parser handles RSS/Atom, CDATA, relative links, duplicate IDs, and bounded request plans.
 import assert from 'assert';
-import { setup, imp, tick } from './harness.mjs';
+import { setup, imp, tick, answerSheets } from './harness.mjs';
 import { SK } from '../src/modules/storageKeys.js';
 import { CATEGORY_IDS, CATEGORIES, SECRET_KEYS } from '../src/modules/dataReset.js';
 import { filterBackupSecrets, hasBackupSecrets, prepareImportedData } from '../src/modules/backupUtils.js';
@@ -127,7 +127,7 @@ globalThis.Blob = class { constructor(parts) { this.parts = parts; } };
 w.URL.createObjectURL = (blob) => { exportedText = blob.parts[0]; return 'blob:backup'; };
 w.URL.revokeObjectURL = () => {};
 w.HTMLAnchorElement.prototype.click = function () {};
-w.confirm = () => { exportConfirms++; return true; };
+const sheets = answerSheets(w, true);   // the in-page confirm sheet (no window.confirm)
 w.alert = () => {};
 globalThis.alert = () => {};
 chrome.runtime.reload = () => { reloads++; };
@@ -150,27 +150,30 @@ assert.equal(defaultBackup.local[SK.servicesConfig].openai.endpoint, 'https://ap
 w.document.getElementById('exportSettingsButton').click();
 w.document.getElementById('includeBackupSecrets').checked = true;
 w.document.getElementById('exportFullBackup').click();
-await tick();
+for (let k = 0; k < 80 && !/"_contains_secrets":true/.test(exportedText || ''); k++) await tick(25);   // the confirm sheet answers asynchronously
 const secretBackup = JSON.parse(exportedText);
 assert.equal(secretBackup._contains_secrets, true);
 assert.equal(secretBackup.local[SK.servicesConfig].openai.apiKey, 'sentinel-api');
-assert.equal(exportConfirms, 1, 'opt-in export warns before creating a file');
+assert.equal(sheets.asked, 1, 'opt-in export warns before creating a file');
 
 store[SK.servicesConfig].openai.apiKey = 'current-api';
-importConfirms = 0;
-w.confirm = () => { importConfirms++; return true; };
+const askedBeforeImport = sheets.asked;
+let expectReloads = 0;
 const importFile = async (data) => {
+    expectReloads++;
     const input = w.document.getElementById('importSettingsFile');
     Object.defineProperty(input, 'files', { configurable: true, value: [new w.File([JSON.stringify(data)], 'backup.json', { type: 'application/json' })] });
     input.dispatchEvent(new w.Event('change'));
-    await tick(50);
+    for (let k = 0; k < 40 && w.document.querySelector('.confirm-sheet'); k++) await tick(25);
+    for (let k = 0; k < 40 && reloads < expectReloads; k++) await tick(25);
+    await tick(50);   // the confirm sheet answers asynchronously, then the import runs
 };
 await importFile(defaultBackup);
-assert.equal(importConfirms, 0, 'secret-free import does not prompt');
+assert.equal(sheets.asked - askedBeforeImport, 0, 'secret-free import does not prompt');
 assert.equal(store[SK.servicesConfig].openai.apiKey, 'current-api', 'secret-free import does not replace current key');
 assert.equal(store[SK.token], 'sentinel-token', 'secret-free import does not erase current sign-in');
 await importFile(secretBackup);
-assert.equal(importConfirms, 1, 'secret-containing import asks for confirmation');
+assert.equal(sheets.asked - askedBeforeImport, 1, 'secret-containing import asks for confirmation');
 assert.equal(store[SK.servicesConfig].openai.apiKey, 'sentinel-api', 'confirmed import restores API key');
 assert.equal(reloads, 2);
 console.log('TEST 106 OK');

@@ -585,6 +585,21 @@
         "bottom-nav-height": {
           "$type": "dimension",
           "$value": "60px"
+        },
+        "bottom-nav-gap": {
+          "$type": "dimension",
+          "$value": "0px",
+          "$description": "Distance between the bottom dock and the bottom edge of the panel: 0, the dock sits flush (only its top corners are rounded)."
+        },
+        "bottom-nav-space": {
+          "$type": "dimension",
+          "$value": "calc({app.component.bottom-nav.bottom-nav-height} + {app.component.bottom-nav.bottom-nav-gap})",
+          "$description": "Room the floating dock takes from the bottom (height + gap); use it to place things above the dock.",
+          "$extensions": {
+            "eu.byphil.ds": {
+              "template": true
+            }
+          }
         }
       },
       "controls": {
@@ -600,7 +615,7 @@
       "nav": {
         "nav-clearance": {
           "$type": "dimension",
-          "$value": "calc({app.component.bottom-nav.bottom-nav-height} + {app.component.controls.controls-bottom-gap} + {app.semantic.scale.spacing-s-4})",
+          "$value": "calc({app.component.bottom-nav.bottom-nav-space} + {app.component.controls.controls-bottom-gap} + {app.semantic.scale.spacing-s-4})",
           "$extensions": {
             "eu.byphil.ds": {
               "template": true
@@ -628,7 +643,7 @@
       "floating": {
         "floating-stack-height": {
           "$type": "dimension",
-          "$value": "calc({app.component.bottom-nav.bottom-nav-height} + {app.component.controls.controls-bottom-gap} + {app.component.controls.controls-overlay-height})",
+          "$value": "calc({app.component.bottom-nav.bottom-nav-space} + {app.component.controls.controls-bottom-gap} + {app.component.controls.controls-overlay-height})",
           "$extensions": {
             "eu.byphil.ds": {
               "template": true

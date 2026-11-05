@@ -631,6 +631,7 @@
         "Actions in the nav"
       ],
       "tokens": [
+        "--bottom-nav-gap",
         "--bottom-nav-height",
         "--nav-bg",
         "--outline",
@@ -1037,7 +1038,7 @@
         "--accent-a10",
         "--accent-a30",
         "--bg-page",
-        "--bottom-nav-height",
+        "--bottom-nav-space",
         "--button-working-bg",
         "--controls-bottom-gap",
         "--duration-base",
@@ -1591,6 +1592,238 @@
         "--saved-note-user-bar",
         "--saved-note-user-bg",
         "--saved-note-user-fg"
+      ]
+    },
+    {
+      "name": "Reorder grip",
+      "status": "beta",
+      "purpose": "The AISH-006.3 drag pattern outside the article toolbar: a ⋮⋮ handle that reorders items in a list or bar (collection sources, dock tabs, feed subscriptions).",
+      "selectors": [
+        ".reorder-grip"
+      ],
+      "source": [
+        "plugin/src/modules/reorder.js"
+      ],
+      "figma": {
+        "node": "1320:156",
+        "key": "2026cd4e58fbe4ba23629fee8b247f7a1d064d27"
+      },
+      "variants": {
+        "State": [
+          "Default",
+          "Hover",
+          "Focus"
+        ]
+      },
+      "props": {},
+      "a11y": [
+        "Real <button> named “Move “{name}””",
+        "↑/↓ (←/→ in a bar), Home/End on the grip; Alt+arrows anywhere in the item",
+        "Every move is announced in a polite live region",
+        "Pointer events, so touch and pen work (no HTML drag and drop)"
+      ],
+      "do": [
+        "Say what the order changes (export order, dock order)",
+        "Restore focus to the moved item’s grip"
+      ],
+      "dont": [
+        "Put the grip inside another button",
+        "Offer reordering while a filter hides items"
+      ],
+      "tokens": [
+        "--accent-soft",
+        "--focus-ring",
+        "--focus-ring-inset",
+        "--focus-ring-width",
+        "--fs-sm",
+        "--radius-sm",
+        "--text-muted",
+        "--text-primary"
+      ]
+    },
+    {
+      "name": "Collection progress",
+      "status": "beta",
+      "purpose": "Status line + bar “{a} of {n} sources checked” on collection cards and in the Sources tab (AISH-032 · A).",
+      "selectors": [
+        ".coll-prog",
+        ".coll-status",
+        ".coll-bar",
+        ".coll-bar-fill"
+      ],
+      "source": [
+        "plugin/src/modules/collectionsView.js"
+      ],
+      "figma": {
+        "node": "1310:151",
+        "key": ""
+      },
+      "variants": {
+        "Tone": [
+          "Running",
+          "OK",
+          "Empty"
+        ]
+      },
+      "props": {},
+      "a11y": [
+        "Bar is role=progressbar with valuenow/valuemax and a label",
+        "Text carries the meaning; glyph is aria-hidden",
+        "Done uses --mood-pos-text (≥ 4.5:1)"
+      ],
+      "do": [],
+      "dont": [
+        "Show a bar for an empty collection"
+      ],
+      "tokens": [
+        "--accent",
+        "--duration-slow",
+        "--easing-standard",
+        "--fs-sm",
+        "--mood-pos",
+        "--mood-pos-text",
+        "--outline",
+        "--radius-full",
+        "--text-muted",
+        "--text-secondary"
+      ]
+    },
+    {
+      "name": "Dock editor",
+      "status": "beta",
+      "purpose": "Settings › Appearance › Bottom dock: reorder and show/hide the dock tabs (Summarize stays, at least two tabs).",
+      "selectors": [
+        ".dock-ed-list",
+        ".dock-ed-row",
+        ".dock-ed-name"
+      ],
+      "source": [
+        "plugin/src/modules/dockPrefs.js"
+      ],
+      "figma": {
+        "node": "1320:178",
+        "key": "99ce7473d78a2e9312e122ad3d9fdfad1cba0aed"
+      },
+      "variants": {
+        "State": [
+          "On",
+          "Off",
+          "Locked"
+        ]
+      },
+      "props": {},
+      "a11y": [
+        "Each switch is named “Show “{tab}” in the dock”",
+        "Locked switches are disabled with a reason in the row title"
+      ],
+      "do": [],
+      "dont": [],
+      "tokens": [
+        "--fs-md",
+        "--glass-card",
+        "--outline",
+        "--outline-soft",
+        "--radius-md",
+        "--text-primary"
+      ]
+    },
+    {
+      "name": "Action bar",
+      "status": "beta",
+      "purpose": "The article toolbar (AISH-006.3) as a building block for other views: actions in a joined bar, the rest in ⋯, “Customize toolbar…” turns the bar into its own editor. Used in Collections (A+) and graph topics.",
+      "selectors": [
+        ".action-bar-wrap",
+        ".action-bar"
+      ],
+      "source": [
+        "plugin/src/modules/actionBar.js"
+      ],
+      "figma": {
+        "node": "1323:197",
+        "key": "83374dac1014f5d6d2126ddee465a313b4d76a1b"
+      },
+      "variants": {
+        "State": [
+          "Default",
+          "Editing"
+        ]
+      },
+      "props": {},
+      "a11y": [
+        "role=toolbar with a name; ←/→ move along the bar",
+        "Editing: Alt+←/→ reorder, Delete moves to ⋯, tray chips add on click/Enter",
+        "⋯ is a menu button (aria-haspopup=menu)"
+      ],
+      "do": [
+        "Destructive and rare actions go in menuOnly (never in the bar)",
+        "One preference per view (chrome.storage.sync)"
+      ],
+      "dont": [
+        "Put the primary call to action of a view in the bar (e.g. the topic briefing stays its own button)"
+      ],
+      "tokens": []
+    },
+    {
+      "name": "Confirm sheet",
+      "status": "beta",
+      "purpose": "Replaces window.confirm app-wide (AISH-032 · A4): what is deleted, what stays (✓), Undo hint; with undoToast() the delete runs when the Undo toast runs out.",
+      "selectors": [
+        ".confirm-sheet",
+        ".confirm-text",
+        ".confirm-keeps",
+        ".confirm-undo"
+      ],
+      "source": [
+        "plugin/src/modules/confirmSheet.js"
+      ],
+      "figma": {
+        "node": "1323:198",
+        "key": "25bb60778f62c121f1ab1427400b938e01b43d54"
+      },
+      "variants": {},
+      "props": {
+        "Title": {
+          "type": "TEXT",
+          "default": "Delete “…”?"
+        },
+        "Text": {
+          "type": "TEXT",
+          "default": "…"
+        },
+        "Stays": {
+          "type": "TEXT",
+          "default": "…"
+        },
+        "Show stays": {
+          "type": "BOOLEAN",
+          "default": true
+        },
+        "Show undo hint": {
+          "type": "BOOLEAN",
+          "default": true
+        }
+      },
+      "a11y": [
+        "role=dialog, aria-modal, labelled by its title",
+        "Focus starts on Cancel; Escape and the scrim cancel",
+        "Stays text uses --tone-new-fg on --tone-new-bg (AA)"
+      ],
+      "do": [
+        "Three levels: small items → Undo only; articles/collections → sheet + Undo; everything → type-to-confirm (confirmDialog.js)",
+        "Say what stays, not only what goes"
+      ],
+      "dont": [
+        "Use window.confirm or alert for decisions"
+      ],
+      "tokens": [
+        "--fs-md",
+        "--fs-sm",
+        "--fs-xs",
+        "--radius-md",
+        "--text-muted",
+        "--text-secondary",
+        "--tone-new-bg",
+        "--tone-new-fg"
       ]
     }
   ]

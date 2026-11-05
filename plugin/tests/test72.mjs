@@ -40,7 +40,7 @@ assert(/↵/.test(b.dataset.kbd) && b.getAttribute('aria-keyshortcuts'), 'keycap
 c.set('working'); assert(!b.dataset.kbd, 'none while working'); c.set('followup'); assert(b.dataset.kbd);
 // graph list view
 const { renderGraphList } = await imp('modules/archiveGraph.js');
-d.body.innerHTML = '<div id="g"><svg></svg></div>';
+d.body.innerHTML = '<div id="g"><svg class="graph-svg"></svg></div>';
 const g = d.getElementById('g'); g.getClientRects = () => [1];
 const nodes = [{ id: 'tag-a', group: 'tag', label: 'politics' }, { id: 'tag-b', group: 'tag', label: 'economics' }, { id: 'article-1', group: 'article', label: 'One' }, { id: 'article-2', group: 'article', label: 'Two' }];
 const links = [{ source: 'article-1', target: 'tag-a' }, { source: { id: 'article-1' }, target: { id: 'tag-b' } }, { source: 'article-2', target: 'tag-a' }];

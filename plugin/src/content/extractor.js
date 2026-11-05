@@ -342,3 +342,42 @@ export function isBackgroundDark() {
   const luminance = (0.299 * r + 0.587 * g + 0.114 * b) / 255;
   return luminance < 0.5;
 }
+
+// ── Small local models: read long pages in parts (every local model, not only Ollama) ───────────────────────────────
+
+/** Context windows we know without asking (tokens, input + reply). Apple's model via apfel: 4096 on macOS 26; the browser's
+ *  model: Chrome does not say, so we stay on the safe side. 0 = unknown, ask the server. */
+export function knownContextWindow(model) {
+  const m = String(model || '');
+  if (m === 'apple-foundationmodel') return 4096;
+  if (m === 'chrome-builtin') return 4096;
+  return 0;
+}
+
+/** Context window from what a local server tells about itself: llama.cpp `/props`, LM Studio `/api/v0/models/<id>`. 0 = unknown. */
+export function contextFromServerInfo({ props, lmstudio } = {}) {
+  const n = Number(props && ((props.default_generation_settings && props.default_generation_settings.n_ctx) || props.n_ctx))
+    || Number(lmstudio && (lmstudio.loaded_context_length || lmstudio.max_context_length));
+  return n > 0 ? n : 0;
+}
+
+/** The answer text of a non-streamed request, whatever the server sent: one JSON (Ollama or OpenAI), NDJSON lines, or SSE. */
+export function replyText(raw) {
+  const s = String(raw || '').trim();
+  if (!s) return '';
+  try {
+    const j = JSON.parse(s);
+    return String((j.message && j.message.content) || (j.choices && j.choices[0] && ((j.choices[0].message && j.choices[0].message.content) || j.choices[0].text)) || j.response || '');
+  } catch (_) { /* lines */ }
+  let out = '';
+  for (let line of s.split('\n')) {
+    line = line.trim();
+    if (!line || line === 'data: [DONE]') continue;
+    if (line.startsWith('data:')) line = line.slice(5).trim();
+    try {
+      const j = JSON.parse(line);
+      out += (j.message && j.message.content) || (j.choices && j.choices[0] && ((j.choices[0].delta && j.choices[0].delta.content) || (j.choices[0].message && j.choices[0].message.content))) || j.response || '';
+    } catch (_) { /* partial line */ }
+  }
+  return out;
+}

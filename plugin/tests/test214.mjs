@@ -1,6 +1,6 @@
 // Notes tab: your own highlights and the AI's can be removed, the way the page itself removes them.
 import assert from 'assert';
-import { setup, imp } from './harness.mjs';
+import { setup, imp, flushUndo, pressUndo } from './harness.mjs';
 const { store, w } = setup({});
 globalThis.document = w.document; globalThis.window = w;
 const mem = {}; Object.defineProperty(w, 'localStorage', { value: { getItem: (k) => (k in mem ? mem[k] : null), setItem: (k, v) => { mem[k] = String(v); } }, configurable: true });
@@ -31,6 +31,7 @@ assert.ok(removeOf('Prices rose'), 'a highlight has a Remove action'); assert.ok
 
 // your own: out of the list, a deletion marker for sync, its comment gone, the others untouched
 click(removeOf('Prices rose')); await wait(200);
+await flushUndo(); await wait(150);
 assert.deepEqual(store[SK.annotations].map((a) => a.id), ['h2', 'h3'], 'taken out of hl:all');
 assert.deepEqual(sent.filter((m) => m.action === 'syncHlDeleted'), [{ action: 'syncHlDeleted', ids: ['h1'] }], 'the worker is told, so sync writes a deletion marker');
 assert.ok(!('notes:rec:c_h1' in store) && !(store[SK.notesIndex] || []).some((e) => e.id === 'c_h1'), 'its comment is removed too');
@@ -39,13 +40,16 @@ assert.equal(cards().length, 2); assert.ok(!cards().some((c) => c.textContent.in
 // the AI's: kept as dismissed (it must never come back), no deletion marker, gone from the view
 const before = sent.length;
 click(removeOf('An AI picked')); await wait(200);
+await flushUndo(); await wait(150);
 assert.deepEqual(store[SK.annotations].map((a) => [a.id, !!a.dismissed]), [['h2', true], ['h3', false]], 'dismissed, not deleted');
 assert.equal(sent.length, before, 'no deletion marker for a dismissed AI highlight');
 assert.equal(cards().length, 1);
 
-// declining the question changes nothing
-w.confirm = () => false; globalThis.confirm = () => false;
+// Undo instead of a question: the card goes at once, Undo brings it back and nothing is changed
+w.confirm = () => { throw new Error('no window.confirm'); }; globalThis.confirm = w.confirm;
 click(removeOf('Another highlight')); await wait(150);
+assert.equal(cards().length, 0, 'hidden at once');
+pressUndo(w.document); await wait(150);
 assert.equal(store[SK.annotations].length, 2); assert.equal(cards().length, 1);
 chrome.runtime.sendMessage = origSend;
 console.log('TEST 214 OK'); process.exit(0);

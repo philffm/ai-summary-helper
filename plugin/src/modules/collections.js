@@ -324,6 +324,32 @@ export function removeSource(collId, articleId) {
     });
 }
 
+/** Moves a source to position `index` (0-based). The order is what the Markdown export and the worksheet follow. */
+export function moveSource(collId, articleId, index) {
+    return serial(async () => {
+        const rec = await getCollection(collId);
+        if (!rec) return false;
+        const from = rec.sources.findIndex(s => s.articleId === articleId);
+        if (from < 0) return false;
+        const [s] = rec.sources.splice(from, 1);
+        rec.sources.splice(Math.max(0, Math.min(index, rec.sources.length)), 0, s);
+        await save(rec);
+        return true;
+    });
+}
+
+/** Undo of removeSource: puts the source entry back at its old position (keeps addedAt; no-op if it is there or the collection is full). */
+export function restoreSource(collId, source, index = -1) {
+    return serial(async () => {
+        const rec = await getCollection(collId);
+        if (!rec || !source || rec.sources.some(s => s.articleId === source.articleId) || rec.sources.length >= MAX_SOURCES) return false;
+        const i = index >= 0 && index <= rec.sources.length ? index : rec.sources.length;
+        rec.sources.splice(i, 0, source);
+        await save(rec);
+        return true;
+    });
+}
+
 /** An article was deleted: it leaves every collection (no dead references). */
 export function removeArticleFromCollections(articleId) {
     return serial(async () => {

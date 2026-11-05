@@ -1,6 +1,7 @@
 // lexiconEditor.js — the learned tag names (topic lexicon, see topicConcepts.js) as a list in the settings: change an English name or
 // its broader topics after saving, or forget an entry (its tags then count as unnamed again and can be named anew).
 // Only the lexicon changes; articles keep their tags.
+import { confirmSheet } from './confirmSheet.js';
 import { T, TN } from './feedI18n.js';
 import { getLexicon, setLexicon, normalizeTopic, filterBroader, humanizeTag, isMarkedName } from './topicConcepts.js';
 
@@ -109,7 +110,7 @@ export function resetLexicon() {
 }
 
 /** The list in the settings. deps: { save, onChange } (save writes the lexicon, onChange tells the open pages). */
-export function mountLexiconEditor(box, { save = async () => {}, onChange = () => {}, langs = async () => new Map(), confirm = (m) => window.confirm(m) } = {}) {
+export function mountLexiconEditor(box, { save = async () => {}, onChange = () => {}, langs = async () => new Map(), confirm = (m) => confirmSheet({ title: T('Forget learned names?'), text: m, confirmLabel: T('Forget') }) } = {}) {
     box.textContent = '';
     const tools = document.createElement('div'); tools.className = 'lexicon-tools';
     const tidy = document.createElement('button'); tidy.type = 'button'; tidy.className = 'button-secondary btn-sm lexicon-tidy'; tidy.textContent = T('Tidy up');

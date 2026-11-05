@@ -22,6 +22,24 @@ class UIManager {
         }
     }
 
+    /** New tab order from the dock settings: the screens are re-placed at once (no slide), the blob follows. */
+    setScreenOrder(order) {
+        this.screenOrder = order.slice();
+        const cur = document.body.dataset.screen;
+        const idx = this.screenOrder.indexOf(cur);
+        if (this._currentScreenIdx === undefined || idx === -1) return;
+        const navItem = document.querySelector(`.nav-item[data-screen="${cur}"]`);
+        if (navItem && navItem.hidden) { this.showScreen('main'); return; }   // the open tab was just hidden
+        this._currentScreenIdx = idx;
+        this.screenOrder.forEach((name, i) => {
+            const el = this.screens[name];
+            if (!el) return;
+            el.style.transition = 'none';
+            el.style.transform = `translateX(${(i - idx) * 100}%)`;
+        });
+        this.positionNavBlob(cur);
+    }
+
     positionNavBlob(screenName) {
         const blob = document.getElementById('navBlob');
         if (!blob) return;

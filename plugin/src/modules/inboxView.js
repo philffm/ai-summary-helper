@@ -3,6 +3,7 @@
 // top of History (Summarize / Dismiss). All state lives in storage (see inboxManager.js); this file only renders it.
 import qrcode from '../lib/qrcode.js';
 import { T } from './feedI18n.js';
+import { undoToast } from './confirmSheet.js';
 import { SK } from './storageKeys.js';
 import { createInboxManager } from './inboxManager.js';
 import { feedSyncAdapter } from './feedSyncStore.js';
@@ -287,9 +288,12 @@ function openLink(entry) {
     window.open(entry.url, '_blank', 'noopener');
 }
 async function dismiss(entry) {
-    // Removing a link deletes it from the inbox for good (it cannot be restored), so ask first, like Delete on an article.
-    if (!window.confirm(T('Remove this link from your inbox? It is deleted and cannot be restored.'))) return;
-    await manager.resolve(entry.id); await renderList();
+    // No question first: the link disappears at once and is deleted for good only when the Undo toast runs out.
+    hiddenLinks.add(entry.id); await renderList();
+    undoToast(T('Link removed from your inbox'), {
+        commit: async () => { await manager.resolve(entry.id); hiddenLinks.delete(entry.id); },
+        undo: async () => { hiddenLinks.delete(entry.id); await renderList(); },
+    });
 }
 
 /**
@@ -347,12 +351,13 @@ async function resolveSummarized() {
 }
 
 // ── The waiting links as cards at the top of History's Inbox tab ──
+const hiddenLinks = new Set();   // removed, waiting for the Undo window
 let phoneEntries = [];   // what is waiting right now (kept fresh by loadPhoneEntries / renderList)
 
 /** Reads what is waiting; links whose summary reached History meanwhile are taken off first. */
 export async function loadPhoneEntries() {
     try { await resolveSummarized(); } catch (_) { /* the list still renders */ }
-    phoneEntries = await manager.listPending();
+    phoneEntries = (await manager.listPending()).filter(e => !hiddenLinks.has(e.id));
     return phoneEntries;
 }
 /** The list changed (poll, resolve, another popup): History re-renders and calls mountPhoneCards again. */

@@ -20,7 +20,7 @@ const fakeFetch = async (url) => {
     return { ok: true, status: 200, body: { getReader: () => ({ read: async () => { if (i >= parts.length) return { done: true }; await new Promise(r => setTimeout(r, 300)); return { done: false, value: enc.encode(sse(parts[i++])) }; } }) } };
 };
 const warns = [];
-const sandbox = { chrome, console: { ...console, log() {}, warn() {} }, setTimeout, clearTimeout, setInterval() {}, fetch: fakeFetch, AbortController, URL, TextDecoder, TextEncoder, crypto: globalThis.crypto, importScripts() {} };
+const sandbox = { chrome, console: { ...console, log() {}, warn() {} }, setTimeout, clearTimeout, setInterval() {}, fetch: fakeFetch, AbortController, URL, TextDecoder, TextEncoder, ReadableStream, Response, Headers, crypto: globalThis.crypto, importScripts() {} };
 sandbox.globalThis = sandbox; sandbox.self = sandbox;
 vm.createContext(sandbox); vm.runInContext(src, sandbox);
 const popup = { id: 'ext-id', url: 'chrome-extension://ext-id/popup.html' };

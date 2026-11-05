@@ -1,6 +1,7 @@
 // storageHealth.js — when the extension gets heavy: which saved articles are big AND have not been opened for a long time.
 // Pure helpers (tested without a browser) plus the sheet that lists them. Nothing is deleted without the reader ticking it,
 // and articles that are starred or sit in a collection are never offered.
+import { confirmSheet } from './confirmSheet.js';
 import { T } from './feedI18n.js';
 import { stripImages, imageBytes } from '../content/stripImages.js';
 import { ARTICLE_REC } from './storageKeys.js';
@@ -222,7 +223,7 @@ export async function openStorageSheet({ report, index = null, keep = new Set(),
     const cancel = el('button', 'button-secondary', T('Cancel')); cancel.type = 'button'; cancel.addEventListener('click', close);
     action.addEventListener('click', async () => {
         if (!picked.size) return;
-        if (!window.confirm(T('Delete {n} articles? This cannot be undone.', { n: picked.size }))) return;
+        if (!(await confirmSheet({ title: T('Delete {n} articles?', { n: picked.size }), text: T('Delete {n} articles? This cannot be undone.', { n: picked.size }), keeps: T('Your highlights and notes stay in Notes.'), confirmLabel: T('Delete {n} articles', { n: picked.size }) }))) return;
         action.disabled = true;
         const ids = [...picked];
         await deleteIds(ids);

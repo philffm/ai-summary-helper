@@ -10,6 +10,7 @@ if (typeof chrome === 'undefined' && typeof browser !== 'undefined') {
 try { if (typeof importScripts === 'function') importScripts('ttsEngine.js'); } catch (_) { /* listed in the manifest instead */ }
 // Finishes a summary whose page went away while the model was still writing (same parsing + saving as the page does).
 try { if (typeof importScripts === 'function') importScripts('finalize.js'); } catch (_) { /* listed in the manifest instead */ }
+try { if (typeof importScripts === 'function') importScripts('builtinAi.js'); } catch (_) { /* listed in the manifest instead */ }
 try { if (typeof importScripts === 'function') importScripts('feed-worker.js'); } catch (_) { /* listed in the manifest instead */ }
 try { if (typeof importScripts === 'function') importScripts('inbox-worker.js'); } catch (_) { /* listed in the manifest instead */ }
 try { if (typeof importScripts === 'function') importScripts('targets-worker.js'); } catch (_) { /* listed in the manifest instead */ }
@@ -898,9 +899,102 @@ function aiDelta(line) {
     } catch (_) { return null; }
 }
 
+// Local model servers (Ollama, apfel, LM Studio, llama.cpp, Jan) often accept requests only from localhost pages (Ollama:
+// OLLAMA_ORIGINS, apfel: "origin: localhost only"). For requests this extension itself sends to them, the Origin header is
+// set to http://127.0.0.1 so they are accepted. Web pages are not affected (only requests that belong to no tab: this
+// extension's worker, popup and offscreen page; an extension's rules never touch other extensions); session rules,
+// renewed whenever the worker starts.
+const LOCAL_MODEL_PORTS = [11434, 1234, 8080, 1337];   // Ollama / apfel, LM Studio, llama.cpp, Jan
+async function allowLocalModelServers() {
+    try {
+        const dnr = chrome.declarativeNetRequest;
+        if (!dnr || !dnr.updateSessionRules || !chrome.runtime.id) return;
+        const rules = []; let id = 9100;
+        for (const host of ['127.0.0.1', 'localhost']) for (const port of LOCAL_MODEL_PORTS) {
+            rules.push({ id: id++, priority: 1,
+                action: { type: 'modifyHeaders', requestHeaders: [{ header: 'origin', operation: 'set', value: 'http://127.0.0.1' }] },
+                condition: { urlFilter: `|http://${host}:${port}/`, tabIds: [-1], resourceTypes: ['xmlhttprequest', 'other'] } });
+        }
+        await dnr.updateSessionRules({ removeRuleIds: rules.map(r => r.id), addRules: rules });
+        console.info('[AISH] local model origin rules set', rules.length);
+    } catch (e) { console.warn('[AISH] local model origin rule not set', e && e.message); }
+}
+allowLocalModelServers();
+
+// Model requests: Chrome's built-in model (model id `chrome-builtin`, see builtinAi.js) answers here, everything else is a normal fetch.
+const aiFetchRaw = (url, init) => (typeof AishBuiltin !== 'undefined' ? AishBuiltin.aiFetch(url, init) : fetch(url, init));
+// A local model that is still loading (apfel right after Apple Intelligence was turned on or updated: "Model assets are loading.
+// Try again in a moment.") accepts the request and then breaks the stream. For local servers the start of the stream is read
+// first: real text → hand on everything (nothing lost); "loading" → wait and ask again, up to about two minutes; still loading →
+// a clear 503 instead of an empty summary.
+const LOCAL_URL = /^https?:\/\/(127\.0\.0\.1|localhost|\[::1\])(:\d+)?\//i;
+const MODEL_LOADING = /assets are loading|model (is )?loading|\[model loading\]/i;
+// Parts of D (AISH-033): when the chosen local model is not ready (not reachable, still loading, server error), the next ready
+// local model from Settings › Models › Local answers instead (sync: localFallbackOrder, saved there in recommendation order;
+// switch: localFallback, on by default). The answer carries `x-aish-fallback` so the summary says who wrote it.
+async function localFallbacks(model) {
+    try {
+        const s = await chrome.storage.sync.get(['localFallback', 'localFallbackOrder']);
+        if (s.localFallback === false || !Array.isArray(s.localFallbackOrder)) return [];
+        return s.localFallbackOrder.filter(c => c && c.model && c.model !== model && LOCAL_URL.test(String(c.endpoint || '')));
+    } catch (_) { return []; }
+}
+const withModel = (body, model) => { try { const j = JSON.parse(body); j.model = model; return JSON.stringify(j); } catch (_) { return body; } };   // same messages in both formats
+async function aiFetch(url, init = {}) {
+    if (!LOCAL_URL.test(String(url))) return aiFetchRaw(url, init);
+    let first = null, firstErr = null;
+    try { first = await aiFetchOne(url, { ...init, quick: true }); } catch (e) { if (e && e.name === 'AbortError') throw e; firstErr = e; }
+    if (first && first.ok) return first;
+    let wanted = ''; try { wanted = JSON.parse(init.body || '{}').model || ''; } catch (_) { /* not JSON */ }
+    for (const alt of await localFallbacks(wanted)) {
+        try {
+            const res = await aiFetchOne(alt.endpoint, { ...init, body: withModel(init.body, alt.model), quick: true });
+            if (res && res.ok) {
+                const h = new Headers(res.headers); h.set('x-aish-fallback', alt.label || alt.model); h.set('x-aish-fallback-from', wanted);
+                return new Response(res.body, { status: res.status, headers: h });
+            }
+        } catch (e) { if (e && e.name === 'AbortError') throw e; }
+    }
+    if (first && first.status !== 425) return first;   // no fallback answered: the original answer (error) stands
+    if (firstErr) throw firstErr;
+    return aiFetchOne(url, init);   // only “still loading” is left: wait for it (up to ~2 minutes)
+}
+async function aiFetchOne(url, init = {}) {
+    const { quick, ...req } = init;   // quick: on “still loading” return 425 at once, so a fallback can answer first
+    if (!LOCAL_URL.test(String(url))) return aiFetchRaw(url, req);
+    const signal = init.signal, dec = new TextDecoder();
+    for (let attempt = 0; attempt < 24; attempt++) {
+        const res = await aiFetchRaw(url, req);
+        if (!res.ok || !res.body) {
+            const body = res.ok ? '' : await res.clone().text().catch(() => '');
+            if (!MODEL_LOADING.test(body)) return res;
+        } else {
+            const reader = res.body.getReader(); const head = []; let seen = '', loading = false;
+            for (;;) {
+                const { value, done } = await reader.read();
+                if (done) break;
+                head.push(value); seen += dec.decode(value, { stream: true });
+                if (MODEL_LOADING.test(seen)) { loading = true; try { await reader.cancel(); } catch (_) { /* gone */ } break; }
+                if (/"content"\s*:\s*"(?!")/.test(seen) || /"response"\s*:\s*"(?!")/.test(seen) || seen.length > 6000) break;   // text has started
+            }
+            if (!loading) {
+                const stream = new ReadableStream({
+                    start(ctrl) { head.forEach(c => ctrl.enqueue(c)); },
+                    async pull(ctrl) { try { const { value, done } = await reader.read(); if (done) ctrl.close(); else ctrl.enqueue(value); } catch (e) { ctrl.error(e); } },
+                    cancel() { try { reader.cancel(); } catch (_) { /* gone */ } }
+                });
+                return new Response(stream, { status: res.status, headers: res.headers });
+            }
+        }
+        if (signal && signal.aborted) throw Object.assign(new Error('Aborted'), { name: 'AbortError' });
+        if (init.quick) return new Response('{"error":{"message":"model loading"}}', { status: 425, headers: { 'content-type': 'application/json' } });   // let a fallback answer first
+        await new Promise(r => setTimeout(r, 5000));   // the model loads in the background; ask again
+    }
+    return new Response(JSON.stringify({ error: { message: "The local model is still loading on this computer (the first use after turning it on or after an update can take a few minutes). Try again in a moment." } }), { status: 503, headers: { 'content-type': 'application/json' } });
+}
 const aiJobs = new Map(); // request id → AbortController, so the popup can cancel a slow (e.g. local) model
 const aiResyncAsked = new Set(); // request ids whose receiver lost a streamed delta: the next tick resends the whole text
-async function aiComplete({ system, user, id, partial, service: forcedService, signal, feature }) {
+async function aiComplete({ system, user, id, partial, service: forcedService, signal, feature, target }) {
     const sync = await chrome.storage.sync.get(['activeService', 'connectionMode', 'preferredCloudModel']).catch(() => ({}));
     let local = await localGet([SK.servicesConfig, SK.licenseKey, SK.token, SK.installId]).catch(() => ({}));
     if (!forcedService && (sync.connectionMode || 'cloud') === 'cloud' && aiTokenNeedsRefresh(local[SK.token]) && await aiRefreshSession(local[SK.token])) {
@@ -945,6 +1039,10 @@ async function aiComplete({ system, user, id, partial, service: forcedService, s
         }
         if (service === 'custom' && !model) throw new Error('No model selected for your own server. Pick or type the model name in the model panel.');
     }
+    // The quick test in Settings › Models › Local asks one particular local model (never anything outside this computer).
+    if (target && target.model && LOCAL_URL.test(String(target.endpoint || ''))) {
+        service = 'ollama'; url = target.endpoint; model = target.model; apiKey = ''; keyOptional = true;
+    }
     if (!apiKey && !keyOptional) throw new Error('Set your API key under Settings \u203a Models & API first.');
     if (!url && service !== 'gemini') throw new Error('Model endpoint is not configured.');
     if (url) new URL(url);
@@ -972,11 +1070,12 @@ async function aiComplete({ system, user, id, partial, service: forcedService, s
     const progress = (p) => { if (id) { try { chrome.runtime.sendMessage({ action: 'aiProgress', id, ...p }, () => void chrome.runtime.lastError); } catch (_) { /* popup closed */ } } };
     try {
         Object.assign(headers, await cloudRegionHeader(url, feature));
-        let res = await fetch(url, { method: 'POST', headers, body, signal: ctrl.signal });
+        const send = target ? aiFetchOne : aiFetch;   // the quick test measures exactly this model: no fallback
+        let res = await send(url, { method: 'POST', headers, body, signal: ctrl.signal });
         noteCloudRoute(url, res, model);
         // A provider that rejects "stream": true gets one retry without streaming.
         if ((res.status === 400 || res.status === 422) && service !== 'gemini') {
-            res = await fetch(url, { method: 'POST', headers, body: body.replace('"stream":true', '"stream":false'), signal: ctrl.signal });
+            res = await send(url, { method: 'POST', headers, body: body.replace('"stream":true', '"stream":false'), signal: ctrl.signal });
         }
         if (!res.ok) throw new Error(aiFriendlyError(res.status, await res.text(), service === 'cloud'));
         progress({ phase: 'headers' });
@@ -1564,12 +1663,22 @@ chrome.runtime.onMessage.addListener((msg, sender, sendResponse) => {
 
     // ── Feeds (RSS reader) ──────────────────────────────────────────────
     if (msg.action === 'aiComplete' && msg.user) {
-        aiComplete({ system: msg.system || '', user: msg.user, id: msg.id, partial: !!msg.partial, service: msg.service, feature: msg.feature })
+        aiComplete({ system: msg.system || '', user: msg.user, id: msg.id, partial: !!msg.partial, service: msg.service, feature: msg.feature, target: msg.target })
             .then(r => sendResponse({ ok: true, text: r.text, model: r.model }))
             .catch(e => sendResponse({ ok: false, error: e.message || 'AI request failed' }));
         return true;
     }
     if (msg.action === 'aiResync') { if (aiJobs.has(msg.id)) aiResyncAsked.add(msg.id); sendResponse({ ok: true }); return true; }
+    // Info about a local model server (context window: llama.cpp /props, LM Studio /api/v0/models/<id>). Localhost only, short timeout.
+    if (msg.action === 'localGetJson') {
+        if (!LOCAL_URL.test(String(msg.url || ''))) { sendResponse({ ok: false }); return false; }
+        (async () => {
+            const ctrl = new AbortController(); const t = setTimeout(() => ctrl.abort(), 1500);
+            try { const r = await fetch(msg.url, { signal: ctrl.signal }); sendResponse(r.ok ? { ok: true, json: await r.json() } : { ok: false, status: r.status }); }
+            catch (_) { sendResponse({ ok: false }); } finally { clearTimeout(t); }
+        })();
+        return true;
+    }
     if (msg.action === 'aiCancel') { const c = aiJobs.get(msg.id); if (c) c.abort(); sendResponse({ ok: true }); return true; }
     if (msg.action === 'feedPollConfig') { applyFeedPollConfig().then(() => sendResponse({ ok: true })); return true; }
     if (msg.action === 'audioEnsure') {
@@ -2006,10 +2115,12 @@ async function handleStreamFetch(msg, tabId) {
             push({ meta: 'heartbeat', requestId, elapsedMs: Date.now() - startedAt, chunkCount, byteCount });
         }, 3000);
 
-        const response = await fetch(apiUrl, { method: 'POST', headers: { ...headers, ...(await cloudRegionHeader(apiUrl, msg.feature)) }, body, signal: controller.signal });
+        const response = await aiFetch(apiUrl, { method: 'POST', headers: { ...headers, ...(await cloudRegionHeader(apiUrl, msg.feature)) }, body, signal: controller.signal });
         { let m = ''; try { m = JSON.parse(body).model || ''; } catch (_) { /* not JSON */ } noteCloudRoute(apiUrl, response, m); }
 
-        const modelUsed = usedModelOf(apiUrl, response);
+        const fallback = response.headers.get('x-aish-fallback') || '';   // another local model answered (the chosen one was not ready)
+        if (fallback) push({ meta: 'fallback', to: fallback, from: response.headers.get('x-aish-fallback-from') || '' });
+        const modelUsed = fallback || usedModelOf(apiUrl, response);
         if (modelUsed && run) run.ctx.modelIdentifier = modelUsed;   // a summary finished here (its page was closed) is saved under the model that wrote it
         push({ meta: 'response', requestId, status: response.status, contentType: response.headers.get('content-type') || '', ...(modelUsed ? { modelUsed } : {}) });
 

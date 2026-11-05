@@ -25,6 +25,7 @@ import { initReviewPrompt } from './modules/reviewPrompt.js';
 import { initSettingsNav, openSettingsPanel } from './modules/settingsNav.js';
 import { initAccordion } from './modules/accordion.js';
 import { initBackToTop } from './modules/backToTop.js';
+import { initDock } from './modules/dockPrefs.js';
 import { T } from './modules/feedI18n.js';
 import { escapeHtml } from './modules/textUtils.js';
 
@@ -77,6 +78,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     initWorkspace();
     initAccordion(ui);
     initBackToTop();
+    await initDock(ui).catch(() => {});   // dock order + hidden tabs before the first screen is placed
 
     ui.showScreen((window.location && window.location.hash) === '#notes' ? 'notes' : "main");   // "Open in Notes" from a page opens this tab on the Notes screen
 
@@ -439,7 +441,7 @@ document.addEventListener("DOMContentLoaded", async () => {
             const grid = document.getElementById('modelModeGrid');
             if (!grid) return;
             grid.innerHTML = '';
-            [{ id: 'cloud', label: '☁️ byPhil Cloud' }, { id: 'local', label: '💻 ' + T('Own key') }, { id: 'ollama', label: '🦙 Ollama' }].forEach(m => {
+            [{ id: 'cloud', label: '☁️ byPhil Cloud' }, { id: 'local', label: '💻 ' + T('Own key') }, { id: 'ollama', label: '🖥️ ' + T('Local') }   /* Ollama, the browser's model, LM Studio, apfel … (see Settings › Models › Local) */].forEach(m => {
                 const btn = document.createElement('button');
                 btn.type = 'button';
                 btn.className = 'pill pill--sm pill--soft' + (m.id === mode ? ' active' : '');

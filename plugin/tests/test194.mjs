@@ -1,6 +1,6 @@
 // Notes tab: the stream, filters, hashtags, the list and grid, the docked composer, comments on highlights, editing and deleting.
 import assert from 'assert';
-import { setup, imp } from './harness.mjs';
+import { setup, imp, flushUndo } from './harness.mjs';
 const { store, w } = setup({});
 globalThis.document = w.document; globalThis.window = w;
 w.confirm = () => true;
@@ -93,6 +93,8 @@ click(btn('Edit', root().querySelector('.st-note'))); await wait(40);
 root().querySelector('.st-ta').value = 'Rewritten note'; click(btn('Save', root())); await wait(150);
 assert.equal(store[noteRecKey(nid)].text, 'Rewritten note');
 click(btn('Delete', root().querySelector('.st-note'))); await wait(150);
+assert.equal(root().querySelectorAll('.st').length, 2, 'gone from the view at once');
+await flushUndo(); await wait(100);
 assert.ok(!(noteRecKey(nid) in store)); assert.equal(root().querySelectorAll('.st').length, 2);
 
 console.log('TEST 194 OK');

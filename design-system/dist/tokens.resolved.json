@@ -398,6 +398,14 @@
      "tier": "component",
      "value": "60px"
     },
+    "--bottom-nav-gap": {
+     "tier": "component",
+     "value": "0px"
+    },
+    "--bottom-nav-space": {
+     "tier": "component",
+     "value": "calc(60px + 0px)"
+    },
     "--controls-bottom-gap": {
      "tier": "component",
      "value": "16px"
@@ -408,7 +416,7 @@
     },
     "--nav-clearance": {
      "tier": "component",
-     "value": "calc(60px + 16px + 16px)"
+     "value": "calc(calc(60px + 0px) + 16px + 16px)"
     },
     "--nav-bg": {
      "tier": "component",
@@ -424,7 +432,7 @@
     },
     "--floating-stack-height": {
      "tier": "component",
-     "value": "calc(60px + 16px + 250px)"
+     "value": "calc(calc(60px + 0px) + 16px + 250px)"
     },
     "--localsend-bg": {
      "tier": "component",
@@ -1416,6 +1424,14 @@
      "tier": "component",
      "value": "60px"
     },
+    "--bottom-nav-gap": {
+     "tier": "component",
+     "value": "0px"
+    },
+    "--bottom-nav-space": {
+     "tier": "component",
+     "value": "calc(60px + 0px)"
+    },
     "--controls-bottom-gap": {
      "tier": "component",
      "value": "16px"
@@ -1426,7 +1442,7 @@
     },
     "--nav-clearance": {
      "tier": "component",
-     "value": "calc(60px + 16px + 16px)"
+     "value": "calc(calc(60px + 0px) + 16px + 16px)"
     },
     "--nav-bg": {
      "tier": "component",
@@ -1442,7 +1458,7 @@
     },
     "--floating-stack-height": {
      "tier": "component",
-     "value": "calc(60px + 16px + 250px)"
+     "value": "calc(calc(60px + 0px) + 16px + 250px)"
     },
     "--localsend-bg": {
      "tier": "component",
@@ -2434,6 +2450,14 @@
      "tier": "component",
      "value": "60px"
     },
+    "--bottom-nav-gap": {
+     "tier": "component",
+     "value": "0px"
+    },
+    "--bottom-nav-space": {
+     "tier": "component",
+     "value": "calc(60px + 0px)"
+    },
     "--controls-bottom-gap": {
      "tier": "component",
      "value": "16px"
@@ -2444,7 +2468,7 @@
     },
     "--nav-clearance": {
      "tier": "component",
-     "value": "calc(60px + 16px + 16px)"
+     "value": "calc(calc(60px + 0px) + 16px + 16px)"
     },
     "--nav-bg": {
      "tier": "component",
@@ -2460,7 +2484,7 @@
     },
     "--floating-stack-height": {
      "tier": "component",
-     "value": "calc(60px + 16px + 250px)"
+     "value": "calc(calc(60px + 0px) + 16px + 250px)"
     },
     "--localsend-bg": {
      "tier": "component",
@@ -7574,6 +7598,14 @@
      "tier": "component",
      "value": "60px"
     },
+    "--bottom-nav-gap": {
+     "tier": "component",
+     "value": "0px"
+    },
+    "--bottom-nav-space": {
+     "tier": "component",
+     "value": "calc(60px + 0px)"
+    },
     "--controls-bottom-gap": {
      "tier": "component",
      "value": "16px"
@@ -7584,7 +7616,7 @@
     },
     "--nav-clearance": {
      "tier": "component",
-     "value": "calc(60px + 16px + 16px)"
+     "value": "calc(calc(60px + 0px) + 16px + 16px)"
     },
     "--nav-bg": {
      "tier": "component",
@@ -7600,7 +7632,7 @@
     },
     "--floating-stack-height": {
      "tier": "component",
-     "value": "calc(60px + 16px + 250px)"
+     "value": "calc(calc(60px + 0px) + 16px + 250px)"
     },
     "--localsend-bg": {
      "tier": "component",
@@ -8592,6 +8624,14 @@
      "tier": "component",
      "value": "60px"
     },
+    "--bottom-nav-gap": {
+     "tier": "component",
+     "value": "0px"
+    },
+    "--bottom-nav-space": {
+     "tier": "component",
+     "value": "calc(60px + 0px)"
+    },
     "--controls-bottom-gap": {
      "tier": "component",
      "value": "16px"
@@ -8602,7 +8642,7 @@
     },
     "--nav-clearance": {
      "tier": "component",
-     "value": "calc(60px + 16px + 16px)"
+     "value": "calc(calc(60px + 0px) + 16px + 16px)"
     },
     "--nav-bg": {
      "tier": "component",
@@ -8618,7 +8658,7 @@
     },
     "--floating-stack-height": {
      "tier": "component",
-     "value": "calc(60px + 16px + 250px)"
+     "value": "calc(calc(60px + 0px) + 16px + 250px)"
     },
     "--localsend-bg": {
      "tier": "component",
@@ -9610,6 +9650,14 @@
      "tier": "component",
      "value": "60px"
     },
+    "--bottom-nav-gap": {
+     "tier": "component",
+     "value": "0px"
+    },
+    "--bottom-nav-space": {
+     "tier": "component",
+     "value": "calc(60px + 0px)"
+    },
     "--controls-bottom-gap": {
      "tier": "component",
      "value": "16px"
@@ -9620,7 +9668,7 @@
     },
     "--nav-clearance": {
      "tier": "component",
-     "value": "calc(60px + 16px + 16px)"
+     "value": "calc(calc(60px + 0px) + 16px + 16px)"
     },
     "--nav-bg": {
      "tier": "component",
@@ -9636,7 +9684,7 @@
     },
     "--floating-stack-height": {
      "tier": "component",
-     "value": "calc(60px + 16px + 250px)"
+     "value": "calc(calc(60px + 0px) + 16px + 250px)"
     },
     "--localsend-bg": {
      "tier": "component",

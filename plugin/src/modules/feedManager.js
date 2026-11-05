@@ -1,4 +1,5 @@
 import { SK } from './storageKeys.js';
+import { nanoAvailability, nanoDownload, setNanoLang, NANO_SERVICE } from './nanoModel.js';
 import { attachSearchClear } from './searchField.js';
 // feedManager.js
 // Small RSS/Atom reader built for fast triage. Feeds + items live in their own
@@ -48,6 +49,7 @@ import { stackItems } from './feedStacks.js';
 import { conceptKey, topicLabel } from './topicConcepts.js';
 import { loadLexicon, saveLexicon } from './topicLexicon.js';
 import { icon, setLabel, stripEmoji } from './icons.js';
+import { makeReorderable, reorderGrip } from './reorder.js';
 import { estimateFeedInterval, feedPriority, feedQualityWeight, reconcileItemIds } from './feedWorker.js';
 
 const SUBS_KEY = SK.feedSubs;
@@ -76,6 +78,7 @@ export const FEED_DEFAULTS = {
     recapLimit: 0,
     aiDetail: 0,                  // what the AI reads of each item: 0 = title only (default), 1 = title + description
     libraryBatch: DEFAULT_BATCH,  // items per request when processing the whole library with Ollama
+    libraryEngine: 'auto',        // whole-library run: 'auto' (Ollama if set up, else Chrome's built-in model) | 'ollama' | 'nano'
     autoProcess: false,           // fetch + process new items on a timer (Ollama only)
     autoProcessMinutes: 30,
     stackExclude: [],                    // ids of items the user marked "not the same story" (never stacked)
@@ -124,6 +127,7 @@ async function load() {
     subs = data[SUBS_KEY] || [];
     items = data[ITEMS_KEY] || [];
     settings = { ...FEED_DEFAULTS, ...(data[SETTINGS_KEY] || {}) };
+    if (settings.subsOrdered) subSort = 'manual';   // you arranged the feeds yourself: Settings opens in that order
     mergeBackground(background);
     setRecapLimit(settings.recapLimit);
     setAiDetail(settings.aiDetail);
@@ -1485,7 +1489,7 @@ function openSourcePicker() {
         const shown = subs.filter(matching);
         if (shown.length) {
             if (tags.length) list.append(pickHead(TU('Feeds')));
-            shown.sort((a, b) => subTitle(a).localeCompare(subTitle(b))).forEach(s => {
+            (settings.subsOrdered ? shown : shown.sort((a, b) => subTitle(a).localeCompare(subTitle(b)))).forEach(s => {   // your order, once you arranged the feeds
                 list.append(radioRow((s.muted ? '🔕 ' : '') + subTitle(s), cnt(i => i.feedId === s.id), ui.source === 'sub:' + s.id, () => choose('sub:' + s.id), { muted: s.muted }));
             });
         }
@@ -2291,7 +2295,7 @@ function renderFeedSettings() {
         chips.append(btn('pill' + (subFilter === k ? ' active' : ''), label + ' ' + counts[k], () => { subFilter = k; renderFeedSettings(); }));
     });
     const sort = el('select', 'sd-sort'); sort.setAttribute('aria-label', T('Sort'));
-    [...(moodEnabled() ? [['mood', T('Sort: Mood')]] : []), ['unread', T('Sort: Unread')], ['read', T('Sort: Read share')], ['name', T('Sort: Name')]].forEach(([k, t]) => { const o = el('option', null, t); o.value = k; if (k === subSort) o.selected = true; sort.append(o); });
+    [...(moodEnabled() ? [['mood', T('Sort: Mood')]] : []), ['unread', T('Sort: Unread')], ['read', T('Sort: Read share')], ['name', T('Sort: Name')], ['manual', T('Sort: Your order')]].forEach(([k, t]) => { const o = el('option', null, t); o.value = k; if (k === subSort) o.selected = true; sort.append(o); });
     sort.addEventListener('change', () => { subSort = sort.value; renderFeedSettings(); });
     bar.append(chips, sort);
     root.append(bar);
@@ -2304,10 +2308,26 @@ function renderFeedSettings() {
         mood: (a, b) => num(stats.get(a.id).mood, 101) - num(stats.get(b.id).mood, 101),
         unread: (a, b) => stats.get(b.id).unread - stats.get(a.id).unread,
         read: (a, b) => num(stats.get(a.id).read, 101) - num(stats.get(b.id).read, 101),
-        name: (a, b) => subTitle(a).localeCompare(subTitle(b))
+        name: (a, b) => subTitle(a).localeCompare(subTitle(b)),
+        manual: () => 0   // stable sort: the stored order of the subscriptions
     };
     subs.filter(s => subFilter === 'muted' ? s.muted : subFilter === 'errors' ? s.error : true)
         .sort(sorters[subSort]).forEach(s => card.append(subRow(s)));
+    // "Your order": drag ⋮⋮ (or the arrow keys on it). The Feeds source picker then lists the feeds in this order too.
+    if (subSort === 'manual' && subFilter === 'all' && subs.length > 1) {
+        card.querySelectorAll('.feed-sub-card').forEach(row => {
+            const s = subs.find(x => x.id === row.dataset.subId); if (!s) return;
+            row.dataset.reorderId = s.id; row.dataset.reorderName = subTitle(s);
+            row.classList.add('is-sortable'); row.prepend(reorderGrip(subTitle(s)));
+        });
+        makeReorderable(card, { scope: 'feed-subs', onMove: async (id, i) => {
+            const moved = subs.find(x => x.id === id); if (!moved) return;
+            subs = subs.filter(x => x !== moved); subs.splice(i, 0, moved);
+            settings.subsOrdered = true;
+            await Promise.all([chrome.storage.local.set({ [SUBS_KEY]: subs }).catch(() => {}), persistSettings()]);
+            renderFeedSettings();
+        } });
+    } else if (subSort === 'manual' && subFilter !== 'all') card.prepend(el('p', 'feed-muted sd-order-note', T('Show “All” to change the order.')));
     if (subs.length && !card.querySelector('.feed-sub-card')) card.append(el('p', 'feed-muted', T('Nothing here.')));
     root.append(card);
 
@@ -2338,6 +2358,21 @@ async function ollamaSetup() {
         return { configured: active || saved, active, model };
     } catch (e) { return { configured: false, active: false, model: '' }; }
 }
+/**
+ * Which local model the whole-library run uses. Ollama when it is set up (better results); Chrome's built-in Gemini Nano
+ * as the fallback when Ollama is not there (or when the user picked it). service '' = neither is ready.
+ */
+let libService = 'ollama';
+async function libraryEngine() {
+    const [setup, nano] = await Promise.all([ollamaSetup(), nanoAvailability(topicLang)]);
+    setNanoLang(topicLang);
+    const nanoOk = nano === 'available';
+    let service = '';
+    if (settings.libraryEngine === 'nano' && nanoOk) service = NANO_SERVICE;
+    else if (setup.configured) service = 'ollama';
+    else if (nanoOk) service = NANO_SERVICE;
+    return { service, setup, nano, model: service === NANO_SERVICE ? 'Gemini Nano' : setup.model };
+}
 let articleTags = [];   // every tag of the saved articles: what the lexicon still has to learn comes from here
 async function refreshTopicLang() {
     try { topicLang = (await uiLanguage()).code; } catch (e) { /* keep the last one */ }
@@ -2351,8 +2386,8 @@ function libraryPlan() {
 async function libraryTagFeed(entry, signal, ctx = {}) {
     const s = subs.find(x => x.id === entry.id); if (!s) return;
     const r = entry.keys
-        ? { ...(await translateFeedTopics(entry.keys, { signal, onStage: ctx.onStage, service: 'ollama' })), keys: entry.keys }
-        : await generateFeedTopics(subTitle(s), entry.items, { cats: categoryCounts(entry.all), signal, onStage: ctx.onStage, service: 'ollama' });
+        ? { ...(await translateFeedTopics(entry.keys, { signal, onStage: ctx.onStage, service: libService })), keys: entry.keys }
+        : await generateFeedTopics(subTitle(s), entry.items, { cats: categoryCounts(entry.all), signal, onStage: ctx.onStage, service: libService });
     s.topics = r.tags.slice(0, 3); s.topicKeys = r.keys; s.topicsLang = r.lang;
     await saveLexicon();
     await persist();
@@ -2360,7 +2395,7 @@ async function libraryTagFeed(entry, signal, ctx = {}) {
 /** Categories already in use on the feed items, most used first: the category request picks from these (plus defaults). */
 const knownCategories = () => categoryCounts(items, 12).map((x) => x[0]);
 async function libraryRateChunk(chunk, signal, ctx = {}) {
-    const res = await scoreItems(chunk, aiTitleOf(subMap()), { signal, onStage: ctx.onStage, service: 'ollama', knownCats: knownCategories() });
+    const res = await scoreItems(chunk, aiTitleOf(subMap()), { signal, onStage: ctx.onStage, service: libService, knownCats: knownCategories() });
     chunk.forEach((i, n) => {
         if (!i.ai && res.scores[n] !== null) { i.sent = res.scores[n]; i.ai = true; }   // never overwrite an existing rating or category
         if (!i.cat && res.labels && res.labels[n]) i.cat = res.labels[n];
@@ -2370,7 +2405,7 @@ async function libraryRateChunk(chunk, signal, ctx = {}) {
 }
 /** Name a batch of article tags for the lexicon (nothing is stored on the articles). */
 async function libraryNameTags(batch, signal, ctx = {}) {
-    await learnTagNames(batch, { signal, onStage: ctx.onStage, service: 'ollama' });
+    await learnTagNames(batch, { signal, onStage: ctx.onStage, service: libService });
     await saveLexicon();
 }
 /** Day recap in batches: the first batch writes it, every further batch extends it. Saved after each batch, so a stop loses at most one batch. */
@@ -2387,12 +2422,12 @@ async function libraryRecapDay(entry, size, signal, ctx = {}) {
         if (ctx.step) ctx.step({ batch: k + 1, batches: chunks.length, count: chunk.length });
         let rc;
         if (!cur) {
-            const r = await generateRecap(chunk, aiTitleOf(sm), { rate, signal, onStage: ctx.onStage, service: 'ollama' });
+            const r = await generateRecap(chunk, aiTitleOf(sm), { rate, signal, onStage: ctx.onStage, service: libService });
             applyRatings(chunk, r, rate);
             const { labels: _l, scores: _s, ...base } = r;
             rc = { ...base, covered: sigs(chunk) };
         } else {
-            const r = await generateRecapUpdate(cur, chunk, aiTitleOf(sm), { rate, signal, edited: (x) => x.id in cur.covered, onStage: ctx.onStage, service: 'ollama' });
+            const r = await generateRecapUpdate(cur, chunk, aiTitleOf(sm), { rate, signal, edited: (x) => x.id in cur.covered, onStage: ctx.onStage, service: libService });
             applyRatings(r.sent, r, rate);
             const { labels: _l, scores: _s, sent: _t, ...base } = r;
             rc = { ...base, covered: { ...cur.covered, ...sigs(chunk) } };
@@ -2413,6 +2448,8 @@ async function executeLibrary({ auto = false } = {}) {
     if (libraryRun || scoring || benchRunning) return null;
     const n = cleanBatchSize(settings.libraryBatch);
     await refreshTopicLang();
+    const eng = await libraryEngine(); if (!eng.service) return null;
+    libService = eng.service;
     const plan = libraryPlan(); if (!plan.rate.length && !plan.days.length && !plan.tag.length && !plan.lex.length) return null;
     if (auto) plan.days.reverse();
     const ctl = new AbortController(); libraryRun = { ctl };
@@ -2475,7 +2512,7 @@ function performanceBlock(setup, rerender) {
     const paint = () => {
         out.replaceChildren();
         const r = settings.libraryBench;
-        if (!r || !(r.warm > 0)) { out.append(el('p', 'feed-muted', T('Not measured yet. The test sends two small rating batches to Ollama (about a minute on a slow machine) and nothing leaves your computer.'))); return; }
+        if (!r || !(r.warm > 0)) { out.append(el('p', 'feed-muted', (setup.service === NANO_SERVICE ? T('Not measured yet. The test sends two small rating batches to the built-in Chrome model and nothing leaves your computer.') : T('Not measured yet. The test sends two small rating batches to your local model (about a minute on a slow machine) and nothing leaves your computer.')))); return; }
         const cls = classOf(r.warm), rec = recommend(r.warm);
         out.append(el('p', 'library-bench-main', T('{s} for {n} headlines', { s: fmtSec(r.warm), n: BENCH_COUNT })
             + ' · ' + T('first request {s} (loads the model)', { s: fmtSec(r.cold) })
@@ -2513,15 +2550,16 @@ function performanceBlock(setup, rerender) {
         benchRunning = true; go.disabled = true;
         const ctl = new AbortController();
         try {
+            const eng = await libraryEngine(); libService = eng.service || 'ollama';
             status.textContent = T('Measuring… the first request also loads the model.');
             const t0 = Date.now();
-            await scoreItems(benchItems(), () => '', { signal: ctl.signal, service: 'ollama' });
+            await scoreItems(benchItems(), () => '', { signal: ctl.signal, service: libService });
             const t1 = Date.now();
             status.textContent = T('Measuring… second request.');
             let split = {};
-            await scoreItems(benchItems(), () => '', { signal: ctl.signal, service: 'ollama', onTiming: (t) => { split = t; } });
+            await scoreItems(benchItems(), () => '', { signal: ctl.signal, service: libService, onTiming: (t) => { split = t; } });
             const t2 = Date.now();
-            await setSetting('libraryBench', { at: Date.now(), model: setup.model || '', cold: (t1 - t0) / 1000, warm: (t2 - t1) / 1000, warmScore: split.scoreSec || 0, warmCats: split.catSec || 0, retried: !!split.retried });
+            await setSetting('libraryBench', { at: Date.now(), engine: libService, model: (libService === NANO_SERVICE ? 'Gemini Nano' : setup.model) || '', cold: (t1 - t0) / 1000, warm: (t2 - t1) / 1000, warmScore: split.scoreSec || 0, warmCats: split.catSec || 0, retried: !!split.retried });
             status.textContent = '';
             rerender();
         } catch (e) {
@@ -2532,10 +2570,74 @@ function performanceBlock(setup, rerender) {
     return box;
 }
 
+/** What is better than the built-in model, said once wherever it is offered or in use. */
+const NANO_BETTER = () => T('Better results: Ollama with a 7–8B model (GPU or Apple Silicon), or a cloud model or your own API key for summaries.');
+const openModelSettings = () => import('./settingsNav.js').then(m => m.openSettingsPanel('model')).catch(() => {});
+
+/** Engine row in the library card: which local model runs, and a clear note when it is the built-in fallback. */
+function engineBlock(card, eng) {
+    const box = el('div', 'library-engine');
+    const rerender = () => renderLibraryCard(card).catch(() => {});
+    if (eng.setup.configured && eng.nano === 'available') {
+        const row = el('div', 'setting-group flex justify-between align-center mb-3');
+        const lab = el('label', 'setting-label-grow', T('🧠 Local model')); lab.htmlFor = 'feedSetEngine';
+        const sel = el('select', 'setting-select'); sel.id = 'feedSetEngine';
+        [['auto', T('Ollama (recommended)')], ['nano', T('Built-in Chrome model (fallback)')]].forEach(([v, t]) => { const o = el('option', null, t); o.value = v; if ((settings.libraryEngine === 'nano' ? 'nano' : 'auto') === v) o.selected = true; sel.append(o); });
+        sel.addEventListener('change', async () => { await setSetting('libraryEngine', sel.value); rerender(); });
+        row.append(lab, sel); box.append(row);
+    }
+    if (eng.setup.configured && (eng.nano === 'downloadable' || eng.nano === 'downloading')) {
+        // Ollama runs; Chrome could load its built-in model as a fallback. Offered quietly, Ollama stays the default.
+        const row = el('div', 'library-nano-offer');
+        const msg = el('span', 'feed-muted', T('Fallback: Chrome has a built-in model (Gemini Nano). Ollama stays your default.'));
+        const bar = el('progress', 'library-progress'); bar.max = 1; bar.value = 0; bar.hidden = eng.nano !== 'downloading';
+        const dl = btn('btn-sm', eng.nano === 'downloading' ? T('Continue the download') : T('Download the built-in model'), async () => {
+            dl.disabled = true; bar.hidden = false;
+            try { await nanoDownload(topicLang, (p) => { bar.value = p; }); rerender(); }
+            catch (e) { msg.textContent = T('Download failed: {e}', { e: (e && e.message) || '' }); dl.disabled = false; }
+        });
+        row.append(msg, dl, bar); box.append(row);
+    }
+    if (eng.service === NANO_SERVICE) {
+        const note = el('div', 'library-nano-note'); note.setAttribute('role', 'note');
+        note.append(el('strong', null, T('Built-in Chrome model (Gemini Nano) · fallback')),
+            el('p', null, T('A small model that comes with Chrome: no install, nothing leaves your computer, no tokens. Ratings, categories and recaps are noticeably weaker than with a larger model.')),
+            el('p', null, NANO_BETTER()));
+        const acts = el('div', 'library-nano-actions');
+        if (eng.setup.configured) acts.append(btn('btn-sm', T('Use Ollama again'), async () => { await setSetting('libraryEngine', 'auto'); rerender(); }));
+        else acts.append(btn('btn-sm', T('Set up Ollama'), openModelSettings));
+        note.append(acts);
+        box.append(note);
+    }
+    return box;
+}
+
+/** No Ollama, but Chrome can download its built-in model: offer it as a fallback (one-time download, needs a click). */
+function nanoOffer(card, eng) {
+    const note = el('div', 'library-nano-note'); note.setAttribute('role', 'note');
+    note.append(el('strong', null, T('No Ollama? Use the model built into Chrome')),
+        el('p', null, T('Chrome can download a small model (Gemini Nano) once and run the library on your own computer. It works as a fallback; the results are weaker than with a larger model.')),
+        el('p', null, NANO_BETTER()));
+    const bar = el('progress', 'library-progress'); bar.max = 1; bar.value = 0; bar.hidden = eng.nano !== 'downloading';
+    const msg = el('p', 'feed-muted'); msg.setAttribute('aria-live', 'polite');
+    const acts = el('div', 'library-nano-actions');
+    const dl = btn('btn-sm', eng.nano === 'downloading' ? T('Continue the download') : T('Download the built-in model'), async () => {
+        dl.disabled = true; bar.hidden = false; msg.textContent = T('Downloading… Chrome keeps going if you close this panel.');
+        try {
+            await nanoDownload(topicLang, (p) => { bar.value = p; });
+            msg.textContent = T('Ready.'); renderLibraryCard(card).catch(() => {});
+        } catch (e) { msg.textContent = T('Download failed: {e}', { e: (e && e.message) || '' }); dl.disabled = false; }
+    });
+    acts.append(dl, btn('btn-sm', T('Set up Ollama instead'), openModelSettings));
+    note.append(acts, bar, msg);
+    return note;
+}
+
 async function renderLibraryCard(card) {
     card.replaceChildren();
     await refreshTopicLang();
-    const setup = await ollamaSetup();
+    const eng = await libraryEngine();
+    const setup = { ...eng.setup, service: eng.service, model: eng.model, active: eng.service === NANO_SERVICE ? true : eng.setup.active };
     const lastRun = backgroundStatus && backgroundStatus.at
         ? el('p', 'feed-muted', T('Last background run: {time} · {result}', {
             time: new Date(backgroundStatus.at).toLocaleString(locale()),
@@ -2543,11 +2645,13 @@ async function renderLibraryCard(card) {
                 + (backgroundStatus.failed ? ' · ' + T('{n} failed', { n: backgroundStatus.failed }) : '')
         }))
         : el('p', 'feed-muted', T('No background run yet.'));
-    if (!setup.configured) {
+    if (!eng.service) {
+        card.append(lastRun);
+        // No Ollama: offer Chrome's built-in model as a fallback when this browser has it (one-time download), and say what is better.
+        if (eng.nano === 'downloadable' || eng.nano === 'downloading') card.append(nanoOffer(card, eng));
         card.append(
-            lastRun,
-            el('p', 'feed-muted', T('Available when Ollama is set up. It rates, categorizes and recaps your whole Feed library in small batches on your own machine. It can take hours but spends no tokens.')),
-            toggleRow('feedSetAutoProcess', T('🔁 Process new items automatically'), T('Fetches and processes new items in the background with Ollama while your browser is running. Cloud and BYOK models stay manual.'), 'autoProcess'),
+            el('p', 'feed-muted', T('Available when a local model is set up (Settings › Models › Local). It rates, categorizes and recaps your whole Feed library in small batches on your own machine. It can take hours but spends no tokens.')),
+            toggleRow('feedSetAutoProcess', T('🔁 Process new items automatically'), T('Fetches and processes new items in the background with your local model while your browser is running. Cloud and BYOK models stay manual.'), 'autoProcess'),
             selectRow('feedSetAutoEvery', T('⏱️ Run every'), 'autoProcessMinutes', [[15, T('15 minutes')], [30, T('30 minutes')], [60, T('1 hour')], [180, T('3 hours')], [360, T('6 hours')]])
         );
         return;
@@ -2573,7 +2677,7 @@ async function renderLibraryCard(card) {
     const refresh = () => { status.textContent = summaryText(); const p = libraryPlan(); startBtn.disabled = !p.rate.length && !p.days.length && !p.tag.length && !p.lex.length; startBtn.textContent = T('Process the whole library'); };
 
     // Stage of the request in flight, with a ticking clock so a slow local model never looks frozen.
-    const STAGE_TEXT = () => ({ send: T('Sending the batch to Ollama…'), wait: T('Waiting for the model…'), write: T('Model is writing…'), parse: T('Reading the answer…') });
+    const STAGE_TEXT = () => ({ send: eng.service === NANO_SERVICE ? T('Sending the batch to the built-in model…') : T('Sending the batch to the local model…'), wait: T('Waiting for the model…'), write: T('Model is writing…'), parse: T('Reading the answer…') });
     let stage = '', stageSince = 0, clock = null;
     const mmss = (ms) => { const t = Math.max(0, Math.round(ms / 1000)); return Math.floor(t / 60) + ':' + String(t % 60).padStart(2, '0'); };
     const paintStage = () => {
@@ -2620,11 +2724,14 @@ async function renderLibraryCard(card) {
     };
     const actions = el('div', 'feed-recap-actions'); actions.append(startBtn, stopBtn);
     card.append(
+        engineBlock(card, eng),
         performanceBlock(setup, () => renderLibraryCard(card).catch(() => {})),
         selectRow('feedSetLibBatch', T('📦 Items per batch'), 'libraryBatch', BATCH_SIZES.map(v => [v, v === DEFAULT_BATCH ? T('{n} (recommended)', { n: v }) : String(v)])),
         lastRun, status, live, bar, actions,
-        el('p', 'feed-muted', T('Runs on your own machine with Ollama and spends no tokens, even when another model is active for summaries. Keep this panel open: closing it pauses the run, and starting again continues where it stopped. Only items still stored are processed (see "Keep items for"). Today\'s recap is written when you open it.')),
-        toggleRow('feedSetAutoProcess', T('🔁 Process new items automatically'), T('Fetches and processes new items in the background with Ollama while your browser is running. Cloud and BYOK models stay manual.'), 'autoProcess'),
+        el('p', 'feed-muted', eng.service === NANO_SERVICE
+            ? T('Runs in Chrome on your own machine and spends no tokens. Keep this panel open: closing it pauses the run, and starting again continues where it stopped. Automatic runs while the panel is closed need Ollama.')
+            : T('Runs on your own machine with Ollama and spends no tokens, even when another model is active for summaries. Keep this panel open: closing it pauses the run, and starting again continues where it stopped. Only items still stored are processed (see "Keep items for"). Today\'s recap is written when you open it.')),
+        toggleRow('feedSetAutoProcess', T('🔁 Process new items automatically'), T('Fetches and processes new items in the background with your local model while your browser is running. Cloud and BYOK models stay manual.'), 'autoProcess'),
         selectRow('feedSetAutoEvery', T('⏱️ Run every'), 'autoProcessMinutes', [[15, T('15 minutes')], [30, T('30 minutes')], [60, T('1 hour')], [180, T('3 hours')], [360, T('6 hours')]]),
         selectRow('feedSetRequests', T('🔢 Requests per automatic run'), 'requestsPerTick', REQUEST_STEPS.map(v => [v, v === DEFAULT_REQUESTS ? T('{n} (recommended)', { n: v }) : String(v)])));
     card.querySelector('#feedSetLibBatch').addEventListener('change', () => refresh());
@@ -2653,8 +2760,8 @@ function renderFeedPrefs() {
         segRow('feedSetAiDetail', T('🔎 What the AI reads'), 'aiDetail', [[0, T('Titles only (faster)')], [1, T('Titles + descriptions')]]),
         segRow('feedSetRecapLimit', T('📝 Items per recap'), 'recapLimit', [[0, T('No limit')], [40, '40'], [80, '80'], [150, '150'], [300, '300']]),
         toggleRow('feedSetRate', stripEmoji(T('🤖 Rate items with the recap')), T('Adds mood and category to each item in the same AI request'), 'rateWithRecap'),
-        toggleRow('feedSetLocalBriefings', stripEmoji(T('🏠 Always use my local model for briefings')), T('Recaps are written by your Ollama model, even when summaries use the cloud'), 'localBriefings'));
-    card('feedPrefsLibrary', TU('Whole library · Ollama'));
+        toggleRow('feedSetLocalBriefings', stripEmoji(T('🏠 Always use my local model for briefings')), T('Recaps are written by your local model, even when summaries use the cloud'), 'localBriefings'));
+    card('feedPrefsLibrary', TU('Whole library · local model'));
     renderLibraryCard(root.querySelector('#feedPrefsLibrary')).catch(() => {});
     card('feedPrefsUpdates', TU('Updates & storage'),
         toggleRow('feedSetPoll', T('🔔 Check in the background'), T('Shows a badge on the toolbar icon when new items arrive'), 'backgroundPoll'),

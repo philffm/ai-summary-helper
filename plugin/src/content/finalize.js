@@ -19,7 +19,7 @@ export function createStreamParser(service) {
       const json = JSON.parse(line.startsWith('data: ') ? line.substring(6) : line);
       let piece = '';
       if (service === 'gemini') piece = json.candidates?.[0]?.content?.parts?.[0]?.text || '';
-      else if (service === 'ollama') { piece = json.message?.content || json.response || ''; if (!piece && json.message?.thinking) thinking += json.message.thinking; }
+      else if (service === 'ollama') { piece = json.message?.content || json.response || json.choices?.[0]?.delta?.content || json.choices?.[0]?.message?.content || ''; if (!piece && json.message?.thinking) thinking += json.message.thinking; }   // “Local” also holds OpenAI-format servers
       else piece = json.choices?.[0]?.delta?.content || json.choices?.[0]?.message?.content || json.message?.content || json.response || '';
       if (piece) summary += piece;
     } catch (_) { /* partial JSON */ }

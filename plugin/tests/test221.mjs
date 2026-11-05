@@ -4,6 +4,7 @@ const { w } = setup({});
 const d = w.document;
 globalThis.document = d; globalThis.window = w;
 const ag = await imp('modules/archiveGraph.js');
+globalThis.getComputedStyle = w.getComputedStyle.bind(w); globalThis.XMLSerializer = w.XMLSerializer;
 
 const month = (m) => new Date(Date.UTC(2026, m, 15)).toISOString();   // m = 0 (Jan) … 5 (Jun)
 const arts = [0, 1, 2, 3, 4, 5].flatMap(m => [{ id: 'a' + m, timestamp: month(m) }, { id: 'b' + m, timestamp: month(m) }]);
@@ -67,4 +68,24 @@ for (let i = 0; i < 4; i++) p4.click();   // Feb → Jun: four more presses to t
 assert.equal(inWindow(), 12, 'after the last month everything is in view');
 p4.click(); assert.equal(inWindow(), 2, 'one more press starts over');
 delete globalThis.matchMedia;
+// ── the panel never runs past the graph's right edge (it was cut off when the chip sat on the right) ──
+{
+    const c5 = build();
+    const rect = (l, r) => () => ({ left: l, right: r, width: r - l, top: 0, bottom: 0, height: 0 });
+    c5.getBoundingClientRect = rect(0, 400);
+    c5.querySelector('.graph-time').getBoundingClientRect = rect(300, 380);
+    const panel = c5.querySelector('.graph-time-panel');
+    panel.getBoundingClientRect = () => { const x = 300 + (parseFloat(panel.style.left) || 0); return { left: x, right: x + 280, width: 280, top: 0, bottom: 0, height: 0 }; };
+    c5.querySelector('.graph-time-chip').click();
+    assert.equal(panel.hidden, false);
+    assert.equal(panel.style.left, '-188px', 'shifted left so its right edge stays 8px inside');
+    assert.equal(panel.style.maxWidth, '384px', 'never wider than the graph');
+}
+// ── Save image takes the graph, not the first icon SVG of a chip ──
+{
+    const c6 = d.createElement('div'); d.body.append(c6);
+    c6.innerHTML = '<div class="graph-filterbar"><button><svg class="icon"><use href="#i-clock"/></svg>Time</button></div><svg class="graph-svg" width="10" height="10"><circle r="3" fill="red"/></svg>';
+    const md = ag.graphSvgMarkup(c6);
+    assert.ok(/class="graph-svg"/.test(md) && /<circle/.test(md) && !/i-clock/.test(md), 'the graph SVG is saved');
+}
 console.log('replay ok');

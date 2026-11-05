@@ -1109,7 +1109,12 @@ export function initMainScreen(ui) {
                         hint.className = 'ollama-hint';
                         hint.setAttribute('role', 'alert');
                         hint.innerHTML = '<div class="ollama-hint-text"></div><button type="button" class="button-secondary ollama-hint-btn"></button>';
-                        hint.querySelector('.ollama-hint-text').textContent = /403/.test(errText)
+                        // apfel (Apple's model) names its own switch in the error; say exactly what to run, with this extension's id.
+                        const apfel = /allowed-origins/i.test(errText);
+                        const extOrigin = (() => { try { return 'chrome-extension://' + chrome.runtime.id; } catch (_) { return ''; } })();
+                        hint.querySelector('.ollama-hint-text').textContent = apfel
+                            ? T('The local server refused this extension. Start it with: apfel --serve --allowed-origins {origin}', { origin: extOrigin })
+                            : /403/.test(errText)
                             ? T('Ollama refused the request. A 403 usually means it must be told to accept requests from this extension (OLLAMA_ORIGINS).')
                             : T('Could not reach Ollama. Make sure it is running and the endpoint is correct.');
                         const btn = hint.querySelector('.ollama-hint-btn');
@@ -1462,8 +1467,8 @@ function setupOnboardingExtras(ui) {
     set('onboardingIntro', T('Pick a way to run your summaries. Change it any time in settings.'));
     set('onboardingOwnKeyTitle', '🔑 ' + T('My own API key'));
     set('onboardingOwnKeyHint', T('No account. Your key stays on this device.'));
-    set('onboardingOllamaTitle', '🦙 ' + T('Ollama on this computer'));
-    set('onboardingOllamaHint', T('Local models. No account, no key.'));
+    set('onboardingOllamaTitle', '🖥️ ' + T('A local model on this computer'));
+    set('onboardingOllamaHint', T('Ollama, Chrome’s built-in model, LM Studio and more. No account, no key.'));
     const mac = /Mac|iPhone|iPad/i.test((navigator.platform || '') + ' ' + (navigator.userAgent || ''));
     set('onboardingTip', T('Tip: press {key} on any page to summarize it.', { key: mac ? '⌘ + Shift + E' : 'Ctrl + Shift + E' }));
 
