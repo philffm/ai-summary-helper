@@ -42,6 +42,9 @@ export async function initDock(ui) {
     let stored = null;
     try { stored = (await chrome.storage.sync.get(DOCK_PREF))[DOCK_PREF]; } catch (_) { /* defaults */ }
     applyDock(stored);
+    // The editor is drawn at startup, before the translations are loaded (and again when the UI language is changed): its texts
+    // and the tab names (the nav labels) are read when it is drawn, so it is drawn again once the dictionary is applied.
+    document.addEventListener('aish:translationsApplied', () => paintEditor());
     try {
         chrome.storage.onChanged.addListener((ch, area) => { if (area === 'sync' && ch[DOCK_PREF]) applyDock(ch[DOCK_PREF].newValue); });
     } catch (_) { /* no storage events (tests) */ }
