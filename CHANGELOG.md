@@ -5,6 +5,14 @@ Commit history has the details: <https://github.com/philffm/ai-summary-helper/co
 
 ## Unreleased
 
+## 2.2.44 (2026-11-06)
+
+### All changes
+
+#### Changed
+
+- THIRD_PARTY_LICENSES: do not quote the flagged core-js string (it ships in the package)
+
 ## 2.2.43 (2026-11-06)
 
 ### All changes
