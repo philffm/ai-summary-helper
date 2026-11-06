@@ -5,6 +5,16 @@ Commit history has the details: <https://github.com/philffm/ai-summary-helper/co
 
 ## Unreleased
 
+## 2.2.43 (2026-11-06)
+
+### All changes
+
+#### Changed
+
+- pdf.js: strip core-js IE fallback flagged as obfuscation; clearer scanned-PDF error
+- Tag quick picks: offer known tags (archive, sync filters) before the built-in categories
+- Dock editor: redraw when the translations are applied
+
 ## 2.2.42 (2026-11-05)
 
 ### All changes
