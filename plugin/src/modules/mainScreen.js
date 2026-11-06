@@ -393,7 +393,7 @@ export function initMainScreen(ui) {
     let attachError = '';
     const PDF_ERRORS = () => ({
         PASSWORD: T('This PDF is password protected.'),
-        EMPTY: T('This PDF has no selectable text (probably a scan). Text recognition is not supported yet.'),
+        EMPTY: T('This PDF has no selectable text (probably a scan), and text recognition is not supported yet. Run OCR on it first (e.g. Preview, Acrobat, or ocrmypdf), or select the text and summarize the selection.'),
         NOT_PDF: T('This file is not a readable PDF.')
     });
     const attachmentChip = () => {

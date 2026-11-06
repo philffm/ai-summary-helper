@@ -26,8 +26,8 @@ is identical for pdf.js and AFINN-111); the D3 and Lucide ISC texts follow.
 > pull request, and against npm releases and advisories every night.
 
 > **pdf.js build choice:** `lib/pdf.mjs` and `lib/pdf.worker.mjs` are `legacy/build/pdf.mjs` and
-> `legacy/build/pdf.worker.mjs` from the `pdfjs-dist` npm package, unmodified and NOT minified: the Chrome Web Store
-> rejected the minified `*.min.mjs` build as obfuscated code ("Red Titanium", Nov 2026). Never vendor a `*.min.*` file. The modern build uses syntax
+> `legacy/build/pdf.worker.mjs` from the `pdfjs-dist` npm package, NOT minified: the Chrome Web Store
+> rejected the minified `*.min.mjs` build as obfuscated code ("Red Titanium", Nov 2026). Never vendor a `*.min.*` file. The readable build was rejected again because of core-js's IE-only `Object.create` fallback (`'java' + SCRIPT + ':'`); after every pdf.js update run `node scripts/strip-corejs-ie-fallback.mjs`, which replaces that dead code in both files (the only deviation from the upstream files). The modern build uses syntax
 > (`using`, `Map.getOrInsertComputed`) that Safari and older Chromium can't parse. The two `*_nowasm_fallback.js`
 > files come from the package's `wasm/` folder. The `.wasm` decoders are not shipped because the extension CSP
 > has no `'wasm-unsafe-eval'` (`content/pdfExtractor.js` passes `useWasm: false`).
