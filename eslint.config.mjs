@@ -19,6 +19,18 @@ export default [
       'no-empty': ['warn', { allowEmptyCatch: true }],
     },
   },
+  // R2: storage goes through StorageManager (key routing local/sync, migrations, one place to change the schema).
+  // A warning for now, to be cleared module by module; the storage layer itself and the classic scripts are exempt.
+  {
+    files: ['plugin/src/**/*.js'],
+    ignores: ['plugin/src/modules/storageManager.js', 'plugin/src/modules/storageKeys.js', 'plugin/src/loader.js', 'plugin/src/background.js'],
+    rules: {
+      'no-restricted-syntax': ['warn', {
+        selector: "MemberExpression[object.object.object.name=/^(chrome|browser)$/][object.object.property.name='storage'][object.property.name=/^(local|sync|session)$/][property.name=/^(get|set|remove|clear)$/]",
+        message: 'Read and write storage through StorageManager (modules/storageManager.js), not chrome.storage directly.',
+      }],
+    },
+  },
   {
     files: ['plugin/src/**/*.js'],
     plugins: { 'no-unsanitized': noUnsanitized },
