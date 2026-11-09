@@ -116,32 +116,31 @@ export async function buildMarkdown(article) {
     // 1. Format date as YYYY-MM-DD for Obsidian frontmatter
     const createdDate = new Date(article.timestamp).toISOString().split('T')[0];
     
-    // 2. Sanitize title for YAML (escape double quotes)
-    const safeTitle = (article.title || 'Untitled Article').replace(/"/g, '\\"');
-    
+    const yamlStr = (value) => JSON.stringify(String(value ?? ''));
+    const safeTitle = yamlStr(article.title || 'Untitled Article');
+
     // 3. Format tags into YAML list format
     let tagsFrontmatter = 'tags:';
     if (article.tags && article.tags.length > 0) {
-        tagsFrontmatter += '\n' + article.tags.map(tag => `  - "${tag.replace(/"/g, '\\"')}"`).join('\n');
+        tagsFrontmatter += '\n' + article.tags.map(tag => `  - ${yamlStr(tag)}`).join('\n');
     }
 
     // Paper fields (only for pages detected / marked as papers)
     const pm = (paperState(article) && article.meta && article.meta.paper) || {};
-    const yamlStr = (v) => v ? `"${String(v).replace(/"/g, '\\"')}"` : '';
     const doi = paperState(article) ? paperDoi(article) : '';
-    const paperFm = (doi ? `\ndoi: "${doi}"` : '') + (pm.journal ? `\njournal: ${yamlStr(pm.journal)}` : '') + (paperState(article) ? '\ntype: paper' : '');
+    const paperFm = (doi ? `\ndoi: ${yamlStr(doi)}` : '') + (pm.journal ? `\njournal: ${yamlStr(pm.journal)}` : '') + (paperState(article) ? '\ntype: paper' : '');
 
     // 4. Construct the YAML Frontmatter
     const frontmatter = `---
-title: "${safeTitle}"
-source: "${article.url || ''}"
+title: ${safeTitle}
+source: ${yamlStr(article.url || '')}
 author: ${yamlStr(pm.authors || (article.meta && article.meta.author) || '')}
 published: ${yamlStr(pm.year || '')}
 created: ${createdDate}${paperFm}
 description: 
 ${tagsFrontmatter}
 bookrecs: 
-why: ${article.id ? `\naish_id: "${String(article.id).replace(/"/g, '')}"` : ''}
+why: ${article.id ? `\naish_id: ${yamlStr(article.id)}` : ''}
 aish_format: 1
 ---`;
 
