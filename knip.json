@@ -13,6 +13,7 @@
     "plugin/src/ttsEngine.js",
     "plugin/src/readerPage.js",
     "plugin/src/viewer/*.js",
+    "plugin/src/modules/targetClient.js",
     "plugin/tests/**/*.{mjs,cjs}",
     "plugin/scripts/**/*.{js,mjs}",
     "scripts/**/*.mjs",
@@ -21,5 +22,5 @@
   "project": ["plugin/src/**/*.js", "plugin/tests/**/*.{mjs,cjs}", "plugin/scripts/**/*.{js,mjs}", "scripts/**/*.mjs", "design-system/*.mjs"],
   "ignore": ["plugin/src/lib/**", "plugin/dev/**", "plugin/dist/**", "plugin/prod/**", "docs/**", "mcp/**", "mobile/**"],
   "ignoreExportsUsedInFile": true,
-  "rules": { "files": "warn", "exports": "warn", "types": "off", "dependencies": "warn", "unlisted": "warn", "duplicates": "warn" }
+  "rules": { "files": "error", "exports": "warn", "types": "off", "dependencies": "warn", "unlisted": "warn", "duplicates": "warn" }
 }

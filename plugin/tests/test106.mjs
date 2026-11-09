@@ -121,7 +121,7 @@ globalThis.window = w;
 globalThis.document = w.document;
 globalThis.FileReader = w.FileReader;
 globalThis.URL = w.URL;
-const manager = await imp('modules/settingsManager.js');
+const manager = await imp('modules/settings/backup.js');
 let exportedText, exportConfirms = 0, importConfirms = 0, reloads = 0;
 globalThis.Blob = class { constructor(parts) { this.parts = parts; } };
 w.URL.createObjectURL = (blob) => { exportedText = blob.parts[0]; return 'blob:backup'; };

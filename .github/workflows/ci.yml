@@ -71,8 +71,11 @@ jobs:
         run: node scripts/check-vendored-libs.mjs --offline
       - name: Tests the change can reach
         run: npm test -- --deep
-      # Dead files and exports (knip.json). Report only for now: the list is in the job summary; it does not fail the run.
-      - name: Unused files and exports (report)
+      # Dead files (knip.json): a source file nothing imports fails the run. A file kept on purpose goes into knip.json "entry".
+      - name: No unused files
+        run: npx knip --include files --reporter compact
+      # Unused exports: report only for now (the list is in the job summary); it does not fail the run.
+      - name: Unused exports (report)
         continue-on-error: true
         run: |
           npx knip --reporter markdown > knip-report.md || true
