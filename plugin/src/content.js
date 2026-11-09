@@ -34,10 +34,6 @@ const prepareImages = async (html) => (await wantsImages()) ? inlineAndCompressI
 
 import {
   ensureHighlightUiStyles,
-  showDecisionDialog,
-  createStreamingOverlay,
-  updateStreamingOverlay,
-  waitForSpeedReadingComplete,
   toggleHybridSidebar,
   ensureHybridSidebar,
   sidebarMessage,
@@ -46,6 +42,9 @@ import {
   selectTargetElement,
   updateDebugPanel
 } from './content/ui.js';
+import { speedReadOpen, speedReadStream, srT } from './content/speedRead.js';
+import { speedReadNormalize, SPEED_READ_KEY } from './modules/speedReadSettings.js';
+import { decisionDueAt } from './modules/decisionTime.js';
 
 import {
   setHighlightingEnabled,
@@ -286,65 +285,10 @@ import {
       return true;
     }
 
-    if (request.action === 'fetchSummaryAndClose') {
+    // Speed-Read (popup menu, right-click menu): write the summary, then read it word by word (content/speedRead.js).
+    if (request.action === 'speedRead') {
       sendResponse({ success: true });
-
-      showDecisionDialog((decision) => {
-        const streamOverlay = createStreamingOverlay();
-        document.body.appendChild(streamOverlay);
-
-        const decisionDialog = document.getElementById('aish-decision-overlay');
-        if (decisionDialog) decisionDialog.remove();
-
-        chrome.storage.sync.get(['debugEnabled', 'prompt'], async (data) => {
-          const promptToUse = data.prompt || 'Summarize the following content:';
-          if (!document.body) {
-            updateStreamingOverlay(streamOverlay, '❌ Cannot summarize this page type.', true);
-            return;
-          }
-          const hiddenTarget = document.createElement('div');
-          hiddenTarget.style.cssText = 'position:fixed;left:-9999px;top:0;width:1px;height:1px;overflow:hidden;';
-          document.body.appendChild(hiddenTarget);
-          try {
-            const result = await fetchSummary('', 'en-US', promptToUse, 200, hiddenTarget, data.debugEnabled || false, 'extension');
-            const article = result.article;
-
-            if (article) {
-              article.decisionTimeframe = decision.timeframe;
-              article.decisionReason = decision.reason;
-              article.decisionSavedAt = decision.savedAt;
-              article.isDecision = true;
-
-              // article.id identifies its entry in 'articlesIndex' (see
-              // saveToLocalStorage in content/core.js) — patch the decision
-              // fields onto that index entry rather than the old flat array.
-              chrome.storage.local.get({ [SK.articlesIndex]: [] }, (data) => {
-                const articlesIndex = data[SK.articlesIndex] || [];
-                const idx = articlesIndex.findIndex(a => a.id === article.id);
-                if (idx >= 0) {
-                  articlesIndex[idx] = {
-                    ...articlesIndex[idx],
-                    decisionTimeframe: article.decisionTimeframe,
-                    decisionReason: article.decisionReason,
-                    decisionSavedAt: article.decisionSavedAt,
-                    isDecision: true
-                  };
-                  chrome.storage.local.set({ [SK.articlesIndex]: articlesIndex }, () => {
-                    chrome.runtime.sendMessage({ action: 'scheduleDecisionAlarm', article });
-                    waitForSpeedReadingComplete(streamOverlay, () => {
-                      chrome.runtime.sendMessage({ action: 'closeTabSelf' });
-                    });
-                  });
-                }
-              });
-            } else {
-              updateStreamingOverlay(streamOverlay, 'No summary generated', true);
-            }
-          } catch (e) {
-            updateStreamingOverlay(streamOverlay, `❌ Summary failed: ${e.message || 'Unknown error'}`, true);
-          }
-        });
-      });
+      runSpeedRead();
       return false;
     }
 
@@ -527,6 +471,49 @@ import {
       lengthSpec(readLengthSetting(local, SK)), hiddenTarget, sync.debugEnabled || false, 'extension');
   }
   setPageSummarizeHandler(startSummaryFromPage);
+
+  // Speed-Read: the reader opens at once (progress while the summary is written), then reads it; the article is saved
+  // like any summary. Language, prompt and length follow the user's settings, as for "Summarize" from the page.
+  async function runSpeedRead() {
+    if (!document.body) return;
+    if (activeSummaryRequestId) { try { chrome.runtime.sendMessage({ action: 'stopFetch', requestId: activeSummaryRequestId }).catch(() => {}); } catch (_) { /* nothing to stop */ } }
+    const [sync, local] = await Promise.all([
+      chrome.storage.sync.get(['selectedLanguage', 'prompt', 'debugEnabled', SPEED_READ_KEY, 'theme', 'reduceMotion']),
+      chrome.storage.local.get([SK.summaryLength, SK.summaryLengthMode, SK.summaryLengthBias])
+    ]);
+    const settings = speedReadNormalize(sync[SPEED_READ_KEY]);
+    let article = null;
+    const reader = speedReadOpen({
+      title: document.title,
+      settings,
+      theme: sync.theme,
+      reduceMotion: !!sync.reduceMotion,
+      onCancel: () => { if (activeSummaryRequestId) chrome.runtime.sendMessage({ action: 'stopFetch', requestId: activeSummaryRequestId }).catch(() => {}); },
+      onRetry: () => runSpeedRead(),
+      onSettings: (patch) => { Object.assign(settings, patch); chrome.storage.sync.set({ [SPEED_READ_KEY]: settings }).catch(() => {}); },
+      onReminder: (timeframe) => {
+        if (!article || !article.id) return;
+        const dueAt = decisionDueAt(timeframe, Date.now(), settings.reminderTime);
+        chrome.runtime.sendMessage({ action: 'decisionSave', articleId: article.id, timeframe, dueAt }).catch(() => {});
+      },
+      onCloseTab: () => { chrome.runtime.sendMessage({ action: 'speedReadCloseTab', title: document.title }).catch(() => {}); },
+    });
+    const hiddenTarget = document.createElement('div');
+    hiddenTarget.style.cssText = 'position:fixed;left:-9999px;top:0;width:1px;height:1px;overflow:hidden;';
+    document.body.appendChild(hiddenTarget);
+    try {
+      const result = await fetchSummary('', sync.selectedLanguage || 'English', sync.prompt || 'Summarize the following content:',
+        lengthSpec(readLengthSetting(local, SK)), hiddenTarget, sync.debugEnabled || false, 'extension');
+      if (result && result.cancelled) { reader.destroy(); return; }
+      article = result && result.article;
+      if (article && article.summary) reader.read(article);
+      else reader.error(srT('No summary came back. The page may have too little text.'));
+    } catch (e) {
+      reader.error((e && e.message) || srT('Unknown error'));
+    } finally {
+      try { hiddenTarget.remove(); } catch (_) { /* already gone */ }
+    }
+  }
 
   // ── Summary fetch + streaming ───────────────────────────────────────────────
 
@@ -1044,10 +1031,7 @@ import {
                     outputArea.innerHTML = `<small style="opacity:0.7; color: #666;">Drafting summary...</small><br>${markdownToHtml(summary)}`;
                     if (debugEnabled) updateDebugPanel(summary, finalApiUrl);
 
-                    const streamingOverlay = document.getElementById('aish-streaming-overlay');
-                    if (streamingOverlay) {
-                      updateStreamingOverlay(streamingOverlay, summary, false);
-                    }
+                    speedReadStream(summary);   // the Speed-Read reader shows how far the summary is
 
                     const wordCount = summary.split(/\s+/).filter(Boolean).length;
                     const now = Date.now();

@@ -13,6 +13,7 @@ import { buildIndex, search as rankedSearch } from '../localSearch.js';
 import { toArticleJson } from '../articleFormat.js';
 import { pageKeyForUrl } from '../pageKey.js';
 import { createHighlightStore } from '../highlightStore.js';
+import { decisionDueAt } from '../decisionTime.js';
 import { BRAND_GUIDE } from './brand.js';
 import { SIM_VERSION, buildEntry, fingerprintOf, similarTo } from '../graphSimilarity.js';
 import { isLanguageTag } from '../topicConcepts.js';
@@ -189,7 +190,6 @@ export async function list_highlights(args = {}, { storage, excludeTag } = {}) {
 }
 
 // ── list_due (saved-for-later / decisions) ──────────────────────────────────
-const DECISION_DELAY_MIN = { tomorrow: 24 * 60, weekend: 2 * 24 * 60, week: 7 * 24 * 60 };
 export async function list_due(args = {}, { storage, excludeTag } = {}) {
     const withinDays = Number(args.within_days) || 7;
     const horizon = Date.now() + withinDays * 86400000;
@@ -197,9 +197,8 @@ export async function list_due(args = {}, { storage, excludeTag } = {}) {
     return index
         .filter((a) => a.isDecision)
         .map((a) => {
-            const savedAt = new Date(a.decisionSavedAt || a.timestamp).getTime();
-            const delayMin = DECISION_DELAY_MIN[a.decisionTimeframe] || 0;
-            const dueAt = delayMin ? savedAt + delayMin * 60000 : null;
+            // set by Speed-Read since 2.3 (decisionDueAt); older entries: worked out from when they were saved
+            const dueAt = Number.isFinite(a.decisionDueAt) ? a.decisionDueAt : decisionDueAt(a.decisionTimeframe, a.decisionSavedAt || a.timestamp);
             return { aish_id: a.id, title: a.title || 'Untitled', url: a.url || '', timeframe: a.decisionTimeframe || 'research', reason: a.decisionReason || '', dueAt: dueAt ? new Date(dueAt).toISOString() : null, _due: dueAt };
         })
         .filter((d) => d._due == null || d._due <= horizon)

@@ -97,6 +97,26 @@
           },
           "$description": "Type size 20px × text-scale: screen titles."
         },
+        "fs-display": {
+          "$type": "dimension",
+          "$value": "calc(40px * {app.semantic.scale.text-scale})",
+          "$extensions": {
+            "eu.byphil.ds": {
+              "template": true
+            }
+          },
+          "$description": "Type size 40px × text-scale: the word in the speed reader (Speed-Read, card layout)."
+        },
+        "fs-display-xl": {
+          "$type": "dimension",
+          "$value": "calc(64px * {app.semantic.scale.text-scale})",
+          "$extensions": {
+            "eu.byphil.ds": {
+              "template": true
+            }
+          },
+          "$description": "Type size 64px × text-scale: the word in the speed reader in full screen."
+        },
         "spacing-s-0": {
           "$type": "dimension",
           "$value": "0",
@@ -885,6 +905,33 @@
         "sel-card-bg": {
           "$type": "color",
           "$value": "{app.semantic.accent.accent-selected}"
+        }
+      },
+      "rsvp": {
+        "rsvp-word-size": {
+          "$type": "dimension",
+          "$value": "{app.semantic.scale.fs-display}",
+          "$description": "Speed reader: size of the word on screen."
+        },
+        "rsvp-word-size-full": {
+          "$type": "dimension",
+          "$value": "{app.semantic.scale.fs-display-xl}",
+          "$description": "Speed reader in full screen: size of the word."
+        },
+        "rsvp-pivot": {
+          "$type": "color",
+          "$value": "{app.semantic.accent.accent}",
+          "$description": "Speed reader: the letter the eye anchors on (≥ 3:1 on the reader background)."
+        },
+        "rsvp-bg": {
+          "$type": "color",
+          "$value": "{app.semantic.surface.surface-sheet}",
+          "$description": "Speed reader: the reader card."
+        },
+        "rsvp-context-bg": {
+          "$type": "color",
+          "$value": "{app.semantic.surface.surface-row}",
+          "$description": "Speed reader: the sentence or paragraph shown around the word."
         }
       }
     }

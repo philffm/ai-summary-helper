@@ -1209,6 +1209,16 @@ export function initMainScreen(ui) {
             try { await StorageManager.deleteArticle(id); } catch (_) { /* ignore */ }
         });
     };
+    // ── Speed-Read: the reader opens on the page (content/speedRead.js); the popup closes so the page is in view ──
+    const speedReadPage = async () => {
+        let tab = null;
+        try { tab = await getActiveTab(); } catch (_) { /* ignore */ }
+        if (!tab || !tab.url || !isInjectableUrl(tab.url)) { if (ui && ui.showToast) ui.showToast(T('Speed-Read does not work on this page.')); return; }
+        try { await sendMessageToTab(tab.id, { action: 'speedRead' }); } catch (_) { if (ui && ui.showToast) ui.showToast(T('Could not reach this page — try refreshing the tab.')); return; }
+        if (!document.body || !document.body.dataset.surface) window.close();   // the popup (not the side panel or a tab)
+    };
+    let speedReadOn = true;
+    try { chrome.storage.sync.get('speedRead', (d) => { speedReadOn = !(d && d.speedRead && d.speedRead.enabled === false); }); } catch (_) { /* keep it on */ }
     if (saveMenuBtn) {
         let menu = null;
         const closeMenu = () => { if (menu) { menu.remove(); menu = null; } saveMenuBtn.setAttribute('aria-expanded', 'false'); document.removeEventListener('pointerdown', onOutside, true); document.removeEventListener('keydown', onKey, true); };
@@ -1230,6 +1240,7 @@ export function initMainScreen(ui) {
                 mk('sparkles', T('Summarize'), T('Read it with AI'), () => fetchSummaryButton.click()),
                 mk('download', T('Save only'), T('Keep it in History, no AI, nothing sent'), savePageOnly)
             );
+            if (speedReadOn) menu.append(mk('zap', T('Speed-Read'), T('The summary word by word, then keep the page or close the tab'), speedReadPage));
             document.body.append(menu);
             const r = saveMenuBtn.getBoundingClientRect();
             const mh = menu.offsetHeight, mw = menu.offsetWidth;

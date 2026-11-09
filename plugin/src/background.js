@@ -311,9 +311,21 @@ chrome.runtime.onInstalled.addListener(() => {
         chrome.contextMenus.create({ id: 'aish-clear-highlights', title: t('ctxRemoveHighlights', '🧹 Remove all highlights'),   contexts: ['page', 'selection'] });
         chrome.contextMenus.create({ id: 'sep1', type: 'separator',                                                             contexts: ['page', 'selection'] });
         chrome.contextMenus.create({ id: 'aish-summarize',        title: t('ctxSummarizePage', '✨ Summarize this page'),        contexts: ['page'] });
-        chrome.contextMenus.create({ id: 'aish-summarize-close',  title: t('ctxSummarizeClose', '✨ Summarize & close tab'),     contexts: ['page'] });
+        chrome.contextMenus.create({ id: 'aish-speedread',        title: t('ctxSpeedRead', '⚡ Speed-Read this page'),          contexts: ['page'] });
+        applySpeedReadMenu();
     });
 });
+
+// Settings › Reading › Speed-Read › "Show Speed-Read in the menus" hides the right-click entry too.
+function applySpeedReadMenu() {
+    if (!chrome.contextMenus || !chrome.storage) return;
+    chrome.storage.sync.get('speedRead', (d) => {
+        const on = !(d && d.speedRead && d.speedRead.enabled === false);
+        try { chrome.contextMenus.update('aish-speedread', { visible: on }, () => void chrome.runtime.lastError); } catch (_) { /* menu not created yet */ }
+    });
+}
+chrome.storage?.onChanged?.addListener((changes, area) => { if (area === 'sync' && changes.speedRead) applySpeedReadMenu(); });
+const bgT = (key, fallback) => { try { return chrome.i18n.getMessage(key) || fallback; } catch (_) { return fallback; } };
 
 // Pages run only a tiny loader (loader.js). The full content script is injected the first time something needs it:
 // the loader asks for it (saved highlights, text selection), and every sender below injects before it talks to a tab.
@@ -331,24 +343,17 @@ chrome.contextMenus?.onClicked?.addListener((info, tab) => {
         sendToTab(tab.id, { action: 'contextMenuClearHighlights' }).catch(() => {});
     } else if (info.menuItemId === 'aish-summarize') {
         sendToTab(tab.id, { action: 'fetchSummary', summaryMode: 'extension' }).catch(() => {});
-    } else if (info.menuItemId === 'aish-summarize-close') {
-        sendToTab(tab.id, { action: 'fetchSummaryAndClose', summaryMode: 'extension' }).catch(() => {});
+    } else if (info.menuItemId === 'aish-speedread') {
+        sendToTab(tab.id, { action: 'speedRead' }).catch(() => {});
     }
 });
 
-// ── Decision Alarms ───────────────────────────────────────────────────────────
-function decisionAlarmDelayMinutes(timeframe) {
-    const now = new Date();
-    switch (timeframe) {
-        case 'tomorrow': return 24 * 60;
-        case 'weekend': {
-            const daysUntilSat = (6 - now.getDay() + 7) % 7 || 7;
-            return daysUntilSat * 24 * 60;
-        }
-        case 'week':    return 7 * 24 * 60;
-        default:        return null; // 'research' — no alarm, surface in UI
-    }
-}
+// ── Decision Alarms ("read later" reminders) ──────────────────────────────────
+// The page works out when a reminder is due (modules/decisionTime.js: tomorrow / weekend / next week at the time set in
+// Settings) and sends { action: 'decisionSave', articleId, timeframe, dueAt }; the alarm is named after the article's
+// timestamp, so it finds its article when it fires.
+const decisionAlarmName = (timestamp) => `decision_${encodeURIComponent(timestamp)}`;
+const withArticlesLock = (fn) => (globalThis.navigator && navigator.locks && navigator.locks.request) ? navigator.locks.request('aish-articles', fn) : fn();
 
 // The articles:index / articles:rec:<id> migration only runs from popup.js's
 // StorageManager.initialize() on popup open — this service worker can't run
@@ -485,12 +490,30 @@ chrome.alarms?.onAlarm?.addListener(async (alarm) => {
     chrome.notifications?.create(`decision_notif_${timestamp}`, {
         type: 'basic',
         iconUrl: 'icons/icon48.png',
-        title: '🔖 Ready to review?',
+        title: bgT('notifReadLaterTitle', '🔖 Ready to read?'),
         message: article.title || article.url,
         contextMessage: article.decisionReason || '',
-        buttons: [{ title: 'Open' }, { title: 'Dismiss' }],
+        buttons: [{ title: bgT('notifOpen', 'Open') }, { title: bgT('notifDismiss', 'Dismiss') }],
         requireInteraction: true
     });
+});
+
+const reopenUrls = new Map();   // tab id → URL of a tab Speed-Read closed (until its notification goes)
+chrome.notifications?.onButtonClicked?.addListener((notifId) => {
+    if (!notifId.startsWith('reopen_')) return;
+    const url = reopenUrls.get(notifId.slice(7));
+    if (url) chrome.tabs.create({ url });
+    reopenUrls.delete(notifId.slice(7));
+    chrome.notifications.clear(notifId);
+});
+chrome.notifications?.onClosed?.addListener((notifId) => { if (notifId.startsWith('reopen_')) reopenUrls.delete(notifId.slice(7)); });
+// Firefox shows no notification buttons: a click on the notification itself reopens the tab
+chrome.notifications?.onClicked?.addListener((notifId) => {
+    if (!notifId.startsWith('reopen_')) return;
+    const url = reopenUrls.get(notifId.slice(7));
+    if (url) chrome.tabs.create({ url });
+    reopenUrls.delete(notifId.slice(7));
+    chrome.notifications.clear(notifId);
 });
 
 chrome.notifications?.onButtonClicked?.addListener(async (notifId, btnIdx) => {
@@ -1105,18 +1128,40 @@ const MESSAGE_HANDLERS = {
         return true;
     } },
 
-    // ── save for later ("Summarize & close") ──
-    closeTabSelf: { from: 'page', run(msg, sender, sendResponse) {
-        chrome.tabs.remove(sender.tab.id);
+    // ── Speed-Read: close the tab at the end; "Reopen" brings it back (no extra permission: a new tab with the URL) ──
+    speedReadCloseTab: { from: 'page', run(msg, sender, sendResponse) {
+        const tab = sender.tab || {};
+        chrome.tabs.remove(tab.id, () => void chrome.runtime.lastError);
+        if (tab.url && chrome.notifications) {
+            reopenUrls.set(String(tab.id), tab.url);
+            chrome.notifications.create(`reopen_${tab.id}`, {
+                type: 'basic', iconUrl: 'icons/icon48.png',
+                title: bgT('notifTabClosedTitle', 'Tab closed · the summary is saved'),
+                message: String(msg.title || tab.title || tab.url).slice(0, 200),
+                buttons: [{ title: bgT('notifReopen', 'Reopen') }],
+            }, () => void chrome.runtime.lastError);
+        }
         sendResponse({ ok: true });
         return false;
     } },
-    scheduleDecisionAlarm: { from: 'page', check: (msg) => !!msg.article && typeof msg.article === 'object', run(msg, sender, sendResponse) {
-        const delayMins = decisionAlarmDelayMinutes(msg.article.decisionTimeframe);
-        // the encoded timestamp names the alarm, so the alarm finds its article
-        if (delayMins) chrome.alarms?.create(`decision_${encodeURIComponent(msg.article.timestamp)}`, { delayInMinutes: delayMins });
-        sendResponse({ ok: true });
-        return false;
+    // ── "read later" reminder for a saved article: { articleId, timeframe, dueAt } (dueAt null/none = no reminder) ──
+    decisionSave: { from: 'page', check: (msg) => typeof msg.articleId === 'string' && ['none', 'tomorrow', 'weekend', 'week'].includes(msg.timeframe) && (msg.dueAt == null || Number.isFinite(msg.dueAt)), run(msg, sender, sendResponse) {
+        withArticlesLock(async () => {
+            const { [SK.articlesIndex]: index = [] } = await localGet({ [SK.articlesIndex]: [] });
+            const i = index.findIndex((a) => a && a.id === msg.articleId);
+            if (i < 0) return { ok: false, error: 'not-found' };
+            const a = index[i];
+            const on = msg.timeframe !== 'none' && msg.dueAt != null && msg.dueAt > Date.now();
+            index[i] = on
+                ? { ...a, isDecision: true, decisionTimeframe: msg.timeframe, decisionSavedAt: new Date().toISOString(), decisionDueAt: msg.dueAt }
+                : { ...a, isDecision: false, decisionTimeframe: undefined, decisionDueAt: undefined };
+            await chrome.storage.local.set({ [SK.articlesIndex]: index });
+            const name = decisionAlarmName(a.timestamp);
+            try { await chrome.alarms.clear(name); } catch (_) { /* none yet */ }
+            if (on) chrome.alarms?.create(name, { when: msg.dueAt });
+            return { ok: true, dueAt: on ? msg.dueAt : null };
+        }).then(sendResponse, (e) => sendResponse({ ok: false, error: String((e && e.message) || e) }));
+        return true;
     } },
 
     // ── fetches for content scripts, which follow the page's CORS / mixed-content rules (Safari also for images) ──

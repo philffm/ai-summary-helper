@@ -112,6 +112,54 @@
       ]
     },
     {
+      "file": "plugin/src/inPage.css",
+      "brandBuildPath": "inPage.css",
+      "region": "theme",
+      "context": "app",
+      "blocks": [
+        {
+          "selector": ":host,\n:host([data-theme='light'])",
+          "sets": [
+            "app/base",
+            "app/light"
+          ]
+        },
+        {
+          "media": "(prefers-color-scheme: dark)",
+          "selector": ":host(:not([data-theme='light']):not([data-theme='contrast']))",
+          "sets": [
+            "app/dark"
+          ]
+        },
+        {
+          "selector": ":host([data-theme='dark'])",
+          "sets": [
+            "app/dark",
+            "app/dark-forced"
+          ]
+        },
+        {
+          "selector": ":host([data-theme='contrast'])",
+          "sets": [
+            "app/contrast"
+          ]
+        },
+        {
+          "media": "(prefers-reduced-motion: reduce)",
+          "selector": ":host",
+          "sets": [
+            "app/reduced-motion"
+          ]
+        },
+        {
+          "selector": ":host([data-motion='reduce'])",
+          "sets": [
+            "app/reduced-motion"
+          ]
+        }
+      ]
+    },
+    {
       "file": "docs/assets/styles.css",
       "brandBuildPath": "assets/styles.css",
       "region": "theme",

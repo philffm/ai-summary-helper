@@ -45,7 +45,7 @@
     {
       "resources": [
         "popup.html",
-        "styles.css",
+        "styles.css", "inPage.css",
         "popup.js",
         "uiManager.js",
         "services.json",

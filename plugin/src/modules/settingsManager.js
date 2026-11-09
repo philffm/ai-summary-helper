@@ -10,6 +10,7 @@
 //   settings/backup.js          export / import settings                   (Library & Data — on demand)
 //   settings/storageCleanup.js  storage & cleanup                          (Library & Data — on demand)
 //   settings/danger.js          delete history / settings / everything     (Library & Data — on demand)
+//   settings/speedRead.js       Speed-Read                                 (Reading — on demand)
 
 import { SK } from './storageKeys.js';
 import StorageManager from './storageManager.js';
@@ -33,6 +34,7 @@ const ON_DEMAND = {
         cleanup.initStorageCleanup(await StorageManager.getAll());
     },
     send: async () => (await import('./settings/bookmarklet.js')).initBookmarkletGenerator(),
+    reading: async () => (await import('./settings/speedRead.js')).initSpeedReadSettings(),
 };
 
 function loadOnDemand(lazy) {

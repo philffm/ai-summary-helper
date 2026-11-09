@@ -35,6 +35,7 @@ const INDEX = [
     ['reading', N_('Page highlighting'), 'highlightingToggle', 'highlight yellow marker annotate'],
     ['reading', N_('AI ghost highlighting'), 'aiHighlightingToggle', 'ghost highlight ai quotes blue'],
     ['reading', N_('Ghost highlight amount'), 'ghostHighlightAmount', 'ghost highlight few regular a lot'],
+    ['reading', N_('Speed-Read'), 'speedReadSettings', 'speed read rsvp word by word fast later close tab reminder wpm schnell lesen'],
     ['send', N_('Delivery method'), 'deliveryPreference', 'kindle koreader localsend send deliver'],
     ['send', N_('Kindle devices'), 'newKindleEmail', 'kindle email device send to kindle'],
     ['send', N_('KOReader / LocalSend devices'), 'newLocalSendIp', 'koreader localsend ip device scan'],

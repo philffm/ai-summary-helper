@@ -4,14 +4,10 @@
 // English text itself. `scripts/feed-i18n.mjs` extracts every T()/TN()/TU()/N_()
 // literal, checks coverage per locale and flags over-long translations.
 import { t, resolveLocale } from './i18n.js';
+import { i18nKey } from './i18nKey.js';
 
-// FNV-1a, 4 hex chars: keeps keys unique even when two texts share a slug.
-export function keyOf(en) {
-    let h = 0x811c9dc5;
-    for (let i = 0; i < en.length; i++) { h ^= en.charCodeAt(i); h = Math.imul(h, 0x01000193); }
-    const slug = en.toLowerCase().replace(/\{[a-z]+\}/g, '').replace(/[^a-z0-9]+/g, '_').replace(/^_+|_+$/g, '').slice(0, 28);
-    return `f_${slug}_${(h >>> 0).toString(16).slice(-4)}`;
-}
+// The key for an English string (FNV-1a slug, see i18nKey.js — shared with the content scripts).
+export function keyOf(en) { return i18nKey(en); }
 
 const fill = (s, vars) => vars ? s.replace(/\{([a-z]+)\}/g, (m, k) => (k in vars ? String(vars[k]) : m)) : s;
 
