@@ -81,26 +81,51 @@ p.fire({ 'hl:all': { newValue: mine } }, 'local');
 await tick();
 assert.deepEqual(p.sent, ['aish:injectContent'], 'storage change brings highlights to this page');
 
-// 6. text selection → injection, then the mouseup is replayed for the full script's tooltip
+// 6. text selection: the loader draws its own toolbar and injects nothing; a toolbar button injects, then runs that action
+const drag = (w, el, { from = 10, to = 80, detail = 1, select = true, target = el } = {}) => {
+  if (select) w.getSelection().selectAllChildren(el);
+  target.dispatchEvent(new w.MouseEvent('mousedown', { bubbles: true, clientX: from, clientY: 20, button: 0 }));
+  target.dispatchEvent(new w.MouseEvent('mouseup', { bubbles: true, clientX: to, clientY: 20, button: 0, detail }));
+};
+const bar = (w) => { const h = w.document.getElementById('aish-sel-host'); return h && h.shadowRoot ? h.shadowRoot.querySelector('.bar') : null; };
 p = await page('https://example.com/a/b');
-let replayed = 0;
-p.w.document.addEventListener('mouseup', () => { replayed++; });
 const el = p.w.document.getElementById('p');
-p.w.getSelection().selectAllChildren(el);
-el.dispatchEvent(new p.w.MouseEvent('mouseup', { bubbles: true, clientX: 10, clientY: 20 }));
-for (let k = 0; k < 100 && replayed < 2; k++) await tick(20);
-assert.deepEqual(p.sent, ['aish:injectContent'], 'selection → injection');
-assert.equal(replayed, 2, 'original + replayed mouseup reach the page script');
+drag(p.w, el); await tick(30);
+assert(bar(p.w), 'a dragged selection shows the toolbar');
+assert.deepEqual(p.sent, [], 'selecting alone injects nothing');
+let ran = null;
+p.w.__AISH_SELECTION_ACTION = (which, pos) => { ran = { which, pos }; };
+bar(p.w).querySelector('button[aria-label="Highlight"]').click();
+for (let k = 0; k < 50 && !ran; k++) await tick(20);
+assert.deepEqual(p.sent, ['aish:injectContent'], 'a toolbar button injects the full script');
+assert.equal(ran && ran.which, 'highlight', 'and then runs that action on the selection');
+assert(!bar(p.w), 'the toolbar is gone');
+
+// false positives: none of these show the toolbar or inject
+const none = async (label, setup) => { const q = await page('https://example.com/a/b'); await setup(q.w); await tick(30); assert(!bar(q.w), label + ': no toolbar'); assert.deepEqual(q.sent, [], label + ': no injection'); };
+await none('a plain click on an old selection', (w) => drag(w, w.document.getElementById('p'), { from: 10, to: 11 }));
+await none('a click without selection', (w) => { w.getSelection().removeAllRanges(); drag(w, w.document.getElementById('p'), { select: false }); });
+await none('too short', (w) => { const t = w.document.getElementById('p').firstChild; const r = w.document.createRange(); r.setStart(t, 0); r.setEnd(t, 2); w.getSelection().removeAllRanges(); w.getSelection().addRange(r); drag(w, w.document.getElementById('p'), { select: false }); });
+await none('selecting in a text field', (w) => { const ta = w.document.createElement('textarea'); ta.value = 'some longer text in a field'; w.document.body.append(ta); const d = w.document.createElement('div'); d.setAttribute('contenteditable', 'true'); d.textContent = 'editable text here'; w.document.body.append(d); w.getSelection().selectAllChildren(d); drag(w, d, { select: false }); });
+await none('a press that started in a field', (w) => { const inp = w.document.createElement('input'); w.document.body.append(inp); w.getSelection().selectAllChildren(w.document.getElementById('p')); inp.dispatchEvent(new w.MouseEvent('mousedown', { bubbles: true, clientX: 0, clientY: 0, button: 0 })); w.document.getElementById('p').dispatchEvent(new w.MouseEvent('mouseup', { bubbles: true, clientX: 90, clientY: 20, button: 0 })); });
+await none('a right click', (w) => { w.getSelection().selectAllChildren(w.document.getElementById('p')); const t = w.document.getElementById('p'); t.dispatchEvent(new w.MouseEvent('mousedown', { bubbles: true, clientX: 0, clientY: 0, button: 2 })); t.dispatchEvent(new w.MouseEvent('mouseup', { bubbles: true, clientX: 90, clientY: 0, button: 2 })); });
+// a double click counts as a gesture; the same selection again after dismissing does not come back
 p = await page('https://example.com/a/b');
-p.w.getSelection().removeAllRanges();
-p.w.document.getElementById('p').dispatchEvent(new p.w.MouseEvent('mouseup', { bubbles: true }));
-await tick(30);
-assert.deepEqual(p.sent, [], 'a click without selection does not inject');
-p = await page('https://example.com/a/b', { sync: { userHighlightingEnabled: false, aiHighlightingEnabled: false } });
-p.w.getSelection().selectAllChildren(p.w.document.getElementById('p'));
-p.w.document.getElementById('p').dispatchEvent(new p.w.MouseEvent('mouseup', { bubbles: true }));
-await tick(30);
-assert.deepEqual(p.sent, [], 'highlighting off: selecting text does not inject');
+drag(p.w, p.w.document.getElementById('p'), { from: 10, to: 10, detail: 2 }); await tick(30);
+assert(bar(p.w), 'a double click selection shows the toolbar');
+p.w.document.dispatchEvent(new p.w.KeyboardEvent('keydown', { key: 'Escape' }));
+assert(!bar(p.w), 'Escape closes it');
+drag(p.w, p.w.document.getElementById('p'), { from: 10, to: 10, detail: 2 }); await tick(30);
+assert(!bar(p.w), 'the same selection does not bring it back');
+p = await page('https://example.com/a/b', { sync: { userHighlightingEnabled: false, aiHighlightingEnabled: true } });
+drag(p.w, p.w.document.getElementById('p')); await tick(30);
+assert(!bar(p.w) && !p.sent.length, 'own highlights switched off: no toolbar');
+p = await page('https://www.linkedin.com/feed/');
+drag(p.w, p.w.document.getElementById('p')); await tick(30);
+assert(!bar(p.w), 'a feed page: no toolbar');
+p = await page('https://news.example.com/x', { sync: { highlightExcludedSites: ['example.com'] } });
+drag(p.w, p.w.document.getElementById('p')); await tick(30);
+assert(!bar(p.w), 'an excluded site: no toolbar');
 
 // 7. failed injection (restricted page) is retried on the next trigger, not in a loop
 p = await page('https://example.com/a/b', { local: { 'hl:all': mine }, injectOk: false });

@@ -62,7 +62,8 @@ import {
   getUserHighlightTexts,
   revealQuote,
   setPageSummarizeHandler,
-  clearPageHighlights
+  clearPageHighlights,
+  runSelectionAction
 } from './content/highlighter.js';
 
 import {
@@ -208,6 +209,8 @@ import {
 
   // Restore persisted highlights as soon as the DOM is ready
   document.addEventListener('mouseup', handleTextSelection);
+  // the loader's selection toolbar injected this script for one of its buttons: it runs the action through this
+  window.__AISH_SELECTION_ACTION = runSelectionAction;
   document.addEventListener('click', handleHighlightClick);
   document.addEventListener('click', handleGhostHighlightClick);
 
@@ -958,6 +961,7 @@ import {
                 const summaryContainer = document.createElement('blockquote');
                 summaryContainer.setAttribute('data-aish-ui', '1');
                 summaryContainer.style.cssText = "border-left: 4px solid #007bff; padding: 15px; margin: 20px 0; background: rgba(0,123,255,0.05);";
+                // eslint-disable-next-line no-unsanitized/property -- reviewed: cleanHtml comes from markdownToHtml (allowlist sanitizer)
                 summaryContainer.innerHTML = `<div><h2 style="margin-top:0">AI Summary 🧙</h2>${cleanHtml}</div>`;
                 insertSummary(targetElement, summaryContainer);
               } else {

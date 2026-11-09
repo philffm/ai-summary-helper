@@ -1852,6 +1852,7 @@ function renderGraphControls(container, { hiddenTagCount, capped, currentlyFilte
     // real meaning; make it visible instead of only documented in code.
     const legendRow = document.createElement('div');
     legendRow.className = 'graph-legend';
+    // eslint-disable-next-line no-unsanitized/property -- reviewed: source kinds come from a fixed list
     legendRow.innerHTML = `
         <span class="graph-legend-item"><span class="graph-legend-line graph-legend-line--tag"></span> ${T('shared tag')}</span>
         <span class="graph-legend-item"><span class="graph-legend-line graph-legend-line--similar"></span> ${T('similar content')}</span>
@@ -1908,6 +1909,7 @@ async function renderPreviewHighlights(card, article) {
 
     const highlightsEl = document.createElement('div');
     highlightsEl.className = 'graph-preview-highlights';
+    // eslint-disable-next-line no-unsanitized/property -- reviewed: parts are built above with escapeHtml and T
     highlightsEl.innerHTML = parts.join('');
     scrollEl.appendChild(highlightsEl);
 }
@@ -1934,6 +1936,7 @@ function showPreviewCard(container, article) {
     card.className = 'graph-preview-card';
     // Flush to the bottom edge of the graph view: a scrollable content area + a pinned action row so
     // "Open in History" stays reachable however long the summary/tag list is (styles.css: .graph-preview-card).
+    // eslint-disable-next-line no-unsanitized/property -- reviewed: tags are escaped where tagsHtml is built
     card.innerHTML = `
         <div class="graph-preview-head">
             <strong>${escapeHtml(clip(title, 60))}</strong>

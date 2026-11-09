@@ -355,12 +355,12 @@ ai-summary-helper/
 
 | Module | Responsibility |
 | --- | --- |
-| `uiManager.js`, `settingsNav.js`, `tabbar.js`, `sheet.js`, `dropdownMenu.js`, `confirmDialog.js` | Screens, bottom nav, settings home, tab bars, sheets with focus trap, menus, dialogs |
+| `uiManager.js`, `settingsNav.js`, `tabbar.js`, `sheet.js`, `confirmDialog.js` | Screens, bottom nav, settings home, tab bars, sheets with focus trap, dialogs |
 | `mainScreen.js`, `composerState.js`, `qaView.js`, `conversation.js` | Summarize screen: feed, composer states, follow-up thread, prompt building and answer parsing |
 | `suggestions.js`, `typewriter.js` | Follow-up suggestions with short answers; human-like typing of the short answer |
 | `feedManager.js`, `feedAi.js`, `feedRollup.js`, `feedParse.js`, `feedPlayer.js`, `feedInsights.js`, `feedMood.js`, `feedSentiment.js`, `feedUtil.js` | RSS reader, OPML, AI recaps, podcast player, insights, mood |
 | `articleManager.js`, `archiveManager.js`, `archiveGraph.js` (see [GRAPH.md](GRAPH.md)), `graphStructure.js`, `analyticsManager.js`, `topicsChart.js`, `historyMood.js`, `moodView.js`, `digestBuilder.js`, `annotationExporter.js` | History, knowledge graph, analytics, digests and exports |
-| `settingsManager.js`, `modelManager.js`, `promptManager.js`, `promptSettings.js`, `promptBuilder.js`, `languageManager.js`, `moodSetting.js`, `workspaceManager.js` | Settings, providers and models, prompts, languages, workspaces |
+| `settingsManager.js` + `settings/*.js` (one file per area), `modelManager.js`, `promptSettings.js`, `promptBuilder.js`, `languageManager.js`, `moodSetting.js`, `workspaceManager.js` | Settings, providers and models, prompts, languages, workspaces |
 | `authManager.js` | byphil Cloud sign-in (shared form for onboarding and Account, code boxes, plan card) |
 | `syncStamps.js`, `syncStampStore.js`, `syncMerge.js`, `syncApply.js`, `syncEngine.js`, `syncDataAdapter.js`, `syncIdentity.js`, `syncCrypto.js` | Library sync: stamps, merge, applying merged records, the two-way engine, same-URL merge, keys and encrypted files |
 | `syncWebdav.js`, `syncS3.js`, `syncFolder.js`, `syncFolderHandles.js`, `syncPush.js`, `syncReadable.js`, `syncViewer.js`, `syncService.js`, `syncView.js` | Stores, readable publishing and the viewer page, the service the settings screen calls, the Sync & backup screen |
@@ -368,8 +368,8 @@ ai-summary-helper/
 | `storageManager.js`, `storageKeys.js`, `pageKey.js` | Storage abstraction, key registry, page keys for highlights |
 | `sidebarChannel.js` | Token check for `postMessage` from the content script into the in-page sidebar |
 | `panelDock.js` | Attach the popup to Chrome's side panel and detach it back |
-| `localIntelligence.js`, `localSearch.js`, `tagIntelligence.js`, `duplicateDetector.js`, `textMetrics.js`, `textUtils.js`, `dateUtils.js`, `dom.js`, `log.js` | On-device search, tags, duplicates and shared helpers |
-| `audioManager.js`, `podcastManager.js`, `readingTools.js`, `reader.js`, `instantRead.js`, `citation.js`, `paperInfo.js`, `sendSheet.js`, `localSendClient.js` | Read aloud, podcasts, reader, citations, send to devices |
+| `localSearch.js`, `tagIntelligence.js`, `textMetrics.js`, `textUtils.js`, `dateUtils.js`, `dom.js`, `log.js` | On-device search, tags and shared helpers |
+| `podcastManager.js`, `readingTools.js`, `reader.js`, `instantRead.js`, `citation.js`, `paperInfo.js`, `sendSheet.js`, `localSendClient.js` | Read aloud, podcasts, reader, citations, send to devices |
 | `i18n.js`, `feedI18n.js`, `languages.js`, `a11y.js`, `extensionApi.js` | Translations, language data, accessibility settings, browser API shim |
 
 #### Build pipeline

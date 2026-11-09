@@ -49,6 +49,7 @@ export function showDecisionDialog(onConfirm) {
     box-shadow:0 24px 64px rgba(0,0,0,0.6);
     display:flex;flex-direction:column;gap:14px;
   `;
+  // eslint-disable-next-line no-unsanitized/property -- reviewed: chip ids and labels are constants in this file
   card.innerHTML = `
     <div style="display:flex;justify-content:space-between;align-items:center;">
       <span style="font-size:18px;font-weight:700;">🔖 Save for Later</span>
@@ -325,6 +326,7 @@ export function showPlaceholder(targetElement, donationMessage) {
   placeholder.style.borderRadius = '10px';
   placeholder.style.padding = '32px';
 
+  // eslint-disable-next-line no-unsanitized/property -- reviewed: message from packaged donationMessages.json, colours are constants
   placeholder.innerHTML = `
     <style>
      @keyframes spin {

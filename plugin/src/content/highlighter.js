@@ -386,24 +386,83 @@ export function scheduleRestoreAnnotations(delay = 160) {
 
 // ── 1. Selecting text ────────────────────────────────────────────────────────
 
+// ── Selection toolbar ──
+// Only a real selection gesture shows the toolbar: a drag of a few pixels or a double / triple click, starting outside
+// fields, editable areas and controls, with at least three letters selected, and not the selection it was already shown
+// for. A click that leaves an old selection behind, or selecting inside a form, shows nothing (same rules as loader.js).
+const HL_EDITABLE = 'input, textarea, select, button, [contenteditable=""], [contenteditable="true"], [role="textbox"], [role="button"], #ai-summary-hybrid-sidebar, #aish-hl-host, [data-aish-ui]';
+let hlDown = null;
+let hlLastShown = '';
+const hlInEditable = (node) => {
+  const el = node && (node.nodeType === 1 ? node : node.parentElement);
+  return !!(el && (el.closest(HL_EDITABLE) || el.isContentEditable));
+};
+try {
+  document.addEventListener('mousedown', (e) => {
+    if (e.composedPath && e.composedPath().some((n) => n && (n.id === 'aish-np-host' || n.id === 'aish-hl-host'))) return;
+    hlDown = { x: e.clientX || 0, y: e.clientY || 0, inField: hlInEditable(e.target) };
+  }, true);
+} catch (_) { /* no document */ }
+
+/** The selection of a mouse-up, or null when it is not a real selection gesture. */
+function hlQualify(event) {
+  if (!event || event.button !== 0 || !hlDown || hlDown.inField) return null;
+  const selection = window.getSelection();
+  if (!selection || selection.rangeCount === 0 || selection.isCollapsed) return null;
+  const range = selection.getRangeAt(0);
+  const text = range.toString().replace(/\s+/g, ' ').trim();
+  if (text.replace(/[^\p{L}\p{N}]/gu, '').length < 3) return null;
+  if (hlInEditable(selection.anchorNode) || hlInEditable(selection.focusNode)) return null;
+  const moved = Math.hypot((event.clientX || 0) - hlDown.x, (event.clientY || 0) - hlDown.y) >= 5;
+  if (!moved && !(event.detail >= 2)) return null;
+  const key = `${text}|${range.startOffset}|${range.endOffset}`;
+  if (key === hlLastShown) return null;
+  hlLastShown = key;
+  return { selection, range: range.cloneRange(), text: range.toString().trim() };
+}
+
+/**
+ * Run one toolbar action on the current selection: 'highlight', 'comment' (highlight + comment) or 'note' (a note quoting
+ * it). The loader's own toolbar calls this (window.__AISH_SELECTION_ACTION) after it injected this script.
+ */
+export function runSelectionAction(which, pos = {}) {
+  if (!userHighlightingEnabled || isHighlightingSuppressed()) return false;
+  const selection = window.getSelection();
+  if (!selection || selection.rangeCount === 0 || selection.isCollapsed) return false;
+  const selectedRange = selection.getRangeAt(0).cloneRange();
+  const selectedText = selectedRange.toString().trim();
+  if (selectedText.length < 3) return false;
+  hlSelectionAction(which, selection, selectedRange, selectedText, pos.pageX || 0, pos.pageY || 0);
+  return true;
+}
+
+function hlSelectionAction(which, selection, selectedRange, selectedText, px, py) {
+  const tell = (msg) => new Promise((resolve) => { try { chrome.runtime.sendMessage(msg, (res) => { void chrome.runtime.lastError; resolve(!!(res && res.ok)); }); } catch (_) { resolve(false); } });
+  if (which === 'highlight') { applyHighlightFromRange(selectedRange, selectedText); selection.removeAllRanges(); return; }
+  if (which === 'comment') {   // the highlight is made first; the comment is saved with it
+    const ann = applyHighlightFromRange(selectedRange, selectedText); selection.removeAllRanges();
+    if (!ann) return;
+    npShowComposer({ x: px, y: py, heading: 'Comment', quote: selectedText, placeholder: 'Add a comment…', onSave: (text, tags) => tell({ action: 'commentSet', highlightId: ann.id, text, tags }) });
+    return;
+  }
+  if (which === 'note') {      // a note that carries the selected text as its quote, no highlight
+    selection.removeAllRanges();
+    npShowComposer({ x: px, y: py, heading: 'Note', quote: selectedText, placeholder: 'Write a note…', onSave: (text, tags) => tell({ action: 'noteAdd', text, tags, quote: selectedText }) });
+  }
+}
+
 export function handleTextSelection(event) {
   if (!userHighlightingEnabled || isHighlightingSuppressed()) return;
   // pressing a button of our own toolbar or composer ends in a mouse-up too: that is not a new selection (it would draw the toolbar again and swallow the click)
   if (event && typeof event.composedPath === 'function' && event.composedPath().some((n) => n && (n.id === 'aish-np-host' || n.id === 'aish-hl-host'))) return;
-  const selection = window.getSelection();
-  if (!selection || selection.rangeCount === 0) return;
-
-  const selectedRange = selection.getRangeAt(0).cloneRange();
-  const selectedText = selectedRange.toString().trim();
-  if (!selectedText || selectedText.length < 3) return;
-
-  const anchorNode = selection.anchorNode;
-  if (anchorNode && anchorNode.parentElement &&
-     (anchorNode.parentElement.closest('#ai-summary-hybrid-sidebar, #aish-hl-host') ||
-      ['INPUT', 'TEXTAREA'].includes(anchorNode.parentElement.tagName))) return;
-
   const reattach = hlReattachId;
-  if (reattach) {   // re-attaching a lost highlight: the single button, as before
+  const q = reattach ? null : hlQualify(event);
+  if (reattach) {   // re-attaching a lost highlight: any selection, the single button, as before
+    const selection = window.getSelection();
+    if (!selection || selection.rangeCount === 0 || selection.isCollapsed) return;
+    const selectedRange = selection.getRangeAt(0).cloneRange();
+    const selectedText = selectedRange.toString().trim();
+    if (selectedText.length < 3) return;
     showHighlightTooltip(event.pageX, event.pageY, () => {
       if (hlLive.has(reattach)) hlReattach(reattach, selectedRange);
       else applyHighlightFromRange(selectedRange, selectedText);
@@ -412,20 +471,13 @@ export function handleTextSelection(event) {
     }, '🔗 Attach here');
     return;
   }
+  if (!q) return;
   const { pageX: px, pageY: py } = event;
-  const tell = (msg) => new Promise((resolve) => { try { chrome.runtime.sendMessage(msg, (res) => { void chrome.runtime.lastError; resolve(!!(res && res.ok)); }); } catch (_) { resolve(false); } });
   npShowToolbar({
     x: px, y: py,
-    onHighlight: () => { applyHighlightFromRange(selectedRange, selectedText); selection.removeAllRanges(); },
-    onComment: () => {   // the highlight is made first; the comment is saved with it
-      const ann = applyHighlightFromRange(selectedRange, selectedText); selection.removeAllRanges();
-      if (!ann) return;
-      npShowComposer({ x: px, y: py, heading: 'Comment', quote: selectedText, placeholder: 'Add a comment…', onSave: (text, tags) => tell({ action: 'commentSet', highlightId: ann.id, text, tags }) });
-    },
-    onNote: () => {      // a note that carries the selected text as its quote, no highlight
-      selection.removeAllRanges();
-      npShowComposer({ x: px, y: py, heading: 'Note', quote: selectedText, placeholder: 'Write a note…', onSave: (text, tags) => tell({ action: 'noteAdd', text, tags, quote: selectedText }) });
-    },
+    onHighlight: () => hlSelectionAction('highlight', q.selection, q.range, q.text, px, py),
+    onComment: () => hlSelectionAction('comment', q.selection, q.range, q.text, px, py),
+    onNote: () => hlSelectionAction('note', q.selection, q.range, q.text, px, py),
   });
   void npHide;
 }
@@ -498,6 +550,7 @@ function showHighlightTooltip(x, y, onClick, label = '✏️ Highlight') {
     `;
     document.body.appendChild(tooltip);
   }
+  // eslint-disable-next-line no-unsanitized/property -- reviewed: label is a fixed string from this file
   tooltip.innerHTML = label;
   tooltip.style.left = `${x + 5}px`;
   tooltip.style.top  = `${y - 35}px`;
@@ -644,6 +697,7 @@ function hlShowMenu(x, y, entry) {
     document.body.appendChild(menu);
   }
   const ghost = entry.ann.type === 'ghost';
+  // eslint-disable-next-line no-unsanitized/property -- reviewed: two fixed button templates, no data
   menu.innerHTML = ghost
     ? `<button id="btn-convert-yellow" style="background:#fef08a;border:1px solid #fde047;color:#854d0e;padding:4px 8px;border-radius:4px;cursor:pointer;font-weight:bold;">⭐ Keep</button>
        <button id="btn-dismiss-ghost" style="background:#f1f5f9;border:1px solid #cbd5e1;color:#475569;padding:4px 8px;border-radius:4px;cursor:pointer;">✕ Dismiss</button>`

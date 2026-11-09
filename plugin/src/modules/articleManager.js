@@ -1594,6 +1594,7 @@ function buildArticleCard(article) {
       </div>
     ` : '';
 
+    // eslint-disable-next-line no-unsanitized/property -- reviewed: every fragment is escaped where it is built (tagsHtml, modelBadge, decisionHtml)
     listItem.innerHTML = `
         <div class="article-header">
           <div>
@@ -1870,6 +1871,7 @@ async function renderLocalInsights(article, container) {
             ${related.map(r => `<div class="related-article-link" data-ts="${escAttr(r.article.timestamp)}">${escapeHtml(r.article.title || T('Untitled'))} <span class="related-article-score">(${T('{n}% similar', { n: Math.round(r.score * 100) })})</span></div>`).join('')}
           </div>` : '';
 
+        // eslint-disable-next-line no-unsanitized/property -- reviewed: badges and related cards are built with escapeHtml/escAttr/T
         container.innerHTML = `${badges.length ? `<div class="insight-chips">${badges.join('')}</div>` : ''}${relatedHtml}`;
 
         container.querySelectorAll('.related-article-link').forEach(el => {
@@ -2279,6 +2281,7 @@ export async function showArticleDetail(article) {
     ` : '';
 
     articleDetailContent.removeAttribute('aria-busy');
+    // eslint-disable-next-line no-unsanitized/property -- reviewed: safeSummary/safeContent went through cleanUntrustedHtml, labels through lbl() (escapeHtml)
     articleDetailContent.innerHTML = `
       <div class="article-detail-card">
         <h3 class="detail-title"><img class="detail-fav" alt="" hidden>${safeTitle}</h3>

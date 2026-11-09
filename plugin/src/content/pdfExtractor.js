@@ -55,6 +55,7 @@ function findEmbeddedPdfUrl() {
  */
 function loadPdfJs() {
   if (pdfJsModulePromise) return pdfJsModulePromise;
+  // eslint-disable-next-line no-unsanitized/method -- reviewed: imports a file packaged with the extension (chrome.runtime.getURL)
   pdfJsModulePromise = import(chrome.runtime.getURL('lib/pdf.mjs')).then((mod) => {
     mod.GlobalWorkerOptions.workerSrc = chrome.runtime.getURL('lib/pdf.worker.mjs');
     return mod;

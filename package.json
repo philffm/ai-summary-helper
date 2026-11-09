@@ -14,17 +14,18 @@
     "privacy:build": "node scripts/privacy-md.mjs",
     "demo:build": "node plugin/scripts/build-demo.mjs",
     "demo:check": "node plugin/scripts/build-demo.mjs --check",
-    "site:build": "node scripts/privacy-md.mjs && node scripts/build-site.mjs && node scripts/seo.mjs && node scripts/check-sitemap.mjs",
+    "site:build": "node scripts/privacy-md.mjs && node scripts/build-site.mjs && node scripts/seo.mjs && node scripts/check-sitemap.mjs && node scripts/tag-store-links.mjs",
     "site:check": "node scripts/check-sitemap.mjs",
     "site:indexnow": "node scripts/indexnow.mjs --all",
     "site:brand": "node scripts/build-site-brand.mjs",
-    "translate": "npm run site:build && node scripts/translate.mjs && node scripts/seo.mjs",
+    "translate": "npm run site:build && node scripts/translate.mjs && node scripts/seo.mjs && node scripts/tag-store-links.mjs",
     "translate:dry-run": "npm run site:build && node scripts/translate.mjs --dry-run",
     "size": "node plugin/scripts/size-report.mjs",
     "test": "node plugin/tests/run.mjs",
     "test:all": "node plugin/tests/run.mjs --all",
     "test:release": "node plugin/tests/run.mjs --release && node scripts/feed-i18n.mjs check",
     "lint": "eslint plugin/src",
+    "knip": "knip --reporter compact",
     "tokens": "node design-system/build.mjs && node design-system/components.mjs",
     "tokens:check": "node design-system/build.mjs --check && node design-system/components.mjs --check && node design-system/lint.mjs",
     "components": "node design-system/components.mjs",
@@ -37,7 +38,9 @@
   "devDependencies": {
     "acorn": "^8.18.0",
     "eslint": "^9.39.5",
+    "eslint-plugin-no-unsanitized": "^4.1.5",
     "globals": "^17.13.0",
-    "jsdom": "^30.1.2"
+    "jsdom": "^30.1.2",
+    "knip": "^6.44.2"
   }
 }
