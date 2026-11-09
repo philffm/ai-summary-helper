@@ -1,5 +1,6 @@
 // “Local” bundles every local model: other OpenAI-style servers (LM Studio, llama.cpp, Jan) are found by /v1/models and
 // listed (embedding models left out), unreachable ones are skipped, and their OpenAI-format stream is read under Local.
+import { bgSource } from './bgSource.mjs';
 import assert from 'assert';
 import { setup, imp } from './harness.mjs';
 setup({});
@@ -40,7 +41,7 @@ f2 = await L.findLocalServers({ timeoutMs: 200 });
 assert.ok(f2.find(x => x.id === 'apfel' && x.blocked), 'apfel refusing is reported');
 assert.ok(f2.find(x => x.id === 'lmstudio' && x.blocked), 'other servers too');
 // the extension's own requests to local model ports get a localhost Origin (session rules, initiator = the extension)
-const fs = await import('fs'); const bg = fs.readFileSync(process.env.AISH_SRC + '/background.js', 'utf8');
+const fs = await import('fs'); const bg = bgSource();
 assert.ok(/tabIds: \[-1\]/.test(bg) && /value: 'http:\/\/127\.0\.0\.1'/.test(bg) && /LOCAL_MODEL_PORTS = \[11434/.test(bg));
 const man = JSON.parse(fs.readFileSync(process.env.AISH_SRC + '/../platforms/chrome/manifest.json', 'utf8'));
 assert.ok(man.permissions.includes('declarativeNetRequestWithHostAccess'));

@@ -1,8 +1,9 @@
 // Background alarm fetches feeds, requires Ollama, and resumes within a three-request tick budget.
+import { bgSource } from './bgSource.mjs';
 import assert from 'assert';
 import fs from 'fs';
 import { imp } from './harness.mjs';
-const src = fs.readFileSync(process.env.AISH_SRC + '/background.js', 'utf8');
+const src = bgSource();
 const start = src.indexOf("const FEED_ALARM = 'feedPoll';");
 const end = src.indexOf('// ── One-shot AI completion', start);
 assert(start >= 0 && end > start, 'background feed worker block found');

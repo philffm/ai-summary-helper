@@ -6,6 +6,7 @@
     "plugin/src/content/finalize.js",
     "plugin/src/modules/*BackgroundBundle.js",
     "plugin/src/background.js",
+    "plugin/src/bg/*.js",
     "plugin/src/loader.js",
     "plugin/src/offscreen.js",
     "plugin/src/audioEngine.js",

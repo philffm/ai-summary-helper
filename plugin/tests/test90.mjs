@@ -1,6 +1,7 @@
 // Background: actions that spend the AI key or fetch for the extension answer only extension pages, never content scripts.
+import { bgSource } from './bgSource.mjs';
 import assert from 'assert'; import fs from 'fs'; import vm from 'vm';
-const src = fs.readFileSync(process.env.AISH_SRC + '/background.js', 'utf8');
+const src = bgSource();
 // Any chrome.* API is a callable no-op; only runtime.onMessage is captured.
 let onMessage = null;
 const any = () => new Proxy(function () {}, { get: (t, k) => (k === 'then' ? undefined : any()), apply: () => any() });

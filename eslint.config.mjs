@@ -19,11 +19,14 @@ export default [
       'no-empty': ['warn', { allowEmptyCatch: true }],
     },
   },
+  // The background worker is a classic script plus its parts in bg/ (importScripts): one global scope, so names defined in
+  // one file and used in another are declared with /* global */ and /* exported */ comments.
+  { files: ['plugin/src/background.js', 'plugin/src/bg/*.js'], languageOptions: { sourceType: 'script' } },
   // R2: storage goes through StorageManager (key routing local/sync, migrations, one place to change the schema).
   // A warning for now, to be cleared module by module; the storage layer itself and the classic scripts are exempt.
   {
     files: ['plugin/src/**/*.js'],
-    ignores: ['plugin/src/modules/storageManager.js', 'plugin/src/modules/storageKeys.js', 'plugin/src/loader.js', 'plugin/src/background.js'],
+    ignores: ['plugin/src/modules/storageManager.js', 'plugin/src/modules/storageKeys.js', 'plugin/src/loader.js', 'plugin/src/background.js', 'plugin/src/bg/**'],
     rules: {
       'no-restricted-syntax': ['warn', {
         selector: "MemberExpression[object.object.object.name=/^(chrome|browser)$/][object.object.property.name='storage'][object.property.name=/^(local|sync|session)$/][property.name=/^(get|set|remove|clear)$/]",

@@ -1,6 +1,7 @@
 // Every local model with a small context window reads long pages in parts (not only Ollama): the window is known (apfel 4k,
 // the browser's model 4k) or read from the server (Ollama /api/show, llama.cpp /props, LM Studio /api/v0/models), the part
 // requests speak Ollama or the OpenAI format, and the answer is read whatever form it comes in.
+import { bgSource } from './bgSource.mjs';
 import assert from 'assert'; import fs from 'fs'; import path from 'path';
 import { setup, imp } from './harness.mjs';
 const { w } = setup({}); globalThis.document = w.document; globalThis.window = w;
@@ -28,6 +29,6 @@ const c = fs.readFileSync(path.join(process.env.AISH_SRC, 'content.js'), 'utf8')
 assert.ok(/\(activeService === 'ollama' \|\| isLocalEndpoint\(finalApiUrl\)\) && modelIdentifier !== 'firefox-ml'/.test(c), 'every local model, Firefox summarizer excluded');
 assert.ok(/max_tokens: Math\.ceil\(perPartWords \* 2\.2\) \+ 200/.test(c) && /replyText\(raw\)/.test(c), 'OpenAI-format part requests, any answer shape');
 assert.ok(!/condenseForOllama/.test(c));
-const bg = fs.readFileSync(path.join(process.env.AISH_SRC, 'background.js'), 'utf8');
+const bg = bgSource();
 assert.ok(/localGetJson: \{ from: 'any'/.test(bg) && /if \(!LOCAL_URL\.test\(String\(msg\.url/.test(bg), 'server info only from localhost');
 console.log('TEST 246 OK'); process.exit(0);

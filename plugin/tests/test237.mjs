@@ -1,8 +1,9 @@
 // Summary queue: a running job whose finish message never arrives (the page navigated and the background finished it,
 // or the content script stopped early) is cleared, so the next queued summary starts instead of waiting forever.
+import { bgSource } from './bgSource.mjs';
 import assert from 'assert';
 import fs from 'fs';
-const src = fs.readFileSync(process.env.AISH_SRC + '/background.js', 'utf8');
+const src = bgSource();
 const start = src.indexOf('// ── Summary job queue');
 const end = src.indexOf('/** Open a feed link', start);
 assert(start >= 0 && end > start, 'queue block found');

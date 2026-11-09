@@ -1,9 +1,10 @@
 // @realtime Streaming deltas end to end: worker (background.js in a vm) → client (modules/feedAi.js).
 // A lost delta is never appended; the client warns, asks for a resend, and the worker's next tick carries the whole text from 0.
+import { bgSource } from './bgSource.mjs';
 import assert from 'assert'; import fs from 'fs'; import vm from 'vm';
 import { setup, imp } from './harness.mjs';
 setup({});
-const src = fs.readFileSync(process.env.AISH_SRC + '/background.js', 'utf8');
+const src = bgSource();
 const area = (st) => ({ get: (k, cb) => { const o = {}; (k == null ? Object.keys(st) : typeof k === 'string' ? [k] : Array.isArray(k) ? k : Object.keys(k)).forEach((x) => { if (x in st) o[x] = JSON.parse(JSON.stringify(st[x])); }); if (cb) { cb(o); return; } return Promise.resolve(o); }, set: (o, cb) => { Object.assign(st, o); if (cb) cb(); return Promise.resolve(); }, remove: () => Promise.resolve() });
 const local = { 'config:services': { ollama: { endpoint: 'http://localhost:11434/v1/chat/completions', activeModelId: { id: 'm', provider: 'ollama' }, customModel: [{ id: 'm', provider: 'ollama' }] } } };
 let workerOnMessage = null;
