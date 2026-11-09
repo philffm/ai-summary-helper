@@ -72,7 +72,7 @@ export const FEED_DEFAULTS = {
     rateWithRecap: true,
     localBriefings: false,
     autoSummarizeFavs: false,
-    backgroundPoll: false,
+    backgroundPoll: true,
     refreshMinutes: 30,
     keepDays: 30,
     recapLimit: 0,

@@ -406,10 +406,12 @@ async function applyFeedPollConfig() {
         if (feedRunController) feedRunController.abort();
     }
     await chrome.alarms.clear(FEED_ALARM);
-    if (feedSettings && (feedSettings.backgroundPoll || feedSettings.autoProcess)) {
+    const settings = feedSettings || {};
+    const pollOn = settings.backgroundPoll !== false;   // on unless the user turned it off
+    if (pollOn || settings.autoProcess) {
         const intervals = [];
-        if (feedSettings.backgroundPoll) intervals.push(Number(feedSettings.refreshMinutes) || 30);
-        if (feedSettings.autoProcess) intervals.push(Number(feedSettings.autoProcessMinutes) || 30);
+        if (pollOn) intervals.push(Number(settings.refreshMinutes) || 30);
+        if (settings.autoProcess) intervals.push(Number(settings.autoProcessMinutes) || 30);
         chrome.alarms.create(FEED_ALARM, { delayInMinutes: 1, periodInMinutes: Math.max(15, Math.min(...intervals)) });
     } else {
         await clearFeedBadge();
@@ -499,7 +501,7 @@ async function pollFeeds() {
         await pruneBackgroundFeedData(d.feedSettings);
         d.background = (await localGet(SK.feedBackground))[SK.feedBackground] || d.background;
         const configured = d.feedSettings.autoProcess && await backgroundOllamaConfigured();
-        if (!d.feedSettings.backgroundPoll && !configured) return;
+        if (d.feedSettings.backgroundPoll === false && !configured) return;
         const state = { items: [], ratings: {}, recaps: {}, ...(d.background || {}) };
         state.items = Array.isArray(state.items) ? state.items : [];
         state.ratings = state.ratings || {}; state.recaps = state.recaps || {};
