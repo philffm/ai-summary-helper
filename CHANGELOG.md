@@ -5,6 +5,82 @@ Commit history has the details: <https://github.com/philffm/ai-summary-helper/co
 
 ## Unreleased
 
+## 2.2.45 (2026-11-09)
+
+### All changes
+
+#### Added
+
+- Speed-Read: new reader on the page, in the popup menu and the right-click menu
+  - content/speedRead.js: shadow DOM reader. It shows progress while the summary is written, then reads with a pivot letter and pauses at punctuation (modules/rsvp.js). Pausing shows the paragraph; click a sentence to read from there. T shows the text. At the end: keep the page, or close the tab after a 5 s countdown that stops on any input and never runs while paused, hidden or after an error. A notification reopens the tab.
+  - Styles from the design tokens: inPage.css gets a generated :host token region (design-system/config.json) plus component CSS without hex colours; new tokens fs-display(-xl) and the rsvp component group.
+  - Entry points: "⚡ Speed-Read" in the menu next to Summarize, and "⚡ Speed-Read this page" in the page's right-click menu (replaces "Summarize & close tab").
+  - Settings › Reading › Speed-Read: show in menus, speed, words at a time, full screen, offer to close the tab, reminder and its time (chrome.storage.sync `speedRead`).
+  - Read-later reminders fire at a fixed local time (modules/decisionTime.js): decisionSave writes under the articles lock and schedules the alarm with `when`. MCP list_due and the History chip show the due date.
+  - Removed: the old decision dialog and overlay in content/ui.js and the fetchSummaryAndClose flow.
+  - i18n: English and German. The other 23 locales carry the English text until they are translated.
+
+#### Changed
+
+- Speed-Read: translations for all locales; the Android reader reads like the extension
+  - The ~45 new Speed-Read texts and the menu and notification strings are translated into the 23 remaining locales (ar, da, es, fi, fr, hi, id, it, ja, ko, nl, no, pl, pt_BR, pt_PT, ru, sv, th, tr, uk, zh_CN, zh_HK, zh_TW). Placeholders checked per string.
+  - Android (Rsvp.kt) follows plugin/src/modules/rsvp.js: - 150–600 WPM (300 default, steps of 25), slower first words, longer pauses at headings. - Sentences and paragraphs, sentence back/forward, seconds left. - The stored speed is clamped to the new range.
+  - SpeedReadDialog follows the extension's variant C: - the sentence above the word, current word marked; - pause shows the paragraph, and tapping a sentence reads from there; - previous/next sentence, "Sentence a of b · s s left"; - it starts paused.
+  - ReadingToolsTest gets the same vectors as plugin/tests/test254.mjs.
+- privacy page source: background feed checks are on by default
+- goodbye page: use the current colour tokens in the source (the regenerated docs/goodbye.html had the old --paper/--signal ones, failing css-tokens test)
+- Harden article export metadata encoding
+- Vendored D3 7.9.0 -> 7.9.2 (#188)
+- Feeds: check in the background by default (can be turned off in Feeds settings); privacy text updated
+- Background: feed polling and AI completion in their own scripts
+  - bg/feedPoll.js: feed polling, pruning and Ollama processing
+  - bg/aiComplete.js: one-shot AI completion and the model connection
+- Speed-read: RSVP timing and reminder-time helpers (first step of the rebuild)
+- History: detail view and export/send in their own files, loaded when used
+  - history/state.js: the shared state as one object (ui, detail, cached, archived, detailChosenAt, toolbarEditing) instead of module-level lets.
+  - history/export.js: Markdown/Word/PDF/HTML, clipboard, Obsidian, Kindle, LocalSend, phone, bulk Markdown.
+  - history/detail.js: the article view with title edit, source card, Q&A, citation and the action toolbar.
+- Settings: one file per area, Library & Data panels load when opened
+- Website: UTM parameters on every store link
+- Selection toolbar: drawn by the loader, fewer false positives
+- Popup: lighter start, tabs load when they are opened
+  - Feeds, Notes and the sync / AI-apps settings panels load when their screen is first shown (or the workspace shows them, or a feed settings panel is opened), else after 6 s of idle. Settings (it drives the sign-in mask), History, the phone inbox and About still load right after the main screen. Side panel and tab surfaces, which can show several panes at once, still load everything right away.
+  - The card ⋯ menu (~100 KB with send, cite, digest), the AI client for follow-ups, collections, sync stamps and the highlight store load on first use; the highlight migration check is one storage read once it has run.
+- Background: messages as one handler table
+- readme: highlights are stored per page
+- e2e: per-page highlights in real Chromium
+- Highlights: switch on the per-page migration, backup v5
+  - StorageManager.initialize() and the service worker start run highlightStore.migrate() after the key and article migrations (whichever runs first wins; the other is one tiny read). A failure leaves the old list in use.
+  - Backup export is _backup_version 5 (hl:index + hl:page:*); import accepts 2–5, rebuilds hl:index from the restored page keys (store.reindex), and an old backup's hl:all is merged into pages by the migration on the reload.
+  - test253: startup migration, readers see the same highlights before and after, a second start changes nothing. test251: reindex.
+- Highlights: every reader and writer goes through the store
+- Highlights: one writer under a lock, per-page keys (not switched on yet)
+  - modules/highlightStore.js: forPage / all / index / apply(ops) / migrate. Schema 2 stores one key per page (hl:page:<pageKey>) plus a lean index (hl:index); every change runs under the Web Lock 'aish-hl', shared by the worker and all extension pages. Until hl:schema is 2 it reads and writes the old single list hl:all, also under the lock, so callers can move one by one.
+  - migrate(): hl:all → pages; ids for old entries (same derivation as the sync backfill); highlights whose key lost ?v= / ?id= go back to the one saved article on that path that contains their text; safe to repeat, merges an hl:all that shows up again (old backup), removes hl:all last.
+  - modules/highlightMessages.js + background 'hl:apply': the only way a page script changes highlights. The page comes from the sending tab, never from the message; sync-only ops are refused; removals get a sync deletion marker.
+  - storageKeys: hl:index, hl:schema, HL_PAGE; StorageManager routes hl:page:* to local storage.
+  - test251 (store, overlapping writers, migration), test252 (messages).
+- Highlights: keep content parameters in page keys, no rewrite on read
+  - modules/highlightRecords.js: one canonical shape (normalizeHighlights) that uses pageKeyForUrl, plus needsRewrite that compares fields, not JSON strings (field order alone made almost every read rewrite the list and wake all tabs).
+  - The context-menu "clear highlights" compares page keys (it compared the raw URL and cleared nothing on pages with query parameters).
+  - test250 fails on the old code and passes now.
+- i18n: update translations for changed content
+
+#### Fixed
+
+- test15: poll for the recap instead of fixed ticks (flaky on slow CI, #96)
+
+#### Developer experience
+
+- docs: regenerate pages (privacy text for background feed checks, sitemaps, translations)
+- docs: regenerate goodbye.html from the fixed source (current colour tokens)
+- Lint: storage access through StorageManager (warning)
+- CI: secret scan, knip report, no-unsanitized lint; three HTML fixes
+  - gitleaks 8.21.2 (pinned, checksum verified) in a new `secrets` job: pull requests and pushes scan their new commits and fail on a finding; the nightly run scans the whole history and only warns. .gitleaks.toml allows the values that are public by design (YouTube web-player key, IndexNow key, Figma component keys, crypto test vectors). The working tree and the reachable history are clean with it.
+  - knip (knip.json, `npm run knip`): unused files and exports in the pull-request job summary, not failing yet (6 unused files, ~33 unused exports, some false positives from Promise.all(import()) destructuring).
+  - eslint-plugin-no-unsanitized as an error: innerHTML / insertAdjacentHTML / import() must go through the escapers or sanitizers (or T / our own icons). 35 sites were reviewed by hand and carry a `-- reviewed: <reason>` comment.
+  - Fixed while reviewing: the stream bubble printed the model name unescaped; the History preview stripped tags with a regex (half tags from a restored or synced summary could survive) and is now parsed inert and escaped; the "Get Key" link took any URL unescaped and now only takes https, escaped.
+
 ## 2.2.44 (2026-11-06)
 
 ### All changes
