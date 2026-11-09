@@ -1,4 +1,5 @@
-// Entry of the background bundle (sync-worker.js, global AISH_SYNC): sync stamps, places and the publish engine for the classic-script background.
+// Entry of the background bundle (sync-worker.js, global AISH_SYNC): sync stamps, places and the publish engine for the classic-script background,
+// plus the highlight store (the one writer of highlights, modules/highlightStore.js) and the page-message handler in front of it.
 import { createStampStore } from './syncStampStore.js';
 import { createSyncService } from './syncService.js';
 import { makeStore } from './syncStores.js';
@@ -7,7 +8,9 @@ import { createNotesStore } from './notesStore.js';
 import { createNotesMessages } from './notesMessages.js';
 import { countWords } from './textUtils.js';
 import { withQuestions } from './conversation.js';
+import { createHighlightStore } from './highlightStore.js';
+import { createHighlightMessages } from './highlightMessages.js';
 
 // how a pulled article's displayed summary and word counts are made on this device (the same functions the popup uses)
 const dataHooks = { count: countWords, compose: (base, turns) => withQuestions(base, turns, { all: false }) };
-export const API = { dataHooks, createStampStore, createSyncService, makeStore, renderViewer, loadViewerTemplates, createNotesStore, createNotesMessages };
+export const API = { dataHooks, createStampStore, createSyncService, makeStore, renderViewer, loadViewerTemplates, createNotesStore, createNotesMessages, createHighlightStore, createHighlightMessages };

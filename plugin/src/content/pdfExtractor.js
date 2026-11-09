@@ -55,6 +55,7 @@ function findEmbeddedPdfUrl() {
  */
 function loadPdfJs() {
   if (pdfJsModulePromise) return pdfJsModulePromise;
+  // eslint-disable-next-line no-unsanitized/method -- reviewed: imports a file packaged with the extension (chrome.runtime.getURL)
   pdfJsModulePromise = import(chrome.runtime.getURL('lib/pdf.mjs')).then((mod) => {
     mod.GlobalWorkerOptions.workerSrc = chrome.runtime.getURL('lib/pdf.worker.mjs');
     return mod;
@@ -312,7 +313,7 @@ export function pdfErrorMessage(err) {
     case 'LOGIN': return 'This PDF needs a login or is behind a paywall, so the extension cannot download it. Open it while signed in, or select its text and summarize the selection.';
     case 'NOT_PDF': return 'The address did not return a PDF (probably a login or error page).';
     case 'PASSWORD': return 'This PDF is password protected.';
-    case 'EMPTY': return 'This PDF has no selectable text (probably a scan). Text recognition is not supported yet.';
+    case 'EMPTY': return 'This PDF has no selectable text (probably a scan), and text recognition is not supported yet. Run OCR on it first (e.g. Preview, Acrobat, or ocrmypdf), or select the text and summarize the selection.';
     case 'FILE': return 'Chrome blocks access to local PDFs. Enable "Allow access to file URLs" for this extension in chrome://extensions, then try again.';
     default: return 'Cannot read this PDF directly. If it is a local file, enable "Allow access to file URLs" for the extension; otherwise try opening the paper from its original web URL.';
   }

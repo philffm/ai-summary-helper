@@ -28,7 +28,7 @@ const ct = fs.readFileSync(new URL('../src/content.js', import.meta.url), 'utf8'
 const cf = fs.readFileSync(new URL('../src/content/finalize.js', import.meta.url), 'utf8');
 assert(/SCHOLARLY/.test(ct) && /applyScholarly\(/.test(cf) && /replace\(\/<!--\\s\*SCHOLARLY/.test(cf));
 assert.equal((ct.match(/\$\{scholarlyAsk\}/g) || []).length, 2);
-const am = fs.readFileSync(new URL('../src/modules/articleManager.js', import.meta.url), 'utf8');
+const am = ['articleManager.js', 'history/detail.js'].map((f) => fs.readFileSync(new URL('../src/modules/' + f, import.meta.url), 'utf8')).join('\n');
 assert(/\['research'/.test(am) && /RESEARCH_FILTERS/.test(am) && /paperSearchText\(a\)/.test(am));
 // on-demand key facts
 const { extractPaperFacts } = await imp('modules/paperInfo.js');

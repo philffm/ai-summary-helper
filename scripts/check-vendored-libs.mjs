@@ -38,7 +38,7 @@ const LIBS = [
     {
         name: 'pdf.js', npm: 'pdfjs-dist', row: /^\| pdf\.js[^|]*\| (\d+\.\d+\.\d+) \|/m, readme: true, updates: 'report',
         files: [
-            { file: 'pdf.mjs', re: /apiVersion:\s*"(\d+\.\d+\.\d+)"/ },
+            { file: 'pdf.mjs', re: /apiVersion\s*[:=]\s*"(\d+\.\d+\.\d+)"/ },
             { file: 'pdf.worker.mjs', contains: true },
             { file: 'jbig2_nowasm_fallback.js' }, { file: 'openjpeg_nowasm_fallback.js' },   // ship with pdf.js; existence only
         ],

@@ -26,7 +26,10 @@ export const SK = {
     articlesSchema: 'articles:schema',
     // derived: per-article term vectors and nearest neighbours for the graph (graphSimilarityCache.js); rebuilt on demand, never backed up
     graphSim: 'graph:sim',
-    // highlights / annotations (one array for all pages; per-page keys are a later step)
+    // highlights: one key per page (hl:page:<pageKey>, see HL_PAGE) plus a lean index; written only through highlightStore.js
+    hlIndex: 'hl:index',      // [{ k: pageKey, n: active, d: dismissed, t: ISO time }]
+    hlSchema: 'hl:schema',    // 2 = per-page keys (migrateHighlightsToPages ran)
+    // the old single list of all highlights (schema 1). Read by the migration and by old backups only.
     annotations: 'hl:all',
     // feeds
     feedSubs: 'feeds:subs',
@@ -116,6 +119,11 @@ export const KEYS_SCHEMA = 1;
 export const ARTICLE_REC = 'articles:rec:';
 export const articleRecKey = (id) => ARTICLE_REC + id;
 export const isArticleRecKey = (k) => typeof k === 'string' && k.startsWith(ARTICLE_REC);
+
+/** Prefix of the per-page highlight keys: hl:page:<pageKey> (pageKeyForUrl, the same key the page script computes). */
+export const HL_PAGE = 'hl:page:';
+export const hlPageKey = (pageKey) => HL_PAGE + pageKey;
+export const isHlPageKey = (k) => typeof k === 'string' && k.startsWith(HL_PAGE);
 
 /** Prefix of the per-collection record keys: coll:rec:<id> (name, question, source article ids, notes). */
 export const COLL_REC = 'coll:rec:';

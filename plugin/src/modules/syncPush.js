@@ -12,6 +12,7 @@
 // a large share of what is published stops and asks (a restore of a smaller library must not empty a website).
 import { SK, articleRecKey, syncLedgerKey } from './storageKeys.js';
 import { pageKeyForUrl } from './pageKey.js';
+import { createHighlightStore } from './highlightStore.js';
 import { hashValue } from './syncStamps.js';
 import { articlePath, LIBRARY_PATH, LIBRARY_JS_PATH, placeMatches, configHash, buildArticleFile, libraryEntry, toJson, includeOf, notesForLibrary } from './syncReadable.js';
 import { TargetError } from './targets/targetError.js';
@@ -32,9 +33,9 @@ export async function pushPlace({ place, storage, store, stamps = {}, now = Date
     const out = { pushed: 0, unchanged: 0, removed: 0, errors: [], more: false, remaining: 0, needsConfirm: 0, libraryWritten: false, repaired: 0, orphans: 0 };
     const lk = syncLedgerKey(place.id);
     onProgress({ phase: 'checking', done: 0, total: 0 });
-    const d = await get(storage, { [SK.articlesIndex]: [], [SK.annotations]: [], [lk]: {} });
+    const d = await get(storage, { [SK.articlesIndex]: [], [lk]: {} });
     const index = Array.isArray(d[SK.articlesIndex]) ? d[SK.articlesIndex] : [];
-    const annotations = Array.isArray(d[SK.annotations]) ? d[SK.annotations] : [];
+    const annotations = await createHighlightStore({ storage }).all();
     let ledger = d[lk] && typeof d[lk] === 'object' ? d[lk] : {};
     const cfg = configHash(place);
     const force = ledger.cfg !== cfg;

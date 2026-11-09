@@ -29,5 +29,5 @@ assert.ok(/\(activeService === 'ollama' \|\| isLocalEndpoint\(finalApiUrl\)\) &&
 assert.ok(/max_tokens: Math\.ceil\(perPartWords \* 2\.2\) \+ 200/.test(c) && /replyText\(raw\)/.test(c), 'OpenAI-format part requests, any answer shape');
 assert.ok(!/condenseForOllama/.test(c));
 const bg = fs.readFileSync(path.join(process.env.AISH_SRC, 'background.js'), 'utf8');
-assert.ok(/msg\.action === 'localGetJson'/.test(bg) && /if \(!LOCAL_URL\.test\(String\(msg\.url/.test(bg), 'server info only from localhost');
+assert.ok(/localGetJson: \{ from: 'any'/.test(bg) && /if \(!LOCAL_URL\.test\(String\(msg\.url/.test(bg), 'server info only from localhost');
 console.log('TEST 246 OK'); process.exit(0);

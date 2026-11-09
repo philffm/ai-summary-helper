@@ -9,7 +9,7 @@ is identical for pdf.js and AFINN-111); the D3 and Lucide ISC texts follow.
 
 | Library | Version | License | Source |
 | --- | --- | --- | --- |
-| pdf.js (minified legacy build: `pdf.mjs`, `pdf.worker.mjs`) | 6.5.438 | Apache-2.0 | https://github.com/mozilla/pdf.js |
+| pdf.js (readable legacy build: `pdf.mjs`, `pdf.worker.mjs`) | 6.5.438 | Apache-2.0 | https://github.com/mozilla/pdf.js |
 | pdf.js JBIG2 decoder, no-wasm fallback (`jbig2_nowasm_fallback.js`, from PDFium) | 6.5.438 | Apache-2.0 + BSD-3-Clause | https://github.com/mozilla/pdf.js, https://pdfium.googlesource.com/pdfium |
 | pdf.js JPEG 2000 decoder, no-wasm fallback (`openjpeg_nowasm_fallback.js`, from OpenJPEG) | 6.5.438 | BSD-2-Clause | https://github.com/mozilla/pdf.js, https://github.com/uclouvain/openjpeg |
 | D3.js | 7.9.0 | ISC | https://github.com/d3/d3 |
@@ -25,8 +25,9 @@ is identical for pdf.js and AFINN-111); the D3 and Lucide ISC texts follow.
 > `scripts/check-vendored-libs.mjs` checks the table against the files on every
 > pull request, and against npm releases and advisories every night.
 
-> **pdf.js build choice:** `lib/pdf.mjs` and `lib/pdf.worker.mjs` are `legacy/build/pdf.min.mjs` and
-> `legacy/build/pdf.worker.min.mjs` from the `pdfjs-dist` npm package, renamed. The modern build uses syntax
+> **pdf.js build choice:** `lib/pdf.mjs` and `lib/pdf.worker.mjs` are `legacy/build/pdf.mjs` and
+> `legacy/build/pdf.worker.mjs` from the `pdfjs-dist` npm package, NOT minified: the Chrome Web Store
+> rejected the minified `*.min.mjs` build as obfuscated code ("Red Titanium", Nov 2026). Never vendor a `*.min.*` file. The readable build was rejected again because of core-js's IE-only `Object.create` fallback; after every pdf.js update run `node scripts/strip-corejs-ie-fallback.mjs`, which replaces that dead code in both files (the only deviation from the upstream files). The modern build uses syntax
 > (`using`, `Map.getOrInsertComputed`) that Safari and older Chromium can't parse. The two `*_nowasm_fallback.js`
 > files come from the package's `wasm/` folder. The `.wasm` decoders are not shipped because the extension CSP
 > has no `'wasm-unsafe-eval'` (`content/pdfExtractor.js` passes `useWasm: false`).

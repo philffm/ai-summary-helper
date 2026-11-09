@@ -147,6 +147,7 @@ export function getAllTextContent() {
         }
       }
     }
+    // eslint-disable-next-line no-unsanitized/property -- reviewed: copies the page's own body markup into a detached clone of the same page
     clone.innerHTML = bodyClone.innerHTML;
     text = bodyClone.textContent || '';
     cleanText = text.replace(/[ \t]+/g, ' ').replace(/\n{3,}/g, '\n\n').trim();

@@ -25,6 +25,7 @@ import StorageManager from './storageManager.js';
             if (defaultModel && !modelIds.includes(defaultModel)) {
                 allModels.push({ id: defaultModel, provider: serviceId });
             }
+            // eslint-disable-next-line no-unsanitized/property -- reviewed: model ids and providers go through esc()
             modelIdentifierContainer.innerHTML = `
                 <label class="model-ids-label">${T('Model Identifiers')}</label>
                 <div id="modelTagList" class="model-id-list">

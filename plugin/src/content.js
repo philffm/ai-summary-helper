@@ -61,8 +61,9 @@ import {
   handleGhostHighlightClick,
   getUserHighlightTexts,
   revealQuote,
-  hlTellDeleted,
-  setPageSummarizeHandler
+  setPageSummarizeHandler,
+  clearPageHighlights,
+  runSelectionAction
 } from './content/highlighter.js';
 
 import {
@@ -208,6 +209,8 @@ import {
 
   // Restore persisted highlights as soon as the DOM is ready
   document.addEventListener('mouseup', handleTextSelection);
+  // the loader's selection toolbar injected this script for one of its buttons: it runs the action through this
+  window.__AISH_SELECTION_ACTION = runSelectionAction;
   document.addEventListener('click', handleHighlightClick);
   document.addEventListener('click', handleGhostHighlightClick);
 
@@ -273,21 +276,7 @@ import {
     if (request.action === 'contextMenuClearHighlights') {
       clearHighlightElements();
 
-      // Clear only for the current URL using the new array structure
-      chrome.storage.local.get([SK.annotations], (res) => {
-        let annotations = res[SK.annotations];
-        if (Array.isArray(annotations)) {
-          const currentUrl = window.location.href.split('#')[0];
-          const removed = annotations.filter(a => a.url === currentUrl).map(a => a.id);
-          annotations = annotations.filter(a => a.url !== currentUrl);
-          hlTellDeleted(removed);
-          chrome.storage.local.set({ [SK.annotations]: annotations }, () => {
-            sendResponse({ status: 'ok' });
-          });
-        } else {
-          sendResponse({ status: 'ok' });
-        }
-      });
+      clearPageHighlights(() => sendResponse({ status: 'ok' }));
       return true;
     }
 
@@ -972,6 +961,7 @@ import {
                 const summaryContainer = document.createElement('blockquote');
                 summaryContainer.setAttribute('data-aish-ui', '1');
                 summaryContainer.style.cssText = "border-left: 4px solid #007bff; padding: 15px; margin: 20px 0; background: rgba(0,123,255,0.05);";
+                // eslint-disable-next-line no-unsanitized/property -- reviewed: cleanHtml comes from markdownToHtml (allowlist sanitizer)
                 summaryContainer.innerHTML = `<div><h2 style="margin-top:0">AI Summary 🧙</h2>${cleanHtml}</div>`;
                 insertSummary(targetElement, summaryContainer);
               } else {

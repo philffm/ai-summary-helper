@@ -22,6 +22,32 @@ env:
   AISH_TEST_SPEED: '4'   # timer speed-up for the tests (see plugin/tests/env.mjs); gentler than locally because CI runners are small
 
 jobs:
+  # Secret scan (gitleaks, config .gitleaks.toml). Pull requests and pushes: the new commits, blocking.
+  # Nightly: the whole history, reported as a warning only (an old, already rotated key must not keep main red:
+  # put its fingerprint in .gitleaksignore after rotating it).
+  secrets:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Install gitleaks (pinned)
+        run: |
+          curl -sSL -o gitleaks.tgz https://github.com/gitleaks/gitleaks/releases/download/v8.21.2/gitleaks_8.21.2_linux_x64.tar.gz
+          echo "5bc41815076e6ed6ef8fbecc9d9b75bcae31f39029ceb55da08086315316e3ba  gitleaks.tgz" | sha256sum -c -
+          tar -xzf gitleaks.tgz gitleaks
+      - name: Scan the new commits
+        if: github.event_name != 'schedule'
+        run: |
+          if [ "${{ github.event_name }}" = "pull_request" ]; then RANGE="origin/${{ github.base_ref }}..HEAD";
+          elif [ "${{ github.event.before }}" != "0000000000000000000000000000000000000000" ]; then RANGE="${{ github.event.before }}..${{ github.sha }}";
+          else RANGE="-1"; fi
+          ./gitleaks git --config .gitleaks.toml --redact --no-banner --log-opts="$RANGE" .
+      - name: Scan the whole history (report only)
+        if: github.event_name == 'schedule'
+        run: ./gitleaks git --config .gitleaks.toml --redact --no-banner . || echo "::warning title=gitleaks::secrets found in the history - rotate, then add the fingerprints to .gitleaksignore"
+
   pull-request:
     if: github.event_name == 'pull_request'
     runs-on: ubuntu-latest
@@ -40,11 +66,20 @@ jobs:
       - name: Live demo still builds and its mock covers every popup action
         run: npm run demo:check
       - name: Validate sitemap and internal links
-        run: node --test scripts/tests/sitemap-links.test.mjs scripts/tests/carousel-accessibility.test.mjs scripts/tests/css-tokens.test.mjs && node scripts/check-sitemap.mjs
+        run: node --test scripts/tests/sitemap-links.test.mjs scripts/tests/carousel-accessibility.test.mjs scripts/tests/css-tokens.test.mjs && node scripts/check-sitemap.mjs && node scripts/tag-store-links.mjs --check
       - name: Vendored libraries match their documented versions
         run: node scripts/check-vendored-libs.mjs --offline
       - name: Tests the change can reach
         run: npm test -- --deep
+      # Dead files (knip.json): a source file nothing imports fails the run. A file kept on purpose goes into knip.json "entry".
+      - name: No unused files
+        run: npx knip --include files --reporter compact
+      # Unused exports: report only for now (the list is in the job summary); it does not fail the run.
+      - name: Unused exports (report)
+        continue-on-error: true
+        run: |
+          npx knip --reporter markdown > knip-report.md || true
+          { echo '### knip: unused files and exports'; cat knip-report.md; } >> "$GITHUB_STEP_SUMMARY"
 
   release-gate:
     if: github.event_name != 'pull_request'

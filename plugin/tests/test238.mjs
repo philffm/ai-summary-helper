@@ -47,4 +47,8 @@ assert.ok(rows().find(r => r.dataset.reorderId === 'history').querySelector('inp
 d.querySelector('.dock-ed-reset').click(); await tick(20);
 assert.deepEqual(navOrder(), ['feeds', 'main', 'history', 'notes']);
 assert.equal(d.getElementById('dockEditor').closest('[data-panel="appearance"]') !== null, true, 'lives in Appearance');
+// the UI language arrives after the first paint (and can change): the editor is drawn again, its tab names are the translated nav labels
+d.querySelector('#bottomNav .nav-item[data-screen="feeds"] .nav-label').textContent = '訂閱';
+d.dispatchEvent(new w.CustomEvent('aish:translationsApplied', { detail: { code: 'zh_TW' } })); await tick(20);
+assert.ok(rows().some(r => /訂閱/.test(r.textContent)), 'tab names follow the language');
 console.log('ok');

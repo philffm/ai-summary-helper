@@ -47,6 +47,13 @@ assert.deepEqual(store['articles:index'][1].tags, ['Beta', 'Gamma'], 'tag added 
 d.querySelector('.detail-tags .tag-add').click();
 const sg = [...d.querySelectorAll('.detail-tags .tag-suggest')].map(b => b.textContent);
 assert(sg.includes('News') && sg.includes('🎓 Research paper') && !sg.includes('Gamma'), sg.join('|'));
+// tags known from elsewhere (a sync place's filter, e.g. "private") are offered as quick picks too
+store['sync:places'] = [{ id: 'p1', filter: { excludeTag: 'private' } }];
+d.querySelector('.detail-tags .tag-suggest') && d.querySelector('.detail-tags .tag-input').blur();
+await tick(200);
+d.querySelector('.detail-tags .tag-add') && d.querySelector('.detail-tags .tag-add').click();
+await tick(60);
+assert([...d.querySelectorAll('.detail-tags .tag-suggest')].some(b => b.textContent === 'private'), 'sync-known tag offered');
 [...d.querySelectorAll('.detail-tags .tag-suggest')].find(b => b.textContent === 'News').click(); await tick(60);
 assert.deepEqual(store['articles:index'][1].tags, ['Beta', 'Gamma', 'News'], 'suggested tag added');
 // mark as research paper from the + Tag row, then remove again with the chip's ✕

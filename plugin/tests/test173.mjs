@@ -32,7 +32,7 @@ assert.deepEqual(Object.keys(prepareImportedData({ 'articles:index': [] }, {})),
 
 // ── background messages: only extension pages ──
 const src = fs.readFileSync(SRC + '/background.js', 'utf8');
-for (const a of ['targetEnqueue', 'targetStatus', 'targetCancel']) assert(new RegExp(`EXTENSION_PAGE_ACTIONS = new Set\\([^)]*'${a}'`).test(src), a + ' is extension-page only');
+for (const a of ['targetEnqueue', 'targetStatus', 'targetCancel']) assert(new RegExp(`\\b${a}: \\{ from: 'ext'`).test(src), a + ' is extension-page only');
 const store = {};
 const area = { get: (k, cb) => { const o = {}; (k == null ? Object.keys(store) : typeof k === 'string' ? [k] : Array.isArray(k) ? k : Object.keys(k)).forEach((x) => { if (x in store) o[x] = JSON.parse(JSON.stringify(store[x])); }); if (cb) { cb(o); return; } return Promise.resolve(o); }, set: (o, cb) => { Object.assign(store, JSON.parse(JSON.stringify(o))); if (cb) cb(); return Promise.resolve(); }, remove: (k, cb) => { [].concat(k).forEach((x) => delete store[x]); if (cb) cb(); return Promise.resolve(); } };
 let onMessage = null; const alarms = [];

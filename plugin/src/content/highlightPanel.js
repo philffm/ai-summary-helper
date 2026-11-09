@@ -89,6 +89,7 @@ export function hlpRender(items, actions) {
   const shown = items.filter(i => hlpFilter === 'all' || (hlpFilter === 'user' && i.type === 'user') || (hlpFilter === 'ghost' && i.type === 'ghost'));
   const pending = actions.pending && actions.pending();
   const ticks = items.filter(i => i.frac !== null).map(i => `<div class="tick ${i.type}" data-id="${hlpEsc(i.id)}" style="top:${(i.frac * 100).toFixed(2)}%" title="${hlpEsc(i.text.slice(0, 60))}"></div>`).join('');
+  // eslint-disable-next-line no-unsanitized/property -- reviewed: labels are literals; highlight text, ids and comments go through hlpEsc
   h._body.innerHTML = `
     <div class="ticks">${ticks}</div>
     <div class="split">

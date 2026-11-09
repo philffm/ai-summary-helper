@@ -103,17 +103,18 @@ const srcs = [...card.querySelectorAll('.graph-cluster-sources .graph-cluster-sr
 assert.deepEqual(srcs.map(b => b.textContent), ['1T c1', '2T c3'], 'numbered source list mirrors the pills');
 opened.length = 0; srcs[1].click(); assert.deepEqual(opened, ['c3'], 'a source row opens its article');
 
-// "Include in briefing": the Opened group's switch widens the briefing to every article
-card.querySelector('details').open = true;
-const sw = card.querySelector('.graph-cluster-switch');
-assert.equal(sw.getAttribute('aria-checked'), 'false'); assert.ok(/on the 2 unopened/.test(brief.textContent));
-sw.click();
-assert.equal(sw.getAttribute('aria-checked'), 'true'); assert.ok(/Brief me on all 3/.test(brief.textContent), brief.textContent);
+// Briefing scope: a visible choice above the button (Unopened is the default) widens the briefing to every article, opened ones included
+const scopeBtn = (k) => card.querySelector('.graph-cluster-scope button[data-scope="' + k + '"]');
+assert.ok(/Unopened · 2/.test(scopeBtn('unopened').textContent) && /All · 3/.test(scopeBtn('all').textContent), 'both options name their count');
+assert.equal(scopeBtn('unopened').getAttribute('aria-pressed'), 'true', 'unopened is the default'); assert.equal(scopeBtn('all').getAttribute('aria-pressed'), 'false');
+assert.ok(/on the 2 unopened/.test(brief.textContent));
+scopeBtn('all').click();
+assert.equal(scopeBtn('all').getAttribute('aria-pressed'), 'true'); assert.ok(/Brief me on all 3/.test(brief.textContent), brief.textContent);
 assert.ok(card.querySelectorAll('.graph-cluster-open.is-included').length >= 1, 'opened rows are marked as included');
 brief.click(); await tick(250);
 assert.equal(sent.length, 2); assert.ok(/Summary of c2/.test(sent[1].user), 'opened article now part of the briefing');
 sent.pop();
-sw.click(); assert.ok(/on the 2 unopened/.test(brief.textContent), 'switch back restores the default');
+scopeBtn('unopened').click(); assert.ok(/on the 2 unopened/.test(brief.textContent), 'back to the default');
 
 // question: whole topic, answer rendered as text
 const input = card.querySelector('.graph-cluster-ask input'); input.value = 'What is common?';

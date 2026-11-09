@@ -76,6 +76,7 @@ export function mountStyleStep(host, { onDone, onBack } = {}) {
             b.classList.toggle('is-selected', on); b.setAttribute('aria-checked', String(on));
         });
         const s = list.find(x => x.id === chosen);
+        // eslint-disable-next-line no-unsanitized/property -- reviewed: example text from our own style definitions, escaped in exampleFor (E)
         exBody.innerHTML = s ? exampleFor(chosen, builder) : '';
         const keep = host.contains(document.activeElement) && document.activeElement.dataset ? document.activeElement.dataset.chip : null;
         paintChips();

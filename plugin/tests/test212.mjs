@@ -66,7 +66,7 @@ assert.deepEqual(rows.map((r) => !!r.querySelector('.notes-open')).sort(), [fals
 
 // wiring in the History list and the detail view (the card builder is not exported)
 const src = (f) => fs.readFileSync(path.resolve(process.env.AISH_SRC, f), 'utf8');
-const am = src('modules/articleManager.js');
+const am = src('modules/articleManager.js') + src('modules/history/detail.js');
 assert.match(am, /listItem\.dataset\.aid = String\(article\.id\)/, 'cards carry their article id');
 assert.match(am, /noteCountsOnce\(\)\.then\(\(counts\) => paintNoteChip\(listItem, counts\)\)/, 'every card asks for its chip');
 assert.match(am, /id="articleNotesMount"/); assert.match(am, /m\.mountArticleNotes\(host, article\)/, 'the detail view mounts the notes');

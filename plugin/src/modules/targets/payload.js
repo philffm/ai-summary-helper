@@ -3,6 +3,7 @@
 //   'json-v1'  AISH Article JSON v1 without `blocks` (those need a DOM; they come later through the offscreen document)
 import { SK, articleRecKey } from '../storageKeys.js';
 import { pageKeyForUrl } from '../pageKey.js';
+import { createHighlightStore } from '../highlightStore.js';
 import { articleToMarkdown } from '../markdownArchive.js';
 import { toArticleJson, safeFileName, idTail } from '../articleFormat.js';
 import { oneLine } from '../articleMeta.js';
@@ -21,9 +22,8 @@ export async function buildPayload({ articleId, format, storage, includeBlocks =
     if (!entry) return null;
     const rec = (await storage.get([articleRecKey(articleId)]))[articleRecKey(articleId)] || {};
     const full = { ...entry, ...rec };
-    const all = (await storage.get([SK.annotations]))[SK.annotations];
     const key = full.url ? pageKeyForUrl(full.url) : '';
-    const highlights = (Array.isArray(all) ? all : []).filter((h) => h && h.url === key && !h.dismissed);
+    const highlights = key ? (await createHighlightStore({ storage }).forPage(key)).filter((h) => !h.dismissed) : [];
     const conversation = Array.isArray(rec.conversation) ? rec.conversation : [];
 
     const titled = !!oneLine(full.title);

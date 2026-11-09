@@ -1,4 +1,4 @@
-import { SK } from '../modules/storageKeys.js';
+import { SK, hlPageKey } from '../modules/storageKeys.js';
 // content/highlighter.js
 // Text highlighting & annotation persistence for the content script.
 //
@@ -11,6 +11,7 @@ import { hlpRender } from './highlightPanel.js';
 import { npShowToolbar, npShowComposer, npHide } from './notesPopover.js';
 import { splitTags } from '../modules/noteText.js';
 import { pageKeyForUrl, isNoisePage } from '../modules/pageKey.js';
+import { normalizeHighlights } from '../modules/highlightRecords.js';
 
 // ── Shared state (module scope, inlined into the content IIFE by the bundler) ──
 let annotationObserver = null;
@@ -150,16 +151,24 @@ export function clearHighlightElementsByType(type) {
   hlRefreshPanel();
 }
 
-// ── Annotation storage (one array for all pages, see storage-schema notes) ──
+// ── Annotation storage ──
+// This script runs in the website's origin and never writes highlights itself: every change goes to the background as
+// { action: 'hl:apply', ops } (modules/highlightMessages.js → highlightStore.js), which writes under one lock. Reading is
+// local: only this page's list (hl:page:<pageKey>), or the old single list before the migration has run.
 
-/** Tell the background which highlights the user removed: library sync writes a deletion marker for them (a highlight that is merely missing from the array is not a deletion). */
-export function hlTellDeleted(ids) {
-  const list = (ids || []).filter(i => typeof i === 'string' && i);
-  if (!list.length) return;
-  try { const r = chrome.runtime.sendMessage({ action: 'syncHlDeleted', ids: list }); if (r && r.catch) r.catch(() => {}); } catch (_) { /* extension reloaded */ }
+/** Send changes for this page to the background (the one writer). `done(res)` gets { ok, added, removed } or { ok: false }. */
+function hlSend(ops, done = () => {}) {
+  if (!isExtensionContextValid()) { done({ ok: false }); return; }
+  try {
+    const p = chrome.runtime.sendMessage({ action: 'hl:apply', ops }, (res) => {
+      void (chrome.runtime.lastError);
+      done(res && res.ok ? res : { ok: false });
+    });
+    if (p && typeof p.catch === 'function') p.catch(() => {});
+  } catch (_) { done({ ok: false }); }   // extension reloaded
 }
 
-/** Save (or find) an annotation; returns the stored record. */
+/** Save (or find) an annotation; returns the stored record. The background skips it when the same highlight is already saved. */
 export function saveAnnotationToStorage(text, type = 'user', meta = {}) {
   const currentUrl = getPageKey();
   const compactText = (text || '').replace(/\s+/g, ' ').trim();
@@ -169,115 +178,34 @@ export function saveAnnotationToStorage(text, type = 'user', meta = {}) {
     timestamp: new Date().toISOString(), v: meta.quote ? 2 : 1,
     ...(meta.quote ? { quote: meta.quote } : {}), ...(typeof meta.pos === 'number' ? { pos: meta.pos } : {})
   };
-  getNormalizedAnnotations((annotations) => {
-    // Same text in a different place is a different highlight: compare the context too.
-    const exists = annotations.some(a => a.url === currentUrl && a.text === compactText && a.type === type &&
-      (a.quote ? a.quote.prefix === (meta.quote && meta.quote.prefix) && a.quote.suffix === (meta.quote && meta.quote.suffix) : !meta.quote));
-    if (exists) return;
-    annotations.push(ann);
-    chrome.storage.local.set({ [SK.annotations]: annotations });
-  });
+  hlSend([{ op: 'add', hl: ann }]);
   return ann;
 }
 
 function hlPatchAnnotation(id, patch) {
-  getNormalizedAnnotations((annotations) => {
-    const a = annotations.find(x => x.id === id);
-    if (!a) return;
-    Object.assign(a, patch);
-    chrome.storage.local.set({ [SK.annotations]: annotations });
-  });
+  hlSend([{ op: 'patch', id, patch }]);
 }
 
-/** Remove by id (a dismissed AI highlight is kept as `dismissed` so it never comes back). */
+/** Remove by id (a dismissed AI highlight is kept as `dismissed` so it never comes back). The background marks a removal for sync. */
 function hlRemoveFromStorage(id, { dismiss = false } = {}) {
-  getNormalizedAnnotations((annotations) => {
-    const next = dismiss
-      ? annotations.map(a => (a.id === id ? { ...a, dismissed: true } : a))
-      : annotations.filter(a => a.id !== id);
-    chrome.storage.local.set({ [SK.annotations]: next });
-    if (!dismiss) hlTellDeleted([id]);
-  });
+  hlSend([{ op: dismiss ? 'dismiss' : 'remove', id }]);
 }
 
 /** Legacy text-based removal (kept for callers that only know the text). */
 export function removeAnnotationFromStorage(text, type = 'user') {
-  getNormalizedAnnotations((annotations) => {
-    const currentUrl = getPageKey();
-    const compactText = (text || '').replace(/\s+/g, ' ').trim();
-    if (!compactText) return;
-    const removed = annotations.filter(a => a.url === currentUrl && a.text === compactText && a.type === type).map(a => a.id);
-    annotations = annotations.filter(a => !(a.url === currentUrl && a.text === compactText && a.type === type));
-    chrome.storage.local.set({ [SK.annotations]: annotations });
-    hlTellDeleted(removed);
-  });
+  const compactText = (text || '').replace(/\s+/g, ' ').trim();
+  if (!compactText) return;
+  hlSend([{ op: 'removeText', text: compactText, type }]);
 }
 
+/** Remove every highlight of this page (context menu). The background works out the page from this tab, so tracking and content parameters match. */
+export function clearPageHighlights(done = () => {}) {
+  hlSend([{ op: 'clearPage' }], () => done());
+}
+
+// One canonical shape for every stored highlight (modules/highlightRecords.js): keeps the page key's content parameters.
 function normalizeAnnotationEntries(rawAnnotations) {
-  if (Array.isArray(rawAnnotations)) {
-    return rawAnnotations
-      .filter(a => a && typeof a === 'object')
-      .map(a => {
-        const url = typeof a.url === 'string' ? a.url.split('#')[0].split('?')[0] : '';
-        const text = typeof a.text === 'string' ? a.text.replace(/\s+/g, ' ').trim() : '';
-        const type = a.type === 'ghost' ? 'ghost' : 'user';
-        const timestamp = typeof a.timestamp === 'string' ? a.timestamp : new Date().toISOString();
-        const extra = {};
-        if (typeof a.id === 'string') extra.id = a.id;
-        if (a.quote && typeof a.quote.exact === 'string') extra.quote = { exact: a.quote.exact, prefix: a.quote.prefix || '', suffix: a.quote.suffix || '' };
-        if (typeof a.pos === 'number') extra.pos = a.pos;
-        if (a.v) extra.v = a.v;
-        if (a.dismissed) extra.dismissed = true;
-        return { url, text, type, timestamp, ...extra };
-      })
-      .filter(a => a.url && a.text);
-  }
-
-  if (!rawAnnotations || typeof rawAnnotations !== 'object') return [];
-
-  const migrated = [];
-  for (const [urlKey, value] of Object.entries(rawAnnotations)) {
-    const url = (urlKey || '').split('#')[0].split('?')[0];
-    if (!url || !value) continue;
-
-    if (Array.isArray(value)) {
-      value.forEach(item => {
-        if (typeof item === 'string') {
-          const text = item.replace(/\s+/g, ' ').trim();
-          if (text) migrated.push({ url, text, type: 'user', timestamp: new Date().toISOString() });
-        } else if (item && typeof item === 'object') {
-          const text = typeof item.text === 'string' ? item.text.replace(/\s+/g, ' ').trim() : '';
-          if (!text) return;
-          migrated.push({
-            url,
-            text,
-            type: item.type === 'ghost' ? 'ghost' : 'user',
-            timestamp: typeof item.timestamp === 'string' ? item.timestamp : new Date().toISOString()
-          });
-        }
-      });
-      continue;
-    }
-
-    if (value && typeof value === 'object') {
-      const users = Array.isArray(value.user) ? value.user : [];
-      const ghosts = Array.isArray(value.ghost) ? value.ghost : [];
-
-      users.forEach(t => {
-        if (typeof t !== 'string') return;
-        const text = t.replace(/\s+/g, ' ').trim();
-        if (text) migrated.push({ url, text, type: 'user', timestamp: new Date().toISOString() });
-      });
-
-      ghosts.forEach(t => {
-        if (typeof t !== 'string') return;
-        const text = t.replace(/\s+/g, ' ').trim();
-        if (text) migrated.push({ url, text, type: 'ghost', timestamp: new Date().toISOString() });
-      });
-    }
-  }
-
-  return migrated;
+  return normalizeHighlights(rawAnnotations);
 }
 
 // Returns false once the extension has been reloaded/updated, which
@@ -293,21 +221,16 @@ function isExtensionContextValid() {
   }
 }
 
+/** This page's highlights (dismissed ones included). Reads only; the background is the one writer. */
 function getNormalizedAnnotations(callback) {
   if (!isExtensionContextValid()) return; // silently no-op, don't throw
+  const pageKey = getPageKey();
+  const own = hlPageKey(pageKey);
   try {
-    chrome.storage.local.get([SK.annotations], (res) => {
-      const normalized = normalizeAnnotationEntries(res[SK.annotations]);
-      const existing = Array.isArray(res[SK.annotations]) ? res[SK.annotations] : [];
-      const shouldWriteBack = !Array.isArray(res[SK.annotations])
-        || JSON.stringify(existing) !== JSON.stringify(normalized);
-
-      if (shouldWriteBack) {
-        chrome.storage.local.set({ [SK.annotations]: normalized }, () => callback(normalized));
-        return;
-      }
-
-      callback(normalized);
+    chrome.storage.local.get([SK.hlSchema, own, SK.annotations], (res) => {
+      if (!res) return;
+      const raw = res[SK.hlSchema] === 2 ? res[own] : res[SK.annotations];   // before the migration: the old single list
+      callback(normalizeAnnotationEntries(raw).filter(a => a.url === pageKey));
     });
   } catch (e) {
     return; // context died between the check and the call
@@ -362,7 +285,8 @@ export function startAnnotationWatchers() {
   if (!storageChangeListenerAttached) {
     storageChangeListenerAttached = true;
     chrome.storage.onChanged.addListener((changes, area) => {
-      if (area === 'local' && SK.annotations in changes && isAnyHighlightingEnabled()) {
+      // only this page's list matters (the old single list before the migration; the schema flag when the migration finishes)
+      if (area === 'local' && (hlPageKey(getPageKey()) in changes || SK.annotations in changes || SK.hlSchema in changes) && isAnyHighlightingEnabled()) {
         scheduleRestoreAnnotations(80);
       }
       // a comment was saved or removed (here, or in the Notes tab): the panel shows it
@@ -394,14 +318,15 @@ export function restoreAnnotations() {
 
     // Resolving walks the article text; defer to idle time so it never competes
     // with painting or scrolling on large pages.
-    const run = () => hlResolveAll(pageAnnotations, annotations);
+    const run = () => hlResolveAll(pageAnnotations);
     if (typeof requestIdleCallback === 'function') requestIdleCallback(run, { timeout: 2000 });
     else setTimeout(run, 0);
   });
 }
 
-function hlResolveAll(pageAnnotations, allAnnotations) {
-  let idx = null, bodyIdx = null, upgraded = false;
+function hlResolveAll(pageAnnotations) {
+  let idx = null, bodyIdx = null;
+  const upgraded = [];
   const getIdx = (wide) => {
     if (wide) return bodyIdx || (bodyIdx = ancBuildIndex(document.body));
     return idx || (idx = ancBuildIndex(ancScopeRoot()));
@@ -425,21 +350,17 @@ function hlResolveAll(pageAnnotations, allAnnotations) {
       // keeps pointing at THIS occurrence from now on.
       if (!ann.quote) {
         const q = ancMakeSelector(usedIdx, entry.range);
-        if (q) { ann.quote = { exact: q.exact, prefix: q.prefix, suffix: q.suffix }; ann.pos = q.pos; ann.v = 2; upgraded = true; }
+        if (q) { ann.quote = { exact: q.exact, prefix: q.prefix, suffix: q.suffix }; ann.pos = q.pos; ann.v = 2; upgraded.push(ann); }
       }
       hlPaint(entry);
     }
   });
-  if (upgraded) {
-    const byKey = new Map(pageAnnotations.map(a => [a.text + '|' + a.type, a]));
-    const next = allAnnotations.map(a => {
-      const u = a.url === getPageKey() ? byKey.get(a.text + '|' + a.type) : null;
-      if (!u || !u.quote) return a;
-      const { _legacy, ...clean } = u;
-      if (_legacy) clean.id = clean.id.replace(/^legacy_/, '');
-      return { ...a, ...clean };
-    });
-    chrome.storage.local.set({ [SK.annotations]: next });
+  if (upgraded.length) {
+    // store the context found now; a highlight saved before ids existed is matched by text + type and gets its id here
+    hlSend(upgraded.map(u => {
+      const patch = { quote: u.quote, pos: u.pos, v: 2 };
+      return u._legacy ? { op: 'patch', text: u.text, type: u.type, patch: { ...patch, id: u.id.replace(/^legacy_/, '') } } : { op: 'patch', id: u.id, patch };
+    }));
   }
   hlRefreshPanel();
 }
@@ -465,24 +386,83 @@ export function scheduleRestoreAnnotations(delay = 160) {
 
 // ── 1. Selecting text ────────────────────────────────────────────────────────
 
+// ── Selection toolbar ──
+// Only a real selection gesture shows the toolbar: a drag of a few pixels or a double / triple click, starting outside
+// fields, editable areas and controls, with at least three letters selected, and not the selection it was already shown
+// for. A click that leaves an old selection behind, or selecting inside a form, shows nothing (same rules as loader.js).
+const HL_EDITABLE = 'input, textarea, select, button, [contenteditable=""], [contenteditable="true"], [role="textbox"], [role="button"], #ai-summary-hybrid-sidebar, #aish-hl-host, [data-aish-ui]';
+let hlDown = null;
+let hlLastShown = '';
+const hlInEditable = (node) => {
+  const el = node && (node.nodeType === 1 ? node : node.parentElement);
+  return !!(el && (el.closest(HL_EDITABLE) || el.isContentEditable));
+};
+try {
+  document.addEventListener('mousedown', (e) => {
+    if (e.composedPath && e.composedPath().some((n) => n && (n.id === 'aish-np-host' || n.id === 'aish-hl-host'))) return;
+    hlDown = { x: e.clientX || 0, y: e.clientY || 0, inField: hlInEditable(e.target) };
+  }, true);
+} catch (_) { /* no document */ }
+
+/** The selection of a mouse-up, or null when it is not a real selection gesture. */
+function hlQualify(event) {
+  if (!event || event.button !== 0 || !hlDown || hlDown.inField) return null;
+  const selection = window.getSelection();
+  if (!selection || selection.rangeCount === 0 || selection.isCollapsed) return null;
+  const range = selection.getRangeAt(0);
+  const text = range.toString().replace(/\s+/g, ' ').trim();
+  if (text.replace(/[^\p{L}\p{N}]/gu, '').length < 3) return null;
+  if (hlInEditable(selection.anchorNode) || hlInEditable(selection.focusNode)) return null;
+  const moved = Math.hypot((event.clientX || 0) - hlDown.x, (event.clientY || 0) - hlDown.y) >= 5;
+  if (!moved && !(event.detail >= 2)) return null;
+  const key = `${text}|${range.startOffset}|${range.endOffset}`;
+  if (key === hlLastShown) return null;
+  hlLastShown = key;
+  return { selection, range: range.cloneRange(), text: range.toString().trim() };
+}
+
+/**
+ * Run one toolbar action on the current selection: 'highlight', 'comment' (highlight + comment) or 'note' (a note quoting
+ * it). The loader's own toolbar calls this (window.__AISH_SELECTION_ACTION) after it injected this script.
+ */
+export function runSelectionAction(which, pos = {}) {
+  if (!userHighlightingEnabled || isHighlightingSuppressed()) return false;
+  const selection = window.getSelection();
+  if (!selection || selection.rangeCount === 0 || selection.isCollapsed) return false;
+  const selectedRange = selection.getRangeAt(0).cloneRange();
+  const selectedText = selectedRange.toString().trim();
+  if (selectedText.length < 3) return false;
+  hlSelectionAction(which, selection, selectedRange, selectedText, pos.pageX || 0, pos.pageY || 0);
+  return true;
+}
+
+function hlSelectionAction(which, selection, selectedRange, selectedText, px, py) {
+  const tell = (msg) => new Promise((resolve) => { try { chrome.runtime.sendMessage(msg, (res) => { void chrome.runtime.lastError; resolve(!!(res && res.ok)); }); } catch (_) { resolve(false); } });
+  if (which === 'highlight') { applyHighlightFromRange(selectedRange, selectedText); selection.removeAllRanges(); return; }
+  if (which === 'comment') {   // the highlight is made first; the comment is saved with it
+    const ann = applyHighlightFromRange(selectedRange, selectedText); selection.removeAllRanges();
+    if (!ann) return;
+    npShowComposer({ x: px, y: py, heading: 'Comment', quote: selectedText, placeholder: 'Add a comment…', onSave: (text, tags) => tell({ action: 'commentSet', highlightId: ann.id, text, tags }) });
+    return;
+  }
+  if (which === 'note') {      // a note that carries the selected text as its quote, no highlight
+    selection.removeAllRanges();
+    npShowComposer({ x: px, y: py, heading: 'Note', quote: selectedText, placeholder: 'Write a note…', onSave: (text, tags) => tell({ action: 'noteAdd', text, tags, quote: selectedText }) });
+  }
+}
+
 export function handleTextSelection(event) {
   if (!userHighlightingEnabled || isHighlightingSuppressed()) return;
   // pressing a button of our own toolbar or composer ends in a mouse-up too: that is not a new selection (it would draw the toolbar again and swallow the click)
   if (event && typeof event.composedPath === 'function' && event.composedPath().some((n) => n && (n.id === 'aish-np-host' || n.id === 'aish-hl-host'))) return;
-  const selection = window.getSelection();
-  if (!selection || selection.rangeCount === 0) return;
-
-  const selectedRange = selection.getRangeAt(0).cloneRange();
-  const selectedText = selectedRange.toString().trim();
-  if (!selectedText || selectedText.length < 3) return;
-
-  const anchorNode = selection.anchorNode;
-  if (anchorNode && anchorNode.parentElement &&
-     (anchorNode.parentElement.closest('#ai-summary-hybrid-sidebar, #aish-hl-host') ||
-      ['INPUT', 'TEXTAREA'].includes(anchorNode.parentElement.tagName))) return;
-
   const reattach = hlReattachId;
-  if (reattach) {   // re-attaching a lost highlight: the single button, as before
+  const q = reattach ? null : hlQualify(event);
+  if (reattach) {   // re-attaching a lost highlight: any selection, the single button, as before
+    const selection = window.getSelection();
+    if (!selection || selection.rangeCount === 0 || selection.isCollapsed) return;
+    const selectedRange = selection.getRangeAt(0).cloneRange();
+    const selectedText = selectedRange.toString().trim();
+    if (selectedText.length < 3) return;
     showHighlightTooltip(event.pageX, event.pageY, () => {
       if (hlLive.has(reattach)) hlReattach(reattach, selectedRange);
       else applyHighlightFromRange(selectedRange, selectedText);
@@ -491,20 +471,13 @@ export function handleTextSelection(event) {
     }, '🔗 Attach here');
     return;
   }
+  if (!q) return;
   const { pageX: px, pageY: py } = event;
-  const tell = (msg) => new Promise((resolve) => { try { chrome.runtime.sendMessage(msg, (res) => { void chrome.runtime.lastError; resolve(!!(res && res.ok)); }); } catch (_) { resolve(false); } });
   npShowToolbar({
     x: px, y: py,
-    onHighlight: () => { applyHighlightFromRange(selectedRange, selectedText); selection.removeAllRanges(); },
-    onComment: () => {   // the highlight is made first; the comment is saved with it
-      const ann = applyHighlightFromRange(selectedRange, selectedText); selection.removeAllRanges();
-      if (!ann) return;
-      npShowComposer({ x: px, y: py, heading: 'Comment', quote: selectedText, placeholder: 'Add a comment…', onSave: (text, tags) => tell({ action: 'commentSet', highlightId: ann.id, text, tags }) });
-    },
-    onNote: () => {      // a note that carries the selected text as its quote, no highlight
-      selection.removeAllRanges();
-      npShowComposer({ x: px, y: py, heading: 'Note', quote: selectedText, placeholder: 'Write a note…', onSave: (text, tags) => tell({ action: 'noteAdd', text, tags, quote: selectedText }) });
-    },
+    onHighlight: () => hlSelectionAction('highlight', q.selection, q.range, q.text, px, py),
+    onComment: () => hlSelectionAction('comment', q.selection, q.range, q.text, px, py),
+    onNote: () => hlSelectionAction('note', q.selection, q.range, q.text, px, py),
   });
   void npHide;
 }
@@ -577,6 +550,7 @@ function showHighlightTooltip(x, y, onClick, label = '✏️ Highlight') {
     `;
     document.body.appendChild(tooltip);
   }
+  // eslint-disable-next-line no-unsanitized/property -- reviewed: label is a fixed string from this file
   tooltip.innerHTML = label;
   tooltip.style.left = `${x + 5}px`;
   tooltip.style.top  = `${y - 35}px`;
@@ -723,6 +697,7 @@ function hlShowMenu(x, y, entry) {
     document.body.appendChild(menu);
   }
   const ghost = entry.ann.type === 'ghost';
+  // eslint-disable-next-line no-unsanitized/property -- reviewed: two fixed button templates, no data
   menu.innerHTML = ghost
     ? `<button id="btn-convert-yellow" style="background:#fef08a;border:1px solid #fde047;color:#854d0e;padding:4px 8px;border-radius:4px;cursor:pointer;font-weight:bold;">⭐ Keep</button>
        <button id="btn-dismiss-ghost" style="background:#f1f5f9;border:1px solid #cbd5e1;color:#475569;padding:4px 8px;border-radius:4px;cursor:pointer;">✕ Dismiss</button>`
@@ -749,7 +724,7 @@ export function applyGhostHighlights(quotes = []) {
   const idx = ancBuildIndex(ancScopeRoot());
   getNormalizedAnnotations((annotations) => {
     const url = getPageKey();
-    let added = false;
+    const fresh = [];
     quotes.forEach(quote => {
       const exact = ancQuoteUsable(idx, quote, 8);            // unique in the article, or long enough to be specific
       if (!exact) return;
@@ -761,12 +736,12 @@ export function applyGhostHighlights(quotes = []) {
       const q = ancMakeSelector(idx, range);
       const ann = { id: hlNewId(), url, text: exact, type: 'ghost', timestamp: new Date().toISOString(), v: 2,
         quote: { exact: q.exact, prefix: q.prefix, suffix: q.suffix }, pos: q.pos };
-      annotations.push(ann); added = true;
+      annotations.push(ann); fresh.push(ann);
       const entry = { ann, range, status: 'ok', marks: [] };
       hlLive.set(ann.id, entry);
       hlPaint(entry);
     });
-    if (added) chrome.storage.local.set({ [SK.annotations]: annotations });
+    if (fresh.length) hlSend(fresh.map(hl => ({ op: 'add', hl })));
     hlRefreshPanel();
   });
 }

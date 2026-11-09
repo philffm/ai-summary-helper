@@ -3,7 +3,7 @@
 // Every key the extension owns belongs to one category here; test104 fails when a key in storageKeys.js (SK) is in none of them,
 // so a key added later can never be forgotten by a delete button. The functions take the storage areas as arguments (default:
 // the real chrome ones) so they can be tested with plain objects.
-import { SK, SK_LEGACY, SK_DEAD, ARTICLE_REC, ARTICLE_REC_LEGACY, COLL_REC, TARGET_LEDGER, SYNC_STAMPS, SYNC_LEDGER } from './storageKeys.js';
+import { SK, SK_LEGACY, SK_DEAD, ARTICLE_REC, ARTICLE_REC_LEGACY, COLL_REC, TARGET_LEDGER, SYNC_STAMPS, SYNC_LEDGER, HL_PAGE, isHlPageKey } from './storageKeys.js';
 import { FEED_BODY, FEED_BODY_INDEX } from './feedBodies.js';
 
 export const CATEGORY_IDS = ['articles', 'highlights', 'feeds', 'podcasts', 'keys', 'send', 'prefs'];
@@ -21,8 +21,8 @@ export const TRANSIENT_PREFIXES = [SYNC_STAMPS, SYNC_LEDGER];
 export const CATEGORIES = {
     // the summaries and everything attached to them
     articles: { keys: [SK.articlesIndex, SK.articlesSchema, SK.collIndex, SK.graphSim], prefixes: [ARTICLE_REC, ARTICLE_REC_LEGACY, COLL_REC, SYNC_STAMPS, SYNC_LEDGER], extra: ['articles', 'articleHistory'] },
-    // yellow highlights and AI ghost highlights, all pages
-    highlights: { keys: [SK.annotations], extra: [...SK_DEAD.filter((k) => k !== 'articleHistory'), 'annotations'] },
+    // yellow highlights and AI ghost highlights, all pages (one key per page + the index; hl:all is the old single list)
+    highlights: { keys: [SK.hlIndex, SK.annotations], prefixes: [HL_PAGE], extra: [...SK_DEAD.filter((k) => k !== 'articleHistory'), 'annotations'] },
     // RSS: subscriptions, fetched items, recaps, mood snapshots, listening position, background processing state
     feeds: { keys: [SK.feedSubs, SK.feedItems, SK.feedRecaps, SK.feedMood, SK.feedAudioPos, SK.feedBackground, SK.feedBgSeen, SK.feedPending, SK.feedSync, FEED_BODY_INDEX], prefixes: [FEED_BODY] },
     podcasts: { keys: [SK.podcasts] },
@@ -39,7 +39,7 @@ export const CATEGORIES = {
 };
 
 /** Bookkeeping keys: removed only together with everything (a partial delete must not break the migrations). */
-export const META_KEYS = [SK.migrationVersion, SK.keysSchema, SK.installedAt, SK.syncDeviceId, SK.syncClock, SK.syncPlaces, SK.syncConnections, SK.syncStatus, SK.cloudRoute, SK.notesIndex];   // notes go only with "delete everything": no partial delete names them
+export const META_KEYS = [SK.migrationVersion, SK.keysSchema, SK.installedAt, SK.syncDeviceId, SK.syncClock, SK.syncPlaces, SK.syncConnections, SK.syncStatus, SK.cloudRoute, SK.notesIndex, SK.hlSchema];   // notes go only with "delete everything": no partial delete names them
 
 // old (pre-registry) names of a set of keys
 const legacyNames = (keys) => Object.entries(SK_LEGACY).filter(([, nu]) => keys.includes(nu)).map(([old]) => old);
@@ -87,7 +87,7 @@ export async function describeData({ local = chrome.storage.local, sync = chrome
     const prefsCount = Object.keys(syncAll).length + CATEGORIES.prefs.keys.filter((k) => k in all).length;
     return {
         articles: count(all[SK.articlesIndex]),
-        highlights: count(all[SK.annotations]),
+        highlights: count(all[SK.annotations]) + Object.keys(all).filter(isHlPageKey).reduce((n, k) => n + count(all[k]), 0),
         feeds: count(all[SK.feedSubs]),
         feedItems: count(all[SK.feedItems]),
         podcasts: count(all[SK.podcasts]),

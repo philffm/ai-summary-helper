@@ -21,6 +21,7 @@ on:
 
 permissions:
   contents: write
+  actions: read   # to look up whether ci.yml already passed on this commit
 
 # One release at a time: two runs would both read the same version and both try to bump it.
 concurrency:
@@ -43,9 +44,20 @@ jobs:
           sudo apt-get install -y jq zip gawk
 
       # Tags are cut from main, which ci.yml already linted and tested on push — don't run it a second time.
-      # A manual run can start from any ref, so that one still checks.
-      - name: Run tests (manual runs only)
+      # A manual run can start from any ref, so it checks, unless ci.yml already passed every test (the gate) on this exact commit.
+      - name: Did CI already pass on this commit?
+        id: ci
         if: github.event_name == 'workflow_dispatch' && inputs.run_tests
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          SHA=$(git rev-parse HEAD)
+          # push and nightly runs run the whole gate (test:release); a pull request run only the affected tests, so it does not count
+          N=$(gh run list --workflow ci.yml --commit "$SHA" --status success --limit 50 --json event --jq '[.[] | select(.event != "pull_request")] | length' 2>/dev/null || echo 0)
+          if [ "${N:-0}" -gt 0 ]; then echo "passed=true" >> "$GITHUB_OUTPUT"; echo "CI already passed on $SHA: tests skipped"; else echo "passed=false" >> "$GITHUB_OUTPUT"; echo "no passing CI run for $SHA: running the tests"; fi
+
+      - name: Run tests (manual runs, unless CI already passed on this commit)
+        if: github.event_name == 'workflow_dispatch' && inputs.run_tests && steps.ci.outputs.passed != 'true'
         run: |
           npm ci --no-audit --no-fund
           npm run lint -- --quiet   # errors only (undefined identifiers etc.)

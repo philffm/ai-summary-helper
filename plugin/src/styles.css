@@ -1199,6 +1199,8 @@ ul#articleList {
 
 /* ── Connection Mode Switch (Segmented Control) ────────────────────────── */
 
+/* Models › Own key / Local share one container: invisible (but keeping its room) while its fields are rebuilt for the chosen tab. */
+#developerModeContainer.is-switching { visibility: hidden; }
 .segmented-control {
     display: flex;
     background: var(--glass-input);
@@ -4028,6 +4030,7 @@ body[data-surface="tab"] { min-width: 0; }
 .gcm-dot.is-new { fill: var(--accent); }
 .gcm-tag { fill: var(--accent); stroke: var(--accent-light); stroke-width: 2; }
 .gcm-label { fill: var(--text-primary); font-size: 11px; font-weight: 600; }
+.graph-cluster-scope { width: 100%; }
 .graph-cluster-brief { width: 100%; min-height: 44px; border-radius: 999px; font-size: var(--fs-md); font-weight: 600; }
 .graph-cluster-brief:disabled { opacity: .6; cursor: progress; }
 .graph-cluster-actions { margin: 0; }   /* an action bar (actionBar.js) since the topic actions became customizable */
@@ -4041,14 +4044,6 @@ body[data-surface="tab"] { min-width: 0; }
 .graph-cluster-open.is-included { border-color: var(--accent); box-shadow: inset 3px 0 0 var(--accent); }
 .graph-cluster-open.is-opened:not(.is-included) .graph-cluster-open-t { color: var(--text-secondary); }
 .graph-cluster-opened > summary { display: flex; align-items: center; gap: 8px; }
-.graph-cluster-switch { margin-left: auto; display: none; align-items: center; gap: 8px; padding: 2px 0; border: none; background: none; color: var(--text-muted); font: inherit; font-size: var(--fs-xs); font-weight: 400; cursor: pointer; }
-.graph-cluster-opened[open] .graph-cluster-switch { display: inline-flex; }
-.graph-cluster-switch-k { position: relative; width: 40px; height: 22px; border-radius: 11px; background: var(--outline); transition: background var(--duration-fast); }
-.graph-cluster-switch-k::after { content: ''; position: absolute; top: 3px; left: 3px; width: 16px; height: 16px; border-radius: 50%; background: var(--switch-knob); transition: transform var(--duration-fast); }
-.graph-cluster-switch[aria-checked="true"] .graph-cluster-switch-k { background: var(--accent); }
-.graph-cluster-switch[aria-checked="true"] .graph-cluster-switch-k::after { transform: translateX(18px); }
-.graph-cluster-switch:focus-visible { outline: var(--focus-ring-width) solid var(--focus-ring); outline-offset: var(--focus-ring-offset); border-radius: 6px; }
-@media (prefers-reduced-motion: reduce) { .graph-cluster-switch-k, .graph-cluster-switch-k::after { transition: none; } }
 .graph-cluster-open.is-opened .graph-cluster-open-t { font-weight: 500; color: var(--text-secondary); }
 .graph-cluster-opened > summary { cursor: pointer; font-size: var(--fs-xs); font-weight: 600; color: var(--text-muted); padding: 6px 0; }
 .graph-cluster-opened[open] > summary { margin-bottom: 4px; }
