@@ -6,9 +6,9 @@
 let pw; try { pw = require('playwright'); } catch (_) { pw = require('/opt/npm-tools/node_modules/playwright'); }
 const { chromium } = pw;
 const http = require('http'); const path = require('path'); const fs = require('fs'); const os = require('os');
-const html = (t) => `<!doctype html><html><head><title>${t}</title></head><body style="font:18px sans-serif;margin:40px"><article><h1>Thread ${t}</h1><p id="p1">Sleep consolidates memory by replaying the day's experiences during slow wave sleep, which strengthens connections between neurons.</p><p id="p2">A second paragraph about something else entirely so the page has enough text to pass any length checks the extension might do.</p><p id="p3">A third paragraph that talks about rivers, mountains and the slow movement of glaciers across the northern landscapes.</p></article></body></html>`;
+const html = () => `<!doctype html><html><head><title>Thread</title></head><body style="font:18px sans-serif;margin:40px"><article><h1>Thread</h1><p id="p1">Sleep consolidates memory by replaying the day's experiences during slow wave sleep, which strengthens connections between neurons.</p><p id="p2">A second paragraph about something else entirely so the page has enough text to pass any length checks the extension might do.</p><p id="p3">A third paragraph that talks about rivers, mountains and the slow movement of glaciers across the northern landscapes.</p></article></body></html>`;
 const PORT = 8124;
-const srv = http.createServer((q, r) => { r.setHeader('content-type', 'text/html'); r.end(html(q.url)); }).listen(PORT);
+const srv = http.createServer((q, r) => { r.setHeader('content-type', 'text/html'); r.end(html()); }).listen(PORT);
 const base = `http://localhost:${PORT}`;
 (async () => {
   const ext = path.resolve(process.argv[2] || path.join(__dirname, '../../dev/aish-extension-chrome'));
