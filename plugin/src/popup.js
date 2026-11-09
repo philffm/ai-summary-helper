@@ -80,29 +80,48 @@ document.addEventListener("DOMContentLoaded", async () => {
     initBackToTop();
     await initDock(ui).catch(() => {});   // dock order + hidden tabs before the first screen is placed
 
+    // Tab modules. Settings (it also drives the sign-in mask), History, the phone inbox and About load right after the
+    // main screen. Feeds, Notes and the sync / AI-apps panels load when their screen is first shown, or a few seconds
+    // later when the browser is idle. A wide surface (side panel, tab) can show several panes at once (workspace split
+    // view), so there everything loads right away, as before.
+    const deferredFailed = (e) => console.error('Deferred module init failed:', e);
+    const once = (load) => { let p = null; return () => (p = p || load().catch((e) => { p = null; deferredFailed(e); })); };
+    const onDemand = {
+        feeds: once(() => import('./modules/feedManager.js').then(({ initFeedManager }) => initFeedManager(ui))),
+        notes: once(() => import('./modules/notesView.js').then(({ initNotesView }) => initNotesView(ui))),
+        // Settings also holds the feed preferences panel (feedManager renders it), and its search reads the panels
+        settings: once(() => Promise.all([import('./modules/mcpView.js'), import('./modules/syncView.js'), onDemand.feeds()])
+            .then(([{ initMcpView }, { initSyncView }]) => { initMcpView(); initSyncView(); })),
+    };
+    const showScreen = ui.showScreen.bind(ui);
+    ui.showScreen = (name) => { if (onDemand[name]) onDemand[name](); return showScreen(name); };
+    document.addEventListener('aish:ws-view', (e) => { const scope = e.detail && e.detail.scope; if (onDemand[scope]) onDemand[scope](); });
+    // a feed settings panel opened before the feed module was there: load it, then open the panel again for it
+    let feedsReady = false;
+    document.addEventListener('aish:settings-panel', (e) => {
+        const name = e.detail && e.detail.name;
+        if (feedsReady || (name !== 'feeds' && name !== 'feedprefs')) return;
+        onDemand.feeds().then(() => { if (!feedsReady) { feedsReady = true; document.dispatchEvent(new CustomEvent('aish:settings-panel', { detail: e.detail })); } });
+    });
+
     ui.showScreen((window.location && window.location.hash) === '#notes' ? 'notes' : "main");   // "Open in Notes" from a page opens this tab on the Notes screen
 
-    // Heavy tab modules (Feeds ~110 KB, History ~90 KB, Settings ~60 KB) are loaded after the main screen is up,
-    // so the first paint no longer waits for their parse.
     Promise.all([
+        import('./modules/aboutView.js'),
         import('./modules/settingsManager.js'),
-        import('./modules/feedManager.js'),
         import('./modules/articleManager.js'),
         import('./modules/inboxView.js'),
-        import('./modules/mcpView.js'),
-        import('./modules/syncView.js'),
-        import('./modules/notesView.js'),
-        import('./modules/aboutView.js'),
-    ]).then(([{ initSettingsManager }, { initFeedManager }, { initArticleManager }, { initInboxView }, { initMcpView }, { initSyncView }, { initNotesView }, { initAboutView }]) => {
+    ]).then(([{ initAboutView }, { initSettingsManager }, { initArticleManager }, { initInboxView }]) => {
         initAboutView();   // first: settingsNav reads #versionNumber for the About row
         initSettingsManager(ui);
-        initFeedManager(ui);
         initArticleManager(ui);
         initInboxView();
-        initMcpView();
-        initSyncView();
-        initNotesView(ui);
-    }).catch((e) => console.error('Deferred module init failed:', e));
+    }).catch(deferredFailed);
+    if (currentSurface() !== 'popup') Object.values(onDemand).forEach((load) => load());
+    else {
+        const whenIdle = window.requestIdleCallback || ((f) => setTimeout(f, 0));
+        setTimeout(() => whenIdle(() => onDemand.feeds().then(() => whenIdle(() => onDemand.notes().then(() => whenIdle(() => onDemand.settings()))))), 6000);
+    }
 
     // ── Auto-open native side panel if enabled ──────────────────────────
     // Never from inside the side panel itself: opening it again and closing "this" window would close the panel.

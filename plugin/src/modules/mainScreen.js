@@ -11,7 +11,6 @@ import { T, TN, uiLocale } from './feedI18n.js';
 import { topicLabel } from './topicConcepts.js';
 import { t } from './i18n.js';
 import { paperChips } from './paperInfo.js';
-import { aiComplete } from './feedAi.js';
 import { modalOpen } from './shortcuts.js';
 import { initInstantRead } from './instantRead.js';
 import { getReader } from './reader.js';
@@ -20,7 +19,6 @@ import { answerPreview, newTurn, buildPrompt, parseAnswer, joinContinuation } fr
 import { turnEl, renderAnswer } from './qaView.js';
 import { typeText } from './typewriter.js';
 import { sidebarTokenFromHash, acceptSidebarMessage, SIDEBAR_TOKEN_FIELD } from './sidebarChannel.js';
-import { attachCardMenu } from './cardMenu.js';
 import { currentLengthSpec } from './summaryLength.js';
 
 export function initMainScreen(ui) {
@@ -89,7 +87,8 @@ export function initMainScreen(ui) {
         // ⋯ actions (copy, share, LocalSend, Kindle, read aloud, delete …)
         {
             const hdr = bubble.querySelector('.summary-bubble-header');
-            if (hdr) attachCardMenu(hdr, article, { onRemoved: () => bubble.remove() });
+            // the menu module (~100 KB with send, cite and digest) loads with the first card, not with the popup
+            if (hdr) import('./cardMenu.js').then(({ attachCardMenu }) => attachCardMenu(hdr, article, { onRemoved: () => bubble.remove() })).catch(() => {});
         }
         // 💬 Ask: chat about this (older) summary — the thread opens right under the card.
         {
@@ -829,6 +828,7 @@ export function initMainScreen(ui) {
             }
             const history = prev ? conversation.turns.filter(t => t !== prev) : conversation.turns;
             const { system, user } = buildPrompt({ ...conversation, turns: history, question: q, draft: quickText });
+            const { aiComplete } = await import('./feedAi.js');   // the AI client loads with the first follow-up question
             const raw = await aiComplete(system, user, null, quickText ? ctrl.signal : null, (m) => {
                 // Stream the continuation in as it is written (cleaned of HTML / code fences / the SOURCES line).
                 const t = m && m.text ? answerPreview(m.text) : '';
