@@ -7492,159 +7492,159 @@
     "message": "🧠 Paikallinen malli"
   },
   "f_a_5_second_countdown_only_wh_7070": {
-    "message": "A 5-second countdown, only when you have read to the end. Any key or mouse movement stops it; a notification lets you reopen the tab."
+    "message": "5 sekunnin lähtölaskenta, vain kun olet lukenut loppuun. Mikä tahansa näppäin tai hiiren liike pysäyttää sen; ilmoituksesta voit avata välilehden uudelleen."
   },
   "f_any_key_or_mouse_movement_st_8528": {
-    "message": "Any key or mouse movement stops the countdown · Enter closes"
+    "message": "Mikä tahansa näppäin tai hiiren liike pysäyttää lähtölaskennan · Enter sulkee"
   },
   "f_at_the_weekend_48ee": {
-    "message": "At the weekend"
+    "message": "Viikonloppuna"
   },
   "f_back_to_the_reader_bf83": {
-    "message": "Back to the reader"
+    "message": "Takaisin lukijaan"
   },
   "f_close_tab_53a0": {
-    "message": "Close tab"
+    "message": "Sulje välilehti"
   },
   "f_could_not_reach_this_page_tr_8523": {
-    "message": "Could not reach this page — try refreshing the tab."
+    "message": "Sivua ei tavoiteta — lataa välilehti uudelleen."
   },
   "f_countdown_stopped_the_tab_st_4a3d": {
-    "message": "Countdown stopped. The tab stays open."
+    "message": "Lähtölaskenta pysäytetty. Välilehti pysyy auki."
   },
   "f_esc_stops_the_article_is_sti_8d36": {
-    "message": "Esc stops – the article is still saved."
+    "message": "Esc lopettaa – artikkeli tallennetaan silti."
   },
   "f_faster_d384": {
-    "message": "Faster"
+    "message": "Nopeammin"
   },
   "f_full_screen_bee0": {
-    "message": "Full screen"
+    "message": "Koko näyttö"
   },
   "f_hide_the_page_while_you_read_19ef": {
-    "message": "Hide the page while you read (F switches in the reader)"
+    "message": "Piilottaa sivun lukemisen ajaksi (F vaihtaa lukijassa)"
   },
   "f_in_the_popup_next_to_summari_681a": {
-    "message": "In the popup next to “Summarize” and when you right-click a page"
+    "message": "Ponnahdusikkunassa ”Tiivistä”-painikkeen vieressä ja sivun hiiren oikean painikkeen valikossa"
   },
   "f_keep_page_1e43": {
-    "message": "Keep page"
+    "message": "Pidä sivu"
   },
   "f_keys_in_the_reader_space_pau_b8e1": {
-    "message": "Keys in the reader: Space pause · ←/→ sentence · Shift+←/→ word · ↑/↓ speed · T text · F full screen · Esc stop"
+    "message": "Näppäimet: Välilyönti tauko · ←/→ lause · Vaihto+←/→ sana · ↑/↓ nopeus · T teksti · F koko näyttö · Esc lopeta"
   },
   "f_next_week_0f94": {
-    "message": "Next week"
+    "message": "Ensi viikolla"
   },
   "f_no_reminder_62e0": {
-    "message": "No reminder"
+    "message": "Ei muistutusta"
   },
   "f_no_summary_came_back_the_pag_73b5": {
-    "message": "No summary came back. The page may have too little text."
+    "message": "Tiivistelmää ei tullut. Sivulla voi olla liian vähän tekstiä."
   },
   "f_offer_to_close_the_tab_at_th_dec1": {
-    "message": "Offer to close the tab at the end"
+    "message": "Tarjoa välilehden sulkemista lopussa"
   },
   "f_paused_press_space_to_start_0dbf": {
-    "message": "Paused. Press Space to start."
+    "message": "Tauolla. Aloita välilyönnillä."
   },
   "f_paused_space_continues_jumps_3a61": {
-    "message": "Paused. Space continues · ←/→ jumps by sentence · click a sentence to read from there · T shows the whole summary"
+    "message": "Tauolla. Välilyönti jatkaa · ←/→ hyppää lauseittain · napsauta lausetta lukeaksesi siitä · T näyttää koko tiivistelmän"
   },
   "f_reading_starts_as_soon_as_it_2d8c": {
-    "message": "Reading starts as soon as it is done."
+    "message": "Lukeminen alkaa heti, kun se on valmis."
   },
   "f_remind_me_97ce": {
-    "message": "Remind me"
+    "message": "Muistuta"
   },
   "f_remind_me_later_cb3c": {
-    "message": "Remind me later"
+    "message": "Muistuta myöhemmin"
   },
   "f_reminder_time_ecfc": {
-    "message": "Reminder time"
+    "message": "Muistutuksen aika"
   },
   "f_reminder_8f45": {
-    "message": "Reminder {when}"
+    "message": "Muistutus {when}"
   },
   "f_sentence_of_s_left_9552": {
-    "message": "Sentence {a} of {b} · {s} s left"
+    "message": "Lause {a}/{b} · {s} s jäljellä"
   },
   "f_show_speed_read_in_the_menus_2086": {
-    "message": "Show Speed-Read in the menus"
+    "message": "Näytä Speed-Read valikoissa"
   },
   "f_show_as_text_875b": {
-    "message": "Show as text"
+    "message": "Näytä tekstinä"
   },
   "f_slower_4aaf": {
-    "message": "Slower"
+    "message": "Hitaammin"
   },
   "f_speed_8020": {
-    "message": "Speed"
+    "message": "Nopeus"
   },
   "f_speed_read_693b": {
     "message": "Speed-Read"
   },
   "f_speed_read_does_not_work_on__e05a": {
-    "message": "Speed-Read does not work on this page."
+    "message": "Speed-Read ei toimi tällä sivulla."
   },
   "f_speed_read_writes_the_summar_2eac": {
-    "message": "Speed-Read writes the summary, then shows it word by word with the sentence above. Pause any time to see the paragraph. It helps you get through a summary in about a minute; for careful reading, show it as text."
+    "message": "Speed-Read kirjoittaa tiivistelmän ja näyttää sen sitten sana kerrallaan lause yläpuolella. Pidä taukoa milloin tahansa nähdäksesi kappaleen. Näin käyt tiivistelmän läpi noin minuutissa; tarkkaa lukemista varten näytä se tekstinä."
   },
   "f_the_summary_did_not_work_4b55": {
-    "message": "The summary did not work"
+    "message": "Tiivistelmä epäonnistui"
   },
   "f_the_summary_is_empty_1941": {
-    "message": "The summary is empty."
+    "message": "Tiivistelmä on tyhjä."
   },
   "f_the_summary_word_by_word_the_0246": {
-    "message": "The summary word by word, then keep the page or close the tab"
+    "message": "Tiivistelmä sana kerrallaan, sitten pidä sivu tai sulje välilehti"
   },
   "f_the_tab_closes_in_s_0762": {
-    "message": "The tab closes in {n} s"
+    "message": "Välilehti sulkeutuu {n} s kuluttua"
   },
   "f_the_tab_stays_open_c59f": {
-    "message": "The tab stays open."
+    "message": "Välilehti pysyy auki."
   },
   "f_tomorrow_morning_15fa": {
-    "message": "Tomorrow morning"
+    "message": "Huomenna aamulla"
   },
   "f_words_at_a_time_5479": {
-    "message": "Words at a time"
+    "message": "Sanoja kerrallaan"
   },
   "f_writing_the_summary_865e": {
-    "message": "Writing the summary …"
+    "message": "Tiivistelmää kirjoitetaan …"
   },
   "f_wpm_f449": {
-    "message": "{n} WPM"
+    "message": "{n} sanaa/min"
   },
   "f_sentences_s_cd74": {
-    "message": "{n} sentences · {s} s"
+    "message": "{n} lausetta · {s} s"
   },
   "f_words_so_far_7815": {
-    "message": "{n} words so far"
+    "message": "tähän mennessä {n} sanaa"
   },
   "ctxSpeedRead": {
-    "message": "⚡ Speed-Read this page",
+    "message": "⚡ Speed-Read tälle sivulle",
     "description": "Right-click menu entry"
   },
   "notifReadLaterTitle": {
-    "message": "🔖 Ready to read?",
+    "message": "🔖 Valmis lukemaan?",
     "description": "Notification title when a read-later reminder is due"
   },
   "notifOpen": {
-    "message": "Open",
+    "message": "Avaa",
     "description": "Notification button"
   },
   "notifDismiss": {
-    "message": "Dismiss",
+    "message": "Myöhemmin",
     "description": "Notification button"
   },
   "notifTabClosedTitle": {
-    "message": "Tab closed · the summary is saved",
+    "message": "Välilehti suljettu · tiivistelmä on tallennettu",
     "description": "Notification after Speed-Read closed the tab"
   },
   "notifReopen": {
-    "message": "Reopen",
+    "message": "Avaa uudelleen",
     "description": "Notification button: reopen the closed tab"
   }
 }

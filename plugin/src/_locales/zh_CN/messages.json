@@ -7209,159 +7209,159 @@
     "message": "🧠 本地模型"
   },
   "f_a_5_second_countdown_only_wh_7070": {
-    "message": "A 5-second countdown, only when you have read to the end. Any key or mouse movement stops it; a notification lets you reopen the tab."
+    "message": "只有读到结尾时才会出现 5 秒倒计时。按任意键或移动鼠标即可停止；可通过通知重新打开标签页。"
   },
   "f_any_key_or_mouse_movement_st_8528": {
-    "message": "Any key or mouse movement stops the countdown · Enter closes"
+    "message": "按任意键或移动鼠标即可停止倒计时 · Enter 关闭"
   },
   "f_at_the_weekend_48ee": {
-    "message": "At the weekend"
+    "message": "周末"
   },
   "f_back_to_the_reader_bf83": {
-    "message": "Back to the reader"
+    "message": "返回阅读器"
   },
   "f_close_tab_53a0": {
-    "message": "Close tab"
+    "message": "关闭标签页"
   },
   "f_could_not_reach_this_page_tr_8523": {
-    "message": "Could not reach this page — try refreshing the tab."
+    "message": "无法访问此页面——请刷新标签页。"
   },
   "f_countdown_stopped_the_tab_st_4a3d": {
-    "message": "Countdown stopped. The tab stays open."
+    "message": "倒计时已停止。标签页保持打开。"
   },
   "f_esc_stops_the_article_is_sti_8d36": {
-    "message": "Esc stops – the article is still saved."
+    "message": "Esc 停止——文章仍会保存。"
   },
   "f_faster_d384": {
-    "message": "Faster"
+    "message": "更快"
   },
   "f_full_screen_bee0": {
-    "message": "Full screen"
+    "message": "全屏"
   },
   "f_hide_the_page_while_you_read_19ef": {
-    "message": "Hide the page while you read (F switches in the reader)"
+    "message": "阅读时隐藏页面（在阅读器中按 F 切换）"
   },
   "f_in_the_popup_next_to_summari_681a": {
-    "message": "In the popup next to “Summarize” and when you right-click a page"
+    "message": "在弹窗中“总结”旁边，以及在页面上右键单击时"
   },
   "f_keep_page_1e43": {
-    "message": "Keep page"
+    "message": "保留页面"
   },
   "f_keys_in_the_reader_space_pau_b8e1": {
-    "message": "Keys in the reader: Space pause · ←/→ sentence · Shift+←/→ word · ↑/↓ speed · T text · F full screen · Esc stop"
+    "message": "按键：空格 暂停 · ←/→ 句子 · Shift+←/→ 单词 · ↑/↓ 速度 · T 文本 · F 全屏 · Esc 停止"
   },
   "f_next_week_0f94": {
-    "message": "Next week"
+    "message": "下周"
   },
   "f_no_reminder_62e0": {
-    "message": "No reminder"
+    "message": "不提醒"
   },
   "f_no_summary_came_back_the_pag_73b5": {
-    "message": "No summary came back. The page may have too little text."
+    "message": "没有返回摘要。页面文字可能太少。"
   },
   "f_offer_to_close_the_tab_at_th_dec1": {
-    "message": "Offer to close the tab at the end"
+    "message": "结束时提议关闭标签页"
   },
   "f_paused_press_space_to_start_0dbf": {
-    "message": "Paused. Press Space to start."
+    "message": "已暂停。按空格开始。"
   },
   "f_paused_space_continues_jumps_3a61": {
-    "message": "Paused. Space continues · ←/→ jumps by sentence · click a sentence to read from there · T shows the whole summary"
+    "message": "已暂停。空格继续 · ←/→ 按句跳转 · 点击某句从那里读 · T 显示完整摘要"
   },
   "f_reading_starts_as_soon_as_it_2d8c": {
-    "message": "Reading starts as soon as it is done."
+    "message": "摘要完成后即开始阅读。"
   },
   "f_remind_me_97ce": {
-    "message": "Remind me"
+    "message": "提醒我"
   },
   "f_remind_me_later_cb3c": {
-    "message": "Remind me later"
+    "message": "稍后提醒我"
   },
   "f_reminder_time_ecfc": {
-    "message": "Reminder time"
+    "message": "提醒时间"
   },
   "f_reminder_8f45": {
-    "message": "Reminder {when}"
+    "message": "提醒 {when}"
   },
   "f_sentence_of_s_left_9552": {
-    "message": "Sentence {a} of {b} · {s} s left"
+    "message": "第 {a}/{b} 句 · 还剩 {s} 秒"
   },
   "f_show_speed_read_in_the_menus_2086": {
-    "message": "Show Speed-Read in the menus"
+    "message": "在菜单中显示 Speed-Read"
   },
   "f_show_as_text_875b": {
-    "message": "Show as text"
+    "message": "以文本显示"
   },
   "f_slower_4aaf": {
-    "message": "Slower"
+    "message": "更慢"
   },
   "f_speed_8020": {
-    "message": "Speed"
+    "message": "速度"
   },
   "f_speed_read_693b": {
     "message": "Speed-Read"
   },
   "f_speed_read_does_not_work_on__e05a": {
-    "message": "Speed-Read does not work on this page."
+    "message": "Speed-Read 无法在此页面使用。"
   },
   "f_speed_read_writes_the_summar_2eac": {
-    "message": "Speed-Read writes the summary, then shows it word by word with the sentence above. Pause any time to see the paragraph. It helps you get through a summary in about a minute; for careful reading, show it as text."
+    "message": "Speed-Read 先写出摘要，然后逐词显示，上方显示整句。随时暂停即可查看整段。这样大约一分钟就能读完一篇摘要；需要细读时，请以文本显示。"
   },
   "f_the_summary_did_not_work_4b55": {
-    "message": "The summary did not work"
+    "message": "摘要失败"
   },
   "f_the_summary_is_empty_1941": {
-    "message": "The summary is empty."
+    "message": "摘要为空。"
   },
   "f_the_summary_word_by_word_the_0246": {
-    "message": "The summary word by word, then keep the page or close the tab"
+    "message": "逐词阅读摘要，然后保留页面或关闭标签页"
   },
   "f_the_tab_closes_in_s_0762": {
-    "message": "The tab closes in {n} s"
+    "message": "标签页将在 {n} 秒后关闭"
   },
   "f_the_tab_stays_open_c59f": {
-    "message": "The tab stays open."
+    "message": "标签页保持打开。"
   },
   "f_tomorrow_morning_15fa": {
-    "message": "Tomorrow morning"
+    "message": "明天早上"
   },
   "f_words_at_a_time_5479": {
-    "message": "Words at a time"
+    "message": "每次显示的词数"
   },
   "f_writing_the_summary_865e": {
-    "message": "Writing the summary …"
+    "message": "正在撰写摘要 …"
   },
   "f_wpm_f449": {
-    "message": "{n} WPM"
+    "message": "{n} 词/分"
   },
   "f_sentences_s_cd74": {
-    "message": "{n} sentences · {s} s"
+    "message": "{n} 句 · {s} 秒"
   },
   "f_words_so_far_7815": {
-    "message": "{n} words so far"
+    "message": "已有 {n} 个词"
   },
   "ctxSpeedRead": {
-    "message": "⚡ Speed-Read this page",
+    "message": "⚡ Speed-Read 此页面",
     "description": "Right-click menu entry"
   },
   "notifReadLaterTitle": {
-    "message": "🔖 Ready to read?",
+    "message": "🔖 准备好阅读了吗？",
     "description": "Notification title when a read-later reminder is due"
   },
   "notifOpen": {
-    "message": "Open",
+    "message": "打开",
     "description": "Notification button"
   },
   "notifDismiss": {
-    "message": "Dismiss",
+    "message": "稍后",
     "description": "Notification button"
   },
   "notifTabClosedTitle": {
-    "message": "Tab closed · the summary is saved",
+    "message": "标签页已关闭 · 摘要已保存",
     "description": "Notification after Speed-Read closed the tab"
   },
   "notifReopen": {
-    "message": "Reopen",
+    "message": "重新打开",
     "description": "Notification button: reopen the closed tab"
   }
 }

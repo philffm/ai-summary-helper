@@ -7492,159 +7492,159 @@
     "message": "🧠 โมเดลในเครื่อง"
   },
   "f_a_5_second_countdown_only_wh_7070": {
-    "message": "A 5-second countdown, only when you have read to the end. Any key or mouse movement stops it; a notification lets you reopen the tab."
+    "message": "นับถอยหลัง 5 วินาที เฉพาะเมื่อคุณอ่านจนจบ กดปุ่มใดหรือขยับเมาส์เพื่อหยุด และเปิดแท็บอีกครั้งได้จากการแจ้งเตือน"
   },
   "f_any_key_or_mouse_movement_st_8528": {
-    "message": "Any key or mouse movement stops the countdown · Enter closes"
+    "message": "กดปุ่มใดหรือขยับเมาส์เพื่อหยุดนับถอยหลัง · Enter เพื่อปิด"
   },
   "f_at_the_weekend_48ee": {
-    "message": "At the weekend"
+    "message": "สุดสัปดาห์"
   },
   "f_back_to_the_reader_bf83": {
-    "message": "Back to the reader"
+    "message": "กลับไปที่ตัวอ่าน"
   },
   "f_close_tab_53a0": {
-    "message": "Close tab"
+    "message": "ปิดแท็บ"
   },
   "f_could_not_reach_this_page_tr_8523": {
-    "message": "Could not reach this page — try refreshing the tab."
+    "message": "เข้าถึงหน้านี้ไม่ได้ — โปรดรีเฟรชแท็บ"
   },
   "f_countdown_stopped_the_tab_st_4a3d": {
-    "message": "Countdown stopped. The tab stays open."
+    "message": "หยุดนับถอยหลังแล้ว แท็บยังเปิดอยู่"
   },
   "f_esc_stops_the_article_is_sti_8d36": {
-    "message": "Esc stops – the article is still saved."
+    "message": "Esc เพื่อหยุด – บทความยังถูกบันทึก"
   },
   "f_faster_d384": {
-    "message": "Faster"
+    "message": "เร็วขึ้น"
   },
   "f_full_screen_bee0": {
-    "message": "Full screen"
+    "message": "เต็มจอ"
   },
   "f_hide_the_page_while_you_read_19ef": {
-    "message": "Hide the page while you read (F switches in the reader)"
+    "message": "ซ่อนหน้าเว็บขณะอ่าน (กด F ในตัวอ่านเพื่อสลับ)"
   },
   "f_in_the_popup_next_to_summari_681a": {
-    "message": "In the popup next to “Summarize” and when you right-click a page"
+    "message": "ในป๊อปอัปข้าง “สรุป” และเมื่อคลิกขวาที่หน้าเว็บ"
   },
   "f_keep_page_1e43": {
-    "message": "Keep page"
+    "message": "เก็บหน้าไว้"
   },
   "f_keys_in_the_reader_space_pau_b8e1": {
-    "message": "Keys in the reader: Space pause · ←/→ sentence · Shift+←/→ word · ↑/↓ speed · T text · F full screen · Esc stop"
+    "message": "ปุ่ม: Space หยุดชั่วคราว · ←/→ ประโยค · Shift+←/→ คำ · ↑/↓ ความเร็ว · T ข้อความ · F เต็มจอ · Esc หยุด"
   },
   "f_next_week_0f94": {
-    "message": "Next week"
+    "message": "สัปดาห์หน้า"
   },
   "f_no_reminder_62e0": {
-    "message": "No reminder"
+    "message": "ไม่ต้องเตือน"
   },
   "f_no_summary_came_back_the_pag_73b5": {
-    "message": "No summary came back. The page may have too little text."
+    "message": "ไม่ได้รับสรุปกลับมา หน้านี้อาจมีข้อความน้อยเกินไป"
   },
   "f_offer_to_close_the_tab_at_th_dec1": {
-    "message": "Offer to close the tab at the end"
+    "message": "เสนอให้ปิดแท็บเมื่ออ่านจบ"
   },
   "f_paused_press_space_to_start_0dbf": {
-    "message": "Paused. Press Space to start."
+    "message": "หยุดชั่วคราว กด Space เพื่อเริ่ม"
   },
   "f_paused_space_continues_jumps_3a61": {
-    "message": "Paused. Space continues · ←/→ jumps by sentence · click a sentence to read from there · T shows the whole summary"
+    "message": "หยุดชั่วคราว Space เพื่ออ่านต่อ · ←/→ ข้ามทีละประโยค · คลิกประโยคเพื่ออ่านจากตรงนั้น · T แสดงสรุปทั้งหมด"
   },
   "f_reading_starts_as_soon_as_it_2d8c": {
-    "message": "Reading starts as soon as it is done."
+    "message": "จะเริ่มอ่านทันทีที่สรุปเสร็จ"
   },
   "f_remind_me_97ce": {
-    "message": "Remind me"
+    "message": "เตือนฉัน"
   },
   "f_remind_me_later_cb3c": {
-    "message": "Remind me later"
+    "message": "เตือนภายหลัง"
   },
   "f_reminder_time_ecfc": {
-    "message": "Reminder time"
+    "message": "เวลาเตือน"
   },
   "f_reminder_8f45": {
-    "message": "Reminder {when}"
+    "message": "เตือน {when}"
   },
   "f_sentence_of_s_left_9552": {
-    "message": "Sentence {a} of {b} · {s} s left"
+    "message": "ประโยค {a} จาก {b} · เหลือ {s} วิ"
   },
   "f_show_speed_read_in_the_menus_2086": {
-    "message": "Show Speed-Read in the menus"
+    "message": "แสดง Speed-Read ในเมนู"
   },
   "f_show_as_text_875b": {
-    "message": "Show as text"
+    "message": "แสดงเป็นข้อความ"
   },
   "f_slower_4aaf": {
-    "message": "Slower"
+    "message": "ช้าลง"
   },
   "f_speed_8020": {
-    "message": "Speed"
+    "message": "ความเร็ว"
   },
   "f_speed_read_693b": {
     "message": "Speed-Read"
   },
   "f_speed_read_does_not_work_on__e05a": {
-    "message": "Speed-Read does not work on this page."
+    "message": "Speed-Read ใช้กับหน้านี้ไม่ได้"
   },
   "f_speed_read_writes_the_summar_2eac": {
-    "message": "Speed-Read writes the summary, then shows it word by word with the sentence above. Pause any time to see the paragraph. It helps you get through a summary in about a minute; for careful reading, show it as text."
+    "message": "Speed-Read เขียนสรุปแล้วแสดงทีละคำ โดยมีประโยคอยู่ด้านบน หยุดชั่วคราวได้ทุกเมื่อเพื่อดูย่อหน้า ช่วยให้อ่านสรุปจบในราวหนึ่งนาที หากต้องการอ่านละเอียด ให้แสดงเป็นข้อความ"
   },
   "f_the_summary_did_not_work_4b55": {
-    "message": "The summary did not work"
+    "message": "สรุปไม่สำเร็จ"
   },
   "f_the_summary_is_empty_1941": {
-    "message": "The summary is empty."
+    "message": "สรุปว่างเปล่า"
   },
   "f_the_summary_word_by_word_the_0246": {
-    "message": "The summary word by word, then keep the page or close the tab"
+    "message": "สรุปทีละคำ แล้วเก็บหน้าไว้หรือปิดแท็บ"
   },
   "f_the_tab_closes_in_s_0762": {
-    "message": "The tab closes in {n} s"
+    "message": "แท็บจะปิดใน {n} วิ"
   },
   "f_the_tab_stays_open_c59f": {
-    "message": "The tab stays open."
+    "message": "แท็บยังเปิดอยู่"
   },
   "f_tomorrow_morning_15fa": {
-    "message": "Tomorrow morning"
+    "message": "พรุ่งนี้เช้า"
   },
   "f_words_at_a_time_5479": {
-    "message": "Words at a time"
+    "message": "จำนวนคำต่อครั้ง"
   },
   "f_writing_the_summary_865e": {
-    "message": "Writing the summary …"
+    "message": "กำลังเขียนสรุป …"
   },
   "f_wpm_f449": {
-    "message": "{n} WPM"
+    "message": "{n} คำ/นาที"
   },
   "f_sentences_s_cd74": {
-    "message": "{n} sentences · {s} s"
+    "message": "{n} ประโยค · {s} วิ"
   },
   "f_words_so_far_7815": {
-    "message": "{n} words so far"
+    "message": "ตอนนี้ {n} คำ"
   },
   "ctxSpeedRead": {
-    "message": "⚡ Speed-Read this page",
+    "message": "⚡ Speed-Read หน้านี้",
     "description": "Right-click menu entry"
   },
   "notifReadLaterTitle": {
-    "message": "🔖 Ready to read?",
+    "message": "🔖 พร้อมอ่านหรือยัง?",
     "description": "Notification title when a read-later reminder is due"
   },
   "notifOpen": {
-    "message": "Open",
+    "message": "เปิด",
     "description": "Notification button"
   },
   "notifDismiss": {
-    "message": "Dismiss",
+    "message": "ภายหลัง",
     "description": "Notification button"
   },
   "notifTabClosedTitle": {
-    "message": "Tab closed · the summary is saved",
+    "message": "ปิดแท็บแล้ว · บันทึกสรุปแล้ว",
     "description": "Notification after Speed-Read closed the tab"
   },
   "notifReopen": {
-    "message": "Reopen",
+    "message": "เปิดอีกครั้ง",
     "description": "Notification button: reopen the closed tab"
   }
 }

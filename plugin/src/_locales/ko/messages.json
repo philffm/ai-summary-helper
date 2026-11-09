@@ -7191,159 +7191,159 @@
     "message": "🧠 로컬 모델"
   },
   "f_a_5_second_countdown_only_wh_7070": {
-    "message": "A 5-second countdown, only when you have read to the end. Any key or mouse movement stops it; a notification lets you reopen the tab."
+    "message": "끝까지 읽었을 때만 5초 카운트다운. 아무 키나 마우스 움직임으로 멈춥니다. 알림에서 탭을 다시 열 수 있습니다."
   },
   "f_any_key_or_mouse_movement_st_8528": {
-    "message": "Any key or mouse movement stops the countdown · Enter closes"
+    "message": "아무 키나 마우스 움직임으로 카운트다운이 멈춥니다 · Enter로 닫기"
   },
   "f_at_the_weekend_48ee": {
-    "message": "At the weekend"
+    "message": "주말에"
   },
   "f_back_to_the_reader_bf83": {
-    "message": "Back to the reader"
+    "message": "리더로 돌아가기"
   },
   "f_close_tab_53a0": {
-    "message": "Close tab"
+    "message": "탭 닫기"
   },
   "f_could_not_reach_this_page_tr_8523": {
-    "message": "Could not reach this page — try refreshing the tab."
+    "message": "페이지에 연결할 수 없습니다. 탭을 새로고침하세요."
   },
   "f_countdown_stopped_the_tab_st_4a3d": {
-    "message": "Countdown stopped. The tab stays open."
+    "message": "카운트다운을 멈췄습니다. 탭은 열려 있습니다."
   },
   "f_esc_stops_the_article_is_sti_8d36": {
-    "message": "Esc stops – the article is still saved."
+    "message": "Esc로 중지 – 글은 그래도 저장됩니다."
   },
   "f_faster_d384": {
-    "message": "Faster"
+    "message": "더 빠르게"
   },
   "f_full_screen_bee0": {
-    "message": "Full screen"
+    "message": "전체 화면"
   },
   "f_hide_the_page_while_you_read_19ef": {
-    "message": "Hide the page while you read (F switches in the reader)"
+    "message": "읽는 동안 페이지를 숨깁니다(리더에서 F로 전환)"
   },
   "f_in_the_popup_next_to_summari_681a": {
-    "message": "In the popup next to “Summarize” and when you right-click a page"
+    "message": "팝업의 “요약” 옆과 페이지를 오른쪽 클릭할 때"
   },
   "f_keep_page_1e43": {
-    "message": "Keep page"
+    "message": "페이지 유지"
   },
   "f_keys_in_the_reader_space_pau_b8e1": {
-    "message": "Keys in the reader: Space pause · ←/→ sentence · Shift+←/→ word · ↑/↓ speed · T text · F full screen · Esc stop"
+    "message": "키: Space 일시정지 · ←/→ 문장 · Shift+←/→ 단어 · ↑/↓ 속도 · T 텍스트 · F 전체 화면 · Esc 중지"
   },
   "f_next_week_0f94": {
-    "message": "Next week"
+    "message": "다음 주"
   },
   "f_no_reminder_62e0": {
-    "message": "No reminder"
+    "message": "알림 없음"
   },
   "f_no_summary_came_back_the_pag_73b5": {
-    "message": "No summary came back. The page may have too little text."
+    "message": "요약이 오지 않았습니다. 페이지 글이 너무 적을 수 있습니다."
   },
   "f_offer_to_close_the_tab_at_th_dec1": {
-    "message": "Offer to close the tab at the end"
+    "message": "마지막에 탭 닫기 제안"
   },
   "f_paused_press_space_to_start_0dbf": {
-    "message": "Paused. Press Space to start."
+    "message": "일시정지됨. Space를 눌러 시작하세요."
   },
   "f_paused_space_continues_jumps_3a61": {
-    "message": "Paused. Space continues · ←/→ jumps by sentence · click a sentence to read from there · T shows the whole summary"
+    "message": "일시정지됨. Space로 계속 · ←/→ 문장 단위 이동 · 문장을 클릭하면 거기서부터 읽기 · T로 전체 요약 보기"
   },
   "f_reading_starts_as_soon_as_it_2d8c": {
-    "message": "Reading starts as soon as it is done."
+    "message": "완성되는 대로 읽기를 시작합니다."
   },
   "f_remind_me_97ce": {
-    "message": "Remind me"
+    "message": "알려 주기"
   },
   "f_remind_me_later_cb3c": {
-    "message": "Remind me later"
+    "message": "나중에 알려 주기"
   },
   "f_reminder_time_ecfc": {
-    "message": "Reminder time"
+    "message": "알림 시간"
   },
   "f_reminder_8f45": {
-    "message": "Reminder {when}"
+    "message": "알림 {when}"
   },
   "f_sentence_of_s_left_9552": {
-    "message": "Sentence {a} of {b} · {s} s left"
+    "message": "문장 {a}/{b} · {s}초 남음"
   },
   "f_show_speed_read_in_the_menus_2086": {
-    "message": "Show Speed-Read in the menus"
+    "message": "메뉴에 Speed-Read 표시"
   },
   "f_show_as_text_875b": {
-    "message": "Show as text"
+    "message": "텍스트로 보기"
   },
   "f_slower_4aaf": {
-    "message": "Slower"
+    "message": "더 느리게"
   },
   "f_speed_8020": {
-    "message": "Speed"
+    "message": "속도"
   },
   "f_speed_read_693b": {
     "message": "Speed-Read"
   },
   "f_speed_read_does_not_work_on__e05a": {
-    "message": "Speed-Read does not work on this page."
+    "message": "이 페이지에서는 Speed-Read를 쓸 수 없습니다."
   },
   "f_speed_read_writes_the_summar_2eac": {
-    "message": "Speed-Read writes the summary, then shows it word by word with the sentence above. Pause any time to see the paragraph. It helps you get through a summary in about a minute; for careful reading, show it as text."
+    "message": "Speed-Read는 요약을 쓴 다음 위에 문장을 두고 한 단어씩 보여 줍니다. 언제든 일시정지해 문단을 볼 수 있습니다. 요약을 약 1분 만에 훑어볼 수 있으며, 꼼꼼히 읽으려면 텍스트로 보세요."
   },
   "f_the_summary_did_not_work_4b55": {
-    "message": "The summary did not work"
+    "message": "요약에 실패했습니다"
   },
   "f_the_summary_is_empty_1941": {
-    "message": "The summary is empty."
+    "message": "요약이 비어 있습니다."
   },
   "f_the_summary_word_by_word_the_0246": {
-    "message": "The summary word by word, then keep the page or close the tab"
+    "message": "요약을 한 단어씩, 그다음 페이지 유지 또는 탭 닫기"
   },
   "f_the_tab_closes_in_s_0762": {
-    "message": "The tab closes in {n} s"
+    "message": "{n}초 후 탭이 닫힙니다"
   },
   "f_the_tab_stays_open_c59f": {
-    "message": "The tab stays open."
+    "message": "탭은 열려 있습니다."
   },
   "f_tomorrow_morning_15fa": {
-    "message": "Tomorrow morning"
+    "message": "내일 아침"
   },
   "f_words_at_a_time_5479": {
-    "message": "Words at a time"
+    "message": "한 번에 보여 줄 단어 수"
   },
   "f_writing_the_summary_865e": {
-    "message": "Writing the summary …"
+    "message": "요약을 쓰는 중 …"
   },
   "f_wpm_f449": {
     "message": "{n} WPM"
   },
   "f_sentences_s_cd74": {
-    "message": "{n} sentences · {s} s"
+    "message": "{n}문장 · {s}초"
   },
   "f_words_so_far_7815": {
-    "message": "{n} words so far"
+    "message": "지금까지 {n}단어"
   },
   "ctxSpeedRead": {
-    "message": "⚡ Speed-Read this page",
+    "message": "⚡ 이 페이지 Speed-Read",
     "description": "Right-click menu entry"
   },
   "notifReadLaterTitle": {
-    "message": "🔖 Ready to read?",
+    "message": "🔖 읽을 준비 되셨나요?",
     "description": "Notification title when a read-later reminder is due"
   },
   "notifOpen": {
-    "message": "Open",
+    "message": "열기",
     "description": "Notification button"
   },
   "notifDismiss": {
-    "message": "Dismiss",
+    "message": "나중에",
     "description": "Notification button"
   },
   "notifTabClosedTitle": {
-    "message": "Tab closed · the summary is saved",
+    "message": "탭 닫힘 · 요약 저장됨",
     "description": "Notification after Speed-Read closed the tab"
   },
   "notifReopen": {
-    "message": "Reopen",
+    "message": "다시 열기",
     "description": "Notification button: reopen the closed tab"
   }
 }
