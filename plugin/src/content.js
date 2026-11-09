@@ -62,7 +62,8 @@ import {
   getUserHighlightTexts,
   revealQuote,
   setPageSummarizeHandler,
-  clearPageHighlights
+  clearPageHighlights,
+  runSelectionAction
 } from './content/highlighter.js';
 
 import {
@@ -208,6 +209,8 @@ import {
 
   // Restore persisted highlights as soon as the DOM is ready
   document.addEventListener('mouseup', handleTextSelection);
+  // the loader's selection toolbar injected this script for one of its buttons: it runs the action through this
+  window.__AISH_SELECTION_ACTION = runSelectionAction;
   document.addEventListener('click', handleHighlightClick);
   document.addEventListener('click', handleGhostHighlightClick);
 

@@ -31,16 +31,15 @@ const srv = http.createServer((q, r) => { r.setHeader('content-type', 'text/html
   const a = await ctx.newPage(); await a.goto('http://localhost:8123/a'); await wait(800);
   let s = await states(a); check('A plain page: loader yes, full script no', s.loader && !s.full, s);
 
-  // C: select text → injection + tooltip
-  await a.click('#p1', { clickCount: 3 }); await wait(1200);
-  s = await states(a); check('C selection injects the full script', s.full, s);
-  const tip = await a.evaluate(() => !!document.querySelector('#aish-hl-tooltip, .aish-hl-tooltip, [id*=tooltip]'));
-  const tipShadow = await a.evaluate(() => [...document.querySelectorAll('div')].some(d => /Highlight/.test(d.textContent || '') && d.children.length < 3 && getComputedStyle(d).position === 'absolute'));
-  check('C highlight tooltip is visible after the replayed mouseup', tip || tipShadow, { tip, tipShadow });
+  // C: select text → the loader's own toolbar, nothing injected; a toolbar button injects and makes the highlight
+  await a.click('#p1', { clickCount: 3 }); await wait(800);
+  s = await states(a); check('C selection shows the loader toolbar, no injection', !s.full && s.ui.includes('aish-sel-host'), s);
   await a.screenshot({ path: '/tmp/aish-e2e-selection.png' });
+  await a.locator('#aish-sel-host button[aria-label="Highlight"]').click(); await wait(1500);
+  s = await states(a); check('C the Highlight button injects the full script and paints the highlight', s.full && s.hl > 0, s);
 
   // B: stored highlight for /b → full script injected on load and painted
-  await sw.evaluate(() => chrome.storage.local.set({ 'hl:all': [{ id: 'hl_t1', url: 'http://localhost:8123/b', text: 'Sleep consolidates memory', type: 'user', quote: { exact: 'Sleep consolidates memory', prefix: '', suffix: ' by replaying' }, pos: 0, v: 2 }] }));
+  await sw.evaluate(() => chrome.storage.local.set({ 'hl:page:http://localhost:8123/b': [{ id: 'hl_t1', url: 'http://localhost:8123/b', text: 'Sleep consolidates memory', type: 'user', quote: { exact: 'Sleep consolidates memory', prefix: '', suffix: ' by replaying' }, pos: 0, v: 2 }] }));
   const b = await ctx.newPage(); await b.goto('http://localhost:8123/b'); await wait(2500);
   s = await states(b); check('B page with a saved highlight: full script injected and painted', s.full && s.hl > 0, s);
   await b.screenshot({ path: '/tmp/aish-e2e-highlight.png' });
@@ -56,7 +55,7 @@ const srv = http.createServer((q, r) => { r.setHeader('content-type', 'text/html
   // E: highlight added later while the page is open (e.g. from the popup) → injection via storage change
   const d = await ctx.newPage(); await d.goto('http://localhost:8123/d'); await wait(800);
   s = await states(d); check('E before: loader only', s.loader && !s.full, s);
-  await sw.evaluate(() => chrome.storage.local.set({ 'hl:all': [{ id: 'hl_t2', url: 'http://localhost:8123/d', text: 'Sleep consolidates memory', type: 'user', quote: { exact: 'Sleep consolidates memory', prefix: '', suffix: ' by replaying' }, pos: 0, v: 2 }] }));
+  await sw.evaluate(() => chrome.storage.local.set({ 'hl:page:http://localhost:8123/d': [{ id: 'hl_t2', url: 'http://localhost:8123/d', text: 'Sleep consolidates memory', type: 'user', quote: { exact: 'Sleep consolidates memory', prefix: '', suffix: ' by replaying' }, pos: 0, v: 2 }] }));
   await wait(2000); s = await states(d); check('E highlight saved elsewhere → injected and painted', s.full && s.hl > 0, s);
 
 
