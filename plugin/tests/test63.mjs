@@ -17,8 +17,8 @@ assert.equal(detectPaperInText('Intro text. ' + 'x '.repeat(900) + 'see doi.org/
 const ex = fs.readFileSync(new URL('../src/content/pdfExtractor.js', import.meta.url), 'utf8');
 const bg = fs.readFileSync(new URL('../src/background.js', import.meta.url), 'utf8');
 const ct = fs.readFileSync(new URL('../src/content.js', import.meta.url), 'utf8');
-assert(/credentials: 'include'/.test(ex) && /credentials: 'include'/.test(bg.slice(bg.indexOf("'fetchPdfBytes'"))));
-assert(/btoa\(bin\)/.test(bg) && !/Array\.from\(new Uint8Array\(buf\)\)/.test(bg.slice(bg.indexOf("'fetchPdfBytes'"), bg.indexOf("'fetchPdfBytes'") + 1500)));
+assert(/credentials: 'include'/.test(ex) && /credentials: 'include'/.test(bg.slice(bg.indexOf('fetchPdfBytes: {'))));
+assert(/btoa\(bin\)/.test(bg) && !/Array\.from\(new Uint8Array\(buf\)\)/.test(bg.slice(bg.indexOf('fetchPdfBytes: {'), bg.indexOf('fetchPdfBytes: {') + 1500)));
 assert(/%PDF/.test(ex) && /pdfError\('EMPTY'/.test(ex) && /pdfError\('PASSWORD'/.test(ex));
 assert(/pdfErrorMessage\(err\)/.test(ct));
 console.log('test63 ok');
