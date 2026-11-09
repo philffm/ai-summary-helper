@@ -9,6 +9,6 @@ const device = html.slice(html.indexOf('local-intelligence'), html.indexOf('dang
 assert(/id="libraryToolButton"/.test(device), 'button sits inside the On-device tools card');
 const nav = fs.readFileSync(path.join(src, 'modules/settingsNav.js'), 'utf8');
 assert(/'feedPrefsLibrary'/.test(nav) && /'libraryToolButton'/.test(nav), 'search entries for both places');
-const mgr = fs.readFileSync(path.join(src, 'modules/settingsManager.js'), 'utf8');
+const mgr = fs.readFileSync(path.join(src, 'modules/settings/tagCleanup.js'), 'utf8');
 assert(/openSettingsPanel\('feedprefs', 'feedPrefsLibrary'\)/.test(mgr), 'the button opens the Feed preferences card');
 console.log('TEST 101 OK'); process.exit(0);

@@ -11,7 +11,6 @@ import { T, TN, uiLocale } from './feedI18n.js';
 import { topicLabel } from './topicConcepts.js';
 import { t } from './i18n.js';
 import { paperChips } from './paperInfo.js';
-import { aiComplete } from './feedAi.js';
 import { modalOpen } from './shortcuts.js';
 import { initInstantRead } from './instantRead.js';
 import { getReader } from './reader.js';
@@ -20,7 +19,6 @@ import { answerPreview, newTurn, buildPrompt, parseAnswer, joinContinuation } fr
 import { turnEl, renderAnswer } from './qaView.js';
 import { typeText } from './typewriter.js';
 import { sidebarTokenFromHash, acceptSidebarMessage, SIDEBAR_TOKEN_FIELD } from './sidebarChannel.js';
-import { attachCardMenu } from './cardMenu.js';
 import { currentLengthSpec } from './summaryLength.js';
 
 export function initMainScreen(ui) {
@@ -45,8 +43,9 @@ export function initMainScreen(ui) {
         // Strip <img> tags from AI-generated HTML to prevent 404s on relative paths
         const summaryHtml = (article.summary || '').replace(/<img[^>]*>/gi, '');
         // Plain text preview: strip all HTML tags and truncate to 100 chars
-        const textOnly = summaryHtml.replace(/<[^>]+>/g, '').trim();
-        const preview = textOnly.length > 100 ? textOnly.slice(0, 100) + '…' : textOnly;
+        // inert parse (no loads, no handlers), so entities and half tags from a restored or synced summary end up as text, then escaped
+        const textOnly = (new DOMParser().parseFromString(summaryHtml, 'text/html').body.textContent || '').replace(/\s+/g, ' ').trim();
+        const preview = escapeHtml(textOnly.length > 100 ? textOnly.slice(0, 100) + '…' : textOnly);
         const date = article.timestamp ? new Date(article.timestamp).toLocaleDateString() : '';
 
         // Tags in the UI language, like History shows them (known and learned topics are translated, one chip per topic)
@@ -56,6 +55,7 @@ export function initMainScreen(ui) {
         const bubble = document.createElement('div');
         bubble.className = 'summary-bubble';
         if (article.id) bubble.dataset.id = article.id;
+        // eslint-disable-next-line no-unsanitized/property -- reviewed: preview, tags and model are escaped above
         bubble.innerHTML = `
             <div class="summary-bubble-header">
                 <span class="summary-bubble-title">${escapeHtml(title.length > 50 ? title.slice(0, 50) + '…' : title)}</span>
@@ -87,7 +87,8 @@ export function initMainScreen(ui) {
         // ⋯ actions (copy, share, LocalSend, Kindle, read aloud, delete …)
         {
             const hdr = bubble.querySelector('.summary-bubble-header');
-            if (hdr) attachCardMenu(hdr, article, { onRemoved: () => bubble.remove() });
+            // the menu module (~100 KB with send, cite and digest) loads with the first card, not with the popup
+            if (hdr) import('./cardMenu.js').then(({ attachCardMenu }) => attachCardMenu(hdr, article, { onRemoved: () => bubble.remove() })).catch(() => {});
         }
         // 💬 Ask: chat about this (older) summary — the thread opens right under the card.
         {
@@ -163,7 +164,7 @@ export function initMainScreen(ui) {
             <span id="streamTimer" class="sc-timer"></span>
           </div>
           <ul id="streamSteps" class="sc-steps" aria-live="polite"></ul>
-          <div id="streamModel" class="sc-model">${modelBadge} ${modelName}</div>
+          <div id="streamModel" class="sc-model">${modelBadge} ${escapeHtml(modelName)}</div>
           <div id="streamProgressWrap" class="sc-progress" style="display:none;">
             <div class="sc-progress-track"><div id="streamProgressBar" class="sc-progress-bar" style="width:0%;"></div></div>
           </div>
@@ -310,6 +311,7 @@ export function initMainScreen(ui) {
         if (!ul || !ctx) return;
         const lines = statusLines(ctx);
         const now = activeStep(lines, streamPhase);
+        // eslint-disable-next-line no-unsanitized/property -- reviewed: step lines are escaped (esc), classes are constants
         ul.innerHTML = lines.map((l, i) => {
             const cls = i < now ? 'sc-step' : i === now ? 'sc-step sc-step--now' : 'sc-step sc-step--todo';
             const wait = (i === now && streamPhase < 2 && i === lines.length - 2) ? ' <span class="sc-wait"></span>' : '';
@@ -328,6 +330,7 @@ export function initMainScreen(ui) {
         const det = document.createElement('details');
         det.className = 'sc-used';
         det.open = usedOpen();
+        // eslint-disable-next-line no-unsanitized/property -- reviewed: source rows are built with esc()
         det.innerHTML = `<summary>${esc(T('What I used'))}</summary>`
             + `<ul>${contextRows(ctx).map(r => `<li data-k="${r.key}">${esc(r.text)}</li>`).join('')}</ul>`;
         det.addEventListener('toggle', () => setUsedOpen(det.open));
@@ -825,6 +828,7 @@ export function initMainScreen(ui) {
             }
             const history = prev ? conversation.turns.filter(t => t !== prev) : conversation.turns;
             const { system, user } = buildPrompt({ ...conversation, turns: history, question: q, draft: quickText });
+            const { aiComplete } = await import('./feedAi.js');   // the AI client loads with the first follow-up question
             const raw = await aiComplete(system, user, null, quickText ? ctrl.signal : null, (m) => {
                 // Stream the continuation in as it is written (cleaned of HTML / code fences / the SOURCES line).
                 const t = m && m.text ? answerPreview(m.text) : '';

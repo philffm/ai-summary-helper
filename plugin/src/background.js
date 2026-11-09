@@ -34,7 +34,10 @@ const SK = {
     articlesSchema: 'articles:schema',
     // derived: per-article term vectors and nearest neighbours for the graph (graphSimilarityCache.js); rebuilt on demand, never backed up
     graphSim: 'graph:sim',
-    // highlights / annotations (one array for all pages; per-page keys are a later step)
+    // highlights: one key per page (hl:page:<pageKey>, see HL_PAGE) plus a lean index; written only through highlightStore.js
+    hlIndex: 'hl:index',      // [{ k: pageKey, n: active, d: dismissed, t: ISO time }]
+    hlSchema: 'hl:schema',    // 2 = per-page keys (migrateHighlightsToPages ran)
+    // the old single list of all highlights (schema 1). Read by the migration and by old backups only.
     annotations: 'hl:all',
     // feeds
     feedSubs: 'feeds:subs',
@@ -124,6 +127,11 @@ const KEYS_SCHEMA = 1;
 const ARTICLE_REC = 'articles:rec:';
 const articleRecKey = (id) => ARTICLE_REC + id;
 const isArticleRecKey = (k) => typeof k === 'string' && k.startsWith(ARTICLE_REC);
+
+/** Prefix of the per-page highlight keys: hl:page:<pageKey> (pageKeyForUrl, the same key the page script computes). */
+const HL_PAGE = 'hl:page:';
+const hlPageKey = (pageKey) => HL_PAGE + pageKey;
+const isHlPageKey = (k) => typeof k === 'string' && k.startsWith(HL_PAGE);
 
 /** Prefix of the per-collection record keys: coll:rec:<id> (name, question, source article ids, notes). */
 const COLL_REC = 'coll:rec:';
@@ -1157,11 +1165,17 @@ if (syncStamps) {
         if (area !== 'local') return;
         syncStamps.onChanged(changes);
         // a change to the library (not to sync's own ledger or status) publishes a little later
-        if (SK.articlesIndex in changes || SK.annotations in changes || Object.keys(changes).some((k) => isArticleRecKey(k))) syncStamps.enabled().then((on) => { if (on) syncSoon(2); });
+        if (SK.articlesIndex in changes || SK.annotations in changes || Object.keys(changes).some((k) => isArticleRecKey(k) || isHlPageKey(k))) syncStamps.enabled().then((on) => { if (on) syncSoon(2); });
     });
     syncStamps.scan().catch(() => {});
     (async () => { try { if (!(await chrome.alarms.get(SYNC_ALARM))) chrome.alarms.create(SYNC_ALARM, { delayInMinutes: 5, periodInMinutes: 30 }); } catch (_) { /* no alarms */ } })();
 }
+
+// ── Highlights: the one writer (modules/highlightStore.js). Pages send { action: 'hl:apply', ops } (modules/highlightMessages.js). ──
+const hlStore = SYNC ? SYNC.createHighlightStore({ storage: chrome.storage.local }) : null;
+// the old single list → one key per page, once (the popup runs the same step; whichever comes first wins)
+if (hlStore) keysReady.then(() => hlStore.migrate()).then((r) => { if (r && r.ran) console.log('[Highlights] per-page keys:', r); }).catch((e) => console.warn('[Highlights] migration failed, the old list stays in use:', e && e.message));
+const hlMsgs = hlStore ? SYNC.createHighlightMessages({ store: hlStore, markDeleted: (ids) => { if (syncStamps) syncStamps.markDeleted('hl', ids.slice(0, 1000)); } }) : null;
 
 // ── Notes from the page: the content script asks, the worker writes (modules/notesMessages.js) ──
 const notesMsgs = SYNC ? SYNC.createNotesMessages({ store: SYNC.createNotesStore({ storage: chrome.storage.local }) }) : null;
@@ -1591,86 +1605,92 @@ async function saveFeedItem(url) {
     }
 }
 
-// Actions only extension pages (popup, side panel, in-page sidebar iframe) send. They spend the user's AI key or fetch
-// on the extension's behalf, so a content script running in a compromised page renderer must not reach them.
-const EXTENSION_PAGE_ACTIONS = new Set(['syncNow', 'syncRestore', 'aiComplete', 'aiCancel', 'aiResync', 'fetchFeedText', 'openFeedItem', 'saveFeedItem', 'feedPollConfig', 'feedBadgeClear', 'audioEnsure', 'relayToActiveTab', 'sendLocalSendP2P', 'queueSummary', 'cancelQueuedSummary', 'summaryJobs', 'targetEnqueue', 'targetStatus', 'targetCancel', 'mcpStatus']);
+// ── Messages: one table, action → { from, check, run } (claude/full-audit-2026-11-09.md, R3) ─────────────────────────
+//   from   'ext'  only extension pages (popup, side panel, the in-page sidebar iframe). These spend the user's AI key or
+//                 fetch on the extension's behalf, so a content script in a compromised page renderer must not reach them.
+//          'page' only a page's content script (needs sender.tab).
+//          'any'  both.
+//   check(msg, sender)               false → the message is dropped. Payload checks live here, once.
+//   run(msg, sender, sendResponse)   like an onMessage listener: return true when the answer comes later.
 function fromExtensionPage(sender) {
     if (!sender || (sender.id && sender.id !== chrome.runtime.id)) return false;
     // A content script's url is the web page; an extension page's (also inside the sidebar iframe) is our own origin.
     return sender.url ? sender.url.startsWith(chrome.runtime.getURL('')) : !sender.tab;
 }
+const isStr = (v, max = 4096) => typeof v === 'string' && v.length > 0 && v.length <= max;
+const isHttpUrl = (v) => isStr(v, 8192) && /^https?:\/\//i.test(v);
+const errText = (e) => String((e && e.message) || e);
+// a summary job's tab reports how it ended (no answer expected): close a feed tab shortly after, move the queue on
+const summaryEnded = (msg, sender) => {
+    if (msg.action !== 'summaryCancelled') untrackFeedTab(sender.tab.id, false, msg.action === 'summaryComplete' ? 6000 : 8000);
+    sumJobsReady().then(() => sumJobTabFinished(sender.tab.id, msg.action === 'summaryComplete'));
+    return false;
+};
 
-// Listen for messages from the popup
-chrome.runtime.onMessage.addListener((msg, sender, sendResponse) => {
-    if (msg && EXTENSION_PAGE_ACTIONS.has(msg.action) && !fromExtensionPage(sender)) {
-        sendResponse({ ok: false, success: false, error: 'Not allowed from a web page' });
-        return false;
-    }
-    if (msg && msg.action === 'syncNow') {        // from the settings screen: run one place or all, keep running after the popup closes
+const MESSAGE_HANDLERS = {
+    // ── library sync (settings screen); keeps running after the popup closes ──
+    syncNow: { from: 'ext', run(msg, sender, sendResponse) {
         if (!syncSvc) { sendResponse({ ok: false, error: 'unavailable' }); return false; }
         // decide: { keep: [record key], remove: [record key] }, the answers to deletions from other devices, one place at a time
         const keyList = (v) => (Array.isArray(v) ? v : []).map(String).filter((k) => /^(article|hl|coll|note):[A-Za-z0-9_.:-]{1,200}$/.test(k)).slice(0, 500);
         const decide = msg.placeId && msg.decide && typeof msg.decide === 'object' ? { keep: keyList(msg.decide.keep), remove: keyList(msg.decide.remove) } : null;
         syncSvc.syncNow(msg.placeId ? String(msg.placeId) : undefined, { confirmRemovals: !!msg.confirmRemovals, decide })
-            .then((results) => sendResponse({ ok: true, results })).catch((e) => sendResponse({ ok: false, error: String((e && e.message) || e) }));
+            .then((results) => sendResponse({ ok: true, results })).catch((e) => sendResponse({ ok: false, error: errText(e) }));
         return true;
-    }
-    if (msg && msg.action === 'syncRestore') {    // from the settings screen: bring an encrypted place back to this device
+    } },
+    syncRestore: { from: 'ext', run(msg, sender, sendResponse) {   // bring an encrypted place back to this device
         if (!syncSvc) { sendResponse({ ok: false, error: 'unavailable' }); return false; }
         syncSvc.restore(String(msg.placeId || ''))
-            .then((r) => sendResponse({ ok: true, result: { pulled: r.pulled, applied: r.applied, errors: r.errors.length, more: r.more } })).catch((e) => sendResponse({ ok: false, error: String((e && e.message) || e) }));
+            .then((r) => sendResponse({ ok: true, result: { pulled: r.pulled, applied: r.applied, errors: r.errors.length, more: r.more } })).catch((e) => sendResponse({ ok: false, error: errText(e) }));
         return true;
-    }
-    if (msg && (msg.action === 'noteAdd' || msg.action === 'commentSet')) {   // from the page's content script
-        if (!notesMsgs) { sendResponse({ ok: false, error: 'unavailable' }); return false; }
-        notesMsgs.handle(msg, sender).then(sendResponse).catch(() => sendResponse({ ok: false, error: 'failed' }));
-        return true;
-    }
-    if (msg && msg.action === 'openNotes') {
-        try { chrome.tabs.create({ url: chrome.runtime.getURL('popup.html?surface=tab#notes') }); sendResponse({ ok: true }); } catch (_) { sendResponse({ ok: false }); }
-        return false;
-    }
-    if (msg && msg.action === 'syncHlDeleted') {   // from the page's content script: the user removed these highlights
-        if (syncStamps && Array.isArray(msg.ids)) syncStamps.markDeleted('hl', msg.ids.filter((i) => typeof i === 'string').slice(0, 1000));
+    } },
+    syncHlDeleted: { from: 'any', check: (msg) => Array.isArray(msg.ids), run(msg, sender, sendResponse) {   // the user removed these highlights (Notes tab)
+        if (syncStamps) syncStamps.markDeleted('hl', msg.ids.filter((i) => typeof i === 'string').slice(0, 1000));
         sendResponse({ ok: true });
         return false;
-    }
-    if (msg && (msg.action === 'targetEnqueue' || msg.action === 'targetStatus' || msg.action === 'targetCancel')) {
-        if (!targets) { sendResponse({ ok: false, error: 'targets-unavailable' }); return false; }
-        const run = msg.action === 'targetEnqueue' ? targets.enqueue(String(msg.targetId || ''), String(msg.articleId || ''))
-            : msg.action === 'targetStatus' ? targets.status(msg.targetId ? String(msg.targetId) : '')
-            : targets.cancel(String(msg.jobId || ''));
-        run.then(sendResponse).catch((e) => sendResponse({ ok: false, error: String((e && e.message) || e) }));
+    } },
+
+    // ── highlights and notes from a page: the page changes only its own records (highlightMessages.js, notesMessages.js) ──
+    'hl:apply': { from: 'page', run(msg, sender, sendResponse) {
+        if (!hlMsgs) { sendResponse({ ok: false, error: 'unavailable' }); return false; }
+        hlMsgs.handle(msg, sender).then(sendResponse).catch(() => sendResponse({ ok: false, error: 'failed' }));
         return true;
-    }
-    if (msg && msg.action === 'mcpStatus') {
+    } },
+    noteAdd: { from: 'page', run: (msg, sender, sendResponse) => notesMessage(msg, sender, sendResponse) },
+    commentSet: { from: 'page', run: (msg, sender, sendResponse) => notesMessage(msg, sender, sendResponse) },
+    openNotes: { from: 'any', run(msg, sender, sendResponse) {
+        try { chrome.tabs.create({ url: chrome.runtime.getURL('popup.html?surface=tab#notes') }); sendResponse({ ok: true }); } catch (_) { sendResponse({ ok: false }); }
+        return false;
+    } },
+
+    // ── send targets, AI apps (MCP), read aloud ──
+    targetEnqueue: { from: 'ext', run: (msg, sender, sendResponse) => targetMessage(() => targets.enqueue(String(msg.targetId || ''), String(msg.articleId || '')), sendResponse) },
+    targetStatus: { from: 'ext', run: (msg, sender, sendResponse) => targetMessage(() => targets.status(msg.targetId ? String(msg.targetId) : ''), sendResponse) },
+    targetCancel: { from: 'ext', run: (msg, sender, sendResponse) => targetMessage(() => targets.cancel(String(msg.jobId || '')), sendResponse) },
+    mcpStatus: { from: 'ext', run(msg, sender, sendResponse) {
         if (!mcp) { sendResponse({ ok: true, available: false, enabled: false, connected: false }); return false; }
         getMcpConfig().then((cfg) => sendResponse({ ok: true, available: true, enabled: !!cfg.enabled, connected: mcp.isConnected(), tools: MCP.toolList().length }));
         return true;
-    }
-    if (msg && msg.action === 'ttsCmd') {
+    } },
+    ttsCmd: { from: 'any', run(msg, sender, sendResponse) {
         if (!ttsEngine) { sendResponse({ ok: false, available: false }); return false; }
-        ttsEngine.handle(msg).then(sendResponse).catch((e) => sendResponse({ ok: false, error: String((e && e.message) || e) }));
+        ttsEngine.handle(msg).then(sendResponse).catch((e) => sendResponse({ ok: false, error: errText(e) }));
         return true;
-    }
-    // Dummy endpoint to force Safari to wake the background script before a
-    // long-lived connection is attempted. Safari reliably wakes workers for
-    // runtime.sendMessage, but may fail a runtime.connect() while asleep.
-    if (msg.action === 'wakeup') {
-        sendResponse({ status: 'awake' });
-        return true; // Keep the message channel open for the response
-    }
+    } },
+    // Safari wakes a sleeping worker reliably for runtime.sendMessage, not for runtime.connect(): callers ping first.
+    wakeup: { from: 'any', run(msg, sender, sendResponse) { sendResponse({ status: 'awake' }); return true; } },
 
-    // ── Feeds (RSS reader) ──────────────────────────────────────────────
-    if (msg.action === 'aiComplete' && msg.user) {
+    // ── AI requests (feeds, follow-ups, briefings) ──
+    aiComplete: { from: 'ext', check: (msg) => isStr(msg.user, 2000000), run(msg, sender, sendResponse) {
         aiComplete({ system: msg.system || '', user: msg.user, id: msg.id, partial: !!msg.partial, service: msg.service, feature: msg.feature, target: msg.target })
             .then(r => sendResponse({ ok: true, text: r.text, model: r.model }))
             .catch(e => sendResponse({ ok: false, error: e.message || 'AI request failed' }));
         return true;
-    }
-    if (msg.action === 'aiResync') { if (aiJobs.has(msg.id)) aiResyncAsked.add(msg.id); sendResponse({ ok: true }); return true; }
+    } },
+    aiResync: { from: 'ext', run(msg, sender, sendResponse) { if (aiJobs.has(msg.id)) aiResyncAsked.add(msg.id); sendResponse({ ok: true }); return true; } },
+    aiCancel: { from: 'ext', run(msg, sender, sendResponse) { const c = aiJobs.get(msg.id); if (c) c.abort(); sendResponse({ ok: true }); return true; } },
     // Info about a local model server (context window: llama.cpp /props, LM Studio /api/v0/models/<id>). Localhost only, short timeout.
-    if (msg.action === 'localGetJson') {
+    localGetJson: { from: 'any', run(msg, sender, sendResponse) {
         if (!LOCAL_URL.test(String(msg.url || ''))) { sendResponse({ ok: false }); return false; }
         (async () => {
             const ctrl = new AbortController(); const t = setTimeout(() => ctrl.abort(), 1500);
@@ -1678,10 +1698,12 @@ chrome.runtime.onMessage.addListener((msg, sender, sendResponse) => {
             catch (_) { sendResponse({ ok: false }); } finally { clearTimeout(t); }
         })();
         return true;
-    }
-    if (msg.action === 'aiCancel') { const c = aiJobs.get(msg.id); if (c) c.abort(); sendResponse({ ok: true }); return true; }
-    if (msg.action === 'feedPollConfig') { applyFeedPollConfig().then(() => sendResponse({ ok: true })); return true; }
-    if (msg.action === 'audioEnsure') {
+    } },
+
+    // ── feeds (RSS reader) ──
+    feedPollConfig: { from: 'ext', run(msg, sender, sendResponse) { applyFeedPollConfig().then(() => sendResponse({ ok: true })); return true; } },
+    feedBadgeClear: { from: 'ext', run(msg, sender, sendResponse) { clearFeedBadge().then(() => sendResponse({ ok: true })); return true; } },
+    audioEnsure: { from: 'ext', run(msg, sender, sendResponse) {
         // Chrome: audio must live in an offscreen document. Others: the background page hosts it.
         if (chrome.offscreen && chrome.offscreen.createDocument) {
             (async () => {
@@ -1690,18 +1712,15 @@ chrome.runtime.onMessage.addListener((msg, sender, sendResponse) => {
                         ? (await chrome.runtime.getContexts({ contextTypes: ['OFFSCREEN_DOCUMENT'] })).length > 0 : false;
                     if (!has) await chrome.offscreen.createDocument({ url: 'offscreen.html', reasons: ['AUDIO_PLAYBACK'], justification: 'Play podcast episodes from feeds while the popup is closed' });
                     sendResponse({ ok: true });
-                } catch (e) { sendResponse({ ok: false, error: String(e && e.message || e) }); }
+                } catch (e) { sendResponse({ ok: false, error: errText(e) }); }
             })();
             return true;
         }
         sendResponse({ ok: typeof AishAudio !== 'undefined' });
         return false;
-    }
-    if (msg.action === 'feedBadgeClear') { clearFeedBadge().then(() => sendResponse({ ok: true })); return true; }
-
-    // Fetch a feed or site page on behalf of the popup. Returns raw text; the
-    // popup parses it (DOMParser doesn't exist in this service worker).
-    if (msg.action === 'fetchFeedText' && msg.url) {
+    } },
+    // Fetch a feed or site page for the popup. Returns raw text; the popup parses it (no DOMParser in the worker).
+    fetchFeedText: { from: 'ext', check: (msg) => isStr(msg.url, 8192), run(msg, sender, sendResponse) {
         (async () => {
             let timer = null;
             try {
@@ -1735,14 +1754,10 @@ chrome.runtime.onMessage.addListener((msg, sender, sendResponse) => {
             } finally { if (timer) clearTimeout(timer); }
         })();
         return true;
-    }
-
-    // Open a feed item in a new tab; optionally summarize it once the page has
-    // loaded, following the mode last picked on the Summarize screen:
-    //   inline    → foreground tab, summary inserted into the page
-    //   extension → background tab, summary streams to the popup/History and the
-    //               tab closes itself when done
-    if (msg.action === 'openFeedItem' && msg.url) {
+    } },
+    // Open a feed item in a new tab; optionally summarize it once loaded, in the mode last picked on the Summarize screen:
+    //   inline → foreground tab, summary inserted into the page; extension → queued background tab that closes itself when done
+    openFeedItem: { from: 'ext', check: (msg) => isStr(msg.url, 8192), run(msg, sender, sendResponse) {
         if (!/^https?:\/\//i.test(msg.url)) { sendResponse({ success: false }); return false; }
         (async () => {
             if (!msg.summarize) { await openFeedItem(msg, null); sendResponse({ success: true, mode: null }); return; }
@@ -1753,212 +1768,131 @@ chrome.runtime.onMessage.addListener((msg, sender, sendResponse) => {
             sendResponse({ success: true, mode, queued: !!r.queued, position: r.position || 0, id: r.id });
         })();
         return true;
-    }
-    // A page that is open in a tab and also waits in the phone inbox reports its real title / description (from the loader).
-    if (msg.action === 'inboxMeta' && sender.tab && typeof msg.url === 'string' && INBOX && INBOX.applyLinkMeta) {
-        (async () => {
-            try {
-                const d = await localGet([SK.inboxPending]);
-                const list = Array.isArray(d[SK.inboxPending]) ? d[SK.inboxPending] : [];
-                if (INBOX.applyLinkMeta(list, sender.tab.url || '', msg)) await new Promise(r => chrome.storage.local.set({ [SK.inboxPending]: list }, r));
-            } catch (_) { /* cosmetic */ }
-        })();
-        sendResponse({ ok: true });
-        return false;
-    }
-    if (msg.action === 'saveFeedItem' && msg.url) {
+    } },
+    saveFeedItem: { from: 'ext', check: (msg) => isStr(msg.url, 8192), run(msg, sender, sendResponse) {
         if (!/^https?:\/\//i.test(msg.url)) { sendResponse({ success: false, error: 'bad-url' }); return false; }
         saveFeedItem(msg.url).then(sendResponse, () => sendResponse({ success: false, error: 'failed' }));
         return true;
-    }
-    if (msg.action === 'queueSummary' && msg.tabId != null && msg.message) {
-        enqueueSumJob({ kind: 'tab', tabId: msg.tabId, url: msg.url || '', title: msg.title || '', message: msg.message })
-            .then(sendResponse);
+    } },
+    // A page that is open in a tab and also waits in the phone inbox reports its real title / description (from the loader).
+    inboxMeta: { from: 'page', check: (msg) => isStr(msg.url, 8192), run(msg, sender, sendResponse) {
+        if (INBOX && INBOX.applyLinkMeta) {
+            (async () => {
+                try {
+                    const d = await localGet([SK.inboxPending]);
+                    const list = Array.isArray(d[SK.inboxPending]) ? d[SK.inboxPending] : [];
+                    if (INBOX.applyLinkMeta(list, sender.tab.url || '', msg)) await new Promise(r => chrome.storage.local.set({ [SK.inboxPending]: list }, r));
+                } catch (_) { /* cosmetic */ }
+            })();
+        }
+        sendResponse({ ok: true });
+        return false;
+    } },
+
+    // ── summary queue ──
+    queueSummary: { from: 'ext', check: (msg) => msg.tabId != null && !!msg.message, run(msg, sender, sendResponse) {
+        enqueueSumJob({ kind: 'tab', tabId: msg.tabId, url: msg.url || '', title: msg.title || '', message: msg.message }).then(sendResponse);
         return true;
-    }
-    if (msg.action === 'cancelQueuedSummary') { cancelSumJob(msg.id).then(ok => sendResponse({ ok })); return true; }
-    if (msg.action === 'summaryJobs') {
+    } },
+    cancelQueuedSummary: { from: 'ext', run(msg, sender, sendResponse) { cancelSumJob(msg.id).then(ok => sendResponse({ ok })); return true; } },
+    summaryJobs: { from: 'ext', run(msg, sender, sendResponse) {
         sumJobsReady().then(reapSumJob).then(() => sendResponse({ ok: true, running: sumJobInfo(sumJobs.running), queue: sumJobs.queue.map(sumJobInfo) }));
         return true;
-    }
+    } },
+    summaryComplete: { from: 'page', run: summaryEnded },
+    summaryError: { from: 'page', run: summaryEnded },
+    summaryCancelled: { from: 'page', run: summaryEnded },
 
-    // A feed-opened background tab reports it's finished → close it shortly
-    // after (the content script saves the article right after relaying).
-    if ((msg.action === 'summaryComplete' || msg.action === 'summaryError') && sender.tab) {
-        untrackFeedTab(sender.tab.id, false, msg.action === 'summaryComplete' ? 6000 : 8000);
-    }
-    if ((msg.action === 'summaryComplete' || msg.action === 'summaryError' || msg.action === 'summaryCancelled') && sender.tab) {
-        sumJobsReady().then(() => sumJobTabFinished(sender.tab.id, msg.action === 'summaryComplete'));
-    }
-
-    // ── Tab proxy handlers ──────────────────────────────────────────────
-    // When popup.html is loaded inside an <iframe> embedded in a regular web
-    // page (the hybrid sidebar), Firefox downgrades that iframe to
-    // content-script-level privileges: `chrome.tabs` is undefined there. The
-    // background page always has full privileges on every platform, so these
-    // handlers do the real tab work on behalf of any context that can't reach
-    // `chrome.tabs` directly.
-    if (msg.action === 'getActiveTab') {
+    // ── tab proxy: a Firefox sidebar iframe gets content-script privileges (no chrome.tabs), so the worker does the tab work ──
+    getActiveTab: { from: 'any', run(msg, sender, sendResponse) {
         chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
             const tab = tabs && tabs[0];
             sendResponse({ success: !!tab, tab: tab ? { id: tab.id, url: tab.url } : null });
         });
         return true;
-    }
-
+    } },
     // The loader (loader.js) asks for the full content script: saved highlights on this page, or a text selection.
-    if (msg.action === 'aish:injectContent') {
-        const id = sender && sender.tab && sender.tab.id;
-        if (id == null) { sendResponse({ ok: false }); return false; }
-        ensureContent(id).then((ok) => sendResponse({ ok })).catch(() => sendResponse({ ok: false }));
+    'aish:injectContent': { from: 'page', run(msg, sender, sendResponse) {
+        ensureContent(sender.tab.id).then((ok) => sendResponse({ ok })).catch(() => sendResponse({ ok: false }));
         return true;
-    }
-
-    if (msg.action === 'relayToActiveTab' && msg.message) {
+    } },
+    relayToActiveTab: { from: 'ext', check: (msg) => !!msg.message && typeof msg.message === 'object', run(msg, sender, sendResponse) {
         chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
             const tab = tabs && tabs[0];
-            if (!tab) {
-                sendResponse({ success: false, error: 'No active tab' });
-                return;
-            }
+            if (!tab) { sendResponse({ success: false, error: 'No active tab' }); return; }
             chrome.tabs.sendMessage(tab.id, msg.message, (response) => {
-                if (chrome.runtime.lastError) {
-                    sendResponse({ success: false, error: chrome.runtime.lastError.message });
-                    return;
-                }
+                if (chrome.runtime.lastError) { sendResponse({ success: false, error: chrome.runtime.lastError.message }); return; }
                 sendResponse({ success: true, response });
             });
         });
         return true;
-    }
-
-    if (msg.action === 'sendLocalSendP2P') {
+    } },
+    sendLocalSendP2P: { from: 'ext', check: (msg) => isHttpUrl(msg.targetUrl), run(msg, sender, sendResponse) {
         const method = msg.method || 'POST';
         const isJson = msg.isJson !== false;
-        const headers = msg.headers || {
-            'Content-Type': isJson ? 'application/json' : 'application/octet-stream'
-        };
+        const headers = msg.headers || { 'Content-Type': isJson ? 'application/json' : 'application/octet-stream' };
         const controller = new AbortController();
         const timeout = setTimeout(() => controller.abort(), 5000);
-
         let body = msg.body;
-        if (isJson) {
-            body = typeof body === 'string' ? body : JSON.stringify(body);
-        } else if (Array.isArray(body)) {
-            // Reconstruct byte payload sent as number array through runtime messaging.
-            body = new Uint8Array(body).buffer;
-        }
-
-        fetch(msg.targetUrl, {
-            method,
-            headers,
-            body: method === 'GET' || method === 'HEAD' ? undefined : body,
-            signal: controller.signal
-        })
+        if (isJson) body = typeof body === 'string' ? body : JSON.stringify(body);
+        else if (Array.isArray(body)) body = new Uint8Array(body).buffer;   // byte payload sent as a number array through messaging
+        fetch(msg.targetUrl, { method, headers, body: method === 'GET' || method === 'HEAD' ? undefined : body, signal: controller.signal })
             .then(async (res) => {
                 clearTimeout(timeout);
                 const text = await res.text();
                 let data = null;
-                try {
-                    data = text ? JSON.parse(text) : null;
-                } catch (_) {
-                    data = null;
-                }
-
-                sendResponse({
-                    success: true,
-                    ok: res.ok,
-                    status: res.status,
-                    data,
-                    text
-                });
+                try { data = text ? JSON.parse(text) : null; } catch (_) { data = null; }
+                sendResponse({ success: true, ok: res.ok, status: res.status, data, text });
             })
-            .catch((err) => {
-                clearTimeout(timeout);
-                sendResponse({ success: false, error: err?.message || 'Network request failed' });
-            });
-
+            .catch((err) => { clearTimeout(timeout); sendResponse({ success: false, error: err?.message || 'Network request failed' }); });
         return true;
-    }
-
-    if (msg.action === 'openNativeSidePanel') {
-        // Native side panel is Chrome-only. On Firefox/Safari/iOS the
-        // `sidePanel` API is undefined — fall back to the hybrid sidebar.
-        if (!chrome.sidePanel) {
-            sendResponse({ success: false, error: 'sidePanel API not available' });
-            return;
-        }
-        // Use sender.tab.windowId to target the correct window
+    } },
+    // Native side panel is Chrome-only; on Firefox/Safari/iOS the caller falls back to the hybrid sidebar.
+    openNativeSidePanel: { from: 'any', run(msg, sender, sendResponse) {
+        if (!chrome.sidePanel) { sendResponse({ success: false, error: 'sidePanel API not available' }); return false; }
         const windowId = sender?.tab?.windowId;
         if (windowId) {
-            chrome.sidePanel.open({ windowId })
-                .then(() => sendResponse({ success: true }))
-                .catch(err => sendResponse({ error: err.message }));
+            chrome.sidePanel.open({ windowId }).then(() => sendResponse({ success: true })).catch(err => sendResponse({ error: err.message }));
         } else {
-            // Fallback: try all windows
             chrome.windows.getAll({}, (windows) => {
-                if (windows.length > 0) {
-                    chrome.sidePanel.open({ windowId: windows[0].id })
-                        .then(() => sendResponse({ success: true }))
-                        .catch(err => sendResponse({ error: err.message }));
-                }
+                if (windows.length > 0) chrome.sidePanel.open({ windowId: windows[0].id }).then(() => sendResponse({ success: true })).catch(err => sendResponse({ error: err.message }));
+                else sendResponse({ success: false, error: 'no window' });
             });
         }
         return true;
-    }
+    } },
 
-    // Close the tab after "Summarize & Close" completes
-    if (msg.action === 'closeTabSelf' && sender.tab) {
+    // ── save for later ("Summarize & close") ──
+    closeTabSelf: { from: 'page', run(msg, sender, sendResponse) {
         chrome.tabs.remove(sender.tab.id);
-        return true;
-    }
+        sendResponse({ ok: true });
+        return false;
+    } },
+    scheduleDecisionAlarm: { from: 'page', check: (msg) => !!msg.article && typeof msg.article === 'object', run(msg, sender, sendResponse) {
+        const delayMins = decisionAlarmDelayMinutes(msg.article.decisionTimeframe);
+        // the encoded timestamp names the alarm, so the alarm finds its article
+        if (delayMins) chrome.alarms?.create(`decision_${encodeURIComponent(msg.article.timestamp)}`, { delayInMinutes: delayMins });
+        sendResponse({ ok: true });
+        return false;
+    } },
 
-    // Schedule an alarm for a decision slip (article with embedded decision metadata)
-    if (msg.action === 'scheduleDecisionAlarm' && msg.article) {
-        const timeframe = msg.article.decisionTimeframe;
-        const delayMins = decisionAlarmDelayMinutes(timeframe);
-        if (delayMins) {
-            // Use encoded timestamp as alarm name to uniquely identify the article
-            chrome.alarms?.create(`decision_${encodeURIComponent(msg.article.timestamp)}`, { delayInMinutes: delayMins });
-        }
-        return true;
-    }
-
-    // Fetch a (possibly cross-origin / http:// on an https:// page) image
-    // on behalf of a content script and return it as a data URL. Content
-    // scripts must not fetch() third-party images directly — Safari applies
-    // the *page's* CORS/mixed-content rules to content-script fetches
-    // regardless of the extension's host_permissions, unlike Chrome. The
-    // background page is a genuine privileged context, so it can fetch
-    // cross-origin freely.
-    if (msg.action === 'fetchImageAsDataUrl' && msg.url) {
+    // ── fetches for content scripts, which follow the page's CORS / mixed-content rules (Safari also for images) ──
+    fetchImageAsDataUrl: { from: 'any', check: (msg) => isHttpUrl(msg.url), run(msg, sender, sendResponse) {
         (async () => {
             try {
                 const res = await fetch(msg.url);
-                if (!res.ok) {
-                    sendResponse({ success: false, error: `HTTP ${res.status}` });
-                    return;
-                }
+                if (!res.ok) { sendResponse({ success: false, error: `HTTP ${res.status}` }); return; }
                 const contentType = res.headers.get('content-type') || 'image/jpeg';
                 const buf = await res.arrayBuffer();
-                const dataUrl = `data:${contentType};base64,${arrayBufferToBase64(buf)}`;
-                sendResponse({ success: true, dataUrl });
+                sendResponse({ success: true, dataUrl: `data:${contentType};base64,${arrayBufferToBase64(buf)}` });
             } catch (err) {
                 sendResponse({ success: false, error: err?.message || 'Image fetch failed' });
             }
         })();
         return true;
-    }
-
-    // Fetch PDF bytes on behalf of a content script, bypassing page-level
-    // CORS. Content scripts follow the *page's* CORS rules for their own
-    // network requests (since Chrome 73), regardless of the extension's
-    // host_permissions — so an embedded PDF from a cross-origin host (e.g.
-    // Sci-Hub's embed pointing at a different domain) would fail to a
-    // content-script fetch. The background service worker is a genuinely
-    // privileged context, so it can fetch cross-origin freely (same
-    // precedent as fetchImageAsDataUrl above).
-    if (msg.action === 'fetchPdfBytes' && msg.url) {
+    } },
+    // PDF bytes for a cross-origin embed (e.g. a reader page that embeds the PDF from another host)
+    fetchPdfBytes: { from: 'any', check: (msg) => isHttpUrl(msg.url), run(msg, sender, sendResponse) {
         fetch(msg.url, { credentials: 'include' })
             .then(r => {
                 if (r.status === 401 || r.status === 402 || r.status === 403) { const e = new Error('Login required'); e.code = 'LOGIN'; throw e; }
@@ -1974,54 +1908,50 @@ chrome.runtime.onMessage.addListener((msg, sender, sendResponse) => {
             })
             .catch(err => sendResponse({ success: false, error: err.message, code: err.code }));
         return true;
-    }
+    } },
 
-    // Start a streaming fetch — message-based (not runtime.connect/ports).
-    // Safari's background page is a non-persistent event page, and it does
-    // Safari's background page is a non-persistent event page, and it does
-    // NOT reliably re-register onConnect listeners after being suspended and
-    // woken back up — content scripts calling runtime.connect() at that
-    // moment get "No runtime.onConnect listeners found" even after a wakeup
-    // ping + retries. runtime.sendMessage / tabs.sendMessage do not have
-    // this problem, so we push each chunk back to the tab individually
-    // instead of relying on a long-lived port.
-    if (msg.action === 'runDetached' && msg.requestId) { markDetached(msg.requestId); sendResponse({ ok: true }); return false; }
-    if (msg.action === 'runSaved' && msg.requestId) { const r = runs.get(msg.requestId); if (r) { r.saved = true; runs.delete(msg.requestId); } sendResponse({ ok: true }); return false; }
-
-    if (msg.action === 'stopFetch' && msg.requestId) {
+    // ── streaming summaries: message based, not ports (Safari does not re-register onConnect after waking an event page) ──
+    runDetached: { from: 'any', check: (msg) => !!msg.requestId, run(msg, sender, sendResponse) { markDetached(msg.requestId); sendResponse({ ok: true }); return false; } },
+    runSaved: { from: 'any', check: (msg) => !!msg.requestId, run(msg, sender, sendResponse) { const r = runs.get(msg.requestId); if (r) { r.saved = true; runs.delete(msg.requestId); } sendResponse({ ok: true }); return false; } },
+    stopFetch: { from: 'any', check: (msg) => !!msg.requestId, run(msg, sender, sendResponse) {
         const c = activeStreams.get(msg.requestId);
         if (c) { stoppedStreams.add(msg.requestId); c.abort(); }
         sendResponse({ stopped: !!c });
         return false;
-    }
-
-    if (msg.action === 'startFetch' && msg.requestId) {
-        // Fallback: Safari sometimes omits sender.tab.id in
-        // chrome.runtime.onMessage for content scripts. If it's missing,
-        // resolve the active tab so we can push chunks back to it.
-        const handleStart = async () => {
+    } },
+    startFetch: { from: 'any', check: (msg) => !!msg.requestId, run(msg, sender, sendResponse) {
+        (async () => {
+            // Safari sometimes omits sender.tab.id for content scripts: then push the chunks to the active tab
             let tabId = sender?.tab?.id;
-            if (tabId == null) {
-                const [activeTab] = await chrome.tabs.query({ active: true, currentWindow: true });
-                tabId = activeTab?.id;
-            }
-
-            if (tabId == null) {
-                console.error('[AISH Background] No active tab found for startFetch');
-                return;
-            }
-
+            if (tabId == null) { const [activeTab] = await chrome.tabs.query({ active: true, currentWindow: true }); tabId = activeTab?.id; }
+            if (tabId == null) { console.error('[AISH Background] No active tab found for startFetch'); return; }
             handleStreamFetch(msg, tabId);
-        };
-
-        handleStart();
-        // Respond synchronously WITHOUT return true, so the handshake is
-        // acknowledged immediately. In Safari, an async sendResponse paired
-        // with `return true` can close the message port pre-emptively and
-        // surface "The message port closed before a response was received".
+        })();
+        // Answer at once, without `return true`: in Safari an async answer can close the port early ("message port closed").
         sendResponse({ started: true });
         return false;
-    }
+    } },
+};
+function notesMessage(msg, sender, sendResponse) {
+    if (!notesMsgs) { sendResponse({ ok: false, error: 'unavailable' }); return false; }
+    notesMsgs.handle(msg, sender).then(sendResponse).catch(() => sendResponse({ ok: false, error: 'failed' }));
+    return true;
+}
+function targetMessage(start, sendResponse) {
+    if (!targets) { sendResponse({ ok: false, error: 'targets-unavailable' }); return false; }
+    start().then(sendResponse).catch((e) => sendResponse({ ok: false, error: errText(e) }));
+    return true;
+}
+
+chrome.runtime.onMessage.addListener((msg, sender, sendResponse) => {
+    if (!msg || typeof msg.action !== 'string') return false;
+    const h = Object.prototype.hasOwnProperty.call(MESSAGE_HANDLERS, msg.action) ? MESSAGE_HANDLERS[msg.action] : null;
+    if (!h) return false;   // not ours (other listeners, other surfaces)
+    if (h.from === 'ext' && !fromExtensionPage(sender)) { sendResponse({ ok: false, success: false, error: 'Not allowed from a web page' }); return false; }
+    // a page-only or malformed message is dropped without an answer (as before the table): another listener may own it
+    if (h.from === 'page' && !(sender && sender.tab && sender.tab.id != null)) return false;
+    if (h.check && !h.check(msg, sender)) return false;
+    return h.run(msg, sender, sendResponse);
 });
 
 chrome.commands?.onCommand?.addListener((command) => {

@@ -5,7 +5,8 @@ import { SK } from './storageKeys.js';
 
 import { T } from './feedI18n.js';
 
-export const STORE_REVIEW_URL = 'https://chromewebstore.google.com/detail/hldbejcjaedipeegjcinmhejdndchkmb/reviews';
+// UTM: the store dashboard counts listing views per source (here: the in-extension review prompt)
+export const STORE_REVIEW_URL = 'https://chromewebstore.google.com/detail/hldbejcjaedipeegjcinmhejdndchkmb/reviews?utm_source=extension&utm_medium=review-prompt&utm_campaign=review';
 export const MIN_DAYS = 5;
 export const MIN_SUMMARIES = 3;
 export const SNOOZE_DAYS = 14;

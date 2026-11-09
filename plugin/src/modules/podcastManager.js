@@ -378,6 +378,7 @@ function renderStep4(container) {
     const style = podcastWizardState.style || "";
     const customStyle = podcastWizardState.customStyle || "";
 
+    // eslint-disable-next-line no-unsanitized/property -- reviewed: values go through esc()
     container.innerHTML = `
         <p>${esc(T("You're ready to generate your podcast!"))} 🎙️</p>
         <p><strong>${esc(T('Name:'))}</strong> ${esc(podcastWizardState.name)}</p>
@@ -519,6 +520,7 @@ function renderCreatedPodcasts(container) {
             const card = document.createElement("div");
             card.className = "podcast-card";
 
+            // eslint-disable-next-line no-unsanitized/property -- reviewed: name and audio URL go through esc()
             card.innerHTML = `
                 <h3>${esc(p.name)}</h3>
                 ${p.audio ? `<audio controls src="${esc(p.audio)}"></audio>` : `<em>${esc(T('No audio'))}</em>`}

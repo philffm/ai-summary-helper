@@ -113,8 +113,8 @@ assert(sc2.querySelector('.source-doi-add'), '+ DOI button in the card');
   delete store.detailToolbarItems;
 }
 console.log('TEST 69 OK');
-// profile switching: no leftovers (high contrast theme / reduce motion) — logic mirrored from settingsManager
-const src = fs.readFileSync(new URL('../src/modules/settingsManager.js', import.meta.url), 'utf8');
+// profile switching: no leftovers (high contrast theme / reduce motion) — logic in settings/general.js
+const src = fs.readFileSync(new URL('../src/modules/settings/general.js', import.meta.url), 'utf8');
 assert(/default: \(\) => \(\{ theme: leaveContrast\(\)/.test(src) && /large: \(\) => \(\{ theme: leaveContrast\(\), textScale: 125, lineSpacing: 'relaxed', reduceMotion: false/.test(src), 'profiles reset theme + motion');
 assert(/--range-progress/.test(src), 'slider fill follows value');
 // every locale has every English key (graph/settings labels used to be missing in ar/it/ru/zh_HK)

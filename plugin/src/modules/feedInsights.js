@@ -69,6 +69,7 @@ export function renderInsights(container, ctx) {
     const arts = items.map(i => ({ timestamp: i.published }));
     const chart = h('div', 'ar-chart-wrap');
     const tips = chartTips((n) => TN(n, '{n} item', '{n} items'));
+    // eslint-disable-next-line no-unsanitized/property -- reviewed: chart markup from renderBarChart/renderWeekChart: numbers and T labels
     const draw = (v) => { chart.innerHTML = v === 'week' ? renderWeekChart(articlesByWeek(arts), tips.week) : renderBarChart(articlesByDay(arts), tips.day); [...tg.children].forEach(b => b.classList.toggle('active', b.dataset.view === v)); };
     [['day', T('Day')], ['week', T('Week')]].forEach(([v, l]) => { const b = h('button', 'ar-view-btn', l); b.type = 'button'; b.dataset.view = v; b.addEventListener('click', () => draw(v)); tg.append(b); });
     head.append(tg); vol.prepend(head); vol.append(chart); root.append(vol);

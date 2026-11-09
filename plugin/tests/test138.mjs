@@ -60,7 +60,7 @@ assert(!save('s2').disabled, 'can be tried again');
 assert(/didn't respond/.test(d.querySelector('#articleList .phone-inbox-error').textContent), 'unreachable has its own explanation');
 
 const bg = fs.readFileSync(new URL('../src/background.js', import.meta.url), 'utf8');
-assert(/EXTENSION_PAGE_ACTIONS = new Set\([^)]*'saveFeedItem'/.test(bg), 'only extension pages may ask for it');
+assert(/\bsaveFeedItem: \{ from: 'ext'/.test(bg), 'only extension pages may ask for it');
 assert(d.querySelector('#articleList li.article-card.phone-card .article-header h4'), 'a native History card');
 assert(!d.getElementById('phoneInbox'), 'no separate From-phone box any more');
 // Dismiss: no question; the card goes at once, Undo brings it back, the delete happens when the Undo window ends

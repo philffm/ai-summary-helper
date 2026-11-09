@@ -1,7 +1,5 @@
-import { SK, SK_LEGACY, SK_DEAD, LOCAL_KEY_LIST, ARTICLE_REC_LEGACY, articleRecKey, isArticleRecKey, isCollRecKey, isSyncStampsKey, isNoteRecKey, migrateStorageKeys } from './storageKeys.js';
-import { removeArticleFromCollections, clearCollectionSources } from './collections.js';
+import { SK, SK_LEGACY, SK_DEAD, LOCAL_KEY_LIST, ARTICLE_REC_LEGACY, articleRecKey, isArticleRecKey, isCollRecKey, isSyncStampsKey, isNoteRecKey, isHlPageKey, migrateStorageKeys } from './storageKeys.js';
 import { withArticleLock } from './articleLock.js';
-import { markDeleted } from './syncStampClient.js';
 import { debug } from './log.js';
 import { countWords } from './textUtils.js';
 import { withQuestions } from './conversation.js';
@@ -11,6 +9,10 @@ import { buildArticlePrompt } from './promptBuilder.js';
 // the onboarding preselects (never the author's personal mix).
 export const DEFAULT_PROMPT_BUILDER = { tone: 'neutral', length: 'short', focus: ['facts'], extra: '' };
 // storageManager.js
+// Collections, sync stamps and the highlight store load on first use (deletes, the startup migration), not with every popup.
+const collectionsMod = () => import('./collections.js');
+const syncStampsMod = () => import('./syncStampClient.js');
+const highlightStoreMod = () => import('./highlightStore.js');
 
 // Precomputed once per save/migration so analyticsManager.js's reading-time
 // and word-cloud stats can run off the lean articlesIndex, without loading
@@ -45,7 +47,7 @@ class StorageManager {
 
     static isLocalKey(key) {
         // Per-article records are dynamic keys (articles:rec:<id>, formerly article:<id>).
-        return this.LOCAL_KEYS.includes(key) || isArticleRecKey(key) || isCollRecKey(key) || isSyncStampsKey(key) || isNoteRecKey(key) || key.startsWith(ARTICLE_REC_LEGACY);
+        return this.LOCAL_KEYS.includes(key) || isArticleRecKey(key) || isCollRecKey(key) || isSyncStampsKey(key) || isNoteRecKey(key) || isHlPageKey(key) || key.startsWith(ARTICLE_REC_LEGACY);
     }
 
     // ─────────────────────────────────────────────
@@ -469,8 +471,8 @@ class StorageManager {
         const { [SK.articlesIndex]: articlesIndex = [] } = await this.getLocal({ [SK.articlesIndex]: [] });
         await this.setLocal({ [SK.articlesIndex]: articlesIndex.filter(a => a.id !== id) });
         await new Promise(resolve => chrome.storage.local.remove(articleRecKey(id), resolve));
-        await removeArticleFromCollections(id);   // no dead references in any collection
-        await markDeleted('article', [id]);       // sync: the user deleted it (clearAllArticles is a reset and writes none)
+        await (await collectionsMod()).removeArticleFromCollections(id);   // no dead references in any collection
+        await (await syncStampsMod()).markDeleted('article', [id]);       // sync: the user deleted it (clearAllArticles is a reset and writes none)
     }
 
     /**
@@ -485,8 +487,9 @@ class StorageManager {
         if (!gone.length) return 0;
         await this.setLocal({ [SK.articlesIndex]: articlesIndex.filter(a => !drop.has(a.id)) });
         await new Promise(resolve => chrome.storage.local.remove(gone.map(articleRecKey), resolve));
+        const { removeArticleFromCollections } = await collectionsMod();
         for (const id of gone) await removeArticleFromCollections(id);
-        await markDeleted('article', gone);
+        await (await syncStampsMod()).markDeleted('article', gone);
         return gone.length;
     }
 
@@ -498,7 +501,7 @@ class StorageManager {
         const recordKeys = articlesIndex.map(a => articleRecKey(a.id));
         if (recordKeys.length) await new Promise(resolve => chrome.storage.local.remove(recordKeys, resolve));
         await this.setLocal({ [SK.articlesIndex]: [] });
-        await clearCollectionSources();
+        await (await collectionsMod()).clearCollectionSources();
     }
 
     // Archiving is essentially free with this shape: flip a flag on the small
@@ -662,6 +665,21 @@ class StorageManager {
      * - ensure servicesConfig has entries for all services.json
      * - ensure default prompt exists
      */
+    static async migrateHighlightsToPages() {
+        try {
+            // one tiny read on every start after the first: the store module only loads while there is something to move
+            const flag = await this.getLocal({ [SK.hlSchema]: 0, [SK.annotations]: null });
+            if (flag[SK.hlSchema] === 2 && flag[SK.annotations] == null) return { ran: false };
+            const { createHighlightStore } = await highlightStoreMod();
+            const res = await createHighlightStore({ storage: chrome.storage.local }).migrate();
+            if (res && res.ran) debug('[Highlights] per-page keys:', res);
+            return res;
+        } catch (e) {
+            console.warn('[Highlights] migration failed, the old list stays in use:', e && e.message);
+            return { ran: false, error: true };
+        }
+    }
+
     static async initialize() {
         // Run legacy sync cleanup first — purge any local keys from sync storage
         await this.purgeSyncBloat();
@@ -685,6 +703,11 @@ class StorageManager {
         // switched to the articlesIndex/article:<id> shape, so it's now safe to
         // run this on every popup/service-worker startup.
         await this.migrateArticlesToIndexedRecords();
+
+        // Highlights: the old single list (hl:all) → one key per page + an index (highlightStore.js). Every reader and
+        // writer uses the store, which reads the old list until this has run. One tiny read after the first run; the
+        // service worker runs the same step at start, whichever comes first wins.
+        await this.migrateHighlightsToPages();
 
         // Fold the old single kindleEmail/localSendIp settings into the
         // unified multi-device 'devices' list. Cheap no-op after first run.

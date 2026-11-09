@@ -1,5 +1,5 @@
 import { pageKeyForUrl as pageKeyFromUrl } from './pageKey.js';
-import { SK } from './storageKeys.js';
+import { createHighlightStore } from './highlightStore.js';
 // annotationExporter.js
 // Builds an HTML "Highlights & Notes" section for a saved article from the
 // on-page annotations the extension captured (user highlights + AI ghost
@@ -109,14 +109,10 @@ export async function fetchAnnotationsForArticle(article) {
     const url = article?.url;
     if (!url) return [];
 
-    return new Promise((resolve) => {
-        chrome.storage.local.get([SK.annotations], (res) => {
-            if (chrome.runtime.lastError) { resolve([]); return; }
-            const all = Array.isArray(res[SK.annotations]) ? res[SK.annotations] : [];
-            const key = pageKeyForUrl(url);
-            resolve(all.filter(a => a && a.url === key && !a.dismissed));
-        });
-    });
+    try {
+        const list = await createHighlightStore({ storage: chrome.storage.local }).forPage(pageKeyForUrl(url));
+        return list.filter(a => !a.dismissed);
+    } catch (_) { return []; }
 }
 
 /**

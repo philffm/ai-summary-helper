@@ -11,6 +11,7 @@ import { withLock } from './articleLock.js';
 import { syncFields, unknownFields } from './syncStamps.js';
 import { applyFields } from './syncApply.js';
 import { articleKey } from './syncIdentity.js';
+import { createHighlightStore } from './highlightStore.js';
 
 const get = (storage, keys) => Promise.resolve(storage.get(keys));
 const set = (storage, obj) => Promise.resolve(storage.set(obj));
@@ -38,7 +39,7 @@ export function createDataAdapter({ storage, hooks = {} } = {}) {
             }
         }
         if (by.hl.length) {
-            const all = new Map(list((await get(storage, { [SK.annotations]: [] }))[SK.annotations]).map((h) => [h.id, h]));
+            const all = new Map((await createHighlightStore({ storage }).all({ dismissed: true })).filter((h) => h.id).map((h) => [h.id, h]));
             for (const id of by.hl) out.set('hl:' + id, all.has(id) ? { fields: syncFields('highlight', all.get(id)), unknown: [] } : null);
         }
         for (const [type, idsList, keyFn, ft] of [['coll', by.coll, collRecKey, 'collection'], ['note', by.note, noteRecKey, 'note']]) {
@@ -70,15 +71,11 @@ export function createDataAdapter({ storage, hooks = {} } = {}) {
             if (drops.length) await rm(storage, drops);
         });
         if (by.hl.length) {
-            // page scripts write this array without our lock: read it right before writing, and write once
-            const all = list((await get(storage, { [SK.annotations]: [] }))[SK.annotations]).slice();
-            for (const { key, merged } of by.hl) {
-                const id = idOf(key), at = all.findIndex((h) => h.id === id);
-                if (merged.deleted) { if (at >= 0) all.splice(at, 1); continue; }
-                const res = applyFields('highlight', at >= 0 ? all[at] : null, merged, { id });
-                if (at >= 0) all[at] = res; else all.push(res);
-            }
-            await set(storage, { [SK.annotations]: all });
+            // the highlight store's lock covers page scripts too (they write through the worker): merge inside it, one write per page
+            await createHighlightStore({ storage }).apply(by.hl.map(({ key, merged }) => {
+                const id = idOf(key);
+                return { op: 'merge', id, fn: (cur) => (merged.deleted ? null : applyFields('highlight', cur, merged, { id })) };
+            }));
         }
         if (by.coll.length) await withLock('aish-collections', async () => {
             let idx = list((await get(storage, { [SK.collIndex]: [] }))[SK.collIndex]).slice();

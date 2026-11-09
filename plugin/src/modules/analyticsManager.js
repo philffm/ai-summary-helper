@@ -311,6 +311,7 @@ export function initAnalyticsReport(container, articles) {
           <p class="ar-savings-caption">${T('{p}% compression across {a}', { p: timeSavings.ratio, a: artCnt(timeSavings.covered) })}</p>
         </div>` : '';
 
+    // eslint-disable-next-line no-unsanitized/property -- reviewed: numbers and fragments built here with escapeHtml/T
     container.innerHTML = `
       <div class="ar-report">
 
@@ -416,6 +417,7 @@ export function initAnalyticsReport(container, articles) {
                 b.classList.toggle('active', b.dataset.view === view);
                 b.setAttribute('aria-selected', b.dataset.view === view ? 'true' : 'false');
             });
+            // eslint-disable-next-line no-unsanitized/property -- reviewed: chart markup from renderBarChart/renderWeekChart: numbers and T labels
             chartWrap.innerHTML = view === 'week' ? renderWeekChart(weeks, tips.week) : renderBarChart(days, tips.day);
         };
 
