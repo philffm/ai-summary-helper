@@ -1,0 +1,25 @@
+{
+  "$schema": "https://unpkg.com/knip@6/schema.json",
+  "entry": [
+    "plugin/src/popup.js",
+    "plugin/src/content.js",
+    "plugin/src/content/finalize.js",
+    "plugin/src/modules/*BackgroundBundle.js",
+    "plugin/src/background.js",
+    "plugin/src/loader.js",
+    "plugin/src/offscreen.js",
+    "plugin/src/audioEngine.js",
+    "plugin/src/builtinAi.js",
+    "plugin/src/ttsEngine.js",
+    "plugin/src/readerPage.js",
+    "plugin/src/viewer/*.js",
+    "plugin/tests/**/*.{mjs,cjs}",
+    "plugin/scripts/**/*.{js,mjs}",
+    "scripts/**/*.mjs",
+    "design-system/*.mjs"
+  ],
+  "project": ["plugin/src/**/*.js", "plugin/tests/**/*.{mjs,cjs}", "plugin/scripts/**/*.{js,mjs}", "scripts/**/*.mjs", "design-system/*.mjs"],
+  "ignore": ["plugin/src/lib/**", "plugin/dev/**", "plugin/dist/**", "plugin/prod/**", "docs/**", "mcp/**", "mobile/**"],
+  "ignoreExportsUsedInFile": true,
+  "rules": { "files": "warn", "exports": "warn", "types": "off", "dependencies": "warn", "unlisted": "warn", "duplicates": "warn" }
+}

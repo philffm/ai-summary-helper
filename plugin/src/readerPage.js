@@ -129,6 +129,7 @@ async function render() {
   if (article.timestamp) bits.push(`<span>${escapeHtml(new Date(article.timestamp).toLocaleDateString(document.documentElement.lang || undefined))}</span>`);
   bits.push(`<span>${escapeHtml(T('~{n} min read', { n: minutes }))}</span>`);
 
+  // eslint-disable-next-line no-unsanitized/property -- reviewed: content and summary went through clean() (cleanUntrustedHtml), meta bits are escaped
   page.innerHTML = `
     <article>
       <h1 class="rp-title">${escapeHtml(title)}</h1>

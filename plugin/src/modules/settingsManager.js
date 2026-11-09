@@ -506,6 +506,7 @@ function renderGuide(container) {
         </div>
     `).join('');
 
+    // eslint-disable-next-line no-unsanitized/property -- reviewed: Ollama setup steps are constants in this file; commands are escaped
     container.innerHTML = `
         <div class="ollama-tutorial-header">🦙 ${t.title}</div>
         ${stepsHtml}
@@ -785,8 +786,11 @@ async function initModelSettings(storageData) {
 
         const apiKeyLink = document.getElementById('apiKeyLink');
         if (apiKeyLink) {
-            apiKeyLink.innerHTML = service?.apiKeyDocumentationUrl
-                ? `(<a href="${service.apiKeyDocumentationUrl}" target="_blank">${escapeHtml(T('Get Key'))}</a>)`
+            const docUrl = service?.apiKeyDocumentationUrl || '';
+            // only an https link, escaped: a custom service's URL is user data
+            // eslint-disable-next-line no-unsanitized/property -- reviewed: https-only URL and label are escaped
+            apiKeyLink.innerHTML = /^https:\/\//i.test(docUrl)
+                ? `(<a href="${escapeHtml(docUrl)}" target="_blank" rel="noopener noreferrer">${escapeHtml(T('Get Key'))}</a>)`
                 : '';
         }
 
@@ -1155,6 +1159,7 @@ function initLocalSendSettings(storageData) {
             container.innerHTML = `<div class="device-empty">${T('No devices added yet.')}</div>`;
             return;
         }
+        // eslint-disable-next-line no-unsanitized/property -- reviewed: device fields are escaped
         container.innerHTML = list.map(d => {
             const isActive = activeDeviceIds[type] === d.id || (!activeDeviceIds[type] && list[0].id === d.id);
             return `

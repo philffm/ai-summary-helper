@@ -178,6 +178,7 @@ function feedsHtml() {
 
 function render() {
     if (!root) return;
+    // eslint-disable-next-line no-unsanitized/property -- reviewed: builders escape every user value with esc()
     root.innerHTML = `<p class="ps-intro">${esc(T('Customize how the AI writes.'))}</p>
       ${seg('tab', [['articles', T('📄 Full articles')], ['feeds', T('📰 Feeds & briefings')]], S.tab)}
       <div class="ps-body">${S.tab === 'articles' ? articlesHtml() : feedsHtml()}</div>`;

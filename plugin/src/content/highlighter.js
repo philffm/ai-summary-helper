@@ -498,6 +498,7 @@ function showHighlightTooltip(x, y, onClick, label = '✏️ Highlight') {
     `;
     document.body.appendChild(tooltip);
   }
+  // eslint-disable-next-line no-unsanitized/property -- reviewed: label is a fixed string from this file
   tooltip.innerHTML = label;
   tooltip.style.left = `${x + 5}px`;
   tooltip.style.top  = `${y - 35}px`;
@@ -644,6 +645,7 @@ function hlShowMenu(x, y, entry) {
     document.body.appendChild(menu);
   }
   const ghost = entry.ann.type === 'ghost';
+  // eslint-disable-next-line no-unsanitized/property -- reviewed: two fixed button templates, no data
   menu.innerHTML = ghost
     ? `<button id="btn-convert-yellow" style="background:#fef08a;border:1px solid #fde047;color:#854d0e;padding:4px 8px;border-radius:4px;cursor:pointer;font-weight:bold;">⭐ Keep</button>
        <button id="btn-dismiss-ghost" style="background:#f1f5f9;border:1px solid #cbd5e1;color:#475569;padding:4px 8px;border-radius:4px;cursor:pointer;">✕ Dismiss</button>`

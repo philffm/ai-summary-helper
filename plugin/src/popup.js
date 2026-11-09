@@ -284,6 +284,7 @@ document.addEventListener("DOMContentLoaded", async () => {
                 btn.className = 'pill pill--sm pill--soft';
                 const flagEmoji = text.split(/\s/)[0] || '🌐';
                 const name = text.split(/\s/).slice(1).join(' ') || shortCode;
+                // eslint-disable-next-line no-unsanitized/property -- reviewed: flag emoji from our language table, name escaped
                 btn.innerHTML = `<span class="tag-flag">${flagEmoji}</span> ${escapeHtml(name)}`;
                 btn.title = name;
                 if (option.selected) btn.classList.add('active');
@@ -580,6 +581,7 @@ document.addEventListener("DOMContentLoaded", async () => {
                             const btn = document.createElement('button');
                             btn.className = 'pill pill--sm pill--soft';
                             const shortName = modelId.includes('/') ? modelId.split('/').pop() : modelId;
+                            // eslint-disable-next-line no-unsanitized/property -- reviewed: model name escaped, icons are our own SVG
                             btn.innerHTML = modelId === activeCloudModel
                                 ? `${escapeHtml(shortName)} ${icon('check', 'icon--sm')}`
                                 : `${escapeHtml(shortName)} <span class="remove-recent">${icon('x', 'icon--sm')}</span>`;
@@ -766,6 +768,7 @@ document.addEventListener("DOMContentLoaded", async () => {
                 // Model ID tags for selected provider
                 modelIdGrid.innerHTML = '';
                 if (deduped.length === 0) {
+                    // eslint-disable-next-line no-unsanitized/property -- reviewed: fixed note text via T
                     modelIdGrid.innerHTML = curSvcId === 'ollama' ? '' : '<span class="model-grid-note">' + T('No models configured') + '</span>'; // Ollama: the probe fills the grid
                     return;
                 }
@@ -775,6 +778,7 @@ document.addEventListener("DOMContentLoaded", async () => {
                     btn.className = 'pill pill--sm pill--soft';
                     const isCustom = customIds.includes(modelId);
                     btn.dataset.modelId = modelId;
+                    // eslint-disable-next-line no-unsanitized/property -- reviewed: model id escaped, icon is our own SVG
                     btn.innerHTML = `${escapeHtml(modelId)}${isCustom ? ` <span class="remove-tag">${icon('x', 'icon--sm')}</span>` : ''}`;
                     if (modelId === activeModel) btn.classList.add('active');
                     
