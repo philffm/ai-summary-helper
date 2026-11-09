@@ -10,9 +10,25 @@
   if (window.__AISH_LOADER) return;
 
   const KEEP = ['currentJobId', 'v', 'id', 'item', 'story_fbid', 'pid', 'postId', 'article'];
+  // copy of modules/archiveUrl.js: highlights on an archive.ph / Wayback copy belong to the original article
+  const ARCHIVE = [/^archive\.(ph|today|is|li|vn|fo|md)$/, /^(web\.|wayback\.)?archive\.org$/, /^wayback\.archive-it\.org$/, /^webcache\.googleusercontent\.com$/,
+    /^(www\.)?12ft\.io$/, /^(www\.)?removepaywall\.com$/, /^(www\.)?ghostarchive\.org$/];
+  const isArchive = (h) => { const x = String(h || '').toLowerCase().replace(/^www\.(?=archive\.)/, ''); return ARCHIVE.some(re => re.test(x)); };
+  const unwrap = (url) => {
+    const raw = String(url || '').trim();
+    let u;
+    try { u = new URL(raw); } catch (_) { return raw; }
+    if (!isArchive(u.hostname)) return raw;
+    const m = raw.slice(u.origin.length).match(/https?:\/\/?[^\s]+/i) || raw.slice(u.origin.length).match(/https?%3A%2F%2F[^\s&]+/i);
+    if (!m) return raw;
+    let inner = m[0];
+    if (/%3A%2F%2F/i.test(inner)) { try { inner = decodeURIComponent(inner); } catch (_) { return raw; } }
+    inner = inner.replace(/^(https?):\/(?!\/)/i, '$1://');
+    try { const out = new URL(inner); return !/^https?:$/.test(out.protocol) || isArchive(out.hostname) ? raw : out.href; } catch (_) { return raw; }
+  };
   const keyFor = (href) => {
     try {
-      const u = new URL(href);
+      const u = new URL(unwrap(href));
       const keep = KEEP.filter(k => u.searchParams.get(k)).sort().map(k => `${k}=${u.searchParams.get(k)}`);
       return `${u.origin}${u.pathname}${keep.length ? '?' + keep.join('&') : ''}`;
     } catch (_) { return String(href || '').split('#')[0].split('?')[0]; }
@@ -20,7 +36,10 @@
 
   window.__AISH_LOADER = { keyFor };         // truthy guard; keyFor is exposed so test80 can check it against pageKey.js
 
-  const ANN = 'hl:all';                      // keep in sync with SK.annotations (modules/storageKeys.js)
+  // keep in sync with modules/storageKeys.js (SK.annotations, SK.hlSchema, HL_PAGE); test80 checks the parity
+  const ANN = 'hl:all';                      // the old single list (before the migration)
+  const SCHEMA = 'hl:schema';                // 2 = one key per page
+  const PAGE = 'hl:page:';                   // + page key: this page's highlights
   let loading = false;
   const full = () => !!window.__AISH_CONTENT_LOADED || !!window.aishContentScriptInitialized;
   let flags = null;                          // highlighting switches (sync storage), read once and kept fresh below
@@ -60,16 +79,18 @@
     });
   };
 
-  // Does this page have saved highlights? Then the full script has to paint them.
+  // Does this page have saved highlights? Then the full script has to paint them. Reads this page's key only
+  // (the old single list only until the migration has run).
   const check = () => {
     if (full() || loading || !highlightingOn()) return;
     try {
-      api.storage.local.get([ANN], (res) => {
+      const key = keyFor(location.href);
+      api.storage.local.get([SCHEMA, PAGE + key, ANN], (res) => {
         void (api.runtime.lastError);
-        const all = res && res[ANN];
-        if (!Array.isArray(all) || !all.length) return;
-        const key = keyFor(location.href);
-        if (all.some(a => a && !a.dismissed && typeof a.url === 'string' && keyFor(a.url) === key)) load();
+        if (!res) return;
+        const list = res[SCHEMA] === 2 ? res[PAGE + key] : res[ANN];
+        if (!Array.isArray(list) || !list.length) return;
+        if (list.some(a => a && !a.dismissed && typeof a.url === 'string' && keyFor(a.url) === key)) load();
       });
     } catch (_) { /* context gone */ }
   };
@@ -87,7 +108,7 @@
 
   function onNav() { if (document.visibilityState !== 'hidden') check(); }
   function onStorage(changes, area) {
-    if (area === 'local' && changes[ANN]) check();
+    if (area === 'local' && (changes[PAGE + keyFor(location.href)] || changes[ANN] || changes[SCHEMA])) check();
     if (area === 'sync' && (changes.userHighlightingEnabled || changes.aiHighlightingEnabled || changes.highlightingEnabled)) {
       flags = Object.assign({}, flags, ...['userHighlightingEnabled', 'aiHighlightingEnabled', 'highlightingEnabled'].filter(k => changes[k]).map(k => ({ [k]: changes[k].newValue })));
       check();

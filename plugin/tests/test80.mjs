@@ -49,12 +49,30 @@ assert.deepEqual((await page('https://example.com/a/b', { local: { 'hl:all': min
 // 4. same page keys as modules/pageKey.js (the loader copies the function)
 const kp = await page('https://example.com/');
 const urls = ['https://example.com/x?v=abc&utm_source=t#h', 'https://www.youtube.com/watch?v=123&t=5', 'https://www.linkedin.com/jobs/view?currentJobId=9&trk=a', 'https://example.com/', 'https://example.com:8080/a/b/?id=7&q=zzz', 'http://news.site/p?article=5&id=2',
-  'https://x.org/a?item=1&story_fbid=2&pid=3&postId=4&currentJobId=5&v=6&id=7&article=8&zzz=9', 'https://x.org/a?id=', 'not a url?x=1#y', ''];
+  'https://x.org/a?item=1&story_fbid=2&pid=3&postId=4&currentJobId=5&v=6&id=7&article=8&zzz=9', 'https://x.org/a?id=', 'not a url?x=1#y', '',
+  'https://archive.ph/2026.10.20-101500/https://www.nytimes.com/2026/10/20/tech/ai.html', 'https://web.archive.org/web/20261020101500/https://example.com/post?id=3',
+  'https://12ft.io/https%3A%2F%2Fexample.com%2Fpost', 'https://archive.ph/AbCd1'];
 for (const u of urls) assert.equal(kp.w.__AISH_LOADER.keyFor(u), pageKeyForUrl(u), 'page key parity for ' + JSON.stringify(u));
 for (const u of urls.filter(x => x.startsWith('http'))) {
   const r = await page(u, { local: { 'hl:all': [{ id: 'k', url: pageKeyForUrl(u), text: 'x', type: 'user' }] } });
   assert.deepEqual(r.sent, ['aish:injectContent'], 'stored page key matches ' + u);
 }
+
+// 4b. one key per page (schema 2): the loader reads only this page's key
+p = await page('https://www.youtube.com/watch?v=abc&t=3', { local: { 'hl:schema': 2, 'hl:page:https://www.youtube.com/watch?v=abc': mine.map(h => ({ ...h, url: 'https://www.youtube.com/watch?v=abc' })) } });
+assert.deepEqual(p.sent, ['aish:injectContent'], 'schema 2: this page has highlights → injection');
+p = await page('https://www.youtube.com/watch?v=def', { local: { 'hl:schema': 2, 'hl:page:https://www.youtube.com/watch?v=abc': mine.map(h => ({ ...h, url: 'https://www.youtube.com/watch?v=abc' })) } });
+assert.deepEqual(p.sent, [], 'schema 2: another video has highlights → no injection');
+p = await page('https://example.com/a/b', { local: { 'hl:schema': 2, 'hl:all': mine } });
+assert.deepEqual(p.sent, [], 'schema 2: a stale old list is not read');
+p = await page('https://example.com/a/b', { local: { 'hl:schema': 2 } });
+p.local['hl:page:https://example.com/a/b'] = mine;
+p.fire({ 'hl:page:https://example.com/other': { newValue: other } }, 'local'); await tick();
+assert.deepEqual(p.sent, [], 'a change on another page is ignored');
+p.fire({ 'hl:page:https://example.com/a/b': { newValue: mine } }, 'local'); await tick();
+assert.deepEqual(p.sent, ['aish:injectContent'], 'a change on this page brings the highlights');
+p = await page('https://archive.ph/2026.10.20-101500/https://example.com/a/b', { local: { 'hl:schema': 2, 'hl:page:https://example.com/a/b': mine } });
+assert.deepEqual(p.sent, ['aish:injectContent'], 'an archive copy shows the original article\'s highlights');
 
 // 5. highlights added later (another surface saves one) or switches turned on → injection
 p = await page('https://example.com/a/b', { local: {} });

@@ -5,7 +5,8 @@
 // so nothing on this tab rewrites the highlight array that page scripts write.
 import { T, TN, TU } from './feedI18n.js';
 import { undoToast } from './confirmSheet.js';
-import { SK, isNoteRecKey } from './storageKeys.js';
+import { SK, isNoteRecKey, isHlPageKey } from './storageKeys.js';
+import { createHighlightStore } from './highlightStore.js';
 import { iconEl } from './icons.js';
 import { createNotesStore } from './notesStore.js';
 import { pageKeyForUrl } from './pageKey.js';
@@ -115,12 +116,9 @@ function removeWithUndo(item, message, commit) {
 }
 
 async function removeHighlight(item) {
-    const d = await getL({ [SK.annotations]: [] });
-    const list = d[SK.annotations];
-    if (!Array.isArray(list)) return false;   // an older shape of the list: the pages normalise it, this tab does not touch it
+    if (!item.url || !item.id) return false;
     const ghost = item.kind === 'ghost';
-    const next = ghost ? list.map((a) => (a && a.id === item.id ? { ...a, dismissed: true } : a)) : list.filter((a) => !(a && a.id === item.id));
-    await new Promise((r) => chrome.storage.local.set({ [SK.annotations]: next }, r));
+    await createHighlightStore({ storage: chrome.storage.local }).apply([{ op: ghost ? 'dismiss' : 'remove', page: item.url, id: item.id }]);
     if (!ghost) { try { const r = chrome.runtime.sendMessage({ action: 'syncHlDeleted', ids: [item.id] }); if (r && r.catch) r.catch(() => {}); } catch (_) { /* the worker restarts on the next event */ } }
     await store.setComment(item.id, { text: '', tags: [] });
     return true;
@@ -150,8 +148,8 @@ function editor(item, inst) {
 function viewMode() { return state.view || lsGet('aish.notesView') || ((window.innerWidth || 0) >= WIDE ? 'grid' : 'list'); }
 
 async function load() {
-    const [d, { notes, comments }] = await Promise.all([getL({ [SK.annotations]: [], [SK.articlesIndex]: [] }), store.list()]);
-    return { notes, comments, highlights: Array.isArray(d[SK.annotations]) ? d[SK.annotations] : [], articles: Array.isArray(d[SK.articlesIndex]) ? d[SK.articlesIndex] : [] };
+    const [d, highlights, { notes, comments }] = await Promise.all([getL({ [SK.articlesIndex]: [] }), createHighlightStore({ storage: chrome.storage.local }).all({ dismissed: true }), store.list()]);
+    return { notes, comments, highlights, articles: Array.isArray(d[SK.articlesIndex]) ? d[SK.articlesIndex] : [] };
 }
 
 /** Which articles carry items, and how many of each kind: the By article pane. */
@@ -371,7 +369,7 @@ export function initNotesView(ui) {
     let timer = 0;
     chrome.storage.onChanged.addListener((changes, area) => {
         if (area !== 'local') return;
-        if (!(SK.annotations in changes || SK.notesIndex in changes || Object.keys(changes).some((k) => isNoteRecKey(k)) || SK.articlesIndex in changes)) return;
+        if (!(SK.annotations in changes || SK.hlIndex in changes || SK.notesIndex in changes || Object.keys(changes).some((k) => isNoteRecKey(k) || isHlPageKey(k)) || SK.articlesIndex in changes)) return;
         if ([...instances].some((i) => i.editing)) return;   // not while someone is typing in a note
         const visible = document.body.dataset.screen === 'notes' || [...mounted.values()].length || (articlePane && articlePane.root && articlePane.root.isConnected);
         if (!visible) return;

@@ -1165,7 +1165,7 @@ if (syncStamps) {
         if (area !== 'local') return;
         syncStamps.onChanged(changes);
         // a change to the library (not to sync's own ledger or status) publishes a little later
-        if (SK.articlesIndex in changes || SK.annotations in changes || Object.keys(changes).some((k) => isArticleRecKey(k))) syncStamps.enabled().then((on) => { if (on) syncSoon(2); });
+        if (SK.articlesIndex in changes || SK.annotations in changes || Object.keys(changes).some((k) => isArticleRecKey(k) || isHlPageKey(k))) syncStamps.enabled().then((on) => { if (on) syncSoon(2); });
     });
     syncStamps.scan().catch(() => {});
     (async () => { try { if (!(await chrome.alarms.get(SYNC_ALARM))) chrome.alarms.create(SYNC_ALARM, { delayInMinutes: 5, periodInMinutes: 30 }); } catch (_) { /* no alarms */ } })();

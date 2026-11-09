@@ -12,6 +12,7 @@ import { SK, articleRecKey, collRecKey } from '../storageKeys.js';
 import { buildIndex, search as rankedSearch } from '../localSearch.js';
 import { toArticleJson } from '../articleFormat.js';
 import { pageKeyForUrl } from '../pageKey.js';
+import { createHighlightStore } from '../highlightStore.js';
 import { BRAND_GUIDE } from './brand.js';
 import { SIM_VERSION, buildEntry, fingerprintOf, similarTo } from '../graphSimilarity.js';
 import { isLanguageTag } from '../topicConcepts.js';
@@ -81,10 +82,7 @@ async function articleRecord(storage, id) {
 /** Highlights for one article, by page key (highlights are stored keyed by pageKeyForUrl, not article id — see markdownArchive.js). */
 async function highlightsFor(storage, article) {
     if (!article || !article.url) return [];
-    const d = await storage.get({ [SK.annotations]: [] });
-    const all = Array.isArray(d[SK.annotations]) ? d[SK.annotations] : [];
-    const key = pageKeyForUrl(article.url);
-    return all.filter((h) => h && h.text && !h.dismissed && h.url === key);
+    return (await createHighlightStore({ storage }).forPage(pageKeyForUrl(article.url))).filter((h) => h.text && !h.dismissed);
 }
 
 function toResultRow(article) {
@@ -174,9 +172,7 @@ export async function list_highlights(args = {}, { storage, excludeTag } = {}) {
     const limit = Math.min(Number(args.limit) || DEFAULT_LIMIT.list_highlights, MAX_LIMIT.list_highlights);
     const index = await visibleIndex(storage, excludeTag);
     const byKey = new Map(index.filter((a) => a.url).map((a) => [pageKeyForUrl(a.url), a]));
-    const d = await storage.get({ [SK.annotations]: [] });
-    let all = Array.isArray(d[SK.annotations]) ? d[SK.annotations] : [];
-    all = all.filter((h) => h && h.text && !h.dismissed && byKey.has(h.url));
+    let all = (await createHighlightStore({ storage }).all()).filter((h) => h.text && byKey.has(h.url));
     if (args.article) { const a = index.find((x) => x.id === args.article); all = all.filter((h) => a && h.url === pageKeyForUrl(a.url)); }
     if (args.since) all = all.filter((h) => inWindow(h.timestamp, args.since, null));
     if (args.tag) {
@@ -338,8 +334,8 @@ export async function library_stats(args = {}, { storage, excludeTag, now = Date
 
     // highlights in range, attributed to visible articles
     const byKey = new Map(all.filter((a) => a.url).map((a) => [pageKeyForUrl(a.url), a]));
-    const d = await storage.get({ [SK.annotations]: [], [SK.collIndex]: [], [SK.feedSubs]: [] });
-    const hls = (Array.isArray(d[SK.annotations]) ? d[SK.annotations] : []).filter((h) => h && h.text && !h.dismissed && byKey.has(h.url) && inRange(h.timestamp));
+    const d = await storage.get({ [SK.collIndex]: [], [SK.feedSubs]: [] });
+    const hls = (await createHighlightStore({ storage }).all()).filter((h) => h.text && byKey.has(h.url) && inRange(h.timestamp));
     const hlMonth = new Map(), hlArticle = new Map();
     let userHl = 0;
     for (const h of hls) { bump(hlMonth, monthKey(h.timestamp)); bump(hlArticle, h.url); if (h.type !== 'ghost') userHl++; }

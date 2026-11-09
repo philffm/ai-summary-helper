@@ -1,5 +1,6 @@
 import { SK, articleRecKey } from './storageKeys.js';
 import { pageKeyForUrl } from './pageKey.js';
+import { createHighlightStore } from './highlightStore.js';
 import { qaMarkdown } from './conversation.js';
 import { T } from './feedI18n.js';
 import { toArticleJson, assignFileBases, frontMatter, htmlToMarkdown, safeFileName } from './articleFormat.js';
@@ -128,7 +129,8 @@ export function hubToMarkdown({ title, items, nameOf, briefingName = '', subtopi
 
 export async function buildArchiveFiles({ onProgress, ids = null, briefing = null, hub = null } = {}) {
     const get = (k) => new Promise(resolve => chrome.storage.local.get(k, resolve));
-    const { [SK.articlesIndex]: index = [], [SK.annotations]: annotations = [] } = await get({ [SK.articlesIndex]: [], [SK.annotations]: [] });
+    const { [SK.articlesIndex]: index = [] } = await get({ [SK.articlesIndex]: [] });
+    const annotations = await createHighlightStore({ storage: chrome.storage.local }).all();
     const everything = index.filter(a => a && a.id && !a.feedStub && !a.savedOnly);
     // `ids` = export only these articles (a graph cluster); names and [[related]] links still come from the whole archive.
     const want = ids ? new Set(ids) : null;

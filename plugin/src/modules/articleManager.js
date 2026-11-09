@@ -3,7 +3,7 @@ import { showSkeleton, clearSkeleton } from './skeleton.js';
 import { modelIcon } from './modelBadge.js';
 import { icon, iconEl, setIconLabel, stripEmoji } from './icons.js';
 import { TOOLBAR_CATALOG, TOOLBAR_PREF, DEFAULT_TOOLBAR, normalizeToolbar } from './detailToolbar.js';
-import { SK, isNoteRecKey } from './storageKeys.js';
+import { SK, isNoteRecKey, isHlPageKey } from './storageKeys.js';
 import { escapeHtml, cleanUntrustedHtml } from './textUtils.js';
 // Article Manager
 // Handles article rendering, expand/collapse, search, etc.
@@ -1564,7 +1564,7 @@ try {
     let noteTimer = 0;
     chrome.storage.onChanged.addListener((changes, area) => {
         if (area !== 'local') return;
-        if (!(SK.annotations in changes || SK.notesIndex in changes || SK.articlesIndex in changes || Object.keys(changes).some((k) => isNoteRecKey(k)))) return;
+        if (!(SK.annotations in changes || SK.hlIndex in changes || SK.notesIndex in changes || SK.articlesIndex in changes || Object.keys(changes).some((k) => isNoteRecKey(k) || isHlPageKey(k)))) return;
         noteCountsP = null; clearTimeout(noteTimer); noteTimer = setTimeout(paintNoteChips, 250);
     });
 } catch (_) { /* no extension storage (tests) */ }

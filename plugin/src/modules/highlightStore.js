@@ -18,6 +18,7 @@
 //      { op: 'dismiss', page, id }                kept as dismissed: an AI highlight the user rejected never comes back
 //      { op: 'upsert', hl }                       sync: replace by id, or add
 //      { op: 'removeId', id }                     sync: remove wherever it is
+//      { op: 'merge', id, fn }                    sync: fn(current | null) → record to keep, or null to remove (inside the lock)
 import { SK, hlPageKey, articleRecKey } from './storageKeys.js';
 import { withLock } from './articleLock.js';
 import { normalizeHighlight, normalizeHighlights } from './highlightRecords.js';
@@ -27,10 +28,21 @@ import { hashValue } from './syncStamps.js';
 export const HL_SCHEMA = 2;
 const HL_LOCK = 'aish-hl';
 const HL_CHUNK = 25;
-const hlsGet = (storage, keys) => Promise.resolve(storage.get(keys));
-const hlsSet = (storage, obj) => Promise.resolve(storage.set(obj));
-const hlsRm = (storage, keys) => new Promise((res) => { const r = storage.remove(keys, res); if (r && r.then) r.then(res, res); });
+// storage may answer by callback (chrome.*, Safari, tests) or by promise (browser.*, the MCP worker's injected reader): accept both
+const hlsCall = (storage, fn, arg) => new Promise((resolve, reject) => {
+  let settled = false;
+  const done = (v) => { if (!settled) { settled = true; resolve(v); } };
+  try {
+    const r = storage[fn](arg, done);
+    if (r && typeof r.then === 'function') r.then(done, reject);
+  } catch (e) { reject(e); }
+});
+const hlsGet = async (storage, keys) => (await hlsCall(storage, 'get', keys)) || {};
+const hlsSet = (storage, obj) => hlsCall(storage, 'set', obj);
+const hlsRm = (storage, keys) => hlsCall(storage, 'remove', keys).catch(() => {});
 const hlsList = (v) => (Array.isArray(v) ? v : []);
+// stored records as they are (sync compares them field by field); only the old object shapes are converted
+const hlsRecords = (v) => (Array.isArray(v) ? v.filter((h) => h && typeof h === 'object' && typeof h.url === 'string' && typeof h.text === 'string') : normalizeHighlights(v));
 const hlsNow = () => new Date().toISOString();
 const hlsCtx = (q) => (q ? `${q.prefix || ''}\u0000${q.suffix || ''}` : '');
 
@@ -64,6 +76,16 @@ export function applyToList(list, ops, out = { added: [], removed: [], changed: 
       const next = normalizeHighlight({ ...a, ...o.patch, url: a.url });
       if (!next) continue;
       Object.keys(a).forEach((k) => delete a[k]); Object.assign(a, next); out.changed = true;
+    } else if (o.op === 'merge') {
+      // sync: fn(current copy | null) → the record to keep, or null to remove it; runs inside the lock, so nothing written meanwhile is lost
+      if (typeof o.fn !== 'function') continue;
+      const at = list.findIndex((a) => a.id === o.id);
+      const next = o.fn(at >= 0 ? JSON.parse(JSON.stringify(list[at])) : null);
+      if (next == null) { if (at >= 0) { out.removed.push(list[at].id); list.splice(at, 1); out.changed = true; } continue; }
+      const hl = normalizeHighlight({ ...next, id: o.id });
+      if (!hl) continue;
+      if (at >= 0) list[at] = hl; else { list.push(hl); out.added.push(hl.id); }
+      out.changed = true;
     } else if (o.op === 'dismiss') {
       const a = list.find((x) => x.id === o.id);
       if (a && !a.dismissed) { a.dismissed = true; out.changed = true; }
@@ -80,10 +102,10 @@ export function applyToList(list, ops, out = { added: [], removed: [], changed: 
   return out;
 }
 
-/** The page an op belongs to (null: it needs every page, i.e. removeId). */
+/** The page an op belongs to (null: it needs every page — removeId and merge only know the id). */
 function opPage(o) {
   if (o.op === 'add' || o.op === 'upsert') { const h = normalizeHighlight(o.hl); return h ? h.url : undefined; }
-  if (o.op === 'removeId') return null;
+  if (o.op === 'removeId' || o.op === 'merge') return null;
   return typeof o.page === 'string' && o.page ? o.page : undefined;
 }
 
@@ -91,7 +113,7 @@ export function createHighlightStore({ storage }) {
   const schema = async () => (await hlsGet(storage, { [SK.hlSchema]: 0 }))[SK.hlSchema] === HL_SCHEMA;
 
   async function legacyList() {
-    return normalizeHighlights((await hlsGet(storage, [SK.annotations]))[SK.annotations]);
+    return hlsRecords((await hlsGet(storage, [SK.annotations]))[SK.annotations]);
   }
 
   async function index() {
@@ -107,7 +129,7 @@ export function createHighlightStore({ storage }) {
     if (!pageKey) return [];
     if (!(await schema())) return (await legacyList()).filter((h) => h.url === pageKey);
     const k = hlPageKey(pageKey);
-    return normalizeHighlights((await hlsGet(storage, [k]))[k]);
+    return hlsRecords((await hlsGet(storage, [k]))[k]);
   }
 
   async function readPages(keys) {
@@ -115,7 +137,7 @@ export function createHighlightStore({ storage }) {
     for (let i = 0; i < keys.length; i += HL_CHUNK) {
       const part = keys.slice(i, i + HL_CHUNK);
       const got = await hlsGet(storage, part.map(hlPageKey));
-      for (const k of part) out.set(k, normalizeHighlights(got[hlPageKey(k)]));
+      for (const k of part) out.set(k, hlsRecords(got[hlPageKey(k)]));
     }
     return out;
   }
@@ -145,28 +167,36 @@ export function createHighlightStore({ storage }) {
     if (!list.length) return Promise.resolve({ added: [], removed: [], changed: false });
     return withLock(HL_LOCK, async () => {
       if (!(await schema())) {
-        const raw = (await hlsGet(storage, [SK.annotations]))[SK.annotations];
-        const all = normalizeHighlights(raw);
+        const all = hlsRecords((await hlsGet(storage, [SK.annotations]))[SK.annotations]);
         const out = applyToList(all, list);
         if (out.changed) await hlsSet(storage, { [SK.annotations]: all });
         return out;
       }
       const idx = hlsList((await hlsGet(storage, { [SK.hlIndex]: [] }))[SK.hlIndex]);
-      const wide = list.some((o) => opPage(o) === null);
-      const keys = wide ? idx.map((r) => r.k) : [...new Set(list.map(opPage).filter(Boolean))];
-      for (const o of list) { const p = opPage(o); if (p && !keys.includes(p)) keys.push(p); }
-      const pages = await readPages(keys);
+      const own = [...new Set(list.map(opPage).filter(Boolean))];
+      if (list.some((o) => opPage(o) === null)) {
+        // ops that only know an id (sync): work on every page at once, then write back the pages that changed
+        const pages = await readPages([...new Set([...idx.map((r) => r.k), ...own])]);
+        const before = new Map([...pages].map(([k, l]) => [k, JSON.stringify(l)]));
+        const combined = [...pages.values()].flat();
+        const out = applyToList(combined, list);
+        if (!out.changed) return out;
+        const after = new Map([...before.keys()].map((k) => [k, []]));
+        for (const h of combined) { if (!after.has(h.url)) after.set(h.url, []); after.get(h.url).push(h); }
+        const touched = new Map([...after].filter(([k, l]) => JSON.stringify(l) !== (before.get(k) || '[]')));
+        if (touched.size) await writePages(touched, idx);
+        return out;
+      }
+      const pages = await readPages(own);
       const out = { added: [], removed: [], changed: false };
       const touched = new Map();
       for (const o of list) {
-        const p = opPage(o);
-        const targets = p === null ? [...pages.keys()] : p ? [p] : [];
-        for (const k of targets) {
-          const before = out.changed; out.changed = false;
-          applyToList(pages.get(k), [o], out);
-          if (out.changed) touched.set(k, pages.get(k));
-          out.changed = before || out.changed;
-        }
+        const k = opPage(o);
+        if (!k) continue;
+        const was = out.changed; out.changed = false;
+        applyToList(pages.get(k), [o], out);
+        if (out.changed) touched.set(k, pages.get(k));
+        out.changed = was || out.changed;
       }
       if (touched.size) await writePages(touched, idx);
       return out;

@@ -8,13 +8,23 @@ import { pageKeyForUrl } from './pageKey.js';
 
 const hlrClean = (s) => (typeof s === 'string' ? s.replace(/\s+/g, ' ').trim() : '');
 
-/** One stored highlight in its canonical form, or null when it has no page or no text. */
-export function normalizeHighlight(a, now = () => new Date().toISOString()) {
+const HLR_KNOWN = new Set(['url', 'text', 'type', 'timestamp', 'id', 'quote', 'pos', 'v', 'dismissed']);
+
+/**
+ * One stored highlight in its canonical form, or null when it has no page or no text.
+ * Fields this build does not know are kept (sync may bring them from a newer build; dropping them would lose data).
+ * Names starting with `_` are in-memory markers and never stored.
+ */
+export function normalizeHighlight(a, now = null) {
   if (!a || typeof a !== 'object') return null;
   const url = typeof a.url === 'string' && a.url ? pageKeyForUrl(a.url.split('#')[0]) : '';
   const text = hlrClean(a.text);
   if (!url || !text) return null;
-  const out = { url, text, type: a.type === 'ghost' ? 'ghost' : 'user', timestamp: typeof a.timestamp === 'string' ? a.timestamp : now() };
+  const out = {};
+  for (const [k, val] of Object.entries(a)) if (!HLR_KNOWN.has(k) && !k.startsWith('_') && val !== undefined) out[k] = val;
+  Object.assign(out, { url, text, type: a.type === 'ghost' ? 'ghost' : 'user' });
+  const ts = typeof a.timestamp === 'string' ? a.timestamp : (now ? now() : '');   // never invent a time unless asked: sync would see a change
+  if (ts) out.timestamp = ts;
   if (typeof a.id === 'string' && a.id) out.id = a.id;
   if (a.quote && typeof a.quote.exact === 'string') out.quote = { exact: a.quote.exact, prefix: a.quote.prefix || '', suffix: a.quote.suffix || '' };
   if (typeof a.pos === 'number') out.pos = a.pos;
@@ -27,7 +37,7 @@ export function normalizeHighlight(a, now = () => new Date().toISOString()) {
  * Every stored shape → an array of canonical highlights. Accepts the current array and the old object shapes
  * ({ url: ['text', …] } and { url: { user: [...], ghost: [...] } }).
  */
-export function normalizeHighlights(raw, now = () => new Date().toISOString()) {
+export function normalizeHighlights(raw, now = null) {
   if (Array.isArray(raw)) return raw.map((a) => normalizeHighlight(a, now)).filter(Boolean);
   if (!raw || typeof raw !== 'object') return [];
   const out = [];

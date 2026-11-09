@@ -1,4 +1,4 @@
-import { SK } from '../modules/storageKeys.js';
+import { SK, hlPageKey } from '../modules/storageKeys.js';
 // content/highlighter.js
 // Text highlighting & annotation persistence for the content script.
 //
@@ -11,7 +11,7 @@ import { hlpRender } from './highlightPanel.js';
 import { npShowToolbar, npShowComposer, npHide } from './notesPopover.js';
 import { splitTags } from '../modules/noteText.js';
 import { pageKeyForUrl, isNoisePage } from '../modules/pageKey.js';
-import { normalizeHighlights, needsRewrite } from '../modules/highlightRecords.js';
+import { normalizeHighlights } from '../modules/highlightRecords.js';
 
 // ── Shared state (module scope, inlined into the content IIFE by the bundler) ──
 let annotationObserver = null;
@@ -151,16 +151,24 @@ export function clearHighlightElementsByType(type) {
   hlRefreshPanel();
 }
 
-// ── Annotation storage (one array for all pages, see storage-schema notes) ──
+// ── Annotation storage ──
+// This script runs in the website's origin and never writes highlights itself: every change goes to the background as
+// { action: 'hl:apply', ops } (modules/highlightMessages.js → highlightStore.js), which writes under one lock. Reading is
+// local: only this page's list (hl:page:<pageKey>), or the old single list before the migration has run.
 
-/** Tell the background which highlights the user removed: library sync writes a deletion marker for them (a highlight that is merely missing from the array is not a deletion). */
-export function hlTellDeleted(ids) {
-  const list = (ids || []).filter(i => typeof i === 'string' && i);
-  if (!list.length) return;
-  try { const r = chrome.runtime.sendMessage({ action: 'syncHlDeleted', ids: list }); if (r && r.catch) r.catch(() => {}); } catch (_) { /* extension reloaded */ }
+/** Send changes for this page to the background (the one writer). `done(res)` gets { ok, added, removed } or { ok: false }. */
+function hlSend(ops, done = () => {}) {
+  if (!isExtensionContextValid()) { done({ ok: false }); return; }
+  try {
+    const p = chrome.runtime.sendMessage({ action: 'hl:apply', ops }, (res) => {
+      void (chrome.runtime.lastError);
+      done(res && res.ok ? res : { ok: false });
+    });
+    if (p && typeof p.catch === 'function') p.catch(() => {});
+  } catch (_) { done({ ok: false }); }   // extension reloaded
 }
 
-/** Save (or find) an annotation; returns the stored record. */
+/** Save (or find) an annotation; returns the stored record. The background skips it when the same highlight is already saved. */
 export function saveAnnotationToStorage(text, type = 'user', meta = {}) {
   const currentUrl = getPageKey();
   const compactText = (text || '').replace(/\s+/g, ' ').trim();
@@ -170,59 +178,29 @@ export function saveAnnotationToStorage(text, type = 'user', meta = {}) {
     timestamp: new Date().toISOString(), v: meta.quote ? 2 : 1,
     ...(meta.quote ? { quote: meta.quote } : {}), ...(typeof meta.pos === 'number' ? { pos: meta.pos } : {})
   };
-  getNormalizedAnnotations((annotations) => {
-    // Same text in a different place is a different highlight: compare the context too.
-    const exists = annotations.some(a => a.url === currentUrl && a.text === compactText && a.type === type &&
-      (a.quote ? a.quote.prefix === (meta.quote && meta.quote.prefix) && a.quote.suffix === (meta.quote && meta.quote.suffix) : !meta.quote));
-    if (exists) return;
-    annotations.push(ann);
-    chrome.storage.local.set({ [SK.annotations]: annotations });
-  });
+  hlSend([{ op: 'add', hl: ann }]);
   return ann;
 }
 
 function hlPatchAnnotation(id, patch) {
-  getNormalizedAnnotations((annotations) => {
-    const a = annotations.find(x => x.id === id);
-    if (!a) return;
-    Object.assign(a, patch);
-    chrome.storage.local.set({ [SK.annotations]: annotations });
-  });
+  hlSend([{ op: 'patch', id, patch }]);
 }
 
-/** Remove by id (a dismissed AI highlight is kept as `dismissed` so it never comes back). */
+/** Remove by id (a dismissed AI highlight is kept as `dismissed` so it never comes back). The background marks a removal for sync. */
 function hlRemoveFromStorage(id, { dismiss = false } = {}) {
-  getNormalizedAnnotations((annotations) => {
-    const next = dismiss
-      ? annotations.map(a => (a.id === id ? { ...a, dismissed: true } : a))
-      : annotations.filter(a => a.id !== id);
-    chrome.storage.local.set({ [SK.annotations]: next });
-    if (!dismiss) hlTellDeleted([id]);
-  });
+  hlSend([{ op: dismiss ? 'dismiss' : 'remove', id }]);
 }
 
 /** Legacy text-based removal (kept for callers that only know the text). */
 export function removeAnnotationFromStorage(text, type = 'user') {
-  getNormalizedAnnotations((annotations) => {
-    const currentUrl = getPageKey();
-    const compactText = (text || '').replace(/\s+/g, ' ').trim();
-    if (!compactText) return;
-    const removed = annotations.filter(a => a.url === currentUrl && a.text === compactText && a.type === type).map(a => a.id);
-    annotations = annotations.filter(a => !(a.url === currentUrl && a.text === compactText && a.type === type));
-    chrome.storage.local.set({ [SK.annotations]: annotations });
-    hlTellDeleted(removed);
-  });
+  const compactText = (text || '').replace(/\s+/g, ' ').trim();
+  if (!compactText) return;
+  hlSend([{ op: 'removeText', text: compactText, type }]);
 }
 
-/** Remove every highlight of this page (context menu). Compares page keys, so tracking and content parameters match. */
+/** Remove every highlight of this page (context menu). The background works out the page from this tab, so tracking and content parameters match. */
 export function clearPageHighlights(done = () => {}) {
-  getNormalizedAnnotations((annotations) => {
-    const key = getPageKey();
-    const removed = annotations.filter(a => a.url === key).map(a => a.id).filter(Boolean);
-    if (!removed.length && !annotations.some(a => a.url === key)) { done(); return; }
-    chrome.storage.local.set({ [SK.annotations]: annotations.filter(a => a.url !== key) }, () => done());
-    hlTellDeleted(removed);
-  });
+  hlSend([{ op: 'clearPage' }], () => done());
 }
 
 // One canonical shape for every stored highlight (modules/highlightRecords.js): keeps the page key's content parameters.
@@ -243,20 +221,16 @@ function isExtensionContextValid() {
   }
 }
 
+/** This page's highlights (dismissed ones included). Reads only; the background is the one writer. */
 function getNormalizedAnnotations(callback) {
   if (!isExtensionContextValid()) return; // silently no-op, don't throw
+  const pageKey = getPageKey();
+  const own = hlPageKey(pageKey);
   try {
-    chrome.storage.local.get([SK.annotations], (res) => {
-      const normalized = normalizeAnnotationEntries(res[SK.annotations]);
-      // Rewrite only an old shape or a changed entry; field order alone must not trigger a write (it woke every tab).
-      const shouldWriteBack = needsRewrite(res[SK.annotations], normalized);
-
-      if (shouldWriteBack) {
-        chrome.storage.local.set({ [SK.annotations]: normalized }, () => callback(normalized));
-        return;
-      }
-
-      callback(normalized);
+    chrome.storage.local.get([SK.hlSchema, own, SK.annotations], (res) => {
+      if (!res) return;
+      const raw = res[SK.hlSchema] === 2 ? res[own] : res[SK.annotations];   // before the migration: the old single list
+      callback(normalizeAnnotationEntries(raw).filter(a => a.url === pageKey));
     });
   } catch (e) {
     return; // context died between the check and the call
@@ -311,7 +285,8 @@ export function startAnnotationWatchers() {
   if (!storageChangeListenerAttached) {
     storageChangeListenerAttached = true;
     chrome.storage.onChanged.addListener((changes, area) => {
-      if (area === 'local' && SK.annotations in changes && isAnyHighlightingEnabled()) {
+      // only this page's list matters (the old single list before the migration; the schema flag when the migration finishes)
+      if (area === 'local' && (hlPageKey(getPageKey()) in changes || SK.annotations in changes || SK.hlSchema in changes) && isAnyHighlightingEnabled()) {
         scheduleRestoreAnnotations(80);
       }
       // a comment was saved or removed (here, or in the Notes tab): the panel shows it
@@ -343,14 +318,15 @@ export function restoreAnnotations() {
 
     // Resolving walks the article text; defer to idle time so it never competes
     // with painting or scrolling on large pages.
-    const run = () => hlResolveAll(pageAnnotations, annotations);
+    const run = () => hlResolveAll(pageAnnotations);
     if (typeof requestIdleCallback === 'function') requestIdleCallback(run, { timeout: 2000 });
     else setTimeout(run, 0);
   });
 }
 
-function hlResolveAll(pageAnnotations, allAnnotations) {
-  let idx = null, bodyIdx = null, upgraded = false;
+function hlResolveAll(pageAnnotations) {
+  let idx = null, bodyIdx = null;
+  const upgraded = [];
   const getIdx = (wide) => {
     if (wide) return bodyIdx || (bodyIdx = ancBuildIndex(document.body));
     return idx || (idx = ancBuildIndex(ancScopeRoot()));
@@ -374,21 +350,17 @@ function hlResolveAll(pageAnnotations, allAnnotations) {
       // keeps pointing at THIS occurrence from now on.
       if (!ann.quote) {
         const q = ancMakeSelector(usedIdx, entry.range);
-        if (q) { ann.quote = { exact: q.exact, prefix: q.prefix, suffix: q.suffix }; ann.pos = q.pos; ann.v = 2; upgraded = true; }
+        if (q) { ann.quote = { exact: q.exact, prefix: q.prefix, suffix: q.suffix }; ann.pos = q.pos; ann.v = 2; upgraded.push(ann); }
       }
       hlPaint(entry);
     }
   });
-  if (upgraded) {
-    const byKey = new Map(pageAnnotations.map(a => [a.text + '|' + a.type, a]));
-    const next = allAnnotations.map(a => {
-      const u = a.url === getPageKey() ? byKey.get(a.text + '|' + a.type) : null;
-      if (!u || !u.quote) return a;
-      const { _legacy, ...clean } = u;
-      if (_legacy) clean.id = clean.id.replace(/^legacy_/, '');
-      return { ...a, ...clean };
-    });
-    chrome.storage.local.set({ [SK.annotations]: next });
+  if (upgraded.length) {
+    // store the context found now; a highlight saved before ids existed is matched by text + type and gets its id here
+    hlSend(upgraded.map(u => {
+      const patch = { quote: u.quote, pos: u.pos, v: 2 };
+      return u._legacy ? { op: 'patch', text: u.text, type: u.type, patch: { ...patch, id: u.id.replace(/^legacy_/, '') } } : { op: 'patch', id: u.id, patch };
+    }));
   }
   hlRefreshPanel();
 }
@@ -698,7 +670,7 @@ export function applyGhostHighlights(quotes = []) {
   const idx = ancBuildIndex(ancScopeRoot());
   getNormalizedAnnotations((annotations) => {
     const url = getPageKey();
-    let added = false;
+    const fresh = [];
     quotes.forEach(quote => {
       const exact = ancQuoteUsable(idx, quote, 8);            // unique in the article, or long enough to be specific
       if (!exact) return;
@@ -710,12 +682,12 @@ export function applyGhostHighlights(quotes = []) {
       const q = ancMakeSelector(idx, range);
       const ann = { id: hlNewId(), url, text: exact, type: 'ghost', timestamp: new Date().toISOString(), v: 2,
         quote: { exact: q.exact, prefix: q.prefix, suffix: q.suffix }, pos: q.pos };
-      annotations.push(ann); added = true;
+      annotations.push(ann); fresh.push(ann);
       const entry = { ann, range, status: 'ok', marks: [] };
       hlLive.set(ann.id, entry);
       hlPaint(entry);
     });
-    if (added) chrome.storage.local.set({ [SK.annotations]: annotations });
+    if (fresh.length) hlSend(fresh.map(hl => ({ op: 'add', hl })));
     hlRefreshPanel();
   });
 }

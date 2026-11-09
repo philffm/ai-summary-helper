@@ -7,7 +7,8 @@
 // only from markDeleted(); housekeeping (pruning, reset, restore) therefore never syncs.
 //
 // Ids in the sidecar are namespaced: article:<id>, hl:<id>, coll:<id>.
-import { SK, ARTICLE_REC, SYNC_STAMPS, isArticleRecKey, isCollRecKey, isNoteRecKey, articleRecKey, collRecKey, noteRecKey, syncStampsKey } from './storageKeys.js';
+import { SK, ARTICLE_REC, SYNC_STAMPS, isArticleRecKey, isCollRecKey, isNoteRecKey, isHlPageKey, articleRecKey, collRecKey, noteRecKey, syncStampsKey } from './storageKeys.js';
+import { createHighlightStore } from './highlightStore.js';
 import { hashValue, stampRecord, tombstone, syncFields, unknownFields, RECORD_SIDE, tick, observe } from './syncStamps.js';
 
 export const shardOf = (key) => hashValue(key).slice(-2).padStart(2, '0');
@@ -103,7 +104,7 @@ export function createStampStore({ storage, now = Date.now, lock = withStampLock
                             const skip = Object.keys((prev && prev.f) || {}).filter((n) => !RECORD_SIDE.includes(n)).concat(unknownFields('article', {}, rec));
                             return stampRecord(prev, mine, { ...ctx, skip: [...skip, ...heldNames('article:' + id, mine)] });
                         } });
-                    } else if (key === SK.annotations) {
+                    } else if (key === SK.annotations || isHlPageKey(key)) {   // the old single list, or one page's list (schema 2)
                         const before = byId(ch.oldValue);
                         for (const h of byId(await cur(key, [])).values()) if (!before.has(h.id) || !same(before.get(h.id), h)) ops.push(stampOp('hl:' + h.id, syncFields('highlight', h), []));
                     } else if (isNoteRecKey(key) && ch.newValue && ch.newValue.id) {
@@ -153,7 +154,7 @@ export function createStampStore({ storage, now = Date.now, lock = withStampLock
         try {
             if (!(await enabled())) return 0;
             await backfillHighlightIds();
-            const d = await get(storage, { [SK.articlesIndex]: [], [SK.annotations]: [], [SK.collIndex]: [] });
+            const d = await get(storage, { [SK.articlesIndex]: [], [SK.collIndex]: [] });
             const index = Array.isArray(d[SK.articlesIndex]) ? d[SK.articlesIndex].filter((e) => e && e.id) : [];
             let n = 0;
             const shardsNow = {};
@@ -171,7 +172,7 @@ export function createStampStore({ storage, now = Date.now, lock = withStampLock
                 n += await commit(ops);
                 for (const k of Object.keys(shardsNow)) delete shardsNow[k];   // re-read after the commit
             }
-            const hls = (Array.isArray(d[SK.annotations]) ? d[SK.annotations] : []).filter((h) => h && h.id);
+            const hls = (await createHighlightStore({ storage }).all({ dismissed: true })).filter((h) => h.id);
             n += await commit(hls.map((h) => stampOp('hl:' + h.id, syncFields('highlight', h), [])));
             const colls = (Array.isArray(d[SK.collIndex]) ? d[SK.collIndex] : []).filter((c) => c && c.id);
             for (let i = 0; i < colls.length; i += chunk) {
@@ -220,6 +221,7 @@ export function createStampStore({ storage, now = Date.now, lock = withStampLock
      */
     async function backfillHighlightIds() {
         try {
+            if ((await get(storage, { [SK.hlSchema]: 0 }))[SK.hlSchema] === 2) return 0;   // per-page keys: the migration gave every highlight an id
             const d = await get(storage, { [SK.annotations]: [] });
             const list = d[SK.annotations];
             if (!Array.isArray(list) || !list.some((h) => h && typeof h === 'object' && !h.id && h.url && h.text)) return 0;

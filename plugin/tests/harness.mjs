@@ -3,6 +3,8 @@ import fs from 'fs';
 import path from 'path';
 import { pathToFileURL } from 'url';
 export const SRC = process.env.AISH_SRC + '';
+// the background's highlight writer, so page-script tests see what the extension would store ({ action: 'hl:apply' })
+const HL = await Promise.all(['modules/highlightStore.js', 'modules/highlightMessages.js', 'modules/pageKey.js'].map((rel) => import(pathToFileURL(path.join(SRC, rel)).href)));
 export function setup(fixtures) {
   const dom = new JSDOM(fs.readFileSync(SRC + '/popup.html', 'utf8'), { url: 'chrome-extension://abc/popup.html', pretendToBeVisual: true });
   const w = dom.window;
@@ -34,6 +36,9 @@ export function setup(fixtures) {
         if (msg.action === 'fetchFeedText') {
           const f = fixtures[msg.url];
           res = typeof f === 'function' ? f(msg) : f ? { ok: true, status: 200, text: f, url: msg.url } : { ok: false, error: 'HTTP 404' };
+        } else if (msg.action === 'hl:apply') {
+          const ops = HL[1].cleanOps(msg.ops, HL[2].pageKeyForUrl(w.location.href));
+          res = ops ? HL[0].createHighlightStore({ storage: area }).apply(ops).then((r) => ({ ok: true, ...r })) : { ok: false, error: 'bad-ops' };
         } else if (msg.action === 'aiComplete') { res = globalThis.__ai ? globalThis.__ai(msg) : { ok: false, error: 'no ai' }; } else res = { success: true, mode: 'extension' };
         if (cb) Promise.resolve(res).then(value => setTimeout(() => cb(value), 0));
       }

@@ -40,8 +40,19 @@ const area = {
   set(obj, cb) { writes++; Object.entries(obj).forEach(([k, v]) => { store[k] = JSON.parse(JSON.stringify(v)); }); if (cb) cb(); return Promise.resolve(); },
   remove(keys, cb) { [].concat(keys).forEach((k) => delete store[k]); if (cb) cb(); return Promise.resolve(); },
 };
+// the background: the page script's changes go through the real message handler and store, sent from this tab
+const { createHighlightStore } = await imp('modules/highlightStore.js');
+const { createHighlightMessages } = await imp('modules/highlightMessages.js');
+const deleted = [];
+const bg = createHighlightMessages({ store: createHighlightStore({ storage: area }), markDeleted: (ids) => deleted.push(...ids) });
 const sent = [];
-globalThis.chrome = { storage: { local: area, sync: area, onChanged: { addListener() {} } }, runtime: { id: 'x', lastError: null, sendMessage(m, cb) { sent.push(m); if (cb) setTimeout(() => cb({ ok: true }), 0); return Promise.resolve({ ok: true }); }, onMessage: { addListener() {} } } };
+globalThis.chrome = { storage: { local: area, sync: area, onChanged: { addListener() {} } }, runtime: { id: 'x', lastError: null, onMessage: { addListener() {} },
+  sendMessage(m, cb) {
+    sent.push(m);
+    const res = m.action === 'hl:apply' ? bg.handle(m, { tab: { url: w.location.href } }) : Promise.resolve({ ok: true });
+    res.then((r) => cb && setTimeout(() => cb(r), 0));
+    return undefined;
+  } } };
 
 const H = await imp('content/highlighter.js');
 H.setHighlightingEnabled(true, true);
@@ -68,5 +79,5 @@ assert.equal(writes, before, 'restoring an unchanged list does not rewrite it');
 store['hl:all'].push({ id: 'other', url: 'https://news.ycombinator.com/item?id=2', text: 'keep me', type: 'user', timestamp: 't' });
 await new Promise((res) => H.clearPageHighlights(res));
 assert.deepEqual(store['hl:all'].map((h) => h.id), ['other'], 'only this page cleared');
-assert(sent.some((m) => m.action === 'syncHlDeleted' && m.ids.length === 1), 'deletion reported for sync');
+assert.equal(deleted.length, 1, 'deletion marked for sync by the background');
 console.log('TEST 250 OK');
