@@ -46,6 +46,14 @@
      "tier": "semantic",
      "value": "calc(20px * 1)"
     },
+    "--fs-display": {
+     "tier": "semantic",
+     "value": "calc(40px * 1)"
+    },
+    "--fs-display-xl": {
+     "tier": "semantic",
+     "value": "calc(64px * 1)"
+    },
     "--spacing-s-0": {
      "tier": "semantic",
      "value": "0"
@@ -630,6 +638,26 @@
      "tier": "component",
      "value": "color-mix(in srgb, #2563eb 8%, transparent)"
     },
+    "--rsvp-word-size": {
+     "tier": "component",
+     "value": "calc(40px * 1)"
+    },
+    "--rsvp-word-size-full": {
+     "tier": "component",
+     "value": "calc(64px * 1)"
+    },
+    "--rsvp-pivot": {
+     "tier": "component",
+     "value": "#2563eb"
+    },
+    "--rsvp-bg": {
+     "tier": "component",
+     "value": "#f1f1f1"
+    },
+    "--rsvp-context-bg": {
+     "tier": "component",
+     "value": "#fafafa"
+    },
     "--accent-a05": {
      "tier": "semantic",
      "value": "color-mix(in srgb, #2563eb 5%, transparent)"
@@ -1071,6 +1099,14 @@
     "--fs-2xl": {
      "tier": "semantic",
      "value": "calc(20px * 1)"
+    },
+    "--fs-display": {
+     "tier": "semantic",
+     "value": "calc(40px * 1)"
+    },
+    "--fs-display-xl": {
+     "tier": "semantic",
+     "value": "calc(64px * 1)"
     },
     "--spacing-s-0": {
      "tier": "semantic",
@@ -1656,6 +1692,26 @@
      "tier": "component",
      "value": "rgba(96,165,250,0.14)"
     },
+    "--rsvp-word-size": {
+     "tier": "component",
+     "value": "calc(40px * 1)"
+    },
+    "--rsvp-word-size-full": {
+     "tier": "component",
+     "value": "calc(64px * 1)"
+    },
+    "--rsvp-pivot": {
+     "tier": "component",
+     "value": "#60a5fa"
+    },
+    "--rsvp-bg": {
+     "tier": "component",
+     "value": "#141923"
+    },
+    "--rsvp-context-bg": {
+     "tier": "component",
+     "value": "rgba(255,255,255,0.06)"
+    },
     "--accent-a05": {
      "tier": "semantic",
      "value": "color-mix(in srgb, #60a5fa 5%, transparent)"
@@ -2097,6 +2153,14 @@
     "--fs-2xl": {
      "tier": "semantic",
      "value": "calc(20px * 1)"
+    },
+    "--fs-display": {
+     "tier": "semantic",
+     "value": "calc(40px * 1)"
+    },
+    "--fs-display-xl": {
+     "tier": "semantic",
+     "value": "calc(64px * 1)"
     },
     "--spacing-s-0": {
      "tier": "semantic",
@@ -2681,6 +2745,26 @@
     "--sel-card-bg": {
      "tier": "component",
      "value": "color-mix(in srgb, #0033cc 8%, transparent)"
+    },
+    "--rsvp-word-size": {
+     "tier": "component",
+     "value": "calc(40px * 1)"
+    },
+    "--rsvp-word-size-full": {
+     "tier": "component",
+     "value": "calc(64px * 1)"
+    },
+    "--rsvp-pivot": {
+     "tier": "component",
+     "value": "#0033cc"
+    },
+    "--rsvp-bg": {
+     "tier": "component",
+     "value": "#f1f1f1"
+    },
+    "--rsvp-context-bg": {
+     "tier": "component",
+     "value": "#fafafa"
     },
     "--accent-a05": {
      "tier": "semantic",
@@ -7246,6 +7330,14 @@
      "tier": "semantic",
      "value": "calc(20px * 1)"
     },
+    "--fs-display": {
+     "tier": "semantic",
+     "value": "calc(40px * 1)"
+    },
+    "--fs-display-xl": {
+     "tier": "semantic",
+     "value": "calc(64px * 1)"
+    },
     "--spacing-s-0": {
      "tier": "semantic",
      "value": "0"
@@ -7830,6 +7922,26 @@
      "tier": "component",
      "value": "color-mix(in srgb, #1F7A5A 8%, transparent)"
     },
+    "--rsvp-word-size": {
+     "tier": "component",
+     "value": "calc(40px * 1)"
+    },
+    "--rsvp-word-size-full": {
+     "tier": "component",
+     "value": "calc(64px * 1)"
+    },
+    "--rsvp-pivot": {
+     "tier": "component",
+     "value": "#1F7A5A"
+    },
+    "--rsvp-bg": {
+     "tier": "component",
+     "value": "#EEF3F0"
+    },
+    "--rsvp-context-bg": {
+     "tier": "component",
+     "value": "#fafafa"
+    },
     "--accent-a05": {
      "tier": "semantic",
      "value": "color-mix(in srgb, #1F7A5A 5%, transparent)"
@@ -8271,6 +8383,14 @@
     "--fs-2xl": {
      "tier": "semantic",
      "value": "calc(20px * 1)"
+    },
+    "--fs-display": {
+     "tier": "semantic",
+     "value": "calc(40px * 1)"
+    },
+    "--fs-display-xl": {
+     "tier": "semantic",
+     "value": "calc(64px * 1)"
     },
     "--spacing-s-0": {
      "tier": "semantic",
@@ -8856,6 +8976,26 @@
      "tier": "component",
      "value": "rgba(92,201,160,0.14)"
     },
+    "--rsvp-word-size": {
+     "tier": "component",
+     "value": "calc(40px * 1)"
+    },
+    "--rsvp-word-size-full": {
+     "tier": "component",
+     "value": "calc(64px * 1)"
+    },
+    "--rsvp-pivot": {
+     "tier": "component",
+     "value": "#5CC9A0"
+    },
+    "--rsvp-bg": {
+     "tier": "component",
+     "value": "#14211D"
+    },
+    "--rsvp-context-bg": {
+     "tier": "component",
+     "value": "rgba(255,255,255,0.06)"
+    },
     "--accent-a05": {
      "tier": "semantic",
      "value": "color-mix(in srgb, #5CC9A0 5%, transparent)"
@@ -9297,6 +9437,14 @@
     "--fs-2xl": {
      "tier": "semantic",
      "value": "calc(20px * 1)"
+    },
+    "--fs-display": {
+     "tier": "semantic",
+     "value": "calc(40px * 1)"
+    },
+    "--fs-display-xl": {
+     "tier": "semantic",
+     "value": "calc(64px * 1)"
     },
     "--spacing-s-0": {
      "tier": "semantic",
@@ -9881,6 +10029,26 @@
     "--sel-card-bg": {
      "tier": "component",
      "value": "color-mix(in srgb, #0033cc 8%, transparent)"
+    },
+    "--rsvp-word-size": {
+     "tier": "component",
+     "value": "calc(40px * 1)"
+    },
+    "--rsvp-word-size-full": {
+     "tier": "component",
+     "value": "calc(64px * 1)"
+    },
+    "--rsvp-pivot": {
+     "tier": "component",
+     "value": "#0033cc"
+    },
+    "--rsvp-bg": {
+     "tier": "component",
+     "value": "#EEF3F0"
+    },
+    "--rsvp-context-bg": {
+     "tier": "component",
+     "value": "#fafafa"
     },
     "--accent-a05": {
      "tier": "semantic",
