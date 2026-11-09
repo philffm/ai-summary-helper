@@ -202224,6 +202224,16 @@
           "model": "deepseek/deepseek-v4.1-flash"
         }
       }
+    },
+    "14bd1c681e793e7cc0af4baccec84b31a4e4e4f224c01ce617ac22a1bd42c1cb": {
+      "en": "The built-in Feeds reader stores your subscriptions and the fetched feed items locally in your browser — never synced, never sent to us. When you add or refresh a feed, the extension requests that feed's address directly from the publisher's server, just like your browser would when visiting the site, so the publisher can see the request. We do not proxy, log, or see your subscriptions or reading list. OPML import is processed entirely on your device. Background checks are on by default and can be turned off in the Feeds settings: while the browser is open, the extension re-requests your feeds on the interval you choose, only to show a count on the toolbar icon. Summarizing a feed item works like summarizing any other page: its content is only sent to the AI provider you chose, and only when you trigger a summary. The optional AI day recap and AI tone scoring work the same way: only when you click them, the extension sends item titles, source names and short snippets (not full articles) to the AI provider you chose, and the resulting recap is cached on your device. Podcast episodes in a feed are streamed directly from the publisher's server when you press Play.",
+      "translations": {
+        "de": {
+          "text": "Der integrierte Feeds-Reader speichert Ihre Abonnements und die abgerufenen Feed-Einträge lokal in Ihrem Browser – niemals synchronisiert, niemals an uns gesendet. Wenn Sie einen Feed hinzufügen oder aktualisieren, ruft die Erweiterung die Adresse dieses Feeds direkt vom Server des Herausgebers ab, so wie Ihr Browser es beim Besuch der Website tun würde, sodass der Herausgeber die Anfrage sehen kann. Wir stellen keinen Proxy bereit, protokollieren Ihre Abonnements oder Leseliste nicht und sehen sie auch nicht ein. Der OPML-Import erfolgt vollständig auf Ihrem Gerät. Die Hintergrundprüfungen sind standardmäßig aktiviert und können in den Feeds-Einstellungen deaktiviert werden: Solange der Browser geöffnet ist, ruft die Erweiterung Ihre Feeds in dem von Ihnen gewählten Intervall erneut ab, nur um eine Anzahl auf dem Symbol in der Symbolleiste anzuzeigen. Das Zusammenfassen eines Feed-Eintrags funktioniert wie das Zusammenfassen jeder anderen Seite: Der Inhalt wird nur an den von Ihnen gewählten KI-Anbieter gesendet, und zwar nur, wenn Sie eine Zusammenfassung auslösen. Der optionale KI-Tagesrückblick und die optionale KI-Tonbewertung funktionieren auf dieselbe Weise: Nur wenn Sie darauf klicken, sendet die Erweiterung Eintragstitel, Quellennamen und kurze Ausschnitte (keine vollständigen Artikel) an den von Ihnen gewählten KI-Anbieter, und der daraus entstehende Rückblick wird auf Ihrem Gerät zwischengespeichert. Podcast-Episoden in einem Feed werden direkt vom Server des Herausgebers gestreamt, wenn Sie auf Wiedergabe klicken.",
+          "translatedAt": "2026-11-09T22:16:16.440Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
     }
   }
 }
