@@ -1,8 +1,9 @@
 // A local model that is still loading (apfel: "Model assets are loading. Try again in a moment.") does not end in an empty
 // summary: the background waits and asks again, hands on the stream untouched once text starts, and after the limit answers
 // with a clear 503. Remote URLs are never held back.
+import { bgSource } from './bgSource.mjs';
 import assert from 'assert'; import fs from 'fs'; import path from 'path'; import vm from 'vm';
-const bg = fs.readFileSync(path.join(process.env.AISH_SRC, 'background.js'), 'utf8');
+const bg = bgSource();
 const a = bg.indexOf('const LOCAL_URL'), b = bg.indexOf('\n}', bg.indexOf('async function aiFetchOne(')) + 2;
 const enc = new TextEncoder();
 const sse = (...parts) => new Response(new ReadableStream({ start(c) { parts.forEach(p => c.enqueue(enc.encode(p))); c.close(); } }), { status: 200, headers: { 'content-type': 'text/event-stream' } });

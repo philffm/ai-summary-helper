@@ -1,5 +1,6 @@
 // Phone links get the page's real title/description once the page is open: the loader reports it, the background
 // applies it to the waiting entry (only for that page itself), and the card shows it.
+import { bgSource } from './bgSource.mjs';
 import { setup, imp, tick } from './harness.mjs'; import assert from 'assert'; import fs from 'fs'; import path from 'path'; import { pathToFileURL } from 'url'; import { JSDOM } from 'jsdom';
 const SRC = process.env.AISH_SRC;
 
@@ -13,7 +14,7 @@ assert.equal(list[1].title, undefined, 'another page is untouched');
 assert.equal(M.applyLinkMeta(list, 'https://evil.example/', { url: 'https://example.com/post', title: 'spoof' }), false, 'a page may only describe itself');
 assert.equal(M.applyLinkMeta(list, 'https://example.com/post', { url: 'https://example.com/post', title: 'A real title' }), false, 'no change, no write');
 assert(/applyLinkMeta/.test(fs.readFileSync(path.join(SRC, 'modules/inboxBackgroundBundle.js'), 'utf8')), 'exposed to the classic-script background');
-assert(/inboxMeta/.test(fs.readFileSync(path.join(SRC, 'background.js'), 'utf8')));
+assert(/inboxMeta/.test(bgSource()));
 
 // 2. loader.js reports it
 const code = fs.readFileSync(SRC + '/loader.js', 'utf8');
@@ -53,7 +54,7 @@ assert.deepEqual(M.badgeFor(0, 0), { text: '', color: '', inbox: 0 }, 'nothing: 
 assert.deepEqual(M.badgeFor(3, 0), { text: '3', color: '#2563eb', inbox: 0 }, 'feeds only: blue as before');
 assert.deepEqual(M.badgeFor(0, 2), { text: '2', color: '#7c3aed', inbox: 2 }, 'phone links: violet');
 assert.equal(M.badgeFor(40, 70).text, '99+', 'capped');
-const bgSrc = fs.readFileSync(path.join(SRC, 'background.js'), 'utf8');
+const bgSrc = bgSource();
 assert(/changes\[SK\.inboxPending\]\) updateSumBadge\(\)/.test(bgSrc), 'badge follows the waiting list');
 assert(/INBOX\.badgeFor\(feed, inbox\)/.test(bgSrc), 'used by the idle badge');
 assert(bgSrc.indexOf('updateSumBadge();   // the number is gone') > bgSrc.indexOf('const sumJobs = '), 'painted at worker start, after sumJobs exists (a call above it hits the temporal dead zone)');

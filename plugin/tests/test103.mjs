@@ -1,6 +1,7 @@
 // The whole-library run always talks to Ollama with the model last chosen for Ollama, whatever is active for summaries (also when the model is switched mid-run).
+import { bgSource } from './bgSource.mjs';
 import assert from 'assert'; import fs from 'fs'; import vm from 'vm';
-const src = fs.readFileSync(process.env.AISH_SRC + '/background.js', 'utf8');
+const src = bgSource();
 const sync = { connectionMode: 'local', activeService: 'ollama', preferredCloudModel: 'openai/gpt-6.1-sol' };
 const local = { 'config:services': {
     ollama: { endpoint: 'http://localhost:11434/v1/chat/completions', activeModelId: { id: 'qwen3:8b', provider: 'ollama' }, customModel: [{ id: 'llama3.2', provider: 'ollama' }, { id: 'qwen3:8b', provider: 'ollama' }] },

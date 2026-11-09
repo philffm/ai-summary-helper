@@ -1,5 +1,6 @@
 // Phone inbox "Save only": asks the background to save the page without AI; success resolves the link (deleted on the
 // server), failure keeps it and says so. The background action is extension-page only.
+import { bgSource } from './bgSource.mjs';
 import { setup, imp, tick, flushUndo, pressUndo } from './harness.mjs'; import assert from 'assert'; import fs from 'fs';
 const { store, w } = setup({});
 const { SK } = await imp('../src/modules/storageKeys.js');
@@ -59,7 +60,7 @@ assert(d.querySelector('#articleList .phone-inbox-error'), 'says why');
 assert(!save('s2').disabled, 'can be tried again');
 assert(/didn't respond/.test(d.querySelector('#articleList .phone-inbox-error').textContent), 'unreachable has its own explanation');
 
-const bg = fs.readFileSync(new URL('../src/background.js', import.meta.url), 'utf8');
+const bg = bgSource();
 assert(/\bsaveFeedItem: \{ from: 'ext'/.test(bg), 'only extension pages may ask for it');
 assert(d.querySelector('#articleList li.article-card.phone-card .article-header h4'), 'a native History card');
 assert(!d.getElementById('phoneInbox'), 'no separate From-phone box any more');

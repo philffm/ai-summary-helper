@@ -26,7 +26,9 @@
       "inbox-worker.js",
       "targets-worker.js",
       "sync-worker.js",
-      "background.js"
+      "background.js",
+      "bg/feedPoll.js",
+      "bg/aiComplete.js"
     ]
   },
   "action": {
