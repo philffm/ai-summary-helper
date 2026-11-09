@@ -34,7 +34,10 @@ const SK = {
     articlesSchema: 'articles:schema',
     // derived: per-article term vectors and nearest neighbours for the graph (graphSimilarityCache.js); rebuilt on demand, never backed up
     graphSim: 'graph:sim',
-    // highlights / annotations (one array for all pages; per-page keys are a later step)
+    // highlights: one key per page (hl:page:<pageKey>, see HL_PAGE) plus a lean index; written only through highlightStore.js
+    hlIndex: 'hl:index',      // [{ k: pageKey, n: active, d: dismissed, t: ISO time }]
+    hlSchema: 'hl:schema',    // 2 = per-page keys (migrateHighlightsToPages ran)
+    // the old single list of all highlights (schema 1). Read by the migration and by old backups only.
     annotations: 'hl:all',
     // feeds
     feedSubs: 'feeds:subs',
@@ -124,6 +127,11 @@ const KEYS_SCHEMA = 1;
 const ARTICLE_REC = 'articles:rec:';
 const articleRecKey = (id) => ARTICLE_REC + id;
 const isArticleRecKey = (k) => typeof k === 'string' && k.startsWith(ARTICLE_REC);
+
+/** Prefix of the per-page highlight keys: hl:page:<pageKey> (pageKeyForUrl, the same key the page script computes). */
+const HL_PAGE = 'hl:page:';
+const hlPageKey = (pageKey) => HL_PAGE + pageKey;
+const isHlPageKey = (k) => typeof k === 'string' && k.startsWith(HL_PAGE);
 
 /** Prefix of the per-collection record keys: coll:rec:<id> (name, question, source article ids, notes). */
 const COLL_REC = 'coll:rec:';
@@ -1163,6 +1171,10 @@ if (syncStamps) {
     (async () => { try { if (!(await chrome.alarms.get(SYNC_ALARM))) chrome.alarms.create(SYNC_ALARM, { delayInMinutes: 5, periodInMinutes: 30 }); } catch (_) { /* no alarms */ } })();
 }
 
+// ── Highlights: the one writer (modules/highlightStore.js). Pages send { action: 'hl:apply', ops } (modules/highlightMessages.js). ──
+const hlStore = SYNC ? SYNC.createHighlightStore({ storage: chrome.storage.local }) : null;
+const hlMsgs = hlStore ? SYNC.createHighlightMessages({ store: hlStore, markDeleted: (ids) => { if (syncStamps) syncStamps.markDeleted('hl', ids.slice(0, 1000)); } }) : null;
+
 // ── Notes from the page: the content script asks, the worker writes (modules/notesMessages.js) ──
 const notesMsgs = SYNC ? SYNC.createNotesMessages({ store: SYNC.createNotesStore({ storage: chrome.storage.local }) }) : null;
 
@@ -1619,6 +1631,11 @@ chrome.runtime.onMessage.addListener((msg, sender, sendResponse) => {
         if (!syncSvc) { sendResponse({ ok: false, error: 'unavailable' }); return false; }
         syncSvc.restore(String(msg.placeId || ''))
             .then((r) => sendResponse({ ok: true, result: { pulled: r.pulled, applied: r.applied, errors: r.errors.length, more: r.more } })).catch((e) => sendResponse({ ok: false, error: String((e && e.message) || e) }));
+        return true;
+    }
+    if (msg && msg.action === 'hl:apply') {   // from the page's content script: it changes only its own page's highlights
+        if (!hlMsgs) { sendResponse({ ok: false, error: 'unavailable' }); return false; }
+        hlMsgs.handle(msg, sender).then(sendResponse).catch(() => sendResponse({ ok: false, error: 'failed' }));
         return true;
     }
     if (msg && (msg.action === 'noteAdd' || msg.action === 'commentSet')) {   // from the page's content script
