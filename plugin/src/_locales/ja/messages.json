@@ -7209,159 +7209,159 @@
     "message": "🧠 ローカルモデル"
   },
   "f_a_5_second_countdown_only_wh_7070": {
-    "message": "A 5-second countdown, only when you have read to the end. Any key or mouse movement stops it; a notification lets you reopen the tab."
+    "message": "最後まで読んだときだけの5秒カウントダウン。キーを押すかマウスを動かすと止まります。通知からタブを開き直せます。"
   },
   "f_any_key_or_mouse_movement_st_8528": {
-    "message": "Any key or mouse movement stops the countdown · Enter closes"
+    "message": "キー操作やマウス移動でカウントダウンが止まります · Enter で閉じる"
   },
   "f_at_the_weekend_48ee": {
-    "message": "At the weekend"
+    "message": "週末に"
   },
   "f_back_to_the_reader_bf83": {
-    "message": "Back to the reader"
+    "message": "リーダーに戻る"
   },
   "f_close_tab_53a0": {
-    "message": "Close tab"
+    "message": "タブを閉じる"
   },
   "f_could_not_reach_this_page_tr_8523": {
-    "message": "Could not reach this page — try refreshing the tab."
+    "message": "ページに接続できません。タブを再読み込みしてください。"
   },
   "f_countdown_stopped_the_tab_st_4a3d": {
-    "message": "Countdown stopped. The tab stays open."
+    "message": "カウントダウンを止めました。タブは開いたままです。"
   },
   "f_esc_stops_the_article_is_sti_8d36": {
-    "message": "Esc stops – the article is still saved."
+    "message": "Esc で中止 – 記事は保存されます。"
   },
   "f_faster_d384": {
-    "message": "Faster"
+    "message": "速く"
   },
   "f_full_screen_bee0": {
-    "message": "Full screen"
+    "message": "全画面"
   },
   "f_hide_the_page_while_you_read_19ef": {
-    "message": "Hide the page while you read (F switches in the reader)"
+    "message": "読んでいる間ページを隠します（リーダーで F 切り替え）"
   },
   "f_in_the_popup_next_to_summari_681a": {
-    "message": "In the popup next to “Summarize” and when you right-click a page"
+    "message": "ポップアップの「要約」の横と、ページの右クリックメニュー"
   },
   "f_keep_page_1e43": {
-    "message": "Keep page"
+    "message": "ページを残す"
   },
   "f_keys_in_the_reader_space_pau_b8e1": {
-    "message": "Keys in the reader: Space pause · ←/→ sentence · Shift+←/→ word · ↑/↓ speed · T text · F full screen · Esc stop"
+    "message": "キー: Space 一時停止 · ←/→ 文 · Shift+←/→ 単語 · ↑/↓ 速度 · T テキスト · F 全画面 · Esc 終了"
   },
   "f_next_week_0f94": {
-    "message": "Next week"
+    "message": "来週"
   },
   "f_no_reminder_62e0": {
-    "message": "No reminder"
+    "message": "リマインダーなし"
   },
   "f_no_summary_came_back_the_pag_73b5": {
-    "message": "No summary came back. The page may have too little text."
+    "message": "要約が返ってきませんでした。ページの文章が少なすぎるかもしれません。"
   },
   "f_offer_to_close_the_tab_at_th_dec1": {
-    "message": "Offer to close the tab at the end"
+    "message": "最後にタブを閉じるか確認する"
   },
   "f_paused_press_space_to_start_0dbf": {
-    "message": "Paused. Press Space to start."
+    "message": "一時停止中。Space で開始します。"
   },
   "f_paused_space_continues_jumps_3a61": {
-    "message": "Paused. Space continues · ←/→ jumps by sentence · click a sentence to read from there · T shows the whole summary"
+    "message": "一時停止中。Space で再開 · ←/→ で文ごとに移動 · 文をクリックするとそこから読む · T で要約全体を表示"
   },
   "f_reading_starts_as_soon_as_it_2d8c": {
-    "message": "Reading starts as soon as it is done."
+    "message": "完成しだい読み始めます。"
   },
   "f_remind_me_97ce": {
-    "message": "Remind me"
+    "message": "リマインド"
   },
   "f_remind_me_later_cb3c": {
-    "message": "Remind me later"
+    "message": "あとでリマインド"
   },
   "f_reminder_time_ecfc": {
-    "message": "Reminder time"
+    "message": "リマインダーの時刻"
   },
   "f_reminder_8f45": {
-    "message": "Reminder {when}"
+    "message": "リマインダー {when}"
   },
   "f_sentence_of_s_left_9552": {
-    "message": "Sentence {a} of {b} · {s} s left"
+    "message": "{a}/{b} 文 · 残り {s} 秒"
   },
   "f_show_speed_read_in_the_menus_2086": {
-    "message": "Show Speed-Read in the menus"
+    "message": "メニューに Speed-Read を表示"
   },
   "f_show_as_text_875b": {
-    "message": "Show as text"
+    "message": "テキストで表示"
   },
   "f_slower_4aaf": {
-    "message": "Slower"
+    "message": "遅く"
   },
   "f_speed_8020": {
-    "message": "Speed"
+    "message": "速度"
   },
   "f_speed_read_693b": {
     "message": "Speed-Read"
   },
   "f_speed_read_does_not_work_on__e05a": {
-    "message": "Speed-Read does not work on this page."
+    "message": "このページでは Speed-Read を使えません。"
   },
   "f_speed_read_writes_the_summar_2eac": {
-    "message": "Speed-Read writes the summary, then shows it word by word with the sentence above. Pause any time to see the paragraph. It helps you get through a summary in about a minute; for careful reading, show it as text."
+    "message": "Speed-Read は要約を書き、上に文を表示しながら一語ずつ見せます。いつでも一時停止して段落を確認できます。要約をおよそ1分で読み通せます。じっくり読むときはテキストで表示してください。"
   },
   "f_the_summary_did_not_work_4b55": {
-    "message": "The summary did not work"
+    "message": "要約に失敗しました"
   },
   "f_the_summary_is_empty_1941": {
-    "message": "The summary is empty."
+    "message": "要約が空です。"
   },
   "f_the_summary_word_by_word_the_0246": {
-    "message": "The summary word by word, then keep the page or close the tab"
+    "message": "要約を一語ずつ表示し、そのあとページを残すかタブを閉じる"
   },
   "f_the_tab_closes_in_s_0762": {
-    "message": "The tab closes in {n} s"
+    "message": "{n} 秒後にタブを閉じます"
   },
   "f_the_tab_stays_open_c59f": {
-    "message": "The tab stays open."
+    "message": "タブは開いたままです。"
   },
   "f_tomorrow_morning_15fa": {
-    "message": "Tomorrow morning"
+    "message": "明日の朝"
   },
   "f_words_at_a_time_5479": {
-    "message": "Words at a time"
+    "message": "一度に表示する単語数"
   },
   "f_writing_the_summary_865e": {
-    "message": "Writing the summary …"
+    "message": "要約を作成中 …"
   },
   "f_wpm_f449": {
     "message": "{n} WPM"
   },
   "f_sentences_s_cd74": {
-    "message": "{n} sentences · {s} s"
+    "message": "{n} 文 · {s} 秒"
   },
   "f_words_so_far_7815": {
-    "message": "{n} words so far"
+    "message": "これまで {n} 語"
   },
   "ctxSpeedRead": {
-    "message": "⚡ Speed-Read this page",
+    "message": "⚡ このページを Speed-Read",
     "description": "Right-click menu entry"
   },
   "notifReadLaterTitle": {
-    "message": "🔖 Ready to read?",
+    "message": "🔖 読む準備はできましたか？",
     "description": "Notification title when a read-later reminder is due"
   },
   "notifOpen": {
-    "message": "Open",
+    "message": "開く",
     "description": "Notification button"
   },
   "notifDismiss": {
-    "message": "Dismiss",
+    "message": "あとで",
     "description": "Notification button"
   },
   "notifTabClosedTitle": {
-    "message": "Tab closed · the summary is saved",
+    "message": "タブを閉じました · 要約は保存済み",
     "description": "Notification after Speed-Read closed the tab"
   },
   "notifReopen": {
-    "message": "Reopen",
+    "message": "開き直す",
     "description": "Notification button: reopen the closed tab"
   }
 }

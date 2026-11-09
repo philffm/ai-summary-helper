@@ -7492,159 +7492,159 @@
     "message": "🧠 Lokal model"
   },
   "f_a_5_second_countdown_only_wh_7070": {
-    "message": "A 5-second countdown, only when you have read to the end. Any key or mouse movement stops it; a notification lets you reopen the tab."
+    "message": "En nedtælling på 5 sekunder, kun når du har læst til ende. Enhver tast eller musebevægelse stopper den; en notifikation lader dig genåbne fanen."
   },
   "f_any_key_or_mouse_movement_st_8528": {
-    "message": "Any key or mouse movement stops the countdown · Enter closes"
+    "message": "Enhver tast eller musebevægelse stopper nedtællingen · Enter lukker"
   },
   "f_at_the_weekend_48ee": {
-    "message": "At the weekend"
+    "message": "I weekenden"
   },
   "f_back_to_the_reader_bf83": {
-    "message": "Back to the reader"
+    "message": "Tilbage til læseren"
   },
   "f_close_tab_53a0": {
-    "message": "Close tab"
+    "message": "Luk fane"
   },
   "f_could_not_reach_this_page_tr_8523": {
-    "message": "Could not reach this page — try refreshing the tab."
+    "message": "Siden kan ikke nås — genindlæs fanen."
   },
   "f_countdown_stopped_the_tab_st_4a3d": {
-    "message": "Countdown stopped. The tab stays open."
+    "message": "Nedtælling stoppet. Fanen forbliver åben."
   },
   "f_esc_stops_the_article_is_sti_8d36": {
-    "message": "Esc stops – the article is still saved."
+    "message": "Esc stopper – artiklen gemmes alligevel."
   },
   "f_faster_d384": {
-    "message": "Faster"
+    "message": "Hurtigere"
   },
   "f_full_screen_bee0": {
-    "message": "Full screen"
+    "message": "Fuld skærm"
   },
   "f_hide_the_page_while_you_read_19ef": {
-    "message": "Hide the page while you read (F switches in the reader)"
+    "message": "Skjuler siden, mens du læser (F skifter i læseren)"
   },
   "f_in_the_popup_next_to_summari_681a": {
-    "message": "In the popup next to “Summarize” and when you right-click a page"
+    "message": "I pop-uppen ved siden af “Opsummer” og når du højreklikker på en side"
   },
   "f_keep_page_1e43": {
-    "message": "Keep page"
+    "message": "Behold siden"
   },
   "f_keys_in_the_reader_space_pau_b8e1": {
-    "message": "Keys in the reader: Space pause · ←/→ sentence · Shift+←/→ word · ↑/↓ speed · T text · F full screen · Esc stop"
+    "message": "Taster: Mellemrum pause · ←/→ sætning · Shift+←/→ ord · ↑/↓ tempo · T tekst · F fuld skærm · Esc stop"
   },
   "f_next_week_0f94": {
-    "message": "Next week"
+    "message": "Næste uge"
   },
   "f_no_reminder_62e0": {
-    "message": "No reminder"
+    "message": "Ingen påmindelse"
   },
   "f_no_summary_came_back_the_pag_73b5": {
-    "message": "No summary came back. The page may have too little text."
+    "message": "Der kom ingen opsummering. Måske har siden for lidt tekst."
   },
   "f_offer_to_close_the_tab_at_th_dec1": {
-    "message": "Offer to close the tab at the end"
+    "message": "Tilbyd at lukke fanen til sidst"
   },
   "f_paused_press_space_to_start_0dbf": {
-    "message": "Paused. Press Space to start."
+    "message": "Sat på pause. Tryk Mellemrum for at starte."
   },
   "f_paused_space_continues_jumps_3a61": {
-    "message": "Paused. Space continues · ←/→ jumps by sentence · click a sentence to read from there · T shows the whole summary"
+    "message": "Pause. Mellemrum fortsætter · ←/→ springer sætning for sætning · klik på en sætning for at læse derfra · T viser hele opsummeringen"
   },
   "f_reading_starts_as_soon_as_it_2d8c": {
-    "message": "Reading starts as soon as it is done."
+    "message": "Læsningen starter, så snart den er klar."
   },
   "f_remind_me_97ce": {
-    "message": "Remind me"
+    "message": "Mind mig om det"
   },
   "f_remind_me_later_cb3c": {
-    "message": "Remind me later"
+    "message": "Mind mig om det senere"
   },
   "f_reminder_time_ecfc": {
-    "message": "Reminder time"
+    "message": "Tidspunkt for påmindelse"
   },
   "f_reminder_8f45": {
-    "message": "Reminder {when}"
+    "message": "Påmindelse {when}"
   },
   "f_sentence_of_s_left_9552": {
-    "message": "Sentence {a} of {b} · {s} s left"
+    "message": "Sætning {a} af {b} · {s} s tilbage"
   },
   "f_show_speed_read_in_the_menus_2086": {
-    "message": "Show Speed-Read in the menus"
+    "message": "Vis Speed-Read i menuerne"
   },
   "f_show_as_text_875b": {
-    "message": "Show as text"
+    "message": "Vis som tekst"
   },
   "f_slower_4aaf": {
-    "message": "Slower"
+    "message": "Langsommere"
   },
   "f_speed_8020": {
-    "message": "Speed"
+    "message": "Tempo"
   },
   "f_speed_read_693b": {
     "message": "Speed-Read"
   },
   "f_speed_read_does_not_work_on__e05a": {
-    "message": "Speed-Read does not work on this page."
+    "message": "Speed-Read virker ikke på denne side."
   },
   "f_speed_read_writes_the_summar_2eac": {
-    "message": "Speed-Read writes the summary, then shows it word by word with the sentence above. Pause any time to see the paragraph. It helps you get through a summary in about a minute; for careful reading, show it as text."
+    "message": "Speed-Read skriver opsummeringen og viser den derefter ord for ord med sætningen ovenover. Sæt på pause når som helst for at se afsnittet. Sådan kommer du igennem en opsummering på cirka et minut; vis den som tekst for grundig læsning."
   },
   "f_the_summary_did_not_work_4b55": {
-    "message": "The summary did not work"
+    "message": "Opsummeringen mislykkedes"
   },
   "f_the_summary_is_empty_1941": {
-    "message": "The summary is empty."
+    "message": "Opsummeringen er tom."
   },
   "f_the_summary_word_by_word_the_0246": {
-    "message": "The summary word by word, then keep the page or close the tab"
+    "message": "Opsummeringen ord for ord, derefter behold siden eller luk fanen"
   },
   "f_the_tab_closes_in_s_0762": {
-    "message": "The tab closes in {n} s"
+    "message": "Fanen lukker om {n} s"
   },
   "f_the_tab_stays_open_c59f": {
-    "message": "The tab stays open."
+    "message": "Fanen forbliver åben."
   },
   "f_tomorrow_morning_15fa": {
-    "message": "Tomorrow morning"
+    "message": "I morgen tidlig"
   },
   "f_words_at_a_time_5479": {
-    "message": "Words at a time"
+    "message": "Ord ad gangen"
   },
   "f_writing_the_summary_865e": {
-    "message": "Writing the summary …"
+    "message": "Opsummeringen skrives …"
   },
   "f_wpm_f449": {
-    "message": "{n} WPM"
+    "message": "{n} ord/min"
   },
   "f_sentences_s_cd74": {
-    "message": "{n} sentences · {s} s"
+    "message": "{n} sætninger · {s} s"
   },
   "f_words_so_far_7815": {
-    "message": "{n} words so far"
+    "message": "{n} ord indtil nu"
   },
   "ctxSpeedRead": {
-    "message": "⚡ Speed-Read this page",
+    "message": "⚡ Speed-Read af denne side",
     "description": "Right-click menu entry"
   },
   "notifReadLaterTitle": {
-    "message": "🔖 Ready to read?",
+    "message": "🔖 Klar til at læse?",
     "description": "Notification title when a read-later reminder is due"
   },
   "notifOpen": {
-    "message": "Open",
+    "message": "Åbn",
     "description": "Notification button"
   },
   "notifDismiss": {
-    "message": "Dismiss",
+    "message": "Senere",
     "description": "Notification button"
   },
   "notifTabClosedTitle": {
-    "message": "Tab closed · the summary is saved",
+    "message": "Fane lukket · opsummeringen er gemt",
     "description": "Notification after Speed-Read closed the tab"
   },
   "notifReopen": {
-    "message": "Reopen",
+    "message": "Genåbn",
     "description": "Notification button: reopen the closed tab"
   }
 }

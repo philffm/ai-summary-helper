@@ -62,6 +62,24 @@ class ReadingToolsTest {
         assertEquals(2, Rsvp.minutesLeft(450, 300))
     }
 
+    // Same vectors as plugin/tests/test254.mjs (modules/rsvp.js), so the app and the extension read alike.
+    @Test fun rsvpMatchesTheExtension() {
+        val b = Rsvp.build(listOf(Block("h2", "Title here"), Block("p", "First sentence, with a comma. Second one!"), Block("p", "  "), Block("pre", "code")))
+        assertEquals(3, b.sentences.size); assertEquals(2, b.paragraphs.size); assertEquals(9, b.words.size)
+        assertTrue(b.sentences[0].heading); assertFalse(b.sentences[1].heading)
+        assertEquals(400L, Rsvp.delayMs("end.", 300)); assertEquals(300L, Rsvp.delayMs("pause,", 300))
+        assertTrue(Rsvp.delayMs("word", 300, index = 0) > 200)   // the first words are slower
+        assertEquals(500L, Rsvp.delayMs("Title", 300, heading = true))
+        assertEquals(600, Rsvp.clampWpm(5000)); assertEquals(150, Rsvp.clampWpm(10))
+        assertEquals(2, Rsvp.pivot("„Hallo")); assertEquals(3, Rsvp.pivot("recognition"))
+        // sentences: Title here | First sentence, with a comma. | Second one!
+        assertEquals(2, Rsvp.sentenceStart(b, 0, 1))              // from the heading to the next sentence
+        assertEquals(7, Rsvp.sentenceStart(b, 2, 1))              // and on to the last one
+        assertEquals(2, Rsvp.sentenceStart(b, 4, -1))             // middle of a sentence → its start
+        assertEquals(0, Rsvp.sentenceStart(b, 2, -1))             // start of a sentence → the one before
+        assertTrue(Rsvp.secondsLeft(b, 0, 300) > 0)
+    }
+
     @Test fun rsvpPivot() {
         assertEquals(0, Rsvp.pivot("a"))
         assertEquals(1, Rsvp.pivot("word"))

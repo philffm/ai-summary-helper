@@ -7492,159 +7492,159 @@
     "message": "🧠 Lokal modell"
   },
   "f_a_5_second_countdown_only_wh_7070": {
-    "message": "A 5-second countdown, only when you have read to the end. Any key or mouse movement stops it; a notification lets you reopen the tab."
+    "message": "En nedräkning på 5 sekunder, bara när du har läst till slutet. Varje tangent eller musrörelse stoppar den; en avisering låter dig öppna fliken igen."
   },
   "f_any_key_or_mouse_movement_st_8528": {
-    "message": "Any key or mouse movement stops the countdown · Enter closes"
+    "message": "Varje tangent eller musrörelse stoppar nedräkningen · Enter stänger"
   },
   "f_at_the_weekend_48ee": {
-    "message": "At the weekend"
+    "message": "I helgen"
   },
   "f_back_to_the_reader_bf83": {
-    "message": "Back to the reader"
+    "message": "Tillbaka till läsaren"
   },
   "f_close_tab_53a0": {
-    "message": "Close tab"
+    "message": "Stäng fliken"
   },
   "f_could_not_reach_this_page_tr_8523": {
-    "message": "Could not reach this page — try refreshing the tab."
+    "message": "Sidan går inte att nå — ladda om fliken."
   },
   "f_countdown_stopped_the_tab_st_4a3d": {
-    "message": "Countdown stopped. The tab stays open."
+    "message": "Nedräkningen stoppad. Fliken förblir öppen."
   },
   "f_esc_stops_the_article_is_sti_8d36": {
-    "message": "Esc stops – the article is still saved."
+    "message": "Esc avbryter – artikeln sparas ändå."
   },
   "f_faster_d384": {
-    "message": "Faster"
+    "message": "Snabbare"
   },
   "f_full_screen_bee0": {
-    "message": "Full screen"
+    "message": "Helskärm"
   },
   "f_hide_the_page_while_you_read_19ef": {
-    "message": "Hide the page while you read (F switches in the reader)"
+    "message": "Döljer sidan medan du läser (F växlar i läsaren)"
   },
   "f_in_the_popup_next_to_summari_681a": {
-    "message": "In the popup next to “Summarize” and when you right-click a page"
+    "message": "I popup-fönstret bredvid ”Sammanfatta” och när du högerklickar på en sida"
   },
   "f_keep_page_1e43": {
-    "message": "Keep page"
+    "message": "Behåll sidan"
   },
   "f_keys_in_the_reader_space_pau_b8e1": {
-    "message": "Keys in the reader: Space pause · ←/→ sentence · Shift+←/→ word · ↑/↓ speed · T text · F full screen · Esc stop"
+    "message": "Tangenter: Blanksteg paus · ←/→ mening · Skift+←/→ ord · ↑/↓ tempo · T text · F helskärm · Esc stopp"
   },
   "f_next_week_0f94": {
-    "message": "Next week"
+    "message": "Nästa vecka"
   },
   "f_no_reminder_62e0": {
-    "message": "No reminder"
+    "message": "Ingen påminnelse"
   },
   "f_no_summary_came_back_the_pag_73b5": {
-    "message": "No summary came back. The page may have too little text."
+    "message": "Ingen sammanfattning kom tillbaka. Sidan har kanske för lite text."
   },
   "f_offer_to_close_the_tab_at_th_dec1": {
-    "message": "Offer to close the tab at the end"
+    "message": "Erbjud att stänga fliken i slutet"
   },
   "f_paused_press_space_to_start_0dbf": {
-    "message": "Paused. Press Space to start."
+    "message": "Pausad. Tryck på Blanksteg för att starta."
   },
   "f_paused_space_continues_jumps_3a61": {
-    "message": "Paused. Space continues · ←/→ jumps by sentence · click a sentence to read from there · T shows the whole summary"
+    "message": "Pausad. Blanksteg fortsätter · ←/→ hoppar mening för mening · klicka på en mening för att läsa därifrån · T visar hela sammanfattningen"
   },
   "f_reading_starts_as_soon_as_it_2d8c": {
-    "message": "Reading starts as soon as it is done."
+    "message": "Läsningen börjar så snart den är klar."
   },
   "f_remind_me_97ce": {
-    "message": "Remind me"
+    "message": "Påminn mig"
   },
   "f_remind_me_later_cb3c": {
-    "message": "Remind me later"
+    "message": "Påminn mig senare"
   },
   "f_reminder_time_ecfc": {
-    "message": "Reminder time"
+    "message": "Tid för påminnelse"
   },
   "f_reminder_8f45": {
-    "message": "Reminder {when}"
+    "message": "Påminnelse {when}"
   },
   "f_sentence_of_s_left_9552": {
-    "message": "Sentence {a} of {b} · {s} s left"
+    "message": "Mening {a} av {b} · {s} s kvar"
   },
   "f_show_speed_read_in_the_menus_2086": {
-    "message": "Show Speed-Read in the menus"
+    "message": "Visa Speed-Read i menyerna"
   },
   "f_show_as_text_875b": {
-    "message": "Show as text"
+    "message": "Visa som text"
   },
   "f_slower_4aaf": {
-    "message": "Slower"
+    "message": "Långsammare"
   },
   "f_speed_8020": {
-    "message": "Speed"
+    "message": "Tempo"
   },
   "f_speed_read_693b": {
     "message": "Speed-Read"
   },
   "f_speed_read_does_not_work_on__e05a": {
-    "message": "Speed-Read does not work on this page."
+    "message": "Speed-Read fungerar inte på den här sidan."
   },
   "f_speed_read_writes_the_summar_2eac": {
-    "message": "Speed-Read writes the summary, then shows it word by word with the sentence above. Pause any time to see the paragraph. It helps you get through a summary in about a minute; for careful reading, show it as text."
+    "message": "Speed-Read skriver sammanfattningen och visar den sedan ord för ord med meningen ovanför. Pausa när du vill för att se stycket. Så tar du dig igenom en sammanfattning på ungefär en minut; för noggrann läsning, visa den som text."
   },
   "f_the_summary_did_not_work_4b55": {
-    "message": "The summary did not work"
+    "message": "Sammanfattningen misslyckades"
   },
   "f_the_summary_is_empty_1941": {
-    "message": "The summary is empty."
+    "message": "Sammanfattningen är tom."
   },
   "f_the_summary_word_by_word_the_0246": {
-    "message": "The summary word by word, then keep the page or close the tab"
+    "message": "Sammanfattningen ord för ord, sedan behåll sidan eller stäng fliken"
   },
   "f_the_tab_closes_in_s_0762": {
-    "message": "The tab closes in {n} s"
+    "message": "Fliken stängs om {n} s"
   },
   "f_the_tab_stays_open_c59f": {
-    "message": "The tab stays open."
+    "message": "Fliken förblir öppen."
   },
   "f_tomorrow_morning_15fa": {
-    "message": "Tomorrow morning"
+    "message": "I morgon bitti"
   },
   "f_words_at_a_time_5479": {
-    "message": "Words at a time"
+    "message": "Ord åt gången"
   },
   "f_writing_the_summary_865e": {
-    "message": "Writing the summary …"
+    "message": "Sammanfattningen skrivs …"
   },
   "f_wpm_f449": {
-    "message": "{n} WPM"
+    "message": "{n} ord/min"
   },
   "f_sentences_s_cd74": {
-    "message": "{n} sentences · {s} s"
+    "message": "{n} meningar · {s} s"
   },
   "f_words_so_far_7815": {
-    "message": "{n} words so far"
+    "message": "{n} ord hittills"
   },
   "ctxSpeedRead": {
-    "message": "⚡ Speed-Read this page",
+    "message": "⚡ Speed-Read av den här sidan",
     "description": "Right-click menu entry"
   },
   "notifReadLaterTitle": {
-    "message": "🔖 Ready to read?",
+    "message": "🔖 Redo att läsa?",
     "description": "Notification title when a read-later reminder is due"
   },
   "notifOpen": {
-    "message": "Open",
+    "message": "Öppna",
     "description": "Notification button"
   },
   "notifDismiss": {
-    "message": "Dismiss",
+    "message": "Senare",
     "description": "Notification button"
   },
   "notifTabClosedTitle": {
-    "message": "Tab closed · the summary is saved",
+    "message": "Fliken stängd · sammanfattningen är sparad",
     "description": "Notification after Speed-Read closed the tab"
   },
   "notifReopen": {
-    "message": "Reopen",
+    "message": "Öppna igen",
     "description": "Notification button: reopen the closed tab"
   }
 }
