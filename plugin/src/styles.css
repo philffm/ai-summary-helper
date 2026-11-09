@@ -21,6 +21,8 @@
   --fs-lg: calc(16px * var(--text-scale)); /* Type size 16px × text-scale: card titles, primary button. */
   --fs-xl: calc(18px * var(--text-scale)); /* Type size 18px × text-scale: section titles. */
   --fs-2xl: calc(20px * var(--text-scale)); /* Type size 20px × text-scale: screen titles. */
+  --fs-display: calc(40px * var(--text-scale)); /* Type size 40px × text-scale: the word in the speed reader (Speed-Read, card layout). */
+  --fs-display-xl: calc(64px * var(--text-scale)); /* Type size 64px × text-scale: the word in the speed reader in full screen. */
   --spacing-s-0: 0; /* Spacing step 0 (0) on the 4px grid. Kept for JS inline styles; component CSS uses the same steps. */
   --spacing-s-05: 2px; /* Spacing step 05 (2px) on the 4px grid. Kept for JS inline styles; component CSS uses the same steps. */
   --spacing-s-1: 4px; /* Spacing step 1 (4px) on the 4px grid. Kept for JS inline styles; component CSS uses the same steps. */
@@ -307,6 +309,12 @@
   --check-bg: var(--surface-control);
   /* component · sel-card */
   --sel-card-bg: var(--accent-selected);
+  /* component · rsvp */
+  --rsvp-word-size: var(--fs-display); /* Speed reader: size of the word on screen. */
+  --rsvp-word-size-full: var(--fs-display-xl); /* Speed reader in full screen: size of the word. */
+  --rsvp-pivot: var(--accent); /* Speed reader: the letter the eye anchors on (≥ 3:1 on the reader background). */
+  --rsvp-bg: var(--surface-sheet); /* Speed reader: the reader card. */
+  --rsvp-context-bg: var(--surface-row); /* Speed reader: the sentence or paragraph shown around the word. */
 }
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme='light']):not([data-theme='contrast']) {
@@ -3400,6 +3408,8 @@ i.tp-s3 { background: var(--chart-3); } i.tp-s4 { background: var(--chart-4); } 
 .settings-card-head h3 { margin: 0; font-size: var(--fs-md); font-weight: 600; }
 .settings-card-head p { margin: 2px 0 0; font-size: var(--fs-sm); color: var(--text-muted); }
 .settings-card-note { margin: 0; font-size: var(--fs-sm); color: var(--text-muted); }
+.settings-card .setting-group { margin-bottom: 0; }
+.setting-group.is-disabled { opacity: .5; pointer-events: none; }
 .settings-btn-row { display: flex; gap: 8px; flex-wrap: wrap; }
 .settings-action-row { display: flex; align-items: center; gap: 16px; }
 .settings-action-text { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 2px; }

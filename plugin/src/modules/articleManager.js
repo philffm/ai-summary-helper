@@ -48,6 +48,14 @@ export async function showArticleDetail(article) { hist.detailChosenAt = Date.no
 export async function openArticleInHistory(article) { hist.detailChosenAt = Date.now(); return (await loadDetail()).openArticleInHistory(article); }
 const layoutDetailActions = (...args) => (detailLoaded ? detailLoaded.layoutDetailActions(...args) : undefined);   // no detail module = no detail open
 
+/** "Read later" chip: when the reminder is due (Speed-Read sets decisionDueAt), else the old timeframe name. */
+function decisionLabel(a) {
+    if (Number.isFinite(a.decisionDueAt)) {
+        try { return T('Reminder {when}', { when: new Date(a.decisionDueAt).toLocaleString(locale(), { weekday: 'short', day: 'numeric', month: 'short', hour: '2-digit', minute: '2-digit' }) }); } catch (_) { /* fall through */ }
+    }
+    return ({ tomorrow: T('Tomorrow morning'), weekend: T('At the weekend'), week: T('Next week'), research: T('Research') })[a.decisionTimeframe] || a.decisionTimeframe;
+}
+
 /** Translated label whose translations still carry the old emoji, text only (the control gets an SVG icon). */
 export const lbl = (key) => escapeHtml(stripEmoji(T(key)));
 
@@ -1021,7 +1029,7 @@ function buildArticleCard(article) {
     // Decision metadata (timeframe + reason)
     const decisionHtml = article.isDecision ? `
       <div class="card-decision">
-        ${article.decisionTimeframe ? `<span class="decision-chip">🔖 ${escapeHtml(article.decisionTimeframe)}</span>` : ''}
+        ${article.decisionTimeframe ? `<span class="decision-chip">🔖 ${escapeHtml(decisionLabel(article))}</span>` : ''}
         ${article.decisionReason ? `<span class="decision-reason">"${escapeHtml(article.decisionReason)}"</span>` : ''}
       </div>
     ` : '';

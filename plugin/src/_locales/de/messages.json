@@ -5357,10 +5357,6 @@
     "message": "✨ Diese Seite zusammenfassen",
     "description": "Right-click menu entry"
   },
-  "ctxSummarizeClose": {
-    "message": "✨ Zusammenfassen & Tab schließen",
-    "description": "Right-click menu entry"
-  },
   "f_kindle_format_dafb": {
     "message": "Kindle-Format"
   },
@@ -7292,5 +7288,161 @@
   },
   "f_ready_3294": {
     "message": "Bereit"
+  },
+  "f_a_5_second_countdown_only_wh_7070": {
+    "message": "Ein Countdown von 5 Sekunden, nur wenn du bis zum Ende gelesen hast. Jede Taste oder Mausbewegung stoppt ihn; über eine Benachrichtigung öffnest du den Tab wieder."
+  },
+  "f_any_key_or_mouse_movement_st_8528": {
+    "message": "Jede Taste oder Mausbewegung stoppt den Countdown · Enter schließt"
+  },
+  "f_at_the_weekend_48ee": {
+    "message": "Am Wochenende"
+  },
+  "f_back_to_the_reader_bf83": {
+    "message": "Zurück zum Leser"
+  },
+  "f_close_tab_53a0": {
+    "message": "Tab schließen"
+  },
+  "f_could_not_reach_this_page_tr_8523": {
+    "message": "Die Seite ist nicht erreichbar – lade den Tab neu."
+  },
+  "f_countdown_stopped_the_tab_st_4a3d": {
+    "message": "Countdown gestoppt. Der Tab bleibt offen."
+  },
+  "f_esc_stops_the_article_is_sti_8d36": {
+    "message": "Esc bricht ab – der Artikel wird trotzdem gespeichert."
+  },
+  "f_faster_d384": {
+    "message": "Schneller"
+  },
+  "f_full_screen_bee0": {
+    "message": "Vollbild"
+  },
+  "f_hide_the_page_while_you_read_19ef": {
+    "message": "Blendet die Seite beim Lesen aus (F schaltet im Leser um)"
+  },
+  "f_in_the_popup_next_to_summari_681a": {
+    "message": "Im Popup neben „Zusammenfassen“ und beim Rechtsklick auf eine Seite"
+  },
+  "f_keep_page_1e43": {
+    "message": "Seite behalten"
+  },
+  "f_keys_in_the_reader_space_pau_b8e1": {
+    "message": "Tasten im Leser: Leertaste Pause · ←/→ Satz · Umschalt+←/→ Wort · ↑/↓ Tempo · T Text · F Vollbild · Esc beenden"
+  },
+  "f_next_week_0f94": {
+    "message": "Nächste Woche"
+  },
+  "f_no_reminder_62e0": {
+    "message": "Keine Erinnerung"
+  },
+  "f_no_summary_came_back_the_pag_73b5": {
+    "message": "Es kam keine Zusammenfassung zurück. Vielleicht hat die Seite zu wenig Text."
+  },
+  "f_offer_to_close_the_tab_at_th_dec1": {
+    "message": "Am Ende anbieten, den Tab zu schließen"
+  },
+  "f_paused_press_space_to_start_0dbf": {
+    "message": "Pausiert. Leertaste startet."
+  },
+  "f_paused_space_continues_jumps_3a61": {
+    "message": "Pausiert. Leertaste: weiter · ←/→ springt satzweise · Klick auf einen Satz liest ab dort · T zeigt die ganze Zusammenfassung"
+  },
+  "f_reading_starts_as_soon_as_it_2d8c": {
+    "message": "Das Lesen startet, sobald sie fertig ist."
+  },
+  "f_remind_me_97ce": {
+    "message": "Erinnern"
+  },
+  "f_remind_me_later_cb3c": {
+    "message": "Später erinnern"
+  },
+  "f_reminder_time_ecfc": {
+    "message": "Uhrzeit der Erinnerung"
+  },
+  "f_reminder_8f45": {
+    "message": "Erinnerung {when}"
+  },
+  "f_sentence_of_s_left_9552": {
+    "message": "Satz {a} von {b} · noch {s} s"
+  },
+  "f_show_speed_read_in_the_menus_2086": {
+    "message": "Speed-Read in den Menüs zeigen"
+  },
+  "f_show_as_text_875b": {
+    "message": "Als Text zeigen"
+  },
+  "f_slower_4aaf": {
+    "message": "Langsamer"
+  },
+  "f_speed_8020": {
+    "message": "Tempo"
+  },
+  "f_speed_read_693b": {
+    "message": "Speed-Read"
+  },
+  "f_speed_read_does_not_work_on__e05a": {
+    "message": "Speed-Read funktioniert auf dieser Seite nicht."
+  },
+  "f_speed_read_writes_the_summar_2eac": {
+    "message": "Speed-Read schreibt die Zusammenfassung und zeigt sie dann Wort für Wort, den Satz darüber. Mit Pause siehst du jederzeit den Absatz. So gehst du eine Zusammenfassung in etwa einer Minute durch; zum genauen Lesen zeig sie als Text."
+  },
+  "f_the_summary_did_not_work_4b55": {
+    "message": "Die Zusammenfassung hat nicht geklappt"
+  },
+  "f_the_summary_is_empty_1941": {
+    "message": "Die Zusammenfassung ist leer."
+  },
+  "f_the_summary_word_by_word_the_0246": {
+    "message": "Die Zusammenfassung Wort für Wort, danach Seite behalten oder Tab schließen"
+  },
+  "f_the_tab_closes_in_s_0762": {
+    "message": "Der Tab schließt sich in {n} s"
+  },
+  "f_the_tab_stays_open_c59f": {
+    "message": "Der Tab bleibt offen."
+  },
+  "f_tomorrow_morning_15fa": {
+    "message": "Morgen früh"
+  },
+  "f_words_at_a_time_5479": {
+    "message": "Wörter auf einmal"
+  },
+  "f_writing_the_summary_865e": {
+    "message": "Die Zusammenfassung wird geschrieben …"
+  },
+  "f_wpm_f449": {
+    "message": "{n} WPM"
+  },
+  "f_sentences_s_cd74": {
+    "message": "{n} Sätze · {s} s"
+  },
+  "f_words_so_far_7815": {
+    "message": "bisher {n} Wörter"
+  },
+  "ctxSpeedRead": {
+    "message": "⚡ Speed-Read dieser Seite",
+    "description": "Right-click menu entry"
+  },
+  "notifReadLaterTitle": {
+    "message": "🔖 Lust zu lesen?",
+    "description": "Notification title when a read-later reminder is due"
+  },
+  "notifOpen": {
+    "message": "Öffnen",
+    "description": "Notification button"
+  },
+  "notifDismiss": {
+    "message": "Später",
+    "description": "Notification button"
+  },
+  "notifTabClosedTitle": {
+    "message": "Tab geschlossen · die Zusammenfassung ist gespeichert",
+    "description": "Notification after Speed-Read closed the tab"
+  },
+  "notifReopen": {
+    "message": "Wieder öffnen",
+    "description": "Notification button: reopen the closed tab"
   }
 }

@@ -3860,6 +3860,36 @@
        "name": "accent/accent-selected"
       }
      }
+    },
+    "rsvp/rsvp-pivot": {
+     "codeSyntax": "var(--rsvp-pivot)",
+     "description": "Speed reader: the letter the eye anchors on (≥ 3:1 on the reader background).",
+     "modes": {
+      "value": {
+       "alias": "Semantic · App",
+       "name": "accent/accent"
+      }
+     }
+    },
+    "rsvp/rsvp-bg": {
+     "codeSyntax": "var(--rsvp-bg)",
+     "description": "Speed reader: the reader card.",
+     "modes": {
+      "value": {
+       "alias": "Semantic · App",
+       "name": "surface/surface-sheet"
+      }
+     }
+    },
+    "rsvp/rsvp-context-bg": {
+     "codeSyntax": "var(--rsvp-context-bg)",
+     "description": "Speed reader: the sentence or paragraph shown around the word.",
+     "modes": {
+      "value": {
+       "alias": "Semantic · App",
+       "name": "surface/surface-row"
+      }
+     }
     }
    }
   },
