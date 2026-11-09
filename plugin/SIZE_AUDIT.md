@@ -26,6 +26,9 @@ Scope: what the store package contains and where it can shrink. Measured with `n
 
 Realistic total for 1-4: **400-500 KB**, so about 1.3 MB.
 
+## Done
+- **Nov 2026 · slimmer `_locales` in the build** (`plugin/scripts/slim-locales.mjs`, run by `scripts/build.js` for every platform and by `--bundle` for the release zips): keys no code uses are dropped (193), translator notes stay in `en` only, no indentation. 1540 → 1354 KB deflated (5.8 → 4.4 MB raw). The source files in `plugin/src/_locales` are unchanged. Test: `plugin/tests/test258.mjs`. Full audit with the next steps: project doc `claude/size-audit-2026-11.md`.
+
 ## Not worth it
 - Dropping languages: ~37 KB each, and translations are a feature.
 - Lazy-loading PDF.js from a CDN: MV3 does not allow remote code.

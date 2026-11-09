@@ -27,6 +27,7 @@ import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
+const { slimLocales } = await import('./slim-locales.mjs');
 // This script lives in plugin/scripts/, so ROOT resolves to plugin/.
 const ROOT = path.resolve(__dirname, '..');
 const SRC = path.join(ROOT, 'src');
@@ -265,6 +266,8 @@ function buildPlatform(name, manifestPath) {
     writeTargetsWorker(outDir, name);
     writeMcpWorker(outDir, name);
     writeSyncWorker(outDir, name);
+    const loc = slimLocales(outDir);
+    console.log(`  ✓ ${name}: _locales ${Math.round(loc.before / 1024)} KB → ${Math.round(loc.after / 1024)} KB (${loc.dropped} unused keys, notes only in en)`);
 
     if (manifestPath && fs.existsSync(manifestPath)) {
         fs.copyFileSync(manifestPath, path.join(outDir, 'manifest.json'));
@@ -307,6 +310,8 @@ function main() {
             writeTargetsWorker(targetDir);
             writeMcpWorker(targetDir);
             writeSyncWorker(targetDir);
+            const loc = slimLocales(targetDir);
+            console.log(`  ✓ _locales ${Math.round(loc.before / 1024)} KB → ${Math.round(loc.after / 1024)} KB (${loc.dropped} unused keys)`);
         } catch (err) {
             console.error(`✗ ${err.message}`);
             process.exit(1);
