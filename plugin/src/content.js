@@ -61,8 +61,8 @@ import {
   handleGhostHighlightClick,
   getUserHighlightTexts,
   revealQuote,
-  hlTellDeleted,
-  setPageSummarizeHandler
+  setPageSummarizeHandler,
+  clearPageHighlights
 } from './content/highlighter.js';
 
 import {
@@ -273,21 +273,7 @@ import {
     if (request.action === 'contextMenuClearHighlights') {
       clearHighlightElements();
 
-      // Clear only for the current URL using the new array structure
-      chrome.storage.local.get([SK.annotations], (res) => {
-        let annotations = res[SK.annotations];
-        if (Array.isArray(annotations)) {
-          const currentUrl = window.location.href.split('#')[0];
-          const removed = annotations.filter(a => a.url === currentUrl).map(a => a.id);
-          annotations = annotations.filter(a => a.url !== currentUrl);
-          hlTellDeleted(removed);
-          chrome.storage.local.set({ [SK.annotations]: annotations }, () => {
-            sendResponse({ status: 'ok' });
-          });
-        } else {
-          sendResponse({ status: 'ok' });
-        }
-      });
+      clearPageHighlights(() => sendResponse({ status: 'ok' }));
       return true;
     }
 

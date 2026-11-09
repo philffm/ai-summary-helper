@@ -11,6 +11,7 @@ import { hlpRender } from './highlightPanel.js';
 import { npShowToolbar, npShowComposer, npHide } from './notesPopover.js';
 import { splitTags } from '../modules/noteText.js';
 import { pageKeyForUrl, isNoisePage } from '../modules/pageKey.js';
+import { normalizeHighlights, needsRewrite } from '../modules/highlightRecords.js';
 
 // ── Shared state (module scope, inlined into the content IIFE by the bundler) ──
 let annotationObserver = null;
@@ -213,71 +214,20 @@ export function removeAnnotationFromStorage(text, type = 'user') {
   });
 }
 
+/** Remove every highlight of this page (context menu). Compares page keys, so tracking and content parameters match. */
+export function clearPageHighlights(done = () => {}) {
+  getNormalizedAnnotations((annotations) => {
+    const key = getPageKey();
+    const removed = annotations.filter(a => a.url === key).map(a => a.id).filter(Boolean);
+    if (!removed.length && !annotations.some(a => a.url === key)) { done(); return; }
+    chrome.storage.local.set({ [SK.annotations]: annotations.filter(a => a.url !== key) }, () => done());
+    hlTellDeleted(removed);
+  });
+}
+
+// One canonical shape for every stored highlight (modules/highlightRecords.js): keeps the page key's content parameters.
 function normalizeAnnotationEntries(rawAnnotations) {
-  if (Array.isArray(rawAnnotations)) {
-    return rawAnnotations
-      .filter(a => a && typeof a === 'object')
-      .map(a => {
-        const url = typeof a.url === 'string' ? a.url.split('#')[0].split('?')[0] : '';
-        const text = typeof a.text === 'string' ? a.text.replace(/\s+/g, ' ').trim() : '';
-        const type = a.type === 'ghost' ? 'ghost' : 'user';
-        const timestamp = typeof a.timestamp === 'string' ? a.timestamp : new Date().toISOString();
-        const extra = {};
-        if (typeof a.id === 'string') extra.id = a.id;
-        if (a.quote && typeof a.quote.exact === 'string') extra.quote = { exact: a.quote.exact, prefix: a.quote.prefix || '', suffix: a.quote.suffix || '' };
-        if (typeof a.pos === 'number') extra.pos = a.pos;
-        if (a.v) extra.v = a.v;
-        if (a.dismissed) extra.dismissed = true;
-        return { url, text, type, timestamp, ...extra };
-      })
-      .filter(a => a.url && a.text);
-  }
-
-  if (!rawAnnotations || typeof rawAnnotations !== 'object') return [];
-
-  const migrated = [];
-  for (const [urlKey, value] of Object.entries(rawAnnotations)) {
-    const url = (urlKey || '').split('#')[0].split('?')[0];
-    if (!url || !value) continue;
-
-    if (Array.isArray(value)) {
-      value.forEach(item => {
-        if (typeof item === 'string') {
-          const text = item.replace(/\s+/g, ' ').trim();
-          if (text) migrated.push({ url, text, type: 'user', timestamp: new Date().toISOString() });
-        } else if (item && typeof item === 'object') {
-          const text = typeof item.text === 'string' ? item.text.replace(/\s+/g, ' ').trim() : '';
-          if (!text) return;
-          migrated.push({
-            url,
-            text,
-            type: item.type === 'ghost' ? 'ghost' : 'user',
-            timestamp: typeof item.timestamp === 'string' ? item.timestamp : new Date().toISOString()
-          });
-        }
-      });
-      continue;
-    }
-
-    if (value && typeof value === 'object') {
-      const users = Array.isArray(value.user) ? value.user : [];
-      const ghosts = Array.isArray(value.ghost) ? value.ghost : [];
-
-      users.forEach(t => {
-        if (typeof t !== 'string') return;
-        const text = t.replace(/\s+/g, ' ').trim();
-        if (text) migrated.push({ url, text, type: 'user', timestamp: new Date().toISOString() });
-      });
-
-      ghosts.forEach(t => {
-        if (typeof t !== 'string') return;
-        const text = t.replace(/\s+/g, ' ').trim();
-        if (text) migrated.push({ url, text, type: 'ghost', timestamp: new Date().toISOString() });
-      });
-    }
-  }
-
-  return migrated;
+  return normalizeHighlights(rawAnnotations);
 }
 
 // Returns false once the extension has been reloaded/updated, which
@@ -298,9 +248,8 @@ function getNormalizedAnnotations(callback) {
   try {
     chrome.storage.local.get([SK.annotations], (res) => {
       const normalized = normalizeAnnotationEntries(res[SK.annotations]);
-      const existing = Array.isArray(res[SK.annotations]) ? res[SK.annotations] : [];
-      const shouldWriteBack = !Array.isArray(res[SK.annotations])
-        || JSON.stringify(existing) !== JSON.stringify(normalized);
+      // Rewrite only an old shape or a changed entry; field order alone must not trigger a write (it woke every tab).
+      const shouldWriteBack = needsRewrite(res[SK.annotations], normalized);
 
       if (shouldWriteBack) {
         chrome.storage.local.set({ [SK.annotations]: normalized }, () => callback(normalized));
