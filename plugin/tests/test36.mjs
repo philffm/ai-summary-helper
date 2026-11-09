@@ -1,4 +1,5 @@
 // Review prompt: UI, plus installedAt and the uninstall URL in the background.
+import { bgSource } from './bgSource.mjs';
 import { setup, imp, tick } from './harness.mjs'; import assert from 'assert';
 const DAY = 864e5;
 const rp = await (async () => { setup({}); return imp('modules/reviewPrompt.js'); })();
@@ -31,6 +32,6 @@ r = await ui({ 'account:installedAt': Date.now() - 9 * DAY, 'articles:index': id
 r = await ui({ 'articles:index': idx(9) }, CH); assert(r.el.hidden && r.store['account:installedAt'], 'first run sets installedAt, not shown');
 // background: installedAt + uninstall URL
 import fs from 'fs';
-const src = fs.readFileSync(process.env.AISH_SRC + '/background.js', 'utf8');
+const src = bgSource();
 assert(/setUninstallURL\(`\$\{GOODBYE_URL\}\?v=/.test(src) && src.includes('goodbye.html'));
 console.log('TEST 36 OK');

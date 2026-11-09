@@ -1,4 +1,5 @@
 // "Prefer EU servers" for hosted models: what the app marks and shows, and what the background sends and records. Older servers must be unaffected.
+import { bgSource } from './bgSource.mjs';
 import assert from 'assert';
 import fs from 'fs'; import vm from 'vm'; import path from 'path';
 import { setup, imp } from './harness.mjs';
@@ -36,7 +37,7 @@ assert.equal(R.euSuggestion({ ...roster, eu_default: undefined }, 'google/gemini
 assert.ok(R.euSuggestion(roster, 'not-in-the-list/x', 'prefer-eu'), 'a model the list does not know is not an EU model either'); assert.match(R.routeSentence({ region: 'global' }), /did not run on EU servers/); assert.equal(R.routeSentence(null), ''); assert.equal(R.routeSentence({}), '');
 
 // the background: the header only for the hosted service and only when asked; the route is recorded from the answer
-const src = fs.readFileSync(path.resolve(process.env.AISH_SRC, 'background.js'), 'utf8');
+const src = bgSource();
 const body = src.slice(src.indexOf('const AISH_FEATURES'), src.indexOf('function noteCloudRoute') + src.slice(src.indexOf('function noteCloudRoute')).indexOf('\n}\n') + 3);
 const local = {}; let pref = {};
 const ctx = { AISH_API_BASE: 'https://api.byphil.eu', SK: { cloudRoute: 'cloud:route' }, chrome: { storage: { sync: { get: async () => pref }, local: { set: (o) => Object.assign(local, o) } } }, Date };

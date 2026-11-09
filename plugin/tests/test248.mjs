@@ -1,8 +1,9 @@
 // Parts of D (AISH-033): when the chosen local model is not ready (not reachable, still loading, server error) the next ready
 // local model from the saved order answers, the answer is marked (x-aish-fallback), the switch turns it off, and the quick test
 // (a target request) never falls back. Without a fallback, “still loading” is waited for as before.
+import { bgSource } from './bgSource.mjs';
 import assert from 'assert'; import fs from 'fs'; import path from 'path'; import vm from 'vm';
-const bg = fs.readFileSync(path.join(process.env.AISH_SRC, 'background.js'), 'utf8');
+const bg = bgSource();
 const a = bg.indexOf('const LOCAL_URL'), b = bg.indexOf('\n}', bg.indexOf('async function aiFetchOne(')) + 2;
 const enc = new TextEncoder();
 const sse = (...parts) => new Response(new ReadableStream({ start(c) { parts.forEach(p => c.enqueue(enc.encode(p))); c.close(); } }), { status: 200 });

@@ -1,4 +1,5 @@
 // Whole-library run: an item that was scored but came back without a category is not sent again on every run (catTried).
+import { bgSource } from './bgSource.mjs';
 import assert from 'assert';
 import { readFileSync } from 'fs';
 import { planLibrary } from '../src/modules/libraryBatch.js';
@@ -20,7 +21,7 @@ assert.deepEqual(plan([mk('noScore', { catTried: true })]).rate.map(i => i.id), 
 
 // every place that stores a rating also remembers the attempt, so stopping and starting again shrinks the list
 const src = (p) => readFileSync(new URL(p, import.meta.url), 'utf8');
-const fm = src('../src/modules/feedManager.js'), bg = src('../src/background.js');
+const fm = src('../src/modules/feedManager.js'), bg = bgSource();
 assert.ok((fm.match(/catTried = true/g) || []).length >= 3, 'feedManager marks catTried in applyRatings, scoring and the library rating');
 assert.ok(/needsAi = \(i\) => !i\.ai \|\| \(!i\.cat && !i\.catTried\)/.test(fm), 'manual scoring uses the same rule');
 assert.ok((bg.match(/catTried = true/g) || []).length >= 3, 'background run marks catTried');

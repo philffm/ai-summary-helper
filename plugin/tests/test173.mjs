@@ -1,4 +1,5 @@
 // Send targets, step 2: messages, backup, data reset, and "no existing key is touched".
+import { bgSource } from './bgSource.mjs';
 import assert from 'assert'; import fs from 'fs'; import vm from 'vm';
 import { pathToFileURL } from 'url';
 const shared = (rel) => import(pathToFileURL(process.env.AISH_SRC + '/' + rel).href);
@@ -31,7 +32,7 @@ assert(!('targets:outbox' in imported), 'a smuggled queue is dropped'); assert('
 assert.deepEqual(Object.keys(prepareImportedData({ 'articles:index': [] }, {})), ['articles:index']);
 
 // ── background messages: only extension pages ──
-const src = fs.readFileSync(SRC + '/background.js', 'utf8');
+const src = bgSource();
 for (const a of ['targetEnqueue', 'targetStatus', 'targetCancel']) assert(new RegExp(`\\b${a}: \\{ from: 'ext'`).test(src), a + ' is extension-page only');
 const store = {};
 const area = { get: (k, cb) => { const o = {}; (k == null ? Object.keys(store) : typeof k === 'string' ? [k] : Array.isArray(k) ? k : Object.keys(k)).forEach((x) => { if (x in store) o[x] = JSON.parse(JSON.stringify(store[x])); }); if (cb) { cb(o); return; } return Promise.resolve(o); }, set: (o, cb) => { Object.assign(store, JSON.parse(JSON.stringify(o))); if (cb) cb(); return Promise.resolve(); }, remove: (k, cb) => { [].concat(k).forEach((x) => delete store[x]); if (cb) cb(); return Promise.resolve(); } };
