@@ -534,7 +534,7 @@ This extension vendors the following open-source libraries under
 | Library | Version | License | Source |
 | --- | --- | --- | --- |
 | pdf.js (incl. JBIG2 / JPEG 2000 decoders) | 6.5.438 | Apache-2.0, BSD | https://github.com/mozilla/pdf.js |
-| D3.js | 7.9.0 | ISC | https://github.com/d3/d3 |
+| D3.js | 7.9.2 | ISC | https://github.com/d3/d3 |
 | AFINN-111 | — | Apache-2.0 | https://github.com/fnielsen/afinn |
 | qrcode-generator | 1.4.4 | MIT | https://github.com/kazuhikoarase/qrcode-generator |
 

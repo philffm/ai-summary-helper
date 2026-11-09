@@ -12,7 +12,7 @@ is identical for pdf.js and AFINN-111); the D3 and Lucide ISC texts follow.
 | pdf.js (readable legacy build: `pdf.mjs`, `pdf.worker.mjs`) | 6.5.438 | Apache-2.0 | https://github.com/mozilla/pdf.js |
 | pdf.js JBIG2 decoder, no-wasm fallback (`jbig2_nowasm_fallback.js`, from PDFium) | 6.5.438 | Apache-2.0 + BSD-3-Clause | https://github.com/mozilla/pdf.js, https://pdfium.googlesource.com/pdfium |
 | pdf.js JPEG 2000 decoder, no-wasm fallback (`openjpeg_nowasm_fallback.js`, from OpenJPEG) | 6.5.438 | BSD-2-Clause | https://github.com/mozilla/pdf.js, https://github.com/uclouvain/openjpeg |
-| D3.js | 7.9.0 | ISC | https://github.com/d3/d3 |
+| D3.js | 7.9.2 | ISC | https://github.com/d3/d3 |
 | Lucide (inline icon sprite in popup.html, subset) | 0.468.0 | ISC | https://github.com/lucide-icons/lucide |
 | AFINN-111 | — | Apache-2.0 | https://github.com/fnielsen/afinn |
 | qrcode-generator (`qrcode.js`, phone-inbox pairing code) | 1.4.4 | MIT | https://github.com/kazuhikoarase/qrcode-generator |
