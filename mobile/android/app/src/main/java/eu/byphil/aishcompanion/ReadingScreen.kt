@@ -415,7 +415,7 @@ private fun ArticleReader(model: AppModel, id: String, onDelete: (String) -> Uni
     }
     if (sheet) ReaderSheet(model) { sheet = false }
     if (speedReading) SpeedReadDialog(
-        words = remember(id) { Rsvp.words(article.blocks) }, wpm = wpm,
+        text = remember(id) { Rsvp.build(article.blocks) }, wpm = wpm,
         onWpm = { wpm = it.coerceIn(Rsvp.MIN_WPM, Rsvp.MAX_WPM); model.store.readerWpm = wpm },
         onClose = { speedReading = false },
     )

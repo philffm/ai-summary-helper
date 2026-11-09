@@ -7209,159 +7209,159 @@
     "message": "🧠 Modelo local"
   },
   "f_a_5_second_countdown_only_wh_7070": {
-    "message": "A 5-second countdown, only when you have read to the end. Any key or mouse movement stops it; a notification lets you reopen the tab."
+    "message": "Una cuenta atrás de 5 segundos, solo si has leído hasta el final. Cualquier tecla o movimiento del ratón la detiene; una notificación te permite reabrir la pestaña."
   },
   "f_any_key_or_mouse_movement_st_8528": {
-    "message": "Any key or mouse movement stops the countdown · Enter closes"
+    "message": "Cualquier tecla o movimiento del ratón detiene la cuenta atrás · Intro cierra"
   },
   "f_at_the_weekend_48ee": {
-    "message": "At the weekend"
+    "message": "El fin de semana"
   },
   "f_back_to_the_reader_bf83": {
-    "message": "Back to the reader"
+    "message": "Volver al lector"
   },
   "f_close_tab_53a0": {
-    "message": "Close tab"
+    "message": "Cerrar pestaña"
   },
   "f_could_not_reach_this_page_tr_8523": {
-    "message": "Could not reach this page — try refreshing the tab."
+    "message": "No se puede acceder a la página: recarga la pestaña."
   },
   "f_countdown_stopped_the_tab_st_4a3d": {
-    "message": "Countdown stopped. The tab stays open."
+    "message": "Cuenta atrás detenida. La pestaña sigue abierta."
   },
   "f_esc_stops_the_article_is_sti_8d36": {
-    "message": "Esc stops – the article is still saved."
+    "message": "Esc detiene: el artículo se guarda igualmente."
   },
   "f_faster_d384": {
-    "message": "Faster"
+    "message": "Más rápido"
   },
   "f_full_screen_bee0": {
-    "message": "Full screen"
+    "message": "Pantalla completa"
   },
   "f_hide_the_page_while_you_read_19ef": {
-    "message": "Hide the page while you read (F switches in the reader)"
+    "message": "Oculta la página mientras lees (F cambia en el lector)"
   },
   "f_in_the_popup_next_to_summari_681a": {
-    "message": "In the popup next to “Summarize” and when you right-click a page"
+    "message": "En la ventana junto a «Resumir» y al hacer clic derecho en una página"
   },
   "f_keep_page_1e43": {
-    "message": "Keep page"
+    "message": "Mantener página"
   },
   "f_keys_in_the_reader_space_pau_b8e1": {
-    "message": "Keys in the reader: Space pause · ←/→ sentence · Shift+←/→ word · ↑/↓ speed · T text · F full screen · Esc stop"
+    "message": "Teclas: Espacio pausa · ←/→ frase · Mayús+←/→ palabra · ↑/↓ velocidad · T texto · F pantalla completa · Esc detener"
   },
   "f_next_week_0f94": {
-    "message": "Next week"
+    "message": "La próxima semana"
   },
   "f_no_reminder_62e0": {
-    "message": "No reminder"
+    "message": "Sin recordatorio"
   },
   "f_no_summary_came_back_the_pag_73b5": {
-    "message": "No summary came back. The page may have too little text."
+    "message": "No llegó ningún resumen. Puede que la página tenga poco texto."
   },
   "f_offer_to_close_the_tab_at_th_dec1": {
-    "message": "Offer to close the tab at the end"
+    "message": "Ofrecer cerrar la pestaña al final"
   },
   "f_paused_press_space_to_start_0dbf": {
-    "message": "Paused. Press Space to start."
+    "message": "En pausa. Pulsa Espacio para empezar."
   },
   "f_paused_space_continues_jumps_3a61": {
-    "message": "Paused. Space continues · ←/→ jumps by sentence · click a sentence to read from there · T shows the whole summary"
+    "message": "En pausa. Espacio continúa · ←/→ salta por frases · haz clic en una frase para leer desde ahí · T muestra todo el resumen"
   },
   "f_reading_starts_as_soon_as_it_2d8c": {
-    "message": "Reading starts as soon as it is done."
+    "message": "La lectura empieza en cuanto esté listo."
   },
   "f_remind_me_97ce": {
-    "message": "Remind me"
+    "message": "Recordármelo"
   },
   "f_remind_me_later_cb3c": {
-    "message": "Remind me later"
+    "message": "Recordármelo más tarde"
   },
   "f_reminder_time_ecfc": {
-    "message": "Reminder time"
+    "message": "Hora del recordatorio"
   },
   "f_reminder_8f45": {
-    "message": "Reminder {when}"
+    "message": "Recordatorio {when}"
   },
   "f_sentence_of_s_left_9552": {
-    "message": "Sentence {a} of {b} · {s} s left"
+    "message": "Frase {a} de {b} · faltan {s} s"
   },
   "f_show_speed_read_in_the_menus_2086": {
-    "message": "Show Speed-Read in the menus"
+    "message": "Mostrar Speed-Read en los menús"
   },
   "f_show_as_text_875b": {
-    "message": "Show as text"
+    "message": "Mostrar como texto"
   },
   "f_slower_4aaf": {
-    "message": "Slower"
+    "message": "Más lento"
   },
   "f_speed_8020": {
-    "message": "Speed"
+    "message": "Velocidad"
   },
   "f_speed_read_693b": {
     "message": "Speed-Read"
   },
   "f_speed_read_does_not_work_on__e05a": {
-    "message": "Speed-Read does not work on this page."
+    "message": "Speed-Read no funciona en esta página."
   },
   "f_speed_read_writes_the_summar_2eac": {
-    "message": "Speed-Read writes the summary, then shows it word by word with the sentence above. Pause any time to see the paragraph. It helps you get through a summary in about a minute; for careful reading, show it as text."
+    "message": "Speed-Read escribe el resumen y luego lo muestra palabra por palabra, con la frase encima. Haz una pausa cuando quieras para ver el párrafo. Así recorres un resumen en un minuto aproximadamente; para leer con atención, muéstralo como texto."
   },
   "f_the_summary_did_not_work_4b55": {
-    "message": "The summary did not work"
+    "message": "El resumen no funcionó"
   },
   "f_the_summary_is_empty_1941": {
-    "message": "The summary is empty."
+    "message": "El resumen está vacío."
   },
   "f_the_summary_word_by_word_the_0246": {
-    "message": "The summary word by word, then keep the page or close the tab"
+    "message": "El resumen palabra por palabra; luego mantener la página o cerrar la pestaña"
   },
   "f_the_tab_closes_in_s_0762": {
-    "message": "The tab closes in {n} s"
+    "message": "La pestaña se cierra en {n} s"
   },
   "f_the_tab_stays_open_c59f": {
-    "message": "The tab stays open."
+    "message": "La pestaña sigue abierta."
   },
   "f_tomorrow_morning_15fa": {
-    "message": "Tomorrow morning"
+    "message": "Mañana por la mañana"
   },
   "f_words_at_a_time_5479": {
-    "message": "Words at a time"
+    "message": "Palabras a la vez"
   },
   "f_writing_the_summary_865e": {
-    "message": "Writing the summary …"
+    "message": "Escribiendo el resumen …"
   },
   "f_wpm_f449": {
-    "message": "{n} WPM"
+    "message": "{n} ppm"
   },
   "f_sentences_s_cd74": {
-    "message": "{n} sentences · {s} s"
+    "message": "{n} frases · {s} s"
   },
   "f_words_so_far_7815": {
-    "message": "{n} words so far"
+    "message": "{n} palabras hasta ahora"
   },
   "ctxSpeedRead": {
-    "message": "⚡ Speed-Read this page",
+    "message": "⚡ Speed-Read de esta página",
     "description": "Right-click menu entry"
   },
   "notifReadLaterTitle": {
-    "message": "🔖 Ready to read?",
+    "message": "🔖 ¿Listo para leer?",
     "description": "Notification title when a read-later reminder is due"
   },
   "notifOpen": {
-    "message": "Open",
+    "message": "Abrir",
     "description": "Notification button"
   },
   "notifDismiss": {
-    "message": "Dismiss",
+    "message": "Más tarde",
     "description": "Notification button"
   },
   "notifTabClosedTitle": {
-    "message": "Tab closed · the summary is saved",
+    "message": "Pestaña cerrada · el resumen está guardado",
     "description": "Notification after Speed-Read closed the tab"
   },
   "notifReopen": {
-    "message": "Reopen",
+    "message": "Reabrir",
     "description": "Notification button: reopen the closed tab"
   }
 }

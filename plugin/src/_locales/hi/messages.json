@@ -7209,159 +7209,159 @@
     "message": "🧠 लोकल मॉडल"
   },
   "f_a_5_second_countdown_only_wh_7070": {
-    "message": "A 5-second countdown, only when you have read to the end. Any key or mouse movement stops it; a notification lets you reopen the tab."
+    "message": "5 सेकंड की उलटी गिनती, सिर्फ़ तब जब आप अंत तक पढ़ चुके हों। कोई भी कुंजी या माउस की हलचल इसे रोक देती है; सूचना से आप टैब फिर से खोल सकते हैं।"
   },
   "f_any_key_or_mouse_movement_st_8528": {
-    "message": "Any key or mouse movement stops the countdown · Enter closes"
+    "message": "कोई भी कुंजी या माउस की हलचल उलटी गिनती रोक देती है · Enter से बंद"
   },
   "f_at_the_weekend_48ee": {
-    "message": "At the weekend"
+    "message": "सप्ताहांत पर"
   },
   "f_back_to_the_reader_bf83": {
-    "message": "Back to the reader"
+    "message": "रीडर पर वापस"
   },
   "f_close_tab_53a0": {
-    "message": "Close tab"
+    "message": "टैब बंद करें"
   },
   "f_could_not_reach_this_page_tr_8523": {
-    "message": "Could not reach this page — try refreshing the tab."
+    "message": "पेज तक पहुँच नहीं हो सकी — टैब रीफ़्रेश करें।"
   },
   "f_countdown_stopped_the_tab_st_4a3d": {
-    "message": "Countdown stopped. The tab stays open."
+    "message": "उलटी गिनती रुकी। टैब खुला रहेगा।"
   },
   "f_esc_stops_the_article_is_sti_8d36": {
-    "message": "Esc stops – the article is still saved."
+    "message": "Esc रोकता है – लेख फिर भी सहेजा जाता है।"
   },
   "f_faster_d384": {
-    "message": "Faster"
+    "message": "तेज़"
   },
   "f_full_screen_bee0": {
-    "message": "Full screen"
+    "message": "पूरी स्क्रीन"
   },
   "f_hide_the_page_while_you_read_19ef": {
-    "message": "Hide the page while you read (F switches in the reader)"
+    "message": "पढ़ते समय पेज छिपाता है (रीडर में F से बदलें)"
   },
   "f_in_the_popup_next_to_summari_681a": {
-    "message": "In the popup next to “Summarize” and when you right-click a page"
+    "message": "पॉपअप में “सारांश” के बगल में और पेज पर राइट-क्लिक करने पर"
   },
   "f_keep_page_1e43": {
-    "message": "Keep page"
+    "message": "पेज रखें"
   },
   "f_keys_in_the_reader_space_pau_b8e1": {
-    "message": "Keys in the reader: Space pause · ←/→ sentence · Shift+←/→ word · ↑/↓ speed · T text · F full screen · Esc stop"
+    "message": "कुंजियाँ: Space रोकें · ←/→ वाक्य · Shift+←/→ शब्द · ↑/↓ गति · T टेक्स्ट · F पूरी स्क्रीन · Esc बंद"
   },
   "f_next_week_0f94": {
-    "message": "Next week"
+    "message": "अगले सप्ताह"
   },
   "f_no_reminder_62e0": {
-    "message": "No reminder"
+    "message": "कोई रिमाइंडर नहीं"
   },
   "f_no_summary_came_back_the_pag_73b5": {
-    "message": "No summary came back. The page may have too little text."
+    "message": "कोई सारांश नहीं मिला। शायद पेज पर बहुत कम टेक्स्ट है।"
   },
   "f_offer_to_close_the_tab_at_th_dec1": {
-    "message": "Offer to close the tab at the end"
+    "message": "अंत में टैब बंद करने का विकल्प दें"
   },
   "f_paused_press_space_to_start_0dbf": {
-    "message": "Paused. Press Space to start."
+    "message": "रुका हुआ। शुरू करने के लिए Space दबाएँ।"
   },
   "f_paused_space_continues_jumps_3a61": {
-    "message": "Paused. Space continues · ←/→ jumps by sentence · click a sentence to read from there · T shows the whole summary"
+    "message": "रुका हुआ। Space से आगे · ←/→ वाक्य दर वाक्य · किसी वाक्य पर क्लिक करके वहीं से पढ़ें · T पूरा सारांश दिखाता है"
   },
   "f_reading_starts_as_soon_as_it_2d8c": {
-    "message": "Reading starts as soon as it is done."
+    "message": "तैयार होते ही पढ़ना शुरू होगा।"
   },
   "f_remind_me_97ce": {
-    "message": "Remind me"
+    "message": "याद दिलाएँ"
   },
   "f_remind_me_later_cb3c": {
-    "message": "Remind me later"
+    "message": "बाद में याद दिलाएँ"
   },
   "f_reminder_time_ecfc": {
-    "message": "Reminder time"
+    "message": "रिमाइंडर का समय"
   },
   "f_reminder_8f45": {
-    "message": "Reminder {when}"
+    "message": "रिमाइंडर {when}"
   },
   "f_sentence_of_s_left_9552": {
-    "message": "Sentence {a} of {b} · {s} s left"
+    "message": "वाक्य {a} / {b} · {s} से. बाकी"
   },
   "f_show_speed_read_in_the_menus_2086": {
-    "message": "Show Speed-Read in the menus"
+    "message": "मेन्यू में Speed-Read दिखाएँ"
   },
   "f_show_as_text_875b": {
-    "message": "Show as text"
+    "message": "टेक्स्ट के रूप में दिखाएँ"
   },
   "f_slower_4aaf": {
-    "message": "Slower"
+    "message": "धीमा"
   },
   "f_speed_8020": {
-    "message": "Speed"
+    "message": "गति"
   },
   "f_speed_read_693b": {
     "message": "Speed-Read"
   },
   "f_speed_read_does_not_work_on__e05a": {
-    "message": "Speed-Read does not work on this page."
+    "message": "Speed-Read इस पेज पर काम नहीं करता।"
   },
   "f_speed_read_writes_the_summar_2eac": {
-    "message": "Speed-Read writes the summary, then shows it word by word with the sentence above. Pause any time to see the paragraph. It helps you get through a summary in about a minute; for careful reading, show it as text."
+    "message": "Speed-Read सारांश लिखता है, फिर उसे ऊपर वाक्य के साथ शब्द-दर-शब्द दिखाता है। अनुच्छेद देखने के लिए कभी भी रोकें। इस तरह आप लगभग एक मिनट में सारांश पढ़ लेते हैं; ध्यान से पढ़ने के लिए इसे टेक्स्ट के रूप में दिखाएँ।"
   },
   "f_the_summary_did_not_work_4b55": {
-    "message": "The summary did not work"
+    "message": "सारांश नहीं बन सका"
   },
   "f_the_summary_is_empty_1941": {
-    "message": "The summary is empty."
+    "message": "सारांश खाली है।"
   },
   "f_the_summary_word_by_word_the_0246": {
-    "message": "The summary word by word, then keep the page or close the tab"
+    "message": "सारांश शब्द-दर-शब्द, फिर पेज रखें या टैब बंद करें"
   },
   "f_the_tab_closes_in_s_0762": {
-    "message": "The tab closes in {n} s"
+    "message": "टैब {n} से. में बंद होगा"
   },
   "f_the_tab_stays_open_c59f": {
-    "message": "The tab stays open."
+    "message": "टैब खुला रहेगा।"
   },
   "f_tomorrow_morning_15fa": {
-    "message": "Tomorrow morning"
+    "message": "कल सुबह"
   },
   "f_words_at_a_time_5479": {
-    "message": "Words at a time"
+    "message": "एक बार में शब्द"
   },
   "f_writing_the_summary_865e": {
-    "message": "Writing the summary …"
+    "message": "सारांश लिखा जा रहा है …"
   },
   "f_wpm_f449": {
-    "message": "{n} WPM"
+    "message": "{n} श/मि"
   },
   "f_sentences_s_cd74": {
-    "message": "{n} sentences · {s} s"
+    "message": "{n} वाक्य · {s} से."
   },
   "f_words_so_far_7815": {
-    "message": "{n} words so far"
+    "message": "अब तक {n} शब्द"
   },
   "ctxSpeedRead": {
-    "message": "⚡ Speed-Read this page",
+    "message": "⚡ इस पेज को Speed-Read करें",
     "description": "Right-click menu entry"
   },
   "notifReadLaterTitle": {
-    "message": "🔖 Ready to read?",
+    "message": "🔖 पढ़ने के लिए तैयार?",
     "description": "Notification title when a read-later reminder is due"
   },
   "notifOpen": {
-    "message": "Open",
+    "message": "खोलें",
     "description": "Notification button"
   },
   "notifDismiss": {
-    "message": "Dismiss",
+    "message": "बाद में",
     "description": "Notification button"
   },
   "notifTabClosedTitle": {
-    "message": "Tab closed · the summary is saved",
+    "message": "टैब बंद · सारांश सहेजा गया",
     "description": "Notification after Speed-Read closed the tab"
   },
   "notifReopen": {
-    "message": "Reopen",
+    "message": "फिर से खोलें",
     "description": "Notification button: reopen the closed tab"
   }
 }

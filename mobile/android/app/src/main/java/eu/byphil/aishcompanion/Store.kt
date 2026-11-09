@@ -115,7 +115,7 @@ class Store(context: Context) {
 
     /** Speed reading pace, words per minute. */
     var readerWpm: Int
-        get() = prefs.getInt("reader.wpm", 300)
+        get() = prefs.getInt("reader.wpm", Rsvp.DEFAULT_WPM).coerceIn(Rsvp.MIN_WPM, Rsvp.MAX_WPM)
         set(v) = prefs.edit().putInt("reader.wpm", v.coerceIn(Rsvp.MIN_WPM, Rsvp.MAX_WPM)).apply()
 
     /** Preferences as a backup file (see [SettingsBackup]: no pairing, licence or account). */
