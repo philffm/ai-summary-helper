@@ -7,11 +7,13 @@ const click = el => el.dispatchEvent(new w.MouseEvent('click', { bubbles: true }
 const mk = (id, t, ageH) => ({ id, feedId: 's1', title: t, link: 'https://x/' + id, published: now - ageH * 3600e3, snippet: 'snip ' + id, read: false });
 store['feeds:subs'] = [{ id: 's1', url: 'https://a/f', title: 'Alpha', lastFetched: now }];
 store['feeds:items'] = [mk('a', 'Alpha headline', 0.03), mk('b', 'Bravo headline', 0.02), mk('c', 'Charlie headline', 0.01)];
+// poll for the effect instead of a fixed tick (flaky on slow CI)
+const until = async (fn, n = 100) => { for (let k = 0; k < n && !fn(); k++) await tick(50); };
 const calls = [];
 globalThis.__ai = (m) => { calls.push(m); return { ok: true, text: `Overview v${calls.length}.\n- theme\nMOOD: mixed\nLABELS: 1:Tech | 2:World | 3:Sports\nSCORES: 1:0.5 | 2:-0.5 | 3:0` }; };
 const fm = await imp('modules/feedManager.js'); const toasts = []; const ui = { showToast: m => toasts.push(m), showScreen() {} };
 fm.initFeedManager(ui); await tick(50); await fm.onFeedsScreenShown(ui); await tick(50);
-click($('.feed-day-ai')); await tick(80);
+click($('.feed-day-ai')); await until(() => Object.keys(store['feeds:recaps'] || {}).length); await tick(80);
 assert.equal(calls.length, 1); assert.equal(Object.keys(Object.values(store['feeds:recaps'])[0].covered).length, 3);
 // nothing new → refresh sends nothing
 const refresh = () => click($$('.feed-recap-actions button').find(b => /Refresh/.test(b.textContent)));
@@ -20,9 +22,9 @@ assert.equal(calls.length, 1, 'no AI call without new/edited items'); assert.ok(
 // a new article arrives and one gets edited
 store['feeds:items'] = store['feeds:items'].map(i => i.id === 'b' ? { ...i, title: 'Bravo headline (updated: 12 dead)' } : i).concat(mk('d', 'Delta breaking story', 0.001));
 await fm.onFeedsScreenShown(ui); await tick(80);
-click($('.feed-day-ai')); await tick(60);
+click($('.feed-day-ai')); await until(() => $('.feed-recap-stale')); await tick(60);
 assert.ok($('.feed-recap-stale'), 'stale banner shows for new/edited');
-refresh(); await tick(80);
+refresh(); await until(() => calls.length >= 2); await tick(80);
 assert.equal(calls.length, 2);
 const u = calls[1].user; console.log(u);
 assert.ok(u.includes('Delta breaking') && u.includes('updated: 12 dead') && /\(edited\)/.test(u), 'new + edited sent');
