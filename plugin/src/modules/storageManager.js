@@ -3,6 +3,7 @@ import { removeArticleFromCollections, clearCollectionSources } from './collecti
 import { withArticleLock } from './articleLock.js';
 import { markDeleted } from './syncStampClient.js';
 import { debug } from './log.js';
+import { createHighlightStore } from './highlightStore.js';
 import { countWords } from './textUtils.js';
 import { withQuestions } from './conversation.js';
 import { buildArticlePrompt } from './promptBuilder.js';
@@ -662,6 +663,17 @@ class StorageManager {
      * - ensure servicesConfig has entries for all services.json
      * - ensure default prompt exists
      */
+    static async migrateHighlightsToPages() {
+        try {
+            const res = await createHighlightStore({ storage: chrome.storage.local }).migrate();
+            if (res && res.ran) debug('[Highlights] per-page keys:', res);
+            return res;
+        } catch (e) {
+            console.warn('[Highlights] migration failed, the old list stays in use:', e && e.message);
+            return { ran: false, error: true };
+        }
+    }
+
     static async initialize() {
         // Run legacy sync cleanup first — purge any local keys from sync storage
         await this.purgeSyncBloat();
@@ -685,6 +697,11 @@ class StorageManager {
         // switched to the articlesIndex/article:<id> shape, so it's now safe to
         // run this on every popup/service-worker startup.
         await this.migrateArticlesToIndexedRecords();
+
+        // Highlights: the old single list (hl:all) → one key per page + an index (highlightStore.js). Every reader and
+        // writer uses the store, which reads the old list until this has run. One tiny read after the first run; the
+        // service worker runs the same step at start, whichever comes first wins.
+        await this.migrateHighlightsToPages();
 
         // Fold the old single kindleEmail/localSendIp settings into the
         // unified multi-device 'devices' list. Cheap no-op after first run.

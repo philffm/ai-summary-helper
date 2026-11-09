@@ -1,4 +1,5 @@
 import { applyA11y, clampScale, systemTheme, systemReducesMotion } from './a11y.js';
+import { createHighlightStore } from './highlightStore.js';
 import { confirmSheet } from './confirmSheet.js';
 import { SK } from './storageKeys.js';
 import { supportsNativeSidePanel } from './extensionApi.js';
@@ -1697,7 +1698,7 @@ export function initBackupRestore() {
                     // before migration has run in this session.
                     const count = (safeLocalData[SK.articlesIndex] || safeLocalData.articles || []).length;
                     backup = {
-                        _backup_version: 4,   // 4 = + collections (coll:index, coll:rec:<id>); 3 = registry key names (articles:index, feeds:*, account:* …); v2 (old names) still imports
+                        _backup_version: 5,   // 5 = highlights per page (hl:index, hl:page:<pageKey>); 4 = + collections (coll:index, coll:rec:<id>); 3 = registry key names (articles:index, feeds:*, account:* …); v2 (old names) still imports
                         _exported_at: new Date().toISOString(),
                         _article_count: count,
                         _contains_secrets: includeSecrets,
@@ -1764,7 +1765,7 @@ export function initBackupRestore() {
                     if (containsSecrets && !(await confirmSheet({ title: T('Import secrets?'), text: T('This backup contains API keys, sign-in details, license keys, or an install identifier. Importing will replace matching stored secrets. Continue?'), confirmLabel: T('Import'), danger: false }))) return;
                     const currentData = await StorageManager.getAll();
 
-                    if (importedData._backup_version === 2 || importedData._backup_version === 3 || importedData._backup_version === 4) {
+                    if ([2, 3, 4, 5].includes(importedData._backup_version)) {
                         // FIX: Leverage the new StorageManager routing
                         const settings = importedData.settings;
                         // v2 backups use the pre-registry key names → translate (no-op for v3)
@@ -1797,6 +1798,10 @@ export function initBackupRestore() {
                                 await StorageManager.set(local); // already new-shape
                             }
                         }
+
+                        // highlights: the restored pages get an index; an old backup's single list (hl:all) is merged into pages by the
+                        // migration on the reload below
+                        if (local) { try { await createHighlightStore({ storage: chrome.storage.local }).reindex(); } catch (_) { /* rebuilt on next change */ } }
 
                         const count = (local?.[SK.articlesIndex] || local?.articles || []).length;
                         alert(T('Backup restored successfully!\n{n} articles imported.\n\nThe extension will now reload.', { n: count }));

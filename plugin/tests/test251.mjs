@@ -15,6 +15,7 @@ function makeStorage(initial = {}) {
     async get(keys) {
       await later();
       const out = {};
+      if (keys == null) return JSON.parse(JSON.stringify(data));
       if (typeof keys === 'string') keys = [keys];
       if (Array.isArray(keys)) keys.forEach((k) => { if (k in data) out[k] = JSON.parse(JSON.stringify(data[k])); });
       else Object.entries(keys).forEach(([k, def]) => { out[k] = k in data ? JSON.parse(JSON.stringify(data[k])) : def; });
@@ -113,3 +114,12 @@ const A = 'https://example.com/a', B = 'https://www.youtube.com/watch?v=abc';
 assert.equal(isDuplicate([{ url: A, text: 't', type: 'ghost', dismissed: true }], { url: A, text: 't', type: 'ghost' }), true);
 assert.equal(isDuplicate([{ url: A, text: 't', type: 'user', quote: { exact: 't', prefix: 'a', suffix: 'b' } }], { url: A, text: 't', type: 'user', quote: { exact: 't', prefix: 'c', suffix: 'd' } }), false, 'same text elsewhere on the page is another highlight');
 console.log('TEST 251 OK');
+
+// 5. after a backup restore replaced the index: rebuilt from the page keys in storage
+{
+  const st = makeStorage({ 'hl:schema': 2, 'hl:index': [], 'hl:page:https://a.com/x': [hl('1', 'https://a.com/x', 'x')], 'hl:page:https://b.com/y': [hl('2', 'https://b.com/y', 'y', { dismissed: true })], 'other:key': 1 });
+  const s = createHighlightStore({ storage: st });
+  assert.equal(await s.reindex(), 2);
+  assert.deepEqual(st.data['hl:index'].map((r) => [r.k, r.n, r.d]).sort(), [['https://a.com/x', 1, 0], ['https://b.com/y', 0, 1]]);
+}
+console.log('TEST 251 reindex OK');

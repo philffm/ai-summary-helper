@@ -19,7 +19,7 @@
 //      { op: 'upsert', hl }                       sync: replace by id, or add
 //      { op: 'removeId', id }                     sync: remove wherever it is
 //      { op: 'merge', id, fn }                    sync: fn(current | null) → record to keep, or null to remove (inside the lock)
-import { SK, hlPageKey, articleRecKey } from './storageKeys.js';
+import { SK, HL_PAGE, hlPageKey, isHlPageKey, articleRecKey } from './storageKeys.js';
 import { withLock } from './articleLock.js';
 import { normalizeHighlight, normalizeHighlights } from './highlightRecords.js';
 import { pageKeyForUrl } from './pageKey.js';
@@ -280,6 +280,18 @@ export function createHighlightStore({ storage }) {
     return out;
   }
 
-  return { schema, index, forPage, all, apply, migrate, legacyList, readPages, writePages };
+  /** Rebuild hl:index from the page keys in storage (after a backup restore replaced the index). Returns the number of pages. */
+  function reindex() {
+    return withLock(HL_LOCK, async () => {
+      const everything = await hlsGet(storage, null);
+      const rows = Object.keys(everything).filter(isHlPageKey)
+        .map((k) => indexRow(k.slice(HL_PAGE.length), hlsRecords(everything[k])))
+        .filter((r) => r.n + r.d > 0);
+      await hlsSet(storage, { [SK.hlIndex]: rows });
+      return rows.length;
+    });
+  }
+
+  return { schema, index, forPage, all, apply, migrate, reindex, legacyList, readPages, writePages };
 }
 

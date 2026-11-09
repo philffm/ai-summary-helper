@@ -1173,6 +1173,8 @@ if (syncStamps) {
 
 // ── Highlights: the one writer (modules/highlightStore.js). Pages send { action: 'hl:apply', ops } (modules/highlightMessages.js). ──
 const hlStore = SYNC ? SYNC.createHighlightStore({ storage: chrome.storage.local }) : null;
+// the old single list → one key per page, once (the popup runs the same step; whichever comes first wins)
+if (hlStore) keysReady.then(() => hlStore.migrate()).then((r) => { if (r && r.ran) console.log('[Highlights] per-page keys:', r); }).catch((e) => console.warn('[Highlights] migration failed, the old list stays in use:', e && e.message));
 const hlMsgs = hlStore ? SYNC.createHighlightMessages({ store: hlStore, markDeleted: (ids) => { if (syncStamps) syncStamps.markDeleted('hl', ids.slice(0, 1000)); } }) : null;
 
 // ── Notes from the page: the content script asks, the worker writes (modules/notesMessages.js) ──
