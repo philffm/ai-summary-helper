@@ -113,7 +113,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         import('./modules/inboxView.js'),
     ]).then(([{ initAboutView }, { initSettingsManager }, { initArticleManager }, { initInboxView }]) => {
         initAboutView();   // first: settingsNav reads #versionNumber for the About row
-        initSettingsManager(ui);
+        initSettingsManager(ui, { lazy: true });
         initArticleManager(ui);
         initInboxView();
     }).catch(deferredFailed);

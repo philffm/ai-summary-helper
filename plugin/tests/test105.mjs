@@ -19,7 +19,7 @@ chrome.storage.local = mk(local); chrome.storage.sync = mk(sync); chrome.storage
 let reloaded = 0; chrome.runtime.reload = () => { reloaded++; };
 chrome.alarms = { clearAll: (cb) => cb && cb() }; chrome.action = { setBadgeText: async () => {} };
 globalThis.location = { reload() {} };
-const { initDangerZone } = await imp('modules/settingsManager.js');
+const { initDangerZone } = await imp('modules/settings/danger.js');
 initDangerZone();
 
 const dialog = () => d.querySelector('.confirm-dialog');
