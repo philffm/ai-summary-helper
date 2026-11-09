@@ -206,7 +206,7 @@ flowchart LR
 
 ### The four parts
 
-- **`loader.js` (every page).** The only script that runs on every page. It checks whether the page has saved highlights (`hl:all`) or the user selects text, and only then asks the background to inject the real content script. Android and iOS keep the full `content.js` as a static content script.
+- **`loader.js` (every page).** The only script that runs on every page. It checks whether the page has saved highlights (its own key `hl:page:<pageKey>`) or the user selects text, and only then asks the background to inject the real content script. Android and iOS keep the full `content.js` as a static content script.
 - **`content.js` (on demand).** Extracts the readable text (HTML, PDFs), paints highlights, shows the selection tooltip, and drives a summary run. It is injected by the background (`ensureContent`) when a highlight, a selection, the context menu, a shortcut, or the popup needs it, and is guarded against double injection.
 - **Background worker.** Streams model output (`handleStreamFetch`, idle timeout only after the first chunk, so slow local models are fine), runs one-shot completions (`aiComplete` / `aiCancel`), polls feeds, hosts audio, and finishes a run whose page went away (`finalize.js` is bundled as a classic script for the worker).
 - **Popup / side panel.** Plain HTML plus native ES modules. The main screen and its core modules load first; Feeds, History and Settings load right after the first paint.
@@ -231,7 +231,7 @@ All access goes through `StorageManager`; keys are defined once in `modules/stor
 | Settings, flags, language, theme | `chrome.storage.sync` | small values only |
 | Library index | `local` `articles:index` | lean list, never holds article text |
 | Article record | `local` `articles:rec:<id>` | content, summary, `conversation`, `suggested`, `suggestedAnswers` |
-| Highlights | `local` `hl:all` | one array for all pages, matched by `pageKeyForUrl` |
+| Highlights | `local` `hl:page:<pageKey>` + `hl:index` | one key per page (`pageKeyForUrl`), written only by `modules/highlightStore.js` under one lock; page scripts send `hl:apply` to the background. `hl:all` is the old single list, moved by the migration |
 | Providers and keys | `local` `config:services` | per service: key, model, endpoint |
 | Feeds | `local` `feeds:*` | subscriptions, items, recaps, UI state |
 
