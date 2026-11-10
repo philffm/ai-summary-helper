@@ -414,6 +414,9 @@ section{ padding:76px 0; }
   .hero:has(.landing-hero-video) h1,
   .hero:has(.landing-hero-video) p.sub,
   .hero:has(.landing-hero-video) .hero-cta{grid-column:1}
+  .hero:has(.landing-hero-video) h1,
+  .hero:has(.landing-hero-video) p.sub{margin-left:0;margin-right:0}
+  .hero:has(.landing-hero-video) .hero-cta{justify-content:flex-start}
   .hero:has(.landing-hero-video) .landing-hero-video{grid-column:2;grid-row:1 / span 4;max-width:360px;margin:0}
 }
 @media (max-width:860px){.hero:has(.landing-hero-video) .landing-hero-video{margin-top:28px}}

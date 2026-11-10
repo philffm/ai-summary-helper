@@ -85,3 +85,11 @@ test('the selected FAQ filter has a readable label on its blue fill', () => {
     assert.match(rule[1], /background:var\(--accent-fill\)/);
     assert.match(rule[1], /color:var\(--on-accent\)/);
 });
+
+test('the split hero aligns its headline, copy, and actions to the left', () => {
+    const heading = rules().find((rule) => rule.selector === '.hero:has(.landing-hero-video) h1,\n  .hero:has(.landing-hero-video) p.sub');
+    const actions = rules().find((rule) => rule.selector === '.hero:has(.landing-hero-video) .hero-cta');
+    assert.ok(heading?.decls.some(([property, value]) => property === 'margin-left' && value === '0'));
+    assert.ok(heading?.decls.some(([property, value]) => property === 'margin-right' && value === '0'));
+    assert.ok(actions?.decls.some(([property, value]) => property === 'justify-content' && value === 'flex-start'));
+});
