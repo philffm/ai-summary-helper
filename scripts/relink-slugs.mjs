@@ -9,7 +9,7 @@ import { readFile, writeFile, mkdir, readdir } from 'node:fs/promises';
 import { existsSync } from 'node:fs';
 import path from 'node:path';
 import * as cheerio from 'cheerio';
-import { localizedPath, englishPath, slugEntries, rewriteLocalizedLinks, redirectStub, SITE_URL } from './lib/localized-paths.mjs';
+import { localizedPath, englishPath, slugEntries, rewriteLocalizedLinks, buildLocalizedPageInventory, rewriteAvailablePageLinks, redirectStub, SITE_URL } from './lib/localized-paths.mjs';
 
 const ROOT = process.cwd(), DOCS = path.join(ROOT, 'docs');
 const config = JSON.parse(await readFile(path.join(DOCS, 'i18n', 'locales.json'), 'utf8'));
@@ -41,6 +41,7 @@ for (const [code, loc] of Object.entries(config.locales)) {
         console.log(`moved  ${loc.dir}/${en} -> ${loc.dir}/${local}`);
     }
     // 2) relative links inside the locale folder
+    const pageInventory = buildLocalizedPageInventory(config, DOCS);
     for (const f of await walk(dir)) {
         const rel = path.relative(dir, f).split(path.sep).join('/');
         const html = await readFile(f, 'utf8');
@@ -49,6 +50,7 @@ for (const [code, loc] of Object.entries(config.locales)) {
         const $ = cheerio.load(html, { decodeEntities: false });
         const before = $.html();
         rewriteLocalizedLinks($, en, code);
+        rewriteAvailablePageLinks($, `${loc.dir}/${rel}`, code, pageInventory, loc.dir);
         if ($.html() !== before) await writeFile(f, $.html(), 'utf8');
     }
     // 3) absolute URLs (hreflang lists, og:url, canonical) in every page of the site
