@@ -32,6 +32,7 @@ test('rewrites links to pages present in the locale inventory', () => {
         }, docs);
         const $ = cheerio.load(
             '<a href="../../education/">Bildung</a>' +
+            '<a href="../../bildung/">Bildung with an escaped locale path</a>' +
             '<a href="../../blog/ai-apps-mcp.html?ref=blog#setup">MCP</a>' +
             '<a href="../../blog/not-translated.html">Untranslated</a>' +
             '<a href="../blog/">Blog</a>'
@@ -40,9 +41,10 @@ test('rewrites links to pages present in the locale inventory', () => {
         rewriteAvailablePageLinks($, 'de/blog/index.html', 'de', inventory, 'de');
 
         assert.equal($('a').eq(0).attr('href'), '../bildung/');
-        assert.equal($('a').eq(1).attr('href'), 'ki-apps-mcp.html?ref=blog#setup');
-        assert.equal($('a').eq(2).attr('href'), '../../blog/not-translated.html');
-        assert.equal($('a').eq(3).attr('href'), './');
+        assert.equal($('a').eq(1).attr('href'), '../bildung/');
+        assert.equal($('a').eq(2).attr('href'), 'ki-apps-mcp.html?ref=blog#setup');
+        assert.equal($('a').eq(3).attr('href'), '../../blog/not-translated.html');
+        assert.equal($('a').eq(4).attr('href'), './');
         assert.equal(localizedPath('blog/ai-apps-mcp.html', 'de'), 'blog/ki-apps-mcp.html');
 
         // links written for the English page to a page this locale does not have go to the English page at the root

@@ -153,10 +153,11 @@ export function rewriteAvailablePageLinks($, pageRootPath, code, inventory, loca
             $(el).attr('href', href + rest);
             return;
         }
-        const localSource = englishPathForLocale.get(pagePath(localeTarget));
+        const localSource = englishPathForLocale.get(pagePath(localeTarget))
+            || englishPathForLocale.get(pagePath(physicalTarget));
         const sourceTargets = [
             englishTarget,
-            ...(localeTarget.startsWith('../') ? [pagePath(physicalTarget)] : [localSource || pagePath(localeTarget)]),
+            ...(localeTarget.startsWith('../') ? [localSource, pagePath(physicalTarget)] : [localSource || pagePath(localeTarget)]),
         ];
         const sourceTarget = sourceTargets.find((target) => localePages[target]);
         const localizedTarget = sourceTarget && localePages[sourceTarget];
