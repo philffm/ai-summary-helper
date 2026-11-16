@@ -61,6 +61,7 @@ export function hlpRender(items, actions) {
           <span class="hlp-acts-end">${i.type === 'ghost' && i.status !== 'lost' ? btn('keep', 'Keep') : ''}${btn('remove', i.type === 'ghost' ? 'Dismiss' : 'Remove', ' hlp-act--danger')}</span>
         </footer></article>`;
   const yours = counts.user;
+  // Yours / AI keep the height of All: an invisible copy of the All list sits in the same grid cell, so switching never makes the panel jump.
   // eslint-disable-next-line no-unsanitized/property -- reviewed: labels are literals; highlight text, ids and comments go through hlpEsc
   h._body.innerHTML = `
     <div class="hlp-ticks">${ticks}</div>
@@ -72,7 +73,7 @@ export function hlpRender(items, actions) {
       <header class="hlp-head"><h2>Highlights on this page</h2><button type="button" class="hlp-x" data-act="toggle" aria-label="Close highlights">✕</button></header>
       <div class="hlp-seg" role="radiogroup" aria-label="Show">${['all', 'user', 'ghost'].map(f => `<button type="button" role="radio" aria-checked="${hlpFilter === f}" tabindex="${hlpFilter === f ? 0 : -1}" class="${hlpFilter === f ? 'on' : ''}" data-filter="${f}">${{ all: 'All', user: 'Yours', ghost: 'AI' }[f]} · ${counts[f]}</button>`).join('')}</div>
       ${pending ? '<p class="hlp-hint" role="status">Select the new text on the page, then press “Attach here”.</p>' : ''}
-      <div class="hlp-list">${shown.map(card).join('') || '<p class="hlp-meta">Nothing here.</p>'}</div>
+      <div class="hlp-stack"><div class="hlp-list">${shown.map(card).join('') || '<p class="hlp-meta">Nothing here.</p>'}</div>${hlpFilter !== 'all' ? `<div class="hlp-list hlp-sizer" aria-hidden="true" inert>${items.map(card).join('').replace(/ (data-id|data-act|aria-label|id)="[^"]*"/g, '').replace(/hlp-cm-ta/g, '')}</div>` : ''}</div>
       ${hlpNoteOpen ? `<textarea class="hlp-ta hlp-nt-ta" placeholder="A note about this page… (end with #tags)" aria-label="Note about this page">${hlpEsc(hlpDraft.note || '')}</textarea><div class="hlp-row">${btn('ncancel', 'Cancel', ' hlp-btn')}${btn('nsave', 'Save note', ' hlp-btn hlp-btn--primary')}</div>` : ''}
       ${(actions.note && !hlpNoteOpen) || actions.openNotes ? `<div class="hlp-foot">${actions.note && !hlpNoteOpen ? btn('note', '📝 Note about this page', ' hlp-ghost') : ''}${actions.openNotes ? btn('opennotes', 'Open in Notes ›', ' hlp-ghost') : ''}</div>` : ''}
       ${actions.hideSite ? `<button type="button" class="hlp-hide" data-act="hidesite">Don’t show highlights on ${hlpEsc(location.hostname.replace(/^www\./, ''))}</button>` : ''}

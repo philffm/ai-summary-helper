@@ -35,6 +35,16 @@ const dark = process.argv.includes('--dark');
   await p.goto(`chrome-extension://${id}/popup.html`); await wait(1400);
   await p.click('[data-screen="history"]'); await p.waitForSelector('#articleList .article-card'); await wait(300);
   await p.locator('#articleList .article-card .article-title, #articleList .article-card h3, #articleList .article-card').first().click({ position: { x: 60, y: 16 } });
+  // the detail view opens on Summary; the Links tab appears (with a count) once links are found
+  await p.waitForSelector('.detail-tabs [data-tab="links"]:not([hidden])', { timeout: 8000 }); await wait(300);
+  if (shots) await p.screenshot({ path: path.join(shots, `ln-0-tabs${sfx}.png`) });
+  const tabsInfo = await p.evaluate(() => ({ labels: [...document.querySelectorAll('.detail-tabs [role=tab]:not([hidden])')].map(t => t.textContent), sel: document.querySelector('.detail-tabs [aria-selected=true]')?.dataset.tab }));
+  if (!(tabsInfo.sel === 'summary' && tabsInfo.labels.length === 4 && /\d/.test(tabsInfo.labels[1]))) throw new Error('tabs: ' + JSON.stringify(tabsInfo));
+  await p.click('.detail-tabs [data-tab="article"]'); await wait(300);
+  if (shots) await p.screenshot({ path: path.join(shots, `ln-0-article${sfx}.png`) });
+  await p.click('.detail-tabs [data-tab="notes"]'); await wait(300);
+  if (shots) await p.screenshot({ path: path.join(shots, `ln-0-notes${sfx}.png`) });
+  await p.click('.detail-tabs [data-tab="links"]');
   await p.waitForSelector('#articleLinksMount:not([hidden]) .links-row', { timeout: 8000 }); await wait(300);
   const list = await p.evaluate(() => ({
     caps: [...document.querySelectorAll('.links-cap')].map(c => c.textContent),

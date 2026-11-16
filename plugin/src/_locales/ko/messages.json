@@ -7624,5 +7624,11 @@
   },
   "f_summarize_the_sources_e81f": {
     "message": "출처 {n}개 요약하기"
+  },
+  "f_links_088e": {
+    "message": "링크"
+  },
+  "f_article_sections_5e27": {
+    "message": "기사 섹션"
   }
 }
