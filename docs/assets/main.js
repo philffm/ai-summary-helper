@@ -1983,3 +1983,26 @@ function setBilling(period) {
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init);
   else init();
 })();
+
+// Already installed? The extension's loader marks this site's <html data-aish="installed"> (only on this domain).
+// Store buttons then read "Open AISH" and open the extension instead of the store; text links in articles stay as they are.
+(function () {
+  var root = document.documentElement;
+  var LABEL = { en: 'Open AISH', de: 'AISH öffnen', fr: 'Ouvrir AISH', es: 'Abrir AISH', pt: 'Abrir AISH', it: 'Apri AISH', nl: 'AISH openen', pl: 'Otwórz AISH', ja: 'AISHを開く', ko: 'AISH 열기', zh: '打开 AISH' };
+  var BUTTONS = '.pill-cta, .btn-primary, .btn-secondary, .tier-cta';
+  var STORE = /chromewebstore\.google\.com|addons\.mozilla\.org|apps\.apple\.com|microsoftedge\.microsoft\.com/;
+  function swap() {
+    if (root.getAttribute('data-aish') !== 'installed' || root.hasAttribute('data-aish-swapped')) return;
+    root.setAttribute('data-aish-swapped', '');
+    var label = LABEL[(root.lang || 'en').slice(0, 2).toLowerCase()] || LABEL.en;
+    document.querySelectorAll('a[href]').forEach(function (a) {
+      if (!a.matches(BUTTONS) || !STORE.test(a.href)) return;
+      a.setAttribute('data-aish-open', '');
+      a.setAttribute('href', '#open-aish');
+      a.removeAttribute('target');
+      a.textContent = label;
+    });
+  }
+  swap();
+  if (window.MutationObserver) new MutationObserver(swap).observe(root, { attributes: true, attributeFilter: ['data-aish'] });
+})();
