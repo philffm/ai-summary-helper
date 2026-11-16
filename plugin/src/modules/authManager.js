@@ -15,6 +15,7 @@ import { escapeHtml } from './textUtils.js';
 import StorageManager from './storageManager.js';
 import { T, TN } from './feedI18n.js';
 import { newAccountModel } from './cloudRegion.js';
+import { renderSupportPass } from './supportPass.js';
 
 let activeOtpId = null;
 let otpExpiryTimeoutId = null;
@@ -350,6 +351,7 @@ async function refreshAuthState(forceData = null) {
     }
 
     setLoggedInOnlySectionsVisible(stateName === 'loggedIn');
+    try { renderSupportPass(document, stateName === 'loggedIn' ? user : null); } catch (_) { /* views without the Account panel */ }
 
     for (const view of views) {
         applyStateToView(view, stateName, data, user);

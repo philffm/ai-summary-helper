@@ -243,6 +243,33 @@
       e.preventDefault();
       try { const p = api.runtime.sendMessage({ action: 'aish:openFromSite' }); if (p && typeof p.catch === 'function') p.catch(() => {}); } catch (_) { /* context gone */ }
     }, true);
+    // Support Pass thank-you page (/thanks?session_id=…): claim the payment and show the result through attributes the
+    // page styles itself by (data-aish-claim = working | pending | active | signed_in | confirm | code_required | error).
+    const sid = /^\/thanks(\.html)?$/.test(location.pathname) ? new URLSearchParams(location.search).get('session_id') : null;
+    if (sid) {
+      const root = document.documentElement;
+      let tries = 0;
+      const put = (k, v) => { if (v) root.setAttribute(k, String(v)); else root.removeAttribute(k); };
+      const claim = (confirm) => {
+        put('data-aish-claim', 'working');
+        try {
+          api.runtime.sendMessage({ action: 'aish:claimCheckout', session_id: sid, ...(confirm ? { confirm } : {}) }, (r) => {
+            void (api.runtime.lastError);
+            r = r || { state: 'error', code: 'no_answer' };
+            if (r.state === 'pending' && ++tries < 12) { put('data-aish-claim', 'pending'); setTimeout(() => claim(confirm), 5000); return; }
+            put('data-aish-claim-email', r.email); put('data-aish-claim-account', r.account); put('data-aish-claim-code', r.code);
+            put('data-aish-claim', r.state);
+          });
+        } catch (_) { put('data-aish-claim', 'error'); }
+      };
+      claim();
+      document.addEventListener('click', (e) => {
+        const b = e.target && e.target.closest ? e.target.closest('[data-aish-claim-confirm]') : null;
+        if (!b) return;
+        e.preventDefault();
+        claim(b.getAttribute('data-aish-claim-confirm'));
+      }, true);
+    }
   }
 
   // A link waiting in the phone inbox: once its page is open, tell the extension the real title and description.
