@@ -7414,5 +7414,11 @@
   },
   "f_not_opened_yet_1de1": {
     "message": "{n} अभी तक नहीं खोले"
+  },
+  "f_license_key_optional": {
+    "message": "पुरानी Pro कुंजियाँ और गिफ़्ट कोड यहाँ अब भी काम करते हैं। Support Pass के लिए किसी की ज़रूरत नहीं है।"
+  },
+  "f_have_a_license_key_or_gift_c_fd77": {
+    "message": "क्या आपके पास लाइसेंस कुंजी या गिफ़्ट कोड है?"
   }
 }

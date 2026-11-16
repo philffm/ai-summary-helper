@@ -7414,5 +7414,11 @@
   },
   "f_not_opened_yet_1de1": {
     "message": "{n} ещё не открыто"
+  },
+  "f_license_key_optional": {
+    "message": "Старые ключи Pro и подарочные коды по-прежнему работают здесь. Для Support Pass ключ не нужен."
+  },
+  "f_have_a_license_key_or_gift_c_fd77": {
+    "message": "Есть лицензионный ключ или подарочный код?"
   }
 }

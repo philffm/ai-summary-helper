@@ -7414,5 +7414,11 @@
   },
   "f_not_opened_yet_1de1": {
     "message": "{n} pas encore ouverts"
+  },
+  "f_license_key_optional": {
+    "message": "Les anciennes clés Pro et les codes cadeaux fonctionnent toujours ici. Le Support Pass n'en a pas besoin."
+  },
+  "f_have_a_license_key_or_gift_c_fd77": {
+    "message": "Vous avez une clé de licence ou un code cadeau ?"
   }
 }

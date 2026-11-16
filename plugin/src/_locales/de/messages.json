@@ -7495,5 +7495,11 @@
   },
   "f_not_opened_yet_1de1": {
     "message": "{n} noch nicht geöffnet"
+  },
+  "f_license_key_optional": {
+    "message": "Ältere Pro-Schlüssel und Geschenkcodes funktionieren hier weiterhin. Für den Support Pass brauchst du keinen."
+  },
+  "f_have_a_license_key_or_gift_c_fd77": {
+    "message": "Hast du einen Lizenzschlüssel oder Geschenkcode?"
   }
 }

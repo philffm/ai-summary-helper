@@ -54,4 +54,20 @@ export function renderSupportPass(doc, user, { open = (url) => window.open(url, 
     }
     box.append(row);
     box.append(el('p', 'input-caption', T('Checkout opens with your email filled in. After paying, the pass switches on by itself; no order number needed.')));
+    // A license key is optional now: older Pro keys and gift codes. The field opens below the card.
+    const keyLink = el('a', null, T('Have a license key or gift code?'));
+    keyLink.href = '#licenseKey';
+    keyLink.id = 'openLicenseKey';
+    keyLink.addEventListener('click', (e) => {
+        e.preventDefault();
+        const g = doc.getElementById('legacyLicenseGroup');
+        if (!g) return;
+        g.dataset.open = '1';
+        g.style.display = 'block';
+        const k = doc.getElementById('licenseKey');
+        if (k) k.focus();
+    });
+    const p = el('p', 'input-caption');
+    p.append(keyLink);
+    box.append(p);
 }

@@ -15,7 +15,7 @@ import { escapeHtml } from './textUtils.js';
 import StorageManager from './storageManager.js';
 import { T, TN } from './feedI18n.js';
 import { newAccountModel } from './cloudRegion.js';
-import { renderSupportPass } from './supportPass.js';
+import { renderSupportPass, isPassActive } from './supportPass.js';
 
 let activeOtpId = null;
 let otpExpiryTimeoutId = null;
@@ -283,12 +283,13 @@ function setStatusBadge(label, isPro) {
     label.classList.toggle('signed-in', !!isPro);
 }
 
-function setLoggedInOnlySectionsVisible(isLoggedIn) {
+function setLoggedInOnlySectionsVisible(isLoggedIn, user = null) {
     // Settings-only extras (legacy license key). Harmless no-op for views that don't have them (onboarding).
-    // Pro key field: signed out → hidden; signed in → hidden until "Pro License Key" is pressed (unless a key is already stored).
+    // Pro key field: signed out or Support Pass active → hidden (nothing to enter); free → hidden until
+    // “Have a license key or gift code?” in the Support Pass card is pressed (unless a key is already stored).
     const legacyLicenseGroup = document.getElementById('legacyLicenseGroup');
     if (!legacyLicenseGroup) return;
-    if (!isLoggedIn) { legacyLicenseGroup.style.display = 'none'; legacyLicenseGroup.dataset.open = ''; return; }
+    if (!isLoggedIn || isPassActive(user)) { legacyLicenseGroup.style.display = 'none'; legacyLicenseGroup.dataset.open = ''; return; }
     const keyInput = document.getElementById('licenseKey');
     const open = legacyLicenseGroup.dataset.open === '1' || !!(keyInput && keyInput.value);
     legacyLicenseGroup.style.display = open ? 'block' : 'none';
@@ -350,7 +351,7 @@ async function refreshAuthState(forceData = null) {
         clearOtpExpiryTimeout();
     }
 
-    setLoggedInOnlySectionsVisible(stateName === 'loggedIn');
+    setLoggedInOnlySectionsVisible(stateName === 'loggedIn', user);
     try { renderSupportPass(document, stateName === 'loggedIn' ? user : null); } catch (_) { /* views without the Account panel */ }
 
     for (const view of views) {

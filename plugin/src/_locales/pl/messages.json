@@ -7697,5 +7697,11 @@
   },
   "f_not_opened_yet_1de1": {
     "message": "{n} jeszcze nieotwartych"
+  },
+  "f_license_key_optional": {
+    "message": "Starsze klucze Pro i kody podarunkowe nadal tu działają. Support Pass go nie wymaga."
+  },
+  "f_have_a_license_key_or_gift_c_fd77": {
+    "message": "Masz klucz licencyjny lub kod podarunkowy?"
   }
 }

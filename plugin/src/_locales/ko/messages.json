@@ -7396,5 +7396,11 @@
   },
   "f_not_opened_yet_1de1": {
     "message": "{n}개 아직 안 열어 봄"
+  },
+  "f_license_key_optional": {
+    "message": "이전 Pro 키와 기프트 코드는 여기에서 계속 사용할 수 있습니다. Support Pass에는 필요하지 않습니다."
+  },
+  "f_have_a_license_key_or_gift_c_fd77": {
+    "message": "라이선스 키나 기프트 코드가 있나요?"
   }
 }

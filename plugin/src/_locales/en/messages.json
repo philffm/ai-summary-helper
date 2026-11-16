@@ -7828,5 +7828,11 @@
   "f_not_opened_yet_1de1": {
     "message": "{n} not opened yet",
     "description": "Placeholder {n} (keep as is)"
+  },
+  "f_license_key_optional": {
+    "message": "Older Pro keys and gift codes still work here. The Support Pass doesn't need one."
+  },
+  "f_have_a_license_key_or_gift_c_fd77": {
+    "message": "Have a license key or gift code?"
   }
 }

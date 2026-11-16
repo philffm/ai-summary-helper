@@ -7697,5 +7697,11 @@
   },
   "f_not_opened_yet_1de1": {
     "message": "{n} ikke åpnet ennå"
+  },
+  "f_license_key_optional": {
+    "message": "Eldre Pro-nøkler og gavekoder fungerer fortsatt her. Support Pass trenger ingen."
+  },
+  "f_have_a_license_key_or_gift_c_fd77": {
+    "message": "Har du en lisensnøkkel eller gavekode?"
   }
 }

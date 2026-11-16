@@ -7697,5 +7697,11 @@
   },
   "f_not_opened_yet_1de1": {
     "message": "{n} nog niet geopend"
+  },
+  "f_license_key_optional": {
+    "message": "Oudere Pro-sleutels en cadeaucodes werken hier nog steeds. De Support Pass heeft er geen nodig."
+  },
+  "f_have_a_license_key_or_gift_c_fd77": {
+    "message": "Heb je een licentiesleutel of cadeaucode?"
   }
 }
