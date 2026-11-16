@@ -64,6 +64,7 @@ const MAX_ITEMS_PER_FEED = 1500;
 const MAX_ITEMS_TOTAL = 6000;
 const PAGE_SIZE = 100;          // cards rendered at once; "Show more" adds another page
 const CONCURRENCY = 4;
+const SAVE_EVERY = 1200;   // ms between saves while a refresh runs
 const COMMON_FEED_PATHS = ['/feed', '/rss', '/atom.xml', '/feed.xml', '/rss.xml', '/index.xml'];
 const DAY_MS = 86400000;
 
@@ -126,6 +127,7 @@ async function load() {
     recaps = { ...(data[RECAPS_KEY] || {}) };
     subs = data[SUBS_KEY] || [];
     items = data[ITEMS_KEY] || [];
+    writtenItems = JSON.stringify(items);   // what storage holds: a write that changes nothing in the list leaves it out
     settings = { ...FEED_DEFAULTS, ...(data[SETTINGS_KEY] || {}) };
     if (settings.subsOrdered) subSort = 'manual';   // you arranged the feeds yourself: Settings opens in that order
     mergeBackground(background);
@@ -176,10 +178,26 @@ function syncMood() {
     if (snapshotMood(moodDaily, items, itemMood, startOfDay)) chrome.storage.local.set({ [MOOD_KEY]: moodDaily }).catch(() => {});
 }
 
+// feeds:items is the whole list (up to MAX_ITEMS_TOTAL, a few MB). Writing it takes ~300 ms and every write is sent, old and new
+// value, to every context listening for storage changes (the worker, other extension pages, the content script in each tab).
+// So writes are coalesced (calls made while one write runs share the next one) and the list is only written when it changed.
+let persistTail = Promise.resolve(), persistNext = null, writtenItems = null;
+function writeFeeds() {
+    const out = { [SUBS_KEY]: subs };
+    const json = JSON.stringify(items);
+    if (json !== writtenItems) out[ITEMS_KEY] = items;
+    return chrome.storage.local.set(out).then(() => { writtenItems = json; });
+}
 function persist() {
     syncMood();
-    return chrome.storage.local.set({ [SUBS_KEY]: subs, [ITEMS_KEY]: items });
+    if (persistNext) return persistNext;
+    const run = persistTail.then(() => { persistNext = null; return writeFeeds(); });
+    persistNext = run;
+    persistTail = run.catch(() => {});
+    return run;
 }
+// Closing the popup right after an action: a write still waiting behind a running one is sent now, or it would be lost.
+if (typeof addEventListener === 'function') addEventListener('pagehide', () => { if (persistNext) { persistNext = null; writeFeeds().catch(() => {}); } });
 function persistUi() { stickyRead.clear(); shown = PAGE_SIZE; return chrome.storage.local.set({ [UI_KEY]: ui }).catch(() => {}); }
 function persistSettings() { return chrome.storage.local.set({ [SETTINGS_KEY]: settings }).catch(() => {}); }
 
@@ -558,26 +576,33 @@ async function refreshAll(uiObj, { force = false } = {}) {
                     (Number(a.lastFetched) || 0) - (Number(b.lastFetched) || 0);
             })
             : [...due];
-        let writeQueue = Promise.resolve();
-        const saveResults = () => {
-            writeQueue = writeQueue.then(async () => {
-                items.sort((a, b) => b.published - a.published);
-                pruneItems();
-                if (items.length > MAX_ITEMS_TOTAL) items = items.filter((i, k) => k < MAX_ITEMS_TOTAL || histOf(i).fav);
-                await persist();
-                refreshPaint = true;
-                try { render(); } finally { refreshPaint = false; }
-            });
-            return writeQueue;
+        // Results are saved and painted at most once per SAVE_EVERY ms while feeds come in, not once per feed: with many feeds and a full
+        // list, one write and one repaint per feed kept the popup busy for the whole refresh. The fetches never wait for a write.
+        let saveTimer = null, lastSave = 0;
+        const save = async (paint = true) => {
+            saveTimer = null; lastSave = Date.now();
+            items.sort((a, b) => b.published - a.published);
+            pruneItems();
+            if (items.length > MAX_ITEMS_TOTAL) items = items.filter((i, k) => k < MAX_ITEMS_TOTAL || histOf(i).fav);
+            if (paint) { refreshPaint = true; try { render(); } finally { refreshPaint = false; } }
+            await persist();
+        };
+        // the first feed back shows right away; later ones are gathered until SAVE_EVERY has passed since the last save
+        const saveSoon = () => {
+            if (saveTimer) return;
+            const wait = lastSave + SAVE_EVERY - Date.now();
+            if (wait <= 0) { save().catch(() => {}); return; }
+            saveTimer = setTimeout(() => { save().catch(() => {}); }, wait);
         };
         const worker = async () => {
             while (queue.length) {
                 const sub = queue.shift();
                 await refreshSub(sub, { force });
-                await saveResults();
+                saveSoon();
             }
         };
-        await Promise.all(Array.from({ length: Math.min(CONCURRENCY, due.length) }, worker));
+        try { await Promise.all(Array.from({ length: Math.min(CONCURRENCY, due.length) }, worker)); }
+        finally { clearTimeout(saveTimer); await save(false); }   // the outer finally paints
     } finally {
         refreshing = false;
         setRefreshState(false);
