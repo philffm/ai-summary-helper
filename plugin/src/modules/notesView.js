@@ -237,6 +237,7 @@ function renderOfArticle(inst, all) {
     for (const i of mine) frag.append(sticky(i, inst));
     inst.body.replaceChildren(frag);
     if (inst.title) inst.title.textContent = T('Notes and highlights') + (mine.length ? ' · ' + mine.length : '');
+    if (inst.onCount) inst.onCount(mine.length);
 }
 
 /** The small field under an article's notes: a note about this article, linked to its page. */
@@ -264,9 +265,9 @@ export async function noteCountsByArticle() {
 
 let articlePane = null;
 /** Mounts the notes of one article in `host` (its detail view); the previous article's pane is dropped. */
-export function mountArticleNotes(host, article) {
+export function mountArticleNotes(host, article, { onCount = null } = {}) {
     if (articlePane) destroyNotesPane(articlePane);
-    articlePane = createNotesPane(host, { mode: 'article', article: { id: article.id, url: article.url || '', title: article.title || '' }, composer: false });
+    articlePane = createNotesPane(host, { mode: 'article', article: { id: article.id, url: article.url || '', title: article.title || '' }, composer: false, onCount });
     return articlePane;
 }
 
@@ -282,8 +283,8 @@ function renderTags(inst, all) {
 function renderAll() { for (const i of instances) render(i); }
 
 /** Builds one pane in `root`. mode: 'stream' (the notes, with search and filters), 'articles' or 'tags'. `primary` panes carry the ids and the composer. */
-export function createNotesPane(root, { mode = 'stream', primary = false, composer: withComposer = primary, article = null } = {}) {
-    const inst = { root, mode, primary, article, filter: 'all', q: '', editing: '', token: 0, body: null, toggle: null, count: null, title: null };
+export function createNotesPane(root, { mode = 'stream', primary = false, composer: withComposer = primary, article = null, onCount = null } = {}) {
+    const inst = { root, mode, primary, article, onCount, filter: 'all', q: '', editing: '', token: 0, body: null, toggle: null, count: null, title: null };
     const id = (name) => (primary ? name : '');
     const withId = (e, name) => { if (primary && name) e.id = name; return e; };
     const head = el('div', 'notes-head');

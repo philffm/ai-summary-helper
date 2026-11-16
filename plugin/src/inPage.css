@@ -790,6 +790,9 @@ button:focus-visible, select:focus-visible {
 
 /* Note card (DS: .st in Notes), the same colours as the Notes tab */
 .hlp-list { display: flex; flex-direction: column; gap: var(--spacing-s-2); }
+.hlp-stack { display: grid; }
+.hlp-stack > .hlp-list { grid-area: 1 / 1; }
+.hlp-sizer { visibility: hidden; pointer-events: none; }
 .hlp-card { display: flex; flex-direction: column; gap: 6px; padding: 10px 12px; border-radius: var(--radius-md); border-left: 4px solid; box-shadow: var(--saved-note-edge); }
 .hlp-card--user { background: var(--saved-note-user-bg); color: var(--saved-note-user-fg); border-color: var(--saved-note-user-bar); }
 .hlp-card--ghost { background: var(--saved-note-ghost-bg); color: var(--saved-note-ghost-fg); border-color: var(--saved-note-ghost-bar); }

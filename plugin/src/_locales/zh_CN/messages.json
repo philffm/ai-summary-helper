@@ -7642,5 +7642,11 @@
   },
   "f_summarize_the_sources_e81f": {
     "message": "总结这 {n} 个来源"
+  },
+  "f_links_088e": {
+    "message": "链接"
+  },
+  "f_article_sections_5e27": {
+    "message": "文章栏目"
   }
 }

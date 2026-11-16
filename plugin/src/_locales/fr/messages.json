@@ -7642,5 +7642,11 @@
   },
   "f_summarize_the_sources_e81f": {
     "message": "Résumer les {n} sources"
+  },
+  "f_links_088e": {
+    "message": "Liens"
+  },
+  "f_article_sections_5e27": {
+    "message": "Sections de l’article"
   }
 }

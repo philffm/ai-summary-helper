@@ -38,6 +38,13 @@ const page = () => `<!doctype html><html><head><title>A2UI 1.0</title></head><bo
     return { radios: [...r.querySelectorAll('.hlp-seg [role=radio]')].map((b) => b.textContent), cards: [...r.querySelectorAll('.hlp-card')].map((c) => c.className), bg: getComputedStyle(pn).backgroundColor,
       summarize: r.querySelectorAll('[data-act=summarize]').length, radius: getComputedStyle(pn).borderRadius, ticks: r.querySelectorAll('.hlp-tick').length }; });
   if (shots) await p.screenshot({ path: path.join(shots, `ip-2-panel${sfx}.png`), clip: { x: 560, y: 40, width: 440, height: 680 } });
+  // switching All → Yours → AI keeps the panel's height (Yours has 1 card, All 3)
+  const heights = [];
+  for (const f of ['all', 'user', 'ghost']) {
+    await host.locator(`[data-filter="${f}"]`).click(); await wait(150);
+    heights.push(await p.evaluate((f) => { const r = document.getElementById('aish-hl-host').shadowRoot; return { f, h: Math.round(r.querySelector('.hlp-panel').getBoundingClientRect().height), cards: r.querySelectorAll('.hlp-list:not(.hlp-sizer) .hlp-card').length, clickable: r.querySelectorAll('.hlp-sizer [data-act]').length }; }, f));
+  }
+  await host.locator('[data-filter="all"]').click(); await wait(150);
   await p.keyboard.press('Escape'); await wait(200);
   const closed = await p.evaluate(() => !document.getElementById('aish-hl-host').shadowRoot.querySelector('.hlp-panel'));
   // selection toolbar on the last paragraph, then the composer
@@ -55,6 +62,10 @@ const page = () => `<!doctype html><html><head><title>A2UI 1.0</title></head><bo
     menu = await p.evaluate(() => { const r = document.getElementById('aish-np-host')?.shadowRoot; const m = r && r.querySelector('.np-bar--text'); return m ? [...m.querySelectorAll('button')].map((b) => b.textContent) : null; });
     if (shots) await p.screenshot({ path: path.join(shots, `ip-5-markmenu${sfx}.png`), clip: { x: 40, y: Math.max(0, mark.y - 110), width: 900, height: 220 } }); }
   const marks = await p.evaluate(() => { const st = document.getElementById('aish-hl-styles'); return st ? st.textContent.match(/#[0-9a-f]{6}/gi) : null; });
+  console.log(JSON.stringify({ heights }));
+  assert(heights.every(x => Math.abs(x.h - heights[0].h) <= 1), 'the panel keeps the height of All: ' + JSON.stringify(heights));
+  assert.deepEqual(heights.map(x => x.cards), [3, 1, 2], 'only the chosen cards are shown');
+  assert(heights.every(x => x.clickable === 0), 'the sizer copy has no actions');
   console.log(JSON.stringify({ split, panel, closed, bar, card, menu, marks, errs }, null, 1));
   assert(split.adopted >= 1 && split.visible === 'visible', 'inPage.css adopted and the host is shown');
   assert.equal(split.theme, dark ? 'dark' : 'light', 'theme from the settings');

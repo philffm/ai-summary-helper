@@ -7925,5 +7925,11 @@
   },
   "f_summarize_the_sources_e81f": {
     "message": "Підсумувати джерела ({n})"
+  },
+  "f_links_088e": {
+    "message": "Посилання"
+  },
+  "f_article_sections_5e27": {
+    "message": "Розділи статті"
   }
 }
