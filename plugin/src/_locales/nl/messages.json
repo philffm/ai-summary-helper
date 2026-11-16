@@ -7740,9 +7740,6 @@
   "f_uses_your_model_requests_sta_a624": {
     "message": "Gebruikt je model · {n} verzoeken · blijft op dit apparaat"
   },
-  "f_every_question_shows_the_art_8b21": {
-    "message": "Elke vraag toont het artikel en de zin waar ze vandaan komt. Vragen zonder citaat vallen af."
-  },
   "f_create_quiz_e72a": {
     "message": "Quiz maken"
   },
@@ -7883,5 +7880,8 @@
   },
   "notifQuizMissed": {
     "message": "{n} vragen om te herhalen"
+  },
+  "f_questions_come_from_the_full_cdbf": {
+    "message": "De vragen komen uit de volledige tekst en toetsen begrip. Elke vraag toont de zin die het antwoord onderbouwt; vragen die de tekst niet onderbouwt, vallen af."
   }
 }

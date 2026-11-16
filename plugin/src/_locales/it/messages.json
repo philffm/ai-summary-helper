@@ -7457,9 +7457,6 @@
   "f_uses_your_model_requests_sta_a624": {
     "message": "Usa il tuo modello · {n} richieste · resta su questo dispositivo"
   },
-  "f_every_question_shows_the_art_8b21": {
-    "message": "Ogni domanda mostra l’articolo e la frase da cui proviene. Le domande senza citazione vengono scartate."
-  },
   "f_create_quiz_e72a": {
     "message": "Crea quiz"
   },
@@ -7600,5 +7597,8 @@
   },
   "notifQuizMissed": {
     "message": "{n} domande da ripassare"
+  },
+  "f_questions_come_from_the_full_cdbf": {
+    "message": "Le domande nascono dal testo completo e verificano la comprensione. Ognuna mostra la frase che sostiene la risposta; quelle che il testo non sostiene vengono scartate."
   }
 }

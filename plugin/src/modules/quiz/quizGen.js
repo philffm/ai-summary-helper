@@ -1,19 +1,22 @@
 // quiz/quizGen.js — a multiple-choice quiz over several saved articles (Figma AISH-040).
 //
-// Every question carries the sentence(s) it comes from, copied word for word from the article text; a question whose quote is not
-// in the text is dropped. One request per article returns its questions plus a few key sentences ("facts", also checked). The
-// questions that connect articles are then written from those checked facts only, so a cross-article question always cites two real
-// sentences from two different articles. Everything here except `createQuiz` is pure (tests: test262).
+// Comprehension questions from the full text: one request per article sends the whole article (long ones as paragraphs spread over
+// the whole text, not just the start) and asks for questions about main points, reasons, consequences and arguments.
+// Every question shows the article's own sentence(s) behind its answer. The model's quote only has to be close: it is looked up in
+// the text (punctuation, a changed word or "…" are fine) and the article's real sentence is shown instead. Without a usable quote,
+// the sentence that best supports the right answer is used; only a question the text does not support at all is dropped.
+// The questions that connect articles are written from the checked key sentences ("facts") of two different articles.
+// Everything here except `createQuiz` is pure (tests: test260).
 import { T } from '../feedI18n.js';
 
 export const QUIZ_MIN_ARTICLES = 2;
 export const QUIZ_MAX_ARTICLES = 15;                 // = collections MAX_SOURCES
 export const QUIZ_SIZES = [5, 10, 15, 20];
 export const QUIZ_MIXES = ['article', 'across', 'both'];
-const TEXT_MAX = 9000;                               // characters of article text per request (few articles)
-const TEXT_MAX_MANY = 3500;                          // … when there are more than MANY articles
+const TEXT_MAX = 24000;                              // characters of article text per request (few articles) ≈ 6k tokens
+const TEXT_MAX_MANY = 10000;                         // … when there are more than MANY articles
 const MANY = 8;
-const Q_MAX = 160, A_MAX = 110, QUOTE_MIN = 20, QUOTE_MAX = 420;
+const Q_MAX = 180, A_MAX = 120, QUOTE_MIN = 12, QUOTE_MAX = 900;
 
 const plain = (html) => String(html || '').replace(/<(script|style)[\s\S]*?<\/\1>/gi, ' ').replace(/<\/(p|li|h[1-6]|blockquote|div|br)>/gi, '\n').replace(/<br\s*\/?>/gi, '\n')
     .replace(/<[^>]+>/g, ' ').replace(/&nbsp;/g, ' ').replace(/&amp;/g, '&').replace(/&lt;/g, '<').replace(/&gt;/g, '>').replace(/&quot;/g, '"').replace(/&#39;/g, "'");
@@ -35,6 +38,67 @@ export function paragraphOf(paras, quote) {
     if (!q) return 0;
     const i = paras.findIndex(p => normQuote(p).includes(q));
     return i + 1;
+}
+
+const words = (s) => normQuote(s).split(/[^\p{L}\p{N}]+/u).filter(Boolean);
+const content = (ws) => ws.filter(w => w.length >= 4 || (w.length >= 2 && /\d/.test(w)));   // rough, language-independent: skip short function words and lone digits
+
+/** Sentences of each paragraph, in the article's own wording: [{ p (1-based paragraph), text, w (words) }]. */
+export function articleSentences(paras) {
+    const out = [];
+    paras.forEach((para, i) => {
+        // split after . ! ? only when a space follows (so 1.5 °C or e.g. stay whole), after 。！？ always
+        const parts = para.replace(/([.!?]+["“”’)\]]*)\s+/g, '$1\u0001').replace(/([。！？]+)/g, '$1\u0001').split('\u0001');
+        parts.map(t => t.trim()).filter(t => t.length > 1).forEach(t => out.push({ p: i + 1, text: t, w: words(t) }));
+    });
+    return out;
+}
+
+/** How much of `need` (word list) the window covers, as a share 0…1 (each word counted as often as it occurs). */
+function coverage(need, have) {
+    if (!need.length) return 0;
+    const bag = new Map(); have.forEach(w => bag.set(w, (bag.get(w) || 0) + 1));
+    let hit = 0; need.forEach(w => { const n = bag.get(w) || 0; if (n) { hit++; bag.set(w, n - 1); } });
+    return hit / need.length;
+}
+
+/**
+ * Finds the model's quote in the article and returns the article's own sentence(s) for it: { p, quote } or null.
+ * Exact (after normalising quotes, dashes and spaces) or close: at least 75 % of the quote's words, within 1–3 neighbouring
+ * sentences of one paragraph. "…" splits a quote into parts that are looked up together. Pure.
+ */
+export function locateQuote(sents, quote) {
+    const parts = String(quote || '').split(/\s*(?:\[\s*(?:\.\.\.|…)\s*\]|\.\.\.|…)\s*/).map(x => x.trim()).filter(x => words(x).length >= 3);
+    if (!parts.length) return null;
+    const need = words(parts.join(' '));
+    if (need.length < 3) return null;
+    let best = null;
+    for (let i = 0; i < sents.length; i++) {
+        let have = [], text = '';
+        for (let j = i; j < Math.min(sents.length, i + 3) && sents[j].p === sents[i].p; j++) {
+            have = have.concat(sents[j].w); text += (text ? ' ' : '') + sents[j].text;
+            if (have.length > need.length * 3 + 12) break;
+            const c = coverage(need, have);
+            const exact = parts.every(x => normQuote(text).includes(normQuote(x)));
+            const score = exact ? 2 : c;
+            if (score >= 0.75 && (!best || score > best.score || (score === best.score && have.length < best.len))) best = { score, len: have.length, p: sents[i].p, quote: text };
+            if (exact) break;
+        }
+    }
+    return best ? { p: best.p, quote: best.quote, exact: best.score === 2 } : null;
+}
+
+/** Without a usable quote: the sentence that best supports the right answer (its content words, helped by the question). Pure. */
+export function supportingSentence(sents, question, answer) {
+    const a = content(words(answer)), q = content(words(question));
+    if (!a.length) return null;
+    let best = null;
+    for (const s of sents) {
+        const ca = coverage(a, s.w), cq = coverage(q, s.w);
+        const score = ca + cq * 0.25;
+        if (ca >= 0.6 && (!best || score > best.score)) best = { score, p: s.p, quote: s.text };
+    }
+    return best ? { p: best.p, quote: best.quote, exact: false } : null;
 }
 
 /** How many questions each article gets and how many connect articles. Pure. */
@@ -67,8 +131,11 @@ export function parseJsonReply(raw) {
 
 const qid = (s) => { let h = 5381; for (const ch of String(s)) h = ((h << 5) + h + ch.charCodeAt(0)) | 0; return 'q' + (h >>> 0).toString(36); };
 
-/** One raw question → checked question, or null (with why). `findIn(quote)` → { articleId, para } | null. Pure. */
-export function checkQuestion(raw, findIn) {
+/**
+ * One raw question → checked question, or { drop }. `findIn(quote)` → { articleId, para, quote } | null (the article's own wording);
+ * `support(question, answer)` → the same, used when no quote was found. Pure.
+ */
+export function checkQuestion(raw, findIn, support = null) {
     if (!raw || typeof raw !== 'object') return { drop: 'shape' };
     const q = clip(raw.q || raw.question, Q_MAX);
     const opts = (Array.isArray(raw.options) ? raw.options : raw.answers || []).map(o => clip(o, A_MAX));
@@ -78,7 +145,9 @@ export function checkQuestion(raw, findIn) {
     if (!Number.isInteger(correct) || correct < 0 || correct > 3) return { drop: 'shape' };
     const quotes = (Array.isArray(raw.quotes) ? raw.quotes : [raw.quote]).map(x => String(x || '').trim()).filter(x => x.length >= QUOTE_MIN && x.length <= QUOTE_MAX);
     const sources = [];
-    for (const quote of quotes) { const at = findIn(quote); if (at && !sources.some(s => s.articleId === at.articleId && s.quote === quote)) sources.push({ ...at, quote }); }
+    const add = (at) => { if (at && !sources.some(s => s.articleId === at.articleId && s.quote === at.quote)) sources.push({ articleId: at.articleId, para: at.para, quote: at.quote }); };
+    quotes.forEach(x => add(findIn(x)));
+    if (!sources.length && support) add(support(q, opts[correct]));
     if (!sources.length) return { drop: 'source' };
     const sh = shuffleAnswers(opts, correct, q);
     return { question: { id: qid(q), q, options: sh.options, correct: sh.correct, sources } };
@@ -86,14 +155,18 @@ export function checkQuestion(raw, findIn) {
 
 const LANG_LINE = (lang) => `Write the questions and answers in ${lang}. Quotes stay in the language of the text, copied exactly.`;
 
-/** Prompt for one article: n questions (+1 spare) and up to 4 key sentences. */
-export function articlePrompt({ title, text, n, lang }) {
-    const system = 'You write multiple-choice quiz questions that test whether a reader understood an article. '
+/** Prompt for one article: n comprehension questions (+1 spare) and up to 5 key sentences. */
+export function articlePrompt({ title, text, n, lang, partial = false }) {
+    const system = 'You write multiple-choice questions that check whether a reader UNDERSTOOD an article, like a good teacher would. '
         + LANG_LINE(lang) + ' '
-        + 'Rules: each question has exactly 4 short answers, exactly one is right, the wrong ones are plausible. Ask about what the article says, not about trivia like dates of publication. '
-        + 'Question at most 110 characters, each answer at most 70 characters. '
-        + 'For every question copy ONE sentence (or part of one, at least 6 words) word for word from the article that shows the right answer. Never paraphrase the quote. '
-        + 'Also copy up to 4 key sentences word for word ("facts") that state the article\'s main points. '
+        + 'Read the whole article first. Ask about its main points, the reasons and causes it gives, consequences, comparisons, the author\'s argument and what follows from it. '
+        + 'Spread the questions over the whole text, not just the beginning. Phrase questions and answers in your own words; do not copy a sentence and blank out a word. '
+        + 'Avoid trivia: no questions whose answer is only a name, a date or a number unless it is central to the article, and nothing about the publication itself. '
+        + 'Each question has exactly 4 answers, exactly one is right; the wrong ones are plausible to someone who skimmed, but clearly wrong for someone who read carefully. '
+        + 'Question at most 150 characters, each answer at most 100 characters. '
+        + 'For every question add "quote": the sentence from the article that shows the right answer, copied as exactly as you can. '
+        + 'Also add "facts": up to 5 sentences from the article (copied) that state its most important points. '
+        + (partial ? 'The text is a selection of paragraphs from a longer article; […] marks skipped parts. ' : '')
         + 'Reply with JSON only: {"questions":[{"q":"…","options":["…","…","…","…"],"correct":0,"quote":"…"}],"facts":["…"]}';
     const user = `Article: ${clip(title, 160)}\n\n${text}\n\nWrite ${n + 1} questions.`;
     return { system, user };
@@ -111,11 +184,35 @@ export function acrossPrompt({ facts, n, lang }) {
     return { system, user };
 }
 
-/** The article text sent to the model: the paragraphs, cut at a paragraph end. */
+/**
+ * The article text sent to the model: all of it when it fits; otherwise paragraphs spread evenly over the whole article
+ * (beginning, middle, end) up to `max` characters, with […] where paragraphs were skipped. Returns { text, partial }. Pure.
+ */
 export function articleText(paras, max) {
-    let out = '';
-    for (const p of paras) { if (out.length + p.length + 2 > max) { if (!out) out = p.slice(0, max); break; } out += (out ? '\n\n' : '') + p; }
-    return out;
+    const all = paras.join('\n\n');
+    if (all.length <= max) return { text: all, partial: false };
+    const keep = new Set();
+    let used = 0;
+    // even spread: walk the paragraphs with a step that fits the budget, then fill gaps while room remains
+    const avg = all.length / Math.max(1, paras.length);
+    const want = Math.max(1, Math.floor(max / (avg + 2)));
+    const step = paras.length / want;
+    for (let k = 0; k < want; k++) {
+        const i = Math.min(paras.length - 1, Math.floor(k * step));
+        if (keep.has(i)) continue;
+        const len = Math.min(paras[i].length, 1500) + 2;
+        if (used + len > max) continue;
+        keep.add(i); used += len;
+    }
+    for (let i = 0; i < paras.length && used < max; i++) {
+        if (keep.has(i)) continue;
+        const len = Math.min(paras[i].length, 1500) + 2;
+        if (used + len <= max) { keep.add(i); used += len; }
+    }
+    const out = []; let last = -1;
+    [...keep].sort((a, b) => a - b).forEach((i) => { if (i > last + 1) out.push('[…]'); out.push(paras[i].length > 1500 ? paras[i].slice(0, 1500) + ' […]' : paras[i]); last = i; });
+    if (last < paras.length - 1) out.push('[…]');
+    return { text: out.join('\n\n'), partial: true };
 }
 
 /**
@@ -128,8 +225,10 @@ export async function createQuiz(articles, { total = 10, mix = 'both', lang = 'E
     const plan = quizPlan(total, list.length, mix);
     const max = list.length > MANY ? TEXT_MAX_MANY : TEXT_MAX;
     const paras = list.map(articleParagraphs);
-    const hay = paras.map(ps => normQuote(ps.join(' ')));
-    const findInArticle = (k) => (quote) => { const n = normQuote(quote); return n.length >= QUOTE_MIN && hay[k].includes(n) ? { articleId: list[k].id, para: paragraphOf(paras[k], quote) } : null; };
+    const sents = paras.map(articleSentences);
+    const at = (k, r) => (r ? { articleId: list[k].id, para: r.p, quote: r.quote } : null);
+    const findInArticle = (k) => (quote) => at(k, locateQuote(sents[k], quote));
+    const supportIn = (k) => (question, answer) => at(k, supportingSentence(sents[k], question, answer));
     const perQ = list.map(() => []), spare = list.map(() => []), facts = [];
     const perArticle = list.map(a => ({ id: a.id, made: 0, dropped: 0 }));
     let requests = 0;
@@ -141,19 +240,24 @@ export async function createQuiz(articles, { total = 10, mix = 'both', lang = 'E
         const needFacts = plan.across > 0;
         if (!want && !needFacts) continue;
         onArticle({ index: k, state: 'writing' });
-        const text = articleText(paras[k], max);
+        const { text, partial } = articleText(paras[k], max);
         if (!text) { perArticle[k].failed = true; onArticle({ index: k, state: 'failed' }); continue; }
         try {
-            const p = articlePrompt({ title: list[k].title, text, n: Math.max(want, 1), lang });
+            const p = articlePrompt({ title: list[k].title, text, n: Math.max(want, 1), lang, partial });
             requests++;
             const reply = parseJsonReply(await aiComplete(p.system, p.user, null, signal, null, { feature: 'qa' }));
-            const find = findInArticle(k);
+            const find = findInArticle(k), support = supportIn(k);
             for (const raw of (reply && reply.questions) || []) {
-                const r = checkQuestion(raw, find);
+                const r = checkQuestion(raw, find, support);
                 if (r.question && fresh(r.question)) (perQ[k].length < want ? perQ[k] : spare[k]).push({ ...r.question, kind: 'article' });
                 else perArticle[k].dropped++;
             }
-            ((reply && reply.facts) || []).slice(0, 5).forEach((f, i) => { const at = find(String(f || '')); if (at) facts.push({ id: String.fromCharCode(65 + (k % 26)) + (i + 1), article: k + 1, k, title: list[k].title, text: String(f).trim(), at }); });
+            ((reply && reply.facts) || []).slice(0, 6).forEach((f) => {
+                const hit = find(String(f || ''));
+                if (hit && !facts.some(x => x.k === k && x.text === hit.quote)) facts.push({ id: String.fromCharCode(65 + (k % 26)) + (facts.filter(x => x.k === k).length + 1), article: k + 1, k, title: list[k].title, text: hit.quote, at: hit });
+            });
+            // a quiz across articles needs facts: fall back to the sentences behind this article's own questions
+            if (plan.across > 0 && !facts.some(x => x.k === k)) perQ[k].concat(spare[k]).slice(0, 4).forEach((q) => { const s0 = q.sources[0]; if (s0 && !facts.some(x => x.k === k && x.text === s0.quote)) facts.push({ id: String.fromCharCode(65 + (k % 26)) + (facts.filter(x => x.k === k).length + 1), article: k + 1, k, title: list[k].title, text: s0.quote, at: s0 }); });
             perArticle[k].made = perQ[k].length;
             onArticle({ index: k, state: 'done', made: perQ[k].length, dropped: perArticle[k].dropped });
         } catch (e) {

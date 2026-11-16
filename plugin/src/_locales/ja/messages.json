@@ -7457,9 +7457,6 @@
   "f_uses_your_model_requests_sta_a624": {
     "message": "あなたのモデルを使用 · リクエスト {n} 回 · このデバイスに保存"
   },
-  "f_every_question_shows_the_art_8b21": {
-    "message": "各問題には出典の記事と文が表示されます。引用のない問題は除外されます。"
-  },
   "f_create_quiz_e72a": {
     "message": "クイズを作成"
   },
@@ -7600,5 +7597,8 @@
   },
   "notifQuizMissed": {
     "message": "復習する問題 {n} 問"
+  },
+  "f_questions_come_from_the_full_cdbf": {
+    "message": "問題は本文全体から作られ、理解度を確かめます。各問題には答えの根拠となる文が表示され、本文に根拠のない問題は除外されます。"
   }
 }

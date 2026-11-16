@@ -7740,9 +7740,6 @@
   "f_uses_your_model_requests_sta_a624": {
     "message": "Memakai model Anda · {n} permintaan · tetap di perangkat ini"
   },
-  "f_every_question_shows_the_art_8b21": {
-    "message": "Setiap pertanyaan menunjukkan artikel dan kalimat asalnya. Pertanyaan tanpa kutipan dibuang."
-  },
   "f_create_quiz_e72a": {
     "message": "Buat kuis"
   },
@@ -7883,5 +7880,8 @@
   },
   "notifQuizMissed": {
     "message": "{n} pertanyaan untuk diulang"
+  },
+  "f_questions_come_from_the_full_cdbf": {
+    "message": "Pertanyaan diambil dari teks lengkap dan menguji pemahaman. Setiap pertanyaan menunjukkan kalimat yang mendukung jawabannya; pertanyaan yang tidak didukung teks dibuang."
   }
 }

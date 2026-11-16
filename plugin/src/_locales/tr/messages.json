@@ -7740,9 +7740,6 @@
   "f_uses_your_model_requests_sta_a624": {
     "message": "Modelini kullanır · {n} istek · bu cihazda kalır"
   },
-  "f_every_question_shows_the_art_8b21": {
-    "message": "Her soru, geldiği makaleyi ve cümleyi gösterir. Alıntısı olmayan sorular atılır."
-  },
   "f_create_quiz_e72a": {
     "message": "Test oluştur"
   },
@@ -7883,5 +7880,8 @@
   },
   "notifQuizMissed": {
     "message": "Tekrar edilecek {n} soru"
+  },
+  "f_questions_come_from_the_full_cdbf": {
+    "message": "Sorular metnin tamamından gelir ve anlamayı ölçer. Her soru, cevabını destekleyen cümleyi gösterir; metnin desteklemediği sorular atılır."
   }
 }
