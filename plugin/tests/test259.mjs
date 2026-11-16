@@ -96,14 +96,16 @@ const run = (o) => claimCheckout({ sessionId: SID, now: () => NOW, ...o });
 }
 
 // ---------- modules/supportPass.js ----------
-const { checkoutUrl, PASS_LINKS, isPassActive } = await import(pathToFileURL(path.join(SRC, 'modules', 'supportPass.js')).href);
+const { checkoutUrl, CHECKOUT_BASE, isPassActive } = await import(pathToFileURL(path.join(SRC, 'modules', 'supportPass.js')).href);
 const u = new URL(checkoutUrl('monthly', { id: 'abcdefghij12345', email: 'phil@example.com' }));
-assert.equal(u.origin + u.pathname, PASS_LINKS.monthly);
-assert.equal(u.searchParams.get('prefilled_email'), 'phil@example.com');
-assert.equal(u.searchParams.get('client_reference_id'), 'abcdefghij12345');
+assert.equal(u.origin + u.pathname, CHECKOUT_BASE, 'buying goes through the API, never straight to a provider');
+assert.equal(u.searchParams.get('plan'), 'monthly');
+assert.equal(u.searchParams.get('account'), 'abcdefghij12345');
+assert.equal(u.searchParams.get('email'), 'phil@example.com');
 const odd = new URL(checkoutUrl('yearly', { id: 'not a pb id!', email: 'nope' }));
-assert.equal(odd.searchParams.get('client_reference_id'), null); assert.equal(odd.searchParams.get('prefilled_email'), null);
+assert.equal(odd.searchParams.get('account'), null); assert.equal(odd.searchParams.get('email'), null);
 assert.equal(checkoutUrl('lifetime', {}), null);
+assert(!/buy\.stripe\.com/.test(read('modules/supportPass.js')), 'no provider URL built into the extension');
 assert.equal(isPassActive({ subscription_status: 'active' }), true); assert.equal(isPassActive({ subscription_status: 'free' }), false); assert.equal(isPassActive(null), false);
 
 // ---------- wiring ----------
