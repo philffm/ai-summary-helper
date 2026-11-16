@@ -23,13 +23,27 @@ const serve = (q, r) => {
 };
 const own = https.createServer({ key: fs.readFileSync(path.join(tmp, 'k.pem')), cert: fs.readFileSync(path.join(tmp, 'c.pem')) }, serve).listen(8443);
 const other = http.createServer(serve).listen(8125);
+// Fake api.byphil.eu for the thank-you page claims (section 5).
+const apiCalls = [];
+const jwt = (exp) => 'h.' + Buffer.from(JSON.stringify({ exp })).toString('base64url') + '.s';
+const fakeApi = https.createServer({ key: fs.readFileSync(path.join(tmp, 'k.pem')), cert: fs.readFileSync(path.join(tmp, 'c.pem')) }, (q, r) => {
+  let body = ''; q.on('data', (d) => { body += d; }); q.on('end', () => {
+    const b = body ? JSON.parse(body) : {}; apiCalls.push({ url: q.url, auth: q.headers.authorization || '', body: b });
+    r.setHeader('content-type', 'application/json'); r.setHeader('access-control-allow-origin', '*');
+    if (q.method === 'OPTIONS') { r.setHeader('access-control-allow-headers', 'authorization,content-type'); return r.end(); }
+    let out = { success: false, code: 'not_found' };
+    if (q.url === '/v1/auth/claim-checkout' && b.session_id === 'cs_test_newbuyer0001') out = { success: true, state: 'signed_in', token: jwt(Math.floor(Date.now() / 1000) + 86400), record: { id: 'newbuyer0000001', email: 'new@example.com', subscription_status: 'active', license_key: 'sub_e2e' } };
+    if (q.url === '/v1/auth/claim-checkout' && b.session_id === 'cs_test_confirm00001') out = b.confirm === 'signed_in' ? { success: true, state: 'active', record: { id: 'newbuyer0000001', email: 'new@example.com', subscription_status: 'active' } } : { success: true, state: 'confirm', paid_email: 'phil@work.example', account_email: 'new@example.com' };
+    r.end(JSON.stringify(out));
+  });
+}).listen(8444);
 
 (async () => {
   const ext = path.resolve(process.argv[2] || path.join(__dirname, '../../dev/aish-extension-chrome'));
   const ctx = await chromium.launchPersistentContext(fs.mkdtempSync(path.join(os.tmpdir(), 'pw-')), {
     headless: false, ignoreHTTPSErrors: true,
     args: ['--headless=new', `--disable-extensions-except=${ext}`, `--load-extension=${ext}`, '--no-sandbox', '--ignore-certificate-errors',
-      '--host-resolver-rules=MAP ai-summary-helper.byphil.eu:443 127.0.0.1:8443', '--no-proxy-server'],
+      '--host-resolver-rules=MAP ai-summary-helper.byphil.eu:443 127.0.0.1:8443, MAP api.byphil.eu:443 127.0.0.1:8444', '--no-proxy-server'],
     viewport: { width: 1200, height: 800 } });
   let sw = ctx.serviceWorkers()[0]; if (!sw) sw = await ctx.waitForEvent('serviceworker', { timeout: 15000 });
   const extId = sw.url().split('/')[2];
@@ -72,6 +86,28 @@ const other = http.createServer(serve).listen(8125);
   await wait(1200);
   check('4 forged message from another site: refused, nothing opened', (await opened()).length === n0 && res.result.value === 'no answer', res.result.value);
 
+  // 5. Support Pass thank-you page: the extension claims the payment (fake API), the page shows the result
+  const t1 = await ctx.newPage(); await t1.goto('https://ai-summary-helper.byphil.eu/thanks.html?session_id=cs_test_newbuyer0001');
+  await t1.waitForFunction(() => document.documentElement.getAttribute('data-aish-claim') === 'signed_in', null, { timeout: 15000 }).catch(() => {});
+  const s1 = await t1.evaluate(() => ({ state: document.documentElement.getAttribute('data-aish-claim'), h1: [...document.querySelectorAll('.ty-state')].find((x) => getComputedStyle(x).display !== 'none')?.querySelector('h1')?.textContent, url: location.href, email: document.querySelector('[data-for~="signed_in"] [data-fill="email"]')?.textContent }));
+  check('5 new buyer: signed in and the pass shown as on', s1.state === 'signed_in' && /Support Pass is on/.test(s1.h1 || '') && s1.email === 'new@example.com', s1);
+  check('5 the session id is gone from the address bar', !/session_id/.test(s1.url), s1.url);
+  const stored = await sw.evaluate(async () => { const r = await chrome.storage.local.get(['account:token', 'account:user', 'account:licenseKey']); return { token: !!r['account:token'], email: r['account:user'] && r['account:user'].email, key: r['account:licenseKey'] }; });
+  check('5 the login is stored in the extension', stored.token && stored.email === 'new@example.com' && stored.key === 'sub_e2e', stored);
+  // signed in now → a second payment with another email asks first, then moves the pass on one tap
+  const t2 = await ctx.newPage(); await t2.goto('https://ai-summary-helper.byphil.eu/thanks.html?session_id=cs_test_confirm00001');
+  await t2.waitForFunction(() => document.documentElement.getAttribute('data-aish-claim') === 'confirm', null, { timeout: 15000 }).catch(() => {});
+  const s2 = await t2.evaluate(() => ({ state: document.documentElement.getAttribute('data-aish-claim'), text: document.querySelector('[data-for="confirm"] .post-sub')?.textContent.replace(/\s+/g, ' ') }));
+  check('5 other email: the page asks which account', s2.state === 'confirm' && /phil@work\.example/.test(s2.text) && /new@example\.com/.test(s2.text), s2);
+  await t2.locator('[data-aish-claim-confirm="signed_in"]').click();
+  await t2.waitForFunction(() => document.documentElement.getAttribute('data-aish-claim') === 'active', null, { timeout: 15000 }).catch(() => {});
+  const confirmCall = apiCalls.filter((c) => c.body.session_id === 'cs_test_confirm00001').pop();
+  check('5 one tap: pass on the signed-in account (token + confirm sent)', (await t2.evaluate(() => document.documentElement.getAttribute('data-aish-claim'))) === 'active' && confirmCall && confirmCall.body.confirm === 'signed_in' && /^Bearer /.test(confirmCall.auth), confirmCall && { confirm: confirmCall.body.confirm, auth: !!confirmCall.auth });
+  // the same page on another host claims nothing
+  const before5 = apiCalls.length;
+  const t3 = await ctx.newPage(); await t3.goto('http://localhost:8125/thanks.html?session_id=cs_test_newbuyer0001'); await wait(1500);
+  check('5 other site: no claim, nothing sent', (await t3.evaluate(() => document.documentElement.hasAttribute('data-aish-claim'))) === false && apiCalls.length === before5);
+  fakeApi.close();
   await ctx.close(); own.close(); other.close();
   console.log(ok ? '\nALL PASS' : '\nSOME FAILED'); process.exit(ok ? 0 : 1);
 })().catch((e) => { console.error(e); process.exit(1); });

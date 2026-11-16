@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#08090C">
+<title>Thank you — AI Summary Helper</title>
+<meta name="description" content="Your Support Pass payment. AI Summary Helper switches it on in this browser by itself.">
+<meta name="robots" content="noindex">
+<meta name="referrer" content="no-referrer">
+<script>
+  (function(){
+    try {
+      var saved = localStorage.getItem('aish_theme');
+      var theme = saved === 'light' || saved === 'dark' ? saved : (window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
+      document.documentElement.setAttribute('data-theme', theme);
+    } catch (e) { document.documentElement.setAttribute('data-theme', 'dark'); }
+  })();
+</script>
+<link rel="icon" type="image/svg+xml" href="{{base}}assets/icon.svg">
+<link rel="preload" href="{{base}}assets/fonts/space-grotesk-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin><link rel="preload" href="{{base}}assets/fonts/inter-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin><link rel="stylesheet" href="{{base}}assets/styles.css">
+<style>
+  .ty { max-width: 560px; margin: 0 auto; padding: 8px 0 72px; }
+  .ty-state { display: none; }
+  html:not([data-aish-claim]):not(.ty-noext) .ty-state[data-for~="working"],
+  html[data-aish-claim="working"] .ty-state[data-for~="working"],
+  html[data-aish-claim="pending"] .ty-state[data-for~="pending"],
+  html[data-aish-claim="active"] .ty-state[data-for~="active"],
+  html[data-aish-claim="signed_in"] .ty-state[data-for~="signed_in"],
+  html[data-aish-claim="confirm"] .ty-state[data-for~="confirm"],
+  html[data-aish-claim="code_required"] .ty-state[data-for~="code_required"],
+  html[data-aish-claim="error"] .ty-state[data-for~="error"],
+  html.ty-noext:not([data-aish-claim]) .ty-state[data-for~="noext"] { display: block; }
+  .ty-list { list-style: none; margin: 24px 0; padding: 16px 18px; border-radius: 12px; border: 1px solid var(--border-subtle); background: var(--surface-2); display: grid; gap: 8px; }
+  .ty-list li { display: flex; gap: 10px; color: var(--text); font-size: 15px; }
+  .ty-list li::before { content: "✓"; color: var(--accent-text); font-weight: 600; }
+  .ty-list li.todo { color: var(--text-muted); }
+  .ty-list li.todo::before { content: "○"; color: var(--text-muted); }
+  .ty-actions { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 8px; }
+  .ty-note { font-size: 13px; color: var(--text-muted); margin-top: 16px; }
+</style>
+<meta property="og:title" content="Thank you — AI Summary Helper">
+<meta property="og:url" content="https://ai-summary-helper.byphil.eu/thanks.html">
+<meta property="og:type" content="website">
+<script src="{{base}}assets/analytics.js" defer></script>
+</head>
+<body>
+
+<a href="#main" class="skip-link">Skip to content</a>
+
+<!--include:nav-home-->
+
+<main id="main">
+  <div class="wrap">
+    <div class="ty" aria-live="polite">
+      <section class="ty-state" data-for="working pending">
+        <div class="post-hero">
+          <span class="blog-date">Support Pass</span>
+          <h1>Switching your pass on…</h1>
+          <p class="post-sub" data-for-pending>AI Summary Helper is picking up your payment in this browser. This takes a few seconds.</p>
+        </div>
+      </section>
+
+      <section class="ty-state" data-for="active signed_in">
+        <div class="post-hero">
+          <span class="blog-date">Support Pass</span>
+          <h1>Thank you! Your Support Pass is on.</h1>
+          <p class="post-sub">Nothing to copy, no order number. Thank you for keeping AI Summary Helper independent.</p>
+        </div>
+        <ul class="ty-list">
+          <li>Payment confirmed by Stripe</li>
+          <li>Linked to <strong data-fill="email">your account</strong></li>
+          <li>Unlocked in AI Summary Helper in this browser</li>
+        </ul>
+        <div class="ty-actions"><a class="btn-primary" href="#open-aish" data-aish-open>Open AISH</a></div>
+        <p class="ty-note">Using AISH on another computer? Sign in there with <span data-fill="email">the email you paid with</span>; the pass is already on it.</p>
+      </section>
+
+      <section class="ty-state" data-for="confirm">
+        <div class="post-hero">
+          <span class="blog-date">Support Pass</span>
+          <h1>Payment received</h1>
+          <p class="post-sub">You paid as <strong data-fill="email">another address</strong>, but AISH in this browser is signed in as <strong data-fill="account">your account</strong>.</p>
+        </div>
+        <div class="ty-actions">
+          <a class="btn-primary" href="#" data-aish-claim-confirm="signed_in">Add the pass to <span data-fill="account">this account</span></a>
+          <a class="btn-secondary" href="#" data-aish-claim-confirm="switch">Switch to <span data-fill="email">the paid address</span></a>
+        </div>
+        <p class="ty-note">One payment unlocks one account.</p>
+      </section>
+
+      <section class="ty-state" data-for="code_required">
+        <div class="post-hero">
+          <span class="blog-date">Support Pass</span>
+          <h1>Your pass is on <span data-fill="email">your account</span></h1>
+          <p class="post-sub">That account already exists, so we sent a 4-digit code to that address. Open AISH and enter it to sign in here. Your library stays private even if someone else typed your email at Stripe.</p>
+        </div>
+        <div class="ty-actions"><a class="btn-primary" href="#open-aish" data-aish-open>Open AISH</a></div>
+      </section>
+
+      <section class="ty-state" data-for="error">
+        <div class="post-hero">
+          <span class="blog-date">Support Pass</span>
+          <h1>Payment received</h1>
+          <p class="post-sub" data-error-text>We couldn’t switch the pass on in this browser automatically. It is saved on the email you paid with: open AISH, Settings › Account &amp; Plan, and sign in with that address.</p>
+        </div>
+        <div class="ty-actions"><a class="btn-primary" href="#open-aish" data-aish-open>Open AISH</a></div>
+        <p class="ty-note">Still stuck? Write to info@byphil.eu and forward the Stripe receipt.</p>
+      </section>
+
+      <section class="ty-state" data-for="noext">
+        <div class="post-hero">
+          <span class="blog-date">Support Pass</span>
+          <h1>Payment received. One step left.</h1>
+          <p class="post-sub">Your Support Pass is saved on the email you paid with. AI Summary Helper isn’t installed in this browser, so nothing could switch it on here.</p>
+        </div>
+        <ul class="ty-list">
+          <li>Payment confirmed by Stripe</li>
+          <li>Pass saved for the email you paid with</li>
+          <li class="todo">Add AISH, then sign in with that email: the pass is already there</li>
+        </ul>
+        <div class="ty-actions"><a class="btn-primary" href="https://chromewebstore.google.com/detail/ai-summary-helper-openai/hldbejcjaedipeegjcinmhejdndchkmb" target="_blank" rel="noopener">Add to Chrome, it’s free</a></div>
+        <p class="ty-note">Using AISH on another computer? Open it there and sign in with the email you paid with. No order number needed.</p>
+      </section>
+    </div>
+  </div>
+</main>
+
+<!--include:footer-home-->
+<script>
+(function () {
+  // The extension's loader (our domain only) claims the payment and reports the result in data-aish-claim*; see
+  // plugin/src/loader.js and bg/checkoutClaim.js. Without the extension the page says how to finish on another browser.
+  var root = document.documentElement;
+  var ERR = {
+    already_claimed: 'This payment was already switched on. Open AISH: the pass is on your account.',
+    expired: 'This thank-you link is older than a day. The pass is saved on the email you paid with: open AISH, Settings › Account & Plan, and sign in with that address.',
+    not_paid: 'Stripe hasn’t confirmed the payment yet. It usually takes a minute; you’ll get an email from Stripe when it’s done, and the pass switches on then.'
+  };
+  function render() {
+    var email = root.getAttribute('data-aish-claim-email'), account = root.getAttribute('data-aish-claim-account');
+    [].forEach.call(document.querySelectorAll('[data-fill="email"]'), function (n) { if (email) n.textContent = email; });
+    [].forEach.call(document.querySelectorAll('[data-fill="account"]'), function (n) { if (account) n.textContent = account; });
+    var code = root.getAttribute('data-aish-claim-code'), err = document.querySelector('[data-error-text]');
+    if (err && code && ERR[code]) err.textContent = ERR[code];
+    var state = root.getAttribute('data-aish-claim');
+    // Done: take the session id out of the address bar and history (it works as a short-lived secret).
+    if (state && state !== 'working' && state !== 'pending' && /[?&]session_id=/.test(location.search)) {
+      try { history.replaceState(null, '', location.pathname); } catch (e) {}
+    }
+  }
+  if (window.MutationObserver) new MutationObserver(render).observe(root, { attributes: true, attributeFilter: ['data-aish-claim', 'data-aish-claim-email', 'data-aish-claim-account', 'data-aish-claim-code'] });
+  // No extension answered: show how to finish elsewhere.
+  setTimeout(function () { if (root.getAttribute('data-aish') !== 'installed') root.classList.add('ty-noext'); }, 2500);
+  render();
+})();
+</script>
+</body>
+</html>

@@ -42,6 +42,8 @@
     _paq.push(['disableCookies']);
     _paq.push(['disableBrowserFeatureDetection']);
     _paq.push(['setDoNotTrack', true]);
+    // The Support Pass thank-you page carries a Stripe session id: never send it to analytics.
+    if (/[?&]session_id=/.test(location.search)) _paq.push(['setCustomUrl', location.href.replace(/([?&]session_id=)[^&#]*/, '$1redacted')]);
     _paq.push(['trackPageView']);
     _paq.push(['enableLinkTracking']);
     _paq.push(['setTrackerUrl', MATOMO_URL + 'matomo.php']);

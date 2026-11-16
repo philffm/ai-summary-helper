@@ -46,7 +46,8 @@
       "sync-worker.js",
       "background.js",
       "bg/feedPoll.js",
-      "bg/aiComplete.js"
+      "bg/aiComplete.js",
+      "bg/checkoutClaim.js"
     ]
   },
   "action": {

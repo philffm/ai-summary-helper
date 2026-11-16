@@ -16,7 +16,7 @@ try { if (typeof importScripts === 'function') importScripts('inbox-worker.js');
 try { if (typeof importScripts === 'function') importScripts('targets-worker.js'); } catch (_) { /* listed in the manifest instead */ }
 try { if (typeof importScripts === 'function') importScripts('mcp-worker.js'); } catch (_) { /* listed in the manifest instead */ }
 try { if (typeof importScripts === 'function') importScripts('sync-worker.js'); } catch (_) { /* listed in the manifest instead */ }
-/* global FEED_ALARM, applyFeedPollConfig, clearFeedBadge, pollFeeds, cloudRegionHeader, usedModelOf, noteCloudRoute, LOCAL_URL, aiFetch, aiJobs, aiResyncAsked, aiComplete -- defined in bg/feedPoll.js and bg/aiComplete.js */
+/* global claimCheckout, FEED_ALARM, applyFeedPollConfig, clearFeedBadge, pollFeeds, cloudRegionHeader, usedModelOf, noteCloudRoute, LOCAL_URL, aiFetch, aiJobs, aiResyncAsked, aiComplete -- defined in bg/feedPoll.js and bg/aiComplete.js */
 const FIN = globalThis.AISH_FINALIZE || null;
 const INBOX = globalThis.AISH_INBOX || null;
 const TARGETS = globalThis.AISH_TARGETS || null;
@@ -376,6 +376,8 @@ if (typeof AishAudio !== 'undefined' && typeof Audio !== 'undefined') AishAudio.
 
 // ── One-shot AI completion (feed recaps, tone scoring): bg/aiComplete.js ──
 try { if (typeof importScripts === 'function') importScripts('bg/aiComplete.js'); } catch (_) { /* listed in the manifest instead */ }
+// Support Pass thank-you page: claim a paid Stripe checkout (claimCheckout).
+try { if (typeof importScripts === 'function') importScripts('bg/checkoutClaim.js'); } catch (_) { /* listed in the manifest instead */ }
 
 // ── Phone inbox: while a phone is paired, collect the links it shared every 15 minutes (see modules/inboxManager.js) ──
 const INBOX_ALARM = 'inboxPoll';
@@ -1088,6 +1090,15 @@ const MESSAGE_HANDLERS = {
         Promise.resolve().then(() => chrome.action.openPopup({ windowId: sender.tab.windowId })).catch(inTab);
         sendResponse({ ok: true });
         return false;
+    } },
+    // Support Pass thank-you page (loader.js, our site's /thanks only): turn the paid Stripe checkout into an active pass.
+    'aish:claimCheckout': { from: 'page', check: (msg, sender) => {
+        const url = sender && (sender.url || (sender.tab && sender.tab.url));
+        let path = ''; try { path = new URL(String(url)).pathname; } catch (_) { return false; }
+        return isOwnSite(url) && /^\/thanks(\.html)?$/.test(path) && typeof msg.session_id === 'string' && (msg.confirm == null || msg.confirm === 'signed_in' || msg.confirm === 'switch');
+    }, run(msg, sender, sendResponse) {
+        claimCheckout({ sessionId: msg.session_id, confirm: msg.confirm || null }).then(sendResponse).catch(() => sendResponse({ state: 'error', code: 'internal' }));
+        return true;
     } },
     relayToActiveTab: { from: 'ext', check: (msg) => !!msg.message && typeof msg.message === 'object', run(msg, sender, sendResponse) {
         chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
