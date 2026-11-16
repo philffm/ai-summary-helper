@@ -33,8 +33,12 @@ const srv = http.createServer((q, r) => {
   await a.evaluate((m) => { const f = document.querySelector('iframe'); f.contentWindow.postMessage(m, '*'); }, forged('FORGED-NO-TOKEN'));
   await a.evaluate((m) => { const f = document.querySelector('iframe'); f.contentWindow.postMessage(m, '*'); }, forged('FORGED-GUESS', '00000000-0000-4000-8000-000000000000'));
   await wait(800);
-  const fa = extFrame(a); check('A framed popup.html loaded', !!fa);
-  check('A forged summaries from a framing site are ignored', fa && !(await fa.evaluate(() => /FORGED/.test(document.body.textContent))));
+  // use_dynamic_url: the extension's fixed ID no longer opens anything to a web page, so a site can neither frame
+  // popup.html nor fetch extension files to detect AISH. (If framing ever works again, the token still guards it.)
+  const fa = extFrame(a); check('A a site cannot frame popup.html by the fixed extension ID', !fa);
+  if (fa) check('A forged summaries from a framing site are ignored', !(await fa.evaluate(() => /FORGED/.test(document.body.textContent))));
+  const probe = await a.evaluate(async (id) => { const out = {}; for (const f of ['popup.html', 'inPage.css', 'modules/storageKeys.js', 'lib/d3.min.js', 'manifest.json']) { try { const r = await fetch(`chrome-extension://${id}/${f}`); out[f] = r.status; } catch (_) { out[f] = 'blocked'; } } return out; }, extId);
+  check('A no extension file is readable by a page through the fixed ID', Object.values(probe).every((v) => v === 'blocked'), probe);
 
   // B: the real in-page sidebar opened by the content script
   const b = await ctx.newPage(); await b.goto('http://localhost:8124/article'); await wait(600);
@@ -74,6 +78,17 @@ const srv = http.createServer((q, r) => {
   check('D in-page sidebar offers Close', btnLabel === 'Close', btnLabel);
   await fb.click('#popoutButton'); await wait(1200);
   check('D clicking it removes the sidebar from the page', !(await b.evaluate(() => !!document.getElementById('ai-summary-hybrid-sidebar'))));
+  // E: the content script can still load pdf.js and its worker (dynamic URL from runtime.getURL)
+  {
+    const e = await ctx.newPage(); await e.goto('http://localhost:8124/pdfcheck'); await wait(400);
+    const eTab = await sw.evaluate(async () => (await chrome.tabs.query({ url: 'http://localhost:8124/pdfcheck' }))[0].id);
+    await sw.evaluate(async (id) => { await chrome.scripting.executeScript({ target: { tabId: id }, files: ['content.js'] }); }, eTab);
+    await wait(300);
+    const iso = await isolated(e);
+    const r = await iso.run(`(async () => { try { const m = await import(chrome.runtime.getURL('lib/pdf.mjs')); const w = await fetch(chrome.runtime.getURL('lib/pdf.worker.mjs')); return { getDocument: typeof m.getDocument, worker: w.status, url: chrome.runtime.getURL('lib/pdf.mjs').split('/')[2] }; } catch (err) { return { error: String(err) }; } })()`);
+    check('E content script imports lib/pdf.mjs and reaches the worker', r && r.getDocument === 'function' && r.worker === 200, r);
+  }
+
   await ctx.close(); srv.close();
   console.log(ok ? '\nALL PASS' : '\nSOME FAILED'); process.exit(ok ? 0 : 1);
 })().catch((e) => { console.error(e); process.exit(1); });
