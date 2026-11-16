@@ -7646,5 +7646,56 @@
   "notifReopen": {
     "message": "Öppna igen",
     "description": "Notification button: reopen the closed tab"
+  },
+  "f_adjust_0a9e": {
+    "message": "Justera"
+  },
+  "f_adjust_graph_3f12": {
+    "message": "Justera grafen"
+  },
+  "f_adjust_graph_filters_on_de1e": {
+    "message": "Justera grafen, {n} filter på"
+  },
+  "f_adjust_9b23": {
+    "message": "Justera · {n}"
+  },
+  "f_color_by_60e5": {
+    "message": "Färga efter"
+  },
+  "f_fit_to_view_d072": {
+    "message": "Visa allt"
+  },
+  "f_graph_tools_d6dc": {
+    "message": "Grafverktyg"
+  },
+  "f_library_2270": {
+    "message": "Bibliotek"
+  },
+  "f_name_them_2154": {
+    "message": "Ge dem namn"
+  },
+  "f_path_pick_two_items_to_see_h_27da": {
+    "message": "Väg · välj två objekt för att se hur de hänger ihop"
+  },
+  "f_path_pick_two_items_to_see_h_3cdf": {
+    "message": "Väg: välj två objekt för att se hur de hänger ihop"
+  },
+  "f_show_articles_detail_6e3d": {
+    "message": "Visa artiklar (Detalj)"
+  },
+  "f_show_only_1a4e": {
+    "message": "Visa bara"
+  },
+  "f_show_topics_5eb8": {
+    "message": "Visa ämnen"
+  },
+  "f_zoom_in_3899": {
+    "message": "Zooma in"
+  },
+  "f_zoom_out_fe3a": {
+    "message": "Zooma ut"
+  },
+  "f_not_opened_yet_1de1": {
+    "message": "{n} inte öppnade än"
   }
 }

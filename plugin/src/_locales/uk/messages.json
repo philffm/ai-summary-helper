@@ -7646,5 +7646,56 @@
   "notifReopen": {
     "message": "Відкрити знову",
     "description": "Notification button: reopen the closed tab"
+  },
+  "f_adjust_0a9e": {
+    "message": "Налаштувати"
+  },
+  "f_adjust_graph_3f12": {
+    "message": "Налаштувати граф"
+  },
+  "f_adjust_graph_filters_on_de1e": {
+    "message": "Налаштувати граф, увімкнено фільтрів: {n}"
+  },
+  "f_adjust_9b23": {
+    "message": "Налаштувати · {n}"
+  },
+  "f_color_by_60e5": {
+    "message": "Колір за"
+  },
+  "f_fit_to_view_d072": {
+    "message": "Показати все"
+  },
+  "f_graph_tools_d6dc": {
+    "message": "Інструменти графа"
+  },
+  "f_library_2270": {
+    "message": "Бібліотека"
+  },
+  "f_name_them_2154": {
+    "message": "Дати назви"
+  },
+  "f_path_pick_two_items_to_see_h_27da": {
+    "message": "Шлях · виберіть два елементи, щоб побачити зв’язок"
+  },
+  "f_path_pick_two_items_to_see_h_3cdf": {
+    "message": "Шлях: виберіть два елементи, щоб побачити зв’язок"
+  },
+  "f_show_articles_detail_6e3d": {
+    "message": "Показати статті (Детально)"
+  },
+  "f_show_only_1a4e": {
+    "message": "Показувати лише"
+  },
+  "f_show_topics_5eb8": {
+    "message": "Показати теми"
+  },
+  "f_zoom_in_3899": {
+    "message": "Наблизити"
+  },
+  "f_zoom_out_fe3a": {
+    "message": "Віддалити"
+  },
+  "f_not_opened_yet_1de1": {
+    "message": "{n} ще не відкрито"
   }
 }

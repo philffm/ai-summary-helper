@@ -7363,5 +7363,56 @@
   "notifReopen": {
     "message": "開き直す",
     "description": "Notification button: reopen the closed tab"
+  },
+  "f_adjust_0a9e": {
+    "message": "調整"
+  },
+  "f_adjust_graph_3f12": {
+    "message": "グラフを調整"
+  },
+  "f_adjust_graph_filters_on_de1e": {
+    "message": "グラフを調整（フィルター {n} 件オン）"
+  },
+  "f_adjust_9b23": {
+    "message": "調整 · {n}"
+  },
+  "f_color_by_60e5": {
+    "message": "色分け"
+  },
+  "f_fit_to_view_d072": {
+    "message": "全体を表示"
+  },
+  "f_graph_tools_d6dc": {
+    "message": "グラフツール"
+  },
+  "f_library_2270": {
+    "message": "ライブラリ"
+  },
+  "f_name_them_2154": {
+    "message": "名前を付ける"
+  },
+  "f_path_pick_two_items_to_see_h_27da": {
+    "message": "パス · 2 つの項目を選んでつながりを表示"
+  },
+  "f_path_pick_two_items_to_see_h_3cdf": {
+    "message": "パス：2 つの項目を選んでつながりを表示"
+  },
+  "f_show_articles_detail_6e3d": {
+    "message": "記事を表示（詳細）"
+  },
+  "f_show_only_1a4e": {
+    "message": "表示を絞る"
+  },
+  "f_show_topics_5eb8": {
+    "message": "トピックを表示"
+  },
+  "f_zoom_in_3899": {
+    "message": "拡大"
+  },
+  "f_zoom_out_fe3a": {
+    "message": "縮小"
+  },
+  "f_not_opened_yet_1de1": {
+    "message": "{n} 件が未読"
   }
 }

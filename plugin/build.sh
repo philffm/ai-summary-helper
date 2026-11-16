@@ -41,7 +41,7 @@ cp -f compatible-tools.json src/
 
 # Read the base version from current_version.json as the single source of truth
 VERSION=$(jq -r '.version' ../current_version.json)
-if [ -n "$KEEP_VERSION" ]; then
+if [ -n "${KEEP_VERSION:-}" ]; then
   # Rebuild the current version (e.g. after a packaging fix): no bump, nothing stamped, the manifests already carry it.
   NEW_VERSION="$VERSION"
 else

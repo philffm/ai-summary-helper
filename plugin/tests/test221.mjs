@@ -68,18 +68,20 @@ for (let i = 0; i < 4; i++) p4.click();   // Feb → Jun: four more presses to t
 assert.equal(inWindow(), 12, 'after the last month everything is in view');
 p4.click(); assert.equal(inWindow(), 2, 'one more press starts over');
 delete globalThis.matchMedia;
-// ── the panel never runs past the graph's right edge (it was cut off when the chip sat on the right) ──
+// ── the time window lives in "Adjust" (AISH-038 D): the button counts it while a window is set, Reset clears it ──
 {
     const c5 = build();
-    const rect = (l, r) => () => ({ left: l, right: r, width: r - l, top: 0, bottom: 0, height: 0 });
-    c5.getBoundingClientRect = rect(0, 400);
-    c5.querySelector('.graph-time').getBoundingClientRect = rect(300, 380);
-    const panel = c5.querySelector('.graph-time-panel');
-    panel.getBoundingClientRect = () => { const x = 300 + (parseFloat(panel.style.left) || 0); return { left: x, right: x + 280, width: 280, top: 0, bottom: 0, height: 0 }; };
-    c5.querySelector('.graph-time-chip').click();
-    assert.equal(panel.hidden, false);
-    assert.equal(panel.style.left, '-188px', 'shifted left so its right edge stays 8px inside');
-    assert.equal(panel.style.maxWidth, '384px', 'never wider than the graph');
+    const btn = c5.querySelector('.graph-adjust-btn'), panel = c5.querySelector('.graph-adjust');
+    assert.ok(btn && panel && panel.hidden, 'Adjust button with a closed panel');
+    assert.ok(panel.querySelector('.graph-time .graph-time-track'), 'the time window is inside the panel');
+    btn.click(); assert.equal(panel.hidden, false); assert.equal(btn.getAttribute('aria-expanded'), 'true');
+    assert.ok(!/·/.test(btn.textContent), 'nothing on yet');
+    const lo = c5.querySelectorAll('.graph-time-track input')[0]; lo.value = String(Number(lo.max) - 1); lo.dispatchEvent(new w.Event('input'));
+    assert.match(btn.textContent, /Adjust · 1/, 'a set window counts as one filter');
+    c5.querySelector('.graph-adjust-reset').click();
+    assert.ok(!/·/.test(btn.textContent), 'Reset clears it');
+    panel.dispatchEvent(new w.KeyboardEvent('keydown', { key: 'Escape', bubbles: true }));
+    assert.equal(panel.hidden, true, 'Esc closes the panel');
 }
 // ── Save image takes the graph, not the first icon SVG of a chip ──
 {

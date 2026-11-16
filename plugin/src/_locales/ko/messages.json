@@ -7345,5 +7345,56 @@
   "notifReopen": {
     "message": "다시 열기",
     "description": "Notification button: reopen the closed tab"
+  },
+  "f_adjust_0a9e": {
+    "message": "조정"
+  },
+  "f_adjust_graph_3f12": {
+    "message": "그래프 조정"
+  },
+  "f_adjust_graph_filters_on_de1e": {
+    "message": "그래프 조정, 필터 {n}개 켜짐"
+  },
+  "f_adjust_9b23": {
+    "message": "조정 · {n}"
+  },
+  "f_color_by_60e5": {
+    "message": "색상 기준"
+  },
+  "f_fit_to_view_d072": {
+    "message": "전체 보기"
+  },
+  "f_graph_tools_d6dc": {
+    "message": "그래프 도구"
+  },
+  "f_library_2270": {
+    "message": "라이브러리"
+  },
+  "f_name_them_2154": {
+    "message": "이름 붙이기"
+  },
+  "f_path_pick_two_items_to_see_h_27da": {
+    "message": "경로 · 두 항목을 골라 연결을 확인하세요"
+  },
+  "f_path_pick_two_items_to_see_h_3cdf": {
+    "message": "경로: 두 항목을 골라 연결을 확인하세요"
+  },
+  "f_show_articles_detail_6e3d": {
+    "message": "글 보기 (상세)"
+  },
+  "f_show_only_1a4e": {
+    "message": "다음만 보기"
+  },
+  "f_show_topics_5eb8": {
+    "message": "주제 보기"
+  },
+  "f_zoom_in_3899": {
+    "message": "확대"
+  },
+  "f_zoom_out_fe3a": {
+    "message": "축소"
+  },
+  "f_not_opened_yet_1de1": {
+    "message": "{n}개 아직 안 열어 봄"
   }
 }

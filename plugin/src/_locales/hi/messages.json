@@ -7363,5 +7363,56 @@
   "notifReopen": {
     "message": "फिर से खोलें",
     "description": "Notification button: reopen the closed tab"
+  },
+  "f_adjust_0a9e": {
+    "message": "समायोजित करें"
+  },
+  "f_adjust_graph_3f12": {
+    "message": "ग्राफ़ समायोजित करें"
+  },
+  "f_adjust_graph_filters_on_de1e": {
+    "message": "ग्राफ़ समायोजित करें, {n} फ़िल्टर चालू"
+  },
+  "f_adjust_9b23": {
+    "message": "समायोजित करें · {n}"
+  },
+  "f_color_by_60e5": {
+    "message": "रंग इसके अनुसार"
+  },
+  "f_fit_to_view_d072": {
+    "message": "सब दिखाएँ"
+  },
+  "f_graph_tools_d6dc": {
+    "message": "ग्राफ़ टूल"
+  },
+  "f_library_2270": {
+    "message": "लाइब्रेरी"
+  },
+  "f_name_them_2154": {
+    "message": "नाम दें"
+  },
+  "f_path_pick_two_items_to_see_h_27da": {
+    "message": "पथ · दो आइटम चुनें और देखें कि वे कैसे जुड़े हैं"
+  },
+  "f_path_pick_two_items_to_see_h_3cdf": {
+    "message": "पथ: दो आइटम चुनें और देखें कि वे कैसे जुड़े हैं"
+  },
+  "f_show_articles_detail_6e3d": {
+    "message": "लेख दिखाएँ (विस्तार)"
+  },
+  "f_show_only_1a4e": {
+    "message": "सिर्फ़ दिखाएँ"
+  },
+  "f_show_topics_5eb8": {
+    "message": "विषय दिखाएँ"
+  },
+  "f_zoom_in_3899": {
+    "message": "ज़ूम इन"
+  },
+  "f_zoom_out_fe3a": {
+    "message": "ज़ूम आउट"
+  },
+  "f_not_opened_yet_1de1": {
+    "message": "{n} अभी तक नहीं खोले"
   }
 }

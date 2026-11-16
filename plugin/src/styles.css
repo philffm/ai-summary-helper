@@ -4075,13 +4075,10 @@ body[data-surface="tab"] { min-width: 0; }
 .graph-time { display: flex; flex-direction: column; align-items: flex-start; gap: 6px; max-width: 100%; }
 .graph-research-chip { padding: 4px 10px; border: 1px solid var(--outline); border-radius: 999px; background: var(--glass-base); color: var(--text-primary); font: inherit; font-size: var(--fs-xs); cursor: pointer; }
 .graph-research-chip.on { border-color: var(--accent); color: var(--accent); }
-.graph-time-chip, .graph-time-reset, .graph-time-play { padding: 4px 10px; border: 1px solid var(--outline); border-radius: 999px; background: var(--glass-base); color: var(--text-primary); font: inherit; font-size: var(--fs-xs); cursor: pointer; }
-.graph-time-chip.on { border-color: var(--accent); color: var(--accent); }
-.graph-time-panel { display: flex; flex-direction: column; gap: 6px; padding: 8px 10px; border: 1px solid var(--outline); border-radius: var(--radius-md); background: var(--glass-base); min-width: 220px; }
-.graph-time-panel[hidden] { display: none; }
+.graph-time-reset, .graph-time-play { padding: 4px 10px; border: 1px solid var(--outline); border-radius: 999px; background: var(--glass-base); color: var(--text-primary); font: inherit; font-size: var(--fs-xs); cursor: pointer; }
+.graph-time-panel { display: flex; flex-direction: column; gap: 6px; }
 .graph-time-label { font-size: var(--fs-xs); color: var(--text-muted); }
 /* histogram range: bars per month, two range inputs overlaid (still real inputs → keyboard + screen readers) */
-.graph-time-panel { min-width: 260px; }
 .graph-time-track { position: relative; height: 72px; margin: 2px 0 0; --lo: 0%; --hi: 100%; }
 .graph-time-bars { position: absolute; inset: 0 8px 14px; display: flex; align-items: flex-end; gap: 2px; }
 .graph-time-bars span { flex: 1; min-width: 2px; border-radius: 3px 3px 0 0; background: var(--outline); transition: background var(--duration-fast); }
@@ -4704,7 +4701,6 @@ body.is-resizing, body.is-resizing *, body.is-resizing *::before, body.is-resizi
 .detail-toolbar > button.button-secondary + button.button-secondary { border-left: 1px solid var(--outline); }
 .detail-toolbar > .detail-tool[hidden] { display: none; }
 .detail-toolbar > .detail-tool .btn-icon { display: inline-flex; }
-.graph-filterbar > .graph-time { align-self: flex-start; }
 
 /* Toolbar edit mode (⋯ → Customize toolbar…): handles on the bar + a tray with the actions that only live in ⋯ */
 .detail-toolbar.is-editing { border: 2px dashed var(--accent); flex-wrap: wrap; height: auto; min-height: 44px; }
@@ -4728,9 +4724,7 @@ body.is-resizing, body.is-resizing *, body.is-resizing *::before, body.is-resizi
 /* graph top row: toggle and chips share one centre line; the time panel floats below its chip so opening it moves nothing */
 .graph-topbar { align-items: center; }
 .graph-filterbar { align-items: center; min-height: 0; }
-.graph-filterbar > .graph-time { position: relative; align-self: center; }
-.graph-research-chip, .graph-time-chip { display: inline-flex; align-items: center; gap: 6px; height: 36px; padding: 0 14px; box-sizing: border-box; }
-.graph-time-panel { position: absolute; top: calc(100% + 6px); left: 0; z-index: 7; }
+.graph-research-chip { display: inline-flex; align-items: center; gap: 6px; height: 36px; padding: 0 14px; box-sizing: border-box; }
 
 /* Send split button: last used target + ▾ */
 .detail-toolbar > .detail-split { flex: 1 1 0; min-width: 0; display: flex; align-items: stretch; border-left: 1px solid var(--outline); }
@@ -4919,9 +4913,6 @@ circle.graph-path { stroke: var(--accent); stroke-width: 3px; }
 .graph-focusbar-open { padding: 4px 10px; background: var(--accent); color: var(--on-accent); }
 .graph-focusbar-clear { width: 24px; height: 24px; background: transparent; color: var(--text-muted); }
 .graph-focusbar-clear:hover, .graph-focusbar-clear:focus-visible { background: var(--accent-a12); outline: none; }
-.graph-path-chip, .graph-save-chip, .graph-unread-chip, .graph-color-chip, .graph-naming-chip { padding: 4px 10px; font: inherit; font-size: var(--fs-xs); color: var(--text-primary); background: var(--glass-base); border: 1px solid var(--outline); border-radius: 999px; cursor: pointer; }
-.graph-path-chip.on, .graph-unread-chip.on { background: var(--accent); border-color: var(--accent); color: var(--on-accent); }
-.graph-layout-toggle { flex: none; }
 .graph-gap-brief { align-self: flex-start; margin: 4px 0; padding: 4px 12px; font: inherit; font-size: var(--fs-xs); color: var(--accent); background: transparent; border: 1px solid var(--accent); border-radius: 999px; cursor: pointer; }
 .graph-gap-brief:hover, .graph-gap-brief:focus-visible { background: var(--accent); color: var(--on-accent); outline: none; }
 .graph-legend { flex-wrap: wrap; justify-content: flex-end; max-width: 100%; box-sizing: border-box; }
@@ -4933,6 +4924,42 @@ circle.graph-path { stroke: var(--accent); stroke-width: 3px; }
 
 .graph-sim-chip { padding: 4px 10px; font: inherit; font-size: var(--fs-xs); color: var(--text-muted); background: var(--glass-base); border: 1px dashed var(--outline); border-radius: 999px; cursor: default; }
 .graph-sim-chip:not(:disabled) { color: var(--accent); border: 1px solid var(--accent); cursor: pointer; }
+/* ── Graph toolbar D (Figma AISH-038): views · Research · Adjust on top, tools on the canvas ── */
+.graph-filterbar { flex: 1 1 auto; }
+.graph-adjust-wrap { position: relative; margin-left: auto; }
+.graph-adjust-wrap[hidden], .graph-adjust[hidden], .graph-adjust-section[hidden], .graph-color-pop[hidden] { display: none; }
+.graph-adjust-btn, .graph-color-pill { display: inline-flex; align-items: center; gap: 6px; height: 36px; padding: 0 14px; box-sizing: border-box; border: 1px solid var(--outline); border-radius: var(--radius-full); background: var(--glass-base); color: var(--text-primary); font: inherit; font-size: var(--fs-xs); cursor: pointer; }
+.graph-adjust-btn.on { border-color: var(--accent); color: var(--accent); }
+.graph-adjust { position: absolute; top: calc(100% + 6px); right: 0; z-index: 8; width: min(340px, calc(100vw - 32px)); max-height: min(70vh, 520px); overflow-y: auto; display: flex; flex-direction: column; gap: 10px; padding: 12px 14px 14px; box-sizing: border-box; background: var(--surface-sheet); border: 1px solid var(--outline); border-radius: var(--radius-lg); box-shadow: var(--shadow-modal); }
+.graph-adjust-head { display: flex; align-items: center; gap: 6px; }
+.graph-adjust-head h3 { flex: 1; margin: 0; font-size: var(--fs-sm); font-weight: 600; color: var(--text-primary); }
+.graph-adjust-reset, .graph-naming-btn, .graph-pathbar-cancel { border: 0; background: none; padding: 4px 8px; border-radius: var(--radius-sm); color: var(--text-link); font: inherit; font-size: var(--fs-xs); cursor: pointer; }
+.graph-adjust-reset:hover, .graph-naming-btn:hover, .graph-pathbar-cancel:hover { background: var(--accent-a08); }
+.graph-adjust-close { display: inline-flex; align-items: center; justify-content: center; width: 28px; height: 28px; border: 0; border-radius: var(--radius-full); background: none; color: var(--text-secondary); cursor: pointer; }
+.graph-adjust-close:hover { background: var(--accent-a08); }
+.graph-adjust-section { display: flex; flex-direction: column; gap: 8px; }
+.graph-adjust-section h4, .graph-color-pop h4 { margin: 0; font-size: var(--fs-xs); font-weight: 600; letter-spacing: .04em; text-transform: uppercase; color: var(--text-muted); }
+.graph-adjust-row { display: flex; align-items: center; justify-content: space-between; gap: 10px; font-size: var(--fs-sm); color: var(--text-primary); cursor: pointer; }
+.graph-adjust-text { display: flex; flex-direction: column; gap: 1px; min-width: 0; }
+.graph-adjust-text small { font-size: var(--fs-xs); color: var(--text-muted); }
+.graph-adjust .graph-time { width: 100%; }
+.graph-time-head { display: inline-flex; align-items: center; gap: 6px; font-size: var(--fs-sm); color: var(--text-primary); }
+.graph-tools { position: absolute; right: 10px; top: calc(var(--graph-topbar-h, 46px) + 20px); z-index: 6; display: flex; flex-direction: column; gap: 2px; padding: 4px; background: var(--surface-sheet); border: 1px solid var(--outline); border-radius: var(--radius-full); box-shadow: var(--shadow-raised); }
+.graph-tool { display: inline-flex; align-items: center; justify-content: center; width: 32px; height: 32px; border: 0; border-radius: var(--radius-full); background: none; color: var(--text-secondary); cursor: pointer; }
+.graph-tool:hover { background: var(--accent-a08); color: var(--text-primary); }
+.graph-tool[aria-pressed="true"], .graph-tool[aria-expanded="true"] { background: var(--accent); color: var(--on-accent); }
+.graph-tool .icon { width: 16px; height: 16px; }
+.graph-color-pill { position: absolute; left: 10px; bottom: 10px; z-index: 6; height: 30px; padding: 0 12px; color: var(--text-secondary); }
+.graph-color-pop { position: absolute; right: 58px; top: calc(var(--graph-topbar-h, 46px) + 20px); z-index: 8; display: flex; flex-direction: column; gap: 8px; padding: 12px; background: var(--surface-sheet); border: 1px solid var(--outline); border-radius: var(--radius-md); box-shadow: var(--shadow-modal); }
+.graph-color-pop.from-pill { right: auto; top: auto; left: 10px; bottom: 48px; }
+.graph-status { position: absolute; left: 10px; top: calc(var(--graph-topbar-h, 46px) + 20px); z-index: 6; }
+.graph-status:empty { display: none; }
+.graph-pathbar { display: none; flex: 1 1 100%; align-items: center; gap: 8px; min-height: 36px; padding: 0 6px 0 12px; box-sizing: border-box; border-radius: var(--radius-full); background: linear-gradient(var(--accent-a08), var(--accent-a08)), var(--surface-sheet); border: 1px solid var(--outline); box-shadow: var(--shadow-raised); color: var(--text-primary); font-size: var(--fs-xs); font-weight: 600; }
+.graph-pathbar > span:not(.ic) { flex: 1; min-width: 0; }
+.graph-topbar:has(.graph-adjust:not([hidden])) { z-index: 9; }   /* the open Adjust panel sits above the canvas tools */
+.graph-topbar.is-path > :not(.graph-pathbar) { display: none; }
+.graph-topbar.is-path > .graph-pathbar { display: flex; }
+
 circle.graph-read-dim, text.graph-read-dim, .graph-blob.graph-read-dim { opacity: 0.1; }
 .graph-legend-color { gap: 5px; }
 .graph-legend-grad { display: inline-block; width: 54px; height: 8px; border-radius: 4px; }
@@ -4942,8 +4969,8 @@ circle.graph-read-dim, text.graph-read-dim, .graph-blob.graph-read-dim { opacity
 .graph-subblob:hover { fill-opacity: .24; }
 .graph-subblob.graph-focus-dim, .graph-sub-label.graph-focus-dim { opacity: 0.15; }
 /* List and Gaps are not the picture: the chips that change the picture (layout, colour, unread, path, save, similarity progress) are out of the way there. */
-[data-graph-mode="list"] :is(.graph-layout-toggle, .graph-color-chip, .graph-unread-chip, .graph-path-chip, .graph-save-chip, .graph-sim-chip, .graph-naming-chip),
-[data-graph-mode="gaps"] :is(.graph-layout-toggle, .graph-color-chip, .graph-unread-chip, .graph-path-chip, .graph-save-chip, .graph-sim-chip, .graph-naming-chip) { display: none; }
+[data-graph-mode="list"] :is(.graph-adjust-wrap, .graph-tools, .graph-color-pill, .graph-color-pop, .graph-status),
+[data-graph-mode="gaps"] :is(.graph-adjust-wrap, .graph-tools, .graph-color-pill, .graph-color-pop, .graph-status) { display: none; }
 [data-graph-mode="list"] .graph-controls-bottom-right, [data-graph-mode="gaps"] .graph-controls-bottom-right { display: none; }   /* the legend explains the picture, not the list */
 .graph-overview .graph-toggle-large { display: none; }   /* Well-connected | All filters tags in the force layout; Topics shows everything */
 /* Name tags with AI (graphTagNaming.js): what is sent, where it goes, a preview of the first batch before anything is saved */

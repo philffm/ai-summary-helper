@@ -7646,5 +7646,56 @@
   "notifReopen": {
     "message": "Åpne igjen",
     "description": "Notification button: reopen the closed tab"
+  },
+  "f_adjust_0a9e": {
+    "message": "Juster"
+  },
+  "f_adjust_graph_3f12": {
+    "message": "Juster grafen"
+  },
+  "f_adjust_graph_filters_on_de1e": {
+    "message": "Juster grafen, {n} filtre på"
+  },
+  "f_adjust_9b23": {
+    "message": "Juster · {n}"
+  },
+  "f_color_by_60e5": {
+    "message": "Farg etter"
+  },
+  "f_fit_to_view_d072": {
+    "message": "Vis alt"
+  },
+  "f_graph_tools_d6dc": {
+    "message": "Grafverktøy"
+  },
+  "f_library_2270": {
+    "message": "Bibliotek"
+  },
+  "f_name_them_2154": {
+    "message": "Gi dem navn"
+  },
+  "f_path_pick_two_items_to_see_h_27da": {
+    "message": "Sti · velg to elementer for å se hvordan de henger sammen"
+  },
+  "f_path_pick_two_items_to_see_h_3cdf": {
+    "message": "Sti: velg to elementer for å se hvordan de henger sammen"
+  },
+  "f_show_articles_detail_6e3d": {
+    "message": "Vis artikler (Detalj)"
+  },
+  "f_show_only_1a4e": {
+    "message": "Vis bare"
+  },
+  "f_show_topics_5eb8": {
+    "message": "Vis emner"
+  },
+  "f_zoom_in_3899": {
+    "message": "Zoom inn"
+  },
+  "f_zoom_out_fe3a": {
+    "message": "Zoom ut"
+  },
+  "f_not_opened_yet_1de1": {
+    "message": "{n} ikke åpnet ennå"
   }
 }

@@ -39,7 +39,7 @@ import { cosineSim } from './localSearch.js';
 import { T, TN, uiLocale } from './feedI18n.js';
 import { conceptKey, isKnownTopic, isLanguageTag, topicLabel, broaderKeysOf } from './topicConcepts.js';
 import { fetchAnnotationsForArticle, escapeHtml } from './annotationExporter.js';
-import { setIconLabel } from './icons.js';
+import { setIconLabel, iconEl } from './icons.js';
 import { paperState } from './paperInfo.js';
 
 import { topicClusters, bridgeArticles, neighborhood, shortestPath, sourceType, maturityOf } from './graphStructure.js';
@@ -1126,6 +1126,11 @@ function renderGraph(container, allArticles, highlightTimestamp, minTagDegree, s
         if (zoomedByFocus) { zoomedByFocus = false; (calm() ? svg : svg.transition().duration(350)).call(zoom.transform, savedView || d3.zoomIdentity); }
     }
     container.__graphClear = clearAll;
+    // Canvas tools (zoom in / out, fit everything)
+    container.__graphZoom = {
+        by: (k) => (calm() ? svg : svg.transition().duration(250)).call(zoom.scaleBy, k),
+        fit: () => { zoomedByFocus = false; savedView = null; const t = d3.zoomTransform(svg.node()); zoomToNodes(nodes); zoomedByFocus = false; savedView = t; },
+    };
     function pathPick(d) {
         if (!pathFrom || pathFrom === d.id) {
             pathFrom = d.id; node.classed(PATH_CLASS, false); link.classed(PATH_CLASS, false);
@@ -1285,7 +1290,7 @@ function renderGraph(container, allArticles, highlightTimestamp, minTagDegree, s
     }
     applyColor(colorMode, false);
     applyUnread(!!container.__graphUnreadOnly, false);
-    renderStructureChips(container, {
+    renderGraphTools(container, {
         canOverview, overview,
         color: { mode: colorMode, modes: colorModes, onChange: (m) => applyColor(m, true) },
         // tags with no English name yet: one tap names them (graphTagNaming.js), and the graph is drawn again with the merged topics
@@ -1350,7 +1355,8 @@ function followSimilarity(container, rerender) {
 }
 
 function showSimilarityChip(container, { fresh, running, done, total }, rerender) {
-    const bar = filterBar(container);
+    let bar = container.querySelector(':scope > .graph-status');
+    if (!bar) { bar = document.createElement('div'); bar.className = 'graph-status'; container.append(bar); }
     let chip = bar.querySelector('.graph-sim-chip');
     if (!fresh && !running) { if (chip) chip.remove(); return; }
     if (!chip) { chip = document.createElement('button'); chip.type = 'button'; chip.className = 'graph-sim-chip'; bar.append(chip); }
@@ -1411,7 +1417,11 @@ function exportGraphSvg(container) {
     setTimeout(() => URL.revokeObjectURL(url), 1000);
 }
 
-/** Topics | Detail switch, "Path" chip and "Save image" in the same row as the other chips. */
+// ── Toolbar and canvas tools (Figma AISH-038 · D, a mix of B and C) ─────────────────────────────────────────────────
+// One row on top: Graph | List | Gaps · views, the 🎓 Research filter (one click) and "Adjust" (the other filters and the
+// library chores, in a panel). The picture's own tools sit on the canvas as an icon column on the right: zoom, fit,
+// Topics/Detail, colour, Path and Save image. A legend pill (bottom-left) says what the colours mean and opens the choice.
+// Path is a mode: while it is on, the toolbar becomes "Path · pick two items · Cancel".
 const COLOR_LABEL = { topic: () => T('Topic'), age: () => T('Age'), mood: () => T('Mood') };
 
 /** A colour bar in the legend for Age and Mood (Topic needs none: the labels say it). */
@@ -1432,66 +1442,174 @@ function renderColorLegend(container, mode, { ageColor, moodColor }) {
     legend.append(item);
 }
 
-function renderStructureChips(container, { canOverview, overview, onLayout, unread, color, naming }) {
+
+const toolButton = (name, label, onClick, { pressed } = {}) => {
+    const b = document.createElement('button');
+    b.type = 'button'; b.className = 'graph-tool graph-tool--' + name;
+    b.setAttribute('aria-label', label); b.title = label;
+    if (pressed != null) b.setAttribute('aria-pressed', String(!!pressed));
+    b.append(iconEl(name));
+    b.addEventListener('click', onClick);
+    return b;
+};
+
+/** The panel behind "Adjust": sections that the filters and the library row fill in. Created once per render. */
+function adjustPanel(container) {
+    if (container.__graphAdjust && container.__graphAdjust.panel.isConnected) return container.__graphAdjust;
     const bar = filterBar(container);
-    bar.querySelectorAll('.graph-layout-toggle, .graph-path-chip, .graph-save-chip, .graph-unread-chip, .graph-color-chip, .graph-naming-chip').forEach(n => n.remove());
-    if (color && color.modes.length > 1) {
-        const chip = document.createElement('button');
-        chip.type = 'button'; chip.className = 'graph-color-chip';
-        let mode = color.mode;
-        const paint = () => { chip.textContent = T('Color: {mode}', { mode: COLOR_LABEL[mode]() }); };
-        chip.title = T('Change what the dot colours mean');
-        paint();
-        chip.addEventListener('click', () => { mode = color.modes[(color.modes.indexOf(mode) + 1) % color.modes.length]; paint(); color.onChange(mode); });
-        bar.append(chip);
-    }
-    if (canOverview) {
-        const g = document.createElement('div');
-        g.className = 'segmented-control segmented-control-buttons graph-layout-toggle'; g.setAttribute('role', 'group'); g.setAttribute('aria-label', T('Graph layout'));
-        [['overview', T('Topics')], ['detail', T('Detail')]].forEach(([mode, text]) => {
-            const b = document.createElement('button'); b.type = 'button'; b.textContent = text;
-            const on = (mode === 'overview') === overview;
-            b.className = on ? 'active' : ''; b.setAttribute('aria-pressed', String(on));
-            b.addEventListener('click', () => { if (!on) onLayout(mode); });
-            g.append(b);
-        });
-        bar.prepend(g);
-    }
-    const path = document.createElement('button');
-    path.type = 'button'; path.className = 'graph-path-chip' + (container.__graphPathOn ? ' on' : '');
-    path.setAttribute('aria-pressed', String(!!container.__graphPathOn));
-    path.textContent = T('Path'); path.title = T('Pick two items to see how they connect');
-    path.addEventListener('click', () => {
-        const on = !container.__graphPathOn;
-        path.classList.toggle('on', on); path.setAttribute('aria-pressed', String(on));
-        if (container.__graphPathMode) container.__graphPathMode(on);
+    const wrap = document.createElement('div'); wrap.className = 'graph-adjust-wrap';
+    const button = document.createElement('button');
+    button.type = 'button'; button.className = 'graph-adjust-btn';
+    button.setAttribute('aria-expanded', 'false'); button.setAttribute('aria-haspopup', 'dialog');
+    const panel = document.createElement('div');
+    panel.className = 'graph-adjust'; panel.hidden = true;
+    panel.setAttribute('role', 'dialog'); panel.setAttribute('aria-label', T('Adjust graph'));
+    const head = document.createElement('div'); head.className = 'graph-adjust-head';
+    const title = document.createElement('h3'); title.textContent = T('Adjust graph');
+    const reset = document.createElement('button'); reset.type = 'button'; reset.className = 'graph-adjust-reset'; reset.textContent = T('Reset');
+    const close = document.createElement('button'); close.type = 'button'; close.className = 'graph-adjust-close';
+    close.setAttribute('aria-label', T('Close')); close.title = T('Close'); close.append(iconEl('x'));
+    head.append(title, reset, close);
+    panel.append(head);
+    const section = (name, caption) => {
+        const sec = document.createElement('section'); sec.className = 'graph-adjust-section graph-adjust-section--' + name; sec.hidden = true;
+        const h = document.createElement('h4'); h.textContent = caption; sec.append(h);
+        panel.append(sec); return sec;
+    };
+    const sections = { show: section('show', T('Show only')), library: section('library', T('Library')) };
+    const active = new Map();   // filter name → on
+    const resets = [];
+    // The panel hangs below the toolbar inside the canvas (overflow hidden): keep it inside, scroll the rest.
+    const fitHeight = () => { const room = container.getBoundingClientRect().bottom - panel.getBoundingClientRect().top - 12; panel.style.maxHeight = room > 160 ? Math.floor(room) + 'px' : ''; };
+    const a = {
+        wrap, button, panel, sections,
+        /** A filter inside the panel reports whether it is on; the button counts them. */
+        setActive(name, on) { active.set(name, !!on); paint(); },
+        onReset(fn) { resets.push(fn); },
+        add(name, el) { sections[name].append(el); sections[name].hidden = false; wrap.hidden = false; },
+        open() { panel.hidden = false; button.setAttribute('aria-expanded', 'true'); fitHeight(); const f = panel.querySelector('input, button:not(.graph-adjust-close)'); if (f) f.focus({ preventScroll: true }); document.addEventListener('pointerdown', outside, true); },
+        close(focusButton = true) { if (panel.hidden) return; panel.hidden = true; button.setAttribute('aria-expanded', 'false'); document.removeEventListener('pointerdown', outside, true); if (focusButton) button.focus({ preventScroll: true }); },
+    };
+    const outside = (e) => { if (!wrap.contains(e.target)) a.close(false); };
+    const paint = () => {
+        const n = [...active.values()].filter(Boolean).length;
+        setIconLabel(button, 'sliders-horizontal', n ? T('Adjust · {n}', { n }) : T('Adjust'));
+        button.classList.toggle('on', n > 0);
+        button.setAttribute('aria-label', n ? T('Adjust graph, {n} filters on', { n }) : T('Adjust graph'));
+    };
+    button.addEventListener('click', () => (panel.hidden ? a.open() : a.close()));
+    close.addEventListener('click', () => a.close());
+    reset.addEventListener('click', () => resets.forEach(fn => fn()));
+    panel.addEventListener('keydown', (e) => { if (e.key === 'Escape') { e.stopPropagation(); a.close(); } });
+    paint();
+    wrap.hidden = true;   // until a section has something in it
+    wrap.append(button, panel);
+    bar.append(wrap);
+    container.__graphAdjust = a;
+    return a;
+}
+
+/** Colour choice (Topic / Age / Mood) as a small popover, opened from the canvas tool or the legend pill. */
+function colorPopover(container, color) {
+    const pop = document.createElement('div');
+    pop.className = 'graph-color-pop'; pop.hidden = true; pop.setAttribute('role', 'dialog'); pop.setAttribute('aria-label', T('Color by'));
+    const h = document.createElement('h4'); h.textContent = T('Color by');
+    const g = document.createElement('div'); g.className = 'segmented-control segmented-control-buttons graph-color-choice'; g.setAttribute('role', 'radiogroup'); g.setAttribute('aria-label', T('Color by'));
+    const btns = color.modes.map((m) => {
+        const b = document.createElement('button'); b.type = 'button'; b.dataset.mode = m; b.textContent = COLOR_LABEL[m]();
+        b.setAttribute('role', 'radio');
+        b.addEventListener('click', () => { set(m); color.onChange(m); });
+        g.append(b); return b;
     });
-    const save = document.createElement('button');
-    save.type = 'button'; save.className = 'graph-save-chip'; save.textContent = T('Save image');
-    save.title = T('Save this picture as an SVG file on your device');
-    save.addEventListener('click', () => exportGraphSvg(container));
+    const set = (m) => { btns.forEach(b => { const on = b.dataset.mode === m; b.classList.toggle('active', on); b.setAttribute('aria-checked', String(on)); }); if (pop.__onSet) pop.__onSet(m); };
+    pop.append(h, g);
+    pop.addEventListener('keydown', (e) => { if (e.key === 'Escape') { e.stopPropagation(); pop.__close(); } });
+    set(color.mode);
+    return pop;
+}
+
+function renderGraphTools(container, { canOverview, overview, onLayout, unread, color, naming }) {
+    container.querySelectorAll(':scope > .graph-tools, :scope > .graph-color-pill, :scope > .graph-color-pop').forEach(n => n.remove());
+    const topbar = graphTopbar(container);
+    // ── Adjust: Unread + library (Time adds itself, see renderTimeRange)
+    const adj = adjustPanel(container);
     if (unread) {
-        const chip = document.createElement('button');
-        chip.type = 'button'; chip.className = 'graph-unread-chip' + (unread.on ? ' on' : '');
-        chip.setAttribute('aria-pressed', String(unread.on));
-        chip.textContent = T('Unread') + ' · ' + unread.count;
-        chip.title = T('Show only what you have not read yet');
-        chip.addEventListener('click', () => {
-            const on = chip.getAttribute('aria-pressed') !== 'true';
-            chip.classList.toggle('on', on); chip.setAttribute('aria-pressed', String(on));
-            unread.onToggle(on);
-        });
-        bar.append(chip);
+        const row = document.createElement('label'); row.className = 'graph-adjust-row';
+        const txt = document.createElement('span'); txt.className = 'graph-adjust-text';
+        const t = document.createElement('span'); t.textContent = T('Unread');
+        const hint = document.createElement('small'); hint.textContent = TN(unread.count, '{n} not opened yet', '{n} not opened yet');
+        txt.append(t, hint);
+        const sw = document.createElement('span'); sw.className = 'switch';
+        const input = document.createElement('input'); input.type = 'checkbox'; input.className = 'graph-unread-toggle'; input.checked = !!unread.on;
+        const slider = document.createElement('span'); slider.className = 'slider-toggle';
+        sw.append(input, slider);
+        row.append(txt, sw);
+        input.addEventListener('change', () => { unread.onToggle(input.checked); adj.setActive('unread', input.checked); });
+        adj.onReset(() => { if (input.checked) { input.checked = false; unread.onToggle(false); adj.setActive('unread', false); } });
+        adj.setActive('unread', !!unread.on);
+        adj.add('show', row);
     }
     if (naming) {
-        const chip = document.createElement('button');
-        chip.type = 'button'; chip.className = 'graph-naming-chip';
-        chip.textContent = '🏷 ' + (naming.unnamed ? TN(naming.unnamed, '{n} tag without a name', '{n} tags without a name') : TN(naming.count, '{n} tag without broader topics', '{n} tags without broader topics'));
-        chip.title = T('Give these tags their English names, so the same topic in two languages becomes one');
-        chip.addEventListener('click', () => naming.onOpen());
-        bar.append(chip);
+        const row = document.createElement('div'); row.className = 'graph-adjust-row';
+        const txt = document.createElement('span'); txt.className = 'graph-adjust-text';
+        txt.textContent = '🏷 ' + (naming.unnamed ? TN(naming.unnamed, '{n} tag without a name', '{n} tags without a name') : TN(naming.count, '{n} tag without broader topics', '{n} tags without broader topics'));
+        const go = document.createElement('button'); go.type = 'button'; go.className = 'graph-naming-btn'; go.textContent = T('Name them');
+        go.title = T('Give these tags their English names, so the same topic in two languages becomes one');
+        go.addEventListener('click', () => { adj.close(false); naming.onOpen(); });
+        row.append(txt, go);
+        adj.add('library', row);
     }
-    bar.append(path, save);
+    // ── Canvas tools (right edge)
+    const tools = document.createElement('div');
+    tools.className = 'graph-tools'; tools.setAttribute('role', 'toolbar'); tools.setAttribute('aria-label', T('Graph tools')); tools.setAttribute('aria-orientation', 'vertical');
+    const z = () => container.__graphZoom;
+    tools.append(
+        toolButton('plus', T('Zoom in'), () => z() && z().by(1.4)),
+        toolButton('minus', T('Zoom out'), () => z() && z().by(1 / 1.4)),
+        toolButton('maximize', T('Fit to view'), () => z() && z().fit()),
+    );
+    if (canOverview) {
+        const lay = toolButton('layers', overview ? T('Show articles (Detail)') : T('Show topics'), () => onLayout(overview ? 'detail' : 'overview'), { pressed: !overview });
+        lay.classList.add('graph-layout-tool');
+        tools.append(lay);
+    }
+    let pop = null, pill = null;
+    if (color && color.modes.length > 1) {
+        const colorBtn = toolButton('palette', T('Color by'), () => toggle());
+        colorBtn.setAttribute('aria-haspopup', 'dialog'); colorBtn.setAttribute('aria-expanded', 'false');
+        tools.append(colorBtn);
+        pop = colorPopover(container, color);
+        pill = document.createElement('button');
+        pill.type = 'button'; pill.className = 'graph-color-pill'; pill.setAttribute('aria-haspopup', 'dialog');
+        const paintPill = (m) => setIconLabel(pill, 'palette', T('Color: {mode}', { mode: COLOR_LABEL[m]() }));
+        pop.__onSet = paintPill; paintPill(color.mode);
+        let opener = colorBtn;
+        const outside = (e) => { if (!pop.contains(e.target) && e.target !== colorBtn && e.target !== pill && !colorBtn.contains(e.target) && !pill.contains(e.target)) close(); };
+        const open = (from) => { opener = from; pop.hidden = false; pop.classList.toggle('from-pill', from === pill); colorBtn.setAttribute('aria-expanded', 'true'); const f = pop.querySelector('button.active') || pop.querySelector('button'); if (f) f.focus({ preventScroll: true }); document.addEventListener('pointerdown', outside, true); };
+        const close = () => { if (pop.hidden) return; pop.hidden = true; colorBtn.setAttribute('aria-expanded', 'false'); document.removeEventListener('pointerdown', outside, true); opener.focus({ preventScroll: true }); };
+        const toggle = (from = colorBtn) => (pop.hidden ? open(from) : close());
+        pop.__close = close;
+        pill.addEventListener('click', () => toggle(pill));
+    }
+    const path = toolButton('route', T('Path: pick two items to see how they connect'), () => setPath(!container.__graphPathOn), { pressed: !!container.__graphPathOn });
+    tools.append(path, toolButton('download', T('Save image'), () => exportGraphSvg(container)));
+    // Path is a mode: the toolbar turns into a hint with Cancel while it is on
+    const pathbar = document.createElement('div'); pathbar.className = 'graph-pathbar'; pathbar.setAttribute('role', 'status');
+    const ptxt = document.createElement('span'); ptxt.textContent = T('Path · pick two items to see how they connect');
+    const cancel = document.createElement('button'); cancel.type = 'button'; cancel.className = 'graph-pathbar-cancel'; cancel.textContent = T('Cancel');
+    cancel.addEventListener('click', () => { setPath(false); path.focus({ preventScroll: true }); });
+    pathbar.append(iconEl('route'), ptxt, cancel);
+    topbar.querySelectorAll(':scope > .graph-pathbar').forEach(n => n.remove());
+    topbar.append(pathbar);
+    function setPath(on) {
+        path.setAttribute('aria-pressed', String(on));
+        topbar.classList.toggle('is-path', on);
+        if (container.__graphPathMode) container.__graphPathMode(on);
+        else container.__graphPathOn = on;
+    }
+    topbar.classList.toggle('is-path', !!container.__graphPathOn);
+    container.append(tools);
+    if (pill) container.append(pill, pop);
 }
 
 /** Row (top-left, under the Graph|List switch) that holds the filter chips side by side. */
@@ -1501,29 +1619,32 @@ function filterBar(container) {
     return bar;
 }
 
-/** "🎓 Research" toggle chip: show only papers in the graph. */
+/** "🎓 Research" toggle chip: show only papers in the graph. One click; the count shows while it is on. */
 function renderResearchChip(container, count, on, onToggle) {
     const chip = document.createElement('button');
     chip.type = 'button'; chip.className = 'graph-research-chip' + (on ? ' on' : '');
     chip.setAttribute('aria-pressed', String(on));
-    chip.textContent = T('🎓 Research') + ' · ' + count;
-    chip.title = T('Show only research papers');
+    chip.textContent = on ? T('🎓 Research') + ' · ' + count : T('🎓 Research');
+    chip.title = T('Show only research papers') + ' (' + count + ')';
+    chip.setAttribute('aria-label', T('Show only research papers') + ', ' + count);
     chip.addEventListener('click', onToggle);
-    filterBar(container).append(chip);
+    const bar = filterBar(container);
+    const adjust = bar.querySelector('.graph-adjust-wrap');
+    if (adjust) bar.insertBefore(chip, adjust); else bar.prepend(chip);
 }
 
-/** "🕐 Time" chip (top-left, under the Graph|List switch) that opens a from/to month window over the graph. */
+/** Time window (from/to month) over the graph, with a replay. Lives in the "Adjust" panel under "Show only". */
 function renderTimeRange(container, nodes, links, articles) {
     const span = monthsOf(articles);
     if (!span || span.max - span.min < 1 || !container.__archiveGraphSelections) return;
     const sel = container.__archiveGraphSelections;
+    const adj = adjustPanel(container);
     const wrap = document.createElement('div');
     wrap.className = 'graph-time';
-    const chip = document.createElement('button');
-    chip.type = 'button'; chip.className = 'graph-time-chip'; chip.setAttribute('aria-expanded', 'false');
-    setIconLabel(chip, 'clock', T('🕐 Time'));
+    const head = document.createElement('div'); head.className = 'graph-time-head';
+    setIconLabel(head, 'clock', T('🕐 Time'));
     const panel = document.createElement('div');
-    panel.className = 'graph-time-panel'; panel.hidden = true;
+    panel.className = 'graph-time-panel';
     const text = document.createElement('div'); text.className = 'graph-time-label';
     const counts = monthHistogram(articles, span);
     const peak = Math.max(1, ...counts);
@@ -1555,7 +1676,7 @@ function renderTimeRange(container, nodes, links, articles) {
         track.style.setProperty('--lo', ((lo - span.min) / Math.max(1, span.max - span.min) * 100) + '%');
         track.style.setProperty('--hi', ((hi - span.min) / Math.max(1, span.max - span.min) * 100) + '%');
         text.textContent = full ? T('All time') + ' · ' + TN(total, '{n} article', '{n} articles') : T('{a} of {b} articles in window', { a: inWin, b: total });
-        setIconLabel(chip, 'clock', full ? T('🕐 Time') : '🕐 ' + monthLabel(lo) + ' – ' + monthLabel(hi));
+        setIconLabel(head, 'clock', full ? T('🕐 Time') : '🕐 ' + monthLabel(lo) + ' – ' + monthLabel(hi));
         const vis = full ? null : visibleInRange(nodes, links, lo, hi);
         const dim = (d) => !!vis && !vis.has(d.id);
         sel.node.each(function (d) { this.classList.toggle(TIME_DIM_CLASS, dim(d)); });
@@ -1564,7 +1685,7 @@ function renderTimeRange(container, nodes, links, articles) {
             const s = typeof l.source === 'object' ? l.source.id : l.source, t = typeof l.target === 'object' ? l.target.id : l.target;
             this.classList.toggle(TIME_DIM_CLASS, !!vis && !(vis.has(s) && vis.has(t)));
         });
-        chip.classList.toggle('on', !full);
+        adj.setActive('time', !full);
         container.dispatchEvent(new CustomEvent('graph-time-range', { detail: { from: lo, to: hi, full }, bubbles: true }));
     };
     // Replay: the window grows from the first month to the last, so you watch the archive (and its topics) build up.
@@ -1598,24 +1719,11 @@ function renderTimeRange(container, nodes, links, articles) {
     from.addEventListener('input', () => stopReplay(false)); to.addEventListener('input', () => stopReplay(false));
     from.addEventListener('input', paint); to.addEventListener('input', paint);
     reset.addEventListener('click', () => { stopReplay(false); from.value = String(span.min); to.value = String(span.max); paint(); });
-    // The panel opens under the chip but never past the graph's edge: shift it left as far as needed, and never wider than the room.
-    const place = () => {
-        if (panel.hidden) return;
-        panel.style.left = '0px'; panel.style.maxWidth = '';
-        const box = container.getBoundingClientRect(), cr = wrap.getBoundingClientRect();
-        if (!box.width) return;
-        const room = box.width - 16;
-        panel.style.maxWidth = room + 'px'; panel.style.minWidth = Math.min(260, room) + 'px';
-        const pr = panel.getBoundingClientRect();
-        const over = pr.right - (box.right - 8);
-        if (over > 0) panel.style.left = Math.max(box.left + 8 - cr.left, -over) + 'px';
-    };
-    chip.addEventListener('click', () => { panel.hidden = !panel.hidden; chip.setAttribute('aria-expanded', String(!panel.hidden)); place(); });
-    window.addEventListener('resize', place);
+    adj.onReset(() => reset.click());
     const actions = document.createElement('div'); actions.className = 'graph-time-actions'; actions.append(play, reset);
     panel.append(text, track, ends, actions);
-    wrap.append(chip, panel);
-    filterBar(container).append(wrap);
+    wrap.append(head, panel);
+    adj.add('show', wrap);
     paint();
 }
 
@@ -1697,7 +1805,7 @@ export function renderGraphList(container, nodes, links, gaps = []) {
     toggle.className = 'segmented-control segmented-control-buttons graph-view-toggle'; toggle.setAttribute('role', 'group'); toggle.setAttribute('aria-label', T('Graph view'));
     const mk = (label) => { const b = document.createElement('button'); b.type = 'button'; b.textContent = label; return b; };
     const gBtn = mk(T('Graph')), lBtn = mk(T('List'));
-    const pBtn = (gaps && gaps.length) ? mk(T('Gaps') + ' ' + gaps.length) : null;
+    const pBtn = (gaps && gaps.length) ? mk(T('Gaps') + ' · ' + gaps.length) : null;
     const btns = { graph: gBtn, list: lBtn, ...(pBtn ? { gaps: pBtn } : {}) };
     let mode = 'graph';
     const set = (next, announce = true) => {
