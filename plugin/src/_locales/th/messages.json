@@ -7703,5 +7703,191 @@
   },
   "f_have_a_license_key_or_gift_c_fd77": {
     "message": "มีคีย์ใบอนุญาตหรือรหัสของขวัญไหม?"
+  },
+  "f_quiz_e314": {
+    "message": "แบบทดสอบ"
+  },
+  "f_a_quiz_needs_at_least_2_arti_0ff9": {
+    "message": "แบบทดสอบต้องมีบทความอย่างน้อย 2 บทความ"
+  },
+  "f_leave_out_c607": {
+    "message": "ไม่รวม “{title}”"
+  },
+  "f_questions_22a2": {
+    "message": "จำนวนคำถาม"
+  },
+  "f_mix_5c01": {
+    "message": "ผสม"
+  },
+  "f_per_article_e6e6": {
+    "message": "ต่อบทความ"
+  },
+  "f_across_articles_648f": {
+    "message": "ข้ามบทความ"
+  },
+  "f_both_18c2": {
+    "message": "ทั้งสองแบบ"
+  },
+  "f_about_questions_per_article_0c04": {
+    "message": "ประมาณ {n} คำถามต่อบทความ"
+  },
+  "f_questions_that_connect_two_a_09c3": {
+    "message": "คำถามที่เชื่อมสองบทความ: สิ่งที่ทั้งสองพูด และจุดที่ต่างกัน"
+  },
+  "f_about_per_article_plus_that__3d2c": {
+    "message": "ประมาณ {n} ต่อบทความ และอีก {m} ข้อที่เชื่อมบทความ"
+  },
+  "f_uses_your_model_requests_sta_a624": {
+    "message": "ใช้โมเดลของคุณ · {n} คำขอ · เก็บไว้ในอุปกรณ์นี้"
+  },
+  "f_every_question_shows_the_art_8b21": {
+    "message": "ทุกคำถามแสดงบทความและประโยคที่มา คำถามที่ไม่มีข้อความอ้างอิงจะถูกตัดออก"
+  },
+  "f_create_quiz_e72a": {
+    "message": "สร้างแบบทดสอบ"
+  },
+  "f_writing_questions_1754": {
+    "message": "กำลังเขียนคำถาม…"
+  },
+  "f_waiting_06a8": {
+    "message": "รอ"
+  },
+  "f_writing_914f": {
+    "message": "กำลังเขียน"
+  },
+  "f_dropped_b271": {
+    "message": "ตัดออก {n} ข้อ"
+  },
+  "f_no_questions_d027": {
+    "message": "ไม่มีคำถาม"
+  },
+  "f_no_question_had_a_matching_s_2c20": {
+    "message": "ไม่มีคำถามใดที่พบประโยคตรงกันในบทความ ลองบทความอื่นหรือโมเดลอื่น"
+  },
+  "f_question_of_d1cf": {
+    "message": "คำถาม {i} จาก {n}"
+  },
+  "f_not_sure_show_me_where_it_is_1279": {
+    "message": "ไม่แน่ใจ? ให้ดูว่าเขียนไว้ตรงไหน"
+  },
+  "f_right_5a31": {
+    "message": "ถูกต้อง"
+  },
+  "f_here_is_the_answer_0aae": {
+    "message": "นี่คือคำตอบ"
+  },
+  "f_not_quite_the_right_answer_i_063c": {
+    "message": "ยังไม่ใช่ คำตอบที่ถูกคือ {a}"
+  },
+  "f_where_it_says_so_58d3": {
+    "message": "ที่มา"
+  },
+  "f_show_in_article_0c75": {
+    "message": "แสดงในบทความ"
+  },
+  "f_report_question_15d9": {
+    "message": "รายงานคำถาม"
+  },
+  "f_reported_it_is_left_out_from_a379": {
+    "message": "รายงานแล้ว จากนี้จะไม่ถามข้อนี้"
+  },
+  "f_see_result_7319": {
+    "message": "ดูผลลัพธ์"
+  },
+  "f_quiz_done_344f": {
+    "message": "แบบทดสอบ · เสร็จแล้ว"
+  },
+  "f_to_repeat_the_answers_stay_o_fb3f": {
+    "message": "ต้องทบทวน {n} ข้อ คำตอบเก็บไว้ในอุปกรณ์นี้"
+  },
+  "f_all_right_the_answers_stay_o_0b32": {
+    "message": "ถูกทั้งหมด คำตอบเก็บไว้ในอุปกรณ์นี้"
+  },
+  "f_re_read_7c6b": {
+    "message": "อ่านอีกครั้ง"
+  },
+  "f_remind_me_in_days_c7b4": {
+    "message": "เตือนฉันในอีก {n} วัน"
+  },
+  "f_reminder_set_488b": {
+    "message": "ตั้งการเตือนแล้ว"
+  },
+  "f_reminders_are_not_available__3416": {
+    "message": "ใช้การเตือนที่นี่ไม่ได้"
+  },
+  "f_export_quiz_0790": {
+    "message": "ส่งออกแบบทดสอบ"
+  },
+  "f_questions_from_articles_d852": {
+    "message": "{name} · {n} คำถามจาก {m} บทความ"
+  },
+  "f_play_live_with_a_class_612e": {
+    "message": "เล่นสดกับทั้งชั้น"
+  },
+  "f_flashcards_3ae8": {
+    "message": "บัตรคำ"
+  },
+  "f_quiz_bank_c982": {
+    "message": "คลังข้อสอบ"
+  },
+  "f_format_ff72": {
+    "message": "รูปแบบ"
+  },
+  "f_download_8cb1": {
+    "message": "ดาวน์โหลด {file}"
+  },
+  "f_in_kahoot_create_import_spre_257f": {
+    "message": "ใน Kahoot: Create → Import → Spreadsheet Kahoot ไม่มีคอลัมน์สำหรับที่มา ที่มาจึงอยู่ที่นี่"
+  },
+  "f_in_anki_file_import_importin_fba3": {
+    "message": "ใน Anki: File → Import นำเข้าอีกครั้งจะอัปเดตบัตร"
+  },
+  "f_in_moodle_question_bank_impo_34e0": {
+    "message": "ใน Moodle: Question bank → Import → รูปแบบ GIFT"
+  },
+  "f_time_per_question_kahoot_f286": {
+    "message": "เวลาต่อคำถาม (Kahoot)"
+  },
+  "f_s_8f6e": {
+    "message": "{n} วิ"
+  },
+  "f_saved_3aaa": {
+    "message": "บันทึก {file} แล้ว"
+  },
+  "f_export_failed_9c48": {
+    "message": "ส่งออกไม่สำเร็จ"
+  },
+  "f_question_8401": {
+    "message": "{n} คำถาม"
+  },
+  "f_questions_7f76": {
+    "message": "{n} คำถาม"
+  },
+  "f_repeat_the_4ec1": {
+    "message": "ทบทวน {n} ข้อ"
+  },
+  "f_text_was_longer_than_kahoot__d59f": {
+    "message": "ข้อความ {n} รายการยาวเกินที่ Kahoot อนุญาตและถูกย่อแล้ว ตรวจสอบใน Kahoot"
+  },
+  "f_texts_were_longer_than_kahoo_f0b1": {
+    "message": "ข้อความ {n} รายการยาวเกินที่ Kahoot อนุญาตและถูกย่อแล้ว ตรวจสอบใน Kahoot"
+  },
+  "f_quiz_across_the_selected_art_525e": {
+    "message": "แบบทดสอบจาก {n} บทความที่เลือก"
+  },
+  "f_select_at_least_2_articles_f_9829": {
+    "message": "เลือกอย่างน้อย 2 บทความเพื่อทำแบบทดสอบ"
+  },
+  "f_quiz_acf9": {
+    "message": "🎓 แบบทดสอบ"
+  },
+  "f_quiz_1595": {
+    "message": "🎓 แบบทดสอบ {n}"
+  },
+  "notifQuizTitle": {
+    "message": "🎓 ถึงเวลาทบทวน"
+  },
+  "notifQuizMissed": {
+    "message": "คำถาม {n} ข้อที่ต้องทบทวน"
   }
 }

@@ -7420,5 +7420,191 @@
   },
   "f_have_a_license_key_or_gift_c_fd77": {
     "message": "Есть лицензионный ключ или подарочный код?"
+  },
+  "f_quiz_e314": {
+    "message": "Квиз"
+  },
+  "f_a_quiz_needs_at_least_2_arti_0ff9": {
+    "message": "Для квиза нужно минимум 2 статьи"
+  },
+  "f_leave_out_c607": {
+    "message": "Исключить «{title}»"
+  },
+  "f_questions_22a2": {
+    "message": "Вопросы"
+  },
+  "f_mix_5c01": {
+    "message": "Смесь"
+  },
+  "f_per_article_e6e6": {
+    "message": "По статье"
+  },
+  "f_across_articles_648f": {
+    "message": "Между статьями"
+  },
+  "f_both_18c2": {
+    "message": "Оба"
+  },
+  "f_about_questions_per_article_0c04": {
+    "message": "Около {n} вопросов на статью."
+  },
+  "f_questions_that_connect_two_a_09c3": {
+    "message": "Вопросы, связывающие две статьи: что говорят обе и в чём расходятся."
+  },
+  "f_about_per_article_plus_that__3d2c": {
+    "message": "Около {n} на статью и ещё {m}, связывающих статьи."
+  },
+  "f_uses_your_model_requests_sta_a624": {
+    "message": "Использует вашу модель · запросов: {n} · остаётся на этом устройстве"
+  },
+  "f_every_question_shows_the_art_8b21": {
+    "message": "Каждый вопрос показывает статью и предложение, из которого он взят. Вопросы без цитаты отбрасываются."
+  },
+  "f_create_quiz_e72a": {
+    "message": "Создать квиз"
+  },
+  "f_writing_questions_1754": {
+    "message": "Пишем вопросы…"
+  },
+  "f_waiting_06a8": {
+    "message": "ожидание"
+  },
+  "f_writing_914f": {
+    "message": "пишется"
+  },
+  "f_dropped_b271": {
+    "message": "отброшено: {n}"
+  },
+  "f_no_questions_d027": {
+    "message": "нет вопросов"
+  },
+  "f_no_question_had_a_matching_s_2c20": {
+    "message": "Ни для одного вопроса не нашлось подходящего предложения в статьях. Попробуйте другие статьи или другую модель."
+  },
+  "f_question_of_d1cf": {
+    "message": "Вопрос {i} из {n}"
+  },
+  "f_not_sure_show_me_where_it_is_1279": {
+    "message": "Не уверены? Покажите, где это написано"
+  },
+  "f_right_5a31": {
+    "message": "Верно."
+  },
+  "f_here_is_the_answer_0aae": {
+    "message": "Вот ответ."
+  },
+  "f_not_quite_the_right_answer_i_063c": {
+    "message": "Не совсем. Правильный ответ — {a}."
+  },
+  "f_where_it_says_so_58d3": {
+    "message": "Где это написано"
+  },
+  "f_show_in_article_0c75": {
+    "message": "Показать в статье"
+  },
+  "f_report_question_15d9": {
+    "message": "Пожаловаться на вопрос"
+  },
+  "f_reported_it_is_left_out_from_a379": {
+    "message": "Отмечено. Теперь он пропускается."
+  },
+  "f_see_result_7319": {
+    "message": "Посмотреть результат"
+  },
+  "f_quiz_done_344f": {
+    "message": "Квиз · готово"
+  },
+  "f_to_repeat_the_answers_stay_o_fb3f": {
+    "message": "Повторить: {n}. Ответы остаются на этом устройстве."
+  },
+  "f_all_right_the_answers_stay_o_0b32": {
+    "message": "Всё верно. Ответы остаются на этом устройстве."
+  },
+  "f_re_read_7c6b": {
+    "message": "Перечитать"
+  },
+  "f_remind_me_in_days_c7b4": {
+    "message": "Напомнить через {n} дн."
+  },
+  "f_reminder_set_488b": {
+    "message": "Напоминание установлено"
+  },
+  "f_reminders_are_not_available__3416": {
+    "message": "Напоминания здесь недоступны"
+  },
+  "f_export_quiz_0790": {
+    "message": "Экспорт квиза"
+  },
+  "f_questions_from_articles_d852": {
+    "message": "{name} · вопросов: {n} из статей: {m}"
+  },
+  "f_play_live_with_a_class_612e": {
+    "message": "Играть вживую с классом"
+  },
+  "f_flashcards_3ae8": {
+    "message": "Карточки"
+  },
+  "f_quiz_bank_c982": {
+    "message": "Банк вопросов"
+  },
+  "f_format_ff72": {
+    "message": "Формат"
+  },
+  "f_download_8cb1": {
+    "message": "Скачать {file}"
+  },
+  "f_in_kahoot_create_import_spre_257f": {
+    "message": "В Kahoot: Создать → Импорт → Таблица. В Kahoot нет столбца для источников; они остаются здесь."
+  },
+  "f_in_anki_file_import_importin_fba3": {
+    "message": "В Anki: Файл → Импорт. Повторный импорт обновит карточки."
+  },
+  "f_in_moodle_question_bank_impo_34e0": {
+    "message": "В Moodle: Банк вопросов → Импорт → формат GIFT."
+  },
+  "f_time_per_question_kahoot_f286": {
+    "message": "Время на вопрос (Kahoot)"
+  },
+  "f_s_8f6e": {
+    "message": "{n} с"
+  },
+  "f_saved_3aaa": {
+    "message": "{file} сохранён"
+  },
+  "f_export_failed_9c48": {
+    "message": "Не удалось экспортировать"
+  },
+  "f_question_8401": {
+    "message": "{n} вопрос"
+  },
+  "f_questions_7f76": {
+    "message": "{n} вопросов"
+  },
+  "f_repeat_the_4ec1": {
+    "message": "Повторить {n}"
+  },
+  "f_text_was_longer_than_kahoot__d59f": {
+    "message": "{n} текст длиннее, чем допускает Kahoot, и был сокращён. Проверьте его в Kahoot."
+  },
+  "f_texts_were_longer_than_kahoo_f0b1": {
+    "message": "Текстов длиннее лимита Kahoot: {n}, они сокращены. Проверьте их в Kahoot."
+  },
+  "f_quiz_across_the_selected_art_525e": {
+    "message": "Квиз по {n} выбранным статьям"
+  },
+  "f_select_at_least_2_articles_f_9829": {
+    "message": "Выберите минимум 2 статьи для квиза"
+  },
+  "f_quiz_acf9": {
+    "message": "🎓 Квиз"
+  },
+  "f_quiz_1595": {
+    "message": "🎓 Квиз {n}"
+  },
+  "notifQuizTitle": {
+    "message": "🎓 Пора повторить"
+  },
+  "notifQuizMissed": {
+    "message": "Вопросов для повторения: {n}"
   }
 }

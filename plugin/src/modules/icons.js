@@ -9,7 +9,7 @@ const NS = 'http://www.w3.org/2000/svg';
 export const ICON_EMOJI = {
     accessibility: '♿', archive: '🗄️', 'arrow-down-left': '↙️', 'arrow-left': '⬅', 'arrow-up-right': '↗️', 'bell-off': '🔕', 'book-open': '📚', bookmark: '🔖', bot: '🤖',
     brain: '🧠', calendar: '📅', 'chart-column': '📊', check: '✓', 'chevron-down': '▾', 'chevron-right': '›', 'circle-alert': '⚠️',
-    'circle-x': '❌', clipboard: '📋', 'clipboard-list': '📋', clock: '🕐', cloud: '☁️', copy: '📋', download: '📥', ellipsis: '⋯',
+    'circle-x': '❌', clipboard: '📋', 'clipboard-list': '📋', clock: '🕐', cloud: '☁️', copy: '📋', download: '📥', 'graduation-cap': '🎓', ellipsis: '⋯',
     eraser: '🧹', 'external-link': '↗', 'file-text': '📄', folders: '🗂️', globe: '🌐', headphones: '🎧', heart: '💙', info: '💠',
     laptop: '💻', layers: '📦', lightbulb: '💡', link: '🔗', loader: '⏳', lock: '🔒', 'message-square': '💬', network: '🕸️',
     newspaper: '📰', palette: '🎨', paperclip: '📎', pause: '⏸', pencil: '✏️', pin: '📌', play: '▶', plus: '＋', 'refresh-cw': '↻',

@@ -7402,5 +7402,191 @@
   },
   "f_have_a_license_key_or_gift_c_fd77": {
     "message": "라이선스 키나 기프트 코드가 있나요?"
+  },
+  "f_quiz_e314": {
+    "message": "퀴즈"
+  },
+  "f_a_quiz_needs_at_least_2_arti_0ff9": {
+    "message": "퀴즈에는 글이 2개 이상 필요해요"
+  },
+  "f_leave_out_c607": {
+    "message": "“{title}” 빼기"
+  },
+  "f_questions_22a2": {
+    "message": "문항 수"
+  },
+  "f_mix_5c01": {
+    "message": "구성"
+  },
+  "f_per_article_e6e6": {
+    "message": "글별"
+  },
+  "f_across_articles_648f": {
+    "message": "글 사이"
+  },
+  "f_both_18c2": {
+    "message": "둘 다"
+  },
+  "f_about_questions_per_article_0c04": {
+    "message": "글마다 약 {n}문항."
+  },
+  "f_questions_that_connect_two_a_09c3": {
+    "message": "두 글을 잇는 문항: 둘 다 말하는 것, 서로 다른 점."
+  },
+  "f_about_per_article_plus_that__3d2c": {
+    "message": "글마다 약 {n}문항, 그리고 글을 잇는 문항 {m}개."
+  },
+  "f_uses_your_model_requests_sta_a624": {
+    "message": "내 모델 사용 · 요청 {n}회 · 이 기기에만 저장"
+  },
+  "f_every_question_shows_the_art_8b21": {
+    "message": "모든 문항에 출처 글과 문장이 표시돼요. 인용이 없는 문항은 빠져요."
+  },
+  "f_create_quiz_e72a": {
+    "message": "퀴즈 만들기"
+  },
+  "f_writing_questions_1754": {
+    "message": "문항 작성 중…"
+  },
+  "f_waiting_06a8": {
+    "message": "대기 중"
+  },
+  "f_writing_914f": {
+    "message": "작성 중"
+  },
+  "f_dropped_b271": {
+    "message": "{n}개 제외"
+  },
+  "f_no_questions_d027": {
+    "message": "문항 없음"
+  },
+  "f_no_question_had_a_matching_s_2c20": {
+    "message": "글에서 일치하는 문장을 찾은 문항이 없어요. 다른 글이나 다른 모델로 해 보세요."
+  },
+  "f_question_of_d1cf": {
+    "message": "{n}문항 중 {i}번"
+  },
+  "f_not_sure_show_me_where_it_is_1279": {
+    "message": "잘 모르겠나요? 어디에 나오는지 보기"
+  },
+  "f_right_5a31": {
+    "message": "정답이에요."
+  },
+  "f_here_is_the_answer_0aae": {
+    "message": "정답은 이거예요."
+  },
+  "f_not_quite_the_right_answer_i_063c": {
+    "message": "아쉬워요. 정답은 {a}예요."
+  },
+  "f_where_it_says_so_58d3": {
+    "message": "나오는 곳"
+  },
+  "f_show_in_article_0c75": {
+    "message": "글에서 보기"
+  },
+  "f_report_question_15d9": {
+    "message": "문항 신고"
+  },
+  "f_reported_it_is_left_out_from_a379": {
+    "message": "신고했어요. 이제부터 빠져요."
+  },
+  "f_see_result_7319": {
+    "message": "결과 보기"
+  },
+  "f_quiz_done_344f": {
+    "message": "퀴즈 · 완료"
+  },
+  "f_to_repeat_the_answers_stay_o_fb3f": {
+    "message": "복습할 문항 {n}개. 답은 이 기기에만 저장돼요."
+  },
+  "f_all_right_the_answers_stay_o_0b32": {
+    "message": "모두 정답. 답은 이 기기에만 저장돼요."
+  },
+  "f_re_read_7c6b": {
+    "message": "다시 읽기"
+  },
+  "f_remind_me_in_days_c7b4": {
+    "message": "{n}일 뒤에 알림"
+  },
+  "f_reminder_set_488b": {
+    "message": "알림 설정됨"
+  },
+  "f_reminders_are_not_available__3416": {
+    "message": "여기서는 알림을 쓸 수 없어요"
+  },
+  "f_export_quiz_0790": {
+    "message": "퀴즈 내보내기"
+  },
+  "f_questions_from_articles_d852": {
+    "message": "{name} · 글 {m}개에서 {n}문항"
+  },
+  "f_play_live_with_a_class_612e": {
+    "message": "반 학생들과 실시간으로 하기"
+  },
+  "f_flashcards_3ae8": {
+    "message": "플래시카드"
+  },
+  "f_quiz_bank_c982": {
+    "message": "문제 은행"
+  },
+  "f_format_ff72": {
+    "message": "형식"
+  },
+  "f_download_8cb1": {
+    "message": "{file} 다운로드"
+  },
+  "f_in_kahoot_create_import_spre_257f": {
+    "message": "Kahoot에서: 만들기 → 가져오기 → 스프레드시트. Kahoot에는 출처 열이 없어 출처는 여기에 남아요."
+  },
+  "f_in_anki_file_import_importin_fba3": {
+    "message": "Anki에서: 파일 → 가져오기. 다시 가져오면 카드가 업데이트돼요."
+  },
+  "f_in_moodle_question_bank_impo_34e0": {
+    "message": "Moodle에서: 문제 은행 → 가져오기 → GIFT 형식."
+  },
+  "f_time_per_question_kahoot_f286": {
+    "message": "문항당 시간 (Kahoot)"
+  },
+  "f_s_8f6e": {
+    "message": "{n}초"
+  },
+  "f_saved_3aaa": {
+    "message": "{file} 저장됨"
+  },
+  "f_export_failed_9c48": {
+    "message": "내보내기 실패"
+  },
+  "f_question_8401": {
+    "message": "{n}문항"
+  },
+  "f_questions_7f76": {
+    "message": "{n}문항"
+  },
+  "f_repeat_the_4ec1": {
+    "message": "{n}개 복습하기"
+  },
+  "f_text_was_longer_than_kahoot__d59f": {
+    "message": "텍스트 {n}개가 Kahoot 제한보다 길어 줄였어요. Kahoot에서 확인하세요."
+  },
+  "f_texts_were_longer_than_kahoo_f0b1": {
+    "message": "텍스트 {n}개가 Kahoot 제한보다 길어 줄였어요. Kahoot에서 확인하세요."
+  },
+  "f_quiz_across_the_selected_art_525e": {
+    "message": "선택한 글 {n}개로 퀴즈"
+  },
+  "f_select_at_least_2_articles_f_9829": {
+    "message": "퀴즈를 만들려면 글을 2개 이상 고르세요"
+  },
+  "f_quiz_acf9": {
+    "message": "🎓 퀴즈"
+  },
+  "f_quiz_1595": {
+    "message": "🎓 퀴즈 {n}"
+  },
+  "notifQuizTitle": {
+    "message": "🎓 복습할 시간이에요"
+  },
+  "notifQuizMissed": {
+    "message": "복습할 문항 {n}개"
   }
 }

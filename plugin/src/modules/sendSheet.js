@@ -91,7 +91,15 @@ function buildBar() {
     const send = el('button', 'sel-send button-primary');
     send.type = 'button';
     send.addEventListener('click', () => { if (sel.size) openSheet(); });
-    bar.append(x, info, all, more, send);
+    // 🎓 Quiz n (Figma AISH-040 E1): a quiz across the selected articles, from 2 on
+    const quiz = el('button', 'sel-quiz button-secondary');
+    quiz.type = 'button';
+    quiz.addEventListener('click', () => {
+        const list = selected();
+        if (list.length < 2) return;
+        import('./quiz/quizView.js').then(m => m.openQuiz(list, { name: TN(list.length, '{n} article', '{n} articles'), toast: deps.toast })).catch(() => {});
+    });
+    bar.append(x, info, all, more, quiz, send);
     (screenEl() || document.body).append(bar);
 }
 
@@ -103,6 +111,10 @@ function paintBar() {
     send.textContent = n ? T('📤 Send {n}', { n }) : T('📤 Send');
     send.disabled = n === 0;
     bar.querySelector('.sel-more').disabled = n === 0;
+    const quiz = bar.querySelector('.sel-quiz');
+    quiz.textContent = n >= 2 ? T('🎓 Quiz {n}', { n }) : T('🎓 Quiz');
+    quiz.disabled = n < 2;
+    quiz.title = n < 2 ? T('Select at least 2 articles for a quiz') : T('Quiz across the {n} selected articles', { n });
 }
 
 // ───────────────────────────── sheet ─────────────────────────────

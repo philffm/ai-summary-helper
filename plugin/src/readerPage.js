@@ -106,6 +106,22 @@ async function loadArticle(id) {
   return article;
 }
 
+/** "#id=…&q=<sentence>" (the quiz's "Show in article"): mark the paragraph that holds the sentence and scroll to it. */
+function revealQuoteFromHash() {
+  const q = new URLSearchParams(window.location.hash.slice(1)).get('q');
+  if (!q) return false;
+  const norm = (t) => String(t || '').replace(/[‘’]/g, "'").replace(/[“”„]/g, '"').replace(/[–—]/g, '-').replace(/\s+/g, ' ').trim().toLowerCase();
+  const needle = norm(q);
+  const blocks = [...document.querySelectorAll('.rp-content p, .rp-content li, .rp-content blockquote, .rp-content h2, .rp-content h3, .rp-summary p, .rp-summary li')];
+  const hit = blocks.find((b) => norm(b.textContent).includes(needle)) || blocks.find((b) => needle.length > 40 && norm(b.textContent).includes(needle.slice(0, 40)));
+  if (!hit) return false;
+  hit.classList.add('rp-quote-hit');
+  hit.tabIndex = -1;
+  hit.scrollIntoView({ block: 'center' });
+  hit.focus({ preventScroll: true });
+  return true;
+}
+
 async function render() {
   const page = $('rpPage');
   const id = new URLSearchParams(window.location.hash.slice(1)).get('id');
@@ -244,6 +260,7 @@ async function init() {
   try { await applyTranslations(lang); } catch (_) { /* English */ }
   labelControls(); wireControls(); applyPrefs();
   await render();
+  revealQuoteFromHash();
   await wireSend();
   wireListen();
   wireApp();

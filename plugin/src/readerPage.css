@@ -62,3 +62,5 @@ button:focus-visible, a:focus-visible, summary:focus-visible { outline: 2px soli
   :root { --rp-surface: #fff; --rp-text: #000; --rp-accent: #000; --rp-mark: #ffe96b; }
 }
 @media (prefers-reduced-motion: no-preference) { html { scroll-behavior: smooth; } }
+/* the sentence the quiz pointed at ("Show in article", #q=…) */
+.rp-quote-hit { background: var(--rp-mark); box-shadow: 0 0 0 .4rem var(--rp-mark); border-radius: .2rem; outline: none; }

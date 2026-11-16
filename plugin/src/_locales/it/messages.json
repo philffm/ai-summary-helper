@@ -7420,5 +7420,191 @@
   },
   "f_have_a_license_key_or_gift_c_fd77": {
     "message": "Hai una chiave di licenza o un codice regalo?"
+  },
+  "f_quiz_e314": {
+    "message": "Quiz"
+  },
+  "f_a_quiz_needs_at_least_2_arti_0ff9": {
+    "message": "Un quiz richiede almeno 2 articoli"
+  },
+  "f_leave_out_c607": {
+    "message": "Escludi «{title}»"
+  },
+  "f_questions_22a2": {
+    "message": "Domande"
+  },
+  "f_mix_5c01": {
+    "message": "Combinazione"
+  },
+  "f_per_article_e6e6": {
+    "message": "Per articolo"
+  },
+  "f_across_articles_648f": {
+    "message": "Tra articoli"
+  },
+  "f_both_18c2": {
+    "message": "Entrambe"
+  },
+  "f_about_questions_per_article_0c04": {
+    "message": "Circa {n} domande per articolo."
+  },
+  "f_questions_that_connect_two_a_09c3": {
+    "message": "Domande che collegano due articoli: cosa dicono entrambi, dove differiscono."
+  },
+  "f_about_per_article_plus_that__3d2c": {
+    "message": "Circa {n} per articolo, più {m} che collegano gli articoli."
+  },
+  "f_uses_your_model_requests_sta_a624": {
+    "message": "Usa il tuo modello · {n} richieste · resta su questo dispositivo"
+  },
+  "f_every_question_shows_the_art_8b21": {
+    "message": "Ogni domanda mostra l’articolo e la frase da cui proviene. Le domande senza citazione vengono scartate."
+  },
+  "f_create_quiz_e72a": {
+    "message": "Crea quiz"
+  },
+  "f_writing_questions_1754": {
+    "message": "Scrittura delle domande…"
+  },
+  "f_waiting_06a8": {
+    "message": "in attesa"
+  },
+  "f_writing_914f": {
+    "message": "in scrittura"
+  },
+  "f_dropped_b271": {
+    "message": "{n} scartate"
+  },
+  "f_no_questions_d027": {
+    "message": "nessuna domanda"
+  },
+  "f_no_question_had_a_matching_s_2c20": {
+    "message": "Nessuna domanda aveva una frase corrispondente negli articoli. Prova altri articoli o un altro modello."
+  },
+  "f_question_of_d1cf": {
+    "message": "Domanda {i} di {n}"
+  },
+  "f_not_sure_show_me_where_it_is_1279": {
+    "message": "Non sei sicuro? Mostrami dove si trova"
+  },
+  "f_right_5a31": {
+    "message": "Giusto."
+  },
+  "f_here_is_the_answer_0aae": {
+    "message": "Ecco la risposta."
+  },
+  "f_not_quite_the_right_answer_i_063c": {
+    "message": "Non proprio. La risposta giusta è {a}."
+  },
+  "f_where_it_says_so_58d3": {
+    "message": "Dove lo dice"
+  },
+  "f_show_in_article_0c75": {
+    "message": "Mostra nell’articolo"
+  },
+  "f_report_question_15d9": {
+    "message": "Segnala domanda"
+  },
+  "f_reported_it_is_left_out_from_a379": {
+    "message": "Segnalata. D’ora in poi viene esclusa."
+  },
+  "f_see_result_7319": {
+    "message": "Vedi risultato"
+  },
+  "f_quiz_done_344f": {
+    "message": "Quiz · finito"
+  },
+  "f_to_repeat_the_answers_stay_o_fb3f": {
+    "message": "{n} da ripassare. Le risposte restano su questo dispositivo."
+  },
+  "f_all_right_the_answers_stay_o_0b32": {
+    "message": "Tutto giusto. Le risposte restano su questo dispositivo."
+  },
+  "f_re_read_7c6b": {
+    "message": "Rileggi"
+  },
+  "f_remind_me_in_days_c7b4": {
+    "message": "Ricordamelo tra {n} giorni"
+  },
+  "f_reminder_set_488b": {
+    "message": "Promemoria impostato"
+  },
+  "f_reminders_are_not_available__3416": {
+    "message": "I promemoria non sono disponibili qui"
+  },
+  "f_export_quiz_0790": {
+    "message": "Esporta quiz"
+  },
+  "f_questions_from_articles_d852": {
+    "message": "{name} · {n} domande da {m} articoli"
+  },
+  "f_play_live_with_a_class_612e": {
+    "message": "Gioca dal vivo con una classe"
+  },
+  "f_flashcards_3ae8": {
+    "message": "Flashcard"
+  },
+  "f_quiz_bank_c982": {
+    "message": "Banca delle domande"
+  },
+  "f_format_ff72": {
+    "message": "Formato"
+  },
+  "f_download_8cb1": {
+    "message": "Scarica {file}"
+  },
+  "f_in_kahoot_create_import_spre_257f": {
+    "message": "In Kahoot: Crea → Importa → Foglio di calcolo. Kahoot non ha una colonna per le fonti; restano qui."
+  },
+  "f_in_anki_file_import_importin_fba3": {
+    "message": "In Anki: File → Importa. Importando di nuovo le carte si aggiornano."
+  },
+  "f_in_moodle_question_bank_impo_34e0": {
+    "message": "In Moodle: Banca delle domande → Importa → formato GIFT."
+  },
+  "f_time_per_question_kahoot_f286": {
+    "message": "Tempo per domanda (Kahoot)"
+  },
+  "f_s_8f6e": {
+    "message": "{n} s"
+  },
+  "f_saved_3aaa": {
+    "message": "{file} salvato"
+  },
+  "f_export_failed_9c48": {
+    "message": "Esportazione non riuscita"
+  },
+  "f_question_8401": {
+    "message": "{n} domanda"
+  },
+  "f_questions_7f76": {
+    "message": "{n} domande"
+  },
+  "f_repeat_the_4ec1": {
+    "message": "Ripassa le {n}"
+  },
+  "f_text_was_longer_than_kahoot__d59f": {
+    "message": "{n} testo superava il limite di Kahoot ed è stato accorciato. Controllalo in Kahoot."
+  },
+  "f_texts_were_longer_than_kahoo_f0b1": {
+    "message": "{n} testi superavano il limite di Kahoot e sono stati accorciati. Controllali in Kahoot."
+  },
+  "f_quiz_across_the_selected_art_525e": {
+    "message": "Quiz sui {n} articoli selezionati"
+  },
+  "f_select_at_least_2_articles_f_9829": {
+    "message": "Seleziona almeno 2 articoli per un quiz"
+  },
+  "f_quiz_acf9": {
+    "message": "🎓 Quiz"
+  },
+  "f_quiz_1595": {
+    "message": "🎓 Quiz {n}"
+  },
+  "notifQuizTitle": {
+    "message": "🎓 È ora di ripassare"
+  },
+  "notifQuizMissed": {
+    "message": "{n} domande da ripassare"
   }
 }

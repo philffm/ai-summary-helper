@@ -7703,5 +7703,191 @@
   },
   "f_have_a_license_key_or_gift_c_fd77": {
     "message": "Har du en lisensnøkkel eller gavekode?"
+  },
+  "f_quiz_e314": {
+    "message": "Quiz"
+  },
+  "f_a_quiz_needs_at_least_2_arti_0ff9": {
+    "message": "En quiz trenger minst 2 artikler"
+  },
+  "f_leave_out_c607": {
+    "message": "Utelat «{title}»"
+  },
+  "f_questions_22a2": {
+    "message": "Spørsmål"
+  },
+  "f_mix_5c01": {
+    "message": "Blanding"
+  },
+  "f_per_article_e6e6": {
+    "message": "Per artikkel"
+  },
+  "f_across_articles_648f": {
+    "message": "På tvers av artikler"
+  },
+  "f_both_18c2": {
+    "message": "Begge"
+  },
+  "f_about_questions_per_article_0c04": {
+    "message": "Omtrent {n} spørsmål per artikkel."
+  },
+  "f_questions_that_connect_two_a_09c3": {
+    "message": "Spørsmål som knytter sammen to artikler: hva begge sier, hvor de skiller seg."
+  },
+  "f_about_per_article_plus_that__3d2c": {
+    "message": "Omtrent {n} per artikkel, pluss {m} som knytter artikler sammen."
+  },
+  "f_uses_your_model_requests_sta_a624": {
+    "message": "Bruker modellen din · {n} forespørsler · blir på denne enheten"
+  },
+  "f_every_question_shows_the_art_8b21": {
+    "message": "Hvert spørsmål viser artikkelen og setningen det kommer fra. Spørsmål uten sitat forkastes."
+  },
+  "f_create_quiz_e72a": {
+    "message": "Lag quiz"
+  },
+  "f_writing_questions_1754": {
+    "message": "Skriver spørsmål…"
+  },
+  "f_waiting_06a8": {
+    "message": "venter"
+  },
+  "f_writing_914f": {
+    "message": "skriver"
+  },
+  "f_dropped_b271": {
+    "message": "{n} forkastet"
+  },
+  "f_no_questions_d027": {
+    "message": "ingen spørsmål"
+  },
+  "f_no_question_had_a_matching_s_2c20": {
+    "message": "Ingen spørsmål hadde en passende setning i artiklene. Prøv andre artikler eller en annen modell."
+  },
+  "f_question_of_d1cf": {
+    "message": "Spørsmål {i} av {n}"
+  },
+  "f_not_sure_show_me_where_it_is_1279": {
+    "message": "Usikker? Vis meg hvor det står"
+  },
+  "f_right_5a31": {
+    "message": "Riktig."
+  },
+  "f_here_is_the_answer_0aae": {
+    "message": "Her er svaret."
+  },
+  "f_not_quite_the_right_answer_i_063c": {
+    "message": "Ikke helt. Riktig svar er {a}."
+  },
+  "f_where_it_says_so_58d3": {
+    "message": "Hvor det står"
+  },
+  "f_show_in_article_0c75": {
+    "message": "Vis i artikkelen"
+  },
+  "f_report_question_15d9": {
+    "message": "Rapporter spørsmål"
+  },
+  "f_reported_it_is_left_out_from_a379": {
+    "message": "Rapportert. Det utelates fra nå av."
+  },
+  "f_see_result_7319": {
+    "message": "Se resultat"
+  },
+  "f_quiz_done_344f": {
+    "message": "Quiz · ferdig"
+  },
+  "f_to_repeat_the_answers_stay_o_fb3f": {
+    "message": "{n} å repetere. Svarene blir på denne enheten."
+  },
+  "f_all_right_the_answers_stay_o_0b32": {
+    "message": "Alt riktig. Svarene blir på denne enheten."
+  },
+  "f_re_read_7c6b": {
+    "message": "Les igjen"
+  },
+  "f_remind_me_in_days_c7b4": {
+    "message": "Påminn meg om {n} dager"
+  },
+  "f_reminder_set_488b": {
+    "message": "Påminnelse satt"
+  },
+  "f_reminders_are_not_available__3416": {
+    "message": "Påminnelser er ikke tilgjengelige her"
+  },
+  "f_export_quiz_0790": {
+    "message": "Eksporter quiz"
+  },
+  "f_questions_from_articles_d852": {
+    "message": "{name} · {n} spørsmål fra {m} artikler"
+  },
+  "f_play_live_with_a_class_612e": {
+    "message": "Spill live med en klasse"
+  },
+  "f_flashcards_3ae8": {
+    "message": "Flashcards"
+  },
+  "f_quiz_bank_c982": {
+    "message": "Spørsmålsbank"
+  },
+  "f_format_ff72": {
+    "message": "Format"
+  },
+  "f_download_8cb1": {
+    "message": "Last ned {file}"
+  },
+  "f_in_kahoot_create_import_spre_257f": {
+    "message": "I Kahoot: Lag → Importer → Regneark. Kahoot har ingen kolonne for kilder; de blir her."
+  },
+  "f_in_anki_file_import_importin_fba3": {
+    "message": "I Anki: Fil → Importer. Importerer du på nytt, oppdateres kortene."
+  },
+  "f_in_moodle_question_bank_impo_34e0": {
+    "message": "I Moodle: Spørsmålsbank → Importer → GIFT-format."
+  },
+  "f_time_per_question_kahoot_f286": {
+    "message": "Tid per spørsmål (Kahoot)"
+  },
+  "f_s_8f6e": {
+    "message": "{n} s"
+  },
+  "f_saved_3aaa": {
+    "message": "{file} lagret"
+  },
+  "f_export_failed_9c48": {
+    "message": "Eksport mislyktes"
+  },
+  "f_question_8401": {
+    "message": "{n} spørsmål"
+  },
+  "f_questions_7f76": {
+    "message": "{n} spørsmål"
+  },
+  "f_repeat_the_4ec1": {
+    "message": "Repeter de {n}"
+  },
+  "f_text_was_longer_than_kahoot__d59f": {
+    "message": "{n} tekst var lengre enn Kahoot tillater og ble forkortet. Sjekk den i Kahoot."
+  },
+  "f_texts_were_longer_than_kahoo_f0b1": {
+    "message": "{n} tekster var lengre enn Kahoot tillater og ble forkortet. Sjekk dem i Kahoot."
+  },
+  "f_quiz_across_the_selected_art_525e": {
+    "message": "Quiz om de {n} valgte artiklene"
+  },
+  "f_select_at_least_2_articles_f_9829": {
+    "message": "Velg minst 2 artikler for en quiz"
+  },
+  "f_quiz_acf9": {
+    "message": "🎓 Quiz"
+  },
+  "f_quiz_1595": {
+    "message": "🎓 Quiz {n}"
+  },
+  "notifQuizTitle": {
+    "message": "🎓 Tid for repetisjon"
+  },
+  "notifQuizMissed": {
+    "message": "{n} spørsmål å repetere"
   }
 }

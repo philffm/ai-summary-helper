@@ -7420,5 +7420,191 @@
   },
   "f_have_a_license_key_or_gift_c_fd77": {
     "message": "ライセンスキーまたはギフトコードをお持ちですか？"
+  },
+  "f_quiz_e314": {
+    "message": "クイズ"
+  },
+  "f_a_quiz_needs_at_least_2_arti_0ff9": {
+    "message": "クイズには 2 件以上の記事が必要です"
+  },
+  "f_leave_out_c607": {
+    "message": "「{title}」を外す"
+  },
+  "f_questions_22a2": {
+    "message": "問題数"
+  },
+  "f_mix_5c01": {
+    "message": "組み合わせ"
+  },
+  "f_per_article_e6e6": {
+    "message": "記事ごと"
+  },
+  "f_across_articles_648f": {
+    "message": "記事をまたいで"
+  },
+  "f_both_18c2": {
+    "message": "両方"
+  },
+  "f_about_questions_per_article_0c04": {
+    "message": "記事ごとに約 {n} 問。"
+  },
+  "f_questions_that_connect_two_a_09c3": {
+    "message": "2 つの記事をつなぐ問題：両方が述べていること、違うところ。"
+  },
+  "f_about_per_article_plus_that__3d2c": {
+    "message": "記事ごとに約 {n} 問、さらに記事をつなぐ問題が {m} 問。"
+  },
+  "f_uses_your_model_requests_sta_a624": {
+    "message": "あなたのモデルを使用 · リクエスト {n} 回 · このデバイスに保存"
+  },
+  "f_every_question_shows_the_art_8b21": {
+    "message": "各問題には出典の記事と文が表示されます。引用のない問題は除外されます。"
+  },
+  "f_create_quiz_e72a": {
+    "message": "クイズを作成"
+  },
+  "f_writing_questions_1754": {
+    "message": "問題を作成中…"
+  },
+  "f_waiting_06a8": {
+    "message": "待機中"
+  },
+  "f_writing_914f": {
+    "message": "作成中"
+  },
+  "f_dropped_b271": {
+    "message": "{n} 問を除外"
+  },
+  "f_no_questions_d027": {
+    "message": "問題なし"
+  },
+  "f_no_question_had_a_matching_s_2c20": {
+    "message": "記事内に一致する文がある問題がありませんでした。別の記事か別のモデルでお試しください。"
+  },
+  "f_question_of_d1cf": {
+    "message": "問題 {i}/{n}"
+  },
+  "f_not_sure_show_me_where_it_is_1279": {
+    "message": "自信がない？ 書かれている場所を見る"
+  },
+  "f_right_5a31": {
+    "message": "正解。"
+  },
+  "f_here_is_the_answer_0aae": {
+    "message": "答えはこちら。"
+  },
+  "f_not_quite_the_right_answer_i_063c": {
+    "message": "惜しい。正解は {a} です。"
+  },
+  "f_where_it_says_so_58d3": {
+    "message": "書かれている場所"
+  },
+  "f_show_in_article_0c75": {
+    "message": "記事で表示"
+  },
+  "f_report_question_15d9": {
+    "message": "問題を報告"
+  },
+  "f_reported_it_is_left_out_from_a379": {
+    "message": "報告しました。今後は出題しません。"
+  },
+  "f_see_result_7319": {
+    "message": "結果を見る"
+  },
+  "f_quiz_done_344f": {
+    "message": "クイズ · 完了"
+  },
+  "f_to_repeat_the_answers_stay_o_fb3f": {
+    "message": "復習は {n} 問。回答はこのデバイスに保存されます。"
+  },
+  "f_all_right_the_answers_stay_o_0b32": {
+    "message": "全問正解。回答はこのデバイスに保存されます。"
+  },
+  "f_re_read_7c6b": {
+    "message": "読み直す"
+  },
+  "f_remind_me_in_days_c7b4": {
+    "message": "{n} 日後に通知"
+  },
+  "f_reminder_set_488b": {
+    "message": "通知を設定しました"
+  },
+  "f_reminders_are_not_available__3416": {
+    "message": "ここでは通知を利用できません"
+  },
+  "f_export_quiz_0790": {
+    "message": "クイズを書き出す"
+  },
+  "f_questions_from_articles_d852": {
+    "message": "{name} · {m} 件の記事から {n} 問"
+  },
+  "f_play_live_with_a_class_612e": {
+    "message": "クラスでライブプレイ"
+  },
+  "f_flashcards_3ae8": {
+    "message": "フラッシュカード"
+  },
+  "f_quiz_bank_c982": {
+    "message": "問題バンク"
+  },
+  "f_format_ff72": {
+    "message": "形式"
+  },
+  "f_download_8cb1": {
+    "message": "{file} をダウンロード"
+  },
+  "f_in_kahoot_create_import_spre_257f": {
+    "message": "Kahoot で：作成 → インポート → スプレッドシート。Kahoot には出典の列がないため、出典はここに残ります。"
+  },
+  "f_in_anki_file_import_importin_fba3": {
+    "message": "Anki で：ファイル → 読み込む。再度読み込むとカードが更新されます。"
+  },
+  "f_in_moodle_question_bank_impo_34e0": {
+    "message": "Moodle で：問題バンク → インポート → GIFT 形式。"
+  },
+  "f_time_per_question_kahoot_f286": {
+    "message": "1 問あたりの時間（Kahoot）"
+  },
+  "f_s_8f6e": {
+    "message": "{n} 秒"
+  },
+  "f_saved_3aaa": {
+    "message": "{file} を保存しました"
+  },
+  "f_export_failed_9c48": {
+    "message": "書き出しに失敗しました"
+  },
+  "f_question_8401": {
+    "message": "{n} 問"
+  },
+  "f_questions_7f76": {
+    "message": "{n} 問"
+  },
+  "f_repeat_the_4ec1": {
+    "message": "{n} 問を復習"
+  },
+  "f_text_was_longer_than_kahoot__d59f": {
+    "message": "{n} 件のテキストが Kahoot の上限を超えたため短縮しました。Kahoot で確認してください。"
+  },
+  "f_texts_were_longer_than_kahoo_f0b1": {
+    "message": "{n} 件のテキストが Kahoot の上限を超えたため短縮しました。Kahoot で確認してください。"
+  },
+  "f_quiz_across_the_selected_art_525e": {
+    "message": "選択した {n} 件の記事のクイズ"
+  },
+  "f_select_at_least_2_articles_f_9829": {
+    "message": "クイズには記事を 2 件以上選んでください"
+  },
+  "f_quiz_acf9": {
+    "message": "🎓 クイズ"
+  },
+  "f_quiz_1595": {
+    "message": "🎓 クイズ {n}"
+  },
+  "notifQuizTitle": {
+    "message": "🎓 復習の時間です"
+  },
+  "notifQuizMissed": {
+    "message": "復習する問題 {n} 問"
   }
 }

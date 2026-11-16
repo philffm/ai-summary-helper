@@ -138,6 +138,10 @@ const isHlPageKey = (k) => typeof k === 'string' && k.startsWith(HL_PAGE);
 const COLL_REC = 'coll:rec:';
 const collRecKey = (id) => COLL_REC + id;
 const isCollRecKey = (k) => typeof k === 'string' && k.startsWith(COLL_REC);
+/** Prefix of saved quizzes (Figma AISH-040): quiz:rec:<id> = { id, name, articles, questions, created, last: { score, missed, at }, remindAt }. */
+const QUIZ_REC = 'quiz:rec:';
+const quizRecKey = (id) => QUIZ_REC + id;
+const isQuizRecKey = (k) => typeof k === 'string' && k.startsWith(QUIZ_REC);
 
 /** Prefix of the per-target ledger keys: targets:ledger:<targetId> (what was sent where). */
 const TARGET_LEDGER = 'targets:ledger:';
@@ -485,6 +489,7 @@ chrome.alarms?.onAlarm?.addListener(async (alarm) => {
     if (alarm.name === SYNC_ALARM || alarm.name === SYNC_SOON) { if (syncSvc) syncSvc.syncNow().catch(() => {}); return; }
     if (alarm.name === INBOX_ALARM) { await pollInbox(); return; }
     if (targets && alarm.name === targets.ALARM) { targets.drain().catch(() => {}); return; }
+    if (alarm.name.startsWith('quiz_')) { await quizReminder(alarm.name.slice(5)); return; }
     if (!alarm.name.startsWith('decision_')) return;
     const timestamp = alarm.name.replace('decision_', '');
     const article = await findDecisionArticle(decodeURIComponent(timestamp));
@@ -499,6 +504,25 @@ chrome.alarms?.onAlarm?.addListener(async (alarm) => {
         requireInteraction: true
     });
 });
+
+// Quiz reminder: "🎓 Time to repeat" with the questions answered wrong last time; Open → the quiz in a tab (popup.html#quiz=<id>).
+async function quizReminder(id) {
+    const key = QUIZ_REC + id;
+    const quiz = (await localGet({ [key]: null }))[key];
+    if (!quiz) return;
+    const missed = (quiz.last && Array.isArray(quiz.last.missed)) ? quiz.last.missed.length : 0;
+    chrome.notifications?.create('quiz_notif_' + id, {
+        type: 'basic', iconUrl: 'icons/icon48.png',
+        title: bgT('notifQuizTitle', '🎓 Time to repeat'),
+        message: String(quiz.name || '').slice(0, 120),
+        contextMessage: missed ? bgT('notifQuizMissed', '{n} questions to repeat').replace('{n}', String(missed)) : '',
+        buttons: [{ title: bgT('notifOpen', 'Open') }, { title: bgT('notifDismiss', 'Dismiss') }],
+        requireInteraction: true,
+    }, () => void chrome.runtime.lastError);
+}
+const openQuizTab = (notifId) => { chrome.tabs.create({ url: chrome.runtime.getURL('popup.html') + '#quiz=' + encodeURIComponent(notifId.slice(11)) }); chrome.notifications.clear(notifId); };
+chrome.notifications?.onButtonClicked?.addListener((notifId, btnIdx) => { if (!notifId.startsWith('quiz_notif_')) return; if (btnIdx === 0) openQuizTab(notifId); else chrome.notifications.clear(notifId); });
+chrome.notifications?.onClicked?.addListener((notifId) => { if (notifId.startsWith('quiz_notif_')) openQuizTab(notifId); });
 
 const reopenUrls = new Map();   // tab id → URL of a tab Speed-Read closed (until its notification goes)
 chrome.notifications?.onButtonClicked?.addListener((notifId) => {
@@ -1160,6 +1184,12 @@ const MESSAGE_HANDLERS = {
             }, () => void chrome.runtime.lastError);
         }
         sendResponse({ ok: true });
+        return false;
+    } },
+    // ── quiz "repeat in 3 days" (modules/quiz/quizStore.js): an alarm named after the quiz, a notification when it fires ──
+    quizRemind: { from: 'ext', check: (msg) => typeof msg.id === 'string' && /^[\w-]{4,64}$/.test(msg.id) && Number.isFinite(msg.dueAt), run(msg, sender, sendResponse) {
+        try { chrome.alarms.create('quiz_' + msg.id, { when: Math.max(Date.now() + 60000, msg.dueAt) }); sendResponse({ ok: true }); }
+        catch (e) { sendResponse({ ok: false, error: String(e && e.message || e) }); }
         return false;
     } },
     // ── "read later" reminder for a saved article: { articleId, timeframe, dueAt } (dueAt null/none = no reminder) ──

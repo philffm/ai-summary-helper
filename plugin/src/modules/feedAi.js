@@ -85,7 +85,7 @@ async function langRule() {
     catch (e) { return ''; }
 }
 
-async function languageName() {
+export async function languageName() {   // the summary language (Settings), as the model is told
     try {
         const { selectedLanguage } = await chrome.storage.sync.get('selectedLanguage');
         return languageEnglishName(selectedLanguage || 'en-US');

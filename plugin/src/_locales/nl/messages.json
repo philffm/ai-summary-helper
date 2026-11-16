@@ -7703,5 +7703,191 @@
   },
   "f_have_a_license_key_or_gift_c_fd77": {
     "message": "Heb je een licentiesleutel of cadeaucode?"
+  },
+  "f_quiz_e314": {
+    "message": "Quiz"
+  },
+  "f_a_quiz_needs_at_least_2_arti_0ff9": {
+    "message": "Een quiz heeft minstens 2 artikelen nodig"
+  },
+  "f_leave_out_c607": {
+    "message": "“{title}” weglaten"
+  },
+  "f_questions_22a2": {
+    "message": "Vragen"
+  },
+  "f_mix_5c01": {
+    "message": "Mix"
+  },
+  "f_per_article_e6e6": {
+    "message": "Per artikel"
+  },
+  "f_across_articles_648f": {
+    "message": "Tussen artikelen"
+  },
+  "f_both_18c2": {
+    "message": "Beide"
+  },
+  "f_about_questions_per_article_0c04": {
+    "message": "Ongeveer {n} vragen per artikel."
+  },
+  "f_questions_that_connect_two_a_09c3": {
+    "message": "Vragen die twee artikelen verbinden: wat beide zeggen, waar ze verschillen."
+  },
+  "f_about_per_article_plus_that__3d2c": {
+    "message": "Ongeveer {n} per artikel, plus {m} die artikelen verbinden."
+  },
+  "f_uses_your_model_requests_sta_a624": {
+    "message": "Gebruikt je model · {n} verzoeken · blijft op dit apparaat"
+  },
+  "f_every_question_shows_the_art_8b21": {
+    "message": "Elke vraag toont het artikel en de zin waar ze vandaan komt. Vragen zonder citaat vallen af."
+  },
+  "f_create_quiz_e72a": {
+    "message": "Quiz maken"
+  },
+  "f_writing_questions_1754": {
+    "message": "Vragen schrijven…"
+  },
+  "f_waiting_06a8": {
+    "message": "wacht"
+  },
+  "f_writing_914f": {
+    "message": "schrijft"
+  },
+  "f_dropped_b271": {
+    "message": "{n} afgevallen"
+  },
+  "f_no_questions_d027": {
+    "message": "geen vragen"
+  },
+  "f_no_question_had_a_matching_s_2c20": {
+    "message": "Geen enkele vraag had een passende zin in de artikelen. Probeer andere artikelen of een ander model."
+  },
+  "f_question_of_d1cf": {
+    "message": "Vraag {i} van {n}"
+  },
+  "f_not_sure_show_me_where_it_is_1279": {
+    "message": "Niet zeker? Laat zien waar het staat"
+  },
+  "f_right_5a31": {
+    "message": "Goed."
+  },
+  "f_here_is_the_answer_0aae": {
+    "message": "Hier is het antwoord."
+  },
+  "f_not_quite_the_right_answer_i_063c": {
+    "message": "Niet helemaal. Het goede antwoord is {a}."
+  },
+  "f_where_it_says_so_58d3": {
+    "message": "Waar het staat"
+  },
+  "f_show_in_article_0c75": {
+    "message": "Tonen in artikel"
+  },
+  "f_report_question_15d9": {
+    "message": "Vraag melden"
+  },
+  "f_reported_it_is_left_out_from_a379": {
+    "message": "Gemeld. Vanaf nu weggelaten."
+  },
+  "f_see_result_7319": {
+    "message": "Resultaat bekijken"
+  },
+  "f_quiz_done_344f": {
+    "message": "Quiz · klaar"
+  },
+  "f_to_repeat_the_answers_stay_o_fb3f": {
+    "message": "{n} om te herhalen. De antwoorden blijven op dit apparaat."
+  },
+  "f_all_right_the_answers_stay_o_0b32": {
+    "message": "Alles goed. De antwoorden blijven op dit apparaat."
+  },
+  "f_re_read_7c6b": {
+    "message": "Opnieuw lezen"
+  },
+  "f_remind_me_in_days_c7b4": {
+    "message": "Herinner me over {n} dagen"
+  },
+  "f_reminder_set_488b": {
+    "message": "Herinnering ingesteld"
+  },
+  "f_reminders_are_not_available__3416": {
+    "message": "Herinneringen zijn hier niet beschikbaar"
+  },
+  "f_export_quiz_0790": {
+    "message": "Quiz exporteren"
+  },
+  "f_questions_from_articles_d852": {
+    "message": "{name} · {n} vragen uit {m} artikelen"
+  },
+  "f_play_live_with_a_class_612e": {
+    "message": "Live spelen met een klas"
+  },
+  "f_flashcards_3ae8": {
+    "message": "Flashcards"
+  },
+  "f_quiz_bank_c982": {
+    "message": "Vragenbank"
+  },
+  "f_format_ff72": {
+    "message": "Formaat"
+  },
+  "f_download_8cb1": {
+    "message": "{file} downloaden"
+  },
+  "f_in_kahoot_create_import_spre_257f": {
+    "message": "In Kahoot: Maken → Importeren → Spreadsheet. Kahoot heeft geen kolom voor bronnen; die blijven hier."
+  },
+  "f_in_anki_file_import_importin_fba3": {
+    "message": "In Anki: Bestand → Importeren. Opnieuw importeren werkt de kaarten bij."
+  },
+  "f_in_moodle_question_bank_impo_34e0": {
+    "message": "In Moodle: Vragenbank → Importeren → GIFT-formaat."
+  },
+  "f_time_per_question_kahoot_f286": {
+    "message": "Tijd per vraag (Kahoot)"
+  },
+  "f_s_8f6e": {
+    "message": "{n} s"
+  },
+  "f_saved_3aaa": {
+    "message": "{file} opgeslagen"
+  },
+  "f_export_failed_9c48": {
+    "message": "Exporteren mislukt"
+  },
+  "f_question_8401": {
+    "message": "{n} vraag"
+  },
+  "f_questions_7f76": {
+    "message": "{n} vragen"
+  },
+  "f_repeat_the_4ec1": {
+    "message": "De {n} herhalen"
+  },
+  "f_text_was_longer_than_kahoot__d59f": {
+    "message": "{n} tekst was langer dan Kahoot toestaat en is ingekort. Controleer hem in Kahoot."
+  },
+  "f_texts_were_longer_than_kahoo_f0b1": {
+    "message": "{n} teksten waren langer dan Kahoot toestaat en zijn ingekort. Controleer ze in Kahoot."
+  },
+  "f_quiz_across_the_selected_art_525e": {
+    "message": "Quiz over de {n} geselecteerde artikelen"
+  },
+  "f_select_at_least_2_articles_f_9829": {
+    "message": "Kies minstens 2 artikelen voor een quiz"
+  },
+  "f_quiz_acf9": {
+    "message": "🎓 Quiz"
+  },
+  "f_quiz_1595": {
+    "message": "🎓 Quiz {n}"
+  },
+  "notifQuizTitle": {
+    "message": "🎓 Tijd om te herhalen"
+  },
+  "notifQuizMissed": {
+    "message": "{n} vragen om te herhalen"
   }
 }
