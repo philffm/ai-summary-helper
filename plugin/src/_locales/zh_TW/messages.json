@@ -7363,5 +7363,56 @@
   "notifReopen": {
     "message": "重新開啟",
     "description": "Notification button: reopen the closed tab"
+  },
+  "f_adjust_0a9e": {
+    "message": "調整"
+  },
+  "f_adjust_graph_3f12": {
+    "message": "調整圖譜"
+  },
+  "f_adjust_graph_filters_on_de1e": {
+    "message": "調整圖譜，已開啟 {n} 個篩選"
+  },
+  "f_adjust_9b23": {
+    "message": "調整 · {n}"
+  },
+  "f_color_by_60e5": {
+    "message": "著色依據"
+  },
+  "f_fit_to_view_d072": {
+    "message": "顯示全部"
+  },
+  "f_graph_tools_d6dc": {
+    "message": "圖譜工具"
+  },
+  "f_library_2270": {
+    "message": "資料庫"
+  },
+  "f_name_them_2154": {
+    "message": "命名"
+  },
+  "f_path_pick_two_items_to_see_h_27da": {
+    "message": "路徑 · 選擇兩項，查看它們如何關聯"
+  },
+  "f_path_pick_two_items_to_see_h_3cdf": {
+    "message": "路徑：選擇兩項，查看它們如何關聯"
+  },
+  "f_show_articles_detail_6e3d": {
+    "message": "顯示文章（細節）"
+  },
+  "f_show_only_1a4e": {
+    "message": "僅顯示"
+  },
+  "f_show_topics_5eb8": {
+    "message": "顯示主題"
+  },
+  "f_zoom_in_3899": {
+    "message": "放大"
+  },
+  "f_zoom_out_fe3a": {
+    "message": "縮小"
+  },
+  "f_not_opened_yet_1de1": {
+    "message": "{n} 篇尚未開啟"
   }
 }

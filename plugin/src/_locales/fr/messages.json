@@ -7363,5 +7363,56 @@
   "notifReopen": {
     "message": "Rouvrir",
     "description": "Notification button: reopen the closed tab"
+  },
+  "f_adjust_0a9e": {
+    "message": "Ajuster"
+  },
+  "f_adjust_graph_3f12": {
+    "message": "Ajuster le graphe"
+  },
+  "f_adjust_graph_filters_on_de1e": {
+    "message": "Ajuster le graphe, {n} filtres actifs"
+  },
+  "f_adjust_9b23": {
+    "message": "Ajuster · {n}"
+  },
+  "f_color_by_60e5": {
+    "message": "Colorer par"
+  },
+  "f_fit_to_view_d072": {
+    "message": "Tout afficher"
+  },
+  "f_graph_tools_d6dc": {
+    "message": "Outils du graphe"
+  },
+  "f_library_2270": {
+    "message": "Bibliothèque"
+  },
+  "f_name_them_2154": {
+    "message": "Les nommer"
+  },
+  "f_path_pick_two_items_to_see_h_27da": {
+    "message": "Chemin · choisissez deux éléments pour voir leur lien"
+  },
+  "f_path_pick_two_items_to_see_h_3cdf": {
+    "message": "Chemin : choisissez deux éléments pour voir leur lien"
+  },
+  "f_show_articles_detail_6e3d": {
+    "message": "Afficher les articles (Détail)"
+  },
+  "f_show_only_1a4e": {
+    "message": "Afficher seulement"
+  },
+  "f_show_topics_5eb8": {
+    "message": "Afficher les thèmes"
+  },
+  "f_zoom_in_3899": {
+    "message": "Zoom avant"
+  },
+  "f_zoom_out_fe3a": {
+    "message": "Zoom arrière"
+  },
+  "f_not_opened_yet_1de1": {
+    "message": "{n} pas encore ouverts"
   }
 }

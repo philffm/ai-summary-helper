@@ -7363,5 +7363,56 @@
   "notifReopen": {
     "message": "إعادة الفتح",
     "description": "Notification button: reopen the closed tab"
+  },
+  "f_adjust_0a9e": {
+    "message": "ضبط"
+  },
+  "f_adjust_graph_3f12": {
+    "message": "ضبط المخطط"
+  },
+  "f_adjust_graph_filters_on_de1e": {
+    "message": "ضبط المخطط، {n} عوامل تصفية مفعّلة"
+  },
+  "f_adjust_9b23": {
+    "message": "ضبط · {n}"
+  },
+  "f_color_by_60e5": {
+    "message": "التلوين حسب"
+  },
+  "f_fit_to_view_d072": {
+    "message": "عرض الكل"
+  },
+  "f_graph_tools_d6dc": {
+    "message": "أدوات المخطط"
+  },
+  "f_library_2270": {
+    "message": "المكتبة"
+  },
+  "f_name_them_2154": {
+    "message": "سمِّها"
+  },
+  "f_path_pick_two_items_to_see_h_27da": {
+    "message": "المسار · اختر عنصرين لترى كيف يرتبطان"
+  },
+  "f_path_pick_two_items_to_see_h_3cdf": {
+    "message": "المسار: اختر عنصرين لترى كيف يرتبطان"
+  },
+  "f_show_articles_detail_6e3d": {
+    "message": "عرض المقالات (تفصيلي)"
+  },
+  "f_show_only_1a4e": {
+    "message": "عرض فقط"
+  },
+  "f_show_topics_5eb8": {
+    "message": "عرض المواضيع"
+  },
+  "f_zoom_in_3899": {
+    "message": "تكبير"
+  },
+  "f_zoom_out_fe3a": {
+    "message": "تصغير"
+  },
+  "f_not_opened_yet_1de1": {
+    "message": "{n} لم تُفتح بعد"
   }
 }

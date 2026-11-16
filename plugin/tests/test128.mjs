@@ -49,7 +49,7 @@ const host = d.createElement('div'); d.body.append(host);
 const openedFromGaps = []; host.addEventListener('open-article', (e) => openedFromGaps.push(e.detail.id));
 ag.renderGraphList(host, nodes, links, gaps);
 const segs = [...host.querySelectorAll('.graph-view-toggle button')].map(b => b.textContent);
-assert.deepEqual(segs, ['Graph', 'List', 'Gaps 2']);
+assert.deepEqual(segs, ['Graph', 'List', 'Gaps · 2']);
 assert.ok(host.querySelector('.graph-gaps').hidden, 'gaps hidden at first');
 host.querySelectorAll('.graph-view-toggle button')[2].click();
 assert.equal(host.dataset.graphMode, 'gaps'); assert.ok(!host.querySelector('.graph-gaps').hidden);
@@ -253,11 +253,11 @@ if (typeof globalThis.d3 !== 'undefined') {
     try {
         await ag.initArchiveGraph(gh, papers, null, null);
         const chip = gh.querySelector('.graph-research-chip');
-        assert.ok(chip, 'chip shown when papers exist'); assert.equal(chip.getAttribute('aria-pressed'), 'false'); assert.ok(chip.textContent.includes('2'), 'counts papers (override respected)');
+        assert.ok(chip, 'chip shown when papers exist'); assert.equal(chip.getAttribute('aria-pressed'), 'false'); assert.ok(chip.getAttribute('aria-label').includes('2'), 'counts papers (override respected)'); assert.ok(!/2/.test(chip.textContent), 'off: no count on the chip (AISH-038 D)');
         const nAll = gh.querySelectorAll('circle').length;
         chip.click();
         const chip2 = gh.querySelector('.graph-research-chip');
-        assert.equal(chip2.getAttribute('aria-pressed'), 'true');
+        assert.equal(chip2.getAttribute('aria-pressed'), 'true'); assert.ok(chip2.textContent.includes('2'), 'on: the chip shows the count');
         assert.ok(gh.querySelectorAll('circle').length < nAll, 'only papers (and their topics) remain');
         chip2.click();
         assert.equal(gh.querySelectorAll('circle').length, nAll, 'toggling off restores everything');

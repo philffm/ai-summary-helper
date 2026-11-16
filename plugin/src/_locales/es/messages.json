@@ -7363,5 +7363,56 @@
   "notifReopen": {
     "message": "Reabrir",
     "description": "Notification button: reopen the closed tab"
+  },
+  "f_adjust_0a9e": {
+    "message": "Ajustar"
+  },
+  "f_adjust_graph_3f12": {
+    "message": "Ajustar grafo"
+  },
+  "f_adjust_graph_filters_on_de1e": {
+    "message": "Ajustar grafo, {n} filtros activos"
+  },
+  "f_adjust_9b23": {
+    "message": "Ajustar · {n}"
+  },
+  "f_color_by_60e5": {
+    "message": "Colorear por"
+  },
+  "f_fit_to_view_d072": {
+    "message": "Ver todo"
+  },
+  "f_graph_tools_d6dc": {
+    "message": "Herramientas del grafo"
+  },
+  "f_library_2270": {
+    "message": "Biblioteca"
+  },
+  "f_name_them_2154": {
+    "message": "Ponerles nombre"
+  },
+  "f_path_pick_two_items_to_see_h_27da": {
+    "message": "Ruta · elige dos elementos para ver cómo se conectan"
+  },
+  "f_path_pick_two_items_to_see_h_3cdf": {
+    "message": "Ruta: elige dos elementos para ver cómo se conectan"
+  },
+  "f_show_articles_detail_6e3d": {
+    "message": "Mostrar artículos (Detalle)"
+  },
+  "f_show_only_1a4e": {
+    "message": "Mostrar solo"
+  },
+  "f_show_topics_5eb8": {
+    "message": "Mostrar temas"
+  },
+  "f_zoom_in_3899": {
+    "message": "Acercar"
+  },
+  "f_zoom_out_fe3a": {
+    "message": "Alejar"
+  },
+  "f_not_opened_yet_1de1": {
+    "message": "{n} sin abrir"
   }
 }

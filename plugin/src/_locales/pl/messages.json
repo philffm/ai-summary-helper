@@ -7646,5 +7646,56 @@
   "notifReopen": {
     "message": "Otwórz ponownie",
     "description": "Notification button: reopen the closed tab"
+  },
+  "f_adjust_0a9e": {
+    "message": "Dostosuj"
+  },
+  "f_adjust_graph_3f12": {
+    "message": "Dostosuj graf"
+  },
+  "f_adjust_graph_filters_on_de1e": {
+    "message": "Dostosuj graf, aktywne filtry: {n}"
+  },
+  "f_adjust_9b23": {
+    "message": "Dostosuj · {n}"
+  },
+  "f_color_by_60e5": {
+    "message": "Koloruj według"
+  },
+  "f_fit_to_view_d072": {
+    "message": "Pokaż wszystko"
+  },
+  "f_graph_tools_d6dc": {
+    "message": "Narzędzia grafu"
+  },
+  "f_library_2270": {
+    "message": "Biblioteka"
+  },
+  "f_name_them_2154": {
+    "message": "Nadaj nazwy"
+  },
+  "f_path_pick_two_items_to_see_h_27da": {
+    "message": "Ścieżka · wybierz dwa elementy, by zobaczyć, jak się łączą"
+  },
+  "f_path_pick_two_items_to_see_h_3cdf": {
+    "message": "Ścieżka: wybierz dwa elementy, by zobaczyć, jak się łączą"
+  },
+  "f_show_articles_detail_6e3d": {
+    "message": "Pokaż artykuły (Szczegóły)"
+  },
+  "f_show_only_1a4e": {
+    "message": "Pokaż tylko"
+  },
+  "f_show_topics_5eb8": {
+    "message": "Pokaż tematy"
+  },
+  "f_zoom_in_3899": {
+    "message": "Powiększ"
+  },
+  "f_zoom_out_fe3a": {
+    "message": "Pomniejsz"
+  },
+  "f_not_opened_yet_1de1": {
+    "message": "{n} jeszcze nieotwartych"
   }
 }
