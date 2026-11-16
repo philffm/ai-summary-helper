@@ -37,13 +37,13 @@ const click = (el) => el.dispatchEvent(new w.MouseEvent('click', { bubbles: true
 let hit = [];
 POP.npShowToolbar({ x: 300, y: 200, onHighlight: () => hit.push('hl'), onComment: () => hit.push('cm'), onNote: () => hit.push('note') });
 let root = hostOf()._root;
-const buttons = [...root.querySelectorAll('.bar button')];
+const buttons = [...root.querySelectorAll('.np-bar button')];
 assert.deepEqual(buttons.map((b) => b.textContent), ['✏️', '💬', '📝'], 'three quiet buttons');
 assert.deepEqual(buttons.map((b) => b.getAttribute('aria-label')), ['Highlight', 'Highlight and comment', 'Note with this quote'], 'each one named for assistive tech');
-assert.equal(root.querySelector('.bar').getAttribute('role'), 'toolbar');
+assert.equal(root.querySelector('.np-bar').getAttribute('role'), 'toolbar');
 click(buttons[1]); assert.deepEqual(hit, ['cm']); assert.equal(hostOf(), null, 'it goes away after a choice');
 POP.npShowToolbar({ x: 300, y: 200, onHighlight: () => hit.push('hl'), onComment() {}, onNote() {} });
-click(hostOf()._root.querySelector('.bar button')); assert.deepEqual(hit, ['cm', 'hl']);
+click(hostOf()._root.querySelector('.np-bar button')); assert.deepEqual(hit, ['cm', 'hl']);
 // an outside click and Escape dismiss it
 POP.npShowToolbar({ x: 10, y: 10, onHighlight() {}, onComment() {}, onNote() {} }); await tick(100);
 d.body.dispatchEvent(new w.MouseEvent('mousedown', { bubbles: true })); assert.equal(hostOf(), null);
@@ -51,31 +51,31 @@ POP.npShowToolbar({ x: 10, y: 10, onHighlight() {}, onComment() {}, onNote() {} 
 // a press on a button ends in a mouse-up that must not reach the page's selection handler (it would draw the toolbar again and swallow the click)
 POP.npShowToolbar({ x: 10, y: 10, onHighlight() {}, onComment() {}, onNote() {} });
 let ups = 0; const onUp = () => ups++; d.addEventListener('mouseup', onUp);
-hostOf()._root.querySelector('.bar button').dispatchEvent(new w.MouseEvent('mouseup', { bubbles: true, composed: true })); assert.equal(ups, 0, 'the mouse-up stays inside our toolbar');
+hostOf()._root.querySelector('.np-bar button').dispatchEvent(new w.MouseEvent('mouseup', { bubbles: true, composed: true })); assert.equal(ups, 0, 'the mouse-up stays inside our toolbar');
 d.body.dispatchEvent(new w.MouseEvent('mouseup', { bubbles: true })); assert.equal(ups, 1, 'a mouse-up on the page itself still reaches it'); d.removeEventListener('mouseup', onUp); POP.npHide();
 // page shortcuts do not see typing in it
 POP.npShowToolbar({ x: 10, y: 10, onHighlight() {}, onComment() {}, onNote() {} });
 let pageSaw = 0; d.addEventListener('keydown', () => pageSaw++);
-hostOf()._root.querySelector('.bar button').dispatchEvent(new w.KeyboardEvent('keydown', { key: 'j', bubbles: true, composed: true })); assert.equal(pageSaw, 0, 'the page did not get the key');
+hostOf()._root.querySelector('.np-bar button').dispatchEvent(new w.KeyboardEvent('keydown', { key: 'j', bubbles: true, composed: true })); assert.equal(pageSaw, 0, 'the page did not get the key');
 POP.npHide();
 
 // ── the composer ──
 let saved = null;
 POP.npShowComposer({ x: 200, y: 300, heading: 'Comment', quote: 'The central bank raised rates eleven times in fourteen months.', onSave: async (text, tags) => { saved = { text, tags }; return true; } });
 root = hostOf()._root;
-const card = root.querySelector('.card'); assert.ok(card.querySelector('.quote').textContent.includes('central bank'));
-const ta = card.querySelector('textarea'), go = card.querySelector('.go');
+const card = root.querySelector('.np-card'); assert.ok(card.querySelector('.np-quote').textContent.includes('central bank'));
+const ta = card.querySelector('textarea'), go = card.querySelector('.np-go');
 assert.ok(go.disabled, 'nothing to save yet');
 ta.value = 'Compare with 2008 #inflation'; ta.dispatchEvent(new w.Event('input')); assert.ok(!go.disabled);
 click(go); await tick(30);
-assert.deepEqual(saved, { text: 'Compare with 2008', tags: ['inflation'] }); const after = hostOf()._root; assert.ok(!after.querySelector('.card'), 'closes after saving'); assert.match(after.querySelector('.toast').textContent, /Saved/);
+assert.deepEqual(saved, { text: 'Compare with 2008', tags: ['inflation'] }); const after = hostOf()._root; assert.ok(!after.querySelector('.np-card'), 'closes after saving'); assert.match(after.querySelector('.np-toast').textContent, /Saved/);
 // a failed save keeps the text
 let fail = true; POP.npShowComposer({ x: 1, y: 1, heading: 'Note', onSave: async () => (fail ? false : true) });
-const c2 = hostOf()._root.querySelector('.card'), t2 = c2.querySelector('textarea'); t2.value = 'keep me'; t2.dispatchEvent(new w.Event('input'));
-click(c2.querySelector('.go')); await tick(30);
-assert.ok(hostOf()._root.querySelector('.card') && t2.value === 'keep me', 'the text stays when saving failed'); assert.match(c2.querySelector('.go').textContent, /Try again/);
+const c2 = hostOf()._root.querySelector('.np-card'), t2 = c2.querySelector('textarea'); t2.value = 'keep me'; t2.dispatchEvent(new w.Event('input'));
+click(c2.querySelector('.np-go')); await tick(30);
+assert.ok(hostOf()._root.querySelector('.np-card') && t2.value === 'keep me', 'the text stays when saving failed'); assert.match(c2.querySelector('.np-go').textContent, /Try again/);
 // typed text survives a click elsewhere; Escape still closes
-await tick(100); d.body.dispatchEvent(new w.MouseEvent('mousedown', { bubbles: true })); assert.ok(hostOf() && hostOf()._root.querySelector('.card'), 'a click elsewhere does not throw typing away');
+await tick(100); d.body.dispatchEvent(new w.MouseEvent('mousedown', { bubbles: true })); assert.ok(hostOf() && hostOf()._root.querySelector('.np-card'), 'a click elsewhere does not throw typing away');
 d.dispatchEvent(new w.KeyboardEvent('keydown', { key: 'Escape', bubbles: true })); assert.equal(hostOf(), null);
 
 // ── the page panel: comments and notes ──
@@ -85,24 +85,24 @@ const actions = { jump() {}, remove() {}, keep() {}, reattach() {}, pending: () 
 const items = [{ id: 'h1', type: 'user', text: 'Prices rose faster than wages', status: 'ok', frac: 0.2, comment: 'Check chart 3' }, { id: 'h2', type: 'ghost', text: 'Supply bottlenecks', status: 'ok', frac: 0.5, comment: '' }];
 PANEL.hlpRender(items, actions);
 const ph = d.getElementById('aish-hl-host'), body = ph._body;
-body.querySelector('.pill').click(); await tick(5);
-assert.match(body.querySelector('.cmt').textContent, /Check chart 3/, 'the comment shows under its highlight');
-const labels = [...body.querySelectorAll('.acts button')].filter((b) => /omment/.test(b.textContent)).map((b) => b.textContent);
-assert.deepEqual(labels, ['Edit comment', 'Comment']);
+body.querySelector('.hlp-pill').click(); await tick(5);
+assert.match(body.querySelector('.hlp-cmt').textContent, /Check chart 3/, 'the comment shows under its highlight');
+const labels = [...body.querySelectorAll('.hlp-acts button')].filter((b) => /omment/.test(b.textContent)).map((b) => b.textContent);
+assert.deepEqual(labels, ['💬 Edit comment', '💬 Comment']);
 // edit: the editor is filled with the comment; saving sends it; a refresh while typing keeps the typed text
-[...body.querySelectorAll('.acts button')].find((b) => b.textContent === 'Comment').click(); await tick(5);
-let eta = body.querySelector('.cm-ta'); assert.ok(eta && eta.value === ''); eta.value = 'half written';
-PANEL.hlpRender(items, actions); eta = body.querySelector('.cm-ta'); assert.equal(eta.value, 'half written', 'a refresh does not lose what was typed');
-eta.value = 'Because energy #prices'; body.querySelector('.cm-row .primary').click(); await tick(20);
-assert.deepEqual(said.pop(), ['comment', 'h2', 'Because energy #prices']); assert.ok(!body.querySelector('.cm-ta'), 'the editor closes after saving');
+[...body.querySelectorAll('.hlp-acts button')].find((b) => b.textContent === '💬 Comment').click(); await tick(5);
+let eta = body.querySelector('.hlp-cm-ta'); assert.ok(eta && eta.value === ''); eta.value = 'half written';
+PANEL.hlpRender(items, actions); eta = body.querySelector('.hlp-cm-ta'); assert.equal(eta.value, 'half written', 'a refresh does not lose what was typed');
+eta.value = 'Because energy #prices'; body.querySelector('[data-act="csave"]').click(); await tick(20);
+assert.deepEqual(said.pop(), ['comment', 'h2', 'Because energy #prices']); assert.ok(!body.querySelector('.hlp-cm-ta'), 'the editor closes after saving');
 // a note about the page, and the way to the Notes tab
 body.querySelector('[data-act="note"]').click(); await tick(5);
-const nta = body.querySelector('.nt-ta'); nta.value = 'Worth a newsletter issue'; body.querySelector('[data-act="nsave"]').click(); await tick(20);
-assert.deepEqual(said.pop(), ['note', 'Worth a newsletter issue']); assert.ok(!body.querySelector('.nt-ta'));
+const nta = body.querySelector('.hlp-nt-ta'); nta.value = 'Worth a newsletter issue'; body.querySelector('[data-act="nsave"]').click(); await tick(20);
+assert.deepEqual(said.pop(), ['note', 'Worth a newsletter issue']); assert.ok(!body.querySelector('.hlp-nt-ta'));
 body.querySelector('[data-act="opennotes"]').click(); assert.deepEqual(said.pop(), ['open']);
 // text from pages is never run as HTML
 PANEL.hlpRender([{ id: 'h3', type: 'user', text: 'x', status: 'ok', frac: null, comment: '<img src=x onerror=alert(1)>' }], actions);
-assert.ok(!body.querySelector('.cmt img'), 'a comment is text'); assert.match(body.querySelector('.cmt').textContent, /<img src=x/);
+assert.ok(!body.querySelector('.hlp-cmt img'), 'a comment is text'); assert.match(body.querySelector('.hlp-cmt').textContent, /<img src=x/);
 
 console.log('TEST 198 OK');
 process.exit(0);

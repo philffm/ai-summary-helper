@@ -8,7 +8,8 @@ import { SK, hlPageKey } from '../modules/storageKeys.js';
 
 import { ancScopeRoot, ancBuildIndex, ancMakeSelector, ancResolve, ancToRange, ancQuoteUsable, ancNormalize } from './anchor.js';
 import { hlpRender } from './highlightPanel.js';
-import { npShowToolbar, npShowComposer, npHide } from './notesPopover.js';
+import { npShowToolbar, npShowComposer, npShowActions, npHide } from './notesPopover.js';
+import { MK } from './markColors.js';
 import { splitTags } from '../modules/noteText.js';
 import { pageKeyForUrl, isNoisePage } from '../modules/pageKey.js';
 import { normalizeHighlights } from '../modules/highlightRecords.js';
@@ -65,12 +66,13 @@ function hlEnsureStyles() {
   if (document.getElementById('aish-hl-styles')) return;
   const st = document.createElement('style');
   st.id = 'aish-hl-styles';
+  // token colours (markColors.js); opaque on purpose: a see-through background takes on the page's colour and the text on it
+  // fell to about 2:1 on dark pages
   st.textContent = `
-    ::highlight(aish-user) { background-color: #fef08a; color: #1f2937; }
-    /* opaque on purpose: a see-through background takes on the page's colour, and on a dark page the blue text on it fell to about 2:1 */
-    ::highlight(aish-ghost) { background-color: #bae6fd; color: #0c4a6e; text-decoration: underline dashed #0369a1; }
-    ::highlight(aish-flash) { background-color: #fde047; color: #1f2937; }
-    .aish-hl-flash { outline: 3px solid #fde047 !important; }
+    ::highlight(aish-user) { background-color: ${MK['annotation-user-bg']}; color: ${MK['annotation-user-fg']}; text-decoration: underline 2px ${MK['annotation-user-bar']}; }
+    ::highlight(aish-ghost) { background-color: ${MK['annotation-ai-bg']}; color: ${MK['annotation-ai-fg']}; text-decoration: underline dashed 2px ${MK['annotation-ai-bar']}; }
+    ::highlight(aish-flash) { background-color: ${MK['annotation-user-bar']}; color: ${MK['annotation-user-fg']}; }
+    .aish-hl-flash { outline: 3px solid ${MK['annotation-user-bar']} !important; }
   `;
   document.documentElement.appendChild(st);
 }
@@ -95,11 +97,11 @@ function hlPaint(entry) {
     if (isGhost) {
       mark.className = 'ai-ghost-highlight';
       mark.title = 'AI highlight — click to keep or dismiss';
-      mark.style.cssText = 'background-color:#bae6fd;color:#0c4a6e;border-bottom:2px dashed #0369a1;border-radius:2px;padding:0 2px;cursor:pointer;';
+      mark.style.cssText = `background-color:${MK['annotation-ai-bg']};color:${MK['annotation-ai-fg']};border-bottom:2px dashed ${MK['annotation-ai-bar']};border-radius:2px;padding:0 2px;cursor:pointer;`;
     } else {
       mark.className = 'ai-user-highlight';
       mark.title = 'Click to remove highlight';
-      mark.style.cssText = 'background-color:#fef08a;color:#1f2937;border-radius:2px;padding:0 2px;cursor:pointer;';
+      mark.style.cssText = `background-color:${MK['annotation-user-bg']};color:${MK['annotation-user-fg']};border-bottom:2px solid ${MK['annotation-user-bar']};border-radius:2px;padding:0 2px;cursor:pointer;`;
     }
     return mark;
   });
@@ -245,7 +247,7 @@ function isOwnHighlightMutation(mutations) {
     return nodes.every(n =>
       n.nodeType === Node.ELEMENT_NODE &&
       (n.classList?.contains('ai-user-highlight') || n.classList?.contains('ai-ghost-highlight') ||
-       n.id === 'ai-highlight-tooltip' || n.id === 'ai-ghost-menu' || n.id === 'aish-hl-host' || n.id === 'aish-hl-styles')
+       n.id === 'aish-np-host' || n.id === 'aish-hl-host' || n.id === 'aish-hl-styles')
     );
   });
 }
@@ -535,39 +537,7 @@ function hlReattach(id, range) {
 }
 
 function showHighlightTooltip(x, y, onClick, label = '✏️ Highlight') {
-  let tooltip = document.getElementById('ai-highlight-tooltip');
-  if (!tooltip) {
-    tooltip = document.createElement('button');
-    tooltip.id = 'ai-highlight-tooltip';
-    tooltip.innerHTML = '✏️ Highlight';
-    tooltip.style.cssText = `
-      position: absolute; z-index: 2147483646;
-      background: #fef08a; color: #854d0e;
-      border: 1px solid #fde047; border-radius: 6px;
-      padding: 4px 10px; font-size: 12px; font-weight: bold;
-      cursor: pointer; box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-      transition: transform 0.1s ease;
-    `;
-    document.body.appendChild(tooltip);
-  }
-  // eslint-disable-next-line no-unsanitized/property -- reviewed: label is a fixed string from this file
-  tooltip.innerHTML = label;
-  tooltip.style.left = `${x + 5}px`;
-  tooltip.style.top  = `${y - 35}px`;
-  tooltip.style.display = 'block';
-
-  tooltip.addEventListener('click', (e) => {
-    e.preventDefault(); e.stopPropagation();
-    onClick();
-    tooltip.style.display = 'none';
-  }, { once: true });
-
-  setTimeout(() => {
-    document.addEventListener('click', function hideTooltip() {
-      if (tooltip) tooltip.style.display = 'none';
-      document.removeEventListener('click', hideTooltip);
-    }, { once: true });
-  }, 100);
+  npShowActions({ x, y, label: 'Re-attach the highlight', items: [[label, onClick, 'primary']] });
 }
 
 function generateHighlightGroupId() {
@@ -655,7 +625,7 @@ function hlEntryAt(event) {
 }
 
 export function handleHighlightClick(event) {
-  if (event.target && event.target.closest && event.target.closest('#aish-hl-host, #ai-ghost-menu')) return;
+  if (event.target && event.target.closest && event.target.closest('#aish-hl-host, #aish-np-host')) return;
   const entry = hlEntryAt(event);
   if (!entry) return;
   event.preventDefault(); event.stopPropagation();
@@ -683,38 +653,10 @@ function hlKeep(id) {
 }
 
 function hlShowMenu(x, y, entry) {
-  let menu = document.getElementById('ai-ghost-menu');
-  if (!menu) {
-    menu = document.createElement('div');
-    menu.id = 'ai-ghost-menu';
-    menu.style.cssText = `
-      position:absolute; z-index:2147483647;
-      background:#fff; border:1px solid #e2e8f0;
-      border-radius:8px; padding:6px;
-      box-shadow:0 4px 16px rgba(0,0,0,0.15);
-      display:flex; gap:6px; font-size:12px;
-    `;
-    document.body.appendChild(menu);
-  }
-  const ghost = entry.ann.type === 'ghost';
-  // eslint-disable-next-line no-unsanitized/property -- reviewed: two fixed button templates, no data
-  menu.innerHTML = ghost
-    ? `<button id="btn-convert-yellow" style="background:#fef08a;border:1px solid #fde047;color:#854d0e;padding:4px 8px;border-radius:4px;cursor:pointer;font-weight:bold;">⭐ Keep</button>
-       <button id="btn-dismiss-ghost" style="background:#f1f5f9;border:1px solid #cbd5e1;color:#475569;padding:4px 8px;border-radius:4px;cursor:pointer;">✕ Dismiss</button>`
-    : `<button id="btn-dismiss-ghost" style="background:#f1f5f9;border:1px solid #cbd5e1;color:#475569;padding:4px 8px;border-radius:4px;cursor:pointer;">🗑 Remove highlight</button>`;
-  menu.style.left = `${x}px`;
-  menu.style.top = `${y - 44}px`;
-  menu.style.display = 'flex';
-  const id = entry.ann.id;
-  const keepBtn = document.getElementById('btn-convert-yellow');
-  if (keepBtn) keepBtn.onclick = () => { hlKeep(id); menu.style.display = 'none'; };
-  document.getElementById('btn-dismiss-ghost').onclick = () => { hlRemove(id, { dismiss: ghost }); menu.style.display = 'none'; };
-  setTimeout(() => {
-    document.addEventListener('click', function hideMenu() {
-      if (menu) menu.style.display = 'none';
-      document.removeEventListener('click', hideMenu);
-    }, { once: true });
-  }, 100);
+  const ghost = entry.ann.type === 'ghost', id = entry.ann.id;
+  npShowActions({ x, y, label: ghost ? 'AI suggestion' : 'Your highlight', items: ghost
+    ? [['⭐ Keep', () => hlKeep(id), 'primary'], ['✕ Dismiss', () => hlRemove(id, { dismiss: true })]]
+    : [['🗑 Remove highlight', () => hlRemove(id, { dismiss: false }), 'danger']] });
 }
 
 // ── 2. AI highlights ─────────────────────────────────────────────────────────

@@ -1,6 +1,8 @@
-/* inPage.css — styles for the extension's UI drawn inside web pages (shadow roots): the Speed-Read reader
-   (content/speedRead.js). The token region below is generated from design-system/ (npm run tokens) with :host selectors,
-   so the shadow root gets the same themes as the popup; the host carries data-theme / data-motion from the settings.
+/* inPage.css — styles for the extension's UI drawn inside web pages (shadow roots): the Speed-Read reader (content/speedRead.js),
+   the highlights panel with its ✏️ | ✨ Summarize button and scroll ticks (content/highlightPanel.js) and the selection toolbar with
+   its composer (content/notesPopover.js). content/inPageStyles.js adopts this sheet into each shadow root.
+   The token region below is generated from design-system/ (npm run tokens) with :host selectors, so every shadow root gets the
+   same themes as the popup; the host carries data-theme / data-motion from the settings.
    Everything after the region is component CSS and reads only tokens. */
 
 /* @tokens:start theme */
@@ -561,21 +563,25 @@
 }
 /* @tokens:end theme */
 
-/* ── Speed-Read (Figma AISH-036 · C "Satz-Leser", A as full screen) ───────────────────────────────────────────── */
+/* ── Shared base for every in-page shadow root ─────────────────────────────────────────────────────────────────── */
 :host {
   all: initial;
-  position: fixed;
-  inset: 0;
-  z-index: 2147483647;
   font-family: var(--font-ui);
   color: var(--text-primary);
   -webkit-font-smoothing: antialiased;
-  visibility: hidden;
 }
-:host(.sr-ready) { visibility: visible; }
 * { box-sizing: border-box; }
 [hidden] { display: none !important; }
 .sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+
+/* ── Speed-Read (Figma AISH-036 · C "Satz-Leser", A as full screen) ───────────────────────────────────────────── */
+:host(#aish-speedread-host) {
+  position: fixed;
+  inset: 0;
+  z-index: 2147483647;
+  visibility: hidden;
+}
+:host(#aish-speedread-host.sr-ready) { visibility: visible; }
 
 .sr-scrim { position: absolute; inset: 0; background: var(--scrim); }
 .sr {
@@ -738,3 +744,119 @@ button:focus-visible, select:focus-visible {
   .sr, .sr-bar-fill { animation: none; transition: none; }
 }
 :host([data-motion='reduce']) .sr, :host([data-motion='reduce']) .sr-bar-fill { animation: none; transition: none; }
+
+/* ── Highlights on the page (content/highlightPanel.js, Figma AISH-039.1) ─────────────────────────────────────────
+   ✏️ n | ✨ Summarize (the one Primary), the panel as a sheet with a Pill segmented filter and Note-card highlights,
+   and the scroll ticks. The ticks keep a light and a dark rim so they show on any page colour. */
+.hlp-ticks { position: fixed; top: 0; right: 0; bottom: 0; width: 10px; z-index: 2147483640; pointer-events: none; }
+.hlp-tick { position: absolute; right: 1px; width: 8px; height: 3px; border-radius: var(--radius-xs); pointer-events: auto; cursor: pointer;
+  outline: 1px solid var(--surface-sheet); box-shadow: 0 0 0 2px var(--scrim); }
+.hlp-tick--user { background: var(--annotation-user-bar); }
+.hlp-tick--ghost { background: var(--annotation-ai-bar); }
+
+.hlp-split { position: fixed; right: 16px; bottom: 16px; z-index: 2147483641; display: flex; align-items: stretch;
+  border-radius: var(--radius-full); overflow: hidden; box-shadow: var(--shadow-raised); }
+.hlp-pill, .hlp-sum { all: unset; box-sizing: border-box; display: inline-flex; align-items: center; gap: 6px; min-height: 36px;
+  font-family: var(--font-ui); font-size: var(--fs-md); font-weight: 700; line-height: 1; cursor: pointer; white-space: nowrap; }
+.hlp-pill { padding: 0 12px 0 14px; background: var(--annotation-user-bg); color: var(--annotation-user-fg);
+  border: 1px solid var(--annotation-user-bar); border-right: 0; border-radius: var(--radius-full) 0 0 var(--radius-full); }
+.hlp-sum { padding: 0 16px 0 12px; background: var(--accent); color: var(--on-accent); }
+.hlp-sum[disabled] { opacity: .7; cursor: default; }
+.hlp-pill:focus-visible, .hlp-sum:focus-visible { outline: var(--focus-ring-width) solid var(--focus-ring); outline-offset: var(--focus-ring-inset); }
+
+.hlp-panel { position: fixed; right: 16px; bottom: 64px; z-index: 2147483641; width: min(360px, calc(100vw - 32px));
+  max-height: calc(100vh - 96px); overflow: auto; overscroll-behavior: contain;
+  display: flex; flex-direction: column; gap: var(--spacing-s-3); padding: var(--spacing-s-4);
+  background: var(--surface-sheet); color: var(--text-primary); border: 1px solid var(--outline);
+  border-radius: var(--radius-sheet); box-shadow: var(--shadow-modal); font-size: var(--fs-base);
+  animation: hlp-in var(--duration-base) var(--easing-decelerate); }
+@keyframes hlp-in { from { opacity: 0; transform: translateY(6px); } }
+:host([data-motion='reduce']) .hlp-panel { animation: none; }
+@media (prefers-reduced-motion: reduce) { .hlp-panel { animation: none; } }
+.hlp-head { display: flex; align-items: center; gap: var(--spacing-s-2); }
+.hlp-head h2 { flex: 1; margin: 0; font-size: var(--fs-lg); font-weight: 650; line-height: 1.3; color: var(--text-primary); }
+.hlp-x { all: unset; box-sizing: border-box; display: grid; place-items: center; width: 32px; height: 32px; border-radius: var(--radius-full);
+  color: var(--text-secondary); font-size: var(--fs-lg); cursor: pointer; }
+.hlp-x:hover { background: var(--glass-input); color: var(--text-primary); }
+
+/* Pill segmented (DS: .a11y-seg) */
+.hlp-seg { display: flex; gap: 2px; padding: 2px; align-self: flex-start; border-radius: var(--radius-full); background: var(--glass-input); border: 1px solid var(--outline); }
+.hlp-seg button { all: unset; box-sizing: border-box; padding: 6px 12px; border-radius: var(--radius-full); color: var(--text-secondary);
+  font-family: var(--font-ui); font-size: var(--fs-sm); font-weight: 600; cursor: pointer; white-space: nowrap; }
+.hlp-seg button.on { background: var(--accent); color: var(--on-accent); }
+
+.hlp-hint { margin: 0; padding: var(--spacing-s-2) var(--spacing-s-3); border-radius: var(--radius-sm); font-size: var(--fs-sm); line-height: 1.45;
+  border: 1px solid color-mix(in srgb, var(--warn) 55%, transparent); background: color-mix(in srgb, var(--warn) 10%, transparent); }
+
+/* Note card (DS: .st in Notes), the same colours as the Notes tab */
+.hlp-list { display: flex; flex-direction: column; gap: var(--spacing-s-2); }
+.hlp-card { display: flex; flex-direction: column; gap: 6px; padding: 10px 12px; border-radius: var(--radius-md); border-left: 4px solid; box-shadow: var(--saved-note-edge); }
+.hlp-card--user { background: var(--saved-note-user-bg); color: var(--saved-note-user-fg); border-color: var(--saved-note-user-bar); }
+.hlp-card--ghost { background: var(--saved-note-ghost-bg); color: var(--saved-note-ghost-fg); border-color: var(--saved-note-ghost-bar); }
+.hlp-card--lost { background: var(--surface-sheet); color: var(--text-primary); border: 1px dashed var(--danger); border-left: 4px solid var(--danger); }
+.hlp-card-head { display: flex; justify-content: space-between; gap: var(--spacing-s-2); font-size: var(--fs-xs); font-weight: 700; letter-spacing: .02em; opacity: .85; }
+.hlp-card-note { font-weight: 500; }
+.hlp-q { all: unset; box-sizing: border-box; display: block; margin: 0; font-family: var(--font-ui); font-size: var(--fs-md); font-weight: 500; line-height: 1.45;
+  color: inherit; overflow-wrap: anywhere; border-radius: var(--radius-xs); }
+button.hlp-q { cursor: pointer; }
+button.hlp-q:hover { text-decoration: underline; text-underline-offset: 3px; }
+.hlp-cmt { margin: 0; padding: 6px 8px; border-radius: var(--radius-sm); background: var(--saved-note-quote-bg); font-size: var(--fs-sm); line-height: 1.45; white-space: pre-wrap; overflow-wrap: anywhere; }
+.hlp-acts { display: flex; flex-wrap: wrap; align-items: center; gap: 4px 10px; font-size: var(--fs-xs); }
+.hlp-acts-end { margin-left: auto; display: inline-flex; gap: 10px; }
+.hlp-act { all: unset; box-sizing: border-box; padding: 4px 0; font-family: var(--font-ui); font-size: var(--fs-xs); font-weight: 700; color: inherit; opacity: .85; cursor: pointer; }
+.hlp-act:hover { opacity: 1; }
+.hlp-act--danger { color: var(--saved-note-danger); opacity: 1; }
+
+/* editors (comment, note) */
+.hlp-ta { width: 100%; resize: vertical; min-height: 60px; padding: 8px; border-radius: var(--radius-sm); border: 1px solid var(--outline);
+  background: var(--surface-field); color: var(--text-primary); font-family: var(--font-ui); font-size: var(--fs-md); line-height: 1.45; }
+.hlp-ta:focus { outline: none; border-color: var(--accent); box-shadow: 0 0 0 3px var(--accent-a15); }
+.hlp-row { display: flex; gap: 6px; justify-content: flex-end; }
+.hlp-btn { all: unset; box-sizing: border-box; display: inline-flex; align-items: center; min-height: 30px; padding: 0 12px; border-radius: var(--radius-full);
+  border: 1px solid var(--outline); background: var(--surface-sheet); color: var(--text-primary); font-family: var(--font-ui); font-size: var(--fs-sm); font-weight: 700; cursor: pointer; }
+.hlp-btn--primary { background: var(--accent); border-color: var(--accent); color: var(--on-accent); }
+
+/* foot: Ghost buttons S, the quiet "don't show here", what Summarize does */
+.hlp-foot { display: flex; flex-wrap: wrap; gap: var(--spacing-s-1) var(--spacing-s-2); padding-top: var(--spacing-s-3); border-top: 1px solid var(--outline-soft); }
+.hlp-ghost { all: unset; box-sizing: border-box; display: inline-flex; align-items: center; gap: 6px; min-height: 30px; padding: 0 10px; border-radius: var(--radius-full);
+  color: var(--text-link); font-family: var(--font-ui); font-size: var(--fs-sm); font-weight: 650; cursor: pointer; }
+.hlp-ghost:hover { background: var(--accent-a08); }
+.hlp-hide { all: unset; box-sizing: border-box; align-self: flex-start; padding: 2px 0; color: var(--text-muted); font-family: var(--font-ui); font-size: var(--fs-xs);
+  text-decoration: underline; text-underline-offset: 2px; cursor: pointer; }
+.hlp-hide:hover { color: var(--text-secondary); }
+.hlp-meta { margin: 0; color: var(--text-muted); font-size: var(--fs-xs); line-height: 1.4; }
+
+.hlp-x:focus-visible, .hlp-seg button:focus-visible, .hlp-q:focus-visible, .hlp-act:focus-visible, .hlp-btn:focus-visible,
+.hlp-ghost:focus-visible, .hlp-hide:focus-visible { outline: var(--focus-ring-width) solid var(--focus-ring); outline-offset: var(--focus-ring-offset); }
+
+/* ── Selection toolbar + composer (content/notesPopover.js, Figma AISH-039) ────────────────────────────────────────
+   The toolbar is an inverse bar (like a native text menu); the composer is a sheet with one Primary (Save). */
+.np-bar { position: absolute; display: flex; gap: 2px; padding: 3px; background: var(--surface-inverse); border-radius: var(--radius-md); box-shadow: var(--shadow-modal); }
+.np-bar button { all: unset; box-sizing: border-box; display: grid; place-items: center; min-width: 36px; height: 34px; padding: 0 8px;
+  border-radius: var(--radius-sm); font-size: var(--fs-lg); line-height: 1; color: var(--text-inverse); cursor: pointer; }
+.np-bar button:hover { background: color-mix(in srgb, var(--text-inverse) 14%, transparent); }
+.np-bar button:focus-visible { outline: var(--focus-ring-width) solid var(--focus-ring); outline-offset: var(--focus-ring-inset); }
+.np-card { position: absolute; width: 320px; max-width: calc(100vw - 16px); display: flex; flex-direction: column; gap: var(--spacing-s-2);
+  padding: var(--spacing-s-3) var(--spacing-s-3) var(--spacing-s-3) var(--spacing-s-4); background: var(--surface-sheet); color: var(--text-primary);
+  border: 1px solid var(--outline); border-radius: var(--radius-lg); box-shadow: var(--shadow-modal); font-size: var(--fs-base); }
+.np-head { display: flex; justify-content: space-between; align-items: center; font-size: var(--fs-sm); font-weight: 700; color: var(--text-secondary); letter-spacing: .02em; }
+.np-x { all: unset; box-sizing: border-box; display: grid; place-items: center; width: 28px; height: 28px; border-radius: var(--radius-full); color: var(--text-secondary); font-size: var(--fs-base); cursor: pointer; }
+.np-x:hover { background: var(--glass-input); color: var(--text-primary); }
+.np-quote { margin: 0; padding: 4px 8px; max-height: 4.4em; overflow: hidden; font-size: var(--fs-sm); font-style: italic; line-height: 1.45;
+  color: var(--saved-note-user-fg); background: var(--saved-note-user-bg); border-left: 3px solid var(--saved-note-user-bar); border-radius: var(--radius-xs); }
+.np-ta { width: 100%; resize: none; min-height: 64px; max-height: 160px; padding: 8px; border-radius: var(--radius-sm); border: 1px solid var(--outline);
+  background: var(--surface-field); color: var(--text-primary); font-family: var(--font-ui); font-size: var(--fs-base); line-height: 1.45; outline: none; }
+.np-ta:focus { border-color: var(--accent); box-shadow: 0 0 0 3px var(--accent-a15); }
+.np-row { display: flex; align-items: center; justify-content: space-between; gap: var(--spacing-s-2); }
+.np-hint { font-size: var(--fs-xs); color: var(--text-muted); }
+.np-go { all: unset; box-sizing: border-box; display: inline-flex; align-items: center; min-height: 30px; padding: 0 14px; border-radius: var(--radius-full);
+  background: var(--accent); color: var(--on-accent); font-family: var(--font-ui); font-size: var(--fs-sm); font-weight: 700; cursor: pointer; }
+.np-go[disabled] { opacity: .5; cursor: default; }
+.np-go:focus-visible, .np-x:focus-visible { outline: var(--focus-ring-width) solid var(--focus-ring); outline-offset: var(--focus-ring-offset); }
+.np-toast { position: absolute; padding: 8px 14px; border-radius: var(--radius-md); background: var(--glass-base); color: var(--text-primary);
+  border: 1px solid var(--glass-border-strong); box-shadow: var(--shadow-modal); font-size: var(--fs-md); font-weight: 600;
+  -webkit-backdrop-filter: blur(20px); backdrop-filter: blur(20px); }
+.np-bar--text button { display: inline-flex; align-items: center; gap: 6px; white-space: nowrap; font-family: var(--font-ui); font-size: var(--fs-sm); font-weight: 650; padding: 0 12px; }
+.np-bar--text button.np-primary { background: var(--annotation-user-bg); color: var(--annotation-user-fg); }
+.np-bar--text button.np-primary:hover { background: var(--annotation-user-bar); }
+.np-bar--text button.np-danger { color: var(--text-inverse); }
