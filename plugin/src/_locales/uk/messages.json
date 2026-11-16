@@ -7878,12 +7878,6 @@
   "f_select_at_least_2_articles_f_9829": {
     "message": "Виберіть щонайменше 2 статті для вікторини"
   },
-  "f_quiz_acf9": {
-    "message": "🎓 Вікторина"
-  },
-  "f_quiz_1595": {
-    "message": "🎓 Вікторина {n}"
-  },
   "notifQuizTitle": {
     "message": "🎓 Час повторити"
   },

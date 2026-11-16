@@ -1,5 +1,5 @@
 // Quiz across articles (Figma AISH-040) in Chromium (dev build), with a fake model in the popup (setAiTransport):
-// library → select 4 → "🎓 Quiz 4" → setup → per-article checks → questions (one connects two articles) → feedback with sources
+// library → select 4 → ⋯ → "Create quiz" → setup → per-article checks → questions (one connects two articles) → feedback with sources
 // → result by article → export (Kahoot .xlsx download); collection → "Create quiz"; reader page jumps to a quoted sentence.
 // Usage: node plugin/tests/e2e/quiz.e2e.cjs plugin/dev/aish-extension-chrome [shotDir] [--dark]
 const { chromium } = require(process.env.PLAYWRIGHT || '/opt/npm-tools/node_modules/playwright');
@@ -57,17 +57,23 @@ const ARTS = [
   }, ARTS);
   const shot = (n) => shots ? p.screenshot({ path: path.join(shots, `qz-${n}${sfx}.png`) }) : null;
 
-  // E1 · library: select 4 cards → 🎓 Quiz 4
+  // E1 · library: select 4 cards → ⋯ → Create quiz
   await p.click('[data-screen="history"]'); await p.waitForSelector('#articleList .article-card', { timeout: 8000 }); await wait(400);
   await p.locator('#articleList .article-card').first().locator('.card-menu-btn').click(); await wait(250);
   await p.locator('.card-menu-item', { hasText: 'Select' }).click(); await wait(250);
   const cards = p.locator('#articleList .article-card');
   for (let i = 1; i < 4; i++) await cards.nth(i).click({ position: { x: 30, y: 12 } });
   await wait(250);
-  const qbtn = p.locator('.sel-bar .sel-quiz');
-  assert.equal((await qbtn.textContent()).trim(), '🎓 Quiz 4'); assert.equal(await qbtn.isDisabled(), false);
+  assert.equal(await p.$('.sel-bar .sel-quiz'), null, 'no extra Quiz button in the selection bar');
+  // back to top stays hidden while selecting (it covered ⋯)
+  const btt = await p.evaluate(() => { const b = document.getElementById('backToTopBtn'); if (!b) return 'none'; b.classList.add('is-on'); const v = getComputedStyle(b).display; b.classList.remove('is-on'); return v; });
+  assert.equal(btt, 'none', 'back to top hidden in selection mode');
   await shot('0-selection');
-  await qbtn.click(); await p.waitForSelector('.quiz .quiz-seg'); await wait(300);
+  await p.click('.sel-bar .sel-more'); await p.waitForSelector('.sendsheet-row'); await wait(300);
+  const quizRow = p.locator('.sendsheet-row', { hasText: 'Create quiz' });
+  assert.equal(await quizRow.isDisabled(), false); assert.match(await quizRow.textContent(), /4 selected articles/);
+  await shot('0b-more-sheet');
+  await quizRow.click(); await p.waitForSelector('.quiz .quiz-seg'); await wait(400);
   const setup = await p.evaluate(() => ({ tags: document.querySelectorAll('.quiz-tag').length, plan: document.querySelector('.quiz-hint').textContent, meta: document.querySelector('.quiz-meta').textContent }));
   await shot('1-setup');
   // Q3 · writing

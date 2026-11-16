@@ -91,15 +91,7 @@ function buildBar() {
     const send = el('button', 'sel-send button-primary');
     send.type = 'button';
     send.addEventListener('click', () => { if (sel.size) openSheet(); });
-    // 🎓 Quiz n (Figma AISH-040 E1): a quiz across the selected articles, from 2 on
-    const quiz = el('button', 'sel-quiz button-secondary');
-    quiz.type = 'button';
-    quiz.addEventListener('click', () => {
-        const list = selected();
-        if (list.length < 2) return;
-        import('./quiz/quizView.js').then(m => m.openQuiz(list, { name: TN(list.length, '{n} article', '{n} articles'), toast: deps.toast })).catch(() => {});
-    });
-    bar.append(x, info, all, more, quiz, send);
+    bar.append(x, info, all, more, send);
     (screenEl() || document.body).append(bar);
 }
 
@@ -111,10 +103,6 @@ function paintBar() {
     send.textContent = n ? T('📤 Send {n}', { n }) : T('📤 Send');
     send.disabled = n === 0;
     bar.querySelector('.sel-more').disabled = n === 0;
-    const quiz = bar.querySelector('.sel-quiz');
-    quiz.textContent = n >= 2 ? T('🎓 Quiz {n}', { n }) : T('🎓 Quiz');
-    quiz.disabled = n < 2;
-    quiz.title = n < 2 ? T('Select at least 2 articles for a quiz') : T('Quiz across the {n} selected articles', { n });
 }
 
 // ───────────────────────────── sheet ─────────────────────────────
@@ -378,6 +366,18 @@ function viewMark() {
             await openAddSheet(articles, { onDone: () => setActive(false) });
         } catch (_) { deps.toast(T('Could not open collections')); }
     }, '›'));
+    // Not a status either: a quiz across the selection (Figma AISH-040 E1), from 2 articles.
+    const quizRow = row('🎓', T('Create quiz'), list.length >= 2 ? T('Quiz across the {n} selected articles', { n: list.length }) : T('Select at least 2 articles for a quiz'), async () => {
+        const articles = selected();
+        if (articles.length < 2) return;
+        closeSheet();
+        try {
+            const { openQuiz } = await import('./quiz/quizView.js');
+            await openQuiz(articles, { name: TN(articles.length, '{n} article', '{n} articles'), toast: deps.toast });
+        } catch (_) { deps.toast(T('AI request failed')); }
+    }, '›');
+    quizRow.disabled = list.length < 2;
+    body.append(quizRow);
     // More bulk actions: favorite, one Markdown file, delete.
     const allFav = list.length > 0 && list.every(a => a.favorite);
     body.append(row(allFav ? '☆' : '⭐', allFav ? T('Remove from favorites') : T('Add to favorites'), '', async () => {

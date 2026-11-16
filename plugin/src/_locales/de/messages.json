@@ -7676,12 +7676,6 @@
   "f_select_at_least_2_articles_f_9829": {
     "message": "Wähle mindestens 2 Artikel für ein Quiz"
   },
-  "f_quiz_acf9": {
-    "message": "🎓 Quiz"
-  },
-  "f_quiz_1595": {
-    "message": "🎓 Quiz {n}"
-  },
   "notifQuizTitle": {
     "message": "🎓 Zeit zum Wiederholen"
   },

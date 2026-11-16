@@ -7878,12 +7878,6 @@
   "f_select_at_least_2_articles_f_9829": {
     "message": "Valitse vähintään 2 artikkelia visaa varten"
   },
-  "f_quiz_acf9": {
-    "message": "🎓 Visa"
-  },
-  "f_quiz_1595": {
-    "message": "🎓 Visa {n}"
-  },
   "notifQuizTitle": {
     "message": "🎓 Kertauksen aika"
   },

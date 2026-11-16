@@ -7595,12 +7595,6 @@
   "f_select_at_least_2_articles_f_9829": {
     "message": "क्विज़ के लिए कम से कम 2 लेख चुनें"
   },
-  "f_quiz_acf9": {
-    "message": "🎓 क्विज़"
-  },
-  "f_quiz_1595": {
-    "message": "🎓 क्विज़ {n}"
-  },
   "notifQuizTitle": {
     "message": "🎓 दोहराने का समय"
   },

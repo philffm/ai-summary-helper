@@ -7878,12 +7878,6 @@
   "f_select_at_least_2_articles_f_9829": {
     "message": "Vælg mindst 2 artikler til en quiz"
   },
-  "f_quiz_acf9": {
-    "message": "🎓 Quiz"
-  },
-  "f_quiz_1595": {
-    "message": "🎓 Quiz {n}"
-  },
   "notifQuizTitle": {
     "message": "🎓 Tid til at gentage"
   },

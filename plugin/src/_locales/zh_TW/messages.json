@@ -7595,12 +7595,6 @@
   "f_select_at_least_2_articles_f_9829": {
     "message": "請至少選擇 2 篇文章來做測驗"
   },
-  "f_quiz_acf9": {
-    "message": "🎓 測驗"
-  },
-  "f_quiz_1595": {
-    "message": "🎓 測驗 {n}"
-  },
   "notifQuizTitle": {
     "message": "🎓 該複習了"
   },

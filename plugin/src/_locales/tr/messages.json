@@ -7878,12 +7878,6 @@
   "f_select_at_least_2_articles_f_9829": {
     "message": "Test için en az 2 makale seç"
   },
-  "f_quiz_acf9": {
-    "message": "🎓 Test"
-  },
-  "f_quiz_1595": {
-    "message": "🎓 Test {n}"
-  },
   "notifQuizTitle": {
     "message": "🎓 Tekrar zamanı"
   },

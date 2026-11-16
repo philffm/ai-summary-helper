@@ -7577,12 +7577,6 @@
   "f_select_at_least_2_articles_f_9829": {
     "message": "퀴즈를 만들려면 글을 2개 이상 고르세요"
   },
-  "f_quiz_acf9": {
-    "message": "🎓 퀴즈"
-  },
-  "f_quiz_1595": {
-    "message": "🎓 퀴즈 {n}"
-  },
   "notifQuizTitle": {
     "message": "🎓 복습할 시간이에요"
   },

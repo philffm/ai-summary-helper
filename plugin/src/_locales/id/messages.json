@@ -7878,12 +7878,6 @@
   "f_select_at_least_2_articles_f_9829": {
     "message": "Pilih minimal 2 artikel untuk kuis"
   },
-  "f_quiz_acf9": {
-    "message": "🎓 Kuis"
-  },
-  "f_quiz_1595": {
-    "message": "🎓 Kuis {n}"
-  },
   "notifQuizTitle": {
     "message": "🎓 Saatnya mengulang"
   },

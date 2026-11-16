@@ -7595,12 +7595,6 @@
   "f_select_at_least_2_articles_f_9829": {
     "message": "اختر مقالتين على الأقل لإنشاء اختبار"
   },
-  "f_quiz_acf9": {
-    "message": "🎓 اختبار"
-  },
-  "f_quiz_1595": {
-    "message": "🎓 اختبار {n}"
-  },
   "notifQuizTitle": {
     "message": "🎓 حان وقت المراجعة"
   },

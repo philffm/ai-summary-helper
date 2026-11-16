@@ -7595,12 +7595,6 @@
   "f_select_at_least_2_articles_f_9829": {
     "message": "クイズには記事を 2 件以上選んでください"
   },
-  "f_quiz_acf9": {
-    "message": "🎓 クイズ"
-  },
-  "f_quiz_1595": {
-    "message": "🎓 クイズ {n}"
-  },
   "notifQuizTitle": {
     "message": "🎓 復習の時間です"
   },

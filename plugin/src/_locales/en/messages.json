@@ -8009,12 +8009,6 @@
   "f_select_at_least_2_articles_f_9829": {
     "message": "Select at least 2 articles for a quiz"
   },
-  "f_quiz_acf9": {
-    "message": "🎓 Quiz"
-  },
-  "f_quiz_1595": {
-    "message": "🎓 Quiz {n}"
-  },
   "notifQuizTitle": {
     "message": "🎓 Time to repeat",
     "description": "Notification title when a quiz reminder is due"

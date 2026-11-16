@@ -7878,12 +7878,6 @@
   "f_select_at_least_2_articles_f_9829": {
     "message": "เลือกอย่างน้อย 2 บทความเพื่อทำแบบทดสอบ"
   },
-  "f_quiz_acf9": {
-    "message": "🎓 แบบทดสอบ"
-  },
-  "f_quiz_1595": {
-    "message": "🎓 แบบทดสอบ {n}"
-  },
   "notifQuizTitle": {
     "message": "🎓 ถึงเวลาทบทวน"
   },
