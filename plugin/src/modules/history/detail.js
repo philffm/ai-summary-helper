@@ -388,6 +388,7 @@ export function openArticleInHistory(article) {
     return showArticleDetail(article);
 }
 
+let linksView = null;   // the Links section of the open article (listeners to remove on the next one)
 export async function showArticleDetail(article) {
     hist.detailChosenAt = Date.now();
     const needsLoad = !!(article && article.id && article.content === undefined);
@@ -491,6 +492,7 @@ export async function showArticleDetail(article) {
           <div id="qaMount" class="detail-qa"></div>
         </div>
         <div id="sourceCheckMount" class="detail-source"></div>
+        <section id="articleLinksMount" class="detail-links" aria-label="${escAttr(T('Links in this article'))}" hidden></section>
         <section id="articleNotesMount" class="detail-notes" aria-label="${escAttr(T('Notes and highlights'))}"></section>
         <div id="localInsights" class="detail-insights"></div>
         <details class="detail-original">
@@ -510,6 +512,22 @@ export async function showArticleDetail(article) {
     renderDetailQa(article, articleDetailContent.querySelector('#qaMount'));
     mountSourceCheck(article, articleDetailContent.querySelector('#sourceCheckMount'));
     import('../notesView.js').then((m) => { const host = articleDetailContent.querySelector('#articleNotesMount'); if (host && article.id) m.mountArticleNotes(host, article); }).catch(() => { /* notes are optional here */ });
+    // Links in this article (AISH-041 B): sources first; summarize them in background tabs, then open / collect / quiz
+    if (linksView) { linksView.destroy(); linksView = null; }
+    if (article.id && rawContentSource) {
+        const shownId = article.id;
+        import('../articleLinks.js').then((m) => {
+            const host = articleDetailContent.querySelector('#articleLinksMount');
+            if (!host || !hist.detail || hist.detail.id !== shownId) return;
+            linksView = m.mountArticleLinks(host, {
+                article, html: rawContentSource,
+                openArticle: (a) => showArticleDetail(a),
+                toast: (msg) => hist.ui && hist.ui.showToast && hist.ui.showToast(msg),
+                getIndex: () => StorageManager.getArticlesIndex(),
+                send: (msg) => new Promise((resolve) => { try { chrome.runtime.sendMessage(msg, (r) => { void chrome.runtime.lastError; resolve(r || null); }); } catch (_) { resolve(null); } }),
+            });
+        }).catch(() => { /* links are optional here */ });
+    }
     {   // saved page metadata: favicon + description (set as text, never as HTML)
         const m = article.meta || {};
         const fav = m.favicon || article.favicon;

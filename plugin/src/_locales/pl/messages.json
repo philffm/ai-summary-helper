@@ -7883,5 +7883,47 @@
   },
   "f_questions_come_from_the_full_cdbf": {
     "message": "Pytania pochodzą z całego tekstu i sprawdzają zrozumienie. Każde pokazuje zdanie, które potwierdza odpowiedź; pytania bez oparcia w tekście są odrzucane."
+  },
+  "f_links_in_this_article_8f41": {
+    "message": "Linki w tym artykule"
+  },
+  "f_summarize_what_the_article_l_736f": {
+    "message": "Streść to, do czego linkuje artykuł, i zobacz, co naprawdę mówią jego źródła. Każda strona otwiera się w karcie w tle."
+  },
+  "f_select_17a6": {
+    "message": "Zaznacz „{title}”"
+  },
+  "f_paper_aa39": {
+    "message": "publikacja"
+  },
+  "f_summarizing_ee81": {
+    "message": "Streszczam…"
+  },
+  "f_waiting_0e48": {
+    "message": "Czeka"
+  },
+  "f_could_not_read_this_page_a_p_f434": {
+    "message": "Nie udało się odczytać strony (paywall, baner cookies lub brak tekstu). Otwórz ją, aby sprawdzić samodzielnie."
+  },
+  "f_sources_b329": {
+    "message": "Źródła: {title}"
+  },
+  "f_sources_the_article_cites_a0e0": {
+    "message": "Źródła cytowane w artykule"
+  },
+  "f_mentioned_in_the_text_2547": {
+    "message": "Wspomniane w tekście"
+  },
+  "f_other_links_fb50": {
+    "message": "Inne linki"
+  },
+  "f_selected_with_this_article_34ba": {
+    "message": "Zaznaczono: {n}, z tym artykułem"
+  },
+  "f_summarize_the_source_9baa": {
+    "message": "Streść źródło"
+  },
+  "f_summarize_the_sources_e81f": {
+    "message": "Streść źródła ({n})"
   }
 }

@@ -7883,5 +7883,47 @@
   },
   "f_questions_come_from_the_full_cdbf": {
     "message": "De vragen komen uit de volledige tekst en toetsen begrip. Elke vraag toont de zin die het antwoord onderbouwt; vragen die de tekst niet onderbouwt, vallen af."
+  },
+  "f_links_in_this_article_8f41": {
+    "message": "Links in dit artikel"
+  },
+  "f_summarize_what_the_article_l_736f": {
+    "message": "Vat samen waar het artikel naar linkt, om te zien wat de bronnen echt zeggen. Elke pagina opent in een tabblad op de achtergrond."
+  },
+  "f_select_17a6": {
+    "message": "“{title}” selecteren"
+  },
+  "f_paper_aa39": {
+    "message": "paper"
+  },
+  "f_summarizing_ee81": {
+    "message": "Wordt samengevat…"
+  },
+  "f_waiting_0e48": {
+    "message": "Wacht"
+  },
+  "f_could_not_read_this_page_a_p_f434": {
+    "message": "Deze pagina kon niet worden gelezen (betaalmuur, cookiemelding of geen tekst). Open hem om het zelf te controleren."
+  },
+  "f_sources_b329": {
+    "message": "Bronnen: {title}"
+  },
+  "f_sources_the_article_cites_a0e0": {
+    "message": "Bronnen die het artikel aanhaalt"
+  },
+  "f_mentioned_in_the_text_2547": {
+    "message": "Genoemd in de tekst"
+  },
+  "f_other_links_fb50": {
+    "message": "Andere links"
+  },
+  "f_selected_with_this_article_34ba": {
+    "message": "{n} geselecteerd, met dit artikel"
+  },
+  "f_summarize_the_source_9baa": {
+    "message": "De bron samenvatten"
+  },
+  "f_summarize_the_sources_e81f": {
+    "message": "De {n} bronnen samenvatten"
   }
 }

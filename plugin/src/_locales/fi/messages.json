@@ -7883,5 +7883,47 @@
   },
   "f_questions_come_from_the_full_cdbf": {
     "message": "Kysymykset tulevat koko tekstistä ja testaavat ymmärrystä. Jokainen näyttää lauseen, joka tukee vastausta; kysymykset, joita teksti ei tue, hylätään."
+  },
+  "f_links_in_this_article_8f41": {
+    "message": "Tämän artikkelin linkit"
+  },
+  "f_summarize_what_the_article_l_736f": {
+    "message": "Tiivistä, mihin artikkeli linkittää, ja katso, mitä lähteet oikeasti sanovat. Jokainen sivu avautuu taustavälilehteen."
+  },
+  "f_select_17a6": {
+    "message": "Valitse ”{title}”"
+  },
+  "f_paper_aa39": {
+    "message": "tutkimus"
+  },
+  "f_summarizing_ee81": {
+    "message": "Tiivistetään…"
+  },
+  "f_waiting_0e48": {
+    "message": "Odottaa"
+  },
+  "f_could_not_read_this_page_a_p_f434": {
+    "message": "Sivua ei voitu lukea (maksumuuri, evästebanneri tai ei tekstiä). Avaa se ja tarkista itse."
+  },
+  "f_sources_b329": {
+    "message": "Lähteet: {title}"
+  },
+  "f_sources_the_article_cites_a0e0": {
+    "message": "Artikkelin lainaamat lähteet"
+  },
+  "f_mentioned_in_the_text_2547": {
+    "message": "Mainittu tekstissä"
+  },
+  "f_other_links_fb50": {
+    "message": "Muut linkit"
+  },
+  "f_selected_with_this_article_34ba": {
+    "message": "{n} valittu, tämän artikkelin kanssa"
+  },
+  "f_summarize_the_source_9baa": {
+    "message": "Tiivistä lähde"
+  },
+  "f_summarize_the_sources_e81f": {
+    "message": "Tiivistä {n} lähdettä"
   }
 }

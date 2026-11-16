@@ -7883,5 +7883,47 @@
   },
   "f_questions_come_from_the_full_cdbf": {
     "message": "Pertanyaan diambil dari teks lengkap dan menguji pemahaman. Setiap pertanyaan menunjukkan kalimat yang mendukung jawabannya; pertanyaan yang tidak didukung teks dibuang."
+  },
+  "f_links_in_this_article_8f41": {
+    "message": "Tautan di artikel ini"
+  },
+  "f_summarize_what_the_article_l_736f": {
+    "message": "Ringkas halaman yang ditautkan artikel untuk melihat apa yang sebenarnya dikatakan sumbernya. Setiap halaman terbuka di tab latar belakang."
+  },
+  "f_select_17a6": {
+    "message": "Pilih “{title}”"
+  },
+  "f_paper_aa39": {
+    "message": "makalah"
+  },
+  "f_summarizing_ee81": {
+    "message": "Meringkas…"
+  },
+  "f_waiting_0e48": {
+    "message": "Menunggu"
+  },
+  "f_could_not_read_this_page_a_p_f434": {
+    "message": "Halaman ini tidak bisa dibaca (paywall, banner cookie, atau tanpa teks). Buka untuk memeriksanya sendiri."
+  },
+  "f_sources_b329": {
+    "message": "Sumber: {title}"
+  },
+  "f_sources_the_article_cites_a0e0": {
+    "message": "Sumber yang dikutip artikel"
+  },
+  "f_mentioned_in_the_text_2547": {
+    "message": "Disebut di teks"
+  },
+  "f_other_links_fb50": {
+    "message": "Tautan lain"
+  },
+  "f_selected_with_this_article_34ba": {
+    "message": "{n} dipilih, bersama artikel ini"
+  },
+  "f_summarize_the_source_9baa": {
+    "message": "Ringkas sumbernya"
+  },
+  "f_summarize_the_sources_e81f": {
+    "message": "Ringkas {n} sumber"
   }
 }

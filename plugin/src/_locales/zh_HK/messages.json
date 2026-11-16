@@ -7600,5 +7600,47 @@
   },
   "f_questions_come_from_the_full_cdbf": {
     "message": "題目來自全文，考查理解。每題都會顯示支持答案的句子；文中沒有根據的題目會被捨棄。"
+  },
+  "f_links_in_this_article_8f41": {
+    "message": "本文中的連結"
+  },
+  "f_summarize_what_the_article_l_736f": {
+    "message": "摘要文章連結的頁面，看看其來源實際說了甚麼。每個頁面會在背景分頁中開啟。"
+  },
+  "f_select_17a6": {
+    "message": "選擇「{title}」"
+  },
+  "f_paper_aa39": {
+    "message": "論文"
+  },
+  "f_summarizing_ee81": {
+    "message": "正在摘要…"
+  },
+  "f_waiting_0e48": {
+    "message": "等待中"
+  },
+  "f_could_not_read_this_page_a_p_f434": {
+    "message": "未能讀取此頁面（付費牆、Cookie 橫額或沒有文字）。請開啟頁面自行查看。"
+  },
+  "f_sources_b329": {
+    "message": "來源：{title}"
+  },
+  "f_sources_the_article_cites_a0e0": {
+    "message": "文章引用的來源"
+  },
+  "f_mentioned_in_the_text_2547": {
+    "message": "內文中提到"
+  },
+  "f_other_links_fb50": {
+    "message": "其他連結"
+  },
+  "f_selected_with_this_article_34ba": {
+    "message": "已選 {n} 個，連本文"
+  },
+  "f_summarize_the_source_9baa": {
+    "message": "摘要該來源"
+  },
+  "f_summarize_the_sources_e81f": {
+    "message": "摘要這 {n} 個來源"
   }
 }

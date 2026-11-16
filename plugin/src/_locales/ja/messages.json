@@ -7600,5 +7600,47 @@
   },
   "f_questions_come_from_the_full_cdbf": {
     "message": "問題は本文全体から作られ、理解度を確かめます。各問題には答えの根拠となる文が表示され、本文に根拠のない問題は除外されます。"
+  },
+  "f_links_in_this_article_8f41": {
+    "message": "この記事のリンク"
+  },
+  "f_summarize_what_the_article_l_736f": {
+    "message": "記事のリンク先を要約して、出典が実際に何を言っているかを確かめます。各ページはバックグラウンドのタブで開きます。"
+  },
+  "f_select_17a6": {
+    "message": "「{title}」を選択"
+  },
+  "f_paper_aa39": {
+    "message": "論文"
+  },
+  "f_summarizing_ee81": {
+    "message": "要約中…"
+  },
+  "f_waiting_0e48": {
+    "message": "待機中"
+  },
+  "f_could_not_read_this_page_a_p_f434": {
+    "message": "このページを読み込めませんでした（ペイウォール、Cookie バナー、またはテキストなし）。開いてご自身で確認してください。"
+  },
+  "f_sources_b329": {
+    "message": "出典：{title}"
+  },
+  "f_sources_the_article_cites_a0e0": {
+    "message": "記事が引用している出典"
+  },
+  "f_mentioned_in_the_text_2547": {
+    "message": "本文中で言及"
+  },
+  "f_other_links_fb50": {
+    "message": "その他のリンク"
+  },
+  "f_selected_with_this_article_34ba": {
+    "message": "{n} 件を選択（この記事を含む）"
+  },
+  "f_summarize_the_source_9baa": {
+    "message": "出典を要約"
+  },
+  "f_summarize_the_sources_e81f": {
+    "message": "{n} 件の出典を要約"
   }
 }
