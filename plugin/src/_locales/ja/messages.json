@@ -7414,5 +7414,11 @@
   },
   "f_not_opened_yet_1de1": {
     "message": "{n} 件が未読"
+  },
+  "f_license_key_optional": {
+    "message": "以前の Pro キーとギフトコードは引き続きここで使えます。Support Pass にキーは不要です。"
+  },
+  "f_have_a_license_key_or_gift_c_fd77": {
+    "message": "ライセンスキーまたはギフトコードをお持ちですか？"
   }
 }

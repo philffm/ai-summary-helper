@@ -7697,5 +7697,11 @@
   },
   "f_not_opened_yet_1de1": {
     "message": "{n} henüz açılmadı"
+  },
+  "f_license_key_optional": {
+    "message": "Eski Pro anahtarları ve hediye kodları burada hâlâ çalışır. Support Pass için anahtar gerekmez."
+  },
+  "f_have_a_license_key_or_gift_c_fd77": {
+    "message": "Lisans anahtarın veya hediye kodun var mı?"
   }
 }

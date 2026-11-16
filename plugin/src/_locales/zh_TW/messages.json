@@ -7414,5 +7414,11 @@
   },
   "f_not_opened_yet_1de1": {
     "message": "{n} 篇尚未開啟"
+  },
+  "f_license_key_optional": {
+    "message": "舊版 Pro 金鑰和禮品碼仍可在此使用。Support Pass 不需要金鑰。"
+  },
+  "f_have_a_license_key_or_gift_c_fd77": {
+    "message": "有授權金鑰或禮品碼嗎？"
   }
 }

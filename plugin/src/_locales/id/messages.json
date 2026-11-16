@@ -7697,5 +7697,11 @@
   },
   "f_not_opened_yet_1de1": {
     "message": "{n} belum dibuka"
+  },
+  "f_license_key_optional": {
+    "message": "Kunci Pro lama dan kode hadiah masih berfungsi di sini. Support Pass tidak memerlukannya."
+  },
+  "f_have_a_license_key_or_gift_c_fd77": {
+    "message": "Punya kunci lisensi atau kode hadiah?"
   }
 }

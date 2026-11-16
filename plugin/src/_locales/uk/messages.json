@@ -7697,5 +7697,11 @@
   },
   "f_not_opened_yet_1de1": {
     "message": "{n} ще не відкрито"
+  },
+  "f_license_key_optional": {
+    "message": "Старі ключі Pro та подарункові коди досі працюють тут. Для Support Pass ключ не потрібен."
+  },
+  "f_have_a_license_key_or_gift_c_fd77": {
+    "message": "Маєте ліцензійний ключ або подарунковий код?"
   }
 }

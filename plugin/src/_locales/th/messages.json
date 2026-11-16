@@ -7697,5 +7697,11 @@
   },
   "f_not_opened_yet_1de1": {
     "message": "{n} ยังไม่ได้เปิด"
+  },
+  "f_license_key_optional": {
+    "message": "คีย์ Pro เก่าและรหัสของขวัญยังใช้ได้ที่นี่ Support Pass ไม่ต้องใช้คีย์"
+  },
+  "f_have_a_license_key_or_gift_c_fd77": {
+    "message": "มีคีย์ใบอนุญาตหรือรหัสของขวัญไหม?"
   }
 }

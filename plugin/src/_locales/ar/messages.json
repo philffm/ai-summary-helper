@@ -7414,5 +7414,11 @@
   },
   "f_not_opened_yet_1de1": {
     "message": "{n} لم تُفتح بعد"
+  },
+  "f_license_key_optional": {
+    "message": "لا تزال مفاتيح Pro القديمة ورموز الهدايا تعمل هنا. لا يحتاج Support Pass إلى مفتاح."
+  },
+  "f_have_a_license_key_or_gift_c_fd77": {
+    "message": "هل لديك مفتاح ترخيص أو رمز هدية؟"
   }
 }
