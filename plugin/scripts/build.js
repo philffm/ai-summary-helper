@@ -284,6 +284,7 @@ function main() {
     const args = process.argv.slice(2);
     const clean = args.includes('--clean');
     const apiBase = parseApiFlag(args);
+    const stripeTest = args.includes('--stripe-test');
     const targets = args.filter((a, i) => !a.startsWith('--') && args[i - 1] !== '--api');
 
     // Standalone bundling mode, used by plugin/build.sh. Collapses the
@@ -344,6 +345,7 @@ function main() {
         built.push(buildPlatform('ios', path.join(PLATFORMS, 'ios', 'manifest.json')));
     }
 
+    if (stripeTest) for (const dir of built.filter(Boolean)) useStripeTestMode(dir);
     if (apiBase) for (const dir of built.filter(Boolean)) pointAtApi(dir, apiBase);
     console.log('✅ Build complete.');
 }
@@ -382,6 +384,30 @@ function pointAtApi(dir, base) {
     };
     walk(dir);
     console.log(`  ⚠ ${path.basename(dir)}: DEV BUILD, API → ${base} (${hits} references in ${files} files). Do not ship this build.`);
+}
+
+/**
+ * Dev builds only: --stripe-test makes “Get the Support Pass” ask the API for Stripe's TEST checkout (&mode=test).
+ * Production byphilapi sends testers (BILLING_TESTERS) to the test links and refuses everyone else, so you can buy with
+ * card 4242 4242 4242 4242 against the real API. Never used by the release workflow.
+ */
+const CHECKOUT = `'${PROD_API}/v1/billing/checkout'`;
+function useStripeTestMode(dir) {
+    let hits = 0;
+    const walk = (d) => {
+        for (const e of fs.readdirSync(d, { withFileTypes: true })) {
+            const p = path.join(d, e.name);
+            if (e.isDirectory()) { if (e.name !== 'lib' && e.name !== '_locales') walk(p); continue; }
+            if (!/\.m?js$/.test(e.name)) continue;
+            const src = fs.readFileSync(p, 'utf8');
+            if (!src.includes(CHECKOUT)) continue;
+            hits += src.split(CHECKOUT).length - 1;
+            fs.writeFileSync(p, src.split(CHECKOUT).join(`'${PROD_API}/v1/billing/checkout?mode=test'`));
+        }
+    };
+    walk(dir);
+    if (!hits) { console.error(`  ✗ ${path.basename(dir)}: --stripe-test found no checkout link to switch`); process.exit(1); }
+    console.log(`  ⚠ ${path.basename(dir)}: DEV BUILD, Stripe TEST checkout (${hits}). Do not ship this build.`);
 }
 
 main();
