@@ -5,6 +5,109 @@ Commit history has the details: <https://github.com/philffm/ai-summary-helper/co
 
 ## Unreleased
 
+## 2.2.46 (2026-11-16)
+
+### All changes
+
+#### Changed
+
+- feat(article): tabs in the article view (Summary · Links · Notes · Article); highlight panel keeps its height
+  - The sections below the header are tabs (design-system pill segmented, role=tablist, arrow/Home/End keys): Summary (summary, questions, source check, insights), Links (with count; shown once links are found), Notes (with count), Article (the full saved text, shown directly instead of a collapsed "Original content").
+  - The last tab picked stays picked for the next article when that article has it (else Summary).
+  - Read aloud and the contents list switch to the tab their text is in.
+  - articleLinks / notesView report counts (onCount). 2 new strings in all 25 locales.
+  - test264; test212 regex; article-links e2e opens the Links tab and shoots the tabs.
+  - "Yours" and "AI" keep the height of "All": an invisible, inert copy of the All list shares the grid cell, so switching never makes the panel jump. in-page-tools e2e checks the height and that the copy has no actions.
+- Feeds: background polling stores new items again; fewer, smaller writes with a full list
+  - feed-worker bundle exported too little (estimateFeedInterval, feedQualityWeight, feedPriority missing), so every background poll threw before fetching anything.
+  - New items were only stored when AI rating was configured. Without it the worker still advanced lastFetched/ETag, so the popup skipped the feed (or got a 304) and the items never showed up.
+  - test108: poll without Ollama stores items and counts pending; every FEED_WORKER.x the worker uses is exported.
+  - persist() coalesces: calls made while a write runs share the next one; the list is left out of a write when it did not change (only subs). A queued write is sent on pagehide.
+  - refreshAll saves and repaints at most once per 1.2 s (first result right away) instead of once per feed, and fetches no longer wait for writes.
+  - 80 feeds, 6000 items, refresh: 160 writes / 18 s storage time / 26 s total -> 10 writes / <1 s / 6.8 s.
+  - test263.
+- feat(article): "Links in this article": summarize what an article cites (AISH-041 B)
+  - sources first (cited in a sentence with a cue word like "according to", "study", "report", or a paper / PDF / research host), then links mentioned in the text, other links folded; each with the sentence it sits in. Navigation, legal and subscribe pages, tags, social/share, mail, anchors, images, the article itself and duplicates are left out (modules/articleLinks.js).
+  - "Summarize" (one, or "Summarize the n sources", at most 5) uses the existing summary queue (openFeedItem, background tab, as Feeds do): rows show Waiting / Summarizing…; a saved article shows its summary and Open (its own Links then go one level deeper); a page that ends without an article is "could not read" with Try again.
+  - Ticked summarized links + this article → Collection (add sheet) or Quiz (AISH-040).
+  - 14 strings in all 25 locales; test262 (link picking, section states); e2e tests/e2e/article-links.e2e.cjs.
+- test(30): the selection ⋯ sheet has a Create quiz row (AISH-040)
+- feat(quiz): quiz across several articles + Kahoot / Anki / Moodle export (AISH-040)
+  - Library: select articles → "🎓 Quiz n" in the selection bar (from 2 articles, next to "📤 Send n").
+  - Research collection: "Create quiz" in the collection's action bar (default after Add).
+  - quizGen.js: one request per article returns its questions plus key sentences; every quote is checked word for word against the article text (questions without a matching sentence are dropped, counted per article). Questions that connect articles are written from those checked sentences only and must cite two different articles. Mix: per article / across / both (default). Answers shuffled deterministically; ¶ of each quote; spares fill dropped questions.
+  - quizView.js: setup (questions 5–20, mix, articles removable) → writing with per-article status → question (keys 1–4) → feedback with "Where it says so" (article + ¶, "Show in article" opens the reader at the sentence) and "Report question" → result by article ("Re-read"), "Repeat the n", "Remind me in 3 days" → export.
+  - quizExport.js: Kahoot .xlsx (Question, Answer 1–4, Time limit, Correct answer(s); ≤120/≤75 characters, cut at a word end and counted), written without a library (buildZip); Anki .txt (ankiFile); Moodle GIFT with the source as feedback.
+  - quizStore.js: quiz:rec:<id>; reminder = alarm quiz_<id> in the worker → notification → popup.html#quiz=<id> with the questions to repeat.
+- feat(in-page): page tools on the design system (AISH-039)
+  - content/inPageStyles.js adopts inPage.css (tokens + component CSS) into every in-page shadow root and puts the theme setting on the host (data-theme / data-motion), like Speed-Read. The host stays hidden until the sheet is there.
+  - Panel: sheet with a Pill segmented filter with counts (radiogroup, arrow keys), Note-card highlights in the Notes colours (the quote jumps), Ghost-button foot, Esc closes and returns focus. One Primary: the panel no longer repeats Summarize (its cut-off foot is gone); a line says what Summarize does.
+  - Selection toolbar = inverse bar; composer = sheet with one Primary; mark click and "Attach here" use the same bar instead of light-only menus in the page.
+  - Marks, ticks and the insert-summary helpers take colours from content/markColors.js (= light annotation tokens).
+  - design-system/lint.mjs: no colour literals in content/*.js; markColors.js must equal the tokens of every brand.
+  - inPage.css: Speed-Read's fixed full-screen :host rules now apply to its own host only.
+  - Tests: 48, 198, 211 (contrast now from the tokens, every brand × theme); e2e tests/e2e/in-page-tools.e2e.cjs.
+- Account: no license key field with an active Support Pass; for free accounts it's optional
+  - Support Pass active: the license key field and its “Upgrade to Pro Pass” line are hidden (the pass is the entitlement; a stored sub_ id no longer opens the field).
+  - Free: the “Pro License Key” button next to Log Out is gone; the Support Pass card ends with “Have a license key or gift code?”, which opens the field. Its caption now says older Pro keys and gift codes still work and the Support Pass doesn't need one.
+  - 2 new strings in all 25 locales.
+- feat(graph): one-row toolbar with Adjust panel and canvas tools (AISH-038 D)
+  - One row: Graph | List | Gaps · n, the one-click Research filter (count only while on), Adjust · n on the right.
+  - Adjust panel: "Show only" (Time window, Unread) and "Library" (n tags without a name → Name them); Reset, Esc, click outside.
+  - Canvas tools as an icon column on the right: zoom in/out, fit, Topics/Detail, Color, Path, Save image (tooltips + aria-labels).
+  - "Color: Topic" legend pill bottom-left opens the Topic/Age/Mood choice.
+  - Path mode swaps the toolbar for "Path · pick two items … · Cancel".
+  - New icons maximize, minus, route; 17 strings in all 25 locales; e2e check in tests/e2e/graph-toolbar.e2e.cjs.
+- build.js --stripe-test: dev builds buy with Stripe test cards against the production API
+- build.js --api <url>: dev builds against a local or staging byphilapi
+- Website: ai-summary-helper.byphil.eu/#open-aish as an address opens AISH
+- i18n: update translations for changed content
+- Support Pass card: buy through api.byphil.eu/v1/billing/checkout, no provider URL in the extension
+- Thank-you page: the no-extension state also covers an AISH that needs an update
+- Support Pass without an order ID: checkout links carry the account, the thank-you page claims the payment
+  - Settings › Account & Plan: Support Pass card (modules/supportPass.js). Monthly and yearly open the Stripe Payment Links with prefilled_email and client_reference_id = the account id, so the webhook switches this account on whatever email is typed at Stripe. Active accounts see an “Active” line instead.
+  - Thank-you page site-src/pages/thanks.html → docs/thanks.html (noindex, no referrer). On our own domain the loader reads ?session_id=, asks the background (aish:claimCheckout, our /thanks only) and reports the result as data-aish-claim: signed_in (new buyer, login stored like a code sign-in), active, confirm (another account is signed in: one tap to add it there, or switch), code_required (existing account: the e-mail code is requested and the popup opens at the code step), pending (retried every 5 s for a minute), error. The page then removes the session id from the address bar; analytics.js redacts it before the page view.
+  - bg/checkoutClaim.js (classic script, also listed in the Firefox/iOS manifests).
+  - Tests: test259 (every claim answer, no token sent when switching, link parameters, wiring), e2e site-handshake section 5 with a fake API in real Chromium (new buyer, confirm + one tap, other site claims nothing). npm run test:all 250/250, all e2e suites pass, eslint clean.
+- Website knows AISH is installed: "Open AISH" instead of "Add to Chrome"
+  - loader.js: only on https://ai-summary-helper.byphil.eu it sets <html data-aish="installed"> and forwards clicks on [data-aish-open]. Nothing is set or listened to on any other site.
+  - background.js: 'aish:openFromSite' (page-only, sender must be that exact https host) opens the toolbar popup, or popup.html?surface=tab next to the page where the browser won't open the popup (Firefox, older Chrome).
+  - docs/assets/main.js: when the attribute appears, store buttons (.pill-cta, .btn-primary, .btn-secondary, .tier-cta) read "Open AISH" in the page language and open the extension; text links in articles stay store links.
+  - e2e site-handshake: serves docs/ as the real host over HTTPS in Chromium; checks marking, button swap, the popup opening, an unchanged foreign site and a refused forged message. All e2e suites and npm run test:all pass.
+- mcp: keep aish-mcp under MIT, and say so
+  - mcp/LICENSE (MIT, scoped to mcp/), included in the npm package files
+  - readme and mcp/README: one line each on the split
+  - AUDIT_REPO.md: licence item closed
+- Manifest: web-accessible resources only what pages need, behind a dynamic URL
+- Initial plan
+- Align local AI split hero content left
+- Initial plan
+
+#### Fixed
+
+- fix(quiz): comprehension questions from the full text; quotes only have to be close
+  - Full text: up to 24,000 characters per article (10,000 with more than 8 articles), was 9,000 / 3,500. Longer articles go in as paragraphs spread over the whole text (beginning, middle, end) with […] instead of only the start.
+  - Prompt: comprehension questions like a teacher would ask (main points, reasons, consequences, comparisons, the author's argument), spread over the whole text, in own words, no name/date/number trivia; plausible distractors.
+  - Sources: the model's quote is looked up, not compared character by character: exact after normalising, or close (≥ 75 % of its words within 1–3 neighbouring sentences of one paragraph), "…" splits a quote into parts. The article's own sentence is stored and shown. Without a usable quote, the sentence that best supports the right answer is used. Only a question the text does not support is dropped. Sentences split only at . ! ? followed by a space (1.5 °C stays).
+  - Facts for questions across articles go through the same lookup (and fall back to the sentences behind the article's own questions), so connecting questions no longer fail when the model paraphrases.
+  - Setup hint reworded (all 25 locales). Tests: test261 (close quotes, ellipsis, support fallback, spread over long texts, prompt, decimals); e2e: a paraphrased quote and a question without quote both stay, sources are the article's sentences.
+- fix(quiz): "Create quiz" in the selection ⋯ sheet; hide back to top while selecting
+  - Selection mode: the quiz is no longer its own button in the bar; it is a row in the ⋯ sheet (after "Add to collection"), with "Quiz across the n selected articles", disabled below 2 articles. Unused strings "🎓 Quiz" / "🎓 Quiz {n}" removed.
+  - Back to top is hidden in selection mode (it sat on top of ⋯ / Select all).
+  - e2e: quiz.e2e.cjs starts the quiz from ⋯ and checks that back to top stays hidden.
+- fix(build): default KEEP_VERSION so build.sh runs under set -u
+- Fix broken German education links
+
+#### Developer experience
+
+- Build: slimmer _locales in every package (−186 KB compressed)
+  - 193 keys no code uses are dropped.
+  - Translator notes (`description`) stay in en only; the browser never reads them.
+  - The JSON is written without indentation.
+  - its English text is passed to T/TU/TN/N_/lbl/srT;
+  - the key appears literally in a source file or platform manifest (data-i18n, getMessage, __MSG__);
+  - its English text is any string literal in the source, which covers T(a ? 'x' : 'y') and label tables.
+
 ## 2.2.45 (2026-11-09)
 
 ### All changes
