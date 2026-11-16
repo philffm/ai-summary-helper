@@ -233,6 +233,18 @@
   try { if (window.navigation) window.navigation.addEventListener('navigatesuccess', onNav); } catch (_) { /* optional API */ }
   try { api.storage.onChanged.addListener(onStorage); } catch (_) { /* gone */ }
 
+  // Our own website (keep in sync with OWN_SITE in background.js): mark the page so its store buttons read "Open AISH",
+  // and open AISH when one is clicked. Nothing is set or listened to on any other site.
+  if (location.protocol === 'https:' && location.hostname === 'ai-summary-helper.byphil.eu') {
+    document.documentElement.setAttribute('data-aish', 'installed');
+    document.addEventListener('click', (e) => {
+      const el = e.target && e.target.closest ? e.target.closest('[data-aish-open]') : null;
+      if (!el) return;
+      e.preventDefault();
+      try { const p = api.runtime.sendMessage({ action: 'aish:openFromSite' }); if (p && typeof p.catch === 'function') p.catch(() => {}); } catch (_) { /* context gone */ }
+    }, true);
+  }
+
   // A link waiting in the phone inbox: once its page is open, tell the extension the real title and description.
   const INBOX = 'inbox:pending';              // keep in sync with SK.inboxPending (modules/storageKeys.js)
   const reportInboxMeta = () => {

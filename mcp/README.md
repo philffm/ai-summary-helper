@@ -189,3 +189,7 @@ node bin/cli.js             # stdio relay
 
 Point an app at `node /path/to/ai-summary-helper/mcp/bin/cli.js` to run from the repo. Extension-side
 tests: `npm test -- 178` in the repo root.
+
+## License
+
+MIT, see [LICENSE](LICENSE). This covers the relay only; the AI Summary Helper extension is AGPL-3.0 or commercial (see the repository root).

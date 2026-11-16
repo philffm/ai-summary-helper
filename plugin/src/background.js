@@ -1082,6 +1082,13 @@ const MESSAGE_HANDLERS = {
         ensureContent(sender.tab.id).then((ok) => sendResponse({ ok })).catch(() => sendResponse({ ok: false }));
         return true;
     } },
+    // "Open AISH" on our website (loader.js marks only that site): the toolbar popup, else the app in a tab next to it.
+    'aish:openFromSite': { from: 'page', check: (msg, sender) => isOwnSite(sender && (sender.url || (sender.tab && sender.tab.url))), run(msg, sender, sendResponse) {
+        const inTab = () => chrome.tabs.create({ url: chrome.runtime.getURL('popup.html?surface=tab'), index: sender.tab.index + 1, openerTabId: sender.tab.id });
+        Promise.resolve().then(() => chrome.action.openPopup({ windowId: sender.tab.windowId })).catch(inTab);
+        sendResponse({ ok: true });
+        return false;
+    } },
     relayToActiveTab: { from: 'ext', check: (msg) => !!msg.message && typeof msg.message === 'object', run(msg, sender, sendResponse) {
         chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
             const tab = tabs && tabs[0];
@@ -1229,6 +1236,12 @@ function targetMessage(start, sendResponse) {
     if (!targets) { sendResponse({ ok: false, error: 'targets-unavailable' }); return false; }
     start().then(sendResponse).catch((e) => sendResponse({ ok: false, error: errText(e) }));
     return true;
+}
+
+// Our website (keep in sync with loader.js): the only page that may ask to open AISH.
+const OWN_SITE = 'ai-summary-helper.byphil.eu';
+function isOwnSite(url) {
+    try { const u = new URL(String(url || '')); return u.protocol === 'https:' && u.hostname === OWN_SITE; } catch (_) { return false; }
 }
 
 chrome.runtime.onMessage.addListener((msg, sender, sendResponse) => {

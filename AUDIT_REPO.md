@@ -153,7 +153,7 @@
 
 * [x] **Intellectual Property & Licensing**
   * ✅ AGPL-3.0 `LICENSE` plus `COMMERCIAL-LICENSE.md` (dual license). `LICENSE-MIT` covers releases up to 2.2.38, as stated in the readme.
-  * ⚠️ `mcp/package.json` still declares `"license": "MIT"`. Check whether `aish-mcp` is meant to stay MIT or move to AGPL with the rest.
+  * ✅ `aish-mcp` stays MIT on purpose (decided 2026-11-16): a small connector under a permissive license helps adoption; the extension it needs stays AGPL. `mcp/LICENSE` ships in the npm package, and the readme says so.
   * ✅ `plugin/src/lib/THIRD_PARTY_LICENSES.md` covers pdf.js (Apache-2.0), D3 (ISC), Lucide (ISC), AFINN (Apache-2.0) and qrcode-generator (MIT). They're vendored by hand, so `npm audit` can't see them. Since 2026-11-03, `scripts/check-vendored-libs.mjs` checks the table against the files on every PR, and against npm releases and advisories nightly, keeping one issue up to date.
 
 ---
@@ -168,4 +168,4 @@
 | **4. UX / Accessibility** | 4 | No extension detection on site; popup width not bounded; CWV/contrast unmeasured | Add `data-aish` handshake; Lighthouse + axe run in Playwright | Both | 2026-12-31 |
 | **5. Ops / Infra** | 3 | No uptime check for `api.byphil.eu`; extension errors invisible | External uptime monitor; optional opt-in error counter | `docs/` + backend (external) | 2027-01-31 |
 | **6. Business & Store** | 4 | Install funnel not attributable | UTM/`mtm_campaign` on CWS links; quarterly review triage | Store Listing / Web | 2026-12-15 |
-| **7. Legal & Policies** | 4 | `mcp/` still declares MIT (Limited Use added 2026-11-03) | Confirm the `aish-mcp` license | `site-src/pages/privacy.html`, `plugin/src/lib` | 2026-11-17 |
+| **7. Legal & Policies** | 5 | `mcp/` MIT confirmed and made explicit (2026-11-16; Limited Use added 2026-11-03) | – | `site-src/pages/privacy.html`, `plugin/src/lib` | 2026-11-17 |
