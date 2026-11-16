@@ -1,0 +1,263 @@
+<!DOCTYPE html><html lang="de"><head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#08090C">
+<title>Danke — AI Summary Helper</title>
+<meta name="description" content="Deine Support-Pass-Zahlung. AI Summary Helper aktiviert ihn in diesem Browser automatisch.">
+<meta name="robots" content="noindex">
+<meta name="referrer" content="no-referrer">
+<script>
+  (function(){
+    try {
+      var saved = localStorage.getItem('aish_theme');
+      var theme = saved === 'light' || saved === 'dark' ? saved : (window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
+      document.documentElement.setAttribute('data-theme', theme);
+    } catch (e) { document.documentElement.setAttribute('data-theme', 'dark'); }
+  })();
+</script>
+<link rel="icon" type="image/svg+xml" href="../assets/icon.svg">
+<link rel="preload" href="../assets/fonts/space-grotesk-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin=""><link rel="preload" href="../assets/fonts/inter-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin=""><link rel="stylesheet" href="../assets/styles.css">
+<style>
+  .ty { max-width: 560px; margin: 0 auto; padding: 8px 0 72px; }
+  .ty-state { display: none; }
+  html:not([data-aish-claim]):not(.ty-noext) .ty-state[data-for~="working"],
+  html[data-aish-claim="working"] .ty-state[data-for~="working"],
+  html[data-aish-claim="pending"] .ty-state[data-for~="pending"],
+  html[data-aish-claim="active"] .ty-state[data-for~="active"],
+  html[data-aish-claim="signed_in"] .ty-state[data-for~="signed_in"],
+  html[data-aish-claim="confirm"] .ty-state[data-for~="confirm"],
+  html[data-aish-claim="code_required"] .ty-state[data-for~="code_required"],
+  html[data-aish-claim="error"] .ty-state[data-for~="error"],
+  html.ty-noext:not([data-aish-claim]) .ty-state[data-for~="noext"] { display: block; }
+  .ty-list { list-style: none; margin: 24px 0; padding: 16px 18px; border-radius: 12px; border: 1px solid var(--border-subtle); background: var(--surface-2); display: grid; gap: 8px; }
+  .ty-list li { display: flex; gap: 10px; color: var(--text); font-size: 15px; }
+  .ty-list li::before { content: "✓"; color: var(--accent-text); font-weight: 600; }
+  .ty-list li.todo { color: var(--text-muted); }
+  .ty-list li.todo::before { content: "○"; color: var(--text-muted); }
+  .ty-actions { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 8px; }
+  .ty-note { font-size: 13px; color: var(--text-muted); margin-top: 16px; }
+</style>
+<meta property="og:title" content="Danke — AI Summary Helper">
+<meta property="og:url" content="https://ai-summary-helper.byphil.eu/thanks.html">
+<meta property="og:type" content="website">
+<script src="../assets/analytics.js" defer=""></script>
+<link rel="alternate" hreflang="x-default" href="https://ai-summary-helper.byphil.eu/thanks.html"><link rel="alternate" hreflang="en" href="https://ai-summary-helper.byphil.eu/thanks.html"><link rel="alternate" hreflang="de" href="https://ai-summary-helper.byphil.eu/de/thanks.html"><link rel="alternate" hreflang="fr" href="https://ai-summary-helper.byphil.eu/fr/thanks.html"><link rel="alternate" hreflang="es" href="https://ai-summary-helper.byphil.eu/es/thanks.html"><link rel="alternate" hreflang="zh-Hans" href="https://ai-summary-helper.byphil.eu/zh/thanks.html"><link rel="alternate" hreflang="zh-Hant" href="https://ai-summary-helper.byphil.eu/zh-tw/thanks.html"><link rel="alternate" hreflang="ja" href="https://ai-summary-helper.byphil.eu/ja/thanks.html"><link rel="alternate" hreflang="ko" href="https://ai-summary-helper.byphil.eu/ko/thanks.html"><link rel="alternate" hreflang="pt-BR" href="https://ai-summary-helper.byphil.eu/pt/thanks.html"><link rel="alternate" hreflang="hi" href="https://ai-summary-helper.byphil.eu/hi/thanks.html"><link rel="alternate" hreflang="vi" href="https://ai-summary-helper.byphil.eu/vi/thanks.html"><link rel="alternate" hreflang="nl" href="https://ai-summary-helper.byphil.eu/nl/thanks.html"><link rel="alternate" hreflang="it" href="https://ai-summary-helper.byphil.eu/it/thanks.html"><link rel="alternate" hreflang="ru" href="https://ai-summary-helper.byphil.eu/ru/thanks.html"><link rel="alternate" hreflang="uk" href="https://ai-summary-helper.byphil.eu/uk/thanks.html"><link rel="alternate" hreflang="tr" href="https://ai-summary-helper.byphil.eu/tr/thanks.html"><link rel="alternate" hreflang="id" href="https://ai-summary-helper.byphil.eu/id/thanks.html"><link rel="alternate" hreflang="pl" href="https://ai-summary-helper.byphil.eu/pl/thanks.html"><link rel="alternate" hreflang="th" href="https://ai-summary-helper.byphil.eu/th/thanks.html"><link rel="alternate" hreflang="ar" href="https://ai-summary-helper.byphil.eu/ar/thanks.html"><link rel="alternate" hreflang="sv" href="https://ai-summary-helper.byphil.eu/sv/thanks.html"><link rel="alternate" hreflang="da" href="https://ai-summary-helper.byphil.eu/da/thanks.html"><link rel="alternate" hreflang="nb" href="https://ai-summary-helper.byphil.eu/no/thanks.html"><link rel="alternate" hreflang="fi" href="https://ai-summary-helper.byphil.eu/fi/thanks.html"></head>
+<body>
+
+<a href="#main" class="skip-link">Zum Inhalt springen</a>
+
+<header class="nav nav--pill" id="siteNav">
+  <div class="wrap nav-pill-row">
+    <a href="index.html" class="wordmark" aria-label="AI Summary Helper">
+      <img src="../assets/icon.svg" alt="">
+      AI Summary Helper
+    </a>
+    <nav class="pill" aria-label="Primär">
+      <a href="index.html#use-cases" data-sec="use-cases">Anwendungsfälle</a>
+      <a href="index.html#problem" data-sec="problem" data-slider-goto="problem">So funktioniert es</a>
+      <a href="blog/">Blog</a>
+      <a href="https://chromewebstore.google.com/detail/ai-summary-helper-openai/hldbejcjaedipeegjcinmhejdndchkmb" class="pill-cta" target="_blank" rel="noopener">Zu Chrome hinzufügen</a>
+    </nav>
+    <div class="nav-tools">
+      <button type="button" class="tool-btn" id="sendBtn" data-send="" hidden="" aria-label="Diese Seite an meinen Computer senden" title="An meinen Computer senden"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="3" y="4.5" width="18" height="12" rx="2" stroke="currentColor" stroke-width="1.6"></rect><path d="M8 20h8M12 16.5V20M12 13V8m0 0-2.2 2.2M12 8l2.2 2.2" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"></path></svg></button>
+      <button type="button" class="tool-btn" id="langBtn" aria-label="Sprache" aria-controls="mobileMenu"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.6"></circle><path d="M3 12h18M12 3c2.6 2.7 3.9 5.7 3.9 9s-1.3 6.3-3.9 9c-2.6-2.7-3.9-5.7-3.9-9S9.4 5.7 12 3Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"></path></svg></button>
+      <button type="button" class="theme-toggle" id="themeToggle" aria-label="Zum hellen Modus wechseln">
+        <svg class="icon-moon" viewBox="0 0 24 24" fill="none"><path d="M20 14.5A8.5 8.5 0 1 1 9.5 4a6.8 6.8 0 0 0 10.5 10.5Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"></path></svg>
+        <svg class="icon-sun" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="4.2" stroke="currentColor" stroke-width="1.6"></circle><path d="M12 2.5v2.4M12 19.1v2.4M4.4 4.4l1.7 1.7M17.9 17.9l1.7 1.7M2.5 12h2.4M19.1 12h2.4M4.4 19.6l1.7-1.7M17.9 6.1l1.7-1.7" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"></path></svg>
+      </button>
+    </div>
+    <button type="button" class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="mobileMenu" aria-label="Menü öffnen">
+      <svg viewBox="0 0 24 24" fill="none"><path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"></path></svg>
+    </button>
+  </div>
+  <div class="mobile-menu" id="mobileMenu" hidden="">
+    <div class="wrap mm-inner">
+      <nav class="mm-links" aria-label="Mobil">
+        <a href="index.html#use-cases"><span class="mm-n">01</span>Anwendungsfälle</a>
+        <a href="index.html#problem" data-slider-goto="problem"><span class="mm-n">02</span>So funktioniert es</a>
+        <a href="../bildung/"><span class="mm-n">03</span>Bildung</a>
+        <a href="blog/"><span class="mm-n">04</span>Blog</a>
+          <a href="blog/pocket-alternative.html" class="mm-sub">Pocket-Alternative: Worauf es wirklich ankommt</a>
+          <a href="blog/eigener-schluessel-eigenes-modell.html" class="mm-sub">Ihr Key. Ihr Modell. Ihre Daten.</a>
+          <a href="blog/ki-zusammenfassung-an-der-quelle-pruefen.html" class="mm-sub">Zusammenfassungen direkt mit der Quelle abgleichen</a>
+          <a href="blog/markieren-oder-fragen.html" class="mm-sub">Fragen an Ihre Markierungen stellen</a>
+        <a href="https://github.com/philffm/ai-summary-helper/" target="_blank" rel="noopener"><span class="mm-n">05</span>GitHub</a>
+      </nav>
+      <div class="mm-lang">
+        <button type="button" class="lang-card" id="langCard"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.6"></circle><path d="M3 12h18M12 3c2.6 2.7 3.9 5.7 3.9 9s-1.3 6.3-3.9 9c-2.6-2.7-3.9-5.7-3.9-9S9.4 5.7 12 3Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"></path></svg><span class="lang-card-cur">Englisch</span><small>24 Sprachen</small><b aria-hidden="true">→</b></button>
+        <p class="mm-lang-h">Sprache · 24</p>
+        <label class="lang-search"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="11" cy="11" r="6.5" stroke="currentColor" stroke-width="1.7"></circle><path d="m16 16 4 4" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"></path></svg><input type="search" id="langSearch" placeholder="Sprache suchen…" autocomplete="off" aria-label="Sprache suchen" spellcheck="false"></label>
+        <div class="lang-groups" id="langGroups">
+          <div class="lang-group"><p class="lang-group-h">Beliebt</p><div class="lang-pills" data-no-translate=""><a href="/" class="lang-pill" data-loc="en" lang="en" hreflang="en" data-q="english english en">English</a><a href="/de/" class="lang-pill" data-loc="de" lang="de" hreflang="de" data-q="deutsch german de">Deutsch</a><a href="/fr/" class="lang-pill" data-loc="fr" lang="fr" hreflang="fr" data-q="français french fr">Français</a><a href="/es/" class="lang-pill" data-loc="es" lang="es" hreflang="es" data-q="español spanish es">Español</a><a href="/zh/" class="lang-pill" data-loc="zh" lang="zh-CN" hreflang="zh-CN" data-q="简体中文 chinese simplified zh">简体中文</a><a href="/ja/" class="lang-pill" data-loc="ja" lang="ja" hreflang="ja" data-q="日本語 japanese ja">日本語</a><a href="/ru/" class="lang-pill" data-loc="ru" lang="ru" hreflang="ru" data-q="русский russian ru">Русский</a></div></div>
+          <div class="lang-group"><p class="lang-group-h">Europa</p><div class="lang-pills" data-no-translate=""><a href="/pt/" class="lang-pill" data-loc="pt" lang="pt" hreflang="pt" data-q="português portuguese pt">Português</a><a href="/nl/" class="lang-pill" data-loc="nl" lang="nl" hreflang="nl" data-q="nederlands dutch nl">Nederlands</a><a href="/it/" class="lang-pill" data-loc="it" lang="it" hreflang="it" data-q="italiano italian it">Italiano</a><a href="/uk/" class="lang-pill" data-loc="uk" lang="uk" hreflang="uk" data-q="українська ukrainian uk">Українська</a><a href="/tr/" class="lang-pill" data-loc="tr" lang="tr" hreflang="tr" data-q="türkçe turkish tr">Türkçe</a><a href="/pl/" class="lang-pill" data-loc="pl" lang="pl" hreflang="pl" data-q="polski polish pl">Polski</a><a href="/sv/" class="lang-pill" data-loc="sv" lang="sv" hreflang="sv" data-q="svenska swedish sv">Svenska</a><a href="/da/" class="lang-pill" data-loc="da" lang="da" hreflang="da" data-q="dansk danish da">Dansk</a><a href="/no/" class="lang-pill" data-loc="no" lang="nb" hreflang="nb" data-q="norsk norwegian no">Norsk</a><a href="/fi/" class="lang-pill" data-loc="fi" lang="fi" hreflang="fi" data-q="suomi finnish fi">Suomi</a></div></div>
+          <div class="lang-group"><p class="lang-group-h">Asien &amp; weitere</p><div class="lang-pills" data-no-translate=""><a href="/zh-tw/" class="lang-pill" data-loc="zh-tw" lang="zh-TW" hreflang="zh-TW" data-q="繁體中文 chinese traditional zh-tw">繁體中文</a><a href="/ko/" class="lang-pill" data-loc="ko" lang="ko" hreflang="ko" data-q="한국어 korean ko">한국어</a><a href="/hi/" class="lang-pill" data-loc="hi" lang="hi" hreflang="hi" data-q="हिन्दी hindi hi">हिन्दी</a><a href="/vi/" class="lang-pill" data-loc="vi" lang="vi" hreflang="vi" data-q="tiếng việt vietnamese vi">Tiếng Việt</a><a href="/id/" class="lang-pill" data-loc="id" lang="id" hreflang="id" data-q="bahasa indonesia indonesian id">Bahasa Indonesia</a><a href="/th/" class="lang-pill" data-loc="th" lang="th" hreflang="th" data-q="ไทย thai th">ไทย</a><a href="/ar/" class="lang-pill" data-loc="ar" lang="ar" hreflang="ar" data-q="العربية arabic ar">العربية</a></div></div>
+          <p class="lang-empty" hidden="">Keine Treffer</p>
+        </div>
+      </div>
+      <div class="mm-posts" aria-label="Blog">
+          <p class="mm-posts-h">Aus dem Blog</p>
+          <a href="blog/pocket-alternative.html" class="mm-post"><span class="mega-tag">Vergleich</span><strong>Pocket-Alternative: Das Wesentliche</strong><span>Read-Later-Tools wechseln, ohne Ihr Archiv zu verlieren</span></a>
+          <a href="blog/eigener-schluessel-eigenes-modell.html" class="mm-post"><span class="mega-tag">Datenschutz</span><strong>Ihr Key. Ihr Modell. Ihre Daten.</strong><span>Warum Bring-Your-Own-Key besser ist als ein weiteres Abo</span></a>
+          <a href="blog/ki-zusammenfassung-an-der-quelle-pruefen.html" class="mm-post"><span class="mega-tag">Vertrauen</span><strong>KI-Zusammenfassungen anhand der Quelle prüfen</strong><span>KI-Ergebnisse in unter einer Minute verifizieren</span></a>
+          <a href="blog/markieren-oder-fragen.html" class="mm-post"><span class="mega-tag">Anleitung</span><strong>Fragen zu Ihren Textmarkierungen stellen</strong><span>Aus Ihren Markierungen fundierte Antworten gewinnen</span></a>
+          <a href="blog/ein-rueckblick-statt-40-feeds.html" class="mm-post"><span class="mega-tag">Feeds</span><strong>Ein Recap statt 40 Feeds</strong><span>Ein täglicher Digest aller Quellen, denen Sie folgen</span></a>
+          <a href="blog/suche-und-tags-ohne-cloud.html" class="mm-post"><span class="mega-tag">Unter der Haube</span><strong>Suche und Tags ohne Cloud</strong><span>Wie alles vollständig auf Ihrem Gerät bleibt</span></a>
+          <a href="blog/" class="mm-all">Alle Beiträge →</a>
+        </div>
+      <div class="mm-bottom">
+        <a href="https://chromewebstore.google.com/detail/ai-summary-helper-openai/hldbejcjaedipeegjcinmhejdndchkmb" class="pill-cta mm-cta" data-desktop-cta="" target="_blank" rel="noopener">Zu Chrome hinzufügen</a>
+        <button type="button" class="pill-cta mm-cta mm-cta--secondary" data-send="" hidden="">An meinen Computer senden</button>
+        <div class="mm-row">
+          <a href="https://addons.mozilla.org/en-US/firefox/addon/ai-summary-helper/" target="_blank" rel="noopener">Firefox</a>
+          <a href="index.html#phone">Android · Beta</a>
+          <a href="https://byphil.eu/#account">Mein Konto</a>
+        </div>
+        
+        <button type="button" class="theme-toggle-mobile" id="themeToggleMobile">
+          <span id="themeToggleMobileLabel">Zum hellen Modus wechseln</span>
+          <svg class="icon-moon" viewBox="0 0 24 24" fill="none"><path d="M20 14.5A8.5 8.5 0 1 1 9.5 4a6.8 6.8 0 0 0 10.5 10.5Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"></path></svg>
+          <svg class="icon-sun" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="4.2" stroke="currentColor" stroke-width="1.6"></circle><path d="M12 2.5v2.4M12 19.1v2.4M4.4 4.4l1.7 1.7M17.9 17.9l1.7 1.7M2.5 12h2.4M19.1 12h2.4M4.4 19.6l1.7-1.7M17.9 6.1l1.7-1.7" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"></path></svg>
+        </button>
+      </div>
+    </div>
+  </div>
+</header>
+
+<main id="main">
+  <div class="wrap">
+    <div class="ty" aria-live="polite">
+      <section class="ty-state" data-for="working pending">
+        <div class="post-hero">
+          <span class="blog-date">Support Pass</span>
+          <h1>Dein Pass wird aktiviert…</h1>
+          <p class="post-sub" data-for-pending="">AI Summary Helper erkennt deine Zahlung in diesem Browser. Das dauert ein paar Sekunden.</p>
+        </div>
+      </section>
+
+      <section class="ty-state" data-for="active signed_in">
+        <div class="post-hero">
+          <span class="blog-date">Support Pass</span>
+          <h1>Danke! Dein Support-Pass ist aktiv.</h1>
+          <p class="post-sub">Nichts zum Kopieren, keine Bestellnummer. Danke, dass du AI Summary Helper unabhängig hältst.</p>
+        </div>
+        <ul class="ty-list">
+          <li>Zahlung von Stripe bestätigt</li>
+          <li>Verknüpft mit <strong data-fill="email">deinem Konto</strong></li>
+          <li>In AI Summary Helper in diesem Browser freigeschaltet</li>
+        </ul>
+        <div class="ty-actions"><a class="btn-primary" href="#open-aish" data-aish-open="">AISH öffnen</a></div>
+        <p class="ty-note">Nutzt du AISH auf einem anderen Computer? Melde dich dort an mit <span data-fill="email">der E-Mail-Adresse, mit der du bezahlt hast</span>; der Pass ist dort schon aktiv.</p>
+      </section>
+
+      <section class="ty-state" data-for="confirm">
+        <div class="post-hero">
+          <span class="blog-date">Support Pass</span>
+          <h1>Zahlung erhalten</h1>
+          <p class="post-sub">Du hast bezahlt als <strong data-fill="email">eine andere Adresse</strong>, aber AISH ist in diesem Browser angemeldet als <strong data-fill="account">dein Konto</strong>.</p>
+        </div>
+        <div class="ty-actions">
+          <a class="btn-primary" href="#" data-aish-claim-confirm="signed_in">Den Pass zu <span data-fill="account">diesem Konto hinzufügen</span></a>
+          <a class="btn-secondary" href="#" data-aish-claim-confirm="switch">Wechsle zu <span data-fill="email">der bezahlten Adresse</span></a>
+        </div>
+        <p class="ty-note">Eine Zahlung schaltet ein Konto frei.</p>
+      </section>
+
+      <section class="ty-state" data-for="code_required">
+        <div class="post-hero">
+          <span class="blog-date">Support Pass</span>
+          <h1>Dein Pass ist aktiv auf <span data-fill="email">deinem Konto</span></h1>
+          <p class="post-sub">Dieses Konto existiert bereits, deshalb haben wir einen 4-stelligen Code an diese Adresse geschickt. Öffne AISH und gib ihn ein, um dich hier anzumelden. Deine Bibliothek bleibt privat, auch wenn jemand anderes deine E-Mail-Adresse bei Stripe eingegeben hat.</p>
+        </div>
+        <div class="ty-actions"><a class="btn-primary" href="#open-aish" data-aish-open="">AISH öffnen</a></div>
+      </section>
+
+      <section class="ty-state" data-for="error">
+        <div class="post-hero">
+          <span class="blog-date">Support Pass</span>
+          <h1>Zahlung erhalten</h1>
+          <p class="post-sub" data-error-text="">Wir konnten den Pass in diesem Browser nicht automatisch aktivieren. Er ist auf der E-Mail-Adresse gespeichert, mit der du bezahlt hast: Öffne AISH, Einstellungen › Konto &amp; Tarif, und melde dich mit dieser Adresse an.</p>
+        </div>
+        <div class="ty-actions"><a class="btn-primary" href="#open-aish" data-aish-open="">AISH öffnen</a></div>
+        <p class="ty-note">Kommst du immer noch nicht weiter? Schreib an info@byphil.eu und leite die Stripe-Rechnung weiter.</p>
+      </section>
+
+      <section class="ty-state" data-for="noext">
+        <div class="post-hero">
+          <span class="blog-date">Support Pass</span>
+          <h1>Zahlung erhalten. Noch ein Schritt.</h1>
+          <p class="post-sub">Dein Support-Pass ist auf der E-Mail-Adresse gespeichert, mit der du bezahlt hast. AI Summary Helper ist in diesem Browser nicht installiert oder braucht ein Update, deshalb konnte er hier nicht aktiviert werden.</p>
+        </div>
+        <ul class="ty-list">
+          <li>Zahlung von Stripe bestätigt</li>
+          <li>Pass gespeichert für die E-Mail-Adresse, mit der du bezahlt hast</li>
+          <li class="todo">Installiere oder aktualisiere AISH und melde dich dann mit dieser E-Mail-Adresse an: der Pass ist schon da</li>
+        </ul>
+        <div class="ty-actions"><a class="btn-primary" href="https://chromewebstore.google.com/detail/ai-summary-helper-openai/hldbejcjaedipeegjcinmhejdndchkmb" target="_blank" rel="noopener">Zu Chrome hinzufügen – kostenlos</a></div>
+        <p class="ty-note">Nutzt du AISH auf einem anderen Computer? Öffne es dort und melde dich mit der E-Mail-Adresse an, mit der du bezahlt hast. Keine Bestellnummer nötig.</p>
+      </section>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="footer-inner">
+      <div class="wordmark"><img src="../assets/icon.svg" alt="">AI Summary Helper</div>
+      <div class="foot-links">
+        <a href="https://github.com/philffm/ai-summary-helper/" target="_blank" rel="noopener">Quellcode auf GitHub</a>
+        <a href="../bookmarklet.html">Bookmarklet (keine Installation)</a>
+        <a href="../bildung/">Für Bildungseinrichtungen</a>
+        <a href="datenschutz.html">Datenschutz</a>
+        <a href="#" data-analytics-settings="">Analyse-Einstellungen</a>
+        <a href="https://byphil.eu/terms.html#terms-of-service" target="_blank" rel="noopener">Nutzungsbedingungen</a>
+        <a href="https://byphil.eu/terms.html#refunds" target="_blank" rel="noopener">Widerruf &amp; Erstattungen</a>
+        <a href="https://byphil.eu/terms.html#impressum" target="_blank" rel="noopener">Impressum</a>
+      </div>
+    </div>
+    <div class="foot-eco">
+      <span class="foot-eco-h">Mehr von byphil</span>
+      <div class="foot-links">
+        <a href="https://petsetlife.byphil.eu/" target="_blank" rel="noopener">PetSetLife</a>
+        <a href="https://matrix.byphil.eu/" target="_blank" rel="noopener">Matrix</a>
+        <a href="https://byphil.eu/" target="_blank" rel="noopener">Alle Tools von byphil ↗</a>
+      </div>
+    </div>
+    <div class="copyright">© 2026 Phil Wornath. Teil von <a href="https://byphil.eu/" class="credit-link">byphil.<span style="color:inherit;">eu</span> ↗</a> — unabhängige Softwareentwicklung aus Deutschland. Zahlungsabwicklung durch Stripe als Merchant of Record.<br>
+      <a href="https://ec.europa.eu/consumers/odr" target="_blank" rel="noopener">EU-Verbraucherstreitbeilegung</a> · Konzipiert &amp; entwickelt von <a href="https://philwornath.com/" target="_blank" rel="noopener" class="credit-link">philwornath.com ↗</a>
+    </div>
+  </div>
+</footer>
+
+<script src="../assets/hero-i18n.js"></script>
+<script src="../assets/main.js"></script>
+<script>
+(function () {
+  // The extension's loader (our domain only) claims the payment and reports the result in data-aish-claim*; see
+  // plugin/src/loader.js and bg/checkoutClaim.js. Without the extension the page says how to finish on another browser.
+  var root = document.documentElement;
+  var ERR = {
+    already_claimed: 'This payment was already switched on. Open AISH: the pass is on your account.',
+    expired: 'This thank-you link is older than a day. The pass is saved on the email you paid with: open AISH, Settings › Account & Plan, and sign in with that address.',
+    not_paid: 'Stripe hasn’t confirmed the payment yet. It usually takes a minute; you’ll get an email from Stripe when it’s done, and the pass switches on then.'
+  };
+  function render() {
+    var email = root.getAttribute('data-aish-claim-email'), account = root.getAttribute('data-aish-claim-account');
+    [].forEach.call(document.querySelectorAll('[data-fill="email"]'), function (n) { if (email) n.textContent = email; });
+    [].forEach.call(document.querySelectorAll('[data-fill="account"]'), function (n) { if (account) n.textContent = account; });
+    var code = root.getAttribute('data-aish-claim-code'), err = document.querySelector('[data-error-text]');
+    if (err && code && ERR[code]) err.textContent = ERR[code];
+    var state = root.getAttribute('data-aish-claim');
+    // Done: take the session id out of the address bar and history (it works as a short-lived secret).
+    if (state && state !== 'working' && state !== 'pending' && /[?&]session_id=/.test(location.search)) {
+      try { history.replaceState(null, '', location.pathname); } catch (e) {}
+    }
+  }
+  if (window.MutationObserver) new MutationObserver(render).observe(root, { attributes: true, attributeFilter: ['data-aish-claim', 'data-aish-claim-email', 'data-aish-claim-account', 'data-aish-claim-code'] });
+  // No extension answered: show how to finish elsewhere.
+  setTimeout(function () { if (root.getAttribute('data-aish') !== 'installed') root.classList.add('ty-noext'); }, 2500);
+  render();
+})();
+</script>
+
+
+</body></html>
