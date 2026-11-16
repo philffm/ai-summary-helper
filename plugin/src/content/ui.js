@@ -4,7 +4,8 @@ import { newSidebarToken, SIDEBAR_HASH_KEY, SIDEBAR_TOKEN_FIELD } from '../modul
 // DOM/UI injection helpers for the content script. These create and manage
 // in-page UI (tooltips, menus, overlays, sidebar, placeholder, debug panel).
 
-import { stripHtmlTags, isBackgroundDark } from './extractor.js';
+import { stripHtmlTags } from './extractor.js';
+import { MK } from './markColors.js';
 import { escapeHtml } from './markdown.js';
 
 export function ensureHighlightUiStyles() {
@@ -13,9 +14,9 @@ export function ensureHighlightUiStyles() {
   style.id = 'aish-highlight-ui-styles';
   style.textContent = `
     .hover-effect {
-      outline: 2px dashed #3b82f6 !important;
+      outline: 2px dashed ${MK['annotation-ai-bar']} !important;
       outline-offset: 2px !important;
-      background-color: rgba(59, 130, 246, 0.12) !important;
+      background-color: color-mix(in srgb, ${MK['annotation-ai-bar']} 12%, transparent) !important;
     }
   `;
   document.documentElement.appendChild(style);
@@ -60,9 +61,9 @@ export function toggleHybridSidebar() {
         height: calc(100dvh - 24px); /* overrides the line above wherever dvh is supported */
         border: none;
         border-radius: 16px;
-        box-shadow: -8px 0 32px rgba(0,0,0,0.15), 0 0 0 1px rgba(0,0,0,0.05);
+        box-shadow: -8px 0 32px color-mix(in srgb, CanvasText 15%, transparent), 0 0 0 1px color-mix(in srgb, CanvasText 5%, transparent);
         z-index: 2147483647;
-        background: #faf8ff;
+        background: Canvas; /* the popup inside paints the themed page colour; this only shows while it loads */
         transform: translateX(calc(100% + 20px));
         transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
         color-scheme: light dark;
@@ -81,14 +82,12 @@ export function showPlaceholder(targetElement, donationMessage) {
   const placeholder = document.createElement('div');
   placeholder.classList.add('placeholder');
 
-  const isDark = isBackgroundDark();
-  const textColor = isDark ? '#fff' : '#000';
-  const linkColor = isDark ? '#add8e6' : '#007bff';
-
-  placeholder.style.backgroundColor = isDark ? 'rgba(0, 0, 0, 0.7)' : 'rgba(255, 255, 255, 0.7)';
-  placeholder.style.color = textColor;
-  placeholder.style.border = '2px dashed #007bff';
-  placeholder.style.borderRadius = '10px';
+  // A pen-like card in the AI-highlight colours (markColors.js): readable on light and dark pages alike.
+  const fg = MK['annotation-ai-fg'];
+  placeholder.style.backgroundColor = MK['annotation-ai-bg'];
+  placeholder.style.color = fg;
+  placeholder.style.border = `2px dashed ${MK['annotation-ai-bar']}`;
+  placeholder.style.borderRadius = '12px';
   placeholder.style.padding = '32px';
 
   // eslint-disable-next-line no-unsanitized/property -- reviewed: message from packaged donationMessages.json, colours are constants
@@ -99,17 +98,14 @@ export function showPlaceholder(targetElement, donationMessage) {
         to { transform: rotate(360deg); }
       }
     </style>
-    <div style="font-size: 24px; color: ${textColor} !important;">Fetching summary... <span style="display: inline-block; animation: spin 2s linear infinite;">⏳</span></div>
+    <div style="font-size: 24px; color: ${fg} !important;">Fetching summary... <span style="display: inline-block; animation: spin 2s linear infinite;">⏳</span></div>
     <div style="font-size: 16px; margin-top: 10px; font-weight: bold;">
-    Questions, bugs or ideas? 💡, feel free to <a href="https://philwornath.com/?ref=aish#contact" target="_blank" style="color: ${linkColor} !important; font-weight: bold;">contact me</a>
-      ${donationMessage} <a href="https://link.philwornath.com/?source=aish#donate" style="color: ${linkColor} !important; font-weight: bold;" target="_blank">Support AI Summary Helper</a><br>
+    Questions, bugs or ideas? 💡, feel free to <a href="https://philwornath.com/?ref=aish#contact" target="_blank" style="color: ${fg} !important; font-weight: bold; text-decoration: underline;">contact me</a>
+      ${donationMessage} <a href="https://link.philwornath.com/?source=aish#donate" style="color: ${fg} !important; font-weight: bold; text-decoration: underline;" target="_blank">Support AI Summary Helper</a><br>
     </div>
   `;
 
-  placeholder.animate([
-    { backgroundColor: isDark ? 'rgba(0, 0, 0, 0.7)' : 'rgba(255, 255, 255, 0.7)' },
-    { backgroundColor: isDark ? 'rgba(0, 0, 0, 1)' : 'rgba(255, 255, 255, 1)' }
-  ], {
+  placeholder.animate([{ opacity: 0.75 }, { opacity: 1 }], {
     duration: 2000,
     iterations: Infinity,
     direction: 'alternate'
@@ -134,10 +130,11 @@ export function selectTargetElement() {
     document.body.appendChild(messageDiv);
 
     messageDiv.style.position = 'absolute';
-    messageDiv.style.backgroundColor = '#007bff';
-    messageDiv.style.color = 'white';
+    messageDiv.style.backgroundColor = MK['annotation-ai-bg'];
+    messageDiv.style.color = MK['annotation-ai-fg'];
+    messageDiv.style.border = `1px solid ${MK['annotation-ai-bar']}`;
     messageDiv.style.padding = '5px 10px';
-    messageDiv.style.borderRadius = '5px';
+    messageDiv.style.borderRadius = '8px';
     messageDiv.style.fontSize = '14px';
     messageDiv.style.zIndex = '10000';
     messageDiv.style.pointerEvents = 'none';
@@ -199,7 +196,7 @@ export function updateDebugPanel(text, apiUrl) {
   if (!panel) {
     panel = document.createElement('div');
     panel.id = 'ai-summary-debug';
-    panel.style.cssText = `position:fixed;right:10px;bottom:10px;width:350px;max-height:40vh;overflow:auto;background:#222;color:#0f0;padding:10px;z-index:10000;font-family:monospace;font-size:11px;border-radius:5px;box-shadow:0 0 10px rgba(0,0,0,0.5);`;
+    panel.style.cssText = `position:fixed;right:10px;bottom:10px;width:350px;max-height:40vh;overflow:auto;background:${MK['annotation-ai-bg']};color:${MK['annotation-ai-fg']};border:1px solid ${MK['annotation-ai-bar']};padding:10px;z-index:10000;font-family:monospace;font-size:11px;border-radius:8px;`;
     document.body.appendChild(panel);
   }
   panel.innerHTML = `<strong>Debug (${escapeHtml(apiUrl)})</strong><hr><pre style="white-space:pre-wrap">${escapeHtml(text)}</pre>`;

@@ -303,7 +303,7 @@ export async function inlineAndCompressImages(htmlString, maxWidth = 600, qualit
       if (!ctx) return;
 
       // Use white background so transparent images remain readable as JPEG.
-      ctx.fillStyle = '#FFFFFF';
+      ctx.fillStyle = '#FFFFFF';   // ds-literal-ok: image export background, not UI
       ctx.fillRect(0, 0, width, height);
       ctx.drawImage(imageElement, 0, 0, width, height);
 
@@ -315,33 +315,6 @@ export async function inlineAndCompressImages(htmlString, maxWidth = 600, qualit
   }));
 
   return doc.body.innerHTML;
-}
-
-/**
- * Detect whether the page background is dark (for placeholder contrast).
- */
-export function isBackgroundDark() {
-  const elementsToCheck = ['html', 'body', 'main', 'article'];
-  let backgroundColor = null;
-
-  for (const selector of elementsToCheck) {
-    const element = document.querySelector(selector);
-    if (element) {
-      backgroundColor = window.getComputedStyle(element).backgroundColor;
-      break;
-    }
-  }
-
-  if (!backgroundColor) return false;
-
-  const rgb = backgroundColor.match(/\d+/g);
-  if (!rgb) return false;
-
-  const r = parseInt(rgb[0], 10);
-  const g = parseInt(rgb[1], 10);
-  const b = parseInt(rgb[2], 10);
-  const luminance = (0.299 * r + 0.587 * g + 0.114 * b) / 255;
-  return luminance < 0.5;
 }
 
 // ── Small local models: read long pages in parts (every local model, not only Ollama) ───────────────────────────────
