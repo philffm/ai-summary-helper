@@ -61,9 +61,17 @@ const fakeApi = https.createServer({ key: fs.readFileSync(path.join(tmp, 'k.pem'
   const textLinks = await a.evaluate(() => [...document.querySelectorAll('a[href*="chromewebstore.google.com"]')].filter(x => !x.hasAttribute('data-aish-open')).length);
   console.log('     (store text links left as they are: ' + textLinks + ')');
 
+  // 2b. …/#open-aish typed or linked as an address opens AISH too, and the hash is removed
+  const opened2 = async () => (await sw.evaluate(async () => (await chrome.runtime.getContexts({})).filter(c => /popup\.html/.test(c.documentUrl || '')).length));
+  const n2 = await opened2();
+  const h = await ctx.newPage(); await h.goto('https://ai-summary-helper.byphil.eu/#open-aish'); await wait(2000);
+  check('2b the #open-aish address opens AISH', n2 === 0 && (await opened2()) > n2, { before: n2, after: await opened2() });
+  check('2b the hash is removed from the address bar', !(await h.evaluate(() => location.hash)), await h.evaluate(() => location.href));
+
   // 2. Clicking it opens AISH (toolbar popup, or the app in a tab where the popup can't open)
   // Playwright doesn't list the toolbar popup as a page; the extension's own context list does (POPUP, or TAB for the fallback).
   const opened = () => sw.evaluate(async () => (await chrome.runtime.getContexts({})).filter(c => /popup\.html/.test(c.documentUrl || '')).map(c => c.contextType));
+  await h.close(); await a.bringToFront(); await wait(500);   // the popup from 2b closes when the page gets focus
   const before = (await opened()).length;
   await a.locator('[data-aish-open]:visible').first().click(); await wait(1500);
   const after = await opened();
