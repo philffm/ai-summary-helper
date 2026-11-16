@@ -283,7 +283,8 @@ function buildPlatform(name, manifestPath) {
 function main() {
     const args = process.argv.slice(2);
     const clean = args.includes('--clean');
-    const targets = args.filter(a => !a.startsWith('--'));
+    const apiBase = parseApiFlag(args);
+    const targets = args.filter((a, i) => !a.startsWith('--') && args[i - 1] !== '--api');
 
     // Standalone bundling mode, used by plugin/build.sh. Collapses the
     // content-script bundler into this single implementation (build.sh no
@@ -327,22 +328,60 @@ function main() {
     const all = targets.length === 0;
     const requested = (name) => all || targets.includes(name);
 
+    const built = [];
     console.log('🔨 Building extension targets…');
 
     if (requested('chrome')) {
-        buildPlatform('chrome', path.join(PLATFORMS, 'chrome', 'manifest.json'));
+        built.push(buildPlatform('chrome', path.join(PLATFORMS, 'chrome', 'manifest.json')));
     }
     if (requested('android')) {
-        buildPlatform('android', path.join(PLATFORMS, 'android', 'manifest.json'));
+        built.push(buildPlatform('android', path.join(PLATFORMS, 'android', 'manifest.json')));
     }
     if (requested('firefox')) {
-        buildPlatform('firefox', path.join(PLATFORMS, 'firefox', 'manifest.json'));
+        built.push(buildPlatform('firefox', path.join(PLATFORMS, 'firefox', 'manifest.json')));
     }
     if (requested('ios')) {
-        buildPlatform('ios', path.join(PLATFORMS, 'ios', 'manifest.json'));
+        built.push(buildPlatform('ios', path.join(PLATFORMS, 'ios', 'manifest.json')));
     }
 
+    if (apiBase) for (const dir of built.filter(Boolean)) pointAtApi(dir, apiBase);
     console.log('✅ Build complete.');
+}
+
+/**
+ * Dev builds only: --api http://localhost:3000 points every call to https://api.byphil.eu in the built files at another
+ * server (a local byphilapi with Stripe test keys, a staging copy). Never used by the release workflow.
+ */
+const PROD_API = 'https://api.byphil.eu';
+function parseApiFlag(args) {
+    const i = args.indexOf('--api');
+    if (i === -1) return null;
+    const raw = String(args[i + 1] || '').replace(/\/+$/, '');
+    let u;
+    try { u = new URL(raw); } catch (_) { u = null; }
+    const local = u && u.protocol === 'http:' && /^(localhost|127\.0\.0\.1|\[::1\])$/.test(u.hostname);
+    if (!u || !(local || u.protocol === 'https:') || u.pathname !== '/' || u.search || u.hash) {
+        console.error('Usage: node scripts/build.js <targets> --api http://localhost:3000   (http only for localhost, no path)');
+        process.exit(1);
+    }
+    return u.origin;
+}
+function pointAtApi(dir, base) {
+    let files = 0, hits = 0;
+    const walk = (d) => {
+        for (const e of fs.readdirSync(d, { withFileTypes: true })) {
+            const p = path.join(d, e.name);
+            if (e.isDirectory()) { if (e.name !== 'lib' && e.name !== '_locales') walk(p); continue; }
+            if (!/\.(m?js|html|json)$/.test(e.name)) continue;
+            const src = fs.readFileSync(p, 'utf8');
+            if (!src.includes(PROD_API)) continue;
+            const n = src.split(PROD_API).length - 1;
+            fs.writeFileSync(p, src.split(PROD_API).join(base));
+            files += 1; hits += n;
+        }
+    };
+    walk(dir);
+    console.log(`  ⚠ ${path.basename(dir)}: DEV BUILD, API → ${base} (${hits} references in ${files} files). Do not ship this build.`);
 }
 
 main();
