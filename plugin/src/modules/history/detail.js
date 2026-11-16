@@ -388,6 +388,52 @@ export function openArticleInHistory(article) {
     return showArticleDetail(article);
 }
 
+// ── Tabs: Summary · Links · Notes · Article ─────────────────────────────────
+// The last tab you picked stays picked for the next article (when that article has it); Links shows once links are found.
+const TAB_PREF = 'aish.detailTab';
+let detailTab = (() => { try { return localStorage.getItem(TAB_PREF) || 'summary'; } catch (_) { return 'summary'; } })();
+/** Wires the tab bar inside `root`. Returns { select(name, {remember}), count(name, n) }. */
+export function mountDetailTabs(root) {
+    const bar = root.querySelector('.detail-tabs');
+    const tabs = bar ? [...bar.querySelectorAll('[role="tab"]')] : [];
+    const tabOf = (name) => tabs.find(t => t.dataset.tab === name);
+    let current = '';
+    const select = (name, { remember = false, focus = false } = {}) => {
+        const t = tabOf(name);
+        if (!t || t.hidden) return select('summary', { focus });
+        current = name;
+        tabs.forEach((x) => {
+            const on = x === t;
+            x.setAttribute('aria-selected', String(on)); x.tabIndex = on ? 0 : -1; x.classList.toggle('on', on);
+            const panel = root.querySelector('#' + x.getAttribute('aria-controls'));
+            if (panel) panel.hidden = !on;
+        });
+        if (focus) t.focus();
+        if (remember) { detailTab = name; try { localStorage.setItem(TAB_PREF, name); } catch (_) { /* per-viewer convenience only */ } }
+        root.dispatchEvent(new CustomEvent('aish:detail-tab', { detail: { tab: name } }));
+    };
+    tabs.forEach((t) => {
+        t.addEventListener('click', () => select(t.dataset.tab, { remember: true }));
+        t.addEventListener('keydown', (e) => {
+            const shown = tabs.filter(x => !x.hidden), i = shown.indexOf(t);
+            const to = e.key === 'ArrowRight' ? shown[(i + 1) % shown.length] : e.key === 'ArrowLeft' ? shown[(i - 1 + shown.length) % shown.length]
+                : e.key === 'Home' ? shown[0] : e.key === 'End' ? shown[shown.length - 1] : null;
+            if (to) { e.preventDefault(); select(to.dataset.tab, { remember: true, focus: true }); }
+        });
+    });
+    const count = (name, n) => {
+        const t = tabOf(name); if (!t) return;
+        const badge = t.querySelector('.detail-tab-n'); if (badge) badge.textContent = n ? String(n) : '';
+        if (name === 'links') {
+            t.hidden = !n;
+            if (n && detailTab === 'links' && current === 'summary') select('links');   // links arrive after the first paint
+            if (!n && current === 'links') select('summary');
+        }
+    };
+    select(detailTab);
+    return { select, count, get current() { return current; } };
+}
+
 let linksView = null;   // the Links section of the open article (listeners to remove on the next one)
 export async function showArticleDetail(article) {
     hist.detailChosenAt = Date.now();
@@ -486,21 +532,29 @@ export async function showArticleDetail(article) {
           <button class="button-secondary kindle-button">${icon('book-open')} <span class="act-label">${lbl('Kindle 📚')}</span></button>
           <button class="button-secondary localsend-button">${icon('smartphone')} <span class="act-label">${lbl('LocalSend 📱')}</span></button>
         </div>
-        <div class="summary-box">
-          <strong class="summary-box-title">${T('🧙 AI Summary')}</strong>
-          <div>${safeSummary}</div>
-          <div id="qaMount" class="detail-qa"></div>
+        <div class="a11y-seg detail-tabs" role="tablist" aria-label="${escAttr(T('Article sections'))}">
+          <button type="button" role="tab" id="detailTabSummary" data-tab="summary" aria-controls="detailPanelSummary">${escapeHtml(T('Summary'))}</button>
+          <button type="button" role="tab" id="detailTabLinks" data-tab="links" aria-controls="detailPanelLinks" hidden>${escapeHtml(T('Links'))}<span class="detail-tab-n"></span></button>
+          <button type="button" role="tab" id="detailTabNotes" data-tab="notes" aria-controls="detailPanelNotes"${article.id ? '' : ' hidden'}>${escapeHtml(T('Notes'))}<span class="detail-tab-n"></span></button>
+          <button type="button" role="tab" id="detailTabArticle" data-tab="article" aria-controls="detailPanelArticle"${detailDoc.body.textContent.trim() ? '' : ' hidden'}>${escapeHtml(T('Article'))}</button>
         </div>
-        <div id="sourceCheckMount" class="detail-source"></div>
-        <section id="articleLinksMount" class="detail-links" aria-label="${escAttr(T('Links in this article'))}" hidden></section>
-        <section id="articleNotesMount" class="detail-notes" aria-label="${escAttr(T('Notes and highlights'))}"></section>
-        <div id="localInsights" class="detail-insights"></div>
-        <details class="detail-original">
-          <summary>${T('📄 Original Content')}</summary>
+        <div class="detail-panel" role="tabpanel" id="detailPanelSummary" aria-labelledby="detailTabSummary">
+          <div class="summary-box">
+            <strong class="summary-box-title">${T('🧙 AI Summary')}</strong>
+            <div>${safeSummary}</div>
+            <div id="qaMount" class="detail-qa"></div>
+          </div>
+          <div id="sourceCheckMount" class="detail-source"></div>
+          <div id="localInsights" class="detail-insights"></div>
+        </div>
+        <section class="detail-panel" role="tabpanel" id="detailPanelLinks" aria-labelledby="detailTabLinks" hidden><div id="articleLinksMount" class="detail-links" hidden></div></section>
+        <section class="detail-panel" role="tabpanel" id="detailPanelNotes" aria-labelledby="detailTabNotes" hidden><div id="articleNotesMount" class="detail-notes"></div></section>
+        <div class="detail-panel detail-original" role="tabpanel" id="detailPanelArticle" aria-labelledby="detailTabArticle" hidden>
           <div class="detail-original-body">${safeContent}</div>
-        </details>
+        </div>
       </div>
     `;
+    const tabs = mountDetailTabs(articleDetailContent);
 
     // On-device insights (reading level, sentiment, similar articles) load
     // asynchronously and progressively fill in — they never block the rest
@@ -511,7 +565,7 @@ export async function showArticleDetail(article) {
     renderPaperRow(article, articleDetailContent.querySelector('.paper-row'));
     renderDetailQa(article, articleDetailContent.querySelector('#qaMount'));
     mountSourceCheck(article, articleDetailContent.querySelector('#sourceCheckMount'));
-    import('../notesView.js').then((m) => { const host = articleDetailContent.querySelector('#articleNotesMount'); if (host && article.id) m.mountArticleNotes(host, article); }).catch(() => { /* notes are optional here */ });
+    import('../notesView.js').then((m) => { const host = articleDetailContent.querySelector('#articleNotesMount'); if (host && article.id) m.mountArticleNotes(host, article, { onCount: (n) => tabs.count('notes', n) }); }).catch(() => { /* notes are optional here */ });
     // Links in this article (AISH-041 B): sources first; summarize them in background tabs, then open / collect / quiz
     if (linksView) { linksView.destroy(); linksView = null; }
     if (article.id && rawContentSource) {
@@ -522,6 +576,7 @@ export async function showArticleDetail(article) {
             linksView = m.mountArticleLinks(host, {
                 article, html: rawContentSource,
                 openArticle: (a) => showArticleDetail(a),
+                onCount: (n) => tabs.count('links', n),
                 toast: (msg) => hist.ui && hist.ui.showToast && hist.ui.showToast(msg),
                 getIndex: () => StorageManager.getArticlesIndex(),
                 send: (msg) => new Promise((resolve) => { try { chrome.runtime.sendMessage(msg, (r) => { void chrome.runtime.lastError; resolve(r || null); }); } catch (_) { resolve(null); } }),

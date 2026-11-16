@@ -7723,5 +7723,11 @@
   },
   "f_summarize_the_sources_e81f": {
     "message": "Die {n} Quellen zusammenfassen"
+  },
+  "f_links_088e": {
+    "message": "Links"
+  },
+  "f_article_sections_5e27": {
+    "message": "Bereiche des Artikels"
   }
 }

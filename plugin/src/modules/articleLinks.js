@@ -102,13 +102,14 @@ export function savedByKey(index) {
 const plain = (html) => clean(String(html || '').replace(/<[^>]+>/g, ' ').replace(/&nbsp;/g, ' ').replace(/&amp;/g, '&').replace(/&quot;/g, '"').replace(/&#39;/g, "'").replace(/&lt;/g, '<').replace(/&gt;/g, '>'));
 
 /**
- * Draws the section into `host`. deps: { article, html, openArticle(a), toast(msg), getIndex(), send(msg) → Promise }.
+ * Draws the section into `host`. deps: { article, html, openArticle(a), toast(msg), getIndex(), send(msg) → Promise, onCount?(n) }.
  * Returns { destroy }.
  */
 export function mountArticleLinks(host, deps) {
     const { article } = deps;
     const links = extractLinks(deps.html, article.url);
     host.textContent = '';
+    if (deps.onCount) deps.onCount(links.length);
     if (!links.length) { host.hidden = true; return { destroy() {} }; }
     host.hidden = false;
     const state = { saved: new Map(), running: '', queued: new Set(), asked: new Map(), failed: new Set(), picked: new Set() };

@@ -7642,5 +7642,11 @@
   },
   "f_summarize_the_sources_e81f": {
     "message": "摘要這 {n} 個來源"
+  },
+  "f_links_088e": {
+    "message": "連結"
+  },
+  "f_article_sections_5e27": {
+    "message": "文章區塊"
   }
 }

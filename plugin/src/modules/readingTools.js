@@ -46,7 +46,13 @@ export function mountReadingTools({ scroller, content, article = null, doc = doc
   const reader = getReader();
   const meta = (article && article.meta) || {};
   const summaryEl = () => content.querySelector('.summary-box > div:not(#qaMount)');
-  const originalEl = () => content.querySelector('details > div');
+  const originalEl = () => content.querySelector('.detail-original-body') || content.querySelector('details > div');
+  // The detail view shows one tab at a time: before reading or jumping into a hidden one, switch to it.
+  const reveal = (el) => {
+    const panel = el && el.closest('[role="tabpanel"]');
+    if (panel && panel.hidden) { const tab = content.querySelector('[role="tab"][aria-controls="' + panel.id + '"]'); if (tab) tab.click(); }
+    for (let d = el && el.closest('details'); d; d = d.parentElement && d.parentElement.closest('details')) d.open = true;
+  };
   const langName = (c) => { try { return new Intl.DisplayNames([doc.documentElement.lang || 'en'], { type: 'language' }).of(langBase(c)) || c; } catch (_) { return c; } };
   let listen = null, player = null, opts = null, src = 'summary', units = [], nowEl = null, optsOpen = false, ready = false, langs = { summary: '', original: '' };
   const detectFor = async (which) => {
@@ -56,7 +62,7 @@ export function mountReadingTools({ scroller, content, article = null, doc = doc
     langs[which] = stored || (await detectLang(el ? el.textContent : '')) || (which === 'original' ? langBase(meta.lang || '') : '') || langBase(doc.documentElement.lang || '') || 'en';
     return langs[which];
   };
-  const mark = (el) => { if (nowEl === el) return; if (nowEl) nowEl.classList.remove('tts-now'); nowEl = el; if (el) { el.classList.add('tts-now'); try { el.scrollIntoView({ block: 'center', behavior: reduce() ? 'auto' : 'smooth' }); } catch (_) { /* cosmetic */ } } };
+  const mark = (el) => { if (nowEl === el) return; if (nowEl) nowEl.classList.remove('tts-now'); nowEl = el; if (el) { el.classList.add('tts-now'); reveal(el); try { el.scrollIntoView({ block: 'center', behavior: reduce() ? 'auto' : 'smooth' }); } catch (_) { /* cosmetic */ } } };
   const isMine = (st) => st && st.meta && st.meta.tool === 'detail' && st.meta.id === (article && article.id);
   const active = () => ready && isMine(reader.state) && ['playing', 'paused', 'waiting'].includes(reader.state.state);
   function paintPlayer() {
@@ -76,7 +82,7 @@ export function mountReadingTools({ scroller, content, article = null, doc = doc
     const lang = await detectFor(which);
     const el = which === 'summary' ? summaryEl() : originalEl();
     if (!el) return;
-    for (let d = el.closest('details'); d; d = d.parentElement && d.parentElement.closest('details')) d.open = true;
+    reveal(el);
     units = speechUnits(el);
     if (which === 'summary') {   // the "Your questions" section is part of the summary view
       const qa = content.querySelector('#qaMount');
@@ -164,7 +170,7 @@ export function mountReadingTools({ scroller, content, article = null, doc = doc
   };
   const toTop = () => { try { scroller.scrollTo({ top: 0, behavior: reduce() ? 'auto' : 'smooth' }); } catch (_) { scroller.scrollTop = 0; } };
   const jump = (el) => {
-    for (let d = el.closest('details'); d; d = d.parentElement && d.parentElement.closest('details')) d.open = true;
+    reveal(el);
     try { el.scrollIntoView({ block: 'start', behavior: reduce() ? 'auto' : 'smooth' }); } catch (_) { el.scrollIntoView(); }
   };
   function fill() {

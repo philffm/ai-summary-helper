@@ -69,6 +69,6 @@ const src = (f) => fs.readFileSync(path.resolve(process.env.AISH_SRC, f), 'utf8'
 const am = src('modules/articleManager.js') + src('modules/history/detail.js');
 assert.match(am, /listItem\.dataset\.aid = String\(article\.id\)/, 'cards carry their article id');
 assert.match(am, /noteCountsOnce\(\)\.then\(\(counts\) => paintNoteChip\(listItem, counts\)\)/, 'every card asks for its chip');
-assert.match(am, /id="articleNotesMount"/); assert.match(am, /m\.mountArticleNotes\(host, article\)/, 'the detail view mounts the notes');
+assert.match(am, /id="articleNotesMount"/); assert.match(am, /m\.mountArticleNotes\(host, article[,)]/, 'the detail view mounts the notes');
 assert.match(am, /chip\.className = 'tag-chip note-chip'/);
 console.log('TEST 212 OK'); process.exit(0);

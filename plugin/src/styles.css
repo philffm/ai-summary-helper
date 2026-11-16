@@ -3999,9 +3999,15 @@ body[data-surface="tab"] { min-width: 0; }
 .summary-box-title { display: block; margin-bottom: 8px; }
 .detail-qa { margin-top: 12px; }
 .detail-insights { margin-bottom: 16px; }
-.detail-original { margin-top: 8px; }
-.detail-original > summary { cursor: pointer; font-weight: 600; color: var(--text-secondary); }
-.detail-original-body { font-size: var(--fs-md); opacity: .85; margin-top: 8px; overflow-wrap: anywhere; }
+/* Detail tabs: Summary · Links · Notes · Article (the design system's pill segmented control) */
+.detail-tabs { margin: 4px 0 12px; }
+.detail-tabs button[hidden] { display: none; }
+.detail-tab-n { margin-left: 5px; font-size: var(--fs-xs); font-weight: 700; opacity: .75; font-variant-numeric: tabular-nums; }
+.detail-tab-n:empty { display: none; }
+.detail-panel[hidden] { display: none; }
+#detailPanelNotes .notes-head { display: none; }   /* the tab already names it */
+.detail-original-body { font-size: var(--fs-md); line-height: 1.6; overflow-wrap: anywhere; }
+.detail-original-body p { margin: 0 0 .8em; }
 .detail-original-body img { display: block; max-width: 100%; height: auto; margin: 12px 0; border-radius: var(--radius-sm); box-shadow: var(--elevation-1); }
 
 /* Graph view: legend + preview card (were inline styles in archiveGraph.js) */
