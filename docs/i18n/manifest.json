@@ -202224,6 +202224,346 @@
           "model": "deepseek/deepseek-v4.1-flash"
         }
       }
+    },
+    "14bd1c681e793e7cc0af4baccec84b31a4e4e4f224c01ce617ac22a1bd42c1cb": {
+      "en": "The built-in Feeds reader stores your subscriptions and the fetched feed items locally in your browser — never synced, never sent to us. When you add or refresh a feed, the extension requests that feed's address directly from the publisher's server, just like your browser would when visiting the site, so the publisher can see the request. We do not proxy, log, or see your subscriptions or reading list. OPML import is processed entirely on your device. Background checks are on by default and can be turned off in the Feeds settings: while the browser is open, the extension re-requests your feeds on the interval you choose, only to show a count on the toolbar icon. Summarizing a feed item works like summarizing any other page: its content is only sent to the AI provider you chose, and only when you trigger a summary. The optional AI day recap and AI tone scoring work the same way: only when you click them, the extension sends item titles, source names and short snippets (not full articles) to the AI provider you chose, and the resulting recap is cached on your device. Podcast episodes in a feed are streamed directly from the publisher's server when you press Play.",
+      "translations": {
+        "de": {
+          "text": "Der integrierte Feeds-Reader speichert Ihre Abonnements und die abgerufenen Feed-Einträge lokal in Ihrem Browser – niemals synchronisiert, niemals an uns gesendet. Wenn Sie einen Feed hinzufügen oder aktualisieren, ruft die Erweiterung die Adresse dieses Feeds direkt vom Server des Herausgebers ab, so wie Ihr Browser es beim Besuch der Website tun würde, sodass der Herausgeber die Anfrage sehen kann. Wir stellen keinen Proxy bereit, protokollieren Ihre Abonnements oder Leseliste nicht und sehen sie auch nicht ein. Der OPML-Import erfolgt vollständig auf Ihrem Gerät. Die Hintergrundprüfungen sind standardmäßig aktiviert und können in den Feeds-Einstellungen deaktiviert werden: Solange der Browser geöffnet ist, ruft die Erweiterung Ihre Feeds in dem von Ihnen gewählten Intervall erneut ab, nur um eine Anzahl auf dem Symbol in der Symbolleiste anzuzeigen. Das Zusammenfassen eines Feed-Eintrags funktioniert wie das Zusammenfassen jeder anderen Seite: Der Inhalt wird nur an den von Ihnen gewählten KI-Anbieter gesendet, und zwar nur, wenn Sie eine Zusammenfassung auslösen. Der optionale KI-Tagesrückblick und die optionale KI-Tonbewertung funktionieren auf dieselbe Weise: Nur wenn Sie darauf klicken, sendet die Erweiterung Eintragstitel, Quellennamen und kurze Ausschnitte (keine vollständigen Artikel) an den von Ihnen gewählten KI-Anbieter, und der daraus entstehende Rückblick wird auf Ihrem Gerät zwischengespeichert. Podcast-Episoden in einem Feed werden direkt vom Server des Herausgebers gestreamt, wenn Sie auf Wiedergabe klicken.",
+          "translatedAt": "2026-11-09T22:16:16.440Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "28b7d30ac3b4a93a0ba413c9cb1932069c9eb0b9f7259ada6a5307731ea17a50": {
+      "en": "Thank you — AI Summary Helper",
+      "translations": {
+        "de": {
+          "text": "Danke — AI Summary Helper",
+          "translatedAt": "2026-11-16T14:39:41.941Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "c3c063e02683476ce0b37803e40feb78d91889727f69833714599413949352c2": {
+      "en": "Your Support Pass payment. AI Summary Helper switches it on in this browser by itself.",
+      "translations": {
+        "de": {
+          "text": "Deine Support-Pass-Zahlung. AI Summary Helper aktiviert ihn in diesem Browser automatisch.",
+          "translatedAt": "2026-11-16T14:39:41.941Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "afd3e03695c2596d667c742b3b81277311d220f00a06612031103e4115687ebb": {
+      "en": "Switching your pass on…",
+      "translations": {
+        "de": {
+          "text": "Dein Pass wird aktiviert…",
+          "translatedAt": "2026-11-16T14:39:41.941Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "4885c3affa74b1016cac347271a1f65c464eb2168521a1b99443b333220fc924": {
+      "en": "AI Summary Helper is picking up your payment in this browser. This takes a few seconds.",
+      "translations": {
+        "de": {
+          "text": "AI Summary Helper erkennt deine Zahlung in diesem Browser. Das dauert ein paar Sekunden.",
+          "translatedAt": "2026-11-16T14:39:41.941Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "82109ada64b3f1484ba595084fc2e17dd3079b8941c3f674067a46bc58c2c4fc": {
+      "en": "Thank you! Your Support Pass is on.",
+      "translations": {
+        "de": {
+          "text": "Danke! Dein Support-Pass ist aktiv.",
+          "translatedAt": "2026-11-16T14:39:41.941Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "732d5320deb601e3d2ca7873e8bb2489c5a494a0ff5e92742924f75e047f7815": {
+      "en": "Nothing to copy, no order number. Thank you for keeping AI Summary Helper independent.",
+      "translations": {
+        "de": {
+          "text": "Nichts zum Kopieren, keine Bestellnummer. Danke, dass du AI Summary Helper unabhängig hältst.",
+          "translatedAt": "2026-11-16T14:39:41.941Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "85c4f91232c2b711e9c9f96b7da017f9f011f303e4fb236e62e0344385740295": {
+      "en": "Payment confirmed by Stripe",
+      "translations": {
+        "de": {
+          "text": "Zahlung von Stripe bestätigt",
+          "translatedAt": "2026-11-16T14:39:41.941Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "38c72375a637c8ae9094d75daddf621669776b522ed9e5d750c723b2be93cec3": {
+      "en": "Linked to",
+      "translations": {
+        "de": {
+          "text": "Verknüpft mit",
+          "translatedAt": "2026-11-16T14:39:41.941Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "17a7e5cfee17027e431935c3bed8507950d904b5a846d3ac37d2fabdc81d8241": {
+      "en": "your account",
+      "translations": {
+        "de": {
+          "text": "deinem Konto",
+          "translatedAt": "2026-11-16T14:39:41.941Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "b213da9d7ff3fd55531ed0d0734422eda53241872ddafbbd37f54431fd8e8ef3": {
+      "en": "Unlocked in AI Summary Helper in this browser",
+      "translations": {
+        "de": {
+          "text": "In AI Summary Helper in diesem Browser freigeschaltet",
+          "translatedAt": "2026-11-16T14:39:41.941Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "48374188a6032ae122e9222046a7f92c81a3395f1a2ce167c3033bc038d48564": {
+      "en": "Open AISH",
+      "translations": {
+        "de": {
+          "text": "AISH öffnen",
+          "translatedAt": "2026-11-16T14:39:41.941Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "56bf79aa10c8876715d2b4a9736765c15b6109e514d3e1491274eff8b97220de": {
+      "en": "Using AISH on another computer? Sign in there with",
+      "translations": {
+        "de": {
+          "text": "Nutzt du AISH auf einem anderen Computer? Melde dich dort an mit",
+          "translatedAt": "2026-11-16T14:39:41.941Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "a94009eed6fbda034befdcf9e96be0beb1a71a4043270e9f36e22c56b6bb4701": {
+      "en": "; the pass is already on it.",
+      "translations": {
+        "de": {
+          "text": "; der Pass ist dort schon aktiv.",
+          "translatedAt": "2026-11-16T14:39:41.941Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "63292359dd9ccd4617268d55a4852240209bc6e0d434a8249fd2a61db3433b57": {
+      "en": "the email you paid with",
+      "translations": {
+        "de": {
+          "text": "der E-Mail-Adresse, mit der du bezahlt hast",
+          "translatedAt": "2026-11-16T14:39:41.941Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "2fef7951de07b776486b685c68ec683dff52117cdfca257634242f13dfc2566b": {
+      "en": "Payment received",
+      "translations": {
+        "de": {
+          "text": "Zahlung erhalten",
+          "translatedAt": "2026-11-16T14:39:41.941Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "61e6284310b5bc24371daa5a64a8cf44232b8eccee01fc1488baf406cbbf3bd8": {
+      "en": "You paid as",
+      "translations": {
+        "de": {
+          "text": "Du hast bezahlt als",
+          "translatedAt": "2026-11-16T14:39:41.941Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "a5fb0dd98372bd826193dd20c83ec93753faa050554de0dee3658d89479244e3": {
+      "en": ", but AISH in this browser is signed in as",
+      "translations": {
+        "de": {
+          "text": ", aber AISH ist in diesem Browser angemeldet als",
+          "translatedAt": "2026-11-16T14:39:41.941Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "7d58bbad77011e440e6d448c1a0380f3e2950506a96c1e8ed81fbe987ad27de9": {
+      "en": "another address",
+      "translations": {
+        "de": {
+          "text": "eine andere Adresse",
+          "translatedAt": "2026-11-16T14:39:41.941Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "8bce6f19bcfc7ac890d9ccda792a62bea7a3882247246717a37d138c98be7539": {
+      "en": "Add the pass to",
+      "translations": {
+        "de": {
+          "text": "Den Pass zu",
+          "translatedAt": "2026-11-16T14:39:41.941Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "2faca96de47e02cfece1c6e47fddd02a8d3c89043897e4db45ee17b4af1dd82e": {
+      "en": "this account",
+      "translations": {
+        "de": {
+          "text": "diesem Konto hinzufügen",
+          "translatedAt": "2026-11-16T14:39:41.941Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "71b71bcf2818c86943fe49acb2040ca96edd7357b336c12a16cbdb8508558318": {
+      "en": "Switch to",
+      "translations": {
+        "de": {
+          "text": "Wechsle zu",
+          "translatedAt": "2026-11-16T14:39:41.941Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "8a12467749814dc0753f697ff89203b852bf495f3a480cdf2ace4a6b5a923963": {
+      "en": "the paid address",
+      "translations": {
+        "de": {
+          "text": "der bezahlten Adresse",
+          "translatedAt": "2026-11-16T14:39:41.941Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "8cdaea3549ea0cb0beb77cdb9b0fae2e4edbb89d7a51d7a18cd5bbdd3a7edf1e": {
+      "en": "One payment unlocks one account.",
+      "translations": {
+        "de": {
+          "text": "Eine Zahlung schaltet ein Konto frei.",
+          "translatedAt": "2026-11-16T14:39:41.941Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "f17862f97669ccb4852ea9d8ddf3fc57f9f2a64d45d5d8f728dbe09ebe02c944": {
+      "en": "Your pass is on",
+      "translations": {
+        "de": {
+          "text": "Dein Pass ist aktiv auf",
+          "translatedAt": "2026-11-16T14:39:41.941Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "5f38e2bfa6751fbd72668c050ef4087672fd389dd0d85813506f3ebce1f57bb0": {
+      "en": "That account already exists, so we sent a 4-digit code to that address. Open AISH and enter it to sign in here. Your library stays private even if someone else typed your email at Stripe.",
+      "translations": {
+        "de": {
+          "text": "Dieses Konto existiert bereits, deshalb haben wir einen 4-stelligen Code an diese Adresse geschickt. Öffne AISH und gib ihn ein, um dich hier anzumelden. Deine Bibliothek bleibt privat, auch wenn jemand anderes deine E-Mail-Adresse bei Stripe eingegeben hat.",
+          "translatedAt": "2026-11-16T14:39:41.941Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "58946e08597c2ae697b860d720a9a5e2bfb3df024ef1d89d3fefc4abfc25ce71": {
+      "en": "We couldn’t switch the pass on in this browser automatically. It is saved on the email you paid with: open AISH, Settings › Account & Plan, and sign in with that address.",
+      "translations": {
+        "de": {
+          "text": "Wir konnten den Pass in diesem Browser nicht automatisch aktivieren. Er ist auf der E-Mail-Adresse gespeichert, mit der du bezahlt hast: Öffne AISH, Einstellungen › Konto & Tarif, und melde dich mit dieser Adresse an.",
+          "translatedAt": "2026-11-16T14:39:41.941Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "e2b420484e2432fc327f8a6cc58fe57dd7bd258a5c2ac65e43114bb15e7e68aa": {
+      "en": "Still stuck? Write to info@byphil.eu and forward the Stripe receipt.",
+      "translations": {
+        "de": {
+          "text": "Kommst du immer noch nicht weiter? Schreib an info@byphil.eu und leite die Stripe-Rechnung weiter.",
+          "translatedAt": "2026-11-16T14:39:41.941Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "4ab8b30cbd65b87dc7777867c15e984e4aef5b5b5af8c62296802931834d9530": {
+      "en": "Payment received. One step left.",
+      "translations": {
+        "de": {
+          "text": "Zahlung erhalten. Noch ein Schritt.",
+          "translatedAt": "2026-11-16T14:39:41.941Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "4af00e9812a8e5d38aa163fef1b2e0d662436600dbd88158091188ec415b5991": {
+      "en": "Your Support Pass is saved on the email you paid with. AI Summary Helper isn’t installed in this browser, or it needs an update, so nothing could switch it on here.",
+      "translations": {
+        "de": {
+          "text": "Dein Support-Pass ist auf der E-Mail-Adresse gespeichert, mit der du bezahlt hast. AI Summary Helper ist in diesem Browser nicht installiert oder braucht ein Update, deshalb konnte er hier nicht aktiviert werden.",
+          "translatedAt": "2026-11-16T14:39:41.941Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "905be98123601d8ed3868065d5df708b005d6b3a1875936ff13a4b4b286a93e4": {
+      "en": "Pass saved for the email you paid with",
+      "translations": {
+        "de": {
+          "text": "Pass gespeichert für die E-Mail-Adresse, mit der du bezahlt hast",
+          "translatedAt": "2026-11-16T14:39:41.941Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "b478d4d31057a05c8fbceebe8ef63aa4c8d998676d1d5f9adb2bf732b98078cf": {
+      "en": "Add or update AISH, then sign in with that email: the pass is already there",
+      "translations": {
+        "de": {
+          "text": "Installiere oder aktualisiere AISH und melde dich dann mit dieser E-Mail-Adresse an: der Pass ist schon da",
+          "translatedAt": "2026-11-16T14:39:41.941Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "7e38e703cb081aab7746f0027c0302cdcdff176ed569f634d0508a2ca51cee70": {
+      "en": "Add to Chrome, it’s free",
+      "translations": {
+        "de": {
+          "text": "Zu Chrome hinzufügen – kostenlos",
+          "translatedAt": "2026-11-16T14:39:41.941Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "b9645809501b1026680245d6d7e9464e7dc681b6040ae691df0a6c2e70d56354": {
+      "en": "Using AISH on another computer? Open it there and sign in with the email you paid with. No order number needed.",
+      "translations": {
+        "de": {
+          "text": "Nutzt du AISH auf einem anderen Computer? Öffne es dort und melde dich mit der E-Mail-Adresse an, mit der du bezahlt hast. Keine Bestellnummer nötig.",
+          "translatedAt": "2026-11-16T14:39:41.941Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
     }
   }
 }
