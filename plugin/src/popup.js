@@ -105,6 +105,9 @@ document.addEventListener("DOMContentLoaded", async () => {
     });
 
     ui.showScreen((window.location && window.location.hash) === '#notes' ? 'notes' : "main");   // "Open in Notes" from a page opens this tab on the Notes screen
+    // "🎓 Time to repeat" (quiz reminder) opens popup.html#quiz=<id> in a tab: the saved quiz with the questions to repeat
+    const quizId = ((window.location && window.location.hash) || '').match(/^#quiz=([\w-]{4,64})$/);
+    if (quizId) import('./modules/quiz/quizView.js').then(m => m.openSavedQuiz(quizId[1])).catch(() => {});
 
     Promise.all([
         import('./modules/aboutView.js'),

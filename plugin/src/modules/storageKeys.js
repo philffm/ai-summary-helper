@@ -129,6 +129,10 @@ export const isHlPageKey = (k) => typeof k === 'string' && k.startsWith(HL_PAGE)
 export const COLL_REC = 'coll:rec:';
 export const collRecKey = (id) => COLL_REC + id;
 export const isCollRecKey = (k) => typeof k === 'string' && k.startsWith(COLL_REC);
+/** Prefix of saved quizzes (Figma AISH-040): quiz:rec:<id> = { id, name, articles, questions, created, last: { score, missed, at }, remindAt }. */
+export const QUIZ_REC = 'quiz:rec:';
+export const quizRecKey = (id) => QUIZ_REC + id;
+export const isQuizRecKey = (k) => typeof k === 'string' && k.startsWith(QUIZ_REC);
 
 /** Prefix of the per-target ledger keys: targets:ledger:<targetId> (what was sent where). */
 export const TARGET_LEDGER = 'targets:ledger:';

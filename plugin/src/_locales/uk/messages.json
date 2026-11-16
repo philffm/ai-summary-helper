@@ -7703,5 +7703,185 @@
   },
   "f_have_a_license_key_or_gift_c_fd77": {
     "message": "Маєте ліцензійний ключ або подарунковий код?"
+  },
+  "f_quiz_e314": {
+    "message": "Вікторина"
+  },
+  "f_a_quiz_needs_at_least_2_arti_0ff9": {
+    "message": "Для вікторини потрібно щонайменше 2 статті"
+  },
+  "f_leave_out_c607": {
+    "message": "Пропустити «{title}»"
+  },
+  "f_questions_22a2": {
+    "message": "Запитання"
+  },
+  "f_mix_5c01": {
+    "message": "Суміш"
+  },
+  "f_per_article_e6e6": {
+    "message": "За статтею"
+  },
+  "f_across_articles_648f": {
+    "message": "Між статтями"
+  },
+  "f_both_18c2": {
+    "message": "Обидва"
+  },
+  "f_about_questions_per_article_0c04": {
+    "message": "Близько {n} запитань на статтю."
+  },
+  "f_questions_that_connect_two_a_09c3": {
+    "message": "Запитання, що поєднують дві статті: що кажуть обидві та чим відрізняються."
+  },
+  "f_about_per_article_plus_that__3d2c": {
+    "message": "Близько {n} на статтю та ще {m}, що поєднують статті."
+  },
+  "f_uses_your_model_requests_sta_a624": {
+    "message": "Використовує вашу модель · запитів: {n} · лишається на цьому пристрої"
+  },
+  "f_every_question_shows_the_art_8b21": {
+    "message": "Кожне запитання показує статтю й речення, з якого воно взяте. Запитання без цитати відкидаються."
+  },
+  "f_create_quiz_e72a": {
+    "message": "Створити вікторину"
+  },
+  "f_writing_questions_1754": {
+    "message": "Пишемо запитання…"
+  },
+  "f_waiting_06a8": {
+    "message": "очікує"
+  },
+  "f_writing_914f": {
+    "message": "пишеться"
+  },
+  "f_dropped_b271": {
+    "message": "відкинуто: {n}"
+  },
+  "f_no_questions_d027": {
+    "message": "немає запитань"
+  },
+  "f_no_question_had_a_matching_s_2c20": {
+    "message": "Жодне запитання не мало відповідного речення в статтях. Спробуйте інші статті або іншу модель."
+  },
+  "f_question_of_d1cf": {
+    "message": "Запитання {i} з {n}"
+  },
+  "f_not_sure_show_me_where_it_is_1279": {
+    "message": "Не впевнені? Покажіть, де це написано"
+  },
+  "f_right_5a31": {
+    "message": "Правильно."
+  },
+  "f_here_is_the_answer_0aae": {
+    "message": "Ось відповідь."
+  },
+  "f_not_quite_the_right_answer_i_063c": {
+    "message": "Не зовсім. Правильна відповідь — {a}."
+  },
+  "f_where_it_says_so_58d3": {
+    "message": "Де це написано"
+  },
+  "f_show_in_article_0c75": {
+    "message": "Показати в статті"
+  },
+  "f_report_question_15d9": {
+    "message": "Поскаржитися на запитання"
+  },
+  "f_reported_it_is_left_out_from_a379": {
+    "message": "Позначено. Відтепер воно пропускається."
+  },
+  "f_see_result_7319": {
+    "message": "Переглянути результат"
+  },
+  "f_quiz_done_344f": {
+    "message": "Вікторина · готово"
+  },
+  "f_to_repeat_the_answers_stay_o_fb3f": {
+    "message": "Повторити: {n}. Відповіді лишаються на цьому пристрої."
+  },
+  "f_all_right_the_answers_stay_o_0b32": {
+    "message": "Усе правильно. Відповіді лишаються на цьому пристрої."
+  },
+  "f_re_read_7c6b": {
+    "message": "Перечитати"
+  },
+  "f_remind_me_in_days_c7b4": {
+    "message": "Нагадати через {n} дн."
+  },
+  "f_reminder_set_488b": {
+    "message": "Нагадування встановлено"
+  },
+  "f_reminders_are_not_available__3416": {
+    "message": "Нагадування тут недоступні"
+  },
+  "f_export_quiz_0790": {
+    "message": "Експорт вікторини"
+  },
+  "f_questions_from_articles_d852": {
+    "message": "{name} · запитань: {n} зі статей: {m}"
+  },
+  "f_play_live_with_a_class_612e": {
+    "message": "Грати наживо з класом"
+  },
+  "f_flashcards_3ae8": {
+    "message": "Картки"
+  },
+  "f_quiz_bank_c982": {
+    "message": "Банк запитань"
+  },
+  "f_format_ff72": {
+    "message": "Формат"
+  },
+  "f_download_8cb1": {
+    "message": "Завантажити {file}"
+  },
+  "f_in_kahoot_create_import_spre_257f": {
+    "message": "У Kahoot: Створити → Імпорт → Таблиця. У Kahoot немає стовпця для джерел; вони лишаються тут."
+  },
+  "f_in_anki_file_import_importin_fba3": {
+    "message": "В Anki: Файл → Імпорт. Повторний імпорт оновить картки."
+  },
+  "f_in_moodle_question_bank_impo_34e0": {
+    "message": "У Moodle: Банк запитань → Імпорт → формат GIFT."
+  },
+  "f_time_per_question_kahoot_f286": {
+    "message": "Час на запитання (Kahoot)"
+  },
+  "f_s_8f6e": {
+    "message": "{n} с"
+  },
+  "f_saved_3aaa": {
+    "message": "{file} збережено"
+  },
+  "f_export_failed_9c48": {
+    "message": "Не вдалося експортувати"
+  },
+  "f_question_8401": {
+    "message": "{n} запитання"
+  },
+  "f_questions_7f76": {
+    "message": "{n} запитань"
+  },
+  "f_repeat_the_4ec1": {
+    "message": "Повторити {n}"
+  },
+  "f_text_was_longer_than_kahoot__d59f": {
+    "message": "{n} текст був довшим, ніж дозволяє Kahoot, і його скорочено. Перевірте його в Kahoot."
+  },
+  "f_texts_were_longer_than_kahoo_f0b1": {
+    "message": "Текстів, довших за ліміт Kahoot: {n}, їх скорочено. Перевірте їх у Kahoot."
+  },
+  "f_quiz_across_the_selected_art_525e": {
+    "message": "Вікторина за {n} вибраними статтями"
+  },
+  "f_select_at_least_2_articles_f_9829": {
+    "message": "Виберіть щонайменше 2 статті для вікторини"
+  },
+  "notifQuizTitle": {
+    "message": "🎓 Час повторити"
+  },
+  "notifQuizMissed": {
+    "message": "Запитань для повторення: {n}"
   }
 }

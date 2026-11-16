@@ -134,14 +134,15 @@ await tick(80);
 assert.deepEqual((await C.getCollection(multi.id)).sources.map(s => s.articleId).sort(), ['a1', 'a2']);
 assert.ok(toasts.at(-1).m.startsWith('2 added'));
 
-// A+: the action bar — Add / Markdown / References by default, Worksheet in ⋯, customizable, saved in sync
+// A+: the action bar — Add / Quiz (AISH-040) / Markdown / References by default (References folds into ⋯ when narrow), Worksheet in ⋯, customizable, saved in sync
 {
     const host3 = d.createElement('div'); d.body.append(host3);
     await V.renderCollectionsTab(host3, {});
     [...host3.querySelectorAll('.coll-card')].find(c => c.textContent.includes('Batch')).click(); await tick(120);
     const bar = host3.querySelector('.coll-bar-actions [role=toolbar]');
     assert.ok(bar, 'action bar');
-    assert.deepEqual([...bar.querySelectorAll('.detail-tool')].map(b => b.dataset.toolId), ['add', 'markdown', 'refs']);
+    const shown = [...bar.querySelectorAll('.detail-tool')].map(b => b.dataset.toolId);
+    assert.deepEqual(shown.slice(0, 3), ['add', 'quiz', 'markdown'], 'Quiz right after Add');
     bar.querySelector('.card-menu-btn').click(); await tick(80);
     const menu = [...d.querySelectorAll('.card-menu-item')].map(b => b.textContent);
     assert.ok(menu.some(t => t.includes('Worksheet')) && menu.some(t => t.includes('Customize toolbar')) && menu.at(-1).includes('Delete collection'), 'leftovers, Customize, Delete last');
@@ -152,7 +153,7 @@ assert.ok(toasts.at(-1).m.startsWith('2 added'));
     const refs = bar.querySelector('[data-tool-id="refs"]');
     refs.dispatchEvent(new w.KeyboardEvent('keydown', { key: 'Delete', bubbles: true })); await tick(20);
     bar.querySelector('[data-tool-id="worksheet"]').dispatchEvent(new w.KeyboardEvent('keydown', { key: 'ArrowLeft', altKey: true, bubbles: true })); await tick(20);
-    assert.deepEqual(store.collectionToolbarItems, ['add', 'worksheet', 'markdown'], 'stored in sync');
+    assert.deepEqual(store.collectionToolbarItems, ['add', 'quiz', 'worksheet', 'markdown'], 'stored in sync');
     [...tray.querySelectorAll('button')].find(b => b.textContent === 'Done').click(); await tick(20);
     assert.ok(!host3.querySelector('.toolbar-tray') && !bar.classList.contains('is-editing'));
     host3.querySelector('.coll-back').click(); await tick(40); host3.remove();

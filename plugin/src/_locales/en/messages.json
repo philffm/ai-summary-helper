@@ -7834,5 +7834,187 @@
   },
   "f_have_a_license_key_or_gift_c_fd77": {
     "message": "Have a license key or gift code?"
+  },
+  "f_quiz_e314": {
+    "message": "Quiz"
+  },
+  "f_a_quiz_needs_at_least_2_arti_0ff9": {
+    "message": "A quiz needs at least 2 articles"
+  },
+  "f_leave_out_c607": {
+    "message": "Leave out “{title}”"
+  },
+  "f_questions_22a2": {
+    "message": "Questions"
+  },
+  "f_mix_5c01": {
+    "message": "Mix"
+  },
+  "f_per_article_e6e6": {
+    "message": "Per article"
+  },
+  "f_across_articles_648f": {
+    "message": "Across articles"
+  },
+  "f_both_18c2": {
+    "message": "Both"
+  },
+  "f_about_questions_per_article_0c04": {
+    "message": "About {n} questions per article."
+  },
+  "f_questions_that_connect_two_a_09c3": {
+    "message": "Questions that connect two articles: what both say, where they differ."
+  },
+  "f_about_per_article_plus_that__3d2c": {
+    "message": "About {n} per article, plus {m} that connect articles."
+  },
+  "f_uses_your_model_requests_sta_a624": {
+    "message": "Uses your model · {n} requests · stays on this device"
+  },
+  "f_every_question_shows_the_art_8b21": {
+    "message": "Every question shows the article and sentence it comes from. Questions without a quote are dropped."
+  },
+  "f_create_quiz_e72a": {
+    "message": "Create quiz"
+  },
+  "f_writing_questions_1754": {
+    "message": "Writing questions…"
+  },
+  "f_waiting_06a8": {
+    "message": "waiting"
+  },
+  "f_writing_914f": {
+    "message": "writing"
+  },
+  "f_dropped_b271": {
+    "message": "{n} dropped"
+  },
+  "f_no_questions_d027": {
+    "message": "no questions"
+  },
+  "f_no_question_had_a_matching_s_2c20": {
+    "message": "No question had a matching sentence in the articles. Try other articles or another model."
+  },
+  "f_question_of_d1cf": {
+    "message": "Question {i} of {n}"
+  },
+  "f_not_sure_show_me_where_it_is_1279": {
+    "message": "Not sure? Show me where it is"
+  },
+  "f_right_5a31": {
+    "message": "Right."
+  },
+  "f_here_is_the_answer_0aae": {
+    "message": "Here is the answer."
+  },
+  "f_not_quite_the_right_answer_i_063c": {
+    "message": "Not quite. The right answer is {a}."
+  },
+  "f_where_it_says_so_58d3": {
+    "message": "Where it says so"
+  },
+  "f_show_in_article_0c75": {
+    "message": "Show in article"
+  },
+  "f_report_question_15d9": {
+    "message": "Report question"
+  },
+  "f_reported_it_is_left_out_from_a379": {
+    "message": "Reported. It is left out from now on."
+  },
+  "f_see_result_7319": {
+    "message": "See result"
+  },
+  "f_quiz_done_344f": {
+    "message": "Quiz · done"
+  },
+  "f_to_repeat_the_answers_stay_o_fb3f": {
+    "message": "{n} to repeat. The answers stay on this device."
+  },
+  "f_all_right_the_answers_stay_o_0b32": {
+    "message": "All right. The answers stay on this device."
+  },
+  "f_re_read_7c6b": {
+    "message": "Re-read"
+  },
+  "f_remind_me_in_days_c7b4": {
+    "message": "Remind me in {n} days"
+  },
+  "f_reminder_set_488b": {
+    "message": "Reminder set"
+  },
+  "f_reminders_are_not_available__3416": {
+    "message": "Reminders are not available here"
+  },
+  "f_export_quiz_0790": {
+    "message": "Export quiz"
+  },
+  "f_questions_from_articles_d852": {
+    "message": "{name} · {n} questions from {m} articles"
+  },
+  "f_play_live_with_a_class_612e": {
+    "message": "Play live with a class"
+  },
+  "f_flashcards_3ae8": {
+    "message": "Flashcards"
+  },
+  "f_quiz_bank_c982": {
+    "message": "Quiz bank"
+  },
+  "f_format_ff72": {
+    "message": "Format"
+  },
+  "f_download_8cb1": {
+    "message": "Download {file}"
+  },
+  "f_in_kahoot_create_import_spre_257f": {
+    "message": "In Kahoot: Create → Import → Spreadsheet. Kahoot has no column for sources; they stay here."
+  },
+  "f_in_anki_file_import_importin_fba3": {
+    "message": "In Anki: File → Import. Importing again updates the cards."
+  },
+  "f_in_moodle_question_bank_impo_34e0": {
+    "message": "In Moodle: Question bank → Import → GIFT format."
+  },
+  "f_time_per_question_kahoot_f286": {
+    "message": "Time per question (Kahoot)"
+  },
+  "f_s_8f6e": {
+    "message": "{n} s"
+  },
+  "f_saved_3aaa": {
+    "message": "Saved {file}"
+  },
+  "f_export_failed_9c48": {
+    "message": "Export failed"
+  },
+  "f_question_8401": {
+    "message": "{n} question"
+  },
+  "f_questions_7f76": {
+    "message": "{n} questions"
+  },
+  "f_repeat_the_4ec1": {
+    "message": "Repeat the {n}"
+  },
+  "f_text_was_longer_than_kahoot__d59f": {
+    "message": "{n} text was longer than Kahoot allows and was shortened. Check it in Kahoot."
+  },
+  "f_texts_were_longer_than_kahoo_f0b1": {
+    "message": "{n} texts were longer than Kahoot allows and were shortened. Check them in Kahoot."
+  },
+  "f_quiz_across_the_selected_art_525e": {
+    "message": "Quiz across the {n} selected articles"
+  },
+  "f_select_at_least_2_articles_f_9829": {
+    "message": "Select at least 2 articles for a quiz"
+  },
+  "notifQuizTitle": {
+    "message": "🎓 Time to repeat",
+    "description": "Notification title when a quiz reminder is due"
+  },
+  "notifQuizMissed": {
+    "message": "{n} questions to repeat",
+    "description": "Notification context: how many quiz questions to repeat; {n} is the number"
   }
 }

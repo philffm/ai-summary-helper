@@ -47,7 +47,8 @@ assert.equal(store['articles:index'].filter(a => a.archived).length, 0, 'undo');
 // mark as… sheet
 await enterSelection(d);
 d.querySelector('.sel-more').click(); await tick(30);
-const opts = [...d.querySelectorAll('.sendsheet-row:not(.sendsheet-toggle)')]; assert.equal(opts.length, 8, 'four statuses + Add to collection + Favorite + Markdown export + Delete'); assert.ok(opts[4].textContent.includes('Add to collection'));
+const opts = [...d.querySelectorAll('.sendsheet-row:not(.sendsheet-toggle)')]; assert.equal(opts.length, 9, 'four statuses + Add to collection + Create quiz + Favorite + Markdown export + Delete'); assert.ok(opts[4].textContent.includes('Add to collection'));
+assert.ok(opts[5].textContent.includes('Create quiz') && opts[5].disabled === (d.querySelectorAll('.article-card.sel-on').length < 2), 'Create quiz (AISH-040), from 2 selected');
 opts[1].click(); await tick(100);   // Unread
 assert(!store['articles:index'].find(a => a.id === 'a1').readAt, 'unread');
 console.log('TEST 30 OK');

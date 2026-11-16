@@ -7703,5 +7703,185 @@
   },
   "f_have_a_license_key_or_gift_c_fd77": {
     "message": "Punya kunci lisensi atau kode hadiah?"
+  },
+  "f_quiz_e314": {
+    "message": "Kuis"
+  },
+  "f_a_quiz_needs_at_least_2_arti_0ff9": {
+    "message": "Kuis memerlukan minimal 2 artikel"
+  },
+  "f_leave_out_c607": {
+    "message": "Lewati “{title}”"
+  },
+  "f_questions_22a2": {
+    "message": "Pertanyaan"
+  },
+  "f_mix_5c01": {
+    "message": "Campuran"
+  },
+  "f_per_article_e6e6": {
+    "message": "Per artikel"
+  },
+  "f_across_articles_648f": {
+    "message": "Antarartikel"
+  },
+  "f_both_18c2": {
+    "message": "Keduanya"
+  },
+  "f_about_questions_per_article_0c04": {
+    "message": "Sekitar {n} pertanyaan per artikel."
+  },
+  "f_questions_that_connect_two_a_09c3": {
+    "message": "Pertanyaan yang menghubungkan dua artikel: apa yang dikatakan keduanya, di mana bedanya."
+  },
+  "f_about_per_article_plus_that__3d2c": {
+    "message": "Sekitar {n} per artikel, ditambah {m} yang menghubungkan artikel."
+  },
+  "f_uses_your_model_requests_sta_a624": {
+    "message": "Memakai model Anda · {n} permintaan · tetap di perangkat ini"
+  },
+  "f_every_question_shows_the_art_8b21": {
+    "message": "Setiap pertanyaan menunjukkan artikel dan kalimat asalnya. Pertanyaan tanpa kutipan dibuang."
+  },
+  "f_create_quiz_e72a": {
+    "message": "Buat kuis"
+  },
+  "f_writing_questions_1754": {
+    "message": "Menulis pertanyaan…"
+  },
+  "f_waiting_06a8": {
+    "message": "menunggu"
+  },
+  "f_writing_914f": {
+    "message": "menulis"
+  },
+  "f_dropped_b271": {
+    "message": "{n} dibuang"
+  },
+  "f_no_questions_d027": {
+    "message": "tidak ada pertanyaan"
+  },
+  "f_no_question_had_a_matching_s_2c20": {
+    "message": "Tidak ada pertanyaan dengan kalimat yang cocok di artikel. Coba artikel lain atau model lain."
+  },
+  "f_question_of_d1cf": {
+    "message": "Pertanyaan {i} dari {n}"
+  },
+  "f_not_sure_show_me_where_it_is_1279": {
+    "message": "Ragu? Tunjukkan di mana tertulis"
+  },
+  "f_right_5a31": {
+    "message": "Benar."
+  },
+  "f_here_is_the_answer_0aae": {
+    "message": "Ini jawabannya."
+  },
+  "f_not_quite_the_right_answer_i_063c": {
+    "message": "Belum tepat. Jawaban yang benar adalah {a}."
+  },
+  "f_where_it_says_so_58d3": {
+    "message": "Di mana tertulis"
+  },
+  "f_show_in_article_0c75": {
+    "message": "Tampilkan di artikel"
+  },
+  "f_report_question_15d9": {
+    "message": "Laporkan pertanyaan"
+  },
+  "f_reported_it_is_left_out_from_a379": {
+    "message": "Dilaporkan. Mulai sekarang dilewati."
+  },
+  "f_see_result_7319": {
+    "message": "Lihat hasil"
+  },
+  "f_quiz_done_344f": {
+    "message": "Kuis · selesai"
+  },
+  "f_to_repeat_the_answers_stay_o_fb3f": {
+    "message": "{n} untuk diulang. Jawaban tetap di perangkat ini."
+  },
+  "f_all_right_the_answers_stay_o_0b32": {
+    "message": "Semua benar. Jawaban tetap di perangkat ini."
+  },
+  "f_re_read_7c6b": {
+    "message": "Baca lagi"
+  },
+  "f_remind_me_in_days_c7b4": {
+    "message": "Ingatkan dalam {n} hari"
+  },
+  "f_reminder_set_488b": {
+    "message": "Pengingat diatur"
+  },
+  "f_reminders_are_not_available__3416": {
+    "message": "Pengingat tidak tersedia di sini"
+  },
+  "f_export_quiz_0790": {
+    "message": "Ekspor kuis"
+  },
+  "f_questions_from_articles_d852": {
+    "message": "{name} · {n} pertanyaan dari {m} artikel"
+  },
+  "f_play_live_with_a_class_612e": {
+    "message": "Main langsung bersama kelas"
+  },
+  "f_flashcards_3ae8": {
+    "message": "Kartu hafalan"
+  },
+  "f_quiz_bank_c982": {
+    "message": "Bank soal"
+  },
+  "f_format_ff72": {
+    "message": "Format"
+  },
+  "f_download_8cb1": {
+    "message": "Unduh {file}"
+  },
+  "f_in_kahoot_create_import_spre_257f": {
+    "message": "Di Kahoot: Buat → Impor → Spreadsheet. Kahoot tidak punya kolom untuk sumber; sumber tetap di sini."
+  },
+  "f_in_anki_file_import_importin_fba3": {
+    "message": "Di Anki: File → Impor. Mengimpor lagi memperbarui kartu."
+  },
+  "f_in_moodle_question_bank_impo_34e0": {
+    "message": "Di Moodle: Bank soal → Impor → format GIFT."
+  },
+  "f_time_per_question_kahoot_f286": {
+    "message": "Waktu per pertanyaan (Kahoot)"
+  },
+  "f_s_8f6e": {
+    "message": "{n} dtk"
+  },
+  "f_saved_3aaa": {
+    "message": "{file} disimpan"
+  },
+  "f_export_failed_9c48": {
+    "message": "Ekspor gagal"
+  },
+  "f_question_8401": {
+    "message": "{n} pertanyaan"
+  },
+  "f_questions_7f76": {
+    "message": "{n} pertanyaan"
+  },
+  "f_repeat_the_4ec1": {
+    "message": "Ulangi {n}"
+  },
+  "f_text_was_longer_than_kahoot__d59f": {
+    "message": "{n} teks lebih panjang dari batas Kahoot dan dipendekkan. Periksa di Kahoot."
+  },
+  "f_texts_were_longer_than_kahoo_f0b1": {
+    "message": "{n} teks lebih panjang dari batas Kahoot dan dipendekkan. Periksa di Kahoot."
+  },
+  "f_quiz_across_the_selected_art_525e": {
+    "message": "Kuis tentang {n} artikel yang dipilih"
+  },
+  "f_select_at_least_2_articles_f_9829": {
+    "message": "Pilih minimal 2 artikel untuk kuis"
+  },
+  "notifQuizTitle": {
+    "message": "🎓 Saatnya mengulang"
+  },
+  "notifQuizMissed": {
+    "message": "{n} pertanyaan untuk diulang"
   }
 }

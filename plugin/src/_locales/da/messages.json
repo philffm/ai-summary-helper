@@ -7703,5 +7703,185 @@
   },
   "f_have_a_license_key_or_gift_c_fd77": {
     "message": "Har du en licensnøgle eller gavekode?"
+  },
+  "f_quiz_e314": {
+    "message": "Quiz"
+  },
+  "f_a_quiz_needs_at_least_2_arti_0ff9": {
+    "message": "En quiz kræver mindst 2 artikler"
+  },
+  "f_leave_out_c607": {
+    "message": "Udelad “{title}”"
+  },
+  "f_questions_22a2": {
+    "message": "Spørgsmål"
+  },
+  "f_mix_5c01": {
+    "message": "Blanding"
+  },
+  "f_per_article_e6e6": {
+    "message": "Pr. artikel"
+  },
+  "f_across_articles_648f": {
+    "message": "På tværs af artikler"
+  },
+  "f_both_18c2": {
+    "message": "Begge"
+  },
+  "f_about_questions_per_article_0c04": {
+    "message": "Omkring {n} spørgsmål pr. artikel."
+  },
+  "f_questions_that_connect_two_a_09c3": {
+    "message": "Spørgsmål, der forbinder to artikler: hvad begge siger, hvor de er forskellige."
+  },
+  "f_about_per_article_plus_that__3d2c": {
+    "message": "Omkring {n} pr. artikel plus {m}, der forbinder artikler."
+  },
+  "f_uses_your_model_requests_sta_a624": {
+    "message": "Bruger din model · {n} forespørgsler · bliver på denne enhed"
+  },
+  "f_every_question_shows_the_art_8b21": {
+    "message": "Hvert spørgsmål viser artiklen og sætningen, det kommer fra. Spørgsmål uden citat kasseres."
+  },
+  "f_create_quiz_e72a": {
+    "message": "Opret quiz"
+  },
+  "f_writing_questions_1754": {
+    "message": "Skriver spørgsmål…"
+  },
+  "f_waiting_06a8": {
+    "message": "venter"
+  },
+  "f_writing_914f": {
+    "message": "skriver"
+  },
+  "f_dropped_b271": {
+    "message": "{n} kasseret"
+  },
+  "f_no_questions_d027": {
+    "message": "ingen spørgsmål"
+  },
+  "f_no_question_had_a_matching_s_2c20": {
+    "message": "Intet spørgsmål havde en matchende sætning i artiklerne. Prøv andre artikler eller en anden model."
+  },
+  "f_question_of_d1cf": {
+    "message": "Spørgsmål {i} af {n}"
+  },
+  "f_not_sure_show_me_where_it_is_1279": {
+    "message": "Usikker? Vis mig, hvor det står"
+  },
+  "f_right_5a31": {
+    "message": "Rigtigt."
+  },
+  "f_here_is_the_answer_0aae": {
+    "message": "Her er svaret."
+  },
+  "f_not_quite_the_right_answer_i_063c": {
+    "message": "Ikke helt. Det rigtige svar er {a}."
+  },
+  "f_where_it_says_so_58d3": {
+    "message": "Hvor det står"
+  },
+  "f_show_in_article_0c75": {
+    "message": "Vis i artiklen"
+  },
+  "f_report_question_15d9": {
+    "message": "Rapportér spørgsmål"
+  },
+  "f_reported_it_is_left_out_from_a379": {
+    "message": "Rapporteret. Det udelades fra nu af."
+  },
+  "f_see_result_7319": {
+    "message": "Se resultat"
+  },
+  "f_quiz_done_344f": {
+    "message": "Quiz · færdig"
+  },
+  "f_to_repeat_the_answers_stay_o_fb3f": {
+    "message": "{n} at gentage. Svarene bliver på denne enhed."
+  },
+  "f_all_right_the_answers_stay_o_0b32": {
+    "message": "Alt rigtigt. Svarene bliver på denne enhed."
+  },
+  "f_re_read_7c6b": {
+    "message": "Læs igen"
+  },
+  "f_remind_me_in_days_c7b4": {
+    "message": "Mind mig om det om {n} dage"
+  },
+  "f_reminder_set_488b": {
+    "message": "Påmindelse sat"
+  },
+  "f_reminders_are_not_available__3416": {
+    "message": "Påmindelser er ikke tilgængelige her"
+  },
+  "f_export_quiz_0790": {
+    "message": "Eksportér quiz"
+  },
+  "f_questions_from_articles_d852": {
+    "message": "{name} · {n} spørgsmål fra {m} artikler"
+  },
+  "f_play_live_with_a_class_612e": {
+    "message": "Spil live med en klasse"
+  },
+  "f_flashcards_3ae8": {
+    "message": "Flashcards"
+  },
+  "f_quiz_bank_c982": {
+    "message": "Spørgsmålsbank"
+  },
+  "f_format_ff72": {
+    "message": "Format"
+  },
+  "f_download_8cb1": {
+    "message": "Download {file}"
+  },
+  "f_in_kahoot_create_import_spre_257f": {
+    "message": "I Kahoot: Opret → Importér → Regneark. Kahoot har ingen kolonne til kilder; de bliver her."
+  },
+  "f_in_anki_file_import_importin_fba3": {
+    "message": "I Anki: Fil → Importér. Importerer du igen, opdateres kortene."
+  },
+  "f_in_moodle_question_bank_impo_34e0": {
+    "message": "I Moodle: Spørgsmålsbank → Importér → GIFT-format."
+  },
+  "f_time_per_question_kahoot_f286": {
+    "message": "Tid pr. spørgsmål (Kahoot)"
+  },
+  "f_s_8f6e": {
+    "message": "{n} s"
+  },
+  "f_saved_3aaa": {
+    "message": "{file} gemt"
+  },
+  "f_export_failed_9c48": {
+    "message": "Eksport mislykkedes"
+  },
+  "f_question_8401": {
+    "message": "{n} spørgsmål"
+  },
+  "f_questions_7f76": {
+    "message": "{n} spørgsmål"
+  },
+  "f_repeat_the_4ec1": {
+    "message": "Gentag de {n}"
+  },
+  "f_text_was_longer_than_kahoot__d59f": {
+    "message": "{n} tekst var længere end Kahoot tillader og blev forkortet. Tjek den i Kahoot."
+  },
+  "f_texts_were_longer_than_kahoo_f0b1": {
+    "message": "{n} tekster var længere end Kahoot tillader og blev forkortet. Tjek dem i Kahoot."
+  },
+  "f_quiz_across_the_selected_art_525e": {
+    "message": "Quiz over de {n} valgte artikler"
+  },
+  "f_select_at_least_2_articles_f_9829": {
+    "message": "Vælg mindst 2 artikler til en quiz"
+  },
+  "notifQuizTitle": {
+    "message": "🎓 Tid til at gentage"
+  },
+  "notifQuizMissed": {
+    "message": "{n} spørgsmål at gentage"
   }
 }

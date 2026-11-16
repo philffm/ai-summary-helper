@@ -613,6 +613,7 @@ async function renderDetail(host, id, onCount) {
                 toast(skipped ? T('{n} references copied, {m} without DOI skipped', { n: items.length, m: skipped }) : T('{n} references copied', { n: items.length }));
             } catch (e) { toast(T('Citation lookup failed — try again')); } finally { if (b) b.disabled = false; }
         },
+        quiz: () => import('./quiz/quizView.js').then(m => m.openQuiz(articles, { name: rec.name, toast })).catch(() => {}),
         worksheet: () => {
             const md = collectionWorksheet(rec, articles, { label: (k) => k.startsWith('q_') ? questionLabel(k.slice(2)) : ({ Worksheet: T('Worksheet'), Collection: T('Collection'), Task: T('Task'), Type: T('Type'), Author: T('Author'), Date: T('Date'), Publisher: T('Publisher'), Untitled: T('Untitled'),
                 'Check each source before you trust it. Do not stay on the page: search for who is behind it and what others say.': T('Check each source before you trust it. Do not stay on the page: search for who is behind it and what others say.'),
@@ -653,8 +654,10 @@ async function renderDetail(host, id, onCount) {
         markdown: { icon: 'download', label: () => T('Export Markdown'), short: () => T('Markdown'), run: act.markdown },
         refs: { icon: 'copy', label: () => T('Copy references'), short: () => T('References'), run: (b) => act.refs(b) },
         worksheet: { icon: 'clipboard-list', label: () => T('Worksheet'), run: act.worksheet },
+        // Figma AISH-040 E2: a quiz across the collection's sources
+        quiz: { icon: 'graduation-cap', label: () => T('Create quiz'), short: () => T('Quiz'), run: act.quiz, available: () => articles.length >= 2 },
     };
-    const bar = createActionBar({ pref: 'collectionToolbarItems', label: T('Collection actions'), catalog, defaults: ['add', 'markdown', 'refs'],
+    const bar = createActionBar({ pref: 'collectionToolbarItems', label: T('Collection actions'), catalog, defaults: ['add', 'quiz', 'markdown', 'refs'],
         menuOnly: () => [
             { icon: 'pencil', label: T('Rename'), run: act.rename },
             { icon: 'message-square', label: T('Change the question'), run: act.question },
