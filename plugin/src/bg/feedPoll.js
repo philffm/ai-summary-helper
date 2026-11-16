@@ -220,7 +220,9 @@ async function pollFeeds() {
                     console.debug('[feeds] background refresh', sub.id, `${sub.fetchDurationMs}ms`, `newItems=${links.filter(l => !knownLinks.has(l)).length}`);
                 }
                 seen[sub.id] = [...new Set([...links, ...(prev || [])])].slice(0, 300);
-                if (configured) {
+                // keep what came in: the popup merges feeds:background into the list on open. Without this the worker's
+                // lastFetched/ETag made the popup skip the feed (or get a 304), and new items never reached the list.
+                {
                     const additions = parsed.filter(i => !knownIds.has(i.id)).map(item => ({
                         ...item, favorite: backgroundItemFav(item, d.articles)
                     }));

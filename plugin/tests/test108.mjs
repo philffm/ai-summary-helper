@@ -106,6 +106,37 @@ try {
     assert.equal(aiCalls, before, 'no separate rating request for items that the day recap rates');
     assert(Object.keys(merged.store['feeds:background'].recaps).length > 0, 'the recap still runs');
 
+    // Without Ollama (the usual case) the alarm still checks feeds and KEEPS what it finds: the popup merges feeds:background
+    // on open. (Before, only Ollama setups stored items, while the stored lastFetched/ETag made the popup skip the feed or get a
+    // 304, so new items never reached the list.) The first check of a feed is the baseline (no badge); later ones count.
+    {
+        let n = 3;
+        const feed = () => `<rss><channel>${Array.from({ length: n }, (_, i) => `<item><guid>p-${i}</guid><title>Post ${i}</title><link>https://plain.test/${i}</link><pubDate>${new Date().toUTCString()}</pubDate></item>`).join('')}</channel></rss>`;
+        const prevFetch = globalThis.fetch;
+        globalThis.fetch = async (url) => ({ ok: true, status: 200, url, headers: { get: () => '' }, text: async () => feed() });
+        try {
+            const plain = makeBackground({ 'feeds:subs': [{ id: 'p1', url: 'https://plain.test/feed', title: 'Plain' }], 'feeds:items': [], 'feeds:settings': { backgroundPoll: true, keepDays: 30 } }, false);
+            await plain.run.pollFeeds();
+            assert.equal(plain.store['feeds:background'].items.length, 3, 'stored without Ollama');
+            assert.equal(plain.store['feeds:pending'] || 0, 0, 'first check is the baseline');
+            n = 5; plain.store['feeds:subs'][0].lastFetched = 0;
+            await plain.run.pollFeeds();
+            assert.equal(plain.store['feeds:background'].items.length, 5);
+            assert.equal(plain.store['feeds:pending'], 2, 'two new items for the badge');
+            assert(!plain.store['feeds:background'].ratings || !Object.keys(plain.store['feeds:background'].ratings).length, 'nothing rated without Ollama');
+        } finally { globalThis.fetch = prevFetch; }
+    }
+
+    // every FEED_WORKER.<name> the worker scripts call exists in the real bundle (test fakes above cannot catch a missing export)
+    {
+        const bundle = fs.readFileSync(new URL('../src/modules/feedBackgroundBundle.js', import.meta.url), 'utf8');
+        const api = new Set((bundle.match(/export const API = \{([\s\S]*?)\};/) || [])[1].split(/[\s,]+/).filter(Boolean));
+        const used = new Set();
+        for (const f of ['../src/background.js', '../src/bg/feedPoll.js', '../src/bg/aiComplete.js']) for (const m of fs.readFileSync(new URL(f, import.meta.url), 'utf8').matchAll(/FEED_WORKER\.(\w+)/g)) used.add(m[1]);
+        const missing = [...used].filter(n => !api.has(n));
+        assert.deepEqual(missing, [], 'feed worker bundle exports everything the worker calls');
+    }
+
     const stopped = makeBackground({ 'feeds:settings': { autoProcess: false, backgroundPoll: false } });
     await stopped.run.applyFeedPollConfig();
     assert.equal(stopped.alarms.length, 1, 'stopping automatic processing clears the alarm');
