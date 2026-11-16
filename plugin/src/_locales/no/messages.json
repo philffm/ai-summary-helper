@@ -7740,9 +7740,6 @@
   "f_uses_your_model_requests_sta_a624": {
     "message": "Bruker modellen din · {n} forespørsler · blir på denne enheten"
   },
-  "f_every_question_shows_the_art_8b21": {
-    "message": "Hvert spørsmål viser artikkelen og setningen det kommer fra. Spørsmål uten sitat forkastes."
-  },
   "f_create_quiz_e72a": {
     "message": "Lag quiz"
   },
@@ -7883,5 +7880,8 @@
   },
   "notifQuizMissed": {
     "message": "{n} spørsmål å repetere"
+  },
+  "f_questions_come_from_the_full_cdbf": {
+    "message": "Spørsmålene kommer fra hele teksten og tester forståelse. Hvert viser setningen som underbygger svaret; spørsmål teksten ikke støtter, forkastes."
   }
 }

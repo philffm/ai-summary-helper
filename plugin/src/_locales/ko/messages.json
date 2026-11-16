@@ -7439,9 +7439,6 @@
   "f_uses_your_model_requests_sta_a624": {
     "message": "내 모델 사용 · 요청 {n}회 · 이 기기에만 저장"
   },
-  "f_every_question_shows_the_art_8b21": {
-    "message": "모든 문항에 출처 글과 문장이 표시돼요. 인용이 없는 문항은 빠져요."
-  },
   "f_create_quiz_e72a": {
     "message": "퀴즈 만들기"
   },
@@ -7582,5 +7579,8 @@
   },
   "notifQuizMissed": {
     "message": "복습할 문항 {n}개"
+  },
+  "f_questions_come_from_the_full_cdbf": {
+    "message": "문항은 글 전체에서 만들어지고 이해도를 확인해요. 각 문항에 답의 근거가 되는 문장이 표시되며, 글에 근거가 없는 문항은 빠져요."
   }
 }

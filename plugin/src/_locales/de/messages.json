@@ -7538,9 +7538,6 @@
   "f_uses_your_model_requests_sta_a624": {
     "message": "Nutzt dein Modell · {n} Anfragen · bleibt auf diesem Gerät"
   },
-  "f_every_question_shows_the_art_8b21": {
-    "message": "Jede Frage zeigt den Artikel und den Satz, aus dem sie stammt. Fragen ohne Zitat werden verworfen."
-  },
   "f_create_quiz_e72a": {
     "message": "Quiz erstellen"
   },
@@ -7681,5 +7678,8 @@
   },
   "notifQuizMissed": {
     "message": "{n} Fragen zum Wiederholen"
+  },
+  "f_questions_come_from_the_full_cdbf": {
+    "message": "Die Fragen kommen aus dem ganzen Text und prüfen das Verständnis. Jede zeigt den Satz, der ihre Antwort belegt; Fragen, die der Text nicht stützt, werden verworfen."
   }
 }

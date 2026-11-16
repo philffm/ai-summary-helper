@@ -7871,9 +7871,6 @@
   "f_uses_your_model_requests_sta_a624": {
     "message": "Uses your model · {n} requests · stays on this device"
   },
-  "f_every_question_shows_the_art_8b21": {
-    "message": "Every question shows the article and sentence it comes from. Questions without a quote are dropped."
-  },
   "f_create_quiz_e72a": {
     "message": "Create quiz"
   },
@@ -8016,5 +8013,8 @@
   "notifQuizMissed": {
     "message": "{n} questions to repeat",
     "description": "Notification context: how many quiz questions to repeat; {n} is the number"
+  },
+  "f_questions_come_from_the_full_cdbf": {
+    "message": "Questions come from the full text and check understanding. Each one shows the sentence that backs its answer; questions the text does not support are dropped."
   }
 }

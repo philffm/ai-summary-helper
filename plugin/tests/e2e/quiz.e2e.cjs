@@ -50,7 +50,10 @@ const ARTS = [
       const [, title, ps] = art;
       return JSON.stringify({ questions: [
         { q: `What does “${title.slice(0, 30)}” say first?`, options: [ps[0].slice(0, 60), 'Nothing about it', 'The opposite of that', 'Only something about prices'], correct: 0, quote: ps[0] },
-        { q: `What else does “${title.slice(0, 30)}” say?`, options: [ps[1].slice(0, 60), 'That it does not matter', 'That nobody knows', 'That it is too early'], correct: 0, quote: ps[1] },
+        // paraphrased quote (lower case, no punctuation, one word swapped): must still find the article's sentence
+        { q: `What else does “${title.slice(0, 30)}” say?`, options: [ps[1].slice(0, 60), 'That it does not matter', 'That nobody knows', 'That it is too early'], correct: 0, quote: ps[1].toLowerCase().replace(/[.,’']/g, '').replace(/\b(the|a)\b/, 'this') },
+        // no quote at all: the sentence that supports the answer is used
+        { q: `What does “${title.slice(0, 30)}” say at the end?`, options: [ps[2].slice(0, 70), 'Something unrelated to the topic', 'The exact opposite claim here', 'A claim about the stock market'], correct: 0 },
         { q: 'An invented question?', options: ['1', '2', '3', '4'], correct: 0, quote: 'A sentence that the article never says at all.' },
       ], facts: [ps[0], ps[1]] });
     });
@@ -99,7 +102,8 @@ const ARTS = [
   await p.waitForSelector('.quiz-score');
   const result = await p.evaluate(() => ({ score: document.querySelector('.quiz-score-n').textContent, rows: [...document.querySelectorAll('.quiz-by-row')].map(r => r.textContent), repeat: !!document.querySelector('.quiz .button-primary') }));
   await shot('5-result');
-  const saved = await p.evaluate(async () => { const all = await chrome.storage.local.get(null); const k = Object.keys(all).find(x => x.startsWith('quiz:rec:')); return k ? { n: all[k].questions.length, missed: all[k].last.missed.length, across: all[k].questions.filter(q => q.kind === 'across').length, srcOk: all[k].questions.every(q => q.sources.length) } : null; });
+  const saved = await p.evaluate(async (ARTS) => { const all = await chrome.storage.local.get(null); const k = Object.keys(all).find(x => x.startsWith('quiz:rec:')); if (!k) return null; const qs = all[k].questions; const text = ARTS.flatMap(a => a[2]);
+    return { n: qs.length, missed: all[k].last.missed.length, across: qs.filter(q => q.kind === 'across').length, srcOk: qs.every(q => q.sources.length), realSentences: qs.every(q => q.sources.every(s => text.includes(s.quote))) }; }, ARTS);
   // export → Kahoot
   await p.locator('.quiz .button-secondary', { hasText: 'Export' }).click(); await p.waitForSelector('.quiz-formats'); await wait(200);
   await shot('6-export');
@@ -135,7 +139,7 @@ const ARTS = [
   assert.equal(setup.tags, 4); assert.match(setup.meta, /5 requests/);
   assert.equal(steps, 5, 'one request per article + one across');
   assert(total >= 8 && total <= 10 && saved && total === saved.n, 'as many questions as had a source (the fake writes fewer than asked)'); assert(seenAcross, 'a question that connects two articles'); assert.equal(sourcesMax, 2, 'two sources on the connecting question');
-  assert(saved.srcOk && saved.across >= 1);
+  assert(saved.srcOk && saved.across >= 1); assert(saved.realSentences, 'every source shown is the article’s own sentence');
   assert.equal(xlsx.slice(0, 2).toString(), 'PK'); assert.match(download.suggestedFilename(), /Kahoot\.xlsx$/);
   assert(/::4 articles 1::/.test(gift) || /::/.test(gift));
   assert(closed, 'Esc closes the quiz');

@@ -7740,9 +7740,6 @@
   "f_uses_your_model_requests_sta_a624": {
     "message": "Bruger din model · {n} forespørgsler · bliver på denne enhed"
   },
-  "f_every_question_shows_the_art_8b21": {
-    "message": "Hvert spørgsmål viser artiklen og sætningen, det kommer fra. Spørgsmål uden citat kasseres."
-  },
   "f_create_quiz_e72a": {
     "message": "Opret quiz"
   },
@@ -7883,5 +7880,8 @@
   },
   "notifQuizMissed": {
     "message": "{n} spørgsmål at gentage"
+  },
+  "f_questions_come_from_the_full_cdbf": {
+    "message": "Spørgsmålene kommer fra hele teksten og tester forståelse. Hvert viser sætningen, der underbygger svaret; spørgsmål, teksten ikke underbygger, kasseres."
   }
 }

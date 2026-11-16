@@ -7740,9 +7740,6 @@
   "f_uses_your_model_requests_sta_a624": {
     "message": "Käyttää malliasi · {n} pyyntöä · pysyy tällä laitteella"
   },
-  "f_every_question_shows_the_art_8b21": {
-    "message": "Jokainen kysymys näyttää artikkelin ja lauseen, josta se on peräisin. Kysymykset ilman lainausta hylätään."
-  },
   "f_create_quiz_e72a": {
     "message": "Luo visa"
   },
@@ -7883,5 +7880,8 @@
   },
   "notifQuizMissed": {
     "message": "{n} kerrattavaa kysymystä"
+  },
+  "f_questions_come_from_the_full_cdbf": {
+    "message": "Kysymykset tulevat koko tekstistä ja testaavat ymmärrystä. Jokainen näyttää lauseen, joka tukee vastausta; kysymykset, joita teksti ei tue, hylätään."
   }
 }

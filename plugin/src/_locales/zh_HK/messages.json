@@ -7457,9 +7457,6 @@
   "f_uses_your_model_requests_sta_a624": {
     "message": "使用你的模型 · {n} 次請求 · 只儲存在這部裝置"
   },
-  "f_every_question_shows_the_art_8b21": {
-    "message": "每題都會顯示出自哪篇文章的哪句話。沒有引文的題目會被捨棄。"
-  },
   "f_create_quiz_e72a": {
     "message": "建立測驗"
   },
@@ -7600,5 +7597,8 @@
   },
   "notifQuizMissed": {
     "message": "{n} 題待溫習"
+  },
+  "f_questions_come_from_the_full_cdbf": {
+    "message": "題目來自全文，考查理解。每題都會顯示支持答案的句子；文中沒有根據的題目會被捨棄。"
   }
 }

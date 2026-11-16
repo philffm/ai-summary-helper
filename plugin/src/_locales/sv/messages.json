@@ -7740,9 +7740,6 @@
   "f_uses_your_model_requests_sta_a624": {
     "message": "Använder din modell · {n} förfrågningar · stannar på den här enheten"
   },
-  "f_every_question_shows_the_art_8b21": {
-    "message": "Varje fråga visar artikeln och meningen den kommer från. Frågor utan citat tas bort."
-  },
   "f_create_quiz_e72a": {
     "message": "Skapa quiz"
   },
@@ -7883,5 +7880,8 @@
   },
   "notifQuizMissed": {
     "message": "{n} frågor att repetera"
+  },
+  "f_questions_come_from_the_full_cdbf": {
+    "message": "Frågorna kommer från hela texten och prövar förståelse. Varje fråga visar meningen som stöder svaret; frågor som texten inte stöder tas bort."
   }
 }

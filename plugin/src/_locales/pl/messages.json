@@ -7740,9 +7740,6 @@
   "f_uses_your_model_requests_sta_a624": {
     "message": "Używa Twojego modelu · {n} zapytań · zostaje na tym urządzeniu"
   },
-  "f_every_question_shows_the_art_8b21": {
-    "message": "Każde pytanie pokazuje artykuł i zdanie, z którego pochodzi. Pytania bez cytatu są odrzucane."
-  },
   "f_create_quiz_e72a": {
     "message": "Utwórz quiz"
   },
@@ -7883,5 +7880,8 @@
   },
   "notifQuizMissed": {
     "message": "Pytania do powtórki: {n}"
+  },
+  "f_questions_come_from_the_full_cdbf": {
+    "message": "Pytania pochodzą z całego tekstu i sprawdzają zrozumienie. Każde pokazuje zdanie, które potwierdza odpowiedź; pytania bez oparcia w tekście są odrzucane."
   }
 }

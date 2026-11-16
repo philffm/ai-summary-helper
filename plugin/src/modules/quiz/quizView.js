@@ -101,7 +101,7 @@ function viewSetup(ctx) {
     };
     body.append(plan);
     const note = el('div', 'quiz-note');
-    note.append(el('span', 'quiz-note-ic', 'ℹ'), el('span', '', T('Every question shows the article and sentence it comes from. Questions without a quote are dropped.')));
+    note.append(el('span', 'quiz-note-ic', 'ℹ'), el('span', '', T('Questions come from the full text and check understanding. Each one shows the sentence that backs its answer; questions the text does not support are dropped.')));
     body.append(note);
     const go = btn('✨ ' + T('Create quiz'), 'button-primary quiz-wide', () => viewWriting(ctx));
     const req = el('p', 'quiz-meta');
