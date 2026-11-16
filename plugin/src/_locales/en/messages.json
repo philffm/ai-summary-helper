@@ -7774,5 +7774,59 @@
   "notifReopen": {
     "message": "Reopen",
     "description": "Notification button: reopen the closed tab"
+  },
+  "f_adjust_0a9e": {
+    "message": "Adjust"
+  },
+  "f_adjust_graph_3f12": {
+    "message": "Adjust graph"
+  },
+  "f_adjust_graph_filters_on_de1e": {
+    "message": "Adjust graph, {n} filters on",
+    "description": "Placeholder {n} (keep as is)"
+  },
+  "f_adjust_9b23": {
+    "message": "Adjust · {n}",
+    "description": "Placeholder {n} (keep as is)"
+  },
+  "f_color_by_60e5": {
+    "message": "Color by"
+  },
+  "f_fit_to_view_d072": {
+    "message": "Fit to view"
+  },
+  "f_graph_tools_d6dc": {
+    "message": "Graph tools"
+  },
+  "f_library_2270": {
+    "message": "Library"
+  },
+  "f_name_them_2154": {
+    "message": "Name them"
+  },
+  "f_path_pick_two_items_to_see_h_27da": {
+    "message": "Path · pick two items to see how they connect"
+  },
+  "f_path_pick_two_items_to_see_h_3cdf": {
+    "message": "Path: pick two items to see how they connect"
+  },
+  "f_show_articles_detail_6e3d": {
+    "message": "Show articles (Detail)"
+  },
+  "f_show_only_1a4e": {
+    "message": "Show only"
+  },
+  "f_show_topics_5eb8": {
+    "message": "Show topics"
+  },
+  "f_zoom_in_3899": {
+    "message": "Zoom in"
+  },
+  "f_zoom_out_fe3a": {
+    "message": "Zoom out"
+  },
+  "f_not_opened_yet_1de1": {
+    "message": "{n} not opened yet",
+    "description": "Placeholder {n} (keep as is)"
   }
 }

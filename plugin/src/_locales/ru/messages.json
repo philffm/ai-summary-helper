@@ -7363,5 +7363,56 @@
   "notifReopen": {
     "message": "Открыть снова",
     "description": "Notification button: reopen the closed tab"
+  },
+  "f_adjust_0a9e": {
+    "message": "Настроить"
+  },
+  "f_adjust_graph_3f12": {
+    "message": "Настроить граф"
+  },
+  "f_adjust_graph_filters_on_de1e": {
+    "message": "Настроить граф, фильтров включено: {n}"
+  },
+  "f_adjust_9b23": {
+    "message": "Настроить · {n}"
+  },
+  "f_color_by_60e5": {
+    "message": "Цвет по"
+  },
+  "f_fit_to_view_d072": {
+    "message": "Показать всё"
+  },
+  "f_graph_tools_d6dc": {
+    "message": "Инструменты графа"
+  },
+  "f_library_2270": {
+    "message": "Библиотека"
+  },
+  "f_name_them_2154": {
+    "message": "Дать названия"
+  },
+  "f_path_pick_two_items_to_see_h_27da": {
+    "message": "Путь · выберите два элемента, чтобы увидеть связь"
+  },
+  "f_path_pick_two_items_to_see_h_3cdf": {
+    "message": "Путь: выберите два элемента, чтобы увидеть связь"
+  },
+  "f_show_articles_detail_6e3d": {
+    "message": "Показать статьи (Подробно)"
+  },
+  "f_show_only_1a4e": {
+    "message": "Показывать только"
+  },
+  "f_show_topics_5eb8": {
+    "message": "Показать темы"
+  },
+  "f_zoom_in_3899": {
+    "message": "Приблизить"
+  },
+  "f_zoom_out_fe3a": {
+    "message": "Отдалить"
+  },
+  "f_not_opened_yet_1de1": {
+    "message": "{n} ещё не открыто"
   }
 }

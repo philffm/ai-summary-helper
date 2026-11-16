@@ -7363,5 +7363,56 @@
   "notifReopen": {
     "message": "重新打开",
     "description": "Notification button: reopen the closed tab"
+  },
+  "f_adjust_0a9e": {
+    "message": "调整"
+  },
+  "f_adjust_graph_3f12": {
+    "message": "调整图谱"
+  },
+  "f_adjust_graph_filters_on_de1e": {
+    "message": "调整图谱，已开启 {n} 个筛选"
+  },
+  "f_adjust_9b23": {
+    "message": "调整 · {n}"
+  },
+  "f_color_by_60e5": {
+    "message": "着色依据"
+  },
+  "f_fit_to_view_d072": {
+    "message": "显示全部"
+  },
+  "f_graph_tools_d6dc": {
+    "message": "图谱工具"
+  },
+  "f_library_2270": {
+    "message": "资料库"
+  },
+  "f_name_them_2154": {
+    "message": "命名"
+  },
+  "f_path_pick_two_items_to_see_h_27da": {
+    "message": "路径 · 选择两项，查看它们如何关联"
+  },
+  "f_path_pick_two_items_to_see_h_3cdf": {
+    "message": "路径：选择两项，查看它们如何关联"
+  },
+  "f_show_articles_detail_6e3d": {
+    "message": "显示文章（细节）"
+  },
+  "f_show_only_1a4e": {
+    "message": "仅显示"
+  },
+  "f_show_topics_5eb8": {
+    "message": "显示主题"
+  },
+  "f_zoom_in_3899": {
+    "message": "放大"
+  },
+  "f_zoom_out_fe3a": {
+    "message": "缩小"
+  },
+  "f_not_opened_yet_1de1": {
+    "message": "{n} 篇尚未打开"
   }
 }

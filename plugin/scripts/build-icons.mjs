@@ -10,8 +10,8 @@ export const ICONS = [
   'accessibility', 'archive', 'arrow-down-left', 'arrow-left', 'arrow-up-right', 'bell-off', 'book-open', 'bookmark', 'bot', 'brain', 'calendar', 'chart-column',
   'check', 'chevron-down', 'chevron-right', 'circle-alert', 'circle-x', 'clipboard', 'clipboard-list', 'clock', 'cloud', 'copy',
   'download', 'ellipsis', 'eraser', 'external-link', 'file-text', 'folders', 'globe', 'headphones', 'heart', 'info', 'laptop',
-  'layers', 'lightbulb', 'link', 'lock', 'loader', 'message-square', 'network', 'newspaper', 'palette', 'paperclip', 'pause', 'pencil', 'pin',
-  'play', 'plus', 'refresh-cw', 'ruler', 'save', 'search', 'send', 'server', 'settings', 'share-2', 'sliders-horizontal',
+  'layers', 'lightbulb', 'maximize', 'minus', 'link', 'lock', 'loader', 'message-square', 'network', 'newspaper', 'palette', 'paperclip', 'pause', 'pencil', 'pin',
+  'play', 'plus', 'refresh-cw', 'route', 'ruler', 'save', 'search', 'send', 'server', 'settings', 'share-2', 'sliders-horizontal',
   'smartphone', 'smile', 'sparkles', 'square-check-big', 'star', 'sticky-note', 'tag', 'trash-2', 'undo-2', 'upload', 'user',
   'volume-2', 'volume-x', 'x', 'zap',
 ];

@@ -7646,5 +7646,56 @@
   "notifReopen": {
     "message": "Avaa uudelleen",
     "description": "Notification button: reopen the closed tab"
+  },
+  "f_adjust_0a9e": {
+    "message": "Säädä"
+  },
+  "f_adjust_graph_3f12": {
+    "message": "Säädä kaaviota"
+  },
+  "f_adjust_graph_filters_on_de1e": {
+    "message": "Säädä kaaviota, {n} suodatinta päällä"
+  },
+  "f_adjust_9b23": {
+    "message": "Säädä · {n}"
+  },
+  "f_color_by_60e5": {
+    "message": "Väritä"
+  },
+  "f_fit_to_view_d072": {
+    "message": "Näytä kaikki"
+  },
+  "f_graph_tools_d6dc": {
+    "message": "Kaavion työkalut"
+  },
+  "f_library_2270": {
+    "message": "Kirjasto"
+  },
+  "f_name_them_2154": {
+    "message": "Nimeä ne"
+  },
+  "f_path_pick_two_items_to_see_h_27da": {
+    "message": "Polku · valitse kaksi kohdetta nähdäksesi, miten ne liittyvät"
+  },
+  "f_path_pick_two_items_to_see_h_3cdf": {
+    "message": "Polku: valitse kaksi kohdetta nähdäksesi, miten ne liittyvät"
+  },
+  "f_show_articles_detail_6e3d": {
+    "message": "Näytä artikkelit (Tarkka)"
+  },
+  "f_show_only_1a4e": {
+    "message": "Näytä vain"
+  },
+  "f_show_topics_5eb8": {
+    "message": "Näytä aiheet"
+  },
+  "f_zoom_in_3899": {
+    "message": "Lähennä"
+  },
+  "f_zoom_out_fe3a": {
+    "message": "Loitonna"
+  },
+  "f_not_opened_yet_1de1": {
+    "message": "{n} avaamatta"
   }
 }

@@ -7646,5 +7646,56 @@
   "notifReopen": {
     "message": "Opnieuw openen",
     "description": "Notification button: reopen the closed tab"
+  },
+  "f_adjust_0a9e": {
+    "message": "Aanpassen"
+  },
+  "f_adjust_graph_3f12": {
+    "message": "Graaf aanpassen"
+  },
+  "f_adjust_graph_filters_on_de1e": {
+    "message": "Graaf aanpassen, {n} filters aan"
+  },
+  "f_adjust_9b23": {
+    "message": "Aanpassen · {n}"
+  },
+  "f_color_by_60e5": {
+    "message": "Kleur op"
+  },
+  "f_fit_to_view_d072": {
+    "message": "Alles tonen"
+  },
+  "f_graph_tools_d6dc": {
+    "message": "Graafgereedschap"
+  },
+  "f_library_2270": {
+    "message": "Bibliotheek"
+  },
+  "f_name_them_2154": {
+    "message": "Namen geven"
+  },
+  "f_path_pick_two_items_to_see_h_27da": {
+    "message": "Pad · kies twee items om te zien hoe ze samenhangen"
+  },
+  "f_path_pick_two_items_to_see_h_3cdf": {
+    "message": "Pad: kies twee items om te zien hoe ze samenhangen"
+  },
+  "f_show_articles_detail_6e3d": {
+    "message": "Artikelen tonen (Detail)"
+  },
+  "f_show_only_1a4e": {
+    "message": "Alleen tonen"
+  },
+  "f_show_topics_5eb8": {
+    "message": "Onderwerpen tonen"
+  },
+  "f_zoom_in_3899": {
+    "message": "Inzoomen"
+  },
+  "f_zoom_out_fe3a": {
+    "message": "Uitzoomen"
+  },
+  "f_not_opened_yet_1de1": {
+    "message": "{n} nog niet geopend"
   }
 }
