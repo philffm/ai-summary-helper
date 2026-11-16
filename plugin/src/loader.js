@@ -237,11 +237,23 @@
   // and open AISH when one is clicked. Nothing is set or listened to on any other site.
   if (location.protocol === 'https:' && location.hostname === 'ai-summary-helper.byphil.eu') {
     document.documentElement.setAttribute('data-aish', 'installed');
+    // …/#open-aish as an address (a link in a mail or a doc) opens AISH once, then the hash is removed again.
+    const openFromSite = () => { try { const p = api.runtime.sendMessage({ action: 'aish:openFromSite' }); if (p && typeof p.catch === 'function') p.catch(() => {}); } catch (_) { /* context gone */ } };
+    // The page's own script may already have rewritten the address by now, so the first check also reads the URL the
+    // page was opened with (the navigation entry keeps the hash).
+    const navHash = () => { try { const n = performance.getEntriesByType('navigation')[0]; return n ? new URL(n.name).hash : ''; } catch (_) { return ''; } };
+    const openFromHash = (first) => {
+      if ((location.hash || (first === true ? navHash() : '')) !== '#open-aish') return;
+      if (location.hash) { try { history.replaceState(null, '', location.pathname + location.search); } catch (_) { /* sandboxed page */ } }
+      openFromSite();
+    };
+    openFromHash(true);
+    window.addEventListener('hashchange', () => openFromHash(false));
     document.addEventListener('click', (e) => {
       const el = e.target && e.target.closest ? e.target.closest('[data-aish-open]') : null;
       if (!el) return;
       e.preventDefault();
-      try { const p = api.runtime.sendMessage({ action: 'aish:openFromSite' }); if (p && typeof p.catch === 'function') p.catch(() => {}); } catch (_) { /* context gone */ }
+      openFromSite();
     }, true);
     // Support Pass thank-you page (/thanks?session_id=…): claim the payment and show the result through attributes the
     // page styles itself by (data-aish-claim = working | pending | active | signed_in | confirm | code_required | error).
