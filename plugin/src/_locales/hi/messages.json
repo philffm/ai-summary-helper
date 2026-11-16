@@ -7600,5 +7600,47 @@
   },
   "f_questions_come_from_the_full_cdbf": {
     "message": "प्रश्न पूरे पाठ से बनते हैं और समझ जाँचते हैं। हर प्रश्न वह वाक्य दिखाता है जो उत्तर का आधार है; जिन प्रश्नों का पाठ में आधार नहीं, वे हटा दिए जाते हैं।"
+  },
+  "f_links_in_this_article_8f41": {
+    "message": "इस लेख के लिंक"
+  },
+  "f_summarize_what_the_article_l_736f": {
+    "message": "लेख जिन पेजों से जुड़ता है उनका सारांश बनाएँ और देखें कि उसके स्रोत असल में क्या कहते हैं। हर पेज बैकग्राउंड टैब में खुलता है।"
+  },
+  "f_select_17a6": {
+    "message": "“{title}” चुनें"
+  },
+  "f_paper_aa39": {
+    "message": "शोध पत्र"
+  },
+  "f_summarizing_ee81": {
+    "message": "सारांश बन रहा है…"
+  },
+  "f_waiting_0e48": {
+    "message": "इंतज़ार"
+  },
+  "f_could_not_read_this_page_a_p_f434": {
+    "message": "यह पेज पढ़ा नहीं जा सका (पेवॉल, कुकी बैनर या कोई टेक्स्ट नहीं)। खुद जाँचने के लिए इसे खोलें।"
+  },
+  "f_sources_b329": {
+    "message": "स्रोत: {title}"
+  },
+  "f_sources_the_article_cites_a0e0": {
+    "message": "लेख में उद्धृत स्रोत"
+  },
+  "f_mentioned_in_the_text_2547": {
+    "message": "टेक्स्ट में उल्लेख"
+  },
+  "f_other_links_fb50": {
+    "message": "अन्य लिंक"
+  },
+  "f_selected_with_this_article_34ba": {
+    "message": "{n} चुने गए, इस लेख के साथ"
+  },
+  "f_summarize_the_source_9baa": {
+    "message": "स्रोत का सारांश बनाएँ"
+  },
+  "f_summarize_the_sources_e81f": {
+    "message": "{n} स्रोतों का सारांश बनाएँ"
   }
 }

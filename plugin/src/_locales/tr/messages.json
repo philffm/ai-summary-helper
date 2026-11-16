@@ -7883,5 +7883,47 @@
   },
   "f_questions_come_from_the_full_cdbf": {
     "message": "Sorular metnin tamamından gelir ve anlamayı ölçer. Her soru, cevabını destekleyen cümleyi gösterir; metnin desteklemediği sorular atılır."
+  },
+  "f_links_in_this_article_8f41": {
+    "message": "Bu makaledeki bağlantılar"
+  },
+  "f_summarize_what_the_article_l_736f": {
+    "message": "Makalenin bağlantı verdiği sayfaları özetleyin ve kaynakların gerçekte ne söylediğini görün. Her sayfa arka plan sekmesinde açılır."
+  },
+  "f_select_17a6": {
+    "message": "“{title}” seç"
+  },
+  "f_paper_aa39": {
+    "message": "makale"
+  },
+  "f_summarizing_ee81": {
+    "message": "Özetleniyor…"
+  },
+  "f_waiting_0e48": {
+    "message": "Bekliyor"
+  },
+  "f_could_not_read_this_page_a_p_f434": {
+    "message": "Bu sayfa okunamadı (ödeme duvarı, çerez bildirimi veya metin yok). Kendiniz kontrol etmek için açın."
+  },
+  "f_sources_b329": {
+    "message": "Kaynaklar: {title}"
+  },
+  "f_sources_the_article_cites_a0e0": {
+    "message": "Makalenin alıntıladığı kaynaklar"
+  },
+  "f_mentioned_in_the_text_2547": {
+    "message": "Metinde geçenler"
+  },
+  "f_other_links_fb50": {
+    "message": "Diğer bağlantılar"
+  },
+  "f_selected_with_this_article_34ba": {
+    "message": "{n} seçildi, bu makaleyle birlikte"
+  },
+  "f_summarize_the_source_9baa": {
+    "message": "Kaynağı özetle"
+  },
+  "f_summarize_the_sources_e81f": {
+    "message": "{n} kaynağı özetle"
   }
 }

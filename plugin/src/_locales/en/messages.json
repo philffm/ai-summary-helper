@@ -8016,5 +8016,47 @@
   },
   "f_questions_come_from_the_full_cdbf": {
     "message": "Questions come from the full text and check understanding. Each one shows the sentence that backs its answer; questions the text does not support are dropped."
+  },
+  "f_links_in_this_article_8f41": {
+    "message": "Links in this article"
+  },
+  "f_summarize_what_the_article_l_736f": {
+    "message": "Summarize what the article links to, to see what its sources really say. Each page opens in a background tab."
+  },
+  "f_select_17a6": {
+    "message": "Select “{title}”"
+  },
+  "f_paper_aa39": {
+    "message": "paper"
+  },
+  "f_summarizing_ee81": {
+    "message": "Summarizing…"
+  },
+  "f_waiting_0e48": {
+    "message": "Waiting"
+  },
+  "f_could_not_read_this_page_a_p_f434": {
+    "message": "Could not read this page (a paywall, a cookie banner or no text). Open it to check it yourself."
+  },
+  "f_sources_b329": {
+    "message": "Sources: {title}"
+  },
+  "f_sources_the_article_cites_a0e0": {
+    "message": "Sources the article cites"
+  },
+  "f_mentioned_in_the_text_2547": {
+    "message": "Mentioned in the text"
+  },
+  "f_other_links_fb50": {
+    "message": "Other links"
+  },
+  "f_selected_with_this_article_34ba": {
+    "message": "{n} selected, with this article"
+  },
+  "f_summarize_the_source_9baa": {
+    "message": "Summarize the source"
+  },
+  "f_summarize_the_sources_e81f": {
+    "message": "Summarize the {n} sources"
   }
 }

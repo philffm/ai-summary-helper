@@ -7883,5 +7883,47 @@
   },
   "f_questions_come_from_the_full_cdbf": {
     "message": "Запитання складено за всім текстом, вони перевіряють розуміння. Кожне показує речення, що підтверджує відповідь; запитання без опори на текст відкидаються."
+  },
+  "f_links_in_this_article_8f41": {
+    "message": "Посилання в цій статті"
+  },
+  "f_summarize_what_the_article_l_736f": {
+    "message": "Підсумуйте те, на що посилається стаття, і побачте, що насправді кажуть її джерела. Кожна сторінка відкривається у фоновій вкладці."
+  },
+  "f_select_17a6": {
+    "message": "Вибрати «{title}»"
+  },
+  "f_paper_aa39": {
+    "message": "стаття"
+  },
+  "f_summarizing_ee81": {
+    "message": "Створюється підсумок…"
+  },
+  "f_waiting_0e48": {
+    "message": "Очікує"
+  },
+  "f_could_not_read_this_page_a_p_f434": {
+    "message": "Не вдалося прочитати сторінку (платний доступ, банер cookie або немає тексту). Відкрийте її й перевірте самі."
+  },
+  "f_sources_b329": {
+    "message": "Джерела: {title}"
+  },
+  "f_sources_the_article_cites_a0e0": {
+    "message": "Джерела, які цитує стаття"
+  },
+  "f_mentioned_in_the_text_2547": {
+    "message": "Згадані в тексті"
+  },
+  "f_other_links_fb50": {
+    "message": "Інші посилання"
+  },
+  "f_selected_with_this_article_34ba": {
+    "message": "Вибрано: {n}, разом із цією статтею"
+  },
+  "f_summarize_the_source_9baa": {
+    "message": "Підсумувати джерело"
+  },
+  "f_summarize_the_sources_e81f": {
+    "message": "Підсумувати джерела ({n})"
   }
 }

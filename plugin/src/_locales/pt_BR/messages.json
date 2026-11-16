@@ -7600,5 +7600,47 @@
   },
   "f_questions_come_from_the_full_cdbf": {
     "message": "As perguntas vêm do texto completo e testam a compreensão. Cada uma mostra a frase que sustenta a resposta; perguntas que o texto não sustenta são descartadas."
+  },
+  "f_links_in_this_article_8f41": {
+    "message": "Links neste artigo"
+  },
+  "f_summarize_what_the_article_l_736f": {
+    "message": "Resuma o que o artigo cita para ver o que suas fontes realmente dizem. Cada página abre em uma aba em segundo plano."
+  },
+  "f_select_17a6": {
+    "message": "Selecionar “{title}”"
+  },
+  "f_paper_aa39": {
+    "message": "artigo científico"
+  },
+  "f_summarizing_ee81": {
+    "message": "Resumindo…"
+  },
+  "f_waiting_0e48": {
+    "message": "Aguardando"
+  },
+  "f_could_not_read_this_page_a_p_f434": {
+    "message": "Não foi possível ler esta página (paywall, aviso de cookies ou sem texto). Abra-a para conferir você mesmo."
+  },
+  "f_sources_b329": {
+    "message": "Fontes: {title}"
+  },
+  "f_sources_the_article_cites_a0e0": {
+    "message": "Fontes citadas pelo artigo"
+  },
+  "f_mentioned_in_the_text_2547": {
+    "message": "Mencionados no texto"
+  },
+  "f_other_links_fb50": {
+    "message": "Outros links"
+  },
+  "f_selected_with_this_article_34ba": {
+    "message": "{n} selecionados, com este artigo"
+  },
+  "f_summarize_the_source_9baa": {
+    "message": "Resumir a fonte"
+  },
+  "f_summarize_the_sources_e81f": {
+    "message": "Resumir as {n} fontes"
   }
 }

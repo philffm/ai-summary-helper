@@ -7883,5 +7883,47 @@
   },
   "f_questions_come_from_the_full_cdbf": {
     "message": "คำถามมาจากเนื้อหาทั้งหมดและวัดความเข้าใจ ทุกข้อแสดงประโยคที่รองรับคำตอบ ข้อที่ไม่มีหลักฐานในเนื้อหาจะถูกตัดออก"
+  },
+  "f_links_in_this_article_8f41": {
+    "message": "ลิงก์ในบทความนี้"
+  },
+  "f_summarize_what_the_article_l_736f": {
+    "message": "สรุปหน้าที่บทความลิงก์ไป เพื่อดูว่าแหล่งที่มาพูดอะไรจริง ๆ แต่ละหน้าจะเปิดในแท็บเบื้องหลัง"
+  },
+  "f_select_17a6": {
+    "message": "เลือก “{title}”"
+  },
+  "f_paper_aa39": {
+    "message": "งานวิจัย"
+  },
+  "f_summarizing_ee81": {
+    "message": "กำลังสรุป…"
+  },
+  "f_waiting_0e48": {
+    "message": "รอ"
+  },
+  "f_could_not_read_this_page_a_p_f434": {
+    "message": "อ่านหน้านี้ไม่ได้ (เพย์วอลล์ แบนเนอร์คุกกี้ หรือไม่มีข้อความ) เปิดเพื่อตรวจสอบด้วยตัวเอง"
+  },
+  "f_sources_b329": {
+    "message": "แหล่งที่มา: {title}"
+  },
+  "f_sources_the_article_cites_a0e0": {
+    "message": "แหล่งที่มาที่บทความอ้างอิง"
+  },
+  "f_mentioned_in_the_text_2547": {
+    "message": "กล่าวถึงในเนื้อหา"
+  },
+  "f_other_links_fb50": {
+    "message": "ลิงก์อื่น"
+  },
+  "f_selected_with_this_article_34ba": {
+    "message": "เลือกแล้ว {n} รายการ รวมบทความนี้"
+  },
+  "f_summarize_the_source_9baa": {
+    "message": "สรุปแหล่งที่มา"
+  },
+  "f_summarize_the_sources_e81f": {
+    "message": "สรุปแหล่งที่มา {n} รายการ"
   }
 }

@@ -7883,5 +7883,47 @@
   },
   "f_questions_come_from_the_full_cdbf": {
     "message": "Spørsmålene kommer fra hele teksten og tester forståelse. Hvert viser setningen som underbygger svaret; spørsmål teksten ikke støtter, forkastes."
+  },
+  "f_links_in_this_article_8f41": {
+    "message": "Lenker i denne artikkelen"
+  },
+  "f_summarize_what_the_article_l_736f": {
+    "message": "Oppsummer det artikkelen lenker til, og se hva kildene faktisk sier. Hver side åpnes i en bakgrunnsfane."
+  },
+  "f_select_17a6": {
+    "message": "Velg «{title}»"
+  },
+  "f_paper_aa39": {
+    "message": "artikkel"
+  },
+  "f_summarizing_ee81": {
+    "message": "Oppsummerer…"
+  },
+  "f_waiting_0e48": {
+    "message": "Venter"
+  },
+  "f_could_not_read_this_page_a_p_f434": {
+    "message": "Siden kunne ikke leses (betalingsmur, informasjonskapselbanner eller ingen tekst). Åpne den og sjekk selv."
+  },
+  "f_sources_b329": {
+    "message": "Kilder: {title}"
+  },
+  "f_sources_the_article_cites_a0e0": {
+    "message": "Kilder artikkelen siterer"
+  },
+  "f_mentioned_in_the_text_2547": {
+    "message": "Nevnt i teksten"
+  },
+  "f_other_links_fb50": {
+    "message": "Andre lenker"
+  },
+  "f_selected_with_this_article_34ba": {
+    "message": "{n} valgt, med denne artikkelen"
+  },
+  "f_summarize_the_source_9baa": {
+    "message": "Oppsummer kilden"
+  },
+  "f_summarize_the_sources_e81f": {
+    "message": "Oppsummer de {n} kildene"
   }
 }

@@ -7600,5 +7600,47 @@
   },
   "f_questions_come_from_the_full_cdbf": {
     "message": "Les questions viennent du texte entier et vérifient la compréhension. Chacune montre la phrase qui justifie sa réponse ; les questions que le texte ne soutient pas sont écartées."
+  },
+  "f_links_in_this_article_8f41": {
+    "message": "Liens dans cet article"
+  },
+  "f_summarize_what_the_article_l_736f": {
+    "message": "Résumez ce vers quoi l’article renvoie, pour voir ce que disent vraiment ses sources. Chaque page s’ouvre dans un onglet en arrière-plan."
+  },
+  "f_select_17a6": {
+    "message": "Sélectionner « {title} »"
+  },
+  "f_paper_aa39": {
+    "message": "article scientifique"
+  },
+  "f_summarizing_ee81": {
+    "message": "Résumé en cours…"
+  },
+  "f_waiting_0e48": {
+    "message": "En attente"
+  },
+  "f_could_not_read_this_page_a_p_f434": {
+    "message": "Impossible de lire cette page (paywall, bandeau cookies ou pas de texte). Ouvrez-la pour vérifier vous-même."
+  },
+  "f_sources_b329": {
+    "message": "Sources : {title}"
+  },
+  "f_sources_the_article_cites_a0e0": {
+    "message": "Sources citées par l’article"
+  },
+  "f_mentioned_in_the_text_2547": {
+    "message": "Mentionnés dans le texte"
+  },
+  "f_other_links_fb50": {
+    "message": "Autres liens"
+  },
+  "f_selected_with_this_article_34ba": {
+    "message": "{n} sélectionnés, avec cet article"
+  },
+  "f_summarize_the_source_9baa": {
+    "message": "Résumer la source"
+  },
+  "f_summarize_the_sources_e81f": {
+    "message": "Résumer les {n} sources"
   }
 }

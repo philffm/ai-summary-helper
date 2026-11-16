@@ -7883,5 +7883,47 @@
   },
   "f_questions_come_from_the_full_cdbf": {
     "message": "Spørgsmålene kommer fra hele teksten og tester forståelse. Hvert viser sætningen, der underbygger svaret; spørgsmål, teksten ikke underbygger, kasseres."
+  },
+  "f_links_in_this_article_8f41": {
+    "message": "Links i denne artikel"
+  },
+  "f_summarize_what_the_article_l_736f": {
+    "message": "Opsummér det, artiklen linker til, og se, hvad kilderne faktisk siger. Hver side åbnes i en baggrundsfane."
+  },
+  "f_select_17a6": {
+    "message": "Vælg “{title}”"
+  },
+  "f_paper_aa39": {
+    "message": "artikel"
+  },
+  "f_summarizing_ee81": {
+    "message": "Opsummerer…"
+  },
+  "f_waiting_0e48": {
+    "message": "Venter"
+  },
+  "f_could_not_read_this_page_a_p_f434": {
+    "message": "Siden kunne ikke læses (betalingsmur, cookiebanner eller ingen tekst). Åbn den og tjek selv."
+  },
+  "f_sources_b329": {
+    "message": "Kilder: {title}"
+  },
+  "f_sources_the_article_cites_a0e0": {
+    "message": "Kilder, artiklen citerer"
+  },
+  "f_mentioned_in_the_text_2547": {
+    "message": "Nævnt i teksten"
+  },
+  "f_other_links_fb50": {
+    "message": "Andre links"
+  },
+  "f_selected_with_this_article_34ba": {
+    "message": "{n} valgt, med denne artikel"
+  },
+  "f_summarize_the_source_9baa": {
+    "message": "Opsummér kilden"
+  },
+  "f_summarize_the_sources_e81f": {
+    "message": "Opsummér de {n} kilder"
   }
 }

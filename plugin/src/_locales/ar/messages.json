@@ -7600,5 +7600,47 @@
   },
   "f_questions_come_from_the_full_cdbf": {
     "message": "تأتي الأسئلة من النص الكامل وتختبر الفهم. يُظهر كل سؤال الجملة التي تدعم إجابته؛ وتُستبعد الأسئلة التي لا يدعمها النص."
+  },
+  "f_links_in_this_article_8f41": {
+    "message": "الروابط في هذه المقالة"
+  },
+  "f_summarize_what_the_article_l_736f": {
+    "message": "لخّص ما تشير إليه المقالة لترى ما تقوله مصادرها فعلًا. تُفتح كل صفحة في علامة تبويب في الخلفية."
+  },
+  "f_select_17a6": {
+    "message": "تحديد «{title}»"
+  },
+  "f_paper_aa39": {
+    "message": "ورقة بحثية"
+  },
+  "f_summarizing_ee81": {
+    "message": "جارٍ التلخيص…"
+  },
+  "f_waiting_0e48": {
+    "message": "في الانتظار"
+  },
+  "f_could_not_read_this_page_a_p_f434": {
+    "message": "تعذّرت قراءة هذه الصفحة (جدار دفع أو شريط ملفات تعريف الارتباط أو لا يوجد نص). افتحها للتحقق بنفسك."
+  },
+  "f_sources_b329": {
+    "message": "المصادر: {title}"
+  },
+  "f_sources_the_article_cites_a0e0": {
+    "message": "المصادر التي تستشهد بها المقالة"
+  },
+  "f_mentioned_in_the_text_2547": {
+    "message": "مذكورة في النص"
+  },
+  "f_other_links_fb50": {
+    "message": "روابط أخرى"
+  },
+  "f_selected_with_this_article_34ba": {
+    "message": "تم تحديد {n} مع هذه المقالة"
+  },
+  "f_summarize_the_source_9baa": {
+    "message": "لخّص المصدر"
+  },
+  "f_summarize_the_sources_e81f": {
+    "message": "لخّص المصادر الـ{n}"
   }
 }

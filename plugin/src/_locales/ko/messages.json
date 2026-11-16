@@ -7582,5 +7582,47 @@
   },
   "f_questions_come_from_the_full_cdbf": {
     "message": "문항은 글 전체에서 만들어지고 이해도를 확인해요. 각 문항에 답의 근거가 되는 문장이 표시되며, 글에 근거가 없는 문항은 빠져요."
+  },
+  "f_links_in_this_article_8f41": {
+    "message": "이 글의 링크"
+  },
+  "f_summarize_what_the_article_l_736f": {
+    "message": "글이 링크한 페이지를 요약해 출처가 실제로 무엇을 말하는지 확인하세요. 각 페이지는 백그라운드 탭에서 열려요."
+  },
+  "f_select_17a6": {
+    "message": "“{title}” 선택"
+  },
+  "f_paper_aa39": {
+    "message": "논문"
+  },
+  "f_summarizing_ee81": {
+    "message": "요약 중…"
+  },
+  "f_waiting_0e48": {
+    "message": "대기 중"
+  },
+  "f_could_not_read_this_page_a_p_f434": {
+    "message": "이 페이지를 읽지 못했어요(페이월, 쿠키 배너 또는 텍스트 없음). 직접 열어 확인하세요."
+  },
+  "f_sources_b329": {
+    "message": "출처: {title}"
+  },
+  "f_sources_the_article_cites_a0e0": {
+    "message": "글이 인용한 출처"
+  },
+  "f_mentioned_in_the_text_2547": {
+    "message": "본문에서 언급"
+  },
+  "f_other_links_fb50": {
+    "message": "기타 링크"
+  },
+  "f_selected_with_this_article_34ba": {
+    "message": "{n}개 선택됨, 이 글 포함"
+  },
+  "f_summarize_the_source_9baa": {
+    "message": "출처 요약하기"
+  },
+  "f_summarize_the_sources_e81f": {
+    "message": "출처 {n}개 요약하기"
   }
 }

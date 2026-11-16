@@ -7883,5 +7883,47 @@
   },
   "f_questions_come_from_the_full_cdbf": {
     "message": "Frågorna kommer från hela texten och prövar förståelse. Varje fråga visar meningen som stöder svaret; frågor som texten inte stöder tas bort."
+  },
+  "f_links_in_this_article_8f41": {
+    "message": "Länkar i den här artikeln"
+  },
+  "f_summarize_what_the_article_l_736f": {
+    "message": "Sammanfatta det artikeln länkar till och se vad källorna faktiskt säger. Varje sida öppnas i en bakgrundsflik."
+  },
+  "f_select_17a6": {
+    "message": "Välj ”{title}”"
+  },
+  "f_paper_aa39": {
+    "message": "artikel"
+  },
+  "f_summarizing_ee81": {
+    "message": "Sammanfattar…"
+  },
+  "f_waiting_0e48": {
+    "message": "Väntar"
+  },
+  "f_could_not_read_this_page_a_p_f434": {
+    "message": "Sidan kunde inte läsas (betalvägg, cookiebanner eller ingen text). Öppna den och kontrollera själv."
+  },
+  "f_sources_b329": {
+    "message": "Källor: {title}"
+  },
+  "f_sources_the_article_cites_a0e0": {
+    "message": "Källor som artikeln citerar"
+  },
+  "f_mentioned_in_the_text_2547": {
+    "message": "Nämnda i texten"
+  },
+  "f_other_links_fb50": {
+    "message": "Andra länkar"
+  },
+  "f_selected_with_this_article_34ba": {
+    "message": "{n} valda, med den här artikeln"
+  },
+  "f_summarize_the_source_9baa": {
+    "message": "Sammanfatta källan"
+  },
+  "f_summarize_the_sources_e81f": {
+    "message": "Sammanfatta de {n} källorna"
   }
 }

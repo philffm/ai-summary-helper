@@ -7600,5 +7600,47 @@
   },
   "f_questions_come_from_the_full_cdbf": {
     "message": "题目来自全文，考查理解。每道题都会显示支持答案的句子；文中没有依据的题目会被舍弃。"
+  },
+  "f_links_in_this_article_8f41": {
+    "message": "本文中的链接"
+  },
+  "f_summarize_what_the_article_l_736f": {
+    "message": "总结文章所链接的页面，看看其来源实际说了什么。每个页面会在后台标签页中打开。"
+  },
+  "f_select_17a6": {
+    "message": "选择“{title}”"
+  },
+  "f_paper_aa39": {
+    "message": "论文"
+  },
+  "f_summarizing_ee81": {
+    "message": "正在总结…"
+  },
+  "f_waiting_0e48": {
+    "message": "等待中"
+  },
+  "f_could_not_read_this_page_a_p_f434": {
+    "message": "无法读取此页面（付费墙、Cookie 横幅或没有文字）。请打开页面自行查看。"
+  },
+  "f_sources_b329": {
+    "message": "来源：{title}"
+  },
+  "f_sources_the_article_cites_a0e0": {
+    "message": "文章引用的来源"
+  },
+  "f_mentioned_in_the_text_2547": {
+    "message": "正文中提到"
+  },
+  "f_other_links_fb50": {
+    "message": "其他链接"
+  },
+  "f_selected_with_this_article_34ba": {
+    "message": "已选 {n} 个，含本文"
+  },
+  "f_summarize_the_source_9baa": {
+    "message": "总结该来源"
+  },
+  "f_summarize_the_sources_e81f": {
+    "message": "总结这 {n} 个来源"
   }
 }

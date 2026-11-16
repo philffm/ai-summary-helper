@@ -7600,5 +7600,47 @@
   },
   "f_questions_come_from_the_full_cdbf": {
     "message": "Вопросы составлены по всему тексту и проверяют понимание. Каждый показывает предложение, подтверждающее ответ; вопросы без опоры на текст отбрасываются."
+  },
+  "f_links_in_this_article_8f41": {
+    "message": "Ссылки в этой статье"
+  },
+  "f_summarize_what_the_article_l_736f": {
+    "message": "Сделайте сводку того, на что ссылается статья, и посмотрите, что на самом деле говорят её источники. Каждая страница открывается в фоновой вкладке."
+  },
+  "f_select_17a6": {
+    "message": "Выбрать «{title}»"
+  },
+  "f_paper_aa39": {
+    "message": "статья"
+  },
+  "f_summarizing_ee81": {
+    "message": "Создаётся сводка…"
+  },
+  "f_waiting_0e48": {
+    "message": "Ожидание"
+  },
+  "f_could_not_read_this_page_a_p_f434": {
+    "message": "Не удалось прочитать страницу (платный доступ, баннер cookie или нет текста). Откройте её и проверьте сами."
+  },
+  "f_sources_b329": {
+    "message": "Источники: {title}"
+  },
+  "f_sources_the_article_cites_a0e0": {
+    "message": "Источники, которые цитирует статья"
+  },
+  "f_mentioned_in_the_text_2547": {
+    "message": "Упомянуты в тексте"
+  },
+  "f_other_links_fb50": {
+    "message": "Другие ссылки"
+  },
+  "f_selected_with_this_article_34ba": {
+    "message": "Выбрано: {n}, вместе с этой статьёй"
+  },
+  "f_summarize_the_source_9baa": {
+    "message": "Сделать сводку источника"
+  },
+  "f_summarize_the_sources_e81f": {
+    "message": "Сделать сводку источников ({n})"
   }
 }
