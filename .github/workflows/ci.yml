@@ -48,6 +48,26 @@ jobs:
         if: github.event_name == 'schedule'
         run: ./gitleaks git --config .gitleaks.toml --redact --no-banner . || echo "::warning title=gitleaks::secrets found in the history - rotate, then add the fingerprints to .gitleaksignore"
 
+  # The KOReader plugin (koreader/aish.koplugin): its Lua modules with LuaJIT, then the plugin against a place made by the
+  # extension's own sync engine, served by a real WebDAV server with a login.
+  koreader:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install LuaJIT, LuaSocket, cjson and a WebDAV server
+        run: |
+          sudo apt-get update -q && sudo apt-get install -y -q luajit lua-socket lua-cjson
+          pip install --quiet wsgidav cheroot
+      - run: luajit koreader/tests/run.lua
+      - run: bash koreader/tests/interop.sh
+
   pull-request:
     if: github.event_name == 'pull_request'
     runs-on: ubuntu-latest

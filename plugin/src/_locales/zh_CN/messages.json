@@ -7648,5 +7648,11 @@
   },
   "f_article_sections_5e27": {
     "message": "文章栏目"
+  },
+  "f_save_code_as_file_koreader_3941": {
+    "message": "将代码保存为文件（KOReader）"
+  },
+  "f_for_an_e_reader_with_koreade_cb0d": {
+    "message": "用于装有 KOReader 的电子阅读器：将 aish-library.txt 复制到其主文件夹，然后选择 Tools → AISH library → Connect with a code。该文件包含你的登录信息：之后请从这台电脑上删除。"
   }
 }

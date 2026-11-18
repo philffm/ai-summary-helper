@@ -65,6 +65,14 @@ const serverOf = (c) => ({ name: c.name, url: c.url || '', username: c.username 
 // ── tiny DOM helpers ──
 function el(tag, cls, text) { const e = document.createElement(tag); if (cls) e.className = cls; if (text != null) e.textContent = text; return e; }
 function button(label, cls, onClick) { const b = el('button', cls, label); b.type = 'button'; b.addEventListener('click', onClick); return b; }
+/** An e-reader cannot scan the code: KOReader's AISH plugin reads it from a file named aish-library.txt in its home folder. */
+function readerCodeRow(code) {
+    const save = button(T('Save code as file (KOReader)'), 'button-secondary btn-sm', () => {
+        const a = el('a'); a.href = URL.createObjectURL(new Blob([code + '\n'], { type: 'text/plain' })); a.download = 'aish-library.txt';
+        document.body.append(a); a.click(); setTimeout(() => { URL.revokeObjectURL(a.href); a.remove(); }, 1000);
+    });
+    return [save, hint(T('For an e-reader with KOReader: copy aish-library.txt into its home folder, then Tools → AISH library → Connect with a code. The file holds your login: delete it from this computer afterwards.'))];
+}
 function chip(label, cls = '') { return el('span', 'mcp-chip ' + cls, label); }
 function hint(text) { return el('p', 'mcp-row-hint', text); }
 function field(id, label, value, { type = 'text', placeholder = '', onInput, help } = {}) {
@@ -542,6 +550,7 @@ function phoneScreen(place, st, connections) {
     if (phoneCode) {
         out.push(qrBox(phoneCode.code));
         if (!phoneCode.withWords) out.push(hint(T('This place uses your own passphrase. It is not in the code: type it on the phone.')));
+        out.push(...readerCodeRow(phoneCode.code));
         out.push(button(T('Hide code'), 'button-secondary btn-sm', () => { hidePhoneCode(); render(); }));
     } else {
         out.push(button(T('Show code for the phone'), 'button-secondary btn-sm', async () => {
@@ -706,6 +715,7 @@ function formScreen(place, st, count, connections = [], places = []) {
                 out.push(qrBox(phoneCode.code));
                 out.push(el('div', 'explanatory-card sync-warn', T('Scan it with AI Summary Helper on your phone: Settings → Library sync → Scan code. The code holds your server login, so show it only to your own phone. It hides itself after a minute.')));
                 if (!phoneCode.withWords) out.push(hint(T('This place uses your own passphrase. It is not in the code: type it on the phone.')));
+                out.push(...readerCodeRow(phoneCode.code));
                 out.push(button(T('Hide code'), 'button-secondary btn-sm', () => { hidePhoneCode(); render(); }));
             }
         }

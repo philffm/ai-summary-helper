@@ -7648,5 +7648,11 @@
   },
   "f_article_sections_5e27": {
     "message": "Secciones del artículo"
+  },
+  "f_save_code_as_file_koreader_3941": {
+    "message": "Guardar código como archivo (KOReader)"
+  },
+  "f_for_an_e_reader_with_koreade_cb0d": {
+    "message": "Para un lector electrónico con KOReader: copia aish-library.txt en su carpeta de inicio y luego Tools → AISH library → Connect with a code. El archivo contiene tus datos de acceso: bórralo de este ordenador después."
   }
 }

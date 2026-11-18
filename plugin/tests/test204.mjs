@@ -52,6 +52,17 @@ assert.ok(!done.disabled); click(done); await until(() => /is set up/.test(text(
 // a new sync library: the phone is offered next; its code (it holds the login) only on request
 assert.match(text(), /“My devices” is set up/); assert.match(text(), /Add your phone/i);
 assert.ok(byText('button', 'Show code for the phone')); assert.ok(!root().querySelector('.phone-inbox-qr'), 'no code until asked');
+// an e-reader cannot scan: the same code as a file for KOReader's AISH plugin
+click(byText('button', 'Show code for the phone')); await until(() => root().querySelector('.phone-inbox-qr'));
+let blob = null, fileName = '';
+const realURL = { c: globalThis.URL.createObjectURL, r: globalThis.URL.revokeObjectURL };
+globalThis.URL.createObjectURL = (b) => { blob = b; return 'blob:x'; }; globalThis.URL.revokeObjectURL = () => {};
+const doc = globalThis.document || w.document, origCreate = doc.createElement.bind(doc);
+doc.createElement = (tag, ...r) => { const e = origCreate(tag, ...r); if (String(tag).toLowerCase() === 'a') e.click = () => { fileName = e.download; }; return e; };
+click(byText('button', 'Save code as file (KOReader)'));
+doc.createElement = origCreate; Object.assign(globalThis.URL, { createObjectURL: realURL.c, revokeObjectURL: realURL.r });
+assert.equal(fileName, 'aish-library.txt'); assert.match(await blob.text(), /^aish-library:\/\/v1\?k=webdav&.*&w=/, 'the code with the words');
+assert.match(text(), /home folder, then Tools → AISH library → Connect with a code/);
 click(byText('button', 'Not now')); await until(() => root().querySelector('.settings-row'));
 assert.equal(store[SK.syncPlaces].length, 1); assert.equal(store[SK.syncPlaces][0].mode, 'encrypted');
 assert.ok(!JSON.stringify(store[SK.syncPlaces]).includes(words), 'the passphrase does not sit with the place');

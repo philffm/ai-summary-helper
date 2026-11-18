@@ -7931,5 +7931,11 @@
   },
   "f_article_sections_5e27": {
     "message": "Onderdelen van het artikel"
+  },
+  "f_save_code_as_file_koreader_3941": {
+    "message": "Code opslaan als bestand (KOReader)"
+  },
+  "f_for_an_e_reader_with_koreade_cb0d": {
+    "message": "Voor een e-reader met KOReader: kopieer aish-library.txt naar de thuismap en kies dan Tools → AISH library → Connect with a code. Het bestand bevat je inloggegevens: verwijder het daarna van deze computer."
   }
 }

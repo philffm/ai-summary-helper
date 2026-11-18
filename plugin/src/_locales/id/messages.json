@@ -7931,5 +7931,11 @@
   },
   "f_article_sections_5e27": {
     "message": "Bagian artikel"
+  },
+  "f_save_code_as_file_koreader_3941": {
+    "message": "Simpan kode sebagai file (KOReader)"
+  },
+  "f_for_an_e_reader_with_koreade_cb0d": {
+    "message": "Untuk e-reader dengan KOReader: salin aish-library.txt ke folder beranda-nya, lalu Tools → AISH library → Connect with a code. File ini berisi data login Anda: hapus dari komputer ini setelahnya."
   }
 }

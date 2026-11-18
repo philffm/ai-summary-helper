@@ -7931,5 +7931,11 @@
   },
   "f_article_sections_5e27": {
     "message": "Artikkelin osiot"
+  },
+  "f_save_code_as_file_koreader_3941": {
+    "message": "Tallenna koodi tiedostoksi (KOReader)"
+  },
+  "f_for_an_e_reader_with_koreade_cb0d": {
+    "message": "E-lukulaitteelle, jossa on KOReader: kopioi aish-library.txt sen kotikansioon ja valitse sitten Tools → AISH library → Connect with a code. Tiedostossa on kirjautumistietosi: poista se tältä tietokoneelta sen jälkeen."
   }
 }
