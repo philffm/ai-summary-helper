@@ -64,7 +64,7 @@ jobs:
       - name: Install LuaJIT, LuaSocket and a WebDAV server
         run: |
           sudo apt-get update -q && sudo apt-get install -y -q luajit lua-socket
-          pip install --quiet wsgidav cheroot
+          pip install --quiet wsgidav cheroot epubcheck
       - run: luajit koreader/tests/run.lua
       - run: bash koreader/tests/interop.sh
 
