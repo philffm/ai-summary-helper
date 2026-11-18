@@ -8,10 +8,13 @@ Highlights and notes go **both ways**: what you mark on the reader appears in th
 
 ## What you get
 
-- a folder `AISH` in KOReader's home folder, one HTML file per article, with **chapters** for KOReader's table of contents:
-  **Summary** (the AI summary) · the article with its own headings · **Key points** (the AI highlights) · **Notes**
-  (your notes on the article). Images the extension saved with the article come along (as files in `AISH/.images`,
-  at most 3 MB each and 12 MB per article);
+- a folder `AISH` in KOReader's home folder, **one EPUB per article** with real **book information**: the source as
+  author and publisher, the date saved, the language, the **AISH tags as keywords**, the **AI summary as description**,
+  the first **AISH collection as series** (numbered by date), the **first image as cover** (the cover view shows it), and a
+  **table of contents**: **Summary** · the article's own headings · **Key points** (the AI highlights) · **Notes** (your
+  notes on the article). Images the extension saved with the article are inside the file (at most 3 MB each, 12 MB per
+  article). EPUB is compressed: a text-only article takes a fraction of the HTML's size. Plain HTML files instead:
+  *Articles as EPUB* off;
 - **newest first**: each file carries the date it was saved in AISH, so with *Settings → File browser → Sort by: date
   modified* the AISH folder lists your latest saves on top;
 - **the AISH tabs as collections**, newest first: `AISH · Inbox` (not read yet), `AISH · Read`, `AISH · Archive`;
@@ -96,6 +99,7 @@ opens them as plain files, and e-readers do not encrypt their storage).
 
 ```
 luajit koreader/tests/run.lua          # the Lua modules: crypto, hashes and merges against plugin/tests/fixtures/sync-vector.json,
+                                       # EPUB/ZIP writing,
                                        # highlight reconciling, conditional writes and the 412 merge, rendering
 bash koreader/tests/interop.sh         # the extension's own sync engine and the plugin, both ways, over wsgidav with a login
 ```
@@ -108,4 +112,4 @@ highlights ↔ AISH) · `aishlib/render.lua` · `aishlib/marks.lua` · `aishlib/
 ## Not yet
 
 S3 places, images the extension did not save (remote ones), reading progress (KOReader's percentage has no place in
-AISH yet), EPUB files with covers.
+AISH yet).

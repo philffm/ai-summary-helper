@@ -180,7 +180,7 @@ end
 
 --- A file name for the article: its title, made safe for FAT/exFAT e-reader storage, plus a short id so two articles
 --- with one title never share a file.
-function M.fileName(title, id)
+function M.fileName(title, id, ext)
     local t = tostring(title or ""):gsub('[%c/\\:%*%?"<>|]', " "):gsub("%s+", " "):gsub("^[%s%.]+", ""):gsub("[%s%.]+$", "")
     if #t > 90 then
         t = t:sub(1, 90)
@@ -190,7 +190,7 @@ function M.fileName(title, id)
     end
     if t == "" then t = "Article" end
     local short = tostring(id or ""):gsub("[^%w]", ""):sub(-6)
-    return t .. (short ~= "" and (" [" .. short .. "]") or "") .. ".html"
+    return t .. (short ~= "" and (" [" .. short .. "]") or "") .. "." .. (ext or "html")
 end
 
 return M

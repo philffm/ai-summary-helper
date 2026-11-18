@@ -222,6 +222,17 @@ It keeps a lost reader's settings from giving away your login. A short PIN can s
                 callback = function(touchmenu) self:togglePin(touchmenu) end,
             },
             {
+                text = _("Articles as EPUB (book information, cover)"),
+                help_text = _([[EPUB files carry real book information: the source as author, the date saved, the tags, the summary as description, the AISH collection as series, the first image as cover, and a table of contents. KOReader shows it in its lists, the cover view and Book information.
+
+Off: plain HTML files. Switching rewrites every article once (KOReader's reading positions start over; highlights come back from AISH).]]),
+                checked_func = function() return (self.settings:readSetting("format") or "epub") == "epub" end,
+                callback = function()
+                    self.settings:saveSetting("format", (self.settings:readSetting("format") or "epub") == "epub" and "html" or "epub"); self:save()
+                    notify(_("The articles are rewritten at the next sync."), 3)
+                end,
+            },
+            {
                 text = _("Sync automatically"),
                 help_text = _("When Wi-Fi comes on or the reader wakes up, and the last sync is more than 30 minutes ago. Not while an article is open; changes made in it are sent when you close it."),
                 checked_func = function() return self.settings:nilOrTrue("auto_sync") end,
@@ -604,7 +615,7 @@ end
 
 function AISH:library(store)
     return require("aishlib.library").new({
-        store = store, fs = fs, dataDir = self.data_dir, outDir = self:outDir(),
+        store = store, fs = fs, dataDir = self.data_dir, outDir = self:outDir(), format = self.settings:readSetting("format") or "epub",
         labels = { summary = _("Summary"), notes = _("Notes"), noText = _("The full text of this article was not saved in AISH.") },
     })
 end
@@ -894,8 +905,9 @@ function AISH:onReaderReady()
             local id = lib.articleOfFile(file)
             if not id then return end
             self.open_article = id
-            -- the chapters (Summary · the article's headings · Key points · Notes) come from the headings
-            if self.ui.doc_settings and self.ui.doc_settings:hasNot("alternative_toc") and self.ui.document.canHaveAlternativeToc
+            -- HTML files: the chapters (Summary · the article's headings · Key points · Notes) come from the headings
+            -- (an EPUB brings its own table of contents)
+            if file:find("%.html$") and self.ui.doc_settings and self.ui.doc_settings:hasNot("alternative_toc") and self.ui.document.canHaveAlternativeToc
                     and self.ui.document:canHaveAlternativeToc() then
                 self.ui.doc_settings:makeTrue("alternative_toc")
                 pcall(function() self.ui.toc:resetToc(); self.ui.toc:fillToc() end)

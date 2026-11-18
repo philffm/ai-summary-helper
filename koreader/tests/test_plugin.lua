@@ -89,12 +89,15 @@ local AISH = require("main")
 local menu = {}
 local plugin = setmetatable({ ui = { menu = { registerToMainMenu = function(_, p) p:addToMainMenu(menu) end } } }, { __index = AISH })
 plugin:init()
-local sleepFile = home .. "/AISH/Why we sleep what the new studies show [ka1].html"
+local sleepFile = home .. "/AISH/Why we sleep what the new studies show [ka1].epub"
+local function unzipText(file, member)
+    local h = io.popen("unzip -p '" .. file .. "' '" .. member .. "' 2>/dev/null"); local t = h:read("*a"); h:close(); return t
+end
 
 -- a stand-in for an open book: KOReader's search over the file's text, its annotation list
 local marks = require("aishlib.marks")
 local function openBook(file, annotations)
-    local _, plain = marks._index(fsu.read(file))
+    local _, plain = marks._index(unzipText(file, "OEBPS/article.xhtml"))
     local ann = { annotations = annotations or {} }
     function ann:addItem(it) self.annotations[#self.annotations + 1] = it; return #self.annotations end
     local events = {}
@@ -197,7 +200,7 @@ if phase == "plugin2" then
     print("TEST plugin2 OK")
     os.exit(0)
 end
-assert(menu.aish_library and #menu.aish_library.sub_item_table == 15, "menu")
+assert(menu.aish_library and #menu.aish_library.sub_item_table == 16, "menu")
 assert(menu.aish_library.sub_item_table[5].text_func() == "Not connected")
 
 local function enc(s) return (s:gsub("[^%w%-%._~]", function(c) return string.format("%%%02X", c:byte()) end)) end
@@ -213,13 +216,19 @@ local n = 0; for _ in pairs(exam or {}) do n = n + 1 end
 assert(n == 1 and RC.writes == 1, "KOReader collection AISH: Exam prep with its file")
 -- the AISH tabs as collections, newest first; the top tags; file dates = saved dates; images as files
 local function ordered(name) local out = {}; for _, it in ipairs(RC:getOrderedCollection(name)) do out[#out + 1] = it.file:match("[^/]+$") end return table.concat(out, " | ") end
-assert(ordered("AISH · Inbox") == "Only a summary here (renamed) [ka3].html | Why we sleep what the new studies show [ka1].html", "Inbox newest first: " .. ordered("AISH · Inbox"))
+assert(ordered("AISH · Inbox") == "Only a summary here (renamed) [ka3].epub | Why we sleep what the new studies show [ka1].epub", "Inbox newest first: " .. ordered("AISH · Inbox"))
 assert(ordered("AISH · Read") == "" and ordered("AISH · Archive") == "", "nothing read or archived yet")
-assert(ordered("AISH #science") == "Why we sleep what the new studies show [ka1].html", "tag collection")
+assert(ordered("AISH #science") == "Why we sleep what the new studies show [ka1].epub", "tag collection")
 assert(fsu.mtime(sleepFile) == require("aishlib.library").isoToEpoch("2026-11-02T08:00:00.000Z"), "the file's date is the day it was saved")
-local html = fsu.read(sleepFile)
-assert(html:find('<img src=".images/k-a1-1.png" alt="A tiny chart"/>', 1, true) and fsu.exists(home .. "/AISH/.images/k-a1-1.png"), "image saved as a file")
-assert(fsu.read(home .. "/AISH/.images/k-a1-1.png"):sub(2, 4) == "PNG", "a real PNG")
+-- the EPUB: text with the image inside, book information, table of contents
+local xhtml, opf, nav = unzipText(sleepFile, "OEBPS/article.xhtml"), unzipText(sleepFile, "OEBPS/content.opf"), unzipText(sleepFile, "OEBPS/nav.xhtml")
+assert(xhtml:find('<img src="images/1.png" alt="A tiny chart"/>', 1, true) and unzipText(sleepFile, "OEBPS/images/1.png"):sub(2, 4) == "PNG", "image inside the EPUB")
+assert(opf:find('properties="cover-image"', 1, true), "the image is the cover")
+assert(opf:find("<dc:title>Why we sleep: what the new studies show</dc:title>", 1, true) and opf:find("<dc:publisher>science.example</dc:publisher>", 1, true), "title, site")
+assert(opf:find("<dc:subject>science</dc:subject>", 1, true) and opf:find("<dc:date>2026-11-02</dc:date>", 1, true), "tags, date saved")
+assert(opf:find("<dc:description>• Sleep consolidates memory.</dc:description>", 1, true), "summary as description")
+assert(opf:find('<meta name="calibre:series" content="Exam prep"/>', 1, true), "AISH collection as series")
+assert(nav:find(">Summary</a>", 1, true) and not fsu.exists(home .. "/AISH/.images"), "table of contents; no loose image files")
 -- gesture: the newest unread article opens
 plugin:onAishOpenNewest()
 assert(opened[#opened] and opened[#opened]:find("Only a summary here", 1, true), "newest unread opened")
@@ -253,7 +262,7 @@ assert(#items == 3 and by["h-1"] and by["h-2"] and by["h-3"], "the 3 AISH highli
 assert(by["h-1"].note == "Matches chapter 3 of the textbook." and by["h-1"].drawer == "lighten" and by["h-1"].color == "yellow", "comment as note")
 assert(by["h-2"].drawer == "underscore" and by["h-1"].chapter == "Chapter", "AI one underlined")
 assert(#ui.events == 1 and ui.events[1].name == "AnnotationsModified", "KOReader told once")
-assert(ui.doc_settings.data.alternative_toc == true, "chapters from the headings")
+assert(ui.doc_settings.data.alternative_toc == nil, "an EPUB brings its own table of contents")
 -- the reader: a new highlight with a note, the comment on h-1 edited, the AI highlight removed
 items[#items + 1] = { text = "Short naps of about twenty minutes", drawer = "lighten", pos0 = "xp:1", pos1 = "xp:2", page = "xp:1", note = "Try it this week." }
 plugin:onAnnotationsModified()
@@ -265,7 +274,7 @@ shown = {}
 closeBook(ui)   -- online: sent right away, quietly
 for _, w in ipairs(shown) do assert(w.kind ~= "info" or not w.text:find("failed"), "no error: " .. tostring(w.text)) end
 assert(settingsStore[work .. "/settings/aish.lua"].last_sync.pending == 0, "everything sent")
-assert(ordered("AISH · Read") == "Why we sleep what the new studies show [ka1].html" and ordered("AISH · Inbox") == "Only a summary here (renamed) [ka3].html", "opened → Read: " .. ordered("AISH · Read"))
+assert(ordered("AISH · Read") == "Why we sleep what the new studies show [ka1].epub" and ordered("AISH · Inbox") == "Only a summary here (renamed) [ka3].epub", "opened → Read: " .. ordered("AISH · Read"))
 -- Wi-Fi comes on: a sync when one is due, not before
 local before = settingsStore[work .. "/settings/aish.lua"].last_sync.time
 plugin:onNetworkConnected()

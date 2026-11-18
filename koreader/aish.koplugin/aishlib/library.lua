@@ -22,6 +22,7 @@ local json = require("aishlib.json")
 local render = require("aishlib.render")
 local stamps = require("aishlib.stamps")
 local marks = require("aishlib.marks")
+local epub = require("aishlib.epub")
 
 local M = {}
 local TYPES = { article = true, hl = true, coll = true, note = true }
@@ -75,6 +76,7 @@ o = { store = webdav store, dataDir, outDir, fs = { mkdirp, exists, read, write,
 function M.new(o)
     local self = { store = o.store, fs = o.fs, dataDir = o.dataDir, outDir = o.outDir, labels = o.labels or {} }
     local fs = o.fs
+    self.format = o.format == "html" and "html" or "epub"   -- EPUB: book information, cover, table of contents
     fs.mkdirp(self.dataDir .. "/records")
 
     local function readJson(path)
@@ -356,6 +358,19 @@ function M.new(o)
         local res = { written = {}, removed = {}, collections = {}, skipped = 0, articles = 0, tabs = { inbox = {}, read = {}, archive = {} }, tags = {} }
         local used = {}
         for _, st in pairs(self.state) do used[st.file] = true end
+        -- the series of an EPUB: its first AISH collection (by name), numbered by the date the articles were saved
+        local seriesOf, members = {}, {}
+        for aid, names in pairs(collsOf) do
+            local e = self.index["article:" .. aid]
+            if e and not e.deleted and names[1] then
+                members[names[1]] = members[names[1]] or {}
+                table.insert(members[names[1]], { id = aid, ts = e.ts or "" })
+            end
+        end
+        for name, list in pairs(members) do
+            table.sort(list, function(x, y) return x.ts < y.ts or (x.ts == y.ts and x.id < y.id) end)
+            for i, it in ipairs(list) do seriesOf[it.id] = { name = name, index = i } end
+        end
         local total, done = 0, 0
         if progress then for key in pairs(self.index) do if key:sub(1, 8) == "article:" then total = total + 1 end end end
         for key, e in pairs(self.index) do
@@ -401,13 +416,26 @@ function M.new(o)
                     local parts = { e.rs }
                     for _, n in ipairs(notes) do parts[#parts + 1] = n.id .. ":" .. n.text .. ":" .. (n.quote or "") end
                     for _, k in ipairs(keyPoints) do parts[#parts + 1] = "kp:" .. k end
+                    -- an EPUB carries tags and the series in its book information: those count too
+                    local series, seriesIndex = seriesOf[id] and seriesOf[id].name, seriesOf[id] and seriesOf[id].index
+                    if self.format == "epub" then
+                        parts[#parts + 1] = "epub"
+                        for _, tg in ipairs(e.tg or {}) do parts[#parts + 1] = "tag:" .. tg end
+                        if series then parts[#parts + 1] = "series:" .. series .. "#" .. seriesIndex end
+                    end
                     local sig = digest(parts)
                     local file = st and st.file
+                    if file and not file:find("%." .. self.format .. "$") then   -- the format was changed: a new file
+                        if fs.exists(file) then removeFile(file) end
+                        local safe = tostring(id):gsub("[^%w%-_]", "_")
+                        for k = 1, (st.imgs or 0) do for _, ext in ipairs({ "jpg", "png", "gif", "webp", "svg" }) do fs.remove(self.outDir .. "/" .. M.IMAGE_DIR .. "/" .. safe .. "-" .. k .. "." .. ext) end end
+                        used[file] = nil; file = nil; st = nil
+                    end
                     if not file then
-                        local name = render.fileName(e.ti, id)
+                        local name = render.fileName(e.ti, id, self.format)
                         file = self.outDir .. "/" .. name
                         local k = 2
-                        while used[file] or fs.exists(file) do file = self.outDir .. "/" .. name:gsub("%.html$", " " .. k .. ".html"); k = k + 1 end
+                        while used[file] or fs.exists(file) do file = self.outDir .. "/" .. name:gsub("%.%a+$", " " .. k .. "." .. self.format); k = k + 1 end
                     end
                     if not (st and st.sig == sig and fs.exists(file)) then
                         if not v then rec = live(key); v = rec and rec.values end
@@ -428,7 +456,14 @@ function M.new(o)
                                 total, nImgs = total + #bytes, math.max(nImgs, k)
                                 return M.IMAGE_DIR .. "/" .. safe .. "-" .. k .. "." .. ext
                             end
-                            fs.write(file, render.article(vals, {}, notes, self.labels, { keyPoints = keyPoints, image = image }))
+                            if self.format == "epub" then
+                                local tags = {}
+                                for _, tg in ipairs(e.tg or {}) do tags[#tags + 1] = tg end
+                                fs.write(file, (epub.build(vals, notes, self.labels, { id = id, keyPoints = keyPoints, tags = tags, series = series,
+                                    seriesIndex = seriesIndex, imageMax = M.IMAGE_MAX, imagesMax = M.IMAGES_PER_ARTICLE, modified = M.isoToEpoch(e.ts) })))
+                            else
+                                fs.write(file, render.article(vals, {}, notes, self.labels, { keyPoints = keyPoints, image = image }))
+                            end
                             res.written[#res.written + 1] = file
                             st = { imgs = nImgs }
                         end
@@ -511,11 +546,10 @@ function M.new(o)
     end
     --- prefix / suffix (about 32 characters each, as the extension saves them) around `text` in an article's file.
     function self.quoteContext(id, text)
-        local st = self.state[id]
-        local html = st and fs.read(st.file)
-        if not html then return "", "" end
-        local body = html:match('<section class="aish%-article">(.*)</section>') or html
-        local _, plain = marks._index(body)
+        local r = live("article:" .. id)
+        local content = r and json.val(r.values.content)
+        if type(content) ~= "string" then return "", "" end
+        local _, plain = marks._index(render.clean(content))
         local q = marks.norm(text or "")
         local s = q ~= "" and plain:find(q, 1, true)
         if not s then return "", "" end
