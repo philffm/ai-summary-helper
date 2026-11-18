@@ -15,33 +15,64 @@ M.esc = esc
 
 --- Saved HTML is someone else's page: only what an e-reader shows is kept (no scripts, frames, forms, remote images,
 --- event handlers or javascript: links). KOReader runs no scripts, but the file should still be clean.
+-- tags dropped with everything inside them; tags dropped alone (their content stays)
+local DROP = {}
+for t in ("script style iframe object embed noscript template form svg math video audio canvas button select textarea head"):gmatch("%S+") do DROP[t] = true end
+local STRIP = {}
+for t in ("html body link meta base input picture source"):gmatch("%S+") do STRIP[t] = true end
+
+local function cleanAttrs(tag)
+    -- only tags that carry something to remove pay for the patterns
+    local low = tag:lower()
+    if not (low:find("%son%a+%s*=") or low:find("style", 1, true) or low:find("javascript:", 1, true) or low:find("data:", 1, true)) then return tag end
+    local open, attrs, close = tag:match("^(<%a[%w]*)(.-)(/?>)$")
+    if not open then return tag end
+    attrs = attrs:gsub('%s[oO][nN]%w+%s*=%s*"[^"]*"', ""):gsub("%s[oO][nN]%w+%s*=%s*'[^']*'", ""):gsub("%s[oO][nN]%w+%s*=%s*[^%s>]+", "")
+    attrs = attrs:gsub('%s[sS][tT][yY][lL][eE]%s*=%s*"[^"]*"', ""):gsub("%s[sS][tT][yY][lL][eE]%s*=%s*'[^']*'", "")
+    attrs = attrs:gsub('(%s[hH][rR][eE][fF]%s*=%s*")([^"]*)(")', function(x, url, y)
+        local u = url:lower()
+        if u:match("^%s*javascript:") or u:match("^%s*data:") then return "" end
+        return x .. url .. y
+    end)
+    return open .. attrs .. close
+end
+
+--- Saved HTML is someone else's page: only what an e-reader shows is kept (no scripts, frames, forms, remote images,
+--- event handlers or javascript: links). One pass over the tags: a long article takes a few milliseconds.
 function M.clean(html)
     html = tostring(html or "")
-    html = html:gsub("<!%-%-.-%-%->", "")
-    local function ci(t) return (t:gsub("%a", function(c) return "[" .. c:lower() .. c:upper() .. "]" end)) end
-    for _, t in ipairs({ "script", "style", "iframe", "object", "embed", "noscript", "template", "form", "svg", "math", "video", "audio", "canvas", "button", "select", "textarea" }) do
-        local n = ci(t)
-        html = html:gsub("<" .. n .. "[%s>].-</" .. n .. "%s*>", ""):gsub("<" .. n .. "[%s>/][^>]*>", ""):gsub("<" .. n .. ">", ""):gsub("</" .. n .. "%s*>", "")
+    local low = html:lower()
+    local out, n, pos, len = {}, 0, 1, #html
+    while pos <= len do
+        local lt = html:find("<", pos, true)
+        if not lt then n = n + 1; out[n] = html:sub(pos); break end
+        if lt > pos then n = n + 1; out[n] = html:sub(pos, lt - 1) end
+        if html:sub(lt, lt + 3) == "<!--" then
+            local e = html:find("-->", lt + 4, true)
+            pos = e and e + 3 or len + 1
+        else
+            local gt = html:find(">", lt + 1, true) or len
+            local tag = html:sub(lt, gt)
+            local closing, name = low:match("^<(/?)([%a][%w]*)", lt)
+            if not name then   -- a "<" that starts no tag: kept as text
+                n = n + 1; out[n] = "&lt;"; pos = lt + 1
+            elseif DROP[name] then
+                if closing == "" and not tag:find("/>$") then
+                    local e = low:find("</" .. name .. "%s*>", gt + 1)
+                    if e then pos = (low:find(">", e, true) or len) + 1 else pos = gt + 1 end
+                else pos = gt + 1 end
+            elseif STRIP[name] then pos = gt + 1
+            elseif name == "img" then   -- the reader cannot fetch images; their description stays
+                local alt = tag:match('%s[aA][lL][tT]="([^"]*)"') or tag:match("%s[aA][lL][tT]='([^']*)'")
+                if alt and alt ~= "" then n = n + 1; out[n] = '<span class="aish-img">[' .. alt .. "]</span>" end
+                pos = gt + 1
+            else
+                n = n + 1; out[n] = closing == "" and cleanAttrs(tag) or tag
+                pos = gt + 1
+            end
+        end
     end
-    html = html:gsub("<[/]?html[^>]*>", ""):gsub("<[/]?body[^>]*>", ""):gsub("<head[%s>].-</head>", "")
-    html = html:gsub("<link[^>]*>", ""):gsub("<meta[^>]*>", ""):gsub("<base[^>]*>", ""):gsub("<input[^>]*>", "")
-    -- images: the reader cannot fetch them; their description stays
-    html = html:gsub("<img[^>]*>", function(tag)
-        local alt = tag:match('%salt="([^"]*)"') or tag:match("%salt='([^']*)'")
-        return (alt and alt ~= "") and ('<span class="aish-img">[' .. alt .. "]</span>") or ""
-    end)
-    html = html:gsub("<picture[^>]*>", ""):gsub("</picture>", ""):gsub("<source[^>]*>", "")
-    -- attributes: drop handlers and inline styles, and links that are not web links
-    html = html:gsub("(<%a[%w]*)(%s[^>]*)>", function(open, attrs)
-        attrs = attrs:gsub('%s[oO][nN]%w+%s*=%s*"[^"]*"', ""):gsub("%s[oO][nN]%w+%s*=%s*'[^']*'", ""):gsub("%s[oO][nN]%w+%s*=%s*[^%s>]+", "")
-        attrs = attrs:gsub('%sstyle%s*=%s*"[^"]*"', ""):gsub("%sstyle%s*=%s*'[^']*'", "")
-        attrs = attrs:gsub('(%shref%s*=%s*")([^"]*)(")', function(a, url, b)
-            if url:match("^%s*[jJ][aA][vV][aA][sS][cC][rR][iI][pP][tT]:") or url:match("^%s*data:") then return "" end
-            return a .. url .. b
-        end)
-        return open .. attrs .. ">"
-    end)
-    return html
+    return table.concat(out)
 end
 
 local CSS = [[
@@ -108,8 +139,8 @@ function M.article(a, hls, notes, labels)
     table.sort(list, function(x, y) return (x.class or "") < (y.class or "") end)   -- yours first: they win where both overlap
 
     local body = M.clean(a.content)
-    local hasText = body:gsub("<[^>]*>", ""):match("%S") ~= nil
-    if hasText then body = marks.apply(body, list) end
+    local hasText = body:match("^%s*[^<%s]") ~= nil or body:find(">[^<]*[^<%s]") ~= nil
+    if hasText and #list > 0 then body = marks.apply(body, list) end
 
     local out = {}
     local function w(s) out[#out + 1] = s end

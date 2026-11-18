@@ -623,10 +623,14 @@ function AISH:pullAndWrite(store, meta, keys)
         end)
         if not res then return self:fail(T(_("Could not read the library:\n%1"), perr or "?")) end
         self:progress(_("Writing articles…"))
-        local m = lib.materialize(function(path) self:removeArticle(path) end)
+        local m = lib.materialize(function(path) self:removeArticle(path) end, function(done, total)
+            self:progress(T(_("Writing articles: %1 of %2…"), done, total))
+        end)
         self:updateCollections(m.collections, lib.files())
         -- highlights and notes of every article in KOReader ↔ AISH, then what changed here goes out
+        self:progress(_("Highlights and notes…"))
         local hl = self:reconcileAll(lib)
+        lib.flush()
         local sent = { pushed = 0, failed = {} }
         if lib.pendingCount() > 0 then
             self:progress(_("Sending changes…"))
@@ -737,12 +741,28 @@ function AISH:reconcileArticle(lib, id, ui)
     else
         local st = lib.state[id]
         if not st or not DocSettings:hasSidecarFile(st.file) then return nil end
+        -- nothing to do when neither the book's sidecar nor the article's highlights and comments changed since last time
+        local sidecar = DocSettings:findSidecarFile(st.file)
+        local mtime = sidecar and lfs.attributes(sidecar, "modification") or 0
+        local parts = {}
+        for _, h in ipairs(hls) do
+            parts[#parts + 1] = h.id .. ":" .. tostring(h.t) .. ":" .. tostring(h.dismissed) .. ":" .. tostring(o.gone[h.id])
+            local c = comments[h.id]
+            if c then parts[#parts + 1] = c.id .. ":" .. tostring(c.text) end
+        end
+        local sig = tostring(mtime) .. "|" .. table.concat(parts, ",")
+        self.seen = self.seen or self.settings:readSetting("reconciled") or {}
+        if self.seen[id] == sig then return nil end
         local ds = DocSettings:open(st.file)
         local items = ds:readSetting("annotations")
         if type(items) ~= "table" or #items == 0 then return nil end
         o.items = items
         act = Annots.reconcile(o)
-        if act.removed + act.notesHere + #act.create > 0 then ds:saveSetting("annotations", items); ds:flush() end
+        if act.removed + act.notesHere + #act.create > 0 then ds:saveSetting("annotations", items); ds:flush()
+            mtime = lfs.attributes(sidecar, "modification") or mtime
+            sig = tostring(mtime) .. "|" .. table.concat(parts, ",")
+        end
+        self.seen[id] = sig
     end
     Annots.apply(lib, id, act, base)
     return act
@@ -761,6 +781,7 @@ function AISH:reconcileAll(lib)
     end
     self.gone = nil
     self.reconciling = false
+    if self.seen then self.settings:saveSetting("reconciled", self.seen); self:save(); self.seen = nil end
     return total
 end
 
@@ -778,6 +799,7 @@ function AISH:onReaderReady()
             if art and not require("aishlib.json").val(art.values.readAt) then lib.edit("article:" .. id, { readAt = lib.isoNow() }) end
             self.reconciling = true
             self:reconcileArticle(lib, id, self.ui)
+            lib.flush()
         end)
         self.reconciling = false
         if not ok then logger.warn("AISH: on open", err) end
@@ -794,7 +816,7 @@ function AISH:onAnnotationsModified()
         self.reconcile_scheduled = false
         if not self.open_article or not (self.ui and self.ui.document) then return end
         self.reconciling = true
-        local ok, err = pcall(function() self:reconcileArticle(self:library(), self.open_article, self.ui) end)
+        local ok, err = pcall(function() local lib = self:library(); self:reconcileArticle(lib, self.open_article, self.ui); lib.flush() end)
         self.reconciling = false
         if not ok then logger.warn("AISH: highlights", err) end
     end)
@@ -809,6 +831,7 @@ function AISH:onCloseDocument()
         local lib = self:library()
         self.reconciling = true
         self:reconcileArticle(lib, id, self.ui)
+        lib.flush()
         self.reconciling = false
         if lib.pendingCount() > 0 and self.settings:nilOrTrue("send_on_close") and not self:isLocked() and NetworkMgr:isOnline() and not self.syncing then
             self.quiet = true

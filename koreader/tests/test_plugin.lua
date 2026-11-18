@@ -36,7 +36,7 @@ _G.G_reader_settings = LuaSettings:open("global"); G_reader_settings:saveSetting
 mod("datastorage", { getSettingsDir = function() return work .. "/settings" end, getDataDir = function() return work .. "/data" end })
 mod("dispatcher", { registerAction = function() end })
 mod("docsettings", { updateLocation = function() end,
-    hasSidecarFile = function(_, f) return sidecars[f] ~= nil end,
+    hasSidecarFile = function(_, f) return sidecars[f] ~= nil end, findSidecarFile = function() return nil end,
     open = function(_, f) sidecars[f] = sidecars[f] or {}; local d = sidecars[f]
         return { readSetting = function(_, k) return d[k] end, saveSetting = function(_, k, v) d[k] = v end, flush = saveSidecars } end })
 mod("ui/event", { new = function(_, name, args) return { name = name, args = args } end })
