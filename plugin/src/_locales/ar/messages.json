@@ -7648,5 +7648,11 @@
   },
   "f_article_sections_5e27": {
     "message": "أقسام المقال"
+  },
+  "f_save_code_as_file_koreader_3941": {
+    "message": "حفظ الرمز كملف (KOReader)"
+  },
+  "f_for_an_e_reader_with_koreade_cb0d": {
+    "message": "لقارئ إلكتروني مع KOReader: انسخ aish-library.txt إلى مجلده الرئيسي، ثم Tools → AISH library → Connect with a code. يحتوي الملف على بيانات دخولك: احذفه من هذا الحاسوب بعد ذلك."
   }
 }

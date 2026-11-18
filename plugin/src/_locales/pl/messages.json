@@ -7931,5 +7931,11 @@
   },
   "f_article_sections_5e27": {
     "message": "Sekcje artykułu"
+  },
+  "f_save_code_as_file_koreader_3941": {
+    "message": "Zapisz kod jako plik (KOReader)"
+  },
+  "f_for_an_e_reader_with_koreade_cb0d": {
+    "message": "Dla czytnika z KOReader: skopiuj aish-library.txt do jego folderu domowego, a potem Tools → AISH library → Connect with a code. Plik zawiera dane logowania: usuń go potem z tego komputera."
   }
 }

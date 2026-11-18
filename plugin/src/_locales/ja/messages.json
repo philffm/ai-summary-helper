@@ -7648,5 +7648,11 @@
   },
   "f_article_sections_5e27": {
     "message": "記事のセクション"
+  },
+  "f_save_code_as_file_koreader_3941": {
+    "message": "コードをファイルとして保存（KOReader）"
+  },
+  "f_for_an_e_reader_with_koreade_cb0d": {
+    "message": "KOReader 搭載の電子書籍リーダーの場合：aish-library.txt をホームフォルダにコピーし、Tools → AISH library → Connect with a code を選びます。ファイルにはログイン情報が含まれるため、後でこのコンピューターから削除してください。"
   }
 }

@@ -7931,5 +7931,11 @@
   },
   "f_article_sections_5e27": {
     "message": "Розділи статті"
+  },
+  "f_save_code_as_file_koreader_3941": {
+    "message": "Зберегти код у файл (KOReader)"
+  },
+  "f_for_an_e_reader_with_koreade_cb0d": {
+    "message": "Для електронної книги з KOReader: скопіюйте aish-library.txt у її домашню теку, потім Tools → AISH library → Connect with a code. Файл містить ваші дані для входу: потім видаліть його з цього комп’ютера."
   }
 }

@@ -7931,5 +7931,11 @@
   },
   "f_article_sections_5e27": {
     "message": "Makale bölümleri"
+  },
+  "f_save_code_as_file_koreader_3941": {
+    "message": "Kodu dosya olarak kaydet (KOReader)"
+  },
+  "f_for_an_e_reader_with_koreade_cb0d": {
+    "message": "KOReader yüklü bir e-okuyucu için: aish-library.txt dosyasını ana klasörüne kopyalayın, ardından Tools → AISH library → Connect with a code. Dosya giriş bilgilerinizi içerir: sonra bu bilgisayardan silin."
   }
 }

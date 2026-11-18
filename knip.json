@@ -21,7 +21,7 @@
     "design-system/*.mjs"
   ],
   "project": ["plugin/src/**/*.js", "plugin/tests/**/*.{mjs,cjs}", "plugin/scripts/**/*.{js,mjs}", "scripts/**/*.mjs", "design-system/*.mjs"],
-  "ignore": ["plugin/src/lib/**", "plugin/dev/**", "plugin/dist/**", "plugin/prod/**", "docs/**", "mcp/**", "mobile/**"],
+  "ignore": ["plugin/src/lib/**", "plugin/dev/**", "plugin/dist/**", "plugin/prod/**", "docs/**", "mcp/**", "mobile/**", "koreader/**"],
   "ignoreExportsUsedInFile": true,
   "rules": { "files": "error", "exports": "warn", "types": "off", "dependencies": "warn", "unlisted": "warn", "duplicates": "warn" }
 }

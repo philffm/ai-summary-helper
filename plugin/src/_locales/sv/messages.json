@@ -7931,5 +7931,11 @@
   },
   "f_article_sections_5e27": {
     "message": "Artikelns delar"
+  },
+  "f_save_code_as_file_koreader_3941": {
+    "message": "Spara koden som fil (KOReader)"
+  },
+  "f_for_an_e_reader_with_koreade_cb0d": {
+    "message": "För en läsplatta med KOReader: kopiera aish-library.txt till dess hemmapp och välj sedan Tools → AISH library → Connect with a code. Filen innehåller din inloggning: radera den från den här datorn efteråt."
   }
 }
