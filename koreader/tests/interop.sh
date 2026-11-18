@@ -9,7 +9,7 @@ mkdir -p "$work/dav/My Library"
 cat > "$work/dav.yaml" <<YAML
 host: 127.0.0.1
 port: 8766
-provider_mapping: { "/": "$work/dav" }
+provider_mapping: { "/": "$work/dav", "/remote.php/dav/files/phil": "$work/dav" }
 http_authenticator: { domain_controller: null, accept_basic: true, accept_digest: false, default_to_digest: false }
 simple_dc: { user_mapping: { "*": { "phil": { password: "app pass/ü" } } } }
 verbose: 1
@@ -40,4 +40,5 @@ console.log("BROWSER SEES THE READER OK");
 ' "$work/report.json"
 node "$here/browser-step.mjs" "$work/place/browser.json" "$work/dav/My Library" edit > /dev/null
 AISH_PHASE=plugin2 luajit "$here/test_plugin.lua"
+AISH_PHASE=plugin3 luajit "$here/test_plugin.lua"
 echo "INTEROP OK"

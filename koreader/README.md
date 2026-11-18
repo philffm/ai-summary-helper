@@ -37,23 +37,47 @@ Feed stubs (feed items not summarized yet) are left out. Images are not download
 
 ## Connect
 
-In the extension: **Settings → Sync & backup →** your *encrypted* place **→ Show code for the phone →
-Save code as file (KOReader)**. That saves `aish-library.txt` (the code `aish-library://v1?…`). Then either
+**With Nextcloud (recommended): Tools → AISH library → Connect with Nextcloud (QR code).** Enter the address of your
+Nextcloud and the folder of the AISH place. The reader shows a QR code: scan it with your phone, log in there and allow
+access. The reader gets **its own login** ("AISH KOReader" in Nextcloud → Settings → Security → Devices & sessions);
+nothing is typed on the reader. Then it asks once for the passphrase of the library.
 
-- copy **`aish-library.txt`** into KOReader's home folder (over USB) and choose **Connect with a code**.
-  The file is deleted after reading (it holds your login); delete it from the computer too, or
-- paste the code into the dialog of **Connect with a code** (KOReader on Android), or
+Other ways:
+
+- **Connect with a code**: in the extension, **Settings → Sync & backup →** your *encrypted* place **→ Show code for the
+  phone → Save code as file (KOReader)**. Copy `aish-library.txt` into KOReader's home folder (over USB) and choose
+  *Connect with a code*; the file is deleted after reading (it holds your login), delete it from the computer too.
+  On KOReader for Android the code can also be pasted.
 - **Connect manually**: WebDAV address (Nextcloud: `https://host/remote.php/dav/files/<user>/`), user, app password, folder.
 
-When the code carries the suggested words, the library unlocks right away; otherwise KOReader asks for the passphrase once.
-
 **Sync now** in the menu, or put **AISH: sync library** on a gesture (Settings → Taps and gestures).
+
+## If the reader is lost
+
+1. In Nextcloud: **Settings → Security → Devices & sessions → AISH KOReader → Wipe device**. The reader's login stops
+   working at once. The next time the reader is online, the plugin asks Nextcloud, deletes the AISH articles, the
+   library data, the login and the key, and tells Nextcloud it is done
+   ([Nextcloud remote wipe](https://docs.nextcloud.com/server/stable/developer_manual/client_apis/RemoteWipe/index.html)).
+   This needs the login made with *Connect with Nextcloud*; a login from a code or typed by hand can only be revoked.
+2. If you also distrust the library key that was on the reader: set the encrypted place up again in the extension
+   (new key) and connect your devices again.
+
+**Give the reader as little as possible:** a Nextcloud login reaches the whole account (files, calendar, contacts).
+Make a Nextcloud user just for the reader (e.g. `phil-reader`), share only the AISH folder with it (with edit rights),
+and log the reader in as that user. A lost reader then exposes only that folder, and its content is encrypted.
+
+**PIN (optional): Protect login and key with a PIN.** The login and the library key are sealed with a PIN of at least 6
+digits (PBKDF2-SHA256, 600,000 rounds → AES-256-GCM); KOReader asks for it once after each start, when the library is
+synced. It keeps the settings of a lost reader from giving away your login. Honestly: someone with the copied files and
+enough computing power can still try every 6-digit PIN, and the articles already on the reader stay readable (KOReader
+opens them as plain files, and e-readers do not encrypt their storage).
 
 ## Security
 
 - Decryption happens on the reader with KOReader's own libcrypto (LibreSSL) and zlib, the same scheme as the extension:
   PBKDF2-SHA256 (600,000 rounds) → HKDF → AES-256-GCM. The passphrase is not saved; the key derived from it is
-  (in KOReader's settings), so later syncs do not repeat the key derivation. **Disconnect** forgets login and key.
+  (in KOReader's settings, sealed when the PIN is on), so later syncs do not repeat the key derivation.
+  **Disconnect** forgets login and key, and gives a Nextcloud login made by QR code back to Nextcloud.
 - The articles on the reader are plain HTML files, as with any other book on the device.
 - Each record is checked: a file whose name does not match the record inside (copied or swapped on the server) is refused.
 - The reader writes only what you changed on it (highlights, comments, read marks); it never deletes files on the server.
