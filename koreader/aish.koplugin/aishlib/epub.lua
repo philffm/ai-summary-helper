@@ -4,7 +4,8 @@ information in its lists, the cover view and "Book information":
 
   title · author (the byline, else the site) · publisher (the site) · date saved · language · source (the URL)
   description = the AI summary as text · keywords = the AISH tags · series = the first AISH collection
-  cover = the first image saved with the article · table of contents = Summary · the article's headings · Key points · Notes
+  cover = made for the article (o.cover, drawn by KOReader on the reader): always the title, the site and date, and the
+          article's best image when it has one (never an icon or logo) · table of contents = Summary · headings · Key points · Notes
 
 The text is the same as the HTML version (render.lua), written as well-formed XHTML; images go inside the file.
 
@@ -68,7 +69,7 @@ o = { id, keyPoints, tags = { … }, series, seriesIndex, imageMax, imagesMax, m
 function M.build(a, notes, labels, o)
     o = o or {}
     local images, total = {}, 0
-    local function image(mime, b64, n)
+    local function image(mime, b64, n, alt)
         local ext = EXT[mime]
         local size = math.floor(#b64 * 3 / 4)
         if not ext or size > (o.imageMax or math.huge) or total + size > (o.imagesMax or math.huge) then return nil end
@@ -76,7 +77,7 @@ function M.build(a, notes, labels, o)
         if not bytes then return nil end
         total = total + #bytes
         local name = "images/" .. n .. "." .. ext
-        images[#images + 1] = { name = name, data = bytes, mime = MIME[ext], id = "img" .. n }
+        images[#images + 1] = { name = name, data = bytes, mime = MIME[ext], id = "img" .. n, alt = alt }
         return name
     end
     local html = render.article(a, nil, notes, labels, { keyPoints = o.keyPoints, image = image })
@@ -151,10 +152,21 @@ function M.build(a, notes, labels, o)
         '<item id="ncx" href="toc.ncx" media-type="application/x-dtbncx+xml"/>',
         '<item id="css" href="style.css" media-type="text/css"/>',
     }
-    for i, img in ipairs(images) do
-        manifest[#manifest + 1] = '<item id="' .. img.id .. '" href="' .. img.name .. '" media-type="' .. img.mime .. '"' .. (i == 1 and ' properties="cover-image"' or "") .. "/>"
+    for _, img in ipairs(images) do
+        manifest[#manifest + 1] = '<item id="' .. img.id .. '" href="' .. img.name .. '" media-type="' .. img.mime .. '"/>'
     end
-    if images[1] then meta[#meta + 1] = '<meta name="cover" content="' .. images[1].id .. '"/>' end
+    -- the cover: one layout for every article (title always there); without a renderer, KOReader draws its own title cover
+    local coverPng
+    if o.cover then
+        local pick = require("aishlib.imgsize").pickCover(images)
+        local ok, png = pcall(o.cover, { title = title, site = site, author = author ~= site and author or nil, date = date,
+            summary = plainText(a.summaryBase or a.summary, 400), image = pick and images[pick].data or nil, tags = o.tags })
+        if ok and type(png) == "string" and png:sub(1, 4) == "\137PNG" then coverPng = png end
+    end
+    if coverPng then
+        manifest[#manifest + 1] = '<item id="cover" href="images/cover.png" media-type="image/png" properties="cover-image"/>'
+        meta[#meta + 1] = '<meta name="cover" content="cover"/>'
+    end
     local opf = '<?xml version="1.0" encoding="UTF-8"?>\n<package xmlns="http://www.idpf.org/2007/opf" version="3.0" unique-identifier="uid" xml:lang="' .. x(lang) .. '">'
         .. '<metadata xmlns:dc="http://purl.org/dc/elements/1.1/">' .. table.concat(meta) .. "</metadata>"
         .. "<manifest>" .. table.concat(manifest) .. "</manifest>"
@@ -169,6 +181,7 @@ function M.build(a, notes, labels, o)
         { name = "OEBPS/style.css", data = css },
         { name = "OEBPS/article.xhtml", data = xhtml },
     }
+    if coverPng then entries[#entries + 1] = { name = "OEBPS/images/cover.png", data = coverPng, store = true } end
     for _, img in ipairs(images) do
         -- images are compressed already: stored
         entries[#entries + 1] = { name = "OEBPS/" .. img.name, data = img.data, store = true }

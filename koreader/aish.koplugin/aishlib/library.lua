@@ -28,7 +28,7 @@ local M = {}
 local TYPES = { article = true, hl = true, coll = true, note = true }
 local KEY_RX = "^(%a+):([%w_%.:%-]+)$"
 M.RECORD_DIR = "r"
-M.RENDER_VERSION = "3"   -- 2: no marks in the text (KOReader's highlights keep their place); 3: chapters, key points, images
+M.RENDER_VERSION = "4"   -- 2: no marks in the text (KOReader's highlights keep their place); 3: chapters, key points, images; 4: made covers
 M.IMAGE_MAX = 3 * 1024 * 1024          -- one image (bytes); larger ones keep only their description
 M.IMAGES_PER_ARTICLE = 12 * 1024 * 1024
 M.IMAGE_DIR = ".images"                 -- hidden in KOReader's file browser
@@ -77,6 +77,7 @@ function M.new(o)
     local self = { store = o.store, fs = o.fs, dataDir = o.dataDir, outDir = o.outDir, labels = o.labels or {} }
     local fs = o.fs
     self.format = o.format == "html" and "html" or "epub"   -- EPUB: book information, cover, table of contents
+    self.cover = o.cover    -- function(info) → PNG bytes: draws an article's cover (KOReader on the reader)
     fs.mkdirp(self.dataDir .. "/records")
 
     local function readJson(path)
@@ -460,7 +461,7 @@ function M.new(o)
                                 local tags = {}
                                 for _, tg in ipairs(e.tg or {}) do tags[#tags + 1] = tg end
                                 fs.write(file, (epub.build(vals, notes, self.labels, { id = id, keyPoints = keyPoints, tags = tags, series = series,
-                                    seriesIndex = seriesIndex, imageMax = M.IMAGE_MAX, imagesMax = M.IMAGES_PER_ARTICLE, modified = M.isoToEpoch(e.ts) })))
+                                    seriesIndex = seriesIndex, imageMax = M.IMAGE_MAX, imagesMax = M.IMAGES_PER_ARTICLE, modified = M.isoToEpoch(e.ts), cover = self.cover })))
                             else
                                 fs.write(file, render.article(vals, {}, notes, self.labels, { keyPoints = keyPoints, image = image }))
                             end

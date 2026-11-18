@@ -616,6 +616,7 @@ end
 function AISH:library(store)
     return require("aishlib.library").new({
         store = store, fs = fs, dataDir = self.data_dir, outDir = self:outDir(), format = self.settings:readSetting("format") or "epub",
+        cover = function(info) return self:makeCover(info) end,
         labels = { summary = _("Summary"), notes = _("Notes"), noText = _("The full text of this article was not saved in AISH.") },
     })
 end
@@ -751,6 +752,79 @@ function AISH:pullAndWrite(store, meta, keys)
         notify(text, (#res.failed + #sent.failed) > 0 and nil or 4)
     end)
     if not ok then logger.err("AISH: sync failed", err); self.quiet = false; self:fail(T(_("Sync failed:\n%1"), tostring(err))) end
+end
+
+-- ── covers ──────────────────────────────────────────────────────────────────
+--[[--
+One layout for every article's cover, drawn with KOReader's own fonts (600 × 800, grey levels for e-ink):
+  a black band with the site and the date · the title, large · the article's best image, or the start of the summary
+  · a thin rule and "AISH" at the foot. The title is always there; KOReader fits it by shrinking the font.
+]]
+function AISH:makeCover(info)
+    local Blitbuffer = require("ffi/blitbuffer")
+    local Font = require("ui/font")
+    local TextBoxWidget = require("ui/widget/textboxwidget")
+    local W, H, M = 600, 800, 36
+    local bb = Blitbuffer.new(W, H, Blitbuffer.TYPE_BB8)
+    bb:fill(Blitbuffer.COLOR_WHITE)
+    local function text(t, face, size, width, opts)
+        opts = opts or {}
+        local w = TextBoxWidget:new{ text = t, face = Font:getFace(face, size), width = width, alignment = opts.align or "left",
+            bold = opts.bold, fgcolor = opts.color, bgcolor = opts.bg, height = opts.height, height_overflow_show_ellipsis = opts.height ~= nil }
+        return w
+    end
+    -- the band: site · date
+    bb:paintRect(0, 0, W, 64, Blitbuffer.COLOR_BLACK)
+    local band = text(((info.site or ""):upper() .. (info.date and ("   " .. info.date) or "")), "cfont", 20, W - 2 * M, { color = Blitbuffer.COLOR_WHITE, bg = Blitbuffer.COLOR_BLACK, bold = true })
+    band:paintTo(bb, M, 20); band:free()
+    -- the title: as large as fits in its area
+    local imageH = info.image and 330 or 0
+    local titleTop, titleMax = 96, H - 96 - 80 - imageH - (info.image and 24 or 140)
+    local size, title = 52
+    while true do
+        title = text(info.title or "", "tfont", size, W - 2 * M, { bold = true })
+        if title:getSize().h <= titleMax or size <= 22 then break end
+        title:free(); size = size - 4
+    end
+    if title:getSize().h > titleMax then title:free(); title = text(info.title or "", "tfont", size, W - 2 * M, { bold = true, height = titleMax }) end
+    title:paintTo(bb, M, titleTop)
+    local y = titleTop + title:getSize().h + 24
+    title:free()
+    if info.author and info.author ~= "" then
+        local by = text(info.author, "cfont", 20, W - 2 * M, { color = Blitbuffer.COLOR_DARK_GRAY })
+        by:paintTo(bb, M, y); y = y + by:getSize().h + 16; by:free()
+    end
+    -- the image (fitted, centred) or the start of the summary
+    local drawn = false
+    if info.image then
+        local ok = pcall(function()
+            local iw, ih = require("aishlib.imgsize").size(info.image)
+            local boxW, boxH = W - 2 * M, H - 80 - y - 16
+            local scale = math.min(boxW / iw, boxH / ih)
+            local tw, th = math.floor(iw * scale), math.floor(ih * scale)
+            local img = require("ui/renderimage"):renderImageData(info.image, #info.image, false, tw, th)
+            if img then
+                bb:blitFrom(img, M + math.floor((boxW - img:getWidth()) / 2), y + math.floor((boxH - img:getHeight()) / 2), 0, 0, img:getWidth(), img:getHeight())
+                img:free(); drawn = true
+            end
+        end)
+        if not ok then drawn = false end
+    end
+    if not drawn and info.summary and info.summary ~= "" then
+        local sum = text(info.summary, "cfont", 22, W - 2 * M, { height = H - 80 - y - 16, color = Blitbuffer.COLOR_DARK_GRAY })
+        sum:paintTo(bb, M, y); sum:free()
+    end
+    -- the foot
+    bb:paintRect(M, H - 64, W - 2 * M, 2, Blitbuffer.COLOR_BLACK)
+    local foot = text("AISH", "cfont", 18, W - 2 * M, { align = "right", bold = true })
+    foot:paintTo(bb, M, H - 52); foot:free()
+    local tmp = self.data_dir .. "/cover.tmp.png"
+    util.makePath(self.data_dir)
+    bb:writePNG(tmp)
+    bb:free()
+    local png = fs.read(tmp)
+    os.remove(tmp)
+    return png
 end
 
 -- ── KOReader's highlights ───────────────────────────────────────────────────

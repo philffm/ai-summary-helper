@@ -68,7 +68,7 @@ function M.clean(html, image)
                 local alt = tag:match('%s[aA][lL][tT]="([^"]*)"') or tag:match("%s[aA][lL][tT]='([^']*)'")
                 local mime, b64 = tag:match('%s[sS][rR][cC]%s*=%s*["\']data:image/([%w%.%+%-]+);base64,([A-Za-z0-9+/=%s]+)["\']')
                 local src
-                if mime and image then nImg = nImg + 1; src = image(mime:lower(), b64, nImg) end
+                if mime and image then nImg = nImg + 1; src = image(mime:lower(), b64, nImg, alt) end
                 if src then
                     n = n + 1; out[n] = '<img src="' .. src .. '"' .. (alt and (' alt="' .. alt:gsub('"', "&quot;") .. '"') or "") .. "/>"
                 elseif alt and alt ~= "" then n = n + 1; out[n] = '<span class="aish-img">[' .. alt .. "]</span>" end

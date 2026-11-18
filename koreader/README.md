@@ -10,7 +10,9 @@ Highlights and notes go **both ways**: what you mark on the reader appears in th
 
 - a folder `AISH` in KOReader's home folder, **one EPUB per article** with real **book information**: the source as
   author and publisher, the date saved, the language, the **AISH tags as keywords**, the **AI summary as description**,
-  the first **AISH collection as series** (numbered by date), the **first image as cover** (the cover view shows it), and a
+  the first **AISH collection as series** (numbered by date), a **cover made for each article** (always the title, with
+  the site and date, and the article's best picture when it has one: icons, logos, avatars and tiny images are never
+  used; otherwise the start of the summary), and a
   **table of contents**: **Summary** · the article's own headings · **Key points** (the AI highlights) · **Notes** (your
   notes on the article). Images the extension saved with the article are inside the file (at most 3 MB each, 12 MB per
   article). EPUB is compressed: a text-only article takes a fraction of the HTML's size. Plain HTML files instead:

@@ -223,7 +223,7 @@ assert(fsu.mtime(sleepFile) == require("aishlib.library").isoToEpoch("2026-11-02
 -- the EPUB: text with the image inside, book information, table of contents
 local xhtml, opf, nav = unzipText(sleepFile, "OEBPS/article.xhtml"), unzipText(sleepFile, "OEBPS/content.opf"), unzipText(sleepFile, "OEBPS/nav.xhtml")
 assert(xhtml:find('<img src="images/1.png" alt="A tiny chart"/>', 1, true) and unzipText(sleepFile, "OEBPS/images/1.png"):sub(2, 4) == "PNG", "image inside the EPUB")
-assert(opf:find('properties="cover-image"', 1, true), "the image is the cover")
+assert(not opf:find("cover-image", 1, true), "a 1-pixel image is never the cover (and KOReader's drawing is not available here)")
 assert(opf:find("<dc:title>Why we sleep: what the new studies show</dc:title>", 1, true) and opf:find("<dc:publisher>science.example</dc:publisher>", 1, true), "title, site")
 assert(opf:find("<dc:subject>science</dc:subject>", 1, true) and opf:find("<dc:date>2026-11-02</dc:date>", 1, true), "tags, date saved")
 assert(opf:find("<dc:description>• Sleep consolidates memory.</dc:description>", 1, true), "summary as description")
