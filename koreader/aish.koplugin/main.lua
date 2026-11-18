@@ -720,6 +720,10 @@ end
 
 function AISH:pullAndWrite(store, meta, keys)
     local ok, err = pcall(function()
+        local clock = os.time()
+        local times = {}
+        local function lap(name) local now = os.time(); times[#times + 1] = name .. " " .. (now - clock) .. " s"; clock = now end
+        self.cover_time, self.covers_drawn, self.covers_used = 0, 0, {}
         local lib = self:library(store)
         lib.resetIfNewPlace(meta.salt)
         self:progress(_("Looking for changes…"))
@@ -731,14 +735,20 @@ function AISH:pullAndWrite(store, meta, keys)
             end
         end)
         if not res then return self:fail(T(_("Could not read the library:\n%1"), perr or "?")) end
-        self:progress(_("Writing articles…"))
-        local m = lib.materialize(function(path) self:removeArticle(path) end, function(done, total)
-            self:progress(T(_("Writing articles: %1 of %2…"), done, total))
-        end)
+        lap("download")
+        local m = { articles = 0, written = {}, removed = {} }
+        if not self.fresh then   -- before "download everything again" deletes them, the files need no rewriting
+            self:progress(_("Writing articles…"))
+            m = lib.materialize(function(path) self:removeArticle(path) end, function(done, total)
+                self:progress(T(_("Writing articles: %1 of %2…"), done, total))
+            end)
+            lap("write (" .. #m.written .. " files, " .. self.covers_drawn .. " covers drawn in " .. math.floor(self.cover_time) .. " s)")
+        end
         -- highlights and notes of every article in KOReader ↔ AISH, then what changed here goes out
         self:progress(_("Highlights and notes…"))
         local hl = self:reconcileAll(lib)
         lib.flush()
+        lap("highlights")
         local sent = { pushed = 0, failed = {} }
         if lib.pendingCount() > 0 then
             self:progress(_("Sending changes…"))
@@ -759,6 +769,9 @@ function AISH:pullAndWrite(store, meta, keys)
         -- the collections last: read marks and finished books from this very sync are in them (a second pass reads only the index)
         local m2 = lib.materialize(function(path) self:removeArticle(path) end)
         self:updateCollections(m2, lib.files())
+        lap("collections")
+        if #m.written > 0 then self:pruneCovers() end
+        logger.info("AISH: sync took", table.concat(times, ", "))
         self.settings:saveSetting("last_sync", { time = os.time(), articles = m.articles, pending = lib.pendingCount() }); self:save()
         self:endProgress()
         local FileManager = require("apps/filemanager/filemanager")
@@ -791,7 +804,39 @@ One layout for every article's cover, drawn with KOReader's own fonts (600 × 80
   a black band with the site and the date · the title, large · the article's best image, or the start of the summary
   · a thin rule and "AISH" at the foot. The title is always there; KOReader fits it by shrinking the font.
 ]]
+local COVER_VERSION = "2"   -- the layout; a change draws every cover again
+
+--- The cover for `info`: from the cache when the same cover was drawn before (a new download of the library, a sync that
+--- rewrites the files for another reason), else drawn. The cache lives outside the library data, so "Download everything
+--- again" keeps it.
 function AISH:makeCover(info)
+    local C = require("aishlib.crypto")
+    local parts = { COVER_VERSION, info.title or "", info.site or "", info.author or "", info.date or "", info.summary or "",
+        table.concat(info.tags or {}, "\1"), info.image and C.toHex(C.hmac("img", info.image)) or "" }
+    local key = C.toHex(C.hmac("aish-cover", table.concat(parts, "\0"))):sub(1, 32)
+    local dir = DataStorage:getDataDir() .. "/aish-covers"
+    local path = dir .. "/" .. key .. ".jpg"
+    self.covers_used = self.covers_used or {}
+    self.covers_used[key .. ".jpg"] = true
+    local cached = fs.read(path)
+    if cached then return cached end
+    local t0 = os.clock()
+    local bytes = self:drawCover(info, dir, path)
+    self.cover_time = (self.cover_time or 0) + (os.clock() - t0)
+    self.covers_drawn = (self.covers_drawn or 0) + 1
+    return bytes
+end
+
+--- Cover files no article uses any more (only after a run that looked at every article).
+function AISH:pruneCovers()
+    local dir = DataStorage:getDataDir() .. "/aish-covers"
+    if not self.covers_used or lfs.attributes(dir, "mode") ~= "directory" then return end
+    for f in lfs.dir(dir) do
+        if f:match("%.jpg$") and not self.covers_used[f] then os.remove(dir .. "/" .. f) end
+    end
+end
+
+function AISH:drawCover(info, dir, path)
     local Blitbuffer = require("ffi/blitbuffer")
     local Font = require("ui/font")
     local TextBoxWidget = require("ui/widget/textboxwidget")
@@ -872,13 +917,19 @@ function AISH:makeCover(info)
             max_width = W - 2 * M - bs.w - 24, truncate_with_ellipsis = true }
         tw:paintTo(bb, M, H - 52); tw:free()
     end
-    local tmp = self.data_dir .. "/cover.tmp.png"
-    util.makePath(self.data_dir)
-    bb:writePNG(tmp)
+    -- JPEG through TurboJPEG: many times faster than KOReader's PNG writer, and smaller
+    util.makePath(dir)
+    local ok = pcall(function()
+        local ffi = require("ffi")
+        local rgb = Blitbuffer.new(W, H, Blitbuffer.TYPE_BBRGB24)
+        rgb:blitFrom(bb)
+        local done, err = require("ffi/jpeg").encodeToFile(path, ffi.cast("uint8_t*", rgb.data), W, H, 3, 82, rgb.stride)
+        rgb:free()
+        assert(done, err)
+    end)
+    if not ok then bb:writePNG(path) end   -- older builds without the JPEG writer
     bb:free()
-    local png = fs.read(tmp)
-    os.remove(tmp)
-    return png
+    return fs.read(path)
 end
 
 -- ── KOReader's highlights ───────────────────────────────────────────────────

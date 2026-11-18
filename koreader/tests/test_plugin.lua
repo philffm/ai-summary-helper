@@ -69,7 +69,8 @@ mod("libs/libkoreader-lfs", { attributes = function(p, what)
     if what == "modification" then return fsu.mtime(p) end
     if fsu.exists(p) then return "file" end
     return os.execute("test -d '" .. p .. "'") == 0 and "directory" or nil end,
-    touch = function(p, _, m) fsu.touch(p, m) end })
+    touch = function(p, _, m) fsu.touch(p, m) end,
+    dir = function(d) local l = fsu.ls(d); local i = 0; return function() i = i + 1; return l[i] end end })
 local opened = {}
 mod("apps/reader/readerui", { showReader = function(_, f) opened[#opened + 1] = f end })
 mod("logger", { info = function() end, warn = print, err = print, dbg = function() end })
@@ -211,6 +212,12 @@ if phase == "plugin2" then
     sidecars[sleepFile].annotations[#sidecars[sleepFile].annotations + 1] = { text = "the connections between neurons", drawer = "lighten", pos0 = "xp:9", pos1 = "xp:10", page = "xp:9" }
     saveSidecars()
     local before = fsu.read(work .. "/data/aish/index.json")
+    -- covers: drawn once, then taken from the cache (a stand-in for KOReader's drawing)
+    local drawn = 0
+    plugin.drawCover = function(_, info, dir, path)
+        drawn = drawn + 1; fsu.mkdirp(dir)
+        fsu.write(path, "\255\216\255\224" .. info.title); return fsu.read(path)
+    end
     shown = {}
     plugin:downloadAgain(); press("Download again")
     assert(shown[#shown].text:find("AISH library: 2 articles.\n2 new or updated", 1, true), "downloaded again: " .. tostring(shown[#shown].text))
@@ -220,6 +227,12 @@ if phase == "plugin2" then
     for __, h in ipairs(hls) do if h.text == "the connections between neurons" then found = true end end
     assert(found, "the reader's new highlight was sent before starting over, and came back")
     assert(fsu.read(work .. "/data/aish/index.json") ~= before and lib.pendingCount() == 0)
+    assert(drawn == 2, "a cover drawn per article: " .. drawn)
+    assert(unzipText(sleepFile, "OEBPS/content.opf"):find('href="images/cover.jpg"', 1, true), "the drawn cover is in the EPUB")
+    shown = {}
+    plugin:downloadAgain(); press("Download again")
+    assert(drawn == 2, "downloaded again: the covers come from the cache, nothing is drawn")
+    assert(#fsu.ls(work .. "/data/aish-covers") == 2, "the cache holds the covers in use")
     print("TEST plugin2 OK")
     os.exit(0)
 end

@@ -47,3 +47,10 @@ assert(E.coverTitle("Climate: what now") == "Climate: what now", "a colon inside
 assert(E.coverTitle("", "science.example") == "science.example")
 assert(E.coverTitle("The long road to fusion power – Nature") == "The long road to fusion power", "en dash")
 assert(E.coverTitle("Some article title here — Le Monde diplomatique") == "Some article title here", "em dash")
+-- a JPEG cover (how KOReader writes them: fast) goes in as cover.jpg
+local dir2 = os.tmpname(); os.remove(dir2); os.execute("mkdir -p " .. dir2)
+local jb = E.build(a, {}, {}, { id = "a5", cover = function() return jpeg(600, 800, 100) end })
+local f2 = io.open(dir2 .. "/t.epub", "wb"); f2:write(jb); f2:close()
+local p2 = io.popen("unzip -p " .. dir2 .. "/t.epub OEBPS/content.opf"); local opf2 = p2:read("*a"); p2:close()
+assert(opf2:find('<item id="cover" href="images/cover.jpg" media-type="image/jpeg" properties="cover-image"/>', 1, true), "JPEG cover")
+os.execute("rm -rf " .. dir2)

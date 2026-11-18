@@ -189,10 +189,11 @@ function M.build(a, notes, labels, o)
         local pick = require("aishlib.imgsize").pickCover(images)
         local ok, png = pcall(o.cover, { title = title, site = site, author = author ~= site and author or nil, date = date,
             summary = plainText(a.summaryBase or a.summary, 400), image = pick and images[pick].data or nil, tags = o.tags })
-        if ok and type(png) == "string" and png:sub(1, 4) == "\137PNG" then coverPng = png end
+        if ok and type(png) == "string" and (png:sub(1, 4) == "\137PNG" or png:sub(1, 2) == "\255\216") then coverPng = png end
     end
+    local coverName = coverPng and (coverPng:sub(1, 2) == "\255\216" and "images/cover.jpg" or "images/cover.png")
     if coverPng then
-        manifest[#manifest + 1] = '<item id="cover" href="images/cover.png" media-type="image/png" properties="cover-image"/>'
+        manifest[#manifest + 1] = '<item id="cover" href="' .. coverName .. '" media-type="' .. (coverName:find("jpg$") and "image/jpeg" or "image/png") .. '" properties="cover-image"/>'
         meta[#meta + 1] = '<meta name="cover" content="cover"/>'
     end
     local opf = '<?xml version="1.0" encoding="UTF-8"?>\n<package xmlns="http://www.idpf.org/2007/opf" version="3.0" unique-identifier="uid" xml:lang="' .. x(lang) .. '">'
@@ -209,7 +210,7 @@ function M.build(a, notes, labels, o)
         { name = "OEBPS/style.css", data = css },
         { name = "OEBPS/article.xhtml", data = xhtml },
     }
-    if coverPng then entries[#entries + 1] = { name = "OEBPS/images/cover.png", data = coverPng, store = true } end
+    if coverPng then entries[#entries + 1] = { name = "OEBPS/" .. coverName, data = coverPng, store = true } end
     for _, img in ipairs(images) do
         -- images are compressed already: stored
         entries[#entries + 1] = { name = "OEBPS/" .. img.name, data = img.data, store = true }
