@@ -804,20 +804,32 @@ function AISH:makeCover(info)
             bold = opts.bold, fgcolor = opts.color, bgcolor = opts.bg, height = opts.height, height_overflow_show_ellipsis = opts.height ~= nil }
         return w
     end
-    -- the band: site · date
-    bb:paintRect(0, 0, W, 64, Blitbuffer.COLOR_BLACK)
-    local band = text(((info.site or ""):upper() .. (info.date and ("   " .. info.date) or "")), "cfont", 20, W - 2 * M, { color = Blitbuffer.COLOR_WHITE, bg = Blitbuffer.COLOR_BLACK, bold = true })
-    band:paintTo(bb, M, 20); band:free()
+    -- the band: site on the left, date on the right, one line (a long site name is cut with "…", never wrapped)
+    local TextWidget = require("ui/widget/textwidget")
+    local BAND = 64
+    bb:paintRect(0, 0, W, BAND, Blitbuffer.COLOR_BLACK)
+    local dateW = 0
+    if info.date and info.date ~= "" then
+        local d = TextWidget:new{ text = info.date, face = Font:getFace("cfont", 20), bold = true, fgcolor = Blitbuffer.COLOR_WHITE }
+        local ds = d:getSize()
+        d:paintTo(bb, W - M - ds.w, math.floor((BAND - ds.h) / 2)); dateW = ds.w + 24; d:free()
+    end
+    local siteText = tostring(info.site or ""):gsub("^www%.", ""):upper()
+    if siteText ~= "" then
+        local sw = TextWidget:new{ text = siteText, face = Font:getFace("cfont", 20), bold = true, fgcolor = Blitbuffer.COLOR_WHITE,
+            max_width = W - 2 * M - dateW, truncate_with_ellipsis = true }
+        sw:paintTo(bb, M, math.floor((BAND - sw:getSize().h) / 2)); sw:free()
+    end
     -- the title: as large as fits in its area
     local imageH = info.image and 330 or 0
     local titleTop, titleMax = 96, H - 96 - 80 - imageH - (info.image and 24 or 140)
     local size, title = 52
     while true do
-        title = text(info.title or "", "tfont", size, W - 2 * M, { bold = true })
+        title = text(require("aishlib.epub").coverTitle(info.title, info.site), "tfont", size, W - 2 * M, { bold = true })
         if title:getSize().h <= titleMax or size <= 22 then break end
         title:free(); size = size - 4
     end
-    if title:getSize().h > titleMax then title:free(); title = text(info.title or "", "tfont", size, W - 2 * M, { bold = true, height = titleMax }) end
+    if title:getSize().h > titleMax then title:free(); title = text(require("aishlib.epub").coverTitle(info.title, info.site), "tfont", size, W - 2 * M, { bold = true, height = titleMax }) end
     title:paintTo(bb, M, titleTop)
     local y = titleTop + title:getSize().h + 24
     title:free()

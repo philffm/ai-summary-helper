@@ -28,7 +28,7 @@ local M = {}
 local TYPES = { article = true, hl = true, coll = true, note = true }
 local KEY_RX = "^(%a+):([%w_%.:%-]+)$"
 M.RECORD_DIR = "r"
-M.RENDER_VERSION = "4"   -- 2: no marks in the text (KOReader's highlights keep their place); 3: chapters, key points, images; 4: made covers
+M.RENDER_VERSION = "5"   -- 2: no marks in the text (KOReader's highlights keep their place); 3: chapters, key points, images; 4: made covers; 5: one-line cover band, title without the publication
 M.IMAGE_MAX = 3 * 1024 * 1024          -- one image (bytes); larger ones keep only their description
 M.IMAGES_PER_ARTICLE = 12 * 1024 * 1024
 M.IMAGE_DIR = ".images"                 -- hidden in KOReader's file browser

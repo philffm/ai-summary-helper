@@ -58,6 +58,34 @@ local function plainText(html, max)
 end
 M.plainText = plainText
 
+--[[--
+The title for the cover: page titles often end in the publication's name ("… | Circulation", "… - The Guardian");
+that part goes when what is left is still a real title. The book information keeps the full title.
+]]
+function M.coverTitle(title, site)
+    local t = tostring(title or ""):gsub("^%s+", ""):gsub("%s+$", "")
+    -- separators as whole strings (en and em dash are several bytes: no character class)
+    local SEPS = { " | ", "|", " – ", " — ", " - ", " · " }
+    for _ = 1, 2 do
+        local cut
+        for _, sep in ipairs(SEPS) do
+            local pos, from = nil, 1
+            while true do
+                local i = t:find(sep, from, true)
+                if not i then break end
+                pos, from = i, i + 1
+            end
+            if pos and (not cut or pos > cut.pos) then cut = { pos = pos, len = #sep } end
+        end
+        if not cut then break end
+        local head = t:sub(1, cut.pos - 1):gsub("%s+$", "")
+        local tail = t:sub(cut.pos + cut.len):gsub("^%s+", "")
+        if #head >= 20 and #tail <= 40 and not tail:find("[%.%?!]$") then t = head else break end
+    end
+    if t == "" then t = tostring(site or "") end
+    return t
+end
+
 local MIME = { jpg = "image/jpeg", png = "image/png", gif = "image/gif", webp = "image/webp", svg = "image/svg+xml" }
 local EXT = { jpeg = "jpg", jpg = "jpg", png = "png", gif = "gif", webp = "webp", ["svg+xml"] = "svg" }
 

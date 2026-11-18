@@ -37,3 +37,13 @@ assert(seen.image == nil and opfOf(only):find("cover-image", 1, true), "a cover 
 assert(not opfOf(E.build(a, {}, {}, { id = "a3" })):find("cover-image", 1, true), "no renderer: no cover (KOReader draws its own), never the first image")
 assert(not opfOf(E.build(a, {}, {}, { id = "a4", cover = function() error("no fonts") end })):find("cover-image", 1, true), "a failing renderer: no cover")
 os.execute("rm -rf " .. dir)
+-- the cover title: the publication's name at the end goes, a real title stays
+assert(E.coverTitle("Caffeine and Cardiovascular Disease: A Scientific Statement From the American Heart Association | Circulation") ==
+    "Caffeine and Cardiovascular Disease: A Scientific Statement From the American Heart Association")
+assert(E.coverTitle("Why the four-day week works - The Guardian") == "Why the four-day week works")
+assert(E.coverTitle("Short | Site") == "Short | Site", "too little left: unchanged")
+assert(E.coverTitle("Is the four-day week working?") == "Is the four-day week working?")
+assert(E.coverTitle("Climate: what now") == "Climate: what now", "a colon inside a short title stays")
+assert(E.coverTitle("", "science.example") == "science.example")
+assert(E.coverTitle("The long road to fusion power – Nature") == "The long road to fusion power", "en dash")
+assert(E.coverTitle("Some article title here — Le Monde diplomatique") == "Some article title here", "em dash")
