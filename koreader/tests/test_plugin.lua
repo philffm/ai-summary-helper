@@ -3,8 +3,10 @@
 --                    collections, the kept key; then open an article: AISH highlights become KOReader highlights, one made
 --                    on the reader and note edits go back, closing sends them.
 --   phase "plugin2": after the browser changed things (browser-step.mjs edit): a sync brings them into the closed book.
+--   phase "plugin3": security: PIN seal (restart, wrong PIN, right PIN), the reader's own Nextcloud login by QR code, and
+--                    "Wipe device" in Nextcloud deleting the library from the reader.
 local phase = os.getenv("AISH_PHASE")
-if phase ~= "plugin" and phase ~= "plugin2" then return end
+if phase ~= "plugin" and phase ~= "plugin2" and phase ~= "plugin3" then return end
 local here = debug.getinfo(1, "S").source:sub(2):match("^(.*)/[^/]*$")
 package.path = here .. "/../aish.koplugin/?.lua;" .. here .. "/?.lua;" .. package.path
 local fsu = require("fsutil")
@@ -34,12 +36,28 @@ _G.G_reader_settings = LuaSettings:open("global"); G_reader_settings:saveSetting
 mod("datastorage", { getSettingsDir = function() return work .. "/settings" end, getDataDir = function() return work .. "/data" end })
 mod("dispatcher", { registerAction = function() end })
 mod("docsettings", { updateLocation = function() end,
-    hasSidecarFile = function(_, f) return sidecars[f] ~= nil end,
+    hasSidecarFile = function(_, f) return sidecars[f] ~= nil end, findSidecarFile = function() return nil end,
     open = function(_, f) sidecars[f] = sidecars[f] or {}; local d = sidecars[f]
         return { readSetting = function(_, k) return d[k] end, saveSetting = function(_, k, v) d[k] = v end, flush = saveSidecars } end })
 mod("ui/event", { new = function(_, name, args) return { name = name, args = args } end })
 mod("ui/widget/infomessage", widget("info")); mod("ui/widget/inputdialog", widget("input")); mod("ui/widget/confirmbox", widget("confirm"))
-mod("ui/widget/multiinputdialog", widget("multi")); mod("luasettings", LuaSettings)
+mod("ui/widget/multiinputdialog", widget("multi")); mod("luasettings", LuaSettings); mod("ui/widget/qrmessage", widget("qr"))
+-- pressing a button of the last dialog that has it, with what was typed
+local function press(label, input)
+    for i = #shown, 1, -1 do
+        local d = shown[i]
+        for _, row in ipairs(d.buttons or {}) do
+            for _, b in ipairs(row) do
+                if b.text == label then
+                    if type(input) == "table" then d.getFields = function() return input end else d.getInputText = function() return input end end
+                    table.remove(shown, i)
+                    return b.callback()
+                end
+            end
+        end
+    end
+    error("no button " .. label)
+end
 mod("ui/network/manager", { runWhenOnline = function(_, cb) cb() end, isOnline = function() return true end })
 mod("ui/uimanager", { show = function(_, w) shown[#shown + 1] = w end, close = function() end, forceRePaint = function() end,
     nextTick = function(_, cb) cb() end, scheduleIn = function(_, _t, cb) cb() end, setDirty = function() end })
@@ -97,6 +115,60 @@ local function closeBook(ui)
     plugin.ui = { menu = ui.menu }
 end
 
+if phase == "plugin3" then
+    local Real = require("aishlib.nc")
+    local fakeCalls = {}
+    package.loaded["aishlib.nc"] = { serverOf = Real.serverOf, normalizeServer = Real.normalizeServer, new = function()
+        local polls = 0
+        return {
+            startLogin = function(server) fakeCalls[#fakeCalls + 1] = "start " .. server; return { login = server .. "/login/v2/flow/x", token = "T", endpoint = server .. "/login/v2/poll" } end,
+            poll = function() polls = polls + 1; if polls == 1 then return false end
+                return { server = os.getenv("AISH_URL"):gsub("/$", ""), loginName = "phil", appPassword = "app pass/ü" } end,
+            wipeRequested = function(server, pw) fakeCalls[#fakeCalls + 1] = "wipe? " .. pw; return true end,
+            wipeDone = function(server, pw) fakeCalls[#fakeCalls + 1] = "wiped " .. pw end,
+            revoke = function() fakeCalls[#fakeCalls + 1] = "revoke" end,
+        } end }
+    local settingsFile = work .. "/settings/aish.lua"
+    -- PIN on
+    shown = {}
+    plugin:togglePin()
+    press("OK", "123456"); press("OK", "123456")
+    local st = settingsStore[settingsFile]
+    assert(st.sealed and not st.master and not st.connection.password, "sealed; nothing in the clear")
+    assert(not fsu.read(work .. "/settings.json"):find("app pass", 1, true), "the password is not in the settings file")
+    -- a restart: locked; a wrong PIN, then the right one
+    local fresh = setmetatable({ ui = { menu = plugin.ui.menu } }, { __index = AISH }); fresh:init()
+    assert(fresh:isLocked())
+    shown = {}
+    fresh:syncNow(); press("Unlock", "000000")
+    assert(shown[#shown].text == "Wrong PIN." and fresh:isLocked())
+    fresh:syncNow(); press("Unlock", "123456")
+    assert(shown[#shown].text and shown[#shown].text:find("AISH library: 2 articles", 1, true), "synced after the PIN: " .. tostring(shown[#shown].text))
+    -- the reader's own Nextcloud login by QR code (the PIN stays on: the new login is sealed too)
+    shown = {}
+    fresh:connectWithNextcloud()
+    press("Show QR code", { "127.0.0.1:8766", "My Library" })
+    local qr; for _, w in ipairs(shown) do if w.kind == "qr" then qr = w end end
+    assert(qr and qr.text == "https://127.0.0.1:8766/login/v2/flow/x", "QR code with the login address")
+    local c = settingsStore[settingsFile].connection
+    assert(c.flow and c.username == "phil" and c.url == os.getenv("AISH_URL") .. "remote.php/dav/files/phil/" and not c.password, "connected with its own login: " .. tostring(c.url))
+    assert(settingsStore[settingsFile].sealed and fresh.secrets.password == "app pass/ü", "the new login sealed with the PIN")
+    press("Unlock", "orbit lemon tunnel paper river cloud")   -- the library key was for the old connection: the passphrase once
+    assert(shown[#shown].text:find("AISH library: 2 articles", 1, true), "synced through the new login: " .. tostring(shown[#shown].text))
+    -- lost: "Wipe device" in Nextcloud. The server refuses the login; the reader asks, deletes everything, confirms
+    fresh.secrets.password = "revoked"
+    shown = {}
+    fresh:syncNow()
+    assert(fakeCalls[#fakeCalls - 1] == "wipe? revoked" and fakeCalls[#fakeCalls] == "wiped revoked", table.concat(fakeCalls, ", "))
+    assert(#fsu.ls(home .. "/AISH") == 0, "articles deleted")
+    st = settingsStore[settingsFile]
+    assert(not st.connection and not st.sealed and not st.master and not fresh.secrets, "login, key and seal deleted")
+    assert(not fsu.exists(work .. "/data/aish/index.json"), "library data deleted")
+    assert(shown[#shown].text:find("Wipe device", 1, true))
+    print("TEST plugin3 OK")
+    os.exit(0)
+end
+
 if phase == "plugin2" then
     -- the browser edited the comment on the reader's highlight and deleted h-3; the book is closed
     shown = {}
@@ -113,7 +185,7 @@ if phase == "plugin2" then
     print("TEST plugin2 OK")
     os.exit(0)
 end
-assert(menu.aish_library and #menu.aish_library.sub_item_table == 8, "menu")
+assert(menu.aish_library and #menu.aish_library.sub_item_table == 10, "menu")
 assert(menu.aish_library.sub_item_table[3].text_func() == "Not connected")
 
 local function enc(s) return (s:gsub("[^%w%-%._~]", function(c) return string.format("%%%02X", c:byte()) end)) end

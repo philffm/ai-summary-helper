@@ -86,14 +86,37 @@ function M.new(o)
         writeJson(self.dataDir .. "/device.json", { device = self.device, clock = self.clock.t })
     end
     self.save = save
+    -- edits mark the state as changed; the caller saves once (flush) after a batch: saving after each of hundreds of
+    -- articles rewrote the whole index each time and made "Writing articles" crawl on an e-reader
+    local unsaved = false
+    function self.flush() if unsaved then save(); unsaved = false end end
     local function ctx() return { clock = self.clock, now = self.now(), device = self.device } end
+    local function digest(parts) return crypto.toHex(crypto.hmac("aish-koreader", table.concat(parts, "\0"))):sub(1, 24) end
+    local RENDER_FIELDS = { "title", "url", "timestamp", "summaryBase", "summary", "content", "byline", "author", "language", "lang" }
+    --- What an article's file is drawn from, as a digest, and whether it gets a file at all (computed when the record
+    --- arrives, so a sync with nothing new reads no article records)
+    local function articleLean(v)
+        local function str(x) x = json.val(x); return type(x) == "string" and x or nil end
+        local skip = json.val(v.feedStub) or json.val(v.savedOnly)
+            or not ((str(v.content) or ""):match("%S") or (str(v.summaryBase) or ""):match("%S") or (str(v.summary) or ""):match("%S"))
+        local parts = { M.RENDER_VERSION }
+        for _, fld in ipairs(RENDER_FIELDS) do parts[#parts + 1] = fld .. "=" .. (str(v[fld]) or "") end
+        return digest(parts), skip and true or nil
+    end
     local gathered   -- gather()'s result until a record changes
     local function store(key, rec, dirty)
         gathered = nil
         rec.aish, rec.key = "rec/1", key
         fs.write(recPath(key), json.encode(rec))
         local typ = key:match(KEY_RX)
-        self.index[key] = { t = tonumber(rec.rev and rec.rev.t) or 0, deleted = rec.deleted == true or nil, type = typ, dirty = dirty or nil }
+        local e = { t = tonumber(rec.rev and rec.rev.t) or 0, deleted = rec.deleted == true or nil, type = typ, dirty = dirty or nil }
+        if typ == "article" and not rec.deleted and rec.values then   -- what the highlights need, without reading the record
+            e.u = type(rec.values.url) == "string" and rec.values.url or nil
+            e.fu = type(rec.values.feedUrl) == "string" and rec.values.feedUrl ~= "" and rec.values.feedUrl or nil
+            e.rs, e.sk = articleLean(rec.values)
+            e.ti = type(rec.values.title) == "string" and rec.values.title or nil
+        end
+        self.index[key] = e
     end
 
     --- Starts over when the place on the server was made anew (another salt): the old records belong to another library.
@@ -158,7 +181,7 @@ function M.new(o)
                 end
             end
             if reason and reason ~= "gone" then res.failed[#res.failed + 1] = { name = e.name, reason = reason } end
-            if i % 25 == 0 then save() end   -- a long first run keeps what it has if it stops
+            if i % 100 == 0 then save() end   -- a long first run keeps what it has if it stops
         end
         save()
         if progress then progress(#todo, #todo) end
@@ -170,16 +193,17 @@ function M.new(o)
     function self.edit(key, changes)
         local cur = self.index[key] and self.record(key)
         local rec, changed = stamps.edit(cur, changes, ctx())
-        if changed then store(key, rec, true); save() end
+        if changed then store(key, rec, true); unsaved = true end
         return changed
     end
     --- Deletes a record everywhere (only for a deletion made on the reader).
     function self.delete(key)
         local cur = self.index[key]
         if not cur or cur.deleted then return false end
-        store(key, stamps.tombstone(ctx()), true); save()
+        store(key, stamps.tombstone(ctx()), true); unsaved = true
         return true
     end
+    function self.setLinks(articleId, base) self.links[articleId] = base; unsaved = true end
     function self.pendingCount()
         local n = 0
         for _, e in pairs(self.index) do if e.dirty then n = n + 1 end end
@@ -231,8 +255,9 @@ function M.new(o)
                 end
             end
             if ok then res.pushed = res.pushed + 1 else res.failed[#res.failed + 1] = { key = key, reason = reason } end
-            save()
+            if i % 25 == 0 then save() end
         end
+        save(); unsaved = false
         if progress then progress(#todo, #todo) end
         return res
     end
@@ -293,26 +318,33 @@ function M.new(o)
         return hlByPage, notesByPage, notesByHl, collsOf
     end
 
-    local function digest(parts) return crypto.toHex(crypto.hmac("aish-koreader", table.concat(parts, "\0"))):sub(1, 24) end
 
     --[[--
     Writes the HTML files. → { written = { path }, removed = { path }, collections = { [path] = { names } }, skipped }
     removeFile(path) is called for a file to remove (the plugin also drops KOReader's sidecar there).
     ]]
-    function self.materialize(removeFile)
+    function self.materialize(removeFile, progress)
         fs.mkdirp(self.outDir)
         local _, notesByPage, _, collsOf = gather()
         local res = { written = {}, removed = {}, collections = {}, skipped = 0, articles = 0 }
         local used = {}
         for _, st in pairs(self.state) do used[st.file] = true end
+        local total, done = 0, 0
+        if progress then for key in pairs(self.index) do if key:sub(1, 8) == "article:" then total = total + 1 end end end
         for key, e in pairs(self.index) do
             local typ, id = key:match(KEY_RX)
             if typ == "article" then
+                done = done + 1
+                if progress and done % 25 == 0 then progress(done, total) end
                 local st = self.state[id]
-                local rec = not e.deleted and live(key)
-                local v = rec and rec.values
-                local skip = not v or json.val(v.feedStub) or json.val(v.savedOnly)
-                    or not ((type(v.content) == "string" and v.content:match("%S")) or (type(v.summaryBase) == "string" and v.summaryBase:match("%S")) or (type(v.summary) == "string" and v.summary:match("%S")))
+                -- from the index when it knows the article (no record to read); else from the record
+                local rec, v
+                local lean = e.rs ~= nil
+                if not e.deleted and not lean then
+                    rec = live(key); v = rec and rec.values
+                    if v then e.u, e.fu = json.val(v.url), json.val(v.feedUrl); e.rs, e.sk = articleLean(v); e.ti = json.val(v.title) end
+                end
+                local skip = e.deleted or e.sk or not e.rs
                 if skip then
                     if e.deleted and st then   -- deleted in AISH: remove what this plugin made
                         if fs.exists(st.file) then removeFile(st.file) end
@@ -321,8 +353,8 @@ function M.new(o)
                     elseif not e.deleted then res.skipped = res.skipped + 1 end
                 else
                     res.articles = res.articles + 1
-                    local pages = { looseKey(v.url) }
-                    if type(v.feedUrl) == "string" and v.feedUrl ~= "" then pages[#pages + 1] = looseKey(v.feedUrl) end
+                    local pages = { looseKey(e.u) }
+                    if e.fu and e.fu ~= "" then pages[#pages + 1] = looseKey(e.fu) end
                     -- highlights live in KOReader (see annots.lua); the file holds the text and your notes on the article.
                     -- Its signature covers only what is drawn, so a highlight or a read mark never rewrites it (a rewrite of
                     -- the text would move KOReader's highlights)
@@ -330,25 +362,24 @@ function M.new(o)
                     for _, pk in ipairs(pages) do
                         for _, n in ipairs(notesByPage[pk] or {}) do notes[#notes + 1] = n end
                     end
-                    local parts = { M.RENDER_VERSION }
-                    for _, fld in ipairs({ "title", "url", "timestamp", "summaryBase", "summary", "content", "byline", "author", "language", "lang" }) do
-                        local x = json.val(v[fld]); parts[#parts + 1] = fld .. "=" .. (type(x) == "string" and x or "")
-                    end
+                    local parts = { e.rs }
                     for _, n in ipairs(notes) do parts[#parts + 1] = n.id .. ":" .. n.text .. ":" .. (n.quote or "") end
                     local sig = digest(parts)
-                    local hls = {}
                     local file = st and st.file
                     if not file then
-                        local name = render.fileName(json.val(v.title), id)
+                        local name = render.fileName(e.ti, id)
                         file = self.outDir .. "/" .. name
                         local k = 2
                         while used[file] or fs.exists(file) do file = self.outDir .. "/" .. name:gsub("%.html$", " " .. k .. ".html"); k = k + 1 end
                     end
                     if not (st and st.sig == sig and fs.exists(file)) then
-                        local vals = {}
-                        for f, x in pairs(v) do vals[f] = json.val(x) end
-                        fs.write(file, render.article(vals, hls, notes, self.labels))
-                        res.written[#res.written + 1] = file
+                        if not v then rec = live(key); v = rec and rec.values end
+                        if v then
+                            local vals = {}
+                            for f, x in pairs(v) do vals[f] = json.val(x) end
+                            fs.write(file, render.article(vals, {}, notes, self.labels))
+                            res.written[#res.written + 1] = file
+                        end
                     end
                     used[file] = true
                     self.state[id] = { file = file, sig = sig }
@@ -357,6 +388,7 @@ function M.new(o)
             end
         end
         writeJson(self.dataDir .. "/files.json", self.state)
+        save()
         return res
     end
 
@@ -372,10 +404,17 @@ function M.new(o)
     end
     --- The live highlights of an article (AI ones included, dismissed ones too: the caller decides) and the comment on each.
     function self.highlightsOf(id)
-        local r = live("article:" .. id)
-        if not r then return {}, {} end
+        local e = self.index["article:" .. id]
+        if not e or e.deleted then return {}, {} end
+        local v
+        if e.u then v = { url = e.u, feedUrl = e.fu }
+        else   -- an index from before the url was kept in it
+            local r = live("article:" .. id)
+            if not r then return {}, {} end
+            v = r.values
+        end
         local hlByPage, _, notesByHl = gather()
-        local v, out, comments, seen = r.values, {}, {}, {}
+        local out, comments, seen = {}, {}, {}
         local pages = { looseKey(v.url) }
         if type(v.feedUrl) == "string" and v.feedUrl ~= "" then pages[#pages + 1] = looseKey(v.feedUrl) end
         for _, pk in ipairs(pages) do

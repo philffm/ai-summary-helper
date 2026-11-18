@@ -152,8 +152,7 @@ function M.apply(lib, articleId, act, base)
         if lib.index["note:c_" .. id] then lib.delete("note:c_" .. id) end
     end
     for _, id in ipairs(act.dismiss) do lib.edit("hl:" .. id, { dismissed = true }) end
-    lib.links[articleId] = base
-    lib.save()
+    lib.setLinks(articleId, base)   -- saved by the caller (lib.flush) after the batch
 end
 
 --- AISH values for a highlight made on the reader.

@@ -116,7 +116,7 @@ function M.new(cfg)
         local code, text, h = request("GET", urlOf(path), nil, nil, maxBytes or 20 * 1024 * 1024)
         if code == 200 then return text, etagOf(h) end
         if code == 404 then return false end
-        return nil, code and failure(code) or text
+        return nil, code and failure(code) or text, code
     end
 
     --[[--
