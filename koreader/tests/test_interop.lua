@@ -27,9 +27,11 @@ local sleepFile = "Why we sleep what the new studies show [ka1].html"
 if phase == "1" then
     assert(res.fetched == 9 and #files == 3, "3 articles (the feed stub is not one)")
     local s = assert(read(sleepFile), "sleep article file")
-    assert(s:find('<mark>the brain replays the day’s experiences</mark><sup><a class="aish-ref" href="#aish-n1">1</a></sup>', 1, true), "highlight with its comment")
-    assert(s:find('<mark class="ai">Short naps of about twenty minutes improve recall.</mark>', 1, true), "AI highlight")
-    assert(s:find("Matches chapter 3 of the textbook.", 1, true) and s:find("Read again before the exam.", 1, true), "comment and note")
+    -- highlights are KOReader's own now (annots.lua): the text stays as saved, so their places in it never move
+    assert(not s:find("<mark", 1, true) and s:find("During slow-wave sleep, the brain replays the day’s experiences", 1, true), "plain text")
+    assert(s:find("Read again before the exam.", 1, true) and not s:find("Matches chapter 3", 1, true), "the note on the article; the comment goes on the highlight")
+    local hls, comments = lib.highlightsOf("k-a1")
+    assert(#hls == 2 and comments["h-1"] and comments["h-1"].text == "Matches chapter 3 of the textbook.", "highlights and comment ready for KOReader")
     assert(s:find("<li>Sleep consolidates memory.</li>", 1, true), "summary")
     assert(read("Only a summary here [ka3].html"):find("was not saved", 1, true), "summary-only article")
     local colls = {}
@@ -43,7 +45,8 @@ else
     assert(res.fetched == tonumber(os.getenv("AISH_CHANGED")) and res.fetched < res.total, "only the changed files: " .. res.fetched .. " of " .. tostring(os.getenv("AISH_CHANGED")))
     assert(#removed == 1 and removed[1]:find("four%-day week"), "deleted article removed")
     local s = assert(read(sleepFile))
-    assert(s:find("<mark>Sleep is </mark><em><mark>not</mark></em><mark> a pause for the brain.</mark>", 1, true), "new highlight")
+    local hls = lib.highlightsOf("k-a1")
+    assert(#hls == 3, "new highlight known")
     assert(s:find("Read again before the exam on Friday.", 1, true), "edited note")
     assert(read("Only a summary here [ka3].html"), "a renamed article keeps its file (KOReader's reading position stays)")
     assert(#files == 2)

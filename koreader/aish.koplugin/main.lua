@@ -1,10 +1,13 @@
 --[[--
-AISH library for KOReader (stage 1: read-only).
+AISH library for KOReader.
 
 Connects to the encrypted sync place of the AISH browser extension (a folder on your Nextcloud/WebDAV server), decrypts it
-on the reader and keeps a folder of HTML files: per article the AI summary, the full text with your highlights (AI
-highlights underlined), notes on highlights as footnotes, and your notes. AISH collections become KOReader collections
-("AISH: <name>"). Nothing is written to the server.
+on the reader and keeps a folder of HTML files: per article the AI summary, the full text and your notes. AISH collections
+become KOReader collections ("AISH: <name>").
+
+Highlights are KOReader's own: AISH highlights appear as KOReader highlights when an article is opened (AI ones underlined,
+comments as notes), and highlights and notes made on the reader go back to AISH, like deleting one and opening an article
+(it counts as read). Changes made on the reader are sent at the next sync, and when an AISH article is closed while online.
 
 The passphrase is not kept: the key made from it is (like the extension's background worker does), so later syncs do not
 spend seconds on key derivation. "Disconnect" forgets the login and the key.
@@ -14,6 +17,7 @@ spend seconds on key derivation. "Disconnect" forgets the login and the key.
 local DataStorage = require("datastorage")
 local Dispatcher = require("dispatcher")
 local DocSettings = require("docsettings")
+local Event = require("ui/event")
 local InfoMessage = require("ui/widget/infomessage")
 local InputDialog = require("ui/widget/inputdialog")
 local ConfirmBox = require("ui/widget/confirmbox")
@@ -99,7 +103,9 @@ function AISH:addToMainMenu(menu_items)
                     local last = self.settings:readSetting("last_sync")
                     if not self:isConnected() then return _("Not connected") end
                     if not last then return _("Not synced yet") end
-                    return T(_("Last sync: %1 · %2 articles"), os.date("%Y-%m-%d %H:%M", last.time), last.articles or 0)
+                    local text = T(_("Last sync: %1 · %2 articles"), os.date("%Y-%m-%d %H:%M", last.time), last.articles or 0)
+                    if (last.pending or 0) > 0 then text = text .. " · " .. T(_("%1 not sent"), last.pending) end
+                    return text
                 end,
                 enabled = false,
                 separator = true,
@@ -128,6 +134,12 @@ Copy the file %1 into KOReader's home folder (over USB), or paste the code (aish
                         end,
                     }:chooseDir()
                 end,
+            },
+            {
+                text = _("Send changes when closing an article"),
+                help_text = _("Highlights, notes and read marks made on the reader go to AISH as soon as you close the article, when Wi-Fi is on. Otherwise they go at the next sync."),
+                checked_func = function() return self.settings:nilOrTrue("send_on_close") end,
+                callback = function() self.settings:flipNilOrTrue("send_on_close"); self:save() end,
             },
             {
                 text = _("Disconnect"),
@@ -244,6 +256,7 @@ function AISH:syncNow(words)
 end
 
 function AISH:progress(text)
+    if self.quiet then return end
     if self.progress_msg then UIManager:close(self.progress_msg) end
     self.progress_msg = InfoMessage:new{ text = text, dismissable = false }
     UIManager:show(self.progress_msg)
@@ -255,7 +268,15 @@ function AISH:endProgress()
 end
 function AISH:fail(text)
     self:endProgress()
+    if self.quiet then logger.warn("AISH: quiet sync failed:", text); self.quiet = false; return end
     UIManager:show(InfoMessage:new{ text = text, icon = "notice-warning" })
+end
+
+function AISH:library(store)
+    return require("aishlib.library").new({
+        store = store, fs = fs, dataDir = self.data_dir, outDir = self:outDir(),
+        labels = { summary = _("Summary"), notes = _("Notes"), noText = _("The full text of this article was not saved in AISH.") },
+    })
 end
 
 function AISH:makeStore()
@@ -290,6 +311,7 @@ function AISH:withKeys(meta, words, cont)
     end
     if words and words ~= "" then return tryPassphrase(words) end
     self:endProgress()
+    if self.quiet then self.quiet = false; return end   -- a background sync never asks: the next sync from the menu does
     self:askPassphrase(tryPassphrase)
 end
 
@@ -335,11 +357,7 @@ end
 
 function AISH:pullAndWrite(store, meta, keys)
     local ok, err = pcall(function()
-        local out = self:outDir()
-        local lib = require("aishlib.library").new({
-            store = store, fs = fs, dataDir = self.data_dir, outDir = out,
-            labels = { summary = _("Summary"), notes = _("Notes"), noText = _("The full text of this article was not saved in AISH.") },
-        })
+        local lib = self:library(store)
         lib.resetIfNewPlace(meta.salt)
         self:progress(_("Looking for changes…"))
         local shown = 0
@@ -353,18 +371,198 @@ function AISH:pullAndWrite(store, meta, keys)
         self:progress(_("Writing articles…"))
         local m = lib.materialize(function(path) self:removeArticle(path) end)
         self:updateCollections(m.collections, lib.files())
-        self.settings:saveSetting("last_sync", { time = os.time(), articles = m.articles }); self:save()
+        -- highlights and notes of every article in KOReader ↔ AISH, then what changed here goes out
+        local hl = self:reconcileAll(lib)
+        local sent = { pushed = 0, failed = {} }
+        if lib.pendingCount() > 0 then
+            self:progress(_("Sending changes…"))
+            sent = lib.push(keys)
+        end
+        self.settings:saveSetting("last_sync", { time = os.time(), articles = m.articles, pending = lib.pendingCount() }); self:save()
         self:endProgress()
         local FileManager = require("apps/filemanager/filemanager")
         if FileManager.instance then FileManager.instance:onRefresh() end
+        if self.quiet then
+            self.quiet = false
+            if #sent.failed > 0 then logger.warn("AISH: not sent", #sent.failed) end
+            return
+        end
         local text = T(_("AISH library: %1 articles.\n%2 new or updated, %3 removed."), m.articles, #m.written, #m.removed)
+        if sent.pushed > 0 or hl.added > 0 then
+            text = text .. "\n" .. T(_("Highlights and notes: %1 sent, %2 placed in articles."), sent.pushed, hl.added)
+        end
         if #res.failed > 0 then
             text = text .. "\n\n" .. T(_("%1 files could not be read and were skipped (they are tried again next time)."), #res.failed)
             for _, f in ipairs(res.failed) do logger.warn("AISH: skipped", f.name, f.reason) end
         end
-        notify(text, #res.failed > 0 and nil or 4)
+        if #sent.failed > 0 then
+            text = text .. "\n\n" .. T(_("%1 changes could not be sent yet. They are sent at the next sync."), #sent.failed)
+            for _, f in ipairs(sent.failed) do logger.warn("AISH: not sent", f.key, f.reason) end
+        end
+        notify(text, (#res.failed + #sent.failed) > 0 and nil or 4)
     end)
-    if not ok then logger.err("AISH: sync failed", err); self:fail(T(_("Sync failed:\n%1"), tostring(err))) end
+    if not ok then logger.err("AISH: sync failed", err); self.quiet = false; self:fail(T(_("Sync failed:\n%1"), tostring(err))) end
+end
+
+-- ── KOReader's highlights ───────────────────────────────────────────────────
+local function koDate(iso)
+    local y, mo, d, h, mi, sec = tostring(iso or ""):match("^(%d+)-(%d+)-(%d+)T(%d+):(%d+):(%d+)")
+    if y then return string.format("%s-%s-%s %s:%s:%s", y, mo, d, h, mi, sec) end
+    return os.date("%Y-%m-%d %H:%M:%S")
+end
+
+--- Finds an AISH highlight in the open book: the whole quote (its saved context picks the place where it occurs more
+--- than once), or for a long one its first and last words.
+function AISH:findInDocument(ui, h)
+    local doc = ui.document
+    local q = tostring((h.quote and h.quote.exact) or h.text or ""):gsub("%s+", " "):gsub("^ ", ""):gsub(" $", "")
+    if q == "" then return nil end
+    local function search(pat)
+        local ok, res = pcall(doc.findAllText, doc, pat, false, 8, 200, false)
+        return ok and type(res) == "table" and res or {}
+    end
+    local function chapter(xp)
+        local ok, t = pcall(function() return ui.toc:getTocTitleByPage(xp) end)
+        return ok and t or nil
+    end
+    local hits = #q <= 300 and search(q) or {}
+    if #hits > 0 then
+        local best, bestScore = hits[1], -1
+        local pre = tostring(h.quote and h.quote.prefix or ""):gsub("%s+", " "):sub(-20)
+        local suf = tostring(h.quote and h.quote.suffix or ""):gsub("%s+", " "):sub(1, 20)
+        for _, r in ipairs(hits) do
+            local score = 0
+            local prev = tostring(r.prev_text or ""):gsub("%s+", " ")
+            local nxt = tostring(r.next_text or ""):gsub("%s+", " ")
+            if pre:match("%S") and prev:find(pre:match("(%S+)%s*$") or "\0", 1, true) then score = score + 1 end
+            if suf:match("%S") and nxt:find(suf:match("^%s*(%S+)") or "\0", 1, true) then score = score + 1 end
+            if score > bestScore then best, bestScore = r, score end
+        end
+        return { pos0 = best.start, pos1 = best["end"], text = q, chapter = chapter(best.start) }
+    end
+    local words = {}
+    for w in q:gmatch("%S+") do words[#words + 1] = w end
+    if #words < 8 then return nil end
+    local heads = search(table.concat(words, " ", 1, 6))
+    local tails = search(table.concat(words, " ", #words - 5, #words))
+    for _, a in ipairs(heads) do
+        for _, b in ipairs(tails) do
+            if doc:compareXPointers(a.start, b["end"]) == 1 then
+                return { pos0 = a.start, pos1 = b["end"], text = q, chapter = chapter(a.start) }
+            end
+        end
+    end
+end
+
+--- One article's highlights in step: in the open book (`ui`), or in its sidecar when it is closed.
+function AISH:reconcileArticle(lib, id, ui)
+    local Annots = require("aishlib.annots")
+    local hls, comments = lib.highlightsOf(id)
+    local base = lib.links[id] or {}
+    local o = {
+        hls = hls, comments = comments, base = base, gone = self.gone or lib.goneHighlights(),
+        newHighlight = function(it) return Annots.highlightValues(lib, id, it) end,
+        newItem = function(h, placed, note)
+            return { page = placed.pos0, pos0 = placed.pos0, pos1 = placed.pos1, text = placed.text, note = note, chapter = placed.chapter,
+                datetime = koDate(h.timestamp), drawer = h.type == "ghost" and "underscore" or "lighten",
+                color = h.type ~= "ghost" and ui and ui.view and ui.view.highlight and ui.view.highlight.saved_color or nil }
+        end,
+    }
+    local act
+    if ui then
+        local ann = ui.annotation
+        o.items = ann.annotations
+        o.find = function(h) return self:findInDocument(ui, h) end
+        o.add = function(it) ann:addItem(it) end
+        o.remove = function(i) table.remove(ann.annotations, i) end
+        act = Annots.reconcile(o)
+        if act.added + act.removed + act.notesHere > 0 then
+            ui:handleEvent(Event:new("AnnotationsModified", { ann.annotations[1] or {}, nb_highlights_added = act.added - act.removed, index_modified = 0 }))
+            UIManager:setDirty(ui.dialog, "ui")
+        end
+    else
+        local st = lib.state[id]
+        if not st or not DocSettings:hasSidecarFile(st.file) then return nil end
+        local ds = DocSettings:open(st.file)
+        local items = ds:readSetting("annotations")
+        if type(items) ~= "table" or #items == 0 then return nil end
+        o.items = items
+        act = Annots.reconcile(o)
+        if act.removed + act.notesHere + #act.create > 0 then ds:saveSetting("annotations", items); ds:flush() end
+    end
+    Annots.apply(lib, id, act, base)
+    return act
+end
+
+--- Every AISH article: the open one through the reader, the others through their sidecars (only books opened before).
+function AISH:reconcileAll(lib)
+    local total = { added = 0 }
+    self.gone = lib.goneHighlights()
+    self.reconciling = true
+    local openFile = self.ui and self.ui.document and self.ui.document.file
+    for id, st in pairs(lib.state) do
+        local ok, act = pcall(self.reconcileArticle, self, lib, id, (st.file == openFile) and self.ui or nil)
+        if not ok then logger.warn("AISH: highlights of", st.file, act)
+        elseif act then total.added = total.added + act.added end
+    end
+    self.gone = nil
+    self.reconciling = false
+    return total
+end
+
+--- Opening an AISH article: its highlights in step, and it counts as read in AISH.
+function AISH:onReaderReady()
+    local file = self.ui and self.ui.document and self.ui.document.file
+    if not file or not self:isConnected() then return end
+    UIManager:nextTick(function()
+        local ok, err = pcall(function()
+            local lib = self:library()
+            local id = lib.articleOfFile(file)
+            if not id then return end
+            self.open_article = id
+            local art = lib.article(id)
+            if art and not require("aishlib.json").val(art.values.readAt) then lib.edit("article:" .. id, { readAt = lib.isoNow() }) end
+            self.reconciling = true
+            self:reconcileArticle(lib, id, self.ui)
+        end)
+        self.reconciling = false
+        if not ok then logger.warn("AISH: on open", err) end
+    end)
+end
+
+--- A highlight or note made, changed or removed in an open AISH article: linked to AISH right away, so the link is saved
+--- with the book's own settings (our own changes raise this event too: ignored).
+function AISH:onAnnotationsModified()
+    if not self.open_article or self.reconciling then return end
+    if self.reconcile_scheduled then return end
+    self.reconcile_scheduled = true
+    UIManager:nextTick(function()
+        self.reconcile_scheduled = false
+        if not self.open_article or not (self.ui and self.ui.document) then return end
+        self.reconciling = true
+        local ok, err = pcall(function() self:reconcileArticle(self:library(), self.open_article, self.ui) end)
+        self.reconciling = false
+        if not ok then logger.warn("AISH: highlights", err) end
+    end)
+end
+
+--- Closing one: what changed in it goes out right away when the reader is online (quietly; the next sync retries).
+function AISH:onCloseDocument()
+    if not self.open_article then return end
+    local id = self.open_article
+    self.open_article = nil
+    local ok, err = pcall(function()
+        local lib = self:library()
+        self.reconciling = true
+        self:reconcileArticle(lib, id, self.ui)
+        self.reconciling = false
+        if lib.pendingCount() > 0 and self.settings:nilOrTrue("send_on_close") and NetworkMgr:isOnline() and not self.syncing then
+            self.quiet = true
+            UIManager:scheduleIn(1, function() self:sync() end)
+        end
+    end)
+    self.reconciling = false
+    if not ok then logger.warn("AISH: on close", err) end
 end
 
 --- An article deleted in AISH: the file, KOReader's sidecar for it, and its place in history and collections.

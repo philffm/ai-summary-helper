@@ -29,6 +29,10 @@ for _, decl in ipairs({
     "int EVP_DecryptInit_ex(EVP_CIPHER_CTX *, const EVP_CIPHER *, ENGINE *, const unsigned char *, const unsigned char *);",
     "int EVP_DecryptUpdate(EVP_CIPHER_CTX *, unsigned char *, int *, const unsigned char *, int);",
     "int EVP_DecryptFinal_ex(EVP_CIPHER_CTX *, unsigned char *, int *);",
+    "int EVP_EncryptInit_ex(EVP_CIPHER_CTX *, const EVP_CIPHER *, ENGINE *, const unsigned char *, const unsigned char *);",
+    "int EVP_EncryptUpdate(EVP_CIPHER_CTX *, unsigned char *, int *, const unsigned char *, int);",
+    "int EVP_EncryptFinal_ex(EVP_CIPHER_CTX *, unsigned char *, int *);",
+    "int RAND_bytes(unsigned char *, int);",
     "int PKCS5_PBKDF2_HMAC(const char *, int, const unsigned char *, int, int, const EVP_MD *, int, unsigned char *);",
     "unsigned char *HMAC(const EVP_MD *, const void *, int, const unsigned char *, size_t, unsigned char *, unsigned int *);",
     [[typedef struct aish_z_stream_s {
@@ -41,6 +45,9 @@ for _, decl in ipairs({
     "int inflateInit2_(aish_z_stream *, int, const char *, int);",
     "int inflate(aish_z_stream *, int);",
     "int inflateEnd(aish_z_stream *);",
+    "int deflateInit2_(aish_z_stream *, int, int, int, int, int, const char *, int);",
+    "int deflate(aish_z_stream *, int);",
+    "int deflateEnd(aish_z_stream *);",
 }) do pcall(ffi.cdef, decl) end
 
 local function loadLib(name, version)
@@ -146,6 +153,58 @@ function M.gunzip(data, max)
     end
     libz.inflateEnd(strm)
     return table.concat(parts)
+end
+
+--- bytes → gzip (what the extension's CompressionStream("gzip") reads).
+function M.gzip(data)
+    local strm = ffi.new("aish_z_stream")
+    local input = ffi.new("unsigned char[?]", math.max(1, #data)); ffi.copy(input, data, #data)
+    strm.next_in, strm.avail_in = input, #data
+    assert(libz.deflateInit2_(strm, 6, 8, 31, 8, 0, libz.zlibVersion(), ffi.sizeof(strm)) == 0, "deflateInit failed")
+    local chunk = 65536
+    local buf = ffi.new("unsigned char[?]", chunk)
+    local parts = {}
+    while true do
+        strm.next_out, strm.avail_out = buf, chunk
+        local rc = libz.deflate(strm, 4)                                -- Z_FINISH
+        local got = chunk - strm.avail_out
+        if got > 0 then parts[#parts + 1] = ffi.string(buf, got) end
+        if rc == 1 then break end                                        -- Z_STREAM_END
+        if rc ~= 0 and rc ~= -5 then libz.deflateEnd(strm); error("compression failed") end
+    end
+    libz.deflateEnd(strm)
+    return table.concat(parts)
+end
+
+--- n random bytes from the system's generator (libcrypto).
+function M.randomBytes(n)
+    local buf = ffi.new("unsigned char[?]", n)
+    assert(libcrypto.RAND_bytes(buf, n) == 1, "no random numbers")
+    return ffi.string(buf, n)
+end
+
+--- AES-256-GCM: ciphertext with the 16-byte tag at its end.
+function M.aesGcmEncrypt(key, nonce, plain)
+    local ctx = libcrypto.EVP_CIPHER_CTX_new()
+    assert(ctx ~= nil, "no cipher")
+    local out = ffi.new("unsigned char[?]", #plain + 32)
+    local len, fin = ffi.new("int[1]"), ffi.new("int[1]")
+    local tag = ffi.new("unsigned char[16]")
+    local ok = libcrypto.EVP_EncryptInit_ex(ctx, libcrypto.EVP_aes_256_gcm(), nil, nil, nil) == 1
+        and libcrypto.EVP_CIPHER_CTX_ctrl(ctx, 0x9, #nonce, nil) == 1
+        and libcrypto.EVP_EncryptInit_ex(ctx, nil, nil, key, nonce) == 1
+        and libcrypto.EVP_EncryptUpdate(ctx, out, len, plain, #plain) == 1
+        and libcrypto.EVP_EncryptFinal_ex(ctx, out + len[0], fin) == 1
+        and libcrypto.EVP_CIPHER_CTX_ctrl(ctx, 0x10, 16, tag) == 1                       -- EVP_CTRL_GCM_GET_TAG
+    libcrypto.EVP_CIPHER_CTX_free(ctx)
+    assert(ok, "encryption failed")
+    return ffi.string(out, len[0] + fin[0]) .. ffi.string(tag, 16)
+end
+
+--- JSON text → the bytes of a sync file (version | nonce | AES-GCM(gzip(text))), like encryptJson in the extension.
+function M.encryptFile(keys, text, nonce)
+    nonce = nonce or M.randomBytes(12)
+    return string.char(M.FILE_VERSION) .. nonce .. M.aesGcmEncrypt(keys.enc, nonce, M.gzip(text))
 end
 
 -- ── the scheme ──────────────────────────────────────────────────────────────
