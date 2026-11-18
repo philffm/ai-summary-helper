@@ -27,7 +27,24 @@ local M = {}
 local TYPES = { article = true, hl = true, coll = true, note = true }
 local KEY_RX = "^(%a+):([%w_%.:%-]+)$"
 M.RECORD_DIR = "r"
-M.RENDER_VERSION = "2"   -- stage 2: no marks in the text (KOReader's own highlights would lose their place when it changes)
+M.RENDER_VERSION = "3"   -- 2: no marks in the text (KOReader's highlights keep their place); 3: chapters, key points, images
+M.IMAGE_MAX = 3 * 1024 * 1024          -- one image (bytes); larger ones keep only their description
+M.IMAGES_PER_ARTICLE = 12 * 1024 * 1024
+M.IMAGE_DIR = ".images"                 -- hidden in KOReader's file browser
+
+--- "2026-11-02T10:00:00.000Z" → seconds since 1970 (UTC), or nil
+function M.isoToEpoch(iso)
+    local y, mo, d, h, mi, sec = tostring(iso or ""):match("^(%d%d%d%d)%-(%d%d)%-(%d%d)T(%d%d):(%d%d):(%d%d)")
+    if not y then return nil end
+    y, mo, d = tonumber(y), tonumber(mo), tonumber(d)
+    if mo <= 2 then y = y - 1; mo = mo + 12 end   -- days from civil (Howard Hinnant)
+    local era = math.floor(y / 400)
+    local yoe = y - era * 400
+    local doy = math.floor((153 * (mo - 3) + 2) / 5) + d - 1
+    local doe = yoe * 365 + math.floor(yoe / 4) - math.floor(yoe / 100) + doy
+    local days = era * 146097 + doe - 719468
+    return days * 86400 + tonumber(h) * 3600 + tonumber(mi) * 60 + tonumber(sec)
+end
 
 -- ── page keys (plugin/src/modules/pageKey.js) ─────────────────────────────────
 local KEEP = { "article", "currentJobId", "id", "item", "pid", "postId", "story_fbid", "v" }   -- sorted, like the extension
@@ -115,6 +132,16 @@ function M.new(o)
             e.fu = type(rec.values.feedUrl) == "string" and rec.values.feedUrl ~= "" and rec.values.feedUrl or nil
             e.rs, e.sk = articleLean(rec.values)
             e.ti = type(rec.values.title) == "string" and rec.values.title or nil
+            -- the AISH tabs and tags, for the KOReader collections
+            local v = rec.values
+            e.ts = type(v.timestamp) == "string" and v.timestamp or nil
+            e.ra = json.val(v.readAt) and true or nil
+            e.ar = json.val(v.archived) == true or nil
+            local tags = {}
+            for f, x in pairs(v) do if f:sub(1, 4) == "tag:" and type(x) == "string" and x ~= "" then tags[#tags + 1] = x end end
+            table.sort(tags)
+            e.tg = #tags > 0 and json.array(tags) or nil
+            e.lv = 3   -- which of these the entry holds (an older entry is filled in from its record once)
         end
         self.index[key] = e
     end
@@ -325,8 +352,8 @@ function M.new(o)
     ]]
     function self.materialize(removeFile, progress)
         fs.mkdirp(self.outDir)
-        local _, notesByPage, _, collsOf = gather()
-        local res = { written = {}, removed = {}, collections = {}, skipped = 0, articles = 0 }
+        local hlByPage, notesByPage, _, collsOf = gather()
+        local res = { written = {}, removed = {}, collections = {}, skipped = 0, articles = 0, tabs = { inbox = {}, read = {}, archive = {} }, tags = {} }
         local used = {}
         for _, st in pairs(self.state) do used[st.file] = true end
         local total, done = 0, 0
@@ -339,15 +366,17 @@ function M.new(o)
                 local st = self.state[id]
                 -- from the index when it knows the article (no record to read); else from the record
                 local rec, v
-                local lean = e.rs ~= nil
+                local lean = e.lv == 3
                 if not e.deleted and not lean then
                     rec = live(key); v = rec and rec.values
-                    if v then e.u, e.fu = json.val(v.url), json.val(v.feedUrl); e.rs, e.sk = articleLean(v); e.ti = json.val(v.title) end
+                    if v then store(key, rec, e.dirty); e = self.index[key] end   -- an index from an older version: filled in once
                 end
                 local skip = e.deleted or e.sk or not e.rs
                 if skip then
                     if e.deleted and st then   -- deleted in AISH: remove what this plugin made
                         if fs.exists(st.file) then removeFile(st.file) end
+                        local safe = tostring(id):gsub("[^%w%-_]", "_")
+                        for k = 1, (st.imgs or 0) do for _, ext in ipairs({ "jpg", "png", "gif", "webp", "svg" }) do fs.remove(self.outDir .. "/" .. M.IMAGE_DIR .. "/" .. safe .. "-" .. k .. "." .. ext) end end
                         res.removed[#res.removed + 1] = st.file
                         used[st.file] = nil; self.state[id] = nil
                     elseif not e.deleted then res.skipped = res.skipped + 1 end
@@ -362,8 +391,16 @@ function M.new(o)
                     for _, pk in ipairs(pages) do
                         for _, n in ipairs(notesByPage[pk] or {}) do notes[#notes + 1] = n end
                     end
+                    -- key points: the AI highlights of the article (after the text: a change there moves no highlight)
+                    local keyPoints, seenKp = {}, {}
+                    for _, pk in ipairs(pages) do
+                        for _, h in ipairs(hlByPage[pk] or {}) do
+                            if h.type == "ghost" and not h.dismissed and h.text and not seenKp[h.text] then seenKp[h.text] = true; keyPoints[#keyPoints + 1] = h.text end
+                        end
+                    end
                     local parts = { e.rs }
                     for _, n in ipairs(notes) do parts[#parts + 1] = n.id .. ":" .. n.text .. ":" .. (n.quote or "") end
+                    for _, k in ipairs(keyPoints) do parts[#parts + 1] = "kp:" .. k end
                     local sig = digest(parts)
                     local file = st and st.file
                     if not file then
@@ -377,16 +414,45 @@ function M.new(o)
                         if v then
                             local vals = {}
                             for f, x in pairs(v) do vals[f] = json.val(x) end
-                            fs.write(file, render.article(vals, {}, notes, self.labels))
+                            -- images saved inside the article → files in .images/ next to it (within the caps)
+                            local imgDir, safe, total, nImgs = self.outDir .. "/" .. M.IMAGE_DIR, tostring(id):gsub("[^%w%-_]", "_"), 0, 0
+                            for k = 1, (st and st.imgs or 0) do for _, ext in ipairs({ "jpg", "png", "gif", "webp", "svg" }) do fs.remove(imgDir .. "/" .. safe .. "-" .. k .. "." .. ext) end end
+                            local function image(mime, b64, k)
+                                local size = math.floor(#b64 * 3 / 4)
+                                if size > M.IMAGE_MAX or total + size > M.IMAGES_PER_ARTICLE then return nil end
+                                local ext = ({ jpeg = "jpg", jpg = "jpg", png = "png", gif = "gif", webp = "webp", ["svg+xml"] = "svg" })[mime]
+                                local bytes = ext and crypto.fromB64Fast(b64)
+                                if not bytes then return nil end
+                                if nImgs == 0 then fs.mkdirp(imgDir) end
+                                fs.write(imgDir .. "/" .. safe .. "-" .. k .. "." .. ext, bytes)
+                                total, nImgs = total + #bytes, math.max(nImgs, k)
+                                return M.IMAGE_DIR .. "/" .. safe .. "-" .. k .. "." .. ext
+                            end
+                            fs.write(file, render.article(vals, {}, notes, self.labels, { keyPoints = keyPoints, image = image }))
                             res.written[#res.written + 1] = file
+                            st = { imgs = nImgs }
                         end
                     end
+                    -- the file's date is the day it was saved in AISH: "sort by date modified" lists the newest first
+                    local mt = M.isoToEpoch(e.ts)
+                    if mt and fs.touch and (not self.state[id] or self.state[id].mt ~= mt or res.written[#res.written] == file) then fs.touch(file, mt) end
                     used[file] = true
-                    self.state[id] = { file = file, sig = sig }
+                    self.state[id] = { file = file, sig = sig, imgs = st and st.imgs or 0, mt = mt }
+                    -- the AISH tabs and tags
+                    local item = { file = file, ts = e.ts or "" }
+                    local tab = e.ar and "archive" or (e.ra and "read" or "inbox")
+                    table.insert(res.tabs[tab], item)
+                    for _, tg in ipairs(e.tg or {}) do
+                        res.tags[tg] = res.tags[tg] or {}
+                        table.insert(res.tags[tg], item)
+                    end
                     if collsOf[id] then res.collections[file] = collsOf[id] end
                 end
             end
         end
+        local newest = function(x, y) return x.ts > y.ts or (x.ts == y.ts and x.file < y.file) end
+        for _, list in pairs(res.tabs) do table.sort(list, newest) end
+        for _, list in pairs(res.tags) do table.sort(list, newest) end
         writeJson(self.dataDir .. "/files.json", self.state)
         save()
         return res

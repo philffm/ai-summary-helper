@@ -38,7 +38,10 @@ local util = require("util")
 local _ = require("gettext")
 local T = ffiUtil.template
 
-local COLL_PREFIX = "AISH: "
+local COLL_PREFIX = "AISH: "    -- your AISH collections
+local TAB_PREFIX = "AISH · "     -- the AISH tabs: Inbox, Read, Archive
+local TAG_PREFIX = "AISH #"      -- the most used tags
+local TOP_TAGS = 10
 local CODE_FILE = "aish-library.txt"
 
 local fs = {
@@ -53,6 +56,7 @@ local fs = {
         assert(os.rename(p .. ".part", p))
     end,
     remove = function(p) os.remove(p) end,
+    touch = function(p, t) pcall(lfs.touch, p, t, t) end,
 }
 
 local AISH = WidgetContainer:extend{
@@ -69,6 +73,8 @@ end
 
 function AISH:onDispatcherRegisterActions()
     Dispatcher:registerAction("aish_sync", { category = "none", event = "AishSync", title = _("AISH: sync library"), general = true })
+    Dispatcher:registerAction("aish_newest", { category = "none", event = "AishOpenNewest", title = _("AISH: open newest unread"), general = true })
+    Dispatcher:registerAction("aish_inbox", { category = "none", event = "AishShowInbox", title = _("AISH: show Inbox"), general = true })
 end
 
 -- ── settings ────────────────────────────────────────────────────────────────
@@ -144,6 +150,16 @@ function AISH:addToMainMenu(menu_items)
                 callback = function() self:syncNow() end,
             },
             {
+                text = _("Open newest unread"),
+                enabled_func = function() return self:isConnected() end,
+                callback = function() self:onAishOpenNewest() end,
+            },
+            {
+                text = _("Show Inbox"),
+                enabled_func = function() return self:isConnected() end,
+                callback = function() self:onAishShowInbox() end,
+            },
+            {
                 text = _("Go to AISH folder"),
                 enabled_func = function() return lfs.attributes(self:outDir(), "mode") == "directory" end,
                 callback = function() self:goToFolder() end,
@@ -206,6 +222,23 @@ It keeps a lost reader's settings from giving away your login. A short PIN can s
                 callback = function(touchmenu) self:togglePin(touchmenu) end,
             },
             {
+                text = _("Sync automatically"),
+                help_text = _("When Wi-Fi comes on or the reader wakes up, and the last sync is more than 30 minutes ago. Not while an article is open; changes made in it are sent when you close it."),
+                checked_func = function() return self.settings:nilOrTrue("auto_sync") end,
+                callback = function() self.settings:flipNilOrTrue("auto_sync"); self:save() end,
+            },
+            {
+                text = _("Finished articles go to the AISH archive"),
+                help_text = _("When you mark an AISH article as finished in KOReader (or reach its end with that setting), it is archived in AISH."),
+                checked_func = function() return self.settings:nilOrTrue("finished_archive") end,
+                callback = function() self.settings:flipNilOrTrue("finished_archive"); self:save() end,
+            },
+            {
+                text = _("Collections for the 10 most used tags"),
+                checked_func = function() return self.settings:nilOrTrue("tag_collections") end,
+                callback = function() self.settings:flipNilOrTrue("tag_collections"); self:save() end,
+            },
+            {
                 text = _("Send changes when closing an article"),
                 help_text = _("Highlights, notes and read marks made on the reader go to AISH as soon as you close the article, when Wi-Fi is on. Otherwise they go at the next sync."),
                 checked_func = function() return self.settings:nilOrTrue("send_on_close") end,
@@ -243,7 +276,7 @@ function AISH:connectWithCode(touchmenu)
     -- a code file put on the reader over USB wins: typing a long code on an e-ink keyboard is no fun
     local FileManagerUtil = require("apps/filemanager/filemanagerutil")
     local home = G_reader_settings:readSetting("home_dir") or FileManagerUtil.getDefaultDir()
-    for _, dir in ipairs({ home, DataStorage:getDataDir(), self:outDir() }) do
+    for __, dir in ipairs({ home, DataStorage:getDataDir(), self:outDir() }) do
         local path = dir and (dir .. "/" .. CODE_FILE)
         local text = path and fs.read(path)
         if text and text:find("aish%-library://") then
@@ -307,7 +340,7 @@ function AISH:disconnect(touchmenu)
             if c and c.flow and pw and NetworkMgr:isOnline() then   -- the reader's own login: given back to Nextcloud
                 pcall(function() require("aishlib.nc").new().revoke(c.server or require("aishlib.nc").serverOf(c.url), c.username, pw) end)
             end
-            for _, k in ipairs({ "connection", "master", "salt", "last_sync", "sealed" }) do self.settings:delSetting(k) end
+            for __, k in ipairs({ "connection", "master", "salt", "last_sync", "sealed" }) do self.settings:delSetting(k) end
             self.secrets, self.vault_key = nil, nil
             self:save()
             ffiUtil.purgeDir(self.data_dir)
@@ -480,22 +513,67 @@ end
 function AISH:wipeAll()
     pcall(function()
         local lib = self:library()
-        for _, f in ipairs(lib.files()) do self:removeArticle(f) end
+        for __, f in ipairs(lib.files()) do self:removeArticle(f) end
     end)
     pcall(function()
         local RC = require("readcollection")
         local gone = {}
-        for name in pairs(RC.coll) do if name:sub(1, #COLL_PREFIX) == COLL_PREFIX then gone[#gone + 1] = name end end
-        for _, name in ipairs(gone) do RC:removeCollection(name) end
+        for name in pairs(RC.coll) do
+            if name:sub(1, #COLL_PREFIX) == COLL_PREFIX or name:sub(1, #TAB_PREFIX) == TAB_PREFIX or name:sub(1, #TAG_PREFIX) == TAG_PREFIX then gone[#gone + 1] = name end
+        end
+        for __, name in ipairs(gone) do RC:removeCollection(name) end
     end)
     ffiUtil.purgeDir(self.data_dir)
-    for _, k in ipairs({ "connection", "master", "salt", "sealed", "last_sync", "folder" }) do self.settings:delSetting(k) end
+    for __, k in ipairs({ "connection", "master", "salt", "sealed", "last_sync", "folder" }) do self.settings:delSetting(k) end
     self.secrets, self.vault_key = nil, nil
     self:save()
 end
 
 -- ── syncing ─────────────────────────────────────────────────────────────────
 function AISH:onAishSync() self:syncNow(); return true end
+
+--- The newest article not read yet (from the last sync's Inbox, else from the files this plugin made).
+function AISH:newestUnread()
+    local inbox = self.inbox
+    if not inbox then
+        local RC = require("readcollection")
+        local coll = RC.coll[TAB_PREFIX .. _("Inbox")]
+        if coll then
+            local list = RC:getOrderedCollection(TAB_PREFIX .. _("Inbox"))
+            inbox = {}
+            for __, it in ipairs(list) do inbox[#inbox + 1] = it.file end
+        end
+    end
+    for __, f in ipairs(inbox or {}) do
+        if lfs.attributes(f, "mode") == "file" and not (self.ui.document and self.ui.document.file == f) then return f end
+    end
+end
+function AISH:onAishOpenNewest()
+    local f = self:newestUnread()
+    if not f then notify(_("Nothing unread in the AISH Inbox."), 3); return true end
+    if self.ui.document then self.ui:switchDocument(f)
+    else require("apps/reader/readerui"):showReader(f) end
+    return true
+end
+function AISH:onAishShowInbox()
+    local name = TAB_PREFIX .. _("Inbox")
+    if not require("readcollection").coll[name] then notify(_("Sync the AISH library first."), 3); return true end
+    if self.ui.collections then self.ui.collections:onShowColl(name) end
+    return true
+end
+
+--- Wi-Fi on, or the reader woke up: a quiet sync when it is due (not while reading, not while locked by the PIN).
+function AISH:autoSync()
+    if not self:isConnected() or not self.settings:nilOrTrue("auto_sync") or self.syncing or self:isLocked() then return end
+    if self.ui and self.ui.document then return end
+    local last = self.settings:readSetting("last_sync")
+    if last and os.time() - (last.time or 0) < (tonumber(self.settings:readSetting("auto_sync_minutes")) or 30) * 60 then return end
+    if not NetworkMgr:isOnline() then return end
+    self.quiet = true
+    self:sync()
+end
+function AISH:onNetworkConnected() UIManager:scheduleIn(3, function() self:autoSync() end) end
+function AISH:onResume() UIManager:scheduleIn(5, function() self:autoSync() end) end
 
 function AISH:syncNow(words)
     if not self:isConnected() then notify(_("Connect the AISH library first (Tools → AISH library).")); return end
@@ -626,7 +704,6 @@ function AISH:pullAndWrite(store, meta, keys)
         local m = lib.materialize(function(path) self:removeArticle(path) end, function(done, total)
             self:progress(T(_("Writing articles: %1 of %2…"), done, total))
         end)
-        self:updateCollections(m.collections, lib.files())
         -- highlights and notes of every article in KOReader ↔ AISH, then what changed here goes out
         self:progress(_("Highlights and notes…"))
         local hl = self:reconcileAll(lib)
@@ -636,6 +713,9 @@ function AISH:pullAndWrite(store, meta, keys)
             self:progress(_("Sending changes…"))
             sent = lib.push(keys)
         end
+        -- the collections last: read marks and finished books from this very sync are in them (a second pass reads only the index)
+        local m2 = lib.materialize(function(path) self:removeArticle(path) end)
+        self:updateCollections(m2, lib.files())
         self.settings:saveSetting("last_sync", { time = os.time(), articles = m.articles, pending = lib.pendingCount() }); self:save()
         self:endProgress()
         local FileManager = require("apps/filemanager/filemanager")
@@ -651,11 +731,11 @@ function AISH:pullAndWrite(store, meta, keys)
         end
         if #res.failed > 0 then
             text = text .. "\n\n" .. T(_("%1 files could not be read and were skipped (they are tried again next time)."), #res.failed)
-            for _, f in ipairs(res.failed) do logger.warn("AISH: skipped", f.name, f.reason) end
+            for __, f in ipairs(res.failed) do logger.warn("AISH: skipped", f.name, f.reason) end
         end
         if #sent.failed > 0 then
             text = text .. "\n\n" .. T(_("%1 changes could not be sent yet. They are sent at the next sync."), #sent.failed)
-            for _, f in ipairs(sent.failed) do logger.warn("AISH: not sent", f.key, f.reason) end
+            for __, f in ipairs(sent.failed) do logger.warn("AISH: not sent", f.key, f.reason) end
         end
         notify(text, (#res.failed + #sent.failed) > 0 and nil or 4)
     end)
@@ -688,7 +768,7 @@ function AISH:findInDocument(ui, h)
         local best, bestScore = hits[1], -1
         local pre = tostring(h.quote and h.quote.prefix or ""):gsub("%s+", " "):sub(-20)
         local suf = tostring(h.quote and h.quote.suffix or ""):gsub("%s+", " "):sub(1, 20)
-        for _, r in ipairs(hits) do
+        for __, r in ipairs(hits) do
             local score = 0
             local prev = tostring(r.prev_text or ""):gsub("%s+", " ")
             local nxt = tostring(r.next_text or ""):gsub("%s+", " ")
@@ -703,8 +783,8 @@ function AISH:findInDocument(ui, h)
     if #words < 8 then return nil end
     local heads = search(table.concat(words, " ", 1, 6))
     local tails = search(table.concat(words, " ", #words - 5, #words))
-    for _, a in ipairs(heads) do
-        for _, b in ipairs(tails) do
+    for __, a in ipairs(heads) do
+        for __, b in ipairs(tails) do
             if doc:compareXPointers(a.start, b["end"]) == 1 then
                 return { pos0 = a.start, pos1 = b["end"], text = q, chapter = chapter(a.start) }
             end
@@ -745,7 +825,7 @@ function AISH:reconcileArticle(lib, id, ui)
         local sidecar = DocSettings:findSidecarFile(st.file)
         local mtime = sidecar and lfs.attributes(sidecar, "modification") or 0
         local parts = {}
-        for _, h in ipairs(hls) do
+        for __, h in ipairs(hls) do
             parts[#parts + 1] = h.id .. ":" .. tostring(h.t) .. ":" .. tostring(h.dismissed) .. ":" .. tostring(o.gone[h.id])
             local c = comments[h.id]
             if c then parts[#parts + 1] = c.id .. ":" .. tostring(c.text) end
@@ -755,16 +835,35 @@ function AISH:reconcileArticle(lib, id, ui)
         if self.seen[id] == sig then return nil end
         local ds = DocSettings:open(st.file)
         local items = ds:readSetting("annotations")
-        if type(items) ~= "table" or #items == 0 then return nil end
+        if type(items) ~= "table" then
+            if next(base) then return nil end   -- linked before, but no list now: not read as "all removed"
+            items = {}
+        end
         o.items = items
         act = Annots.reconcile(o)
         if act.removed + act.notesHere + #act.create > 0 then ds:saveSetting("annotations", items); ds:flush()
-            mtime = lfs.attributes(sidecar, "modification") or mtime
+            mtime = sidecar and lfs.attributes(sidecar, "modification") or mtime
             sig = tostring(mtime) .. "|" .. table.concat(parts, ",")
         end
         self.seen[id] = sig
     end
     Annots.apply(lib, id, act, base)
+    -- finished in KOReader → archived in AISH (once per finish: un-archiving in AISH is not undone here)
+    local summary
+    if ui then summary = ui.doc_settings and ui.doc_settings:readSetting("summary")
+    else
+        local st = lib.state[id]
+        summary = st and DocSettings:hasSidecarFile(st.file) and DocSettings:open(st.file):readSetting("summary")
+    end
+    local done = type(summary) == "table" and summary.status == "complete"
+    local sent = self.settings:readSetting("finished_sent") or {}
+    if done and not sent[id] and self.settings:nilOrTrue("finished_archive") then
+        local art = lib.article(id)
+        if art and require("aishlib.json").val(art.values.archived) ~= true then lib.edit("article:" .. id, { archived = true }) end
+        sent[id] = true; self.settings:saveSetting("finished_sent", sent)
+    elseif not done and sent[id] then
+        sent[id] = nil; self.settings:saveSetting("finished_sent", sent)
+    end
     return act
 end
 
@@ -795,6 +894,12 @@ function AISH:onReaderReady()
             local id = lib.articleOfFile(file)
             if not id then return end
             self.open_article = id
+            -- the chapters (Summary · the article's headings · Key points · Notes) come from the headings
+            if self.ui.doc_settings and self.ui.doc_settings:hasNot("alternative_toc") and self.ui.document.canHaveAlternativeToc
+                    and self.ui.document:canHaveAlternativeToc() then
+                self.ui.doc_settings:makeTrue("alternative_toc")
+                pcall(function() self.ui.toc:resetToc(); self.ui.toc:fillToc() end)
+            end
             local art = lib.article(id)
             if art and not require("aishlib.json").val(art.values.readAt) then lib.edit("article:" .. id, { readAt = lib.isoNow() }) end
             self.reconciling = true
@@ -851,35 +956,71 @@ function AISH:removeArticle(path)
 end
 
 --- AISH collections → KOReader collections "AISH: <name>", for the files this plugin made (others are never touched).
-function AISH:updateCollections(collections, ourFiles)
+--[[--
+KOReader collections for the files this plugin made (other files are never touched), each newest first:
+  "AISH · Inbox" / "AISH · Read" / "AISH · Archive"   the AISH tabs (not read yet / read / archived)
+  "AISH: <name>"                                         your AISH collections
+  "AISH #<tag>"                                          the 10 most used tags
+]]
+function AISH:updateCollections(m, ourFiles)
     local ok, err = pcall(function()
         local RC = require("readcollection")
         local real = function(p) return ffiUtil.realpath(p) or p end
-        local want = {}   -- collection → set of files
-        for file, names in pairs(collections) do
-            for _, n in ipairs(names) do
+        local tsOf = {}
+        for __, list in pairs(m.tabs) do for __, it in ipairs(list) do tsOf[it.file] = it.ts end end
+        local want = {}   -- collection → files, newest first
+        want[TAB_PREFIX .. _("Inbox")], want[TAB_PREFIX .. _("Read")], want[TAB_PREFIX .. _("Archive")] = {}, {}, {}
+        for __, it in ipairs(m.tabs.inbox) do table.insert(want[TAB_PREFIX .. _("Inbox")], it.file) end
+        for __, it in ipairs(m.tabs.read) do table.insert(want[TAB_PREFIX .. _("Read")], it.file) end
+        for __, it in ipairs(m.tabs.archive) do table.insert(want[TAB_PREFIX .. _("Archive")], it.file) end
+        for file, names in pairs(m.collections) do
+            for __, n in ipairs(names) do
                 local cn = COLL_PREFIX .. n
                 want[cn] = want[cn] or {}
-                want[cn][file] = true
+                table.insert(want[cn], file)
             end
         end
+        local tagNames = {}
+        for tg, list in pairs(m.tags) do tagNames[#tagNames + 1] = { name = tg, n = #list } end
+        table.sort(tagNames, function(x, y) return x.n > y.n or (x.n == y.n and x.name:lower() < y.name:lower()) end)
+        if self.settings:nilOrTrue("tag_collections") then
+            for i = 1, math.min(TOP_TAGS, #tagNames) do
+                local cn = TAG_PREFIX .. tagNames[i].name
+                want[cn] = {}
+                for __, it in ipairs(m.tags[tagNames[i].name]) do table.insert(want[cn], it.file) end
+            end
+        end
+        local function ourColl(cn) return cn:sub(1, #COLL_PREFIX) == COLL_PREFIX or cn:sub(1, #TAB_PREFIX) == TAB_PREFIX or cn:sub(1, #TAG_PREFIX) == TAG_PREFIX end
         local ours = {}
-        for _, f in ipairs(ourFiles) do ours[real(f)] = true end
+        for __, f in ipairs(ourFiles) do ours[real(f)] = true end
         local touched = {}
         for cn, files in pairs(want) do
-            if not RC.coll[cn] then RC:addCollection(cn) end
-            if RC:addItemsMultiple(files, { [cn] = true }) > 0 then touched[cn] = true end
-        end
-        for cn, coll in pairs(RC.coll) do   -- an article that left an AISH collection leaves the KOReader one
-            if cn:sub(1, #COLL_PREFIX) == COLL_PREFIX then
-                local keep = {}
-                for f in pairs(want[cn] or {}) do keep[real(f)] = true end
-                for f in pairs(coll) do
-                    if ours[f] and not keep[f] then coll[f] = nil; touched[cn] = true end
-                end
+            table.sort(files, function(x, y) return (tsOf[x] or "") > (tsOf[y] or "") end)
+            if not RC.coll[cn] then RC:addCollection(cn); touched[cn] = true end
+            local set = {}
+            for __, f in ipairs(files) do set[f] = true end
+            if RC:addItemsMultiple(set, { [cn] = true }) > 0 then touched[cn] = true end
+            local coll, keep = RC.coll[cn], {}
+            for i, f in ipairs(files) do
+                local rf = real(f)
+                keep[rf] = true
+                if coll[rf] and coll[rf].order ~= i then coll[rf].order = i; touched[cn] = true end   -- newest first
+            end
+            for f in pairs(coll) do   -- an article that left it (read, archived, removed from the collection) leaves here too
+                if ours[f] and not keep[f] then coll[f] = nil; touched[cn] = true end
             end
         end
+        local gone = {}
+        for cn in pairs(RC.coll) do
+            if ourColl(cn) and not want[cn] then   -- an AISH collection or tag that is no longer there
+                local foreign = false
+                for f in pairs(RC.coll[cn]) do if not ours[f] then foreign = true end end
+                if not foreign then gone[#gone + 1] = cn end
+            end
+        end
+        for __, cn in ipairs(gone) do RC:removeCollection(cn); touched[cn] = true end
         if next(touched) then RC:write(touched) end
+        self.inbox = want[TAB_PREFIX .. _("Inbox")]
     end)
     if not ok then logger.warn("AISH: collections not updated", err) end
 end

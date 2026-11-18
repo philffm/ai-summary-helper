@@ -8,18 +8,27 @@ Highlights and notes go **both ways**: what you mark on the reader appears in th
 
 ## What you get
 
-- a folder `AISH` in KOReader's home folder, one HTML file per article:
-  the title and source, the **AI summary**, the **full text**, and **your notes on the article** at the end;
+- a folder `AISH` in KOReader's home folder, one HTML file per article, with **chapters** for KOReader's table of contents:
+  **Summary** (the AI summary) · the article with its own headings · **Key points** (the AI highlights) · **Notes**
+  (your notes on the article). Images the extension saved with the article come along (as files in `AISH/.images`,
+  at most 3 MB each and 12 MB per article);
+- **newest first**: each file carries the date it was saved in AISH, so with *Settings → File browser → Sort by: date
+  modified* the AISH folder lists your latest saves on top;
+- **the AISH tabs as collections**, newest first: `AISH · Inbox` (not read yet), `AISH · Read`, `AISH · Archive`;
+  your AISH collections as `AISH: <name>`, and the **10 most used tags** as `AISH #<tag>`;
 - **highlights as KOReader highlights**: when you open an article, your AISH highlights appear as KOReader highlights
   (AI highlights underlined) with their comment as the note;
 - **back to AISH**: a highlight you make on the reader becomes an AISH highlight (with the words around it, as the
   extension saves them); its note becomes the comment. Editing a note edits the comment, removing a highlight deletes it
-  (an AI highlight is dismissed), and opening an article marks it read. These go out when you close the article
-  (when Wi-Fi is on; *Send changes when closing an article*) or at the next sync;
-- AISH **collections** as KOReader collections named `AISH: <name>`;
-- an article deleted in AISH is removed from the reader at the next sync (with its KOReader sidecar);
+  (an AI highlight is dismissed). Opening an article marks it read; marking it **finished** in KOReader archives it in
+  AISH. These go out when you close the article (when Wi-Fi is on) or at the next sync;
+- **gestures** (Settings → Taps and gestures): *AISH: sync library*, *AISH: open newest unread*, *AISH: show Inbox*;
+- **automatic sync** when Wi-Fi comes on or the reader wakes up, at most every 30 minutes (not while an article is open);
+- an article deleted in AISH is removed from the reader at the next sync (with its KOReader sidecar and images);
   renaming an article keeps its file, so your reading position stays;
 - each sync downloads only the files that changed (ETags); a file that cannot be read is skipped and tried again later.
+
+Automatic sync, finished → archive, the tag collections and sending on close can be turned off in *Tools → AISH library*.
 
 How the two sides agree: every record carries per-field time stamps, and the reader merges exactly like the extension
 (newer field wins, a deletion marker beats older edits; same hashes and rules, checked against the extension's test vector).
@@ -27,7 +36,7 @@ A file is written only if the server's copy is still the one the reader knows (`
 first, the two are merged and it is sent again. A server copy that cannot be read is never overwritten.
 When a note was changed on both sides since the last sync, the reader's wins.
 
-Feed stubs (feed items not summarized yet) are left out. Images are not downloaded yet: their description stays in the text.
+Feed stubs (feed items not summarized yet) are left out.
 
 ## Install
 
@@ -98,4 +107,5 @@ highlights ↔ AISH) · `aishlib/render.lua` · `aishlib/marks.lua` · `aishlib/
 
 ## Not yet
 
-S3 places, images in articles, reading progress (KOReader's percentage has no place in AISH yet).
+S3 places, images the extension did not save (remote ones), reading progress (KOReader's percentage has no place in
+AISH yet), EPUB files with covers.
