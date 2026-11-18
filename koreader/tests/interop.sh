@@ -24,6 +24,22 @@ changed=0; for f in "$work/place/snap2/r/"*; do cmp -s "$f" "$work/place/snap1/r
 for f in "$work/dav/My Library/r/"*; do [ -e "$work/place/snap2/r/$(basename "$f")" ] || rm "$f"; done
 AISH_CHANGED=$changed AISH_PHASE=2 luajit "$here/test_interop.lua"
 AISH_PHASE=plugin luajit "$here/test_plugin.lua"
+# the EPUB the plugin wrote: a valid ZIP with well-formed XML, and epubcheck when it is installed (pip install epubcheck)
+python3 - "$work/device-plugin/home/AISH" <<'PY'
+import sys, os, zipfile, xml.etree.ElementTree as ET
+d = sys.argv[1]
+for f in sorted(os.listdir(d)):
+    if not f.endswith(".epub"): continue
+    z = zipfile.ZipFile(os.path.join(d, f)); assert z.testzip() is None
+    first = z.infolist()[0]; assert first.filename == "mimetype" and first.compress_type == 0
+    for n in z.namelist():
+        if n.endswith((".xhtml", ".opf", ".ncx", ".xml")): ET.fromstring(z.read(n))
+    try:
+        from epubcheck import EpubCheck
+        r = EpubCheck(os.path.join(d, f)); assert r.valid, [(m.level, m.id, m.message) for m in r.messages]
+        print("epubcheck ok:", f)
+    except ImportError: print("well-formed:", f)
+PY
 # the browser syncs: what the reader sent arrives in the extension
 node "$here/browser-step.mjs" "$work/place/browser.json" "$work/dav/My Library" report > "$work/report.json"
 node -e '

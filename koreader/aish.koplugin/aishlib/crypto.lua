@@ -33,6 +33,7 @@ for _, decl in ipairs({
     "int EVP_EncryptUpdate(EVP_CIPHER_CTX *, unsigned char *, int *, const unsigned char *, int);",
     "int EVP_EncryptFinal_ex(EVP_CIPHER_CTX *, unsigned char *, int *);",
     "int RAND_bytes(unsigned char *, int);",
+    "int EVP_DecodeBlock(unsigned char *, const unsigned char *, int);",
     "int PKCS5_PBKDF2_HMAC(const char *, int, const unsigned char *, int, int, const EVP_MD *, int, unsigned char *);",
     "unsigned char *HMAC(const EVP_MD *, const void *, int, const unsigned char *, size_t, unsigned char *, unsigned int *);",
     [[typedef struct aish_z_stream_s {
@@ -84,6 +85,17 @@ function M.fromB64(s)
         end
     end
     return table.concat(out)
+end
+
+--- Large base64 (images) in native code; the padding bytes EVP_DecodeBlock leaves are cut off.
+function M.fromB64Fast(s)
+    s = tostring(s or ""):gsub("[^A-Za-z0-9+/=]", "")
+    if #s % 4 ~= 0 then s = s .. string.rep("=", 4 - #s % 4) end
+    local out = ffi.new("unsigned char[?]", #s / 4 * 3 + 1)
+    local n = libcrypto.EVP_DecodeBlock(out, s, #s)
+    if n < 0 then return nil end
+    local pad = #s:match("=*$")
+    return ffi.string(out, n - pad)
 end
 
 function M.toHex(s) return (s:gsub(".", function(c) return string.format("%02x", c:byte()) end)) end

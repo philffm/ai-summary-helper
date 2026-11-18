@@ -4,7 +4,6 @@ One AISH article as an HTML file for KOReader: title, source, the AI summary, th
 
 @module aishlib.render
 ]]
-local marks = require("aishlib.marks")
 
 local M = {}
 
@@ -39,8 +38,9 @@ end
 
 --- Saved HTML is someone else's page: only what an e-reader shows is kept (no scripts, frames, forms, remote images,
 --- event handlers or javascript: links). One pass over the tags: a long article takes a few milliseconds.
-function M.clean(html)
+function M.clean(html, image)
     html = tostring(html or "")
+    local nImg = 0
     local low = html:lower()
     local out, n, pos, len = {}, 0, 1, #html
     while pos <= len do
@@ -62,9 +62,16 @@ function M.clean(html)
                     if e then pos = (low:find(">", e, true) or len) + 1 else pos = gt + 1 end
                 else pos = gt + 1 end
             elseif STRIP[name] then pos = gt + 1
-            elseif name == "img" then   -- the reader cannot fetch images; their description stays
+            elseif name == "img" then
+                -- images the extension saved inside the article (base64) become files next to it; remote ones cannot be
+                -- fetched by the reader: their description stays
                 local alt = tag:match('%s[aA][lL][tT]="([^"]*)"') or tag:match("%s[aA][lL][tT]='([^']*)'")
-                if alt and alt ~= "" then n = n + 1; out[n] = '<span class="aish-img">[' .. alt .. "]</span>" end
+                local mime, b64 = tag:match('%s[sS][rR][cC]%s*=%s*["\']data:image/([%w%.%+%-]+);base64,([A-Za-z0-9+/=%s]+)["\']')
+                local src
+                if mime and image then nImg = nImg + 1; src = image(mime:lower(), b64, nImg, alt) end
+                if src then
+                    n = n + 1; out[n] = '<img src="' .. src .. '"' .. (alt and (' alt="' .. alt:gsub('"', "&quot;") .. '"') or "") .. "/>"
+                elseif alt and alt ~= "" then n = n + 1; out[n] = '<span class="aish-img">[' .. alt .. "]</span>" end
                 pos = gt + 1
             else
                 n = n + 1; out[n] = closing == "" and cleanAttrs(tag) or tag
@@ -89,6 +96,8 @@ div.aish-note { margin: 0 0 .8em; }
 div.aish-note blockquote { margin: 0 0 .2em 0; font-style: italic; }
 p.aish-empty { font-style: italic; color: #555; }
 span.aish-img { color: #777; font-size: .85em; }
+img { max-width: 100%; }
+section.aish-keypoints h2 { font-size: 1.05em; margin: 1.6em 0 .4em; }
 ]]
 
 local function dateOf(ts)
@@ -112,35 +121,25 @@ hls = { { id, text, type, quote = { exact, prefix, suffix }, dismissed } }
 notes = { { id, kind, text, highlightId, quote } }   (comments on highlights and notes on the article)
 labels = { summary, notes, noText, highlight, aiHighlight }   (translated)
 ]]
-function M.article(a, hls, notes, labels)
-    labels = labels or {}
+--[[--
+a = article values { title, url, timestamp, summaryBase|summary, content, byline|author, language|lang }
+notes = your notes on the article { id, text, quote }
+labels = { summary, keyPoints, notes, noText }   (translated)
+opts = { keyPoints = { "sentence", … } (the AI highlights), image = function(mime, base64, n) → src or nil }
+
+The chapters (KOReader's table of contents): Summary · the article's own headings · Key points · Notes. The sections keep
+their order and are always there (empty when there is nothing): KOReader's highlights point into the article section by
+its position, so a summary that appears later must not move it.
+]]
+function M.article(a, _, notes, labels, opts)
+    labels, opts = labels or {}, opts or {}
     local title = a.title and a.title ~= "" and a.title or host(a.url)
-    local commentsByHl, articleNotes = {}, {}
+    local articleNotes = {}
     for _, n in ipairs(notes or {}) do
-        if n.highlightId and n.highlightId ~= "" then
-            commentsByHl[n.highlightId] = commentsByHl[n.highlightId] or {}
-            table.insert(commentsByHl[n.highlightId], n)
-        elseif n.text and n.text:match("%S") then articleNotes[#articleNotes + 1] = n end
+        if not (n.highlightId and n.highlightId ~= "") and n.text and n.text:match("%S") then articleNotes[#articleNotes + 1] = n end
     end
-
-    -- marks: your highlights, then AI ones; a highlight with a comment links to it
-    local list, refs = {}, {}
-    for _, h in ipairs(hls or {}) do
-        if not h.dismissed then
-            local q = h.quote or {}
-            local m = { exact = q.exact or h.text, prefix = q.prefix, suffix = q.suffix, class = h.type == "ghost" and "ai" or nil, hl = h }
-            if h.id and commentsByHl[h.id] then
-                refs[#refs + 1] = h
-                m.ref = "aish-n" .. #refs; m.refLabel = tostring(#refs)
-            end
-            list[#list + 1] = m
-        end
-    end
-    table.sort(list, function(x, y) return (x.class or "") < (y.class or "") end)   -- yours first: they win where both overlap
-
-    local body = M.clean(a.content)
+    local body = M.clean(a.content, opts.image)
     local hasText = body:match("^%s*[^<%s]") ~= nil or body:find(">[^<]*[^<%s]") ~= nil
-    if hasText and #list > 0 then body = marks.apply(body, list) end
 
     local out = {}
     local function w(s) out[#out + 1] = s end
@@ -159,17 +158,17 @@ function M.article(a, hls, notes, labels)
     local summary = a.summaryBase or a.summary
     if summary and tostring(summary):match("%S") then
         w('<section class="aish-summary"><h2>' .. esc(labels.summary or "Summary") .. "</h2>" .. M.clean(summary) .. "</section>")
-    end
+    else w('<section class="aish-summary"></section>') end
     if hasText then w('<section class="aish-article">' .. body .. "</section>")
-    else w('<p class="aish-empty">' .. esc(labels.noText or "The full text of this article was not saved.") .. "</p>") end
-
-    if #refs > 0 or #articleNotes > 0 then
+    else w('<section class="aish-article"><p class="aish-empty">' .. esc(labels.noText or "The full text of this article was not saved.") .. "</p></section>") end
+    local kp = opts.keyPoints or {}
+    if #kp > 0 then
+        w('<section class="aish-keypoints"><h2>' .. esc(labels.keyPoints or "Key points") .. "</h2><ul>")
+        for _, t in ipairs(kp) do w("<li>" .. esc(t) .. "</li>") end
+        w("</ul></section>")
+    else w('<section class="aish-keypoints"></section>') end
+    if #articleNotes > 0 then
         w('<section class="aish-notes"><h2>' .. esc(labels.notes or "Notes") .. "</h2>")
-        for i, h in ipairs(refs) do
-            w('<div class="aish-note" id="aish-n' .. i .. '"><blockquote><b>' .. i .. ".</b> " .. esc((h.quote and h.quote.exact) or h.text) .. "</blockquote>")
-            for _, n in ipairs(commentsByHl[h.id]) do w(paras(n.text)) end
-            w("</div>")
-        end
         for _, n in ipairs(articleNotes) do
             w('<div class="aish-note">' .. (n.quote and n.quote ~= "" and ("<blockquote>" .. esc(n.quote) .. "</blockquote>") or "") .. paras(n.text) .. "</div>")
         end
@@ -181,7 +180,7 @@ end
 
 --- A file name for the article: its title, made safe for FAT/exFAT e-reader storage, plus a short id so two articles
 --- with one title never share a file.
-function M.fileName(title, id)
+function M.fileName(title, id, ext)
     local t = tostring(title or ""):gsub('[%c/\\:%*%?"<>|]', " "):gsub("%s+", " "):gsub("^[%s%.]+", ""):gsub("[%s%.]+$", "")
     if #t > 90 then
         t = t:sub(1, 90)
@@ -191,7 +190,7 @@ function M.fileName(title, id)
     end
     if t == "" then t = "Article" end
     local short = tostring(id or ""):gsub("[^%w]", ""):sub(-6)
-    return t .. (short ~= "" and (" [" .. short .. "]") or "") .. ".html"
+    return t .. (short ~= "" and (" [" .. short .. "]") or "") .. "." .. (ext or "html")
 end
 
 return M

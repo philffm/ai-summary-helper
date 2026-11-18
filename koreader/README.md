@@ -8,18 +8,35 @@ Highlights and notes go **both ways**: what you mark on the reader appears in th
 
 ## What you get
 
-- a folder `AISH` in KOReader's home folder, one HTML file per article:
-  the title and source, the **AI summary**, the **full text**, and **your notes on the article** at the end;
+- a folder `AISH` in KOReader's home folder, **one EPUB per article** with real **book information**: the source as
+  author and publisher, the date saved, the language, the **AISH tags as keywords**, the **AI summary as description**,
+  the first **AISH collection as series** (numbered by date), a **cover made for each article** (always the title, with
+  the site and date, and the article's best picture when it has one: icons, logos, avatars and tiny images are never
+  used; otherwise the start of the summary), and a
+  **table of contents**: **Summary** · the article's own headings · **Key points** (the AI highlights) · **Notes** (your
+  notes on the article). Images the extension saved with the article are inside the file (at most 3 MB each, 12 MB per
+  article). EPUB is compressed: a text-only article takes a fraction of the HTML's size. Plain HTML files instead:
+  *Articles as EPUB* off;
+- **newest first**: each file carries the date it was saved in AISH, so with *Settings → File browser → Sort by: date
+  modified* the AISH folder lists your latest saves on top;
+- **the AISH tabs as collections**, newest first: `AISH · Inbox` (not read yet), `AISH · Read`, `AISH · Archive`;
+  your AISH collections as `AISH: <name>`, and the **10 most used tags** as `AISH #<tag>`;
 - **highlights as KOReader highlights**: when you open an article, your AISH highlights appear as KOReader highlights
   (AI highlights underlined) with their comment as the note;
 - **back to AISH**: a highlight you make on the reader becomes an AISH highlight (with the words around it, as the
   extension saves them); its note becomes the comment. Editing a note edits the comment, removing a highlight deletes it
-  (an AI highlight is dismissed), and opening an article marks it read. These go out when you close the article
-  (when Wi-Fi is on; *Send changes when closing an article*) or at the next sync;
-- AISH **collections** as KOReader collections named `AISH: <name>`;
-- an article deleted in AISH is removed from the reader at the next sync (with its KOReader sidecar);
+  (an AI highlight is dismissed). Opening an article marks it read; marking it **finished** in KOReader archives it in
+  AISH. These go out when you close the article (when Wi-Fi is on) or at the next sync;
+- **gestures** (Settings → Taps and gestures): *AISH: sync library*, *AISH: open newest unread*, *AISH: show Inbox*;
+- **automatic sync** when Wi-Fi comes on or the reader wakes up, at most every 30 minutes (not while an article is open);
+- an article deleted in AISH is removed from the reader at the next sync (with its KOReader sidecar and images);
   renaming an article keeps its file, so your reading position stays;
 - each sync downloads only the files that changed (ETags); a file that cannot be read is skipped and tried again later.
+
+*Download everything again* removes the AISH articles from the reader and loads the library anew (highlights and notes
+made on the reader are sent first and come back; reading positions start over).
+
+Automatic sync, finished → archive, the tag collections and sending on close can be turned off in *Tools → AISH library*.
 
 How the two sides agree: every record carries per-field time stamps, and the reader merges exactly like the extension
 (newer field wins, a deletion marker beats older edits; same hashes and rules, checked against the extension's test vector).
@@ -27,7 +44,7 @@ A file is written only if the server's copy is still the one the reader knows (`
 first, the two are merged and it is sent again. A server copy that cannot be read is never overwritten.
 When a note was changed on both sides since the last sync, the reader's wins.
 
-Feed stubs (feed items not summarized yet) are left out. Images are not downloaded yet: their description stays in the text.
+Feed stubs (feed items not summarized yet) are left out.
 
 ## Install
 
@@ -87,6 +104,7 @@ opens them as plain files, and e-readers do not encrypt their storage).
 
 ```
 luajit koreader/tests/run.lua          # the Lua modules: crypto, hashes and merges against plugin/tests/fixtures/sync-vector.json,
+                                       # EPUB/ZIP writing,
                                        # highlight reconciling, conditional writes and the 412 merge, rendering
 bash koreader/tests/interop.sh         # the extension's own sync engine and the plugin, both ways, over wsgidav with a login
 ```
@@ -98,4 +116,5 @@ highlights ↔ AISH) · `aishlib/render.lua` · `aishlib/marks.lua` · `aishlib/
 
 ## Not yet
 
-S3 places, images in articles, reading progress (KOReader's percentage has no place in AISH yet).
+S3 places, images the extension did not save (remote ones), reading progress (KOReader's percentage has no place in
+AISH yet).

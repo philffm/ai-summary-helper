@@ -15,7 +15,7 @@ const { data, area, st, idle } = dev;
 const sync = () => dev.sync(place);
 const snap = (name) => fs.cpSync(place, path.join(out, name), { recursive: true });
 
-const sleep = '<p>Sleep is <em>not</em> a pause for the brain.</p><p>During slow-wave sleep, the brain replays the day’s experiences, which strengthens the connections between neurons.</p><p>Short naps of about twenty minutes improve recall.</p>';
+const sleep = '<p>Sleep is <em>not</em> a pause for the brain.</p><p>During slow-wave sleep, the brain replays the day’s experiences, which strengthens the connections between neurons.</p><p>Short naps of about twenty minutes improve recall.</p><p><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNkYPhfDwAChwGA60e6kgAAAABJRU5ErkJggg==" alt="A tiny chart"></p>';
 await area.set({
   [SK.articlesIndex]: [
     { id: 'k-a1', url: 'https://science.example/sleep?utm_source=x', title: 'Why we sleep: what the new studies show', timestamp: '2026-11-02T08:00:00.000Z', tags: ['science'], summary: '<ul><li>Sleep consolidates memory.</li></ul>' },

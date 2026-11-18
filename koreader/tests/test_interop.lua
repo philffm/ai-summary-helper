@@ -8,7 +8,7 @@ local C, code = require("aishlib.crypto"), require("aishlib.code")
 local json = require("aishlib.json")
 local work = os.getenv("AISH_WORK")
 local store = require("aishlib.webdav").new({ url = os.getenv("AISH_URL"), root = "My Library", username = "phil", password = "app pass/ü", http = require("socket.http") })
-local lib = require("aishlib.library").new({ store = store, fs = fsu, dataDir = work .. "/data", outDir = work .. "/AISH", labels = { summary = "Summary", notes = "Notes" } })
+local lib = require("aishlib.library").new({ store = store, fs = fsu, dataDir = work .. "/data", outDir = work .. "/AISH", format = "html", labels = { summary = "Summary", notes = "Notes" } })
 
 local meta = json.decode(assert(store.get("meta.json")))
 lib.resetIfNewPlace(meta.salt)

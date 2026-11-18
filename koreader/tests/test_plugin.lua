@@ -32,7 +32,7 @@ local LuaSettings = { open = function(_, path)
         isTrue = function(_, k) return data[k] == true end, flipNilOrTrue = function(_, k) if data[k] == nil or data[k] == true then data[k] = false else data[k] = nil end end, nilOrTrue = function(_, k) return data[k] == nil or data[k] == true end }
 end }
 local sidecars, saveSidecars = persisted(work .. "/sidecars.json")
-_G.G_reader_settings = LuaSettings:open("global"); G_reader_settings:saveSetting("home_dir", home)
+_G.G_reader_settings = LuaSettings:open("global"); G_reader_settings:saveSetting("home_dir", home .. "/")   -- as KOReader may keep it: a trailing slash
 mod("datastorage", { getSettingsDir = function() return work .. "/settings" end, getDataDir = function() return work .. "/data" end })
 mod("dispatcher", { registerAction = function() end })
 mod("docsettings", { updateLocation = function() end,
@@ -46,6 +46,7 @@ mod("ui/widget/multiinputdialog", widget("multi")); mod("luasettings", LuaSettin
 local function press(label, input)
     for i = #shown, 1, -1 do
         local d = shown[i]
+        if d.ok_text == label then table.remove(shown, i); return d.ok_callback() end
         for _, row in ipairs(d.buttons or {}) do
             for _, b in ipairs(row) do
                 if b.text == label then
@@ -65,17 +66,24 @@ mod("ui/widget/container/widgetcontainer", { extend = function(_, o) o.__index =
 mod("ffi/util", { template = function(s, ...) local a = { ... }; return (s:gsub("%%(%d)", function(i) return tostring(a[tonumber(i)]) end)) end,
     realpath = function(p) return p end, purgeDir = function(d) os.execute("rm -rf '" .. d .. "'") end })
 mod("libs/libkoreader-lfs", { attributes = function(p, what)
+    if what == "modification" then return fsu.mtime(p) end
     if fsu.exists(p) then return "file" end
-    return os.execute("test -d '" .. p .. "'") == 0 and "directory" or nil end })
+    return os.execute("test -d '" .. p .. "'") == 0 and "directory" or nil end,
+    touch = function(p, _, m) fsu.touch(p, m) end,
+    dir = function(d) local l = fsu.ls(d); local i = 0; return function() i = i + 1; return l[i] end end })
+local opened = {}
+mod("apps/reader/readerui", { showReader = function(_, f) opened[#opened + 1] = f end })
 mod("logger", { info = function() end, warn = print, err = print, dbg = function() end })
 mod("socketutil", { set_timeout = function() end, reset_timeout = function() end, FILE_BLOCK_TIMEOUT = 15, FILE_TOTAL_TIMEOUT = 60 })
 mod("util", { makePath = fsu.mkdirp, trim = function(s) return (s:gsub("^%s+", ""):gsub("%s+$", "")) end })
 mod("gettext", function(s) return s end)
 local RC = { coll = {}, writes = 0 }
 function RC:addCollection(n) self.coll[n] = {} end
-function RC:addItemsMultiple(files, colls) local c = 0; for f in pairs(files) do for n in pairs(colls) do if not self.coll[n][f] then self.coll[n][f] = { file = f }; c = c + 1 end end end return c end
+function RC:addItemsMultiple(files, colls) local c = 0; for f in pairs(files) do for n in pairs(colls) do if not self.coll[n][f] then self.coll[n][f] = { file = f, order = 999 }; c = c + 1 end end end return c end
 function RC:write() self.writes = self.writes + 1 end
 function RC:removeItem() end
+function RC:removeCollection(n) self.coll[n] = nil end
+function RC:getOrderedCollection(n) local l = {}; for _, it in pairs(self.coll[n]) do l[#l + 1] = it end; table.sort(l, function(a, b) return (a.order or 0) < (b.order or 0) end); return l end
 mod("readcollection", RC); mod("readhistory", { fileDeleted = function() end })
 mod("apps/filemanager/filemanager", { instance = nil }); mod("apps/filemanager/filemanagerutil", { getDefaultDir = function() return home end })
 
@@ -83,18 +91,23 @@ local AISH = require("main")
 local menu = {}
 local plugin = setmetatable({ ui = { menu = { registerToMainMenu = function(_, p) p:addToMainMenu(menu) end } } }, { __index = AISH })
 plugin:init()
-local sleepFile = home .. "/AISH/Why we sleep what the new studies show [ka1].html"
+local sleepFile = home .. "/AISH/Why we sleep what the new studies show [ka1].epub"
+local function unzipText(file, member)
+    local h = io.popen("unzip -p '" .. file .. "' '" .. member .. "' 2>/dev/null"); local t = h:read("*a"); h:close(); return t
+end
 
 -- a stand-in for an open book: KOReader's search over the file's text, its annotation list
 local marks = require("aishlib.marks")
 local function openBook(file, annotations)
-    local _, plain = marks._index(fsu.read(file))
+    local _, plain = marks._index(unzipText(file, "OEBPS/article.xhtml"))
     local ann = { annotations = annotations or {} }
     function ann:addItem(it) self.annotations[#self.annotations + 1] = it; return #self.annotations end
     local events = {}
-    local ui = { annotation = ann, toc = { getTocTitleByPage = function() return "Chapter" end }, view = { highlight = { saved_color = "yellow" } },
+    local ds = {}
+    local docSettings = { readSetting = function(_, k) return ds[k] end, hasNot = function(_, k) return ds[k] == nil end, makeTrue = function(_, k) ds[k] = true end, data = ds }
+    local ui = { annotation = ann, doc_settings = docSettings, toc = { getTocTitleByPage = function() return "Chapter" end, resetToc = function() end, fillToc = function() end }, view = { highlight = { saved_color = "yellow" } },
         handleEvent = function(_, e) events[#events + 1] = e end, dialog = {}, menu = plugin.ui.menu, events = events }
-    ui.document = { file = file,
+    ui.document = { file = file, canHaveAlternativeToc = function() return true end,
         findAllText = function(_, pat)
             local out, from = {}, 1
             while true do
@@ -137,6 +150,7 @@ if phase == "plugin3" then
     assert(st.sealed and not st.master and not st.connection.password, "sealed; nothing in the clear")
     assert(not fsu.read(work .. "/settings.json"):find("app pass", 1, true), "the password is not in the settings file")
     -- a restart: locked; a wrong PIN, then the right one
+    for k in pairs(AISH._shared) do AISH._shared[k] = nil end
     local fresh = setmetatable({ ui = { menu = plugin.ui.menu } }, { __index = AISH }); fresh:init()
     assert(fresh:isLocked())
     shown = {}
@@ -152,17 +166,17 @@ if phase == "plugin3" then
     assert(qr and qr.text == "https://127.0.0.1:8766/login/v2/flow/x", "QR code with the login address")
     local c = settingsStore[settingsFile].connection
     assert(c.flow and c.username == "phil" and c.url == os.getenv("AISH_URL") .. "remote.php/dav/files/phil/" and not c.password, "connected with its own login: " .. tostring(c.url))
-    assert(settingsStore[settingsFile].sealed and fresh.secrets.password == "app pass/ü", "the new login sealed with the PIN")
+    assert(settingsStore[settingsFile].sealed and AISH._shared.secrets.password == "app pass/ü", "the new login sealed with the PIN")
     press("Unlock", "orbit lemon tunnel paper river cloud")   -- the library key was for the old connection: the passphrase once
     assert(shown[#shown].text:find("AISH library: 2 articles", 1, true), "synced through the new login: " .. tostring(shown[#shown].text))
     -- lost: "Wipe device" in Nextcloud. The server refuses the login; the reader asks, deletes everything, confirms
-    fresh.secrets.password = "revoked"
+    AISH._shared.secrets.password = "revoked"
     shown = {}
     fresh:syncNow()
     assert(fakeCalls[#fakeCalls - 1] == "wipe? revoked" and fakeCalls[#fakeCalls] == "wiped revoked", table.concat(fakeCalls, ", "))
     assert(#fsu.ls(home .. "/AISH") == 0, "articles deleted")
     st = settingsStore[settingsFile]
-    assert(not st.connection and not st.sealed and not st.master and not fresh.secrets, "login, key and seal deleted")
+    assert(not st.connection and not st.sealed and not st.master and not AISH._shared.secrets, "login, key and seal deleted")
     assert(not fsu.exists(work .. "/data/aish/index.json"), "library data deleted")
     assert(shown[#shown].text:find("Wipe device", 1, true))
     print("TEST plugin3 OK")
@@ -170,7 +184,8 @@ if phase == "plugin3" then
 end
 
 if phase == "plugin2" then
-    -- the browser edited the comment on the reader's highlight and deleted h-3; the book is closed
+    -- the browser edited the comment on the reader's highlight and deleted h-3; the book is closed and was finished
+    sidecars[sleepFile].summary = { status = "complete" }; saveSidecars()
     shown = {}
     plugin:syncNow()
     assert(shown[#shown].text:find("AISH library: 2 articles", 1, true), shown[#shown].text)
@@ -182,11 +197,48 @@ if phase == "plugin2" then
     end
     assert(ko and ko.note == "Edited in the browser.", "comment edited in the browser → note in the closed book: " .. tostring(ko and ko.note))
     assert(not h3, "highlight deleted in the browser → gone from the book")
+    local RCo = require("readcollection")
+    local arch = {}; for f in pairs(RCo.coll["AISH · Archive"] or {}) do arch[#arch + 1] = f end
+    assert(#arch == 1 and arch[1]:find("Why we sleep", 1, true), "finished in KOReader → archived in AISH")
+    -- a new layout (render version) reaches the articles already on the reader
+    local L = require("aishlib.library")
+    local was = L.RENDER_VERSION
+    L.RENDER_VERSION = was .. "-next"
+    shown = {}
+    plugin:syncNow()
+    assert(shown[#shown].text:find("2 files written", 1, true), "every file rewritten for the new layout: " .. shown[#shown].text)
+    L.RENDER_VERSION = was
+    -- "Download everything again": a highlight made on the reader is sent first, the files and records go, everything
+    -- comes back; the highlight is back in the book on opening
+    sidecars[sleepFile].annotations[#sidecars[sleepFile].annotations + 1] = { text = "the connections between neurons", drawer = "lighten", pos0 = "xp:9", pos1 = "xp:10", page = "xp:9" }
+    saveSidecars()
+    local before = fsu.read(work .. "/data/aish/index.json")
+    -- covers: drawn once, then taken from the cache (a stand-in for KOReader's drawing)
+    local drawn = 0
+    plugin.drawCover = function(_, info, dir, path)
+        drawn = drawn + 1; fsu.mkdirp(dir)
+        fsu.write(path, "\255\216\255\224" .. info.title); return fsu.read(path)
+    end
+    shown = {}
+    plugin:downloadAgain(); press("Download again")
+    assert(shown[#shown].text:find("AISH library: 2 articles on this reader.\n%d+ downloaded, 2 files written"), "downloaded again: " .. tostring(shown[#shown].text))
+    local lib = plugin:library()
+    local hls = lib.highlightsOf("k-a1")
+    local found = false
+    for __, h in ipairs(hls) do if h.text == "the connections between neurons" then found = true end end
+    assert(found, "the reader's new highlight was sent before starting over, and came back")
+    assert(fsu.read(work .. "/data/aish/index.json") ~= before and lib.pendingCount() == 0)
+    assert(drawn == 2, "a cover drawn per article: " .. drawn)
+    assert(unzipText(sleepFile, "OEBPS/content.opf"):find('href="images/cover.jpg"', 1, true), "the drawn cover is in the EPUB")
+    shown = {}
+    plugin:downloadAgain(); press("Download again")
+    assert(drawn == 2, "downloaded again: the covers come from the cache, nothing is drawn")
+    assert(#fsu.ls(work .. "/data/aish-covers") == 2, "the cache holds the covers in use")
     print("TEST plugin2 OK")
     os.exit(0)
 end
-assert(menu.aish_library and #menu.aish_library.sub_item_table == 10, "menu")
-assert(menu.aish_library.sub_item_table[3].text_func() == "Not connected")
+assert(menu.aish_library and #menu.aish_library.sub_item_table == 19, "menu")
+assert(menu.aish_library.sub_item_table[5].text_func() == "Not connected")
 
 local function enc(s) return (s:gsub("[^%w%-%._~]", function(c) return string.format("%%%02X", c:byte()) end)) end
 fsu.write(home .. "/aish-library.txt", "Here is my code:\naish-library://v1?k=webdav&u=" .. enc(os.getenv("AISH_URL")) .. "&n=phil&p=" .. enc("app pass/ü") .. "&r=" .. enc("My Library") .. "&w=" .. enc("orbit lemon tunnel paper river cloud") .. "\n")
@@ -199,14 +251,32 @@ assert(#files == 2, "2 files in the AISH folder of the home folder: " .. table.c
 local exam = RC.coll["AISH: Exam prep"]
 local n = 0; for _ in pairs(exam or {}) do n = n + 1 end
 assert(n == 1 and RC.writes == 1, "KOReader collection AISH: Exam prep with its file")
+-- the AISH tabs as collections, newest first; the top tags; file dates = saved dates; images as files
+local function ordered(name) local out = {}; for _, it in ipairs(RC:getOrderedCollection(name)) do out[#out + 1] = it.file:match("[^/]+$") end return table.concat(out, " | ") end
+assert(ordered("AISH · Inbox") == "Only a summary here (renamed) [ka3].epub | Why we sleep what the new studies show [ka1].epub", "Inbox newest first: " .. ordered("AISH · Inbox"))
+assert(ordered("AISH · Read") == "" and ordered("AISH · Archive") == "", "nothing read or archived yet")
+assert(ordered("AISH #science") == "Why we sleep what the new studies show [ka1].epub", "tag collection")
+assert(fsu.mtime(sleepFile) == require("aishlib.library").isoToEpoch("2026-11-02T08:00:00.000Z"), "the file's date is the day it was saved")
+-- the EPUB: text with the image inside, book information, table of contents
+local xhtml, opf, nav = unzipText(sleepFile, "OEBPS/article.xhtml"), unzipText(sleepFile, "OEBPS/content.opf"), unzipText(sleepFile, "OEBPS/nav.xhtml")
+assert(xhtml:find('<img src="images/1.png" alt="A tiny chart"/>', 1, true) and unzipText(sleepFile, "OEBPS/images/1.png"):sub(2, 4) == "PNG", "image inside the EPUB")
+assert(not opf:find("cover-image", 1, true), "a 1-pixel image is never the cover (and KOReader's drawing is not available here)")
+assert(opf:find("<dc:title>Why we sleep: what the new studies show</dc:title>", 1, true) and opf:find("<dc:publisher>science.example</dc:publisher>", 1, true), "title, site")
+assert(opf:find("<dc:subject>science</dc:subject>", 1, true) and opf:find("<dc:date>2026-11-02</dc:date>", 1, true), "tags, date saved")
+assert(opf:find("<dc:description>• Sleep consolidates memory.</dc:description>", 1, true), "summary as description")
+assert(opf:find('<meta name="calibre:series" content="Exam prep"/>', 1, true), "AISH collection as series")
+assert(nav:find(">Summary</a>", 1, true) and not fsu.exists(home .. "/AISH/.images"), "table of contents; no loose image files")
+-- gesture: the newest unread article opens
+plugin:onAishOpenNewest()
+assert(opened[#opened] and opened[#opened]:find("Only a summary here", 1, true), "newest unread opened")
 local s = settingsStore[work .. "/settings/aish.lua"]
 assert(s.master and #s.master == 64 and s.salt and not s.passphrase, "the key is kept, the passphrase is not")
-assert(menu.aish_library.sub_item_table[3].text_func():find("2 articles"), "status line")
+assert(menu.aish_library.sub_item_table[5].text_func():find("2 articles"), "status line")
 
 -- second sync: the kept key opens the place (no passphrase), nothing new
 shown = {}
 plugin:syncNow()
-assert(shown[#shown].text:find("0 new or updated, 0 removed", 1, true), shown[#shown].text)
+assert(shown[#shown].text:find("0 downloaded, 0 files written, 0 removed", 1, true), shown[#shown].text)
 for _, w in ipairs(shown) do assert(w.kind ~= "input", "no passphrase asked") end
 
 -- a wrong kept key (place made anew elsewhere) asks for the passphrase instead of failing
@@ -229,6 +299,7 @@ assert(#items == 3 and by["h-1"] and by["h-2"] and by["h-3"], "the 3 AISH highli
 assert(by["h-1"].note == "Matches chapter 3 of the textbook." and by["h-1"].drawer == "lighten" and by["h-1"].color == "yellow", "comment as note")
 assert(by["h-2"].drawer == "underscore" and by["h-1"].chapter == "Chapter", "AI one underlined")
 assert(#ui.events == 1 and ui.events[1].name == "AnnotationsModified", "KOReader told once")
+assert(ui.doc_settings.data.alternative_toc == nil, "an EPUB brings its own table of contents")
 -- the reader: a new highlight with a note, the comment on h-1 edited, the AI highlight removed
 items[#items + 1] = { text = "Short naps of about twenty minutes", drawer = "lighten", pos0 = "xp:1", pos1 = "xp:2", page = "xp:1", note = "Try it this week." }
 plugin:onAnnotationsModified()
@@ -240,4 +311,24 @@ shown = {}
 closeBook(ui)   -- online: sent right away, quietly
 for _, w in ipairs(shown) do assert(w.kind ~= "info" or not w.text:find("failed"), "no error: " .. tostring(w.text)) end
 assert(settingsStore[work .. "/settings/aish.lua"].last_sync.pending == 0, "everything sent")
+assert(ordered("AISH · Read") == "Why we sleep what the new studies show [ka1].epub" and ordered("AISH · Inbox") == "Only a summary here (renamed) [ka3].epub", "opened → Read: " .. ordered("AISH · Read"))
+-- Wi-Fi comes on: a sync when one is due, not before
+local before = settingsStore[work .. "/settings/aish.lua"].last_sync.time
+plugin:onNetworkConnected()
+assert(settingsStore[work .. "/settings/aish.lua"].last_sync.time == before, "not due yet")
+settingsStore[work .. "/settings/aish.lua"].last_sync.time = 0
+shown = {}
+plugin:onNetworkConnected()
+assert(settingsStore[work .. "/settings/aish.lua"].last_sync.time > 0, "synced")
+for _, w in ipairs(shown) do assert(w.kind ~= "info", "quietly: " .. tostring(w.text)) end
+-- only the newest article on the reader: the older one goes (its highlights are in AISH), and comes back
+s.limit = 1
+shown = {}
+plugin:syncNow()
+assert(not fsu.exists(sleepFile) and ordered("AISH · Inbox") == "Only a summary here (renamed) [ka3].epub", "limit 1: " .. ordered("AISH · Read"))
+assert(shown[#shown].text:find("1 removed", 1, true) and shown[#shown].text:find("1 older or archived", 1, true), shown[#shown].text)
+s.limit = nil
+shown = {}
+plugin:syncNow()
+assert(fsu.exists(sleepFile) and shown[#shown].text:find("0 downloaded, 1 files written", 1, true), "back, nothing downloaded: " .. shown[#shown].text)
 print("TEST plugin OK")
