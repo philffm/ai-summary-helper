@@ -24,4 +24,20 @@ changed=0; for f in "$work/place/snap2/r/"*; do cmp -s "$f" "$work/place/snap1/r
 for f in "$work/dav/My Library/r/"*; do [ -e "$work/place/snap2/r/$(basename "$f")" ] || rm "$f"; done
 AISH_CHANGED=$changed AISH_PHASE=2 luajit "$here/test_interop.lua"
 AISH_PHASE=plugin luajit "$here/test_plugin.lua"
+# the browser syncs: what the reader sent arrives in the extension
+node "$here/browser-step.mjs" "$work/place/browser.json" "$work/dav/My Library" report > "$work/report.json"
+node -e '
+const r = JSON.parse(require("fs").readFileSync(process.argv[1], "utf8")), assert = require("assert");
+const ko = r.annotations.find((a) => a.source === "koreader");
+assert(ko, "the reader highlight is in the browser");
+assert.equal(ko.text, "Short naps of about twenty minutes"); assert.equal(ko.type, "user"); assert.equal(ko.url, "https://science.example/sleep");
+assert.equal(ko.quote.exact, ko.text); assert.match(ko.quote.prefix, /neurons\.\s*$/); assert.match(ko.quote.suffix, /^\s*improve recall/);
+assert.equal(r.notes["c_" + ko.id].text, "Try it this week."); assert.equal(r.notes["c_" + ko.id].highlightId, ko.id);
+assert.equal(r.notes["c_h-1"].text, "Matches chapter 3 - and chapter 5.", "comment edited on the reader");
+assert.equal(r.annotations.find((a) => a.id === "h-2").dismissed, true, "AI highlight removed on the reader: dismissed");
+assert(r.readAt["k-a1"], "opened on the reader: read"); assert(!r.readAt["k-a3"], "not opened: not read");
+console.log("BROWSER SEES THE READER OK");
+' "$work/report.json"
+node "$here/browser-step.mjs" "$work/place/browser.json" "$work/dav/My Library" edit > /dev/null
+AISH_PHASE=plugin2 luajit "$here/test_plugin.lua"
 echo "INTEROP OK"

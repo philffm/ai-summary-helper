@@ -4,17 +4,28 @@
 the AI summaries, the full articles, your highlights and notes. It reads the same encrypted sync place the AISH browser
 extension writes to your own Nextcloud/WebDAV folder, and decrypts it on the reader. Nothing goes anywhere else.
 
-**Stage 1 (this version) is read-only**: it never writes to the server.
+Highlights and notes go **both ways**: what you mark on the reader appears in the extension, and the other way round.
 
 ## What you get
 
 - a folder `AISH` in KOReader's home folder, one HTML file per article:
-  the title and source, the **AI summary**, the **full text** with **your highlights** (grey) and **AI highlights**
-  (underlined), **notes on a highlight** as footnotes (tap the number), and **your notes on the article** at the end;
+  the title and source, the **AI summary**, the **full text**, and **your notes on the article** at the end;
+- **highlights as KOReader highlights**: when you open an article, your AISH highlights appear as KOReader highlights
+  (AI highlights underlined) with their comment as the note;
+- **back to AISH**: a highlight you make on the reader becomes an AISH highlight (with the words around it, as the
+  extension saves them); its note becomes the comment. Editing a note edits the comment, removing a highlight deletes it
+  (an AI highlight is dismissed), and opening an article marks it read. These go out when you close the article
+  (when Wi-Fi is on; *Send changes when closing an article*) or at the next sync;
 - AISH **collections** as KOReader collections named `AISH: <name>`;
 - an article deleted in AISH is removed from the reader at the next sync (with its KOReader sidecar);
   renaming an article keeps its file, so your reading position stays;
 - each sync downloads only the files that changed (ETags); a file that cannot be read is skipped and tried again later.
+
+How the two sides agree: every record carries per-field time stamps, and the reader merges exactly like the extension
+(newer field wins, a deletion marker beats older edits; same hashes and rules, checked against the extension's test vector).
+A file is written only if the server's copy is still the one the reader knows (`If-Match`); if another device wrote it
+first, the two are merged and it is sent again. A server copy that cannot be read is never overwritten.
+When a note was changed on both sides since the last sync, the reader's wins.
 
 Feed stubs (feed items not summarized yet) are left out. Images are not downloaded yet: their description stays in the text.
 
@@ -45,20 +56,22 @@ When the code carries the suggested words, the library unlocks right away; other
   (in KOReader's settings), so later syncs do not repeat the key derivation. **Disconnect** forgets login and key.
 - The articles on the reader are plain HTML files, as with any other book on the device.
 - Each record is checked: a file whose name does not match the record inside (copied or swapped on the server) is refused.
+- The reader writes only what you changed on it (highlights, comments, read marks); it never deletes files on the server.
 - S3 places and readable (unencrypted) places are not supported yet.
 
 ## Development
 
 ```
-luajit koreader/tests/run.lua          # the Lua modules (crypto against plugin/tests/fixtures/sync-vector.json, marks, rendering)
-bash koreader/tests/interop.sh         # a place made by the extension's own sync engine, served by wsgidav, pulled by the plugin
+luajit koreader/tests/run.lua          # the Lua modules: crypto, hashes and merges against plugin/tests/fixtures/sync-vector.json,
+                                       # highlight reconciling, conditional writes and the 412 merge, rendering
+bash koreader/tests/interop.sh         # the extension's own sync engine and the plugin, both ways, over wsgidav with a login
 ```
-Needs `luajit`, `lua-socket`, `lua-cjson`, `node` and `pip install wsgidav cheroot`. CI runs both (job `koreader`).
+Needs `luajit`, `lua-socket`, `node` and `pip install wsgidav cheroot`. CI runs both (job `koreader`).
 
 Layout: `main.lua` (KOReader menu, dialogs, collections) · `aishlib/crypto.lua` · `aishlib/webdav.lua` ·
-`aishlib/library.lua` (pull + files) · `aishlib/render.lua` · `aishlib/marks.lua` · `aishlib/code.lua` · `aishlib/json.lua`.
+`aishlib/library.lua` (pull, push, files) · `aishlib/stamps.lua` (hashes, merge) · `aishlib/annots.lua` (KOReader
+highlights ↔ AISH) · `aishlib/render.lua` · `aishlib/marks.lua` · `aishlib/code.lua` · `aishlib/json.lua`.
 
-## Next (stage 2)
+## Not yet
 
-Highlights and notes made in KOReader go back to AISH (as `hl` / `note` records with field stamps, the extension's merge rules),
-reading state and progress, S3 places.
+S3 places, images in articles, reading progress (KOReader's percentage has no place in AISH yet).

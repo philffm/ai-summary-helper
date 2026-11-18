@@ -61,9 +61,9 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
-      - name: Install LuaJIT, LuaSocket, cjson and a WebDAV server
+      - name: Install LuaJIT, LuaSocket and a WebDAV server
         run: |
-          sudo apt-get update -q && sudo apt-get install -y -q luajit lua-socket lua-cjson
+          sudo apt-get update -q && sudo apt-get install -y -q luajit lua-socket
           pip install --quiet wsgidav cheroot
       - run: luajit koreader/tests/run.lua
       - run: bash koreader/tests/interop.sh

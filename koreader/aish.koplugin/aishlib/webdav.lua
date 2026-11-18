@@ -106,12 +106,32 @@ function M.new(cfg)
         return out
     end
 
-    --- A file's bytes, false when it does not exist, or nil, reason.
+    local function etagOf(h)
+        local e = h and (h.etag or h.ETag) or ""
+        return (e:gsub("^W/", ""):gsub('^"', ""):gsub('"$', ""))
+    end
+
+    --- A file's bytes and ETag, false when it does not exist, or nil, reason.
     function self.get(path, maxBytes)
-        local code, text = request("GET", urlOf(path), nil, nil, maxBytes or 20 * 1024 * 1024)
-        if code == 200 then return text end
+        local code, text, h = request("GET", urlOf(path), nil, nil, maxBytes or 20 * 1024 * 1024)
+        if code == 200 then return text, etagOf(h) end
         if code == 404 then return false end
         return nil, code and failure(code) or text
+    end
+
+    --[[--
+    Writes a file only if the server's copy is still the one we know: opts.ifMatch = ETag, or opts.ifNoneMatch = "*" for a
+    new file. → etag (may be ""), or nil, reason, status (412: someone else wrote it first).
+    ]]
+    function self.put(path, body, opts)
+        opts = opts or {}
+        local headers = { ["Content-Type"] = "application/octet-stream" }
+        if opts.ifMatch and opts.ifMatch ~= "" then headers["If-Match"] = '"' .. opts.ifMatch .. '"' end
+        if opts.ifNoneMatch then headers["If-None-Match"] = opts.ifNoneMatch end
+        local code, text, h = request("PUT", urlOf(path), body, headers)
+        if code == 200 or code == 201 or code == 204 then return etagOf(h) end
+        if code == 412 then return nil, "changed on the server", 412 end
+        return nil, code and failure(code, text) or text, code
     end
 
     return self
