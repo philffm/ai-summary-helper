@@ -32,7 +32,7 @@ local LuaSettings = { open = function(_, path)
         isTrue = function(_, k) return data[k] == true end, flipNilOrTrue = function(_, k) if data[k] == nil or data[k] == true then data[k] = false else data[k] = nil end end, nilOrTrue = function(_, k) return data[k] == nil or data[k] == true end }
 end }
 local sidecars, saveSidecars = persisted(work .. "/sidecars.json")
-_G.G_reader_settings = LuaSettings:open("global"); G_reader_settings:saveSetting("home_dir", home)
+_G.G_reader_settings = LuaSettings:open("global"); G_reader_settings:saveSetting("home_dir", home .. "/")   -- as KOReader may keep it: a trailing slash
 mod("datastorage", { getSettingsDir = function() return work .. "/settings" end, getDataDir = function() return work .. "/data" end })
 mod("dispatcher", { registerAction = function() end })
 mod("docsettings", { updateLocation = function() end,
@@ -150,6 +150,7 @@ if phase == "plugin3" then
     assert(st.sealed and not st.master and not st.connection.password, "sealed; nothing in the clear")
     assert(not fsu.read(work .. "/settings.json"):find("app pass", 1, true), "the password is not in the settings file")
     -- a restart: locked; a wrong PIN, then the right one
+    for k in pairs(AISH._shared) do AISH._shared[k] = nil end
     local fresh = setmetatable({ ui = { menu = plugin.ui.menu } }, { __index = AISH }); fresh:init()
     assert(fresh:isLocked())
     shown = {}
@@ -165,17 +166,17 @@ if phase == "plugin3" then
     assert(qr and qr.text == "https://127.0.0.1:8766/login/v2/flow/x", "QR code with the login address")
     local c = settingsStore[settingsFile].connection
     assert(c.flow and c.username == "phil" and c.url == os.getenv("AISH_URL") .. "remote.php/dav/files/phil/" and not c.password, "connected with its own login: " .. tostring(c.url))
-    assert(settingsStore[settingsFile].sealed and fresh.secrets.password == "app pass/ü", "the new login sealed with the PIN")
+    assert(settingsStore[settingsFile].sealed and AISH._shared.secrets.password == "app pass/ü", "the new login sealed with the PIN")
     press("Unlock", "orbit lemon tunnel paper river cloud")   -- the library key was for the old connection: the passphrase once
     assert(shown[#shown].text:find("AISH library: 2 articles", 1, true), "synced through the new login: " .. tostring(shown[#shown].text))
     -- lost: "Wipe device" in Nextcloud. The server refuses the login; the reader asks, deletes everything, confirms
-    fresh.secrets.password = "revoked"
+    AISH._shared.secrets.password = "revoked"
     shown = {}
     fresh:syncNow()
     assert(fakeCalls[#fakeCalls - 1] == "wipe? revoked" and fakeCalls[#fakeCalls] == "wiped revoked", table.concat(fakeCalls, ", "))
     assert(#fsu.ls(home .. "/AISH") == 0, "articles deleted")
     st = settingsStore[settingsFile]
-    assert(not st.connection and not st.sealed and not st.master and not fresh.secrets, "login, key and seal deleted")
+    assert(not st.connection and not st.sealed and not st.master and not AISH._shared.secrets, "login, key and seal deleted")
     assert(not fsu.exists(work .. "/data/aish/index.json"), "library data deleted")
     assert(shown[#shown].text:find("Wipe device", 1, true))
     print("TEST plugin3 OK")
@@ -205,7 +206,7 @@ if phase == "plugin2" then
     L.RENDER_VERSION = was .. "-next"
     shown = {}
     plugin:syncNow()
-    assert(shown[#shown].text:find("2 new or updated", 1, true), "every file rewritten for the new layout: " .. shown[#shown].text)
+    assert(shown[#shown].text:find("2 files written", 1, true), "every file rewritten for the new layout: " .. shown[#shown].text)
     L.RENDER_VERSION = was
     -- "Download everything again": a highlight made on the reader is sent first, the files and records go, everything
     -- comes back; the highlight is back in the book on opening
@@ -220,7 +221,7 @@ if phase == "plugin2" then
     end
     shown = {}
     plugin:downloadAgain(); press("Download again")
-    assert(shown[#shown].text:find("AISH library: 2 articles.\n2 new or updated", 1, true), "downloaded again: " .. tostring(shown[#shown].text))
+    assert(shown[#shown].text:find("AISH library: 2 articles.\n%d+ downloaded, 2 files written"), "downloaded again: " .. tostring(shown[#shown].text))
     local lib = plugin:library()
     local hls = lib.highlightsOf("k-a1")
     local found = false
@@ -236,7 +237,7 @@ if phase == "plugin2" then
     print("TEST plugin2 OK")
     os.exit(0)
 end
-assert(menu.aish_library and #menu.aish_library.sub_item_table == 17, "menu")
+assert(menu.aish_library and #menu.aish_library.sub_item_table == 18, "menu")
 assert(menu.aish_library.sub_item_table[5].text_func() == "Not connected")
 
 local function enc(s) return (s:gsub("[^%w%-%._~]", function(c) return string.format("%%%02X", c:byte()) end)) end
@@ -275,7 +276,7 @@ assert(menu.aish_library.sub_item_table[5].text_func():find("2 articles"), "stat
 -- second sync: the kept key opens the place (no passphrase), nothing new
 shown = {}
 plugin:syncNow()
-assert(shown[#shown].text:find("0 new or updated, 0 removed", 1, true), shown[#shown].text)
+assert(shown[#shown].text:find("0 downloaded, 0 files written, 0 removed", 1, true), shown[#shown].text)
 for _, w in ipairs(shown) do assert(w.kind ~= "input", "no passphrase asked") end
 
 -- a wrong kept key (place made anew elsewhere) asks for the passphrase instead of failing

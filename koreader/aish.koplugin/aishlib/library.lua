@@ -77,6 +77,7 @@ function M.new(o)
     local self = { store = o.store, fs = o.fs, dataDir = o.dataDir, outDir = o.outDir, labels = o.labels or {} }
     local fs = o.fs
     self.format = o.format == "html" and "html" or "epub"   -- EPUB: book information, cover, table of contents
+    self.images = o.images ~= false   -- the images saved inside the articles (both formats); off: their descriptions
     self.cover = o.cover    -- function(info) → PNG bytes: draws an article's cover (KOReader on the reader)
     fs.mkdirp(self.dataDir .. "/records")
 
@@ -211,7 +212,7 @@ function M.new(o)
                 end
             end
             if reason and reason ~= "gone" then res.failed[#res.failed + 1] = { name = e.name, reason = reason } end
-            if i % 100 == 0 then save() end   -- a long first run keeps what it has if it stops
+            if i % 25 == 0 then save() end   -- a long first run keeps what it has if it stops
         end
         save()
         if progress then progress(#todo, #todo) end
@@ -426,6 +427,7 @@ function M.new(o)
                         for _, tg in ipairs(e.tg or {}) do parts[#parts + 1] = "tag:" .. tg end
                         if series then parts[#parts + 1] = "series:" .. series .. "#" .. seriesIndex end
                     end
+                    if not self.images then parts[#parts + 1] = "noimg" end
                     local sig = digest(parts)
                     local file = st and st.file
                     if file and not file:find("%." .. self.format .. "$") then   -- the format was changed: a new file
@@ -449,6 +451,7 @@ function M.new(o)
                             local imgDir, safe, total, nImgs = self.outDir .. "/" .. M.IMAGE_DIR, tostring(id):gsub("[^%w%-_]", "_"), 0, 0
                             for k = 1, (st and st.imgs or 0) do for _, ext in ipairs({ "jpg", "png", "gif", "webp", "svg" }) do fs.remove(imgDir .. "/" .. safe .. "-" .. k .. "." .. ext) end end
                             local function image(mime, b64, k)
+                                if not self.images then return nil end
                                 local size = math.floor(#b64 * 3 / 4)
                                 if size > M.IMAGE_MAX or total + size > M.IMAGES_PER_ARTICLE then return nil end
                                 local ext = ({ jpeg = "jpg", jpg = "jpg", png = "png", gif = "gif", webp = "webp", ["svg+xml"] = "svg" })[mime]
@@ -463,7 +466,7 @@ function M.new(o)
                                 local tags = {}
                                 for _, tg in ipairs(e.tg or {}) do tags[#tags + 1] = tg end
                                 fs.write(file, (epub.build(vals, notes, self.labels, { id = id, keyPoints = keyPoints, tags = tags, series = series,
-                                    seriesIndex = seriesIndex, imageMax = M.IMAGE_MAX, imagesMax = M.IMAGES_PER_ARTICLE, modified = M.isoToEpoch(e.ts), cover = self.cover })))
+                                    seriesIndex = seriesIndex, imageMax = M.IMAGE_MAX, imagesMax = self.images and M.IMAGES_PER_ARTICLE or 0, modified = M.isoToEpoch(e.ts), cover = self.cover })))
                             else
                                 fs.write(file, render.article(vals, {}, notes, self.labels, { keyPoints = keyPoints, image = image }))
                             end
@@ -499,7 +502,9 @@ function M.new(o)
     -- ── for KOReader's highlights (annots.lua) ───────────────────────────────────
     --- The article id of a file this plugin made, or nil.
     function self.articleOfFile(path)
-        for id, st in pairs(self.state) do if st.file == path then return id end end
+        if not path then return nil end
+        local want = path:gsub("//+", "/")
+        for id, st in pairs(self.state) do if st.file:gsub("//+", "/") == want then return id end end
     end
     function self.article(id) return live("article:" .. id) end
     function self.pageKeyOf(id)

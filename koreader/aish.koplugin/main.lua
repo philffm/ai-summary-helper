@@ -59,13 +59,20 @@ local fs = {
     touch = function(p, t) pcall(lfs.touch, p, t, t) end,
 }
 
+-- KOReader makes one instance of a plugin for the file browser and one for each opened book. What must not differ
+-- between them lives here, once: the settings object (two copies would overwrite each other's changes), the PIN-unlocked
+-- secrets and whether a sync is running.
+local shared = {}
+
 local AISH = WidgetContainer:extend{
     name = "aish",
     is_doc_only = false,
 }
 
 function AISH:init()
-    self.settings = LuaSettings:open(DataStorage:getSettingsDir() .. "/aish.lua")
+    shared.settings = shared.settings or LuaSettings:open(DataStorage:getSettingsDir() .. "/aish.lua")
+    self.settings = shared.settings
+    if not (self.ui and self.ui.document) then shared.browser = self end   -- the file browser's instance outlives a book
     self.data_dir = DataStorage:getDataDir() .. "/aish"
     self:onDispatcherRegisterActions()
     self.ui.menu:registerToMainMenu(self)
@@ -80,19 +87,33 @@ end
 -- ── settings ────────────────────────────────────────────────────────────────
 function AISH:conn() return self.settings:readSetting("connection") end
 function AISH:isConnected() local c = self:conn(); return c and c.url and c.url ~= "" end
+--- A path as KOReader names the open book: real path, no doubled or trailing slashes (a home folder set as
+--- "/mnt/onboard/" made "/mnt/onboard//AISH/…", and the open article was never recognised).
+local function normPath(p)
+    if not p then return p end
+    local dir, name = p:match("^(.*)/([^/]*)$")
+    local real = dir and dir ~= "" and ffiUtil.realpath(dir)
+    p = real and (real .. "/" .. name) or p
+    return (p:gsub("//+", "/"):gsub("(.)/$", "%1"))
+end
+AISH.normPath = normPath
+AISH._shared = shared   -- for the tests: a restart of KOReader starts with none
+
 function AISH:outDir()
     local d = self.settings:readSetting("folder")
-    if d and d ~= "" then return d end
-    local home = G_reader_settings:readSetting("home_dir") or require("apps/filemanager/filemanagerutil").getDefaultDir()
-    return (home or DataStorage:getDataDir()) .. "/AISH"
+    if not (d and d ~= "") then
+        local home = G_reader_settings:readSetting("home_dir") or require("apps/filemanager/filemanagerutil").getDefaultDir()
+        d = (home or DataStorage:getDataDir()) .. "/AISH"
+    end
+    return (d:gsub("//+", "/"):gsub("(.)/$", "%1"))
 end
 function AISH:save() self.settings:flush() end
 
 -- ── secrets: the Nextcloud password and the library key, plain or sealed with a PIN ──
 function AISH:isSealed() return self.settings:readSetting("sealed") ~= nil end
-function AISH:isLocked() return self:isSealed() and not self.secrets end
+function AISH:isLocked() return self:isSealed() and not shared.secrets end
 function AISH:secret(name)
-    if self:isSealed() then return self.secrets and self.secrets[name] end
+    if self:isSealed() then return shared.secrets and shared.secrets[name] end
     if name == "password" then local c = self:conn(); return c and c.password end
     return self.settings:readSetting("master")
 end
@@ -100,13 +121,13 @@ end
 function AISH:setSecrets(changes)
     local Vault = require("aishlib.vault")
     local sealed = self.settings:readSetting("sealed")
-    if sealed and self.vault_key then
-        self.secrets = self.secrets or {}
-        for k, v in pairs(changes) do self.secrets[k] = v end
-        self.settings:saveSetting("sealed", Vault.seal(self.secrets, self.vault_key, Vault.saltOf(sealed), sealed.rounds))
+    if sealed and shared.vault_key then
+        shared.secrets = shared.secrets or {}
+        for k, v in pairs(changes) do shared.secrets[k] = v end
+        self.settings:saveSetting("sealed", Vault.seal(shared.secrets, shared.vault_key, Vault.saltOf(sealed), sealed.rounds))
     else
         if sealed then
-            self.settings:delSetting("sealed"); self.secrets, self.vault_key = nil, nil
+            self.settings:delSetting("sealed"); shared.secrets, shared.vault_key = nil, nil
             notify(_("The PIN protection was turned off with the new connection. You can turn it on again in the menu."))
         end
         local c = self:conn()
@@ -117,14 +138,14 @@ function AISH:setSecrets(changes)
 end
 function AISH:saveConnection(conn, secrets)
     self.settings:delSetting("salt")   -- the kept library key belongs to the old place
-    if self:isSealed() and self.vault_key then   -- PIN on and unlocked: the new login is sealed too
+    if self:isSealed() and shared.vault_key then   -- PIN on and unlocked: the new login is sealed too
         conn.password = nil
         self.settings:saveSetting("connection", conn)
-        self.secrets = { password = secrets.password }
+        shared.secrets = { password = secrets.password }
         self:setSecrets({})
     else
         if self:isSealed() then
-            self.settings:delSetting("sealed"); self.secrets, self.vault_key = nil, nil
+            self.settings:delSetting("sealed"); shared.secrets, shared.vault_key = nil, nil
             notify(_("The PIN protection was turned off with the new connection. You can turn it on again in the menu."))
         end
         conn.password = secrets.password
@@ -222,14 +243,35 @@ It keeps a lost reader's settings from giving away your login. A short PIN can s
                 callback = function(touchmenu) self:togglePin(touchmenu) end,
             },
             {
-                text = _("Articles as EPUB (book information, cover)"),
-                help_text = _([[EPUB files carry real book information: the source as author, the date saved, the tags, the summary as description, the AISH collection as series, the first image as cover, and a table of contents. KOReader shows it in its lists, the cover view and Book information.
+                text_func = function()
+                    return T(_("Format: %1"), (self.settings:readSetting("format") or "epub") == "epub" and "EPUB" or "HTML")
+                end,
+                sub_item_table = {
+                    {
+                        text = _("EPUB: book information and cover"),
+                        help_text = _([[Each article is a small book: the source as author, the date saved, the tags, the summary as description, the AISH collection as series, a cover with the title, and a table of contents. KOReader shows it in its lists, the cover view and Book information.
 
-Off: plain HTML files. Switching rewrites every article once (KOReader's reading positions start over; highlights come back from AISH).]]),
-                checked_func = function() return (self.settings:readSetting("format") or "epub") == "epub" end,
+Writing takes longer, mostly for the covers: the first time, a library of a few hundred articles can take minutes. After that only new or changed articles are written.]]),
+                        checked_func = function() return (self.settings:readSetting("format") or "epub") == "epub" end,
+                        radio = true,
+                        callback = function() self:setFormat("epub") end,
+                    },
+                    {
+                        text = _("HTML: fastest"),
+                        help_text = _([[Plain HTML files: written several times faster, no cover and no book information. Summary, article, key points and notes are the same.]]),
+                        checked_func = function() return self.settings:readSetting("format") == "html" end,
+                        radio = true,
+                        callback = function() self:setFormat("html") end,
+                    },
+                },
+            },
+            {
+                text = _("Include images"),
+                help_text = _([[The images saved with the articles, in both formats (up to a few MB per article). Off: smaller files and faster writing; each image shows its description instead.]]),
+                checked_func = function() return self.settings:nilOrTrue("images") end,
                 callback = function()
-                    self.settings:saveSetting("format", (self.settings:readSetting("format") or "epub") == "epub" and "html" or "epub"); self:save()
-                    notify(_("The articles are rewritten at the next sync."), 3)
+                    self.settings:flipNilOrTrue("images"); self:save()
+                    notify(_("The articles are written again at the next sync (nothing is downloaded again)."), 3)
                 end,
             },
             {
@@ -359,7 +401,7 @@ function AISH:disconnect(touchmenu)
                 pcall(function() require("aishlib.nc").new().revoke(c.server or require("aishlib.nc").serverOf(c.url), c.username, pw) end)
             end
             for __, k in ipairs({ "connection", "master", "salt", "last_sync", "sealed" }) do self.settings:delSetting(k) end
-            self.secrets, self.vault_key = nil, nil
+            shared.secrets, shared.vault_key = nil, nil
             self:save()
             ffiUtil.purgeDir(self.data_dir)
             if touchmenu then touchmenu:updateItems() end
@@ -449,7 +491,7 @@ function AISH:askPin(onOk, title)
                         UIManager:show(InfoMessage:new{ text = _("Wrong PIN."), icon = "notice-warning", timeout = 3 })
                         return
                     end
-                    self.secrets, self.vault_key = secrets, key
+                    shared.secrets, shared.vault_key = secrets, key
                     onOk()
                 end)
             end },
@@ -463,8 +505,8 @@ function AISH:togglePin(touchmenu)
     local Vault = require("aishlib.vault")
     if self:isSealed() then   -- off: needs the PIN once
         local function off()
-            local sec = self.secrets or {}
-            self.settings:delSetting("sealed"); self.secrets, self.vault_key = nil, nil
+            local sec = shared.secrets or {}
+            self.settings:delSetting("sealed"); shared.secrets, shared.vault_key = nil, nil
             local c = self:conn()
             if c then c.password = sec.password; self.settings:saveSetting("connection", c) end
             if sec.master then self.settings:saveSetting("master", sec.master) end
@@ -503,7 +545,7 @@ function AISH:togglePin(touchmenu)
                 if c then c.password = nil; self.settings:saveSetting("connection", c) end
                 self.settings:delSetting("master")
                 self:save()
-                self.secrets, self.vault_key = secrets, key
+                shared.secrets, shared.vault_key = secrets, key
                 self:endProgress()
                 if touchmenu then touchmenu:updateItems() end
                 notify(_("Login and key are sealed with your PIN. KOReader asks for it once after each start, when the library is synced."), 5)
@@ -543,7 +585,7 @@ function AISH:wipeAll()
     end)
     ffiUtil.purgeDir(self.data_dir)
     for __, k in ipairs({ "connection", "master", "salt", "sealed", "last_sync", "folder" }) do self.settings:delSetting(k) end
-    self.secrets, self.vault_key = nil, nil
+    shared.secrets, shared.vault_key = nil, nil
     self:save()
 end
 
@@ -593,10 +635,11 @@ end
 
 --- Wi-Fi on, or the reader woke up: a quiet sync when it is due (not while reading, not while locked by the PIN).
 function AISH:autoSync()
-    if not self:isConnected() or not self.settings:nilOrTrue("auto_sync") or self.syncing or self:isLocked() then return end
+    if not self:isConnected() or not self.settings:nilOrTrue("auto_sync") or shared.syncing or self:isLocked() then return end
     if self.ui and self.ui.document then return end
     local last = self.settings:readSetting("last_sync")
-    if last and os.time() - (last.time or 0) < (tonumber(self.settings:readSetting("auto_sync_minutes")) or 30) * 60 then return end
+    local waiting = (tonumber(self.settings:readSetting("pending")) or 0) > 0   -- changes from the reader go out at once
+    if not waiting and last and os.time() - (last.time or 0) < (tonumber(self.settings:readSetting("auto_sync_minutes")) or 30) * 60 then return end
     if not NetworkMgr:isOnline() then return end
     self.quiet = true
     self:sync()
@@ -606,7 +649,7 @@ function AISH:onResume() UIManager:scheduleIn(5, function() self:autoSync() end)
 
 function AISH:syncNow(words)
     if not self:isConnected() then notify(_("Connect the AISH library first (Tools → AISH library).")); return end
-    if self.syncing then return end
+    if shared.syncing then return end
     if self:isLocked() then
         if self.quiet then self.quiet = false; return end   -- a background sync never asks
         return self:askPin(function() self:syncNow(words) end)
@@ -623,7 +666,7 @@ function AISH:progress(text)
 end
 function AISH:endProgress()
     if self.progress_msg then UIManager:close(self.progress_msg); self.progress_msg = nil end
-    self.syncing = false
+    shared.syncing = false
 end
 function AISH:fail(text)
     self.fresh = nil   -- a "download everything again" that did not get through is not done later by surprise
@@ -634,7 +677,7 @@ end
 
 function AISH:library(store)
     return require("aishlib.library").new({
-        store = store, fs = fs, dataDir = self.data_dir, outDir = self:outDir(), format = self.settings:readSetting("format") or "epub",
+        store = store, fs = fs, dataDir = self.data_dir, outDir = self:outDir(), format = self.settings:readSetting("format") or "epub", images = self.settings:nilOrTrue("images"),
         cover = function(info) return self:makeCover(info) end,
         labels = { summary = _("Summary"), notes = _("Notes"), noText = _("The full text of this article was not saved in AISH.") },
     })
@@ -688,7 +731,7 @@ function AISH:askPassphrase(onOk)
             { text = _("Unlock"), is_enter_default = true, callback = function()
                 local p = dialog:getInputText()
                 UIManager:close(dialog)
-                self.syncing = true
+                shared.syncing = true
                 onOk(p)
             end },
         } },
@@ -698,7 +741,7 @@ function AISH:askPassphrase(onOk)
 end
 
 function AISH:sync(words)
-    self.syncing = true
+    shared.syncing = true
     self:progress(_("Connecting to the AISH library…"))
     UIManager:nextTick(function()
         local ok, err = pcall(function()
@@ -716,6 +759,18 @@ function AISH:sync(words)
         end)
         if not ok then logger.err("AISH: sync failed", err); self:fail(T(_("Sync failed:\n%1"), tostring(err))) end
     end)
+end
+
+--- EPUB or HTML. Nothing is downloaded again: the articles are on the reader already and are written in the other format
+--- (KOReader's reading positions start over; highlights come back from AISH).
+function AISH:setFormat(fmt)
+    if (self.settings:readSetting("format") or "epub") == fmt then return end
+    self.settings:saveSetting("format", fmt); self:save()
+    UIManager:show(ConfirmBox:new{
+        text = _("Write the articles in the new format now? Nothing is downloaded again; every article is written once (reading positions start over, highlights stay)."),
+        ok_text = _("Write now"),
+        ok_callback = function() self:sync() end,
+    })
 end
 
 function AISH:pullAndWrite(store, meta, keys)
@@ -772,7 +827,8 @@ function AISH:pullAndWrite(store, meta, keys)
         lap("collections")
         if #m.written > 0 then self:pruneCovers() end
         logger.info("AISH: sync took", table.concat(times, ", "))
-        self.settings:saveSetting("last_sync", { time = os.time(), articles = m.articles, pending = lib.pendingCount() }); self:save()
+        self.settings:saveSetting("last_sync", { time = os.time(), articles = m.articles, pending = lib.pendingCount() })
+        self.settings:saveSetting("pending", lib.pendingCount()); self:save()
         self:endProgress()
         local FileManager = require("apps/filemanager/filemanager")
         if FileManager.instance then FileManager.instance:onRefresh() end
@@ -781,7 +837,7 @@ function AISH:pullAndWrite(store, meta, keys)
             if #sent.failed > 0 then logger.warn("AISH: not sent", #sent.failed) end
             return
         end
-        local text = T(_("AISH library: %1 articles.\n%2 new or updated, %3 removed."), m.articles, #m.written, #m.removed)
+        local text = T(_("AISH library: %1 articles.\n%2 downloaded, %3 files written, %4 removed."), m.articles, res.fetched, #m.written, #m.removed)
         if sent.pushed > 0 or hl.added > 0 then
             text = text .. "\n" .. T(_("Highlights and notes: %1 sent, %2 placed in articles."), sent.pushed, hl.added)
         end
@@ -1062,9 +1118,9 @@ function AISH:reconcileAll(lib)
     local total = { added = 0 }
     self.gone = lib.goneHighlights()
     self.reconciling = true
-    local openFile = self.ui and self.ui.document and self.ui.document.file
+    local openFile = normPath(self.ui and self.ui.document and self.ui.document.file)
     for id, st in pairs(lib.state) do
-        local ok, act = pcall(self.reconcileArticle, self, lib, id, (st.file == openFile) and self.ui or nil)
+        local ok, act = pcall(self.reconcileArticle, self, lib, id, (openFile and st.file:gsub("//+", "/") == openFile) and self.ui or nil)
         if not ok then logger.warn("AISH: highlights of", st.file, act)
         elseif act then total.added = total.added + act.added end
     end
@@ -1076,7 +1132,7 @@ end
 
 --- Opening an AISH article: its highlights in step, and it counts as read in AISH.
 function AISH:onReaderReady()
-    local file = self.ui and self.ui.document and self.ui.document.file
+    local file = normPath(self.ui and self.ui.document and self.ui.document.file)
     if not file or not self:isConnected() then return end
     UIManager:nextTick(function()
         local ok, err = pcall(function()
@@ -1129,9 +1185,17 @@ function AISH:onCloseDocument()
         self:reconcileArticle(lib, id, self.ui)
         lib.flush()
         self.reconciling = false
-        if lib.pendingCount() > 0 and self.settings:nilOrTrue("send_on_close") and not self:isLocked() and NetworkMgr:isOnline() and not self.syncing then
-            self.quiet = true
-            UIManager:scheduleIn(1, function() self:sync() end)
+        local pending = lib.pendingCount()
+        self.settings:saveSetting("pending", pending); self:save()
+        if pending > 0 and self.settings:nilOrTrue("send_on_close") and not self:isLocked() and not shared.syncing then
+            -- after the book is closed, from the file browser's instance (this one goes with the book); offline, the
+            -- changes wait: Wi-Fi coming on sends them (onNetworkConnected), whatever the 30 minutes
+            UIManager:scheduleIn(1, function()
+                local runner = shared.browser or self
+                if shared.syncing or not NetworkMgr:isOnline() then return end
+                runner.quiet = true
+                runner:sync()
+            end)
         end
     end)
     self.reconciling = false
