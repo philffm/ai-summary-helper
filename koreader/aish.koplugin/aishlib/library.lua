@@ -119,7 +119,7 @@ function M.new(o)
         local function str(x) x = json.val(x); return type(x) == "string" and x or nil end
         local skip = json.val(v.feedStub) or json.val(v.savedOnly)
             or not ((str(v.content) or ""):match("%S") or (str(v.summaryBase) or ""):match("%S") or (str(v.summary) or ""):match("%S"))
-        local parts = { M.RENDER_VERSION }
+        local parts = {}   -- the render version is added when the files are written, never kept in the index
         for _, fld in ipairs(RENDER_FIELDS) do parts[#parts + 1] = fld .. "=" .. (str(v[fld]) or "") end
         return digest(parts), skip and true or nil
     end
@@ -414,7 +414,9 @@ function M.new(o)
                             if h.type == "ghost" and not h.dismissed and h.text and not seenKp[h.text] then seenKp[h.text] = true; keyPoints[#keyPoints + 1] = h.text end
                         end
                     end
-                    local parts = { e.rs }
+                    -- the render version belongs here: kept in the index it would never change for articles already
+                    -- there, and a new layout (like the covers) would not reach them
+                    local parts = { M.RENDER_VERSION, e.rs }
                     for _, n in ipairs(notes) do parts[#parts + 1] = n.id .. ":" .. n.text .. ":" .. (n.quote or "") end
                     for _, k in ipairs(keyPoints) do parts[#parts + 1] = "kp:" .. k end
                     -- an EPUB carries tags and the series in its book information: those count too
@@ -570,6 +572,23 @@ function M.new(o)
     end
     function self.newId(prefix)
         return (prefix or "ko") .. "_" .. string.format("%x", self.now()) .. "_" .. crypto.toHex(crypto.randomBytes(3))
+    end
+
+    --[[--
+    Starts over on this reader: the files this plugin made (removeFile drops KOReader's sidecar too), their images and
+    every record kept here go; the device id stays. The caller sends what is unsent first: changes not sent are lost.
+    ]]
+    function self.reset(removeFile)
+        for id, st in pairs(self.state) do
+            if fs.exists(st.file) then removeFile(st.file) end
+            local safe = tostring(id):gsub("[^%w%-_]", "_")
+            for k = 1, (st.imgs or 0) do for _, ext in ipairs({ "jpg", "png", "gif", "webp", "svg" }) do fs.remove(self.outDir .. "/" .. M.IMAGE_DIR .. "/" .. safe .. "-" .. k .. "." .. ext) end end
+        end
+        for key in pairs(self.index) do fs.remove(recPath(key)) end
+        self.index, self.ledger, self.links, self.state = {}, { items = {} }, {}, {}
+        gathered = nil; unsaved = false
+        writeJson(self.dataDir .. "/files.json", self.state)
+        save()
     end
 
     --- Every file this plugin made (for "Remove downloaded articles").

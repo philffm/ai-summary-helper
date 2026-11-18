@@ -256,6 +256,13 @@ Off: plain HTML files. Switching rewrites every article once (KOReader's reading
                 callback = function() self.settings:flipNilOrTrue("send_on_close"); self:save() end,
             },
             {
+                text = _("Download everything again"),
+                help_text = _("Removes the AISH articles from this reader and downloads the whole library again, with the newest layout. Highlights and notes made on the reader are sent to AISH first and come back; reading positions start over."),
+                enabled_func = function() return self:isConnected() end,
+                keep_menu_open = true,
+                callback = function() self:downloadAgain() end,
+            },
+            {
                 text = _("Disconnect"),
                 enabled_func = function() return self:isConnected() end,
                 keep_menu_open = true,
@@ -303,7 +310,7 @@ function AISH:connectWithCode(touchmenu)
         description = T(_("Paste the code from the extension, or put it in a file named %1 in your home folder."), CODE_FILE),
         input_hint = "aish-library://v1?…",
         buttons = { {
-            { text = _("Cancel"), id = "close", callback = function() UIManager:close(dialog) end },
+            { text = _("Cancel"), id = "close", callback = function() self.fresh = nil; UIManager:close(dialog) end },
             { text = _("Connect"), is_enter_default = true, callback = function()
                 local text = dialog:getInputText()
                 UIManager:close(dialog)
@@ -327,7 +334,7 @@ function AISH:connectManually(touchmenu)
             { text = c.root or "aish-sync", hint = _("Folder of the AISH place") },
         },
         buttons = { {
-            { text = _("Cancel"), id = "close", callback = function() UIManager:close(dialog) end },
+            { text = _("Cancel"), id = "close", callback = function() self.fresh = nil; UIManager:close(dialog) end },
             { text = _("Save and sync"), callback = function()
                 local f = dialog:getFields()
                 UIManager:close(dialog)
@@ -372,7 +379,7 @@ function AISH:connectWithNextcloud(touchmenu)
             { text = c.root or "aish-sync", hint = _("Folder of the AISH place") },
         },
         buttons = { {
-            { text = _("Cancel"), id = "close", callback = function() UIManager:close(dialog) end },
+            { text = _("Cancel"), id = "close", callback = function() self.fresh = nil; UIManager:close(dialog) end },
             { text = _("Show QR code"), callback = function()
                 local f = dialog:getFields()
                 UIManager:close(dialog)
@@ -430,7 +437,7 @@ function AISH:askPin(onOk, title)
         title = title or _("PIN of the AISH library"),
         text_type = "password", input_type = "number",
         buttons = { {
-            { text = _("Cancel"), id = "close", callback = function() UIManager:close(dialog) end },
+            { text = _("Cancel"), id = "close", callback = function() self.fresh = nil; UIManager:close(dialog) end },
             { text = _("Unlock"), is_enter_default = true, callback = function()
                 local pin = dialog:getInputText()
                 UIManager:close(dialog)
@@ -475,7 +482,7 @@ function AISH:togglePin(touchmenu)
             title = title, text_type = "password", input_type = "number",
             description = _("At least 6 digits. It cannot be recovered: without it, connect the reader again."),
             buttons = { {
-                { text = _("Cancel"), id = "close", callback = function() UIManager:close(dialog) end },
+                { text = _("Cancel"), id = "close", callback = function() self.fresh = nil; UIManager:close(dialog) end },
                 { text = _("OK"), is_enter_default = true, callback = function() local v = dialog:getInputText(); UIManager:close(dialog); cont(v) end },
             } },
         }
@@ -543,6 +550,17 @@ end
 -- ── syncing ─────────────────────────────────────────────────────────────────
 function AISH:onAishSync() self:syncNow(); return true end
 
+function AISH:downloadAgain()
+    if self.ui and self.ui.document and self.open_article then
+        notify(_("Close the AISH article first."), 3); return
+    end
+    UIManager:show(ConfirmBox:new{
+        text = _("Remove the AISH articles from this reader and download the whole library again?\n\nHighlights and notes made on the reader are sent to AISH first and come back. Reading positions start over."),
+        ok_text = _("Download again"),
+        ok_callback = function() self.fresh = true; self:syncNow() end,
+    })
+end
+
 --- The newest article not read yet (from the last sync's Inbox, else from the files this plugin made).
 function AISH:newestUnread()
     local inbox = self.inbox
@@ -608,6 +626,7 @@ function AISH:endProgress()
     self.syncing = false
 end
 function AISH:fail(text)
+    self.fresh = nil   -- a "download everything again" that did not get through is not done later by surprise
     self:endProgress()
     if self.quiet then logger.warn("AISH: quiet sync failed:", text); self.quiet = false; return end
     UIManager:show(InfoMessage:new{ text = text, icon = "notice-warning" })
@@ -665,7 +684,7 @@ function AISH:askPassphrase(onOk)
         description = _("The words (or your own passphrase) you chose when you made the encrypted place in the extension. It is not saved; the key made from it is."),
         text_type = "password",
         buttons = { {
-            { text = _("Cancel"), id = "close", callback = function() UIManager:close(dialog) end },
+            { text = _("Cancel"), id = "close", callback = function() self.fresh = nil; UIManager:close(dialog) end },
             { text = _("Unlock"), is_enter_default = true, callback = function()
                 local p = dialog:getInputText()
                 UIManager:close(dialog)
@@ -724,6 +743,18 @@ function AISH:pullAndWrite(store, meta, keys)
         if lib.pendingCount() > 0 then
             self:progress(_("Sending changes…"))
             sent = lib.push(keys)
+        end
+        if self.fresh then   -- "Download everything again": what the reader changed is in AISH now; then start over
+            self.fresh = nil
+            if lib.pendingCount() > 0 then
+                return self:fail(T(_("%1 changes made on this reader could not be sent, so nothing was deleted. Try again when the reader is online."), lib.pendingCount()))
+            end
+            self:progress(_("Removing the articles from this reader…"))
+            lib.reset(function(path) self:removeArticle(path) end)
+            self:updateCollections({ tabs = { inbox = {}, read = {}, archive = {} }, collections = {}, tags = {} }, {})
+            for __, k in ipairs({ "reconciled", "finished_sent" }) do self.settings:delSetting(k) end
+            self:save()
+            return self:pullAndWrite(store, meta, keys)
         end
         -- the collections last: read marks and finished books from this very sync are in them (a second pass reads only the index)
         local m2 = lib.materialize(function(path) self:removeArticle(path) end)

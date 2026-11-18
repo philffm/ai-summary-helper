@@ -33,6 +33,9 @@ Highlights and notes go **both ways**: what you mark on the reader appears in th
   renaming an article keeps its file, so your reading position stays;
 - each sync downloads only the files that changed (ETags); a file that cannot be read is skipped and tried again later.
 
+*Download everything again* removes the AISH articles from the reader and loads the library anew (highlights and notes
+made on the reader are sent first and come back; reading positions start over).
+
 Automatic sync, finished → archive, the tag collections and sending on close can be turned off in *Tools → AISH library*.
 
 How the two sides agree: every record carries per-field time stamps, and the reader merges exactly like the extension

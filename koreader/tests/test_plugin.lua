@@ -46,6 +46,7 @@ mod("ui/widget/multiinputdialog", widget("multi")); mod("luasettings", LuaSettin
 local function press(label, input)
     for i = #shown, 1, -1 do
         local d = shown[i]
+        if d.ok_text == label then table.remove(shown, i); return d.ok_callback() end
         for _, row in ipairs(d.buttons or {}) do
             for _, b in ipairs(row) do
                 if b.text == label then
@@ -197,10 +198,32 @@ if phase == "plugin2" then
     local RCo = require("readcollection")
     local arch = {}; for f in pairs(RCo.coll["AISH · Archive"] or {}) do arch[#arch + 1] = f end
     assert(#arch == 1 and arch[1]:find("Why we sleep", 1, true), "finished in KOReader → archived in AISH")
+    -- a new layout (render version) reaches the articles already on the reader
+    local L = require("aishlib.library")
+    local was = L.RENDER_VERSION
+    L.RENDER_VERSION = was .. "-next"
+    shown = {}
+    plugin:syncNow()
+    assert(shown[#shown].text:find("2 new or updated", 1, true), "every file rewritten for the new layout: " .. shown[#shown].text)
+    L.RENDER_VERSION = was
+    -- "Download everything again": a highlight made on the reader is sent first, the files and records go, everything
+    -- comes back; the highlight is back in the book on opening
+    sidecars[sleepFile].annotations[#sidecars[sleepFile].annotations + 1] = { text = "the connections between neurons", drawer = "lighten", pos0 = "xp:9", pos1 = "xp:10", page = "xp:9" }
+    saveSidecars()
+    local before = fsu.read(work .. "/data/aish/index.json")
+    shown = {}
+    plugin:downloadAgain(); press("Download again")
+    assert(shown[#shown].text:find("AISH library: 2 articles.\n2 new or updated", 1, true), "downloaded again: " .. tostring(shown[#shown].text))
+    local lib = plugin:library()
+    local hls = lib.highlightsOf("k-a1")
+    local found = false
+    for __, h in ipairs(hls) do if h.text == "the connections between neurons" then found = true end end
+    assert(found, "the reader's new highlight was sent before starting over, and came back")
+    assert(fsu.read(work .. "/data/aish/index.json") ~= before and lib.pendingCount() == 0)
     print("TEST plugin2 OK")
     os.exit(0)
 end
-assert(menu.aish_library and #menu.aish_library.sub_item_table == 16, "menu")
+assert(menu.aish_library and #menu.aish_library.sub_item_table == 17, "menu")
 assert(menu.aish_library.sub_item_table[5].text_func() == "Not connected")
 
 local function enc(s) return (s:gsub("[^%w%-%._~]", function(c) return string.format("%%%02X", c:byte()) end)) end
