@@ -859,8 +859,19 @@ function AISH:makeCover(info)
     end
     -- the foot
     bb:paintRect(M, H - 64, W - 2 * M, 2, Blitbuffer.COLOR_BLACK)
-    local foot = text("AISH", "cfont", 18, W - 2 * M, { align = "right", bold = true })
-    foot:paintTo(bb, M, H - 52); foot:free()
+    -- the foot: the article's tags on the left (up to four, cut with "…" when long), AISH on the right
+    local brand = TextWidget:new{ text = "AISH", face = Font:getFace("cfont", 18), bold = true }
+    local bs = brand:getSize()
+    brand:paintTo(bb, W - M - bs.w, H - 52); brand:free()
+    local tags = {}
+    for __, tg in ipairs(info.tags or {}) do
+        if #tags < 4 then tags[#tags + 1] = "#" .. tostring(tg):gsub("%s+", "-") end
+    end
+    if #tags > 0 then
+        local tw = TextWidget:new{ text = table.concat(tags, "   "), face = Font:getFace("cfont", 18), fgcolor = Blitbuffer.COLOR_DARK_GRAY,
+            max_width = W - 2 * M - bs.w - 24, truncate_with_ellipsis = true }
+        tw:paintTo(bb, M, H - 52); tw:free()
+    end
     local tmp = self.data_dir .. "/cover.tmp.png"
     util.makePath(self.data_dir)
     bb:writePNG(tmp)
