@@ -78,6 +78,9 @@ function M.new(o)
     local fs = o.fs
     self.format = o.format == "html" and "html" or "epub"   -- EPUB: book information, cover, table of contents
     self.images = o.images ~= false   -- the images saved inside the articles (both formats); off: their descriptions
+    -- what goes onto the reader: the newest `limit` articles (nil: all), archived ones only with `archive`
+    self.limit = tonumber(o.limit) and tonumber(o.limit) > 0 and tonumber(o.limit) or nil
+    self.archive = o.archive ~= false
     self.cover = o.cover    -- function(info) → PNG bytes: draws an article's cover (KOReader on the reader)
     fs.mkdirp(self.dataDir .. "/records")
 
@@ -354,10 +357,34 @@ function M.new(o)
     Writes the HTML files. → { written = { path }, removed = { path }, collections = { [path] = { names } }, skipped }
     removeFile(path) is called for a file to remove (the plugin also drops KOReader's sidecar there).
     ]]
-    function self.materialize(removeFile, progress)
+    --[[--
+    opts = { prune = true: files of articles beyond the limit (or archived, without the archive) are removed — only after
+    the reader's changes went out, so no highlight is lost; keep = a file never removed now (the open book) }
+    ]]
+    function self.materialize(removeFile, progress, opts)
+        opts = opts or {}
         fs.mkdirp(self.outDir)
+        -- the articles that go onto the reader: newest first, within the limit
+        local allowed
+        if self.limit or not self.archive then
+            local list = {}
+            for key, e in pairs(self.index) do
+                local typ, id = key:match(KEY_RX)
+                if typ == "article" and not e.deleted and (e.lv ~= 3 or (not e.sk and e.rs)) and (self.archive or not e.ar) then
+                    list[#list + 1] = { id = id, ts = e.ts or "" }
+                end
+            end
+            table.sort(list, function(x, y) return x.ts > y.ts or (x.ts == y.ts and x.id > y.id) end)
+            allowed = {}
+            for i, it in ipairs(list) do if not self.limit or i <= self.limit then allowed[it.id] = true end end
+        end
+        local function dropFiles(id, st)
+            if fs.exists(st.file) then removeFile(st.file) end
+            local safe = tostring(id):gsub("[^%w%-_]", "_")
+            for k = 1, (st.imgs or 0) do for _, ext in ipairs({ "jpg", "png", "gif", "webp", "svg" }) do fs.remove(self.outDir .. "/" .. M.IMAGE_DIR .. "/" .. safe .. "-" .. k .. "." .. ext) end end
+        end
         local hlByPage, notesByPage, _, collsOf = gather()
-        local res = { written = {}, removed = {}, collections = {}, skipped = 0, articles = 0, tabs = { inbox = {}, read = {}, archive = {} }, tags = {} }
+        local res = { written = {}, removed = {}, collections = {}, skipped = 0, articles = 0, left = 0, tabs = { inbox = {}, read = {}, archive = {} }, tags = {} }
         local used = {}
         for _, st in pairs(self.state) do used[st.file] = true end
         -- the series of an EPUB: its first AISH collection (by name), numbered by the date the articles were saved
@@ -389,7 +416,15 @@ function M.new(o)
                     if v then store(key, rec, e.dirty); e = self.index[key] end   -- an index from an older version: filled in once
                 end
                 local skip = e.deleted or e.sk or not e.rs
-                if skip then
+                if not skip and allowed and not allowed[id] then
+                    -- beyond the limit or archived: not written; a file made before goes once the reader's changes are out
+                    res.left = res.left + 1
+                    if st and opts.prune and st.file ~= opts.keep then
+                        dropFiles(id, st)
+                        res.removed[#res.removed + 1] = st.file
+                        used[st.file] = nil; self.state[id] = nil
+                    end
+                elseif skip then
                     if e.deleted and st then   -- deleted in AISH: remove what this plugin made
                         if fs.exists(st.file) then removeFile(st.file) end
                         local safe = tostring(id):gsub("[^%w%-_]", "_")

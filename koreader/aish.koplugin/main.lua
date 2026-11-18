@@ -266,6 +266,32 @@ Writing takes longer, mostly for the covers: the first time, a library of a few 
                 },
             },
             {
+                text_func = function()
+                    local n = tonumber(self.settings:readSetting("limit"))
+                    return T(_("Articles on this reader: %1"), n and tostring(n) or _("all"))
+                end,
+                help_text = _("Only the newest articles (by the date saved in AISH) are put on the reader. Older ones are removed from it after their highlights and notes went out; they stay in AISH and come back when you raise the limit."),
+                sub_item_table_func = function()
+                    local items = {}
+                    for __, n in ipairs({ 25, 50, 100, 0 }) do
+                        items[#items + 1] = {
+                            text = n == 0 and _("Unlimited") or tostring(n),
+                            radio = true,
+                            checked_func = function() return (tonumber(self.settings:readSetting("limit")) or 0) == n end,
+                            callback = function() self:setLimit(n, "limit") end,
+                        }
+                    end
+                    items[#items].separator = true
+                    items[#items + 1] = {
+                        text = _("Include archive"),
+                        help_text = _("Off: articles archived in AISH are not put on the reader (and are removed from it)."),
+                        checked_func = function() return self.settings:nilOrTrue("include_archive") end,
+                        callback = function() self.settings:flipNilOrTrue("include_archive"); self:setLimit() end,
+                    }
+                    return items
+                end,
+            },
+            {
                 text = _("Include images"),
                 help_text = _([[The images saved with the articles, in both formats (up to a few MB per article). Off: smaller files and faster writing; each image shows its description instead.]]),
                 checked_func = function() return self.settings:nilOrTrue("images") end,
@@ -678,6 +704,7 @@ end
 function AISH:library(store)
     return require("aishlib.library").new({
         store = store, fs = fs, dataDir = self.data_dir, outDir = self:outDir(), format = self.settings:readSetting("format") or "epub", images = self.settings:nilOrTrue("images"),
+        limit = self.settings:readSetting("limit"), archive = self.settings:nilOrTrue("include_archive"),
         cover = function(info) return self:makeCover(info) end,
         labels = { summary = _("Summary"), notes = _("Notes"), noText = _("The full text of this article was not saved in AISH.") },
     })
@@ -761,6 +788,13 @@ function AISH:sync(words)
     end)
 end
 
+--- The limit (25, 50, 100, 0 = unlimited) or the archive switch changed: what is on the reader follows at the next sync.
+function AISH:setLimit(n)
+    if n then self.settings:saveSetting("limit", n > 0 and n or nil) end
+    self:save()
+    notify(_("Applied at the next sync. Nothing is downloaded again."), 3)
+end
+
 --- EPUB or HTML. Nothing is downloaded again: the articles are on the reader already and are written in the other format
 --- (KOReader's reading positions start over; highlights come back from AISH).
 function AISH:setFormat(fmt)
@@ -822,12 +856,14 @@ function AISH:pullAndWrite(store, meta, keys)
             return self:pullAndWrite(store, meta, keys)
         end
         -- the collections last: read marks and finished books from this very sync are in them (a second pass reads only the index)
-        local m2 = lib.materialize(function(path) self:removeArticle(path) end)
+        local openFile = self.ui and self.ui.document and normPath(self.ui.document.file) or nil
+        local m2 = lib.materialize(function(path) self:removeArticle(path) end, nil, { prune = lib.pendingCount() == 0, keep = openFile })
+        for __, f in ipairs(m2.removed) do m.removed[#m.removed + 1] = f end
         self:updateCollections(m2, lib.files())
         lap("collections")
         if #m.written > 0 then self:pruneCovers() end
         logger.info("AISH: sync took", table.concat(times, ", "))
-        self.settings:saveSetting("last_sync", { time = os.time(), articles = m.articles, pending = lib.pendingCount() })
+        self.settings:saveSetting("last_sync", { time = os.time(), articles = m2.articles, pending = lib.pendingCount() })
         self.settings:saveSetting("pending", lib.pendingCount()); self:save()
         self:endProgress()
         local FileManager = require("apps/filemanager/filemanager")
@@ -837,7 +873,8 @@ function AISH:pullAndWrite(store, meta, keys)
             if #sent.failed > 0 then logger.warn("AISH: not sent", #sent.failed) end
             return
         end
-        local text = T(_("AISH library: %1 articles.\n%2 downloaded, %3 files written, %4 removed."), m.articles, res.fetched, #m.written, #m.removed)
+        local text = T(_("AISH library: %1 articles on this reader.\n%2 downloaded, %3 files written, %4 removed."), m2.articles, res.fetched, #m.written, #m.removed)
+        if m2.left > 0 then text = text .. "\n" .. T(_("%1 older or archived articles are left out (Articles on this reader)."), m2.left) end
         if sent.pushed > 0 or hl.added > 0 then
             text = text .. "\n" .. T(_("Highlights and notes: %1 sent, %2 placed in articles."), sent.pushed, hl.added)
         end

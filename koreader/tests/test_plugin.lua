@@ -221,7 +221,7 @@ if phase == "plugin2" then
     end
     shown = {}
     plugin:downloadAgain(); press("Download again")
-    assert(shown[#shown].text:find("AISH library: 2 articles.\n%d+ downloaded, 2 files written"), "downloaded again: " .. tostring(shown[#shown].text))
+    assert(shown[#shown].text:find("AISH library: 2 articles on this reader.\n%d+ downloaded, 2 files written"), "downloaded again: " .. tostring(shown[#shown].text))
     local lib = plugin:library()
     local hls = lib.highlightsOf("k-a1")
     local found = false
@@ -237,7 +237,7 @@ if phase == "plugin2" then
     print("TEST plugin2 OK")
     os.exit(0)
 end
-assert(menu.aish_library and #menu.aish_library.sub_item_table == 18, "menu")
+assert(menu.aish_library and #menu.aish_library.sub_item_table == 19, "menu")
 assert(menu.aish_library.sub_item_table[5].text_func() == "Not connected")
 
 local function enc(s) return (s:gsub("[^%w%-%._~]", function(c) return string.format("%%%02X", c:byte()) end)) end
@@ -321,4 +321,14 @@ shown = {}
 plugin:onNetworkConnected()
 assert(settingsStore[work .. "/settings/aish.lua"].last_sync.time > 0, "synced")
 for _, w in ipairs(shown) do assert(w.kind ~= "info", "quietly: " .. tostring(w.text)) end
+-- only the newest article on the reader: the older one goes (its highlights are in AISH), and comes back
+s.limit = 1
+shown = {}
+plugin:syncNow()
+assert(not fsu.exists(sleepFile) and ordered("AISH · Inbox") == "Only a summary here (renamed) [ka3].epub", "limit 1: " .. ordered("AISH · Read"))
+assert(shown[#shown].text:find("1 removed", 1, true) and shown[#shown].text:find("1 older or archived", 1, true), shown[#shown].text)
+s.limit = nil
+shown = {}
+plugin:syncNow()
+assert(fsu.exists(sleepFile) and shown[#shown].text:find("0 downloaded, 1 files written", 1, true), "back, nothing downloaded: " .. shown[#shown].text)
 print("TEST plugin OK")
