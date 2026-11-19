@@ -76,7 +76,7 @@ export async function initModelSettings(storageData) {
             if (!own || seq !== switchSeq) return;
 
             // Restore the provider that belongs to this tab so the panel doesn't fall back to a stale selection.
-            const latest = await StorageManager.getAll();
+            const latest = await StorageManager.get(['activeService']);
             if (seq !== switchSeq) return;
             let target = 'ollama';
             if (tab === 'local') {
@@ -155,22 +155,29 @@ export async function initModelSettings(storageData) {
             });
         }
         chrome.storage.onChanged.addListener((ch, area) => { if (area === 'local' && SK.cloudRoute in ch) showRoute(); });
+        // The roster is the same almost every time: paint the last one at once, then refresh it from the server (a slow or offline
+        // server leaves the list as it was instead of an empty select).
+        const ROSTER_KEY = 'aish.cloudRoster';
+        const rosterOk = (d) => d && d.success && Array.isArray(d.models) && d.models.length > 0;
+        let rosterWired = false;
+        const applyRoster = (data) => {
+            rosterModels = data.models; rosterData = data;
+            fillCloudModels();
+            if (!rosterWired) { rosterWired = true; cloudModelSelect.addEventListener('change', updateSuggest); }
+            // Only a server that knows about regions gets the switch: an older one would just ignore it, and nothing would be marked.
+            if (regionGroup) { regionGroup.hidden = !supportsEu(data); describeRegion(); showRoute(); updateSuggest(); }
+        };
+        try { const c = JSON.parse(localStorage.getItem(ROSTER_KEY) || 'null'); if (rosterOk(c)) applyRoster(c); } catch (_) { /* no cache: wait for the server */ }
         fetch(`${StorageManager.getApiBase()}/v1/projects/ai_summary_helper/models`)
             .then(res => res.json())
             .then(data => {
-                if (data.success && data.models.length > 0) {
-                    rosterModels = data.models; rosterData = data;
-                    fillCloudModels();
-                    cloudModelSelect.addEventListener('change', updateSuggest);
-                    // Only a server that knows about regions gets the switch: an older one would just ignore it, and nothing would be marked.
-                    if (regionGroup) { regionGroup.hidden = !supportsEu(data); describeRegion(); showRoute(); updateSuggest(); }
-                } else {
-                    throw new Error("Empty model array received");
-                }
+                if (!rosterOk(data)) throw new Error("Empty model array received");
+                try { localStorage.setItem(ROSTER_KEY, JSON.stringify(data)); } catch (_) { /* storage full or blocked: only the cache is lost */ }
+                applyRoster(data);
             })
             .catch(err => {
                 console.error("Failed to populate dynamic openrouter roster:", err);
-                cloudModelSelect.innerHTML = '<option value="google/gemini-3.8-flash">Gemini 3.8 Flash (' + escapeHtml(T('Fallback')) + ')</option>';
+                if (!rosterModels.length) cloudModelSelect.innerHTML = '<option value="google/gemini-3.8-flash">Gemini 3.8 Flash (' + escapeHtml(T('Fallback')) + ')</option>';
             });
 
         // Retain auto-save trigger on user selection change
@@ -265,7 +272,7 @@ export async function initModelSettings(storageData) {
         shownService = serviceId;
         const mine = ++fieldsSeq;
         const service = services.find(s => s.id === serviceId);
-        const latest = await StorageManager.getAll();
+        const latest = await StorageManager.get([SK.servicesConfig]);
         if (mine !== fieldsSeq) return;
         const cfg = latest[SK.servicesConfig]?.[serviceId] || {};
 
@@ -293,7 +300,7 @@ export async function initModelSettings(storageData) {
         // server switches the endpoint to that server; picking an Ollama model switches back to the Ollama endpoint (kept in ollamaEndpoint).
         const ollamaEndpointOf = (c) => c.ollamaEndpoint || (c.endpointSource && c.endpointSource !== 'ollama' ? '' : c.endpoint) || service?.endpointUrl || '';
         renderOllamaTutorial(serviceId, serviceId === 'ollama' ? ollamaEndpointOf(cfg) : (cfg.endpoint || service?.endpointUrl), async (name, opts = {}) => {
-            const entry = (await StorageManager.getAll())[SK.servicesConfig]?.[serviceId] || {};
+            const entry = (await StorageManager.get([SK.servicesConfig]))[SK.servicesConfig]?.[serviceId] || {};
             const list = (Array.isArray(entry.customModel) ? entry.customModel : (entry.customModel ? [entry.customModel] : []))
                 .map(m => StorageManager.normalizeCustomModel(m, serviceId));
             if (!list.some(m => m.id === name)) list.push({ id: name, provider: serviceId });
@@ -301,7 +308,7 @@ export async function initModelSettings(storageData) {
             const endpoint = opts.endpoint || ollamaEp;
             await StorageManager.updateService(serviceId, { customModel: list, activeModelId: { id: name, provider: serviceId }, ...(endpoint ? { endpoint } : {}), ollamaEndpoint: ollamaEp, endpointSource: opts.source || 'ollama' });
             if (endpointInput && endpoint) endpointInput.value = endpoint;
-            updateModelIdentifierUI(serviceId, services, await StorageManager.getAll());
+            updateModelIdentifierUI(serviceId, services, await StorageManager.get([SK.servicesConfig]));
             flashSaveIndicator();
         });
 

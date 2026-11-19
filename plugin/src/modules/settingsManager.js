@@ -52,7 +52,7 @@ function loadOnDemand(lazy) {
 }
 
 export async function initSettingsManager(ui, { lazy = false } = {}) {
-    const storageData = await StorageManager.getAll();
+    const storageData = await StorageManager.getSettings();   // not the library: getAll() would read every article just to paint the settings
 
     // sections whose controls feed the row subtitles in settingsNav (or the main screen) load at once
     initModelSettings(storageData);
@@ -82,7 +82,7 @@ export async function initSettingsManager(ui, { lazy = false } = {}) {
             const endpointInput = document.getElementById('customEndpoint');
 
             const activeService = modelSelect ? modelSelect.value : 'openai';
-            const storageData = await StorageManager.getAll();
+            const storageData = await StorageManager.get([SK.servicesConfig]);
             const servicesConfig = storageData[SK.servicesConfig] || {};
             const prevCfg = servicesConfig[activeService] || {};
 

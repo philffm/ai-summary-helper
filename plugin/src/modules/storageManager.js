@@ -62,6 +62,25 @@ class StorageManager {
     }
 
     /**
+     * Everything except the library: the settings, accounts and small state, without the article records, the notes and
+     * highlights per page, the feed items and the graph. getAll() reads them all (megabytes per article), which is what made
+     * the Settings screens slow on a big library. Where the browser cannot list keys it falls back to getAll().
+     */
+    static async getSettings() {
+        const big = new Set([SK.articlesIndex, SK.feedItems, SK.feedRecaps, SK.graphSim]);
+        const skip = (k) => big.has(k) || isArticleRecKey(k) || isCollRecKey(k) || isNoteRecKey(k) || isHlPageKey(k) || k.startsWith(ARTICLE_REC_LEGACY);
+        if (typeof chrome.storage.local.getKeys !== 'function') return this.getAll();
+        try {
+            const keys = (await chrome.storage.local.getKeys()).filter((k) => !skip(k));
+            const [syncData, localData] = await Promise.all([
+                new Promise(resolve => chrome.storage.sync.get(null, resolve)),
+                new Promise(resolve => chrome.storage.local.get(keys, resolve)),
+            ]);
+            return { ...syncData, ...localData };
+        } catch (_) { return this.getAll(); }
+    }
+
+    /**
      * Fetch key(s) from their respective storage locations.
      * Accepts a single string key, an array of keys, or null (returns everything from sync).
      */

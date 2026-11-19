@@ -67,17 +67,24 @@ function detectOS() {
  * Detects all local models, ranks them (localModels.js), saves the ready ones as the fallback order, and offers:
  * use it / download and use it / compare first (the 20-headline test, per model, no fallback while testing).
  */
-export async function renderRecommendation(box, endpoint, onPickModel) {
+export async function renderRecommendation(box, endpoint, onPickModel, refreshed = false) {
     const L = await import('../localModels.js');
     const el = (tag, cls, text) => { const e = document.createElement(tag); if (cls) e.className = cls; if (text !== undefined) e.textContent = text; return e; };
     const ua = navigator.userAgent || '';
     const browserName = /\bEdg\//.test(ua) ? 'Edge' : /\bOPR\//.test(ua) ? 'Opera' : 'Chrome';
     box.replaceChildren(el('div', 'local-source-head', T('Recommended for this computer')), el('p', 'setting-note', T('Looking for local models… nothing is installed or sent.')));
-    const [{ cands }, store, cfgAll] = await Promise.all([
-        L.detectLocalModels({ ollamaEndpoint: endpoint || undefined, browserName }),
+    // Detection can take seconds (Ollama's timeout, the browser's own model): show what was found last time at once, look again
+    // in the background and redraw only when the answer changed.
+    const CACHE = 'aish.localCands';
+    let cached = null; try { cached = JSON.parse(localStorage.getItem(CACHE) || 'null'); } catch (_) { /* none */ }
+    const detecting = L.detectLocalModels({ ollamaEndpoint: endpoint || undefined, browserName }).then((r) => { try { localStorage.setItem(CACHE, JSON.stringify(r.cands)); } catch (_) { /* only the cache is lost */ } return r; });
+    if (cached && !refreshed) detecting.then((r) => { if (box.isConnected && JSON.stringify(r.cands) !== JSON.stringify(cached)) renderRecommendation(box, endpoint, onPickModel, true); }).catch(() => {});
+    const [found, store, cfgAll] = await Promise.all([
+        cached && !refreshed ? Promise.resolve({ cands: cached }) : detecting,
         chrome.storage.sync.get(['localModelBench', 'localFallback']).catch(() => ({})),
-        StorageManager.getAll().catch(() => ({})),
+        StorageManager.get([SK.servicesConfig]).catch(() => ({})),
     ]);
+    const cands = found.cands;
     if (!box.isConnected) return;
     const bench = (store && store.localModelBench) || {};
     const ranked = L.rankLocalModels(cands, bench);
