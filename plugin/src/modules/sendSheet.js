@@ -16,6 +16,7 @@ import { generateDigestIntro } from './feedAi.js';
 import { createRecapStatus } from './recapStatus.js';
 import { fetchAnnotationsForArticle } from './annotationExporter.js';
 import { el } from './dom.js';
+import { setLabel } from './icons.js';
 import { paperState, paperDoi } from './paperInfo.js';
 import { CITE_STYLES, loadCiteStyle, setCiteStyle, ensureCsl, formatList, citeFileName, copyText, downloadText } from './citation.js';
 
@@ -477,7 +478,7 @@ async function run(kind, device) {
             await markSent(kind, device, deliveredIds);
             return finish(false, { kind, target, done, total: jobs.length, error: res?.error });
         }
-        lines[i].textContent = '✅ ' + jobs[i].label; done++; paint(done, false);
+        setLabel(lines[i], '✅ ' + jobs[i].label); done++; paint(done, false);
         deliveredIds.push(...jobs[i].ids);
     }
     await markSent(kind, device, deliveredIds);

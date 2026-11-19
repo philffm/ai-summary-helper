@@ -2,7 +2,7 @@
 // editor. Loaded the first time an article is opened (articleManager.js re-exports showArticleDetail / openArticleInHistory).
 import { mountReadingTools } from '../readingTools.js';
 import { modelIcon } from '../modelBadge.js';
-import { icon, iconEl, labelNodes } from '../icons.js';
+import { icon, iconEl, labelNodes, setLabel } from '../icons.js';
 import { TOOLBAR_CATALOG, TOOLBAR_PREF, DEFAULT_TOOLBAR, normalizeToolbar } from '../detailToolbar.js';
 import { SK } from '../storageKeys.js';
 import { escapeHtml, cleanUntrustedHtml } from '../textUtils.js';
@@ -197,7 +197,7 @@ function renderDetailTags(article, host) {
         input.after(doiSugg);
         input.addEventListener('input', () => {
             const dv = /^(?:https?:\/\/\S*doi\.org\/|doi:\s*)?10\./i.test(input.value.trim()) ? normalizeDoi(input.value) : '';
-            doiSugg.hidden = !dv; if (dv) doiSugg.textContent = T('🎓 Assign DOI {doi}', { doi: dv });
+            doiSugg.hidden = !dv; if (dv) setLabel(doiSugg, T('🎓 Assign DOI {doi}', { doi: dv }));
             const q = input.value.trim().toLowerCase();
             sugg.forEach(b => { if (b === doiSugg) return; b.hidden = !!q && !b.textContent.toLowerCase().includes(q) && !b.classList.contains('tag-suggest-paper'); });
         });

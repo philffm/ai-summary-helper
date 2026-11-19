@@ -70,7 +70,7 @@ export function initMainScreen(ui) {
             if (chips.length) {
                 let row = bubble.querySelector('.bubble-tags');
                 if (!row) { row = document.createElement('div'); row.className = 'bubble-tags'; bubble.querySelector('.bubble-foot').prepend(row); }
-                chips.slice().reverse().forEach(([tone, text]) => { const s = document.createElement('span'); s.className = 'bubble-tag paper paper-' + tone; s.textContent = text; row.prepend(s); });
+                chips.slice().reverse().forEach(([tone, text]) => { const s = document.createElement('span'); s.className = 'bubble-tag paper paper-' + tone; setLabel(s, text); row.prepend(s); });
             }
         }
         // Click to open in history
