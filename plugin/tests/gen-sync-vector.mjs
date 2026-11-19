@@ -36,6 +36,8 @@ export async function build() {
     void h;
     const cases = [
         ['newer field wins per field', rec('A', 30, { title: [10, 'Old'], favorite: [30, true], 'tag:x': [10, 'x'] }), rec('B', 40, { title: [40, 'New'], favorite: [5, false], 'tag:y': [40, 'y'] })],
+        ['progress: the larger number wins, not the later stamp', rec('A', 30, { progress: [30, 0.7] }), rec('B', 40, { progress: [40, 0.4] })],
+        ['progress: the larger number wins from the other side', rec('A', 50, { progress: [50, 0.3] }), rec('B', 20, { progress: [20, 0.8] })],
         ['tie on time: the larger device id wins', rec('A', 50, { title: [50, 'from A'] }), rec('B', 50, { title: [50, 'from B'] })],
         ['same value keeps the earlier stamp', rec('A', 90, { title: [90, 'Same'] }), rec('B', 20, { title: [20, 'Same'] })],
         ['unknown here', null, rec('A', 30, { title: [30, 'x'] })],

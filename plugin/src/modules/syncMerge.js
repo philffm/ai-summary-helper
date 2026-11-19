@@ -9,6 +9,11 @@
 //   • `excluded` is not a deletion: it is only a hint for readable places and is ignored here.
 import { compareRev, hashValue } from './syncStamps.js';
 
+// Fields where the larger number wins instead of the later stamp: how far an article was read only ever grows, so two devices
+// that read different parts of it agree on the deepest one (the Lua side, koreader/.../stamps.lua, applies the same rule).
+export const MAX_FIELDS = ['progress'];
+const bigger = (a, b) => typeof a === 'number' && typeof b === 'number' && a !== b;
+
 const fieldRev = (rec, name) => ({ t: (rec.f && rec.f[name] && rec.f[name].t) || 0, d: (rec.rev && rec.rev.d) || '' });
 
 /** → { merged, changedLocal, changedRemote }. `local` may be null (unknown here). */
@@ -31,6 +36,7 @@ export function mergeRecord(local, remote) {
         let pick = null;
         if (l && !r) pick = 'local'; else if (r && !l) pick = 'remote';
         else if (l.h === r.h) pick = 'local';   // same value: nothing to decide (keep the older stamp, it was there first)
+        else if (MAX_FIELDS.includes(name) && bigger(local.values && local.values[name], remote.values && remote.values[name])) pick = local.values[name] > remote.values[name] ? 'local' : 'remote';
         else pick = compareRev(fieldRev(local, name), fieldRev(remote, name)) >= 0 ? 'local' : 'remote';
         const src = pick === 'local' ? local : remote;
         f[name] = { ...src.f[name] };

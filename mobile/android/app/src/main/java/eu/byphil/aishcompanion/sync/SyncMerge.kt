@@ -10,6 +10,9 @@ import org.json.JSONObject
  * every device converges). A record is { rev: { t, d }, f: { field: { t, h } }, values: { field: value }, deleted?: true }.
  */
 object SyncMerge {
+    /** Fields where the larger number wins instead of the later stamp (how far an article was read only grows): the same list as MAX_FIELDS in syncMerge.js. */
+    private val maxFields = setOf("progress")
+
     class Result(val merged: JSONObject, val changedLocal: Boolean, val changedRemote: Boolean)
 
     private fun copy(o: JSONObject) = JSONObject(o.toString())
@@ -43,7 +46,11 @@ object SyncMerge {
                 l != null && r == null -> true
                 r != null && l == null -> false
                 l!!.optString("h") == r!!.optString("h") -> true   // same value: nothing to decide
-                else -> compareRev(fieldRev(local, name), fieldRev(remote, name)) >= 0
+                else -> {
+                    val lv = local.optJSONObject("values")?.opt(name); val rv = remote.optJSONObject("values")?.opt(name)
+                    if (name in maxFields && lv is Number && rv is Number && lv.toDouble() != rv.toDouble()) lv.toDouble() > rv.toDouble()
+                    else compareRev(fieldRev(local, name), fieldRev(remote, name)) >= 0
+                }
             }
             val src = if (pickLocal) local else remote
             f.put(name, copy(src.getJSONObject("f").getJSONObject(name)))

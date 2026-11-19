@@ -285,6 +285,106 @@
       "changedRemote": true
     },
     {
+      "name": "progress: the larger number wins, not the later stamp",
+      "local": {
+        "rev": {
+          "t": 30,
+          "d": "A"
+        },
+        "f": {
+          "progress": {
+            "t": 30,
+            "h": "1vwlgrjr0ya"
+          }
+        },
+        "values": {
+          "progress": 0.7
+        }
+      },
+      "remote": {
+        "rev": {
+          "t": 40,
+          "d": "B"
+        },
+        "f": {
+          "progress": {
+            "t": 40,
+            "h": "2kd7yh1vyx"
+          }
+        },
+        "values": {
+          "progress": 0.4
+        }
+      },
+      "merged": {
+        "rev": {
+          "t": 30,
+          "d": "B"
+        },
+        "f": {
+          "progress": {
+            "t": 30,
+            "h": "1vwlgrjr0ya"
+          }
+        },
+        "values": {
+          "progress": 0.7
+        }
+      },
+      "changedLocal": true,
+      "changedRemote": true
+    },
+    {
+      "name": "progress: the larger number wins from the other side",
+      "local": {
+        "rev": {
+          "t": 50,
+          "d": "A"
+        },
+        "f": {
+          "progress": {
+            "t": 50,
+            "h": "28a3r88ouzz"
+          }
+        },
+        "values": {
+          "progress": 0.3
+        }
+      },
+      "remote": {
+        "rev": {
+          "t": 20,
+          "d": "B"
+        },
+        "f": {
+          "progress": {
+            "t": 20,
+            "h": "p5eko070xb"
+          }
+        },
+        "values": {
+          "progress": 0.8
+        }
+      },
+      "merged": {
+        "rev": {
+          "t": 20,
+          "d": "A"
+        },
+        "f": {
+          "progress": {
+            "t": 20,
+            "h": "p5eko070xb"
+          }
+        },
+        "values": {
+          "progress": 0.8
+        }
+      },
+      "changedLocal": true,
+      "changedRemote": true
+    },
+    {
       "name": "tie on time: the larger device id wins",
       "local": {
         "rev": {
