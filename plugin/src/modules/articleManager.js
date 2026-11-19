@@ -4,7 +4,7 @@
 import { destroyReadingTools } from './readingTools.js';
 import { showSkeleton, clearSkeleton } from './skeleton.js';
 import { modelIcon } from './modelBadge.js';
-import { icon, setIconLabel, stripEmoji } from './icons.js';
+import { icon, iconEl, setIconLabel, setLabel, stripEmoji, labelHtml } from './icons.js';
 import { SK, isNoteRecKey, isHlPageKey } from './storageKeys.js';
 import { escapeHtml } from './textUtils.js';
 import StorageManager from './storageManager.js';
@@ -995,7 +995,7 @@ function paintNoteChip(card, counts) {
     let row = host.querySelector('.card-tags');
     if (!row) { row = document.createElement('div'); row.className = 'card-tags'; const anchor = host.querySelector('.article-date'); if (anchor) anchor.after(row); else host.appendChild(row); }
     const chip = document.createElement('span'); chip.className = 'tag-chip note-chip';
-    chip.textContent = [c.mine && '✏️ ' + c.mine, c.ai && '✨ ' + c.ai, c.notes && '📝 ' + c.notes].filter(Boolean).join('  ');
+    [['pencil', c.mine], ['sparkles', c.ai], ['sticky-note', c.notes]].filter(([, n]) => n).forEach(([ic, n], i) => chip.append(...(i ? [document.createTextNode('  ')] : []), iconEl(ic), document.createTextNode(' ' + n)));
     chip.title = [c.mine && TN(c.mine, '{n} highlight', '{n} highlights'), c.ai && TN(c.ai, '{n} AI highlight', '{n} AI highlights'), c.notes && TN(c.notes, '{n} note', '{n} notes')].filter(Boolean).join(' · ');
     row.appendChild(chip);
 }
@@ -1023,7 +1023,7 @@ function buildArticleCard(article) {
     const tags = article.tags || [];
     // known and learned topics are shown in the UI language (the stored tag keeps its original); two tags that read the same collapse to one chip
     const shownTags = [...new Set(tags.map(t => topicLabel(t, uiLocale())))];
-    const tagsHtml = shownTags.length ? `<div class="card-tags">${shownTags.map(t => `<span class="tag-chip">${escapeHtml(t)}</span>`).join('')}</div>` : '';
+    const tagsHtml = shownTags.length ? `<div class="card-tags">${shownTags.map(t => `<span class="tag-chip">${labelHtml(t, escapeHtml)}</span>`).join('')}</div>` : '';
     const modelBadge = article.modelId ? `<span class="card-model">${modelIcon(article)} ${escapeHtml(article.modelId)}</span>` : '';
 
     // Decision metadata (timeframe + reason)
@@ -1114,7 +1114,7 @@ function buildArticleCard(article) {
                 if (anchor) anchor.after(row); else host.appendChild(row);
             }
             const frag = document.createDocumentFragment();
-            badges.forEach(([tone, text]) => { const b = document.createElement('span'); b.className = 'tag-chip status-badge ' + tone; b.textContent = text; frag.appendChild(b); });
+            badges.forEach(([tone, text]) => { const b = document.createElement('span'); b.className = 'tag-chip status-badge ' + tone; setLabel(b, text); frag.appendChild(b); });
             row.prepend(frag);
         }
         const pChips = paperChips(article);
@@ -1123,13 +1123,13 @@ function buildArticleCard(article) {
             if (!row) { row = document.createElement('div'); row.className = 'card-tags'; const anchor = host.querySelector('.article-date'); if (anchor) anchor.after(row); else host.appendChild(row); }
             // Order in the row: status (New / Read / Sent / Archived), then the type (research paper), then the tags.
             const typeFrag = document.createDocumentFragment();
-            pChips.forEach(([tone, text]) => { const b = document.createElement('span'); b.className = 'tag-chip paper paper-' + tone; b.textContent = text; typeFrag.appendChild(b); });
+            pChips.forEach(([tone, text]) => { const b = document.createElement('span'); b.className = 'tag-chip paper paper-' + tone; setLabel(b, text); typeFrag.appendChild(b); });
             const statusChips = row.querySelectorAll('.status-badge');
             if (statusChips.length) statusChips[statusChips.length - 1].after(typeFrag); else row.prepend(typeFrag);
         }
         if (host && article.archived) {
             const r = document.createElement('button');
-            r.type = 'button'; r.className = 'button-secondary status-restore'; r.textContent = T('↩ Restore to Inbox');
+            r.type = 'button'; r.className = 'button-secondary status-restore'; setLabel(r, T('↩ Restore to Inbox'));
             r.addEventListener('click', (e) => { e.stopPropagation(); applyStatus([article.id], { archived: false }); });
             host.appendChild(r);
         }

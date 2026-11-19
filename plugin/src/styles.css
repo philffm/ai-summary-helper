@@ -92,19 +92,20 @@
   --elevation-sheet: 0 -8px 30px rgba(15,23,42,0.2); /* Upward shadow of bottom sheets. */
   /* semantic · font */
   --font-ui: 'Hanken Grotesk', 'Inter', 'Segoe UI', system-ui, -apple-system, sans-serif; /* UI typeface of the extension (brand). */
+  --font-reading: 'Hanken Grotesk', 'Inter', 'Segoe UI', system-ui, -apple-system, sans-serif; /* Typeface of reading surfaces (summary text, article). Same as the UI unless a theme changes it (Postil: serif). */
   /* semantic · surface */
   --surface-busy: #111827; /* Summarise button while a request runs. */
   --surface-paper: #ffffff; /* QR codes need a white quiet zone in every theme. */
-  --bg-page: #faf8ff; /* Page background of every screen; the base all translucent surfaces are composited over. */
-  --bg-page-gradient: radial-gradient(at 0% 0%, hsla(217,100%,95%,1) 0, transparent 50%), radial-gradient(at 100% 100%, hsla(217,100%,92%,1) 0, transparent 50%); /* Soft accent glow painted over bg-page at the edges of the window. */
-  --glass-base: rgba(241,241,241,0.92); /* Background of a screen that slides over another (settings, detail); nearly opaque. */
+  --bg-page: #F6FAFA; /* Page background of every screen; the base all translucent surfaces are composited over. */
+  --bg-page-gradient: radial-gradient(at 0% 0%, hsla(187,50%,94%,1) 0, transparent 50%), radial-gradient(at 100% 100%, hsla(187,50%,90%,1) 0, transparent 50%); /* Soft accent glow painted over bg-page at the edges of the window. */
+  --glass-base: rgba(238,243,244,0.92); /* Background of a screen that slides over another (settings, detail); nearly opaque. */
   --glass-card: rgba(255,255,255,0.55); /* Card surface (article cards, settings rows, input card); translucent over bg-page. */
   --glass-input: rgba(0,0,0,0.04); /* Field surface: inputs, chips, search fields, icon tiles. */
   --glass-border: rgba(255,255,255,0.55); /* Edge of glass cards and the input card. */
   --glass-border-strong: rgba(255,255,255,0.45); /* Stronger glass edge for floating panels and toasts. */
   --glass-inner-glow: inset 0 1px 0 rgba(255,255,255,0.45); /* 1px inner highlight at the top of glass surfaces. */
   --surface-bar: #ffffff; /* Background of fixed bars (pane headers, toolbars) above scrolling content. */
-  --surface-sheet: #f1f1f1; /* Bottom sheets and dialogs: opaque so text behind does not show through. */
+  --surface-sheet: #EEF3F4; /* Bottom sheets and dialogs: opaque so text behind does not show through. */
   --scrim: rgba(15,23,42,0.45); /* Dims the page behind a sheet or dialog. */
   --surface-floating: color-mix(in srgb, var(--surface-sheet) 96%, transparent); /* Floating player, popovers and menus that sit above content. */
   --surface-track: #e2e8f0; /* Unfilled part of progress bars, sliders and meters. */
@@ -148,19 +149,19 @@
   --accent-a15: color-mix(in srgb, var(--accent) 15%, transparent); /* Accent at 15%: tints for hover, selection and soft borders. Never as text. */
   --accent-a25: color-mix(in srgb, var(--accent) 25%, transparent); /* Accent at 25%: tints for hover, selection and soft borders. Never as text. */
   --accent-a30: color-mix(in srgb, var(--accent) 30%, transparent); /* Accent at 30%: tints for hover, selection and soft borders. Never as text. */
-  --accent: #2563eb; /* Brand action colour: primary buttons, selected states, links on controls, focus ring, progress. */
-  --accent-light: #3b82f6; /* Second stop of the accent gradient (primary button, nav blob, switch on). */
+  --accent: #0F6675; /* Brand action colour: primary buttons, selected states, links on controls, focus ring, progress. */
+  --accent-light: #1C7F8E; /* Second stop of the accent gradient (primary button, nav blob, switch on). */
   --accent-glow: color-mix(in srgb, var(--accent) 25%, transparent); /* Coloured glow under primary buttons. */
   --on-accent: #ffffff; /* Text and icons on an accent fill (primary button, selected pill, active nav item). */
   --accent-soft: color-mix(in srgb, var(--accent) 10%, transparent); /* Light accent tint for selected or hovered rows. */
   --accent-soft-strong: color-mix(in srgb, var(--accent) 18%, transparent); /* Stronger accent tint for pressed or highlighted rows. */
-  --accent-subtle: #eff6ff; /* Faint accent tint behind accent-coloured text (chips, badges). */
+  --accent-subtle: #E8F6F7; /* Faint accent tint behind accent-coloured text (chips, badges). */
   --accent-selected: color-mix(in srgb, var(--accent) 8%, transparent); /* Accent tint of a selected card or row. */
   /* semantic · text */
   --text-primary: #0f172a; /* Body text, titles and icons: the strongest text colour (≥ 14:1 on cards). */
   --text-secondary: #334155; /* Supporting text: labels, descriptions, inactive controls with text. */
   --text-muted: #566274; /* Least important readable text: hints, meta lines, timestamps, placeholders (≥ 4.5:1). */
-  --text-link: #1d4ed8; /* Links inside text. */
+  --text-link: #0B525E; /* Links inside text. */
   /* semantic · outline */
   --outline: rgba(100,116,139,0.25); /* Default 1px border of cards, fields, bars and dividers. Decorative (about 1.35:1); a field edge that must be found needs outline-strong (ADR 0005). */
   --outline-soft: rgba(255,255,255,0.55); /* Very subtle border inside glass surfaces. */
@@ -168,8 +169,8 @@
   /* semantic · status */
   --tone-read-bg: #e5e7eb; /* Status “Read” badge background. */
   --tone-read-fg: #475569; /* Status “Read” badge text (≥ 5.4:1 on its background). */
-  --tone-sent-bg: #dbeafe; /* Status “Sent” badge background. */
-  --tone-sent-fg: #1d4ed8; /* Status “Sent” badge text (≥ 5.4:1 on its background). */
+  --tone-sent-bg: #CFECEF; /* Status “Sent” badge background. */
+  --tone-sent-fg: #0B525E; /* Status “Sent” badge text (≥ 5.4:1 on its background). */
   --tone-new-bg: #dcfce7; /* Status “New” badge background. */
   --tone-new-fg: #166534; /* Status “New” badge text (≥ 5.4:1 on its background). */
   --tone-arch-bg: #fef3c7; /* Status “Archived” badge background. */
@@ -185,7 +186,7 @@
   /* semantic · inverse */
   --surface-inverse: #0f172a; /* Inverse surface (toasts, tooltips): dark in light mode, light in dark mode. */
   --text-inverse: #ffffff; /* Text on surface-inverse. */
-  --link-inverse: #93c5fd; /* Action or link on surface-inverse (toast Undo). */
+  --link-inverse: #7CCBD4; /* Action or link on surface-inverse (toast Undo). */
   /* semantic · overlay */
   --overlay-strong: color-mix(in srgb, var(--text-primary) 18%, transparent); /* Stronger media overlay for text on images. */
   --overlay: color-mix(in srgb, var(--text-primary) 10%, transparent); /* Dark overlay on media (video poster, image captions). */
@@ -299,8 +300,6 @@
   --row-on-bg: var(--accent-subtle);
   /* component · field */
   --field-bg: var(--surface-field);
-  /* component · seg */
-  --seg-on-bg: var(--surface-selected);
   /* component · switch */
   --switch-off: var(--control-off);
   --switch-knob: var(--control-knob);
@@ -316,11 +315,89 @@
   --rsvp-bg: var(--surface-sheet); /* Speed reader: the reader card. */
   --rsvp-context-bg: var(--surface-row); /* Speed reader: the sentence or paragraph shown around the word. */
 }
+:root[data-scheme='blue'] {
+  /* semantic · accent */
+  --accent: #2563eb; /* Brand action colour: primary buttons, selected states, links on controls, focus ring, progress. */
+  --accent-light: #3b82f6; /* Second stop of the accent gradient (primary button, nav blob, switch on). */
+  --accent-subtle: #eff6ff; /* Faint accent tint behind accent-coloured text (chips, badges). */
+  /* semantic · surface */
+  --bg-page: #faf8ff; /* Page background of every screen; the base all translucent surfaces are composited over. */
+  --bg-page-gradient: radial-gradient(at 0% 0%, hsla(217,100%,95%,1) 0, transparent 50%), radial-gradient(at 100% 100%, hsla(217,100%,92%,1) 0, transparent 50%); /* Soft accent glow painted over bg-page at the edges of the window. */
+  --glass-base: rgba(241,241,241,0.92); /* Background of a screen that slides over another (settings, detail); nearly opaque. */
+  --surface-sheet: #f1f1f1; /* Bottom sheets and dialogs: opaque so text behind does not show through. */
+  /* semantic · text */
+  --text-link: #1d4ed8; /* Links inside text. */
+  /* semantic · status */
+  --tone-sent-bg: #dbeafe; /* Status “Sent” badge background. */
+  --tone-sent-fg: #1d4ed8; /* Status “Sent” badge text (≥ 5.4:1 on its background). */
+  /* semantic · inverse */
+  --link-inverse: #93c5fd; /* Action or link on surface-inverse (toast Undo). */
+}
+/* colour schemes: Settings › Appearance › Color scheme (data-scheme). Brand schemes emit only the colours that differ from this build's brand; they come right after the light block so the dark and contrast blocks still win where they apply. */
+:root[data-scheme='viola'] {
+  /* semantic · accent */
+  --accent: #6233E8; /* Brand action colour: primary buttons, selected states, links on controls, focus ring, progress. */
+  --accent-light: #7445F8; /* Second stop of the accent gradient (primary button, nav blob, switch on). */
+  --accent-subtle: #F3EFFF; /* Faint accent tint behind accent-coloured text (chips, badges). */
+  /* semantic · surface */
+  --bg-page: #FBF9FF; /* Page background of every screen; the base all translucent surfaces are composited over. */
+  --bg-page-gradient: radial-gradient(at 0% 0%, hsla(256,100%,96%,1) 0, transparent 50%), radial-gradient(at 100% 100%, hsla(256,100%,93%,1) 0, transparent 50%); /* Soft accent glow painted over bg-page at the edges of the window. */
+  --glass-base: rgba(242,240,248,0.92); /* Background of a screen that slides over another (settings, detail); nearly opaque. */
+  --surface-sheet: #F2F0F8; /* Bottom sheets and dialogs: opaque so text behind does not show through. */
+  /* semantic · text */
+  --text-link: #4F24C9; /* Links inside text. */
+  /* semantic · status */
+  --tone-sent-bg: #E5DCFF; /* Status “Sent” badge background. */
+  --tone-sent-fg: #4F24C9; /* Status “Sent” badge text (≥ 5.4:1 on its background). */
+  /* semantic · inverse */
+  --link-inverse: #B49CFF; /* Action or link on surface-inverse (toast Undo). */
+}
+/* Postil: e-reader scheme, off-white paper and graphite ink, flat (light) */
+:root[data-scheme='postil'] {
+  /* semantic · accent */
+  --accent: #3F3C37; /* Postil scheme, light: graphite accent, the same in every brand. */
+  --accent-light: #3F3C37; /* Postil scheme, light: same as accent, so primary buttons are flat (no gradient). */
+  --accent-glow: color-mix(in srgb, var(--accent) 0%, transparent); /* Postil scheme, light: no glow. */
+  --on-accent: #ffffff; /* Postil scheme, light: text on the brown accent. */
+  --accent-subtle: #F2F1ED; /* Postil scheme, light: subtle accent surface. */
+  /* semantic · surface */
+  --bg-page: #FAF9F6; /* Postil scheme, light: off-white e-paper page. */
+  --bg-page-gradient: #FAF9F6; /* Postil scheme, light: flat paper, no glow. */
+  --glass-base: rgba(250,249,246,0.97); /* Postil scheme, light: sliding screens are paper too. */
+  --glass-card: #FEFEFC; /* Postil scheme, light: cards are an opaque lighter sheet. */
+  --glass-border: rgba(26,25,23,0.16); /* Postil scheme, light: card edge is an ink hairline. */
+  --glass-border-strong: rgba(26,25,23,0.24); /* Postil scheme, light: stronger card edge. */
+  --glass-inner-glow: 0 0 0 rgba(26,25,23,0); /* Postil scheme, light: no inner highlight. */
+  --surface-bar: #FEFEFC; /* Postil scheme, light: bottom dock. */
+  --surface-sheet: #F2F1ED; /* Postil scheme, light: sheets. */
+  --surface-track: #E8E6E0; /* Postil scheme, light: tracks. */
+  --surface-row: #FEFEFC; /* Postil scheme, light: rows. */
+  --surface-field: #F2F1ED; /* Postil scheme, light: fields. */
+  --surface-selected: #FEFEFC; /* Postil scheme, light: selected segment. */
+  --surface-control: #FEFEFC; /* Postil scheme, light: controls. */
+  /* semantic · text */
+  --text-primary: #1A1917; /* Postil scheme, light: warm ink. */
+  --text-secondary: #3A3834; /* Postil scheme, light: secondary ink. */
+  --text-muted: #615E58; /* Postil scheme, light: muted ink (AA on paper). */
+  --text-link: #2E2C28; /* Postil scheme, light: links in graphite. */
+  /* semantic · outline */
+  --outline: rgba(26,25,23,0.16); /* Postil scheme, light: hairline in ink. */
+  --outline-strong: #D3D1C9; /* Postil scheme, light: stronger edge. */
+  /* semantic · elevation */
+  --shadow-card: 0 0 0 rgba(26,25,23,0); /* Postil scheme, light: cards have no shadow. */
+  /* semantic · status */
+  --tone-read-bg: #E8E6E0; /* Postil scheme, light: read badge on paper. */
+  --tone-sent-bg: #E8E6E0; /* Postil scheme, light: sent badge on paper. */
+  --tone-sent-fg: #2E2C28; /* Postil scheme, light: sent badge text. */
+  /* semantic · font */
+  --font-reading: 'Iowan Old Style', 'Charter', 'Source Serif 4', 'Georgia', serif; /* Postil scheme, light: reading surfaces (summary, article) in a system serif, nothing bundled. */
+  color-scheme: light;
+}
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme='light']):not([data-theme='contrast']) {
     /* semantic · surface */
     --bg-page: #0b0e14; /* Page background of every screen; the base all translucent surfaces are composited over. */
-    --bg-page-gradient: radial-gradient(at 0% 0%, color-mix(in srgb, var(--accent) 8%, transparent) 0, transparent 50%), radial-gradient(at 100% 100%, rgba(173,198,255,0.05) 0, transparent 50%); /* Soft accent glow painted over bg-page at the edges of the window. */
+    --bg-page-gradient: radial-gradient(at 0% 0%, color-mix(in srgb, var(--accent) 8%, transparent) 0, transparent 50%), radial-gradient(at 100% 100%, rgba(168,221,227,0.05) 0, transparent 50%); /* Soft accent glow painted over bg-page at the edges of the window. */
     --glass-base: rgba(11,14,20,0.92); /* Background of a screen that slides over another (settings, detail); nearly opaque. */
     --glass-card: rgba(255,255,255,0.06); /* Card surface (article cards, settings rows, input card); translucent over bg-page. */
     --glass-input: rgba(255,255,255,0.05); /* Field surface: inputs, chips, search fields, icon tiles. */
@@ -328,7 +405,7 @@
     --glass-border-strong: rgba(255,255,255,0.14); /* Stronger glass edge for floating panels and toasts. */
     --glass-inner-glow: inset 0 1px 0 rgba(255,255,255,0.06); /* 1px inner highlight at the top of glass surfaces. */
     --surface-bar: #0b0e14; /* Background of fixed bars (pane headers, toolbars) above scrolling content. */
-    --surface-sheet: #141923; /* Bottom sheets and dialogs: opaque so text behind does not show through. */
+    --surface-sheet: #111D20; /* Bottom sheets and dialogs: opaque so text behind does not show through. */
     --scrim: rgba(0,0,0,0.6); /* Dims the page behind a sheet or dialog. */
     --surface-row: rgba(255,255,255,0.06); /* Rows inside a sheet or list (send targets, list items). */
     --surface-field: rgba(255,255,255,0.08); /* Track of segmented controls and filled fields inside sheets. */
@@ -339,16 +416,16 @@
     --text-primary: #e8edf5; /* Body text, titles and icons: the strongest text colour (≥ 14:1 on cards). */
     --text-secondary: #b8c4d4; /* Supporting text: labels, descriptions, inactive controls with text. */
     --text-muted: #94a3b8; /* Least important readable text: hints, meta lines, timestamps, placeholders (≥ 4.5:1). */
-    --text-link: #93c5fd; /* Links inside text. */
+    --text-link: #7CCBD4; /* Links inside text. */
     /* semantic · accent */
-    --accent: #60a5fa; /* Brand action colour: primary buttons, selected states, links on controls, focus ring, progress. */
-    --accent-light: #3b82f6; /* Second stop of the accent gradient (primary button, nav blob, switch on). */
-    --accent-glow: rgba(96,165,250,0.18); /* Coloured glow under primary buttons. */
-    --on-accent: #001a3d; /* Text and icons on an accent fill (primary button, selected pill, active nav item). */
-    --accent-soft: rgba(96,165,250,0.14); /* Light accent tint for selected or hovered rows. */
-    --accent-soft-strong: rgba(96,165,250,0.26); /* Stronger accent tint for pressed or highlighted rows. */
-    --accent-subtle: rgba(96,165,250,0.14); /* Faint accent tint behind accent-coloured text (chips, badges). */
-    --accent-selected: rgba(96,165,250,0.14); /* Accent tint of a selected card or row. */
+    --accent: #3FA6B3; /* Brand action colour: primary buttons, selected states, links on controls, focus ring, progress. */
+    --accent-light: #1C7F8E; /* Second stop of the accent gradient (primary button, nav blob, switch on). */
+    --accent-glow: rgba(63,166,179,0.18); /* Coloured glow under primary buttons. */
+    --on-accent: #04262C; /* Text and icons on an accent fill (primary button, selected pill, active nav item). */
+    --accent-soft: rgba(63,166,179,0.14); /* Light accent tint for selected or hovered rows. */
+    --accent-soft-strong: rgba(63,166,179,0.26); /* Stronger accent tint for pressed or highlighted rows. */
+    --accent-subtle: rgba(63,166,179,0.14); /* Faint accent tint behind accent-coloured text (chips, badges). */
+    --accent-selected: rgba(63,166,179,0.14); /* Accent tint of a selected card or row. */
     /* semantic · outline */
     --outline: rgba(255,255,255,0.1); /* Default 1px border of cards, fields, bars and dividers. Decorative (about 1.35:1); a field edge that must be found needs outline-strong (ADR 0005). */
     --outline-soft: rgba(255,255,255,0.05); /* Very subtle border inside glass surfaces. */
@@ -361,8 +438,8 @@
     /* semantic · status */
     --tone-read-bg: rgba(255,255,255,0.1); /* Status “Read” badge background. */
     --tone-read-fg: #cbd5e1; /* Status “Read” badge text (≥ 5.4:1 on its background). */
-    --tone-sent-bg: rgba(96,165,250,0.18); /* Status “Sent” badge background. */
-    --tone-sent-fg: #93c5fd; /* Status “Sent” badge text (≥ 5.4:1 on its background). */
+    --tone-sent-bg: rgba(63,166,179,0.18); /* Status “Sent” badge background. */
+    --tone-sent-fg: #7CCBD4; /* Status “Sent” badge text (≥ 5.4:1 on its background). */
     --tone-new-bg: rgba(74,222,128,0.16); /* Status “New” badge background. */
     --tone-new-fg: #86efac; /* Status “New” badge text (≥ 5.4:1 on its background). */
     --tone-arch-bg: rgba(251,191,36,0.16); /* Status “Archived” badge background. */
@@ -390,7 +467,7 @@
     /* semantic · inverse */
     --surface-inverse: #e8edf5; /* Inverse surface (toasts, tooltips): dark in light mode, light in dark mode. */
     --text-inverse: #0b0e14; /* Text on surface-inverse. */
-    --link-inverse: #1d4ed8; /* Action or link on surface-inverse (toast Undo). */
+    --link-inverse: #0B525E; /* Action or link on surface-inverse (toast Undo). */
     /* semantic · data */
     --data-0: #3987e5; /* Chart series 1 of 8: categorical, the same in every brand; pair with labels or symbols (WCAG 1.4.1). */
     --data-1: #d95926; /* Chart series 2 of 8: categorical, the same in every brand; pair with labels or symbols (WCAG 1.4.1). */
@@ -418,7 +495,7 @@
 :root[data-theme='dark'] {
   /* semantic · surface */
   --bg-page: #0b0e14; /* Page background of every screen; the base all translucent surfaces are composited over. */
-  --bg-page-gradient: radial-gradient(at 0% 0%, color-mix(in srgb, var(--accent) 8%, transparent) 0, transparent 50%), radial-gradient(at 100% 100%, rgba(173,198,255,0.05) 0, transparent 50%); /* Soft accent glow painted over bg-page at the edges of the window. */
+  --bg-page-gradient: radial-gradient(at 0% 0%, color-mix(in srgb, var(--accent) 8%, transparent) 0, transparent 50%), radial-gradient(at 100% 100%, rgba(168,221,227,0.05) 0, transparent 50%); /* Soft accent glow painted over bg-page at the edges of the window. */
   --glass-base: rgba(11,14,20,0.82); /* Background of a screen that slides over another (settings, detail); nearly opaque. */
   --glass-card: rgba(255,255,255,0.06); /* Card surface (article cards, settings rows, input card); translucent over bg-page. */
   --glass-input: rgba(255,255,255,0.05); /* Field surface: inputs, chips, search fields, icon tiles. */
@@ -426,7 +503,7 @@
   --glass-border-strong: rgba(255,255,255,0.14); /* Stronger glass edge for floating panels and toasts. */
   --glass-inner-glow: inset 0 1px 0 rgba(255,255,255,0.06); /* 1px inner highlight at the top of glass surfaces. */
   --surface-bar: #0b0e14; /* Background of fixed bars (pane headers, toolbars) above scrolling content. */
-  --surface-sheet: #141923; /* Bottom sheets and dialogs: opaque so text behind does not show through. */
+  --surface-sheet: #111D20; /* Bottom sheets and dialogs: opaque so text behind does not show through. */
   --scrim: rgba(0,0,0,0.6); /* Dims the page behind a sheet or dialog. */
   --surface-row: rgba(255,255,255,0.06); /* Rows inside a sheet or list (send targets, list items). */
   --surface-field: rgba(255,255,255,0.08); /* Track of segmented controls and filled fields inside sheets. */
@@ -437,16 +514,16 @@
   --text-primary: #e8edf5; /* Body text, titles and icons: the strongest text colour (≥ 14:1 on cards). */
   --text-secondary: #b8c4d4; /* Supporting text: labels, descriptions, inactive controls with text. */
   --text-muted: #94a3b8; /* Least important readable text: hints, meta lines, timestamps, placeholders (≥ 4.5:1). */
-  --text-link: #93c5fd; /* Links inside text. */
+  --text-link: #7CCBD4; /* Links inside text. */
   /* semantic · accent */
-  --accent: #60a5fa; /* Brand action colour: primary buttons, selected states, links on controls, focus ring, progress. */
-  --accent-light: #3b82f6; /* Second stop of the accent gradient (primary button, nav blob, switch on). */
-  --accent-glow: rgba(96,165,250,0.18); /* Coloured glow under primary buttons. */
-  --on-accent: #001a3d; /* Text and icons on an accent fill (primary button, selected pill, active nav item). */
-  --accent-soft: rgba(96,165,250,0.14); /* Light accent tint for selected or hovered rows. */
-  --accent-soft-strong: rgba(96,165,250,0.26); /* Stronger accent tint for pressed or highlighted rows. */
-  --accent-subtle: rgba(96,165,250,0.14); /* Faint accent tint behind accent-coloured text (chips, badges). */
-  --accent-selected: rgba(96,165,250,0.14); /* Accent tint of a selected card or row. */
+  --accent: #3FA6B3; /* Brand action colour: primary buttons, selected states, links on controls, focus ring, progress. */
+  --accent-light: #1C7F8E; /* Second stop of the accent gradient (primary button, nav blob, switch on). */
+  --accent-glow: rgba(63,166,179,0.18); /* Coloured glow under primary buttons. */
+  --on-accent: #04262C; /* Text and icons on an accent fill (primary button, selected pill, active nav item). */
+  --accent-soft: rgba(63,166,179,0.14); /* Light accent tint for selected or hovered rows. */
+  --accent-soft-strong: rgba(63,166,179,0.26); /* Stronger accent tint for pressed or highlighted rows. */
+  --accent-subtle: rgba(63,166,179,0.14); /* Faint accent tint behind accent-coloured text (chips, badges). */
+  --accent-selected: rgba(63,166,179,0.14); /* Accent tint of a selected card or row. */
   /* semantic · outline */
   --outline: rgba(255,255,255,0.1); /* Default 1px border of cards, fields, bars and dividers. Decorative (about 1.35:1); a field edge that must be found needs outline-strong (ADR 0005). */
   --outline-soft: rgba(255,255,255,0.05); /* Very subtle border inside glass surfaces. */
@@ -459,8 +536,8 @@
   /* semantic · status */
   --tone-read-bg: rgba(255,255,255,0.1); /* Status “Read” badge background. */
   --tone-read-fg: #cbd5e1; /* Status “Read” badge text (≥ 5.4:1 on its background). */
-  --tone-sent-bg: rgba(96,165,250,0.18); /* Status “Sent” badge background. */
-  --tone-sent-fg: #93c5fd; /* Status “Sent” badge text (≥ 5.4:1 on its background). */
+  --tone-sent-bg: rgba(63,166,179,0.18); /* Status “Sent” badge background. */
+  --tone-sent-fg: #7CCBD4; /* Status “Sent” badge text (≥ 5.4:1 on its background). */
   --tone-new-bg: rgba(74,222,128,0.16); /* Status “New” badge background. */
   --tone-new-fg: #86efac; /* Status “New” badge text (≥ 5.4:1 on its background). */
   --tone-arch-bg: rgba(251,191,36,0.16); /* Status “Archived” badge background. */
@@ -488,7 +565,7 @@
   /* semantic · inverse */
   --surface-inverse: #e8edf5; /* Inverse surface (toasts, tooltips): dark in light mode, light in dark mode. */
   --text-inverse: #0b0e14; /* Text on surface-inverse. */
-  --link-inverse: #1d4ed8; /* Action or link on surface-inverse (toast Undo). */
+  --link-inverse: #0B525E; /* Action or link on surface-inverse (toast Undo). */
   /* semantic · data */
   --data-0: #3987e5; /* Chart series 1 of 8: categorical, the same in every brand; pair with labels or symbols (WCAG 1.4.1). */
   --data-1: #d95926; /* Chart series 2 of 8: categorical, the same in every brand; pair with labels or symbols (WCAG 1.4.1). */
@@ -512,6 +589,187 @@
   --annotation-quote-bg: rgba(0,0,0,0.25); /* Quote box inside a saved-note card. */
   --annotation-edge: inset 0 0 0 1px rgba(255,255,255,0.06); /* Hairline around saved-note cards (dark only). */
 }
+@media (prefers-color-scheme: dark) {
+  :root[data-scheme='blue']:not([data-theme='light']):not([data-theme='contrast']) {
+    /* semantic · surface */
+    --bg-page-gradient: radial-gradient(at 0% 0%, color-mix(in srgb, var(--accent) 8%, transparent) 0, transparent 50%), radial-gradient(at 100% 100%, rgba(173,198,255,0.05) 0, transparent 50%); /* Soft accent glow painted over bg-page at the edges of the window. */
+    --surface-sheet: #141923; /* Bottom sheets and dialogs: opaque so text behind does not show through. */
+    /* semantic · text */
+    --text-link: #93c5fd; /* Links inside text. */
+    /* semantic · accent */
+    --accent: #60a5fa; /* Brand action colour: primary buttons, selected states, links on controls, focus ring, progress. */
+    --accent-light: #3b82f6; /* Second stop of the accent gradient (primary button, nav blob, switch on). */
+    --accent-glow: rgba(96,165,250,0.18); /* Coloured glow under primary buttons. */
+    --on-accent: #001a3d; /* Text and icons on an accent fill (primary button, selected pill, active nav item). */
+    --accent-soft: rgba(96,165,250,0.14); /* Light accent tint for selected or hovered rows. */
+    --accent-soft-strong: rgba(96,165,250,0.26); /* Stronger accent tint for pressed or highlighted rows. */
+    --accent-subtle: rgba(96,165,250,0.14); /* Faint accent tint behind accent-coloured text (chips, badges). */
+    --accent-selected: rgba(96,165,250,0.14); /* Accent tint of a selected card or row. */
+    /* semantic · status */
+    --tone-sent-bg: rgba(96,165,250,0.18); /* Status “Sent” badge background. */
+    --tone-sent-fg: #93c5fd; /* Status “Sent” badge text (≥ 5.4:1 on its background). */
+    /* semantic · inverse */
+    --link-inverse: #1d4ed8; /* Action or link on surface-inverse (toast Undo). */
+  }
+}
+@media (prefers-color-scheme: dark) {
+  :root[data-scheme='viola']:not([data-theme='light']):not([data-theme='contrast']) {
+    /* semantic · surface */
+    --bg-page-gradient: radial-gradient(at 0% 0%, color-mix(in srgb, var(--accent) 8%, transparent) 0, transparent 50%), radial-gradient(at 100% 100%, rgba(205,189,255,0.05) 0, transparent 50%); /* Soft accent glow painted over bg-page at the edges of the window. */
+    --surface-sheet: #17132A; /* Bottom sheets and dialogs: opaque so text behind does not show through. */
+    /* semantic · text */
+    --text-link: #B49CFF; /* Links inside text. */
+    /* semantic · accent */
+    --accent: #8B68FF; /* Brand action colour: primary buttons, selected states, links on controls, focus ring, progress. */
+    --accent-light: #7445F8; /* Second stop of the accent gradient (primary button, nav blob, switch on). */
+    --accent-glow: rgba(139,104,255,0.18); /* Coloured glow under primary buttons. */
+    --on-accent: #170647; /* Text and icons on an accent fill (primary button, selected pill, active nav item). */
+    --accent-soft: rgba(139,104,255,0.14); /* Light accent tint for selected or hovered rows. */
+    --accent-soft-strong: rgba(139,104,255,0.26); /* Stronger accent tint for pressed or highlighted rows. */
+    --accent-subtle: rgba(139,104,255,0.14); /* Faint accent tint behind accent-coloured text (chips, badges). */
+    --accent-selected: rgba(139,104,255,0.14); /* Accent tint of a selected card or row. */
+    /* semantic · status */
+    --tone-sent-bg: rgba(139,104,255,0.18); /* Status “Sent” badge background. */
+    --tone-sent-fg: #B49CFF; /* Status “Sent” badge text (≥ 5.4:1 on its background). */
+    /* semantic · inverse */
+    --link-inverse: #4F24C9; /* Action or link on surface-inverse (toast Undo). */
+  }
+}
+:root[data-scheme='blue'][data-theme='dark'] {
+  /* semantic · surface */
+  --bg-page-gradient: radial-gradient(at 0% 0%, color-mix(in srgb, var(--accent) 8%, transparent) 0, transparent 50%), radial-gradient(at 100% 100%, rgba(173,198,255,0.05) 0, transparent 50%); /* Soft accent glow painted over bg-page at the edges of the window. */
+  --surface-sheet: #141923; /* Bottom sheets and dialogs: opaque so text behind does not show through. */
+  /* semantic · text */
+  --text-link: #93c5fd; /* Links inside text. */
+  /* semantic · accent */
+  --accent: #60a5fa; /* Brand action colour: primary buttons, selected states, links on controls, focus ring, progress. */
+  --accent-light: #3b82f6; /* Second stop of the accent gradient (primary button, nav blob, switch on). */
+  --accent-glow: rgba(96,165,250,0.18); /* Coloured glow under primary buttons. */
+  --on-accent: #001a3d; /* Text and icons on an accent fill (primary button, selected pill, active nav item). */
+  --accent-soft: rgba(96,165,250,0.14); /* Light accent tint for selected or hovered rows. */
+  --accent-soft-strong: rgba(96,165,250,0.26); /* Stronger accent tint for pressed or highlighted rows. */
+  --accent-subtle: rgba(96,165,250,0.14); /* Faint accent tint behind accent-coloured text (chips, badges). */
+  --accent-selected: rgba(96,165,250,0.14); /* Accent tint of a selected card or row. */
+  /* semantic · status */
+  --tone-sent-bg: rgba(96,165,250,0.18); /* Status “Sent” badge background. */
+  --tone-sent-fg: #93c5fd; /* Status “Sent” badge text (≥ 5.4:1 on its background). */
+  /* semantic · inverse */
+  --link-inverse: #1d4ed8; /* Action or link on surface-inverse (toast Undo). */
+}
+:root[data-scheme='viola'][data-theme='dark'] {
+  /* semantic · surface */
+  --bg-page-gradient: radial-gradient(at 0% 0%, color-mix(in srgb, var(--accent) 8%, transparent) 0, transparent 50%), radial-gradient(at 100% 100%, rgba(205,189,255,0.05) 0, transparent 50%); /* Soft accent glow painted over bg-page at the edges of the window. */
+  --surface-sheet: #17132A; /* Bottom sheets and dialogs: opaque so text behind does not show through. */
+  /* semantic · text */
+  --text-link: #B49CFF; /* Links inside text. */
+  /* semantic · accent */
+  --accent: #8B68FF; /* Brand action colour: primary buttons, selected states, links on controls, focus ring, progress. */
+  --accent-light: #7445F8; /* Second stop of the accent gradient (primary button, nav blob, switch on). */
+  --accent-glow: rgba(139,104,255,0.18); /* Coloured glow under primary buttons. */
+  --on-accent: #170647; /* Text and icons on an accent fill (primary button, selected pill, active nav item). */
+  --accent-soft: rgba(139,104,255,0.14); /* Light accent tint for selected or hovered rows. */
+  --accent-soft-strong: rgba(139,104,255,0.26); /* Stronger accent tint for pressed or highlighted rows. */
+  --accent-subtle: rgba(139,104,255,0.14); /* Faint accent tint behind accent-coloured text (chips, badges). */
+  --accent-selected: rgba(139,104,255,0.14); /* Accent tint of a selected card or row. */
+  /* semantic · status */
+  --tone-sent-bg: rgba(139,104,255,0.18); /* Status “Sent” badge background. */
+  --tone-sent-fg: #B49CFF; /* Status “Sent” badge text (≥ 5.4:1 on its background). */
+  /* semantic · inverse */
+  --link-inverse: #4F24C9; /* Action or link on surface-inverse (toast Undo). */
+}
+/* Postil dark: warm charcoal and soft off-white, like an e-reader night mode */
+@media (prefers-color-scheme: dark) {
+  :root[data-scheme='postil']:not([data-theme='light']):not([data-theme='contrast']) {
+    /* semantic · accent */
+    --accent: #CFCBC1; /* Postil scheme, dark: soft off-white accent, the same in every brand. */
+    --accent-light: #CFCBC1; /* Postil scheme, dark: same as accent, so primary buttons are flat. */
+    --accent-glow: color-mix(in srgb, var(--accent) 0%, transparent); /* Postil scheme, dark: no glow. */
+    --on-accent: #151413; /* Postil scheme, dark: text on the off-white accent. */
+    --accent-soft: rgba(207,203,193,0.1); /* Postil scheme, dark: soft accent wash. */
+    --accent-soft-strong: rgba(207,203,193,0.18); /* Postil scheme, dark: stronger accent wash. */
+    --accent-subtle: rgba(207,203,193,0.1); /* Postil scheme, dark: subtle accent surface. */
+    --accent-selected: rgba(207,203,193,0.12); /* Postil scheme, dark: selected row wash. */
+    /* semantic · surface */
+    --bg-page: #151413; /* Postil scheme, dark: charcoal page. */
+    --bg-page-gradient: #151413; /* Postil scheme, dark: flat charcoal, no glow. */
+    --glass-base: rgba(21,20,19,0.97); /* Postil scheme, dark: sliding screens are charcoal too. */
+    --glass-card: #1C1B19; /* Postil scheme, dark: cards are an opaque lighter sheet. */
+    --glass-input: #222120; /* Postil scheme, dark: input wells. */
+    --glass-border: rgba(228,225,217,0.14); /* Postil scheme, dark: card edge is a hairline. */
+    --glass-border-strong: rgba(228,225,217,0.22); /* Postil scheme, dark: stronger card edge. */
+    --glass-inner-glow: 0 0 0 rgba(228,225,217,0); /* Postil scheme, dark: no inner highlight. */
+    --surface-bar: #1C1B19; /* Postil scheme, dark: bottom dock. */
+    --surface-sheet: #222120; /* Postil scheme, dark: sheets. */
+    --surface-track: #2A2927; /* Postil scheme, dark: tracks. */
+    --surface-row: #1C1B19; /* Postil scheme, dark: rows. */
+    --surface-field: #222120; /* Postil scheme, dark: fields. */
+    --surface-selected: #2A2927; /* Postil scheme, dark: selected segment. */
+    --surface-control: #2A2927; /* Postil scheme, dark: controls. */
+    /* semantic · text */
+    --text-primary: #E4E1D9; /* Postil scheme, dark: soft off-white ink. */
+    --text-secondary: #B3AFA5; /* Postil scheme, dark: secondary ink. */
+    --text-muted: #9C988E; /* Postil scheme, dark: muted ink (AA on charcoal). */
+    --text-link: #CFCBC1; /* Postil scheme, dark: links in off-white. */
+    /* semantic · outline */
+    --outline: rgba(228,225,217,0.14); /* Postil scheme, dark: hairline. */
+    --outline-soft: rgba(228,225,217,0.08); /* Postil scheme, dark: softer hairline. */
+    --outline-strong: #3A3834; /* Postil scheme, dark: stronger edge. */
+    /* semantic · elevation */
+    --shadow-card: 0 0 0 rgba(228,225,217,0); /* Postil scheme, dark: cards have no shadow. */
+    /* semantic · status */
+    --tone-read-bg: #2A2927; /* Postil scheme, dark: read badge on charcoal. */
+    --tone-sent-bg: #2A2927; /* Postil scheme, dark: sent badge on charcoal. */
+    --tone-sent-fg: #CFCBC1; /* Postil scheme, dark: sent badge text. */
+    /* semantic · inverse */
+    --link-inverse: #3A3834; /* Postil scheme, dark: links on the light inverse surface. */
+    color-scheme: dark;
+  }
+}
+:root[data-scheme='postil'][data-theme='dark'] {
+  /* semantic · accent */
+  --accent: #CFCBC1; /* Postil scheme, dark: soft off-white accent, the same in every brand. */
+  --accent-light: #CFCBC1; /* Postil scheme, dark: same as accent, so primary buttons are flat. */
+  --accent-glow: color-mix(in srgb, var(--accent) 0%, transparent); /* Postil scheme, dark: no glow. */
+  --on-accent: #151413; /* Postil scheme, dark: text on the off-white accent. */
+  --accent-soft: rgba(207,203,193,0.1); /* Postil scheme, dark: soft accent wash. */
+  --accent-soft-strong: rgba(207,203,193,0.18); /* Postil scheme, dark: stronger accent wash. */
+  --accent-subtle: rgba(207,203,193,0.1); /* Postil scheme, dark: subtle accent surface. */
+  --accent-selected: rgba(207,203,193,0.12); /* Postil scheme, dark: selected row wash. */
+  /* semantic · surface */
+  --bg-page: #151413; /* Postil scheme, dark: charcoal page. */
+  --bg-page-gradient: #151413; /* Postil scheme, dark: flat charcoal, no glow. */
+  --glass-base: rgba(21,20,19,0.97); /* Postil scheme, dark: sliding screens are charcoal too. */
+  --glass-card: #1C1B19; /* Postil scheme, dark: cards are an opaque lighter sheet. */
+  --glass-input: #222120; /* Postil scheme, dark: input wells. */
+  --glass-border: rgba(228,225,217,0.14); /* Postil scheme, dark: card edge is a hairline. */
+  --glass-border-strong: rgba(228,225,217,0.22); /* Postil scheme, dark: stronger card edge. */
+  --glass-inner-glow: 0 0 0 rgba(228,225,217,0); /* Postil scheme, dark: no inner highlight. */
+  --surface-bar: #1C1B19; /* Postil scheme, dark: bottom dock. */
+  --surface-sheet: #222120; /* Postil scheme, dark: sheets. */
+  --surface-track: #2A2927; /* Postil scheme, dark: tracks. */
+  --surface-row: #1C1B19; /* Postil scheme, dark: rows. */
+  --surface-field: #222120; /* Postil scheme, dark: fields. */
+  --surface-selected: #2A2927; /* Postil scheme, dark: selected segment. */
+  --surface-control: #2A2927; /* Postil scheme, dark: controls. */
+  /* semantic · text */
+  --text-primary: #E4E1D9; /* Postil scheme, dark: soft off-white ink. */
+  --text-secondary: #B3AFA5; /* Postil scheme, dark: secondary ink. */
+  --text-muted: #9C988E; /* Postil scheme, dark: muted ink (AA on charcoal). */
+  --text-link: #CFCBC1; /* Postil scheme, dark: links in off-white. */
+  /* semantic · outline */
+  --outline: rgba(228,225,217,0.14); /* Postil scheme, dark: hairline. */
+  --outline-soft: rgba(228,225,217,0.08); /* Postil scheme, dark: softer hairline. */
+  --outline-strong: #3A3834; /* Postil scheme, dark: stronger edge. */
+  /* semantic · elevation */
+  --shadow-card: 0 0 0 rgba(228,225,217,0); /* Postil scheme, dark: cards have no shadow. */
+  /* semantic · status */
+  --tone-read-bg: #2A2927; /* Postil scheme, dark: read badge on charcoal. */
+  --tone-sent-bg: #2A2927; /* Postil scheme, dark: sent badge on charcoal. */
+  --tone-sent-fg: #CFCBC1; /* Postil scheme, dark: sent badge text. */
+  /* semantic · inverse */
+  --link-inverse: #3A3834; /* Postil scheme, dark: links on the light inverse surface. */
+  color-scheme: dark;
+}
 :root[data-theme='contrast'] {
   /* semantic · surface */
   --bg-page: #ffffff; /* Page background of every screen; the base all translucent surfaces are composited over. */
@@ -529,18 +787,51 @@
   --text-primary: #000000; /* Body text, titles and icons: the strongest text colour (≥ 14:1 on cards). */
   --text-secondary: #000000; /* Supporting text: labels, descriptions, inactive controls with text. */
   --text-muted: #1f2933; /* Least important readable text: hints, meta lines, timestamps, placeholders (≥ 4.5:1). */
-  --text-link: #0033cc; /* Links inside text. */
+  --text-link: #0A4650; /* Links inside text. */
   /* semantic · accent */
-  --accent: #0033cc; /* Brand action colour: primary buttons, selected states, links on controls, focus ring, progress. */
-  --accent-light: #0033cc; /* Second stop of the accent gradient (primary button, nav blob, switch on). */
-  --accent-glow: #0033cc; /* Coloured glow under primary buttons. */
+  --accent: #0A4650; /* Brand action colour: primary buttons, selected states, links on controls, focus ring, progress. */
+  --accent-light: #0A4650; /* Second stop of the accent gradient (primary button, nav blob, switch on). */
+  --accent-glow: #0A4650; /* Coloured glow under primary buttons. */
   --on-accent: #ffffff; /* Text and icons on an accent fill (primary button, selected pill, active nav item). */
-  --accent-a05: #eef2ff; /* Accent at 5%: tints for hover, selection and soft borders. Never as text. */
-  --accent-a08: #e0e7ff; /* Accent at 8%: tints for hover, selection and soft borders. Never as text. */
+  --accent-a05: #E8F6F7; /* Accent at 5%: tints for hover, selection and soft borders. Never as text. */
+  --accent-a08: #CFECEF; /* Accent at 8%: tints for hover, selection and soft borders. Never as text. */
   /* semantic · focus */
   --focus-ring: var(--text-primary); /* High-contrast theme: black ring. */
   --focus-ring-width: 3px; /* Focus ring thickness (WCAG 2.4.13 asks for ≥ 2px). */
   color-scheme: light;
+}
+:root[data-scheme='blue'][data-theme='contrast'] {
+  /* semantic · text */
+  --text-link: #0033CC; /* Links inside text. */
+  /* semantic · accent */
+  --accent: #0033CC; /* Brand action colour: primary buttons, selected states, links on controls, focus ring, progress. */
+  --accent-light: #0033CC; /* Second stop of the accent gradient (primary button, nav blob, switch on). */
+  --accent-glow: #0033CC; /* Coloured glow under primary buttons. */
+  --accent-a05: #eff6ff; /* Accent at 5%: tints for hover, selection and soft borders. Never as text. */
+  --accent-a08: #dbeafe; /* Accent at 8%: tints for hover, selection and soft borders. Never as text. */
+  color-scheme: light;
+}
+:root[data-scheme='viola'][data-theme='contrast'] {
+  /* semantic · text */
+  --text-link: #3F1BA6; /* Links inside text. */
+  /* semantic · accent */
+  --accent: #3F1BA6; /* Brand action colour: primary buttons, selected states, links on controls, focus ring, progress. */
+  --accent-light: #3F1BA6; /* Second stop of the accent gradient (primary button, nav blob, switch on). */
+  --accent-glow: #3F1BA6; /* Coloured glow under primary buttons. */
+  --accent-a05: #F3EFFF; /* Accent at 5%: tints for hover, selection and soft borders. Never as text. */
+  --accent-a08: #E5DCFF; /* Accent at 8%: tints for hover, selection and soft borders. Never as text. */
+  color-scheme: light;
+}
+/* Postil, high contrast: ink-black accent on the contrast base */
+:root[data-scheme='postil'][data-theme='contrast'] {
+  /* semantic · accent */
+  --accent: #1A1917; /* Postil scheme, high contrast: near-black accent, no hue. */
+  --accent-light: #1A1917; /* Postil scheme, high contrast: same as accent, flat buttons. */
+  --accent-glow: rgba(26,25,23,0); /* Postil scheme, high contrast: no glow. */
+  --accent-a05: #F2F1ED; /* Postil scheme, high contrast: faint accent tint. */
+  --accent-a08: #E8E6E0; /* Postil scheme, high contrast: accent tint. */
+  /* semantic · text */
+  --text-link: #1A1917; /* Postil scheme, high contrast: links in ink. */
 }
 /* reduced motion: system setting */
 @media (prefers-reduced-motion: reduce) {
@@ -655,8 +946,8 @@ h3 {
 .header::before {
   content: ''; position: absolute; z-index: -1; pointer-events: none;
   left: 50%; width: 100vw; transform: translateX(-50%);
-  top: 0; bottom: -24px;
-  background: linear-gradient(to bottom, color-mix(in srgb, var(--bg-page) 94%, transparent) 0, color-mix(in srgb, var(--bg-page) 88%, transparent) calc(100% - 36px), color-mix(in srgb, var(--bg-page) 50%, transparent) calc(100% - 16px), transparent 100%);
+  top: 0; bottom: -10px;   /* the first line of content (e.g. the Settings title) sits right under the header: the fade must not dim it */
+  background: linear-gradient(to bottom, color-mix(in srgb, var(--bg-page) 94%, transparent) 0, color-mix(in srgb, var(--bg-page) 88%, transparent) calc(100% - 22px), color-mix(in srgb, var(--bg-page) 45%, transparent) calc(100% - 9px), transparent 100%);
 }
 
 .logoheader {
@@ -665,11 +956,11 @@ h3 {
   gap: 8px;
 }
 
-.logoheader img {
-  border-radius: 50%;
-  width: 24px;
-  height: 24px;
-}
+/* The mark is inline SVG painted with the theme's own tokens, so it follows the colour scheme (Default, Blue, Viola, Postil) and the theme. */
+.brand-mark { flex: none; display: block; }
+.brand-mark .bm-bg { fill: var(--accent); }
+.brand-mark .bm-glyph { fill: none; stroke: var(--on-accent); stroke-width: 1.9; stroke-linecap: round; stroke-linejoin: round; }
+.logoheader .brand-mark { width: 28px; height: 28px; }
 
 .logoheader h2 {
   font-size: 15px;
@@ -727,10 +1018,10 @@ button:disabled { opacity: 0.5; cursor: not-allowed; }
 .button-primary {
   width: 100%;
   padding: 12px 16px;
-  color: var(--on-solid);
+  color: var(--on-accent);
   background: linear-gradient(135deg, var(--accent), var(--accent-light));
   box-shadow: 0 6px 18px var(--accent-glow);
-  border: 1px solid color-mix(in srgb, var(--on-solid) 18%, transparent);
+  border: 1px solid color-mix(in srgb, var(--on-accent) 18%, transparent);
   font-weight: 600;
   font-size: var(--fs-lg);
   letter-spacing: -0.01em;
@@ -781,13 +1072,16 @@ button:disabled { opacity: 0.5; cursor: not-allowed; }
   padding: 12px 28px;
   border-radius: var(--radius-full);
   font-size: 15px;
-  box-shadow: 0 8px 24px var(--accent-glow), var(--elevation-2);
+  box-shadow: none;
 }
+
+/* Settings: buttons are flat, at rest and on hover (the accent glow of .button-primary stays for the rest of the app) */
+#settingsScreen :is(.button-primary, .button-secondary, .button-danger, .button-tertiary), #settingsScreen :is(.button-primary, .button-secondary, .button-danger, .button-tertiary):hover { box-shadow: none; }
 
 .settings-save-fab.no-save { display: none !important; }
 .settings-save-fab:hover {
   filter: brightness(1.06);
-  box-shadow: 0 10px 28px var(--accent-glow);
+  box-shadow: none;
 }
 
 /* "Saved ✓" state: green button with a green glow (not the blue one) */
@@ -798,7 +1092,7 @@ button:disabled { opacity: 0.5; cursor: not-allowed; }
   color: var(--on-solid);
   filter: none;
   opacity: 1;
-  box-shadow: 0 8px 24px color-mix(in srgb, var(--ok) 45%, transparent), var(--elevation-2);
+  box-shadow: none;
 }
 
 /* Keep the button centered while pressed. The global `button:active`
@@ -886,6 +1180,7 @@ button:disabled { opacity: 0.5; cursor: not-allowed; }
   /* align with the 720px reading column of the summary feed */
   max-width: calc(720px + 2 * var(--spacing-s-4));
   margin-inline: auto;
+  --composer-btn-h: 36px;   /* height of the composer's field and its Summarize / Add button */
 }
 
 /* ── Forms ─────────────────────────────────────────────────────────────── */
@@ -1167,7 +1462,7 @@ ul#articleList {
   padding: 8px 16px;
   border-radius: var(--radius-sm);
   background: var(--accent);
-  color: var(--on-solid);
+  color: var(--on-accent);
   font-size: var(--fs-sm);
   font-weight: 600;
   text-decoration: none;
@@ -1209,74 +1504,7 @@ ul#articleList {
 
 /* Models › Own key / Local share one container: invisible (but keeping its room) while its fields are rebuilt for the chosen tab. */
 #developerModeContainer.is-switching { visibility: hidden; }
-.segmented-control {
-    display: flex;
-    background: var(--glass-input);
-    padding: 2px;
-    border-radius: var(--radius-md);
-    border: 1px solid var(--outline);
-}
-
-.segmented-control input[type="radio"] {
-    display: none;
-}
-
-.segmented-control label {
-    flex: 1;
-    text-align: center;
-    padding: 8px 12px;
-    margin: 0;
-    cursor: pointer;
-    border-radius: calc(var(--radius-md) - 2px);
-    font-size: var(--fs-xs);
-    font-weight: 600;
-    color: var(--text-secondary);
-    transition: all var(--duration-base) var(--easing-standard);
-}
-
-.segmented-control input[type="radio"]:checked + label {
-    background: var(--glass-card);
-    color: var(--text-primary);
-    box-shadow: var(--elevation-1);
-}
-
-/* Button-based variant (no radio/label pair) for controls built dynamically
-   in JS, e.g. archiveGraph.js's well-connected/all-tags view switch, where
-   re-render-on-every-toggle makes fixed radio ids awkward. */
-.segmented-control.segmented-control-buttons {
-    padding: 2px;
-}
-
-.segmented-control-buttons button {
-    flex: 1;
-    text-align: center;
-    padding: 6px 10px;
-    margin: 0;
-    border: none;
-    background: transparent;
-    cursor: pointer;
-    border-radius: calc(var(--radius-md) - 2px);
-    font-size: var(--fs-xs);
-    font-weight: 600;
-    color: var(--text-secondary);
-    transition: all var(--duration-base) var(--easing-standard);
-    white-space: nowrap;
-}
-
-.segmented-control-buttons button.active {
-    background: var(--accent);       /* solid, never translucent */
-    color: var(--on-accent);
-    box-shadow: none;
-}
-
-/* Larger variant — archiveGraph.js's well-connected/all-tags toggle is
-   primary navigation for that view, not a secondary control, so it gets
-   more presence than the default compact size. */
-.segmented-control.segmented-control-buttons { background: var(--nav-bg); }   /* solid surface: the toggle floats over the graph */
-.segmented-control-buttons.graph-toggle-large button {
-    padding: 10px 16px;
-    font-size: var(--fs-md);
-}
+/* The connection-mode, graph and feed switches are the shared segmented control, see .a11y-seg. */
 
 /* ── Status Badges & New Components ────────────────────────────────────── */
 
@@ -1721,7 +1949,7 @@ circle.graph-time-dim, text.graph-time-dim { opacity: 0.08; }
   font-size: var(--fs-xs);
   color: var(--text-muted);
   font-style: italic;
-  text-align: center;
+  text-align: start;   /* hints under a control read like the control: left-aligned (right-aligned in RTL) */
 }
 
 /* ── Consolidated Input Card ───────────────────────────────────────────── */
@@ -1933,7 +2161,7 @@ circle.graph-time-dim, text.graph-time-dim { opacity: 0.08; }
   height: 20px;
   border-radius: 50%;
   background: var(--accent);
-  color: var(--on-solid);
+  color: var(--on-accent);
   font-size: var(--fs-xs);
   font-weight: 700;
   display: flex;
@@ -2264,16 +2492,23 @@ circle.graph-time-dim, text.graph-time-dim { opacity: 0.08; }
   display: none;
 }
 
-/* ── Bubble Tags ───────────────────────────────────────────────────────── */
+/* ── Bubble footer: tags · model · Ask (very right) in one row; on narrow cards model and buttons wrap to a second line, still right-aligned ── */
 
-.bubble-tags {
+.bubble-foot {
   display: flex;
   flex-wrap: wrap;
-  gap: 4px;
+  align-items: center;
+  gap: 6px 8px;
   margin-top: var(--spacing-s-2);
   padding-top: var(--spacing-s-2);
   border-top: 1px solid var(--outline);
 }
+.bubble-foot:empty { display: none; }
+.bubble-tags { display: flex; flex-wrap: wrap; gap: 4px; min-width: 0; }
+.bubble-foot > .ask-actions { margin-top: 0; flex: none; }
+.bubble-foot .ask-actions > * { order: 1; }
+.bubble-foot .ask-actions > .ask-btn { order: 2; }   /* Ask is the last item, at the very right of the card */
+.bubble-foot > .card-model--block { display: inline-block; margin: 0 0 0 auto; min-width: 0; max-width: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 
 .bubble-tag {
   display: inline-block;
@@ -2482,7 +2717,7 @@ circle.graph-time-dim, text.graph-time-dim { opacity: 0.08; }
 
 .ar-view-btn.active {
   background: var(--accent);
-  color: var(--on-solid);
+  color: var(--on-accent);
 }
 
 /* Bar chart */
@@ -3158,9 +3393,7 @@ body.has-player .feed-undo { bottom: calc(var(--bottom-nav-space) + 190px); }
 .sendsheet-body { display: flex; flex-direction: column; gap: 12px; }
 .sendsheet-title { font-size: var(--fs-xl); font-weight: 600; color: var(--text-primary); }
 .sendsheet-sub { font-size: var(--fs-sm); color: var(--text-muted); margin-top: 2px; }
-.sendsheet-seg { display: flex; gap: 2px; padding: 3px; border-radius: var(--radius-md); background: var(--field-bg); }
-.sendsheet-seg-btn { flex: 1; padding: 7px 8px; border: 0; border-radius: var(--radius-md); background: transparent; font-size: var(--fs-sm); font-weight: 500; color: var(--text-muted); cursor: pointer; }
-.sendsheet-seg-btn.on { background: var(--seg-on-bg); color: var(--text-primary); font-weight: 600; }
+.sendsheet-seg { margin: 0; }
 .sendsheet-row {
   display: flex; align-items: center; gap: 12px; width: 100%; padding: 10px 12px; text-align: left; cursor: pointer;
   border-radius: var(--radius-md); background: var(--row-bg); border: 1px solid var(--sheet-border); color: var(--text-primary);
@@ -3231,12 +3464,9 @@ body.has-player .feed-undo { bottom: calc(var(--bottom-nav-space) + 190px); }
 .ps-label { display: flex; align-items: center; justify-content: space-between; gap: 8px; margin: 0 0 6px; font-size: var(--fs-sm); font-weight: 600; color: var(--text-muted); }
 .ps-label a { font-weight: 500; color: var(--text-link); }
 .ps-group { display: flex; flex-direction: column; }
-.ps-seg { display: flex; gap: 2px; padding: 3px; border-radius: var(--radius-md); background: var(--field-bg); }
-.ps-seg-btn { flex: 1; min-width: 0; padding: 7px 6px; border: 0; border-radius: var(--radius-md); background: transparent; font-size: var(--fs-sm); font-weight: 500; color: var(--text-muted); cursor: pointer; box-shadow: none; width: auto; }
-.ps-seg-btn.on { background: var(--seg-on-bg); color: var(--text-primary); font-weight: 600; }
 .ps-chips { display: flex; flex-wrap: wrap; gap: 6px; }
 .ps-select { width: 100%; }
-.ps-tagform { display: flex; gap: 6px; margin-top: 6px; }
+.ps-tagform { display: flex; align-items: center; gap: 6px; margin-top: 6px; }
 .ps-tag-input { flex: 1; min-width: 0; padding: 8px 10px; border-radius: var(--radius-md); border: 1px solid var(--sheet-border); background: var(--row-bg); color: var(--text-primary); font: inherit; font-size: var(--fs-sm); }
 .ps-text { width: 100%; min-height: 140px; box-sizing: border-box; padding: 10px 12px; border-radius: var(--radius-md); border: 1px solid var(--sheet-border); background: var(--row-bg); color: var(--text-primary); font: inherit; font-size: var(--fs-sm); resize: vertical; }
 .ps-text.short { min-height: 64px; }
@@ -3302,18 +3532,17 @@ body.has-player .feed-undo { bottom: calc(var(--bottom-nav-space) + 190px); }
 .topbar.scroll-hidden { transform: translateY(-100%); opacity: 0; pointer-events: none; }
 
 /* ── Split-screen workspace (History, wide windows) ────────────────────── */
-.ws-seg { display: inline-flex; gap: 2px; padding: 3px; border-radius: var(--radius-md); background: var(--glass-card); border: 1px solid var(--outline); flex-shrink: 0; }
+
+.ws-seg { flex-shrink: 0; }
 .ws-seg[hidden] { display: none; }
 /* Layout switcher lives in the app header and only applies to Feeds + History */
 .header .ws-seg { display: none; }
 body[data-screen="feeds"] .header .ws-seg:not([hidden]),
 body[data-screen="history"] .header .ws-seg:not([hidden]),
 body[data-screen="notes"] .header .ws-seg:not([hidden]) { display: inline-flex; }
-.ws-seg button { display: inline-flex; gap: 2px; align-items: center; justify-content: center; padding: 6px 8px; border: 0; border-radius: 8px; background: transparent; cursor: pointer; }
-.ws-seg button i { display: block; width: 6px; height: 14px; border-radius: 2px; background: var(--text-muted); }
-.ws-seg button[aria-pressed='true'] { background: var(--glass-base); box-shadow: inset 0 0 0 1px var(--accent-a30); }
-.ws-seg button[aria-pressed='true'] i { background: var(--accent); }
-.ws-seg button:disabled { opacity: .35; cursor: default; }
+.ws-seg > button { gap: 2px; padding: 6px 8px; }   /* the bars show the pane layout; they take the text colour, so they follow the selected state */
+.ws-seg > button i { display: block; width: 6px; height: 14px; border-radius: 2px; background: currentColor; opacity: .75; }
+.ws-seg > [aria-pressed='true'] i { opacity: 1; }
 .ws-head { display: none; }
 
 .screen.ws-active:not([style*='display: none']) {
@@ -3352,6 +3581,8 @@ body[data-screen="notes"] .header .ws-seg:not([hidden]) { display: inline-flex; 
   padding-inline: max(var(--spacing-s-4), calc((100% - 720px) / 2));
 }
 .screen:not(.ws-active) #articleDetail { max-width: 760px; margin-inline: auto; }
+/* Notes: the same 720px column as Summarize (and its docked composer) while it is a single pane; in a split it stays full width. */
+#notesScreen:not(.ws-active) { padding-inline: max(var(--spacing-s-4), calc((100% - 720px) / 2)); }
 
 /* Feeds list pane groups recap card + list + empty state; transparent outside the split layout. */
 .ws-listpane { display: contents; }
@@ -3633,7 +3864,7 @@ html[data-mood="off"] .feed-item.has-mood { background-image: none; box-shadow: 
 .page-chip-title { color: var(--text-primary); }
 .page-chip-meta { color: var(--text-secondary); }
 .page-chip--different .page-chip-title { color: var(--caution-fg); }
-.composer-pill #fetchSummary { min-width: 44px; }
+.composer-pill #fetchSummary { min-width: var(--composer-btn-h); }
 .composer-pill .input-card-textarea::placeholder { color: var(--text-secondary); opacity: 0.8; }
 @media (forced-colors: active) {
   .composer-pill, .page-chip, .chip { border: 1px solid CanvasText; }
@@ -3647,11 +3878,13 @@ html[data-mood="off"] .feed-item.has-mood { background-image: none; box-shadow: 
   top: -40px; bottom: calc(-1 * (var(--bottom-nav-space) + var(--controls-bottom-gap)));
   background: linear-gradient(to bottom, transparent 0, color-mix(in srgb, var(--bg-page) 78%, transparent) 40px, var(--bg-page) 72px);
 }
+/* The Notes dock lives inside a pane (sticky, not fixed): its fade is as wide as the pane. At 100vw it made the pane scroll sideways. */
+.controls-bar.notes-dock::before { left: 0; right: 0; width: auto; transform: none; }
 /* Larger, easier targets */
-.composer-pill { padding: 5px 5px 5px 18px; border-radius: 28px; }
-.composer-pill .input-card-textarea { min-height: 44px; height: 44px; padding: 12px 0; font-size: 15px; line-height: 20px; }
+.composer-pill { padding: 4px 4px 4px 16px; border-radius: 24px; }
+.composer-pill .input-card-textarea { min-height: var(--composer-btn-h); height: var(--composer-btn-h); padding: 8px 0; font-size: 14px; line-height: 20px; }
 .composer-pill .input-card-textarea::placeholder { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-.composer-pill #fetchSummary { min-height: var(--composer-btn-h, 44px); height: var(--composer-btn-h, 44px); border-radius: 22px; padding: 0 16px; font-size: 15px; }
+.composer-pill #fetchSummary { min-height: var(--composer-btn-h); height: var(--composer-btn-h); border-radius: calc(var(--composer-btn-h) / 2); padding: 0 14px; font-size: 14px; }
 .page-chip { padding: 8px 12px; border-radius: 14px; }
 .page-chip-title { font-size: 13px; }
 .page-chip-meta { font-size: 12px; }
@@ -3780,6 +4013,8 @@ html[data-mood="off"] .feed-item.has-mood { background-image: none; box-shadow: 
 /* Accessibility preferences (modules/a11y.js) */
 @font-face { font-family: 'Atkinson Hyperlegible'; font-weight: 400; font-display: swap; src: url('fonts/atkinson-hyperlegible-latin-400-normal.woff2') format('woff2'); }
 @font-face { font-family: 'Atkinson Hyperlegible'; font-weight: 700; font-display: swap; src: url('fonts/atkinson-hyperlegible-latin-700-normal.woff2') format('woff2'); }
+/* Postil theme: reading surfaces in the theme's serif (--font-reading). The readable-font setting still wins. */
+:root[data-theme='postil']:not([data-font='readable']) :is(.summary-bubble-title, .summary-bubble-body, .detail-title, #articleDetailContent :is(h1, h2, h3, p, li, blockquote)) { font-family: var(--font-reading); }
 html[data-font='readable'] body, html[data-font='readable'] button, html[data-font='readable'] input, html[data-font='readable'] select, html[data-font='readable'] textarea { font-family: 'Atkinson Hyperlegible', 'Hanken Grotesk', system-ui, sans-serif; }
 html[data-line='compact'] body { line-height: 1.3; }
 html[data-line='relaxed'] body, html[data-line='relaxed'] .summary-box, html[data-line='relaxed'] .summary-box * { line-height: 1.75; }
@@ -3795,10 +4030,30 @@ html[data-motion='reduce'] *, html[data-motion='reduce'] *::before, html[data-mo
 .a11y-preview { padding: 10px 12px; border: 1px solid var(--outline); border-radius: 12px; font-size: var(--fs-base); }
 
 .a11y-label { font-size: var(--fs-md); font-weight: 600; color: var(--text-primary); }
-.a11y-seg { display: flex; gap: 2px; padding: 2px; border-radius: 999px; background: var(--glass-input); border: 1px solid var(--outline); }
-.a11y-seg button { flex: 1; min-width: 0; border: 0; background: transparent; color: var(--text-secondary); font: inherit; font-size: var(--fs-sm); font-weight: 600; padding: 7px 6px; border-radius: 999px; cursor: pointer; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-.a11y-seg button.on { background: var(--accent); color: var(--on-accent); }
-.a11y-seg button:focus-visible { outline: var(--focus-ring-width) solid var(--focus-ring); outline-offset: 1px; }
+/* ── Segmented control: the one choice-of-n control (.a11y-seg) ─────────────────────────────────────────────────────────────
+   Feature classes only PLACE it (width, margin, alignment); the look lives here. Markup: <div class="a11y-seg" role="radiogroup | tablist | group">
+   with <button>s; modules/segmented.js paints the state and moves with the arrow keys. Selected = .on or aria-checked / aria-selected /
+   aria-pressed = "true". Native radio + label pairs work as well (input:checked + label), keeping the browser's own keyboard handling.
+   Modifiers: --hug (width of its content) · --sm · --lg · --solid (opaque: floats over a canvas) · --stack (two-line items). */
+.a11y-seg { position: relative; display: flex; gap: 2px; padding: 2px; border-radius: var(--radius-full); background: var(--glass-input); border: 1px solid var(--outline); box-sizing: border-box; max-width: 100%; }
+.a11y-seg > button, .a11y-seg > label { flex: 1 1 0; min-width: 0; display: inline-flex; align-items: center; justify-content: center; gap: 6px; margin: 0; border: 0; background: transparent; color: var(--text-secondary); font: inherit; font-size: var(--fs-sm); font-weight: 600; line-height: 1.2; text-align: center; padding: 7px 10px; border-radius: var(--radius-full); cursor: pointer; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; box-shadow: none; transition: background var(--duration-fast) var(--easing-standard), color var(--duration-fast) var(--easing-standard); }
+/* hover only on options that are not selected: the selected one keeps its accent fill under the pointer */
+.a11y-seg > button:hover:not(:disabled, .on, [aria-checked='true'], [aria-selected='true'], [aria-pressed='true']), .a11y-seg > input:not(:checked) + label:hover { background: var(--accent-a08); color: var(--text-primary); }
+.a11y-seg.a11y-seg > :is(.on, [aria-checked='true'], [aria-selected='true'], [aria-pressed='true']), .a11y-seg.a11y-seg > input:checked + label { background: var(--accent); color: var(--on-accent); }
+.a11y-seg > button:disabled { opacity: .45; cursor: default; }
+.a11y-seg > input[type='radio'] { position: absolute; opacity: 0; width: 1px; height: 1px; margin: 0; pointer-events: none; }
+.a11y-seg > button:focus-visible, .a11y-seg > input:focus-visible + label { outline: var(--focus-ring-width) solid var(--focus-ring); outline-offset: 1px; }
+.a11y-seg--hug { display: inline-flex; }
+.a11y-seg--hug > button, .a11y-seg--hug > label { flex: 0 1 auto; }
+.a11y-seg--sm > button, .a11y-seg--sm > label { font-size: var(--fs-xs); padding: 6px 10px; }
+.a11y-seg--lg > button, .a11y-seg--lg > label { font-size: var(--fs-md); padding: 10px 16px; }
+.a11y-seg--solid { background: var(--nav-bg); }
+.a11y-seg--stack { border-radius: var(--radius-lg); }
+.a11y-seg--stack > button { flex-direction: column; gap: 1px; white-space: normal; border-radius: var(--radius-md); }
+@media (forced-colors: active) {
+  .a11y-seg { border-color: CanvasText; }
+  .a11y-seg.a11y-seg > :is(.on, [aria-checked='true'], [aria-selected='true'], [aria-pressed='true']), .a11y-seg.a11y-seg > input:checked + label { background: Highlight; color: HighlightText; forced-color-adjust: none; }
+}
 
 .a11y-status { padding: 8px 12px; margin-bottom: 12px; border: 1px solid var(--outline); border-radius: 10px; font-size: var(--fs-sm); font-weight: 500; color: var(--text-secondary); }
 .a11y-profiles { display: flex; flex-direction: column; gap: 8px; }
@@ -3820,7 +4075,7 @@ html[data-motion='reduce'] *, html[data-motion='reduce'] *::before, html[data-mo
 :where(button, a[href], summary, select, [role='radio'], [role='button'], [tabindex]):focus-visible { outline: var(--focus-ring-width) solid var(--focus-ring); outline-offset: var(--focus-ring-offset); }
 
 /* Keyboard: keycap on the composer button, shortcut help sheet */
-#fetchSummary[data-kbd]:not([data-state="working"])::after { content: attr(data-kbd); margin-left: 8px; padding: 1px 6px; border-radius: 5px; background: color-mix(in srgb, var(--on-solid) 22%, transparent); color: inherit; font-size: var(--fs-xs); font-weight: 600; letter-spacing: .02em; vertical-align: 1px; }
+#fetchSummary[data-kbd]:not([data-state="working"])::after, .notes-add[data-kbd]::after { content: attr(data-kbd); margin-left: 8px; padding: 1px 6px; border-radius: 5px; background: color-mix(in srgb, var(--on-accent) 18%, transparent); color: inherit; font-size: var(--fs-xs); font-weight: 600; letter-spacing: .02em; vertical-align: 1px; }
 .kbd-filter { width: 100%; box-sizing: border-box; margin: 4px 0 12px; padding: 9px 12px; border: 1px solid var(--outline); border-radius: var(--radius-md); background: var(--field-bg); color: var(--text-primary); font: inherit; font-size: var(--fs-base); }
 .kbd-groups { display: flex; flex-direction: column; gap: 14px; }
 .kbd-group-t { font-size: var(--fs-xs); font-weight: 700; letter-spacing: .06em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 4px; }
@@ -3925,9 +4180,7 @@ body[data-surface="tab"] { min-width: 0; }
 .rt-lang { font-size: var(--fs-xs); font-weight: 700; color: var(--accent); background: var(--accent-a10); border-radius: 999px; padding: 4px 8px; }
 .rt-opts { position: absolute; right: 0; bottom: calc(100% + 10px); width: min(300px, calc(100vw - 32px)); display: grid; gap: 10px; padding: 14px; border-radius: 16px; border: 1px solid var(--outline); background: var(--bg-page); color: var(--text-primary); }
 .rt-opts[hidden] { display: none; }
-.rt-seg { display: grid; grid-template-columns: 1fr 1fr; gap: 4px; padding: 3px; border-radius: 10px; background: var(--accent-a10); }
-.rt-seg-b { display: grid; gap: 1px; justify-items: center; padding: 6px 8px; border: 0; border-radius: 8px; background: transparent; color: var(--text-muted); font: inherit; cursor: pointer; }
-.rt-seg-b.is-on { background: var(--bg-page); color: var(--text-primary); }
+.rt-seg { grid-template-columns: 1fr 1fr; display: grid; }   /* two equal columns */
 .rt-seg-t { font-size: var(--fs-sm); font-weight: 600; } .rt-seg-s { font-size: var(--fs-xs); opacity: .8; }
 .rt-voice { padding: 8px 10px; border-radius: 10px; border: 1px solid var(--outline); }
 .rt-voice-k { font-size: var(--fs-xs); font-weight: 600; color: var(--text-muted); } .rt-voice-v { font-size: var(--fs-sm); font-weight: 600; }
@@ -4012,12 +4265,12 @@ body[data-surface="tab"] { min-width: 0; }
 
 /* Graph view: legend + preview card (were inline styles in archiveGraph.js) */
 .graph-controls-bottom-right { position: absolute; bottom: 10px; right: 10px; z-index: 5; display: flex; flex-direction: column; align-items: flex-end; gap: 6px; max-width: 70%; }
-.graph-legend { display: flex; align-items: center; gap: 10px; font-size: 10px; color: var(--text-muted); background: var(--glass-base); border: 1px solid var(--outline); border-radius: var(--radius-md); padding: 4px 8px; }
+.graph-legend { display: flex; align-items: center; gap: 10px; font-size: 10px; color: var(--text-muted); padding: 4px 8px; text-shadow: 0 0 3px var(--bg-page), 0 0 6px var(--bg-page); }   /* no box: it is a caption on the canvas; the halo keeps it readable over nodes */
 .graph-legend-item { display: inline-flex; align-items: center; gap: 4px; }
 .graph-legend-line { display: inline-block; width: 14px; height: 0; }
 .graph-legend-line--tag { border-top: 2px solid var(--outline); }
 .graph-legend-line--similar { border-top: 1px dashed var(--text-muted); }
-.graph-preview-card { position: absolute; left: 0; right: 0; bottom: 0; z-index: 10; max-height: 70%; display: flex; flex-direction: column; font-size: var(--fs-md); line-height: 1.4; background: var(--glass-base); border-radius: 12px 12px 0 0; box-shadow: var(--elevation-up); }
+.graph-preview-card { position: absolute; left: 0; right: 58px; max-width: 520px; bottom: 0; z-index: 10; max-height: 70%;   /* right margin = the tool column (graph-tools), so zoom, colour and path stay reachable while a card is open */ display: flex; flex-direction: column; font-size: var(--fs-md); line-height: 1.4; background: var(--glass-base); border-radius: 12px 12px 0 0; box-shadow: var(--elevation-up); }
 .graph-preview-head { display: flex; align-items: flex-start; gap: 8px; padding: 14px 14px 0; flex-shrink: 0; }
 .graph-preview-head strong { flex: 1; }
 .graph-preview-card-close { flex-shrink: 0; background: none; border: none; color: inherit; font-size: 18px; line-height: 1; padding: 0 4px; opacity: .5; cursor: pointer; }
@@ -4132,7 +4385,7 @@ body[data-surface="tab"] { min-width: 0; }
 .tag-chip.status-badge.saved, .status-badge.saved { background: var(--tone-arch-bg); color: var(--tone-arch-fg); }
 .composer-pill .split-btn { display: flex; flex: none; align-items: stretch; gap: 1px; }
 .composer-pill .split-btn #fetchSummary { flex: none; }
-.composer-pill .save-split { display: none; flex: none; align-items: center; justify-content: center; width: 38px !important; min-width: 38px; align-self: stretch; height: var(--composer-btn-h, 44px) !important; min-height: var(--composer-btn-h, 44px) !important; margin: 0 !important; padding: 0 !important; border-radius: 0 var(--radius-full) var(--radius-full) 0 !important; cursor: pointer; box-shadow: none; }
+.composer-pill .save-split { display: none; flex: none; align-items: center; justify-content: center; width: 38px !important; min-width: 38px; align-self: stretch; height: var(--composer-btn-h) !important; min-height: var(--composer-btn-h) !important; margin: 0 !important; padding: 0 !important; border-radius: 0 var(--radius-full) var(--radius-full) 0 !important; cursor: pointer; box-shadow: none; }
 .controls-bar[data-state="fetch"] .composer-pill .save-split { display: inline-flex; }
 .controls-bar[data-state="fetch"] .composer-pill #fetchSummary { border-top-right-radius: 0 !important; border-bottom-right-radius: 0 !important; }
 .composer-pill .save-split:focus-visible { outline: var(--focus-ring-width) solid var(--focus-ring); outline-offset: var(--focus-ring-offset); }
@@ -4445,10 +4698,6 @@ circle.graph-sel { stroke: var(--accent) !important; stroke-width: 4px !importan
 .graph-brief-chips { display: flex; flex-wrap: wrap; gap: 6px; }
 .graph-brief-chip { padding: 4px 10px; border: 1px solid var(--outline); border-radius: 999px; background: transparent; color: var(--text-secondary); font: inherit; font-size: var(--fs-xs); font-weight: 600; cursor: pointer; }
 .graph-brief-chip.on { border-color: var(--accent); color: var(--accent); }
-.graph-brief-seg { display: flex; gap: 2px; padding: 3px; border: 1px solid var(--outline); border-radius: 999px; background: var(--glass-card); }
-.graph-brief-seg > button { flex: 1; padding: 6px 10px; border: none; border-radius: 999px; background: transparent; color: var(--text-secondary); font: inherit; font-size: var(--fs-xs); font-weight: 600; cursor: pointer; }
-.graph-brief-seg > button.on { background: var(--accent); color: var(--on-accent); }
-.graph-brief-seg > button:focus-visible { outline: var(--focus-ring-width) solid var(--focus-ring); outline-offset: 1px; }
 .graph-brief-info { font-size: var(--fs-xs); color: var(--text-muted); }
 .graph-brief-page .graph-brief-seg { flex-shrink: 0; }
 @media (forced-colors: active) { .graph-brief-bar, .graph-brief-chip { border: 1px solid CanvasText; } }
@@ -4556,8 +4805,6 @@ button.mcp-prompt:focus-visible { outline: var(--focus-ring-width) solid var(--f
 .ai-quota.full .ai-quota-bar > span { background: var(--danger); }
 
 /* Feed settings: choice rows use the shared button group, full width under their label */
-.feed-pref-seg { width: 100%; margin-top: 6px; }
-.feed-pref-seg button { min-width: 0; padding: 6px 4px; overflow: hidden; text-overflow: ellipsis; }
 
 /* ── Collections (Sammlungen): tab in History, add sheet, source check ─────────────────────────── */
 .coll-toolbar { display: flex; flex-wrap: wrap; gap: 8px; padding: 8px 0 12px; }
@@ -4697,7 +4944,11 @@ body.is-resizing, body.is-resizing *, body.is-resizing *::before, body.is-resizi
 .detail-toolbar > button { flex: 1 1 0; min-width: 0; height: 100%; display: inline-flex; align-items: center; justify-content: center; gap: 6px; padding: 0 10px; border: 0; border-radius: 0; background: transparent; color: var(--text-primary); font: inherit; font-size: var(--fs-md); font-weight: 600; cursor: pointer; white-space: nowrap; }
 .detail-toolbar > button + button { border-left: 1px solid var(--outline); }
 .detail-toolbar > button:hover { background: var(--accent-a08); }
-.detail-toolbar > button:focus-visible { outline: var(--focus-ring-width) solid var(--focus-ring); outline-offset: var(--focus-ring-inset); }
+/* The toolbar clips (rounded, overflow hidden): the ring sits fully inside (offset = minus its width; the token's -2px left 1px of a 3px ring outside),
+   on every button including the split ones and ⋯, and the end buttons share the toolbar's corner radius so the ring is not cut at the corners. */
+.detail-toolbar button:focus-visible, .detail-toolbar .detail-split > button:focus-visible { outline: var(--focus-ring-width) solid var(--focus-ring); outline-offset: calc(-1 * var(--focus-ring-width)); }
+.detail-toolbar.detail-toolbar > :first-child { border-top-left-radius: 11px; border-bottom-left-radius: 11px; }
+.detail-toolbar.detail-toolbar > :last-child { border-top-right-radius: 11px; border-bottom-right-radius: 11px; }
 .detail-toolbar:not(.with-labels) .act-label { display: none; }
 .detail-toolbar > .card-menu-btn { flex: 0 0 52px; min-width: 52px; }
 .detail-toolbar > .detail-tool .act-label { overflow: hidden; text-overflow: ellipsis; }
@@ -4832,7 +5083,7 @@ html[data-motion="reduce"] .detail-split-more .icon { transition: none; }
 .notes-count { margin-left: auto; }
 .notes-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 4px; }
 .notes-tags .mcp-chip { cursor: pointer; }
-.notes-body { display: flex; flex-direction: column; gap: 8px; flex: 1; }
+.notes-body { display: flex; flex-direction: column; gap: 8px; flex: 1 0 auto; }   /* auto basis: with a definite pane height, flex:1 gave the multi-column grid a fixed height and it spilled into extra columns sideways */
 .notes-grid { column-width: 250px; column-gap: 10px; }
 .notes-grid .st { margin-bottom: 10px; }
 .notes-empty { color: var(--text-muted); text-align: center; padding: 28px 8px; }
@@ -4890,7 +5141,8 @@ html[data-motion="reduce"] .detail-split-more .icon { transition: none; }
 /* The Notes composer is the Summarize screen's own pill (.composer-pill: field and primary button), docked above the nav the same way */
 /* sticky offsets are measured from the scroller's content area, which the screen's bottom padding (nav-clearance) shrinks: take it off again, and let the dock use the last 16px of it, so the pill ends where Summarize's does */
 .controls-bar.notes-dock { position: sticky; left: auto; right: auto; bottom: calc(var(--bottom-nav-space) + var(--controls-bottom-gap) - var(--nav-clearance) - 6px); max-width: none; margin: auto 0 calc(-1 * var(--spacing-s-4) - 6px); padding: 0; z-index: var(--z-raised); }
-.notes-dock .composer-pill .notes-add { flex: none; width: auto; margin: 0; white-space: nowrap; min-width: 44px; }
+.notes-dock .composer-pill .notes-add { flex: none; width: auto; margin: 0; white-space: nowrap; min-width: var(--composer-btn-h); min-height: var(--composer-btn-h); height: var(--composer-btn-h); border-radius: calc(var(--composer-btn-h) / 2); padding: 0 14px; font-size: 14px; }   /* as round as Summarize's #fetchSummary */
+.notes-dock .composer-pill .notes-add:focus-visible { outline: var(--focus-ring-width) solid var(--focus-ring); outline-offset: var(--focus-ring-offset); }
 .notes-dock .notes-hint { color: var(--text-muted); font-size: var(--fs-xs); }
 
 /* hosted models: EU servers, or (with "Prefer EU servers" on) a model that does not run there */
@@ -4935,7 +5187,7 @@ circle.graph-path { stroke: var(--accent); stroke-width: 3px; }
 .graph-filterbar { flex: 1 1 auto; }
 .graph-adjust-wrap { position: relative; margin-left: auto; }
 .graph-adjust-wrap[hidden], .graph-adjust[hidden], .graph-adjust-section[hidden], .graph-color-pop[hidden] { display: none; }
-.graph-adjust-btn, .graph-color-pill { display: inline-flex; align-items: center; gap: 6px; height: 36px; padding: 0 14px; box-sizing: border-box; border: 1px solid var(--outline); border-radius: var(--radius-full); background: var(--glass-base); color: var(--text-primary); font: inherit; font-size: var(--fs-xs); cursor: pointer; }
+.graph-adjust-btn { display: inline-flex; align-items: center; gap: 6px; height: 36px; padding: 0 14px; box-sizing: border-box; border: 1px solid var(--outline); border-radius: var(--radius-full); background: var(--glass-base); color: var(--text-primary); font: inherit; font-size: var(--fs-xs); cursor: pointer; }
 .graph-adjust-btn.on { border-color: var(--accent); color: var(--accent); }
 .graph-adjust { position: absolute; top: calc(100% + 6px); right: 0; z-index: 8; width: min(340px, calc(100vw - 32px)); max-height: min(70vh, 520px); overflow-y: auto; display: flex; flex-direction: column; gap: 10px; padding: 12px 14px 14px; box-sizing: border-box; background: var(--surface-sheet); border: 1px solid var(--outline); border-radius: var(--radius-lg); box-shadow: var(--shadow-modal); }
 .graph-adjust-head { display: flex; align-items: center; gap: 6px; }
@@ -4951,14 +5203,13 @@ circle.graph-path { stroke: var(--accent); stroke-width: 3px; }
 .graph-adjust-text small { font-size: var(--fs-xs); color: var(--text-muted); }
 .graph-adjust .graph-time { width: 100%; }
 .graph-time-head { display: inline-flex; align-items: center; gap: 6px; font-size: var(--fs-sm); color: var(--text-primary); }
-.graph-tools { position: absolute; right: 10px; top: calc(var(--graph-topbar-h, 46px) + 20px); z-index: 6; display: flex; flex-direction: column; gap: 2px; padding: 4px; background: var(--surface-sheet); border: 1px solid var(--outline); border-radius: var(--radius-full); box-shadow: var(--shadow-raised); }
+.graph-tools { position: absolute; right: 10px; bottom: 76px;   /* above the legend (up to two lines), bottom right in thumb reach */ z-index: 6; display: flex; flex-direction: column; gap: 2px; padding: 4px; background: var(--surface-sheet); border: 1px solid var(--outline); border-radius: var(--radius-full); box-shadow: var(--shadow-raised); }
 .graph-tool { display: inline-flex; align-items: center; justify-content: center; width: 32px; height: 32px; border: 0; border-radius: var(--radius-full); background: none; color: var(--text-secondary); cursor: pointer; }
 .graph-tool:hover { background: var(--accent-a08); color: var(--text-primary); }
 .graph-tool[aria-pressed="true"], .graph-tool[aria-expanded="true"] { background: var(--accent); color: var(--on-accent); }
 .graph-tool .icon { width: 16px; height: 16px; }
-.graph-color-pill { position: absolute; left: 10px; bottom: 10px; z-index: 6; height: 30px; padding: 0 12px; color: var(--text-secondary); }
-.graph-color-pop { position: absolute; right: 58px; top: calc(var(--graph-topbar-h, 46px) + 20px); z-index: 8; display: flex; flex-direction: column; gap: 8px; padding: 12px; background: var(--surface-sheet); border: 1px solid var(--outline); border-radius: var(--radius-md); box-shadow: var(--shadow-modal); }
-.graph-color-pop.from-pill { right: auto; top: auto; left: 10px; bottom: 48px; }
+.graph-tool-sep { height: 1px; width: 20px; margin: 3px auto; background: var(--outline); flex: none; }
+.graph-color-pop { position: absolute; right: 58px; bottom: 76px;   /* beside the tool column */ z-index: 8; display: flex; flex-direction: column; gap: 8px; padding: 12px; background: var(--surface-sheet); border: 1px solid var(--outline); border-radius: var(--radius-md); box-shadow: var(--shadow-modal); }
 .graph-status { position: absolute; left: 10px; top: calc(var(--graph-topbar-h, 46px) + 20px); z-index: 6; }
 .graph-status:empty { display: none; }
 .graph-pathbar { display: none; flex: 1 1 100%; align-items: center; gap: 8px; min-height: 36px; padding: 0 6px 0 12px; box-sizing: border-box; border-radius: var(--radius-full); background: linear-gradient(var(--accent-a08), var(--accent-a08)), var(--surface-sheet); border: 1px solid var(--outline); box-shadow: var(--shadow-raised); color: var(--text-primary); font-size: var(--fs-xs); font-weight: 600; }
@@ -4976,8 +5227,8 @@ circle.graph-read-dim, text.graph-read-dim, .graph-blob.graph-read-dim { opacity
 .graph-subblob:hover { fill-opacity: .24; }
 .graph-subblob.graph-focus-dim, .graph-sub-label.graph-focus-dim { opacity: 0.15; }
 /* List and Gaps are not the picture: the chips that change the picture (layout, colour, unread, path, save, similarity progress) are out of the way there. */
-[data-graph-mode="list"] :is(.graph-adjust-wrap, .graph-tools, .graph-color-pill, .graph-color-pop, .graph-status),
-[data-graph-mode="gaps"] :is(.graph-adjust-wrap, .graph-tools, .graph-color-pill, .graph-color-pop, .graph-status) { display: none; }
+[data-graph-mode="list"] :is(.graph-adjust-wrap, .graph-tools, .graph-color-pop, .graph-status),
+[data-graph-mode="gaps"] :is(.graph-adjust-wrap, .graph-tools, .graph-color-pop, .graph-status) { display: none; }
 [data-graph-mode="list"] .graph-controls-bottom-right, [data-graph-mode="gaps"] .graph-controls-bottom-right { display: none; }   /* the legend explains the picture, not the list */
 .graph-overview .graph-toggle-large { display: none; }   /* Well-connected | All filters tags in the force layout; Topics shows everything */
 /* Name tags with AI (graphTagNaming.js): what is sent, where it goes, a preview of the first batch before anything is saved */
@@ -5246,10 +5497,7 @@ circle.graph-read-dim, text.graph-read-dim, .graph-blob.graph-read-dim { opacity
 .quiz-tag-x:hover { background: var(--accent-a15); }
 .quiz-field { display: flex; flex-direction: column; gap: 6px; }
 .quiz-cap { font-size: var(--fs-xs); font-weight: 700; letter-spacing: .04em; text-transform: uppercase; color: var(--text-muted); }
-.quiz-seg { display: flex; gap: 2px; padding: 3px; align-self: flex-start; max-width: 100%; border-radius: var(--radius-full); background: var(--surface-control); }
-.quiz-seg-btn { padding: 6px 12px; border: 0; border-radius: var(--radius-full); background: transparent; color: var(--text-secondary); font-size: var(--fs-sm); font-weight: 600; cursor: pointer; white-space: nowrap; }
-.quiz-seg-btn.on { background: var(--accent); color: var(--on-accent); }
-.quiz-seg-btn:disabled { opacity: .45; cursor: default; }
+.quiz-seg { align-self: flex-start; }
 .quiz-note { display: flex; gap: 8px; padding: 10px 12px; border-radius: var(--radius-md); background: var(--note-bg); color: var(--note-fg); font-size: var(--fs-sm); line-height: 1.45; }
 .quiz-note-ic { flex: none; font-weight: 700; }
 .quiz-note--warn { background: var(--caution-bg); color: var(--caution-fg); border: 1px solid var(--caution-border); }

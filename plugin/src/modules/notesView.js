@@ -8,6 +8,7 @@ import { undoToast } from './confirmSheet.js';
 import { SK, isNoteRecKey, isHlPageKey } from './storageKeys.js';
 import { createHighlightStore } from './highlightStore.js';
 import { iconEl } from './icons.js';
+import { isMac } from './shortcuts.js';
 import { createNotesStore } from './notesStore.js';
 import { pageKeyForUrl } from './pageKey.js';
 import { splitTags } from './noteText.js';
@@ -333,6 +334,8 @@ function composerEl(primary) {
     if (primary) { ta.id = 'notesInput'; label.htmlFor = 'notesInput'; }
     const add = button('', 'button-primary notes-add', async () => { await submit(); });
     add.append(iconEl('plus'), document.createTextNode(' '), el('span', null, T('Add')));
+    // The same keycap as Summarize's button (drawn by CSS from data-kbd); the textarea already submits on Cmd/Ctrl+Enter
+    { const mac = isMac(); add.dataset.kbd = (mac ? '⌘' : 'Ctrl') + ' ↵'; add.setAttribute('aria-keyshortcuts', mac ? 'Meta+Enter' : 'Control+Enter'); }
     const grow = () => { ta.style.height = 'auto'; ta.style.height = Math.min(96, ta.scrollHeight) + 'px'; };
     async function submit() {
         const { text, tags } = splitTags(ta.value); if (!text) { ta.focus(); return; }

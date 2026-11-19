@@ -386,7 +386,7 @@ function phoneCard(entry) {
         date.append(a, document.createTextNode(' ↗'));
     }
     const chips = document.createElement('div'); chips.className = 'card-tags';
-    const chip = document.createElement('span'); chip.className = 'tag-chip status-badge phone'; chip.textContent = '📱 ' + T('From phone');
+    const chip = document.createElement('span'); chip.className = 'tag-chip status-badge phone'; setLabel(chip, '📱 ' + T('From phone'));
     chips.append(chip);
     col.append(h4, date);
     if (entry.description) { const desc = document.createElement('p'); desc.className = 'phone-card-desc'; desc.textContent = entry.description.length > 160 ? entry.description.slice(0, 159) + '…' : entry.description; col.append(desc); }

@@ -9,10 +9,10 @@ const NS = 'http://www.w3.org/2000/svg';
 export const ICON_EMOJI = {
     accessibility: '♿', archive: '🗄️', 'arrow-down-left': '↙️', 'arrow-left': '⬅', 'arrow-up-right': '↗️', 'bell-off': '🔕', 'book-open': '📚', bookmark: '🔖', bot: '🤖',
     brain: '🧠', calendar: '📅', 'chart-column': '📊', check: '✓', 'chevron-down': '▾', 'chevron-right': '›', 'circle-alert': '⚠️',
-    'circle-x': '❌', clipboard: '📋', 'clipboard-list': '📋', clock: '🕐', cloud: '☁️', copy: '📋', download: '📥', 'graduation-cap': '🎓', ellipsis: '⋯',
-    eraser: '🧹', 'external-link': '↗', 'file-text': '📄', folders: '🗂️', globe: '🌐', headphones: '🎧', heart: '💙', info: '💠',
+    'circle-check': '✅', 'circle-plus': '🆕', 'circle-x': '❌', clipboard: '📋', 'clipboard-list': '📋', clock: '🕐', cloud: '☁️', copy: '📋', download: '📥', 'graduation-cap': '🎓', ellipsis: '⋯',
+    eraser: '🧹', 'external-link': '↗', eye: '👀', 'file-text': '📄', folders: '🗂️', globe: '🌐', headphones: '🎧', heart: '💙', info: '💠',
     laptop: '💻', layers: '📦', lightbulb: '💡', link: '🔗', loader: '⏳', lock: '🔒', 'message-square': '💬', network: '🕸️',
-    newspaper: '📰', palette: '🎨', paperclip: '📎', pause: '⏸', pencil: '✏️', pin: '📌', play: '▶', plus: '＋', 'refresh-cw': '↻',
+    newspaper: '📰', palette: '🎨', paperclip: '📎', pause: '⏸', pencil: '✏️', pin: '📌', play: '▶', plus: '＋', 'radio': '📡', 'refresh-cw': '↻',
     ruler: '📏', save: '💾', search: '🔍', send: '📤', server: '🦙', settings: '⚙️', 'share-2': '🔗', 'sliders-horizontal': '🎚️',
     smartphone: '📱', smile: '😊', sparkles: '✨', 'square-check-big': '☑️', star: ['☆', '★'], 'sticky-note': '🗒️', tag: '🏷️', 'trash-2': '🗑️', zap: '⚡', minus: '−', maximize: '⤢', route: '↝',
     'undo-2': '↩', upload: '📤', user: '👤', 'volume-2': '🔊', 'volume-x': '🔇', x: '✕'
@@ -79,11 +79,11 @@ const BY_EMOJI = {
     '💾': 'save', '📋': 'clipboard', '🧹': 'eraser', '🔒': 'lock', '✏': 'pencil', '🌐': 'globe', '☁': 'cloud',
     '💻': 'laptop', '🦙': 'server', '🔍': 'search', '🧠': 'brain', '💬': 'message-square', '❌': 'circle-x',
     '💡': 'lightbulb', '💙': 'heart', '📌': 'pin', '🗑': 'trash-2', '🗂': 'folders', '🕸': 'network', '📊': 'chart-column',
-    '☑': 'square-check-big', '👤': 'user', '🎨': 'palette', '📤️': 'upload',
+    '☑': 'square-check-big', '👤': 'user', '🎨': 'palette', '📤️': 'upload', '🔊': 'volume-2', '🔇': 'volume-x', '👀': 'eye', '↩': 'undo-2', '🆕': 'circle-plus', '✅': 'circle-check', '📡': 'radio', '🗄': 'archive', '🎓': 'graduation-cap', '🗒': 'sticky-note',
 };
-const LEAD_MAPPED = /^([\u2190-\u21FF\u23F3\u23F8\u2600-\u27BF\u{1F000}-\u{1FFFF}])\uFE0F?\s*/u;
+const LEAD_MAPPED = /^([\u2190-\u21FF\u23F3\u23F8\u25B6\u2600-\u27BF\u{1F000}-\u{1FFFF}])\uFE0F?\s*/u;
 
-const TRAIL_MAPPED = /\s([\u2190-\u21FF\u23F3\u23F8\u2600-\u27BF\u{1F000}-\u{1FFFF}])\uFE0F?$/u;
+const TRAIL_MAPPED = /\s([\u2190-\u21FF\u23F3\u23F8\u25B6\u2600-\u27BF\u{1F000}-\u{1FFFF}])\uFE0F?$/u;
 
 /** Icon name for a label's leading emoji, or '' when it has none (or one we do not map). */
 export function leadingIconName(text) {
@@ -98,6 +98,12 @@ export function labelNodes(text, cls = '') {
     const tm = TRAIL_MAPPED.exec(s), tn = tm && BY_EMOJI[tm[1]];   // "Copy 📋": the emoji came last in older labels
     if (tn) return [iconEl(tn, cls), document.createTextNode(' ' + stripEmoji(s))];   // icons always lead, whatever the translation did
     return [document.createTextNode(s)];
+}
+
+/** Like labelNodes, as an HTML string for innerHTML templates: `esc` escapes the text (a tag chip "🌐 it" → globe icon + "it"). */
+export function labelHtml(text, esc) {
+    const s = String(text == null ? '' : text), name = leadingIconName(s);
+    return name ? `${icon(name)} ${esc(stripEmoji(s))}` : esc(s);
 }
 
 /** Sets a control's label from a (translated) string, turning a leading emoji into the matching SVG icon. */

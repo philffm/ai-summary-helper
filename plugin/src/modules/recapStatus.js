@@ -3,6 +3,7 @@
  * Stages: collect → send → wait (elapsed timer) → write/parse → done. Driven by feedAi's `onStage` callback.
  */
 import { el } from './dom.js';
+import { setLabel } from './icons.js';
 import { T } from './feedI18n.js';
 import StorageManager from './storageManager.js';
 import { briefingText, createBriefingSpeaker, readingState, speechAvailable } from './recapSpeech.js';
@@ -45,18 +46,19 @@ export function createRecapStatus({ title, detail = '', onCancel, preview = true
     STAGES.forEach(k => { rows[k] = el('li', 'recap-step', labels[k]); list.append(rows[k]); });
     const meta = el('p', 'feed-muted recap-meta', detail);
     const ac = new AbortController();
-    const cancel = el('button', 'btn-sm recap-cancel', T('Cancel'));
+    const cancel = el('button', 'button-secondary btn-sm recap-cancel', T('Cancel'));
     cancel.type = 'button';
     cancel.addEventListener('click', () => { cancel.disabled = true; if (speaker) speaker.stop(); ac.abort(); clearInterval(timer); if (onCancel) onCancel(); });
     const previewEl = el('p', 'recap-preview');
     previewEl.hidden = true;
     // Read aloud while it is being written: finished sentences are spoken as they arrive.
     const speaker = speakId ? createBriefingSpeaker(speakId) : null;
-    const speak = el('button', 'btn-sm recap-speak', '🔊 ' + T('Read aloud'));
+    const speak = el('button', 'button-secondary btn-sm recap-speak');
+    setLabel(speak, '🔊 ' + T('Read aloud'));
     speak.type = 'button'; speak.hidden = true;
     const paintSpeak = () => {
         const st = readingState(speakId);
-        speak.textContent = st === 'paused' ? '▶ ' + T('Play') : st ? '⏸ ' + T('Pause') : '🔊 ' + T('Read aloud');
+        setLabel(speak, st === 'paused' ? '▶ ' + T('Play') : st ? '⏸ ' + T('Pause') : '🔊 ' + T('Read aloud'));
     };
     speak.addEventListener('click', async () => {
         if (readingState(speakId)) { getReader().toggle(); return; }

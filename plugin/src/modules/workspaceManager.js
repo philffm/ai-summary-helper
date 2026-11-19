@@ -124,7 +124,7 @@ function buildSwitchers() {
     const host = document.querySelector('.header .header-buttons');
     if (!host || host.querySelector('.ws-seg')) return;
     const seg = document.createElement('div');
-    seg.className = 'ws-seg';
+    seg.className = 'a11y-seg a11y-seg--hug ws-seg';
     seg.setAttribute('role', 'group');
     seg.setAttribute('aria-label', T('Layout'));
     [1, 2, 3].forEach(k => {

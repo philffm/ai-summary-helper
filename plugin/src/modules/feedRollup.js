@@ -118,7 +118,7 @@ export function openRollup(scope, anchor, ctx) {
     const parts = () => buildParts(scope, start, ctx, today);
     const sigsOf = (arr) => Object.fromEntries(arr.map(p => [p.key, recapSig(p.recap)]));
     const changedOf = (cached, P) => P.parts.filter(p => cached.covered[p.key] !== recapSig(p.recap));
-    const fail = (e, retry) => body.replaceChildren(el('p', 'feed-error', e.message || T('Recap failed')), btn('btn-sm', T('Try again'), retry));
+    const fail = (e, retry) => body.replaceChildren(el('p', 'feed-error', e.message || T('Recap failed')), btn('button-secondary btn-sm', T('Try again'), retry));
 
     const rowText = (r) => {
         if (r.kind === 'day') return r.status === 'reused' ? '✨ ' + TN(r.n, '{n} item', '{n} items') : r.status === 'missing' ? TN(r.n, '{n} item', '{n} items') + ' · ' + T('no recap yet') : T('No items');
@@ -175,7 +175,7 @@ export function openRollup(scope, anchor, ctx) {
         if (stale) body.append(el('p', 'feed-recap-stale', T('A source recap changed since this one was written — Refresh to include it.')));
         const row = el('div', 'feed-recap-actions');
         let armed = 0;
-        const reset = btn('btn-sm', T('Reset'), () => {
+        const reset = btn('button-secondary btn-sm', T('Reset'), () => {
             if (!armed) {
                 reset.textContent = T('Discard & rewrite?');
                 armed = setTimeout(() => { armed = 0; reset.textContent = T('Reset'); }, 4000);
@@ -186,8 +186,8 @@ export function openRollup(scope, anchor, ctx) {
             ctx.saveRecaps();
             refreshFromScratch();
         });
-        row.append(btn('btn-sm', T('↻ Refresh'), () => refresh(r)), reset,
-            btn('btn-sm', T('Copy'), async () => {
+        row.append(btn('button-secondary btn-sm', T('↻ Refresh'), () => refresh(r)), reset,
+            btn('button-secondary btn-sm', T('Copy'), async () => {
                 try { await navigator.clipboard.writeText([r.overview, ...r.themes.map(t => '- ' + t)].join('\n')); ctx.toast(T('Recap copied')); }
                 catch (e) { ctx.toast(T('Copy failed')); }
             }));

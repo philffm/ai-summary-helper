@@ -48,7 +48,8 @@ import { saveFeedBodies, pruneFeedBodies } from './feedBodies.js';
 import { stackItems } from './feedStacks.js';
 import { conceptKey, topicLabel } from './topicConcepts.js';
 import { loadLexicon, saveLexicon } from './topicLexicon.js';
-import { icon, setLabel, stripEmoji } from './icons.js';
+import { icon, iconEl, setLabel, stripEmoji } from './icons.js';
+import { paintSeg, bindSegKeys } from './segmented.js';
 import { makeReorderable, reorderGrip } from './reorder.js';
 import { estimateFeedInterval, feedPriority, feedQualityWeight, reconcileItemIds } from './feedWorker.js';
 
@@ -1219,7 +1220,7 @@ function renderCard(item, sm) {
     }
     const meta = el('p', 'article-date', `${subTitle(sm.get(item.feedId))} · ${timeAgo(item.published)}`);
     if (item.cat) { const c = el('span', 'feed-cat', topicLabel(item.cat, topicLang || uiLocale())); c.title = T('AI category'); meta.append(' · ', c); }
-    if (item.audio) meta.append(el('span', 'feed-dur', ` · 🎧${item.dur ? ' ' + formatDuration(item.dur) : ''}`));
+    if (item.audio) { const d = el('span', 'feed-dur', ' · '); d.append(iconEl('headphones'), document.createTextNode(item.dur ? ' ' + formatDuration(item.dur) : '')); meta.append(d); }
     if (scoringIds.has(item.id)) {
         li.classList.add('is-scoring');
         const s = el('span', 'feed-scoring', ' ⏳');
@@ -1892,7 +1893,7 @@ function renderMonthWeeks() {
 }
 
 /** Two-step button: first click arms it (label changes for 4 s), second click runs `fn`. */
-function confirmBtn(label, armedLabel, fn, cls = 'btn-sm') {
+function confirmBtn(label, armedLabel, fn, cls = 'button-secondary btn-sm') {
     let timer = 0;
     const b = btn(cls, label, () => {
         if (!timer) {
@@ -1954,7 +1955,7 @@ async function openRecap(dayStart, label, source = ui.source, autoRefresh = fals
         speechAvailable().then(ok => {
             if (!ok || !row.isConnected) return;
             const sp = btn('button-secondary btn-sm', '🔊 ' + T('Read aloud'), () => toggleReadRecap(key, r));
-            const paint = () => { const st = readingState(key); sp.textContent = st === 'paused' ? '▶ ' + T('Play') : st ? '⏸ ' + T('Pause') : '🔊 ' + T('Read aloud'); };
+            const paint = () => { const st = readingState(key); setLabel(sp, st === 'paused' ? '▶ ' + T('Play') : st ? '⏸ ' + T('Pause') : '🔊 ' + T('Read aloud')); };   // icons or emoji, as chosen in Appearance
             const off = getReader().onState(() => { if (!sp.isConnected) { off(); return; } paint(); });
             paint(); row.append(sp);
         });
@@ -1999,11 +2000,11 @@ async function openRecap(dayStart, label, source = ui.source, autoRefresh = fals
                 st.stop();
                 if (e.cancelled) return;
                 body.replaceChildren(el('p', 'feed-error', e.message || T('Recap failed')),
-                    btn('btn-sm', T('Try again'), () => run(true)));
+                    btn('button-secondary btn-sm', T('Try again'), () => run(true)));
             }
             return;
         }
-        const st = createRecapStatus({ title: T('✨ Writing recap…'), detail: T('Sending {n} titles and short snippets to your AI connection.', { n: list.length }), onCancel: () => { body.replaceChildren(el('p', 'feed-muted', T('Cancelled')), btn('btn-sm', T('Try again'), () => run(true))); }, local: !!briefingService(), speakId: key });
+        const st = createRecapStatus({ title: T('✨ Writing recap…'), detail: T('Sending {n} titles and short snippets to your AI connection.', { n: list.length }), onCancel: () => { body.replaceChildren(el('p', 'feed-muted', T('Cancelled')), btn('button-secondary btn-sm', T('Try again'), () => run(true))); }, local: !!briefingService(), speakId: key });
         body.replaceChildren(st.node);
         const done = trackJob('d:' + key, body);
         try {
@@ -2023,7 +2024,7 @@ async function openRecap(dayStart, label, source = ui.source, autoRefresh = fals
             st.stop();
             if (e.cancelled) return;
             body.replaceChildren(el('p', 'feed-error', e.message || T('Recap failed')),
-                btn('btn-sm', T('Try again'), () => run(true)));
+                btn('button-secondary btn-sm', T('Try again'), () => run(true)));
         }
     };
     run(!!autoRefresh);
@@ -2225,9 +2226,9 @@ function toggleRow(id, title, hint, key) {
 function segRow(id, title, key, opts) {
     const row = el('div', 'setting-group mb-3');
     const lab = el('span', 'setting-label', stripEmoji(title)); lab.id = id + 'Label';
-    const seg = el('div', 'segmented-control segmented-control-buttons feed-pref-seg'); seg.id = id;
-    seg.setAttribute('role', 'radiogroup'); seg.setAttribute('aria-labelledby', lab.id);
-    const paint = () => seg.querySelectorAll('button').forEach((b) => { const on = Number(b.dataset.v) === Number(settings[key]); b.classList.toggle('active', on); b.setAttribute('aria-checked', String(on)); });
+    const seg = el('div', 'a11y-seg a11y-seg--sm feed-pref-seg'); seg.id = id;
+    seg.setAttribute('role', 'radiogroup'); seg.setAttribute('aria-labelledby', lab.id); bindSegKeys(seg);
+    const paint = () => paintSeg(seg, (b) => Number(b.dataset.v) === Number(settings[key]));
     opts.forEach(([v, t]) => {
         const b = el('button', null, t); b.type = 'button'; b.dataset.v = String(v); b.setAttribute('role', 'radio');
         b.addEventListener('click', async () => { await setSetting(key, v); paint(); });
@@ -2559,7 +2560,7 @@ function performanceBlock(setup, rerender) {
         });
         out.append(el('p', 'feed-muted', T('What each profile would do on this machine:')), plist);
         if (rec !== cur) {
-            const useBtn = btn('btn-sm', T('Use {p}', { p: names[rec] }), async () => {
+            const useBtn = btn('button-secondary btn-sm', T('Use {p}', { p: names[rec] }), async () => {
                 const v = presetSettings(rec);
                 for (const [k, val] of Object.entries(v)) await setSetting(k, val);
                 rerender();
@@ -2570,7 +2571,7 @@ function performanceBlock(setup, rerender) {
     paint();
 
     const status = el('p', 'feed-muted'); status.setAttribute('aria-live', 'polite');
-    const go = btn('btn-sm', b ? T('Measure again') : T('Measure this computer'), async () => {
+    const go = btn('button-secondary btn-sm', b ? T('Measure again') : T('Measure this computer'), async () => {
         if (libraryRun || scoring || benchRunning) { toast(uiRef, T('Already scoring — one moment')); return; }
         benchRunning = true; go.disabled = true;
         const ctl = new AbortController();
@@ -2616,7 +2617,7 @@ function engineBlock(card, eng) {
         const row = el('div', 'library-nano-offer');
         const msg = el('span', 'feed-muted', T('Fallback: Chrome has a built-in model (Gemini Nano). Ollama stays your default.'));
         const bar = el('progress', 'library-progress'); bar.max = 1; bar.value = 0; bar.hidden = eng.nano !== 'downloading';
-        const dl = btn('btn-sm', eng.nano === 'downloading' ? T('Continue the download') : T('Download the built-in model'), async () => {
+        const dl = btn('button-secondary btn-sm', eng.nano === 'downloading' ? T('Continue the download') : T('Download the built-in model'), async () => {
             dl.disabled = true; bar.hidden = false;
             try { await nanoDownload(topicLang, (p) => { bar.value = p; }); rerender(); }
             catch (e) { msg.textContent = T('Download failed: {e}', { e: (e && e.message) || '' }); dl.disabled = false; }
@@ -2629,8 +2630,8 @@ function engineBlock(card, eng) {
             el('p', null, T('A small model that comes with Chrome: no install, nothing leaves your computer, no tokens. Ratings, categories and recaps are noticeably weaker than with a larger model.')),
             el('p', null, NANO_BETTER()));
         const acts = el('div', 'library-nano-actions');
-        if (eng.setup.configured) acts.append(btn('btn-sm', T('Use Ollama again'), async () => { await setSetting('libraryEngine', 'auto'); rerender(); }));
-        else acts.append(btn('btn-sm', T('Set up Ollama'), openModelSettings));
+        if (eng.setup.configured) acts.append(btn('button-secondary btn-sm', T('Use Ollama again'), async () => { await setSetting('libraryEngine', 'auto'); rerender(); }));
+        else acts.append(btn('button-secondary btn-sm', T('Set up Ollama'), openModelSettings));
         note.append(acts);
         box.append(note);
     }
@@ -2646,14 +2647,14 @@ function nanoOffer(card, eng) {
     const bar = el('progress', 'library-progress'); bar.max = 1; bar.value = 0; bar.hidden = eng.nano !== 'downloading';
     const msg = el('p', 'feed-muted'); msg.setAttribute('aria-live', 'polite');
     const acts = el('div', 'library-nano-actions');
-    const dl = btn('btn-sm', eng.nano === 'downloading' ? T('Continue the download') : T('Download the built-in model'), async () => {
+    const dl = btn('button-secondary btn-sm', eng.nano === 'downloading' ? T('Continue the download') : T('Download the built-in model'), async () => {
         dl.disabled = true; bar.hidden = false; msg.textContent = T('Downloading… Chrome keeps going if you close this panel.');
         try {
             await nanoDownload(topicLang, (p) => { bar.value = p; });
             msg.textContent = T('Ready.'); renderLibraryCard(card).catch(() => {});
         } catch (e) { msg.textContent = T('Download failed: {e}', { e: (e && e.message) || '' }); dl.disabled = false; }
     });
-    acts.append(dl, btn('btn-sm', T('Set up Ollama instead'), openModelSettings));
+    acts.append(dl, btn('button-secondary btn-sm', T('Set up Ollama instead'), openModelSettings));
     note.append(acts, bar, msg);
     return note;
 }
@@ -2687,11 +2688,11 @@ async function renderLibraryCard(card) {
     const headLine = el('p', 'library-head'), stageLine = el('p', 'feed-muted library-stage'), totalsLine = el('p', 'feed-muted library-totals');
     live.append(headLine, stageLine, totalsLine);
     const bar = el('progress'); bar.max = 1; bar.value = 0; bar.hidden = true; bar.className = 'library-progress';
-    const startBtn = btn('btn-sm', '', async () => {
+    const startBtn = btn('button-secondary btn-sm', '', async () => {
         if (libraryRun || scoring) { toast(uiRef, T('Already scoring — one moment')); return; }
         await executeLibrary();
     });
-    const stopBtn = btn('btn-sm', T('Stop'), () => { if (libraryRun) libraryRun.ctl.abort(); });
+    const stopBtn = btn('button-secondary btn-sm', T('Stop'), () => { if (libraryRun) libraryRun.ctl.abort(); });
     stopBtn.hidden = true;
     const summaryText = () => {
         const p = libraryPlan(), n = countRequests(p, cleanBatchSize(settings.libraryBatch));

@@ -1,6 +1,7 @@
 // quiz/quizView.js — the quiz sheet (Figma AISH-040): set up → write questions (checked per article) → play → result → export.
 // Opened from the library's selection bar ("🎓 Quiz n") and from a collection ("Create quiz"); popup.html#quiz=<id> reopens a saved
 // quiz (the reminder). Nothing leaves the device except the requests to the reader's own model.
+import { bindSegKeys } from '../segmented.js';
 import { T, TN } from '../feedI18n.js';
 import { el } from '../dom.js';
 import { trapFocus } from '../sheet.js';
@@ -54,7 +55,7 @@ function screen(heading, { back } = {}) {
 function seg(label, options, value, onPick) {
     const wrap = el('div', 'quiz-field');
     const cap = el('div', 'quiz-cap', label); cap.id = 'quizcap-' + Math.random().toString(36).slice(2, 8);
-    const g = el('div', 'quiz-seg'); g.setAttribute('role', 'radiogroup'); g.setAttribute('aria-labelledby', cap.id);
+    const g = el('div', 'a11y-seg a11y-seg--hug quiz-seg'); g.setAttribute('role', 'radiogroup'); bindSegKeys(g); g.setAttribute('aria-labelledby', cap.id);
     options.forEach(([v, text, disabled]) => {
         const b = btn(text, 'quiz-seg-btn' + (v === value ? ' on' : ''), () => { onPick(v); [...g.children].forEach(c => { const on = c === b; c.classList.toggle('on', on); c.setAttribute('aria-checked', String(on)); }); });
         b.setAttribute('role', 'radio'); b.setAttribute('aria-checked', String(v === value)); b.disabled = !!disabled;

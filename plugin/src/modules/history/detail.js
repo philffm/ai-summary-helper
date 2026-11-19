@@ -2,7 +2,7 @@
 // editor. Loaded the first time an article is opened (articleManager.js re-exports showArticleDetail / openArticleInHistory).
 import { mountReadingTools } from '../readingTools.js';
 import { modelIcon } from '../modelBadge.js';
-import { icon, iconEl } from '../icons.js';
+import { icon, iconEl, labelNodes } from '../icons.js';
 import { TOOLBAR_CATALOG, TOOLBAR_PREF, DEFAULT_TOOLBAR, normalizeToolbar } from '../detailToolbar.js';
 import { SK } from '../storageKeys.js';
 import { escapeHtml, cleanUntrustedHtml } from '../textUtils.js';
@@ -114,7 +114,7 @@ async function assignDoiTo(article, doi) {
 function renderDetailTags(article, host) {
     if (!host) return;
     host.replaceChildren();
-    const mk = (cls, text) => { const c = document.createElement('span'); c.className = cls; c.textContent = text; return c; };
+    const mk = (cls, text) => { const c = document.createElement('span'); c.className = cls; c.replaceChildren(...labelNodes(text)); return c; };
     const xBtn = (label, onClick) => {
         const x = document.createElement('button'); x.type = 'button'; x.className = 'tag-x'; x.append(iconEl('x', 'icon--sm')); x.title = label; x.setAttribute('aria-label', label);
         x.addEventListener('click', (e) => { e.stopPropagation(); onClick(); });

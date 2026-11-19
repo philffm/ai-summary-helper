@@ -82,8 +82,8 @@ const feedTextOf = st => st.mode === 'custom' ? st.text : buildFeedStyle(st.buil
 
 /* ── rendering ── */
 function seg(name, items, active) {
-    return `<div class="ps-seg" role="group">${items.map(([v, label]) =>
-        `<button type="button" class="ps-seg-btn${v === active ? ' on' : ''}" data-act="${name}" data-v="${esc(v)}" aria-pressed="${v === active}">${esc(label)}</button>`).join('')}</div>`;
+    return `<div class="a11y-seg" role="group">${items.map(([v, label]) =>
+        `<button type="button"${v === active ? ' class="on"' : ''} data-act="${name}" data-v="${esc(v)}" aria-pressed="${v === active}">${esc(label)}</button>`).join('')}</div>`;
 }
 function chips(name, defs, on, labels) {
     return `<div class="ps-chips">${defs.map(f =>
@@ -101,7 +101,7 @@ function tagsHtml(tags) {
     const full = tags.length >= MAX_TAGS;
     return `<div class="ps-chips">${tags.map(t => `<button type="button" class="pill on" data-act="tagdel" data-v="${esc(t)}" aria-label="${esc(T('Remove {tag}', { tag: t }))}">${esc(t)}  ✕</button>`).join('')}</div>
       <div class="ps-tagform"><input type="text" id="psTag" class="ps-tag-input" maxlength="${MAX_TAG_LENGTH}" placeholder="${esc(T('Add your own, e.g. parent of two'))}" aria-label="${esc(T('Add your own tag'))}"${full ? ' disabled' : ''}>
-      <button type="button" class="button-secondary btn-md" data-act="tagadd"${full ? ' disabled' : ''}>${esc(T('Add'))}</button></div>`;
+      <button type="button" class="button-secondary btn-sm" data-act="tagadd"${full ? ' disabled' : ''}>${esc(T('Add'))}</button></div>`;
 }
 const FEED_LABELS = () => ({ facts: T('Hard facts'), numbers: T('Numbers'), impact: T('Why it matters'), humor: T('Light humor') });
 

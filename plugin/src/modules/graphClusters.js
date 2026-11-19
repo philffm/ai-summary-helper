@@ -233,7 +233,7 @@ export function openClusterPage(container, { label, articles, subtopics = [] }) 
     // What the briefing covers: by default what was never opened; a visible choice widens it to every article of the topic,
     // opened ones included (it used to hide in the folded "Opened" group).
     if (st.withSummary && unopened.length && opened.length) {
-        const scope = el('div', 'segmented-control segmented-control-buttons graph-cluster-scope');
+        const scope = el('div', 'a11y-seg a11y-seg--sm graph-cluster-scope');
         scope.setAttribute('role', 'group'); scope.setAttribute('aria-label', T('Briefing scope'));
         const opts = [[false, T('Unopened · {n}', { n: unopened.length })], [true, T('All · {n}', { n: list.length })]].map(([all, text]) => {
             const b = el('button', null, text); b.type = 'button'; b.dataset.scope = all ? 'all' : 'unopened';
@@ -241,7 +241,7 @@ export function openClusterPage(container, { label, articles, subtopics = [] }) 
             scope.append(b); return [all, b];
         });
         const paintScope = () => {
-            opts.forEach(([all, b]) => { const on = all === includeOpened; b.classList.toggle('active', on); b.setAttribute('aria-pressed', String(on)); });
+            opts.forEach(([all, b]) => { const on = all === includeOpened; b.classList.toggle('on', on); b.setAttribute('aria-pressed', String(on)); });
             page.classList.toggle('is-including', includeOpened); paintBrief();
         };
         scroll.append(scope);

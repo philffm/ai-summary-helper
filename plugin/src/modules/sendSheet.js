@@ -1,3 +1,4 @@
+import { bindSegKeys } from './segmented.js';
 import { SK } from './storageKeys.js';
 import { trapFocus } from './sheet.js';
 // sendSheet.js
@@ -138,8 +139,8 @@ function shell(title, subtitle) {
 }
 
 function segmented(body, key, options, onChange) {
-    const seg = el('div', 'sendsheet-seg');
-    seg.setAttribute('role', 'radiogroup');
+    const seg = el('div', 'a11y-seg sendsheet-seg');
+    seg.setAttribute('role', 'radiogroup'); bindSegKeys(seg);
     options.forEach(([v, label]) => {
         const b = el('button', 'sendsheet-seg-btn' + (state[key] === v ? ' on' : ''), label);
         b.type = 'button'; b.setAttribute('role', 'radio'); b.setAttribute('aria-checked', String(state[key] === v));
@@ -310,7 +311,7 @@ function introBlock() {
         tg.addEventListener('click', () => { state.intro = on ? 'off' : 'on'; paint(); });
         wrap.append(tg);
         if (on) {
-            const chips = el('div', 'sendsheet-seg'); chips.setAttribute('role', 'radiogroup');
+            const chips = el('div', 'a11y-seg sendsheet-seg'); chips.setAttribute('role', 'radiogroup'); bindSegKeys(chips);
             [['short', T('Short')], ['briefing', T('Briefing')], ['personal', T('Personal')]].forEach(([v, label]) => {
                 const b = el('button', 'sendsheet-seg-btn' + (state.introStyle === v ? ' on' : ''), label);
                 b.type = 'button'; b.setAttribute('role', 'radio'); b.setAttribute('aria-checked', String(state.introStyle === v));

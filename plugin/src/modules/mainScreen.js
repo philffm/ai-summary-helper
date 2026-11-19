@@ -1,5 +1,5 @@
 import { modelIcon } from './modelBadge.js';
-import { icon, iconEl, setIconLabel } from './icons.js';
+import { icon, iconEl, setIconLabel, setLabel, labelHtml } from './icons.js';
 import { SK } from './storageKeys.js';
 import { escapeHtml } from './textUtils.js';
 import { debug } from './log.js';
@@ -50,7 +50,7 @@ export function initMainScreen(ui) {
 
         // Tags in the UI language, like History shows them (known and learned topics are translated, one chip per topic)
         const tags = [...new Set((article.tags || []).map(tag => topicLabel(tag, uiLocale())))];
-        const tagsHtml = tags.length ? `<div class="bubble-tags">${tags.map(tag => `<span class="bubble-tag">${escapeHtml(tag)}</span>`).join('')}</div>` : '';
+        const tagsHtml = tags.length ? `<div class="bubble-tags">${tags.map(tag => `<span class="bubble-tag">${labelHtml(tag, escapeHtml)}</span>`).join('')}</div>` : '';
         const modelHtml = article.modelId ? `<span class="card-model card-model--block">${modelIcon(article)} ${escapeHtml(article.modelId)}</span>` : '';
         const bubble = document.createElement('div');
         bubble.className = 'summary-bubble';
@@ -62,15 +62,14 @@ export function initMainScreen(ui) {
                 <span class="summary-bubble-domain">${escapeHtml(domain)} · ${date}</span>
             </div>
             <div class="summary-bubble-body">${preview}</div>
-            ${tagsHtml}
-            ${modelHtml}
-        `;
+            <div class="bubble-foot">${tagsHtml}${modelHtml}</div>
+        `;   // one footer row: tags · model (pushed right, next to the buttons) · Ask / Read again, Ask at the very right
         // 🎓 paper badges (detected from DOI / citation meta; the user's override lives on the index entry)
         {
             const chips = paperChips(article);
             if (chips.length) {
                 let row = bubble.querySelector('.bubble-tags');
-                if (!row) { row = document.createElement('div'); row.className = 'bubble-tags'; bubble.querySelector('.summary-bubble-body').after(row); }
+                if (!row) { row = document.createElement('div'); row.className = 'bubble-tags'; bubble.querySelector('.bubble-foot').prepend(row); }
                 chips.slice().reverse().forEach(([tone, text]) => { const s = document.createElement('span'); s.className = 'bubble-tag paper paper-' + tone; s.textContent = text; row.prepend(s); });
             }
         }
@@ -95,14 +94,14 @@ export function initMainScreen(ui) {
             const row = document.createElement('div');
             row.className = 'ask-actions';
             const btn = document.createElement('button');
-            btn.type = 'button'; btn.className = 'ask-btn'; btn.textContent = T('💬 Ask');
+            btn.type = 'button'; btn.className = 'ask-btn'; setLabel(btn, T('💬 Ask'));
             btn.setAttribute('aria-expanded', 'false');
             const go = (e) => { e.stopPropagation(); askAbout(article, bubble); };
             btn.addEventListener('click', go);
             row.appendChild(btn);
             if (article.qaCount) {
                 const c = document.createElement('button');
-                c.type = 'button'; c.className = 'ask-count'; c.textContent = TN(article.qaCount, '💬 {n} reply', '💬 {n} replies');
+                c.type = 'button'; c.className = 'ask-count'; setLabel(c, TN(article.qaCount, '💬 {n} reply', '💬 {n} replies'));
                 c.addEventListener('click', go);
                 row.appendChild(c);
             }
@@ -115,7 +114,7 @@ export function initMainScreen(ui) {
                 const paint = () => {
                     if (!bubble.isConnected && off) { off(); return; }
                     const playing = mine(), paused = playing && reader.state.state === 'paused';
-                    rb.textContent = playing ? (paused ? '▶ ' + T('Play') : '❚❚ ' + T('Pause')) : '🔊 ' + T('Read again');
+                    if (playing) setIconLabel(rb, paused ? 'play' : 'pause', paused ? T('Play') : T('Pause')); else setIconLabel(rb, 'volume-2', T('Read again'));
                     rb.classList.toggle('is-speaking', playing);
                 };
                 const off = reader.onState(paint);
@@ -127,7 +126,8 @@ export function initMainScreen(ui) {
                 });
                 row.appendChild(rb);
             }
-            bubble.appendChild(row);
+            const foot = bubble.querySelector('.bubble-foot');
+            (foot || bubble).appendChild(row);   // last in the footer: tags · model · Ask at the very right
         }
         };
         bubble._decorate();
@@ -656,7 +656,7 @@ export function initMainScreen(ui) {
         const row = b.querySelector('.ask-actions'); if (!row) return;
         let c = row.querySelector('.ask-count');
         if (!c) { c = document.createElement('button'); c.type = 'button'; c.className = 'ask-count'; row.appendChild(c); }
-        c.textContent = TN(conversation.turns.length, '💬 {n} reply', '💬 {n} replies');
+        setLabel(c, TN(conversation.turns.length, '💬 {n} reply', '💬 {n} replies'));
     };
 
     /** Ask on an older summary card: load its stored turns, put the thread under that card, composer in follow-up mode. */

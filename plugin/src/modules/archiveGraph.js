@@ -35,6 +35,7 @@
 // - A minimal legend explains the solid/arrowed tag links vs the dashed
 //   similarity links.
 
+import { paintSeg, bindSegKeys } from './segmented.js';
 import { cosineSim } from './localSearch.js';
 import { T, TN, uiLocale } from './feedI18n.js';
 import { conceptKey, isKnownTopic, isLanguageTag, topicLabel, broaderKeysOf } from './topicConcepts.js';
@@ -1419,8 +1420,8 @@ function exportGraphSvg(container) {
 
 // ── Toolbar and canvas tools (Figma AISH-038 · D, a mix of B and C) ─────────────────────────────────────────────────
 // One row on top: Graph | List | Gaps · views, the 🎓 Research filter (one click) and "Adjust" (the other filters and the
-// library chores, in a panel). The picture's own tools sit on the canvas as an icon column on the right: zoom, fit,
-// Topics/Detail, colour, Path and Save image. A legend pill (bottom-left) says what the colours mean and opens the choice.
+// library chores, in a panel). The picture's own tools sit on the canvas as an icon column at the bottom right, in groups
+// with separators: zoom + fit · Topics/Detail + colour · Path + Save image. The colour tool opens the choice and names the current mode.
 // Path is a mode: while it is on, the toolbar becomes "Path · pick two items · Cancel".
 const COLOR_LABEL = { topic: () => T('Topic'), age: () => T('Age'), mood: () => T('Mood') };
 
@@ -1509,19 +1510,19 @@ function adjustPanel(container) {
     return a;
 }
 
-/** Colour choice (Topic / Age / Mood) as a small popover, opened from the canvas tool or the legend pill. */
+/** Colour choice (Topic / Age / Mood) as a small popover, opened from the canvas tool. */
 function colorPopover(container, color) {
     const pop = document.createElement('div');
     pop.className = 'graph-color-pop'; pop.hidden = true; pop.setAttribute('role', 'dialog'); pop.setAttribute('aria-label', T('Color by'));
     const h = document.createElement('h4'); h.textContent = T('Color by');
-    const g = document.createElement('div'); g.className = 'segmented-control segmented-control-buttons graph-color-choice'; g.setAttribute('role', 'radiogroup'); g.setAttribute('aria-label', T('Color by'));
+    const g = document.createElement('div'); g.className = 'a11y-seg a11y-seg--sm graph-color-choice'; g.setAttribute('role', 'radiogroup'); g.setAttribute('aria-label', T('Color by')); bindSegKeys(g);
     const btns = color.modes.map((m) => {
         const b = document.createElement('button'); b.type = 'button'; b.dataset.mode = m; b.textContent = COLOR_LABEL[m]();
         b.setAttribute('role', 'radio');
         b.addEventListener('click', () => { set(m); color.onChange(m); });
         g.append(b); return b;
     });
-    const set = (m) => { btns.forEach(b => { const on = b.dataset.mode === m; b.classList.toggle('active', on); b.setAttribute('aria-checked', String(on)); }); if (pop.__onSet) pop.__onSet(m); };
+    const set = (m) => { paintSeg(g, (b) => b.dataset.mode === m); if (pop.__onSet) pop.__onSet(m); };
     pop.append(h, g);
     pop.addEventListener('keydown', (e) => { if (e.key === 'Escape') { e.stopPropagation(); pop.__close(); } });
     set(color.mode);
@@ -1529,7 +1530,7 @@ function colorPopover(container, color) {
 }
 
 function renderGraphTools(container, { canOverview, overview, onLayout, unread, color, naming }) {
-    container.querySelectorAll(':scope > .graph-tools, :scope > .graph-color-pill, :scope > .graph-color-pop').forEach(n => n.remove());
+    container.querySelectorAll(':scope > .graph-tools, :scope > .graph-color-pop').forEach(n => n.remove());
     const topbar = graphTopbar(container);
     // ── Adjust: Unread + library (Time adds itself, see renderTimeRange)
     const adj = adjustPanel(container);
@@ -1559,40 +1560,40 @@ function renderGraphTools(container, { canOverview, overview, onLayout, unread, 
         row.append(txt, go);
         adj.add('library', row);
     }
-    // ── Canvas tools (right edge)
+    // ── Canvas tools (bottom right, above the legend)
     const tools = document.createElement('div');
     tools.className = 'graph-tools'; tools.setAttribute('role', 'toolbar'); tools.setAttribute('aria-label', T('Graph tools')); tools.setAttribute('aria-orientation', 'vertical');
     const z = () => container.__graphZoom;
+    const sep = () => { const d = document.createElement('div'); d.className = 'graph-tool-sep'; d.setAttribute('role', 'separator'); return d; };
+    // Groups: view (zoom, fit) · mode (topics/articles, colour) · actions (path, save image); a separator sits between groups
     tools.append(
         toolButton('plus', T('Zoom in'), () => z() && z().by(1.4)),
         toolButton('minus', T('Zoom out'), () => z() && z().by(1 / 1.4)),
         toolButton('maximize', T('Fit to view'), () => z() && z().fit()),
     );
+    let pop = null;
+    const modeTools = [];
     if (canOverview) {
         const lay = toolButton('layers', overview ? T('Show articles (Detail)') : T('Show topics'), () => onLayout(overview ? 'detail' : 'overview'), { pressed: !overview });
         lay.classList.add('graph-layout-tool');
-        tools.append(lay);
+        modeTools.push(lay);
     }
-    let pop = null, pill = null;
     if (color && color.modes.length > 1) {
+        pop = colorPopover(container, color);
         const colorBtn = toolButton('palette', T('Color by'), () => toggle());
         colorBtn.setAttribute('aria-haspopup', 'dialog'); colorBtn.setAttribute('aria-expanded', 'false');
-        tools.append(colorBtn);
-        pop = colorPopover(container, color);
-        pill = document.createElement('button');
-        pill.type = 'button'; pill.className = 'graph-color-pill'; pill.setAttribute('aria-haspopup', 'dialog');
-        const paintPill = (m) => setIconLabel(pill, 'palette', T('Color: {mode}', { mode: COLOR_LABEL[m]() }));
-        pop.__onSet = paintPill; paintPill(color.mode);
-        let opener = colorBtn;
-        const outside = (e) => { if (!pop.contains(e.target) && e.target !== colorBtn && e.target !== pill && !colorBtn.contains(e.target) && !pill.contains(e.target)) close(); };
-        const open = (from) => { opener = from; pop.hidden = false; pop.classList.toggle('from-pill', from === pill); colorBtn.setAttribute('aria-expanded', 'true'); const f = pop.querySelector('button.active') || pop.querySelector('button'); if (f) f.focus({ preventScroll: true }); document.addEventListener('pointerdown', outside, true); };
-        const close = () => { if (pop.hidden) return; pop.hidden = true; colorBtn.setAttribute('aria-expanded', 'false'); document.removeEventListener('pointerdown', outside, true); opener.focus({ preventScroll: true }); };
-        const toggle = (from = colorBtn) => (pop.hidden ? open(from) : close());
+        const paint = (m) => { const l = T('Color: {mode}', { mode: COLOR_LABEL[m]() }); colorBtn.title = l; colorBtn.setAttribute('aria-label', l); };   // the tool names the current mode
+        pop.__onSet = paint; paint(color.mode);
+        const outside = (e) => { if (!pop.contains(e.target) && !colorBtn.contains(e.target)) close(); };
+        const open = () => { pop.hidden = false; colorBtn.setAttribute('aria-expanded', 'true'); const f = pop.querySelector('button.active') || pop.querySelector('button'); if (f) f.focus({ preventScroll: true }); document.addEventListener('pointerdown', outside, true); };
+        const close = () => { if (pop.hidden) return; pop.hidden = true; colorBtn.setAttribute('aria-expanded', 'false'); document.removeEventListener('pointerdown', outside, true); colorBtn.focus({ preventScroll: true }); };
+        const toggle = () => (pop.hidden ? open() : close());
         pop.__close = close;
-        pill.addEventListener('click', () => toggle(pill));
+        modeTools.push(colorBtn);
     }
+    if (modeTools.length) tools.append(sep(), ...modeTools);
     const path = toolButton('route', T('Path: pick two items to see how they connect'), () => setPath(!container.__graphPathOn), { pressed: !!container.__graphPathOn });
-    tools.append(path, toolButton('download', T('Save image'), () => exportGraphSvg(container)));
+    tools.append(sep(), path, toolButton('download', T('Save image'), () => exportGraphSvg(container)));
     // Path is a mode: the toolbar turns into a hint with Cancel while it is on
     const pathbar = document.createElement('div'); pathbar.className = 'graph-pathbar'; pathbar.setAttribute('role', 'status');
     const ptxt = document.createElement('span'); ptxt.textContent = T('Path · pick two items to see how they connect');
@@ -1609,7 +1610,7 @@ function renderGraphTools(container, { canOverview, overview, onLayout, unread, 
     }
     topbar.classList.toggle('is-path', !!container.__graphPathOn);
     container.append(tools);
-    if (pill) container.append(pill, pop);
+    if (pop) container.append(pop);
 }
 
 /** Row (top-left, under the Graph|List switch) that holds the filter chips side by side. */
@@ -1802,7 +1803,7 @@ export function renderGraphList(container, nodes, links, gaps = []) {
     });
 
     const toggle = document.createElement('div');
-    toggle.className = 'segmented-control segmented-control-buttons graph-view-toggle'; toggle.setAttribute('role', 'group'); toggle.setAttribute('aria-label', T('Graph view'));
+    toggle.className = 'a11y-seg a11y-seg--sm a11y-seg--solid graph-view-toggle'; toggle.setAttribute('role', 'group'); toggle.setAttribute('aria-label', T('Graph view'));
     const mk = (label) => { const b = document.createElement('button'); b.type = 'button'; b.textContent = label; return b; };
     const gBtn = mk(T('Graph')), lBtn = mk(T('List'));
     const pBtn = (gaps && gaps.length) ? mk(T('Gaps') + ' · ' + gaps.length) : null;
@@ -1813,7 +1814,7 @@ export function renderGraphList(container, nodes, links, gaps = []) {
         list.hidden = mode !== 'list'; gapList.hidden = mode !== 'gaps';
         container.dataset.graphMode = mode;
         if (svgEl) svgEl.style.visibility = mode === 'graph' ? '' : 'hidden';
-        Object.entries(btns).forEach(([k, b]) => { b.classList.toggle('active', k === mode); b.setAttribute('aria-pressed', String(k === mode)); });
+        paintSeg(toggle, (b) => b === btns[mode]);
         if (announce) live.textContent = mode === 'list' ? T('List view: {tags} tags. Press Tab to browse, Enter to filter.', { tags: tags.length })
             : mode === 'gaps' ? T('{n} topics started and never followed up', { n: gaps.length }) : T('Graph view');
         const shown = mode === 'list' ? list : mode === 'gaps' ? gapList : null;
@@ -1932,17 +1933,17 @@ function renderGraphControls(container, { hiddenTagCount, capped, currentlyFilte
     // both options are always visible, so the current view is a glance,
     // not a read.
     const toggleGroup = document.createElement('div');
-    toggleGroup.className = 'segmented-control segmented-control-buttons graph-toggle-large';
+    toggleGroup.className = 'a11y-seg a11y-seg--lg a11y-seg--solid graph-toggle-large';
 
     const wellBtn = document.createElement('button');
     wellBtn.type = 'button';
     wellBtn.textContent = T('Well-connected');
-    wellBtn.className = currentlyFiltered ? 'active' : '';
+    wellBtn.className = currentlyFiltered ? 'on' : ''; wellBtn.setAttribute('aria-pressed', String(!!currentlyFiltered));
 
     const allBtn = document.createElement('button');
     allBtn.type = 'button';
     allBtn.textContent = T('All');
-    allBtn.className = currentlyFiltered ? '' : 'active';
+    allBtn.className = currentlyFiltered ? '' : 'on'; allBtn.setAttribute('aria-pressed', String(!currentlyFiltered));
 
     wellBtn.addEventListener('click', () => { if (!currentlyFiltered) onToggleDegree(); });
     allBtn.addEventListener('click', () => { if (currentlyFiltered) onToggleDegree(); });

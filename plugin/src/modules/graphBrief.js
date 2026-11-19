@@ -59,7 +59,7 @@ export function openBriefPage(container, { heading, subtitle, articles, layout =
     ttl.append(el('strong', 'graph-cluster-title', heading), el('div', 'graph-preview-date', subtitle));
     bar.append(back, ttl);
     const scroll = el('div', 'graph-cluster-scroll');
-    const seg = el('div', 'graph-brief-seg'); seg.setAttribute('role', 'group'); seg.setAttribute('aria-label', T('Briefing layout'));
+    const seg = el('div', 'a11y-seg a11y-seg--sm graph-brief-seg'); seg.setAttribute('role', 'group'); seg.setAttribute('aria-label', T('Briefing layout'));
     const out = el('div', 'graph-cluster-answer'); out.setAttribute('aria-live', 'polite');
     const cache = {};
     let current = layout;
@@ -161,7 +161,7 @@ export function createGraphBrief(container, ctx) {
         return b;
     };
     const segBtns = (name, items, cur, onPick) => {
-        const w = el('div', 'graph-brief-seg graph-brief-seg-sm'); w.setAttribute('role', 'group'); w.setAttribute('aria-label', name);
+        const w = el('div', 'a11y-seg a11y-seg--sm graph-brief-seg graph-brief-seg-sm'); w.setAttribute('role', 'group'); w.setAttribute('aria-label', name);
         items.forEach(([id, label]) => {
             const b = el('button', cur === id ? 'on' : null, label); b.type = 'button'; b.setAttribute('aria-pressed', String(cur === id));
             b.addEventListener('click', (e) => { e.stopPropagation(); onPick(id); }); w.append(b);

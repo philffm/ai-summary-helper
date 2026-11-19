@@ -99,9 +99,9 @@ export function mountReadingTools({ scroller, content, article = null, doc = doc
     opts.textContent = '';
     const mkx = (tag, cls, text) => { const e = doc.createElement(tag); if (cls) e.className = cls; if (text !== undefined) e.textContent = text; return e; };
     opts.append(mkx('div', 'rt-pop-t', T('Read aloud')));
-    const seg = mkx('div', 'rt-seg'); seg.setAttribute('role', 'group');
+    const seg = mkx('div', 'a11y-seg a11y-seg--stack rt-seg'); seg.setAttribute('role', 'group');
     [['summary', T('Summary'), ls], ['original', T('Original'), lo]].forEach(([k, label, l]) => {
-      const b = mkx('button', 'rt-seg-b' + (src === k ? ' is-on' : ''));
+      const b = mkx('button', 'rt-seg-b' + (src === k ? ' on' : ''));
       b.type = 'button'; b.dataset.src = k; b.setAttribute('aria-pressed', String(src === k));
       b.append(mkx('span', 'rt-seg-t', label), mkx('span', 'rt-seg-s', langName(l)));
       b.addEventListener('click', () => { src = k; paintOpts(); });
