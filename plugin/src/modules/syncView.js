@@ -18,7 +18,7 @@ import { createStampStore } from './syncStampStore.js';
 import { makeStore } from './syncStores.js';
 import { folderSupported } from './syncFolder.js';
 import { suggest, strengthOf, inOnePiece } from './syncPassphrase.js';
-import { createHandleVault } from './syncFolderHandles.js';
+import { createHandleVault, queryFolderAccess } from './syncFolderHandles.js';
 
 const $ = (id) => document.getElementById(id);
 const getL = (keys) => new Promise((r) => chrome.storage.local.get(keys, r));
@@ -236,13 +236,19 @@ async function render() {
     else if (view === 'phone' && places.some((p) => p.id === nextPlace)) frag.append(...phoneScreen(places.find((p) => p.id === nextPlace), status[nextPlace], connections));
     else if (view === 'add') frag.append(...addScreen());
     else if (view === 'form') frag.append(...formScreen(places.find((p) => p.id === editId), status[editId], counts[editId], connections, places));
-    else { view = 'list'; frag.append(...listScreen(places, status, counts, connections, await lapsedFolders(connections).catch(() => []))); }
+    else { view = 'list'; frag.append(...listScreen(places, status, counts, connections)); }
     root.replaceChildren(frag);
     // one header per screen (WCAG 2.4.6): the panel's own "‹ Settings / Sync & backup" only on the list, the others bring theirs
     const panelHead = root.closest('.settings-panel') && root.closest('.settings-panel').querySelector(':scope > .settings-panel-head');
     if (panelHead) panelHead.hidden = view !== 'list';
     if (focusField && $(focusField)) { $(focusField).focus(); focusField = ''; }
     updateRowSub(places, status);
+    // The folder check can be slow (a handle whose folder is gone never answers): the list is already on screen, the notice follows.
+    if (view === 'list') lapsedFolders(connections).catch(() => []).then((lapsed) => {
+        if (token !== renderToken || view !== 'list' || !lapsed.length) return;
+        const old = root.querySelector('[data-lapsed]'); if (old) old.remove();
+        root.prepend(lapsedCard(lapsed));
+    });
 }
 let articleTitles = new Map();
 
@@ -258,20 +264,22 @@ function updateRowSub(places, status) {
 export async function lapsedFolders(connections, vault = createHandleVault()) {
     const out = [];
     for (const c of connections.filter((x) => x.service === 'folder')) {
-        try { const h = await vault.load(c.id); if (h && h.queryPermission && (await h.queryPermission({ mode: 'readwrite' })) !== 'granted') out.push(c); } catch (_) { /* no storage here: nothing to ask */ }
+        try { const h = await vault.load(c.id); if (h && h.queryPermission && (await queryFolderAccess(h)) !== 'granted') out.push(c); } catch (_) { /* no storage here: nothing to ask */ }
     }
     return out;
 }
 
-function listScreen(places, status, counts, connections, lapsed = []) {
+function lapsedCard(lapsed) {   // the browser asks for a folder again after a restart and only a click can say yes: make that click easy to find
+    const card = el('section', 'mcp-card'); card.setAttribute('role', 'alert'); card.dataset.lapsed = '1';
+    card.append(el('p', 'mcp-step-title', T('Folder access is waiting')), hint(T('The browser takes back access to a folder when it restarts, and only a click of yours can give it back. Until then the folder is not synced.')));
+    const row = el('div', 'mcp-actions');
+    for (const c of lapsed) row.append(button(T('Allow access to {name}', { name: c.name }), 'button-primary btn-sm', async () => { await ensureFolderAccess(c.id); await sendToWorker({ action: 'syncNow' }); render(); }));
+    card.append(row);
+    return card;
+}
+
+function listScreen(places, status, counts, connections) {
     const out = [];
-    if (lapsed.length) {   // the browser asks for a folder again after a restart and only a click can say yes: make that click easy to find
-        const card = el('section', 'mcp-card'); card.setAttribute('role', 'alert');
-        card.append(el('p', 'mcp-step-title', T('Folder access is waiting')), hint(T('The browser takes back access to a folder when it restarts, and only a click of yours can give it back. Until then the folder is not synced.')));
-        const row = el('div', 'mcp-actions');
-        for (const c of lapsed) row.append(button(T('Allow access to {name}', { name: c.name }), 'button-primary btn-sm', async () => { await ensureFolderAccess(c.id); await sendToWorker({ action: 'syncNow' }); render(); }));
-        card.append(row); out.push(card);
-    }
     if (!places.length) return out.concat(emptyScreen());
     const states = places.map((p) => placeStatus(p, status[p.id], counts[p.id] || 0));
     // the summary: what needs you, then one button for all of them

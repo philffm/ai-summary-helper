@@ -7,6 +7,18 @@ function open(idb) {
 }
 const run = async (idb, mode, fn) => { const db = await open(idb); try { return await new Promise((res, rej) => { const tx = db.transaction(STORE, mode), q = fn(tx.objectStore(STORE)); tx.oncomplete = () => res(q && q.result); tx.onerror = () => rej(tx.error); }); } finally { db.close(); } };
 
+/**
+ * The permission state of a folder handle ('granted' | 'prompt' | 'denied'), or 'unreachable' when the browser does not
+ * answer in time. A handle whose folder was moved, deleted or sits on a drive that is gone can leave queryPermission
+ * pending forever; nothing may wait on that (the Settings panel would stay empty, a sync run would never end).
+ */
+export function queryFolderAccess(handle, ms = 2500) {
+    return Promise.race([
+        Promise.resolve().then(() => handle.queryPermission({ mode: 'readwrite' })).catch(() => 'denied'),
+        new Promise((res) => setTimeout(() => res('unreachable'), ms)),
+    ]);
+}
+
 export function createHandleVault(idb = globalThis.indexedDB) {
     return {
         save: (id, handle) => run(idb, 'readwrite', (s) => s.put(handle, id)),
@@ -15,7 +27,9 @@ export function createHandleVault(idb = globalThis.indexedDB) {
         /** In a page, after a click: asks again if the permission lapsed. → true when readwrite is granted. */
         async allow(handle) {
             if (!handle) return false;
-            if ((await handle.queryPermission({ mode: 'readwrite' })) === 'granted') return true;
+            const now = await queryFolderAccess(handle);
+            if (now === 'granted') return true;
+            if (now === 'unreachable') return false;
             return (await handle.requestPermission({ mode: 'readwrite' })) === 'granted';
         },
     };

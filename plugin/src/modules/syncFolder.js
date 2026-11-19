@@ -7,6 +7,7 @@
 // Etags are `<lastModified>-<size>`: a file has no server to number its versions. Conditions (If-Match, If-None-Match) are a
 // compare-then-write, so two devices writing the same file in the same instant can still race; the next run merges what is there.
 import { TargetError } from './targets/targetError.js';
+import { queryFolderAccess } from './syncFolderHandles.js';
 
 const segs = (p) => String(p || '').split('/').filter(Boolean);
 const NOT_FOUND = (e) => e && (e.name === 'NotFoundError' || e.code === 8);
@@ -43,7 +44,8 @@ export function createFolderStore(cfg) {
         async ping() {
             if (!cfg.handle) throw new TargetError({ kind: 'auth', message: 'No folder is chosen for this place.' });
             if (cfg.handle.queryPermission) {
-                const p = await cfg.handle.queryPermission({ mode: 'readwrite' });
+                const p = await queryFolderAccess(cfg.handle);
+                if (p === 'unreachable') throw new TargetError({ kind: 'auth', message: 'The browser does not answer for this folder. It may have been moved, deleted or its drive is gone: choose it again in Settings.' });
                 if (p !== 'granted') throw new TargetError({ kind: 'auth', message: 'Allow access to the folder again (open this place in Settings and press Allow access).' });
             }
             await root(true);
