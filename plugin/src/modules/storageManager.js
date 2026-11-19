@@ -584,6 +584,29 @@ class StorageManager {
     }
 
     /**
+     * How far an article was read: `progress` (0 to 1, two decimals) is the DEEPEST point reached and never goes down, so two
+     * devices merge it with "the larger wins" (syncMerge.js MAX_FIELDS). From FINISHED_AT on the article counts as finished
+     * (`finishedAt`, once) and as read (`readAt`, when it was not yet). Index-only, like the other reading status.
+     * → true when something changed.
+     */
+    static async patchArticleProgress(id, progress) {
+        const p = Math.round(Math.min(1, Math.max(0, Number(progress) || 0)) * 100) / 100;
+        if (!id || !p) return false;
+        const { [SK.articlesIndex]: articlesIndex = [] } = await this.getLocal({ [SK.articlesIndex]: [] });
+        const e = articlesIndex.find(a => a.id === id);
+        if (!e) return false;
+        let changed = false;
+        if (!(e.progress >= p)) { e.progress = p; changed = true; }
+        if (p >= FINISHED_AT) {
+            const now = new Date().toISOString();
+            if (!e.finishedAt) { e.finishedAt = now; changed = true; }
+            if (!e.readAt) { e.readAt = now; changed = true; }
+        }
+        if (changed) await this.setLocal({ [SK.articlesIndex]: articlesIndex });
+        return changed;
+    }
+
+    /**
      * Toggle the favorite (star) flag on an article. Index-only field, so no
      * content record is touched. Returns the new state, or null if not found.
      */
@@ -996,5 +1019,8 @@ for (const name of ['saveArticle', 'setTitle', 'setTags', 'setArticleMoods', 'se
     const original = StorageManager[name];
     StorageManager[name] = function (...args) { return withArticleLock(() => original.apply(StorageManager, args)); };
 }
+
+/** The depth from which an article counts as finished. */
+export const FINISHED_AT = 0.9;
 
 export default StorageManager;

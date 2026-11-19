@@ -79,7 +79,7 @@ const BY_EMOJI = {
     '💾': 'save', '📋': 'clipboard', '🧹': 'eraser', '🔒': 'lock', '✏': 'pencil', '🌐': 'globe', '☁': 'cloud',
     '💻': 'laptop', '🦙': 'server', '🔍': 'search', '🧠': 'brain', '💬': 'message-square', '❌': 'circle-x',
     '💡': 'lightbulb', '💙': 'heart', '📌': 'pin', '🗑': 'trash-2', '🗂': 'folders', '🕸': 'network', '📊': 'chart-column',
-    '☑': 'square-check-big', '👤': 'user', '🎨': 'palette', '📤️': 'upload', '🔊': 'volume-2', '🔇': 'volume-x', '👀': 'eye', '↩': 'undo-2', '🆕': 'circle-plus', '✅': 'circle-check', '📡': 'radio', '🗄': 'archive', '🎓': 'graduation-cap', '🗒': 'sticky-note',
+    '☑': 'square-check-big', '👤': 'user', '🎨': 'palette', '📤️': 'upload', '🔊': 'volume-2', '🔇': 'volume-x', '👀': 'eye', '↩': 'undo-2', '🆕': 'circle-plus', '✅': 'circle-check', '📡': 'radio', '🗄': 'archive', '🎓': 'graduation-cap', '🗒': 'sticky-note', '📖': 'book-open',
 };
 const LEAD_MAPPED = /^([\u2190-\u21FF\u23F3\u23F8\u25B6\u2600-\u27BF\u{1F000}-\u{1FFFF}])\uFE0F?\s*/u;
 

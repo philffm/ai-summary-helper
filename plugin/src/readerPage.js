@@ -11,6 +11,7 @@ import { SK } from './modules/storageKeys.js';
 import { stripEmoji } from './modules/icons.js';
 import { getReader, speechUnits, detectLang } from './modules/reader.js';
 import { ttsLang } from './modules/languages.js';
+import { createReadTracker } from './modules/readProgress.js';
 
 const PREFS_KEY = 'reader:prefs';
 const SIZES = [15, 17, 19, 21, 24, 28];
@@ -122,6 +123,20 @@ function revealQuoteFromHash() {
   return true;
 }
 
+// How far this article was read: the deepest scroll position, kept on the article (and synced like its other reading status).
+let reading = null;
+function trackReading(article, html) {
+  if (reading || !article.id) return;
+  reading = createReadTracker({ words: countWords(html), start: article.progress || 0, save: (p) => StorageManager.patchArticleProgress(article.id, p).catch(() => {}) });
+  const depth = () => { const h = root.scrollHeight; return h > 0 ? (window.scrollY + window.innerHeight) / h : 0; };
+  const sample = () => reading.sample(depth(), document.visibilityState === 'visible');
+  let timer = 0;   // the one-second beat (time in front of the text) starts with the first scroll: a page nobody scrolls measures nothing
+  window.addEventListener('scroll', () => { if (!timer) timer = setInterval(sample, 1000); sample(); }, { passive: true });
+  window.addEventListener('pagehide', () => { clearInterval(timer); reading.flush(); });
+  document.addEventListener('visibilitychange', () => { if (document.visibilityState === 'hidden') reading.flush(); });
+  sample();
+}
+
 async function render() {
   const page = $('rpPage');
   const id = new URLSearchParams(window.location.hash.slice(1)).get('id');
@@ -136,6 +151,7 @@ async function render() {
 
   const title = article.title || T('Article');
   document.title = title;
+  trackReading(article, contentHtml || summaryHtml);
   let domain = '';
   try { domain = new URL(article.url).hostname.replace(/^www\./, ''); } catch (_) { /* no url */ }
   const minutes = Math.max(1, Math.round(countWords(contentHtml || summaryHtml) / 220));

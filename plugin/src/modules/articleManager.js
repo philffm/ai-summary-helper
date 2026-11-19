@@ -134,7 +134,12 @@ export function statusBadges(a) {
         const date = fmtDay(x.at);
         out.push(['sent', x.kind === 'kindle' ? T('📚 Sent to Kindle · {date}', { date }) : x.kind === 'localsend' ? T('📡 Sent via LocalSend · {date}', { date }) : T('✅ Sent · {date}', { date })]);
     });
-    if (!isSent(a)) out.push(a.readAt ? ['read', T('👀 Read')] : ['new', T('🆕 New')]);
+    if (!isSent(a)) {
+        // how far it was read (the reader's scroll depth, KOReader's page): finished, or a percentage while it is under way
+        const pr = Number(a.progress) || 0;
+        out.push(a.finishedAt ? ['read', T('✅ Finished')] : pr > 0 && a.readAt !== undefined ? ['read', T('📖 {n}%', { n: Math.round(pr * 100) })]
+            : pr > 0 ? ['new', T('📖 {n}%', { n: Math.round(pr * 100) })] : a.readAt ? ['read', T('👀 Read')] : ['new', T('🆕 New')]);
+    }
     return out;
 }
 
