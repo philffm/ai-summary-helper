@@ -14,12 +14,14 @@ pipelines, and embedding. Every parameter is optional and composable.
 | Parameter | Values | Default | Effect |
 |---|---|---|---|
 | `lang` | `en`, `de`, `fr`, `es`, `pt`, `zh`, `zh-tw`, `ja`, `ko`, `hi`, `vi`, `nl`, `it`, `ru`, `uk`, `tr`, `id`, `pl`, `th`, `ar`, `sv`, `da`, `no`, `fi` | `en` | UI language, summary language, and the sample article |
-| `theme` | `light`, `dark` | OS preference | Force a colour scheme |
+| `theme` | `light`, `dark`, `contrast`, `postil` | OS preference | Force a theme |
 | `tour` | `0`, `1` | show once, then remember | `0` hides the guided tour, `1` forces it |
 | `chrome` | `0` | framed | `0` = product only: no sample page, title bars, borders, padding or background |
+| `bars` | `0` | framed | `0` = no title bars, borders or gaps: article and side panel as one content area, for hosts that draw their own window frame |
 | `article` | `0` | shown | `0` = keep the framed panel, hide the sample article |
+| `panelw` | two digits, e.g. `66` | `32vw` (400–620 px) | Width of the side panel in % of the window: with a wide window (≥ 1650 px) the extension gets the three-pane split view |
 | `layout` | `stack` | side by side | `stack` = sample article above the product, at any width (vertical video) |
-| `clock` | `manual` | real time | `manual` = virtual clock: nothing streams until the host calls `AISH_CLOCK.advance(ms)` (frame-exact capture; see the next section) |
+| `clock` | `manual` | real time | `manual` = virtual clock: nothing streams until the host calls `AISH_CLOCK.advance(ms)` (frame-exact capture; see the next section). Also pauses every CSS animation/transition at its start so the host can set its time (see `videos/RENDER-DETERMINISM.md`) |
 | `surface` | `popup`, `sidepanel` | `sidepanel` | Which surface the popup renders as |
 | `screen` | `main`, `history`, `feeds`, `settings` | `main` | Open that screen on load |
 | `panel` | see below | — | Open a settings panel (implies `screen=settings`) |

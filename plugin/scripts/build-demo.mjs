@@ -7,10 +7,12 @@
  *
  *   node plugin/scripts/build-demo.mjs            # build
  *   node plugin/scripts/build-demo.mjs --check    # build + fail if the popup uses a runtime action the mock does not know
+ *   node plugin/scripts/build-demo.mjs --kaivo    # the same demo in a white-label brand (brands/<id>.json, local): name, colours, icon
  */
 import fs from 'node:fs';
 import path from 'node:path';
-import { fileURLToPath } from 'node:url';
+import { fileURLToPath, pathToFileURL } from 'node:url';
+import { execFileSync } from 'node:child_process';
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const SRC = path.join(ROOT, 'src'), DEMO = path.join(ROOT, 'demo'), OUT = path.join(ROOT, 'dist', 'demo'), APP = path.join(OUT, 'app');
@@ -61,5 +63,21 @@ if (process.argv.includes('--check')) {
     const missing = [...used].filter(a => !known.has(a)).sort();
     if (missing.length) { console.error('demo-shim does not know these popup→background actions (add a case, or list them as quiet):\n  ' + missing.join('\n  ')); process.exit(1); }
     console.log(`demo contract ok: ${used.size} actions covered`);
+}
+// The source stylesheets are Kaivo-coloured, the source text is AISH: the plain demo gets the AISH regions back (a brand below rewrites them again).
+execFileSync(process.execPath, [path.join(ROOT, '..', 'design-system', 'build.mjs'), '--brand=aish', '--into', APP, '--context', 'app'], { stdio: 'inherit' });
+// Brand: `--<brand>` / `--brand=<id>` applies a white-label brand to the finished demo (videos/public/demo points here, so the
+// clips render in that brand). brands/ is a local, uncommitted layer: without it the flag is reported and the default demo stays.
+const BRANDS = path.join(ROOT, '..', 'brands', 'index.mjs');
+if (fs.existsSync(BRANDS)) {
+    const { brandIdFromArgs, loadBrand, isDefault, brandBuild, warnProvisional } = await import(pathToFileURL(BRANDS).href);
+    const brand = loadBrand(brandIdFromArgs(process.argv.slice(2)));
+    if (!isDefault(brand)) {
+        warnProvisional(brand);
+        brandBuild(APP, brand, 'extension', { platform: 'chrome' });
+        for (const f of ['index.html', 'README.md']) { const q = path.join(OUT, f); fs.writeFileSync(q, fs.readFileSync(q, 'utf8').replaceAll('AI Summary Helper', brand.name)); }
+    }
+} else if (process.argv.slice(2).some((a) => a.startsWith('--') && a !== '--check')) {
+    console.warn('  ! brand flag ignored: brands/index.mjs is not in this checkout');
 }
 console.log('demo built →', path.relative(process.cwd(), OUT));

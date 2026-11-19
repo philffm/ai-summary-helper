@@ -1,0 +1,120 @@
+{
+  "$description": "Viola: violet ramp, an alternative theme to Kaivo (same structure, only the colour changes). Taken from the AISH-042 theme bench; the 325/330/375/450 steps are interpolated. AA-checked by the gate.",
+  "brand": {
+    "accent": {
+      "$type": "color",
+      "$description": "Brand primary ramp. Light theme reads 600/700, dark theme 300–450, tints 50–200. 950 = text on a bright accent fill.",
+      "50": {
+        "$value": "#F3EFFF"
+      },
+      "100": {
+        "$value": "#E5DCFF"
+      },
+      "200": {
+        "$value": "#CDBDFF"
+      },
+      "300": {
+        "$value": "#B49CFF"
+      },
+      "325": {
+        "$value": "#AA8FFF"
+      },
+      "330": {
+        "$value": "#A88CFF"
+      },
+      "375": {
+        "$value": "#9575FF"
+      },
+      "400": {
+        "$value": "#8B68FF"
+      },
+      "450": {
+        "$value": "#7F56FB"
+      },
+      "500": {
+        "$value": "#7445F8"
+      },
+      "600": {
+        "$value": "#6233E8"
+      },
+      "700": {
+        "$value": "#4F24C9"
+      },
+      "950": {
+        "$value": "#170647"
+      },
+      "contrast": {
+        "$value": "#3F1BA6",
+        "$description": "Accent of the High contrast theme: at least 7:1 on white, white text on it too."
+      }
+    },
+    "highlight": {
+      "$type": "color",
+      "$description": "Secondary brand colour (website 'gold' highlights, best-plan border, warm glows).",
+      "200": {
+        "$value": "#F2D9A6"
+      },
+      "300": {
+        "$value": "#F0C36B"
+      },
+      "400": {
+        "$value": "#E4A83E"
+      },
+      "700": {
+        "$value": "#85580C"
+      },
+      "750": {
+        "$value": "#9A6B14"
+      },
+      "800": {
+        "$value": "#7C5209"
+      }
+    },
+    "surface": {
+      "$type": "color",
+      "$description": "Brand-tinted neutral surfaces.",
+      "sheet-light": {
+        "$value": "#F2F0F8"
+      },
+      "sheet-dark": {
+        "$value": "#17132A"
+      },
+      "page-light": {
+        "$value": "#FBF9FF"
+      }
+    },
+    "glow": {
+      "$type": "color",
+      "$description": "Page background glows (light theme), CSS colour strings.",
+      "light-1": {
+        "$value": "hsla(256,100%,96%,1)"
+      },
+      "light-2": {
+        "$value": "hsla(256,100%,93%,1)"
+      }
+    },
+    "font": {
+      "$type": "fontFamily",
+      "app": {
+        "$value": "'Hanken Grotesk', 'Inter', 'Segoe UI', system-ui, -apple-system, sans-serif"
+      },
+      "display": {
+        "$value": "'Space Grotesk', sans-serif"
+      },
+      "body": {
+        "$value": "'Inter', sans-serif"
+      },
+      "mono": {
+        "$value": "'JetBrains Mono', monospace"
+      }
+    }
+  },
+  "$extensions": {
+    "eu.byphil.ds": {
+      "provisional": [
+        "ramp from the AISH-042 theme bench (brand id 'legu' there); steps 325, 330, 375 and 450 are interpolated, not designed",
+        "fonts: same as AISH"
+      ]
+    }
+  }
+}

@@ -86,6 +86,7 @@ function srCreate(opts) {
     // ── DOM ──
     const host = srEl('div'); host.id = SR_HOST_ID; host.setAttribute('data-aish-ui', '1');
     if (opts.theme && opts.theme !== 'system') host.dataset.theme = opts.theme;
+    if (['blue', 'viola', 'postil'].includes(opts.colorScheme)) host.dataset.scheme = opts.colorScheme;
     if (opts.reduceMotion) host.dataset.motion = 'reduce';
     const root = host.attachShadow({ mode: 'open' });
     const css = document.createElement('link'); css.rel = 'stylesheet';

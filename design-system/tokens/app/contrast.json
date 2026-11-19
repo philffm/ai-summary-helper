@@ -74,24 +74,24 @@
         },
         "text-link": {
           "$type": "color",
-          "$value": "{color.cobalt.700}",
+          "$value": "{brand.accent.contrast}",
           "$description": "Links inside text."
         }
       },
       "accent": {
         "accent": {
           "$type": "color",
-          "$value": "{color.cobalt.700}",
+          "$value": "{brand.accent.contrast}",
           "$description": "Brand action colour: primary buttons, selected states, links on controls, focus ring, progress."
         },
         "accent-light": {
           "$type": "color",
-          "$value": "{color.cobalt.700}",
+          "$value": "{brand.accent.contrast}",
           "$description": "Second stop of the accent gradient (primary button, nav blob, switch on)."
         },
         "accent-glow": {
           "$type": "color",
-          "$value": "{color.cobalt.700}",
+          "$value": "{brand.accent.contrast}",
           "$description": "Coloured glow under primary buttons."
         },
         "on-accent": {
@@ -101,12 +101,12 @@
         },
         "accent-a05": {
           "$type": "color",
-          "$value": "{color.cobalt.50}",
+          "$value": "{brand.accent.50}",
           "$description": "Accent at 5%: tints for hover, selection and soft borders. Never as text."
         },
         "accent-a08": {
           "$type": "color",
-          "$value": "{color.cobalt.100}",
+          "$value": "{brand.accent.100}",
           "$description": "Accent at 8%: tints for hover, selection and soft borders. Never as text."
         }
       },

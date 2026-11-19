@@ -16,6 +16,22 @@ set -euo pipefail
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 cd "$SCRIPT_DIR"
 
+# ── Arguments ──────────────────────────────────────────────────────────
+#   --version <x.y.z>   build THIS version (stamped into the manifests, current_version.json and popup.html) instead of the next patch
+# Everything else (platform names, --kaivo, --brand=<id>, --strict, ...) goes to scripts/build.js.
+TARGET_VERSION=""
+BUILD_ARGS=()
+while [ "$#" -gt 0 ]; do
+  case "$1" in
+    --version)   [ "$#" -ge 2 ] || { echo "✗ --version needs a value, e.g. --version 2.3.0" >&2; exit 1; }; TARGET_VERSION="$2"; shift 2 ;;
+    --version=*) TARGET_VERSION="${1#--version=}"; shift ;;
+    *)           BUILD_ARGS+=("$1"); shift ;;
+  esac
+done
+if [ -n "$TARGET_VERSION" ] && ! [[ "$TARGET_VERSION" =~ ^[0-9]+(\.[0-9]+)*$ ]]; then
+  echo "✗ --version must look like 2.3.0 (digits and dots) (got '$TARGET_VERSION')" >&2; exit 1
+fi
+
 # ── Compatible tools table ────────────────────────────────────────────
 # The table lives in the root readme.md (the marketing/overview readme).
 # Regenerate compatible-tools.json from it, then copy into src/.
@@ -41,7 +57,11 @@ cp -f compatible-tools.json src/
 
 # Read the base version from current_version.json as the single source of truth
 VERSION=$(jq -r '.version' ../current_version.json)
-if [ -n "${KEEP_VERSION:-}" ]; then
+if [ -n "$TARGET_VERSION" ]; then
+  # An explicit target version: set exactly that (also lower than the current one, e.g. to redo a release).
+  NEW_VERSION="$TARGET_VERSION"
+  "$SCRIPT_DIR/scripts/set-version.sh" "$NEW_VERSION"
+elif [ -n "${KEEP_VERSION:-}" ]; then
   # Rebuild the current version (e.g. after a packaging fix): no bump, nothing stamped, the manifests already carry it.
   NEW_VERSION="$VERSION"
 else
@@ -61,98 +81,28 @@ PROD_DIR="prod"
 rm -rf "$DEV_DIR" "$PROD_DIR"
 mkdir -p "$DEV_DIR" "$PROD_DIR"
 
-# Bundle the modular content script into a single file (MV3 content scripts
-# can't use ES modules directly). Writes the bundled content.js into a target
-# dir. Usage: bundle_content <target_dir>
-#
-# The bundler itself lives in scripts/build.js (single implementation). This
-# function just shells out to it, so there is exactly one copy of the bundling
-# logic. build.js also guard-detects a corrupted src/content.js (one that was
-# already overwritten with a bundled copy of itself) and fails loudly instead
-# of shipping a silently-broken build.
-bundle_content() {
-  local target="$1"
-  node scripts/build.js --bundle "$target"
-}
-
-
 # ==========================================
-# 1. BUILD DESKTOP VERSION (Chrome)
+# Build every platform with the one build implementation (scripts/build.js), then zip
 # ==========================================
-CHROME_DIR="$DEV_DIR/aish-extension-chrome"
-rm -rf "$CHROME_DIR"
-cp -r "$ROOT_DIR/src/" "$CHROME_DIR"
-# Overwrite the default manifest with the Chrome one
-cp -f "$ROOT_DIR/platforms/chrome/manifest.json" "$CHROME_DIR/manifest.json"
-# The android manifest must not ship in the desktop build
-rm -f "$CHROME_DIR/manifest-android.json"
-# Bundle the modular content script
-bundle_content "$CHROME_DIR"
+# scripts/build.js does the whole job: design-token gate (WCAG AA, up to date), the platform copies and manifests, the bundled
+# content script and workers, slimmed _locales, and the AISH colours for the plain build. Arguments go straight to it, so
+#   ./build.sh                 the AISH build, 4 platforms
+#   ./build.sh --kaivo         plus the Kaivo build (dev/kaivo-extension-<platform>); needs the local brands/ folder
+#   ./build.sh --brand=<id>    any other brand;  ./build.sh chrome  only one platform;  ./build.sh --kaivo --strict
+#   ./build.sh --version 2.3.0 build and stamp exactly that version (default: the next patch; KEEP_VERSION=1 keeps the current one)
+# Every dev/<brand>-extension-<platform> then becomes prod/<brand>-extension-<platform>-<version>.zip.
+node scripts/build.js ${BUILD_ARGS[@]+"${BUILD_ARGS[@]}"}
 
-CHROME_ZIP_FILE="$PROD_DIR/aish-extension-chrome-$NEW_VERSION.zip"
-cd "$CHROME_DIR"
-zip -r "$ROOT_DIR/$CHROME_ZIP_FILE" .
-cd "$ROOT_DIR"
-
-echo "✅ Chrome extension built: $CHROME_ZIP_FILE"
-
-
-# ==========================================
-# 2. BUILD ANDROID VERSION
-# ==========================================
-ANDROID_DIR="$DEV_DIR/aish-extension-android"
-rm -rf "$ANDROID_DIR"
-cp -r "$ROOT_DIR/src/" "$ANDROID_DIR"
-
-# Overwrite the default manifest with the Android one
-cp -f "$ROOT_DIR/platforms/android/manifest.json" "$ANDROID_DIR/manifest.json"
-rm -f "$ANDROID_DIR/manifest-android.json"
-# Bundle the modular content script
-bundle_content "$ANDROID_DIR"
-
-ANDROID_ZIP_FILE="$PROD_DIR/aish-extension-android-$NEW_VERSION.zip"
-cd "$ANDROID_DIR"
-zip -r "$ROOT_DIR/$ANDROID_ZIP_FILE" .
-cd "$ROOT_DIR"
-
-echo "✅ Android extension built: $ANDROID_ZIP_FILE"
-
-
-# ==========================================
-# 3. BUILD FIREFOX VERSION
-# ==========================================
-FIREFOX_DIR="$DEV_DIR/aish-extension-firefox"
-rm -rf "$FIREFOX_DIR"
-cp -r "$ROOT_DIR/src/" "$FIREFOX_DIR"
-cp -f "$ROOT_DIR/platforms/firefox/manifest.json" "$FIREFOX_DIR/manifest.json"
-rm -f "$FIREFOX_DIR/manifest-android.json"
-# Bundle the modular content script
-bundle_content "$FIREFOX_DIR"
-
-FIREFOX_ZIP_FILE="$PROD_DIR/aish-extension-firefox-$NEW_VERSION.zip"
-cd "$FIREFOX_DIR"
-zip -r "$ROOT_DIR/$FIREFOX_ZIP_FILE" .
-cd "$ROOT_DIR"
-
-echo "✅ Firefox extension built: $FIREFOX_ZIP_FILE"
-
-# ==========================================
-# 4. BUILD IOS VERSION
-# ==========================================
-IOS_DIR="$DEV_DIR/aish-extension-ios"
-rm -rf "$IOS_DIR"
-cp -r "$ROOT_DIR/src/" "$IOS_DIR"
-
-# Overwrite the default manifest with the iOS one
-cp -f "$ROOT_DIR/platforms/ios/manifest.json" "$IOS_DIR/manifest.json"
-# Clean up any leftover manifests
-rm -f "$IOS_DIR/manifest-android.json"
-# Bundle the modular content script
-bundle_content "$IOS_DIR"
-
-IOS_ZIP_FILE="$PROD_DIR/aish-extension-ios-$NEW_VERSION.zip"
-cd "$IOS_DIR"
-zip -r "$ROOT_DIR/$IOS_ZIP_FILE" .
-cd "$ROOT_DIR"
-
-echo "✅ iOS extension built: $IOS_ZIP_FILE"
+shopt -s nullglob
+ZIPS=0
+for dir in "$DEV_DIR"/*-extension-*; do
+  name="$(basename "$dir")"
+  zip_file="$PROD_DIR/$name-$NEW_VERSION.zip"
+  (cd "$dir" && zip -qr "$ROOT_DIR/$zip_file" .)
+  echo "✅ $name built: $zip_file"
+  ZIPS=$((ZIPS + 1))
+done
+if [ "$ZIPS" -eq 0 ]; then
+  echo "✗ nothing was built (check the platform name in the arguments)" >&2
+  exit 1
+fi

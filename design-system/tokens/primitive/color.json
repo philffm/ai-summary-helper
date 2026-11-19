@@ -118,6 +118,45 @@
         "$value": "#EDECE6"
       }
     },
+    "paper": {
+      "$description": "Off-white e-reader neutrals of the Postil colour scheme (light): barely warm, no beige.",
+      "50": {
+        "$value": "#FEFEFC"
+      },
+      "100": {
+        "$value": "#FAF9F6"
+      },
+      "150": {
+        "$value": "#F2F1ED"
+      },
+      "200": {
+        "$value": "#E8E6E0"
+      },
+      "300": {
+        "$value": "#D3D1C9"
+      }
+    },
+    "sepia": {
+      "$description": "Warm graphite ink for text on paper (Postil, light).",
+      "550": {
+        "$value": "#615E58"
+      },
+      "700": {
+        "$value": "#3A3834"
+      },
+      "900": {
+        "$value": "#1A1917"
+      }
+    },
+    "cocoa": {
+      "$description": "Graphite accent of the Postil colour scheme (light).",
+      "600": {
+        "$value": "#3F3C37"
+      },
+      "700": {
+        "$value": "#2E2C28"
+      }
+    },
     "ink": {
       "$description": "Near-black blue used for text on light accent fills and for media overlays.",
       "950": {
@@ -524,6 +563,39 @@
       },
       "dark-kick": {
         "$value": "#ff6b81"
+      }
+    },
+    "char": {
+      "$description": "Warm charcoal surfaces of the Postil colour scheme (dark), like an e-reader night mode.",
+      "950": {
+        "$value": "#151413"
+      },
+      "900": {
+        "$value": "#1C1B19"
+      },
+      "850": {
+        "$value": "#222120"
+      },
+      "800": {
+        "$value": "#2A2927"
+      },
+      "700": {
+        "$value": "#3A3834"
+      }
+    },
+    "bone": {
+      "$description": "Soft off-white ink on charcoal (Postil, dark).",
+      "100": {
+        "$value": "#E4E1D9"
+      },
+      "200": {
+        "$value": "#CFCBC1"
+      },
+      "300": {
+        "$value": "#B3AFA5"
+      },
+      "400": {
+        "$value": "#9C988E"
       }
     }
   }

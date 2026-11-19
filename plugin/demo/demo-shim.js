@@ -16,12 +16,15 @@
     area._ls = ls; return area; };
   const local = mk(), sync = mk(), session = mk();
   // Language and theme come from the page that embeds the demo (?lang=de&theme=dark): UI language, summary language, light/dark.
-  const Q = new URLSearchParams(location.search), LOC = D.locale, THEME = Q.get('theme');
+  const Q = new URLSearchParams(location.search), LOC = D.locale, THEME = Q.get('theme') === 'postil' ? '' : Q.get('theme'), SCHEME = Q.get('scheme') || (Q.get('theme') === 'postil' ? 'postil' : '');
   // Symbols (SVG icons) instead of emoji: the cleaner look, and the same on every OS. Can still be switched in Appearance.
+  // The model shown in the status chip (display only, nothing is called): not the app's default (a Google model), no advertising for a vendor.
+  sync.set({ preferredCloudModel: 'mistralai/mistral-small-3.2', recentCloudModels: ['mistralai/mistral-small-3.2'] });
   sync.set({ onboardingDismissed: true, demo: true, iconStyle: 'icons', ...(LOC ? { uiLanguage: LOC.ui, selectedLanguage: LOC.sel } : {}) });
   local.set({ iconStyle: 'icons' });
-  const setTheme = (th) => { if (th !== 'light' && th !== 'dark') return; document.documentElement.setAttribute('data-theme', th); local.set({ theme: th }); sync.set({ theme: th }); };
+  const setTheme = (th) => { if (!['light', 'dark', 'contrast'].includes(th)) return; document.documentElement.setAttribute('data-theme', th); local.set({ theme: th }); sync.set({ theme: th }); };
   setTheme(THEME);
+  if (['blue', 'viola', 'postil'].includes(SCHEME)) { document.documentElement.setAttribute('data-scheme', SCHEME); local.set({ colorScheme: SCHEME }); sync.set({ colorScheme: SCHEME }); }
   (() => { const b64 = (n) => { const a = new Uint8Array(n); crypto.getRandomValues(a); return btoa(String.fromCharCode(...a)).replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/, ''); };
     local.set({ 'inbox:config': { inboxId: b64(16), encKey: b64(32), writeToken: b64(32), readToken: b64(32), createdAt: Date.now() - 6 * 864e5, v: 1, toPhone: { inboxId: b64(16), writeToken: b64(32) } } }); })();
   // Docking the panel makes no sense inside a page: only Settings stays in the header.
@@ -209,6 +212,25 @@
     window.requestAnimationFrame = (cb) => (started ? later(16, () => cb(vnow)) : realRaf(cb));
     window.cancelAnimationFrame = (h) => clear(h, realCancelRaf);
     window.AISH_CLOCK.raf = realRaf;
+    // CSS transitions and animations run on the browser's own clock, which this virtual clock cannot reach. A list that fades in
+    // therefore showed a different stage in each of Remotion's four render tabs (a tab's first frame is at 0, 33, 67 or 100 ms),
+    // and an animation that finished in real time while the tab was still waiting was simply gone: every 4th frame looked different.
+    // So every animation is paused the moment it is created (the style rule for CSS animations, the events for transitions, a wrapper
+    // for Element.animate) and stamped with the virtual time it started at (a.__aishT); the host then sets its currentTime to
+    // (virtual now - __aishT), see pinAnimations() in videos/src/Composition.tsx. Also content-visibility:auto (article cards)
+    // off: its estimated card heights were replaced by real ones at a tab-dependent moment (2 px of layout shift).
+    {
+      const hold = (a) => { try { if (a.__aishT !== undefined) return; a.__aishT = vnow; a.pause(); a.currentTime = 0; } catch (_) { /* gone already */ } };
+      const st = document.createElement('style');
+      st.id = 'aish-freeze';
+      st.textContent = '*, *::before, *::after { animation-play-state: paused !important; content-visibility: visible !important; }';
+      (document.head || document.documentElement).appendChild(st);
+      const catchAnims = (e) => { const t = e.target; if (t && t.getAnimations) t.getAnimations().forEach(hold); };
+      document.addEventListener('transitionrun', catchAnims, true);
+      document.addEventListener('animationstart', catchAnims, true);
+      const animate = Element.prototype.animate;
+      Element.prototype.animate = function (...args) { const an = animate.apply(this, args); hold(an); return an; };
+    }
     // Anything that reads the wall clock (elapsed counters) or animates a scroll in real time would differ from
     // render to render: tie Date.now() to the virtual clock and make every programmatic scroll instant.
     const t0 = Date.now(); Date.now = () => t0 + vnow;
@@ -348,7 +370,7 @@
     if (/api\.byphil\.eu\/.*\/aish_inboxes\/[^/]+\/items/.test(url) && o && o.method === 'POST') return new Promise(r => setTimeout(() => r(new Response('{}', { status: 202, headers: { 'Content-Type': 'application/json' } })), 700));
     // A local Ollama "running" (the privacy video switches to it): a couple of installed models, so the panel shows them.
     if (/^https?:\/\/(localhost|127\.0\.0\.1):11434\//.test(url)) {
-      const body = /\/api\/tags/.test(url) ? { models: [{ name: 'llama3.2:3b', size: 2019393189 }, { name: 'qwen2.5:7b', size: 4683087332 }, { name: 'gemma3:4b', size: 3338801804 }] } : /\/api\/version/.test(url) ? { version: '0.6.5' } : {};
+      const body = /\/api\/tags/.test(url) ? { models: [{ name: 'gemma4:4b', size: 3338801804 }, { name: 'qwen3:8b', size: 5225376047 }, { name: 'mistral:7b', size: 4372824384 }] } : /\/api\/version/.test(url) ? { version: '0.6.5' } : {};
       return Promise.resolve(new Response(JSON.stringify(body), { status: 200, headers: { 'Content-Type': 'application/json' } }));
     }
     // doi.org content negotiation (the Cite panel's "Get citation"): answered from the scenario's recorded CSL records

@@ -1,0 +1,206 @@
+{
+  "app": {
+    "component": {},
+    "semantic": {
+      "accent": {
+        "accent": {
+          "$type": "color",
+          "$value": "{color.cocoa.600}",
+          "$description": "Postil scheme, light: graphite accent, the same in every brand."
+        },
+        "accent-light": {
+          "$type": "color",
+          "$value": "{color.cocoa.600}",
+          "$description": "Postil scheme, light: same as accent, so primary buttons are flat (no gradient)."
+        },
+        "accent-glow": {
+          "$type": "color",
+          "$value": "{app.semantic.accent.accent}",
+          "$description": "Postil scheme, light: no glow.",
+          "$extensions": {
+            "eu.byphil.ds": {
+              "alpha": 0
+            }
+          }
+        },
+        "on-accent": {
+          "$type": "color",
+          "$value": "{color.white}",
+          "$description": "Postil scheme, light: text on the brown accent."
+        },
+        "accent-subtle": {
+          "$type": "color",
+          "$value": "{color.paper.150}",
+          "$description": "Postil scheme, light: subtle accent surface."
+        }
+      },
+      "surface": {
+        "bg-page": {
+          "$type": "color",
+          "$value": "{color.paper.100}",
+          "$description": "Postil scheme, light: off-white e-paper page."
+        },
+        "bg-page-gradient": {
+          "$type": "color",
+          "$value": "{color.paper.100}",
+          "$description": "Postil scheme, light: flat paper, no glow."
+        },
+        "glass-base": {
+          "$type": "color",
+          "$value": "{color.paper.100}",
+          "$description": "Postil scheme, light: sliding screens are paper too.",
+          "$extensions": {
+            "eu.byphil.ds": {
+              "alpha": 0.97
+            }
+          }
+        },
+        "glass-card": {
+          "$type": "color",
+          "$value": "{color.paper.50}",
+          "$description": "Postil scheme, light: cards are an opaque lighter sheet."
+        },
+        "glass-border": {
+          "$type": "color",
+          "$value": "{color.sepia.900}",
+          "$description": "Postil scheme, light: card edge is an ink hairline.",
+          "$extensions": {
+            "eu.byphil.ds": {
+              "alpha": 0.16
+            }
+          }
+        },
+        "glass-border-strong": {
+          "$type": "color",
+          "$value": "{color.sepia.900}",
+          "$description": "Postil scheme, light: stronger card edge.",
+          "$extensions": {
+            "eu.byphil.ds": {
+              "alpha": 0.24
+            }
+          }
+        },
+        "glass-inner-glow": {
+          "$type": "shadow",
+          "$value": "0 0 0 {color.sepia.900@0}",
+          "$description": "Postil scheme, light: no inner highlight.",
+          "$extensions": {
+            "eu.byphil.ds": {
+              "template": true
+            }
+          }
+        },
+        "surface-bar": {
+          "$type": "color",
+          "$value": "{color.paper.50}",
+          "$description": "Postil scheme, light: bottom dock."
+        },
+        "surface-sheet": {
+          "$type": "color",
+          "$value": "{color.paper.150}",
+          "$description": "Postil scheme, light: sheets."
+        },
+        "surface-track": {
+          "$type": "color",
+          "$value": "{color.paper.200}",
+          "$description": "Postil scheme, light: tracks."
+        },
+        "surface-row": {
+          "$type": "color",
+          "$value": "{color.paper.50}",
+          "$description": "Postil scheme, light: rows."
+        },
+        "surface-field": {
+          "$type": "color",
+          "$value": "{color.paper.150}",
+          "$description": "Postil scheme, light: fields."
+        },
+        "surface-selected": {
+          "$type": "color",
+          "$value": "{color.paper.50}",
+          "$description": "Postil scheme, light: selected segment."
+        },
+        "surface-control": {
+          "$type": "color",
+          "$value": "{color.paper.50}",
+          "$description": "Postil scheme, light: controls."
+        }
+      },
+      "text": {
+        "text-primary": {
+          "$type": "color",
+          "$value": "{color.sepia.900}",
+          "$description": "Postil scheme, light: warm ink."
+        },
+        "text-secondary": {
+          "$type": "color",
+          "$value": "{color.sepia.700}",
+          "$description": "Postil scheme, light: secondary ink."
+        },
+        "text-muted": {
+          "$type": "color",
+          "$value": "{color.sepia.550}",
+          "$description": "Postil scheme, light: muted ink (AA on paper)."
+        },
+        "text-link": {
+          "$type": "color",
+          "$value": "{color.cocoa.700}",
+          "$description": "Postil scheme, light: links in graphite."
+        }
+      },
+      "outline": {
+        "outline": {
+          "$type": "color",
+          "$value": "{color.sepia.900}",
+          "$description": "Postil scheme, light: hairline in ink.",
+          "$extensions": {
+            "eu.byphil.ds": {
+              "alpha": 0.16
+            }
+          }
+        },
+        "outline-strong": {
+          "$type": "color",
+          "$value": "{color.paper.300}",
+          "$description": "Postil scheme, light: stronger edge."
+        }
+      },
+      "elevation": {
+        "shadow-card": {
+          "$type": "shadow",
+          "$value": "0 0 0 {color.sepia.900@0}",
+          "$description": "Postil scheme, light: cards have no shadow.",
+          "$extensions": {
+            "eu.byphil.ds": {
+              "template": true
+            }
+          }
+        }
+      },
+      "status": {
+        "tone-read-bg": {
+          "$type": "color",
+          "$value": "{color.paper.200}",
+          "$description": "Postil scheme, light: read badge on paper."
+        },
+        "tone-sent-bg": {
+          "$type": "color",
+          "$value": "{color.paper.200}",
+          "$description": "Postil scheme, light: sent badge on paper."
+        },
+        "tone-sent-fg": {
+          "$type": "color",
+          "$value": "{color.cocoa.700}",
+          "$description": "Postil scheme, light: sent badge text."
+        }
+      },
+      "font": {
+        "font-reading": {
+          "$type": "fontFamily",
+          "$value": "'Iowan Old Style', 'Charter', 'Source Serif 4', 'Georgia', serif",
+          "$description": "Postil scheme, light: reading surfaces (summary, article) in a system serif, nothing bundled."
+        }
+      }
+    }
+  }
+}

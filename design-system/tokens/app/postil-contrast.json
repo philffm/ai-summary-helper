@@ -1,0 +1,46 @@
+{
+  "app": {
+    "component": {},
+    "semantic": {
+      "accent": {
+        "accent": {
+          "$type": "color",
+          "$value": "{color.sepia.900}",
+          "$description": "Postil scheme, high contrast: near-black accent, no hue."
+        },
+        "accent-light": {
+          "$type": "color",
+          "$value": "{color.sepia.900}",
+          "$description": "Postil scheme, high contrast: same as accent, flat buttons."
+        },
+        "accent-glow": {
+          "$type": "color",
+          "$value": "{color.sepia.900}",
+          "$description": "Postil scheme, high contrast: no glow.",
+          "$extensions": {
+            "eu.byphil.ds": {
+              "alpha": 0
+            }
+          }
+        },
+        "accent-a05": {
+          "$type": "color",
+          "$value": "{color.paper.150}",
+          "$description": "Postil scheme, high contrast: faint accent tint."
+        },
+        "accent-a08": {
+          "$type": "color",
+          "$value": "{color.paper.200}",
+          "$description": "Postil scheme, high contrast: accent tint."
+        }
+      },
+      "text": {
+        "text-link": {
+          "$type": "color",
+          "$value": "{color.sepia.900}",
+          "$description": "Postil scheme, high contrast: links in ink."
+        }
+      }
+    }
+  }
+}

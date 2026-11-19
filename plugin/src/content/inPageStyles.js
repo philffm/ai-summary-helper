@@ -1,6 +1,6 @@
 // content/inPageStyles.js
 // Gives a shadow root that AISH draws into a web page the app's design tokens and component CSS (inPage.css), and the host the
-// theme and motion settings (data-theme / data-motion), so the page tools look like the popup (Figma AISH-039).
+// theme and motion settings (data-theme / data-scheme / data-motion), so the page tools look like the popup (Figma AISH-039).
 // The sheet is fetched once per page and shared by every root (adoptedStyleSheets); the host stays invisible until it is there,
 // so nothing flashes unstyled. Names are prefixed `ips` (the content-script bundle shares one scope).
 
@@ -30,7 +30,7 @@ function ipsLoadPrefs() {
   if (!ipsPrefs) {
     ipsPrefs = (async () => {
       // eslint-disable-next-line no-restricted-syntax -- content script: two read-only display settings, StorageManager is popup-side
-      try { return (await chrome.storage.sync.get(['theme', 'reduceMotion'])) || {}; } catch (_) { return {}; }
+      try { return (await chrome.storage.sync.get(['theme', 'colorScheme', 'reduceMotion'])) || {}; } catch (_) { return {}; }
     })();
   }
   return ipsPrefs;
@@ -46,6 +46,7 @@ export function ipsAttach(host, root) {
       if (url) { const link = document.createElement('link'); link.rel = 'stylesheet'; link.href = url; root.prepend(link); }
     }
     if (prefs.theme && prefs.theme !== 'system') host.dataset.theme = prefs.theme;
+    if (['blue', 'viola', 'postil'].includes(prefs.colorScheme)) host.dataset.scheme = prefs.colorScheme;
     if (prefs.reduceMotion) host.dataset.motion = 'reduce';
     host.style.visibility = '';
   });

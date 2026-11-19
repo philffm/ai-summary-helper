@@ -376,6 +376,11 @@
           "$type": "fontFamily",
           "$value": "{brand.font.app}",
           "$description": "UI typeface of the extension (brand)."
+        },
+        "font-reading": {
+          "$type": "fontFamily",
+          "$value": "{brand.font.app}",
+          "$description": "Typeface of reading surfaces (summary text, article). Same as the UI unless a theme changes it (Postil: serif)."
         }
       },
       "surface": {
@@ -873,12 +878,6 @@
         "field-bg": {
           "$type": "color",
           "$value": "{app.semantic.surface.surface-field}"
-        }
-      },
-      "seg": {
-        "seg-on-bg": {
-          "$type": "color",
-          "$value": "{app.semantic.surface.surface-selected}"
         }
       },
       "switch": {

@@ -119,36 +119,6 @@ On/off setting that takes effect at once.
 - Don't:
   - Choices that need a Save: use a checkbox
 
-## Segmented item
-
-Status: stable · Figma node 1258:60
-
-One option of a segmented control.
-
-- CSS: `.sendsheet-seg button`, `.ps-seg button`
-- Source: `plugin/src/modules/sendSheet.js`, `plugin/src/modules/promptSettings.js`
-- Variants: Selected (True / False) · State (Default / Hover / Focus)
-- Properties: Label (text)
-- Tokens: `--field-bg`, `--radius-md`
-- Accessibility:
-  - role=radio + aria-checked, arrow keys move
-
-## Segmented control
-
-Status: stable · Figma node 1258:61
-
-2–4 mutually exclusive options shown at once (summary length, send format).
-
-- CSS: `.sendsheet-seg`, `.ps-seg`
-- Source: `plugin/src/modules/sendSheet.js`, `plugin/src/modules/promptSettings.js`
-- Tokens: `--field-bg`, `--radius-md`
-- Accessibility:
-  - role=radiogroup with aria-label
-- Do:
-  - Up to 4 short options
-- Don't:
-  - More than 4 options: use a select
-
 ## Tab
 
 Status: stable · Figma node 1258:78
@@ -470,31 +440,39 @@ Shows the six recovery words, selectable in one go.
 - Accessibility:
   - tabindex=0, user-select all, Copy and Download next to it
 
-## Pill segmented item
+## Segmented item
 
 Status: stable · Figma node 1264:300
 
-One option of the pill segmented control.
+One option of a segmented control: pill, solid accent when selected.
 
-- CSS: `.a11y-seg button`
-- Source: `plugin/src/popup.html`
+- CSS: `.a11y-seg > button`, `.a11y-seg > label`
+- Source: `plugin/src/popup.html`, `plugin/src/modules/archiveGraph.js`, `plugin/src/modules/feedManager.js`, `plugin/src/modules/graphBrief.js`, `plugin/src/modules/graphClusters.js`, `plugin/src/modules/notesView.js`, `plugin/src/modules/promptSettings.js`, `plugin/src/modules/readingTools.js`, `plugin/src/modules/sendSheet.js`, `plugin/src/modules/syncView.js`, `plugin/src/modules/storageHealth.js`, `plugin/src/modules/workspaceManager.js`, `plugin/src/modules/quiz/quizView.js`, `plugin/src/modules/history/detail.js`
 - Variants: Selected (True / False) · State (Default / Focus)
 - Properties: Label (text)
-- Tokens: `--accent`, `--focus-ring`, `--focus-ring-width`, `--fs-sm`, `--glass-input`, `--on-accent`, `--outline`, `--text-secondary`
+- Tokens: `--accent`, `--accent-a08`, `--duration-fast`, `--easing-standard`, `--focus-ring`, `--focus-ring-width`, `--fs-sm`, `--glass-input`, `--on-accent`, `--outline`, `--radius-full`, `--text-primary`, `--text-secondary`
 - Accessibility:
-  - role=radio, aria-checked
+  - role=radio + aria-checked (or tab + aria-selected, or aria-pressed in a group)
+  - arrow keys, Home and End move and pick (modules/segmented.js); native radio + label pairs keep the browser handling
+  - selected state also as .on and, in forced colours, Highlight / HighlightText
 
-## Pill segmented
+## Segmented control
 
 Status: stable · Figma node 1264:301
 
-Rounded segmented control for 2–3 options in settings and Notes (List | Grid).
+The one control for choosing 1 of 2-4 options at once (Appearance, send format, quiz, graph views, layout switch). Feature classes only place it; modifiers: --hug, --sm, --lg, --solid (floats over a canvas), --stack (two-line items).
 
 - CSS: `.a11y-seg`
-- Source: `plugin/src/popup.html`, `plugin/src/modules/notesView.js`, `plugin/src/modules/syncView.js`
-- Tokens: `--accent`, `--focus-ring`, `--focus-ring-width`, `--fs-sm`, `--glass-input`, `--on-accent`, `--outline`, `--text-secondary`
+- Source: `plugin/src/popup.html`, `plugin/src/modules/archiveGraph.js`, `plugin/src/modules/feedManager.js`, `plugin/src/modules/graphBrief.js`, `plugin/src/modules/graphClusters.js`, `plugin/src/modules/notesView.js`, `plugin/src/modules/promptSettings.js`, `plugin/src/modules/readingTools.js`, `plugin/src/modules/sendSheet.js`, `plugin/src/modules/syncView.js`, `plugin/src/modules/storageHealth.js`, `plugin/src/modules/workspaceManager.js`, `plugin/src/modules/quiz/quizView.js`, `plugin/src/modules/history/detail.js`
+- Tokens: `--accent`, `--accent-a08`, `--duration-fast`, `--easing-standard`, `--focus-ring`, `--focus-ring-width`, `--fs-sm`, `--glass-input`, `--on-accent`, `--outline`, `--radius-full`, `--text-primary`, `--text-secondary`
 - Accessibility:
-  - role=radiogroup with aria-label
+  - role=radiogroup (or tablist / group) with aria-label or aria-labelledby
+- Do:
+  - Up to 4 short options
+  - Icon-only items need an aria-label
+- Don't:
+  - More than 4 options: use a select
+  - Several options at once: use pills (multi-select)
 
 ## Note card
 

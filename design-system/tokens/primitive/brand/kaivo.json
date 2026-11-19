@@ -1,0 +1,120 @@
+{
+  "$description": "Kaivo (the product's name, decided 17 Nov 2026; Finnish 'well', from kaivaa 'to dig'): spring-water petrol ramp, carried over unchanged from the Fonti working name. AA-checked by the gate.",
+  "brand": {
+    "accent": {
+      "$type": "color",
+      "$description": "Brand primary ramp. Light theme reads 600/700, dark theme 300–450, tints 50–200. 950 = text on a bright accent fill.",
+      "50": {
+        "$value": "#E8F6F7"
+      },
+      "100": {
+        "$value": "#CFECEF"
+      },
+      "200": {
+        "$value": "#A8DDE3"
+      },
+      "300": {
+        "$value": "#7CCBD4"
+      },
+      "325": {
+        "$value": "#6EC3CD"
+      },
+      "330": {
+        "$value": "#69C0CB"
+      },
+      "375": {
+        "$value": "#52B3BF"
+      },
+      "400": {
+        "$value": "#3FA6B3"
+      },
+      "450": {
+        "$value": "#2E93A1"
+      },
+      "500": {
+        "$value": "#1C7F8E"
+      },
+      "600": {
+        "$value": "#0F6675"
+      },
+      "700": {
+        "$value": "#0B525E"
+      },
+      "950": {
+        "$value": "#04262C"
+      },
+      "contrast": {
+        "$value": "#0A4650",
+        "$description": "Accent of the High contrast theme: at least 7:1 on white, white text on it too."
+      }
+    },
+    "highlight": {
+      "$type": "color",
+      "$description": "Secondary brand colour (website 'gold' highlights, best-plan border, warm glows).",
+      "200": {
+        "$value": "#F2D9A6"
+      },
+      "300": {
+        "$value": "#F0C36B"
+      },
+      "400": {
+        "$value": "#E4A83E"
+      },
+      "700": {
+        "$value": "#85580C"
+      },
+      "750": {
+        "$value": "#9A6B14"
+      },
+      "800": {
+        "$value": "#7C5209"
+      }
+    },
+    "surface": {
+      "$type": "color",
+      "$description": "Brand-tinted neutral surfaces.",
+      "sheet-light": {
+        "$value": "#EEF3F4"
+      },
+      "sheet-dark": {
+        "$value": "#111D20"
+      },
+      "page-light": {
+        "$value": "#F6FAFA"
+      }
+    },
+    "glow": {
+      "$type": "color",
+      "$description": "Page background glows (light theme), CSS colour strings.",
+      "light-1": {
+        "$value": "hsla(187,50%,94%,1)"
+      },
+      "light-2": {
+        "$value": "hsla(187,50%,90%,1)"
+      }
+    },
+    "font": {
+      "$type": "fontFamily",
+      "app": {
+        "$value": "'Hanken Grotesk', 'Inter', 'Segoe UI', system-ui, -apple-system, sans-serif"
+      },
+      "display": {
+        "$value": "'Space Grotesk', sans-serif"
+      },
+      "body": {
+        "$value": "'Inter', sans-serif"
+      },
+      "mono": {
+        "$value": "'JetBrains Mono', monospace"
+      }
+    }
+  },
+  "$extensions": {
+    "eu.byphil.ds": {
+      "provisional": [
+        "ramp is the first proposal from the AISH-042/043 exploration",
+        "fonts: same as AISH until the rebrand picks a typeface"
+      ]
+    }
+  }
+}

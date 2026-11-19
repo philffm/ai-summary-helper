@@ -1,6 +1,6 @@
 {
-  "$description": "Where the generated tokens go. Each output is a marked region in a stylesheet (/* @tokens:start <name> */ … /* @tokens:end <name> */); each block lists the token files whose tokens it declares, in cascade order. `stacks` say which files are in effect in a theme, for the contrast gate, Figma and Android.",
-  "defaultBrand": "aish",
+  "$description": "Where the generated tokens go. Each output is a marked region in a stylesheet (/* @tokens:start <name> */ … /* @tokens:end <name> */); each block lists the token files whose tokens it declares, in cascade order. `stacks` say which files are in effect in a theme, for the contrast gate, Figma and Android. defaultBrand is the brand the source stylesheets are written in (Kaivo); a context can override it (the website stays AISH until it is rebranded). Builds of a brand rewrite the regions for that brand: the AISH build (plugin/scripts/build.js) puts the AISH blue back.",
+  "defaultBrand": "kaivo",
   "contexts": {
     "app": {
       "label": "Extension (popup, side panel, reader)",
@@ -19,8 +19,28 @@
           "app/base",
           "app/light",
           "app/contrast"
+        ],
+        "postil": [
+          "app/base",
+          "app/light",
+          "app/postil"
+        ],
+        "postil-dark": [
+          "app/base",
+          "app/light",
+          "app/dark",
+          "app/dark-forced",
+          "app/postil-dark"
+        ],
+        "postil-contrast": [
+          "app/base",
+          "app/light",
+          "app/postil",
+          "app/contrast",
+          "app/postil-contrast"
         ]
-      }
+      },
+      "defaultBrand": "kaivo"
     },
     "site": {
       "label": "Website",
@@ -54,7 +74,8 @@
             "site/photo/light"
           ]
         }
-      }
+      },
+      "defaultBrand": "aish"
     }
   },
   "outputs": [
@@ -72,6 +93,33 @@
           ]
         },
         {
+          "scheme": "aish",
+          "selector": ":root[data-scheme='blue']",
+          "sets": [
+            "app/base",
+            "app/light"
+          ]
+        },
+        {
+          "comment": "colour schemes: Settings › Appearance › Color scheme (data-scheme). Brand schemes emit only the colours that differ from this build's brand; they come right after the light block so the dark and contrast blocks still win where they apply.",
+          "scheme": "viola",
+          "selector": ":root[data-scheme='viola']",
+          "sets": [
+            "app/base",
+            "app/light"
+          ]
+        },
+        {
+          "comment": "Postil: e-reader scheme, off-white paper and graphite ink, flat (light)",
+          "selector": ":root[data-scheme='postil']",
+          "sets": [
+            "app/postil"
+          ],
+          "extra": [
+            "color-scheme: light"
+          ]
+        },
+        {
           "media": "(prefers-color-scheme: dark)",
           "selector": ":root:not([data-theme='light']):not([data-theme='contrast'])",
           "sets": [
@@ -86,12 +134,91 @@
           ]
         },
         {
+          "scheme": "aish",
+          "media": "(prefers-color-scheme: dark)",
+          "selector": ":root[data-scheme='blue']:not([data-theme='light']):not([data-theme='contrast'])",
+          "sets": [
+            "app/dark"
+          ]
+        },
+        {
+          "scheme": "viola",
+          "media": "(prefers-color-scheme: dark)",
+          "selector": ":root[data-scheme='viola']:not([data-theme='light']):not([data-theme='contrast'])",
+          "sets": [
+            "app/dark"
+          ]
+        },
+        {
+          "scheme": "aish",
+          "selector": ":root[data-scheme='blue'][data-theme='dark']",
+          "sets": [
+            "app/dark",
+            "app/dark-forced"
+          ]
+        },
+        {
+          "scheme": "viola",
+          "selector": ":root[data-scheme='viola'][data-theme='dark']",
+          "sets": [
+            "app/dark",
+            "app/dark-forced"
+          ]
+        },
+        {
+          "comment": "Postil dark: warm charcoal and soft off-white, like an e-reader night mode",
+          "media": "(prefers-color-scheme: dark)",
+          "selector": ":root[data-scheme='postil']:not([data-theme='light']):not([data-theme='contrast'])",
+          "sets": [
+            "app/postil-dark"
+          ],
+          "extra": [
+            "color-scheme: dark"
+          ]
+        },
+        {
+          "selector": ":root[data-scheme='postil'][data-theme='dark']",
+          "sets": [
+            "app/postil-dark"
+          ],
+          "extra": [
+            "color-scheme: dark"
+          ]
+        },
+        {
           "selector": ":root[data-theme='contrast']",
           "sets": [
             "app/contrast"
           ],
           "extra": [
             "color-scheme: light"
+          ]
+        },
+        {
+          "scheme": "aish",
+          "selector": ":root[data-scheme='blue'][data-theme='contrast']",
+          "sets": [
+            "app/contrast"
+          ],
+          "extra": [
+            "color-scheme: light"
+          ]
+        },
+        {
+          "scheme": "viola",
+          "selector": ":root[data-scheme='viola'][data-theme='contrast']",
+          "sets": [
+            "app/contrast"
+          ],
+          "extra": [
+            "color-scheme: light"
+          ]
+        },
+        {
+          "comment": "Postil, high contrast: ink-black accent on the contrast base",
+          "selector": ":root[data-scheme='postil'][data-theme='contrast']",
+          "sets": [
+            "app/postil-contrast"
           ]
         },
         {
@@ -125,6 +252,33 @@
           ]
         },
         {
+          "scheme": "aish",
+          "selector": ":host([data-scheme='blue'])",
+          "sets": [
+            "app/base",
+            "app/light"
+          ]
+        },
+        {
+          "comment": "colour schemes: Settings › Appearance › Color scheme (data-scheme). Brand schemes emit only the colours that differ from this build's brand; they come right after the light block so the dark and contrast blocks still win where they apply.",
+          "scheme": "viola",
+          "selector": ":host([data-scheme='viola'])",
+          "sets": [
+            "app/base",
+            "app/light"
+          ]
+        },
+        {
+          "comment": "Postil: e-reader scheme, off-white paper and graphite ink, flat (light)",
+          "selector": ":host([data-scheme='postil'])",
+          "sets": [
+            "app/postil"
+          ],
+          "extra": [
+            "color-scheme: light"
+          ]
+        },
+        {
           "media": "(prefers-color-scheme: dark)",
           "selector": ":host(:not([data-theme='light']):not([data-theme='contrast']))",
           "sets": [
@@ -139,9 +293,88 @@
           ]
         },
         {
+          "scheme": "aish",
+          "media": "(prefers-color-scheme: dark)",
+          "selector": ":host([data-scheme='blue']:not([data-theme='light']):not([data-theme='contrast']))",
+          "sets": [
+            "app/dark"
+          ]
+        },
+        {
+          "scheme": "viola",
+          "media": "(prefers-color-scheme: dark)",
+          "selector": ":host([data-scheme='viola']:not([data-theme='light']):not([data-theme='contrast']))",
+          "sets": [
+            "app/dark"
+          ]
+        },
+        {
+          "scheme": "aish",
+          "selector": ":host([data-scheme='blue'][data-theme='dark'])",
+          "sets": [
+            "app/dark",
+            "app/dark-forced"
+          ]
+        },
+        {
+          "scheme": "viola",
+          "selector": ":host([data-scheme='viola'][data-theme='dark'])",
+          "sets": [
+            "app/dark",
+            "app/dark-forced"
+          ]
+        },
+        {
+          "comment": "Postil dark: warm charcoal and soft off-white, like an e-reader night mode",
+          "media": "(prefers-color-scheme: dark)",
+          "selector": ":host([data-scheme='postil']:not([data-theme='light']):not([data-theme='contrast']))",
+          "sets": [
+            "app/postil-dark"
+          ],
+          "extra": [
+            "color-scheme: dark"
+          ]
+        },
+        {
+          "selector": ":host([data-scheme='postil'][data-theme='dark'])",
+          "sets": [
+            "app/postil-dark"
+          ],
+          "extra": [
+            "color-scheme: dark"
+          ]
+        },
+        {
           "selector": ":host([data-theme='contrast'])",
           "sets": [
             "app/contrast"
+          ]
+        },
+        {
+          "scheme": "aish",
+          "selector": ":host([data-scheme='blue'][data-theme='contrast'])",
+          "sets": [
+            "app/contrast"
+          ],
+          "extra": [
+            "color-scheme: light"
+          ]
+        },
+        {
+          "scheme": "viola",
+          "selector": ":host([data-scheme='viola'][data-theme='contrast'])",
+          "sets": [
+            "app/contrast"
+          ],
+          "extra": [
+            "color-scheme: light"
+          ]
+        },
+        {
+          "comment": "Postil, high contrast: ink-black accent on the contrast base",
+          "selector": ":host([data-scheme='postil'][data-theme='contrast'])",
+          "sets": [
+            "app/postil-contrast"
           ]
         },
         {
@@ -478,6 +711,28 @@
       820,
       960,
       1180
+    ]
+  },
+  "contrastDerived": {
+    "$description": "Pairs read from plugin/src/styles.css (a rule with `color: var(--a)` and `background: var(--b)`), checked in every brand × theme at 4.5:1. min3: gradient end stops, where the button text only has to hold 3:1. debt: pairs that already failed when this gate was added; shrink the list, a new failure fails the build.",
+    "min3": [
+      "--on-accent on --accent-light"
+    ],
+    "debt": [
+      "--accent on --accent-a08",
+      "--accent on --accent-a10",
+      "--accent on --accent-a12",
+      "--accent on --accent-a15",
+      "--accent on --accent-glow",
+      "--accent on --accent-soft",
+      "--accent on --glass-card",
+      "--on-accent on --check-bg",
+      "--on-accent on --danger",
+      "--on-accent on --mood-pos",
+      "--on-accent on --ok",
+      "--on-solid on --danger-strong",
+      "--on-solid on --localsend-bg",
+      "--on-solid on --ok-strong"
     ]
   }
 }

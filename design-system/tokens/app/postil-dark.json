@@ -1,0 +1,256 @@
+{
+  "app": {
+    "component": {},
+    "semantic": {
+      "accent": {
+        "accent": {
+          "$type": "color",
+          "$value": "{color.bone.200}",
+          "$description": "Postil scheme, dark: soft off-white accent, the same in every brand."
+        },
+        "accent-light": {
+          "$type": "color",
+          "$value": "{color.bone.200}",
+          "$description": "Postil scheme, dark: same as accent, so primary buttons are flat."
+        },
+        "accent-glow": {
+          "$type": "color",
+          "$value": "{app.semantic.accent.accent}",
+          "$description": "Postil scheme, dark: no glow.",
+          "$extensions": {
+            "eu.byphil.ds": {
+              "alpha": 0
+            }
+          }
+        },
+        "on-accent": {
+          "$type": "color",
+          "$value": "{color.char.950}",
+          "$description": "Postil scheme, dark: text on the off-white accent."
+        },
+        "accent-soft": {
+          "$type": "color",
+          "$value": "{color.bone.200}",
+          "$description": "Postil scheme, dark: soft accent wash.",
+          "$extensions": {
+            "eu.byphil.ds": {
+              "alpha": 0.1
+            }
+          }
+        },
+        "accent-soft-strong": {
+          "$type": "color",
+          "$value": "{color.bone.200}",
+          "$description": "Postil scheme, dark: stronger accent wash.",
+          "$extensions": {
+            "eu.byphil.ds": {
+              "alpha": 0.18
+            }
+          }
+        },
+        "accent-subtle": {
+          "$type": "color",
+          "$value": "{color.bone.200}",
+          "$description": "Postil scheme, dark: subtle accent surface.",
+          "$extensions": {
+            "eu.byphil.ds": {
+              "alpha": 0.1
+            }
+          }
+        },
+        "accent-selected": {
+          "$type": "color",
+          "$value": "{color.bone.200}",
+          "$description": "Postil scheme, dark: selected row wash.",
+          "$extensions": {
+            "eu.byphil.ds": {
+              "alpha": 0.12
+            }
+          }
+        }
+      },
+      "surface": {
+        "bg-page": {
+          "$type": "color",
+          "$value": "{color.char.950}",
+          "$description": "Postil scheme, dark: charcoal page."
+        },
+        "bg-page-gradient": {
+          "$type": "color",
+          "$value": "{color.char.950}",
+          "$description": "Postil scheme, dark: flat charcoal, no glow."
+        },
+        "glass-base": {
+          "$type": "color",
+          "$value": "{color.char.950}",
+          "$description": "Postil scheme, dark: sliding screens are charcoal too.",
+          "$extensions": {
+            "eu.byphil.ds": {
+              "alpha": 0.97
+            }
+          }
+        },
+        "glass-card": {
+          "$type": "color",
+          "$value": "{color.char.900}",
+          "$description": "Postil scheme, dark: cards are an opaque lighter sheet."
+        },
+        "glass-input": {
+          "$type": "color",
+          "$value": "{color.char.850}",
+          "$description": "Postil scheme, dark: input wells."
+        },
+        "glass-border": {
+          "$type": "color",
+          "$value": "{color.bone.100}",
+          "$description": "Postil scheme, dark: card edge is a hairline.",
+          "$extensions": {
+            "eu.byphil.ds": {
+              "alpha": 0.14
+            }
+          }
+        },
+        "glass-border-strong": {
+          "$type": "color",
+          "$value": "{color.bone.100}",
+          "$description": "Postil scheme, dark: stronger card edge.",
+          "$extensions": {
+            "eu.byphil.ds": {
+              "alpha": 0.22
+            }
+          }
+        },
+        "glass-inner-glow": {
+          "$type": "color",
+          "$value": "0 0 0 {color.bone.100@0}",
+          "$description": "Postil scheme, dark: no inner highlight.",
+          "$extensions": {
+            "eu.byphil.ds": {
+              "template": true
+            }
+          }
+        },
+        "surface-bar": {
+          "$type": "color",
+          "$value": "{color.char.900}",
+          "$description": "Postil scheme, dark: bottom dock."
+        },
+        "surface-sheet": {
+          "$type": "color",
+          "$value": "{color.char.850}",
+          "$description": "Postil scheme, dark: sheets."
+        },
+        "surface-track": {
+          "$type": "color",
+          "$value": "{color.char.800}",
+          "$description": "Postil scheme, dark: tracks."
+        },
+        "surface-row": {
+          "$type": "color",
+          "$value": "{color.char.900}",
+          "$description": "Postil scheme, dark: rows."
+        },
+        "surface-field": {
+          "$type": "color",
+          "$value": "{color.char.850}",
+          "$description": "Postil scheme, dark: fields."
+        },
+        "surface-selected": {
+          "$type": "color",
+          "$value": "{color.char.800}",
+          "$description": "Postil scheme, dark: selected segment."
+        },
+        "surface-control": {
+          "$type": "color",
+          "$value": "{color.char.800}",
+          "$description": "Postil scheme, dark: controls."
+        }
+      },
+      "text": {
+        "text-primary": {
+          "$type": "color",
+          "$value": "{color.bone.100}",
+          "$description": "Postil scheme, dark: soft off-white ink."
+        },
+        "text-secondary": {
+          "$type": "color",
+          "$value": "{color.bone.300}",
+          "$description": "Postil scheme, dark: secondary ink."
+        },
+        "text-muted": {
+          "$type": "color",
+          "$value": "{color.bone.400}",
+          "$description": "Postil scheme, dark: muted ink (AA on charcoal)."
+        },
+        "text-link": {
+          "$type": "color",
+          "$value": "{color.bone.200}",
+          "$description": "Postil scheme, dark: links in off-white."
+        }
+      },
+      "outline": {
+        "outline": {
+          "$type": "color",
+          "$value": "{color.bone.100}",
+          "$description": "Postil scheme, dark: hairline.",
+          "$extensions": {
+            "eu.byphil.ds": {
+              "alpha": 0.14
+            }
+          }
+        },
+        "outline-soft": {
+          "$type": "color",
+          "$value": "{color.bone.100}",
+          "$description": "Postil scheme, dark: softer hairline.",
+          "$extensions": {
+            "eu.byphil.ds": {
+              "alpha": 0.08
+            }
+          }
+        },
+        "outline-strong": {
+          "$type": "color",
+          "$value": "{color.char.700}",
+          "$description": "Postil scheme, dark: stronger edge."
+        }
+      },
+      "elevation": {
+        "shadow-card": {
+          "$type": "color",
+          "$value": "0 0 0 {color.bone.100@0}",
+          "$description": "Postil scheme, dark: cards have no shadow.",
+          "$extensions": {
+            "eu.byphil.ds": {
+              "template": true
+            }
+          }
+        }
+      },
+      "status": {
+        "tone-read-bg": {
+          "$type": "color",
+          "$value": "{color.char.800}",
+          "$description": "Postil scheme, dark: read badge on charcoal."
+        },
+        "tone-sent-bg": {
+          "$type": "color",
+          "$value": "{color.char.800}",
+          "$description": "Postil scheme, dark: sent badge on charcoal."
+        },
+        "tone-sent-fg": {
+          "$type": "color",
+          "$value": "{color.bone.200}",
+          "$description": "Postil scheme, dark: sent badge text."
+        }
+      },
+      "inverse": {
+        "link-inverse": {
+          "$type": "color",
+          "$value": "{color.sepia.700}",
+          "$description": "Postil scheme, dark: links on the light inverse surface."
+        }
+      }
+    }
+  }
+}

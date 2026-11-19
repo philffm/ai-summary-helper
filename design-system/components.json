@@ -290,73 +290,6 @@
    ]
   },
   {
-   "name": "Segmented item",
-   "status": "stable",
-   "purpose": "One option of a segmented control.",
-   "selectors": [
-    ".sendsheet-seg button",
-    ".ps-seg button"
-   ],
-   "source": [
-    "plugin/src/modules/sendSheet.js",
-    "plugin/src/modules/promptSettings.js"
-   ],
-   "figma": {
-    "node": "1258:60",
-    "key": "7f28d57e2ec552bc10ef26febba0aea406043027"
-   },
-   "variants": {
-    "Selected": [
-     "True",
-     "False"
-    ],
-    "State": [
-     "Default",
-     "Hover",
-     "Focus"
-    ]
-   },
-   "props": {
-    "Label": {
-     "type": "TEXT",
-     "default": "Short"
-    }
-   },
-   "a11y": [
-    "role=radio + aria-checked, arrow keys move"
-   ],
-   "do": [],
-   "dont": []
-  },
-  {
-   "name": "Segmented control",
-   "status": "stable",
-   "purpose": "2–4 mutually exclusive options shown at once (summary length, send format).",
-   "selectors": [
-    ".sendsheet-seg",
-    ".ps-seg"
-   ],
-   "source": [
-    "plugin/src/modules/sendSheet.js",
-    "plugin/src/modules/promptSettings.js"
-   ],
-   "figma": {
-    "node": "1258:61",
-    "key": "35431a361eb31d21ee374f5f0385d5e47fc56ceb"
-   },
-   "variants": {},
-   "props": {},
-   "a11y": [
-    "role=radiogroup with aria-label"
-   ],
-   "do": [
-    "Up to 4 short options"
-   ],
-   "dont": [
-    "More than 4 options: use a select"
-   ]
-  },
-  {
    "name": "Tab",
    "status": "stable",
    "purpose": "One tab of the shared underline tab bar.",
@@ -1146,14 +1079,28 @@
    "dont": []
   },
   {
-   "name": "Pill segmented item",
+   "name": "Segmented item",
    "status": "stable",
-   "purpose": "One option of the pill segmented control.",
+   "purpose": "One option of a segmented control: pill, solid accent when selected.",
    "selectors": [
-    ".a11y-seg button"
+    ".a11y-seg > button",
+    ".a11y-seg > label"
    ],
    "source": [
-    "plugin/src/popup.html"
+    "plugin/src/popup.html",
+    "plugin/src/modules/archiveGraph.js",
+    "plugin/src/modules/feedManager.js",
+    "plugin/src/modules/graphBrief.js",
+    "plugin/src/modules/graphClusters.js",
+    "plugin/src/modules/notesView.js",
+    "plugin/src/modules/promptSettings.js",
+    "plugin/src/modules/readingTools.js",
+    "plugin/src/modules/sendSheet.js",
+    "plugin/src/modules/syncView.js",
+    "plugin/src/modules/storageHealth.js",
+    "plugin/src/modules/workspaceManager.js",
+    "plugin/src/modules/quiz/quizView.js",
+    "plugin/src/modules/history/detail.js"
    ],
    "figma": {
     "node": "1264:300",
@@ -1176,22 +1123,35 @@
     }
    },
    "a11y": [
-    "role=radio, aria-checked"
+    "role=radio + aria-checked (or tab + aria-selected, or aria-pressed in a group)",
+    "arrow keys, Home and End move and pick (modules/segmented.js); native radio + label pairs keep the browser handling",
+    "selected state also as .on and, in forced colours, Highlight / HighlightText"
    ],
    "do": [],
    "dont": []
   },
   {
-   "name": "Pill segmented",
+   "name": "Segmented control",
    "status": "stable",
-   "purpose": "Rounded segmented control for 2–3 options in settings and Notes (List | Grid).",
+   "purpose": "The one control for choosing 1 of 2-4 options at once (Appearance, send format, quiz, graph views, layout switch). Feature classes only place it; modifiers: --hug, --sm, --lg, --solid (floats over a canvas), --stack (two-line items).",
    "selectors": [
     ".a11y-seg"
    ],
    "source": [
     "plugin/src/popup.html",
+    "plugin/src/modules/archiveGraph.js",
+    "plugin/src/modules/feedManager.js",
+    "plugin/src/modules/graphBrief.js",
+    "plugin/src/modules/graphClusters.js",
     "plugin/src/modules/notesView.js",
-    "plugin/src/modules/syncView.js"
+    "plugin/src/modules/promptSettings.js",
+    "plugin/src/modules/readingTools.js",
+    "plugin/src/modules/sendSheet.js",
+    "plugin/src/modules/syncView.js",
+    "plugin/src/modules/storageHealth.js",
+    "plugin/src/modules/workspaceManager.js",
+    "plugin/src/modules/quiz/quizView.js",
+    "plugin/src/modules/history/detail.js"
    ],
    "figma": {
     "node": "1264:301",
@@ -1200,10 +1160,16 @@
    "variants": {},
    "props": {},
    "a11y": [
-    "role=radiogroup with aria-label"
+    "role=radiogroup (or tablist / group) with aria-label or aria-labelledby"
    ],
-   "do": [],
-   "dont": []
+   "do": [
+    "Up to 4 short options",
+    "Icon-only items need an aria-label"
+   ],
+   "dont": [
+    "More than 4 options: use a select",
+    "Several options at once: use pills (multi-select)"
+   ]
   },
   {
    "name": "Note card",

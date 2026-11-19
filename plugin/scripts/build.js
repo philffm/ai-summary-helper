@@ -24,7 +24,8 @@
 
 import fs from 'node:fs';
 import path from 'node:path';
-import { fileURLToPath } from 'node:url';
+import { fileURLToPath, pathToFileURL } from 'node:url';
+import { execFileSync } from 'node:child_process';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const { slimLocales } = await import('./slim-locales.mjs');
@@ -280,8 +281,10 @@ function buildPlatform(name, manifestPath) {
     return outDir;
 }
 
-function main() {
+async function main() {
     const args = process.argv.slice(2);
+    // Design tokens must be up to date and WCAG AA in every brand × theme (and every stylesheet colour pair, see design-system/build.mjs): a build with an unreadable pair does not ship.
+    execFileSync(process.execPath, [path.join(ROOT, '..', 'design-system', 'build.mjs'), '--check'], { stdio: 'inherit' });
     const clean = args.includes('--clean');
     const apiBase = parseApiFlag(args);
     const stripeTest = args.includes('--stripe-test');
@@ -347,7 +350,42 @@ function main() {
 
     if (stripeTest) for (const dir of built.filter(Boolean)) useStripeTestMode(dir);
     if (apiBase) for (const dir of built.filter(Boolean)) pointAtApi(dir, apiBase);
+    // The source stylesheets are written in Kaivo colours (design-system/config.json), the source text in AISH: the plain build is the
+    // AISH build, so its token regions go back to the AISH blue. `--kaivo` (below) copies this build and writes the Kaivo regions.
+    for (const dir of built.filter(Boolean)) execFileSync(process.execPath, [path.join(ROOT, '..', 'design-system', 'build.mjs'), '--brand=aish', '--into', dir, '--context', 'app'], { stdio: 'inherit' });
+    await brandCopies(built.filter(Boolean), args);
     console.log('✅ Build complete.');
+}
+
+function copyTree(from, to) {
+    fs.mkdirSync(to, { recursive: true });
+    for (const e of fs.readdirSync(from, { withFileTypes: true })) {
+        const a = path.join(from, e.name), b = path.join(to, e.name);
+        if (e.isDirectory()) copyTree(a, b); else fs.copyFileSync(a, b);
+    }
+}
+
+/**
+ * `--<brand>` / `--brand=<id>` (see brands/README.md): the default build in dev/aish-extension-<platform> stays as it is, and
+ * a rebranded copy goes to dev/<slug>-extension-<platform>. `--strict` fails when the old name is still visible.
+ * Without brands/ in the checkout (it is git-excluded) the flag is ignored with a warning.
+ */
+async function brandCopies(dirs, args) {
+    if (!args.some((a) => a.startsWith('--') && !['--clean', '--api', '--stripe-test', '--strict', '--bundle'].includes(a))) return;
+    const BRANDS = path.join(ROOT, '..', 'brands', 'index.mjs');
+    if (!fs.existsSync(BRANDS)) { console.warn('  ! brand flag ignored: brands/index.mjs is not in this checkout'); return; }
+    const { brandIdFromArgs, loadBrand, isDefault, brandBuild, warnProvisional } = await import(pathToFileURL(BRANDS).href);
+    const brand = loadBrand(brandIdFromArgs(args));
+    if (isDefault(brand)) return;
+    warnProvisional(brand);
+    for (const dir of dirs) {
+        const platform = path.basename(dir).replace(/^aish-extension-/, '');
+        const out = path.join(DEV, `${brand.slug || brand.id}-extension-${platform}`);
+        fs.rmSync(out, { recursive: true, force: true });
+        copyTree(dir, out);
+        brandBuild(out, brand, 'extension', { platform, strict: args.includes('--strict') });
+        console.log(`  ✓ ${brand.name}: ${path.relative(ROOT, out)}`);
+    }
 }
 
 /**
@@ -410,4 +448,4 @@ function useStripeTestMode(dir) {
     console.log(`  ⚠ ${path.basename(dir)}: DEV BUILD, Stripe TEST checkout (${hits}). Do not ship this build.`);
 }
 
-main();
+await main();

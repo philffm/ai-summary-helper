@@ -92,19 +92,20 @@
   --elevation-sheet: 0 -8px 30px rgba(15,23,42,0.2); /* Upward shadow of bottom sheets. */
   /* semantic · font */
   --font-ui: 'Hanken Grotesk', 'Inter', 'Segoe UI', system-ui, -apple-system, sans-serif; /* UI typeface of the extension (brand). */
+  --font-reading: 'Hanken Grotesk', 'Inter', 'Segoe UI', system-ui, -apple-system, sans-serif; /* Typeface of reading surfaces (summary text, article). Same as the UI unless a theme changes it (Postil: serif). */
   /* semantic · surface */
   --surface-busy: #111827; /* Summarise button while a request runs. */
   --surface-paper: #ffffff; /* QR codes need a white quiet zone in every theme. */
-  --bg-page: #faf8ff; /* Page background of every screen; the base all translucent surfaces are composited over. */
-  --bg-page-gradient: radial-gradient(at 0% 0%, hsla(217,100%,95%,1) 0, transparent 50%), radial-gradient(at 100% 100%, hsla(217,100%,92%,1) 0, transparent 50%); /* Soft accent glow painted over bg-page at the edges of the window. */
-  --glass-base: rgba(241,241,241,0.92); /* Background of a screen that slides over another (settings, detail); nearly opaque. */
+  --bg-page: #F6FAFA; /* Page background of every screen; the base all translucent surfaces are composited over. */
+  --bg-page-gradient: radial-gradient(at 0% 0%, hsla(187,50%,94%,1) 0, transparent 50%), radial-gradient(at 100% 100%, hsla(187,50%,90%,1) 0, transparent 50%); /* Soft accent glow painted over bg-page at the edges of the window. */
+  --glass-base: rgba(238,243,244,0.92); /* Background of a screen that slides over another (settings, detail); nearly opaque. */
   --glass-card: rgba(255,255,255,0.55); /* Card surface (article cards, settings rows, input card); translucent over bg-page. */
   --glass-input: rgba(0,0,0,0.04); /* Field surface: inputs, chips, search fields, icon tiles. */
   --glass-border: rgba(255,255,255,0.55); /* Edge of glass cards and the input card. */
   --glass-border-strong: rgba(255,255,255,0.45); /* Stronger glass edge for floating panels and toasts. */
   --glass-inner-glow: inset 0 1px 0 rgba(255,255,255,0.45); /* 1px inner highlight at the top of glass surfaces. */
   --surface-bar: #ffffff; /* Background of fixed bars (pane headers, toolbars) above scrolling content. */
-  --surface-sheet: #f1f1f1; /* Bottom sheets and dialogs: opaque so text behind does not show through. */
+  --surface-sheet: #EEF3F4; /* Bottom sheets and dialogs: opaque so text behind does not show through. */
   --scrim: rgba(15,23,42,0.45); /* Dims the page behind a sheet or dialog. */
   --surface-floating: color-mix(in srgb, var(--surface-sheet) 96%, transparent); /* Floating player, popovers and menus that sit above content. */
   --surface-track: #e2e8f0; /* Unfilled part of progress bars, sliders and meters. */
@@ -148,19 +149,19 @@
   --accent-a15: color-mix(in srgb, var(--accent) 15%, transparent); /* Accent at 15%: tints for hover, selection and soft borders. Never as text. */
   --accent-a25: color-mix(in srgb, var(--accent) 25%, transparent); /* Accent at 25%: tints for hover, selection and soft borders. Never as text. */
   --accent-a30: color-mix(in srgb, var(--accent) 30%, transparent); /* Accent at 30%: tints for hover, selection and soft borders. Never as text. */
-  --accent: #2563eb; /* Brand action colour: primary buttons, selected states, links on controls, focus ring, progress. */
-  --accent-light: #3b82f6; /* Second stop of the accent gradient (primary button, nav blob, switch on). */
+  --accent: #0F6675; /* Brand action colour: primary buttons, selected states, links on controls, focus ring, progress. */
+  --accent-light: #1C7F8E; /* Second stop of the accent gradient (primary button, nav blob, switch on). */
   --accent-glow: color-mix(in srgb, var(--accent) 25%, transparent); /* Coloured glow under primary buttons. */
   --on-accent: #ffffff; /* Text and icons on an accent fill (primary button, selected pill, active nav item). */
   --accent-soft: color-mix(in srgb, var(--accent) 10%, transparent); /* Light accent tint for selected or hovered rows. */
   --accent-soft-strong: color-mix(in srgb, var(--accent) 18%, transparent); /* Stronger accent tint for pressed or highlighted rows. */
-  --accent-subtle: #eff6ff; /* Faint accent tint behind accent-coloured text (chips, badges). */
+  --accent-subtle: #E8F6F7; /* Faint accent tint behind accent-coloured text (chips, badges). */
   --accent-selected: color-mix(in srgb, var(--accent) 8%, transparent); /* Accent tint of a selected card or row. */
   /* semantic · text */
   --text-primary: #0f172a; /* Body text, titles and icons: the strongest text colour (≥ 14:1 on cards). */
   --text-secondary: #334155; /* Supporting text: labels, descriptions, inactive controls with text. */
   --text-muted: #566274; /* Least important readable text: hints, meta lines, timestamps, placeholders (≥ 4.5:1). */
-  --text-link: #1d4ed8; /* Links inside text. */
+  --text-link: #0B525E; /* Links inside text. */
   /* semantic · outline */
   --outline: rgba(100,116,139,0.25); /* Default 1px border of cards, fields, bars and dividers. Decorative (about 1.35:1); a field edge that must be found needs outline-strong (ADR 0005). */
   --outline-soft: rgba(255,255,255,0.55); /* Very subtle border inside glass surfaces. */
@@ -168,8 +169,8 @@
   /* semantic · status */
   --tone-read-bg: #e5e7eb; /* Status “Read” badge background. */
   --tone-read-fg: #475569; /* Status “Read” badge text (≥ 5.4:1 on its background). */
-  --tone-sent-bg: #dbeafe; /* Status “Sent” badge background. */
-  --tone-sent-fg: #1d4ed8; /* Status “Sent” badge text (≥ 5.4:1 on its background). */
+  --tone-sent-bg: #CFECEF; /* Status “Sent” badge background. */
+  --tone-sent-fg: #0B525E; /* Status “Sent” badge text (≥ 5.4:1 on its background). */
   --tone-new-bg: #dcfce7; /* Status “New” badge background. */
   --tone-new-fg: #166534; /* Status “New” badge text (≥ 5.4:1 on its background). */
   --tone-arch-bg: #fef3c7; /* Status “Archived” badge background. */
@@ -185,7 +186,7 @@
   /* semantic · inverse */
   --surface-inverse: #0f172a; /* Inverse surface (toasts, tooltips): dark in light mode, light in dark mode. */
   --text-inverse: #ffffff; /* Text on surface-inverse. */
-  --link-inverse: #93c5fd; /* Action or link on surface-inverse (toast Undo). */
+  --link-inverse: #7CCBD4; /* Action or link on surface-inverse (toast Undo). */
   /* semantic · overlay */
   --overlay-strong: color-mix(in srgb, var(--text-primary) 18%, transparent); /* Stronger media overlay for text on images. */
   --overlay: color-mix(in srgb, var(--text-primary) 10%, transparent); /* Dark overlay on media (video poster, image captions). */
@@ -299,8 +300,6 @@
   --row-on-bg: var(--accent-subtle);
   /* component · field */
   --field-bg: var(--surface-field);
-  /* component · seg */
-  --seg-on-bg: var(--surface-selected);
   /* component · switch */
   --switch-off: var(--control-off);
   --switch-knob: var(--control-knob);
@@ -316,11 +315,89 @@
   --rsvp-bg: var(--surface-sheet); /* Speed reader: the reader card. */
   --rsvp-context-bg: var(--surface-row); /* Speed reader: the sentence or paragraph shown around the word. */
 }
+:host([data-scheme='blue']) {
+  /* semantic · accent */
+  --accent: #2563eb; /* Brand action colour: primary buttons, selected states, links on controls, focus ring, progress. */
+  --accent-light: #3b82f6; /* Second stop of the accent gradient (primary button, nav blob, switch on). */
+  --accent-subtle: #eff6ff; /* Faint accent tint behind accent-coloured text (chips, badges). */
+  /* semantic · surface */
+  --bg-page: #faf8ff; /* Page background of every screen; the base all translucent surfaces are composited over. */
+  --bg-page-gradient: radial-gradient(at 0% 0%, hsla(217,100%,95%,1) 0, transparent 50%), radial-gradient(at 100% 100%, hsla(217,100%,92%,1) 0, transparent 50%); /* Soft accent glow painted over bg-page at the edges of the window. */
+  --glass-base: rgba(241,241,241,0.92); /* Background of a screen that slides over another (settings, detail); nearly opaque. */
+  --surface-sheet: #f1f1f1; /* Bottom sheets and dialogs: opaque so text behind does not show through. */
+  /* semantic · text */
+  --text-link: #1d4ed8; /* Links inside text. */
+  /* semantic · status */
+  --tone-sent-bg: #dbeafe; /* Status “Sent” badge background. */
+  --tone-sent-fg: #1d4ed8; /* Status “Sent” badge text (≥ 5.4:1 on its background). */
+  /* semantic · inverse */
+  --link-inverse: #93c5fd; /* Action or link on surface-inverse (toast Undo). */
+}
+/* colour schemes: Settings › Appearance › Color scheme (data-scheme). Brand schemes emit only the colours that differ from this build's brand; they come right after the light block so the dark and contrast blocks still win where they apply. */
+:host([data-scheme='viola']) {
+  /* semantic · accent */
+  --accent: #6233E8; /* Brand action colour: primary buttons, selected states, links on controls, focus ring, progress. */
+  --accent-light: #7445F8; /* Second stop of the accent gradient (primary button, nav blob, switch on). */
+  --accent-subtle: #F3EFFF; /* Faint accent tint behind accent-coloured text (chips, badges). */
+  /* semantic · surface */
+  --bg-page: #FBF9FF; /* Page background of every screen; the base all translucent surfaces are composited over. */
+  --bg-page-gradient: radial-gradient(at 0% 0%, hsla(256,100%,96%,1) 0, transparent 50%), radial-gradient(at 100% 100%, hsla(256,100%,93%,1) 0, transparent 50%); /* Soft accent glow painted over bg-page at the edges of the window. */
+  --glass-base: rgba(242,240,248,0.92); /* Background of a screen that slides over another (settings, detail); nearly opaque. */
+  --surface-sheet: #F2F0F8; /* Bottom sheets and dialogs: opaque so text behind does not show through. */
+  /* semantic · text */
+  --text-link: #4F24C9; /* Links inside text. */
+  /* semantic · status */
+  --tone-sent-bg: #E5DCFF; /* Status “Sent” badge background. */
+  --tone-sent-fg: #4F24C9; /* Status “Sent” badge text (≥ 5.4:1 on its background). */
+  /* semantic · inverse */
+  --link-inverse: #B49CFF; /* Action or link on surface-inverse (toast Undo). */
+}
+/* Postil: e-reader scheme, off-white paper and graphite ink, flat (light) */
+:host([data-scheme='postil']) {
+  /* semantic · accent */
+  --accent: #3F3C37; /* Postil scheme, light: graphite accent, the same in every brand. */
+  --accent-light: #3F3C37; /* Postil scheme, light: same as accent, so primary buttons are flat (no gradient). */
+  --accent-glow: color-mix(in srgb, var(--accent) 0%, transparent); /* Postil scheme, light: no glow. */
+  --on-accent: #ffffff; /* Postil scheme, light: text on the brown accent. */
+  --accent-subtle: #F2F1ED; /* Postil scheme, light: subtle accent surface. */
+  /* semantic · surface */
+  --bg-page: #FAF9F6; /* Postil scheme, light: off-white e-paper page. */
+  --bg-page-gradient: #FAF9F6; /* Postil scheme, light: flat paper, no glow. */
+  --glass-base: rgba(250,249,246,0.97); /* Postil scheme, light: sliding screens are paper too. */
+  --glass-card: #FEFEFC; /* Postil scheme, light: cards are an opaque lighter sheet. */
+  --glass-border: rgba(26,25,23,0.16); /* Postil scheme, light: card edge is an ink hairline. */
+  --glass-border-strong: rgba(26,25,23,0.24); /* Postil scheme, light: stronger card edge. */
+  --glass-inner-glow: 0 0 0 rgba(26,25,23,0); /* Postil scheme, light: no inner highlight. */
+  --surface-bar: #FEFEFC; /* Postil scheme, light: bottom dock. */
+  --surface-sheet: #F2F1ED; /* Postil scheme, light: sheets. */
+  --surface-track: #E8E6E0; /* Postil scheme, light: tracks. */
+  --surface-row: #FEFEFC; /* Postil scheme, light: rows. */
+  --surface-field: #F2F1ED; /* Postil scheme, light: fields. */
+  --surface-selected: #FEFEFC; /* Postil scheme, light: selected segment. */
+  --surface-control: #FEFEFC; /* Postil scheme, light: controls. */
+  /* semantic · text */
+  --text-primary: #1A1917; /* Postil scheme, light: warm ink. */
+  --text-secondary: #3A3834; /* Postil scheme, light: secondary ink. */
+  --text-muted: #615E58; /* Postil scheme, light: muted ink (AA on paper). */
+  --text-link: #2E2C28; /* Postil scheme, light: links in graphite. */
+  /* semantic · outline */
+  --outline: rgba(26,25,23,0.16); /* Postil scheme, light: hairline in ink. */
+  --outline-strong: #D3D1C9; /* Postil scheme, light: stronger edge. */
+  /* semantic · elevation */
+  --shadow-card: 0 0 0 rgba(26,25,23,0); /* Postil scheme, light: cards have no shadow. */
+  /* semantic · status */
+  --tone-read-bg: #E8E6E0; /* Postil scheme, light: read badge on paper. */
+  --tone-sent-bg: #E8E6E0; /* Postil scheme, light: sent badge on paper. */
+  --tone-sent-fg: #2E2C28; /* Postil scheme, light: sent badge text. */
+  /* semantic · font */
+  --font-reading: 'Iowan Old Style', 'Charter', 'Source Serif 4', 'Georgia', serif; /* Postil scheme, light: reading surfaces (summary, article) in a system serif, nothing bundled. */
+  color-scheme: light;
+}
 @media (prefers-color-scheme: dark) {
   :host(:not([data-theme='light']):not([data-theme='contrast'])) {
     /* semantic · surface */
     --bg-page: #0b0e14; /* Page background of every screen; the base all translucent surfaces are composited over. */
-    --bg-page-gradient: radial-gradient(at 0% 0%, color-mix(in srgb, var(--accent) 8%, transparent) 0, transparent 50%), radial-gradient(at 100% 100%, rgba(173,198,255,0.05) 0, transparent 50%); /* Soft accent glow painted over bg-page at the edges of the window. */
+    --bg-page-gradient: radial-gradient(at 0% 0%, color-mix(in srgb, var(--accent) 8%, transparent) 0, transparent 50%), radial-gradient(at 100% 100%, rgba(168,221,227,0.05) 0, transparent 50%); /* Soft accent glow painted over bg-page at the edges of the window. */
     --glass-base: rgba(11,14,20,0.92); /* Background of a screen that slides over another (settings, detail); nearly opaque. */
     --glass-card: rgba(255,255,255,0.06); /* Card surface (article cards, settings rows, input card); translucent over bg-page. */
     --glass-input: rgba(255,255,255,0.05); /* Field surface: inputs, chips, search fields, icon tiles. */
@@ -328,7 +405,7 @@
     --glass-border-strong: rgba(255,255,255,0.14); /* Stronger glass edge for floating panels and toasts. */
     --glass-inner-glow: inset 0 1px 0 rgba(255,255,255,0.06); /* 1px inner highlight at the top of glass surfaces. */
     --surface-bar: #0b0e14; /* Background of fixed bars (pane headers, toolbars) above scrolling content. */
-    --surface-sheet: #141923; /* Bottom sheets and dialogs: opaque so text behind does not show through. */
+    --surface-sheet: #111D20; /* Bottom sheets and dialogs: opaque so text behind does not show through. */
     --scrim: rgba(0,0,0,0.6); /* Dims the page behind a sheet or dialog. */
     --surface-row: rgba(255,255,255,0.06); /* Rows inside a sheet or list (send targets, list items). */
     --surface-field: rgba(255,255,255,0.08); /* Track of segmented controls and filled fields inside sheets. */
@@ -339,16 +416,16 @@
     --text-primary: #e8edf5; /* Body text, titles and icons: the strongest text colour (≥ 14:1 on cards). */
     --text-secondary: #b8c4d4; /* Supporting text: labels, descriptions, inactive controls with text. */
     --text-muted: #94a3b8; /* Least important readable text: hints, meta lines, timestamps, placeholders (≥ 4.5:1). */
-    --text-link: #93c5fd; /* Links inside text. */
+    --text-link: #7CCBD4; /* Links inside text. */
     /* semantic · accent */
-    --accent: #60a5fa; /* Brand action colour: primary buttons, selected states, links on controls, focus ring, progress. */
-    --accent-light: #3b82f6; /* Second stop of the accent gradient (primary button, nav blob, switch on). */
-    --accent-glow: rgba(96,165,250,0.18); /* Coloured glow under primary buttons. */
-    --on-accent: #001a3d; /* Text and icons on an accent fill (primary button, selected pill, active nav item). */
-    --accent-soft: rgba(96,165,250,0.14); /* Light accent tint for selected or hovered rows. */
-    --accent-soft-strong: rgba(96,165,250,0.26); /* Stronger accent tint for pressed or highlighted rows. */
-    --accent-subtle: rgba(96,165,250,0.14); /* Faint accent tint behind accent-coloured text (chips, badges). */
-    --accent-selected: rgba(96,165,250,0.14); /* Accent tint of a selected card or row. */
+    --accent: #3FA6B3; /* Brand action colour: primary buttons, selected states, links on controls, focus ring, progress. */
+    --accent-light: #1C7F8E; /* Second stop of the accent gradient (primary button, nav blob, switch on). */
+    --accent-glow: rgba(63,166,179,0.18); /* Coloured glow under primary buttons. */
+    --on-accent: #04262C; /* Text and icons on an accent fill (primary button, selected pill, active nav item). */
+    --accent-soft: rgba(63,166,179,0.14); /* Light accent tint for selected or hovered rows. */
+    --accent-soft-strong: rgba(63,166,179,0.26); /* Stronger accent tint for pressed or highlighted rows. */
+    --accent-subtle: rgba(63,166,179,0.14); /* Faint accent tint behind accent-coloured text (chips, badges). */
+    --accent-selected: rgba(63,166,179,0.14); /* Accent tint of a selected card or row. */
     /* semantic · outline */
     --outline: rgba(255,255,255,0.1); /* Default 1px border of cards, fields, bars and dividers. Decorative (about 1.35:1); a field edge that must be found needs outline-strong (ADR 0005). */
     --outline-soft: rgba(255,255,255,0.05); /* Very subtle border inside glass surfaces. */
@@ -361,8 +438,8 @@
     /* semantic · status */
     --tone-read-bg: rgba(255,255,255,0.1); /* Status “Read” badge background. */
     --tone-read-fg: #cbd5e1; /* Status “Read” badge text (≥ 5.4:1 on its background). */
-    --tone-sent-bg: rgba(96,165,250,0.18); /* Status “Sent” badge background. */
-    --tone-sent-fg: #93c5fd; /* Status “Sent” badge text (≥ 5.4:1 on its background). */
+    --tone-sent-bg: rgba(63,166,179,0.18); /* Status “Sent” badge background. */
+    --tone-sent-fg: #7CCBD4; /* Status “Sent” badge text (≥ 5.4:1 on its background). */
     --tone-new-bg: rgba(74,222,128,0.16); /* Status “New” badge background. */
     --tone-new-fg: #86efac; /* Status “New” badge text (≥ 5.4:1 on its background). */
     --tone-arch-bg: rgba(251,191,36,0.16); /* Status “Archived” badge background. */
@@ -390,7 +467,7 @@
     /* semantic · inverse */
     --surface-inverse: #e8edf5; /* Inverse surface (toasts, tooltips): dark in light mode, light in dark mode. */
     --text-inverse: #0b0e14; /* Text on surface-inverse. */
-    --link-inverse: #1d4ed8; /* Action or link on surface-inverse (toast Undo). */
+    --link-inverse: #0B525E; /* Action or link on surface-inverse (toast Undo). */
     /* semantic · data */
     --data-0: #3987e5; /* Chart series 1 of 8: categorical, the same in every brand; pair with labels or symbols (WCAG 1.4.1). */
     --data-1: #d95926; /* Chart series 2 of 8: categorical, the same in every brand; pair with labels or symbols (WCAG 1.4.1). */
@@ -418,7 +495,7 @@
 :host([data-theme='dark']) {
   /* semantic · surface */
   --bg-page: #0b0e14; /* Page background of every screen; the base all translucent surfaces are composited over. */
-  --bg-page-gradient: radial-gradient(at 0% 0%, color-mix(in srgb, var(--accent) 8%, transparent) 0, transparent 50%), radial-gradient(at 100% 100%, rgba(173,198,255,0.05) 0, transparent 50%); /* Soft accent glow painted over bg-page at the edges of the window. */
+  --bg-page-gradient: radial-gradient(at 0% 0%, color-mix(in srgb, var(--accent) 8%, transparent) 0, transparent 50%), radial-gradient(at 100% 100%, rgba(168,221,227,0.05) 0, transparent 50%); /* Soft accent glow painted over bg-page at the edges of the window. */
   --glass-base: rgba(11,14,20,0.82); /* Background of a screen that slides over another (settings, detail); nearly opaque. */
   --glass-card: rgba(255,255,255,0.06); /* Card surface (article cards, settings rows, input card); translucent over bg-page. */
   --glass-input: rgba(255,255,255,0.05); /* Field surface: inputs, chips, search fields, icon tiles. */
@@ -426,7 +503,7 @@
   --glass-border-strong: rgba(255,255,255,0.14); /* Stronger glass edge for floating panels and toasts. */
   --glass-inner-glow: inset 0 1px 0 rgba(255,255,255,0.06); /* 1px inner highlight at the top of glass surfaces. */
   --surface-bar: #0b0e14; /* Background of fixed bars (pane headers, toolbars) above scrolling content. */
-  --surface-sheet: #141923; /* Bottom sheets and dialogs: opaque so text behind does not show through. */
+  --surface-sheet: #111D20; /* Bottom sheets and dialogs: opaque so text behind does not show through. */
   --scrim: rgba(0,0,0,0.6); /* Dims the page behind a sheet or dialog. */
   --surface-row: rgba(255,255,255,0.06); /* Rows inside a sheet or list (send targets, list items). */
   --surface-field: rgba(255,255,255,0.08); /* Track of segmented controls and filled fields inside sheets. */
@@ -437,16 +514,16 @@
   --text-primary: #e8edf5; /* Body text, titles and icons: the strongest text colour (≥ 14:1 on cards). */
   --text-secondary: #b8c4d4; /* Supporting text: labels, descriptions, inactive controls with text. */
   --text-muted: #94a3b8; /* Least important readable text: hints, meta lines, timestamps, placeholders (≥ 4.5:1). */
-  --text-link: #93c5fd; /* Links inside text. */
+  --text-link: #7CCBD4; /* Links inside text. */
   /* semantic · accent */
-  --accent: #60a5fa; /* Brand action colour: primary buttons, selected states, links on controls, focus ring, progress. */
-  --accent-light: #3b82f6; /* Second stop of the accent gradient (primary button, nav blob, switch on). */
-  --accent-glow: rgba(96,165,250,0.18); /* Coloured glow under primary buttons. */
-  --on-accent: #001a3d; /* Text and icons on an accent fill (primary button, selected pill, active nav item). */
-  --accent-soft: rgba(96,165,250,0.14); /* Light accent tint for selected or hovered rows. */
-  --accent-soft-strong: rgba(96,165,250,0.26); /* Stronger accent tint for pressed or highlighted rows. */
-  --accent-subtle: rgba(96,165,250,0.14); /* Faint accent tint behind accent-coloured text (chips, badges). */
-  --accent-selected: rgba(96,165,250,0.14); /* Accent tint of a selected card or row. */
+  --accent: #3FA6B3; /* Brand action colour: primary buttons, selected states, links on controls, focus ring, progress. */
+  --accent-light: #1C7F8E; /* Second stop of the accent gradient (primary button, nav blob, switch on). */
+  --accent-glow: rgba(63,166,179,0.18); /* Coloured glow under primary buttons. */
+  --on-accent: #04262C; /* Text and icons on an accent fill (primary button, selected pill, active nav item). */
+  --accent-soft: rgba(63,166,179,0.14); /* Light accent tint for selected or hovered rows. */
+  --accent-soft-strong: rgba(63,166,179,0.26); /* Stronger accent tint for pressed or highlighted rows. */
+  --accent-subtle: rgba(63,166,179,0.14); /* Faint accent tint behind accent-coloured text (chips, badges). */
+  --accent-selected: rgba(63,166,179,0.14); /* Accent tint of a selected card or row. */
   /* semantic · outline */
   --outline: rgba(255,255,255,0.1); /* Default 1px border of cards, fields, bars and dividers. Decorative (about 1.35:1); a field edge that must be found needs outline-strong (ADR 0005). */
   --outline-soft: rgba(255,255,255,0.05); /* Very subtle border inside glass surfaces. */
@@ -459,8 +536,8 @@
   /* semantic · status */
   --tone-read-bg: rgba(255,255,255,0.1); /* Status “Read” badge background. */
   --tone-read-fg: #cbd5e1; /* Status “Read” badge text (≥ 5.4:1 on its background). */
-  --tone-sent-bg: rgba(96,165,250,0.18); /* Status “Sent” badge background. */
-  --tone-sent-fg: #93c5fd; /* Status “Sent” badge text (≥ 5.4:1 on its background). */
+  --tone-sent-bg: rgba(63,166,179,0.18); /* Status “Sent” badge background. */
+  --tone-sent-fg: #7CCBD4; /* Status “Sent” badge text (≥ 5.4:1 on its background). */
   --tone-new-bg: rgba(74,222,128,0.16); /* Status “New” badge background. */
   --tone-new-fg: #86efac; /* Status “New” badge text (≥ 5.4:1 on its background). */
   --tone-arch-bg: rgba(251,191,36,0.16); /* Status “Archived” badge background. */
@@ -488,7 +565,7 @@
   /* semantic · inverse */
   --surface-inverse: #e8edf5; /* Inverse surface (toasts, tooltips): dark in light mode, light in dark mode. */
   --text-inverse: #0b0e14; /* Text on surface-inverse. */
-  --link-inverse: #1d4ed8; /* Action or link on surface-inverse (toast Undo). */
+  --link-inverse: #0B525E; /* Action or link on surface-inverse (toast Undo). */
   /* semantic · data */
   --data-0: #3987e5; /* Chart series 1 of 8: categorical, the same in every brand; pair with labels or symbols (WCAG 1.4.1). */
   --data-1: #d95926; /* Chart series 2 of 8: categorical, the same in every brand; pair with labels or symbols (WCAG 1.4.1). */
@@ -512,6 +589,187 @@
   --annotation-quote-bg: rgba(0,0,0,0.25); /* Quote box inside a saved-note card. */
   --annotation-edge: inset 0 0 0 1px rgba(255,255,255,0.06); /* Hairline around saved-note cards (dark only). */
 }
+@media (prefers-color-scheme: dark) {
+  :host([data-scheme='blue']:not([data-theme='light']):not([data-theme='contrast'])) {
+    /* semantic · surface */
+    --bg-page-gradient: radial-gradient(at 0% 0%, color-mix(in srgb, var(--accent) 8%, transparent) 0, transparent 50%), radial-gradient(at 100% 100%, rgba(173,198,255,0.05) 0, transparent 50%); /* Soft accent glow painted over bg-page at the edges of the window. */
+    --surface-sheet: #141923; /* Bottom sheets and dialogs: opaque so text behind does not show through. */
+    /* semantic · text */
+    --text-link: #93c5fd; /* Links inside text. */
+    /* semantic · accent */
+    --accent: #60a5fa; /* Brand action colour: primary buttons, selected states, links on controls, focus ring, progress. */
+    --accent-light: #3b82f6; /* Second stop of the accent gradient (primary button, nav blob, switch on). */
+    --accent-glow: rgba(96,165,250,0.18); /* Coloured glow under primary buttons. */
+    --on-accent: #001a3d; /* Text and icons on an accent fill (primary button, selected pill, active nav item). */
+    --accent-soft: rgba(96,165,250,0.14); /* Light accent tint for selected or hovered rows. */
+    --accent-soft-strong: rgba(96,165,250,0.26); /* Stronger accent tint for pressed or highlighted rows. */
+    --accent-subtle: rgba(96,165,250,0.14); /* Faint accent tint behind accent-coloured text (chips, badges). */
+    --accent-selected: rgba(96,165,250,0.14); /* Accent tint of a selected card or row. */
+    /* semantic · status */
+    --tone-sent-bg: rgba(96,165,250,0.18); /* Status “Sent” badge background. */
+    --tone-sent-fg: #93c5fd; /* Status “Sent” badge text (≥ 5.4:1 on its background). */
+    /* semantic · inverse */
+    --link-inverse: #1d4ed8; /* Action or link on surface-inverse (toast Undo). */
+  }
+}
+@media (prefers-color-scheme: dark) {
+  :host([data-scheme='viola']:not([data-theme='light']):not([data-theme='contrast'])) {
+    /* semantic · surface */
+    --bg-page-gradient: radial-gradient(at 0% 0%, color-mix(in srgb, var(--accent) 8%, transparent) 0, transparent 50%), radial-gradient(at 100% 100%, rgba(205,189,255,0.05) 0, transparent 50%); /* Soft accent glow painted over bg-page at the edges of the window. */
+    --surface-sheet: #17132A; /* Bottom sheets and dialogs: opaque so text behind does not show through. */
+    /* semantic · text */
+    --text-link: #B49CFF; /* Links inside text. */
+    /* semantic · accent */
+    --accent: #8B68FF; /* Brand action colour: primary buttons, selected states, links on controls, focus ring, progress. */
+    --accent-light: #7445F8; /* Second stop of the accent gradient (primary button, nav blob, switch on). */
+    --accent-glow: rgba(139,104,255,0.18); /* Coloured glow under primary buttons. */
+    --on-accent: #170647; /* Text and icons on an accent fill (primary button, selected pill, active nav item). */
+    --accent-soft: rgba(139,104,255,0.14); /* Light accent tint for selected or hovered rows. */
+    --accent-soft-strong: rgba(139,104,255,0.26); /* Stronger accent tint for pressed or highlighted rows. */
+    --accent-subtle: rgba(139,104,255,0.14); /* Faint accent tint behind accent-coloured text (chips, badges). */
+    --accent-selected: rgba(139,104,255,0.14); /* Accent tint of a selected card or row. */
+    /* semantic · status */
+    --tone-sent-bg: rgba(139,104,255,0.18); /* Status “Sent” badge background. */
+    --tone-sent-fg: #B49CFF; /* Status “Sent” badge text (≥ 5.4:1 on its background). */
+    /* semantic · inverse */
+    --link-inverse: #4F24C9; /* Action or link on surface-inverse (toast Undo). */
+  }
+}
+:host([data-scheme='blue'][data-theme='dark']) {
+  /* semantic · surface */
+  --bg-page-gradient: radial-gradient(at 0% 0%, color-mix(in srgb, var(--accent) 8%, transparent) 0, transparent 50%), radial-gradient(at 100% 100%, rgba(173,198,255,0.05) 0, transparent 50%); /* Soft accent glow painted over bg-page at the edges of the window. */
+  --surface-sheet: #141923; /* Bottom sheets and dialogs: opaque so text behind does not show through. */
+  /* semantic · text */
+  --text-link: #93c5fd; /* Links inside text. */
+  /* semantic · accent */
+  --accent: #60a5fa; /* Brand action colour: primary buttons, selected states, links on controls, focus ring, progress. */
+  --accent-light: #3b82f6; /* Second stop of the accent gradient (primary button, nav blob, switch on). */
+  --accent-glow: rgba(96,165,250,0.18); /* Coloured glow under primary buttons. */
+  --on-accent: #001a3d; /* Text and icons on an accent fill (primary button, selected pill, active nav item). */
+  --accent-soft: rgba(96,165,250,0.14); /* Light accent tint for selected or hovered rows. */
+  --accent-soft-strong: rgba(96,165,250,0.26); /* Stronger accent tint for pressed or highlighted rows. */
+  --accent-subtle: rgba(96,165,250,0.14); /* Faint accent tint behind accent-coloured text (chips, badges). */
+  --accent-selected: rgba(96,165,250,0.14); /* Accent tint of a selected card or row. */
+  /* semantic · status */
+  --tone-sent-bg: rgba(96,165,250,0.18); /* Status “Sent” badge background. */
+  --tone-sent-fg: #93c5fd; /* Status “Sent” badge text (≥ 5.4:1 on its background). */
+  /* semantic · inverse */
+  --link-inverse: #1d4ed8; /* Action or link on surface-inverse (toast Undo). */
+}
+:host([data-scheme='viola'][data-theme='dark']) {
+  /* semantic · surface */
+  --bg-page-gradient: radial-gradient(at 0% 0%, color-mix(in srgb, var(--accent) 8%, transparent) 0, transparent 50%), radial-gradient(at 100% 100%, rgba(205,189,255,0.05) 0, transparent 50%); /* Soft accent glow painted over bg-page at the edges of the window. */
+  --surface-sheet: #17132A; /* Bottom sheets and dialogs: opaque so text behind does not show through. */
+  /* semantic · text */
+  --text-link: #B49CFF; /* Links inside text. */
+  /* semantic · accent */
+  --accent: #8B68FF; /* Brand action colour: primary buttons, selected states, links on controls, focus ring, progress. */
+  --accent-light: #7445F8; /* Second stop of the accent gradient (primary button, nav blob, switch on). */
+  --accent-glow: rgba(139,104,255,0.18); /* Coloured glow under primary buttons. */
+  --on-accent: #170647; /* Text and icons on an accent fill (primary button, selected pill, active nav item). */
+  --accent-soft: rgba(139,104,255,0.14); /* Light accent tint for selected or hovered rows. */
+  --accent-soft-strong: rgba(139,104,255,0.26); /* Stronger accent tint for pressed or highlighted rows. */
+  --accent-subtle: rgba(139,104,255,0.14); /* Faint accent tint behind accent-coloured text (chips, badges). */
+  --accent-selected: rgba(139,104,255,0.14); /* Accent tint of a selected card or row. */
+  /* semantic · status */
+  --tone-sent-bg: rgba(139,104,255,0.18); /* Status “Sent” badge background. */
+  --tone-sent-fg: #B49CFF; /* Status “Sent” badge text (≥ 5.4:1 on its background). */
+  /* semantic · inverse */
+  --link-inverse: #4F24C9; /* Action or link on surface-inverse (toast Undo). */
+}
+/* Postil dark: warm charcoal and soft off-white, like an e-reader night mode */
+@media (prefers-color-scheme: dark) {
+  :host([data-scheme='postil']:not([data-theme='light']):not([data-theme='contrast'])) {
+    /* semantic · accent */
+    --accent: #CFCBC1; /* Postil scheme, dark: soft off-white accent, the same in every brand. */
+    --accent-light: #CFCBC1; /* Postil scheme, dark: same as accent, so primary buttons are flat. */
+    --accent-glow: color-mix(in srgb, var(--accent) 0%, transparent); /* Postil scheme, dark: no glow. */
+    --on-accent: #151413; /* Postil scheme, dark: text on the off-white accent. */
+    --accent-soft: rgba(207,203,193,0.1); /* Postil scheme, dark: soft accent wash. */
+    --accent-soft-strong: rgba(207,203,193,0.18); /* Postil scheme, dark: stronger accent wash. */
+    --accent-subtle: rgba(207,203,193,0.1); /* Postil scheme, dark: subtle accent surface. */
+    --accent-selected: rgba(207,203,193,0.12); /* Postil scheme, dark: selected row wash. */
+    /* semantic · surface */
+    --bg-page: #151413; /* Postil scheme, dark: charcoal page. */
+    --bg-page-gradient: #151413; /* Postil scheme, dark: flat charcoal, no glow. */
+    --glass-base: rgba(21,20,19,0.97); /* Postil scheme, dark: sliding screens are charcoal too. */
+    --glass-card: #1C1B19; /* Postil scheme, dark: cards are an opaque lighter sheet. */
+    --glass-input: #222120; /* Postil scheme, dark: input wells. */
+    --glass-border: rgba(228,225,217,0.14); /* Postil scheme, dark: card edge is a hairline. */
+    --glass-border-strong: rgba(228,225,217,0.22); /* Postil scheme, dark: stronger card edge. */
+    --glass-inner-glow: 0 0 0 rgba(228,225,217,0); /* Postil scheme, dark: no inner highlight. */
+    --surface-bar: #1C1B19; /* Postil scheme, dark: bottom dock. */
+    --surface-sheet: #222120; /* Postil scheme, dark: sheets. */
+    --surface-track: #2A2927; /* Postil scheme, dark: tracks. */
+    --surface-row: #1C1B19; /* Postil scheme, dark: rows. */
+    --surface-field: #222120; /* Postil scheme, dark: fields. */
+    --surface-selected: #2A2927; /* Postil scheme, dark: selected segment. */
+    --surface-control: #2A2927; /* Postil scheme, dark: controls. */
+    /* semantic · text */
+    --text-primary: #E4E1D9; /* Postil scheme, dark: soft off-white ink. */
+    --text-secondary: #B3AFA5; /* Postil scheme, dark: secondary ink. */
+    --text-muted: #9C988E; /* Postil scheme, dark: muted ink (AA on charcoal). */
+    --text-link: #CFCBC1; /* Postil scheme, dark: links in off-white. */
+    /* semantic · outline */
+    --outline: rgba(228,225,217,0.14); /* Postil scheme, dark: hairline. */
+    --outline-soft: rgba(228,225,217,0.08); /* Postil scheme, dark: softer hairline. */
+    --outline-strong: #3A3834; /* Postil scheme, dark: stronger edge. */
+    /* semantic · elevation */
+    --shadow-card: 0 0 0 rgba(228,225,217,0); /* Postil scheme, dark: cards have no shadow. */
+    /* semantic · status */
+    --tone-read-bg: #2A2927; /* Postil scheme, dark: read badge on charcoal. */
+    --tone-sent-bg: #2A2927; /* Postil scheme, dark: sent badge on charcoal. */
+    --tone-sent-fg: #CFCBC1; /* Postil scheme, dark: sent badge text. */
+    /* semantic · inverse */
+    --link-inverse: #3A3834; /* Postil scheme, dark: links on the light inverse surface. */
+    color-scheme: dark;
+  }
+}
+:host([data-scheme='postil'][data-theme='dark']) {
+  /* semantic · accent */
+  --accent: #CFCBC1; /* Postil scheme, dark: soft off-white accent, the same in every brand. */
+  --accent-light: #CFCBC1; /* Postil scheme, dark: same as accent, so primary buttons are flat. */
+  --accent-glow: color-mix(in srgb, var(--accent) 0%, transparent); /* Postil scheme, dark: no glow. */
+  --on-accent: #151413; /* Postil scheme, dark: text on the off-white accent. */
+  --accent-soft: rgba(207,203,193,0.1); /* Postil scheme, dark: soft accent wash. */
+  --accent-soft-strong: rgba(207,203,193,0.18); /* Postil scheme, dark: stronger accent wash. */
+  --accent-subtle: rgba(207,203,193,0.1); /* Postil scheme, dark: subtle accent surface. */
+  --accent-selected: rgba(207,203,193,0.12); /* Postil scheme, dark: selected row wash. */
+  /* semantic · surface */
+  --bg-page: #151413; /* Postil scheme, dark: charcoal page. */
+  --bg-page-gradient: #151413; /* Postil scheme, dark: flat charcoal, no glow. */
+  --glass-base: rgba(21,20,19,0.97); /* Postil scheme, dark: sliding screens are charcoal too. */
+  --glass-card: #1C1B19; /* Postil scheme, dark: cards are an opaque lighter sheet. */
+  --glass-input: #222120; /* Postil scheme, dark: input wells. */
+  --glass-border: rgba(228,225,217,0.14); /* Postil scheme, dark: card edge is a hairline. */
+  --glass-border-strong: rgba(228,225,217,0.22); /* Postil scheme, dark: stronger card edge. */
+  --glass-inner-glow: 0 0 0 rgba(228,225,217,0); /* Postil scheme, dark: no inner highlight. */
+  --surface-bar: #1C1B19; /* Postil scheme, dark: bottom dock. */
+  --surface-sheet: #222120; /* Postil scheme, dark: sheets. */
+  --surface-track: #2A2927; /* Postil scheme, dark: tracks. */
+  --surface-row: #1C1B19; /* Postil scheme, dark: rows. */
+  --surface-field: #222120; /* Postil scheme, dark: fields. */
+  --surface-selected: #2A2927; /* Postil scheme, dark: selected segment. */
+  --surface-control: #2A2927; /* Postil scheme, dark: controls. */
+  /* semantic · text */
+  --text-primary: #E4E1D9; /* Postil scheme, dark: soft off-white ink. */
+  --text-secondary: #B3AFA5; /* Postil scheme, dark: secondary ink. */
+  --text-muted: #9C988E; /* Postil scheme, dark: muted ink (AA on charcoal). */
+  --text-link: #CFCBC1; /* Postil scheme, dark: links in off-white. */
+  /* semantic · outline */
+  --outline: rgba(228,225,217,0.14); /* Postil scheme, dark: hairline. */
+  --outline-soft: rgba(228,225,217,0.08); /* Postil scheme, dark: softer hairline. */
+  --outline-strong: #3A3834; /* Postil scheme, dark: stronger edge. */
+  /* semantic · elevation */
+  --shadow-card: 0 0 0 rgba(228,225,217,0); /* Postil scheme, dark: cards have no shadow. */
+  /* semantic · status */
+  --tone-read-bg: #2A2927; /* Postil scheme, dark: read badge on charcoal. */
+  --tone-sent-bg: #2A2927; /* Postil scheme, dark: sent badge on charcoal. */
+  --tone-sent-fg: #CFCBC1; /* Postil scheme, dark: sent badge text. */
+  /* semantic · inverse */
+  --link-inverse: #3A3834; /* Postil scheme, dark: links on the light inverse surface. */
+  color-scheme: dark;
+}
 :host([data-theme='contrast']) {
   /* semantic · surface */
   --bg-page: #ffffff; /* Page background of every screen; the base all translucent surfaces are composited over. */
@@ -529,17 +787,50 @@
   --text-primary: #000000; /* Body text, titles and icons: the strongest text colour (≥ 14:1 on cards). */
   --text-secondary: #000000; /* Supporting text: labels, descriptions, inactive controls with text. */
   --text-muted: #1f2933; /* Least important readable text: hints, meta lines, timestamps, placeholders (≥ 4.5:1). */
-  --text-link: #0033cc; /* Links inside text. */
+  --text-link: #0A4650; /* Links inside text. */
   /* semantic · accent */
-  --accent: #0033cc; /* Brand action colour: primary buttons, selected states, links on controls, focus ring, progress. */
-  --accent-light: #0033cc; /* Second stop of the accent gradient (primary button, nav blob, switch on). */
-  --accent-glow: #0033cc; /* Coloured glow under primary buttons. */
+  --accent: #0A4650; /* Brand action colour: primary buttons, selected states, links on controls, focus ring, progress. */
+  --accent-light: #0A4650; /* Second stop of the accent gradient (primary button, nav blob, switch on). */
+  --accent-glow: #0A4650; /* Coloured glow under primary buttons. */
   --on-accent: #ffffff; /* Text and icons on an accent fill (primary button, selected pill, active nav item). */
-  --accent-a05: #eef2ff; /* Accent at 5%: tints for hover, selection and soft borders. Never as text. */
-  --accent-a08: #e0e7ff; /* Accent at 8%: tints for hover, selection and soft borders. Never as text. */
+  --accent-a05: #E8F6F7; /* Accent at 5%: tints for hover, selection and soft borders. Never as text. */
+  --accent-a08: #CFECEF; /* Accent at 8%: tints for hover, selection and soft borders. Never as text. */
   /* semantic · focus */
   --focus-ring: var(--text-primary); /* High-contrast theme: black ring. */
   --focus-ring-width: 3px; /* Focus ring thickness (WCAG 2.4.13 asks for ≥ 2px). */
+}
+:host([data-scheme='blue'][data-theme='contrast']) {
+  /* semantic · text */
+  --text-link: #0033CC; /* Links inside text. */
+  /* semantic · accent */
+  --accent: #0033CC; /* Brand action colour: primary buttons, selected states, links on controls, focus ring, progress. */
+  --accent-light: #0033CC; /* Second stop of the accent gradient (primary button, nav blob, switch on). */
+  --accent-glow: #0033CC; /* Coloured glow under primary buttons. */
+  --accent-a05: #eff6ff; /* Accent at 5%: tints for hover, selection and soft borders. Never as text. */
+  --accent-a08: #dbeafe; /* Accent at 8%: tints for hover, selection and soft borders. Never as text. */
+  color-scheme: light;
+}
+:host([data-scheme='viola'][data-theme='contrast']) {
+  /* semantic · text */
+  --text-link: #3F1BA6; /* Links inside text. */
+  /* semantic · accent */
+  --accent: #3F1BA6; /* Brand action colour: primary buttons, selected states, links on controls, focus ring, progress. */
+  --accent-light: #3F1BA6; /* Second stop of the accent gradient (primary button, nav blob, switch on). */
+  --accent-glow: #3F1BA6; /* Coloured glow under primary buttons. */
+  --accent-a05: #F3EFFF; /* Accent at 5%: tints for hover, selection and soft borders. Never as text. */
+  --accent-a08: #E5DCFF; /* Accent at 8%: tints for hover, selection and soft borders. Never as text. */
+  color-scheme: light;
+}
+/* Postil, high contrast: ink-black accent on the contrast base */
+:host([data-scheme='postil'][data-theme='contrast']) {
+  /* semantic · accent */
+  --accent: #1A1917; /* Postil scheme, high contrast: near-black accent, no hue. */
+  --accent-light: #1A1917; /* Postil scheme, high contrast: same as accent, flat buttons. */
+  --accent-glow: rgba(26,25,23,0); /* Postil scheme, high contrast: no glow. */
+  --accent-a05: #F2F1ED; /* Postil scheme, high contrast: faint accent tint. */
+  --accent-a08: #E8E6E0; /* Postil scheme, high contrast: accent tint. */
+  /* semantic · text */
+  --text-link: #1A1917; /* Postil scheme, high contrast: links in ink. */
 }
 @media (prefers-reduced-motion: reduce) {
   :host {

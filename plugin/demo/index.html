@@ -5,7 +5,7 @@
 :root{color-scheme:light dark;--bg:#f6f7fb;--card:#fff;--ink:#14161f;--dim:#5b6070;--line:#e3e6ef;--sig:#4c8dff}
 @media(prefers-color-scheme:dark){:root{--bg:#0e1017;--card:#171a23;--ink:#eef0f6;--dim:#9aa1b4;--line:#262a37}}
 *{box-sizing:border-box}html,body{margin:0;height:100%}body{font:16px/1.65 system-ui,-apple-system,Segoe UI,sans-serif;background:var(--bg);color:var(--ink)}
-.stage{display:grid;grid-template-columns:minmax(0,1fr) clamp(400px,32vw,620px);gap:clamp(12px,1.4vw,24px);height:100%;padding:clamp(10px,1.2vw,20px)}
+.stage{display:grid;grid-template-columns:minmax(0,1fr) var(--panelw,clamp(400px,32vw,620px));gap:clamp(12px,1.4vw,24px);height:100%;padding:clamp(10px,1.2vw,20px)}
 .page,.panel{background:var(--card);border:1px solid var(--line);border-radius:14px;overflow:hidden;display:flex;flex-direction:column;min-height:0}
 .bar{padding:9px 14px;border-bottom:1px solid var(--line);font-size:12.5px;color:var(--dim);display:flex;gap:8px;align-items:center}.bar i{width:9px;height:9px;border-radius:50%;background:var(--line)}
 article{padding:clamp(22px,2.4vw,44px) clamp(24px,3vw,56px);overflow:auto;font-size:clamp(16px,1.1vw,19px)}article h1{font-size:clamp(26px,2.1vw,38px);line-height:1.2;margin:0 0 6px}.meta{color:var(--dim);font-size:13.5px;margin-bottom:18px}
@@ -40,6 +40,8 @@ article mark.ghost{background:rgba(186,230,253,.65);color:#0369a1;border-bottom:
 :root[data-chrome="0"] .page{display:none}
 :root[data-chrome="0"] .panel{border:0;border-radius:0;background:transparent}
 :root[data-chrome="0"] .panel>.bar{display:none}
+/* ?bars=0 — page and side panel as one browser content area, for hosts that draw their own window frame (videos: MacWindow). */
+:root[data-bars="0"] .stage{padding:0;gap:0}:root[data-bars="0"] :is(.page,.panel){border:0;border-radius:0}:root[data-bars="0"] .panel{border-left:1px solid var(--line)}:root[data-bars="0"] .bar{display:none}
 /* ?article=0 — keep the framed panel, drop only the sample article (centred, popup-width). */
 :root[data-article="0"] .stage{grid-template-columns:minmax(0,1fr);grid-template-rows:minmax(0,1fr);justify-items:center}
 :root[data-article="0"] .page{display:none}
@@ -62,6 +64,7 @@ const P = new URLSearchParams(location.search), LOC = window.AISH_DEMO.locale, a
 //   tour=0|1         hide the guided tour / force it on (default: show once, then remember)
 //   chrome=0         product only — no sample page, title bars, borders, padding or background
 //   article=0        keep the framed panel but hide the sample article
+//   bars=0           no title bars, borders or gaps: page and panel as one content area (the host draws the window)
 //   layout=stack     sample article above the product (any width), for vertical video
 //   clock=manual     virtual clock for frame-exact capture (see AISH_CLOCK in demo-shim.js)
 //   surface=popup    render the popup surface instead of the side panel
@@ -71,6 +74,9 @@ const P = new URLSearchParams(location.search), LOC = window.AISH_DEMO.locale, a
 //   flow=sync-add     open Sync & backup and then the Add a place chooser
 const flag = (k) => P.get(k) === '0' ? '0' : P.get(k) === '1' ? '1' : null;
 if (flag('chrome') === '0') document.documentElement.setAttribute('data-chrome', '0');
+// ?panelw=66 — the side panel takes 66 % of the window (default: 32vw, 400-620 px). A wide window then fits the three-pane split view (>= 1100 px).
+{ const pw = P.get('panelw'); if (/^\d{2}$/.test(pw || '')) document.documentElement.style.setProperty('--panelw', pw + '%'); }
+if (flag('bars') === '0') document.documentElement.setAttribute('data-bars', '0');
 if (flag('article') === '0') document.documentElement.setAttribute('data-article', '0');
 if (P.get('layout') === 'stack') document.documentElement.setAttribute('data-layout', 'stack');
 if (P.get('clock') === 'manual') { const si = Element.prototype.scrollIntoView; Element.prototype.scrollIntoView = function (o) { return si.call(this, o && typeof o === 'object' ? { ...o, behavior: 'auto' } : o); }; }
