@@ -58,6 +58,15 @@ local function plainText(html, max)
 end
 M.plainText = plainText
 
+--- What the cover renderer is told about an article (the same for an EPUB and for the cover beside an HTML file); `image` is added by the caller.
+function M.coverInfo(a, tags)
+    local site = tostring(a.url or ""):match("^%a+://([^/]+)") or ""
+    local title = a.title and a.title ~= "" and a.title or (site ~= "" and site or "Article")
+    local author = a.byline or a.author or (type(a.meta) == "table" and a.meta.author) or site
+    return { title = title, site = site, author = author ~= site and author or nil, date = tostring(a.timestamp or ""):match("^%d%d%d%d%-%d%d%-%d%d"),
+        summary = plainText(a.summaryBase or a.summary, 400), tags = tags }
+end
+
 --[[--
 The title for the cover: page titles often end in the publication's name ("… | Circulation", "… - The Guardian");
 that part goes when what is left is still a real title. The book information keeps the full title.

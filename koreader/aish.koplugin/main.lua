@@ -258,7 +258,7 @@ Writing takes longer, mostly for the covers: the first time, a library of a few 
                     },
                     {
                         text = _("HTML: fastest"),
-                        help_text = _([[Plain HTML files: written several times faster, no cover and no book information. Summary, article, key points and notes are the same.]]),
+                        help_text = _([[Plain HTML files: written several times faster, no book information. The cover is KOReader's custom cover for the file. Summary, article, key points and notes are the same.]]),
                         checked_func = function() return self.settings:readSetting("format") == "html" end,
                         radio = true,
                         callback = function() self:setFormat("html") end,
@@ -706,6 +706,7 @@ function AISH:library(store)
         store = store, fs = fs, dataDir = self.data_dir, outDir = self:outDir(), format = self.settings:readSetting("format") or "epub", images = self.settings:nilOrTrue("images"),
         limit = self.settings:readSetting("limit"), archive = self.settings:nilOrTrue("include_archive"),
         cover = function(info) return self:makeCover(info) end,
+        sidecarCover = function(file, bytes) self:setSidecarCover(file, bytes) end,
         labels = { summary = _("Summary"), notes = _("Notes"), noText = _("The full text of this article was not saved in AISH.") },
     })
 end
@@ -918,6 +919,17 @@ function AISH:makeCover(info)
     self.cover_time = (self.cover_time or 0) + (os.clock() - t0)
     self.covers_drawn = (self.covers_drawn or 0) + 1
     return bytes
+end
+
+--- A cover for an HTML article: KOReader shows `cover.<ext>` from the book's sidecar folder as its cover (Book information →
+--- custom cover), whatever the format. flushCustomCover copies a file there, so the bytes go through one temporary file.
+function AISH:setSidecarCover(file, bytes)
+    local dir = DataStorage:getDataDir() .. "/aish-covers"
+    local tmp = dir .. "/.sidecar." .. (bytes:sub(1, 2) == "\255\216" and "jpg" or "png")
+    fs.mkdirp(dir)
+    fs.write(tmp, bytes)
+    pcall(function() DocSettings:flushCustomCover(file, tmp) end)
+    os.remove(tmp)
 end
 
 --- Cover files no article uses any more (only after a run that looked at every article).
@@ -1139,6 +1151,7 @@ function AISH:reconcileArticle(lib, id, ui)
         summary = st and DocSettings:hasSidecarFile(st.file) and DocSettings:open(st.file):readSetting("summary")
     end
     local done = type(summary) == "table" and summary.status == "complete"
+    self:recordProgress(lib, id, ui, done)
     local sent = self.settings:readSetting("finished_sent") or {}
     if done and not sent[id] and self.settings:nilOrTrue("finished_archive") then
         local art = lib.article(id)
@@ -1148,6 +1161,35 @@ function AISH:reconcileArticle(lib, id, ui)
         sent[id] = nil; self.settings:saveSetting("finished_sent", sent)
     end
     return act
+end
+
+--- How far the article was read on this reader → AISH (`progress`: the deepest point, only ever more; `finishedAt` from 90 % or when
+--- KOReader marks the book finished, which also makes it read). The open book is measured from its page, a closed one from its sidecar.
+local FINISHED_AT = 0.9
+function AISH:recordProgress(lib, id, ui, done)
+    local json = require("aishlib.json")
+    local pct
+    if ui and ui.document then
+        local ok, p = pcall(function()
+            local n, c = ui.document:getPageCount(), ui.document:getCurrentPage()
+            if n and n > 0 and c then return c / n end
+        end)
+        pct = ok and p or nil
+        if not pct and ui.doc_settings then pct = ui.doc_settings:readSetting("percent_finished") end
+    else
+        local st = lib.state[id]
+        if st and DocSettings:hasSidecarFile(st.file) then pct = DocSettings:open(st.file):readSetting("percent_finished") end
+    end
+    pct = tonumber(pct)
+    local art = lib.article(id)
+    if not art then return end
+    local changes, now = {}, nil
+    local p = pct and pct > 0 and math.floor(math.min(1, pct) * 100 + 0.5) / 100 or nil
+    local cur = tonumber(json.val(art.values.progress)) or 0
+    if p and p > cur and (p - cur >= 0.02 or p >= FINISHED_AT) then changes.progress = p end   -- small steps stay here: no sync for every page
+    if ((p or 0) >= FINISHED_AT or done) and not json.val(art.values.finishedAt) then now = lib.isoNow(); changes.finishedAt = now end
+    if changes.finishedAt and not json.val(art.values.readAt) then changes.readAt = now end
+    if next(changes) then lib.edit("article:" .. id, changes) end
 end
 
 --- Every AISH article: the open one through the reader, the others through their sidecars (only books opened before).

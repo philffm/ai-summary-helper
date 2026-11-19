@@ -28,7 +28,7 @@ local M = {}
 local TYPES = { article = true, hl = true, coll = true, note = true }
 local KEY_RX = "^(%a+):([%w_%.:%-]+)$"
 M.RECORD_DIR = "r"
-M.RENDER_VERSION = "5"   -- 2: no marks in the text (KOReader's highlights keep their place); 3: chapters, key points, images; 4: made covers; 5: one-line cover band, title without the publication
+M.RENDER_VERSION = "6"   -- 2: no marks in the text (KOReader's highlights keep their place); 3: chapters, key points, images; 4: made covers; 5: one-line cover band, title without the publication; 6: HTML files get their cover as KOReader's custom cover
 M.IMAGE_MAX = 3 * 1024 * 1024          -- one image (bytes); larger ones keep only their description
 M.IMAGES_PER_ARTICLE = 12 * 1024 * 1024
 M.IMAGE_DIR = ".images"                 -- hidden in KOReader's file browser
@@ -81,6 +81,7 @@ function M.new(o)
     -- what goes onto the reader: the newest `limit` articles (nil: all), archived ones only with `archive`
     self.limit = tonumber(o.limit) and tonumber(o.limit) > 0 and tonumber(o.limit) or nil
     self.archive = o.archive ~= false
+    self.sidecarCover = o.sidecarCover   -- function(file, bytes): puts a cover beside an HTML file (KOReader's custom cover)
     self.cover = o.cover    -- function(info) → PNG bytes: draws an article's cover (KOReader on the reader)
     fs.mkdirp(self.dataDir .. "/records")
 
@@ -504,6 +505,11 @@ function M.new(o)
                                     seriesIndex = seriesIndex, imageMax = M.IMAGE_MAX, imagesMax = self.images and M.IMAGES_PER_ARTICLE or 0, modified = M.isoToEpoch(e.ts), cover = self.cover })))
                             else
                                 fs.write(file, render.article(vals, {}, notes, self.labels, { keyPoints = keyPoints, image = image }))
+                                -- an HTML file has no place for a cover: KOReader takes one from the sidecar (cover.jpg in <book>.sdr)
+                                if self.cover and self.sidecarCover then
+                                    local ok, bytes = pcall(self.cover, epub.coverInfo(vals, e.tg))
+                                    if ok and type(bytes) == "string" and (bytes:sub(1, 2) == "\255\216" or bytes:sub(1, 4) == "\137PNG") then pcall(self.sidecarCover, file, bytes) end
+                                end
                             end
                             res.written[#res.written + 1] = file
                             st = { imgs = nImgs }

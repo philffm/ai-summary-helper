@@ -54,3 +54,8 @@ local f2 = io.open(dir2 .. "/t.epub", "wb"); f2:write(jb); f2:close()
 local p2 = io.popen("unzip -p " .. dir2 .. "/t.epub OEBPS/content.opf"); local opf2 = p2:read("*a"); p2:close()
 assert(opf2:find('<item id="cover" href="images/cover.jpg" media-type="image/jpeg" properties="cover-image"/>', 1, true), "JPEG cover")
 os.execute("rm -rf " .. dir2)
+
+-- an HTML article: the same cover information as for the EPUB (the cover itself goes beside the file as KOReader's custom cover)
+local info = E.coverInfo(a, { "sleep" })
+assert(info.title == "Why we sleep" and info.site == "science.example" and info.date == "2026-11-02" and info.summary == "Sleep consolidates memory." and info.tags[1] == "sleep")
+assert(E.coverInfo({ url = "https://x.example/p" }).title == "x.example", "no title: the site")

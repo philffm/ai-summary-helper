@@ -98,6 +98,8 @@ local function same(x, y)
 end
 
 --- → merged, changedLocal, changedRemote. `localRec` may be nil (unknown here).
+M.MAX_FIELDS = { progress = true }   -- the same list as MAX_FIELDS in the extension's syncMerge.js
+
 function M.mergeRecord(localRec, remote)
     if not localRec then return deepcopy(remote), true, false end
     if not remote then return deepcopy(localRec), false, true end
@@ -124,6 +126,8 @@ function M.mergeRecord(localRec, remote)
         local pick
         if l and not r then pick = "local" elseif r and not l then pick = "remote"
         elseif l.h == r.h then pick = "local"
+        elseif M.MAX_FIELDS[name] and type(lv[name]) == "number" and type(rv[name]) == "number" and lv[name] ~= rv[name] then
+            pick = lv[name] > rv[name] and "local" or "remote"   -- the larger number wins (how far an article was read only grows)
         else
             pick = M.compareRev({ t = l.t or 0, d = (localRec.rev or {}).d or "" }, { t = r.t or 0, d = (remote.rev or {}).d or "" }) >= 0 and "local" or "remote"
         end
