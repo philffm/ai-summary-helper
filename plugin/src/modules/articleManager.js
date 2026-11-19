@@ -1029,7 +1029,7 @@ function buildArticleCard(article) {
     // Decision metadata (timeframe + reason)
     const decisionHtml = article.isDecision ? `
       <div class="card-decision">
-        ${article.decisionTimeframe ? `<span class="decision-chip">🔖 ${escapeHtml(decisionLabel(article))}</span>` : ''}
+        ${article.decisionTimeframe ? `<span class="decision-chip">${icon('bookmark')} ${escapeHtml(decisionLabel(article))}</span>` : ''}
         ${article.decisionReason ? `<span class="decision-reason">"${escapeHtml(article.decisionReason)}"</span>` : ''}
       </div>
     ` : '';
@@ -1039,7 +1039,7 @@ function buildArticleCard(article) {
         <div class="article-header">
           <div>
             <h4>${escapeHtml(articleHeader)}</h4>
-            <p class="article-date">💾 ${formattedDate} ${article.url ? `${T('from')} <a href="${escAttr(article.url)}" target="_blank" rel="noopener">${escapeHtml(articleDomain)}</a> ↗` : ''}</p>
+            <p class="article-date">${icon('save')} ${formattedDate} ${article.url ? `${T('from')} <a href="${escAttr(article.url)}" target="_blank" rel="noopener">${escapeHtml(articleDomain)}</a> ↗` : ''}</p>
             ${tagsHtml}
             ${modelBadge}
             ${decisionHtml}

@@ -504,7 +504,7 @@ export async function showArticleDetail(article) {
     const decisionBadge = article.isDecision ? `
       <div class="detail-decision">
         <div class="detail-decision-head">
-          <span aria-hidden="true">🔖</span>
+          <span aria-hidden="true">${icon('bookmark')}</span>
           <span class="detail-decision-title">${T('Saved for Later')}</span>
           ${article.decisionTimeframe ? `<span class="decision-chip">${escapeHtml(article.decisionTimeframe)}</span>` : ''}
         </div>
