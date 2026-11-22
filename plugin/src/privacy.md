@@ -138,6 +138,7 @@ You can export your account data and delete your account at any time at [byphil.
 | File System Access (chosen folder) | Only when you pick a folder on your computer as a sync or backup place; the browser asks for your permission and only that folder is reachable |
 | `unlimitedStorage` | Keep a large local archive of articles and highlights without hitting the default storage quota |
 | `bookmarks` (optional) | Only if you choose “Save in browser bookmarks” in the reading view; the browser asks first. We add or update one bookmark for that article in a folder “AI Summary Helper”; we only look for and change our own folder, not the rest of your bookmarks |
+| `search` (optional) | Only if you choose “Search the web” in the search box of the home page or the command palette; the browser asks first. It hands the words you typed to your browser’s own default search engine, exactly as if you had typed them in the address bar. We do not see, store or send them anywhere else |
 | `host_permissions (<all_urls>)` | Let you summarize any page you visit — content is only read and transmitted when you actively trigger a summary, never passively. Also lets the extension reach the sync server or bucket you enter, which can be on any address |
 
 We do not use these permissions to track your browsing, build an advertising profile, or collect data beyond providing the features described above.

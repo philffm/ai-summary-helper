@@ -3,6 +3,12 @@ import { T } from './feedI18n.js';
 import { bgMessage } from './bgMessage.js';
 import { scoreCommand } from './commandPalette.js';
 import { isMac, openHelp } from './shortcuts.js';
+import { webSearchCommand, webSearchPossible } from './webSearch.js';
+
+/** Wraps an article search: results first (from two characters), then "Search the web" as the last entry for any query. */
+export function withWebSearch(findArticles) {
+    return async (q) => [...(q.trim().length >= 2 && findArticles ? await findArticles(q) : []), ...(webSearchPossible() && q.trim() ? [webSearchCommand(q)] : [])];
+}
 
 /** Saved articles matching the query as palette entries (title, address and tags; newest first among equal scores). */
 export function articleCommands(index, query, open, { limit = 8 } = {}) {

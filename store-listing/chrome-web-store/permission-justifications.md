@@ -41,6 +41,9 @@ Paste each text into the matching field. Checked against `plugin/platforms/chrom
 **bookmarks (optional permission)**
 > Used only when the user chooses "Save in browser bookmarks" in the reading view. It is an optional permission: the browser asks at that moment, never at install. The extension then adds or updates one bookmark for the article being read, in its own folder named "AI Summary Helper"; that bookmark opens the article in the reading view, at the place the user bookmarked. It only looks for and changes its own folder by name. It does not read, list or send the user's other bookmarks, and nothing leaves the device.
 
+**search (optional permission)**
+> Used only when the user picks "Search the web" in the search box of the home page or in the command palette. It is an optional permission: the browser asks at that moment, never at install. The extension calls the browser's own search function with the words the user typed, so the browser opens its default search engine in a new tab, as if the words were typed in the address bar. The extension does not choose the engine, does not read results and does not keep or send the words anywhere.
+
 ## Host permissions
 
 **`<all_urls>`**

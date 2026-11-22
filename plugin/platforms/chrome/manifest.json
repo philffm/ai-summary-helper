@@ -19,7 +19,8 @@
     "declarativeNetRequestWithHostAccess"
   ],
   "optional_permissions": [
-    "bookmarks"
+    "bookmarks",
+    "search"
   ],
   "host_permissions": [
     "<all_urls>",

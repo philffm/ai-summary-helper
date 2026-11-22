@@ -37,7 +37,22 @@ export function libraryStats(index, now = Date.now()) {
     };
 }
 
-export const WIDGETS = ['continue', 'recent', 'feeds', 'stats', 'goto'];
+/**
+ * A random saved highlight (never a ghost or a dismissed one, long enough to be worth reading), or null.
+ * hlIndex = [{ k: pageKey, n: active highlights }], readPage(k) → that page's records. Only the chosen page is read, not the whole store.
+ */
+export async function pickQuote(hlIndex, readPage, rand = Math.random, tries = 4) {
+    const pages = (Array.isArray(hlIndex) ? hlIndex : []).filter((p) => p && p.k && p.n > 0);
+    for (let i = 0; i < tries && pages.length; i++) {
+        const page = pages.splice(Math.floor(rand() * pages.length), 1)[0];
+        let recs = []; try { recs = await readPage(page.k) || []; } catch (_) { /* next page */ }
+        const ok = recs.filter((r) => r && r.type !== 'ghost' && !r.dismissed && r.text && r.text.length >= 25 && r.text.length <= 600);
+        if (ok.length) { const r = ok[Math.floor(rand() * ok.length)]; return { text: r.text, url: r.url || page.k, timestamp: r.timestamp || '' }; }
+    }
+    return null;
+}
+
+export const WIDGETS = ['continue', 'recent', 'feeds', 'quote', 'stats', 'goto'];
 /** The widgets to show, in order, minus the ones the user hid. */
 export const visibleWidgets = (hidden) => WIDGETS.filter((w) => !(hidden || []).includes(w));
 

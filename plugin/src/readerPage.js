@@ -16,6 +16,7 @@ import { bp } from './modules/breakpoints.js';
 import { createHighlightStore } from './modules/highlightStore.js';
 import { createReaderHighlights, selectionIn, paintAll } from './modules/readerHighlights.js';
 import { blockAtTop, placeOfBlock, blockOfPlace } from './modules/readerBookmark.js';
+import { createAppDock } from './modules/appDock.js';
 import { openExternalPalette, bindPaletteKey } from './modules/paletteExternal.js';
 import { browserBookmarksPossible, ensureBookmarksAccess, saveBrowserBookmark, hasBrowserBookmark } from './modules/browserBookmark.js';
 
@@ -438,67 +439,8 @@ async function wireListen() {
 
 // ── The app beside the text: popup.html docked on the right, the page makes room, the edge is draggable ──
 // On a window narrower than the "split" breakpoint there is no room for both: the app floats over the text instead.
-const DOCK_MIN = 320, DOCK_DEFAULT = 420;
-const dockMax = () => Math.max(DOCK_MIN, Math.min(760, Math.round(window.innerWidth * 0.6)));
-const clampDock = (w) => Math.min(dockMax(), Math.max(DOCK_MIN, Math.round(Number(w) || DOCK_DEFAULT)));
 function wireApp() {
-  const btn = $('rpApp'); if (!btn) return;
-  let frame = null, grip = null;
-  const setDock = (w) => { root.style.setProperty('--rp-dock', clampDock(w) + 'px'); if (grip) { grip.setAttribute('aria-valuenow', String(clampDock(w))); grip.setAttribute('aria-valuemin', String(DOCK_MIN)); grip.setAttribute('aria-valuemax', String(dockMax())); } };
-  const saveDock = () => { prefs.dock = clampDock(parseInt(getComputedStyle(root).getPropertyValue('--rp-dock'), 10)); try { chrome.storage.local.set({ [PREFS_KEY]: prefs }); } catch (_) { /* optional */ } };
-  // the edge tab: a slim handle on the right edge of the window says the app lives there and can be pulled in
-  const edge = document.createElement('button');
-  edge.type = 'button'; edge.className = 'rp-edge'; edge.setAttribute('aria-label', T('Open app'));
-  edge.innerHTML = '<svg class="icon" aria-hidden="true" focusable="false"><use href="#i-panel-right-open"/></svg>';
-  document.body.appendChild(edge);
-  const close = () => {
-    const f = frame; frame = null;
-    if (f) { f.classList.remove('rp-in'); setTimeout(() => { f.remove(); if (!frame) root.classList.remove('rp-docked'); }, 320); }   // slides out first (the CSS transition is shorter than this)
-    if (grip) { grip.remove(); grip = null; }
-    root.classList.remove('rp-open'); btn.setAttribute('aria-pressed', 'false'); setIcon(btn, 'panel-right-open');
-    edge.hidden = false;
-  };
-  function makeGrip() {
-    const g = document.createElement('div');
-    g.className = 'rp-grip'; g.setAttribute('role', 'separator'); g.setAttribute('aria-orientation', 'vertical'); g.tabIndex = 0;
-    g.setAttribute('aria-label', T('Resize the app panel'));
-    g.addEventListener('pointerdown', (e) => {
-      e.preventDefault(); g.setPointerCapture(e.pointerId); root.classList.add('rp-resizing');   // the frame must not swallow the drag
-      const move = (ev) => setDock(window.innerWidth - ev.clientX);
-      const up = () => { g.removeEventListener('pointermove', move); g.removeEventListener('pointerup', up); g.removeEventListener('pointercancel', up); root.classList.remove('rp-resizing'); saveDock(); };
-      g.addEventListener('pointermove', move); g.addEventListener('pointerup', up); g.addEventListener('pointercancel', up);
-    });
-    g.addEventListener('keydown', (e) => {
-      const d = e.key === 'ArrowLeft' ? 24 : e.key === 'ArrowRight' ? -24 : 0; if (!d) return;
-      e.preventDefault(); setDock(parseInt(getComputedStyle(root).getPropertyValue('--rp-dock'), 10) + d); saveDock();
-    });
-    return g;
-  }
-  const layout = () => {   // wide enough: beside the text (with a grip); narrow: over it
-    if (!frame) return;
-    const wide = window.innerWidth >= bp('split');
-    root.classList.toggle('rp-docked', wide);
-    if (wide && !grip) { grip = makeGrip(); document.body.appendChild(grip); setDock(prefs.dock); }
-    if (!wide && grip) { grip.remove(); grip = null; }
-    if (wide) setDock(parseInt(getComputedStyle(root).getPropertyValue('--rp-dock'), 10) || prefs.dock);
-  };
-  const toggle = () => {
-    if (frame) { close(); return; }
-    frame = document.createElement('iframe');
-    frame.className = 'rp-float'; frame.title = T('Open app');
-    frame.src = chrome.runtime.getURL('popup.html') + '?surface=float';
-    document.body.appendChild(frame);
-    btn.setAttribute('aria-pressed', 'true'); setIcon(btn, 'panel-right-close'); edge.hidden = true;
-    root.classList.add('rp-open');
-    setDock(prefs.dock); layout();
-    requestAnimationFrame(() => requestAnimationFrame(() => { if (frame) frame.classList.add('rp-in'); }));   // after the first paint, so it slides
-  };
-  btn.addEventListener('click', toggle);
-  edge.addEventListener('click', toggle);
-  window.addEventListener('resize', layout);
-  window.addEventListener('message', (e) => {
-    if (frame && e.source === frame.contentWindow && e.origin === location.origin && e.data && e.data.aishFloat === 'close') close();
-  });
+  createAppDock({ button: $('rpApp'), getWidth: () => prefs.dock, saveWidth: (w) => { prefs.dock = w; try { chrome.storage.local.set({ [PREFS_KEY]: prefs }); } catch (_) { /* optional */ } } });
 }
 
 // ⌘K / Ctrl+K: this page's own commands first (they press the toolbar's buttons, so they are always in step with it), then the app's

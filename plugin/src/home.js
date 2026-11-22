@@ -3,9 +3,11 @@
 import { bootPage } from './modules/pageBoot.js';
 import { T } from './modules/feedI18n.js';
 import StorageManager from './modules/storageManager.js';
-import { SK } from './modules/storageKeys.js';
+import { SK, hlPageKey } from './modules/storageKeys.js';
 import { bgMessage } from './modules/bgMessage.js';
-import { continueReading, recentlySaved, latestFeed, mergeFeed, libraryStats, visibleWidgets, WIDGETS, greetingKey } from './modules/homeWidgets.js';
+import { normalizeHighlights } from './modules/highlightRecords.js';
+import { continueReading, recentlySaved, latestFeed, mergeFeed, pickQuote, libraryStats, visibleWidgets, WIDGETS, greetingKey } from './modules/homeWidgets.js';
+import { createAppDock } from './modules/appDock.js';
 import { mountCommandList } from './modules/commandPalette.js';
 import { externalCommands, externalArticleSearch } from './modules/paletteExternal.js';
 
@@ -33,6 +35,16 @@ const builders = {
   continue: (d) => card(T('Continue reading'), listOf(continueReading(d.index, 4).map((a) => link(readerUrl(a), a.title || a.url, hostOf(a.url), a.progress)), T('Nothing in progress. Articles you start reading show up here.'))),
   recent: (d) => card(T('Recently saved'), listOf(recentlySaved(d.index, 4).map((a) => link(readerUrl(a), a.title || a.url, hostOf(a.url))), T('Your saved articles show up here.'))),
   feeds: (d) => card(T('Latest from your feeds'), listOf(latestFeed(d.feed, 4).map((i) => link(i.link, i.title, i.feedTitle || i.source || hostOf(i.link))), T('Subscribe to feeds to see new items here.'))),
+  quote: (d) => {
+    const body = el('div');
+    if (d.quote) {
+      const q = el('blockquote', 'hm-quote', d.quote.text);
+      const a = el('a', 'hm-link-sub hm-quote-src', hostOf(d.quote.url) || d.quote.url); a.href = d.quote.url; a.target = '_blank'; a.rel = 'noopener';
+      const more = el('button', 'button-secondary btn-sm', T('Another')); more.type = 'button'; more.addEventListener('click', () => loadQuote());
+      body.append(q, a, el('div', 'hm-quote-more')); body.lastChild.append(more);
+    } else body.append(el('p', 'hm-empty', T('Highlights you save show up here, one at a time.')));
+    return card(T('From your highlights'), body);
+  },
   stats: (d) => {
     const s = libraryStats(d.index), dl = el('dl', 'hm-stats');
     [[T('Saved'), s.total], [T('Unread'), s.unread], [T('Starred'), s.starred], [T('Finished this week'), s.finishedThisWeek]].forEach(([k, v]) => { const g = el('div'); g.append(el('dt', '', k), el('dd', '', String(v))); dl.append(g); });
@@ -46,16 +58,17 @@ const builders = {
     return card(T('Open the app'), row);
   },
 };
-const LABELS = { continue: 'Continue reading', recent: 'Recently saved', feeds: 'Latest from your feeds', stats: 'Your library', goto: 'Open the app' };
+const LABELS = { continue: 'Continue reading', recent: 'Recently saved', feeds: 'Latest from your feeds', quote: 'From your highlights', stats: 'Your library', goto: 'Open the app' };
 
-let hidden = [], data = { index: [], feed: [] };
+const dockPrefs = { dock: undefined };
+let hidden = [], data = { index: [], feed: [], quote: null };
 function render() {
   const grid = $('hmGrid'); grid.textContent = '';
   visibleWidgets(hidden).forEach((w) => grid.append(builders[w](data)));
   const box = $('hmCustom'); box.textContent = '';
   WIDGETS.forEach((w) => {
     const lab = el('label'); const cb = el('input'); cb.type = 'checkbox'; cb.checked = !hidden.includes(w);
-    cb.addEventListener('change', () => { hidden = cb.checked ? hidden.filter((x) => x !== w) : [...hidden, w]; try { chrome.storage.local.set({ [PREFS_KEY]: { hidden } }); } catch (_) { /* optional */ } render(); });
+    cb.addEventListener('change', () => { hidden = cb.checked ? hidden.filter((x) => x !== w) : [...hidden, w]; try { chrome.storage.local.set({ [PREFS_KEY]: { hidden, dock: dockPrefs.dock } }); } catch (_) { /* optional */ } render(); });
     lab.append(cb, document.createTextNode(T(LABELS[w]))); box.append(lab);
   });
 }
@@ -65,8 +78,10 @@ async function init() {
   const hour = new Date().getHours();
   $('hmGreeting').textContent = { night: T('Good night'), morning: T('Good morning'), afternoon: T('Good afternoon'), evening: T('Good evening') }[greetingKey(hour)];
   bindSearchKeys();
+  createAppDock({ button: $('hmApp'), getWidth: () => dockPrefs.dock, saveWidth: (w) => { dockPrefs.dock = w; try { chrome.storage.local.set({ [PREFS_KEY]: { hidden, dock: w } }); } catch (_) { /* optional */ } } });
   await loadData();
   render(); mountSearch();
+  loadQuote();
   refreshFeeds();
 }
 
@@ -98,11 +113,21 @@ function bindSearchKeys() {
   });
 }
 
+// One random highlight: the page list is small (hl:index), and only the chosen page's record is read
+async function loadQuote() {
+  try {
+    const idx = (await chrome.storage.local.get({ [SK.hlIndex]: [] }))[SK.hlIndex];
+    data.quote = await pickQuote(idx, async (k) => normalizeHighlights((await chrome.storage.local.get(hlPageKey(k)))[hlPageKey(k)]));
+  } catch (_) { data.quote = null; }
+  render();
+}
+
 // Library and feed list as stored; the worker's newest finds (feeds:background) count too
 async function loadData() {
   try {
     const got = await chrome.storage.local.get({ [PREFS_KEY]: {}, [SK.feedItems]: [], [SK.feedBackground]: {} });
     hidden = Array.isArray(got[PREFS_KEY].hidden) ? got[PREFS_KEY].hidden : [];
+    if (got[PREFS_KEY].dock) dockPrefs.dock = got[PREFS_KEY].dock;
     data.feed = mergeFeed(got[SK.feedItems], (got[SK.feedBackground] || {}).items);
     data.index = await StorageManager.getArticlesIndex();
   } catch (_) { /* empty cards explain themselves */ }

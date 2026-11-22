@@ -131,7 +131,7 @@ const isTyping = (t) => !!t && (t.isContentEditable || /^(INPUT|TEXTAREA|SELECT)
 
 /** ⌘K / Ctrl+K: the command palette (screens, actions, settings, articles). Loaded on first use. */
 export async function openCommandPalette(ui) {
-    const [{ openPalette }, { buildCommands, articleCommands }, nav, smod, am] = await Promise.all([
+    const [{ openPalette }, { buildCommands, articleCommands, withWebSearch }, nav, smod, am] = await Promise.all([
         import('./commandPalette.js'), import('./commands.js'), import('./settingsNav.js'), import('./storageManager.js'), import('./articleManager.js'),
     ]);
     const StorageManager = smod.default;
@@ -139,7 +139,7 @@ export async function openCommandPalette(ui) {
     const getIndex = async () => (index = index || await StorageManager.getArticlesIndex());
     openPalette({
         getCommands: () => buildCommands(ui, { settingsEntries: nav.settingsEntries, openSettingsPanel: nav.openSettingsPanel }),
-        findMore: async (q) => articleCommands(await getIndex(), q, (a) => am.openArticleInHistory(a)),
+        findMore: withWebSearch(async (q) => articleCommands(await getIndex(), q, (a) => am.openArticleInHistory(a))),
     });
 }
 

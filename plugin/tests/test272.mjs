@@ -1,0 +1,23 @@
+// The app dock (reading view and home page share modules/appDock.js): Open app puts the app beside the page, the width is remembered.
+import { setup, imp, tick } from './harness.mjs'; import assert from 'assert';
+const { w } = setup({});
+chrome.runtime.getURL = (p) => 'chrome-extension://x/' + p;
+Object.defineProperty(w, 'innerWidth', { configurable: true, value: 1400 });
+const { createAppDock, clampDock } = await imp('../src/modules/appDock.js');
+const d = w.document, root = d.documentElement;
+d.body.innerHTML = '<button id="b" aria-pressed="false"><svg><use href="#i-panel-right-open"/></svg></button>';
+const saved = [];
+const dock = createAppDock({ button: d.getElementById('b'), getWidth: () => 500, saveWidth: (x) => saved.push(x), doc: d, root });
+assert(d.querySelector('.app-dock-edge'), 'the edge tab is there');
+d.getElementById('b').click(); await tick(60);
+const f = d.querySelector('iframe.app-dock');
+assert(f && /popup\.html\?surface=float$/.test(f.src), 'the app opens in a frame');
+assert(root.classList.contains('dock-open') && root.classList.contains('dock-docked'), 'wide window: docked beside the page');
+assert.equal(d.getElementById('b').getAttribute('aria-pressed'), 'true');
+assert(d.querySelector('.app-dock-grip'), 'a grip to resize');
+d.querySelector('.app-dock-grip').dispatchEvent(new w.KeyboardEvent('keydown', { key: 'ArrowLeft', bubbles: true, cancelable: true }));
+assert.equal(saved.at(-1), 524, 'keyboard resize is saved (500 + 24)');
+assert.equal(clampDock(10), 320, 'never narrower than the minimum');
+d.getElementById('b').click(); await tick(400);
+assert(!d.querySelector('iframe.app-dock') && !root.classList.contains('dock-open'), 'closes again');
+console.log('TEST 272 OK'); process.exit(0);

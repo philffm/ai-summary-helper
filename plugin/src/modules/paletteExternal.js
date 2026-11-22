@@ -2,7 +2,7 @@
 // the page adds its own commands (`extra`), articles open through `openArticle`.
 import { T } from './feedI18n.js';
 import { openPalette } from './commandPalette.js';
-import { articleCommands } from './commands.js';
+import { articleCommands, withWebSearch } from './commands.js';
 import { isMac } from './shortcuts.js';
 import StorageManager from './storageManager.js';
 
@@ -28,7 +28,7 @@ export function externalCommands({ extra = [], home = true } = {}) {
 export function externalArticleSearch(openArticle) {
     let index = null;
     const open = openArticle || ((a) => window.open(chrome.runtime.getURL('readerPage.html') + '#id=' + encodeURIComponent(a.id), '_blank'));
-    return async (q) => articleCommands(index = index || await StorageManager.getArticlesIndex(), q, open);
+    return withWebSearch(async (q) => articleCommands(index = index || await StorageManager.getArticlesIndex(), q, open));
 }
 
 export function openExternalPalette({ extra = [], openArticle, doc = document } = {}) {

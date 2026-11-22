@@ -165,6 +165,7 @@
             <tr><td>File System Access (chosen folder)</td><td>Only when you pick a folder on your computer as a sync or backup place; the browser asks for your permission and only that folder is reachable</td></tr>
             <tr><td><code>unlimitedStorage</code></td><td>Keep a large local archive of articles and highlights without hitting the default storage quota</td></tr>
             <tr><td><code>bookmarks</code> (optional)</td><td>Only if you choose “Save in browser bookmarks” in the reading view; the browser asks first. We add or update one bookmark for that article in a folder “AI Summary Helper”; we only look for and change our own folder, not the rest of your bookmarks</td></tr>
+            <tr><td><code>search</code> (optional)</td><td>Only if you choose “Search the web” in the search box of the home page or the command palette; the browser asks first. It hands the words you typed to your browser’s own default search engine, exactly as if you had typed them in the address bar. We do not see, store or send them anywhere else</td></tr>
             <tr><td><code>host_permissions (&lt;all_urls&gt;)</code></td><td>Let you summarize any page you visit — content is only read and transmitted when you actively trigger a summary, never passively. Also lets the extension reach the sync server or bucket you enter, which can be on any address</td></tr>
           </tbody>
         </table>

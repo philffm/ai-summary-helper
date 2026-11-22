@@ -20,7 +20,7 @@ html, body { height: auto; overflow: visible; }
 body { margin: 0; min-width: 0; min-height: 100vh; background: var(--rp-bg); background-image: none; color: var(--rp-text); font-family: var(--rp-ui); font-size: var(--fs-base); }
 .rp-progress { position: fixed; inset: 0 0 auto 0; height: 3px; z-index: 20; background: transparent; }
 .rp-progress span { display: block; height: 100%; width: 0; background: var(--rp-accent); }
-.rp-bar { position: sticky; top: 0; z-index: 10; background: color-mix(in srgb, var(--rp-bg) 92%, transparent); backdrop-filter: blur(6px); border-bottom: 1px solid var(--rp-line); }
+.rp-bar { container: rpbar / inline-size; position: sticky; top: 0; z-index: 10; background: color-mix(in srgb, var(--rp-bg) 92%, transparent); backdrop-filter: blur(6px); border-bottom: 1px solid var(--rp-line); }
 .rp-bar-in { max-width: 60rem; margin: 0 auto; padding: .5rem 1rem; display: flex; flex-wrap: wrap; gap: .5rem .75rem; align-items: center; }
 .rp-bar .a11y-seg > button { flex: 0 0 auto; }
 .rp-bar .a11y-seg > button:disabled { opacity: .4; }
@@ -56,27 +56,15 @@ a:focus-visible, summary:focus-visible { outline: var(--focus-ring-width) solid 
 .rp-empty { color: var(--rp-muted); font-style: italic; }
 .rp-toast { position: fixed; inset: auto 1rem 1rem 1rem; max-width: 28rem; margin-inline: auto; z-index: 30; background: var(--rp-text); color: var(--rp-bg); padding: .65rem 1rem; border-radius: .6rem; font: 600 .85rem/1.4 var(--rp-ui); text-align: center; box-shadow: 0 6px 24px rgba(0,0,0,.25); }
 .rp-toast[hidden] { display: none; }
-.rp-float { position: fixed; top: 12px; right: 12px; width: min(420px, calc(100vw - 24px)); height: calc(100dvh - 24px); border: 0; border-radius: 16px; z-index: 40; background: var(--rp-bg); box-shadow: 0 8px 32px rgba(0,0,0,.25), 0 0 0 1px var(--rp-line); color-scheme: light dark; }
-/* docked: the app takes a column on the right, the text and the toolbar make room (rp-open while it is shown, rp-docked while it is laid out beside the text) */
+/* the app dock itself lives in appDock.css; the progress bar makes room for it */
 body { transition: padding-inline-end var(--duration-base) var(--easing-standard); }
-:root.rp-docked.rp-open body { padding-inline-end: var(--rp-dock, 420px); }
-:root.rp-docked.rp-open .rp-progress { inset-inline-end: var(--rp-dock, 420px); }
-.rp-float { transform: translateX(calc(100% + 24px)); transition: transform var(--duration-base) var(--easing-standard); }
-.rp-float.rp-in { transform: none; }
-:root.rp-docked .rp-float { inset: 0 0 0 auto; width: var(--rp-dock, 420px); height: 100dvh; border-radius: 0; box-shadow: none; border-inline-start: 1px solid var(--rp-line); }
-:root.rp-resizing body, :root.rp-resizing .rp-float { transition: none; }
-.rp-grip { position: fixed; inset-block: 0; inset-inline-end: calc(var(--rp-dock, 420px) - 5px); width: 10px; z-index: 41; cursor: col-resize; touch-action: none; }
-.rp-grip::after { content: ''; position: absolute; inset-block: 0; inset-inline-start: 4px; width: 2px; background: transparent; transition: background var(--duration-fast) var(--easing-standard); }
-.rp-grip:hover::after, .rp-grip:focus-visible::after, :root.rp-resizing .rp-grip::after { background: var(--rp-accent); }
-.rp-grip:focus-visible { outline: none; }
-:root.rp-resizing, :root.rp-resizing * { user-select: none; cursor: col-resize; }
-:root.rp-resizing .rp-float { pointer-events: none; }
+:root.dock-docked.dock-open .rp-progress { inset-inline-end: var(--dock-w, 420px); }
 .rp-speaking { background: var(--rp-mark-ghost); border-radius: .25rem; box-shadow: 0 0 0 .2rem var(--rp-mark-ghost); }
 .rp-actions { display: inline-flex; gap: .5rem; }
 .rp-bar button:disabled { cursor: progress; }
 @media (max-width: 600px) { .rp-bar-in { gap: .4rem; } .rp-page { padding-top: 1.5rem; } }
 @media print {
-  .rp-bar, .rp-progress, .rp-toc, .rp-toast, .rp-float, .rp-grip, .rp-pop { display: none; }
+  .rp-bar, .rp-progress, .rp-toc, .rp-toast, .rp-pop { display: none; }
   body { background: #fff; color: #000; padding-inline-end: 0 !important; } .rp-page { max-width: none; padding: 0; }
   :root { --rp-surface: #fff; --rp-text: #000; --rp-accent: #000; --rp-mark: #ffe96b; }
 }
@@ -101,7 +89,10 @@ body { transition: padding-inline-end var(--duration-base) var(--easing-standard
 .rp-tool:disabled { opacity: .4; cursor: default; }
 .rp-tool--app { color: var(--rp-accent); }
 .rp-label { display: none; }
-@media (min-width: 720px) { .rp-tool--app .rp-label, #rpDisplayBtn .rp-label { display: inline; } }
+/* The bar is a container, so the room that counts is the bar's own width: the app docked beside the text narrows it without the window changing.
+   Labels where there is room (≥ 780); icons only from 720 down to there, still one line; below 720 the tools may wrap (phones). */
+@container rpbar (min-width: 780px) { .rp-tool--app .rp-label, #rpDisplayBtn .rp-label, .rp-split #rpSendMain .rp-label { display: inline; } }
+@container rpbar (min-width: 720px) { .rp-bar-in { flex-wrap: nowrap; } }
 .rp-menu { position: absolute; top: calc(100% + 6px); inset-inline-start: 0; z-index: 12; display: grid; gap: var(--spacing-s-2); min-width: 14rem; padding: var(--spacing-s-2); background: var(--surface-sheet); border: 1px solid var(--rp-line); border-radius: var(--radius-md); box-shadow: var(--shadow-modal); }
 .rp-menu[hidden] { display: none; }
 .rp-menu--more { inset-inline-start: auto; inset-inline-end: 0; min-width: 11rem; }
@@ -111,11 +102,7 @@ body { transition: padding-inline-end var(--duration-base) var(--easing-standard
 .rp-item { display: flex; align-items: center; gap: 8px; width: 100%; padding: 8px 10px; background: transparent; color: var(--rp-text); border: 0; border-radius: var(--radius-sm); font: 500 var(--fs-md) var(--rp-ui); text-align: start; cursor: pointer; }
 .rp-item:hover { background: var(--accent-a08); }
 .rp-item .rp-label { display: inline; }
-.rp-edge { position: fixed; inset-inline-end: 0; top: calc(50% - 28px); z-index: 15; display: grid; place-items: center; width: 22px; height: 56px; padding: 0; color: var(--rp-muted); background: var(--rp-surface); border: 1px solid var(--rp-line); border-inline-end: 0; border-radius: var(--radius-md) 0 0 var(--radius-md); opacity: .55; cursor: pointer; transition: opacity var(--duration-fast) var(--easing-standard), width var(--duration-fast) var(--easing-standard), color var(--duration-fast) var(--easing-standard); }
-.rp-edge:active { transform: none; }   /* styles.css scales every pressed button: that must not move this one */
-.rp-edge:hover, .rp-edge:focus-visible { opacity: 1; width: 30px; color: var(--rp-accent); outline: none; }
-.rp-edge[hidden] { display: none; }
-@media print { .rp-edge, .rp-menu { display: none; } }
+@media print { .rp-menu { display: none; } }
 .rp-menu--theme { min-width: 17rem; }
 
 /* send: the split button of the article detail (last used target | ▾) */
@@ -123,7 +110,7 @@ body { transition: padding-inline-end var(--duration-base) var(--easing-standard
 .rp-split[hidden] { display: none; }
 .rp-split > .rp-tool { border: 0; border-radius: 0; }
 .rp-split > .rp-tool + .rp-tool { border-inline-start: 1px solid var(--rp-line); padding: 0 6px; }
-.rp-split .rp-label { display: inline; }
+.rp-split .rp-label { display: none; }   /* shown from container width 780, see above */
 .rp-toast-action { margin-inline-start: 12px; padding: 0; background: transparent; border: 0; color: inherit; font: inherit; font-weight: 700; text-decoration: underline; cursor: pointer; }
 
 /* bookmark: the marked block, and the "continue" offer under the title */

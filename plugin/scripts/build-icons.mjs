@@ -1,4 +1,4 @@
-// Regenerates the inline SVG sprite in src/popup.html (and the same one in src/readerPage.html) from a Lucide checkout (ISC licence).
+// Regenerates the inline SVG sprite in src/popup.html (and the same one in src/readerPage.html and src/home.html) from a Lucide checkout (ISC licence).
 //   npm pack lucide-static && tar xzf lucide-static-*.tgz
 //   node scripts/build-icons.mjs package/icons
 // Add a name to ICONS, re-run, commit popup.html. The sprite lives inline so the icons cost no extra request.
@@ -42,4 +42,5 @@ const inject = (file, names) => {
 };
 inject(html, ICONS);
 inject(join(dirname(html), 'readerPage.html'), ICONS);   // the read mode page draws send menus and chips from the same sprite
+inject(join(dirname(html), 'home.html'), ICONS);   // the home page too (its Open app button)
 console.log(`sprite: ${ICONS.length} icons`);

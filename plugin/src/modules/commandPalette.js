@@ -74,7 +74,7 @@ export function mountCommandList(container, { getCommands, findMore, onRun, onEs
     const update = async () => {
         const q = input.value, mine = ++token;
         shown = rankCommands(base, q); active = 0; paint();
-        if (findMore && q.trim().length >= 2) {
+        if (findMore && q.trim().length >= 1) {
             let more = []; try { more = await findMore(q) || []; } catch (_) { /* the commands stay */ }
             if (mine !== token || !alive) return;
             shown = shown.concat(more); paint();

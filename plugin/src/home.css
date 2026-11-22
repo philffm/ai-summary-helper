@@ -2,7 +2,7 @@
 html, body { height: auto; overflow: auto; }
 body.home { background: var(--bg-page); color: var(--text-primary); font-family: inherit; }
 .hm-wrap { max-width: 1280px; margin: 0 auto; padding: 24px 20px 48px; box-sizing: border-box; }
-.hm-head { display: flex; flex-direction: column; align-items: center; gap: 16px; margin: 2vh 0 24px; text-align: center; }
+.hm-head { position: relative; display: flex; flex-direction: column; align-items: center; gap: 16px; margin: 2vh 0 24px; text-align: center; }
 .hm-title { margin: 0; font-size: var(--fs-2xl); font-weight: 600; }
 /* The search is the command list, inline: it opens under the field while you type or arrow through it, the cards step back. */
 .hm-box { position: relative; width: 100%; max-width: 560px; text-align: left; }
@@ -42,3 +42,7 @@ body.home { background: var(--bg-page); color: var(--text-primary); font-family:
 .hm-key { position: absolute; top: 50%; right: 14px; transform: translateY(-50%); pointer-events: none; }
 .hm-box.is-open .hm-key { display: none; }
 .hm-box .cmdk-input { padding-right: 76px; }
+.hm-app { position: absolute; top: 0; inset-inline-end: 0; display: inline-flex; align-items: center; gap: 6px; }
+.hm-app .icon { width: 16px; height: 16px; }
+.hm-quote { margin: 0 0 8px; padding: 0; font-size: var(--fs-md); line-height: 1.5; display: -webkit-box; -webkit-line-clamp: 6; -webkit-box-orient: vertical; overflow: hidden; }
+.hm-quote-src { display: block; margin-bottom: 10px; }
