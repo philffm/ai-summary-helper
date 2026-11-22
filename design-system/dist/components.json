@@ -1816,11 +1816,13 @@
         }
       },
       "tokens": [
+        "--accent",
         "--accent-soft",
         "--focus-ring",
         "--focus-ring-inset",
         "--focus-ring-width",
         "--fs-md",
+        "--on-accent",
         "--outline",
         "--radius-lg",
         "--radius-md",

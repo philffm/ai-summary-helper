@@ -591,7 +591,7 @@ Status: beta · not in Figma yet
 - CSS: `.cmdk`, `.cmdk-panel`, `.cmdk-input`, `.cmdk-item`
 - Source: `plugin/src/modules/commandPalette.js`, `plugin/src/modules/commands.js`
 - Properties: Placeholder (text)
-- Tokens: `--accent-soft`, `--focus-ring`, `--focus-ring-inset`, `--focus-ring-width`, `--fs-md`, `--outline`, `--radius-lg`, `--radius-md`, `--sheet-bg`, `--sheet-border`, `--sheet-shadow`, `--text-primary`, `--z-modal`
+- Tokens: `--accent`, `--accent-soft`, `--focus-ring`, `--focus-ring-inset`, `--focus-ring-width`, `--fs-md`, `--on-accent`, `--outline`, `--radius-lg`, `--radius-md`, `--sheet-bg`, `--sheet-border`, `--sheet-shadow`, `--text-primary`, `--z-modal`
 - Accessibility:
   - Dialog with a combobox input and a listbox; aria-activedescendant follows the highlighted row
   - Arrow keys move, Enter runs, Escape closes; focus is trapped and returns to the opener

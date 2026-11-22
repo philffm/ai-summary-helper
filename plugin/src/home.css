@@ -101,3 +101,10 @@ body.home { background: var(--bg-page); color: var(--text-primary); font-family:
 .hm-lazy-body { position: absolute; inset: 3rem 14px 12px; overflow-y: auto; overflow-x: hidden; }
 .hm-lazy-body .hm-link { margin-inline: 0; padding-inline: 8px; }
 @container hmwrap (max-width: 1100px) { .hm-card--lazy { min-block-size: 0; } .hm-lazy-body { position: static; max-block-size: 22rem; } }
+
+/* High contrast (data-design on <html>): cards and menus get thick edges, a hovered row a solid fill */
+:root[data-design='contrast'] .hm-card, :root[data-design='contrast'] .hm-look-menu { border-width: 2px; box-shadow: none; }
+:root[data-design='contrast'] .hm-link:hover { background: var(--accent); color: var(--on-accent); }
+:root[data-design='contrast'] .hm-link:hover .hm-link-sub { color: var(--on-accent); }
+:root[data-design='contrast'] .hm-latest { border-inline-start-width: 2px; }
+:root[data-design='contrast'] .hm-card-link, :root[data-design='contrast'] .hm-brief-meta, :root[data-design='contrast'] .hm-link-sub, :root[data-design='contrast'] .hm-card h2 { color: var(--text-primary); }

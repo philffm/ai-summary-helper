@@ -4487,6 +4487,15 @@ html[data-line='relaxed'] body, html[data-line='relaxed'] .summary-box, html[dat
 html[data-motion='reduce'] *, html[data-motion='reduce'] *::before, html[data-motion='reduce'] *::after { animation-duration: 0.001ms !important; animation-iteration-count: 1 !important; transition-duration: 0.001ms !important; scroll-behavior: auto !important; }
 :root[data-design='contrast'] .button-secondary, :root[data-design='contrast'] .tag-chip, :root[data-design='contrast'] .source-card, :root[data-design='contrast'] .paper-card { border: 2px solid var(--outline); box-shadow: none; }
 :root[data-design='contrast'] :focus-visible { outline: var(--focus-ring-width) solid var(--focus-ring); outline-offset: var(--focus-ring-offset); }
+/* High contrast: the command palette (⌘K, also inline on the home page) has the same hard edges as the other surfaces, and the highlighted entry is
+   a solid accent fill, not a faint tint */
+:root[data-design='contrast'] .cmdk-panel, :root[data-design='contrast'] .hm-box.is-open .cmdk-list, :root[data-design='contrast'] .hm-box.is-open .cmdk-empty { border: 2px solid var(--outline); box-shadow: none; }
+:root[data-design='contrast'] .cmdk-input { border-bottom: 2px solid var(--outline); }
+:root[data-design='contrast'] .hm-box .cmdk-input { border: 2px solid var(--outline); }
+:root[data-design='contrast'] .cmdk-item { border: 2px solid transparent; }
+:root[data-design='contrast'] .cmdk-item[aria-selected="true"] { background: var(--accent); color: var(--on-accent); border-color: var(--outline); }
+:root[data-design='contrast'] .cmdk-item[aria-selected="true"] .cmdk-sub, :root[data-design='contrast'] .cmdk-item[aria-selected="true"] .kbd-key { color: var(--on-accent); }
+:root[data-design='contrast'] .cmdk-sub, :root[data-design='contrast'] .cmdk-group, :root[data-design='contrast'] .cmdk-empty { color: var(--text-primary); }
 .a11y-block { display: flex; flex-direction: column; gap: 8px; margin-bottom: 14px; }
 .a11y-block h3 { margin: 6px 0 0; font-size: var(--fs-xs); letter-spacing: .06em; text-transform: uppercase; color: var(--text-muted); }
 .a11y-hint { font-size: var(--fs-xs); color: var(--text-muted); margin: 0; }
