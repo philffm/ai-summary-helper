@@ -10,7 +10,7 @@ import { T } from './feedI18n.js';
 import { articleRecKey } from './storageKeys.js';
 import { safeFileName } from './articleFormat.js';
 
-const esc = (s) => String(s == null ? '' : s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+import { escapeText as esc } from '../escape.js';
 /** Plain text → the HTML Anki shows: escaped, line breaks kept. Answers may contain Markdown; it stays readable as plain text. */
 export const toHtml = (s) => esc(String(s || '').trim()).replace(/\r?\n/g, '<br>');
 const tagOf = (s) => String(s || '').trim().replace(/\s+/g, '_').replace(/[^\p{L}\p{N}_:-]/gu, '').slice(0, 40);

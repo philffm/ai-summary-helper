@@ -25,7 +25,8 @@ import {
   inlineAndCompressImages
 } from './content/extractor.js';
 
-import { markdownToHtml, stripReasoning, escapeHtml } from './content/markdown.js';
+import { markdownToHtml, stripReasoning } from './content/markdown.js';
+import { escapeHtml } from './escape.js';
 import { stripImages } from './content/stripImages.js';
 
 // Settings → Library & Data → "Save images with articles" (default on): off keeps the text only.

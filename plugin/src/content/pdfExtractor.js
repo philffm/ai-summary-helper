@@ -1,4 +1,5 @@
 // content/pdfExtractor.js
+import { escapeHtml } from '../escape.js';
 // PDF detection + text extraction via pdf.js. Loaded lazily — see loadPdfJs()
 // — so pages that never touch a PDF pay zero cost for this module.
 //
@@ -387,6 +388,3 @@ function fetchArrayBufferViaXhr(url) {
  * @param {string} str
  * @returns {string}
  */
-function escapeHtml(str) {
-  return str.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
-}

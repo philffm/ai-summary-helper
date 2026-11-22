@@ -6,7 +6,7 @@ import { newSidebarToken, SIDEBAR_HASH_KEY, SIDEBAR_TOKEN_FIELD } from '../modul
 
 import { stripHtmlTags } from './extractor.js';
 import { MK } from './markColors.js';
-import { escapeHtml } from './markdown.js';
+import { escapeHtml } from '../escape.js';
 
 export function ensureHighlightUiStyles() {
   if (document.getElementById('aish-highlight-ui-styles')) return;

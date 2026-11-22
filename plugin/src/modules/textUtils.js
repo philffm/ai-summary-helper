@@ -162,10 +162,9 @@ export function levenshtein(a, b) {
     return prev[bl];
 }
 
-/** Escape text for safe interpolation into HTML (element content and quoted attributes). */
-export function escapeHtml(str) {
-    return String(str ?? '').replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
-}
+// (the worker bundler strips `export ` and cannot re-export from another file, hence import + bare export)
+import { escapeHtml } from '../escape.js';
+export { escapeHtml };
 
 /** Word count of an HTML string (tags ignored). */
 // Japanese and Chinese (and Thai) are written without spaces: splitting on whitespace counts a whole paragraph as

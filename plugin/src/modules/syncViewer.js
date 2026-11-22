@@ -10,8 +10,7 @@ import { hashValue } from './syncStamps.js';
 
 export const VIEWER_VERSION = 2;
 export const VIEWER_FILES = { 'index.html': 'text/html; charset=utf-8', 'aish-viewer.js': 'text/javascript; charset=utf-8', 'aish-sky.js': 'text/javascript; charset=utf-8' };
-const ESC = { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' };
-const esc = (s) => String(s == null ? '' : s).replace(/[&<>"']/g, (c) => ESC[c]);
+import { escapeHtml as esc } from '../escape.js';
 
 /** Fills the template: the place name (escaped) and the viewer version. → { version, files } */
 export function renderViewer(templates, { title } = {}) {

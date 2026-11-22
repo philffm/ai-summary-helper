@@ -3,7 +3,7 @@
 // (the "mimetype" entry has to come first and uncompressed — buildZip stores everything).
 import { buildZip } from './markdownArchive.js';
 
-const esc = (t) => String(t).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/[\u0000-\u0008\u000b\u000c\u000e-\u001f]/g, '');
+import { escapeXml as esc } from '../escape.js';
 
 /** Inline Markdown → text:span runs (T-Bold / T-Italic / T-Code automatic styles). */
 function inline(text) {

@@ -7,7 +7,7 @@ const FALLBACK_KEY = 'AIzaSyAO_FJ2SlqU8Q4STEHLGCilw_Y9_11qcW8';   // the public 
 const ANDROID = { clientName: 'ANDROID', clientVersion: '20.10.38' };
 const MAX_CHARS = 120000;
 
-const esc = (t) => String(t).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+import { escapeHtml } from '../escape.js';
 function ytError(code, message) { const e = new Error(message); e.code = code; return e; }
 
 /** Video id of a watch / shorts / embed / youtu.be URL, '' for anything else (home, search, channel, playlist). */
@@ -162,7 +162,7 @@ function transcriptResult(paras, { title, author, asr = false, language = '' }) 
   let body = paras.join('\n\n');
   if (body.length > MAX_CHARS) body = body.slice(0, MAX_CHARS);
   const text = `YouTube video transcript\n${meta.join('\n')}\n\n${body}`;
-  const html = `<article><h1>${esc(title)}</h1>${author ? `<p><em>${esc(author)}</em></p>` : ''}${paras.map(p => `<p>${esc(p)}</p>`).join('')}</article>`;
+  const html = `<article><h1>${escapeHtml(title)}</h1>${author ? `<p><em>${escapeHtml(author)}</em></p>` : ''}${paras.map(p => `<p>${escapeHtml(p)}</p>`).join('')}</article>`;
   return { html, text, title, language };
 }
 
