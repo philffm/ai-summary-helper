@@ -196,11 +196,13 @@ document.addEventListener("DOMContentLoaded", async () => {
             setIcon(popoutBtn, 'x', 'icon--lg');
             popoutBtn.title = T('Close'); popoutBtn.setAttribute('aria-label', T('Close'));
             popoutBtn.removeAttribute('data-i18n-title');
+            popoutBtn.parentElement.append(popoutBtn);   // Close is the last button, after Settings (the corner that closes things)
         } else if (surface === 'inpage') {
             // The in-page sidebar: the button closes it (the click below toggles it off through the content script).
             setIcon(popoutBtn, 'x', 'icon--lg');
             popoutBtn.title = T('Close'); popoutBtn.setAttribute('aria-label', T('Close'));
             popoutBtn.removeAttribute('data-i18n-title');
+            popoutBtn.parentElement.append(popoutBtn);   // Close is the last button, after Settings (the corner that closes things)
         }
 
         popoutBtn.addEventListener('click', async () => {
