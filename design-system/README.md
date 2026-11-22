@@ -22,7 +22,7 @@ npm run build -- --koru # extension in another brand: its regions are regenerate
 **Appearance in the extension has three axes** (set in Settings › Appearance, `plugin/src/modules/appearance.js`): brightness
 (`data-theme`: light / dark, none = follow the system), design (`data-design`: postil / contrast, none = standard) and colour
 scheme (`data-scheme`: kaivo / aish / viola, none = the build's own brand). Sets: `app/postil*` (Postil, light and dark),
-`app/contrast*` (High contrast, light and dark; the colour scheme does not apply there) and `app/postil-tint*`: Postil with a few
+`app/contrast*` (High contrast, light and dark; a colour scheme only changes the accent there, Graphite makes it pure black / white) and `app/postil-tint*`: Postil with a few
 percent of a brand colour, generated per brand by `node design-system/postil-tints.mjs` (the `brand.postil.*` primitives; the strength
 is the `TINT` table in that script). Blocks with `"tint": "<brand>"` in `config.json` write such a set with that brand's values.
 

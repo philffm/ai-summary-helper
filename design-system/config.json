@@ -64,6 +64,20 @@
           "app/dark",
           "app/dark-forced",
           "app/graphite-dark"
+        ],
+        "graphite-contrast": [
+          "app/base",
+          "app/light",
+          "app/contrast",
+          "app/graphite-contrast"
+        ],
+        "graphite-contrast-dark": [
+          "app/base",
+          "app/light",
+          "app/dark",
+          "app/dark-forced",
+          "app/contrast-dark",
+          "app/graphite-contrast-dark"
         ]
       },
       "defaultBrand": "kaivo"
@@ -116,6 +130,13 @@
           "sets": [
             "app/base",
             "app/light"
+          ]
+        },
+        {
+          "comment": "The colour dots of Settings › Appearance › Color scheme: fixed colours (the Default dot is this build's own accent), so they do not change when a scheme is chosen. Not part of any theme.",
+          "selector": ":root",
+          "sets": [
+            "app/swatches"
           ]
         },
         {
@@ -360,7 +381,7 @@
           ]
         },
         {
-          "comment": "Design High contrast: black on white, or white on black in dark. The colour scheme does not apply here (the accent is the one checked for contrast).",
+          "comment": "Design High contrast: black on white, or white on black in dark. A colour scheme only changes the accent (the blocks further down); Graphite is pure black / white.",
           "selector": ":root[data-design='contrast']",
           "sets": [
             "app/contrast"
@@ -386,6 +407,140 @@
           ],
           "extra": [
             "color-scheme: dark"
+          ]
+        },
+        {
+          "scheme": "aish",
+          "selector": ":root[data-design='contrast'][data-scheme='aish']",
+          "sets": [
+            "app/contrast"
+          ],
+          "extra": [
+            "color-scheme: light"
+          ],
+          "comment": "High contrast with a colour scheme: the same black-and-white sets, only the accent (and for Graphite the few grey tokens) takes the scheme. Graphite is pure black / white."
+        },
+        {
+          "scheme": "kaivo",
+          "selector": ":root[data-design='contrast'][data-scheme='kaivo']",
+          "sets": [
+            "app/contrast"
+          ],
+          "extra": [
+            "color-scheme: light"
+          ]
+        },
+        {
+          "scheme": "viola",
+          "selector": ":root[data-design='contrast'][data-scheme='viola']",
+          "sets": [
+            "app/contrast"
+          ],
+          "extra": [
+            "color-scheme: light"
+          ]
+        },
+        {
+          "scheme": "graphite",
+          "selector": ":root[data-design='contrast'][data-scheme='graphite']",
+          "sets": [
+            "app/contrast"
+          ],
+          "extra": [
+            "color-scheme: light"
+          ],
+          "extraSets": [
+            "app/graphite-contrast"
+          ]
+        },
+        {
+          "scheme": "aish",
+          "media": "(prefers-color-scheme: dark)",
+          "selector": ":root[data-design='contrast'][data-scheme='aish']:not([data-theme='light'])",
+          "sets": [
+            "app/contrast-dark"
+          ],
+          "extra": [
+            "color-scheme: dark"
+          ]
+        },
+        {
+          "scheme": "kaivo",
+          "media": "(prefers-color-scheme: dark)",
+          "selector": ":root[data-design='contrast'][data-scheme='kaivo']:not([data-theme='light'])",
+          "sets": [
+            "app/contrast-dark"
+          ],
+          "extra": [
+            "color-scheme: dark"
+          ]
+        },
+        {
+          "scheme": "viola",
+          "media": "(prefers-color-scheme: dark)",
+          "selector": ":root[data-design='contrast'][data-scheme='viola']:not([data-theme='light'])",
+          "sets": [
+            "app/contrast-dark"
+          ],
+          "extra": [
+            "color-scheme: dark"
+          ]
+        },
+        {
+          "scheme": "graphite",
+          "media": "(prefers-color-scheme: dark)",
+          "selector": ":root[data-design='contrast'][data-scheme='graphite']:not([data-theme='light'])",
+          "sets": [
+            "app/contrast-dark"
+          ],
+          "extra": [
+            "color-scheme: dark"
+          ],
+          "extraSets": [
+            "app/graphite-contrast-dark"
+          ]
+        },
+        {
+          "scheme": "aish",
+          "selector": ":root[data-design='contrast'][data-scheme='aish'][data-theme='dark']",
+          "sets": [
+            "app/contrast-dark"
+          ],
+          "extra": [
+            "color-scheme: dark"
+          ]
+        },
+        {
+          "scheme": "kaivo",
+          "selector": ":root[data-design='contrast'][data-scheme='kaivo'][data-theme='dark']",
+          "sets": [
+            "app/contrast-dark"
+          ],
+          "extra": [
+            "color-scheme: dark"
+          ]
+        },
+        {
+          "scheme": "viola",
+          "selector": ":root[data-design='contrast'][data-scheme='viola'][data-theme='dark']",
+          "sets": [
+            "app/contrast-dark"
+          ],
+          "extra": [
+            "color-scheme: dark"
+          ]
+        },
+        {
+          "scheme": "graphite",
+          "selector": ":root[data-design='contrast'][data-scheme='graphite'][data-theme='dark']",
+          "sets": [
+            "app/contrast-dark"
+          ],
+          "extra": [
+            "color-scheme: dark"
+          ],
+          "extraSets": [
+            "app/graphite-contrast-dark"
           ]
         },
         {
@@ -658,7 +813,7 @@
           ]
         },
         {
-          "comment": "Design High contrast: black on white, or white on black in dark. The colour scheme does not apply here (the accent is the one checked for contrast).",
+          "comment": "Design High contrast: black on white, or white on black in dark. A colour scheme only changes the accent (the blocks further down); Graphite is pure black / white.",
           "selector": ":host([data-design='contrast'])",
           "sets": [
             "app/contrast"
@@ -684,6 +839,140 @@
           ],
           "extra": [
             "color-scheme: dark"
+          ]
+        },
+        {
+          "scheme": "aish",
+          "selector": ":host([data-design='contrast'][data-scheme='aish'])",
+          "sets": [
+            "app/contrast"
+          ],
+          "extra": [
+            "color-scheme: light"
+          ],
+          "comment": "High contrast with a colour scheme: the same black-and-white sets, only the accent (and for Graphite the few grey tokens) takes the scheme. Graphite is pure black / white."
+        },
+        {
+          "scheme": "kaivo",
+          "selector": ":host([data-design='contrast'][data-scheme='kaivo'])",
+          "sets": [
+            "app/contrast"
+          ],
+          "extra": [
+            "color-scheme: light"
+          ]
+        },
+        {
+          "scheme": "viola",
+          "selector": ":host([data-design='contrast'][data-scheme='viola'])",
+          "sets": [
+            "app/contrast"
+          ],
+          "extra": [
+            "color-scheme: light"
+          ]
+        },
+        {
+          "scheme": "graphite",
+          "selector": ":host([data-design='contrast'][data-scheme='graphite'])",
+          "sets": [
+            "app/contrast"
+          ],
+          "extra": [
+            "color-scheme: light"
+          ],
+          "extraSets": [
+            "app/graphite-contrast"
+          ]
+        },
+        {
+          "scheme": "aish",
+          "media": "(prefers-color-scheme: dark)",
+          "selector": ":host([data-design='contrast'][data-scheme='aish']:not([data-theme='light']))",
+          "sets": [
+            "app/contrast-dark"
+          ],
+          "extra": [
+            "color-scheme: dark"
+          ]
+        },
+        {
+          "scheme": "kaivo",
+          "media": "(prefers-color-scheme: dark)",
+          "selector": ":host([data-design='contrast'][data-scheme='kaivo']:not([data-theme='light']))",
+          "sets": [
+            "app/contrast-dark"
+          ],
+          "extra": [
+            "color-scheme: dark"
+          ]
+        },
+        {
+          "scheme": "viola",
+          "media": "(prefers-color-scheme: dark)",
+          "selector": ":host([data-design='contrast'][data-scheme='viola']:not([data-theme='light']))",
+          "sets": [
+            "app/contrast-dark"
+          ],
+          "extra": [
+            "color-scheme: dark"
+          ]
+        },
+        {
+          "scheme": "graphite",
+          "media": "(prefers-color-scheme: dark)",
+          "selector": ":host([data-design='contrast'][data-scheme='graphite']:not([data-theme='light']))",
+          "sets": [
+            "app/contrast-dark"
+          ],
+          "extra": [
+            "color-scheme: dark"
+          ],
+          "extraSets": [
+            "app/graphite-contrast-dark"
+          ]
+        },
+        {
+          "scheme": "aish",
+          "selector": ":host([data-design='contrast'][data-scheme='aish'][data-theme='dark'])",
+          "sets": [
+            "app/contrast-dark"
+          ],
+          "extra": [
+            "color-scheme: dark"
+          ]
+        },
+        {
+          "scheme": "kaivo",
+          "selector": ":host([data-design='contrast'][data-scheme='kaivo'][data-theme='dark'])",
+          "sets": [
+            "app/contrast-dark"
+          ],
+          "extra": [
+            "color-scheme: dark"
+          ]
+        },
+        {
+          "scheme": "viola",
+          "selector": ":host([data-design='contrast'][data-scheme='viola'][data-theme='dark'])",
+          "sets": [
+            "app/contrast-dark"
+          ],
+          "extra": [
+            "color-scheme: dark"
+          ]
+        },
+        {
+          "scheme": "graphite",
+          "selector": ":host([data-design='contrast'][data-scheme='graphite'][data-theme='dark'])",
+          "sets": [
+            "app/contrast-dark"
+          ],
+          "extra": [
+            "color-scheme: dark"
+          ],
+          "extraSets": [
+            "app/graphite-contrast-dark"
           ]
         },
         {

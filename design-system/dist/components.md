@@ -610,7 +610,7 @@ The segmented control with a round colour swatch per option instead of a word: t
 - CSS: `.a11y-seg--dots`, `.scheme-dot`
 - Source: `plugin/src/modules/segmented.js`, `plugin/src/modules/settings/general.js`, `plugin/src/home.js`
 - Properties: Selected (text)
-- Tokens: `--outline`, `--outline-strong`, `--swatch-aish`, `--swatch-default`, `--swatch-graphite`, `--swatch-kaivo`, `--swatch-viola`, `--text-primary`
+- Tokens: `--outline`, `--outline-strong`, `--text-primary`
 - Accessibility:
   - Same radiogroup behaviour as the segmented control: arrow keys, roving tabindex, aria-checked
   - The colour is never the only cue: each dot has the scheme's name as its aria-label and tooltip, and the selected dot has a ring

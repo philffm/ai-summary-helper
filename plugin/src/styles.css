@@ -141,12 +141,6 @@
   --bp-toolbar-labels: 780px; /* Article toolbar shows labels next to icons (JS). */
   --bp-settings-wide: 900px; /* Settings master–detail: list and panel side by side (JS). */
   --bp-split-3: 1100px; /* Split view: three panes from here (JS). */
-  /* semantic · swatch */
-  --swatch-default: #1C7F8E; /* Colour dot of the Default colour scheme: this build's own accent. */
-  --swatch-kaivo: #1C7F8E; /* Colour dot of the Kaivo colour scheme. */
-  --swatch-aish: #3B82F6; /* Colour dot of the Aish colour scheme. */
-  --swatch-viola: #7445F8; /* Colour dot of the Viola colour scheme. */
-  --swatch-graphite: #68655F; /* Colour dot of the Graphite colour scheme. */
   /* semantic · accent */
   --accent-a05: color-mix(in srgb, var(--accent) 5%, transparent); /* Accent at 5%: tints for hover, selection and soft borders. Never as text. */
   --accent-a08: color-mix(in srgb, var(--accent) 8%, transparent); /* Accent at 8%: tints for hover, selection and soft borders. Never as text. */
@@ -321,10 +315,17 @@
   --rsvp-bg: var(--surface-sheet); /* Speed reader: the reader card. */
   --rsvp-context-bg: var(--surface-row); /* Speed reader: the sentence or paragraph shown around the word. */
 }
+/* The colour dots of Settings › Appearance › Color scheme: fixed colours (the Default dot is this build's own accent), so they do not change when a scheme is chosen. Not part of any theme. */
+:root {
+  /* semantic · swatch */
+  --swatch-default: #1C7F8E; /* Colour dot of the Default colour scheme: this build's own accent. */
+  --swatch-kaivo: #1C7F8E; /* Colour dot of the Kaivo colour scheme. */
+  --swatch-aish: #3B82F6; /* Colour dot of the Aish colour scheme. */
+  --swatch-viola: #7445F8; /* Colour dot of the Viola colour scheme. */
+  --swatch-graphite: #68655F; /* Colour dot of the Graphite colour scheme. */
+}
 /* colour schemes: Settings › Appearance › Color scheme (data-scheme: aish, kaivo, viola). Brand schemes emit only the colours that differ from this build's brand; they come right after the light block so the dark blocks below still win. Design (data-design: postil, contrast) and brightness (data-theme: light, dark) are separate axes. */
 :root[data-scheme='aish'] {
-  /* semantic · swatch */
-  --swatch-default: #3b82f6; /* Colour dot of the Default colour scheme: this build's own accent. */
   /* semantic · accent */
   --accent: #2563eb; /* Brand action colour: primary buttons, selected states, links on controls, focus ring, progress. */
   --accent-light: #3b82f6; /* Second stop of the accent gradient (primary button, nav blob, switch on). */
@@ -343,8 +344,6 @@
   --link-inverse: #93c5fd; /* Action or link on surface-inverse (toast Undo). */
 }
 :root[data-scheme='viola'] {
-  /* semantic · swatch */
-  --swatch-default: #7445F8; /* Colour dot of the Default colour scheme: this build's own accent. */
   /* semantic · accent */
   --accent: #6233E8; /* Brand action colour: primary buttons, selected states, links on controls, focus ring, progress. */
   --accent-light: #7445F8; /* Second stop of the accent gradient (primary button, nav blob, switch on). */
@@ -363,8 +362,6 @@
   --link-inverse: #B49CFF; /* Action or link on surface-inverse (toast Undo). */
 }
 :root[data-scheme='graphite'] {
-  /* semantic · swatch */
-  --swatch-default: #68655F; /* Colour dot of the Default colour scheme: this build's own accent. */
   /* semantic · accent */
   --accent: #46443F; /* Brand action colour: primary buttons, selected states, links on controls, focus ring, progress. */
   --accent-light: #68655F; /* Second stop of the accent gradient (primary button, nav blob, switch on). */
@@ -1252,7 +1249,7 @@
   --tone-sent-bg: #302E2C; /* Postil with a colour scheme, dark: sent badge on charcoal. */
   --tone-sent-fg: #D5D3CF; /* Postil with a colour scheme, dark: sent badge text. */
 }
-/* Design High contrast: black on white, or white on black in dark. The colour scheme does not apply here (the accent is the one checked for contrast). */
+/* Design High contrast: black on white, or white on black in dark. A colour scheme only changes the accent (the blocks further down); Graphite is pure black / white. */
 :root[data-design='contrast'] {
   /* semantic · surface */
   --bg-page: #ffffff; /* Page background of every screen; the base all translucent surfaces are composited over. */
@@ -1343,6 +1340,115 @@
   /* semantic · focus */
   --focus-ring: var(--text-primary); /* High-contrast theme: black ring. */
   --focus-ring-width: 3px; /* Focus ring thickness (WCAG 2.4.13 asks for ≥ 2px). */
+  color-scheme: dark;
+}
+/* High contrast with a colour scheme: the same black-and-white sets, only the accent (and for Graphite the few grey tokens) takes the scheme. Graphite is pure black / white. */
+:root[data-design='contrast'][data-scheme='aish'] {
+  /* semantic · text */
+  --text-link: #0033CC; /* Links inside text. */
+  /* semantic · accent */
+  --accent: #0033CC; /* Brand action colour: primary buttons, selected states, links on controls, focus ring, progress. */
+  --accent-light: #0033CC; /* Second stop of the accent gradient (primary button, nav blob, switch on). */
+  --accent-glow: #0033CC; /* Coloured glow under primary buttons. */
+  --accent-a05: #eff6ff; /* Accent at 5%: tints for hover, selection and soft borders. Never as text. */
+  --accent-a08: #dbeafe; /* Accent at 8%: tints for hover, selection and soft borders. Never as text. */
+  color-scheme: light;
+}
+:root[data-design='contrast'][data-scheme='viola'] {
+  /* semantic · text */
+  --text-link: #3F1BA6; /* Links inside text. */
+  /* semantic · accent */
+  --accent: #3F1BA6; /* Brand action colour: primary buttons, selected states, links on controls, focus ring, progress. */
+  --accent-light: #3F1BA6; /* Second stop of the accent gradient (primary button, nav blob, switch on). */
+  --accent-glow: #3F1BA6; /* Coloured glow under primary buttons. */
+  --accent-a05: #F3EFFF; /* Accent at 5%: tints for hover, selection and soft borders. Never as text. */
+  --accent-a08: #E5DCFF; /* Accent at 8%: tints for hover, selection and soft borders. Never as text. */
+  color-scheme: light;
+}
+:root[data-design='contrast'][data-scheme='graphite'] {
+  /* semantic · text */
+  --text-link: #000000; /* Links inside text. */
+  --text-muted: #2A2928; /* Least important readable text: hints, meta lines, timestamps, placeholders (≥ 4.5:1). */
+  /* semantic · accent */
+  --accent: #000000; /* Brand action colour: primary buttons, selected states, links on controls, focus ring, progress. */
+  --accent-light: #000000; /* Second stop of the accent gradient (primary button, nav blob, switch on). */
+  --accent-glow: #000000; /* Coloured glow under primary buttons. */
+  --accent-a05: #F5F5F4; /* Accent at 5%: tints for hover, selection and soft borders. Never as text. */
+  --accent-a08: #E9E8E6; /* Accent at 8%: tints for hover, selection and soft borders. Never as text. */
+  color-scheme: light;
+}
+@media (prefers-color-scheme: dark) {
+  :root[data-design='contrast'][data-scheme='aish']:not([data-theme='light']) {
+    /* semantic · text */
+    --text-link: #ADC6FF; /* Links inside text. */
+    /* semantic · accent */
+    --accent: #93c5fd; /* Brand action colour: primary buttons, selected states, links on controls, focus ring, progress. */
+    --accent-light: #93c5fd; /* Second stop of the accent gradient (primary button, nav blob, switch on). */
+    --accent-glow: #93c5fd; /* Coloured glow under primary buttons. */
+    --accent-a05: #001a3d; /* Accent at 5%: tints for hover, selection and soft borders. Never as text. */
+    --accent-a08: #001a3d; /* Accent at 8%: tints for hover, selection and soft borders. Never as text. */
+    color-scheme: dark;
+  }
+}
+@media (prefers-color-scheme: dark) {
+  :root[data-design='contrast'][data-scheme='viola']:not([data-theme='light']) {
+    /* semantic · text */
+    --text-link: #CDBDFF; /* Links inside text. */
+    /* semantic · accent */
+    --accent: #B49CFF; /* Brand action colour: primary buttons, selected states, links on controls, focus ring, progress. */
+    --accent-light: #B49CFF; /* Second stop of the accent gradient (primary button, nav blob, switch on). */
+    --accent-glow: #B49CFF; /* Coloured glow under primary buttons. */
+    --accent-a05: #170647; /* Accent at 5%: tints for hover, selection and soft borders. Never as text. */
+    --accent-a08: #170647; /* Accent at 8%: tints for hover, selection and soft borders. Never as text. */
+    color-scheme: dark;
+  }
+}
+@media (prefers-color-scheme: dark) {
+  :root[data-design='contrast'][data-scheme='graphite']:not([data-theme='light']) {
+    /* semantic · text */
+    --text-link: #FFFFFF; /* Links inside text. */
+    --text-muted: #EFEFEE; /* Least important readable text: hints, meta lines, timestamps, placeholders (≥ 4.5:1). */
+    /* semantic · accent */
+    --accent: #FFFFFF; /* Brand action colour: primary buttons, selected states, links on controls, focus ring, progress. */
+    --accent-light: #FFFFFF; /* Second stop of the accent gradient (primary button, nav blob, switch on). */
+    --accent-glow: #FFFFFF; /* Coloured glow under primary buttons. */
+    --accent-a05: #121110; /* Accent at 5%: tints for hover, selection and soft borders. Never as text. */
+    --accent-a08: #121110; /* Accent at 8%: tints for hover, selection and soft borders. Never as text. */
+    color-scheme: dark;
+  }
+}
+:root[data-design='contrast'][data-scheme='aish'][data-theme='dark'] {
+  /* semantic · text */
+  --text-link: #ADC6FF; /* Links inside text. */
+  /* semantic · accent */
+  --accent: #93c5fd; /* Brand action colour: primary buttons, selected states, links on controls, focus ring, progress. */
+  --accent-light: #93c5fd; /* Second stop of the accent gradient (primary button, nav blob, switch on). */
+  --accent-glow: #93c5fd; /* Coloured glow under primary buttons. */
+  --accent-a05: #001a3d; /* Accent at 5%: tints for hover, selection and soft borders. Never as text. */
+  --accent-a08: #001a3d; /* Accent at 8%: tints for hover, selection and soft borders. Never as text. */
+  color-scheme: dark;
+}
+:root[data-design='contrast'][data-scheme='viola'][data-theme='dark'] {
+  /* semantic · text */
+  --text-link: #CDBDFF; /* Links inside text. */
+  /* semantic · accent */
+  --accent: #B49CFF; /* Brand action colour: primary buttons, selected states, links on controls, focus ring, progress. */
+  --accent-light: #B49CFF; /* Second stop of the accent gradient (primary button, nav blob, switch on). */
+  --accent-glow: #B49CFF; /* Coloured glow under primary buttons. */
+  --accent-a05: #170647; /* Accent at 5%: tints for hover, selection and soft borders. Never as text. */
+  --accent-a08: #170647; /* Accent at 8%: tints for hover, selection and soft borders. Never as text. */
+  color-scheme: dark;
+}
+:root[data-design='contrast'][data-scheme='graphite'][data-theme='dark'] {
+  /* semantic · text */
+  --text-link: #FFFFFF; /* Links inside text. */
+  --text-muted: #EFEFEE; /* Least important readable text: hints, meta lines, timestamps, placeholders (≥ 4.5:1). */
+  /* semantic · accent */
+  --accent: #FFFFFF; /* Brand action colour: primary buttons, selected states, links on controls, focus ring, progress. */
+  --accent-light: #FFFFFF; /* Second stop of the accent gradient (primary button, nav blob, switch on). */
+  --accent-glow: #FFFFFF; /* Coloured glow under primary buttons. */
+  --accent-a05: #121110; /* Accent at 5%: tints for hover, selection and soft borders. Never as text. */
+  --accent-a08: #121110; /* Accent at 8%: tints for hover, selection and soft borders. Never as text. */
   color-scheme: dark;
 }
 @media (prefers-reduced-motion: reduce) {

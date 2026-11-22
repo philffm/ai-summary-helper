@@ -38,4 +38,13 @@ for (const f of ['styles.css', 'inPage.css']) {
   }
   assert(/data-scheme='aish'/.test(css) && /data-scheme='viola'/.test(css), f + ': colour schemes');
 }
+// High contrast takes the colour scheme for its accent: Graphite is pure white on black in dark and black on white in light
+{
+  const css = fs.readFileSync(path.resolve(process.env.AISH_SRC, 'styles.css'), 'utf8');
+  const block = (sel) => { const i = css.indexOf(sel); return i < 0 ? '' : css.slice(i, css.indexOf('}', i)); };
+  const dark = block("[data-design='contrast'][data-scheme='graphite'][data-theme='dark'] {"), light = block("[data-design='contrast'][data-scheme='graphite'] {");
+  assert(/--accent: #FFFFFF/i.test(dark), 'Graphite + High contrast + dark: a white accent');
+  assert(/--accent: #000000/i.test(light), 'Graphite + High contrast + light: a black accent');
+  assert(/data-design='contrast'\]\[data-scheme='aish'\]/.test(css), 'the other schemes colour the High contrast accent');
+}
 console.log('TEST 280 OK'); process.exit(0);

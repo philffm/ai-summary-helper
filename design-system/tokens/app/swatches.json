@@ -1,0 +1,33 @@
+{
+  "app": {
+    "semantic": {
+      "swatch": {
+        "swatch-default": {
+          "$type": "color",
+          "$value": "{brand.accent.500}",
+          "$description": "Colour dot of the Default colour scheme: this build's own accent."
+        },
+        "swatch-kaivo": {
+          "$type": "color",
+          "$value": "{color.scheme.kaivo}",
+          "$description": "Colour dot of the Kaivo colour scheme."
+        },
+        "swatch-aish": {
+          "$type": "color",
+          "$value": "{color.scheme.aish}",
+          "$description": "Colour dot of the Aish colour scheme."
+        },
+        "swatch-viola": {
+          "$type": "color",
+          "$value": "{color.scheme.viola}",
+          "$description": "Colour dot of the Viola colour scheme."
+        },
+        "swatch-graphite": {
+          "$type": "color",
+          "$value": "{color.scheme.graphite}",
+          "$description": "Colour dot of the Graphite colour scheme."
+        }
+      }
+    }
+  }
+}

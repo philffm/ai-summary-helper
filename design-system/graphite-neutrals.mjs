@@ -41,5 +41,7 @@ const collect = (setFiles) => {
 const count = (o) => Object.values(o).reduce((n, v) => n + (v && v.$value !== undefined ? 1 : count(v)), 0);
 const light = collect(['tokens/app/base.json', 'tokens/app/light.json']);
 const dark = collect(['tokens/app/dark.json', 'tokens/app/dark-forced.json']);
+const hcLight = collect(['tokens/app/contrast.json']), hcDark = collect(['tokens/app/contrast-dark.json']);   // High contrast with Graphite: its few slate greys too
 write('tokens/app/graphite-light.json', light); write('tokens/app/graphite-dark.json', dark);
+write('tokens/app/graphite-contrast.json', hcLight); write('tokens/app/graphite-contrast-dark.json', hcDark);
 console.log(`graphite neutrals: ${Object.keys(group).length - 2} primitives, ${count(light)} light and ${count(dark)} dark tokens`);

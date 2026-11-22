@@ -46,6 +46,12 @@
       "contrast": {
         "$value": "#0A4650",
         "$description": "Accent of the High contrast theme: at least 7:1 on white, white text on it too."
+      },
+      "contrast-dark": {
+        "$value": "#7CCBD4"
+      },
+      "contrast-dark-text": {
+        "$value": "#A8DDE3"
       }
     },
     "highlight": {

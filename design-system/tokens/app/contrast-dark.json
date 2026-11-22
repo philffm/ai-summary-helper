@@ -74,24 +74,24 @@
         },
         "text-link": {
           "$type": "color",
-          "$value": "{brand.accent.200}",
+          "$value": "{brand.accent.contrast-dark-text}",
           "$description": "Links inside text."
         }
       },
       "accent": {
         "accent": {
           "$type": "color",
-          "$value": "{brand.accent.300}",
+          "$value": "{brand.accent.contrast-dark}",
           "$description": "Brand action colour: primary buttons, selected states, links on controls, focus ring, progress."
         },
         "accent-light": {
           "$type": "color",
-          "$value": "{brand.accent.300}",
+          "$value": "{brand.accent.contrast-dark}",
           "$description": "Second stop of the accent gradient (primary button, nav blob, switch on)."
         },
         "accent-glow": {
           "$type": "color",
-          "$value": "{brand.accent.300}",
+          "$value": "{brand.accent.contrast-dark}",
           "$description": "Coloured glow under primary buttons."
         },
         "on-accent": {

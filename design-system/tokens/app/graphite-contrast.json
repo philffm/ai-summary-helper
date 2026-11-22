@@ -1,0 +1,13 @@
+{
+  "app": {
+    "semantic": {
+      "text": {
+        "text-muted": {
+          "$type": "color",
+          "$value": "{color.mono.slate-850}",
+          "$description": "Least important readable text: hints, meta lines, timestamps, placeholders (≥ 4.5:1)."
+        }
+      }
+    }
+  }
+}

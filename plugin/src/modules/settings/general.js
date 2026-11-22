@@ -51,9 +51,6 @@ export function initGeneralSettings(storageData) {
             const sum = [themeName(), designName(), (a11yState.reduceMotion || sysMotion) ? T('Motion reduced') : T('Motion on'), a11yState.textScale + '%'].join(' · ');
             st.textContent = '✓ ' + (cur === 'default' && a11yState.theme === 'system' ? T('Following your system: {summary}') : T('Your settings: {summary}')).replace('{summary}', sum);
         }
-        {   // in High contrast the colour scheme does not apply (the accent is the one that was checked for contrast): say so
-            const sh = $id('schemeHint'); if (sh) sh.textContent = a11yState.design === 'contrast' ? T('Not used in High contrast.') : '';
-        }
         applyA11y({ ...a11yState });
     };
     const setA11y = (patch, persist = true) => {

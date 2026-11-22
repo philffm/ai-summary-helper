@@ -1868,11 +1868,6 @@
       "tokens": [
         "--outline",
         "--outline-strong",
-        "--swatch-aish",
-        "--swatch-default",
-        "--swatch-graphite",
-        "--swatch-kaivo",
-        "--swatch-viola",
         "--text-primary"
       ],
       "a11y": [
