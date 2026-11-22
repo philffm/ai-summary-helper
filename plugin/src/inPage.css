@@ -362,13 +362,34 @@
   --bg-page-gradient: radial-gradient(at 0% 0%, hsla(30,4%,95%,1) 0, transparent 50%), radial-gradient(at 100% 100%, hsla(30,4%,91%,1) 0, transparent 50%); /* Soft accent glow painted over bg-page at the edges of the window. */
   --glass-base: rgba(238,238,237,0.92); /* Background of a screen that slides over another (settings, detail); nearly opaque. */
   --surface-sheet: #EEEEED; /* Bottom sheets and dialogs: opaque so text behind does not show through. */
+  --scrim: rgba(29,28,28,0.45); /* Dims the page behind a sheet or dialog. */
+  --surface-track: #EAE9E8; /* Unfilled part of progress bars, sliders and meters. */
   /* semantic · text */
   --text-link: #35332F; /* Links inside text. */
+  --text-primary: #1D1C1C; /* Body text, titles and icons: the strongest text colour (≥ 14:1 on cards). */
+  --text-secondary: #464442; /* Supporting text: labels, descriptions, inactive controls with text. */
+  --text-muted: #686562; /* Least important readable text: hints, meta lines, timestamps, placeholders (≥ 4.5:1). */
   /* semantic · status */
   --tone-sent-bg: #E9E8E6; /* Status “Sent” badge background. */
   --tone-sent-fg: #35332F; /* Status “Sent” badge text (≥ 5.4:1 on its background). */
+  --tone-read-fg: #5B5855; /* Status “Read” badge text (≥ 5.4:1 on its background). */
   /* semantic · inverse */
   --link-inverse: #B9B6B0; /* Action or link on surface-inverse (toast Undo). */
+  --surface-inverse: #1D1C1C; /* Inverse surface (toasts, tooltips): dark in light mode, light in dark mode. */
+  /* semantic · outline */
+  --outline: rgba(123,120,116,0.25); /* Default 1px border of cards, fields, bars and dividers. Decorative (about 1.35:1); a field edge that must be found needs outline-strong (ADR 0005). */
+  /* semantic · elevation */
+  --shadow-card: 0 4px 16px rgba(29,28,28,0.08); /* Shadow of the input card and raised cards. */
+  --shadow-raised: 0 8px 28px rgba(29,28,28,0.12); /* Shadow of screens and panels that float over others. */
+  --shadow-modal: 0 12px 40px rgba(29,28,28,0.16); /* Shadow of dialogs, menus and toasts. */
+  --elevation-sheet: 0 -8px 30px rgba(29,28,28,0.2); /* Upward shadow of bottom sheets. */
+  /* semantic · control */
+  --control-track: #D7D6D5; /* Slider track. */
+  --control-thumb: rgba(123,120,116,0.42); /* Slider thumb. */
+  --control-thumb-hover: rgba(123,120,116,0.66); /* Slider thumb on hover. */
+  --control-grip: #D7D6D5; /* Drag handle (grip dots) in editable lists. */
+  --control-off: #D7D6D5; /* Switch track when off. */
+  --control-border: #A9A6A3; /* Border of checkboxes and radios. */
 }
 /* Design Postil: e-reader look, off-white paper and graphite ink, flat (light) */
 :host([data-design='postil']) {
@@ -761,8 +782,14 @@
     /* semantic · surface */
     --bg-page-gradient: radial-gradient(at 0% 0%, color-mix(in srgb, var(--accent) 8%, transparent) 0, transparent 50%), radial-gradient(at 100% 100%, rgba(213,211,207,0.05) 0, transparent 50%); /* Soft accent glow painted over bg-page at the edges of the window. */
     --surface-sheet: #1B1A19; /* Bottom sheets and dialogs: opaque so text behind does not show through. */
+    --bg-page: #10100F; /* Page background of every screen; the base all translucent surfaces are composited over. */
+    --glass-base: rgba(16,16,15,0.82); /* Background of a screen that slides over another (settings, detail); nearly opaque. */
+    --surface-bar: #10100F; /* Background of fixed bars (pane headers, toolbars) above scrolling content. */
     /* semantic · text */
     --text-link: #B9B6B0; /* Links inside text. */
+    --text-primary: #EFEFEE; /* Body text, titles and icons: the strongest text colour (≥ 14:1 on cards). */
+    --text-secondary: #C8C6C4; /* Supporting text: labels, descriptions, inactive controls with text. */
+    --text-muted: #A9A6A3; /* Least important readable text: hints, meta lines, timestamps, placeholders (≥ 4.5:1). */
     /* semantic · accent */
     --accent: #8C8982; /* Brand action colour: primary buttons, selected states, links on controls, focus ring, progress. */
     --accent-light: #68655F; /* Second stop of the accent gradient (primary button, nav blob, switch on). */
@@ -775,8 +802,16 @@
     /* semantic · status */
     --tone-sent-bg: rgba(140,137,130,0.18); /* Status “Sent” badge background. */
     --tone-sent-fg: #B9B6B0; /* Status “Sent” badge text (≥ 5.4:1 on its background). */
+    --tone-read-fg: #D7D6D5; /* Status “Read” badge text (≥ 5.4:1 on its background). */
     /* semantic · inverse */
     --link-inverse: #35332F; /* Action or link on surface-inverse (toast Undo). */
+    --surface-inverse: #EFEFEE; /* Inverse surface (toasts, tooltips): dark in light mode, light in dark mode. */
+    --text-inverse: #10100F; /* Text on surface-inverse. */
+    /* semantic · control */
+    --control-track: #464442; /* Slider track. */
+    --control-thumb: rgba(234,233,232,0.28); /* Slider thumb. */
+    --control-thumb-hover: rgba(234,233,232,0.46); /* Slider thumb on hover. */
+    --control-border: #7B7874; /* Border of checkboxes and radios. */
   }
 }
 :host([data-scheme='aish'][data-theme='dark']) {
@@ -825,8 +860,14 @@
   /* semantic · surface */
   --bg-page-gradient: radial-gradient(at 0% 0%, color-mix(in srgb, var(--accent) 8%, transparent) 0, transparent 50%), radial-gradient(at 100% 100%, rgba(213,211,207,0.05) 0, transparent 50%); /* Soft accent glow painted over bg-page at the edges of the window. */
   --surface-sheet: #1B1A19; /* Bottom sheets and dialogs: opaque so text behind does not show through. */
+  --bg-page: #10100F; /* Page background of every screen; the base all translucent surfaces are composited over. */
+  --glass-base: rgba(16,16,15,0.82); /* Background of a screen that slides over another (settings, detail); nearly opaque. */
+  --surface-bar: #10100F; /* Background of fixed bars (pane headers, toolbars) above scrolling content. */
   /* semantic · text */
   --text-link: #B9B6B0; /* Links inside text. */
+  --text-primary: #EFEFEE; /* Body text, titles and icons: the strongest text colour (≥ 14:1 on cards). */
+  --text-secondary: #C8C6C4; /* Supporting text: labels, descriptions, inactive controls with text. */
+  --text-muted: #A9A6A3; /* Least important readable text: hints, meta lines, timestamps, placeholders (≥ 4.5:1). */
   /* semantic · accent */
   --accent: #8C8982; /* Brand action colour: primary buttons, selected states, links on controls, focus ring, progress. */
   --accent-light: #68655F; /* Second stop of the accent gradient (primary button, nav blob, switch on). */
@@ -839,8 +880,16 @@
   /* semantic · status */
   --tone-sent-bg: rgba(140,137,130,0.18); /* Status “Sent” badge background. */
   --tone-sent-fg: #B9B6B0; /* Status “Sent” badge text (≥ 5.4:1 on its background). */
+  --tone-read-fg: #D7D6D5; /* Status “Read” badge text (≥ 5.4:1 on its background). */
   /* semantic · inverse */
   --link-inverse: #35332F; /* Action or link on surface-inverse (toast Undo). */
+  --surface-inverse: #EFEFEE; /* Inverse surface (toasts, tooltips): dark in light mode, light in dark mode. */
+  --text-inverse: #10100F; /* Text on surface-inverse. */
+  /* semantic · control */
+  --control-track: #464442; /* Slider track. */
+  --control-thumb: rgba(234,233,232,0.28); /* Slider thumb. */
+  --control-thumb-hover: rgba(234,233,232,0.46); /* Slider thumb on hover. */
+  --control-border: #7B7874; /* Border of checkboxes and radios. */
 }
 /* Postil dark: warm charcoal and soft off-white, like an e-reader night mode */
 @media (prefers-color-scheme: dark) {

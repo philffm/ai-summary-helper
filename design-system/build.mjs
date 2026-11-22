@@ -270,7 +270,10 @@ function renderRegion(output, brand) {
         // A block with "tint": "<brand>" is the same kind of thing for Postil: the sets are written with that brand's values whatever the
         // build's own brand is (the tinted Postil differs from plain Postil even for the build's own brand), and every token is emitted.
         if (b.scheme && b.scheme === brand) continue;
-        const toks = tokensOfSets(b.sets).filter((t) => !b.scheme || (t.type !== 'fontFamily' && cssValue(t, b.scheme) !== cssValue(t, brand)));
+        // "extraSets" (a scheme that also changes brand-independent colours, like Graphite's neutrals): their tokens are always written, not only
+        // where the value differs between two brands (it does not: they read no brand colour, they differ from the standard neutrals).
+        const extra = tokensOfSets(b.extraSets || []);
+        const toks = [...tokensOfSets(b.sets).filter((t) => !b.scheme || (t.type !== 'fontFamily' && cssValue(t, b.scheme) !== cssValue(t, brand)) ).filter((t) => !extra.some((e) => e.name === t.name)), ...extra];
         if (!toks.length) continue;
         if (b.comment) lines.push(`/* ${b.comment} */`);
         const ind = b.media ? '  ' : '';

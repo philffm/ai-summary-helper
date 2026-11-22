@@ -52,6 +52,18 @@
           "app/dark-forced",
           "app/postil-dark",
           "app/postil-tint-dark"
+        ],
+        "graphite": [
+          "app/base",
+          "app/light",
+          "app/graphite-light"
+        ],
+        "graphite-dark": [
+          "app/base",
+          "app/light",
+          "app/dark",
+          "app/dark-forced",
+          "app/graphite-dark"
         ]
       },
       "defaultBrand": "kaivo"
@@ -137,6 +149,9 @@
           "sets": [
             "app/base",
             "app/light"
+          ],
+          "extraSets": [
+            "app/graphite-light"
           ]
         },
         {
@@ -224,6 +239,9 @@
           "selector": ":root[data-scheme='graphite']:not([data-theme='light'])",
           "sets": [
             "app/dark"
+          ],
+          "extraSets": [
+            "app/graphite-dark"
           ]
         },
         {
@@ -256,6 +274,9 @@
           "sets": [
             "app/dark",
             "app/dark-forced"
+          ],
+          "extraSets": [
+            "app/graphite-dark"
           ]
         },
         {
@@ -426,6 +447,9 @@
           "sets": [
             "app/base",
             "app/light"
+          ],
+          "extraSets": [
+            "app/graphite-light"
           ]
         },
         {
@@ -513,6 +537,9 @@
           "selector": ":host([data-scheme='graphite']:not([data-theme='light']))",
           "sets": [
             "app/dark"
+          ],
+          "extraSets": [
+            "app/graphite-dark"
           ]
         },
         {
@@ -545,6 +572,9 @@
           "sets": [
             "app/dark",
             "app/dark-forced"
+          ],
+          "extraSets": [
+            "app/graphite-dark"
           ]
         },
         {

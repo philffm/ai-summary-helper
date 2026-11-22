@@ -9,7 +9,6 @@
       "$value": "#000000"
     },
     "slate": {
-      "$description": "Cool neutral for app text, outlines and controls (Tailwind slate plus three in-between steps the app already uses).",
       "150": {
         "$value": "#e8edf5"
       },
@@ -46,10 +45,10 @@
       },
       "900": {
         "$value": "#0f172a"
-      }
+      },
+      "$description": "Cool neutral for app text, outlines and controls (Tailwind slate plus three in-between steps the app already uses)."
     },
     "neutral": {
-      "$description": "Grey for app surfaces in light theme.",
       "50": {
         "$value": "#fafafa"
       },
@@ -67,16 +66,16 @@
       },
       "900": {
         "$value": "#111827"
-      }
+      },
+      "$description": "Grey for app surfaces in light theme."
     },
     "night": {
-      "$description": "App dark-theme base.",
       "950": {
         "$value": "#0b0e14"
-      }
+      },
+      "$description": "App dark-theme base."
     },
     "graphite": {
-      "$description": "Website neutrals (dark end and text).",
       "50": {
         "$value": "#F5F5F7"
       },
@@ -95,19 +94,19 @@
       "990": {
         "$value": "#08090C"
       },
+      "995": {
+        "$value": "#0C0D11"
+      },
+      "$description": "Website neutrals (dark end and text).",
       "toast": {
         "$value": "#15161B"
       },
       "ink": {
         "$value": "#14151A",
         "$description": "Website light-theme translucent overlays (rgba of this)."
-      },
-      "995": {
-        "$value": "#0C0D11"
       }
     },
     "stone": {
-      "$description": "Website warm neutrals (light end).",
       "0": {
         "$value": "#FFFFFF"
       },
@@ -116,10 +115,10 @@
       },
       "150": {
         "$value": "#EDECE6"
-      }
+      },
+      "$description": "Website warm neutrals (light end)."
     },
     "paper": {
-      "$description": "Off-white e-reader neutrals of the Postil colour scheme (light): barely warm, no beige.",
       "50": {
         "$value": "#FEFEFC"
       },
@@ -134,10 +133,10 @@
       },
       "300": {
         "$value": "#D3D1C9"
-      }
+      },
+      "$description": "Off-white e-reader neutrals of the Postil colour scheme (light): barely warm, no beige."
     },
     "sepia": {
-      "$description": "Warm graphite ink for text on paper (Postil, light).",
       "550": {
         "$value": "#615E58"
       },
@@ -146,22 +145,23 @@
       },
       "900": {
         "$value": "#1A1917"
-      }
+      },
+      "$description": "Warm graphite ink for text on paper (Postil, light)."
     },
     "cocoa": {
-      "$description": "Graphite accent of the Postil colour scheme (light).",
       "600": {
         "$value": "#3F3C37"
       },
       "700": {
         "$value": "#2E2C28"
-      }
+      },
+      "$description": "Graphite accent of the Postil colour scheme (light)."
     },
     "ink": {
-      "$description": "Near-black blue used for text on light accent fills and for media overlays.",
       "950": {
         "$value": "#08101F"
       },
+      "$description": "Near-black blue used for text on light accent fills and for media overlays.",
       "media-glass": {
         "$value": "#14161E"
       },
@@ -197,19 +197,22 @@
       "400": {
         "$value": "#4ade80"
       },
+      "500": {
+        "$value": "#22c55e"
+      },
       "700": {
         "$value": "#15803d"
       },
       "800": {
         "$value": "#166534"
-      },
-      "500": {
-        "$value": "#22c55e"
       }
     },
     "amber": {
       "100": {
         "$value": "#fef3c7"
+      },
+      "200": {
+        "$value": "#fde68a"
       },
       "300": {
         "$value": "#fcd34d"
@@ -226,20 +229,17 @@
       "800": {
         "$value": "#92400e"
       },
-      "beta": {
-        "$value": "#F5C451"
-      },
-      "beta-ink": {
-        "$value": "#3B2A00"
-      },
-      "200": {
-        "$value": "#fde68a"
-      },
       "900": {
         "$value": "#78350f"
       },
       "950": {
         "$value": "#422006"
+      },
+      "beta": {
+        "$value": "#F5C451"
+      },
+      "beta-ink": {
+        "$value": "#3B2A00"
       }
     },
     "red": {
@@ -267,8 +267,14 @@
       }
     },
     "sky": {
+      "100": {
+        "$value": "#e0f2fe"
+      },
       "200": {
         "$value": "#BAE6FD"
+      },
+      "400": {
+        "$value": "#38bdf8"
       },
       "600": {
         "$value": "#0284C7"
@@ -276,18 +282,11 @@
       "800": {
         "$value": "#075985"
       },
-      "100": {
-        "$value": "#e0f2fe"
-      },
-      "400": {
-        "$value": "#38bdf8"
-      },
       "900": {
         "$value": "#0c4a6e"
       }
     },
     "cobalt": {
-      "$description": "High-contrast theme accent and its tints.",
       "50": {
         "$value": "#eef2ff"
       },
@@ -296,7 +295,8 @@
       },
       "700": {
         "$value": "#0033cc"
-      }
+      },
+      "$description": "High-contrast theme accent and its tints."
     },
     "signal": {
       "$description": "Mood/sentiment dots. Kept as HSL because the code computes hues around them.",
@@ -320,10 +320,10 @@
       }
     },
     "grey": {
-      "$description": "Mid greys used only as translucent tints on the website.",
       "500": {
         "$value": "#808080"
       },
+      "$description": "Mid greys used only as translucent tints on the website.",
       "500-cool": {
         "$value": "#808096"
       },
@@ -566,25 +566,24 @@
       }
     },
     "char": {
-      "$description": "Warm charcoal surfaces of the Postil colour scheme (dark), like an e-reader night mode.",
-      "950": {
-        "$value": "#151413"
-      },
-      "900": {
-        "$value": "#1C1B19"
-      },
-      "850": {
-        "$value": "#222120"
+      "700": {
+        "$value": "#3A3834"
       },
       "800": {
         "$value": "#2A2927"
       },
-      "700": {
-        "$value": "#3A3834"
-      }
+      "850": {
+        "$value": "#222120"
+      },
+      "900": {
+        "$value": "#1C1B19"
+      },
+      "950": {
+        "$value": "#151413"
+      },
+      "$description": "Warm charcoal surfaces of the Postil colour scheme (dark), like an e-reader night mode."
     },
     "bone": {
-      "$description": "Soft off-white ink on charcoal (Postil, dark).",
       "100": {
         "$value": "#E4E1D9"
       },
@@ -596,6 +595,50 @@
       },
       "400": {
         "$value": "#9C988E"
+      },
+      "$description": "Soft off-white ink on charcoal (Postil, dark)."
+    },
+    "mono": {
+      "$type": "color",
+      "$description": "Graphite scheme neutrals: each Slate step and Night 950 with its hue taken out (same lightness, 3 % warm). Generated by design-system/graphite-neutrals.mjs.",
+      "slate-150": {
+        "$value": "#EFEFEE"
+      },
+      "slate-200": {
+        "$value": "#EAE9E8"
+      },
+      "slate-300": {
+        "$value": "#D7D6D5"
+      },
+      "slate-350": {
+        "$value": "#C8C6C4"
+      },
+      "slate-400": {
+        "$value": "#A9A6A3"
+      },
+      "slate-500": {
+        "$value": "#7B7874"
+      },
+      "slate-550": {
+        "$value": "#686562"
+      },
+      "slate-600": {
+        "$value": "#5B5855"
+      },
+      "slate-700": {
+        "$value": "#464442"
+      },
+      "slate-800": {
+        "$value": "#2E2D2B"
+      },
+      "slate-850": {
+        "$value": "#2A2928"
+      },
+      "slate-900": {
+        "$value": "#1D1C1C"
+      },
+      "night-950": {
+        "$value": "#10100F"
       }
     }
   }

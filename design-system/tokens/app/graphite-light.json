@@ -1,0 +1,150 @@
+{
+  "app": {
+    "semantic": {
+      "surface": {
+        "scrim": {
+          "$type": "color",
+          "$value": "{color.mono.slate-900}",
+          "$extensions": {
+            "eu.byphil.ds": {
+              "alpha": 0.45
+            }
+          },
+          "$description": "Dims the page behind a sheet or dialog."
+        },
+        "surface-track": {
+          "$type": "color",
+          "$value": "{color.mono.slate-200}",
+          "$description": "Unfilled part of progress bars, sliders and meters."
+        }
+      },
+      "text": {
+        "text-primary": {
+          "$type": "color",
+          "$value": "{color.mono.slate-900}",
+          "$description": "Body text, titles and icons: the strongest text colour (≥ 14:1 on cards)."
+        },
+        "text-secondary": {
+          "$type": "color",
+          "$value": "{color.mono.slate-700}",
+          "$description": "Supporting text: labels, descriptions, inactive controls with text."
+        },
+        "text-muted": {
+          "$type": "color",
+          "$value": "{color.mono.slate-550}",
+          "$description": "Least important readable text: hints, meta lines, timestamps, placeholders (≥ 4.5:1)."
+        }
+      },
+      "outline": {
+        "outline": {
+          "$type": "color",
+          "$value": "{color.mono.slate-500}",
+          "$extensions": {
+            "eu.byphil.ds": {
+              "alpha": 0.25
+            }
+          },
+          "$description": "Default 1px border of cards, fields, bars and dividers. Decorative (about 1.35:1); a field edge that must be found needs outline-strong (ADR 0005)."
+        }
+      },
+      "elevation": {
+        "shadow-card": {
+          "$type": "shadow",
+          "$value": "0 4px 16px {color.mono.slate-900@0.08}",
+          "$extensions": {
+            "eu.byphil.ds": {
+              "template": true
+            }
+          },
+          "$description": "Shadow of the input card and raised cards."
+        },
+        "shadow-raised": {
+          "$type": "shadow",
+          "$value": "0 8px 28px {color.mono.slate-900@0.12}",
+          "$extensions": {
+            "eu.byphil.ds": {
+              "template": true
+            }
+          },
+          "$description": "Shadow of screens and panels that float over others."
+        },
+        "shadow-modal": {
+          "$type": "shadow",
+          "$value": "0 12px 40px {color.mono.slate-900@0.16}",
+          "$extensions": {
+            "eu.byphil.ds": {
+              "template": true
+            }
+          },
+          "$description": "Shadow of dialogs, menus and toasts."
+        },
+        "elevation-sheet": {
+          "$type": "shadow",
+          "$value": "0 -8px 30px {color.mono.slate-900@0.2}",
+          "$extensions": {
+            "eu.byphil.ds": {
+              "template": true
+            }
+          },
+          "$description": "Upward shadow of bottom sheets."
+        }
+      },
+      "status": {
+        "tone-read-fg": {
+          "$type": "color",
+          "$value": "{color.mono.slate-600}",
+          "$description": "Status “Read” badge text (≥ 5.4:1 on its background)."
+        }
+      },
+      "control": {
+        "control-track": {
+          "$type": "color",
+          "$value": "{color.mono.slate-300}",
+          "$description": "Slider track."
+        },
+        "control-thumb": {
+          "$type": "color",
+          "$value": "{color.mono.slate-500}",
+          "$extensions": {
+            "eu.byphil.ds": {
+              "alpha": 0.42
+            }
+          },
+          "$description": "Slider thumb."
+        },
+        "control-thumb-hover": {
+          "$type": "color",
+          "$value": "{color.mono.slate-500}",
+          "$extensions": {
+            "eu.byphil.ds": {
+              "alpha": 0.66
+            }
+          },
+          "$description": "Slider thumb on hover."
+        },
+        "control-grip": {
+          "$type": "color",
+          "$value": "{color.mono.slate-300}",
+          "$description": "Drag handle (grip dots) in editable lists."
+        },
+        "control-off": {
+          "$type": "color",
+          "$value": "{color.mono.slate-300}",
+          "$description": "Switch track when off."
+        },
+        "control-border": {
+          "$type": "color",
+          "$value": "{color.mono.slate-400}",
+          "$description": "Border of checkboxes and radios."
+        }
+      },
+      "inverse": {
+        "surface-inverse": {
+          "$type": "color",
+          "$value": "{color.mono.slate-900}",
+          "$description": "Inverse surface (toasts, tooltips): dark in light mode, light in dark mode."
+        }
+      }
+    }
+  }
+}

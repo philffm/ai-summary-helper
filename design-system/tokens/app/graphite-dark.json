@@ -1,0 +1,96 @@
+{
+  "app": {
+    "semantic": {
+      "surface": {
+        "bg-page": {
+          "$type": "color",
+          "$value": "{color.mono.night-950}",
+          "$description": "Page background of every screen; the base all translucent surfaces are composited over."
+        },
+        "glass-base": {
+          "$type": "color",
+          "$value": "{color.mono.night-950}",
+          "$extensions": {
+            "eu.byphil.ds": {
+              "alpha": 0.82
+            }
+          },
+          "$description": "Background of a screen that slides over another (settings, detail); nearly opaque."
+        },
+        "surface-bar": {
+          "$type": "color",
+          "$value": "{color.mono.night-950}",
+          "$description": "Background of fixed bars (pane headers, toolbars) above scrolling content."
+        }
+      },
+      "text": {
+        "text-primary": {
+          "$type": "color",
+          "$value": "{color.mono.slate-150}",
+          "$description": "Body text, titles and icons: the strongest text colour (≥ 14:1 on cards)."
+        },
+        "text-secondary": {
+          "$type": "color",
+          "$value": "{color.mono.slate-350}",
+          "$description": "Supporting text: labels, descriptions, inactive controls with text."
+        },
+        "text-muted": {
+          "$type": "color",
+          "$value": "{color.mono.slate-400}",
+          "$description": "Least important readable text: hints, meta lines, timestamps, placeholders (≥ 4.5:1)."
+        }
+      },
+      "status": {
+        "tone-read-fg": {
+          "$type": "color",
+          "$value": "{color.mono.slate-300}",
+          "$description": "Status “Read” badge text (≥ 5.4:1 on its background)."
+        }
+      },
+      "control": {
+        "control-track": {
+          "$type": "color",
+          "$value": "{color.mono.slate-700}",
+          "$description": "Slider track."
+        },
+        "control-thumb": {
+          "$type": "color",
+          "$value": "{color.mono.slate-200}",
+          "$extensions": {
+            "eu.byphil.ds": {
+              "alpha": 0.28
+            }
+          },
+          "$description": "Slider thumb."
+        },
+        "control-thumb-hover": {
+          "$type": "color",
+          "$value": "{color.mono.slate-200}",
+          "$extensions": {
+            "eu.byphil.ds": {
+              "alpha": 0.46
+            }
+          },
+          "$description": "Slider thumb on hover."
+        },
+        "control-border": {
+          "$type": "color",
+          "$value": "{color.mono.slate-500}",
+          "$description": "Border of checkboxes and radios."
+        }
+      },
+      "inverse": {
+        "surface-inverse": {
+          "$type": "color",
+          "$value": "{color.mono.slate-150}",
+          "$description": "Inverse surface (toasts, tooltips): dark in light mode, light in dark mode."
+        },
+        "text-inverse": {
+          "$type": "color",
+          "$value": "{color.mono.night-950}",
+          "$description": "Text on surface-inverse."
+        }
+      }
+    }
+  }
+}

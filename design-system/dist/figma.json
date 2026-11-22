@@ -1061,6 +1061,84 @@
     "g": 152,
     "b": 142,
     "a": 1
+   },
+   "mono/slate-150": {
+    "r": 239,
+    "g": 239,
+    "b": 238,
+    "a": 1
+   },
+   "mono/slate-200": {
+    "r": 234,
+    "g": 233,
+    "b": 232,
+    "a": 1
+   },
+   "mono/slate-300": {
+    "r": 215,
+    "g": 214,
+    "b": 213,
+    "a": 1
+   },
+   "mono/slate-350": {
+    "r": 200,
+    "g": 198,
+    "b": 196,
+    "a": 1
+   },
+   "mono/slate-400": {
+    "r": 169,
+    "g": 166,
+    "b": 163,
+    "a": 1
+   },
+   "mono/slate-500": {
+    "r": 123,
+    "g": 120,
+    "b": 116,
+    "a": 1
+   },
+   "mono/slate-550": {
+    "r": 104,
+    "g": 101,
+    "b": 98,
+    "a": 1
+   },
+   "mono/slate-600": {
+    "r": 91,
+    "g": 88,
+    "b": 85,
+    "a": 1
+   },
+   "mono/slate-700": {
+    "r": 70,
+    "g": 68,
+    "b": 66,
+    "a": 1
+   },
+   "mono/slate-800": {
+    "r": 46,
+    "g": 45,
+    "b": 43,
+    "a": 1
+   },
+   "mono/slate-850": {
+    "r": 42,
+    "g": 41,
+    "b": 40,
+    "a": 1
+   },
+   "mono/slate-900": {
+    "r": 29,
+    "g": 28,
+    "b": 28,
+    "a": 1
+   },
+   "mono/night-950": {
+    "r": 16,
+    "g": 16,
+    "b": 15,
+    "a": 1
    }
   },
   "Brand": {
@@ -4049,7 +4127,9 @@
     "postil-dark",
     "contrast-dark",
     "postil-tint",
-    "postil-tint-dark"
+    "postil-tint-dark",
+    "graphite",
+    "graphite-dark"
    ],
    "vars": {
     "base/on-solid": {
@@ -4081,6 +4161,14 @@
        "name": "white"
       },
       "postil-tint-dark": {
+       "alias": "Primitives",
+       "name": "white"
+      },
+      "graphite": {
+       "alias": "Primitives",
+       "name": "white"
+      },
+      "graphite-dark": {
        "alias": "Primitives",
        "name": "white"
       }
@@ -4117,6 +4205,14 @@
       "postil-tint-dark": {
        "alias": "Primitives",
        "name": "black"
+      },
+      "graphite": {
+       "alias": "Primitives",
+       "name": "black"
+      },
+      "graphite-dark": {
+       "alias": "Primitives",
+       "name": "black"
       }
      }
     },
@@ -4149,6 +4245,14 @@
        "name": "grey/mid"
       },
       "postil-tint-dark": {
+       "alias": "Primitives",
+       "name": "grey/mid"
+      },
+      "graphite": {
+       "alias": "Primitives",
+       "name": "grey/mid"
+      },
+      "graphite-dark": {
        "alias": "Primitives",
        "name": "grey/mid"
       }
@@ -4185,6 +4289,14 @@
       "postil-tint-dark": {
        "alias": "Primitives",
        "name": "yellow/400"
+      },
+      "graphite": {
+       "alias": "Primitives",
+       "name": "yellow/400"
+      },
+      "graphite-dark": {
+       "alias": "Primitives",
+       "name": "yellow/400"
       }
      }
     },
@@ -4217,6 +4329,14 @@
        "name": "green/500"
       },
       "postil-tint-dark": {
+       "alias": "Primitives",
+       "name": "green/500"
+      },
+      "graphite": {
+       "alias": "Primitives",
+       "name": "green/500"
+      },
+      "graphite-dark": {
        "alias": "Primitives",
        "name": "green/500"
       }
@@ -4281,6 +4401,22 @@
         "b": 90,
         "a": 1
        }
+      },
+      "graphite": {
+       "value": {
+        "r": 56,
+        "g": 147,
+        "b": 90,
+        "a": 1
+       }
+      },
+      "graphite-dark": {
+       "value": {
+        "r": 56,
+        "g": 147,
+        "b": 90,
+        "a": 1
+       }
       }
      }
     },
@@ -4313,6 +4449,14 @@
        "name": "amber/950"
       },
       "postil-tint-dark": {
+       "alias": "Primitives",
+       "name": "amber/950"
+      },
+      "graphite": {
+       "alias": "Primitives",
+       "name": "amber/950"
+      },
+      "graphite-dark": {
        "alias": "Primitives",
        "name": "amber/950"
       }
@@ -4349,6 +4493,14 @@
       "postil-tint-dark": {
        "alias": "Primitives",
        "name": "neutral/900"
+      },
+      "graphite": {
+       "alias": "Primitives",
+       "name": "neutral/900"
+      },
+      "graphite-dark": {
+       "alias": "Primitives",
+       "name": "neutral/900"
       }
      }
     },
@@ -4381,6 +4533,14 @@
        "name": "white"
       },
       "postil-tint-dark": {
+       "alias": "Primitives",
+       "name": "white"
+      },
+      "graphite": {
+       "alias": "Primitives",
+       "name": "white"
+      },
+      "graphite-dark": {
        "alias": "Primitives",
        "name": "white"
       }
@@ -4417,6 +4577,14 @@
       "postil-tint-dark": {
        "alias": "Brand",
        "name": "postil/accent-dark"
+      },
+      "graphite": {
+       "alias": "Brand",
+       "name": "accent/600"
+      },
+      "graphite-dark": {
+       "alias": "Brand",
+       "name": "accent/400"
       }
      }
     },
@@ -4459,6 +4627,14 @@
       "postil-tint-dark": {
        "alias": "Brand",
        "name": "alpha/postil-accent-dark-5"
+      },
+      "graphite": {
+       "alias": "Brand",
+       "name": "alpha/accent-600-5"
+      },
+      "graphite-dark": {
+       "alias": "Brand",
+       "name": "alpha/accent-400-5"
       }
      }
     },
@@ -4501,6 +4677,14 @@
       "postil-tint-dark": {
        "alias": "Brand",
        "name": "alpha/postil-accent-dark-8"
+      },
+      "graphite": {
+       "alias": "Brand",
+       "name": "alpha/accent-600-8"
+      },
+      "graphite-dark": {
+       "alias": "Brand",
+       "name": "alpha/accent-400-8"
       }
      }
     },
@@ -4543,6 +4727,14 @@
       "postil-tint-dark": {
        "alias": "Brand",
        "name": "alpha/postil-accent-dark-10"
+      },
+      "graphite": {
+       "alias": "Brand",
+       "name": "alpha/accent-600-10"
+      },
+      "graphite-dark": {
+       "alias": "Brand",
+       "name": "alpha/accent-400-10"
       }
      }
     },
@@ -4585,6 +4777,14 @@
       "postil-tint-dark": {
        "alias": "Brand",
        "name": "alpha/postil-accent-dark-12"
+      },
+      "graphite": {
+       "alias": "Brand",
+       "name": "alpha/accent-600-12"
+      },
+      "graphite-dark": {
+       "alias": "Brand",
+       "name": "alpha/accent-400-12"
       }
      }
     },
@@ -4627,6 +4827,14 @@
       "postil-tint-dark": {
        "alias": "Brand",
        "name": "alpha/postil-accent-dark-15"
+      },
+      "graphite": {
+       "alias": "Brand",
+       "name": "alpha/accent-600-15"
+      },
+      "graphite-dark": {
+       "alias": "Brand",
+       "name": "alpha/accent-400-15"
       }
      }
     },
@@ -4669,6 +4877,14 @@
       "postil-tint-dark": {
        "alias": "Brand",
        "name": "alpha/postil-accent-dark-25"
+      },
+      "graphite": {
+       "alias": "Brand",
+       "name": "alpha/accent-600-25"
+      },
+      "graphite-dark": {
+       "alias": "Brand",
+       "name": "alpha/accent-400-25"
       }
      }
     },
@@ -4711,6 +4927,14 @@
       "postil-tint-dark": {
        "alias": "Brand",
        "name": "alpha/postil-accent-dark-30"
+      },
+      "graphite": {
+       "alias": "Brand",
+       "name": "alpha/accent-600-30"
+      },
+      "graphite-dark": {
+       "alias": "Brand",
+       "name": "alpha/accent-400-30"
       }
      }
     },
@@ -4745,6 +4969,14 @@
       "postil-tint-dark": {
        "alias": "Brand",
        "name": "postil/accent-dark"
+      },
+      "graphite": {
+       "alias": "Brand",
+       "name": "accent/600"
+      },
+      "graphite-dark": {
+       "alias": "Brand",
+       "name": "accent/400"
       }
      }
     },
@@ -4779,6 +5011,14 @@
       "postil-tint-dark": {
        "alias": "Brand",
        "name": "postil/accent-dark"
+      },
+      "graphite": {
+       "alias": "Brand",
+       "name": "accent/500"
+      },
+      "graphite-dark": {
+       "alias": "Brand",
+       "name": "accent/500"
       }
      }
     },
@@ -4821,6 +5061,14 @@
       "postil-tint-dark": {
        "alias": "Brand",
        "name": "alpha/postil-accent-dark-0"
+      },
+      "graphite": {
+       "alias": "Brand",
+       "name": "alpha/accent-600-25"
+      },
+      "graphite-dark": {
+       "alias": "Brand",
+       "name": "alpha/accent-400-18"
       }
      }
     },
@@ -4855,6 +5103,14 @@
       "postil-tint-dark": {
        "alias": "Brand",
        "name": "postil/char-950"
+      },
+      "graphite": {
+       "alias": "Primitives",
+       "name": "white"
+      },
+      "graphite-dark": {
+       "alias": "Brand",
+       "name": "accent/950"
       }
      }
     },
@@ -4897,6 +5153,14 @@
       "postil-tint-dark": {
        "alias": "Brand",
        "name": "alpha/postil-accent-dark-10"
+      },
+      "graphite": {
+       "alias": "Brand",
+       "name": "alpha/accent-600-10"
+      },
+      "graphite-dark": {
+       "alias": "Brand",
+       "name": "alpha/accent-400-14"
       }
      }
     },
@@ -4939,6 +5203,14 @@
       "postil-tint-dark": {
        "alias": "Brand",
        "name": "alpha/postil-accent-dark-18"
+      },
+      "graphite": {
+       "alias": "Brand",
+       "name": "alpha/accent-600-18"
+      },
+      "graphite-dark": {
+       "alias": "Brand",
+       "name": "alpha/accent-400-26"
       }
      }
     },
@@ -4977,6 +5249,14 @@
       "postil-tint-dark": {
        "alias": "Brand",
        "name": "alpha/postil-accent-dark-10"
+      },
+      "graphite": {
+       "alias": "Brand",
+       "name": "accent/50"
+      },
+      "graphite-dark": {
+       "alias": "Brand",
+       "name": "alpha/accent-400-14"
       }
      }
     },
@@ -5019,6 +5299,14 @@
       "postil-tint-dark": {
        "alias": "Brand",
        "name": "alpha/postil-accent-dark-12"
+      },
+      "graphite": {
+       "alias": "Brand",
+       "name": "alpha/accent-600-8"
+      },
+      "graphite-dark": {
+       "alias": "Brand",
+       "name": "alpha/accent-400-14"
       }
      }
     },
@@ -5051,6 +5339,14 @@
        "name": "red/550"
       },
       "postil-tint-dark": {
+       "alias": "Primitives",
+       "name": "red/550"
+      },
+      "graphite": {
+       "alias": "Primitives",
+       "name": "red/550"
+      },
+      "graphite-dark": {
        "alias": "Primitives",
        "name": "red/550"
       }
@@ -5087,6 +5383,14 @@
       "postil-tint-dark": {
        "alias": "Primitives",
        "name": "green/700"
+      },
+      "graphite": {
+       "alias": "Primitives",
+       "name": "green/700"
+      },
+      "graphite-dark": {
+       "alias": "Primitives",
+       "name": "green/700"
       }
      }
     },
@@ -5119,6 +5423,14 @@
        "name": "amber/600"
       },
       "postil-tint-dark": {
+       "alias": "Primitives",
+       "name": "amber/600"
+      },
+      "graphite": {
+       "alias": "Primitives",
+       "name": "amber/600"
+      },
+      "graphite-dark": {
        "alias": "Primitives",
        "name": "amber/600"
       }
@@ -5155,6 +5467,14 @@
       "postil-tint-dark": {
        "alias": "Primitives",
        "name": "red/600"
+      },
+      "graphite": {
+       "alias": "Primitives",
+       "name": "red/600"
+      },
+      "graphite-dark": {
+       "alias": "Primitives",
+       "name": "red/600"
       }
      }
     },
@@ -5187,6 +5507,14 @@
        "name": "red/50"
       },
       "postil-tint-dark": {
+       "alias": "Primitives",
+       "name": "red/50"
+      },
+      "graphite": {
+       "alias": "Primitives",
+       "name": "red/50"
+      },
+      "graphite-dark": {
        "alias": "Primitives",
        "name": "red/50"
       }
@@ -5223,6 +5551,14 @@
       "postil-tint-dark": {
        "alias": "Primitives",
        "name": "signal/positive-dark"
+      },
+      "graphite": {
+       "alias": "Primitives",
+       "name": "signal/positive"
+      },
+      "graphite-dark": {
+       "alias": "Primitives",
+       "name": "signal/positive-dark"
       }
      }
     },
@@ -5255,6 +5591,14 @@
        "name": "signal/negative"
       },
       "postil-tint-dark": {
+       "alias": "Primitives",
+       "name": "signal/negative-dark"
+      },
+      "graphite": {
+       "alias": "Primitives",
+       "name": "signal/negative"
+      },
+      "graphite-dark": {
        "alias": "Primitives",
        "name": "signal/negative-dark"
       }
@@ -5291,6 +5635,14 @@
       "postil-tint-dark": {
        "alias": "Primitives",
        "name": "signal/warning-dark"
+      },
+      "graphite": {
+       "alias": "Primitives",
+       "name": "signal/warning"
+      },
+      "graphite-dark": {
+       "alias": "Primitives",
+       "name": "signal/warning-dark"
       }
      }
     },
@@ -5323,6 +5675,14 @@
        "name": "green/700"
       },
       "postil-tint-dark": {
+       "alias": "Primitives",
+       "name": "green/300"
+      },
+      "graphite": {
+       "alias": "Primitives",
+       "name": "green/700"
+      },
+      "graphite-dark": {
        "alias": "Primitives",
        "name": "green/300"
       }
@@ -5359,6 +5719,14 @@
       "postil-tint-dark": {
        "alias": "Primitives",
        "name": "red/300"
+      },
+      "graphite": {
+       "alias": "Primitives",
+       "name": "red/700"
+      },
+      "graphite-dark": {
+       "alias": "Primitives",
+       "name": "red/300"
       }
      }
     },
@@ -5391,6 +5759,14 @@
        "name": "amber/700"
       },
       "postil-tint-dark": {
+       "alias": "Primitives",
+       "name": "amber/300"
+      },
+      "graphite": {
+       "alias": "Primitives",
+       "name": "amber/700"
+      },
+      "graphite-dark": {
        "alias": "Primitives",
        "name": "amber/300"
       }
@@ -5443,6 +5819,18 @@
         "b": 36,
         "a": 0.16
        }
+      },
+      "graphite": {
+       "alias": "Primitives",
+       "name": "amber/100"
+      },
+      "graphite-dark": {
+       "value": {
+        "r": 251,
+        "g": 191,
+        "b": 36,
+        "a": 0.16
+       }
       }
      }
     },
@@ -5475,6 +5863,14 @@
        "name": "amber/900"
       },
       "postil-tint-dark": {
+       "alias": "Primitives",
+       "name": "amber/300"
+      },
+      "graphite": {
+       "alias": "Primitives",
+       "name": "amber/900"
+      },
+      "graphite-dark": {
        "alias": "Primitives",
        "name": "amber/300"
       }
@@ -5527,6 +5923,18 @@
         "b": 36,
         "a": 0.35
        }
+      },
+      "graphite": {
+       "alias": "Primitives",
+       "name": "amber/200"
+      },
+      "graphite-dark": {
+       "value": {
+        "r": 251,
+        "g": 191,
+        "b": 36,
+        "a": 0.35
+       }
       }
      }
     },
@@ -5559,6 +5967,14 @@
        "name": "amber/800"
       },
       "postil-tint-dark": {
+       "alias": "Primitives",
+       "name": "amber/200"
+      },
+      "graphite": {
+       "alias": "Primitives",
+       "name": "amber/800"
+      },
+      "graphite-dark": {
        "alias": "Primitives",
        "name": "amber/200"
       }
@@ -5595,6 +6011,14 @@
       "postil-tint-dark": {
        "alias": "Primitives",
        "name": "red/300"
+      },
+      "graphite": {
+       "alias": "Primitives",
+       "name": "red/700"
+      },
+      "graphite-dark": {
+       "alias": "Primitives",
+       "name": "red/300"
       }
      }
     },
@@ -5629,6 +6053,14 @@
       "postil-tint-dark": {
        "alias": "Brand",
        "name": "postil/char-950"
+      },
+      "graphite": {
+       "alias": "Brand",
+       "name": "surface/page-light"
+      },
+      "graphite-dark": {
+       "alias": "Primitives",
+       "name": "mono/night-950"
       }
      }
     },
@@ -5675,6 +6107,18 @@
       "postil-tint-dark": {
        "alias": "Brand",
        "name": "alpha/postil-char-950-97"
+      },
+      "graphite": {
+       "alias": "Brand",
+       "name": "alpha/surface-sheet-light-92"
+      },
+      "graphite-dark": {
+       "value": {
+        "r": 16,
+        "g": 16,
+        "b": 15,
+        "a": 0.82
+       }
       }
      }
     },
@@ -5717,6 +6161,22 @@
       "postil-tint-dark": {
        "alias": "Brand",
        "name": "postil/char-900"
+      },
+      "graphite": {
+       "value": {
+        "r": 255,
+        "g": 255,
+        "b": 255,
+        "a": 0.55
+       }
+      },
+      "graphite-dark": {
+       "value": {
+        "r": 255,
+        "g": 255,
+        "b": 255,
+        "a": 0.06
+       }
       }
      }
     },
@@ -5767,6 +6227,22 @@
       "postil-tint-dark": {
        "alias": "Brand",
        "name": "postil/char-850"
+      },
+      "graphite": {
+       "value": {
+        "r": 0,
+        "g": 0,
+        "b": 0,
+        "a": 0.04
+       }
+      },
+      "graphite-dark": {
+       "value": {
+        "r": 255,
+        "g": 255,
+        "b": 255,
+        "a": 0.05
+       }
       }
      }
     },
@@ -5824,6 +6300,22 @@
         "g": 225,
         "b": 217,
         "a": 0.14
+       }
+      },
+      "graphite": {
+       "value": {
+        "r": 255,
+        "g": 255,
+        "b": 255,
+        "a": 0.55
+       }
+      },
+      "graphite-dark": {
+       "value": {
+        "r": 255,
+        "g": 255,
+        "b": 255,
+        "a": 0.1
        }
       }
      }
@@ -5883,6 +6375,22 @@
         "b": 217,
         "a": 0.22
        }
+      },
+      "graphite": {
+       "value": {
+        "r": 255,
+        "g": 255,
+        "b": 255,
+        "a": 0.45
+       }
+      },
+      "graphite-dark": {
+       "value": {
+        "r": 255,
+        "g": 255,
+        "b": 255,
+        "a": 0.14
+       }
       }
      }
     },
@@ -5917,6 +6425,14 @@
       "postil-tint-dark": {
        "alias": "Brand",
        "name": "postil/char-900"
+      },
+      "graphite": {
+       "alias": "Primitives",
+       "name": "white"
+      },
+      "graphite-dark": {
+       "alias": "Primitives",
+       "name": "mono/night-950"
       }
      }
     },
@@ -5951,6 +6467,14 @@
       "postil-tint-dark": {
        "alias": "Brand",
        "name": "postil/char-850"
+      },
+      "graphite": {
+       "alias": "Brand",
+       "name": "surface/sheet-light"
+      },
+      "graphite-dark": {
+       "alias": "Brand",
+       "name": "surface/sheet-dark"
       }
      }
     },
@@ -6013,6 +6537,22 @@
         "b": 0,
         "a": 0.6
        }
+      },
+      "graphite": {
+       "value": {
+        "r": 29,
+        "g": 28,
+        "b": 28,
+        "a": 0.45
+       }
+      },
+      "graphite-dark": {
+       "value": {
+        "r": 0,
+        "g": 0,
+        "b": 0,
+        "a": 0.6
+       }
       }
      }
     },
@@ -6055,6 +6595,14 @@
       "postil-tint-dark": {
        "alias": "Brand",
        "name": "alpha/postil-char-850-96"
+      },
+      "graphite": {
+       "alias": "Brand",
+       "name": "alpha/surface-sheet-light-96"
+      },
+      "graphite-dark": {
+       "alias": "Brand",
+       "name": "alpha/surface-sheet-dark-96"
       }
      }
     },
@@ -6097,6 +6645,18 @@
       "postil-tint-dark": {
        "alias": "Brand",
        "name": "postil/char-800"
+      },
+      "graphite": {
+       "alias": "Primitives",
+       "name": "mono/slate-200"
+      },
+      "graphite-dark": {
+       "value": {
+        "r": 255,
+        "g": 255,
+        "b": 255,
+        "a": 0.12
+       }
       }
      }
     },
@@ -6139,6 +6699,18 @@
       "postil-tint-dark": {
        "alias": "Brand",
        "name": "postil/char-900"
+      },
+      "graphite": {
+       "alias": "Primitives",
+       "name": "neutral/50"
+      },
+      "graphite-dark": {
+       "value": {
+        "r": 255,
+        "g": 255,
+        "b": 255,
+        "a": 0.06
+       }
       }
      }
     },
@@ -6181,6 +6753,18 @@
       "postil-tint-dark": {
        "alias": "Brand",
        "name": "postil/char-850"
+      },
+      "graphite": {
+       "alias": "Primitives",
+       "name": "neutral/150"
+      },
+      "graphite-dark": {
+       "value": {
+        "r": 255,
+        "g": 255,
+        "b": 255,
+        "a": 0.08
+       }
       }
      }
     },
@@ -6223,6 +6807,18 @@
       "postil-tint-dark": {
        "alias": "Brand",
        "name": "postil/char-800"
+      },
+      "graphite": {
+       "alias": "Primitives",
+       "name": "white"
+      },
+      "graphite-dark": {
+       "value": {
+        "r": 255,
+        "g": 255,
+        "b": 255,
+        "a": 0.16
+       }
       }
      }
     },
@@ -6265,6 +6861,18 @@
       "postil-tint-dark": {
        "alias": "Brand",
        "name": "postil/char-800"
+      },
+      "graphite": {
+       "alias": "Primitives",
+       "name": "white"
+      },
+      "graphite-dark": {
+       "value": {
+        "r": 255,
+        "g": 255,
+        "b": 255,
+        "a": 0.06
+       }
       }
      }
     },
@@ -6299,6 +6907,14 @@
       "postil-tint-dark": {
        "alias": "Primitives",
        "name": "bone/100"
+      },
+      "graphite": {
+       "alias": "Primitives",
+       "name": "mono/slate-900"
+      },
+      "graphite-dark": {
+       "alias": "Primitives",
+       "name": "mono/slate-150"
       }
      }
     },
@@ -6333,6 +6949,14 @@
       "postil-tint-dark": {
        "alias": "Primitives",
        "name": "bone/300"
+      },
+      "graphite": {
+       "alias": "Primitives",
+       "name": "mono/slate-700"
+      },
+      "graphite-dark": {
+       "alias": "Primitives",
+       "name": "mono/slate-350"
       }
      }
     },
@@ -6367,6 +6991,14 @@
       "postil-tint-dark": {
        "alias": "Primitives",
        "name": "bone/400"
+      },
+      "graphite": {
+       "alias": "Primitives",
+       "name": "mono/slate-550"
+      },
+      "graphite-dark": {
+       "alias": "Primitives",
+       "name": "mono/slate-400"
       }
      }
     },
@@ -6401,6 +7033,14 @@
       "postil-tint-dark": {
        "alias": "Brand",
        "name": "postil/accent-dark"
+      },
+      "graphite": {
+       "alias": "Brand",
+       "name": "accent/700"
+      },
+      "graphite-dark": {
+       "alias": "Brand",
+       "name": "accent/300"
       }
      }
     },
@@ -6458,6 +7098,22 @@
         "g": 225,
         "b": 217,
         "a": 0.14
+       }
+      },
+      "graphite": {
+       "value": {
+        "r": 123,
+        "g": 120,
+        "b": 116,
+        "a": 0.25
+       }
+      },
+      "graphite-dark": {
+       "value": {
+        "r": 255,
+        "g": 255,
+        "b": 255,
+        "a": 0.1
        }
       }
      }
@@ -6521,6 +7177,22 @@
         "b": 217,
         "a": 0.08
        }
+      },
+      "graphite": {
+       "value": {
+        "r": 255,
+        "g": 255,
+        "b": 255,
+        "a": 0.55
+       }
+      },
+      "graphite-dark": {
+       "value": {
+        "r": 255,
+        "g": 255,
+        "b": 255,
+        "a": 0.05
+       }
       }
      }
     },
@@ -6563,6 +7235,18 @@
       "postil-tint-dark": {
        "alias": "Brand",
        "name": "postil/char-700"
+      },
+      "graphite": {
+       "alias": "Primitives",
+       "name": "neutral/250"
+      },
+      "graphite-dark": {
+       "value": {
+        "r": 255,
+        "g": 255,
+        "b": 255,
+        "a": 0.12
+       }
       }
      }
     },
@@ -6605,6 +7289,18 @@
       "postil-tint-dark": {
        "alias": "Brand",
        "name": "postil/char-800"
+      },
+      "graphite": {
+       "alias": "Primitives",
+       "name": "neutral/200"
+      },
+      "graphite-dark": {
+       "value": {
+        "r": 255,
+        "g": 255,
+        "b": 255,
+        "a": 0.1
+       }
       }
      }
     },
@@ -6639,6 +7335,14 @@
       "postil-tint-dark": {
        "alias": "Primitives",
        "name": "slate/300"
+      },
+      "graphite": {
+       "alias": "Primitives",
+       "name": "mono/slate-600"
+      },
+      "graphite-dark": {
+       "alias": "Primitives",
+       "name": "mono/slate-300"
       }
      }
     },
@@ -6673,6 +7377,14 @@
       "postil-tint-dark": {
        "alias": "Brand",
        "name": "postil/char-800"
+      },
+      "graphite": {
+       "alias": "Brand",
+       "name": "accent/100"
+      },
+      "graphite-dark": {
+       "alias": "Brand",
+       "name": "alpha/accent-400-18"
       }
      }
     },
@@ -6707,6 +7419,14 @@
       "postil-tint-dark": {
        "alias": "Brand",
        "name": "postil/accent-dark"
+      },
+      "graphite": {
+       "alias": "Brand",
+       "name": "accent/700"
+      },
+      "graphite-dark": {
+       "alias": "Brand",
+       "name": "accent/300"
       }
      }
     },
@@ -6757,6 +7477,18 @@
         "b": 128,
         "a": 0.16
        }
+      },
+      "graphite": {
+       "alias": "Primitives",
+       "name": "green/100"
+      },
+      "graphite-dark": {
+       "value": {
+        "r": 74,
+        "g": 222,
+        "b": 128,
+        "a": 0.16
+       }
       }
      }
     },
@@ -6789,6 +7521,14 @@
        "name": "green/800"
       },
       "postil-tint-dark": {
+       "alias": "Primitives",
+       "name": "green/300"
+      },
+      "graphite": {
+       "alias": "Primitives",
+       "name": "green/800"
+      },
+      "graphite-dark": {
        "alias": "Primitives",
        "name": "green/300"
       }
@@ -6841,6 +7581,18 @@
         "b": 36,
         "a": 0.16
        }
+      },
+      "graphite": {
+       "alias": "Primitives",
+       "name": "amber/100"
+      },
+      "graphite-dark": {
+       "value": {
+        "r": 251,
+        "g": 191,
+        "b": 36,
+        "a": 0.16
+       }
       }
      }
     },
@@ -6873,6 +7625,14 @@
        "name": "amber/800"
       },
       "postil-tint-dark": {
+       "alias": "Primitives",
+       "name": "amber/300"
+      },
+      "graphite": {
+       "alias": "Primitives",
+       "name": "amber/800"
+      },
+      "graphite-dark": {
        "alias": "Primitives",
        "name": "amber/300"
       }
@@ -6909,6 +7669,14 @@
       "postil-tint-dark": {
        "alias": "Primitives",
        "name": "slate/700"
+      },
+      "graphite": {
+       "alias": "Primitives",
+       "name": "mono/slate-300"
+      },
+      "graphite-dark": {
+       "alias": "Primitives",
+       "name": "mono/slate-700"
       }
      }
     },
@@ -6969,6 +7737,22 @@
         "r": 226,
         "g": 232,
         "b": 240,
+        "a": 0.28
+       }
+      },
+      "graphite": {
+       "value": {
+        "r": 123,
+        "g": 120,
+        "b": 116,
+        "a": 0.42
+       }
+      },
+      "graphite-dark": {
+       "value": {
+        "r": 234,
+        "g": 233,
+        "b": 232,
         "a": 0.28
        }
       }
@@ -7033,6 +7817,22 @@
         "b": 240,
         "a": 0.46
        }
+      },
+      "graphite": {
+       "value": {
+        "r": 123,
+        "g": 120,
+        "b": 116,
+        "a": 0.66
+       }
+      },
+      "graphite-dark": {
+       "value": {
+        "r": 234,
+        "g": 233,
+        "b": 232,
+        "a": 0.46
+       }
       }
      }
     },
@@ -7077,6 +7877,18 @@
        "name": "slate/300"
       },
       "postil-tint-dark": {
+       "value": {
+        "r": 255,
+        "g": 255,
+        "b": 255,
+        "a": 0.25
+       }
+      },
+      "graphite": {
+       "alias": "Primitives",
+       "name": "mono/slate-300"
+      },
+      "graphite-dark": {
        "value": {
         "r": 255,
         "g": 255,
@@ -7133,6 +7945,18 @@
         "b": 255,
         "a": 0.22
        }
+      },
+      "graphite": {
+       "alias": "Primitives",
+       "name": "mono/slate-300"
+      },
+      "graphite-dark": {
+       "value": {
+        "r": 255,
+        "g": 255,
+        "b": 255,
+        "a": 0.22
+       }
       }
      }
     },
@@ -7165,6 +7989,14 @@
        "name": "white"
       },
       "postil-tint-dark": {
+       "alias": "Primitives",
+       "name": "white"
+      },
+      "graphite": {
+       "alias": "Primitives",
+       "name": "white"
+      },
+      "graphite-dark": {
        "alias": "Primitives",
        "name": "white"
       }
@@ -7201,6 +8033,14 @@
       "postil-tint-dark": {
        "alias": "Primitives",
        "name": "slate/500"
+      },
+      "graphite": {
+       "alias": "Primitives",
+       "name": "mono/slate-400"
+      },
+      "graphite-dark": {
+       "alias": "Primitives",
+       "name": "mono/slate-500"
       }
      }
     },
@@ -7235,6 +8075,14 @@
       "postil-tint-dark": {
        "alias": "Primitives",
        "name": "slate/150"
+      },
+      "graphite": {
+       "alias": "Primitives",
+       "name": "mono/slate-900"
+      },
+      "graphite-dark": {
+       "alias": "Primitives",
+       "name": "mono/slate-150"
       }
      }
     },
@@ -7269,6 +8117,14 @@
       "postil-tint-dark": {
        "alias": "Primitives",
        "name": "night/950"
+      },
+      "graphite": {
+       "alias": "Primitives",
+       "name": "white"
+      },
+      "graphite-dark": {
+       "alias": "Primitives",
+       "name": "mono/night-950"
       }
      }
     },
@@ -7303,6 +8159,14 @@
       "postil-tint-dark": {
        "alias": "Primitives",
        "name": "sepia/700"
+      },
+      "graphite": {
+       "alias": "Brand",
+       "name": "accent/300"
+      },
+      "graphite-dark": {
+       "alias": "Brand",
+       "name": "accent/700"
       }
      }
     },
@@ -7363,6 +8227,22 @@
         "r": 228,
         "g": 225,
         "b": 217,
+        "a": 0.18
+       }
+      },
+      "graphite": {
+       "value": {
+        "r": 29,
+        "g": 28,
+        "b": 28,
+        "a": 0.18
+       }
+      },
+      "graphite-dark": {
+       "value": {
+        "r": 239,
+        "g": 239,
+        "b": 238,
         "a": 0.18
        }
       }
@@ -7427,6 +8307,22 @@
         "b": 217,
         "a": 0.1
        }
+      },
+      "graphite": {
+       "value": {
+        "r": 29,
+        "g": 28,
+        "b": 28,
+        "a": 0.1
+       }
+      },
+      "graphite-dark": {
+       "value": {
+        "r": 239,
+        "g": 239,
+        "b": 238,
+        "a": 0.1
+       }
       }
      }
     },
@@ -7459,6 +8355,14 @@
        "name": "chart/light-0"
       },
       "postil-tint-dark": {
+       "alias": "Primitives",
+       "name": "chart/dark-0"
+      },
+      "graphite": {
+       "alias": "Primitives",
+       "name": "chart/light-0"
+      },
+      "graphite-dark": {
        "alias": "Primitives",
        "name": "chart/dark-0"
       }
@@ -7495,6 +8399,14 @@
       "postil-tint-dark": {
        "alias": "Primitives",
        "name": "chart/dark-1"
+      },
+      "graphite": {
+       "alias": "Primitives",
+       "name": "chart/light-1"
+      },
+      "graphite-dark": {
+       "alias": "Primitives",
+       "name": "chart/dark-1"
       }
      }
     },
@@ -7527,6 +8439,14 @@
        "name": "chart/light-2"
       },
       "postil-tint-dark": {
+       "alias": "Primitives",
+       "name": "chart/dark-2"
+      },
+      "graphite": {
+       "alias": "Primitives",
+       "name": "chart/light-2"
+      },
+      "graphite-dark": {
        "alias": "Primitives",
        "name": "chart/dark-2"
       }
@@ -7563,6 +8483,14 @@
       "postil-tint-dark": {
        "alias": "Primitives",
        "name": "chart/dark-3"
+      },
+      "graphite": {
+       "alias": "Primitives",
+       "name": "chart/light-3"
+      },
+      "graphite-dark": {
+       "alias": "Primitives",
+       "name": "chart/dark-3"
       }
      }
     },
@@ -7595,6 +8523,14 @@
        "name": "chart/light-4"
       },
       "postil-tint-dark": {
+       "alias": "Primitives",
+       "name": "chart/dark-4"
+      },
+      "graphite": {
+       "alias": "Primitives",
+       "name": "chart/light-4"
+      },
+      "graphite-dark": {
        "alias": "Primitives",
        "name": "chart/dark-4"
       }
@@ -7631,6 +8567,14 @@
       "postil-tint-dark": {
        "alias": "Primitives",
        "name": "chart/light-5"
+      },
+      "graphite": {
+       "alias": "Primitives",
+       "name": "chart/light-5"
+      },
+      "graphite-dark": {
+       "alias": "Primitives",
+       "name": "chart/light-5"
       }
      }
     },
@@ -7663,6 +8607,14 @@
        "name": "chart/light-6"
       },
       "postil-tint-dark": {
+       "alias": "Primitives",
+       "name": "chart/dark-6"
+      },
+      "graphite": {
+       "alias": "Primitives",
+       "name": "chart/light-6"
+      },
+      "graphite-dark": {
        "alias": "Primitives",
        "name": "chart/dark-6"
       }
@@ -7699,6 +8651,14 @@
       "postil-tint-dark": {
        "alias": "Primitives",
        "name": "chart/dark-7"
+      },
+      "graphite": {
+       "alias": "Primitives",
+       "name": "chart/light-7"
+      },
+      "graphite-dark": {
+       "alias": "Primitives",
+       "name": "chart/dark-7"
       }
      }
     },
@@ -7731,6 +8691,14 @@
        "name": "chart/light-other"
       },
       "postil-tint-dark": {
+       "alias": "Primitives",
+       "name": "chart/dark-other"
+      },
+      "graphite": {
+       "alias": "Primitives",
+       "name": "chart/light-other"
+      },
+      "graphite-dark": {
        "alias": "Primitives",
        "name": "chart/dark-other"
       }
@@ -7767,6 +8735,14 @@
       "postil-tint-dark": {
        "alias": "Primitives",
        "name": "annotation/user-bg"
+      },
+      "graphite": {
+       "alias": "Primitives",
+       "name": "yellow/100"
+      },
+      "graphite-dark": {
+       "alias": "Primitives",
+       "name": "annotation/user-bg"
       }
      }
     },
@@ -7799,6 +8775,14 @@
        "name": "yellow/900"
       },
       "postil-tint-dark": {
+       "alias": "Primitives",
+       "name": "annotation/user-fg"
+      },
+      "graphite": {
+       "alias": "Primitives",
+       "name": "yellow/900"
+      },
+      "graphite-dark": {
        "alias": "Primitives",
        "name": "annotation/user-fg"
       }
@@ -7835,6 +8819,14 @@
       "postil-tint-dark": {
        "alias": "Primitives",
        "name": "annotation/user-bar"
+      },
+      "graphite": {
+       "alias": "Primitives",
+       "name": "yellow/500"
+      },
+      "graphite-dark": {
+       "alias": "Primitives",
+       "name": "annotation/user-bar"
       }
      }
     },
@@ -7867,6 +8859,14 @@
        "name": "sky/100"
       },
       "postil-tint-dark": {
+       "alias": "Primitives",
+       "name": "annotation/ghost-bg"
+      },
+      "graphite": {
+       "alias": "Primitives",
+       "name": "sky/100"
+      },
+      "graphite-dark": {
        "alias": "Primitives",
        "name": "annotation/ghost-bg"
       }
@@ -7903,6 +8903,14 @@
       "postil-tint-dark": {
        "alias": "Primitives",
        "name": "annotation/ghost-fg"
+      },
+      "graphite": {
+       "alias": "Primitives",
+       "name": "sky/900"
+      },
+      "graphite-dark": {
+       "alias": "Primitives",
+       "name": "annotation/ghost-fg"
       }
      }
     },
@@ -7935,6 +8943,14 @@
        "name": "sky/600"
       },
       "postil-tint-dark": {
+       "alias": "Primitives",
+       "name": "sky/400"
+      },
+      "graphite": {
+       "alias": "Primitives",
+       "name": "sky/600"
+      },
+      "graphite-dark": {
        "alias": "Primitives",
        "name": "sky/400"
       }
@@ -7971,6 +8987,14 @@
       "postil-tint-dark": {
        "alias": "Primitives",
        "name": "annotation/note-bg"
+      },
+      "graphite": {
+       "alias": "Primitives",
+       "name": "pink/100"
+      },
+      "graphite-dark": {
+       "alias": "Primitives",
+       "name": "annotation/note-bg"
       }
      }
     },
@@ -8005,6 +9029,14 @@
       "postil-tint-dark": {
        "alias": "Primitives",
        "name": "annotation/note-fg"
+      },
+      "graphite": {
+       "alias": "Primitives",
+       "name": "pink/900"
+      },
+      "graphite-dark": {
+       "alias": "Primitives",
+       "name": "annotation/note-fg"
       }
      }
     },
@@ -8037,6 +9069,14 @@
        "name": "pink/600"
       },
       "postil-tint-dark": {
+       "alias": "Primitives",
+       "name": "pink/400"
+      },
+      "graphite": {
+       "alias": "Primitives",
+       "name": "pink/600"
+      },
+      "graphite-dark": {
        "alias": "Primitives",
        "name": "pink/400"
       }
@@ -8095,6 +9135,22 @@
        }
       },
       "postil-tint-dark": {
+       "value": {
+        "r": 0,
+        "g": 0,
+        "b": 0,
+        "a": 0.25
+       }
+      },
+      "graphite": {
+       "value": {
+        "r": 255,
+        "g": 255,
+        "b": 255,
+        "a": 0.55
+       }
+      },
+      "graphite-dark": {
        "value": {
         "r": 0,
         "g": 0,

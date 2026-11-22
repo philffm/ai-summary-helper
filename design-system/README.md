@@ -26,6 +26,10 @@ scheme (`data-scheme`: kaivo / aish / viola, none = the build's own brand). Sets
 percent of a brand colour, generated per brand by `node design-system/postil-tints.mjs` (the `brand.postil.*` primitives; the strength
 is the `TINT` table in that script). Blocks with `"tint": "<brand>"` in `config.json` write such a set with that brand's values.
 
+The **Graphite** colour scheme also swaps the neutrals: the app's backgrounds, text and borders are the blue-tinted Slate scale, so a grey
+accent alone still looked blue. `node design-system/graphite-neutrals.mjs` writes `color.mono.*` (each Slate step without its hue) and the sets
+`app/graphite-light` / `app/graphite-dark`; the Graphite blocks in `config.json` add them with `"extraSets"`.
+
 Contexts: `app` (extension) and `site` (website). Modes: `app/base` (theme-independent), `app/light`, `app/dark`,
 `app/dark-forced` (the three values that differ when dark is picked in Settings instead of following the OS), `app/contrast`;
 `site/base`, `site/dark` (the site's default), `site/light`, plus the scoped component sets `site/mock/*` (hero mock) and
