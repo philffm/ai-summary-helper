@@ -119,6 +119,8 @@ document.addEventListener("DOMContentLoaded", async () => {
     // not when the click lands: the load then overlaps the ~100 ms a click takes. once() makes repeats free.
     const warm = (e) => { const b = e.target.closest && e.target.closest('.nav-item[data-screen]'); const n = b && b.dataset.screen; if (n && onDemand[n]) onDemand[n](); };
     for (const ev of ['pointerover', 'pointerdown', 'focusin']) document.addEventListener(ev, warm, { passive: true });
+    // The graph's code and d3 load in the background a few seconds after start, so the first press on the graph does not wait for them
+    setTimeout(() => (window.requestIdleCallback || setTimeout)(() => import('./modules/archiveGraph.js').then((m) => m.preloadGraph()).catch(() => {})), 4000);
     document.addEventListener('aish:ws-view', (e) => { const scope = e.detail && e.detail.scope; if (onDemand[scope]) onDemand[scope](); });
     // a feed settings panel opened before the feed module was there: load it, then open the panel again for it
     let feedsReady = false;

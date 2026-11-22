@@ -15,7 +15,7 @@
 // used to just vanish from the graph — tag links were the only way to get
 // a node placed at all. They now get one shot at attaching via content
 // similarity instead, reusing the TF-IDF index localSearch.js already
-// builds for search/"similar articles" (see mostSimilarIncluded below).
+// builds for search/"similar articles" (see makeSimilarFinder below).
 //
 // v4 (interaction layer):
 // - No graph-local search box — the archive's own search (history top bar)
@@ -106,26 +106,35 @@ function tagColor(tagLabel) {
 }
 
 /**
- * Finds the most similar already-included article for a given orphan,
- * using the prebuilt TF-IDF index (see localSearch.js). Returns null if
- * there's no index, no vector for this article, or nothing clears the
- * similarity floor — in which case the article stays unconnected.
+ * Finds the most similar already-included article for a given orphan, using the prebuilt TF-IDF index (see localSearch.js).
+ * The vectors are unit length, so the cosine is a plain dot product, and a dot product only gets contributions from terms the two
+ * share: posting lists (term → the included articles that have it) reach exactly those, instead of comparing the orphan with every
+ * article. (The straight scan took about a second for 700 articles, with a third of them without tags; the result is the same.)
+ * add(node id, article) registers an article as a candidate; find(article) → { id, score } of the best candidate at or above
+ * minScore, or null (no index, no vector for the article, nothing similar enough: the article stays unconnected).
  */
-function mostSimilarIncluded(similarityIndex, article, allArticles, includedArticleIds, minScore = 0.15) {
-    if (!similarityIndex) return null;
-    const vec = similarityIndex.vectors.get(article.timestamp);
-    if (!vec || vec.size === 0) return null;
-
-    let best = null;
-    for (const candidate of allArticles) {
-        const candidateId = 'article-' + (candidate.timestamp || '');
-        if (!includedArticleIds.has(candidateId)) continue;
-        const candidateVec = similarityIndex.vectors.get(candidate.timestamp);
-        if (!candidateVec) continue;
-        const sim = cosineSim(vec, candidateVec);
-        if (sim >= minScore && (!best || sim > best.score)) best = { id: candidateId, score: sim };
-    }
-    return best;
+export function makeSimilarFinder(similarityIndex, minScore = 0.15) {
+    const postings = new Map();   // term → [[node id, weight], …]
+    const add = (id, article) => {
+        if (!similarityIndex) return;
+        const vec = similarityIndex.vectors.get(article.timestamp);
+        if (!vec) return;
+        for (const [term, w] of vec) { let list = postings.get(term); if (!list) postings.set(term, list = []); list.push([id, w]); }
+    };
+    const find = (article) => {
+        if (!similarityIndex) return null;
+        const vec = similarityIndex.vectors.get(article.timestamp);
+        if (!vec || vec.size === 0) return null;
+        const score = new Map();
+        for (const [term, w] of vec) {
+            const list = postings.get(term); if (!list) continue;
+            for (let i = 0; i < list.length; i++) score.set(list[i][0], (score.get(list[i][0]) || 0) + w * list[i][1]);
+        }
+        let best = null;
+        for (const [id, sc] of score) if (sc >= minScore && (!best || sc > best.score)) best = { id, score: sc };
+        return best;
+    };
+    return { add, find };
 }
 
 /**
@@ -289,6 +298,8 @@ function buildGraphData(articles, minTagDegree = MIN_TAG_DEGREE_DEFAULT, similar
     //    one shot at attaching to its most topically similar included
     //    article via the shared TF-IDF index instead.
     const includedArticleIds = new Set(nodes.filter(n => n.group === 'article').map(n => n.id));
+    const similar = makeSimilarFinder(similarityIndex);
+    nodes.forEach(n => { if (n.group === 'article' && n.data) similar.add(n.id, n.data); });
     let reconnectedCount = 0;
     let stillOrphanCount = 0;
 
@@ -310,7 +321,7 @@ function buildGraphData(articles, minTagDegree = MIN_TAG_DEGREE_DEFAULT, similar
         const node = { id, label: title, group: 'article', data: article };
         nodeById.set(id, node);
         nodes.push(node);
-        includedArticleIds.add(id);
+        includedArticleIds.add(id); similar.add(id, article);
         if (article.id) nodeOfArticleId.set(article.id, id);
     };
     articles.forEach(article => {
@@ -322,14 +333,14 @@ function buildGraphData(articles, minTagDegree = MIN_TAG_DEGREE_DEFAULT, similar
         const id = uniqueId('article-' + article.timestamp);
         idOfArticle.set(article, id);
 
-        const best = mostSimilarIncluded(similarityIndex, article, articles, includedArticleIds) || cacheBest(article);
+        const best = similar.find(article) || cacheBest(article);
         if (best) {
             const title = article.title || article.content?.split('\n')[0] || T('Untitled');
             const orphanNode = { id, label: title, group: 'article', data: article };
             nodeById.set(id, orphanNode);
             nodes.push(orphanNode);
             links.push({ source: id, target: best.id, kind: 'similarity', score: best.score });
-            includedArticleIds.add(id);
+            includedArticleIds.add(id); similar.add(id, article);
             if (article.id) nodeOfArticleId.set(article.id, id);
             reconnectedCount++;
         } else if (keepOrphans) {
@@ -394,6 +405,9 @@ function capGraphData({ nodes, links, nodeById }, cap = NODE_CAP) {
     return { nodes: keptNodes, links: keptLinks, nodeById: keptNodeById, capped: true };
 }
 
+/** Loads d3 ahead of the first graph (called when the browser is idle after the History screen is up), so opening the graph does not wait for it. */
+export function preloadGraph() { return loadD3().catch(() => {}); }
+
 function loadD3() {
     if (typeof d3 !== 'undefined') return Promise.resolve();
     if (d3LoadPromise) return d3LoadPromise;
@@ -431,7 +445,8 @@ export function initArchiveGraph(container, articles, highlightTimestamp, simila
     // ResizeObserver/window listeners.
     destroyArchiveGraph(container);
 
-    container.innerHTML = '';
+    // Something to look at while the library is being read into a picture (the work below is one long synchronous stretch)
+    container.innerHTML = `<div class="graph-empty graph-loading" role="status">${T('Building the graph…')}</div>`;
     container.style.position = 'relative';
     container.style.width = '100%';
     // Height comes from CSS (fills what is left below the top bar, above the bottom nav).
@@ -447,7 +462,13 @@ export function initArchiveGraph(container, articles, highlightTimestamp, simila
 
     return loadD3()
         .then(() => waitForLayout(container))
-        .then(() => renderGraph(container, articles, highlightTimestamp, MIN_TAG_DEGREE_DEFAULT, similarityIndex))
+        .then(() => new Promise((resolve) => setTimeout(resolve, 0)))   // let the "Building…" note paint before the long stretch
+        .then(() => {
+            container.querySelector(':scope > .graph-loading')?.remove();
+            // the search index may be passed as a function: it is then built here, after the note is on screen, not before the click is handled
+            const index = typeof similarityIndex === 'function' ? similarityIndex() : similarityIndex;
+            return renderGraph(container, articles, highlightTimestamp, MIN_TAG_DEGREE_DEFAULT, index);
+        })
         .catch((e) => {
             // Any failure while drawing ends up here, not only a missing d3: say what it was, so a real bug is not hidden behind this message.
             console.warn('Archive graph could not be drawn:', e);

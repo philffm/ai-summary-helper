@@ -503,7 +503,7 @@ export function initArticleManager(uiManager) {
 
         const source = graphScopeVisibleArticles();
         import('./archiveGraph.js').then(mod => {
-            const rendered = mod.initArchiveGraph(graphContainer, source, hist.detail?.timestamp, ensureSearchIndex());
+            const rendered = mod.initArchiveGraph(graphContainer, source, hist.detail?.timestamp, ensureSearchIndex);
             if (nextMode === 'all') {
                 Promise.resolve(rendered).then(() => mod.applyGraphSearchDim(graphContainer, searchInput?.value || ''));
             }
@@ -624,7 +624,7 @@ export function initArticleManager(uiManager) {
         const source = graphScopeVisibleArticles();
         if (source.length > 0) {
             import('./archiveGraph.js').then(mod => {
-                mod.initArchiveGraph(graphContainer, source, hist.detail?.timestamp, ensureSearchIndex());
+                mod.initArchiveGraph(graphContainer, source, hist.detail?.timestamp, ensureSearchIndex);
             });
         } else {
             StorageManager.getArticlesIndex().then(articles => {
@@ -1248,7 +1248,7 @@ export function filterArticles() {
         } else {
         const filtered = hist.cached.filter(cheapMatch);
         import('./archiveGraph.js').then(mod => {
-            mod.initArchiveGraph(graphContainer, filtered.length > 0 ? filtered : hist.cached, hist.detail?.timestamp, ensureSearchIndex());
+            mod.initArchiveGraph(graphContainer, filtered.length > 0 ? filtered : hist.cached, hist.detail?.timestamp, ensureSearchIndex);
         });
         graphContainer.style.opacity = filterText && filtered.length < hist.cached.length ? '0.9' : '1';
         if (!wsActive()) return;
