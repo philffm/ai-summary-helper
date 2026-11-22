@@ -116,3 +116,11 @@ body { transition: padding-inline-end var(--duration-base) var(--easing-standard
 .rp-edge[hidden] { display: none; }
 @media print { .rp-edge, .rp-menu { display: none; } }
 .rp-menu--theme { min-width: 17rem; }
+
+/* send: the split button of the article detail (last used target | ▾) */
+.rp-split { display: inline-flex; border: 1px solid var(--rp-line); border-radius: var(--radius-md); overflow: hidden; }
+.rp-split[hidden] { display: none; }
+.rp-split > .rp-tool { border: 0; border-radius: 0; }
+.rp-split > .rp-tool + .rp-tool { border-inline-start: 1px solid var(--rp-line); padding: 0 6px; }
+.rp-split .rp-label { display: inline; }
+.rp-toast-action { margin-inline-start: 12px; padding: 0; background: transparent; border: 0; color: inherit; font: inherit; font-weight: 700; text-decoration: underline; cursor: pointer; }

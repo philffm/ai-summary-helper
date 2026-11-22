@@ -14,7 +14,7 @@ import { qaSection } from '../qaView.js';
 import { normalizeDoi } from '../../content/paper.js';
 import { paperState, paperChips, paperDoi, doiUrl, paperFacts, extractPaperFacts } from '../paperInfo.js';
 import { aiComplete } from '../feedAi.js';
-import { createInboxManager } from '../inboxManager.js';
+import { createSendTargets } from '../sendSplit.js';
 import { CITE_STYLES, formatCitation, ensureCsl, copyText, getCiteStyle, loadCiteStyle, setCiteStyle } from '../citation.js';
 import { bp } from '../breakpoints.js';
 import { hist } from './state.js';
@@ -669,79 +669,13 @@ const toolbarRun = (id, a) => ({
     markdown: () => exportToMarkdown(a), obsidian: () => sendToObsidian(a),
     pdf: () => exportToPdf(a), collection: () => addToCollection(a),
 }[id]);
-// Send split button: where "Send" goes. The label shows the last used target; the ▾ lists them all.
-const SEND_TARGETS = {
-    kindle: { icon: 'book-open', short: () => T('Kindle'), label: () => T('Send to Kindle'), run: (a) => sendToKindle(a) },
-    localsend: { icon: 'share-2', short: () => T('LocalSend'), label: () => T('Send via LocalSend'), run: (a) => dispatchToLocalSend(a) },
-    phone: { icon: 'smartphone', short: () => T('Phone'), label: () => T('Send to phone'), run: (a) => sendToPhone(a) },
-    share: { icon: 'send', short: () => T('Share'), label: () => T('Share…'), run: (a) => shareArticle(a) },
-};
-const sendTargetOk = (id, a) => id !== 'phone' || !!(a && a.id && a.url && !a.feedStub);
-const SEND_UNDO_SECONDS = 10;
-const pendingSends = new Set();
-/** Holds a send back for a few seconds so it can still be taken back. Leaving the popup sends it right away (nothing is lost). */
-function sendWithUndo(label, run) {
-    if (!hist.ui) return run();
-    let left = SEND_UNDO_SECONDS, done = false, tick = null, toast = null;
-    const text = () => T('Sending to {name} in {n} s', { name: label, n: left });
-    const finish = (go) => { if (done) return; done = true; clearInterval(tick); pendingSends.delete(flush); if (toast) toast.dismiss(); if (go) return run(); hist.ui.showToast(T('Cancelled: not sent')); };
-    const flush = () => finish(true);
-    toast = hist.ui.showToast(text(), (SEND_UNDO_SECONDS + 1) * 1000, { label: T('Undo'), onClick: () => finish(false) });
-    pendingSends.add(flush);
-    tick = setInterval(() => { left -= 1; if (left <= 0) flush(); else if (toast) toast.setText(text()); }, 1000);
-}
-try { window.addEventListener('pagehide', () => { [...pendingSends].forEach(f => f()); }); } catch (_) { /* no window */ }
-async function runSendTarget(id, a) {
-    const def = SEND_TARGETS[id]; if (!def) return;
-    toolbarPrefs.sendTarget = id;
-    try { chrome.storage.sync.set({ lastSendTarget: id }); } catch (_) { /* remembered for this session only */ }
-    layoutDetailActions();
-    if (id === 'share') return def.run(a);   // the system share sheet has its own cancel
-    let name = def.short();
-    try { const cfg = await StorageManager.getAll(); const dev = StorageManager.getActiveDevice(cfg, id); if (dev && dev.label) name = `${def.short()} · ${dev.label}`; } catch (_) { /* generic name */ }
-    sendWithUndo(name, () => def.run(a));
-}
-const SEND_DEVICE_MAX = 3;   // devices shown per send type; the rest sits behind "+N more"
-async function openSendMenu(btn, expanded = '') {
-    const a = hist.detail; if (!a) return;
-    const { openItems } = await import('../cardMenu.js');
-    let phone = null, cfg = {};
-    try { phone = (await createInboxManager().status()).paired; } catch (_) { /* unknown → plain row */ }
-    try { cfg = await StorageManager.getAll(); } catch (_) { /* no devices known → plain rows */ }
-    const items = [];
-    for (const id of ['kindle', 'localsend', 'phone'].filter(t => sendTargetOk(t, a))) {
-        const def = SEND_TARGETS[id];
-        const devices = id === 'phone' ? [] : (Array.isArray(cfg[SK.devices]) ? cfg[SK.devices].filter(d => d.type === id) : []);
-        const last = id === toolbarPrefs.sendTarget;
-        if (!devices.length) {
-            items.push({
-                icon: def.icon, label: def.label(), active: last,
-                sub: last ? T('Last used') : (id === 'phone' && phone === false ? T('Not paired · pair now') : ''),
-                tag: id === toolbarPrefs.delivery ? T('Default') : (id === 'phone' && phone ? T('Paired') : ''),
-                run: () => runSendTarget(id, a),
-            });
-            continue;
-        }
-        const activeId = (StorageManager.getActiveDevice(cfg, id) || {}).id;
-        const shown = expanded === id ? devices : devices.slice(0, SEND_DEVICE_MAX);
-        for (const d of shown) {
-            const isActive = d.id === activeId;
-            items.push({
-                icon: def.icon, label: `${def.short()} · ${d.label || d.id}`, active: last && isActive,
-                sub: last && isActive ? T('Last used') : '',
-                tag: id === toolbarPrefs.delivery && isActive ? T('Default') : '',
-                run: async () => { try { await StorageManager.setActiveDevice(id, d.id); } catch (_) { /* send to the current device */ } return runSendTarget(id, a); },
-            });
-        }
-        if (devices.length > shown.length) {
-            items.push({ icon: 'ellipsis', label: T('{n} more…', { n: devices.length - shown.length }), sub: def.short(), run: () => setTimeout(() => openSendMenu(btn, id), 0) });
-        }
-    }
-    items.push({ icon: 'send', label: T('Share…'), sub: T('System share: apps, AirDrop, mail'), sep: true, run: () => runSendTarget('share', a) });
-    items.push({ icon: 'copy', label: T('Copy link'), run: async () => { try { await navigator.clipboard.writeText(a.url || ''); if (hist.ui) hist.ui.showToast(T('Link copied')); } catch (_) { /* ignore */ } } });
-    items.push({ icon: 'settings', label: T('Manage targets…'), sep: true, run: () => { if (hist.ui) hist.ui.showScreen('settings'); import('../settingsNav.js').then(m => m.openSettingsPanel('send')).catch(() => {}); } });
-    openItems(btn, items);
-}
+// Send split button: where "Send" goes. The label shows the last used target; the ▾ lists them all (modules/sendSplit.js, shared with the read mode).
+const sendT = createSendTargets({
+    actions: async () => ({ shareArticle, sendToKindle, dispatchToLocalSend, sendToPhone }),
+    prefs: () => toolbarPrefs, ui: () => hist.ui, repaint: () => layoutDetailActions(),
+});
+const SEND_TARGETS = sendT.TARGETS, sendTargetOk = sendT.ok, runSendTarget = sendT.run;
+const openSendMenu = (btn, expanded = '') => sendT.openMenu(btn, hist.detail, expanded);
 const toolbarAvailable = () => true;
 /** How many configured actions fit: at least three, then one more per free slot. */
 function toolbarSlots(width, labels, total) {

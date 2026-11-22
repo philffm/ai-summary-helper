@@ -8,7 +8,7 @@ import { withQuestions } from './modules/conversation.js';
 import { fetchAnnotationsForArticle, markHighlights } from './modules/annotationExporter.js';
 import StorageManager from './modules/storageManager.js';
 import { SK } from './modules/storageKeys.js';
-import { stripEmoji } from './modules/icons.js';
+import { createSendTargets, loadSendPrefs } from './modules/sendSplit.js';
 import { getReader, speechUnits, detectLang } from './modules/reader.js';
 import { ttsLang } from './modules/languages.js';
 import { createReadTracker } from './modules/readProgress.js';
@@ -258,38 +258,47 @@ async function render() {
 
 // ── Share / send: the same actions as the article's detail view, reusing articleManager ──
 let toastTimer = null;
-function toast(msg) {
-  const t = $('rpToast'); if (!t || !msg) return;
-  t.textContent = msg; t.hidden = false;
-  clearTimeout(toastTimer); toastTimer = setTimeout(() => { t.hidden = true; }, 4500);
+/** A toast, with an optional action (Undo); → { dismiss, setText } like the popup's, which the shared send logic expects. */
+function showToast(msg, ms = 4500, action = null) {
+  const t = $('rpToast'); if (!t || !msg) return { dismiss() {}, setText() {} };
+  const text = document.createElement('span'); text.textContent = msg; t.replaceChildren(text);
+  if (action) { const b = document.createElement('button'); b.type = 'button'; b.className = 'rp-toast-action'; b.textContent = action.label; b.addEventListener('click', () => action.onClick()); t.append(b); }
+  t.hidden = false;
+  clearTimeout(toastTimer); toastTimer = setTimeout(() => { t.hidden = true; }, ms);
+  return { dismiss() { t.hidden = true; clearTimeout(toastTimer); }, setText(x) { text.textContent = x; } };
 }
+const toast = (msg) => showToast(msg);
 let am = null;
 async function actions() {
   if (!am) {
     am = await import('./modules/articleManager.js');
     // No popup around: messages become toasts, "go to Settings" becomes a hint
-    am.bindUiManager({ showToast: toast, showScreen: () => toast(T('Open the extension and set it up under Settings → Send.')) });
+    am.bindUiManager({ showToast, showScreen: () => toast(T('Open the extension and set it up under Settings → Send.')) });
   }
   return am;
 }
-async function runAction(btn, fn) {
-  if (!raw || btn.disabled) return;
-  btn.disabled = true;
-  try { await fn(await actions(), { ...raw }); } catch (e) { toast(String((e && e.message) || e)); } finally { btn.disabled = false; }
-}
+// Send: the same split button as the article detail (last used target + ▾ with every target, Share, Copy link), modules/sendSplit.js
 async function wireSend() {
-  const group = $('rpSendGroup'), share = $('rpShare'), send = $('rpSend');
-  if (!group || !raw) return;
-  let pref = 'kindle';
-  try { pref = (await StorageManager.get('deliveryPreference')).deliveryPreference === 'localsend' ? 'localsend' : 'kindle'; } catch (_) { /* default */ }
-  const canShare = typeof navigator !== 'undefined' && typeof navigator.share === 'function';
-  share.hidden = !canShare;
-  share.textContent = stripEmoji(T('Share 🔗'));
-  share.addEventListener('click', () => runAction(share, (m, a) => m.shareArticle(a)));
-  send.hidden = false;
-  send.textContent = pref === 'localsend' ? stripEmoji(T('LocalSend 📱')) : stripEmoji(T('Kindle 📚'));
-  send.addEventListener('click', () => runAction(send, (m, a) => (pref === 'localsend' ? m.dispatchToLocalSend(a) : m.sendToKindle(a))));
-  group.hidden = false;
+  const wrap = $('rpSend'), main = $('rpSendMain'), more = $('rpSendMore');
+  if (!wrap || !raw) return;
+  let sp = { delivery: 'kindle', sendTarget: 'kindle' };
+  try { sp = await loadSendPrefs(); } catch (_) { /* default: Kindle */ }
+  const st = createSendTargets({
+    actions: async () => { const m = await actions(); return { shareArticle: (a) => m.shareArticle(a), sendToKindle: (a) => m.sendToKindle(a), dispatchToLocalSend: (a) => m.dispatchToLocalSend(a), sendToPhone: (a) => m.sendToPhone(a) }; },
+    prefs: () => sp, ui: () => ({ showToast, showScreen: () => toast(T('Open the extension and set it up under Settings → Send.')) }), repaint: () => paint(),
+  });
+  const paint = () => {
+    const def = st.TARGETS[st.current(raw)];
+    setIcon(main, def.icon); setText(main, def.label(), def.short());
+    more.setAttribute('aria-label', T('Send to…')); more.title = T('Send to…');
+  };
+  paint();
+  main.addEventListener('click', () => st.run(st.current(raw), { ...raw }));
+  more.addEventListener('click', async () => {
+    if (more.getAttribute('aria-expanded') === 'true') { (await import('./modules/cardMenu.js')).closeMenu(); return; }
+    st.openMenu(more, { ...raw });
+  });
+  wrap.hidden = false;
 }
 
 

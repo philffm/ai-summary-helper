@@ -1,4 +1,4 @@
-// Regenerates the inline SVG sprite in src/popup.html (and the smaller one in src/readerPage.html) from a Lucide checkout (ISC licence).
+// Regenerates the inline SVG sprite in src/popup.html (and the same one in src/readerPage.html) from a Lucide checkout (ISC licence).
 //   npm pack lucide-static && tar xzf lucide-static-*.tgz
 //   node scripts/build-icons.mjs package/icons
 // Add a name to ICONS, re-run, commit popup.html. The sprite lives inline so the icons cost no extra request.
@@ -16,8 +16,6 @@ export const ICONS = [
   'volume-2', 'volume-x', 'x', 'zap',
   'a-large-small', 'highlighter', 'panel-right-close', 'panel-right-open', 'printer', 'sun-moon',
 ];
-// the read mode page (readerPage.html) carries only what its toolbar uses
-export const READER_ICONS = ['a-large-small', 'ellipsis', 'headphones', 'highlighter', 'panel-right-close', 'panel-right-open', 'pause', 'printer', 'send', 'share-2', 'sun-moon', 'x'];
 
 const src = process.argv[2];
 if (!src) { console.error('usage: node scripts/build-icons.mjs <lucide-static/icons dir>'); process.exit(1); }
@@ -43,5 +41,5 @@ const inject = (file, names) => {
     : cur.replace(/<body[^>]*>/, (m) => m + '\n    ' + block));
 };
 inject(html, ICONS);
-inject(join(dirname(html), 'readerPage.html'), READER_ICONS);
-console.log(`sprite: ${ICONS.length} icons (reader: ${READER_ICONS.length})`);
+inject(join(dirname(html), 'readerPage.html'), ICONS);   // the read mode page draws send menus and chips from the same sprite
+console.log(`sprite: ${ICONS.length} icons`);

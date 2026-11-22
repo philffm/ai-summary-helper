@@ -1,4 +1,4 @@
-// Reader page: Share and the preferred delivery (LocalSend or Kindle) work like in the article's detail view.
+// Reader page: Send is the detail view's split button: preferred delivery (LocalSend or Kindle) as the main part, Share in the ▾ menu.
 import { setup, imp, tick } from './harness.mjs'; import assert from 'assert'; import fs from 'fs';
 const { store, w } = setup({});
 const { SK, articleRecKey } = await imp('../src/modules/storageKeys.js');
@@ -22,21 +22,23 @@ Object.defineProperty(w.navigator, 'share', { configurable: true, value: async (
 w.location.hash = '#id=a1';
 await imp('../src/readerPage.js'); await tick(250);
 const d = w.document;
-const group = d.getElementById('rpSendGroup');
-assert(group && !group.hidden, 'send group is visible for a stored article');
-assert(!d.getElementById('rpShare').hidden, 'Share is offered when the browser can share');
-assert.equal(d.getElementById('rpSend').textContent, 'LocalSend', 'the preferred delivery is labelled');
+const wrap = d.getElementById('rpSend');
+assert(wrap && !wrap.hidden, 'send split button is visible for a stored article');
+assert(/LocalSend/.test(d.getElementById('rpSendMain').textContent), 'the preferred delivery is the main target');
 
-// LocalSend: sends the article document to the configured receiver, tells the reader
-d.getElementById('rpSend').click(); await tick(400);
+// LocalSend: the send is held back for a few seconds (Undo, like in the detail view); leaving the page sends it at once
+d.getElementById('rpSendMain').click(); await tick(100);
+assert(/Sending to LocalSend/.test(d.getElementById('rpToast').textContent) && d.querySelector('.rp-toast-action'), 'undo window: ' + d.getElementById('rpToast').textContent);
+assert(!sent.some(m => m.action === 'sendLocalSendP2P'), 'nothing sent yet');
+w.dispatchEvent(new w.Event('pagehide')); await tick(400);
 const ls = sent.filter(m => m.action === 'sendLocalSendP2P');
 assert(ls.length >= 2 && ls.every(m => /192\.168\.1\.5/.test(m.targetUrl)), 'prepare + upload went to the receiver');
 const toast = d.getElementById('rpToast');
 assert(!toast.hidden && /Sent successfully/.test(toast.textContent), 'toast: ' + toast.textContent);
-assert(!d.getElementById('rpSend').disabled, 'button usable again');
 
-// Share
-d.getElementById('rpShare').click(); await tick(300);
+// Share lives in the ▾ menu
+d.getElementById('rpSendMore').click(); await tick(200);
+[...d.querySelectorAll('.card-menu-item')].find(b => /Share…/.test(b.textContent)).click(); await tick(300);
 assert.equal(shared.length, 1, 'native share was used');
 assert.equal(shared[0].title, 'Reader send test');
 
