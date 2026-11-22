@@ -4,7 +4,7 @@ import { mountReadingTools } from '../readingTools.js';
 import { modelIcon } from '../modelBadge.js';
 import { icon, iconEl, labelNodes, setLabel } from '../icons.js';
 import { TOOLBAR_CATALOG, TOOLBAR_PREF, DEFAULT_TOOLBAR, normalizeToolbar } from '../detailToolbar.js';
-import { SK } from '../storageKeys.js';
+import { SK, articleRecKey } from '../storageKeys.js';
 import { escapeHtml, cleanUntrustedHtml } from '../textUtils.js';
 import StorageManager from '../storageManager.js';
 import { attachCardMenu } from '../cardMenu.js';
@@ -447,8 +447,10 @@ export async function showArticleDetail(article) {
     const prefs = Promise.all([loadCiteStyle(), loadToolbarPrefs()]);
     if (needsLoad) {
         try {
-            const full = await StorageManager.getArticleFull(article.id);
-            article = { ...article, ...full };
+            // the list card already is the article's index entry: read only its record (getArticleFull would load the whole index too)
+            const key = articleRecKey(article.id);
+            const rec = (await StorageManager.getLocal([key]))[key];
+            article = { ...article, ...(rec || (await StorageManager.getArticleFull(article.id))) };
         } catch (err) {
             console.error('[AISH] Failed to load article content:', err);
         }
@@ -559,7 +561,8 @@ export async function showArticleDetail(article) {
     // On-device insights (reading level, sentiment, similar articles) load
     // asynchronously and progressively fill in — they never block the rest
     // of the detail view from rendering.
-    renderLocalInsights(article, articleDetailContent.querySelector('#localInsights'));
+    // the search index and the similar-articles pass walk the whole library: after the article is on screen, when the thread is idle
+    { const host = articleDetailContent.querySelector('#localInsights'), shown = article.id; (globalThis.requestIdleCallback || ((f) => setTimeout(f, 60)))(() => { if (host.isConnected && (!hist.detail || hist.detail.id === shown)) renderLocalInsights(article, host); }); }
     renderDetailTags(article, articleDetailContent.querySelector('.detail-tags'));
     mountTitleEdit(article, articleDetailContent.querySelector('.detail-title'));
     renderPaperRow(article, articleDetailContent.querySelector('.paper-row'));
@@ -600,15 +603,11 @@ export async function showArticleDetail(article) {
     const localSendBtn = articleDetailContent.querySelector('.localsend-button');
     const openBtn = articleDetailContent.querySelector('.open-button');
 
-    StorageManager.getAll().then((cfg) => {
-        const pref = cfg.deliveryPreference === 'localsend' ? 'localsend' : 'kindle';
+    {   // the delivery preference came with the toolbar prefs above: no second read of the whole storage
+        const pref = toolbarPrefs.delivery;
         if (kindleBtn) kindleBtn.style.display = pref === 'kindle' ? 'inline-flex' : 'none';
         if (localSendBtn) localSendBtn.style.display = pref === 'localsend' ? 'inline-flex' : 'none';
-    }).catch(() => {
-        // Fallback: show Kindle if settings retrieval fails.
-        if (kindleBtn) kindleBtn.style.display = 'inline-flex';
-        if (localSendBtn) localSendBtn.style.display = 'none';
-    });
+    }
 
     if (shareBtn) shareBtn.addEventListener('click', (e) => { e.stopPropagation(); shareArticle(article); });
     if (copyBtn) copyBtn.addEventListener('click', (e) => { e.stopPropagation(); copyArticleToClipboard(article); });
@@ -653,10 +652,15 @@ export async function showArticleDetail(article) {
 // the title, as before.
 let topActions = false;
 let toolbarPrefs = { items: DEFAULT_TOOLBAR.slice(), delivery: 'kindle', sendTarget: 'kindle' };
-const loadToolbarPrefs = () => StorageManager.getAll().then((cfg) => {
+// Three keys, not getAll(): that reads the whole library (every article record) just to find the toolbar. The first open waits for
+// them (the toolbar is laid out from them); after that the last answer is used at once and refreshed in the background.
+let toolbarPrefsLoaded = false;
+const readToolbarPrefs = () => StorageManager.get([TOOLBAR_PREF, 'deliveryPreference', 'lastSendTarget']).then((cfg) => {
     const delivery = cfg.deliveryPreference === 'localsend' ? 'localsend' : 'kindle';
     toolbarPrefs = { items: normalizeToolbar(cfg[TOOLBAR_PREF]), delivery, sendTarget: SEND_TARGETS[cfg.lastSendTarget] ? cfg.lastSendTarget : delivery };
+    toolbarPrefsLoaded = true;
 }).catch(() => {});
+const loadToolbarPrefs = () => { const r = readToolbarPrefs(); return toolbarPrefsLoaded ? Promise.resolve() : r; };
 const toolbarShown = new Set();   // ids currently in the bar (the rest is reachable through ⋯)
 const detailExtraItems = () => !topActions ? [] : [
     ...(toolbarShown.has('favorite') || !document.getElementById('detailStarBtn') || document.getElementById('detailStarBtn').hidden ? [] : [{ icon: 'star', label: hist.detail && hist.detail.favorite ? T('Remove from favorites') : T('Favorite'), run: () => document.getElementById('detailStarBtn').click() }]),
