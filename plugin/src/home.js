@@ -159,7 +159,7 @@ const builders = {
     bubbles.forEach((b, i) => {
       const colour = `var(--chart-${i % 8})`;
       const gc = mk('circle', { cx: b.x.toFixed(1), cy: b.y.toFixed(1), r: (b.r * 1.9).toFixed(1) }, glow); gc.style.fill = colour;
-      const g = mk('g', { class: 'hm-bubble' }, crisp);
+      const g = mk('g', { class: 'hm-bubble' }, crisp); g.style.setProperty('--i', String(i));
       const t = mk('title', {}, g); t.textContent = `${b.label} · ${b.n}`;
       const c = mk('circle', { cx: b.x.toFixed(1), cy: b.y.toFixed(1), r: b.r.toFixed(1) }, g); c.style.fill = colour;
       if (i < 4 && b.r > 17) { const tx = mk('text', { x: b.x.toFixed(1), y: (b.y + 3).toFixed(1), class: 'hm-bubble-label' }, g); tx.textContent = b.label.length > 12 ? b.label.slice(0, 11) + '…' : b.label; }
