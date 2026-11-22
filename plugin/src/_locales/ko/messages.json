@@ -7642,5 +7642,314 @@
   },
   "f_for_an_e_reader_with_koreade_cb0d": {
     "message": "KOReader가 있는 전자책 리더: aish-library.txt를 홈 폴더에 복사한 뒤 Tools → AISH library → Connect with a code을(를) 선택하세요. 파일에 로그인 정보가 있으니 이후 이 컴퓨터에서 삭제하세요."
+  },
+  "f_actions_b504": {
+    "message": "작업"
+  },
+  "f_active_134f": {
+    "message": "활성"
+  },
+  "f_all_3b8d": {
+    "message": "전체 · {n}"
+  },
+  "f_another_fcb4": {
+    "message": "하나 더"
+  },
+  "f_answer_is_ready_shown_at_onc_3d27": {
+    "message": "답변이 준비됨: 바로 표시됩니다"
+  },
+  "f_app_1acc": {
+    "message": "앱"
+  },
+  "f_appearance_8b9f": {
+    "message": "모양"
+  },
+  "f_ask_about_this_article_7e9b": {
+    "message": "이 글에 대해 질문"
+  },
+  "f_ask_about_this_article_2387": {
+    "message": "이 글에 대해 질문하세요…"
+  },
+  "f_asks_the_model_93a5": {
+    "message": "모델에게 묻습니다"
+  },
+  "f_bookmark_4a39": {
+    "message": "북마크"
+  },
+  "f_bookmark_removed_f239": {
+    "message": "북마크를 삭제했습니다"
+  },
+  "f_bookmark_set_1ca9": {
+    "message": "북마크를 설정했습니다"
+  },
+  "f_bookmark_this_place_e118": {
+    "message": "이 위치 기억"
+  },
+  "f_browser_bookmark_updated_f8c2": {
+    "message": "브라우저 북마크를 업데이트했습니다"
+  },
+  "f_building_the_graph_4400": {
+    "message": "그래프를 만드는 중…"
+  },
+  "f_checkout_opens_with_your_ema_dd59": {
+    "message": "결제 페이지가 이메일 주소가 입력된 상태로 열립니다. 결제 후 패스가 자동으로 켜지며, 주문 번호는 필요 없습니다."
+  },
+  "f_close_app_df68": {
+    "message": "앱 닫기"
+  },
+  "f_command_palette_29b1": {
+    "message": "명령 팔레트"
+  },
+  "f_commands_and_search_1cf6": {
+    "message": "명령 및 검색"
+  },
+  "f_commands_settings_and_articl_7b23": {
+    "message": "명령, 설정, 글 검색"
+  },
+  "f_continue_at_your_bookmark_07d8": {
+    "message": "북마크한 위치에서 이어서"
+  },
+  "f_continue_at_07de": {
+    "message": "{n} % 지점에서 이어서"
+  },
+  "f_continue_reading_fcc8": {
+    "message": "이어서 읽기"
+  },
+  "f_could_not_get_an_answer_61e2": {
+    "message": "답변을 받지 못했습니다: {why}"
+  },
+  "f_dismiss_highlight_2383": {
+    "message": "하이라이트 해제"
+  },
+  "f_finished_this_week_3f9f": {
+    "message": "이번 주 읽음"
+  },
+  "f_font_5eb0": {
+    "message": "글꼴"
+  },
+  "f_from_your_highlights_c7ad": {
+    "message": "내 하이라이트에서"
+  },
+  "f_full_text_bf23": {
+    "message": "전문"
+  },
+  "f_go_to_b9b0": {
+    "message": "이동"
+  },
+  "f_good_afternoon_60ec": {
+    "message": "안녕하세요"
+  },
+  "f_good_evening_4bf4": {
+    "message": "좋은 저녁입니다"
+  },
+  "f_good_morning_1a30": {
+    "message": "좋은 아침입니다"
+  },
+  "f_good_night_562e": {
+    "message": "안녕히 주무세요"
+  },
+  "f_highlight_selection_7a75": {
+    "message": "선택 영역 하이라이트"
+  },
+  "f_highlights_you_save_show_up__7497": {
+    "message": "저장한 하이라이트가 하나씩 여기에 표시됩니다."
+  },
+  "f_history_597f": {
+    "message": "기록"
+  },
+  "f_home_page_0a91": {
+    "message": "홈페이지"
+  },
+  "f_home_page_address_b651": {
+    "message": "홈페이지 주소"
+  },
+  "f_jump_to_bookmark_0d7e": {
+    "message": "북마크로 이동"
+  },
+  "f_larger_text_4d25": {
+    "message": "글자 크게"
+  },
+  "f_latest_bc66": {
+    "message": "최신"
+  },
+  "f_latest_from_your_feeds_3710": {
+    "message": "피드의 최신 항목"
+  },
+  "f_mixed_ef98": {
+    "message": "혼합"
+  },
+  "f_more_cloud_models_no_daily_c_fc99": {
+    "message": "더 많은 클라우드 모델, 일일 한도 없음, Kindle 전송. AISH의 독립을 지킵니다."
+  },
+  "f_mostly_heavy_7b76": {
+    "message": "대체로 무거움"
+  },
+  "f_mostly_positive_e44c": {
+    "message": "대체로 긍정적"
+  },
+  "f_move_bookmark_here_7cba": {
+    "message": "북마크를 여기로 이동"
+  },
+  "f_new_in_your_feeds_1ce6": {
+    "message": "피드의 새 항목"
+  },
+  "f_nothing_found_827a": {
+    "message": "찾을 수 없습니다"
+  },
+  "f_nothing_in_progress_articles_c310": {
+    "message": "진행 중인 항목이 없습니다. 읽기 시작한 글이 여기에 표시됩니다."
+  },
+  "f_nothing_to_read_aloud_751c": {
+    "message": "소리 내어 읽을 내용이 없습니다."
+  },
+  "f_open_app_324e": {
+    "message": "앱 열기"
+  },
+  "f_open_app_beside_the_article_e1d9": {
+    "message": "글 옆에서 앱 열기"
+  },
+  "f_open_the_extension_and_set_i_37ed": {
+    "message": "확장 프로그램을 열고 설정 → 보내기 에서 설정하세요."
+  },
+  "f_open_the_original_page_1788": {
+    "message": "원본 페이지 열기"
+  },
+  "f_open_9c4a": {
+    "message": "{name} 열기"
+  },
+  "f_paste_it_in_chrome_settings__26a9": {
+    "message": "Chrome에서는 설정 › 시작 그룹 › 특정 페이지 열기 또는 모양 › 홈 버튼에 붙여 넣으세요."
+  },
+  "f_paste_it_in_firefox_settings_220a": {
+    "message": "Firefox에서는 설정 › 홈 › 홈페이지 및 새 창 › 사용자 지정 URL에 붙여 넣으세요."
+  },
+  "f_print_0d28": {
+    "message": "인쇄"
+  },
+  "f_recently_saved_5242": {
+    "message": "최근 저장"
+  },
+  "f_remove_highlight_b695": {
+    "message": "하이라이트 삭제"
+  },
+  "f_remove_place_bookmark_8a72": {
+    "message": "위치 북마크 삭제"
+  },
+  "f_resize_the_app_panel_dc7b": {
+    "message": "앱 패널 크기 조절"
+  },
+  "f_sans_serif_font_ac0b": {
+    "message": "산세리프 글꼴"
+  },
+  "f_save_in_browser_bookmarks_1b86": {
+    "message": "브라우저 북마크에 저장"
+  },
+  "f_saved_in_browser_bookmarks_a5a2": {
+    "message": "브라우저 북마크에 저장됨"
+  },
+  "f_scroll_to_the_text_first_e24f": {
+    "message": "먼저 본문까지 스크롤하세요."
+  },
+  "f_search_the_web_for_3ee1": {
+    "message": "웹에서 “{q}” 검색"
+  },
+  "f_sepia_c169": {
+    "message": "세피아"
+  },
+  "f_serif_font_0593": {
+    "message": "세리프 글꼴"
+  },
+  "f_smaller_text_e792": {
+    "message": "글자 작게"
+  },
+  "f_starred_8930": {
+    "message": "별표 표시"
+  },
+  "f_stats_8e8c": {
+    "message": "통계"
+  },
+  "f_subscribe_to_feeds_to_see_ne_c33b": {
+    "message": "피드를 구독하면 새 항목이 여기에 표시됩니다."
+  },
+  "f_text_and_font_544c": {
+    "message": "텍스트 및 글꼴"
+  },
+  "f_thank_you_for_keeping_aish_i_2793": {
+    "message": "AISH의 독립을 지켜 주셔서 감사합니다. 카드 변경, 요금제 전환, 해지는 Stripe 영수증의 링크에서 할 수 있습니다."
+  },
+  "f_the_bookmark_opens_at_your_p_5202": {
+    "message": "북마크는 기억한 위치에서 열립니다"
+  },
+  "f_the_bookmarked_place_is_no_l_7499": {
+    "message": "기억한 위치가 더 이상 본문에 없습니다."
+  },
+  "f_the_browser_did_not_allow_ac_3057": {
+    "message": "브라우저가 북마크 접근을 허용하지 않았습니다."
+  },
+  "f_this_pdf_has_no_selectable_t_faec": {
+    "message": "이 PDF에는 선택할 수 있는 텍스트가 없고(스캔본일 수 있음) 텍스트 인식은 아직 지원되지 않습니다. 먼저 OCR(예: 미리보기, Acrobat, ocrmypdf)을 실행하거나, 텍스트를 선택해 선택 영역을 요약하세요."
+  },
+  "f_this_article_b103": {
+    "message": "이 글"
+  },
+  "f_this_article_is_no_longer_av_75a4": {
+    "message": "이 글은 더 이상 사용할 수 없습니다."
+  },
+  "f_today_at_a_glance_60e0": {
+    "message": "오늘 한눈에"
+  },
+  "f_type_a_command_or_search_you_7a7c": {
+    "message": "명령을 입력하거나 글을 검색하세요…"
+  },
+  "f_unopened_6bea": {
+    "message": "열지 않음 · {n}"
+  },
+  "f_update_browser_bookmark_cf94": {
+    "message": "브라우저 북마크 업데이트"
+  },
+  "f_updated_d930": {
+    "message": "{when} 업데이트"
+  },
+  "f_updating_feeds_bc4c": {
+    "message": "피드를 업데이트하는 중…"
+  },
+  "f_web_5431": {
+    "message": "웹"
+  },
+  "f_web_search_did_not_start_b4cf": {
+    "message": "웹 검색이 시작되지 않았습니다: {why}"
+  },
+  "f_what_are_the_key_points_1c49": {
+    "message": "핵심 내용은 무엇인가요?"
+  },
+  "f_what_is_missing_or_one_sided_a6a3": {
+    "message": "빠졌거나 한쪽으로 치우친 점은 무엇인가요?"
+  },
+  "f_who_is_this_for_and_what_doe_7784": {
+    "message": "누구를 위한 글이며 무엇을 전제하나요?"
+  },
+  "f_write_a_recap_in_feeds_and_i_5c8b": {
+    "message": "피드에서 요약을 작성하면 출처와 함께 여기에 표시됩니다."
+  },
+  "f_your_saved_articles_show_up__86c2": {
+    "message": "저장한 글이 여기에 표시됩니다."
+  },
+  "f_source_7214": {
+    "message": "출처 {n}개"
+  },
+  "f_29_94_a_year_3ee3": {
+    "message": "연 29.94 €"
+  },
+  "f_4_99_a_month_f3ae": {
+    "message": "월 4.99 €"
+  },
+  "f_finished_23ce": {
+    "message": "✅ 완료"
+  },
+  "f_support_pass_d7f9": {
+    "message": "⭐ Support Pass"
+  },
+  "f__5a1d": {
+    "message": "📖 {n} %"
   }
 }

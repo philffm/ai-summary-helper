@@ -7943,5 +7943,314 @@
   },
   "f_for_an_e_reader_with_koreade_cb0d": {
     "message": "Voor een e-reader met KOReader: kopieer aish-library.txt naar de thuismap en kies dan Tools → AISH library → Connect with a code. Het bestand bevat je inloggegevens: verwijder het daarna van deze computer."
+  },
+  "f_actions_b504": {
+    "message": "Acties"
+  },
+  "f_active_134f": {
+    "message": "Actief"
+  },
+  "f_all_3b8d": {
+    "message": "Alles · {n}"
+  },
+  "f_another_fcb4": {
+    "message": "Nog een"
+  },
+  "f_answer_is_ready_shown_at_onc_3d27": {
+    "message": "Antwoord ligt klaar: direct getoond"
+  },
+  "f_app_1acc": {
+    "message": "App"
+  },
+  "f_appearance_8b9f": {
+    "message": "Weergave"
+  },
+  "f_ask_about_this_article_7e9b": {
+    "message": "Vraag over dit artikel"
+  },
+  "f_ask_about_this_article_2387": {
+    "message": "Vraag over dit artikel…"
+  },
+  "f_asks_the_model_93a5": {
+    "message": "Vraagt het model"
+  },
+  "f_bookmark_4a39": {
+    "message": "Bladwijzer"
+  },
+  "f_bookmark_removed_f239": {
+    "message": "Bladwijzer verwijderd"
+  },
+  "f_bookmark_set_1ca9": {
+    "message": "Bladwijzer gezet"
+  },
+  "f_bookmark_this_place_e118": {
+    "message": "Deze plek onthouden"
+  },
+  "f_browser_bookmark_updated_f8c2": {
+    "message": "Browserbladwijzer bijgewerkt"
+  },
+  "f_building_the_graph_4400": {
+    "message": "Graaf wordt opgebouwd…"
+  },
+  "f_checkout_opens_with_your_ema_dd59": {
+    "message": "De checkout opent met je e-mailadres al ingevuld. Na betaling gaat de pas vanzelf aan; een bestelnummer is niet nodig."
+  },
+  "f_close_app_df68": {
+    "message": "App sluiten"
+  },
+  "f_command_palette_29b1": {
+    "message": "Opdrachtenpalet"
+  },
+  "f_commands_and_search_1cf6": {
+    "message": "Opdrachten en zoeken"
+  },
+  "f_commands_settings_and_articl_7b23": {
+    "message": "Opdrachten, instellingen en artikelen zoeken"
+  },
+  "f_continue_at_your_bookmark_07d8": {
+    "message": "Verder bij je bladwijzer"
+  },
+  "f_continue_at_07de": {
+    "message": "Verder bij {n} %"
+  },
+  "f_continue_reading_fcc8": {
+    "message": "Verder lezen"
+  },
+  "f_could_not_get_an_answer_61e2": {
+    "message": "Geen antwoord gekregen: {why}"
+  },
+  "f_dismiss_highlight_2383": {
+    "message": "Markering negeren"
+  },
+  "f_finished_this_week_3f9f": {
+    "message": "Deze week afgerond"
+  },
+  "f_font_5eb0": {
+    "message": "Lettertype"
+  },
+  "f_from_your_highlights_c7ad": {
+    "message": "Uit je markeringen"
+  },
+  "f_full_text_bf23": {
+    "message": "Volledige tekst"
+  },
+  "f_go_to_b9b0": {
+    "message": "Ga naar"
+  },
+  "f_good_afternoon_60ec": {
+    "message": "Goedemiddag"
+  },
+  "f_good_evening_4bf4": {
+    "message": "Goedenavond"
+  },
+  "f_good_morning_1a30": {
+    "message": "Goedemorgen"
+  },
+  "f_good_night_562e": {
+    "message": "Goedenacht"
+  },
+  "f_highlight_selection_7a75": {
+    "message": "Selectie markeren"
+  },
+  "f_highlights_you_save_show_up__7497": {
+    "message": "Markeringen die je bewaart verschijnen hier, één per keer."
+  },
+  "f_history_597f": {
+    "message": "Geschiedenis"
+  },
+  "f_home_page_0a91": {
+    "message": "Startpagina"
+  },
+  "f_home_page_address_b651": {
+    "message": "Adres van de startpagina"
+  },
+  "f_jump_to_bookmark_0d7e": {
+    "message": "Naar de bladwijzer springen"
+  },
+  "f_larger_text_4d25": {
+    "message": "Grotere tekst"
+  },
+  "f_latest_bc66": {
+    "message": "Nieuwste"
+  },
+  "f_latest_from_your_feeds_3710": {
+    "message": "Nieuwste uit je feeds"
+  },
+  "f_mixed_ef98": {
+    "message": "Gemengd"
+  },
+  "f_more_cloud_models_no_daily_c_fc99": {
+    "message": "Meer cloudmodellen, geen daglimiet, bezorging naar Kindle. Houdt AISH onafhankelijk."
+  },
+  "f_mostly_heavy_7b76": {
+    "message": "Vooral zwaar"
+  },
+  "f_mostly_positive_e44c": {
+    "message": "Vooral positief"
+  },
+  "f_move_bookmark_here_7cba": {
+    "message": "Bladwijzer hierheen verplaatsen"
+  },
+  "f_new_in_your_feeds_1ce6": {
+    "message": "Nieuw in je feeds"
+  },
+  "f_nothing_found_827a": {
+    "message": "Niets gevonden"
+  },
+  "f_nothing_in_progress_articles_c310": {
+    "message": "Niets bezig. Artikelen die je begint te lezen verschijnen hier."
+  },
+  "f_nothing_to_read_aloud_751c": {
+    "message": "Niets om voor te lezen."
+  },
+  "f_open_app_324e": {
+    "message": "App openen"
+  },
+  "f_open_app_beside_the_article_e1d9": {
+    "message": "App naast het artikel openen"
+  },
+  "f_open_the_extension_and_set_i_37ed": {
+    "message": "Open de extensie en stel het in via Instellingen → Verzenden."
+  },
+  "f_open_the_original_page_1788": {
+    "message": "Originele pagina openen"
+  },
+  "f_open_9c4a": {
+    "message": "{name} openen"
+  },
+  "f_paste_it_in_chrome_settings__26a9": {
+    "message": "Plak het in Chrome-instellingen › Bij opstarten › Een specifieke pagina openen, of onder Uiterlijk › Startknop."
+  },
+  "f_paste_it_in_firefox_settings_220a": {
+    "message": "Plak het in Firefox-instellingen › Startpagina › Startpagina en nieuwe vensters › Aangepaste URL’s."
+  },
+  "f_print_0d28": {
+    "message": "Afdrukken"
+  },
+  "f_recently_saved_5242": {
+    "message": "Onlangs bewaard"
+  },
+  "f_remove_highlight_b695": {
+    "message": "Markering verwijderen"
+  },
+  "f_remove_place_bookmark_8a72": {
+    "message": "Bladwijzer van de plek verwijderen"
+  },
+  "f_resize_the_app_panel_dc7b": {
+    "message": "Grootte van het app-paneel aanpassen"
+  },
+  "f_sans_serif_font_ac0b": {
+    "message": "Schreefloos lettertype"
+  },
+  "f_save_in_browser_bookmarks_1b86": {
+    "message": "Bewaren in browserbladwijzers"
+  },
+  "f_saved_in_browser_bookmarks_a5a2": {
+    "message": "Bewaard in browserbladwijzers"
+  },
+  "f_scroll_to_the_text_first_e24f": {
+    "message": "Scroll eerst naar de tekst."
+  },
+  "f_search_the_web_for_3ee1": {
+    "message": "Zoek “{q}” op het web"
+  },
+  "f_sepia_c169": {
+    "message": "Sepia"
+  },
+  "f_serif_font_0593": {
+    "message": "Lettertype met schreef"
+  },
+  "f_smaller_text_e792": {
+    "message": "Kleinere tekst"
+  },
+  "f_starred_8930": {
+    "message": "Met ster"
+  },
+  "f_stats_8e8c": {
+    "message": "Statistieken"
+  },
+  "f_subscribe_to_feeds_to_see_ne_c33b": {
+    "message": "Abonneer je op feeds om hier nieuwe items te zien."
+  },
+  "f_text_and_font_544c": {
+    "message": "Tekst en lettertype"
+  },
+  "f_thank_you_for_keeping_aish_i_2793": {
+    "message": "Bedankt dat je AISH onafhankelijk houdt. Kaart wijzigen, abonnement wisselen of opzeggen kan via de link in je Stripe-bon."
+  },
+  "f_the_bookmark_opens_at_your_p_5202": {
+    "message": "De bladwijzer opent op jouw plek"
+  },
+  "f_the_bookmarked_place_is_no_l_7499": {
+    "message": "De onthouden plek staat niet meer in de tekst."
+  },
+  "f_the_browser_did_not_allow_ac_3057": {
+    "message": "De browser gaf geen toegang tot bladwijzers."
+  },
+  "f_this_pdf_has_no_selectable_t_faec": {
+    "message": "Deze pdf heeft geen selecteerbare tekst (waarschijnlijk een scan) en tekstherkenning wordt nog niet ondersteund. Voer eerst OCR uit (bijv. Voorvertoning, Acrobat of ocrmypdf), of selecteer de tekst en vat de selectie samen."
+  },
+  "f_this_article_b103": {
+    "message": "Dit artikel"
+  },
+  "f_this_article_is_no_longer_av_75a4": {
+    "message": "Dit artikel is niet meer beschikbaar."
+  },
+  "f_today_at_a_glance_60e0": {
+    "message": "Vandaag in een oogopslag"
+  },
+  "f_type_a_command_or_search_you_7a7c": {
+    "message": "Typ een opdracht of zoek in je artikelen…"
+  },
+  "f_unopened_6bea": {
+    "message": "Ongeopend · {n}"
+  },
+  "f_update_browser_bookmark_cf94": {
+    "message": "Browserbladwijzer bijwerken"
+  },
+  "f_updated_d930": {
+    "message": "Bijgewerkt {when}"
+  },
+  "f_updating_feeds_bc4c": {
+    "message": "Feeds worden bijgewerkt…"
+  },
+  "f_web_5431": {
+    "message": "Web"
+  },
+  "f_web_search_did_not_start_b4cf": {
+    "message": "Zoeken op het web is niet gestart: {why}"
+  },
+  "f_what_are_the_key_points_1c49": {
+    "message": "Wat zijn de kernpunten?"
+  },
+  "f_what_is_missing_or_one_sided_a6a3": {
+    "message": "Wat ontbreekt of is eenzijdig?"
+  },
+  "f_who_is_this_for_and_what_doe_7784": {
+    "message": "Voor wie is dit, en wat wordt verondersteld?"
+  },
+  "f_write_a_recap_in_feeds_and_i_5c8b": {
+    "message": "Schrijf in Feeds een terugblik en die verschijnt hier met de bronnen."
+  },
+  "f_your_saved_articles_show_up__86c2": {
+    "message": "Je bewaarde artikelen verschijnen hier."
+  },
+  "f_source_7214": {
+    "message": "{n} bron"
+  },
+  "f_29_94_a_year_3ee3": {
+    "message": "€ 29,94 per jaar"
+  },
+  "f_4_99_a_month_f3ae": {
+    "message": "€ 4,99 per maand"
+  },
+  "f_finished_23ce": {
+    "message": "✅ Klaar"
+  },
+  "f_support_pass_d7f9": {
+    "message": "⭐ Support Pass"
+  },
+  "f__5a1d": {
+    "message": "📖 {n} %"
   }
 }

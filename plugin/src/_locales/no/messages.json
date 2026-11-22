@@ -7943,5 +7943,314 @@
   },
   "f_for_an_e_reader_with_koreade_cb0d": {
     "message": "For en lesebrett med KOReader: kopier aish-library.txt til hjemmemappen, og velg deretter Tools → AISH library → Connect with a code. Filen inneholder påloggingen din: slett den fra denne datamaskinen etterpå."
+  },
+  "f_actions_b504": {
+    "message": "Handlinger"
+  },
+  "f_active_134f": {
+    "message": "Aktiv"
+  },
+  "f_all_3b8d": {
+    "message": "Alle · {n}"
+  },
+  "f_another_fcb4": {
+    "message": "Enda en"
+  },
+  "f_answer_is_ready_shown_at_onc_3d27": {
+    "message": "Svaret er klart: vises med en gang"
+  },
+  "f_app_1acc": {
+    "message": "App"
+  },
+  "f_appearance_8b9f": {
+    "message": "Utseende"
+  },
+  "f_ask_about_this_article_7e9b": {
+    "message": "Spør om denne artikkelen"
+  },
+  "f_ask_about_this_article_2387": {
+    "message": "Spør om denne artikkelen …"
+  },
+  "f_asks_the_model_93a5": {
+    "message": "Spør modellen"
+  },
+  "f_bookmark_4a39": {
+    "message": "Bokmerke"
+  },
+  "f_bookmark_removed_f239": {
+    "message": "Bokmerke fjernet"
+  },
+  "f_bookmark_set_1ca9": {
+    "message": "Bokmerke satt"
+  },
+  "f_bookmark_this_place_e118": {
+    "message": "Husk dette stedet"
+  },
+  "f_browser_bookmark_updated_f8c2": {
+    "message": "Nettleserbokmerket er oppdatert"
+  },
+  "f_building_the_graph_4400": {
+    "message": "Bygger grafen …"
+  },
+  "f_checkout_opens_with_your_ema_dd59": {
+    "message": "Kassen åpnes med e-postadressen din utfylt. Etter betalingen slås passet på av seg selv; du trenger ikke noe ordrenummer."
+  },
+  "f_close_app_df68": {
+    "message": "Lukk appen"
+  },
+  "f_command_palette_29b1": {
+    "message": "Kommandopalett"
+  },
+  "f_commands_and_search_1cf6": {
+    "message": "Kommandoer og søk"
+  },
+  "f_commands_settings_and_articl_7b23": {
+    "message": "Kommandoer, innstillinger og artikkelsøk"
+  },
+  "f_continue_at_your_bookmark_07d8": {
+    "message": "Fortsett ved bokmerket"
+  },
+  "f_continue_at_07de": {
+    "message": "Fortsett ved {n} %"
+  },
+  "f_continue_reading_fcc8": {
+    "message": "Fortsett å lese"
+  },
+  "f_could_not_get_an_answer_61e2": {
+    "message": "Fikk ikke noe svar: {why}"
+  },
+  "f_dismiss_highlight_2383": {
+    "message": "Avvis utheving"
+  },
+  "f_finished_this_week_3f9f": {
+    "message": "Ferdige denne uken"
+  },
+  "f_font_5eb0": {
+    "message": "Skrifttype"
+  },
+  "f_from_your_highlights_c7ad": {
+    "message": "Fra uthevingene dine"
+  },
+  "f_full_text_bf23": {
+    "message": "Hele teksten"
+  },
+  "f_go_to_b9b0": {
+    "message": "Gå til"
+  },
+  "f_good_afternoon_60ec": {
+    "message": "God ettermiddag"
+  },
+  "f_good_evening_4bf4": {
+    "message": "God kveld"
+  },
+  "f_good_morning_1a30": {
+    "message": "God morgen"
+  },
+  "f_good_night_562e": {
+    "message": "God natt"
+  },
+  "f_highlight_selection_7a75": {
+    "message": "Utheve utvalget"
+  },
+  "f_highlights_you_save_show_up__7497": {
+    "message": "Uthevinger du lagrer, vises her, én om gangen."
+  },
+  "f_history_597f": {
+    "message": "Historikk"
+  },
+  "f_home_page_0a91": {
+    "message": "Startside"
+  },
+  "f_home_page_address_b651": {
+    "message": "Startsidens adresse"
+  },
+  "f_jump_to_bookmark_0d7e": {
+    "message": "Hopp til bokmerket"
+  },
+  "f_larger_text_4d25": {
+    "message": "Større tekst"
+  },
+  "f_latest_bc66": {
+    "message": "Siste"
+  },
+  "f_latest_from_your_feeds_3710": {
+    "message": "Siste fra feedene dine"
+  },
+  "f_mixed_ef98": {
+    "message": "Blandet"
+  },
+  "f_more_cloud_models_no_daily_c_fc99": {
+    "message": "Flere skymodeller, ingen daglig grense, levering til Kindle. Holder AISH uavhengig."
+  },
+  "f_mostly_heavy_7b76": {
+    "message": "For det meste tungt"
+  },
+  "f_mostly_positive_e44c": {
+    "message": "For det meste positivt"
+  },
+  "f_move_bookmark_here_7cba": {
+    "message": "Flytt bokmerket hit"
+  },
+  "f_new_in_your_feeds_1ce6": {
+    "message": "Nytt i feedene dine"
+  },
+  "f_nothing_found_827a": {
+    "message": "Fant ingenting"
+  },
+  "f_nothing_in_progress_articles_c310": {
+    "message": "Ingenting pågår. Artikler du begynner å lese, vises her."
+  },
+  "f_nothing_to_read_aloud_751c": {
+    "message": "Ingenting å lese opp."
+  },
+  "f_open_app_324e": {
+    "message": "Åpne appen"
+  },
+  "f_open_app_beside_the_article_e1d9": {
+    "message": "Åpne appen ved siden av artikkelen"
+  },
+  "f_open_the_extension_and_set_i_37ed": {
+    "message": "Åpne utvidelsen og sett den opp under Innstillinger → Send."
+  },
+  "f_open_the_original_page_1788": {
+    "message": "Åpne originalsiden"
+  },
+  "f_open_9c4a": {
+    "message": "Åpne {name}"
+  },
+  "f_paste_it_in_chrome_settings__26a9": {
+    "message": "Lim den inn i Chrome Innstillinger › Ved oppstart › Åpne en bestemt side, eller under Utseende › Hjem-knapp."
+  },
+  "f_paste_it_in_firefox_settings_220a": {
+    "message": "Lim den inn i Firefox Innstillinger › Startside › Startside og nye vinduer › Egendefinerte nettadresser."
+  },
+  "f_print_0d28": {
+    "message": "Skriv ut"
+  },
+  "f_recently_saved_5242": {
+    "message": "Nylig lagret"
+  },
+  "f_remove_highlight_b695": {
+    "message": "Fjern utheving"
+  },
+  "f_remove_place_bookmark_8a72": {
+    "message": "Fjern stedets bokmerke"
+  },
+  "f_resize_the_app_panel_dc7b": {
+    "message": "Endre størrelsen på app-panelet"
+  },
+  "f_sans_serif_font_ac0b": {
+    "message": "Skrifttype uten seriffer"
+  },
+  "f_save_in_browser_bookmarks_1b86": {
+    "message": "Lagre i nettleserens bokmerker"
+  },
+  "f_saved_in_browser_bookmarks_a5a2": {
+    "message": "Lagret i nettleserens bokmerker"
+  },
+  "f_scroll_to_the_text_first_e24f": {
+    "message": "Rull til teksten først."
+  },
+  "f_search_the_web_for_3ee1": {
+    "message": "Søk på nettet etter «{q}»"
+  },
+  "f_sepia_c169": {
+    "message": "Sepia"
+  },
+  "f_serif_font_0593": {
+    "message": "Skrifttype med seriffer"
+  },
+  "f_smaller_text_e792": {
+    "message": "Mindre tekst"
+  },
+  "f_starred_8930": {
+    "message": "Med stjerne"
+  },
+  "f_stats_8e8c": {
+    "message": "Statistikk"
+  },
+  "f_subscribe_to_feeds_to_see_ne_c33b": {
+    "message": "Abonner på feeder, så vises nye elementer her."
+  },
+  "f_text_and_font_544c": {
+    "message": "Tekst og skrifttype"
+  },
+  "f_thank_you_for_keeping_aish_i_2793": {
+    "message": "Takk for at du holder AISH uavhengig. Bytt kort, bytt abonnement eller si opp via lenken i Stripe-kvitteringen din."
+  },
+  "f_the_bookmark_opens_at_your_p_5202": {
+    "message": "Bokmerket åpnes der du var"
+  },
+  "f_the_bookmarked_place_is_no_l_7499": {
+    "message": "Det lagrede stedet finnes ikke lenger i teksten."
+  },
+  "f_the_browser_did_not_allow_ac_3057": {
+    "message": "Nettleseren ga ikke tilgang til bokmerker."
+  },
+  "f_this_pdf_has_no_selectable_t_faec": {
+    "message": "Denne PDF-en har ingen tekst som kan markeres (trolig en skanning), og tekstgjenkjenning støttes ikke ennå. Kjør OCR først (for eksempel Forhåndsvisning, Acrobat eller ocrmypdf), eller marker teksten og oppsummer utvalget."
+  },
+  "f_this_article_b103": {
+    "message": "Denne artikkelen"
+  },
+  "f_this_article_is_no_longer_av_75a4": {
+    "message": "Denne artikkelen er ikke lenger tilgjengelig."
+  },
+  "f_today_at_a_glance_60e0": {
+    "message": "I dag i korte trekk"
+  },
+  "f_type_a_command_or_search_you_7a7c": {
+    "message": "Skriv en kommando, eller søk i artiklene dine …"
+  },
+  "f_unopened_6bea": {
+    "message": "Uåpnede · {n}"
+  },
+  "f_update_browser_bookmark_cf94": {
+    "message": "Oppdater nettleserbokmerket"
+  },
+  "f_updated_d930": {
+    "message": "Oppdatert {when}"
+  },
+  "f_updating_feeds_bc4c": {
+    "message": "Oppdaterer feeder …"
+  },
+  "f_web_5431": {
+    "message": "Web"
+  },
+  "f_web_search_did_not_start_b4cf": {
+    "message": "Nettsøket startet ikke: {why}"
+  },
+  "f_what_are_the_key_points_1c49": {
+    "message": "Hva er hovedpunktene?"
+  },
+  "f_what_is_missing_or_one_sided_a6a3": {
+    "message": "Hva mangler, eller er ensidig?"
+  },
+  "f_who_is_this_for_and_what_doe_7784": {
+    "message": "Hvem er den for, og hva forutsetter den?"
+  },
+  "f_write_a_recap_in_feeds_and_i_5c8b": {
+    "message": "Skriv et sammendrag i Feeder, så vises det her med kildene."
+  },
+  "f_your_saved_articles_show_up__86c2": {
+    "message": "De lagrede artiklene dine vises her."
+  },
+  "f_source_7214": {
+    "message": "{n} kilde"
+  },
+  "f_29_94_a_year_3ee3": {
+    "message": "29,94 € i året"
+  },
+  "f_4_99_a_month_f3ae": {
+    "message": "4,99 € i måneden"
+  },
+  "f_finished_23ce": {
+    "message": "✅ Ferdig"
+  },
+  "f_support_pass_d7f9": {
+    "message": "⭐ Support Pass"
+  },
+  "f__5a1d": {
+    "message": "📖 {n} %"
   }
 }

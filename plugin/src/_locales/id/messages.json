@@ -7943,5 +7943,314 @@
   },
   "f_for_an_e_reader_with_koreade_cb0d": {
     "message": "Untuk e-reader dengan KOReader: salin aish-library.txt ke folder beranda-nya, lalu Tools → AISH library → Connect with a code. File ini berisi data login Anda: hapus dari komputer ini setelahnya."
+  },
+  "f_actions_b504": {
+    "message": "Aksi"
+  },
+  "f_active_134f": {
+    "message": "Aktif"
+  },
+  "f_all_3b8d": {
+    "message": "Semua · {n}"
+  },
+  "f_another_fcb4": {
+    "message": "Satu lagi"
+  },
+  "f_answer_is_ready_shown_at_onc_3d27": {
+    "message": "Jawaban sudah siap: langsung ditampilkan"
+  },
+  "f_app_1acc": {
+    "message": "Aplikasi"
+  },
+  "f_appearance_8b9f": {
+    "message": "Tampilan"
+  },
+  "f_ask_about_this_article_7e9b": {
+    "message": "Tanya tentang artikel ini"
+  },
+  "f_ask_about_this_article_2387": {
+    "message": "Tanya tentang artikel ini…"
+  },
+  "f_asks_the_model_93a5": {
+    "message": "Bertanya ke model"
+  },
+  "f_bookmark_4a39": {
+    "message": "Markah"
+  },
+  "f_bookmark_removed_f239": {
+    "message": "Markah dihapus"
+  },
+  "f_bookmark_set_1ca9": {
+    "message": "Markah dipasang"
+  },
+  "f_bookmark_this_place_e118": {
+    "message": "Ingat tempat ini"
+  },
+  "f_browser_bookmark_updated_f8c2": {
+    "message": "Markah browser diperbarui"
+  },
+  "f_building_the_graph_4400": {
+    "message": "Membuat grafik…"
+  },
+  "f_checkout_opens_with_your_ema_dd59": {
+    "message": "Halaman pembayaran terbuka dengan email Anda sudah terisi. Setelah membayar, pass aktif sendiri; nomor pesanan tidak diperlukan."
+  },
+  "f_close_app_df68": {
+    "message": "Tutup aplikasi"
+  },
+  "f_command_palette_29b1": {
+    "message": "Palet perintah"
+  },
+  "f_commands_and_search_1cf6": {
+    "message": "Perintah dan pencarian"
+  },
+  "f_commands_settings_and_articl_7b23": {
+    "message": "Perintah, pengaturan, dan pencarian artikel"
+  },
+  "f_continue_at_your_bookmark_07d8": {
+    "message": "Lanjutkan dari markah"
+  },
+  "f_continue_at_07de": {
+    "message": "Lanjutkan dari {n} %"
+  },
+  "f_continue_reading_fcc8": {
+    "message": "Lanjutkan membaca"
+  },
+  "f_could_not_get_an_answer_61e2": {
+    "message": "Tidak mendapat jawaban: {why}"
+  },
+  "f_dismiss_highlight_2383": {
+    "message": "Singkirkan sorotan"
+  },
+  "f_finished_this_week_3f9f": {
+    "message": "Selesai minggu ini"
+  },
+  "f_font_5eb0": {
+    "message": "Font"
+  },
+  "f_from_your_highlights_c7ad": {
+    "message": "Dari sorotan Anda"
+  },
+  "f_full_text_bf23": {
+    "message": "Teks lengkap"
+  },
+  "f_go_to_b9b0": {
+    "message": "Buka"
+  },
+  "f_good_afternoon_60ec": {
+    "message": "Selamat siang"
+  },
+  "f_good_evening_4bf4": {
+    "message": "Selamat malam"
+  },
+  "f_good_morning_1a30": {
+    "message": "Selamat pagi"
+  },
+  "f_good_night_562e": {
+    "message": "Selamat malam"
+  },
+  "f_highlight_selection_7a75": {
+    "message": "Sorot pilihan"
+  },
+  "f_highlights_you_save_show_up__7497": {
+    "message": "Sorotan yang Anda simpan muncul di sini, satu per satu."
+  },
+  "f_history_597f": {
+    "message": "Riwayat"
+  },
+  "f_home_page_0a91": {
+    "message": "Beranda"
+  },
+  "f_home_page_address_b651": {
+    "message": "Alamat beranda"
+  },
+  "f_jump_to_bookmark_0d7e": {
+    "message": "Lompat ke markah"
+  },
+  "f_larger_text_4d25": {
+    "message": "Teks lebih besar"
+  },
+  "f_latest_bc66": {
+    "message": "Terbaru"
+  },
+  "f_latest_from_your_feeds_3710": {
+    "message": "Terbaru dari feed Anda"
+  },
+  "f_mixed_ef98": {
+    "message": "Campuran"
+  },
+  "f_more_cloud_models_no_daily_c_fc99": {
+    "message": "Lebih banyak model cloud, tanpa batas harian, pengiriman ke Kindle. Menjaga AISH tetap independen."
+  },
+  "f_mostly_heavy_7b76": {
+    "message": "Sebagian besar berat"
+  },
+  "f_mostly_positive_e44c": {
+    "message": "Sebagian besar positif"
+  },
+  "f_move_bookmark_here_7cba": {
+    "message": "Pindahkan markah ke sini"
+  },
+  "f_new_in_your_feeds_1ce6": {
+    "message": "Baru di feed Anda"
+  },
+  "f_nothing_found_827a": {
+    "message": "Tidak ada yang ditemukan"
+  },
+  "f_nothing_in_progress_articles_c310": {
+    "message": "Belum ada yang berjalan. Artikel yang mulai Anda baca muncul di sini."
+  },
+  "f_nothing_to_read_aloud_751c": {
+    "message": "Tidak ada yang dibacakan."
+  },
+  "f_open_app_324e": {
+    "message": "Buka aplikasi"
+  },
+  "f_open_app_beside_the_article_e1d9": {
+    "message": "Buka aplikasi di samping artikel"
+  },
+  "f_open_the_extension_and_set_i_37ed": {
+    "message": "Buka ekstensi dan atur di Pengaturan → Kirim."
+  },
+  "f_open_the_original_page_1788": {
+    "message": "Buka halaman asli"
+  },
+  "f_open_9c4a": {
+    "message": "Buka {name}"
+  },
+  "f_paste_it_in_chrome_settings__26a9": {
+    "message": "Tempelkan di Chrome Pengaturan › Saat memulai › Buka halaman tertentu, atau di Tampilan › Tombol Beranda."
+  },
+  "f_paste_it_in_firefox_settings_220a": {
+    "message": "Tempelkan di Firefox Pengaturan › Beranda › Beranda dan jendela baru › URL khusus."
+  },
+  "f_print_0d28": {
+    "message": "Cetak"
+  },
+  "f_recently_saved_5242": {
+    "message": "Baru disimpan"
+  },
+  "f_remove_highlight_b695": {
+    "message": "Hapus sorotan"
+  },
+  "f_remove_place_bookmark_8a72": {
+    "message": "Hapus markah tempat"
+  },
+  "f_resize_the_app_panel_dc7b": {
+    "message": "Ubah ukuran panel aplikasi"
+  },
+  "f_sans_serif_font_ac0b": {
+    "message": "Font sans-serif"
+  },
+  "f_save_in_browser_bookmarks_1b86": {
+    "message": "Simpan di markah browser"
+  },
+  "f_saved_in_browser_bookmarks_a5a2": {
+    "message": "Disimpan di markah browser"
+  },
+  "f_scroll_to_the_text_first_e24f": {
+    "message": "Gulir ke teks terlebih dahulu."
+  },
+  "f_search_the_web_for_3ee1": {
+    "message": "Cari “{q}” di web"
+  },
+  "f_sepia_c169": {
+    "message": "Sepia"
+  },
+  "f_serif_font_0593": {
+    "message": "Font serif"
+  },
+  "f_smaller_text_e792": {
+    "message": "Teks lebih kecil"
+  },
+  "f_starred_8930": {
+    "message": "Berbintang"
+  },
+  "f_stats_8e8c": {
+    "message": "Statistik"
+  },
+  "f_subscribe_to_feeds_to_see_ne_c33b": {
+    "message": "Berlangganan feed agar item baru muncul di sini."
+  },
+  "f_text_and_font_544c": {
+    "message": "Teks dan font"
+  },
+  "f_thank_you_for_keeping_aish_i_2793": {
+    "message": "Terima kasih telah menjaga AISH tetap independen. Ganti kartu, ganti paket, atau batalkan lewat tautan di tanda terima Stripe Anda."
+  },
+  "f_the_bookmark_opens_at_your_p_5202": {
+    "message": "Markah terbuka di tempat Anda"
+  },
+  "f_the_bookmarked_place_is_no_l_7499": {
+    "message": "Tempat yang ditandai tidak ada lagi di teks."
+  },
+  "f_the_browser_did_not_allow_ac_3057": {
+    "message": "Browser tidak mengizinkan akses ke markah."
+  },
+  "f_this_pdf_has_no_selectable_t_faec": {
+    "message": "PDF ini tidak punya teks yang bisa dipilih (kemungkinan hasil pindai), dan pengenalan teks belum didukung. Jalankan OCR terlebih dahulu (misalnya Pratinjau, Acrobat, atau ocrmypdf), atau pilih teksnya lalu ringkas pilihan itu."
+  },
+  "f_this_article_b103": {
+    "message": "Artikel ini"
+  },
+  "f_this_article_is_no_longer_av_75a4": {
+    "message": "Artikel ini sudah tidak tersedia."
+  },
+  "f_today_at_a_glance_60e0": {
+    "message": "Hari ini sekilas"
+  },
+  "f_type_a_command_or_search_you_7a7c": {
+    "message": "Ketik perintah atau cari artikel Anda…"
+  },
+  "f_unopened_6bea": {
+    "message": "Belum dibuka · {n}"
+  },
+  "f_update_browser_bookmark_cf94": {
+    "message": "Perbarui markah browser"
+  },
+  "f_updated_d930": {
+    "message": "Diperbarui {when}"
+  },
+  "f_updating_feeds_bc4c": {
+    "message": "Memperbarui feed…"
+  },
+  "f_web_5431": {
+    "message": "Web"
+  },
+  "f_web_search_did_not_start_b4cf": {
+    "message": "Pencarian web tidak dimulai: {why}"
+  },
+  "f_what_are_the_key_points_1c49": {
+    "message": "Apa poin-poin utamanya?"
+  },
+  "f_what_is_missing_or_one_sided_a6a3": {
+    "message": "Apa yang kurang atau berat sebelah?"
+  },
+  "f_who_is_this_for_and_what_doe_7784": {
+    "message": "Untuk siapa ini, dan apa yang diasumsikan?"
+  },
+  "f_write_a_recap_in_feeds_and_i_5c8b": {
+    "message": "Tulis rangkuman di Feed dan rangkuman itu muncul di sini beserta sumbernya."
+  },
+  "f_your_saved_articles_show_up__86c2": {
+    "message": "Artikel tersimpan Anda muncul di sini."
+  },
+  "f_source_7214": {
+    "message": "{n} sumber"
+  },
+  "f_29_94_a_year_3ee3": {
+    "message": "€29,94 per tahun"
+  },
+  "f_4_99_a_month_f3ae": {
+    "message": "€4,99 per bulan"
+  },
+  "f_finished_23ce": {
+    "message": "✅ Selesai"
+  },
+  "f_support_pass_d7f9": {
+    "message": "⭐ Support Pass"
+  },
+  "f__5a1d": {
+    "message": "📖 {n} %"
   }
 }

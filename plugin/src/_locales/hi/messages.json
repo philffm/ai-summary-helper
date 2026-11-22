@@ -7660,5 +7660,314 @@
   },
   "f_for_an_e_reader_with_koreade_cb0d": {
     "message": "KOReader वाले ई-रीडर के लिए: aish-library.txt को उसके होम फ़ोल्डर में कॉपी करें, फिर Tools → AISH library → Connect with a code। इस फ़ाइल में आपका लॉगिन है: बाद में इसे इस कंप्यूटर से हटा दें।"
+  },
+  "f_actions_b504": {
+    "message": "क्रियाएँ"
+  },
+  "f_active_134f": {
+    "message": "सक्रिय"
+  },
+  "f_all_3b8d": {
+    "message": "सभी · {n}"
+  },
+  "f_another_fcb4": {
+    "message": "एक और"
+  },
+  "f_answer_is_ready_shown_at_onc_3d27": {
+    "message": "उत्तर तैयार है: तुरंत दिखाया गया"
+  },
+  "f_app_1acc": {
+    "message": "ऐप"
+  },
+  "f_appearance_8b9f": {
+    "message": "रूप"
+  },
+  "f_ask_about_this_article_7e9b": {
+    "message": "इस लेख के बारे में पूछें"
+  },
+  "f_ask_about_this_article_2387": {
+    "message": "इस लेख के बारे में पूछें…"
+  },
+  "f_asks_the_model_93a5": {
+    "message": "मॉडल से पूछता है"
+  },
+  "f_bookmark_4a39": {
+    "message": "बुकमार्क"
+  },
+  "f_bookmark_removed_f239": {
+    "message": "बुकमार्क हटाया गया"
+  },
+  "f_bookmark_set_1ca9": {
+    "message": "बुकमार्क लगाया गया"
+  },
+  "f_bookmark_this_place_e118": {
+    "message": "यह जगह याद रखें"
+  },
+  "f_browser_bookmark_updated_f8c2": {
+    "message": "ब्राउज़र बुकमार्क अपडेट हुआ"
+  },
+  "f_building_the_graph_4400": {
+    "message": "ग्राफ़ बनाया जा रहा है…"
+  },
+  "f_checkout_opens_with_your_ema_dd59": {
+    "message": "चेकआउट आपके ईमेल के साथ खुलता है। भुगतान के बाद पास अपने आप चालू हो जाता है; ऑर्डर नंबर की ज़रूरत नहीं।"
+  },
+  "f_close_app_df68": {
+    "message": "ऐप बंद करें"
+  },
+  "f_command_palette_29b1": {
+    "message": "कमांड पैलेट"
+  },
+  "f_commands_and_search_1cf6": {
+    "message": "कमांड और खोज"
+  },
+  "f_commands_settings_and_articl_7b23": {
+    "message": "कमांड, सेटिंग और लेख खोज"
+  },
+  "f_continue_at_your_bookmark_07d8": {
+    "message": "बुकमार्क से आगे पढ़ें"
+  },
+  "f_continue_at_07de": {
+    "message": "{n} % से आगे पढ़ें"
+  },
+  "f_continue_reading_fcc8": {
+    "message": "पढ़ना जारी रखें"
+  },
+  "f_could_not_get_an_answer_61e2": {
+    "message": "उत्तर नहीं मिल सका: {why}"
+  },
+  "f_dismiss_highlight_2383": {
+    "message": "हाइलाइट हटाएँ"
+  },
+  "f_finished_this_week_3f9f": {
+    "message": "इस सप्ताह पूरे हुए"
+  },
+  "f_font_5eb0": {
+    "message": "फ़ॉन्ट"
+  },
+  "f_from_your_highlights_c7ad": {
+    "message": "आपके हाइलाइट से"
+  },
+  "f_full_text_bf23": {
+    "message": "पूरा पाठ"
+  },
+  "f_go_to_b9b0": {
+    "message": "यहाँ जाएँ"
+  },
+  "f_good_afternoon_60ec": {
+    "message": "नमस्कार"
+  },
+  "f_good_evening_4bf4": {
+    "message": "शुभ संध्या"
+  },
+  "f_good_morning_1a30": {
+    "message": "सुप्रभात"
+  },
+  "f_good_night_562e": {
+    "message": "शुभ रात्रि"
+  },
+  "f_highlight_selection_7a75": {
+    "message": "चयन को हाइलाइट करें"
+  },
+  "f_highlights_you_save_show_up__7497": {
+    "message": "आपके सहेजे हाइलाइट यहाँ एक-एक करके दिखते हैं।"
+  },
+  "f_history_597f": {
+    "message": "इतिहास"
+  },
+  "f_home_page_0a91": {
+    "message": "होम पेज"
+  },
+  "f_home_page_address_b651": {
+    "message": "होम पेज का पता"
+  },
+  "f_jump_to_bookmark_0d7e": {
+    "message": "बुकमार्क पर जाएँ"
+  },
+  "f_larger_text_4d25": {
+    "message": "बड़ा टेक्स्ट"
+  },
+  "f_latest_bc66": {
+    "message": "नवीनतम"
+  },
+  "f_latest_from_your_feeds_3710": {
+    "message": "आपकी फ़ीड से नवीनतम"
+  },
+  "f_mixed_ef98": {
+    "message": "मिश्रित"
+  },
+  "f_more_cloud_models_no_daily_c_fc99": {
+    "message": "ज़्यादा क्लाउड मॉडल, कोई दैनिक सीमा नहीं, Kindle पर डिलीवरी। AISH को स्वतंत्र रखता है।"
+  },
+  "f_mostly_heavy_7b76": {
+    "message": "ज़्यादातर भारी"
+  },
+  "f_mostly_positive_e44c": {
+    "message": "ज़्यादातर सकारात्मक"
+  },
+  "f_move_bookmark_here_7cba": {
+    "message": "बुकमार्क यहाँ ले जाएँ"
+  },
+  "f_new_in_your_feeds_1ce6": {
+    "message": "आपकी फ़ीड में नया"
+  },
+  "f_nothing_found_827a": {
+    "message": "कुछ नहीं मिला"
+  },
+  "f_nothing_in_progress_articles_c310": {
+    "message": "कुछ जारी नहीं है। आपके शुरू किए लेख यहाँ दिखेंगे।"
+  },
+  "f_nothing_to_read_aloud_751c": {
+    "message": "पढ़कर सुनाने के लिए कुछ नहीं है।"
+  },
+  "f_open_app_324e": {
+    "message": "ऐप खोलें"
+  },
+  "f_open_app_beside_the_article_e1d9": {
+    "message": "लेख के बगल में ऐप खोलें"
+  },
+  "f_open_the_extension_and_set_i_37ed": {
+    "message": "एक्सटेंशन खोलें और सेटिंग → भेजें में इसे सेट करें।"
+  },
+  "f_open_the_original_page_1788": {
+    "message": "मूल पेज खोलें"
+  },
+  "f_open_9c4a": {
+    "message": "{name} खोलें"
+  },
+  "f_paste_it_in_chrome_settings__26a9": {
+    "message": "इसे Chrome की सेटिंग › स्टार्टअप पर › कोई विशेष पेज खोलें में, या रूप › होम बटन में चिपकाएँ।"
+  },
+  "f_paste_it_in_firefox_settings_220a": {
+    "message": "इसे Firefox की सेटिंग › होम › होमपेज और नई विंडो › कस्टम URL में चिपकाएँ।"
+  },
+  "f_print_0d28": {
+    "message": "प्रिंट करें"
+  },
+  "f_recently_saved_5242": {
+    "message": "हाल में सहेजे गए"
+  },
+  "f_remove_highlight_b695": {
+    "message": "हाइलाइट हटाएँ"
+  },
+  "f_remove_place_bookmark_8a72": {
+    "message": "जगह का बुकमार्क हटाएँ"
+  },
+  "f_resize_the_app_panel_dc7b": {
+    "message": "ऐप पैनल का आकार बदलें"
+  },
+  "f_sans_serif_font_ac0b": {
+    "message": "सैन्स-सेरिफ़ फ़ॉन्ट"
+  },
+  "f_save_in_browser_bookmarks_1b86": {
+    "message": "ब्राउज़र बुकमार्क में सहेजें"
+  },
+  "f_saved_in_browser_bookmarks_a5a2": {
+    "message": "ब्राउज़र बुकमार्क में सहेजा गया"
+  },
+  "f_scroll_to_the_text_first_e24f": {
+    "message": "पहले पाठ तक स्क्रोल करें।"
+  },
+  "f_search_the_web_for_3ee1": {
+    "message": "वेब पर “{q}” खोजें"
+  },
+  "f_sepia_c169": {
+    "message": "सेपिया"
+  },
+  "f_serif_font_0593": {
+    "message": "सेरिफ़ फ़ॉन्ट"
+  },
+  "f_smaller_text_e792": {
+    "message": "छोटा टेक्स्ट"
+  },
+  "f_starred_8930": {
+    "message": "स्टार किए गए"
+  },
+  "f_stats_8e8c": {
+    "message": "आँकड़े"
+  },
+  "f_subscribe_to_feeds_to_see_ne_c33b": {
+    "message": "फ़ीड की सदस्यता लें, तब नए आइटम यहाँ दिखेंगे।"
+  },
+  "f_text_and_font_544c": {
+    "message": "टेक्स्ट और फ़ॉन्ट"
+  },
+  "f_thank_you_for_keeping_aish_i_2793": {
+    "message": "AISH को स्वतंत्र रखने के लिए धन्यवाद। कार्ड बदलने, प्लान बदलने या रद्द करने के लिए अपनी Stripe रसीद का लिंक इस्तेमाल करें।"
+  },
+  "f_the_bookmark_opens_at_your_p_5202": {
+    "message": "बुकमार्क आपकी जगह पर खुलता है"
+  },
+  "f_the_bookmarked_place_is_no_l_7499": {
+    "message": "याद रखी गई जगह अब पाठ में नहीं है।"
+  },
+  "f_the_browser_did_not_allow_ac_3057": {
+    "message": "ब्राउज़र ने बुकमार्क तक पहुँच की अनुमति नहीं दी।"
+  },
+  "f_this_pdf_has_no_selectable_t_faec": {
+    "message": "इस PDF में चुनने लायक टेक्स्ट नहीं है (शायद स्कैन है), और टेक्स्ट पहचान अभी समर्थित नहीं है। पहले OCR चलाएँ (जैसे प्रीव्यू, Acrobat या ocrmypdf), या टेक्स्ट चुनकर चयन का सार बनाएँ।"
+  },
+  "f_this_article_b103": {
+    "message": "यह लेख"
+  },
+  "f_this_article_is_no_longer_av_75a4": {
+    "message": "यह लेख अब उपलब्ध नहीं है।"
+  },
+  "f_today_at_a_glance_60e0": {
+    "message": "आज एक नज़र में"
+  },
+  "f_type_a_command_or_search_you_7a7c": {
+    "message": "कमांड लिखें या अपने लेख खोजें…"
+  },
+  "f_unopened_6bea": {
+    "message": "अनखुले · {n}"
+  },
+  "f_update_browser_bookmark_cf94": {
+    "message": "ब्राउज़र बुकमार्क अपडेट करें"
+  },
+  "f_updated_d930": {
+    "message": "{when} अपडेट हुआ"
+  },
+  "f_updating_feeds_bc4c": {
+    "message": "फ़ीड अपडेट हो रही हैं…"
+  },
+  "f_web_5431": {
+    "message": "वेब"
+  },
+  "f_web_search_did_not_start_b4cf": {
+    "message": "वेब खोज शुरू नहीं हुई: {why}"
+  },
+  "f_what_are_the_key_points_1c49": {
+    "message": "मुख्य बातें क्या हैं?"
+  },
+  "f_what_is_missing_or_one_sided_a6a3": {
+    "message": "क्या छूटा है या एकतरफ़ा है?"
+  },
+  "f_who_is_this_for_and_what_doe_7784": {
+    "message": "यह किसके लिए है, और क्या मानकर चलता है?"
+  },
+  "f_write_a_recap_in_feeds_and_i_5c8b": {
+    "message": "फ़ीड में एक सार लिखें, वह स्रोतों के साथ यहाँ दिखेगा।"
+  },
+  "f_your_saved_articles_show_up__86c2": {
+    "message": "आपके सहेजे हुए लेख यहाँ दिखते हैं।"
+  },
+  "f_source_7214": {
+    "message": "{n} स्रोत"
+  },
+  "f_29_94_a_year_3ee3": {
+    "message": "29.94 € प्रति वर्ष"
+  },
+  "f_4_99_a_month_f3ae": {
+    "message": "4.99 € प्रति माह"
+  },
+  "f_finished_23ce": {
+    "message": "✅ पूरा हुआ"
+  },
+  "f_support_pass_d7f9": {
+    "message": "⭐ Support Pass"
+  },
+  "f__5a1d": {
+    "message": "📖 {n} %"
   }
 }

@@ -7660,5 +7660,314 @@
   },
   "f_for_an_e_reader_with_koreade_cb0d": {
     "message": "Para um leitor digital com KOReader: copie aish-library.txt para a pasta inicial e depois Tools → AISH library → Connect with a code. O ficheiro contém os seus dados de acesso: apague-o deste computador depois."
+  },
+  "f_actions_b504": {
+    "message": "Ações"
+  },
+  "f_active_134f": {
+    "message": "Ativo"
+  },
+  "f_all_3b8d": {
+    "message": "Tudo · {n}"
+  },
+  "f_another_fcb4": {
+    "message": "Outra"
+  },
+  "f_answer_is_ready_shown_at_onc_3d27": {
+    "message": "A resposta está pronta: mostrada logo"
+  },
+  "f_app_1acc": {
+    "message": "App"
+  },
+  "f_appearance_8b9f": {
+    "message": "Aspeto"
+  },
+  "f_ask_about_this_article_7e9b": {
+    "message": "Perguntar sobre este artigo"
+  },
+  "f_ask_about_this_article_2387": {
+    "message": "Pergunte sobre este artigo…"
+  },
+  "f_asks_the_model_93a5": {
+    "message": "Consulta o modelo"
+  },
+  "f_bookmark_4a39": {
+    "message": "Marcador"
+  },
+  "f_bookmark_removed_f239": {
+    "message": "Marcador removido"
+  },
+  "f_bookmark_set_1ca9": {
+    "message": "Marcador adicionado"
+  },
+  "f_bookmark_this_place_e118": {
+    "message": "Marcar este ponto"
+  },
+  "f_browser_bookmark_updated_f8c2": {
+    "message": "Marcador do navegador atualizado"
+  },
+  "f_building_the_graph_4400": {
+    "message": "A criar o grafo…"
+  },
+  "f_checkout_opens_with_your_ema_dd59": {
+    "message": "O checkout abre com o seu e-mail já preenchido. Depois de pagar, o passe ativa-se sozinho; não é preciso número de encomenda."
+  },
+  "f_close_app_df68": {
+    "message": "Fechar app"
+  },
+  "f_command_palette_29b1": {
+    "message": "Paleta de comandos"
+  },
+  "f_commands_and_search_1cf6": {
+    "message": "Comandos e pesquisa"
+  },
+  "f_commands_settings_and_articl_7b23": {
+    "message": "Comandos, definições e pesquisa de artigos"
+  },
+  "f_continue_at_your_bookmark_07d8": {
+    "message": "Continuar no marcador"
+  },
+  "f_continue_at_07de": {
+    "message": "Continuar em {n} %"
+  },
+  "f_continue_reading_fcc8": {
+    "message": "Continuar a ler"
+  },
+  "f_could_not_get_an_answer_61e2": {
+    "message": "Não foi possível obter uma resposta: {why}"
+  },
+  "f_dismiss_highlight_2383": {
+    "message": "Ignorar destaque"
+  },
+  "f_finished_this_week_3f9f": {
+    "message": "Concluídos esta semana"
+  },
+  "f_font_5eb0": {
+    "message": "Tipo de letra"
+  },
+  "f_from_your_highlights_c7ad": {
+    "message": "Dos seus destaques"
+  },
+  "f_full_text_bf23": {
+    "message": "Texto completo"
+  },
+  "f_go_to_b9b0": {
+    "message": "Ir para"
+  },
+  "f_good_afternoon_60ec": {
+    "message": "Boa tarde"
+  },
+  "f_good_evening_4bf4": {
+    "message": "Boa noite"
+  },
+  "f_good_morning_1a30": {
+    "message": "Bom dia"
+  },
+  "f_good_night_562e": {
+    "message": "Boa noite"
+  },
+  "f_highlight_selection_7a75": {
+    "message": "Destacar seleção"
+  },
+  "f_highlights_you_save_show_up__7497": {
+    "message": "Os destaques que guardar aparecem aqui, um de cada vez."
+  },
+  "f_history_597f": {
+    "message": "Histórico"
+  },
+  "f_home_page_0a91": {
+    "message": "Página inicial"
+  },
+  "f_home_page_address_b651": {
+    "message": "Endereço da página inicial"
+  },
+  "f_jump_to_bookmark_0d7e": {
+    "message": "Ir para o marcador"
+  },
+  "f_larger_text_4d25": {
+    "message": "Texto maior"
+  },
+  "f_latest_bc66": {
+    "message": "Mais recentes"
+  },
+  "f_latest_from_your_feeds_3710": {
+    "message": "Mais recentes dos seus feeds"
+  },
+  "f_mixed_ef98": {
+    "message": "Misto"
+  },
+  "f_more_cloud_models_no_daily_c_fc99": {
+    "message": "Mais modelos na nuvem, sem limite diário, envio para o Kindle. Mantém o AISH independente."
+  },
+  "f_mostly_heavy_7b76": {
+    "message": "Maioritariamente pesado"
+  },
+  "f_mostly_positive_e44c": {
+    "message": "Maioritariamente positivo"
+  },
+  "f_move_bookmark_here_7cba": {
+    "message": "Mover o marcador para aqui"
+  },
+  "f_new_in_your_feeds_1ce6": {
+    "message": "Novo nos seus feeds"
+  },
+  "f_nothing_found_827a": {
+    "message": "Nada encontrado"
+  },
+  "f_nothing_in_progress_articles_c310": {
+    "message": "Nada em curso. Os artigos que começar a ler aparecem aqui."
+  },
+  "f_nothing_to_read_aloud_751c": {
+    "message": "Nada para ler em voz alta."
+  },
+  "f_open_app_324e": {
+    "message": "Abrir app"
+  },
+  "f_open_app_beside_the_article_e1d9": {
+    "message": "Abrir a app ao lado do artigo"
+  },
+  "f_open_the_extension_and_set_i_37ed": {
+    "message": "Abra a extensão e configure em Definições → Enviar."
+  },
+  "f_open_the_original_page_1788": {
+    "message": "Abrir a página original"
+  },
+  "f_open_9c4a": {
+    "message": "Abrir {name}"
+  },
+  "f_paste_it_in_chrome_settings__26a9": {
+    "message": "Cole em Definições do Chrome › Ao iniciar › Abrir uma página específica, ou em Aspeto › Botão Página inicial."
+  },
+  "f_paste_it_in_firefox_settings_220a": {
+    "message": "Cole em Definições do Firefox › Início › Página inicial e novas janelas › URLs personalizados."
+  },
+  "f_print_0d28": {
+    "message": "Imprimir"
+  },
+  "f_recently_saved_5242": {
+    "message": "Guardados recentemente"
+  },
+  "f_remove_highlight_b695": {
+    "message": "Remover destaque"
+  },
+  "f_remove_place_bookmark_8a72": {
+    "message": "Remover o marcador do ponto"
+  },
+  "f_resize_the_app_panel_dc7b": {
+    "message": "Redimensionar o painel da app"
+  },
+  "f_sans_serif_font_ac0b": {
+    "message": "Tipo de letra sem serifa"
+  },
+  "f_save_in_browser_bookmarks_1b86": {
+    "message": "Guardar nos marcadores do navegador"
+  },
+  "f_saved_in_browser_bookmarks_a5a2": {
+    "message": "Guardado nos marcadores do navegador"
+  },
+  "f_scroll_to_the_text_first_e24f": {
+    "message": "Desloque primeiro até ao texto."
+  },
+  "f_search_the_web_for_3ee1": {
+    "message": "Pesquisar “{q}” na web"
+  },
+  "f_sepia_c169": {
+    "message": "Sépia"
+  },
+  "f_serif_font_0593": {
+    "message": "Tipo de letra com serifa"
+  },
+  "f_smaller_text_e792": {
+    "message": "Texto menor"
+  },
+  "f_starred_8930": {
+    "message": "Com estrela"
+  },
+  "f_stats_8e8c": {
+    "message": "Estatísticas"
+  },
+  "f_subscribe_to_feeds_to_see_ne_c33b": {
+    "message": "Subscreva feeds para ver aqui os novos itens."
+  },
+  "f_text_and_font_544c": {
+    "message": "Texto e tipo de letra"
+  },
+  "f_thank_you_for_keeping_aish_i_2793": {
+    "message": "Obrigado por manter o AISH independente. Altere o cartão, mude de plano ou cancele através da ligação no seu recibo do Stripe."
+  },
+  "f_the_bookmark_opens_at_your_p_5202": {
+    "message": "O marcador abre no seu ponto"
+  },
+  "f_the_bookmarked_place_is_no_l_7499": {
+    "message": "O ponto marcado já não está no texto."
+  },
+  "f_the_browser_did_not_allow_ac_3057": {
+    "message": "O navegador não permitiu o acesso aos marcadores."
+  },
+  "f_this_pdf_has_no_selectable_t_faec": {
+    "message": "Este PDF não tem texto selecionável (provavelmente é uma digitalização) e o reconhecimento de texto ainda não é suportado. Execute primeiro um OCR (por exemplo Pré-visualização, Acrobat ou ocrmypdf), ou selecione o texto e resuma a seleção."
+  },
+  "f_this_article_b103": {
+    "message": "Este artigo"
+  },
+  "f_this_article_is_no_longer_av_75a4": {
+    "message": "Este artigo já não está disponível."
+  },
+  "f_today_at_a_glance_60e0": {
+    "message": "Hoje num relance"
+  },
+  "f_type_a_command_or_search_you_7a7c": {
+    "message": "Escreva um comando ou pesquise os seus artigos…"
+  },
+  "f_unopened_6bea": {
+    "message": "Não abertos · {n}"
+  },
+  "f_update_browser_bookmark_cf94": {
+    "message": "Atualizar marcador do navegador"
+  },
+  "f_updated_d930": {
+    "message": "Atualizado {when}"
+  },
+  "f_updating_feeds_bc4c": {
+    "message": "A atualizar feeds…"
+  },
+  "f_web_5431": {
+    "message": "Web"
+  },
+  "f_web_search_did_not_start_b4cf": {
+    "message": "A pesquisa na web não arrancou: {why}"
+  },
+  "f_what_are_the_key_points_1c49": {
+    "message": "Quais são os pontos principais?"
+  },
+  "f_what_is_missing_or_one_sided_a6a3": {
+    "message": "O que falta ou é unilateral?"
+  },
+  "f_who_is_this_for_and_what_doe_7784": {
+    "message": "A quem se destina e o que pressupõe?"
+  },
+  "f_write_a_recap_in_feeds_and_i_5c8b": {
+    "message": "Escreva um resumo em Feeds e ele aparece aqui, com as fontes."
+  },
+  "f_your_saved_articles_show_up__86c2": {
+    "message": "Os seus artigos guardados aparecem aqui."
+  },
+  "f_source_7214": {
+    "message": "{n} fonte"
+  },
+  "f_29_94_a_year_3ee3": {
+    "message": "29,94 € por ano"
+  },
+  "f_4_99_a_month_f3ae": {
+    "message": "4,99 € por mês"
+  },
+  "f_finished_23ce": {
+    "message": "✅ Concluído"
+  },
+  "f_support_pass_d7f9": {
+    "message": "⭐ Support Pass"
+  },
+  "f__5a1d": {
+    "message": "📖 {n} %"
   }
 }

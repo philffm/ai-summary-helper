@@ -7660,5 +7660,314 @@
   },
   "f_for_an_e_reader_with_koreade_cb0d": {
     "message": "用于装有 KOReader 的电子阅读器：将 aish-library.txt 复制到其主文件夹，然后选择 Tools → AISH library → Connect with a code。该文件包含你的登录信息：之后请从这台电脑上删除。"
+  },
+  "f_actions_b504": {
+    "message": "操作"
+  },
+  "f_active_134f": {
+    "message": "已启用"
+  },
+  "f_all_3b8d": {
+    "message": "全部 · {n}"
+  },
+  "f_another_fcb4": {
+    "message": "再来一个"
+  },
+  "f_answer_is_ready_shown_at_onc_3d27": {
+    "message": "答案已就绪：立即显示"
+  },
+  "f_app_1acc": {
+    "message": "应用"
+  },
+  "f_appearance_8b9f": {
+    "message": "外观"
+  },
+  "f_ask_about_this_article_7e9b": {
+    "message": "就这篇文章提问"
+  },
+  "f_ask_about_this_article_2387": {
+    "message": "就这篇文章提问…"
+  },
+  "f_asks_the_model_93a5": {
+    "message": "向模型提问"
+  },
+  "f_bookmark_4a39": {
+    "message": "书签"
+  },
+  "f_bookmark_removed_f239": {
+    "message": "书签已删除"
+  },
+  "f_bookmark_set_1ca9": {
+    "message": "书签已设置"
+  },
+  "f_bookmark_this_place_e118": {
+    "message": "记住这个位置"
+  },
+  "f_browser_bookmark_updated_f8c2": {
+    "message": "浏览器书签已更新"
+  },
+  "f_building_the_graph_4400": {
+    "message": "正在生成图谱…"
+  },
+  "f_checkout_opens_with_your_ema_dd59": {
+    "message": "结账页会带着你的邮箱打开。付款后通行证会自动生效，无需订单号。"
+  },
+  "f_close_app_df68": {
+    "message": "关闭应用"
+  },
+  "f_command_palette_29b1": {
+    "message": "命令面板"
+  },
+  "f_commands_and_search_1cf6": {
+    "message": "命令与搜索"
+  },
+  "f_commands_settings_and_articl_7b23": {
+    "message": "命令、设置和文章搜索"
+  },
+  "f_continue_at_your_bookmark_07d8": {
+    "message": "从书签处继续"
+  },
+  "f_continue_at_07de": {
+    "message": "从 {n} % 处继续"
+  },
+  "f_continue_reading_fcc8": {
+    "message": "继续阅读"
+  },
+  "f_could_not_get_an_answer_61e2": {
+    "message": "未能获得回答：{why}"
+  },
+  "f_dismiss_highlight_2383": {
+    "message": "取消高亮"
+  },
+  "f_finished_this_week_3f9f": {
+    "message": "本周已读完"
+  },
+  "f_font_5eb0": {
+    "message": "字体"
+  },
+  "f_from_your_highlights_c7ad": {
+    "message": "来自你的高亮"
+  },
+  "f_full_text_bf23": {
+    "message": "全文"
+  },
+  "f_go_to_b9b0": {
+    "message": "前往"
+  },
+  "f_good_afternoon_60ec": {
+    "message": "下午好"
+  },
+  "f_good_evening_4bf4": {
+    "message": "晚上好"
+  },
+  "f_good_morning_1a30": {
+    "message": "早上好"
+  },
+  "f_good_night_562e": {
+    "message": "晚安"
+  },
+  "f_highlight_selection_7a75": {
+    "message": "高亮所选内容"
+  },
+  "f_highlights_you_save_show_up__7497": {
+    "message": "你保存的高亮会在这里逐条显示。"
+  },
+  "f_history_597f": {
+    "message": "历史记录"
+  },
+  "f_home_page_0a91": {
+    "message": "主页"
+  },
+  "f_home_page_address_b651": {
+    "message": "主页地址"
+  },
+  "f_jump_to_bookmark_0d7e": {
+    "message": "跳到书签"
+  },
+  "f_larger_text_4d25": {
+    "message": "放大文字"
+  },
+  "f_latest_bc66": {
+    "message": "最新"
+  },
+  "f_latest_from_your_feeds_3710": {
+    "message": "订阅源最新内容"
+  },
+  "f_mixed_ef98": {
+    "message": "混合"
+  },
+  "f_more_cloud_models_no_daily_c_fc99": {
+    "message": "更多云端模型，无每日上限，支持发送到 Kindle。让 AISH 保持独立。"
+  },
+  "f_mostly_heavy_7b76": {
+    "message": "多为沉重"
+  },
+  "f_mostly_positive_e44c": {
+    "message": "多为积极"
+  },
+  "f_move_bookmark_here_7cba": {
+    "message": "把书签移到这里"
+  },
+  "f_new_in_your_feeds_1ce6": {
+    "message": "订阅源中的新内容"
+  },
+  "f_nothing_found_827a": {
+    "message": "未找到任何内容"
+  },
+  "f_nothing_in_progress_articles_c310": {
+    "message": "没有进行中的内容。你开始阅读的文章会显示在这里。"
+  },
+  "f_nothing_to_read_aloud_751c": {
+    "message": "没有可朗读的内容。"
+  },
+  "f_open_app_324e": {
+    "message": "打开应用"
+  },
+  "f_open_app_beside_the_article_e1d9": {
+    "message": "在文章旁边打开应用"
+  },
+  "f_open_the_extension_and_set_i_37ed": {
+    "message": "打开扩展程序，在 设置 → 发送 中进行设置。"
+  },
+  "f_open_the_original_page_1788": {
+    "message": "打开原始页面"
+  },
+  "f_open_9c4a": {
+    "message": "打开{name}"
+  },
+  "f_paste_it_in_chrome_settings__26a9": {
+    "message": "在 Chrome 的 设置 › 启动时 › 打开特定网页 中粘贴，或在 外观 › 主页按钮 中粘贴。"
+  },
+  "f_paste_it_in_firefox_settings_220a": {
+    "message": "在 Firefox 的 设置 › 主页 › 主页和新窗口 › 自定义网址 中粘贴。"
+  },
+  "f_print_0d28": {
+    "message": "打印"
+  },
+  "f_recently_saved_5242": {
+    "message": "最近保存"
+  },
+  "f_remove_highlight_b695": {
+    "message": "删除高亮"
+  },
+  "f_remove_place_bookmark_8a72": {
+    "message": "删除位置书签"
+  },
+  "f_resize_the_app_panel_dc7b": {
+    "message": "调整应用面板大小"
+  },
+  "f_sans_serif_font_ac0b": {
+    "message": "无衬线字体"
+  },
+  "f_save_in_browser_bookmarks_1b86": {
+    "message": "保存到浏览器书签"
+  },
+  "f_saved_in_browser_bookmarks_a5a2": {
+    "message": "已保存到浏览器书签"
+  },
+  "f_scroll_to_the_text_first_e24f": {
+    "message": "请先滚动到正文。"
+  },
+  "f_search_the_web_for_3ee1": {
+    "message": "在网上搜索“{q}”"
+  },
+  "f_sepia_c169": {
+    "message": "棕褐色"
+  },
+  "f_serif_font_0593": {
+    "message": "衬线字体"
+  },
+  "f_smaller_text_e792": {
+    "message": "缩小文字"
+  },
+  "f_starred_8930": {
+    "message": "已加星标"
+  },
+  "f_stats_8e8c": {
+    "message": "统计"
+  },
+  "f_subscribe_to_feeds_to_see_ne_c33b": {
+    "message": "订阅源后，新内容会显示在这里。"
+  },
+  "f_text_and_font_544c": {
+    "message": "文字与字体"
+  },
+  "f_thank_you_for_keeping_aish_i_2793": {
+    "message": "感谢你让 AISH 保持独立。更换银行卡、切换方案或取消订阅，请使用 Stripe 收据中的链接。"
+  },
+  "f_the_bookmark_opens_at_your_p_5202": {
+    "message": "书签会在你记住的位置打开"
+  },
+  "f_the_bookmarked_place_is_no_l_7499": {
+    "message": "记住的位置已不在正文中。"
+  },
+  "f_the_browser_did_not_allow_ac_3057": {
+    "message": "浏览器未允许访问书签。"
+  },
+  "f_this_pdf_has_no_selectable_t_faec": {
+    "message": "这个 PDF 没有可选择的文字（可能是扫描件），目前还不支持文字识别。请先运行 OCR（例如预览、Acrobat 或 ocrmypdf），或选中文字后总结所选内容。"
+  },
+  "f_this_article_b103": {
+    "message": "这篇文章"
+  },
+  "f_this_article_is_no_longer_av_75a4": {
+    "message": "这篇文章已无法使用。"
+  },
+  "f_today_at_a_glance_60e0": {
+    "message": "今日一览"
+  },
+  "f_type_a_command_or_search_you_7a7c": {
+    "message": "输入命令或搜索你的文章…"
+  },
+  "f_unopened_6bea": {
+    "message": "未打开 · {n}"
+  },
+  "f_update_browser_bookmark_cf94": {
+    "message": "更新浏览器书签"
+  },
+  "f_updated_d930": {
+    "message": "{when}更新"
+  },
+  "f_updating_feeds_bc4c": {
+    "message": "正在更新订阅源…"
+  },
+  "f_web_5431": {
+    "message": "网页"
+  },
+  "f_web_search_did_not_start_b4cf": {
+    "message": "网页搜索未能启动：{why}"
+  },
+  "f_what_are_the_key_points_1c49": {
+    "message": "要点是什么？"
+  },
+  "f_what_is_missing_or_one_sided_a6a3": {
+    "message": "缺少什么，或哪里有偏颇？"
+  },
+  "f_who_is_this_for_and_what_doe_7784": {
+    "message": "这是写给谁的，它预设了什么？"
+  },
+  "f_write_a_recap_in_feeds_and_i_5c8b": {
+    "message": "在订阅源中写一份摘要，它会连同来源显示在这里。"
+  },
+  "f_your_saved_articles_show_up__86c2": {
+    "message": "你保存的文章会显示在这里。"
+  },
+  "f_source_7214": {
+    "message": "{n} 个来源"
+  },
+  "f_29_94_a_year_3ee3": {
+    "message": "每年 29.94 €"
+  },
+  "f_4_99_a_month_f3ae": {
+    "message": "每月 4.99 €"
+  },
+  "f_finished_23ce": {
+    "message": "✅ 已完成"
+  },
+  "f_support_pass_d7f9": {
+    "message": "⭐ Support Pass"
+  },
+  "f__5a1d": {
+    "message": "📖 {n} %"
   }
 }
