@@ -27,6 +27,15 @@
         "responseStructure": "result.choices?.[0]?.message?.content"
     },
     {
+        "id": "openrouter",
+        "name": "OpenRouter",
+        "apiKeyDocumentationUrl": "https://openrouter.ai/keys",
+        "endpointUrl": "https://openrouter.ai/api/v1/chat/completions",
+        "defaultModel": "openrouter/auto",
+        "allowCustomEndpoint": false,
+        "responseStructure": "result.choices?.[0]?.message?.content"
+    },
+    {
         "id": "ollama",
         "name": "Ollama",
         "apiKeyDocumentationUrl": "https://ollama.com/",

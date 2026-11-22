@@ -76,7 +76,13 @@ const builders = {
   briefing: (d) => briefingCard(d),
   continue: (d) => card(T('Continue reading'), listOf(continueReading(d.index, 4).map((a) => link(readerUrl(a), a.title || a.url, hostOf(a.url), a.progress)), T('Nothing in progress. Articles you start reading show up here.'))),
   recent: (d) => card(T('Recently saved'), listOf(recentlySaved(d.index, 4).map((a) => link(readerUrl(a), a.title || a.url, hostOf(a.url))), T('Your saved articles show up here.'))),
-  feeds: (d) => card(T('Latest from your feeds'), listOf(latestFeed(d.feed, 4).map((i) => link(i.link, i.title, i.feedTitle || i.source || hostOf(i.link))), T('Subscribe to feeds to see new items here.'))),
+  feeds: (d) => {
+    const body = el('div');
+    // the refresh that starts with the page belongs to this card: a small line while it runs
+    if (d.updating) { const u = el('p', 'hm-updating', T('Updating feeds…')); u.setAttribute('role', 'status'); body.append(u); }
+    body.append(listOf(latestFeed(d.feed, 4).map((i) => link(i.link, i.title, i.feedTitle || i.source || hostOf(i.link))), T('Subscribe to feeds to see new items here.')));
+    return card(T('Latest from your feeds'), body);
+  },
   quote: (d) => {
     const body = el('div');
     if (d.quote) {
@@ -97,7 +103,7 @@ const LABELS = { briefing: 'Today’s briefing', continue: 'Continue reading', r
 
 const dockPrefs = { dock: undefined };
 let dock = null;
-let hidden = [], data = { index: [], feed: [], quote: null, recaps: {}, briefMode: 'full' };
+let hidden = [], data = { index: [], feed: [], quote: null, recaps: {}, briefMode: 'full', updating: false };
 function render() {
   const grid = $('hmGrid'); grid.textContent = '';
   visibleWidgets(hidden).forEach((w) => grid.append(builders[w](data)));
@@ -174,10 +180,11 @@ async function loadData() {
 // Opening the home page also refreshes the feeds that are due (the worker keeps each feed's own schedule and the user's
 // "background polling" choice), then redraws when something new came in. The page never waits for it.
 async function refreshFeeds() {
-  const status = $('hmStatus'); status.textContent = T('Updating feeds…'); status.hidden = false;
   const before = data.feed.length;
+  data.updating = true; render();
   const r = await bgMessage({ action: 'feedPollNow' }, { timeout: 90000 });
-  if (r && r.ok) { await loadData(); if (data.feed.length !== before) { render(); mountSearch(); } }
-  status.hidden = true;
+  if (r && r.ok) await loadData();
+  data.updating = false; render();
+  if (data.feed.length !== before) mountSearch();   // the list in the search has the new items too
 }
 init();

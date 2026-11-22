@@ -44,7 +44,7 @@ chrome.runtime.sendMessage = (m, cb) => { if (m.action === 'feedPollNow') { poll
 await imp('../src/home.js'); await tick(400);
 assert.equal(polls, 1, 'opening the page asks the worker to refresh the feeds');
 assert(/Fresh from worker/.test(w.document.getElementById('hmGrid').textContent), 'what the refresh found shows without reloading');
-assert(w.document.getElementById('hmStatus').hidden, 'status line goes away');
+assert(w.document.getElementById('hmStatus').hidden && !w.document.querySelector('.hm-updating'), 'the "Updating feeds…" line (inside the feeds card) is gone when the refresh is done');
 const d = w.document;
 const cards = [...d.querySelectorAll('.hm-card h2')].map((h) => h.textContent);
 assert.equal(cards.length, 6, 'six cards: ' + cards);

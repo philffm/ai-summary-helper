@@ -61,3 +61,4 @@ body.home { background: var(--bg-page); color: var(--text-primary); font-family:
 .hm-brief-src ol { margin: 8px 0 0; padding-inline-start: 22px; display: grid; gap: 4px; }
 .hm-brief-src a { color: var(--text-primary); }
 .hm-brief-actions { margin-top: 12px; }
+.hm-updating { margin: 0 0 8px; font-size: var(--fs-sm); color: var(--text-muted); }
