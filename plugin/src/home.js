@@ -5,13 +5,14 @@ import { iconEl } from './modules/icons.js';
 import { applyA11y, SCHEMES, DESIGNS, normalizeAppearance, clampScale, TEXT_SCALE_MIN, TEXT_SCALE_MAX } from './modules/a11y.js';
 import { T, TN } from './modules/feedI18n.js';
 import StorageManager from './modules/storageManager.js';
-import { SK, hlPageKey } from './modules/storageKeys.js';
+import { SK, hlPageKey, QUIZ_REC } from './modules/storageKeys.js';
 import { bgMessage } from './modules/bgMessage.js';
 import { normalizeHighlights } from './modules/highlightRecords.js';
 import { renderInline, renderAnswer } from './modules/qaView.js';
 import { chipCites, citedSources } from './modules/recapCites.js';
 import { lazyList } from './modules/lazyList.js';
-import { latestBriefing, continueReading, recentlySaved, latestFeed, mergeFeed, pickQuote, libraryStats, visibleWidgets, WIDGETS, greetingKey } from './modules/homeWidgets.js';
+import { findGaps } from './modules/graphGaps.js';
+import { dueQuizzes, latestBriefing, continueReading, recentlySaved, latestFeed, mergeFeed, pickQuote, libraryStats, visibleWidgets, WIDGETS, greetingKey } from './modules/homeWidgets.js';
 import { createAppDock } from './modules/appDock.js';
 import { mountCommandList } from './modules/commandPalette.js';
 import { externalCommands, externalArticleSearch } from './modules/paletteExternal.js';
@@ -115,7 +116,21 @@ function lazyCard(title, items, build, emptyText, screen) {
   const c = card(title, body, screen); c.classList.add('hm-card--lazy'); return c;
 }
 
+// Quizzes to repeat and topics started but never deepened: shown only when there is something to say (see render)
+const quizRow = (q) => {
+  const a = el('a', 'hm-link'); a.href = chrome.runtime.getURL('popup.html') + '#quiz=' + encodeURIComponent(q.id); a.target = '_blank'; a.rel = 'noopener';
+  a.append(el('span', 'hm-link-title', q.name || T('Quiz')), el('span', 'hm-link-sub', q.missed ? TN(q.missed, '{n} question to repeat', '{n} questions to repeat', { n: q.missed }) : TN(q.total, '{n} question', '{n} questions', { n: q.total })));
+  a.addEventListener('click', (e) => { e.preventDefault(); if (dock) dock.open('quiz=' + encodeURIComponent(q.id)); });
+  return a;
+};
+const gapRow = (g) => {
+  const first = g.articles[0];
+  return link(first ? readerUrl(first) : '#', g.label, g.never ? TN(g.articles.length, '{n} article, never opened', '{n} articles, never opened', { n: g.articles.length }) : TN(g.articles.length, '{n} article, untouched for a while', '{n} articles, untouched for a while', { n: g.articles.length }));
+};
+
 const builders = {
+  quiz: (d) => card(T('Time to repeat'), listOf(dueQuizzes(d.quizzes).slice(0, 3).map(quizRow), ''), 'history'),
+  gaps: (d) => card(T('Started, never deepened'), listOf(d.gaps.slice(0, 3).map(gapRow), ''), 'history'),
   briefing: (d) => briefingCard(d),
   continue: (d) => lazyCard(T('Continue reading'), continueReading(d.index, 400), (a) => link(readerUrl(a), a.title || a.url, hostOf(a.url), a.progress), T('Nothing in progress. Articles you start reading show up here.'), 'history'),
   recent: (d) => lazyCard(T('Recently saved'), recentlySaved(d.index, 400), (a) => link(readerUrl(a), a.title || a.url, hostOf(a.url)), T('Your saved articles show up here.'), 'history'),
@@ -136,11 +151,11 @@ const builders = {
     return card(T('Your library'), dl, 'history/stats');   // the numbers lead to the analytics report
   },
 };
-const LABELS = { briefing: 'Today at a glance', continue: 'Continue reading', recent: 'Recently saved', quote: 'From your highlights', stats: 'Your library' };
+const LABELS = { quiz: 'Time to repeat', gaps: 'Started, never deepened', briefing: 'Today at a glance', continue: 'Continue reading', recent: 'Recently saved', quote: 'From your highlights', stats: 'Your library' };
 
 const dockPrefs = { dock: undefined };
 let dock = null;
-let hidden = [], data = { index: [], feed: [], quote: null, recaps: {}, updating: false };
+let hidden = [], data = { index: [], feed: [], quote: null, recaps: {}, updating: false, quizzes: [], gaps: [] };
 // Two columns where the page is wide, one below that (the width of the page itself: with the app docked beside it, it is narrower)
 const colCount = () => { const w = (document.querySelector('.hm-wrap') || {}).clientWidth || 0; return !w || w >= 760 ? 2 : 1; };
 let lastCols = 0;
@@ -153,7 +168,8 @@ function render() {
   // With the glance card: a four-column grid. The glance card takes half (two columns, both rows), the other four cards a quarter each
   // beside it (Continue reading, Recently saved / Notes, Library). Without it the cards share two columns, shortest first.
   // Narrow (CSS): two columns, then one.
-  const shown = visibleWidgets(hidden), glance = shown.includes('briefing');
+  const shown = visibleWidgets(hidden).filter((w) => !(w === 'quiz' && !dueQuizzes(data.quizzes).length) && !(w === 'gaps' && !data.gaps.length)), glance = shown.includes('briefing');
+  grid.classList.toggle('has-extra', glance && (shown.includes('quiz') || shown.includes('gaps')));
   grid.classList.toggle('has-glance', glance);
   if (glance) {
     shown.forEach((w, i) => { const c = builders[w](data); c.style.order = String(WIDGETS.indexOf(w)); c.dataset.card = w; enter(c, i); grid.append(c); });
@@ -291,6 +307,11 @@ async function loadData() {
     data.recaps = got[SK.feedRecaps] || {};
     data.feed = mergeFeed(got[SK.feedItems], (got[SK.feedBackground] || {}).items);
     data.index = await StorageManager.getArticlesIndex();
+    data.gaps = findGaps(data.index, { cap: 6 });
+    try {   // the saved quizzes (a handful of small records): the due ones become a card
+      const keys = typeof chrome.storage.local.getKeys === 'function' ? (await chrome.storage.local.getKeys()).filter((k) => k.startsWith(QUIZ_REC)) : [];
+      data.quizzes = keys.length ? Object.values(await chrome.storage.local.get(keys)) : [];
+    } catch (_) { data.quizzes = []; }
   } catch (_) { /* empty cards explain themselves */ }
 }
 

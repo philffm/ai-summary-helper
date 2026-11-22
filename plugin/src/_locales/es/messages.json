@@ -8014,5 +8014,29 @@
   },
   "f_update_briefing_ff5c": {
     "message": "Actualizar el resumen"
+  },
+  "f_started_never_deepened_7458": {
+    "message": "Empezado, nunca profundizado"
+  },
+  "f_time_to_repeat_9b98": {
+    "message": "Hora de repasar"
+  },
+  "f_article_never_opened_10c2": {
+    "message": "{n} artículo, nunca abierto"
+  },
+  "f_article_untouched_for_a_whil_0d89": {
+    "message": "{n} artículo, sin tocar desde hace tiempo"
+  },
+  "f_articles_never_opened_6f59": {
+    "message": "{n} artículos, nunca abiertos"
+  },
+  "f_articles_untouched_for_a_whi_7d94": {
+    "message": "{n} artículos, sin tocar desde hace tiempo"
+  },
+  "f_question_to_repeat_9855": {
+    "message": "{n} pregunta para repasar"
+  },
+  "f_questions_to_repeat_11ba": {
+    "message": "{n} preguntas para repasar"
   }
 }

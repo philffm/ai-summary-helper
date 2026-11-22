@@ -8014,5 +8014,29 @@
   },
   "f_update_briefing_ff5c": {
     "message": "Обновить сводку"
+  },
+  "f_started_never_deepened_7458": {
+    "message": "Начато, но не углублено"
+  },
+  "f_time_to_repeat_9b98": {
+    "message": "Пора повторить"
+  },
+  "f_article_never_opened_10c2": {
+    "message": "{n} статья, ни разу не открыта"
+  },
+  "f_article_untouched_for_a_whil_0d89": {
+    "message": "{n} статья, давно не тронута"
+  },
+  "f_articles_never_opened_6f59": {
+    "message": "{n} статей, ни разу не открыто"
+  },
+  "f_articles_untouched_for_a_whi_7d94": {
+    "message": "{n} статей, давно не тронуто"
+  },
+  "f_question_to_repeat_9855": {
+    "message": "{n} вопрос для повторения"
+  },
+  "f_questions_to_repeat_11ba": {
+    "message": "{n} вопросов для повторения"
   }
 }

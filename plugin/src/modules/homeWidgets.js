@@ -77,7 +77,23 @@ export function pager(items, size = 12) {
     return { next() { const out = list.slice(at, at + size); at += out.length; return out; }, more: () => at < list.length, get shown() { return at; }, get total() { return list.length; } };
 }
 
-export const WIDGETS = ['briefing', 'quote', 'stats', 'continue', 'recent'];
+/**
+ * Saved quizzes that are due for a repeat: the reminder time has passed and the quiz was not run again since (a run after the reminder was set
+ * counts as the repeat). recs = the quiz records (quiz:rec:<id>). → [{ id, name, missed, dueAt }], the longest overdue first.
+ */
+export function dueQuizzes(recs, now = Date.now()) {
+    const out = [];
+    for (const q of recs || []) {
+        const due = Date.parse(q && q.remindAt);
+        if (!q || !q.id || !Number.isFinite(due) || due > now) continue;
+        if (q.last && Date.parse(q.last.at) >= due) continue;
+        out.push({ id: q.id, name: q.name || '', missed: Array.isArray(q.last && q.last.missed) ? q.last.missed.length : 0, total: (q.questions || []).length, dueAt: due });
+    }
+    return out.sort((a, b) => a.dueAt - b.dueAt);
+}
+
+// quiz and gaps are shown only when they have something to say
+export const WIDGETS = ['briefing', 'quote', 'stats', 'continue', 'recent', 'quiz', 'gaps'];
 /** The widgets to show, in order, minus the ones the user hid. */
 export const visibleWidgets = (hidden) => WIDGETS.filter((w) => !(hidden || []).includes(w));
 

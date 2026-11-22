@@ -8014,5 +8014,29 @@
   },
   "f_update_briefing_ff5c": {
     "message": "更新簡報"
+  },
+  "f_started_never_deepened_7458": {
+    "message": "開了頭卻從未深入"
+  },
+  "f_time_to_repeat_9b98": {
+    "message": "該溫習了"
+  },
+  "f_article_never_opened_10c2": {
+    "message": "{n} 篇文章，從未開啟"
+  },
+  "f_article_untouched_for_a_whil_0d89": {
+    "message": "{n} 篇文章，很久沒碰"
+  },
+  "f_articles_never_opened_6f59": {
+    "message": "{n} 篇文章，從未開啟"
+  },
+  "f_articles_untouched_for_a_whi_7d94": {
+    "message": "{n} 篇文章，很久沒碰"
+  },
+  "f_question_to_repeat_9855": {
+    "message": "{n} 個問題待溫習"
+  },
+  "f_questions_to_repeat_11ba": {
+    "message": "{n} 個問題待溫習"
   }
 }

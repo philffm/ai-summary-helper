@@ -8297,5 +8297,29 @@
   },
   "f_update_briefing_ff5c": {
     "message": "Briefing bijwerken"
+  },
+  "f_started_never_deepened_7458": {
+    "message": "Begonnen, nooit verdiept"
+  },
+  "f_time_to_repeat_9b98": {
+    "message": "Tijd om te herhalen"
+  },
+  "f_article_never_opened_10c2": {
+    "message": "{n} artikel, nooit geopend"
+  },
+  "f_article_untouched_for_a_whil_0d89": {
+    "message": "{n} artikel, al een tijd niet aangeraakt"
+  },
+  "f_articles_never_opened_6f59": {
+    "message": "{n} artikelen, nooit geopend"
+  },
+  "f_articles_untouched_for_a_whi_7d94": {
+    "message": "{n} artikelen, al een tijd niet aangeraakt"
+  },
+  "f_question_to_repeat_9855": {
+    "message": "{n} vraag om te herhalen"
+  },
+  "f_questions_to_repeat_11ba": {
+    "message": "{n} vragen om te herhalen"
   }
 }

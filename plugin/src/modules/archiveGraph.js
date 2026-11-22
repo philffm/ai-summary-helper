@@ -42,6 +42,8 @@ import { conceptKey, isKnownTopic, isLanguageTag, topicLabel, broaderKeysOf } fr
 import { fetchAnnotationsForArticle, escapeHtml } from './annotationExporter.js';
 import { setIconLabel, iconEl } from './icons.js';
 import { paperState } from './paperInfo.js';
+import { tagIdOf, tagLabelOf, findGaps, stamp } from './graphGaps.js';
+export { findGaps };
 
 import { topicClusters, bridgeArticles, neighborhood, shortestPath, sourceType, maturityOf } from './graphStructure.js';
 import { CATEGORIES } from './topicCategories.js';
@@ -147,40 +149,6 @@ export function makeSimilarFinder(similarityIndex, minScore = 0.15) {
  *        so orphaned articles can be reconnected without any extra
  *        indexing pass. Pass null to skip reconnection entirely.
  */
-// One node per topic, not per spelling: News / Nachrichten / Noticias share a node, shown in the UI language.
-const tagIdOf = (tag) => 'tag-' + (isKnownTopic(tag) ? 'c-' + conceptKey(tag).replace(/^c:/, '') : tag.toLowerCase()).replace(/\s+/g, '-');
-const tagLabelOf = (tag) => topicLabel(tag, uiLocale());
-
-// "Started, never deepened": topics with at most GAP_MAX_ARTICLES saved articles where nothing was opened for GAP_DAYS.
-const GAP_DAYS = 30;
-const GAP_MAX_ARTICLES = 2;
-const GAP_CAP = 25;
-const stamp = (a) => { const t = new Date(a.lastOpened || a.timestamp).getTime(); return Number.isFinite(t) ? t : 0; };
-
-/**
- * Topics that were started and never followed up: { id, label, articles, last, never } — never-opened topics first,
- * then the longest untouched. Counted over ALL articles (rarely-used tags are hidden in the graph, so this is
- * the one place they show up).
- */
-export function findGaps(articles, { now = Date.now(), days = GAP_DAYS, maxArticles = GAP_MAX_ARTICLES, cap = GAP_CAP } = {}) {
-    const byTag = new Map();
-    (articles || []).forEach(a => (a.tags || []).forEach(tag => {
-        if (isLanguageTag(tag)) return;   // "🌐 de" marks the language, it is not a topic
-        const id = tagIdOf(tag);
-        let e = byTag.get(id);
-        if (!e) byTag.set(id, e = { id, label: tagLabelOf(tag), articles: [] });
-        if (!e.articles.includes(a)) e.articles.push(a);
-    }));
-    const out = [];
-    byTag.forEach(e => {
-        if (e.articles.length > maxArticles) return;
-        const last = Math.max(...e.articles.map(stamp));
-        if ((now - last) / 86400000 < days) return;
-        out.push({ ...e, last, never: e.articles.every(a => !a.lastOpened) });
-    });
-    return out.sort((a, b) => (b.never - a.never) || (a.last - b.last)).slice(0, cap);
-}
-
 /** The articles connected to one tag node (tag links only; similarity links do not make an article part of a topic). */
 export function articlesOfTag(nodes, links, tagId) {
     const byId = new Map(nodes.map(n => [n.id, n]));

@@ -8297,5 +8297,29 @@
   },
   "f_update_briefing_ff5c": {
     "message": "อัปเดตสรุป"
+  },
+  "f_started_never_deepened_7458": {
+    "message": "เริ่มไว้แต่ไม่เคยเจาะลึก"
+  },
+  "f_time_to_repeat_9b98": {
+    "message": "ถึงเวลาทบทวน"
+  },
+  "f_article_never_opened_10c2": {
+    "message": "บทความ {n} รายการ ไม่เคยเปิด"
+  },
+  "f_article_untouched_for_a_whil_0d89": {
+    "message": "บทความ {n} รายการ ไม่ได้แตะมานาน"
+  },
+  "f_articles_never_opened_6f59": {
+    "message": "บทความ {n} รายการ ไม่เคยเปิด"
+  },
+  "f_articles_untouched_for_a_whi_7d94": {
+    "message": "บทความ {n} รายการ ไม่ได้แตะมานาน"
+  },
+  "f_question_to_repeat_9855": {
+    "message": "คำถาม {n} ข้อที่ต้องทบทวน"
+  },
+  "f_questions_to_repeat_11ba": {
+    "message": "คำถาม {n} ข้อที่ต้องทบทวน"
   }
 }

@@ -8297,5 +8297,29 @@
   },
   "f_update_briefing_ff5c": {
     "message": "Perbarui ringkasan"
+  },
+  "f_started_never_deepened_7458": {
+    "message": "Dimulai, belum pernah didalami"
+  },
+  "f_time_to_repeat_9b98": {
+    "message": "Saatnya mengulang"
+  },
+  "f_article_never_opened_10c2": {
+    "message": "{n} artikel, belum pernah dibuka"
+  },
+  "f_article_untouched_for_a_whil_0d89": {
+    "message": "{n} artikel, lama tidak disentuh"
+  },
+  "f_articles_never_opened_6f59": {
+    "message": "{n} artikel, belum pernah dibuka"
+  },
+  "f_articles_untouched_for_a_whi_7d94": {
+    "message": "{n} artikel, lama tidak disentuh"
+  },
+  "f_question_to_repeat_9855": {
+    "message": "{n} pertanyaan untuk diulang"
+  },
+  "f_questions_to_repeat_11ba": {
+    "message": "{n} pertanyaan untuk diulang"
   }
 }

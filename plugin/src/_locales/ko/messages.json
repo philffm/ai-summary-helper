@@ -7996,5 +7996,29 @@
   },
   "f_update_briefing_ff5c": {
     "message": "브리핑 업데이트"
+  },
+  "f_started_never_deepened_7458": {
+    "message": "시작만 하고 깊이 보지 않은 주제"
+  },
+  "f_time_to_repeat_9b98": {
+    "message": "복습할 시간"
+  },
+  "f_article_never_opened_10c2": {
+    "message": "기사 {n}개, 열어 본 적 없음"
+  },
+  "f_article_untouched_for_a_whil_0d89": {
+    "message": "기사 {n}개, 한동안 손대지 않음"
+  },
+  "f_articles_never_opened_6f59": {
+    "message": "기사 {n}개, 열어 본 적 없음"
+  },
+  "f_articles_untouched_for_a_whi_7d94": {
+    "message": "기사 {n}개, 한동안 손대지 않음"
+  },
+  "f_question_to_repeat_9855": {
+    "message": "복습할 질문 {n}개"
+  },
+  "f_questions_to_repeat_11ba": {
+    "message": "복습할 질문 {n}개"
   }
 }

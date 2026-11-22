@@ -131,3 +131,8 @@ body.home { background: var(--bg-page); color: var(--text-primary); font-family:
 .hm-refresh:hover .icon { animation: spin .6s var(--easing-in-out); }
 @media (prefers-reduced-motion: reduce) { .hm-refresh:hover .icon { animation: none; } }
 :root[data-design='contrast'] .hm-refresh { color: var(--text-primary); }
+
+/* quiz / gaps: a third row of quarter cards, only when there is something to show */
+.hm-grid.has-glance.has-extra { grid-template-rows: auto minmax(0, 1fr) auto; }
+.hm-grid.has-glance.has-extra > [data-card="briefing"] { grid-row: 1 / span 3; }
+.hm-grid.has-glance > [data-card="quiz"], .hm-grid.has-glance > [data-card="gaps"] { overflow: hidden; }

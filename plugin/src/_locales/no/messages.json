@@ -8297,5 +8297,29 @@
   },
   "f_update_briefing_ff5c": {
     "message": "Oppdater sammendraget"
+  },
+  "f_started_never_deepened_7458": {
+    "message": "Påbegynt, aldri fordypet"
+  },
+  "f_time_to_repeat_9b98": {
+    "message": "På tide å repetere"
+  },
+  "f_article_never_opened_10c2": {
+    "message": "{n} artikkel, aldri åpnet"
+  },
+  "f_article_untouched_for_a_whil_0d89": {
+    "message": "{n} artikkel, urørt en stund"
+  },
+  "f_articles_never_opened_6f59": {
+    "message": "{n} artikler, aldri åpnet"
+  },
+  "f_articles_untouched_for_a_whi_7d94": {
+    "message": "{n} artikler, urørt en stund"
+  },
+  "f_question_to_repeat_9855": {
+    "message": "{n} spørsmål å repetere"
+  },
+  "f_questions_to_repeat_11ba": {
+    "message": "{n} spørsmål å repetere"
   }
 }
