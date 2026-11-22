@@ -2,7 +2,7 @@
 html, body { height: auto; overflow: auto; }
 body.home { background: var(--bg-page); color: var(--text-primary); font-family: inherit; }
 .hm-wrap { max-width: 1040px; margin: 0 auto; padding: 40px 20px 64px; box-sizing: border-box; }
-.hm-head { display: flex; flex-direction: column; gap: 16px; margin-bottom: 28px; }
+.hm-head { display: flex; flex-direction: column; align-items: center; gap: 16px; margin: 8vh 0 40px; text-align: center; }
 .hm-title { margin: 0; font-size: var(--fs-2xl); font-weight: 600; }
 .hm-search { display: flex; align-items: center; justify-content: space-between; gap: 12px; width: 100%; max-width: 560px; padding: 12px 14px; text-align: left; cursor: text; border: 1px solid var(--outline-strong); border-radius: var(--radius-md); background: var(--glass-input); color: var(--text-muted); font: inherit; font-size: var(--fs-base); }
 .hm-search:hover { border-color: var(--accent); }
